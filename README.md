@@ -315,7 +315,7 @@ This is a **unique prediction** that distinguishes Zimmerman from constant-a₀ 
 
 **Test:** What will LSST's 20 billion galaxies reveal about modified gravity?
 
-**Context:** Professor Christopher Stubbs (Harvard) was the inaugural LSST project scientist and worked on Pantheon+ SNe Ia calibrations for H₀ measurements. LSST will explicitly test modified gravity theories.
+**Context:** The Vera C. Rubin Observatory's Legacy Survey of Space and Time (LSST) will observe 20 billion galaxies, providing unprecedented data to test modified gravity theories across cosmic time.
 
 **Zimmerman Predictions for LSST:**
 
@@ -347,7 +347,7 @@ This is a **unique prediction** that distinguishes Zimmerman from constant-a₀ 
 
 **Test:** Can evolving a₀ explain the S8 tension?
 
-**Context:** Professor Cora Dvorkin (Harvard) is a leader in S8 tension research and CMB-S4 dark matter analysis. The S8 tension is a 3-4σ discrepancy between CMB and local structure measurements.
+**Context:** The S8 tension is a 3-4σ discrepancy between CMB and local structure measurements, representing one of the most significant challenges in modern cosmology (see Planck Collaboration 2020; KiDS-1000; DES Y3).
 
 **The Problem:**
 ```
@@ -380,7 +380,7 @@ Tension:           ~3σ (different surveys show 2-4σ)
 
 **Test:** Does evolving a₀ affect CMB lensing predictions?
 
-**Context:** Professor John Kovac (Harvard) leads BICEP/Keck CMB polarization experiments at the South Pole. Understanding lensing B-modes is crucial for detecting primordial gravitational waves.
+**Context:** CMB lensing and B-mode polarization experiments (BICEP/Keck, SPT, ACT, upcoming CMB-S4) are crucial for understanding structure formation and detecting primordial gravitational waves.
 
 **The Connection:**
 - CMB photons are lensed by large-scale structure at z~0.5-5
@@ -395,9 +395,9 @@ Lensing kernel peaks at z~2-4, where a₀ was 3-6× higher
 → A_lens modification: ~2-3% (testable with CMB-S4)
 ```
 
-**Implications for BICEP/Keck:**
+**Implications for CMB Experiments:**
 - If S8 tension is real (as Zimmerman predicts), lensing B-modes may be ~5-8% weaker
-- This could help primordial B-mode detection at the margins
+- This could affect primordial B-mode detection and r (tensor-to-scalar ratio) constraints
 
 ![CMB Lensing](examples/10_cmb_lensing/output/cmb_lensing.png)
 
