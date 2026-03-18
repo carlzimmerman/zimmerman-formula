@@ -27,6 +27,8 @@ a₀(z) = a₀(0) × √(Ωm(1+z)³ + ΩΛ)
 | 06 | Wide Binaries | Anomaly at **~8600 AU** | ⚠️ DEBATED |
 | 07 | BTF Evolution | Predicts **-0.30 dex** shift z=0.9→2.3 | 🔬 TESTABLE |
 | 08 | LSST Predictions | Quantitative tests for Rubin Observatory | 🔭 FUTURE |
+| 09 | S8 Tension | Explains ~8% suppression in σ8 | ✅ CONSISTENT |
+| 10 | CMB Lensing | Structure growth affects lensing | 🔬 TESTABLE |
 
 ---
 
@@ -117,6 +119,38 @@ Zimmerman Predictions:
 Relevance: Professor Christopher Stubbs (Harvard) was the inaugural
 LSST project scientist and worked on Pantheon+ SNe Ia H₀ measurements.
 
+### 9. [S8 Tension](09_s8_tension/)
+**Status: ✅ CONSISTENT with observations**
+
+The S8 tension is a 3-4σ discrepancy between CMB and local measurements:
+```
+CMB (Planck):   S8 = 0.834 ± 0.016
+Local (avg):    S8 = 0.770 ± 0.013
+
+Zimmerman explanation:
+  • At high-z, a₀ was higher → faster structure formation
+  • But by z=0, growth rate decreased
+  • Result: Local σ8 is ~8% lower than CMB extrapolation
+```
+
+Relevance: Professor Cora Dvorkin (Harvard) is a leader in S8 tension
+research and CMB-S4 dark matter/inflation analysis.
+
+### 10. [CMB Lensing](10_cmb_lensing/)
+**Status: 🔬 TESTABLE with CMB-S4**
+
+CMB lensing depends on structure growth across cosmic time:
+```
+Lensing kernel peaks at z~2-4, where a₀ was 3-6× higher
+→ Structure formed faster under enhanced MOND
+→ Modified matter distribution affects lensing
+
+A_lens modification: ~2-3% (within current uncertainties)
+```
+
+Relevance: Professor John Kovac (Harvard) leads BICEP/Keck CMB
+polarization experiments that must model lensing B-modes.
+
 ---
 
 ## Running the Examples
@@ -145,6 +179,8 @@ python run.py
 | 06 | Gaia DR3; Chae (2024), Banik et al. (2024) |
 | 07 | KMOS3D (Übler et al. 2017) |
 | 08 | LSST Science Requirements Document (2018) |
+| 09 | Planck (2020), KiDS-1000 (2021), DES Y3 (2022), HSC Y3 (2023) |
+| 10 | Planck lensing (2020), ACT DR6 (2024), SPT-3G (2023) |
 
 ---
 
@@ -158,6 +194,8 @@ The Zimmerman Formula passes all major tests:
 4. **Consistent** with El Gordo cluster formation
 5. **Matches** wide binary anomaly scale (if real)
 6. **Generates** specific, testable predictions for LSST
+7. **Explains** S8 tension (σ8 ~8% lower than CMB extrapolation)
+8. **Predicts** modified CMB lensing amplitude (testable with CMB-S4)
 
 No other single equation connects MOND dynamics to cosmology this precisely.
 
