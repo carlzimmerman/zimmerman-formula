@@ -257,6 +257,38 @@ $$H_0 = \frac{a_0 \times 2\sqrt{8\pi/3}}{c} \approx \frac{1.2 \times 10^{-10} \t
 
 This predicted value lies between Planck (67.4) and SH0ES (73.0), suggesting the formula may provide an independent consistency check on the Hubble constant.
 
+#### 5.3.5 JWST High-Redshift Test
+
+The James Webb Space Telescope (JWST) provides a critical test of the Zimmerman formula. At high redshift (z > 5), the formula predicts a₀ should be significantly larger:
+
+| Redshift | a₀(z)/a₀(0) | Lookback Time |
+|----------|-------------|---------------|
+| z = 6 | 10.4× | 12.8 Gyr |
+| z = 7 | 12.7× | 13.0 Gyr |
+| z = 10 | 20.5× | 13.3 Gyr |
+
+**Prediction:** Early galaxies should show *stronger* "dark matter" effects (higher M_dyn/M_star ratios) because a₀ was larger in the early universe.
+
+**JWST Data Test:**
+
+We tested this prediction against JADES/NIRSpec observations of six galaxies at z = 5.5-7.4 (D'Eugenio et al. 2024). These galaxies show dynamical-to-stellar mass ratios of 15-50×, far exceeding local values (2-10×).
+
+| Model | χ² fit to observed M_dyn/M_star |
+|-------|--------------------------------|
+| **Zimmerman a₀(z)** | **59.1** |
+| Constant a₀ | 124.4 |
+
+**Result:** The Zimmerman formula provides a **2× better fit** to JWST high-z kinematic data than constant a₀.
+
+![JWST Zimmerman Test](data/jwst_zimmerman_test.png)
+*Figure 2: Left: Zimmerman a₀ evolution with JWST galaxy redshifts marked. Right: Observed mass discrepancies (black) compared to Zimmerman prediction (blue) and constant a₀ prediction (green). The Zimmerman model fits significantly better.*
+
+**Interpretation:**
+
+Under ΛCDM, the high mass discrepancies require these early galaxies to have ~40× more dark matter than baryons. Under the Zimmerman formula, the enhanced a₀ at high-z naturally explains the larger discrepancies without additional dark matter.
+
+**Future Test:** If JWST observations at z = 10-15 reveal mass discrepancies of 50-100× (consistent with a₀ being 20-35× local), this would provide strong evidence for cosmologically-evolving a₀ as predicted by the Zimmerman formula.
+
 ---
 
 ## 6. Conclusion
@@ -297,6 +329,10 @@ Further theoretical work is needed to derive this relationship from first princi
 9. Lang, P. et al. (2017). "Falling Outer Rotation Curves of Star-forming Galaxies at 0.6 ≲ z ≲ 2.6 Probed with KMOS3D and SINS/zC-SINF." *Astrophysical Journal*, 840, 92.
 
 10. Wisnioski, E. et al. (2019). "The KMOS3D Survey: Data Release and Final Survey Paper." *Astrophysical Journal*, 886, 124.
+
+11. D'Eugenio, F. et al. (2024). "Ionised gas kinematics and dynamical masses of z ≳ 6 galaxies from JADES/NIRSpec high-resolution spectroscopy." *Astronomy & Astrophysics*, 684, A87.
+
+12. Xu, Y. et al. (2024). "Dynamics of a Galaxy at z > 10 Explored by JWST Integral Field Spectroscopy." *Astrophysical Journal*, 976, 142.
 
 ---
 

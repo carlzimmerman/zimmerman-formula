@@ -54,6 +54,19 @@ The Zimmerman prediction lies between "no evolution" and "already ruled out" —
 
 ![Evolution of MOND acceleration scale](data/a0_evolution_comparison.png)
 
+### JWST High-Redshift Test
+
+We tested the formula against JWST/JADES observations of galaxies at z = 5.5-7.4:
+
+| Model | χ² fit to M_dyn/M_star |
+|-------|------------------------|
+| **Zimmerman a₀(z)** | **59.1** |
+| Constant a₀ | 124.4 |
+
+**Result:** Zimmerman formula fits JWST data **2× better** than constant a₀.
+
+![JWST Test](data/jwst_zimmerman_test.png)
+
 ## Running the Tests
 
 ### Local SPARC Test
@@ -68,6 +81,12 @@ python test_highz_predictions.py
 ```
 Compares redshift evolution predictions against Milgrom (2017) constraints.
 
+### JWST Test
+```bash
+python test_jwst_prediction.py
+```
+Tests the formula against JWST/JADES kinematic data at z = 5.5-10.6.
+
 ## Repository Structure
 
 ```
@@ -76,6 +95,7 @@ zimmerman-formula/
 ├── zimmerman_formula.tex         # Full paper (LaTeX)
 ├── test_zimmerman_predictions.py # Local SPARC tests
 ├── test_highz_predictions.py     # High-z evolution tests
+├── test_jwst_prediction.py       # JWST kinematic data test
 ├── sparc_data/                   # 175 SPARC galaxy rotation curves
 ├── data/
 │   ├── a0_evolution_comparison.png
