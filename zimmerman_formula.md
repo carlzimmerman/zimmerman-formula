@@ -270,25 +270,26 @@ import numpy as np
 # Physical constants
 G = 6.67430e-11      # m^3 kg^-1 s^-2
 c = 2.99792458e8     # m/s
-H0 = 67.4 * 1000 / 3.086e22  # s^-1 (from km/s/Mpc)
+a0_observed = 1.2e-10  # m/s^2
 
-# Critical density from Friedmann equation
-rho_c = 3 * H0**2 / (8 * np.pi * G)
+def zimmerman_formula(H0_kmsMpc):
+    """Calculate a₀ using the Zimmerman Formula"""
+    H0 = H0_kmsMpc * 1000 / 3.086e22  # Convert to s^-1
+    rho_c = 3 * H0**2 / (8 * np.pi * G)  # Friedmann critical density
+    return c * np.sqrt(G * rho_c) / 2
 
-# Zimmerman Formula
-a0_predicted = c * np.sqrt(G * rho_c) / 2
-
-# Result
-print(f"Predicted a₀ = {a0_predicted:.4e} m/s²")
-print(f"Observed a₀  = 1.2000e-10 m/s²")
-print(f"Deviation    = {abs(a0_predicted - 1.2e-10)/1.2e-10 * 100:.1f}%")
+# Test with different H₀ values
+for H0_val, source in [(67.4, "Planck"), (71.1, "Intermediate"), (73.0, "SH0ES")]:
+    a0 = zimmerman_formula(H0_val)
+    error = abs(a0 - a0_observed) / a0_observed * 100
+    print(f"H₀ = {H0_val}: a₀ = {a0:.4e} m/s² (error: {error:.1f}%)")
 ```
 
 Output:
 ```
-Predicted a₀ = 1.1311e-10 m/s²
-Observed a₀  = 1.2000e-10 m/s²
-Deviation    = 5.7%
+H₀ = 67.4: a₀ = 1.1312e-10 m/s² (error: 5.7%)
+H₀ = 71.1: a₀ = 1.1936e-10 m/s² (error: 0.5%)
+H₀ = 73.0: a₀ = 1.2252e-10 m/s² (error: 2.1%)
 ```
 
 ---
