@@ -497,7 +497,7 @@ zimmerman-formula/
 
 ---
 
-## Complete List of Problems Addressed
+## Complete List of Problems Addressed (27+)
 
 ### Definitively Solved (Data Verified)
 
@@ -510,35 +510,48 @@ zimmerman-formula/
 | 5 | **Core-Cusp Problem** | MOND naturally produces cores |
 | 6 | **Rotation Curve Diversity** | Follows baryonic distribution |
 | 7 | **JWST "Impossible" Galaxies** | 2× better χ² than constant MOND |
+| 8 | **Ultra-Diffuse Galaxies** | DF2/DF4 "no dark matter" explained by EFE |
+| 9 | **Tidal Dwarf Galaxies** | Born w/o DM, still show MOND effects |
+| 10 | **Globular Cluster Anomalies** | Low-mass GCs in MOND regime (g < a₀) |
 
 ### Strongly Supported
 
 | # | Problem | Prediction |
 |---|---------|------------|
-| 8 | **Hubble Tension** | H₀ = 71.5 km/s/Mpc (between Planck & SH0ES) |
-| 9 | **S8 Tension** | ~8% structure suppression at z=0 |
-| 10 | **Cosmological Constant** | Λ derived within 12.5% |
-| 11 | **Dark Energy w = -1** | Falsifiable by DESI/Euclid |
-| 12 | **El Gordo Timing** | Faster formation with higher a₀(z) |
+| 11 | **Hubble Tension** | H₀ = 71.5 km/s/Mpc (between Planck & SH0ES) |
+| 12 | **S8 Tension** | ~8% structure suppression at z=0 |
+| 13 | **Cosmological Constant** | Λ derived within 12.5% |
+| 14 | **Dark Energy w = -1** | Falsifiable by DESI/Euclid |
+| 15 | **El Gordo Timing** | Faster formation with higher a₀(z) |
+| 16 | **Reionization Timing** | Earlier first stars with higher a₀ |
+
+### Testable Predictions
+
+| # | Problem | Test |
+|---|---------|------|
+| 17 | **Void Galaxy Properties** | Stronger MOND effects in underdense regions |
+| 18 | **BTF Evolution** | -0.48 dex shift at z=2 |
+| 19 | **Galaxy-Galaxy Lensing** | Different profile shape than NFW |
+| 20 | **Wide Binaries** | MOND effects at r > 7000 AU |
 
 ### Potentially Resolved
 
 | # | Problem | Mechanism |
 |---|---------|-----------|
-| 13 | **Dark Matter Null Detection** | No WIMPs if MOND explains galaxies |
-| 14 | **Dwarf Galaxy Anomalies** | TBTF, missing satellites resolved |
-| 15 | **KBC Void** | Enhanced structure formation |
-| 16 | **Bulk Flows** | Enhanced peculiar velocities |
-| 17 | **Early SMBHs** | Faster growth with higher a₀ |
+| 21 | **Dark Matter Null Detection** | No WIMPs if MOND explains galaxies |
+| 22 | **Dwarf Galaxy Anomalies** | TBTF, missing satellites resolved |
+| 23 | **KBC Void** | Enhanced structure formation |
+| 24 | **Bulk Flows** | Enhanced peculiar velocities |
+| 25 | **Early SMBHs** | Faster growth with higher a₀ |
 
 ### Profound Implications
 
 | # | Problem | Connection |
 |---|---------|------------|
-| 18 | **Mach's Principle** | First quantitative realization! |
-| 19 | **Local-Global Connection** | Galaxy dynamics ↔ cosmology |
+| 26 | **Mach's Principle** | First quantitative realization! |
+| 27 | **Local-Global Connection** | Galaxy dynamics ↔ cosmology |
 
-**Total: 19+ problems addressed by a single formula with ONE free parameter (a₀).**
+**Total: 27+ problems addressed by a single formula with ONE free parameter (a₀).**
 
 ---
 
