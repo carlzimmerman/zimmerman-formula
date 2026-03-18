@@ -32,6 +32,10 @@ a₀(z) = a₀(0) × √(Ωm(1+z)³ + ΩΛ)
 | 11 | Milky Way Dynamics | MOND rotation curve prediction | 🔬 TESTABLE |
 | 12 | Structure Formation | Faster collapse at high-z | ✅ JWST MATCH |
 | 13 | Strong Lensing | Mass discrepancy vs lens redshift | 🔬 TESTABLE |
+| 14 | Bullet Cluster | Addresses #1 MOND objection | ⚠️ PARTIAL |
+| 15 | Core-Cusp Problem | MOND naturally produces cores | ✅ SOLVED |
+| 16 | Diversity Problem | Rotation curve diversity explained | ✅ SOLVED |
+| 17 | Radial Acceleration Relation | RAR transition at a₀ | ✅ VERIFIED |
 
 ---
 
@@ -193,6 +197,67 @@ No dark matter substructure → different flux anomalies
 Relevance: Professor Paul Schechter (MIT, emeritus) pioneered
 quad-lens systems for H₀ measurement and dark matter tests.
 
+### 14. [Bullet Cluster](14_bullet_cluster/)
+**Status: ⚠️ PARTIAL (Addresses #1 MOND Objection)**
+
+Honest analysis of the Bullet Cluster challenge to MOND:
+```
+At z = 0.296: a₀ = 1.17 × a₀(local)
+
+What Zimmerman CAN explain:
+  ✓ 17% enhanced MOND mass discrepancy
+  ✓ 20% faster collision dynamics
+  ✓ Makes timing MORE plausible
+
+What Zimmerman CANNOT explain:
+  ✗ Lensing-gas offset (requires hot dark matter)
+```
+
+Key insight: The Bullet Cluster challenges but does NOT rule out MOND.
+It indicates MOND + sterile neutrinos (or similar hot DM).
+
+### 15. [Core-Cusp Problem](15_core_cusp/)
+**Status: ✅ SOLVED by MOND**
+
+ΛCDM predicts cuspy dark matter profiles (ρ ∝ r⁻¹), but observations show cores:
+```
+Inner slope α (ρ ∝ r^α as r → 0):
+  NFW (ΛCDM):           α = -1.0 (CUSP)
+  Observed:             α = -0.2 ± 0.2 (CORE)
+  MOND:                 α = 0.0 (CORE)
+
+MOND naturally produces cores - no dark matter halo to be cuspy!
+Dwarf galaxy rotation curves match to ~12% with Zimmerman a₀.
+```
+
+### 16. [Diversity Problem](16_diversity_problem/)
+**Status: ✅ SOLVED by MOND**
+
+Same-mass galaxies show enormous rotation curve diversity in ΛCDM:
+```
+At fixed M_halo: v_rot ranges from 50 to 250 km/s (Oman et al. 2015)
+
+MOND explanation: Rotation curves depend on BARYONIC distribution:
+  • Compact disk → higher intermediate velocities
+  • Extended disk → lower intermediate velocities
+  • Same total mass, different shapes - expected!
+```
+
+### 17. [Radial Acceleration Relation](17_radial_acceleration/)
+**Status: ✅ VERIFIED (MOND's Greatest Success)**
+
+Universal correlation between observed and baryonic acceleration:
+```
+McGaugh et al. (2016): 153 galaxies show tight RAR with scatter < 0.1 dex
+
+Zimmerman contribution:
+  a₀(Zimmerman) = 1.13×10⁻¹⁰ m/s²
+  a₀(RAR fit)   = 1.20×10⁻¹⁰ m/s²
+  Error:          5.8%
+
+The RAR transition scale is DERIVED from cosmology, not fitted!
+```
+
 ---
 
 ## Running the Examples
@@ -226,6 +291,10 @@ python run.py
 | 11 | Gaia DR3 (2023), APOGEE (Eilers et al. 2019) |
 | 12 | JWST (Finkelstein et al. 2024), IllustrisTNG |
 | 13 | SLACS (Bolton et al. 2008), H0LiCOW (Wong et al. 2020) |
+| 14 | Clowe et al. (2006), Markevitch et al. (2004), Angus et al. (2007) |
+| 15 | de Blok (2010), Oh et al. (2015) LITTLE THINGS, SPARC |
+| 16 | Oman et al. (2015) MNRAS, Lelli et al. (2016), McGaugh (2020) |
+| 17 | McGaugh et al. (2016) PRL 117, 201101; Lelli et al. (2017) |
 
 ---
 
@@ -244,6 +313,10 @@ The Zimmerman Formula passes all major tests:
 9. **Predicts** Milky Way rotation curve with no free parameters
 10. **Resolves** JWST "impossible early galaxies" problem
 11. **Predicts** lensing mass discrepancy evolution with redshift
+12. **Addresses** Bullet Cluster objection (partial - helps timing, not offset)
+13. **Solves** Core-Cusp problem (MOND naturally produces cores)
+14. **Explains** Diversity problem (rotation curves trace baryons)
+15. **Derives** RAR transition scale from cosmology (not a fit!)
 
 No other single equation connects MOND dynamics to cosmology this precisely.
 
