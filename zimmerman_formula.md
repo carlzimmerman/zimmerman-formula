@@ -568,4 +568,4 @@ Citation: Wisnioski, E. et al. (2019). "The KMOS3D Survey: Data Release and Fina
 ---
 
 *Discovery Date: March 2026*
-*Method: Constrained symbolic regression using HaliFlow/BruteFlow framework*
+*Method: Constrained symbolic regression*

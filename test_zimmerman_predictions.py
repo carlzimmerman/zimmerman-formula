@@ -269,12 +269,9 @@ def main():
     print("LOADING SPARC DATA")
     print("="*70)
 
-    # Try multiple possible paths
+    # SPARC data directory (included in this repository)
     sparc_paths = [
-        "sparc_data",  # Local copy in zimmerman-formula directory
-        "../hali_flow/sparc_data",
-        "../../hali_flow/sparc_data",
-        "/Users/carlzimmerman/new_physics/hali_flow/sparc_data",
+        "sparc_data",
     ]
 
     galaxies = []
