@@ -12,6 +12,8 @@ Where:
 - **ρc** = cosmological critical density
 - **H₀** = Hubble constant
 
+The coefficient 5.79 = 2√(8π/3) emerges naturally from the Friedmann equation structure.
+
 ## Key Results
 
 | H₀ Value | Result | Error |
@@ -24,14 +26,75 @@ The formula achieves **0.5% accuracy** compared to the observed MOND acceleratio
 
 This is **2.3× more accurate** than the standard literature formula a₀ ≈ cH₀/(2π).
 
-## Files
+## Testable Predictions
 
-- `zimmerman_formula.md` - Full paper (Markdown)
-- `zimmerman_formula.tex` - Full paper (LaTeX, AASTeX format)
+### Redshift Evolution
+
+If a₀ ∝ √ρc, then a₀ should evolve with redshift as:
+
+$$a_0(z) = a_0(0) \times \sqrt{\Omega_m(1+z)^3 + \Omega_\Lambda}$$
+
+| Redshift | a₀(z)/a₀(0) | Status |
+|----------|-------------|--------|
+| z = 1 | 1.79 | Testable |
+| z = 2 | **3.03** | Compatible with constraints |
+| z = 3 | 4.57 | Testable |
+
+### Comparison with High-z Constraints
+
+Milgrom (2017) analyzed Genzel et al. high-z rotation curves and found that **~4× at z=2 is excluded**.
+
+| Model | a₀(z=2)/a₀(0) | Status |
+|-------|---------------|--------|
+| Constant a₀ | 1.0 | Allowed |
+| **Zimmerman** | **3.03** | **Compatible** |
+| (1+z)^1.5 | 5.2 | EXCLUDED |
+
+The Zimmerman prediction lies between "no evolution" and "already ruled out" — a specific, falsifiable prediction.
+
+![Evolution of MOND acceleration scale](data/a0_evolution_comparison.png)
+
+## Running the Tests
+
+### Local SPARC Test
+```bash
+python test_zimmerman_predictions.py
+```
+Tests the formula against 171 SPARC galaxy rotation curves using the Radial Acceleration Relation.
+
+### High-z Predictions
+```bash
+python test_highz_predictions.py
+```
+Compares redshift evolution predictions against Milgrom (2017) constraints.
+
+## Repository Structure
+
+```
+zimmerman-formula/
+├── zimmerman_formula.md          # Full paper (Markdown)
+├── zimmerman_formula.tex         # Full paper (LaTeX)
+├── test_zimmerman_predictions.py # Local SPARC tests
+├── test_highz_predictions.py     # High-z evolution tests
+├── sparc_data/                   # 175 SPARC galaxy rotation curves
+├── data/
+│   ├── a0_evolution_comparison.png
+│   └── kmos3d/                   # KMOS3D catalog (739 galaxies, z=0.6-2.7)
+├── LICENSE
+└── README.md
+```
+
+## Data Sources
+
+- **SPARC**: [astroweb.cwru.edu/SPARC](http://astroweb.cwru.edu/SPARC/) — Lelli, McGaugh & Schombert (2016)
+- **KMOS3D**: [mpe.mpg.de/ir/KMOS3D](https://www.mpe.mpg.de/ir/KMOS3D) — Wisnioski et al. (2019)
 
 ## Citation
 
-Zimmerman, C. (2026). "A Novel Relationship Between the MOND Acceleration Scale and Cosmological Critical Density"
+```
+Zimmerman, C. (2026). "A Novel Relationship Between the MOND Acceleration Scale
+and Cosmological Critical Density." GitHub: https://github.com/carlzimmerman/zimmerman-formula
+```
 
 ## License
 
