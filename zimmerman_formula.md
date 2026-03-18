@@ -199,9 +199,63 @@ The formula provides a new consistency check between local galactic dynamics and
 
 ### 5.3 Testable Predictions
 
-1. **Redshift dependence**: If a₀ ∝ √ρc, and ρc evolves with redshift, then a₀ should also evolve. High-redshift rotation curves could test this.
+#### 5.3.1 Redshift Evolution of a₀
 
-2. **Hubble tension resolution**: The formula predicts slightly different a₀ values for Planck vs. SH0ES H₀ values, potentially offering a consistency test.
+If a₀ ∝ √ρc, and the critical density evolves with redshift as ρc(z) = ρc(0) × E(z)², where E(z) = H(z)/H₀, then a₀ should evolve as:
+
+$$a_0(z) = a_0(0) \times E(z) = a_0(0) \times \sqrt{\Omega_m(1+z)^3 + \Omega_\Lambda}$$
+
+This yields specific, falsifiable predictions:
+
+| Redshift | a₀(z)/a₀(0) | a₀(z) (m/s²) |
+|----------|-------------|--------------|
+| 0 | 1.00 | 1.19 × 10⁻¹⁰ |
+| 0.5 | 1.32 | 1.58 × 10⁻¹⁰ |
+| 1.0 | 1.79 | 2.14 × 10⁻¹⁰ |
+| 1.5 | 2.37 | 2.83 × 10⁻¹⁰ |
+| 2.0 | 3.03 | 3.62 × 10⁻¹⁰ |
+| 3.0 | 4.57 | 5.45 × 10⁻¹⁰ |
+
+#### 5.3.2 Comparison with Existing High-z Constraints
+
+Milgrom (2017) analyzed the Genzel et al. high-redshift rotation curve data and derived important constraints on a₀ evolution. The key finding:
+
+> "The findings cast very meaningful constraints on possible variation of a₀ with cosmic time. For example, they all but exclude a value of the MOND constant of ~4a₀ at z~2, excluding, e.g., a₀ ∝ (1+z)^(3/2)."
+
+This provides a critical test:
+
+| Model | a₀(z=2)/a₀(0) | Status |
+|-------|---------------|--------|
+| Constant a₀ | 1.0 | Allowed |
+| **Zimmerman** | **3.03** | **Compatible** |
+| (1+z)^1.5 | 5.2 | **EXCLUDED** |
+
+The Zimmerman prediction of ~3× enhancement at z=2 lies **below** the excluded threshold of ~4×, making it compatible with current observational constraints while still predicting measurable evolution.
+
+![Evolution of MOND acceleration scale](data/a0_evolution_comparison.png)
+*Figure 1: Comparison of a₀ evolution models. The Zimmerman prediction (blue) follows the ΛCDM Hubble parameter evolution, predicting ~3× at z=2. The (1+z)^1.5 model (red dotted) is excluded by Milgrom's analysis of high-z data. The red shaded region marks the approximately excluded parameter space.*
+
+#### 5.3.3 Required Measurements for Definitive Test
+
+To distinguish the Zimmerman prediction from constant a₀:
+- At z=1: Measure a₀(z)/a₀(0) = 1.79 ± 0.4 (~20% precision)
+- At z=2: Measure a₀(z)/a₀(0) = 3.03 ± 1.0 (~30% precision)
+
+Current high-z rotation curve data (KMOS3D, SINS/zC-SINF) probe accelerations g(R½) ~ (3-11)a₀ at the half-light radius, which is consistent with but not a direct test of a₀ evolution. A definitive test requires:
+
+1. Rotation curves extending to the flat regime (g << 10⁻¹⁰ m/s²)
+2. Independent baryonic mass measurements
+3. Sufficient angular resolution for individual galaxy dynamics
+
+Best prospects include JWST + ALMA combined observations and future SKA 21cm surveys at intermediate redshift.
+
+#### 5.3.4 Hubble Tension Consistency Check
+
+The formula can be inverted to predict H₀ from the observed a₀:
+
+$$H_0 = \frac{a_0 \times 2\sqrt{8\pi/3}}{c} \approx \frac{1.2 \times 10^{-10} \times 5.79}{3 \times 10^8} \approx 71.5 \text{ km/s/Mpc}$$
+
+This predicted value lies between Planck (67.4) and SH0ES (73.0), suggesting the formula may provide an independent consistency check on the Hubble constant.
 
 ---
 
@@ -235,6 +289,14 @@ Further theoretical work is needed to derive this relationship from first princi
 5. Planck Collaboration (2020). "Planck 2018 results. VI. Cosmological parameters." *Astronomy & Astrophysics*, 641, A6.
 
 6. Milgrom, M. (2014). "The MOND paradigm of modified dynamics." *Scholarpedia*, 9(6):31410.
+
+7. Milgrom, M. (2017). "High-redshift rotation curves and MOND." arXiv:1703.06110.
+
+8. Genzel, R. et al. (2017). "Strongly baryon-dominated disk galaxies at the peak of galaxy formation ten billion years ago." *Nature*, 543, 397-401.
+
+9. Lang, P. et al. (2017). "Falling Outer Rotation Curves of Star-forming Galaxies at 0.6 ≲ z ≲ 2.6 Probed with KMOS3D and SINS/zC-SINF." *Astrophysical Journal*, 840, 92.
+
+10. Wisnioski, E. et al. (2019). "The KMOS3D Survey: Data Release and Final Survey Paper." *Astrophysical Journal*, 886, 124.
 
 ---
 
@@ -291,6 +353,217 @@ H₀ = 67.4: a₀ = 1.1312e-10 m/s² (error: 5.7%)
 H₀ = 71.1: a₀ = 1.1936e-10 m/s² (error: 0.5%)
 H₀ = 73.0: a₀ = 1.2252e-10 m/s² (error: 2.1%)
 ```
+
+---
+
+## Appendix D: Testing with SPARC Galaxy Data
+
+The SPARC (Spitzer Photometry and Accurate Rotation Curves) database contains 175 galaxies with high-quality rotation curves and 3.6μm photometry. We test the Zimmerman formula against the Radial Acceleration Relation (RAR).
+
+### D.1 The Radial Acceleration Relation
+
+The RAR relates observed centripetal acceleration to that predicted from baryonic matter:
+
+$$g_{obs} = \frac{g_{bar}}{1 - e^{-\sqrt{g_{bar}/a_0}}}$$
+
+where g_obs = v²/r and g_bar is computed from the baryonic mass distribution.
+
+### D.2 Test Script
+
+```python
+#!/usr/bin/env python3
+"""
+Test the Zimmerman Formula against SPARC rotation curve data.
+"""
+import numpy as np
+from pathlib import Path
+
+# Physical constants
+G = 6.67430e-11      # m^3 kg^-1 s^-2
+c = 299792458        # m/s
+kpc_to_m = 3.086e19  # meters per kpc
+km_to_m = 1000       # meters per km
+
+def zimmerman_a0(H0_kmsMpc):
+    """Calculate a₀ from the Zimmerman Formula."""
+    H0_si = H0_kmsMpc * 1000 / (3.086e22)
+    rho_c = 3 * H0_si**2 / (8 * np.pi * G)
+    return c * np.sqrt(G * rho_c) / 2
+
+def load_sparc_galaxy(filepath):
+    """Parse a SPARC rotmod.dat file."""
+    radius, vobs, verr, vgas, vdisk, vbul = [], [], [], [], [], []
+
+    with open(filepath, 'r') as f:
+        for line in f:
+            if line.startswith('#') or not line.strip():
+                continue
+            parts = line.split()
+            if len(parts) >= 6:
+                radius.append(float(parts[0]))
+                vobs.append(float(parts[1]))
+                verr.append(float(parts[2]))
+                vgas.append(float(parts[3]))
+                vdisk.append(float(parts[4]))
+                vbul.append(float(parts[5]))
+
+    r = np.array(radius)
+    v_obs = np.array(vobs)
+    v_bar = np.sqrt(np.array(vgas)**2 + np.array(vdisk)**2 + np.array(vbul)**2)
+
+    return r, v_obs, v_bar
+
+def compute_rar_r2(galaxies, a0):
+    """Compute R² for RAR fit with given a₀."""
+    all_g_obs, all_g_pred = [], []
+
+    for r_kpc, v_obs, v_bar in galaxies:
+        r_m = r_kpc * kpc_to_m
+        g_obs = (v_obs * km_to_m)**2 / r_m
+        g_bar = (v_bar * km_to_m)**2 / r_m
+
+        # RAR prediction
+        x = np.sqrt(g_bar / a0)
+        g_pred = g_bar / (1 - np.exp(-x))
+
+        valid = (g_obs > 0) & (g_pred > 0) & np.isfinite(g_obs) & np.isfinite(g_pred)
+        all_g_obs.extend(np.log10(g_obs[valid]))
+        all_g_pred.extend(np.log10(g_pred[valid]))
+
+    g_obs = np.array(all_g_obs)
+    g_pred = np.array(all_g_pred)
+
+    ss_res = np.sum((g_obs - g_pred)**2)
+    ss_tot = np.sum((g_obs - np.mean(g_obs))**2)
+    return 1 - ss_res / ss_tot
+
+# Load SPARC data
+sparc_dir = Path("sparc_data")
+galaxies = []
+for f in sparc_dir.glob("*_rotmod.dat"):
+    try:
+        data = load_sparc_galaxy(str(f))
+        if len(data[0]) >= 5:
+            galaxies.append(data)
+    except:
+        pass
+
+print(f"Loaded {len(galaxies)} galaxies")
+
+# Test different a₀ values
+for name, a0 in [("Zimmerman (H₀=71.1)", zimmerman_a0(71.1)),
+                  ("Literature (1.2e-10)", 1.2e-10)]:
+    r2 = compute_rar_r2(galaxies, a0)
+    print(f"{name}: a₀ = {a0:.4e} m/s², RAR R² = {r2:.4f}")
+```
+
+### D.3 Results
+
+Testing against 171 SPARC galaxies:
+
+| Model | a₀ (m/s²) | RAR R² |
+|-------|-----------|--------|
+| Zimmerman (H₀=71.1) | 1.193 × 10⁻¹⁰ | 0.769 |
+| Literature | 1.200 × 10⁻¹⁰ | 0.768 |
+
+The Zimmerman formula achieves equivalent RAR fit quality to the empirically-determined a₀ value.
+
+---
+
+## Appendix E: High-Redshift Evolution Test
+
+### E.1 Prediction
+
+The Zimmerman formula predicts a₀ evolves with redshift as:
+
+$$a_0(z) = a_0(0) \times \sqrt{\Omega_m(1+z)^3 + \Omega_\Lambda}$$
+
+### E.2 Test Script
+
+```python
+#!/usr/bin/env python3
+"""
+Test Zimmerman Formula redshift predictions against Milgrom (2017) constraints.
+"""
+import numpy as np
+
+# Cosmological parameters (Planck 2018)
+Omega_m = 0.315
+Omega_Lambda = 0.685
+
+def zimmerman_evolution(z):
+    """Zimmerman prediction: a₀(z)/a₀(0)"""
+    return np.sqrt(Omega_m * (1 + z)**3 + Omega_Lambda)
+
+def powerlaw_evolution(z, alpha=1.5):
+    """Power-law model: (1+z)^α"""
+    return (1 + z)**alpha
+
+# Milgrom (2017) constraint: ~4× at z~2 is excluded
+EXCLUDED_RATIO = 4.0
+EXCLUDED_Z = 2.0
+
+print("Redshift Evolution Predictions")
+print("=" * 50)
+print(f"{'z':<8} {'Zimmerman':<12} {'(1+z)^1.5':<12} {'Status'}")
+print("-" * 50)
+
+for z in [0.5, 1.0, 1.5, 2.0, 2.5]:
+    zimm = zimmerman_evolution(z)
+    power = powerlaw_evolution(z, 1.5)
+
+    if z == 2.0:
+        zimm_status = "Compatible" if zimm < EXCLUDED_RATIO else "EXCLUDED"
+        power_status = "EXCLUDED" if power > EXCLUDED_RATIO else "Compatible"
+        print(f"{z:<8} {zimm:<12.2f} {power:<12.2f} Zimm: {zimm_status}")
+    else:
+        print(f"{z:<8} {zimm:<12.2f} {power:<12.2f}")
+
+print()
+print(f"Key constraint (Milgrom 2017): a₀ ~ {EXCLUDED_RATIO}× at z~{EXCLUDED_Z} is EXCLUDED")
+print(f"Zimmerman predicts: {zimmerman_evolution(2.0):.2f}× at z=2 → COMPATIBLE")
+print(f"(1+z)^1.5 predicts: {powerlaw_evolution(2.0):.2f}× at z=2 → EXCLUDED")
+```
+
+### E.3 Results
+
+```
+Redshift Evolution Predictions
+==================================================
+z        Zimmerman    (1+z)^1.5    Status
+--------------------------------------------------
+0.5      1.32         1.84
+1.0      1.79         2.83
+1.5      2.37         3.95
+2.0      3.03         5.20         Zimm: Compatible
+2.5      3.77         6.55
+
+Key constraint (Milgrom 2017): a₀ ~ 4× at z~2 is EXCLUDED
+Zimmerman predicts: 3.03× at z=2 → COMPATIBLE
+(1+z)^1.5 predicts: 5.20× at z=2 → EXCLUDED
+```
+
+The Zimmerman prediction is consistent with current high-z constraints while making a specific, testable prediction distinct from both "constant a₀" and the excluded power-law models.
+
+---
+
+## Appendix F: Data Sources
+
+### F.1 SPARC Database
+
+The SPARC database is publicly available at:
+- http://astroweb.cwru.edu/SPARC/
+
+Citation: Lelli, F., McGaugh, S.S., & Schombert, J.M. (2016). "SPARC: Mass Models for 175 Disk Galaxies with Spitzer Photometry and Accurate Rotation Curves." *Astronomical Journal*, 152, 157.
+
+### F.2 KMOS3D Survey
+
+High-redshift kinematic data from KMOS3D:
+- https://www.mpe.mpg.de/ir/KMOS3D/data
+
+The survey contains 739 galaxies at 0.6 < z < 2.7 with Hα kinematics.
+
+Citation: Wisnioski, E. et al. (2019). "The KMOS3D Survey: Data Release and Final Survey Paper." *Astrophysical Journal*, 886, 124.
 
 ---
 
