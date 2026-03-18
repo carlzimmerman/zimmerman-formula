@@ -26,6 +26,7 @@ a₀(z) = a₀(0) × √(Ωm(1+z)³ + ΩΛ)
 | 05 | El Gordo cluster | a₀ **1.7× higher** at z=0.87 | ✅ CONSISTENT |
 | 06 | Wide Binaries | Anomaly at **~8600 AU** | ⚠️ DEBATED |
 | 07 | BTF Evolution | Predicts **-0.30 dex** shift z=0.9→2.3 | 🔬 TESTABLE |
+| 08 | LSST Predictions | Quantitative tests for Rubin Observatory | 🔭 FUTURE |
 
 ---
 
@@ -99,6 +100,23 @@ At z=2.3, a₀ is 3× higher
 → BTFR zero-point shifts by -0.48 dex
 ```
 
+### 8. [LSST Predictions](08_lsst_predictions/)
+**Status: 🔭 FUTURE TEST (Rubin Observatory)**
+
+Quantitative predictions for the Vera C. Rubin Observatory (LSST):
+```
+LSST will survey 20 billion galaxies at 0.1 < z < 3.0
+
+Zimmerman Predictions:
+  • a₀(z=2) = 3× a₀(local) → 3× larger mass discrepancies
+  • Tully-Fisher zero-point shift: -0.48 dex at z=2
+  • Weak lensing: Apparent DM signal scales with √(Ωm(1+z)³ + ΩΛ)
+  • H₀ = 71.5 km/s/Mpc from galaxy dynamics (independent)
+```
+
+Relevance: Professor Christopher Stubbs (Harvard) was the inaugural
+LSST project scientist and worked on Pantheon+ SNe Ia H₀ measurements.
+
 ---
 
 ## Running the Examples
@@ -126,6 +144,7 @@ python run.py
 | 05 | Menanteau et al. (2012), Asencio et al. (2023) |
 | 06 | Gaia DR3; Chae (2024), Banik et al. (2024) |
 | 07 | KMOS3D (Übler et al. 2017) |
+| 08 | LSST Science Requirements Document (2018) |
 
 ---
 
@@ -138,6 +157,7 @@ The Zimmerman Formula passes all major tests:
 3. **Explains** enhanced mass discrepancies at high-z (JWST)
 4. **Consistent** with El Gordo cluster formation
 5. **Matches** wide binary anomaly scale (if real)
+6. **Generates** specific, testable predictions for LSST
 
 No other single equation connects MOND dynamics to cosmology this precisely.
 
