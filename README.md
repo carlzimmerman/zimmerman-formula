@@ -1091,12 +1091,33 @@ This suggests MOND is the "semi-classical" regime of quantum gravity, directly r
 
 ---
 
-## Citation
+## How to Cite
+
+If you use the Zimmerman Formula or the proofs in this repository in your research, please cite:
+
+### Primary Citation (Zenodo)
 
 ```bibtex
-@misc{zimmerman2026,
+@software{zimmerman2026formula,
   author = {Zimmerman, Carl},
-  title = {A Novel Relationship Between the MOND Acceleration Scale and Cosmological Critical Density},
+  title = {The Zimmerman Formula: A Novel Relationship Between the MOND Acceleration Scale and Cosmological Critical Density},
+  year = {2026},
+  publisher = {Zenodo},
+  doi = {10.5281/zenodo.14961024},
+  url = {https://doi.org/10.5281/zenodo.14961024}
+}
+```
+
+### Plain Text Citation
+
+> Zimmerman, C. (2026). The Zimmerman Formula: A Novel Relationship Between the MOND Acceleration Scale and Cosmological Critical Density. Zenodo. https://doi.org/10.5281/zenodo.14961024
+
+### GitHub Repository
+
+```bibtex
+@misc{zimmerman2026github,
+  author = {Zimmerman, Carl},
+  title = {zimmerman-formula: MOND-Cosmology Connection},
   year = {2026},
   publisher = {GitHub},
   url = {https://github.com/carlzimmerman/zimmerman-formula}
@@ -1105,6 +1126,20 @@ This suggests MOND is the "semi-classical" regime of quantum gravity, directly r
 
 ---
 
+## Author
+
+**Carl Zimmerman**
+- Email: carl@briarcreektech.com
+- GitHub: [@carlzimmerman](https://github.com/carlzimmerman)
+
+---
+
 ## License
 
 CC BY 4.0
+
+---
+
+## Acknowledgments
+
+This work builds on decades of research in Modified Newtonian Dynamics (MOND), particularly the foundational work of Milgrom (1983) and the observational confirmations by McGaugh, Lelli, and collaborators through the SPARC database.
