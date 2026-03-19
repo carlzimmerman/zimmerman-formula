@@ -339,10 +339,75 @@ Future observations from JWST, DESI, Rubin LSST, and other surveys will provide 
 
 ## References
 
-1. Zimmerman, C. (2026). The Zimmerman Formula. Zenodo. DOI: 10.5281/zenodo.14961024
-2. Milgrom, M. (1983). A modification of the Newtonian dynamics. ApJ, 270, 365.
-3. McGaugh, S., Lelli, F., & Schombert, J. (2016). Radial Acceleration Relation. PRL, 117, 201101.
-4. [Additional references in individual proof files]
+### Primary Sources
+
+1. Zimmerman, C. (2026). "The Zimmerman Formula: A Novel Relationship Between the MOND Acceleration Scale and Cosmological Critical Density." Zenodo. DOI: 10.5281/zenodo.14961024
+
+### Foundational MOND
+
+2. Milgrom, M. (1983). "A modification of the Newtonian dynamics as a possible alternative to the hidden mass hypothesis." *Astrophysical Journal*, 270, 365-370.
+
+3. Milgrom, M. (2020). "The a₀-cosmology connection in MOND." arXiv:2001.09729.
+
+4. Famaey, B. & McGaugh, S.S. (2012). "Modified Newtonian Dynamics (MOND): Observational Phenomenology and Relativistic Extensions." *Living Reviews in Relativity*, 15, 10.
+
+### Galaxy Dynamics & SPARC
+
+5. McGaugh, S.S., Lelli, F., & Schombert, J.M. (2016). "Radial Acceleration Relation in Rotationally Supported Galaxies." *Physical Review Letters*, 117, 201101.
+
+6. Lelli, F., McGaugh, S.S., & Schombert, J.M. (2016). "SPARC: Mass Models for 175 Disk Galaxies with Spitzer Photometry and Accurate Rotation Curves." *Astronomical Journal*, 152, 157.
+
+7. McGaugh, S.S. (2020). "Predictions and Outcomes for the Dynamics of Rotating Galaxies." *Astrophysical Journal*, 891, 88.
+
+### High-Redshift Observations
+
+8. D'Eugenio, F. et al. (2024). "Ionised gas kinematics and dynamical masses of z ≳ 6 galaxies from JADES/NIRSpec high-resolution spectroscopy." *Astronomy & Astrophysics*, 684, A87.
+
+9. Xu, Y. et al. (2024). "Dynamics of a Galaxy at z > 10 Explored by JWST Integral Field Spectroscopy." *Astrophysical Journal*, 976, 142.
+
+10. Genzel, R. et al. (2017). "Strongly baryon-dominated disk galaxies at the peak of galaxy formation ten billion years ago." *Nature*, 543, 397-401.
+
+11. Wisnioski, E. et al. (2019). "The KMOS3D Survey: Data Release and Final Survey Paper." *Astrophysical Journal*, 886, 124.
+
+### Cosmological Parameters
+
+12. Planck Collaboration (2020). "Planck 2018 results. VI. Cosmological parameters." *Astronomy & Astrophysics*, 641, A6.
+
+13. Riess, A.G. et al. (2022). "A Comprehensive Measurement of the Local Value of the Hubble Constant with 1 km/s/Mpc Uncertainty from the Hubble Space Telescope and the SH0ES Team." *Astrophysical Journal Letters*, 934, L7.
+
+14. Freedman, W.L. et al. (2025). "The Carnegie Chicago Hubble Program: TRGB Distances to SN Ia Hosts." *Astrophysical Journal*, 985, 203.
+
+### Cluster Physics
+
+15. Menanteau, F. et al. (2012). "El Gordo: A Massive Merging Galaxy Cluster at z = 0.87." *Astrophysical Journal*, 748, 7.
+
+16. Asencio, E. et al. (2023). "The El Gordo Cluster: A Challenge for ΛCDM and a Potential Test of MOND." *Astrophysical Journal*, 954, 162.
+
+17. Clowe, D. et al. (2006). "A Direct Empirical Proof of the Existence of Dark Matter." *Astrophysical Journal Letters*, 648, L109.
+
+18. Angus, G.W. et al. (2007). "A MOND Analysis of the Bullet Cluster 1E 0657-558." *Monthly Notices of the Royal Astronomical Society*, 378, 41.
+
+### Wide Binaries
+
+19. Chae, K.-H. (2024). "Breakdown of the Newton-Einstein Standard Gravity at Low Acceleration in Internal Dynamics of Wide Binary Stars." *Astrophysical Journal*, 960, 114.
+
+20. Banik, I. et al. (2024). "Overconfidence in Gaia DR3 wide binary MOND-Newton analyses." *Monthly Notices of the Royal Astronomical Society*, 533, 729.
+
+21. Hernandez, X. et al. (2024). "Newtonian Dynamics in the Limit of Vanishing Accelerations." *Monthly Notices of the Royal Astronomical Society*, 528, 4720.
+
+### Dwarf Galaxies & Satellites
+
+22. de Blok, W.J.G. (2010). "The Core-Cusp Problem." *Advances in Astronomy*, 2010, 789293.
+
+23. Pawlowski, M.S. et al. (2012). "The VPOS: A Vast Polar Structure of Satellite Galaxies, Globular Clusters and Streams around the Milky Way." *Monthly Notices of the Royal Astronomical Society*, 423, 1109.
+
+24. Boylan-Kolchin, M. et al. (2011). "Too Big to Fail? The Puzzling Darkness of Massive Milky Way Subhaloes." *Monthly Notices of the Royal Astronomical Society Letters*, 415, L40.
+
+### Additional References
+
+25. Oman, K.A. et al. (2015). "The Unexpected Diversity of Dwarf Galaxy Rotation Curves." *Monthly Notices of the Royal Astronomical Society*, 452, 3650.
+
+26. Oh, S.-H. et al. (2015). "High-Resolution Mass Models of Dwarf Galaxies from LITTLE THINGS." *Astronomical Journal*, 149, 180.
 
 ---
 
