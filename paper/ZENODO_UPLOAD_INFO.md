@@ -65,7 +65,7 @@ This paper documents applications including:
 
 The formula has been validated against 175 SPARC galaxies (BTFR slope = 4.000 exactly) and JWST z > 6 kinematics (2× better χ² than constant a₀). It predicts H₀ = 71.5 km/s/Mpc from local a₀, intermediate between Planck (67.4) and SH0ES (73.0).
 
-This is a companion paper to the main Zimmerman Formula publication (DOI: 10.5281/zenodo.14961024).
+This is a companion paper to the main Zimmerman Formula publication (DOI: 10.5281/zenodo.19114050).
 ```
 
 ### Keywords
@@ -89,7 +89,7 @@ galaxy rotation curves
 **License:** Creative Commons Attribution 4.0 International (CC BY 4.0)
 
 **Related Identifiers:**
-- **Is supplement to:** 10.5281/zenodo.14961024 (The Zimmerman Formula main paper)
+- **Is supplement to:** 10.5281/zenodo.19114050 (The Zimmerman Formula main paper)
 - **Is documented by:** https://github.com/carlzimmerman/zimmerman-formula
 
 **Grants:** (Leave blank unless you have funding)
@@ -137,7 +137,7 @@ In the Zenodo "Related identifiers" section, add:
 
 | Relation | Identifier | Scheme |
 |----------|------------|--------|
-| Is supplement to | 10.5281/zenodo.14961024 | DOI |
+| Is supplement to | 10.5281/zenodo.19114050 | DOI |
 | Is documented by | https://github.com/carlzimmerman/zimmerman-formula | URL |
 
 This creates a formal link between the two publications.

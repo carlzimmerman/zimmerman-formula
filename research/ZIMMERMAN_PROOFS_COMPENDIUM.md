@@ -5,7 +5,7 @@
 *Carl Zimmerman*
 *March 2026*
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14961024.svg)](https://doi.org/10.5281/zenodo.14961024)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19114050.svg)](https://doi.org/10.5281/zenodo.19114050)
 
 ---
 
@@ -341,7 +341,7 @@ Future observations from JWST, DESI, Rubin LSST, and other surveys will provide 
 
 ### Primary Sources
 
-1. Zimmerman, C. (2026). "The Zimmerman Formula: A Novel Relationship Between the MOND Acceleration Scale and Cosmological Critical Density." Zenodo. DOI: 10.5281/zenodo.14961024
+1. Zimmerman, C. (2026). "The Zimmerman Formula: A Novel Relationship Between the MOND Acceleration Scale and Cosmological Critical Density." Zenodo. DOI: 10.5281/zenodo.19114050
 
 ### Foundational MOND
 

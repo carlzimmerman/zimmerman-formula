@@ -387,7 +387,7 @@ If even a subset of predictions are confirmed, this would constitute strong evid
 
 # References
 
-1. Zimmerman, C. (2026). "The Zimmerman Formula." Zenodo. DOI: 10.5281/zenodo.14961024
+1. Zimmerman, C. (2026). "The Zimmerman Formula." Zenodo. DOI: 10.5281/zenodo.19114050
 
 2. Milgrom, M. (1983). "A modification of the Newtonian dynamics." *ApJ*, 270, 365.
 
@@ -421,6 +421,6 @@ If even a subset of predictions are confirmed, this would constitute strong evid
 
 **Code and Data**: https://github.com/carlzimmerman/zimmerman-formula
 
-**Primary DOI**: 10.5281/zenodo.14961024
+**Primary DOI**: 10.5281/zenodo.19114050
 
 **Citation**: Zimmerman, C. (2026). "The Zimmerman Formula Proofs: Applications to 25 Unsolved Problems in Astrophysics and Cosmology."

@@ -49,7 +49,7 @@ Key results:
 The formula also predicts a₀(z) = a₀(0) × E(z), which I've tested against JADES z>6 kinematics with 2× better χ² fit than constant a₀.
 
 Paper and code: https://github.com/carlzimmerman/zimmerman-formula
-DOI: 10.5281/zenodo.14961024
+DOI: 10.5281/zenodo.19114050
 
 Would appreciate your thoughts on whether this derivation is novel.
 

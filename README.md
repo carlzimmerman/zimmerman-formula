@@ -1157,14 +1157,14 @@ If you use the Zimmerman Formula or the proofs in this repository in your resear
   title = {The Zimmerman Formula: A Novel Relationship Between the MOND Acceleration Scale and Cosmological Critical Density},
   year = {2026},
   publisher = {Zenodo},
-  doi = {10.5281/zenodo.14961024},
-  url = {https://doi.org/10.5281/zenodo.14961024}
+  doi = {10.5281/zenodo.19114050},
+  url = {https://doi.org/10.5281/zenodo.19114050}
 }
 ```
 
 ### Plain Text Citation
 
-> Zimmerman, C. (2026). The Zimmerman Formula: A Novel Relationship Between the MOND Acceleration Scale and Cosmological Critical Density. Zenodo. https://doi.org/10.5281/zenodo.14961024
+> Zimmerman, C. (2026). The Zimmerman Formula: A Novel Relationship Between the MOND Acceleration Scale and Cosmological Critical Density. Zenodo. https://doi.org/10.5281/zenodo.19114050
 
 ### GitHub Repository
 

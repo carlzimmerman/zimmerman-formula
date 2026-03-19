@@ -4,7 +4,7 @@
 
 *March 2026*
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14961024.svg)](https://doi.org/10.5281/zenodo.14961024)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19114050.svg)](https://doi.org/10.5281/zenodo.19114050)
 
 ---
 
@@ -769,7 +769,7 @@ Future observations from JWST, DESI, Rubin LSST, Euclid, and SKA will provide de
 
 ### Primary Source
 
-1. Zimmerman, C. (2026). "The Zimmerman Formula: A Novel Relationship Between the MOND Acceleration Scale and Cosmological Critical Density." Zenodo. DOI: 10.5281/zenodo.14961024
+1. Zimmerman, C. (2026). "The Zimmerman Formula: A Novel Relationship Between the MOND Acceleration Scale and Cosmological Critical Density." Zenodo. DOI: 10.5281/zenodo.19114050
 
 ### Foundational MOND
 
@@ -875,7 +875,7 @@ $$a_0(z) = c\sqrt{G\rho_c(z)}/2 = a_0(0) \times E(z)$$
 
 All analysis code is available at:
 - **GitHub**: https://github.com/carlzimmerman/zimmerman-formula
-- **Zenodo**: DOI 10.5281/zenodo.14961024
+- **Zenodo**: DOI 10.5281/zenodo.19114050
 
 ---
 
