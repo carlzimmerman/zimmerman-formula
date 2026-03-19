@@ -2,7 +2,7 @@
 
 **Carl Zimmerman**
 
-carlpzimmerman@gmail.com
+carl@briarcreektech.com
 
 **Copyright (C) 2026 Carl Zimmerman. All rights reserved.**
 
@@ -1154,4 +1154,4 @@ The factor encodes the GEOMETRY OF GENERAL RELATIVITY applied to a flat, homogen
 
 **Repository:** https://github.com/carlzimmerman/zimmerman-formula
 
-**Contact:** carlpzimmerman@gmail.com
+**Contact:** carl@briarcreektech.com
