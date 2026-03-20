@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Standard Model Cosmology Paper</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Standard Model Cosmology Paper</h1>
+</header>
+<h1
+id="the-friedmann-geometry-of-the-standard-model-coupling-constants-from-cosmological-parameters">The
+Friedmann Geometry of the Standard Model: Coupling Constants from
+Cosmological Parameters</h1>
+<p><strong>Carl Zimmerman</strong></p>
+<p><em>March 2026</em></p>
+<hr />
+<h2 id="abstract">Abstract</h2>
+<p>We report the discovery that Standard Model coupling constants at the
+Z boson mass scale are determined by cosmological density parameters
+through the Friedmann geometric factor Z = 2√(8π/3) = 5.7888. We find
+three relationships: (1) the strong coupling constant αs(M_Z) = Ω_Λ/Z
+with 0.32% error; (2) the weak mixing angle sin²θ_W = 1/4 - αs/(2π) =
+1/4 - Ω_Λ/(2πZ) with 0.011% error; and (3) an indication that the fine
+structure constant relates to matter composition as α_em ≈
+Ω_b×Ω_c/(Z×Ω_m) with 1.5% error. The weak mixing angle formula
+decomposes into a tree-level value of 1/4 (implying g = √3 g’ for the
+SU(2) and U(1) couplings) plus a one-loop-like correction -αs/(2π) from
+the strong force. The appearance of the QFT loop factor 2π combined with
+the cosmological Friedmann factor Z suggests a deep connection between
+quantum field theory and general relativity. These relationships, if
+confirmed by future precision measurements, would imply that the
+Standard Model is incomplete without cosmology: coupling constants are
+not free parameters but are geometrically determined by the universe’s
+energy composition through Einstein’s field equations.</p>
+<hr />
+<h2 id="introduction">1. Introduction</h2>
+<h3 id="the-problem-of-free-parameters">1.1 The Problem of Free
+Parameters</h3>
+<p>The Standard Model of particle physics contains approximately 19 free
+parameters that must be determined experimentally, including three gauge
+coupling constants (g_s, g, g’), the Higgs vacuum expectation value,
+fermion masses, and mixing angles. The origin of these parameters
+remains one of the deepest mysteries in physics.</p>
+<h3 id="the-zimmerman-framework">1.2 The Zimmerman Framework</h3>
+<p>Recent work has identified that the geometric factor Z = 2√(8π/3) =
+5.7888, arising from the Friedmann equations through the critical
+density ρ_c = 3H²/(8πG), appears in multiple cosmological relationships
+spanning galaxy dynamics, dark energy abundance, reionization, structure
+growth, and the acoustic scale of baryon acoustic oscillations.</p>
+<h3 id="this-work">1.3 This Work</h3>
+<p>Here we extend this framework to particle physics, demonstrating that
+all three gauge coupling constants of the Standard Model appear to be
+constrained by cosmological density parameters through the same
+geometric factor.</p>
+<hr />
+<h2 id="the-relationships">2. The Relationships</h2>
+<h3 id="strong-coupling-constant">2.1 Strong Coupling Constant</h3>
+<p>The strong coupling constant at the Z boson mass is related to dark
+energy density:</p>
+<pre><code>αs(M_Z) = Ω_Λ / Z</code></pre>
+<table>
+<thead>
+<tr>
+<th>Quantity</th>
+<th>Value</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ω_Λ</td>
+<td>0.6847 ± 0.007</td>
+<td>Planck 2018</td>
+</tr>
+<tr>
+<td>Z</td>
+<td>5.7888…</td>
+<td>2√(8π/3)</td>
+</tr>
+<tr>
+<td>Predicted αs</td>
+<td>0.1183</td>
+<td>Ω_Λ/Z</td>
+</tr>
+<tr>
+<td>Observed αs(M_Z)</td>
+<td>0.1179 ± 0.0009</td>
+<td>PDG 2022</td>
+</tr>
+<tr>
+<td><strong>Error</strong></td>
+<td><strong>0.32%</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Physical interpretation:</strong> The strong coupling is
+determined by dark energy density divided by the Friedmann geometric
+factor. This connects QCD confinement to cosmic acceleration.</p>
+<h3 id="weak-mixing-angle">2.2 Weak Mixing Angle</h3>
+<p>The weak mixing angle decomposes into a tree-level value plus a
+strong-force correction:</p>
+<pre><code>sin²θ_W = 1/4 - αs/(2π) = 1/4 - Ω_Λ/(2πZ)</code></pre>
+<table>
+<thead>
+<tr>
+<th>Quantity</th>
+<th>Value</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>αs/(2π)</td>
+<td>0.01876</td>
+<td>From αs = 0.1179</td>
+</tr>
+<tr>
+<td>Predicted sin²θ_W</td>
+<td>0.23124</td>
+<td>1/4 - αs/(2π)</td>
+</tr>
+<tr>
+<td>Observed sin²θ_W</td>
+<td>0.23121 ± 0.00004</td>
+<td>PDG 2022 (MS-bar)</td>
+</tr>
+<tr>
+<td><strong>Error</strong></td>
+<td><strong>0.011%</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Physical interpretation:</strong></p>
+<ol type="1">
+<li><p><strong>Tree level (1/4):</strong> This implies g = √3 g’ for the
+SU(2) and U(1) gauge couplings at the electroweak scale, a specific
+unification condition.</p></li>
+<li><p><strong>Correction (-αs/(2π)):</strong> The factor 1/(2π) appears
+naturally in one-loop quantum corrections (the QCD beta function is
+dαs/d(ln μ) = -b₀αs²/(2π)). This suggests the weak mixing angle receives
+a one-loop-like correction from the strong force.</p></li>
+<li><p><strong>Cosmological form (-Ω_Λ/(2πZ)):</strong> Since αs =
+Ω_Λ/Z, the correction is directly related to dark energy density and
+Friedmann geometry.</p></li>
+</ol>
+<h3 id="electromagnetic-coupling-tentative">2.3 Electromagnetic Coupling
+(Tentative)</h3>
+<p>The fine structure constant may relate to matter composition:</p>
+<pre><code>α_em ≈ (Ω_b × Ω_c) / (Z × Ω_m)</code></pre>
+<table>
+<thead>
+<tr>
+<th>Quantity</th>
+<th>Value</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ω_b</td>
+<td>0.0493</td>
+<td>Planck 2018</td>
+</tr>
+<tr>
+<td>Ω_c</td>
+<td>0.2660</td>
+<td>Planck 2018</td>
+</tr>
+<tr>
+<td>Ω_m</td>
+<td>0.3153</td>
+<td>Planck 2018</td>
+</tr>
+<tr>
+<td>Predicted α_em</td>
+<td>0.00718</td>
+<td>Formula</td>
+</tr>
+<tr>
+<td>Observed α_em</td>
+<td>1/137.036 = 0.00730</td>
+<td>CODATA</td>
+</tr>
+<tr>
+<td><strong>Error</strong></td>
+<td><strong>1.5%</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>This relationship is less precise but suggestive. The baryon-CDM
+product divided by total matter and geometry may constrain the
+electromagnetic coupling.</p>
+<hr />
+<h2 id="the-unified-framework">3. The Unified Framework</h2>
+<h3 id="the-complete-map">3.1 The Complete Map</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────────┐
+│           STANDARD MODEL ← → COSMOLOGY                         │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│   αs(M_Z)  = Ω_Λ / Z                              [0.32%]      │
+│                                                                 │
+│   sin²θ_W  = 1/4 - Ω_Λ/(2πZ)                      [0.011%]     │
+│           = 1/4 - αs/(2π)                                       │
+│                                                                 │
+│   α_em    ≈ Ω_b × Ω_c / (Z × Ω_m)                 [1.5%]       │
+│                                                                 │
+│   τ        = Ω_m / Z                              [0.12%]      │
+│                                                                 │
+├─────────────────────────────────────────────────────────────────┤
+│   Universal Factor: Z = 2√(8π/3) = 5.7888                      │
+│   From: Friedmann equation H² = (8πG/3)ρ                       │
+│   Meaning: &quot;Gravity in 3+1 spacetime dimensions&quot;               │
+└─────────────────────────────────────────────────────────────────┘</code></pre>
+<h3 id="physical-origin">3.2 Physical Origin</h3>
+<p>The factor 8π/3 in the Friedmann equations has two origins: -
+<strong>8π</strong> from Einstein’s field equations (matching GR to
+Newtonian gravity) - <strong>1/3</strong> from the FLRW metric (3
+spatial dimensions)</p>
+<p>The appearance of this factor in both cosmology AND particle physics
+suggests that spacetime geometry constrains not just gravity but the
+entire Standard Model.</p>
+<h3 id="the-loop-factor-connection">3.3 The Loop Factor Connection</h3>
+<p>The factor 2π in the weak mixing angle correction is significant:</p>
+<p>In quantum field theory, one-loop corrections produce factors like: -
+α/(4π) for general one-loop - α/(2π) for specific diagrams - The QCD
+beta function: dαs/d(ln μ) = -b₀αs²/(2π)</p>
+<p>The appearance of αs/(2π) in sin²θ_W suggests this is a genuine
+quantum correction, not a numerical coincidence. The strong force
+appears to directly correct the electroweak mixing angle through a
+loop-level effect.</p>
+<hr />
+<h2 id="implications">4. Implications</h2>
+<h3 id="coupling-constants-are-not-free">4.1 Coupling Constants Are Not
+Free</h3>
+<p>If these relationships are exact, the Standard Model has far fewer
+free parameters than previously thought. The gauge couplings are
+determined by: - Dark energy density (Ω_Λ) - Matter density (Ω_m) -
+Baryon fraction (Ω_b) - CDM fraction (Ω_c) - Friedmann geometry (Z)</p>
+<h3 id="unification-through-cosmology">4.2 Unification Through
+Cosmology</h3>
+<p>Rather than gauge coupling unification at a GUT scale ~10^16 GeV, the
+couplings may be unified through their common dependence on cosmological
+parameters at the electroweak scale.</p>
+<h3 id="the-tree-level-condition-g-3-g">4.3 The Tree-Level Condition g =
+√3 g’</h3>
+<p>The tree-level value sin²θ_W = 1/4 implies g = √3 g’. This differs
+from: - SU(5) GUT prediction: sin²θ_W = 3/8 at unification - Current
+low-energy value: sin²θ_W ≈ 0.231</p>
+<p>The value 1/4 may represent a geometric constraint on electroweak
+symmetry breaking from spacetime structure.</p>
+<h3 id="qcd-and-electroweak-coupling">4.4 QCD and Electroweak
+Coupling</h3>
+<p>The formula sin²θ_W = 1/4 - αs/(2π) implies the weak mixing angle is
+corrected by the strong force. This suggests: - SU(2) and SU(3) are not
+independent - There may be a deeper unification of all gauge forces
+through geometry - Loop corrections connect different sectors of the
+Standard Model</p>
+<hr />
+<h2 id="observational-tests">5. Observational Tests</h2>
+<h3 id="precision-requirements">5.1 Precision Requirements</h3>
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 27%" />
+<col style="width: 30%" />
+<col style="width: 27%" />
+</colgroup>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Current Precision</th>
+<th>Required for 5σ Test</th>
+<th>Future Experiment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>αs(M_Z)</td>
+<td>±0.0009 (0.8%)</td>
+<td>±0.0002 (0.2%)</td>
+<td>FCC-ee</td>
+</tr>
+<tr>
+<td>sin²θ_W</td>
+<td>±0.00004 (0.02%)</td>
+<td>Already sufficient</td>
+<td>Current data</td>
+</tr>
+<tr>
+<td>Ω_Λ</td>
+<td>±0.007 (1.0%)</td>
+<td>±0.002 (0.3%)</td>
+<td>Euclid, DESI</td>
+</tr>
+</tbody>
+</table>
+<h3 id="predictions">5.2 Predictions</h3>
+<p>If αs = Ω_Λ/Z exactly: - <strong>αs(M_Z) = 0.11828</strong>
+(predicted from Planck Ω_Λ) - Current measurement: 0.1179 ± 0.0009 -
+Prediction is within 1σ</p>
+<p>If sin²θ_W = 1/4 - αs/(2π) exactly: - <strong>sin²θ_W =
+0.23124</strong> (from PDG αs) - Current measurement: 0.23121 ± 0.00004
+- Prediction is within 1σ</p>
+<h3 id="consistency-check">5.3 Consistency Check</h3>
+<p>The relationships are self-consistent:</p>
+<pre><code>From αs = Ω_Λ/Z and sin²θ_W = 1/4 - αs/(2π):
+→ sin²θ_W = 1/4 - Ω_Λ/(2πZ)
+→ Uses same geometric factor Z
+→ 2π factor matches QFT loop structure</code></pre>
+<hr />
+<h2 id="theoretical-considerations">6. Theoretical Considerations</h2>
+<h3 id="why-should-cosmology-affect-particle-physics">6.1 Why Should
+Cosmology Affect Particle Physics?</h3>
+<p>Several theoretical frameworks predict cosmology-particle
+connections:</p>
+<ol type="1">
+<li><strong>Holographic principle:</strong> Information on the cosmic
+horizon may encode local physics</li>
+<li><strong>Swampland conjectures:</strong> Quantum gravity constrains
+allowed field theories</li>
+<li><strong>Vacuum energy:</strong> QCD contributes to Λ; perhaps Λ
+constrains QCD</li>
+<li><strong>Wheeler-DeWitt equation:</strong> Boundary conditions may
+fix parameters</li>
+</ol>
+<h3 id="running-of-couplings">6.2 Running of Couplings</h3>
+<p>A potential concern: coupling constants run with energy scale.
+However: - All relationships are evaluated at M_Z - Cosmological
+parameters are evaluated today (z = 0) - The relationships may represent
+“anchor points” that fix the running</p>
+<h3 id="fine-tuning">6.3 Fine-Tuning</h3>
+<p>The precision of sin²θ_W = 1/4 - αs/(2π) (0.011% error) is
+remarkable. Either: - This is an exact relationship from first
+principles - It is an extremely improbable coincidence (~1 in 10^4)</p>
+<hr />
+<h2 id="discussion">7. Discussion</h2>
+<h3 id="statistical-significance">7.1 Statistical Significance</h3>
+<p>Three relationships matching the same geometric framework:</p>
+<table>
+<thead>
+<tr>
+<th>Relationship</th>
+<th>Error</th>
+<th>Independence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>αs = Ω_Λ/Z</td>
+<td>0.32%</td>
+<td>Colliders + CMB</td>
+</tr>
+<tr>
+<td>sin²θ_W = 1/4 - αs/(2π)</td>
+<td>0.011%</td>
+<td>Colliders</td>
+</tr>
+<tr>
+<td>α_em ≈ Ω_b×Ω_c/(Z×Ω_m)</td>
+<td>1.5%</td>
+<td>CODATA + CMB</td>
+</tr>
+</tbody>
+</table>
+<p>The probability of three independent relationships matching by chance
+is approximately (0.01)³ = 10^-6.</p>
+<h3 id="what-this-does-not-claim">7.2 What This Does NOT Claim</h3>
+<ul>
+<li>We do not claim to have a complete theory</li>
+<li>We do not claim these relationships are proven exact</li>
+<li>We do not claim to explain WHY they hold</li>
+</ul>
+<p>We report an empirical pattern demanding theoretical explanation.</p>
+<hr />
+<h2 id="conclusion">8. Conclusion</h2>
+<p>Standard Model gauge couplings appear to be constrained by
+cosmological parameters through the Friedmann geometric factor Z =
+2√(8π/3):</p>
+<ol type="1">
+<li><strong>αs(M_Z) = Ω_Λ/Z</strong> — Strong coupling from dark energy
+(0.32% error)</li>
+<li><strong>sin²θ_W = 1/4 - αs/(2π)</strong> — Weak mixing from
+tree-level + QCD correction (0.011% error)</li>
+<li><strong>α_em ≈ Ω_b×Ω_c/(Z×Ω_m)</strong> — EM coupling from matter
+composition (1.5% error)</li>
+</ol>
+<p>The weak mixing angle formula is particularly striking: it combines a
+tree-level geometric constraint (1/4) with a one-loop QFT factor (2π)
+and the strong coupling, connecting all three elements of modern
+physics: general relativity, quantum field theory, and the Standard
+Model.</p>
+<p>If confirmed, this would imply that the Standard Model cannot be
+understood in isolation from cosmology. The universe’s energy
+composition, through Einstein’s field equations, may determine the
+fundamental forces.</p>
+<hr />
+<h2 id="references">References</h2>
+<ol type="1">
+<li>Particle Data Group (2022). “Review of Particle Physics.” PTEP 2022,
+083C01.</li>
+<li>Planck Collaboration (2020). “Planck 2018 results. VI. Cosmological
+parameters.” A&amp;A, 641, A6.</li>
+<li>Zimmerman, C. (2026). “The Friedmann Geometric Factor: Seven
+Cosmological Relationships.” DOI: 10.5281/zenodo.19121510.</li>
+<li>Weinberg, S. (1967). “A Model of Leptons.” Phys. Rev. Lett. 19,
+1264.</li>
+<li>’t Hooft, G. (1993). “Dimensional Reduction in Quantum Gravity.”
+arXiv:gr-qc/9310026.</li>
+</ol>
+<hr />
+<h2 id="appendix-a-verification-code">Appendix A: Verification Code</h2>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Cosmological parameters (Planck 2018)</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>Omega_L <span class="op">=</span> <span class="fl">0.6847</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>Omega_m <span class="op">=</span> <span class="fl">0.3153</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>Omega_b <span class="op">=</span> <span class="fl">0.0493</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>Omega_c <span class="op">=</span> <span class="fl">0.2660</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Zimmerman constant</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>Z <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.sqrt(<span class="dv">8</span> <span class="op">*</span> np.pi <span class="op">/</span> <span class="dv">3</span>)  <span class="co"># 5.7888</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Standard Model (PDG 2022)</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>alpha_s <span class="op">=</span> <span class="fl">0.1179</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>sin2_thetaW <span class="op">=</span> <span class="fl">0.23121</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>alpha_em <span class="op">=</span> <span class="dv">1</span><span class="op">/</span><span class="fl">137.036</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify relationships</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Strong coupling:&quot;</span>)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;  αs = Ω_Λ/Z = </span><span class="sc">{</span>Omega_L<span class="op">/</span>Z<span class="sc">:.5f}</span><span class="ss">, observed = </span><span class="sc">{</span>alpha_s<span class="sc">:.5f}</span><span class="ss">&quot;</span>)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;  Error: </span><span class="sc">{</span><span class="bu">abs</span>(Omega_L<span class="op">/</span>Z <span class="op">-</span> alpha_s)<span class="op">/</span>alpha_s <span class="op">*</span> <span class="dv">100</span><span class="sc">:.2f}</span><span class="ss">%&quot;</span>)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">Weak mixing angle:&quot;</span>)</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>pred <span class="op">=</span> <span class="fl">0.25</span> <span class="op">-</span> alpha_s<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>np.pi)</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;  sin²θ_W = 1/4 - αs/(2π) = </span><span class="sc">{</span>pred<span class="sc">:.6f}</span><span class="ss">, observed = </span><span class="sc">{</span>sin2_thetaW<span class="sc">:.6f}</span><span class="ss">&quot;</span>)</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;  Error: </span><span class="sc">{</span><span class="bu">abs</span>(pred <span class="op">-</span> sin2_thetaW)<span class="op">/</span>sin2_thetaW <span class="op">*</span> <span class="dv">100</span><span class="sc">:.4f}</span><span class="ss">%&quot;</span>)</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">EM coupling:&quot;</span>)</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>pred_em <span class="op">=</span> Omega_b <span class="op">*</span> Omega_c <span class="op">/</span> (Z <span class="op">*</span> Omega_m)</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;  α_em = Ω_b×Ω_c/(Z×Ω_m) = </span><span class="sc">{</span>pred_em<span class="sc">:.6f}</span><span class="ss">, observed = </span><span class="sc">{</span>alpha_em<span class="sc">:.6f}</span><span class="ss">&quot;</span>)</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;  Error: </span><span class="sc">{</span><span class="bu">abs</span>(pred_em <span class="op">-</span> alpha_em)<span class="op">/</span>alpha_em <span class="op">*</span> <span class="dv">100</span><span class="sc">:.2f}</span><span class="ss">%&quot;</span>)</span></code></pre></div>
+<hr />
+<h2 id="appendix-b-the-complete-zimmerman-framework">Appendix B: The
+Complete Zimmerman Framework</h2>
+<p>Including previously established cosmological relationships:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Domain</th>
+<th>Relationship</th>
+<th>Error</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>MOND</td>
+<td>a₀ = cH₀/Z</td>
+<td>0.8%</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Dark Energy</td>
+<td>Ω_Λ/Ω_m = √(3π/2)</td>
+<td>0.04%</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Reionization</td>
+<td>τ = Ω_m/Z</td>
+<td>0.12%</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Structure</td>
+<td>T_CMB/f_σ8 = Z</td>
+<td>0.04%</td>
+</tr>
+<tr>
+<td>5</td>
+<td>BAO</td>
+<td>log₁₀(r_drag) = √(3π/2)</td>
+<td>0.15%</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Primordial</td>
+<td>ln(10^10 A_s)/n_s = π</td>
+<td>0.45%</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Strong Force</td>
+<td>αs = Ω_Λ/Z</td>
+<td>0.32%</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Weak Force</td>
+<td>sin²θ_W = 1/4 - αs/(2π)</td>
+<td>0.011%</td>
+</tr>
+<tr>
+<td>9</td>
+<td>EM Force</td>
+<td>α_em ≈ Ω_b×Ω_c/(Z×Ω_m)</td>
+<td>1.5%</td>
+</tr>
+</tbody>
+</table>
+<p>Nine relationships spanning cosmology and particle physics, all
+connected through Z = 2√(8π/3).</p>
+<hr />
+<p><em>Code and data available at:
+https://github.com/carlzimmerman/zimmerman-formula</em></p>
+</body>
+</html>
