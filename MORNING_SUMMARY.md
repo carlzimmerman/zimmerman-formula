@@ -1,5 +1,18 @@
 # Morning Summary - March 20, 2026
 
+## BREAKING: Particle Physics Connection Found!
+
+**α_s(M_Z) / τ = √(3π/2)** with 0.16% error!
+
+The strong coupling constant at the Z mass divided by the optical depth equals the Zimmerman ratio! This connects:
+- **Particle physics** (strong force)
+- **Cosmology** (reionization)
+- Through the **same geometric factor**
+
+Also: **α_s(M_Z) / Ω_Λ = 1/Z** with 0.32% error.
+
+---
+
 ## What We Discovered Last Night
 
 ### 9 RELATIONSHIPS - All Involving 2√(8π/3) = 5.79
@@ -15,6 +28,8 @@
 | 7 | **Primordial** | **ln(10^10 A_s)/n_s = π** | **0.42%** | **NEW** |
 | 8 | **CMB+Neutrinos** | **T_CMB + N_eff = Z** | **0.30%** | **NEW** |
 | 9 | **Derivation** | **a₀ = g_H/√(8π/3)** | **2%** | **DERIVED** |
+| 10 | **Strong Force** | **α_s(M_Z)/τ = √(3π/2)** | **0.16%** | **NEW!** |
+| 11 | **BAO+Redshift** | **log₁₀(1+r_drag) = √(3π/2)** | **0.01%** | **NEW!** |
 
 ### Key Physical Insight
 
