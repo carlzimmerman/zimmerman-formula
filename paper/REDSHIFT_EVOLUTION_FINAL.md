@@ -293,6 +293,6 @@ def a0_evolving(z):
 
 ---
 
-**DOI:** [To be assigned]
+**DOI:** 10.5281/zenodo.19121510
 
 **Code:** https://github.com/carlzimmerman/zimmerman-formula
