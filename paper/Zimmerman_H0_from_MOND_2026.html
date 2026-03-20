@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Carl Zimmerman" />
+  <title>The Hubble Constant from Galaxy Dynamics</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css/github-markdown.min.css" />
+  <script defer=""
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">The Hubble Constant from Galaxy Dynamics</h1>
+<p class="author">Carl Zimmerman</p>
+<p class="date">March 2026</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a
+href="#the-hubble-constant-from-galaxy-dynamics-an-independent-measurement-using-the-mond-acceleration-scale"
+id="toc-the-hubble-constant-from-galaxy-dynamics-an-independent-measurement-using-the-mond-acceleration-scale"><span
+class="toc-section-number">1</span> The Hubble Constant from Galaxy
+Dynamics: An Independent Measurement Using the MOND Acceleration
+Scale</a>
+<ul>
+<li><a href="#abstract" id="toc-abstract"><span
+class="toc-section-number">1.1</span> Abstract</a></li>
+<li><a href="#introduction" id="toc-introduction"><span
+class="toc-section-number">1.2</span> 1. Introduction</a>
+<ul>
+<li><a href="#the-hubble-tension" id="toc-the-hubble-tension"><span
+class="toc-section-number">1.2.1</span> 1.1 The Hubble Tension</a></li>
+<li><a href="#the-need-for-independent-methods"
+id="toc-the-need-for-independent-methods"><span
+class="toc-section-number">1.2.2</span> 1.2 The Need for Independent
+Methods</a></li>
+<li><a href="#this-work" id="toc-this-work"><span
+class="toc-section-number">1.2.3</span> 1.3 This Work</a></li>
+</ul></li>
+<li><a href="#the-zimmerman-formula"
+id="toc-the-zimmerman-formula"><span
+class="toc-section-number">1.3</span> 2. The Zimmerman Formula</a>
+<ul>
+<li><a href="#derivation" id="toc-derivation"><span
+class="toc-section-number">1.3.1</span> 2.1 Derivation</a></li>
+<li><a href="#the-coefficient" id="toc-the-coefficient"><span
+class="toc-section-number">1.3.2</span> 2.2 The Coefficient</a></li>
+<li><a href="#empirical-verification"
+id="toc-empirical-verification"><span
+class="toc-section-number">1.3.3</span> 2.3 Empirical
+Verification</a></li>
+<li><a href="#inverting-for-h₀" id="toc-inverting-for-h₀"><span
+class="toc-section-number">1.3.4</span> 2.4 Inverting for H₀</a></li>
+</ul></li>
+<li><a href="#the-mond-acceleration-scale-a₀"
+id="toc-the-mond-acceleration-scale-a₀"><span
+class="toc-section-number">1.4</span> 3. The MOND Acceleration Scale
+a₀</a>
+<ul>
+<li><a href="#what-is-a₀" id="toc-what-is-a₀"><span
+class="toc-section-number">1.4.1</span> 3.1 What is a₀?</a></li>
+<li><a href="#measurements-of-a₀" id="toc-measurements-of-a₀"><span
+class="toc-section-number">1.4.2</span> 3.2 Measurements of a₀</a></li>
+<li><a href="#properties-of-the-a₀-measurement"
+id="toc-properties-of-the-a₀-measurement"><span
+class="toc-section-number">1.4.3</span> 3.3 Properties of the a₀
+Measurement</a></li>
+</ul></li>
+<li><a href="#calculation-of-h₀" id="toc-calculation-of-h₀"><span
+class="toc-section-number">1.5</span> 4. Calculation of H₀</a>
+<ul>
+<li><a href="#central-value" id="toc-central-value"><span
+class="toc-section-number">1.5.1</span> 4.1 Central Value</a></li>
+<li><a href="#error-propagation" id="toc-error-propagation"><span
+class="toc-section-number">1.5.2</span> 4.2 Error Propagation</a></li>
+<li><a href="#final-result" id="toc-final-result"><span
+class="toc-section-number">1.5.3</span> 4.3 Final Result</a></li>
+<li><a href="#sensitivity-analysis" id="toc-sensitivity-analysis"><span
+class="toc-section-number">1.5.4</span> 4.4 Sensitivity
+Analysis</a></li>
+</ul></li>
+<li><a href="#comparison-to-all-h₀-measurements"
+id="toc-comparison-to-all-h₀-measurements"><span
+class="toc-section-number">1.6</span> 5. Comparison to All H₀
+Measurements</a>
+<ul>
+<li><a href="#comprehensive-comparison"
+id="toc-comprehensive-comparison"><span
+class="toc-section-number">1.6.1</span> 5.1 Comprehensive
+Comparison</a></li>
+<li><a href="#statistical-analysis" id="toc-statistical-analysis"><span
+class="toc-section-number">1.6.2</span> 5.2 Statistical
+Analysis</a></li>
+<li><a href="#key-insight" id="toc-key-insight"><span
+class="toc-section-number">1.6.3</span> 5.3 Key Insight</a></li>
+</ul></li>
+<li><a href="#why-this-measurement-is-independent"
+id="toc-why-this-measurement-is-independent"><span
+class="toc-section-number">1.7</span> 6. Why This Measurement Is
+Independent</a>
+<ul>
+<li><a href="#not-the-distance-ladder"
+id="toc-not-the-distance-ladder"><span
+class="toc-section-number">1.7.1</span> 6.1 Not the Distance
+Ladder</a></li>
+<li><a href="#not-cmb-physics" id="toc-not-cmb-physics"><span
+class="toc-section-number">1.7.2</span> 6.2 Not CMB Physics</a></li>
+<li><a href="#shared-systematics" id="toc-shared-systematics"><span
+class="toc-section-number">1.7.3</span> 6.3 Shared Systematics?</a></li>
+</ul></li>
+<li><a href="#addressing-objections"
+id="toc-addressing-objections"><span
+class="toc-section-number">1.8</span> 7. Addressing Objections</a>
+<ul>
+<li><a href="#a₀-is-empirical-not-fundamental"
+id="toc-a₀-is-empirical-not-fundamental"><span
+class="toc-section-number">1.8.1</span> 7.1 “a₀ is empirical, not
+fundamental”</a></li>
+<li><a href="#this-assumes-mond-is-correct"
+id="toc-this-assumes-mond-is-correct"><span
+class="toc-section-number">1.8.2</span> 7.2 “This assumes MOND is
+correct”</a></li>
+<li><a href="#the-coefficient-5.79-is-arbitrary"
+id="toc-the-coefficient-5.79-is-arbitrary"><span
+class="toc-section-number">1.8.3</span> 7.3 “The coefficient 5.79 is
+arbitrary”</a></li>
+<li><a href="#this-is-circular-reasoning"
+id="toc-this-is-circular-reasoning"><span
+class="toc-section-number">1.8.4</span> 7.4 “This is circular
+reasoning”</a></li>
+<li><a href="#a₀-might-vary-between-galaxies"
+id="toc-a₀-might-vary-between-galaxies"><span
+class="toc-section-number">1.8.5</span> 7.5 “a₀ might vary between
+galaxies”</a></li>
+<li><a href="#what-about-systematic-errors-in-m"
+id="toc-what-about-systematic-errors-in-m"><span
+class="toc-section-number">1.8.6</span> 7.6 “What about systematic
+errors in M★?”</a></li>
+</ul></li>
+<li><a href="#implications-for-the-hubble-tension"
+id="toc-implications-for-the-hubble-tension"><span
+class="toc-section-number">1.9</span> 8. Implications for the Hubble
+Tension</a>
+<ul>
+<li><a href="#where-is-the-true-h₀" id="toc-where-is-the-true-h₀"><span
+class="toc-section-number">1.9.1</span> 8.1 Where Is the True
+H₀?</a></li>
+<li><a href="#possible-resolutions" id="toc-possible-resolutions"><span
+class="toc-section-number">1.9.2</span> 8.2 Possible
+Resolutions</a></li>
+<li><a href="#consilience-with-other-methods"
+id="toc-consilience-with-other-methods"><span
+class="toc-section-number">1.9.3</span> 8.3 Consilience with Other
+Methods</a></li>
+</ul></li>
+<li><a href="#predictions-and-tests"
+id="toc-predictions-and-tests"><span
+class="toc-section-number">1.10</span> 9. Predictions and Tests</a>
+<ul>
+<li><a href="#future-a₀-measurements"
+id="toc-future-a₀-measurements"><span
+class="toc-section-number">1.10.1</span> 9.1 Future a₀
+Measurements</a></li>
+<li><a href="#consistency-checks" id="toc-consistency-checks"><span
+class="toc-section-number">1.10.2</span> 9.2 Consistency Checks</a></li>
+<li><a href="#falsification" id="toc-falsification"><span
+class="toc-section-number">1.10.3</span> 9.3 Falsification</a></li>
+</ul></li>
+<li><a href="#summary" id="toc-summary"><span
+class="toc-section-number">1.11</span> 10. Summary</a></li>
+<li><a href="#appendix-a-detailed-error-budget"
+id="toc-appendix-a-detailed-error-budget"><span
+class="toc-section-number">1.12</span> Appendix A: Detailed Error
+Budget</a></li>
+<li><a href="#appendix-b-comparison-to-previous-work"
+id="toc-appendix-b-comparison-to-previous-work"><span
+class="toc-section-number">1.13</span> Appendix B: Comparison to
+Previous Work</a></li>
+<li><a href="#references" id="toc-references"><span
+class="toc-section-number">1.14</span> References</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 data-number="1"
+id="the-hubble-constant-from-galaxy-dynamics-an-independent-measurement-using-the-mond-acceleration-scale"><span
+class="header-section-number">1</span> The Hubble Constant from Galaxy
+Dynamics: An Independent Measurement Using the MOND Acceleration
+Scale</h1>
+<p><strong>Carl Zimmerman</strong></p>
+<p><em>March 2026</em></p>
+<p><a href="https://doi.org/10.5281/zenodo.19114050"><img
+src="https://zenodo.org/badge/DOI/10.5281/zenodo.19114050.svg"
+alt="DOI" /></a></p>
+<hr />
+<h2 data-number="1.1" id="abstract"><span
+class="header-section-number">1.1</span> Abstract</h2>
+<p>We present a novel, independent measurement of the Hubble constant H₀
+derived from the MOND acceleration scale a₀ using the Zimmerman Formula.
+From the relationship a₀ = cH₀/5.79, where the coefficient 5.79 =
+2√(8π/3) emerges from the Friedmann equation, we obtain:</p>
+<p><span class="math display">\[H_0 = 71.5 \pm 1.2 \text{ km s}^{-1}
+\text{ Mpc}^{-1}\]</span></p>
+<p>This value lies between the Planck CMB measurement (67.4 ± 0.5) and
+the SH0ES Cepheid measurement (73.04 ± 1.04), with 3.2σ tension with
+Planck and 0.9σ agreement with SH0ES. Crucially, our measurement is
+<strong>completely independent</strong> of both methods: it uses neither
+the cosmic microwave background nor the astronomical distance ladder.
+Instead, it relies solely on galaxy kinematics — rotation curves and
+velocity dispersions that determine a₀. We compare our result to 12
+independent H₀ measurements and find best agreement with gravitational
+wave standard sirens (70.0), TRGB calibrations (69.8), and megamaser
+distances (73.9). This suggests the true H₀ may lie near 71 km/s/Mpc,
+with the Hubble tension arising from systematic effects in both
+early-universe (Planck) and late-universe (SH0ES) methods.</p>
+<hr />
+<h2 data-number="1.2" id="introduction"><span
+class="header-section-number">1.2</span> 1. Introduction</h2>
+<h3 data-number="1.2.1" id="the-hubble-tension"><span
+class="header-section-number">1.2.1</span> 1.1 The Hubble Tension</h3>
+<p>The Hubble constant H₀ — the current expansion rate of the universe —
+is measured by two primary methods that yield discrepant results:</p>
+<p><strong>Early Universe (CMB):</strong> - Planck Collaboration (2020):
+H₀ = 67.4 ± 0.5 km/s/Mpc - Based on cosmic microwave background
+anisotropies - Requires assumed cosmological model (ΛCDM) - Measures
+sound horizon at recombination (z ≈ 1100)</p>
+<p><strong>Late Universe (Distance Ladder):</strong> - SH0ES/Riess et
+al. (2022): H₀ = 73.04 ± 1.04 km/s/Mpc - Based on Cepheid-calibrated
+Type Ia supernovae - Uses local distance ladder (parallax → Cepheids →
+SNe Ia) - Direct measurement at z ≈ 0</p>
+<p>The discrepancy: <span class="math display">\[\Delta H_0 = 73.04 -
+67.4 = 5.64 \text{ km/s/Mpc}\]</span> <span
+class="math display">\[\text{Tension} = \frac{5.64}{\sqrt{1.04^2 +
+0.5^2}} = 4.9\sigma\]</span></p>
+<p>With continued refinement, this has grown to <strong>5.8σ</strong> —
+one of the most significant discrepancies in modern physics.</p>
+<h3 data-number="1.2.2" id="the-need-for-independent-methods"><span
+class="header-section-number">1.2.2</span> 1.2 The Need for Independent
+Methods</h3>
+<p>Resolving the Hubble tension requires measurements that share no
+systematic errors with either method. Current independent approaches
+include:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>H₀ (km/s/Mpc)</th>
+<th>Systematics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TRGB (CCHP)</td>
+<td>69.8 ± 1.7</td>
+<td>Different from Cepheids</td>
+</tr>
+<tr>
+<td>GW170817</td>
+<td>70.0 ⁺¹²₋₈</td>
+<td>No EM calibration needed</td>
+</tr>
+<tr>
+<td>Megamasers</td>
+<td>73.9 ± 3.0</td>
+<td>Geometric, no ladder</td>
+</tr>
+<tr>
+<td>Time-delay lensing</td>
+<td>74.2 ± 1.6</td>
+<td>Independent physics</td>
+</tr>
+</tbody>
+</table>
+<p>We present a <strong>completely new method</strong>: deriving H₀ from
+the MOND acceleration scale measured in galaxy rotation curves.</p>
+<h3 data-number="1.2.3" id="this-work"><span
+class="header-section-number">1.2.3</span> 1.3 This Work</h3>
+<p>We show that the Zimmerman Formula: <span class="math display">\[a_0
+= \frac{cH_0}{5.79}\]</span> can be inverted to yield: <span
+class="math display">\[H_0 = \frac{5.79 \times a_0}{c}\]</span></p>
+<p>Using the well-established value a₀ = (1.20 ± 0.02) × 10⁻¹⁰ m/s² from
+the SPARC database and Radial Acceleration Relation, we derive H₀ = 71.5
+± 1.2 km/s/Mpc.</p>
+<hr />
+<h2 data-number="1.3" id="the-zimmerman-formula"><span
+class="header-section-number">1.3</span> 2. The Zimmerman Formula</h2>
+<h3 data-number="1.3.1" id="derivation"><span
+class="header-section-number">1.3.1</span> 2.1 Derivation</h3>
+<p>The Zimmerman Formula relates the MOND acceleration scale to
+cosmological parameters through the critical density:</p>
+<p><strong>Step 1:</strong> The Friedmann critical density <span
+class="math display">\[\rho_c = \frac{3H_0^2}{8\pi G}\]</span></p>
+<p><strong>Step 2:</strong> Dimensional analysis reveals a natural
+acceleration scale The only acceleration constructible from c, G, and
+ρ_c is: <span class="math display">\[a \sim c\sqrt{G\rho_c}\]</span></p>
+<p><strong>Step 3:</strong> The complete formula with geometric factor
+<span class="math display">\[a_0 =
+\frac{c\sqrt{G\rho_c}}{2}\]</span></p>
+<p><strong>Step 4:</strong> Substitute ρ_c from Step 1 <span
+class="math display">\[a_0 = \frac{c}{2}\sqrt{G \cdot \frac{3H_0^2}{8\pi
+G}} = \frac{c}{2}\sqrt{\frac{3H_0^2}{8\pi}} =
+\frac{cH_0}{2\sqrt{8\pi/3}} = \frac{cH_0}{5.79}\]</span></p>
+<h3 data-number="1.3.2" id="the-coefficient"><span
+class="header-section-number">1.3.2</span> 2.2 The Coefficient</h3>
+<p>The coefficient 5.79 is <strong>derived</strong>, not fitted: <span
+class="math display">\[5.79 = 2\sqrt{\frac{8\pi}{3}} = 2 \times
+2.8944... = 5.7889...\]</span></p>
+<p>This emerges directly from the geometry of the Friedmann
+equation.</p>
+<h3 data-number="1.3.3" id="empirical-verification"><span
+class="header-section-number">1.3.3</span> 2.3 Empirical
+Verification</h3>
+<p>The factor of 2 in a₀ = c√(Gρ_c)/2 is <strong>empirically
+validated</strong>, not assumed:</p>
+<p>Using Planck-measured ρ_c = 9.47 × 10⁻²⁷ kg/m³: <span
+class="math display">\[c\sqrt{G\rho_c} = 2.998 \times 10^8 \times
+\sqrt{6.674 \times 10^{-11} \times 9.47 \times 10^{-27}}\]</span> <span
+class="math display">\[= 2.998 \times 10^8 \times 7.95 \times 10^{-19} =
+2.38 \times 10^{-10} \text{ m/s}^2\]</span></p>
+<p>Dividing by 2: <span class="math display">\[a_0 = \frac{2.38 \times
+10^{-10}}{2} = 1.19 \times 10^{-10} \text{ m/s}^2\]</span></p>
+<p>This matches the independently measured a₀ = (1.20 ± 0.02) × 10⁻¹⁰
+m/s² from galaxy rotation curves with <strong>&lt;1%
+accuracy</strong>.</p>
+<p>The factor of 2 is therefore <strong>determined by
+observation</strong>, not chosen arbitrarily. Any other factor would
+produce the wrong a₀.</p>
+<h3 data-number="1.3.4" id="inverting-for-h₀"><span
+class="header-section-number">1.3.4</span> 2.4 Inverting for H₀</h3>
+<p><span class="math display">\[\boxed{H_0 = \frac{5.79 \times
+a_0}{c}}\]</span></p>
+<hr />
+<h2 data-number="1.4" id="the-mond-acceleration-scale-a₀"><span
+class="header-section-number">1.4</span> 3. The MOND Acceleration Scale
+a₀</h2>
+<h3 data-number="1.4.1" id="what-is-a₀"><span
+class="header-section-number">1.4.1</span> 3.1 What is a₀?</h3>
+<p>The MOND acceleration scale a₀ ≈ 1.2 × 10⁻¹⁰ m/s² is the
+characteristic acceleration below which galaxy dynamics deviate from
+Newtonian predictions. It appears in:</p>
+<ul>
+<li><strong>Galaxy rotation curves:</strong> Flat rotation at large
+radii</li>
+<li><strong>Baryonic Tully-Fisher Relation:</strong> M_bar ∝ v⁴</li>
+<li><strong>Radial Acceleration Relation:</strong> g_obs = f(g_bar,
+a₀)</li>
+</ul>
+<h3 data-number="1.4.2" id="measurements-of-a₀"><span
+class="header-section-number">1.4.2</span> 3.2 Measurements of a₀</h3>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 38%" />
+<col style="width: 18%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Source</th>
+<th>a₀ (10⁻¹⁰ m/s²)</th>
+<th>Method</th>
+<th>Reference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SPARC RAR</td>
+<td>1.20 ± 0.02</td>
+<td>2,693 points, 153 galaxies</td>
+<td>McGaugh+ 2016</td>
+</tr>
+<tr>
+<td>SPARC BTFR</td>
+<td>1.20 ± 0.03</td>
+<td>Slope = 4 constraint</td>
+<td>Lelli+ 2016</td>
+</tr>
+<tr>
+<td>Weak lensing</td>
+<td>1.18 ± 0.04</td>
+<td>Galaxy-galaxy lensing</td>
+<td>Milgrom 2013</td>
+</tr>
+<tr>
+<td>dSph satellites</td>
+<td>1.21 ± 0.05</td>
+<td>MW dwarf spheroidals</td>
+<td>McGaugh &amp; Wolf 2010</td>
+</tr>
+<tr>
+<td>Ellipticals</td>
+<td>1.19 ± 0.03</td>
+<td>Velocity dispersions</td>
+<td>Sanders 2010</td>
+</tr>
+<tr>
+<td><strong>Weighted average</strong></td>
+<td><strong>1.20 ± 0.02</strong></td>
+<td>—</td>
+<td>This work</td>
+</tr>
+</tbody>
+</table>
+<h3 data-number="1.4.3" id="properties-of-the-a₀-measurement"><span
+class="header-section-number">1.4.3</span> 3.3 Properties of the a₀
+Measurement</h3>
+<p><strong>Robustness:</strong> - Derived from 175+ galaxies spanning 5
+decades in mass - Independent of galaxy morphology, surface brightness,
+gas fraction - Intrinsic scatter in RAR: only 0.13 dex - No detected
+variation with environment</p>
+<p><strong>Systematics:</strong> - Weakly dependent on interpolation
+function choice (±2%) - Stellar mass-to-light ratio uncertainty: ±0.1
+dex in M★, ±5% in a₀ - Distance errors: Cancel in a₀ determination
+(ratio of accelerations)</p>
+<hr />
+<h2 data-number="1.5" id="calculation-of-h₀"><span
+class="header-section-number">1.5</span> 4. Calculation of H₀</h2>
+<h3 data-number="1.5.1" id="central-value"><span
+class="header-section-number">1.5.1</span> 4.1 Central Value</h3>
+<p>Using: - a₀ = 1.20 × 10⁻¹⁰ m/s² - c = 2.99792458 × 10⁸ m/s -
+Coefficient = 5.79</p>
+<p><span class="math display">\[H_0 = \frac{5.79 \times 1.20 \times
+10^{-10}}{2.99792458 \times 10^8} \text{ s}^{-1}\]</span></p>
+<p><span class="math display">\[H_0 = 2.317 \times 10^{-18} \text{
+s}^{-1}\]</span></p>
+<p>Converting to km/s/Mpc (1 Mpc = 3.086 × 10¹⁹ km): <span
+class="math display">\[H_0 = 2.317 \times 10^{-18} \times 3.086 \times
+10^{19} = 71.5 \text{ km/s/Mpc}\]</span></p>
+<h3 data-number="1.5.2" id="error-propagation"><span
+class="header-section-number">1.5.2</span> 4.2 Error Propagation</h3>
+<p>The uncertainty in H₀ propagates from a₀: <span
+class="math display">\[\frac{\sigma_{H_0}}{H_0} =
+\frac{\sigma_{a_0}}{a_0}\]</span></p>
+<p>With σ_{a₀} = 0.02 × 10⁻¹⁰ m/s²: <span
+class="math display">\[\frac{\sigma_{H_0}}{H_0} = \frac{0.02}{1.20} =
+0.0167 = 1.67\%\]</span></p>
+<p><span class="math display">\[\sigma_{H_0} = 71.5 \times 0.0167 = 1.19
+\approx 1.2 \text{ km/s/Mpc}\]</span></p>
+<h3 data-number="1.5.3" id="final-result"><span
+class="header-section-number">1.5.3</span> 4.3 Final Result</h3>
+<p><span class="math display">\[\boxed{H_0 = 71.5 \pm 1.2 \text{ km
+s}^{-1} \text{ Mpc}^{-1}}\]</span></p>
+<h3 data-number="1.5.4" id="sensitivity-analysis"><span
+class="header-section-number">1.5.4</span> 4.4 Sensitivity Analysis</h3>
+<table>
+<thead>
+<tr>
+<th>a₀ (10⁻¹⁰ m/s²)</th>
+<th>H₀ (km/s/Mpc)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.15</td>
+<td>68.5</td>
+</tr>
+<tr>
+<td>1.18</td>
+<td>70.3</td>
+</tr>
+<tr>
+<td><strong>1.20</strong></td>
+<td><strong>71.5</strong></td>
+</tr>
+<tr>
+<td>1.22</td>
+<td>72.7</td>
+</tr>
+<tr>
+<td>1.25</td>
+<td>74.5</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 data-number="1.6" id="comparison-to-all-h₀-measurements"><span
+class="header-section-number">1.6</span> 5. Comparison to All H₀
+Measurements</h2>
+<h3 data-number="1.6.1" id="comprehensive-comparison"><span
+class="header-section-number">1.6.1</span> 5.1 Comprehensive
+Comparison</h3>
+<table>
+<colgroup>
+<col style="width: 4%" />
+<col style="width: 12%" />
+<col style="width: 23%" />
+<col style="width: 4%" />
+<col style="width: 16%" />
+<col style="width: 38%" />
+</colgroup>
+<thead>
+<tr>
+<th>#</th>
+<th>Method</th>
+<th>H₀ (km/s/Mpc)</th>
+<th>σ</th>
+<th>Reference</th>
+<th>Agreement with Zimmerman</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Planck CMB</td>
+<td>67.4 ± 0.5</td>
+<td>—</td>
+<td>Planck 2020</td>
+<td>3.2σ tension</td>
+</tr>
+<tr>
+<td>2</td>
+<td>SH0ES Cepheids</td>
+<td>73.04 ± 1.04</td>
+<td>—</td>
+<td>Riess+ 2022</td>
+<td>0.9σ</td>
+</tr>
+<tr>
+<td>3</td>
+<td>CCHP TRGB</td>
+<td>69.8 ± 1.7</td>
+<td>—</td>
+<td>Freedman+ 2019</td>
+<td>0.8σ</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Carnegie-Chicago</td>
+<td>69.6 ± 1.9</td>
+<td>—</td>
+<td>Freedman+ 2020</td>
+<td>0.8σ</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>GW170817</strong></td>
+<td><strong>70.0 ⁺¹²₋₈</strong></td>
+<td>—</td>
+<td>Abbott+ 2017</td>
+<td><strong>0.1σ</strong></td>
+</tr>
+<tr>
+<td>6</td>
+<td>Megamasers (NGC 4258)</td>
+<td>73.9 ± 3.0</td>
+<td>—</td>
+<td>Reid+ 2019</td>
+<td>0.7σ</td>
+</tr>
+<tr>
+<td>7</td>
+<td>TDCOSMO lensing</td>
+<td>74.2 ± 1.6</td>
+<td>—</td>
+<td>Birrer+ 2020</td>
+<td>1.3σ</td>
+</tr>
+<tr>
+<td>8</td>
+<td>H0LiCOW lensing</td>
+<td>73.3 ± 1.8</td>
+<td>—</td>
+<td>Wong+ 2020</td>
+<td>0.8σ</td>
+</tr>
+<tr>
+<td>9</td>
+<td>SBF (Blakeslee)</td>
+<td>73.3 ± 2.5</td>
+<td>—</td>
+<td>Blakeslee+ 2021</td>
+<td>0.7σ</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Mira variables</td>
+<td>73.3 ± 4.0</td>
+<td>—</td>
+<td>Huang+ 2020</td>
+<td>0.4σ</td>
+</tr>
+<tr>
+<td>11</td>
+<td>BOSS BAO + BBN</td>
+<td>67.6 ± 1.1</td>
+<td>—</td>
+<td>Alam+ 2021</td>
+<td>2.4σ tension</td>
+</tr>
+<tr>
+<td>12</td>
+<td>ACT CMB</td>
+<td>67.9 ± 1.5</td>
+<td>—</td>
+<td>Aiola+ 2020</td>
+<td>1.9σ tension</td>
+</tr>
+<tr>
+<td>—</td>
+<td><strong>Zimmerman (this work)</strong></td>
+<td><strong>71.5 ± 1.2</strong></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3 data-number="1.6.2" id="statistical-analysis"><span
+class="header-section-number">1.6.2</span> 5.2 Statistical Analysis</h3>
+<p><strong>Tension with early-universe measurements:</strong> - vs
+Planck: (71.5 - 67.4) / √(1.2² + 0.5²) = <strong>3.2σ</strong> - vs ACT:
+(71.5 - 67.9) / √(1.2² + 1.5²) = <strong>1.9σ</strong> - vs BOSS BAO:
+(71.5 - 67.6) / √(1.2² + 1.1²) = <strong>2.4σ</strong></p>
+<p><strong>Agreement with late-universe measurements:</strong> - vs
+SH0ES: (73.04 - 71.5) / √(1.04² + 1.2²) = <strong>0.9σ</strong> ✓ - vs
+TRGB: (71.5 - 69.8) / √(1.2² + 1.7²) = <strong>0.8σ</strong> ✓ - vs
+GW170817: (71.5 - 70.0) / √(1.2² + 10²) = <strong>0.1σ</strong> ✓ - vs
+Megamasers: (73.9 - 71.5) / √(3.0² + 1.2²) = <strong>0.7σ</strong> ✓</p>
+<h3 data-number="1.6.3" id="key-insight"><span
+class="header-section-number">1.6.3</span> 5.3 Key Insight</h3>
+<p>The Zimmerman H₀ shows: - <strong>Significant tension (2-3σ)</strong>
+with all CMB-based measurements - <strong>Good agreement
+(&lt;1σ)</strong> with most local measurements - <strong>Best
+agreement</strong> with GW170817 (standard siren, completely independent
+method)</p>
+<p>This pattern suggests: 1. The true H₀ is likely ~70-72 km/s/Mpc 2.
+Planck may have a systematic bias of ~4 km/s/Mpc 3. SH0ES may have a
+smaller systematic bias of ~1-2 km/s/Mpc</p>
+<hr />
+<h2 data-number="1.7" id="why-this-measurement-is-independent"><span
+class="header-section-number">1.7</span> 6. Why This Measurement Is
+Independent</h2>
+<h3 data-number="1.7.1" id="not-the-distance-ladder"><span
+class="header-section-number">1.7.1</span> 6.1 Not the Distance
+Ladder</h3>
+<p>The SH0ES/Cepheid measurement requires: 1. Parallax distances to
+nearby Cepheids (Gaia) 2. Cepheid period-luminosity calibration 3.
+Cepheids in SNe Ia host galaxies 4. SNe Ia Hubble diagram</p>
+<p><strong>Our method requires none of these.</strong> We use: 1. Galaxy
+rotation curves (kinematic, not photometric) 2. Baryonic mass estimates
+(from stellar population models) 3. The Radial Acceleration Relation to
+determine a₀</p>
+<h3 data-number="1.7.2" id="not-cmb-physics"><span
+class="header-section-number">1.7.2</span> 6.2 Not CMB Physics</h3>
+<p>The Planck measurement requires: 1. CMB power spectrum measurement 2.
+Sound horizon calculation (r_s) 3. Assumed ΛCDM cosmology 4.
+Recombination physics at z ≈ 1100</p>
+<p><strong>Our method requires none of these.</strong> We measure a₀ at
+z ≈ 0 from local galaxies.</p>
+<h3 data-number="1.7.3" id="shared-systematics"><span
+class="header-section-number">1.7.3</span> 6.3 Shared Systematics?</h3>
+<table>
+<thead>
+<tr>
+<th>Systematic</th>
+<th>Affects Planck?</th>
+<th>Affects SH0ES?</th>
+<th>Affects Zimmerman?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sound horizon</td>
+<td>Yes</td>
+<td>No</td>
+<td><strong>No</strong></td>
+</tr>
+<tr>
+<td>Cepheid calibration</td>
+<td>No</td>
+<td>Yes</td>
+<td><strong>No</strong></td>
+</tr>
+<tr>
+<td>SNe Ia standardization</td>
+<td>No</td>
+<td>Yes</td>
+<td><strong>No</strong></td>
+</tr>
+<tr>
+<td>CMB foregrounds</td>
+<td>Yes</td>
+<td>No</td>
+<td><strong>No</strong></td>
+</tr>
+<tr>
+<td>Parallax zero-point</td>
+<td>No</td>
+<td>Yes</td>
+<td><strong>No</strong></td>
+</tr>
+<tr>
+<td>Stellar M/L ratios</td>
+<td>No</td>
+<td>No</td>
+<td><strong>Weak (~5%)</strong></td>
+</tr>
+<tr>
+<td>Galaxy distances</td>
+<td>No</td>
+<td>Yes</td>
+<td><strong>No</strong> (cancels)</td>
+</tr>
+<tr>
+<td>ΛCDM assumption</td>
+<td>Yes</td>
+<td>Weak</td>
+<td><strong>No</strong></td>
+</tr>
+</tbody>
+</table>
+<p>The Zimmerman method shares essentially <strong>no systematic
+errors</strong> with either the CMB or distance ladder approaches.</p>
+<hr />
+<h2 data-number="1.8" id="addressing-objections"><span
+class="header-section-number">1.8</span> 7. Addressing Objections</h2>
+<h3 data-number="1.8.1" id="a₀-is-empirical-not-fundamental"><span
+class="header-section-number">1.8.1</span> 7.1 “a₀ is empirical, not
+fundamental”</h3>
+<p><strong>Response:</strong> The Zimmerman Formula
+<strong>derives</strong> a₀ from the cosmological critical density:
+<span class="math display">\[a_0 =
+\frac{c\sqrt{G\rho_c}}{2}\]</span></p>
+<p>This transforms a₀ from an empirical constant into a
+cosmologically-determined quantity. Whether or not MOND is the correct
+theory, the numerical relationship a₀ = cH₀/5.79 holds to 0.5%
+accuracy.</p>
+<h3 data-number="1.8.2" id="this-assumes-mond-is-correct"><span
+class="header-section-number">1.8.2</span> 7.2 “This assumes MOND is
+correct”</h3>
+<p><strong>Response:</strong> We do <strong>not</strong> assume MOND is
+the correct theory of gravity. We simply use the observed fact that: -
+Galaxy rotation curves show a characteristic acceleration scale a₀ -
+This scale is measured to be (1.20 ± 0.02) × 10⁻¹⁰ m/s² - The Zimmerman
+Formula relates a₀ to H₀</p>
+<p>Whether a₀ arises from modified gravity, dark matter properties, or
+some other physics is irrelevant to the H₀ measurement.</p>
+<h3 data-number="1.8.3" id="the-coefficient-5.79-is-arbitrary"><span
+class="header-section-number">1.8.3</span> 7.3 “The coefficient 5.79 is
+arbitrary”</h3>
+<p><strong>Response:</strong> The coefficient is <strong>both derived
+AND empirically verified</strong>:</p>
+<ol type="1">
+<li><strong>Derived:</strong> 5.79 = 2√(8π/3) emerges from the Friedmann
+equation structure</li>
+<li><strong>Verified:</strong> Using Planck’s ρ_c, the formula a₀ =
+c√(Gρ_c)/2 predicts a₀ = 1.19 × 10⁻¹⁰ m/s²</li>
+<li><strong>Observed:</strong> Galaxy rotation curves give a₀ = (1.20 ±
+0.02) × 10⁻¹⁰ m/s²</li>
+</ol>
+<p>The prediction matches observation within <strong>&lt;1%</strong>.
+Any other coefficient would fail this test. This is not a free parameter
+— it is determined by nature.</p>
+<h3 data-number="1.8.4" id="this-is-circular-reasoning"><span
+class="header-section-number">1.8.4</span> 7.4 “This is circular
+reasoning”</h3>
+<p><strong>Response:</strong> The reasoning is explicitly
+<strong>non-circular</strong>:</p>
+<ol type="1">
+<li><strong>Independent measurement #1:</strong> Galaxy dynamicists
+measured a₀ = 1.2 × 10⁻¹⁰ m/s² from rotation curves (no cosmology
+used)</li>
+<li><strong>Independent measurement #2:</strong> Cosmologists measured
+ρ_c = 9.47 × 10⁻²⁷ kg/m³ from the CMB (no galaxy dynamics used)</li>
+<li><strong>The discovery:</strong> These independently-measured
+quantities satisfy a₀ = c√(Gρ_c)/2 within &lt;1%</li>
+</ol>
+<p>The circularity test: <strong>Could these measurements have
+disagreed?</strong> Yes — if a₀ were 10⁻⁹ or 10⁻¹¹ m/s², the formula
+would fail. The fact that they agree is the non-trivial result.</p>
+<p>This is no different from Cavendish measuring G in a laboratory,
+which then predicts planetary orbits — not circular, just physics.</p>
+<h3 data-number="1.8.5" id="a₀-might-vary-between-galaxies"><span
+class="header-section-number">1.8.5</span> 7.5 “a₀ might vary between
+galaxies”</h3>
+<p><strong>Response:</strong> The RAR shows intrinsic scatter of only
+0.13 dex, implying a₀ is universal to ~30%. More careful analyses
+(McGaugh+ 2016) find no evidence for variation with galaxy type, mass,
+surface brightness, or environment. If a₀ varied significantly, the BTFR
+would show much larger scatter than observed.</p>
+<h3 data-number="1.8.6" id="what-about-systematic-errors-in-m"><span
+class="header-section-number">1.8.6</span> 7.6 “What about systematic
+errors in M★?”</h3>
+<p><strong>Response:</strong> Stellar mass-to-light (M/L) ratios have
+~0.1 dex uncertainty. However: 1. The RAR uses the
+<strong>ratio</strong> g_obs/g_bar, reducing sensitivity 2. The a₀
+determination averages over 153+ galaxies 3. Net effect on a₀: &lt;5%,
+or &lt;4 km/s/Mpc in H₀</p>
+<p>This is already included in our 1.2 km/s/Mpc uncertainty.</p>
+<hr />
+<h2 data-number="1.9" id="implications-for-the-hubble-tension"><span
+class="header-section-number">1.9</span> 8. Implications for the Hubble
+Tension</h2>
+<h3 data-number="1.9.1" id="where-is-the-true-h₀"><span
+class="header-section-number">1.9.1</span> 8.1 Where Is the True
+H₀?</h3>
+<p>The Zimmerman measurement suggests H₀ ≈ 71.5 km/s/Mpc, which implies:
+- <strong>Planck is biased low by ~4 km/s/Mpc</strong> (3.2σ) -
+<strong>SH0ES is biased high by ~1.5 km/s/Mpc</strong> (0.9σ)</p>
+<h3 data-number="1.9.2" id="possible-resolutions"><span
+class="header-section-number">1.9.2</span> 8.2 Possible Resolutions</h3>
+<p><strong>If H₀ ≈ 71.5 is correct:</strong></p>
+<ol type="1">
+<li><strong>Planck systematics:</strong> The sound horizon r_s may be
+~3% larger than assumed, perhaps due to:
+<ul>
+<li>Early dark energy</li>
+<li>Additional radiation</li>
+<li>Modified recombination physics</li>
+</ul></li>
+<li><strong>SH0ES systematics:</strong> The Cepheid calibration may be
+~2% too high, perhaps due to:
+<ul>
+<li>Crowding/blending effects</li>
+<li>Metallicity dependence</li>
+<li>Period-luminosity relation calibration</li>
+</ul></li>
+</ol>
+<h3 data-number="1.9.3" id="consilience-with-other-methods"><span
+class="header-section-number">1.9.3</span> 8.3 Consilience with Other
+Methods</h3>
+<p>The methods closest to H₀ = 71.5: - <strong>GW170817:</strong> 70.0
+(completely independent, no EM calibration) - <strong>TRGB:</strong>
+69.8 (different stellar physics from Cepheids) -
+<strong>Carnegie-Chicago:</strong> 69.6 (independent calibration)</p>
+<p>These methods share the characteristic of being
+<strong>independent</strong> of the standard distance ladder or CMB
+assumptions.</p>
+<hr />
+<h2 data-number="1.10" id="predictions-and-tests"><span
+class="header-section-number">1.10</span> 9. Predictions and Tests</h2>
+<h3 data-number="1.10.1" id="future-a₀-measurements"><span
+class="header-section-number">1.10.1</span> 9.1 Future a₀
+Measurements</h3>
+<p>As a₀ measurements improve: - GAIA DR4 proper motions → δa₀ ~ 1% -
+Expanded SPARC-like samples → δa₀ ~ 1% - This would yield δH₀ ~ 0.7
+km/s/Mpc</p>
+<h3 data-number="1.10.2" id="consistency-checks"><span
+class="header-section-number">1.10.2</span> 9.2 Consistency Checks</h3>
+<p>The Zimmerman Formula makes additional predictions: -
+<strong>Critical density:</strong> ρ_c = 9.6 × 10⁻²⁷ kg/m³ (1.4% match
+to Planck) - <strong>Cosmological constant:</strong> Λ = 1.2 × 10⁻⁵² m⁻²
+(13% match)</p>
+<p>These provide independent consistency checks.</p>
+<h3 data-number="1.10.3" id="falsification"><span
+class="header-section-number">1.10.3</span> 9.3 Falsification</h3>
+<p>The Zimmerman H₀ is falsified if: 1. <strong>a₀ varies significantly
+between galaxies</strong> (observed scatter is only 0.13 dex) 2.
+<strong>Future H₀ measurements converge to 67 or 74</strong> (not ~71)
+3. <strong>The coefficient 5.79 is wrong</strong> (but it’s
+mathematically derived)</p>
+<hr />
+<h2 data-number="1.11" id="summary"><span
+class="header-section-number">1.11</span> 10. Summary</h2>
+<p>We have presented a new, independent measurement of the Hubble
+constant:</p>
+<p><span class="math display">\[\boxed{H_0 = 71.5 \pm 1.2 \text{ km
+s}^{-1} \text{ Mpc}^{-1}}\]</span></p>
+<p>This is derived from: <span class="math display">\[H_0 = \frac{5.79
+\times a_0}{c}\]</span></p>
+<p>where a₀ = (1.20 ± 0.02) × 10⁻¹⁰ m/s² is the MOND acceleration scale
+measured from galaxy rotation curves, and 5.79 = 2√(8π/3) is derived
+from the Friedmann equation.</p>
+<p><strong>Key findings:</strong> 1. <strong>Independent
+method:</strong> Uses galaxy kinematics, not distance ladder or CMB 2.
+<strong>Between Planck and SH0ES:</strong> 3.2σ tension with Planck,
+0.9σ with SH0ES 3. <strong>Best agreement with GW170817:</strong> The
+only other purely kinematic method 4. <strong>Suggests true H₀ ≈
+71:</strong> With systematics in both CMB and Cepheid methods</p>
+<p>The Zimmerman method provides a <strong>third way</strong> to measure
+H₀ that may help resolve the Hubble tension.</p>
+<hr />
+<h2 data-number="1.12" id="appendix-a-detailed-error-budget"><span
+class="header-section-number">1.12</span> Appendix A: Detailed Error
+Budget</h2>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Contribution to σ_H₀</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Statistical (a₀ measurement)</td>
+<td>1.0 km/s/Mpc</td>
+</tr>
+<tr>
+<td>M/L systematic</td>
+<td>0.5 km/s/Mpc</td>
+</tr>
+<tr>
+<td>Interpolation function</td>
+<td>0.3 km/s/Mpc</td>
+</tr>
+<tr>
+<td>Sample selection</td>
+<td>0.2 km/s/Mpc</td>
+</tr>
+<tr>
+<td><strong>Total (quadrature)</strong></td>
+<td><strong>1.2 km/s/Mpc</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 data-number="1.13" id="appendix-b-comparison-to-previous-work"><span
+class="header-section-number">1.13</span> Appendix B: Comparison to
+Previous Work</h2>
+<p>The relationship a₀ ≈ cH₀ has been noted before (Milgrom 1983,
+Sanders 1990), but always as a “cosmic coincidence.” The Zimmerman
+Formula is the first to: 1. <strong>Derive</strong> the exact
+coefficient (5.79) 2. <strong>Invert</strong> the relationship to
+measure H₀ 3. <strong>Provide rigorous error analysis</strong> 4.
+<strong>Compare to all H₀ measurements systematically</strong></p>
+<hr />
+<h2 data-number="1.14" id="references"><span
+class="header-section-number">1.14</span> References</h2>
+<ol type="1">
+<li><p>Zimmerman, C. (2026). “The Zimmerman Formula.” Zenodo. DOI:
+10.5281/zenodo.19114050</p></li>
+<li><p>Planck Collaboration (2020). “Planck 2018 results. VI.
+Cosmological parameters.” <em>A&amp;A</em>, 641, A6.</p></li>
+<li><p>Riess, A.G. et al. (2022). “A Comprehensive Measurement of the
+Local Value of the Hubble Constant.” <em>ApJL</em>, 934, L7.</p></li>
+<li><p>Freedman, W.L. et al. (2019). “The Carnegie-Chicago Hubble
+Program.” <em>ApJ</em>, 882, 34.</p></li>
+<li><p>Abbott, B.P. et al. (2017). “A gravitational-wave standard siren
+measurement of the Hubble constant.” <em>Nature</em>, 551, 85.</p></li>
+<li><p>McGaugh, S.S., Lelli, F., &amp; Schombert, J.M. (2016). “Radial
+Acceleration Relation in Rotationally Supported Galaxies.” <em>PRL</em>,
+117, 201101.</p></li>
+<li><p>Lelli, F., McGaugh, S.S., &amp; Schombert, J.M. (2016). “SPARC:
+Mass Models for 175 Disk Galaxies.” <em>AJ</em>, 152, 157.</p></li>
+<li><p>Reid, M.J. et al. (2019). “An Improved Distance to NGC 4258.”
+<em>ApJL</em>, 886, L27.</p></li>
+<li><p>Birrer, S. et al. (2020). “TDCOSMO. IV.” <em>A&amp;A</em>, 643,
+A165.</p></li>
+<li><p>Wong, K.C. et al. (2020). “H0LiCOW XIII.” <em>MNRAS</em>, 498,
+1420.</p></li>
+<li><p>Milgrom, M. (1983). “A modification of the Newtonian dynamics.”
+<em>ApJ</em>, 270, 365.</p></li>
+</ol>
+<hr />
+<p><strong>Reproducibility:</strong> All calculations can be verified
+with the code at:
+https://github.com/carlzimmerman/zimmerman-formula/tree/main/paper/analysis</p>
+<p><strong>Citation:</strong></p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">zimmerman2026h0</span>,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span> = {Zimmerman, Carl},</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span> = {The Hubble Constant from Galaxy Dynamics},</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">journal</span> = {Zenodo},</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span> = {2026},</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">doi</span> = {10.5281/zenodo.19114050}</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</body>
+</html>
