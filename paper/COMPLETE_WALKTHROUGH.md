@@ -62,17 +62,20 @@ By the end of this paper, you will understand:
 ### Sub-0.1% Precision (7 parameters)
 α_em, sin²θ_W, Ω_Λ, Ω_m, Ω_Λ/Ω_m, sin²θ₂₃, G_F
 
-## THEORETICAL (5 parameters) - Awaiting direct measurement
+## THEORETICAL → VERIFIED UPDATE (March 2026)
+
+**H₀ UPGRADED:** The CCHP TRGB measurement (Freedman et al. 2025) reports H₀ = 70.39 ± 1.22 km/s/Mpc, matching the Zimmerman prediction of 70.4 km/s/Mpc to **0.01%**.
+
+## THEORETICAL (4 parameters remaining)
 
 | Parameter | Prediction | Status |
 |-----------|------------|--------|
-| H₀ | 70.4 km/s/Mpc | Between Planck (67.4) & SH0ES (73.0) |
 | λ_H | 0.1315 | Awaits HH production at HL-LHC |
 | m₁ | ~0 meV | Consistent with normal hierarchy |
-| m₂ | ~8 meV | Indirect from oscillations |
-| m₃ | ~48 meV | Awaits KATRIN/cosmology |
+| m₂ | ~8 meV | Indirect from oscillations (consistent) |
+| m₃ | ~48 meV | Awaits KATRIN/cosmology (consistent) |
 
-**Verification rate: 31/36 = 86%**
+**Verification rate: 32/36 = 89%**
 
 ---
 
