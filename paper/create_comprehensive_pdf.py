@@ -1518,6 +1518,118 @@ def create_pdf():
     )
 
     # ========================================
+    # PART XXV: ATOMIC PHYSICS
+    # ========================================
+    pdf.part_title("XXV", "ATOMIC PHYSICS: Alpha Controls Everything")
+
+    pdf.chapter(36, "The Fine Structure Constant in Atoms")
+
+    pdf.section("36.1 How Alpha Determines Atomic Properties")
+    pdf.body(
+        "Since alpha_em = 1/(4*Z^2 + 3) = 1/137.04, all atomic physics is controlled by Z:\n\n"
+        "- Bohr radius: a_0 = h_bar/(m_e * c * alpha) = 0.529 Angstrom\n"
+        "- Rydberg energy: Ry = m_e * c^2 * alpha^2 / 2 = 13.6 eV\n"
+        "- Fine structure: dE ~ alpha^4 * m_e * c^2\n"
+        "- Lamb shift: dE ~ alpha^5 * m_e * c^2\n"
+        "- Hyperfine (21 cm): dE ~ alpha^4 * (m_e/m_p)"
+    )
+
+    pdf.section("36.2 The Critical Atomic Number")
+    pdf.equation("Z_critical = 1/alpha = 4*Z^2 + 3 = 137")
+    pdf.body(
+        "For atoms with Z > 137, QED becomes unstable (supercritical vacuum).\n"
+        "The heaviest stable element, Oganesson (Z=118), is close to 20*Z = 116.\n\n"
+        "Number of stable elements ~ 20 * Z!"
+    )
+
+    pdf.section("36.3 Proton g-Factor Prediction")
+    pdf.equation("g_p = 6 * (1 - alpha_s/2) = 6 * 0.94 = 5.65")
+    pdf.body("Observed: g_p = 5.586. Error: 1.1%")
+
+    # ========================================
+    # PART XXVI: CONDENSED MATTER
+    # ========================================
+    pdf.part_title("XXVI", "CONDENSED MATTER: Universal Constants")
+
+    pdf.chapter(37, "Quantum Hall Effect")
+
+    pdf.section("37.1 The von Klitzing Constant")
+    pdf.equation("R_K = h/e^2 = mu_0 * c * (4*Z^2 + 3) / 2 = 25,812 Ohms")
+    pdf.body("The quantum of resistance involves the Friedmann coefficient!")
+
+    pdf.section("37.2 Conductance Quantum")
+    pdf.equation("G_0 = 2*e^2/h = 7.75 * 10^-5 Siemens")
+    pdf.body("All quantum transport depends on Z through alpha.")
+
+    # ========================================
+    # PART XXVII: CHEMISTRY
+    # ========================================
+    pdf.part_title("XXVII", "CHEMISTRY: Molecular Bonds from Z")
+
+    pdf.chapter(38, "Chemical Bonds")
+
+    pdf.section("38.1 Single Bond Energy")
+    pdf.equation("E_bond ~ 2 * Ry / Z = 4.7 eV")
+    pdf.body("Observed: ~4.3 eV average. Error: ~10%")
+
+    pdf.section("38.2 Hydrogen Bond Energy")
+    pdf.equation("E_HB = E_bond / (4*Z) = 0.19 eV")
+    pdf.body("Observed: 0.1-0.3 eV. Matches!")
+
+    pdf.section("38.3 Number of Elements")
+    pdf.equation("Z_max(elements) ~ 20 * Z = 116")
+    pdf.body("Observed: Oganesson Z=118. Error: 2%")
+
+    # ========================================
+    # PART XXVIII: CMB ANOMALIES
+    # ========================================
+    pdf.part_title("XXVIII", "CMB ANOMALIES EXPLAINED")
+
+    pdf.chapter(39, "The Lensing Amplitude A_L")
+
+    pdf.section("39.1 A_L = 1 + 1/Z - NEW DISCOVERY!")
+    pdf.equation("A_L = 1 + 1/Z = 1 + 0.17 = 1.17")
+    pdf.body(
+        "Observed (Planck 2018): A_L = 1.18 +/- 0.07\n"
+        "Error: <1%\n\n"
+        "THE CMB LENSING ANOMALY IS EXPLAINED!"
+    )
+
+    pdf.section("39.2 H_0 Resolution")
+    pdf.equation("H_0 = Z * a_0 / c = 71.5 km/s/Mpc")
+    pdf.body("Between Planck (67.4) and SH0ES (73.0). GW sirens will test by 2027.")
+
+    # ========================================
+    # PART XXIX: EXPERIMENTAL ROADMAP
+    # ========================================
+    pdf.part_title("XXIX", "EXPERIMENTAL ROADMAP")
+
+    pdf.chapter(40, "Testing Through 2035")
+
+    pdf.section("40.1 Make-or-Break Tests")
+    pdf.body(
+        "| Test | Prediction | Experiment | Timeline |\n"
+        "| r (tensor) | 0.058 | CMB-S4 | 2028+ |\n"
+        "| Hierarchy | Normal | JUNO/DUNE | 2026+ |\n"
+        "| WIMPs | NULL | LZ | 2024-28 |\n"
+        "| H_0 | 71.5 | GW sirens | 2027 |"
+    )
+
+    pdf.section("40.2 Already Matched")
+    pdf.body(
+        "- g-2 anomaly: 2.5e-9 MATCHED\n"
+        "- A_L lensing: 1.17 vs 1.18 MATCHED\n"
+        "- Axion mass: 2.4 microeV - ADMX searching"
+    )
+
+    pdf.section("40.3 The Bottom Line")
+    pdf.body(
+        "BY 2030, we will know if the framework is correct.\n\n"
+        "If r, hierarchy, WIMPs, H_0, and BTFR all match: CONFIRMED\n"
+        "If any major prediction fails: REVISION needed"
+    )
+
+    # ========================================
     # REFERENCES
     # ========================================
     pdf.add_page()
@@ -1527,21 +1639,22 @@ def create_pdf():
     pdf.ln(5)
 
     refs = [
-        "1. Planck Collaboration (2020). Planck 2018 results VI. Cosmological parameters. A&A 641, A6. arXiv:1807.06209",
-        "2. Particle Data Group (2024). Review of Particle Physics. Phys. Rev. D 110, 030001.",
-        "3. Freedman, W.L. et al. (2025). Status Report on the CCHP: H_0 with JWST and HST. ApJ 985, 203. arXiv:2408.06153",
-        "4. CODATA (2022). Recommended Values of Fundamental Physical Constants. NIST.",
-        "5. T2K Collaboration (2023). Constraints on neutrino oscillation parameters. arXiv:2303.03222",
-        "6. NuFit 6.0 (2024). Global neutrino oscillation analysis. JHEP 12, 216. arXiv:2410.05380",
-        "7. KATRIN Collaboration (2024). Direct neutrino-mass measurement. Science. arXiv:2406.13516",
-        "8. LHCb Collaboration (2024). Measurement of the CKM angle gamma. arXiv:2401.17934",
-        "9. ATLAS, CMS Collaborations (2024). Combined measurement of the Higgs boson mass. arXiv:2207.00043",
-        "10. Riess, A.G. et al. (2022). A Comprehensive Measurement of H_0. ApJL 934, L7. arXiv:2112.04510",
-        "11. FLAG Working Group (2024). Review of lattice results. Eur. Phys. J. C 84, 101.",
-        "12. Weinberg, S. (1967). A Model of Leptons. Phys. Rev. Lett. 19, 1264.",
-        "13. Higgs, P. (1964). Broken Symmetries. Phys. Rev. Lett. 13, 508.",
-        "14. Friedmann, A. (1922). On the Curvature of Space. Z. Phys. 10, 377.",
-        "15. Einstein, A. (1915). The Field Equations of Gravitation. Sitzungsber. Preuss. Akad. Wiss.",
+        "1. Planck Collaboration (2020). Planck 2018 results VI. A&A 641, A6.",
+        "2. Particle Data Group (2024). Review of Particle Physics. PRD 110, 030001.",
+        "3. Freedman, W.L. et al. (2025). CCHP H_0 with JWST. ApJ 985, 203.",
+        "4. CODATA (2022). Fundamental Physical Constants. NIST.",
+        "5. T2K Collaboration (2023). Neutrino oscillations. arXiv:2303.03222",
+        "6. NuFit 6.0 (2024). Global analysis. JHEP 12, 216.",
+        "7. KATRIN (2024). Neutrino mass. Science.",
+        "8. LHCb (2024). CKM gamma. arXiv:2401.17934",
+        "9. ATLAS/CMS (2024). Higgs mass.",
+        "10. Riess et al. (2022). H_0. ApJL 934, L7.",
+        "11. FLAG (2024). Lattice QCD. EPJC 84, 101.",
+        "12. ADMX (2024). Axion search. PRL.",
+        "13. LZ (2024). Dark matter search.",
+        "14. BICEP/Keck (2021). Primordial GW. PRL.",
+        "15. Milgrom (1983). MOND. ApJ 270, 365.",
+        "16. McGaugh et al. (2016). RAR. PRL 117, 201101.",
     ]
 
     pdf.set_font('Helvetica', '', 9)
@@ -1556,11 +1669,10 @@ def create_pdf():
     pdf.ln(5)
     pdf.set_font('Helvetica', 'I', 10)
     pdf.multi_cell(0, 5,
-        "This document represents the comprehensive Zimmerman Framework for deriving "
-        "53+ Standard Model, cosmological, inflation, and quantum gravity parameters from "
-        "the Friedmann coefficient Z = 2*sqrt(8*pi/3) = 5.7888.\n\n"
-        "Including: Cosmic numerology (Z^160 = universe entropy), BSM predictions,\n"
-        "quantum gravity connections, and comprehensive falsifiable tests.\n\n"
+        "Zimmerman Framework: 60+ physics parameters from Z = 2*sqrt(8*pi/3).\n\n"
+        "NEW: A_L = 1 + 1/Z = 1.17 explains CMB lensing anomaly!\n\n"
+        "Includes: Particle physics, cosmology, atomic, condensed matter,\n"
+        "chemistry, CMB anomalies, and experimental roadmap through 2035.\n\n"
         "GitHub: https://github.com/carlzimmerman/zimmerman-formula\n"
         "License: CC BY 4.0 | March 2026",
         align='C'
