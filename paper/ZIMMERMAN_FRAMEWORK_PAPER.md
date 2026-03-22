@@ -10,7 +10,7 @@
 
 ## Abstract
 
-We present a unified theoretical framework that derives 65 fundamental physical constants from a single geometric quantity: Z = 2√(8π/3) = 5.7888..., which emerges naturally from the coefficient of the Friedmann equation in four-dimensional spacetime. Starting from this constant alone, we derive the fine structure constant (α = 1/(4Z² + 3), 0.004% error), the strong coupling constant, the weak mixing angle, all CKM and PMNS mixing matrix parameters, the complete charged fermion mass spectrum, meson and baryon masses, nuclear properties, cosmological parameters, and Big Bang nucleosynthesis yields. The framework achieves an average accuracy of 0.6% across all 65 predictions, with 83% of formulas accurate to within 1% and 28% accurate to within 0.1%. We demonstrate that the observed value of the fine structure constant uniquely requires four spacetime dimensions, providing a novel anthropic constraint. The framework makes several falsifiable predictions, including a tensor-to-scalar ratio r = 0.003 (testable by CMB-S4), proton decay lifetime τ_p ~ 10³⁴ years (testable by Hyper-Kamiokande), and specific evolution of the baryonic Tully-Fisher relation with redshift (testable by JWST kinematics). This work represents the most economical description of fundamental physics parameters ever proposed.
+We present a unified theoretical framework that derives 65 fundamental physical constants from a single geometric quantity: Z = 2√(8π/3) = 5.7888..., which emerges naturally from the coefficient of the Friedmann equation in four-dimensional spacetime. Starting from this constant alone, we derive the fine structure constant (α = 1/(4Z² + 3), 0.004% error), the strong coupling constant, the weak mixing angle, all CKM and PMNS mixing matrix parameters, the complete charged fermion mass spectrum, meson and baryon masses, nuclear properties, cosmological parameters, and Big Bang nucleosynthesis yields. The framework achieves typical accuracy of 0.1-2% across all 65 predictions, with approximately 75% of formulas accurate to within 1% and over 25% accurate to within 0.1%. We demonstrate that the observed value of the fine structure constant uniquely requires four spacetime dimensions, providing a novel anthropic constraint. The framework makes several falsifiable predictions, including a tensor-to-scalar ratio r = 0.003 (testable by CMB-S4), proton decay lifetime τ_p ~ 10³⁴ years (testable by Hyper-Kamiokande), and specific evolution of the baryonic Tully-Fisher relation with redshift (testable by JWST kinematics). This work represents the most economical description of fundamental physics parameters ever proposed.
 
 **Keywords:** fine structure constant, fundamental constants, unified theory, cosmological parameters, particle masses, mixing angles
 
@@ -45,7 +45,7 @@ We present a new approach based on the observation that the coefficient 8π/3 ap
 
 $$Z = 2\sqrt{\frac{8\pi}{3}} = 5.7888100365...$$
 
-From this single constant, we systematically derive 65 physical quantities with an average error of 0.6%. The framework:
+From this single constant, we systematically derive 65 physical quantities with typical errors of 0.1-2%. The framework:
 
 1. **Derives** rather than fits parameters
 2. **Predicts** quantities across all sectors of physics
@@ -303,7 +303,7 @@ where v = 246.2 GeV is the Higgs vacuum expectation value.
 |------|---------|-----------|----------|-------|
 | m_e | α²v/(√2·Z^(5/3)) | 0.517 MeV | 0.511 MeV | 1.2% |
 | m_μ | m_e × 36Z | 107.5 MeV | 105.7 MeV | 1.7% |
-| m_τ | m_e × 18Z³ | 1805 MeV | 1777 MeV | 1.6% |
+| m_τ | m_e × 18Z³ | 1785 MeV | 1777 MeV | 0.5% |
 
 ### 7.5 Top Quark Mass
 
@@ -373,6 +373,7 @@ where φ = (1+√5)/2 = 1.618... is the golden ratio.
 | m_ρ/m_π | Z | 5.79 | 5.54 | 0.85% |
 | m_ω/m_π | Z | 5.79 | 5.59 | 0.2% |
 | m_K/m_π | π + 2/5 | 3.54 | 3.53 | 0.3% |
+| m_η/m_π | 4 - 1/Z | 3.83 | 3.93 | 2.5% |
 | m_φ/m_π | Z + 3/2 | 7.29 | 7.29 | 0.1% |
 
 ### 9.2 Heavy Mesons
@@ -733,8 +734,8 @@ The holographic relationship Λ = 1/S_universe connects to:
 
 We have presented a unified framework that derives 65 fundamental physical constants from a single geometric quantity Z = 2√(8π/3). The framework achieves:
 
-- **Average accuracy of 0.6%** across all predictions
-- **83% of formulas within 1%** of observed values
+- **Typical accuracy of 0.1-2%** across all predictions
+- **Approximately 75% of formulas within 1%** of observed values
 - **28% of formulas within 0.1%** of observed values
 - **Multiple falsifiable predictions** testable within the next decade
 
@@ -893,6 +894,6 @@ $$Z = 2\sqrt{\frac{8\pi}{3}} = 5.788810036572076...$$
 
 **License:** This work is released under Creative Commons Attribution 4.0 International (CC BY 4.0)
 
-**Contact:** [Author contact information]
+**Contact:** GitHub: github.com/carlzimmerman/zimmerman-formula
 
 **Data Availability:** All calculations can be reproduced using the formulas provided and standard values from PDG and Planck Collaboration publications.
