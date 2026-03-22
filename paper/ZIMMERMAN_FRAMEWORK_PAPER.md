@@ -688,7 +688,7 @@ The mass distribution "froze in" during formation when a₀ was 3× higher. The 
 
 ## 20. Discussion
 
-### 19.1 Physical Interpretation
+### 20.1 Physical Interpretation
 
 The Zimmerman Framework suggests that fundamental constants are not arbitrary but emerge from the geometric structure of four-dimensional spacetime. The constant Z = 2√(8π/3) encodes:
 
@@ -696,7 +696,7 @@ The Zimmerman Framework suggests that fundamental constants are not arbitrary bu
 2. **The relationship between space and time** (through dimensional ratios like 4/3)
 3. **The holographic principle** (through the entropy-cosmological constant connection)
 
-### 19.2 Comparison with Standard Model
+### 20.2 Comparison with Standard Model
 
 | Aspect | Standard Model | Zimmerman Framework |
 |--------|---------------|---------------------|
@@ -707,7 +707,7 @@ The Zimmerman Framework suggests that fundamental constants are not arbitrary bu
 | Why 3 generations | Unknown | = D_spatial |
 | Cosmological constant | Fine-tuned | Z^(-160) |
 
-### 19.3 Limitations
+### 20.3 Limitations
 
 The framework currently:
 - Uses the Higgs VEV (v = 246 GeV) as input
@@ -715,7 +715,7 @@ The framework currently:
 - Does not address dark matter particle properties
 - Requires further theoretical development to connect to quantum field theory
 
-### 19.4 Relationship to Other Theories
+### 20.4 Relationship to Other Theories
 
 The appearance of E8 (Z^π ≈ 248) suggests possible connections to:
 - Heterotic string theory (E8 × E8 gauge group)
