@@ -18,7 +18,7 @@ class MasterPDF(FPDF):
         if self.page_no() > 1:
             self.set_font('Helvetica', 'I', 9)
             self.set_text_color(100, 100, 100)
-            self.cell(0, 10, 'A Beautifully Geometric Universe | Zimmerman 2025', align='C')
+            self.cell(0, 10, 'A Beautifully Geometric Universe | Zimmerman 2026', align='C')
             self.ln(5)
 
     def footer(self):
@@ -101,7 +101,7 @@ def create_master_pdf():
     pdf.set_text_color(0, 0, 0)
     pdf.cell(0, 8, "Carl Zimmerman", align='C', ln=True)
     pdf.cell(0, 8, "Independent Researcher", align='C', ln=True)
-    pdf.cell(0, 8, "March 2025", align='C', ln=True)
+    pdf.cell(0, 8, "March 2026", align='C', ln=True)
 
     pdf.ln(20)
     pdf.set_fill_color(240, 255, 240)

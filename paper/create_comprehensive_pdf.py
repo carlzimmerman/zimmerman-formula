@@ -7,7 +7,7 @@ Comprehensive Master PDF - Monumental Edition
 ~60-100 pages covering ALL derivations, evidence, and proofs
 
 Author: Carl Zimmerman
-Date: March 2025
+Date: March 2026
 """
 
 from fpdf import FPDF
@@ -144,7 +144,7 @@ def create_pdf():
     pdf.cell(0, 10, "Carl Zimmerman", align='C', new_x="LMARGIN", new_y="NEXT")
     pdf.set_font('Helvetica', '', 12)
     pdf.cell(0, 8, "Independent Researcher", align='C', new_x="LMARGIN", new_y="NEXT")
-    pdf.cell(0, 8, "March 2025", align='C', new_x="LMARGIN", new_y="NEXT")
+    pdf.cell(0, 8, "March 2026", align='C', new_x="LMARGIN", new_y="NEXT")
 
     pdf.ln(15)
     pdf.set_fill_color(230, 255, 230)
@@ -587,7 +587,7 @@ def create_pdf():
 
     pdf.section("9.4 Verification: CCHP TRGB Measurement")
     pdf.body(
-        "In March 2025, the Chicago-Carnegie Hubble Program (CCHP) released their TRGB "
+        "In March 2026, the Chicago-Carnegie Hubble Program (CCHP) released their TRGB "
         "measurement using JWST and HST data (Freedman et al. 2025):"
     )
 
@@ -955,7 +955,7 @@ def create_pdf():
         "1. sin^2(theta_23) = 0.5458 (atmospheric neutrino mixing)\n"
         "2. delta_CP = 195 degrees (PMNS CP phase)\n"
         "3. m_b = 4.18 GeV (bottom quark mass)\n"
-        "4. H_0 = 70.4 km/s/Mpc (Hubble constant - verified March 2025)"
+        "4. H_0 = 70.4 km/s/Mpc (Hubble constant - verified March 2026)"
     )
 
     # ========================================
