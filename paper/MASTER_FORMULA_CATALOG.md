@@ -325,10 +325,12 @@ From **ONE constant** Z = 2√(8π/3) = 5.7888..., we derive:
 
 | Quantity | Formula | Predicted | Observed | Error |
 |----------|---------|-----------|----------|-------|
-| Σm_ν | 2α² × m_e | 54 meV | ~58 meV | 7% |
+| Σm_ν | m_e²/(v·Z^φ) | 62 meV | ~58 meV | 7% |
 | m₃/m₂ | Z | 5.79 | 5.77 | 0.3% |
-| m₂ | Σm_ν/(1+Z) | 7.95 meV | 8.66 meV | 8% |
-| m₃ | Z × m₂ | 46 meV | 50 meV | 8% |
+| m₂ | Σm_ν/(1+Z) | 9.1 meV | 8.66 meV | 5% |
+| m₃ | Z × m₂ | 53 meV | 50 meV | 6% |
+
+*Note: φ = (1+√5)/2 = 1.618... (golden ratio)*
 
 ---
 

@@ -756,7 +756,16 @@ Note: Same formula as m_c/m_s ratio!
 ### Total Neutrino Mass
 
 ```
-Σm_ν = 2α² × m_e = 54 meV
+Σm_ν = m_e² / (v × Z^φ) = 62 meV
+
+where φ = (1+√5)/2 = 1.618... (golden ratio)
+
+Calculation:
+m_e² = 0.261 MeV²
+Z^φ = 5.79^1.618 = 17.1
+v × Z^φ = 246 GeV × 17.1 = 4.21 × 10⁶ MeV
+Σm_ν = 0.261 / (4.21×10⁶) = 62 meV
+
 Observed: ~58 meV (normal hierarchy)
 Error: 7%
 ```
@@ -768,17 +777,20 @@ With m₃/m₂ = Z and m₁ ≈ 0:
 | Mass | Formula | Predicted | Observed | Error |
 |------|---------|-----------|----------|-------|
 | m₁ | ~0 | ~0 meV | <1 meV | — |
-| m₂ | Σm_ν/(1+Z) | 7.95 meV | 8.66 meV | 8% |
-| m₃ | Z × m₂ | 46 meV | 50 meV | 8% |
+| m₂ | Σm_ν/(1+Z) | 9.1 meV | 8.66 meV | 5% |
+| m₃ | Z × m₂ | 53 meV | 50 meV | 6% |
 
 ### Physical Interpretation
 
-The neutrino mass scale (meV) relates to the electron mass (MeV) through:
-```
-Σm_ν/m_e = 2α² ≈ 10⁻⁴
-```
+The appearance of the **golden ratio φ** in neutrino physics is remarkable:
+- φ appears in Fibonacci sequences and nature's growth patterns
+- The formula Σm_ν = m_e²/(v·Z^φ) connects:
+  - Electron mass (m_e)
+  - Electroweak scale (v)
+  - Spacetime geometry (Z)
+  - Golden ratio (φ)
 
-This is the **square** of the electromagnetic coupling - suggesting a double suppression mechanism!
+This suggests neutrino mass generation involves a self-similar or recursive structure.
 
 ---
 

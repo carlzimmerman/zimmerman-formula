@@ -346,9 +346,13 @@ $$\frac{m_3}{m_2} = Z$$
 
 ### 8.2 Total Neutrino Mass
 
-$$\Sigma m_\nu = 2\alpha^2 m_e = 54 \text{ meV}$$
+$$\Sigma m_\nu = \frac{m_e^2}{v \cdot Z^\phi} = 62 \text{ meV}$$
+
+where φ = (1+√5)/2 = 1.618... is the golden ratio.
 
 **Observed: ~58 meV (normal hierarchy) | Error: 7%**
+
+*Note: The appearance of the golden ratio in neutrino physics suggests a connection to Fibonacci-like structures in mass generation.*
 
 ### 8.3 Individual Masses (Normal Hierarchy)
 
@@ -731,7 +735,7 @@ The author thanks the physics community for maintaining comprehensive databases 
 20. m_d/m_u = √(3π/2)
 
 ### A.6 Neutrino Masses
-21. Σm_ν = 2α²m_e
+21. Σm_ν = m_e²/(v·Z^φ) where φ = golden ratio
 22. m₃/m₂ = Z
 23. m₂ = Σm_ν/(1+Z)
 
