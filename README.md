@@ -1,6 +1,10 @@
 # The Zimmerman Formula
 
-A novel relationship between the MOND acceleration scale and cosmological critical density — **now extended to derive ALL 36 Standard Model parameters from geometry.**
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19163583.svg)](https://doi.org/10.5281/zenodo.19163583)
+
+**Published:** March 2026 | **DOI:** [10.5281/zenodo.19163583](https://doi.org/10.5281/zenodo.19163583)
+
+A unified framework deriving **65 fundamental constants** from spacetime geometry — including the fine structure constant (0.004% error), all Standard Model parameters, and cosmological observables.
 
 ---
 
@@ -1475,19 +1479,19 @@ If you use the Zimmerman Formula or the proofs in this repository in your resear
 ### Primary Citation (Zenodo)
 
 ```bibtex
-@software{zimmerman2026formula,
+@software{zimmerman2026framework,
   author = {Zimmerman, Carl},
-  title = {The Zimmerman Formula: A Novel Relationship Between the MOND Acceleration Scale and Cosmological Critical Density},
+  title = {The Zimmerman Unified Framework: Deriving 65 Fundamental Constants from Spacetime Geometry},
   year = {2026},
   publisher = {Zenodo},
-  doi = {10.5281/zenodo.19114050},
-  url = {https://doi.org/10.5281/zenodo.19114050}
+  doi = {10.5281/zenodo.19163583},
+  url = {https://doi.org/10.5281/zenodo.19163583}
 }
 ```
 
 ### Plain Text Citation
 
-> Zimmerman, C. (2026). The Zimmerman Formula: A Novel Relationship Between the MOND Acceleration Scale and Cosmological Critical Density. Zenodo. https://doi.org/10.5281/zenodo.19114050
+> Zimmerman, C. (2026). The Zimmerman Unified Framework: Deriving 65 Fundamental Constants from Spacetime Geometry. Zenodo. https://doi.org/10.5281/zenodo.19163583
 
 ### GitHub Repository
 
