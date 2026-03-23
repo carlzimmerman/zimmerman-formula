@@ -1,0 +1,105 @@
+name: Compile Papers and Publish
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'papers/**'
+      - 'HORIZON_CALCULATION.md'
+      - 'COMPLETE_DERIVATIONS_GUIDE.md'
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  compile-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Install LaTeX
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-publishers latexmk
+
+    - name: Compile LaTeX papers
+      run: |
+        cd papers
+        for texfile in *.tex; do
+          if [ -f "$texfile" ]; then
+            echo "Compiling $texfile..."
+            pdflatex -interaction=nonstopmode "$texfile" || true
+            pdflatex -interaction=nonstopmode "$texfile" || true
+          fi
+        done
+        ls -la *.pdf 2>/dev/null || echo "No PDFs generated"
+
+    - name: Install pandoc
+      run: sudo apt-get install -y pandoc
+
+    - name: Compile Markdown to PDF
+      run: |
+        # Compile key markdown files to PDF
+        for mdfile in HORIZON_CALCULATION.md COMPLETE_DERIVATIONS_GUIDE.md papers/*.md; do
+          if [ -f "$mdfile" ]; then
+            basename=$(basename "$mdfile" .md)
+            echo "Converting $mdfile to PDF..."
+            pandoc "$mdfile" -o "${basename}.pdf" --pdf-engine=pdflatex -V geometry:margin=1in 2>/dev/null || echo "Warning: Could not convert $mdfile"
+          fi
+        done
+
+    - name: Get version from date
+      id: version
+      run: echo "version=v$(date +'%Y.%m.%d-%H%M')" >> $GITHUB_OUTPUT
+
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: ${{ steps.version.outputs.version }}
+        name: Zimmerman Framework ${{ steps.version.outputs.version }}
+        body: |
+          ## Automated Release
+
+          This release was automatically generated from the latest commit.
+
+          ### Key Documents
+          - **HORIZON_CALCULATION.md**: First-principles derivation of Z = 2√(8π/3)
+          - **papers/deriving_mond_scale.tex**: arXiv-ready paper on the derivation
+
+          ### The Core Result
+          ```
+          a₀ = cH₀/Z  where  Z = 2√(8π/3) = 5.7888
+          ```
+
+          Z is derived from:
+          - √(8π/3) from Friedmann equation
+          - Factor of 2 from horizon thermodynamics
+
+          ### DOI
+          A Zenodo DOI will be automatically minted for this release.
+        files: |
+          papers/*.pdf
+          HORIZON_CALCULATION.md
+          COMPLETE_DERIVATIONS_GUIDE.md
+          Zimmerman_Complete_Framework.pdf
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  notify:
+    needs: compile-and-release
+    runs-on: ubuntu-latest
+    steps:
+    - name: Summary
+      run: |
+        echo "## Release Published!" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "Papers compiled and release created." >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**Next step**: Link your repo to Zenodo for automatic DOI:" >> $GITHUB_STEP_SUMMARY
+        echo "1. Go to https://zenodo.org/account/settings/github/" >> $GITHUB_STEP_SUMMARY
+        echo "2. Enable the zimmerman-formula repository" >> $GITHUB_STEP_SUMMARY
+        echo "3. Future releases will automatically get DOIs" >> $GITHUB_STEP_SUMMARY
