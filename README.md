@@ -17,6 +17,7 @@ A unified framework deriving **65 fundamental constants** from spacetime geometr
 ║                                                                           ║
 ║  DERIVES:                                                                 ║
 ║  • Fine structure constant α = 1/137.04      (0.004% error)              ║
+║  • Muon/electron mass ratio = Z(6Z+1)        (0.04% error)               ║
 ║  • Proton magnetic moment μ_p = Z-3          (0.14% error)               ║
 ║  • Proton charge radius r_p = 0.8466 fm      (0.68% error)               ║
 ║  • All 3 gauge couplings                     (0.01-0.2% error)           ║
@@ -50,17 +51,20 @@ The following predictions are derived from a single geometric constant: Z = 2√
 | Rank | Parameter | Formula | Predicted | Observed | Error | Reference |
 |------|-----------|---------|-----------|----------|-------|-----------|
 | 1 | α⁻¹ (fine structure) | 4Z² + 3 | 137.041 | 137.036 | 0.004% | CODATA 2022 |
-| 2 | μ_n/μ_p (moment ratio) | -Ω_Λ | -0.6846 | -0.6850 | 0.05% | PDG 2024 |
-| 3 | Ω_Λ (dark energy density) | √(3π/2)/(1+√(3π/2)) | 0.6846 | 0.685 | 0.06% | Planck 2018 |
-| 4 | Ω_m (matter density) | 1/(1+√(3π/2)) | 0.3154 | 0.315 | 0.12% | Planck 2018 |
-| 5 | μ_p (proton moment) | Z - 3 | 2.7888 μ_N | 2.7928 μ_N | 0.14% | PDG 2024 |
-| 6 | sin²θ_W (weak mixing) | 1/4 - α_s/(2π) | 0.2312 | 0.2315 | 0.15% | LHC 2025 |
-| 7 | Ω_Λ/Ω_m (cosmic ratio) | √(3π/2) | 2.171 | 2.175 | 0.19% | Planck 2018 |
-| 8 | μ_n (neutron moment) | -Ω_Λ(Z-3) | -1.909 μ_N | -1.913 μ_N | 0.20% | PDG 2024 |
-| 9 | α_s(M_Z) (strong coupling) | Ω_Λ/Z | 0.1183 | 0.1180 | 0.23% | PDG 2024 |
-| 10 | M_Pl/v (hierarchy ratio) | 2 × Z^21.5 | 4.97×10¹⁶ | 4.96×10¹⁶ | 0.38% | CODATA 2022 |
-| 11 | r_p (proton radius) | r_e(m_e/m_p)√(α_s/α) | 0.8466 fm | 0.8409 fm | 0.68% | CODATA 2022 |
-| 12 | H₀ (Hubble constant) | Z × a₀/c | 71.5 | 71.0 | 0.71% | Combined 2024 |
+| 2 | m_μ/m_e (muon/electron) | Z(6Z + 1) | 206.85 | 206.77 | 0.04% | PDG 2024 |
+| 3 | μ_n/μ_p (moment ratio) | -Ω_Λ | -0.6846 | -0.6850 | 0.05% | PDG 2024 |
+| 4 | Ω_Λ (dark energy density) | √(3π/2)/(1+√(3π/2)) | 0.6846 | 0.685 | 0.06% | Planck 2018 |
+| 5 | Ω_m (matter density) | 1/(1+√(3π/2)) | 0.3154 | 0.315 | 0.12% | Planck 2018 |
+| 6 | μ_p (proton moment) | Z - 3 | 2.7888 μ_N | 2.7928 μ_N | 0.14% | PDG 2024 |
+| 7 | sin²θ_W (weak mixing) | 1/4 - α_s/(2π) | 0.2312 | 0.2315 | 0.15% | LHC 2025 |
+| 8 | m_τ/m_μ (tau/muon) | Z + 11 | 16.79 | 16.82 | 0.17% | PDG 2024 |
+| 9 | Ω_Λ/Ω_m (cosmic ratio) | √(3π/2) | 2.171 | 2.175 | 0.19% | Planck 2018 |
+| 10 | μ_n (neutron moment) | -Ω_Λ(Z-3) | -1.909 μ_N | -1.913 μ_N | 0.20% | PDG 2024 |
+| 11 | α_s(M_Z) (strong coupling) | Ω_Λ/Z | 0.1183 | 0.1180 | 0.23% | PDG 2024 |
+| 12 | M_Pl/v (hierarchy ratio) | 2 × Z^21.5 | 4.97×10¹⁶ | 4.96×10¹⁶ | 0.38% | CODATA 2022 |
+| 13 | r_p (proton radius) | r_e(m_e/m_p)√(α_s/α) | 0.8466 fm | 0.8409 fm | 0.68% | CODATA 2022 |
+| 14 | H₀ (Hubble constant) | Z × a₀/c | 71.5 | 71.0 | 0.71% | Combined 2024 |
+| 15 | m_π/m_p (pion/proton) | 1/(Z + 1) | 0.147 | 0.149 | 0.98% | PDG 2024 |
 
 **Summary statistics:** 50% of predictions achieve < 1% error; 90% achieve < 5% error.
 
@@ -99,6 +103,7 @@ The Standard Model requires approximately 20 experimentally-determined free para
 | Muon g-2 | 5.1σ anomaly analysis | [`research/muon_g2/`](research/muon_g2/) |
 | CKM Unitarity | Cabibbo anomaly and V_us prediction | [`research/ckm_unitarity/`](research/ckm_unitarity/) |
 | Nucleon Moments | μ_p = Z-3 (0.14% error, better than lattice QCD) | [`research/nucleon_magnetic_moments/`](research/nucleon_magnetic_moments/) |
+| Lepton Masses | m_μ/m_e = Z(6Z+1) (0.04% error) | [`research/lepton_mass_ratios/`](research/lepton_mass_ratios/) |
 | Three Generations | Why N_g = 3? The "3" in α = 1/(4Z²+3) | [`research/three_generations/`](research/three_generations/) |
 
 ### High-Impact Physics Anomalies Addressed
