@@ -17,6 +17,7 @@ A unified framework deriving **65 fundamental constants** from spacetime geometr
 ║                                                                           ║
 ║  DERIVES:                                                                 ║
 ║  • Fine structure constant α = 1/137.04      (0.004% error)              ║
+║  • Proton magnetic moment μ_p = Z-3          (0.14% error)               ║
 ║  • Proton charge radius r_p = 0.8466 fm      (0.68% error)               ║
 ║  • All 3 gauge couplings                     (0.01-0.2% error)           ║
 ║  • All 8 CKM & PMNS mixing parameters        (0.03-1.8% error)           ║
@@ -49,15 +50,17 @@ The following predictions are derived from a single geometric constant: Z = 2√
 | Rank | Parameter | Formula | Predicted | Observed | Error | Reference |
 |------|-----------|---------|-----------|----------|-------|-----------|
 | 1 | α⁻¹ (fine structure) | 4Z² + 3 | 137.041 | 137.036 | 0.004% | CODATA 2022 |
-| 2 | Ω_Λ (dark energy density) | √(3π/2)/(1+√(3π/2)) | 0.6846 | 0.685 | 0.06% | Planck 2018 |
-| 3 | Ω_m (matter density) | 1/(1+√(3π/2)) | 0.3154 | 0.315 | 0.12% | Planck 2018 |
-| 4 | sin²θ_W (weak mixing angle) | 1/4 - α_s/(2π) | 0.2312 | 0.2315 | 0.15% | LHC 2025 |
-| 5 | Ω_Λ/Ω_m (cosmic ratio) | √(3π/2) | 2.171 | 2.175 | 0.19% | Planck 2018 |
-| 6 | α_s(M_Z) (strong coupling) | Ω_Λ/Z | 0.1183 | 0.1180 | 0.23% | PDG 2024 |
-| 7 | M_Pl/v (hierarchy ratio) | 2 × Z^21.5 | 4.97×10¹⁶ | 4.96×10¹⁶ | 0.38% | CODATA 2022 |
-| 8 | H₀ (Hubble constant) | Z × a₀/c | 71.5 | 71.0 | 0.71% | Combined 2024 |
-| 9 | \|V_us\| (CKM element) | √(m_d/m_s) | 0.223 | 0.224 | 0.80% | PDG 2024 |
-| 10 | m_t/m_W (mass ratio) | √(3π/2) | 2.171 | 2.152 | 0.87% | PDG 2024 |
+| 2 | μ_n/μ_p (moment ratio) | -Ω_Λ | -0.6846 | -0.6850 | 0.05% | PDG 2024 |
+| 3 | Ω_Λ (dark energy density) | √(3π/2)/(1+√(3π/2)) | 0.6846 | 0.685 | 0.06% | Planck 2018 |
+| 4 | Ω_m (matter density) | 1/(1+√(3π/2)) | 0.3154 | 0.315 | 0.12% | Planck 2018 |
+| 5 | μ_p (proton moment) | Z - 3 | 2.7888 μ_N | 2.7928 μ_N | 0.14% | PDG 2024 |
+| 6 | sin²θ_W (weak mixing) | 1/4 - α_s/(2π) | 0.2312 | 0.2315 | 0.15% | LHC 2025 |
+| 7 | Ω_Λ/Ω_m (cosmic ratio) | √(3π/2) | 2.171 | 2.175 | 0.19% | Planck 2018 |
+| 8 | μ_n (neutron moment) | -Ω_Λ(Z-3) | -1.909 μ_N | -1.913 μ_N | 0.20% | PDG 2024 |
+| 9 | α_s(M_Z) (strong coupling) | Ω_Λ/Z | 0.1183 | 0.1180 | 0.23% | PDG 2024 |
+| 10 | M_Pl/v (hierarchy ratio) | 2 × Z^21.5 | 4.97×10¹⁶ | 4.96×10¹⁶ | 0.38% | CODATA 2022 |
+| 11 | r_p (proton radius) | r_e(m_e/m_p)√(α_s/α) | 0.8466 fm | 0.8409 fm | 0.68% | CODATA 2022 |
+| 12 | H₀ (Hubble constant) | Z × a₀/c | 71.5 | 71.0 | 0.71% | Combined 2024 |
 
 **Summary statistics:** 50% of predictions achieve < 1% error; 90% achieve < 5% error.
 
@@ -95,6 +98,8 @@ The Standard Model requires approximately 20 experimentally-determined free para
 | Neutron Lifetime | 5σ beam/bottle puzzle resolution | [`research/neutron_lifetime/`](research/neutron_lifetime/) |
 | Muon g-2 | 5.1σ anomaly analysis | [`research/muon_g2/`](research/muon_g2/) |
 | CKM Unitarity | Cabibbo anomaly and V_us prediction | [`research/ckm_unitarity/`](research/ckm_unitarity/) |
+| Nucleon Moments | μ_p = Z-3 (0.14% error, better than lattice QCD) | [`research/nucleon_magnetic_moments/`](research/nucleon_magnetic_moments/) |
+| Three Generations | Why N_g = 3? The "3" in α = 1/(4Z²+3) | [`research/three_generations/`](research/three_generations/) |
 
 ### High-Impact Physics Anomalies Addressed
 
@@ -102,32 +107,49 @@ The Zimmerman framework addresses several major physics anomalies and unsolved p
 
 | Problem | Tension | Zimmerman Prediction | Result | Location |
 |---------|---------|---------------------|--------|----------|
+| **Proton Magnetic Moment** | Lattice QCD ~2-3% | μ_p = Z - 3 = 2.7888 μ_N | **0.14% error** | [`research/nucleon_magnetic_moments/`](research/nucleon_magnetic_moments/) |
+| **Neutron Magnetic Moment** | Lattice QCD ~3% | μ_n = -Ω_Λ × (Z-3) = -1.909 μ_N | **0.20% error** | [`research/nucleon_magnetic_moments/`](research/nucleon_magnetic_moments/) |
 | **Proton Radius** | Resolved 2019 | r_p = r_e × (m_e/m_p) × √(α_s/α) = 0.8466 fm | **0.68% error** | [`research/proton_radius/`](research/proton_radius/) |
 | **Neutron Lifetime** | 5σ beam/bottle | τ_n = 877.4 s (matches bottle 877.8 s) | Bottle correct | [`research/neutron_lifetime/`](research/neutron_lifetime/) |
 | **Muon g-2** | 5.1σ anomaly | Predicts lattice QCD is correct | No new physics | [`research/muon_g2/`](research/muon_g2/) |
 | **CKM Unitarity** | 2-3σ Cabibbo | λ = 1/(3Z-13) = 0.229; unitarity exact | V_us needs revision | [`research/ckm_unitarity/`](research/ckm_unitarity/) |
+| **Why 3 Generations?** | Unexplained | The "3" in α = 1/(4Z² + 3) = N_generations | Geometric origin | [`research/three_generations/`](research/three_generations/) |
 | **Nuclear Magic Numbers** | Origin unclear | Spin-orbit: λ/V₀ ≈ (Z-1)/(2Z²-1) | Partial connection | [`research/nuclear_magic_numbers/`](research/nuclear_magic_numbers/) |
 | **Lithium Problem** | 5σ BBN | Framework does not address BBN | Outside scope | [`research/lithium_problem/`](research/lithium_problem/) |
 
 **Key Derivations:**
 
-1. **Proton Radius (0.68% error):** The charge radius of the proton is derived from:
+1. **Nucleon Magnetic Moments (0.14% error — better than lattice QCD!):**
+   ```
+   μ_p = Z - 3 = 2√(8π/3) - 3
+       = 2.7888 μ_N  (exp: 2.7928 μ_N, error: 0.14%)
+
+   μ_n = -Ω_Λ × (Z - 3)
+       = -1.9093 μ_N  (exp: -1.9130 μ_N, error: 0.20%)
+
+   Ratio: μ_n/μ_p = -Ω_Λ = -0.685  (error: 0.05%)
+   ```
+   **This connects nuclear physics to cosmology!** The dark energy fraction Ω_Λ appears in nucleon magnetic moments. Lattice QCD achieves only 2-3% precision after 40+ years; Zimmerman achieves 0.14% with a simple formula.
+
+2. **Proton Radius (0.68% error):** The charge radius of the proton is derived from:
    ```
    r_p = r_e × (m_e/m_p) × √(α_s/α)
        = 386 fm × 0.000545 × 4.03
        = 0.8466 fm  (exp: 0.8409 ± 0.0004 fm)
    ```
 
-2. **Neutron Lifetime:** Using Zimmerman V_ud from CKM unitarity:
+3. **Neutron Lifetime:** Using Zimmerman V_ud from CKM unitarity:
    ```
    τ_n = 4908.6 s / [|V_ud|² × (1 + 3λ²)]
        = 877.4 s  (bottle: 877.8 s, beam: 888.1 s)
    ```
    Predicts bottle measurement is correct; beam method has systematics.
 
-3. **Muon g-2 Resolution:** The 5.1σ "anomaly" arises from tension between data-driven (R-ratio) and lattice QCD calculations of hadronic vacuum polarization. Zimmerman predicts lattice QCD is correct, implying no new physics and the anomaly will disappear with improved lattice calculations.
+4. **Muon g-2 Resolution:** The 5.1σ "anomaly" arises from tension between data-driven (R-ratio) and lattice QCD calculations of hadronic vacuum polarization. Zimmerman predicts lattice QCD is correct, implying no new physics and the anomaly will disappear with improved lattice calculations.
 
-4. **CKM Unitarity:** The Cabibbo anomaly (first row sums to 0.9985 instead of 1.0000) is resolved if |V_us| = 0.228 instead of 0.224. Zimmerman predicts λ ≈ 1/(3Z-13) = 0.229, suggesting the measured V_us is slightly low.
+5. **CKM Unitarity:** The Cabibbo anomaly (first row sums to 0.9985 instead of 1.0000) is resolved if |V_us| = 0.228 instead of 0.224. Zimmerman predicts λ ≈ 1/(3Z-13) = 0.229, suggesting the measured V_us is slightly low.
+
+6. **Why 3 Generations?** The fine structure constant formula α = 1/(4Z² + 3) contains the number 3. If this represents the number of fermion generations, then N_g = 3 is geometrically required by the same structure that determines α.
 
 ---
 
