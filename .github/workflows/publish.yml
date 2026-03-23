@@ -3,8 +3,8 @@ name: Publish Release
 on:
   push:
     tags:
-      - 'v*'  # Only trigger on version tags
-  workflow_dispatch:  # Manual trigger
+      - 'v*'
+  workflow_dispatch:
 
 jobs:
   release:
@@ -14,15 +14,10 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
-    - name: Get tag name
-      id: tag
-      run: echo "tag=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
-
     - name: Create Release
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@v2
       with:
-        tag_name: ${{ steps.tag.outputs.tag }}
-        name: Zimmerman Framework ${{ steps.tag.outputs.tag }}
+        name: Zimmerman Framework ${{ github.ref_name }}
         body: |
           ## First-Principles Derivation of Z = 2√(8π/3)
 
@@ -31,8 +26,8 @@ jobs:
           Z = 2√(8π/3) = 5.7888
 
           Derived from:
-          - √(8π/3) from Friedmann equation: ρc = 3H²/(8πG)
-          - Factor 2 from horizon mass: M = c³/(2GH)
+          - √(8π/3) from Friedmann equation
+          - Factor 2 from horizon mass
           ```
 
           ### Derived Constants
@@ -43,20 +38,12 @@ jobs:
           | Ω_Λ | √(3π/2)/(1+√(3π/2)) | 0.06% |
 
           ### Testable Prediction
-          ```
-          a₀(z) = a₀(0) × E(z)
-          ```
-          Observable with JWST high-z kinematics.
+          a₀(z) = a₀(0) × E(z) — observable with JWST
 
           ---
-          See `HORIZON_CALCULATION.md` for full derivation.
+          Full derivation: HORIZON_CALCULATION.md
         files: |
           HORIZON_CALCULATION.md
-          COMPLETE_DERIVATIONS_GUIDE.md
           README.md
-          papers/*.md
-          Zimmerman_Complete_Framework.pdf
         draft: false
         prerelease: false
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
