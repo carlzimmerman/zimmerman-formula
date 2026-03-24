@@ -4,13 +4,13 @@
 
 **Published:** March 2026 | **DOI:** [10.5281/zenodo.19163583](https://doi.org/10.5281/zenodo.19163583)
 
-A unified framework deriving **70+ fundamental constants** from spacetime geometry — including the fine structure constant (0.004% error), Weinberg angle (0.014% error), quark mass ratios (0.08% error), and the 21 cm hyperfine line.
+A unified framework deriving **100 fundamental constants** from spacetime geometry — including the fine structure constant (0.004% error), Weinberg angle (0.014% error), quark mass ratios (0.08% error), and the 21 cm hyperfine line.
 
 ### Quick Summary: What This Framework Does
 
 ```
 ╔═══════════════════════════════════════════════════════════════════════════╗
-║  FROM ONE CONSTANT → 70+ FORMULAS → 432 PHYSICS PROBLEMS ADDRESSED        ║
+║  FROM ONE CONSTANT → 100 FORMULAS → 432 PHYSICS PROBLEMS ADDRESSED        ║
 ╠═══════════════════════════════════════════════════════════════════════════╣
 ║                                                                           ║
 ║  Z = 2√(8π/3) = 5.7888  (from Friedmann equation geometry)               ║
@@ -83,7 +83,9 @@ A unified framework deriving **70+ fundamental constants** from spacetime geomet
 - [Milgrom (2020) "a₀-cosmology connection"](https://arxiv.org/abs/2001.09729) — Unruh/de Sitter temperature
 - [Jacobson (1995) "Thermodynamics of Spacetime"](https://arxiv.org/abs/gr-qc/9504004) — Einstein equations from entropy
 
-Full derivation: [`HORIZON_CALCULATION.md`](HORIZON_CALCULATION.md) | [`COMPLETE_DERIVATIONS_GUIDE.md`](COMPLETE_DERIVATIONS_GUIDE.md)
+Full derivation: [`HORIZON_CALCULATION.md`](HORIZON_CALCULATION.md) | [`COMPLETE_DERIVATIONS_GUIDE.md`](COMPLETE_DERIVATIONS_GUIDE.md) | [`papers/100_DERIVATIONS_FROM_Z.md`](papers/100_DERIVATIONS_FROM_Z.md)
+
+**Useful Identity:** √(3π/2) = 3Z/8, so cosmological formulas like Ω_Λ = √(3π/2)/(1+√(3π/2)) become Ω_Λ = 3Z/(8+3Z).
 
 ---
 
@@ -99,13 +101,13 @@ The following predictions are derived from a single geometric constant: Z = 2√
 | 2 | sin²θ_W (Weinberg) | 1/4 - α_s/(2π) | 0.23118 | 0.23121 | 0.014% | LHC 2025 |
 | 3 | m_μ/m_e (muon/electron) | Z(6Z + 1) | 206.85 | 206.77 | 0.04% | PDG 2024 |
 | 4 | μ_n/μ_p (moment ratio) | -Ω_Λ | -0.6846 | -0.6850 | 0.05% | PDG 2024 |
-| 5 | Ω_Λ (dark energy density) | √(3π/2)/(1+√(3π/2)) | 0.6846 | 0.685 | 0.06% | Planck 2018 |
+| 5 | Ω_Λ (dark energy density) | 3Z/(8+3Z) | 0.6846 | 0.685 | 0.06% | Planck 2018 |
 | 6 | m_b/m_c (quark ratio) | Z - 2.5 | 3.289 | 3.291 | 0.08% | PDG 2024 |
-| 7 | Ω_m (matter density) | 1/(1+√(3π/2)) | 0.3154 | 0.315 | 0.12% | Planck 2018 |
+| 7 | Ω_m (matter density) | 8/(8+3Z) | 0.3154 | 0.315 | 0.12% | Planck 2018 |
 | 8 | μ_p (proton moment) | Z - 3 | 2.7888 μ_N | 2.7928 μ_N | 0.14% | PDG 2024 |
 | 9 | m_c/m_s (quark ratio) | 2Z + 2 | 13.58 | 13.60 | 0.15% | PDG 2024 |
 | 10 | m_τ/m_μ (tau/muon) | Z + 11 | 16.79 | 16.82 | 0.17% | PDG 2024 |
-| 11 | Ω_Λ/Ω_m (cosmic ratio) | √(3π/2) | 2.171 | 2.175 | 0.19% | Planck 2018 |
+| 11 | Ω_Λ/Ω_m (cosmic ratio) | 3Z/8 | 2.171 | 2.175 | 0.19% | Planck 2018 |
 | 12 | μ_n (neutron moment) | -Ω_Λ(Z-3) | -1.909 μ_N | -1.913 μ_N | 0.20% | PDG 2024 |
 | 13 | α_s(M_Z) (strong coupling) | Ω_Λ/Z | 0.1183 | 0.1180 | 0.23% | PDG 2024 |
 | 14 | M_Pl/v (hierarchy ratio) | 2 × Z^21.5 | 4.97×10¹⁶ | 4.96×10¹⁶ | 0.38% | CODATA 2022 |
@@ -1250,7 +1252,7 @@ All 65 Zimmerman predictions compared against authoritative data sources.
 | **1% - 2%** | 15 | 23% |
 | **> 2%** | 6 | 9% |
 
-**Total: 65 formulas | ~50% within 0.5% | ~68% within 1%**
+**Total: 100 formulas | ~50% within 0.5% | ~68% within 1%**
 
 ---
 
@@ -2392,7 +2394,7 @@ It's "dark matter doesn't exist as particles."
    - First quantitative realization of Mach's idea
 
 2. **Why These Constants?**
-   - 65 constants derived from spacetime geometry
+   - 100 constants derived from spacetime geometry
    - "Fine-tuning" becomes geometric necessity
 
 3. **Anthropic Principle Constrained:**
