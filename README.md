@@ -4,42 +4,46 @@
 
 **Published:** March 2026 | **DOI:** [10.5281/zenodo.19163583](https://doi.org/10.5281/zenodo.19163583)
 
-A unified framework deriving **100 fundamental constants** from spacetime geometry — including the fine structure constant (0.004% error), Weinberg angle (0.014% error), quark mass ratios (0.08% error), and the 21 cm hyperfine line.
+A geometric framework connecting **60+ physical constants** to spacetime geometry through Z = 2√(8π/3). Three results derived from first principles (GR + horizon thermodynamics); six with strong theoretical motivation; 50+ precise numerical patterns (avg 0.4% error) revealing hidden structure in the Standard Model.
 
 ### Quick Summary: What This Framework Does
 
 ```
 ╔═══════════════════════════════════════════════════════════════════════════╗
-║  FROM ONE CONSTANT → 100 FORMULAS → 432 PHYSICS PROBLEMS ADDRESSED        ║
+║  Z = 2√(8π/3) = 5.7888  (derived from GR + horizon thermodynamics)        ║
 ╠═══════════════════════════════════════════════════════════════════════════╣
 ║                                                                           ║
-║  Z = 2√(8π/3) = 5.7888  (from Friedmann equation geometry)               ║
+║  DERIVED FROM FIRST PRINCIPLES (3):                                       ║
+║  • Z = 2√(8π/3) from Friedmann equation + Bekenstein bound               ║
+║  • a₀(z) = a₀(0) × E(z)  — MOND scale evolves with redshift              ║
+║  • a₀ = cH₀/Z  — the "cosmic coincidence" explained                      ║
 ║                                                                           ║
-║  DERIVES:                                                                 ║
-║  • Fine structure constant α = 1/137.04      (0.004% error)              ║
-║  • Weinberg angle sin²θ_W = 1/4 - α_s/(2π)   (0.014% error) NEW!         ║
-║  • Muon/electron mass ratio = Z(6Z+1)        (0.04% error)               ║
-║  • Proton magnetic moment μ_p = Z-3          (0.14% error)               ║
-║  • Quark mass ratios (m_b/m_c = Z-2.5)       (0.08% error) NEW!          ║
-║  • Proton charge radius r_p = 0.8466 fm      (0.68% error)               ║
-║  • 21 cm hyperfine line from g_p = 2(Z-3)    (0.1% error) NEW!           ║
-║  • Deuteron binding from α/3 and α_s         (1% error) NEW!             ║
-║  • All 3 gauge couplings                     (0.01-0.2% error)           ║
-║  • All 8 CKM & PMNS mixing parameters        (0.03-1.8% error)           ║
-║  • 17 meson & baryon masses                  (0.01-2.5% error)           ║
-║  • 5 cosmological parameters                 (0.06-2% error)             ║
+║  STRONG THEORETICAL BASIS (6):                                            ║
+║  • Ω_Λ = 3Z/(8+3Z) = 0.685  — holographic equipartition                  ║
+║  • α_s = Ω_Λ/Z = 0.118     — QCD-cosmology connection                    ║
+║  • m_μ/m_e = 6Z² + Z       — 6Z² = 64π = 8×8π (E8/octonion structure)    ║
+║  • m_τ/m_μ = Z + 11        — the 11 is M-theory dimension                ║
+║                                                                           ║
+║  HIGH-PRECISION PATTERNS (50+, avg 0.4% error):                           ║
+║  • α = 1/(4Z² + 3) = 1/137.04        (0.004% error)                      ║
+║  • sin²θ_W = 1/4 - α_s/(2π)          (0.014% error)                      ║
+║  • μ_p = Z - 3 = 2.789 μ_N           (0.14% — better than lattice QCD)   ║
+║  • μ_n/μ_p = -Ω_Λ                    (0.05% — nucleon ↔ dark energy!)    ║
+║  • m_b/m_c = Z - 2.5                 (0.08% error)                        ║
+║  • H₀ = Z × a₀/c = 71.5 km/s/Mpc    (between Planck & SH0ES)             ║
+║                                                                           ║
+║  KEY FALSIFIABLE PREDICTION:                                              ║
+║  a₀(z) = a₀(0) × √[Ωm(1+z)³ + ΩΛ]  — at z=10, a₀ was 24× higher         ║
+║  If high-z galaxies show CONSTANT a₀, this framework is WRONG.           ║
 ║                                                                           ║
 ║  OBSERVATIONAL SUPPORT (2024-2026):                                       ║
 ║  • JWST high-z: 2× better χ² than constant MOND                          ║
 ║  • Gaia wide binaries: 5-6σ MOND signal (Chae 2024-25)                   ║
 ║  • DESI BAO: 2.5σ hint of evolving dark energy                           ║
-║  • SPARC 175 galaxies: BTFR slope = 4.000 exact                          ║
-║  • Hubble tension: H₀ = 71.5 between Planck & SH0ES                      ║
-║  • Neutron lifetime: predicts bottle value (877.8 s), resolves 5σ puzzle ║
-║                                                                           ║
-║  FALSIFIABLE: CMB-S4 (r=0.003), DESI (Σmν=58meV), Hyper-K (proton decay) ║
 ╚═══════════════════════════════════════════════════════════════════════════╝
 ```
+
+**Derivation Status:** [`papers/DERIVATION_STATUS.md`](papers/DERIVATION_STATUS.md) — Complete classification of what is proven vs pattern-matched
 
 ---
 
@@ -91,9 +95,9 @@ Full derivation: [`HORIZON_CALCULATION.md`](HORIZON_CALCULATION.md) | [`COMPLETE
 
 ## Statistical Evidence for the Framework
 
-### High-Precision Predictions (Error < 1%)
+### High-Precision Patterns (Error < 1%)
 
-The following predictions are derived from a single geometric constant: Z = 2√(8π/3) = 5.7888
+The following patterns use the geometric constant Z = 2√(8π/3) = 5.7888. Note: These are **numerical relationships**, not first-principles derivations. See [`papers/DERIVATION_STATUS.md`](papers/DERIVATION_STATUS.md) for classification.
 
 | Rank | Parameter | Formula | Predicted | Observed | Error | Reference |
 |------|-----------|---------|-----------|----------|-------|-----------|
@@ -247,9 +251,9 @@ The Zimmerman framework addresses several major physics anomalies and unsolved p
 
 ---
 
-## Complete Standard Model from Geometry (v7)
+## Standard Model Patterns from Z (v7)
 
-**The Zimmerman constant Z = 2√(8π/3) = 5.7888 derives ALL 36 measurable parameters of particle physics and cosmology.**
+**The constant Z = 2√(8π/3) = 5.7888 appears in formulas for 36+ parameters of particle physics and cosmology.** Three are derived from first principles; the rest are high-precision patterns (avg 0.4% error) suggesting deeper structure.
 
 ```
 ╔══════════════════════════════════════════════════════════════════════╗
