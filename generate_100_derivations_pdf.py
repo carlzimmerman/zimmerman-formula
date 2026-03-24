@@ -33,7 +33,7 @@ def create_pdf():
     story = []
 
     # Title
-    story.append(Paragraph("100+ Physical Constants from Z = 2sqrt(8pi/3)", title_style))
+    story.append(Paragraph("100 Physical Constants from Z = 2sqrt(8pi/3)", title_style))
     story.append(Paragraph("A Complete Mathematical Walkthrough with No Free Parameters", subtitle_style))
     story.append(Paragraph("Carl Zimmerman | March 2026 | DOI: 10.5281/zenodo.19140259", subtitle_style))
     story.append(Spacer(1, 12))
@@ -44,6 +44,27 @@ def create_pdf():
     story.append(Paragraph("- Factor 2: Horizon thermodynamics (Bekenstein bound)", body_style))
     story.append(Paragraph("- sqrt(8pi/3): Friedmann equation (General Relativity)", body_style))
     story.append(Paragraph("- pi = 3.14159...: Pure geometry", body_style))
+    story.append(Spacer(1, 8))
+
+    # Key Identities
+    story.append(Paragraph("KEY IDENTITIES: Everything in Terms of Z", section_style))
+    ident_data = [
+        ["Quantity", "Formula in Z", "Value"],
+        ["Z", "2*sqrt(8pi/3)", "5.7888"],
+        ["4Z^2 + 3", "(128pi + 9)/3", "137.04"],
+        ["alpha", "3/(128pi + 9) = 1/(4Z^2+3)", "1/137.04"],
+        ["Omega_L", "3Z/(8 + 3Z)", "0.6846"],
+        ["Omega_m", "8/(8 + 3Z)", "0.3154"],
+        ["alpha_s", "3/(8 + 3Z)", "0.1183"],
+    ]
+    t = Table(ident_data, colWidths=[1*inch, 2*inch, 0.8*inch])
+    t.setStyle(TableStyle([
+        ('BACKGROUND', (0,0), (-1,0), colors.lightyellow),
+        ('FONTSIZE', (0,0), (-1,-1), 8),
+        ('GRID', (0,0), (-1,-1), 0.5, colors.grey),
+        ('ALIGN', (0,0), (-1,-1), 'CENTER'),
+    ]))
+    story.append(t)
     story.append(Spacer(1, 8))
 
     # Part I: Derivation
@@ -72,9 +93,9 @@ def create_pdf():
         ["#", "Constant", "Formula", "Predicted", "Measured", "Error"],
         ["1", "Fine structure alpha", "1/(4Z^2 + 3)", "1/137.04", "1/137.036", "0.004%"],
         ["2", "MOND scale a_0", "c*H_0/Z", "1.13e-10", "1.2e-10", "6%"],
-        ["3", "Dark energy Omega_L", "sqrt(3pi/2)/(1+sqrt(3pi/2))", "0.6846", "0.685", "0.06%"],
-        ["4", "Matter Omega_m", "1 - Omega_L", "0.3154", "0.315", "0.13%"],
-        ["5", "Strong coupling alpha_s", "Omega_L/Z", "0.1183", "0.1180", "0.25%"],
+        ["3", "Dark energy Omega_L", "3Z/(8 + 3Z)", "0.6846", "0.685", "0.06%"],
+        ["4", "Matter Omega_m", "8/(8 + 3Z)", "0.3154", "0.315", "0.13%"],
+        ["5", "Strong coupling alpha_s", "3/(8 + 3Z)", "0.1183", "0.1180", "0.25%"],
     ]
 
     t = Table(fund_data, colWidths=[0.3*inch, 1.3*inch, 2*inch, 0.8*inch, 0.8*inch, 0.6*inch])
