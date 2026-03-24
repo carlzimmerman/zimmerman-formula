@@ -825,10 +825,10 @@ $$z_* = 8 \times 137.04 = 1096$$
 ## 55. Spectral Index n_s
 
 **Formula:**
-$$n_s = 1 - \frac{\Omega_m}{9}$$
+$$n_s = 1 - \frac{\Omega_m}{9} = 1 - \frac{8}{9(8 + 3Z)}$$
 
 **Full Calculation:**
-$$n_s = 1 - \frac{0.315}{9} = 1 - 0.035 = 0.965$$
+$$n_s = 1 - \frac{8}{9 \times 25.37} = 1 - \frac{8}{228.3} = 1 - 0.035 = 0.965$$
 
 | Predicted | Measured | Error |
 |-----------|----------|-------|
@@ -839,10 +839,10 @@ $$n_s = 1 - \frac{0.315}{9} = 1 - 0.035 = 0.965$$
 ## 56. e-Folding Number N
 
 **Formula:**
-$$N = \frac{18}{\Omega_m}$$
+$$N = \frac{18}{\Omega_m} = \frac{18(8 + 3Z)}{8} = \frac{9(8 + 3Z)}{4}$$
 
 **Full Calculation:**
-$$N = \frac{18}{0.315} = 57.1$$
+$$N = \frac{9 \times 25.37}{4} = \frac{228.3}{4} = 57.1$$
 
 | Predicted | Expected | Error |
 |-----------|----------|-------|
@@ -890,7 +890,7 @@ $$a_0(z) = a_0(0) \times E(z) = a_0(0) \times \sqrt{\frac{8(1+z)^3}{8+3Z} + \fra
 ## 61. Solar Mixing Angle
 
 **Formula:**
-$$\sin^2\theta_{12} = \Omega_m$$
+$$\sin^2\theta_{12} = \Omega_m = \frac{8}{8 + 3Z}$$
 
 | Predicted | Measured | Error |
 |-----------|----------|-------|
@@ -912,7 +912,7 @@ $$\sin^2\theta_{23} = \frac{1}{\sqrt{3}}$$
 ## 63. Reactor Mixing Angle
 
 **Formula:**
-$$\sin^2\theta_{13} = 3\alpha$$
+$$\sin^2\theta_{13} = 3\alpha = \frac{3}{4Z^2 + 3} = \frac{9}{128\pi + 9}$$
 
 | Predicted | Measured | Error |
 |-----------|----------|-------|
