@@ -1,4 +1,4 @@
-# 100+ Physical Constants from Z = 2√(8π/3)
+# 100 Physical Constants from Z = 2√(8π/3)
 ## A Complete Mathematical Walkthrough with No Free Parameters
 
 **Carl Zimmerman**
@@ -119,12 +119,12 @@ $$a_0 = \frac{6.54 \times 10^{-10}}{5.7888} = 1.13 \times 10^{-10} \text{ m/s}^2
 ## 3. Dark Energy Fraction Ω_Λ
 
 **Formula:**
-$$\Omega_\Lambda = \frac{\sqrt{3\pi/2}}{1 + \sqrt{3\pi/2}}$$
+$$\Omega_\Lambda = \frac{3Z}{8 + 3Z}$$
+
+**Derivation:** Since √(3π/2) = 3Z/8, the formula x/(1+x) becomes 3Z/(8+3Z).
 
 **Full Calculation:**
-$$\sqrt{\frac{3\pi}{2}} = \sqrt{4.712} = 2.171$$
-
-$$\Omega_\Lambda = \frac{2.171}{1 + 2.171} = \frac{2.171}{3.171} = 0.6846$$
+$$\Omega_\Lambda = \frac{3 \times 5.7888}{8 + 3 \times 5.7888} = \frac{17.37}{25.37} = 0.6846$$
 
 | Predicted | Measured | Error |
 |-----------|----------|-------|
@@ -135,10 +135,10 @@ $$\Omega_\Lambda = \frac{2.171}{1 + 2.171} = \frac{2.171}{3.171} = 0.6846$$
 ## 4. Matter Fraction Ω_m
 
 **Formula:**
-$$\Omega_m = 1 - \Omega_\Lambda = \frac{1}{1 + \sqrt{3\pi/2}}$$
+$$\Omega_m = 1 - \Omega_\Lambda = \frac{8}{8 + 3Z}$$
 
 **Full Calculation:**
-$$\Omega_m = \frac{1}{3.171} = 0.3154$$
+$$\Omega_m = \frac{8}{8 + 17.37} = \frac{8}{25.37} = 0.3154$$
 
 | Predicted | Measured | Error |
 |-----------|----------|-------|
