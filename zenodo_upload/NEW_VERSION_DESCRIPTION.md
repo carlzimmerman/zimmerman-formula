@@ -3,7 +3,7 @@
 ## Title (keep or update)
 The Zimmerman Formula: First-Principles Derivation of Z = 2√(8π/3)
 
----
+
 
 ## Description (COPY THIS)
 
@@ -17,7 +17,7 @@ The factor Z emerges from two independent physical principles:
 
 2. **Factor of 2 from horizon thermodynamics**: The de Sitter horizon mass M = c³/(2GH) follows from the Bekenstein bound
 
-Combined: **a₀ = cH/(2√(8π/3)) = cH/Z**
+Combined: **a₀ = cH/2√(8π/3) = cH/Z**
 
 **Derived Constants (not fitted):**
 
