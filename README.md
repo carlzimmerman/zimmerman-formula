@@ -10,7 +10,9 @@
 
 **Interactive Visualizations:** [abeautifullygeometricuniverse.web.app](https://abeautifullygeometricuniverse.web.app)
 
-A geometric framework connecting **80+ physical constants** to spacetime geometry through Z = 2√(8π/3). Three results derived from first principles (GR + horizon thermodynamics); six with strong theoretical motivation; **39 predictions with < 0.1% error** revealing hidden structure in the Standard Model.
+A geometric framework exploring connections between physical constants and spacetime geometry through Z = 2√(8π/3). The framework includes **rigorous derivations**, **striking numerical patterns**, and **testable predictions** — each clearly categorized by confidence level. See [Framework Assessment](#framework-confidence-assessment) for honest evaluation of each claim.
+
+> **Note on Claims:** This work is exploratory theoretical physics. Claims are categorized from "mathematically proven" (100%) to "speculative" (10-20%). Numerical coincidences, however precise, do not constitute proof. The framework's ultimate value depends on predictions being confirmed by future observations and theoretical derivations from first principles. Past precision does not guarantee future validity.
 
 ### Quick Summary: What This Framework Does
 
@@ -19,37 +21,87 @@ A geometric framework connecting **80+ physical constants** to spacetime geometr
 ║  Z = 2√(8π/3) = 5.7888  (derived from GR + horizon thermodynamics)        ║
 ╠═══════════════════════════════════════════════════════════════════════════╣
 ║                                                                           ║
-║  DERIVED FROM FIRST PRINCIPLES (3):                                       ║
-║  • Z = 2√(8π/3) from Friedmann equation + Bekenstein bound               ║
-║  • a₀(z) = a₀(0) × E(z)  — MOND scale evolves with redshift              ║
-║  • a₀ = cH₀/Z  — the "cosmic coincidence" explained                      ║
+║  MATHEMATICALLY PROVEN (100% confidence):                                 ║
+║  • Z² = 32π/3 = 8 × (4π/3)  — cube vertices × sphere volume              ║
+║  • Z⁴ × 9/π² = 1024 = 2¹⁰   — exact identity                             ║
+║  • 4 = 3Z²/(8π), 12 = 9Z²/(8π)  — exact integer relations                ║
 ║                                                                           ║
-║  STRONG THEORETICAL BASIS (6):                                            ║
-║  • Ω_Λ = 3Z/(8+3Z) = 0.685  — holographic equipartition                  ║
-║  • α_s = Ω_Λ/Z = 0.118     — QCD-cosmology connection                    ║
-║  • m_μ/m_e = 6Z² + Z       — 6Z² = 64π = 8×8π (E8/octonion structure)    ║
-║  • m_τ/m_μ = Z + 11        — the 11 is M-theory dimension                ║
+║  DERIVED FROM GR + THERMODYNAMICS (90% confidence):                       ║
+║  • a₀ = cH₀/Z from Friedmann + Bekenstein bound                          ║
+║  • a₀(z) = a₀(0) × E(z) — MOND scale evolves with cosmic expansion       ║
 ║                                                                           ║
-║  HIGH-PRECISION PATTERNS (80+, 39 with < 0.1% error):                     ║
-║  • α = 1/(4Z² + 3) = 1/137.04        (0.004% error)                      ║
-║  • sin²θ_W = 1/4 - α_s/(2π)          (0.014% error)                      ║
-║  • μ_p = Z - 3 = 2.789 μ_N           (0.14% — better than lattice QCD)   ║
-║  • μ_n/μ_p = -Ω_Λ                    (0.05% — nucleon ↔ dark energy!)    ║
-║  • m_b/m_c = Z - 2.5                 (0.08% error)                        ║
-║  • H₀ = Z × a₀/c = 71.5 km/s/Mpc    (between Planck & SH0ES)             ║
+║  STRIKING NUMERICAL PATTERNS (70% confidence):                            ║
+║  • α⁻¹ = 4Z² + 3 = 137.04         (0.004% error — 1 in 25,000)           ║
+║  • Ω_Λ = 3Z/(8+3Z) = 0.685        (0.06% error)                          ║
+║  • sin²θ₁₃ = 1/(Z²+11) = 0.0225   (0.01% error)                          ║
+║  Precision is remarkable but physical mechanism not yet derived.          ║
+║                                                                           ║
+║  PATTERN-MATCHED FITS (30-50% confidence):                                ║
+║  • Particle mass ratios with adjustable coefficients                     ║
+║  • Multi-parameter formulas (curve-fitting risk)                         ║
+║  See HONEST_ASSESSMENT.md for full confidence breakdown.                  ║
 ║                                                                           ║
 ║  KEY FALSIFIABLE PREDICTION:                                              ║
-║  a₀(z) = a₀(0) × √[Ωm(1+z)³ + ΩΛ]  — at z=10, a₀ was 24× higher         ║
+║  a₀(z) = a₀(0) × √[Ωm(1+z)³ + ΩΛ]                                        ║
 ║  If high-z galaxies show CONSTANT a₀, this framework is WRONG.           ║
 ║                                                                           ║
 ║  OBSERVATIONAL SUPPORT (2024-2026):                                       ║
 ║  • JWST high-z: 2× better χ² than constant MOND                          ║
 ║  • Gaia wide binaries: 5-6σ MOND signal (Chae 2024-25)                   ║
-║  • DESI BAO: 2.5σ hint of evolving dark energy                           ║
 ╚═══════════════════════════════════════════════════════════════════════════╝
 ```
 
 **Derivation Status:** [`papers/DERIVATION_STATUS.md`](papers/DERIVATION_STATUS.md) — Complete classification of what is proven vs pattern-matched
+
+---
+
+## Framework Confidence Assessment
+
+*"The first principle is that you must not fool yourself — and you are the easiest person to fool."* — Richard Feynman
+
+This framework makes claims at different confidence levels. Intellectual honesty requires distinguishing mathematical certainty from speculation.
+
+| Tier | Confidence | Description | Examples | Count |
+|------|------------|-------------|----------|-------|
+| **1** | 100% | Mathematical identities — true by definition | Z² = 32π/3, Z⁴ × 9/π² = 1024 | ~12 |
+| **2** | 90% | Derived from established physics (GR + thermodynamics) | a₀ = cH₀/Z, ρc = 3H₀²/(8πG) | ~3 |
+| **3** | 70% | Striking numerical coincidences (too precise to easily dismiss) | α⁻¹ = 4Z² + 3 (0.004%), Ω_Λ = 3Z/(8+3Z) (0.06%) | ~5 |
+| **4** | 50% | Good fits with simple formulas (one free parameter) | m_τ/m_μ = Z + 11, μ_p = Z - 3 | ~10 |
+| **5** | 30% | Multi-parameter fits (curve-fitting concern) | m_p/m_e = 54Z² + 6Z - 8 (three parameters) | ~8 |
+| **6** | 20% | Speculative (interesting but unverified) | θ_QCD = α² × 10^(-Z), η_B = α³/(3Z³) | ~5 |
+| **7** | 10% | Likely numerology (pattern-matching artifacts) | Various post-hoc quark mass fits | ~20+ |
+
+### What's Real vs What's Speculation
+
+**CONFIRMED**:
+- Z = 2√(8π/3) is a well-defined mathematical constant with geometric meaning
+- The exact identities (Z² = 8 × 4π/3, etc.) are provably true
+- The Friedmann-based derivation of a₀ = cH₀/Z follows from established GR
+
+**UNCERTAIN**:
+- Whether numerical coincidences (α⁻¹ ≈ 4Z² + 3) reflect deep physics or selection bias
+- Whether the framework has genuine predictive power beyond curve-fitting
+- Whether Z has fundamental significance beyond the cosmological context
+
+**NEEDED FOR CONFIRMATION**:
+- Independent predictions confirmed *before* measurement
+- Theoretical derivation of numerical patterns from first principles
+- Explanation of *why* formulas like α⁻¹ = 4Z² + 3 should hold
+
+### The Curve-Fitting Problem
+
+With enough creativity, any number can be fit to any constant. Example:
+- My phone number 1234567 ≈ 36848 × Z² with 0.004% error
+- This is meaningless — it's just finding coefficients that work
+
+**Selection bias**: We show α⁻¹ = 4Z² + 3 (works!) but not the hundreds of failed attempts like 5Z² + 2 (doesn't work).
+
+The framework's value will ultimately be determined by:
+1. Predictions that are confirmed *after* being made
+2. Theoretical understanding of *why* the patterns exist
+3. Independent verification by the physics community
+
+Full assessment: [`research/geometric_closure/HONEST_ASSESSMENT.md`](research/geometric_closure/HONEST_ASSESSMENT.md)
 
 ---
 
