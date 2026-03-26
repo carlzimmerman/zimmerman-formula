@@ -1,8 +1,9 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useMemo } from 'react'
 import { Citation, CITATIONS } from './Citation'
+import CollapsiblePanel from './CollapsiblePanel'
 
 // Physics constants (CODATA 2018)
 const Z = 2 * Math.sqrt(8 * Math.PI / 3)  // 5.788810
@@ -289,11 +290,7 @@ export default function EarlyUniverse() {
             </motion.div>
 
             {/* Real JWST Discoveries */}
-            <div className="p-6 bg-purple-900/20 rounded-xl border border-purple-500/30">
-              <h3 className="text-lg font-bold text-purple-400 mb-4">
-                Real JWST High-z Galaxy Discoveries
-              </h3>
-
+            <CollapsiblePanel title="Real JWST High-z Galaxy Discoveries" titleColor="text-purple-400" borderColor="border-purple-500/30">
               <div className="space-y-2 text-xs max-h-48 overflow-y-auto">
                 {JWST_GALAXIES.map((gal) => (
                   <div key={gal.name} className="flex items-center justify-between p-2 bg-black/30 rounded">
@@ -329,7 +326,7 @@ export default function EarlyUniverse() {
                   <div className="text-xs text-gray-500">normal efficiency</div>
                 </div>
               </div>
-            </div>
+            </CollapsiblePanel>
 
             {/* Key insight */}
             <div className="p-4 bg-gradient-to-r from-cyan-900/30 to-purple-900/30 rounded-xl border border-cyan-500/20 text-center">

@@ -4,8 +4,9 @@ import { useRef, useMemo, useState } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls, Stars } from '@react-three/drei'
 import * as THREE from 'three'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Citation, CITATIONS } from './Citation'
+import CollapsiblePanel from './CollapsiblePanel'
 
 // Physics constants
 const Z = 2 * Math.sqrt(8 * Math.PI / 3)  // 5.788810
@@ -531,52 +532,52 @@ export default function ElGordoVisualization() {
       </div>
 
       {/* Key Data Panel */}
-      <div className="absolute top-4 right-4 bg-black/90 backdrop-blur p-4 rounded-lg border border-purple-500/30 max-w-xs">
-        <h3 className="text-sm font-bold text-purple-400 mb-3">Observed Properties</h3>
+      <div className="absolute top-4 right-4 max-w-xs z-20">
+        <CollapsiblePanel title="Observed Properties" titleColor="text-purple-400" defaultOpen={false}>
+          <div className="space-y-2 text-xs">
+            <div className="flex justify-between">
+              <span className="text-gray-400">Redshift</span>
+              <span className="text-white font-mono">z = {EL_GORDO.redshift}</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-gray-400">NW Subcluster</span>
+              <span className="text-yellow-400 font-mono">9.9 × 10¹⁴ M☉</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-gray-400">SE Subcluster</span>
+              <span className="text-purple-400 font-mono">6.5 × 10¹⁴ M☉</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-gray-400">Separation</span>
+              <span className="text-white font-mono">{EL_GORDO.separation} Mpc</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-gray-400">σ (velocity)</span>
+              <span className="text-white font-mono">{EL_GORDO.velocity_dispersion} km/s</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-gray-400">Infall velocity</span>
+              <span className="text-orange-400 font-mono">~{EL_GORDO.infall_velocity} km/s</span>
+            </div>
+            <div className="flex justify-between">
+              <span className="text-gray-400">X-ray Temp</span>
+              <span className="text-white font-mono">{EL_GORDO.X_ray_temp} keV</span>
+            </div>
+            <div className="flex justify-between border-t border-gray-700 pt-2 mt-2">
+              <span className="text-red-400">ΛCDM Tension</span>
+              <span className="text-red-400 font-mono font-bold">{EL_GORDO.lcdm_tension}σ</span>
+            </div>
+          </div>
 
-        <div className="space-y-2 text-xs">
-          <div className="flex justify-between">
-            <span className="text-gray-400">Redshift</span>
-            <span className="text-white font-mono">z = {EL_GORDO.redshift}</span>
+          {/* The Zimmerman Solution */}
+          <div className="mt-4 p-3 bg-cyan-900/20 rounded border border-cyan-500/30">
+            <div className="text-xs text-cyan-400 font-bold mb-1">Zimmerman Resolution</div>
+            <div className="text-xs text-gray-300">
+              At z = 0.87, a₀ was <span className="text-cyan-400 font-mono">{E_EL_GORDO.toFixed(2)}×</span> higher.
+              Enhanced dynamics allow faster structure formation without dark matter fine-tuning.
+            </div>
           </div>
-          <div className="flex justify-between">
-            <span className="text-gray-400">NW Subcluster</span>
-            <span className="text-yellow-400 font-mono">9.9 × 10¹⁴ M☉</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-gray-400">SE Subcluster</span>
-            <span className="text-purple-400 font-mono">6.5 × 10¹⁴ M☉</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-gray-400">Separation</span>
-            <span className="text-white font-mono">{EL_GORDO.separation} Mpc</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-gray-400">σ (velocity)</span>
-            <span className="text-white font-mono">{EL_GORDO.velocity_dispersion} km/s</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-gray-400">Infall velocity</span>
-            <span className="text-orange-400 font-mono">~{EL_GORDO.infall_velocity} km/s</span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-gray-400">X-ray Temp</span>
-            <span className="text-white font-mono">{EL_GORDO.X_ray_temp} keV</span>
-          </div>
-          <div className="flex justify-between border-t border-gray-700 pt-2 mt-2">
-            <span className="text-red-400">ΛCDM Tension</span>
-            <span className="text-red-400 font-mono font-bold">{EL_GORDO.lcdm_tension}σ</span>
-          </div>
-        </div>
-
-        {/* The Zimmerman Solution */}
-        <div className="mt-4 p-3 bg-cyan-900/20 rounded border border-cyan-500/30">
-          <div className="text-xs text-cyan-400 font-bold mb-1">Zimmerman Resolution</div>
-          <div className="text-xs text-gray-300">
-            At z = 0.87, a₀ was <span className="text-cyan-400 font-mono">{E_EL_GORDO.toFixed(2)}×</span> higher.
-            Enhanced dynamics allow faster structure formation without dark matter fine-tuning.
-          </div>
-        </div>
+        </CollapsiblePanel>
       </div>
 
       {/* Bottom info */}

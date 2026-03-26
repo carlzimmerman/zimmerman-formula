@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { useState, useMemo } from 'react'
 import { Citation, CITATIONS } from './Citation'
+import CollapsiblePanel from './CollapsiblePanel'
 
 // Physics constants (CODATA 2018)
 const G = 6.67430e-11  // m³/kg/s²
@@ -281,8 +282,7 @@ export default function BTFRSimulation() {
           {/* Controls & Info */}
           <div className="space-y-4">
             {/* Model toggles */}
-            <div className="p-4 bg-gray-900/50 rounded-xl border border-gray-700">
-              <h3 className="text-sm font-bold text-white mb-3">Show Models</h3>
+            <CollapsiblePanel title="Show Models" titleColor="text-white" borderColor="border-gray-700">
               <div className="space-y-2">
                 <label className="flex items-center gap-2 cursor-pointer">
                   <input
@@ -303,11 +303,10 @@ export default function BTFRSimulation() {
                   <span className="text-purple-400 text-sm">Constant MOND</span>
                 </label>
               </div>
-            </div>
+            </CollapsiblePanel>
 
             {/* Redshift filter */}
-            <div className="p-4 bg-gray-900/50 rounded-xl border border-gray-700">
-              <h3 className="text-sm font-bold text-white mb-3">Highlight Redshift</h3>
+            <CollapsiblePanel title="Highlight Redshift" titleColor="text-white" borderColor="border-gray-700">
               <div className="flex gap-2">
                 {[null, 1, 2].map(z => (
                   <button
@@ -323,11 +322,10 @@ export default function BTFRSimulation() {
                   </button>
                 ))}
               </div>
-            </div>
+            </CollapsiblePanel>
 
             {/* Predicted offsets table */}
-            <div className="p-4 bg-orange-900/20 rounded-xl border border-orange-500/30">
-              <h3 className="text-sm font-bold text-orange-400 mb-3">Zimmerman Prediction</h3>
+            <CollapsiblePanel title="Zimmerman Prediction" titleColor="text-orange-400" borderColor="border-orange-500/30">
               <table className="w-full text-xs">
                 <thead>
                   <tr className="text-gray-400">
@@ -349,17 +347,16 @@ export default function BTFRSimulation() {
               <p className="text-xs text-gray-400 mt-2">
                 High-z galaxies appear <strong>less massive</strong> at fixed V in Zimmerman
               </p>
-            </div>
+            </CollapsiblePanel>
 
             {/* Key insight */}
-            <div className="p-4 bg-cyan-900/20 rounded-xl border border-cyan-500/30">
-              <h3 className="text-sm font-bold text-cyan-400 mb-2">Falsifiable Test</h3>
+            <CollapsiblePanel title="Falsifiable Test" titleColor="text-cyan-400" borderColor="border-cyan-500/30">
               <p className="text-xs text-gray-300">
                 If BTFR shows <strong>no offset</strong> at z=2, Zimmerman is wrong.
                 <br /><br />
                 KMOS3D data at z~2 should be offset by ~0.47 dex from local BTFR.
               </p>
-            </div>
+            </CollapsiblePanel>
           </div>
         </div>
 
