@@ -43,8 +43,21 @@ function a0_at_z(z: number): number {
 
 // Calculate MOND radius scaling at redshift z
 // r_M(z) = r_M(0) / sqrt(E(z)) - galaxies are more compact at high z
-function sizeScaling(z: number): number {
+function sizeScalingZimmerman(z: number): number {
   return 1 / Math.sqrt(E_z(z))
+}
+
+// ΛCDM size scaling - empirical fit from observations
+// High-z halos are more concentrated, but this is NOT a first-principles prediction
+// Based on mass-size relation evolution: r_eff ∝ (1+z)^(-0.75) approximately
+function sizeScalingLCDM(z: number): number {
+  return Math.pow(1 + z, -0.75) / Math.pow(1, -0.75)  // Normalize to z=0
+}
+
+// Newton has no fundamental scale - size would be set by initial conditions only
+// We show no evolution because there's no theoretical basis for it
+function sizeScalingNewton(z: number): number {
+  return 1  // No evolution - this is the point: Newton has no characteristic scale
 }
 
 // Zimmerman/MOND rotation velocity using RAR formula
@@ -103,9 +116,23 @@ function StarParticles({ count, galaxy, a0, model, redshift }: StarParticlesProp
   const dummy = useMemo(() => new THREE.Object3D(), [])
 
   // Scale factor: galaxy rLast maps to 5 visual units
-  // In Zimmerman mode, galaxies are more compact at high z (MOND radius shrinks)
-  const zimScale = model === 'zimmerman' ? sizeScaling(redshift) : 1
-  const scaleFactor = (5 / galaxy.rLast) * zimScale
+  // Each model has different size evolution physics:
+  // - Zimmerman: MOND radius r_M ∝ 1/√E(z) - PREDICTED from theory
+  // - ΛCDM: Empirical fit r ∝ (1+z)^(-0.75) - from observations/simulations
+  // - Newton: No evolution - no fundamental scale in the theory
+  let sizeScale = 1
+  switch (model) {
+    case 'zimmerman':
+      sizeScale = sizeScalingZimmerman(redshift)
+      break
+    case 'lcdm':
+      sizeScale = sizeScalingLCDM(redshift)
+      break
+    case 'newton':
+      sizeScale = sizeScalingNewton(redshift)
+      break
+  }
+  const scaleFactor = (5 / galaxy.rLast) * sizeScale
 
   // Generate star positions with exponential disk distribution
   const stars = useMemo(() => {
@@ -126,7 +153,7 @@ function StarParticles({ count, galaxy, a0, model, redshift }: StarParticlesProp
       })
     }
     return temp
-  }, [count, galaxy, scaleFactor, zimScale])
+  }, [count, galaxy, scaleFactor, sizeScale])
 
   useFrame((state) => {
     if (!meshRef.current) return
@@ -453,9 +480,9 @@ export default function GalaxySimulation() {
               </div>
               {redshift > 0 && (
                 <div className="text-xs text-purple-300 mt-2 border-t border-cyan-500/20 pt-2">
-                  <span className="text-gray-400">Galaxy size:</span> {(sizeScaling(redshift) * 100).toFixed(0)}% of local
+                  <span className="text-gray-400">Galaxy size:</span> {(sizeScalingZimmerman(redshift) * 100).toFixed(0)}% of local
                   <br />
-                  <span className="text-gray-500">(MOND radius shrinks as a₀ increases)</span>
+                  <span className="text-green-400">★ PREDICTED:</span> <span className="text-gray-400">r_M ∝ 1/√E(z)</span>
                 </div>
               )}
             </div>
@@ -469,6 +496,13 @@ export default function GalaxySimulation() {
                 <br />
                 Requires tuning per galaxy
               </div>
+              {redshift > 0 && (
+                <div className="text-xs text-orange-300 mt-2 border-t border-red-500/20 pt-2">
+                  <span className="text-gray-400">Galaxy size:</span> {(sizeScalingLCDM(redshift) * 100).toFixed(0)}% of local
+                  <br />
+                  <span className="text-gray-500">(Empirical fit: r ∝ (1+z)⁻⁰·⁷⁵)</span>
+                </div>
+              )}
             </div>
           )}
 
@@ -480,29 +514,48 @@ export default function GalaxySimulation() {
                 <br />
                 Predicts Keplerian decline (v ∝ r⁻¹/²)
               </div>
+              {redshift > 0 && (
+                <div className="text-xs text-gray-400 mt-2 border-t border-gray-600/30 pt-2">
+                  <span className="text-gray-500">No size evolution</span>
+                  <br />
+                  <span className="text-gray-600">(No fundamental scale in theory)</span>
+                </div>
+              )}
             </div>
           )}
         </motion.div>
       </div>
 
       {/* Info Panel */}
-      <div className="absolute bottom-4 right-4 bg-black/90 backdrop-blur p-4 rounded-lg border border-purple-500/30 max-w-xs">
-        <h3 className="text-sm font-bold text-purple-400 mb-2">Key Predictions</h3>
-        <p className="text-xs text-gray-400 mb-2">
-          At z {'>'} 0, Zimmerman predicts <strong>evolving dynamics</strong>:
-        </p>
-        <div className="text-xs font-mono text-cyan-400 bg-black/50 p-2 rounded space-y-1">
-          <div>a₀(z) = a₀(0) × E(z)</div>
-          <div className="text-purple-300">r_M(z) = r_M(0) / √E(z)</div>
-          <div className="text-gray-500">E(z) = √(Ωm(1+z)³ + ΩΛ)</div>
+      <div className="absolute bottom-4 right-4 bg-black/90 backdrop-blur p-4 rounded-lg border border-purple-500/30 max-w-sm">
+        <h3 className="text-sm font-bold text-purple-400 mb-2">Size Evolution Comparison</h3>
+
+        <div className="space-y-2 text-xs">
+          <div className="p-2 bg-cyan-900/20 rounded border-l-2 border-cyan-500">
+            <span className="text-cyan-400 font-bold">Zimmerman:</span>
+            <span className="text-gray-300 ml-1">r_M = r₀/√E(z)</span>
+            <div className="text-green-400 text-[10px]">★ First-principles prediction</div>
+          </div>
+
+          <div className="p-2 bg-red-900/20 rounded border-l-2 border-red-500">
+            <span className="text-red-400 font-bold">ΛCDM:</span>
+            <span className="text-gray-300 ml-1">r ∝ (1+z)⁻⁰·⁷⁵</span>
+            <div className="text-orange-400 text-[10px]">Empirical fit to observations</div>
+          </div>
+
+          <div className="p-2 bg-gray-800/50 rounded border-l-2 border-gray-500">
+            <span className="text-gray-400 font-bold">Newton:</span>
+            <span className="text-gray-300 ml-1">No evolution</span>
+            <div className="text-gray-500 text-[10px]">No fundamental scale exists</div>
+          </div>
         </div>
-        <p className="text-xs text-gray-400 mt-2">
-          <span className="text-yellow-400">•</span> Higher a₀ at high z = stronger MOND effect
-          <br />
-          <span className="text-purple-400">•</span> Smaller r_M at high z = more compact galaxies
+
+        <p className="text-xs text-gray-500 mt-3">
+          Only Zimmerman <em>predicts</em> size evolution from theory.
+          ΛCDM must calibrate it empirically.
         </p>
-        <p className="text-xs text-gray-500 mt-2">
-          Data: SPARC (Lelli, McGaugh, Schombert 2016)
+        <p className="text-xs text-gray-600 mt-1">
+          Data: SPARC (Lelli+ 2016)
         </p>
       </div>
     </div>
