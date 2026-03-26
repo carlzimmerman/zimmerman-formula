@@ -363,6 +363,26 @@ const nodes: Node[] = [
     y: 35
   },
   {
+    id: 'planck_e',
+    label: 'M_Pl/m_e',
+    formula: '10^(3Z+5)',
+    value: '2.4×10²²',
+    category: 'particle',
+    description: 'Mass hierarchy (0.05% error) - NEW!',
+    x: 55,
+    y: 20
+  },
+  {
+    id: 'nu_mass',
+    label: 'm_ν₁',
+    formula: 'm_e×10^(-3Z/2)',
+    value: '~1 meV',
+    category: 'particle',
+    description: 'Lightest neutrino mass prediction',
+    x: 42,
+    y: 20
+  },
+  {
     id: 'b_c',
     label: 'm_b/m_c',
     formula: 'Z - 2.5',
@@ -446,6 +466,12 @@ const connections: Connection[] = [
   { from: 'Z2', to: 'proton_e', type: 'predicts' },
   { from: 'Z', to: 'b_c', type: 'predicts', label: '-2.5' },
   { from: 'Z', to: 'weinberg', type: 'predicts' },
+
+  // Mass hierarchy
+  { from: 'Z', to: 'planck_e', type: 'predicts', label: '3Z+5' },
+  { from: '3dim', to: 'planck_e', type: 'contains', label: '3Z' },
+  { from: 'Z', to: 'nu_mass', type: 'predicts', label: '3Z/2' },
+  { from: 'planck_e', to: 'nu_mass', type: 'derives' },
 
   // Cross connections
   { from: '3dim', to: 'alpha', type: 'contains', label: '+3' },
