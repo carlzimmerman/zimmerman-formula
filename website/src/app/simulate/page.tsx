@@ -36,6 +36,11 @@ const GeometricVisualization = dynamic(
   { ssr: false, loading: () => <LoadingScreen label="Geometry" /> }
 )
 
+const ZConnectionWeb = dynamic(
+  () => import('@/components/ZConnectionWeb'),
+  { ssr: false, loading: () => <LoadingScreen label="Connections" /> }
+)
+
 function LoadingScreen({ label }: { label: string }) {
   return (
     <div className="w-full h-full min-h-screen bg-black flex items-center justify-center">
@@ -95,6 +100,14 @@ const simulations = [
     available: true,
     description: 'Cube × Sphere = Z² structure',
     color: 'indigo'
+  },
+  {
+    id: 'connections',
+    name: 'Full Structure',
+    icon: '🕸️',
+    available: true,
+    description: 'Complete Z connection web',
+    color: 'violet'
   },
 ]
 
@@ -243,6 +256,7 @@ export default function SimulatePage() {
         {activeSimulation === 'universe' && <EarlyUniverse />}
         {activeSimulation === 'rar' && <RARVisualization />}
         {activeSimulation === 'geometry' && <GeometricVisualization />}
+        {activeSimulation === 'connections' && <ZConnectionWeb />}
       </div>
     </div>
   )
