@@ -290,6 +290,16 @@ const nodes: Node[] = [
     x: 75,
     y: 78
   },
+  {
+    id: 'eta_B',
+    label: 'η_B',
+    formula: 'α⁵(Z²-4)',
+    value: '6.1×10⁻¹⁰',
+    category: 'cosmology',
+    description: 'Baryon asymmetry (0.22% error!) - 3=space, α⁵=EM, Z²-4=geometry-spacetime',
+    x: 62,
+    y: 78
+  },
 
   // Particle physics - right side
   {
@@ -448,6 +458,11 @@ const connections: Connection[] = [
   { from: '3dim', to: 'As', type: 'contains', label: '3/4' },
   { from: 'bek4', to: 'As', type: 'contains', label: '3/4' },
   { from: 'ns', to: 'As', type: 'contains' },
+
+  // Baryon asymmetry
+  { from: 'alpha', to: 'eta_B', type: 'predicts', label: 'α⁵' },
+  { from: 'Z2', to: 'eta_B', type: 'predicts', label: 'Z²-4' },
+  { from: 'As', to: 'eta_B', type: 'derives', label: 'A_s×4αZ²' },
 
   // Z to particle physics - leptons
   { from: 'Z', to: 'tau_mu', type: 'predicts', label: '+11' },
