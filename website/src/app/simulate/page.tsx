@@ -31,6 +31,11 @@ const RARVisualization = dynamic(
   { ssr: false, loading: () => <LoadingScreen label="RAR" /> }
 )
 
+const GeometricVisualization = dynamic(
+  () => import('@/components/GeometricVisualization'),
+  { ssr: false, loading: () => <LoadingScreen label="Geometry" /> }
+)
+
 function LoadingScreen({ label }: { label: string }) {
   return (
     <div className="w-full h-full min-h-screen bg-black flex items-center justify-center">
@@ -82,6 +87,14 @@ const simulations = [
     available: true,
     description: '2,693 data points from 153 galaxies',
     color: 'blue'
+  },
+  {
+    id: 'geometry',
+    name: 'Z Geometry',
+    icon: '🔷',
+    available: true,
+    description: 'Cube × Sphere = Z² structure',
+    color: 'indigo'
   },
 ]
 
@@ -229,6 +242,7 @@ export default function SimulatePage() {
         {activeSimulation === 'elgordo' && <ElGordoVisualization />}
         {activeSimulation === 'universe' && <EarlyUniverse />}
         {activeSimulation === 'rar' && <RARVisualization />}
+        {activeSimulation === 'geometry' && <GeometricVisualization />}
       </div>
     </div>
   )
