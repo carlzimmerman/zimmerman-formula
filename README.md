@@ -204,6 +204,65 @@ Consequences:
 └── 8 + 3Z ≈ 8π (cosmological constraint)
 ```
 
+### NEW: Self-Referential Fine Structure (March 2026)
+
+The simple formula α⁻¹ = 4Z² + 3 is actually part of a **self-referential equation**:
+
+```
+α⁻¹ + α = 4Z² + 3
+
+This is a quadratic in α with solution:
+    α = (4Z² + 3 - √((4Z² + 3)² - 4)) / 2
+
+Result:
+    α⁻¹ = 137.0340 (self-referential formula)
+    α⁻¹ = 137.0360 (measured)
+    Error = 0.0015% (2.6× more accurate than simple formula!)
+
+The two solutions α and 1/α are "dual" - they multiply to 1 (Vieta's formulas).
+This suggests α and its inverse are both determined by the same geometry.
+```
+
+### NEW: The Number 11 = 3 + 8
+
+The tau/muon mass ratio m_τ/m_μ = Z + 11 has geometric origin:
+
+```
+11 = 3 + 8
+
+Where:
+  3 = spatial dimensions (appears in Z = 2√(8π/3))
+  8 = cube vertices (appears in Z = 2√(8π/3))
+
+So: m_τ/m_μ = Z + 3 + 8 = 2√(8π/3) + 3 + 8
+
+The lepton mass ratio uses the SAME geometric elements as Z itself!
+
+Also: 11 = 4 + 7 (spacetime + G2 dimensions) — M-theory compactification
+      11 = 10 + 1 (M-theory spacetime dimensions)
+      11 = F₆ + F₄ = 8 + 3 (Fibonacci)
+```
+
+### NEW: Triangular Number Pattern
+
+The numbers 2, 8, 64 that appear throughout the framework follow a pattern:
+
+```
+2 = 2¹ = 2^T₁  (T₁ = 1)
+8 = 2³ = 2^T₂  (T₂ = 3)
+64 = 2⁶ = 2^T₃ (T₃ = 6)
+
+Where Tₙ = n(n+1)/2 are triangular numbers.
+
+These powers appear because:
+  2 → Factor in Z, Schwarzschild radius
+  8 → Cube vertices, Einstein's 8πG
+  64 → Structure of α⁻¹ = 64 × (2π/3) + 3
+
+Product: 2 × 8 × 64 = 1024 = 2¹⁰ = 2^T₄
+Sum of exponents: T₁ + T₂ + T₃ = 1 + 3 + 6 = 10 = T₄ ✓
+```
+
 **This is a closed geometric system.**
 
 ---
