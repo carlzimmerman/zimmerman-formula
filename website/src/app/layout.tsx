@@ -1,5 +1,13 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import './globals.css'
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  themeColor: '#0a0a1a',
+}
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://abeautifullygeometricuniverse.web.app'),

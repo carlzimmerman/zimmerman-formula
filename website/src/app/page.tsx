@@ -6,9 +6,9 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-[#fafafa]">
       {/* Main Content */}
-      <div className="max-w-4xl mx-auto px-4 py-8">
+      <div className="max-w-4xl mx-auto px-4 py-6 md:py-8">
         {/* Title Block */}
-        <article className="bg-white border border-gray-200 rounded shadow-sm p-8 mb-6">
+        <article className="bg-white border border-gray-200 rounded shadow-sm p-5 md:p-8 mb-6">
           <h1 className="text-2xl md:text-3xl font-semibold text-gray-900 mb-2 leading-tight">
             The Zimmerman Framework
           </h1>
@@ -139,20 +139,20 @@ export default function Home() {
         {/* Simulations Grid */}
         <div className="bg-white border border-gray-200 rounded shadow-sm p-6 mb-6">
           <h2 className="text-lg font-semibold text-gray-900 mb-4">Simulations</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            <Link href="/simulate" className="p-3 bg-gray-50 rounded border border-gray-200 hover:border-blue-300 text-center transition-colors">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <Link href="/simulate" className="p-4 bg-gray-50 rounded border border-gray-200 hover:border-blue-300 text-center transition-colors min-h-[72px] flex flex-col justify-center">
               <div className="text-2xl mb-1">🌀</div>
               <div className="text-sm font-medium text-gray-700">Galaxy Rotation</div>
             </Link>
-            <Link href="/rar" className="p-3 bg-gray-50 rounded border border-gray-200 hover:border-blue-300 text-center transition-colors">
+            <Link href="/rar" className="p-4 bg-gray-50 rounded border border-gray-200 hover:border-blue-300 text-center transition-colors min-h-[72px] flex flex-col justify-center">
               <div className="text-2xl mb-1">📈</div>
               <div className="text-sm font-medium text-gray-700">RAR</div>
             </Link>
-            <Link href="/el-gordo" className="p-3 bg-gray-50 rounded border border-gray-200 hover:border-blue-300 text-center transition-colors">
+            <Link href="/el-gordo" className="p-4 bg-gray-50 rounded border border-gray-200 hover:border-blue-300 text-center transition-colors min-h-[72px] flex flex-col justify-center">
               <div className="text-2xl mb-1">💥</div>
               <div className="text-sm font-medium text-gray-700">El Gordo</div>
             </Link>
-            <Link href="/early-universe" className="p-3 bg-gray-50 rounded border border-gray-200 hover:border-blue-300 text-center transition-colors">
+            <Link href="/early-universe" className="p-4 bg-gray-50 rounded border border-gray-200 hover:border-blue-300 text-center transition-colors min-h-[72px] flex flex-col justify-center">
               <div className="text-2xl mb-1">🌌</div>
               <div className="text-sm font-medium text-gray-700">Early Universe</div>
             </Link>

@@ -138,7 +138,7 @@ export default function RARVisualization() {
   const uniqueGalaxies = Array.from(new Set(SPARC_DATA.map(d => d.galaxy)))
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-b from-black via-gray-950 to-black p-8">
+    <div className="w-full min-h-screen bg-gradient-to-b from-black via-gray-950 to-black p-4 md:p-8">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
