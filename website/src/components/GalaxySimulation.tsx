@@ -4,7 +4,57 @@ import { useRef, useMemo, useState } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls, Stars, Html } from '@react-three/drei'
 import * as THREE from 'three'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
+
+// Collapsible panel component for mobile-friendly viewing
+function CollapsiblePanel({
+  title,
+  children,
+  defaultOpen = true,
+  className = "",
+  headerClassName = ""
+}: {
+  title: string
+  children: React.ReactNode
+  defaultOpen?: boolean
+  className?: string
+  headerClassName?: string
+}) {
+  const [isOpen, setIsOpen] = useState(defaultOpen)
+
+  return (
+    <div className={`bg-black/90 backdrop-blur rounded-lg border border-purple-500/30 overflow-hidden ${className}`}>
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className={`w-full flex items-center justify-between p-3 hover:bg-white/5 transition-colors ${headerClassName}`}
+      >
+        <span className="text-sm font-bold text-purple-400">{title}</span>
+        <svg
+          className={`w-4 h-4 text-purple-400 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <div className="px-4 pb-4">
+              {children}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  )
+}
 
 // Physics constants (CODATA 2018)
 const Z = 2 * Math.sqrt(8 * Math.PI / 3)  // 5.788810
@@ -241,8 +291,11 @@ function RotationCurveDisplay({ galaxy, a0, model }: RotationCurveDisplayProps) 
   const maxR = galaxy.rLast
 
   return (
-    <div className="absolute bottom-4 left-4 w-80 bg-black/90 backdrop-blur p-4 rounded-lg border border-purple-500/30">
-      <h3 className="text-sm font-bold text-purple-400 mb-1">{galaxy.name} Rotation Curve</h3>
+    <CollapsiblePanel
+      title={`${galaxy.name} Rotation Curve`}
+      className="absolute bottom-4 left-4 w-80 max-w-[calc(100vw-2rem)]"
+      defaultOpen={true}
+    >
       <p className="text-xs text-gray-500 mb-2">{galaxy.type} | M = {(galaxy.mass / 1e10).toFixed(1)} × 10¹⁰ M☉</p>
 
       <svg viewBox="0 0 120 70" className="w-full h-36">
@@ -318,7 +371,7 @@ function RotationCurveDisplay({ galaxy, a0, model }: RotationCurveDisplayProps) 
       </div>
 
       <p className="text-xs text-gray-500 mt-2">Data: SPARC (Lelli+ 2016)</p>
-    </div>
+    </CollapsiblePanel>
   )
 }
 
@@ -382,14 +435,11 @@ export default function GalaxySimulation() {
 
       {/* Controls */}
       <div className="absolute top-4 left-4 right-4 flex flex-col gap-4">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="bg-black/90 backdrop-blur p-4 rounded-lg border border-purple-500/30 max-w-md"
+        <CollapsiblePanel
+          title="Galaxy Rotation Simulation"
+          className="max-w-md max-w-[calc(100vw-2rem)]"
+          defaultOpen={true}
         >
-          <h2 className="text-lg font-bold text-white mb-1">
-            Galaxy Rotation Simulation
-          </h2>
           <p className="text-xs text-gray-400 mb-3">
             Real SPARC data: compare Newton, ΛCDM dark matter, and Zimmerman predictions
           </p>
@@ -530,13 +580,15 @@ export default function GalaxySimulation() {
               )}
             </div>
           )}
-        </motion.div>
+        </CollapsiblePanel>
       </div>
 
-      {/* Info Panel */}
-      <div className="absolute bottom-4 right-4 bg-black/90 backdrop-blur p-4 rounded-lg border border-purple-500/30 max-w-sm">
-        <h3 className="text-sm font-bold text-purple-400 mb-2">Size Evolution Comparison</h3>
-
+      {/* Info Panel - Collapsible for mobile */}
+      <CollapsiblePanel
+        title="Size Evolution Comparison"
+        className="absolute bottom-4 right-4 max-w-sm max-w-[calc(100vw-2rem)]"
+        defaultOpen={false}
+      >
         <div className="space-y-2 text-xs">
           <div className="p-2 bg-cyan-900/20 rounded border-l-2 border-cyan-500">
             <span className="text-cyan-400 font-bold">Zimmerman:</span>
@@ -573,7 +625,7 @@ export default function GalaxySimulation() {
         <p className="text-xs text-gray-600 mt-1">
           Data: SPARC (Lelli+ 2016)
         </p>
-      </div>
+      </CollapsiblePanel>
     </div>
   )
 }
