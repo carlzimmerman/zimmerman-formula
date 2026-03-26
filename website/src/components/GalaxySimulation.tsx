@@ -41,6 +41,12 @@ function a0_at_z(z: number): number {
   return a0_local * E_z(z)
 }
 
+// Calculate MOND radius scaling at redshift z
+// r_M(z) = r_M(0) / sqrt(E(z)) - galaxies are more compact at high z
+function sizeScaling(z: number): number {
+  return 1 / Math.sqrt(E_z(z))
+}
+
 // Zimmerman/MOND rotation velocity using RAR formula
 function zimmermanVelocity(r_kpc: number, M_solar: number, a0: number): number {
   const r_m = r_kpc * kpc_to_m
@@ -89,14 +95,17 @@ interface StarParticlesProps {
   galaxy: typeof SPARC_GALAXIES[0]
   a0: number
   model: PhysicsModel
+  redshift: number
 }
 
-function StarParticles({ count, galaxy, a0, model }: StarParticlesProps) {
+function StarParticles({ count, galaxy, a0, model, redshift }: StarParticlesProps) {
   const meshRef = useRef<THREE.InstancedMesh>(null)
   const dummy = useMemo(() => new THREE.Object3D(), [])
 
   // Scale factor: galaxy rLast maps to 5 visual units
-  const scaleFactor = 5 / galaxy.rLast
+  // In Zimmerman mode, galaxies are more compact at high z (MOND radius shrinks)
+  const zimScale = model === 'zimmerman' ? sizeScaling(redshift) : 1
+  const scaleFactor = (5 / galaxy.rLast) * zimScale
 
   // Generate star positions with exponential disk distribution
   const stars = useMemo(() => {
@@ -117,7 +126,7 @@ function StarParticles({ count, galaxy, a0, model }: StarParticlesProps) {
       })
     }
     return temp
-  }, [count, galaxy, scaleFactor])
+  }, [count, galaxy, scaleFactor, zimScale])
 
   useFrame((state) => {
     if (!meshRef.current) return
@@ -328,6 +337,7 @@ export default function GalaxySimulation() {
           galaxy={galaxy}
           a0={a0}
           model={model}
+          redshift={redshift}
         />
 
         <OrbitControls
@@ -441,6 +451,13 @@ export default function GalaxySimulation() {
               <div className="text-xs text-gray-400 mt-1">
                 {redshift > 0 ? `${E_z(redshift).toFixed(2)}× higher than today (E(z) factor)` : 'Local value (McGaugh+ 2016)'}
               </div>
+              {redshift > 0 && (
+                <div className="text-xs text-purple-300 mt-2 border-t border-cyan-500/20 pt-2">
+                  <span className="text-gray-400">Galaxy size:</span> {(sizeScaling(redshift) * 100).toFixed(0)}% of local
+                  <br />
+                  <span className="text-gray-500">(MOND radius shrinks as a₀ increases)</span>
+                </div>
+              )}
             </div>
           )}
 
@@ -470,16 +487,20 @@ export default function GalaxySimulation() {
 
       {/* Info Panel */}
       <div className="absolute bottom-4 right-4 bg-black/90 backdrop-blur p-4 rounded-lg border border-purple-500/30 max-w-xs">
-        <h3 className="text-sm font-bold text-purple-400 mb-2">Key Prediction</h3>
+        <h3 className="text-sm font-bold text-purple-400 mb-2">Key Predictions</h3>
         <p className="text-xs text-gray-400 mb-2">
-          At z {'>'} 0, only Zimmerman's a₀ evolves — ΛCDM dark matter stays constant.
-          High-z galaxies should show different dynamics.
+          At z {'>'} 0, Zimmerman predicts <strong>evolving dynamics</strong>:
         </p>
-        <div className="text-xs font-mono text-cyan-400 bg-black/50 p-2 rounded">
-          a₀(z) = a₀(0) × E(z)
-          <br />
-          E(z) = √(Ωm(1+z)³ + ΩΛ)
+        <div className="text-xs font-mono text-cyan-400 bg-black/50 p-2 rounded space-y-1">
+          <div>a₀(z) = a₀(0) × E(z)</div>
+          <div className="text-purple-300">r_M(z) = r_M(0) / √E(z)</div>
+          <div className="text-gray-500">E(z) = √(Ωm(1+z)³ + ΩΛ)</div>
         </div>
+        <p className="text-xs text-gray-400 mt-2">
+          <span className="text-yellow-400">•</span> Higher a₀ at high z = stronger MOND effect
+          <br />
+          <span className="text-purple-400">•</span> Smaller r_M at high z = more compact galaxies
+        </p>
         <p className="text-xs text-gray-500 mt-2">
           Data: SPARC (Lelli, McGaugh, Schombert 2016)
         </p>

@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useState } from 'react'
+import { Citation, CITATIONS } from './Citation'
 
 // Precise mathematical constants
 const PI = Math.PI
@@ -340,11 +341,129 @@ export default function Derivation() {
           </p>
         </motion.div>
 
+        {/* Step 7: The Radial Acceleration Relation (RAR) */}
+        <Step number={7} title="The Radial Acceleration Relation" delay={0.7}>
+          <p className="text-gray-300 mb-4">
+            The RAR connects observed gravitational acceleration to baryonic acceleration.
+            This interpolation function emerges naturally from the Zimmerman framework.
+          </p>
+          <MathBlock highlight>
+            <div className="text-center">
+              <span className="text-purple-400">g_obs</span> = g_bar / (1 - e^(-√(g_bar/a₀)))
+            </div>
+          </MathBlock>
+          <p className="text-gray-400 text-sm mt-4 mb-4">
+            In the Zimmerman framework, a₀ sets the transition scale between Newtonian and
+            modified dynamics. The key insight is that a₀ evolves with cosmic time:
+          </p>
+          <MathBlock>
+            <div className="space-y-2 text-sm">
+              <div><span className="text-gray-400">Newtonian limit (g_bar ≫ a₀):</span> g_obs ≈ g_bar</div>
+              <div><span className="text-gray-400">Deep MOND limit (g_bar ≪ a₀):</span> g_obs ≈ √(g_bar × a₀)</div>
+              <div className="text-cyan-400 font-bold mt-2">Transition at: g = a₀ = cH₀/Z = 1.2 × 10⁻¹⁰ m/s²</div>
+            </div>
+          </MathBlock>
+          <div className="mt-4 p-3 bg-green-900/20 rounded-lg text-sm">
+            <span className="text-green-400">Confirmed:</span> 2,693 data points from 153 SPARC galaxies
+            follow this relation with scatter &lt; 0.13 dex (McGaugh et al. 2016)
+          </div>
+        </Step>
+
+        {/* Step 8: Baryonic Tully-Fisher Relation */}
+        <Step number={8} title="Baryonic Tully-Fisher Relation" delay={0.8}>
+          <p className="text-gray-300 mb-4">
+            In the deep MOND regime, the RAR implies a precise relationship between
+            baryonic mass and rotation velocity — the BTFR with slope exactly 4.
+          </p>
+          <MathBlock highlight>
+            <div className="text-center">
+              <span className="text-purple-400">M_bar</span> = V⁴ / (G × a₀)
+            </div>
+          </MathBlock>
+          <MathBlock>
+            <div className="space-y-2 text-sm">
+              <div><span className="text-gray-400">Taking log:</span> log(M_bar) = 4 × log(V) - log(G × a₀)</div>
+              <div><span className="text-gray-400">Slope:</span> <span className="text-cyan-400">d log M / d log V = 4</span> (exact)</div>
+              <div className="mt-2 text-gray-400">At redshift z, the relation shifts:</div>
+              <div className="text-yellow-400 font-bold">Δlog M_bar(z) = -log₁₀(E(z))</div>
+            </div>
+          </MathBlock>
+          <div className="mt-4 p-3 bg-purple-900/20 rounded-lg text-sm">
+            <span className="text-purple-400">Zimmerman Prediction:</span> At z = 2, the BTFR offset should be
+            <span className="text-yellow-400 font-mono"> Δlog M = -{Math.log10(E(2)).toFixed(2)} dex</span>
+            — testable with KMOS3D and JWST data.
+          </div>
+        </Step>
+
+        {/* Step 9: Hubble Tension Resolution */}
+        <Step number={9} title="Hubble Tension Resolution" delay={0.9}>
+          <p className="text-gray-300 mb-4">
+            The Zimmerman framework provides an independent route to H₀ through the
+            MOND acceleration scale, landing between CMB and local measurements.
+          </p>
+          <MathBlock highlight>
+            <div className="text-center">
+              <span className="text-purple-400">H₀</span> = Z × a₀ / c = (Z × 1.2 × 10⁻¹⁰) / c
+            </div>
+          </MathBlock>
+          <MathBlock>
+            <div className="space-y-2 text-sm">
+              <div>Z = {Z.toFixed(6)}</div>
+              <div>a₀ = 1.2 × 10⁻¹⁰ m/s² (McGaugh+ 2016)</div>
+              <div>c = 299,792,458 m/s</div>
+              <div className="mt-2 border-t border-gray-700 pt-2">
+                <span className="text-cyan-400 font-bold">H₀ = {((Z * 1.2e-10 / c) * 3.086e19).toFixed(1)} km/s/Mpc</span>
+              </div>
+            </div>
+          </MathBlock>
+          <div className="mt-4 grid grid-cols-3 gap-2 text-sm">
+            <div className="p-2 bg-blue-900/20 rounded text-center">
+              <div className="text-blue-400 font-bold">67.4</div>
+              <div className="text-gray-500 text-xs">Planck CMB</div>
+            </div>
+            <div className="p-2 bg-cyan-900/40 rounded text-center border border-cyan-500/30">
+              <div className="text-cyan-400 font-bold">71.5</div>
+              <div className="text-gray-400 text-xs">Zimmerman</div>
+            </div>
+            <div className="p-2 bg-red-900/20 rounded text-center">
+              <div className="text-red-400 font-bold">73.0</div>
+              <div className="text-gray-500 text-xs">SH0ES local</div>
+            </div>
+          </div>
+          <p className="text-gray-400 text-sm mt-4">
+            The Zimmerman H₀ falls naturally between early- and late-universe measurements,
+            suggesting the "tension" reflects evolving physics rather than systematic errors.
+          </p>
+        </Step>
+
+        {/* Step 10: Structure Formation Enhancement */}
+        <Step number={10} title="Structure Formation at High Redshift" delay={1.0}>
+          <p className="text-gray-300 mb-4">
+            At high redshift, the enhanced a₀ produces stronger effective gravity,
+            allowing structure to form faster than in standard ΛCDM.
+          </p>
+          <MathBlock highlight>
+            <div className="text-center">
+              <span className="text-purple-400">g_eff(z)</span> = g_bar × [1 + (a₀(z)/g_bar)^n]^(1/n)
+            </div>
+          </MathBlock>
+          <MathBlock>
+            <div className="space-y-2 text-sm">
+              <div><span className="text-gray-400">At z = 0.87 (El Gordo):</span> a₀ = 1.66 × a₀(0)</div>
+              <div><span className="text-gray-400">At z = 10 (JWST early galaxies):</span> a₀ = 20 × a₀(0)</div>
+              <div className="mt-2 text-yellow-400">This resolves:</div>
+              <div className="text-gray-300">• El Gordo 6σ tension</div>
+              <div className="text-gray-300">• JWST "impossible" early massive galaxies</div>
+              <div className="text-gray-300">• S8 structure growth tension</div>
+            </div>
+          </MathBlock>
+        </Step>
+
         {/* Summary Box */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.8 }}
+          transition={{ delay: 1.1 }}
           className="mt-12 p-6 bg-black/50 rounded-xl border border-purple-500/30"
         >
           <h3 className="text-lg font-bold text-purple-400 mb-4 text-center">Summary of Predictions</h3>
@@ -357,6 +476,133 @@ export default function Derivation() {
             All derived from a single constant: <span className="text-cyan-400 font-mono">Z = 2√(8π/3) = {Z.toFixed(6)}</span>
           </div>
         </motion.div>
+
+        {/* Step 11: Galaxy Size Evolution */}
+        <Step number={11} title="Galaxy Size Evolution" delay={1.1}>
+          <p className="text-gray-300 mb-4">
+            The <strong>MOND radius</strong> — where dynamics transition from Newtonian to modified —
+            depends on a₀. As a₀ evolves, so does the characteristic size of galaxies.
+          </p>
+          <MathBlock highlight>
+            <div className="text-center">
+              <span className="text-purple-400">r_M</span> = √(GM / a₀) — MOND transition radius
+            </div>
+          </MathBlock>
+          <MathBlock>
+            <div className="space-y-2 text-sm">
+              <div><span className="text-gray-400">At the MOND radius:</span> g_bar = GM/r² = a₀</div>
+              <div><span className="text-gray-400">Solving for r:</span> r_M = √(GM/a₀)</div>
+              <div className="mt-2 text-yellow-400">At redshift z:</div>
+              <div className="text-cyan-400 font-bold">r_M(z) = r_M(0) / √E(z)</div>
+            </div>
+          </MathBlock>
+          <div className="mt-4 overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="text-gray-400 border-b border-gray-700">
+                  <th className="py-2 text-left">Redshift</th>
+                  <th className="py-2 text-center">E(z)</th>
+                  <th className="py-2 text-center">r_M(z) / r_M(0)</th>
+                  <th className="py-2 text-center">Size Reduction</th>
+                </tr>
+              </thead>
+              <tbody className="text-gray-300">
+                {[0, 1, 2, 3, 5, 10].map((z) => {
+                  const Ez = E(z)
+                  const ratio = 1 / Math.sqrt(Ez)
+                  const reduction = (1 - ratio) * 100
+                  return (
+                    <tr key={z} className="border-b border-gray-800">
+                      <td className="py-2">z = {z}</td>
+                      <td className="py-2 text-center text-cyan-400">{Ez.toFixed(2)}</td>
+                      <td className="py-2 text-center text-yellow-400">{ratio.toFixed(2)}×</td>
+                      <td className="py-2 text-center text-purple-400">{reduction > 0 ? `-${reduction.toFixed(0)}%` : '—'}</td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>
+          <div className="mt-4 p-3 bg-green-900/20 rounded-lg text-sm">
+            <span className="text-green-400">JWST Confirmation:</span> High-z galaxies are observed to be
+            significantly more compact than local galaxies at the same mass. The Zimmerman framework
+            <strong className="text-cyan-400"> predicts this naturally</strong> — as a₀ increases, the MOND
+            radius shrinks, making galaxies appear smaller.
+          </div>
+          <div className="mt-4 p-3 bg-purple-900/20 rounded-lg text-sm">
+            <span className="text-purple-400">Additional Predictions:</span>
+            <ul className="mt-2 space-y-1 text-gray-300">
+              <li>• The mass-size relation should steepen at high z</li>
+              <li>• Disk scale heights should be smaller at high z</li>
+              <li>• The "half-light radius" evolution traces E(z)^(-1/2)</li>
+              <li>• Bulge-to-disk ratios may differ due to modified dynamics</li>
+            </ul>
+          </div>
+        </Step>
+
+        {/* Key Equations Reference */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.3 }}
+          className="mt-12 p-6 bg-gradient-to-r from-purple-900/20 to-cyan-900/20 rounded-xl border border-purple-500/30"
+        >
+          <h3 className="text-lg font-bold text-white mb-4 text-center">Key Equations at a Glance</h3>
+          <div className="grid md:grid-cols-2 gap-4 text-sm font-mono">
+            <div className="p-3 bg-black/40 rounded-lg">
+              <div className="text-purple-400 mb-1">Zimmerman Constant</div>
+              <div className="text-white">Z = 2√(8π/3) = 5.788810</div>
+            </div>
+            <div className="p-3 bg-black/40 rounded-lg">
+              <div className="text-purple-400 mb-1">Dark Energy</div>
+              <div className="text-white">Ω_Λ = 3Z/(8+3Z) = 0.6856</div>
+            </div>
+            <div className="p-3 bg-black/40 rounded-lg">
+              <div className="text-purple-400 mb-1">Matter Density</div>
+              <div className="text-white">Ω_m = 8/(8+3Z) = 0.3144</div>
+            </div>
+            <div className="p-3 bg-black/40 rounded-lg">
+              <div className="text-purple-400 mb-1">Fine Structure</div>
+              <div className="text-white">α = 1/(4Z²+3) = 1/137.04</div>
+            </div>
+            <div className="p-3 bg-black/40 rounded-lg">
+              <div className="text-purple-400 mb-1">Acceleration Scale</div>
+              <div className="text-white">a₀ = cH₀/Z = 1.2×10⁻¹⁰ m/s²</div>
+            </div>
+            <div className="p-3 bg-black/40 rounded-lg">
+              <div className="text-purple-400 mb-1">Redshift Evolution</div>
+              <div className="text-white">a₀(z) = a₀(0) × E(z)</div>
+            </div>
+            <div className="p-3 bg-black/40 rounded-lg">
+              <div className="text-purple-400 mb-1">RAR Interpolation</div>
+              <div className="text-white">g_obs = g_bar/(1-e^(-√(g_bar/a₀)))</div>
+            </div>
+            <div className="p-3 bg-black/40 rounded-lg">
+              <div className="text-purple-400 mb-1">BTFR</div>
+              <div className="text-white">M_bar = V⁴/(G × a₀)</div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Academic Citations */}
+        <Citation
+          citations={[
+            CITATIONS.RAR,
+            CITATIONS.SPARC,
+            CITATIONS.PLANCK_2018,
+            CITATIONS.CODATA_2018,
+            {
+              authors: 'Milgrom, M.',
+              year: 1983,
+              title: 'A modification of the Newtonian dynamics as a possible alternative to the hidden mass hypothesis',
+              journal: 'The Astrophysical Journal',
+              volume: '270',
+              pages: '365',
+              doi: '10.1086/161130',
+              description: 'Original MOND proposal'
+            },
+          ]}
+        />
 
         {/* Back link */}
         <div className="mt-12 text-center">
