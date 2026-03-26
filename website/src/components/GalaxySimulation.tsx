@@ -516,9 +516,16 @@ export default function GalaxySimulation() {
               </div>
               {redshift > 0 && (
                 <div className="text-xs text-gray-400 mt-2 border-t border-gray-600/30 pt-2">
-                  <span className="text-gray-500">No size evolution</span>
+                  <span className="text-red-400 font-bold">No size evolution shown</span>
                   <br />
-                  <span className="text-gray-600">(No fundamental scale in theory)</span>
+                  <span className="text-gray-500 mt-1 block">
+                    <em>Why?</em> Newton's G is scale-free — there's no characteristic
+                    acceleration a₀ to define where "inner" ends and "outer" begins.
+                    Without this scale, there's <strong>no prediction</strong> for size evolution.
+                  </span>
+                  <span className="text-gray-600 mt-1 block text-[10px]">
+                    Galaxy size would depend only on initial conditions, not physics.
+                  </span>
                 </div>
               )}
             </div>
@@ -534,25 +541,34 @@ export default function GalaxySimulation() {
           <div className="p-2 bg-cyan-900/20 rounded border-l-2 border-cyan-500">
             <span className="text-cyan-400 font-bold">Zimmerman:</span>
             <span className="text-gray-300 ml-1">r_M = r₀/√E(z)</span>
-            <div className="text-green-400 text-[10px]">★ First-principles prediction</div>
+            <div className="text-green-400 text-[10px]">★ PREDICTED from theory</div>
+            <div className="text-gray-500 text-[10px] mt-1">
+              MOND radius r_M = √(GM/a₀) shrinks as a₀ increases
+            </div>
           </div>
 
           <div className="p-2 bg-red-900/20 rounded border-l-2 border-red-500">
             <span className="text-red-400 font-bold">ΛCDM:</span>
             <span className="text-gray-300 ml-1">r ∝ (1+z)⁻⁰·⁷⁵</span>
-            <div className="text-orange-400 text-[10px]">Empirical fit to observations</div>
+            <div className="text-orange-400 text-[10px]">Empirical fit to simulations</div>
+            <div className="text-gray-500 text-[10px] mt-1">
+              No first-principles prediction; calibrated to observations
+            </div>
           </div>
 
           <div className="p-2 bg-gray-800/50 rounded border-l-2 border-gray-500">
             <span className="text-gray-400 font-bold">Newton:</span>
             <span className="text-gray-300 ml-1">No evolution</span>
-            <div className="text-gray-500 text-[10px]">No fundamental scale exists</div>
+            <div className="text-red-500 text-[10px]">NO PREDICTION POSSIBLE</div>
+            <div className="text-gray-500 text-[10px] mt-1">
+              G is scale-free — no characteristic scale defines galaxy extent
+            </div>
           </div>
         </div>
 
         <p className="text-xs text-gray-500 mt-3">
-          Only Zimmerman <em>predicts</em> size evolution from theory.
-          ΛCDM must calibrate it empirically.
+          The key: Zimmerman has a <strong>fundamental scale</strong> a₀ that
+          defines galaxy structure. Newton lacks this entirely.
         </p>
         <p className="text-xs text-gray-600 mt-1">
           Data: SPARC (Lelli+ 2016)

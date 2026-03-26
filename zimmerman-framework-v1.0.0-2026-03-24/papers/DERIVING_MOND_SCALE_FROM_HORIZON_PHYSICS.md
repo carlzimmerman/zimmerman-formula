@@ -274,6 +274,6 @@ If confirmed, this would establish a fundamental connection between modified gra
 
 *Submitted to arXiv [gr-qc]*
 
-*DOI: 10.5281/zenodo.19163583*
+*DOI: 10.5281/zenodo.19199167*
 
 *Repository: github.com/carlzimmerman/zimmerman-formula*

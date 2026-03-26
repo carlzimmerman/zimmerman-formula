@@ -355,7 +355,7 @@ ul {
 <hr>
 
 <p style="text-align: center; margin-top: 2em;">
-<strong>DOI:</strong> 10.5281/zenodo.19163583<br>
+<strong>DOI:</strong> 10.5281/zenodo.19199167<br>
 <strong>Repository:</strong> github.com/carlzimmerman/zimmerman-formula
 </p>
 

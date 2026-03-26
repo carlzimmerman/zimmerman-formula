@@ -105,7 +105,7 @@ Publication / Preprint
 
 1. Go to https://zenodo.org/deposit/new
 
-2. If updating existing DOI (10.5281/zenodo.19163583):
+2. If updating existing DOI (10.5281/zenodo.19199167):
    - Go to your existing record
    - Click "New version"
    - Upload new files

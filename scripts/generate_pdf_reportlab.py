@@ -282,7 +282,7 @@ story.append(Paragraph("<b>Z = 2√(8π/3) = 5.788810...</b>", styles['Formula']
 
 # Footer
 story.append(Spacer(1, 24))
-story.append(Paragraph("DOI: 10.5281/zenodo.19163583", styles['Author']))
+story.append(Paragraph("DOI: 10.5281/zenodo.19199167", styles['Author']))
 story.append(Paragraph("Repository: github.com/carlzimmerman/zimmerman-formula", styles['Author']))
 
 # Build PDF

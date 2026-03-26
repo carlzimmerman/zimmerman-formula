@@ -327,4 +327,4 @@ Carl
 
 **Links:**
 - GitHub: https://github.com/carlzimmerman/zimmerman-formula
-- DOI: 10.5281/zenodo.19163583
+- DOI: 10.5281/zenodo.19199167

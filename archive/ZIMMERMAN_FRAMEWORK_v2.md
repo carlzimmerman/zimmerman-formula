@@ -292,6 +292,6 @@ The framework unifies particle physics, cosmology, and nuclear physics under one
 
 ---
 
-**DOI:** 10.5281/zenodo.19163583
+**DOI:** 10.5281/zenodo.19199167
 
 **Repository:** https://github.com/carlzimmerman/zimmerman-formula
