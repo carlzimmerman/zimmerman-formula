@@ -5,6 +5,7 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls, Text, Html, Line } from '@react-three/drei'
 import * as THREE from 'three'
 import { motion, AnimatePresence } from 'framer-motion'
+import CollapsiblePanel from './CollapsiblePanel'
 
 const Z = 2 * Math.sqrt(8 * Math.PI / 3)  // 5.788810
 const Z_SQUARED = 32 * Math.PI / 3  // 33.51
@@ -209,67 +210,68 @@ export default function GeometricVisualization() {
       </Canvas>
 
       {/* Title and Controls */}
-      <div className="absolute top-4 left-4 bg-black/90 backdrop-blur p-4 rounded-lg border border-purple-500/30 max-w-sm">
-        <h2 className="text-lg font-bold text-white mb-1">Geometric Structure of Z</h2>
-        <p className="text-xs text-gray-400 mb-3">
-          Visualizing Z² = 8 × (4π/3) = cube vertices × sphere volume
-        </p>
+      <div className="absolute top-4 left-4 max-w-sm z-20">
+        <CollapsiblePanel title="Geometric Structure of Z" titleColor="text-white" borderColor="border-purple-500/30">
+          <p className="text-xs text-gray-400 mb-3">
+            Visualizing Z² = 8 × (4π/3) = cube vertices × sphere volume
+          </p>
 
-        {/* Toggle controls */}
-        <div className="space-y-2 text-sm">
-          <label className="flex items-center gap-2 cursor-pointer">
-            <input
-              type="checkbox"
-              checked={showCube}
-              onChange={(e) => setShowCube(e.target.checked)}
-              className="rounded border-gray-600"
-            />
-            <span className="text-cyan-400">Cube (8 vertices)</span>
-          </label>
+          {/* Toggle controls */}
+          <div className="space-y-2 text-sm">
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={showCube}
+                onChange={(e) => setShowCube(e.target.checked)}
+                className="rounded border-gray-600"
+              />
+              <span className="text-cyan-400">Cube (8 vertices)</span>
+            </label>
 
-          <label className="flex items-center gap-2 cursor-pointer">
-            <input
-              type="checkbox"
-              checked={showSphere}
-              onChange={(e) => setShowSphere(e.target.checked)}
-              className="rounded border-gray-600"
-            />
-            <span className="text-purple-400">Sphere (V = 4π/3)</span>
-          </label>
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={showSphere}
+                onChange={(e) => setShowSphere(e.target.checked)}
+                className="rounded border-gray-600"
+              />
+              <span className="text-purple-400">Sphere (V = 4π/3)</span>
+            </label>
 
-          <label className="flex items-center gap-2 cursor-pointer">
-            <input
-              type="checkbox"
-              checked={showConnections}
-              onChange={(e) => setShowConnections(e.target.checked)}
-              className="rounded border-gray-600"
-            />
-            <span className="text-gray-400">Connection lines</span>
-          </label>
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={showConnections}
+                onChange={(e) => setShowConnections(e.target.checked)}
+                className="rounded border-gray-600"
+              />
+              <span className="text-gray-400">Connection lines</span>
+            </label>
 
-          <label className="flex items-center gap-2 cursor-pointer">
-            <input
-              type="checkbox"
-              checked={showDetails}
-              onChange={(e) => setShowDetails(e.target.checked)}
-              className="rounded border-gray-600"
-            />
-            <span className="text-gray-400">Show identities panel</span>
-          </label>
-        </div>
-
-        {/* Key equation */}
-        <div className="mt-4 p-3 bg-gradient-to-r from-cyan-900/30 to-purple-900/30 rounded border border-cyan-500/30">
-          <div className="text-center">
-            <span className="text-cyan-400 text-lg font-mono">Z² = </span>
-            <span className="text-cyan-300 text-lg">8</span>
-            <span className="text-gray-400 text-lg"> × </span>
-            <span className="text-purple-300 text-lg">(4π/3)</span>
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={showDetails}
+                onChange={(e) => setShowDetails(e.target.checked)}
+                className="rounded border-gray-600"
+              />
+              <span className="text-gray-400">Show identities panel</span>
+            </label>
           </div>
-          <div className="text-center mt-1 text-xs text-gray-500">
-            cube × sphere = cosmology × geometry
+
+          {/* Key equation */}
+          <div className="mt-4 p-3 bg-gradient-to-r from-cyan-900/30 to-purple-900/30 rounded border border-cyan-500/30">
+            <div className="text-center">
+              <span className="text-cyan-400 text-lg font-mono">Z² = </span>
+              <span className="text-cyan-300 text-lg">8</span>
+              <span className="text-gray-400 text-lg"> × </span>
+              <span className="text-purple-300 text-lg">(4π/3)</span>
+            </div>
+            <div className="text-center mt-1 text-xs text-gray-500">
+              cube × sphere = cosmology × geometry
+            </div>
           </div>
-        </div>
+        </CollapsiblePanel>
       </div>
 
       {/* Physics overlay */}

@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { useState, useMemo } from 'react'
 import { Citation, CITATIONS } from './Citation'
+import CollapsiblePanel from './CollapsiblePanel'
 
 // Physics constants (CODATA 2018)
 const G = 6.67430e-11  // m³/kg/s² (±0.00015)
@@ -322,10 +323,9 @@ export default function RARVisualization() {
           </div>
 
           {/* Controls */}
-          <div className="space-y-6">
+          <div className="space-y-4">
             {/* Model toggles */}
-            <div className="p-4 bg-gray-900/50 rounded-xl border border-gray-700">
-              <h3 className="text-sm font-bold text-white mb-3">Show Models</h3>
+            <CollapsiblePanel title="Show Models" titleColor="text-white" borderColor="border-gray-700">
               <div className="space-y-2">
                 <label className="flex items-center gap-2 cursor-pointer">
                   <input
@@ -355,11 +355,10 @@ export default function RARVisualization() {
                   <span className="text-gray-400">Newton (no DM)</span>
                 </label>
               </div>
-            </div>
+            </CollapsiblePanel>
 
             {/* Redshift slider */}
-            <div className="p-4 bg-gray-900/50 rounded-xl border border-gray-700">
-              <h3 className="text-sm font-bold text-white mb-3">Redshift Evolution</h3>
+            <CollapsiblePanel title="Redshift Evolution" titleColor="text-white" borderColor="border-gray-700">
               <div className="text-xs text-gray-400 mb-2">
                 z = {redshift.toFixed(1)} → a₀ = {(a0_z * 1e10).toFixed(2)} × 10⁻¹⁰ m/s²
               </div>
@@ -376,11 +375,10 @@ export default function RARVisualization() {
                 <span>Today</span>
                 <span>z=5 ({E_z.toFixed(1)}× a₀)</span>
               </div>
-            </div>
+            </CollapsiblePanel>
 
             {/* Galaxy filter */}
-            <div className="p-4 bg-gray-900/50 rounded-xl border border-gray-700">
-              <h3 className="text-sm font-bold text-white mb-3">Highlight Galaxy</h3>
+            <CollapsiblePanel title="Highlight Galaxy" titleColor="text-white" borderColor="border-gray-700" defaultOpen={false}>
               <select
                 value={highlightGalaxy || ''}
                 onChange={(e) => setHighlightGalaxy(e.target.value || null)}
@@ -391,27 +389,28 @@ export default function RARVisualization() {
                   <option key={g} value={g}>{g}</option>
                 ))}
               </select>
-            </div>
+            </CollapsiblePanel>
 
             {/* Key insight */}
-            <div className="p-4 bg-cyan-900/20 rounded-xl border border-cyan-500/30">
-              <h3 className="text-sm font-bold text-cyan-400 mb-2">Key Insight</h3>
+            <CollapsiblePanel title="Key Insight" titleColor="text-cyan-400" borderColor="border-cyan-500/30">
               <p className="text-xs text-gray-300">
                 The RAR shows <strong>zero intrinsic scatter</strong> — all scatter is observational error.
                 This is unexplained by ΛCDM but natural in Zimmerman's framework where
                 g† = a₀ is a fundamental scale.
               </p>
-            </div>
+            </CollapsiblePanel>
 
             {/* Formula */}
-            <div className="p-4 bg-purple-900/20 rounded-xl border border-purple-500/30 text-center">
-              <div className="font-mono text-purple-300 text-sm">
-                g_obs = g_bar / (1 - e^(-√(g_bar/a₀)))
+            <CollapsiblePanel title="Formula" titleColor="text-purple-400" borderColor="border-purple-500/30" defaultOpen={false}>
+              <div className="text-center">
+                <div className="font-mono text-purple-300 text-sm">
+                  g_obs = g_bar / (1 - e^(-√(g_bar/a₀)))
+                </div>
+                <div className="text-xs text-gray-400 mt-2">
+                  a₀ = cH₀/Z = 1.2 × 10⁻¹⁰ m/s²
+                </div>
               </div>
-              <div className="text-xs text-gray-400 mt-2">
-                a₀ = cH₀/Z = 1.2 × 10⁻¹⁰ m/s²
-              </div>
-            </div>
+            </CollapsiblePanel>
           </div>
         </div>
 

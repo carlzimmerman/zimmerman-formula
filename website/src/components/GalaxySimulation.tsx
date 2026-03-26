@@ -5,56 +5,7 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls, Stars, Html } from '@react-three/drei'
 import * as THREE from 'three'
 import { motion, AnimatePresence } from 'framer-motion'
-
-// Collapsible panel component for mobile-friendly viewing
-function CollapsiblePanel({
-  title,
-  children,
-  defaultOpen = true,
-  className = "",
-  headerClassName = ""
-}: {
-  title: string
-  children: React.ReactNode
-  defaultOpen?: boolean
-  className?: string
-  headerClassName?: string
-}) {
-  const [isOpen, setIsOpen] = useState(defaultOpen)
-
-  return (
-    <div className={`bg-black/90 backdrop-blur rounded-lg border border-purple-500/30 overflow-hidden ${className}`}>
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className={`w-full flex items-center justify-between p-3 hover:bg-white/5 transition-colors ${headerClassName}`}
-      >
-        <span className="text-sm font-bold text-purple-400">{title}</span>
-        <svg
-          className={`w-4 h-4 text-purple-400 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </svg>
-      </button>
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            <div className="px-4 pb-4">
-              {children}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  )
-}
+import CollapsiblePanel from './CollapsiblePanel'
 
 // Physics constants (CODATA 2018)
 const Z = 2 * Math.sqrt(8 * Math.PI / 3)  // 5.788810

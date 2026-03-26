@@ -1,7 +1,8 @@
 'use client'
 
-import { useState, useRef, useEffect, useMemo } from 'react'
+import { useState, useRef, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import CollapsiblePanel from './CollapsiblePanel'
 
 const Z = 2 * Math.sqrt(8 * Math.PI / 3)  // 5.788810
 
@@ -279,6 +280,16 @@ const nodes: Node[] = [
     x: 88,
     y: 95
   },
+  {
+    id: 'As',
+    label: 'A_s',
+    formula: '3α⁴/4',
+    value: '2.1×10⁻⁹',
+    category: 'cosmology',
+    description: 'Primordial amplitude (1.3% error) - connects inflation to EM!',
+    x: 75,
+    y: 78
+  },
 
   // Particle physics - right side
   {
@@ -412,6 +423,11 @@ const connections: Connection[] = [
   // Inflation
   { from: 'Z', to: 'ns', type: 'predicts' },
   { from: 'Z', to: 'efolds', type: 'predicts', label: '10Z' },
+  { from: 'alpha', to: 'As', type: 'predicts', label: '3α⁴/4' },
+  { from: 'Z2', to: 'As', type: 'derives', label: 'via α' },
+  { from: '3dim', to: 'As', type: 'contains', label: '3/4' },
+  { from: 'bek4', to: 'As', type: 'contains', label: '3/4' },
+  { from: 'ns', to: 'As', type: 'contains' },
 
   // Z to particle physics - leptons
   { from: 'Z', to: 'tau_mu', type: 'predicts', label: '+11' },
