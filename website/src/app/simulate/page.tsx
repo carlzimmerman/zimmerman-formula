@@ -2,7 +2,7 @@
 
 import dynamic from 'next/dynamic'
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 
 // Dynamic imports to avoid SSR issues with heavy components
@@ -87,16 +87,82 @@ const simulations = [
 
 export default function SimulatePage() {
   const [activeSimulation, setActiveSimulation] = useState('galaxy')
+  const [sidebarOpen, setSidebarOpen] = useState(false)
 
   const activeSim = simulations.find(s => s.id === activeSimulation)
 
   return (
-    <div className="flex h-screen bg-black">
-      {/* Sidebar */}
+    <div className="flex flex-col md:flex-row h-screen bg-black">
+      {/* Mobile Header */}
+      <div className="md:hidden flex items-center justify-between p-4 bg-gray-900/80 border-b border-purple-500/20">
+        <Link href="/" className="flex items-center gap-2">
+          <span className="text-lg font-bold text-white">
+            <span className="text-purple-400">Z</span>immerman
+          </span>
+        </Link>
+        <button
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+          className="p-2 text-white rounded-lg bg-gray-800 hover:bg-gray-700"
+          aria-label="Toggle menu"
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            {sidebarOpen ? (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            ) : (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            )}
+          </svg>
+        </button>
+      </div>
+
+      {/* Mobile Simulation Selector (Dropdown) */}
+      <AnimatePresence>
+        {sidebarOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            className="md:hidden bg-gray-900/95 border-b border-purple-500/20 overflow-hidden"
+          >
+            <div className="p-4 grid grid-cols-2 gap-2">
+              {simulations.map((sim) => (
+                <button
+                  key={sim.id}
+                  onClick={() => {
+                    sim.available && setActiveSimulation(sim.id)
+                    setSidebarOpen(false)
+                  }}
+                  disabled={!sim.available}
+                  className={`text-left px-3 py-3 rounded-lg flex items-center gap-2 transition-all ${
+                    activeSimulation === sim.id
+                      ? 'bg-purple-600/20 text-white border border-purple-500/50'
+                      : sim.available
+                      ? 'text-gray-400 bg-gray-800 hover:text-white'
+                      : 'text-gray-600 cursor-not-allowed'
+                  }`}
+                >
+                  <span className="text-xl">{sim.icon}</span>
+                  <span className="text-sm font-medium truncate">{sim.name}</span>
+                </button>
+              ))}
+            </div>
+            <div className="px-4 pb-4">
+              <Link
+                href="/"
+                className="text-xs text-purple-400 hover:text-purple-300 flex items-center gap-1"
+              >
+                ← Back to Overview
+              </Link>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Desktop Sidebar */}
       <motion.div
         initial={{ x: -100, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
-        className="w-72 bg-gray-900/80 backdrop-blur border-r border-purple-500/20 flex flex-col"
+        className="hidden md:flex w-72 bg-gray-900/80 backdrop-blur border-r border-purple-500/20 flex-col"
       >
         {/* Logo */}
         <Link href="/" className="p-4 border-b border-purple-500/20">
@@ -157,7 +223,7 @@ export default function SimulatePage() {
       </motion.div>
 
       {/* Main Content */}
-      <div className="flex-1 relative overflow-hidden">
+      <div className="flex-1 relative overflow-auto">
         {activeSimulation === 'galaxy' && <GalaxySimulation />}
         {activeSimulation === 'btfr' && <BTFRSimulation />}
         {activeSimulation === 'elgordo' && <ElGordoVisualization />}

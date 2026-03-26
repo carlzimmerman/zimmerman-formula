@@ -94,7 +94,7 @@ export default function Derivation() {
   const [showPrecision, setShowPrecision] = useState(false)
 
   return (
-    <div className="w-full min-h-screen bg-[#fafafa] p-8">
+    <div className="w-full min-h-screen bg-[#fafafa] p-4 md:p-8">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <header className="bg-white border-b border-gray-200 -mx-8 -mt-8 px-8 py-4 mb-8">
