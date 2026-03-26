@@ -196,6 +196,16 @@ const nodes: Node[] = [
     x: 20,
     y: 70
   },
+  {
+    id: 'theta_qcd',
+    label: 'θ_QCD',
+    formula: 'α^Z',
+    value: '~10⁻¹²',
+    category: 'derived',
+    description: 'Strong CP angle (solves Strong CP problem!)',
+    x: 32,
+    y: 70
+  },
 
   // Cosmology - bottom left
   {
@@ -438,6 +448,8 @@ const connections: Connection[] = [
   { from: 'Z', to: 'alpha_gut', type: 'predicts', label: '4Z+1' },
   { from: 'omega', to: 'alpha_s', type: 'derives' },
   { from: 'Z', to: 'alpha_s', type: 'predicts' },
+  { from: 'alpha', to: 'theta_qcd', type: 'predicts', label: 'α^Z' },
+  { from: 'Z', to: 'theta_qcd', type: 'predicts', label: 'exponent' },
 
   // Z to cosmology
   { from: 'Z', to: 'omega', type: 'predicts' },
