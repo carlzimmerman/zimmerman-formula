@@ -20,7 +20,9 @@ function E_z(z: number): number {
 }
 
 // KMOS3D + KROSS High-z Tully-Fisher Data
-// From Übler et al. (2017) ApJ 842, 121 and Tiley et al. (2019) MNRAS 485, 934
+// Based on Übler et al. (2017) ApJ 842, 121 and Tiley et al. (2019) MNRAS 485, 934
+// Data points are representative of the observed distributions and scatter
+// Full data available at: mpe.mpg.de/ir/KMOS3D
 const KMOS3D_DATA = [
   // z ~ 0.9 sample
   { id: 'KMOS3D_z09_001', z: 0.9, log_Mbar: 10.5, v_rot: 180, v_err: 25 },
@@ -47,7 +49,9 @@ const KMOS3D_DATA = [
   { id: 'KROSS_z1_004', z: 1.0, log_Mbar: 10.3, v_rot: 155, v_err: 35 },
 ]
 
-// Local BTFR data (z ~ 0, SPARC-based)
+// Local BTFR data (z ~ 0, based on SPARC)
+// Representative points from the tight local BTFR with slope ~4
+// Full data: McGaugh et al. (2016), Lelli et al. (2016)
 const LOCAL_BTFR = [
   { log_Mbar: 8.5, v_rot: 50 },
   { log_Mbar: 9.0, v_rot: 70 },

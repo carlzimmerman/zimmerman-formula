@@ -1,9 +1,8 @@
 # The Zimmerman Formula
 
-"I have always been a tinkerer and thinker. Before I go to sleep every night I close my eyes and teleport myself to far away galaxies and planets of my choosing. If you are reading this you probably do too. Sometimes new discoveries do not come from academia but by a lucky outsider.  I have deep respect for the academic community.  The serious ones, the ones who have dedicated their lives to science that impacts the lives of billions of people.  We as a society owe them a great debt of gratitude. This coincidence of "cosmic" proportions would also not be possible without the prior work of Verlinde, Smolen, Milgrom, Jacobsen, and all the researchers and scientists at places like JWST gathering the data that allowed this fit to be found, or the tools provided by Anthropic, Google, Autoresearch, and the HRM Paper. We live in a beatiful and geometrically defined universe, and there is still a lot to explore." 
-
-- Carl Zimmerman, Charlotte NC, March 25, 2026
-
+> *"I have always been a tinkerer and thinker. Before I go to sleep every night I close my eyes and teleport myself to far away galaxies and planets of my choosing. If you are reading this you probably do too. Sometimes new discoveries do not come from academia but by a lucky outsider. I have deep respect for the academic community. The serious ones, the ones who have dedicated their lives to science that impacts the lives of billions of people. We as a society owe them a great debt of gratitude. This coincidence of "cosmic" proportions would also not be possible without the prior work of Verlinde, Smolin, Milgrom, Jacobson, and all the researchers and scientists at places like JWST gathering the data that allowed this fit to be found, or the tools provided by Anthropic, Google, Autoresearch, and the HRM Paper. We live in a beautiful and geometrically defined universe, and there is still a lot to explore."*
+>
+> — Carl Zimmerman, Charlotte NC, March 25, 2026
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19199167.svg)](https://doi.org/10.5281/zenodo.19199167)
 
@@ -97,6 +96,115 @@ A geometric framework connecting **60+ physical constants** to spacetime geometr
 Full derivation: [`HORIZON_CALCULATION.md`](HORIZON_CALCULATION.md) | [`COMPLETE_DERIVATIONS_GUIDE.md`](COMPLETE_DERIVATIONS_GUIDE.md) | [`papers/100_DERIVATIONS_FROM_Z.md`](papers/100_DERIVATIONS_FROM_Z.md)
 
 **Useful Identity:** √(3π/2) = 3Z/8, so cosmological formulas like Ω_Λ = √(3π/2)/(1+√(3π/2)) become Ω_Λ = 3Z/(8+3Z).
+
+---
+
+## GEOMETRIC CLOSURE: Why Z Has This Value
+
+The constant Z = 2√(8π/3) is not arbitrary — each component traces to fundamental geometry:
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  GEOMETRIC ORIGIN OF EACH FACTOR IN Z = 2√(8π/3)                            │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│  THE FACTOR OF 2 — from kinetic energy / Schwarzschild radius:              │
+│                                                                             │
+│     Escape velocity = c:   ½mv² = GMm/r  →  r_s = 2GM/c²                   │
+│                            ↑                      ↑                         │
+│                     KE = ½mv²              Schwarzschild radius             │
+│                                                                             │
+│     The ½ in kinetic energy comes from calculus: ∫v dv = v²/2              │
+│     This propagates to horizon mass: M_H = c³/(2GH)                        │
+│     And finally to: a₀ = c√(Gρc)/2                                         │
+│                                                                             │
+│  THE FACTOR OF 8π — from General Relativity:                                │
+│                                                                             │
+│     Einstein field equations: Gμν = 8πG Tμν                                │
+│                                    ↑                                        │
+│     Why 8π?  8π = 2 × 4π where:                                            │
+│              • 4π = surface area of unit sphere (Gauss's law)              │
+│              • 2 = contribution of pressure in GR (doubles Newtonian)      │
+│                                                                             │
+│  THE FACTOR OF 3 — spatial dimensions:                                      │
+│                                                                             │
+│     Friedmann: H² = (8πG/3)ρ  →  the 3 is spatial dimensions               │
+│     Volume element: d³x, Laplacian: ∇² in 3D                               │
+│                                                                             │
+│  THE SQUARE ROOT — geometric mean:                                          │
+│                                                                             │
+│     a₀ = c√(Gρc) is the geometric mean of:                                 │
+│     • c (speed scale) and Gρc/c (acceleration from density)                │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+### Z² Connects Cube and Sphere Geometry
+
+```
+Z² = 4 × (8π/3) = 32π/3 = 8 × (4π/3)
+
+But 4π/3 = VOLUME OF UNIT SPHERE
+
+Therefore: Z² = 8 × V_sphere = (cube vertices) × (sphere volume)
+```
+
+This connects the **cube** (discrete, 8 vertices) to the **sphere** (continuous, volume 4π/3).
+
+### The Fine Structure Constant
+
+```
+α⁻¹ = 4Z² + 3
+    = 4 × 8 × (4π/3) + 3
+    = 32 × (volume of unit sphere) + 3
+
+Expanded:
+    = (spacetime dimensions) × (cube vertices) × (sphere volume) + (spatial dimensions)
+    = 4 × 8 × (4π/3) + 3
+    = 128π/3 + 3
+    = 137.04 ✓
+```
+
+### The 120° Angle Structure
+
+```
+α⁻¹ = 128π/3 + 3 = 64 × (2π/3) + 3
+                         ↑
+                   64 copies of 120°
+
+The angle 2π/3 = 120° appears in:
+• Interior angle of regular hexagon
+• E6 exceptional Lie group symmetry
+• Equilateral triangle geometry
+```
+
+### Near-Identity: 8 + 3Z ≈ 8π
+
+```
+8 + 3Z = 25.366
+8π     = 25.133
+
+Ratio: 1.009 (within 0.9%)
+```
+
+This suggests a deeper constraint connecting the cosmological denominator to 8π.
+
+### Summary: The Geometric Closure
+
+```
+Z = 2√(8π/3) where each factor has geometric origin:
+├── 2    ← Kinetic energy integral: ∫v dv = v²/2 → Schwarzschild radius
+├── 8π   ← Einstein's GR coupling: Gμν = 8πG Tμν (Gauss + pressure doubling)
+├── 3    ← Spatial dimensions in Friedmann equation
+└── √    ← Geometric mean relating speed and acceleration scales
+
+Consequences:
+├── Z² = 8 × (4π/3) = cube vertices × sphere volume
+├── α⁻¹ = 4Z² + 3 = 137.04 (fine structure from pure geometry)
+└── 8 + 3Z ≈ 8π (cosmological constraint)
+```
+
+**This is a closed geometric system.**
 
 ---
 
@@ -2463,14 +2571,14 @@ If you use the Zimmerman Formula or the proofs in this repository in your resear
   title = {The Zimmerman Unified Framework: Deriving 65 Fundamental Constants from Spacetime Geometry},
   year = {2026},
   publisher = {Zenodo},
-  doi = {10.5281/zenodo.19163583},
-  url = {https://doi.org/10.5281/zenodo.19163583}
+  doi = {10.5281/zenodo.19199167},
+  url = {https://doi.org/10.5281/zenodo.19199167}
 }
 ```
 
 ### Plain Text Citation
 
-> Zimmerman, C. (2026). The Zimmerman Unified Framework: Deriving 65 Fundamental Constants from Spacetime Geometry. Zenodo. https://doi.org/10.5281/zenodo.19163583
+> Zimmerman, C. (2026). The Zimmerman Unified Framework: Deriving 65 Fundamental Constants from Spacetime Geometry. Zenodo. https://doi.org/10.5281/zenodo.19199167
 
 ### GitHub Repository
 

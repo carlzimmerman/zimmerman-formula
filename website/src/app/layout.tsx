@@ -4,10 +4,10 @@ import './globals.css'
 export const metadata: Metadata = {
   metadataBase: new URL('https://abeautifullygeometricuniverse.web.app'),
   title: {
-    default: 'The Zimmerman Framework | Z = 2√(8π/3) = 5.788810',
+    default: 'Zimmerman (2025) — MOND Acceleration Scale from Critical Density',
     template: '%s | Zimmerman Framework'
   },
-  description: 'A unified geometric framework deriving 36 fundamental constants from a single value: Z = 2√(8π/3) = 5.788810. Predicts dark energy density (0.01% error), matter density (0.03% error), fine structure constant (0.004% error), and MOND acceleration scale evolution with redshift. Testable predictions for JWST high-redshift galaxy dynamics.',
+  description: 'Deriving the MOND acceleration scale a₀ from cosmological critical density: a₀ = c√(Gρc)/2 = cH₀/Z where Z = 2√(8π/3). Framework predicts a₀(z) evolution, resolves Hubble tension (H₀ = 71.5), and explains JWST early galaxies. DOI: 10.5281/zenodo.19199167',
   keywords: [
     // Core physics
     'Zimmerman constant', 'Z = 2√(8π/3)', '5.788810', 'fundamental constants',
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     'Einstein field equations 8π', 'gravitational coupling',
     'spatial dimensions geometry', 'quantum gravity connection',
     // DOI and verification
-    'Carl Zimmerman physics', 'DOI 10.5281/zenodo.19140258'
+    'Carl Zimmerman physics', 'DOI 10.5281/zenodo.19199167'
   ],
   authors: [{ name: 'Carl Zimmerman' }],
   creator: 'Carl Zimmerman',
@@ -85,7 +85,7 @@ export const metadata: Metadata = {
     'citation_title': 'The Zimmerman Framework: Deriving Fundamental Constants from Z = 2√(8π/3)',
     'citation_author': 'Carl Zimmerman',
     'citation_publication_date': '2024',
-    'citation_doi': '10.5281/zenodo.19140258',
+    'citation_doi': '10.5281/zenodo.19199167',
     'dc.title': 'Zimmerman Framework',
     'dc.creator': 'Carl Zimmerman',
     'dc.subject': 'theoretical physics; cosmology; fundamental constants',
@@ -108,7 +108,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
       </head>
-      <body className="font-mono text-white antialiased">
+      <body className="antialiased">
         {children}
       </body>
     </html>

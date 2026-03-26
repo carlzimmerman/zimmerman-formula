@@ -151,7 +151,7 @@ Working with an AI research assistant, I've documented **36 formulas** that emer
 
 The complete derivations are published at:
 
-**DOI: 10.5281/zenodo.19140258**
+**DOI: 10.5281/zenodo.19199167**
 
 I'm not claiming to have solved physics. I'm asking:
 
@@ -168,5 +168,5 @@ Carl Zimmerman
 ---
 
 **Links:**
-- Full documentation: https://doi.org/10.5281/zenodo.19140258
+- Full documentation: https://doi.org/10.5281/zenodo.19199167
 - GitHub: https://github.com/carlzimmerman/zimmerman-formula
