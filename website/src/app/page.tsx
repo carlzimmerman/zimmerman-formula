@@ -108,6 +108,151 @@ export default function Home() {
           </motion.div>
         </section>
 
+        {/* Interactive Demonstrations */}
+        <section className="py-20 px-4 md:px-8 bg-gradient-to-b from-transparent via-purple-950/10 to-transparent">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="max-w-4xl mx-auto"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-quantum-purple">
+              Interactive Demonstrations
+            </h2>
+            <p className="text-center text-gray-400 mb-12">
+              Explore the Zimmerman framework with real physics simulations
+            </p>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              <a
+                href="/derivation"
+                className="group p-6 bg-black/50 backdrop-blur rounded-xl border border-green-500/30 hover:border-green-500/60 transition-all hover:scale-[1.02]"
+              >
+                <div className="text-4xl mb-4">📐</div>
+                <h3 className="text-xl font-bold text-green-400 mb-2 group-hover:text-green-300">
+                  Full Derivation
+                </h3>
+                <p className="text-gray-400 text-sm">
+                  Step-by-step math from Z = 2√(8π/3) to all predictions.
+                </p>
+              </a>
+
+              <a
+                href="/compare"
+                className="group p-6 bg-black/50 backdrop-blur rounded-xl border border-purple-500/30 hover:border-purple-500/60 transition-all hover:scale-[1.02]"
+              >
+                <div className="text-4xl mb-4">📊</div>
+                <h3 className="text-xl font-bold text-purple-400 mb-2 group-hover:text-purple-300">
+                  Model Comparison
+                </h3>
+                <p className="text-gray-400 text-sm">
+                  Newton vs ΛCDM vs Zimmerman with SPARC data.
+                </p>
+              </a>
+
+              <a
+                href="/early-universe"
+                className="group p-6 bg-black/50 backdrop-blur rounded-xl border border-red-500/30 hover:border-red-500/60 transition-all hover:scale-[1.02]"
+              >
+                <div className="text-4xl mb-4">🌌</div>
+                <h3 className="text-xl font-bold text-red-400 mb-2 group-hover:text-red-300">
+                  Early Universe
+                </h3>
+                <p className="text-gray-400 text-sm">
+                  Structure formation with evolving a₀ through cosmic history.
+                </p>
+              </a>
+
+              <a
+                href="/simulate"
+                className="group p-6 bg-black/50 backdrop-blur rounded-xl border border-cyan-500/30 hover:border-cyan-500/60 transition-all hover:scale-[1.02]"
+              >
+                <div className="text-4xl mb-4">🌀</div>
+                <h3 className="text-xl font-bold text-cyan-400 mb-2 group-hover:text-cyan-300">
+                  Galaxy Rotation
+                </h3>
+                <p className="text-gray-400 text-sm">
+                  Galaxy dynamics as a₀ evolves through cosmic time.
+                </p>
+              </a>
+
+              <a
+                href="/el-gordo"
+                className="group p-6 bg-black/50 backdrop-blur rounded-xl border border-orange-500/30 hover:border-orange-500/60 transition-all hover:scale-[1.02]"
+              >
+                <div className="text-4xl mb-4">💥</div>
+                <h3 className="text-xl font-bold text-orange-400 mb-2 group-hover:text-orange-300">
+                  El Gordo Cluster
+                </h3>
+                <p className="text-gray-400 text-sm">
+                  Resolves the 6σ tension at z = 0.87.
+                </p>
+              </a>
+
+              <a
+                href="https://doi.org/10.5281/zenodo.19199167"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group p-6 bg-black/50 backdrop-blur rounded-xl border border-yellow-500/30 hover:border-yellow-500/60 transition-all hover:scale-[1.02]"
+              >
+                <div className="text-4xl mb-4">📄</div>
+                <h3 className="text-xl font-bold text-yellow-400 mb-2 group-hover:text-yellow-300">
+                  Full Paper
+                </h3>
+                <p className="text-gray-400 text-sm">
+                  Complete documentation with all 60+ formulas (DOI).
+                </p>
+              </a>
+            </div>
+
+            {/* Tools & Data section */}
+            <h3 className="text-2xl font-bold text-center mt-12 mb-6 text-gray-300">
+              Tools & Observational Data
+            </h3>
+            <div className="grid md:grid-cols-3 gap-6">
+              <a
+                href="/rar"
+                className="group p-6 bg-black/50 backdrop-blur rounded-xl border border-blue-500/30 hover:border-blue-500/60 transition-all hover:scale-[1.02]"
+              >
+                <div className="text-4xl mb-4">📈</div>
+                <h3 className="text-xl font-bold text-blue-400 mb-2 group-hover:text-blue-300">
+                  RAR + SPARC Data
+                </h3>
+                <p className="text-gray-400 text-sm">
+                  2,693 data points from 153 galaxies showing the Radial Acceleration Relation.
+                </p>
+              </a>
+
+              <a
+                href="/calculator"
+                className="group p-6 bg-black/50 backdrop-blur rounded-xl border border-teal-500/30 hover:border-teal-500/60 transition-all hover:scale-[1.02]"
+              >
+                <div className="text-4xl mb-4">🧮</div>
+                <h3 className="text-xl font-bold text-teal-400 mb-2 group-hover:text-teal-300">
+                  Calculator
+                </h3>
+                <p className="text-gray-400 text-sm">
+                  Interactive tool for a₀(z), galaxy dynamics, and BTFR predictions.
+                </p>
+              </a>
+
+              <a
+                href="/evidence"
+                className="group p-6 bg-black/50 backdrop-blur rounded-xl border border-pink-500/30 hover:border-pink-500/60 transition-all hover:scale-[1.02]"
+              >
+                <div className="text-4xl mb-4">📜</div>
+                <h3 className="text-xl font-bold text-pink-400 mb-2 group-hover:text-pink-300">
+                  Evidence Timeline
+                </h3>
+                <p className="text-gray-400 text-sm">
+                  JWST, DESI, wide binaries, El Gordo — all the supporting observations.
+                </p>
+              </a>
+            </div>
+          </motion.div>
+        </section>
+
         {/* Dimensional Hierarchy */}
         <DimensionalHierarchy />
 

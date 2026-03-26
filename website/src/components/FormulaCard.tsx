@@ -1,7 +1,6 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useEffect, useRef } from 'react'
 
 interface FormulaCardProps {
   title: string
@@ -12,6 +11,46 @@ interface FormulaCardProps {
   delay?: number
 }
 
+// Simple formula display without KaTeX (for reliability)
+function FormulaDisplay({ formula }: { formula: string }) {
+  // Convert LaTeX-like notation to readable Unicode text
+  // Order matters: replace Greek letters first, then subscripts
+  const readable = formula
+    // Greek letters (must be done before removing backslashes)
+    .replace(/\\alpha_s/g, 'αₛ')
+    .replace(/\\alpha/g, 'α')
+    .replace(/\\Omega_\\Lambda/g, 'Ω_Λ')
+    .replace(/\\Omega/g, 'Ω')
+    .replace(/\\Lambda/g, 'Λ')
+    .replace(/\\mu/g, 'μ')
+    .replace(/\\pi/g, 'π')
+    .replace(/\\sqrt/g, '√')
+    // Fractions
+    .replace(/\\frac\{([^}]+)\}\{([^}]+)\}/g, '($1) / ($2)')
+    // Superscripts
+    .replace(/\^2/g, '²')
+    .replace(/\^3/g, '³')
+    .replace(/\^4/g, '⁴')
+    // Subscripts (convert _X to subscript Unicode)
+    .replace(/_\\Lambda/g, '_Λ')
+    .replace(/_s/g, 'ₛ')
+    .replace(/_m/g, 'ₘ')
+    .replace(/_e/g, 'ₑ')
+    .replace(/_p/g, 'ₚ')
+    .replace(/_0/g, '₀')
+    // Clean up remaining LaTeX artifacts
+    .replace(/\\_/g, '_')
+    .replace(/\{/g, '')
+    .replace(/\}/g, '')
+    .replace(/\\/g, '')  // Remove any remaining backslashes
+
+  return (
+    <div className="text-xl text-white font-mono text-center">
+      {readable}
+    </div>
+  )
+}
+
 export default function FormulaCard({
   title,
   formula,
@@ -20,20 +59,6 @@ export default function FormulaCard({
   error,
   delay = 0
 }: FormulaCardProps) {
-  const cardRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    // Render KaTeX
-    if (cardRef.current && typeof window !== 'undefined') {
-      const formulaEl = cardRef.current.querySelector('.formula')
-      if (formulaEl && (window as any).katex) {
-        (window as any).katex.render(formula, formulaEl, {
-          throwOnError: false,
-          displayMode: true
-        })
-      }
-    }
-  }, [formula])
 
   // Determine error color
   const getErrorColor = (err: number) => {
@@ -45,30 +70,29 @@ export default function FormulaCard({
 
   return (
     <motion.div
-      ref={cardRef}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay }}
       viewport={{ once: true }}
       whileHover={{ scale: 1.02, y: -5 }}
-      className="gradient-border p-6 bg-cosmic-dark/80 backdrop-blur"
+      className="p-6 bg-gray-900/80 backdrop-blur rounded-xl border border-purple-500/30 hover:border-purple-500/60 transition-colors"
     >
-      <h3 className="text-lg font-semibold text-quantum-purple mb-4">{title}</h3>
+      <h3 className="text-lg font-semibold text-purple-400 mb-4">{title}</h3>
 
       {/* Formula display */}
-      <div className="formula text-xl text-white mb-6 min-h-[60px] flex items-center justify-center">
-        {/* KaTeX will render here */}
+      <div className="mb-6 min-h-[60px] flex items-center justify-center bg-black/30 rounded-lg p-4">
+        <FormulaDisplay formula={formula} />
       </div>
 
       {/* Values comparison */}
       <div className="space-y-2 text-sm">
         <div className="flex justify-between">
           <span className="text-gray-400">Predicted:</span>
-          <span className="text-dimension-gold font-mono">{predicted}</span>
+          <span className="text-yellow-400 font-mono">{predicted}</span>
         </div>
         <div className="flex justify-between">
           <span className="text-gray-400">Measured:</span>
-          <span className="text-energy-cyan font-mono">{measured}</span>
+          <span className="text-cyan-400 font-mono">{measured}</span>
         </div>
         <div className="flex justify-between">
           <span className="text-gray-400">Error:</span>
@@ -81,7 +105,7 @@ export default function FormulaCard({
       {/* Accuracy bar */}
       <div className="mt-4 h-2 bg-gray-700 rounded-full overflow-hidden">
         <motion.div
-          className="h-full bg-gradient-to-r from-quantum-purple to-energy-cyan"
+          className="h-full bg-gradient-to-r from-purple-500 to-cyan-500"
           initial={{ width: 0 }}
           whileInView={{ width: `${Math.max(100 - error * 20, 50)}%` }}
           transition={{ duration: 1, delay: delay + 0.3 }}

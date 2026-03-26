@@ -1,0 +1,373 @@
+'use client'
+
+import { motion } from 'framer-motion'
+import { useState } from 'react'
+
+// Precise mathematical constants
+const PI = Math.PI
+const Z = 2 * Math.sqrt(8 * PI / 3)
+const Z_SQUARED = Z * Z
+const DENOMINATOR = 8 + 3 * Z
+
+// Derived values with high precision
+const OMEGA_LAMBDA = (3 * Z) / DENOMINATOR
+const OMEGA_MATTER = 8 / DENOMINATOR
+const ALPHA_INV = 4 * Z_SQUARED + 3
+const ALPHA = 1 / ALPHA_INV
+
+// Physical constants
+const c = 299792458  // m/s (exact)
+const H0_SI = 2.268e-18  // s⁻¹ (70.0 km/s/Mpc)
+const a0_LOCAL = (c * H0_SI) / Z
+
+// Measured values
+const PLANCK_OMEGA_LAMBDA = 0.6847
+const PLANCK_OMEGA_MATTER = 0.3153
+const MEASURED_ALPHA_INV = 137.035999084
+const MOND_A0 = 1.2e-10
+
+// E(z) function for redshift evolution
+function E(z: number): number {
+  return Math.sqrt(OMEGA_MATTER * Math.pow(1 + z, 3) + OMEGA_LAMBDA)
+}
+
+interface StepProps {
+  number: number
+  title: string
+  children: React.ReactNode
+  delay?: number
+}
+
+function Step({ number, title, children, delay = 0 }: StepProps) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay }}
+      className="mb-8 p-6 bg-black/40 rounded-xl border border-purple-500/20"
+    >
+      <div className="flex items-center gap-4 mb-4">
+        <div className="w-10 h-10 rounded-full bg-purple-600 flex items-center justify-center font-bold text-white">
+          {number}
+        </div>
+        <h3 className="text-xl font-bold text-purple-400">{title}</h3>
+      </div>
+      <div className="ml-14">{children}</div>
+    </motion.div>
+  )
+}
+
+function MathBlock({ children, highlight = false }: { children: React.ReactNode, highlight?: boolean }) {
+  return (
+    <div className={`font-mono text-lg p-4 rounded-lg my-4 ${
+      highlight ? 'bg-cyan-900/30 border border-cyan-500/30' : 'bg-gray-900/50'
+    }`}>
+      {children}
+    </div>
+  )
+}
+
+function Comparison({ label, predicted, measured, unit = '' }: {
+  label: string
+  predicted: number | string
+  measured: number | string
+  unit?: string
+}) {
+  const pred = typeof predicted === 'number' ? predicted : parseFloat(predicted)
+  const meas = typeof measured === 'number' ? measured : parseFloat(measured)
+  const error = Math.abs((pred - meas) / meas * 100)
+
+  return (
+    <div className="grid grid-cols-3 gap-4 p-3 bg-gray-800/30 rounded-lg text-sm">
+      <div className="text-gray-400">{label}</div>
+      <div className="text-center">
+        <span className="text-yellow-400">{typeof predicted === 'number' ? predicted.toPrecision(6) : predicted}</span>
+        <span className="text-gray-500 ml-1">{unit}</span>
+      </div>
+      <div className="text-center">
+        <span className="text-cyan-400">{typeof measured === 'number' ? measured.toPrecision(6) : measured}</span>
+        <span className="text-gray-500 ml-1">{unit}</span>
+        <span className={`ml-2 text-xs ${error < 0.1 ? 'text-green-400' : 'text-yellow-400'}`}>
+          ({error.toFixed(3)}%)
+        </span>
+      </div>
+    </div>
+  )
+}
+
+export default function Derivation() {
+  const [showPrecision, setShowPrecision] = useState(false)
+
+  return (
+    <div className="w-full min-h-screen bg-gradient-to-b from-black via-purple-950/10 to-black p-8">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="max-w-4xl mx-auto"
+      >
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent mb-4">
+            The Complete Derivation
+          </h1>
+          <p className="text-xl text-gray-400">
+            From geometry to cosmology in 6 steps
+          </p>
+        </div>
+
+        {/* Precision Toggle */}
+        <div className="flex justify-center mb-8">
+          <button
+            onClick={() => setShowPrecision(!showPrecision)}
+            className={`px-4 py-2 rounded-lg transition-colors ${
+              showPrecision
+                ? 'bg-purple-600 text-white'
+                : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
+            }`}
+          >
+            {showPrecision ? 'High Precision Mode' : 'Show Full Precision'}
+          </button>
+        </div>
+
+        {/* Step 1: The Geometric Origin */}
+        <Step number={1} title="The Geometric Origin" delay={0.1}>
+          <p className="text-gray-300 mb-4">
+            The Zimmerman constant emerges from the ratio of gravitational geometry (8π from Einstein's field equations)
+            to spatial dimensionality (3), with a quantum factor of 2.
+          </p>
+          <MathBlock highlight>
+            <div className="text-center">
+              <span className="text-purple-400">Z</span> = 2 × √(8π / 3)
+            </div>
+          </MathBlock>
+          <div className="grid md:grid-cols-3 gap-4 mt-4 text-sm">
+            <div className="p-3 bg-purple-900/20 rounded-lg">
+              <div className="text-purple-400 font-bold">8π</div>
+              <div className="text-gray-400">Einstein's Gμν = 8πG Tμν</div>
+            </div>
+            <div className="p-3 bg-cyan-900/20 rounded-lg">
+              <div className="text-cyan-400 font-bold">3</div>
+              <div className="text-gray-400">Spatial dimensions</div>
+            </div>
+            <div className="p-3 bg-yellow-900/20 rounded-lg">
+              <div className="text-yellow-400 font-bold">2</div>
+              <div className="text-gray-400">Quantum amplitude factor</div>
+            </div>
+          </div>
+          <MathBlock>
+            <div className="space-y-2 text-sm">
+              <div>8π/3 = {(8 * PI / 3).toFixed(showPrecision ? 10 : 6)}</div>
+              <div>√(8π/3) = {Math.sqrt(8 * PI / 3).toFixed(showPrecision ? 10 : 6)}</div>
+              <div className="text-cyan-400 font-bold">Z = {Z.toFixed(showPrecision ? 10 : 6)}</div>
+            </div>
+          </MathBlock>
+        </Step>
+
+        {/* Step 2: The Universal Denominator */}
+        <Step number={2} title="The Universal Denominator" delay={0.2}>
+          <p className="text-gray-300 mb-4">
+            A key structural element appears: the sum of 8 and 3Z. This denominator
+            appears in multiple derived quantities.
+          </p>
+          <MathBlock highlight>
+            <div className="text-center">
+              <span className="text-purple-400">D</span> = 8 + 3Z = 8 + 3({Z.toFixed(4)}) = {DENOMINATOR.toFixed(showPrecision ? 10 : 6)}
+            </div>
+          </MathBlock>
+          <p className="text-gray-400 text-sm mt-4">
+            This structure suggests a partition: 8 parts matter-like, 3Z parts vacuum-like.
+          </p>
+        </Step>
+
+        {/* Step 3: Dark Energy Density */}
+        <Step number={3} title="Dark Energy Density" delay={0.3}>
+          <p className="text-gray-300 mb-4">
+            The cosmological constant fraction is the ratio of the vacuum contribution (3Z)
+            to the total (8 + 3Z).
+          </p>
+          <MathBlock highlight>
+            <div className="text-center">
+              <span className="text-purple-400">Ω_Λ</span> = 3Z / (8 + 3Z) = {(3 * Z).toFixed(4)} / {DENOMINATOR.toFixed(4)}
+            </div>
+          </MathBlock>
+          <MathBlock>
+            <div className="text-cyan-400 text-center text-xl">
+              Ω_Λ = {OMEGA_LAMBDA.toFixed(showPrecision ? 10 : 6)}
+            </div>
+          </MathBlock>
+          <div className="mt-4">
+            <Comparison
+              label="Dark Energy"
+              predicted={OMEGA_LAMBDA}
+              measured={PLANCK_OMEGA_LAMBDA}
+            />
+          </div>
+        </Step>
+
+        {/* Step 4: Matter Density */}
+        <Step number={4} title="Matter Density" delay={0.4}>
+          <p className="text-gray-300 mb-4">
+            The matter fraction is the remaining portion: 8 out of (8 + 3Z).
+            Note that Ω_Λ + Ω_m = 1 by construction — a flat universe.
+          </p>
+          <MathBlock highlight>
+            <div className="text-center">
+              <span className="text-purple-400">Ω_m</span> = 8 / (8 + 3Z) = 8 / {DENOMINATOR.toFixed(4)}
+            </div>
+          </MathBlock>
+          <MathBlock>
+            <div className="text-cyan-400 text-center text-xl">
+              Ω_m = {OMEGA_MATTER.toFixed(showPrecision ? 10 : 6)}
+            </div>
+          </MathBlock>
+          <div className="mt-4">
+            <Comparison
+              label="Matter"
+              predicted={OMEGA_MATTER}
+              measured={PLANCK_OMEGA_MATTER}
+            />
+          </div>
+          <div className="mt-4 p-3 bg-green-900/20 rounded-lg text-sm">
+            <span className="text-green-400">Check:</span> Ω_Λ + Ω_m = {(OMEGA_LAMBDA + OMEGA_MATTER).toFixed(10)} ≈ 1.000 ✓
+          </div>
+        </Step>
+
+        {/* Step 5: Fine Structure Constant */}
+        <Step number={5} title="Fine Structure Constant" delay={0.5}>
+          <p className="text-gray-300 mb-4">
+            The electromagnetic coupling constant emerges from Z² with the same structural element (3).
+          </p>
+          <MathBlock highlight>
+            <div className="text-center">
+              <span className="text-purple-400">α</span> = 1 / (4Z² + 3)
+            </div>
+          </MathBlock>
+          <MathBlock>
+            <div className="space-y-2 text-sm">
+              <div>Z² = {Z_SQUARED.toFixed(showPrecision ? 10 : 6)}</div>
+              <div>4Z² = {(4 * Z_SQUARED).toFixed(showPrecision ? 10 : 6)}</div>
+              <div>4Z² + 3 = {ALPHA_INV.toFixed(showPrecision ? 10 : 6)}</div>
+              <div className="text-cyan-400 font-bold">1/α = {ALPHA_INV.toFixed(showPrecision ? 10 : 6)}</div>
+            </div>
+          </MathBlock>
+          <div className="mt-4">
+            <Comparison
+              label="1/α"
+              predicted={ALPHA_INV}
+              measured={MEASURED_ALPHA_INV}
+            />
+          </div>
+        </Step>
+
+        {/* Step 6: MOND Acceleration */}
+        <Step number={6} title="Zimmerman Acceleration Scale" delay={0.6}>
+          <p className="text-gray-300 mb-4">
+            The characteristic acceleration scale that governs galaxy dynamics is derived from
+            fundamental constants divided by Z.
+          </p>
+          <MathBlock highlight>
+            <div className="text-center">
+              <span className="text-purple-400">a₀</span> = c × H₀ / Z
+            </div>
+          </MathBlock>
+          <MathBlock>
+            <div className="space-y-2 text-sm">
+              <div>c = {c.toExponential(6)} m/s (exact)</div>
+              <div>H₀ = {H0_SI.toExponential(4)} s⁻¹ (70 km/s/Mpc)</div>
+              <div>c × H₀ = {(c * H0_SI).toExponential(4)} m/s²</div>
+              <div className="text-cyan-400 font-bold">a₀ = {a0_LOCAL.toExponential(showPrecision ? 6 : 4)} m/s²</div>
+            </div>
+          </MathBlock>
+          <div className="mt-4">
+            <Comparison
+              label="a₀"
+              predicted={`${(a0_LOCAL * 1e10).toFixed(2)}×10⁻¹⁰`}
+              measured={`${(MOND_A0 * 1e10).toFixed(1)}×10⁻¹⁰`}
+              unit="m/s²"
+            />
+          </div>
+        </Step>
+
+        {/* The Testable Prediction */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.7 }}
+          className="mt-12 p-8 bg-gradient-to-r from-cyan-900/30 to-purple-900/30 rounded-2xl border border-cyan-500/30"
+        >
+          <h2 className="text-2xl font-bold text-cyan-400 mb-4 text-center">
+            The Testable Prediction
+          </h2>
+          <p className="text-gray-300 mb-6 text-center">
+            Unlike constant-a₀ MOND, the Zimmerman framework predicts that a₀ <strong>evolves with redshift</strong>:
+          </p>
+          <MathBlock highlight>
+            <div className="text-center text-xl">
+              a₀(z) = a₀(0) × E(z)
+              <div className="text-sm text-gray-400 mt-2">
+                where E(z) = √(Ω_m(1+z)³ + Ω_Λ)
+              </div>
+            </div>
+          </MathBlock>
+
+          <div className="mt-6 overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="text-gray-400 border-b border-gray-700">
+                  <th className="py-2 text-left">Redshift</th>
+                  <th className="py-2 text-center">Lookback</th>
+                  <th className="py-2 text-center">E(z)</th>
+                  <th className="py-2 text-center">a₀(z) / a₀(0)</th>
+                </tr>
+              </thead>
+              <tbody className="text-gray-300">
+                {[0, 0.5, 0.87, 1, 2, 5, 10].map((z) => (
+                  <tr key={z} className="border-b border-gray-800">
+                    <td className="py-2">z = {z}</td>
+                    <td className="py-2 text-center text-gray-400">
+                      {z === 0 ? 'Now' : z === 0.87 ? 'El Gordo' : `${(13.8 * (1 - 1/Math.pow(1+z, 1.5))).toFixed(1)} Gyr`}
+                    </td>
+                    <td className="py-2 text-center text-cyan-400">{E(z).toFixed(3)}</td>
+                    <td className="py-2 text-center text-yellow-400">{E(z).toFixed(2)}×</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <p className="text-gray-400 text-sm mt-6 text-center">
+            This prediction is <strong className="text-green-400">falsifiable</strong> by JWST observations of high-redshift galaxy kinematics.
+          </p>
+        </motion.div>
+
+        {/* Summary Box */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8 }}
+          className="mt-12 p-6 bg-black/50 rounded-xl border border-purple-500/30"
+        >
+          <h3 className="text-lg font-bold text-purple-400 mb-4 text-center">Summary of Predictions</h3>
+          <div className="space-y-2">
+            <Comparison label="Ω_Λ (Dark Energy)" predicted={OMEGA_LAMBDA} measured={PLANCK_OMEGA_LAMBDA} />
+            <Comparison label="Ω_m (Matter)" predicted={OMEGA_MATTER} measured={PLANCK_OMEGA_MATTER} />
+            <Comparison label="1/α (Fine Structure)" predicted={ALPHA_INV} measured={MEASURED_ALPHA_INV} />
+          </div>
+          <div className="mt-6 text-center text-sm text-gray-400">
+            All derived from a single constant: <span className="text-cyan-400 font-mono">Z = 2√(8π/3) = {Z.toFixed(6)}</span>
+          </div>
+        </motion.div>
+
+        {/* Back link */}
+        <div className="mt-12 text-center">
+          <a
+            href="/"
+            className="text-purple-400 hover:text-purple-300 transition-colors"
+          >
+            ← Back to Home
+          </a>
+        </div>
+      </motion.div>
+    </div>
+  )
+}

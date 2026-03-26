@@ -1,8 +1,10 @@
 # The Zimmerman Formula
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19163583.svg)](https://doi.org/10.5281/zenodo.19163583)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19199167.svg)](https://doi.org/10.5281/zenodo.19199167)
 
-**Published:** March 2026 | **DOI:** [10.5281/zenodo.19163583](https://doi.org/10.5281/zenodo.19163583)
+**Published:** March 2026 | **DOI:** [10.5281/zenodo.19199167](https://doi.org/10.5281/zenodo.19199167)
+
+**Interactive Visualizations:** [abeautifullygeometricuniverse.web.app](https://abeautifullygeometricuniverse.web.app)
 
 A geometric framework connecting **60+ physical constants** to spacetime geometry through Z = 2√(8π/3). Three results derived from first principles (GR + horizon thermodynamics); six with strong theoretical motivation; 50+ precise numerical patterns (avg 0.4% error) revealing hidden structure in the Standard Model.
 

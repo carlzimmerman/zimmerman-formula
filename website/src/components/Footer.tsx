@@ -17,12 +17,12 @@ export default function Footer() {
           <div className="mb-8">
             <span className="text-gray-500">DOI: </span>
             <a
-              href="https://doi.org/10.5281/zenodo.19212718"
+              href="https://doi.org/10.5281/zenodo.19199167"
               target="_blank"
               rel="noopener noreferrer"
               className="text-quantum-purple hover:text-quantum-purple/80 transition-colors"
             >
-              10.5281/zenodo.19212718
+              10.5281/zenodo.19199167
             </a>
           </div>
 
@@ -49,9 +49,29 @@ export default function Footer() {
             </a>
           </div>
 
+          {/* Creative Commons License */}
+          <div className="mb-8">
+            <a
+              href="https://creativecommons.org/licenses/by/4.0/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
+            >
+              <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9v-2h2v2zm0-4H9V7h2v5zm4 4h-2v-2h2v2zm0-4h-2V7h2v5z"/>
+              </svg>
+              <span className="text-sm">CC BY 4.0</span>
+            </a>
+            <p className="text-xs text-gray-500 mt-2">
+              This work is licensed under a Creative Commons Attribution 4.0 International License.
+              <br />
+              Free to share and adapt with attribution.
+            </p>
+          </div>
+
           {/* Copyright */}
           <div className="text-gray-600 text-sm">
-            <p>Carl Zimmerman | March 2026</p>
+            <p>Carl Zimmerman | 2024-2026</p>
             <p className="mt-2 text-gray-700">
               "The universe is mathematical. Z = 2√(8π/3) is its fundamental constant."
             </p>

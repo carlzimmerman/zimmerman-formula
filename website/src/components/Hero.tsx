@@ -99,6 +99,25 @@ export default function Hero() {
           <Stat value="0" label="Free Parameters" />
         </motion.div>
 
+        {/* Launch Simulation Button */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5 }}
+          className="mt-12"
+        >
+          <a
+            href="/simulate"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-cyan-600 rounded-lg text-white font-semibold hover:from-purple-500 hover:to-cyan-500 transition-all transform hover:scale-105"
+          >
+            <span>🌀</span>
+            Launch Universe Simulation
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
+        </motion.div>
+
         {/* Scroll indicator */}
         <motion.div
           className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
