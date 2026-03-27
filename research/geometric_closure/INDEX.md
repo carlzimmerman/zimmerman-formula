@@ -69,6 +69,8 @@ From this single equation, ALL of physics emerges.
 | `THREE_GENERATIONS.py` | 3 generations from 3D sphere (4π/3) |
 | `NEUTRINO_MASSES.py` | m_ν = m_e × 10^(-Z) / 8 ≈ 0.1 eV |
 | `MUON_G2_ANOMALY.py` | No new physics - hadronic uncertainty |
+| `WAVE_PARTICLE_DUALITY.py` | Z² = CUBE × SPHERE = PARTICLE × WAVE |
+| `SPIN_ORIGIN.py` | Factor 2 in Z enables spin-1/2 fermions |
 
 ---
 
@@ -117,6 +119,8 @@ From this single equation, ALL of physics emerges.
 8. **Neutrino Mass**: m_ν = m_e × 10^(-Z)/8 ≈ 0.1 eV (matches observation!)
 9. **CC Problem Solved**: log₁₀(ρ_Pl/ρ_Λ) = 4Z² - 12 = 122 (exact)
 10. **Arrow of Time**: Entropy flows CUBE → SPHERE
+11. **Wave-Particle Duality**: Not paradox but unity: Z² = PARTICLE × WAVE
+12. **Spin Origin**: Factor 2 in Z creates spin-1/2 fermions
 
 ---
 
