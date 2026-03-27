@@ -115,10 +115,13 @@ From this single equation, ALL of physics emerges.
 | `THE_VACUUM.py` | Vacuum = Z² ground state; CC solved by 4Z² - 12 = 122 |
 | `LIFE_AND_EVOLUTION.py` | Life is Z² self-organizing; evolution = CUBE→SPHERE |
 | `SYMMETRY_ORIGINS.py` | All symmetries from Z² geometry |
+| `RANDOMNESS_DETERMINISM.py` | Both true: CUBE deterministic, mapping probabilistic |
+| `EMERGENCE.py` | Complexity from Z² self-organization; 8^n combinations |
+| `NATURE_OF_LAWS.py` | Laws ARE Z² geometry; necessary, not contingent |
 
 ---
 
-## The 44+ Confirmed Predictions & Insights
+## The 47+ Confirmed Predictions & Insights
 
 ### Exact Identities (0% error)
 - Z⁴ × 9/π² = 1024 = 2¹⁰
@@ -197,6 +200,9 @@ From this single equation, ALL of physics emerges.
 42. **The Vacuum**: Vacuum = Z² ground state; virtual particles = CUBE fluctuations
 43. **Life's Origin**: Life = Z² self-organizing; evolution = CUBE variation → SPHERE selection
 44. **Symmetry Origins**: All symmetries ARE Z² geometry; discrete (CUBE) + continuous (SPHERE)
+45. **Determinism & Randomness**: Both true! CUBE evolves deterministically; mapping is probabilistic
+46. **Emergence**: Complexity from 8^n combinations; Z² self-organizing at all levels
+47. **Nature of Laws**: Laws ARE Z² structure; necessary, universal, eternal, mathematical
 
 ---
 
