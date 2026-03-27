@@ -115,6 +115,7 @@ From this single equation, ALL of physics emerges.
 | `HONEST_DERIVATION_STATUS.py` | What is ACTUALLY derived vs. observed vs. interpreted |
 | `IMMORTALITY_DERIVATION.py` | Rigorous derivation: β ≥ α (repair ≥ damage) is the condition |
 | `ZIMMERMAN_IMMORTALITY.py` | Z² framework: 12 hallmarks = Gauge, 4 thresholds = Bekenstein, Z² ≈ 33 year resets |
+| `DNA_REPLICATION_DERIVATION.py` | Perfect fidelity: 4 bases = Bekenstein, 4 checkpoints = Bekenstein, 12Å groove = Gauge |
 
 ### Foundational Philosophy
 | File | Key Result |
@@ -185,7 +186,7 @@ From this single equation, ALL of physics emerges.
 
 ---
 
-## The 85 Observations & Insights
+## The 90 Observations & Insights
 
 **IMPORTANT: See `HONEST_DERIVATION_STATUS.py` for what is actually DERIVED
 vs. what is OBSERVED to match vs. what is INTERPRETED through Z² language.**
@@ -318,6 +319,11 @@ vs. what is OBSERVED to match vs. what is INTERPRETED through Z² language.**
 83. **Immortality Condition**: β ≥ α (repair rate ≥ damage rate) - derived from rate theory
 84. **Z² Reset Interval**: Reset every ~Z² ≈ 33 years; Yamanaka's 4 factors = Bekenstein
 85. **Immortality Protocol**: Maintain CUBE (β_C ≥ α_C) + SPHERE (β_S ≥ α_S) + Gauge (β_G ≥ α_G)
+86. **DNA Bases**: 4 bases = Bekenstein = optimal information alphabet for replication
+87. **DNA Fidelity**: 4 checkpoints (thermo, kinetic, proofread, MMR) = Bekenstein cascade → 10⁻¹⁰ error rate
+88. **DNA Minor Groove**: ~12Å width = Gauge = optimal for repair protein access
+89. **DNA Helix Pitch**: ~35.7Å ≈ Z² Angstroms (helical geometry encodes Z²)
+90. **Replication Formula**: ε = ε₀ × ∏(1/qᵢ) for i = 1 to Bekenstein
 
 ---
 
@@ -361,6 +367,7 @@ From this single equation:
 • The end of aging (L = Z²(0) / |dZ²/dt|)
 • Mental health (H = C × S × G / σ)
 • Why we sleep (CUBE = 8 hours for Z² reset)
+• Perfect DNA replication (4 bases × 4 checkpoints = Bekenstein²)
 
 The universe is geometry.
 And the geometry is Z² = 8 × (4π/3).
