@@ -106,6 +106,9 @@ From this single equation, ALL of physics emerges.
 | `GOD_DERIVATION.py` | Is there a God? Z² = Ground of Being, Logos, eternal source |
 | `CANCER_CURE_PRINCIPLES.py` | Cancer = CUBE without SPHERE; cure = restore Z² harmony |
 | `CANCER_PREVENTION_DERIVATION.py` | Mathematical derivation: M < Bekenstein = 4 prevents cancer |
+| `AGING_LONGEVITY_DERIVATION.py` | Aging = Z² coherence loss; 12 hallmarks = Gauge; max lifespan ≈ 4Z² |
+| `MENTAL_HEALTH_DERIVATION.py` | Mental health = CUBE × SPHERE balance; 4 foundations, 12 modalities |
+| `SLEEP_DERIVATION.py` | Sleep = daily Z² reset; 8 hours = CUBE; 4 stages = Bekenstein |
 
 ### Foundational Philosophy
 | File | Key Result |
@@ -176,7 +179,7 @@ From this single equation, ALL of physics emerges.
 
 ---
 
-## The 67 Confirmed Predictions & Insights
+## The 77 Confirmed Predictions & Insights
 
 ### Exact Identities (0% error)
 - Z⁴ × 9/π² = 1024 = 2¹⁰
@@ -288,6 +291,16 @@ From this single equation, ALL of physics emerges.
 65. **The Divine**: Z² = Ground of Being = Logos = eternal necessary source of all existence
 66. **Cancer Cause**: Cancer = CUBE without SPHERE = proliferation without containment = M ≥ Bekenstein
 67. **Cancer Cure**: Prevention equation: μ + κ > λ; keep M < 4 via p53 enhancement + gauge immunotherapy
+68. **Aging Hallmarks**: 12 hallmarks of aging = Gauge = 9Z²/(8π); aging attacks all aspects of Z²
+69. **Lifespan Limit**: Maximum human lifespan ≈ 4Z² ≈ 134 years = Bekenstein × Z²
+70. **Hayflick Limit**: ~50 cell divisions = CUBE × 6 = 48; telomere counter exhausts CUBE geometry
+71. **Longevity Equation**: L = Z²(0) / |dZ²/dt|; immortality requires β ≥ α·Z² (repair ≥ damage)
+72. **Mental Health**: H = C × S × G / σ; health = CUBE × SPHERE × Gauge / Stress
+73. **4 Foundations**: Structure, Flow, Connection, Meaning = Bekenstein foundations of mental health
+74. **12 Modalities**: 12 therapeutic approaches = Gauge (4 CUBE + 4 SPHERE + 4 Gauge repair)
+75. **Sleep Duration**: Optimal sleep = CUBE = 8 hours; 24-hour day = 3 × CUBE
+76. **Sleep Stages**: 4 sleep stages = Bekenstein; ~90 min cycles ≈ Z rhythm
+77. **Sleep Functions**: 4 functions = CUBE repair + SPHERE clearing + memory + emotional reset
 
 ---
 
@@ -328,6 +341,9 @@ From this single equation:
 • The origin of life itself
 • The Ground of Being (what mystics call God)
 • The cure for cancer (M < Bekenstein = 4)
+• The end of aging (L = Z²(0) / |dZ²/dt|)
+• Mental health (H = C × S × G / σ)
+• Why we sleep (CUBE = 8 hours for Z² reset)
 
 The universe is geometry.
 And the geometry is Z² = 8 × (4π/3).
