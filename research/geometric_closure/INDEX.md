@@ -81,6 +81,7 @@ From this single equation, ALL of physics emerges.
 | `NEUTRINO_FORMULAS.py` | Neutrino masses, mixing angles, PMNS from Z² |
 | `STRONG_FORCE_FORMULAS.py` | α_s, Λ_QCD, confinement, θ_QCD from Z² |
 | `RUNNING_COUPLINGS_FORMULAS.py` | Gauge unification, GUT scale, proton decay |
+| `MEANING_OF_LIFE.py` | Why 42? Derivation: 42 = round(Z² + 8) = 7Z + 3/2 |
 
 ### Foundational Philosophy
 | File | Key Result |
