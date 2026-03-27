@@ -31,6 +31,38 @@ From this single equation, ALL of physics emerges.
 
 ---
 
+## First Principles Derivation Status
+
+**IMPORTANT**: See `HONEST_DERIVATION_STATUS.py` for what is DERIVED vs OBSERVED vs INTERPRETED.
+
+### Genuine First-Principles Derivations (✓ Proven)
+
+| File | Derivation | Status |
+|------|------------|--------|
+| `FIRST_PRINCIPLES_CLOSURE.py` | a₀ = cH₀/Z from Friedmann + Bekenstein | ✓ DERIVED |
+| `FIRST_PRINCIPLES_CLOSURE.py` | Bekenstein = 3Z²/(8π) = 4 | ✓ MATHEMATICAL IDENTITY |
+| `FIRST_PRINCIPLES_CLOSURE.py` | Gauge = 9Z²/(8π) = 12 | ✓ MATHEMATICAL IDENTITY |
+
+### Attempted Derivations (~ Hypotheses)
+
+| File | Claim | Status |
+|------|-------|--------|
+| `ALPHA_DERIVATION_ATTEMPT.py` | α⁻¹ = 4Z² + 3 = mode counting | ~ HYPOTHESIS (0.004% fit) |
+| `GAUGE_GROUP_DERIVATION.py` | SU(3)×SU(2)×U(1) from CUBE+SPHERE+1 | ~ PARTIAL (count works) |
+| `THREE_GENERATIONS_DERIVATION.py` | N_gen = 3 from SPHERE coefficient | ~ MULTIPLE ARGUMENTS |
+| `FIRST_PRINCIPLES_CLOSURE.py` | Mass hierarchy 3Z+5 | ~ NUMERICAL MATCH |
+
+### Remaining Gaps (✗ Not Derived)
+
+| Gap | Issue |
+|-----|-------|
+| Why Z² = 8×(4π/3)? | Foundational axiom - justified by consistency, not derived |
+| Absolute mass scale | We have ratios, not m_e itself |
+| CKM/PMNS elements | Some formulas but no mechanism |
+| Why SU(n) specifically | We match dimensions, not the group structure |
+
+---
+
 ## Physics Domains
 
 ### Coupling Constants
