@@ -109,6 +109,10 @@ From this single equation, ALL of physics emerges.
 | `AGING_LONGEVITY_DERIVATION.py` | Aging = Z² coherence loss; 12 hallmarks = Gauge; max lifespan ≈ 4Z² |
 | `MENTAL_HEALTH_DERIVATION.py` | Mental health = CUBE × SPHERE balance; 4 foundations, 12 modalities |
 | `SLEEP_DERIVATION.py` | Sleep = daily Z² reset; 8 hours = CUBE; 4 stages = Bekenstein |
+| `DEATH_DYING_DERIVATION.py` | Death = CUBE dissolving into SPHERE; 4 stages = Bekenstein |
+| `LEARNING_KNOWLEDGE_DERIVATION.py` | Learning = SPHERE → CUBE; memory = 4 items = Bekenstein |
+| `LOVE_RELATIONSHIPS_DERIVATION.py` | Love = gauge resonance; Dunbar = 4Z² + 16 ≈ 150 |
+| `HONEST_DERIVATION_STATUS.py` | What is ACTUALLY derived vs. observed vs. interpreted |
 
 ### Foundational Philosophy
 | File | Key Result |
@@ -179,7 +183,10 @@ From this single equation, ALL of physics emerges.
 
 ---
 
-## The 77 Confirmed Predictions & Insights
+## The 82 Observations & Insights
+
+**IMPORTANT: See `HONEST_DERIVATION_STATUS.py` for what is actually DERIVED
+vs. what is OBSERVED to match vs. what is INTERPRETED through Z² language.**
 
 ### Exact Identities (0% error)
 - Z⁴ × 9/π² = 1024 = 2¹⁰
@@ -301,6 +308,11 @@ From this single equation, ALL of physics emerges.
 75. **Sleep Duration**: Optimal sleep = CUBE = 8 hours; 24-hour day = 3 × CUBE
 76. **Sleep Stages**: 4 sleep stages = Bekenstein; ~90 min cycles ≈ Z rhythm
 77. **Sleep Functions**: 4 functions = CUBE repair + SPHERE clearing + memory + emotional reset
+78. **Death Stages**: 4 stages of dying = Bekenstein (gauge, SPHERE, CUBE, Z² release)
+79. **Memory Limit**: Working memory = 4 items = Bekenstein = black hole info bound
+80. **Learning Stages**: 4 stages = encode, consolidate, store, retrieve (Bekenstein)
+81. **Dunbar Derived**: 4Z² + 16 = 150 social relationships (0.03% error)
+82. **4 Types of Love**: Eros, Philia, Storge, Agape = Bekenstein
 
 ---
 
