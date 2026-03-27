@@ -75,6 +75,13 @@ From this single equation, ALL of physics emerges.
 | `PLANCK_CONSTANT.py` | ℏ = CUBE size in phase space |
 | `ENTANGLEMENT.py` | Particles share CUBE vertices → nonlocal |
 | `EMERGENCE_OF_SPACETIME.py` | 3+1 dimensions from Z geometry |
+| `COMPLEX_NUMBERS.py` | Factor 2 in Z = dimension of complex plane |
+| `SPEED_OF_LIGHT.py` | c = CUBE-SPHERE conversion factor |
+| `CPT_SYMMETRY.py` | CPT = CUBE inversion (8 = 2³ = C×P×T) |
+| `HIGGS_MECHANISM.py` | Higgs = CUBE-SPHERE mediator |
+| `GAUGE_SYMMETRIES.py` | 9Z²/(8π) = 12 = 8+3+1 gauge generators |
+| `LORENTZ_INVARIANCE.py` | Lorentz = SPHERE symmetry |
+| `LOCALITY.py` | Locality = SPHERE geometry (no action at distance) |
 
 ---
 
@@ -129,6 +136,13 @@ From this single equation, ALL of physics emerges.
 14. **Planck Constant**: ℏ is the geometric size of CUBE quantum
 15. **Entanglement**: Particles share CUBE vertices, appear separate in SPHERE
 16. **Spacetime Emergence**: 3 spatial from SPHERE, 1 time from CUBE→SPHERE flow
+17. **Complex Numbers**: Factor 2 in Z = 2D complex plane (why QM uses i)
+18. **Speed of Light**: c = CUBE-SPHERE conversion rate (finite, invariant)
+19. **CPT Symmetry**: 8 = 2×2×2 = C×P×T, inversion is exact symmetry
+20. **Higgs Mechanism**: Symmetry breaking = CUBE crystallizing in SPHERE
+21. **Gauge Structure**: 9Z²/(8π) = 12 = SU(3)+SU(2)+U(1) generators
+22. **Lorentz Invariance**: SPHERE symmetry = spacetime isotropy
+23. **Locality**: Physics at x depends only on x and neighbors (SPHERE geometry)
 
 ---
 
