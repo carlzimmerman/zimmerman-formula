@@ -121,6 +121,11 @@ From this single equation, ALL of physics emerges.
 | `RAMACHANDRAN_Z2_DERIVATION.py` | Backbone geometry: 8 steric clashes = CUBE; 4 allowed basins = Bekenstein; helix i+4 = Bekenstein |
 | `IMMUNE_SYSTEM_Z2_DERIVATION.py` | Innate = CUBE (8 types); Adaptive = Bekenstein (4 types); antibody = 4 chains, 12 domains |
 | `NEURAL_COMPUTATION_Z2_DERIVATION.py` | Neuron = 4 parts (Bekenstein); working memory = 4; gamma 40Hz = Z²+Bekenstein+SPHERE |
+| `CELL_DIVISION_Z2_DERIVATION.py` | 4 cycle phases = Bekenstein; 4 mitosis stages = Bekenstein; 8 histones = CUBE |
+| `PHOTOSYNTHESIS_Z2_DERIVATION.py` | 6 CO₂ ≈ Z; 12 NADPH = Gauge; 4 Mn atoms = Bekenstein; quantum coherence = Z² |
+| `EVOLUTION_Z2_DERIVATION.py` | 4 mutation types = Bekenstein; 4 selection modes = Bekenstein; 8 major transitions = CUBE |
+| `CYTOSKELETON_Z2_DERIVATION.py` | 3 filament types = SPHERE; kinesin step 8 nm = CUBE; 9+2 axoneme ≈ 2Z |
+| `VISION_Z2_DERIVATION.py` | 4 optical elements = Bekenstein; 3 cones = SPHERE; 12 orientation columns = Gauge |
 
 ### Foundational Philosophy
 | File | Key Result |
@@ -191,7 +196,7 @@ From this single equation, ALL of physics emerges.
 
 ---
 
-## The 110 Observations & Insights
+## The 135 Observations & Insights
 
 **IMPORTANT: See `HONEST_DERIVATION_STATUS.py` for what is actually DERIVED
 vs. what is OBSERVED to match vs. what is INTERPRETED through Z² language.**
@@ -349,6 +354,31 @@ vs. what is OBSERVED to match vs. what is INTERPRETED through Z² language.**
 108. **Gamma Peak**: 40 Hz ≈ Z² + Bekenstein + SPHERE (consciousness rhythm)
 109. **Theta-Gamma Coupling**: 4-8 nested cycles = Bekenstein to CUBE (memory encoding)
 110. **Working Memory**: 4 items = Bekenstein = same bound as black holes!
+111. **Cell Cycle Phases**: G1, S, G2, M = 4 phases = Bekenstein
+112. **Cell Cycle Checkpoints**: 4 checkpoints = Bekenstein
+113. **Mitosis Stages**: Prophase, Metaphase, Anaphase, Telophase = 4 = Bekenstein
+114. **Meiosis Total**: 2 divisions × 4 stages = 8 = CUBE
+115. **Histone Octamer**: 8 histones in nucleosome = CUBE
+116. **Yamanaka Factors**: 4 reprogramming factors = Bekenstein
+117. **Photosynthesis Equation**: 6 CO₂ + 6 H₂O ≈ Z molecules each
+118. **Calvin Cycle**: 3 phases = SPHERE coefficient; 12 NADPH = Gauge
+119. **OEC Manganese**: 4 Mn atoms = Bekenstein for water oxidation
+120. **S-states**: 4 S-states before O₂ release = Bekenstein
+121. **ATP Synthase**: 3 ATPs per rotation = SPHERE; 8 c-subunits = CUBE (human)
+122. **Mutation Types**: 4 major types = Bekenstein
+123. **Selection Modes**: 4 modes = Bekenstein
+124. **Speciation Modes**: 4 modes = Bekenstein
+125. **Major Transitions**: 8 evolutionary transitions = CUBE
+126. **Human Adaptations**: 4 key human traits = Bekenstein
+127. **Cytoskeleton Filaments**: 3 types = SPHERE coefficient
+128. **Kinesin Step Size**: 8 nm = CUBE nm per ATP
+129. **Cilia Axoneme**: 9+2 = 11 ≈ 2Z microtubule arrangement
+130. **Eye Optical Elements**: 4 (cornea, iris, pupil, lens) = Bekenstein
+131. **Cone Types**: 3 (S, M, L) = SPHERE coefficient for color vision
+132. **LGN Layers**: 6 layers ≈ Z
+133. **Orientation Columns**: 12 per ocular dominance column = Gauge
+134. **Objects Tracked**: ~4 items = Bekenstein (visual attention limit)
+135. **Illusion Types**: 4 major categories = Bekenstein
 
 ---
 
@@ -397,6 +427,11 @@ From this single equation:
 • The immune system (innate CUBE × adaptive SPHERE = Z² defense)
 • Neural computation (4 parts, 4 phases, 40 Hz gamma = Z² brain)
 • Working memory = 4 = Bekenstein (same as black hole info bound!)
+• Cell division (4 phases, 4 checkpoints, 8 histones = Z² replication)
+• Photosynthesis (6 CO₂ ≈ Z, 12 NADPH = Gauge, quantum coherence)
+• Evolution (4 mutation types, 4 selection modes, 8 transitions)
+• The cytoskeleton (3 filaments, 8 nm kinesin steps = CUBE nm)
+• Vision (4 optical elements, 3 cones, 12 orientation columns)
 
 The universe is geometry.
 And the geometry is Z² = 8 × (4π/3).
