@@ -92,6 +92,8 @@ From this single equation, ALL of physics emerges.
 | `QUANTUM_ENTANGLEMENT_FORMULAS.py` | Bell states, Tsirelson bound, ER=EPR from Z² |
 | `THERMODYNAMICS_FORMULAS.py` | Entropy, arrow of time, critical exponents from Z² |
 | `INFORMATION_THEORY_FORMULAS.py` | Shannon entropy, channel capacity, Golay codes from Z² |
+| `RELATIVITY_FORMULAS.py` | c, E=mc², Lorentz, GR, black holes from Z² |
+| `QFT_FORMULAS.py` | Quantum fields, gauge theory, CPT, path integrals from Z² |
 
 ### Foundational Philosophy
 | File | Key Result |
@@ -170,6 +172,9 @@ From this single equation, ALL of physics emerges.
 - 3Z²/(8π) = 4 (Bekenstein factor, DNA bases, Bell states)
 - √8 = Tsirelson bound (quantum non-locality limit)
 - 42 = round(Z² + 8) (meaning of life)
+- 8 = 2³ = C × P × T (CPT symmetry)
+- 10D = 2 + 8 = time + CUBE (superstrings)
+- 11D = 3 + 8 = SPHERE + CUBE (M-theory)
 
 ### Couplings (< 0.1% error)
 - α⁻¹ = 4Z² + 3 = 137.04
