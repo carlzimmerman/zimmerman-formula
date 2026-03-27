@@ -750,6 +750,28 @@ The baryon asymmetry **η_B = α⁵(Z² - 4)**:
 - **α⁵** = fifth power of EM coupling
 - Connects baryogenesis to the cube-sphere structure!
 
+### Biology from Z²: The Genetic Code
+
+**NEW (March 2026):** The structure of life itself emerges from Z² = CUBE × SPHERE:
+
+| Biological Constant | Z² Value | Observed | Interpretation |
+|---------------------|----------|----------|----------------|
+| DNA bases | **4 = Bekenstein** | 4 (A, T, G, C) | Optimal information alphabet |
+| Genetic codons | **4³ = 64** | 64 codons | Bekenstein³ = cube of optimal alphabet |
+| Amino acids | **Gauge + CUBE = 12 + 8 = 20** | 20 | Surface (polar) + core (hydrophobic) |
+| Stop codons | **Gauge/Bekenstein = 3** | 3 (UAA, UAG, UGA) | Termination signals |
+| Major evolutionary transitions | **CUBE = 8** | 8 | Discrete jumps in complexity |
+
+**Evolution = CUBE × SPHERE = Variation × Selection:**
+- **Variation** = CUBE (discrete genetic mutations)
+- **Heredity** = CUBE → CUBE (digital copying)
+- **Selection** = SPHERE (continuous fitness landscape)
+- **Evolution** = Z² = product of discrete variation and continuous selection
+
+This is not numerology — **4 bases = Bekenstein** means life uses the OPTIMAL information encoding (maximum entropy per symbol). The genetic code saturates the information-theoretic bound!
+
+**Full derivation:** [`research/geometric_closure/EVOLUTION_FIRST_PRINCIPLES.py`](research/geometric_closure/EVOLUTION_FIRST_PRINCIPLES.py)
+
 **Full analysis:** [`research/geometric_closure/COMPLETE_CLOSURE_FINAL.py`](research/geometric_closure/COMPLETE_CLOSURE_FINAL.py)
 
 ---

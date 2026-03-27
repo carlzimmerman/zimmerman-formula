@@ -1,11 +1,12 @@
 'use client'
 
-import { useRef, useMemo, useState } from 'react'
+import { useRef, useMemo, useState, useCallback } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls, Stars, Html } from '@react-three/drei'
 import * as THREE from 'three'
 import { motion, AnimatePresence } from 'framer-motion'
 import CollapsiblePanel from './CollapsiblePanel'
+import { SPARC_GALAXIES, SPARCGalaxy, RotationPoint } from '../data/sparc_galaxies'
 
 // Physics constants (CODATA 2018)
 const Z = 2 * Math.sqrt(8 * Math.PI / 3)  // 5.788810
@@ -14,21 +15,6 @@ const c = 299792458    // m/s
 const a0_local = 1.2e-10  // m/s² (McGaugh et al. 2016)
 const kpc_to_m = 3.08567758e19
 const M_sun = 1.98892e30  // kg
-
-// Real SPARC Galaxy Data (Lelli, McGaugh, Schombert 2016, AJ 152, 157)
-// Selected galaxies spanning dwarf to massive spirals
-const SPARC_GALAXIES = [
-  { name: 'NGC 2403', distance: 3.2, vFlat: 134, rLast: 22, mass: 3.2e10, type: 'Spiral (Sc)' },
-  { name: 'NGC 3198', distance: 13.8, vFlat: 150, rLast: 30, mass: 4.5e10, type: 'Spiral (SBc)' },
-  { name: 'NGC 6946', distance: 5.9, vFlat: 210, rLast: 20, mass: 8.1e10, type: 'Spiral (SABcd)' },
-  { name: 'UGC 128', distance: 64, vFlat: 131, rLast: 55, mass: 2.9e10, type: 'LSB' },
-  { name: 'DDO 154', distance: 4.0, vFlat: 47, rLast: 8, mass: 4.0e8, type: 'Dwarf Irregular' },
-  { name: 'NGC 2841', distance: 14.1, vFlat: 305, rLast: 50, mass: 2.1e11, type: 'Spiral (SAb)' },
-  { name: 'NGC 7331', distance: 14.7, vFlat: 250, rLast: 35, mass: 1.2e11, type: 'Spiral (SAb)' },
-  { name: 'IC 2574', distance: 4.0, vFlat: 67, rLast: 13, mass: 1.5e9, type: 'Dwarf Irregular' },
-  { name: 'NGC 3521', distance: 10.7, vFlat: 227, rLast: 35, mass: 9.5e10, type: 'Spiral (SABbc)' },
-  { name: 'NGC 5055', distance: 10.1, vFlat: 200, rLast: 45, mass: 7.2e10, type: 'Spiral (SAbc)' },
-]
 
 // Calculate E(z) = H(z)/H₀
 function E_z(z: number): number {
@@ -42,85 +28,86 @@ function a0_at_z(z: number): number {
   return a0_local * E_z(z)
 }
 
-// Calculate MOND radius scaling at redshift z
-// r_M(z) = r_M(0) / sqrt(E(z)) - galaxies are more compact at high z
+// Size scaling based on physics model
 function sizeScalingZimmerman(z: number): number {
   return 1 / Math.sqrt(E_z(z))
 }
 
-// ΛCDM size scaling - empirical fit from observations
-// High-z halos are more concentrated, but this is NOT a first-principles prediction
-// Based on mass-size relation evolution: r_eff ∝ (1+z)^(-0.75) approximately
 function sizeScalingLCDM(z: number): number {
-  return Math.pow(1 + z, -0.75) / Math.pow(1, -0.75)  // Normalize to z=0
+  return Math.pow(1 + z, -0.75)
 }
 
-// Newton has no fundamental scale - size would be set by initial conditions only
-// We show no evolution because there's no theoretical basis for it
 function sizeScalingNewton(z: number): number {
-  return 1  // No evolution - this is the point: Newton has no characteristic scale
+  return 1
 }
 
 // Zimmerman/MOND rotation velocity using RAR formula
 function zimmermanVelocity(r_kpc: number, M_solar: number, a0: number): number {
   const r_m = r_kpc * kpc_to_m
   const M_kg = M_solar * M_sun
-  const g_bar = G * M_kg / (r_m * r_m)  // Baryonic acceleration
-
-  // RAR interpolating function: g_obs = g_bar / (1 - exp(-√(g_bar/a₀)))
+  const g_bar = G * M_kg / (r_m * r_m)
   const x = Math.sqrt(g_bar / a0)
   const g_obs = g_bar / (1 - Math.exp(-x))
-
-  return Math.sqrt(g_obs * r_m)  // m/s
+  return Math.sqrt(g_obs * r_m)
 }
 
 // Newtonian rotation velocity (no dark matter)
 function newtonianVelocity(r_kpc: number, M_solar: number): number {
   const r_m = r_kpc * kpc_to_m
   const M_kg = M_solar * M_sun
-  return Math.sqrt(G * M_kg / r_m)  // m/s
+  return Math.sqrt(G * M_kg / r_m)
 }
 
 // ΛCDM velocity with NFW dark matter halo
 function lcdmVelocity(r_kpc: number, M_solar: number): number {
   const r_m = r_kpc * kpc_to_m
   const M_kg = M_solar * M_sun
-
-  // Baryonic contribution
   const v_bar_sq = G * M_kg / r_m
-
-  // NFW halo parameters (typical concentration c~10, mass ratio ~5:1)
-  const M_halo = M_kg * 5  // Dark matter mass ~5× baryonic
-  const rs = 20 * kpc_to_m  // Scale radius ~20 kpc
+  const M_halo = M_kg * 5
+  const rs = 20 * kpc_to_m
   const x = r_m / rs
-
-  // NFW enclosed mass fraction
   const f_nfw = Math.log(1 + x) - x / (1 + x)
-  const M_dm_enclosed = M_halo * f_nfw / (Math.log(11) - 10/11)  // Normalized to total
+  const M_dm_enclosed = M_halo * f_nfw / (Math.log(11) - 10/11)
   const v_dm_sq = G * M_dm_enclosed / r_m
-
-  return Math.sqrt(v_bar_sq + v_dm_sq)  // m/s
+  return Math.sqrt(v_bar_sq + v_dm_sq)
 }
 
 type PhysicsModel = 'zimmerman' | 'newton' | 'lcdm'
 
 interface StarParticlesProps {
   count: number
-  galaxy: typeof SPARC_GALAXIES[0]
+  galaxy: SPARCGalaxy
   a0: number
   model: PhysicsModel
   redshift: number
 }
 
+// Generate spiral arm pattern
+function spiralArmOffset(theta: number, armCount: number, winding: number = 0.3): number {
+  if (armCount === 0) return 0
+  const armPhase = (theta * armCount) % (2 * Math.PI)
+  return Math.sin(armPhase) * winding
+}
+
+// Get star color based on position (bluer outer, yellower center)
+function getStarColor(r_ratio: number, hasArms: boolean): THREE.Color {
+  if (hasArms) {
+    // Spiral galaxies: yellow core, bluer arms
+    const hue = 0.08 + r_ratio * 0.12  // Yellow to blue-white
+    const saturation = 0.3 - r_ratio * 0.2
+    const lightness = 0.9 + r_ratio * 0.1
+    return new THREE.Color().setHSL(hue, saturation, lightness)
+  } else {
+    // Irregular/LSB: more uniform blue-white
+    return new THREE.Color().setHSL(0.6, 0.2, 0.95)
+  }
+}
+
 function StarParticles({ count, galaxy, a0, model, redshift }: StarParticlesProps) {
   const meshRef = useRef<THREE.InstancedMesh>(null)
+  const colorsRef = useRef<Float32Array | null>(null)
   const dummy = useMemo(() => new THREE.Object3D(), [])
 
-  // Scale factor: galaxy rLast maps to 5 visual units
-  // Each model has different size evolution physics:
-  // - Zimmerman: MOND radius r_M ∝ 1/√E(z) - PREDICTED from theory
-  // - ΛCDM: Empirical fit r ∝ (1+z)^(-0.75) - from observations/simulations
-  // - Newton: No evolution - no fundamental scale in the theory
   let sizeScale = 1
   switch (model) {
     case 'zimmerman':
@@ -135,26 +122,67 @@ function StarParticles({ count, galaxy, a0, model, redshift }: StarParticlesProp
   }
   const scaleFactor = (5 / galaxy.rLast) * sizeScale
 
-  // Generate star positions with exponential disk distribution
+  const hasArms = (galaxy.armCount || 0) > 0
+
+  // Generate stars with realistic distribution
   const stars = useMemo(() => {
     const temp = []
+    const armCount = galaxy.armCount || 0
+
     for (let i = 0; i < count; i++) {
-      // Exponential disk distribution scaled to galaxy size
+      // Exponential disk distribution
       const u = Math.random()
-      const r_kpc = -galaxy.rLast * 0.3 * Math.log(1 - u * 0.95)  // Exponential with scale ~30% of rLast
-      const r_visual = Math.min(r_kpc * scaleFactor, 5)  // Clamp to visual bounds
-      const theta = Math.random() * Math.PI * 2
-      const height = (Math.random() - 0.5) * 0.15 * Math.exp(-r_kpc / (galaxy.rLast * 0.3))  // Thin disk
+      let r_kpc = -galaxy.rLast * 0.3 * Math.log(1 - u * 0.95)
+
+      let theta = Math.random() * Math.PI * 2
+
+      // Add spiral arm concentration
+      if (armCount > 0) {
+        const armPerturbation = spiralArmOffset(theta - r_kpc * 0.15, armCount, 0.25)
+        r_kpc *= (1 + armPerturbation * 0.3)
+      }
+
+      const r_visual = Math.min(r_kpc * scaleFactor, 5.5)
+
+      // Disk thickness (thinner at outer radii)
+      const diskThickness = 0.12 * Math.exp(-r_kpc / (galaxy.rLast * 0.4))
+      const height = (Math.random() - 0.5) * diskThickness
+
+      // Bulge probability (more stars near center are in bulge)
+      const bulgeProb = Math.exp(-r_kpc / (galaxy.rLast * 0.15))
+      const isBulge = Math.random() < bulgeProb * 0.5
 
       temp.push({
         r_visual,
-        r_kpc: Math.max(r_kpc, 0.5),  // Minimum radius
+        r_kpc: Math.max(r_kpc, 0.3),
         theta,
-        height,
+        height: isBulge ? height * 3 : height,
+        isBulge,
+        r_ratio: r_kpc / galaxy.rLast,
       })
     }
     return temp
   }, [count, galaxy, scaleFactor, sizeScale])
+
+  // Initialize colors
+  useMemo(() => {
+    if (meshRef.current) {
+      const colors = new Float32Array(count * 3)
+      stars.forEach((star, i) => {
+        const color = star.isBulge
+          ? new THREE.Color('#ffe4b5')  // Moccasin for bulge
+          : getStarColor(star.r_ratio, hasArms)
+        colors[i * 3] = color.r
+        colors[i * 3 + 1] = color.g
+        colors[i * 3 + 2] = color.b
+      })
+      colorsRef.current = colors
+      meshRef.current.geometry.setAttribute(
+        'color',
+        new THREE.InstancedBufferAttribute(colors, 3)
+      )
+    }
+  }, [stars, count, hasArms])
 
   useFrame((state) => {
     if (!meshRef.current) return
@@ -162,7 +190,6 @@ function StarParticles({ count, galaxy, a0, model, redshift }: StarParticlesProp
     const time = state.clock.getElapsedTime()
 
     stars.forEach((star, i) => {
-      // Calculate orbital velocity based on selected physics model
       let v: number
       switch (model) {
         case 'zimmerman':
@@ -176,21 +203,18 @@ function StarParticles({ count, galaxy, a0, model, redshift }: StarParticlesProp
           v = newtonianVelocity(star.r_kpc, galaxy.mass)
       }
 
-      // Angular velocity ω = v / r
       const r_m = star.r_kpc * kpc_to_m
       const omega = v / r_m
-
-      // Scale time for visualization (speed up by ~10^15)
       const scaledOmega = omega * 5e14
 
-      // Update position
       const currentTheta = star.theta + scaledOmega * time
       const x = star.r_visual * Math.cos(currentTheta)
       const z = star.r_visual * Math.sin(currentTheta)
       const y = star.height
 
       dummy.position.set(x, y, z)
-      dummy.scale.setScalar(0.015 + 0.008 * Math.random())
+      const size = star.isBulge ? 0.025 : (0.012 + 0.008 * Math.random())
+      dummy.scale.setScalar(size)
       dummy.updateMatrix()
       meshRef.current!.setMatrixAt(i, dummy.matrix)
     })
@@ -200,14 +224,65 @@ function StarParticles({ count, galaxy, a0, model, redshift }: StarParticlesProp
 
   return (
     <instancedMesh ref={meshRef} args={[undefined, undefined, count]}>
-      <sphereGeometry args={[1, 6, 6]} />
-      <meshBasicMaterial color="#ffffff" />
+      <sphereGeometry args={[1, 4, 4]} />
+      <meshBasicMaterial vertexColors />
+    </instancedMesh>
+  )
+}
+
+// Dust lane particles for spiral galaxies
+function DustLanes({ galaxy, scaleFactor }: { galaxy: SPARCGalaxy, scaleFactor: number }) {
+  const meshRef = useRef<THREE.InstancedMesh>(null)
+  const dummy = useMemo(() => new THREE.Object3D(), [])
+  const count = 500
+
+  const particles = useMemo(() => {
+    if ((galaxy.armCount || 0) === 0) return []
+
+    const temp = []
+    for (let i = 0; i < count; i++) {
+      const r = (0.3 + Math.random() * 0.5) * galaxy.rLast
+      const theta = Math.random() * Math.PI * 2
+      const armPhase = theta * (galaxy.armCount || 2)
+
+      // Dust concentrates on inner edge of spiral arms
+      if (Math.sin(armPhase + r * 0.1) > 0.3) {
+        temp.push({
+          r: r * scaleFactor,
+          theta,
+        })
+      }
+    }
+    return temp
+  }, [galaxy, scaleFactor, count])
+
+  useFrame((state) => {
+    if (!meshRef.current) return
+
+    const time = state.clock.getElapsedTime() * 0.1
+    particles.forEach((p, i) => {
+      const x = p.r * Math.cos(p.theta + time)
+      const z = p.r * Math.sin(p.theta + time)
+      dummy.position.set(x, (Math.random() - 0.5) * 0.02, z)
+      dummy.scale.setScalar(0.03)
+      dummy.updateMatrix()
+      meshRef.current!.setMatrixAt(i, dummy.matrix)
+    })
+    meshRef.current.instanceMatrix.needsUpdate = true
+  })
+
+  if (particles.length === 0) return null
+
+  return (
+    <instancedMesh ref={meshRef} args={[undefined, undefined, particles.length]}>
+      <sphereGeometry args={[1, 3, 3]} />
+      <meshBasicMaterial color="#331100" transparent opacity={0.3} />
     </instancedMesh>
   )
 }
 
 interface RotationCurveDisplayProps {
-  galaxy: typeof SPARC_GALAXIES[0]
+  galaxy: SPARCGalaxy
   a0: number
   model: PhysicsModel
 }
@@ -217,75 +292,86 @@ function RotationCurveDisplay({ galaxy, a0, model }: RotationCurveDisplayProps) 
     const zimmermanPoints: [number, number][] = []
     const newtonPoints: [number, number][] = []
     const lcdmPoints: [number, number][] = []
-    const observedFlat: [number, number][] = []
+    const observedPoints: [number, number, number][] = []  // r, v, err
+
+    // Use real SPARC rotation curve data if available
+    if (galaxy.rotationCurve && galaxy.rotationCurve.length > 0) {
+      galaxy.rotationCurve.forEach(pt => {
+        observedPoints.push([pt.r, pt.vObs, pt.errV])
+      })
+    }
 
     const rMax = galaxy.rLast
-    const dr = rMax / 40
+    const dr = rMax / 50
 
     for (let r = 1; r <= rMax; r += dr) {
-      const vZim = zimmermanVelocity(r, galaxy.mass, a0) / 1000  // km/s
+      const vZim = zimmermanVelocity(r, galaxy.mass, a0) / 1000
       const vNewton = newtonianVelocity(r, galaxy.mass) / 1000
       const vLcdm = lcdmVelocity(r, galaxy.mass) / 1000
 
       zimmermanPoints.push([r, vZim])
       newtonPoints.push([r, vNewton])
       lcdmPoints.push([r, vLcdm])
-
-      // Observed flat rotation (approximation)
-      observedFlat.push([r, galaxy.vFlat])
     }
 
-    return { zimmermanPoints, newtonPoints, lcdmPoints, observedFlat }
+    return { zimmermanPoints, newtonPoints, lcdmPoints, observedPoints }
   }, [galaxy, a0])
 
-  const maxV = Math.max(galaxy.vFlat * 1.3, ...points.zimmermanPoints.map(p => p[1]))
+  const maxV = Math.max(
+    galaxy.vFlat * 1.4,
+    ...points.zimmermanPoints.map(p => p[1]),
+    ...(points.observedPoints.map(p => p[1] + p[2]) || [])
+  )
   const maxR = galaxy.rLast
 
   return (
     <CollapsiblePanel
       title={`${galaxy.name} Rotation Curve`}
-      className="absolute bottom-4 left-4 w-80 max-w-[calc(100vw-2rem)]"
+      className="absolute bottom-4 left-4 w-96 max-w-[calc(100vw-2rem)]"
       defaultOpen={true}
     >
-      <p className="text-xs text-gray-500 mb-2">{galaxy.type} | M = {(galaxy.mass / 1e10).toFixed(1)} × 10¹⁰ M☉</p>
+      <p className="text-xs text-gray-500 mb-2">
+        {galaxy.type} | M = {(galaxy.mass / 1e10).toFixed(1)} × 10¹⁰ M☉ | D = {galaxy.distance} Mpc
+      </p>
 
-      <svg viewBox="0 0 120 70" className="w-full h-36">
+      <svg viewBox="0 0 140 80" className="w-full h-44">
         {/* Grid */}
-        {[0, 0.5, 1].map(frac => (
-          <line key={frac} x1="15" y1={55 - frac * 45} x2="115" y2={55 - frac * 45} stroke="#333" strokeWidth="0.3" />
+        {[0, 0.25, 0.5, 0.75, 1].map(frac => (
+          <line key={frac} x1="20" y1={65 - frac * 50} x2="135" y2={65 - frac * 50} stroke="#333" strokeWidth="0.3" />
         ))}
 
         {/* Axes */}
-        <line x1="15" y1="55" x2="115" y2="55" stroke="#555" strokeWidth="0.5" />
-        <line x1="15" y1="55" x2="15" y2="8" stroke="#555" strokeWidth="0.5" />
+        <line x1="20" y1="65" x2="135" y2="65" stroke="#555" strokeWidth="0.5" />
+        <line x1="20" y1="65" x2="20" y2="12" stroke="#555" strokeWidth="0.5" />
 
-        {/* Observed flat (yellow dashed) */}
-        <path
-          d={points.observedFlat.map((p, i) =>
-            `${i === 0 ? 'M' : 'L'} ${15 + (p[0] / maxR) * 100} ${55 - (p[1] / maxV) * 45}`
-          ).join(' ')}
-          fill="none"
-          stroke="#fbbf24"
-          strokeWidth="1.5"
-          strokeDasharray="3,2"
-          opacity={0.8}
-        />
+        {/* Observed data points with error bars */}
+        {points.observedPoints.map((p, i) => {
+          const x = 20 + (p[0] / maxR) * 115
+          const y = 65 - (p[1] / maxV) * 50
+          const errY = (p[2] / maxV) * 50
+          return (
+            <g key={i}>
+              <line x1={x} y1={y - errY} x2={x} y2={y + errY} stroke="#fbbf24" strokeWidth="0.8" opacity={0.7} />
+              <circle cx={x} cy={y} r="1.5" fill="#fbbf24" />
+            </g>
+          )
+        })}
 
         {/* Newtonian (gray dashed) */}
         <path
           d={points.newtonPoints.map((p, i) =>
-            `${i === 0 ? 'M' : 'L'} ${15 + (p[0] / maxR) * 100} ${55 - (p[1] / maxV) * 45}`
+            `${i === 0 ? 'M' : 'L'} ${20 + (p[0] / maxR) * 115} ${65 - (p[1] / maxV) * 50}`
           ).join(' ')}
           fill="none"
           stroke="#666"
           strokeWidth="1"
-          strokeDasharray="2,2"
+          strokeDasharray="3,2"
         />
 
         {/* ΛCDM (red) */}
         <path
           d={points.lcdmPoints.map((p, i) =>
-            `${i === 0 ? 'M' : 'L'} ${15 + (p[0] / maxR) * 100} ${55 - (p[1] / maxV) * 45}`
+            `${i === 0 ? 'M' : 'L'} ${20 + (p[0] / maxR) * 115} ${65 - (p[1] / maxV) * 50}`
           ).join(' ')}
           fill="none"
           stroke="#ef4444"
@@ -296,7 +382,7 @@ function RotationCurveDisplay({ galaxy, a0, model }: RotationCurveDisplayProps) 
         {/* Zimmerman (cyan) */}
         <path
           d={points.zimmermanPoints.map((p, i) =>
-            `${i === 0 ? 'M' : 'L'} ${15 + (p[0] / maxR) * 100} ${55 - (p[1] / maxV) * 45}`
+            `${i === 0 ? 'M' : 'L'} ${20 + (p[0] / maxR) * 115} ${65 - (p[1] / maxV) * 50}`
           ).join(' ')}
           fill="none"
           stroke="#22d3ee"
@@ -305,28 +391,36 @@ function RotationCurveDisplay({ galaxy, a0, model }: RotationCurveDisplayProps) 
         />
 
         {/* Labels */}
-        <text x="65" y="68" fill="#888" fontSize="4" textAnchor="middle">Radius (kpc)</text>
-        <text x="5" y="30" fill="#888" fontSize="4" textAnchor="middle" transform="rotate(-90, 5, 30)">V (km/s)</text>
-        <text x="15" y="63" fill="#666" fontSize="3">0</text>
-        <text x="115" y="63" fill="#666" fontSize="3">{maxR}</text>
-        <text x="10" y="57" fill="#666" fontSize="3">0</text>
-        <text x="8" y="12" fill="#666" fontSize="3">{Math.round(maxV)}</text>
+        <text x="75" y="78" fill="#888" fontSize="4" textAnchor="middle">Radius (kpc)</text>
+        <text x="7" y="38" fill="#888" fontSize="4" textAnchor="middle" transform="rotate(-90, 7, 38)">V (km/s)</text>
+        <text x="20" y="73" fill="#666" fontSize="3">0</text>
+        <text x="133" y="73" fill="#666" fontSize="3">{maxR.toFixed(0)}</text>
+        <text x="15" y="67" fill="#666" fontSize="3">0</text>
+        <text x="12" y="17" fill="#666" fontSize="3">{Math.round(maxV)}</text>
       </svg>
 
       {/* Legend */}
       <div className="grid grid-cols-2 gap-1 text-xs mt-1">
-        <span className="flex items-center gap-1"><span className="w-3 h-0.5 bg-yellow-400"></span> Observed</span>
-        <span className="flex items-center gap-1"><span className="w-3 h-0.5 bg-cyan-400"></span> Zimmerman</span>
-        <span className="flex items-center gap-1"><span className="w-3 h-0.5 bg-red-500"></span> ΛCDM</span>
-        <span className="flex items-center gap-1"><span className="w-3 h-0.5 bg-gray-500"></span> Newton</span>
+        <span className="flex items-center gap-1">
+          <span className="w-2 h-2 rounded-full bg-yellow-400"></span> SPARC Data
+        </span>
+        <span className="flex items-center gap-1">
+          <span className="w-3 h-0.5 bg-cyan-400"></span> Zimmerman
+        </span>
+        <span className="flex items-center gap-1">
+          <span className="w-3 h-0.5 bg-red-500"></span> ΛCDM
+        </span>
+        <span className="flex items-center gap-1">
+          <span className="w-3 h-0.5 bg-gray-500 border-dashed"></span> Newton
+        </span>
       </div>
 
-      <p className="text-xs text-gray-500 mt-2">Data: SPARC (Lelli+ 2016)</p>
+      <p className="text-xs text-gray-500 mt-2">Data: SPARC (Lelli, McGaugh, Schombert 2016)</p>
     </CollapsiblePanel>
   )
 }
 
-function GalaxyCore() {
+function GalaxyCore({ color = '#fbbf24' }: { color?: string }) {
   const coreRef = useRef<THREE.Mesh>(null)
 
   useFrame((state) => {
@@ -337,9 +431,9 @@ function GalaxyCore() {
 
   return (
     <mesh ref={coreRef}>
-      <sphereGeometry args={[0.3, 32, 32]} />
-      <meshBasicMaterial color="#fbbf24" transparent opacity={0.8} />
-      <pointLight color="#fbbf24" intensity={2} distance={10} />
+      <sphereGeometry args={[0.25, 32, 32]} />
+      <meshBasicMaterial color={color} transparent opacity={0.9} />
+      <pointLight color={color} intensity={2} distance={8} />
     </mesh>
   )
 }
@@ -352,24 +446,30 @@ export default function GalaxySimulation() {
   const galaxy = SPARC_GALAXIES[galaxyIndex]
   const a0 = a0_at_z(redshift)
 
-  // Calculate cosmic time from redshift (approximate)
+  const sizeScale = model === 'zimmerman' ? sizeScalingZimmerman(redshift) :
+                    model === 'lcdm' ? sizeScalingLCDM(redshift) : 1
+  const scaleFactor = (5 / galaxy.rLast) * sizeScale
+
+  // Cosmic time from redshift
   const cosmicTime = redshift === 0 ? 13.8 : 13.8 / Math.pow(1 + redshift, 1.5)
 
   return (
     <div className="relative w-full h-screen bg-black">
-      {/* 3D Canvas */}
       <Canvas camera={{ position: [0, 8, 12], fov: 45 }}>
-        <ambientLight intensity={0.1} />
+        <ambientLight intensity={0.05} />
         <Stars radius={100} depth={50} count={5000} factor={4} fade speed={1} />
 
-        <GalaxyCore />
+        <GalaxyCore color={galaxy.color || '#fbbf24'} />
         <StarParticles
-          count={2500}
+          count={3500}
           galaxy={galaxy}
           a0={a0}
           model={model}
           redshift={redshift}
         />
+        {(galaxy.armCount || 0) > 0 && (
+          <DustLanes galaxy={galaxy} scaleFactor={scaleFactor} />
+        )}
 
         <OrbitControls
           enablePan={true}
@@ -381,7 +481,6 @@ export default function GalaxySimulation() {
         />
       </Canvas>
 
-      {/* Rotation Curve Display */}
       <RotationCurveDisplay galaxy={galaxy} a0={a0} model={model} />
 
       {/* Controls */}
@@ -392,12 +491,12 @@ export default function GalaxySimulation() {
           defaultOpen={true}
         >
           <p className="text-xs text-gray-400 mb-3">
-            Real SPARC data: compare Newton, ΛCDM dark matter, and Zimmerman predictions
+            Real SPARC data: {SPARC_GALAXIES.length} galaxies with measured rotation curves
           </p>
 
           {/* Galaxy Selector */}
           <div className="mb-4">
-            <label className="text-xs text-gray-400 mb-1 block">Select Galaxy (SPARC)</label>
+            <label className="text-xs text-gray-400 mb-1 block">Select Galaxy (SPARC Database)</label>
             <select
               value={galaxyIndex}
               onChange={(e) => setGalaxyIndex(parseInt(e.target.value))}
@@ -469,7 +568,7 @@ export default function GalaxySimulation() {
             </div>
           </div>
 
-          {/* a₀ Display - only show for Zimmerman model */}
+          {/* Model-specific info panels */}
           {model === 'zimmerman' && (
             <div className="mt-4 p-3 bg-cyan-900/30 rounded-lg border border-cyan-500/30">
               <div className="text-sm text-cyan-300">Zimmerman Acceleration Scale</div>
@@ -520,12 +619,7 @@ export default function GalaxySimulation() {
                   <span className="text-red-400 font-bold">No size evolution shown</span>
                   <br />
                   <span className="text-gray-500 mt-1 block">
-                    <em>Why?</em> Newton's G is scale-free — there's no characteristic
-                    acceleration a₀ to define where "inner" ends and "outer" begins.
-                    Without this scale, there's <strong>no prediction</strong> for size evolution.
-                  </span>
-                  <span className="text-gray-600 mt-1 block text-[10px]">
-                    Galaxy size would depend only on initial conditions, not physics.
+                    Newton has no characteristic scale a₀ — no prediction for size evolution.
                   </span>
                 </div>
               )}
@@ -534,7 +628,7 @@ export default function GalaxySimulation() {
         </CollapsiblePanel>
       </div>
 
-      {/* Info Panel - Collapsible for mobile */}
+      {/* Size Evolution Panel */}
       <CollapsiblePanel
         title="Size Evolution Comparison"
         className="absolute bottom-4 right-4 max-w-sm max-w-[calc(100vw-2rem)]"
@@ -545,36 +639,27 @@ export default function GalaxySimulation() {
             <span className="text-cyan-400 font-bold">Zimmerman:</span>
             <span className="text-gray-300 ml-1">r_M = r₀/√E(z)</span>
             <div className="text-green-400 text-[10px]">★ PREDICTED from theory</div>
-            <div className="text-gray-500 text-[10px] mt-1">
-              MOND radius r_M = √(GM/a₀) shrinks as a₀ increases
-            </div>
           </div>
 
           <div className="p-2 bg-red-900/20 rounded border-l-2 border-red-500">
             <span className="text-red-400 font-bold">ΛCDM:</span>
             <span className="text-gray-300 ml-1">r ∝ (1+z)⁻⁰·⁷⁵</span>
             <div className="text-orange-400 text-[10px]">Empirical fit to simulations</div>
-            <div className="text-gray-500 text-[10px] mt-1">
-              No first-principles prediction; calibrated to observations
-            </div>
           </div>
 
           <div className="p-2 bg-gray-800/50 rounded border-l-2 border-gray-500">
             <span className="text-gray-400 font-bold">Newton:</span>
             <span className="text-gray-300 ml-1">No evolution</span>
             <div className="text-red-500 text-[10px]">NO PREDICTION POSSIBLE</div>
-            <div className="text-gray-500 text-[10px] mt-1">
-              G is scale-free — no characteristic scale defines galaxy extent
-            </div>
           </div>
         </div>
 
         <p className="text-xs text-gray-500 mt-3">
           The key: Zimmerman has a <strong>fundamental scale</strong> a₀ that
-          defines galaxy structure. Newton lacks this entirely.
+          defines galaxy structure.
         </p>
         <p className="text-xs text-gray-600 mt-1">
-          Data: SPARC (Lelli+ 2016)
+          Data: SPARC (Lelli+ 2016) | {SPARC_GALAXIES.length} galaxies
         </p>
       </CollapsiblePanel>
     </div>
