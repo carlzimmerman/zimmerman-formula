@@ -82,6 +82,11 @@ From this single equation, ALL of physics emerges.
 | `GAUGE_SYMMETRIES.py` | 9Z²/(8π) = 12 = 8+3+1 gauge generators |
 | `LORENTZ_INVARIANCE.py` | Lorentz = SPHERE symmetry |
 | `LOCALITY.py` | Locality = SPHERE geometry (no action at distance) |
+| `UNCERTAINTY_PRINCIPLE.py` | ΔxΔp ≥ ℏ/2 from CUBE-SPHERE complementarity |
+| `PAULI_EXCLUSION.py` | Fermion antisymmetry from factor 2 in Z |
+| `RENORMALIZATION.py` | CUBE provides natural cutoff for SPHERE infinities |
+| `QUANTUM_STATISTICS.py` | Bose-Einstein vs Fermi-Dirac from ±1 exchange phase |
+| `NO_SUPERSYMMETRY.py` | Z explains hierarchy/dark matter without SUSY |
 
 ---
 
@@ -143,6 +148,11 @@ From this single equation, ALL of physics emerges.
 21. **Gauge Structure**: 9Z²/(8π) = 12 = SU(3)+SU(2)+U(1) generators
 22. **Lorentz Invariance**: SPHERE symmetry = spacetime isotropy
 23. **Locality**: Physics at x depends only on x and neighbors (SPHERE geometry)
+24. **Uncertainty Principle**: ΔxΔp ≥ ℏ/2 = minimum CUBE-SPHERE overlap
+25. **Pauli Exclusion**: Factor 2 → spin-1/2 → antisymmetric → exclusion
+26. **Renormalization**: CUBE (discrete) regularizes SPHERE (continuous) infinities
+27. **Quantum Statistics**: ±1 exchange phase determines Bose vs Fermi
+28. **No Supersymmetry**: Z explains hierarchy without sparticles - LHC confirms!
 
 ---
 
