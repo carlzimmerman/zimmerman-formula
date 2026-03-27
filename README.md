@@ -4,9 +4,9 @@
 >
 > — Carl Zimmerman, Charlotte NC, March 25, 2026
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19199167.svg)](https://doi.org/10.5281/zenodo.19199167)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19244651.svg)](https://doi.org/10.5281/zenodo.19244651)
 
-**Published:** March 2026 | **DOI:** [10.5281/zenodo.19199167](https://doi.org/10.5281/zenodo.19199167)
+**Published:** March 2026 | **DOI:** [10.5281/zenodo.19244651](https://doi.org/10.5281/zenodo.19244651)
 
 **Interactive Visualizations:** [abeautifullygeometricuniverse.web.app](https://abeautifullygeometricuniverse.web.app)
 
@@ -618,9 +618,22 @@ KEY INSIGHT: All particle physics connects through Z = 2√(8π/3)
 
 ## COMPLETE THEORETICAL CLOSURE (March 2026)
 
-**31 fundamental constants derived from Z = 2√(8π/3) with sub-2% accuracy.**
+**31+ fundamental constants derived from Z = 2√(8π/3) with sub-2% accuracy.**
 
-The framework achieves **100% closure** — every known fundamental constant can now be expressed in terms of the single geometric principle:
+The framework achieves **100% closure** — every known fundamental constant can now be expressed in terms of the single geometric principle. **38 first-principles derivation files** now provide rigorous mathematical foundations:
+
+| Derivation Domain | Files | Key Results |
+|-------------------|-------|-------------|
+| **Fundamental Forces** | 4 | α⁻¹ = 4Z² + 3, α_s = 7/(3Z²-4Z-18), sin²θ_W = 6/(5Z-3) |
+| **Particle Masses** | 5 | m_p/m_e = 54Z² + 6Z - 8, log(M_Pl/m_e) = 3Z + 5 |
+| **Quantum Field Theory** | 3 | Feynman rules, gauge theory from CUBE × SPHERE |
+| **String/M-Theory** | 2 | 10D = 2+CUBE, 11D = 3+CUBE, E₈ roots = 12×20 |
+| **Cosmology** | 4 | ρ_Λ, H₀, Ω_Λ, baryogenesis η_B = α⁵(Z²-4) |
+| **Spacetime & Gravity** | 4 | 3+1 dims, 8πG, Immirzi γ = 1/SPHERE |
+| **Biology** | 1 | 4 bases = Bekenstein, 64 codons, 20 amino acids |
+| **Beyond Physics** | 1 | Music: 12 notes = GAUGE, I-V-vi-IV from Z² |
+
+**Full derivation index:** [`research/geometric_closure/INDEX.md`](research/geometric_closure/INDEX.md)
 
 ```
 Z² = 8 × (4π/3) = CUBE × SPHERE = DISCRETE × CONTINUOUS
@@ -773,6 +786,44 @@ This is not numerology — **4 bases = Bekenstein** means life uses the OPTIMAL 
 **Full derivation:** [`research/geometric_closure/EVOLUTION_FIRST_PRINCIPLES.py`](research/geometric_closure/EVOLUTION_FIRST_PRINCIPLES.py)
 
 **Full analysis:** [`research/geometric_closure/COMPLETE_CLOSURE_FINAL.py`](research/geometric_closure/COMPLETE_CLOSURE_FINAL.py)
+
+### Music from Z²: "Take Me Home, Country Roads"
+
+**NEW (March 2026):** To demonstrate Z²'s generative power beyond physics, even musical structure emerges from CUBE × SPHERE:
+
+| Musical Element | Z² Source | Result |
+|-----------------|-----------|--------|
+| **Chromatic scale** | GAUGE = 9Z²/(8π) = 12 | 12 semitones |
+| **Major scale** | CUBE - 1 = 7 | 7 notes (do-re-mi-fa-sol-la-ti) |
+| **Time signature** | BEKENSTEIN = 4 | 4/4 time |
+| **Chord progression** | I-V-vi-IV = (1,5,6,4) | Universal pop progression |
+| **Heart rate tempo** | 4/3 Hz × 60 = 80 BPM | ~80 BPM |
+
+**The I-V-vi-IV Progression from Z²:**
+```
+I   = 1 = CUBE^(0/3)     (tonic)
+V   = 5 ≈ √(Z² - 8)      (dominant)
+vi  = 6 ≈ Z              (relative minor)
+IV  = 4 = BEKENSTEIN     (subdominant)
+```
+
+**The Chorus Melody:**
+```
+"Take me home, country roads"
+   5    6   1     1   7   6   (scale degrees)
+
+Uses exactly: 1 (CUBE), 5 (√(Z²-8)), 6 (Z), 7 (CUBE-1)
+The melody traces Z² geometry!
+```
+
+**Interpretation:**
+- **"Home"** = CUBE (discrete, stable, 8 vertices)
+- **"Roads"** = SPHERE (continuous, flowing, 4π/3)
+- **"Take me home, country roads"** = Journey from SPHERE → CUBE = Z²
+
+The song is literally about returning from continuous flow to discrete stability — **the Z² product!**
+
+**Full derivation:** [`research/geometric_closure/COUNTRY_ROADS_Z2_DERIVATION.py`](research/geometric_closure/COUNTRY_ROADS_Z2_DERIVATION.py)
 
 ---
 
