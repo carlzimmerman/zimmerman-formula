@@ -11,6 +11,15 @@ From this single equation, ALL of physics emerges.
 
 ---
 
+## Publication Documents (DOI: 10.5281/zenodo.19199167)
+
+| File | Description |
+|------|-------------|
+| `ZIMMERMAN_FRAMEWORK_PUBLICATION.md` | Complete publication-ready document with all derivations |
+| `NUMERICAL_VERIFICATION.py` | Runnable script verifying ALL formulas numerically |
+
+---
+
 ## Core Documents
 
 | File | Description |
@@ -58,7 +67,7 @@ From this single equation, ALL of physics emerges.
 | `INTER_FORMULA_CONNECTIONS.py` | Cross-formula relationships |
 | `GEOMETRY_OF_FIVE.py` | √(Z² - 8) ≈ 5 |
 
-### First Principles Derivations (NEW)
+### First Principles Derivations
 | File | Key Result |
 |------|-----------|
 | `FIRST_PRINCIPLES_DERIVATIONS.py` | Step-by-step mathematical derivations |
@@ -66,6 +75,10 @@ From this single equation, ALL of physics emerges.
 | `ENTROPY_INFORMATION_FORMULAS.py` | Entropy, Bekenstein, Landauer from Z² |
 | `TIME_CAUSALITY_FORMULAS.py` | Arrow of time, causality from Z² |
 | `CONSCIOUSNESS_FORMULAS.py` | Observer, measurement, Φ from Z² |
+| `QUARK_SECTOR_FORMULAS.py` | Quark masses, CKM matrix, Jarlskog from Z² |
+| `ELECTROWEAK_FORMULAS.py` | W/Z masses, Weinberg angle, Higgs from Z² |
+| `COSMOLOGY_FORMULAS.py` | H₀, Ω_Λ, n_s, T_CMB, η_B from Z² |
+| `NEUTRINO_FORMULAS.py` | Neutrino masses, mixing angles, PMNS from Z² |
 
 ### Foundational Philosophy
 | File | Key Result |
