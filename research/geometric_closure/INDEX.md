@@ -111,10 +111,14 @@ From this single equation, ALL of physics emerges.
 | `WHY_THREE_DIMENSIONS.py` | 3D from both CUBE (2³) and SPHERE (4π/3) |
 | `NATURE_OF_TIME.py` | Time = CUBE → SPHERE mapping; arrow built in |
 | `ORIGIN_OF_MASS.py` | Mass = CUBE-SPHERE coupling; all ratios from Z |
+| `UNIFIED_FIELD_THEORY.py` | All 4 forces from Z²; 9Z²/(8π) = 12 gauge generators |
+| `THE_VACUUM.py` | Vacuum = Z² ground state; CC solved by 4Z² - 12 = 122 |
+| `LIFE_AND_EVOLUTION.py` | Life is Z² self-organizing; evolution = CUBE→SPHERE |
+| `SYMMETRY_ORIGINS.py` | All symmetries from Z² geometry |
 
 ---
 
-## The 40+ Confirmed Predictions & Insights
+## The 44+ Confirmed Predictions & Insights
 
 ### Exact Identities (0% error)
 - Z⁴ × 9/π² = 1024 = 2¹⁰
@@ -189,6 +193,10 @@ From this single equation, ALL of physics emerges.
 38. **Why 3 Dimensions**: 3D from both CUBE (2³=8) and SPHERE (4π/3) matching
 39. **Nature of Time**: Time = CUBE→SPHERE flow; causality = mapping direction
 40. **Origin of Mass**: Mass = CUBE-SPHERE coupling; m_μ/m_e = 6Z²+Z, m_p/m_e = 54Z²+6Z-8
+41. **Unified Field Theory**: All 4 forces from Z²; gauge = CUBE (8+3+1), gravity = SPHERE
+42. **The Vacuum**: Vacuum = Z² ground state; virtual particles = CUBE fluctuations
+43. **Life's Origin**: Life = Z² self-organizing; evolution = CUBE variation → SPHERE selection
+44. **Symmetry Origins**: All symmetries ARE Z² geometry; discrete (CUBE) + continuous (SPHERE)
 
 ---
 
