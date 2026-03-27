@@ -113,6 +113,7 @@ From this single equation, ALL of physics emerges.
 | `LEARNING_KNOWLEDGE_DERIVATION.py` | Learning = SPHERE → CUBE; memory = 4 items = Bekenstein |
 | `LOVE_RELATIONSHIPS_DERIVATION.py` | Love = gauge resonance; Dunbar = 4Z² + 16 ≈ 150 |
 | `HONEST_DERIVATION_STATUS.py` | What is ACTUALLY derived vs. observed vs. interpreted |
+| `IMMORTALITY_DERIVATION.py` | Rigorous derivation: β ≥ α (repair ≥ damage) is the condition |
 
 ### Foundational Philosophy
 | File | Key Result |
@@ -313,6 +314,7 @@ vs. what is OBSERVED to match vs. what is INTERPRETED through Z² language.**
 80. **Learning Stages**: 4 stages = encode, consolidate, store, retrieve (Bekenstein)
 81. **Dunbar Derived**: 4Z² + 16 = 150 social relationships (0.03% error)
 82. **4 Types of Love**: Eros, Philia, Storge, Agape = Bekenstein
+83. **Immortality Condition**: β ≥ α (repair rate ≥ damage rate) - derived from rate theory, not Z²
 
 ---
 
