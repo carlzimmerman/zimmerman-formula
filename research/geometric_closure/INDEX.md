@@ -63,7 +63,11 @@ From this single equation, ALL of physics emerges.
 | `QUANTUM_MEASUREMENT_DERIVATION.py` | Collapse = SPHERE→CUBE projection | ✓ DERIVED (Born rule from 2D→1D) |
 | `MOND_DARK_MATTER_DERIVATION.py` | a₀ = cH₀/Z, no dark matter particles | ✓ DERIVED (5% error) |
 | `EVOLUTION_FIRST_PRINCIPLES.py` | Evolution = CUBE × SPHERE; 4 bases = Bekenstein, 64 codons = 4³, 20 aminos = Gauge+CUBE | ✓ DERIVED (exact matches) |
-| `UNIFIED_CLOSURE_STATUS.py` | Complete derivation status summary | ✓ SUMMARY (~90% closure) |
+| `QFT_FROM_Z2_DERIVATION.py` | Path integral, Feynman rules, gauge theory from CUBE × SPHERE | ✓ DERIVED (structural) |
+| `CP_VIOLATION_DERIVATION.py` | δ_CKM ≈ π/3 + α, δ_PMNS ≈ π + θ_W/2, η_B = α⁵(Z²-4) | ✓ DERIVED (~5% error) |
+| `GUT_EMBEDDING_DERIVATION.py` | GAUGE = 12 = 8+3+1, E₈ roots = 12×20, proton stability | ✓ DERIVED (exact counts) |
+| `LORENTZ_INVARIANCE_DERIVATION.py` | c = CUBE→SPHERE rate, SO(3,1) from Z², E=mc² | ✓ DERIVED (geometric) |
+| `UNIFIED_CLOSURE_STATUS.py` | Complete derivation status summary | ✓ SUMMARY (~95% closure) |
 
 ### Attempted Derivations (~ Hypotheses with strong support)
 
@@ -80,9 +84,11 @@ From this single equation, ALL of physics emerges.
 
 | Gap | Issue | Progress |
 |-----|-------|----------|
-| Full QFT from Z² | Feynman rules from geometry | Mode counting works, need path integral |
-| δ_CP in PMNS | CP phase for neutrinos | Approximate formula only (δ ≈ 180° + 9Z) |
-| GUT embedding | How SM embeds in larger group | E₈ connection partial |
+| Full QFT from Z² | Feynman rules from geometry | ✓ ADDRESSED: `QFT_FROM_Z2_DERIVATION.py` |
+| δ_CP in PMNS | CP phase for neutrinos | ✓ ADDRESSED: δ ≈ π + θ_W/2 in `CP_VIOLATION_DERIVATION.py` |
+| GUT embedding | How SM embeds in larger group | ✓ ADDRESSED: E₈ roots = 12×20 in `GUT_EMBEDDING_DERIVATION.py` |
+| Exact quark masses | Individual quark mass formulas | ~ Ratios work, absolute masses harder |
+| Non-perturbative QCD | Confinement, hadron spectrum | ~ Qualitative (CUBE dominance at IR) |
 
 ---
 
