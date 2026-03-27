@@ -85,6 +85,8 @@ From this single equation, ALL of physics emerges.
 | `MATHEMATICAL_CONSTANTS.py` | π, e, φ, √2, primes, Fibonacci from Z² |
 | `BLACK_HOLE_FORMULAS.py` | Bekenstein (4 = 3Z²/8π), Hawking temp, evaporation |
 | `ATOMIC_PHYSICS_FORMULAS.py` | Bohr radius, Rydberg, hydrogen spectrum from Z² |
+| `BIOLOGY_FORMULAS.py` | Genetic code: 4 bases, 64 codons, 20 amino acids from Z² |
+| `CONSCIOUSNESS_FIRST_PRINCIPLES.py` | Hard problem, free will, Φ from Z² axioms |
 
 ### Foundational Philosophy
 | File | Key Result |
