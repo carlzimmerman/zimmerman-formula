@@ -82,6 +82,9 @@ From this single equation, ALL of physics emerges.
 | `STRONG_FORCE_FORMULAS.py` | α_s, Λ_QCD, confinement, θ_QCD from Z² |
 | `RUNNING_COUPLINGS_FORMULAS.py` | Gauge unification, GUT scale, proton decay |
 | `MEANING_OF_LIFE.py` | Why 42? Derivation: 42 = round(Z² + 8) = 7Z + 3/2 |
+| `MATHEMATICAL_CONSTANTS.py` | π, e, φ, √2, primes, Fibonacci from Z² |
+| `BLACK_HOLE_FORMULAS.py` | Bekenstein (4 = 3Z²/8π), Hawking temp, evaporation |
+| `ATOMIC_PHYSICS_FORMULAS.py` | Bohr radius, Rydberg, hydrogen spectrum from Z² |
 
 ### Foundational Philosophy
 | File | Key Result |
