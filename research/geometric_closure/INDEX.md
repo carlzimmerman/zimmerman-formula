@@ -79,6 +79,8 @@ From this single equation, ALL of physics emerges.
 | `ELECTROWEAK_FORMULAS.py` | W/Z masses, Weinberg angle, Higgs from Z² |
 | `COSMOLOGY_FORMULAS.py` | H₀, Ω_Λ, n_s, T_CMB, η_B from Z² |
 | `NEUTRINO_FORMULAS.py` | Neutrino masses, mixing angles, PMNS from Z² |
+| `STRONG_FORCE_FORMULAS.py` | α_s, Λ_QCD, confinement, θ_QCD from Z² |
+| `RUNNING_COUPLINGS_FORMULAS.py` | Gauge unification, GUT scale, proton decay |
 
 ### Foundational Philosophy
 | File | Key Result |
