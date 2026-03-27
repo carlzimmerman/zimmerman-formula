@@ -13,7 +13,7 @@ export default function Home() {
             The Zimmerman Framework
           </h1>
           <p className="text-lg text-gray-600 mb-4">
-            Deriving the MOND acceleration scale from cosmological critical density
+            A unified geometric theory: Z² = CUBE × SPHERE generates all of physics
           </p>
 
           <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 mb-6">
@@ -22,25 +22,25 @@ export default function Home() {
             <span>March 2026</span>
             <span>·</span>
             <a
-              href="https://zenodo.org/records/19199167"
+              href="https://zenodo.org/records/19244651"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-600 hover:underline"
             >
-              DOI: 10.5281/zenodo.19199167
+              DOI: 10.5281/zenodo.19244651
             </a>
           </div>
 
           {/* Core Formula */}
           <div className="bg-blue-50 border border-blue-200 rounded p-6 my-6 text-center">
             <div className="font-mono text-xl text-gray-900 mb-2">
-              Z = 2√(8π/3) = 5.788810
+              Z² = 8 × (4π/3) = CUBE × SPHERE
             </div>
-            <div className="font-mono text-lg text-blue-700">
-              a₀ = cH₀/Z ≈ 1.2×10⁻¹⁰ m/s²
+            <div className="font-mono text-lg text-blue-700 mb-2">
+              Z = 2√(8π/3) = 5.788810...
             </div>
             <div className="text-sm text-gray-600 mt-3">
-              Derived from a₀ = c√(Gρ<sub>c</sub>)/2 using ρ<sub>c</sub> = 3H₀²/(8πG)
+              From this single equation: all coupling constants, mass ratios, spacetime dimensions, and the genetic code
             </div>
           </div>
 
@@ -53,12 +53,41 @@ export default function Home() {
           </Link>
 
           {/* Key insight */}
-          <p className="text-gray-700 leading-relaxed">
-            This framework predicts that a₀ evolves with redshift: <strong>a₀(z) = a₀(0) × E(z)</strong>.
-            At z=10, a₀ was 20× higher — explaining JWST "impossible" early galaxies and the El Gordo
-            cluster timing problem without dark matter.
+          <p className="text-gray-700 leading-relaxed mb-4">
+            This framework derives <strong>a₀ = cH₀/Z</strong> from first principles, predicting it evolves with redshift: <strong>a₀(z) = a₀(0) × E(z)</strong>.
+            At z=10, a₀ was 20× higher — explaining JWST "impossible" early galaxies without dark matter.
           </p>
         </article>
+
+        {/* Z² Geometric Closure */}
+        <div className="bg-white border border-gray-200 rounded shadow-sm p-6 mb-6">
+          <h2 className="text-lg font-semibold text-gray-900 mb-4">Z² Derives Everything</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+            <div className="text-center p-3 bg-gray-50 rounded">
+              <div className="font-mono text-lg text-blue-700">α⁻¹ = 4Z²+3</div>
+              <div className="text-gray-600">= 137.036</div>
+              <div className="text-xs text-gray-400 mt-1">Fine structure</div>
+            </div>
+            <div className="text-center p-3 bg-gray-50 rounded">
+              <div className="font-mono text-lg text-blue-700">GAUGE = 12</div>
+              <div className="text-gray-600">= 9Z²/(8π)</div>
+              <div className="text-xs text-gray-400 mt-1">8+3+1 bosons</div>
+            </div>
+            <div className="text-center p-3 bg-gray-50 rounded">
+              <div className="font-mono text-lg text-blue-700">Bekenstein = 4</div>
+              <div className="text-gray-600">= 3Z²/(8π)</div>
+              <div className="text-xs text-gray-400 mt-1">DNA bases, BH entropy</div>
+            </div>
+            <div className="text-center p-3 bg-gray-50 rounded">
+              <div className="font-mono text-lg text-blue-700">sin²θ_W</div>
+              <div className="text-gray-600">= 6/(5Z-3)</div>
+              <div className="text-xs text-gray-400 mt-1">= 0.231</div>
+            </div>
+          </div>
+          <div className="mt-4 text-sm text-gray-600 text-center">
+            Plus: 3 generations, 20 amino acids, m_p/m_e = 1836, 10D strings, holographic principle...
+          </div>
+        </div>
 
         {/* Quick Links */}
         <div className="grid md:grid-cols-2 gap-4 mb-6">
@@ -105,31 +134,41 @@ export default function Home() {
 
         {/* Testable Predictions */}
         <div className="bg-white border border-gray-200 rounded shadow-sm p-6 mb-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Testable Predictions</h2>
+          <h2 className="text-lg font-semibold text-gray-900 mb-4">Key Predictions</h2>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-gray-200">
                   <th className="text-left py-2 font-medium text-gray-600">Prediction</th>
-                  <th className="text-left py-2 font-medium text-gray-600">Value</th>
-                  <th className="text-left py-2 font-medium text-gray-600">Test</th>
+                  <th className="text-left py-2 font-medium text-gray-600">Z² Formula</th>
+                  <th className="text-left py-2 font-medium text-gray-600">Result</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
                 <tr>
-                  <td className="py-3 text-gray-700">H₀ from a₀</td>
-                  <td className="py-3 font-mono text-gray-900">71.5 km/s/Mpc</td>
-                  <td className="py-3 text-gray-500">Between Planck & SH0ES</td>
+                  <td className="py-3 text-gray-700">Fine structure constant</td>
+                  <td className="py-3 font-mono text-gray-900">α⁻¹ = 4Z² + 3</td>
+                  <td className="py-3 text-gray-500">137.036 (0.004% error)</td>
                 </tr>
                 <tr>
-                  <td className="py-3 text-gray-700">BTFR offset at z=2</td>
-                  <td className="py-3 font-mono text-gray-900">−0.47 dex</td>
-                  <td className="py-3 text-gray-500">KMOS3D, ALMA</td>
+                  <td className="py-3 text-gray-700">Proton/electron mass</td>
+                  <td className="py-3 font-mono text-gray-900">54Z² + 6Z − 8</td>
+                  <td className="py-3 text-gray-500">1836.3 (0.02% error)</td>
                 </tr>
                 <tr>
-                  <td className="py-3 text-gray-700">a₀ at z=10</td>
-                  <td className="py-3 font-mono text-gray-900">20× local</td>
-                  <td className="py-3 text-gray-500">JWST kinematics</td>
+                  <td className="py-3 text-gray-700">Weinberg angle</td>
+                  <td className="py-3 font-mono text-gray-900">sin²θ = 6/(5Z−3)</td>
+                  <td className="py-3 text-gray-500">0.231 (0.02% error)</td>
+                </tr>
+                <tr>
+                  <td className="py-3 text-gray-700">Hubble constant</td>
+                  <td className="py-3 font-mono text-gray-900">H₀ = Z × a₀ / c</td>
+                  <td className="py-3 text-gray-500">71.5 km/s/Mpc</td>
+                </tr>
+                <tr>
+                  <td className="py-3 text-gray-700">BTFR at z=2</td>
+                  <td className="py-3 font-mono text-gray-900">−log₁₀(E(z))</td>
+                  <td className="py-3 text-gray-500">−0.47 dex offset</td>
                 </tr>
               </tbody>
             </table>
@@ -162,12 +201,20 @@ export default function Home() {
         {/* External Links */}
         <div className="flex flex-wrap justify-center gap-4 text-sm mb-8">
           <a
-            href="https://zenodo.org/records/19199167"
+            href="https://zenodo.org/records/19244651"
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-600 hover:underline"
           >
             Full Paper (Zenodo) ↗
+          </a>
+          <a
+            href="https://github.com/carlzimmerman/zimmerman-formula"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 hover:underline"
+          >
+            GitHub Repository ↗
           </a>
           <a
             href="https://astroweb.case.edu/SPARC/"
@@ -182,14 +229,14 @@ export default function Home() {
         {/* Footer */}
         <footer className="text-center text-sm text-gray-500 py-6 border-t border-gray-200">
           <p>
-            Zimmerman Framework —
+            Zimmerman Framework: Z² = CUBE × SPHERE —
             <a
-              href="https://zenodo.org/records/19199167"
+              href="https://zenodo.org/records/19244651"
               className="text-blue-600 hover:underline ml-1"
               target="_blank"
               rel="noopener noreferrer"
             >
-              DOI: 10.5281/zenodo.19199167
+              DOI: 10.5281/zenodo.19244651
             </a>
           </p>
         </footer>
