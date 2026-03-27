@@ -58,6 +58,15 @@ From this single equation, ALL of physics emerges.
 | `INTER_FORMULA_CONNECTIONS.py` | Cross-formula relationships |
 | `GEOMETRY_OF_FIVE.py` | √(Z² - 8) ≈ 5 |
 
+### First Principles Derivations (NEW)
+| File | Key Result |
+|------|-----------|
+| `FIRST_PRINCIPLES_DERIVATIONS.py` | Step-by-step mathematical derivations |
+| `COMPLETE_FORMULA_DERIVATIONS.py` | ALL formulas with numerical verification |
+| `ENTROPY_INFORMATION_FORMULAS.py` | Entropy, Bekenstein, Landauer from Z² |
+| `TIME_CAUSALITY_FORMULAS.py` | Arrow of time, causality from Z² |
+| `CONSCIOUSNESS_FORMULAS.py` | Observer, measurement, Φ from Z² |
+
 ### Foundational Philosophy
 | File | Key Result |
 |------|-----------|
@@ -118,10 +127,16 @@ From this single equation, ALL of physics emerges.
 | `RANDOMNESS_DETERMINISM.py` | Both true: CUBE deterministic, mapping probabilistic |
 | `EMERGENCE.py` | Complexity from Z² self-organization; 8^n combinations |
 | `NATURE_OF_LAWS.py` | Laws ARE Z² geometry; necessary, not contingent |
+| `THE_OBSERVER.py` | What makes something an observer |
+| `INFINITY.py` | Is infinity real? (No - CUBE is finite) |
+| `CAUSALITY.py` | Causation = CUBE → SPHERE mapping |
+| `PROBABILITY_FOUNDATIONS.py` | Born rule from Z² product structure |
+| `SIMPLICITY.py` | Why simple theories work (Z² is simple) |
+| `UNITY_OF_KNOWLEDGE.py` | All knowledge is knowledge of Z² |
 
 ---
 
-## The 47+ Confirmed Predictions & Insights
+## The 50+ Confirmed Predictions & Insights
 
 ### Exact Identities (0% error)
 - Z⁴ × 9/π² = 1024 = 2¹⁰
