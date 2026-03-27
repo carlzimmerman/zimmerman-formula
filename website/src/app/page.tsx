@@ -19,7 +19,7 @@ export default function Home() {
           <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 mb-6">
             <span className="font-medium text-gray-700">Carl Zimmerman</span>
             <span>·</span>
-            <span>March 2025</span>
+            <span>March 2026</span>
             <span>·</span>
             <a
               href="https://zenodo.org/records/19199167"
