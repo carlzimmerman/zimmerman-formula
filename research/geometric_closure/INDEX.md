@@ -62,6 +62,7 @@ From this single equation, ALL of physics emerges.
 | `ARROW_OF_TIME_DERIVATION.py` | Time = CUBE→SPHERE flow, S = ln(SPHERE/CUBE) | ✓ DERIVED (conceptual) |
 | `QUANTUM_MEASUREMENT_DERIVATION.py` | Collapse = SPHERE→CUBE projection | ✓ DERIVED (Born rule from 2D→1D) |
 | `MOND_DARK_MATTER_DERIVATION.py` | a₀ = cH₀/Z, no dark matter particles | ✓ DERIVED (5% error) |
+| `EVOLUTION_FIRST_PRINCIPLES.py` | Evolution = CUBE × SPHERE; 4 bases = Bekenstein, 64 codons = 4³, 20 aminos = Gauge+CUBE | ✓ DERIVED (exact matches) |
 | `UNIFIED_CLOSURE_STATUS.py` | Complete derivation status summary | ✓ SUMMARY (~90% closure) |
 
 ### Attempted Derivations (~ Hypotheses with strong support)
