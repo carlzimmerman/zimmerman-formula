@@ -5,7 +5,7 @@ Complete numerical verification of ALL Zimmerman Framework formulas.
 Run this script to verify all predictions match observations.
 
 Carl Zimmerman, March 2026
-DOI: 10.5281/zenodo.19199167
+DOI: 10.5281/zenodo.19244651
 """
 
 from math import pi, sqrt, log10, log, exp, sin, cos, asin
@@ -302,5 +302,5 @@ print("Sub-percent accuracy: 15+")
 print()
 print("The Zimmerman Framework passes all numerical tests.")
 print()
-print("DOI: 10.5281/zenodo.19199167")
+print("DOI: 10.5281/zenodo.19244651")
 print("=" * 78)

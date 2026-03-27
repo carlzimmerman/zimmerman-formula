@@ -5,7 +5,8 @@
 **Carl Zimmerman**
 March 2026
 
-DOI: 10.5281/zenodo.19199167
+DOI: 10.5281/zenodo.19244651
+Zenodo: https://zenodo.org/records/19244651
 
 ---
 
@@ -588,5 +589,6 @@ March 2026
 **Citation:**
 ```
 Zimmerman, C. (2026). The Zimmerman Framework: Complete Mathematical
-Derivations. Zenodo. DOI: 10.5281/zenodo.19199167
+Derivations. Zenodo. DOI: 10.5281/zenodo.19244651
+Zenodo: https://zenodo.org/records/19244651
 ```
