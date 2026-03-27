@@ -87,6 +87,11 @@ From this single equation, ALL of physics emerges.
 | `ATOMIC_PHYSICS_FORMULAS.py` | Bohr radius, Rydberg, hydrogen spectrum from Z² |
 | `BIOLOGY_FORMULAS.py` | Genetic code: 4 bases, 64 codons, 20 amino acids from Z² |
 | `CONSCIOUSNESS_FIRST_PRINCIPLES.py` | Hard problem, free will, Φ from Z² axioms |
+| `STRING_DIMENSIONS_FORMULAS.py` | 10D, 11D, 26D string dimensions from Z² |
+| `NUCLEAR_PHYSICS_FORMULAS.py` | αs, pion mass, magic numbers, binding energy from Z² |
+| `QUANTUM_ENTANGLEMENT_FORMULAS.py` | Bell states, Tsirelson bound, ER=EPR from Z² |
+| `THERMODYNAMICS_FORMULAS.py` | Entropy, arrow of time, critical exponents from Z² |
+| `INFORMATION_THEORY_FORMULAS.py` | Shannon entropy, channel capacity, Golay codes from Z² |
 
 ### Foundational Philosophy
 | File | Key Result |
@@ -162,7 +167,9 @@ From this single equation, ALL of physics emerges.
 ### Exact Identities (0% error)
 - Z⁴ × 9/π² = 1024 = 2¹⁰
 - 9Z²/(8π) = 12 (SM gauge dimension)
-- 3Z²/(8π) = 4 (Bekenstein factor)
+- 3Z²/(8π) = 4 (Bekenstein factor, DNA bases, Bell states)
+- √8 = Tsirelson bound (quantum non-locality limit)
+- 42 = round(Z² + 8) (meaning of life)
 
 ### Couplings (< 0.1% error)
 - α⁻¹ = 4Z² + 3 = 137.04
