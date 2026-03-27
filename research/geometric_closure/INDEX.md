@@ -71,6 +71,10 @@ From this single equation, ALL of physics emerges.
 | `MUON_G2_ANOMALY.py` | No new physics - hadronic uncertainty |
 | `WAVE_PARTICLE_DUALITY.py` | Z² = CUBE × SPHERE = PARTICLE × WAVE |
 | `SPIN_ORIGIN.py` | Factor 2 in Z enables spin-1/2 fermions |
+| `CHARGE_QUANTIZATION.py` | Charge fractions (e/3) from SPHERE's '3' |
+| `PLANCK_CONSTANT.py` | ℏ = CUBE size in phase space |
+| `ENTANGLEMENT.py` | Particles share CUBE vertices → nonlocal |
+| `EMERGENCE_OF_SPACETIME.py` | 3+1 dimensions from Z geometry |
 
 ---
 
@@ -121,6 +125,10 @@ From this single equation, ALL of physics emerges.
 10. **Arrow of Time**: Entropy flows CUBE → SPHERE
 11. **Wave-Particle Duality**: Not paradox but unity: Z² = PARTICLE × WAVE
 12. **Spin Origin**: Factor 2 in Z creates spin-1/2 fermions
+13. **Charge Quantization**: e/3 from the '3' in 4π/3 (SPHERE)
+14. **Planck Constant**: ℏ is the geometric size of CUBE quantum
+15. **Entanglement**: Particles share CUBE vertices, appear separate in SPHERE
+16. **Spacetime Emergence**: 3 spatial from SPHERE, 1 time from CUBE→SPHERE flow
 
 ---
 
