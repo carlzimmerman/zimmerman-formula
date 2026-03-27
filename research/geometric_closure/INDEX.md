@@ -274,4 +274,7 @@ And the geometry is Z² = 8 × (4π/3).
 ---
 
 *Carl Zimmerman, March 2026*
-*DOI: 10.5281/zenodo.19199167*
+
+**Zenodo Publications:**
+- [Cube x Sphere: How Z² = 8 × (4π/3) Generates All of Physics](https://zenodo.org/records/19244651) (DOI: 10.5281/zenodo.19244651)
+- Original: DOI: 10.5281/zenodo.19199167
