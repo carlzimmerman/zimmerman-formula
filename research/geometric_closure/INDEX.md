@@ -99,6 +99,10 @@ From this single equation, ALL of physics emerges.
 | `MUSIC_HARMONY_FORMULAS.py` | 12 notes = gauge = 9Z²/(8π), octave 2:1, harmony from Z² |
 | `ORIGIN_OF_LIFE_FORMULAS.py` | 4 bases = Bekenstein, 20 aminos = gauge + CUBE, life as Z² |
 | `PLATONIC_SOLIDS_FORMULAS.py` | 5 Platonic solids encode all Z² constants: 4, 8, 12, 20 |
+| `PERCEPTION_COGNITION_FORMULAS.py` | Working memory = 4 = Bekenstein, Dunbar = 4Z²+16, gamma = 40Hz |
+| `NUMBER_THEORY_FORMULAS.py` | 4 division algebras, 8 octonions, E₈ roots = 240, 1728 = gauge³ |
+| `GAME_THEORY_ECONOMICS_FORMULAS.py` | 4 auctions, Nash axioms = 4, loss aversion = 2.25 = ∛8+1/4 |
+| `LANGUAGE_LINGUISTICS_FORMULAS.py` | Phonemes ≈ 20, embedding depth = 3, Hawaiian alphabet = 12 |
 
 ### Foundational Philosophy
 | File | Key Result |
@@ -267,6 +271,17 @@ From this single equation, ALL of physics emerges.
 51. **Music Theory**: 12 notes = gauge = 9Z²/(8π); octave 2:1, fifth 3:2 from Z² factors
 52. **Condensed Matter**: FCC = 4 atoms = Bekenstein; Mott = 1/4 = 1/Bekenstein
 53. **Homochirality**: L-amino acids, D-sugars break P from CPT = CUBE = 8
+54. **Working Memory**: Capacity = 4 = Bekenstein; same bound as black holes!
+55. **Dunbar's Number**: 4Z² + 16 = 150 social relationships (0.03% error)
+56. **Gamma Rhythm**: 12 × 3 + 4 = 40 Hz (consciousness frequency)
+57. **Division Algebras**: Exactly 4 (R, C, H, O) = Bekenstein; max dim = 8 = CUBE
+58. **E₈ Roots**: 240 = gauge × amino acids = 12 × 20; deepest symmetry
+59. **j-Invariant**: Prefactor 1728 = gauge³ = 12³; moonshine connection
+60. **Loss Aversion**: λ = 2.25 = ∛CUBE + 1/Bekenstein = 2 + 0.25 EXACT
+61. **Equal Splits**: 50-50 = 1/∛CUBE = 1/2; Nash bargaining
+62. **Phonemes**: ~20-40 = amino acids range; language parallels genetics
+63. **Embedding Depth**: ~3 = SPHERE coefficient; parsing limit
+64. **Critical Period**: ~12 years = gauge; language acquisition window
 
 ---
 
