@@ -36,11 +36,18 @@ const M_NU_3 = M_E_EV * Math.pow(ALPHA, 3) / BEKENSTEIN * 1000 // meV
 const M_NU_2 = M_NU_3 / Z // meV
 const M_NU_1 = 0 // meV (prediction!)
 
-// Neutrino mixing
+// Neutrino mixing (PMNS)
 const THETA_23 = 180 / BEKENSTEIN // 45 degrees
 const THETA_12 = Math.atan(Math.sqrt(BEKENSTEIN / 9)) * 180 / Math.PI
 const THETA_13 = Math.asin(Math.sqrt(3 * ALPHA)) * 180 / Math.PI
 const DELTA_CP = 180 * (GAUGE + 1) / GAUGE
+
+// CKM matrix (quark mixing)
+const SIN_CABIBBO = 3 / (GAUGE + 1) // = sin²θ_W = 0.2308
+const SIN_CKM_23 = ALPHA * Z // = 0.0422
+const SIN_CKM_13 = ALPHA / 2 // = 0.00365
+const DELTA_CKM = Math.atan(BEKENSTEIN - 1) * 180 / Math.PI // = 71.6°
+const WOLFENSTEIN_A = BEKENSTEIN / (BEKENSTEIN + 1) // = 0.8
 
 interface DerivationCardProps {
   title: string
@@ -325,6 +332,60 @@ export default function AllDerivationsPage() {
           </div>
         </div>
 
+        {/* CKM Matrix */}
+        <div className="bg-white border border-gray-200 rounded shadow-sm p-6 mb-6">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">CKM Matrix (Quark Mixing)</h2>
+          <p className="text-sm text-gray-500 mb-4">All parameters from Z² with ~3% accuracy</p>
+
+          <div className="grid md:grid-cols-2 gap-4">
+            <DerivationCard
+              title="Cabibbo Angle θ₁₂"
+              formula="sin θ = sin²θ_W = 3/(GAUGE+1)"
+              predicted={SIN_CABIBBO.toFixed(4)}
+              measured="0.2250"
+              error="2.6% error"
+              category="good"
+            />
+            <DerivationCard
+              title="CKM θ₂₃ (c-b mixing)"
+              formula="sin θ₂₃ = α × Z"
+              predicted={SIN_CKM_23.toFixed(4)}
+              measured="0.0408"
+              error="3.5% error"
+              category="good"
+            />
+            <DerivationCard
+              title="CKM θ₁₃ (u-b mixing)"
+              formula="sin θ₁₃ = α/2"
+              predicted={SIN_CKM_13.toFixed(5)}
+              measured="0.00382"
+              error="4.5% error"
+              category="good"
+            />
+            <DerivationCard
+              title="CKM CP Phase δ"
+              formula="δ = arctan(BEKENSTEIN-1) = arctan(3)"
+              predicted={DELTA_CKM.toFixed(1) + "°"}
+              measured="68.8° ± 5°"
+              error="4% (within error)"
+              category="good"
+            />
+            <DerivationCard
+              title="Wolfenstein A"
+              formula="A = BEKENSTEIN/(BEKENSTEIN+1) = 4/5"
+              predicted={WOLFENSTEIN_A.toFixed(2)}
+              measured="0.826"
+              error="3.1% error"
+              category="good"
+            />
+          </div>
+
+          <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded text-sm text-blue-800">
+            <strong>Key insight:</strong> sin θ_Cabibbo = sin²θ_W connects quark mixing to electroweak symmetry!
+            CKM angles are suppressed by α compared to PMNS because quarks feel the EM interaction.
+          </div>
+        </div>
+
         {/* Integers */}
         <div className="bg-white border border-gray-200 rounded shadow-sm p-6 mb-6">
           <h2 className="text-lg font-semibold text-gray-900 mb-2">Exact Integers</h2>
@@ -470,7 +531,7 @@ export default function AllDerivationsPage() {
 
           <div className="grid grid-cols-3 gap-4 text-center">
             <div>
-              <div className="text-3xl font-bold text-blue-700">30+</div>
+              <div className="text-3xl font-bold text-blue-700">35+</div>
               <div className="text-sm text-gray-600">Quantities derived</div>
             </div>
             <div>
