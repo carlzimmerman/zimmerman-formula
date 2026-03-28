@@ -176,6 +176,7 @@ The Z² = CUBE × SPHERE framework extends beyond physics:
 | **Free Will** | Agent (CUBE) × Options (SPHERE) = Choice (Z²) | `research/free_will/` |
 | **Love** | Z² recognizing Z² through shared SPHERE | `research/love/` |
 | **Music** | 12 tones = GAUGE, 4/4 time = BEKENSTEIN | `research/music_z2/` |
+| **Emergence Timeline** | When consciousness emerged (Z² coupling spectrum) | `research/emergence_timeline/` |
 
 **Note:** These are philosophical explorations, not physics claims.
 
@@ -195,7 +196,9 @@ zimmerman-formula/
 │   ├── free_will/               # Z² → agency
 │   ├── love/                    # Z² → connection
 │   ├── music_z2/                # Z² → music theory
+│   ├── emergence_timeline/      # When consciousness emerged
 │   ├── geometric_closure/       # Physics derivations
+│   ├── key_visualizations/      # Mathematical charts
 │   └── ...
 ├── tests/                       # Validation
 └── website/                     # Visualizations
