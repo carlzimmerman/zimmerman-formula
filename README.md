@@ -78,6 +78,14 @@ This framework makes claims at different confidence levels. Intellectual honesty
 - The exact identities (Z² = 8 × 4π/3, etc.) are provably true
 - The Friedmann-based derivation of a₀ = cH₀/Z follows from established GR
 
+**PARTIALLY DERIVED (Number Connection Analysis):**
+- **11 = CUBE + 3**: M-theory's 11 dimensions emerge as octonions (8) + space (3)
+- **12 = GAUGE = 9Z²/(8π)**: Standard Model has exactly 12 gauge bosons AND 12 fermions
+- **8 = CUBE**: 8 gluons, 8D octonions, octet rule in chemistry
+- **4 = BEKENSTEIN = 3Z²/(8π)**: 4D spacetime, 4 DNA bases, 4 fundamental forces
+- **3 = BEKENSTEIN - 1**: Spatial dimensions (spacetime minus time)
+- **7 = CUBE - 1**: Miller's working memory, 7 compact M-theory dimensions
+
 **UNCERTAIN**:
 - Whether numerical coincidences (α⁻¹ ≈ 4Z² + 3) reflect deep physics or selection bias
 - Whether the framework has genuine predictive power beyond curve-fitting
