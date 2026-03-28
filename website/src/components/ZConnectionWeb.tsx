@@ -415,10 +415,10 @@ const nodes: Node[] = [
   {
     id: 'weinberg',
     label: 'sin²θ_W',
-    formula: '6/(5Z-3)',
-    value: '0.231',
+    formula: '3/13 = 3/(GAUGE+1)',
+    value: '0.2308',
     category: 'particle',
-    description: 'Weak mixing angle',
+    description: 'Weak mixing angle: 3 spatial / (12 gauge + 1 Higgs)',
     x: 55,
     y: 35
   },
@@ -492,7 +492,8 @@ const connections: Connection[] = [
   // Quarks
   { from: 'Z2', to: 'proton_e', type: 'predicts' },
   { from: 'Z', to: 'b_c', type: 'predicts', label: '-2.5' },
-  { from: 'Z', to: 'weinberg', type: 'predicts' },
+  { from: 'gauge12', to: 'weinberg', type: 'predicts', label: '3/(12+1)' },
+  { from: '3dim', to: 'weinberg', type: 'contains', label: '3/' },
 
   // Mass hierarchy
   { from: 'Z', to: 'planck_e', type: 'predicts', label: '3Z+5' },
