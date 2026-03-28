@@ -213,6 +213,10 @@ export default function Home() {
               <div className="text-2xl mb-1">?</div>
               <div className="text-sm font-medium text-amber-700">Why Z²?</div>
             </Link>
+            <Link href="/cosmic-fate" className="p-4 bg-gray-900 rounded border border-gray-700 hover:border-gray-500 text-center transition-colors min-h-[72px] flex flex-col justify-center">
+              <div className="text-2xl mb-1">∞</div>
+              <div className="text-sm font-medium text-gray-100">Cosmic Fate</div>
+            </Link>
           </div>
         </div>
 
