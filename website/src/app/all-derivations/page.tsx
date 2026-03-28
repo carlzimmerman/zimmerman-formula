@@ -66,6 +66,14 @@ const M_C_PRED = M_MU * GAUGE // = 12 × m_μ
 const M_B_PRED = M_TAU * 2 * Z / 5 // = m_τ × 2Z/5
 const M_T_PRED = M_B_PRED * (Z_SQUARED + 8) / 1000 // in GeV
 
+// NEW: Cosmological and fundamental scale derivations
+const BARYON_ASYMMETRY = Math.pow(ALPHA, 4) / (BEKENSTEIN + 1) // η = α⁴/5
+const LOG_MP_ME = 2 * Z_SQUARED / 3 // log₁₀(m_P/m_e) = 22.34
+const INFLATION_N = 54 // e-folds from m_p/m_e coefficient
+const SPECTRAL_INDEX = 1 - 2 / INFLATION_N // n_s = 0.963
+const LAMBDA_QCD = 2 * M_MU // ≈ 211 MeV
+const THETA_QCD = Math.pow(ALPHA, 4) / Z_SQUARED // ≈ 8.5×10⁻¹¹
+
 interface DerivationCardProps {
   title: string
   formula: string
@@ -559,6 +567,68 @@ export default function AllDerivationsPage() {
           </div>
         </div>
 
+        {/* Fundamental Scales */}
+        <div className="bg-white border border-gray-200 rounded shadow-sm p-6 mb-6">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Fundamental Scales & Early Universe</h2>
+          <p className="text-sm text-gray-500 mb-4">Connecting Planck scale to particle physics</p>
+
+          <div className="grid md:grid-cols-2 gap-4">
+            <DerivationCard
+              title="Electron Mass from Planck"
+              formula="log₁₀(m_P/m_e) = 2Z²/3"
+              predicted={LOG_MP_ME.toFixed(2)}
+              measured="22.38"
+              error="0.2% error"
+              category="strong"
+            />
+            <DerivationCard
+              title="Baryon Asymmetry η"
+              formula="η = α⁴/(BEKENSTEIN+1) = α⁴/5"
+              predicted={BARYON_ASYMMETRY.toExponential(2)}
+              measured="6.1×10⁻¹⁰"
+              error="7% error"
+              category="good"
+            />
+            <DerivationCard
+              title="Inflation e-folds N"
+              formula="N = 54 (from m_p/m_e coefficient)"
+              predicted="54"
+              measured="~57"
+              error="~5% error"
+              category="good"
+            />
+            <DerivationCard
+              title="Spectral Index n_s"
+              formula="n_s = 1 - 2/N = 1 - 2/54"
+              predicted={SPECTRAL_INDEX.toFixed(4)}
+              measured="0.965"
+              error="0.21% error"
+              category="strong"
+            />
+            <DerivationCard
+              title="QCD Scale Λ_QCD"
+              formula="Λ_QCD ≈ 2m_μ"
+              predicted={LAMBDA_QCD.toFixed(0) + " MeV"}
+              measured="220 MeV"
+              error="~4% error"
+              category="good"
+            />
+            <DerivationCard
+              title="Strong CP θ_QCD"
+              formula="θ_QCD = α⁴/Z²"
+              predicted={THETA_QCD.toExponential(1)}
+              measured="< 10⁻¹⁰"
+              error="Consistent"
+              category="strong"
+            />
+          </div>
+
+          <div className="mt-4 p-3 bg-purple-50 border border-purple-200 rounded text-sm text-purple-800">
+            <strong>Key insight:</strong> The coefficient 54 in m_p/m_e = <strong>54</strong>Z² + 6Z - 8
+            appears to be the number of inflation e-folds! This connects particle masses to cosmological expansion.
+          </div>
+        </div>
+
         {/* The Master Equation */}
         <div className="bg-gray-900 text-white rounded shadow-sm p-6 mb-6">
           <h2 className="text-lg font-semibold mb-4 text-center">The Master Equation</h2>
@@ -611,11 +681,11 @@ export default function AllDerivationsPage() {
 
           <div className="grid grid-cols-3 gap-4 text-center">
             <div>
-              <div className="text-3xl font-bold text-blue-700">40+</div>
+              <div className="text-3xl font-bold text-blue-700">45+</div>
               <div className="text-sm text-gray-600">Quantities derived</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-green-600">30</div>
+              <div className="text-3xl font-bold text-green-600">32</div>
               <div className="text-sm text-gray-600">Under 2% error</div>
             </div>
             <div>
