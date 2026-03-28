@@ -224,6 +224,27 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Download Section */}
+        <div className="bg-gray-900 text-white rounded shadow-sm p-6 mb-6">
+          <h2 className="text-lg font-semibold mb-2 text-center">Download Everything</h2>
+          <p className="text-gray-400 text-sm text-center mb-4">
+            Complete archive: all research, code, visualizations, and website source
+          </p>
+          <div className="flex justify-center gap-4">
+            <a
+              href="/zimmerman-formula-complete-2026-03-28.zip"
+              download
+              className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded font-medium transition-colors"
+            >
+              <span>Download ZIP</span>
+              <span className="text-blue-200 text-sm">(14 MB)</span>
+            </a>
+          </div>
+          <p className="text-gray-500 text-xs text-center mt-4">
+            For redundancy: Zenodo DOI, GitHub repo, and this download all contain the complete framework
+          </p>
+        </div>
+
         {/* External Links */}
         <div className="flex flex-wrap justify-center gap-4 text-sm mb-8">
           <a
