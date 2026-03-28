@@ -217,6 +217,10 @@ export default function Home() {
               <div className="text-2xl mb-1">∞</div>
               <div className="text-sm font-medium text-gray-100">Cosmic Fate</div>
             </Link>
+            <Link href="/all-derivations" className="p-4 bg-green-50 rounded border border-green-200 hover:border-green-400 text-center transition-colors min-h-[72px] flex flex-col justify-center">
+              <div className="text-2xl mb-1">*</div>
+              <div className="text-sm font-medium text-green-700">All Derivations</div>
+            </Link>
           </div>
         </div>
 
