@@ -80,7 +80,7 @@ export default function Home() {
             </div>
             <div className="text-center p-3 bg-gray-50 rounded">
               <div className="font-mono text-lg text-blue-700">sin²θ_W</div>
-              <div className="text-gray-600">= 6/(5Z-3)</div>
+              <div className="text-gray-600">= 3/13 = 3/(GAUGE+1)</div>
               <div className="text-xs text-gray-400 mt-1">= 0.231</div>
             </div>
           </div>
@@ -157,8 +157,8 @@ export default function Home() {
                 </tr>
                 <tr>
                   <td className="py-3 text-gray-700">Weinberg angle</td>
-                  <td className="py-3 font-mono text-gray-900">sin²θ = 6/(5Z−3)</td>
-                  <td className="py-3 text-gray-500">0.231 (0.02% error)</td>
+                  <td className="py-3 font-mono text-gray-900">sin²θ = 3/(GAUGE+1)</td>
+                  <td className="py-3 text-gray-500">0.231 (0.15% error)</td>
                 </tr>
                 <tr>
                   <td className="py-3 text-gray-700">Hubble constant</td>
