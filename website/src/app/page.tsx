@@ -221,6 +221,10 @@ export default function Home() {
               <div className="text-2xl mb-1">*</div>
               <div className="text-sm font-medium text-green-700">All Derivations</div>
             </Link>
+            <Link href="/predictions" className="p-4 bg-red-50 rounded border border-red-200 hover:border-red-400 text-center transition-colors min-h-[72px] flex flex-col justify-center">
+              <div className="text-2xl mb-1">!</div>
+              <div className="text-sm font-medium text-red-700">2026 Predictions</div>
+            </Link>
           </div>
         </div>
 
