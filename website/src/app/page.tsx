@@ -177,8 +177,8 @@ export default function Home() {
 
         {/* Simulations Grid */}
         <div className="bg-white border border-gray-200 rounded shadow-sm p-6 mb-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Simulations</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <h2 className="text-lg font-semibold text-gray-900 mb-4">Explore</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
             <Link href="/simulate" className="p-4 bg-gray-50 rounded border border-gray-200 hover:border-blue-300 text-center transition-colors min-h-[72px] flex flex-col justify-center">
               <div className="text-2xl mb-1">🌀</div>
               <div className="text-sm font-medium text-gray-700">Galaxy Rotation</div>
@@ -194,6 +194,10 @@ export default function Home() {
             <Link href="/early-universe" className="p-4 bg-gray-50 rounded border border-gray-200 hover:border-blue-300 text-center transition-colors min-h-[72px] flex flex-col justify-center">
               <div className="text-2xl mb-1">🌌</div>
               <div className="text-sm font-medium text-gray-700">Early Universe</div>
+            </Link>
+            <Link href="/lattice" className="p-4 bg-blue-50 rounded border border-blue-200 hover:border-blue-400 text-center transition-colors min-h-[72px] flex flex-col justify-center">
+              <div className="text-2xl mb-1">🔲</div>
+              <div className="text-sm font-medium text-blue-700">Cube Lattice</div>
             </Link>
           </div>
         </div>
