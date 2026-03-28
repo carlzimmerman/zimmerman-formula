@@ -2,7 +2,7 @@
 
 ## Status: March 28, 2026
 
-### SUCCESSFULLY DERIVED (95+ quantities)
+### SUCCESSFULLY DERIVED (115+ quantities)
 
 | Category | Quantity | Formula | Status |
 |----------|----------|---------|--------|
@@ -117,6 +117,28 @@
 | **Electroweak Sector** |
 | W mass | M_W/m_p = 83.8 | Z² × (BEK+1)/2 | ✅ 2.2% |
 | Z/W ratio | M_Z/M_W = 1.14 | 1/√(1-sin²θ_W) | ✅ 0.5% |
+| **Nucleon Magnetic Moments** |
+| Proton g-factor | g_p = 5.60 | (BEK+1) + (BEK-1)/(BEK+1) | ✅ 0.25% |
+| Neutron g-factor | g_n = -3.83 | -(BEK-1) - (BEK+1)/(GAU/2) | ✅ 0.18% |
+| μ_p/μ_N | 2.80 | g_p/2 | ✅ 0.25% |
+| μ_n/μ_N | -1.92 | g_n/2 | ✅ 0.16% |
+| **Nuclear Binding Coefficients** |
+| Volume term | a_v = 15.5 MeV | m_π/9 | ✅ 2% |
+| Surface term | a_s = 18.6 MeV | m_π × 2/15 | ✅ 2% |
+| Asymmetry term | a_a = 23.3 MeV | m_π/6 = m_π × 2/GAUGE | ✅ 0.4% |
+| Nuclear radius | r₀ = 1.17 fm | λ_π × (1-1/Z) | ✅ 6% |
+| **Light Nuclei Binding** |
+| Deuterium | B_d = 2.21 MeV | m_e × (GAU+1)/3 | ✅ 0.4% |
+| Tritium | B_t = 8.40 MeV | B_d × (BEK - 1/(BEK+1)) | ✅ 0.8% |
+| Helium-3 | B_He3 = 7.74 MeV | B_d × (BEK+3)/2 | ✅ 0.3% |
+| Alpha | B_α = 28.2 MeV | B_d × (GAU + 3/4) | ✅ 0.2% |
+| **Cosmological Temperatures** |
+| CMB temp | T_CMB = 2.70 K | m_e α²/(2 × 52 × Z⁴ × k) | ✅ 0.9% |
+| Freeze-out | T_freeze = 0.70 MeV | m_e × α⁻¹/100 | ✅ 0% |
+| **Primordial Abundances** |
+| Baryon/photon | η = 5.6×10⁻¹⁰ | α⁴/(BEK+1) | ✅ 7% |
+| Deuterium D/H | 2.7×10⁻⁵ | α²/2 | ✅ 5% |
+| Helium Y_p | 0.243 | (1/4)(1-1/Z²) | ✅ 0.8% |
 
 ---
 
