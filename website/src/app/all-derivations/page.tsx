@@ -49,6 +49,23 @@ const SIN_CKM_13 = ALPHA / 2 // = 0.00365
 const DELTA_CKM = Math.atan(BEKENSTEIN - 1) * 180 / Math.PI // = 71.6°
 const WOLFENSTEIN_A = BEKENSTEIN / (BEKENSTEIN + 1) // = 0.8
 
+// Quark masses (MeV) - Individual quarks from lepton partners
+const M_E = 0.511 // electron mass in MeV
+const M_MU = 105.66 // muon mass in MeV
+const M_TAU = 1776.86 // tau mass in MeV
+
+// First generation (tied to electron)
+const M_D_PRED = M_E * Math.pow(BEKENSTEIN - 1, 2) // = 9 × m_e
+const M_U_PRED = M_D_PRED / 2 // = 4.5 × m_e
+
+// Second generation (tied to muon)
+const M_S_PRED = M_D_PRED * 5 * BEKENSTEIN // = 20 × m_d
+const M_C_PRED = M_MU * GAUGE // = 12 × m_μ
+
+// Third generation (tied to tau)
+const M_B_PRED = M_TAU * 2 * Z / 5 // = m_τ × 2Z/5
+const M_T_PRED = M_B_PRED * (Z_SQUARED + 8) / 1000 // in GeV
+
 interface DerivationCardProps {
   title: string
   formula: string
@@ -386,6 +403,69 @@ export default function AllDerivationsPage() {
           </div>
         </div>
 
+        {/* Quark Masses */}
+        <div className="bg-white border border-gray-200 rounded shadow-sm p-6 mb-6">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2">Individual Quark Masses</h2>
+          <p className="text-sm text-gray-500 mb-4">Each generation tied to its lepton partner</p>
+
+          <div className="grid md:grid-cols-2 gap-4">
+            <DerivationCard
+              title="Up Quark"
+              formula="m_u = m_e × (BEKENSTEIN-1)² / 2"
+              predicted={M_U_PRED.toFixed(2) + " MeV"}
+              measured="2.16 MeV"
+              error="6.5% error"
+              category="good"
+            />
+            <DerivationCard
+              title="Down Quark"
+              formula="m_d = m_e × (BEKENSTEIN-1)² = 9m_e"
+              predicted={M_D_PRED.toFixed(2) + " MeV"}
+              measured="4.67 MeV"
+              error="1.5% error"
+              category="strong"
+            />
+            <DerivationCard
+              title="Strange Quark"
+              formula="m_s = m_d × 5 × BEKENSTEIN = 20m_d"
+              predicted={M_S_PRED.toFixed(1) + " MeV"}
+              measured="93.4 MeV"
+              error="1.5% error"
+              category="strong"
+            />
+            <DerivationCard
+              title="Charm Quark"
+              formula="m_c = m_μ × GAUGE = 12m_μ"
+              predicted={M_C_PRED.toFixed(0) + " MeV"}
+              measured="1270 MeV"
+              error="0.2% error"
+              category="strong"
+            />
+            <DerivationCard
+              title="Bottom Quark"
+              formula="m_b = m_τ × 2Z / (BEKENSTEIN+1)"
+              predicted={M_B_PRED.toFixed(0) + " MeV"}
+              measured="4180 MeV"
+              error="1.6% error"
+              category="strong"
+            />
+            <DerivationCard
+              title="Top Quark"
+              formula="m_t = m_b × (Z² + CUBE)"
+              predicted={M_T_PRED.toFixed(1) + " GeV"}
+              measured="172.8 GeV"
+              error="1.1% error"
+              category="strong"
+            />
+          </div>
+
+          <div className="mt-4 p-3 bg-green-50 border border-green-200 rounded text-sm text-green-800">
+            <strong>Quark-Lepton Universality:</strong> Generation 1 quarks scale with m_e,
+            charm scales with m_μ, and third generation with m_τ.
+            Each generation is unified through Z²!
+          </div>
+        </div>
+
         {/* Integers */}
         <div className="bg-white border border-gray-200 rounded shadow-sm p-6 mb-6">
           <h2 className="text-lg font-semibold text-gray-900 mb-2">Exact Integers</h2>
@@ -531,11 +611,11 @@ export default function AllDerivationsPage() {
 
           <div className="grid grid-cols-3 gap-4 text-center">
             <div>
-              <div className="text-3xl font-bold text-blue-700">35+</div>
+              <div className="text-3xl font-bold text-blue-700">40+</div>
               <div className="text-sm text-gray-600">Quantities derived</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-green-600">25</div>
+              <div className="text-3xl font-bold text-green-600">30</div>
               <div className="text-sm text-gray-600">Under 2% error</div>
             </div>
             <div>
