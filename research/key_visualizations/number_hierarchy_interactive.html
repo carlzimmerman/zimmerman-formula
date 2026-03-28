@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Z² Number Hierarchy - Interactive Map</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .header h1 {
+            color: #ffd700;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .header .formula {
+            font-size: 1.4em;
+            color: #00ffff;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .controls {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .controls button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .controls button:hover {
+            transform: scale(1.05);
+        }
+
+        .zoom-in { background: #4CAF50; color: white; }
+        .zoom-out { background: #f44336; color: white; }
+        .reset { background: #2196F3; color: white; }
+
+        .container {
+            width: 100%;
+            overflow: auto;
+            padding: 20px;
+        }
+
+        .hierarchy-container {
+            transform-origin: top center;
+            transition: transform 0.3s ease;
+            min-width: 2000px;
+            margin: 0 auto;
+        }
+
+        /* Main node styling */
+        .node {
+            display: inline-block;
+            padding: 15px 25px;
+            margin: 10px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .node:hover {
+            transform: scale(1.1);
+            z-index: 100;
+        }
+
+        .node .number {
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+
+        .node .name {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        .node .formula {
+            font-size: 0.8em;
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        .node .physics {
+            font-size: 0.75em;
+            color: #ffd700;
+            margin-top: 5px;
+        }
+
+        /* Level styling */
+        .level {
+            text-align: center;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .level-title {
+            font-size: 1.2em;
+            color: #888;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Connection lines */
+        .connector {
+            position: absolute;
+            background: linear-gradient(to bottom, rgba(255,215,0,0.5), rgba(0,255,255,0.3));
+            width: 2px;
+        }
+
+        /* Node categories */
+        .root {
+            background: linear-gradient(135deg, #ffd700, #ff6b6b);
+            color: #000;
+            font-size: 1.2em;
+            box-shadow: 0 0 30px rgba(255,215,0,0.5);
+        }
+
+        .primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            box-shadow: 0 0 20px rgba(102,126,234,0.3);
+        }
+
+        .derived {
+            background: linear-gradient(135deg, #11998e, #38ef7d);
+            color: #000;
+            box-shadow: 0 0 15px rgba(56,239,125,0.3);
+        }
+
+        .integer {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            color: #000;
+            box-shadow: 0 0 15px rgba(0,242,254,0.3);
+        }
+
+        .physics-const {
+            background: linear-gradient(135deg, #fa709a, #fee140);
+            color: #000;
+            box-shadow: 0 0 15px rgba(250,112,154,0.3);
+        }
+
+        .transcendental {
+            background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+            color: #000;
+            box-shadow: 0 0 15px rgba(161,140,209,0.3);
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: fixed;
+            background: rgba(0,0,0,0.9);
+            padding: 15px;
+            border-radius: 10px;
+            max-width: 300px;
+            z-index: 10000;
+            display: none;
+            border: 1px solid #ffd700;
+        }
+
+        .tooltip h3 {
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+
+        .tooltip ul {
+            margin-left: 20px;
+        }
+
+        .tooltip li {
+            margin: 5px 0;
+        }
+
+        /* Section dividers */
+        .section {
+            margin: 50px 0;
+            padding: 30px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+        }
+
+        .section h2 {
+            color: #ffd700;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Grid for number cards */
+        .number-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            font-style: italic;
+        }
+
+        /* Relationships diagram */
+        .relationships {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .relation-card {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 10px;
+            min-width: 200px;
+        }
+
+        .relation-card h4 {
+            color: #00ffff;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>The Complete Z² Number Hierarchy</h1>
+        <div class="formula">Z² = CUBE × SPHERE = 8 × (4π/3) = 32π/3 ≈ 33.51</div>
+    </div>
+
+    <div class="controls">
+        <button class="zoom-in" onclick="zoomIn()">Zoom In (+)</button>
+        <button class="zoom-out" onclick="zoomOut()">Zoom Out (-)</button>
+        <button class="reset" onclick="resetZoom()">Reset View</button>
+        <span style="margin-left: 20px; color: #888;">Scroll to explore • Click nodes for details</span>
+    </div>
+
+    <div class="container">
+        <div class="hierarchy-container" id="hierarchy">
+
+            <!-- ROOT LEVEL -->
+            <div class="section">
+                <h2>THE FOUNDATION</h2>
+                <div class="level">
+                    <div class="node root" onclick="showDetails('z2')">
+                        <div class="number">Z² ≈ 33.51</div>
+                        <div class="name">THE MASTER CONSTANT</div>
+                        <div class="formula">8 × (4π/3) = 32π/3</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PRIMARY COMPONENTS -->
+            <div class="section">
+                <h2>PRIMARY COMPONENTS</h2>
+                <div class="number-grid">
+                    <div class="node primary" onclick="showDetails('cube')">
+                        <div class="number">8</div>
+                        <div class="name">CUBE</div>
+                        <div class="formula">2³ = discrete</div>
+                        <div class="physics">Gluons, Octonions</div>
+                    </div>
+                    <div class="node primary" onclick="showDetails('z')">
+                        <div class="number">Z ≈ 5.79</div>
+                        <div class="name">BRIDGE CONSTANT</div>
+                        <div class="formula">√(Z²) = 2√(8π/3)</div>
+                        <div class="physics">a₀ = cH₀/Z</div>
+                    </div>
+                    <div class="node primary" onclick="showDetails('sphere')">
+                        <div class="number">4π/3</div>
+                        <div class="name">SPHERE</div>
+                        <div class="formula">≈ 4.189</div>
+                        <div class="physics">Unit sphere volume</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DERIVED CONSTANTS -->
+            <div class="section">
+                <h2>DERIVED CONSTANTS</h2>
+                <div class="number-grid">
+                    <div class="node derived" onclick="showDetails('bek')">
+                        <div class="number">4</div>
+                        <div class="name">BEKENSTEIN</div>
+                        <div class="formula">3Z²/(8π)</div>
+                        <div class="physics">Spacetime dimensions</div>
+                    </div>
+                    <div class="node derived" onclick="showDetails('gauge')">
+                        <div class="number">12</div>
+                        <div class="name">GAUGE</div>
+                        <div class="formula">9Z²/(8π)</div>
+                        <div class="physics">Gauge bosons, Fermions</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CORE INTEGERS -->
+            <div class="section">
+                <h2>CORE INTEGERS (1-12)</h2>
+                <div class="number-grid">
+                    <div class="node integer" onclick="showDetails('n1')">
+                        <div class="number">1</div>
+                        <div class="name">Unity</div>
+                        <div class="formula">CUBE/8</div>
+                    </div>
+                    <div class="node integer" onclick="showDetails('n2')">
+                        <div class="number">2</div>
+                        <div class="name">Binary</div>
+                        <div class="formula">√BEK</div>
+                    </div>
+                    <div class="node integer" onclick="showDetails('n3')">
+                        <div class="number">3</div>
+                        <div class="name">Spatial Dims</div>
+                        <div class="formula">BEK - 1</div>
+                    </div>
+                    <div class="node integer" onclick="showDetails('n4')">
+                        <div class="number">4</div>
+                        <div class="name">Spacetime</div>
+                        <div class="formula">= BEKENSTEIN</div>
+                    </div>
+                    <div class="node integer" onclick="showDetails('n5')">
+                        <div class="number">5</div>
+                        <div class="name">Platonic</div>
+                        <div class="formula">≈ floor(Z)</div>
+                    </div>
+                    <div class="node integer" onclick="showDetails('n6')">
+                        <div class="number">6</div>
+                        <div class="name">Cube Faces</div>
+                        <div class="formula">GAUGE/2</div>
+                    </div>
+                    <div class="node integer" onclick="showDetails('n7')">
+                        <div class="number">7</div>
+                        <div class="name">Miller's #</div>
+                        <div class="formula">CUBE - 1</div>
+                    </div>
+                    <div class="node integer" onclick="showDetails('n8')">
+                        <div class="number">8</div>
+                        <div class="name">Gluons</div>
+                        <div class="formula">= CUBE</div>
+                    </div>
+                    <div class="node integer" onclick="showDetails('n9')">
+                        <div class="number">9</div>
+                        <div class="name">3²</div>
+                        <div class="formula">CUBE + 1</div>
+                    </div>
+                    <div class="node integer" onclick="showDetails('n10')">
+                        <div class="number">10</div>
+                        <div class="name">String Dims</div>
+                        <div class="formula">CUBE + 2</div>
+                    </div>
+                    <div class="node integer" onclick="showDetails('n11')">
+                        <div class="number">11</div>
+                        <div class="name">M-Theory</div>
+                        <div class="formula">CUBE + 3</div>
+                    </div>
+                    <div class="node integer" onclick="showDetails('n12')">
+                        <div class="number">12</div>
+                        <div class="name">Bosons</div>
+                        <div class="formula">= GAUGE</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PHYSICS CONSTANTS -->
+            <div class="section">
+                <h2>PHYSICS CONSTANTS FROM Z²</h2>
+                <div class="number-grid">
+                    <div class="node physics-const" onclick="showDetails('alpha')">
+                        <div class="number">137.04</div>
+                        <div class="name">α⁻¹</div>
+                        <div class="formula">4Z² + 3</div>
+                        <div class="physics">0.004% error</div>
+                    </div>
+                    <div class="node physics-const" onclick="showDetails('omega')">
+                        <div class="number">0.685</div>
+                        <div class="name">Ω_Λ</div>
+                        <div class="formula">3Z/(8+3Z)</div>
+                        <div class="physics">0.06% error</div>
+                    </div>
+                    <div class="node physics-const" onclick="showDetails('mup')">
+                        <div class="number">2.79</div>
+                        <div class="name">μ_p</div>
+                        <div class="formula">Z - 3</div>
+                        <div class="physics">0.11% error</div>
+                    </div>
+                    <div class="node physics-const" onclick="showDetails('mtau')">
+                        <div class="number">16.79</div>
+                        <div class="name">m_τ/m_μ</div>
+                        <div class="formula">Z + 11</div>
+                        <div class="physics">0.18% error</div>
+                    </div>
+                    <div class="node physics-const" onclick="showDetails('theta13')">
+                        <div class="number">0.0225</div>
+                        <div class="name">sin²θ₁₃</div>
+                        <div class="formula">1/(Z²+11)</div>
+                        <div class="physics">0.01% error</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TRANSCENDENTAL NUMBERS -->
+            <div class="section">
+                <h2>TRANSCENDENTAL CONNECTIONS</h2>
+                <div class="number-grid">
+                    <div class="node transcendental" onclick="showDetails('pi')">
+                        <div class="number">π ≈ 3.14</div>
+                        <div class="name">Pi</div>
+                        <div class="formula">3Z²/32</div>
+                        <div class="physics">In SPHERE</div>
+                    </div>
+                    <div class="node transcendental" onclick="showDetails('phi')">
+                        <div class="number">φ ≈ 1.618</div>
+                        <div class="name">Golden Ratio</div>
+                        <div class="formula">(1+√5)/2</div>
+                        <div class="physics">5 ≈ floor(Z)</div>
+                    </div>
+                    <div class="node transcendental" onclick="showDetails('1024')">
+                        <div class="number">1024 = 2¹⁰</div>
+                        <div class="name">Exact Identity</div>
+                        <div class="formula">Z⁴ × 9/π²</div>
+                        <div class="physics">PROVEN</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SPECIAL NUMBERS -->
+            <div class="section">
+                <h2>SPECIAL NUMBERS</h2>
+                <div class="number-grid">
+                    <div class="node integer" onclick="showDetails('n20')">
+                        <div class="number">20</div>
+                        <div class="name">Amino Acids</div>
+                        <div class="formula">4 × 5</div>
+                        <div class="physics">BEK × floor(Z)</div>
+                    </div>
+                    <div class="node integer" onclick="showDetails('n24')">
+                        <div class="number">24</div>
+                        <div class="name">Hours</div>
+                        <div class="formula">2 × GAUGE</div>
+                        <div class="physics">3 × CUBE</div>
+                    </div>
+                    <div class="node integer" onclick="showDetails('n26')">
+                        <div class="number">26</div>
+                        <div class="name">Bosonic String</div>
+                        <div class="formula">2 × 13</div>
+                        <div class="physics">String theory</div>
+                    </div>
+                    <div class="node integer" onclick="showDetails('n49')">
+                        <div class="number">49</div>
+                        <div class="name">(CUBE-1)²</div>
+                        <div class="formula">7²</div>
+                        <div class="physics">μ_p × 49 ≈ α⁻¹</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RELATIONSHIPS -->
+            <div class="section">
+                <h2>INTER-NUMBER ALGEBRA</h2>
+                <div class="relationships">
+                    <div class="relation-card">
+                        <h4>Addition</h4>
+                        <p>3 + 1 = 4 (BEK)</p>
+                        <p>4 + 8 = 12 (GAUGE)</p>
+                        <p>8 + 3 = 11 (M-theory)</p>
+                        <p>4Z² + 3 = 137 (α⁻¹)</p>
+                    </div>
+                    <div class="relation-card">
+                        <h4>Subtraction</h4>
+                        <p>8 - 1 = 7 (Miller's)</p>
+                        <p>12 - 1 = 11 (M-theory)</p>
+                        <p>4 - 1 = 3 (spatial)</p>
+                        <p>Z - 3 = μ_p</p>
+                    </div>
+                    <div class="relation-card">
+                        <h4>Multiplication</h4>
+                        <p>3 × 4 = 12 (GAUGE)</p>
+                        <p>2 × 4 = 8 (CUBE)</p>
+                        <p>8 × (4π/3) = Z²</p>
+                        <p>μ_p × 49 ≈ 137</p>
+                    </div>
+                    <div class="relation-card">
+                        <h4>Division</h4>
+                        <p>12 / 3 = 4 (BEK)</p>
+                        <p>8 / 2 = 4 (BEK)</p>
+                        <p>Z² / 12 ≈ μ_p</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>"The universe counts in Z²." — Zimmerman Framework</p>
+        <p style="margin-top: 10px;">All numbers from ONE equation: Z² = 8 × (4π/3)</p>
+    </div>
+
+    <!-- Tooltip -->
+    <div class="tooltip" id="tooltip"></div>
+
+    <script>
+        let zoomLevel = 1;
+        const hierarchy = document.getElementById('hierarchy');
+        const tooltip = document.getElementById('tooltip');
+
+        function zoomIn() {
+            zoomLevel = Math.min(zoomLevel + 0.1, 2);
+            hierarchy.style.transform = `scale(${zoomLevel})`;
+        }
+
+        function zoomOut() {
+            zoomLevel = Math.max(zoomLevel - 0.1, 0.5);
+            hierarchy.style.transform = `scale(${zoomLevel})`;
+        }
+
+        function resetZoom() {
+            zoomLevel = 1;
+            hierarchy.style.transform = `scale(1)`;
+        }
+
+        // Keyboard controls
+        document.addEventListener('keydown', (e) => {
+            if (e.key === '+' || e.key === '=') zoomIn();
+            if (e.key === '-') zoomOut();
+            if (e.key === '0') resetZoom();
+        });
+
+        // Mouse wheel zoom
+        hierarchy.addEventListener('wheel', (e) => {
+            if (e.ctrlKey) {
+                e.preventDefault();
+                if (e.deltaY < 0) zoomIn();
+                else zoomOut();
+            }
+        });
+
+        // Details data
+        const details = {
+            'z2': {
+                title: 'Z² = 32π/3 ≈ 33.51',
+                content: [
+                    'The MASTER CONSTANT of the Zimmerman Framework',
+                    'Z² = CUBE × SPHERE = 8 × (4π/3)',
+                    'From this ONE equation, all numbers derive',
+                    'Connects discrete (8) to continuous (4π/3)'
+                ]
+            },
+            'cube': {
+                title: 'CUBE = 8',
+                content: [
+                    'The discrete structure constant',
+                    '8 = 2³ = vertices of a cube',
+                    '8 gluons in QCD',
+                    '8-dimensional octonions',
+                    'Octet rule in chemistry'
+                ]
+            },
+            'z': {
+                title: 'Z ≈ 5.7888',
+                content: [
+                    'The BRIDGE between discrete and continuous',
+                    'Z = 2√(8π/3) = √(32π/3)',
+                    'Appears in a₀ = cH₀/Z (MOND acceleration)',
+                    'μ_p = Z - 3 (proton magnetic moment)',
+                    '5 ≈ floor(Z) gives Platonic solids'
+                ]
+            },
+            'sphere': {
+                title: 'SPHERE = 4π/3 ≈ 4.189',
+                content: [
+                    'The continuous field constant',
+                    'Volume of the unit sphere',
+                    'Most symmetric 3D object',
+                    'Brings π into the framework'
+                ]
+            },
+            'bek': {
+                title: 'BEKENSTEIN = 4',
+                content: [
+                    '4 = 3Z²/(8π) EXACTLY',
+                    '4 spacetime dimensions',
+                    '4 DNA bases (A, T, G, C)',
+                    '4 fundamental forces',
+                    '4-component Dirac spinor',
+                    'Quaternion dimensions'
+                ]
+            },
+            'gauge': {
+                title: 'GAUGE = 12',
+                content: [
+                    '12 = 9Z²/(8π) EXACTLY',
+                    '12 gauge bosons (8 gluons + W± + Z + γ + H)',
+                    '12 fundamental fermions',
+                    '12 edges of a cube',
+                    '12 notes in chromatic scale'
+                ]
+            },
+            'n7': {
+                title: '7 = CUBE - 1',
+                content: [
+                    'Miller\'s Magic Number (7 ± 2 working memory)',
+                    '7 compact dimensions in M-theory (11 - 4)',
+                    '7 days of the week',
+                    '7 notes in diatonic scale',
+                    'Visible vertices from inside cube'
+                ]
+            },
+            'n11': {
+                title: '11 = CUBE + 3 = GAUGE - 1',
+                content: [
+                    'M-theory requires exactly 11 dimensions',
+                    '11 = 8 (octonions) + 3 (space)',
+                    '11 = 4 (spacetime) + 7 (compact)',
+                    'Massive gauge sector dimension'
+                ]
+            },
+            'alpha': {
+                title: 'α⁻¹ = 4Z² + 3 = 137.04',
+                content: [
+                    'Fine structure constant inverse',
+                    '4Z² = geometry in 4D spacetime',
+                    '+3 = spatial propagation correction',
+                    'Error: only 0.004% (1 in 25,000)',
+                    'Most precise Z² prediction'
+                ]
+            },
+            'omega': {
+                title: 'Ω_Λ = 3Z/(8+3Z) = 0.685',
+                content: [
+                    'Dark energy density fraction',
+                    '3Z = spatial expansion coupling',
+                    '8 = matter (CUBE)',
+                    'Error: 0.06%',
+                    'Explains cosmic acceleration'
+                ]
+            },
+            'mup': {
+                title: 'μ_p = Z - 3 = 2.79',
+                content: [
+                    'Proton magnetic moment (nuclear magnetons)',
+                    'Z = full geometric coupling',
+                    '-3 = quark corrections (3 quarks: uud)',
+                    'Error: 0.11%',
+                    'μ_p × 49 ≈ 137 (connects to α!)'
+                ]
+            },
+            '1024': {
+                title: '1024 = Z⁴ × 9/π² EXACTLY',
+                content: [
+                    'This is a MATHEMATICAL IDENTITY',
+                    '1024 = 2¹⁰',
+                    'Proof: Z² = 32π/3, so Z⁴ = 1024π²/9',
+                    'Z⁴ × 9/π² = 1024 QED',
+                    '100% confidence - TRUE by definition'
+                ]
+            },
+            'n5': {
+                title: '5 ≈ floor(Z)',
+                content: [
+                    '5 Platonic solids (only regular convex polyhedra)',
+                    '5 fingers per hand',
+                    '5 traditional senses',
+                    'Pentagon geometry and golden ratio',
+                    '√5 appears in φ = (1+√5)/2'
+                ]
+            },
+            'n3': {
+                title: '3 = BEKENSTEIN - 1',
+                content: [
+                    '3 spatial dimensions',
+                    'The "+3" correction in α⁻¹ = 4Z² + 3',
+                    'The "+3" in 11 = CUBE + 3 (M-theory)',
+                    '3 quarks per baryon',
+                    'RGB color model'
+                ]
+            },
+            'n49': {
+                title: '49 = 7² = (CUBE - 1)²',
+                content: [
+                    'Square of Miller\'s number',
+                    'μ_p × 49 ≈ 136.8 ≈ α⁻¹ !!!',
+                    'Connects proton structure to fine structure',
+                    'One of the deepest Z² relationships'
+                ]
+            },
+            'n20': {
+                title: '20 = 4 × 5 = BEKENSTEIN × floor(Z)',
+                content: [
+                    '20 standard amino acids in biology!',
+                    'Icosahedron faces, dodecahedron vertices',
+                    'Information × discrete bridge'
+                ]
+            }
+        };
+
+        // Add default details for numbers not yet defined
+        for (let i = 1; i <= 26; i++) {
+            if (!details['n' + i]) {
+                details['n' + i] = {
+                    title: 'Number ' + i,
+                    content: ['Click to see Z² relationships']
+                };
+            }
+        }
+
+        function showDetails(key) {
+            const data = details[key] || { title: 'Unknown', content: ['No details available'] };
+
+            tooltip.innerHTML = `
+                <h3>${data.title}</h3>
+                <ul>
+                    ${data.content.map(c => `<li>${c}</li>`).join('')}
+                </ul>
+            `;
+            tooltip.style.display = 'block';
+
+            // Position tooltip near cursor
+            document.addEventListener('mousemove', moveTooltip);
+        }
+
+        function moveTooltip(e) {
+            const x = Math.min(e.pageX + 15, window.innerWidth - 320);
+            const y = Math.min(e.pageY + 15, window.innerHeight - 200);
+            tooltip.style.left = x + 'px';
+            tooltip.style.top = y + 'px';
+        }
+
+        // Hide tooltip when clicking elsewhere
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.node')) {
+                tooltip.style.display = 'none';
+                document.removeEventListener('mousemove', moveTooltip);
+            }
+        });
+    </script>
+</body>
+</html>
