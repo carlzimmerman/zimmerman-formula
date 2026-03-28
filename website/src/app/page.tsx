@@ -92,6 +92,16 @@ export default function Home() {
         {/* Quick Links */}
         <div className="grid md:grid-cols-2 gap-4 mb-6">
           <Link
+            href="/why-z2"
+            className="block p-5 bg-blue-50 border border-blue-200 rounded shadow-sm hover:border-blue-400 hover:shadow transition-all"
+          >
+            <div className="font-semibold text-blue-800 mb-1">Why Z² = 32π/3?</div>
+            <div className="text-sm text-blue-600">
+              First principles derivation from BEKENSTEIN = 4
+            </div>
+          </Link>
+
+          <Link
             href="/derivation"
             className="block p-5 bg-white border border-gray-200 rounded shadow-sm hover:border-blue-300 hover:shadow transition-all"
           >
@@ -198,6 +208,10 @@ export default function Home() {
             <Link href="/lattice" className="p-4 bg-blue-50 rounded border border-blue-200 hover:border-blue-400 text-center transition-colors min-h-[72px] flex flex-col justify-center">
               <div className="text-2xl mb-1">🔲</div>
               <div className="text-sm font-medium text-blue-700">Cube Lattice</div>
+            </Link>
+            <Link href="/why-z2" className="p-4 bg-amber-50 rounded border border-amber-200 hover:border-amber-400 text-center transition-colors min-h-[72px] flex flex-col justify-center">
+              <div className="text-2xl mb-1">?</div>
+              <div className="text-sm font-medium text-amber-700">Why Z²?</div>
             </Link>
           </div>
         </div>
