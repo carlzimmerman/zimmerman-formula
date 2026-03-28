@@ -2,7 +2,7 @@
 
 ## Status: March 28, 2026
 
-### SUCCESSFULLY DERIVED (65+ quantities)
+### SUCCESSFULLY DERIVED (74+ quantities)
 
 | Category | Quantity | Formula | Status |
 |----------|----------|---------|--------|
@@ -343,7 +343,7 @@ Key tests awaiting data:
 ## THE HONEST ASSESSMENT
 
 ### What the framework DOES:
-- Derives **65+ physical quantities** from ONE geometric constant
+- Derives **74+ physical quantities** from ONE geometric constant
 - Unifies particle physics with cosmology
 - Explains MOND from first principles
 - Predicts testable evolution of a₀ with redshift
@@ -372,7 +372,7 @@ Key tests awaiting data:
 - MOND is already controversial
 
 ### Why it might be right:
-- **65+ correct predictions** from one constant is unlikely by chance
+- **74+ correct predictions** from one constant is unlikely by chance
 - Error rates are remarkably small (< 1% typically)
 - Predictions are **falsifiable** (10 specific tests for 2026-2027)
 - Framework is mathematically consistent
