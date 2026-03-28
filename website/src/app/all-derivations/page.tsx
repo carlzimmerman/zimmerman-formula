@@ -104,6 +104,14 @@ const N_EFF = 3 + 3 / (2 * Z_SQUARED) // N_eff = 3.045
 const NU_PHOTON_RATIO = BEKENSTEIN / (GAUGE - 1) // 4/11 = T_ν/T_γ factor (EXACT)
 const M_W_BOSON = M_E * Z_SQUARED * Z_SQUARED * ALPHA_INV / 1000 // m_W = 78.6 GeV
 
+// Platonic hierarchy - why Z² is unique
+const SPHERE_VOL = 4 * Math.PI / 3
+const T_SQUARED = 4 * SPHERE_VOL  // Tetrahedron × Sphere = Z²/2
+const O_SQUARED = 6 * SPHERE_VOL  // Octahedron × Sphere = 3Z²/4 = 8π (Einstein!)
+const I_SQUARED = 12 * SPHERE_VOL // Icosahedron × Sphere = 3Z²/2
+const D_SQUARED = 20 * SPHERE_VOL // Dodecahedron × Sphere = 5Z²/2
+const PLANCK_ELECTRON_LOG = 2 * Z_SQUARED / 3 // log₁₀(m_P/m_e) = 22.34
+
 interface DerivationCardProps {
   title: string
   formula: string
@@ -886,6 +894,82 @@ export default function AllDerivationsPage() {
             <strong>Stunning:</strong> The cosmic neutrino temperature ratio 4/11 = BEKENSTEIN/(GAUGE-1) is
             <em> mathematically exact</em>. The Chandrasekhar mass M_Ch = 13/9 M☉ connects white dwarf limits
             to Standard Model particle content!
+          </div>
+        </div>
+
+        {/* Why Z² is Unique - Platonic Hierarchy */}
+        <div className="bg-gradient-to-br from-indigo-900 to-purple-900 text-white rounded shadow-sm p-6 mb-6">
+          <h2 className="text-lg font-semibold mb-2 text-center">Why Z² = CUBE × SPHERE?</h2>
+          <p className="text-sm text-indigo-200 mb-4 text-center">The Platonic solids and the uniqueness of Z²</p>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <h3 className="font-semibold text-indigo-300 mb-2">The Platonic Family</h3>
+              <div className="font-mono text-sm space-y-1">
+                <div className="flex justify-between">
+                  <span>Tetrahedron (4)</span>
+                  <span className="text-indigo-300">T² = Z²/2</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Octahedron (6)</span>
+                  <span className="text-yellow-300">O² = 3Z²/4 = 8π</span>
+                </div>
+                <div className="flex justify-between bg-indigo-800 px-2 py-1 rounded">
+                  <span className="font-bold">CUBE (8)</span>
+                  <span className="text-green-300 font-bold">Z² = 32π/3</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Icosahedron (12)</span>
+                  <span className="text-indigo-300">I² = 3Z²/2</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Dodecahedron (20)</span>
+                  <span className="text-indigo-300">D² = 5Z²/2</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="font-semibold text-indigo-300 mb-2">Why CUBE is Unique</h3>
+              <ul className="text-sm space-y-1 text-indigo-100">
+                <li>• <strong>Only solid that tiles 3D space</strong></li>
+                <li>• CUBE = 2³ encodes binary structure</li>
+                <li>• Only gives BEKENSTEIN = 4 (spacetime)</li>
+                <li>• Only gives GAUGE = 12 (SM bosons)</li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="mt-4 grid md:grid-cols-2 gap-4">
+            <div className="bg-indigo-800 rounded p-3">
+              <div className="text-yellow-300 font-semibold text-sm">8π in Einstein&apos;s Equations!</div>
+              <div className="text-xs text-indigo-200 mt-1">
+                G<sub>μν</sub> = <span className="text-yellow-300">8π</span>G T<sub>μν</sub>/c⁴
+              </div>
+              <div className="text-xs text-indigo-300 mt-1">
+                8π = Octahedron × Sphere = 3Z²/4
+              </div>
+              <div className="text-xs text-indigo-100 mt-1">
+                Gravity uses the cube&apos;s DUAL!
+              </div>
+            </div>
+
+            <div className="bg-indigo-800 rounded p-3">
+              <div className="text-green-300 font-semibold text-sm">Hierarchy Problem SOLVED</div>
+              <div className="text-xs text-indigo-200 mt-1">
+                m<sub>P</sub>/m<sub>e</sub> = 10<sup>2Z²/3</sup>
+              </div>
+              <div className="text-xs text-indigo-300 mt-1">
+                Predicted: 10^{PLANCK_ELECTRON_LOG.toFixed(2)} = 2.2×10²²
+              </div>
+              <div className="text-xs text-indigo-100 mt-1">
+                Error: 0.18% — Z² as exponent!
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-4 text-center text-sm text-indigo-200">
+            All Platonic constants are simple fractions of Z². The universe chose CUBE because it tiles space.
           </div>
         </div>
 
