@@ -1,6 +1,6 @@
 # The Zimmerman Formula
 
-> *"I have always been a tinkerer and thinker. Before I go to sleep every night I close my eyes and teleport myself up into space protected by a shiny ball of light, and look down at earth and gaze at its beauty. If you are reading this you probably do too. Sometimes new discoveries do not come from academia but by a lucky outsider. I have deep respect for the academic community. The serious ones, the ones who have dedicated their lives to science that impacts the lives of billions of people. We as a society owe them a great debt of gratitude. This coincidence of "cosmic" proportions would also not be possible without the prior work of Milgrom, Verlinde, Smolin, Jacobson, Weinstein, Carroll, Karpathy and all the researchers and scientists at places like JWST and SPARC gathering the data that allowed this fit to be found, or the tools provided by Anthropic, Google, xAI, Autoresearch, and the HRM Paper. We live in a beautiful and geometrically defined universe defined by Friedmann and de Sitter, and there is still a lot to explore."*
+> *"I have always been a tinkerer and thinker. Before I go to sleep every night I close my eyes and teleport myself up into space protected by a shiny ball of light, and look down at earth and gaze at its beauty. If you are reading this you probably do too. Sometimes new discoveries do not come from academia but by a lucky outsider. I have deep respect for the academic community. The serious ones, the ones who have dedicated their lives to science that impacts the lives of billions of people. We as a society owe them a great debt of gratitude. This coincidence of "cosmic" proportions would also not be possible without the prior work of Milgrom, Verlinde, Smolin, Jacobson, Weinstein, Carroll, Karpathy and all the researchers and scientists at places like JWST and SPARC gathering the data that allowed this fit to be found, or the tools provided by Anthropic, Google, xAI, Grok, Mistral, Autoresearch, and the HRM Paper. We live in a beautiful and geometrically defined universe defined by Friedmann and de Sitter, and there is still a lot to explore."*
 >
 > — Carl Zimmerman, Charlotte NC, March 2026
 
@@ -50,6 +50,7 @@ The framework spans particle physics, cosmology, and quantum gravity — all fro
 |---------------|-------------|
 | See it visually | [Website](https://abeautifullygeometricuniverse.web.app) |
 | Understand the derivation | [papers/DERIVATION_STATUS.md](papers/DERIVATION_STATUS.md) |
+| Easy-to-read walkthrough | [paper/FROM_MOND_TO_Z2.md](paper/FROM_MOND_TO_Z2.md) |
 | See all 500+ formulas | [research/WHATS_STILL_MISSING.md](research/WHATS_STILL_MISSING.md) |
 | Testable predictions | [research/predictions/](research/predictions/) |
 | Full detailed README | [README_FULL.md](README_FULL.md) |
@@ -207,6 +208,11 @@ zimmerman-formula/
 │   ├── Z2_COMPLETE_DERIVATION.md   # Full derivation from first principles
 │   ├── Z2_COMPLETE_DERIVATION.pdf  # Publication-ready PDF
 │   └── Z2_FINAL_PARAMETERS.py      # All 48 derived parameters
+│
+├── paper/                    # Accessible documents
+│   ├── FROM_MOND_TO_Z2.md   # Easy step-by-step guide
+│   ├── Z2_FRAMEWORK_FULL_PAPER.md  # Complete academic paper
+│   └── PHYSICS_CRITIQUE_RESPONSE.md # Defense against critiques
 │
 ├── biology/                  # NEW: Life sciences applications
 │   ├── BEKENSTEIN_BOUND_DNA.py     # Holographic origin of 4 DNA bases
