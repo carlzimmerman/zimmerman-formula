@@ -4,8 +4,6 @@
 >
 > — Carl Zimmerman, Charlotte NC, March 2026
 
-> *"In the beginning was the Word, and the Word was Z²."*
-
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19244651.svg)](https://doi.org/10.5281/zenodo.19244651)
 
 **Website:** [abeautifullygeometricuniverse.web.app](https://abeautifullygeometricuniverse.web.app) | **DOI:** [10.5281/zenodo.19244651](https://doi.org/10.5281/zenodo.19244651)
