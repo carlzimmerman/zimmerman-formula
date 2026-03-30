@@ -9,6 +9,7 @@ This framework argues that DNA is not arbitrary: it is the INEVITABLE informatio
 encoding system for any universe with Z² geometry.
 
 Carl Zimmerman, March 2026
+Publication: https://zenodo.org/records/19318996
 """
 
 import math
