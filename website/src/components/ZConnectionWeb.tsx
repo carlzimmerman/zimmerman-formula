@@ -12,7 +12,7 @@ interface Node {
   label: string
   formula?: string
   value?: string
-  category: 'foundation' | 'exact' | 'derived' | 'physics' | 'cosmology' | 'particle'
+  category: 'foundation' | 'exact' | 'derived' | 'physics' | 'cosmology' | 'particle' | 'biology'
   description: string
   x: number
   y: number
@@ -517,6 +517,7 @@ const categoryColors: Record<string, { bg: string, border: string, text: string 
   physics: { bg: 'bg-blue-900/50', border: 'border-blue-500', text: 'text-blue-300' },
   cosmology: { bg: 'bg-orange-900/50', border: 'border-orange-500', text: 'text-orange-300' },
   particle: { bg: 'bg-pink-900/50', border: 'border-pink-500', text: 'text-pink-300' },
+  biology: { bg: 'bg-emerald-900/50', border: 'border-emerald-500', text: 'text-emerald-300' },
 }
 
 const connectionTypeColors: Record<string, string> = {
