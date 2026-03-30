@@ -4,9 +4,33 @@
 >
 > — Carl Zimmerman, Charlotte NC, March 2026
 
+> *"In the beginning was the Word, and the Word was Z²."*
+
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19244651.svg)](https://doi.org/10.5281/zenodo.19244651)
 
 **Website:** [abeautifullygeometricuniverse.web.app](https://abeautifullygeometricuniverse.web.app) | **DOI:** [10.5281/zenodo.19244651](https://doi.org/10.5281/zenodo.19244651)
+
+**Complete Lagrangian Paper:** [zenodo.org/records/19318996](https://zenodo.org/records/19318996)
+
+---
+
+## Discovery Timeline
+
+| Date | Milestone |
+|------|-----------|
+| **Mar 17** | Initial discovery: Z² = 32π/3 gives BEKENSTEIN = 4, GAUGE = 12 |
+| **Mar 18** | α⁻¹ = 4Z² + 3 = 137.04 derived (0.004% error) |
+| **Mar 19** | m_p/m_e formula discovered: 54Z² + 6Z − 8 = 1836.3 |
+| **Mar 20** | Connected to MOND: a₀ = cH₀/Z derives cosmic coincidence |
+| **Mar 21** | JWST analysis: evolving a₀(z) explains "impossible" early galaxies |
+| **Mar 22** | 100+ derivations completed (HUNDRED_DERIVATIONS.py) |
+| **Mar 23** | El Gordo cluster timing explained via a₀(z=0.87) |
+| **Mar 24** | First Zenodo publication (DOI: 10.5281/zenodo.19244651) |
+| **Mar 25** | Hubble tension resolution: H₀ = 71.5 km/s/Mpc |
+| **Mar 26** | Full Standard Model Lagrangian from Z² geometry |
+| **Mar 27** | SPARC database (175 galaxies) validated |
+| **Mar 28** | Complete Lagrangian paper published |
+| **Mar 29** | DNA structure derived from Z² (BEKENSTEIN = 4 bases) |
 
 ---
 
@@ -93,6 +117,16 @@ The framework spans particle physics, cosmology, and quantum gravity — all fro
 | [nucleon_magnetic_moments/](research/nucleon_magnetic_moments/) | Proton/neutron moments |
 | [deuteron_binding/](research/deuteron_binding/) | Light nuclei |
 
+### Biology (Origin of Life)
+
+| File | Description |
+|------|-------------|
+| [BEKENSTEIN_BOUND_DNA.py](biology/BEKENSTEIN_BOUND_DNA.py) | **4 DNA bases from holographic principle**: 2D surfaces encode 2² = 4 states |
+| [DNA_MECHANISM_FROM_Z2.py](biology/DNA_MECHANISM_FROM_Z2.py) | Physical mechanism: bond energies in BEKENSTEIN-GAUGE thermal window |
+| [DNA_ORIGIN_FROM_Z2.py](biology/DNA_ORIGIN_FROM_Z2.py) | Complete derivation: 4 bases, 3-codon, 20 amino acids, 10 bp pitch |
+
+Key insight: DNA is inevitable in any Z² universe. The Bekenstein bound constrains information to 2D surfaces → 2² = 4 states per cell = 4 bases.
+
 ### Deep Mathematics
 
 | File | Description |
@@ -175,14 +209,40 @@ See [predictions/PREDICTIONS_2026_2027.md](research/predictions/PREDICTIONS_2026
 zimmerman-formula/
 ├── README.md                 # This file (clean navigation)
 ├── README_FULL.md           # Complete detailed README
+│
+├── core/                     # ESSENTIAL: Core framework files
+│   ├── Z2_COMPLETE_DERIVATION.md   # Full derivation from first principles
+│   ├── Z2_COMPLETE_DERIVATION.pdf  # Publication-ready PDF
+│   └── Z2_FINAL_PARAMETERS.py      # All 48 derived parameters
+│
+├── biology/                  # NEW: Life sciences applications
+│   ├── BEKENSTEIN_BOUND_DNA.py     # Holographic origin of 4 DNA bases
+│   ├── DNA_MECHANISM_FROM_Z2.py    # Physical mechanism derivation
+│   └── DNA_ORIGIN_FROM_Z2.py       # Complete DNA structure from Z²
+│
+├── physics/                  # Particle physics & gauge theory
+│   ├── particle_masses/     # Quark, lepton, boson masses
+│   ├── gauge_couplings/     # α, αs, αw derivations
+│   ├── mixing_matrices/     # CKM, PMNS from geometry
+│   ├── strong_cp/           # θ_QCD = e^(-Z²) ≈ 10⁻¹⁵
+│   └── gravity/             # Quantum gravity connections
+│
+├── cosmology/               # Large-scale structure
+│   ├── dark_energy/         # ΩΛ = 3Z/(8+3Z)
+│   ├── cmb/                 # CMB predictions
+│   └── hubble_tension/      # H₀ = 71.5 resolution
+│
+├── astrophysics/            # Galaxy & cluster dynamics
+│   ├── el_gordo/           # El Gordo cluster analysis
+│   ├── jwst_galaxies/      # JWST high-z predictions
+│   └── galaxy_rotation/    # MOND + evolving a₀
+│
+├── curiosities_and_culture/ # Non-scientific explorations
+│   ├── GOD_BLESS_AMERICA_Z2.py
+│   └── HAVE_YOU_EVER_SEEN_THE_RAIN_Z2.py
+│
 ├── papers/                   # Formal papers and derivations
-│   └── DERIVATION_STATUS.md # What is proven vs pattern-matched
-├── research/
-│   ├── foundations/         # Core theoretical derivations
-│   ├── predictions/         # Testable predictions
-│   ├── key_visualizations/  # Charts and figures
-│   ├── WHATS_STILL_MISSING.md  # Complete formula table
-│   └── [85+ subdirectories] # Specific research topics
+├── research/                 # 85+ research subdirectories
 └── website/                  # Interactive web application
 ```
 
