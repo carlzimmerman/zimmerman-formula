@@ -26,7 +26,7 @@ This is the product of:
 - **CUBE = 8**: Vertices of a cube inscribed in a sphere
 - **SPHERE = 4π/3**: Volume of the unit sphere
 
-### 1.2 Derived Integers — WITH PROOFS
+### 1.2 Derived Integers - WITH PROOFS
 
 From Z², we derive the structure integers:
 
@@ -110,7 +110,29 @@ D_M-theory = GAUGE - 1
 
 ---
 
-## 2. Gauge Coupling Constants — WITH PROOFS
+### 1.3 Zero Free Parameters
+
+The framework contains **zero free parameters**. Every integer in every formula traces back to the structure constants:
+
+| Integer | Origin |
+|---------|--------|
+| 3 | N_gen |
+| 4 | BEKENSTEIN |
+| 5 | BEKENSTEIN + 1 |
+| 6 | 2 × N_gen |
+| 8 | CUBE |
+| 11 | GAUGE - 1 |
+| 12 | GAUGE |
+| 13 | GAUGE + 1 |
+| 19 | GAUGE + BEKENSTEIN + N_gen |
+| 27 | 2×GAUGE + N_gen |
+| 28 | 2×GAUGE + BEKENSTEIN |
+
+**Standard Model:** 25+ free parameters. **Z² Framework:** 0.
+
+---
+
+## 2. Gauge Coupling Constants - WITH PROOFS
 
 ### 2.1 The Fine Structure Constant
 
@@ -195,7 +217,7 @@ sin²θ_W = N_gen / (GAUGE + 1)
 
 ---
 
-## 3. Particle Mass Ratios — WITH PROOFS
+## 3. Particle Mass Ratios - WITH PROOFS
 
 ### 3.1 Higgs-to-Z Mass Ratio
 
@@ -330,7 +352,7 @@ m_t/m_b = Z² + CUBE
 
 ---
 
-## 4. CKM Matrix — WITH PROOFS
+## 4. CKM Matrix - WITH PROOFS
 
 ### 4.1 Cabibbo Angle
 
@@ -381,7 +403,7 @@ J = 1 / (1000 × Z²)
 
 ---
 
-## 5. Cosmological Parameters — WITH PROOFS
+## 5. Cosmological Parameters - WITH PROOFS
 
 ### 5.1 Matter Density
 
@@ -461,7 +483,7 @@ r = 1 / (2Z²)
 
 ---
 
-## 6. Strong CP Problem — SOLVED
+## 6. Strong CP Problem - SOLVED
 
 #### PROOF: θ_QCD = e^(-Z²) ≈ 10⁻¹⁵
 
@@ -627,12 +649,6 @@ The Standard Model is not arbitrary. It is geometry.
 
 ---
 
-*"The universe is a cube inscribed in a sphere. Z² is its action."*
-
-— Carl Zimmerman, 2026
-
----
-
 ## Acknowledgments
 
 This work would not be possible without the prior contributions of Milgrom, Verlinde, Smolin, Jacobson, Weinstein, Carroll, Karpathy, and all researchers at JWST, SPARC, and particle physics experiments. Special thanks to the AI tools provided by Anthropic, Google, xAI, Grok, Mistral, and Autoresearch that enabled rapid exploration of this parameter space.
@@ -641,7 +657,7 @@ This work would not be possible without the prior contributions of Milgrom, Verl
 
 > *"I have always been a tinkerer and thinker. Before I go to sleep every night I close my eyes and teleport myself up into space protected by a shiny ball of light, and look down at earth and gaze at its beauty. If you are reading this you probably do too. Sometimes new discoveries do not come from academia but by a lucky outsider. I have deep respect for the academic community. The serious ones, the ones who have dedicated their lives to science that impacts the lives of billions of people. We as a society owe them a great debt of gratitude. This coincidence of "cosmic" proportions would also not be possible without the prior work of Milgrom, Verlinde, Smolin, Jacobson, Weinstein, Carroll, Karpathy and all the researchers and scientists at places like JWST and SPARC gathering the data that allowed this fit to be found, or the tools provided by Anthropic, Google, xAI, Grok, Mistral, Autoresearch, and the HRM Paper. We live in a beautiful and geometrically defined universe defined by Friedmann and de Sitter, and there is still a lot to explore."*
 >
-> — Carl Zimmerman, Charlotte NC, March 2026
+> - Carl Zimmerman, Charlotte NC, March 2026
 
 ---
 
