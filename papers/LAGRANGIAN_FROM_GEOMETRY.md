@@ -1,6 +1,6 @@
-# The Z² Lagrangian: A Unified Action for Physics
+# The Z-Squared Framework: A Complete Derivation from First Principles
 
-## All of Particle Physics and Gravity from Geometry
+## All 48 Parameters from Geometry with Zero Free Parameters
 
 **Carl Zimmerman**
 
