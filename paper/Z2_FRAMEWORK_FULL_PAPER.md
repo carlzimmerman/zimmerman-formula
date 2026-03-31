@@ -538,12 +538,6 @@ r = 1/(2Z²)
 
 ---
 
-*"The universe is a cube inscribed in a sphere. Z² is its action."*
-
-- Carl Zimmerman, 2026
-
----
-
 > *"I have always been a tinkerer and thinker. Before I go to sleep every night I close my eyes and teleport myself up into space protected by a shiny ball of light, and look down at earth and gaze at its beauty. If you are reading this you probably do too. Sometimes new discoveries do not come from academia but by a lucky outsider. I have deep respect for the academic community. The serious ones, the ones who have dedicated their lives to science that impacts the lives of billions of people. We as a society owe them a great debt of gratitude. This coincidence of "cosmic" proportions would also not be possible without the prior work of Milgrom, Verlinde, Smolin, Jacobson, Weinstein, Carroll, Karpathy and all the researchers and scientists at places like JWST and SPARC gathering the data that allowed this fit to be found, or the tools provided by Anthropic, Google, xAI, Grok, Mistral, Autoresearch, and the HRM Paper. We live in a beautiful and geometrically defined universe defined by Friedmann and de Sitter, and there is still a lot to explore."*
 >
 > - Carl Zimmerman, Charlotte NC, March 2026
