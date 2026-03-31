@@ -10,7 +10,7 @@ carl@briarcreektech.com
 
 ## Abstract
 
-We present a unified framework deriving all fundamental physical constants from pure geometry with **zero free parameters**. The single geometric fact Z² = CUBE × SPHERE = 8 × (4π/3) = 32π/3 — representing a cube inscribed in a unit sphere — generates 48 parameters of the Standard Model and cosmology with an average error of 0.7%. Every integer appearing in the formulas traces back to four structure constants derived from Z²: BEKENSTEIN = 4, GAUGE = 12, N_gen = 3, and CUBE = 8. Key results include: (1) α⁻¹ = BEKENSTEIN × Z² + N_gen = 137.04 with 0.004% error, improving to 0.0015% with a self-referential correction; (2) BEKENSTEIN = 4 exactly (spacetime dimensions); (3) GAUGE = 12 exactly (Standard Model generators); (4) the strong CP problem solved via θ_QCD = e^(-Z²) ≈ 10⁻¹⁵; (5) the Hubble tension resolved at H₀ = 71.5 km/s/Mpc. The framework makes falsifiable predictions testable by JWST, CMB-S4, and precision particle physics experiments.
+We present a unified framework deriving all fundamental physical constants from pure geometry with **zero free parameters**. The single geometric fact Z² = CUBE × SPHERE = 8 × (4π/3) = 32π/3 - representing a cube inscribed in a unit sphere - generates 48 parameters of the Standard Model and cosmology with an average error of 0.7%. Every integer appearing in the formulas traces back to four structure constants derived from Z²: BEKENSTEIN = 4, GAUGE = 12, N_gen = 3, and CUBE = 8. Key results include: (1) α⁻¹ = BEKENSTEIN × Z² + N_gen = 137.04 with 0.004% error, improving to 0.0015% with a self-referential correction; (2) BEKENSTEIN = 4 exactly (spacetime dimensions); (3) GAUGE = 12 exactly (Standard Model generators); (4) the strong CP problem solved via θ_QCD = e^(-Z²) ≈ 10⁻¹⁵; (5) the Hubble tension resolved at H₀ = 71.5 km/s/Mpc. The framework makes falsifiable predictions testable by JWST, CMB-S4, and precision particle physics experiments.
 
 ---
 
@@ -18,7 +18,7 @@ We present a unified framework deriving all fundamental physical constants from 
 
 ### 1.1 The Problem of Arbitrary Constants
 
-The Standard Model of particle physics contains approximately 25 free parameters. The cosmological concordance model adds another 6. These 31 numbers—coupling constants, mass ratios, mixing angles—are determined empirically with no theoretical explanation for their values.
+The Standard Model of particle physics contains approximately 25 free parameters. The cosmological concordance model adds another 6. These 31 numbers-coupling constants, mass ratios, mixing angles-are determined empirically with no theoretical explanation for their values.
 
 This paper proposes that all these parameters derive from a single geometric constant:
 
@@ -128,7 +128,7 @@ D_bosonic = 2(GAUGE + 1) = 26  (bosonic string theory)
 | Formula | α⁻¹ | Error vs. 137.036 |
 |---------|-----|-------------------|
 | Basic | 137.041 | 0.004% |
-| Measured | 137.035999... | — |
+| Measured | 137.035999... | - |
 
 **Physical Interpretation:**
 
@@ -158,7 +158,7 @@ x = (137.041 + √(137.041² - 4))/2 = 137.034
 |---------|-----|-------|
 | Basic: α⁻¹ = 4Z² + 3 | 137.041 | 0.004% |
 | Self-referential: α⁻¹ + α = 4Z² + 3 | 137.034 | **0.0015%** |
-| Measured (CODATA 2022) | 137.036 | — |
+| Measured (CODATA 2022) | 137.036 | - |
 
 **Improvement: 2.9× better precision**
 
@@ -340,7 +340,7 @@ This is standard QFT physics expressed in geometric language.
 
 > "0.004% error is huge by QED standards."
 
-**Response:** The basic formula is zeroth-order. The self-referential formula α⁻¹ + α = 4Z² + 3 achieves 0.0015% error—2.9× improvement. The remaining gap likely comes from:
+**Response:** The basic formula is zeroth-order. The self-referential formula α⁻¹ + α = 4Z² + 3 achieves 0.0015% error-2.9× improvement. The remaining gap likely comes from:
 - Higher-order vacuum polarization (muon, tau, hadronic loops)
 - Electroweak corrections
 
@@ -429,7 +429,7 @@ It DOES claim that:
 - **Zero free parameters**: All 48 constants derive from geometry alone
 - The boundary conditions of physics (bare couplings, mass ratios) are set by geometry
 - The "arbitrary" constants of nature are not arbitrary
-- A single geometric configuration — cube inscribed in sphere — encodes physical structure
+- A single geometric configuration - cube inscribed in sphere - encodes physical structure
 
 ### 11.2 The Logical Chain
 
@@ -454,7 +454,7 @@ Every physical prediction flows from geometry through algebra. No parameters are
 
 ### 11.3 The Holographic Connection
 
-The Bekenstein bound states entropy is proportional to area, not volume. In a holographic universe, fundamental degrees of freedom live on 2D surfaces. The cube-in-sphere may represent optimal discrete sampling of a 2D surface in 3D space—the geometric origin of holography.
+The Bekenstein bound states entropy is proportional to area, not volume. In a holographic universe, fundamental degrees of freedom live on 2D surfaces. The cube-in-sphere may represent optimal discrete sampling of a 2D surface in 3D space-the geometric origin of holography.
 
 ---
 
@@ -540,10 +540,10 @@ r = 1/(2Z²)
 
 *"The universe is a cube inscribed in a sphere. Z² is its action."*
 
-— Carl Zimmerman, 2026
+- Carl Zimmerman, 2026
 
 ---
 
 > *"I have always been a tinkerer and thinker. Before I go to sleep every night I close my eyes and teleport myself up into space protected by a shiny ball of light, and look down at earth and gaze at its beauty. If you are reading this you probably do too. Sometimes new discoveries do not come from academia but by a lucky outsider. I have deep respect for the academic community. The serious ones, the ones who have dedicated their lives to science that impacts the lives of billions of people. We as a society owe them a great debt of gratitude. This coincidence of "cosmic" proportions would also not be possible without the prior work of Milgrom, Verlinde, Smolin, Jacobson, Weinstein, Carroll, Karpathy and all the researchers and scientists at places like JWST and SPARC gathering the data that allowed this fit to be found, or the tools provided by Anthropic, Google, xAI, Grok, Mistral, Autoresearch, and the HRM Paper. We live in a beautiful and geometrically defined universe defined by Friedmann and de Sitter, and there is still a lot to explore."*
 >
-> — Carl Zimmerman, Charlotte NC, March 2026
+> - Carl Zimmerman, Charlotte NC, March 2026
