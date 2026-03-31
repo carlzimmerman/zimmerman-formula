@@ -45,7 +45,7 @@ The Z² framework contains **zero free parameters**. This is a stronger claim th
 - A unit sphere has volume 4π/3 → SPHERE = 4π/3
 - Their product: Z² = 32π/3
 
-**Algebraic consequences (no choices):**
+**Algebraic consequences:**
 ```
 BEKENSTEIN = 3Z²/(8π) = 4    (spacetime dimensions)
 GAUGE = 9Z²/(8π) = 12        (gauge bosons)
@@ -433,7 +433,7 @@ It DOES claim that:
 
 ### 11.2 The Logical Chain
 
-The framework follows a strict logical order with no choices:
+The framework follows a strict logical order:
 
 ```
 GEOMETRY (facts)     →  Z² (algebra)        →  PHYSICS (predictions)
