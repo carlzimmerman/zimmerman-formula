@@ -476,7 +476,7 @@ Key achievements:
 - Hubble tension resolved at H₀ = 71.5 km/s/Mpc
 - All cosmological densities from simple ratios
 
-The framework makes falsifiable predictions for JWST, CMB-S4, and precision particle physics. If these predictions are confirmed, it would suggest that physics is, at its foundation, geometry — and geometry alone.
+The framework makes falsifiable predictions for JWST, CMB-S4, and precision particle physics. If these predictions are confirmed, it would suggest that physics is, at its foundation, geometry.
 
 ---
 
