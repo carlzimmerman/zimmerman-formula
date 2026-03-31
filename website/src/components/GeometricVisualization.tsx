@@ -10,11 +10,17 @@ import CollapsiblePanel from './CollapsiblePanel'
 const Z = 2 * Math.sqrt(8 * Math.PI / 3)  // 5.788810
 const Z_SQUARED = 32 * Math.PI / 3  // 33.51
 
-// Cube vertices
+// For a cube inscribed in a unit sphere (radius 1):
+// All 8 vertices touch the sphere surface
+// Space diagonal = diameter = 2, so side = 2/√3
+// Vertex distance from origin = 1 (touches sphere)
+const INSCRIBED_SCALE = 1 / Math.sqrt(3)  // ≈ 0.577
+
+// Cube vertices - scaled so they touch the unit sphere
 const cubeVertices = [
   [-1, -1, -1], [1, -1, -1], [1, 1, -1], [-1, 1, -1],
   [-1, -1, 1], [1, -1, 1], [1, 1, 1], [-1, 1, 1],
-] as const
+].map(v => v.map(c => c * INSCRIBED_SCALE)) as unknown as readonly [number, number, number][]
 
 // Cube edges
 const cubeEdges = [
@@ -35,10 +41,10 @@ function RotatingCube({ opacity = 1, scale = 1 }: { opacity?: number, scale?: nu
 
   return (
     <group ref={groupRef} scale={scale}>
-      {/* Cube edges */}
+      {/* Cube edges - cyan lines connecting vertices */}
       {cubeEdges.map((edge, i) => {
-        const start = cubeVertices[edge[0]]
-        const end = cubeVertices[edge[1]]
+        const start = cubeVertices[edge[0]] as [number, number, number]
+        const end = cubeVertices[edge[1]] as [number, number, number]
         return (
           <Line
             key={i}
@@ -51,10 +57,10 @@ function RotatingCube({ opacity = 1, scale = 1 }: { opacity?: number, scale?: nu
         )
       })}
 
-      {/* Cube vertices - highlight the 8 */}
+      {/* Cube vertices - highlight all 8 touching the sphere */}
       {cubeVertices.map((pos, i) => (
-        <mesh key={i} position={pos}>
-          <sphereGeometry args={[0.08, 16, 16]} />
+        <mesh key={i} position={pos as [number, number, number]}>
+          <sphereGeometry args={[0.06, 16, 16]} />
           <meshBasicMaterial color="#22d3ee" transparent opacity={opacity} />
         </mesh>
       ))}
@@ -71,8 +77,9 @@ function UnitSphere({ opacity = 0.3, scale = 1 }: { opacity?: number, scale?: nu
     }
   })
 
-  // Unit sphere has volume 4π/3
-  // To inscribe in cube of side 2, sphere radius = 1
+  // Unit sphere (radius 1) has volume 4π/3
+  // The cube is INSCRIBED in this sphere - all 8 vertices touch the surface
+  // This is the correct Z² geometry: cube inside sphere
   return (
     <mesh ref={meshRef} scale={scale}>
       <sphereGeometry args={[1, 64, 64]} />
@@ -89,32 +96,32 @@ function UnitSphere({ opacity = 0.3, scale = 1 }: { opacity?: number, scale?: nu
 function GeometricLabels() {
   return (
     <>
-      <Html position={[0, 2.5, 0]} center>
+      <Html position={[0, 1.8, 0]} center>
         <div className="text-cyan-400 text-lg font-bold bg-black/80 px-3 py-1 rounded whitespace-nowrap">
           Z² = 8 × (4π/3)
         </div>
       </Html>
-      <Html position={[2, 0.5, 0]} center>
+      <Html position={[1.2, 0.3, 0]} center>
         <div className="text-cyan-300 text-sm bg-black/80 px-2 py-1 rounded whitespace-nowrap">
-          8 vertices
+          8 vertices (cube)
         </div>
       </Html>
-      <Html position={[-2, -0.5, 0]} center>
+      <Html position={[-1.2, -0.3, 0]} center>
         <div className="text-purple-300 text-sm bg-black/80 px-2 py-1 rounded whitespace-nowrap">
-          V = 4π/3
+          V = 4π/3 (sphere)
         </div>
       </Html>
     </>
   )
 }
 
-// Connection lines showing relationships
+// Connection lines showing relationships - radii from center to vertices
 function ConnectionWeb() {
   const lines = useMemo(() => {
-    // Create lines from center to each vertex
+    // Create lines from center to each vertex (these are sphere radii)
     return cubeVertices.map(v => ({
       start: [0, 0, 0] as [number, number, number],
-      end: v as unknown as [number, number, number]
+      end: v as [number, number, number]
     }))
   }, [])
 
@@ -127,7 +134,7 @@ function ConnectionWeb() {
           color="#a855f7"
           lineWidth={1}
           transparent
-          opacity={0.3}
+          opacity={0.4}
           dashed
           dashSize={0.1}
           gapSize={0.1}
@@ -172,8 +179,8 @@ function PhysicsOverlay({ showDetails }: { showDetails: boolean }) {
             </div>
 
             <div>
-              <div className="text-red-400 font-mono">α⁻¹ = 4Z² + 3 = 137.04</div>
-              <div className="text-gray-500 mt-1">Fine structure constant (0.004% error)</div>
+              <div className="text-red-400 font-mono">α⁻¹ + α = 4Z² + 3</div>
+              <div className="text-gray-500 mt-1">Self-referential: α⁻¹ = 137.034 (0.0015% error)</div>
             </div>
           </div>
         </motion.div>
@@ -213,7 +220,8 @@ export default function GeometricVisualization() {
       <div className="absolute top-4 left-4 max-w-sm z-20">
         <CollapsiblePanel title="Geometric Structure of Z" titleColor="text-white" borderColor="border-purple-500/30">
           <p className="text-xs text-gray-400 mb-3">
-            Visualizing Z² = 8 × (4π/3) = cube vertices × sphere volume
+            A cube inscribed in a unit sphere: all 8 vertices touch the surface.
+            Z² = 8 × (4π/3) = vertices × volume.
           </p>
 
           {/* Toggle controls */}
@@ -225,7 +233,7 @@ export default function GeometricVisualization() {
                 onChange={(e) => setShowCube(e.target.checked)}
                 className="rounded border-gray-600"
               />
-              <span className="text-cyan-400">Cube (8 vertices)</span>
+              <span className="text-cyan-400">Inscribed cube (8 vertices)</span>
             </label>
 
             <label className="flex items-center gap-2 cursor-pointer">
@@ -235,7 +243,7 @@ export default function GeometricVisualization() {
                 onChange={(e) => setShowSphere(e.target.checked)}
                 className="rounded border-gray-600"
               />
-              <span className="text-purple-400">Sphere (V = 4π/3)</span>
+              <span className="text-purple-400">Unit sphere (V = 4π/3)</span>
             </label>
 
             <label className="flex items-center gap-2 cursor-pointer">
@@ -245,7 +253,7 @@ export default function GeometricVisualization() {
                 onChange={(e) => setShowConnections(e.target.checked)}
                 className="rounded border-gray-600"
               />
-              <span className="text-gray-400">Connection lines</span>
+              <span className="text-gray-400">Radii to vertices</span>
             </label>
 
             <label className="flex items-center gap-2 cursor-pointer">
@@ -280,8 +288,9 @@ export default function GeometricVisualization() {
       {/* Bottom info */}
       <div className="absolute bottom-4 left-4 right-4 flex justify-center">
         <div className="bg-black/80 backdrop-blur px-4 py-2 rounded-lg border border-gray-700 text-xs text-gray-400 max-w-lg text-center">
-          The number 8 (cube vertices) and 4π/3 (sphere volume) combine in Z to connect
-          discrete and continuous geometry. Drag to rotate, scroll to zoom.
+          A cube inscribed in a unit sphere: 8 vertices touch the surface,
+          volume = 4π/3. Their product Z² = 32π/3 derives all physics constants.
+          Drag to rotate, scroll to zoom.
         </div>
       </div>
     </div>
