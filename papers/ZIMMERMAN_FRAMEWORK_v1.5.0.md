@@ -1,7 +1,9 @@
 # The Zimmerman Framework
 ## Geometric Foundations of Fundamental Physics
 
-**Carl Zimmerman** | April 2026 | **Version 1.5.0**
+**Carl Zimmerman** | carl@briarcreektech.com | April 2026 | **Version 1.5.0**
+
+**License:** CC BY 4.0 | **GitHub:** github.com/carlzimmerman/zimmerman-formula
 
 ---
 
