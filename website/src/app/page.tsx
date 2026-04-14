@@ -22,12 +22,12 @@ export default function Home() {
             <span>March 2026</span>
             <span>·</span>
             <a
-              href="https://zenodo.org/records/19244651"
+              href="https://zenodo.org/records/19474535"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-600 hover:underline"
             >
-              DOI: 10.5281/zenodo.19244651
+              DOI: 10.5281/zenodo.19474535
             </a>
           </div>
 
@@ -244,23 +244,23 @@ export default function Home() {
               <span className="text-green-200 text-sm">(PDF)</span>
             </a>
             <a
-              href="/zimmerman-formula-complete-2026-03-29.zip"
+              href="/zimmerman-formula-complete-2026-04-14.zip"
               download
               className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded font-medium transition-colors"
             >
               <span>Full Archive</span>
-              <span className="text-blue-200 text-sm">(14 MB ZIP)</span>
+              <span className="text-blue-200 text-sm">(99 MB ZIP)</span>
             </a>
           </div>
           <p className="text-gray-500 text-xs text-center mt-4">
-            The Lagrangian paper derives all 48 parameters from Z² = 32π/3 with step-by-step derivations
+            The Lagrangian paper derives all 59 parameters from Z² = 32π/3 with step-by-step derivations
           </p>
         </div>
 
         {/* External Links */}
         <div className="flex flex-wrap justify-center gap-4 text-sm mb-8">
           <a
-            href="https://zenodo.org/records/19244651"
+            href="https://zenodo.org/records/19474535"
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-600 hover:underline"
@@ -290,12 +290,12 @@ export default function Home() {
           <p>
             Zimmerman Framework: Z² = CUBE × SPHERE —
             <a
-              href="https://zenodo.org/records/19244651"
+              href="https://zenodo.org/records/19474535"
               className="text-blue-600 hover:underline ml-1"
               target="_blank"
               rel="noopener noreferrer"
             >
-              DOI: 10.5281/zenodo.19244651
+              DOI: 10.5281/zenodo.19474535
             </a>
           </p>
         </footer>
