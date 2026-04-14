@@ -14,17 +14,37 @@
 
 ## Discovery Timeline
 
-| Date | Milestone |
-|------|-----------|
-| **Mar 17** | **MOND origin**: Found Z = cH₀/a₀ ≈ 5.79 from critical density derivation |
-| **Mar 18** | JWST/SPARC verification: evolving a₀(z) = a₀(0) × E(z) confirmed |
-| **Mar 19** | **Geometric origin**: Discovered Z = 2√(8π/3) — pure geometry |
-| **Mar 20** | Night session: Standard Model couplings α⁻¹ = 4Z² + 3, sin²θW = 3/13 |
-| **Mar 24** | First Zenodo publication (DOI: 10.5281/zenodo.19244651) |
-| **Mar 26** | **Exact identities**: GAUGE = 9Z²/(8π) = 12, BEKENSTEIN = 3Z²/(8π) = 4 |
-| **Mar 28** | Complete Lagrangian: all 48 parameters from Z² = 32π/3 |
-| **Mar 29** | **Biology**: DNA structure from Bekenstein bound (4 bases = BEKENSTEIN) |
-| **Apr 12** | **Breakthrough**: All three gauge couplings, neutrino mass ratio = Z², Higgs VEV, electron mass — 70+ formulas |
+| Date | Milestone | Status |
+|------|-----------|--------|
+| **Mar 17** | **MOND origin**: Found Z = cH₀/a₀ ≈ 5.79 from critical density | ✅ First-principles |
+| **Mar 18** | JWST/SPARC verification: evolving a₀(z) = a₀(0) × E(z) | ✅ Testable prediction |
+| **Mar 19** | **Geometric origin**: Z = 2√(8π/3) from Friedmann + Bekenstein | ✅ First-principles |
+| **Mar 20** | Standard Model couplings: α⁻¹ = 4Z² + 3, sin²θW = 3/13 | ✅ First-principles |
+| **Mar 24** | First Zenodo publication (DOI: 10.5281/zenodo.19244651) | 📄 Published |
+| **Mar 26** | **Exact identities**: GAUGE = 12, BEKENSTEIN = 4 from Z² | ✅ First-principles |
+| **Mar 28** | Complete Lagrangian: 48 parameters from Z² | 🔬 Mixed status |
+| **Mar 29** | **Biology**: DNA 4 bases = BEKENSTEIN bound | ⚠️ Speculative |
+| **Apr 12** | Gauge couplings, neutrino ratio = Z², Higgs VEV | 🔬 Partial derivations |
+| **Apr 14** | **v2.0.0 Paper**: 59 predictions with PhD-level rigor | 📄 Published |
+| **Apr 14** | **v2.1.0 Paper**: 29 literature citations, gap analysis | 📄 Published |
+
+### Derivation Status Summary (April 14, 2026)
+
+| Category | Count | Examples |
+|----------|-------|----------|
+| ✅ **First-Principles** | 12 | Z², α⁻¹, sin²θW, Ω_Λ/Ω_m, N_gen, a₀ |
+| 🔬 **Partial/Numerical** | 25 | m_p/m_e, lepton ratios, CKM |
+| ⚠️ **Empirical Only** | 22 | Quark masses, hierarchy exponent |
+
+### Key Open Problems
+
+| Gap | Formula | What's Missing |
+|-----|---------|----------------|
+| Proton mass factor | m_p/m_e = (8Z⁴+6Z²)/**5** | Why 2/5? |
+| Lepton masses | m_μ/m_e = (Z²+1)π/**4** | Why π/4? Koide connection? |
+| Higgs quartic | λ = (Z-**5**)/**6** | Why subtract 5, divide 6? |
+| Hierarchy | M_Pl/v = 2×Z^(**43/2**) | Why exponent 43/2? |
+| CKM matrix | sin θ_C ≈ 1/Z | Mechanism unclear |
 
 ---
 
