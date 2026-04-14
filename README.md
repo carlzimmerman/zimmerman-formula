@@ -30,6 +30,10 @@
 
 ## The Core Idea
 
+
+<img width="704" height="774" alt="Kepler-solar-system-1" src="https://github.com/user-attachments/assets/2a72f526-4e02-4063-bafc-5e1f079a8fa7" />
+
+
 One geometric constant derives **70+ physical quantities**:
 
 ```
