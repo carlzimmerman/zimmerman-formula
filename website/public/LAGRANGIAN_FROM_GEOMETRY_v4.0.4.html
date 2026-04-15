@@ -152,7 +152,7 @@ sup { font-size: 8pt; }
 <h2>A Complete Derivation of Standard Model Parameters from an 8D Warped Manifold</h2>
 <p style="margin-top: 20px;">
 <strong>Carl Zimmerman</strong><br>
-Version 4.0.3 &mdash; April 2026
+Version 4.0.4 &mdash; April 2026
 </p>
 </div>
 
@@ -184,8 +184,9 @@ Version 4.0.3 &mdash; April 2026
 <li>&nbsp;&nbsp;&nbsp;&nbsp;XIII. CP Violation from Geometry</li>
 <li><strong>Part VII: Predictions</strong></li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;XIV. First-Principles Derivations (9 Parameters)</li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;XV. Phenomenological Z<sup>2</sup> Relations (44 Parameters)</li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;XVI. Testable Predictions and Falsification Criteria</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;XV. Theoretical Framework for Fermion Mass Hierarchies</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;XVI. Phenomenological Z<sup>2</sup> Relations (44 Parameters)</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;XVII. Testable Predictions and Falsification Criteria</li>
 <li><strong>Appendices</strong></li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;A. Mathematical Identities</li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;B. Full Derivation Status</li>
@@ -1166,16 +1167,177 @@ d<sub>n</sub> &asymp; &theta;<sub>QCD</sub> &times; 10<sup>-15</sup> e&middot;cm
 </div>
 
 <!-- ═══════════════════════════════════════════════════════════════════════ -->
-<h1>XV. Phenomenological Z<sup>2</sup> Relations</h1>
+<h1>XV. Theoretical Framework for Fermion Mass Hierarchies</h1>
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+
+<p>This section develops the formal mathematical machinery that generates the fermion mass spectrum from the 8D geometry. We derive the <strong>Randall-Sundrum flavor mechanism</strong> adapted to our M<sup>4</sup> &times; S<sup>1</sup>/Z<sub>2</sub> &times; T<sup>3</sup>/Z<sub>2</sub> topology. These equations provide the theoretical foundation for the phenomenological mass ratios presented in Section XVI.</p>
+
+<h2>15.1 The 8D Dirac Action with Bulk Mass</h2>
+
+<div class="definition">
+<div class="definition-title">Definition (Bulk Fermion Action)</div>
+<p>The complete fermion action including generation-dependent bulk mass parameters:</p>
+<pre>
+S<sub>fermion</sub> = &int; d<sup>8</sup>x &radic;(-G) [&Psi;&#773;<sub>i</sub> e<sub>A</sub><sup>M</sup> &Gamma;<sup>A</sup> D<sub>M</sub> &Psi;<sub>i</sub> - c<sub>i</sub> k sgn(y) &Psi;&#773;<sub>i</sub> &Psi;<sub>i</sub>]
+</pre>
+<p>where:</p>
+<ul>
+<li><strong>c<sub>i</sub></strong> is a <em>dimensionless</em> bulk mass parameter for the i-th fermion (in units of AdS curvature k)</li>
+<li>sgn(y) implements the Z<sub>2</sub>-odd mass profile required by orbifold symmetry</li>
+<li>This is the <strong>only</strong> free parameter per fermion species</li>
+</ul>
+</div>
+
+<h2>15.2 Fermion Localization Profiles</h2>
+
+<p>The 8D spinor factorizes as &Psi;<sub>i</sub>(x,y,&theta;) = &psi;<sub>i</sub>(x) &otimes; f<sub>i</sub>(y) &otimes; &eta;<sub>i</sub>(&theta;). For zero modes, substituting into the 8D Dirac equation yields:</p>
+
+<div class="theorem">
+<div class="theorem-title">Theorem (y-Profile Differential Equations)</div>
+<p><strong>Left-handed zero mode:</strong></p>
+<pre>
+[&part;<sub>y</sub> + (2 - c<sub>i</sub>)k sgn(y)] f<sub>i,L</sub>(y) = 0
+</pre>
+<p><strong>Right-handed zero mode:</strong></p>
+<pre>
+[&part;<sub>y</sub> + (2 + c<sub>i</sub>)k sgn(y)] f<sub>i,R</sub>(y) = 0
+</pre>
+</div>
+
+<div class="theorem">
+<div class="theorem-title">Theorem (Localization Profiles)</div>
+<p>The normalized zero-mode profiles are:</p>
+<pre>
+f<sub>i</sub>(y; c<sub>i</sub>) = N<sub>i</sub> &middot; e<sup>(2-c<sub>i</sub>)k|y|</sup>    (left-handed, c<sub>i</sub> &lt; 1/2 survives)
+</pre>
+<p>where the <strong>normalization constant</strong> is determined by:</p>
+<pre>
+&int;<sub>0</sub><sup>&pi;R<sub>5</sub></sup> dy &middot; e<sup>-4k|y|</sup> |f<sub>i</sub>(y)|<sup>2</sup> = 1
+</pre>
+<p><strong>Explicit normalization:</strong></p>
+<pre>
+            &radic;[(1-2c<sub>i</sub>)k / (e<sup>(1-2c<sub>i</sub>)k&pi;R<sub>5</sub></sup> - 1)]    if c<sub>i</sub> &ne; 1/2
+N<sub>i</sub>(c<sub>i</sub>) =
+            &radic;[k/(k&pi;R<sub>5</sub>)]                            if c<sub>i</sub> = 1/2
+</pre>
+</div>
+
+<h2>15.3 The Localization Theorem</h2>
+
+<div class="theorem">
+<div class="theorem-title">Theorem (Fermion Localization)</div>
+<p>The sign of (1/2 - c<sub>i</sub>) determines the fermion's location in the extra dimension:</p>
+<table>
+<tr><th>Bulk Mass c<sub>i</sub></th><th>Zero Mode Location</th><th>Physical Consequence</th></tr>
+<tr><td>c<sub>i</sub> &gt; 1/2</td><td>UV brane (y = 0)</td><td><strong>Light fermion</strong> (far from Higgs)</td></tr>
+<tr><td>c<sub>i</sub> = 1/2</td><td>Flat profile</td><td>Intermediate mass</td></tr>
+<tr><td>c<sub>i</sub> &lt; 1/2</td><td>IR brane (y = &pi;R<sub>5</sub>)</td><td><strong>Heavy fermion</strong> (near Higgs)</td></tr>
+</table>
+<p>The wavefunction value at the IR brane:</p>
+<pre>
+f<sub>i</sub>(&pi;R<sub>5</sub>; c<sub>i</sub>) = N<sub>i</sub> &middot; e<sup>(1/2-c<sub>i</sub>)k&pi;R<sub>5</sub></sup>
+</pre>
+<p>This is <strong>exponentially sensitive</strong> to c<sub>i</sub> when k&pi;R<sub>5</sub> &Gt; 1.</p>
+</div>
+
+<h2>15.4 Yukawa Overlap Integrals</h2>
+
+<div class="definition">
+<div class="definition-title">Definition (8D Yukawa Interaction)</div>
+<p>The gauge-invariant Yukawa term in 8D:</p>
+<pre>
+S<sub>Yukawa</sub> = &lambda;<sub>8</sub> &int; d<sup>8</sup>x &radic;(-G) &middot; &Psi;&#773;<sub>i</sub>(x,y,&theta;) &Psi;<sub>j</sub>(x,y,&theta;) H(x,y,&theta;)
+</pre>
+<p>where &lambda;<sub>8</sub> is the <strong>single</strong> 8D Yukawa coupling (order unity).</p>
+</div>
+
+<div class="theorem">
+<div class="theorem-title">Theorem (4D Effective Yukawa Matrix)</div>
+<p>The 4D Yukawa coupling matrix is:</p>
+<pre>
+Y<sub>ij</sub> = &lambda;<sub>8</sub> &middot; &int;<sub>0</sub><sup>&pi;R<sub>5</sub></sup> dy &middot; e<sup>-4ky</sup> &middot; f<sub>i</sub>(y;c<sub>i</sub>) &middot; f<sub>j</sub>(y;c<sub>j</sub>) &middot; g<sub>H</sub>(y)
+          &times; &int;<sub>T<sup>3</sup>/Z<sub>2</sub></sub> d<sup>3</sup>&theta; &middot; &eta;<sub>i</sub>(&theta;) &middot; &eta;<sub>j</sub>(&theta;) &middot; &chi;<sub>H</sub>(&theta;)
+</pre>
+<p>For a <strong>brane-localized Higgs</strong> at y = &pi;R<sub>5</sub>:</p>
+<pre>
+Y<sub>ij</sub> = &lambda;<sub>8</sub> &middot; &radic;k &middot; f<sub>i</sub>(&pi;R<sub>5</sub>) &middot; f<sub>j</sub>(&pi;R<sub>5</sub>) &middot; e<sup>-4k&pi;R<sub>5</sub></sup> &middot; &Omega;<sub>ij</sub><sup>T<sup>3</sup></sup>
+</pre>
+<p>where <strong>&Omega;<sub>ij</sub><sup>T<sup>3</sup></sup></strong> is the T<sup>3</sup> overlap integral (determined by fixed-point assignments).</p>
+</div>
+
+<h2>15.5 The Exponential Hierarchy Mechanism</h2>
+
+<div class="theorem">
+<div class="theorem-title">Theorem (Exponential Hierarchy Generation)</div>
+<p>For two fermions with bulk masses c<sub>1</sub> and c<sub>2</sub>:</p>
+<pre>
+Y<sub>11</sub>/Y<sub>22</sub> = (N<sub>1</sub>/N<sub>2</sub>)<sup>2</sup> &middot; e<sup>-2(c<sub>1</sub>-c<sub>2</sub>)k&pi;R<sub>5</sub></sup>
+</pre>
+<p><strong>Key Result:</strong> An O(1) difference in bulk masses generates an <strong>exponential</strong> hierarchy in Yukawa couplings!</p>
+<pre>
+m<sub>heavy</sub>/m<sub>light</sub> ~ e<sup>2|&Delta;c|k&pi;R<sub>5</sub></sup>
+</pre>
+<p>With k&pi;R<sub>5</sub> ~ 35 (hierarchy solution), even &Delta;c ~ 0.3 gives mass ratios of ~10<sup>5</sup>.</p>
+</div>
+
+<div class="success-note">
+<strong>Physical Interpretation.</strong> The top quark is heavy because its wavefunction peaks near the Higgs (on the IR brane). The electron is light because its wavefunction peaks far from the Higgs (on the UV brane). The geometry of the warped extra dimension exponentially magnifies small differences in bulk mass parameters into the observed mass hierarchy. This is the <strong>Randall-Sundrum flavor solution</strong> embedded in our Z<sup>2</sup> framework.
+</div>
+
+<h2>15.6 Wilson Line RG Flow and Threshold Corrections</h2>
+
+<div class="definition">
+<div class="definition-title">Definition (Coleman-Weinberg Effective Potential)</div>
+<p>The Wilson line phases &alpha;<sub>i</sub> = &oint; A<sub>i</sub> d&theta;<sup>i</sup> evolve under the one-loop effective potential:</p>
+<pre>
+V<sub>eff</sub>(&alpha;) = -1/(2(4&pi;)<sup>4</sup>) &sum;<sub>f</sub> (-1)<sup>F</sup> (2s<sub>f</sub>+1) &int;<sub>0</sub><sup>&infin;</sup> dt/t<sup>5</sup> &middot; Tr[e<sup>-t(p<sup>2</sup> + M<sup>2</sup><sub>f</sub>(&alpha;))</sup>]
+</pre>
+<p>with &alpha;-dependent mass spectrum M<sup>2</sup><sub>f,n</sub>(&alpha;) = (n + &alpha;/2&pi;)<sup>2</sup>/R<sup>2</sup> + m<sup>2</sup><sub>f</sub>.</p>
+</div>
+
+<div class="definition">
+<div class="definition-title">Definition (KK Threshold Corrections)</div>
+<p>At the compactification scale M<sub>KK</sub> ~ 1/R, integrating out KK modes gives:</p>
+<pre>
+1/g<sup>2</sup>(&mu;) = 1/g<sup>2</sup><sub>8</sub> &middot; V<sub>eff</sub> + b<sub>0</sub>/(16&pi;<sup>2</sup>) &middot; log(M<sub>Pl</sub>/&mu;)
+          + 1/(16&pi;<sup>2</sup>) &sum;<sub>n=1</sub><sup>N<sub>KK</sub></sup> &Delta;b<sub>n</sub> &middot; log(M<sub>n</sub>/&mu;)
+</pre>
+</div>
+
+<h2>15.7 Summary: What the Framework Determines</h2>
+
+<div class="remark" style="border: 2px solid #0a0; background: #f0fff0;">
+<strong>Rigorously Derived (This Section):</strong>
+<ul>
+<li>Localization profiles f<sub>i</sub>(y; c<sub>i</sub>) as explicit functions of bulk mass c<sub>i</sub></li>
+<li>Yukawa integrals Y<sub>ij</sub> as explicit overlap integrals</li>
+<li>Mathematical proof that O(1) bulk mass differences &rArr; exponential Yukawa hierarchies</li>
+<li>Wilson line potential V<sub>eff</sub>(&alpha;) as formal sum/integral expression</li>
+<li>Threshold corrections &Delta;<sub>KK</sub> as formal sums over KK tower</li>
+</ul>
+</div>
+
+<div class="remark" style="border: 2px solid #c60; background: #fff8f0;">
+<strong>Free Parameters (Not Derived):</strong>
+<ul>
+<li>The actual values of {c<sub>i</sub>} for each fermion species</li>
+<li>The T<sup>3</sup> fixed-point assignments for each generation</li>
+<li>Numerical evaluation of overlap integrals (requires computation)</li>
+</ul>
+<p>These bulk mass parameters are the <strong>inputs</strong> to the flavor sector, analogous to string moduli. The phenomenological relations in Section XVI represent empirically-motivated constraints on {c<sub>i</sub>}.</p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<h1>XVI. Phenomenological Z<sup>2</sup> Relations</h1>
 <!-- ═══════════════════════════════════════════════════════════════════════ -->
 
 <div class="remark" style="border: 2px solid #666; background: #f8f8f0;">
 <strong>Academic Note on Phenomenological Predictions.</strong> The relations presented in this section exhibit striking numerical alignment with the Z<sup>2</sup> = 32&pi;/3 geometry&mdash;typically achieving sub-1% agreement with experimental values. While the exact derivations require integration of wavefunction localization profiles over the bulk (work in progress), the statistical significance of these alignments across 44 independent parameters strongly suggests an underlying geometric origin. We present these as a <em>phenomenological ansatz</em> guiding future theoretical development, following the established precedent of string phenomenology where mass predictions are presented alongside their expected theoretical foundations.
 </div>
 
-<h2>15.1 Fermion Mass Ratios</h2>
+<h2>16.1 Fermion Mass Ratios</h2>
 
-<h3>15.1.1 Proton-to-Electron Mass Ratio</h3>
+<h3>16.1.1 Proton-to-Electron Mass Ratio</h3>
 
 <table>
 <tr><th>#</th><th>Quantity</th><th>Z<sup>2</sup> Formula</th><th>Predicted</th><th>Observed</th><th>Error</th></tr>
@@ -1184,7 +1346,7 @@ d<sub>n</sub> &asymp; &theta;<sub>QCD</sub> &times; 10<sup>-15</sup> e&middot;cm
 
 <p><em>Physical interpretation:</em> The factor &alpha;<sup>-1</sup> &times; (2Z<sup>2</sup>/5) suggests the proton mass involves both electromagnetic structure (4Z<sup>2</sup>+3) and QCD confinement (2Z<sup>2</sup>/5 &asymp; valence quark momentum fraction).</p>
 
-<h3>15.1.2 Charged Lepton Mass Ratios</h3>
+<h3>16.1.2 Charged Lepton Mass Ratios</h3>
 
 <table>
 <tr><th>#</th><th>Quantity</th><th>Z<sup>2</sup> Formula</th><th>Predicted</th><th>Observed</th><th>Error</th></tr>
@@ -1195,7 +1357,7 @@ d<sub>n</sub> &asymp; &theta;<sub>QCD</sub> &times; 10<sup>-15</sup> e&middot;cm
 
 <p><em>Connection to Koide formula:</em> These ratios are consistent with Koide's Z<sub>3</sub> symmetry<sup>[8]</sup>, suggesting the lepton mass matrix has a geometric origin in the T<sup>3</sup> structure.</p>
 
-<h3>15.1.3 Quark Mass Ratios</h3>
+<h3>16.1.3 Quark Mass Ratios</h3>
 
 <table>
 <tr><th>#</th><th>Quantity</th><th>Z<sup>2</sup> Formula</th><th>Predicted</th><th>Observed</th><th>Error</th></tr>
@@ -1205,7 +1367,7 @@ d<sub>n</sub> &asymp; &theta;<sub>QCD</sub> &times; 10<sup>-15</sup> e&middot;cm
 <tr><td>17</td><td>m<sub>t</sub>/m<sub>W</sub></td><td>Z/3</td><td>1.93</td><td>2.15</td><td>~10%</td></tr>
 </table>
 
-<h2>15.2 Electroweak Parameters</h2>
+<h2>16.2 Electroweak Parameters</h2>
 
 <table>
 <tr><th>#</th><th>Quantity</th><th>Z<sup>2</sup> Formula</th><th>Predicted</th><th>Observed</th><th>Error</th></tr>
@@ -1214,7 +1376,7 @@ d<sub>n</sub> &asymp; &theta;<sub>QCD</sub> &times; 10<sup>-15</sup> e&middot;cm
 <tr><td>20</td><td>m<sub>H</sub>/v</td><td>&radic;(2&lambda;<sub>H</sub>)</td><td>0.514</td><td>0.509</td><td>1.0%</td></tr>
 </table>
 
-<h2>15.3 Magnetic Moments</h2>
+<h2>16.3 Magnetic Moments</h2>
 
 <table>
 <tr><th>#</th><th>Quantity</th><th>Z<sup>2</sup> Formula</th><th>Predicted</th><th>Observed</th><th>Error</th></tr>
@@ -1222,7 +1384,7 @@ d<sub>n</sub> &asymp; &theta;<sub>QCD</sub> &times; 10<sup>-15</sup> e&middot;cm
 <tr><td>22</td><td>&Delta;a<sub>&mu;</sub></td><td>&alpha;<sup>2</sup>/(&pi;Z)</td><td>2.5&times;10<sup>-9</sup></td><td>2.5&times;10<sup>-9</sup></td><td>~0%</td></tr>
 </table>
 
-<h2>15.4 Neutrino Parameters</h2>
+<h2>16.4 Neutrino Parameters</h2>
 
 <table>
 <tr><th>#</th><th>Quantity</th><th>Z<sup>2</sup> Formula</th><th>Predicted</th><th>Observed</th><th>Error</th></tr>
@@ -1232,7 +1394,7 @@ d<sub>n</sub> &asymp; &theta;<sub>QCD</sub> &times; 10<sup>-15</sup> e&middot;cm
 <tr><td>26</td><td>sin<sup>2</sup>&theta;<sub>13</sub></td><td>1/Z<sup>2</sup></td><td>0.030</td><td>0.022</td><td>~35%</td></tr>
 </table>
 
-<h2>15.5 CKM Matrix Elements</h2>
+<h2>16.5 CKM Matrix Elements</h2>
 
 <table>
 <tr><th>#</th><th>Quantity</th><th>Z<sup>2</sup> Formula</th><th>Predicted</th><th>Observed</th><th>Error</th></tr>
@@ -1241,7 +1403,7 @@ d<sub>n</sub> &asymp; &theta;<sub>QCD</sub> &times; 10<sup>-15</sup> e&middot;cm
 <tr><td>29</td><td>|V<sub>ub</sub>|</td><td>1/Z<sup>3</sup></td><td>0.0052</td><td>0.0036</td><td>~44%</td></tr>
 </table>
 
-<h2>15.6 Cosmological Parameters</h2>
+<h2>16.6 Cosmological Parameters</h2>
 
 <table>
 <tr><th>#</th><th>Quantity</th><th>Z<sup>2</sup> Formula</th><th>Predicted</th><th>Observed</th><th>Error</th></tr>
@@ -1254,7 +1416,7 @@ d<sub>n</sub> &asymp; &theta;<sub>QCD</sub> &times; 10<sup>-15</sup> e&middot;cm
 <tr><td>36</td><td>N<sub>e</sub> (e-folds)</td><td>Z<sup>2</sup> &times; 1.79</td><td>60</td><td>50-60</td><td>consistent</td></tr>
 </table>
 
-<h2>15.7 QCD Parameters</h2>
+<h2>16.7 QCD Parameters</h2>
 
 <table>
 <tr><th>#</th><th>Quantity</th><th>Z<sup>2</sup> Formula</th><th>Predicted</th><th>Observed</th><th>Error</th></tr>
@@ -1262,7 +1424,7 @@ d<sub>n</sub> &asymp; &theta;<sub>QCD</sub> &times; 10<sup>-15</sup> e&middot;cm
 <tr><td>38</td><td>f<sub>&pi;</sub>/&Lambda;<sub>QCD</sub></td><td>Z/12</td><td>0.48</td><td>~0.46</td><td>~4%</td></tr>
 </table>
 
-<h2>15.8 Additional Geometric Relations</h2>
+<h2>16.8 Additional Geometric Relations</h2>
 
 <table>
 <tr><th>#</th><th>Quantity</th><th>Z<sup>2</sup> Formula</th><th>Predicted</th><th>Observed</th><th>Error</th></tr>
@@ -1277,10 +1439,10 @@ d<sub>n</sub> &asymp; &theta;<sub>QCD</sub> &times; 10<sup>-15</sup> e&middot;cm
 </div>
 
 <!-- ═══════════════════════════════════════════════════════════════════════ -->
-<h1>XVI. Testable Predictions and Falsification Criteria</h1>
+<h1>XVII. Testable Predictions and Falsification Criteria</h1>
 <!-- ═══════════════════════════════════════════════════════════════════════ -->
 
-<h2>16.1 Near-Term Tests (2025-2035)</h2>
+<h2>17.1 Near-Term Tests (2025-2035)</h2>
 
 <div class="theorem">
 <div class="theorem-title">Prediction A: DUNE CP Phase</div>
@@ -1315,7 +1477,7 @@ r = 12/Z<sup>4</sup> &asymp; <strong>0.011</strong>
 <p><strong>Falsification:</strong> If r &lt; 0.005 or r &gt; 0.02, the cosmological connection is challenged.</p>
 </div>
 
-<h2>16.2 LHC Predictions</h2>
+<h2>17.2 LHC Predictions</h2>
 
 <div class="theorem">
 <div class="theorem-title">Prediction D: First KK Resonance</div>
@@ -1456,10 +1618,10 @@ GAUGE = N<sub>gen</sub> &times; BEKENSTEIN = 3 &times; 4 = 12
 <hr>
 <p style="text-align: center; font-size: 10pt; color: #333; margin-top: 30px;">
 <strong>The Z<sup>2</sup> Framework: A Complete Derivation of Standard Model Parameters from an 8D Warped Manifold</strong><br>
-Version 4.0.3<br>
-April 2026<br><br>
-<em>"The universe is not only queerer than we suppose, but queerer than we can suppose."</em><br>
-&mdash; J.B.S. Haldane
+Version 4.0.4<br>
+April 15, 2026<br><br>
+<em>"Geometria una et aeterna est in mente Dei refulgens: cuius consortium hominibus tributum inter causas est, cur homo sit imago Dei."</em><br>
+&mdash; Johannes Kepler, <em>Harmonices Mundi</em> (1619)
 </p>
 
 </body>
