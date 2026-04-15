@@ -5,15 +5,119 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Z² Framework: A Complete Derivation of Standard Model Parameters from an 8D Warped Manifold</title>
 <style>
+/* Print-specific styles for clean PDF output - CONTINUOUS FLOW */
 @media print {
-  body { font-size: 10pt; }
-  pre { font-size: 8pt; page-break-inside: avoid; }
-  .theorem, .lemma, .definition, .proof { page-break-inside: avoid; }
-  h1 { page-break-before: always; }
-  h1:first-of-type { page-break-before: avoid; }
-  @page { margin: 0.75in; }
+  @page {
+    size: letter;
+    margin: 0.6in;
+  }
+
+  html, body {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    font-size: 10pt;
+    line-height: 1.45;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* NO forced page breaks - let content flow naturally */
+  h1 {
+    page-break-after: avoid;
+    margin-top: 1.2em;
+    padding-top: 0.3em;
+  }
+  h2, h3 {
+    page-break-after: avoid;
+    margin-top: 1em;
+  }
+
+  /* Only keep SMALL elements together - large ones can break */
+  .action-box, .remark, .gap-note, .success-note {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  /* Let theorems and proofs break if needed to avoid gaps */
+  .theorem, .lemma, .definition, .corollary, .proof {
+    page-break-inside: auto;
+  }
+
+  /* Pre blocks can wrap and break */
+  pre {
+    font-size: 7.5pt;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    page-break-inside: auto;
+    margin: 8px 0;
+    padding: 10px;
+  }
+
+  /* Tables flow naturally */
+  table {
+    page-break-inside: auto;
+    font-size: 8pt;
+    margin: 10px 0;
+  }
+  tr {
+    page-break-inside: avoid;
+  }
+  thead { display: table-header-group; }
+
+  /* Minimal orphan/widow */
+  p, li {
+    orphans: 2;
+    widows: 2;
+  }
+
+  /* Compact title block */
+  .title-block {
+    margin-bottom: 15px;
+    padding: 15px;
+  }
+  .title-block h1 {
+    font-size: 1.5em;
+    margin-bottom: 5px;
+  }
+  .title-block h2 {
+    margin-top: 3px;
+    font-size: 1em;
+  }
+
+  /* Abstract - compact */
+  .abstract {
+    padding: 12px 15px;
+    margin: 15px 0;
+    font-size: 9.5pt;
+  }
+
+  /* TOC - NO forced page break after */
+  .toc {
+    padding: 12px;
+    margin: 12px 0;
+  }
+
+  /* Tighter spacing on boxes */
+  .theorem, .lemma, .definition, .corollary {
+    padding: 10px 15px;
+    margin: 12px 0;
+  }
+  .proof {
+    padding: 8px 12px;
+    margin: 8px 0;
+  }
+
+  /* Backgrounds print */
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
 }
-@page { margin: 0.75in; }
+
+/* Screen styles */
 body {
   max-width: 900px;
   margin: 40px auto;
@@ -157,7 +261,7 @@ Version 4.0.6 &mdash; April 2026
 </div>
 
 <div class="abstract">
-<strong>Abstract.</strong> We construct the complete 8-dimensional Lagrangian on the warped manifold M<sup>4</sup> &times; S<sup>1</sup>/Z<sub>2</sub> &times; T<sup>3</sup>/Z<sub>2</sub> from which the entire Standard Model emerges via dimensional reduction. The action consists of 8D Einstein-Hilbert gravity, SO(10) Yang-Mills gauge theory, and fermionic matter in the 16-dimensional spinor representation. A single geometric constant Z<sup>2</sup> = 8 &times; (4&pi;/3) = 32&pi;/3 &asymp; 33.51, arising from horizon thermodynamics, determines all coupling constants, mass ratios, and mixing angles. We derive from first principles: (1) the fine structure constant &alpha;<sup>-1</sup> = 4Z<sup>2</sup> + 3 = 137.041 from holographic RG flow, (2) the weak mixing angle sin<sup>2</sup>&theta;<sub>W</sub> = 3/13 from gauge embedding, (3) the strong coupling &alpha;<sub>s</sub> = &radic;2/12 from gauge structure, (4) three fermion generations from the Atiyah-Singer index theorem, (5) the CP phase &delta;<sub>CP</sub> = 240&deg; from Wilson line holonomy, and (6) the Strong CP suppression &theta;<sub>QCD</sub> = e<sup>-Z<sup>2</sup></sup> from topological considerations. Beyond these 8 first-principles derivations, we derive cosmological density parameters &Omega;<sub>m</sub> = 6/19 and &Omega;<sub>&Lambda;</sub> = 13/19 from de Sitter horizon thermodynamics&mdash;yielding 12 total first-principles predictions. We present 41 additional phenomenological relations exhibiting sub-1% alignment with Z<sup>2</sup> geometry&mdash;including fermion mass ratios&mdash;which serve as an empirical ansatz guiding future theoretical work. The framework yields 53 total predictions with falsifiable tests at DUNE, LHC, and next-generation CMB experiments.
+<strong>Abstract.</strong> We construct the complete 8-dimensional Lagrangian on the warped manifold M<sup>4</sup> &times; S<sup>1</sup>/Z<sub>2</sub> &times; T<sup>3</sup>/Z<sub>2</sub> from which the entire Standard Model emerges via dimensional reduction. The action consists of 8D Einstein-Hilbert gravity, SO(10) Yang-Mills gauge theory, and fermionic matter in the 16-dimensional spinor representation. A single geometric constant Z<sup>2</sup> = 8 &times; (4&pi;/3) = 32&pi;/3 &asymp; 33.51, arising from horizon thermodynamics, determines all coupling constants, mass ratios, and mixing angles. We derive from first principles: (1) the weak mixing angle sin<sup>2</sup>&theta;<sub>W</sub> = 3/13 from SO(10) embedding, (2) the strong coupling &alpha;<sub>s</sub> = &radic;2/12 from gauge structure, (3) three fermion generations from the Atiyah-Singer index theorem, (4) the CP phase &delta;<sub>CP</sub> = 240&deg; from Wilson line holonomy, (5) the Strong CP suppression &theta;<sub>QCD</sub> = e<sup>-Z<sup>2</sup></sup> from topological considerations, and (6) cosmological density parameters &Omega;<sub>m</sub> = 6/19 and &Omega;<sub>&Lambda;</sub> = 13/19 from de Sitter horizon thermodynamics&mdash;yielding 11 total first-principles predictions. The fine structure constant &alpha;<sup>-1</sup> = 4Z<sup>2</sup> + 3 = 137.041 exhibits remarkable 0.004% accuracy but is classified as phenomenological because moduli stabilization (required to fix the AdS curvature k and 8D coupling g<sub>8</sub>) remains an open problem. We present 42 additional phenomenological relations exhibiting sub-1% alignment with Z<sup>2</sup> geometry&mdash;including &alpha;<sup>-1</sup> and fermion mass ratios&mdash;which serve as an empirical ansatz guiding future theoretical work. The framework yields 53 total predictions with falsifiable tests at DUNE, LHC, and next-generation CMB experiments.
 </div>
 
 <div class="toc">
@@ -183,10 +287,10 @@ Version 4.0.6 &mdash; April 2026
 <li>&nbsp;&nbsp;&nbsp;&nbsp;XII. Mass Hierarchy and Yukawa Couplings</li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;XIII. CP Violation from Geometry</li>
 <li><strong>Part VII: Predictions</strong></li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;XIV. First-Principles Derivations (12 Parameters)</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;XIV. First-Principles Derivations (11 Parameters)</li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;XV. Theoretical Framework for Fermion Mass Hierarchies</li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;15.8 Cosmological Density Partition from De Sitter Thermodynamics</li>
-<li>&nbsp;&nbsp;&nbsp;&nbsp;XVI. Phenomenological Z<sup>2</sup> Relations (41 Parameters)</li>
+<li>&nbsp;&nbsp;&nbsp;&nbsp;XVI. Phenomenological Z<sup>2</sup> Relations (42 Parameters)</li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;XVII. Testable Predictions and Falsification Criteria</li>
 <li><strong>Appendices</strong></li>
 <li>&nbsp;&nbsp;&nbsp;&nbsp;A. Mathematical Identities</li>
@@ -234,7 +338,7 @@ Z<sup>2</sup> = CUBE &times; SPHERE = 8 &times; (4&pi;/3) = 32&pi;/3 &asymp; 33.
 
 <table>
 <tr><th>Quantity</th><th>Z<sup>2</sup> Formula</th><th>Predicted</th><th>Observed</th><th>Error</th><th>Status</th></tr>
-<tr style="background: #e8f5e9;"><td>&alpha;<sup>-1</sup></td><td>4Z<sup>2</sup> + 3</td><td>137.041</td><td>137.036</td><td>0.004%</td><td>First-principles</td></tr>
+<tr style="background: #fff8e1;"><td>&alpha;<sup>-1</sup></td><td>4Z<sup>2</sup> + 3</td><td>137.041</td><td>137.036</td><td>0.004%</td><td>Phenomenological*</td></tr>
 <tr style="background: #e8f5e9;"><td>sin<sup>2</sup>&theta;<sub>W</sub></td><td>3/13</td><td>0.2308</td><td>0.2312</td><td>0.19%</td><td>First-principles</td></tr>
 <tr style="background: #e8f5e9;"><td>&alpha;<sub>s</sub>(M<sub>Z</sub>)</td><td>&radic;2/12</td><td>0.1178</td><td>0.1180</td><td>0.08%</td><td>First-principles</td></tr>
 <tr style="background: #e8f5e9;"><td>N<sub>gen</sub></td><td>Index(T<sup>3</sup>)</td><td>3</td><td>3</td><td>exact</td><td>First-principles</td></tr>
@@ -737,49 +841,68 @@ y &rarr; &pi;R<sub>5</sub>  corresponds to    IR (&mu; &rarr; M<sub>weak</sub>)
 <h2>7.2 Gauge Coupling from Bulk Integration</h2>
 
 <div class="theorem">
-<div class="theorem-title">Theorem 5 (Fine Structure Constant)</div>
-<p>Integrating the 8D gauge action over the extra dimensions:</p>
+<div class="theorem-title">Theorem 5 (Gauge Coupling Structure)</div>
+<p>Integrating the 8D gauge action over the warped extra dimensions yields:</p>
 <pre>
-1/g<sub>4</sub><sup>2</sup> = V<sub>T<sup>3</sup></sub>/(4&pi;g<sub>8</sub><sup>2</sup>) &times; (warp factor integral)
+1/g<sub>4</sub><sup>2</sup> = (2&pi;V<sub>T<sup>3</sup></sub>) / (k &middot; g<sub>8</sub><sup>2</sup>)
 </pre>
-<p>With the T<sup>3</sup> volume contributing Z<sup>2</sup> and three fermion generations localized on the brane:</p>
-<pre>
-<strong>&alpha;<sup>-1</sup> = 4Z<sup>2</sup> + N<sub>gen</sub> = 4 &times; (32&pi;/3) + 3 = 128&pi;/3 + 3 &asymp; 137.041</strong>
-</pre>
+<p>where k is the AdS curvature and g<sub>8</sub> is the fundamental 8D coupling.</p>
 </div>
 
 <div class="proof">
-<div class="proof-title">Proof.</div>
-<p><strong>Step 1: Bulk contribution.</strong> The gauge kinetic term integrated over T<sup>3</sup> gives:</p>
+<div class="proof-title">Derivation.</div>
+<p><strong>Step 1: Warp factor integral.</strong> From Section 5.4, the zero-mode normalization gives:</p>
 <pre>
-(1/g<sub>4</sub><sup>2</sup>)<sub>bulk</sub> = V<sub>T<sup>3</sup></sub>/(4&pi;g<sub>8</sub><sup>2</sup>) = Z<sup>2</sup>/(4&pi;g<sub>8</sub><sup>2</sup>) &times; 4 = 4Z<sup>2</sup>/g<sub>8</sub><sup>2</sup>
-</pre>
-<p>The factor of 4 arises from BEKENSTEIN = rank(G<sub>SM</sub>) = 4.</p>
-
-<p><strong>Step 2: Brane contribution.</strong> Fermions localized at orbifold fixed points contribute to vacuum polarization. In the SO(10) embedding, each generation contributes with unit effective charge because the 16-dimensional spinor representation has normalized U(1)<sub>Y</sub> charge. The trace over a complete generation yields:</p>
-<pre>
-Tr(Q<sup>2</sup>)<sub>gen</sub> = &sum;<sub>f</sub> Q<sub>f</sub><sup>2</sup> = 1   (normalized)
-</pre>
-<p>This gives:</p>
-<pre>
-(1/g<sub>4</sub><sup>2</sup>)<sub>brane</sub> = N<sub>gen</sub> &times; Tr(Q<sup>2</sup>)<sub>gen</sub> = 3 &times; 1 = 3
+&int;<sub>0</sub><sup>&pi;R<sub>5</sub></sup> dy e<sup>-2ky</sup> = (1 - e<sup>-2k&pi;R<sub>5</sub></sup>)/(2k) &asymp; 1/(2k)
 </pre>
 
-<p><strong>Step 3: Total.</strong> With g<sub>8</sub> normalized to unity:</p>
+<p><strong>Step 2: Full dimensional reduction.</strong> The 8D Yang-Mills action reduces as:</p>
 <pre>
-&alpha;<sup>-1</sup> = 4&pi;/g<sub>4</sub><sup>2</sup> = 4Z<sup>2</sup> + 3 = 137.041
+S<sub>8D</sub> = -1/(4g<sub>8</sub><sup>2</sup>) &int; d<sup>8</sup>x &radic;(-G) Tr(F<sub>MN</sub>F<sup>MN</sup>)
+
+     &rarr; -1/(4g<sub>4</sub><sup>2</sup>) &int; d<sup>4</sup>x Tr(F<sub>&mu;&nu;</sub>F<sup>&mu;&nu;</sup>)
 </pre>
-<p>Observed: 137.036. Agreement: <strong>0.004%</strong>. <span class="qed">&#8718;</span></p>
+<p>with:</p>
+<pre>
+1/g<sub>4</sub><sup>2</sup> = V<sub>T<sup>3</sup></sub>/(g<sub>8</sub><sup>2</sup>) &times; 1/(2k) = (2&pi;R)<sup>3</sup>/(2k &middot; g<sub>8</sub><sup>2</sup>)
+</pre>
+
+<p><strong>Step 3: The fine structure constant.</strong> Defining &alpha; = g<sub>4</sub><sup>2</sup>/(4&pi;):</p>
+<pre>
+&alpha;<sup>-1</sup> = 4&pi;/g<sub>4</sub><sup>2</sup> = 2&pi;V<sub>T<sup>3</sup></sub>/(k &middot; g<sub>8</sub><sup>2</sup>)
+</pre>
+<p>This depends on <strong>two undetermined moduli</strong>: the curvature k and the 8D coupling g<sub>8</sub>. <span class="qed">&#8718;</span></p>
 </div>
 
-<div class="success-note">
-<strong>First-Principles Result.</strong> This derivation uses only:
+<div class="gap-note">
+<strong>Moduli Stabilization Required.</strong> The fine structure constant &alpha;<sup>-1</sup> is <em>not</em> a pure geometric constant in warped compactifications&mdash;it depends dynamically on:
 <ul>
-<li>The geometric constant Z<sup>2</sup> = 32&pi;/3</li>
-<li>The number of fermion generations N<sub>gen</sub> = 3</li>
-<li>The rank of the SM gauge group = 4</li>
+<li><strong>k</strong>: the AdS curvature (warp factor parameter)</li>
+<li><strong>g<sub>8</sub></strong>: the fundamental 8D gauge coupling</li>
 </ul>
-No fitting parameters are involved.
+A complete first-principles derivation requires a moduli stabilization mechanism (e.g., flux compactification, Casimir energy balance) that fixes these parameters. This remains an open problem in extra-dimensional physics.
+</div>
+
+<h3>7.2.1 The Z<sup>2</sup> Ansatz</h3>
+
+<p>Remarkably, if the moduli stabilize such that the effective combination yields:</p>
+<pre>
+2&pi;V<sub>T<sup>3</sup></sub>/(k &middot; g<sub>8</sub><sup>2</sup>) = 4Z<sup>2</sup>
+</pre>
+<p>and brane-localized fermions contribute +N<sub>gen</sub> from vacuum polarization, then:</p>
+<pre>
+&alpha;<sup>-1</sup> = 4Z<sup>2</sup> + N<sub>gen</sub> = 4 &times; (32&pi;/3) + 3 = <strong>137.041</strong>
+</pre>
+<p>Observed: 137.036. Agreement: <strong>0.004%</strong>.</p>
+
+<div class="remark">
+<strong>Empirical Ansatz.</strong> The formula &alpha;<sup>-1</sup> = 4Z<sup>2</sup> + 3 exhibits extraordinary numerical accuracy but is classified as <em>phenomenological</em> rather than first-principles because:
+<ul>
+<li>The moduli k and g<sub>8</sub> are not derived from the geometry</li>
+<li>The factor of 4 (identified with rank(G<sub>SM</sub>)) requires the specific moduli values</li>
+<li>The +3 (from N<sub>gen</sub> brane fermions) is structurally motivated but awaits rigorous QFT derivation</li>
+</ul>
+This remarkable coincidence strongly suggests that moduli stabilization, when properly understood, will yield &alpha;<sup>-1</sup> = 4Z<sup>2</sup> + 3 from first principles. See Section XVI for the phenomenological classification.
 </div>
 
 <!-- ═══════════════════════════════════════════════════════════════════════ -->
@@ -837,10 +960,11 @@ sin<sup>2</sup>&theta;<sub>W</sub> = g'<sup>2</sup>/(g<sup>2</sup> + g'<sup>2</s
 
 <table>
 <tr><th>Coupling</th><th>Formula</th><th>Predicted</th><th>Observed</th><th>Error</th><th>Status</th></tr>
-<tr><td>&alpha;<sup>-1</sup></td><td>4Z<sup>2</sup> + 3</td><td>137.041</td><td>137.036</td><td>0.004%</td><td>First-principles</td></tr>
+<tr><td>&alpha;<sup>-1</sup></td><td>4Z<sup>2</sup> + 3</td><td>137.041</td><td>137.036</td><td>0.004%</td><td>Phenomenological*</td></tr>
 <tr><td>sin<sup>2</sup>&theta;<sub>W</sub></td><td>3/13</td><td>0.2308</td><td>0.2312</td><td>0.19%</td><td>First-principles</td></tr>
 <tr><td>&alpha;<sub>s</sub>(M<sub>Z</sub>)</td><td>&radic;2/12</td><td>0.1178</td><td>0.1180</td><td>0.08%</td><td>First-principles</td></tr>
 </table>
+<p style="font-size: 9pt;">*Requires moduli stabilization (see Section 7.2)</p>
 
 <!-- ═══════════════════════════════════════════════════════════════════════ -->
 <h1>Part V: Symmetry Breaking</h1>
@@ -1155,52 +1279,55 @@ d<sub>n</sub> &asymp; &theta;<sub>QCD</sub> &times; 10<sup>-15</sup> e&middot;cm
 
 <h1>XIV. First-Principles Derivations</h1>
 
-<p>The following 12 parameters are derived rigorously from the 8D Lagrangian through explicit tensor calculus, dimensional reduction, topological theorems, and horizon thermodynamics. Each derivation traces directly back to the wave mechanics developed in Sections III-VI and the de Sitter thermodynamics of Section 15.8.</p>
+<p>The following 11 parameters are derived rigorously from the 8D Lagrangian through explicit tensor calculus, dimensional reduction, topological theorems, and horizon thermodynamics. Each derivation traces directly back to the wave mechanics developed in Sections III-VI and the de Sitter thermodynamics of Section 15.8.</p>
 
 <h2>14.1 Gauge Sector Parameters</h2>
 
 <table>
 <tr><th>#</th><th>Quantity</th><th>Formula</th><th>Derivation</th><th>Predicted</th><th>Observed</th><th>Error</th></tr>
-<tr><td>1</td><td>&alpha;<sup>-1</sup></td><td>4Z<sup>2</sup> + 3</td><td>Holographic RG flow (Sec. VII)</td><td>137.041</td><td>137.036</td><td>0.004%</td></tr>
-<tr><td>2</td><td>sin<sup>2</sup>&theta;<sub>W</sub></td><td>3/13</td><td>SO(10) embedding coefficients (Sec. VIII)</td><td>0.2308</td><td>0.2312</td><td>0.19%</td></tr>
-<tr><td>3</td><td>&alpha;<sub>s</sub>(M<sub>Z</sub>)</td><td>&radic;2/12</td><td>SU(3) diagonal generators (Sec. VIII)</td><td>0.1178</td><td>0.1180</td><td>0.08%</td></tr>
+<tr><td>1</td><td>sin<sup>2</sup>&theta;<sub>W</sub></td><td>3/13</td><td>SO(10) embedding coefficients (Sec. VIII)</td><td>0.2308</td><td>0.2312</td><td>0.19%</td></tr>
+<tr><td>2</td><td>&alpha;<sub>s</sub>(M<sub>Z</sub>)</td><td>&radic;2/12</td><td>SU(3) diagonal generators (Sec. VIII)</td><td>0.1178</td><td>0.1180</td><td>0.08%</td></tr>
 </table>
 
 <h2>14.2 Topological Parameters</h2>
 
 <table>
 <tr><th>#</th><th>Quantity</th><th>Formula</th><th>Derivation</th><th>Predicted</th><th>Observed</th><th>Error</th></tr>
-<tr><td>4</td><td>N<sub>gen</sub></td><td>|n<sub>1</sub>n<sub>2</sub>n<sub>3</sub>|</td><td>Atiyah-Singer index theorem (Sec. XI)</td><td>3</td><td>3</td><td>exact</td></tr>
-<tr><td>5</td><td>N<sub>colors</sub></td><td>Faces/2</td><td>T<sup>3</sup>/Z<sub>2</sub> fixed point structure</td><td>3</td><td>3</td><td>exact</td></tr>
+<tr><td>3</td><td>N<sub>gen</sub></td><td>|n<sub>1</sub>n<sub>2</sub>n<sub>3</sub>|</td><td>Atiyah-Singer index theorem (Sec. XI)</td><td>3</td><td>3</td><td>exact</td></tr>
+<tr><td>4</td><td>N<sub>colors</sub></td><td>Faces/2</td><td>T<sup>3</sup>/Z<sub>2</sub> fixed point structure</td><td>3</td><td>3</td><td>exact</td></tr>
 </table>
 
 <h2>14.3 CP Parameters</h2>
 
 <table>
 <tr><th>#</th><th>Quantity</th><th>Formula</th><th>Derivation</th><th>Predicted</th><th>Observed</th><th>Error</th></tr>
-<tr><td>6</td><td>&delta;<sub>CP</sub></td><td>4&pi;/3</td><td>Wilson line holonomy (Sec. XIII)</td><td>240&deg;</td><td>195&deg;&ndash;230&deg;</td><td>TBD (DUNE)</td></tr>
-<tr><td>7</td><td>&theta;<sub>QCD</sub></td><td>e<sup>-Z<sup>2</sup></sup></td><td>Topological suppression (Sec. XIII)</td><td>2.8&times;10<sup>-15</sup></td><td>&lt;10<sup>-10</sup></td><td>consistent</td></tr>
+<tr><td>5</td><td>&delta;<sub>CP</sub></td><td>4&pi;/3</td><td>Wilson line holonomy (Sec. XIII)</td><td>240&deg;</td><td>195&deg;&ndash;230&deg;</td><td>TBD (DUNE)</td></tr>
+<tr><td>6</td><td>&theta;<sub>QCD</sub></td><td>e<sup>-Z<sup>2</sup></sup></td><td>Topological suppression (Sec. XIII)</td><td>2.8&times;10<sup>-15</sup></td><td>&lt;10<sup>-10</sup></td><td>consistent</td></tr>
 </table>
 
 <h2>14.4 Fundamental Constant</h2>
 
 <table>
 <tr><th>#</th><th>Quantity</th><th>Formula</th><th>Derivation</th><th>Value</th></tr>
-<tr><td>8</td><td>Z<sup>2</sup></td><td>32&pi;/3</td><td>Friedmann + Bekenstein-Hawking (Sec. II)</td><td>33.510322...</td></tr>
+<tr><td>7</td><td>Z<sup>2</sup></td><td>32&pi;/3</td><td>Friedmann + Bekenstein-Hawking (Sec. II)</td><td>33.510322...</td></tr>
 </table>
 
 <h2>14.5 Cosmological Parameters</h2>
 
 <table>
 <tr><th>#</th><th>Quantity</th><th>Formula</th><th>Derivation</th><th>Predicted</th><th>Observed</th><th>Error</th></tr>
-<tr><td>9</td><td>&Omega;<sub>m</sub></td><td>2N<sub>gen</sub>/(2N<sub>gen</sub> + N<sub>gauge</sub> + 1)</td><td>De Sitter equipartition (Sec. 15.8)</td><td>6/19 = 0.3158</td><td>0.315</td><td>0.25%</td></tr>
-<tr><td>10</td><td>&Omega;<sub>&Lambda;</sub></td><td>(N<sub>gauge</sub> + 1)/(2N<sub>gen</sub> + N<sub>gauge</sub> + 1)</td><td>De Sitter equipartition (Sec. 15.8)</td><td>13/19 = 0.6842</td><td>0.685</td><td>0.12%</td></tr>
-<tr><td>11</td><td>&Omega;<sub>m</sub>/&Omega;<sub>&Lambda;</sub></td><td>2sin<sup>2</sup>&theta;<sub>W</sub></td><td>Particle-cosmology unification (Sec. 15.8)</td><td>6/13 = 0.462</td><td>0.460</td><td>0.4%</td></tr>
-<tr><td>12</td><td>&Omega;<sub>total</sub></td><td>1 (algebraic identity)</td><td>Channel exhaustion (Sec. 15.8)</td><td>1.000</td><td>1.000</td><td>exact</td></tr>
+<tr><td>8</td><td>&Omega;<sub>m</sub></td><td>2N<sub>gen</sub>/(2N<sub>gen</sub> + N<sub>gauge</sub> + 1)</td><td>De Sitter equipartition (Sec. 15.8)</td><td>6/19 = 0.3158</td><td>0.315</td><td>0.25%</td></tr>
+<tr><td>9</td><td>&Omega;<sub>&Lambda;</sub></td><td>(N<sub>gauge</sub> + 1)/(2N<sub>gen</sub> + N<sub>gauge</sub> + 1)</td><td>De Sitter equipartition (Sec. 15.8)</td><td>13/19 = 0.6842</td><td>0.685</td><td>0.12%</td></tr>
+<tr><td>10</td><td>&Omega;<sub>m</sub>/&Omega;<sub>&Lambda;</sub></td><td>2sin<sup>2</sup>&theta;<sub>W</sub></td><td>Particle-cosmology unification (Sec. 15.8)</td><td>6/13 = 0.462</td><td>0.460</td><td>0.4%</td></tr>
+<tr><td>11</td><td>&Omega;<sub>total</sub></td><td>1 (algebraic identity)</td><td>Channel exhaustion (Sec. 15.8)</td><td>1.000</td><td>1.000</td><td>exact</td></tr>
 </table>
 
 <div class="success-note">
-<strong>Summary.</strong> These 12 parameters follow directly from the 8D action through Kaluza-Klein reduction, Bessel function mode profiles, Clifford algebra spinor decomposition, index theorems, and de Sitter horizon thermodynamics. No fitting is involved&mdash;the mathematics determines the physics.
+<strong>Summary.</strong> These 11 parameters follow directly from the 8D action through Kaluza-Klein reduction, Clifford algebra spinor decomposition, index theorems, and de Sitter horizon thermodynamics. No fitting is involved&mdash;the mathematics determines the physics.
+</div>
+
+<div class="remark">
+<strong>Note on &alpha;<sup>-1</sup>.</strong> The fine structure constant is classified as <em>phenomenological</em> (Section XVI) because its derivation from the 8D gauge action yields &alpha;<sup>-1</sup> = 2&pi;V/(k&middot;g<sub>8</sub><sup>2</sup>), which depends on undetermined moduli (k, g<sub>8</sub>). The remarkable formula &alpha;<sup>-1</sup> = 4Z<sup>2</sup> + 3 = 137.041 emerges only IF these moduli stabilize at specific values&mdash;a mechanism not yet derived.
 </div>
 
 <!-- ═══════════════════════════════════════════════════════════════════════ -->
@@ -1501,8 +1628,17 @@ No free parameters. The result is a <strong>topological invariant</strong> of th
 <!-- ═══════════════════════════════════════════════════════════════════════ -->
 
 <div class="remark" style="border: 2px solid #666; background: #f8f8f0;">
-<strong>Academic Note on Phenomenological Predictions.</strong> The relations presented in this section exhibit striking numerical alignment with the Z<sup>2</sup> = 32&pi;/3 geometry&mdash;typically achieving sub-1% agreement with experimental values. While the exact derivations require integration of wavefunction localization profiles over the bulk (work in progress), the statistical significance of these alignments across 45 independent parameters strongly suggests an underlying geometric origin. We present these as a <em>phenomenological ansatz</em> guiding future theoretical development, following the established precedent of string phenomenology where mass predictions are presented alongside their expected theoretical foundations.
+<strong>Academic Note on Phenomenological Predictions.</strong> The relations presented in this section exhibit striking numerical alignment with the Z<sup>2</sup> = 32&pi;/3 geometry&mdash;typically achieving sub-1% agreement with experimental values. While the exact derivations require moduli stabilization and integration of wavefunction localization profiles over the bulk (work in progress), the statistical significance of these alignments across 42 independent parameters strongly suggests an underlying geometric origin. We present these as a <em>phenomenological ansatz</em> guiding future theoretical development, following the established precedent of string phenomenology where mass predictions are presented alongside their expected theoretical foundations.
 </div>
+
+<h2>16.0 Fine Structure Constant</h2>
+
+<table>
+<tr><th>#</th><th>Quantity</th><th>Z<sup>2</sup> Formula</th><th>Predicted</th><th>Observed</th><th>Error</th></tr>
+<tr><td>1</td><td>&alpha;<sup>-1</sup></td><td>4Z<sup>2</sup> + 3</td><td>137.041</td><td>137.036</td><td>0.004%</td></tr>
+</table>
+
+<p><em>Physical interpretation:</em> The coefficient 4 corresponds to rank(G<sub>SM</sub>) = 4 (number of Cartan generators), while +3 = N<sub>gen</sub> arises from brane-localized fermion vacuum polarization. This remarkable formula requires moduli stabilization: from Section 7.2, the true result is &alpha;<sup>-1</sup> = 2&pi;V<sub>T<sup>3</sup></sub>/(k&middot;g<sub>8</sub><sup>2</sup>), which equals 4Z<sup>2</sup> + 3 only if the AdS curvature k and 8D coupling g<sub>8</sub> take specific values determined by a yet-to-be-derived stabilization mechanism.</p>
 
 <h2>16.1 Fermion Mass Ratios</h2>
 
@@ -1720,11 +1856,10 @@ GAUGE = N<sub>gen</sub> &times; BEKENSTEIN = 3 &times; 4 = 12
 <h1>Appendix B. Full Derivation Status</h1>
 <!-- ═══════════════════════════════════════════════════════════════════════ -->
 
-<h2>B.1 First-Principles Derivations (12 Parameters)</h2>
+<h2>B.1 First-Principles Derivations (11 Parameters)</h2>
 <p>These are mathematically rigorous, following from the 8D action through explicit calculation:</p>
 <ul>
 <li>Z<sup>2</sup> = 32&pi;/3 from Friedmann + Bekenstein-Hawking</li>
-<li>&alpha;<sup>-1</sup> = 4Z<sup>2</sup> + 3 (holographic RG flow)</li>
 <li>sin<sup>2</sup>&theta;<sub>W</sub> = 3/13 (SO(10) embedding coefficients)</li>
 <li>&alpha;<sub>s</sub> = &radic;2/12 (SU(3) diagonal generators)</li>
 <li>N<sub>gen</sub> = 3 (Atiyah-Singer index theorem)</li>
@@ -1737,9 +1872,10 @@ GAUGE = N<sub>gen</sub> &times; BEKENSTEIN = 3 &times; 4 = 12
 <li>&Omega;<sub>total</sub> = 1 (algebraic identity from channel exhaustion)</li>
 </ul>
 
-<h2>B.2 Phenomenological Relations (41 Parameters)</h2>
+<h2>B.2 Phenomenological Relations (42 Parameters)</h2>
 <p>Strong numerical agreement requiring theoretical development:</p>
 <ul>
+<li><strong>&alpha;<sup>-1</sup> = 4Z<sup>2</sup> + 3</strong> (requires moduli stabilization to fix k and g<sub>8</sub>)</li>
 <li>Fermion mass ratios: m<sub>p</sub>/m<sub>e</sub>, m<sub>&mu;</sub>/m<sub>e</sub>, m<sub>&tau;</sub>/m<sub>e</sub>, quark ratios</li>
 <li>Electroweak hierarchy: M<sub>Pl</sub>/v = 2Z<sup>43/2</sup></li>
 <li>Electroweak: M<sub>W</sub>/M<sub>Z</sub>, &lambda;<sub>H</sub>, a<sub>e</sub>, &Delta;a<sub>&mu;</sub></li>
@@ -1752,6 +1888,7 @@ GAUGE = N<sub>gen</sub> &times; BEKENSTEIN = 3 &times; 4 = 12
 <h2>B.3 Theoretical Path Forward</h2>
 <p>Completing the phenomenological derivations requires:</p>
 <ul>
+<li><strong>Moduli stabilization:</strong> Derive the AdS curvature k and 8D coupling g<sub>8</sub> from flux compactification or Casimir energy balance to promote &alpha;<sup>-1</sup> = 4Z<sup>2</sup> + 3 to first-principles</li>
 <li>Explicit fermion localization profiles on T<sup>3</sup>/Z<sub>2</sub></li>
 <li>Wavefunction overlap integrals for Yukawa couplings</li>
 <li>Running of Wilson line phases under RG flow</li>
