@@ -18,6 +18,7 @@ Music is not culturally arbitrary — it's Z² = CUBE × SPHERE in sonic form:
 |------|-------------|
 | `MUSIC_THEORY_Z2_COMPLETE.py` | Complete derivation of ALL music theory from Z² |
 | `COUNTRY_ROADS_Z2_DERIVATION.py` | "Take Me Home, Country Roads" — HORIZONTAL Z² |
+| `CAROLINA_IN_MY_MIND_Z2_ANALYSIS.py` | "Carolina In My Mind" — COMPACTIFIED Z² |
 | `CREED_HIGHER_Z2_ANALYSIS.py` | "Higher" by Creed — VERTICAL Z² |
 | `BOHEMIAN_RHAPSODY_Z2_ANALYSIS.py` | "Bohemian Rhapsody" — COMPLETE Z² |
 
@@ -26,6 +27,7 @@ Music is not culturally arbitrary — it's Z² = CUBE × SPHERE in sonic form:
 | Song | Direction | Theme | Z² Type |
 |------|-----------|-------|---------|
 | "Country Roads" | Horizontal | Belonging | SPHERE (roads) × CUBE (home) |
+| "Carolina In My Mind" | Compactified | Memory | 8D → 4D dimensional reduction |
 | "Higher" | Vertical | Transcendence | SPHERE (dreams) × CUBE (higher) |
 | "Bohemian Rhapsody" | Total | Complete existence | All dimensions |
 
@@ -75,6 +77,7 @@ Both "Country Roads" (~80 BPM) and "Higher" (~78 BPM) use:
 ```bash
 python research/music_z2/MUSIC_THEORY_Z2_COMPLETE.py
 python research/music_z2/COUNTRY_ROADS_Z2_DERIVATION.py
+python research/music_z2/CAROLINA_IN_MY_MIND_Z2_ANALYSIS.py
 python research/music_z2/CREED_HIGHER_Z2_ANALYSIS.py
 python research/music_z2/BOHEMIAN_RHAPSODY_Z2_ANALYSIS.py
 ```
