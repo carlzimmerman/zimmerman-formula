@@ -35,7 +35,7 @@ Even more striking:
 ```
 313 = 137 + 176 = α⁻¹ + 176
 176 = 4 × 44 = BEKENSTEIN × 44
-    = BEKENSTEIN × (GAUGE × 3 + CUBE)
+    = BEKENSTEIN × (GAUGE × 3 + CUBE)   
 ```
 
 The duration is **α⁻¹ plus BEKENSTEIN times a composite of gauge and cube** - gratitude for electromagnetic existence, amplified by spacetime dimensions.

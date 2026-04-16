@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useMemo, useState, useCallback } from 'react'
+import { useRef, useMemo, useState, useCallback, useEffect } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { OrbitControls, Stars, Html } from '@react-three/drei'
 import * as THREE from 'three'
@@ -183,6 +183,39 @@ function StarParticles({ count, galaxy, a0, model, redshift }: StarParticlesProp
       )
     }
   }, [stars, count, hasArms])
+
+  // Initialize star positions immediately on mount (fixes first load issue)
+  useEffect(() => {
+    if (!meshRef.current) return
+
+    stars.forEach((star, i) => {
+      let v: number
+      switch (model) {
+        case 'zimmerman':
+          v = zimmermanVelocity(star.r_kpc, galaxy.mass, a0)
+          break
+        case 'lcdm':
+          v = lcdmVelocity(star.r_kpc, galaxy.mass)
+          break
+        case 'newton':
+        default:
+          v = newtonianVelocity(star.r_kpc, galaxy.mass)
+      }
+
+      // Initial positions at time = 0
+      const x = star.r_visual * Math.cos(star.theta)
+      const z = star.r_visual * Math.sin(star.theta)
+      const y = star.height
+
+      dummy.position.set(x, y, z)
+      const size = star.isBulge ? 0.025 : (0.012 + 0.008 * Math.random())
+      dummy.scale.setScalar(size)
+      dummy.updateMatrix()
+      meshRef.current!.setMatrixAt(i, dummy.matrix)
+    })
+
+    meshRef.current.instanceMatrix.needsUpdate = true
+  }, [stars, model, galaxy.mass, a0, dummy])
 
   useFrame((state) => {
     if (!meshRef.current) return
