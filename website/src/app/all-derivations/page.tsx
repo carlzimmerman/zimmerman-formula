@@ -590,18 +590,18 @@ export default function AllDerivationsPage() {
             />
             <DerivationCard
               title="Dark Energy Density"
-              formula="Ω_Λ = 3Z/(8+3Z)"
+              formula="Ω_Λ = 3Z/(8+3Z) [from √(3π/2)]"
               predicted={OMEGA_LAMBDA.toFixed(4)}
               measured="0.685"
-              error="0.1% error"
+              error="0.06% error"
               category="strong"
             />
             <DerivationCard
               title="Matter Density"
-              formula="Ω_m = 8/(8+3Z)"
+              formula="Ω_m = 8/(8+3Z) [de Sitter thermo]"
               predicted={OMEGA_MATTER.toFixed(4)}
               measured="0.315"
-              error="0.1% error"
+              error="0.12% error"
               category="strong"
             />
           </div>

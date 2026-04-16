@@ -55,10 +55,22 @@ export default function CosmicFatePage() {
 
           <div className="space-y-4">
             <div className="bg-gray-50 border border-gray-200 rounded p-4">
-              <div className="text-sm text-gray-600 mb-2">From Z², the cosmological densities:</div>
+              <div className="text-sm text-gray-600 mb-2">From de Sitter thermodynamics, the cosmological densities:</div>
               <div className="font-mono text-center">
                 <div>Ω_Λ = 3Z/(8+3Z) = {OMEGA_LAMBDA.toFixed(4)}</div>
                 <div>Ω_m = 8/(8+3Z) = {OMEGA_MATTER.toFixed(4)}</div>
+              </div>
+            </div>
+
+            <div className="bg-green-50 border border-green-200 rounded p-4">
+              <div className="text-sm text-green-800 font-semibold mb-2">First-Principles Derivation:</div>
+              <div className="text-xs text-gray-700 space-y-1">
+                <div>1. De Sitter horizon has temperature T<sub>H</sub> = ℏH/(2πk<sub>B</sub>) [Gibbons-Hawking]</div>
+                <div>2. Matter thermalizes to T<sub>H</sub> at late times [Unruh effect]</div>
+                <div>3. At equilibrium: Ω<sub>i</sub> ∝ 1/δ<sub>i</sub> (fluctuation amplitude)</div>
+                <div>4. Matter (3D): δ<sub>m</sub> = v<sub>rms</sub> = <strong>√3</strong> × σ</div>
+                <div>5. Vacuum (positive-definite): δ<sub>Λ</sub> = ⟨|φ|⟩ = <strong>√(2/π)</strong> × σ</div>
+                <div>6. Therefore: Ω<sub>Λ</sub>/Ω<sub>m</sub> = √3/√(2/π) = <strong>√(3π/2) = 3Z/8</strong></div>
               </div>
             </div>
 
