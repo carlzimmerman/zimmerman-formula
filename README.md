@@ -71,6 +71,8 @@ v4.0.4 introduces a clear separation:
 
 
 <img width="" height="274" alt="Kepler-solar-system-1" src="https://github.com/user-attachments/assets/2a72f526-4e02-4063-bafc-5e1f079a8fa7" />
+
+
 Geometria una et aeterna est in mente Dei refulgens: cuius consortium hominibus tributum inter causas est, cur homo sit imago Dei.
  
 -Kepler 
