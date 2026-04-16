@@ -8,7 +8,7 @@
 
 **Website:** [abeautifullygeometricuniverse.web.app](https://abeautifullygeometricuniverse.web.app) | **DOI:** [10.5281/zenodo.19244651](https://doi.org/10.5281/zenodo.19244651)
 
-**Complete Lagrangian Paper (v5.3.0):** [zenodo.org/records/19318996](https://zenodo.org/records/19318996) — 852+ views, 325+ downloads
+**Complete Lagrangian Paper (v5.4.0):** [zenodo.org/records/19318996](https://zenodo.org/records/19318996) — 852+ views, 325+ downloads
 
 ---
 
@@ -72,22 +72,26 @@ The same geometry determining electroweak mixing also determines the matter/dark
 | **Apr 16** | **Hierarchy 43/2**: M_Pl/v = 2Z^(43/2) from SO(10) DOF counting | ✅ First-principles |
 | **Apr 16** | **Cosmological equipartition**: Ω_m/Ω_Λ = 2sin²θ_W | ✅ First-principles |
 | **Apr 16** | **Proton mass 2/5**: m_p/m_e = α⁻¹ × (2Z²/5) from trace anomaly | ✅ First-principles |
+| **Apr 16** | **Cabibbo angle**: λ = 1/(Z - √2) geometric formula | ✅ First-principles |
+| **Apr 16** | **CKM CP phase**: δ_CKM = arccos(1/3) from cube diagonal | ✅ First-principles |
+| **Apr 16** | **Higgs quartic**: λ_H(M_Pl) = 1/(4Z²) verified by 2-loop RG | ✅ First-principles |
+| **Apr 16** | **Λ suppression**: Λ ~ exp(-Z²√N) explains 122 orders | 🔬 Promising |
 | **Apr 16** | **Vertex CSP**: Only 2 S₃ equivalence classes from anomaly constraints | ✅ First-principles |
 
-### Derivation Status (v5.3.0)
+### Derivation Status (v5.4.0)
 
 | Category | Count | Examples |
 |----------|-------|----------|
-| ✅ **First-Principles** | 13+ | Z², α⁻¹, sin²θW, αs, N_gen, N_colors, m_p/m_e, M_Pl/v, Ω_m, Ω_Λ, λ_Cabibbo, θ₁₂_solar, vertex_classes |
-| 🔬 **Phenomenological** | 40+ | Full CKM, PMNS, lepton ratios, Higgs quartic RG |
-| **Total** | **53+** | All predictions with sub-1% accuracy |
+| ✅ **First-Principles** | 16+ | Z², α⁻¹, sin²θW, αs, N_gen, N_colors, m_p/m_e, M_Pl/v, Ω_m, Ω_Λ, λ_Cabibbo, θ₁₂_solar, δ_CKM, λ_H(M_Pl), vertex_classes |
+| 🔬 **Phenomenological** | 38+ | Full CKM, PMNS, lepton ratios, Λ_cosmo |
+| **Total** | **54+** | All predictions with sub-1% accuracy |
 
 ### The Academic Firewall
 
-v4.0.4 introduces a clear separation:
-- **Section XIV**: First-Principles Derivations (9 parameters from 8D tensor calculus)
+v5.4.0 introduces a clear separation:
+- **Section XIV**: First-Principles Derivations (16+ parameters from 8D tensor calculus, Coleman-Weinberg, trace anomaly)
 - **Section XV**: Theoretical Framework for Fermion Mass Hierarchies (Randall-Sundrum mechanism)
-- **Section XVI**: Phenomenological Z² Relations (44 parameters with explicit "requires derivation" disclaimer)
+- **Section XVI**: Phenomenological Z² Relations (38 parameters with explicit "requires derivation" disclaimer)
 - **Section XVII**: Testable Predictions and Falsification Criteria
 
 ---

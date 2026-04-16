@@ -19,7 +19,7 @@ export default function Home() {
           <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 mb-6">
             <span className="font-medium text-gray-700">Carl Zimmerman</span>
             <span>·</span>
-            <span>March 2026</span>
+            <span>April 2026 (v5.4.0)</span>
             <span>·</span>
             <a
               href="https://zenodo.org/records/19474535"
@@ -29,6 +29,17 @@ export default function Home() {
             >
               DOI: 10.5281/zenodo.19474535
             </a>
+          </div>
+
+          {/* April 16 Breakthrough Banner */}
+          <div className="bg-green-50 border border-green-200 rounded p-4 mb-6">
+            <div className="font-semibold text-green-800 mb-2">🎯 April 16, 2026: 16+ First-Principles Derivations</div>
+            <div className="text-sm text-green-700 space-y-1">
+              <div>• <strong>Hierarchy:</strong> M_Pl/v = 2Z^(43/2) — 0.3% error</div>
+              <div>• <strong>Cosmology:</strong> Ω_m = 6/19, Ω_Λ = 13/19 — Weinberg angle connection!</div>
+              <div>• <strong>Proton mass:</strong> m_p/m_e = α⁻¹ × 2Z²/5 — 0.042% error</div>
+              <div>• <strong>Cabibbo:</strong> λ = 1/(Z - √2) — 1.3% error</div>
+            </div>
           </div>
 
           {/* Core Formula */}
@@ -68,24 +79,24 @@ export default function Home() {
               <div className="text-gray-600">= 137.036</div>
               <div className="text-xs text-gray-400 mt-1">Fine structure</div>
             </div>
-            <div className="text-center p-3 bg-gray-50 rounded">
-              <div className="font-mono text-lg text-blue-700">GAUGE = 12</div>
-              <div className="text-gray-600">= 9Z²/(8π)</div>
-              <div className="text-xs text-gray-400 mt-1">8+3+1 bosons</div>
+            <div className="text-center p-3 bg-green-50 rounded border border-green-200">
+              <div className="font-mono text-lg text-green-700">Ω_m/Ω_Λ</div>
+              <div className="text-gray-600">= 6/13 = 2sin²θ_W</div>
+              <div className="text-xs text-green-600 mt-1">NEW: Weinberg↔Cosmo!</div>
             </div>
-            <div className="text-center p-3 bg-gray-50 rounded">
-              <div className="font-mono text-lg text-blue-700">Bekenstein = 4</div>
-              <div className="text-gray-600">= 3Z²/(8π)</div>
-              <div className="text-xs text-gray-400 mt-1">DNA bases, BH entropy</div>
+            <div className="text-center p-3 bg-green-50 rounded border border-green-200">
+              <div className="font-mono text-lg text-green-700">m_p/m_e</div>
+              <div className="text-gray-600">= α⁻¹ × 2Z²/5</div>
+              <div className="text-xs text-green-600 mt-1">NEW: 0.042% error!</div>
             </div>
             <div className="text-center p-3 bg-gray-50 rounded">
               <div className="font-mono text-lg text-blue-700">sin²θ_W</div>
-              <div className="text-gray-600">= 3/13 = 3/(GAUGE+1)</div>
+              <div className="text-gray-600">= 3/13</div>
               <div className="text-xs text-gray-400 mt-1">= 0.231</div>
             </div>
           </div>
           <div className="mt-4 text-sm text-gray-600 text-center">
-            Plus: 3 generations, 20 amino acids, m_p/m_e = 1836, 10D strings, holographic principle...
+            Plus: 3 generations, M_Pl/v = 2Z^(43/2), λ_Cabibbo = 1/(Z−√2), δ_CKM = arccos(1/3)...
           </div>
         </div>
 
@@ -144,7 +155,7 @@ export default function Home() {
 
         {/* Testable Predictions */}
         <div className="bg-white border border-gray-200 rounded shadow-sm p-6 mb-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Key Predictions</h2>
+          <h2 className="text-lg font-semibold text-gray-900 mb-4">Key Predictions (16+ First-Principles)</h2>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
@@ -160,28 +171,46 @@ export default function Home() {
                   <td className="py-3 font-mono text-gray-900">α⁻¹ = 4Z² + 3</td>
                   <td className="py-3 text-gray-500">137.036 (0.004% error)</td>
                 </tr>
-                <tr>
-                  <td className="py-3 text-gray-700">Proton/electron mass</td>
-                  <td className="py-3 font-mono text-gray-900">54Z² + 6Z − 8</td>
-                  <td className="py-3 text-gray-500">1836.3 (0.02% error)</td>
+                <tr className="bg-green-50">
+                  <td className="py-3 text-gray-700 font-medium">Proton/electron mass</td>
+                  <td className="py-3 font-mono text-gray-900">α⁻¹ × 2Z²/5</td>
+                  <td className="py-3 text-green-700 font-medium">1836.92 (0.042% error) ⭐</td>
+                </tr>
+                <tr className="bg-green-50">
+                  <td className="py-3 text-gray-700 font-medium">Hierarchy M_Pl/v</td>
+                  <td className="py-3 font-mono text-gray-900">2Z^(43/2)</td>
+                  <td className="py-3 text-green-700 font-medium">4.97×10¹⁶ (0.3% error) ⭐</td>
+                </tr>
+                <tr className="bg-green-50">
+                  <td className="py-3 text-gray-700 font-medium">Matter density Ω_m</td>
+                  <td className="py-3 font-mono text-gray-900">6/19</td>
+                  <td className="py-3 text-green-700 font-medium">0.3158 (0.25% error) ⭐</td>
+                </tr>
+                <tr className="bg-green-50">
+                  <td className="py-3 text-gray-700 font-medium">Dark energy Ω_Λ</td>
+                  <td className="py-3 font-mono text-gray-900">13/19</td>
+                  <td className="py-3 text-green-700 font-medium">0.6842 (0.12% error) ⭐</td>
+                </tr>
+                <tr className="bg-green-50">
+                  <td className="py-3 text-gray-700 font-medium">Cabibbo angle λ</td>
+                  <td className="py-3 font-mono text-gray-900">1/(Z − √2)</td>
+                  <td className="py-3 text-green-700 font-medium">0.2286 (1.3% error) ⭐</td>
                 </tr>
                 <tr>
                   <td className="py-3 text-gray-700">Weinberg angle</td>
-                  <td className="py-3 font-mono text-gray-900">sin²θ = 3/(GAUGE+1)</td>
-                  <td className="py-3 text-gray-500">0.231 (0.15% error)</td>
+                  <td className="py-3 font-mono text-gray-900">sin²θ = 3/13</td>
+                  <td className="py-3 text-gray-500">0.231 (0.19% error)</td>
                 </tr>
                 <tr>
-                  <td className="py-3 text-gray-700">Hubble constant</td>
-                  <td className="py-3 font-mono text-gray-900">H₀ = Z × a₀ / c</td>
-                  <td className="py-3 text-gray-500">71.5 km/s/Mpc</td>
-                </tr>
-                <tr>
-                  <td className="py-3 text-gray-700">BTFR at z=2</td>
-                  <td className="py-3 font-mono text-gray-900">−log₁₀(E(z))</td>
-                  <td className="py-3 text-gray-500">−0.47 dex offset</td>
+                  <td className="py-3 text-gray-700">CKM CP phase δ</td>
+                  <td className="py-3 font-mono text-gray-900">arccos(1/3)</td>
+                  <td className="py-3 text-gray-500">70.5° (3.7% error)</td>
                 </tr>
               </tbody>
             </table>
+          </div>
+          <div className="mt-3 text-xs text-gray-500 text-center">
+            ⭐ = April 2026 breakthrough | Key: Ω_m/Ω_Λ = 6/13 = 2×sin²θ_W (Weinberg angle in cosmology!)
           </div>
         </div>
 
@@ -253,7 +282,7 @@ export default function Home() {
             </a>
           </div>
           <p className="text-gray-500 text-xs text-center mt-4">
-            The Lagrangian paper derives all 59 parameters from Z² = 32π/3 with step-by-step derivations
+            v5.4.0: 16+ first-principles derivations including hierarchy, cosmology, proton mass, and CKM
           </p>
         </div>
 
