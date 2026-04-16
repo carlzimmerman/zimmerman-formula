@@ -5,8 +5,8 @@ const path = require('path');
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
 
-  const htmlPath = path.join(__dirname, 'papers/LAGRANGIAN_FROM_GEOMETRY_v4.1.2.html');
-  const pdfPath = path.join(__dirname, 'papers/LAGRANGIAN_FROM_GEOMETRY_v4.1.2.pdf');
+  const htmlPath = path.join(__dirname, 'papers/LAGRANGIAN_FROM_GEOMETRY_v4.1.3.html');
+  const pdfPath = path.join(__dirname, 'papers/LAGRANGIAN_FROM_GEOMETRY_v4.1.3.pdf');
 
   await page.goto('file://' + htmlPath, { waitUntil: 'networkidle0' });
 
