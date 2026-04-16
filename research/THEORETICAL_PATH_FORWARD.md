@@ -401,10 +401,26 @@ where:
 
 The competition creates a minimum at intermediate scale.
 
-### XV.4.10 The Stabilization Hypothesis
+### XV.4.10 Orientifold Planes and the Maldacena-Nuñez No-Go Theorem
+
+A critical requirement for any de Sitter compactification is bypassing the **Maldacena-Nuñez no-go theorem** (2001), which proves that standard supergravity compactifications satisfying the Strong Energy Condition cannot yield de Sitter vacua.
+
+The **only** known mechanism to circumvent this theorem is the introduction of **orientifold planes (O-planes)** — extended objects with negative tension that locally violate the Strong Energy Condition.
+
+**For T³/Z₂**: The orbifold has 8 fixed points (the cube vertices). At each fixed point, an **O3-plane** is required for:
+1. Anomaly cancellation (standard requirement)
+2. Tadpole cancellation (RR charge neutrality)
+3. **Bypassing Maldacena-Nuñez** (negative tension sources)
+
+This is not ad hoc. The T³/Z₂ geometry *mathematically requires* localized sources at the fixed points, and O-planes are the unique consistent choice in Type IIB string theory.
+
+**Reference**: Maldacena, J. & Nuñez, C. "Supergravity description of field theories on curved manifolds and a no go theorem." Int. J. Mod. Phys. A 16 (2001) 822. [hep-th/0007018]
+
+### XV.4.11 The Stabilization Hypothesis
 
 **Formal Statement**: Consider Type IIB string theory compactified on T³/Z₂ with:
 - Flux configuration (n₁, n₂, n₃) = (3, 1, 1)
+- O3-planes at all 8 fixed points (required by Maldacena-Nuñez)
 - Supersymmetry conditions D_τᵢW = 0
 - Combined flux + Casimir potential
 
@@ -413,7 +429,7 @@ Then:
 2. The Kähler modulus is stabilized at volume V₀ = a₀³
 3. The stabilized geometry gives Z² = 32π/3
 
-### XV.4.11 Required Calculations
+### XV.4.12 Required Calculations
 
 1. **Compute W explicitly**: Evaluate the flux superpotential for T³/Z₂ with general flux
 
@@ -424,6 +440,90 @@ Then:
 4. **Minimize V_total**: Find the true minimum including all contributions
 
 5. **Extract Z²**: Verify that the stabilized geometry gives Z² = 32π/3
+
+---
+
+## XV.5 De Sitter Consistency: Swampland and Quantum Stability
+
+### XV.5.1 The de Sitter Swampland Conjecture
+
+The Z² framework fundamentally relies on 4D de Sitter spacetime for the derivation of Z² from horizon thermodynamics. This places it in direct contact with the **de Sitter Swampland Conjecture** proposed by Obied, Ooguri, Spodyneiko & Vafa (2018):
+
+> Any scalar potential V in a consistent theory of quantum gravity must satisfy |∇V| ≥ c·V for some O(1) constant c. This bound forbids stable de Sitter vacua.
+
+If true, this conjecture would place de Sitter space in the "Swampland" — the space of effective theories that cannot be completed to consistent quantum gravity.
+
+**Reference**: Obied, G. et al. "De Sitter Space and the Swampland." arXiv:1806.08362 (2018)
+
+### XV.5.2 The Z² Counter-Argument: Topological Protection
+
+The Swampland bound applies to **scalar field potentials**. The Z² framework proposes a fundamentally different mechanism:
+
+1. **Z² is not a scalar field VEV**: The value Z² = 32π/3 emerges from the Friedmann equation combined with Bekenstein-Hawking entropy — it is a property of the spacetime geometry itself.
+
+2. **Topological quantities cannot roll**: The Swampland bound |∇V| ≥ cV applies to continuous moduli. But Z² is fixed by:
+   - The spacetime dimension D = 4 (discrete, topological)
+   - The Friedmann coefficient C_F = 8π/3 (from Einstein's equations)
+   - Together: Z² = D × C_F is determined by topology and GR, not by a scalar potential minimum
+
+3. **Index theorem protection**: N_gen = 3 is the Dirac index on T³/Z₂, a topological invariant. The gauge couplings α⁻¹ = D² × C_F + N_gen inherit this topological rigidity.
+
+**Hypothesis**: The Z² framework provides a potential counter-example to the Swampland conjecture: a de Sitter configuration protected by topology rather than stabilized by a scalar potential.
+
+### XV.5.3 The Polyakov-Mottola IR Instability
+
+Polyakov (2012) and Mottola (1985, 1986) demonstrated that de Sitter space suffers from infrared quantum instabilities due to particle creation at the horizon:
+
+> "Even massive particles generate IR divergence and huge back reaction. The expanding universe is also unstable but in a weaker sense."
+
+This would seem to threaten any framework relying on de Sitter thermodynamics.
+
+**Reference**: Polyakov, A. "Infrared instability of the de Sitter space." arXiv:1209.4135 (2012)
+
+### XV.5.4 Resolution: Instability as Mechanism
+
+The Z² framework **embraces** the Polyakov-Mottola instability rather than avoiding it. The key insight:
+
+The "instability" = **horizon particle creation** = the thermalization mechanism underlying our cosmological predictions.
+
+Recall the Ω_m derivation:
+1. Gibbons-Hawking temperature at horizon: T_H = ℏH/(2πk_B)
+2. Matter thermalizes via horizon radiation (Unruh effect)
+3. Equilibrium ratio: Ω_Λ/Ω_m = √(3π/2)
+
+The particle creation Polyakov identifies is **exactly** the physics driving this thermalization. The Z² framework provides a quantitative prediction for the **endpoint** of this process:
+
+$$\Omega_m = \frac{8}{8 + 3Z} = 0.3154$$
+
+The IR "instability" does not destroy de Sitter — it drives the universe toward the thermodynamic equilibrium described by Z².
+
+### XV.5.5 Addressing the Danielsson-Van Riet Review
+
+Danielsson & Van Riet (2018) comprehensively reviewed the challenges of constructing de Sitter vacua in string theory:
+
+> "The results of this 20-year endeavor could point to the fact that string theory harbors no de Sitter vacua at all."
+
+**Reference**: Danielsson, U.H. & Van Riet, T. "What if string theory has no de Sitter vacua?" Int. J. Mod. Phys. D 27 (2018) 1830007. arXiv:1804.01120
+
+The Z² framework responds:
+
+1. **O-planes solve Maldacena-Nuñez**: The 8 cube vertices host O3-planes, providing the required negative-tension sources.
+
+2. **Topological stabilization avoids Swampland**: Z² is not a rolling scalar but a geometrically fixed quantity.
+
+3. **Horizon thermalization is physical**: The Polyakov-Mottola instability is the mechanism, not the problem.
+
+### XV.5.6 Implications for String Theory
+
+If the Z² framework is correct, it suggests:
+
+1. **De Sitter CAN exist** in string theory, but only with specific topological protection (T³/Z₂ with O-planes at fixed points).
+
+2. **The Swampland conjecture is too strong**: Topologically protected de Sitter vacua evade the scalar potential bound.
+
+3. **Gauge couplings are cosmological**: The derivation α⁻¹ = D² × C_F + N_gen directly connects particle physics to the Friedmann equation.
+
+This positions the Z² framework as a **contender in the biggest debate in theoretical physics**: whether de Sitter space is consistent with quantum gravity.
 
 ---
 
@@ -459,3 +559,23 @@ The Z² framework is not a collection of numerical coincidences. It is a geometr
 ### Flux Compactification
 - Gukov, S., Vafa, C., Witten, E. "CFT's from Calabi-Yau Fourfolds." Nucl. Phys. B 584 (2000) 69
 - Demirtas, M. et al. "Vacua with Small Flux Superpotential." Phys. Rev. Lett. 124 (2020) 211603
+
+### De Sitter No-Go Theorems and Swampland
+- Maldacena, J. & Nuñez, C. "Supergravity description of field theories on curved manifolds and a no go theorem." Int. J. Mod. Phys. A 16 (2001) 822. [hep-th/0007018]
+- Obied, G., Ooguri, H., Spodyneiko, L. & Vafa, C. "De Sitter Space and the Swampland." arXiv:1806.08362 (2018)
+- Ooguri, H., Palti, E., Shiu, G. & Vafa, C. "Distance and de Sitter Conjectures on the Swampland." Phys. Lett. B 788 (2019) 180. arXiv:1810.05506
+- Danielsson, U.H. & Van Riet, T. "What if string theory has no de Sitter vacua?" Int. J. Mod. Phys. D 27 (2018) 1830007. arXiv:1804.01120
+
+### De Sitter Quantum Instabilities
+- Polyakov, A. "Infrared instability of the de Sitter space." arXiv:1209.4135 (2012)
+- Mottola, E. "Particle creation in de Sitter space." Phys. Rev. D 31 (1985)
+- Mottola, E. "Thermodynamic instability of de Sitter space." Phys. Rev. D 33 (1986)
+- Anderson, P. & Mottola, E. "On the Instability of Global de Sitter Space to Particle Creation." arXiv:1310.0030 (2013)
+
+### Horizon Thermodynamics
+- Gibbons, G.W. & Hawking, S.W. "Cosmological event horizons, thermodynamics, and particle creation." Phys. Rev. D 15 (1977) 2738
+- Bekenstein, J.D. "Black holes and entropy." Phys. Rev. D 7 (1973) 2333
+
+### KKLT and de Sitter Constructions
+- Kachru, S., Kallosh, R., Linde, A. & Trivedi, S. "De Sitter vacua in string theory." Phys. Rev. D 68 (2003) 046005
+- Sethi, S. "Supersymmetry Breaking by Fluxes." JHEP 10 (2018) 022. arXiv:1709.03554
