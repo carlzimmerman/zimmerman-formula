@@ -519,9 +519,79 @@ For the original MOND derivation:
 
 ---
 
-## License
+## Licensing & Commercial Use (The Dual-License Model)
 
-MIT License - See [LICENSE](LICENSE)
+This project implements a **Dual-License Strategy** to ensure the ANR-1 technology remains freely available for humanitarian purposes while protecting against proprietary exploitation.
+
+### Open-Source Licenses (Default)
+
+| Component | License | Requirement |
+|:----------|:--------|:------------|
+| **Software** (algorithms, simulations, trial engines) | [AGPLv3](https://www.gnu.org/licenses/agpl-3.0.en.html) | All modifications must be open-sourced |
+| **Hardware** (metamaterial lenses, transducer designs) | [CERN-OHL-S v2](https://cern-ohl.web.cern.ch/) | All modifications must be open-sourced |
+| **Documentation** (protocols, specifications) | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) | Attribution required, share-alike |
+
+**For Academic, Humanitarian, and Open-Science Use:** The software is **FREE** under AGPLv3 and the hardware is **FREE** under CERN-OHL-S. This explicitly requires:
+
+1. All modifications, improvements, and derivative works must be publicly released under the same license
+2. All clinical data generated using this technology must be open-sourced
+3. Any networked deployment (SaaS) must release the complete source code
+4. Patent rights to contributions are shared (see [CONTRIBUTING_CLA.md](CONTRIBUTING_CLA.md))
+
+### The Corporate Clause
+
+**If a commercial entity (e.g., pharmaceutical company, medical device manufacturer, or healthcare conglomerate) wishes to:**
+
+- Use the ANR-1 algorithms without disclosing proprietary modifications
+- Deploy the Bayesian trial engine without releasing clinical data
+- Manufacture metamaterial lenses without open-sourcing improvements
+- Integrate any component into a closed-source commercial product
+
+**They are LEGALLY PROHIBITED from using the open-source licenses above.**
+
+The AGPLv3 and CERN-OHL-S are "copyleft" licenses with strong reciprocity requirements. Any attempt to use this technology in a proprietary, closed-source commercial context without a separate license agreement constitutes **copyright and patent infringement**.
+
+### Commercial Licensing
+
+Commercial entities seeking proprietary use rights must negotiate a **Commercial License Agreement** that typically includes:
+
+- Upfront licensing fees
+- Royalties on commercial deployment
+- Mandatory contribution to open research fund
+- Clinical data sharing requirements (even under commercial license)
+
+**To negotiate a Commercial License, contact:**
+
+**Project Radion — Principal Investigator**
+- Email: [contact information]
+- Subject Line: "ANR-1 Commercial License Inquiry"
+
+### Why Dual-Licensing?
+
+This strategy ensures:
+
+1. **Hospitals and researchers get the cure for FREE** — no barriers to humanitarian use
+2. **Science stays open** — all improvements flow back to the commons
+3. **Big Pharma pays** — if they want to close the source, they fund the research
+4. **Patent trolls are blocked** — we hold defensive patents (see Claims)
+
+This is the same model used by Linux, MongoDB, Qt, and other successful open-source projects that changed the world while remaining financially sustainable.
+
+### Patent Status
+
+**US Provisional Patent Pending** — Filed under 35 U.S.C. § 111(b)
+
+*System and Method for Adaptive Acoustic Neuromodulation via State-Space Biomarker Gating*
+
+The provisional patent covers the core innovations while allowing 12 months for international filing decisions. The patent is held defensively and will be licensed freely to any entity complying with the open-source licenses above.
+
+---
+
+## Contributing
+
+We welcome contributions from scientists, engineers, and clinicians worldwide. By submitting a Pull Request, you agree to the terms of our [Contributor License Agreement](CONTRIBUTING_CLA.md).
+
+**Key requirement:** Contributors grant joint copyright and patent rights to enable the dual-licensing model. This protects the project from patent trolls and ensures we can always offer both free and commercial licenses.
 
 ---
 
