@@ -549,7 +549,7 @@ This project implements a **Dual-License Strategy** to ensure the ANR-1 technolo
 
 **They are LEGALLY PROHIBITED from using the open-source licenses above.**
 
-The AGPLv3 and CERN-OHL-S are "copyleft" licenses with strong reciprocity requirements. Any attempt to use this technology in a proprietary, closed-source commercial context without a separate license agreement constitutes **copyright and patent infringement**.
+The AGPLv3 and CERN-OHL-S are "copyleft" licenses with strong reciprocity requirements. Any attempt to use this technology in a proprietary, closed-source commercial context without a separate license agreement constitutes **copyright infringement**.
 
 ### Commercial Licensing
 
@@ -573,17 +573,8 @@ This strategy ensures:
 1. **Hospitals and researchers get the cure for FREE** — no barriers to humanitarian use
 2. **Science stays open** — all improvements flow back to the commons
 3. **Big Pharma pays** — if they want to close the source, they fund the research
-4. **Patent trolls are blocked** — we hold defensive patents (see Claims)
 
 This is the same model used by Linux, MongoDB, Qt, and other successful open-source projects that changed the world while remaining financially sustainable.
-
-### Patent Status
-
-**US Provisional Patent Pending** — Filed under 35 U.S.C. § 111(b)
-
-*System and Method for Adaptive Acoustic Neuromodulation via State-Space Biomarker Gating*
-
-The provisional patent covers the core innovations while allowing 12 months for international filing decisions. The patent is held defensively and will be licensed freely to any entity complying with the open-source licenses above.
 
 ---
 
@@ -591,7 +582,7 @@ The provisional patent covers the core innovations while allowing 12 months for 
 
 We welcome contributions from scientists, engineers, and clinicians worldwide. By submitting a Pull Request, you agree to the terms of our [Contributor License Agreement](CONTRIBUTING_CLA.md).
 
-**Key requirement:** Contributors grant joint copyright and patent rights to enable the dual-licensing model. This protects the project from patent trolls and ensures we can always offer both free and commercial licenses.
+**Key requirement:** Contributors grant joint copyright to enable the dual-licensing model. This ensures we can always offer both free and commercial licenses.
 
 ---
 

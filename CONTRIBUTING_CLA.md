@@ -10,10 +10,9 @@
 
 This Contributor License Agreement ("Agreement") establishes the terms under which contributions are made to the Z² Framework and ANR-1 projects ("the Project"). This Agreement is necessary to:
 
-1. **Defend against patent trolls** — Consolidated IP ownership allows effective legal defense
-2. **Enable dual-licensing** — We must own the rights to offer both open-source and commercial licenses
-3. **Protect contributors** — Clear ownership prevents future disputes
-4. **Ensure the cure remains free** — Unified ownership guarantees humanitarian access forever
+1. **Enable dual-licensing** — We must own the rights to offer both open-source and commercial licenses
+2. **Protect contributors** — Clear ownership prevents future disputes
+3. **Ensure the cure remains free** — Unified ownership guarantees humanitarian access forever
 
 ---
 
@@ -39,17 +38,7 @@ By submitting a Contribution, you hereby grant to the Project Maintainer a perpe
 - License your Contribution under any license, including proprietary commercial licenses
 - Assign or transfer these rights to successors or assigns
 
-### 2. Grant of Patent License
-
-By submitting a Contribution, you hereby grant to the Project Maintainer a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable patent license to:
-
-- Make, have made, use, offer to sell, sell, import, and otherwise transfer your Contribution
-- Include your Contribution in patent applications and issued patents
-- Sublicense these patent rights to third parties under any license terms
-
-This patent grant covers any patent claims licensable by you that are necessarily infringed by your Contribution alone or by combination with the Project.
-
-### 3. Joint Ownership
+### 2. Joint Ownership
 
 You agree that your Contribution shall be jointly owned by you and the Project Maintainer. This joint ownership means:
 
@@ -69,7 +58,7 @@ c) **No Encumbrances:** Your Contribution is not subject to any third-party inte
 
 d) **Legal Capacity:** You have the legal authority to enter into this Agreement. If you are submitting on behalf of an organization, you have authorization to bind that organization.
 
-e) **Disclosure:** You will disclose any known patents, patent applications, or other intellectual property that may be relevant to your Contribution.
+e) **Disclosure:** You will disclose any known intellectual property that may be relevant to your Contribution.
 
 ### 5. No Obligation
 
@@ -85,7 +74,7 @@ The Project Maintainer commits that:
 
 a) **Free for Humanitarian Use:** The Project will always be available free of charge for academic research, humanitarian purposes, and open-science applications under appropriate open-source licenses.
 
-b) **Commercial Licensing for Good:** Revenue from commercial licenses will be used to fund further research, defend patents against trolls, and support humanitarian deployment.
+b) **Commercial Licensing for Good:** Revenue from commercial licenses will be used to fund further research and support humanitarian deployment.
 
 c) **Never Closed:** The core Project will never be converted to a fully proprietary, closed-source product.
 
@@ -115,7 +104,6 @@ For contributions involving:
 - Novel algorithms or methods
 - Hardware designs
 - Clinical protocols or datasets
-- Any potentially patentable inventions
 
 Please also email [contact information] with:
 - Your full legal name
@@ -134,10 +122,6 @@ If your Contribution includes or builds upon existing intellectual property:
 1. **Open-Source Components:** Identify all open-source dependencies and their licenses
 2. **Third-Party IP:** Disclose any third-party intellectual property incorporated
 3. **Your Prior Work:** Indicate if the Contribution includes your prior work submitted elsewhere
-
-### Patent Disclosure
-
-If you are aware of any patents or patent applications (yours or third-party) that may be relevant to your Contribution, you must disclose them at the time of Submission.
 
 ### Trade Secrets
 
@@ -180,9 +164,8 @@ If you have questions about this CLA or need clarification before contributing, 
 **By contributing to this project, you are:**
 
 1. Granting joint copyright ownership of your contribution
-2. Granting patent rights for any inventions in your contribution
-3. Enabling the dual-licensing model (free for open-source, paid for proprietary)
-4. Helping ensure the cure for neurodegeneration remains free for humanity
+2. Enabling the dual-licensing model (free for open-source, paid for proprietary)
+3. Helping ensure the cure for neurodegeneration remains free for humanity
 
 **You are NOT:**
 
