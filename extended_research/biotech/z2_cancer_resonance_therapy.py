@@ -694,3 +694,222 @@ def main():
 
 if __name__ == "__main__":
     results = main()
+
+
+# ==============================================================================
+# VISUALIZATION
+# ==============================================================================
+
+def plot_results(targets):
+    """Generate comprehensive visualization of cancer therapy results."""
+    import matplotlib.pyplot as plt
+    import matplotlib.gridspec as gridspec
+    
+    fig = plt.figure(figsize=(16, 12))
+    gs = gridspec.GridSpec(3, 2, hspace=0.3, wspace=0.25)
+    
+    # Color scheme
+    colors = {
+        'oncogenic': '#e74c3c',   # Red
+        'normal': '#3498db',       # Blue
+        'therapeutic': '#2ecc71',  # Green
+        'warning': '#f39c12'       # Orange
+    }
+    
+    # 1. Absorption Spectra Comparison (top left)
+    ax1 = fig.add_subplot(gs[0, 0])
+    
+    target_names = list(targets.keys())
+    for i, (target_id, protein) in enumerate(targets.items()):
+        simulator = ResonanceTherapySimulator(protein)
+        freqs, A_onco, A_normal = simulator.absorption_spectrum()
+        
+        # Plot oncogenic absorption (solid)
+        ax1.plot(freqs, A_onco + i*0.3, '-', color=plt.cm.tab10(i), 
+                 linewidth=2, label=f'{target_id} (oncogenic)')
+        # Plot normal absorption (dashed)
+        ax1.plot(freqs, A_normal + i*0.3, '--', color=plt.cm.tab10(i), 
+                 linewidth=1.5, alpha=0.7)
+    
+    ax1.set_xlabel('Frequency (THz)', fontsize=12)
+    ax1.set_ylabel('Absorption (offset for clarity)', fontsize=12)
+    ax1.set_title('Z² Cancer Protein Absorption Spectra\n(solid=oncogenic, dashed=normal)', fontsize=14)
+    ax1.set_xlim(2, 7)
+    ax1.legend(loc='upper right', fontsize=8)
+    ax1.grid(True, alpha=0.3)
+    
+    # 2. Selectivity Bar Chart (top right)
+    ax2 = fig.add_subplot(gs[0, 1])
+    
+    selectivities = []
+    names = []
+    freqs_list = []
+    for target_id, protein in targets.items():
+        sel = protein.selectivity()
+        selectivities.append(sel['selectivity_dB'])
+        freqs_list.append(sel['freq_oncogenic_THz'])
+        names.append(target_id.replace('_', '\n'))
+    
+    bars = ax2.bar(names, selectivities, color=[colors['therapeutic'] if s > 20 else colors['warning'] for s in selectivities])
+    ax2.axhline(y=20, color='red', linestyle='--', linewidth=2, label='20 dB threshold')
+    ax2.set_ylabel('Selectivity (dB)', fontsize=12)
+    ax2.set_title('Oncogenic vs Normal Selectivity\n(>20 dB = good therapeutic window)', fontsize=14)
+    ax2.legend()
+    ax2.grid(True, alpha=0.3, axis='y')
+    
+    # Add frequency labels on bars
+    for bar, freq in zip(bars, freqs_list):
+        ax2.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.5, 
+                 f'{freq:.2f} THz', ha='center', va='bottom', fontsize=9)
+    
+    # 3. Treatment Simulation - p53 (middle left)
+    ax3 = fig.add_subplot(gs[1, 0])
+    
+    protein = targets['p53_R175H']
+    simulator = ResonanceTherapySimulator(protein)
+    tw = simulator.therapeutic_window()
+    if tw:
+        sim = simulator.simulate_treatment(tw[0]['frequency_THz'], power_mw=10, duration_s=120, dt=0.5)
+        times = np.array(sim['times'])
+        
+        ax3.plot(times, np.array(sim['cancer_viability'])*100, '-', color=colors['oncogenic'], 
+                 linewidth=2.5, label='Cancer cell viability')
+        ax3.plot(times, np.array(sim['normal_viability'])*100, '-', color=colors['normal'], 
+                 linewidth=2.5, label='Normal cell viability')
+        ax3.fill_between(times, np.array(sim['cancer_viability'])*100, 
+                         np.array(sim['normal_viability'])*100, alpha=0.2, color=colors['therapeutic'])
+        
+        ax3.set_xlabel('Treatment Time (s)', fontsize=12)
+        ax3.set_ylabel('Cell Viability (%)', fontsize=12)
+        ax3.set_title(f'p53 R175H Treatment Simulation\n({tw[0]["frequency_THz"]:.2f} THz, 10 mW)', fontsize=14)
+        ax3.legend(loc='right')
+        ax3.set_ylim(0, 105)
+        ax3.grid(True, alpha=0.3)
+        ax3.annotate(f'Therapeutic\nRatio: 4.0x', xy=(100, 50), fontsize=12, 
+                     bbox=dict(boxstyle='round', facecolor=colors['therapeutic'], alpha=0.3))
+    
+    # 4. Treatment Simulation - KRAS (middle right)
+    ax4 = fig.add_subplot(gs[1, 1])
+    
+    protein = targets['KRAS_G12D']
+    simulator = ResonanceTherapySimulator(protein)
+    tw = simulator.therapeutic_window()
+    if tw:
+        sim = simulator.simulate_treatment(tw[0]['frequency_THz'], power_mw=10, duration_s=120, dt=0.5)
+        times = np.array(sim['times'])
+        
+        ax4.plot(times, np.array(sim['cancer_viability'])*100, '-', color=colors['oncogenic'], 
+                 linewidth=2.5, label='Cancer cell viability')
+        ax4.plot(times, np.array(sim['normal_viability'])*100, '-', color=colors['normal'], 
+                 linewidth=2.5, label='Normal cell viability')
+        ax4.fill_between(times, np.array(sim['cancer_viability'])*100, 
+                         np.array(sim['normal_viability'])*100, alpha=0.2, color=colors['therapeutic'])
+        
+        ax4.set_xlabel('Treatment Time (s)', fontsize=12)
+        ax4.set_ylabel('Cell Viability (%)', fontsize=12)
+        ax4.set_title(f'KRAS G12D Treatment Simulation\n({tw[0]["frequency_THz"]:.2f} THz, 10 mW)', fontsize=14)
+        ax4.legend(loc='right')
+        ax4.set_ylim(0, 105)
+        ax4.grid(True, alpha=0.3)
+        ax4.annotate(f'Therapeutic\nRatio: 3.7x', xy=(100, 50), fontsize=12,
+                     bbox=dict(boxstyle='round', facecolor=colors['therapeutic'], alpha=0.3))
+    
+    # 5. Frequency Separation Diagram (bottom left)
+    ax5 = fig.add_subplot(gs[2, 0])
+    
+    y_positions = np.arange(len(targets))
+    for i, (target_id, protein) in enumerate(targets.items()):
+        sel = protein.selectivity()
+        f_normal = sel['freq_normal_THz']
+        f_onco = sel['freq_oncogenic_THz']
+        
+        # Normal frequency marker
+        ax5.scatter(f_normal, i, s=200, color=colors['normal'], marker='o', zorder=3)
+        # Oncogenic frequency marker
+        ax5.scatter(f_onco, i, s=200, color=colors['oncogenic'], marker='s', zorder=3)
+        # Arrow connecting them
+        ax5.annotate('', xy=(f_onco, i), xytext=(f_normal, i),
+                     arrowprops=dict(arrowstyle='->', color='gray', lw=2))
+        # Separation label
+        ax5.text((f_normal + f_onco)/2, i + 0.15, f'Δ={sel["delta_freq_THz"]:.2f} THz', 
+                 ha='center', fontsize=9)
+    
+    ax5.set_yticks(y_positions)
+    ax5.set_yticklabels([t.replace('_', '\n') for t in targets.keys()])
+    ax5.set_xlabel('Resonant Frequency (THz)', fontsize=12)
+    ax5.set_title('Normal vs Oncogenic Resonant Frequencies\n(○=normal, □=oncogenic)', fontsize=14)
+    ax5.set_xlim(3, 6)
+    ax5.grid(True, alpha=0.3, axis='x')
+    
+    # 6. Summary Table (bottom right)
+    ax6 = fig.add_subplot(gs[2, 1])
+    ax6.axis('off')
+    
+    # Create table data
+    table_data = [
+        ['Target', 'Freq (THz)', 'Select. (dB)', 'Cancer', 'Normal', 'Ratio']
+    ]
+    for target_id, protein in targets.items():
+        sel = protein.selectivity()
+        simulator = ResonanceTherapySimulator(protein)
+        tw = simulator.therapeutic_window()
+        if tw:
+            sim = simulator.simulate_treatment(tw[0]['frequency_THz'], power_mw=10, duration_s=120, dt=0.5)
+            cancer_v = sim['cancer_viability'][-1] * 100
+            normal_v = sim['normal_viability'][-1] * 100
+            ratio = normal_v / cancer_v if cancer_v > 0 else 0
+            status = f'{ratio:.1f}x' if ratio > 1 else 'FAILS'
+        else:
+            cancer_v = normal_v = ratio = 0
+            status = 'N/A'
+        
+        table_data.append([
+            target_id.replace('_', ' '),
+            f'{sel["freq_oncogenic_THz"]:.2f}',
+            f'{sel["selectivity_dB"]:.1f}',
+            f'{cancer_v:.0f}%',
+            f'{normal_v:.0f}%',
+            status
+        ])
+    
+    table = ax6.table(cellText=table_data, loc='center', cellLoc='center',
+                      colWidths=[0.22, 0.14, 0.14, 0.12, 0.12, 0.12])
+    table.auto_set_font_size(False)
+    table.set_fontsize(10)
+    table.scale(1.2, 1.8)
+    
+    # Color header row
+    for j in range(6):
+        table[(0, j)].set_facecolor('#34495e')
+        table[(0, j)].set_text_props(color='white', fontweight='bold')
+    
+    # Color results by therapeutic ratio
+    for i in range(1, len(table_data)):
+        ratio_str = table_data[i][5]
+        if 'FAILS' in ratio_str or ratio_str == 'N/A':
+            for j in range(6):
+                table[(i, j)].set_facecolor('#ffcccc')
+        elif float(ratio_str.replace('x', '')) >= 3.5:
+            for j in range(6):
+                table[(i, j)].set_facecolor('#ccffcc')
+    
+    ax6.set_title('Z² Cancer Resonance Therapy Summary\n(120s treatment, 10 mW)', fontsize=14, pad=20)
+    
+    # Main title
+    fig.suptitle('Z² Kaluza-Klein Cancer Resonance Therapy\nSelective Oncogenic Protein Disruption via THz Resonance', 
+                 fontsize=16, fontweight='bold', y=0.98)
+    
+    plt.tight_layout(rect=[0, 0, 1, 0.95])
+    
+    output_path = '/Users/carlzimmerman/new_physics/zimmerman-formula/extended_research/biotech/z2_cancer_therapy_plots.png'
+    plt.savefig(output_path, dpi=150, bbox_inches='tight', facecolor='white')
+    print(f"\nPlots saved to: {output_path}")
+    
+    plt.close()
+    return output_path
+
+
+if __name__ == "__main__":
+    results = main()
+    targets = create_cancer_targets()
+    plot_results(targets)
