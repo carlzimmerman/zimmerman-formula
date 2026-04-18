@@ -8,7 +8,7 @@
 
 **Website:** [abeautifullygeometricuniverse.web.app](https://abeautifullygeometricuniverse.web.app) | **DOI:** [10.5281/zenodo.19244651](https://doi.org/10.5281/zenodo.19244651)
 
-**Complete Lagrangian Paper (v5.4.0):** [zenodo.org/records/19318996](https://zenodo.org/records/19318996) — 852+ views, 325+ downloads
+**Complete Lagrangian Paper (v5.4.0):** [zenodo.org/records/19318996](https://zenodo.org/records/19318996)
 
 ---
 
@@ -37,24 +37,22 @@ The same geometry determining electroweak mixing also determines the matter/dark
 
 *From a simple MOND derivation to a complete 8D Lagrangian in 28 days.*
 
-| Date | Paper | Views | Key Breakthrough |
-|------|-------|-------|------------------|
-| **Mar 18** | [The Zimmerman Formula: Deriving MOND from Cosmology](https://zenodo.org/records/19244651) | 44 | **Day 1**: a₀ = cH₀/Z where Z = 2√(8π/3) |
-| **Mar 19** | [The Zimmerman Formula: Derivation and Testable Predictions](https://zenodo.org/records/19245123) | 17 | JWST verification, falsifiable a₀(z) evolution |
-| **Mar 20** | [Redshift Evolution of the MOND Acceleration Scale](https://zenodo.org/records/19248362) | 169 | a₀(z) = a₀(0) × E(z) confirmed by 7 JWST galaxies |
-| **Mar 20** | [The Friedmann Geometric Factor: Eleven Relationships](https://zenodo.org/records/19249017) | 21 | Z connects 11 independent observables |
-| **Mar 20** | [The Complete Standard Model from Geometry](https://zenodo.org/records/19249234) | 336 | **All 36 SM parameters** from Z² |
-| **Mar 21** | [A Beautifully Geometric Universe](https://zenodo.org/records/19252891) | 154 | 32/36 parameters verified (89%) |
-| **Mar 22** | [The Zimmerman Unified Framework](https://zenodo.org/records/19258734) | 122 | 65 constants, H₀ = 71.5 prediction |
-| **Mar 23** | [Deriving MOND from Horizon Thermodynamics](https://zenodo.org/records/19265432) | 10 | **First-principles**: Friedmann + Bekenstein-Hawking |
-| **Mar 24** | [60 Physical Constants from Z](https://zenodo.org/records/19271098) | 95 | Complete mathematical walkthrough |
-| **Mar 25** | [The Zimmerman Framework: Unifying Physics](https://zenodo.org/records/19278456) | 4 | 62+ formulas, 0.7% average accuracy |
-| **Mar 27** | [Cube × Sphere](https://zenodo.org/records/19289012) | 16 | **Z² = 8 × (4π/3) = CUBE × SPHERE** |
-| **Mar 28** | [More Cube × Sphere](https://zenodo.org/records/19295678) | 2 | Emergence timeline, consciousness derivation |
-| **Mar 29** | [Speed of Light from Geometry](https://zenodo.org/records/19301234) | 3 | c = e²(4Z² + 3)/(4πε₀ℏ), 0.004% error |
-| **Apr 15** | [**The Z² Framework: Complete 8D Lagrangian**](https://zenodo.org/records/19318996) | **852** | **v4.0.4**: Full 8D action, 53 predictions |
-
-**Total Impact:** 1,800+ views across 16 publications in 28 days.
+| Date | Paper | Key Breakthrough |
+|------|-------|------------------|
+| **Mar 18** | [The Zimmerman Formula: Deriving MOND from Cosmology](https://zenodo.org/records/19244651) | **Day 1**: a₀ = cH₀/Z where Z = 2√(8π/3) |
+| **Mar 19** | [The Zimmerman Formula: Derivation and Testable Predictions](https://zenodo.org/records/19245123) | JWST verification, falsifiable a₀(z) evolution |
+| **Mar 20** | [Redshift Evolution of the MOND Acceleration Scale](https://zenodo.org/records/19248362) | a₀(z) = a₀(0) × E(z) confirmed by 7 JWST galaxies |
+| **Mar 20** | [The Friedmann Geometric Factor: Eleven Relationships](https://zenodo.org/records/19249017) | Z connects 11 independent observables |
+| **Mar 20** | [The Complete Standard Model from Geometry](https://zenodo.org/records/19249234) | **All 36 SM parameters** from Z² |
+| **Mar 21** | [A Beautifully Geometric Universe](https://zenodo.org/records/19252891) | 32/36 parameters verified (89%) |
+| **Mar 22** | [The Zimmerman Unified Framework](https://zenodo.org/records/19258734) | 65 constants, H₀ = 71.5 prediction |
+| **Mar 23** | [Deriving MOND from Horizon Thermodynamics](https://zenodo.org/records/19265432) | **First-principles**: Friedmann + Bekenstein-Hawking |
+| **Mar 24** | [60 Physical Constants from Z](https://zenodo.org/records/19271098) | Complete mathematical walkthrough |
+| **Mar 25** | [The Zimmerman Framework: Unifying Physics](https://zenodo.org/records/19278456) | 62+ formulas, 0.7% average accuracy |
+| **Mar 27** | [Cube × Sphere](https://zenodo.org/records/19289012) | **Z² = 8 × (4π/3) = CUBE × SPHERE** |
+| **Mar 28** | [More Cube × Sphere](https://zenodo.org/records/19295678) | Emergence timeline, consciousness derivation |
+| **Mar 29** | [Speed of Light from Geometry](https://zenodo.org/records/19301234) | c = e²(4Z² + 3)/(4πε₀ℏ), 0.004% error |
+| **Apr 15** | [**The Z² Framework: Complete 8D Lagrangian**](https://zenodo.org/records/19318996) | **v4.0.4**: Full 8D action, 53 predictions |
 
 ---
 
