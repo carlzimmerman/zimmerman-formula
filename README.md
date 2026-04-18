@@ -60,37 +60,36 @@ The same geometry determining electroweak mixing also determines the matter/dark
 
 | Date | Breakthrough | Status |
 |------|--------------|--------|
-| **Mar 17** | **MOND origin**: Z = cH₀/a₀ from critical density | ✅ First-principles |
-| **Mar 19** | **Geometric origin**: Z = 2√(8π/3) from Friedmann + Bekenstein-Hawking | ✅ First-principles |
-| **Mar 20** | **Standard Model couplings**: α⁻¹ = 4Z² + 3, sin²θW = 3/13 | ✅ First-principles |
-| **Mar 26** | **Exact identities**: GAUGE = 12, BEKENSTEIN = 4 | ✅ First-principles |
-| **Mar 27** | **CUBE × SPHERE**: Z² = 8 × (4π/3) geometric interpretation | ✅ First-principles |
-| **Apr 14** | **R² = CUBE²**: Higgs quartic from curvature saturation | ✅ First-principles |
-| **Apr 15** | **8D Lagrangian**: Complete M⁴ × S¹/Z₂ × T³/Z₂ action | ✅ First-principles |
-| **Apr 16** | **Hierarchy 43/2**: M_Pl/v = 2Z^(43/2) from SO(10) DOF counting | ✅ First-principles |
-| **Apr 16** | **Cosmological equipartition**: Ω_m/Ω_Λ = 2sin²θ_W | ✅ First-principles |
-| **Apr 16** | **Proton mass 2/5**: m_p/m_e = α⁻¹ × (2Z²/5) from trace anomaly | ✅ First-principles |
-| **Apr 16** | **Cabibbo angle**: λ = 1/(Z - √2) geometric formula | ✅ First-principles |
-| **Apr 16** | **CKM CP phase**: δ_CKM = arccos(1/3) from cube diagonal | ✅ First-principles |
-| **Apr 16** | **Higgs quartic**: λ_H(M_Pl) = 1/(4Z²) verified by 2-loop RG | ✅ First-principles |
-| **Apr 16** | **Λ suppression**: Λ ~ exp(-Z²√N) explains 122 orders | 🔬 Promising |
-| **Apr 16** | **Vertex CSP**: Only 2 S₃ equivalence classes from anomaly constraints | ✅ First-principles |
+| **Mar 17** | **MOND origin**: Z = cH₀/a₀ from critical density | Derived |
+| **Mar 19** | **Geometric origin**: Z = 2√(8π/3) from Friedmann + Bekenstein-Hawking | Derived |
+| **Mar 20** | **Standard Model couplings**: α⁻¹ = 4Z² + 3, sin²θW = 3/13 | Numerical match |
+| **Mar 26** | **Exact identities**: GAUGE = 12, BEKENSTEIN = 4 | Definitions |
+| **Mar 27** | **CUBE × SPHERE**: Z² = 8 × (4π/3) geometric interpretation | Derived |
+| **Apr 14** | **R² = CUBE²**: Higgs quartic from curvature saturation | Proposed |
+| **Apr 15** | **8D Lagrangian**: Complete M⁴ × S¹/Z₂ × T³/Z₂ action | Proposed |
+| **Apr 16** | **Hierarchy 43/2**: M_Pl/v = 2Z^(43/2) from SO(10) DOF counting | Numerical match |
+| **Apr 16** | **Cosmological equipartition**: Ω_m/Ω_Λ = 2sin²θ_W | Numerical match |
+| **Apr 16** | **Proton mass 2/5**: m_p/m_e = α⁻¹ × (2Z²/5) from trace anomaly | Numerical match |
+| **Apr 16** | **Cabibbo angle**: λ = 1/(Z - √2) geometric formula | Numerical match |
+| **Apr 16** | **CKM CP phase**: δ_CKM = arccos(1/3) from cube diagonal | Numerical match |
+| **Apr 16** | **Higgs quartic**: λ_H(M_Pl) = 1/(4Z²) verified by 2-loop RG | Numerical match |
+| **Apr 16** | **Λ suppression**: Λ ~ exp(-Z²√N) explains 122 orders | Speculative |
+| **Apr 16** | **Vertex CSP**: Only 2 S₃ equivalence classes from anomaly constraints | Proposed |
 
 ### Derivation Status (v5.4.0)
 
 | Category | Count | Examples |
 |----------|-------|----------|
-| ✅ **First-Principles** | 16+ | Z², α⁻¹, sin²θW, αs, N_gen, N_colors, m_p/m_e, M_Pl/v, Ω_m, Ω_Λ, λ_Cabibbo, θ₁₂_solar, δ_CKM, λ_H(M_Pl), vertex_classes |
-| 🔬 **Phenomenological** | 38+ | Full CKM, PMNS, lepton ratios, Λ_cosmo |
+| **Derived** | 3 | Z² from Friedmann, MOND scale, CUBE × SPHERE |
+| **Numerical Matches** | 50+ | α⁻¹, sin²θW, αs, m_p/m_e, M_Pl/v, Ω_m, Ω_Λ, CKM, PMNS |
 | **Total** | **54+** | All predictions with sub-1% accuracy |
 
-### The Academic Firewall
+### Framework Status
 
-v5.4.0 introduces a clear separation:
-- **Section XIV**: First-Principles Derivations (16+ parameters from 8D tensor calculus, Coleman-Weinberg, trace anomaly)
-- **Section XV**: Theoretical Framework for Fermion Mass Hierarchies (Randall-Sundrum mechanism)
-- **Section XVI**: Phenomenological Z² Relations (38 parameters with explicit "requires derivation" disclaimer)
-- **Section XVII**: Testable Predictions and Falsification Criteria
+The framework identifies numerical patterns with high accuracy. The key distinction:
+- **Derived**: Follows from established physics (Friedmann equation, horizon thermodynamics)
+- **Numerical match**: Formula fits observed value but mechanism not proven
+- **Proposed**: Theoretical framework requiring further validation
 
 ---
 
@@ -371,13 +370,6 @@ The weakness of gravity comes from Z⁻⁴² geometric suppression!
 | [INFLATION_CONNECTION.md](research/INFLATION_CONNECTION.md) | N, n_s, r predictions |
 | [DOF_HORIZON_DERIVATION.md](research/DOF_HORIZON_DERIVATION.md) | Ω_m, Ω_Λ from DoF |
 | [hubble_tension/](research/hubble_tension/) | H₀ = 71.5 prediction |
-
-### Biology (Origin of Life)
-
-| File | Description |
-|------|-------------|
-| [BEKENSTEIN_BOUND_DNA.py](biology/BEKENSTEIN_BOUND_DNA.py) | **4 DNA bases from holographic principle** |
-| [DNA_ORIGIN_FROM_Z2.py](biology/DNA_ORIGIN_FROM_Z2.py) | Complete DNA structure from Z² |
 
 ---
 
