@@ -542,18 +542,32 @@ def main():
     print(f"Improvement: {100*(np.mean(opt_windows)/np.mean(orig_windows)-1):.1f}%")
 
     # Save results
+    # Convert numpy types to Python native for JSON serialization
+    def convert_to_native(obj):
+        if isinstance(obj, np.integer):
+            return int(obj)
+        elif isinstance(obj, np.floating):
+            return float(obj)
+        elif isinstance(obj, np.ndarray):
+            return obj.tolist()
+        elif isinstance(obj, dict):
+            return {k: convert_to_native(v) for k, v in obj.items()}
+        elif isinstance(obj, list):
+            return [convert_to_native(v) for v in obj]
+        return obj
+
     results = {
         'framework': 'Z² Cotranslational Resonance',
         'timestamp': datetime.now().isoformat(),
-        'Z2': Z2,
-        'theta_Z2_deg': np.degrees(THETA_Z2),
+        'Z2': float(Z2),
+        'theta_Z2_deg': float(np.degrees(THETA_Z2)),
         'sequence': MYOGLOBIN,
-        'pause_sites': pause_sites,
-        'domains': domains,
-        'folding_order': order[:20].tolist(),
-        'folding_scores': scores.tolist(),
-        'resonance': resonance.tolist(),
-        'translation_rate': folder.translation_rate.tolist(),
+        'pause_sites': convert_to_native(pause_sites),
+        'domains': convert_to_native(domains),
+        'folding_order': [int(x) for x in order[:20]],
+        'folding_scores': [float(x) for x in scores],
+        'resonance': [float(x) for x in resonance],
+        'translation_rate': [float(x) for x in folder.translation_rate],
         'original_folding_window': float(np.mean(orig_windows)),
         'optimized_folding_window': float(np.mean(opt_windows))
     }
