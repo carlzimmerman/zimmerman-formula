@@ -229,7 +229,7 @@ def check_z2_contacts(coords: np.ndarray, cutoff: float = 8.0) -> Dict:
 
     # Z² predicts 8 contacts (CUBE vertices)
     z2_deviation = abs(mean_contacts - 8.0) / 8.0
-    z2_compatible = z2_deviation < 0.5  # Within 50% of prediction
+    z2_compatible = bool(z2_deviation < 0.5)  # Within 50% of prediction
 
     return {
         "mean_contacts": float(mean_contacts),
