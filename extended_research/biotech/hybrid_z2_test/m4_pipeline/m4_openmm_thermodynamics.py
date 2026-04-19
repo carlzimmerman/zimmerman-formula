@@ -384,6 +384,17 @@ def compute_thermodynamic_metrics(
 # FULL VALIDATION PIPELINE
 # ==============================================================================
 
+def is_ca_only_pdb(pdb_path: str) -> bool:
+    """Check if PDB file contains only Cα atoms (before pdbfixer modifies it)."""
+    atom_names = set()
+    with open(pdb_path, 'r') as f:
+        for line in f:
+            if line.startswith('ATOM'):
+                atom_name = line[12:16].strip()
+                atom_names.add(atom_name)
+    return atom_names == {'CA'}
+
+
 def validate_structure(
     pdb_path: str,
     output_dir: str = "md_output",
@@ -417,6 +428,11 @@ def validate_structure(
         "status": "started"
     }
 
+    # Check if Cα-only BEFORE loading with pdbfixer
+    ca_only = is_ca_only_pdb(pdb_path)
+    if ca_only:
+        print("\n✓ Cα-only model detected - using Go-like potential")
+
     # Setup platform
     platform = setup_openmm_platform()
     if platform is None:
@@ -426,28 +442,27 @@ def validate_structure(
 
     result["platform"] = platform.getName()
 
-    # Load structure
-    topology, positions = load_pdb_for_openmm(pdb_path)
-    if topology is None:
-        result["status"] = "failed"
-        result["error"] = "Could not load PDB"
-        return result
-
     # Create system
     try:
         import openmm as mm
         from openmm import app, unit
 
-        # For Cα-only models, use simpler forcefield
-        # Check if we have a full-atom model
-        atom_names = [atom.name for atom in topology.atoms()]
-        ca_only = all(name == 'CA' for name in atom_names)
-
         if ca_only:
-            print("\n⚠ Cα-only model detected - using Go-like potential")
-            # Create Go-like model for Cα-only
-            system, topology, positions = create_go_model(topology, positions)
+            # Parse Cα coordinates directly for Go-model
+            from openmm.app import PDBFile
+            pdb = PDBFile(pdb_path)
+            topology = pdb.topology
+            positions = pdb.positions
+            system = create_go_model(topology, positions)
+            result["model_type"] = "ca_only_go"
         else:
+            # Load and fix structure for all-atom
+            topology, positions = load_pdb_for_openmm(pdb_path)
+            if topology is None:
+                result["status"] = "failed"
+                result["error"] = "Could not load PDB"
+                return result
+
             # Full AMBER14
             forcefield = app.ForceField('amber14-all.xml')
             system = forcefield.createSystem(
@@ -455,9 +470,9 @@ def validate_structure(
                 nonbondedMethod=app.NoCutoff,
                 constraints=app.HBonds
             )
+            result["model_type"] = "all_atom"
 
         result["n_atoms"] = system.getNumParticles()
-        result["model_type"] = "ca_only" if ca_only else "all_atom"
 
     except Exception as e:
         result["status"] = "failed"
@@ -552,7 +567,7 @@ def create_go_model(topology, positions):
 
     system.addForce(contact_force)
 
-    return system, topology, positions
+    return system
 
 
 # ==============================================================================
