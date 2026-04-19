@@ -335,7 +335,7 @@ def generate_spectrogram(eigenvalues: np.ndarray, eigenvectors: np.ndarray,
     ax2.grid(True, alpha=0.3)
 
     # Add Z² annotation
-    fig.suptitle(f'Z² = {Z2:.4f} | Z = {Z:.4f} | Shatter Frequency: 0.309 THz',
+    fig.suptitle(f'Z² = {Z2:.4f} | Z = {Z:.4f} | Dissociation Frequency: 0.309 THz',
                  fontsize=14, fontweight='bold', y=1.02)
 
     plt.tight_layout()

@@ -10,7 +10,7 @@ Aβ42 amyloid fibril (PDB: 2BEG) to explore potential binding.
 Hypothesis: Z² proteins with harmonic normal modes may:
 1. Bind to fibril surfaces via complementary geometry
 2. Potentially disrupt fibril packing through resonance
-3. The 0.309 THz shatter frequency could propagate through binding
+3. The 0.309 THz dissociation frequency could propagate through binding
 
 Method:
 1. Fetch Aβ42 fibril structure (2BEG - pentameric form)
@@ -40,11 +40,11 @@ warnings.filterwarnings('ignore')
 
 Z2 = 32 * np.pi / 3
 Z = np.sqrt(Z2)
-THz_SHATTER = 0.309  # THz
+THz_DISSOCIATION = 0.309  # THz
 
 print(f"Z² = {Z2:.4f}")
 print(f"Z = {Z:.4f}")
-print(f"THz shatter frequency: {THz_SHATTER} THz")
+print(f"THz dissociation frequency: {THz_DISSOCIATION} THz")
 
 # Aβ42 fibril from Alzheimer's research
 AMYLOID_PDB = "2BEG"  # Pentameric Aβ42 fibril structure
@@ -597,7 +597,7 @@ The Z² protein shows FAVORABLE binding to the Aβ42 fibril surface:
 
 This suggests the Z²-designed protein could potentially:
 1. Coat the fibril surface, blocking further aggregation
-2. If excited at {THz_SHATTER} THz, propagate disruption into fibril
+2. If excited at {THz_DISSOCIATION} THz, propagate disruption into fibril
 
 NEXT STEPS:
 - Run MD simulation of bound complex

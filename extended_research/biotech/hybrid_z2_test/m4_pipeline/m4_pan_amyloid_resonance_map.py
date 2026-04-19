@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-Pan-Neurodegenerative Amyloid Shatter Frequency Database
+Pan-Neurodegenerative Amyloid Resonant Dissociation Frequency Database
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 
-Maps the acoustic resonance destruction frequencies for ALL major
-neurodegenerative disease fibrils using Z² topological physics.
+Maps the acoustic resonant dissociation frequencies for major
+neurodegenerative disease fibrils using Z² topological analysis.
 
 Target diseases:
 1. Alzheimer's (Aβ42) - PDB: 2BEG
@@ -16,11 +16,11 @@ Target diseases:
 
 Physics:
 - Anisotropic Network Model (ANM) extracts structural phonons
-- Z² harmonic scaling: f_shatter = f_primary × (1 + 1/Z²)
+- Z² harmonic scaling: f_dissociation = f_primary × (1 + 1/Z²)
 - Where Z = √(32π/3) = 5.7888
 
-This creates a unified therapeutic framework: ONE physics principle
-to destroy ALL amyloid plaques.
+This explores a unified therapeutic framework: resonant dissociation
+of amyloid fibrils via targeted acoustic frequencies.
 
 Author: Carl Zimmerman
 Date: April 2026
@@ -53,11 +53,11 @@ Z = np.sqrt(Z2)       # ≈ 5.7888
 FREQ_TO_THZ = 0.0309  # Calibration factor from Z² theory
 
 print("=" * 70)
-print("PAN-NEURODEGENERATIVE AMYLOID SHATTER FREQUENCY DATABASE")
+print("PAN-NEURODEGENERATIVE AMYLOID RESONANCE DATABASE")
 print("=" * 70)
 print(f"Z² = {Z2:.4f}")
 print(f"Z = {Z:.4f}")
-print(f"Base shatter frequency: {0.309:.3f} THz (10th Z² harmonic)")
+print(f"Base dissociation frequency: {0.309:.3f} THz (10th Z² harmonic)")
 print("=" * 70)
 
 # ==============================================================================
@@ -255,15 +255,15 @@ def eigenvalue_to_thz(eigenvalue: float) -> float:
 
 
 # ==============================================================================
-# Z² SHATTER FREQUENCY CALCULATION
+# Z² DISSOCIATION FREQUENCY CALCULATION
 # ==============================================================================
 
-def calculate_shatter_frequencies(frequencies_thz: np.ndarray) -> Dict:
+def calculate_dissociation_frequencies(frequencies_thz: np.ndarray) -> Dict:
     """
-    Calculate Z² shatter frequencies from normal mode spectrum.
+    Calculate Z² dissociation frequencies from normal mode spectrum.
 
-    The shatter frequency follows from Z² topological scaling:
-    f_shatter = f_primary × (1 + 1/Z²)
+    The dissociation frequency follows from Z² topological scaling:
+    f_dissociation = f_primary × (1 + 1/Z²)
 
     Where f_primary is the dominant structural phonon frequency.
     """
@@ -276,10 +276,10 @@ def calculate_shatter_frequencies(frequencies_thz: np.ndarray) -> Dict:
     # Z² scaling factor
     z2_scale = 1 + 1/Z2  # ≈ 1.0298
 
-    # Shatter frequency
-    f_shatter = primary_freq * z2_scale
+    # Dissociation frequency
+    f_dissociation = primary_freq * z2_scale
 
-    # Also compute harmonic shatter frequencies
+    # Also compute harmonic dissociation frequencies
     # The 10th harmonic is particularly destructive
     harmonics = {}
     for n in [1, 2, 3, 5, 10, 20]:
@@ -289,13 +289,13 @@ def calculate_shatter_frequencies(frequencies_thz: np.ndarray) -> Dict:
     # Z² resonance frequency (calibrated to 0.309 THz for Aβ42)
     z2_resonance = primary_freq * Z  # Scale by Z factor
 
-    # Sub-harmonic shatter (gentler disruption)
+    # Sub-harmonic dissociation (gentler perturbation)
     f_sub = primary_freq * (1 + 1/Z2) / 2
 
     return {
         "primary_mode_thz": float(primary_freq),
         "z2_scale_factor": float(z2_scale),
-        "shatter_frequency_thz": float(f_shatter),
+        "dissociation_frequency_thz": float(f_dissociation),
         "z2_resonance_thz": float(z2_resonance),
         "sub_harmonic_thz": float(f_sub),
         "harmonics": harmonics,
@@ -307,7 +307,7 @@ def analyze_fibril_z2(coords: np.ndarray) -> Dict:
     """
     Full Z² analysis of a fibril structure.
 
-    Computes contact geometry, normal modes, and shatter frequencies.
+    Computes contact geometry, normal modes, and dissociation frequencies.
     """
     n_residues = len(coords)
 
@@ -331,15 +331,15 @@ def analyze_fibril_z2(coords: np.ndarray) -> Dict:
     # Convert to THz
     frequencies_thz = np.array([eigenvalue_to_thz(f**2) for f in frequencies])
 
-    # Calculate shatter frequencies
-    shatter = calculate_shatter_frequencies(frequencies_thz)
+    # Calculate dissociation frequencies
+    resonance = calculate_dissociation_frequencies(frequencies_thz)
 
     return {
         "n_residues": n_residues,
         "mean_contacts": float(mean_contacts),
         "z2_expected_contacts": 8.0,
         "z2_contact_deviation": float(z2_deviation),
-        "normal_modes": shatter
+        "normal_modes": resonance
     }
 
 
@@ -388,15 +388,15 @@ def analyze_disease_target(disease_key: str, target_info: Dict) -> Dict:
         }
 
     # Extract key frequencies
-    shatter = analysis["normal_modes"]
+    resonance = analysis["normal_modes"]
 
     print(f"  Results:")
     print(f"    Residues: {analysis['n_residues']}")
     print(f"    Mean contacts: {analysis['mean_contacts']:.1f} (Z² expects 8.0)")
-    print(f"    Primary mode: {shatter['primary_mode_thz']:.4f} THz")
-    print(f"    SHATTER FREQUENCY: {shatter['shatter_frequency_thz']:.4f} THz")
-    print(f"    Z² resonance: {shatter['z2_resonance_thz']:.4f} THz")
-    print(f"    10th harmonic: {shatter['harmonics']['harmonic_10']:.4f} THz")
+    print(f"    Primary mode: {resonance['primary_mode_thz']:.4f} THz")
+    print(f"    DISSOCIATION FREQUENCY: {resonance['dissociation_frequency_thz']:.4f} THz")
+    print(f"    Z² resonance: {resonance['z2_resonance_thz']:.4f} THz")
+    print(f"    10th harmonic: {resonance['harmonics']['harmonic_10']:.4f} THz")
 
     return {
         "disease": disease_key,
@@ -409,12 +409,12 @@ def analyze_disease_target(disease_key: str, target_info: Dict) -> Dict:
         "n_chains": len(set(chains)),
         "mean_contacts": analysis["mean_contacts"],
         "z2_contact_deviation": analysis["z2_contact_deviation"],
-        "primary_mode_thz": shatter["primary_mode_thz"],
-        "shatter_frequency_thz": shatter["shatter_frequency_thz"],
-        "z2_resonance_thz": shatter["z2_resonance_thz"],
-        "sub_harmonic_thz": shatter["sub_harmonic_thz"],
-        "harmonic_10_thz": shatter["harmonics"]["harmonic_10"],
-        "mode_spectrum": shatter["mode_spectrum_thz"]
+        "primary_mode_thz": resonance["primary_mode_thz"],
+        "dissociation_frequency_thz": resonance["dissociation_frequency_thz"],
+        "z2_resonance_thz": resonance["z2_resonance_thz"],
+        "sub_harmonic_thz": resonance["sub_harmonic_thz"],
+        "harmonic_10_thz": resonance["harmonics"]["harmonic_10"],
+        "mode_spectrum": resonance["mode_spectrum_thz"]
     }
 
 
@@ -425,7 +425,7 @@ def run_pan_amyloid_analysis(n_threads: int = 4) -> Dict:
     Uses thread pool for parallel PDB fetching and ANM computation.
     """
     print("\n" + "=" * 70)
-    print("INITIATING PAN-NEURODEGENERATIVE SHATTER FREQUENCY MAPPING")
+    print("INITIATING PAN-NEURODEGENERATIVE DISSOCIATION FREQUENCY MAPPING")
     print("=" * 70)
     print(f"Targets: {len(AMYLOID_TARGETS)} diseases")
     print(f"Threads: {n_threads}")
@@ -465,7 +465,7 @@ def run_pan_amyloid_analysis(n_threads: int = 4) -> Dict:
 # OUTPUT GENERATION
 # ==============================================================================
 
-def generate_shatter_database(results: Dict, output_dir: str = "shatter_database"):
+def generate_resonance_database(results: Dict, output_dir: str = "resonance_database"):
     """Generate output files: CSV database, JSON, and terminal table."""
 
     os.makedirs(output_dir, exist_ok=True)
@@ -474,32 +474,32 @@ def generate_shatter_database(results: Dict, output_dir: str = "shatter_database
     successful = [r for r in results["results"] if "error" not in r]
 
     print("\n" + "=" * 70)
-    print("PAN-NEURODEGENERATIVE SHATTER FREQUENCY DATABASE")
+    print("PAN-NEURODEGENERATIVE DISSOCIATION FREQUENCY DATABASE")
     print("=" * 70)
     print(f"\nZ² = {Z2:.4f} | Z = {Z:.4f}")
-    print(f"Scaling: f_shatter = f_primary × (1 + 1/Z²) = f_primary × {1 + 1/Z2:.4f}")
+    print(f"Scaling: f_dissociation = f_primary × (1 + 1/Z²) = f_primary × {1 + 1/Z2:.4f}")
     print()
 
     # Terminal table
-    header = f"{'Disease':<25} {'Protein':<15} {'PDB':<6} {'Residues':<10} {'Shatter (THz)':<15} {'10th Harm (THz)':<15}"
+    header = f"{'Disease':<25} {'Protein':<15} {'PDB':<6} {'Residues':<10} {'Dissoc (THz)':<15} {'10th Harm (THz)':<15}"
     print(header)
     print("-" * len(header))
 
     for r in successful:
         print(f"{r['name']:<25} {r['protein'][:15]:<15} {r['pdb_id']:<6} "
-              f"{r['n_residues']:<10} {r['shatter_frequency_thz']:<15.4f} "
+              f"{r['n_residues']:<10} {r['dissociation_frequency_thz']:<15.4f} "
               f"{r['harmonic_10_thz']:<15.4f}")
 
     print("-" * len(header))
 
     # CSV output
-    csv_path = os.path.join(output_dir, "shatter_frequencies.csv")
+    csv_path = os.path.join(output_dir, "dissociation_frequencies.csv")
     with open(csv_path, 'w', newline='') as f:
         writer = csv.writer(f)
         writer.writerow([
             "Disease", "Protein", "PDB_ID", "Residues", "Chains",
             "Mean_Contacts", "Z2_Deviation", "Primary_THz",
-            "Shatter_THz", "Z2_Resonance_THz", "Harmonic_10_THz",
+            "Dissociation_THz", "Z2_Resonance_THz", "Harmonic_10_THz",
             "Prevalence"
         ])
 
@@ -508,7 +508,7 @@ def generate_shatter_database(results: Dict, output_dir: str = "shatter_database
                 r["name"], r["protein"], r["pdb_id"], r["n_residues"],
                 r["n_chains"], f"{r['mean_contacts']:.2f}",
                 f"{r['z2_contact_deviation']:.3f}",
-                f"{r['primary_mode_thz']:.6f}", f"{r['shatter_frequency_thz']:.6f}",
+                f"{r['primary_mode_thz']:.6f}", f"{r['dissociation_frequency_thz']:.6f}",
                 f"{r['z2_resonance_thz']:.6f}", f"{r['harmonic_10_thz']:.6f}",
                 r["prevalence"]
             ])
@@ -516,7 +516,7 @@ def generate_shatter_database(results: Dict, output_dir: str = "shatter_database
     print(f"\n✓ CSV database saved: {csv_path}")
 
     # JSON output
-    json_path = os.path.join(output_dir, "shatter_database.json")
+    json_path = os.path.join(output_dir, "resonance_database.json")
     with open(json_path, 'w') as f:
         json.dump(results, f, indent=2)
 
@@ -524,14 +524,14 @@ def generate_shatter_database(results: Dict, output_dir: str = "shatter_database
 
     # Summary statistics
     if successful:
-        shatter_freqs = [r["shatter_frequency_thz"] for r in successful]
+        dissociation_freqs = [r["dissociation_frequency_thz"] for r in successful]
         print(f"\n{'='*70}")
         print("SUMMARY STATISTICS")
         print(f"{'='*70}")
         print(f"  Diseases analyzed: {len(successful)}")
-        print(f"  Shatter frequency range: {min(shatter_freqs):.4f} - {max(shatter_freqs):.4f} THz")
-        print(f"  Mean shatter frequency: {np.mean(shatter_freqs):.4f} THz")
-        print(f"  Std deviation: {np.std(shatter_freqs):.4f} THz")
+        print(f"  Dissociation frequency range: {min(dissociation_freqs):.4f} - {max(dissociation_freqs):.4f} THz")
+        print(f"  Mean dissociation frequency: {np.mean(dissociation_freqs):.4f} THz")
+        print(f"  Std deviation: {np.std(dissociation_freqs):.4f} THz")
 
         # Therapeutic implications
         print(f"\n{'='*70}")
@@ -546,7 +546,7 @@ def generate_shatter_database(results: Dict, output_dir: str = "shatter_database
   validation with in vitro fibril samples is required before any
   in vivo application.
 
-  KEY FINDING: All neurodegenerative fibrils show shatter frequencies
+  KEY FINDING: All neurodegenerative fibrils show dissociation frequencies
   in the 0.01-0.5 THz range - accessible to modern THz sources.
         """)
 
@@ -564,12 +564,12 @@ def main():
     results = run_pan_amyloid_analysis(n_threads=4)
 
     # Generate outputs
-    csv_path, json_path = generate_shatter_database(results)
+    csv_path, json_path = generate_resonance_database(results)
 
     print(f"\n{'='*70}")
     print("ANALYSIS COMPLETE")
     print(f"{'='*70}")
-    print(f"  Database files in: shatter_database/")
+    print(f"  Database files in: resonance_database/")
     print(f"  PDB cache in: pdb_cache/")
 
     return results

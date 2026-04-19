@@ -44,13 +44,13 @@ def z2_harmonics(n_max: int = 20) -> np.ndarray:
     """Generate Z² harmonic series: f_n = n / Z²"""
     return np.array([n / Z_SQUARED for n in range(1, n_max + 1)])
 
-# THz shatter frequency (10th Z² harmonic)
-THz_SHATTER = 10.0 / Z_SQUARED  # ≈ 0.298 in normalized units
-THz_SHATTER_FREQ = 0.309  # THz (validated experimentally)
+# THz dissociation frequency (10th Z² harmonic)
+THz_DISSOCIATION = 10.0 / Z_SQUARED  # ≈ 0.298 in normalized units
+THz_DISSOCIATION_FREQ = 0.309  # THz (validated experimentally)
 
 print(f"Z² = {Z_SQUARED:.4f}")
 print(f"Z = {Z:.4f}")
-print(f"THz shatter frequency: {THz_SHATTER_FREQ} THz")
+print(f"THz dissociation frequency: {THz_DISSOCIATION_FREQ} THz")
 
 
 # ==============================================================================
@@ -231,8 +231,8 @@ def analyze_z2_alignment(frequencies: np.ndarray, n_modes: int = 10) -> Dict:
     # Z² score (composite metric)
     z2_score = alignment_ratio * r if r > 0 else 0
 
-    # Check for THz shatter mode (10th harmonic)
-    has_shatter_mode = any(
+    # Check for THz dissociation mode (10th harmonic)
+    has_dissociation_mode = any(
         abs(f - 10.0) < 1.0 for f in freqs_norm[:min(15, len(freqs_norm))]
     )
 
@@ -245,7 +245,7 @@ def analyze_z2_alignment(frequencies: np.ndarray, n_modes: int = 10) -> Dict:
         "pearson_r": float(r),
         "p_value": float(p_value),
         "z2_score": float(z2_score),
-        "has_shatter_mode": has_shatter_mode,
+        "has_dissociation_mode": has_dissociation_mode,
         "mode_alignments": alignments,
         "frequencies_normalized": freqs_norm.tolist(),
         "z2_harmonics_normalized": z2_norm.tolist()
