@@ -199,10 +199,11 @@ def apply_tyrosine_mutations(sequence: str, positions: List[int]) -> Tuple[str, 
     mutations = []
 
     for pos in positions:
-        if pos < len(seq_list) and seq_list[pos] == 'Y':
-            seq_list[pos] = 'F'
+        idx = pos - 1  # Convert 1-indexed position to 0-indexed
+        if 0 <= idx < len(seq_list) and seq_list[idx] == 'Y':
+            seq_list[idx] = 'F'
             mutations.append({
-                "position": pos + 1,
+                "position": pos,  # Keep 1-indexed for reporting
                 "original": "Y",
                 "mutated": "F",
                 "rationale": "Prevent ubiquitination, improve transduction (Zhong et al. 2008)"

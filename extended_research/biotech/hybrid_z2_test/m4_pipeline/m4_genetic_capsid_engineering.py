@@ -236,7 +236,7 @@ def add_glycan_shield(sequence: str, epitopes: List[Tuple],
 
     Scientific basis:
     - Glycan shielding is used in HIV Env, influenza HA engineering
-    - Lee et al., Nat Commun 2018: AAV glycan engineering
+    - Giles et al., J Virol 2018; Mary et al., Microorganisms 2022: AAV glycan engineering
     - Reduces neutralizing antibody binding while maintaining function
     """
     seq_list = list(sequence)
@@ -412,7 +412,7 @@ def generate_fasta_header(data: Dict) -> str:
 ;
 ; SCIENTIFIC BASIS:
 ; Y-to-F: Zhong et al., PNAS 2008; Markusic et al., Mol Ther 2010
-; Glycan shielding: Lee et al., Nat Commun 2018
+; Glycan shielding: Giles et al., J Virol 2018; Mary et al., Microorganisms 2022
 ;
 ; PRIOR ART NOTICE:
 ; Publication Date: {timestamp}

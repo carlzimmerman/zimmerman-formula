@@ -139,7 +139,7 @@ CRISPR_COMPONENTS = {
         "mechanism": "Disrupting BCL11A enhancer reactivates fetal hemoglobin",
         "target_region": "chr2:60,495,197-60,495,346 (hg38)",
         "guide_sequence": "GAATTCTTAGCAGAAGTCAG",  # Representative guide
-        "pam": "TGG",
+        "pam": "NGG",  # SpCas9 PAM (N = any nucleotide)
         "editing_outcome": "BCL11A knockdown in erythroid cells"
     },
 
