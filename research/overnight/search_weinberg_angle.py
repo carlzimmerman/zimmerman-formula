@@ -1,503 +1,394 @@
 #!/usr/bin/env python3
 """
-FIRST-PRINCIPLES SEARCH FOR WEINBERG ANGLE
-===========================================
+Overnight First-Principles Search: Weinberg Angle θ_W
 
-TARGET: sin²θ_W = 0.23121 (why 3/13?)
+Target: sin²θ_W = 0.23122 ± 0.00003 (experimental, MS-bar at M_Z)
+Current Z² formula: sin²θ_W ≈ 3/13 = 0.2308 (0.2% error)
 
-The Z² framework claims: sin²θ_W = 3/13 = 0.2308 (0.2% error)
-But WHY 3? WHY 13?
+Questions to answer:
+1. Why 3/13? (gauge group ratios?)
+2. Can this emerge from grand unification embedding?
+3. How does Z² factor in?
 
-This script searches for first-principles derivations using:
-1. Grand unified theory (GUT) embeddings
-2. Group theory structure
-3. Geometric ratios
-4. Looking for Z² or related factors to emerge naturally
+Approach:
+- Search SU(5), SO(10), E₆ embeddings
+- Look for group theory coefficients
+- Examine hypercharge normalization
 
 Author: Carl Zimmerman
 Date: April 2026
+License: AGPL-3.0-or-later
 """
 
 import numpy as np
-from itertools import combinations
 from fractions import Fraction
 import json
-import os
+import time
 from datetime import datetime
 
-# =============================================================================
-# CONSTANTS
-# =============================================================================
+# ==============================================================================
+# FUNDAMENTAL CONSTANTS
+# ==============================================================================
 
-# Z² framework
-Z_SQUARED = 32 * np.pi / 3
-Z = np.sqrt(Z_SQUARED)
-CUBE = 8
-SPHERE = 4 * np.pi / 3
-BEKENSTEIN = 4
-GAUGE = 12
-N_GEN = 3
+Z = 2 * np.sqrt(8 * np.pi / 3)
+Z2 = Z**2  # = 32π/3 ≈ 33.510321638291124
 
-# Target: Weinberg angle
-SIN2_THETA_W_MEASURED = 0.23121  # PDG value at M_Z (MS-bar scheme)
-COS2_THETA_W = 1 - SIN2_THETA_W_MEASURED
+# Experimental values
+SIN2_TW_EXP = 0.23122  # MS-bar scheme at M_Z
+SIN2_TW_ON_SHELL = 0.22290  # On-shell scheme
 
-# GUT predictions
-SIN2_THETA_W_SU5 = 3/8  # = 0.375 at GUT scale (runs to ~0.23 at low energy)
-SIN2_THETA_W_SO10 = 3/8  # Same for SO(10) without intermediate scales
+print("="*80)
+print("OVERNIGHT SEARCH: First-Principles Derivation of sin²θ_W")
+print("="*80)
+print(f"Z² = 32π/3 = {Z2:.15f}")
+print(f"Experimental sin²θ_W (MS-bar) = {SIN2_TW_EXP}")
+print(f"Current approximation 3/13 = {3/13:.10f}")
+print(f"Error: {abs(3/13 - SIN2_TW_EXP)/SIN2_TW_EXP * 100:.6f}%")
+print("="*80)
 
-# =============================================================================
-# PATH 1: GUT STRUCTURE
-# =============================================================================
+# ==============================================================================
+# GRAND UNIFICATION PREDICTIONS
+# ==============================================================================
+
+GUT_PREDICTIONS = {
+    "SU5_tree": 3/8,  # sin²θ_W = 3/8 at GUT scale
+    "SU5_low": 0.21,  # After RG running to M_Z
+    "SO10_tree": 3/8,
+    "E6_tree": 3/8,
+    "Pati_Salam": 1/4,  # SU(2)_L × SU(2)_R × SU(4)_C
+}
 
 def search_gut_embeddings():
-    """
-    Search for sin²θ_W from GUT embeddings.
-
-    In SU(5), at GUT scale: sin²θ_W = 3/8
-    This runs to ~0.23 at M_Z.
-
-    Can we derive 3/13 from the running or structure?
-    """
+    """Search for sin²θ_W from GUT structure."""
     results = []
-
-    # SU(5) embedding: Y = -1/3 T₃_color + 1/2 Y_weak
-    # This gives sin²θ_W = g'²/(g² + g'²) = 3/8 at unification
-
-    # Running from GUT scale
-    # sin²θ_W(M_Z) ≈ sin²θ_W(M_GUT) × (1 - correction)
-
-    # The measured value 0.231 is close to 3/13 = 0.2308
-    # Can we derive 13 from GUT structure?
-
-    # 13 = 8 (SU(3) generators) + 3 (SU(2) generators) + 2 ?
-    # 13 = dim(SU(3)) + dim(SU(2)) + 2
-    # But +2 is unexplained
-
-    # Alternative: 13 = 4×3 + 1 = BEKENSTEIN × N_gen + 1
-
-    # Or: 13 appears in GUT normalization
-    # In SU(5): the U(1) generator needs normalization factor √(3/5)
-    # g₁² = (5/3) g'² where g₁ is SU(5)-normalized
-
-    # Check: 3/(8 + 5) = 3/13 = 0.2308
-    val = 3/13
-    error = abs(val - SIN2_THETA_W_MEASURED) / SIN2_THETA_W_MEASURED * 100
+    
+    # Tree-level GUT prediction
+    gut_tree = 3/8
     results.append({
-        'method': 'GUT_modification',
-        'formula': 'sin²θ_W = 3/13 = 3/(8+5)',
-        'interpretation': '8 = dim(SU(3)), 5 = GUT normalization factor',
-        'value': val,
-        'target': SIN2_THETA_W_MEASURED,
-        'error_percent': error,
+        "formula": "sin²θ_W(GUT) = 3/8",
+        "value": gut_tree,
+        "target": SIN2_TW_EXP,
+        "error_pct": abs(gut_tree - SIN2_TW_EXP) / SIN2_TW_EXP * 100,
+        "note": "Tree-level SU(5), SO(10), E₆"
     })
-
-    # The 3/8 at GUT runs to ~0.23 at M_Z
-    # The running brings in factors of β coefficients
-    # β₁ = 41/10, β₂ = -19/6
-
-    # Try: sin²θ_W = f(3/8, β-coefficients)
-    beta1 = 41/10
-    beta2 = -19/6
-
-    # Effective formula with running
-    for k in [0.5, 0.6, 0.7, 0.8]:
-        val = (3/8) * k
-        error = abs(val - SIN2_THETA_W_MEASURED) / SIN2_THETA_W_MEASURED * 100
-        if error < 2:
-            results.append({
-                'method': 'GUT_running',
-                'formula': f'sin²θ_W = (3/8) × {k}',
-                'value': val,
-                'error_percent': error,
-            })
-
+    
+    # Test Z²-corrected GUT
+    gut_z2_corrected = gut_tree * (1 - 1/Z2)
+    results.append({
+        "formula": "(3/8) × (1 - 1/Z²)",
+        "value": gut_z2_corrected,
+        "target": SIN2_TW_EXP,
+        "error_pct": abs(gut_z2_corrected - SIN2_TW_EXP) / SIN2_TW_EXP * 100,
+    })
+    
+    # Test: 3/(8 + N_gen) = 3/11
+    three_over_11 = 3/11
+    results.append({
+        "formula": "3/(8 + N_gen) = 3/11",
+        "value": three_over_11,
+        "target": SIN2_TW_EXP,
+        "error_pct": abs(three_over_11 - SIN2_TW_EXP) / SIN2_TW_EXP * 100,
+    })
+    
+    # Test: 3/13 (the current approximation)
+    three_over_13 = 3/13
+    results.append({
+        "formula": "3/13",
+        "value": three_over_13,
+        "target": SIN2_TW_EXP,
+        "error_pct": abs(three_over_13 - SIN2_TW_EXP) / SIN2_TW_EXP * 100,
+        "note": "13 = 8 + 3 + 1 + 1 = dim(SU3) + dim(SU2) + 2×dim(U1)?"
+    })
+    
+    # Test: 3/(8 + dim(SU2) + 2) = 3/13
+    results.append({
+        "formula": "3/(dim(SU3) + dim(SU2) + 2) = 3/(8+3+2)",
+        "value": 3/13,
+        "interpretation": "Sum of SM gauge group dimensions + 2 (hypercharge normalization)"
+    })
+    
     return results
 
-# =============================================================================
-# PATH 2: GROUP THEORY RATIOS
-# =============================================================================
+# ==============================================================================
+# SEARCH: Simple Fractions
+# ==============================================================================
 
-def search_group_theory_ratios():
-    """
-    Search for sin²θ_W from group theory ratios.
-
-    sin²θ_W = g'²/(g² + g'²) relates to gauge coupling ratio.
-
-    Can we find simple ratios involving Z² or gauge dimensions?
-    """
+def search_simple_fractions():
+    """Search for sin²θ_W as simple fractions."""
     results = []
-
-    # Try simple fractions with small numbers
-    for num in range(1, 10):
-        for denom in range(num+1, 50):
-            val = num / denom
-            error = abs(val - SIN2_THETA_W_MEASURED) / SIN2_THETA_W_MEASURED * 100
-            if error < 0.5:
-                # Try to interpret num and denom
-                results.append({
-                    'method': 'simple_fraction',
-                    'formula': f'{num}/{denom}',
-                    'value': val,
-                    'error_percent': error,
-                })
-
-    # Try ratios involving group dimensions
-    # dim(SU(3)) = 8, dim(SU(2)) = 3, dim(U(1)) = 1
-    # Total gauge = 12
-
-    dim_su3 = 8
-    dim_su2 = 3
-    dim_u1 = 1
-
-    ratios = [
-        ('N_gen/GAUGE', N_GEN / GAUGE),  # 3/12 = 0.25
-        ('N_gen/(GAUGE+1)', N_GEN / (GAUGE+1)),  # 3/13 = 0.231
-        ('dim(SU2)/GAUGE', dim_su2 / GAUGE),  # 3/12 = 0.25
-        ('dim(SU2)/(dim(SU3)+dim(SU2)+2)', dim_su2 / (dim_su3 + dim_su2 + 2)),  # 3/13
-        ('1/BEKENSTEIN - 0.02', 1/BEKENSTEIN - 0.02),  # 0.23
-        ('(Z-BEKENSTEIN)/(Z+BEKENSTEIN)', (Z - BEKENSTEIN)/(Z + BEKENSTEIN)),  # ~0.18
-        ('SPHERE/(SPHERE + CUBE)', SPHERE / (SPHERE + CUBE)),  # 4.19/12.19 = 0.34
-        ('N_gen/(4×N_gen + 1)', N_GEN / (4*N_GEN + 1)),  # 3/13 exactly!
-    ]
-
-    for name, val in ratios:
-        error = abs(val - SIN2_THETA_W_MEASURED) / SIN2_THETA_W_MEASURED * 100
-        results.append({
-            'method': 'group_ratio',
-            'formula': name,
-            'value': val,
-            'error_percent': error,
-        })
-
-    return results
-
-# =============================================================================
-# PATH 3: GEOMETRIC DERIVATION
-# =============================================================================
-
-def search_geometric():
-    """
-    Search for geometric derivation of sin²θ_W.
-
-    Like MOND where Z = 2√(8π/3) emerged from Friedmann,
-    can we derive 3/13 from geometry?
-    """
-    results = []
-
-    # The Weinberg angle relates W±, Z⁰, γ mixings
-    # W± carry SU(2) charge
-    # The mixing is geometric in gauge field space
-
-    # Hypothesis: 3/13 relates to solid angles or ratios of spheres
-
-    # Try: sin²θ_W = (something with Z²)
-
-    for a in [1, 2, 3, 4]:
-        for b in [10, 11, 12, 13, 14, 15]:
-            val = a / b
-            error = abs(val - SIN2_THETA_W_MEASURED) / SIN2_THETA_W_MEASURED * 100
-            if error < 0.5:
-                results.append({
-                    'method': 'small_fraction',
-                    'formula': f'{a}/{b}',
-                    'value': val,
-                    'error_percent': error,
-                    'insight': f'{a}=? {b}=?'
-                })
-
-    # The key is: WHY 3/13?
-
-    # 3 = N_gen (number of generations)
-    # 13 = 4×N_gen + 1 = BEKENSTEIN × N_gen + 1
-
-    # This gives: sin²θ_W = N_gen / (BEKENSTEIN × N_gen + 1)
-    val = N_GEN / (BEKENSTEIN * N_GEN + 1)
-    error = abs(val - SIN2_THETA_W_MEASURED) / SIN2_THETA_W_MEASURED * 100
-    results.append({
-        'method': 'Z2_framework',
-        'formula': 'sin²θ_W = N_gen / (BEKENSTEIN × N_gen + 1) = 3/(4×3+1) = 3/13',
-        'value': val,
-        'target': SIN2_THETA_W_MEASURED,
-        'error_percent': error,
-        'insight': 'BEKENSTEIN=4, N_gen=3'
-    })
-
-    # Alternative: 13 = α⁻¹/10.54 ≈ 137/10.54
-    # Not clean
-
-    # Try: 13 relates to Z somehow
-    # Z ≈ 5.79, so 13/Z ≈ 2.25, 13/Z² ≈ 0.39
-
-    # Or: 13 = GAUGE + 1 = 12 + 1
-    val2 = N_GEN / (GAUGE + 1)
-    error2 = abs(val2 - SIN2_THETA_W_MEASURED) / SIN2_THETA_W_MEASURED * 100
-    results.append({
-        'method': 'gauge_relation',
-        'formula': 'sin²θ_W = N_gen / (GAUGE + 1) = 3/13',
-        'value': val2,
-        'error_percent': error2,
-        'insight': '13 = GAUGE + 1 = 12 + 1'
-    })
-
-    return results
-
-# =============================================================================
-# PATH 4: ELECTROWEAK SYMMETRY BREAKING
-# =============================================================================
-
-def search_ewsb():
-    """
-    Search from electroweak symmetry breaking perspective.
-
-    sin²θ_W = g'²/(g² + g'²) where g, g' are gauge couplings.
-
-    At tree level: M_W = M_Z cos(θ_W)
-    """
-    results = []
-
-    # Measured masses
-    M_W = 80.379  # GeV
-    M_Z = 91.188  # GeV
-
-    # From masses: cos(θ_W) = M_W/M_Z
-    cos_theta = M_W / M_Z
-    sin2_from_masses = 1 - cos_theta**2
-
-    results.append({
-        'method': 'mass_ratio',
-        'formula': 'sin²θ_W = 1 - (M_W/M_Z)²',
-        'value': sin2_from_masses,
-        'target': SIN2_THETA_W_MEASURED,
-        'error_percent': abs(sin2_from_masses - SIN2_THETA_W_MEASURED)/SIN2_THETA_W_MEASURED*100,
-    })
-
-    # Can we predict M_W/M_Z from Z²?
-    # If sin²θ_W = 3/13, then cos²θ_W = 10/13
-    # So M_W/M_Z = √(10/13) = 0.877
-
-    predicted_ratio = np.sqrt(10/13)
-    actual_ratio = M_W / M_Z
-
-    results.append({
-        'method': 'Z2_prediction',
-        'formula': 'M_W/M_Z = √(10/13) from sin²θ_W = 3/13',
-        'predicted': predicted_ratio,
-        'actual': actual_ratio,
-        'error_percent': abs(predicted_ratio - actual_ratio)/actual_ratio*100,
-    })
-
-    return results
-
-# =============================================================================
-# PATH 5: CFT AND MODULAR FORMS
-# =============================================================================
-
-def search_cft():
-    """
-    Search for sin²θ_W from CFT or modular form structure.
-    """
-    results = []
-
-    # In CFT, the central charge c determines the anomaly
-    # Could the Weinberg angle relate to CFT data?
-
-    # The fraction 3/13:
-    # 13 is prime
-    # 3/13 in binary: 0.0100111...
-
-    # Check if 3/13 relates to modular forms
-    # Under S: τ → -1/τ, forms transform
-    # Under T: τ → τ+1, forms gain phase
-
-    # Modular group SL(2,Z) has structure related to
-    # weight-k modular forms
-
-    # Ramanujan's tau function: τ(n) coefficients of Δ(q)
-    # τ(1) = 1, τ(2) = -24, τ(3) = 252, ...
-
-    # Try: sin²θ_W from modular weights?
-    weights = [2, 4, 6, 8, 10, 12]
-
-    for w in weights:
-        # Dimension of space of modular forms of weight w on SL(2,Z)
-        if w < 12:
-            dim = w // 12 if w % 12 == 0 else w // 12 + 1
-        else:
-            dim = w // 12 + (1 if w % 12 >= 4 else 0)
-
-        val = 3 / (dim + 10) if dim > 0 else 0
-        if val > 0:
-            error = abs(val - SIN2_THETA_W_MEASURED) / SIN2_THETA_W_MEASURED * 100
-            if error < 10:
-                results.append({
-                    'method': 'modular',
-                    'formula': f'3/(dim(M_{w}) + 10)',
-                    'value': val,
-                    'error_percent': error,
-                })
-
-    return results
-
-# =============================================================================
-# PATH 6: COMPREHENSIVE FRACTION SEARCH
-# =============================================================================
-
-def search_fractions():
-    """
-    Exhaustive search for simple fractions matching sin²θ_W.
-    """
-    results = []
-
-    # Z² framework quantities
-    quantities = {
-        'N_gen': 3,
-        'BEKENSTEIN': 4,
-        'Z': Z,
-        'Z²/10': Z_SQUARED/10,
-        'CUBE': 8,
-        'GAUGE': 12,
-        'GAUGE+1': 13,
-        '4×3': 12,
-        '4×3+1': 13,
-        '8+3': 11,
-        '8+3+1': 12,
-        '8+3+2': 13,
-    }
-
-    # Try numerator / denominator combinations
-    for name_num, num in quantities.items():
-        for name_denom, denom in quantities.items():
-            if num < denom and denom > 0:
+    
+    print("\nSearching simple fractions...")
+    
+    for num in range(1, 20):
+        for denom in range(2, 50):
+            if np.gcd(num, denom) == 1:  # Reduced fractions only
                 val = num / denom
-                error = abs(val - SIN2_THETA_W_MEASURED) / SIN2_THETA_W_MEASURED * 100
-                if error < 1:
-                    results.append({
-                        'method': 'framework_fraction',
-                        'formula': f'{name_num}/{name_denom}',
-                        'value': val,
-                        'error_percent': error,
-                    })
+                if 0.15 < val < 0.35:  # Reasonable range
+                    error = abs(val - SIN2_TW_EXP) / SIN2_TW_EXP * 100
+                    if error < 1:  # Within 1%
+                        results.append({
+                            "formula": f"{num}/{denom}",
+                            "value": val,
+                            "error_pct": error,
+                            "decimal": f"{val:.10f}"
+                        })
+    
+    results.sort(key=lambda x: x["error_pct"])
+    return results[:20]
 
-    # The best fit: 3/13
-    # Interpret 13:
-    interpretations = [
-        '4×3 + 1 = BEKENSTEIN×N_gen + 1',
-        '8 + 3 + 2 = dim(SU3) + dim(SU2) + 2',
-        '12 + 1 = GAUGE + 1',
-        '10 + 3 = (GAUGE-2) + N_gen',
-    ]
+# ==============================================================================
+# SEARCH: Z² Related Formulas
+# ==============================================================================
 
-    for interp in interpretations:
+def search_z2_formulas():
+    """Search for sin²θ_W involving Z²."""
+    results = []
+    
+    # Form: a/(b×Z² + c)
+    for a in range(1, 10):
+        for b in range(-3, 4):
+            for c in range(-20, 21):
+                if b == 0 and c == 0:
+                    continue
+                denom = b * Z2 + c
+                if abs(denom) > 0.1:
+                    val = a / denom
+                    if 0.15 < val < 0.35:
+                        error = abs(val - SIN2_TW_EXP) / SIN2_TW_EXP * 100
+                        if error < 0.1:
+                            results.append({
+                                "formula": f"{a}/({b}×Z² + {c})",
+                                "value": val,
+                                "error_pct": error
+                            })
+    
+    # Form: a/b - c/Z²
+    for a in range(1, 10):
+        for b in range(2, 20):
+            for c in range(-5, 6):
+                if c == 0:
+                    continue
+                val = a/b - c/Z2
+                if 0.15 < val < 0.35:
+                    error = abs(val - SIN2_TW_EXP) / SIN2_TW_EXP * 100
+                    if error < 0.1:
+                        results.append({
+                            "formula": f"{a}/{b} - {c}/Z²",
+                            "value": val,
+                            "error_pct": error
+                        })
+    
+    # Form: (a + b/Z²) / c
+    for a in range(0, 5):
+        for b in range(-10, 11):
+            for c in range(5, 30):
+                if b == 0 and a == 0:
+                    continue
+                val = (a + b/Z2) / c
+                if 0.15 < val < 0.35:
+                    error = abs(val - SIN2_TW_EXP) / SIN2_TW_EXP * 100
+                    if error < 0.1:
+                        results.append({
+                            "formula": f"({a} + {b}/Z²) / {c}",
+                            "value": val,
+                            "error_pct": error
+                        })
+    
+    results.sort(key=lambda x: x["error_pct"])
+    return results[:30]
+
+# ==============================================================================
+# SEARCH: Hypercharge Normalization
+# ==============================================================================
+
+def search_hypercharge():
+    """
+    The Weinberg angle relates to hypercharge normalization.
+    
+    In SU(5): sin²θ_W = g'²/(g² + g'²) = 3/8 at tree level
+    The factor comes from: Tr(Y²) / Tr(T₃²) normalization
+    """
+    results = []
+    
+    # Standard hypercharge normalization
+    # sin²θ_W = (5/3) × g₁² / (g₂² + (5/3)g₁²)
+    # At GUT scale: g₁ = g₂ → sin²θ_W = (5/3)/(1 + 5/3) = 5/8 × 3/5 = 3/8
+    
+    results.append({
+        "formula": "SU(5) normalization: (5/3)/(1 + 5/3) = 3/8",
+        "value": 3/8,
+        "note": "Tree-level GUT prediction"
+    })
+    
+    # Test: Different normalizations
+    for k in [1, 5/3, 2, 3, 4]:
+        val = k / (1 + k)
         results.append({
-            'method': 'interpretation',
-            'formula': f'sin²θ_W = 3/13 where 13 = {interp}',
-            'value': 3/13,
-            'error_percent': abs(3/13 - SIN2_THETA_W_MEASURED)/SIN2_THETA_W_MEASURED*100,
+            "formula": f"k/(1+k) with k = {k}",
+            "value": val,
+            "error_pct": abs(val - SIN2_TW_EXP) / SIN2_TW_EXP * 100
         })
-
+    
+    # Test: Weinberg angle from Z² structure
+    # If sin²θ_W = 3/(8 + 5) = 3/13, what does 5 represent?
+    # 5 could be: dim(SU5 coset), or related to hypercharge
+    
+    results.append({
+        "observation": "13 = 8 + 5 = dim(SU3) + ???",
+        "interpretation": "The +5 correction to tree-level 3/8 needs explanation"
+    })
+    
     return results
 
-# =============================================================================
+# ==============================================================================
+# SEARCH: RG Running Connection
+# ==============================================================================
+
+def search_rg_running():
+    """
+    sin²θ_W runs with energy due to RG evolution.
+    At GUT scale: 3/8 = 0.375
+    At M_Z: ~0.231
+    
+    Can we derive the running from Z²?
+    """
+    results = []
+    
+    # Running from GUT to M_Z
+    # Δsin²θ_W ≈ 0.375 - 0.231 = 0.144
+    
+    delta = 3/8 - SIN2_TW_EXP
+    results.append({
+        "observation": "RG running Δsin²θ_W",
+        "value": delta,
+        "ratio_to_tree": delta / (3/8),
+        "percent_shift": delta / (3/8) * 100
+    })
+    
+    # Test: Is the shift related to Z²?
+    shift_over_z2 = delta / Z2
+    results.append({
+        "formula": "(3/8 - sin²θ_W) / Z²",
+        "value": shift_over_z2,
+        "note": "Looking for simple coefficient"
+    })
+    
+    # Test: sin²θ_W = (3/8) × (1 - running_factor)
+    running_factor = 1 - SIN2_TW_EXP / (3/8)
+    results.append({
+        "formula": "sin²θ_W = (3/8) × (1 - f) where f = ",
+        "running_factor": running_factor,
+        "f_times_Z2": running_factor * Z2
+    })
+    
+    # Test: Does f ≈ 1/Z or some simple form?
+    results.append({
+        "test": "Is running factor 1/Z?",
+        "1/Z": 1/Z,
+        "actual_f": running_factor,
+        "match": np.isclose(running_factor, 1/Z, rtol=0.1)
+    })
+    
+    return results
+
+# ==============================================================================
 # MAIN EXECUTION
-# =============================================================================
+# ==============================================================================
 
-def run_search():
-    """Run all search paths."""
-    all_results = {}
-
-    print("=" * 70)
-    print("FIRST-PRINCIPLES SEARCH FOR WEINBERG ANGLE")
-    print("=" * 70)
-    print(f"Target: sin²θ_W = {SIN2_THETA_W_MEASURED}")
-    print(f"Z² framework prediction: 3/13 = {3/13:.6f}")
-    print(f"Error: {abs(3/13 - SIN2_THETA_W_MEASURED)/SIN2_THETA_W_MEASURED*100:.2f}%")
-    print()
-
-    searches = [
-        ('GUT Embeddings', search_gut_embeddings),
-        ('Group Theory Ratios', search_group_theory_ratios),
-        ('Geometric', search_geometric),
-        ('EWSB', search_ewsb),
-        ('CFT', search_cft),
-        ('Fractions', search_fractions),
-    ]
-
-    for name, search_fn in searches:
-        print(f"\n{'='*50}")
-        print(f"PATH: {name}")
-        print("-" * 50)
-
-        try:
-            results = search_fn()
-            all_results[name] = results
-
-            if results:
-                results.sort(key=lambda x: x.get('error_percent', 999))
-                print(f"Found {len(results)} candidates:")
-                for r in results[:5]:
-                    print(f"\n  Formula: {r.get('formula', 'N/A')}")
-                    print(f"  Value: {r.get('value', 'N/A'):.6f}" if isinstance(r.get('value'), (int, float)) else f"  Value: {r.get('value', 'N/A')}")
-                    print(f"  Error: {r.get('error_percent', 'N/A'):.4f}%" if isinstance(r.get('error_percent'), (int, float)) else "")
-                    if 'insight' in r:
-                        print(f"  Insight: {r['insight']}")
-        except Exception as e:
-            print(f"  Error: {e}")
-            all_results[name] = []
-
+def main():
+    start_time = time.time()
+    
+    all_results = {
+        "target": "sin²θ_W = 0.23122",
+        "Z2": Z2,
+        "current_approximation": "3/13",
+        "current_value": 3/13,
+        "current_error_pct": abs(3/13 - SIN2_TW_EXP) / SIN2_TW_EXP * 100,
+        "timestamp": datetime.now().isoformat(),
+        "searches": {}
+    }
+    
+    print("\n" + "="*80)
+    print("SEARCH 1: GUT Embeddings")
+    print("="*80)
+    gut_results = search_gut_embeddings()
+    for r in gut_results:
+        print(f"  {r.get('formula', r.get('observation', 'N/A'))}")
+        if 'value' in r:
+            print(f"    Value: {r['value']:.10f}")
+        if 'error_pct' in r:
+            print(f"    Error: {r['error_pct']:.6f}%")
+        if 'note' in r:
+            print(f"    Note: {r['note']}")
+    all_results["searches"]["gut_embeddings"] = gut_results
+    
+    print("\n" + "="*80)
+    print("SEARCH 2: Simple Fractions")
+    print("="*80)
+    frac_results = search_simple_fractions()
+    for r in frac_results[:10]:
+        print(f"  {r['formula']}: {r['value']:.10f} (error: {r['error_pct']:.6f}%)")
+    all_results["searches"]["simple_fractions"] = frac_results
+    
+    print("\n" + "="*80)
+    print("SEARCH 3: Z² Related Formulas")
+    print("="*80)
+    z2_results = search_z2_formulas()
+    print(f"Found {len(z2_results)} formulas within 0.1% of target")
+    for r in z2_results[:15]:
+        print(f"  {r['formula']}: {r['value']:.10f} (error: {r['error_pct']:.6f}%)")
+    all_results["searches"]["z2_formulas"] = z2_results
+    
+    print("\n" + "="*80)
+    print("SEARCH 4: Hypercharge Normalization")
+    print("="*80)
+    hyper_results = search_hypercharge()
+    for r in hyper_results:
+        for k, v in r.items():
+            print(f"    {k}: {v}")
+        print()
+    all_results["searches"]["hypercharge"] = hyper_results
+    
+    print("\n" + "="*80)
+    print("SEARCH 5: RG Running")
+    print("="*80)
+    rg_results = search_rg_running()
+    for r in rg_results:
+        for k, v in r.items():
+            print(f"    {k}: {v}")
+        print()
+    all_results["searches"]["rg_running"] = rg_results
+    
     # Summary
-    print("\n" + "=" * 70)
-    print("KEY INSIGHTS FOR WEINBERG ANGLE")
-    print("=" * 70)
+    print("\n" + "="*80)
+    print("KEY INSIGHTS")
+    print("="*80)
     print("""
-    The formula sin²θ_W = 3/13 works with 0.2% accuracy.
-
-    BEST INTERPRETATION: sin²θ_W = N_gen / (GAUGE + 1) = 3/13
-
-    WHY THIS MIGHT BE TRUE:
-    1. N_gen = 3 (number of fermion generations)
-       - Each generation contributes equally to weak mixing
-
-    2. GAUGE + 1 = 13 (total gauge DOF + 1)
-       - 12 gauge bosons + 1 Higgs (or scalar DOF)
-       - Or: 8 + 3 + 2 = dim(SU3) + dim(SU2) + 2
-
-    ALTERNATIVE: 13 = 4×3 + 1 = BEKENSTEIN × N_gen + 1
-    - This connects to α formula: α⁻¹ = 4Z² + 3
-    - Same BEKENSTEIN = 4 appears
-    - Same N_gen = 3 appears
-
-    WHAT IS STILL NEEDED:
-    - DERIVE why sin²θ_W = N_gen / (BEKENSTEIN × N_gen + 1)
-    - Connect to electroweak symmetry breaking
-    - Explain geometric origin of 4 and 3
-    """)
-
-    # Save results
-    output_dir = '/Users/carlzimmerman/new_physics/zimmerman-formula/research/overnight_results'
-    os.makedirs(output_dir, exist_ok=True)
-
-    output_file = os.path.join(output_dir, f'weinberg_search_{datetime.now().strftime("%Y%m%d_%H%M%S")}.json')
-
-    json_results = {}
-    for name, results in all_results.items():
-        json_results[name] = [
-            {k: float(v) if isinstance(v, (np.floating, np.integer)) else v
-             for k, v in r.items()}
-            for r in results
-        ]
-
-    with open(output_file, 'w') as f:
-        json.dump({
-            'target': SIN2_THETA_W_MEASURED,
-            'Z2_prediction': 3/13,
-            'timestamp': datetime.now().isoformat(),
-            'results': json_results
-        }, f, indent=2)
-
-    print(f"\nResults saved to: {output_file}")
-
+1. Tree-level GUT prediction: sin²θ_W = 3/8 = 0.375
+   - From SU(5), SO(10), E₆ hypercharge normalization
+   
+2. Current approximation: 3/13 ≈ 0.2308
+   - 13 = 8 + 3 + 2 = dim(SU3) + dim(SU2) + 2
+   - Or: 13 = 8 + 5 where 5 is related to SU(5) coset
+   
+3. RG running accounts for tree → low energy evolution
+   - Shift of ~0.144 (38% reduction from tree level)
+   
+4. Z² connection is not yet clear for Weinberg angle
+   - Unlike α⁻¹ = 4Z² + 3, no obvious Z² formula here
+   - The structure seems more group-theoretic than geometric
+""")
+    
+    elapsed = time.time() - start_time
+    all_results["elapsed_seconds"] = elapsed
+    
+    output_path = "/Users/carlzimmerman/new_physics/zimmerman-formula/research/overnight_results/weinberg_angle_results.json"
+    with open(output_path, 'w') as f:
+        json.dump(all_results, f, indent=2, default=str)
+    print(f"\nResults saved to: {output_path}")
+    print(f"Search time: {elapsed:.2f} seconds")
+    
     return all_results
 
 if __name__ == "__main__":
-    results = run_search()
+    main()

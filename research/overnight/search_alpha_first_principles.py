@@ -1,803 +1,622 @@
 #!/usr/bin/env python3
 """
-FIRST-PRINCIPLES SEARCH FOR FINE STRUCTURE CONSTANT
-====================================================
+Overnight First-Principles Search: Fine Structure Constant α
 
-TARGET: α⁻¹ = 137.035999084 (why 4Z² + 3?)
+Target: α⁻¹ = 137.035999084 (experimental)
+Current Z² formula: α⁻¹ ≈ 4Z² + 3 = 137.04 (0.003% error)
 
-The Z² framework claims: α⁻¹ = 4Z² + 3 = 137.04 (0.003% error)
-But WHY coefficient 4? WHY offset 3?
+Questions to answer:
+1. Why coefficient 4? (gauge group structure?)
+2. Why offset 3? (generation number? SU(2) dimension?)
+3. Can we derive 4 and 3 from first principles?
 
-This script searches for first-principles derivations using:
-1. Gauge theory structure
-2. Renormalization group
-3. Holographic bounds
-4. Group theory (looking for Z² to emerge naturally)
-
-The approach that worked for MOND:
-- Start with established physics (Friedmann + Bekenstein-Hawking)
-- Z emerged naturally as geometric factor
-- We seek similar emergence for α
+Approach:
+- Search gauge theory embeddings (SU(3)×SU(2)×U(1))
+- Examine renormalization group structure
+- Look for Z² emerging from group theory Casimirs
+- Test holographic bounds on couplings
 
 Author: Carl Zimmerman
 Date: April 2026
+License: AGPL-3.0-or-later
 """
 
 import numpy as np
 from itertools import product, combinations
-from dataclasses import dataclass
-from typing import List, Dict, Tuple, Optional
+from fractions import Fraction
 import json
-import os
+import time
 from datetime import datetime
 
-# =============================================================================
+# ==============================================================================
 # FUNDAMENTAL CONSTANTS
-# =============================================================================
+# ==============================================================================
 
-# Z² framework constants
-Z_SQUARED = 32 * np.pi / 3  # = 33.510321638
-Z = np.sqrt(Z_SQUARED)       # = 5.788810...
-CUBE = 8
-SPHERE = 4 * np.pi / 3
-BEKENSTEIN = 4
-GAUGE = 12
-N_GEN = 3
+# Z² Kaluza-Klein constant
+Z = 2 * np.sqrt(8 * np.pi / 3)
+Z2 = Z**2  # = 32π/3 ≈ 33.510321638291124
 
-# Physical constants
-c = 299792458.0
-hbar = 1.054571817e-34
-e_charge = 1.602176634e-19
-epsilon_0 = 8.8541878128e-12
-G = 6.67430e-11
-k_B = 1.380649e-23
+# Experimental value
+ALPHA_INV_EXP = 137.035999084  # CODATA 2018
+ALPHA_INV_UNCERTAINTY = 0.000000021
 
-# Target
-ALPHA = e_charge**2 / (4 * np.pi * epsilon_0 * hbar * c)
-ALPHA_INV = 1 / ALPHA  # 137.035999084
+# Current Z² approximation
+ALPHA_INV_Z2 = 4 * Z2 + 3  # ≈ 137.041286553
 
-# =============================================================================
-# SEARCH SPACE: Mathematical building blocks
-# =============================================================================
+print("="*80)
+print("OVERNIGHT SEARCH: First-Principles Derivation of α⁻¹")
+print("="*80)
+print(f"Z = 2√(8π/3) = {Z:.15f}")
+print(f"Z² = 32π/3 = {Z2:.15f}")
+print(f"Experimental α⁻¹ = {ALPHA_INV_EXP}")
+print(f"Current 4Z²+3 = {ALPHA_INV_Z2:.10f}")
+print(f"Error: {abs(ALPHA_INV_Z2 - ALPHA_INV_EXP)/ALPHA_INV_EXP * 100:.6f}%")
+print("="*80)
 
-# Simple numbers that appear in physics
-INTEGERS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
-PRIMES = [2, 3, 5, 7, 11, 13]
+# ==============================================================================
+# SEARCH SPACE: Gauge Group Theory
+# ==============================================================================
 
-# Transcendental numbers
-PI = np.pi
-E = np.e
-PHI = (1 + np.sqrt(5)) / 2  # Golden ratio
-
-# Functions to combine
-def sqrt(x): return np.sqrt(x) if x >= 0 else None
-def cbrt(x): return np.cbrt(x)
-def log(x): return np.log(x) if x > 0 else None
-def exp(x): return np.exp(x) if x < 700 else None
-
-# Group theory numbers
-DYNKIN_INDICES = {
-    'SU2': 1/2,
-    'SU3': 1/2,
-    'U1_Y': {'Q': 1/6, 'u': 2/3, 'e': 1, 'L': 1/2, 'd': 1/3},  # Hypercharges
+GAUGE_GROUPS = {
+    "SU3_dim": 8,
+    "SU2_dim": 3,
+    "U1_dim": 1,
+    "SU3_casimir": 4/3,
+    "SU2_casimir": 3/4,
+    "N_colors": 3,
+    "N_generations": 3,
+    "N_quarks_per_gen": 6,
+    "N_leptons_per_gen": 2,
 }
 
-# Casimir invariants
-CASIMIRS = {
-    'SU2_fund': 3/4,
-    'SU3_fund': 4/3,
-    'SU2_adj': 2,
-    'SU3_adj': 3,
-}
-
-# =============================================================================
-# PATH 1: GAUGE THEORY STRUCTURE
-# =============================================================================
-
-def search_gauge_theory():
-    """
-    Search for α from gauge theory structure.
-
-    Key insight: In GUT theories, couplings unify at high energy.
-    The low-energy value of α depends on:
-    - The GUT coupling α_GUT
-    - The running (beta functions)
-    - The unification scale
-
-    We look for Z² appearing in this structure.
-    """
+def search_gauge_coefficients():
     results = []
-
-    # Beta function coefficients for Standard Model
-    # b_i = (41/10, -19/6, -7) for U(1), SU(2), SU(3)
-    b1 = 41/10  # U(1)
-    b2 = -19/6  # SU(2)
-    b3 = -7     # SU(3)
-
-    # At unification, g1 = g2 = g3 = g_GUT
-    # Test various GUT predictions
-
-    # SU(5) prediction: sin²θ_W = 3/8 at GUT scale
-    # Running to low energy gives correction
-
-    # Test: Does Z² appear in running equations?
-    for coeff in [1, 2, 3, 4, 1/2, 1/3, 1/4]:
-        for n in INTEGERS:
-            # Try α_GUT = 1/(coeff * Z² / n)
-            alpha_gut = n / (coeff * Z_SQUARED)
-
-            # Simple running estimate (ignoring threshold corrections)
-            # α⁻¹(M_Z) ≈ α⁻¹_GUT + (b/2π) * ln(M_GUT/M_Z)
-
-            # For ln(M_GUT/M_Z) ≈ 35 (typical GUT scale ~ 10^16 GeV)
-            for log_ratio in [30, 33, 35, 37, 40]:
-                alpha_inv_low = 1/alpha_gut + (b1/(2*np.pi)) * log_ratio
-
-                error = abs(alpha_inv_low - ALPHA_INV) / ALPHA_INV * 100
-
-                if error < 5:  # Within 5%
-                    results.append({
-                        'method': 'GUT_running',
-                        'formula': f'α⁻¹_GUT = {n}/({coeff}×Z²), log(M_GUT/M_Z) = {log_ratio}',
-                        'alpha_inv_gut': 1/alpha_gut,
-                        'alpha_inv_low': alpha_inv_low,
-                        'error_percent': error,
-                        'insight': f'Z² appears in GUT coupling'
-                    })
-
+    
+    test1 = GAUGE_GROUPS["SU3_casimir"] * GAUGE_GROUPS["N_colors"]
+    results.append({
+        "formula": "SU(3)_Casimir × N_colors",
+        "value": test1,
+        "target": 4,
+        "match": np.isclose(test1, 4)
+    })
+    
+    test2 = (GAUGE_GROUPS["SU3_dim"] + GAUGE_GROUPS["SU2_dim"]) / 2
+    results.append({
+        "formula": "(dim(SU3) + dim(SU2))/2",
+        "value": test2,
+        "target": 4,
+        "match": np.isclose(test2, 4)
+    })
+    
+    test3 = GAUGE_GROUPS["N_generations"]
+    results.append({
+        "formula": "N_generations",
+        "value": test3,
+        "target": 3,
+        "match": test3 == 3
+    })
+    
+    test4 = GAUGE_GROUPS["SU2_dim"]
+    results.append({
+        "formula": "dim(SU(2))",
+        "value": test4,
+        "target": 3,
+        "match": test4 == 3
+    })
+    
+    test5 = GAUGE_GROUPS["N_colors"]
+    results.append({
+        "formula": "N_colors",
+        "value": test5,
+        "target": 3,
+        "match": test5 == 3
+    })
+    
     return results
 
-# =============================================================================
-# PATH 2: HOLOGRAPHIC BOUNDS
-# =============================================================================
+# ==============================================================================
+# SEARCH SPACE: Renormalization Group
+# ==============================================================================
+
+BETA_COEFFICIENTS = {
+    "b1_SM": 41/10,
+    "b2_SM": -19/6,
+    "b3_SM": -7,
+}
+
+def search_rg_structure():
+    results = []
+    b1, b2, b3 = BETA_COEFFICIENTS["b1_SM"], BETA_COEFFICIENTS["b2_SM"], BETA_COEFFICIENTS["b3_SM"]
+    
+    b_sum = b1 + b2 + b3
+    results.append({
+        "formula": "b1 + b2 + b3",
+        "value": float(b_sum),
+        "relation_to_Z2": float(b_sum / Z2),
+    })
+    
+    ratio_12 = b1 / b2
+    results.append({
+        "formula": "b1/b2",
+        "value": float(ratio_12),
+        "relation_to_Z2": float(ratio_12 * Z2),
+    })
+    
+    delta_12 = b1 - b2
+    delta_23 = b2 - b3
+    results.append({
+        "formula": "(b1-b2) × (b2-b3)",
+        "value": float(delta_12 * delta_23),
+        "relation_to_Z2": float(delta_12 * delta_23 / Z2),
+    })
+    
+    return results
+
+# ==============================================================================
+# SEARCH SPACE: Combinatorial Formulas
+# ==============================================================================
+
+def search_combinatorial():
+    results = []
+    coefficients = list(range(-10, 11))
+    coefficients.remove(0)
+    best_matches = []
+    
+    print("\nSearching combinatorial formulas...")
+    
+    for a in coefficients:
+        for b in coefficients:
+            val = a * Z2 + b
+            error = abs(val - ALPHA_INV_EXP) / ALPHA_INV_EXP
+            if error < 0.001:
+                best_matches.append({
+                    "formula": f"{a}×Z² + {b}",
+                    "value": val,
+                    "error_pct": error * 100,
+                    "type": "linear_Z2"
+                })
+    
+    for a in coefficients[:10]:
+        for b in coefficients[:10]:
+            val = a * Z2 + b * np.pi
+            error = abs(val - ALPHA_INV_EXP) / ALPHA_INV_EXP
+            if error < 0.001:
+                best_matches.append({
+                    "formula": f"{a}×Z² + {b}×π",
+                    "value": val,
+                    "error_pct": error * 100,
+                    "type": "Z2_plus_pi"
+                })
+    
+    for a in coefficients[:8]:
+        for b in range(-20, 21):
+            for c in range(1, 13):
+                val = a * Z2 + b/c
+                error = abs(val - ALPHA_INV_EXP) / ALPHA_INV_EXP
+                if error < 0.0001:
+                    best_matches.append({
+                        "formula": f"{a}×Z² + {b}/{c}",
+                        "value": val,
+                        "error_pct": error * 100,
+                        "type": "Z2_rational"
+                    })
+    
+    for a in [3, 4, 5]:
+        for b in range(-5, 6):
+            for c in range(1, 10):
+                for d in range(1, 10):
+                    if c != d:
+                        val = (a * Z2 + b) * c / d
+                        error = abs(val - ALPHA_INV_EXP) / ALPHA_INV_EXP
+                        if error < 0.0001:
+                            best_matches.append({
+                                "formula": f"({a}×Z² + {b}) × {c}/{d}",
+                                "value": val,
+                                "error_pct": error * 100,
+                                "type": "Z2_scaled"
+                            })
+    
+    best_matches.sort(key=lambda x: x["error_pct"])
+    return best_matches[:50]
+
+# ==============================================================================
+# SEARCH SPACE: Holographic/Entropic Bounds
+# ==============================================================================
 
 def search_holographic():
-    """
-    Search for α from holographic principles.
-
-    The Bekenstein bound: S ≤ 2πER/(ℏc)
-    The holographic principle: information on boundary
-
-    Can we derive α from information-theoretic constraints?
-    """
     results = []
-
-    # The Bekenstein-Hawking entropy has factor 1/4
-    # S = A/(4ℓ_P²)
-    # In Z² framework: BEKENSTEIN = 4 = 3Z²/(8π)
-
-    # Hypothesis: α might come from holographic constraint on EM field
-
-    # Try various combinations
-    for a in [1, 2, 3, 4]:
-        for b in [1, 2, 3]:
-            for c in [1, 2, 4, 8]:
-                # Test: α⁻¹ = a*Z² + b*something
-
-                # Various "something" based on holography
-                somethings = [
-                    ('N_gen', N_GEN),
-                    ('BEKENSTEIN', BEKENSTEIN),
-                    ('BEKENSTEIN-1', BEKENSTEIN-1),
-                    ('GAUGE/4', GAUGE/4),
-                    ('CUBE/c', CUBE/c),
-                ]
-
-                for name, val in somethings:
-                    alpha_inv_try = a * Z_SQUARED + b * val
-                    error = abs(alpha_inv_try - ALPHA_INV) / ALPHA_INV * 100
-
-                    if error < 0.1:  # Within 0.1%
-                        results.append({
-                            'method': 'holographic_combination',
-                            'formula': f'α⁻¹ = {a}×Z² + {b}×{name}',
-                            'value': alpha_inv_try,
-                            'target': ALPHA_INV,
-                            'error_percent': error,
-                            'insight': f'Combination of Z² and {name}'
-                        })
-
-    # The known formula α⁻¹ = 4Z² + 3
-    alpha_inv_z2 = 4 * Z_SQUARED + 3
-    error = abs(alpha_inv_z2 - ALPHA_INV) / ALPHA_INV * 100
+    
+    S4_surface = 2 * np.pi**2
+    test1 = S4_surface * Z2 / np.pi
     results.append({
-        'method': 'Z2_framework',
-        'formula': 'α⁻¹ = 4×Z² + 3 = 4×(32π/3) + 3',
-        'value': alpha_inv_z2,
-        'target': ALPHA_INV,
-        'error_percent': error,
-        'insight': 'KNOWN: coefficient 4=BEKENSTEIN, offset 3=N_gen, but WHY?'
+        "formula": "S⁴_surface × Z² / π",
+        "value": test1,
+        "target": ALPHA_INV_EXP,
+        "error_pct": abs(test1 - ALPHA_INV_EXP) / ALPHA_INV_EXP * 100
     })
-
+    
+    V5 = np.pi**3 / 2
+    test2 = V5 * Z2 / np.pi**2
+    results.append({
+        "formula": "V⁵ × Z² / π²",
+        "value": test2,
+        "target": ALPHA_INV_EXP,
+        "error_pct": abs(test2 - ALPHA_INV_EXP) / ALPHA_INV_EXP * 100
+    })
+    
+    test3 = 2 * np.pi * Z * Z2 / np.pi
+    results.append({
+        "formula": "2π × Z × Z² / π = 2Z³",
+        "value": test3,
+        "target": ALPHA_INV_EXP,
+        "error_pct": abs(test3 - ALPHA_INV_EXP) / ALPHA_INV_EXP * 100
+    })
+    
     return results
 
-# =============================================================================
-# PATH 3: GROUP THEORY
-# =============================================================================
+# ==============================================================================
+# SEARCH SPACE: Group Theory Derivation
+# ==============================================================================
 
 def search_group_theory():
-    """
-    Search for α from group theory structure.
-
-    The Standard Model has gauge group SU(3)×SU(2)×U(1).
-    - SU(3): 8 generators (gluons)
-    - SU(2): 3 generators (W±, Z)
-    - U(1): 1 generator (photon)
-
-    Total = 12 = GAUGE
-
-    Can we derive WHY α has its value from group structure?
-    """
     results = []
-
-    # Dimension of gauge groups
-    dim_SU3 = 8
-    dim_SU2 = 3
-    dim_U1 = 1
-    total_gauge = 12
-
-    # Ranks
-    rank_SU3 = 2
-    rank_SU2 = 1
-    rank_U1 = 1
-    total_rank = 4
-
-    # Casimir invariants (quadratic)
-    C2_SU3_fund = 4/3
-    C2_SU2_fund = 3/4
-
-    # Index theory considerations
-    # The Dynkin index T(R) for fundamental representation
-    T_SU3 = 1/2
-    T_SU2 = 1/2
-
-    # Try combinations involving group theory numbers and Z²
-    combinations_to_try = [
-        ('dim_SU3 × Z²/2 + rank', dim_SU3 * Z_SQUARED/2 + total_rank),
-        ('total_gauge × Z²/3 + 3', total_gauge * Z_SQUARED/3 + 3),
-        ('(dim_SU3 + total_rank) × (Z²/3)', (dim_SU3 + total_rank) * Z_SQUARED/3),
-        ('BEKENSTEIN × Z² + N_gen', BEKENSTEIN * Z_SQUARED + N_GEN),
-        ('4 × Z² + 3', 4 * Z_SQUARED + 3),
-        ('(total_gauge/3) × Z² + N_gen', (total_gauge/3) * Z_SQUARED + N_GEN),
-        ('(8+4)/3 × Z² + 3', 4 * Z_SQUARED + 3),  # Same as BEKENSTEIN formula
-        ('C2_SU3 × 100 + dim_SU2', C2_SU3_fund * 100 + dim_SU2),
-    ]
-
-    for name, val in combinations_to_try:
-        error = abs(val - ALPHA_INV) / ALPHA_INV * 100
-        if error < 1:
-            results.append({
-                'method': 'group_theory',
-                'formula': f'α⁻¹ = {name}',
-                'value': val,
-                'target': ALPHA_INV,
-                'error_percent': error,
-                'insight': 'Z² combined with gauge group dimensions'
-            })
-
-    # Key question: Why is coefficient 4?
-    # 4 = BEKENSTEIN = rank(SU3×SU2×U1) = total Cartan subalgebra dimension
-    # This could be the connection!
-
+    
+    formula1 = (3 + 1) * Z2 + 3
     results.append({
-        'method': 'group_theory_insight',
-        'formula': 'α⁻¹ = rank(G_SM) × Z² + N_gen',
-        'value': 4 * Z_SQUARED + 3,
-        'target': ALPHA_INV,
-        'error_percent': abs(4*Z_SQUARED+3 - ALPHA_INV)/ALPHA_INV*100,
-        'insight': 'INSIGHT: 4 = rank of SU(3)×SU(2)×U(1) = total Cartan generators!'
+        "formula": "(dim(SU2) + dim(U1)) × Z² + N_gen = 4Z² + 3",
+        "value": formula1,
+        "target": ALPHA_INV_EXP,
+        "error_pct": abs(formula1 - ALPHA_INV_EXP) / ALPHA_INV_EXP * 100,
+        "interpretation": "Electroweak bosons (W+, W-, Z, γ) × compactification + generations"
     })
-
+    
+    SU5_gen = 24
+    SO10_gen = 45
+    
+    formula3 = SU5_gen / Z * Z2 / np.pi + 1
+    results.append({
+        "formula": "24/Z × Z²/π + 1 (SU(5) inspired)",
+        "value": formula3,
+        "target": ALPHA_INV_EXP,
+        "error_pct": abs(formula3 - ALPHA_INV_EXP) / ALPHA_INV_EXP * 100,
+    })
+    
+    formula4 = SO10_gen * np.pi - 4
+    results.append({
+        "formula": "45×π - 4 (SO(10) inspired)",
+        "value": formula4,
+        "target": ALPHA_INV_EXP,
+        "error_pct": abs(formula4 - ALPHA_INV_EXP) / ALPHA_INV_EXP * 100,
+    })
+    
+    C2_quark = 4/3
+    C2_weak = 3/4
+    
+    formula5 = (C2_quark + C2_weak) * Z2 * 2
+    results.append({
+        "formula": "(C₂(SU3) + C₂(SU2)) × Z² × 2",
+        "value": formula5,
+        "target": ALPHA_INV_EXP,
+        "error_pct": abs(formula5 - ALPHA_INV_EXP) / ALPHA_INV_EXP * 100,
+    })
+    
     return results
 
-# =============================================================================
-# PATH 4: DIMENSIONAL TRANSMUTATION
-# =============================================================================
+# ==============================================================================
+# SEARCH SPACE: Quantum Corrections
+# ==============================================================================
 
-def search_dimensional_transmutation():
-    """
-    Search for α via dimensional transmutation.
-
-    In QCD, the dimensionless coupling g becomes a mass scale Λ_QCD.
-    Similarly, α might be determined by a geometric scale.
-
-    Key equation: μ(dα/dμ) = β(α)
-    At a fixed point: β(α*) = 0
-    """
+def search_quantum_corrections():
     results = []
-
-    # QED beta function (1-loop): β(α) = α²/(3π) × (sum of Q²)
-    # With 3 generations of leptons: sum of Q² = 3
-    # With quarks included: sum of Q² = 3×(4/9 + 1/9) + 3×1 = 3×5/9 + 3 = 8/3 + 3
-
-    # At what scale does α become determined?
-    # Hypothesis: At the holographic/geometric scale
-
-    # Test: Does running from Planck scale with Z² give correct α?
-    for n_charged in [3, 6, 9, 12]:  # Different assumptions about charged particles
-        for factor in [1, 2, 4, np.pi, 2*np.pi]:
-            beta_coeff = n_charged / (factor * np.pi)
-
-            # α(M_Z) = α(M_Pl) / (1 - β × α(M_Pl) × ln(M_Pl/M_Z))
-            # For ln(M_Pl/M_Z) ≈ 40
-
-            for alpha_pl in [1/Z_SQUARED, 1/(4*Z_SQUARED), 1/(Z_SQUARED+3)]:
-                log_ratio = 40
-                denom = 1 - beta_coeff * alpha_pl * log_ratio
-
-                if denom > 0:
-                    alpha_low = alpha_pl / denom
-                    alpha_inv_low = 1 / alpha_low if alpha_low > 0 else 0
-
-                    error = abs(alpha_inv_low - ALPHA_INV) / ALPHA_INV * 100
-
-                    if 0 < error < 10:
-                        results.append({
-                            'method': 'dimensional_transmutation',
-                            'formula': f'Running from α⁻¹(M_Pl)={1/alpha_pl:.1f} with β~{n_charged}/{factor}π',
-                            'alpha_inv': alpha_inv_low,
-                            'error_percent': error,
-                            'insight': 'RG running from Planck scale'
-                        })
-
+    
+    base = 4 * Z2 + 3
+    delta = ALPHA_INV_EXP - base
+    
+    print(f"\nBase formula: 4Z² + 3 = {base}")
+    print(f"Experimental: {ALPHA_INV_EXP}")
+    print(f"Correction needed: {delta}")
+    
+    eps1 = 1 / (2 * Z2)
+    results.append({
+        "formula": "4Z² + 3 - 1/(2Z²)",
+        "value": base - eps1,
+        "correction": -eps1,
+        "error_pct": abs(base - eps1 - ALPHA_INV_EXP) / ALPHA_INV_EXP * 100
+    })
+    
+    eps2 = np.pi / (4 * Z2)
+    results.append({
+        "formula": "4Z² + 3 - π/(4Z²)",
+        "value": base - eps2,
+        "correction": -eps2,
+        "error_pct": abs(base - eps2 - ALPHA_INV_EXP) / ALPHA_INV_EXP * 100
+    })
+    
+    eps3 = 1 / Z2
+    results.append({
+        "formula": "4Z² + 3 - 1/Z²",
+        "value": base - eps3,
+        "correction": -eps3,
+        "error_pct": abs(base - eps3 - ALPHA_INV_EXP) / ALPHA_INV_EXP * 100
+    })
+    
+    for denom in [10, 100, 1000, Z2, 2*Z2, 4*Z2]:
+        eps = np.pi**2 / denom
+        val = base - eps
+        err = abs(val - ALPHA_INV_EXP) / ALPHA_INV_EXP * 100
+        if err < 0.01:
+            results.append({
+                "formula": f"4Z² + 3 - π²/{denom:.4f}",
+                "value": val,
+                "correction": -eps,
+                "error_pct": err
+            })
+    
+    eps_self = 1 / base
+    results.append({
+        "formula": "4Z² + 3 - 1/(4Z² + 3) [self-consistent]",
+        "value": base - eps_self,
+        "correction": -eps_self,
+        "error_pct": abs(base - eps_self - ALPHA_INV_EXP) / ALPHA_INV_EXP * 100
+    })
+    
+    alpha_approx = 1/137
+    schwinger = alpha_approx / (2 * np.pi)
+    results.append({
+        "formula": "4Z² + 3 - α/(2π) [Schwinger-type]",
+        "value": base - schwinger,
+        "correction": -schwinger,
+        "error_pct": abs(base - schwinger - ALPHA_INV_EXP) / ALPHA_INV_EXP * 100
+    })
+    
     return results
 
-# =============================================================================
-# PATH 5: MODULAR FORMS AND NUMBER THEORY
-# =============================================================================
+# ==============================================================================
+# DEEP SEARCH: Number Theory Connections
+# ==============================================================================
 
 def search_number_theory():
-    """
-    Search for α in number-theoretic structures.
-
-    Modular forms connect to:
-    - String theory amplitudes
-    - Elliptic curves
-    - Partition functions
-
-    The j-invariant: j(τ) = 1728 = 12³ = GAUGE³
-    """
     results = []
-
-    # Riemann zeta function values
-    zeta_2 = np.pi**2 / 6
-    zeta_3 = 1.2020569  # Apéry's constant
-    zeta_4 = np.pi**4 / 90
-
-    # Catalan's constant
-    G_catalan = 0.9159656
-
-    # Try combinations
-    test_values = [
-        ('π⁴/zeta(4)', np.pi**4 / zeta_4),  # = 90
-        ('Z² × 4 + 3', Z_SQUARED * 4 + 3),
-        ('Z² × BEKENSTEIN + N_gen', Z_SQUARED * BEKENSTEIN + N_GEN),
-        ('(Z²)^(3/2) + 7', Z_SQUARED**1.5 + 7),
-        ('8π²/3 × 4 + 3', (8*np.pi**2/3) * 4/np.pi + 3),  # ≈ 137.9
-        ('Z × 24 - 2', Z * 24 - 2),  # Z*24 = 138.9
-        ('12³/GAUGE + Z²', 1728/12 + Z_SQUARED),  # = 144 + 33.5
-        ('4×(8π/3) + 3', 4 * 8 * np.pi/3 + 3),  # = 4×8.38 + 3 = 36.5
-    ]
-
-    for name, val in test_values:
-        error = abs(val - ALPHA_INV) / ALPHA_INV * 100
-        if error < 5:
-            results.append({
-                'method': 'number_theory',
-                'formula': f'α⁻¹ = {name}',
-                'value': val,
-                'error_percent': error,
-            })
-
-    # The KEY formula: α⁻¹ = 4Z² + 3
-    # Can we express this in terms of modular forms?
-    # Z² = 32π/3, so 4Z² + 3 = 128π/3 + 3
-
-    # Note: 128π/3 = 134.04..., and 134.04 + 3 = 137.04
-    # The "+3" is crucial and must be explained
-
+    
     results.append({
-        'method': 'number_theory_decomposition',
-        'formula': 'α⁻¹ = 128π/3 + 3 = 4×(32π/3) + 3',
-        'value': 128*np.pi/3 + 3,
-        'target': ALPHA_INV,
-        'error_percent': abs(128*np.pi/3 + 3 - ALPHA_INV)/ALPHA_INV*100,
-        'insight': 'Key: 4Z² = 128π/3, offset = 3 = N_gen'
+        "observation": "137 is the 33rd prime",
+        "Z2_connection": "Z² ≈ 33.51",
+        "significance": "Prime index ≈ Z²!"
     })
-
+    
+    results.append({
+        "observation": "137 = 2⁷ + 2³ + 2⁰",
+        "binary": "10001001",
+        "Z2_connection": "8 = dim(SU3), 128 = 2⁷"
+    })
+    
+    for mod in [3, 4, 7, 11, 13]:
+        results.append({
+            "observation": f"137 mod {mod} = {137 % mod}",
+        })
+    
     return results
 
-# =============================================================================
-# PATH 6: GEOMETRIC DERIVATION (like MOND)
-# =============================================================================
+# ==============================================================================
+# EXHAUSTIVE SEARCH: All Simple Formulas
+# ==============================================================================
 
-def search_geometric():
-    """
-    Search for geometric derivation of α like we did for MOND.
-
-    MOND derivation:
-    - Friedmann: H² = 8πGρ/3
-    - Bekenstein: S = A/(4ℓ_P²)
-    - Combined: a₀ = cH/Z where Z = 2√(8π/3)
-
-    Can we derive α similarly from geometry?
-    """
+def exhaustive_search():
     results = []
-
-    # The electron is characterized by:
-    # - Classical electron radius: r_e = e²/(4πε₀m_e c²) = α×ℏ/(m_e c)
-    # - Compton wavelength: λ_C = ℏ/(m_e c)
-    # - Ratio: r_e/λ_C = α
-
-    # The GEOMETRY of the electron:
-    # If electron has some "internal geometry", could α emerge?
-
-    # Hypothesis: α relates electron's "extent" to fundamental geometric scale
-
-    # Test: Does Z² relate to electron geometry?
-
-    # The formula α⁻¹ = 4Z² + 3 could mean:
-    # "The electron can fit 4Z² + 3 fundamental geometric units"
-
-    # Each Z² = CUBE × SPHERE = 8 × (4π/3) = 32π/3
-    # This is the volume of unit sphere inscribed in unit cube × factor
-
-    # So α⁻¹ = 4 × (geometric volume factor) + 3
-
-    # Physical interpretation:
-    # - 4 = dimensions of Cartan subalgebra (charges)
-    # - Z² = geometric "volume" factor
-    # - 3 = number of generations (flavor copies)
-
-    results.append({
-        'method': 'geometric_interpretation',
-        'formula': 'α⁻¹ = rank(G) × Z² + N_gen',
-        'interpretation': 'Each Cartan generator contributes Z² to coupling; generations add N_gen',
-        'value': 4 * Z_SQUARED + 3,
-        'target': ALPHA_INV,
-        'error_percent': abs(4*Z_SQUARED+3 - ALPHA_INV)/ALPHA_INV*100,
-    })
-
-    # Alternative: Think of α as ratio of geometric scales
-    # α = (something small) / (something fundamental)
-
-    # Try: α = 1/(N × Z² + offset)
-    for N in [1, 2, 3, 4, 5, 6]:
-        for offset in [0, 1, 2, 3, 4, 5]:
-            val = N * Z_SQUARED + offset
-            error = abs(val - ALPHA_INV) / ALPHA_INV * 100
-            if error < 0.1:
-                results.append({
-                    'method': 'geometric_search',
-                    'formula': f'α⁻¹ = {N} × Z² + {offset}',
-                    'value': val,
-                    'error_percent': error,
-                    'N': N,
-                    'offset': offset,
-                })
-
-    return results
-
-# =============================================================================
-# PATH 7: R² GRAVITY (NEW DISCOVERY - April 2026)
-# =============================================================================
-
-def search_r2_gravity():
-    """
-    Search using R² gravity approach (discovered April 2026).
-
-    Key insight: For de Sitter with R = 32π (from Friedmann H² = 8π/3):
-    - R²/(16π²) = 64 EXACTLY
-    - S_R² = (1/2) × 64 × V_sphere = 4Z² EXACTLY
-
-    This provides a mechanism for the 4Z² term without integer constraints.
-    """
-    results = []
-
-    # de Sitter curvature from Friedmann equation
-    H_squared = 8 * np.pi / 3  # Natural Hubble parameter squared
-    R = 12 * H_squared  # = 32π (de Sitter Ricci scalar)
-    V_sphere = 4 * np.pi / 3  # Unit 3-sphere volume
-
-    # Verify key relationships
-    print(f"  R = 12H² = {R:.6f}")
-    print(f"  3Z² = {3*Z_SQUARED:.6f}")
-    print(f"  R == 3Z²? {abs(R - 3*Z_SQUARED) < 1e-10}")
-
-    # R² gravity coefficient
-    r2_coeff = R**2 / (16 * np.pi**2)
-    print(f"  R²/(16π²) = {r2_coeff:.6f}")
-    print(f"  This should be 64 = 2⁶: {abs(r2_coeff - 64) < 1e-10}")
-
-    # R² action
-    S_R2 = 0.5 * r2_coeff * V_sphere
-    print(f"  S_R² = (1/2) × 64 × (4π/3) = {S_R2:.6f}")
-    print(f"  4Z² = {4*Z_SQUARED:.6f}")
-    print(f"  S_R² == 4Z²? {abs(S_R2 - 4*Z_SQUARED) < 1e-10}")
-
-    # Complete formula
-    alpha_inv = S_R2 + 3  # 3 = b₁(T³)
-    error = abs(alpha_inv - ALPHA_INV) / ALPHA_INV * 100
-
-    results.append({
-        'method': 'R2_gravity',
-        'formula': 'α⁻¹ = S_R² + b₁(T³) = (1/2)×[R²/(16π²)]×V_sphere + 3',
-        'value': alpha_inv,
-        'target': ALPHA_INV,
-        'error_percent': error,
-        'insight': 'R² gravity with de Sitter R=32π gives 4Z² exactly!',
-        'details': {
-            'R': R,
-            'R_squared_coefficient': r2_coeff,
-            'S_R2': S_R2,
-            'b1_T3': 3,
-        }
-    })
-
-    # Verify: 64 = 8 × 8 = CUBE × CUBE
-    print(f"\n  64 = CUBE × CUBE = {CUBE} × {CUBE} = {CUBE * CUBE}")
-    print(f"  64 = 4 × 16 = BEKENSTEIN × 16 = {BEKENSTEIN * 16}")
-    print(f"  64 = 2⁶")
-
-    # Alternative interpretations
-    results.append({
-        'method': 'R2_decomposition',
-        'formula': '64 = CUBE × CUBE = 8 × 8',
-        'value': CUBE * CUBE,
-        'insight': 'R²/(16π²) = CUBE² where CUBE = dim H*(T³)'
-    })
-
-    return results
-
-
-# =============================================================================
-# PATH 8: CONFORMAL FIELD THEORY
-# =============================================================================
-
-def search_cft():
-    """
-    Search for α from CFT central charge.
-
-    In 2D CFT, the central charge c determines anomalies.
-    For free bosons: c = 1
-    For free fermions: c = 1/2
-
-    String theory has c = 26 (bosonic) or c = 15 (superstring)
-    """
-    results = []
-
-    # Central charges
-    c_boson = 1
-    c_fermion = 0.5
-    c_bosonic_string = 26
-    c_superstring = 15
-    c_critical = 10  # Critical dimension (superstring in 10D)
-
-    # Modular parameter
-    # Under τ → -1/τ, the partition function transforms
-
-    # Try combinations
-    for c in [c_bosonic_string, c_superstring, c_critical]:
-        for factor in [1, 2, 4, Z, Z_SQUARED/10]:
-            val = c * factor + N_GEN
-            error = abs(val - ALPHA_INV) / ALPHA_INV * 100
-            if error < 5:
-                results.append({
-                    'method': 'cft',
-                    'formula': f'c={c} × {factor} + {N_GEN}',
-                    'value': val,
-                    'error_percent': error,
-                })
-
-    return results
-
-# =============================================================================
-# COMPREHENSIVE SEARCH
-# =============================================================================
-
-def comprehensive_search():
-    """
-    Try many combinations of fundamental geometric/group-theoretic quantities.
-    """
-    results = []
-
-    # Building blocks
-    blocks = {
-        'Z²': Z_SQUARED,
+    
+    consts = {
+        'Z2': Z2,
         'Z': Z,
         'π': np.pi,
-        '2π': 2*np.pi,
-        '4π': 4*np.pi,
-        '8π/3': 8*np.pi/3,
-        'CUBE': CUBE,
-        'SPHERE': SPHERE,
-        'BEKENSTEIN': BEKENSTEIN,
-        'GAUGE': GAUGE,
-        'N_gen': N_GEN,
-        '√2': np.sqrt(2),
-        '√3': np.sqrt(3),
-        'φ': PHI,
-        '12': 12,
-        '4': 4,
+        'e': np.e,
+        '2': 2,
         '3': 3,
-        '8': 8,
+        '4': 4,
     }
-
-    # Try: a*X + b*Y for various X, Y
-    for name_x, x in blocks.items():
-        for name_y, y in blocks.items():
-            if name_x == name_y:
+    
+    print("\nExhaustive search over simple formulas...")
+    
+    for i, (n1, v1) in enumerate(consts.items()):
+        for j, (n2, v2) in enumerate(consts.items()):
+            for a in range(-5, 6):
+                for b in range(-5, 6):
+                    for c in range(-10, 11):
+                        if a == 0 and b == 0:
+                            continue
+                        val = a * v1 + b * v2 + c
+                        err = abs(val - ALPHA_INV_EXP) / ALPHA_INV_EXP * 100
+                        if err < 0.001:
+                            results.append({
+                                "formula": f"{a}×{n1} + {b}×{n2} + {c}",
+                                "value": val,
+                                "error_pct": err
+                            })
+    
+    for n1, v1 in consts.items():
+        for n2, v2 in consts.items():
+            if n1 >= n2:
                 continue
-            for a in [1, 2, 3, 4]:
-                for b in [0, 1, 2, 3]:
-                    val = a * x + b * y
-                    error = abs(val - ALPHA_INV) / ALPHA_INV * 100
-                    if error < 0.1:
+            for a in range(-10, 11):
+                for c in range(-10, 11):
+                    if a == 0:
+                        continue
+                    val = a * v1 * v2 + c
+                    err = abs(val - ALPHA_INV_EXP) / ALPHA_INV_EXP * 100
+                    if err < 0.001:
                         results.append({
-                            'method': 'combination',
-                            'formula': f'{a}×{name_x} + {b}×{name_y}',
-                            'value': val,
-                            'error_percent': error,
+                            "formula": f"{a}×{n1}×{n2} + {c}",
+                            "value": val,
+                            "error_pct": err
                         })
+    
+    for n1, v1 in consts.items():
+        for n2, v2 in consts.items():
+            for a in [1, 2, 3, -1, -2, 0.5, 1.5]:
+                for b in [1, 2, 3, -1, -2, 0.5, 1.5]:
+                    for c in range(-10, 11):
+                        try:
+                            val = v1**a * v2**b + c
+                            err = abs(val - ALPHA_INV_EXP) / ALPHA_INV_EXP * 100
+                            if err < 0.001 and np.isfinite(val):
+                                results.append({
+                                    "formula": f"{n1}^{a} × {n2}^{b} + {c}",
+                                    "value": val,
+                                    "error_pct": err
+                                })
+                        except:
+                            pass
+    
+    results.sort(key=lambda x: x["error_pct"])
+    return results[:100]
 
-    # Try: a*X*Y + b for various X, Y
-    for name_x, x in blocks.items():
-        for name_y, y in blocks.items():
-            for a in [1, 2, 1/2, 1/3, 1/4]:
-                for b in [0, 1, 2, 3]:
-                    val = a * x * y + b
-                    error = abs(val - ALPHA_INV) / ALPHA_INV * 100
-                    if error < 0.1:
-                        results.append({
-                            'method': 'product',
-                            'formula': f'{a}×{name_x}×{name_y} + {b}',
-                            'value': val,
-                            'error_percent': error,
-                        })
-
-    return results
-
-# =============================================================================
+# ==============================================================================
 # MAIN EXECUTION
-# =============================================================================
+# ==============================================================================
 
-def run_search():
-    """Run all search paths and collect results."""
-    all_results = {}
-
-    print("=" * 70)
-    print("FIRST-PRINCIPLES SEARCH FOR FINE STRUCTURE CONSTANT α")
-    print("=" * 70)
-    print(f"Target: α⁻¹ = {ALPHA_INV:.10f}")
-    print(f"Z² = {Z_SQUARED:.10f}")
-    print(f"4Z² + 3 = {4*Z_SQUARED + 3:.6f}")
-    print()
-
-    # Run each search path
-    searches = [
-        ('Gauge Theory', search_gauge_theory),
-        ('Holographic', search_holographic),
-        ('Group Theory', search_group_theory),
-        ('Dimensional Transmutation', search_dimensional_transmutation),
-        ('Number Theory', search_number_theory),
-        ('Geometric', search_geometric),
-        ('R2 Gravity', search_r2_gravity),  # NEW: April 2026 discovery
-        ('CFT', search_cft),
-        ('Comprehensive', comprehensive_search),
-    ]
-
-    for name, search_fn in searches:
-        print(f"\n{'='*50}")
-        print(f"PATH: {name}")
-        print("-" * 50)
-
-        try:
-            results = search_fn()
-            all_results[name] = results
-
-            if results:
-                # Sort by error
-                results.sort(key=lambda x: x.get('error_percent', 999))
-
-                print(f"Found {len(results)} candidates:")
-                for r in results[:5]:  # Top 5
-                    print(f"\n  Formula: {r.get('formula', 'N/A')}")
-                    print(f"  Value: {r.get('value', 'N/A'):.6f}")
-                    print(f"  Error: {r.get('error_percent', 'N/A'):.4f}%")
-                    if 'insight' in r:
-                        print(f"  Insight: {r['insight']}")
-            else:
-                print("  No matches found")
-
-        except Exception as e:
-            print(f"  Error: {e}")
-            all_results[name] = []
-
-    # Summary
-    print("\n" + "=" * 70)
-    print("SUMMARY: BEST CANDIDATES FOR α DERIVATION")
-    print("=" * 70)
-
-    best = []
-    for name, results in all_results.items():
-        for r in results:
-            if r.get('error_percent', 999) < 0.1:
-                best.append((name, r))
-
-    best.sort(key=lambda x: x[1].get('error_percent', 999))
-
-    print(f"\nFormulas with <0.1% error:")
-    for name, r in best[:10]:
-        print(f"\n  [{name}]")
-        print(f"  {r.get('formula', 'N/A')}")
-        print(f"  Error: {r.get('error_percent', 0):.4f}%")
-
-    # Key insights
-    print("\n" + "=" * 70)
+def main():
+    start_time = time.time()
+    
+    all_results = {
+        "target": "α⁻¹ = 137.035999084",
+        "Z2": Z2,
+        "current_formula": "4Z² + 3",
+        "current_value": 4 * Z2 + 3,
+        "current_error_pct": abs(4 * Z2 + 3 - ALPHA_INV_EXP) / ALPHA_INV_EXP * 100,
+        "timestamp": datetime.now().isoformat(),
+        "searches": {}
+    }
+    
+    print("\n" + "="*80)
+    print("SEARCH 1: Gauge Group Coefficients")
+    print("="*80)
+    gauge_results = search_gauge_coefficients()
+    for r in gauge_results:
+        print(f"  {r['formula']}: {r['value']} → target {r['target']} → {'MATCH' if r.get('match') else 'no match'}")
+    all_results["searches"]["gauge_coefficients"] = gauge_results
+    
+    print("\n" + "="*80)
+    print("SEARCH 2: Renormalization Group")
+    print("="*80)
+    rg_results = search_rg_structure()
+    for r in rg_results:
+        print(f"  {r['formula']}: {r['value']:.6f}")
+    all_results["searches"]["rg_structure"] = rg_results
+    
+    print("\n" + "="*80)
+    print("SEARCH 3: Combinatorial Formulas")
+    print("="*80)
+    combo_results = search_combinatorial()
+    print(f"Found {len(combo_results)} formulas within 0.1% of target")
+    for r in combo_results[:10]:
+        print(f"  {r['formula']}: {r['value']:.10f} (error: {r['error_pct']:.6f}%)")
+    all_results["searches"]["combinatorial"] = combo_results
+    
+    print("\n" + "="*80)
+    print("SEARCH 4: Holographic/Entropic")
+    print("="*80)
+    holo_results = search_holographic()
+    for r in holo_results:
+        print(f"  {r['formula']}: {r['value']:.6f} (error: {r['error_pct']:.4f}%)")
+    all_results["searches"]["holographic"] = holo_results
+    
+    print("\n" + "="*80)
+    print("SEARCH 5: Group Theory Derivation")
+    print("="*80)
+    group_results = search_group_theory()
+    for r in group_results:
+        print(f"  {r['formula']}")
+        print(f"    Value: {r['value']:.10f}")
+        print(f"    Error: {r['error_pct']:.6f}%")
+        if 'interpretation' in r:
+            print(f"    Interpretation: {r['interpretation']}")
+    all_results["searches"]["group_theory"] = group_results
+    
+    print("\n" + "="*80)
+    print("SEARCH 6: Quantum Corrections")
+    print("="*80)
+    qc_results = search_quantum_corrections()
+    for r in qc_results:
+        print(f"  {r['formula']}: {r['value']:.10f} (error: {r['error_pct']:.6f}%)")
+    all_results["searches"]["quantum_corrections"] = qc_results
+    
+    print("\n" + "="*80)
+    print("SEARCH 7: Number Theory")
+    print("="*80)
+    nt_results = search_number_theory()
+    for r in nt_results:
+        for k, v in r.items():
+            print(f"  {k}: {v}")
+        print()
+    all_results["searches"]["number_theory"] = nt_results
+    
+    print("\n" + "="*80)
+    print("SEARCH 8: Exhaustive Simple Formulas")
+    print("="*80)
+    exh_results = exhaustive_search()
+    print(f"Found {len(exh_results)} formulas within 0.001% of target")
+    for r in exh_results[:20]:
+        print(f"  {r['formula']}: {r['value']:.12f} (error: {r['error_pct']:.8f}%)")
+    all_results["searches"]["exhaustive"] = exh_results
+    
+    print("\n" + "="*80)
+    print("SUMMARY: Best Formulas Found")
+    print("="*80)
+    
+    all_formulas = []
+    for search_name, search_results in all_results["searches"].items():
+        if isinstance(search_results, list):
+            for r in search_results:
+                if "error_pct" in r:
+                    all_formulas.append({**r, "search": search_name})
+    
+    all_formulas.sort(key=lambda x: x.get("error_pct", 100))
+    
+    print("\nTop 10 most accurate formulas:")
+    for i, r in enumerate(all_formulas[:10], 1):
+        print(f"  {i}. {r['formula']}")
+        print(f"     Value: {r.get('value', 'N/A')}")
+        print(f"     Error: {r.get('error_pct', 'N/A'):.10f}%")
+        print(f"     Source: {r.get('search', 'N/A')}")
+        print()
+    
+    all_results["best_formulas"] = all_formulas[:10]
+    
+    elapsed = time.time() - start_time
+    print(f"\nTotal search time: {elapsed:.2f} seconds")
+    all_results["elapsed_seconds"] = elapsed
+    
+    output_path = "/Users/carlzimmerman/new_physics/zimmerman-formula/research/overnight_results/alpha_search_results.json"
+    with open(output_path, 'w') as f:
+        json.dump(all_results, f, indent=2, default=str)
+    print(f"\nResults saved to: {output_path}")
+    
+    print("\n" + "="*80)
     print("KEY INSIGHTS")
-    print("=" * 70)
+    print("="*80)
     print("""
-    The formula α⁻¹ = 4Z² + 3 works with 0.003% accuracy.
+1. The coefficient 4 in "4Z² + 3" matches:
+   - Number of electroweak gauge bosons (W+, W-, Z, γ)
+   - dim(SU(2)) + dim(U(1)) = 3 + 1 = 4
 
-    WHAT WE FOUND:
+2. The offset 3 matches:
+   - Number of fermion generations
+   - Number of QCD colors
+   - Dimension of SU(2)
 
-    1. R² GRAVITY MECHANISM (NEW - April 2026):
-       For de Sitter with Ricci scalar R = 32π:
-       - R²/(16π²) = 64 EXACTLY (= 2⁶ = CUBE²)
-       - S_R² = (1/2) × 64 × V_sphere = 4Z² EXACTLY
-       - No integer quantization constraint (unlike failed c₁² approach)
-       - This is the cleanest mechanism for 4Z²!
+3. Physical interpretation:
+   α⁻¹ = (electroweak bosons) × (KK compactification) + (generations)
+        = 4 × Z² + 3
 
-    2. The coefficient 4 comes from:
-       - R² gravity: (1/2) × CUBE² × V_sphere / Z² = 4
-       - Group theory: rank of SU(3)×SU(2)×U(1) = 4
-       - Holographic: BEKENSTEIN = 4
+4. The 0.003% error might come from:
+   - Higher-loop quantum corrections
+   - RG running effects
+   - Small correction term like 1/(some factor)
 
-    3. The offset 3 = b₁(T³) = first Betti number of 3-torus
-       - Topological invariant of internal space
-       - Counts independent 1-cycles
-       - = N_gen = number of fermion generations
-
-    4. Z² = 32π/3 = CUBE × SPHERE
-       - From Friedmann H² = 8π/3: Z² = 4 × H² × (4/3) = 32π/3
-       - de Sitter Ricci scalar: R = 12H² = 32π = 3Z²
-
-    THE COMPLETE FORMULA:
-    α⁻¹ = (1/2) × [R²/(16π²)] × V_sphere + b₁(T³)
-        = (1/2) × 64 × (4π/3) + 3
-        = 4Z² + 3
-        = 137.041...
-
-    With quantum corrections (two-loop):
-    α⁻¹ + α - 12πα² = 4Z² + 3 → α⁻¹ = 137.0359967 (0.000002% error)
-    """)
-
-    # Save results
-    output_dir = '/Users/carlzimmerman/new_physics/zimmerman-formula/research/overnight_results'
-    os.makedirs(output_dir, exist_ok=True)
-
-    output_file = os.path.join(output_dir, f'alpha_search_{datetime.now().strftime("%Y%m%d_%H%M%S")}.json')
-
-    # Convert results to JSON-serializable format
-    json_results = {}
-    for name, results in all_results.items():
-        json_results[name] = [
-            {k: float(v) if isinstance(v, (np.floating, np.integer)) else v
-             for k, v in r.items()}
-            for r in results
-        ]
-
-    with open(output_file, 'w') as f:
-        json.dump({
-            'target': ALPHA_INV,
-            'Z_squared': Z_SQUARED,
-            'timestamp': datetime.now().isoformat(),
-            'results': json_results
-        }, f, indent=2)
-
-    print(f"\nResults saved to: {output_file}")
-
+5. 137 being the 33rd prime, and Z² ≈ 33.51, is REMARKABLE.
+   This suggests deep number-theoretic structure.
+""")
+    
     return all_results
 
 if __name__ == "__main__":
-    results = run_search()
+    main()

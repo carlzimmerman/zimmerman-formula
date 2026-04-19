@@ -1,0 +1,57 @@
+================================================================================
+OVERNIGHT SEARCH: First-Principles Derivation of N_gen = 3
+================================================================================
+Z = 2√(8π/3) = 5.788810036466141
+Z² = 32π/3 = 33.510321638291124
+Target: N_gen = 3 (exact)
+================================================================================
+
+================================================================================
+SEARCH 1: Anomaly Cancellation
+================================================================================
+  [SU(3)]² U(1)_Y: 0.0 → cancels: True
+  [SU(2)]² U(1)_Y: 0.0 → cancels: True
+  [U(1)_Y]³: -0.44444444444444464 → cancels: False
+
+  CONCLUSION: Anomaly cancellation does NOT fix N_gen
+  Reason: Anomalies cancel within each complete generation
+
+================================================================================
+SEARCH 2: Topological Constraints
+================================================================================
+  S²: χ = 2
+  T²: χ = 0
+  K3: χ = 24
+  CY3: χ = -200
+  S³: χ = 0
+  S⁵: χ = 0
+  T⁶/Z₃ orbifold: N_gen = 27/9 = 3
+
+================================================================================
+SEARCH 3: Z² Geometry
+================================================================================
+  α⁻¹ = 4Z² + 3
+  Z²/11: 3.0464
+  3 appears in multiple places
+  floor(Z²/10): 3.0000
+    Matches 3: True
+  Z - π: 2.6472
+    Matches 3: True
+
+================================================================================
+SEARCH 4: Group Theory
+================================================================================
+  E₈ decomposition: E₈ → E₆ × SU(3)
+    Note: SU(3) factor gives 3
+  SO(10) GUT: 16 (spinor)
+    Note: N_gen is input, not output
+  SM flavor symmetry: U(3)_q × U(3)_ℓ
+    Note: Does not explain why 3
+Traceback (most recent call last):
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/research/overnight/search_n_gen.py", line 540, in <module>
+    main()
+    ~~~~^^
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/research/overnight/search_n_gen.py", line 464, in main
+    print(f"  {r['model']}: {r.get('pattern', r.get('rep', r.get('symmetry', 'N/A')))}")
+               ~^^^^^^^^^
+KeyError: 'model'
