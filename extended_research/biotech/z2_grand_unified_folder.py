@@ -565,68 +565,127 @@ class Z2GrandUnifiedFolder:
         return crossings
 
     def _apply_collapse(self, contact_map, weight):
-        """Apply hydrophobic collapse with contact guidance."""
+        """
+        Apply hydrophobic collapse with contact guidance.
+
+        Uses damped molecular dynamics with:
+        - Velocity damping (friction)
+        - Force clamping to prevent numerical explosion
+        - Adaptive step size for stability
+        - Z²-scaled target radius of gyration
+        """
         hydro = np.array([HYDROPHOBICITY.get(aa, 0) for aa in self.sequence])
 
-        # Start extended
+        # Target Rg based on protein size: Rg ≈ 2.2 * N^0.38 for globular proteins
+        # Scale by Z factor for Z² framework
+        target_rg = 2.2 * (self.n ** 0.38) * (Z / 5.0)
+
+        # Start with compact random coil (not fully extended)
         coords = np.zeros((self.n, 3))
         for i in range(self.n):
-            coords[i] = [i * 3.8, 0, 0]
+            # Helical-like initial geometry
+            t = i * 2 * np.pi / 3.6  # Helix turn
+            r = 2.3  # Helix radius
+            coords[i] = [r * np.cos(t), r * np.sin(t), i * 1.5]  # Rise per residue ~1.5Å
 
-        # Collapse iterations
-        for step in range(250):
+        # Center coordinates
+        coords -= coords.mean(axis=0)
+
+        # Initialize velocities (zero)
+        velocities = np.zeros_like(coords)
+
+        # Simulation parameters
+        dt = 0.02  # Time step (smaller for stability)
+        gamma = 0.8  # Damping coefficient (friction)
+        max_force = 10.0  # Maximum force magnitude
+        n_steps = 500  # More steps with smaller dt
+
+        for step in range(n_steps):
             forces = np.zeros_like(coords)
             com = coords.mean(axis=0)
 
-            # Hydrophobic solvation force
+            # 1. Hydrophobic solvation force (collapse toward core)
+            # Both hydrophobic AND hydrophilic residues contribute
             for i in range(self.n):
                 r_vec = coords[i] - com
-                r_mag = np.linalg.norm(r_vec) + 1e-10
+                r_mag = np.linalg.norm(r_vec) + 1e-8
                 r_hat = r_vec / r_mag
 
-                f_mag = -hydro[i] * weight / Z2
-                forces[i] = f_mag * r_hat
+                # Hydrophobic: pull toward center
+                # Hydrophilic: still pull but weaker (solvation shell)
+                h = hydro[i]
+                if h > 0:  # Hydrophobic: strong pull to core
+                    f_mag = -h * weight * 0.3
+                else:  # Hydrophilic: weak pull (stays near surface)
+                    f_mag = -0.1 * weight
 
-            # Contact forces
+                forces[i] += f_mag * r_hat
+
+            # 2. Contact forces (attract predicted contacts to Z distance)
             for i in range(self.n):
                 for j in range(i + 4, self.n):
                     if contact_map[i, j] > 0.2:
                         r_vec = coords[j] - coords[i]
-                        r_mag = np.linalg.norm(r_vec) + 1e-10
+                        r_mag = np.linalg.norm(r_vec) + 1e-8
                         r_hat = r_vec / r_mag
 
-                        f = contact_map[i, j] * (r_mag - Z) / Z2
-                        forces[i] += 0.5 * f * r_hat
-                        forces[j] -= 0.5 * f * r_hat
+                        # Harmonic spring to target distance Z
+                        deviation = r_mag - Z
+                        f = 0.5 * contact_map[i, j] * deviation
+                        forces[i] += f * r_hat
+                        forces[j] -= f * r_hat
 
-            # Bond constraints
+            # 3. Bond constraints (maintain 3.8Å between consecutive residues)
             for i in range(self.n - 1):
                 r_vec = coords[i+1] - coords[i]
-                r_mag = np.linalg.norm(r_vec) + 1e-10
+                r_mag = np.linalg.norm(r_vec) + 1e-8
                 r_hat = r_vec / r_mag
 
-                f = 10 * (r_mag - 3.8) * r_hat
+                # Strong spring to maintain bond length
+                f = 5.0 * (r_mag - 3.8) * r_hat
                 forces[i] += f
                 forces[i+1] -= f
 
-            # Steric
+            # 4. Steric repulsion (prevent overlap)
             distances = squareform(pdist(coords))
             for i in range(self.n):
                 for j in range(i + 2, self.n):
                     d = distances[i, j]
-                    if 0.1 < d < 3.2:
+                    if d < 3.5 and d > 0.1:
                         r_vec = coords[j] - coords[i]
                         r_hat = r_vec / d
-                        f = -50 * (3.2 - d) * r_hat
-                        forces[i] += f
-                        forces[j] -= f
+                        # Soft repulsion
+                        f_rep = -5.0 * (3.5 - d) / 3.5
+                        forces[i] += f_rep * r_hat
+                        forces[j] -= f_rep * r_hat
 
-            # Update
-            coords += 0.1 * forces
+            # 5. Global compaction (Rg restraint)
+            current_rg = np.sqrt(np.mean(np.sum((coords - com)**2, axis=1)))
+            if current_rg > target_rg:
+                # Apply gentle compaction
+                for i in range(self.n):
+                    r_vec = coords[i] - com
+                    r_mag = np.linalg.norm(r_vec) + 1e-8
+                    r_hat = r_vec / r_mag
+                    f_compact = -0.2 * (current_rg / target_rg - 1)
+                    forces[i] += f_compact * r_hat
+
+            # Clamp forces to prevent explosion
+            for i in range(self.n):
+                f_mag = np.linalg.norm(forces[i])
+                if f_mag > max_force:
+                    forces[i] *= max_force / f_mag
+
+            # Velocity-Verlet with damping (Langevin-like)
+            velocities = (1 - gamma) * velocities + dt * forces
+            coords += dt * velocities
+
+            # Re-center
             coords -= coords.mean(axis=0)
 
-        rg = np.sqrt(np.mean(np.sum((coords - coords.mean(axis=0))**2, axis=1)))
-        print(f"       Final Rg: {rg:.1f} Å")
+        # Final Rg
+        final_rg = np.sqrt(np.mean(np.sum((coords - coords.mean(axis=0))**2, axis=1)))
+        print(f"       Final Rg: {final_rg:.1f} Å (target: {target_rg:.1f} Å)")
 
         return coords
 
@@ -671,6 +730,36 @@ class Z2GrandUnifiedFolder:
             'rg': float(rg),
             'structural_class': self.ss_predictor.get_structural_class()
         }
+
+    def write_pdb(self, filename):
+        """
+        Write structure to PDB format.
+
+        Outputs Cα trace with proper coordinates.
+        """
+        # Three-letter amino acid codes
+        AA_3LETTER = {
+            'A': 'ALA', 'R': 'ARG', 'N': 'ASN', 'D': 'ASP', 'C': 'CYS',
+            'E': 'GLU', 'Q': 'GLN', 'G': 'GLY', 'H': 'HIS', 'I': 'ILE',
+            'L': 'LEU', 'K': 'LYS', 'M': 'MET', 'F': 'PHE', 'P': 'PRO',
+            'S': 'SER', 'T': 'THR', 'W': 'TRP', 'Y': 'TYR', 'V': 'VAL'
+        }
+
+        with open(filename, 'w') as f:
+            f.write("REMARK   Z2 Grand Unified Folder\n")
+            f.write(f"REMARK   Sequence: {self.sequence[:50]}{'...' if len(self.sequence) > 50 else ''}\n")
+            f.write(f"REMARK   SS: {self.ss_predicted[:50]}{'...' if len(self.ss_predicted) > 50 else ''}\n")
+            f.write(f"REMARK   Z = {Z:.4f} A | Z^2 = {Z2:.4f}\n")
+
+            # Write Cα atoms
+            for i, (aa, coord) in enumerate(zip(self.sequence, self.coords)):
+                aa_3 = AA_3LETTER.get(aa, 'UNK')
+                x, y, z = coord
+                f.write(f"ATOM  {i+1:5d}  CA  {aa_3} A{i+1:4d}    {x:8.3f}{y:8.3f}{z:8.3f}  1.00  0.00           C\n")
+
+            f.write("END\n")
+
+        print(f"  PDB saved to {filename}")
 
 
 # ==============================================================================
