@@ -112,4 +112,5 @@ We support:
 
 ---
 
-*"The geometry of the universe should heal, not be hoarded."*
+*"Could you patent the sun?”"*
+Jonas Salk
