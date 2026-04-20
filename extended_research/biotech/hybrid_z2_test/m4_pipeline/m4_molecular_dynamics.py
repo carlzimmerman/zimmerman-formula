@@ -612,11 +612,29 @@ def main():
     pipeline = MDPipeline(str(output_dir))
 
     # Look for generated sequences from other M4 scripts
-    batch_results = Path("batch_results")
+    # Search multiple directories where FASTA files may be located
+    search_dirs = [
+        Path("batch_results"),
+        Path("expired_patent_antibodies"),
+        Path("lysosomal_enzyme_bbb"),
+        Path("therapeutic_sequences"),
+        Path("genetic_capsids"),
+        Path("hematological_vectors"),
+        Path("ophthalmic_biologics"),
+        Path("open_therapeutics"),
+        Path("bbb_fusion"),
+        Path("."),  # Current directory as fallback
+    ]
 
-    if batch_results.exists():
-        # Find all FASTA files
-        fasta_files = list(batch_results.glob("**/*.fasta"))
+    fasta_files = []
+    for search_dir in search_dirs:
+        if search_dir.exists():
+            fasta_files.extend(list(search_dir.glob("**/*.fasta")))
+
+    # Deduplicate
+    fasta_files = list(set(fasta_files))
+
+    if fasta_files:
         print(f"Found {len(fasta_files)} FASTA files to analyze")
 
         for fasta_file in fasta_files:
@@ -627,9 +645,10 @@ def main():
                 print(f"  Found {len(sequences)} sequences")
                 # Run shorter simulations for batch processing
                 pipeline.batch_analyze(sequences, n_steps=2000)
-    else:
+
+    if not fasta_files:
         # Demo sequences if no batch results
-        print("No batch results found, running demo analysis...")
+        print("No FASTA files found, running demo analysis...")
         demo_sequences = {
             "Demo_Angiopep2_fusion": (
                 "TFFYGGSRGKRNNFKTEEY"  # Angiopep-2

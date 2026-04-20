@@ -776,24 +776,43 @@ def main():
     pipeline = BindingAffinityPipeline(str(output_dir))
 
     # Look for scFv sequences from M4 pipeline
-    batch_results = Path("batch_results")
+    # Search multiple directories where FASTA files may be located
+    search_dirs = [
+        Path("batch_results"),
+        Path("expired_patent_antibodies"),
+        Path("lysosomal_enzyme_bbb"),
+        Path("therapeutic_sequences"),
+        Path("genetic_capsids"),
+        Path("hematological_vectors"),
+        Path("ophthalmic_biologics"),
+        Path("open_therapeutics"),
+        Path("bbb_fusion"),
+        Path("."),
+    ]
 
-    if batch_results.exists():
-        fasta_files = list(batch_results.glob("**/*.fasta"))
+    fasta_files = []
+    for search_dir in search_dirs:
+        if search_dir.exists():
+            fasta_files.extend(list(search_dir.glob("**/*.fasta")))
+
+    # Deduplicate
+    fasta_files = list(set(fasta_files))
+
+    if fasta_files:
         print(f"Found {len(fasta_files)} FASTA files to analyze")
 
         for fasta_file in fasta_files:
-            # Focus on antibody sequences
-            if 'scfv' in fasta_file.name.lower() or 'antibod' in fasta_file.name.lower():
-                print(f"\nLoading antibodies: {fasta_file.name}")
-                sequences = load_sequences_from_fasta(str(fasta_file))
+            # Analyze all protein sequences (antibodies get special treatment)
+            print(f"\nLoading: {fasta_file.name}")
+            sequences = load_sequences_from_fasta(str(fasta_file))
 
-                if sequences:
-                    print(f"  Found {len(sequences)} sequences")
-                    pipeline.batch_analyze_antibodies(sequences)
-    else:
+            if sequences:
+                print(f"  Found {len(sequences)} sequences")
+                pipeline.batch_analyze_antibodies(sequences)
+
+    if not fasta_files:
         # Demo sequences
-        print("No batch results found, running demo analysis...")
+        print("No FASTA files found, running demo analysis...")
 
         demo_antibodies = {
             "Demo_Anti_VEGF_scFv": (

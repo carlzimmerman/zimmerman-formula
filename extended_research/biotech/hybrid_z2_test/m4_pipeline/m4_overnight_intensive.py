@@ -134,15 +134,34 @@ class OvernightController:
             f.write(log_line + "\n")
 
     def load_sequences(self) -> int:
-        """Load all sequences from input directory."""
-        self.log("Loading sequences from batch results...")
+        """Load all sequences from multiple directories."""
+        self.log("Loading sequences from all result directories...")
 
-        if not self.input_dir.exists():
-            self.log(f"Input directory not found: {self.input_dir}", "WARNING")
-            return 0
+        # Search multiple directories where FASTA files may be located
+        search_dirs = [
+            Path("batch_results"),
+            Path("expired_patent_antibodies"),
+            Path("lysosomal_enzyme_bbb"),
+            Path("therapeutic_sequences"),
+            Path("genetic_capsids"),
+            Path("hematological_vectors"),
+            Path("ophthalmic_biologics"),
+            Path("open_therapeutics"),
+            Path("bbb_fusion"),
+            Path("."),
+        ]
 
-        fasta_files = list(self.input_dir.glob("**/*.fasta"))
-        self.log(f"Found {len(fasta_files)} FASTA files")
+        fasta_files = []
+        for search_dir in search_dirs:
+            if search_dir.exists():
+                found = list(search_dir.glob("**/*.fasta"))
+                fasta_files.extend(found)
+                if found:
+                    self.log(f"  Found {len(found)} files in {search_dir}")
+
+        # Deduplicate by path
+        fasta_files = list(set(fasta_files))
+        self.log(f"Total: {len(fasta_files)} FASTA files")
 
         for fasta_file in fasta_files:
             sequences = self._load_fasta(fasta_file)
