@@ -1,0 +1,138 @@
+{
+  "timestamp": "2026-04-20",
+  "n_cases_analyzed": 10,
+  "plddt_accuracy_analysis": {
+    "total_cases": 7,
+    "correlation": 0.936117822827816,
+    "overconfident_cases": [
+      "De novo designed protein"
+    ],
+    "calibrated_cases": [
+      "GPCR (rhodopsin family)",
+      "Lysozyme (well-studied)",
+      "Ubiquitin"
+    ],
+    "mean_plddt": 85.4857142857143,
+    "mean_gdt": 74.0,
+    "plddt_gdt_gap": 11.485714285714286
+  },
+  "msa_depth_effect": {
+    "deep (>1000)": {
+      "n_cases": 5,
+      "mean_gdt": 84.14,
+      "std_gdt": 11.639518890400927,
+      "proteins": [
+        "KRAS (switch regions)",
+        "Calmodulin",
+        "GPCR (rhodopsin family)",
+        "Lysozyme (well-studied)",
+        "Ubiquitin"
+      ]
+    },
+    "moderate (100-1000)": {
+      "n_cases": 0,
+      "mean_gdt": NaN
+    },
+    "shallow (10-100)": {
+      "n_cases": 0,
+      "mean_gdt": NaN
+    },
+    "minimal (<10)": {
+      "n_cases": 2,
+      "mean_gdt": 48.650000000000006,
+      "std_gdt": 6.55,
+      "proteins": [
+        "De novo designed protein",
+        "CASP15 orphan target"
+      ]
+    }
+  },
+  "method_comparison": {
+    "Well-studied protein family": {
+      "alphafold_accuracy": 95,
+      "first_principles_accuracy": 55,
+      "winner": "AlphaFold",
+      "reason": "Deep MSA provides excellent co-evolution signal"
+    },
+    "Orphan protein (no homologs)": {
+      "alphafold_accuracy": 45,
+      "first_principles_accuracy": 55,
+      "winner": "First-principles",
+      "reason": "No MSA means no co-evolution; physics still works"
+    },
+    "IDP ensemble": {
+      "alphafold_accuracy": 0,
+      "first_principles_accuracy": 55,
+      "winner": "First-principles + REMD",
+      "reason": "AlphaFold cannot output multiple states"
+    },
+    "Novel designed protein": {
+      "alphafold_accuracy": 50,
+      "first_principles_accuracy": 55,
+      "winner": "First-principles",
+      "reason": "No evolutionary history to learn from"
+    },
+    "Mutation effect prediction": {
+      "alphafold_accuracy": 30,
+      "first_principles_accuracy": 60,
+      "winner": "First-principles",
+      "reason": "AlphaFold trained on wild-type; mutations are rare"
+    },
+    "Membrane protein (TM region)": {
+      "alphafold_accuracy": 85,
+      "first_principles_accuracy": 50,
+      "winner": "AlphaFold",
+      "reason": "TM helices well-represented in PDB"
+    },
+    "Membrane protein (loops)": {
+      "alphafold_accuracy": 50,
+      "first_principles_accuracy": 45,
+      "winner": "Neither (use specialized tools)",
+      "reason": "Both methods struggle without membrane context"
+    }
+  },
+  "hallucination_example": {
+    "hallucination_risk": "MODERATE",
+    "risk_factors": [
+      "Sharp pLDDT transition (\u0394=63.4)"
+    ],
+    "mean_plddt": 66.18417986499973,
+    "plddt_std": 30.92979383820831
+  },
+  "classification_examples": {
+    "c-Myc": {
+      "recommendation": "USE_ENSEMBLE_METHODS",
+      "confidence": "HIGH",
+      "warnings": [
+        "IDP - AlphaFold cannot represent ensembles"
+      ],
+      "suggested_validation": [
+        "Use REMD for ensemble sampling",
+        "Apply first-principles geometry constraints",
+        "Validate with experimental data if available"
+      ]
+    },
+    "novel_design": {
+      "recommendation": "USE_FIRST_PRINCIPLES",
+      "confidence": "LOW",
+      "warnings": [
+        "Minimal MSA depth - AlphaFold will likely fail"
+      ],
+      "suggested_validation": [
+        "Use REMD for ensemble sampling",
+        "Apply first-principles geometry constraints",
+        "Validate with experimental data if available"
+      ]
+    },
+    "lysozyme": {
+      "recommendation": "USE_ALPHAFOLD",
+      "confidence": "HIGH",
+      "warnings": [],
+      "suggested_validation": [
+        "Cross-validate with ESMFold",
+        "Run MD simulation to test stability",
+        "Check stereochemistry (Ramachandran)"
+      ]
+    }
+  }
+}
