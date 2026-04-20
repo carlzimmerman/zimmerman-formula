@@ -279,21 +279,32 @@ class OvernightController:
         }
 
     def run_molecular_dynamics(self):
-        """Run MD simulations on all sequences."""
+        """Run MD simulations on all sequences using GPU acceleration."""
         self.log("=" * 60)
-        self.log("PHASE 2: MOLECULAR DYNAMICS")
+        self.log("PHASE 2: MOLECULAR DYNAMICS (GPU-ACCELERATED)")
         self.log("=" * 60)
         self.tracker.progress['phase'] = 'md'
 
+        # Try GPU-accelerated MD first, fall back to CPU
         try:
-            from m4_molecular_dynamics import MDPipeline
-            pipeline = MDPipeline(str(self.output_dir / "md"))
+            from m4_gpu_molecular_dynamics import GPUMolecularDynamics, DEVICE, MPS_AVAILABLE
+            self.log(f"  Using GPU MD on device: {DEVICE}")
+            if MPS_AVAILABLE:
+                self.log(f"  Apple Silicon MPS: ENABLED")
+            use_gpu_md = True
         except ImportError:
-            self.log("MD module not found, skipping", "WARNING")
-            return
+            self.log("GPU MD not available, falling back to CPU", "WARNING")
+            try:
+                from m4_molecular_dynamics import MDPipeline
+                pipeline = MDPipeline(str(self.output_dir / "md"))
+                use_gpu_md = False
+            except ImportError:
+                self.log("MD module not found, skipping", "WARNING")
+                return
 
         completed = 0
         total = len(self.sequences)
+        start_phase = datetime.now()
 
         for seq_id, seq_data in self.sequences.items():
             if self.tracker.is_completed(seq_id, 'md'):
@@ -301,14 +312,41 @@ class OvernightController:
                 completed += 1
                 continue
 
-            self.log(f"  [{completed+1}/{total}] Running MD: {seq_data['name']}")
+            self.log(f"  [{completed+1}/{total}] Running MD: {seq_data['name']} ({len(seq_data['sequence'])} aa)")
 
             try:
-                result = pipeline.analyze_sequence(
-                    seq_data['name'],
-                    seq_data['sequence'],
-                    n_steps=CONFIG['md_steps']
-                )
+                if use_gpu_md:
+                    # GPU-accelerated MD
+                    md = GPUMolecularDynamics(seq_data['sequence'])
+                    md_result = md.run_dynamics(n_steps=CONFIG['md_steps'], report_interval=100)
+
+                    # Compute metrics
+                    rmsf = md.compute_rmsf(md_result['trajectory'])
+                    rmsd = md.compute_rmsd(md_result['trajectory'])
+
+                    result = {
+                        'name': seq_data['name'],
+                        'sequence_length': len(seq_data['sequence']),
+                        'n_steps': md_result['n_steps'],
+                        'device': md_result['device'],
+                        'elapsed_seconds': md_result['elapsed_seconds'],
+                        'steps_per_second': md_result['steps_per_second'],
+                        'mean_rmsf': float(rmsf.mean()),
+                        'max_rmsf': float(rmsf.max()),
+                        'final_rmsd': float(rmsd[-1]) if len(rmsd) > 0 else 0,
+                        'stability_score': max(0, 100 - float(rmsf.mean()) * 5),
+                    }
+                    self.log(f"    Done in {md_result['elapsed_seconds']:.1f}s | "
+                            f"RMSF={result['mean_rmsf']:.2f}Å | "
+                            f"Speed={md_result['steps_per_second']:.0f} steps/s")
+                else:
+                    # CPU fallback
+                    result = pipeline.analyze_sequence(
+                        seq_data['name'],
+                        seq_data['sequence'],
+                        n_steps=CONFIG['md_steps']
+                    )
+
                 self.results['md'][seq_id] = result
                 self.tracker.mark_completed(seq_id, 'md')
                 completed += 1
@@ -316,6 +354,13 @@ class OvernightController:
             except Exception as e:
                 self.log(f"    ERROR: {e}", "ERROR")
                 self.tracker.mark_failed(seq_id, f"MD: {str(e)}")
+
+            # Progress update every 10
+            if completed % 10 == 0 and completed > 0:
+                elapsed = (datetime.now() - start_phase).total_seconds()
+                rate = completed / elapsed * 60  # per minute
+                remaining = (total - completed) / rate if rate > 0 else 0
+                self.log(f"  Progress: {completed}/{total} ({rate:.1f}/min, ~{remaining:.0f} min remaining)")
 
         self.log(f"MD simulations complete: {completed}/{total}")
 
