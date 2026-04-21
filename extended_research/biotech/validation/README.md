@@ -1,5 +1,18 @@
 # PhD-Level Validation Suite for Z² Framework
 
+## LEGAL DISCLAIMER
+
+**This is THEORETICAL COMPUTATIONAL RESEARCH only.**
+
+- NOT peer reviewed
+- NOT medical advice
+- NOT a validated therapeutic
+- All predictions require experimental validation
+
+See [LEGAL_DISCLAIMER.md](../LEGAL_DISCLAIMER.md) for full terms.
+
+---
+
 ## Overview
 
 This directory contains 10 rigorous validation scripts designed to convert theoretical claims from the Z² = 32π/3 framework into empirical, publishable results.

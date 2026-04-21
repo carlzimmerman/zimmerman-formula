@@ -13,6 +13,14 @@ Date: April 20, 2026
 License: AGPL-3.0-or-later
 """
 
+# =============================================================================
+# LEGAL DISCLAIMER: This is THEORETICAL COMPUTATIONAL RESEARCH only.
+# Not peer reviewed. Not medical advice. Not a validated therapeutic.
+# All predictions require experimental validation.
+# See: extended_research/biotech/LEGAL_DISCLAIMER.md
+# =============================================================================
+
+
 import json
 import hashlib
 from pathlib import Path

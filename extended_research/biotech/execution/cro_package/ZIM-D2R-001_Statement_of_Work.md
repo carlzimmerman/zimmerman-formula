@@ -3,6 +3,19 @@
 
 ---
 
+## LEGAL DISCLAIMER
+
+**This peptide is based on THEORETICAL COMPUTATIONAL RESEARCH only.**
+
+- Computational predictions are NOT experimentally validated
+- Binding affinity estimates are heuristic, NOT measured
+- This work has NOT been peer reviewed
+- No therapeutic claims are made
+
+The purpose of this synthesis is EXPERIMENTAL VALIDATION of computational predictions.
+
+---
+
 **Project Title:** D2R Agonist Peptide for Prolactinoma Treatment
 
 **Document Version:** 1.0

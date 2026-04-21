@@ -1,5 +1,12 @@
 #!/bin/bash
 ################################################################################
+# =============================================================================
+# LEGAL DISCLAIMER: This is THEORETICAL COMPUTATIONAL RESEARCH only.
+# Not peer reviewed. Not medical advice. Not a validated therapeutic.
+# All predictions require experimental validation.
+# See: extended_research/biotech/LEGAL_DISCLAIMER.md
+# =============================================================================
+
 # run_fep_pipeline.sh - HPC Free Energy Perturbation Orchestrator
 #
 # THE REALITY CHECK: Converting heuristic scores to physics-based ΔG_bind

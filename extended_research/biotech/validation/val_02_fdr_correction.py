@@ -17,6 +17,14 @@ AUTHOR: Carl Zimmerman & Claude Opus 4.5
 DATE: April 2026
 """
 
+# =============================================================================
+# LEGAL DISCLAIMER: This is THEORETICAL COMPUTATIONAL RESEARCH only.
+# Not peer reviewed. Not medical advice. Not a validated therapeutic.
+# All predictions require experimental validation.
+# See: extended_research/biotech/LEGAL_DISCLAIMER.md
+# =============================================================================
+
+
 import numpy as np
 from scipy import stats
 import json
