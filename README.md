@@ -10,6 +10,43 @@
 
 **Complete Lagrangian Paper (v5.4.0):** [zenodo.org/records/19318996](https://zenodo.org/records/19318996)
 
+**Global Health Pipeline (Apr 21):** [zenodo.org/records/19683618](https://zenodo.org/records/19683618)
+
+---
+
+## ⚠️ Important Disclaimers
+
+### Physics Framework
+The Z² numerical matches are **empirical observations**, not proven derivations. While 50+ constants match to sub-percent accuracy, the underlying mechanism connecting Z² = 32π/3 to particle physics remains **speculative**. Professional physicists should evaluate critically.
+
+### Biotech/Therapeutics
+**ALL THERAPEUTIC DESIGNS ARE COMPUTATIONAL PREDICTIONS ONLY.**
+- ❌ NOT peer reviewed
+- ❌ NOT experimentally validated
+- ❌ NOT medical advice
+- ❌ NO warranty of efficacy or safety
+
+Any drug development requires: IND applications, GLP toxicology, GMP manufacturing, IRB approval, and clinical trials. See full [Legal Disclaimer](#legal-disclaimer-biotechtherapeutics) below.
+
+---
+
+## Honest Progress Timeline
+
+| Date | Achievement | Status | Validation Level |
+|------|-------------|--------|------------------|
+| Mar 18 | Z² = 32π/3 identified | ✅ Complete | Mathematical constant |
+| Mar 20 | 50+ constants matched | ✅ Complete | Numerical fits (not derivations) |
+| Apr 15 | 8D Lagrangian proposed | ⚠️ Speculative | Theoretical framework |
+| Apr 16 | Hierarchy/cosmology formulas | ⚠️ Speculative | Numerical matches only |
+| Apr 20 | Therapeutic pipeline v1 | ✅ Complete | Computational designs |
+| Apr 21 | Global health expansion | ✅ Complete | Computational designs |
+| Next | Structure prediction | 🔄 Pending | ESMFold/AlphaFold2 needed |
+| Next | Binding validation | 🔄 Pending | FEP calculations needed |
+| Future | Wet lab synthesis | ❌ Not started | Requires funding |
+| Future | In vitro testing | ❌ Not started | Requires synthesis |
+
+**Current Phase:** Computational design complete. Validation pending.
+
 ---
 
 ## April 16, 2026: Major Breakthrough Session
