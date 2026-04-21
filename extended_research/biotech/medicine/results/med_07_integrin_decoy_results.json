@@ -1,0 +1,327 @@
+{
+  "timestamp": "2026-04-21T11:05:03.830782",
+  "z2_value": 33.510321638291124,
+  "r_natural": 9.14277949677072,
+  "target": "Integrin \u03b1v\u03b23",
+  "disease": "Metastatic Cancer",
+  "global_burden": "Metastasis causes 90% of cancer deaths",
+  "mechanism": "Decoy RGD peptides block cancer cell adhesion/migration",
+  "integrin_biology": {
+    "integrin": "\u03b1v\u03b23",
+    "expression": {
+      "tumor_cells": "HIGH (upregulated in metastatic cells)",
+      "tumor_vasculature": "HIGH (angiogenesis)",
+      "normal_tissue": "LOW (homeostatic)"
+    },
+    "ligands": {
+      "fibronectin": "RGD motif",
+      "vitronectin": "RGD motif",
+      "fibrinogen": "RGD motif",
+      "osteopontin": "RGD motif"
+    },
+    "binding_geometry": {
+      "r_to_d_distance": 7.5,
+      "pocket_depth": 10.0,
+      "midas_metal": "Mg2+",
+      "asp_coordination": "bidentate to Mg2+"
+    },
+    "z2_relationship": "RGD span (7.5\u00c5) \u2248 0.82 \u00d7 Z\u00b2 (9.1\u00c5)"
+  },
+  "cilengitide_lessons": {
+    "drug": "Cilengitide (EMD 121974)",
+    "structure": "c[RGDfNMeV]",
+    "affinity_kd": 0.6,
+    "clinical_trial": "CENTRIC (Phase III, Glioblastoma)",
+    "result": "FAILED - no survival benefit",
+    "reasons_for_failure": [
+      "Dosing too low for full receptor occupancy",
+      "Short half-life (~4 hours) - cancer cells re-adhere",
+      "Paradoxical pro-angiogenic effect at low doses",
+      "Single-agent therapy insufficient"
+    ],
+    "lessons_learned": {
+      "need_higher_occupancy": "Must saturate >95% of integrins",
+      "need_longer_half_life": "Continuous exposure required",
+      "need_combination": "Combine with chemotherapy/radiation",
+      "avoid_low_dose": "Low dose may HELP tumors (paradoxical)"
+    }
+  },
+  "decoy_library": [
+    {
+      "name": "ZIM-MET-004",
+      "sequence": "c[RGDfK(PEG40k)]",
+      "readable": "cyclo(Arg-Gly-Asp-D-Phe-Lys-PEG40kDa)",
+      "length": 5,
+      "peg_size": 40000,
+      "features": {
+        "peg_conjugation": "40 kDa PEG attached to Lys",
+        "extended_circulation": "PEG prevents renal clearance",
+        "ring_size": 5,
+        "r_to_d_distance": 7.8
+      },
+      "predicted_kd": 0.8,
+      "half_life_hours": 168,
+      "pegylatable": "DONE",
+      "rationale": "Weekly dosing enables sustained receptor saturation",
+      "geometry_analysis": {
+        "r_to_d_distance": 7.8,
+        "optimal_distance": 7.5,
+        "distance_match": 0.9600000000000001,
+        "z2_distance": 9.14277949677072,
+        "z2_match": 0.8531322452603175,
+        "ring_size": 5,
+        "strain_penalty": 0,
+        "geometric_score": 0.8319396735780953
+      },
+      "inhibition_prediction": {
+        "predicted_kd": 0.8,
+        "half_life": 168,
+        "plasma_occupancy": 0.9920634920634921,
+        "sustained_factor": 1.0,
+        "inhibition_score": 0.9920634920634921,
+        "efficacy_classification": "HIGH",
+        "better_than_cilengitide": true,
+        "clinical_potential": "PROMISING"
+      },
+      "selectivity_analysis": {
+        "target_integrin": "\u03b1v\u03b23",
+        "has_d_phe": true,
+        "avb3_selectivity": "HIGH",
+        "platelet_integrin_risk": "LOW",
+        "safety_note": "D-Phe provides \u03b1v\u03b23 selectivity over \u03b1IIb\u03b23",
+        "wound_healing_concern": "LOW (\u03b15\u03b21 less affected by cyclic RGD)"
+      },
+      "composite_score": 0.9813449705577778
+    },
+    {
+      "name": "ZIM-MET-002",
+      "sequence": "c[rgdfv]",
+      "readable": "cyclo(D-Arg-D-Gly-D-Asp-D-Phe-D-Val)",
+      "length": 5,
+      "features": {
+        "all_d": "All D-amino acids (mirror image)",
+        "protease_resistant": "Proteases cannot cleave D-peptide bonds",
+        "ring_size": 5,
+        "r_to_d_distance": 7.8
+      },
+      "predicted_kd": 0.8,
+      "half_life_hours": 48,
+      "pegylatable": false,
+      "rationale": "All-D peptide for extreme proteolytic stability",
+      "geometry_analysis": {
+        "r_to_d_distance": 7.8,
+        "optimal_distance": 7.5,
+        "distance_match": 0.9600000000000001,
+        "z2_distance": 9.14277949677072,
+        "z2_match": 0.8531322452603175,
+        "ring_size": 5,
+        "strain_penalty": 0,
+        "geometric_score": 0.8319396735780953
+      },
+      "inhibition_prediction": {
+        "predicted_kd": 0.8,
+        "half_life": 48,
+        "plasma_occupancy": 0.9920634920634921,
+        "sustained_factor": 1.0,
+        "inhibition_score": 0.9920634920634921,
+        "efficacy_classification": "HIGH",
+        "better_than_cilengitide": true,
+        "clinical_potential": "PROMISING"
+      },
+      "selectivity_analysis": {
+        "target_integrin": "\u03b1v\u03b23",
+        "has_d_phe": true,
+        "avb3_selectivity": "MODERATE",
+        "platelet_integrin_risk": "UNKNOWN (D-peptide behavior unclear)",
+        "safety_note": "D-Phe provides \u03b1v\u03b23 selectivity over \u03b1IIb\u03b23",
+        "wound_healing_concern": "LOW (\u03b15\u03b21 less affected by cyclic RGD)"
+      },
+      "composite_score": 0.7577735419863492
+    },
+    {
+      "name": "ZIM-MET-005",
+      "sequence": "c[KRGDfC]",
+      "readable": "cyclo(Lys-Arg-Gly-Asp-D-Phe-Cys)",
+      "length": 6,
+      "features": {
+        "z2_optimized": true,
+        "spectroscopic_handle": "Can attach fluorophore to K or C",
+        "disulfide_possible": "Cys for dimerization",
+        "ring_size": 6,
+        "r_to_d_distance": 9.14277949677072
+      },
+      "predicted_kd": 0.25,
+      "half_life_hours": 12,
+      "pegylatable": true,
+      "rationale": "Engineered for exact Z\u00b2 R-to-D distance (9.1\u00c5)",
+      "z2_exact_match": true,
+      "geometry_analysis": {
+        "r_to_d_distance": 9.14277949677072,
+        "optimal_distance": 7.5,
+        "distance_match": 0.780962733763904,
+        "z2_distance": 9.14277949677072,
+        "z2_match": 1.0,
+        "ring_size": 6,
+        "strain_penalty": 0,
+        "geometric_score": 0.7685776402583424
+      },
+      "inhibition_prediction": {
+        "predicted_kd": 0.25,
+        "half_life": 12,
+        "plasma_occupancy": 0.9975062344139651,
+        "sustained_factor": 0.5,
+        "inhibition_score": 0.49875311720698257,
+        "efficacy_classification": "LOW (Cilengitide range)",
+        "better_than_cilengitide": false,
+        "clinical_potential": "REQUIRES OPTIMIZATION"
+      },
+      "selectivity_analysis": {
+        "target_integrin": "\u03b1v\u03b23",
+        "has_d_phe": true,
+        "avb3_selectivity": "HIGH",
+        "platelet_integrin_risk": "LOW",
+        "safety_note": "D-Phe provides \u03b1v\u03b23 selectivity over \u03b1IIb\u03b23",
+        "wound_healing_concern": "LOW (\u03b15\u03b21 less affected by cyclic RGD)"
+      },
+      "composite_score": 0.5172337014606341
+    },
+    {
+      "name": "ZIM-MET-003",
+      "sequence": "c[CRGDfPC]",
+      "readable": "bicyclo(Cys-Arg-Gly-Asp-D-Phe-Pro-Cys)",
+      "length": 7,
+      "features": {
+        "bicyclic": "Disulfide + lactam creates bicyclic",
+        "proline_turn": "Pro locks geometry",
+        "double_constraint": "Maximum rigidity = maximum affinity",
+        "r_to_d_distance": 7.2
+      },
+      "predicted_kd": 0.15,
+      "half_life_hours": 8,
+      "pegylatable": false,
+      "rationale": "Bicyclic constraint locks RGD at ~Z\u00b2 spacing (9.1\u00c5)",
+      "geometry_analysis": {
+        "r_to_d_distance": 7.2,
+        "optimal_distance": 7.5,
+        "distance_match": 0.9600000000000001,
+        "z2_distance": 9.14277949677072,
+        "z2_match": 0.7875066879326008,
+        "ring_size": 5,
+        "strain_penalty": 0,
+        "geometric_score": 0.8122520063797802
+      },
+      "inhibition_prediction": {
+        "predicted_kd": 0.15,
+        "half_life": 8,
+        "plasma_occupancy": 0.9985022466300548,
+        "sustained_factor": 0.3333333333333333,
+        "inhibition_score": 0.33283408221001826,
+        "efficacy_classification": "LOW (Cilengitide range)",
+        "better_than_cilengitide": false,
+        "clinical_potential": "REQUIRES OPTIMIZATION"
+      },
+      "selectivity_analysis": {
+        "target_integrin": "\u03b1v\u03b23",
+        "has_d_phe": true,
+        "avb3_selectivity": "HIGH",
+        "platelet_integrin_risk": "LOW",
+        "safety_note": "D-Phe provides \u03b1v\u03b23 selectivity over \u03b1IIb\u03b23",
+        "wound_healing_concern": "LOW (\u03b15\u03b21 less affected by cyclic RGD)"
+      },
+      "composite_score": 0.4070724718030311
+    },
+    {
+      "name": "ZIM-MET-001",
+      "sequence": "c[RGDfK]",
+      "readable": "cyclo(Arg-Gly-Asp-D-Phe-Lys)",
+      "length": 5,
+      "features": {
+        "d_phe": "D-Phe creates optimal turn geometry",
+        "lysine": "Lys \u03b5-amine for PEGylation (extends half-life)",
+        "ring_size": 5,
+        "r_to_d_distance": 7.8
+      },
+      "predicted_kd": 0.4,
+      "half_life_hours": 6,
+      "pegylatable": true,
+      "rationale": "Minimal modification of cilengitide with PEGylation handle",
+      "geometry_analysis": {
+        "r_to_d_distance": 7.8,
+        "optimal_distance": 7.5,
+        "distance_match": 0.9600000000000001,
+        "z2_distance": 9.14277949677072,
+        "z2_match": 0.8531322452603175,
+        "ring_size": 5,
+        "strain_penalty": 0,
+        "geometric_score": 0.8319396735780953
+      },
+      "inhibition_prediction": {
+        "predicted_kd": 0.4,
+        "half_life": 6,
+        "plasma_occupancy": 0.99601593625498,
+        "sustained_factor": 0.25,
+        "inhibition_score": 0.249003984063745,
+        "efficacy_classification": "LOW (Cilengitide range)",
+        "better_than_cilengitide": false,
+        "clinical_potential": "REQUIRES OPTIMIZATION"
+      },
+      "selectivity_analysis": {
+        "target_integrin": "\u03b1v\u03b23",
+        "has_d_phe": true,
+        "avb3_selectivity": "HIGH",
+        "platelet_integrin_risk": "LOW",
+        "safety_note": "D-Phe provides \u03b1v\u03b23 selectivity over \u03b1IIb\u03b23",
+        "wound_healing_concern": "LOW (\u03b15\u03b21 less affected by cyclic RGD)"
+      },
+      "composite_score": 0.36874378798647567
+    }
+  ],
+  "recommended": {
+    "name": "ZIM-MET-004",
+    "sequence": "c[RGDfK(PEG40k)]",
+    "composite_score": 0.9813449705577778,
+    "predicted_kd": 0.8,
+    "half_life": 168,
+    "rationale": "Weekly dosing enables sustained receptor saturation",
+    "geometry": {
+      "r_to_d_distance": 7.8,
+      "optimal_distance": 7.5,
+      "distance_match": 0.9600000000000001,
+      "z2_distance": 9.14277949677072,
+      "z2_match": 0.8531322452603175,
+      "ring_size": 5,
+      "strain_penalty": 0,
+      "geometric_score": 0.8319396735780953
+    },
+    "inhibition": {
+      "predicted_kd": 0.8,
+      "half_life": 168,
+      "plasma_occupancy": 0.9920634920634921,
+      "sustained_factor": 1.0,
+      "inhibition_score": 0.9920634920634921,
+      "efficacy_classification": "HIGH",
+      "better_than_cilengitide": true,
+      "clinical_potential": "PROMISING"
+    },
+    "selectivity": {
+      "target_integrin": "\u03b1v\u03b23",
+      "has_d_phe": true,
+      "avb3_selectivity": "HIGH",
+      "platelet_integrin_risk": "LOW",
+      "safety_note": "D-Phe provides \u03b1v\u03b23 selectivity over \u03b1IIb\u03b23",
+      "wound_healing_concern": "LOW (\u03b15\u03b21 less affected by cyclic RGD)"
+    }
+  },
+  "z2_optimized_candidate": {
+    "name": "ZIM-MET-005",
+    "note": "Exact Z\u00b2 R-to-D distance (9.1\u00c5)"
+  },
+  "legal_disclaimer": {
+    "status": "THEORETICAL RESEARCH ONLY",
+    "not_medical_advice": true,
+    "not_peer_reviewed": true,
+    "no_warranty": true,
+    "computational_only": true,
+    "clinical_precedent": "Cilengitide failed Phase III - dosing/timing critical"
+  }
+}

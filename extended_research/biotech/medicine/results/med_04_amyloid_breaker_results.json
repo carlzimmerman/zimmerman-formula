@@ -1,0 +1,224 @@
+{
+  "timestamp": "2026-04-21T11:05:33.458323",
+  "z2_value": 33.510321638291124,
+  "r_natural": 9.14277949677072,
+  "target": "Amyloid-Beta fibrils",
+  "disease": "Alzheimer's Disease",
+  "global_burden": "Leading cause of dementia, 50M+ affected worldwide",
+  "amyloid_topology": {
+    "beta_strand_h_bond_distance": 4.7,
+    "residue_rise_along_strand": 3.3,
+    "residues_per_z2_unit": 2.7705392414456727,
+    "z2_spans_residues": 3,
+    "fibril_pitch": 120,
+    "protofilament_twist": 2.4,
+    "steric_zipper_depth": 9.5,
+    "z2_zipper_match": 3.907132435551493
+  },
+  "aggregation_hotspots": {
+    "primary_core": "KLVFFAE (residues 16-22)",
+    "secondary_core": "GAIIGLM (residues 29-35)",
+    "c_terminal_driver": "VVIA (residues 39-42)",
+    "core_avg_hydrophobicity": 1.1428571428571428,
+    "core_avg_beta_propensity": 1.1,
+    "geometric_target": "F19-F20 aromatic stacking",
+    "target_distance": 4.7,
+    "z2_relevance": "Aromatic stack spacing = \u03b2-strand spacing"
+  },
+  "breaker_library": [
+    {
+      "name": "ZIM-ALZ-005",
+      "sequence": "Ac-FPF-NH2",
+      "readable": "Acetyl-Phe-Pro-Phe-Amide",
+      "rationale": "Minimal tripeptide spanning exactly Z\u00b2 distance (9.1\u00c5)",
+      "mechanism": "F-F matches core, central Pro creates 30\u00b0 kink",
+      "properties": {
+        "length": 3,
+        "mw_approx": 460,
+        "charge": 0,
+        "kink_angle": 30,
+        "h_bond_blockers": 1,
+        "estimated_span": 9.9,
+        "z2_units": 1.08,
+        "z2_match_percent": 92
+      },
+      "predicted_efficacy": 0.6,
+      "bbb_crossing": "EXCELLENT (tripeptide, neutral, aromatic)",
+      "composite_score": 0.7919999999999999
+    },
+    {
+      "name": "ZIM-ALZ-003",
+      "sequence": "Ac-L[NMe-V][NMe-F]FA-NH2",
+      "readable": "Acetyl-Leu-N-MeVal-N-MePhe-Phe-Ala-Amide",
+      "rationale": "N-methylation blocks 2 backbone H-bonds without geometric kink",
+      "mechanism": "Binds in-register but cannot form H-bonds to next strand",
+      "properties": {
+        "length": 5,
+        "mw_approx": 650,
+        "charge": 0,
+        "n_methyl_count": 2,
+        "kink_angle": 0,
+        "h_bond_blockers": 2,
+        "estimated_span": 16.5,
+        "z2_units": 1.8
+      },
+      "predicted_efficacy": 0.7,
+      "bbb_crossing": "HIGH (small, N-methyl increases lipophilicity)",
+      "composite_score": 0.67
+    },
+    {
+      "name": "ZIM-ALZ-001",
+      "sequence": "Ac-LPFFpA-NH2",
+      "readable": "Acetyl-Leu-Pro-Phe-Phe-D-Pro-Ala-Amide",
+      "rationale": "Double proline kink at Z\u00b2 scale (~9.1\u00c5 span)",
+      "mechanism": "Binds fibril end, Pro blocks H-bonding, D-Pro reverses geometry",
+      "properties": {
+        "length": 6,
+        "mw_approx": 720,
+        "charge": 0,
+        "kink_angle": 60,
+        "h_bond_blockers": 2,
+        "estimated_span": 19.8,
+        "z2_units": 2.2
+      },
+      "predicted_efficacy": 0.75,
+      "bbb_crossing": "MODERATE (small, neutral)",
+      "composite_score": 0.575
+    },
+    {
+      "name": "ZIM-ALZ-002",
+      "sequence": "c[KLVFFpE]",
+      "readable": "cyclo(Lys-Leu-Val-Phe-Phe-D-Pro-Glu)",
+      "rationale": "Cyclic constraint locks binding geometry; lactam bridge K-E",
+      "mechanism": "Rigid cap on fibril end, cannot be incorporated into sheet",
+      "properties": {
+        "length": 7,
+        "mw_approx": 870,
+        "charge": 0,
+        "cyclic": true,
+        "kink_angle": "N/A (cyclic)",
+        "h_bond_blockers": 1,
+        "estimated_span": "N/A (globular)",
+        "z2_units": "surface_match"
+      },
+      "predicted_efficacy": 0.85,
+      "bbb_crossing": "LOW (cyclic, larger)",
+      "composite_score": 0.5449999999999999
+    },
+    {
+      "name": "ZIM-ALZ-004",
+      "sequence": "Ac-LPWWD-NH2",
+      "readable": "Acetyl-Leu-Pro-Trp-Trp-Asp-Amide",
+      "rationale": "Trp indoles are larger than Phe, sterically disrupt F19-F20 stacking",
+      "mechanism": "Binds but bulky Trp prevents close packing of adjacent strands",
+      "properties": {
+        "length": 5,
+        "mw_approx": 750,
+        "charge": -1,
+        "aromatic_bulk": "HIGH",
+        "kink_angle": 30,
+        "h_bond_blockers": 1,
+        "estimated_span": 16.5,
+        "z2_units": 1.8
+      },
+      "predicted_efficacy": 0.65,
+      "bbb_crossing": "MODERATE (charged, but Trp helps)",
+      "composite_score": 0.525
+    }
+  ],
+  "termination_modeling": {
+    "ZIM-ALZ-005": {
+      "normal_elongation_dG": -9.0,
+      "post_breaker_elongation_dG": -6.1000000000000005,
+      "delta_delta_G": 2.8999999999999995,
+      "elongation_blocked": false,
+      "mechanism": {
+        "h_bonds_blocked": 1,
+        "geometric_kink": "30\u00b0",
+        "burial_reduction": "30%"
+      },
+      "prediction": "PARTIAL"
+    },
+    "ZIM-ALZ-003": {
+      "normal_elongation_dG": -9.0,
+      "post_breaker_elongation_dG": -5.7,
+      "delta_delta_G": 3.3,
+      "elongation_blocked": false,
+      "mechanism": {
+        "h_bonds_blocked": 2,
+        "geometric_kink": "0\u00b0",
+        "burial_reduction": "0%"
+      },
+      "prediction": "PARTIAL"
+    },
+    "ZIM-ALZ-001": {
+      "normal_elongation_dG": -9.0,
+      "post_breaker_elongation_dG": -3.5,
+      "delta_delta_G": 5.5,
+      "elongation_blocked": false,
+      "mechanism": {
+        "h_bonds_blocked": 2,
+        "geometric_kink": "60\u00b0",
+        "burial_reduction": "60%"
+      },
+      "prediction": "PARTIAL"
+    },
+    "ZIM-ALZ-002": {
+      "normal_elongation_dG": -9.0,
+      "post_breaker_elongation_dG": -5.55,
+      "delta_delta_G": 3.45,
+      "elongation_blocked": false,
+      "mechanism": {
+        "h_bonds_blocked": 1,
+        "geometric_kink": "45\u00b0",
+        "burial_reduction": "45%"
+      },
+      "prediction": "PARTIAL"
+    },
+    "ZIM-ALZ-004": {
+      "normal_elongation_dG": -9.0,
+      "post_breaker_elongation_dG": -5.7,
+      "delta_delta_G": 3.3,
+      "elongation_blocked": false,
+      "mechanism": {
+        "h_bonds_blocked": 1,
+        "geometric_kink": "30\u00b0",
+        "burial_reduction": "30%"
+      },
+      "prediction": "PARTIAL"
+    }
+  },
+  "recommended": {
+    "name": "ZIM-ALZ-005",
+    "sequence": "Ac-FPF-NH2",
+    "readable": "Acetyl-Phe-Pro-Phe-Amide",
+    "rationale": "Minimal tripeptide spanning exactly Z\u00b2 distance (9.1\u00c5)",
+    "composite_score": 0.7919999999999999,
+    "termination": {
+      "normal_elongation_dG": -9.0,
+      "post_breaker_elongation_dG": -6.1000000000000005,
+      "delta_delta_G": 2.8999999999999995,
+      "elongation_blocked": false,
+      "mechanism": {
+        "h_bonds_blocked": 1,
+        "geometric_kink": "30\u00b0",
+        "burial_reduction": "30%"
+      },
+      "prediction": "PARTIAL"
+    },
+    "safety": {
+      "bbb_crossing_score": 1.0,
+      "bbb_factors": {
+        "mw_favorable": true,
+        "charge_favorable": true,
+        "lipophilic": true,
+        "small_polar_surface": true
+      },
+      "self_aggregation_risk": "LOW",
+      "off_target_risk": "LOW",
+      "recommended_delivery": "DIRECT (IV or intranasal)",
+      "dose_consideration": "Low dose initially to monitor for immune response",
+      "rvg_conjugate_available": true
+    }
+  }
+}

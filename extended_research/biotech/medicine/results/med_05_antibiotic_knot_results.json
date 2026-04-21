@@ -1,0 +1,249 @@
+{
+  "timestamp": "2026-04-21T11:05:02.080673",
+  "z2_value": 33.510321638291124,
+  "r_natural": 9.14277949677072,
+  "target": "Metallo-Beta-Lactamase (NDM-1, VIM, IMP)",
+  "disease": "Antimicrobial Resistance (AMR)",
+  "global_burden": "10 million deaths/year projected by 2050",
+  "unmet_need": "NO approved MBL inhibitors exist",
+  "mbl_active_site": {
+    "enzyme_class": "Metallo-Beta-Lactamase (MBL)",
+    "subclasses": [
+      "B1 (NDM, VIM, IMP)",
+      "B2 (CphA)",
+      "B3 (L1)"
+    ],
+    "most_dangerous": "NDM-1 (New Delhi Metallo-beta-lactamase)",
+    "metal_ions": {
+      "zn1": {
+        "coordination": "tetrahedral",
+        "ligands": [
+          "His116",
+          "His118",
+          "His196",
+          "bridging OH"
+        ]
+      },
+      "zn2": {
+        "coordination": "trigonal bipyramidal",
+        "ligands": [
+          "Asp120",
+          "Cys221",
+          "His263",
+          "bridging OH",
+          "H2O"
+        ]
+      },
+      "zn_zn_distance": 3.5
+    },
+    "pocket_geometry": {
+      "depth": 10.0,
+      "width": 12.0,
+      "surface_type": "saddle (negative Gaussian curvature)",
+      "gaussian_curvature": -0.03333333333333333,
+      "z2_match": 9.375928879527887
+    },
+    "catalytic_mechanism": "Zinc-activated hydroxide attacks \u03b2-lactam carbonyl",
+    "substrate_entry": "Open L1 loop allows \u03b2-lactam access"
+  },
+  "zinc_requirements": {
+    "zinc_coordination": {
+      "primary": "Cysteine thiol (strongest Zn binder)",
+      "secondary": "Histidine imidazole",
+      "geometry": "Must fit tetrahedral Zn1 and trigonal Zn2"
+    },
+    "spacing": {
+      "cys_to_cys_distance": 5.5,
+      "z2_relevance": "Two Cys spaced at 4.6 \u00c5 can bridge both Zn"
+    },
+    "steric_blockade": {
+      "required": true,
+      "mechanism": "Fill pocket to prevent \u03b2-lactam entry"
+    },
+    "proteolytic_stability": {
+      "critical": true,
+      "solution": "Knotted topology, D-amino acids, or cyclization"
+    }
+  },
+  "inhibitor_library": [
+    {
+      "name": "ZIM-AMR-001",
+      "topology": "pseudo-trefoil (3 disulfides)",
+      "sequence": "GCHHCGSWCLSDDCGSCCHCWSGLCHHCGK",
+      "features": {
+        "disulfide_pattern": "C2-C22, C8-C28, C14-C18",
+        "zinc_binders": [
+          "H3",
+          "H4",
+          "H26",
+          "H27"
+        ],
+        "saddle_region": "SWCLSDD",
+        "hydrophobic_core": "W, L residues pack knot interior"
+      },
+      "length": 30,
+      "mw_approx": 3200,
+      "disulfide_count": 3,
+      "histidine_count": 4,
+      "cysteine_count": 6,
+      "topology_type": "pseudo-knot",
+      "proteolytic_stability": "VERY HIGH",
+      "rationale": "Triple disulfide creates knot-like stability; His cluster jams Zn",
+      "zinc_binding_analysis": {
+        "his_his_spacing": 3.5,
+        "zn_zn_target": 3.5,
+        "bridging_possible": true,
+        "pocket_fill_estimate": 360.0,
+        "curvature_match": "N/A",
+        "geometric_score": 0.97
+      },
+      "curvature_analysis": {
+        "saddle_score": 8.6,
+        "saddle_fraction": 0.2866666666666667,
+        "gd_motifs": 1,
+        "curvature_type": "negative",
+        "pocket_compatibility": "HIGH",
+        "z2_curvature_note": "Saddle depth ~9.1\u00c5 matches Z\u00b2 scale"
+      },
+      "efflux_analysis": {
+        "molecular_weight": 3200,
+        "base_efflux_risk": "LOW",
+        "knotted_bonus": true,
+        "final_evasion_score": 1.1,
+        "note": "Knotted topology disrupts efflux recognition",
+        "recommendation": "Knotted topology provides intrinsic efflux resistance"
+      },
+      "composite_score": 0.7595000000000001
+    },
+    {
+      "name": "ZIM-AMR-003",
+      "topology": "constrained loop with zinc clamp",
+      "sequence": "c[RCHHCGWDDGCHHCR]",
+      "features": {
+        "cyclic": true,
+        "zinc_clamp": "Two CHHC motifs span Zn-Zn distance",
+        "chhc_spacing": 9.1,
+        "saddle_fit": "GWDDG creates negative curvature",
+        "arg_anchors": "R residues grip pocket rim"
+      },
+      "length": 16,
+      "mw_approx": 1750,
+      "disulfide_count": 1,
+      "histidine_count": 4,
+      "cysteine_count": 4,
+      "topology_type": "cyclic_loop",
+      "proteolytic_stability": "HIGH",
+      "z2_optimized": true,
+      "rationale": "CHHC spacing of ~9.1\u00c5 perfectly bridges both Zn ions",
+      "zinc_binding_analysis": {
+        "his_his_spacing": 9.14277949677072,
+        "zn_zn_target": 3.5,
+        "bridging_possible": false,
+        "pocket_fill_estimate": 192.0,
+        "curvature_match": "GWDDG creates negative curvature",
+        "geometric_score": 0.54
+      },
+      "curvature_analysis": {
+        "saddle_score": 3.6,
+        "saddle_fraction": 0.24000000000000002,
+        "gd_motifs": 2,
+        "curvature_type": "negative",
+        "pocket_compatibility": "HIGH",
+        "z2_curvature_note": "Saddle depth ~9.1\u00c5 matches Z\u00b2 scale"
+      },
+      "efflux_analysis": {
+        "molecular_weight": 1750,
+        "base_efflux_risk": "MODERATE",
+        "knotted_bonus": false,
+        "final_evasion_score": 0.6,
+        "note": "",
+        "recommendation": "Knotted topology provides intrinsic efflux resistance"
+      },
+      "composite_score": 0.7090000000000001
+    },
+    {
+      "name": "ZIM-AMR-002",
+      "topology": "designed trefoil (3\u2081)",
+      "sequence": "GCLLGCHLLGCHLLLGCHLLGCLLGCHLLGCLLGCK",
+      "features": {
+        "core_motif": "GCHLLGC repeats create knot threading",
+        "zinc_binders": [
+          "H at positions 6, 12, 18, 24, 30"
+        ],
+        "leucine_core": "Hydrophobic Leu residues stabilize knot interior",
+        "crossing_regions": "3 defined crossings create true trefoil"
+      },
+      "length": 37,
+      "mw_approx": 3900,
+      "disulfide_count": 0,
+      "histidine_count": 5,
+      "cysteine_count": 6,
+      "topology_type": "true_trefoil",
+      "proteolytic_stability": "EXTREME",
+      "rationale": "True trefoil knot is thermodynamically ultra-stable",
+      "zinc_binding_analysis": {
+        "his_his_spacing": 17.5,
+        "zn_zn_target": 3.5,
+        "bridging_possible": false,
+        "pocket_fill_estimate": 444.0,
+        "curvature_match": "N/A",
+        "geometric_score": 0.6
+      },
+      "curvature_analysis": {
+        "saddle_score": 8.0,
+        "saddle_fraction": 0.2222222222222222,
+        "gd_motifs": 0,
+        "curvature_type": "negative",
+        "pocket_compatibility": "MODERATE",
+        "z2_curvature_note": "Saddle depth ~9.1\u00c5 matches Z\u00b2 scale"
+      },
+      "efflux_analysis": {
+        "molecular_weight": 3900,
+        "base_efflux_risk": "LOW",
+        "knotted_bonus": true,
+        "final_evasion_score": 1.1,
+        "note": "Knotted topology disrupts efflux recognition",
+        "recommendation": "Knotted topology provides intrinsic efflux resistance"
+      },
+      "composite_score": 0.5549999999999999
+    }
+  ],
+  "recommended": {
+    "name": "ZIM-AMR-001",
+    "sequence": "GCHHCGSWCLSDDCGSCCHCWSGLCHHCGK",
+    "topology": "pseudo-trefoil (3 disulfides)",
+    "composite_score": 0.7595000000000001,
+    "rationale": "Triple disulfide creates knot-like stability; His cluster jams Zn",
+    "zinc_binding": {
+      "his_his_spacing": 3.5,
+      "zn_zn_target": 3.5,
+      "bridging_possible": true,
+      "pocket_fill_estimate": 360.0,
+      "curvature_match": "N/A",
+      "geometric_score": 0.97
+    },
+    "curvature": {
+      "saddle_score": 8.6,
+      "saddle_fraction": 0.2866666666666667,
+      "gd_motifs": 1,
+      "curvature_type": "negative",
+      "pocket_compatibility": "HIGH",
+      "z2_curvature_note": "Saddle depth ~9.1\u00c5 matches Z\u00b2 scale"
+    },
+    "efflux": {
+      "molecular_weight": 3200,
+      "base_efflux_risk": "LOW",
+      "knotted_bonus": true,
+      "final_evasion_score": 1.1,
+      "note": "Knotted topology disrupts efflux recognition",
+      "recommendation": "Knotted topology provides intrinsic efflux resistance"
+    }
+  },
+  "legal_disclaimer": {
+    "status": "THEORETICAL RESEARCH ONLY",
+    "not_medical_advice": true,
+    "not_peer_reviewed": true,
+    "no_warranty": true,
+    "computational_only": true
+  }
+}

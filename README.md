@@ -140,6 +140,8 @@ All sequences published April 20, 2026 under:
 | **Mar 28** | [More Cube × Sphere](https://zenodo.org/records/19295678) | Emergence timeline, consciousness derivation |
 | **Mar 29** | [Speed of Light from Geometry](https://zenodo.org/records/19301234) | c = e²(4Z² + 3)/(4πε₀ℏ), 0.004% error |
 | **Apr 15** | [**The Z² Framework: Complete 8D Lagrangian**](https://zenodo.org/records/19318996) | **v4.0.4**: Full 8D action, 53 predictions |
+| **Apr 20** | Computational Therapeutics Pipeline | 7 disease targets, prior art manifest |
+| **Apr 21** | [**Z² Global Health Pipeline**](papers/Z2_GLOBAL_HEALTH_PIPELINE.md) | Alzheimer's, AMR, Autoimmune, Cancer metastasis |
 
 ---
 
@@ -669,6 +671,30 @@ This is the same model used by Linux, MongoDB, Qt, and other successful open-sou
 We welcome contributions from scientists, engineers, and clinicians worldwide. By submitting a Pull Request, you agree to the terms of our [Contributor License Agreement](CONTRIBUTING_CLA.md).
 
 **Key requirement:** Contributors grant joint copyright to enable the dual-licensing model. This ensures we can always offer both free and commercial licenses.
+
+---
+
+## Legal Disclaimer (Biotech/Therapeutics)
+
+**ALL THERAPEUTIC DESIGNS AND COMPUTATIONAL OUTPUTS ARE PROVIDED FOR THEORETICAL RESEARCH PURPOSES ONLY.**
+
+1. **NOT MEDICAL ADVICE:** This repository and its outputs do not constitute medical advice, diagnosis, or treatment recommendations. No physician-patient relationship is created.
+
+2. **NOT PEER REVIEWED:** Algorithms, designs, and predictions have not undergone formal peer review or regulatory validation (FDA, EMA, etc.).
+
+3. **NO WARRANTY:** All content is provided "AS IS" without warranty of any kind, express or implied, including merchantability, fitness for a particular purpose, or accuracy.
+
+4. **COMPUTATIONAL ONLY:** All therapeutic results are computational predictions. No claims are made regarding in vitro, in vivo, or clinical efficacy or safety. Actual biological behavior may differ substantially.
+
+5. **REGULATORY COMPLIANCE:** Any use for actual drug development must comply with all applicable regulations (IND, GLP, GMP, IRB approval, clinical trial protocols).
+
+6. **ASSUMPTION OF RISK:** Users assume all risks associated with use of this information and derivatives.
+
+7. **INTELLECTUAL PROPERTY:** Users are responsible for ensuring use does not infringe existing patents or IP rights.
+
+8. **CLINICAL PRECEDENT:** Some approaches described (e.g., cyclic RGD) have failed in clinical trials. Past failures are documented where applicable.
+
+**Copyright (c) 2026 Carl Zimmerman. All rights reserved under AGPL-3.0-or-later.**
 
 ---
 

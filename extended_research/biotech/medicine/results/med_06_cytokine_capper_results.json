@@ -1,0 +1,301 @@
+{
+  "timestamp": "2026-04-21T11:05:34.255978",
+  "z2_value": 33.510321638291124,
+  "r_natural": 9.14277949677072,
+  "target": "IL-6/IL-6R interface (primary), TNF-\u03b1 (secondary)",
+  "diseases": [
+    "Rheumatoid Arthritis",
+    "Systemic Lupus Erythematosus",
+    "Multiple Sclerosis",
+    "Crohn's Disease",
+    "Psoriasis"
+  ],
+  "global_burden": "Hundreds of millions affected, $100B+ annual treatment cost",
+  "current_treatments": "Biologics ($50K/year, injection only)",
+  "opportunity": "Oral macrocycle could democratize access",
+  "il6_interface": {
+    "cytokine": "IL-6",
+    "receptor": "IL-6R (CD126)",
+    "co_receptor": "gp130 (CD130)",
+    "interface_area": 2100,
+    "interface_type": "flat",
+    "gaussian_curvature": 0.001,
+    "hotspots": {
+      "F229": {
+        "ddG": 4.2,
+        "burial": 0.95,
+        "type": "hydrophobic"
+      },
+      "Y230": {
+        "ddG": 3.8,
+        "burial": 0.9,
+        "type": "aromatic"
+      },
+      "E267": {
+        "ddG": 2.5,
+        "burial": 0.6,
+        "type": "charged"
+      },
+      "K268": {
+        "ddG": 2.1,
+        "burial": 0.55,
+        "type": "charged"
+      },
+      "R269": {
+        "ddG": 1.8,
+        "burial": 0.5,
+        "type": "charged"
+      }
+    },
+    "total_hotspot_energy": 14.4,
+    "hotspot_span": 25,
+    "z2_coverage_diameter": 27.428338490312157,
+    "binding_sites": {
+      "site_I": "IL-6 to IL-6R (primary)",
+      "site_II": "IL-6 to gp130",
+      "site_III": "IL-6R to gp130"
+    },
+    "small_molecule_druggability": "VERY LOW (flat interface)",
+    "macrocycle_opportunity": "HIGH"
+  },
+  "tnf_interface": {
+    "cytokine": "TNF-\u03b1",
+    "receptor": "TNFR1/TNFR2",
+    "oligomeric_state": "Trimer",
+    "interface_area": 2400,
+    "unique_feature": "Trimer interface - can target inter-subunit groove",
+    "approved_biologics": [
+      "Infliximab (Remicade)",
+      "Adalimumab (Humira)",
+      "Etanercept (Enbrel)"
+    ],
+    "macrocycle_opportunity": "MODERATE (more complex geometry)"
+  },
+  "capper_library": [
+    {
+      "name": "ZIM-AI-004",
+      "type": "Z\u00b2-optimized interface blanket",
+      "sequence": "c[RFYWKGPGLFYWKGPGLFYWKGPGLFYWKGPG]",
+      "readable": "cyclo(Arg-Phe-Tyr-Trp-Lys-Gly-Pro-Gly)\u00d74",
+      "length": 32,
+      "diameter_estimate": 36,
+      "features": {
+        "four_z2_repeats": "4 \u00d7 9.1\u00c5 = 36.6\u00c5 diameter",
+        "aromatic_rich": "F, Y, W for interface packing",
+        "gp_turns": "Gly-Pro creates \u03b2-turns at corners",
+        "full_coverage": "Large enough to blanket entire Site I"
+      },
+      "rationale": "Diameter of 4\u00d7Z\u00b2 (36.6\u00c5) covers all IL-6R hotspots",
+      "proteolytic_stability": "HIGH",
+      "oral_potential": "LOW (too large)",
+      "z2_optimized": true,
+      "z2_match": 0.015616640084249015,
+      "coverage_analysis": {
+        "macrocycle_area": 1017.8760197630929,
+        "interface_area": 2100,
+        "area_coverage": 0.48470286655385375,
+        "hotspot_span": 25,
+        "hotspot_coverage": 1.0,
+        "effective_coverage": 0.8454108599661561,
+        "binding_prediction": "STRONG"
+      },
+      "curvature_analysis": {
+        "interface_curvature": "flat (K \u2248 0)",
+        "macrocycle_curvature": "variable",
+        "complementarity_score": 0.75,
+        "z2_bonus_applied": true,
+        "note": "Flat-flat matching is optimal for PPI inhibition"
+      },
+      "oral_analysis": {
+        "molecular_weight": 3520,
+        "n_methyl_groups": 0,
+        "hbd_effective": 9,
+        "hba_effective": 4,
+        "rotatable_bonds": 96,
+        "lipophilicity_proxy": 0.34375,
+        "oral_score": 0,
+        "oral_classification": "LOW",
+        "comparison": "Cyclosporin (MW 1202, F~30%) for reference"
+      },
+      "composite_score": 0.5966026799780376
+    },
+    {
+      "name": "ZIM-AI-003",
+      "type": "N-methylated oral macrocycle",
+      "sequence": "c[[NMe-L]F[NMe-V]Y[NMe-L]F[NMe-V]Y[NMe-L]F[NMe-V]Y]",
+      "readable": "cyclo(N-MeLeu-Phe-N-MeVal-Tyr)\u00d73",
+      "length": 12,
+      "diameter_estimate": 15,
+      "n_methyl_count": 6,
+      "features": {
+        "n_methylation": "6 backbone N-methyl groups",
+        "membrane_permeability": "HIGH (like cyclosporin)",
+        "proteolytic_stability": "EXTREME",
+        "hydrophobic": "All hydrophobic for oral absorption"
+      },
+      "rationale": "N-methylation enables oral bioavailability while blocking IL-6R hotspots",
+      "proteolytic_stability": "EXTREME",
+      "oral_potential": "HIGH",
+      "z2_match": 0.02539933324557392,
+      "coverage_analysis": {
+        "macrocycle_area": 176.71458676442586,
+        "interface_area": 2100,
+        "area_coverage": 0.08414980322115517,
+        "hotspot_span": 25,
+        "hotspot_coverage": 0.6,
+        "effective_coverage": 0.44524494096634654,
+        "binding_prediction": "MODERATE"
+      },
+      "curvature_analysis": {
+        "interface_curvature": "flat (K \u2248 0)",
+        "macrocycle_curvature": "slightly convex",
+        "complementarity_score": 0.8,
+        "z2_bonus_applied": false,
+        "note": "Flat-flat matching is optimal for PPI inhibition"
+      },
+      "oral_analysis": {
+        "molecular_weight": 1320,
+        "n_methyl_groups": 6,
+        "hbd_effective": 3,
+        "hba_effective": 9,
+        "rotatable_bonds": 24,
+        "lipophilicity_proxy": 1.25,
+        "oral_score": 0.36,
+        "oral_classification": "MODERATE",
+        "comparison": "Cyclosporin (MW 1202, F~30%) for reference"
+      },
+      "composite_score": 0.5835580430619812
+    },
+    {
+      "name": "ZIM-AI-001",
+      "type": "beta-sheet macrocycle",
+      "sequence": "c[VkLdVkLdVkLdVkLdVkLdVkLd]",
+      "readable": "cyclo(Val-D-Lys-Leu-D-Val-Lys-D-Leu)\u00d74",
+      "length": 24,
+      "diameter_estimate": 28,
+      "features": {
+        "alternating_DL": true,
+        "planar": true,
+        "hydrophobic_face": "Val, Leu residues",
+        "charged_face": "Lys residues for solubility"
+      },
+      "rationale": "Alternating D/L creates flat \u03b2-sheet; Val/Leu match IL-6R hydrophobics",
+      "proteolytic_stability": "VERY HIGH (D-amino acids)",
+      "oral_potential": "MODERATE",
+      "z2_match": 0.02084200287559368,
+      "coverage_analysis": {
+        "macrocycle_area": 615.7521601035994,
+        "interface_area": 2100,
+        "area_coverage": 0.29321531433504733,
+        "hotspot_span": 25,
+        "hotspot_coverage": 1.0,
+        "effective_coverage": 0.7879645943005141,
+        "binding_prediction": "STRONG"
+      },
+      "curvature_analysis": {
+        "interface_curvature": "flat (K \u2248 0)",
+        "macrocycle_curvature": "planar",
+        "complementarity_score": 0.95,
+        "z2_bonus_applied": false,
+        "note": "Flat-flat matching is optimal for PPI inhibition"
+      },
+      "oral_analysis": {
+        "molecular_weight": 2640,
+        "n_methyl_groups": 0,
+        "hbd_effective": 6,
+        "hba_effective": 6,
+        "rotatable_bonds": 72,
+        "lipophilicity_proxy": 0.5,
+        "oral_score": 0,
+        "oral_classification": "LOW",
+        "comparison": "Cyclosporin (MW 1202, F~30%) for reference"
+      },
+      "composite_score": 0.5131016374326463
+    },
+    {
+      "name": "ZIM-AI-002",
+      "type": "hotspot-targeted capper",
+      "sequence": "c[RFFYKGGSpFFYK]",
+      "readable": "cyclo(Arg-Phe-Phe-Tyr-Lys-Gly-Gly-Ser-D-Pro-Phe-Phe-Tyr-Lys)",
+      "length": 14,
+      "diameter_estimate": 18,
+      "features": {
+        "aromatic_cluster": "FFY mimics receptor hotspots",
+        "d_pro_turn": "D-Pro creates type II beta turn",
+        "charged_anchors": "R and K grip receptor surface",
+        "gg_flexibility": "Gly-Gly allows conformational adaptation"
+      },
+      "rationale": "Aromatic cluster matches F229/Y230; diameter spans ~2\u00d7Z\u00b2",
+      "proteolytic_stability": "HIGH",
+      "oral_potential": "LOW (charged)",
+      "z2_match": 0.015616640084249015,
+      "coverage_analysis": {
+        "macrocycle_area": 254.46900494077323,
+        "interface_area": 2100,
+        "area_coverage": 0.12117571663846344,
+        "hotspot_span": 25,
+        "hotspot_coverage": 0.72,
+        "effective_coverage": 0.540352714991539,
+        "binding_prediction": "MODERATE"
+      },
+      "curvature_analysis": {
+        "interface_curvature": "flat (K \u2248 0)",
+        "macrocycle_curvature": "variable",
+        "complementarity_score": 0.7,
+        "z2_bonus_applied": false,
+        "note": "Flat-flat matching is optimal for PPI inhibition"
+      },
+      "oral_analysis": {
+        "molecular_weight": 1540,
+        "n_methyl_groups": 0,
+        "hbd_effective": 6,
+        "hba_effective": 3,
+        "rotatable_bonds": 42,
+        "lipophilicity_proxy": 0.2857142857142857,
+        "oral_score": 0,
+        "oral_classification": "LOW",
+        "comparison": "Cyclosporin (MW 1202, F~30%) for reference"
+      },
+      "composite_score": 0.47457942198819075
+    }
+  ],
+  "recommended_overall": {
+    "name": "ZIM-AI-004",
+    "sequence": "c[RFYWKGPGLFYWKGPGLFYWKGPGLFYWKGPG]",
+    "composite_score": 0.5966026799780376,
+    "rationale": "Diameter of 4\u00d7Z\u00b2 (36.6\u00c5) covers all IL-6R hotspots",
+    "coverage": {
+      "macrocycle_area": 1017.8760197630929,
+      "interface_area": 2100,
+      "area_coverage": 0.48470286655385375,
+      "hotspot_span": 25,
+      "hotspot_coverage": 1.0,
+      "effective_coverage": 0.8454108599661561,
+      "binding_prediction": "STRONG"
+    },
+    "oral": {
+      "molecular_weight": 3520,
+      "n_methyl_groups": 0,
+      "hbd_effective": 9,
+      "hba_effective": 4,
+      "rotatable_bonds": 96,
+      "lipophilicity_proxy": 0.34375,
+      "oral_score": 0,
+      "oral_classification": "LOW",
+      "comparison": "Cyclosporin (MW 1202, F~30%) for reference"
+    }
+  },
+  "recommended_oral": {
+    "name": "ZIM-AI-003",
+    "sequence": "c[[NMe-L]F[NMe-V]Y[NMe-L]F[NMe-V]Y[NMe-L]F[NMe-V]Y]",
+    "oral_score": 0.36,
+    "note": "Best candidate for oral delivery development"
+  },
+  "legal_disclaimer": {
+    "status": "THEORETICAL RESEARCH ONLY",
+    "not_medical_advice": true,
+    "not_peer_reviewed": true,
+    "no_warranty": true,
+    "computational_only": true
+  }
+}
