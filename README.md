@@ -141,7 +141,7 @@ All sequences published April 20, 2026 under:
 | **Mar 29** | [Speed of Light from Geometry](https://zenodo.org/records/19301234) | c = e²(4Z² + 3)/(4πε₀ℏ), 0.004% error |
 | **Apr 15** | [**The Z² Framework: Complete 8D Lagrangian**](https://zenodo.org/records/19318996) | **v4.0.4**: Full 8D action, 53 predictions |
 | **Apr 20** | Computational Therapeutics Pipeline | 7 disease targets, prior art manifest |
-| **Apr 21** | [**Z² Global Health Pipeline**](papers/Z2_GLOBAL_HEALTH_PIPELINE.md) | Alzheimer's, AMR, Autoimmune, Cancer metastasis |
+| **Apr 21** | [**Z² Global Health Pipeline**](https://zenodo.org/records/19683618) | Alzheimer's, AMR, Autoimmune, Cancer metastasis |
 
 ---
 
