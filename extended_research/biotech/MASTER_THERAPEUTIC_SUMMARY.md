@@ -1,9 +1,18 @@
 # Master Therapeutic Summary
 ## M4 Biotech Pipeline - All Disease Areas
 
-**Generated**: April 20, 2026
-**Framework**: Z² = 8 Manifold-Guided Design + ESM-2 Validation
+**Generated**: April 20, 2026 (Corrected)
+**Framework**: Z² = 32π/3 Manifold-Guided Design + ESM-2 Validation
 **License**: AGPL-3.0-or-later
+
+---
+
+## CRITICAL CORRECTION
+
+Previous versions incorrectly stated "Z² = 8". The correct formulation:
+- **Z² = 32π/3 ≈ 33.51** (the fundamental constant)
+- **Z²/Vol(B³) = 8** (the derived coordination number)
+- **All Kd values below are HEURISTIC ESTIMATES, not physics predictions**
 
 ---
 
@@ -23,9 +32,9 @@
 
 ## Top 10 Therapeutic Candidates
 
-| Rank | Peptide ID | Target | Disease | Predicted Kd | Score |
-|------|------------|--------|---------|--------------|-------|
-| 1 | METAB_GLP1R_002 | GLP-1R | Obesity/T2D | 0.01 nM | 0.874 |
+| Rank | Peptide ID | Target | Disease | Heuristic Kd* | Score |
+|------|------------|--------|---------|---------------|-------|
+| 1 | METAB_GLP1R_002 | GLP-1R | Obesity/T2D | 0.01 nM* | 0.874 |
 | 2 | METAB_GLP1R_001 | GLP-1R | Obesity/T2D | 0.02 nM | 0.873 |
 | 3 | METAB_GIPR_002 | GIPR | Obesity/T2D | 0.02 nM | 0.873 |
 | 4 | METAB_GCGR_001 | Glucagon-R | Obesity/NAFLD | 0.05 nM | 0.871 |
@@ -181,7 +190,7 @@ This represents a comprehensive exploration of therapeutic peptide design space 
 3. **Validation infrastructure** (ESM-2, drug comparison, pattern discovery)
 4. **Transparent methodology** with honest limitations documented
 
-The Z² = 8 framework connection remains speculative for biotech but provides a unifying theoretical lens.
+The Z² = 32π/3 framework predicts ~8 contacts per residue at the natural length scale of 9.2 Å, which is validated against PDB data. The biotech applications remain exploratory and require experimental validation.
 
 ---
 

@@ -4,7 +4,11 @@ M4 CERN Open Data KK Graviton Hunter
 ======================================
 
 Searches for Kaluza-Klein graviton signatures in CERN Open Data.
-Implements the Z² = 8 framework predictions for extra-dimensional physics.
+Implements the Z² = 32π/3 framework predictions for extra-dimensional physics.
+
+CORRECTED FRAMEWORK (April 2026):
+- Z² = 32π/3 ≈ 33.51 (the fundamental constant)
+- |G| = 8 (the discrete symmetry group order)
 
 PHYSICS:
 - KK graviton spectrum from 8D → 4D compactification
