@@ -3,7 +3,7 @@
 ## Z² Therapeutic Pipeline - Scientific Validity Analysis
 
 **Date:** April 21, 2026
-**Analysis by:** Carl Zimmerman & Claude Opus 4.5
+**Analysis by:** Carl Zimmerman
 **Methodology:** Gemini's 4 Scientific Rigor Prompts
 
 ---
@@ -236,7 +236,7 @@ This is an honest acknowledgment of scientific failure, which is itself valuable
 ---
 
 **Signed:**
-Carl Zimmerman & Claude Opus 4.5
+Carl Zimmerman
 April 21, 2026
 
 *"The purpose of science is not to prove we are right, but to find out if we are wrong."*

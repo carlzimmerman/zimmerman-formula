@@ -1,5 +1,23 @@
 #!/usr/bin/env python3
 """
+05_sqrt_z2_reanalysis.py
+
+Copyright (C) 2026 Carl Zimmerman
+Zimmerman Unified Geometry Framework (ZUGF)
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
 05_sqrt_z2_reanalysis.py - Focused Analysis on √(Z²) = 5.79 Å
 
 PURPOSE:
@@ -17,10 +35,9 @@ This script performs focused analysis on √(Z²):
 3. Power analysis - is 22 proteins enough?
 4. Breakdown by protein class
 
-Author: Carl Zimmerman & Claude Opus 4.5
+Author: Carl Zimmerman
 Date: April 21, 2026
 """
-
 import numpy as np
 from pathlib import Path
 from datetime import datetime

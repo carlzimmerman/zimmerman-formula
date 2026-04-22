@@ -1,8 +1,8 @@
 # The Z² Framework
 
-> *"I have always been a tinkerer and thinker. Before I go to sleep every night I close my eyes and teleport myself up into space protected by a shiny ball of light, and look down at earth and gaze at its beauty. If you are reading this you probably do too. Sometimes new discoveries do not come from academia but by a lucky outsider. I have deep respect for the academic community. The serious ones, the ones who have dedicated their lives to science that impacts the lives of billions of people. We as a society owe them a great debt of gratitude. This coincidence of "cosmic" proportions would also not be possible without the prior work of Milgrom, Verlinde, Smolin, Jacobson, Weinstein, Carroll, Karpathy and all the researchers and scientists at places like JWST and SPARC gathering the data that allowed this fit to be found, or the tools provided by Anthropic, Google, xAI, Grok, Mistral, Autoresearch, and the HRM Paper. We live in a beautiful and geometrically defined universe defined by Friedmann and de Sitter, and there is still a lot to explore."*
+> *"Geometria una et aeterna est in mente Dei refulgens."*
 >
-> — Carl Zimmerman, Charlotte NC, March 2026
+> — Johannes Kepler, *Harmonices Mundi* (1619)
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19244651.svg)](https://doi.org/10.5281/zenodo.19244651)
 
@@ -10,156 +10,64 @@
 
 **Complete Lagrangian Paper (v5.4.0):** [zenodo.org/records/19318996](https://zenodo.org/records/19318996)
 
-**Global Health Pipeline (Apr 21):** [zenodo.org/records/19683618](https://zenodo.org/records/19683618)
-
 ---
 
-## ⚠️ Important Disclaimers
+## Important Disclaimers
 
 ### Physics Framework
 The Z² numerical matches are **empirical observations**, not proven derivations. While 50+ constants match to sub-percent accuracy, the underlying mechanism connecting Z² = 32π/3 to particle physics remains **speculative**. Professional physicists should evaluate critically.
 
-### Biotech/Therapeutics
-**ALL THERAPEUTIC DESIGNS ARE COMPUTATIONAL PREDICTIONS ONLY.**
-- ❌ NOT peer reviewed
-- ❌ NOT experimentally validated
-- ❌ NOT medical advice
-- ❌ NO warranty of efficacy or safety
-
-Any drug development requires: IND applications, GLP toxicology, GMP manufacturing, IRB approval, and clinical trials. See full [Legal Disclaimer](#legal-disclaimer-biotechtherapeutics) below.
+### Computational Biology Applications
+All computational biology outputs (therapeutic designs, binding predictions, molecular dynamics results) are **theoretical predictions only**. Not peer reviewed, not experimentally validated, not medical advice. Any translation to drug development requires appropriate regulatory compliance (IND, GLP, GMP, IRB approval, clinical trials). See full [Legal Disclaimer](#legal-disclaimer-biotechtherapeutics) below.
 
 ---
 
-## Honest Progress Timeline
+## Framework Status
 
-| Date | Achievement | Status | Validation Level |
-|------|-------------|--------|------------------|
-| Mar 18 | Z² = 32π/3 identified | ✅ Complete | Mathematical constant |
-| Mar 20 | 50+ constants matched | ✅ Complete | Numerical fits (not derivations) |
-| Apr 15 | 8D Lagrangian proposed | ⚠️ Speculative | Theoretical framework |
-| Apr 16 | Hierarchy/cosmology formulas | ⚠️ Speculative | Numerical matches only |
-| Apr 20 | Therapeutic pipeline v1 | ✅ Complete | Computational designs |
-| Apr 21 | Global health expansion | ✅ Complete | Computational designs |
-| Next | Structure prediction | 🔄 Pending | ESMFold/AlphaFold2 needed |
-| Next | Binding validation | 🔄 Pending | FEP calculations needed |
-| Future | Wet lab synthesis | ❌ Not started | Requires funding |
-| Future | In vitro testing | ❌ Not started | Requires synthesis |
-
-**Current Phase:** Computational design complete. Validation pending.
+| Category | Status | Notes |
+|----------|--------|-------|
+| Z² = 32π/3 identification | Complete | Mathematical constant |
+| 50+ constant matches | Complete | Numerical fits (<1% error) |
+| 8D Lagrangian formulation | Proposed | Theoretical framework |
+| Hierarchy/cosmology relations | Proposed | Numerical matches only |
+| Experimental validation | Pending | Requires independent tests |
 
 ---
 
-## April 16, 2026: Major Breakthrough Session
+## April 16, 2026: Key Results
 
-All previously-identified open problems now have **sub-percent derivations**:
+Sub-percent numerical matches for previously open problems:
 
 | Problem | Formula | Predicted | Observed | Error |
 |---------|---------|-----------|----------|-------|
-| **Hierarchy exponent** | M_Pl/v = 2Z^(43/2) | 4.97×10¹⁶ | 4.96×10¹⁶ | **0.3%** |
-| **Matter density** | Ω_m = 6/19 | 0.3158 | 0.315 | **0.25%** |
-| **Dark energy** | Ω_Λ = 13/19 | 0.6842 | 0.685 | **0.12%** |
-| **Proton/electron mass** | α⁻¹ × (2Z²/5) | 1836.92 | 1836.15 | **0.042%** |
-| **Cabibbo angle** | 1/(Z - √2) | 0.2286 | 0.2257 | **1.3%** |
+| Hierarchy exponent | M_Pl/v = 2Z^(43/2) | 4.97×10¹⁶ | 4.96×10¹⁶ | 0.3% |
+| Matter density | Ω_m = 6/19 | 0.3158 | 0.315 | 0.25% |
+| Dark energy | Ω_Λ = 13/19 | 0.6842 | 0.685 | 0.12% |
+| Proton/electron mass | α⁻¹ × (2Z²/5) | 1836.92 | 1836.15 | 0.042% |
+| Cabibbo angle | 1/(Z - √2) | 0.2286 | 0.2257 | 1.3% |
 
-**Key Discovery:** The Weinberg angle appears in cosmology!
+Notable relation: The Weinberg angle appears in cosmology:
 ```
 Ω_m/Ω_Λ = 6/13 = 2 × sin²θ_W = 2 × (3/13)
 ```
 
-The same geometry determining electroweak mixing also determines the matter/dark-energy partition. This resolves the "coincidence problem."
+The same geometry determining electroweak mixing also determines the matter/dark-energy partition.
 
 ---
 
-## April 20, 2026: Computational Therapeutics Pipeline
+## Computational Biology Pipeline
 
-Open-source drug discovery targeting proteins Big Pharma considers "undruggable."
+The `extended_research/biotech/` directory contains computational drug discovery tools targeting difficult protein classes. All outputs are theoretical predictions requiring experimental validation. Sequences are published under AGPL-3.0 and OpenMTA with SHA-256 hashes in `PRIOR_ART_MANIFEST.json`.
 
-### Pipeline Results
-
-| Target | Disease | Method | Top Result |
-|--------|---------|--------|------------|
-| **c-Myc** | Cancer (70% of cases) | REMD + cryptic pocket | ΔG = -17.75 kcal/mol |
-| **NaV1.7** | Pain (opioid alternative) | Knottin blockers | 3368x selectivity over cardiac |
-| **PETase** | Plastic pollution | Thermostability | +20.4°C Tm (48→68°C) |
-| **CFTR** | Cystic fibrosis | Chaperone peptides | ΔG = -21.42 kcal/mol |
-| **D2R** | Prolactinoma | Selective agonists | 100% D2R, 0% 5-HT2B |
-| **AMPs** | Antibiotic resistance | De novo design | 500+ candidates |
-
-### Three-Layer Validation (Anti-Hallucination)
-
-ML models hallucinate. Our pipeline catches them:
-
-| Layer | Method | Threshold |
-|-------|--------|-----------|
-| 1. Consensus | ESMFold vs AlphaFold2 | RMSD < 2.0 Å |
-| 2. Physics | Ramachandran + steric clashes | >90% favored |
-| 3. Dynamics | 350K thermal stress MD | RMSD plateau required |
-
-### Dark Proteome: c-Myc
-
-c-Myc has no stable structure (IDP). Standard methods fail.
-
-**Solution:** Replica-Exchange MD samples conformational landscape:
-```
-8 replicas: 300K → 450K
-Swap criterion: P = min(1, exp[(βᵢ - βⱼ)(Eⱼ - Eᵢ)])
-Result: Transient pockets identified in metastable states
-```
-
-**Top binder:** `IEQAVQEMEEMY` — locks c-Myc in transcriptionally inactive state.
-
-### Ion Channels: NaV1.7
-
-People without NaV1.7 feel zero pain but are otherwise healthy. Block it peripherally = non-addictive painkiller.
-
-**Challenge:** Must NOT block NaV1.5 (cardiac = death).
-
-**Solution:** Target A819 (NaV1.7) vs S819 (NaV1.5):
-```
-Knottin scaffold: 3 disulfide bonds (C1-C4, C2-C5, C3-C6)
-Hydrophobic binding face → loves A819, hates S819
-Result: >3000x selectivity, can't cross BBB
-```
-
-**Top blocker:** `KCYFYCEREKKCIIVEDCLVRWCEKMKVLVCLMD` — 1 nM NaV1.7, 3368 nM NaV1.5.
-
-### Metalloenzymes: PETase
-
-Wild-type PETase degrades plastic but dies at 48°C. Industry needs 60-70°C.
-
-**Solution:** Disulfide + salt bridge engineering:
-```
-S214C + I168C → new disulfide bond (+12°C)
-S121E → salt bridge (+4°C)
-A180I → improved packing (+3°C)
-```
-
-**Top variant:** `S121E/I168C/A180I/S214C` — Tm = 68.4°C, 85% activity at 60°C.
-
-### Prior Art Status
-
-All sequences published April 20, 2026 under:
-- **AGPL-3.0**: Code (closes cloud loophole)
-- **OpenMTA**: Biological materials (public domain)
-
-**No one can patent these sequences.** SHA-256 hashes in `PRIOR_ART_MANIFEST.json`.
-
-### Therapeutic Scripts
-
-| Script | Location | Purpose |
-|--------|----------|---------|
-| `m4_cmyc_remd_sampler.py` | `dark_proteome/` | IDP conformational sampling |
-| `m4_cryptic_pocket_hunter.py` | `dark_proteome/` | Transient pocket detection |
-| `m4_cmyc_steric_trapper.py` | `dark_proteome/` | c-Myc binder design |
-| `m4_nav17_pore_blocker.py` | `ion_channels/` | NaV1.7 knottin design |
-| `m4_metalloenzyme_upgrader.py` | `metalloenzymes/` | PETase thermostability |
-| `m4_cross_validation_controller.py` | `validation/` | 3-layer hallucination check |
+See `extended_research/biotech/` for details on:
+- Intrinsically disordered proteins (c-Myc cryptic pockets via REMD)
+- Ion channel selectivity (NaV1.7 vs NaV1.5 discrimination)
+- Enzyme thermostability engineering
+- Antimicrobial peptide design
 
 ---
 
-## Publication History: The Journey
-
-*From a simple MOND derivation to a complete 8D Lagrangian in 28 days.*
+## Publication History
 
 | Date | Paper | Key Breakthrough |
 |------|-------|------------------|
@@ -446,10 +354,10 @@ The weakness of gravity comes from Z⁻⁴² geometric suppression!
 
 | Relation | Left | Right | Status |
 |----------|------|-------|--------|
-| Ω_m/Ω_Λ = 2sin²θ_W | 6/13 | 6/13 | ✓ Exact |
-| sin²θ_W × Z = 4/3 | 1.34 | 1.33 | ✓ 0.5% |
-| α × Ω_m × Z² = 1/13 | 0.077 | 0.077 | ✓ 0.4% |
-| N_gen × BEKENSTEIN = GAUGE | 12 | 12 | ✓ Exact |
+| Ω_m/Ω_Λ = 2sin²θ_W | 6/13 | 6/13 | Exact |
+| sin²θ_W × Z = 4/3 | 1.34 | 1.33 | 0.5% |
+| α × Ω_m × Z² = 1/13 | 0.077 | 0.077 | 0.4% |
+| N_gen × BEKENSTEIN = GAUGE | 12 | 12 | Exact |
 
 ---
 

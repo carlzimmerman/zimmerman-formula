@@ -5,7 +5,7 @@
 **Version:** 1.0
 **Date:** April 21, 2026
 **Platform:** Apple Silicon (M4 Max) with Metal Acceleration
-**Authors:** Carl Zimmerman & Claude Opus 4.5
+**Authors:** Carl Zimmerman
 
 ---
 

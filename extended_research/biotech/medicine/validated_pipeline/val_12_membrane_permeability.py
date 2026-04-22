@@ -1,5 +1,23 @@
 #!/usr/bin/env python3
 """
+val_12_membrane_permeability.py
+
+Copyright (C) 2026 Carl Zimmerman
+Zimmerman Unified Geometry Framework (ZUGF)
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
 val_12_membrane_permeability.py - Lipid Bilayer Membrane Permeability Test
 
 Simulates peptide interaction with a POPC/POPE lipid bilayer to assess
@@ -9,10 +27,9 @@ CNS drugs MUST cross the BBB. This script tracks the Z-axis coordinate
 of peptides as they interact with the lipid bilayer surface.
 
 AGPL-3.0-or-later License
-Author: Carl Zimmerman & Claude Opus 4.5
+Author: Carl Zimmerman
 Date: April 21, 2026
 """
-
 import numpy as np
 from pathlib import Path
 from datetime import datetime
@@ -421,14 +438,18 @@ def run_membrane_simulation(peptide_id: str, info: Dict) -> Dict:
 
             # Calculate peptide COM Z-coordinate
             peptide_positions = positions[peptide_indices]
-            com_z = np.mean(peptide_positions[:, 2])  # nm
+            # Strip units if present (OpenMM returns Quantity even with asNumpy=True)
+            if hasattr(peptide_positions, 'value_in_unit'):
+                from openmm.unit import nanometer
+                peptide_positions = peptide_positions.value_in_unit(nanometer)
+            com_z = float(np.mean(peptide_positions[:, 2]))  # nm
 
             time_ps = (report_idx + 1) * REPORT_INTERVAL * TIMESTEP_FS / 1000
             time_ns = time_ps / 1000
 
             z_trajectory.append({
                 'time_ns': float(time_ns),
-                'z_nm': float(com_z),
+                'z_nm': com_z,
             })
 
             if report_idx % 10 == 0:
