@@ -109,6 +109,8 @@ See `extended_research/biotech/` for details on:
 | **Apr 16** | **Higgs quartic**: λ_H(M_Pl) = 1/(4Z²) verified by 2-loop RG | Numerical match |
 | **Apr 16** | **Λ suppression**: Λ ~ exp(-Z²√N) explains 122 orders | Speculative |
 | **Apr 16** | **Vertex CSP**: Only 2 S₃ equivalence classes from anomaly constraints | Proposed |
+| **Apr 22** | **Work halted**: Research halted due to Claudes new weekly usage limits.  To be continued Thursday April 23rd. 
+
 
 ### Derivation Status (v5.4.0)
 
