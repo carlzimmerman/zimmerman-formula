@@ -1,0 +1,59 @@
+{
+  "target": "SARS-CoV-2 Mpro",
+  "off_target": "hERG (KCNH2)",
+  "z2_match": {
+    "residue1": "A:PHE140",
+    "residue2": "C:TRP4",
+    "distance": 6.0197,
+    "deviation_mA": 4.5
+  },
+  "selectivity_anchor": {
+    "residue": "GLU166",
+    "type": "negative",
+    "distance_from_phe140": 8.146977476340538,
+    "strategy": "ADD_POSITIVE (Lys/Arg) to peptide"
+  },
+  "herg_comparison": {
+    "key_residues": [
+      "TYR652",
+      "PHE656"
+    ],
+    "nearby_charges": "NONE",
+    "environment": "hydrophobic_cavity",
+    "selectivity_mechanism": "Positive charge on peptide attracts Mpro GLU166, neutral to hERG"
+  },
+  "original_peptide": "WQLWTSQWLQ",
+  "selective_variants": [
+    {
+      "name": "MPRO_SEL_K2",
+      "sequence": "WKLWTSQWLQ",
+      "modification": "Q2->K (Lys near W1 for GLU166 attraction)",
+      "rationale": "Lysine at position 2 can form salt bridge with GLU166 in S1 pocket"
+    },
+    {
+      "name": "MPRO_SEL_R6",
+      "sequence": "WQLWTRQWLQ",
+      "modification": "Q6->R (Arg central, bridges GLU166)",
+      "rationale": "Arginine at position 6 provides bidentate H-bonding to GLU166"
+    },
+    {
+      "name": "MPRO_SEL_C_K",
+      "sequence": "WQLWTSQWLQK",
+      "modification": "Add K11 (C-terminal Lys)",
+      "rationale": "C-terminal Lys extends toward GLU166 without disrupting core Z\u00b2 geometry"
+    },
+    {
+      "name": "MPRO_SEL_N_K",
+      "sequence": "KWQLWTSQWLQ",
+      "modification": "Add K0 (N-terminal Lys)",
+      "rationale": "N-terminal Lys for alternative anchor orientation"
+    },
+    {
+      "name": "MPRO_SEL_K2R6",
+      "sequence": "WKLWTRQWLQ",
+      "modification": "Q2->K, Q6->R (dual positive anchor)",
+      "rationale": "Dual positive anchors for maximum GLU166 interaction and hERG rejection"
+    }
+  ],
+  "recommendation": "MPRO_SEL_K2R6 (dual positive anchor) for maximum selectivity"
+}
