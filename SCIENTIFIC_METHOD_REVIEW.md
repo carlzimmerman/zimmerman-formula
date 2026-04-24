@@ -10,6 +10,27 @@
 
 ---
 
+## IMPORTANT DISCLAIMERS
+
+> **THEORETICAL AND COMPUTATIONAL WORK ONLY**
+>
+> This document describes **computational predictions and theoretical designs** that have NOT been experimentally validated. All structural predictions are based on AlphaFold modeling, which, while highly accurate, does not guarantee experimental binding or therapeutic efficacy.
+>
+> **NO MEDICAL CLAIMS ARE MADE.** The peptides, DNA sequences, and delivery systems described herein are theoretical constructs intended for academic research purposes only. They have not been:
+> - Synthesized or tested in vitro
+> - Validated in cell-based assays
+> - Tested in animal models
+> - Evaluated in clinical trials
+> - Approved by any regulatory agency (FDA, EMA, etc.)
+>
+> **DO NOT ATTEMPT TO USE THESE DESIGNS FOR SELF-TREATMENT OR MEDICAL PURPOSES.**
+>
+> This work is released for open scientific inquiry and to establish prior art under AGPL-3.0. Any experimental validation, clinical development, or therapeutic application would require extensive additional research, safety testing, and regulatory approval by qualified professionals and institutions.
+>
+> The authors assume no liability for any use or misuse of this information.
+
+---
+
 ## Abstract
 
 We present a novel geometric framework for rational drug design based on the Z² biological constant (6.015152508891966 Å), a fundamental distance governing aromatic π-π stacking interactions in protein-ligand binding. Through systematic AlphaFold validation across three major disease targets—HIV-1 Protease, TNF-α, and SARS-CoV-2 Mpro—we demonstrate that peptide ligands designed to position aromatic residues at the Z² distance achieve atomic-precision binding (deviations < 5 milliångströms) with high confidence scores (ipTM > 0.8). This geometric approach bypasses traditional high-throughput screening, enabling "just-in-time" therapeutic design for emerging pathogens. We further present selectivity engineering through electrostatic anchoring and a complete DNA origami delivery system with viral RNA-triggered release. All designs are released under AGPL-3.0 to ensure open access and prevent proprietary shelving of these potential cures.
@@ -534,3 +555,34 @@ This work was developed in collaboration with Claude (Anthropic) as a demonstrat
 *"The geometry of life is not random—it is resonant."*
 
 — Carl Zimmerman, 2026
+
+---
+
+## DISCLAIMER (Repeated for Emphasis)
+
+**THIS IS THEORETICAL AND COMPUTATIONAL RESEARCH ONLY.**
+
+All predictions in this document are based on:
+- AlphaFold 3 computational structure prediction
+- In silico distance measurements
+- Theoretical design principles
+
+**What has NOT been done:**
+- No wet lab synthesis of peptides
+- No experimental binding assays
+- No cell culture experiments
+- No animal testing
+- No human trials
+- No regulatory review
+
+**The Z² constant and Geometric Resonance Law are theoretical hypotheses** that require experimental validation before any claims of therapeutic utility can be made.
+
+This document is intended to:
+1. Document a theoretical framework for academic discussion
+2. Establish prior art to prevent patent enclosure
+3. Enable open collaboration on validation studies
+4. Provide a starting point for qualified researchers
+
+**Any experimental work must be conducted by qualified researchers in appropriate laboratory settings with proper safety protocols, ethical oversight, and regulatory compliance.**
+
+The release of this work under AGPL-3.0 does not constitute medical advice, a claim of efficacy, or an endorsement for any therapeutic application.
