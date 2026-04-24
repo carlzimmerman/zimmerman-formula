@@ -1,0 +1,86 @@
+{
+  "name": "Z2_CAGE_EGFR_OE_001",
+  "target": "EGFR (ErbB1)",
+  "indication": "EGFR-overexpressing cancers (NSCLC, colorectal, head/neck)",
+  "payload": {
+    "peptide": "YWLQWNRELTL",
+    "name": "EGFR_Z2_EGF_001",
+    "peptides_per_cage": 4
+  },
+  "trigger": {
+    "type": "EGFR mRNA (self-targeting)",
+    "sequence": "GCGCGCACGCGCAGCGCGCGAGCCCGAGCGAG",
+    "specificity": "Elevated in EGFR-overexpressing tumors",
+    "rationale": "Self-targeting: more EGFR = more mRNA = more cage opening = more EGFR inhibition"
+  },
+  "lock_staples": [
+    {
+      "name": "LOCK_EGFR_OE_MAIN",
+      "sequence": "CTCGCTCGGGCTCGCGCGCTGCCTGAATGGCGAATGGC",
+      "function": "Main lock strand - binds EGFR mRNA",
+      "regions": {
+        "toehold": "CTCGCTCG",
+        "branch_migration": "GGCTCGCGCGCTG",
+        "cage_binding": "CCTGAATGGCGAATGGC"
+      },
+      "modifications": [
+        "3'-BHQ2"
+      ]
+    },
+    {
+      "name": "LOCK_EGFR_OE_COMP",
+      "sequence": "GCCATTCGCCATTCAGGCAGCGCGCGAGCC",
+      "function": "Lock complement",
+      "modifications": [
+        "5'-Cy5"
+      ]
+    },
+    {
+      "name": "LOCK_EGFR_OE_STAB",
+      "sequence": "CAGCGCGCGAGCCCGAGCGAG",
+      "function": "Stabilizer strand",
+      "modifications": []
+    }
+  ],
+  "conjugation_sites": [
+    {
+      "name": "CONJ_EGFR_F1",
+      "sequence": "ACGATGCGCCCATCTACACCAACGT",
+      "modifications": [
+        "5'-C6-NH2"
+      ]
+    },
+    {
+      "name": "CONJ_EGFR_F2",
+      "sequence": "GCCAGACGCGAATTATTTTTGATGG",
+      "modifications": [
+        "5'-C6-NH2"
+      ]
+    },
+    {
+      "name": "CONJ_EGFR_F3",
+      "sequence": "CCTGTTTTTGGGGCTTTTCTGATTAT",
+      "modifications": [
+        "5'-C6-NH2"
+      ]
+    },
+    {
+      "name": "CONJ_EGFR_F4",
+      "sequence": "TCAGGCATTGCATTTAAAATATATG",
+      "modifications": [
+        "5'-C6-NH2"
+      ]
+    }
+  ],
+  "mechanism": "\nEGFR Cancer Peptide Delivery System\n====================================\n\nTRIGGER: EGFR mRNA (self-targeting feedback loop)\nTARGET: EGFR extracellular domain\n\n1. NORMAL TISSUE (low EGFR):\n   - Low EGFR mRNA levels\n   - Cage remains closed\n   - No peptide release\n   - Normal cells unaffected\n\n2. EGFR-OVEREXPRESSING TUMOR:\n   - High EGFR mRNA levels\n   - mRNA binds toehold on lock strand\n   - Branch migration opens cage\n   - Cy5 fluorescence confirms activation\n\n3. THERAPEUTIC ACTION:\n   - EGFR_Z2_EGF_001 peptides released\n   - Peptides bind EGFR at EGF binding site\n   - Block EGF/TGF-\u03b1 binding\n   - Prevent EGFR activation and dimerization\n   - Downstream signaling inhibited (RAS/MAPK, PI3K/AKT)\n\n4. SELF-LIMITING FEEDBACK:\n   - EGFR inhibition reduces EGFR mRNA (negative feedback)\n   - Fewer cages open over time\n   - Prevents over-inhibition\n   - Self-regulating therapeutic effect\n\nSELECTIVITY LAYERS:\n   Layer 1: EGFR mRNA trigger (tumor-specific release)\n   Layer 2: EGF-competitive binding (no HER2 binding)\n   Layer 3: PHE357 Z\u00b2 requirement (no HER3 binding)\n   Layer 4: TYR45 H-bond (no HER2 binding)\n",
+  "alternative_triggers": {
+    "MYC_mRNA": {
+      "rationale": "MYC often co-amplified with EGFR in cancers",
+      "sequence": "AUGCCCUCAACGUUAGCUUCACCAACAGG"
+    },
+    "hypoxia_HIF1A": {
+      "rationale": "Tumors are often hypoxic",
+      "sequence": "AUGAGAGCGCGGCGGCGGCGCAACCCAAC"
+    }
+  }
+}

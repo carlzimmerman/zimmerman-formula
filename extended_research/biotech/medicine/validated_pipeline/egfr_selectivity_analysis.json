@@ -1,0 +1,83 @@
+{
+  "target": "EGFR (Epidermal Growth Factor Receptor, ErbB1)",
+  "indication": "EGFR-driven cancers (NSCLC, colorectal, head/neck, glioblastoma)",
+  "z2_sites": {
+    "PHE357": "Primary Z\u00b2 aromatic (Domain III, EGF binding)",
+    "TYR45": "Secondary aromatic (Domain I)",
+    "PHE263": "Dimerization arm tip"
+  },
+  "off_targets": {
+    "HER2": "No ligand binding site - easy selectivity",
+    "HER3": "LEU357 (not PHE) - no Z\u00b2 stacking",
+    "HER4": "Most similar - hardest to discriminate"
+  },
+  "key_selectivity_insight": {
+    "HER2": "Target EGF binding site (HER2 has none)",
+    "HER3": "Require PHE357 Z\u00b2 stacking (HER3 has LEU)",
+    "HER4": "Combine multiple subtle differences"
+  },
+  "selectivity_anchors": [
+    {
+      "anchor": "Anchor@Ligand binding domain: EGFR=EGF/TGF-\u03b1 binding site (score=0.95)",
+      "score": 0.95,
+      "strategy": "Design EGF-competitive peptide - HER2 cannot bind (no ligand site)"
+    },
+    {
+      "anchor": "Anchor@PHE357 (Domain III): EGFR=PHE (aromatic) (score=0.88)",
+      "score": 0.88,
+      "strategy": "Z\u00b2 stacking with PHE357 - HER3 has LEU, no aromatic stacking"
+    },
+    {
+      "anchor": "Anchor@PHE263 (Dimerization arm): EGFR=Exposed dimerization arm (score=0.85)",
+      "score": 0.85,
+      "strategy": "Target EGFR-specific dimerization arm geometry"
+    },
+    {
+      "anchor": "Anchor@TYR45 (Domain I): EGFR=TYR (aromatic + OH) (score=0.80)",
+      "score": 0.8,
+      "strategy": "H-bond to TYR45 OH - HER2 has PHE (no OH)"
+    },
+    {
+      "anchor": "Anchor@GLN384 (Domain III): EGFR=GLN (score=0.75)",
+      "score": 0.75,
+      "strategy": "Exploit different H-bonding partners at this position"
+    }
+  ],
+  "peptide_designs": [
+    {
+      "name": "EGFR_Z2_EGF_001",
+      "sequence": "YWLQWNRELTL",
+      "selectivity": "EGF-competitive binding at Domain III - HER2 has no ligand binding site"
+    },
+    {
+      "name": "EGFR_Z2_DIM_001",
+      "sequence": "FWDYRFWELT",
+      "selectivity": "Targets EGFR-specific dimerization arm conformation"
+    },
+    {
+      "name": "EGFR_Z2_DUAL_001",
+      "sequence": "YLWQFWNQRELT",
+      "selectivity": "Bridges Domain I and III - requires intact EGFR ligand binding site"
+    },
+    {
+      "name": "EGFR_Z2_antiHER3_001",
+      "sequence": "WWFQRELTYK",
+      "selectivity": "Heavy aromatic dependence - HER3 LEU357 cannot provide Z\u00b2 stacking"
+    },
+    {
+      "name": "EGFR_Z2_MIN_001",
+      "sequence": "YWQFRL",
+      "selectivity": "Minimal peptide with key selectivity contacts"
+    }
+  ],
+  "best_design": {
+    "name": "EGFR_Z2_EGF_001",
+    "sequence": "YWLQWNRELTL",
+    "rationale": "EGF-competitive at Domain III + Z\u00b2 with PHE357 + TYR45 H-bond"
+  },
+  "delivery_system": {
+    "cage": "Z2_CAGE_EGFR_OE_001",
+    "trigger": "EGFR mRNA (self-targeting)",
+    "advantage": "Self-limiting feedback loop prevents over-inhibition"
+  }
+}

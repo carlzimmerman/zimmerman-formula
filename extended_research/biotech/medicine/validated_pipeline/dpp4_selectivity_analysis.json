@@ -1,0 +1,78 @@
+{
+  "target": "DPP-4 (Dipeptidyl Peptidase-4, CD26)",
+  "indication": "Type 2 Diabetes Mellitus",
+  "mechanism": "DPP-4 inhibition preserves incretin hormones (GLP-1, GIP)",
+  "z2_sites": {
+    "TRP629": "Primary Z\u00b2 aromatic (near catalytic Ser630)",
+    "TYR662": "Secondary Z\u00b2 aromatic (S1 pocket)"
+  },
+  "critical_safety_concern": {
+    "off_targets": "DPP-8 and DPP-9",
+    "toxicity": "DPP-8/9 inhibition causes multiorgan toxicity",
+    "solution": "Exploit charge reversal at position 205"
+  },
+  "selectivity_discovery": {
+    "key_finding": "GLU205 in DPP-4 vs LYS205 in DPP-8 vs ARG205 in DPP-9",
+    "mechanism": "OPPOSITE charges allow perfect selectivity",
+    "strategy": "Positive peptide charges bind DPP-4 GLU, repelled by DPP-8/9 LYS/ARG"
+  },
+  "selectivity_anchors": [
+    {
+      "anchor": "Anchor@205: DPP-4=GLU vs DPP-8=LYS/DPP-9=ARG (score=0.99)",
+      "score": 0.99,
+      "strategy": "Add POSITIVE charge (Arg/Lys) to peptide - will bind DPP-4 GLU205 but be REPELLED by DPP-8 LYS / DPP-9 ARG"
+    },
+    {
+      "anchor": "Anchor@206: DPP-4=GLU vs DPP-8=ASN/DPP-9=SER (score=0.90)",
+      "score": 0.9,
+      "strategy": "Add POSITIVE charge - salt bridge with DPP-4 GLU206, no interaction with DPP-8/9 neutral residues"
+    },
+    {
+      "anchor": "Anchor@358: DPP-4=ARG vs DPP-8=MET/DPP-9=LEU (score=0.88)",
+      "score": 0.88,
+      "strategy": "Add NEGATIVE charge - binds DPP-4 ARG358, repelled by hydrophobic DPP-8/9"
+    },
+    {
+      "anchor": "Anchor@125: DPP-4=ARG vs DPP-8=GLN/DPP-9=GLN (score=0.85)",
+      "score": 0.85,
+      "strategy": "Add NEGATIVE charge (Asp/Glu) - salt bridge with DPP-4 ARG125"
+    }
+  ],
+  "peptide_designs": [
+    {
+      "name": "DPP4_Z2_SEL_RK",
+      "sequence": "RWPKWGELTK",
+      "selectivity": "GLU205 in DPP-4 vs LYS205 in DPP-8: positive peptide charges BIND DPP-4 but are REPELLED by DPP-8"
+    },
+    {
+      "name": "DPP4_Z2_SEL_DUAL",
+      "sequence": "RWDKWDELRD",
+      "selectivity": "Engage both GLU (205/206) and ARG (125/358) unique to DPP-4"
+    },
+    {
+      "name": "DPP4_Z2_ARO_001",
+      "sequence": "RWPKWYWKLW",
+      "selectivity": "Dense aromatic network matches DPP-4 S1 pocket + charge selectivity"
+    },
+    {
+      "name": "DPP4_Z2_MIN_001",
+      "sequence": "RWKELT",
+      "selectivity": "Minimal design focusing on critical selectivity residues"
+    },
+    {
+      "name": "DPP4_Z2_GLP1_001",
+      "sequence": "HARKWGEFTSD",
+      "selectivity": "GLP-1 scaffold with selectivity residues inserted"
+    }
+  ],
+  "best_design": {
+    "name": "DPP4_Z2_SEL_RK",
+    "sequence": "RWPKWGELTK",
+    "rationale": "R1K4 for GLU205/206 selectivity + W2W5 for Z\u00b2 stacking"
+  },
+  "delivery_system": {
+    "cage": "Z2_CAGE_DPP4_GLUC_001",
+    "trigger": "Glucose-responsive (phenylboronic acid)",
+    "advantage": "Self-regulating release during hyperglycemia only"
+  }
+}

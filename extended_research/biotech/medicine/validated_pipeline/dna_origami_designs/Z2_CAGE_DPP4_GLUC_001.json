@@ -1,0 +1,84 @@
+{
+  "name": "Z2_CAGE_DPP4_GLUC_001",
+  "target": "DPP-4 (CD26)",
+  "indication": "Type 2 Diabetes",
+  "payload": {
+    "peptide": "RWPKWGELTK",
+    "name": "DPP4_Z2_SEL_RK",
+    "peptides_per_cage": 4
+  },
+  "trigger": {
+    "type": "Glucose-responsive (phenylboronic acid)",
+    "mechanism": "PBA-modified DNA binds glucose at high concentrations",
+    "threshold": ">200 mg/dL (hyperglycemic)",
+    "specificity": "Releases payload only during hyperglycemia"
+  },
+  "lock_staples": [
+    {
+      "name": "LOCK_GLUC_PBA_MAIN",
+      "sequence": "ATCGATCGATCGATCGCCTGAATGGCGAATGGC",
+      "function": "Main lock strand with PBA modification",
+      "modifications": [
+        "3'-BHQ2",
+        "Internal-PBA (positions 5, 10, 15)"
+      ],
+      "notes": "PBA groups bind cis-diols in glucose"
+    },
+    {
+      "name": "LOCK_GLUC_PBA_COMP",
+      "sequence": "GCCATTCGCCATTCAGGCGATCGATCGATCGAT",
+      "function": "Lock complement - released when PBA binds glucose",
+      "modifications": [
+        "5'-Cy5"
+      ]
+    },
+    {
+      "name": "LOCK_GLUC_STAB",
+      "sequence": "CGATCGATCGATCGAT",
+      "function": "Stabilizer strand",
+      "modifications": []
+    }
+  ],
+  "conjugation_sites": [
+    {
+      "name": "CONJ_DPP4_F1",
+      "sequence": "ACGATGCGCCCATCTACACCAACGT",
+      "modifications": [
+        "5'-C6-NH2"
+      ]
+    },
+    {
+      "name": "CONJ_DPP4_F2",
+      "sequence": "GCCAGACGCGAATTATTTTTGATGG",
+      "modifications": [
+        "5'-C6-NH2"
+      ]
+    },
+    {
+      "name": "CONJ_DPP4_F3",
+      "sequence": "CCTGTTTTTGGGGCTTTTCTGATTAT",
+      "modifications": [
+        "5'-C6-NH2"
+      ]
+    },
+    {
+      "name": "CONJ_DPP4_F4",
+      "sequence": "TCAGGCATTGCATTTAAAATATATG",
+      "modifications": [
+        "5'-C6-NH2"
+      ]
+    }
+  ],
+  "mechanism": "\nDPP-4 Peptide Delivery System (Glucose-Responsive)\n===================================================\n\nTRIGGER: High glucose (>200 mg/dL)\nTARGET: DPP-4 (to increase GLP-1 levels)\n\n1. NORMOGLYCEMIC STATE (<140 mg/dL):\n   - PBA groups on lock strand are free\n   - Lock maintains normal duplex stability\n   - Cage remains closed\n   - No peptide release\n\n2. HYPERGLYCEMIC STATE (>200 mg/dL):\n   - Glucose binds to PBA groups (cis-diol interaction)\n   - PBA-glucose complex destabilizes lock duplex\n   - Conformational change triggers strand displacement\n   - Cy5 fluorescence signals opening\n\n3. THERAPEUTIC RELEASE:\n   - DPP4_Z2_SEL_RK peptides released\n   - Peptides bind DPP-4 at Z\u00b2 geometry (TRP629)\n   - R1/K4 engage GLU205/GLU206 (DPP-4 selective)\n   - DPP-4 inhibited \u2192 GLP-1 preserved \u2192 insulin release\n\nSELECTIVITY ADVANTAGES:\n   - Peptide does NOT bind DPP-8/9 (opposite charges at 205)\n   - Cage only opens during hyperglycemia\n   - Self-regulating: glucose drops \u2192 cage re-closes\n   - Prevents hypoglycemia risk\n\nSAFETY:\n   - DPP-8/9 NOT inhibited \u2192 no multiorgan toxicity\n   - Glucose-responsive \u2192 no hypoglycemia\n   - Local GI delivery possible \u2192 reduced systemic exposure\n",
+  "alternative_triggers": {
+    "mRNA_based": {
+      "target": "TXNIP mRNA",
+      "rationale": "TXNIP is upregulated by high glucose",
+      "sequence": "AUGAAGCAGAUCCCAGCAGGAGUGUU"
+    },
+    "peptide_based": {
+      "target": "Insulin receptor activation",
+      "rationale": "Could create insulin-responsive release"
+    }
+  }
+}
