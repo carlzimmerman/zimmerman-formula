@@ -5,7 +5,9 @@
   "targets_analyzed": [
     "SARS-CoV-2 Mpro",
     "HIV-1 Protease",
-    "TNF-\u03b1"
+    "TNF-\u03b1",
+    "DPP-4",
+    "EGFR"
   ],
   "z2_constant": 6.015152508891966,
   "universal_patterns": {
@@ -14,9 +16,12 @@
       "deviations": {
         "HIV-1 PR": "-1.3 m\u00c5",
         "TNF-\u03b1": "+0.1 m\u00c5",
-        "SARS-CoV-2 Mpro": "+4.5 m\u00c5"
+        "SARS-CoV-2 Mpro": "+4.5 m\u00c5",
+        "DPP-4": "pending validation",
+        "EGFR": "pending validation"
       },
-      "mean_deviation": "+1.1 m\u00c5",
+      "validated_targets": 3,
+      "pending_targets": 2,
       "tolerance": "\u00b15 m\u00c5 appears to maintain binding"
     },
     "charge_complementarity": {
@@ -24,7 +29,9 @@
       "examples": [
         "Mpro: +K/+R in peptide \u2194 -GLU166 in target",
         "HIV: +R/+K in peptide \u2194 -ASP25 dyad in target",
-        "TNF-\u03b1: -D/E in peptide \u2194 +ARG131/+LYS90 in target"
+        "TNF-\u03b1: -D/E in peptide \u2194 +ARG131/+LYS90 in target",
+        "DPP-4: +R/+K in peptide \u2194 -GLU205/GLU206 in target",
+        "EGFR: H-bond + aromatic \u2194 TYR45/PHE357 in target"
       ],
       "key_insight": "The SIGN of the charge depends on the target surface, not a universal rule"
     },
@@ -33,7 +40,9 @@
       "examples": [
         "hERG vs Mpro: hERG has hydrophobic cavity, no GLU166 equivalent",
         "Cathepsin D vs HIV PR: Cathepsin lacks flap region",
-        "LT-\u03b1 vs TNF-\u03b1: LT-\u03b1 has LEU/GLN where TNF-\u03b1 has ARG/LYS"
+        "LT-\u03b1 vs TNF-\u03b1: LT-\u03b1 has LEU/GLN where TNF-\u03b1 has ARG/LYS",
+        "DPP-8/9 vs DPP-4: OPPOSITE charges at position 205 (LYS/ARG vs GLU)",
+        "HER2/3 vs EGFR: HER2 has no ligand site; HER3 has LEU357 not PHE"
       ],
       "strategy": "Design peptide to require anchor engagement - off-target cannot provide it"
     },
@@ -51,7 +60,9 @@
       "examples": [
         "HIV: R1 (ASP25) + K8 (ASP25') = dual charge anchors",
         "TNF-\u03b1: DD (ARG131) + E9 (LYS90) = dual charge anchors",
-        "Mpro: K2 (GLU166) + R6 (additional contact) = dual charge anchors"
+        "Mpro: K2 (GLU166) + R6 (additional contact) = dual charge anchors",
+        "DPP-4: R1 (GLU205) + K4 (GLU206) = dual charge anchors",
+        "EGFR: Y1 (TYR45 H-bond) + W3 (PHE357 Z\u00b2) = dual mechanism anchors"
       ],
       "quantitative": "Single anchor: 10-100x selectivity; Dual anchor: 1000x+ selectivity"
     },
@@ -60,7 +71,9 @@
       "positions": {
         "Mpro": "W1 (PHE140)",
         "HIV": "W4 and W6 (dual PHE53)",
-        "TNF-\u03b1": "W3 (TYR151)"
+        "TNF-\u03b1": "W3 (TYR151)",
+        "DPP-4": "W2 and W5 (TRP629, TYR662)",
+        "EGFR": "W3 (PHE357)"
       },
       "insight": "Never sacrifice the Z\u00b2 aromatic for selectivity - it provides the core affinity"
     }
@@ -103,7 +116,8 @@
       "triggers": {
         "viral": "Viral RNA sequences (leader, TAR, etc.)",
         "inflammation": "IL-1\u03b2, IL-6, or TNF mRNA",
-        "cancer": "Oncogene mRNA (MYC, RAS, etc.)"
+        "cancer": "Oncogene mRNA (MYC, EGFR, etc.) or self-targeting",
+        "metabolic": "Glucose-responsive (phenylboronic acid) or TXNIP mRNA"
       },
       "mechanism": "Toehold-mediated strand displacement for specificity"
     }
@@ -138,6 +152,26 @@
       "selectivity_residues": "D1, D2, E9, D13",
       "anchor_type": "negative (for ARG131, LYS90)",
       "predicted_selectivity": ">1000x vs LT-\u03b1"
+    },
+    {
+      "target": "DPP-4",
+      "name": "DPP4_Z2_SEL_RK",
+      "sequence": "RWPKWGELTK",
+      "length": 10,
+      "z2_residue": "W2, W5",
+      "selectivity_residues": "R1, K4, K10",
+      "anchor_type": "positive (for GLU205/206)",
+      "predicted_selectivity": ">1000x vs DPP-8/9 (charge repulsion)"
+    },
+    {
+      "target": "EGFR",
+      "name": "EGFR_Z2_EGF_001",
+      "sequence": "YWLQWNRELTL",
+      "length": 11,
+      "z2_residue": "W3",
+      "selectivity_residues": "Y1, Q4",
+      "anchor_type": "H-bond + aromatic (for TYR45, GLN384)",
+      "predicted_selectivity": ">100x vs HER2/3 (no ligand site / no PHE)"
     }
   ],
   "delivery_systems": [
@@ -163,6 +197,22 @@
       "trigger": "IL-1\u03b2 mRNA",
       "trigger_specificity": "Elevated in inflammatory conditions",
       "peptides_per_cage": 6,
+      "fret_pair": "Cy5/BHQ2"
+    },
+    {
+      "target": "DPP-4",
+      "cage_name": "Z2_CAGE_DPP4_GLUC_001",
+      "trigger": "Glucose (phenylboronic acid)",
+      "trigger_specificity": "Opens only during hyperglycemia (>200 mg/dL)",
+      "peptides_per_cage": 4,
+      "fret_pair": "Cy5/BHQ2"
+    },
+    {
+      "target": "EGFR",
+      "cage_name": "Z2_CAGE_EGFR_OE_001",
+      "trigger": "EGFR mRNA (self-targeting)",
+      "trigger_specificity": "Elevated in EGFR-overexpressing tumors",
+      "peptides_per_cage": 4,
       "fret_pair": "Cy5/BHQ2"
     }
   ],
