@@ -1,0 +1,84 @@
+{
+  "target": "HIV-1 Protease",
+  "off_targets": [
+    "CYP3A4",
+    "Cathepsin D"
+  ],
+  "z2_match": {
+    "residue1": "A:PHE53",
+    "residue2": "C:TRP3",
+    "distance": 6.0139,
+    "deviation_mA": -1.3
+  },
+  "selectivity_anchors": {
+    "flap_region": {
+      "residues": [
+        "ILE50",
+        "GLY51",
+        "GLY52"
+      ],
+      "strategy": "Hydrophobic flap interaction",
+      "unique_to_hiv": true
+    },
+    "catalytic_asp": {
+      "residues": [
+        "ASP25",
+        "ASP25_B"
+      ],
+      "strategy": "Positive charge complementarity",
+      "shared_with_cathepsin": true
+    }
+  },
+  "cyp3a4_avoidance": {
+    "avoid": [
+      "His",
+      "Cys",
+      "imidazole groups"
+    ],
+    "reason": "Would coordinate to heme iron"
+  },
+  "cathepsin_d_differentiation": {
+    "strategy": "Exploit HIV flap architecture",
+    "reason": "Cathepsin D lacks mobile flap region"
+  },
+  "original_peptide": "LEWTYEWTLTE",
+  "selective_variants": [
+    {
+      "name": "HIV_SEL_FLAP_I4",
+      "sequence": "LEWIYEWTLTE",
+      "modification": "T4->I (Ile for flap ILE50 interaction)",
+      "rationale": "Isoleucine at position 4 creates hydrophobic contact with HIV flap region"
+    },
+    {
+      "name": "HIV_SEL_FLAP_C_PRO",
+      "sequence": "LEWTYEWTLTEP",
+      "modification": "Add P12 (C-terminal Pro for flap fit)",
+      "rationale": "Proline rigidifies C-terminus to fit under closing flap"
+    },
+    {
+      "name": "HIV_SEL_W5",
+      "sequence": "LEWTWEWTLTE",
+      "modification": "Y5->W (extra Trp for PHE53 stacking)",
+      "rationale": "Additional tryptophan creates second Z\u00b2 contact with flap PHE53"
+    },
+    {
+      "name": "HIV_SEL_N_R",
+      "sequence": "RLEWTYEWTLTE",
+      "modification": "Add R0 (N-terminal Arg)",
+      "rationale": "Arginine at N-terminus for ASP25 salt bridge"
+    },
+    {
+      "name": "HIV_SEL_K7",
+      "sequence": "LEWTYEKTLTE",
+      "modification": "T7->K (Lys for ASP25 interaction)",
+      "rationale": "Lysine at position 7 forms salt bridge with catalytic ASP25"
+    },
+    {
+      "name": "HIV_SEL_R0_K7",
+      "sequence": "RLEWTYEKTLTE",
+      "modification": "Add R0 + T7->K (dual positive)",
+      "rationale": "Dual positive charges for maximum ASP25/ASP25-prime engagement"
+    }
+  ],
+  "recommendation": "HIV_SEL_R0_K7 for ASP25 engagement + HIV_SEL_W5 for flap stacking"
+}
