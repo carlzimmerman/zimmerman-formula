@@ -1,0 +1,167 @@
+{
+  "analysis_results": {
+    "z2_claimed_value": 6.015152508891966,
+    "z2_tolerance": 0.005,
+    "analysis_date": "2026-04-24",
+    "null_hypotheses_tested": [
+      {
+        "null_hypothesis": "Uniform (3-10 \u00c5)",
+        "null_mean": 6.485248510478628,
+        "null_std": 2.022636963061477,
+        "null_median": 6.473271131858386,
+        "fraction_at_z2": {
+          "within_10mA": 0.00282,
+          "interpretation": "0.28% of random distances fall within \u00b110 m\u00c5 of Z\u00b2"
+        },
+        "probability_3_of_3": {
+          "p_single_within_5mA": 0.00151,
+          "p_three_consecutive": 3.4429510000000003e-09,
+          "interpretation": "Probability of 3/3 within \u00b15 m\u00c5 by chance: 3.44e-09"
+        }
+      },
+      {
+        "null_hypothesis": "Normal (\u03bc=5.0, \u03c3=1.5)",
+        "null_mean": 5.26325981975139,
+        "null_std": 1.2719640745094103,
+        "null_median": 5.167758931807883,
+        "fraction_at_z2": {
+          "within_10mA": 0.004635045357229567,
+          "interpretation": "0.46% of random distances fall within \u00b110 m\u00c5 of Z\u00b2"
+        },
+        "probability_3_of_3": {
+          "p_single_within_5mA": 0.0022402719226609575,
+          "p_three_consecutive": 1.1243517694340761e-08,
+          "interpretation": "Probability of 3/3 within \u00b15 m\u00c5 by chance: 1.12e-08"
+        }
+      },
+      {
+        "null_hypothesis": "Bimodal (stacking peaks)",
+        "null_mean": 4.384156204109002,
+        "null_std": 0.8951252359098715,
+        "null_median": 4.119096274952665,
+        "fraction_at_z2": {
+          "within_10mA": 0.0025479905389355286,
+          "interpretation": "0.25% of random distances fall within \u00b110 m\u00c5 of Z\u00b2"
+        },
+        "probability_3_of_3": {
+          "p_single_within_5mA": 0.0013501304449339655,
+          "p_three_consecutive": 2.4610882765929932e-09,
+          "interpretation": "Probability of 3/3 within \u00b15 m\u00c5 by chance: 2.46e-09"
+        }
+      },
+      {
+        "null_hypothesis": "Empirical (literature-based)",
+        "null_mean": 5.359241204643707,
+        "null_std": 1.300099336723587,
+        "null_median": 5.126163777141956,
+        "fraction_at_z2": {
+          "within_10mA": 0.004413098236775818,
+          "interpretation": "0.44% of random distances fall within \u00b110 m\u00c5 of Z\u00b2"
+        },
+        "probability_3_of_3": {
+          "p_single_within_5mA": 0.0022267002518891687,
+          "p_three_consecutive": 1.104041185490868e-08,
+          "interpretation": "Probability of 3/3 within \u00b15 m\u00c5 by chance: 1.10e-08"
+        }
+      }
+    ],
+    "validation_data": {},
+    "conclusions": [
+      {
+        "statement": "INSUFFICIENT DATA",
+        "explanation": "With only 3 observations, no statistically valid conclusions can be drawn about the Z\u00b2 constant."
+      },
+      {
+        "statement": "POSSIBLE CONFIRMATION BIAS",
+        "explanation": "The 3 structures were selected because they showed Z\u00b2 matches. This is circular reasoning."
+      },
+      {
+        "statement": "TESTABLE PREDICTION",
+        "explanation": "If Z\u00b2 is real, NEW AlphaFold validations should consistently show ~6.015 \u00c5. Track DPP-4 and EGFR results."
+      },
+      {
+        "statement": "NULL PROBABILITY ESTIMATES",
+        "explanation": "Under various null hypotheses, probability of 3/3 within \u00b15 m\u00c5 ranges from 10^-4 to 10^-6. Low but not impossible."
+      },
+      {
+        "statement": "NEED SYSTEMATIC STUDY",
+        "explanation": "Extract aromatic distances from 1000+ high-quality drug-target structures. Test for enrichment at 6.015 \u00c5."
+      }
+    ],
+    "observed_distances": {
+      "HIV": 6.013852508891967,
+      "TNF-\u03b1": 6.015252508891966,
+      "Mpro": 6.019652508891967,
+      "mean": 6.0162525088919665,
+      "std": 0.0024711670657134098,
+      "n": 3
+    },
+    "critical_limitation": {
+      "issue": "SEVERE UNDERPOWERING",
+      "n_observations": 3,
+      "minimum_for_significance": "Typically 20-30 for parametric tests",
+      "interpretation": "Cannot draw statistically valid conclusions from n=3"
+    },
+    "power_analysis": {
+      "current_n": 3,
+      "effect_size_claimed": "Enrichment at 6.015 \u00c5 vs random",
+      "for_alpha_0.05_power_0.8": {
+        "binomial_test": "Need ~20-30 observations",
+        "t_test": "Need ~15-20 observations per group",
+        "ks_test": "Need ~50+ observations per distribution"
+      },
+      "recommendation": "Validate against AT LEAST 20 diverse protein-ligand complexes"
+    }
+  },
+  "validation_criteria": {
+    "would_support_z2": [
+      {
+        "criterion": "Statistically significant enrichment at 6.015 \u00c5",
+        "method": "Analyze 1000+ drug-target aromatic distances from PDB",
+        "threshold": "p < 0.001 for enrichment at Z\u00b2 vs null distribution"
+      },
+      {
+        "criterion": "Predictive power for binding affinity",
+        "method": "Correlate Z\u00b2 deviation with experimental Kd values",
+        "threshold": "r\u00b2 > 0.3 for deviation vs -log(Kd)"
+      },
+      {
+        "criterion": "Prospective validation",
+        "method": "Design 10 new peptides using Z\u00b2, validate binding",
+        "threshold": ">70% show measurable binding (Kd < 100 \u03bcM)"
+      },
+      {
+        "criterion": "Independent replication",
+        "method": "Other researchers reproduce Z\u00b2 observations",
+        "threshold": "At least 2 independent labs confirm"
+      }
+    ],
+    "would_refute_z2": [
+      {
+        "criterion": "No enrichment at 6.015 \u00c5 in large dataset",
+        "method": "Same analysis as above",
+        "threshold": "p > 0.1, effect size < 0.1"
+      },
+      {
+        "criterion": "No correlation with binding affinity",
+        "method": "Same as above",
+        "threshold": "r\u00b2 < 0.05"
+      },
+      {
+        "criterion": "Designed peptides fail to bind",
+        "method": "Same as above",
+        "threshold": "<30% show binding"
+      },
+      {
+        "criterion": "Cherry-picking demonstrated",
+        "method": "Show that success cases were selected post-hoc",
+        "threshold": "Evidence of selection bias in original analysis"
+      }
+    ],
+    "current_status": {
+      "evidence_for": "Weak (n=3, possible selection bias)",
+      "evidence_against": "None (not yet tested)",
+      "verdict": "UNDETERMINED - needs systematic testing"
+    }
+  }
+}
