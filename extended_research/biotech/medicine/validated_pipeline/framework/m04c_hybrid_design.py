@@ -41,7 +41,7 @@ except ImportError:
 # Z² AND STABILITY CONSTANTS
 # =============================================================================
 
-Z2_INTERACTION_DISTANCE = 6.02  # Å - optimal binding distance
+Z2_INTERACTION_DISTANCE = 6.015152508891966  # Å - precise: 5.788810036466141 × 1.0391 (310K expansion)
 
 # Stability constraints (from compositional design lessons)
 MAX_HYDROPHOBIC_FRACTION = 0.50  # Prevent aggregation

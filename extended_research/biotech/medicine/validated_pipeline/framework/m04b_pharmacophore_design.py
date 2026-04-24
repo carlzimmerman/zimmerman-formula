@@ -55,7 +55,7 @@ SQRT_Z2 = np.sqrt(Z_SQUARED)  # ≈ 5.79 Å
 
 # Optimal interaction distance for peptide-target binding
 # This is the target distance from anchor atom to peptide sidechain terminal
-Z2_INTERACTION_DISTANCE = 6.02  # Å - empirical biological optimum
+Z2_INTERACTION_DISTANCE = 6.015152508891966  # Å - precise: 5.788810036466141 × 1.0391 (310K expansion)
 
 # H-bond geometry
 HBOND_DISTANCE = 2.9  # Å typical N-H...O=C

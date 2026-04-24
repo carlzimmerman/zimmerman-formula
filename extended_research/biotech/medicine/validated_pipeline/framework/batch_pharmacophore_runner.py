@@ -32,31 +32,32 @@ class TargetConfig:
 
 
 # Disease targets with their PDB structures
+# NOTE: target_name[:10].upper() must match existing project directory names
 TARGETS = [
     TargetConfig(
         disease_name="Parkinson's Disease",
-        target_name="Alpha-synuclein",
+        target_name="Alpha-synu",  # → ALPHA-SYNU_P37840
         uniprot_id="P37840",
         pdb_file="1XQ8.pdb",
         therapeutic_goal="Prevent aggregation, reduce Lewy bodies"
     ),
     TargetConfig(
         disease_name="Alzheimer's Disease",
-        target_name="Tau protein",
+        target_name="Tau protei",  # → TAU_PROTEI_P10636
         uniprot_id="P10636",
         pdb_file="5O3L.pdb",
         therapeutic_goal="Prevent tau tangles, stabilize microtubules"
     ),
     TargetConfig(
         disease_name="HIV/AIDS",
-        target_name="gp120",
+        target_name="Envelope g",  # → ENVELOPE_G_P04578 (gp120)
         uniprot_id="P04578",
         pdb_file="3JWD.pdb",
         therapeutic_goal="Block CD4 binding, prevent viral entry"
     ),
     TargetConfig(
         disease_name="Labor/Childbirth",
-        target_name="Oxytocin receptor",
+        target_name="Oxytocin r",  # → OXYTOCIN_R_P30559
         uniprot_id="P30559",
         pdb_file="6TPK.pdb",
         therapeutic_goal="Modulate uterine contractions"
@@ -277,7 +278,7 @@ def save_results(results: List[TargetResult], output_dir: Path) -> None:
     output = {
         'timestamp': datetime.now().isoformat(),
         'method': 'Z² Pharmacophore Design',
-        'z2_distance': 6.02,
+        'z2_distance': 6.015152508891966,
         'n_targets': len(results),
         'n_successful': sum(1 for r in results if r.success),
         'results': [asdict(r) for r in results]
@@ -314,7 +315,7 @@ def main():
     print(f"    Targets: {len(targets)}")
     print(f"    Designs per target: {args.n_designs}")
     print(f"    Controls per target: {args.n_controls}")
-    print(f"    Z² interaction distance: 6.02 Å")
+    print(f"    Z² interaction distance: 6.015152508891966 Å (precise)")
 
     results = []
     for i, target in enumerate(targets):
