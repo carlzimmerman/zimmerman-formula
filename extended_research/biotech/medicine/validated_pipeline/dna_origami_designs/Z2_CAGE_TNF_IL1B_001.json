@@ -1,0 +1,90 @@
+{
+  "name": "Z2_CAGE_TNF_IL1B_001",
+  "target": "TNF-\u03b1 trimer",
+  "indication": "Rheumatoid arthritis, IBD, Psoriasis",
+  "payload": {
+    "peptide": "DDWEYTWEQELTD",
+    "name": "TNF_Z2_SEL_DUAL",
+    "peptides_per_cage": 6
+  },
+  "trigger": {
+    "type": "IL-1\u03b2 mRNA",
+    "sequence": "GGAUUCCUGAAACUGUUUCUGGCAUGAUCAUG",
+    "specificity": "Elevated in inflammatory conditions",
+    "rationale": "IL-1\u03b2 is co-elevated with TNF-\u03b1 in autoimmune inflammation"
+  },
+  "lock_staples": [
+    {
+      "name": "LOCK_IL1B_MAIN",
+      "sequence": "CATGATCATGCCAGAAACAGCCTGAATGGCGAATGGC",
+      "function": "Main lock strand - binds cage and recognizes IL-1\u03b2 mRNA",
+      "regions": {
+        "toehold": "CATGATCA",
+        "branch_migration": "TGCCAGAAACAG",
+        "cage_binding": "CCTGAATGGCGAATGGC"
+      },
+      "modifications": [
+        "3'-BHQ2"
+      ]
+    },
+    {
+      "name": "LOCK_IL1B_COMP",
+      "sequence": "GCCATTCGCCATTCAGG",
+      "function": "Lock complement - released upon IL-1\u03b2 binding",
+      "modifications": [
+        "5'-Cy5"
+      ]
+    },
+    {
+      "name": "LOCK_IL1B_STAB",
+      "sequence": "CTGTTTCTGGCATGATCATG",
+      "function": "Stabilizer strand",
+      "modifications": []
+    }
+  ],
+  "conjugation_sites": [
+    {
+      "name": "CONJ_TNF_F1",
+      "sequence": "ACGATGCGCCCATCTACACCAACGT",
+      "modifications": [
+        "5'-C6-NH2"
+      ]
+    },
+    {
+      "name": "CONJ_TNF_F2",
+      "sequence": "GCCAGACGCGAATTATTTTTGATGG",
+      "modifications": [
+        "5'-C6-NH2"
+      ]
+    },
+    {
+      "name": "CONJ_TNF_F3",
+      "sequence": "CCTGTTTTTGGGGCTTTTCTGATTAT",
+      "modifications": [
+        "5'-C6-NH2"
+      ]
+    },
+    {
+      "name": "CONJ_TNF_F4",
+      "sequence": "TCAGGCATTGCATTTAAAATATATG",
+      "modifications": [
+        "5'-C6-NH2"
+      ]
+    },
+    {
+      "name": "CONJ_TNF_F5",
+      "sequence": "AACGTTATTAATTTTAAAAGTTTGA",
+      "modifications": [
+        "5'-C6-NH2"
+      ]
+    },
+    {
+      "name": "CONJ_TNF_F6",
+      "sequence": "GTAGCATTCCACAGACAGCCCTCAT",
+      "modifications": [
+        "5'-C6-NH2"
+      ]
+    }
+  ],
+  "mechanism": "\nTNF-\u03b1 Peptide Delivery System\n=============================\n\nTRIGGER: IL-1\u03b2 mRNA (inflammation marker)\nTARGET: TNF-\u03b1 homotrimer\n\n1. CLOSED STATE (no inflammation):\n   - Cage circulates, locked by IL-1\u03b2-responsive strands\n   - FRET pair (Cy5-BHQ2) quenched\n   - 6 TNF_Z2_SEL_DUAL peptides enclosed\n\n2. INFLAMMATION DETECTED:\n   - IL-1\u03b2 mRNA elevated in inflamed tissue\n   - mRNA binds 8-nt toehold on LOCK_IL1B_MAIN\n   - Branch migration releases LOCK_IL1B_COMP\n   - Cy5 fluorescence signals cage opening\n\n3. THERAPEUTIC RELEASE:\n   - TNF_Z2_SEL_DUAL peptides released\n   - Peptides bind TNF-\u03b1 at TYR151 (Z\u00b2 geometry)\n   - DD motif engages ARG131 (TNF-\u03b1 selective)\n   - E9 engages LYS90 (TNF-\u03b1 selective)\n   - TNF-\u03b1 signaling blocked\n\nSELECTIVITY ADVANTAGES:\n   - Does NOT bind LT-\u03b1 (LEU131, GLN90 - no charge)\n   - Does NOT bind TRAIL (different surface)\n   - Cage ONLY opens in inflamed tissue\n   - Dual selectivity: delivery + peptide design\n"
+}

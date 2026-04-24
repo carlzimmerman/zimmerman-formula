@@ -1,0 +1,68 @@
+{
+  "target": "TNF-\u03b1 (Tumor Necrosis Factor alpha)",
+  "indication": "Autoimmune diseases (RA, IBD, Psoriasis)",
+  "z2_validation": {
+    "aromatic_site": "TYR151",
+    "deviation": "+0.1 m\u00c5",
+    "quality": "Excellent (near-perfect Z\u00b2 match)"
+  },
+  "primary_off_target": {
+    "name": "Lymphotoxin-\u03b1 (LT-\u03b1)",
+    "identity": "51%",
+    "challenge": "High structural similarity"
+  },
+  "selectivity_anchors": [
+    {
+      "anchor": "Anchor@131: TNF-\u03b1=ARG vs LT-\u03b1=LEU (charge, score=0.95)",
+      "score": 0.95,
+      "strategy": "Add negative residue to peptide"
+    },
+    {
+      "anchor": "Anchor@90: TNF-\u03b1=LYS vs LT-\u03b1=GLN (charge, score=0.95)",
+      "score": 0.95,
+      "strategy": "Add negative residue to peptide"
+    },
+    {
+      "anchor": "Anchor@67: TNF-\u03b1=GLN vs LT-\u03b1=ASP (charge, score=0.85)",
+      "score": 0.85,
+      "strategy": "Add positive residue to repel LT-\u03b1"
+    }
+  ],
+  "peptide_designs": [
+    {
+      "name": "TNF_Z2_SEL_D2E3",
+      "sequence": "DDEWEYTWEQTLT",
+      "selectivity": "ARG131 in TNF-\u03b1 vs LEU131 in LT-\u03b1 - negative peptide charges bind ARG but are repelled by LEU"
+    },
+    {
+      "name": "TNF_Z2_SEL_K90E",
+      "sequence": "WEYTWEQETLT",
+      "selectivity": "LYS90 in TNF-\u03b1 vs GLN90 in LT-\u03b1 - GLU forms salt bridge with LYS but not GLN"
+    },
+    {
+      "name": "TNF_Z2_SEL_DUAL",
+      "sequence": "DDWEYTWEQELTD",
+      "selectivity": "Dual targeting of ARG131 and LYS90 - both present in TNF-\u03b1, both absent in LT-\u03b1"
+    },
+    {
+      "name": "TNF_Z2_SEL_BAL",
+      "sequence": "RDWEYTWEQELT",
+      "selectivity": "Maintains net charge near neutral for better solubility while preserving selectivity contacts"
+    },
+    {
+      "name": "TNF_Z2_TRI_001",
+      "sequence": "LLWVYTWIVLT",
+      "selectivity": "Targets the unique trimer cleft geometry of TNF-\u03b1 vs LT-\u03b1"
+    }
+  ],
+  "best_design": {
+    "name": "TNF_Z2_SEL_DUAL",
+    "sequence": "DDWEYTWEQELTD",
+    "rationale": "Dual selectivity anchors (ARG131 + LYS90) + Z\u00b2 aromatic stacking"
+  },
+  "delivery_system": {
+    "cage": "Z2_CAGE_TNF_IL1B_001",
+    "trigger": "IL-1\u03b2 mRNA (inflammation marker)",
+    "payload": 6
+  }
+}
