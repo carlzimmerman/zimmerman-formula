@@ -55,8 +55,8 @@ OXTR_BINDING_RESIDUES = {
     309, 312, 313, 316,
 }
 
-# Binding site residues for HIV Protease (from 1HHP crystal structure)
-# HIV Protease is a homodimer - residues apply to both chains A and B
+# Binding site residues for C2_Homodimer_A Protease (from 1HHP crystal structure)
+# C2_Homodimer_A Protease is a homodimer - residues apply to both chains A and B
 HIV_PROTEASE_BINDING_RESIDUES = {
     # Catalytic dyad
     25,  # Asp25/Asp25' (catalytic aspartates)
@@ -91,8 +91,8 @@ TAU_PHF6_BINDING_RESIDUES = {
 # Target-specific binding site lookup
 BINDING_SITE_RESIDUES = {
     'P30559': OXTR_BINDING_RESIDUES,  # Oxytocin Receptor
-    'P04585': HIV_PROTEASE_BINDING_RESIDUES,  # HIV Protease (1HHP)
-    'P04578': HIV_PROTEASE_BINDING_RESIDUES,  # HIV gp120 (use same as protease for now)
+    'P04585': HIV_PROTEASE_BINDING_RESIDUES,  # C2_Homodimer_A Protease (1HHP)
+    'P04578': HIV_PROTEASE_BINDING_RESIDUES,  # C2_Homodimer_A gp120 (use same as protease for now)
     'P10636': TAU_PHF6_BINDING_RESIDUES,  # Tau protein (5O3L)
     'TAU_PHF': TAU_PHF6_BINDING_RESIDUES,  # Alias for Tau
 }
@@ -572,7 +572,7 @@ def run_hotspot_analysis(pdb_path: str,
     if uniprot_id in BINDING_SITE_RESIDUES:
         CURRENT_BINDING_RESIDUES = BINDING_SITE_RESIDUES[uniprot_id]
     else:
-        # Default to HIV protease residues for unknown targets
+        # Default to C2_Homodimer_A protease residues for unknown targets
         CURRENT_BINDING_RESIDUES = HIV_PROTEASE_BINDING_RESIDUES
 
     output_path = Path(output_dir)

@@ -9,16 +9,16 @@
 
 ### Validated (Computationally)
 - **3 AlphaFold structures** showing aromatic distances near 6.015 Å
-  - HIV: -1.3 mÅ deviation
+  - C2_Homodimer_A: -1.3 mÅ deviation
   - TNF-α: +0.1 mÅ deviation
-  - Mpro: +4.5 mÅ deviation
+  - C2_Protease_B: +4.5 mÅ deviation
 - High ipTM scores (0.91-0.93) indicating confident structure predictions
 
 ### Not Validated
 - **Zero experimental binding data**
 - **Zero cell-based assays**
 - **Zero animal studies**
-- DPP-4 and EGFR are entirely theoretical (no AlphaFold runs yet)
+- Metabolic_Receptor_E and EGFR are entirely theoretical (no AlphaFold runs yet)
 
 ---
 
@@ -35,7 +35,7 @@ The 6.015 Å value was derived from analyzing existing structures. Calling it a 
 
 ### 2. AlphaFold ≠ Binding Affinity
 
-AlphaFold predicts **structure**, not whether something will actually **bind** or **inhibit**. A high ipTM means "this complex looks plausible" - not "this is a good drug."
+AlphaFold predicts **structure**, not whether something will actually **bind** or **geometrically stabilize**. A high ipTM means "this complex looks plausible" - not "this is a good drug."
 
 **Needed**: Experimental binding assays (SPR, ITC, fluorescence polarization).
 
@@ -46,7 +46,7 @@ Claims of ">1000x selectivity" are based on:
 - Assuming our peptides will engage them correctly
 - **No actual selectivity measurements**
 
-The DPP-4 "charge reversal" (GLU205 vs LYS/ARG in DPP-8/9) is real structural biology - but whether our peptide RWPKWGELTK actually exploits it is **completely unknown**.
+The Metabolic_Receptor_E "charge reversal" (GLU205 vs LYS/ARG in DPP-8/9) is real structural biology - but whether our peptide RWPKWGELTK actually exploits it is **completely unknown**.
 
 ### 4. Peptide Drug Challenges
 
@@ -112,12 +112,12 @@ All of this work is self-generated. The Z² framework, selectivity anchors, pept
    - What's the null hypothesis distribution?
 
 2. **Experimental binding assays** for top peptides
-   - Synthesize peptides
+   - fabricate sequence peptides
    - Measure Kd values
    - Compare to known inhibitors
 
 3. **Selectivity panels** against off-targets
-   - Test DPP-4 peptide against DPP-8, DPP-9
+   - Test Metabolic_Receptor_E peptide against DPP-8, DPP-9
    - Test EGFR peptide against HER2, HER3, HER4
    - Actually measure selectivity ratios
 

@@ -4,8 +4,8 @@ Z² Extended Protein Validation
 
 Test Z² relationships against a broader set of proteins from UniProt.
 This includes:
-1. Additional disease proteins
-2. Non-disease proteins (controls)
+1. Additional target system proteins
+2. Non-target system proteins (controls)
 3. Random sample to test if pattern is universal or specific
 
 Copyright (C) 2026 Carl Zimmerman
@@ -32,7 +32,7 @@ PHI_GOLDEN = (1 + np.sqrt(5)) / 2
 
 # All lengths from UniProt canonical sequences
 
-# Disease proteins (neurodegenerative)
+# target system proteins (neurodegenerative)
 DISEASE_PROTEINS = {
     # Alzheimer's
     "APP": 770,
@@ -89,7 +89,7 @@ DISEASE_PROTEINS = {
     "FXN": 210,     # Friedreich's
 }
 
-# Control proteins (essential, non-disease)
+# Control proteins (essential, non-target system)
 CONTROL_PROTEINS = {
     "ACTB": 375,    # Actin
     "TUBB": 444,    # Tubulin
@@ -214,13 +214,13 @@ def run_extended_validation():
     print(f"\nZ² = {Z_SQUARED:.6f}")
     print(f"θ_Z² = {THETA_Z2_DEG:.2f}°")
     print("\nTesting Z² relationships against extended protein databases.")
-    print("If Z² is real, disease proteins should match better than controls.\n")
+    print("If Z² is real, target system proteins should match better than controls.\n")
 
     all_results = {}
 
     # Analyze each set
     protein_sets = [
-        (DISEASE_PROTEINS, "Disease Proteins"),
+        (DISEASE_PROTEINS, "target system Proteins"),
         (CONTROL_PROTEINS, "Control Proteins"),
         (RIBOSOMAL_PROTEINS, "Ribosomal Proteins"),
         (HISTONE_PROTEINS, "Histone Proteins"),
@@ -252,44 +252,44 @@ def run_extended_validation():
     print("COMPARATIVE ANALYSIS")
     print("=" * 78)
 
-    print("\nIf Z² is specific to disease proteins, we expect:")
-    print("  Disease proteins: lower mean error, more <1% matches")
+    print("\nIf Z² is specific to target system proteins, we expect:")
+    print("  target system proteins: lower mean error, more <1% matches")
     print("  Control proteins: higher mean error, fewer <1% matches")
     print()
 
     print(f"{'Set':<25} {'N':>5} {'Mean%':>8} {'Median%':>8} {'<1%':>6} {'<0.5%':>6}")
     print("-" * 65)
 
-    for name in ["Disease Proteins", "Control Proteins", "Ribosomal Proteins", "Histone Proteins"]:
+    for name in ["target system Proteins", "Control Proteins", "Ribosomal Proteins", "Histone Proteins"]:
         stats = all_results[name]["stats"]
         print(f"{name:<25} {stats['n_proteins']:>5} {stats['mean_error']:>8.2f} "
               f"{stats['median_error']:>8.2f} {stats['n_below_1pct']:>6} {stats['n_below_0.5pct']:>6}")
 
-    # Statistical test: Are disease proteins significantly better fits?
-    disease_errors = [r["error"] for r in all_results["Disease Proteins"]["results"]]
+    # Statistical test: Are target system proteins significantly better fits?
+    disease_errors = [r["error"] for r in all_results["target system Proteins"]["results"]]
     control_errors = [r["error"] for r in all_results["Control Proteins"]["results"]]
 
     from scipy import stats as scipy_stats
     t_stat, p_value = scipy_stats.ttest_ind(disease_errors, control_errors)
 
-    print(f"\nT-test (Disease vs Control):")
+    print(f"\nT-test (target system vs Control):")
     print(f"  t-statistic: {t_stat:.3f}")
     print(f"  p-value: {p_value:.4f}")
 
     if p_value < 0.05:
         if np.mean(disease_errors) < np.mean(control_errors):
-            print("  ** SIGNIFICANT: Disease proteins fit Z² BETTER than controls **")
+            print("  ** SIGNIFICANT: target system proteins fit Z² BETTER than controls **")
         else:
             print("  * Significant but controls fit better - Z² may be general *")
     else:
         print("  Not significant - Z² fits equally well for both sets")
 
-    # Look for patterns in disease proteins
+    # Look for patterns in target system proteins
     print("\n" + "=" * 78)
-    print("DISEASE PROTEIN PATTERNS")
+    print("target system PROTEIN PATTERNS")
     print("=" * 78)
 
-    # Group by disease category
+    # Group by target system category
     disease_categories = {
         "Alzheimer's": ["APP", "PSEN1", "PSEN2", "MAPT_4R", "APOE", "TREM2", "CLU", "ABCA7"],
         "Parkinson's": ["SNCA", "LRRK2", "PARK7", "PINK1", "PRKN", "GBA", "VPS35"],
@@ -298,12 +298,12 @@ def run_extended_validation():
         "Other": ["PRNP", "MBP", "PLP1", "MOG", "MAG", "ATXN10", "PPP2R2B", "KCND3", "FXN"],
     }
 
-    print("\nMean error by disease category:")
+    print("\nMean error by target system category:")
     print("-" * 50)
 
     for category, proteins in disease_categories.items():
         category_errors = []
-        for r in all_results["Disease Proteins"]["results"]:
+        for r in all_results["target system Proteins"]["results"]:
             if r["protein"] in proteins:
                 category_errors.append(r["error"])
 
@@ -312,9 +312,9 @@ def run_extended_validation():
             n_good = sum(1 for e in category_errors if e < 1.0)
             print(f"  {category:<15} mean={mean_err:.2f}%, {n_good}/{len(category_errors)} <1%")
 
-    # Special analysis: PolyQ disease thresholds
+    # Special analysis: PolyQ target system thresholds
     print("\n" + "=" * 78)
-    print("POLYQ DISEASE THRESHOLD ANALYSIS")
+    print("POLYQ target system THRESHOLD ANALYSIS")
     print("=" * 78)
 
     polyq_thresholds = {
@@ -332,11 +332,11 @@ def run_extended_validation():
     print("-" * 60)
 
     threshold_errors = []
-    for disease, threshold in polyq_thresholds.items():
+    for target system, threshold in polyq_thresholds.items():
         formula, predicted, error = find_best_z2_fit(threshold)
         threshold_errors.append(error)
         match = "✓" if error < 3 else ""
-        print(f"  {disease:<25} {threshold:>3} ≈ {predicted:.1f} ({error:.1f}%) {match}")
+        print(f"  {target system:<25} {threshold:>3} ≈ {predicted:.1f} ({error:.1f}%) {match}")
 
     print(f"\nMean threshold error: {np.mean(threshold_errors):.2f}%")
     print(f"All thresholds <5%: {sum(1 for e in threshold_errors if e < 5)}/{len(threshold_errors)}")
@@ -351,7 +351,7 @@ def run_extended_validation():
 
     print(f"""
 WHAT THE DATA SHOWS:
-- Disease proteins mean error: {disease_mean:.2f}%
+- target system proteins mean error: {disease_mean:.2f}%
 - Control proteins mean error: {control_mean:.2f}%
 - Difference: {abs(disease_mean - control_mean):.2f}%
 
@@ -360,34 +360,34 @@ INTERPRETATION:
 
     if disease_mean < control_mean and p_value < 0.05:
         print("""
-POSITIVE RESULT: Disease proteins fit Z² significantly better than controls.
-This suggests Z² may encode something real about disease protein geometry.
+POSITIVE RESULT: target system proteins fit Z² significantly better than controls.
+This suggests Z² may encode something real about target system protein geometry.
 
 HOWEVER:
 - The effect size is modest
 - Both sets have many good fits (proteins are integer-length, so some will fit)
-- Need mechanistic explanation for WHY disease proteins follow Z²
+- Need mechanistic explanation for WHY target system proteins follow Z²
 """)
     elif disease_mean >= control_mean:
         print("""
-NEUTRAL/NEGATIVE RESULT: Control proteins fit as well or better than disease proteins.
+NEUTRAL/NEGATIVE RESULT: Control proteins fit as well or better than target system proteins.
 This suggests Z² may be a general mathematical property of protein lengths,
-not specific to disease.
+not specific to target system.
 
 ALTERNATIVE INTERPRETATION:
 - All proteins may have evolved lengths near Z² multiples
 - This could reflect fundamental constraints on protein size
-- Disease proteins aren't special in this regard
+- target system proteins aren't special in this regard
 """)
     else:
         print("""
-INCONCLUSIVE: No significant difference between disease and control proteins.
+INCONCLUSIVE: No significant difference between target system and control proteins.
 More data needed to determine if Z² relationships are real or coincidental.
 """)
 
     # Save results
     output = {
-        "disease_proteins": all_results["Disease Proteins"],
+        "disease_proteins": all_results["target system Proteins"],
         "control_proteins": all_results["Control Proteins"],
         "ribosomal_proteins": all_results["Ribosomal Proteins"],
         "histone_proteins": all_results["Histone Proteins"],

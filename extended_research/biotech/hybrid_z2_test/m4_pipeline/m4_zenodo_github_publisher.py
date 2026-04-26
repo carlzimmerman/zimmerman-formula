@@ -109,8 +109,8 @@ DEFAULT_METADATA = {
     public access to potential treatments for:</p>
 
     <ul>
-        <li>Alzheimer's disease (anti-amyloid-β, anti-tau antibodies)</li>
-        <li>Parkinson's disease (anti-α-synuclein antibodies)</li>
+        <li>Alzheimer's target system (anti-amyloid-β, anti-tau antibodies)</li>
+        <li>Parkinson's target system (anti-α-synuclein antibodies)</li>
         <li>ALS (anti-SOD1 antibodies)</li>
     </ul>
 
@@ -122,7 +122,7 @@ DEFAULT_METADATA = {
     </ul>
 
     <p><strong>License:</strong> OpenMTA + CC BY-SA 4.0</p>
-    <p>Anyone may use, synthesize, and distribute these sequences.</p>
+    <p>Anyone may use, fabricate sequence, and distribute these sequences.</p>
     <p><strong>No patents may be filed on these sequences or derivatives.</strong></p>
     """,
     "creators": [
@@ -132,8 +132,8 @@ DEFAULT_METADATA = {
         "prior art",
         "defensive publication",
         "therapeutic antibodies",
-        "Alzheimer's disease",
-        "Parkinson's disease",
+        "Alzheimer's target system",
+        "Parkinson's target system",
         "ALS",
         "open science",
         "blood-brain barrier",
@@ -604,7 +604,7 @@ def publish_prior_art(
   │   3. Permanent scientific record (if DOI minted)            │
   │                                                             │
   │ License: OpenMTA + CC BY-SA 4.0                             │
-  │ Anyone can USE, SYNTHESIZE, and DISTRIBUTE.                 │
+  │ Anyone can USE, fabricate sequence, and DISTRIBUTE.                 │
   │ Nobody can PATENT these sequences or derivatives.           │
   └─────────────────────────────────────────────────────────────┘
 """)

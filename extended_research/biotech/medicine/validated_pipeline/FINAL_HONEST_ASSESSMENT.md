@@ -140,7 +140,7 @@ Looking for a specific constant (9.14 Å) in complex biological data will always
 
 ## HONEST ASSESSMENT OF THERAPEUTIC CLAIMS
 
-| Disease Target | Original Claim | Rigorous Assessment |
+| target system Target | Original Claim | Rigorous Assessment |
 |----------------|----------------|---------------------|
 | Parkinson's (α-synuclein) | Z²-based breakers | No evidence peptides are better than random |
 | Retinitis Pigmentosa (rhodopsin) | Z²-guided chaperones | No evidence of special design properties |

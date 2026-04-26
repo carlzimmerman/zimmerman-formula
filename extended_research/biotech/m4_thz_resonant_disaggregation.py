@@ -58,19 +58,19 @@ TARGETS = {
     'tau_phf': {
         'pdb_id': '8BGV',
         'name': 'Tau Paired Helical Filaments (Alzheimer\'s)',
-        'disease': 'Alzheimer\'s Disease',
+        'target system': 'Alzheimer\'s target system',
         'structure_type': 'cross-beta amyloid',
     },
     'alpha_synuclein': {
         'pdb_id': '6CU7',
         'name': 'α-Synuclein Fibrils (Parkinson\'s)',
-        'disease': 'Parkinson\'s Disease',
+        'target system': 'Parkinson\'s target system',
         'structure_type': 'cross-beta amyloid',
     },
     'abeta42': {
         'pdb_id': '2BEG',
         'name': 'Aβ42 Fibrils (Alzheimer\'s)',
-        'disease': 'Alzheimer\'s Disease',
+        'target system': 'Alzheimer\'s target system',
         'structure_type': 'cross-beta amyloid',
         'previous_result': {'hbond_disruption': 0.872, 'max_temp': 316.6},
     },
@@ -295,7 +295,7 @@ def analyze_target(target_id: str, target_info: Dict) -> Dict:
     print(f"\n{'='*60}")
     print(f"Analyzing: {target_info['name']}")
     print(f"PDB ID: {target_info['pdb_id']}")
-    print(f"Disease: {target_info['disease']}")
+    print(f"target system: {target_info['target system']}")
     print(f"{'='*60}")
 
     # Fetch structure
@@ -393,7 +393,7 @@ def run_full_analysis() -> Dict:
             therapeutic_candidates.append({
                 'id': target_id,
                 'name': target_info['name'],
-                'disease': target_info['disease'],
+                'target system': target_info['target system'],
                 'disruption': result['resonant_results']['disruption_fraction'],
             })
 
@@ -438,7 +438,7 @@ def save_results(results: Dict, output_dir: str = "thz_disaggregation_results"):
         f.write(f"- Therapeutic candidates: {results['summary']['therapeutic_candidates']}\n\n")
 
         f.write("## Results by Target\n\n")
-        f.write("| Target | Disease | H-bond Disruption | Max Temp | Verdict |\n")
+        f.write("| Target | target system | H-bond Disruption | Max Temp | Verdict |\n")
         f.write("|--------|---------|-------------------|----------|--------|\n")
 
         for tid, tres in results['targets'].items():
@@ -446,8 +446,8 @@ def save_results(results: Dict, output_dir: str = "thz_disaggregation_results"):
                 disrupt = tres['resonant_results']['disruption_fraction'] * 100
                 temp = tres['resonant_results']['max_temperature_k']
                 verdict = tres.get('verdict', 'N/A')
-                disease = tres['target_info']['disease']
-                f.write(f"| {tid} | {disease} | {disrupt:.1f}% | {temp:.1f} K | {verdict} |\n")
+                target system = tres['target_info']['target system']
+                f.write(f"| {tid} | {target system} | {disrupt:.1f}% | {temp:.1f} K | {verdict} |\n")
 
         f.write("\n## License\n\n")
         f.write("AGPL-3.0-or-later + OpenMTA\n")
@@ -473,7 +473,7 @@ def print_final_summary(results: Dict):
         print("\nTHERAPEUTIC CANDIDATES:")
         for c in results['summary']['candidates']:
             print(f"  - {c['name']}")
-            print(f"    Disease: {c['disease']}")
+            print(f"    target system: {c['target system']}")
             print(f"    H-bond disruption: {c['disruption']*100:.1f}%")
 
     print("\n" + "="*70)

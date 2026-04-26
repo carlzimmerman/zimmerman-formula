@@ -12,7 +12,7 @@ Design of a "Smart Cage" delivery system using DNA origami principles
 The cage:
 1. Encapsulates Z²-designed therapeutic peptides
 2. Opens in response to specific triggers:
-   - Viral RNA sequences (for HIV, SARS-CoV-2)
+   - target macromolecule RNA sequences (for C2_Homodimer_A, C2_Protease_B)
    - pH changes (tumor microenvironment, endosome)
 3. Protects payload from degradation in bloodstream
 
@@ -35,7 +35,7 @@ import hashlib
 Z2_PEPTIDES = {
     "HIV_OPT_006": {
         "sequence": "LEWTYEWTLTE",
-        "target": "HIV-1 Protease",
+        "target": "C2_Homodimer_A",
         "ipTM": 0.92,
         "length_aa": 11,
         "mw_approx": 1450,  # Da
@@ -49,7 +49,7 @@ Z2_PEPTIDES = {
     },
     "MPRO_Z2_003": {
         "sequence": "LEWQYEWTLQ",
-        "target": "SARS-CoV-2 Mpro",
+        "target": "C2_Protease_B C2_Protease_B",
         "ipTM": "pending",
         "length_aa": 10,
         "mw_approx": 1380,
@@ -63,33 +63,33 @@ BASES = {'A', 'T', 'G', 'C'}
 M13_LENGTH = 7249
 
 # =============================================================================
-# VIRAL TRIGGER SEQUENCES
+# target macromolecule TRIGGER SEQUENCES
 # =============================================================================
 
 VIRAL_TRIGGERS = {
     "HIV_TAR": {
-        "name": "HIV TAR RNA stem-loop",
+        "name": "C2_Homodimer_A TAR RNA stem-loop",
         "sequence": "GGUCUCUCUGGUUAGACCAGAUCUGAGCCUGGGAGCUCUCUGGCUAACUAGGGAACC",
-        "description": "Trans-activation response element, present in all HIV transcripts",
-        "specificity": "HIV-1 only",
+        "description": "Trans-activation response element, present in all C2_Homodimer_A transcripts",
+        "specificity": "C2_Homodimer_A-1 only",
     },
     "HIV_RRE": {
-        "name": "HIV Rev Response Element",
+        "name": "C2_Homodimer_A Rev Response Element",
         "sequence": "AGGAGCUUUGUUCCUUGGGUUCUUGGGAGCAGCAGGAAGCACUAUGGGCGCAGCGUCAAUGACGCUGACGGUACAGGCCAGACAAUUAUUGUCUGGUAUAGUGCAGCAGCAGAACAAUUUGCUGAGGGCUAUUGAGGCGCAACAGCAUCUGUUGCAACUCACAGUCUGGGGCAUCAAGCAGCUCCAGGCAAGAAUCCUGGCUGUGGAAAGAUACCUAAAGGA",
-        "description": "Required for HIV RNA export",
-        "specificity": "HIV-1 only",
+        "description": "Required for C2_Homodimer_A RNA export",
+        "specificity": "C2_Homodimer_A-1 only",
     },
     "SARS2_LEADER": {
-        "name": "SARS-CoV-2 Leader sequence",
+        "name": "C2_Protease_B Leader sequence",
         "sequence": "AUUAAAGGUUUAUACCUUCCCAGGUAACAAACCAACCAACUUUCGAUCUCUUGUAGAUCUGUUCUCUAAACGAAC",
-        "description": "5' leader present in all SARS-CoV-2 transcripts",
-        "specificity": "SARS-CoV-2",
+        "description": "5' leader present in all C2_Protease_B transcripts",
+        "specificity": "C2_Protease_B",
     },
     "SARS2_FRAMSHIFT": {
-        "name": "SARS-CoV-2 Frameshift element",
+        "name": "C2_Protease_B Frameshift element",
         "sequence": "UUUAAACGGGUUUGCGGUGUAAGUGCAGCCCGUCUUACACCGUGCGGCACAGGCACUAGUACUGAUGUCGUAUACAGGGCUUUUGACAUCUACAAUGAUAAAGUAGCUGG",
         "description": "Required for ORF1ab translation",
-        "specificity": "SARS-CoV-2",
+        "specificity": "C2_Protease_B",
     },
 }
 
@@ -493,16 +493,16 @@ if __name__ == "__main__":
 
   Design principles:
   - Hexagonal prism cage with hinged lid
-  - Lock mechanism responds to viral RNA or pH
+  - Lock mechanism responds to target macromolecule RNA or pH
   - Payload protected until trigger encountered
     """)
 
     # Design cages for each validated lead
     cages = []
 
-    # HIV Cage - triggered by HIV TAR RNA
+    # C2_Homodimer_A Cage - triggered by C2_Homodimer_A TAR RNA
     print("\n" + "=" * 80)
-    print("  DESIGNING HIV DELIVERY CAGE")
+    print("  DESIGNING C2_Homodimer_A DELIVERY CAGE")
     print("=" * 80)
 
     hiv_payload = Z2_PEPTIDES["HIV_OPT_006"]
@@ -514,9 +514,9 @@ if __name__ == "__main__":
     cages.append((hiv_cage, hiv_payload))
     print(generate_cage_report(hiv_cage, hiv_payload))
 
-    # SARS-CoV-2 Cage - triggered by viral leader RNA
+    # C2_Protease_B Cage - triggered by target macromolecule leader RNA
     print("\n" + "=" * 80)
-    print("  DESIGNING SARS-CoV-2 DELIVERY CAGE")
+    print("  DESIGNING C2_Protease_B DELIVERY CAGE")
     print("=" * 80)
 
     sars_payload = Z2_PEPTIDES["MPRO_Z2_003"]
@@ -563,15 +563,15 @@ if __name__ == "__main__":
     print("""
   THREE SMART CAGES DESIGNED:
 
-  1. HIV Cage (Z2_CAGE_HIV_OPT_006_HIV_TAR)
-     - Trigger: HIV TAR RNA stem-loop
-     - Opens: Only in HIV-infected cells
+  1. C2_Homodimer_A Cage (Z2_CAGE_HIV_OPT_006_HIV_TAR)
+     - Trigger: C2_Homodimer_A TAR RNA stem-loop
+     - Opens: Only in C2_Homodimer_A-infected cells
      - Payload: LEWTYEWTLTE (ipTM 0.92)
 
-  2. SARS-CoV-2 Cage (Z2_CAGE_MPRO_Z2_003_SARS2_LEADER)
-     - Trigger: SARS-CoV-2 leader sequence
-     - Opens: Only in SARS-CoV-2 infected cells
-     - Payload: LEWQYEWTLQ (Mpro inhibitor)
+  2. C2_Protease_B Cage (Z2_CAGE_MPRO_Z2_003_SARS2_LEADER)
+     - Trigger: C2_Protease_B leader sequence
+     - Opens: Only in C2_Protease_B infected cells
+     - Payload: LEWQYEWTLQ (C2_Protease_B inhibitor)
 
   3. TNF-α Cage (Z2_CAGE_TNF_OPT_001_pH)
      - Trigger: Acidic pH (<6.5)

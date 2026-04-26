@@ -89,16 +89,16 @@ ZENODO_METADATA = {
 <ul>
 <li><strong>Mathematical Framework</strong>: Z² = 32π/3 ≈ 33.51, derived from 8-dimensional compactification theory</li>
 <li><strong>Validated Physics</strong>: ~8 contacts at ~9.4 Å cutoff (validated on 92 PDB structures)</li>
-<li><strong>Therapeutic Peptides</strong>: 2,068 novel peptide sequences across 8 disease areas</li>
+<li><strong>Therapeutic Peptides</strong>: 2,068 novel peptide sequences across 8 target system areas</li>
 <li><strong>PhD-Level Validation Suite</strong>: 10 rigorous scripts for empirical validation</li>
 <li><strong>Prior Art Registry</strong>: SHA-256 hashes for defensive publication</li>
 </ul>
 
-<h3>Disease Areas Covered:</h3>
+<h3>target system Areas Covered:</h3>
 <ul>
 <li>Prolactinoma (D2R agonists)</li>
-<li>Parkinson's Disease (GBA1, LRRK2)</li>
-<li>Alzheimer's Disease (Tau, Aβ)</li>
+<li>Parkinson's target system (GBA1, LRRK2)</li>
+<li>Alzheimer's target system (Tau, Aβ)</li>
 <li>Type 2 Diabetes / Obesity (GLP-1R)</li>
 <li>Autoimmune Diseases (TNF-α, IL-6)</li>
 <li>Ocular Diseases (VEGF, Complement)</li>

@@ -5,7 +5,7 @@ M4 Genetic Childhood Conditions Pipeline
 
 Designs therapeutic peptides for monogenic childhood diseases.
 
-DISEASE CATEGORIES:
+target system CATEGORIES:
 1. Lysosomal Storage Diseases (enzyme replacement/chaperones)
 2. Metabolic Disorders (enzyme deficiencies)
 3. Neuromuscular Disorders (DMD, SMA)
@@ -38,13 +38,13 @@ from dataclasses import dataclass, asdict
 from typing import Optional, List
 import math
 
-# Genetic childhood disease targets
+# Genetic childhood target system targets
 PEDIATRIC_GENETIC_TARGETS = {
     # === LYSOSOMAL STORAGE DISEASES ===
     "GBA1_Gaucher": {
-        "full_name": "Glucocerebrosidase (Gaucher disease)",
+        "full_name": "Glucocerebrosidase (Gaucher target system)",
         "gene": "GBA1",
-        "disease": "Gaucher disease",
+        "target system": "Gaucher target system",
         "inheritance": "Autosomal recessive",
         "prevalence": "1:40,000 (1:800 Ashkenazi)",
         "mechanism": "Enzyme deficiency → glucocerebroside accumulation",
@@ -54,9 +54,9 @@ PEDIATRIC_GENETIC_TARGETS = {
     },
 
     "GLA_Fabry": {
-        "full_name": "α-Galactosidase A (Fabry disease)",
+        "full_name": "α-Galactosidase A (Fabry target system)",
         "gene": "GLA",
-        "disease": "Fabry disease",
+        "target system": "Fabry target system",
         "inheritance": "X-linked",
         "prevalence": "1:40,000",
         "mechanism": "Enzyme deficiency → Gb3 accumulation",
@@ -66,9 +66,9 @@ PEDIATRIC_GENETIC_TARGETS = {
     },
 
     "GAA_Pompe": {
-        "full_name": "Acid α-glucosidase (Pompe disease)",
+        "full_name": "Acid α-glucosidase (Pompe target system)",
         "gene": "GAA",
-        "disease": "Pompe disease",
+        "target system": "Pompe target system",
         "inheritance": "Autosomal recessive",
         "prevalence": "1:40,000",
         "mechanism": "Enzyme deficiency → glycogen accumulation",
@@ -79,7 +79,7 @@ PEDIATRIC_GENETIC_TARGETS = {
     "IDUA_MPS1": {
         "full_name": "α-L-iduronidase (MPS I / Hurler)",
         "gene": "IDUA",
-        "disease": "MPS I (Hurler/Scheie syndrome)",
+        "target system": "MPS I (Hurler/Scheie syndrome)",
         "inheritance": "Autosomal recessive",
         "prevalence": "1:100,000",
         "mechanism": "GAG accumulation",
@@ -90,7 +90,7 @@ PEDIATRIC_GENETIC_TARGETS = {
     "IDS_MPS2": {
         "full_name": "Iduronate-2-sulfatase (MPS II / Hunter)",
         "gene": "IDS",
-        "disease": "MPS II (Hunter syndrome)",
+        "target system": "MPS II (Hunter syndrome)",
         "inheritance": "X-linked",
         "prevalence": "1:100,000-170,000",
         "mechanism": "GAG accumulation",
@@ -102,7 +102,7 @@ PEDIATRIC_GENETIC_TARGETS = {
     "PAH_PKU": {
         "full_name": "Phenylalanine hydroxylase (PKU)",
         "gene": "PAH",
-        "disease": "Phenylketonuria",
+        "target system": "Phenylketonuria",
         "inheritance": "Autosomal recessive",
         "prevalence": "1:10,000-15,000",
         "mechanism": "Phenylalanine accumulation → neurological damage",
@@ -114,7 +114,7 @@ PEDIATRIC_GENETIC_TARGETS = {
     "BCKD_MSUD": {
         "full_name": "Branched-chain α-ketoacid dehydrogenase (MSUD)",
         "gene": "BCKDHA/B/DLD",
-        "disease": "Maple syrup urine disease",
+        "target system": "Maple syrup urine target system",
         "inheritance": "Autosomal recessive",
         "prevalence": "1:185,000",
         "mechanism": "BCAA accumulation",
@@ -124,7 +124,7 @@ PEDIATRIC_GENETIC_TARGETS = {
     "CBS_Homocystinuria": {
         "full_name": "Cystathionine β-synthase (Homocystinuria)",
         "gene": "CBS",
-        "disease": "Classical homocystinuria",
+        "target system": "Classical homocystinuria",
         "inheritance": "Autosomal recessive",
         "prevalence": "1:200,000-335,000",
         "mechanism": "Homocysteine accumulation",
@@ -136,7 +136,7 @@ PEDIATRIC_GENETIC_TARGETS = {
     "DMD_Duchenne": {
         "full_name": "Dystrophin (Duchenne/Becker MD)",
         "gene": "DMD",
-        "disease": "Duchenne muscular dystrophy",
+        "target system": "Duchenne muscular dystrophy",
         "inheritance": "X-linked",
         "prevalence": "1:3,500-5,000 males",
         "mechanism": "Dystrophin absence → muscle degeneration",
@@ -148,7 +148,7 @@ PEDIATRIC_GENETIC_TARGETS = {
     "SMN_SMA": {
         "full_name": "Survival Motor Neuron (SMA)",
         "gene": "SMN1/SMN2",
-        "disease": "Spinal muscular atrophy",
+        "target system": "Spinal muscular atrophy",
         "inheritance": "Autosomal recessive",
         "prevalence": "1:10,000",
         "mechanism": "SMN deficiency → motor neuron loss",
@@ -159,9 +159,9 @@ PEDIATRIC_GENETIC_TARGETS = {
 
     # === HEMATOLOGICAL DISORDERS ===
     "HBB_SickleCellDisease": {
-        "full_name": "Hemoglobin β (Sickle cell disease)",
+        "full_name": "Hemoglobin β (Sickle cell target system)",
         "gene": "HBB",
-        "disease": "Sickle cell disease",
+        "target system": "Sickle cell target system",
         "inheritance": "Autosomal recessive",
         "prevalence": "1:365 African Americans",
         "mechanism": "HbS polymerization → sickling",
@@ -173,7 +173,7 @@ PEDIATRIC_GENETIC_TARGETS = {
     "HBB_Thalassemia": {
         "full_name": "Hemoglobin β (Beta-thalassemia)",
         "gene": "HBB",
-        "disease": "Beta-thalassemia",
+        "target system": "Beta-thalassemia",
         "inheritance": "Autosomal recessive",
         "prevalence": "Variable (Mediterranean, SE Asia)",
         "mechanism": "Reduced/absent β-globin",
@@ -184,7 +184,7 @@ PEDIATRIC_GENETIC_TARGETS = {
     "F8_HemophiliaA": {
         "full_name": "Coagulation Factor VIII (Hemophilia A)",
         "gene": "F8",
-        "disease": "Hemophilia A",
+        "target system": "Hemophilia A",
         "inheritance": "X-linked",
         "prevalence": "1:5,000-10,000 males",
         "mechanism": "Factor VIII deficiency → bleeding",
@@ -196,7 +196,7 @@ PEDIATRIC_GENETIC_TARGETS = {
     "F9_HemophiliaB": {
         "full_name": "Coagulation Factor IX (Hemophilia B)",
         "gene": "F9",
-        "disease": "Hemophilia B",
+        "target system": "Hemophilia B",
         "inheritance": "X-linked",
         "prevalence": "1:25,000 males",
         "mechanism": "Factor IX deficiency → bleeding",
@@ -208,7 +208,7 @@ PEDIATRIC_GENETIC_TARGETS = {
     "IL2RG_SCID": {
         "full_name": "IL-2 Receptor γ chain (X-SCID)",
         "gene": "IL2RG",
-        "disease": "X-linked SCID",
+        "target system": "X-linked SCID",
         "inheritance": "X-linked",
         "prevalence": "1:50,000-100,000",
         "mechanism": "Defective cytokine signaling → no T/NK cells",
@@ -219,7 +219,7 @@ PEDIATRIC_GENETIC_TARGETS = {
     "BTK_XLA": {
         "full_name": "Bruton's tyrosine kinase (XLA)",
         "gene": "BTK",
-        "disease": "X-linked agammaglobulinemia",
+        "target system": "X-linked agammaglobulinemia",
         "inheritance": "X-linked",
         "prevalence": "1:200,000",
         "mechanism": "B cell development failure",
@@ -231,7 +231,7 @@ PEDIATRIC_GENETIC_TARGETS = {
     "CFTR_CF": {
         "full_name": "Cystic Fibrosis Transmembrane Regulator",
         "gene": "CFTR",
-        "disease": "Cystic fibrosis",
+        "target system": "Cystic fibrosis",
         "inheritance": "Autosomal recessive",
         "prevalence": "1:2,500 Caucasians",
         "mechanism": "Chloride channel defect → thick mucus",
@@ -244,7 +244,7 @@ PEDIATRIC_GENETIC_TARGETS = {
     "MECP2_Rett": {
         "full_name": "Methyl CpG binding protein 2 (Rett syndrome)",
         "gene": "MECP2",
-        "disease": "Rett syndrome",
+        "target system": "Rett syndrome",
         "inheritance": "X-linked dominant",
         "prevalence": "1:10,000-15,000 females",
         "mechanism": "Transcriptional dysregulation",
@@ -256,13 +256,13 @@ PEDIATRIC_GENETIC_TARGETS = {
     "PKD1_PKD2_ADPKD": {
         "full_name": "Polycystin 1/2 (ADPKD)",
         "gene": "PKD1/PKD2",
-        "disease": "Autosomal dominant PKD",
+        "target system": "Autosomal dominant PKD",
         "inheritance": "Autosomal dominant",
         "prevalence": "1:400-1,000",
         "mechanism": "Cyst formation in kidneys",
         "approved_drugs": ["Tolvaptan"],
         "benchmark": {"tolvaptan_Ki_nM": 3},
-        "strategy": "Polycystin stabilization, cyst growth inhibition",
+        "strategy": "Polycystin stabilization, cyst growth geometrically stabilize",
     },
 }
 
@@ -280,7 +280,7 @@ class PediatricPeptide:
     peptide_id: str
     sequence: str
     target_gene: str
-    disease: str
+    target system: str
     inheritance: str
     mechanism: str
     therapeutic_strategy: str
@@ -477,7 +477,7 @@ def design_pediatric_peptides(target_id: str, target_info: dict, n_peptides: int
             peptide_id=f"PED_{target_info['gene']}_{i+1:03d}",
             sequence=sequence,
             target_gene=target_info["gene"],
-            disease=target_info["disease"],
+            target system=target_info["target system"],
             inheritance=target_info["inheritance"],
             mechanism=target_info["mechanism"],
             therapeutic_strategy=target_info["strategy"],
@@ -500,7 +500,7 @@ def run_pipeline():
     print("=" * 70)
     print(f"Timestamp: {datetime.now().isoformat()}")
     print()
-    print("DISEASE CATEGORIES:")
+    print("target system CATEGORIES:")
     print("  - Lysosomal Storage Diseases")
     print("  - Inborn Errors of Metabolism")
     print("  - Neuromuscular Disorders")
@@ -524,21 +524,21 @@ def run_pipeline():
     print("STAGE 1: TARGET ANALYSIS")
     print("-" * 50)
 
-    # Group by disease category
+    # Group by target system category
     categories = {}
     for tid, tinfo in PEDIATRIC_GENETIC_TARGETS.items():
-        disease = tinfo["disease"]
-        if "Gaucher" in disease or "Fabry" in disease or "Pompe" in disease or "MPS" in disease:
+        target system = tinfo["target system"]
+        if "Gaucher" in target system or "Fabry" in target system or "Pompe" in target system or "MPS" in target system:
             cat = "Lysosomal Storage"
-        elif "PKU" in disease or "MSUD" in disease or "homocystinuria" in disease.lower():
+        elif "PKU" in target system or "MSUD" in target system or "homocystinuria" in target system.lower():
             cat = "Metabolic"
-        elif "DMD" in disease or "SMA" in disease or "muscular" in disease.lower():
+        elif "DMD" in target system or "SMA" in target system or "muscular" in target system.lower():
             cat = "Neuromuscular"
-        elif "Sickle" in disease or "thalassemia" in disease.lower() or "Hemophilia" in disease:
+        elif "Sickle" in target system or "thalassemia" in target system.lower() or "Hemophilia" in target system:
             cat = "Hematological"
-        elif "SCID" in disease or "agammaglobulinemia" in disease.lower():
+        elif "SCID" in target system or "agammaglobulinemia" in target system.lower():
             cat = "Immunodeficiency"
-        elif "cystic" in disease.lower():
+        elif "cystic" in target system.lower():
             cat = "Cystic Fibrosis"
         else:
             cat = "Other Monogenic"
@@ -548,7 +548,7 @@ def run_pipeline():
         print(f"\n{cat}:")
         for tid in targets:
             tinfo = PEDIATRIC_GENETIC_TARGETS[tid]
-            print(f"  {tinfo['gene']}: {tinfo['disease']} ({tinfo['inheritance']})")
+            print(f"  {tinfo['gene']}: {tinfo['target system']} ({tinfo['inheritance']})")
 
     print(f"\nTotal: {len(PEDIATRIC_GENETIC_TARGETS)} conditions")
 
@@ -559,7 +559,7 @@ def run_pipeline():
         peptides = design_pediatric_peptides(target_id, target_info, n_peptides=10)
         all_peptides.extend(peptides)
 
-        print(f"\n{target_info['gene']} ({target_info['disease']}):")
+        print(f"\n{target_info['gene']} ({target_info['target system']}):")
         for p in peptides[:2]:
             cns_str = "CNS+" if p.cns_penetrant else ""
             print(f"  {p.sequence:18s} Activity: {p.predicted_activity_nM:8.2f} nM {cns_str}")
@@ -583,27 +583,27 @@ def run_pipeline():
     for inh, c in sorted(inheritance_counts.items()):
         print(f"  {inh}: {c}")
 
-    # By disease category
+    # By target system category
     cat_counts = {}
     for p in all_peptides:
-        disease = p.disease
-        if "Gaucher" in disease or "Fabry" in disease or "Pompe" in disease or "MPS" in disease:
+        target system = p.target system
+        if "Gaucher" in target system or "Fabry" in target system or "Pompe" in target system or "MPS" in target system:
             cat = "Lysosomal Storage"
-        elif "PKU" in disease or "MSUD" in disease or "homocystinuria" in disease.lower():
+        elif "PKU" in target system or "MSUD" in target system or "homocystinuria" in target system.lower():
             cat = "Metabolic"
-        elif "DMD" in disease or "SMA" in disease or "muscular" in disease.lower():
+        elif "DMD" in target system or "SMA" in target system or "muscular" in target system.lower():
             cat = "Neuromuscular"
-        elif "Sickle" in disease or "thalassemia" in disease.lower() or "Hemophilia" in disease:
+        elif "Sickle" in target system or "thalassemia" in target system.lower() or "Hemophilia" in target system:
             cat = "Hematological"
-        elif "SCID" in disease or "agammaglobulinemia" in disease.lower():
+        elif "SCID" in target system or "agammaglobulinemia" in target system.lower():
             cat = "Immunodeficiency"
-        elif "cystic" in disease.lower():
+        elif "cystic" in target system.lower():
             cat = "CF"
         else:
             cat = "Other"
         cat_counts[cat] = cat_counts.get(cat, 0) + 1
 
-    print("\nBY DISEASE CATEGORY:")
+    print("\nBY target system CATEGORY:")
     for cat, c in sorted(cat_counts.items()):
         print(f"  {cat}: {c}")
 
@@ -628,7 +628,7 @@ def run_pipeline():
     fasta_path = output_dir / f"pediatric_peptides_{timestamp}.fasta"
     with open(fasta_path, "w") as f:
         for p in all_peptides:
-            f.write(f">{p.peptide_id}|{p.disease}|{p.inheritance}\n")
+            f.write(f">{p.peptide_id}|{p.target system}|{p.inheritance}\n")
             f.write(f"{p.sequence}\n")
     print(f"FASTA saved: {fasta_path}")
 

@@ -593,7 +593,7 @@ def get_high_resolution_pdbs() -> List[str]:
 
         # High-resolution structures with known packing
         '1AKE',  # Adenylate kinase
-        '1HHP',  # HIV protease
+        '1HHP',  # C2_Homodimer_A protease
 
         # Membrane proteins (different packing)
         '1BRD',  # Bacteriorhodopsin

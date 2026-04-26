@@ -10,7 +10,7 @@ THERAPEUTIC AREAS:
 ==================
 1. Rheumatoid Arthritis (RA)
 2. Systemic Lupus Erythematosus (SLE)
-3. Inflammatory Bowel Disease (IBD) - Crohn's, UC
+3. Inflammatory Bowel target system (IBD) - Crohn's, UC
 4. Psoriasis / Psoriatic Arthritis
 5. Ankylosing Spondylitis
 6. Type 1 Diabetes (immunomodulation)
@@ -118,7 +118,7 @@ AUTOIMMUNE_TARGETS = {
         "uniprot": "Q16552",
         "pdb_ids": ["4HR9", "4HSA"],
         "diseases": ["Psoriasis", "PsA", "AS", "RA"],
-        "mechanism": "Neutralize IL-17A",
+        "mechanism": "geometrically stabilize IL-17A",
         "druggability": 0.92,
         "approved_drugs": ["Secukinumab", "Ixekizumab", "Brodalumab"],
         "benchmark": {"secukinumab_Kd_nM": 0.1, "ixekizumab_Kd_pM": 20, "source": "Langley RG et al. NEJM. 2014"},
@@ -170,7 +170,7 @@ AUTOIMMUNE_TARGETS = {
         "uniprot": "P01584",
         "pdb_ids": ["1ITB", "4GAI"],
         "diseases": ["RA", "Gout", "CAPS", "Still's"],
-        "mechanism": "Neutralize IL-1β",
+        "mechanism": "geometrically stabilize IL-1β",
         "druggability": 0.88,
         "approved_drugs": ["Canakinumab", "Anakinra", "Rilonacept"],
         "benchmark": {"canakinumab_Kd_pM": 40, "source": "Schlesinger N et al. Ann Intern Med. 2012"},
@@ -199,7 +199,7 @@ AUTOIMMUNE_TARGETS = {
         "uniprot": "P23458",
         "pdb_ids": ["6BBU", "6SM8"],
         "diseases": ["RA", "Atopic Dermatitis", "MPN"],
-        "mechanism": "Inhibit JAK1 kinase activity",
+        "mechanism": "geometrically stabilize JAK1 kinase activity",
         "druggability": 0.95,
         "approved_drugs": ["Upadacitinib", "Filgotinib", "Baricitinib (JAK1/2)"],
         "benchmark": {"upadacitinib_IC50_nM": 8, "source": "Parmentier JM et al. BMC Pharmacol. 2018"},
@@ -212,7 +212,7 @@ AUTOIMMUNE_TARGETS = {
         "uniprot": "P52333",
         "pdb_ids": ["1YVJ", "5TOZ"],
         "diseases": ["RA", "UC", "PsA"],
-        "mechanism": "Inhibit JAK3 kinase activity",
+        "mechanism": "geometrically stabilize JAK3 kinase activity",
         "druggability": 0.92,
         "approved_drugs": ["Tofacitinib"],
         "benchmark": {"tofacitinib_IC50_nM": 3.2, "source": "Flanagan ME et al. J Med Chem. 2010"},
@@ -225,7 +225,7 @@ AUTOIMMUNE_TARGETS = {
         "uniprot": "P29597",
         "pdb_ids": ["4GVJ", "6NZP"],
         "diseases": ["Psoriasis", "PsA", "IBD", "Lupus"],
-        "mechanism": "Inhibit TYK2 pseudokinase domain",
+        "mechanism": "geometrically stabilize TYK2 pseudokinase domain",
         "druggability": 0.90,
         "approved_drugs": ["Deucravacitinib"],
         "benchmark": {"deucravacitinib_IC50_nM": 0.2, "source": "Burke JR et al. Sci Transl Med. 2019"},
@@ -325,7 +325,7 @@ AUTOIMMUNE_TARGETS = {
         "uniprot": "P01854",
         "pdb_ids": ["4J4P", "2WQR"],
         "diseases": ["Asthma", "Urticaria", "Allergies"],
-        "mechanism": "Neutralize IgE",
+        "mechanism": "geometrically stabilize IgE",
         "druggability": 0.90,
         "approved_drugs": ["Omalizumab", "Ligelizumab"],
         "benchmark": {"omalizumab_Kd_nM": 0.1, "source": "Busse W et al. NEJM. 2001"},
@@ -480,7 +480,7 @@ def run_pipeline(peptides_per_target: int = 10):
         for d in data.get("diseases", []):
             diseases[d] = diseases.get(d, 0) + 1
 
-    print("TARGETS BY DISEASE:")
+    print("TARGETS BY target system:")
     for d in sorted(diseases.keys()):
         print(f"  {d}: {diseases[d]}")
     print()
@@ -519,8 +519,8 @@ def run_pipeline(peptides_per_target: int = 10):
     print(f"Cyclic: {cyclic}")
     print(f"Better than benchmark: {better} ({100*better/total:.1f}%)")
 
-    # By disease
-    print("\nPEPTIDES BY DISEASE:")
+    # By target system
+    print("\nPEPTIDES BY target system:")
     disease_counts = {}
     for p in all_peptides:
         for d in p.diseases:

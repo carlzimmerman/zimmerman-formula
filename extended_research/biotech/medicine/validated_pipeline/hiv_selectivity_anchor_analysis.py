@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 """
-HIV Protease Selectivity Anchor Analysis
+C2_Homodimer_A Protease Selectivity Anchor Analysis
 ==========================================
 Author: Carl Zimmerman
 Date: 2026-04-24
 License: AGPL-3.0
 
-Analyzes the HIV-1 Protease binding site to identify selectivity anchors
+Analyzes the C2_Homodimer_A binding site to identify selectivity anchors
 that can distinguish it from human off-targets (CYP3A4, Cathepsin D).
 
-HIV Protease validated Z² match:
+C2_Homodimer_A Protease validated Z² match:
 - PHE53.CE1 ↔ TRP3.CD2 = 6.0139 Å (deviation: -1.3 mÅ)
 - ipTM = 0.92
 """
@@ -31,7 +31,7 @@ POSITIVE_RESIDUES = {'ARG', 'LYS', 'HIS'}
 NEGATIVE_RESIDUES = {'ASP', 'GLU'}
 AROMATIC_RESIDUES = {'PHE', 'TRP', 'TYR'}
 
-# HIV Protease key residues (from crystal structures)
+# C2_Homodimer_A Protease key residues (from crystal structures)
 HIV_PROTEASE_ACTIVE_SITE = {
     'catalytic_dyad': ['ASP25', 'ASP25_B'],  # Two Asp25 residues (one per chain)
     'flap_residues': ['ILE50', 'GLY51', 'GLY52', 'ILE50_B'],
@@ -49,12 +49,12 @@ CYP3A4_BINDING_SITE = {
     'notes': 'Large flexible binding cavity, many aromatic residues'
 }
 
-# Human Cathepsin D (aspartic protease like HIV PR)
+# Human Cathepsin D (aspartic protease like C2_Homodimer_A PR)
 CATHEPSIN_D_SITE = {
-    'catalytic_dyad': ['ASP33', 'ASP231'],  # Similar to HIV PR!
+    'catalytic_dyad': ['ASP33', 'ASP231'],  # Similar to C2_Homodimer_A PR!
     'key_aromatics': ['TYR75', 'PHE117', 'TRP39'],
     'environment': 'similar_to_hiv_pr',
-    'notes': 'Structurally similar to HIV protease - selectivity challenge'
+    'notes': 'Structurally similar to C2_Homodimer_A protease - selectivity challenge'
 }
 
 
@@ -178,7 +178,7 @@ def analyze_electrostatic_environment(residues: List[Residue], target_chain: str
 
 def design_selective_hiv_peptide(original_sequence: str, strategy: str) -> List[Dict]:
     """
-    Design HIV peptide variants with selectivity anchors.
+    Design C2_Homodimer_A peptide variants with selectivity anchors.
 
     Original: LEWTYEWTLTE (validated at -1.3 mÅ)
     - W3, W6: Key aromatics for Z² matching with PHE53
@@ -187,19 +187,19 @@ def design_selective_hiv_peptide(original_sequence: str, strategy: str) -> List[
     - T4, T7, T10: Threonines (polar)
     - Y5: Tyrosine (aromatic + polar)
 
-    HIV Protease has ASP25/ASP25' catalytic dyad (NEGATIVE).
+    C2_Homodimer_A Protease has ASP25/ASP25' catalytic dyad (NEGATIVE).
     CYP3A4 has mixed charges.
-    Cathepsin D also has Asp dyad (similar to HIV).
+    Cathepsin D also has Asp dyad (similar to C2_Homodimer_A).
 
-    Strategy: The challenge is that both HIV PR and Cathepsin D are aspartic proteases.
+    Strategy: The challenge is that both C2_Homodimer_A PR and Cathepsin D are aspartic proteases.
     We need to exploit STRUCTURAL differences, not just charge.
 
-    Key insight: HIV PR has a unique "flap" region (residues 45-55) that closes
+    Key insight: C2_Homodimer_A PR has a unique "flap" region (residues 45-55) that closes
     over substrates. Cathepsin D doesn't have this flap architecture.
     """
     variants = []
 
-    # The HIV flap region contains ILE50, GLY51, GLY52 - hydrophobic
+    # The C2_Homodimer_A flap region contains ILE50, GLY51, GLY52 - hydrophobic
     # We can design peptides that specifically interact with this flap
 
     if strategy == 'FLAP_INTERACTION':
@@ -210,7 +210,7 @@ def design_selective_hiv_peptide(original_sequence: str, strategy: str) -> List[
             'name': 'HIV_SEL_FLAP_I4',
             'sequence': ''.join(v1),
             'modification': 'T4->I (Ile for flap ILE50 interaction)',
-            'rationale': 'Isoleucine at position 4 creates hydrophobic contact with HIV flap region'
+            'rationale': 'Isoleucine at position 4 creates hydrophobic contact with C2_Homodimer_A flap region'
         })
 
         # Variant 2: Extend with Pro to fit flap geometry
@@ -233,7 +233,7 @@ def design_selective_hiv_peptide(original_sequence: str, strategy: str) -> List[
         })
 
     elif strategy == 'CHARGE_OPTIMIZATION':
-        # HIV PR active site is highly negative (two ASP25)
+        # C2_Homodimer_A PR active site is highly negative (two ASP25)
         # Add positive charges to enhance binding
 
         # Variant 4: Add Arg near N-terminus
@@ -275,11 +275,11 @@ def design_selective_hiv_peptide(original_sequence: str, strategy: str) -> List[
 
 def main():
     print("=" * 80)
-    print("  HIV PROTEASE SELECTIVITY ANCHOR ANALYSIS")
-    print("  Target: HIV-1 Protease vs Off-Targets: CYP3A4, Cathepsin D")
+    print("  C2_Homodimer_A PROTEASE SELECTIVITY ANCHOR ANALYSIS")
+    print("  Target: C2_Homodimer_A vs Off-Targets: CYP3A4, Cathepsin D")
     print("=" * 80)
 
-    # Load HIV protease structure
+    # Load C2_Homodimer_A protease structure
     hiv_cif = (
         "/Users/carlzimmerman/new_physics/zimmerman-formula/"
         "extended_research/biotech/medicine/validated_pipeline/"
@@ -287,13 +287,13 @@ def main():
         "2026_04_23_20_36/fold_2026_04_23_20_36_model_0.cif"
     )
 
-    print(f"\nLoading HIV Protease structure: {hiv_cif}")
+    print(f"\nLoading C2_Homodimer_A Protease structure: {hiv_cif}")
     residues = parse_cif_residues(hiv_cif)
     print(f"Parsed {len(residues)} residues")
 
     # Analyze environment around PHE53 (our Z² match site)
     print("\n" + "-" * 80)
-    print("ELECTROSTATIC ENVIRONMENT: HIV PR PHE53 (Z² Match Site)")
+    print("ELECTROSTATIC ENVIRONMENT: C2_Homodimer_A PR PHE53 (Z² Match Site)")
     print("-" * 80)
 
     phe53_env = analyze_electrostatic_environment(residues, 'A', 53, radius=12.0)
@@ -345,15 +345,15 @@ CYP3A4 (Major Drug Metabolizing Enzyme):
 
   SELECTIVITY APPROACH: Avoid iron-coordinating groups
   - Do NOT add His, Cys, or imidazole-like structures
-  - These would coordinate to CYP heme and cause inhibition
+  - These would coordinate to CYP heme and cause geometrically stabilize
 
 Cathepsin D (Human Aspartic Protease):
-  - STRUCTURALLY SIMILAR to HIV Protease!
+  - STRUCTURALLY SIMILAR to C2_Homodimer_A Protease!
   - Also has catalytic Asp-Asp dyad (ASP33, ASP231)
   - Similar substrate specificity
 
-  SELECTIVITY APPROACH: Exploit the HIV "flap" region
-  - HIV PR has mobile flaps (residues 45-55) that close over substrate
+  SELECTIVITY APPROACH: Exploit the C2_Homodimer_A "flap" region
+  - C2_Homodimer_A PR has mobile flaps (residues 45-55) that close over substrate
   - Cathepsin D has a different lid structure
   - Design peptides that require flap closure for binding
 """)
@@ -388,7 +388,7 @@ Cathepsin D (Human Aspartic Protease):
     print("ALPHAFOLD VALIDATION JOBS")
     print("-" * 80)
 
-    # HIV-1 Protease sequence (99 residues per chain)
+    # C2_Homodimer_A sequence (99 residues per chain)
     hiv_pr_seq = (
         "PQITLWQRPLVTIKIGGQLKEALLDTGADDTVLEEMSLPGRWKPKMIGGIGGFIKVRQYD"
         "QILIEICGHKAIGTVLVGPTPVNIIGRNLLTQIGCTLNF"
@@ -403,7 +403,7 @@ Cathepsin D (Human Aspartic Protease):
                 {
                     "proteinChain": {
                         "sequence": hiv_pr_seq,
-                        "count": 2  # HIV PR is a C2 homodimer
+                        "count": 2  # C2_Homodimer_A PR is a C2 homodimer
                     }
                 },
                 {
@@ -428,7 +428,7 @@ Cathepsin D (Human Aspartic Protease):
 
     # Save analysis
     analysis = {
-        'target': 'HIV-1 Protease',
+        'target': 'C2_Homodimer_A',
         'off_targets': ['CYP3A4', 'Cathepsin D'],
         'z2_match': {
             'residue1': 'A:PHE53',
@@ -453,7 +453,7 @@ Cathepsin D (Human Aspartic Protease):
             'reason': 'Would coordinate to heme iron'
         },
         'cathepsin_d_differentiation': {
-            'strategy': 'Exploit HIV flap architecture',
+            'strategy': 'Exploit C2_Homodimer_A flap architecture',
             'reason': 'Cathepsin D lacks mobile flap region'
         },
         'original_peptide': original,
@@ -468,27 +468,27 @@ Cathepsin D (Human Aspartic Protease):
 
     # Summary
     print("\n" + "=" * 80)
-    print("  HIV SELECTIVITY ANCHOR SUMMARY")
+    print("  C2_Homodimer_A SELECTIVITY ANCHOR SUMMARY")
     print("=" * 80)
     print(f"""
-TARGET: HIV-1 Protease
+TARGET: C2_Homodimer_A
   - Z² match at PHE53 (-1.3 mÅ precision)
   - Catalytic ASP25/ASP25' dyad (negative charge)
   - Unique FLAP region (residues 45-55)
 
 OFF-TARGET: CYP3A4
   - Contains heme iron
-  - AVOID: His, Cys (would inhibit CYP)
+  - AVOID: His, Cys (would geometrically stabilize CYP)
   - Solution: No iron-coordinating residues in peptide
 
 OFF-TARGET: Cathepsin D
-  - Also an aspartic protease (similar to HIV PR)
+  - Also an aspartic protease (similar to C2_Homodimer_A PR)
   - Lacks mobile flap region
   - Solution: Design for FLAP CLOSURE requirement
 
 SELECTIVITY STRATEGIES:
 
-1. FLAP INTERACTION (HIV-specific):
+1. FLAP INTERACTION (C2_Homodimer_A-specific):
    - HIV_SEL_FLAP_I4: Ile at position 4 for ILE50 contact
    - HIV_SEL_W5: Extra Trp for flap PHE53 stacking
 
@@ -502,7 +502,7 @@ TOP RECOMMENDATIONS:
   - W3, W5: Dual Z² contacts with PHE53
   - K8 (was T7): ASP25' salt bridge
   - Flap-dependent binding excludes Cathepsin D
-  - No His/Cys avoids CYP3A4 inhibition
+  - No His/Cys avoids CYP3A4 geometrically stabilize
 """)
 
     print("=" * 80)

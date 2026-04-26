@@ -1,8 +1,8 @@
-# AlphaFold Server Input - HIV Protease Z² Leads
+# AlphaFold Server Input - C2_Homodimer_A Protease Z² Leads
 
-## Target: HIV-1 Protease (P04585 / 1HHP)
+## Target: C2_Homodimer_A (P04585 / 1HHP)
 
-### HIV Protease Sequence (Homodimer - use both chains)
+### C2_Homodimer_A Protease Sequence (Homodimer - use both chains)
 ```
 >HIV1_PROTEASE_CHAIN_A
 PQITLWQRPLVTIKIGGQLKEALLDTGADDTVLEEMNLPGRWKPKMIGGIGGFIKVRQYD
@@ -52,7 +52,7 @@ TWNYKTQWQFTK
 
 ---
 
-### LEAD 4: Z2-OPT-002 (PHE Network - HIV-Specific)
+### LEAD 4: Z2-OPT-002 (PHE Network - C2_Homodimer_A-Specific)
 ```
 >Z2_OPT_002_PHE_NETWORK
 TLFFKVYKFQKV
@@ -60,7 +60,7 @@ TLFFKVYKFQKV
 **Binding Mode:** PHE-PHE stacking with PHE53 cluster
 **Aromatic Pattern:** F-F-Y-F (4 Phe/Tyr, 0 Trp)
 **Predicted Kd:** 50 nM
-**Note:** This design exploits HIV's PHE53 hotspot directly
+**Note:** This design exploits C2_Homodimer_A's PHE53 hotspot directly
 
 ---
 
@@ -68,7 +68,7 @@ TLFFKVYKFQKV
 
 For AlphaFold Server (https://alphafoldserver.com), combine sequences:
 
-### Job 1: HIV Protease + Z2-OPT-006
+### Job 1: C2_Homodimer_A Protease + Z2-OPT-006
 ```
 >protease_A
 PQITLWQRPLVTIKIGGQLKEALLDTGADDTVLEEMNLPGRWKPKMIGGIGGFIKVRQYDQILIEICGHKAIGTVLVGPTPVNIIGRNLLTQIGCTLNF
@@ -78,7 +78,7 @@ PQITLWQRPLVTIKIGGQLKEALLDTGADDTVLEEMNLPGRWKPKMIGGIGGFIKVRQYDQILIEICGHKAIGTVLVGPT
 LEWTYEWTLTE
 ```
 
-### Job 2: HIV Protease + Z2-OPT-013
+### Job 2: C2_Homodimer_A Protease + Z2-OPT-013
 ```
 >protease_A
 PQITLWQRPLVTIKIGGQLKEALLDTGADDTVLEEMNLPGRWKPKMIGGIGGFIKVRQYDQILIEICGHKAIGTVLVGPTPVNIIGRNLLTQIGCTLNF
@@ -123,6 +123,6 @@ After AlphaFold prediction, measure:
 ## References
 
 - Z² Biological Constant: 6.015152508891966 Å
-- HIV Protease Z² Enrichment: 1.61x
+- C2_Homodimer_A Protease Z² Enrichment: 1.61x
 - PHE53 Z² Contacts: 268
 - Analysis Date: 2026-04-23

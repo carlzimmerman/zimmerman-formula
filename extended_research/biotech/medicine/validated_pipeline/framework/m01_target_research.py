@@ -6,7 +6,7 @@ Gathers all publicly available information about a therapeutic target.
 NO HEURISTICS - only real data from real databases.
 
 Data Sources:
-- UniProt: Protein sequence, function, disease associations
+- UniProt: Protein sequence, function, target system associations
 - RCSB PDB: 3D structures, resolution, bound ligands
 - ChEMBL: Known binders, assay data, IC50/Kd values
 - PubMed: Publication count, recent research activity
@@ -190,10 +190,10 @@ class TargetResearcher:
                             loc = locs[0].get('location', {})
                             result['subcellular_location'] = loc.get('value', '')
 
-                    if comment.get('commentType') == 'DISEASE':
-                        disease = comment.get('disease', {})
-                        if disease:
-                            result['diseases'].append(disease.get('diseaseId', ''))
+                    if comment.get('commentType') == 'target system':
+                        target system = comment.get('target system', {})
+                        if target system:
+                            result['diseases'].append(target system.get('diseaseId', ''))
 
             print(f"  Found: {result['protein_name']} ({result['gene_name']})")
             print(f"  Organism: {result['organism']}")
@@ -377,7 +377,7 @@ class TargetResearcher:
     Approved drugs: {len(profile.approved_drugs)}
     ChEMBL ID:      {profile.chembl_target_id or 'Not found'}
 
-    DISEASE ASSOCIATIONS
+    target system ASSOCIATIONS
     ────────────────────
     {chr(10).join(['    • ' + d for d in profile.disease_associations[:5]]) or '    None found'}
 
@@ -387,7 +387,7 @@ class TargetResearcher:
 
 def main():
     """Example usage."""
-    # Example: Research α-synuclein (Parkinson's disease target)
+    # Example: Research α-synuclein (Parkinson's target system target)
     output_dir = Path(__file__).parent.parent / "results" / "target_research"
     researcher = TargetResearcher(output_dir)
 

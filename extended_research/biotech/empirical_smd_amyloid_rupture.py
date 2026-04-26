@@ -51,26 +51,26 @@ PDB_API_URL = "https://files.rcsb.org/download/{}.pdb"
 # ==============================================================================
 
 AMYLOID_STRUCTURES = {
-    # Alzheimer's Disease - Amyloid-β fibrils
+    # Alzheimer's target system - Amyloid-β fibrils
     'Abeta42_fibril': {
         'pdb_id': '5OQV',  # Aβ(1-42) fibril structure (cryo-EM)
         'description': 'Amyloid-β 1-42 fibril from Alzheimer patient brain',
-        'disease': 'Alzheimer\'s Disease',
+        'target system': 'Alzheimer\'s target system',
         'n_chains': 4,  # Multiple chains in fibril
         'sequence': 'DAEFRHDSGYEVHHQKLVFFAEDVGSNKGAIIGLMVGGVVIA'
     },
     'Abeta40_fibril': {
         'pdb_id': '2M4J',  # Aβ(1-40) fibril (solid-state NMR)
         'description': 'Amyloid-β 1-40 fibril',
-        'disease': 'Alzheimer\'s Disease',
+        'target system': 'Alzheimer\'s target system',
         'sequence': 'DAEFRHDSGYEVHHQKLVFFAEDVGSNKGAIIGLMVGGVV'
     },
 
-    # Parkinson's Disease - α-synuclein fibrils
+    # Parkinson's target system - α-synuclein fibrils
     'aSyn_fibril': {
         'pdb_id': '6H6B',  # α-synuclein fibril (cryo-EM)
         'description': 'α-synuclein fibril from Parkinson patient',
-        'disease': 'Parkinson\'s Disease',
+        'target system': 'Parkinson\'s target system',
         'n_chains': 2,
         'sequence': 'MDVFMKGLSKAKEGVVAAAEKTKQGVAEAAGKTKEGVLYVGSKTKEGVVHGVATVAEKTKEQVTNVGGAVVTGVTAVAQKTVEGAGSIAAATGFVKKDQLGKNEEGAPQEGILEDMPVDPDNEAYEMPSEEGYQDYEPEA'
     },
@@ -79,7 +79,7 @@ AMYLOID_STRUCTURES = {
     'Prion_fibril': {
         'pdb_id': '6LNI',  # Prion protein fibril
         'description': 'Human prion protein fibril',
-        'disease': 'Prion diseases (CJD)',
+        'target system': 'Prion diseases (CJD)',
         'sequence': None  # Variable
     },
 
@@ -87,7 +87,7 @@ AMYLOID_STRUCTURES = {
     'Tau_fibril': {
         'pdb_id': '5O3L',  # Tau paired helical filament
         'description': 'Tau PHF from Alzheimer patient brain',
-        'disease': 'Alzheimer\'s Disease / Frontotemporal Dementia'
+        'target system': 'Alzheimer\'s target system / Frontotemporal Dementia'
     }
 }
 
@@ -555,14 +555,14 @@ def simulate_amyloid_rupture(
     fibril_info = AMYLOID_STRUCTURES[fibril_name]
 
     print(f"Target: {fibril_info['description']}")
-    print(f"Disease: {fibril_info['disease']}")
+    print(f"target system: {fibril_info['target system']}")
     print(f"PDB: {fibril_info['pdb_id']}")
     print("="*70)
 
     results = {
         'fibril': fibril_name,
         'pdb_id': fibril_info['pdb_id'],
-        'disease': fibril_info['disease'],
+        'target system': fibril_info['target system'],
         'timestamp': datetime.now().isoformat(),
         'license': 'AGPL-3.0-or-later'
     }
@@ -616,7 +616,7 @@ def simulate_amyloid_rupture(
     print("RESULTS SUMMARY")
     print("="*70)
     print(f"\n  Fibril: {results['fibril']}")
-    print(f"  Disease: {results['disease']}")
+    print(f"  target system: {results['target system']}")
     print(f"  Method: {results.get('method', 'Unknown')}")
 
     if 'rupture' in results:

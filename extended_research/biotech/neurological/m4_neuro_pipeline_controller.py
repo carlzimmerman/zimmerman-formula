@@ -26,10 +26,10 @@ def run_complete_pipeline():
     print(f"Started: {datetime.now().isoformat()}")
     print()
     print("This pipeline designs therapeutic peptides for:")
-    print("  - Alzheimer's Disease (Aβ, Tau, BACE1, TREM2)")
-    print("  - Parkinson's Disease (α-synuclein, LRRK2, GBA1)")
+    print("  - Alzheimer's target system (Aβ, Tau, BACE1, TREM2)")
+    print("  - Parkinson's target system (α-synuclein, LRRK2, GBA1)")
     print("  - ALS (SOD1, TDP-43, C9orf72)")
-    print("  - Huntington's Disease (polyQ aggregation)")
+    print("  - Huntington's target system (polyQ aggregation)")
     print("  - Multiple Sclerosis (α4-integrin, CD20, MOG)")
     print("  - Stroke/Neuroprotection (NMDAR, PSD-95, BDNF)")
     print()
@@ -76,7 +76,7 @@ def run_complete_pipeline():
     print(f"  Peptides designed: {len(peptides)}")
     print()
 
-    # Count by disease
+    # Count by target system
     diseases = {}
     for p in peptides:
         t = p.target
@@ -94,7 +94,7 @@ def run_complete_pipeline():
             d = "Neuroprotection"
         diseases[d] = diseases.get(d, 0) + 1
 
-    print("PEPTIDES BY DISEASE:")
+    print("PEPTIDES BY target system:")
     for d, c in sorted(diseases.items()):
         print(f"  {d}: {c}")
     print()

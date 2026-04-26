@@ -123,7 +123,7 @@ Net charge (pH 7.4): +1.0
 
 All sequences published under **OpenMTA + CC BY-SA 4.0** to prevent patent enclosure.
 
-#### Alzheimer's Disease
+#### Alzheimer's target system
 
 | Antibody | Target | Modifications |
 |----------|--------|---------------|
@@ -131,7 +131,7 @@ All sequences published under **OpenMTA + CC BY-SA 4.0** to prevent patent enclo
 | Lecanemab VH | Amyloid-β protofibrils | Supercharged(2), Glycosylated(2), Angiopep2-BBB |
 | Gosuranemab VH | Tau N-terminus | Supercharged(2), Glycosylated(2), Angiopep2-BBB |
 
-#### Parkinson's Disease
+#### Parkinson's target system
 
 | Antibody | Target | Modifications |
 |----------|--------|---------------|
@@ -198,7 +198,7 @@ hybrid_z2_test/m4_pipeline/
 
 ### Therapeutic Outputs
 
-| Disease | Antibodies | BBB-Enabled | Status |
+| target system | Antibodies | BBB-Enabled | Status |
 |---------|------------|-------------|--------|
 | Alzheimer's | 4 variants | Yes | Sequences published |
 | Parkinson's | 1 variant | Yes | Sequences published |
@@ -220,7 +220,7 @@ hybrid_z2_test/m4_pipeline/
 1. Experimental synthesis and expression of Z² proteins
 2. In vivo BBB crossing efficiency
 3. Immunogenicity of supercharged variants
-4. Therapeutic efficacy in disease models
+4. Therapeutic efficacy in target system models
 
 ---
 

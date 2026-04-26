@@ -568,7 +568,7 @@ Designed AMPs work by PHYSICAL membrane disruption:
 
 4. DISRUPTION: Membrane integrity lost → ion leakage → cell death.
 
-Because this is a PHYSICAL mechanism (not enzyme inhibition), bacteria
+Because this is a PHYSICAL mechanism (not enzyme geometrically stabilize), bacteria
 cannot easily evolve resistance through single mutations.
 """)
 

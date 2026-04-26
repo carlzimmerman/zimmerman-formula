@@ -16,8 +16,8 @@ monoclonal antibodies and engineers them for enhanced CNS delivery:
 5. Apply AGPL-3.0 / OpenMTA prior art headers
 
 Target indications:
-- Alzheimer's disease (anti-amyloid, anti-tau)
-- Parkinson's disease (anti-alpha-synuclein)
+- Alzheimer's target system (anti-amyloid, anti-tau)
+- Parkinson's target system (anti-alpha-synuclein)
 - ALS (anti-SOD1, anti-TDP-43)
 - Multiple Sclerosis (anti-CD20, anti-integrin)
 - Migraine (anti-CGRP, anti-CGRP receptor)
@@ -43,12 +43,12 @@ import re
 
 THERAPEUTIC_DATABASE = {
     # =========================================================================
-    # ALZHEIMER'S DISEASE - Anti-Amyloid-beta
+    # ALZHEIMER'S target system - Anti-Amyloid-beta
     # =========================================================================
     "aducanumab": {
         "brand": "Aduhelm",
         "target": "Amyloid-beta aggregates",
-        "indication": "Alzheimer's disease",
+        "indication": "Alzheimer's target system",
         "company": "Biogen",
         "approval": "FDA 2021",
         "source": "US Patent 9,944,698 / PDB 6CO3",
@@ -58,7 +58,7 @@ THERAPEUTIC_DATABASE = {
     "lecanemab": {
         "brand": "Leqembi",
         "target": "Amyloid-beta protofibrils",
-        "indication": "Alzheimer's disease",
+        "indication": "Alzheimer's target system",
         "company": "Eisai/Biogen",
         "approval": "FDA 2023",
         "source": "US Patent 10,851,156",
@@ -68,7 +68,7 @@ THERAPEUTIC_DATABASE = {
     "donanemab": {
         "brand": "Kisunla",
         "target": "Amyloid-beta N3pG",
-        "indication": "Alzheimer's disease",
+        "indication": "Alzheimer's target system",
         "company": "Eli Lilly",
         "approval": "FDA 2024",
         "source": "US Patent 10,662,245",
@@ -77,12 +77,12 @@ THERAPEUTIC_DATABASE = {
     },
 
     # =========================================================================
-    # ALZHEIMER'S DISEASE - Anti-Tau
+    # ALZHEIMER'S target system - Anti-Tau
     # =========================================================================
     "gosuranemab": {
         "brand": "N/A (Phase II)",
         "target": "Tau N-terminus",
-        "indication": "Alzheimer's disease / PSP",
+        "indication": "Alzheimer's target system / PSP",
         "company": "Biogen",
         "approval": "Investigational",
         "source": "US Patent 10,047,121",
@@ -92,7 +92,7 @@ THERAPEUTIC_DATABASE = {
     "semorinemab": {
         "brand": "N/A (Phase II)",
         "target": "Tau extracellular",
-        "indication": "Alzheimer's disease",
+        "indication": "Alzheimer's target system",
         "company": "Genentech/AC Immune",
         "approval": "Investigational",
         "source": "WO2016207245",
@@ -101,12 +101,12 @@ THERAPEUTIC_DATABASE = {
     },
 
     # =========================================================================
-    # PARKINSON'S DISEASE - Anti-Alpha-Synuclein
+    # PARKINSON'S target system - Anti-Alpha-Synuclein
     # =========================================================================
     "prasinezumab": {
         "brand": "N/A (Phase II)",
         "target": "Alpha-synuclein aggregates",
-        "indication": "Parkinson's disease",
+        "indication": "Parkinson's target system",
         "company": "Roche/Prothena",
         "approval": "Investigational",
         "source": "US Patent 9,975,947",
@@ -116,7 +116,7 @@ THERAPEUTIC_DATABASE = {
     "cinpanemab": {
         "brand": "N/A (Discontinued)",
         "target": "Alpha-synuclein",
-        "indication": "Parkinson's disease",
+        "indication": "Parkinson's target system",
         "company": "Biogen",
         "approval": "Discontinued 2021",
         "source": "US Patent 10,188,736",
@@ -447,7 +447,7 @@ def get_fasta_header(sequence: str) -> str:
 ; ShareAlike 4.0 International (CC BY-SA 4.0).
 ;
 ; You are free to:
-;   - USE: Synthesize, express, and test this sequence
+;   - USE: fabricate sequence, express, and test this sequence
 ;   - SHARE: Copy and redistribute in any medium or format
 ;   - ADAPT: Remix, transform, and build upon this material
 ;
@@ -693,7 +693,7 @@ def main():
 
   License: OpenMTA (https://www.openmta.org/) + CC BY-SA 4.0
 
-  Anyone can USE, SYNTHESIZE, and DISTRIBUTE these sequences.
+  Anyone can USE, fabricate sequence, and DISTRIBUTE these sequences.
   Nobody can PATENT them or restrict access.
     """)
 

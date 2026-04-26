@@ -7,7 +7,7 @@ Builds a network of peptide similarities across all pipelines to identify:
 1. Potential multi-target peptides
 2. Scaffold families
 3. Privileged structural motifs
-4. Cross-disease opportunities
+4. Cross-target system opportunities
 
 Uses sequence similarity + ESM-2 embedding similarity.
 
@@ -32,7 +32,7 @@ class PeptideNode:
     sequence: str
     pipeline: str
     target: str
-    disease: str
+    target system: str
 
 
 @dataclass
@@ -156,7 +156,7 @@ def load_all_peptides(base_dir: Path) -> List[PeptideNode]:
                         sequence=p.get("sequence", ""),
                         pipeline=pipeline,
                         target=p.get("target", p.get("target_gene", "")),
-                        disease=str(p.get("disease", p.get("diseases", ""))),
+                        target system=str(p.get("target system", p.get("diseases", ""))),
                     )
                     if node.sequence:
                         peptides.append(node)
@@ -254,7 +254,7 @@ def find_clusters(peptides: List[PeptideNode],
 
             # Determine potential
             if len(pipelines) >= 3:
-                potential = "Multi-disease scaffold"
+                potential = "Multi-target system scaffold"
             elif len(targets) >= 2:
                 potential = "Multi-target opportunity"
             elif len(pipelines) == 2:
@@ -337,7 +337,7 @@ def run_network_analysis():
     print(f"Total peptides: {len(peptides)}")
     print(f"Cross-pipeline edges: {len(edges)}")
     print(f"Connected clusters: {len(clusters)}")
-    print(f"Multi-disease scaffolds: {multi_disease}")
+    print(f"Multi-target system scaffolds: {multi_disease}")
     print(f"Multi-target opportunities: {multi_target}")
     print(f"Cross-indication candidates: {cross_indication}")
 

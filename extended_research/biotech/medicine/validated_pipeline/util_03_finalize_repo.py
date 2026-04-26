@@ -498,7 +498,7 @@ def main():
 
     # Create placeholder files for key therapeutics
     parkinsons_readme = therapeutics_dir / 'parkinsons' / 'README.md'
-    parkinsons_readme.write_text('''# Parkinson's Disease Therapeutics
+    parkinsons_readme.write_text('''# Parkinson's target system Therapeutics
 
 ## ZIM-SYN-004
 

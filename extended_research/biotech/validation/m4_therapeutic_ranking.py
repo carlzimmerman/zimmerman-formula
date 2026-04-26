@@ -158,9 +158,9 @@ def calculate_structural_score(sequence: str, metadata: Dict) -> float:
     return min(1.0, score)
 
 
-def get_target_importance(target: str, disease: str) -> float:
-    """Get importance score for target/disease."""
-    text = f"{target} {disease}".lower()
+def get_target_importance(target: str, target system: str) -> float:
+    """Get importance score for target/target system."""
+    text = f"{target} {target system}".lower()
 
     for key, importance in TARGET_IMPORTANCE.items():
         if key.lower() in text:
@@ -211,9 +211,9 @@ def rank_peptides(peptides: List[Dict]) -> List[RankedCandidate]:
         pep_id = p.get("peptide_id") or p.get("id") or p.get("name", "unknown")
         sequence = p.get("sequence", "")
         target = p.get("target") or p.get("target_gene") or p.get("target_name", "")
-        disease = p.get("disease") or p.get("diseases", "") or p.get("indication", "")
-        if isinstance(disease, list):
-            disease = ", ".join(disease)
+        target system = p.get("target system") or p.get("diseases", "") or p.get("indication", "")
+        if isinstance(target system, list):
+            target system = ", ".join(target system)
 
         # Get predicted affinity
         affinity = p.get("predicted_Kd_nM") or p.get("predicted_Ki_nM") or \
@@ -231,7 +231,7 @@ def rank_peptides(peptides: List[Dict]) -> List[RankedCandidate]:
         # Calculate other scores
         druglikeness = calculate_druglikeness(sequence)
         structural = calculate_structural_score(sequence, p)
-        importance = get_target_importance(target, disease)
+        importance = get_target_importance(target, target system)
 
         # Novelty (from benchmark comparison if available)
         bench_comp = p.get("benchmark_comparison", "")
@@ -288,7 +288,7 @@ def rank_peptides(peptides: List[Dict]) -> List[RankedCandidate]:
             peptide_id=pep_id,
             sequence=sequence,
             target=target,
-            disease_area=disease,
+            disease_area=target system,
             predicted_affinity_nM=affinity,
             affinity_score=round(affinity_score, 3),
             druglikeness_score=round(druglikeness, 3),
@@ -338,7 +338,7 @@ def run_ranking():
         print(f"\n#{c.rank}: {c.peptide_id}")
         print(f"  Sequence: {c.sequence[:30]}{'...' if len(c.sequence) > 30 else ''}")
         print(f"  Target: {c.target}")
-        print(f"  Disease: {c.disease_area[:50] if c.disease_area else 'N/A'}")
+        print(f"  target system: {c.disease_area[:50] if c.disease_area else 'N/A'}")
         print(f"  Predicted Kd: {c.predicted_affinity_nM:.2f} nM")
         print(f"  Composite Score: {c.composite_score:.4f}")
         print(f"  Pipeline: {c.source_pipeline}")

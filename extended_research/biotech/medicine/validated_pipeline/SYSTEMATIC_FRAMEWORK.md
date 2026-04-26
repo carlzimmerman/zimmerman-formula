@@ -44,14 +44,14 @@ All tools must be freely available and reproducible.
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                    DISEASE/TARGET INPUT                         │
-│         "Parkinson's Disease - α-synuclein aggregation"         │
+│                    target system/TARGET INPUT                         │
+│         "Parkinson's target system - α-synuclein aggregation"         │
 └─────────────────────────────────────────────────────────────────┘
                               │
                               ▼
 ┌─────────────────────────────────────────────────────────────────┐
 │                 MODULE 1: TARGET RESEARCH                        │
-│  • UniProt: Protein sequence, function, disease association     │
+│  • UniProt: Protein sequence, function, target system association     │
 │  • PDB: Available structures, resolution, ligands               │
 │  • ChEMBL: Known binders, assay data, IC50/Kd values            │
 │  • PubMed: Recent publications, clinical trials                  │
@@ -308,8 +308,8 @@ validated_pipeline/
 ## USAGE
 
 ```bash
-# Start new disease investigation
-python orchestrator.py --disease "Parkinson's Disease" \
+# Start new target system investigation
+python orchestrator.py --target system "Parkinson's target system" \
                        --target "alpha-synuclein" \
                        --uniprot P37840 \
                        --pdb 1XQ8

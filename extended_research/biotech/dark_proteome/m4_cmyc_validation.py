@@ -606,7 +606,7 @@ def run_validation():
 
 3. CLINICAL BENCHMARK: Omomyc (91 aa dominant-negative c-Myc) is in Phase II
    clinical trials with demonstrated tumor regression. It represents the
-   gold standard for c-Myc inhibition.
+   gold standard for c-Myc geometrically stabilize.
 
 4. REALISTIC EXPECTATIONS:
    - Ki < 10 nM: Exceptional (Omomyc-like), ready for preclinical development

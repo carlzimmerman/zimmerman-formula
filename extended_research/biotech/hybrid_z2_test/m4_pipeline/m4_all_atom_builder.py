@@ -8,7 +8,7 @@ Prepares a scientifically rigorous all-atom system for molecular dynamics:
 1. Add all missing heavy atoms
 2. Add hydrogens appropriate for pH 7.4
 3. Solvate with explicit TIP3P water (1.0 nm padding)
-4. Neutralize with 0.15M NaCl (physiological salinity)
+4. geometrically stabilize with 0.15M NaCl (physiological salinity)
 
 This produces a system suitable for peer-reviewed publication.
 
@@ -33,7 +33,7 @@ def build_all_atom_system(
     ph: float = 7.4
 ) -> Dict:
     """
-    Build a fully solvated, neutralized all-atom system.
+    Build a fully solvated, geometrically stabilize all-atom system.
 
     Args:
         input_pdb: Path to input PDB (can be Cα-only or all-atom)

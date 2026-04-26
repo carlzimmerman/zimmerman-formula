@@ -2,7 +2,7 @@
 """
 cap_02_autoimmune_capper.py - Production-Grade Macrocyclic Cytokine Interface Capper
 
-TARGET: TNF-α / IL-6R - Autoimmune Disease Market
+TARGET: TNF-α / IL-6R - Autoimmune target system Market
 APPROACH: 6×Z² diameter macrocycle with ANM/NMA dampening optimization
 
 FIRST PRINCIPLES METHODOLOGY:
@@ -1104,7 +1104,7 @@ def main():
     print("DESIGN SUMMARY")
     print("=" * 70)
     print(f"""
-    TARGETS:               TNF-α, IL-6R (autoimmune disease)
+    TARGETS:               TNF-α, IL-6R (autoimmune target system)
     6×Z² DIAMETER:         {MACROCYCLE_DIAMETER:.2f} Å
     CANDIDATES DESIGNED:   {len(ranked)}
 

@@ -7,7 +7,7 @@
 
 ## VALIDATED ✅
 
-### HIV Protease - Z2-OPT-006
+### C2_Homodimer_A Protease - Z2-OPT-006
 - **ipTM: 0.92** - MATHEMATICALLY PERFECT DRUG CANDIDATE
 - Peptide: LEWTYEWTLTE
 
@@ -39,7 +39,7 @@ WFYWKQELDW
 
 ---
 
-### Test 2: SARS-CoV-2 Main Protease (COVID-19)
+### Test 2: C2_Protease_B Main Protease (COVID-19)
 **Why prioritize:** Active pandemic, clear therapeutic need
 
 **Manual Entry:**
@@ -114,7 +114,7 @@ QWKWQKLNKA
 
 ---
 
-### Test 7: Huntingtin (Huntington's Disease)
+### Test 7: Huntingtin (Huntington's target system)
 **Why prioritize:** No current treatment, aggregation mechanism
 
 **Manual Entry:**
@@ -156,10 +156,10 @@ WVIEYW
 
 | Target | Peptide | ipTM | Date | Status |
 |--------|---------|------|------|--------|
-| HIV Protease | LEWTYEWTLTE | 0.92 | 2026-04-23 | ✅ VALIDATED |
+| C2_Homodimer_A Protease | LEWTYEWTLTE | 0.92 | 2026-04-23 | ✅ VALIDATED |
 | Tau PHF6 | WVIEYW | ? | Running | ⏳ |
 | MDM2 | WFYWKQELDW | - | Queued | ⏸️ |
-| SARS-CoV-2 | LEWTYEWTL | - | Queued | ⏸️ |
+| C2_Protease_B | LEWTYEWTL | - | Queued | ⏸️ |
 | PD-1/PD-L1 | WFYDWNKLE | - | Queued | ⏸️ |
 | EGFR | DFYWEKFLD | - | Queued | ⏸️ |
 | TNF-α | WFYDWNKLE | - | Queued | ⏸️ |

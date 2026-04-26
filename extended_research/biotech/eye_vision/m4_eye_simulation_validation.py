@@ -233,7 +233,7 @@ class EfficacyPrediction:
     peptide_id: str
     sequence: str
     target: str
-    disease: str
+    target system: str
 
     # Efficacy predictions (based on target engagement)
     predicted_target_engagement_percent: float
@@ -410,38 +410,38 @@ def predict_efficacy(peptide: Dict, binding_result: BindingValidationResult) -> 
     # Efficacy score (0-100)
     efficacy_score = target_engagement * 0.8  # 80% max efficacy
 
-    # Disease-specific predictions
-    disease = "Unknown"
+    # target system-specific predictions
+    target system = "Unknown"
     BCVA_letters = 0
     IOP_reduction = 0
     GA_reduction = 0
     vs_soc = "unknown"
 
     if target == "VEGF-A":
-        disease = "Wet AMD"
+        target system = "Wet AMD"
         # Based on aflibercept VISTA trial: 8.4 letters at 65% engagement
         BCVA_letters = (target_engagement / 65) * 8.4
         vs_soc = "comparable" if BCVA_letters > 7 else "inferior"
 
     elif target in ["Complement_C3", "Complement_C5"]:
-        disease = "Geographic Atrophy"
+        target system = "Geographic Atrophy"
         # Based on pegcetacoplan: 22% GA reduction
         GA_reduction = (target_engagement / 70) * 22
         vs_soc = "comparable" if GA_reduction > 15 else "inferior"
 
     elif target in ["ROCK1", "ROCK2"]:
-        disease = "Primary Open-Angle Glaucoma"
+        target system = "Primary Open-Angle Glaucoma"
         # Based on netarsudil: 4.7 mmHg at high engagement
         IOP_reduction = (target_engagement / 80) * 4.7
         vs_soc = "comparable" if IOP_reduction > 4 else "inferior"
 
     elif target == "LFA1_ICAM1":
-        disease = "Dry Eye Disease"
+        target system = "Dry Eye target system"
         efficacy_score = target_engagement * 0.7
         vs_soc = "comparable" if efficacy_score > 50 else "inferior"
 
     elif target == "TNF_alpha":
-        disease = "Non-infectious Uveitis"
+        target system = "Non-infectious Uveitis"
         efficacy_score = target_engagement * 0.8
         vs_soc = "comparable" if efficacy_score > 60 else "inferior"
 
@@ -455,7 +455,7 @@ def predict_efficacy(peptide: Dict, binding_result: BindingValidationResult) -> 
         peptide_id=peptide.get("peptide_id", "unknown"),
         sequence=peptide.get("sequence", ""),
         target=target,
-        disease=disease,
+        target system=target system,
         predicted_target_engagement_percent=target_engagement,
         predicted_efficacy_score=efficacy_score,
         predicted_BCVA_improvement_letters=BCVA_letters,
@@ -579,19 +579,19 @@ def run_validation():
     print(f"Better than benchmark: {better_than_benchmark}")
     print()
 
-    # Best by disease
-    print("TOP CANDIDATES BY DISEASE:")
+    # Best by target system
+    print("TOP CANDIDATES BY target system:")
     print("-" * 60)
 
     diseases = {}
     for efficacy in efficacy_results:
-        if efficacy.disease not in diseases:
-            diseases[efficacy.disease] = efficacy
-        elif efficacy.predicted_efficacy_score > diseases[efficacy.disease].predicted_efficacy_score:
-            diseases[efficacy.disease] = efficacy
+        if efficacy.target system not in diseases:
+            diseases[efficacy.target system] = efficacy
+        elif efficacy.predicted_efficacy_score > diseases[efficacy.target system].predicted_efficacy_score:
+            diseases[efficacy.target system] = efficacy
 
-    for disease, best in sorted(diseases.items()):
-        print(f"\n{disease}:")
+    for target system, best in sorted(diseases.items()):
+        print(f"\n{target system}:")
         print(f"  Peptide: {best.sequence[:25]}...")
         print(f"  Target engagement: {best.predicted_target_engagement_percent:.1f}%")
         print(f"  Efficacy score: {best.predicted_efficacy_score:.1f}")

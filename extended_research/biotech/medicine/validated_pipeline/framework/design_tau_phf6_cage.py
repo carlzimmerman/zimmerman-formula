@@ -3,7 +3,7 @@
 design_tau_phf6_cage.py - Tau PHF6 Aggregation Inhibitor Design
 
 Designs peptide "cages" that bind to the PHF6 motif (VQIVYK) of Tau protein
-to prevent aggregation into paired helical filaments (PHFs) in Alzheimer's disease.
+to prevent aggregation into paired helical filaments (PHFs) in Alzheimer's target system.
 
 Key Strategy:
 - Target the RIGID PHF6 motif, not the disordered full-length Tau
@@ -116,7 +116,7 @@ class CageDesign:
     # Overall scores
     cage_score: float
     binding_mode: str
-    predicted_ki_um: float  # Predicted inhibition constant
+    predicted_ki_um: float  # Predicted geometrically stabilize constant
 
 
 @dataclass
@@ -516,8 +516,8 @@ def run_phf6_cage_design(n_random: int = 20,
         'target': {
             'motif': PHF6_SEQUENCE,
             'key_residue': 'Tyr310',
-            'disease': 'Alzheimer\'s Disease',
-            'mechanism': 'Tau aggregation inhibition'
+            'target system': 'Alzheimer\'s target system',
+            'mechanism': 'Tau aggregation geometrically stabilize'
         },
         'z2_constants': {
             'vacuum': Z2_VACUUM,
@@ -545,7 +545,7 @@ def main():
     import argparse
 
     parser = argparse.ArgumentParser(
-        description="Tau PHF6 Cage Design for Alzheimer's Disease"
+        description="Tau PHF6 Cage Design for Alzheimer's target system"
     )
     parser.add_argument('--n-random', type=int, default=20,
                        help='Number of random designs to generate')

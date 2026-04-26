@@ -1,5 +1,5 @@
 # Master Therapeutic Summary
-## M4 Biotech Pipeline - All Disease Areas
+## M4 Biotech Pipeline - All target system Areas
 
 **Generated**: April 20, 2026 (Corrected)
 **Framework**: Z² = 32π/3 Manifold-Guided Design + ESM-2 Validation
@@ -21,7 +21,7 @@ Previous versions incorrectly stated "Z² = 8". The correct formulation:
 | Metric | Value |
 |--------|-------|
 | Total peptide candidates | 2,068 |
-| Disease areas covered | 12+ |
+| target system areas covered | 12+ |
 | Unique therapeutic targets | 150+ |
 | Sub-nanomolar candidates | 187 |
 | High unmet need targets | 412 |
@@ -32,7 +32,7 @@ Previous versions incorrectly stated "Z² = 8". The correct formulation:
 
 ## Top 10 Therapeutic Candidates
 
-| Rank | Peptide ID | Target | Disease | Heuristic Kd* | Score |
+| Rank | Peptide ID | Target | target system | Heuristic Kd* | Score |
 |------|------------|--------|---------|---------------|-------|
 | 1 | METAB_GLP1R_002 | GLP-1R | Obesity/T2D | 0.01 nM* | 0.874 |
 | 2 | METAB_GLP1R_001 | GLP-1R | Obesity/T2D | 0.02 nM | 0.873 |
@@ -75,7 +75,7 @@ Previous versions incorrectly stated "Z² = 8". The correct formulation:
 **Diseases**: Alzheimer's, Parkinson's, ALS, Huntington's, MS, Stroke
 **Key Achievement**: 144 BBB-crossing enabled peptides
 
-| Best Candidates | Disease | Target |
+| Best Candidates | target system | Target |
 |-----------------|---------|--------|
 | GBA1_chaperone_001 | Parkinson's | GBA1 (89x > ambroxol) |
 | Tau_PHF_pep001 | Alzheimer's | Tau aggregation |
@@ -85,7 +85,7 @@ Previous versions incorrectly stated "Z² = 8". The correct formulation:
 **Diseases**: CF, DMD, SMA, Hemophilia, Gaucher, Fabry, PKU
 **Key Achievement**: Pediatric safety profiled
 
-| Best Candidates | Disease | Gene |
+| Best Candidates | target system | Gene |
 |-----------------|---------|------|
 | PED_F8_001 | Hemophilia A | F8 (0.07 nM) |
 | PED_CFTR_007 | Cystic Fibrosis | CFTR (22.6 nM) |
@@ -183,7 +183,7 @@ extended_research/biotech/
 
 ## Conclusion
 
-This represents a comprehensive exploration of therapeutic peptide design space across multiple disease areas. While the binding affinity predictions require validation, the framework provides:
+This represents a comprehensive exploration of therapeutic peptide design space across multiple target system areas. While the binding affinity predictions require validation, the framework provides:
 
 1. **2,068 novel peptide sequences** as prior art
 2. **Systematic target coverage** across unmet medical needs

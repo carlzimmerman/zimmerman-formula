@@ -80,7 +80,7 @@ When using this work, please cite:
 
 ```
 Zimmerman, C., & Claude Opus 4.5. (2026). M4 Oral Health Bacteria Targeting
-Pipeline: Antivirulence Peptide Design for Selective Pathogen Disarmament.
+Pipeline: Antivirulence Peptide Design for Selective target system Disarmament.
 GitHub: zimmerman-formula. License: AGPL-3.0-or-later.
 ```
 

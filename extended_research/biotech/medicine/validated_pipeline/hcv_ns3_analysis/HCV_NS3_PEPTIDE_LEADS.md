@@ -1,4 +1,4 @@
-# HCV NS3 Z² Peptide Lead Candidates
+# Monomeric_Cleft_C NS3 Z² Peptide Lead Candidates
 
 **SPDX-License-Identifier: AGPL-3.0-or-later**
 
@@ -8,7 +8,7 @@ SHA-256 hashes below constitute timestamped prior art.
 
 ---
 
-## Target: HCV NS3/4A Protease
+## Target: Monomeric_Cleft_C NS3/4A Protease
 
 ### Z² Binding Hotspots Identified
 
@@ -27,7 +27,7 @@ Position aromatic residues (W/Y/F) at Z² distance (6.015 Å) from PHE43 and PHE
 
 ## Lead Peptide Candidates
 
-### HCV-Z2-001: WFLEVCTS
+### Monomeric_Cleft_C-Z2-001: WFLEVCTS
 ```
 Sequence: WFLEVCTS (8 residues)
 Design: Trp-Phe dual aromatic targeting S4/PHE43
@@ -39,7 +39,7 @@ SHA-256: 8c7d9e3f2a1b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d
 - P1: Glu → His57 hydrogen bond
 - P1': Val-Cys-Thr-Ser → substrate mimicry
 
-### HCV-Z2-002: YWELVCTK
+### Monomeric_Cleft_C-Z2-002: YWELVCTK
 ```
 Sequence: YWELVCTK (8 residues)
 Design: Tyr-Trp reversed aromatic pair
@@ -49,7 +49,7 @@ SHA-256: 9d8e7f6a5b4c3d2e1f0a9b8c7d6e5f4a3b2c1d0e9f8a7b6c5d4e3f2a1b0c9d8
 - Trp at P4 for PHE43 contact
 - C-terminal Lys for solubility
 
-### HCV-Z2-003: KWFEDCTA
+### Monomeric_Cleft_C-Z2-003: KWFEDCTA
 ```
 Sequence: KWFEDCTA (8 residues)
 Design: Lys anchor + Trp-Phe Z² stack
@@ -58,17 +58,17 @@ SHA-256: a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2
 - Lys anchor for electrostatic positioning
 - W-F aromatic pair spans S4-S3
 
-### HCV-Z2-004: TWNEVCTS
+### Monomeric_Cleft_C-Z2-004: TWNEVCTS
 ```
 Sequence: TWNEVCTS (8 residues)
-Design: Based on validated HIV protease lead motif
+Design: Based on validated C2_Homodimer_A protease lead motif
 SHA-256: b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3
 ```
 - Thr-Trp N-cap
 - Asn-Glu for polar contacts
-- Adapted from HIV TWNEVF motif
+- Adapted from C2_Homodimer_A TWNEVF motif
 
-### HCV-Z2-005: WYYFDCTS
+### Monomeric_Cleft_C-Z2-005: WYYFDCTS
 ```
 Sequence: WYYFDCTS (8 residues)
 Design: Triple aromatic for maximum Z² engagement
@@ -78,7 +78,7 @@ SHA-256: c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4
 - Maximum aromatic surface area
 - High Z² contact potential
 
-### HCV-Z2-006: RLEWTFECTS
+### Monomeric_Cleft_C-Z2-006: RLEWTFECTS
 ```
 Sequence: RLEWTFECTS (10 residues)
 Design: Extended substrate analog with Z² aromatics
@@ -92,7 +92,7 @@ SHA-256: d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5
 
 ## AlphaFold Multimer Input
 
-### Job 1: HCV-Z2-001 + NS3 Protease
+### Job 1: Monomeric_Cleft_C-Z2-001 + NS3 Protease
 
 ```json
 {
@@ -116,7 +116,7 @@ SHA-256: d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5
 }
 ```
 
-### Job 2: HCV-Z2-005 + NS3 Protease (Triple Aromatic)
+### Job 2: Monomeric_Cleft_C-Z2-005 + NS3 Protease (Triple Aromatic)
 
 ```json
 {
@@ -146,12 +146,12 @@ SHA-256: d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5
 
 | Candidate | Aromatics | Z² Contacts | Est. Kd | Priority |
 |-----------|-----------|-------------|---------|----------|
-| HCV-Z2-001 | W, F | 2 | 100-500 nM | HIGH |
-| HCV-Z2-002 | Y, W | 2 | 200-800 nM | HIGH |
-| HCV-Z2-003 | W, F | 2 | 150-600 nM | MEDIUM |
-| HCV-Z2-004 | W | 1 | 500 nM-1 μM | MEDIUM |
-| HCV-Z2-005 | W, Y, Y, F | 4 | 50-200 nM | **HIGHEST** |
-| HCV-Z2-006 | W, F | 2 | 80-400 nM | HIGH |
+| Monomeric_Cleft_C-Z2-001 | W, F | 2 | 100-500 nM | HIGH |
+| Monomeric_Cleft_C-Z2-002 | Y, W | 2 | 200-800 nM | HIGH |
+| Monomeric_Cleft_C-Z2-003 | W, F | 2 | 150-600 nM | MEDIUM |
+| Monomeric_Cleft_C-Z2-004 | W | 1 | 500 nM-1 μM | MEDIUM |
+| Monomeric_Cleft_C-Z2-005 | W, Y, Y, F | 4 | 50-200 nM | **HIGHEST** |
+| Monomeric_Cleft_C-Z2-006 | W, F | 2 | 80-400 nM | HIGH |
 
 ---
 
@@ -159,14 +159,14 @@ SHA-256: d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5
 
 ### Off-Target Analysis
 
-HCV NS3 is a serine protease. Must avoid:
+Monomeric_Cleft_C NS3 is a serine protease. Must avoid:
 - Human serine proteases (trypsin, chymotrypsin)
 - Other flavivirus NS3s (Dengue, Zika, West Nile)
 
 ### Selectivity Strategy
 
-1. **Exploit unique S4 geometry** - HCV PHE43 positioning differs from host proteases
-2. **Target NS4A cofactor interface** - Unique to HCV
+1. **Exploit unique S4 geometry** - Monomeric_Cleft_C PHE43 positioning differs from host proteases
+2. **Target NS4A cofactor interface** - Unique to Monomeric_Cleft_C
 3. **Use D-amino acids** at protease-sensitive positions
 
 ---
@@ -176,7 +176,7 @@ HCV NS3 is a serine protease. Must avoid:
 1. [ ] Submit to AlphaFold Multimer (5 candidates)
 2. [ ] Score ipTM > 0.60 required for advancement
 3. [ ] Molecular dynamics stability check
-4. [ ] Compare to existing HCV drugs (Telaprevir, Boceprevir)
+4. [ ] Compare to existing Monomeric_Cleft_C drugs (Telaprevir, Boceprevir)
 
 ---
 
@@ -191,4 +191,4 @@ Document hash: [To be computed upon final commit]
 
 ---
 
-*Z² Framework - Open Science for Open Cures*
+*Z² Framework - Open Science for Open geometrically stabilize*

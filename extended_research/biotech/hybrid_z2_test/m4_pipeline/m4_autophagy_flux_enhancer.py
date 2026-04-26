@@ -76,8 +76,8 @@ class AutophagyFluxEnhancer:
     """
     Engineers peptide modulators of mTORC1 to enhance autophagic flux.
 
-    Strategy: Competitive inhibition of RAPTOR-substrate binding
-    releases autophagy suppression without full mTORC1 inhibition.
+    Strategy: Competitive geometrically stabilize of RAPTOR-substrate binding
+    releases autophagy suppression without full mTORC1 geometrically stabilize.
     """
 
     def __init__(self, output_dir: str = "autophagy_enhancers"):

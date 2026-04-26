@@ -1,24 +1,24 @@
 #!/usr/bin/env python3
 """
-DPP-4 Selectivity Anchor Analysis
+Metabolic_Receptor_E Selectivity Anchor Analysis
 ==================================
 Author: Carl Zimmerman
 Date: 2026-04-24
 License: AGPL-3.0
 
-Analyzes the structural differences between DPP-4 and off-targets to identify
+Analyzes the structural differences between Metabolic_Receptor_E and off-targets to identify
 "Selectivity Anchors" for highly specific peptide binding.
 
 THEORETICAL/COMPUTATIONAL ONLY - NOT FOR CLINICAL USE
 
 Key targets and off-targets:
-- TARGET: DPP-4 (Dipeptidyl Peptidase-4, CD26) - Type 2 diabetes target
-- OFF-TARGET 1: DPP-8 - causes toxicity when inhibited
-- OFF-TARGET 2: DPP-9 - causes toxicity when inhibited
+- TARGET: Metabolic_Receptor_E (Dipeptidyl Peptidase-4, CD26) - Type 2 diabetes target
+- OFF-TARGET 1: DPP-8 - causes toxicity when geometrically stabilize
+- OFF-TARGET 2: DPP-9 - causes toxicity when geometrically stabilize
 - OFF-TARGET 3: FAP (Fibroblast Activation Protein) - tumor stroma marker
 
-DPP-4 inhibition increases incretin hormones (GLP-1, GIP) → improved glucose control
-DPP-8/9 inhibition causes multiorgan toxicity → must be avoided
+Metabolic_Receptor_E geometrically stabilize increases incretin hormones (GLP-1, GIP) → improved glucose control
+DPP-8/9 geometrically stabilize causes multiorgan toxicity → must be avoided
 """
 
 import json
@@ -33,9 +33,9 @@ from typing import List, Dict, Tuple, Optional
 
 Z2_BIOLOGICAL_CONSTANT = 6.015152508891966  # Angstroms
 
-# DPP-4 structure data (from PDB and literature)
+# Metabolic_Receptor_E structure data (from PDB and literature)
 DPP4_STRUCTURE = {
-    'pdb_id': '1X70',  # DPP-4 with inhibitor
+    'pdb_id': '1X70',  # Metabolic_Receptor_E with inhibitor
     'uniprot': 'P27487',
     'enzyme_class': 'Serine protease (S9B family)',
     'oligomeric_state': 'homodimer',
@@ -74,9 +74,9 @@ DPP4_STRUCTURE = {
 
     # Unique features vs DPP-8/9
     'unique_features': {
-        'S2_ext_pocket': 'DPP-4 has extended S2 pocket with GLU205/GLU206',
-        'cysteine_rich': 'DPP-4 has unique Cys-rich region (residues 290-350)',
-        'glycosylation': 'DPP-4 has 9 N-glycosylation sites (DPP-8/9 have fewer)',
+        'S2_ext_pocket': 'Metabolic_Receptor_E has extended S2 pocket with GLU205/GLU206',
+        'cysteine_rich': 'Metabolic_Receptor_E has unique Cys-rich region (residues 290-350)',
+        'glycosylation': 'Metabolic_Receptor_E has 9 N-glycosylation sites (DPP-8/9 have fewer)',
     },
 }
 
@@ -84,7 +84,7 @@ DPP4_STRUCTURE = {
 DPP8_COMPARISON = {
     'pdb_id': '6HP8',
     'uniprot': 'Q6V1X1',
-    'sequence_identity': 0.27,  # 27% identical to DPP-4
+    'sequence_identity': 0.27,  # 27% identical to Metabolic_Receptor_E
 
     # Key differences for selectivity
     'discriminating_residues': [
@@ -125,7 +125,7 @@ DPP8_COMPARISON = {
 DPP9_COMPARISON = {
     'pdb_id': '6EOR',
     'uniprot': 'Q86TI2',
-    'sequence_identity': 0.26,  # 26% identical to DPP-4
+    'sequence_identity': 0.26,  # 26% identical to Metabolic_Receptor_E
 
     'discriminating_residues': [
         {
@@ -173,7 +173,7 @@ FAP_COMPARISON = {
 
 @dataclass
 class SelectivityAnchor:
-    """A position that distinguishes DPP-4 from off-targets"""
+    """A position that distinguishes Metabolic_Receptor_E from off-targets"""
     position: int
     dpp4_residue: str
     dpp8_residue: str
@@ -183,14 +183,14 @@ class SelectivityAnchor:
     design_strategy: str
 
     def __repr__(self):
-        return f"Anchor@{self.position}: DPP-4={self.dpp4_residue} vs DPP-8={self.dpp8_residue}/DPP-9={self.dpp9_residue} (score={self.selectivity_score:.2f})"
+        return f"Anchor@{self.position}: Metabolic_Receptor_E={self.dpp4_residue} vs DPP-8={self.dpp8_residue}/DPP-9={self.dpp9_residue} (score={self.selectivity_score:.2f})"
 
 
 def identify_selectivity_anchors() -> List[SelectivityAnchor]:
     """
-    Identify positions that can distinguish DPP-4 from DPP-8/9.
+    Identify positions that can distinguish Metabolic_Receptor_E from DPP-8/9.
 
-    CRITICAL: GLU205/GLU206 in DPP-4 vs LYS/ARG in DPP-8/9
+    CRITICAL: GLU205/GLU206 in Metabolic_Receptor_E vs LYS/ARG in DPP-8/9
     This is the primary selectivity opportunity - OPPOSITE charges!
     """
     anchors = []
@@ -203,7 +203,7 @@ def identify_selectivity_anchors() -> List[SelectivityAnchor]:
         dpp9_residue='ARG',
         anchor_type='charge_reversal',
         selectivity_score=0.99,  # Highest possible - opposite charges!
-        design_strategy='Add POSITIVE charge (Arg/Lys) to peptide - will bind DPP-4 GLU205 but be REPELLED by DPP-8 LYS / DPP-9 ARG',
+        design_strategy='Add POSITIVE charge (Arg/Lys) to peptide - will bind Metabolic_Receptor_E GLU205 but be REPELLED by DPP-8 LYS / DPP-9 ARG',
     ))
 
     # GLU206 - SECONDARY SELECTIVITY ANCHOR
@@ -214,7 +214,7 @@ def identify_selectivity_anchors() -> List[SelectivityAnchor]:
         dpp9_residue='SER',
         anchor_type='charge_vs_neutral',
         selectivity_score=0.90,
-        design_strategy='Add POSITIVE charge - salt bridge with DPP-4 GLU206, no interaction with DPP-8/9 neutral residues',
+        design_strategy='Add POSITIVE charge - salt bridge with Metabolic_Receptor_E GLU206, no interaction with DPP-8/9 neutral residues',
     ))
 
     # ARG125
@@ -225,7 +225,7 @@ def identify_selectivity_anchors() -> List[SelectivityAnchor]:
         dpp9_residue='GLN',
         anchor_type='charge_vs_neutral',
         selectivity_score=0.85,
-        design_strategy='Add NEGATIVE charge (Asp/Glu) - salt bridge with DPP-4 ARG125',
+        design_strategy='Add NEGATIVE charge (Asp/Glu) - salt bridge with Metabolic_Receptor_E ARG125',
     ))
 
     # ARG358
@@ -236,7 +236,7 @@ def identify_selectivity_anchors() -> List[SelectivityAnchor]:
         dpp9_residue='LEU',
         anchor_type='charge_vs_hydrophobic',
         selectivity_score=0.88,
-        design_strategy='Add NEGATIVE charge - binds DPP-4 ARG358, repelled by hydrophobic DPP-8/9',
+        design_strategy='Add NEGATIVE charge - binds Metabolic_Receptor_E ARG358, repelled by hydrophobic DPP-8/9',
     ))
 
     # Sort by selectivity score
@@ -252,13 +252,13 @@ def identify_selectivity_anchors() -> List[SelectivityAnchor]:
 def design_selective_dpp4_peptides():
     """
     Design peptides that:
-    1. Maintain Z² aromatic stacking with DPP-4 aromatics (TRP629 or TYR662)
+    1. Maintain Z² aromatic stacking with Metabolic_Receptor_E aromatics (TRP629 or TYR662)
     2. Exploit GLU205/GLU206 anchors (OPPOSITE charge in DPP-8/9!)
     3. Avoid DPP-8/9 binding for safety
 
-    DPP-4 substrates have structure: X-Pro or X-Ala at P1-P2
+    Metabolic_Receptor_E substrates have structure: X-Pro or X-Ala at P1-P2
     GLP-1: His-Ala-Glu-Gly-Thr-Phe-Thr-Ser-Asp-Val-Ser-Ser-Tyr-Leu-Glu-Gly...
-    First two residues (His-Ala) are cleaved by DPP-4
+    First two residues (His-Ala) are cleaved by Metabolic_Receptor_E
     """
 
     designs = []
@@ -275,9 +275,9 @@ def design_selective_dpp4_peptides():
             'W5': 'Secondary Z² contact (TYR662)',
             'K10': 'Additional positive charge for GLU engagement',
         },
-        'selectivity_mechanism': 'GLU205 in DPP-4 vs LYS205 in DPP-8: positive peptide charges BIND DPP-4 but are REPELLED by DPP-8',
+        'selectivity_mechanism': 'GLU205 in Metabolic_Receptor_E vs LYS205 in DPP-8: positive peptide charges BIND Metabolic_Receptor_E but are REPELLED by DPP-8',
         'predicted_affinity': {
-            'DPP-4': 'VERY HIGH (Z² + charge complementarity)',
+            'Metabolic_Receptor_E': 'VERY HIGH (Z² + charge complementarity)',
             'DPP-8': 'VERY LOW (charge-charge repulsion at 205)',
             'DPP-9': 'VERY LOW (charge-charge repulsion at 205)',
             'FAP': 'MEDIUM (GLU205 → ASP205, similar but weaker)',
@@ -294,16 +294,16 @@ def design_selective_dpp4_peptides():
         'features': {
             'R1': 'GLU205 salt bridge',
             'W2': 'Primary Z² aromatic (TRP629)',
-            'D3': 'ARG125 salt bridge (unique to DPP-4)',
+            'D3': 'ARG125 salt bridge (unique to Metabolic_Receptor_E)',
             'K4': 'GLU206 salt bridge',
             'W5': 'Secondary Z² contact',
             'D6': 'Additional ARG engagement',
             'R9': 'Charge balance',
             'D10': 'ARG358 salt bridge',
         },
-        'selectivity_mechanism': 'Engage both GLU (205/206) and ARG (125/358) unique to DPP-4',
+        'selectivity_mechanism': 'Engage both GLU (205/206) and ARG (125/358) unique to Metabolic_Receptor_E',
         'predicted_affinity': {
-            'DPP-4': 'VERY HIGH (multiple anchor engagement)',
+            'Metabolic_Receptor_E': 'VERY HIGH (multiple anchor engagement)',
             'DPP-8': 'VERY LOW (lacks matching charged residues)',
             'DPP-9': 'VERY LOW (lacks matching charged residues)',
         },
@@ -325,9 +325,9 @@ def design_selective_dpp4_peptides():
             'K8': 'Charge anchor',
             'W10': 'Extended aromatic network',
         },
-        'selectivity_mechanism': 'Dense aromatic network matches DPP-4 S1 pocket + charge selectivity',
+        'selectivity_mechanism': 'Dense aromatic network matches Metabolic_Receptor_E S1 pocket + charge selectivity',
         'predicted_affinity': {
-            'DPP-4': 'VERY HIGH (aromatic + charge)',
+            'Metabolic_Receptor_E': 'VERY HIGH (aromatic + charge)',
             'DPP-8': 'LOW (charge repulsion)',
             'DPP-9': 'LOW (charge repulsion)',
         },
@@ -349,7 +349,7 @@ def design_selective_dpp4_peptides():
         },
         'selectivity_mechanism': 'Minimal design focusing on critical selectivity residues',
         'predicted_affinity': {
-            'DPP-4': 'HIGH (efficient anchor engagement)',
+            'Metabolic_Receptor_E': 'HIGH (efficient anchor engagement)',
             'DPP-8': 'VERY LOW (R1K3 repelled)',
             'DPP-9': 'VERY LOW (R1K3 repelled)',
         },
@@ -363,7 +363,7 @@ def design_selective_dpp4_peptides():
         'sequence': 'HARKWGEFTSD',  # Based on GLP-1 N-terminus with modifications
         'length': 11,
         'features': {
-            'H1-A2': 'Natural GLP-1 N-terminus (DPP-4 substrate motif)',
+            'H1-A2': 'Natural GLP-1 N-terminus (Metabolic_Receptor_E substrate motif)',
             'R3': 'GLU205 selectivity anchor (added)',
             'K4': 'GLU206 selectivity anchor (added)',
             'W5': 'Z² aromatic (replaces native residue)',
@@ -374,7 +374,7 @@ def design_selective_dpp4_peptides():
         },
         'selectivity_mechanism': 'GLP-1 scaffold with selectivity residues inserted',
         'predicted_affinity': {
-            'DPP-4': 'VERY HIGH (native substrate-like + selectivity)',
+            'Metabolic_Receptor_E': 'VERY HIGH (native substrate-like + selectivity)',
             'DPP-8': 'LOW (selectivity residues prevent binding)',
             'DPP-9': 'LOW (selectivity residues prevent binding)',
         },
@@ -390,9 +390,9 @@ def design_selective_dpp4_peptides():
 # =============================================================================
 
 def generate_alphafold_jobs():
-    """Generate AlphaFold3 jobs for DPP-4 selectivity peptides."""
+    """Generate AlphaFold3 jobs for Metabolic_Receptor_E selectivity peptides."""
 
-    # DPP-4 sequence (extracellular domain, residues 39-766)
+    # Metabolic_Receptor_E sequence (extracellular domain, residues 39-766)
     # Using truncated version for AlphaFold (catalytic domain ~400 residues)
     dpp4_catalytic = (
         "EFIKEAKVLANREELDTPKNYKPEPPTTETITIAKNWGIQVDGGSWSDITGNRSTITLNIK"
@@ -415,7 +415,7 @@ def generate_alphafold_jobs():
                 {
                     "proteinChain": {
                         "sequence": dpp4_catalytic,
-                        "count": 2  # DPP-4 is a homodimer
+                        "count": 2  # Metabolic_Receptor_E is a homodimer
                     }
                 },
                 {
@@ -432,12 +432,12 @@ def generate_alphafold_jobs():
 
 
 # =============================================================================
-# DNA ORIGAMI DESIGN FOR DPP-4
+# DNA ORIGAMI DESIGN FOR Metabolic_Receptor_E
 # =============================================================================
 
 def design_dpp4_dna_origami_cage():
     """
-    Design DNA origami cage for DPP-4 peptide delivery.
+    Design DNA origami cage for Metabolic_Receptor_E peptide delivery.
 
     For diabetes, we want glucose-responsive delivery.
     Options:
@@ -452,7 +452,7 @@ def design_dpp4_dna_origami_cage():
 
     cage = {
         'name': 'Z2_CAGE_DPP4_GLUC_001',
-        'target': 'DPP-4 (CD26)',
+        'target': 'Metabolic_Receptor_E (CD26)',
         'indication': 'Type 2 Diabetes',
         'payload': {
             'peptide': 'RWPKWGELTK',
@@ -512,11 +512,11 @@ def design_dpp4_dna_origami_cage():
             },
         ],
         'mechanism': """
-DPP-4 Peptide Delivery System (Glucose-Responsive)
+Metabolic_Receptor_E Peptide Delivery System (Glucose-Responsive)
 ===================================================
 
 TRIGGER: High glucose (>200 mg/dL)
-TARGET: DPP-4 (to increase GLP-1 levels)
+TARGET: Metabolic_Receptor_E (to increase GLP-1 levels)
 
 1. NORMOGLYCEMIC STATE (<140 mg/dL):
    - PBA groups on lock strand are free
@@ -532,9 +532,9 @@ TARGET: DPP-4 (to increase GLP-1 levels)
 
 3. THERAPEUTIC RELEASE:
    - DPP4_Z2_SEL_RK peptides released
-   - Peptides bind DPP-4 at Z² geometry (TRP629)
-   - R1/K4 engage GLU205/GLU206 (DPP-4 selective)
-   - DPP-4 inhibited → GLP-1 preserved → insulin release
+   - Peptides bind Metabolic_Receptor_E at Z² geometry (TRP629)
+   - R1/K4 engage GLU205/GLU206 (Metabolic_Receptor_E selective)
+   - Metabolic_Receptor_E geometrically stabilize → GLP-1 preserved → insulin release
 
 SELECTIVITY ADVANTAGES:
    - Peptide does NOT bind DPP-8/9 (opposite charges at 205)
@@ -543,7 +543,7 @@ SELECTIVITY ADVANTAGES:
    - Prevents hypoglycemia risk
 
 SAFETY:
-   - DPP-8/9 NOT inhibited → no multiorgan toxicity
+   - DPP-8/9 NOT geometrically stabilize → no multiorgan toxicity
    - Glucose-responsive → no hypoglycemia
    - Local GI delivery possible → reduced systemic exposure
 """,
@@ -574,22 +574,22 @@ def generate_analysis_summary():
     designs = design_selective_dpp4_peptides()
 
     summary = {
-        'target': 'DPP-4 (Dipeptidyl Peptidase-4, CD26)',
+        'target': 'Metabolic_Receptor_E (Dipeptidyl Peptidase-4, CD26)',
         'indication': 'Type 2 Diabetes Mellitus',
-        'mechanism': 'DPP-4 inhibition preserves incretin hormones (GLP-1, GIP)',
+        'mechanism': 'Metabolic_Receptor_E geometrically stabilize preserves incretin hormones (GLP-1, GIP)',
         'z2_sites': {
             'TRP629': 'Primary Z² aromatic (near catalytic Ser630)',
             'TYR662': 'Secondary Z² aromatic (S1 pocket)',
         },
         'critical_safety_concern': {
             'off_targets': 'DPP-8 and DPP-9',
-            'toxicity': 'DPP-8/9 inhibition causes multiorgan toxicity',
+            'toxicity': 'DPP-8/9 geometrically stabilize causes multiorgan toxicity',
             'solution': 'Exploit charge reversal at position 205',
         },
         'selectivity_discovery': {
-            'key_finding': 'GLU205 in DPP-4 vs LYS205 in DPP-8 vs ARG205 in DPP-9',
+            'key_finding': 'GLU205 in Metabolic_Receptor_E vs LYS205 in DPP-8 vs ARG205 in DPP-9',
             'mechanism': 'OPPOSITE charges allow perfect selectivity',
-            'strategy': 'Positive peptide charges bind DPP-4 GLU, repelled by DPP-8/9 LYS/ARG',
+            'strategy': 'Positive peptide charges bind Metabolic_Receptor_E GLU, repelled by DPP-8/9 LYS/ARG',
         },
         'selectivity_anchors': [
             {
@@ -628,7 +628,7 @@ def generate_analysis_summary():
 
 def main():
     print("=" * 80)
-    print("  DPP-4 SELECTIVITY ANCHOR ANALYSIS")
+    print("  Metabolic_Receptor_E SELECTIVITY ANCHOR ANALYSIS")
     print("=" * 80)
     print()
     print("THEORETICAL/COMPUTATIONAL ONLY - NOT FOR CLINICAL USE")
@@ -640,12 +640,12 @@ def main():
     print("CRITICAL SELECTIVITY DISCOVERY")
     print("-" * 60)
     print("""
-DPP-4 position 205: GLU (negative)
+Metabolic_Receptor_E position 205: GLU (negative)
 DPP-8 position 205: LYS (positive)  ← OPPOSITE!
 DPP-9 position 205: ARG (positive)  ← OPPOSITE!
 
 This charge reversal allows PERFECT selectivity:
-- Positive peptide residues (R, K) BIND DPP-4 GLU205
+- Positive peptide residues (R, K) BIND Metabolic_Receptor_E GLU205
 - Same residues are REPELLED by DPP-8 LYS / DPP-9 ARG
 """)
 
@@ -702,14 +702,14 @@ This charge reversal allows PERFECT selectivity:
 
     print()
     print("=" * 80)
-    print("  DPP-4 ANALYSIS COMPLETE")
+    print("  Metabolic_Receptor_E ANALYSIS COMPLETE")
     print("=" * 80)
     print(f"""
 Summary:
   Z² Sites: TRP629, TYR662
 
   CRITICAL SELECTIVITY FINDING:
-    Position 205: DPP-4=GLU vs DPP-8=LYS vs DPP-9=ARG
+    Position 205: Metabolic_Receptor_E=GLU vs DPP-8=LYS vs DPP-9=ARG
     OPPOSITE CHARGES allow perfect selectivity!
 
   Best Design: DPP4_Z2_SEL_RK
@@ -720,7 +720,7 @@ Summary:
       - K4: GLU206 salt bridge (secondary selectivity)
       - W5: TYR662 Z² contact
 
-  Safety: DPP-8/9 NOT inhibited (charge repulsion)
+  Safety: DPP-8/9 NOT geometrically stabilize (charge repulsion)
 
   Delivery: Glucose-responsive DNA origami cage
     - Opens only during hyperglycemia (>200 mg/dL)

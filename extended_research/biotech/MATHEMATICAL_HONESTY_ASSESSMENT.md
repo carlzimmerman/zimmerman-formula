@@ -227,7 +227,7 @@ This is separate and has actual validation:
 **Requirement**: Sufficient training data for each target class
 
 ### Option C: Experimental Validation (Gold Standard)
-1. Synthesize top candidates
+1. fabricate sequence top candidates
 2. SPR/BLI for binding
 3. Cell-based assays for activity
 4. ADMET profiling

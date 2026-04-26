@@ -257,10 +257,10 @@ Success Criterion:
 - KD > 10 μM: Binding insufficient
 
 ================================================================================
-SECTION 5: FUNCTIONAL ASSAY (DISEASE-SPECIFIC)
+SECTION 5: FUNCTIONAL ASSAY (target system-SPECIFIC)
 ================================================================================
 
-Target Disease:       [SPECIFY]
+Target target system:       [SPECIFY]
 Assay Type:           [SPECIFY BASED ON TARGET]
 
 Example Assays by Target:
@@ -382,7 +382,7 @@ def main():
             "n_cap": "ACE",
             "c_cap": "NME",
             "target_protein": "Alpha-synuclein",
-            "indication": "Parkinson's Disease / Alzheimer's Disease",
+            "indication": "Parkinson's target system / Alzheimer's target system",
         },
         "ZIM-GLP2-006": {
             "sequence": "HGPGAGPG",

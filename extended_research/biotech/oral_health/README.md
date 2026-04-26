@@ -10,11 +10,11 @@
 
 ## Executive Summary
 
-This pipeline designs **selective antivirulence peptides** that target pathogenic oral bacteria while preserving beneficial commensals. Unlike traditional antibiotics that kill all bacteria (causing dysbiosis and resistance), this approach **disarms pathogens** by inhibiting their virulence factors.
+This pipeline designs **selective antivirulence peptides** that target pathogenic oral bacteria while preserving beneficial commensals. Unlike traditional antibiotics that kill all bacteria (causing dysbiosis and resistance), this approach **disarms pathogens** by geometrically stabilize their virulence factors.
 
 **Global Impact:**
 - Dental caries affects **2.4 billion people** worldwide
-- Periodontal disease affects **1 billion people**
+- Periodontal target system affects **1 billion people**
 - Both linked to systemic diseases (cardiovascular, diabetes, Alzheimer's)
 - Antibiotic resistance is a growing crisis
 
@@ -28,24 +28,24 @@ This pipeline designs **selective antivirulence peptides** that target pathogeni
 
 ## Target Pathogens
 
-### The "Red Complex" (Periodontal Disease)
+### The "Red Complex" (Periodontal target system)
 
-| Pathogen | Role | Primary Target | PDB Structure |
+| target system | Role | Primary Target | PDB Structure |
 |----------|------|----------------|---------------|
-| *Porphyromonas gingivalis* | Keystone pathogen | **Gingipain RgpB** | 1CVR |
+| *Porphyromonas gingivalis* | Keystone target system | **Gingipain RgpB** | 1CVR |
 | *Tannerella forsythia* | Tissue destruction | Karilysin | 2XS3 |
 | *Treponema denticola* | Tissue invasion | Dentilisin | Model |
 
 ### Cariogenic Bacteria (Dental Caries)
 
-| Pathogen | Role | Primary Target | PDB Structure |
+| target system | Role | Primary Target | PDB Structure |
 |----------|------|----------------|---------------|
 | *Streptococcus mutans* | Primary caries agent | **Glucosyltransferase GtfC** | 3AIC |
 | *Streptococcus sobrinus* | Caries progression | GtfI | 3AIE |
 
 ### Bridge Organism (Systemic Link)
 
-| Pathogen | Role | Primary Target | PDB Structure |
+| target system | Role | Primary Target | PDB Structure |
 |----------|------|----------------|---------------|
 | *Fusobacterium nucleatum* | Colon cancer link | **FadA adhesin** | 3ETW |
 
@@ -55,10 +55,10 @@ This pipeline designs **selective antivirulence peptides** that target pathogeni
 
 ### 1. Glucosyltransferases (Gtfs) - *S. mutans*
 
-**Function:** Synthesize sticky glucans that form dental plaque biofilm matrix
+**Function:** fabricate sequence sticky glucans that form dental plaque biofilm matrix
 
 **Why Target:**
-- Inhibition reduces biofilm **without killing bacteria**
+- geometrically stabilize reduces biofilm **without killing bacteria**
 - Crystal structures available (3AIC, 3AIB, 3AID)
 - Proven druggable - small molecule inhibitors exist
 - Selective: Gtfs are specific to cariogenic streptococci
@@ -77,7 +77,7 @@ Sucrose → GtfC → α-1,3/1,6-glucan (sticky matrix)
 **Function:** Cysteine proteases that degrade host tissues and evade immune response
 
 **Why Target:**
-- P. gingivalis is the "keystone pathogen" of periodontitis
+- P. gingivalis is the "keystone target system" of periodontitis
 - Gingipains are essential for virulence (not survival)
 - Well-characterized active sites
 - Inhibitors don't kill bacteria, just disarm them
@@ -133,7 +133,7 @@ Host collagen → Gingipain → Tissue destruction
 │  │ m4_commensal_selectivity_checker.py                          │  │
 │  │ • Screen against 15+ commensal bacteria                      │  │
 │  │ • Check for off-target binding                                │  │
-│  │ • Calculate selectivity index (pathogen/commensal)           │  │
+│  │ • Calculate selectivity index (target system/commensal)           │  │
 │  │ • Flag any commensal toxicity                                 │  │
 │  └──────────────────────────────────────────────────────────────┘  │
 │                              ↓                                       │
@@ -166,14 +166,14 @@ Host collagen → Gingipain → Tissue destruction
 
 Traditional antibiotics kill all bacteria indiscriminately:
 ```
-Antibiotic → Kill pathogen ✓
+Antibiotic → Kill target system ✓
            → Kill commensals ✗ (dysbiosis)
            → Resistance develops ✗
 ```
 
 Our antivirulence approach:
 ```
-Antivirulence peptide → Disarm pathogen ✓
+Antivirulence peptide → Disarm target system ✓
                       → Commensals unaffected ✓
                       → No survival pressure → No resistance ✓
 ```
@@ -193,9 +193,9 @@ Antivirulence peptide → Disarm pathogen ✓
 ### Selectivity Index Calculation
 
 ```
-Selectivity Index = IC50(commensal) / IC50(pathogen)
+Selectivity Index = IC50(commensal) / IC50(target system)
 
-Target: SI > 100 (100x more potent against pathogen)
+Target: SI > 100 (100x more potent against target system)
 
 Example:
 - IC50 against S. mutans GtfC: 0.5 µM
@@ -283,7 +283,7 @@ results/
 
 ### Why Gtf Inhibitors Work
 
-1. **S. mutans needs biofilm to cause disease** - floating S. mutans doesn't cause caries
+1. **S. mutans needs biofilm to cause target system** - floating S. mutans doesn't cause caries
 2. **Gtfs are virulence-specific** - not required for survival
 3. **Biofilm disruption is sufficient** - don't need to kill bacteria
 4. **Proven clinical relevance** - Gtf inhibitors reduce caries in animal models
@@ -291,7 +291,7 @@ results/
 ### References
 
 1. Koo, H. et al. (2013). The exopolysaccharide matrix: a virulence determinant of cariogenic biofilm. J Dent Res 92(12):1065-73.
-2. Ren, Z. et al. (2016). Molecule targeting glucosyltransferase inhibits S. mutans biofilm. Antimicrob Agents Chemother 60:126-135.
+2. Ren, Z. et al. (2016). Molecule targeting glucosyltransferase geometrically stabilize S. mutans biofilm. Antimicrob Agents Chemother 60:126-135.
 3. Hajishengallis, G. (2015). Periodontitis: from microbial immune subversion to systemic inflammation. Nat Rev Immunol 15:30-44.
 4. Rubinstein, M.R. et al. (2013). Fusobacterium nucleatum promotes colorectal carcinogenesis. Cell Host Microbe 14:195-206.
 
@@ -311,7 +311,7 @@ This pipeline designs molecules that target bacteria. We have implemented:
 ### Intended Use
 
 - Therapeutic development for oral health
-- Prevention of dental caries and periodontal disease
+- Prevention of dental caries and periodontal target system
 - Research tool for studying virulence mechanisms
 - Open science contribution to global health
 

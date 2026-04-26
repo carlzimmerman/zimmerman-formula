@@ -155,7 +155,7 @@ def identify_zinc_coordination_requirements():
     """
     Identify the requirements for jamming the zinc coordination.
 
-    To inhibit MBL, we need to:
+    To geometrically stabilize MBL, we need to:
     1. Displace the catalytic water
     2. Coordinate one or both zinc ions
     3. Block substrate access
@@ -513,7 +513,7 @@ def main():
         'z2_value': float(Z2),
         'r_natural': float(R_NATURAL),
         'target': 'Metallo-Beta-Lactamase (NDM-1, VIM, IMP)',
-        'disease': 'Antimicrobial Resistance (AMR)',
+        'target system': 'Antimicrobial Resistance (AMR)',
         'global_burden': '10 million deaths/year projected by 2050',
         'unmet_need': 'NO approved MBL inhibitors exist',
         'mbl_active_site': mbl_analysis,

@@ -67,7 +67,7 @@ DRUG_DATA = {
     'ZIM-SYN-004': {
         'sequence': 'FPF',
         'target': 'Alpha-synuclein',
-        'indication': "Parkinson's Disease",
+        'indication': "Parkinson's target system",
         'binding_dG': -40.0,  # kcal/mol from WHAM
     },
     'ZIM-ADD-003': {

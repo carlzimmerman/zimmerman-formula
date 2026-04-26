@@ -39,7 +39,7 @@ class PeptideCandidate:
     peptide_id: str
     sequence: str
     target: str
-    disease: str
+    target system: str
     predicted_kd_nM: float
     molecular_weight: float = 0.0
     purity_required: float = 95.0
@@ -582,7 +582,7 @@ We are seeking quotations for binding affinity characterization of {len(request.
 
     for p in request.peptides:
         mw = calculate_mw(p.sequence) if p.molecular_weight == 0 else p.molecular_weight
-        doc += f"| {p.peptide_id} | {mw:.0f} | {p.predicted_kd_nM:.1f} | {p.disease} |\n"
+        doc += f"| {p.peptide_id} | {mw:.0f} | {p.predicted_kd_nM:.1f} | {p.target system} |\n"
 
     doc += f"""
 ---
@@ -708,7 +708,7 @@ def run_demo():
             peptide_id="METAB_GLP1R_002",
             sequence="HAEGTFTSDVSSYLEGQAAKEFIAWLVKGR",
             target="GLP-1R",
-            disease="Obesity/T2D",
+            target system="Obesity/T2D",
             predicted_kd_nM=0.011,
             amount_mg=5.0
         ),
@@ -716,7 +716,7 @@ def run_demo():
             peptide_id="NONADD_Oxytocin_R_004",
             sequence="CYIQNCPLG",
             target="Oxytocin-R",
-            disease="Depression/Anxiety",
+            target system="Depression/Anxiety",
             predicted_kd_nM=0.48,
             amount_mg=5.0
         ),
@@ -724,7 +724,7 @@ def run_demo():
             peptide_id="NEURO_GBA1_001",
             sequence="KLVFFAEDVGSNKGA",
             target="GBA1",
-            disease="Parkinson's",
+            target system="Parkinson's",
             predicted_kd_nM=0.10,
             amount_mg=5.0
         ),
@@ -732,7 +732,7 @@ def run_demo():
             peptide_id="PED_CFTR_007",
             sequence="WQEKFQTPEVR",
             target="CFTR",
-            disease="Cystic Fibrosis",
+            target system="Cystic Fibrosis",
             predicted_kd_nM=22.6,
             amount_mg=5.0
         ),
@@ -740,7 +740,7 @@ def run_demo():
             peptide_id="BAFF_pep002",
             sequence="CYCRPGWYCALRPG",
             target="BAFF",
-            disease="Lupus/RA",
+            target system="Lupus/RA",
             predicted_kd_nM=79.6,
             amount_mg=5.0
         )
@@ -807,7 +807,7 @@ def generate_for_pipeline(peptide_data: List[Dict], target: str,
             peptide_id=p.get("peptide_id", "UNKNOWN"),
             sequence=p.get("sequence", ""),
             target=p.get("target", target),
-            disease=p.get("disease", ""),
+            target system=p.get("target system", ""),
             predicted_kd_nM=p.get("predicted_kd", p.get("affinity", 100.0)),
             amount_mg=5.0
         )

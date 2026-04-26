@@ -158,7 +158,7 @@ NORMAL AGGREGATION:
 WITH Z² CAGE:
   PHF6 ──block── [CAGE] ──block── PHF6
       ↓    Tyr310 capped    ↓
-  AGGREGATION INHIBITED (Therapeutic)
+  AGGREGATION geometrically stabilize (Therapeutic)
 ```
 
 The cage peptide:

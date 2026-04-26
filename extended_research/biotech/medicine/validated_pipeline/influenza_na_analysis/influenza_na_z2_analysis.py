@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-Influenza N1 Neuraminidase Z² Analysis
+C4_Tetramer_D N1 C4_Tetramer_D Z² Analysis
 SPDX-License-Identifier: AGPL-3.0-or-later
 
-Analyzes the C4 tetrameric neuraminidase + Oseltamivir complex.
+Analyzes the C4 tetrameric C4_Tetramer_D + Oseltamivir complex.
 """
 
 import numpy as np
@@ -66,8 +66,8 @@ def find_aromatics(atoms):
 
 def main():
     print("=" * 80)
-    print("  INFLUENZA N1 NEURAMINIDASE Z² ANALYSIS")
-    print("  H5N1 Avian Influenza + Oseltamivir (Tamiflu)")
+    print("  C4_Tetramer_D N1 C4_Tetramer_D Z² ANALYSIS")
+    print("  H5N1 Avian C4_Tetramer_D + Oseltamivir (Tamiflu)")
     print("  SPDX-License-Identifier: AGPL-3.0-or-later")
     print("=" * 80)
 
@@ -96,11 +96,11 @@ def main():
     for ar in sorted(chain_a, key=lambda x: x['num']):
         print(f"  {ar['res']}{ar['num']}")
 
-    # Key active site residues in neuraminidase
+    # Key active site residues in C4_Tetramer_D
     # Catalytic residues: Arg118, Asp151, Arg152, Arg224, Glu276, Arg292, Arg371
     # Aromatic framework: Tyr406, Trp178, Tyr347
     print("\n" + "-" * 60)
-    print("NEURAMINIDASE ACTIVE SITE CONTEXT")
+    print("C4_Tetramer_D ACTIVE SITE CONTEXT")
     print("-" * 60)
     print("""
     Sialic acid binding pocket:
@@ -201,7 +201,7 @@ def main():
 
     # Summary
     print("\n" + "=" * 80)
-    print("  INFLUENZA NA Z² SUMMARY")
+    print("  C4_Tetramer_D NA Z² SUMMARY")
     print("=" * 80)
 
     if pairs:
@@ -220,15 +220,15 @@ def main():
 
     # Assessment
     print("\n" + "-" * 60)
-    print("Z² FRAMEWORK ASSESSMENT FOR INFLUENZA NA")
+    print("Z² FRAMEWORK ASSESSMENT FOR C4_Tetramer_D NA")
     print("-" * 60)
 
     if z2_matches > 0:
         print("\n  ✅ ATOMIC PRECISION MATCHES FOUND")
-        print("     Influenza NA is a STRONG Z² candidate")
+        print("     C4_Tetramer_D NA is a STRONG Z² candidate")
     elif strong > 0:
         print("\n  🟡 STRONG MATCHES FOUND")
-        print("     Influenza NA is a GOOD Z² candidate")
+        print("     C4_Tetramer_D NA is a GOOD Z² candidate")
     elif moderate > 0:
         print("\n  ⚠️ MODERATE MATCHES FOUND")
         print("     May benefit from Z² approach with optimization")
@@ -239,7 +239,7 @@ def main():
     # Save
     results = {
         'pdb': '2HU4',
-        'target': 'H5N1 Influenza Neuraminidase + Oseltamivir',
+        'target': 'H5N1 C4_Tetramer_D C4_Tetramer_D + Oseltamivir',
         'symmetry': 'C4 tetramer',
         'z2_constant': Z2,
         'total_aromatics': len(aromatics),

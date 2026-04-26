@@ -12,7 +12,7 @@ Analyzes the structural differences between TNF-α and off-targets to identify
 THEORETICAL/COMPUTATIONAL ONLY - NOT FOR CLINICAL USE
 
 Key targets and off-targets:
-- TARGET: TNF-α (trimeric cytokine, autoimmune disease driver)
+- TARGET: TNF-α (trimeric cytokine, autoimmune target system driver)
 - OFF-TARGET 1: Lymphotoxin-α (LT-α/TNF-β) - 51% sequence identity
 - OFF-TARGET 2: TRAIL (TNF-related apoptosis ligand)
 - OFF-TARGET 3: Other TNF superfamily members
@@ -389,7 +389,7 @@ def design_tnf_dna_origami_cage():
 
     Trigger selection for autoimmune conditions:
     - For rheumatoid arthritis: IL-6 mRNA or synovial fibroblast markers
-    - For inflammatory bowel disease: local inflammation markers
+    - For inflammatory bowel target system: local inflammation markers
     - For psoriasis: keratinocyte activation markers
 
     We'll use a general inflammation marker: IL-1β mRNA

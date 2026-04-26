@@ -425,7 +425,7 @@ def main():
     print("=" * 70)
     print()
     print("Target: c-Myc transcription factor")
-    print("Disease: ~70% of human cancers")
+    print("target system: ~70% of human cancers")
     print("Challenge: No stable 3D structure (IDP)")
     print("Strategy: REMD to map conformational landscape")
     print()

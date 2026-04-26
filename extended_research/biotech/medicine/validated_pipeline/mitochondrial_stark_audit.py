@@ -536,7 +536,7 @@ def run_mitochondrial_audit():
   1. Our measurement precision in AlphaFold (~1-10 milliÅ)
   2. Thermal fluctuations at 37°C (~{thermal_fluct_mA:.0f} milliÅ)
   3. The difference between validated targets:
-     - HIV: -1.3 milliÅ from Z²
+     - C2_Homodimer_A: -1.3 milliÅ from Z²
      - TNF-α: +0.125 milliÅ from Z²
 
   Therefore, the SAME Z² constant (6.015152508891966 Å) can be used

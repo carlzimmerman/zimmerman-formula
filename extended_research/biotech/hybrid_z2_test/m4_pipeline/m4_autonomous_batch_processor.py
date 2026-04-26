@@ -9,7 +9,7 @@ generation. Runs all M4 pipeline scripts systematically and handles errors
 gracefully.
 
 This script can run unattended to process:
-- Ophthalmic biologics (anti-VEGF, AAV for retinal disease)
+- Ophthalmic biologics (anti-VEGF, AAV for retinal target system)
 - Neuromuscular gene therapy vectors (SMA, DMD)
 - Hematological vectors (sickle cell, thalassemia)
 - Lysosomal enzyme BBB fusions
@@ -64,7 +64,7 @@ PIPELINE_SCRIPTS = [
         "script": "m4_hematological_vector_optimization.py",
         "description": "Lentiviral and CRISPR delivery for blood disorders",
         "output_dir": "hematological_vectors",
-        "diseases": ["Sickle Cell Disease", "Beta-Thalassemia"]
+        "diseases": ["Sickle Cell target system", "Beta-Thalassemia"]
     },
     {
         "name": "Lysosomal Enzyme BBB",
@@ -313,8 +313,8 @@ DISEASES ADDRESSED:
         for script_info in PIPELINE_SCRIPTS:
             all_diseases.update(script_info["diseases"])
 
-        for disease in sorted(all_diseases):
-            print(f"  - {disease}")
+        for target system in sorted(all_diseases):
+            print(f"  - {target system}")
 
         print("\n" + "="*80)
 
@@ -327,7 +327,7 @@ def main():
     print("="*80)
     print("""
 This script will autonomously run all M4 pipeline scripts to generate
-therapeutic sequences for multiple disease areas.
+therapeutic sequences for multiple target system areas.
 
 The pipeline will:
 1. Run each script in sequence

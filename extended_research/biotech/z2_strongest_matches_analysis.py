@@ -102,21 +102,21 @@ STRONGEST_MATCHES = [
         "source": "Universal genetic code",
     },
 
-    # Disease Thresholds
+    # target system Thresholds
     {
         "name": "Huntington_threshold",
         "observed": 36,  # CAG repeats
         "formula": "Z² + 3",
         "predicted": Z_SQUARED + 3,
-        "category": "Disease",
-        "source": "Clinical studies, Huntington disease",
+        "category": "target system",
+        "source": "Clinical studies, Huntington target system",
     },
     {
         "name": "alpha_syn_critical_conc",
         "observed": 35.0,  # μM
         "formula": "9θ_Z²(deg)/8",
         "predicted": 9 * np.degrees(THETA_Z2) / 8,
-        "category": "Disease",
+        "category": "target system",
         "source": "Buell et al., PNAS 2014",
     },
     {
@@ -124,7 +124,7 @@ STRONGEST_MATCHES = [
         "observed": 42,  # residues (Aβ42)
         "formula": "5Z²/4",
         "predicted": 5 * Z_SQUARED / 4,
-        "category": "Disease",
+        "category": "target system",
         "source": "Amyloid-beta 42 sequence",
     },
     {
@@ -132,7 +132,7 @@ STRONGEST_MATCHES = [
         "observed": 140,  # residues
         "formula": "9θ_Z²(deg)/2",
         "predicted": 9 * np.degrees(THETA_Z2) / 2,
-        "category": "Disease",
+        "category": "target system",
         "source": "Alpha-synuclein sequence",
     },
 ]
@@ -314,7 +314,7 @@ def mechanistic_analysis():
 
 4. HUNTINGTON THRESHOLD = 36 ≈ Z² + 3 (1.4% error)
    ------------------------------------------------
-   Biological basis: Huntington's disease manifests when
+   Biological basis: Huntington's target system manifests when
    polyglutamine (polyQ) tract exceeds ~36 CAG repeats.
 
    Why 36? Current understanding:
@@ -427,7 +427,7 @@ Based on the strongest matches, Z² geometry predicts:
 
     print("""
 
-3. DISEASE AGGREGATION THRESHOLDS
+3. target system AGGREGATION THRESHOLDS
    -------------------------------
    If Huntington's threshold ≈ Z² + 3 = 36.5, then:
 
@@ -515,7 +515,7 @@ WHAT WE FOUND:
    - Alpha helix φ = 57° ≈ 11θ_Z²/6
    - These warrant investigation
 
-3. Disease thresholds show consistent Z² relationships
+3. target system thresholds show consistent Z² relationships
    - PolyQ thresholds scale with Z²
    - This could reflect geometric packing constraints
 

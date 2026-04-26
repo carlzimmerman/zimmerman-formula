@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-M4 Oral Pathogen Target Extraction
+M4 Oral target system Target Extraction
 
 Extracts virulence factor structures from pathogenic oral bacteria for
 antivirulence peptide design. Focuses on druggable targets that can be
-inhibited without killing bacteria (reducing resistance pressure).
+geometrically stabilize without killing bacteria (reducing resistance pressure).
 
 Primary Targets:
 1. Glucosyltransferase GtfC (S. mutans) - PDB 3AIC
@@ -41,8 +41,8 @@ VIRULENCE_TARGETS = {
         "pdb_id": "3AIC",
         "organism": "Streptococcus mutans",
         "protein": "Glucosyltransferase-SI (GtfC)",
-        "function": "Synthesizes water-insoluble glucans for biofilm matrix",
-        "disease": "Dental caries",
+        "function": "fabricate sequence water-insoluble glucans for biofilm matrix",
+        "target system": "Dental caries",
         "active_site_residues": [
             ("ASP", 477), ("GLU", 515), ("ASP", 588),  # Catalytic triad
             ("TRP", 517), ("HIS", 587), ("ASN", 481),  # Substrate binding
@@ -59,8 +59,8 @@ VIRULENCE_TARGETS = {
         "pdb_id": "3AIC",  # Similar structure to GtfC
         "organism": "Streptococcus mutans",
         "protein": "Glucosyltransferase-I (GtfB)",
-        "function": "Synthesizes primarily insoluble glucans - critical for biofilm",
-        "disease": "Dental caries",
+        "function": "fabricate sequence primarily insoluble glucans - critical for biofilm",
+        "target system": "Dental caries",
         "active_site_residues": [
             ("ASP", 477), ("GLU", 515), ("ASP", 588),  # Conserved catalytic triad
             ("TRP", 517), ("HIS", 587), ("ASN", 481),
@@ -77,7 +77,7 @@ VIRULENCE_TARGETS = {
         "organism": "Streptococcus mutans",
         "protein": "Sortase A",
         "function": "Anchors surface proteins to cell wall",
-        "disease": "Dental caries (biofilm formation)",
+        "target system": "Dental caries (biofilm formation)",
         "active_site_residues": [
             ("CYS", 205), ("HIS", 137), ("ARG", 213),  # Catalytic triad
             ("VAL", 161), ("LEU", 163), ("ILE", 199),  # LPXTG recognition
@@ -91,14 +91,14 @@ VIRULENCE_TARGETS = {
     },
 
     # =========================================================================
-    # PORPHYROMONAS GINGIVALIS - Keystone Periodontal Pathogen
+    # PORPHYROMONAS GINGIVALIS - Keystone Periodontal target system
     # =========================================================================
     "RgpB_P_gingivalis": {
         "pdb_id": "1CVR",
         "organism": "Porphyromonas gingivalis",
         "protein": "Gingipain R (RgpB)",
         "function": "Cysteine protease degrading host tissue proteins",
-        "disease": "Periodontitis, Alzheimer's link",
+        "target system": "Periodontitis, Alzheimer's link",
         "active_site_residues": [
             ("CYS", 244), ("HIS", 211), ("ASP", 163),  # Catalytic triad
             ("GLY", 210), ("TRP", 284), ("GLY", 245),  # Oxyanion hole
@@ -116,7 +116,7 @@ VIRULENCE_TARGETS = {
         "organism": "Porphyromonas gingivalis",
         "protein": "Gingipain R (RgpA)",
         "function": "Arg-specific protease with hemagglutinin domain",
-        "disease": "Periodontitis",
+        "target system": "Periodontitis",
         "active_site_residues": [
             ("CYS", 244), ("HIS", 211), ("ASP", 163),  # Catalytic triad
             ("GLY", 210), ("TRP", 284), ("GLY", 245),
@@ -132,7 +132,7 @@ VIRULENCE_TARGETS = {
         "organism": "Porphyromonas gingivalis",
         "protein": "Gingipain K (Kgp)",
         "function": "Lys-specific protease for iron acquisition",
-        "disease": "Periodontitis",
+        "target system": "Periodontitis",
         "active_site_residues": [
             ("CYS", 477), ("HIS", 444), ("ASP", 388),  # Catalytic triad
             ("GLY", 443), ("TRP", 513),
@@ -152,7 +152,7 @@ VIRULENCE_TARGETS = {
         "organism": "Fusobacterium nucleatum",
         "protein": "FadA adhesin",
         "function": "Binds E-cadherin for host cell invasion",
-        "disease": "Gingivitis, colorectal cancer link",
+        "target system": "Gingivitis, colorectal cancer link",
         "active_site_residues": [
             ("LEU", 32), ("ALA", 36), ("LEU", 39),  # Coiled-coil interface
             ("VAL", 43), ("ILE", 46), ("LEU", 50),  # Hydrophobic core
@@ -169,7 +169,7 @@ VIRULENCE_TARGETS = {
         "organism": "Fusobacterium nucleatum",
         "protein": "Fap2 adhesin",
         "function": "Gal-GalNAc binding, tumor colonization",
-        "disease": "Colorectal cancer colonization",
+        "target system": "Colorectal cancer colonization",
         "active_site_residues": [
             # Predicted lectin-like domain residues
             ("ASN", 245), ("ASP", 247), ("TRP", 312),
@@ -189,7 +189,7 @@ VIRULENCE_TARGETS = {
         "organism": "Aggregatibacter actinomycetemcomitans",
         "protein": "Leukotoxin A (LtxA)",
         "function": "Kills leukocytes, enables bacterial survival",
-        "disease": "Aggressive periodontitis, rheumatoid arthritis link",
+        "target system": "Aggressive periodontitis, rheumatoid arthritis link",
         "active_site_residues": [
             # Pore-forming domain residues (predicted)
             ("GLY", 467), ("GLY", 476), ("GLY", 485),  # RTX repeats
@@ -206,7 +206,7 @@ VIRULENCE_TARGETS = {
         "organism": "Aggregatibacter actinomycetemcomitans",
         "protein": "Cytolethal distending toxin (CDT)",
         "function": "DNA damage, cell cycle arrest",
-        "disease": "Aggressive periodontitis",
+        "target system": "Aggressive periodontitis",
         "active_site_residues": [
             ("HIS", 160), ("HIS", 274), ("ASP", 273),  # DNase active site
         ],
@@ -225,7 +225,7 @@ VIRULENCE_TARGETS = {
         "organism": "Tannerella forsythia",
         "protein": "BspA surface protein",
         "function": "Facilitates epithelial invasion via PI3K activation",
-        "disease": "Periodontitis",
+        "target system": "Periodontitis",
         "active_site_residues": [
             # Leucine-rich repeat domain (predicted)
             ("LEU", 156), ("LEU", 178), ("LEU", 200),
@@ -242,7 +242,7 @@ VIRULENCE_TARGETS = {
         "organism": "Tannerella forsythia",
         "protein": "Karilysin metalloprotease",
         "function": "Complement evasion, tissue degradation",
-        "disease": "Periodontitis",
+        "target system": "Periodontitis",
         "active_site_residues": [
             ("HIS", 178), ("GLU", 179), ("HIS", 182),  # Zinc binding
             ("HIS", 188),  # Catalytic
@@ -262,7 +262,7 @@ VIRULENCE_TARGETS = {
         "organism": "Treponema denticola",
         "protein": "Dentilisin (PrtP)",
         "function": "Serine protease for tissue invasion",
-        "disease": "Periodontitis",
+        "target system": "Periodontitis",
         "active_site_residues": [
             ("SER", 447), ("HIS", 227), ("ASP", 76),  # Predicted catalytic triad
         ],
@@ -277,7 +277,7 @@ VIRULENCE_TARGETS = {
         "organism": "Treponema denticola",
         "protein": "Factor H-binding protein (FhbB)",
         "function": "Complement evasion by binding Factor H",
-        "disease": "Periodontitis",
+        "target system": "Periodontitis",
         "active_site_residues": [
             # Factor H binding site (predicted)
             ("LYS", 45), ("ARG", 67), ("LYS", 89),
@@ -297,7 +297,7 @@ VIRULENCE_TARGETS = {
         "organism": "Prevotella intermedia",
         "protein": "Interpain A (InpA)",
         "function": "Cysteine proteinase for tissue destruction",
-        "disease": "Periodontitis, pregnancy gingivitis",
+        "target system": "Periodontitis, pregnancy gingivitis",
         "active_site_residues": [
             ("CYS", 150), ("HIS", 284), ("ASN", 304),  # Predicted catalytic triad
         ],
@@ -312,7 +312,7 @@ VIRULENCE_TARGETS = {
         "organism": "Prevotella intermedia",
         "protein": "Type IX Secretion System (PorK/PorT)",
         "function": "Virulence factor secretion",
-        "disease": "Periodontitis",
+        "target system": "Periodontitis",
         "active_site_residues": [
             # Membrane protein - different targeting approach
         ],
@@ -402,7 +402,7 @@ def extract_pocket(target_id: str, target_info: Dict) -> ActiveSitePocket:
         organism=target_info["organism"],
         protein_name=target_info["protein"],
         function=target_info["function"],
-        disease_association=target_info["disease"],
+        disease_association=target_info["target system"],
         center_x=cx,
         center_y=cy,
         center_z=cz,
@@ -444,7 +444,7 @@ def extract_all_targets() -> ExtractionResult:
     """Extract all virulence factor targets."""
 
     print("="*70)
-    print("M4 ORAL PATHOGEN TARGET EXTRACTION")
+    print("M4 ORAL target system TARGET EXTRACTION")
     print("="*70)
     print(f"Timestamp: {datetime.now().isoformat()}")
     print(f"Targets to extract: {len(VIRULENCE_TARGETS)}")
@@ -506,7 +506,7 @@ def save_results(result: ExtractionResult) -> str:
     os.makedirs(OUTPUT_DIR, exist_ok=True)
 
     output_data = {
-        "pipeline": "M4 Oral Pathogen Target Extraction",
+        "pipeline": "M4 Oral target system Target Extraction",
         "version": "1.0.0",
         "license": "AGPL-3.0-or-later",
         "timestamp": result.timestamp,
@@ -545,7 +545,7 @@ def print_summary(result: ExtractionResult):
     for pocket in result.pockets:
         print(f"{pocket.target_id}:")
         print(f"  Organism: {pocket.organism}")
-        print(f"  Disease: {pocket.disease_association}")
+        print(f"  target system: {pocket.disease_association}")
         print(f"  Druggability: {pocket.druggability_score:.2f}")
         print(f"  Selectivity: {pocket.selectivity_note}")
         print()
@@ -564,7 +564,7 @@ TIER 1 - PRIMARY TARGETS (Validated, High Druggability):
 
 1. GINGIPAINS (P. gingivalis) - HIGHEST priority
    - RgpB (0.92), RgpA (0.90), Kgp (0.88)
-   - 85% of proteolytic activity, keystone pathogen
+   - 85% of proteolytic activity, keystone target system
    - Natural inhibitors identified: tea polyphenols, phloretin
 
 2. GLUCOSYLTRANSFERASES (S. mutans) - HIGH priority
@@ -598,7 +598,7 @@ TIER 3 - REQUIRES MODELING (AlphaFold Needed):
 9. BspA, Fap2 (various)
 10. T9SS components (P. intermedia)
 
-TOTAL: 17 validated targets across 6 pathogen species
+TOTAL: 17 validated targets across 6 target system species
 """)
 
 

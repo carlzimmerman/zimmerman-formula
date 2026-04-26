@@ -75,35 +75,35 @@ print("=" * 70)
 PATHOGENIC_FIBRILS = {
     "amyloid_beta_42": {
         "name": "Amyloid-beta 42",
-        "disease": "Alzheimer's disease",
+        "target system": "Alzheimer's target system",
         "pdb_id": "2BEG",
         "sequence": "DAEFRHDSGYEVHHQKLVFFAEDVGSNKGAIIGLMVGGVVIA",
         "description": "Pentameric Abeta42 fibril"
     },
     "alpha_synuclein": {
         "name": "Alpha-synuclein",
-        "disease": "Parkinson's disease",
+        "target system": "Parkinson's target system",
         "pdb_id": "6H6B",
         "sequence": "MDVFMKGLSKAKEGVVAAAEKTKQGVAEAAGKTKEGVLYVGSKTKEGVVHGVATVAEKTKEQVTNVGGAVVTGVTAVAQKTVEGAGSIAAATGFVKKDQLGKNEEGAPQEGILEDMPVDPDNEAYEMPSEEGYQDYEPEA",
         "description": "Alpha-synuclein fibril (Lewy body)"
     },
     "tau_phf": {
         "name": "Tau PHF",
-        "disease": "Alzheimer's / FTD / CTE",
+        "target system": "Alzheimer's / FTD / CTE",
         "pdb_id": "6NWQ",
         "sequence": "VQIINKKLDLSNVQSKCGSKDNIKHVPGGGSVQIVYKPVDLSKVTSKCGSLGNIHHKPGGGQVEVKSEKLDFKDRVQSKIGSLDNITHVPGGGN",
         "description": "Tau paired helical filament"
     },
     "tdp43": {
         "name": "TDP-43",
-        "disease": "ALS / FTD",
+        "target system": "ALS / FTD",
         "pdb_id": "6N37",
         "sequence": "GNNQGSGSMGGGMNFGAFSINPAMMAAAQAALQSSWGMMGMLASQQNQSGPSGNNQNQGNMQREPNQAFGSGNNSYSGSNSGAAIGWGSASNAGSGSGFNGGFG",
         "description": "TDP-43 C-terminal domain fibril"
     },
     "huntingtin": {
         "name": "Huntingtin Exon 1",
-        "disease": "Huntington's disease",
+        "target system": "Huntington's target system",
         "pdb_id": "6EZ8",
         "sequence": "MATLEKLMKAFESLKSFQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQPPPPPPPPPPPQLPQPPPQAQPLLPQPQPPPPPPPPPPGPAVAEEPLHRP",
         "description": "Polyglutamine (polyQ) fibril"
@@ -409,7 +409,7 @@ def validate_pathogenic_fibrils() -> Dict:
 
     for key, data in PATHOGENIC_FIBRILS.items():
         result = validate_therapeutic_sequence(data["sequence"], data["name"])
-        result["disease"] = data["disease"]
+        result["target system"] = data["target system"]
         result["pdb_id"] = data["pdb_id"]
         result["description"] = data["description"]
         results.append(result)
@@ -440,7 +440,7 @@ def generate_prior_art_csv(results: Dict, output_path: str) -> str:
 
         # Header
         writer.writerow([
-            "Name", "Disease", "PDB_ID", "Length",
+            "Name", "target system", "PDB_ID", "Length",
             "Mean_Coordination", "Core_Coordination", "Packing_Score",
             "Primary_Mode_THz", "Dissociation_THz", "Z_Resonance_THz",
             "Harmonic_10_THz", "Stability_Score"
@@ -453,7 +453,7 @@ def generate_prior_art_csv(results: Dict, output_path: str) -> str:
 
             writer.writerow([
                 r["name"],
-                r.get("disease", "N/A"),
+                r.get("target system", "N/A"),
                 r.get("pdb_id", "N/A"),
                 r["length"],
                 f"{packing['mean_coordination']:.3f}",
@@ -556,12 +556,12 @@ def main():
 
     print("\nFIBRIL RESONANCE SUMMARY:")
     print("-" * 70)
-    print(f"{'Disease':<25} {'Protein':<20} {'Dissoc (THz)':<15} {'Packing':<10}")
+    print(f"{'target system':<25} {'Protein':<20} {'Dissoc (THz)':<15} {'Packing':<10}")
     print("-" * 70)
 
     for r in results["results"]:
         resonance = r["vibrational_analysis"]["resonance_analysis"]
-        print(f"{r.get('disease', 'N/A'):<25} "
+        print(f"{r.get('target system', 'N/A'):<25} "
               f"{r['name'][:20]:<20} "
               f"{resonance['dissociation_frequency_thz']:<15.4f} "
               f"{r['stability_score']:<10.3f}")

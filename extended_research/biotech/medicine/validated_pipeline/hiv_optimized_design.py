@@ -1,24 +1,24 @@
 #!/usr/bin/env python3
 """
-HIV Optimized Peptide and Delivery System Design
+C2_Homodimer_A Optimized Peptide and Delivery System Design
 =================================================
 Author: Carl Zimmerman
 Date: 2026-04-24
 License: AGPL-3.0
 
-Creates the optimized HIV peptide combining:
+Creates the optimized C2_Homodimer_A peptide combining:
 1. Z² aromatic geometry (W3, W5 for dual PHE53 stacking)
 2. Charge complementarity (R0, K7 for ASP25/ASP25' bridges)
 3. Flap interaction (hydrophobic residues for ILE50 contact)
 
-Also designs the HIV-specific DNA origami cage with TAR RNA trigger.
+Also designs the C2_Homodimer_A-specific DNA origami cage with TAR RNA trigger.
 """
 
 import json
 from pathlib import Path
 
 # =============================================================================
-# OPTIMIZED HIV PEPTIDE
+# OPTIMIZED C2_Homodimer_A PEPTIDE
 # =============================================================================
 
 def design_optimized_hiv_peptide():
@@ -45,16 +45,16 @@ def design_optimized_hiv_peptide():
             'W4': 'Primary Z² aromatic (PHE53 stacking, -1.3 mÅ)',
             'W6': 'Secondary Z² aromatic (dual PHE53 contact)',
             'K8': 'ASP25-prime salt bridge (dimer engagement)',
-            'I9': 'Flap ILE50 hydrophobic contact (HIV-specific)',
+            'I9': 'Flap ILE50 hydrophobic contact (C2_Homodimer_A-specific)',
         },
         'selectivity_mechanisms': [
             'Dual positive charges (R1, K8) engage both ASP25 residues',
             'Dual Trp (W4, W6) create two Z² contacts with PHE53',
             'Flap-dependent binding excludes Cathepsin D',
-            'No His/Cys residues avoids CYP3A4 inhibition',
+            'No His/Cys residues avoids CYP3A4 geometrically stabilize',
         ],
         'predicted_targets': {
-            'HIV-1 Protease': 'HIGH (Z² geometry + charge + flap)',
+            'C2_Homodimer_A': 'HIGH (Z² geometry + charge + flap)',
             'Cathepsin D': 'LOW (lacks flap architecture)',
             'CYP3A4': 'LOW (no iron-coordinating residues)',
         },
@@ -68,15 +68,15 @@ def design_optimized_hiv_peptide():
 
 
 # =============================================================================
-# HIV DNA ORIGAMI CAGE WITH TAR RNA TRIGGER
+# C2_Homodimer_A DNA ORIGAMI CAGE WITH TAR RNA TRIGGER
 # =============================================================================
 
 def design_hiv_dna_origami_cage():
     """
-    Design DNA origami cage for HIV peptide delivery.
+    Design DNA origami cage for C2_Homodimer_A peptide delivery.
 
-    Trigger: HIV TAR (Trans-Activation Response) RNA element
-    - Present in ALL HIV transcripts
+    Trigger: C2_Homodimer_A TAR (Trans-Activation Response) RNA element
+    - Present in ALL C2_Homodimer_A transcripts
     - Forms a stable stem-loop structure
     - Highly conserved (required for Tat binding)
 
@@ -86,7 +86,7 @@ def design_hiv_dna_origami_cage():
     Lock design: Toehold strand displacement triggered by TAR RNA
     """
 
-    # HIV TAR RNA target sequence (conserved region)
+    # C2_Homodimer_A TAR RNA target sequence (conserved region)
     hiv_tar = "GGUCUCUCUGGUUAGACCAGAUCUGAGCCUGGGAGCUCUCUGGCUAACUAGGGAACCC"
 
     # Design lock complementary to TAR bulge region (most accessible)
@@ -105,17 +105,17 @@ def design_hiv_dna_origami_cage():
 
     cage = {
         'name': 'Z2_CAGE_HIV_TAR_001',
-        'target': 'HIV-1 Protease',
+        'target': 'C2_Homodimer_A',
         'payload': {
             'peptide': 'RLEWTWEKILTE',
             'name': 'HIV_Z2_OPT_001',
             'peptides_per_cage': 4,
         },
         'trigger': {
-            'type': 'HIV TAR RNA',
+            'type': 'C2_Homodimer_A TAR RNA',
             'sequence': hiv_tar,
             'target_region': tar_target,
-            'specificity': 'Present in ALL HIV mRNAs (required for Tat)',
+            'specificity': 'Present in ALL C2_Homodimer_A mRNAs (required for Tat)',
         },
         'lock_staples': [
             {
@@ -165,7 +165,7 @@ def design_hiv_dna_origami_cage():
             },
         ],
         'mechanism': """
-HIV TAR RNA-Triggered Release:
+C2_Homodimer_A TAR RNA-Triggered Release:
 
 1. CLOSED STATE:
    - LOCK_HIV_TAR_MAIN hybridized to cage
@@ -173,21 +173,21 @@ HIV TAR RNA-Triggered Release:
    - Cy5-BHQ2 FRET pair quenched (no fluorescence)
    - Peptide payload enclosed
 
-2. HIV INFECTION DETECTED:
-   - HIV TAR RNA binds to 8-nt toehold on LOCK_HIV_TAR_MAIN
+2. C2_Homodimer_A INFECTION DETECTED:
+   - C2_Homodimer_A TAR RNA binds to 8-nt toehold on LOCK_HIV_TAR_MAIN
    - Branch migration displaces LOCK_HIV_TAR_COMP
    - Cy5 fluorescence detected (infection confirmed)
    - Cage opens
 
 3. THERAPEUTIC RELEASE:
    - HIV_Z2_OPT_001 peptide released
-   - Peptide binds HIV Protease at Z² geometry
+   - Peptide binds C2_Homodimer_A Protease at Z² geometry
    - R1/K8 engage ASP25/ASP25' catalytic dyad
    - W4/W6 stack with PHE53 at 6.015 Å
-   - Protease inhibited, viral maturation blocked
+   - Protease geometrically stabilize, target macromolecule maturation blocked
 
 SPECIFICITY:
-   - TAR RNA is ONLY present in HIV-infected cells
+   - TAR RNA is ONLY present in C2_Homodimer_A-infected cells
    - Human mRNA does NOT contain TAR
    - Cage remains closed in healthy cells
    - Zero off-target peptide release
@@ -202,9 +202,9 @@ SPECIFICITY:
 # =============================================================================
 
 def create_alphafold_job():
-    """Create AlphaFold job for optimized HIV peptide."""
+    """Create AlphaFold job for optimized C2_Homodimer_A peptide."""
 
-    # HIV-1 Protease sequence (99 residues per chain)
+    # C2_Homodimer_A sequence (99 residues per chain)
     hiv_pr_seq = (
         "PQITLWQRPLVTIKIGGQLKEALLDTGADDTVLEEMSLPGRWKPKMIGGIGGFIKVRQYD"
         "QILIEICGHKAIGTVLVGPTPVNIIGRNLLTQIGCTLNF"
@@ -240,13 +240,13 @@ def create_alphafold_job():
 
 def main():
     print("=" * 80)
-    print("  HIV OPTIMIZED PEPTIDE AND DELIVERY SYSTEM")
+    print("  C2_Homodimer_A OPTIMIZED PEPTIDE AND DELIVERY SYSTEM")
     print("=" * 80)
 
     # Design optimized peptide
     peptide = design_optimized_hiv_peptide()
 
-    print(f"\nOPTIMIZED HIV PEPTIDE: {peptide['name']}")
+    print(f"\nOPTIMIZED C2_Homodimer_A PEPTIDE: {peptide['name']}")
     print("-" * 60)
     print(f"Sequence: {peptide['sequence']}")
     print(f"Length: {peptide['length']} residues")
@@ -328,7 +328,7 @@ Summary:
 
   Delivery:
     - DNA origami tetrahedral cage
-    - HIV TAR RNA trigger
+    - C2_Homodimer_A TAR RNA trigger
     - FRET detection (Cy5/BHQ2)
     - 4 peptides per cage
 

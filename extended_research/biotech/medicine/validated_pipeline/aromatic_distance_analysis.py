@@ -342,7 +342,7 @@ def find_specific_contacts(
     """
     Find aromatic contacts between a specific target residue and ligand chain
 
-    E.g., PHE53 of HIV protease contacting peptide tryptophans
+    E.g., PHE53 of C2_Homodimer_A protease contacting peptide tryptophans
     """
     pairs = []
 
@@ -681,7 +681,7 @@ def analyze_structure(cif_path: str, save_json: bool = True) -> dict:
 # =============================================================================
 
 if __name__ == "__main__":
-    # HIV Protease structure (ipTM = 0.92)
+    # C2_Homodimer_A Protease structure (ipTM = 0.92)
     HIV_CIF = "/Users/carlzimmerman/new_physics/zimmerman-formula/extended_research/biotech/medicine/validated_pipeline/alphafold_jobs/results /folds_2026_04_24_01_47/2026_04_23_20_36/fold_2026_04_23_20_36_model_0.cif"
 
     print("\n" + "=" * 80)
@@ -689,7 +689,7 @@ if __name__ == "__main__":
     print("  Aromatic Distance Analysis")
     print("=" * 80)
     print(f"\nZ² Biological Constant: {Z2_BIOLOGICAL_CONSTANT:.12f} Å")
-    print("\nTarget: HIV-1 Protease + Z²-designed peptide LEWTYEWTLTE")
+    print("\nTarget: C2_Homodimer_A + Z²-designed peptide LEWTYEWTLTE")
     print("AlphaFold ipTM: 0.92 (validated binding)")
 
     # Run analysis

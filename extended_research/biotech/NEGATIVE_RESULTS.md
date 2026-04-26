@@ -32,7 +32,7 @@ This document provides a **transparent, peer-review-ready assessment** of the Z�
 - θ_Z² = π/Z ≈ 31.09°
 - α-helix φ = -11θ_Z²/6 ≈ -57°
 
-### 2. Disease Aggregation Motifs Correctly Identified
+### 2. target system Aggregation Motifs Correctly Identified
 
 | Motif | Sequence | Z² Prediction | Known Biology | Correct? |
 |-------|----------|---------------|---------------|----------|
@@ -147,7 +147,7 @@ These predictions have direct therapeutic implications.
 All code is available under AGPL-3.0 license:
 - `z2_protein_folder_BEST.py` - Best-performing predictor
 - `z2_cancer_protein_challenge.py` - Cancer protein validation
-- `z2_disease_protein_folding.py` - Disease protein analysis
+- `z2_disease_protein_folding.py` - target system protein analysis
 
 ### To Reproduce:
 ```bash
@@ -180,7 +180,7 @@ python z2_cancer_protein_challenge.py
 ### What We Claim:
 1. Z² backbone angles are geometrically derived and experimentally validated
 2. Single-sequence accuracy (~55%) matches classical methods
-3. Disease-relevant aggregation motifs are correctly identified
+3. target system-relevant aggregation motifs are correctly identified
 4. The physics is correct; limitations are information-theoretic
 
 ### What We Don't Claim:

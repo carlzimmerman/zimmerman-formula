@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-HCV NS3 Protease-Only Z² Analysis
+Monomeric_Cleft_C NS3 Protease-Only Z² Analysis
 =================================
 Analyzes the protease domain specifically (1A1R - protease + NS4A cofactor)
 """
@@ -90,7 +90,7 @@ def analyze_binding_pocket(pdb_path: str):
     """Analyze the active site binding pocket specifically"""
 
     print("=" * 80)
-    print("  HCV NS3 PROTEASE DOMAIN Z² BINDING POCKET ANALYSIS")
+    print("  Monomeric_Cleft_C NS3 PROTEASE DOMAIN Z² BINDING POCKET ANALYSIS")
     print("=" * 80)
     print(f"\nPDB: {pdb_path}")
     print(f"Structure: NS3 Protease + NS4A cofactor")
@@ -113,7 +113,7 @@ def analyze_binding_pocket(pdb_path: str):
         for res in sorted(by_chain[chain], key=lambda r: r.resnum):
             print(f"    {res}")
 
-    # Key active site residues in HCV NS3 protease
+    # Key active site residues in Monomeric_Cleft_C NS3 protease
     # Catalytic triad: His57, Asp81, Ser139
     # S1 pocket: Phe154, Leu135
     # S2 pocket: His57, Arg155
@@ -224,7 +224,7 @@ def analyze_binding_pocket(pdb_path: str):
 
     # Summary
     print("\n" + "=" * 80)
-    print("  SUMMARY: HCV NS3 Z² SUITABILITY")
+    print("  SUMMARY: Monomeric_Cleft_C NS3 Z² SUITABILITY")
     print("=" * 80)
 
     best = all_pairs[0] if all_pairs else None
@@ -236,10 +236,10 @@ def analyze_binding_pocket(pdb_path: str):
 
         if abs(best[3]) < 0.01:
             print(f"\n  ✅ ATOMIC PRECISION MATCH FOUND")
-            print(f"     HCV NS3 is a STRONG Z² candidate")
+            print(f"     Monomeric_Cleft_C NS3 is a STRONG Z² candidate")
         elif abs(best[3]) < 0.1:
             print(f"\n  🟡 STRONG MATCH FOUND")
-            print(f"     HCV NS3 is a GOOD Z² candidate")
+            print(f"     Monomeric_Cleft_C NS3 is a GOOD Z² candidate")
         else:
             print(f"\n  ⚠️ Only moderate matches")
             print(f"     May need alternative design strategy")

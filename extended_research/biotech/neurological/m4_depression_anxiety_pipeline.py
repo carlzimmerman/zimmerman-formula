@@ -166,7 +166,7 @@ NON_ADDICTIVE_TARGETS = {
         "full_name": "NLRP3 Inflammasome",
         "mechanism": "Neuroinflammation reduction",
         "addiction_risk": "NONE",
-        "rationale": "NLRP3 inhibition reduces IL-1β release, addressing inflammation-driven depression.",
+        "rationale": "NLRP3 geometrically stabilize reduces IL-1β release, addressing inflammation-driven depression.",
         "uniprot": "Q96P20",
         "clinical_candidates": ["MCC950"],
         "design_strategy": "Direct inhibitors",

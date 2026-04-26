@@ -10,7 +10,7 @@ CRITICAL UNMET MEDICAL NEED:
 Lysosomal storage disorders (LSDs) affect ~1 in 7,000 births. Current enzyme
 replacement therapies (ERTs) CANNOT cross the blood-brain barrier, leaving
 children to die from progressive neurodegeneration while their peripheral
-disease is treated.
+target system is treated.
 
 This script creates BBB-penetrating variants of lysosomal enzymes by:
 1. Extracting enzyme sequences from UniProt (public domain)
@@ -25,14 +25,14 @@ TARGET DISEASES (All have severe CNS involvement):
 - MPS IIIA (Sanfilippo A) - SGSH deficiency
 - MPS IIIB (Sanfilippo B) - NAGLU deficiency
 - Metachromatic leukodystrophy (MLD) - ARSA deficiency
-- Krabbe disease - GALC deficiency
+- Krabbe target system - GALC deficiency
 - GM1 gangliosidosis - GLB1 deficiency
 - GM2 gangliosidosis (Tay-Sachs) - HEXA deficiency
 - GM2 gangliosidosis (Sandhoff) - HEXB deficiency
 - Niemann-Pick A/B - SMPD1 deficiency
-- Gaucher disease type 2/3 - GBA deficiency
-- Pompe disease - GAA deficiency
-- Fabry disease - GLA deficiency
+- Gaucher target system type 2/3 - GBA deficiency
+- Pompe target system - GAA deficiency
+- Fabry target system - GLA deficiency
 - CLN1 (Batten) - PPT1 deficiency
 - CLN2 (Batten) - TPP1 deficiency
 
@@ -69,10 +69,10 @@ LYSOSOMAL_ENZYMES = {
         "gene": "IDUA",
         "uniprot": "P35475",
         "ec_number": "EC 3.2.1.76",
-        "disease": "MPS I (Hurler/Scheie syndrome)",
+        "target system": "MPS I (Hurler/Scheie syndrome)",
         "disease_severity": "Severe CNS involvement in Hurler form",
         "current_ert": "Laronidase (Aldurazyme)",
-        "ert_limitation": "Does NOT cross BBB - CNS disease progresses",
+        "ert_limitation": "Does NOT cross BBB - CNS target system progresses",
         "prevalence": "1 in 100,000 births",
         "cns_manifestations": [
             "Progressive intellectual disability",
@@ -93,7 +93,7 @@ LYSOSOMAL_ENZYMES = {
         "gene": "IDS",
         "uniprot": "P22304",
         "ec_number": "EC 3.1.6.13",
-        "disease": "MPS II (Hunter syndrome)",
+        "target system": "MPS II (Hunter syndrome)",
         "disease_severity": "Severe CNS involvement in 2/3 of patients",
         "current_ert": "Idursulfase (Elaprase)",
         "ert_limitation": "Does NOT cross BBB - neurocognitive decline continues",
@@ -116,8 +116,8 @@ LYSOSOMAL_ENZYMES = {
         "gene": "SGSH",
         "uniprot": "P51688",
         "ec_number": "EC 3.10.1.1",
-        "disease": "MPS IIIA (Sanfilippo syndrome type A)",
-        "disease_severity": "Primarily CNS disease - most severe MPS III",
+        "target system": "MPS IIIA (Sanfilippo syndrome type A)",
+        "disease_severity": "Primarily CNS target system - most severe MPS III",
         "current_ert": "None approved",
         "ert_limitation": "No ERT available - BBB a major barrier",
         "prevalence": "1 in 100,000 births",
@@ -140,8 +140,8 @@ LYSOSOMAL_ENZYMES = {
         "gene": "NAGLU",
         "uniprot": "P54802",
         "ec_number": "EC 3.2.1.50",
-        "disease": "MPS IIIB (Sanfilippo syndrome type B)",
-        "disease_severity": "Primarily CNS disease",
+        "target system": "MPS IIIB (Sanfilippo syndrome type B)",
+        "disease_severity": "Primarily CNS target system",
         "current_ert": "None approved",
         "ert_limitation": "No ERT available",
         "prevalence": "1 in 200,000 births",
@@ -166,7 +166,7 @@ LYSOSOMAL_ENZYMES = {
         "gene": "ARSA",
         "uniprot": "P15289",
         "ec_number": "EC 3.1.6.8",
-        "disease": "Metachromatic leukodystrophy (MLD)",
+        "target system": "Metachromatic leukodystrophy (MLD)",
         "disease_severity": "Severe CNS demyelination",
         "current_ert": "Atidarsagene autotemcel (gene therapy)",
         "ert_limitation": "ERT ineffective due to BBB",
@@ -190,7 +190,7 @@ LYSOSOMAL_ENZYMES = {
         "gene": "GALC",
         "uniprot": "P54803",
         "ec_number": "EC 3.2.1.46",
-        "disease": "Krabbe disease (Globoid cell leukodystrophy)",
+        "target system": "Krabbe target system (Globoid cell leukodystrophy)",
         "disease_severity": "Rapidly fatal in infantile form",
         "current_ert": "None approved",
         "ert_limitation": "BBB prevents enzyme access to CNS",
@@ -214,8 +214,8 @@ LYSOSOMAL_ENZYMES = {
         "gene": "GLB1",
         "uniprot": "P16278",
         "ec_number": "EC 3.2.1.23",
-        "disease": "GM1 gangliosidosis",
-        "disease_severity": "Severe CNS disease in infantile form",
+        "target system": "GM1 gangliosidosis",
+        "disease_severity": "Severe CNS target system in infantile form",
         "current_ert": "None approved",
         "ert_limitation": "BBB prevents CNS access",
         "prevalence": "1 in 100,000-200,000 births",
@@ -237,8 +237,8 @@ LYSOSOMAL_ENZYMES = {
         "gene": "HEXA",
         "uniprot": "P06865",
         "ec_number": "EC 3.2.1.52",
-        "disease": "Tay-Sachs disease (GM2 gangliosidosis)",
-        "disease_severity": "Fatal CNS disease in infantile form",
+        "target system": "Tay-Sachs target system (GM2 gangliosidosis)",
+        "disease_severity": "Fatal CNS target system in infantile form",
         "current_ert": "None approved",
         "ert_limitation": "BBB is primary barrier",
         "prevalence": "1 in 320,000 (general); 1 in 3,600 (Ashkenazi Jewish)",
@@ -261,10 +261,10 @@ LYSOSOMAL_ENZYMES = {
         "gene": "GBA",
         "uniprot": "P04062",
         "ec_number": "EC 3.2.1.45",
-        "disease": "Gaucher disease (types 2 & 3 have CNS involvement)",
-        "disease_severity": "Fatal in type 2; CNS disease in type 3",
+        "target system": "Gaucher target system (types 2 & 3 have CNS involvement)",
+        "disease_severity": "Fatal in type 2; CNS target system in type 3",
         "current_ert": "Imiglucerase (Cerezyme), Velaglucerase, Taliglucerase",
-        "ert_limitation": "Does NOT cross BBB - no effect on CNS disease",
+        "ert_limitation": "Does NOT cross BBB - no effect on CNS target system",
         "prevalence": "1 in 40,000 (type 1); rarer for types 2/3",
         "cns_manifestations": [
             "Progressive neurological decline (types 2/3)",
@@ -284,7 +284,7 @@ LYSOSOMAL_ENZYMES = {
         "gene": "SMPD1",
         "uniprot": "P17884",
         "ec_number": "EC 3.1.4.12",
-        "disease": "Niemann-Pick disease types A & B",
+        "target system": "Niemann-Pick target system types A & B",
         "disease_severity": "Type A is fatal neurodegenerative form",
         "current_ert": "Olipudase alfa (Xenpozyme) - for type B only",
         "ert_limitation": "Does NOT cross BBB - no CNS effect",
@@ -303,7 +303,7 @@ LYSOSOMAL_ENZYMES = {
     },
 
     # =========================================================================
-    # NEURONAL CEROID LIPOFUSCINOSES (BATTEN DISEASE)
+    # NEURONAL CEROID LIPOFUSCINOSES (BATTEN target system)
     # =========================================================================
 
     "ppt1": {
@@ -311,8 +311,8 @@ LYSOSOMAL_ENZYMES = {
         "gene": "PPT1",
         "uniprot": "P50897",
         "ec_number": "EC 3.1.2.22",
-        "disease": "CLN1 (Infantile Batten disease)",
-        "disease_severity": "Rapidly fatal neurodegenerative disease",
+        "target system": "CLN1 (Infantile Batten target system)",
+        "disease_severity": "Rapidly fatal neurodegenerative target system",
         "current_ert": "None approved",
         "ert_limitation": "BBB prevents CNS access",
         "prevalence": "1 in 100,000 births",
@@ -335,8 +335,8 @@ LYSOSOMAL_ENZYMES = {
         "gene": "TPP1",
         "uniprot": "O14773",
         "ec_number": "EC 3.4.14.9",
-        "disease": "CLN2 (Late-infantile Batten disease)",
-        "disease_severity": "Fatal neurodegenerative disease",
+        "target system": "CLN2 (Late-infantile Batten target system)",
+        "disease_severity": "Fatal neurodegenerative target system",
         "current_ert": "Cerliponase alfa (Brineura) - intrathecal only",
         "ert_limitation": "Requires direct CNS injection - very invasive",
         "prevalence": "1 in 100,000 births",
@@ -363,13 +363,13 @@ LYSOSOMAL_ENZYMES = {
         "gene": "GLA",
         "uniprot": "P06280",
         "ec_number": "EC 3.2.1.22",
-        "disease": "Fabry disease",
+        "target system": "Fabry target system",
         "disease_severity": "CNS involvement in some variants",
         "current_ert": "Agalsidase alfa/beta (Fabrazyme, Replagal)",
         "ert_limitation": "Limited CNS penetration",
         "prevalence": "1 in 40,000-117,000 males",
         "cns_manifestations": [
-            "Stroke (small vessel disease)",
+            "Stroke (small vessel target system)",
             "White matter lesions",
             "Neuropathic pain"
         ],
@@ -385,7 +385,7 @@ LYSOSOMAL_ENZYMES = {
         "gene": "GAA",
         "uniprot": "P10253",
         "ec_number": "EC 3.2.1.20",
-        "disease": "Pompe disease (Glycogen storage disease type II)",
+        "target system": "Pompe target system (Glycogen storage target system type II)",
         "disease_severity": "CNS involvement in some cases",
         "current_ert": "Alglucosidase alfa (Lumizyme/Myozyme)",
         "ert_limitation": "Does not cross BBB effectively",
@@ -425,7 +425,7 @@ BBB_PEPTIDES = {
         "reference": "Frankel & Pabo, Cell, 1988"
     },
     "rvg29": {
-        "name": "RVG29 (Rabies virus glycoprotein)",
+        "name": "RVG29 (Rabies target macromolecule glycoprotein)",
         "sequence": "YTIWMPENPRPGTPCDIFTNSRGKRASNG",
         "target_receptor": "Nicotinic acetylcholine receptor",
         "mechanism": "Receptor binding + transcytosis",
@@ -535,7 +535,7 @@ def calculate_properties(sequence: str) -> Dict:
     }
 
 
-def get_fasta_header(enzyme_name: str, disease: str, bbb_peptide: str,
+def get_fasta_header(enzyme_name: str, target system: str, bbb_peptide: str,
                      sequence: str) -> str:
     """Generate FASTA with prior art header."""
     timestamp = datetime.now().isoformat()
@@ -547,21 +547,21 @@ def get_fasta_header(enzyme_name: str, disease: str, bbb_peptide: str,
 ;
 ; LICENSE: OpenMTA + CC BY-SA 4.0
 ;
-; DISEASE TARGET: {disease}
+; target system TARGET: {target system}
 ; ENZYME: {enzyme_name}
 ; BBB STRATEGY: {bbb_peptide} peptide fusion
 ;
 ; CRITICAL UNMET NEED:
 ; Current enzyme replacement therapies CANNOT cross the blood-brain barrier.
-; Children with this disease suffer progressive brain damage while their
-; peripheral disease is treated. This fusion enables CNS enzyme delivery.
+; Children with this target system suffer progressive brain damage while their
+; peripheral target system is treated. This fusion enables CNS enzyme delivery.
 ;
 ; PRIOR ART NOTICE:
 ; Publication Date: {timestamp}
 ; SHA-256: {seq_hash}
 ;
 ; This sequence is published to PREVENT PATENT ENCLOSURE.
-; Anyone can synthesize, test, and distribute this sequence.
+; Anyone can fabricate sequence, test, and distribute this sequence.
 ;
 ; ==============================================================================
 
@@ -581,7 +581,7 @@ def engineer_enzyme_bbb_variants(enzyme_key: str, enzyme_data: Dict,
 
     print(f"\n{'='*70}")
     print(f"ENGINEERING: {enzyme_data['name']}")
-    print(f"Disease: {enzyme_data['disease']}")
+    print(f"target system: {enzyme_data['target system']}")
     print(f"Current ERT: {enzyme_data['current_ert']}")
     print(f"Limitation: {enzyme_data['ert_limitation']}")
     print(f"{'='*70}")
@@ -613,7 +613,7 @@ def engineer_enzyme_bbb_variants(enzyme_key: str, enzyme_data: Dict,
         variant = {
             "enzyme": enzyme_data["name"],
             "enzyme_gene": enzyme_data["gene"],
-            "disease": enzyme_data["disease"],
+            "target system": enzyme_data["target system"],
             "uniprot": enzyme_data["uniprot"],
             "bbb_peptide": bbb_key,
             "bbb_name": bbb_info["name"],
@@ -650,7 +650,7 @@ def run_lysosomal_bbb_pipeline(output_dir: str = "lysosomal_enzyme_bbb",
     print("=" * 70)
     print("\nCRITICAL UNMET NEED:")
     print("  Current enzyme replacement therapies CANNOT cross the BBB.")
-    print("  Children are dying from brain disease that is treatable")
+    print("  Children are dying from brain target system that is treatable")
     print("  peripherally. These fusions could enable CNS delivery.")
     print("=" * 70)
 
@@ -675,9 +675,9 @@ def run_lysosomal_bbb_pipeline(output_dir: str = "lysosomal_enzyme_bbb",
         enzyme_data = LYSOSOMAL_ENZYMES[enzyme_key]
         variants = engineer_enzyme_bbb_variants(enzyme_key, enzyme_data)
 
-        # Track disease
-        if enzyme_data["disease"] not in results["diseases_covered"]:
-            results["diseases_covered"].append(enzyme_data["disease"])
+        # Track target system
+        if enzyme_data["target system"] not in results["diseases_covered"]:
+            results["diseases_covered"].append(enzyme_data["target system"])
 
         # Save FASTA files
         enzyme_dir = os.path.join(output_dir, enzyme_key)
@@ -691,7 +691,7 @@ def run_lysosomal_bbb_pipeline(output_dir: str = "lysosomal_enzyme_bbb",
 
             header = get_fasta_header(
                 variant["enzyme"],
-                variant["disease"],
+                variant["target system"],
                 variant["bbb_name"],
                 variant["sequence"]
             )
@@ -699,7 +699,7 @@ def run_lysosomal_bbb_pipeline(output_dir: str = "lysosomal_enzyme_bbb",
             fasta_desc = (
                 f">{variant['variant_name']}|"
                 f"enzyme={variant['enzyme_gene']}|"
-                f"disease={variant['disease']}|"
+                f"target system={variant['target system']}|"
                 f"bbb={variant['bbb_name']}|"
                 f"mw={variant['properties']['molecular_weight_kda']}kDa|"
                 f"license=OpenMTA+CC-BY-SA-4.0"
@@ -724,8 +724,8 @@ def run_lysosomal_bbb_pipeline(output_dir: str = "lysosomal_enzyme_bbb",
     print(f"Diseases covered: {len(results['diseases_covered'])}")
 
     print("\nDISEASES ADDRESSED:")
-    for disease in results["diseases_covered"]:
-        print(f"  • {disease}")
+    for target system in results["diseases_covered"]:
+        print(f"  • {target system}")
 
     print(f"\nOutput: {output_dir}/")
 
@@ -750,7 +750,7 @@ def run_lysosomal_bbb_pipeline(output_dir: str = "lysosomal_enzyme_bbb",
 
   PRIOR ART STATUS:
   Published to prevent patent enclosure.
-  Anyone can synthesize, test, and develop these sequences.
+  Anyone can fabricate sequence, test, and develop these sequences.
 
   LICENSE: OpenMTA + CC BY-SA 4.0
     """)

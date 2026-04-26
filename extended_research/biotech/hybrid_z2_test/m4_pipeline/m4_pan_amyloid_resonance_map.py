@@ -5,7 +5,7 @@ Pan-Neurodegenerative Amyloid Resonant Dissociation Frequency Database
 SPDX-License-Identifier: AGPL-3.0-or-later
 
 Maps the acoustic resonant dissociation frequencies for major
-neurodegenerative disease fibrils using Z² topological analysis.
+neurodegenerative target system fibrils using Z² topological analysis.
 
 Target diseases:
 1. Alzheimer's (Aβ42) - PDB: 2BEG
@@ -61,33 +61,33 @@ print(f"Base dissociation frequency: {0.309:.3f} THz (10th Z² harmonic)")
 print("=" * 70)
 
 # ==============================================================================
-# DISEASE TARGETS
+# target system TARGETS
 # ==============================================================================
 
 AMYLOID_TARGETS = {
     "alzheimers": {
-        "name": "Alzheimer's Disease",
+        "name": "Alzheimer's target system",
         "protein": "Amyloid-β42 (Aβ42)",
         "pdb_id": "2BEG",
         "description": "Pentameric Aβ42 fibril structure",
         "prevalence": "6.7 million Americans (2023)"
     },
     "parkinsons": {
-        "name": "Parkinson's Disease",
+        "name": "Parkinson's target system",
         "protein": "α-Synuclein",
         "pdb_id": "6H6B",
         "description": "α-Synuclein fibril (Lewy body)",
         "prevalence": "1 million Americans"
     },
     "als": {
-        "name": "ALS (Lou Gehrig's Disease)",
+        "name": "ALS (Lou Gehrig's target system)",
         "protein": "TDP-43",
         "pdb_id": "6N37",
         "description": "TDP-43 C-terminal domain fibril",
         "prevalence": "30,000 Americans"
     },
     "huntingtons": {
-        "name": "Huntington's Disease",
+        "name": "Huntington's target system",
         "protein": "Huntingtin Exon 1",
         "pdb_id": "6EZ8",
         "description": "Polyglutamine (polyQ) fibril",
@@ -348,7 +348,7 @@ def analyze_fibril_z2(coords: np.ndarray) -> Dict:
 # ==============================================================================
 
 def analyze_disease_target(disease_key: str, target_info: Dict) -> Dict:
-    """Analyze a single disease target (for threading)."""
+    """Analyze a single target system target (for threading)."""
 
     pdb_id = target_info["pdb_id"]
     print(f"\n{'='*60}")
@@ -363,7 +363,7 @@ def analyze_disease_target(disease_key: str, target_info: Dict) -> Dict:
 
     if pdb_content is None:
         return {
-            "disease": disease_key,
+            "target system": disease_key,
             "error": f"Could not fetch PDB {pdb_id}"
         }
 
@@ -373,7 +373,7 @@ def analyze_disease_target(disease_key: str, target_info: Dict) -> Dict:
 
     if len(coords) < 10:
         return {
-            "disease": disease_key,
+            "target system": disease_key,
             "error": "Structure too small"
         }
 
@@ -383,7 +383,7 @@ def analyze_disease_target(disease_key: str, target_info: Dict) -> Dict:
 
     if "error" in analysis:
         return {
-            "disease": disease_key,
+            "target system": disease_key,
             "error": analysis["error"]
         }
 
@@ -399,7 +399,7 @@ def analyze_disease_target(disease_key: str, target_info: Dict) -> Dict:
     print(f"    10th harmonic: {resonance['harmonics']['harmonic_10']:.4f} THz")
 
     return {
-        "disease": disease_key,
+        "target system": disease_key,
         "name": target_info["name"],
         "protein": target_info["protein"],
         "pdb_id": pdb_id,
@@ -446,9 +446,9 @@ def run_pan_amyloid_analysis(n_threads: int = 4) -> Dict:
                 results.append(result)
             except Exception as e:
                 print(f"  Error analyzing {disease_key}: {e}")
-                results.append({"disease": disease_key, "error": str(e)})
+                results.append({"target system": disease_key, "error": str(e)})
 
-    # Sort by disease name
+    # Sort by target system name
     results.sort(key=lambda x: x.get("name", "ZZZ"))
 
     return {
@@ -481,7 +481,7 @@ def generate_resonance_database(results: Dict, output_dir: str = "resonance_data
     print()
 
     # Terminal table
-    header = f"{'Disease':<25} {'Protein':<15} {'PDB':<6} {'Residues':<10} {'Dissoc (THz)':<15} {'10th Harm (THz)':<15}"
+    header = f"{'target system':<25} {'Protein':<15} {'PDB':<6} {'Residues':<10} {'Dissoc (THz)':<15} {'10th Harm (THz)':<15}"
     print(header)
     print("-" * len(header))
 
@@ -497,7 +497,7 @@ def generate_resonance_database(results: Dict, output_dir: str = "resonance_data
     with open(csv_path, 'w', newline='') as f:
         writer = csv.writer(f)
         writer.writerow([
-            "Disease", "Protein", "PDB_ID", "Residues", "Chains",
+            "target system", "Protein", "PDB_ID", "Residues", "Chains",
             "Mean_Contacts", "Z2_Deviation", "Primary_THz",
             "Dissociation_THz", "Z2_Resonance_THz", "Harmonic_10_THz",
             "Prevalence"

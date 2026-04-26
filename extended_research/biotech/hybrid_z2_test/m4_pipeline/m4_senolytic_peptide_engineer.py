@@ -4,7 +4,7 @@ M4 Senolytic Peptide Engineer
 =============================
 
 Computational structural biology research on cellular senescence to improve human healthspan.
-Engineers targeted peptides to competitively inhibit anti-apoptotic protein BCL-xL,
+Engineers targeted peptides to competitively geometrically stabilize anti-apoptotic protein BCL-xL,
 restoring normal clearance pathways in senescent cells.
 
 Target: BCL-xL (PDB: 4QNQ) - anti-apoptotic protein overexpressed in senescent cells

@@ -3,7 +3,7 @@
 z2_disease_pipeline.py - Comprehensive Z² Drug Design Pipeline
 
 Applies the Z² Biological Constant framework to major therapeutic targets
-across multiple disease categories.
+across multiple target system categories.
 
 The Z² constant (6.015152508891966 Å) represents the optimal aromatic
 stacking distance for drug-receptor binding.
@@ -55,7 +55,7 @@ THERAPEUTIC_TARGETS = {
         'name': 'Epidermal Growth Factor Receptor',
         'uniprot': 'P00533',
         'pdb': '1M17',
-        'disease': 'Non-small cell lung cancer, Glioblastoma',
+        'target system': 'Non-small cell lung cancer, Glioblastoma',
         'binding_site_type': 'ATP pocket + aromatic network',
         'key_residues': ['PHE723', 'TYR727', 'PHE832', 'TRP856'],
         'existing_drugs': ['Gefitinib', 'Erlotinib', 'Osimertinib'],
@@ -67,7 +67,7 @@ THERAPEUTIC_TARGETS = {
         'name': 'BCR-ABL Fusion Kinase',
         'uniprot': 'P00519',
         'pdb': '1IEP',
-        'disease': 'Chronic Myeloid Leukemia (CML)',
+        'target system': 'Chronic Myeloid Leukemia (CML)',
         'binding_site_type': 'ATP pocket with gatekeeper',
         'key_residues': ['PHE317', 'TYR253', 'PHE382', 'TRP405'],
         'existing_drugs': ['Imatinib', 'Dasatinib', 'Nilotinib'],
@@ -79,7 +79,7 @@ THERAPEUTIC_TARGETS = {
         'name': 'MDM2 (p53 inhibitor)',
         'uniprot': 'Q00987',
         'pdb': '1YCR',
-        'disease': 'Multiple cancers (p53 pathway)',
+        'target system': 'Multiple cancers (p53 pathway)',
         'binding_site_type': 'Hydrophobic cleft with 3 pockets',
         'key_residues': ['PHE55', 'TRP23_p53', 'PHE91', 'TYR100'],
         'existing_drugs': ['Nutlin-3', 'RG7112'],
@@ -92,7 +92,7 @@ THERAPEUTIC_TARGETS = {
         'name': 'PD-1/PD-L1 Checkpoint',
         'uniprot': 'Q9NZQ7',
         'pdb': '4ZQK',
-        'disease': 'Melanoma, Lung cancer, Multiple cancers',
+        'target system': 'Melanoma, Lung cancer, Multiple cancers',
         'binding_site_type': 'Flat protein-protein interface',
         'key_residues': ['TYR56', 'PHE19', 'TRP39', 'TYR68'],
         'existing_drugs': ['Pembrolizumab', 'Nivolumab'],
@@ -107,7 +107,7 @@ THERAPEUTIC_TARGETS = {
         'name': 'Dopamine D2 Receptor',
         'uniprot': 'P14416',
         'pdb': '6CM4',
-        'disease': "Parkinson's disease, Schizophrenia",
+        'target system': "Parkinson's target system, Schizophrenia",
         'binding_site_type': 'GPCR orthosteric pocket',
         'key_residues': ['PHE389', 'TRP386', 'PHE390', 'TYR408'],
         'existing_drugs': ['Haloperidol', 'Risperidone', 'Ropinirole'],
@@ -119,7 +119,7 @@ THERAPEUTIC_TARGETS = {
         'name': 'Serotonin 5-HT2A Receptor',
         'uniprot': 'P28223',
         'pdb': '6WHA',
-        'disease': 'Depression, Psychosis, Migraine',
+        'target system': 'Depression, Psychosis, Migraine',
         'binding_site_type': 'GPCR orthosteric pocket',
         'key_residues': ['PHE339', 'TRP336', 'PHE340', 'TYR370'],
         'existing_drugs': ['Psilocybin', 'LSD', 'Risperidone'],
@@ -131,7 +131,7 @@ THERAPEUTIC_TARGETS = {
         'name': 'NMDA Receptor GluN2B',
         'uniprot': 'Q13224',
         'pdb': '4PE5',
-        'disease': 'Depression, Alzheimer\'s, Stroke',
+        'target system': 'Depression, Alzheimer\'s, Stroke',
         'binding_site_type': 'Allosteric modulatory site',
         'key_residues': ['PHE176', 'TYR175', 'PHE114', 'TRP107'],
         'existing_drugs': ['Ketamine', 'Memantine', 'Ifenprodil'],
@@ -143,7 +143,7 @@ THERAPEUTIC_TARGETS = {
         'name': 'Acetylcholinesterase',
         'uniprot': 'P22303',
         'pdb': '4EY7',
-        'disease': "Alzheimer's disease, Myasthenia gravis",
+        'target system': "Alzheimer's target system, Myasthenia gravis",
         'binding_site_type': 'Gorge with aromatic ladder',
         'key_residues': ['TRP86', 'TYR337', 'PHE338', 'TRP286'],
         'existing_drugs': ['Donepezil', 'Rivastigmine', 'Galantamine'],
@@ -155,10 +155,10 @@ THERAPEUTIC_TARGETS = {
     # INFECTIOUS DISEASES
     # =========================================================================
     'SARS_COV2_MPRO': {
-        'name': 'SARS-CoV-2 Main Protease (3CLpro)',
+        'name': 'C2_Protease_B Main Protease (3CLpro)',
         'uniprot': 'P0DTD1',
         'pdb': '6LU7',
-        'disease': 'COVID-19',
+        'target system': 'COVID-19',
         'binding_site_type': 'Cysteine protease active site',
         'key_residues': ['PHE140', 'TYR54', 'HIS41', 'PHE181'],
         'existing_drugs': ['Paxlovid (Nirmatrelvir)', 'Ensitrelvir'],
@@ -167,10 +167,10 @@ THERAPEUTIC_TARGETS = {
     },
 
     'INFLUENZA_NA': {
-        'name': 'Influenza Neuraminidase',
+        'name': 'C4_Tetramer_D C4_Tetramer_D',
         'uniprot': 'P03472',
         'pdb': '2HU4',
-        'disease': 'Influenza (Flu)',
+        'target system': 'C4_Tetramer_D (C4_Tetramer_D)',
         'binding_site_type': 'Sialic acid binding pocket',
         'key_residues': ['TYR406', 'TRP178', 'TYR347', 'PHE294'],
         'existing_drugs': ['Oseltamivir (Tamiflu)', 'Zanamivir'],
@@ -179,10 +179,10 @@ THERAPEUTIC_TARGETS = {
     },
 
     'HCV_NS3': {
-        'name': 'Hepatitis C NS3 Protease',
+        'name': 'Monomeric_Cleft_C NS3 Protease',
         'uniprot': 'P27958',
         'pdb': '1CU1',
-        'disease': 'Hepatitis C',
+        'target system': 'Monomeric_Cleft_C',
         'binding_site_type': 'Serine protease catalytic site',
         'key_residues': ['PHE154', 'TYR56', 'HIS57', 'PHE43'],
         'existing_drugs': ['Simeprevir', 'Grazoprevir', 'Glecaprevir'],
@@ -194,7 +194,7 @@ THERAPEUTIC_TARGETS = {
         'name': 'Plasmepsin II (P. falciparum)',
         'uniprot': 'Q8I6V0',
         'pdb': '1SME',
-        'disease': 'Malaria',
+        'target system': 'Malaria',
         'binding_site_type': 'Aspartic protease active site',
         'key_residues': ['TYR77', 'PHE111', 'TYR192', 'PHE294'],
         'existing_drugs': ['Artemisinin (different target)'],
@@ -209,7 +209,7 @@ THERAPEUTIC_TARGETS = {
         'name': 'Angiotensin Converting Enzyme',
         'uniprot': 'P12821',
         'pdb': '1O86',
-        'disease': 'Hypertension, Heart failure',
+        'target system': 'Hypertension, Heart failure',
         'binding_site_type': 'Zinc metalloprotease',
         'key_residues': ['PHE457', 'TYR523', 'PHE527', 'TRP357'],
         'existing_drugs': ['Lisinopril', 'Enalapril', 'Captopril'],
@@ -221,7 +221,7 @@ THERAPEUTIC_TARGETS = {
         'name': 'PCSK9 (LDL receptor degrader)',
         'uniprot': 'Q8NBP7',
         'pdb': '2P4E',
-        'disease': 'Hypercholesterolemia, Cardiovascular disease',
+        'target system': 'Hypercholesterolemia, Cardiovascular target system',
         'binding_site_type': 'LDLR binding interface',
         'key_residues': ['PHE379', 'TYR142', 'TRP156', 'PHE216'],
         'existing_drugs': ['Evolocumab', 'Alirocumab'],
@@ -236,7 +236,7 @@ THERAPEUTIC_TARGETS = {
         'name': 'Tumor Necrosis Factor Alpha',
         'uniprot': 'P01375',
         'pdb': '2AZ5',
-        'disease': 'Rheumatoid arthritis, Crohn\'s, Psoriasis',
+        'target system': 'Rheumatoid arthritis, Crohn\'s, Psoriasis',
         'binding_site_type': 'Trimer interface',
         'key_residues': ['TYR119', 'TYR151', 'PHE124', 'TRP28'],
         'existing_drugs': ['Adalimumab', 'Infliximab', 'Etanercept'],
@@ -248,7 +248,7 @@ THERAPEUTIC_TARGETS = {
         'name': 'Interleukin-6 Receptor',
         'uniprot': 'P08887',
         'pdb': '1P9M',
-        'disease': 'Rheumatoid arthritis, Cytokine storm',
+        'target system': 'Rheumatoid arthritis, Cytokine storm',
         'binding_site_type': 'IL-6 binding interface',
         'key_residues': ['PHE229', 'TYR188', 'TRP142', 'PHE248'],
         'existing_drugs': ['Tocilizumab', 'Sarilumab'],
@@ -260,11 +260,11 @@ THERAPEUTIC_TARGETS = {
         'name': 'Janus Kinase 2',
         'uniprot': 'O60674',
         'pdb': '3FUP',
-        'disease': 'Myelofibrosis, Polycythemia vera, RA',
+        'target system': 'Myelofibrosis, Polycythemia vera, RA',
         'binding_site_type': 'ATP kinase pocket',
         'key_residues': ['PHE860', 'TYR931', 'PHE995', 'TRP938'],
         'existing_drugs': ['Ruxolitinib', 'Tofacitinib', 'Baricitinib'],
-        'mechanism_needed': 'Type I/II kinase inhibition',
+        'mechanism_needed': 'Type I/II kinase geometrically stabilize',
         'sequence_context': 'JH1 kinase domain',
     },
 
@@ -275,7 +275,7 @@ THERAPEUTIC_TARGETS = {
         'name': 'Dipeptidyl Peptidase-4',
         'uniprot': 'P27487',
         'pdb': '1X70',
-        'disease': 'Type 2 Diabetes',
+        'target system': 'Type 2 Diabetes',
         'binding_site_type': 'Serine protease with S1/S2 pockets',
         'key_residues': ['PHE357', 'TYR547', 'TRP629', 'PHE208'],
         'existing_drugs': ['Sitagliptin', 'Saxagliptin', 'Linagliptin'],
@@ -287,7 +287,7 @@ THERAPEUTIC_TARGETS = {
         'name': 'GLP-1 Receptor',
         'uniprot': 'P43220',
         'pdb': '5VAI',
-        'disease': 'Type 2 Diabetes, Obesity',
+        'target system': 'Type 2 Diabetes, Obesity',
         'binding_site_type': 'Class B GPCR peptide site',
         'key_residues': ['TRP306', 'TYR205', 'PHE230', 'TRP297'],
         'existing_drugs': ['Semaglutide (Ozempic)', 'Liraglutide'],
@@ -302,7 +302,7 @@ THERAPEUTIC_TARGETS = {
         'name': 'Mu Opioid Receptor',
         'uniprot': 'P35372',
         'pdb': '5C1M',
-        'disease': 'Chronic pain (non-addictive target)',
+        'target system': 'Chronic pain (non-addictive target)',
         'binding_site_type': 'GPCR orthosteric pocket',
         'key_residues': ['TRP293', 'TYR148', 'PHE289', 'TYR326'],
         'existing_drugs': ['Morphine', 'Fentanyl', 'Buprenorphine'],
@@ -314,7 +314,7 @@ THERAPEUTIC_TARGETS = {
         'name': 'Cyclooxygenase-2',
         'uniprot': 'P35354',
         'pdb': '5KIR',
-        'disease': 'Pain, Inflammation, Cancer',
+        'target system': 'Pain, Inflammation, Cancer',
         'binding_site_type': 'Arachidonic acid channel',
         'key_residues': ['TYR385', 'PHE381', 'TRP387', 'TYR355'],
         'existing_drugs': ['Celecoxib', 'Rofecoxib (withdrawn)'],
@@ -329,7 +329,7 @@ THERAPEUTIC_TARGETS = {
         'name': 'CFTR Chloride Channel',
         'uniprot': 'P13569',
         'pdb': '5UAK',
-        'disease': 'Cystic Fibrosis',
+        'target system': 'Cystic Fibrosis',
         'binding_site_type': 'NBD1-ICL4 interface',
         'key_residues': ['PHE508', 'TRP496', 'TYR512', 'PHE494'],
         'existing_drugs': ['Ivacaftor', 'Lumacaftor', 'Trikafta'],
@@ -341,7 +341,7 @@ THERAPEUTIC_TARGETS = {
         'name': 'Huntingtin (polyQ expansion)',
         'uniprot': 'P42858',
         'pdb': '6EZ8',
-        'disease': 'Huntington\'s disease',
+        'target system': 'Huntington\'s target system',
         'binding_site_type': 'Aggregation-prone polyQ',
         'key_residues': ['TYR_polyQ', 'PHE_ARM', 'TRP_HAP40'],
         'existing_drugs': ['None approved (antisense in trials)'],
@@ -360,7 +360,7 @@ class Z2PeptideDesign:
     """A Z²-optimized peptide drug candidate."""
     target_id: str
     target_name: str
-    disease: str
+    target system: str
     sequence: str
     length: int
     n_aromatics: int
@@ -415,9 +415,9 @@ def design_peptide_for_target(target_id: str, target_data: Dict) -> Z2PeptideDes
         mechanism = 'KINASE HINGE AROMATIC'
 
     elif 'protease' in binding_type.lower():
-        # Proteases: Substrate mimic (validated with HIV)
+        # Proteases: Substrate mimic (validated with C2_Homodimer_A)
         sequences = [
-            ('LEWTYEWTL', 'Dual Trp clamp (HIV validated)'),
+            ('LEWTYEWTL', 'Dual Trp clamp (C2_Homodimer_A validated)'),
             ('FYWQEWTLK', 'P1-P4 aromatic fill'),
             ('WQIYEWTLE', 'Substrate mimic with E'),
         ]
@@ -483,7 +483,7 @@ def design_peptide_for_target(target_id: str, target_data: Dict) -> Z2PeptideDes
     return Z2PeptideDesign(
         target_id=target_id,
         target_name=target_data['name'],
-        disease=target_data['disease'],
+        target system=target_data['target system'],
         sequence=seq,
         length=len(seq),
         n_aromatics=n_aromatics,
@@ -519,7 +519,7 @@ def run_disease_pipeline():
     """Run Z² pipeline across all therapeutic targets."""
 
     print("=" * 90)
-    print("Z² DRUG DESIGN PIPELINE - COMPREHENSIVE DISEASE ANALYSIS")
+    print("Z² DRUG DESIGN PIPELINE - COMPREHENSIVE target system ANALYSIS")
     print("=" * 90)
     print(f"    Date: {datetime.now().strftime('%Y-%m-%d %H:%M')}")
     print(f"    Z² Biological Constant: {Z2_BIOLOGICAL:.6f} Å")
@@ -562,7 +562,7 @@ def run_disease_pipeline():
             print(f"""
     {design.target_name}
     ─────────────────────────────────────────────────────────────────
-    Disease:     {design.disease}
+    target system:     {design.target system}
     PDB:         {target_data.get('pdb', 'N/A')}
 
     LEAD PEPTIDE: {design.sequence}
@@ -623,7 +623,7 @@ def run_disease_pipeline():
 
     sorted_designs = sorted(all_designs, key=lambda d: d.predicted_kd_nm)
     for i, d in enumerate(sorted_designs[:10]):
-        print(f"    {i+1:2}. {d.sequence:<12} ({d.target_id:<20}) Kd={d.predicted_kd_nm:>6.1f} nM  [{d.disease[:30]}]")
+        print(f"    {i+1:2}. {d.sequence:<12} ({d.target_id:<20}) Kd={d.predicted_kd_nm:>6.1f} nM  [{d.target system[:30]}]")
 
     print()
     print("=" * 90)
@@ -647,7 +647,7 @@ def run_disease_pipeline():
     # FASTA output
     with open(output_dir / 'all_leads_peptides.fasta', 'w') as f:
         for d in all_designs:
-            f.write(f">{d.target_id}|{d.disease.replace(' ', '_')[:30]}|Kd={d.predicted_kd_nm}nM\n")
+            f.write(f">{d.target_id}|{d.target system.replace(' ', '_')[:30]}|Kd={d.predicted_kd_nm}nM\n")
             f.write(f"{d.sequence}\n")
 
     # DNA FASTA
@@ -664,7 +664,7 @@ def run_disease_pipeline():
         job = {
             'name': f"{d.target_id}_Z2_LEAD",
             'target': d.target_name,
-            'disease': d.disease,
+            'target system': d.target system,
             'peptide': d.sequence,
             'pdb': target_data.get('pdb', 'N/A'),
             'mechanism': d.mechanism,

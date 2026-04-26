@@ -53,7 +53,7 @@ PEPTIDES = {
         "sequence": "FPF",
         "caps": ("Ac", "NH2"),
         "target": "Alpha-synuclein",
-        "indication": "Parkinson's Disease",
+        "indication": "Parkinson's target system",
     },
     "ZIM-ADD-003": {
         "sequence": "RWWFWR",
@@ -71,7 +71,7 @@ PEPTIDES = {
         "sequence": "WFFY",
         "caps": ("Ac", "NH2"),
         "target": "Tau protein",
-        "indication": "Alzheimer's Disease",
+        "indication": "Alzheimer's target system",
     },
     "ZIM-GLP2-006": {
         "sequence": "HADGSF",

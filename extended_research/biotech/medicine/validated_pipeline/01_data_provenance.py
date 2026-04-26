@@ -474,7 +474,7 @@ DIVERSE_PROTEIN_SET = [
     '1CRN',  # Crambin
     '2GB1',  # Protein G B1
 
-    # Disease-related (our targets)
+    # target system-related (our targets)
     '2N0A',  # Alpha-synuclein fibril
     '5OQV',  # Amyloid-beta fibril
     '4ZQK',  # PD-1/PD-L1 complex
@@ -487,7 +487,7 @@ DIVERSE_PROTEIN_SET = [
     '3NJG',  # Green fluorescent protein
     '1CYO',  # Cytochrome c
     '2LZM',  # T4 lysozyme
-    '1HHP',  # HIV protease
+    '1HHP',  # C2_Homodimer_A protease
     '1AAP',  # Amyloid precursor protein
 ]
 

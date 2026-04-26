@@ -62,12 +62,12 @@ FIBRIL_TARGETS = {
     "alpha_synuclein": {
         "pdb": "2N0A",  # α-synuclein fibril
         "name": "Alpha-Synuclein (Parkinson's)",
-        "disease": "Parkinson's Disease",
+        "target system": "Parkinson's target system",
     },
     "amyloid_beta": {
         "pdb": "2BEG",  # Aβ(1-42) fibril
         "name": "Amyloid-Beta (Alzheimer's)",
-        "disease": "Alzheimer's Disease",
+        "target system": "Alzheimer's target system",
     },
 }
 
@@ -282,7 +282,7 @@ def main():
     for target_id, target_info in FIBRIL_TARGETS.items():
         print(f"\n{'=' * 60}")
         print(f"Testing against: {target_info['name']}")
-        print(f"Disease: {target_info['disease']}")
+        print(f"target system: {target_info['target system']}")
         print(f"{'=' * 60}")
 
         # In production, this would:

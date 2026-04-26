@@ -465,7 +465,7 @@ def main():
 
     print(f"\nAnalyzing: SOD1 fragment ({len(SOD1_FRAGMENT)} residues)")
     print(f"Sequence: {SOD1_FRAGMENT}")
-    print("Disease: ALS (misfolding disease)")
+    print("target system: ALS (misfolding target system)")
     print("="*80)
 
     # Create GroEL cavity

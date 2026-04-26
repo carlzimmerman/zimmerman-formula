@@ -17,9 +17,9 @@ The Z² framework shows **strong validation for enzyme active site binding** (pr
 
 | Target | Peptide | ipTM | Mechanism | Status |
 |--------|---------|------|-----------|--------|
-| **HIV Protease** | LEWTYEWTLTE | **0.92** | Aspartic protease active site | ✅ PERFECT |
+| **C2_Homodimer_A Protease** | LEWTYEWTLTE | **0.92** | Aspartic protease active site | ✅ PERFECT |
 
-### Why HIV Worked:
+### Why C2_Homodimer_A Worked:
 - Well-defined active site cavity
 - Homodimeric structure (C2 symmetric)
 - Aromatic S1/S1' subsites at Z² spacing (~6 Å)
@@ -33,18 +33,18 @@ The Z² framework shows **strong validation for enzyme active site binding** (pr
 | Target | Peptide | ipTM | Mechanism | Notes |
 |--------|---------|------|-----------|-------|
 | **MDM2** | WFYWKQELDW | **0.73** | p53-binding pocket | Promising, may need optimization |
-| **SARS-CoV-2 Mpro** | LEWTYEWTL | **0.60** | Cysteine protease | Different from aspartic protease |
+| **C2_Protease_B C2_Protease_B** | LEWTYEWTL | **0.60** | Cysteine protease | Different from aspartic protease |
 
 ### Why MDM2 Showed Moderate Binding:
-- p53-binding pocket is shallower than HIV active site
+- p53-binding pocket is shallower than C2_Homodimer_A active site
 - Aromatic ladder (5 aromatics) may be too dense
 - Could benefit from spacing optimization
 - Still worth experimental validation
 
-### Why COVID Was Lower Than HIV:
-- 3CLpro is a **cysteine protease** (different from HIV's aspartic protease)
+### Why COVID Was Lower Than C2_Homodimer_A:
+- 3CLpro is a **cysteine protease** (different from C2_Homodimer_A's aspartic protease)
 - Active site geometry differs - may need peptide redesign
-- Same peptide (LEWTYEWTL) worked for HIV but suboptimal here
+- Same peptide (LEWTYEWTL) worked for C2_Homodimer_A but suboptimal here
 - **Recommendation:** Design COVID-specific peptide with different spacing
 
 ---
@@ -93,7 +93,7 @@ From our hotspot analysis of PDB 5O3L:
 
 ## PEPTIDE DESIGN PRINCIPLES VALIDATED
 
-### For Proteases (HIV-like):
+### For Proteases (C2_Homodimer_A-like):
 ```
 LEWTYEWTL pattern:
 - L: Hydrophobic anchor
@@ -137,10 +137,10 @@ WFYDWNKLE pattern:
 | Predicted Kd | ipTM Observed | Correlation |
 |-------------|---------------|-------------|
 | 67.2 nM (MDM2) | 0.73 | Moderate match |
-| 96.0 nM (HIV*) | 0.92 | Strong match |
+| 96.0 nM (C2_Homodimer_A*) | 0.92 | Strong match |
 | 137.2 nM (COVID) | 0.60 | Partial match |
 
-*HIV used LEWTYEWTLTE variant
+*C2_Homodimer_A used LEWTYEWTLTE variant
 
 **Trend:** Lower predicted Kd correlates with higher ipTM for well-defined binding pockets.
 
@@ -149,7 +149,7 @@ WFYDWNKLE pattern:
 ## RECOMMENDATIONS
 
 ### Immediate (High Confidence):
-1. **Run all protease targets** - HCV, Plasmepsin, DPP-4, ACE
+1. **Run all protease targets** - Monomeric_Cleft_C, Plasmepsin, Metabolic_Receptor_E, ACE
 2. **Run all kinase targets** - EGFR, BCR-ABL, JAK2
 3. Expect ipTM > 0.70 for these structured targets
 

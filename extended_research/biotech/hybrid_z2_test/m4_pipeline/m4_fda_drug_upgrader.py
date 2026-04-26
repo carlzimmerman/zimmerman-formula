@@ -16,8 +16,8 @@ STRATEGY:
 6. Stamp with open licenses for prior art publication
 
 TARGET DISEASES:
-- Alzheimer's disease (anti-amyloid-β, anti-tau)
-- Parkinson's disease (anti-α-synuclein)
+- Alzheimer's target system (anti-amyloid-β, anti-tau)
+- Parkinson's target system (anti-α-synuclein)
 - ALS (anti-SOD1, anti-TDP-43)
 
 DATA SOURCES:
@@ -55,12 +55,12 @@ warnings.filterwarnings('ignore')
 
 THERAPEUTIC_ANTIBODIES = {
     # ==================================================================
-    # ALZHEIMER'S DISEASE - Anti-Amyloid-β
+    # ALZHEIMER'S target system - Anti-Amyloid-β
     # ==================================================================
     'aducanumab_vh': {
         'name': 'Aducanumab VH',
         'target': 'Amyloid-β aggregates',
-        'disease': 'Alzheimer\'s disease',
+        'target system': 'Alzheimer\'s target system',
         'fda_status': 'Approved 2021 (accelerated)',
         'company': 'Biogen',
         'source': 'US Patent 9,944,698 / PDB 6CO3',
@@ -79,7 +79,7 @@ THERAPEUTIC_ANTIBODIES = {
     'aducanumab_vl': {
         'name': 'Aducanumab VL',
         'target': 'Amyloid-β aggregates',
-        'disease': 'Alzheimer\'s disease',
+        'target system': 'Alzheimer\'s target system',
         'source': 'US Patent 9,944,698 / PDB 6CO3',
         # Light chain variable region (VL)
         'sequence': (
@@ -96,7 +96,7 @@ THERAPEUTIC_ANTIBODIES = {
     'lecanemab_vh': {
         'name': 'Lecanemab VH',
         'target': 'Amyloid-β protofibrils',
-        'disease': 'Alzheimer\'s disease',
+        'target system': 'Alzheimer\'s target system',
         'fda_status': 'Approved 2023',
         'company': 'Eisai/Biogen',
         'source': 'US Patent 8,784,810 / PDB 6YYT',
@@ -112,12 +112,12 @@ THERAPEUTIC_ANTIBODIES = {
     },
 
     # ==================================================================
-    # PARKINSON'S DISEASE - Anti-α-Synuclein
+    # PARKINSON'S target system - Anti-α-Synuclein
     # ==================================================================
     'prasinezumab_vh': {
         'name': 'Prasinezumab VH',
         'target': 'α-Synuclein aggregates',
-        'disease': 'Parkinson\'s disease',
+        'target system': 'Parkinson\'s target system',
         'fda_status': 'Phase II clinical trials',
         'company': 'Roche/Prothena',
         'source': 'US Patent 9,469,686',
@@ -138,7 +138,7 @@ THERAPEUTIC_ANTIBODIES = {
     'antisod1_vh': {
         'name': 'Anti-SOD1 VH (Research)',
         'target': 'Misfolded SOD1',
-        'disease': 'ALS',
+        'target system': 'ALS',
         'fda_status': 'Preclinical',
         'source': 'PDB 4A7T / Literature (Bhagat et al.)',
         'sequence': (
@@ -158,7 +158,7 @@ THERAPEUTIC_ANTIBODIES = {
     'gosuranemab_vh': {
         'name': 'Gosuranemab VH',
         'target': 'N-terminal Tau',
-        'disease': 'Alzheimer\'s/PSP',
+        'target system': 'Alzheimer\'s/PSP',
         'fda_status': 'Phase II (discontinued)',
         'company': 'Biogen',
         'source': 'US Patent 9,637,537',
@@ -404,14 +404,14 @@ def calculate_properties(sequence: str) -> Dict:
     }
 
 
-def generate_fasta_header(name: str, target: str, disease: str,
+def generate_fasta_header(name: str, target: str, target system: str,
                           modifications: List[str]) -> str:
     """Generate FASTA header with metadata."""
     timestamp = datetime.now().isoformat()
     mods_str = '; '.join(modifications) if modifications else 'None'
 
     return (
-        f">{name}|target={target}|disease={disease}|"
+        f">{name}|target={target}|target system={target system}|"
         f"modifications={mods_str}|"
         f"license=OpenMTA+CC-BY-SA-4.0|"
         f"prior_art={timestamp}"
@@ -423,12 +423,12 @@ def process_antibody(antibody_data: Dict, output_dir: str) -> Dict:
     name = antibody_data['name']
     sequence = antibody_data['sequence']
     target = antibody_data['target']
-    disease = antibody_data['disease']
+    target system = antibody_data['target system']
     cdr_positions = antibody_data['cdr_positions']
 
     print(f"\n  Processing: {name}")
     print(f"    Target: {target}")
-    print(f"    Disease: {disease}")
+    print(f"    target system: {target system}")
 
     # Extract CDRs
     cdrs = extract_cdrs(sequence, cdr_positions)
@@ -467,7 +467,7 @@ def process_antibody(antibody_data: Dict, output_dir: str) -> Dict:
     header = generate_fasta_header(
         name=f"OpenTherapeutic_{name.replace(' ', '_')}",
         target=target,
-        disease=disease,
+        target system=target system,
         modifications=modifications
     )
 
@@ -483,7 +483,7 @@ def process_antibody(antibody_data: Dict, output_dir: str) -> Dict:
     result = {
         'name': name,
         'target': target,
-        'disease': disease,
+        'target system': target system,
         'source': antibody_data.get('source', 'Unknown'),
         'original_length': len(sequence),
         'cdrs': cdrs,
@@ -509,7 +509,7 @@ def create_summary_report(results: List[Dict], output_dir: str) -> str:
         'license': 'AGPL-3.0-or-later (software), OpenMTA + CC BY-SA 4.0 (sequences)',
         'prior_art_notice': (
             'All sequences are published as PRIOR ART to prevent patent enclosure. '
-            'These materials may be freely used, synthesized, and distributed.'
+            'These materials may be freely used, fabricate sequence, and distributed.'
         ),
         'total_sequences': len(results),
         'sequences': results
@@ -556,9 +556,9 @@ def main():
     output_dir = "open_therapeutics"
     os.makedirs(output_dir, exist_ok=True)
 
-    # Disease-specific subdirectories
-    for disease in ['alzheimers', 'parkinsons', 'als']:
-        os.makedirs(os.path.join(output_dir, disease), exist_ok=True)
+    # target system-specific subdirectories
+    for target system in ['alzheimers', 'parkinsons', 'als']:
+        os.makedirs(os.path.join(output_dir, target system), exist_ok=True)
 
     # Process all antibodies
     print("\n" + "=" * 60)
@@ -568,12 +568,12 @@ def main():
     results = []
 
     for ab_id, ab_data in THERAPEUTIC_ANTIBODIES.items():
-        disease = ab_data['disease'].lower()
-        if 'alzheimer' in disease:
+        target system = ab_data['target system'].lower()
+        if 'alzheimer' in target system:
             disease_dir = os.path.join(output_dir, 'alzheimers')
-        elif 'parkinson' in disease:
+        elif 'parkinson' in target system:
             disease_dir = os.path.join(output_dir, 'parkinsons')
-        elif 'als' in disease.lower():
+        elif 'als' in target system.lower():
             disease_dir = os.path.join(output_dir, 'als')
         else:
             disease_dir = output_dir
@@ -607,8 +607,8 @@ def main():
   └─────────────────────────────────────────────────────────────┘
 
   DISEASES COVERED:
-  • Alzheimer's disease (anti-amyloid-β, anti-tau)
-  • Parkinson's disease (anti-α-synuclein)
+  • Alzheimer's target system (anti-amyloid-β, anti-tau)
+  • Parkinson's target system (anti-α-synuclein)
   • ALS (anti-SOD1)
 
   OUTPUT LOCATION:
@@ -620,7 +620,7 @@ def main():
   │                                                             │
   │ Anyone can:                                                │
   │ • USE these sequences for research or therapy              │
-  │ • SYNTHESIZE the proteins                                  │
+  │ • fabricate sequence the proteins                                  │
   │ • DISTRIBUTE freely under same terms                       │
   │                                                             │
   │ Nobody can:                                                │

@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """
-batch_runner.py - Batch Pipeline Runner for Multiple Disease Targets
+batch_runner.py - Batch Pipeline Runner for Multiple target system Targets
 
-Runs the validated pipeline across multiple disease targets in sequence,
+Runs the validated pipeline across multiple target system targets in sequence,
 with proper error handling, progress tracking, and summary reporting.
 
 Usage:
     python batch_runner.py --all
     python batch_runner.py --targets P37840 P10636 P04578
-    python batch_runner.py --diseases parkinsons alzheimers hiv
+    python batch_runner.py --diseases parkinsons alzheimers C2_Homodimer_A
 
 Author: Carl Zimmerman
 License: AGPL-3.0-or-later
@@ -31,7 +31,7 @@ from m05_structure_prediction import StructurePredictor
 
 @dataclass
 class DiseaseTarget:
-    """Definition of a disease target for the pipeline."""
+    """Definition of a target system target for the pipeline."""
     disease_name: str
     target_name: str
     uniprot_id: str
@@ -39,37 +39,37 @@ class DiseaseTarget:
     priority: int = 1  # 1 = highest
 
 
-# Master list of disease targets
+# Master list of target system targets
 DISEASE_TARGETS = {
     # Neurodegenerative
     'parkinsons': DiseaseTarget(
-        disease_name="Parkinson's Disease",
+        disease_name="Parkinson's target system",
         target_name="Alpha-synuclein",
         uniprot_id="P37840",
         therapeutic_goal="Prevent aggregation, reduce Lewy body formation",
         priority=1
     ),
     'alzheimers': DiseaseTarget(
-        disease_name="Alzheimer's Disease",
+        disease_name="Alzheimer's target system",
         target_name="Tau protein",
         uniprot_id="P10636",
         therapeutic_goal="Prevent tau tangles, stabilize microtubules",
         priority=1
     ),
     'huntingtons': DiseaseTarget(
-        disease_name="Huntington's Disease",
+        disease_name="Huntington's target system",
         target_name="Huntingtin",
         uniprot_id="P42858",
         therapeutic_goal="Reduce polyQ aggregation",
         priority=2
     ),
 
-    # Infectious Disease
-    'hiv': DiseaseTarget(
-        disease_name="HIV/AIDS",
+    # Infectious target system
+    'C2_Homodimer_A': DiseaseTarget(
+        disease_name="C2_Homodimer_A/AIDS",
         target_name="Envelope glycoprotein gp120",
         uniprot_id="P04578",
-        therapeutic_goal="Block CD4 binding, prevent viral entry",
+        therapeutic_goal="Block CD4 binding, prevent target macromolecule entry",
         priority=1
     ),
     'covid': DiseaseTarget(
@@ -161,7 +161,7 @@ class PipelineResult:
 
 class BatchRunner:
     """
-    Runs the validated pipeline across multiple disease targets.
+    Runs the validated pipeline across multiple target system targets.
 
     Features:
     - Sequential processing with error isolation
@@ -330,7 +330,7 @@ class BatchRunner:
 
         if successful:
             print(f"\n    SUCCESSFUL TARGETS:")
-            print(f"    {'Disease':<25} {'Pass Rate (D)':<15} {'Pass Rate (C)':<15} {'Top Candidate'}")
+            print(f"    {'target system':<25} {'Pass Rate (D)':<15} {'Pass Rate (C)':<15} {'Top Candidate'}")
             print(f"    {'-'*70}")
             for r in successful:
                 top = r.top_candidates[0] if r.top_candidates else {"sequence": "N/A", "plddt": 0}
@@ -343,7 +343,7 @@ class BatchRunner:
 
         # Statistical comparison
         if len(successful) >= 2:
-            print(f"\n    CROSS-DISEASE ANALYSIS:")
+            print(f"\n    CROSS-target system ANALYSIS:")
             print(f"    {'─'*50}")
 
             # Are designed peptides better than controls across diseases?
@@ -379,11 +379,11 @@ class BatchRunner:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Batch pipeline runner for multiple disease targets"
+        description="Batch pipeline runner for multiple target system targets"
     )
 
     parser.add_argument("--all", action="store_true",
-                       help="Run all defined disease targets")
+                       help="Run all defined target system targets")
     parser.add_argument("--priority1", action="store_true",
                        help="Run only priority 1 targets")
     parser.add_argument("--diseases", nargs="+",
@@ -398,12 +398,12 @@ def main():
     parser.add_argument("--api-delay", type=float, default=1.5,
                        help="Delay between ESMFold API calls (seconds)")
     parser.add_argument("--list", action="store_true",
-                       help="List available disease targets")
+                       help="List available target system targets")
 
     args = parser.parse_args()
 
     if args.list:
-        print("\nAvailable Disease Targets:")
+        print("\nAvailable target system Targets:")
         print("-"*70)
         for key, target in DISEASE_TARGETS.items():
             print(f"  {key:<15} {target.disease_name:<30} {target.uniprot_id} (P{target.priority})")

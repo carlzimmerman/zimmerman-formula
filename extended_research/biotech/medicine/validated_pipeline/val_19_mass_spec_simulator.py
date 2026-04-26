@@ -31,7 +31,7 @@ This script performs the ultimate cheminformatic validation:
 4. Generate theoretical MS peaks that the CRO will use to confirm synthesis
 
 THE OUTPUT:
-When the CRO synthesizes ZIM-SYN-004 and runs mass spectrometry, they will
+When the CRO fabricate sequence ZIM-SYN-004 and runs mass spectrometry, they will
 see peaks at EXACTLY these m/z values. If the peaks don't match, they
 built the wrong molecule.
 
@@ -524,7 +524,7 @@ def main():
             'n_cap': True,
             'c_cap': True,
             'target': 'Alpha-synuclein',
-            'indication': "Parkinson's Disease",
+            'indication': "Parkinson's target system",
         },
         'ZIM-ADD-003': {
             'sequence': 'RWWFWR',
@@ -538,7 +538,7 @@ def main():
             'n_cap': True,
             'c_cap': True,
             'target': 'Tau Protein',
-            'indication': "Alzheimer's Disease",
+            'indication': "Alzheimer's target system",
         },
     }
 

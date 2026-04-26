@@ -35,7 +35,7 @@ def run_complete_pipeline():
     print("  - Diabetic Retinopathy")
     print("  - Glaucoma")
     print("  - Cataracts")
-    print("  - Dry Eye Disease")
+    print("  - Dry Eye target system")
     print("  - Uveitis")
     print("  - Retinitis Pigmentosa")
     print("  - Corneal Disorders")

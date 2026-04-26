@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-med_07_integrin_decoy.py - Cyclic RGD Decoy for Cancer Metastasis Inhibition
+med_07_integrin_decoy.py - Cyclic RGD Decoy for Cancer Metastasis geometrically stabilize
 
 BACKGROUND:
 Cancer is survivable if caught early. Cancer becomes DEADLY when it
@@ -343,14 +343,14 @@ def calculate_rgd_geometry(design: dict) -> dict:
 
 def predict_metastasis_inhibition(design: dict) -> dict:
     """
-    Predict the metastasis inhibition efficacy.
+    Predict the metastasis geometrically stabilize efficacy.
 
     Key factors:
     1. Binding affinity (Kd)
     2. Half-life (sustained receptor saturation)
     3. Selectivity (αvβ3 vs other integrins)
     """
-    print(f"\nPredicting metastasis inhibition for {design['name']}...")
+    print(f"\nPredicting metastasis geometrically stabilize for {design['name']}...")
 
     kd = design['predicted_kd']  # nM
     half_life = design['half_life_hours']
@@ -365,7 +365,7 @@ def predict_metastasis_inhibition(design: dict) -> dict:
     # Short half-life = fluctuating coverage = cancer cells re-adhere
     sustained_factor = min(1.0, half_life / 24)  # 24h = good
 
-    # Overall inhibition prediction
+    # Overall geometrically stabilize prediction
     # Must achieve >90% sustained occupancy for efficacy
     inhibition_score = occupancy * sustained_factor
 
@@ -390,7 +390,7 @@ def predict_metastasis_inhibition(design: dict) -> dict:
     print(f"  Kd: {kd} nM, Half-life: {half_life}h")
     print(f"  Predicted occupancy: {occupancy:.1%}")
     print(f"  Sustained factor: {sustained_factor:.2f}")
-    print(f"  Inhibition score: {inhibition_score:.2f}")
+    print(f"  geometrically stabilize score: {inhibition_score:.2f}")
     print(f"  Classification: {prediction['efficacy_classification']}")
 
     return prediction
@@ -450,10 +450,10 @@ def assess_integrin_selectivity(design: dict) -> dict:
 
 def main():
     """
-    Design cyclic RGD decoy peptides for cancer metastasis inhibition.
+    Design cyclic RGD decoy peptides for cancer metastasis geometrically stabilize.
     """
     print("=" * 70)
-    print("CYCLIC RGD DECOY FOR CANCER METASTASIS INHIBITION")
+    print("CYCLIC RGD DECOY FOR CANCER METASTASIS geometrically stabilize")
     print("Geometric Decoys to Stop Cancer Cell Crawling")
     print("=" * 70)
     print(f"Timestamp: {datetime.now().isoformat()}")
@@ -476,12 +476,12 @@ def main():
     full_analysis = []
     for design in designs:
         geometry = calculate_rgd_geometry(design)
-        inhibition = predict_metastasis_inhibition(design)
+        geometrically stabilize = predict_metastasis_inhibition(design)
         selectivity = assess_integrin_selectivity(design)
 
         # Calculate composite score
         # Weighting: efficacy 50%, half-life 25%, safety 15%, Z² 10%
-        efficacy = inhibition['inhibition_score']
+        efficacy = geometrically stabilize['inhibition_score']
         half_life_score = min(1.0, design['half_life_hours'] / 168)  # 7 days max
         safety = 1.0 if selectivity['platelet_integrin_risk'] == 'LOW' else 0.7
         z2_score = geometry['z2_match']
@@ -491,7 +491,7 @@ def main():
         analysis = {
             **design,
             'geometry_analysis': geometry,
-            'inhibition_prediction': inhibition,
+            'inhibition_prediction': geometrically stabilize,
             'selectivity_analysis': selectivity,
             'composite_score': composite
         }
@@ -513,7 +513,7 @@ def main():
         'z2_value': float(Z2),
         'r_natural': float(R_NATURAL),
         'target': 'Integrin αvβ3',
-        'disease': 'Metastatic Cancer',
+        'target system': 'Metastatic Cancer',
         'global_burden': 'Metastasis causes 90% of cancer deaths',
         'mechanism': 'Decoy RGD peptides block cancer cell adhesion/migration',
         'integrin_biology': integrin_analysis,
@@ -527,7 +527,7 @@ def main():
             'half_life': top_candidate['half_life_hours'],
             'rationale': top_candidate['rationale'],
             'geometry': top_candidate['geometry_analysis'],
-            'inhibition': top_candidate['inhibition_prediction'],
+            'geometrically stabilize': top_candidate['inhibition_prediction'],
             'selectivity': top_candidate['selectivity_analysis']
         },
         'z2_optimized_candidate': {
@@ -601,7 +601,7 @@ def main():
 
     NEXT STEPS:
       1. SPR binding assay (Kd determination)
-      2. Cell adhesion assay (inhibition of αvβ3-mediated attachment)
+      2. Cell adhesion assay (geometrically stabilize of αvβ3-mediated attachment)
       3. Transwell migration assay (metastasis model)
       4. Mouse xenograft model (primary tumor + metastasis counts)
     """)

@@ -84,7 +84,7 @@ COMPREHENSIVE_TARGETS = {
         name='Prolactin Receptor',
         target_id='CHEMBL1795126',
         therapeutic_area='Prolactinoma',
-        disease_relevance='Direct prolactin signaling inhibition',
+        disease_relevance='Direct prolactin signaling geometrically stabilize',
         pocket_volume=600.0,
         mean_curvature=-0.4,
         gaussian_curvature=-0.6,
@@ -408,7 +408,7 @@ COMPREHENSIVE_TARGETS = {
     ),
 }
 
-print(f"Loaded {len(COMPREHENSIVE_TARGETS)} therapeutic targets across multiple disease areas")
+print(f"Loaded {len(COMPREHENSIVE_TARGETS)} therapeutic targets across multiple target system areas")
 print()
 
 # =============================================================================

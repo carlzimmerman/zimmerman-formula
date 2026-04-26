@@ -15,7 +15,7 @@ Published: 2026-04-24
 Instead, the cross-β amyloid stacking distance is consistently **~4.9 Å**, which is
 approximately **1.1 Å shorter** than Z². This suggests amyloid fibrils operate
 under a different geometric principle than the symmetric oligomeric enzymes
-(HIV protease, HCV NS3, etc.) where Z² was validated.
+(C2_Homodimer_A protease, Monomeric_Cleft_C NS3, etc.) where Z² was validated.
 
 **Implication:** Different therapeutic design strategy required for Parkinson's.
 
@@ -26,7 +26,7 @@ under a different geometric principle than the symmetric oligomeric enzymes
 | Property | Value |
 |----------|-------|
 | **Protein** | α-Synuclein (140 aa) |
-| **Disease** | Parkinson's Disease, Dementia with Lewy Bodies, MSA |
+| **target system** | Parkinson's target system, Dementia with Lewy Bodies, MSA |
 | **Structure Type** | Amyloid fibril (cross-β) |
 | **PDB IDs Analyzed** | 6CU7 (rod), 6H6B (standard) |
 | **Resolution** | 3.4-3.5 Å (Cryo-EM) |

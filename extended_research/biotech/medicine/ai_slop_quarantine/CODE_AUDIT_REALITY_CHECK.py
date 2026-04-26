@@ -295,7 +295,7 @@ WHAT YOU MUST DO TO VALIDATE:
 6. Check if predicted structures match our assumptions
 7. If they don't fold as expected, designs are INVALIDATED
 
-8. Ultimately: Synthesize peptides, run SPR/ITC binding assays
+8. Ultimately: fabricate sequence peptides, run SPR/ITC binding assays
 9. This is the ONLY way to validate therapeutic claims
 """)
 

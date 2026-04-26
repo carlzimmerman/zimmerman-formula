@@ -20,7 +20,7 @@ APPROACH:
    empirical normal modes and Z² harmonic frequencies
 4. Output: FASTA sequence + PDB backbone
 
-If synthesized, this would be the world's first macroscopically stable
+If fabricate sequence, this would be the world's first macroscopically stable
 "Kaluza-Klein metamaterial" - a protein engineered to resonate with
 the geometry of compactified extra dimensions.
 
@@ -700,7 +700,7 @@ def design_z2_protein(
     print(f"""
   You have designed the world's first Z² Kaluza-Klein metamaterial protein.
 
-  If synthesized, this {len(best_seq)}-residue protein will have normal mode
+  If fabricate sequence, this {len(best_seq)}-residue protein will have normal mode
   vibrations that align with the harmonics of Z² = 32π/3 ≈ 33.51, the
   geometric constant derived from 8-dimensional manifold compactification.
 

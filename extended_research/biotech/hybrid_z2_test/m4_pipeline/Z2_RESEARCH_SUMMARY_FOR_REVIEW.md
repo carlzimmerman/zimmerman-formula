@@ -146,13 +146,13 @@ Mean holographic entropy: 1186 bits
 
 ### Therapeutic Categories Analyzed (Top 10)
 
-| Category | Count | Mean Z² Score | Target Disease |
+| Category | Count | Mean Z² Score | Target target system |
 |----------|-------|---------------|----------------|
 | Glycan shielding | 1 | 0.682 | Immune evasion |
 | Lentiviral vectors | 1 | 0.669 | Gene therapy |
 | BBB fusion | 1 | 0.656 | CNS delivery |
 | GLB1 enzyme | 3 | 0.650 | GM1 gangliosidosis |
-| GLA enzyme | 3 | 0.650 | Fabry disease |
+| GLA enzyme | 3 | 0.650 | Fabry target system |
 | ARSA enzyme | 3 | 0.645 | Metachromatic leukodystrophy |
 | Supercharging | 1 | 0.637 | Enhanced stability |
 | Parkinson's | 1 | 0.622 | Neurodegeneration |

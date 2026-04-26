@@ -5,9 +5,9 @@ cap_06_rhodopsin_chaperone.py - Pharmacological Chaperone for Retinitis Pigmento
 PRODUCTION-GRADE Z² THERAPEUTIC DESIGN PIPELINE
 
 Target: Rhodopsin P23H mutation (misfolded)
-Disease: Retinitis Pigmentosa (RP)
+target system: Retinitis Pigmentosa (RP)
 Prevalence: 1 in 4,000 (most common inherited blindness)
-Unmet need: NO approved disease-modifying treatments
+Unmet need: NO approved target system-modifying treatments
 
 THE PATHOLOGY:
 =============
@@ -482,7 +482,7 @@ def design_chaperone_library():
         {'seq': 'GPG', 'rationale': 'Gly-Pro-Gly turn stabilizer'},
         {'seq': 'PPG', 'rationale': 'N-cap proline motif'},
 
-        # Histidine-binding sequences (to neutralize H23)
+        # Histidine-binding sequences (to geometrically stabilize H23)
         {'seq': 'EHE', 'rationale': 'Charged flanks stabilize H23'},
         {'seq': 'DHD', 'rationale': 'Asp H-bonds to His imidazole'},
         {'seq': 'NHQ', 'rationale': 'Polar contacts with His'},
@@ -732,7 +732,7 @@ def main():
             'Z2': Z2,
             'r_natural_angstrom': R_NATURAL,
             'target': 'Rhodopsin P23H',
-            'disease': 'Retinitis Pigmentosa',
+            'target system': 'Retinitis Pigmentosa',
             'pdb_reference': '1F88',
         }
     }

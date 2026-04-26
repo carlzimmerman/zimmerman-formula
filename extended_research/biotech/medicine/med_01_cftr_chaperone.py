@@ -531,7 +531,7 @@ def main():
         'z2_value': float(Z2),
         'r_natural': float(R_NATURAL),
         'target': 'CFTR_ΔF508',
-        'disease': 'Cystic Fibrosis',
+        'target system': 'Cystic Fibrosis',
         'void_characteristics': void_data,
         'chaperone_designs': chaperone_result['designs'],
         'recommended_chaperone': chaperone_result['recommended'],

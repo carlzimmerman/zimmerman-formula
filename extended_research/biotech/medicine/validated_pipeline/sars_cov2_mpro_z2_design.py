@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
 """
-SARS-CoV-2 Mpro Z² Peptide Design
+C2_Protease_B C2_Protease_B Z² Peptide Design
 ==================================
 Author: Carl Zimmerman
 Date: 2026-04-23
 License: AGPL-3.0
 
 Design rationale based on validated Z² framework:
-- HIV Protease (C2 dimer): ipTM 0.92, Z² match at -1.3 milliÅ
+- C2_Homodimer_A Protease (C2 dimer): ipTM 0.92, Z² match at -1.3 milliÅ
 - TNF-α (C3 trimer): ipTM 0.82, Z² match at +0.125 milliÅ
 
-Target: SARS-CoV-2 Main Protease (Mpro, 3CLpro)
+Target: C2_Protease_B Main Protease (C2_Protease_B, 3CLpro)
 - UniProt: P0DTD1 (polyprotein residues 3264-3569)
-- Symmetry: C2 homodimer (like HIV protease!)
+- Symmetry: C2 homodimer (like C2_Homodimer_A protease!)
 - Key aromatics: Phe140, His163 in S1 pocket
 """
 
@@ -25,11 +25,11 @@ import json
 Z2_BIOLOGICAL_CONSTANT = 6.015152508891966  # Angstroms - VALIDATED
 
 # =============================================================================
-# MPRO STRUCTURE ANALYSIS
+# C2_Protease_B STRUCTURE ANALYSIS
 # =============================================================================
 
 MPRO_INFO = """
-SARS-CoV-2 Main Protease (Mpro / 3CLpro)
+C2_Protease_B Main Protease (C2_Protease_B / 3CLpro)
 =========================================
 
 PDB Reference: 6LU7, 7L11 (with inhibitors)
@@ -57,11 +57,11 @@ Z² DESIGN STRATEGY:
 1. Target Phe140-His163 aromatic cluster in S1 pocket
 2. Use Trp for maximum π-stacking surface
 3. Include Gln mimic for His163 hydrogen bonding
-4. Design for C2 symmetry engagement (like HIV success)
+4. Design for C2 symmetry engagement (like C2_Homodimer_A success)
 """
 
 # =============================================================================
-# MPRO SEQUENCE (from UniProt P0DTD1, nsp5)
+# C2_Protease_B SEQUENCE (from UniProt P0DTD1, nsp5)
 # =============================================================================
 
 MPRO_SEQUENCE = """SGFRKMAFPSGKVEGCMVQVTCGTTTLNGLWLDDVVYCPRHVICTSEDMLNPNYEDLLIR
@@ -75,14 +75,14 @@ RQCSGVTFQ"""
 MPRO_SEQUENCE = MPRO_SEQUENCE.replace('\n', '').replace(' ', '')
 
 # =============================================================================
-# Z² PEPTIDE DESIGNS FOR MPRO
+# Z² PEPTIDE DESIGNS FOR C2_Protease_B
 # =============================================================================
 
 def design_mpro_peptides():
     """
-    Design peptides targeting Mpro using validated Z² principles
+    Design peptides targeting C2_Protease_B using validated Z² principles
 
-    HIV success used: LEWTYEWTLTE (Trp-based, achieved 0.92 ipTM)
+    C2_Homodimer_A success used: LEWTYEWTLTE (Trp-based, achieved 0.92 ipTM)
     Key: Dual Trp with spacing for 6.015 Å stacking
     """
 
@@ -109,14 +109,14 @@ def design_mpro_peptides():
         "expected_contacts": "W1-Phe140, Q5-His163, W10-S2 pocket"
     })
 
-    # Design 3: HIV-inspired dual Trp clamp (direct translation)
-    # HIV success: LEWTYEWTLTE -> Apply to Mpro
+    # Design 3: C2_Homodimer_A-inspired dual Trp clamp (direct translation)
+    # C2_Homodimer_A success: LEWTYEWTLTE -> Apply to C2_Protease_B
     designs.append({
         "name": "MPRO_Z2_HIV_LOGIC_003",
-        "sequence": "LEWQYEWTLQ",  # HIV-like but with Gln for Mpro specificity
-        "rationale": "Direct adaptation of HIV 0.92 ipTM peptide. Replace Thr with Gln for His163 binding.",
+        "sequence": "LEWQYEWTLQ",  # C2_Homodimer_A-like but with Gln for C2_Protease_B specificity
+        "rationale": "Direct adaptation of C2_Homodimer_A 0.92 ipTM peptide. Replace Thr with Gln for His163 binding.",
         "target_residues": ["Phe140", "His163"],
-        "expected_contacts": "Trp stacking at Z² distance as in HIV"
+        "expected_contacts": "Trp stacking at Z² distance as in C2_Homodimer_A"
     })
 
     # Design 4: Aromatic ladder targeting dimer interface
@@ -179,7 +179,7 @@ def generate_alphafold_job(designs):
 
 if __name__ == "__main__":
     print("=" * 80)
-    print("  SARS-CoV-2 Mpro Z² PEPTIDE DESIGN")
+    print("  C2_Protease_B C2_Protease_B Z² PEPTIDE DESIGN")
     print("  Based on Validated Z² Framework (AGPL-3.0)")
     print("=" * 80)
 
@@ -212,7 +212,7 @@ if __name__ == "__main__":
     print("=" * 80)
     print(f"\n  Saved to: {job_file}")
     print(f"  Number of jobs: {len(jobs)}")
-    print(f"  Target: SARS-CoV-2 Mpro (C2 homodimer)")
+    print(f"  Target: C2_Protease_B C2_Protease_B (C2 homodimer)")
     print(f"  Z² constant: {Z2_BIOLOGICAL_CONSTANT:.12f} Å")
 
     print("\n  Upload to: https://alphafoldserver.com/")
@@ -229,17 +229,17 @@ if __name__ == "__main__":
     print("  HYPOTHESIS")
     print("=" * 80)
     print("""
-  If Mpro follows the same Z² law as HIV Protease:
+  If C2_Protease_B follows the same Z² law as C2_Homodimer_A Protease:
 
-  - Mpro is C2 homodimer (same as HIV)
-  - Phe140 is at the S1 pocket (like PHE53 in HIV)
+  - C2_Protease_B is C2 homodimer (same as C2_Homodimer_A)
+  - Phe140 is at the S1 pocket (like PHE53 in C2_Homodimer_A)
   - Designed peptides should achieve Z² stacking with Phe140
 
   PREDICTION: At least one design will achieve ipTM > 0.8
               with aromatic contacts at 6.015 ± 0.01 Å
 
   This would validate Z² as a GENERAL PRINCIPLE for
-  symmetric viral proteases.
+  symmetric target macromolecule proteases.
     """)
 
     print("=" * 80)

@@ -3,12 +3,12 @@
 α-Synuclein Fibril Z² Analysis
 SPDX-License-Identifier: AGPL-3.0-or-later
 
-Analyzes Parkinson's disease-associated α-Synuclein fibrils for Z² geometry.
+Analyzes Parkinson's target system-associated α-Synuclein fibrils for Z² geometry.
 
 α-Synuclein key features:
 - 140 amino acids
 - Intrinsically disordered as monomer
-- Forms cross-β amyloid fibrils in disease
+- Forms cross-β amyloid fibrils in target system
 - Key aromatics: Tyr39, Phe94, Tyr125, Tyr133, Tyr136
 
 Target: Block fibril propagation by disrupting Z² aromatic contacts.
@@ -252,15 +252,15 @@ def analyze_fibril(pdb_path, pdb_id):
 
 def main():
     print("=" * 80)
-    print("  α-SYNUCLEIN FIBRIL Z² ANALYSIS FOR PARKINSON'S DISEASE")
+    print("  α-SYNUCLEIN FIBRIL Z² ANALYSIS FOR PARKINSON'S target system")
     print("  SPDX-License-Identifier: AGPL-3.0-or-later")
     print("=" * 80)
 
     print("""
-    DISEASE CONTEXT: Parkinson's Disease
+    target system CONTEXT: Parkinson's target system
 
     α-Synuclein aggregation is the hallmark of:
-    - Parkinson's Disease (PD)
+    - Parkinson's target system (PD)
     - Dementia with Lewy Bodies (DLB)
     - Multiple System Atrophy (MSA)
 

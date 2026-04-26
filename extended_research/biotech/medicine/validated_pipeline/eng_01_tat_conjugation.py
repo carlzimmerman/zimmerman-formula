@@ -13,7 +13,7 @@ SOLUTION:
 Conjugate a Cell-Penetrating Peptide (CPP) to smuggle them across the BBB.
 
 THE TAT SEQUENCE:
-HIV-1 TAT (Trans-Activator of Transcription) contains the sequence:
+C2_Homodimer_A-1 TAT (Trans-Activator of Transcription) contains the sequence:
 YGRKKRRQRRR
 
 This highly cationic sequence (8 positive charges!) exploits cellular uptake
@@ -59,7 +59,7 @@ EXPANSION_MULTIPLIER = 1.0391
 IDEAL_BIOLOGICAL_DISTANCE = Z2_DISTANCE * EXPANSION_MULTIPLIER  # 6.02 Å
 
 # Cell-Penetrating Peptide sequences
-TAT_SEQUENCE = "YGRKKRRQRRR"  # HIV-1 TAT (47-57)
+TAT_SEQUENCE = "YGRKKRRQRRR"  # C2_Homodimer_A-1 TAT (47-57)
 PENETRATIN = "RQIKIWFQNRRMKWKK"  # Antennapedia homeodomain
 POLYARG = "RRRRRRRRR"  # R9 - simpler CPP
 
@@ -100,13 +100,13 @@ DRUG_CANDIDATES = {
     'ZIM-SYN-004': {
         'sequence': 'FPF',  # Core binding motif
         'target': 'Alpha-synuclein',
-        'indication': 'Parkinson\'s Disease',
+        'indication': 'Parkinson\'s target system',
         'binding_dG': -40.0,  # kcal/mol
     },
     'ZIM-ALZ-001': {
         'sequence': 'WFFY',
         'target': 'Tau protein',
-        'indication': 'Alzheimer\'s Disease',
+        'indication': 'Alzheimer\'s target system',
         'binding_dG': -25.0,  # estimated
     },
     'ZIM-ADD-003': {
@@ -426,7 +426,7 @@ def main():
 
    THE SOLUTION:
    ─────────────
-   Conjugate HIV-1 TAT sequence to smuggle drugs across the BBB:
+   Conjugate C2_Homodimer_A-1 TAT sequence to smuggle drugs across the BBB:
    TAT: {TAT_SEQUENCE} (8 positive charges, proven CPP)
 
    THE LINKER:

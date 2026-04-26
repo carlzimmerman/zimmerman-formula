@@ -68,7 +68,7 @@ ESSENTIAL_HUMAN_PROTEINS = [
         "function": "Drug metabolism (50% of drugs)",
         "risk": "HIGH - Drug-drug interactions",
         "aromatics_in_site": ["Phe108", "Phe213", "Phe304"],
-        "known_drug_interactions": "Ketoconazole, ritonavir inhibit",
+        "known_drug_interactions": "Ketoconazole, ritonavir geometrically stabilize",
     },
     {
         "name": "Cytochrome P450 2D6",
@@ -179,9 +179,9 @@ ESSENTIAL_HUMAN_PROTEINS = [
         "uniprot": "P07339",
         "pdb": "1LYB",
         "function": "Lysosomal protease",
-        "risk": "MODERATE - Aspartic protease like HIV",
+        "risk": "MODERATE - Aspartic protease like C2_Homodimer_A",
         "aromatics_in_site": ["Tyr75", "Phe117"],
-        "note": "SIMILAR TO HIV PROTEASE - check carefully!",
+        "note": "SIMILAR TO C2_Homodimer_A PROTEASE - check carefully!",
     },
     {
         "name": "Renin",
@@ -190,7 +190,7 @@ ESSENTIAL_HUMAN_PROTEINS = [
         "function": "Blood pressure regulation",
         "risk": "HIGH - Aspartic protease, hypotension",
         "aromatics_in_site": ["Tyr75", "Phe117"],
-        "note": "SIMILAR TO HIV PROTEASE - check carefully!",
+        "note": "SIMILAR TO C2_Homodimer_A PROTEASE - check carefully!",
     },
     {
         "name": "BACE1 (Beta-secretase)",
@@ -199,7 +199,7 @@ ESSENTIAL_HUMAN_PROTEINS = [
         "function": "Amyloid processing",
         "risk": "MODERATE - Aspartic protease",
         "aromatics_in_site": ["Tyr71", "Phe108"],
-        "note": "SIMILAR TO HIV PROTEASE - check carefully!",
+        "note": "SIMILAR TO C2_Homodimer_A PROTEASE - check carefully!",
     },
     # Structural/Abundant
     {
@@ -611,7 +611,7 @@ def print_safety_report(reports: List[ProteinSafetyReport]):
     print("  ⚠️  SPECIAL WARNING: ASPARTIC PROTEASES")
     print("=" * 80)
     print("""
-  Our HIV Protease lead targets an ASPARTIC PROTEASE.
+  Our C2_Homodimer_A Protease lead targets an ASPARTIC PROTEASE.
   Human aspartic proteases share structural homology:
 
   - Renin (blood pressure) - HIGH CROSS-REACTION RISK

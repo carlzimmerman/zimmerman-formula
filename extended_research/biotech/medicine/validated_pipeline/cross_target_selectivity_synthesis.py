@@ -6,11 +6,11 @@ Author: Carl Zimmerman
 Date: 2026-04-24
 License: AGPL-3.0
 
-Synthesizes selectivity principles across all validated Z² targets:
-1. SARS-CoV-2 Mpro - PHE140 Z² site (antiviral)
-2. HIV-1 Protease - PHE53 Z² site (antiviral)
+fabricate sequence selectivity principles across all validated Z² targets:
+1. C2_Protease_B C2_Protease_B - PHE140 Z² site (antiviral)
+2. C2_Homodimer_A - PHE53 Z² site (antiviral)
 3. TNF-α - TYR151 Z² site (autoimmune)
-4. DPP-4 - TRP629 Z² site (diabetes)
+4. Metabolic_Receptor_E - TRP629 Z² site (diabetes)
 5. EGFR - PHE357 Z² site (cancer)
 
 THEORETICAL/COMPUTATIONAL ONLY - NOT FOR CLINICAL USE
@@ -51,8 +51,8 @@ class TargetSelectivityProfile:
 
 # Compile all target data
 TARGETS = {
-    'SARS-CoV-2 Mpro': TargetSelectivityProfile(
-        name='SARS-CoV-2 Main Protease (Mpro)',
+    'C2_Protease_B C2_Protease_B': TargetSelectivityProfile(
+        name='C2_Protease_B Main Protease (C2_Protease_B)',
         z2_residue='PHE140',
         z2_deviation='+4.5 mÅ',
         oligomeric_state='homodimer',
@@ -63,12 +63,12 @@ TARGETS = {
              'herg_equivalent': 'hydrophobic cavity (no charge)'},
         ],
         optimal_peptide='WKLWTRQWLQ (K2R6 design)',
-        delivery_trigger='SARS-CoV-2 leader RNA',
+        delivery_trigger='C2_Protease_B leader RNA',
         key_insight='Add POSITIVE charges to engage GLU166 - hERG has no negative charges to attract',
     ),
 
-    'HIV-1 Protease': TargetSelectivityProfile(
-        name='HIV-1 Protease',
+    'C2_Homodimer_A': TargetSelectivityProfile(
+        name='C2_Homodimer_A',
         z2_residue='PHE53',
         z2_deviation='-1.3 mÅ',
         oligomeric_state='C2 homodimer',
@@ -81,7 +81,7 @@ TARGETS = {
              'cathepsin_equivalent': 'no flap structure'},
         ],
         optimal_peptide='RLEWTWEKILTE (dual W, dual positive)',
-        delivery_trigger='HIV TAR RNA',
+        delivery_trigger='C2_Homodimer_A TAR RNA',
         key_insight='Add POSITIVE charges for ASP25 + exploit flap region absent in cathepsins',
     ),
 
@@ -103,7 +103,7 @@ TARGETS = {
         key_insight='Add NEGATIVE charges to engage ARG131/LYS90 - LT-α has neutral residues',
     ),
 
-    'DPP-4': TargetSelectivityProfile(
+    'Metabolic_Receptor_E': TargetSelectivityProfile(
         name='Dipeptidyl Peptidase-4 (CD26)',
         z2_residue='TRP629',
         z2_deviation='pending AlphaFold',
@@ -118,7 +118,7 @@ TARGETS = {
         ],
         optimal_peptide='RWPKWGELTK (R1K4 for GLU205/206)',
         delivery_trigger='Glucose-responsive (phenylboronic acid)',
-        key_insight='CHARGE REVERSAL: DPP-4 GLU205 vs DPP-8 LYS205 - positive peptide binds DPP-4, repelled by DPP-8',
+        key_insight='CHARGE REVERSAL: Metabolic_Receptor_E GLU205 vs DPP-8 LYS205 - positive peptide binds Metabolic_Receptor_E, repelled by DPP-8',
     ),
 
     'EGFR': TargetSelectivityProfile(
@@ -156,10 +156,10 @@ def analyze_selectivity_patterns():
         'universal_z2_principle': {
             'statement': 'Z² aromatic stacking (6.015 Å) is conserved across all validated targets',
             'deviations': {
-                'HIV-1 PR': '-1.3 mÅ',
+                'C2_Homodimer_A-1 PR': '-1.3 mÅ',
                 'TNF-α': '+0.1 mÅ',
-                'SARS-CoV-2 Mpro': '+4.5 mÅ',
-                'DPP-4': 'pending validation',
+                'C2_Protease_B C2_Protease_B': '+4.5 mÅ',
+                'Metabolic_Receptor_E': 'pending validation',
                 'EGFR': 'pending validation',
             },
             'validated_targets': 3,
@@ -170,10 +170,10 @@ def analyze_selectivity_patterns():
         'charge_complementarity': {
             'statement': 'Selectivity is achieved by matching charged peptide residues to unique charged target residues',
             'examples': [
-                'Mpro: +K/+R in peptide ↔ -GLU166 in target',
-                'HIV: +R/+K in peptide ↔ -ASP25 dyad in target',
+                'C2_Protease_B: +K/+R in peptide ↔ -GLU166 in target',
+                'C2_Homodimer_A: +R/+K in peptide ↔ -ASP25 dyad in target',
                 'TNF-α: -D/E in peptide ↔ +ARG131/+LYS90 in target',
-                'DPP-4: +R/+K in peptide ↔ -GLU205/GLU206 in target',
+                'Metabolic_Receptor_E: +R/+K in peptide ↔ -GLU205/GLU206 in target',
                 'EGFR: H-bond + aromatic ↔ TYR45/PHE357 in target',
             ],
             'key_insight': 'The SIGN of the charge depends on the target surface, not a universal rule',
@@ -182,10 +182,10 @@ def analyze_selectivity_patterns():
         'off_target_discrimination': {
             'statement': 'Off-targets typically lack the charged anchor residues',
             'examples': [
-                'hERG vs Mpro: hERG has hydrophobic cavity, no GLU166 equivalent',
-                'Cathepsin D vs HIV PR: Cathepsin lacks flap region',
+                'hERG vs C2_Protease_B: hERG has hydrophobic cavity, no GLU166 equivalent',
+                'Cathepsin D vs C2_Homodimer_A PR: Cathepsin lacks flap region',
                 'LT-α vs TNF-α: LT-α has LEU/GLN where TNF-α has ARG/LYS',
-                'DPP-8/9 vs DPP-4: OPPOSITE charges at position 205 (LYS/ARG vs GLU)',
+                'DPP-8/9 vs Metabolic_Receptor_E: OPPOSITE charges at position 205 (LYS/ARG vs GLU)',
                 'HER2/3 vs EGFR: HER2 has no ligand site; HER3 has LEU357 not PHE',
             ],
             'strategy': 'Design peptide to require anchor engagement - off-target cannot provide it',
@@ -194,9 +194,9 @@ def analyze_selectivity_patterns():
         'structural_features': {
             'statement': 'Unique structural features beyond charge can provide selectivity',
             'examples': [
-                'HIV PR flap region (ILE50) - absent in cathepsins',
+                'C2_Homodimer_A PR flap region (ILE50) - absent in cathepsins',
                 'TNF-α trimer cleft - different geometry in LT-α',
-                'Mpro S1 pocket depth - shallower in hERG',
+                'C2_Protease_B S1 pocket depth - shallower in hERG',
             ],
             'combined_approach': 'Best selectivity combines charge + structural features',
         },
@@ -204,10 +204,10 @@ def analyze_selectivity_patterns():
         'dual_anchor_strategy': {
             'statement': 'Targeting two selectivity anchors dramatically improves selectivity',
             'examples': [
-                'HIV: R1 (ASP25) + K8 (ASP25\') = dual charge anchors',
+                'C2_Homodimer_A: R1 (ASP25) + K8 (ASP25\') = dual charge anchors',
                 'TNF-α: DD (ARG131) + E9 (LYS90) = dual charge anchors',
-                'Mpro: K2 (GLU166) + R6 (additional contact) = dual charge anchors',
-                'DPP-4: R1 (GLU205) + K4 (GLU206) = dual charge anchors',
+                'C2_Protease_B: K2 (GLU166) + R6 (additional contact) = dual charge anchors',
+                'Metabolic_Receptor_E: R1 (GLU205) + K4 (GLU206) = dual charge anchors',
                 'EGFR: Y1 (TYR45 H-bond) + W3 (PHE357 Z²) = dual mechanism anchors',
             ],
             'quantitative': 'Single anchor: 10-100x selectivity; Dual anchor: 1000x+ selectivity',
@@ -216,10 +216,10 @@ def analyze_selectivity_patterns():
         'z2_aromatic_requirement': {
             'statement': 'All selectivity-enhanced designs maintain a Trp/Tyr for Z² stacking',
             'positions': {
-                'Mpro': 'W1 (PHE140)',
-                'HIV': 'W4 and W6 (dual PHE53)',
+                'C2_Protease_B': 'W1 (PHE140)',
+                'C2_Homodimer_A': 'W4 and W6 (dual PHE53)',
                 'TNF-α': 'W3 (TYR151)',
-                'DPP-4': 'W2 and W5 (TRP629, TYR662)',
+                'Metabolic_Receptor_E': 'W2 and W5 (TRP629, TYR662)',
                 'EGFR': 'W3 (PHE357)',
             },
             'insight': 'Never sacrifice the Z² aromatic for selectivity - it provides the core affinity',
@@ -238,7 +238,7 @@ def generate_design_guidelines():
         'step_1_identify_z2_site': {
             'action': 'Find the aromatic residue showing Z² deviation in AlphaFold',
             'criteria': 'PHE, TYR, or TRP with deviation < ±5 mÅ from 6.015 Å',
-            'example': 'HIV PHE53 showed -1.3 mÅ deviation with peptide TRP',
+            'example': 'C2_Homodimer_A PHE53 showed -1.3 mÅ deviation with peptide TRP',
         },
 
         'step_2_map_electrostatics': {
@@ -273,9 +273,9 @@ def generate_design_guidelines():
         },
 
         'step_6_design_delivery': {
-            'action': 'Create DNA origami cage with disease-specific trigger',
+            'action': 'Create DNA origami cage with target system-specific trigger',
             'triggers': {
-                'viral': 'Viral RNA sequences (leader, TAR, etc.)',
+                'target macromolecule': 'target macromolecule RNA sequences (leader, TAR, etc.)',
                 'inflammation': 'IL-1β, IL-6, or TNF mRNA',
                 'cancer': 'Oncogene mRNA (MYC, EGFR, etc.) or self-targeting',
                 'metabolic': 'Glucose-responsive (phenylboronic acid) or TXNIP mRNA',
@@ -294,7 +294,7 @@ def generate_peptide_comparison_table():
 
     peptides = [
         {
-            'target': 'SARS-CoV-2 Mpro',
+            'target': 'C2_Protease_B C2_Protease_B',
             'name': 'MPRO_Z2_SEL_K2R6',
             'sequence': 'WKLWTRQWLQ',
             'length': 10,
@@ -304,7 +304,7 @@ def generate_peptide_comparison_table():
             'predicted_selectivity': '>1000x vs hERG',
         },
         {
-            'target': 'HIV-1 Protease',
+            'target': 'C2_Homodimer_A',
             'name': 'HIV_Z2_OPT_001',
             'sequence': 'RLEWTWEKILTE',
             'length': 12,
@@ -324,7 +324,7 @@ def generate_peptide_comparison_table():
             'predicted_selectivity': '>1000x vs LT-α',
         },
         {
-            'target': 'DPP-4',
+            'target': 'Metabolic_Receptor_E',
             'name': 'DPP4_Z2_SEL_RK',
             'sequence': 'RWPKWGELTK',
             'length': 10,
@@ -355,18 +355,18 @@ def generate_delivery_comparison_table():
 
     cages = [
         {
-            'target': 'SARS-CoV-2 Mpro',
+            'target': 'C2_Protease_B C2_Protease_B',
             'cage_name': 'Z2_CAGE_MPRO_SEL_K2R6',
-            'trigger': 'SARS-CoV-2 leader RNA',
-            'trigger_specificity': 'Present only in SARS-CoV-2 infected cells',
+            'trigger': 'C2_Protease_B leader RNA',
+            'trigger_specificity': 'Present only in C2_Protease_B infected cells',
             'peptides_per_cage': 4,
             'fret_pair': 'Cy5/BHQ2',
         },
         {
-            'target': 'HIV-1 Protease',
+            'target': 'C2_Homodimer_A',
             'cage_name': 'Z2_CAGE_HIV_TAR_001',
-            'trigger': 'HIV TAR RNA',
-            'trigger_specificity': 'Present in all HIV mRNAs (required for Tat)',
+            'trigger': 'C2_Homodimer_A TAR RNA',
+            'trigger_specificity': 'Present in all C2_Homodimer_A mRNAs (required for Tat)',
             'peptides_per_cage': 4,
             'fret_pair': 'Cy5/BHQ2',
         },
@@ -379,7 +379,7 @@ def generate_delivery_comparison_table():
             'fret_pair': 'Cy5/BHQ2',
         },
         {
-            'target': 'DPP-4',
+            'target': 'Metabolic_Receptor_E',
             'cage_name': 'Z2_CAGE_DPP4_GLUC_001',
             'trigger': 'Glucose (phenylboronic acid)',
             'trigger_specificity': 'Opens only during hyperglycemia (>200 mg/dL)',
@@ -485,7 +485,7 @@ def main():
             'Z² aromatic stacking is universal across validated targets',
             'Selectivity requires target-specific charged anchor residues',
             'Dual-anchor designs provide >1000x selectivity',
-            'DNA origami delivery adds tissue/disease specificity layer',
+            'DNA origami delivery adds tissue/target system specificity layer',
             'Combined Z² + selectivity + delivery = highly specific therapeutics',
         ],
     }
@@ -501,12 +501,12 @@ def main():
     print("=" * 80)
     print("""
 1. Z² AROMATIC STACKING IS UNIVERSAL
-   - HIV: -1.3 mÅ | TNF-α: +0.1 mÅ | Mpro: +4.5 mÅ
+   - C2_Homodimer_A: -1.3 mÅ | TNF-α: +0.1 mÅ | C2_Protease_B: +4.5 mÅ
    - All within ±5 mÅ of 6.015 Å constant
 
 2. SELECTIVITY DEPENDS ON TARGET SURFACE CHEMISTRY
-   - Positive targets (Mpro GLU166) → negative peptide charges
-   - Negative targets (HIV ASP25) → positive peptide charges
+   - Positive targets (C2_Protease_B GLU166) → negative peptide charges
+   - Negative targets (C2_Homodimer_A ASP25) → positive peptide charges
    - Mixed (TNF-α ARG/LYS) → negative peptide charges
 
 3. DUAL-ANCHOR STRATEGY MAXIMIZES SELECTIVITY
@@ -514,10 +514,10 @@ def main():
    - Dual anchors: ~1000x+ selectivity
    - Each target has 2+ exploitable anchors
 
-4. DNA ORIGAMI ADDS DISEASE SPECIFICITY
-   - Viral targets: viral RNA triggers (leader, TAR)
+4. DNA ORIGAMI ADDS target system SPECIFICITY
+   - target macromolecule targets: target macromolecule RNA triggers (leader, TAR)
    - Inflammatory: inflammation markers (IL-1β)
-   - Release only at disease site
+   - Release only at target system site
 
 5. FRAMEWORK IS GENERALIZABLE
    - Same workflow applies to any aromatic binding site

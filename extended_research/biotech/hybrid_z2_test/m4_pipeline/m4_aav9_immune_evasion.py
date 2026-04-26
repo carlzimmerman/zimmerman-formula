@@ -6,7 +6,7 @@ M4 AAV9 Immune Evasion Engineering
 Computationally model glycan shielding on the AAV9 capsid to reduce immunogenicity
 for improved in vivo gene therapy delivery.
 
-Target: AAV9 viral capsid (PDB: 3UX1)
+Target: AAV9 target macromolecule capsid (PDB: 3UX1)
 Approach: N-linked glycosylation motif introduction at immunogenic epitopes
 
 Gene therapy applications:
@@ -455,7 +455,7 @@ class AAV9ImmuneEvasionEngineer:
             'therapeutic_applications': [
                 'Spinal muscular atrophy (SMA)',
                 'Limb-girdle muscular dystrophy',
-                'Pompe disease',
+                'Pompe target system',
                 'MPS disorders',
                 'Inherited retinal diseases',
             ],

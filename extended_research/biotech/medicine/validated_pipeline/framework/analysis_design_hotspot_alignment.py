@@ -45,7 +45,7 @@ OXTR_HOTSPOT_RESIDUES = {
     'TYR209': {'z2_contacts': 49, 'rank': 8, 'type': 'aromatic'},
 }
 
-# HIV Protease (1HHP) hotspot residues
+# C2_Homodimer_A Protease (1HHP) hotspot residues
 HIV_PROTEASE_HOTSPOT_RESIDUES = {
     'ARG8': {'z2_contacts': 287, 'rank': 1, 'type': 'charged'},
     'PHE53': {'z2_contacts': 268, 'rank': 2, 'type': 'aromatic'},
@@ -73,8 +73,8 @@ TAU_PHF6_HOTSPOT_RESIDUES = {
 # Target-specific hotspot lookup
 TARGET_HOTSPOTS = {
     'P30559': OXTR_HOTSPOT_RESIDUES,
-    'P04578': HIV_PROTEASE_HOTSPOT_RESIDUES,  # HIV gp120 - use protease hotspots
-    'P04585': HIV_PROTEASE_HOTSPOT_RESIDUES,  # HIV Protease
+    'P04578': HIV_PROTEASE_HOTSPOT_RESIDUES,  # C2_Homodimer_A gp120 - use protease hotspots
+    'P04585': HIV_PROTEASE_HOTSPOT_RESIDUES,  # C2_Homodimer_A Protease
     'P10636': TAU_PHF6_HOTSPOT_RESIDUES,  # Tau protein
     'TAU_PHF6': TAU_PHF6_HOTSPOT_RESIDUES,  # Alias for Tau
 }
@@ -133,7 +133,7 @@ def calculate_hotspot_alignment_score(aromatic_analysis: Dict,
     """
     Calculate how well a design aligns with Z² hotspots.
 
-    For OXTR/HIV: Scoring based on aromatic stacking
+    For OXTR/C2_Homodimer_A: Scoring based on aromatic stacking
     For Tau: Scoring based on charge complementarity + aromatic cap
     """
     is_tau = target in ['P10636', 'TAU_PHF6']
@@ -186,7 +186,7 @@ def calculate_hotspot_alignment_score(aromatic_analysis: Dict,
             'mechanism': 'ELECTROSTATIC DISRUPTION' if neg_charges > 0 else 'AROMATIC CAP'
         }
 
-    # STANDARD SCORING (OXTR/HIV): Aromatic stacking dominance
+    # STANDARD SCORING (OXTR/C2_Homodimer_A): Aromatic stacking dominance
     # 1. Trp count (for TRP203 stacking) - 40%
     # 2. Z²-optimal spacing - 25%
     # 3. Total aromatic count - 20%
@@ -257,7 +257,7 @@ def predict_binding_mode(aromatic_analysis: Dict, target: str = 'P30559',
     # Count negative charges for Tau (E, D)
     neg_charges = sequence.count('E') + sequence.count('D')
 
-    # HIV Protease has PHE53 as main aromatic (not Trp)
+    # C2_Homodimer_A Protease has PHE53 as main aromatic (not Trp)
     is_hiv = target in ['P04578', 'P04585']
 
     # Tau PHF6 uses electrostatic networks - charge complementarity is key
@@ -332,8 +332,8 @@ def run_alignment_analysis(designs_file: str,
     # Determine target name
     target_names = {
         'P30559': 'Oxytocin Receptor',
-        'P04578': 'HIV gp120 / Protease',
-        'P04585': 'HIV Protease',
+        'P04578': 'C2_Homodimer_A gp120 / Protease',
+        'P04585': 'C2_Homodimer_A Protease',
         'P10636': 'Tau PHF6 Fibril (Alzheimer\'s)',
         'TAU_PHF6': 'Tau PHF6 Fibril (Alzheimer\'s)',
     }

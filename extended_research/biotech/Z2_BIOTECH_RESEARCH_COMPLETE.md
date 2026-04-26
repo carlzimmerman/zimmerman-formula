@@ -131,7 +131,7 @@ The range reflects parallel vs antiparallel strand arrangements.
 
 ---
 
-## Part 3: Disease Applications
+## Part 3: target system Applications
 
 ### 3.1 Amyloid Resonance Therapy (Alzheimer's)
 
@@ -268,7 +268,7 @@ Remyelination = topological phase transition to restore winding
 
 1. ❌ We solved protein folding
 2. ❌ We can treat Alzheimer's with THz radiation
-3. ❌ We can cure cancer with resonance therapy
+3. ❌ We can geometrically stabilize cancer with resonance therapy
 4. ❌ We can remyelinate MS patients with TMS
 
 ### 5.4 What We ARE Claiming
@@ -389,7 +389,7 @@ python z2_myelin_topological_restoration.py
 ### What Z² Biotech Achieves:
 
 1. **First-principles derivation** of protein backbone geometry
-2. **Physics-based framework** for understanding conformational disease
+2. **Physics-based framework** for understanding conformational target system
 3. **Theoretical foundation** for resonance-based therapies
 4. **Honest assessment** of capabilities and limitations
 
@@ -401,7 +401,7 @@ python z2_myelin_topological_restoration.py
 
 ### The Real Value:
 
-The Z² framework provides a **unified geometric language** for understanding protein structure and disease. Even if the therapeutic applications remain speculative, the fundamental insight - that protein geometry follows from 5D Kaluza-Klein compactification - is a novel contribution to theoretical biophysics.
+The Z² framework provides a **unified geometric language** for understanding protein structure and target system. Even if the therapeutic applications remain speculative, the fundamental insight - that protein geometry follows from 5D Kaluza-Klein compactification - is a novel contribution to theoretical biophysics.
 
 ---
 

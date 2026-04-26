@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-med_06_cytokine_capper.py - Macrocyclic Cytokine Receptor Capper for Autoimmune Disease
+med_06_cytokine_capper.py - Macrocyclic Cytokine Receptor Capper for Autoimmune target system
 
 BACKGROUND:
 Autoimmune diseases (rheumatoid arthritis, lupus, MS, Crohn's) affect hundreds
@@ -375,7 +375,7 @@ def assess_curvature_complementarity(design: dict) -> dict:
         'macrocycle_curvature': curvature_type,
         'complementarity_score': min(1.0, complementarity + z2_bonus),
         'z2_bonus_applied': z2_bonus > 0,
-        'note': 'Flat-flat matching is optimal for PPI inhibition'
+        'note': 'Flat-flat matching is optimal for PPI geometrically stabilize'
     }
 
     print(f"  Interface: flat, Macrocycle: {curvature_type}")
@@ -462,10 +462,10 @@ def predict_oral_bioavailability(design: dict) -> dict:
 
 def main():
     """
-    Design macrocyclic peptides to cap cytokine receptors for autoimmune disease.
+    Design macrocyclic peptides to cap cytokine receptors for autoimmune target system.
     """
     print("=" * 70)
-    print("MACROCYCLIC CYTOKINE CAPPER FOR AUTOIMMUNE DISEASE")
+    print("MACROCYCLIC CYTOKINE CAPPER FOR AUTOIMMUNE target system")
     print("Geometric Blanketing of Protein-Protein Interfaces")
     print("=" * 70)
     print(f"Timestamp: {datetime.now().isoformat()}")
@@ -529,7 +529,7 @@ def main():
             'Rheumatoid Arthritis',
             'Systemic Lupus Erythematosus',
             'Multiple Sclerosis',
-            'Crohn\'s Disease',
+            'Crohn\'s target system',
             'Psoriasis'
         ],
         'global_burden': 'Hundreds of millions affected, $100B+ annual treatment cost',

@@ -465,13 +465,13 @@ def run_pipeline():
     better = sum(1 for p in all_peptides if "better" in p.benchmark_comparison)
     print(f"Better than benchmark: {better} ({100*better/len(all_peptides):.1f}%)")
 
-    # By disease
+    # By target system
     disease_counts = {}
     for p in all_peptides:
         for d in p.diseases:
             disease_counts[d] = disease_counts.get(d, 0) + 1
 
-    print("\nPEPTIDES BY DISEASE:")
+    print("\nPEPTIDES BY target system:")
     for d, c in sorted(disease_counts.items()):
         print(f"  {d}: {c}")
 

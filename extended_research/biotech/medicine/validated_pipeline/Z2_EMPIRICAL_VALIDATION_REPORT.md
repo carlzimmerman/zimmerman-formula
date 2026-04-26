@@ -32,7 +32,7 @@ The Z² framework predicts that optimal drug-target binding occurs when aromatic
 
 1. **Target Selection:** Used IDP filter to identify structured (non-disordered) targets
    - P30559 (Oxytocin receptor) - SUITABLE
-   - P04578 (HIV gp120) - CAUTION (structured core)
+   - P04578 (C2_Homodimer_A gp120) - CAUTION (structured core)
 
 2. **Structure Retrieval:** Downloaded PDB crystal structures via RCSB API
 
@@ -64,17 +64,17 @@ The Z² framework predicts that optimal drug-target binding occurs when aromatic
 - Key ligands: CLR (cholesterol), YCM, NU2
 - Best match: CLR1502.C3 → TYR200.N = 6.014868 Å
 
-#### 6PSA (HIV gp120 with peptide inhibitor)
+#### 6PSA (C2_Homodimer_A gp120 with peptide inhibitor)
 - **28 Z² matches** within ±0.05 Å
 - Key ligands: Peptide (DHI, DTR, DLY, etc.)
 - **Best match in entire study:** DHI3.CG → TRP35.HZ2 = 6.015142 Å (deviation: -0.000011 Å)
 
-#### 6BXP (HIV gp120 with kynurenine)
+#### 6BXP (C2_Homodimer_A gp120 with kynurenine)
 - **9 Z² matches** within ±0.05 Å
 - Key ligand: KYN (kynurenine - Trp metabolite)
 - Best match: KYN10.CE2 → TYR123.CB = 6.014785 Å
 
-#### 5X08 (HIV gp120)
+#### 5X08 (C2_Homodimer_A gp120)
 - **9 Z² matches** within ±0.05 Å
 - Key ligands: P6G, GOL
 - Best match: P6G302.C6 → TYR87.CZ = 6.014897 Å

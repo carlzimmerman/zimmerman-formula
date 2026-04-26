@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """
-cap_05_alpha_synuclein_breaker.py - Seed-Region Disruptors for Parkinson's Disease
+cap_05_alpha_synuclein_breaker.py - Seed-Region Disruptors for Parkinson's target system
 
 PRODUCTION-GRADE Z² THERAPEUTIC DESIGN PIPELINE
 
 Target: Alpha-synuclein aggregation
-Diseases: Parkinson's Disease, Lewy Body Dementia, Multiple System Atrophy
+Diseases: Parkinson's target system, Lewy Body Dementia, Multiple System Atrophy
 Market: $7.7B globally (2023), projected $12B+ by 2030
-Unmet need: NO disease-modifying treatments currently approved
+Unmet need: NO target system-modifying treatments currently approved
 
 THE PATHOLOGY:
 =============
@@ -68,7 +68,7 @@ RESIDUE_RISE = 3.3          # Å per residue in extended conformation
 
 print("=" * 70)
 print("ALPHA-SYNUCLEIN SEED-REGION DISRUPTOR PIPELINE")
-print("Z² Framework for Parkinson's Disease Therapeutics")
+print("Z² Framework for Parkinson's target system Therapeutics")
 print("=" * 70)
 print(f"Z² = {Z2:.6f}")
 print(f"r_natural = {R_NATURAL:.4f} Å")
@@ -105,7 +105,7 @@ PDB_FIBRILS = {
     '6CU8': 'Type 1B fibril (MSA)',
     '6SSX': 'Rod polymorph',              # In vitro
     '6SST': 'Twister polymorph',          # In vitro
-    '6XYO': 'PD brain fibril',            # Parkinson's Disease brain-derived
+    '6XYO': 'PD brain fibril',            # Parkinson's target system brain-derived
 }
 
 print(f"Alpha-synuclein length: {len(ALPHA_SYNUCLEIN)} residues")
@@ -667,7 +667,7 @@ def analyze_strain_specificity():
     Analyze how breaker peptides interact with different synuclein strains.
 
     Different synucleinopathies have distinct fibril polymorphs:
-    - Parkinson's Disease: Type 1A polymorph
+    - Parkinson's target system: Type 1A polymorph
     - MSA: Type 2 polymorph (more toxic)
     - DLB: Similar to PD but distinct
     """
@@ -675,7 +675,7 @@ def analyze_strain_specificity():
 
     strains = {
         'PD_Type1A': {
-            'disease': "Parkinson's Disease",
+            'target system': "Parkinson's target system",
             'pdb': '6XYO',
             'core_start': 68,
             'core_end': 95,
@@ -683,7 +683,7 @@ def analyze_strain_specificity():
             'spreading_rate': 0.8,
         },
         'MSA_Type2': {
-            'disease': 'Multiple System Atrophy',
+            'target system': 'Multiple System Atrophy',
             'pdb': '6CU7',
             'core_start': 68,
             'core_end': 95,
@@ -691,7 +691,7 @@ def analyze_strain_specificity():
             'spreading_rate': 1.2,
         },
         'DLB': {
-            'disease': 'Lewy Body Dementia',
+            'target system': 'Lewy Body Dementia',
             'pdb': None,  # Similar to PD
             'core_start': 68,
             'core_end': 95,
@@ -702,7 +702,7 @@ def analyze_strain_specificity():
 
     # Structural differences affect breaker efficacy
     for strain_name, strain in strains.items():
-        print(f"  {strain['disease']} ({strain_name}):")
+        print(f"  {strain['target system']} ({strain_name}):")
         print(f"    Core region: {strain['core_start']}-{strain['core_end']}")
         print(f"    Relative toxicity: {strain['toxicity']:.1f}")
         print(f"    Spreading rate: {strain['spreading_rate']:.1f}")
@@ -727,7 +727,7 @@ def main():
             'Z2': Z2,
             'r_natural_angstrom': R_NATURAL,
             'target': 'Alpha-synuclein',
-            'diseases': ['Parkinson\'s Disease', 'Lewy Body Dementia', 'MSA'],
+            'diseases': ['Parkinson\'s target system', 'Lewy Body Dementia', 'MSA'],
         }
     }
 

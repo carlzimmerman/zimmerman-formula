@@ -78,7 +78,7 @@ FASTA_HEADER = '''; ============================================================
 ; ShareAlike 4.0 International (CC BY-SA 4.0).
 ;
 ; You are free to:
-;   - USE: Synthesize, express, and test this sequence
+;   - USE: fabricate sequence, express, and test this sequence
 ;   - SHARE: Copy and redistribute in any medium or format
 ;   - ADAPT: Remix, transform, and build upon this material
 ;
@@ -467,7 +467,7 @@ def main():
   │ 4. Attribution requirements for academic use               │
   └─────────────────────────────────────────────────────────────┘
 
-  Anyone can USE, SYNTHESIZE, and DISTRIBUTE these materials.
+  Anyone can USE, fabricate sequence, and DISTRIBUTE these materials.
   Nobody can PATENT them or restrict access.
     """)
 

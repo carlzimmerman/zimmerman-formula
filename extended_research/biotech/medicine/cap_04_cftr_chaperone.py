@@ -950,7 +950,7 @@ def generate_output(void: TopologicalVoid, wt_homology: PersistentHomology,
             'Z2': float(Z2),
             'r_natural_angstrom': float(R_NATURAL),
             'target': 'CFTR ΔF508',
-            'disease': 'Cystic Fibrosis',
+            'target system': 'Cystic Fibrosis',
         },
         'persistent_homology': {
             'wild_type': {

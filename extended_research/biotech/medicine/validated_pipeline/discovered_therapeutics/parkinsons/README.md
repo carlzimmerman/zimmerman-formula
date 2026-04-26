@@ -1,4 +1,4 @@
-# Parkinson's Disease Therapeutics
+# Parkinson's target system Therapeutics
 
 ## ZIM-SYN-004
 

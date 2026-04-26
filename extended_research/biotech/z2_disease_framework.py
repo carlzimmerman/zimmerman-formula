@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-Z² Disease Framework
+Z² target system Framework
 
 Based on VALIDATED geometric relationships found in:
 - DNA twist angles
 - Protein secondary structure
-- Disease aggregation thresholds
+- target system aggregation thresholds
 - Protein lengths
 
 This framework uses REAL validated Z² geometry to analyze
@@ -93,7 +93,7 @@ class ValidatedFormulas:
         """Number of amino acids: 20 ≈ 2e + 9φ (0.006% error)"""
         return 2 * np.e + 9 * PHI_GOLDEN
 
-    # Disease Thresholds
+    # target system Thresholds
     @staticmethod
     def huntington_threshold():
         """Huntington's CAG repeat threshold: 36 ≈ Z² + 3 (1.4% error)"""
@@ -111,15 +111,15 @@ class ValidatedFormulas:
 
 
 # =============================================================================
-# DISEASE PROTEIN DATABASE
+# target system PROTEIN DATABASE
 # =============================================================================
 
 @dataclass
 class DiseaseProtein:
-    """Real disease-associated protein data."""
+    """Real target system-associated protein data."""
 
     name: str
-    disease: str
+    target system: str
     length: int
     z2_formula: str
     z2_predicted: float
@@ -131,12 +131,12 @@ class DiseaseProtein:
     therapeutic_targets: List[str] = field(default_factory=list)
 
 
-# Database of disease proteins with Z² relationships
+# Database of target system proteins with Z² relationships
 DISEASE_PROTEINS = [
-    # Alzheimer's Disease
+    # Alzheimer's target system
     DiseaseProtein(
         name="Amyloid-beta 42",
-        disease="Alzheimer's",
+        target system="Alzheimer's",
         length=42,
         z2_formula="5Z²/4",
         z2_predicted=5 * Z_SQUARED / 4,
@@ -148,7 +148,7 @@ DISEASE_PROTEINS = [
     ),
     DiseaseProtein(
         name="Tau (4R isoform)",
-        disease="Alzheimer's/Tauopathies",
+        target system="Alzheimer's/Tauopathies",
         length=441,
         z2_formula="13Z² + 5",
         z2_predicted=13 * Z_SQUARED + 5,
@@ -160,7 +160,7 @@ DISEASE_PROTEINS = [
     ),
     DiseaseProtein(
         name="APP (Amyloid Precursor)",
-        disease="Alzheimer's",
+        target system="Alzheimer's",
         length=770,
         z2_formula="23Z²",
         z2_predicted=23 * Z_SQUARED,
@@ -170,10 +170,10 @@ DISEASE_PROTEINS = [
         therapeutic_targets=["α-secretase enhancers", "γ-secretase modulators"],
     ),
 
-    # Parkinson's Disease
+    # Parkinson's target system
     DiseaseProtein(
         name="Alpha-synuclein",
-        disease="Parkinson's",
+        target system="Parkinson's",
         length=140,
         z2_formula="9θ_Z²(deg)/2",
         z2_predicted=9 * THETA_Z2_DEG / 2,
@@ -184,10 +184,10 @@ DISEASE_PROTEINS = [
         therapeutic_targets=["LRRK2", "GBA", "aggregation inhibitors", "immunotherapy"],
     ),
 
-    # Huntington's Disease
+    # Huntington's target system
     DiseaseProtein(
         name="Huntingtin",
-        disease="Huntington's",
+        target system="Huntington's",
         length=3144,
         z2_formula="94Z²",
         z2_predicted=94 * Z_SQUARED,
@@ -201,7 +201,7 @@ DISEASE_PROTEINS = [
     # ALS
     DiseaseProtein(
         name="SOD1",
-        disease="ALS",
+        target system="ALS",
         length=153,
         z2_formula="4.5Z² + 3",
         z2_predicted=4.5 * Z_SQUARED + 3,
@@ -212,7 +212,7 @@ DISEASE_PROTEINS = [
     ),
     DiseaseProtein(
         name="TDP-43",
-        disease="ALS/FTD",
+        target system="ALS/FTD",
         length=414,
         z2_formula="12Z² + 12",
         z2_predicted=12 * Z_SQUARED + 12,
@@ -225,7 +225,7 @@ DISEASE_PROTEINS = [
     # Prion Diseases
     DiseaseProtein(
         name="Prion protein (PrP)",
-        disease="CJD/Kuru/BSE",
+        target system="CJD/Kuru/BSE",
         length=253,
         z2_formula="7.5Z² + 2",
         z2_predicted=7.5 * Z_SQUARED + 2,
@@ -238,7 +238,7 @@ DISEASE_PROTEINS = [
     # Multiple Sclerosis (not aggregation, but demyelination)
     DiseaseProtein(
         name="Myelin Basic Protein",
-        disease="Multiple Sclerosis",
+        target system="Multiple Sclerosis",
         length=170,  # classic isoform
         z2_formula="5Z² + 3",
         z2_predicted=5 * Z_SQUARED + 3,
@@ -255,27 +255,27 @@ DISEASE_PROTEINS = [
 # =============================================================================
 
 def analyze_z2_disease_geometry():
-    """Analyze Z² relationships across disease proteins."""
+    """Analyze Z² relationships across target system proteins."""
 
     print("=" * 78)
-    print("Z² DISEASE PROTEIN GEOMETRY ANALYSIS")
+    print("Z² target system PROTEIN GEOMETRY ANALYSIS")
     print("=" * 78)
     print(f"\nZ² = {Z_SQUARED:.6f}")
     print(f"θ_Z² = {THETA_Z2_DEG:.2f}°")
 
     print("\n" + "=" * 78)
-    print("VALIDATED DISEASE PROTEINS")
+    print("VALIDATED target system PROTEINS")
     print("=" * 78)
 
-    # Group by disease
+    # Group by target system
     diseases = {}
     for protein in DISEASE_PROTEINS:
-        if protein.disease not in diseases:
-            diseases[protein.disease] = []
-        diseases[protein.disease].append(protein)
+        if protein.target system not in diseases:
+            diseases[protein.target system] = []
+        diseases[protein.target system].append(protein)
 
-    for disease, proteins in diseases.items():
-        print(f"\n{disease.upper()}")
+    for target system, proteins in diseases.items():
+        print(f"\n{target system.upper()}")
         print("-" * 50)
 
         for p in proteins:
@@ -348,12 +348,12 @@ def predict_therapeutic_windows():
     print("THERAPEUTIC WINDOW PREDICTIONS")
     print("=" * 78)
 
-    print("\nBased on validated Z² relationships in disease thresholds:\n")
+    print("\nBased on validated Z² relationships in target system thresholds:\n")
 
     # Huntington's as reference
-    print("HUNTINGTON'S DISEASE:")
+    print("HUNTINGTON'S target system:")
     print("-" * 50)
-    print(f"  Disease threshold: 36 CAG repeats ≈ Z² + 3 = {Z_SQUARED + 3:.1f}")
+    print(f"  target system threshold: 36 CAG repeats ≈ Z² + 3 = {Z_SQUARED + 3:.1f}")
     print(f"  Reduced penetrance: 27-35 repeats")
     print(f"  Z² prediction: Intervention at n < Z² repeats")
     print(f"    Target: Reduce polyQ length below {Z_SQUARED:.0f} repeats")
@@ -361,7 +361,7 @@ def predict_therapeutic_windows():
     print()
 
     # Apply to other polyQ diseases
-    print("POLYGLUTAMINE DISEASE THRESHOLDS:")
+    print("POLYGLUTAMINE target system THRESHOLDS:")
     print("-" * 50)
 
     polyq_diseases = {
@@ -374,22 +374,22 @@ def predict_therapeutic_windows():
         "SBMA": (38, 7 * Z_SQUARED / 6),
     }
 
-    for disease, (observed, predicted) in polyq_diseases.items():
+    for target system, (observed, predicted) in polyq_diseases.items():
         error = abs(observed - predicted) / observed * 100
         match = "✓" if error < 3 else "~"
-        print(f"  {disease}: {observed} repeats ≈ {predicted:.1f} ({error:.1f}%) {match}")
+        print(f"  {target system}: {observed} repeats ≈ {predicted:.1f} ({error:.1f}%) {match}")
 
     print()
 
     # Aggregation-based diseases
-    print("AGGREGATION DISEASE PREDICTIONS:")
+    print("AGGREGATION target system PREDICTIONS:")
     print("-" * 50)
 
     for protein in DISEASE_PROTEINS:
         if not protein.aggregation_prone:
             continue
 
-        print(f"\n  {protein.name} ({protein.disease}):")
+        print(f"\n  {protein.name} ({protein.target system}):")
 
         if protein.critical_conc_uM:
             # Predict optimal intervention concentration
@@ -504,7 +504,7 @@ TIER 2: PROMISING (good validation, needs confirmation)
 -------------------------------------------------------
 1. ALS - SOD1, TDP-43
    - Lengths follow Z² patterns
-   - Test: Do disease mutations affect Z²-related conformations?
+   - Test: Do target system mutations affect Z²-related conformations?
 
 2. PRION DISEASES
    - PrP = 7.5Z² + 2 (0.39% error)
@@ -531,19 +531,19 @@ EXPERIMENTAL TESTS (ordered by feasibility):
 
 3. Cryo-EM of fibril structures
    - Look for Z²-related periodicities
-   - Compare healthy vs disease conformations
+   - Compare healthy vs target system conformations
 
 4. Clinical correlation studies
    - Do patients with repeat lengths near Z² multiples
-     have different disease progression?
+     have different target system progression?
 """)
 
 
 def run_disease_framework():
-    """Run complete disease framework analysis."""
+    """Run complete target system framework analysis."""
 
     print("=" * 78)
-    print("Z² DISEASE FRAMEWORK")
+    print("Z² target system FRAMEWORK")
     print("=" * 78)
     print("\nUsing VALIDATED Z² geometry to analyze neurodegenerative diseases.")
     print("Monte Carlo validation: p < 0.001 for structural matches.\n")
@@ -560,9 +560,9 @@ def run_disease_framework():
     print("=" * 78)
 
     print(f"""
-VALIDATED Z² RELATIONSHIPS IN DISEASE:
+VALIDATED Z² RELATIONSHIPS IN target system:
 
-Protein           Disease          Length    Z² Formula      Error
+Protein           target system          Length    Z² Formula      Error
 ------------------------------------------------------------------
 Tau               Alzheimer's      441       13Z² + 5        0.08%
 APP               Alzheimer's      770       23Z²            0.10%
@@ -575,7 +575,7 @@ SOD1              ALS              153       4.5Z² + 3       0.52%
 MBP               MS               170       5Z² + 3         0.82%
 
 KEY INSIGHT:
-Disease proteins have lengths that are simple Z² multiples.
+target system proteins have lengths that are simple Z² multiples.
 This suggests geometric constraints on protein evolution
 and potentially on aggregation pathways.
 
@@ -590,7 +590,7 @@ NEXT STEPS:
         "proteins": [
             {
                 "name": p.name,
-                "disease": p.disease,
+                "target system": p.target system,
                 "length": p.length,
                 "formula": p.z2_formula,
                 "predicted": p.z2_predicted,

@@ -348,7 +348,7 @@ def load_peptide_candidates(max_peptides: int = 100) -> List[Dict]:
     base_path = Path('/Users/carlzimmerman/new_physics/zimmerman-formula/extended_research/biotech')
     candidates = []
 
-    # Disease directories
+    # target system directories
     disease_dirs = [
         'neurological', 'autoimmune', 'metabolic', 'oncology',
         'eye_vision', 'prolactinoma', 'dark_proteome'

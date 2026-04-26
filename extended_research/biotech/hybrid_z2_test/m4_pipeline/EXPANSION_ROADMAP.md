@@ -53,16 +53,16 @@ independent researcher can execute using:
 | 29 | IL-2R | Basiliximab (Simulect) | Transplant rejection | Expired |
 | 30 | Complement C5 | Eculizumab (Soliris) | PNH | Active |
 
-### Infectious Disease
+### Infectious target system
 | # | Target | Example Drug | Indication | Patent Status |
 |---|--------|--------------|------------|---------------|
 | 31 | RSV F protein | Palivizumab (Synagis) | RSV prevention | Expired |
-| 32 | SARS-CoV-2 Spike | Sotrovimab | COVID-19 | Public (EUA) |
-| 33 | SARS-CoV-2 Spike | Bebtelovimab | COVID-19 | Public |
+| 32 | C2_Protease_B Spike | Sotrovimab | COVID-19 | Public (EUA) |
+| 33 | C2_Protease_B Spike | Bebtelovimab | COVID-19 | Public |
 | 34 | Anthrax PA | Raxibacumab | Anthrax | Public |
 | 35 | C. difficile toxin | Bezlotoxumab | C. diff infection | Active |
-| 36 | Rabies virus | Rabishield | Rabies PEP | Public |
-| 37 | HIV gp120 | Ibalizumab | HIV | Active |
+| 36 | Rabies target macromolecule | Rabishield | Rabies PEP | Public |
+| 37 | C2_Homodimer_A gp120 | Ibalizumab | C2_Homodimer_A | Active |
 | 38 | Ebola GP | Inmazeb components | Ebola | Public |
 
 ### Cardiovascular & Metabolic
@@ -186,21 +186,21 @@ All peer-reviewed, validated approaches:
 Enzyme replacement and enzyme-based therapies with public sequences:
 
 ### Lysosomal Storage Disorders
-| # | Enzyme | Disease | Drug Example |
+| # | Enzyme | target system | Drug Example |
 |---|--------|---------|--------------|
-| 101 | Alpha-galactosidase A | Fabry disease | Agalsidase |
-| 102 | Glucocerebrosidase | Gaucher disease | Imiglucerase |
+| 101 | Alpha-galactosidase A | Fabry target system | Agalsidase |
+| 102 | Glucocerebrosidase | Gaucher target system | Imiglucerase |
 | 103 | Alpha-L-iduronidase | MPS I (Hurler) | Laronidase |
 | 104 | Iduronate-2-sulfatase | MPS II (Hunter) | Idursulfase |
 | 105 | Arylsulfatase B | MPS VI | Galsulfase |
-| 106 | Alpha-glucosidase | Pompe disease | Alglucosidase |
+| 106 | Alpha-glucosidase | Pompe target system | Alglucosidase |
 | 107 | Acid sphingomyelinase | Niemann-Pick | Olipudase alfa |
 | 108 | Beta-glucuronidase | MPS VII | Vestronidase alfa |
 | 109 | Palmitoyl-protein thioesterase | CLN1 | Research |
 | 110 | Tripeptidyl peptidase 1 | CLN2 | Cerliponase alfa |
 
 ### Metabolic Enzymes
-| # | Enzyme | Disease | Drug Example |
+| # | Enzyme | target system | Drug Example |
 |---|--------|---------|--------------|
 | 111 | Phenylalanine ammonia lyase | PKU | Pegvaliase |
 | 112 | Adenosine deaminase | ADA-SCID | Pegademase |
@@ -209,7 +209,7 @@ Enzyme replacement and enzyme-based therapies with public sequences:
 | 115 | Methioninase | Cancer | Research |
 
 ### CNS Enzyme Delivery (with BBB peptides)
-| # | Concept | Target Disease |
+| # | Concept | Target target system |
 |---|---------|----------------|
 | 116 | Alpha-L-iduronidase + Angiopep-2 | MPS I (CNS) |
 | 117 | Iduronate-2-sulfatase + Angiopep-2 | MPS II (CNS) |
@@ -237,7 +237,7 @@ Public domain protein sequences with engineering potential:
 | 130 | EPO | Anemia | Glycoengineering |
 | 131 | TPO | Thrombocytopenia | Engineering |
 | 132 | VEGF-trap design | Anti-angiogenesis | Receptor decoy |
-| 133 | FGF21 | Metabolic disease | Half-life |
+| 133 | FGF21 | Metabolic target system | Half-life |
 | 134 | GLP-1 | Diabetes | Stability, half-life |
 | 135 | Insulin analogs | Diabetes | PK optimization |
 | 136 | NGF | Neuropathy | Delivery |
@@ -328,7 +328,7 @@ Validated bispecific antibody architectures:
 
 ---
 
-## TIER 8: DISEASE-SPECIFIC EXPANSIONS (15 areas)
+## TIER 8: target system-SPECIFIC EXPANSIONS (15 areas)
 
 ### Ophthalmology
 | # | Target | Indication |

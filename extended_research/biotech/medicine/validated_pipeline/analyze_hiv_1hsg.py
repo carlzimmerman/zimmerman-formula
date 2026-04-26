@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Quick HIV protease analysis with inhibitor"""
+"""Quick C2_Homodimer_A protease analysis with inhibitor"""
 import numpy as np
 from collections import defaultdict
 
@@ -59,7 +59,7 @@ atoms, ligand = parse_pdb("hiv_protease_analysis/1HSG.pdb")
 aromatics = find_aromatics(atoms)
 
 print("=" * 60)
-print("  HIV PROTEASE (1HSG) Z² ANALYSIS")
+print("  C2_Homodimer_A PROTEASE (1HSG) Z² ANALYSIS")
 print("=" * 60)
 print(f"\nAtoms: {len(atoms)}, Ligand atoms: {len(ligand)}")
 print(f"Aromatic residues: {len(aromatics)}")

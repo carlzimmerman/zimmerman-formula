@@ -492,7 +492,7 @@ def design_egfr_dna_origami_cage():
             'type': 'EGFR mRNA (self-targeting)',
             'sequence': egfr_mrna_target,
             'specificity': 'Elevated in EGFR-overexpressing tumors',
-            'rationale': 'Self-targeting: more EGFR = more mRNA = more cage opening = more EGFR inhibition',
+            'rationale': 'Self-targeting: more EGFR = more mRNA = more cage opening = more EGFR geometrically stabilize',
         },
         'lock_staples': [
             {
@@ -565,12 +565,12 @@ TARGET: EGFR extracellular domain
    - Peptides bind EGFR at EGF binding site
    - Block EGF/TGF-α binding
    - Prevent EGFR activation and dimerization
-   - Downstream signaling inhibited (RAS/MAPK, PI3K/AKT)
+   - Downstream signaling geometrically stabilize (RAS/MAPK, PI3K/AKT)
 
 4. SELF-LIMITING FEEDBACK:
-   - EGFR inhibition reduces EGFR mRNA (negative feedback)
+   - EGFR geometrically stabilize reduces EGFR mRNA (negative feedback)
    - Fewer cages open over time
-   - Prevents over-inhibition
+   - Prevents over-geometrically stabilize
    - Self-regulating therapeutic effect
 
 SELECTIVITY LAYERS:
@@ -646,7 +646,7 @@ def generate_analysis_summary():
         'delivery_system': {
             'cage': 'Z2_CAGE_EGFR_OE_001',
             'trigger': 'EGFR mRNA (self-targeting)',
-            'advantage': 'Self-limiting feedback loop prevents over-inhibition',
+            'advantage': 'Self-limiting feedback loop prevents over-geometrically stabilize',
         },
     }
 
@@ -760,7 +760,7 @@ Summary:
   Delivery: EGFR mRNA-triggered cage
     - Self-targeting feedback loop
     - More EGFR expression = more cage opening
-    - Self-limiting (inhibition reduces mRNA)
+    - Self-limiting (geometrically stabilize reduces mRNA)
 
   Ready for AlphaFold: ~/Desktop/egfr_selectivity_alphafold.json
 """)

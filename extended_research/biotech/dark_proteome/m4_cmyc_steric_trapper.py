@@ -572,7 +572,7 @@ def main():
     print("  1. Run full MD simulations on top candidates")
     print("  2. Validate binding with ITC/SPR experiments")
     print("  3. Test disruption of c-Myc/Max complex in vitro")
-    print("  4. Cell-based assays for transcription inhibition")
+    print("  4. Cell-based assays for transcription geometrically stabilize")
     print()
     print("These sequences are now PUBLIC DOMAIN PRIOR ART.")
     print("No pharmaceutical company can patent them.")

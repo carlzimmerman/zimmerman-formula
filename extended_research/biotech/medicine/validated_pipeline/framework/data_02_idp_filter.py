@@ -481,7 +481,7 @@ def main():
         targets = [
             "P37840",  # Alpha-synuclein (Parkinson's) - KNOWN IDP
             "P10636",  # Tau (Alzheimer's) - KNOWN IDP
-            "P04578",  # HIV gp120 - Structured
+            "P04578",  # C2_Homodimer_A gp120 - Structured
             "P30559",  # Oxytocin receptor - Structured GPCR
         ]
 

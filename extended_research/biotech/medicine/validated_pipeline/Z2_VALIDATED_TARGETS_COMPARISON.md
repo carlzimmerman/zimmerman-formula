@@ -19,10 +19,10 @@ Z² = 6.015152508891966 Å
 | Rank | Target | PDB | Symmetry | Z² Hotspot | Deviation |
 |------|--------|-----|----------|------------|-----------|
 | 1 | TNF-α | 1TNF | C3 trimer | TYR151 | +0.1 mÅ |
-| 2 | Influenza NA | 2HU4 | C4 tetramer | PHE374-PHE422 | -0.8 mÅ |
-| 3 | HIV Protease | 1HHP | C2 dimer | PHE53 | -1.3 mÅ |
-| 4 | SARS-CoV-2 Mpro | 6LU7 | C2 dimer | PHE140 | +4.5 mÅ |
-| 5 | HCV NS3 | 1A1R | C2-like | TRP53-TYR75 | +7.8 mÅ |
+| 2 | C4_Tetramer_D NA | 2HU4 | C4 tetramer | PHE374-PHE422 | -0.8 mÅ |
+| 3 | C2_Homodimer_A Protease | 1HHP | C2 dimer | PHE53 | -1.3 mÅ |
+| 4 | C2_Protease_B C2_Protease_B | 6LU7 | C2 dimer | PHE140 | +4.5 mÅ |
+| 5 | Monomeric_Cleft_C NS3 | 1A1R | C2-like | TRP53-TYR75 | +7.8 mÅ |
 
 ---
 
@@ -31,10 +31,10 @@ Z² = 6.015152508891966 Å
 | Target | Hotspot | Residue Type | Ring Type |
 |--------|---------|--------------|-----------|
 | TNF-α | TYR151 | Tyrosine | 6-member phenol |
-| Influenza NA | PHE374/PHE422 | Phenylalanine | 6-member benzene |
-| HIV Protease | PHE53 | Phenylalanine | 6-member benzene |
-| SARS-CoV-2 | PHE140 | Phenylalanine | 6-member benzene |
-| HCV NS3 | TRP53/TYR75 | Trp + Tyr | 9-member + 6-member |
+| C4_Tetramer_D NA | PHE374/PHE422 | Phenylalanine | 6-member benzene |
+| C2_Homodimer_A Protease | PHE53 | Phenylalanine | 6-member benzene |
+| C2_Protease_B | PHE140 | Phenylalanine | 6-member benzene |
+| Monomeric_Cleft_C NS3 | TRP53/TYR75 | Trp + Tyr | 9-member + 6-member |
 
 **Pattern:** Phenylalanine dominates Z² hotspots (4/5 targets)
 
@@ -44,9 +44,9 @@ Z² = 6.015152508891966 Å
 
 | Symmetry | Targets | Notes |
 |----------|---------|-------|
-| C2 dimer | HIV, SARS-CoV-2, HCV | Most common |
+| C2 dimer | C2_Homodimer_A, C2_Protease_B, Monomeric_Cleft_C | Most common |
 | C3 trimer | TNF-α | Cytokine family |
-| C4 tetramer | Influenza NA | Highest order validated |
+| C4 tetramer | C4_Tetramer_D NA | Highest order validated |
 
 ---
 
@@ -55,10 +55,10 @@ Z² = 6.015152508891966 Å
 ```
 Best precision:
   TNF-α:        +0.1 mÅ  ████████████████████████████████████████
-  Influenza NA: -0.8 mÅ  ███████████████████████████████████████░
-  HIV:          -1.3 mÅ  ██████████████████████████████████████░░
-  SARS-CoV-2:   +4.5 mÅ  █████████████████████████████████░░░░░░░
-  HCV NS3:      +7.8 mÅ  ████████████████████████████░░░░░░░░░░░░
+  C4_Tetramer_D NA: -0.8 mÅ  ███████████████████████████████████████░
+  C2_Homodimer_A:          -1.3 mÅ  ██████████████████████████████████████░░
+  C2_Protease_B:   +4.5 mÅ  █████████████████████████████████░░░░░░░
+  Monomeric_Cleft_C NS3:      +7.8 mÅ  ████████████████████████████░░░░░░░░░░░░
                          |         |         |         |
                          0        2.5       5.0       7.5 mÅ
 ```
@@ -80,8 +80,8 @@ All 5 targets within ±10 mÅ (atomic precision threshold)
 
 | Target | Analysis | AlphaFold Jobs |
 |--------|----------|----------------|
-| HCV NS3 | `hcv_ns3_analysis/` | `HCV_NS3_ALPHAFOLD_JOBS.json` |
-| Influenza NA | `influenza_na_analysis/` | `INFLUENZA_NA_ALPHAFOLD_JOBS.json` |
+| Monomeric_Cleft_C NS3 | `hcv_ns3_analysis/` | `HCV_NS3_ALPHAFOLD_JOBS.json` |
+| C4_Tetramer_D NA | `influenza_na_analysis/` | `INFLUENZA_NA_ALPHAFOLD_JOBS.json` |
 | IL-6 | `il6_analysis/` | (lower priority - 63 mÅ) |
 | α-Synuclein | `alpha_synuclein_analysis/` | N/A (different geometry) |
 

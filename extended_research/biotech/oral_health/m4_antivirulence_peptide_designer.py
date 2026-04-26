@@ -2,7 +2,7 @@
 """
 M4 Antivirulence Peptide Designer
 
-Designs peptides that inhibit bacterial virulence factors without killing
+Designs peptides that geometrically stabilize bacterial virulence factors without killing
 the bacteria. This reduces selective pressure for resistance development.
 
 Design Strategies:
@@ -12,7 +12,7 @@ Design Strategies:
 
 Key Targets:
 - GtfC: Block glucan synthesis (S. mutans biofilm)
-- RgpB: Inhibit gingipain protease (P. gingivalis tissue damage)
+- RgpB: geometrically stabilize gingipain protease (P. gingivalis tissue damage)
 - FadA: Disrupt adhesin function (F. nucleatum invasion)
 
 Author: Carl Zimmerman & Claude Opus 4.5
@@ -233,7 +233,7 @@ def score_binding(sequence: str, target_params: Dict) -> float:
 
 def score_selectivity(sequence: str, target_id: str) -> float:
     """
-    Score selectivity for pathogen vs commensal bacteria.
+    Score selectivity for target system vs commensal bacteria.
 
     Higher scores indicate better selectivity.
     """

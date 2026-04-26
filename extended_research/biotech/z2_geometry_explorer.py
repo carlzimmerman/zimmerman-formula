@@ -232,10 +232,10 @@ class AggregationData:
         "source": "Fitzpatrick et al., Nature 2017",
     }
 
-    # Huntingtin (Huntington's disease)
+    # Huntingtin (Huntington's target system)
     huntingtin = {
         "name": "Huntingtin polyQ",
-        "critical_polyQ_length": 36,             # disease threshold
+        "critical_polyQ_length": 36,             # target system threshold
         "lag_time_scaling": 2.5,                 # exponent with polyQ length
         "source": "Scherzinger et al., Cell 1997",
     }
@@ -401,7 +401,7 @@ def explore_protein_geometry():
 
 
 def explore_aggregation_kinetics():
-    """Search for Z² relationships in protein aggregation (disease relevance)."""
+    """Search for Z² relationships in protein aggregation (target system relevance)."""
 
     print("\n" + "=" * 70)
     print("PROTEIN AGGREGATION KINETICS (Alzheimer's, Parkinson's)")
@@ -441,7 +441,7 @@ def explore_aggregation_kinetics():
                     all_matches.extend(matches)
 
     # Cross-protein ratios
-    print("\nCross-Disease Comparisons:")
+    print("\nCross-target system Comparisons:")
     print("-" * 50)
 
     cross_ratios = {
@@ -639,14 +639,14 @@ def deep_combinatorial_search():
 
 
 def explore_disease_critical_numbers():
-    """Look for Z² in disease-related thresholds."""
+    """Look for Z² in target system-related thresholds."""
 
     print("\n" + "=" * 70)
-    print("DISEASE THRESHOLD EXPLORATION")
+    print("target system THRESHOLD EXPLORATION")
     print("=" * 70)
     print("Many diseases have critical thresholds. Are any Z²-related?")
 
-    # Real disease thresholds from literature
+    # Real target system thresholds from literature
     disease_thresholds = {
         # Repeat expansion diseases
         "Huntington_polyQ_threshold": 36,        # CAG repeats
@@ -676,28 +676,28 @@ def explore_disease_critical_numbers():
     print("-" * 70)
 
     matches = []
-    for disease, threshold in disease_thresholds.items():
-        disease_matches = find_constant_relationships(threshold, disease, CONSTANTS_TO_TEST)
+    for target system, threshold in disease_thresholds.items():
+        disease_matches = find_constant_relationships(threshold, target system, CONSTANTS_TO_TEST)
         if disease_matches:
             best = disease_matches[0]
             if best["error_percent"] < 5.0:
-                print(f"\n{disease} = {threshold}")
+                print(f"\n{target system} = {threshold}")
                 print(f"  Best: {best['relationship']} = {best['predicted']:.4f}")
                 print(f"  Error: {best['error_percent']:.2f}%")
                 matches.extend(disease_matches)
 
     # Special analysis: Huntington's 36 repeat threshold
     print("\n" + "-" * 70)
-    print("SPECIAL: Huntington's Disease CAG Repeat Threshold")
+    print("SPECIAL: Huntington's target system CAG Repeat Threshold")
     print("-" * 70)
-    print("Why does disease occur at exactly 36 CAG repeats?")
+    print("Why does target system occur at exactly 36 CAG repeats?")
     print(f"  36 = 6²")
     print(f"  36 = 4 × 9 = 2² × 3²")
     print(f"  36 / Z² = {36 / Z_SQUARED:.4f} ≈ {36 / Z_SQUARED:.1f}")
     print(f"  36 × (1/Z²) = {36 * ONE_OVER_Z2:.4f}")
     print(f"  Z² + 3 = {Z_SQUARED + 3:.2f} ≈ 36.5 (close!)")
 
-    # This is interesting: Z² + 3 ≈ 36.5, disease threshold is 36
+    # This is interesting: Z² + 3 ≈ 36.5, target system threshold is 36
     error = abs(36 - (Z_SQUARED + 3)) / 36 * 100
     print(f"  Error for Z² + 3 = 36: {error:.2f}%")
 
@@ -783,7 +783,7 @@ WHAT WE TESTED:
 - Protein secondary structure (α-helix, β-sheet angles)
 - Amino acid properties (hydrophobicity, pKa, MW)
 - Aggregation kinetics (Alzheimer's Aβ, Parkinson's α-syn)
-- Disease thresholds (Huntington's repeat length, etc.)
+- target system thresholds (Huntington's repeat length, etc.)
 - Combinatorial search for linear combinations
 
 WHAT WOULD VALIDATE Z² IN BIOLOGY:

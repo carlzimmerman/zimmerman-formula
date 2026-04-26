@@ -531,7 +531,7 @@ def analyze_t1d_immune_synapse(output_dir: str = "t1d_ppi_analysis") -> Dict:
     print("="*70)
     print("Target: MHC-Autoantigen-TCR immune synapse")
     print("Goal: Block T-cell recognition of beta cell autoantigens")
-    print("Strategy: Altered peptide ligands for competitive inhibition")
+    print("Strategy: Altered peptide ligands for competitive geometrically stabilize")
     print("="*70)
 
     results = {
@@ -619,7 +619,7 @@ def analyze_t1d_immune_synapse(output_dir: str = "t1d_ppi_analysis") -> Dict:
     print(f"  Blocking peptide candidates: {len(results['blocking_peptides'])}")
 
     if results['hotspots']:
-        print(f"\n  Top 5 binding hotspots (target for inhibition):")
+        print(f"\n  Top 5 binding hotspots (target for geometrically stabilize):")
         for res in results['hotspots'][:5]:
             print(f"    - {res['resname']}{res['resid']} (chain {res['chain']})")
 

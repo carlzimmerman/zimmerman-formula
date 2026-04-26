@@ -324,7 +324,7 @@ Our pipeline works because it samples the ensemble, not because it predicts a si
 
 ### 7.1 The "Undruggable" Proteome
 
-~80% of disease-relevant proteins are considered "undruggable":
+~80% of target system-relevant proteins are considered "undruggable":
 - IDPs (no binding pocket)
 - Protein-protein interactions (flat surfaces)
 - Transcription factors (nuclear, disordered)
@@ -335,7 +335,7 @@ AlphaFold cannot help with these because they don't have single structures.
 
 First-principles methods + ensemble sampling can address the undruggable proteome:
 
-| Target | Disease | AlphaFold Status | Our Approach | Result |
+| Target | target system | AlphaFold Status | Our Approach | Result |
 |--------|---------|------------------|--------------|--------|
 | c-Myc | Cancer (70%) | Fails (IDP) | REMD + pocket hunting | 14 binders |
 | α-Synuclein | Parkinson's | Low confidence | Ensemble sampling | Aggregation motifs |

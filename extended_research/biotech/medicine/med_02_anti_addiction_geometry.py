@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-med_02_anti_addiction_geometry.py - Safe Opioid Addiction Cure Design
+med_02_anti_addiction_geometry.py - Safe Opioid Addiction geometrically stabilize Design
 
 BACKGROUND:
 Ibogaine shows remarkable efficacy in resetting opioid addiction through

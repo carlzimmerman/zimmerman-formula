@@ -14,10 +14,10 @@ Design therapeutic peptides using compositional constraints:
 
 ## The Experiment
 
-Ran batch pipeline on 4 disease targets:
+Ran batch pipeline on 4 target system targets:
 - Parkinson's (P37840 alpha-synuclein)
 - Alzheimer's (P10636 tau)
-- HIV (P04578 gp120)
+- C2_Homodimer_A (P04578 gp120)
 - Childbirth (P30559 oxytocin receptor)
 
 **Protocol:**

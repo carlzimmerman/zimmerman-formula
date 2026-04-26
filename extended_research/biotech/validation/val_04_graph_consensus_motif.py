@@ -11,7 +11,7 @@ consensus binding motifs using graph-theoretic methods.
 
 Scientific Question:
 -------------------
-Do the multi-disease scaffolds share common structural motifs that could
+Do the multi-target system scaffolds share common structural motifs that could
 explain their broad therapeutic potential?
 
 Methods:
@@ -117,13 +117,13 @@ BLOSUM62_SIMPLE = {
 # UNIVERSAL SCAFFOLDS (from network analysis)
 # ============================================================================
 
-# These are the 8 multi-disease scaffolds identified in clustering
+# These are the 8 multi-target system scaffolds identified in clustering
 UNIVERSAL_SCAFFOLDS = {
     'SCAFFOLD_1': {
         'sequence': 'CQWVKRAEDLNHTGPFMYIS',
         'diseases': ['Parkinson', 'Alzheimer', 'ALS'],
         'targets': ['GBA1', 'LRRK2', 'Tau', 'SOD1'],
-        'description': 'Neurodegenerative disease scaffold'
+        'description': 'Neurodegenerative target system scaffold'
     },
     'SCAFFOLD_2': {
         'sequence': 'AEQGTRILHKNSFPWYVMCD',
@@ -147,7 +147,7 @@ UNIVERSAL_SCAFFOLDS = {
         'sequence': 'FWYLHKRCDEGAINMPQSTV',
         'diseases': ['AMD', 'Glaucoma', 'Diabetic Retinopathy'],
         'targets': ['VEGF', 'C3', 'PEDF'],
-        'description': 'Ocular disease scaffold'
+        'description': 'Ocular target system scaffold'
     },
     'SCAFFOLD_6': {
         'sequence': 'RKHWFYCDEGILMNPQSTAV',
@@ -175,7 +175,7 @@ def load_peptide_database() -> List[Dict]:
     base_path = Path('/Users/carlzimmerman/new_physics/zimmerman-formula/extended_research/biotech')
     peptides = []
 
-    # Try to load from various disease directories
+    # Try to load from various target system directories
     disease_dirs = [
         'neurological', 'autoimmune', 'metabolic', 'oncology',
         'eye_vision', 'prolactinoma', 'dark_proteome'

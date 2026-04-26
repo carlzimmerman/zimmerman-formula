@@ -93,7 +93,7 @@ ENZYME_REFERENCES = {
         "length_mature": 653,  # After signal peptide removal
         "signal_peptide": "1-26",
         "source": "UniProt P35475",
-        "disease": "MPS I (Hurler syndrome)"
+        "target system": "MPS I (Hurler syndrome)"
     },
     "ids": {
         "uniprot": "P22304",
@@ -102,7 +102,7 @@ ENZYME_REFERENCES = {
         "length_mature": 525,
         "signal_peptide": "1-25",
         "source": "UniProt P22304",
-        "disease": "MPS II (Hunter syndrome)"
+        "target system": "MPS II (Hunter syndrome)"
     },
     "sgsh": {
         "uniprot": "P51688",
@@ -111,7 +111,7 @@ ENZYME_REFERENCES = {
         "length_mature": 468,
         "signal_peptide": "1-20",
         "source": "UniProt P51688",
-        "disease": "MPS IIIA (Sanfilippo A)"
+        "target system": "MPS IIIA (Sanfilippo A)"
     },
     "naglu": {
         "uniprot": "P54802",
@@ -120,7 +120,7 @@ ENZYME_REFERENCES = {
         "length_mature": 720,
         "signal_peptide": "1-23",
         "source": "UniProt P54802",
-        "disease": "MPS IIIB (Sanfilippo B)"
+        "target system": "MPS IIIB (Sanfilippo B)"
     },
     "arsa": {
         "uniprot": "P15289",
@@ -129,7 +129,7 @@ ENZYME_REFERENCES = {
         "length_mature": 489,
         "signal_peptide": "1-18",
         "source": "UniProt P15289",
-        "disease": "Metachromatic leukodystrophy"
+        "target system": "Metachromatic leukodystrophy"
     },
     "galc": {
         "uniprot": "P54803",
@@ -138,7 +138,7 @@ ENZYME_REFERENCES = {
         "length_mature": 669,
         "signal_peptide": "1-26",
         "source": "UniProt P54803",
-        "disease": "Krabbe disease"
+        "target system": "Krabbe target system"
     },
     "hexa": {
         "uniprot": "P06865",
@@ -147,7 +147,7 @@ ENZYME_REFERENCES = {
         "length_mature": 529,
         "signal_peptide": "1-22",
         "source": "UniProt P06865",
-        "disease": "Tay-Sachs disease"
+        "target system": "Tay-Sachs target system"
     },
     "gba": {
         "uniprot": "P04062",
@@ -156,7 +156,7 @@ ENZYME_REFERENCES = {
         "length_mature": 497,
         "signal_peptide": "1-39",
         "source": "UniProt P04062",
-        "disease": "Gaucher disease"
+        "target system": "Gaucher target system"
     },
     "gla": {
         "uniprot": "P06280",
@@ -165,7 +165,7 @@ ENZYME_REFERENCES = {
         "length_mature": 398,
         "signal_peptide": "1-31",
         "source": "UniProt P06280",
-        "disease": "Fabry disease"
+        "target system": "Fabry target system"
     },
     "gaa": {
         "uniprot": "P10253",
@@ -174,7 +174,7 @@ ENZYME_REFERENCES = {
         "length_mature": 882,
         "signal_peptide": "1-27",
         "source": "UniProt P10253",
-        "disease": "Pompe disease"
+        "target system": "Pompe target system"
     }
 }
 
@@ -331,7 +331,7 @@ def validate_enzyme_references():
         print(f"  Gene: {ref['gene']}")
         print(f"  Mature length: {ref['length_mature']} aa")
         print(f"  Signal peptide: {ref['signal_peptide']}")
-        print(f"  Disease: {ref['disease']}")
+        print(f"  target system: {ref['target system']}")
         print(f"  Validation: Reference from {ref['source']}")
 
         results.append({
@@ -339,7 +339,7 @@ def validate_enzyme_references():
             "uniprot": ref['uniprot'],
             "name": ref['name'],
             "length": ref['length_mature'],
-            "disease": ref['disease'],
+            "target system": ref['target system'],
             "status": "REFERENCE_VERIFIED"
         })
 

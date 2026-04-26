@@ -28,7 +28,7 @@ import os
 from datetime import datetime
 
 # ==============================================================================
-# TEST PROTEINS (disease targets)
+# TEST PROTEINS (target system targets)
 # ==============================================================================
 
 TEST_PROTEINS = {
@@ -36,53 +36,53 @@ TEST_PROTEINS = {
     'abeta42': {
         'name': 'Amyloid Beta 42 (Alzheimer\'s)',
         'sequence': 'DAEFRHDSGYEVHHQKLVFFAEDVGSNKGAIIGLMVGGVVIA',
-        'disease': 'Alzheimer\'s'
+        'target system': 'Alzheimer\'s'
     },
     'alpha_syn': {
         'name': 'Alpha-synuclein N-term (Parkinson\'s)',
         'sequence': 'MDVFMKGLSKAKEGVVAAAEKTKQGVAEAAGKTKEGVLYVGSKTKEGVVHGVTTVA',
-        'disease': 'Parkinson\'s'
+        'target system': 'Parkinson\'s'
     },
     'tau': {
         'name': 'Tau repeat region (Alzheimer\'s)',
         'sequence': 'VQIVYKPVDLSKVTSKCGSLGNIHHKPGGGQVEVKSEKLDFKDRVQSKIGSLDNITHVPGGGNKKIETHKLTFREN',
-        'disease': 'Alzheimer\'s/Tauopathy'
+        'target system': 'Alzheimer\'s/Tauopathy'
     },
 
     # Metabolic disorders
     'insulin_b': {
         'name': 'Insulin B-chain (Diabetes)',
         'sequence': 'FVNQHLCGSHLVEALYLVCGERGFFYTPKT',
-        'disease': 'Diabetes'
+        'target system': 'Diabetes'
     },
 
     # Cancer-related
     'p53_dbd': {
         'name': 'p53 DNA-binding fragment (Cancer)',
         'sequence': 'SSSVPSQKTYQGSYGFRLGFLHSGTAKSVTCTYSPALNKMF',
-        'disease': 'Cancer'
+        'target system': 'Cancer'
     },
 
     # Fast-folding benchmarks
     'villin': {
         'name': 'Villin headpiece (fast folder)',
         'sequence': 'LSDEDFKAVFGMTRSAFANLPLWKQQNLKKEKGLF',
-        'disease': 'Benchmark'
+        'target system': 'Benchmark'
     },
     'trp_cage': {
         'name': 'Trp-cage (mini-protein)',
         'sequence': 'NLYIQWLKDGGPSSGRPPPS',
-        'disease': 'Benchmark'
+        'target system': 'Benchmark'
     },
     'ww_domain': {
         'name': 'WW domain (all-beta)',
         'sequence': 'KLPPGWEKRMSRSSGRVYYFNHITNASQWERPS',
-        'disease': 'Benchmark'
+        'target system': 'Benchmark'
     },
     'gb1': {
         'name': 'GB1 domain (alpha/beta)',
         'sequence': 'MTYKLILNGKTLKGETTTEAVDAATAEKVFKQYANDNGVDGEWTYDDATKTFTVTE',
-        'disease': 'Benchmark'
+        'target system': 'Benchmark'
     }
 }
 

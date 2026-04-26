@@ -224,15 +224,15 @@ def analyze_z2_validation():
     # Our observed Z² distances from AlphaFold validation
     # These are the ONLY data points we actually have
     observed_z2_distances = [
-        6.015152508891966 - 0.0013,  # HIV: -1.3 mÅ
+        6.015152508891966 - 0.0013,  # C2_Homodimer_A: -1.3 mÅ
         6.015152508891966 + 0.0001,  # TNF-α: +0.1 mÅ
-        6.015152508891966 + 0.0045,  # Mpro: +4.5 mÅ
+        6.015152508891966 + 0.0045,  # C2_Protease_B: +4.5 mÅ
     ]
 
     results['observed_distances'] = {
-        'HIV': observed_z2_distances[0],
+        'C2_Homodimer_A': observed_z2_distances[0],
         'TNF-α': observed_z2_distances[1],
-        'Mpro': observed_z2_distances[2],
+        'C2_Protease_B': observed_z2_distances[2],
         'mean': np.mean(observed_z2_distances),
         'std': np.std(observed_z2_distances),
         'n': len(observed_z2_distances),
@@ -308,7 +308,7 @@ def analyze_z2_validation():
         },
         {
             'statement': 'TESTABLE PREDICTION',
-            'explanation': 'If Z² is real, NEW AlphaFold validations should consistently show ~6.015 Å. Track DPP-4 and EGFR results.',
+            'explanation': 'If Z² is real, NEW AlphaFold validations should consistently show ~6.015 Å. Track Metabolic_Receptor_E and EGFR results.',
         },
         {
             'statement': 'NULL PROBABILITY ESTIMATES',
@@ -404,9 +404,9 @@ def main():
 
     print("OBSERVED DATA")
     print("-" * 60)
-    print(f"  HIV:   {results['observed_distances']['HIV']:.6f} Å")
+    print(f"  C2_Homodimer_A:   {results['observed_distances']['C2_Homodimer_A']:.6f} Å")
     print(f"  TNF-α: {results['observed_distances']['TNF-α']:.6f} Å")
-    print(f"  Mpro:  {results['observed_distances']['Mpro']:.6f} Å")
+    print(f"  C2_Protease_B:  {results['observed_distances']['C2_Protease_B']:.6f} Å")
     print(f"  Mean:  {results['observed_distances']['mean']:.6f} Å")
     print(f"  Std:   {results['observed_distances']['std']:.6f} Å")
     print(f"  N:     {results['observed_distances']['n']}")

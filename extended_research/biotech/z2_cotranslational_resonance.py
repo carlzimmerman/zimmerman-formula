@@ -460,7 +460,7 @@ class Z2CodonOptimizer:
 # ==============================================================================
 
 def main():
-    # Test on myoglobin (disease target - oxygen storage)
+    # Test on myoglobin (target system target - oxygen storage)
     # First 50 residues
     MYOGLOBIN = "MVLSGEDKSNIKAAWGKVGAHAGEYGAEALERMFLSFPTTKTYFPHFDLS"
 

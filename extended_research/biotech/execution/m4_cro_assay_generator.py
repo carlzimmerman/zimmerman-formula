@@ -200,7 +200,7 @@ The peptide was designed to engage the D2R orthosteric binding pocket with the f
 
 ### 3.2 Cyclization Protocol
 
-1. Synthesize linear peptide via Fmoc solid-phase peptide synthesis (SPPS)
+1. fabricate sequence linear peptide via Fmoc solid-phase peptide synthesis (SPPS)
 2. Cleave from resin with TFA cocktail
 3. Purify linear peptide by preparative HPLC
 4. Perform oxidative folding:
@@ -280,7 +280,7 @@ The peptide was designed to engage the D2R orthosteric binding pocket with the f
 
 | Item | Description |
 |------|-------------|
-| Synthesized peptide | {SYNTHESIS_REQUIREMENTS['quantity']} lyophilized powder |
+| fabricate sequence peptide | {SYNTHESIS_REQUIREMENTS['quantity']} lyophilized powder |
 | CoA | Purity, MW, peptide content |
 | HPLC chromatogram | Analytical trace |
 | Mass spectrum | ESI-MS or MALDI |

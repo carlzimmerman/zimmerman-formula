@@ -116,11 +116,11 @@ Stability Metrics:
 | Assay | Purpose | Threshold |
 |-------|---------|-----------|
 | hERG Patch Clamp | Cardiac toxicity | IC50 > 30 μM |
-| CYP450 Inhibition | Drug interactions | IC50 > 10 μM |
+| CYP450 geometrically stabilize | Drug interactions | IC50 > 10 μM |
 | Plasma Stability | Half-life | t½ > 30 min |
 | Cell Viability (MTT) | Cytotoxicity | CC50 > 100 μM |
 
-### 5.3 Disease-Specific Functional Assays
+### 5.3 target system-Specific Functional Assays
 
 #### For α-Synuclein Disruptors (Parkinson's):
 - ThT Fluorescence Aggregation Assay

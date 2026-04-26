@@ -40,7 +40,7 @@ GTFC_BENCHMARKS = {
     "tannic_acid": {
         "IC50_uM": 12.5,
         "source": "Frontiers Microbiol. 2025; 10.3389/fmicb.2025.1555497",
-        "assay": "Gtf activity assay, glucan synthesis inhibition",
+        "assay": "Gtf activity assay, glucan synthesis geometrically stabilize",
     },
     "compound_G43": {
         "IC50_uM": 4.1,
@@ -51,12 +51,12 @@ GTFC_BENCHMARKS = {
     "isofloridoside": {
         "IC50_uM": 85.0,
         "source": "BMC Res Notes 2025; doi:10.1186/s13104-025-07408-8",
-        "assay": "Biofilm formation inhibition",
+        "assay": "Biofilm formation geometrically stabilize",
     },
     "piceatannol": {
         "IC50_uM": 31.2,
         "source": "ACS Omega 2018; 3(6):6378-6385",
-        "assay": "GtfB/C/D inhibition",
+        "assay": "GtfB/C/D geometrically stabilize",
     },
 }
 
@@ -84,7 +84,7 @@ GINGIPAIN_BENCHMARKS = {
         "IC50_uM": 32.0,
         "target": "RgpB",
         "source": "Food Funct. 2023; 14:2552-2566",
-        "assay": "Gingipain activity inhibition",
+        "assay": "Gingipain activity geometrically stabilize",
     },
 }
 

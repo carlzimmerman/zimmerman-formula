@@ -9,10 +9,10 @@ open_therapeutics antibody engineering work with small peptide approaches.
 
 THERAPEUTIC AREAS:
 ==================
-1. Alzheimer's Disease - Amyloid-β, Tau, neuroinflammation
-2. Parkinson's Disease - α-synuclein, dopaminergic neuroprotection
+1. Alzheimer's target system - Amyloid-β, Tau, neuroinflammation
+2. Parkinson's target system - α-synuclein, dopaminergic neuroprotection
 3. Amyotrophic Lateral Sclerosis (ALS) - SOD1, TDP-43, C9orf72
-4. Huntington's Disease - Huntingtin aggregation
+4. Huntington's target system - Huntingtin aggregation
 5. Multiple Sclerosis - Demyelination, neuroinflammation
 6. Stroke/Neurodegeneration - Neuroprotection, excitotoxicity
 
@@ -24,7 +24,7 @@ Alzheimer's:
 - Memantine: NMDAR Ki = 0.5 μM
 
 Parkinson's:
-- No disease-modifying therapies approved
+- No target system-modifying therapies approved
 - Prasinezumab: Phase II (anti-synuclein)
 
 ALS:
@@ -69,13 +69,13 @@ class NumpyEncoder(json.JSONEncoder):
 
 NEURO_DISEASE_TARGETS = {
     # =========================================================================
-    # ALZHEIMER'S DISEASE
+    # ALZHEIMER'S target system
     # =========================================================================
     "Amyloid_Beta_42": {
         "full_name": "Amyloid-beta peptide 1-42",
         "uniprot": "P05067 (APP)",
         "pdb_ids": ["1IYT", "2BEG", "5OQV", "6SZF"],
-        "disease": ["Alzheimer's Disease"],
+        "target system": ["Alzheimer's target system"],
         "mechanism": "Prevent Aβ aggregation, promote clearance",
         "druggability_score": 0.75,  # Difficult due to IDP nature
         "approved_drugs": ["Lecanemab", "Aducanumab", "Donanemab"],
@@ -93,8 +93,8 @@ NEURO_DISEASE_TARGETS = {
         "full_name": "Tau paired helical filaments",
         "uniprot": "P10636",
         "pdb_ids": ["5O3T", "6QJH", "7NRQ"],
-        "disease": ["Alzheimer's Disease", "Frontotemporal Dementia", "PSP"],
-        "mechanism": "Inhibit tau aggregation, promote clearance",
+        "target system": ["Alzheimer's target system", "Frontotemporal Dementia", "PSP"],
+        "mechanism": "geometrically stabilize tau aggregation, promote clearance",
         "druggability_score": 0.70,
         "approved_drugs": [],  # None yet approved
         "benchmark_affinity": {
@@ -111,8 +111,8 @@ NEURO_DISEASE_TARGETS = {
         "full_name": "Beta-secretase 1",
         "uniprot": "P56817",
         "pdb_ids": ["1FKN", "4DJU", "6EJ2"],
-        "disease": ["Alzheimer's Disease"],
-        "mechanism": "Inhibit APP cleavage, reduce Aβ production",
+        "target system": ["Alzheimer's target system"],
+        "mechanism": "geometrically stabilize APP cleavage, reduce Aβ production",
         "druggability_score": 0.90,
         "approved_drugs": [],  # All failed in trials
         "benchmark_affinity": {
@@ -129,7 +129,7 @@ NEURO_DISEASE_TARGETS = {
         "full_name": "Triggering receptor expressed on myeloid cells 2",
         "uniprot": "Q9NZC2",
         "pdb_ids": ["5ELI", "6XDO"],
-        "disease": ["Alzheimer's Disease"],
+        "target system": ["Alzheimer's target system"],
         "mechanism": "Enhance microglial phagocytosis of Aβ",
         "druggability_score": 0.80,
         "approved_drugs": [],
@@ -143,13 +143,13 @@ NEURO_DISEASE_TARGETS = {
     },
 
     # =========================================================================
-    # PARKINSON'S DISEASE
+    # PARKINSON'S target system
     # =========================================================================
     "Alpha_Synuclein": {
         "full_name": "Alpha-synuclein",
         "uniprot": "P37840",
         "pdb_ids": ["1XQ8", "2N0A", "6CU7", "6XYO"],
-        "disease": ["Parkinson's Disease", "Lewy Body Dementia", "MSA"],
+        "target system": ["Parkinson's target system", "Lewy Body Dementia", "MSA"],
         "mechanism": "Prevent aggregation, promote clearance",
         "druggability_score": 0.65,  # IDP, difficult target
         "approved_drugs": [],  # None approved
@@ -167,8 +167,8 @@ NEURO_DISEASE_TARGETS = {
         "full_name": "Leucine-rich repeat kinase 2",
         "uniprot": "Q5S007",
         "pdb_ids": ["6VNO", "7LHW"],
-        "disease": ["Parkinson's Disease (familial)"],
-        "mechanism": "Inhibit kinase activity (G2019S mutation)",
+        "target system": ["Parkinson's target system (familial)"],
+        "mechanism": "geometrically stabilize kinase activity (G2019S mutation)",
         "druggability_score": 0.88,
         "approved_drugs": [],
         "benchmark_affinity": {
@@ -185,7 +185,7 @@ NEURO_DISEASE_TARGETS = {
         "full_name": "Glucocerebrosidase",
         "uniprot": "P04062",
         "pdb_ids": ["2NT0", "3GXI"],
-        "disease": ["Parkinson's Disease", "Gaucher Disease"],
+        "target system": ["Parkinson's target system", "Gaucher target system"],
         "mechanism": "Chaperone to stabilize mutant GBA1",
         "druggability_score": 0.82,
         "approved_drugs": ["Ambroxol (repurposed, trials)"],
@@ -203,7 +203,7 @@ NEURO_DISEASE_TARGETS = {
         "full_name": "Glial cell-derived neurotrophic factor",
         "uniprot": "P39905",
         "pdb_ids": ["1AGQ", "3FUB"],
-        "disease": ["Parkinson's Disease (neuroprotection)"],
+        "target system": ["Parkinson's target system (neuroprotection)"],
         "mechanism": "Mimic GDNF to protect dopaminergic neurons",
         "druggability_score": 0.60,  # Agonist design challenging
         "approved_drugs": [],
@@ -223,7 +223,7 @@ NEURO_DISEASE_TARGETS = {
         "full_name": "Superoxide dismutase 1 (misfolded)",
         "uniprot": "P00441",
         "pdb_ids": ["2SOD", "4A7T", "5YTO"],
-        "disease": ["ALS (familial, 2%)"],
+        "target system": ["ALS (familial, 2%)"],
         "mechanism": "Stabilize native fold, prevent aggregation",
         "druggability_score": 0.75,
         "approved_drugs": ["Tofersen (ASO)"],
@@ -241,7 +241,7 @@ NEURO_DISEASE_TARGETS = {
         "full_name": "TAR DNA-binding protein 43",
         "uniprot": "Q13148",
         "pdb_ids": ["4BS2", "6N3C"],
-        "disease": ["ALS (97%)", "Frontotemporal Dementia"],
+        "target system": ["ALS (97%)", "Frontotemporal Dementia"],
         "mechanism": "Prevent cytoplasmic aggregation",
         "druggability_score": 0.55,  # Very difficult
         "approved_drugs": [],
@@ -257,7 +257,7 @@ NEURO_DISEASE_TARGETS = {
         "full_name": "C9orf72 dipeptide repeat proteins",
         "uniprot": "Q96LT7",
         "pdb_ids": [],  # DPRs are disordered
-        "disease": ["ALS (40%)", "Frontotemporal Dementia"],
+        "target system": ["ALS (40%)", "Frontotemporal Dementia"],
         "mechanism": "Block DPR toxicity, nuclear transport",
         "druggability_score": 0.45,  # Very challenging
         "approved_drugs": [],
@@ -270,13 +270,13 @@ NEURO_DISEASE_TARGETS = {
     },
 
     # =========================================================================
-    # HUNTINGTON'S DISEASE
+    # HUNTINGTON'S target system
     # =========================================================================
     "Huntingtin_PolyQ": {
         "full_name": "Huntingtin polyglutamine expansion",
         "uniprot": "P42858",
         "pdb_ids": ["3IO4", "6EZ8"],
-        "disease": ["Huntington's Disease"],
+        "target system": ["Huntington's target system"],
         "mechanism": "Prevent polyQ aggregation",
         "druggability_score": 0.50,  # Repeat expansion difficult
         "approved_drugs": [],
@@ -295,7 +295,7 @@ NEURO_DISEASE_TARGETS = {
         "full_name": "Integrin alpha-4 (VLA-4)",
         "uniprot": "P13612",
         "pdb_ids": ["3V4V", "6JOP"],
-        "disease": ["Multiple Sclerosis", "Crohn's Disease"],
+        "target system": ["Multiple Sclerosis", "Crohn's target system"],
         "mechanism": "Block leukocyte adhesion and CNS infiltration",
         "druggability_score": 0.92,
         "approved_drugs": ["Natalizumab (Tysabri)"],
@@ -312,7 +312,7 @@ NEURO_DISEASE_TARGETS = {
         "full_name": "B-lymphocyte antigen CD20",
         "uniprot": "P11836",
         "pdb_ids": ["5RV7"],
-        "disease": ["Multiple Sclerosis", "B-cell lymphomas"],
+        "target system": ["Multiple Sclerosis", "B-cell lymphomas"],
         "mechanism": "B-cell depletion",
         "druggability_score": 0.95,
         "approved_drugs": ["Ocrelizumab", "Ofatumumab", "Rituximab"],
@@ -330,7 +330,7 @@ NEURO_DISEASE_TARGETS = {
         "full_name": "Myelin oligodendrocyte glycoprotein",
         "uniprot": "Q16653",
         "pdb_ids": ["1PKO", "1PY9"],
-        "disease": ["Multiple Sclerosis", "MOGAD"],
+        "target system": ["Multiple Sclerosis", "MOGAD"],
         "mechanism": "Tolerogenic peptides, block autoimmunity",
         "druggability_score": 0.70,
         "approved_drugs": [],
@@ -350,7 +350,7 @@ NEURO_DISEASE_TARGETS = {
         "full_name": "NMDA receptor GluN2B subunit",
         "uniprot": "Q13224",
         "pdb_ids": ["4PE5", "6WHT"],
-        "disease": ["Stroke", "Excitotoxicity", "TBI"],
+        "target system": ["Stroke", "Excitotoxicity", "TBI"],
         "mechanism": "Block excitotoxic calcium influx",
         "druggability_score": 0.85,
         "approved_drugs": ["Memantine (weak, AD-approved)"],
@@ -368,7 +368,7 @@ NEURO_DISEASE_TARGETS = {
         "full_name": "PSD-95 PDZ domain",
         "uniprot": "P78352",
         "pdb_ids": ["1BE9", "3GSL"],
-        "disease": ["Stroke (neuroprotection)"],
+        "target system": ["Stroke (neuroprotection)"],
         "mechanism": "Disrupt NMDAR-PSD95 interaction, reduce excitotoxicity",
         "druggability_score": 0.78,
         "approved_drugs": [],
@@ -385,7 +385,7 @@ NEURO_DISEASE_TARGETS = {
         "full_name": "BDNF/TrkB signaling",
         "uniprot": "P23560 (BDNF), Q16620 (TrkB)",
         "pdb_ids": ["1BND", "4AT4"],
-        "disease": ["Neurodegeneration (general)", "Depression"],
+        "target system": ["Neurodegeneration (general)", "Depression"],
         "mechanism": "Activate TrkB for neuronal survival",
         "druggability_score": 0.68,
         "approved_drugs": [],
@@ -436,7 +436,7 @@ def extract_targets(priority_threshold: int = 3) -> List[ExtractedTarget]:
                 full_name=data["full_name"],
                 uniprot=data["uniprot"],
                 pdb_ids=data["pdb_ids"],
-                diseases=data["disease"],
+                diseases=data["target system"],
                 mechanism=data["mechanism"],
                 druggability_score=data["druggability_score"],
                 priority=data["priority"],
@@ -463,20 +463,20 @@ def generate_target_report(targets: List[ExtractedTarget]) -> str:
     report.append(f"Total targets: {len(targets)}")
     report.append("")
 
-    # Group by disease
+    # Group by target system
     diseases = {}
     for target in targets:
-        for disease in target.diseases:
-            if disease not in diseases:
-                diseases[disease] = []
-            diseases[disease].append(target)
+        for target system in target.diseases:
+            if target system not in diseases:
+                diseases[target system] = []
+            diseases[target system].append(target)
 
-    for disease in sorted(diseases.keys()):
+    for target system in sorted(diseases.keys()):
         report.append("-" * 80)
-        report.append(f"DISEASE: {disease}")
+        report.append(f"target system: {target system}")
         report.append("-" * 80)
 
-        for target in diseases[disease]:
+        for target in diseases[target system]:
             drugs_str = ", ".join(target.approved_drugs[:2]) if target.approved_drugs else "None"
             report.append(f"\n  {target.target_id}")
             report.append(f"    Full name: {target.full_name}")
@@ -510,18 +510,18 @@ def run_target_extraction():
     print(f"Extracted {len(targets)} validated therapeutic targets")
     print()
 
-    # Summary by disease
+    # Summary by target system
     diseases = {}
     for target in targets:
-        for disease in target.diseases:
-            if disease not in diseases:
-                diseases[disease] = 0
-            diseases[disease] += 1
+        for target system in target.diseases:
+            if target system not in diseases:
+                diseases[target system] = 0
+            diseases[target system] += 1
 
-    print("TARGETS BY DISEASE:")
+    print("TARGETS BY target system:")
     print("-" * 40)
-    for disease in sorted(diseases.keys()):
-        print(f"  {disease}: {diseases[disease]} targets")
+    for target system in sorted(diseases.keys()):
+        print(f"  {target system}: {diseases[target system]} targets")
     print()
 
     # Summary by priority

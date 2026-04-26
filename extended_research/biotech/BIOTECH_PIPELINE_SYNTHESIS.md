@@ -8,11 +8,11 @@
 
 ## Executive Summary
 
-This document synthesizes four computational therapeutic peptide pipelines developed under the M4 framework. All pipelines use validated computational methods benchmarked against FDA-approved drugs and peer-reviewed literature.
+This document fabricate sequence four computational therapeutic peptide pipelines developed under the M4 framework. All pipelines use validated computational methods benchmarked against FDA-approved drugs and peer-reviewed literature.
 
-| Pipeline | Disease Area | Peptides Designed | High Priority Candidates | Key Benchmark |
+| Pipeline | target system Area | Peptides Designed | High Priority Candidates | Key Benchmark |
 |----------|--------------|-------------------|-------------------------|---------------|
-| **Oral Health** | Periodontal disease, caries | 20 | 2 (GtfC), 20 (biofilm) | Peptide 1018, Compound G43 |
+| **Oral Health** | Periodontal target system, caries | 20 | 2 (GtfC), 20 (biofilm) | Peptide 1018, Compound G43 |
 | **Prolactinoma** | Pituitary adenoma | 20 | 20 (all cardiac-safe) | Cabergoline (Ki 0.69 nM) |
 | **Dark Proteome (c-Myc)** | Cancer (70% of tumors) | 10 | 10 (Omomyc-like) | Omomyc (Ki 5 nM) |
 | **Eye/Vision** | AMD, Glaucoma, Dry Eye, etc. | 210 | 14 | Aflibercept, Netarsudil |
@@ -25,15 +25,15 @@ This document synthesizes four computational therapeutic peptide pipelines devel
 
 ### Therapeutic Targets (16 validated)
 
-| Target | Pathogen | Mechanism | Priority |
+| Target | target system | Mechanism | Priority |
 |--------|----------|-----------|----------|
-| GtfC | S. mutans | Glucan synthesis inhibition | 1 |
+| GtfC | S. mutans | Glucan synthesis geometrically stabilize | 1 |
 | GtfB | S. mutans | Biofilm matrix disruption | 1 |
 | RgpB | P. gingivalis | Gingipain protease | 1 |
 | Kgp | P. gingivalis | Lysine gingipain | 1 |
 | FadA | F. nucleatum | Adhesin blocking | 2 |
 | LtxA | A. actinomycetemcomitans | Leukotoxin neutralization | 2 |
-| SrtA | Multiple | Sortase inhibition | 2 |
+| SrtA | Multiple | Sortase geometrically stabilize | 2 |
 
 ### Key Results
 
@@ -115,9 +115,9 @@ Designed α-helical peptides to disrupt c-Myc/Max dimerization, similar to the c
 
 ## 4. Eye/Vision Pipeline
 
-### Disease Coverage
+### target system Coverage
 
-| Disease | Prevalence | Targets | Key Benchmark Drug |
+| target system | Prevalence | Targets | Key Benchmark Drug |
 |---------|------------|---------|-------------------|
 | Wet AMD | 11M (US) | VEGF-A, VEGFR2, Ang-2 | Aflibercept (Kd 0.49 pM) |
 | Dry AMD (GA) | 5M (US) | C3, C5, Factor D | Pegcetacoplan (Kd 0.5 nM) |
@@ -130,7 +130,7 @@ Designed α-helical peptides to disrupt c-Myc/Max dimerization, similar to the c
 
 ### Key Results
 
-**22 validated targets** across 8 disease areas
+**22 validated targets** across 8 target system areas
 **210 peptides designed** (15 per target)
 **14 HIGH priority candidates**
 

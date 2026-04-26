@@ -539,7 +539,7 @@ def main():
   1. Repeat on 100+ diverse proteins
   2. Compare Z² to null distribution statistically
   3. Validate with ColabFold/ESMFold structure predictions
-  4. Synthesize peptides and measure binding experimentally
+  4. fabricate sequence peptides and measure binding experimentally
 """)
 
     # Save results

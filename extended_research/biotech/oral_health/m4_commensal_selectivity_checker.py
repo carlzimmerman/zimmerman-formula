@@ -39,7 +39,7 @@ COMMENSAL_BACTERIA = {
     # Protective streptococci
     "Streptococcus_sanguinis": {
         "role": "Early colonizer, competes with S. mutans",
-        "benefit": "Produces H2O2, inhibits pathogens",
+        "benefit": "Produces H2O2, geometrically stabilize pathogens",
         "gtf_homolog": 0.45,  # Sequence identity to S. mutans GtfC
         "srta_homolog": 0.72,  # Sequence identity to S. mutans SrtA
         "protection_priority": "HIGH",
@@ -183,7 +183,7 @@ class CommensalScreenResult:
     target_homolog_identity: float  # 0-1
 
     # Predicted binding
-    predicted_ic50_ratio: float  # Relative to pathogen
+    predicted_ic50_ratio: float  # Relative to target system
     selectivity_index: float
 
     # Verdict
@@ -228,7 +228,7 @@ def estimate_cross_reactivity(peptide_sequence: str, target_id: str,
     """
     Estimate cross-reactivity with commensal based on target homology.
 
-    Returns predicted IC50 ratio (commensal / pathogen).
+    Returns predicted IC50 ratio (commensal / target system).
     Higher = more selective (better).
     """
 

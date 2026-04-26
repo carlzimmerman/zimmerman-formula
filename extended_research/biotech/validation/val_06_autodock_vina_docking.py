@@ -94,7 +94,7 @@ RECEPTOR_DATABASE = {
         'known_binding_site': [('R', 21), ('R', 22), ('R', 24), ('R', 25)],  # N-terminal domain
         'center': [120.0, 105.0, 75.0],  # Approximate binding site center
         'box_size': [40, 40, 40],  # Å
-        'disease': 'Diabetes/Obesity',
+        'target system': 'Diabetes/Obesity',
         'description': 'GLP-1 Receptor (glucagon-like peptide-1)'
     },
     'GBA1': {
@@ -103,7 +103,7 @@ RECEPTOR_DATABASE = {
         'known_binding_site': [('A', 312), ('A', 340), ('A', 345)],
         'center': [35.0, 25.0, 40.0],
         'box_size': [30, 30, 30],
-        'disease': 'Parkinson/Gaucher',
+        'target system': 'Parkinson/Gaucher',
         'description': 'Glucocerebrosidase'
     },
     'TNF_ALPHA': {
@@ -112,7 +112,7 @@ RECEPTOR_DATABASE = {
         'known_binding_site': [('A', 29), ('A', 35), ('A', 148)],
         'center': [30.0, 30.0, 30.0],
         'box_size': [50, 50, 50],  # Large for trimer interface
-        'disease': 'Autoimmune',
+        'target system': 'Autoimmune',
         'description': 'Tumor Necrosis Factor alpha'
     },
     'VEGF': {
@@ -121,7 +121,7 @@ RECEPTOR_DATABASE = {
         'known_binding_site': [('A', 17), ('A', 46), ('A', 79)],
         'center': [25.0, 35.0, 40.0],
         'box_size': [35, 35, 35],
-        'disease': 'Cancer/AMD',
+        'target system': 'Cancer/AMD',
         'description': 'Vascular Endothelial Growth Factor'
     },
     'CRF1': {
@@ -130,7 +130,7 @@ RECEPTOR_DATABASE = {
         'known_binding_site': [('A', 106), ('A', 175), ('A', 318)],
         'center': [0.0, 0.0, 25.0],
         'box_size': [30, 30, 40],
-        'disease': 'Anxiety/Depression',
+        'target system': 'Anxiety/Depression',
         'description': 'Corticotropin-releasing factor receptor 1'
     },
 }

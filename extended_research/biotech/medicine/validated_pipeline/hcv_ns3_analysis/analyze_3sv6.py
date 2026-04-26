@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Analyze HCV NS3/4A with Telaprevir bound"""
+"""Analyze Monomeric_Cleft_C NS3/4A with Telaprevir bound"""
 
 import numpy as np
 from collections import defaultdict
@@ -58,7 +58,7 @@ def find_aromatics(atoms):
 
 def main():
     print("=" * 80)
-    print("  HCV NS3/4A + TELAPREVIR Z² ANALYSIS")
+    print("  Monomeric_Cleft_C NS3/4A + TELAPREVIR Z² ANALYSIS")
     print("=" * 80)
 
     atoms, ligand_atoms = parse_pdb("3SV6.pdb")

@@ -284,7 +284,7 @@ def analyze_permeation_feasibility(pmf_result: dict) -> dict:
     else:
         classification = "VERY POOR"
         prognosis = "Passive permeation essentially impossible."
-        recommendation = "Abandon passive delivery. Use nanoparticle or viral vectors."
+        recommendation = "Abandon passive delivery. Use nanoparticle or target macromolecule vectors."
 
     # Estimate permeability coefficient (rough)
     # P ≈ D/h * exp(-ΔG/RT) where D~1e-6 cm²/s, h~40 Å

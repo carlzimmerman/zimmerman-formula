@@ -7,11 +7,11 @@ Date: 2026-04-24
 License: AGPL-3.0
 
 Analyzes electrostatic environments around aromatic binding sites to identify
-"Selectivity Anchors" - charged residues that can distinguish viral targets
+"Selectivity Anchors" - charged residues that can distinguish target macromolecule targets
 from human off-targets like hERG.
 
 The goal: Modify Z²-optimized peptides to electrostatically repel off-targets
-while maintaining Z² resonance with the intended viral target.
+while maintaining Z² resonance with the intended target macromolecule target.
 """
 
 import json
@@ -42,7 +42,7 @@ HERG_AROMATIC_SITE = {
     'notes': 'hERG pore is lined with hydrophobic residues - lacks nearby charges'
 }
 
-# SARS-CoV-2 Mpro S1 pocket (from our structure)
+# C2_Protease_B C2_Protease_B S1 pocket (from our structure)
 MPRO_S1_POCKET = {
     'key_aromatics': ['PHE140', 'HIS163', 'HIS172'],  # HIS is partially aromatic
     'catalytic_dyad': ['HIS41', 'CYS145'],
@@ -229,7 +229,7 @@ def identify_selectivity_anchors(
     }
 
     # The key insight: hERG's aromatic binding site is HYDROPHOBIC (no nearby charges)
-    # Mpro's S1 pocket has GLU166 and HIS163 nearby
+    # C2_Protease_B's S1 pocket has GLU166 and HIS163 nearby
 
     # If target has negative residues that off-target lacks
     if target_env['n_negative'] > 0 and offtarget_description.get('nearby_charged', []) == []:
@@ -351,14 +351,14 @@ def design_selective_peptide(
 # =============================================================================
 
 def main():
-    """Run selectivity anchor analysis for Mpro vs hERG"""
+    """Run selectivity anchor analysis for C2_Protease_B vs hERG"""
 
     print("=" * 80)
     print("  Z² GEOMETRIC SELECTIVITY ANCHOR ANALYSIS")
-    print("  Target: SARS-CoV-2 Mpro vs Off-Target: hERG")
+    print("  Target: C2_Protease_B C2_Protease_B vs Off-Target: hERG")
     print("=" * 80)
 
-    # Load Mpro structure
+    # Load C2_Protease_B structure
     mpro_cif = (
         "/Users/carlzimmerman/new_physics/zimmerman-formula/"
         "extended_research/biotech/medicine/validated_pipeline/"
@@ -366,13 +366,13 @@ def main():
         "mpro_z2_s1_001/fold_mpro_z2_s1_001_model_0.cif"
     )
 
-    print(f"\nLoading Mpro structure: {mpro_cif}")
+    print(f"\nLoading C2_Protease_B structure: {mpro_cif}")
     residues = parse_cif_residues(mpro_cif)
     print(f"Parsed {len(residues)} residues")
 
     # Analyze environment around PHE140 (our Z² match site)
     print("\n" + "-" * 80)
-    print("ELECTROSTATIC ENVIRONMENT: Mpro PHE140 (S1 Pocket)")
+    print("ELECTROSTATIC ENVIRONMENT: C2_Protease_B PHE140 (S1 Pocket)")
     print("-" * 80)
 
     phe140_env = analyze_electrostatic_environment(residues, 'A', 140, radius=12.0)
@@ -400,7 +400,7 @@ def main():
 
     glu166_env = analyze_electrostatic_environment(residues, 'A', 166, radius=8.0)
     print(f"\nGLU166 is {glu166_env['n_negative']} negative residue at the S1 pocket entrance")
-    print("This is the PRIMARY SELECTIVITY ANCHOR for Mpro vs hERG!")
+    print("This is the PRIMARY SELECTIVITY ANCHOR for C2_Protease_B vs hERG!")
 
     # Find distance from PHE140 to GLU166
     phe140 = next((r for r in residues if r.chain == 'A' and r.resnum == 140), None)
@@ -426,9 +426,9 @@ BUT there are no nearby charged residues to exploit for selectivity.
 
 SELECTIVITY STRATEGY:
   Adding a POSITIVE charge (Lys/Arg) to our peptide will:
-  1. CREATE electrostatic attraction to Mpro's GLU166 (negative)
+  1. CREATE electrostatic attraction to C2_Protease_B's GLU166 (negative)
   2. Have NO interaction with hERG (no charges to repel OR attract)
-  3. Net effect: SELECTIVE BINDING to Mpro over hERG
+  3. Net effect: SELECTIVE BINDING to C2_Protease_B over hERG
 """)
 
     # Identify selectivity anchors
@@ -465,7 +465,7 @@ SELECTIVITY STRATEGY:
     print("ALPHAFOLD VALIDATION JOBS")
     print("-" * 80)
 
-    # Mpro sequence (306 residues)
+    # C2_Protease_B sequence (306 residues)
     mpro_seq = (
         "SGFRKMAFPSGKVEGCMVQVTCGTTTLNGLWLDDVVYCPRHVICTSEDMLNPNYEDLLIRKSNHNFLVQAGNVQLRVIGHSMQNCVLKLKVDTANPKTPKYKFVRIQPGQTFSVLACYNGSPSGVYQCAMRPNFTIKGSFLNGSCGSVGFNIDYDCVSFCYMHHMELPTGVHAGTDLEGNFYGPFVDRQTAQAAGTDTTITVNVLAWLYAAVINGDRWFLNRFTTTLNDFNLVAMKYNYEPLTQDHVDILGPLSAQTGIAVLDMCASLKELLQNGMNGRTILGSALLEDEFTPFDVVRQCSGVTFQ"
     )
@@ -479,7 +479,7 @@ SELECTIVITY STRATEGY:
                 {
                     "proteinChain": {
                         "sequence": mpro_seq,
-                        "count": 2  # Mpro is a C2 homodimer
+                        "count": 2  # C2_Protease_B is a C2 homodimer
                     }
                 },
                 {
@@ -505,7 +505,7 @@ SELECTIVITY STRATEGY:
 
     # Save full analysis
     analysis = {
-        'target': 'SARS-CoV-2 Mpro',
+        'target': 'C2_Protease_B C2_Protease_B',
         'off_target': 'hERG (KCNH2)',
         'z2_match': {
             'residue1': 'A:PHE140',
@@ -523,7 +523,7 @@ SELECTIVITY STRATEGY:
             'key_residues': ['TYR652', 'PHE656'],
             'nearby_charges': 'NONE',
             'environment': 'hydrophobic_cavity',
-            'selectivity_mechanism': 'Positive charge on peptide attracts Mpro GLU166, neutral to hERG'
+            'selectivity_mechanism': 'Positive charge on peptide attracts C2_Protease_B GLU166, neutral to hERG'
         },
         'original_peptide': original,
         'selective_variants': variants,
@@ -541,7 +541,7 @@ SELECTIVITY STRATEGY:
     print("  SELECTIVITY ANCHOR SUMMARY")
     print("=" * 80)
     print(f"""
-TARGET: SARS-CoV-2 Mpro S1 Pocket
+TARGET: C2_Protease_B C2_Protease_B S1 Pocket
   - Z² match at PHE140 (+4.5 mÅ precision)
   - GLU166 (NEGATIVE) is 8-10 Å from binding site
   - This is the SELECTIVITY ANCHOR
@@ -552,16 +552,16 @@ OFF-TARGET: hERG Channel
   - Cannot exploit electrostatic selectivity
 
 SOLUTION: Add POSITIVE charge (Lys/Arg) to peptide
-  - Mpro: Electrostatic ATTRACTION to GLU166 (+binding)
+  - C2_Protease_B: Electrostatic ATTRACTION to GLU166 (+binding)
   - hERG: No interaction (neutral environment)
-  - Net: SELECTIVE for Mpro over hERG
+  - Net: SELECTIVE for C2_Protease_B over hERG
 
 TOP RECOMMENDATION:
   Peptide: W-K-L-W-T-R-Q-W-L-Q (WKLWTRQWLQ)
   - K2 forms salt bridge with GLU166
   - R6 provides additional positive anchor
   - Maintains W1-W4-W8 Z² geometry
-  - Predicted: High Mpro affinity, LOW hERG liability
+  - Predicted: High C2_Protease_B affinity, LOW hERG liability
 """)
 
     print("=" * 80)

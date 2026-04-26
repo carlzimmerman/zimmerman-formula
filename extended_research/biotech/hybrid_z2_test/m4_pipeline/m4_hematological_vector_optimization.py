@@ -7,7 +7,7 @@ M4 HEMATOLOGICAL VECTOR OPTIMIZATION
 Open-source pipeline for improving delivery vehicles for ex vivo gene therapy
 targeting hematological disorders:
 
-1. Sickle Cell Disease (SCD) - Lentiviral and CRISPR delivery
+1. Sickle Cell target system (SCD) - Lentiviral and CRISPR delivery
 2. Beta-Thalassemia - Gene addition and gene editing approaches
 3. Hematopoietic Stem Cell (HSC) targeting optimization
 
@@ -33,7 +33,7 @@ SCIENTIFIC BASIS:
 VALIDATED APPROACHES:
 - Lyfgenia (lovotibeglogene autotemcel) - Lentiviral HBB gene addition
 - Casgevy (exagamglogene autotemcel) - CRISPR editing of BCL11A
-- Both FDA-approved December 2023 for sickle cell disease
+- Both FDA-approved December 2023 for sickle cell target system
 
 ================================================================================
 """
@@ -55,7 +55,7 @@ LENTIVIRAL_COMPONENTS = {
     # UniProt: P03522
     # =========================================================================
     "vsv_g": {
-        "name": "Vesicular Stomatitis Virus Glycoprotein (VSV-G)",
+        "name": "Vesicular Stomatitis target macromolecule Glycoprotein (VSV-G)",
         "uniprot": "P03522",
         "function": "Envelope protein for lentiviral pseudotyping",
         "mechanism": "LDL receptor-mediated entry (broad tropism)",
@@ -73,8 +73,8 @@ LENTIVIRAL_COMPONENTS = {
     # Self-inactivating (SIN) design
     # =========================================================================
     "gag_ma": {
-        "name": "HIV-1 Gag Matrix Protein (p17)",
-        "function": "Membrane targeting, viral assembly",
+        "name": "C2_Homodimer_A-1 Gag Matrix Protein (p17)",
+        "function": "Membrane targeting, target macromolecule assembly",
         "length": 132,
         "sequence": "MGARASVLSGGELDRWEKIRLRPGGKKKYKLKHIVWASRELERFAVNPGLLETSEGCRQILGQLQPSLQTGSEELRSLYNTVATLYCVHQRIEIKDTKEALDKIEEEQNKSKKKAQQAAADTGHSNQVSQNYPIVQNIQGQMVHQAISPRTLNAWVKVVEEKAFSPEVIPMFSALSEGATPQDLNTMLNTVGGHQAAMQMLKETINEEAAEWDRVHPVHAGPIAPGQMREPRGSDIAGTTSTLQEQIGWMTHNPPIPVGEIYKRWIILGLNKIVRMYSPTSILDIRQGPKEPFRDYVDRFYKTLRAEQASQEVKNWMTETLLVQNANPDCKTILKALGPAATLEEMMTACQGVGGPGHKARVLAEAMSQVTNSATIMMQRGNFRNQRKIVKCFNCGKEGHIAKNCRAPRKKGCWKCGKEGHQMKDCTERQANFLGKIWPSYKGRPGNFLQSRPEPTAPPEESFRSGVETTTPPQKQEPIDKELYPLTSLRSLFGNDPSSQ"
     },
@@ -96,7 +96,7 @@ LENTIVIRAL_COMPONENTS = {
         # Wild-type HBB with T87Q anti-sickling mutation
         "sequence_wt": "MVHLTPEEKSAVTALWGKVNVDEVGGEALGRLLVVYPWTQRFFESFGDLSTPDAVMGNPKVKAHGKKVLGAFSDGLAHLDNLKGTFATLSELHCDKLHVDPENFRLLGNVLVCVLAHHFGKEFTPPVQAAYQKVVAGVANALAHKYH",
         "sequence_antisickling": "MVHLTPEEKSAVTALWGKVNVDEVGGEALGRLLVVYPWTQRFFESFGDLSTPDAVMGNPKVKAHGKKVLGAFSDGLAHLDNLKGTFAQLSELHCDKLHVDPENFRLLGNVLVCVLAHHFGKEFTPPVQAAYQKVVAGVANALAHKYH",
-        "disease": "Sickle Cell Disease",
+        "target system": "Sickle Cell target system",
         "length": 147
     }
 }
@@ -296,7 +296,7 @@ def generate_fasta_header(data: Dict, seq_type: str) -> str:
 ;
 ; NAME: {data.get('name', 'Unknown')}
 ; FUNCTION: {data.get('function', 'Gene therapy component')}
-; APPLICATION: Sickle Cell Disease, Beta-Thalassemia
+; APPLICATION: Sickle Cell target system, Beta-Thalassemia
 ;
 ; ENGINEERING MODIFICATIONS:
 """
@@ -311,7 +311,7 @@ def generate_fasta_header(data: Dict, seq_type: str) -> str:
 ; SHA-256: {sha256}
 ;
 ; This sequence is published to PREVENT PATENT ENCLOSURE.
-; Anyone can synthesize, test, and use this sequence.
+; Anyone can fabricate sequence, test, and use this sequence.
 ;
 ; ==============================================================================
 
@@ -342,11 +342,11 @@ def main():
     """Main pipeline execution."""
     print("="*80)
     print("M4 HEMATOLOGICAL VECTOR OPTIMIZATION")
-    print("Gene Therapy Delivery for Sickle Cell Disease & Beta-Thalassemia")
+    print("Gene Therapy Delivery for Sickle Cell target system & Beta-Thalassemia")
     print("="*80)
     print("""
 TARGET DISEASES:
-  1. Sickle Cell Disease (SCD)
+  1. Sickle Cell target system (SCD)
   2. Beta-Thalassemia
 
 THERAPEUTIC APPROACHES:
@@ -402,7 +402,7 @@ LICENSE: AGPL-3.0 + OpenMTA + CC BY-SA 4.0 + Patent Dedication
     print(f"\n[BETA-GLOBIN] {hbb_data['name']}")
     print("-" * 60)
     print(f"  Gene: {hbb_data['gene']}")
-    print(f"  Disease: {hbb_data['disease']}")
+    print(f"  target system: {hbb_data['target system']}")
     print(f"  Length: {hbb_data['length']} aa")
 
     antisickling_seq, hbb_mods = create_antisickling_globin(hbb_data["sequence_wt"])
@@ -461,7 +461,7 @@ LICENSE: AGPL-3.0 + OpenMTA + CC BY-SA 4.0 + Patent Dedication
         "pipeline": "m4_hematological_vector_optimization",
         "license": "AGPL-3.0 + OpenMTA + CC BY-SA 4.0 + Patent Dedication",
         "diseases_addressed": [
-            "Sickle Cell Disease (SCD)",
+            "Sickle Cell target system (SCD)",
             "Beta-Thalassemia"
         ],
         "therapeutic_approaches": [
@@ -484,7 +484,7 @@ LICENSE: AGPL-3.0 + OpenMTA + CC BY-SA 4.0 + Patent Dedication
 Components generated: {len(all_results)}
 
 DISEASES ADDRESSED:
-  - Sickle Cell Disease - affects ~100,000 Americans, millions worldwide
+  - Sickle Cell target system - affects ~100,000 Americans, millions worldwide
   - Beta-Thalassemia - ~60,000-70,000 new cases per year globally
 
 CLINICAL IMPACT:

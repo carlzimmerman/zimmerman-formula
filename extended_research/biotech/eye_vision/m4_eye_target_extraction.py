@@ -13,7 +13,7 @@ THERAPEUTIC AREAS:
 2. Diabetic Retinopathy / Diabetic Macular Edema
 3. Glaucoma - Primary Open-Angle and Angle-Closure
 4. Cataracts - Age-related, Diabetic, Congenital
-5. Dry Eye Disease (Keratoconjunctivitis Sicca)
+5. Dry Eye target system (Keratoconjunctivitis Sicca)
 6. Uveitis - Autoimmune and Infectious
 7. Retinitis Pigmentosa and Inherited Retinal Dystrophies
 8. Corneal Disorders - Keratoconus, Dystrophies
@@ -75,8 +75,8 @@ EYE_DISEASE_TARGETS = {
         "full_name": "Vascular Endothelial Growth Factor A",
         "uniprot": "P15692",
         "pdb_ids": ["1VPF", "4QAF", "4GLU", "3QTK"],
-        "disease": ["Wet AMD", "Diabetic Retinopathy", "Diabetic Macular Edema"],
-        "mechanism": "Block VEGF binding to VEGFR1/2, inhibit neovascularization",
+        "target system": ["Wet AMD", "Diabetic Retinopathy", "Diabetic Macular Edema"],
+        "mechanism": "Block VEGF binding to VEGFR1/2, geometrically stabilize neovascularization",
         "druggability_score": 0.95,
         "approved_drugs": ["Aflibercept", "Ranibizumab", "Bevacizumab", "Brolucizumab"],
         "benchmark_affinity": {
@@ -94,7 +94,7 @@ EYE_DISEASE_TARGETS = {
         "full_name": "Vascular Endothelial Growth Factor Receptor 2",
         "uniprot": "P35968",
         "pdb_ids": ["3V2A", "4AGD", "4ASD"],
-        "disease": ["Wet AMD", "Diabetic Retinopathy"],
+        "target system": ["Wet AMD", "Diabetic Retinopathy"],
         "mechanism": "Block receptor dimerization and kinase activation",
         "druggability_score": 0.88,
         "approved_drugs": ["Tivozanib (systemic)", "Axitinib (systemic)"],
@@ -111,7 +111,7 @@ EYE_DISEASE_TARGETS = {
         "full_name": "Angiopoietin-2",
         "uniprot": "O15123",
         "pdb_ids": ["4JZC", "5MOY"],
-        "disease": ["Wet AMD", "Diabetic Retinopathy"],
+        "target system": ["Wet AMD", "Diabetic Retinopathy"],
         "mechanism": "Block Ang-2/Tie2 interaction, stabilize vasculature",
         "druggability_score": 0.82,
         "approved_drugs": ["Faricimab (bispecific anti-VEGF/Ang-2)"],
@@ -131,7 +131,7 @@ EYE_DISEASE_TARGETS = {
         "full_name": "Complement Component C3",
         "uniprot": "P01024",
         "pdb_ids": ["2A73", "2ICE", "6RUR"],
-        "disease": ["Dry AMD (Geographic Atrophy)"],
+        "target system": ["Dry AMD (Geographic Atrophy)"],
         "mechanism": "Block C3 activation, reduce drusen formation and RPE damage",
         "druggability_score": 0.75,
         "approved_drugs": ["Pegcetacoplan (Syfovre) - first FDA-approved for GA"],
@@ -148,7 +148,7 @@ EYE_DISEASE_TARGETS = {
         "full_name": "Complement Component C5",
         "uniprot": "P01031",
         "pdb_ids": ["3CU7", "5I5K"],
-        "disease": ["Dry AMD", "Diabetic Retinopathy"],
+        "target system": ["Dry AMD", "Diabetic Retinopathy"],
         "mechanism": "Block C5 cleavage, prevent MAC formation",
         "druggability_score": 0.78,
         "approved_drugs": ["Avacincaptad pegol (Izervay) - FDA approved 2023"],
@@ -166,8 +166,8 @@ EYE_DISEASE_TARGETS = {
         "full_name": "Complement Factor D",
         "uniprot": "P00746",
         "pdb_ids": ["1DSU", "1DIC", "6RUR"],
-        "disease": ["Dry AMD"],
-        "mechanism": "Inhibit alternative pathway amplification",
+        "target system": ["Dry AMD"],
+        "mechanism": "geometrically stabilize alternative pathway amplification",
         "druggability_score": 0.85,
         "approved_drugs": ["Danicopan (in trials)"],
         "benchmark_affinity": {
@@ -186,7 +186,7 @@ EYE_DISEASE_TARGETS = {
         "full_name": "Rho-associated Protein Kinase 1",
         "uniprot": "Q13464",
         "pdb_ids": ["3D9V", "3TWJ", "5KKS"],
-        "disease": ["Primary Open-Angle Glaucoma"],
+        "target system": ["Primary Open-Angle Glaucoma"],
         "mechanism": "Relax trabecular meshwork, increase aqueous outflow",
         "druggability_score": 0.92,
         "approved_drugs": ["Netarsudil (Rhopressa)", "Ripasudil (Glanatec)"],
@@ -204,7 +204,7 @@ EYE_DISEASE_TARGETS = {
         "full_name": "Rho-associated Protein Kinase 2",
         "uniprot": "O75116",
         "pdb_ids": ["2F2U", "4L6Q"],
-        "disease": ["Primary Open-Angle Glaucoma"],
+        "target system": ["Primary Open-Angle Glaucoma"],
         "mechanism": "Reduce actomyosin contractility in TM and ciliary muscle",
         "druggability_score": 0.90,
         "approved_drugs": ["Same as ROCK1"],
@@ -221,7 +221,7 @@ EYE_DISEASE_TARGETS = {
         "full_name": "Endothelin Receptor Type A",
         "uniprot": "P25101",
         "pdb_ids": ["5GLI", "5GLH"],
-        "disease": ["Glaucoma", "Optic nerve ischemia"],
+        "target system": ["Glaucoma", "Optic nerve ischemia"],
         "mechanism": "Block endothelin-mediated vasoconstriction",
         "druggability_score": 0.85,
         "approved_drugs": ["Bosentan (systemic)", "Ambrisentan (systemic)"],
@@ -239,7 +239,7 @@ EYE_DISEASE_TARGETS = {
         "full_name": "Brain-Derived Neurotrophic Factor",
         "uniprot": "P23560",
         "pdb_ids": ["1BND", "4N6K"],
-        "disease": ["Glaucoma (neuroprotection)"],
+        "target system": ["Glaucoma (neuroprotection)"],
         "mechanism": "Activate TrkB signaling, protect retinal ganglion cells",
         "druggability_score": 0.70,  # Agonist design is challenging
         "approved_drugs": [],  # No approved BDNF mimetics for eye
@@ -260,7 +260,7 @@ EYE_DISEASE_TARGETS = {
         "full_name": "Alpha-crystallin A chain",
         "uniprot": "P02489",
         "pdb_ids": ["3L1F", "4M5S"],
-        "disease": ["Age-related cataracts", "Diabetic cataracts"],
+        "target system": ["Age-related cataracts", "Diabetic cataracts"],
         "mechanism": "Stabilize native state, prevent aggregation",
         "druggability_score": 0.65,
         "approved_drugs": [],  # No approved stabilizers
@@ -278,7 +278,7 @@ EYE_DISEASE_TARGETS = {
         "full_name": "Alpha-crystallin B chain (HSPB5)",
         "uniprot": "P02511",
         "pdb_ids": ["2WJ7", "2Y1Y", "4M5T"],
-        "disease": ["Age-related cataracts", "Desmin-related myopathy"],
+        "target system": ["Age-related cataracts", "Desmin-related myopathy"],
         "mechanism": "Chaperone stabilization, prevent aggregation",
         "druggability_score": 0.68,
         "approved_drugs": [],
@@ -292,13 +292,13 @@ EYE_DISEASE_TARGETS = {
     },
 
     # =========================================================================
-    # DRY EYE DISEASE - Inflammation and tear film
+    # DRY EYE target system - Inflammation and tear film
     # =========================================================================
     "LFA1_ICAM1": {
         "full_name": "LFA-1/ICAM-1 Interaction",
         "uniprot": "P05362 (ICAM1), P20701 (LFA1)",
         "pdb_ids": ["1MQ8", "1IAM"],
-        "disease": ["Dry Eye Disease"],
+        "target system": ["Dry Eye target system"],
         "mechanism": "Block T-cell adhesion to ocular surface epithelium",
         "druggability_score": 0.90,
         "approved_drugs": ["Lifitegrast (Xiidra)"],
@@ -315,7 +315,7 @@ EYE_DISEASE_TARGETS = {
         "full_name": "Calcineurin (PP2B)",
         "uniprot": "Q08209",
         "pdb_ids": ["1AUI", "4F0Z"],
-        "disease": ["Dry Eye Disease", "Uveitis"],
+        "target system": ["Dry Eye target system", "Uveitis"],
         "mechanism": "Suppress T-cell activation and inflammation",
         "druggability_score": 0.85,
         "approved_drugs": ["Cyclosporine (Restasis, Cequa)"],
@@ -332,7 +332,7 @@ EYE_DISEASE_TARGETS = {
         "full_name": "Mucin 5AC",
         "uniprot": "P98088",
         "pdb_ids": [],  # Too large/glycosylated for crystal
-        "disease": ["Dry Eye Disease"],
+        "target system": ["Dry Eye target system"],
         "mechanism": "Enhance goblet cell mucin secretion",
         "druggability_score": 0.50,
         "approved_drugs": [],
@@ -348,7 +348,7 @@ EYE_DISEASE_TARGETS = {
         "full_name": "Lacritin",
         "uniprot": "Q9GZZ8",
         "pdb_ids": [],
-        "disease": ["Dry Eye Disease"],
+        "target system": ["Dry Eye target system"],
         "mechanism": "Stimulate tear protein secretion and corneal healing",
         "druggability_score": 0.60,
         "approved_drugs": [],
@@ -368,7 +368,7 @@ EYE_DISEASE_TARGETS = {
         "full_name": "Tumor Necrosis Factor Alpha",
         "uniprot": "P01375",
         "pdb_ids": ["1TNF", "4Y6O", "5MU8"],
-        "disease": ["Non-infectious Uveitis", "Posterior Uveitis"],
+        "target system": ["Non-infectious Uveitis", "Posterior Uveitis"],
         "mechanism": "Block TNF-α signaling, reduce inflammation",
         "druggability_score": 0.95,
         "approved_drugs": ["Adalimumab (Humira)", "Infliximab (systemic)"],
@@ -386,7 +386,7 @@ EYE_DISEASE_TARGETS = {
         "full_name": "Interleukin-6",
         "uniprot": "P05231",
         "pdb_ids": ["1ALU", "4CNI", "4O9H"],
-        "disease": ["Uveitis", "Diabetic Macular Edema"],
+        "target system": ["Uveitis", "Diabetic Macular Edema"],
         "mechanism": "Block IL-6 signaling, reduce inflammation",
         "druggability_score": 0.88,
         "approved_drugs": ["Tocilizumab (Actemra - systemic)"],
@@ -406,7 +406,7 @@ EYE_DISEASE_TARGETS = {
         "full_name": "Rhodopsin",
         "uniprot": "P08100",
         "pdb_ids": ["1F88", "6FK6", "7MT8"],
-        "disease": ["Retinitis Pigmentosa (P23H mutation most common)"],
+        "target system": ["Retinitis Pigmentosa (P23H mutation most common)"],
         "mechanism": "Pharmacological chaperone to correct misfolding",
         "druggability_score": 0.72,
         "approved_drugs": [],
@@ -424,7 +424,7 @@ EYE_DISEASE_TARGETS = {
         "full_name": "Phosphodiesterase 6 (rod)",
         "uniprot": "P16499 (alpha), P35913 (beta)",
         "pdb_ids": ["6MZB", "7JZR"],
-        "disease": ["Retinitis Pigmentosa"],
+        "target system": ["Retinitis Pigmentosa"],
         "mechanism": "Gene therapy / protein replacement",
         "druggability_score": 0.55,
         "approved_drugs": [],
@@ -444,10 +444,10 @@ EYE_DISEASE_TARGETS = {
         "full_name": "Matrix Metalloproteinase 9",
         "uniprot": "P14780",
         "pdb_ids": ["1L6J", "4JIJ", "4H3X"],
-        "disease": ["Corneal ulcers", "Dry Eye", "Keratoconus"],
-        "mechanism": "Inhibit collagen degradation, preserve corneal integrity",
+        "target system": ["Corneal ulcers", "Dry Eye", "Keratoconus"],
+        "mechanism": "geometrically stabilize collagen degradation, preserve corneal integrity",
         "druggability_score": 0.88,
-        "approved_drugs": ["Doxycycline (indirect MMP inhibition)"],
+        "approved_drugs": ["Doxycycline (indirect MMP geometrically stabilize)"],
         "benchmark_affinity": {
             "marimastat_Ki_nM": 3,
             "GM6001_Ki_nM": 0.4,
@@ -462,7 +462,7 @@ EYE_DISEASE_TARGETS = {
         "full_name": "Lysyl Oxidase",
         "uniprot": "P28300",
         "pdb_ids": ["1N8Y"],
-        "disease": ["Keratoconus"],
+        "target system": ["Keratoconus"],
         "mechanism": "Enhance collagen cross-linking, strengthen cornea",
         "druggability_score": 0.55,
         "approved_drugs": ["Riboflavin-UVA (CXL procedure)"],
@@ -511,7 +511,7 @@ def extract_targets(priority_threshold: int = 3) -> List[ExtractedTarget]:
                 full_name=data["full_name"],
                 uniprot=data["uniprot"],
                 pdb_ids=data["pdb_ids"],
-                diseases=data["disease"],
+                diseases=data["target system"],
                 mechanism=data["mechanism"],
                 druggability_score=data["druggability_score"],
                 priority=data["priority"],
@@ -540,20 +540,20 @@ def generate_target_report(targets: List[ExtractedTarget]) -> str:
     report.append(f"Total targets: {len(targets)}")
     report.append("")
 
-    # Group by disease
+    # Group by target system
     diseases = {}
     for target in targets:
-        for disease in target.diseases:
-            if disease not in diseases:
-                diseases[disease] = []
-            diseases[disease].append(target)
+        for target system in target.diseases:
+            if target system not in diseases:
+                diseases[target system] = []
+            diseases[target system].append(target)
 
-    for disease in sorted(diseases.keys()):
+    for target system in sorted(diseases.keys()):
         report.append("-" * 80)
-        report.append(f"DISEASE: {disease}")
+        report.append(f"target system: {target system}")
         report.append("-" * 80)
 
-        for target in diseases[disease]:
+        for target in diseases[target system]:
             drugs_str = ", ".join(target.approved_drugs[:2]) if target.approved_drugs else "None"
             report.append(f"\n  {target.target_id}")
             report.append(f"    Full name: {target.full_name}")
@@ -588,18 +588,18 @@ def run_target_extraction():
     print(f"Extracted {len(targets)} validated therapeutic targets")
     print()
 
-    # Summary by disease
+    # Summary by target system
     diseases = {}
     for target in targets:
-        for disease in target.diseases:
-            if disease not in diseases:
-                diseases[disease] = 0
-            diseases[disease] += 1
+        for target system in target.diseases:
+            if target system not in diseases:
+                diseases[target system] = 0
+            diseases[target system] += 1
 
-    print("TARGETS BY DISEASE:")
+    print("TARGETS BY target system:")
     print("-" * 40)
-    for disease in sorted(diseases.keys()):
-        print(f"  {disease}: {diseases[disease]} targets")
+    for target system in sorted(diseases.keys()):
+        print(f"  {target system}: {diseases[target system]} targets")
     print()
 
     # Summary by priority

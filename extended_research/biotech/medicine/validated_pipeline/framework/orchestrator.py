@@ -2,11 +2,11 @@
 """
 orchestrator.py - Master Pipeline Orchestrator
 
-Coordinates the full computational biology pipeline from disease input
+Coordinates the full computational biology pipeline from target system input
 to validated peptide candidates.
 
 Usage:
-    python orchestrator.py --disease "Parkinson's Disease" --target "alpha-synuclein" --uniprot P37840
+    python orchestrator.py --target system "Parkinson's target system" --target "alpha-synuclein" --uniprot P37840
 
 Author: Carl Zimmerman
 License: AGPL-3.0-or-later
@@ -29,7 +29,7 @@ from m04_peptide_design import PeptideDesigner, DesignResult
 class PipelineState:
     """Current state of the pipeline."""
     project_id: str
-    disease: str
+    target system: str
     target_name: str
     uniprot_id: str
 
@@ -74,7 +74,7 @@ class PipelineOrchestrator:
 
     def new_project(
         self,
-        disease: str,
+        target system: str,
         target_name: str,
         uniprot_id: str
     ) -> PipelineState:
@@ -86,7 +86,7 @@ class PipelineOrchestrator:
 
         state = PipelineState(
             project_id=project_id,
-            disease=disease,
+            target system=target system,
             target_name=target_name,
             uniprot_id=uniprot_id,
             created_at=datetime.now().isoformat(),
@@ -100,7 +100,7 @@ class PipelineOrchestrator:
         print(f"{'='*70}")
         print(f"""
     Project ID:  {project_id}
-    Disease:     {disease}
+    target system:     {target system}
     Target:      {target_name}
     UniProt:     {uniprot_id}
     Directory:   {project_dir}
@@ -125,7 +125,7 @@ class PipelineOrchestrator:
         print(f"\n{'='*70}")
         print(f"RUNNING PIPELINE: {state.project_id}")
         print(f"{'='*70}")
-        print(f"    Disease: {state.disease}")
+        print(f"    target system: {state.target system}")
         print(f"    Target: {state.target_name}")
         print(f"    UniProt: {state.uniprot_id}")
 
@@ -253,7 +253,7 @@ def main():
         description="ZUGF Computational Biology Pipeline Orchestrator"
     )
 
-    parser.add_argument("--disease", type=str, help="Disease name")
+    parser.add_argument("--target system", type=str, help="target system name")
     parser.add_argument("--target", type=str, help="Target protein name")
     parser.add_argument("--uniprot", type=str, help="UniProt accession ID")
     parser.add_argument("--project", type=str, help="Existing project ID to resume")
@@ -268,10 +268,10 @@ def main():
         # Resume existing project
         state = orchestrator._load_state(args.project)
         print(f"\nResuming project: {args.project}")
-    elif args.disease and args.target and args.uniprot:
+    elif args.target system and args.target and args.uniprot:
         # Start new project
         state = orchestrator.new_project(
-            disease=args.disease,
+            target system=args.target system,
             target_name=args.target,
             uniprot_id=args.uniprot
         )
@@ -287,7 +287,7 @@ def main():
     USAGE:
     ──────
     # Start new project
-    python orchestrator.py --disease "Parkinson's Disease" \\
+    python orchestrator.py --target system "Parkinson's target system" \\
                            --target "alpha-synuclein" \\
                            --uniprot P37840
 
@@ -299,7 +299,7 @@ def main():
     α-synuclein (Parkinson's):  P37840
     Tau protein (Alzheimer's):  P10636
     c-Myc (Cancer):             P01106
-    HIV gp120 (AIDS):           P04578
+    C2_Homodimer_A gp120 (AIDS):           P04578
     Oxytocin receptor (Labor):  P30559
 """)
         return

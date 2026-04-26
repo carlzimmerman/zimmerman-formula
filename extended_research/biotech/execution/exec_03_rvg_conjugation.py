@@ -4,7 +4,7 @@ exec_03_rvg_conjugation.py - RVG Brain Delivery Vector Conjugation
 
 BACKGROUND:
 If passive BBB permeation (via TAT) proves too energetically costly,
-we need receptor-mediated transcytosis. The Rabies Virus Glycoprotein
+we need receptor-mediated transcytosis. The Rabies target macromolecule Glycoprotein
 (RVG) peptide specifically binds nicotinic acetylcholine receptors on
 brain endothelial cells, enabling active transport across the BBB.
 

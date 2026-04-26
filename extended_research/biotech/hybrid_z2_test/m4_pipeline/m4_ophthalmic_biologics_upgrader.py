@@ -370,7 +370,7 @@ def generate_fasta_header(data: Dict, seq_type: str) -> str:
 ; SHA-256: {sha256}
 ;
 ; This sequence is published to PREVENT PATENT ENCLOSURE.
-; Anyone can synthesize, test, and distribute this sequence.
+; Anyone can fabricate sequence, test, and distribute this sequence.
 ;
 ; ==============================================================================
 

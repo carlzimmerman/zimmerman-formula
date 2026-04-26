@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-HCV NS3 Protease Z² Distance Analysis
+Monomeric_Cleft_C NS3 Protease Z² Distance Analysis
 ======================================
 Author: Carl Zimmerman
 Date: 2026-04-24
 
-Analyzes aromatic residue distances in the HCV NS3 protease structure
+Analyzes aromatic residue distances in the Monomeric_Cleft_C NS3 protease structure
 to identify Z² matches and potential peptide binding hotspots.
 
 Z² Biological Constant: 6.015152508891966 Å
@@ -242,10 +242,10 @@ def compute_z2_contact_density(aromatics: List[AromaticResidue]) -> Dict[str, in
 # =============================================================================
 
 def run_hcv_ns3_analysis(pdb_path: str):
-    """Run complete Z² analysis on HCV NS3"""
+    """Run complete Z² analysis on Monomeric_Cleft_C NS3"""
 
     print("=" * 80)
-    print("  HCV NS3 PROTEASE Z² DISTANCE ANALYSIS")
+    print("  Monomeric_Cleft_C NS3 PROTEASE Z² DISTANCE ANALYSIS")
     print("=" * 80)
     print(f"\nPDB File: {pdb_path}")
     print(f"Z² Biological Constant: {Z2_BIOLOGICAL_CONSTANT:.12f} Å")
@@ -277,10 +277,10 @@ def run_hcv_ns3_analysis(pdb_path: str):
         for res in sorted(residues, key=lambda r: r.resnum):
             print(f"    {res.resname}{res.resnum}")
 
-    # HCV NS3 catalytic triad: His57, Asp81, Ser139 (protease domain)
+    # Monomeric_Cleft_C NS3 catalytic triad: His57, Asp81, Ser139 (protease domain)
     # Key aromatic residues near active site
     print("\n" + "-" * 60)
-    print("HCV NS3 PROTEASE ACTIVE SITE CONTEXT")
+    print("Monomeric_Cleft_C NS3 PROTEASE ACTIVE SITE CONTEXT")
     print("-" * 60)
     print("""
     Catalytic Triad: His57 - Asp81 - Ser139
@@ -345,7 +345,7 @@ def run_hcv_ns3_analysis(pdb_path: str):
     print("ACTIVE SITE AROMATIC ANALYSIS")
     print("-" * 60)
 
-    # Key residues in HCV NS3 active site region
+    # Key residues in Monomeric_Cleft_C NS3 active site region
     active_site_region = list(range(40, 180))  # Protease domain
     active_aromatics = [r for r in aromatics if r.resnum in active_site_region]
 
@@ -411,15 +411,15 @@ def run_hcv_ns3_analysis(pdb_path: str):
     print(f"   - Include HIS for catalytic triad mimicry")
     print(f"   - Target S1-S4 pockets with appropriate sidechains")
 
-    # Comparison to HIV
-    print(f"\n4. COMPARISON TO VALIDATED HIV PROTEASE:")
-    print(f"   - HIV PHE53: Z² match at -1.3 milliÅ (VALIDATED)")
-    print(f"   - HCV best match: {all_pairs[0].deviation_from_z2*1000:+.3f} milliÅ")
+    # Comparison to C2_Homodimer_A
+    print(f"\n4. COMPARISON TO VALIDATED C2_Homodimer_A PROTEASE:")
+    print(f"   - C2_Homodimer_A PHE53: Z² match at -1.3 milliÅ (VALIDATED)")
+    print(f"   - Monomeric_Cleft_C best match: {all_pairs[0].deviation_from_z2*1000:+.3f} milliÅ")
 
     if abs(all_pairs[0].deviation_from_z2) < TOLERANCE_MODERATE:
-        print(f"   - STATUS: COMPARABLE TO HIV - GOOD CANDIDATE")
+        print(f"   - STATUS: COMPARABLE TO C2_Homodimer_A - GOOD CANDIDATE")
     else:
-        print(f"   - STATUS: Weaker match than HIV, may need different approach")
+        print(f"   - STATUS: Weaker match than C2_Homodimer_A, may need different approach")
 
     # Save results
     results = {

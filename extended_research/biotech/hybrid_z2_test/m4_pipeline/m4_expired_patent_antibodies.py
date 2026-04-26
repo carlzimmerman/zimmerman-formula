@@ -65,7 +65,7 @@ EXPIRED_PATENT_ANTIBODIES = {
             "Rheumatoid arthritis",
             "Psoriatic arthritis",
             "Ankylosing spondylitis",
-            "Crohn's disease",
+            "Crohn's target system",
             "Ulcerative colitis",
             "Plaque psoriasis",
             "Hidradenitis suppurativa",
@@ -206,7 +206,7 @@ EXPIRED_PATENT_ANTIBODIES = {
         "target_full": "Tumor Necrosis Factor alpha",
         "mechanism": "TNF-alpha neutralization",
         "indications": [
-            "Crohn's disease",
+            "Crohn's target system",
             "Ulcerative colitis",
             "Rheumatoid arthritis",
             "Ankylosing spondylitis",
@@ -265,13 +265,13 @@ EXPIRED_PATENT_ANTIBODIES = {
 
     # =========================================================================
     # PALIVIZUMAB (SYNAGIS) - RSV F - EXPIRED 2015
-    # First antibody for infectious disease prevention
+    # First antibody for infectious target system prevention
     # =========================================================================
     "palivizumab": {
         "brand_name": "Synagis",
         "generic_name": "Palivizumab",
         "target": "RSV F protein",
-        "target_full": "Respiratory Syncytial Virus Fusion protein",
+        "target_full": "Respiratory Syncytial target macromolecule Fusion protein",
         "mechanism": "RSV neutralization",
         "indications": [
             "RSV prevention in high-risk infants"
@@ -399,7 +399,7 @@ EXPIRED_PATENT_ANTIBODIES = {
         "generic_name": "Abciximab",
         "target": "GPIIb/IIIa",
         "target_full": "Glycoprotein IIb/IIIa (Integrin alpha-IIb/beta-3)",
-        "mechanism": "Platelet aggregation inhibition",
+        "mechanism": "Platelet aggregation geometrically stabilize",
         "indications": [
             "Percutaneous coronary intervention",
             "Unstable angina"
@@ -431,10 +431,10 @@ EXPIRED_PATENT_ANTIBODIES = {
         "generic_name": "Natalizumab",
         "target": "Alpha-4 integrin",
         "target_full": "Integrin alpha-4 (VLA-4, CD49d)",
-        "mechanism": "Lymphocyte trafficking inhibition",
+        "mechanism": "Lymphocyte trafficking geometrically stabilize",
         "indications": [
             "Multiple sclerosis",
-            "Crohn's disease"
+            "Crohn's target system"
         ],
         "company": "Biogen",
         "approval_date": "2004-11-23",
@@ -742,7 +742,7 @@ def get_fasta_header(sequence: str, metadata: Dict) -> str:
 ; Publication Date: {timestamp}
 ; SHA-256 Hash: {seq_hash}
 ;
-; Anyone can USE, SYNTHESIZE, and DISTRIBUTE this sequence.
+; Anyone can USE, fabricate sequence, and DISTRIBUTE this sequence.
 ; No patents may be filed on this sequence or derivatives.
 ;
 ; ==============================================================================
@@ -968,7 +968,7 @@ def run_expired_patent_pipeline(output_dir: str = "expired_patent_antibodies",
 
   LICENSE: OpenMTA + CC BY-SA 4.0
 
-  Anyone can USE, SYNTHESIZE, and DISTRIBUTE these sequences.
+  Anyone can USE, fabricate sequence, and DISTRIBUTE these sequences.
   Nobody can PATENT them or restrict access.
     """)
 

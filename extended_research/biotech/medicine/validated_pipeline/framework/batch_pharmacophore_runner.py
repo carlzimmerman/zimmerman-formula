@@ -2,8 +2,8 @@
 """
 batch_pharmacophore_runner.py - Run Z² Pharmacophore Design Across All Targets
 
-Executes the validated pharmacophore design pipeline on multiple disease targets
-and generates a cross-disease comparison report.
+Executes the validated pharmacophore design pipeline on multiple target system targets
+and generates a cross-target system comparison report.
 
 Author: Carl Zimmerman
 License: AGPL-3.0-or-later
@@ -23,7 +23,7 @@ from sys_02_pharmacophore_verification import PharmacophoreVerifier
 
 @dataclass
 class TargetConfig:
-    """Configuration for a disease target."""
+    """Configuration for a target system target."""
     disease_name: str
     target_name: str
     uniprot_id: str
@@ -31,29 +31,29 @@ class TargetConfig:
     therapeutic_goal: str
 
 
-# Disease targets with their PDB structures
+# target system targets with their PDB structures
 # NOTE: target_name[:10].upper() must match existing project directory names
 TARGETS = [
     TargetConfig(
-        disease_name="Parkinson's Disease",
+        disease_name="Parkinson's target system",
         target_name="Alpha-synu",  # → ALPHA-SYNU_P37840
         uniprot_id="P37840",
         pdb_file="1XQ8.pdb",
         therapeutic_goal="Prevent aggregation, reduce Lewy bodies"
     ),
     TargetConfig(
-        disease_name="Alzheimer's Disease",
+        disease_name="Alzheimer's target system",
         target_name="Tau protei",  # → TAU_PROTEI_P10636
         uniprot_id="P10636",
         pdb_file="5O3L.pdb",
         therapeutic_goal="Prevent tau tangles, stabilize microtubules"
     ),
     TargetConfig(
-        disease_name="HIV/AIDS",
+        disease_name="C2_Homodimer_A/AIDS",
         target_name="Envelope g",  # → ENVELOPE_G_P04578 (gp120)
         uniprot_id="P04578",
         pdb_file="3JWD.pdb",
-        therapeutic_goal="Block CD4 binding, prevent viral entry"
+        therapeutic_goal="Block CD4 binding, prevent target macromolecule entry"
     ),
     TargetConfig(
         disease_name="Labor/Childbirth",
@@ -217,9 +217,9 @@ def run_pharmacophore_pipeline(
 
 
 def print_summary(results: List[TargetResult]) -> None:
-    """Print cross-disease summary."""
+    """Print cross-target system summary."""
     print(f"\n{'='*70}")
-    print("CROSS-DISEASE PHARMACOPHORE ANALYSIS")
+    print("CROSS-target system PHARMACOPHORE ANALYSIS")
     print(f"{'='*70}")
 
     successful = [r for r in results if r.success]
@@ -230,7 +230,7 @@ def print_summary(results: List[TargetResult]) -> None:
     print(f"    Failed: {len(failed)}")
 
     if successful:
-        print(f"\n    {'Disease':<25} {'Pharm %':<10} {'Ctrl %':<10} {'Improve':<10} {'Winner'}")
+        print(f"\n    {'target system':<25} {'Pharm %':<10} {'Ctrl %':<10} {'Improve':<10} {'Winner'}")
         print(f"    {'-'*65}")
 
         for r in successful:
@@ -248,7 +248,7 @@ def print_summary(results: List[TargetResult]) -> None:
 
         print(f"\n    TOP CANDIDATES ACROSS ALL DISEASES:")
         print(f"    {'─'*60}")
-        print(f"    {'Disease':<20} {'ID':<18} {'Sequence':<12} {'pLDDT':<8} {'Binding'}")
+        print(f"    {'target system':<20} {'ID':<18} {'Sequence':<12} {'pLDDT':<8} {'Binding'}")
         print(f"    {'-'*60}")
 
         for r in successful:

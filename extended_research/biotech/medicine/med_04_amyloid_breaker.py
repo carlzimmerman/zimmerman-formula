@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-med_04_amyloid_breaker.py - Beta-Sheet Breaker for Alzheimer's Disease
+med_04_amyloid_breaker.py - Beta-Sheet Breaker for Alzheimer's target system
 
 BACKGROUND:
-Alzheimer's disease is a TOPOLOGICAL catastrophe. Amyloid-Beta (Aβ) peptides
+Alzheimer's target system is a TOPOLOGICAL catastrophe. Amyloid-Beta (Aβ) peptides
 misfold from native alpha-helices into pathological beta-sheets that stack
 into indestructible fibrils. These fibrils crush neurons over decades.
 
@@ -481,7 +481,7 @@ def assess_safety_and_delivery(breaker: dict) -> dict:
     Assess safety profile and delivery strategy for the breaker peptide.
 
     Key considerations:
-    1. Must cross BBB (Alzheimer's is a CNS disease)
+    1. Must cross BBB (Alzheimer's is a CNS target system)
     2. Must not form toxic aggregates itself
     3. Must not interfere with normal proteins
     """
@@ -545,10 +545,10 @@ def assess_safety_and_delivery(breaker: dict) -> dict:
 
 def main():
     """
-    Design beta-sheet breaker peptides for Alzheimer's disease.
+    Design beta-sheet breaker peptides for Alzheimer's target system.
     """
     print("=" * 70)
-    print("BETA-SHEET BREAKER DESIGN FOR ALZHEIMER'S DISEASE")
+    print("BETA-SHEET BREAKER DESIGN FOR ALZHEIMER'S target system")
     print("Topological Intervention in Amyloid Fibril Formation")
     print("=" * 70)
     print(f"Timestamp: {datetime.now().isoformat()}")
@@ -583,7 +583,7 @@ def main():
         'z2_value': float(Z2),
         'r_natural': float(R_NATURAL),
         'target': 'Amyloid-Beta fibrils',
-        'disease': 'Alzheimer\'s Disease',
+        'target system': 'Alzheimer\'s target system',
         'global_burden': 'Leading cause of dementia, 50M+ affected worldwide',
         'amyloid_topology': amyloid_topology,
         'aggregation_hotspots': hotspots,

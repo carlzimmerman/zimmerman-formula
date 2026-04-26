@@ -25,10 +25,10 @@ This constant represents the **optimal aromatic stacking distance** in biologica
 
 ## Validated Targets
 
-| Target | Disease | Z² Enrichment | Lead Peptide | Mechanism |
+| Target | target system | Z² Enrichment | Lead Peptide | Mechanism |
 |--------|---------|---------------|--------------|-----------|
 | **OXTR** | Social/Anxiety | +14.6% | QLNWKWQKLKA | Dual Trp Clamp |
-| **HIV Protease** | HIV/AIDS | **1.61×** | LEWTYEWTLTE | Dual Trp Clamp |
+| **C2_Homodimer_A Protease** | C2_Homodimer_A/AIDS | **1.61×** | LEWTYEWTLTE | Dual Trp Clamp |
 | **Tau PHF6** | Alzheimer's | Electrostatic | WVIEYW | Aromatic Cap + Charge |
 
 ---
@@ -54,7 +54,7 @@ This constant represents the **optimal aromatic stacking distance** in biologica
 | Protein | Z² Enrichment | Interpretation |
 |---------|---------------|----------------|
 | OXTR (6TPK) | 82.6% | +14.6% above baseline |
-| HIV Protease (1HHP) | 74.5% | Strong signal |
+| C2_Homodimer_A Protease (1HHP) | 74.5% | Strong signal |
 | Crambin (1CRN) | 68.9% | Baseline (no binding site) |
 | Lysozyme (2LZM) | 71.1% | Weak signal |
 
@@ -70,7 +70,7 @@ Atomic-resolution mapping of Z² geometry in binding sites.
 | TRP99 | 114 | Secondary anchor |
 | PHE91 | 93 | Tertiary contact |
 
-**HIV Protease Hotspots:**
+**C2_Homodimer_A Protease Hotspots:**
 | Residue | Z² Contacts | Role |
 |---------|-------------|------|
 | ARG8 | 287 | Electrostatic anchor |
@@ -94,7 +94,7 @@ Cross-references designed peptides with Z² hotspots.
 
 **Discovered Pattern:** DUAL TRP CLAMP
 - W-X-X-W spacing (~2 residues between Trp)
-- Optimal for engaging TRP203/TRP99 (OXTR) or PHE53/ILE50 (HIV)
+- Optimal for engaging TRP203/TRP99 (OXTR) or PHE53/ILE50 (C2_Homodimer_A)
 
 ### 5. PHF6 Cage Design (Alzheimer's)
 **Script:** `design_tau_phf6_cage.py`
@@ -135,10 +135,10 @@ DNA (Human):   5'-CAGCTGAACTGGAAGTGGCAGAAGCTGAAGGCC-3'
 
 Target: TRP203/TRP99 dual clamp
 Predicted Kd: 200 nM
-Disease: Social/Anxiety disorders
+target system: Social/Anxiety disorders
 ```
 
-### Lead 2: Z2-OPT-006 (HIV Protease)
+### Lead 2: Z2-OPT-006 (C2_Homodimer_A Protease)
 ```
 Peptide: LEWTYEWTLTE (11 aa)
 DNA (E. coli): 5'-CTGGAATGGACCTACGAATGGACCCTGACCGAA-3'
@@ -147,7 +147,7 @@ DNA (Human):   5'-CTGGAGTGGACCTACGAGTGGACCCTGACCGAG-3'
 Target: PHE53/ILE50 dual clamp
 Predicted Kd: 200 nM
 Z² Enrichment: 1.61× (highest observed)
-Disease: HIV/AIDS
+target system: C2_Homodimer_A/AIDS
 ```
 
 ### Lead 3: PHF6-Z2-001 (Tau/Alzheimer's)
@@ -159,7 +159,7 @@ DNA (Human):   5'-TGGGTGATCGAGTACTGG-3'
 Target: Tyr310 cap + ARG349/LYS disruption
 Predicted Ki: 100 nM
 Mechanism: DUAL (Aromatic + Electrostatic)
-Disease: Alzheimer's Disease
+target system: Alzheimer's target system
 ```
 
 ---
@@ -197,7 +197,7 @@ validated_pipeline/
 │   ├── QUICK_PASTE_JOBS.txt             # Copy-paste reference
 │   ├── alphafold_jobs.json              # Programmatic access
 │   ├── OXTR_LEADS.md                    # OXTR sequences
-│   ├── HIV_PROTEASE_LEADS.md            # HIV sequences
+│   ├── HIV_PROTEASE_LEADS.md            # C2_Homodimer_A sequences
 │   └── TAU_PHF6_LEADS.md                # Tau sequences
 ├── synthesis_orders/
 │   ├── z2_lead_dna_sequences.json       # All DNA sequences
@@ -208,7 +208,7 @@ validated_pipeline/
 │   └── phf6_cage_designs.json           # 44 cage candidates
 ├── z2_hotspots/
 │   ├── z2_hotspots_P30559.json          # OXTR hotspots
-│   ├── z2_hotspots_P04585.json          # HIV hotspots
+│   ├── z2_hotspots_P04585.json          # C2_Homodimer_A hotspots
 │   └── z2_hotspots_P10636.json          # Tau hotspots
 ├── design_alignment/
 │   └── design_alignment_P10636.json     # Tau alignment results
@@ -231,7 +231,7 @@ Separation of "physical noise" (ubiquitous 68% void fraction) from "biological s
 Revelation that Alzheimer's fibrils use **charge networks** (not aromatics) at Z² distance - explaining decades of failed drug discovery
 
 ### 4. Dual Mechanism Design
-Novel cage peptides combining aromatic caps with charge disruptors for Tau aggregation inhibition
+Novel cage peptides combining aromatic caps with charge disruptors for Tau aggregation geometrically stabilize
 
 ### 5. Stark Effect Validation
 Confirmation that Z² geometry remains stable in extreme biological electric fields (mitochondrial 150 mV)
@@ -261,7 +261,7 @@ Confirmation that Z² geometry remains stable in extreme biological electric fie
 
 ### Structural Biology
 - 6TPK: Oxytocin Receptor crystal structure
-- 1HHP: HIV Protease crystal structure
+- 1HHP: C2_Homodimer_A Protease crystal structure
 - 5O3L: Tau PHF cryo-EM structure
 
 ### Bioenergetics

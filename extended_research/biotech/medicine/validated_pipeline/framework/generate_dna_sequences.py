@@ -159,7 +159,7 @@ Z2_LEADS = [
     {
         'id': 'Z2-OPT-001',
         'target': 'Oxytocin Receptor (OXTR)',
-        'disease': 'Social/Anxiety Disorders',
+        'target system': 'Social/Anxiety Disorders',
         'sequence': 'QLNWKWQKLKA',
         'mechanism': 'Dual Trp Clamp on TRP203/TRP99',
         'predicted_kd': '200 nM',
@@ -167,8 +167,8 @@ Z2_LEADS = [
     },
     {
         'id': 'Z2-OPT-006',
-        'target': 'HIV Protease',
-        'disease': 'HIV/AIDS',
+        'target': 'C2_Homodimer_A Protease',
+        'target system': 'C2_Homodimer_A/AIDS',
         'sequence': 'LEWTYEWTLTE',
         'mechanism': 'Dual Trp Clamp on PHE53/ILE50',
         'predicted_kd': '200 nM',
@@ -177,7 +177,7 @@ Z2_LEADS = [
     {
         'id': 'PHF6-Z2-001',
         'target': 'Tau PHF6 Fibril',
-        'disease': "Alzheimer's Disease",
+        'target system': "Alzheimer's target system",
         'sequence': 'WVIEYW',
         'mechanism': 'Aromatic Cap + Charge Disruption (ARG349/LYS)',
         'predicted_kd': '100 nM',
@@ -228,7 +228,7 @@ def generate_synthesis_orders():
         result = {
             'lead_id': lead['id'],
             'target': lead['target'],
-            'disease': lead['disease'],
+            'target system': lead['target system'],
             'peptide_sequence': peptide,
             'peptide_length': len(peptide),
             'mechanism': lead['mechanism'],
@@ -251,7 +251,7 @@ def generate_synthesis_orders():
         print(f"  LEAD: {lead['id']}")
         print("-" * 80)
         print(f"    Target: {lead['target']}")
-        print(f"    Disease: {lead['disease']}")
+        print(f"    target system: {lead['target system']}")
         print(f"    Mechanism: {lead['mechanism']}")
         print(f"    Z² Alignment: {lead['z2_alignment']:.3f}")
         print(f"    Predicted Kd: {lead['predicted_kd']}")
@@ -344,10 +344,10 @@ def generate_synthesis_orders():
     print("SUMMARY TABLE")
     print("=" * 80)
     print()
-    print(f"{'Lead ID':<15}{'Peptide':<15}{'Length':<8}{'DNA (bp)':<10}{'GC% (E.coli)':<12}{'Disease'}")
+    print(f"{'Lead ID':<15}{'Peptide':<15}{'Length':<8}{'DNA (bp)':<10}{'GC% (E.coli)':<12}{'target system'}")
     print("-" * 80)
     for r in results:
-        print(f"{r['lead_id']:<15}{r['peptide_sequence']:<15}{r['peptide_length']:<8}{r['dna_length']:<10}{r['gc_content_ecoli']:.1f}%{'':<7}{r['disease']}")
+        print(f"{r['lead_id']:<15}{r['peptide_sequence']:<15}{r['peptide_length']:<8}{r['dna_length']:<10}{r['gc_content_ecoli']:.1f}%{'':<7}{r['target system']}")
     print()
 
     # Save to JSON
@@ -369,7 +369,7 @@ def generate_synthesis_orders():
 
     with open(fasta_peptide, 'w') as f:
         for r in results:
-            f.write(f">{r['lead_id']}|{r['target']}|{r['disease']}\n")
+            f.write(f">{r['lead_id']}|{r['target']}|{r['target system']}\n")
             f.write(f"{r['peptide_sequence']}\n")
 
     with open(fasta_dna_ecoli, 'w') as f:

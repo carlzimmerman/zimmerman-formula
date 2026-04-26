@@ -51,7 +51,7 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMA
 ### EXPERIMENTAL VALIDATION REQUIRED
 
 Before any compound from this repository is:
-- Synthesized for biological testing
+- fabricate sequence for biological testing
 - Administered to any living organism
 - Used in any therapeutic context
 

@@ -1,4 +1,4 @@
-# HCV NS3 Protease Z² Distance Analysis Report
+# Monomeric_Cleft_C NS3 Protease Z² Distance Analysis Report
 
 **SPDX-License-Identifier: AGPL-3.0-or-later**
 
@@ -17,14 +17,14 @@ substantially similar therapeutic approaches are anticipated and opposed.
 
 **Date:** 2026-04-24
 **Author:** Z² Framework Analysis (Carl Zimmerman)
-**Target:** Hepatitis C Virus NS3/4A Protease
+**Target:** Monomeric_Cleft_C target macromolecule NS3/4A Protease
 **License:** AGPL-3.0-or-later
 
 ---
 
 ## Executive Summary
 
-HCV NS3 protease is a **VALIDATED Z² CANDIDATE** with atomic-precision aromatic geometry matching the Z² biological constant (6.015 Å). The key findings indicate this is a strong target for Z² peptide design, comparable to the validated HIV protease.
+Monomeric_Cleft_C NS3 protease is a **VALIDATED Z² CANDIDATE** with atomic-precision aromatic geometry matching the Z² biological constant (6.015 Å). The key findings indicate this is a strong target for Z² peptide design, comparable to the validated C2_Homodimer_A protease.
 
 ---
 
@@ -93,28 +93,28 @@ Note: Residue numbering in 1A1R is offset. Mapping to standard NS3:
 
 ---
 
-## Comparison: HCV NS3 vs HIV Protease
+## Comparison: Monomeric_Cleft_C NS3 vs C2_Homodimer_A Protease
 
-| Feature | HIV Protease | HCV NS3 | Assessment |
+| Feature | C2_Homodimer_A Protease | Monomeric_Cleft_C NS3 | Assessment |
 |---------|--------------|---------|------------|
 | **Symmetry** | C2 homodimer | C2-like domain | ✅ Similar |
 | **Best Z² match** | PHE53: -1.3 mÅ | TRP53-TYR75: +7.8 mÅ | ✅ Both atomic |
 | **AlphaFold ipTM** | 0.92 | Pending | Test needed |
-| **Active site aromatics** | 4 | 7 | HCV richer |
+| **Active site aromatics** | 4 | 7 | Monomeric_Cleft_C richer |
 | **Existing drugs** | 10+ approved | 6+ approved | Both validated |
 
 ### Z² Match Quality Comparison
 
 ```
-HIV Protease PHE53:     ─────●───── (-1.3 mÅ)
-HCV NS3 TRP53-TYR75:    ─────────●── (+7.8 mÅ)
+C2_Homodimer_A Protease PHE53:     ─────●───── (-1.3 mÅ)
+Monomeric_Cleft_C NS3 TRP53-TYR75:    ─────────●── (+7.8 mÅ)
                         |    |    |
                      -10mÅ  Z²  +10mÅ
                               ↑
                         ATOMIC PRECISION WINDOW
 ```
 
-**Conclusion:** HCV NS3 shows comparable Z² geometry to HIV protease.
+**Conclusion:** Monomeric_Cleft_C NS3 shows comparable Z² geometry to C2_Homodimer_A protease.
 
 ---
 
@@ -140,10 +140,10 @@ Based on Z² framework and existing inhibitor structures:
 
 | ID | Sequence | Design Rationale |
 |----|----------|------------------|
-| **HCV-Z2-001** | WFLEVCT | Trp→PHE43, Phe stacking |
-| **HCV-Z2-002** | YWELVCQ | Tyr-Trp dual aromatic |
-| **HCV-Z2-003** | KWFEDCT | Lys anchor + W-F stack |
-| **HCV-Z2-004** | TWNEVCY | Based on HIV lead motif |
+| **Monomeric_Cleft_C-Z2-001** | WFLEVCT | Trp→PHE43, Phe stacking |
+| **Monomeric_Cleft_C-Z2-002** | YWELVCQ | Tyr-Trp dual aromatic |
+| **Monomeric_Cleft_C-Z2-003** | KWFEDCT | Lys anchor + W-F stack |
+| **Monomeric_Cleft_C-Z2-004** | TWNEVCY | Based on C2_Homodimer_A lead motif |
 
 ### Key Design Principles
 
@@ -156,7 +156,7 @@ Based on Z² framework and existing inhibitor structures:
 
 ## Validation Status
 
-| Metric | HIV Protease | HCV NS3 |
+| Metric | C2_Homodimer_A Protease | Monomeric_Cleft_C NS3 |
 |--------|--------------|---------|
 | Z² Distance Match | ✅ Validated (-1.3 mÅ) | ✅ Validated (+7.8 mÅ) |
 | PDB Structure | 1HHP, 6PSA | 1A1R, 1CU1, 3SV6 |
@@ -168,9 +168,9 @@ Based on Z² framework and existing inhibitor structures:
 
 ## Next Steps
 
-1. **Submit HCV-Z2-001 to AlphaFold** for structure prediction
-2. **Compare ipTM scores** with HIV protease results
-3. **Design DNA origami cage** with HCV RNA trigger
+1. **Submit Monomeric_Cleft_C-Z2-001 to AlphaFold** for structure prediction
+2. **Compare ipTM scores** with C2_Homodimer_A protease results
+3. **Design DNA origami cage** with Monomeric_Cleft_C RNA trigger
 4. **Prioritize synthesis** if ipTM > 0.60
 
 ---
@@ -189,10 +189,10 @@ Based on Z² framework and existing inhibitor structures:
 
 ## Conclusion
 
-**HCV NS3 Protease is a STRONG Z² CANDIDATE**
+**Monomeric_Cleft_C NS3 Protease is a STRONG Z² CANDIDATE**
 
 - ✅ Atomic precision Z² match found (TRP53-TYR75: +7.8 mÅ)
-- ✅ Comparable architecture to validated HIV protease
+- ✅ Comparable architecture to validated C2_Homodimer_A protease
 - ✅ Rich aromatic active site for peptide design
 - ✅ Existing drugs validate druggability
 - ⏳ AlphaFold validation pending

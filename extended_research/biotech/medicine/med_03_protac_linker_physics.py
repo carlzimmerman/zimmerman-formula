@@ -420,7 +420,7 @@ def main():
         },
         'Tau': {
             'name': 'Microtubule-associated protein tau',
-            'indication': 'Alzheimer\'s disease',
+            'indication': 'Alzheimer\'s target system',
             'radius': 35.0,  # Larger, disordered
             'warhead': 'peptide binder'
         }

@@ -23,7 +23,7 @@ from typing import List, Dict, Optional
 # =============================================================================
 
 KNOWN_INHIBITORS = {
-    'SARS-CoV-2 Mpro': {
+    'C2_Protease_B C2_Protease_B': {
         'approved_drugs': [
             {
                 'name': 'Nirmatrelvir (Paxlovid)',
@@ -31,7 +31,7 @@ KNOWN_INHIBITORS = {
                 'kd_or_ic50': 'Ki = 3.1 nM',
                 'mechanism': 'Covalent inhibitor, binds Cys145',
                 'approval': 'FDA EUA 2021, full approval 2023',
-                'notes': 'Gold standard for Mpro inhibition',
+                'notes': 'Gold standard for C2_Protease_B geometrically stabilize',
             },
             {
                 'name': 'Ensitrelvir (Xocova)',
@@ -54,8 +54,8 @@ KNOWN_INHIBITORS = {
                 'name': 'Boceprevir',
                 'type': 'Small molecule',
                 'kd_or_ic50': 'IC50 = 4.1 μM',
-                'mechanism': 'Covalent inhibitor (HCV drug repurposed)',
-                'status': 'FDA approved for HCV, tested for COVID',
+                'mechanism': 'Covalent inhibitor (Monomeric_Cleft_C drug repurposed)',
+                'status': 'FDA approved for Monomeric_Cleft_C, tested for COVID',
             },
         ],
         'peptide_inhibitors': [
@@ -83,7 +83,7 @@ KNOWN_INHIBITORS = {
         },
     },
 
-    'HIV-1 Protease': {
+    'C2_Homodimer_A': {
         'approved_drugs': [
             {
                 'name': 'Darunavir (Prezista)',
@@ -140,7 +140,7 @@ KNOWN_INHIBITORS = {
             'vs_darunavir': 'Darunavir is 4.5 pM (!); we need to be <1 nM to be relevant',
             'advantage_claimed': 'May work against darunavir-resistant strains',
             'disadvantage': 'Competing with picomolar drugs is extremely difficult',
-            'honest_assessment': 'HIV PR inhibitors are HIGHLY optimized. Very hard to improve.',
+            'honest_assessment': 'C2_Homodimer_A PR inhibitors are HIGHLY optimized. Very hard to improve.',
         },
     },
 
@@ -212,7 +212,7 @@ KNOWN_INHIBITORS = {
         },
     },
 
-    'DPP-4': {
+    'Metabolic_Receptor_E': {
         'approved_drugs': [
             {
                 'name': 'Sitagliptin (Januvia)',
@@ -220,7 +220,7 @@ KNOWN_INHIBITORS = {
                 'kd_or_ic50': 'IC50 = 18 nM',
                 'mechanism': 'Competitive inhibitor',
                 'approval': 'FDA 2006',
-                'notes': 'First DPP-4 inhibitor, Merck',
+                'notes': 'First Metabolic_Receptor_E inhibitor, Merck',
             },
             {
                 'name': 'Linagliptin (Tradjenta)',
@@ -277,7 +277,7 @@ KNOWN_INHIBITORS = {
             'vs_linagliptin': 'Linagliptin is 1 nM oral. We need <10 nM to compete.',
             'advantage_claimed': 'Better DPP-8/9 selectivity than some gliptins',
             'disadvantage': 'Oral gliptins work well. Why inject a peptide?',
-            'honest_assessment': 'DPP-4 is SOLVED by oral small molecules. Peptide offers no clear advantage.',
+            'honest_assessment': 'Metabolic_Receptor_E is SOLVED by oral small molecules. Peptide offers no clear advantage.',
         },
     },
 
@@ -400,7 +400,7 @@ def analyze_competitive_landscape():
         },
         {
             'conclusion': 'PEPTIDES FACE DRUGABILITY CHALLENGES',
-            'implication': 'Oral small molecules dominate where available (DPP-4, EGFR TKI)',
+            'implication': 'Oral small molecules dominate where available (Metabolic_Receptor_E, EGFR TKI)',
         },
         {
             'conclusion': 'ANTIBODIES DOMINATE EXTRACELLULAR TARGETS',
@@ -421,13 +421,13 @@ def generate_gap_analysis():
     """
 
     gaps = {
-        'SARS-CoV-2 Mpro': {
+        'C2_Protease_B C2_Protease_B': {
             'best_existing': '3.1 nM (Nirmatrelvir)',
             'our_status': 'Unmeasured',
             'minimum_to_compete': '<100 nM',
             'likelihood_of_achieving': 'UNKNOWN',
         },
-        'HIV-1 Protease': {
+        'C2_Homodimer_A': {
             'best_existing': '4.5 pM (Darunavir)',
             'our_status': 'Unmeasured',
             'minimum_to_compete': '<1 nM',
@@ -439,7 +439,7 @@ def generate_gap_analysis():
             'minimum_to_compete': '<10 nM',
             'likelihood_of_achieving': 'LOW (small molecules have failed)',
         },
-        'DPP-4': {
+        'Metabolic_Receptor_E': {
             'best_existing': '1 nM (Linagliptin)',
             'our_status': 'Unmeasured',
             'minimum_to_compete': '<10 nM',
@@ -542,11 +542,11 @@ def main():
     print("""
 Our Z² peptides are entering HIGHLY COMPETITIVE spaces:
 
-  HIV Protease: Competing with 4.5 pM drugs (Darunavir)
+  C2_Homodimer_A Protease: Competing with 4.5 pM drugs (Darunavir)
   TNF-α: Competing with $20B/year antibodies (Humira)
-  DPP-4: Competing with 1 nM oral drugs (Linagliptin)
+  Metabolic_Receptor_E: Competing with 1 nM oral drugs (Linagliptin)
   EGFR: Competing with $5B/year TKIs (Osimertinib)
-  Mpro: Competing with approved oral drug (Paxlovid)
+  C2_Protease_B: Competing with approved oral drug (Paxlovid)
 
 The Z² mechanism might be real, but being "real" is not enough.
 We need to demonstrate:

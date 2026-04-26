@@ -4,11 +4,11 @@ Z² Aromatic Network Analysis Across Validated Targets
 SPDX-License-Identifier: AGPL-3.0-or-later
 
 Compares aromatic contact geometry across all validated Z² targets:
-- HIV Protease (1HHP)
-- HCV NS3 (1A1R)
-- Influenza NA (2HU4)
+- C2_Homodimer_A Protease (1HHP)
+- Monomeric_Cleft_C NS3 (1A1R)
+- C4_Tetramer_D NA (2HU4)
 - TNF-α (1TNF)
-- SARS-CoV-2 Mpro (6LU7)
+- C2_Protease_B C2_Protease_B (6LU7)
 """
 
 import numpy as np

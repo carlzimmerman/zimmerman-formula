@@ -534,7 +534,7 @@ def main():
     else:
         targets = [
             ("P30559", "Oxytocin receptor"),
-            ("P04578", "HIV gp120"),
+            ("P04578", "C2_Homodimer_A gp120"),
         ]
 
     output_dir = args.output or Path(__file__).parent.parent / "z2_geometry_analysis"

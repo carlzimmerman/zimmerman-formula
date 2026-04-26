@@ -8,7 +8,7 @@ DISCOVERY CONTEXT:
 Multi-protein analysis (ubiquitin, lysozyme, BPTI, myoglobin) revealed that
 protein vibrational modes align with Z² = 32π/3 harmonics at p < 10⁻²⁴.
 
-This script weaponizes that discovery against Alzheimer's disease by:
+This script weaponizes that discovery against Alzheimer's target system by:
 1. Loading the pathogenic Aβ42 amyloid fibril (PDB: 2BEG)
 2. Calculating its normal modes via Anisotropic Network Model
 3. Identifying the structural integrity phonons (β-sheet breathing modes)

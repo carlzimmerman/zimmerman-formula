@@ -583,7 +583,7 @@ class Z2ProteinFolder:
 
 
 # =============================================================================
-# TEST ON DISEASE PROTEINS
+# TEST ON target system PROTEINS
 # =============================================================================
 
 # Real sequences from UniProt
@@ -618,10 +618,10 @@ DISEASE_SEQUENCES = {
 
 
 def test_disease_proteins():
-    """Test Z² folding on disease-related proteins."""
+    """Test Z² folding on target system-related proteins."""
 
     print("=" * 78)
-    print("Z² PROTEIN FOLDING: DISEASE PROTEIN TEST")
+    print("Z² PROTEIN FOLDING: target system PROTEIN TEST")
     print("=" * 78)
     print(f"\nZ² = {Z_SQUARED:.6f}")
     print(f"θ_Z² = {THETA_Z2_DEG:.2f}°")

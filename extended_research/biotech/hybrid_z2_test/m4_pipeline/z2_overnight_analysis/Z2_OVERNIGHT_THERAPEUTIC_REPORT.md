@@ -69,11 +69,11 @@ Top performing therapeutic categories by mean Z² score:
 | glb1 (GM1 gangliosidosis) | 3 | 0.6579 | glb1_angiopep2 |
 | bbb_fusion | 1 | 0.6557 | BBB_fusion |
 | arsa (Metachromatic leukodystrophy) | 3 | 0.6524 | arsa_angiopep2 |
-| gla (Fabry disease) | 3 | 0.6521 | gla_angiopep2 |
+| gla (Fabry target system) | 3 | 0.6521 | gla_angiopep2 |
 | transgenes | 1 | 0.6502 | hbb_antisickling |
 | ids (MPS II) | 3 | 0.6280 | ids_angiopep2 |
 | parkinsons | 1 | 0.6217 | prasinezumab_vh |
-| gba (Gaucher disease) | 3 | 0.6146 | gba_angiopep2 |
+| gba (Gaucher target system) | 3 | 0.6146 | gba_angiopep2 |
 
 ---
 
@@ -160,7 +160,7 @@ z2_overnight_analysis/
 1. **cloaked_protein** - Glycan-shielded for immune evasion
 2. **arsa_angiopep2** - Metachromatic leukodystrophy treatment
 3. **glb1_angiopep2** - GM1 gangliosidosis treatment
-4. **vsv_g_optimized** - Improved viral vector envelope
+4. **vsv_g_optimized** - Improved target macromolecule vector envelope
 
 ---
 

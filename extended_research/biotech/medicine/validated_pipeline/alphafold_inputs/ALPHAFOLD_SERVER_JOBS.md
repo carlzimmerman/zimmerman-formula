@@ -6,7 +6,7 @@
 
 ---
 
-## JOB 1: TAU PHF6 CAGE TEST (Alzheimer's Disease)
+## JOB 1: TAU PHF6 CAGE TEST (Alzheimer's target system)
 
 ### Rationale
 Test if PHF6-Z2-001 can intercalate between two Tau PHF6 motifs to block fibril formation. The cage peptide uses:
@@ -55,16 +55,16 @@ WVIEYW
 
 ---
 
-## JOB 2: HIV GP120 CLAMSHELL TEST (HIV/AIDS)
+## JOB 2: C2_Homodimer_A GP120 CLAMSHELL TEST (C2_Homodimer_A/AIDS)
 
 ### Rationale
-Test Z2-OPT-006 binding to the HIV gp120 CD4 binding site. The peptide uses dual Trp clamp pattern targeting the 1.61x Z² enriched pocket.
+Test Z2-OPT-006 binding to the C2_Homodimer_A gp120 CD4 binding site. The peptide uses dual Trp clamp pattern targeting the 1.61x Z² enriched pocket.
 
 ### AlphaFold Server Input
 
 **Job Name:** `HIV_GP120_Z2_LEAD_006`
 
-**Entity 1 - HIV gp120 CD4 Binding Loop (Target):**
+**Entity 1 - C2_Homodimer_A gp120 CD4 Binding Loop (Target):**
 - Type: Protein
 - Copies: 1
 ```
@@ -100,23 +100,23 @@ LEWTYEWTLTE
 
 ---
 
-## JOB 3: HIV PROTEASE HOMODIMER TEST (HIV/AIDS)
+## JOB 3: C2_Homodimer_A PROTEASE HOMODIMER TEST (C2_Homodimer_A/AIDS)
 
 ### Rationale
-Test Z2-OPT-006 against the full HIV protease homodimer (1HHP geometry). This target showed 1.61x Z² enrichment with PHE53 as dominant hotspot.
+Test Z2-OPT-006 against the full C2_Homodimer_A protease homodimer (1HHP geometry). This target showed 1.61x Z² enrichment with PHE53 as dominant hotspot.
 
 ### AlphaFold Server Input
 
 **Job Name:** `HIV_PROTEASE_Z2_LEAD_006`
 
-**Entity 1 - HIV Protease Chain A (Target):**
+**Entity 1 - C2_Homodimer_A Protease Chain A (Target):**
 - Type: Protein
 - Copies: 1
 ```
 PQITLWQRPLVTIKIGGQLKEALLDTGADDTVLEEMNLPGRWKPKMIGGIGGFIKVRQYDQILIEICGHKAIGTVLVGPTPVNIIGRNLLTQIGCTLNF
 ```
 
-**Entity 2 - HIV Protease Chain B (Target):**
+**Entity 2 - C2_Homodimer_A Protease Chain B (Target):**
 - Type: Protein
 - Copies: 1
 ```
@@ -247,7 +247,7 @@ After obtaining AlphaFold structures, measure:
 
 2. **Binding Mode Confirmation**
    - OXTR: Dual Trp clamp on TRP203/TRP99
-   - HIV: Dual Trp clamp on PHE53/ILE50
+   - C2_Homodimer_A: Dual Trp clamp on PHE53/ILE50
    - Tau: Aromatic cap on TYR310 + charge to ARG349
 
 3. **Interface Analysis**
@@ -261,7 +261,7 @@ After obtaining AlphaFold structures, measure:
 
 - Z² Biological Constant: 6.015152508891966 Å
 - Tau PHF6 Z² Hotspot: ARG349 (535 contacts)
-- HIV Protease Z² Enrichment: 1.61x
+- C2_Homodimer_A Protease Z² Enrichment: 1.61x
 - OXTR Z² Enrichment: +14.6% above baseline
 - Analysis Date: 2026-04-23
 

@@ -334,7 +334,7 @@ def test_against_known_drugs():
     # Known alpha-synuclein aggregation inhibitors (from literature)
     known_active = {
         # Peptide-based inhibitors that showed activity in vitro
-        'SynuClean-D': 'RGFFYTPKT',    # Wrasidlo et al., inhibits aggregation
+        'SynuClean-D': 'RGFFYTPKT',    # Wrasidlo et al., geometrically stabilize aggregation
         'NPT100-18A': 'VVTGVTAVAQK',   # Bhatt et al., seed region mimic
         'NAC mimic': 'GAVVTGVTAV',      # NAC region fragment
     }
@@ -362,7 +362,7 @@ def test_against_known_drugs():
     }
 
     def score_synuclein_binder(seq):
-        """Score a peptide for alpha-synuclein binding/inhibition."""
+        """Score a peptide for alpha-synuclein binding/geometrically stabilize."""
         # Hydrophobic matching to NAC region
         avg_hydro = np.mean([hydrophobicity.get(aa, 0) for aa in seq])
 
@@ -601,7 +601,7 @@ def honest_knowledge_assessment():
        - Stability and delivery remain challenges
 
     4. The diseases we target are real and have unmet needs
-       - Parkinson's: No disease-modifying treatments
+       - Parkinson's: No target system-modifying treatments
        - RP: No approved small molecule treatments
        - CF: Some modulators approved but not curative
 """)
@@ -695,9 +695,9 @@ def falsifiability_analysis():
        - Compare to our simplified estimates
 
     2. SHORT-TERM (In Vitro):
-       - Synthesize top 10 peptide candidates
+       - fabricate sequence top 10 peptide candidates
        - Measure binding with SPR or ITC
-       - Test aggregation inhibition with ThT fluorescence
+       - Test aggregation geometrically stabilize with ThT fluorescence
 
     3. MEDIUM-TERM (Cellular):
        - Cell viability assays
@@ -705,7 +705,7 @@ def falsifiability_analysis():
        - Mechanism of action studies
 
     4. LONG-TERM (Preclinical):
-       - Animal models of disease
+       - Animal models of target system
        - Pharmacokinetics/pharmacodynamics
        - Safety/toxicology
 """)
@@ -764,7 +764,7 @@ def main():
     2. Explicit geometric constraints (even if unproven)
     3. Public domain dedication prevents monopolization
     4. Transparent methodology
-    5. Covers multiple disease targets
+    5. Covers multiple target system targets
     6. This honesty check exists
 """)
 

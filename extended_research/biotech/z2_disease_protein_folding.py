@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-Z² Disease Protein Folding
+Z² target system Protein Folding
 
-Apply Z² protein folder to disease-associated proteins:
+Apply Z² protein folder to target system-associated proteins:
 - Tau (Alzheimer's, frontotemporal dementia)
 - Amyloid-β (Alzheimer's)
 - α-Synuclein (Parkinson's)
-- Huntingtin (Huntington's disease)
+- Huntingtin (Huntington's target system)
 - Prion protein (CJD, mad cow)
 - SOD1 (ALS)
 - TDP-43 (ALS, FTD)
@@ -22,73 +22,73 @@ from pathlib import Path
 from z2_protein_folder_BEST import Z2ProteinFolderBest
 
 # =============================================================================
-# DISEASE PROTEINS
+# target system PROTEINS
 # =============================================================================
 
 DISEASE_PROTEINS = {
     # ---------------------------------------------------------------------
-    # ALZHEIMER'S DISEASE
+    # ALZHEIMER'S target system
     # ---------------------------------------------------------------------
     "abeta40": {
         "name": "Amyloid-β 1-40",
-        "disease": "Alzheimer's disease",
+        "target system": "Alzheimer's target system",
         "role": "Forms amyloid plaques",
         "sequence": "DAEFRHDSGYEVHHQKLVFFAEDVGSNKGAIIGLMVGGVV",
         "notes": "Shorter form, less toxic than Aβ42",
     },
     "abeta42": {
         "name": "Amyloid-β 1-42",
-        "disease": "Alzheimer's disease",
+        "target system": "Alzheimer's target system",
         "role": "Primary component of plaques, more aggregation-prone",
         "sequence": "DAEFRHDSGYEVHHQKLVFFAEDVGSNKGAIIGLMVGGVVIA",
         "notes": "Additional Ile-Ala makes it more hydrophobic and aggregation-prone",
     },
     "tau_repeat1": {
         "name": "Tau microtubule binding repeat 1",
-        "disease": "Alzheimer's, Tauopathies",
+        "target system": "Alzheimer's, Tauopathies",
         "role": "Core of tau tangles",
         "sequence": "VQIINKKLDLSNVQSKCGSKDNIKHVPGGGS",
         "notes": "One of 4 repeats that binds microtubules and forms PHF",
     },
     "tau_phf_core": {
         "name": "Tau PHF core (306-378)",
-        "disease": "Alzheimer's",
+        "target system": "Alzheimer's",
         "role": "Paired helical filament core",
         "sequence": "VQIVYKPVDLSKVTSKCGSLGNIHHKPGGGQVEVKSEKLDFKDRVQSKIGSLDNITHVPGGGNKKIETHKLTFRENAKAKTDHGAEIV",
         "notes": "Core region that forms the cross-β structure in tangles",
     },
 
     # ---------------------------------------------------------------------
-    # PARKINSON'S DISEASE
+    # PARKINSON'S target system
     # ---------------------------------------------------------------------
     "alpha_synuclein": {
         "name": "α-Synuclein (full)",
-        "disease": "Parkinson's disease",
+        "target system": "Parkinson's target system",
         "role": "Forms Lewy bodies",
         "sequence": "MDVFMKGLSKAKEGVVAAAEKTKQGVAEAAGKTKEGVLYVGSKTKEGVVHGVATVAEKTKEQVTNVGGAVVTGVTAVAQKTVEGAGSIAAATGFVKKDQLGKNEEGAPQEGILEDMPVDPDNEAYEMPSEEGYQDYEPEA",
         "notes": "N-terminal forms helix when bound to membranes",
     },
     "alpha_syn_nac": {
         "name": "α-Synuclein NAC region (61-95)",
-        "disease": "Parkinson's disease",
+        "target system": "Parkinson's target system",
         "role": "Non-Amyloid-β Component, aggregation core",
         "sequence": "EQVTNVGGAVVTGVTAVAQKTVEGAGSIAAATGFV",
         "notes": "Highly hydrophobic, essential for aggregation",
     },
 
     # ---------------------------------------------------------------------
-    # HUNTINGTON'S DISEASE
+    # HUNTINGTON'S target system
     # ---------------------------------------------------------------------
     "huntingtin_polyQ": {
         "name": "Huntingtin exon 1 with polyQ",
-        "disease": "Huntington's disease",
+        "target system": "Huntington's target system",
         "role": "Forms aggregates when Q repeat > 36",
         "sequence": "MATLEKLMKAFESLKSFQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQPPPPPPPPPPPQLPQPPPQAQPLLPQPQPPPPPPPPPPGPAVAEEPLHRP",
         "notes": "36 Q repeats shown (HD threshold ~36-40)",
     },
     "huntingtin_17": {
         "name": "Huntingtin N17 domain",
-        "disease": "Huntington's disease",
+        "target system": "Huntington's target system",
         "role": "Targets Htt to membrane, affects toxicity",
         "sequence": "MATLEKLMKAFESLKSFQ",
         "notes": "Amphipathic helix, membrane association",
@@ -99,14 +99,14 @@ DISEASE_PROTEINS = {
     # ---------------------------------------------------------------------
     "prion_121_231": {
         "name": "Prion protein structured domain",
-        "disease": "CJD, Fatal insomnia, Mad cow",
+        "target system": "CJD, Fatal insomnia, Mad cow",
         "role": "Misfolding creates PrPSc infectious form",
         "sequence": "HGGGWGQPHGGGWGQPHGGGWGQPHGGGWGQPHGGGWGQGGGTHSQWNKPSKPKTNMKHMAGAAAAGAVVGGLGGYMLGSAMSRPIIHFGSDYEDRYYRENMHRYPNQVYYRPMDEYSNQNNFVHDCVNITIKQHTVTTTTKGENFTETDVKMMERVVEQMCITQYERESQAYYQRGSSMVLFSSPPVILLISFLIFLIVG",
         "notes": "Octapeptide repeats + globular domain + GPI anchor",
     },
     "prion_helix2_3": {
         "name": "Prion helices 2-3",
-        "disease": "Prion diseases",
+        "target system": "Prion diseases",
         "role": "Core folded region that misfolds",
         "sequence": "HRYPNQVYYRPMDEYSNQNNFVHDCVNITIKQHTVTTTTKGENFTETDVKMMERVVEQMCITQYER",
         "notes": "Contains S-S bond Cys179-Cys214",
@@ -117,14 +117,14 @@ DISEASE_PROTEINS = {
     # ---------------------------------------------------------------------
     "sod1": {
         "name": "Superoxide dismutase 1 (partial)",
-        "disease": "ALS (familial)",
+        "target system": "ALS (familial)",
         "role": "Misfolding causes motor neuron death",
         "sequence": "ATKAVCVLKGDGPVQGIINFEQKESNGPVKVWGSIKGLTEGLHGFHVHEFGDNTAGCTSAGPHFNPLSRKHGGPKDEERHVGDLGNVTADKDGVADVSIEDSVISLSGDHCIIGRTLVVHEKADDLGKGGNEESTKTGNAGSRLACGVIGIAQ",
         "notes": "Cu/Zn binding, ~170 known mutations cause ALS",
     },
     "tdp43_lcd": {
         "name": "TDP-43 low complexity domain",
-        "disease": "ALS, FTD",
+        "target system": "ALS, FTD",
         "role": "Aggregates in cytoplasmic inclusions",
         "sequence": "GFGFVRFTEYETQVKVMSQRHMIDGRWCDCKLPNSKQSQDEPLRSRKVFVGRCTEDMTEDELREFFSQYGDVMDVFIPKPFRAFAFVTFADDQIAQSLCGEDLIIKGISVHISNAEPKHNSNRQLERSGRFGGNSSSS",
         "notes": "Glycine-rich, intrinsically disordered, prion-like",
@@ -135,7 +135,7 @@ DISEASE_PROTEINS = {
     # ---------------------------------------------------------------------
     "fus_lcd": {
         "name": "FUS low complexity domain",
-        "disease": "ALS, FTD",
+        "target system": "ALS, FTD",
         "role": "LLPS and aggregation",
         "sequence": "MASNDYTQQATQSYGAYPTQPGQGYSQQSSQPYGQQSYSGYSQSTDTSGYGQSSYSSYGQSQNTGYGTQSTPQGYGSTGGYGSSQSSQSSYGQQSSYPGYGQQPAPSSTSGSYGSSSQSSSYGQPQSGSYSQQPSYGGQQQSYGQQQSYNPPQGYGQQNQYNS",
         "notes": "QGSY-rich, forms hydrogels and aggregates",
@@ -144,9 +144,9 @@ DISEASE_PROTEINS = {
 
 
 def analyze_disease_proteins():
-    """Fold and analyze all disease proteins."""
+    """Fold and analyze all target system proteins."""
     print("=" * 78)
-    print("Z² DISEASE PROTEIN FOLDING")
+    print("Z² target system PROTEIN FOLDING")
     print("=" * 78)
 
     folder = Z2ProteinFolderBest()
@@ -155,7 +155,7 @@ def analyze_disease_proteins():
     for protein_id, data in DISEASE_PROTEINS.items():
         print(f"\n{'='*78}")
         print(f"{data['name']}")
-        print(f"Disease: {data['disease']}")
+        print(f"target system: {data['target system']}")
         print(f"{'='*78}")
 
         result = folder.fold(data['sequence'], protein_id)
@@ -226,7 +226,7 @@ def analyze_disease_proteins():
         # Store results
         results[protein_id] = {
             'name': data['name'],
-            'disease': data['disease'],
+            'target system': data['target system'],
             'length': total,
             'secondary_structure': ss,
             'composition': {
@@ -240,7 +240,7 @@ def analyze_disease_proteins():
 
     # Summary statistics
     print(f"\n{'='*78}")
-    print("SUMMARY: DISEASE PROTEIN STRUCTURAL PREDICTIONS")
+    print("SUMMARY: target system PROTEIN STRUCTURAL PREDICTIONS")
     print("=" * 78)
 
     print("\n{:<25} {:>6} {:>8} {:>8} {:>8}".format(

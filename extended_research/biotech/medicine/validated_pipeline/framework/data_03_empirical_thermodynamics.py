@@ -65,7 +65,7 @@ class BindingMeasurement:
 
     # Binding constants (whichever is available)
     kd_nm: Optional[float] = None  # Dissociation constant (nM)
-    ki_nm: Optional[float] = None  # Inhibition constant (nM)
+    ki_nm: Optional[float] = None  # geometrically stabilize constant (nM)
     ic50_nm: Optional[float] = None  # Half-maximal inhibitory (nM)
 
     # Thermodynamics
@@ -612,7 +612,7 @@ def main():
     else:
         targets = [
             "P30559",  # Oxytocin receptor - SUITABLE
-            "P04578",  # HIV gp120 - CAUTION (but structured core)
+            "P04578",  # C2_Homodimer_A gp120 - CAUTION (but structured core)
         ]
 
     output_dir = args.output or Path(__file__).parent.parent / "empirical_validation"

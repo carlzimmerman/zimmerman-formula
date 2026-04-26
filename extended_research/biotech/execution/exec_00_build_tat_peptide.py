@@ -9,7 +9,7 @@ This script prepares the input structure for the membrane permeation simulation:
 4. Outputs a PDB file ready for CHARMM-GUI membrane building
 
 TAT Sequence: YGRKKRRQRRR (11 residues)
-- Derived from HIV-1 TAT protein (residues 47-57)
+- Derived from C2_Homodimer_A-1 TAT protein (residues 47-57)
 - Highly cationic (+8 charge at physiological pH)
 - Well-characterized BBB penetration
 
@@ -45,7 +45,7 @@ except ImportError:
 # This is a representative sequence - adjust based on actual design
 ZIM_D2R_001_SEQUENCE = "CYIQVDPYITC"  # Cyclic via C1-C11 disulfide
 
-# TAT Cell-Penetrating Peptide (HIV-1 TAT 47-57)
+# TAT Cell-Penetrating Peptide (C2_Homodimer_A-1 TAT 47-57)
 TAT_CPP_SEQUENCE = "YGRKKRRQRRR"
 
 # Flexible linker (Gly-Ser)

@@ -53,38 +53,38 @@ KNOWN_AFFINITIES = {
         'ki_nm': 4.1,
         'source': 'Literature'
     },
-    # HIV gp120 structures
+    # C2_Homodimer_A gp120 structures
     '6PSA': {
         'ligand': 'Peptide inhibitor (DHI/DTR)',
-        'target': 'HIV gp120',
+        'target': 'C2_Homodimer_A gp120',
         'uniprot': 'P04578',
         'ic50_nm': 50.0,  # Peptide CD4 mimetic
         'source': 'PDB header'
     },
     '6BXP': {
         'ligand': 'Kynurenine (KYN)',
-        'target': 'HIV gp120',
+        'target': 'C2_Homodimer_A gp120',
         'uniprot': 'P04578',
         'kd_nm': 1000.0,  # Weak metabolite binding
         'source': 'Literature estimate'
     },
     '5X08': {
         'ligand': 'Small molecule (P6G)',
-        'target': 'HIV gp120',
+        'target': 'C2_Homodimer_A gp120',
         'uniprot': 'P04578',
         'ic50_nm': 100.0,
         'source': 'Literature estimate'
     },
     '1DF4': {
         'ligand': 'CD4 domain',
-        'target': 'HIV gp120',
+        'target': 'C2_Homodimer_A gp120',
         'uniprot': 'P04578',
         'kd_nm': 5.0,  # CD4-gp120 interaction
         'source': 'Literature'
     },
     '7EKB': {
         'ligand': 'Antibody fragment',
-        'target': 'HIV gp120',
+        'target': 'C2_Homodimer_A gp120',
         'uniprot': 'P04578',
         'kd_nm': 0.13,  # High affinity bnAb
         'source': 'BindingDB'

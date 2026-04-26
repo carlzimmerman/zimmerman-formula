@@ -25,7 +25,7 @@ THE FINAL STEP: WET LAB SYNTHESIS HANDOFF
 
 This script converts our computationally validated peptide drug candidates
 into professional Statements of Work (SOW) for Contract Research Organizations
-(CROs) to synthesize and validate physically.
+(CROs) to fabricate sequence and validate physically.
 
 CRITICAL FIX (v2):
 Uses RDKit for chemically accurate SMILES generation instead of manual
@@ -647,7 +647,7 @@ def main():
         'ZIM-SYN-004': {
             'sequence': 'FPF',
             'target_protein': 'Alpha-synuclein',
-            'indication': "Parkinson's Disease",
+            'indication': "Parkinson's target system",
             'target_pdb': '1XQ8',
             'n_cap': True,
             'c_cap': True,
@@ -663,7 +663,7 @@ def main():
         'ZIM-ALZ-001': {
             'sequence': 'WFFY',
             'target_protein': 'Tau Protein',
-            'indication': "Alzheimer's Disease",
+            'indication': "Alzheimer's target system",
             'target_pdb': '5O3L',
             'n_cap': True,
             'c_cap': True,

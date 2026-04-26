@@ -153,14 +153,14 @@ THERAPEUTIC_GENES = {
         "name": "Survival Motor Neuron 1",
         "uniprot": "Q16637",
         "length": 294,
-        "disease": "SMA",
+        "target system": "SMA",
         "notes": "Codon-optimized version used in Zolgensma"
     },
     "micro_dystrophin": {
         "name": "Micro-dystrophin",
         "description": "Truncated dystrophin retaining key functional domains",
         "length": 3500,  # ~138 kDa
-        "disease": "DMD",
+        "target system": "DMD",
         "notes": "Multiple designs (deltaR4-R23, deltaR4-R24/deltaR17, etc.)"
     }
 }
@@ -235,7 +235,7 @@ def add_glycan_shield(sequence: str, epitopes: List[Tuple],
     Add N-linked glycosylation sites to mask immunogenic epitopes.
 
     Scientific basis:
-    - Glycan shielding is used in HIV Env, influenza HA engineering
+    - Glycan shielding is used in C2_Homodimer_A Env, C4_Tetramer_D HA engineering
     - Giles et al., J Virol 2018; Mary et al., Microorganisms 2022: AAV glycan engineering
     - Reduces neutralizing antibody binding while maintaining function
     """
@@ -387,7 +387,7 @@ def generate_fasta_header(data: Dict) -> str:
     seq = data.get("engineered_sequence", "")
     sha256 = hashlib.sha256(seq.encode()).hexdigest()
 
-    disease = data.get("disease_info", {})
+    target system = data.get("disease_info", {})
 
     header = f"""; ==============================================================================
 ; OPEN GENE THERAPY CAPSID - IMMUNE-EVASIVE ENGINEERING
@@ -401,9 +401,9 @@ def generate_fasta_header(data: Dict) -> str:
 ; TROPISM: {data.get('tropism', 'Unknown')}
 ; APPLICATION: {data.get('application', 'Gene therapy')}
 ;
-; TARGET DISEASE: {disease.get('name', 'N/A')}
-; AFFECTED GENE: {disease.get('gene', 'N/A')}
-; INCIDENCE: {disease.get('incidence', 'N/A')}
+; TARGET target system: {target system.get('name', 'N/A')}
+; AFFECTED GENE: {target system.get('gene', 'N/A')}
+; INCIDENCE: {target system.get('incidence', 'N/A')}
 ;
 ; ENGINEERING MODIFICATIONS:
 ; - Y-to-F mutations: {len(data.get('y_to_f_mutations', []))} sites (improved transduction)
@@ -419,7 +419,7 @@ def generate_fasta_header(data: Dict) -> str:
 ; SHA-256: {sha256}
 ;
 ; This capsid sequence is published to PREVENT PATENT ENCLOSURE.
-; Anyone can synthesize, test, and use this sequence.
+; Anyone can fabricate sequence, test, and use this sequence.
 ;
 ; ==============================================================================
 
@@ -435,8 +435,8 @@ def save_capsid(data: Dict, output_dir: str, filename: str):
     header_text = generate_fasta_header(data)
     seq = data["engineered_sequence"]
 
-    disease = data.get("disease_info", {})
-    fasta_header = f">{filename}|serotype={data['serotype']}|disease={disease.get('name', 'N/A')}|mw={data['properties']['mw_kda']}kDa|license=AGPL3+OpenMTA+CC-BY-SA-4.0"
+    target system = data.get("disease_info", {})
+    fasta_header = f">{filename}|serotype={data['serotype']}|target system={target system.get('name', 'N/A')}|mw={data['properties']['mw_kda']}kDa|license=AGPL3+OpenMTA+CC-BY-SA-4.0"
 
     with open(filepath, 'w') as f:
         f.write(header_text)
@@ -486,10 +486,10 @@ LICENSE: AGPL-3.0 + OpenMTA + CC BY-SA 4.0 + Patent Dedication
         print(f"  Tropism: {data['tropism']}")
         print(f"  Application: {data['clinical_application']}")
 
-        disease = data.get("disease_info", {})
-        print(f"\n  Target Disease: {disease.get('name', 'N/A')}")
-        print(f"  Affected Gene: {disease.get('gene', 'N/A')}")
-        print(f"  Incidence: {disease.get('incidence', 'N/A')}")
+        target system = data.get("disease_info", {})
+        print(f"\n  Target target system: {target system.get('name', 'N/A')}")
+        print(f"  Affected Gene: {target system.get('gene', 'N/A')}")
+        print(f"  Incidence: {target system.get('incidence', 'N/A')}")
 
         # Apply liver detargeting only for muscle-specific vectors
         apply_detarget = "liver_binding_residues" in data
@@ -523,7 +523,7 @@ LICENSE: AGPL-3.0 + OpenMTA + CC BY-SA 4.0 + Patent Dedication
 
         all_results.append({
             "name": name,
-            "disease": disease.get('name', 'Unknown'),
+            "target system": target system.get('name', 'Unknown'),
             "data": result
         })
 

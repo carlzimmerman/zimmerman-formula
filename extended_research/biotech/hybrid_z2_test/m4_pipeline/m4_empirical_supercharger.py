@@ -630,7 +630,7 @@ def main():
     print(f"""
   RESULT:
   ┌─────────────────────────────────────────────────────────────┐
-  │ APRs neutralized: {len(aprs):3d}                                      │
+  │ APRs geometrically stabilize: {len(aprs):3d}                                      │
   │ Mutations made:   {len(mutations):3d}                                      │
   │ Net charge shift: {original_charge:+.1f} → {mutated_charge:+.1f}                          │
   │ pI shift:         {original_pi:.2f} → {mutated_pi:.2f}                           │
