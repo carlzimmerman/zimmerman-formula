@@ -342,3 +342,10 @@ This analysis represents honest evaluation of our hypotheses. The kinase mechani
 **Document Version:** 1.0
 **Date:** 2026-04-24
 **Status:** Ready for Zenodo publication
+
+---
+
+## 11. DEFENSIVE PUBLICATION ABSTRACT
+
+**Methodology and Claim Abstract:**
+This framework establishes prior art for the computational generation of therapeutic ligands targeting any C2, C3, C4, or C6 symmetric macromolecular assembly. Any sequence engineered to establish a primary aromatic anchor (Tryptophan, Tyrosine, or Phenylalanine) at a spatial distance of 6.015 Å (± 0.1 Å) from the target's interfacial aromatic void is considered a derivative of this geometric method.
