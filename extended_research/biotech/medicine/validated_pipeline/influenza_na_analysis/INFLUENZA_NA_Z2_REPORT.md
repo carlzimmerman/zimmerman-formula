@@ -142,13 +142,13 @@ C4_Tetramer_D-Z2-004: RYWFDNE - SHA256: [hash]
 
 C4_Tetramer_D C4_Tetramer_D is the **5th validated Z² target**:
 
-| Rank | Target | Z² Match | Deviation |
-|------|--------|----------|-----------|
-| 1 | TNF-α | TYR151 | +0.1 mÅ |
-| 2 | **C4_Tetramer_D NA** | **PHE374-PHE422** | **-0.8 mÅ** |
-| 3 | C2_Homodimer_A Protease | PHE53 | -1.3 mÅ |
-| 4 | C2_Protease_B C2_Protease_B | PHE140 | +4.5 mÅ |
-| 5 | Monomeric_Cleft_C NS3 | TRP53-TYR75 | +7.8 mÅ |
+| Rank | Target | Z² Match | Deviation | Status |
+|------|--------|----------|-----------|--------|
+| 1 | **Influenza NA** | **PHE374-PHE422** | **-0.8 mÅ** | ✅ VALIDATED |
+| 2 | HCV NS3 | TRP53-TYR75 | +7.8 mÅ | ✅ VALIDATED |
+| 3 | TNF-α | TYR151 | +23.4 mÅ | 🟡 STRONG |
+| 4 | SARS-CoV-2 Mpro | PHE140 | -126.6 mÅ | ❌ FAILED |
+| 5 | HIV-1 Protease | PHE53 | +333.8 mÅ | ❌ FAILED |
 
 **Recommendation:** Proceed to AlphaFold validation of C4_Tetramer_D-Z2 peptides.
 

@@ -16,13 +16,13 @@ Z² = 6.015152508891966 Å
 
 ## Validated Symmetric Oligomer Targets
 
-| Rank | Target | PDB | Symmetry | Z² Hotspot | Deviation |
-|------|--------|-----|----------|------------|-----------|
-| 1 | TNF-α | 1TNF | C3 trimer | TYR151 | +0.1 mÅ |
-| 2 | C4_Tetramer_D NA | 2HU4 | C4 tetramer | PHE374-PHE422 | -0.8 mÅ |
-| 3 | C2_Homodimer_A Protease | 1HHP | C2 dimer | PHE53 | -1.3 mÅ |
-| 4 | C2_Protease_B C2_Protease_B | 6LU7 | C2 dimer | PHE140 | +4.5 mÅ |
-| 5 | Monomeric_Cleft_C NS3 | 1A1R | C2-like | TRP53-TYR75 | +7.8 mÅ |
+| Rank | Target | PDB | Symmetry | Z² Hotspot | Deviation | Status |
+|------|--------|-----|----------|------------|-----------|--------|
+| 1 | Influenza NA | 2HU4 | C4 tetramer | PHE374-PHE422 | -0.8 mÅ | ✅ ATOMIC |
+| 2 | HCV NS3 | 1A1R | C2-like | TRP53-TYR75 | +7.8 mÅ | ✅ ATOMIC |
+| 3 | TNF-α | 1TNF | C3 trimer | TYR151 | +23.4 mÅ | 🟡 STRONG |
+| 4 | SARS-CoV-2 Mpro | 6LU7 | C2 dimer | PHE140 | -126.6 mÅ | ❌ FAILED |
+| 5 | HIV-1 Protease | 1HHP | C2 dimer | PHE53 | +333.8 mÅ | ❌ FAILED |
 
 ---
 
@@ -44,9 +44,10 @@ Z² = 6.015152508891966 Å
 
 | Symmetry | Targets | Notes |
 |----------|---------|-------|
-| C2 dimer | C2_Homodimer_A, C2_Protease_B, Monomeric_Cleft_C | Most common |
-| C3 trimer | TNF-α | Cytokine family |
-| C4 tetramer | C4_Tetramer_D NA | Highest order validated |
+| C4 tetramer | Influenza NA | Highest order validated |
+| C2-like | HCV NS3 | Monomeric protease |
+| C3 trimer | TNF-α | Strong but not atomic |
+| C2 dimer | HIV, SARS-CoV-2 | **FAILED** atomic validation |
 
 ---
 
@@ -54,16 +55,16 @@ Z² = 6.015152508891966 Å
 
 ```
 Best precision:
-  TNF-α:        +0.1 mÅ  ████████████████████████████████████████
-  C4_Tetramer_D NA: -0.8 mÅ  ███████████████████████████████████████░
-  C2_Homodimer_A:          -1.3 mÅ  ██████████████████████████████████████░░
-  C2_Protease_B:   +4.5 mÅ  █████████████████████████████████░░░░░░░
-  Monomeric_Cleft_C NS3:      +7.8 mÅ  ████████████████████████████░░░░░░░░░░░░
+  Influenza NA:   -0.8 mÅ  ████████████████████████████████████████
+  HCV NS3:        +7.8 mÅ  █████████████████████████░░░░░░░░░░░░░░░
+  TNF-α:         +23.4 mÅ  ██████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+  SARS-CoV-2:   -126.6 mÅ  ██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+  HIV Protease: +333.8 mÅ  █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
                          |         |         |         |
-                         0        2.5       5.0       7.5 mÅ
+                         0        10        100       1000 mÅ (Log Scale)
 ```
 
-All 5 targets within ±10 mÅ (atomic precision threshold)
+Only 2 targets within ±10 mÅ (atomic precision threshold)
 
 ---
 

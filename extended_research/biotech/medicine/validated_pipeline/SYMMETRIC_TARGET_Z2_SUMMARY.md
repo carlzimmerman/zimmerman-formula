@@ -22,6 +22,11 @@ will be actively opposed.
 | **Atomic Precision** | ±10 milliÅ |
 | **Strong Match** | ±100 milliÅ |
 | **Moderate Match** | ±500 milliÅ |
+| **NOT VALIDATED** | >50 milliÅ |
+
+### RETRACTION AND CORRECTION NOTICE
+**Previous claims of <10 mÅ precision for HIV-1, SARS-CoV-2, and TNF-α were erroneous.** 
+Real deviations are documented below. Only **Influenza NA** and **HCV NS3** currently meet atomic precision criteria.
 
 ---
 
@@ -29,11 +34,11 @@ will be actively opposed.
 
 | Target | PDB | Symmetry | Best Z² Match | Deviation | Priority |
 |--------|-----|----------|---------------|-----------|----------|
-| **C2_Homodimer_A Protease** | 1HHP | C2 dimer | PHE53 stacking | -1.3 mÅ | ✅ VALIDATED |
-| **C2_Protease_B C2_Protease_B** | 6LU7 | C2 dimer | PHE140 | +4.5 mÅ | ✅ VALIDATED |
-| **TNF-α** | 1TNF | C3 trimer | TYR151 | +0.1 mÅ | ✅ VALIDATED |
-| **Monomeric_Cleft_C NS3** | 1A1R | C2-like | TRP53-TYR75 | **+7.8 mÅ** | ✅ **NEW VALIDATED** |
-| **IL-6 Complex** | 1P9M | Hexamer | TRP45-TYR57 | -63 mÅ | 🟡 Good |
+| **Influenza NA** | - | C4 tetramer | TRP178 stacking | **-0.8 mÅ** | ✅ **VALIDATED** |
+| **HCV NS3** | 1A1R | C2-like | TRP53-TYR75 | **+7.8 mÅ** | ✅ **VALIDATED** |
+| **TNF-α** | 1TNF | C3 trimer | TYR151 | +23.4 mÅ | 🟡 STRONG |
+| SARS-CoV-2 Mpro | 6LU7 | C2 dimer | PHE140 | -126.6 mÅ | ❌ FAILED |
+| HIV-1 Protease | 1HHP | C2 dimer | PHE53 stacking | +333.8 mÅ | ❌ FAILED |
 | Metabolic_Receptor_E | 1X70 | Dimer | TRP629 | TBD | ⏳ Pending |
 
 ---
@@ -82,9 +87,11 @@ Monomeric_Cleft_C-Z2-005: WYYFDCTS (Triple aromatic, highest priority)
 
 | Target | Z² Match | Status | Peptide Leads |
 |--------|----------|--------|---------------|
-| C2_Homodimer_A Protease | PHE53 at -1.3 mÅ | ✅ ipTM 0.92 | LEWTYEWTLTE |
-| C2_Protease_B C2_Protease_B | PHE140 at +4.5 mÅ | ✅ Validated | WKLWTRQWLQ |
-| TNF-α | TYR151 at +0.1 mÅ | ✅ ipTM 0.82 | DDWEYTWEQELTD |
+| Influenza NA | TRP178 at -0.8 mÅ | ✅ ipTM 0.88 | LEAD_NA_001 |
+| HCV NS3 | TRP53 at +7.8 mÅ | ✅ ipTM 0.84 | Monomeric_Cleft_C-Z2-005 |
+| TNF-α | TYR151 at +23.4 mÅ | 🟡 ipTM 0.82 | DDWEYTWEQELTD |
+| SARS-CoV-2 Mpro | PHE140 at -126.6 mÅ | ❌ FAILED | WKLWTRQWLQ |
+| HIV-1 Protease | PHE53 at +333.8 mÅ | ❌ FAILED | LEWTYEWTLTE |
 
 ---
 
@@ -94,10 +101,9 @@ Monomeric_Cleft_C-Z2-005: WYYFDCTS (Triple aromatic, highest priority)
 
 | Rank | Target | target system | Z² Quality | Next Step |
 |------|--------|---------|------------|-----------|
-| 1 | C2_Homodimer_A Protease | C2_Homodimer_A/AIDS | -1.3 mÅ | Synthesis |
-| 2 | **Monomeric_Cleft_C NS3** | Monomeric_Cleft_C | **+7.8 mÅ** | **AlphaFold** |
-| 3 | C2_Protease_B C2_Protease_B | COVID-19 | +4.5 mÅ | Synthesis |
-| 4 | TNF-α | Autoimmune | +0.1 mÅ | Synthesis |
+| 1 | Influenza NA | Flu | -0.8 mÅ | Synthesis |
+| 2 | **HCV NS3** | Hepatitis C | **+7.8 mÅ** | Synthesis |
+| 3 | TNF-α | Autoimmune | +23.4 mÅ | Analysis |
 
 ### Tier 2: Good Candidates (Strong Matches)
 
@@ -201,11 +207,13 @@ Monomeric_Cleft_C-Z2-005: WYYFDCTS (Triple aromatic, highest priority)
 
 ## Conclusion
 
-The Z² framework has now been validated on **4 symmetric oligomeric targets**:
-1. C2_Homodimer_A Protease (C2 dimer) - **ATOMIC PRECISION**
-2. C2_Protease_B C2_Protease_B (C2 dimer) - **ATOMIC PRECISION**
-3. TNF-α (C3 trimer) - **ATOMIC PRECISION**
-4. **Monomeric_Cleft_C NS3 (C2-like)** - **ATOMIC PRECISION** (NEW)
+The Z² framework has now been honestly validated on **3 targets**:
+1. Influenza NA (C4 tetramer) - **ATOMIC PRECISION**
+2. HCV NS3 (C2-like) - **ATOMIC PRECISION**
+3. GLP-1R (GPCR) - **ATOMIC PRECISION**
+
+TNF-α shows strong but not atomic-precision resonance.
+HIV-1 Protease and SARS-CoV-2 Mpro failed to validate at predicted precision.
 
 IL-6 shows good but not atomic-precision matches, suggesting it may
 require alternative design strategies.

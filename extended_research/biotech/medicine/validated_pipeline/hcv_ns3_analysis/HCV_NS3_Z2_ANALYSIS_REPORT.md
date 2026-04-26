@@ -98,7 +98,7 @@ Note: Residue numbering in 1A1R is offset. Mapping to standard NS3:
 | Feature | C2_Homodimer_A Protease | Monomeric_Cleft_C NS3 | Assessment |
 |---------|--------------|---------|------------|
 | **Symmetry** | C2 homodimer | C2-like domain | ✅ Similar |
-| **Best Z² match** | PHE53: -1.3 mÅ | TRP53-TYR75: +7.8 mÅ | ✅ Both atomic |
+| **Best Z² match** | HIV-1: +333.8 mÅ (❌) | HCV NS3: +7.8 mÅ (✅) | ✅ HCV atomic |
 | **AlphaFold ipTM** | 0.92 | Pending | Test needed |
 | **Active site aromatics** | 4 | 7 | Monomeric_Cleft_C richer |
 | **Existing drugs** | 10+ approved | 6+ approved | Both validated |
@@ -106,15 +106,15 @@ Note: Residue numbering in 1A1R is offset. Mapping to standard NS3:
 ### Z² Match Quality Comparison
 
 ```
-C2_Homodimer_A Protease PHE53:     ─────●───── (-1.3 mÅ)
-Monomeric_Cleft_C NS3 TRP53-TYR75:    ─────────●── (+7.8 mÅ)
+HCV NS3 TRP53-TYR75:               ─────────●── (+7.8 mÅ)
+HIV-1 Protease PHE53:   (OUT OF RANGE)                  (+333.8 mÅ)
                         |    |    |
                      -10mÅ  Z²  +10mÅ
-                              ↑
+                               ↑
                         ATOMIC PRECISION WINDOW
 ```
 
-**Conclusion:** Monomeric_Cleft_C NS3 shows comparable Z² geometry to C2_Homodimer_A protease.
+**Conclusion:** HCV NS3 shows genuine atomic-precision Z² geometry, whereas HIV-1 Protease failed validation at the proposed site.
 
 ---
 
@@ -156,11 +156,11 @@ Based on Z² framework and existing inhibitor structures:
 
 ## Validation Status
 
-| Metric | C2_Homodimer_A Protease | Monomeric_Cleft_C NS3 |
+| Metric | HIV-1 Protease | HCV NS3 |
 |--------|--------------|---------|
-| Z² Distance Match | ✅ Validated (-1.3 mÅ) | ✅ Validated (+7.8 mÅ) |
+| Z² Distance Match | ❌ FAILED (+333.8 mÅ) | ✅ Validated (+7.8 mÅ) |
 | PDB Structure | 1HHP, 6PSA | 1A1R, 1CU1, 3SV6 |
-| AlphaFold Prediction | ✅ ipTM 0.92 | ⏳ Pending |
+| AlphaFold Prediction | ❌ ipTM 0.92 (failed Z²) | ⏳ Pending |
 | Peptide Synthesis | ⏳ Pending | ⏳ Pending |
 | Binding Assays | ⏳ Pending | ⏳ Pending |
 
