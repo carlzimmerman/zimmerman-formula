@@ -349,3 +349,19 @@ This analysis represents honest evaluation of our hypotheses. The kinase mechani
 
 **Methodology and Claim Abstract:**
 This framework establishes prior art for the computational generation of therapeutic ligands targeting any C2, C3, C4, or C6 symmetric macromolecular assembly. Any sequence engineered to establish a primary aromatic anchor (Tryptophan, Tyrosine, or Phenylalanine) at a spatial distance of 6.015 Å (± 0.1 Å) from the target's interfacial aromatic void is considered a derivative of this geometric method.
+
+---
+
+## 12. LEGAL DISCLAIMER (BIOTECH/THERAPEUTICS)
+
+**ALL THERAPEUTIC DESIGNS AND COMPUTATIONAL OUTPUTS ARE PROVIDED FOR THEORETICAL RESEARCH PURPOSES ONLY.**
+
+1. **NOT MEDICAL ADVICE:** This repository and its outputs do not constitute medical advice, diagnosis, or treatment recommendations. No physician-patient relationship is created.
+2. **NOT PEER REVIEWED:** Algorithms, designs, and predictions have not undergone formal peer review or regulatory validation (FDA, EMA, etc.).
+3. **NO WARRANTY:** All content is provided "AS IS" without warranty of any kind, express or implied, including merchantability, fitness for a particular purpose, or accuracy.
+4. **COMPUTATIONAL ONLY:** All therapeutic results are computational predictions. No claims are made regarding in vitro, in vivo, or clinical efficacy or safety. Actual biological behavior may differ substantially.
+5. **REGULATORY COMPLIANCE:** Any use for actual drug development must comply with all applicable regulations (IND, GLP, GMP, IRB approval, clinical trial protocols).
+6. **ASSUMPTION OF RISK:** Users assume all risks associated with use of this information and derivatives.
+7. **INTELLECTUAL PROPERTY:** Users are responsible for ensuring use does not infringe existing patents or IP rights.
+
+**Copyright (c) 2026 Carl Zimmerman. All rights reserved under AGPL-3.0-or-later.**
