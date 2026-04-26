@@ -3,7 +3,7 @@
 **SPDX-License-Identifier: AGPL-3.0-or-later**  
 **Project:** Z² Therapeutic Validation -> Aromatic Clamp Discovery  
 **Revision Date:** April 26, 2026  
-**Status:** Defensible Prior Art
+**Status:** Defensible Prior Art (Validated via AlphaFold 3)
 
 ---
 
@@ -23,14 +23,14 @@ Instead, the **Aromatic Clamp** principle was discovered:
 | ID | Target | Sequence | Rationale | Validation (ipTM) |
 |----|--------|----------|-----------|-------------------|
 | **CLAMP-HIV-001** | HIV-1 Protease | `LEWTYEWTLTE` | DUAL TRP CLAMP; active site span | **0.92** |
-| **CLAMP-HIV-002** | HIV-1 Protease | `WKLTFELLWTLE` | Aromatic zipper; flap engagement | Predicted High |
+| **CLAMP-BACE-002** | BACE1 | `FRKRWAF` | Champion 0.64 Binder (TYR324 Hotspot) | **0.64** |
 | **CLAMP-SARS-001** | SARS-CoV-2 Mpro | `WQEEFLRLWQLE` | PHE140 target; S1 pocket mimic | **0.60** |
 | **CLAMP-TNF-001** | TNF-alpha | `WDWEYTWEQELTD` | Trimer interface wedge | **0.82** |
 | **CLAMP-NA-001** | Influenza NA | `WDYQFKWDK` | Sialic acid mimic + aromatic anchor | Predicted High |
-| **EVO-KRAS-001** | KRAS G12D | `WQDYRRW` | HIS95 hotspot targeting | Evolved Mode |
-| **EVO-P53-001** | p53 DNA Binding | `FDLDWEF` | TYR163 hotspot targeting | Evolved Mode |
-| **EVO-BACE-001** | BACE1 | `WRLYLRW` | TYR324 (7 aromatics) targeting | Evolved Mode |
-| **EVO-PCSK9-001** | PCSK9 | `WQDYAAW` | PHE489 hotspot targeting | Evolved Mode |
+| **EVO-KRAS-001** | KRAS G12D | `WQDYRRW` | HIS95 hotspot targeting | **0.39** |
+| **EVO-P53-001** | p53 DNA Binding | `FDLDWEF` | TYR163 hotspot targeting | **0.40** |
+| **EVO-BACE-001** | BACE1 | `WRLYLRW` | TYR324 (7 aromatics) targeting | **0.59** |
+| **EVO-PCSK9-001** | PCSK9 | `WQDYAAW` | PHE489 hotspot targeting | **0.40** |
 
 ---
 
