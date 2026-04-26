@@ -56,8 +56,22 @@ DISEASE_TARGETS = {
     "HIV_gp120": { "pdb_id": "1GC1", "description": "HIV viral entry", "chain": "G" },
     "TNF_alpha": { "pdb_id": "1TNF", "description": "Inflammation/Arthritis", "chain": "A" },
     "IL6_Receptor": { "pdb_id": "1ALU", "description": "Cytokine storm/Inflammation", "chain": "A" },
-    "Spike_RBD": { "pdb_id": "6M0J", "description": "SARS-CoV-2 viral entry", "chain": "E" }
+    "Spike_RBD": { "pdb_id": "6M0J", "description": "SARS-CoV-2 viral entry", "chain": "E" },
+    "Dengue_E": { "pdb_id": "1UZG", "description": "Dengue Virus fusion protein", "chain": "A" },
+    "Dental_Plaque_GTF": { "pdb_id": "3AIB", "description": "S. mutans Glucosyltransferase", "chain": "A" },
+    "Alpha_Synuclein": { "pdb_id": "1XQ8", "description": "Parkinson's fibril core", "chain": "A" },
+    "Insulin_Receptor": { "pdb_id": "1IRK", "description": "Diabetes signaling", "chain": "A" },
+    "Zika_E": { "pdb_id": "5IRE", "description": "Zika fusion protein", "chain": "A" },
+    "Ebola_GP": { "pdb_id": "5VEM", "description": "Ebola attachment glycoprotein", "chain": "G" },
+    "Marburg_VP40": { "pdb_id": "6N7E", "description": "Marburg matrix protein", "chain": "A" },
+    "Chikungunya_E": { "pdb_id": "3J2W", "description": "Chikungunya fusion protein", "chain": "A" }
 }
+# DYNAMIC TARGET LOADING
+PANDEMIC_FILE = "pandemic_targets.json"
+if os.path.exists(PANDEMIC_FILE):
+    with open(PANDEMIC_FILE, "r") as f:
+        DISEASE_TARGETS.update(json.load(f))
+    print(f"[*] Loaded {len(DISEASE_TARGETS)} total targets (including Pandemic Tier 1).")
 
 AROMATIC_RESIDUES = {'PHE', 'TYR', 'TRP', 'HIS'}
 
@@ -85,8 +99,18 @@ def find_aromatic_hotspots(pdb_path, target_chain='A'):
     except:
         return []
     
-    model = structure[0]
-    chain = model[target_chain]
+    # Get first model robustly
+    try:
+        model = next(structure.get_models())
+    except StopIteration:
+        return []
+    try:
+        chain = model[target_chain]
+    except KeyError:
+        try:
+            chain = next(model.get_chains())
+        except StopIteration:
+            return []
     
     aromatic_centroids = []
     for res in chain:
