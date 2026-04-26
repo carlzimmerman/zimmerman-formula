@@ -46,11 +46,17 @@ DISEASE_TARGETS = {
         "description": "Beta-secretase (Alzheimer's target)",
         "chain": "A",
     },
-    "PCSK9": {
-        "pdb_id": "2P4E",
-        "description": "Cholesterol regulator (LDLR degradation)",
-        "chain": "A",
-    }
+    "PCSK9": { "pdb_id": "2P4E", "description": "Cholesterol regulator", "chain": "A" },
+    "PDL1": { "pdb_id": "4ZQK", "description": "Cancer checkpoint", "chain": "B" },
+    "IDO1": { "pdb_id": "4PK5", "description": "Immune evasion", "chain": "A" },
+    "EGFR": { "pdb_id": "1IVO", "description": "Growth factor receptor (Cancer)", "chain": "A" },
+    "HER2": { "pdb_id": "1N8Z", "description": "Breast cancer target", "chain": "A" },
+    "Amyloid_Beta": { "pdb_id": "2LMP", "description": "Alzheimer's fibril", "chain": "A" },
+    "Tau_Protein": { "pdb_id": "5O3L", "description": "Alzheimer's tangles", "chain": "A" },
+    "HIV_gp120": { "pdb_id": "1GC1", "description": "HIV viral entry", "chain": "G" },
+    "TNF_alpha": { "pdb_id": "1TNF", "description": "Inflammation/Arthritis", "chain": "A" },
+    "IL6_Receptor": { "pdb_id": "1ALU", "description": "Cytokine storm/Inflammation", "chain": "A" },
+    "Spike_RBD": { "pdb_id": "6M0J", "description": "SARS-CoV-2 viral entry", "chain": "E" }
 }
 
 AROMATIC_RESIDUES = {'PHE', 'TYR', 'TRP', 'HIS'}
@@ -145,21 +151,33 @@ def design_clamp_peptide(hotspot):
         "Y{x1}{x2}W{x3}Y",
     ]
     
-    # Selection of "glue" residues (solubility, charge, secondary structure)
-    glues = ['L', 'E', 'K', 'A', 'T', 'Q', 'R', 'D']
+    # Selection of "glue" residues (solubility, charge, and secondary structure)
+    # We prioritize Hydrophilic (D, E, K, R, S, T) to avoid aggregation.
+    glues = ['S', 'T', 'D', 'E', 'K', 'R', 'Q', 'G']
     
     peptides = []
+    # Design for the "Parallel" Manifold (0-20 deg) - uses small spacers
+    parallel_glues = ['G', 'A', 'S']
     for template in templates:
-        # Fill template with random glues
-        seq = template.format(**{f"x{i}": np.random.choice(glues) for i in range(1, 5)})
-        
-        # Calculate theoretical properties
+        seq = template.format(**{f"x{i}": np.random.choice(parallel_glues) for i in range(1, 5)})
         peptides.append({
             'sequence': seq,
             'hotspot': hotspot['center_res'],
-            'target_attractor_hits': hotspot['attractor_hits'],
-            'design_logic': f"Aromatic anchor placement matching hotspot size {hotspot['size']}",
-            'sha256': hashlib.sha256(seq.encode()).hexdigest()[:12]
+            'target': hotspot.get('target', 'Unknown'),
+            'manifold': 'Parallel (0-20 deg)',
+            'design_logic': "Low-volume spacers to maximize face-to-face stacking resonance."
+        })
+    
+    # Design for the "T-Shaped" Manifold (70-90 deg) - uses bulky spacers
+    bulky_glues = ['V', 'I', 'L', 'K', 'R', 'E']
+    for template in templates:
+        seq = template.format(**{f"x{i}": np.random.choice(bulky_glues) for i in range(1, 5)})
+        peptides.append({
+            'sequence': seq,
+            'hotspot': hotspot['center_res'],
+            'target': hotspot.get('target', 'Unknown'),
+            'manifold': 'T-Shaped (70-90 deg)',
+            'design_logic': "Bulky sidechains to force perpendicular edge-to-face stacking."
         })
         
     return peptides
