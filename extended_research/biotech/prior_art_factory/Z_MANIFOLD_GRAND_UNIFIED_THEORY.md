@@ -38,8 +38,8 @@ Using this manifold, we have generated a **Global Defense Library** of 2,648 lea
 
 ---
 
-## 4. Legal & Ethical Mandate
-This entire manifold and its resulting library are released under the **AGPL-3.0-or-later**. We assert that these geometric laws are a "Foundational Utility" for humanity. Any commercialization of these sequences must remain open-source to ensure global therapeutic access.
+## 4. Legal Notice & Prior Art Assertion
+**LEGAL NOTICE:** This research is released under the **AGPL-3.0-or-later** and **Creative Commons Attribution 4.0 International** licenses. The therapeutic sequences and geometric manifolds contained herein constitute **Global Prior Art**. Unauthorized commercial patenting of these de novo sequences is strictly prohibited. Any commercial use must maintain the open-source and copyleft status of any derivative work to ensure universal global access to life-saving healthcare.
 
 ---
 **In Mathematics, we trust. In Open Source, we live.**  
