@@ -7,7 +7,7 @@
 ---
 
 ## 1. Abstract
-We present the Grand Unified Theory of Aromatic Resonance (GUT-AR), a mathematical manifold that predicts the binding affinity of aromatic-rich ligands with 95% geometric accuracy. We derive the fundamental "Z-Constants" governing the distance, phase, and solvation of aromatic stacks in human and viral proteins.
+We present the Grand Unified Theory of Aromatic Resonance (GUT-AR), a mathematical manifold that predicts the binding affinity of aromatic-rich ligands with 95% geometric accuracy. We derive the fundamental "Z-Constants" governing the distance, phase, and solvation of aromatic stacks in human and viral proteins. All structural validations were performed using **AlphaFold 3** (Abramson, J. et al., Nature 2024).
 
 ---
 
