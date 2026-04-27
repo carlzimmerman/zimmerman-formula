@@ -41,6 +41,21 @@ const ZConnectionWeb = dynamic(
   { ssr: false, loading: () => <LoadingScreen label="Connections" /> }
 )
 
+const HurricaneSimulation = dynamic(
+  () => import('@/components/HurricaneSimulation'),
+  { ssr: false, loading: () => <LoadingScreen label="Hurricane" /> }
+)
+
+const ZSquaredAnalysis = dynamic(
+  () => import('@/components/ZSquaredAnalysis'),
+  { ssr: false, loading: () => <LoadingScreen label="Z² Analysis" /> }
+)
+
+const IntensityForecastViz = dynamic(
+  () => import('@/components/IntensityForecastViz'),
+  { ssr: false, loading: () => <LoadingScreen label="Intensity Forecast" /> }
+)
+
 function LoadingScreen({ label }: { label: string }) {
   return (
     <div className="w-full h-full min-h-screen bg-black flex items-center justify-center">
@@ -108,6 +123,30 @@ const simulations = [
     available: true,
     description: 'Complete Z connection web',
     color: 'violet'
+  },
+  {
+    id: 'hurricane',
+    name: 'Hurricane Forecast',
+    icon: '🌀',
+    available: true,
+    description: 'Track prediction with V* scaling',
+    color: 'teal'
+  },
+  {
+    id: 'z2analysis',
+    name: 'Z² Framework',
+    icon: '📐',
+    available: true,
+    description: 'RI prediction & golden ratio analysis',
+    color: 'amber'
+  },
+  {
+    id: 'intensity',
+    name: 'Intensity Forecast',
+    icon: '📈',
+    available: true,
+    description: 'Full intensity evolution comparison',
+    color: 'rose'
   },
 ]
 
@@ -257,6 +296,9 @@ export default function SimulatePage() {
         {activeSimulation === 'rar' && <RARVisualization />}
         {activeSimulation === 'geometry' && <GeometricVisualization />}
         {activeSimulation === 'connections' && <ZConnectionWeb />}
+        {activeSimulation === 'hurricane' && <HurricaneSimulation />}
+        {activeSimulation === 'z2analysis' && <ZSquaredAnalysis />}
+        {activeSimulation === 'intensity' && <IntensityForecastViz />}
       </div>
     </div>
   )
