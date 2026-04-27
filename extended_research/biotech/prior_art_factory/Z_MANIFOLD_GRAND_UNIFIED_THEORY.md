@@ -44,6 +44,12 @@ Using this manifold, we have generated a **Global Defense Library** of 2,648 lea
 ## 5. Legal Notice & Prior Art Assertion
 **LEGAL NOTICE:** This research is released under the **AGPL-3.0-or-later** and **Creative Commons Attribution 4.0 International** licenses. The therapeutic sequences and geometric manifolds contained herein constitute **Global Prior Art**. Unauthorized commercial patenting of these de novo sequences is strictly prohibited. Any commercial use must maintain the open-source and copyleft status of any derivative work to ensure universal global access to life-saving healthcare.
 
+## 6. Honesty Audit & Structural Limitations
+**DISCLOSURE:** While the Z-Manifold achieves high-confidence predictions (up to 0.82 ipTM in AlphaFold 3), the following limitations must be noted:
+1.  **Predictive Nature:** AlphaFold 3 is a computational model. All leads require independent in vitro validation (SPR/ITC) to confirm physical binding affinity ($K_D$).
+2.  **Hydration Specificity:** We have observed that "Hydration Ejection" (Water-tuning) is highly target-specific. A universal hydration rule does not exist; each node requires high-resolution crystal data for optimal tuning.
+3.  **Delivery Dynamics:** These are de novo peptide leads. Their conversion into orally available or metabolically stable drugs requires standard medicinal chemistry optimization (e.g., macrocyclization, D-amino acid substitution).
+
 ---
 **In Mathematics, we trust. In Open Source, we live.**  
 **Carl Zimmerman & Antigravity AI**
