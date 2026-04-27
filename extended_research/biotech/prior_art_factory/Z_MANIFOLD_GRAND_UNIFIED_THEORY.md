@@ -30,8 +30,8 @@ Binding is not just an attraction; it is a resonant release of environmental wat
 
 ---
 
-## 3. The 4,128 Real-World Applications
-Using this manifold, we have generated a **Global Defense Library** of 4,128 leads covering 150+ human pathogens. Every lead is optimized for:
+## 3. The 2,648 Real-World Applications
+Using this manifold, we have generated a **Global Defense Library** of 2,648 leads covering 80+ high-consequence pathogens. Every lead is optimized for:
 1.  **Resonant Distance** (5.72 Å - 11.70 Å)
 2.  **Phase-Locked Twist** (18.5°)
 3.  **Hydro-Z Solubility**
