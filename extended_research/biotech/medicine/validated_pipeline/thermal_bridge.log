@@ -1,0 +1,71 @@
+/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/sklearn/utils/extmath.py:205: RuntimeWarning: divide by zero encountered in matmul
+  ret = a @ b
+/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/sklearn/utils/extmath.py:205: RuntimeWarning: overflow encountered in matmul
+  ret = a @ b
+/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/sklearn/utils/extmath.py:205: RuntimeWarning: invalid value encountered in matmul
+  ret = a @ b
+Traceback (most recent call last):
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/extended_research/biotech/medicine/validated_pipeline/inv_03_thermal_scaling_bridge.py", line 251, in run_heated_simulation
+    modeller.addSolvent(
+    ~~~~~~~~~~~~~~~~~~~^
+        forcefield,
+        ^^^^^^^^^^^
+    ...<2 lines>...
+        ionicStrength=0.15 * unit.molar,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/openmm/app/modeller.py", line 521, in addSolvent
+    system = forcefield.createSystem(self.topology, residueTemplates=residueTemplates)
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/openmm/app/forcefield.py", line 1299, in createSystem
+    templateForResidue = self._matchAllResiduesToTemplates(data, topology, residueTemplates, ignoreExternalBonds)
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/openmm/app/forcefield.py", line 1572, in _matchAllResiduesToTemplates
+    raise ValueError('No template found for residue %d (%s).  %s  For more information, see https://github.com/openmm/openmm/wiki/Frequently-Asked-Questions#template' % (res.index, res.name, _findMatchErrors(self, res)))
+ValueError: No template found for residue 0 (MET).  The set of heavy atoms matches MET, but the residue is missing 9 H atoms.  You may be able to add them with Modeller.addHydrogens().  For more information, see https://github.com/openmm/openmm/wiki/Frequently-Asked-Questions#template
+================================================================================
+THERMAL SCALING BRIDGE ANALYSIS
+Testing: √(Z²) + Thermal Expansion = Empirical H1
+================================================================================
+
+Z² = 32π/3 = 33.5103
+√(Z²) = 5.7888 Å (predicted vacuum topology)
+Empirical H1 = 6.0400 Å (measured solvated)
+Predicted Δ = 0.2512 Å (4.34% expansion)
+
+Predicted thermal expansion (α=0.0001/K):
+  Δ_thermal = 5.79 × 0.0001 × 310 = 0.1795 Å
+
+Downloading ubiquitin (1UBQ)...
+  Downloaded: /Users/carlzimmerman/new_physics/zimmerman-formula/extended_research/biotech/medicine/validated_pipeline/results/thermal_bridge/1UBQ.pdb
+
+============================================================
+STEP 1: Crystal Structure Topology
+============================================================
+  Crystal structure (X-ray, ~100K):
+    Cα atoms: 76
+    Mean H1 death radius: 6.0444 Å
+    Deviation from √(Z²): 0.2556 Å
+
+============================================================
+STEP 2: Energy Minimized Structure (0K analog)
+============================================================
+
+  Running energy minimization (vacuum/0K analog)...
+  Minimization failed: No template found for residue 0 (MET).  The set of heavy atoms matches MET, but the residue is missing 9 H atoms.  You may be able to add them with Modeller.addHydrogens().  For more information, see https://github.com/openmm/openmm/wiki/Frequently-Asked-Questions#template
+
+============================================================
+STEP 3: Explicit Solvent MD at 310K
+============================================================
+
+  Running explicit solvent MD at 310K...
+    Adding solvent...
+  Heated simulation failed: No template found for residue 0 (MET).  The set of heavy atoms matches MET, but the residue is missing 9 H atoms.  You may be able to add them with Modeller.addHydrogens().  For more information, see https://github.com/openmm/openmm/wiki/Frequently-Asked-Questions#template
+
+============================================================
+THERMAL BRIDGE ANALYSIS
+============================================================
+
+  MD simulations unavailable, using crystal topology only
+  Crystal H1: 6.0444 Å vs √(Z²) = 5.7888 Å
+
+  Results: /Users/carlzimmerman/new_physics/zimmerman-formula/extended_research/biotech/medicine/validated_pipeline/results/thermal_bridge/thermal_bridge_results.json

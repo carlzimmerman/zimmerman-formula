@@ -1,0 +1,150 @@
+================================================================================
+MEMBRANE PERMEABILITY TEST
+Blood-Brain Barrier Penetration Simulation
+================================================================================
+
+Configuration:
+  Membrane: POPC bilayer
+  Production: 20 ns
+  Temperature: 310 K
+  Ionic strength: 0.15 M KCl
+
+
+NOTE: This is a simplified membrane simulation.
+For production use, integrate with CHARMM-GUI membrane builder
+to create pre-equilibrated POPC/POPE bilayer systems.
+
+
+============================================================
+Membrane Permeability Test: ZIM-SYN-004
+  Parkinson's Disruptor
+  Sequence: FPF
+  Target: Alpha-synuclein (brain)
+============================================================
+
+  Building peptide structure...
+  Built peptide at z=2.5 nm: /Users/carlzimmerman/new_physics/zimmerman-formula/extended_research/biotech/medicine/validated_pipeline/results/membrane_permeability/ZIM-SYN-004_for_membrane.pdb
+    Loaded: 57 atoms
+
+  Solvating system...
+    System size: 62910 atoms
+    Peptide atoms: 57
+
+  Creating system...
+    Added Z-restraint: flat within [-3.0, 3.0] nm
+    Platform: CPU
+
+  Minimizing energy...
+  Equilibrating (100 ps)...
+
+  Production run (20 ns)...
+    Tracking peptide Z-coordinate...
+      t=0.01 ns: Z=2.378 nm
+      t=0.11 ns: Z=2.235 nm
+
+    Z-coordinate analysis:
+      Mean Z: 2.382 nm
+      Min Z: 2.126 nm
+      Max Z: 2.557 nm
+
+    VERDICT: BOUNCED
+    Peptide remained in water phase
+
+    BBB Assessment: NEEDS_MODIFICATION
+    Consider adding cell-penetrating peptide motifs
+  Plot saved: /Users/carlzimmerman/new_physics/zimmerman-formula/extended_research/biotech/medicine/validated_pipeline/results/membrane_permeability/ZIM-SYN-004_z_trajectory.png
+
+============================================================
+Membrane Permeability Test: ZIM-ADD-003
+  Non-addictive Analgesic
+  Sequence: RWWFWR
+  Target: α3β4 nAChR (brain)
+============================================================
+
+  Building peptide structure...
+  Built peptide at z=2.5 nm: /Users/carlzimmerman/new_physics/zimmerman-formula/extended_research/biotech/medicine/validated_pipeline/results/membrane_permeability/ZIM-ADD-003_for_membrane.pdb
+    Loaded: 143 atoms
+
+  Solvating system...
+    System size: 62836 atoms
+    Peptide atoms: 143
+
+  Creating system...
+    Added Z-restraint: flat within [-3.0, 3.0] nm
+    Platform: CPU
+
+  Minimizing energy...
+  Equilibrating (100 ps)...
+
+  Production run (20 ns)...
+    Tracking peptide Z-coordinate...
+      t=0.01 ns: Z=2.173 nm
+      t=0.11 ns: Z=2.169 nm
+
+    Z-coordinate analysis:
+      Mean Z: 2.230 nm
+      Min Z: 2.068 nm
+      Max Z: 2.435 nm
+
+    VERDICT: BOUNCED
+    Peptide remained in water phase
+
+    BBB Assessment: NEEDS_MODIFICATION
+    Consider adding cell-penetrating peptide motifs
+  Plot saved: /Users/carlzimmerman/new_physics/zimmerman-formula/extended_research/biotech/medicine/validated_pipeline/results/membrane_permeability/ZIM-ADD-003_z_trajectory.png
+
+============================================================
+Membrane Permeability Test: ZIM-ALZ-001
+  Alzheimer's Tau Disruptor
+  Sequence: WFFY
+  Target: Tau protein (brain)
+============================================================
+
+  Building peptide structure...
+  Built peptide at z=2.5 nm: /Users/carlzimmerman/new_physics/zimmerman-formula/extended_research/biotech/medicine/validated_pipeline/results/membrane_permeability/ZIM-ALZ-001_for_membrane.pdb
+    Loaded: 88 atoms
+
+  Solvating system...
+    System size: 62869 atoms
+    Peptide atoms: 88
+
+  Creating system...
+    Added Z-restraint: flat within [-3.0, 3.0] nm
+    Platform: CPU
+
+  Minimizing energy...
+  Equilibrating (100 ps)...
+
+  
+  Production run (20 ns)...
+    Tracking peptide Z-coordinate.         t=0.01 ns: Z=2.339          t=0.11 ns: Z=2.297 
+  
+    Z-coordinate analysis:
+      Mean Z: 2.232 nm
+      Min Z: 1.803 nm
+      Max Z: 2.554 nm
+
+    VERDICT: SURFACE
+    Peptide interacted with headgroups
+
+    BBB Assessment: NEEDS_MODIFICATION
+    Consider adding cell-penetrating peptide motifs
+  Plot saved: /Users/carlzimmerman/new_physics/zimmerman-formula/extended_research/biotech/medicine/validated_pipeline/results/membrane_permeability/ZIM-ALZ-001_z_trajectory.png
+
+================================================================================
+MEMBRANE PERMEABILITY SUMMARY
+================================================================================
+
+  VERDICT KEY:
+    PERMEABLE: Inserted into hydrophobic core (excellent BBB candidate)
+    PARTIAL:   Reached membrane center (promising)
+    SURFACE:   Interacted with headgroups only (needs modification)
+    BOUNCED:   Remained in water phase (poor permeability)
+
+  RESULTS:
+    ZIM-SYN-004: SURFACE (min_z = 1.43 nm)
+    ZIM-ADD-003: BOUNCED (min_z = 2.09 nm)
+    ZIM-ALZ-001: SURFACE (min_z = 1.80 nm)
+
+  Results: /Users/carlzimmerman/new_physics/zimmerman-formula/extended_research/biotech/medicine/validated_pipeline/results/membrane_permeability/membrane_permeability_results.json
+on
