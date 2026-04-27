@@ -67,7 +67,7 @@ DISEASE_TARGETS = {
     "Chikungunya_E": { "pdb_id": "3J2W", "description": "Chikungunya fusion protein", "chain": "A" }
 }
 # DYNAMIC TARGET LOADING
-PANDEMIC_FILE = "pandemic_targets.json"
+PANDEMIC_FILE = "MASTER_PANDEMIC_TARGETS.json"
 if os.path.exists(PANDEMIC_FILE):
     with open(PANDEMIC_FILE, "r") as f:
         DISEASE_TARGETS.update(json.load(f))
