@@ -38,7 +38,10 @@ Using this manifold, we have generated a **Global Defense Library** of 2,648 lea
 
 ---
 
-## 4. Legal Notice & Prior Art Assertion
+## 4. Computational Disclaimer & Liability Waiver
+**DISCLAIMER:** This research is purely computational and provided "as-is" for academic and theoretical purposes only. The therapeutic leads and geometric models contained herein have not been clinically validated and are not intended for medical use. The authors assume no liability for any direct or indirect consequences arising from the use of this data. All biological applications must undergo rigorous independent in vitro and in vivo validation prior to any human application.
+
+## 5. Legal Notice & Prior Art Assertion
 **LEGAL NOTICE:** This research is released under the **AGPL-3.0-or-later** and **Creative Commons Attribution 4.0 International** licenses. The therapeutic sequences and geometric manifolds contained herein constitute **Global Prior Art**. Unauthorized commercial patenting of these de novo sequences is strictly prohibited. Any commercial use must maintain the open-source and copyleft status of any derivative work to ensure universal global access to life-saving healthcare.
 
 ---
