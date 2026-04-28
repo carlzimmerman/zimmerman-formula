@@ -85,7 +85,14 @@ METADATA='{
       "UNSOLVED"
     ],
     "notes": "DISCLAIMER: The Riemann Hypothesis remains an open problem. This paper is a structural survey, not a proof.",
-    "version": "1.0"
+    "version": "1.0",
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/carlzimmerman/zimmerman-formula",
+        "relation": "isSupplementedBy",
+        "resource_type": "software"
+      }
+    ]
   }
 }'
 
