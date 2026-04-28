@@ -671,3 +671,8 @@ We welcome contributions from scientists, engineers, and clinicians worldwide. B
 > — Carl Zimmerman, Charlotte NC, March 2026
 
 **Z² = CUBE × SPHERE = 32π/3**
+
+
+
+“If you don't believe me or don't get it, I don't have time to try to convince you, sorry.”
+― Satoshi Nakamoto 
