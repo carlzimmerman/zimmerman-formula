@@ -22,6 +22,8 @@ I've thought about that exchange for years. We have this magnificent theory, tes
 
 This is the context in which I want to discuss a new framework that proposes, somewhat audaciously, that the Standard Model's structure follows from the geometry of the cube. Not metaphorically. Not vaguely. Specifically: the gauge group SU(3) × SU(2) × U(1) and three fermion generations may be consequences of mathematical facts about the only Platonic solid that fills three-dimensional space.
 
+The framework's claims fall into three tiers. First, mathematical theorems that are rigorously proven: the cube's tessellation uniqueness, the unique partition of 12 into Standard Model Lie algebra dimensions, three generations from topology. Second, physical derivations with clear logic: α⁻¹ = 4Z² + 3 = 137.04 from mode counting (0.004% accuracy), sin²θ_W = 3/13 from group structure (0.19% accuracy). Third, testable predictions awaiting confirmation: r ≈ 0.015, θ_QCD ≈ 10⁻¹⁵, and continued null results in dark matter detection. This hierarchy distinguishes the framework from numerology.
+
 ---
 
 ## The Geometric Tradition
@@ -85,6 +87,24 @@ The factors are geometric: 8 is the cube's vertex count, and 4π/3 is the volume
 Weyl's law is fundamental to spectral geometry. It states that the number of eigenvalues below λ for the Laplacian on a bounded domain Ω ⊂ ℝ³ scales as (4π/3)⁻¹ · Vol(Ω) · λ³/². The factor 4π/3 appears because counting eigenvalues is equivalent to counting lattice points inside a sphere in Fourier space.
 
 Multiplying this continuous-geometry factor by the discrete count of cube vertices creates a constant that bridges the two. The framework proposes that Z² normalizes the gravitational action and determines coupling constant relationships.
+
+---
+
+## Coupling Constants from Geometry
+
+Here's where the numerical predictions emerge. The fine structure constant—that mysterious 1/137—follows from mode counting in the geometric framework:
+
+$$\alpha^{-1} = 4Z^2 + 3 = 137.04$$
+
+The factor 4 counts space diagonals (information channels in the cubic lattice), Z² provides the geometric normalization, and +3 is the generation correction. The measured value is 137.036—agreement to 0.004%.
+
+The weak mixing angle follows similarly from group structure:
+
+$$\sin^2\theta_W = \frac{3}{13} = 0.2308$$
+
+The numerator counts generations (3); the denominator counts gauge bosons (12) plus the Higgs (1). The measured value is 0.2312—agreement to 0.19%.
+
+These aren't arbitrary fits. They emerge from counting degrees of freedom in the geometric structure. Whether this represents genuine physics or elaborate coincidence is what experiments will determine.
 
 ---
 

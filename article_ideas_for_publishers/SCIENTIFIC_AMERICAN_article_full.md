@@ -12,7 +12,9 @@ Now consider a much stranger claim: the universe itself may be built on the cube
 
 This is the radical proposal of a new theoretical framework that connects ancient geometry to cutting-edge physics. If correct, it would answer questions that have puzzled scientists for nearly a century: Why does nature have the specific particles and forces it does? Why are there exactly three families of matter? Why do the fundamental constants have the particular values we measure?
 
-The answers, it turns out, may have been sitting on every child's toy shelf all along.
+The framework organizes its claims into three levels. First, mathematical theorems that are rigorously proven: the cube is the only regular solid that fills space; its twelve edges split uniquely into the dimensions of nature's force symmetries; three families of matter follow from the topology of hidden dimensions. Second, physical derivations that emerge from the geometry: the fine structure constant 1/137, the weak mixing angle, and the acceleration where gravity seems to change. Third, testable predictions that future experiments will check: the strength of gravitational waves from the Big Bang, a geometric solution to a nuclear physics puzzle, and whether dark matter is made of particles or is itself a feature of gravity.
+
+The answers may have been sitting on every child's toy shelf all along.
 
 ---
 
@@ -96,6 +98,28 @@ Zimmerman proposes that this combined constant normalizes gravity and determines
 
 ---
 
+## The Numbers That Fall Out
+
+Here's where the framework makes its boldest claims. Remember that mysterious 1/137, the fine-structure constant that nobody can explain? In Zimmerman's framework, it emerges from a simple formula:
+
+**Inverse fine-structure constant = 4 × Z² + 3 = 137.04**
+
+The measured value is 137.036. That's agreement to 0.004%—better than four parts in a hundred thousand.
+
+The factor 4 counts the space diagonals of a cube (lines connecting opposite corners through the center). Z² is the geometric constant. And +3 is the number of particle families. It's not a post-hoc fit; it's a formula that produces a number.
+
+Similarly, another mysterious constant—the "weak mixing angle" that determines how electromagnetism and the weak nuclear force blend together—follows from the framework:
+
+**Sine squared of the weak mixing angle = 3/13 = 0.2308**
+
+The measured value is 0.2312—agreement to 0.19%.
+
+The numerator (3) counts particle generations. The denominator (13) counts force-carrying particles (12 for the gauge bosons) plus one for the Higgs.
+
+Are these genuine derivations or clever numerology? The honest answer is: we don't know yet. The mathematical proofs (cube uniqueness, edge partition, three generations from topology) are certain. The coupling constant formulas are well-motivated but not rigorously derived from first principles. The distinction matters for evaluating the framework's credibility.
+
+---
+
 ## Why Three Generations?
 
 Here's a puzzle that has baffled physicists since the 1970s: matter comes in triplicate.
@@ -157,6 +181,8 @@ Some physicists embrace the multiverse—the idea that our cosmos is one bubble 
 Zimmerman's framework offers the opposite vision. The constants are necessary, not contingent. They flow from the mathematics of space itself. There is only one way for three-dimensional space to be filled with regular solids, and that way determines everything else.
 
 This is a Platonic vision, though refined beyond what Plato imagined. Not the elements made of solids, but the forces encoded by them. Not mystical numerology, but testable predictions.
+
+**A hierarchy of claims.** The framework is honest about what's proven and what isn't. The mathematical results—cube tessellation uniqueness, the edge partition into Standard Model dimensions, three generations from topology—are rigorously proven theorems. The coupling constant formulas have clear physical logic and match observations to better than 0.5%. The nucleon moment–dark energy coincidence (μₙ/μₚ = −Ω_Λ to 0.003%) is a striking pattern whose mechanism remains unclear. This hierarchy distinguishes the framework from mere numerology.
 
 Over the next decade, experiments will deliver verdicts. Satellites will measure gravitational waves. Neutron experiments will test the strong CP suppression. Dark matter detection experiments will either continue their decades-long null results (supporting MOND) or finally find particles (contradicting the framework). Either the predictions will hold, pointing toward a geometric foundation for physics, or they will fail, sending theorists back to the drawing board.
 

@@ -103,6 +103,28 @@ Zimmerman proposes that Z², combining the cube's eight corners with the sphere'
 
 ---
 
+## Deriving the Constants
+
+Here is where the framework makes its most striking claims. The fine-structure constant—that mysterious 1/137 that has haunted physics since Sommerfeld introduced it—emerges from mode counting in the geometric structure:
+
+**α⁻¹ = 4Z² + 3 = 137.04**
+
+The measured value is 137.036. That's agreement to 0.004%.
+
+The factor 4 counts space diagonals in the cube (the information channels), Z² provides the geometric normalization, and +3 is the generation correction. It's not a fit after the fact—it's a formula that produces a number.
+
+Similarly, the weak mixing angle—which determines how electromagnetism and the weak force mix together—follows from the group structure:
+
+**sin²θ_W = 3/13 = 0.2308**
+
+The numerator counts generations (3); the denominator counts gauge bosons (12) plus the Higgs (1). The measured value is 0.2312—agreement to 0.19%.
+
+"These aren't arbitrary matches," Zimmerman emphasizes. "They follow from counting degrees of freedom. The question is whether geometry is really doing this, or whether I've found clever post-hoc relationships."
+
+The distinction matters. The framework organizes its claims into three tiers: mathematical theorems that are proven (cube tessellation, Lie algebra partition, generation counting from topology), physical derivations with clear logic (the coupling constants above, the MOND scale), and striking patterns whose mechanism remains unclear (the nucleon moment–dark energy relation). This hierarchy is what separates the framework from numerology.
+
+---
+
 ## The Mystery of Three Families
 
 There's another number that has puzzled physicists for half a century: the number of particle generations.
@@ -189,7 +211,9 @@ Not everyone is convinced.
 
 The concern is what statisticians call the look-elsewhere effect. If you search through enough ratios and combinations, some will match by pure chance. Zimmerman has found several intriguing numerical relationships—but are there others that don't fit, quietly omitted from the story?
 
-"The predictions are what matter," Zimmerman responds. "Anyone can fit known data after the fact. The framework says r is 0.015, not 0.03 or 0.001. If CMB-S4 measures 0.05 or 0.001, I'm wrong. That's falsifiability—that's science."
+"The predictions are what matter," Zimmerman responds. "And I'm honest about the hierarchy. The cube tessellation theorem is mathematically proven. The Lie algebra partition is exhaustively enumerated. Three generations from b₁(T³) = 3 is a theorem. Those are Tier 1—they're certain. The coupling constant formulas are Tier 2—they have clear physical logic and match to 0.5%. The μₙ/μₚ = −Ω_Λ relation is Tier 3—it's a striking pattern whose mechanism I don't understand. That's the honest picture."
+
+"The predictions are what I stake the framework on. The framework says r is 0.015, not 0.03 or 0.001. If CMB-S4 measures 0.05 or 0.001, I'm wrong. That's falsifiability—that's science."
 
 Another critique targets the framework's incompleteness. While it proposes that gauge structure and generation number have geometric origins, it doesn't explain why the extra dimensions have the sizes and shapes they do. In physics jargon, the "moduli" aren't stabilized.
 
