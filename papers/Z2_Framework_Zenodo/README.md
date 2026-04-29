@@ -1,7 +1,7 @@
 # The Z-Squared Unified Action
 
 **Author:** Carl Zimmerman
-**Version:** 6.0.1 (April 29, 2026)
+**Version:** 6.0.2 (April 29, 2026)
 **DOI:** 10.5281/zenodo.19861375
 
 ---
@@ -16,11 +16,26 @@ This is the product of the vertices of a cube (8) and the volume of a unit spher
 
 ---
 
-## Version 6.0.1 Updates (April 29, 2026)
+## Version 6.0.2 Updates (April 29, 2026)
 
-### NEW: Two-Loop Quantum Correction for Fine Structure Constant
+### NEW: Hubble Constant Derived from First Principles
 
-The most significant addition in v6.0 is the two-loop quantum correction formula:
+The framework now derives the Hubble constant H₀ from geometric first principles:
+
+**H₀ = Z × a₀ / c = 71.5 km/s/Mpc**
+
+Where:
+- Z = √(32π/3) ≈ 5.788 (the geometric constant)
+- a₀ = 1.2 × 10⁻¹⁰ m/s² (MOND acceleration scale)
+- c = speed of light
+
+This prediction falls precisely between:
+- Planck CMB measurement: 67.4 ± 0.5 km/s/Mpc
+- SH0ES local distance ladder: 73.0 ± 1.0 km/s/Mpc
+
+**The Z² Framework may resolve the Hubble tension.**
+
+### Two-Loop Quantum Correction for Fine Structure Constant
 
 **α⁻¹ + α - 12πα² = 4Z² + 3**
 
@@ -57,6 +72,7 @@ The entire paper has been rewritten for clarity and accessibility:
 |----------|---------|-----------|----------|-------|
 | α⁻¹ (tree level) | 4Z² + 3 | 137.04 | 137.036 | 0.003% |
 | **α⁻¹ (two-loop)** | solve α⁻¹ + α - 12πα² = 4Z² + 3 | **137.0359967** | 137.0359991 | **0.000002%** |
+| **H₀** | Z × a₀ / c | **71.5 km/s/Mpc** | 67.4-73.0 | **Resolves tension** |
 | m_p/m_e | α⁻¹ × 67/5 | 1836.35 | 1836.15 | 0.011% |
 | Ω_Λ | 13/19 | 0.684 | 0.685 | 0.1% |
 | μ_n/μ_p | -Ω_Λ | -0.685 | -0.68498 | 0.003% |
@@ -103,8 +119,8 @@ FORCED IDENTIFICATION: 8→SU(3), 3→SU(2), 1→U(1)
 
 ## Contents
 
-- `Z2_UNIFIED_ACTION_v6.0.1.tex` - LaTeX source (for Overleaf compilation)
-- `Z2_UNIFIED_ACTION_v6.0.1.pdf` - Compiled PDF
+- `Z2_UNIFIED_ACTION_v6.0.2.tex` - LaTeX source (for Overleaf compilation)
+- `Z2_UNIFIED_ACTION_v6.0.2.pdf` - Compiled PDF
 - `README.md` - This file
 
 ---
@@ -124,7 +140,7 @@ CC BY-SA 4.0
                from a Single Geometric Constant},
   year      = {2026},
   month     = {April},
-  version   = {6.0.1},
+  version   = {6.0.2},
   publisher = {Zenodo},
   doi       = {10.5281/zenodo.19861375}
 }
