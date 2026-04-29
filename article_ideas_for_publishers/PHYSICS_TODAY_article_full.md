@@ -110,7 +110,7 @@ A framework's value lies in what it predicts. The Z² framework makes several cl
 
 **Axion mass:** m_a ≈ 57 μeV. ADMX is searching in the 1–100 μeV range. Detection at 57 μeV would be striking; detection at 200 μeV would be problematic.
 
-**Dark matter mass:** m_DM ≈ 2.6 keV. This predicts warm rather than cold dark matter, with observable consequences for small-scale structure.
+**MOND acceleration scale:** a₀ = cH₀/Z ≈ 1.2×10⁻¹⁰ m/s². The framework derives MOND from first principles, predicting that "dark matter" is geometric rather than particulate—testable by continued null results in direct detection experiments.
 
 **Nucleon moment–dark energy relation:** μₙ/μₚ = −Ω_Λ. Current values agree to 0.003%, which is either profound or coincidental. Improved measurements will tell.
 
@@ -124,7 +124,7 @@ Let me voice the objections, because I share some of them.
 
 First, **numerology.** The history of physics contains many beautiful numerical relationships that turned out to be coincidences. Large-number coincidences connecting atomic and cosmic scales fascinated Dirac but led nowhere. Finding that cube edges sum to Standard Model dimensions could be just another pattern in the noise.
 
-Second, **post-diction.** The framework "predicts" known values like sin²θ_W and Ω_Λ. But these weren't derived blindly; they informed the framework's construction. The genuine predictions—r, axion mass, dark matter mass—are the real tests.
+Second, **post-diction.** The framework "predicts" known values like sin²θ_W and Ω_Λ. But these weren't derived blindly; they informed the framework's construction. The genuine predictions—r, axion mass, MOND acceleration scale—are the real tests.
 
 Third, **incompleteness.** The framework proposes a topological origin for generations and a combinatorial origin for gauge structure. But it doesn't specify the dynamics that would stabilize the internal manifold or explain why these particular moduli are selected. In physics jargon, there's no potential—just topology.
 
@@ -134,7 +134,7 @@ These are serious concerns. They don't invalidate the framework, but they counse
 
 ## What We Might Learn
 
-Suppose, for the sake of argument, that the predictions hold up. CMB-S4 finds r ≈ 0.003. ADMX detects an axion at 57 μeV. Dark matter turns out to be warm. What would this tell us?
+Suppose, for the sake of argument, that the predictions hold up. CMB-S4 finds r ≈ 0.003. ADMX detects an axion at 57 μeV. Direct dark matter detection experiments continue reporting null results while galaxy dynamics follow MOND. What would this tell us?
 
 It would suggest that the Standard Model's apparent arbitrariness conceals a deeper necessity. The gauge group isn't one choice among many; it's the only choice consistent with cubic geometry. The three generations aren't contingent; they're topologically forced.
 

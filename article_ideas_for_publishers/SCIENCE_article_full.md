@@ -10,7 +10,7 @@ Carl Zimmerman¹*
 
 ## Abstract
 
-The Standard Model's gauge group and three fermion generations lack theoretical explanation. We demonstrate that both follow geometrically from compactification on an eight-dimensional manifold M⁴ × T³ × S¹, constrained by the cube's unique ability among Platonic solids to tessellate three-dimensional space. The cube's twelve edges partition uniquely as 8 + 3 + 1 into Standard Model gauge algebra dimensions. The 3-torus Betti number b₁(T³) = 3 determines generation count via the Atiyah-Singer index theorem. The framework predicts: tensor-to-scalar ratio r = 0.003 (testable by CMB-S4), axion mass 57 μeV (within ADMX range), and 2.6 keV warm dark matter. An unexpected relation μₙ/μₚ = −Ω_Λ connects nuclear physics to cosmology, currently verified to 0.003%. These predictions provide stringent tests of the geometric hypothesis.
+The Standard Model's gauge group and three fermion generations lack theoretical explanation. We demonstrate that both follow geometrically from compactification on an eight-dimensional manifold M⁴ × T³ × S¹, constrained by the cube's unique ability among Platonic solids to tessellate three-dimensional space. The cube's twelve edges partition uniquely as 8 + 3 + 1 into Standard Model gauge algebra dimensions. The 3-torus Betti number b₁(T³) = 3 determines generation count via the Atiyah-Singer index theorem. The framework predicts: tensor-to-scalar ratio r = 0.003 (testable by CMB-S4), axion mass 57 μeV (within ADMX range), and the MOND acceleration scale a₀ = cH₀/Z from first principles. An unexpected relation μₙ/μₚ = −Ω_Λ connects nuclear physics to cosmology, currently verified to 0.003%. These predictions provide stringent tests of the geometric hypothesis.
 
 ---
 
@@ -72,7 +72,7 @@ where C_i are order-unity geometric factors.
 |------------|-------|-------------------|-------------|
 | r (tensor-to-scalar) | 0.00298 ± 0.0003 | < 0.036 (*10*) | CMB-S4, LiteBIRD |
 | m_a (axion mass) | 57.3 ± 2 μeV | Under search (*11*) | ADMX |
-| m_DM (dark matter) | 2.63 ± 0.1 keV | Constrained (*12*) | Lyman-α, X-ray |
+| a₀ (MOND scale) | cH₀/Z ≈ 1.2×10⁻¹⁰ m/s² | Observed (*12*) | Galaxy dynamics |
 | μₙ/μₚ + Ω_Λ | 0 | |μₙ/μₚ| = 0.685 (*13*), Ω_Λ = 0.685 (*14*) | Precision improvement |
 
 The last prediction—that the neutron-to-proton magnetic moment ratio equals the negative of dark energy density—is currently satisfied to 0.003%.
@@ -97,7 +97,7 @@ These limitations indicate areas for future work.
 **Falsifiability.** The framework is falsifiable by:
 - r > 0.01 detection (excludes r ≈ 0.003)
 - Axion mass outside 40–80 μeV range
-- Cold dark matter confirmation (excludes keV-scale WDM)
+- Detection of dark matter particles (framework predicts MOND, not particle DM)
 - Divergence of |μₙ/μₚ| from Ω_Λ with improved precision
 
 These tests are achievable within the coming decade.

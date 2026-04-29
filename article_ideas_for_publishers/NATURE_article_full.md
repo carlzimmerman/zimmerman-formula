@@ -10,7 +10,7 @@ Carl Zimmerman¹*
 
 ## Abstract
 
-The Standard Model of particle physics successfully describes fundamental interactions but does not explain the origin of its gauge group SU(3) × SU(2) × U(1) or the existence of three fermion generations. Here we show that both structures emerge from geometric constraints when physics is formulated on an eight-dimensional manifold with specific topology. The construction rests on the mathematical fact that the cube uniquely tessellates three-dimensional Euclidean space among Platonic solids. The number of cube edges (twelve) partitions uniquely into simple Lie algebra dimensions as 8 + 3 + 1, yielding the Standard Model gauge algebra. Compactification on a 3-torus produces three fermion generations via the Atiyah-Singer index theorem. The framework makes quantitative predictions: tensor-to-scalar ratio r = 0.003, axion mass 57 μeV, and warm dark matter at 2.6 keV. We also derive μₙ/μₚ = −Ω_Λ, an unexpected relation between nucleon magnetic moments and dark energy density currently satisfied to 0.003%.
+The Standard Model of particle physics successfully describes fundamental interactions but does not explain the origin of its gauge group SU(3) × SU(2) × U(1) or the existence of three fermion generations. Here we show that both structures emerge from geometric constraints when physics is formulated on an eight-dimensional manifold with specific topology. The construction rests on the mathematical fact that the cube uniquely tessellates three-dimensional Euclidean space among Platonic solids. The number of cube edges (twelve) partitions uniquely into simple Lie algebra dimensions as 8 + 3 + 1, yielding the Standard Model gauge algebra. Compactification on a 3-torus produces three fermion generations via the Atiyah-Singer index theorem. The framework makes quantitative predictions: tensor-to-scalar ratio r = 0.003, axion mass 57 μeV, and the MOND acceleration scale a₀ = cH₀/Z from first principles. We also derive μₙ/μₚ = −Ω_Λ, an unexpected relation between nucleon magnetic moments and dark energy density currently satisfied to 0.003%.
 
 ---
 
@@ -88,11 +88,11 @@ $$m_a = 57.3 \pm 2 \, \mu\text{eV}$$
 
 This lies within the sensitivity range of ADMX¹², currently searching at 1–100 μeV.
 
-**Dark matter mass.** Warm dark matter from internal-space zero modes:
+**MOND acceleration scale.** The framework derives the characteristic acceleration of Modified Newtonian Dynamics from first principles:
 
-$$m_\text{DM} = 2.63 \pm 0.1 \, \text{keV}$$
+$$a_0 = \frac{cH_0}{Z} \approx 1.2 \times 10^{-10} \, \text{m/s}^2$$
 
-This predicts observable effects in small-scale structure formation and Lyman-α forest measurements¹³.
+This matches the empirically observed MOND scale¹³. The derivation suggests "dark matter" phenomena arise from modified gravity at low accelerations rather than from particles—a prediction testable by continued null results in direct detection experiments.
 
 **Nucleon moment–dark energy relation.** The framework predicts:
 
@@ -106,7 +106,7 @@ The framework presented here derives Standard Model gauge structure and fermion 
 
 Several aspects require further development. The mechanism stabilizing the internal manifold's moduli is not specified. The electroweak hierarchy problem remains unaddressed. Yukawa couplings determining fermion masses are not fully derived. These limitations indicate areas for future work rather than fatal flaws.
 
-The framework makes specific, falsifiable predictions. Detection of r > 0.01 or axion mass outside the 40–80 μeV range would challenge the construction. Confirmation of cold rather than warm dark matter would require revision. These tests will likely be performed within the coming decade.
+The framework makes specific, falsifiable predictions. Detection of r > 0.01 or axion mass outside the 40–80 μeV range would challenge the construction. Detection of dark matter particles (WIMPs, sterile neutrinos) would contradict the MOND-based prediction that "dark matter" is geometric rather than particulate. These tests will likely be performed within the coming decade.
 
 Whether the cube's unique tessellation property underlies the Standard Model's structure is ultimately an empirical question. The predictions offered here provide a path to answering it.
 

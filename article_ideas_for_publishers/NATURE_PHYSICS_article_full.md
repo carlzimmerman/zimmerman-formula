@@ -10,7 +10,7 @@ Carl Zimmerman¹*
 
 ## Abstract
 
-The Standard Model successfully describes fundamental interactions but offers no explanation for its gauge group SU(3) × SU(2) × U(1) or the existence of exactly three fermion generations. Here we present a geometric framework in which both structures emerge from mathematical constraints rather than empirical fitting. The construction rests on two classical results: the cube is the unique Platonic solid that tessellates three-dimensional Euclidean space, and the number of cube edges (twelve) admits a unique partition into simple Lie algebra dimensions that yields the Standard Model gauge algebra. By formulating physics on an eight-dimensional manifold M⁴ × T³ × S¹, we show that three fermion generations follow from the first Betti number of the 3-torus via the Atiyah-Singer index theorem. The gravitational and gauge sectors are normalized by a single constant Z² = 32π/3, combining the cube's eight vertices with the sphere volume factor appearing in Weyl's eigenvalue law. The framework makes quantitative predictions testable within this decade: tensor-to-scalar ratio r = 0.003, axion mass 57 μeV, and warm dark matter at 2.6 keV. We also derive an unexpected relation μₙ/μₚ = −Ω_Λ connecting nucleon magnetic moments to the dark energy density parameter, currently satisfied to 0.003%.
+The Standard Model successfully describes fundamental interactions but offers no explanation for its gauge group SU(3) × SU(2) × U(1) or the existence of exactly three fermion generations. Here we present a geometric framework in which both structures emerge from mathematical constraints rather than empirical fitting. The construction rests on two classical results: the cube is the unique Platonic solid that tessellates three-dimensional Euclidean space, and the number of cube edges (twelve) admits a unique partition into simple Lie algebra dimensions that yields the Standard Model gauge algebra. By formulating physics on an eight-dimensional manifold M⁴ × T³ × S¹, we show that three fermion generations follow from the first Betti number of the 3-torus via the Atiyah-Singer index theorem. The gravitational and gauge sectors are normalized by a single constant Z² = 32π/3, combining the cube's eight vertices with the sphere volume factor appearing in Weyl's eigenvalue law. The framework makes quantitative predictions testable within this decade: tensor-to-scalar ratio r = 0.003, axion mass 57 μeV, and the MOND acceleration scale a₀ = cH₀/Z from first principles. We also derive an unexpected relation μₙ/μₚ = −Ω_Λ connecting nucleon magnetic moments to the dark energy density parameter, currently satisfied to 0.003%.
 
 ---
 
@@ -201,11 +201,11 @@ $$m_a = 57.3 \pm 2 \, \mu\text{eV}$$
 
 This lies within the sensitivity range of ADMX (Axion Dark Matter eXperiment), currently searching in the 1–100 μeV mass range. Detection at this mass would confirm the prediction; detection outside the 40–80 μeV range would challenge it.
 
-**Dark matter mass.** If dark matter consists of thermal relics from the early universe, its mass determines whether it is "hot," "warm," or "cold," with distinct consequences for structure formation. The framework predicts warm dark matter with:
+**MOND acceleration scale.** The framework derives the characteristic acceleration of Modified Newtonian Dynamics from first principles:
 
-$$m_{\text{DM}} = 2.63 \pm 0.1 \, \text{keV}$$
+$$a_0 = \frac{cH_0}{Z} \approx 1.2 \times 10^{-10} \, \text{m/s}^2$$
 
-Warm dark matter at the keV scale produces observable effects in the Lyman-α forest and small-scale structure. Current constraints are approaching this mass regime. A definitive detection of cold (GeV-scale) dark matter would falsify this prediction.
+This matches the empirically observed MOND scale. The derivation suggests that "dark matter" phenomena arise from modified gravity at low accelerations rather than from particles. This predicts continued null results in direct detection experiments for WIMPs and other dark matter candidates.
 
 ### The nucleon moment–dark energy connection
 
@@ -278,7 +278,7 @@ Scientific frameworks derive value from their ability to be proven wrong. We ide
 
 2. **Axion mass:** Discovery of axions with mass outside the 40–80 μeV range would challenge the framework. A null result from ADMX after complete coverage of this range would also be significant.
 
-3. **Dark matter:** Definitive identification of cold dark matter (e.g., WIMP detection at GeV–TeV masses) would contradict the keV-scale warm dark matter prediction.
+3. **Dark matter particles:** Detection of dark matter particles (WIMPs, axion DM, sterile neutrinos) would contradict the framework's prediction that "dark matter" is geometric (MOND) rather than particulate.
 
 4. **Nucleon moments vs. dark energy:** As measurements improve, disagreement between μₙ/μₚ and Ωλ beyond combined uncertainties would falsify the predicted equality.
 

@@ -126,7 +126,7 @@ Beautiful ideas mean nothing if they can't be tested. Zimmerman's framework make
 
 **The axion particle.** Physicists have long theorized about a particle called the axion, which could explain both a puzzle in nuclear physics and the nature of dark matter. Zimmerman's framework predicts the axion should have a specific mass: about 57 microelectronvolts—lighter than a billionth of an electron. Experiments at the University of Washington and elsewhere are currently searching in this mass range.
 
-**Warm dark matter.** Something massive lurks in the cosmos, bending light and holding galaxies together, yet it doesn't shine. We call it dark matter. Zimmerman's framework predicts it's made of relatively light particles, moving faster than the "cold" dark matter most theories favor. This would affect how small galaxies form—a prediction testable with current telescopes.
+**The MOND acceleration scale.** Something seems wrong when we observe galaxies—stars at their edges orbit too fast for the visible matter to hold them. Most physicists invoke invisible "dark matter" particles. But Zimmerman's framework offers a different explanation: gravity itself works differently at extremely low accelerations. The theory derives a specific acceleration threshold—about 1.2×10⁻¹⁰ m/s²—below which Newton's laws need modification. This matches what galaxies actually show, and predicts that direct searches for dark matter particles will continue finding nothing.
 
 ---
 
@@ -158,7 +158,7 @@ Zimmerman's framework offers the opposite vision. The constants are necessary, n
 
 This is a Platonic vision, though refined beyond what Plato imagined. Not the elements made of solids, but the forces encoded by them. Not mystical numerology, but testable predictions.
 
-Over the next decade, experiments will deliver verdicts. Satellites will measure gravitational waves. Detectors will search for axions. Telescopes will probe dark matter's nature. Either the predictions will hold, pointing toward a geometric foundation for physics, or they will fail, sending theorists back to the drawing board.
+Over the next decade, experiments will deliver verdicts. Satellites will measure gravitational waves. Detectors will search for axions. Dark matter detection experiments will either continue their decades-long null results (supporting MOND) or finally find particles (contradicting the framework). Either the predictions will hold, pointing toward a geometric foundation for physics, or they will fail, sending theorists back to the drawing board.
 
 In the meantime, the cube sits on your desk, wooden or plastic or crystalline, its eight corners and twelve edges holding mysteries that physicists are only beginning to explore.
 
@@ -195,8 +195,8 @@ The ancient Greeks discovered all five and considered them sacred. Modern mathem
 | Prediction | What It Means | When We'll Know |
 |------------|---------------|-----------------|
 | Gravitational wave strength (r ≈ 0.003) | Specific signal from Big Bang | Late 2020s |
-| Axion mass (~57 μeV) | Particle that could be dark matter | Ongoing |
-| Warm dark matter (~2.6 keV) | Dark matter moves faster than expected | Mid-2020s |
+| Axion mass (~57 μeV) | Particle that could solve strong CP problem | Ongoing |
+| MOND acceleration (a₀ = cH₀/Z) | Gravity changes at low accelerations | Ongoing galaxy studies |
 | Nuclear-cosmic link | μₙ/μₚ = −Ω_Λ | As measurements improve |
 
 ---

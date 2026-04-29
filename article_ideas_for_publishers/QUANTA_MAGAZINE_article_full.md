@@ -149,11 +149,11 @@ Zimmerman's framework predicts axions should have a mass of about 57 microelectr
 
 ADMX is currently scanning the 1–100 microelectronvolt range. A detection at 57 μeV would be remarkable; a detection at 200 μeV would challenge the framework.
 
-**Warm dark matter.** Something out there has mass but doesn't interact with light—we call it dark matter and know it exists from its gravitational effects on galaxies and the cosmic microwave background. But we don't know what it is.
+**The MOND acceleration scale.** Something seems to be missing when we observe galaxies—stars at their edges rotate too fast for the visible matter to hold them in. Most physicists invoke "dark matter" particles. But there's an alternative: maybe gravity itself works differently at very low accelerations.
 
-The framework predicts dark matter particles with mass around 2.6 keV (kiloelectronvolts)—light enough to be "warm" rather than "cold," moving fast enough in the early universe to smooth out the smallest cosmic structures.
+Modified Newtonian Dynamics (MOND), proposed by Mordehai Milgrom in 1983, suggests that Newton's laws break down below a characteristic acceleration scale a₀ ≈ 1.2×10⁻¹⁰ m/s². The framework derives this value from first principles: a₀ = cH₀/Z, where H₀ is the Hubble constant and Z is the geometric constant.
 
-Warm dark matter would leave distinctive signatures in the distribution of small galaxies and in the absorption patterns of distant quasar light. Current observations are beginning to probe this mass range.
+If correct, this predicts that direct dark matter detection experiments—searching for WIMPs, axions as dark matter, or sterile neutrinos—will continue reporting null results. Galaxy dynamics would follow MOND, not particle dark matter.
 
 ---
 
@@ -209,7 +209,7 @@ Zimmerman's framework offers the opposite vision. The constants are not continge
 
 "It's a return to the Platonic view," says [philosopher of physics]. "Not the specifics of Plato's solids—that was wrong about chemistry. But the deeper intuition that mathematics determines reality, that the cosmos couldn't be otherwise."
 
-This vision has intellectual appeal, but appeal isn't evidence. The next five to ten years will provide crucial tests. CMB-S4 will measure r. ADMX will scan the axion mass range. Dark matter searches will sharpen. Measurements of Ω_Λ and μₙ/μₚ will improve.
+This vision has intellectual appeal, but appeal isn't evidence. The next five to ten years will provide crucial tests. CMB-S4 will measure r. ADMX will scan the axion mass range. Dark matter detection experiments will either continue their null results (supporting the MOND prediction) or find particles (falsifying it). Measurements of Ω_Λ and μₙ/μₚ will improve.
 
 If the predictions hold, the cube—humanity's oldest symbol of solidity and stability—may take its place alongside Riemannian geometry and quantum mechanics as a foundation of physics.
 
