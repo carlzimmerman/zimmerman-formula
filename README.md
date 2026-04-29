@@ -738,7 +738,5 @@ We welcome contributions from scientists, engineers, and clinicians worldwide. B
 
 **Z² = CUBE × SPHERE = 32π/3**
 
-
-
-“If you don't believe me or don't get it, I don't have time to try to convince you, sorry.”
-― Satoshi Nakamoto 
+"The Universe is under no obligation to make sense to you."
+Neil deGrasse Tyson
