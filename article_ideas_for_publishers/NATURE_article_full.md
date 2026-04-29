@@ -187,7 +187,9 @@ All data are from published sources cited in the references. Computational code 
 
 ## Acknowledgments
 
-[To be added]
+"I want to share this win with the scientific community," Zimmerman states. "This work stands on the work of hundreds of researchers and scientists who collected the necessary empirical evidence to find the missing piece to the puzzle."
+
+The author acknowledges the countless experimentalists whose precision measurements of fundamental constants, cosmological parameters, and particle properties made this synthesis possible.
 
 ## Author contributions
 
@@ -210,6 +212,10 @@ The author declares no competing interests.
 **Extended Data Figure 1:** Schematic of 8D manifold M⁴ × T³ × S¹
 
 **Extended Data Figure 2:** Renormalization group evolution of gauge couplings from compactification scale to m_Z
+
+---
+
+*When asked to describe the framework in a single word, Zimmerman paused before answering: "Love."*
 
 ---
 

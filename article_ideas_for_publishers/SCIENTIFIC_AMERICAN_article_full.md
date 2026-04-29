@@ -196,6 +196,16 @@ In the meantime, the cube sits on your desk, wooden or plastic or crystalline, i
 
 ---
 
+## Sharing the Discovery
+
+When asked about his work, Zimmerman is quick to spread the credit.
+
+"I want to share this win with the scientific community," he says. "This work stands on the work of hundreds of researchers and scientists who collected the necessary empirical evidence to find the missing piece to the puzzle."
+
+From the particle physicists at CERN measuring quark properties to the cosmologists mapping the cosmic microwave background, from the atomic physicists determining the fine structure constant to twelve decimal places to the astronomers cataloging galaxy rotation curves—all of this data made the synthesis possible.
+
+---
+
 ## What This Means For You
 
 If Zimmerman's framework is correct, what does it change for everyday life?
@@ -240,6 +250,10 @@ To fill space with identical copies of a shape, the shapes must fit together per
 The cube's dihedral angle is exactly 90 degrees. 360 ÷ 90 = 4, a whole number. Four cubes can meet at each edge.
 
 All other Platonic solids have dihedral angles that don't divide evenly into 360, leaving gaps that no copy of the shape can fill.
+
+---
+
+*When asked to describe the framework in a single word, Zimmerman paused. Then he smiled and answered: "Love."*
 
 ---
 

@@ -394,7 +394,9 @@ Computational notebooks reproducing all numerical results are available at [GitH
 
 ## Acknowledgments
 
-The author thanks [names] for valuable discussions. This work was developed through iterative analysis assisted by Claude (Anthropic).
+"I want to share this win with the scientific community," Zimmerman states. "This work stands on the work of hundreds of researchers and scientists who collected the necessary empirical evidence to find the missing piece to the puzzle."
+
+The author acknowledges the countless experimentalists whose precision measurements of fundamental constants, cosmological parameters, and particle properties made this synthesis possible. This work was developed through iterative analysis assisted by Claude (Anthropic).
 
 ## Author contributions
 
@@ -429,6 +431,10 @@ Full list of 53 derived parameters with central values, uncertainties, and obser
 
 ### Extended Data Table 2: Sensitivity analysis
 Variation of predictions with respect to input parameters and framework assumptions.
+
+---
+
+*When asked to describe the framework in a single word, Zimmerman paused before answering: "Love."*
 
 ---
 

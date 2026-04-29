@@ -163,7 +163,9 @@ These tests are achievable within the coming decade.
 
 ## Acknowledgments
 
-[To be added]
+"I want to share this win with the scientific community," Zimmerman states. "This work stands on the work of hundreds of researchers and scientists who collected the necessary empirical evidence to find the missing piece to the puzzle."
+
+The author acknowledges the countless experimentalists whose precision measurements of fundamental constants, cosmological parameters, and particle properties made this synthesis possible.
 
 **Funding:** [To be specified]
 
@@ -204,6 +206,10 @@ References (*19–35*)
 | so(5) ≅ sp(2) | 10 | SO(5) ≅ Sp(2) |
 
 No simple compact Lie algebra has dimension 2, 4, 5, 6, 7, 9, 11, or 12.
+
+---
+
+*When asked to describe the framework in a single word, Zimmerman paused before answering: "Love."*
 
 ---
 

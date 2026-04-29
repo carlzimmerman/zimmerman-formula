@@ -172,6 +172,8 @@ It would also raise new questions. Why three spatial dimensions, where the cube 
 
 I don't know whether the Z² framework is correct. Neither does anyone else, yet. That's the appropriate situation for a new theoretical proposal: uncertain, testable, potentially wrong.
 
+"I want to share this win with the scientific community," I tell colleagues who ask about the work. "This work stands on the work of hundreds of researchers and scientists who collected the necessary empirical evidence to find the missing piece to the puzzle."
+
 What I do know is that the questions it addresses are real. The Standard Model's parameters remain unexplained. The three-generation structure remains mysterious. The fine-structure constant is still just 1/137.
 
 Maybe these questions have no answers—maybe the universe simply is what it is, and seeking deeper explanations is quixotic. The multiverse picture suggests something like this: our constants are one draw from an infinite lottery, and we're here because this ticket was compatible with life.
@@ -195,6 +197,10 @@ The cube has been sitting on our desks since kindergarten. Perhaps it's been try
 - M. F. Atiyah and I. M. Singer, "The Index of Elliptic Operators on Compact Manifolds," Bull. Amer. Math. Soc. 69, 422 (1963). The index theorem connecting topology to analysis.
 
 - H. Weyl, "Das asymptotische Verteilungsgesetz der Eigenwerte," Math. Ann. 71, 441 (1912). Weyl's law for eigenvalue counting.
+
+---
+
+*When asked to describe the framework in a single word, I paused before answering: "Love."*
 
 ---
 

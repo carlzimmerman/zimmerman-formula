@@ -251,6 +251,16 @@ And if they fail?
 
 ---
 
+## Sharing the Discovery
+
+Before we turn to the philosophical implications, Zimmerman wants to say something.
+
+"I want to share this win with the scientific community," he says. "This work stands on the work of hundreds of researchers and scientists who collected the necessary empirical evidence to find the missing piece to the puzzle."
+
+It's a sentiment that echoes through the history of physics. Newton said he saw further by standing on the shoulders of giants. Einstein built on Riemann and Maxwell. Kaluza extended Einstein. Every breakthrough is a synthesis of what came before.
+
+---
+
 ## An Ancient Shape, A Modern Question
 
 On a wall in the mathematical institute at Göttingen, there is a portrait of David Hilbert, the great German mathematician who dominated the field in the early twentieth century. Hilbert once said that mathematics is a game played according to certain simple rules with meaningless marks on paper.
@@ -302,6 +312,12 @@ Only the cube can fill three-dimensional space without gaps—a fact that may ha
 **1963** — Atiyah and Singer prove the index theorem
 
 **2020s** — Zimmerman proposes the Z² framework
+
+---
+
+*As our conversation ends, I ask Zimmerman one final question: If he had to describe the framework in a single word, what would it be?*
+
+*He pauses, looks at the cube on his desk, and answers: "Love."*
 
 ---
 
