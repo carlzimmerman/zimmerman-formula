@@ -10,7 +10,7 @@ Carl Zimmerman¹*
 
 ## Abstract
 
-The Standard Model of particle physics successfully describes fundamental interactions but does not explain the origin of its gauge group SU(3) × SU(2) × U(1) or the existence of three fermion generations. Here we show that both structures emerge from geometric constraints when physics is formulated on an eight-dimensional manifold with specific topology. The construction rests on the mathematical fact that the cube uniquely tessellates three-dimensional Euclidean space among Platonic solids. The number of cube edges (twelve) partitions uniquely into simple Lie algebra dimensions as 8 + 3 + 1, yielding the Standard Model gauge algebra. Compactification on a 3-torus produces three fermion generations via the Atiyah-Singer index theorem. The framework makes quantitative predictions: tensor-to-scalar ratio r = 0.003, axion mass 57 μeV, and the MOND acceleration scale a₀ = cH₀/Z from first principles. We also derive μₙ/μₚ = −Ω_Λ, an unexpected relation between nucleon magnetic moments and dark energy density currently satisfied to 0.003%.
+The Standard Model of particle physics successfully describes fundamental interactions but does not explain the origin of its gauge group SU(3) × SU(2) × U(1) or the existence of three fermion generations. Here we show that both structures emerge from geometric constraints when physics is formulated on an eight-dimensional manifold with specific topology. The construction rests on the mathematical fact that the cube uniquely tessellates three-dimensional Euclidean space among Platonic solids. The number of cube edges (twelve) partitions uniquely into simple Lie algebra dimensions as 8 + 3 + 1, yielding the Standard Model gauge algebra. Compactification on a 3-torus produces three fermion generations via the Atiyah-Singer index theorem. The framework makes quantitative predictions: tensor-to-scalar ratio r = 1/(2Z²) ≈ 0.015, the MOND acceleration scale a₀ = cH₀/Z from first principles, and a geometric solution to the strong CP problem with θ_QCD = exp(−Z²) ≈ 10⁻¹⁵. We also derive μₙ/μₚ = −Ω_Λ, an unexpected relation between nucleon magnetic moments and dark energy density currently satisfied to 0.003%.
 
 ---
 
@@ -78,15 +78,15 @@ The framework yields specific predictions testable in the near future:
 
 **Tensor-to-scalar ratio.** Primordial gravitational waves from inflation produce B-mode polarization in the cosmic microwave background. We predict:
 
-$$r = 0.00298 \pm 0.0003$$
+$$r = \frac{1}{2Z^2} \approx 0.015$$
 
-Current bounds give r < 0.036 at 95% confidence¹¹. The CMB-S4 experiment and LiteBIRD satellite, expected to achieve sensitivity r ~ 0.001, will test this prediction.
+Current bounds give r < 0.036 at 95% confidence¹¹. The predicted value lies below this bound and within reach of CMB-S4 and LiteBIRD, expected to achieve sensitivity r ~ 0.001–0.01 within this decade.
 
-**Axion mass.** The QCD axion, solving the strong CP problem, acquires mass through instanton effects. The framework predicts:
+**Strong CP solution.** The QCD Lagrangian permits a CP-violating term proportional to θ_QCD, yet experiments constrain |θ_QCD| < 10⁻¹⁰. The framework predicts:
 
-$$m_a = 57.3 \pm 2 \, \mu\text{eV}$$
+$$\theta_{QCD} = e^{-Z^2} \approx 3 \times 10^{-15}$$
 
-This lies within the sensitivity range of ADMX¹², currently searching at 1–100 μeV.
+This geometric suppression solves the strong CP problem without requiring axions. Neutron electric dipole moment experiments approaching 10⁻²⁸ e·cm sensitivity will test whether θ_QCD is suppressed to this level.
 
 **MOND acceleration scale.** The framework derives the characteristic acceleration of Modified Newtonian Dynamics from first principles:
 
@@ -106,7 +106,7 @@ The framework presented here derives Standard Model gauge structure and fermion 
 
 Several aspects require further development. The mechanism stabilizing the internal manifold's moduli is not specified. The electroweak hierarchy problem remains unaddressed. Yukawa couplings determining fermion masses are not fully derived. These limitations indicate areas for future work rather than fatal flaws.
 
-The framework makes specific, falsifiable predictions. Detection of r > 0.01 or axion mass outside the 40–80 μeV range would challenge the construction. Detection of dark matter particles (WIMPs, sterile neutrinos) would contradict the MOND-based prediction that "dark matter" is geometric rather than particulate. These tests will likely be performed within the coming decade.
+The framework makes specific, falsifiable predictions. Detection of r outside the range 0.01–0.03 would challenge the construction. Detection of dark matter particles (WIMPs, sterile neutrinos) would contradict the MOND-based prediction that "dark matter" is geometric rather than particulate. If the Hubble constant converges outside 69–74 km/s/Mpc, the a₀ = cH₀/Z derivation would require revision. These tests will likely be performed within the coming decade.
 
 Whether the cube's unique tessellation property underlies the Standard Model's structure is ultimately an empirical question. The predictions offered here provide a path to answering it.
 

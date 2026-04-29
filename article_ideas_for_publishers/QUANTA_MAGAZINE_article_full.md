@@ -139,15 +139,17 @@ Zimmerman's framework makes several such predictions.
 
 **Gravitational waves from the Big Bang.** Inflation, the theory that the universe underwent a brief period of exponential expansion in its first moments, predicts a background of gravitational waves. The strength of this signal is characterized by a number called r, the tensor-to-scalar ratio.
 
-Current experiments constrain r to be less than about 0.036. Zimmerman's framework predicts r ≈ 0.003—an order of magnitude below current limits but within reach of the CMB-S4 experiment and the LiteBIRD satellite, both expected to report results in the late 2020s.
+Current experiments constrain r to be less than about 0.036. Zimmerman's framework predicts r = 1/(2Z²) ≈ 0.015—below current limits but within reach of the CMB-S4 experiment and the LiteBIRD satellite, both expected to report results in the late 2020s.
 
-If they find r at 0.003, it would be striking confirmation. If they find r at 0.02, the framework would face serious trouble.
+If they find r near 0.015, it would be striking confirmation. If they find r at 0.001 or 0.05, the framework would face serious trouble.
 
-**The axion.** In 1977, Roberto Peccei and Helen Quinn proposed a solution to an embarrassing problem in the strong nuclear force. Their mechanism predicts a new particle, the axion, whose mass depends on a fundamental energy scale.
+**The strong CP problem.** In 1977, a troubling puzzle emerged: the equations of the strong nuclear force permit a term that would violate a symmetry called CP, but experiments constrain this violation to be astonishingly small—less than 10⁻¹⁰.
 
-Zimmerman's framework predicts axions should have a mass of about 57 microelectronvolts—light enough to be invisible to ordinary particle detectors but potentially detectable by experiments like ADMX at the University of Washington, which searches for the faint microwave signals that axions would produce in a strong magnetic field.
+Most solutions propose a new particle, the axion. Zimmerman's framework takes a different approach: the offending parameter θ_QCD is exponentially suppressed by geometry itself:
 
-ADMX is currently scanning the 1–100 microelectronvolt range. A detection at 57 μeV would be remarkable; a detection at 200 μeV would challenge the framework.
+**θ_QCD = exp(−Z²) ≈ 3 × 10⁻¹⁵**
+
+No axion is needed—the suppression is automatic. This is testable: neutron electric dipole moment experiments approaching 10⁻²⁸ e·cm sensitivity will either confirm the exponential suppression or require an axion after all.
 
 **The MOND acceleration scale.** Something seems to be missing when we observe galaxies—stars at their edges rotate too fast for the visible matter to hold them in. Most physicists invoke "dark matter" particles. But there's an alternative: maybe gravity itself works differently at very low accelerations.
 
@@ -187,7 +189,7 @@ Not everyone is convinced.
 
 The concern is what statisticians call the look-elsewhere effect. If you search through enough ratios and combinations, some will match by pure chance. Zimmerman has found several intriguing numerical relationships—but are there others that don't fit, quietly omitted from the story?
 
-"The predictions are what matter," Zimmerman responds. "Anyone can fit known data after the fact. The framework says r is 0.003, not 0.03 or 0.0003. If CMB-S4 measures 0.02, I'm wrong. That's falsifiability—that's science."
+"The predictions are what matter," Zimmerman responds. "Anyone can fit known data after the fact. The framework says r is 0.015, not 0.03 or 0.001. If CMB-S4 measures 0.05 or 0.001, I'm wrong. That's falsifiability—that's science."
 
 Another critique targets the framework's incompleteness. While it proposes that gauge structure and generation number have geometric origins, it doesn't explain why the extra dimensions have the sizes and shapes they do. In physics jargon, the "moduli" aren't stabilized.
 
@@ -209,7 +211,7 @@ Zimmerman's framework offers the opposite vision. The constants are not continge
 
 "It's a return to the Platonic view," says [philosopher of physics]. "Not the specifics of Plato's solids—that was wrong about chemistry. But the deeper intuition that mathematics determines reality, that the cosmos couldn't be otherwise."
 
-This vision has intellectual appeal, but appeal isn't evidence. The next five to ten years will provide crucial tests. CMB-S4 will measure r. ADMX will scan the axion mass range. Dark matter detection experiments will either continue their null results (supporting the MOND prediction) or find particles (falsifying it). Measurements of Ω_Λ and μₙ/μₚ will improve.
+This vision has intellectual appeal, but appeal isn't evidence. The next five to ten years will provide crucial tests. CMB-S4 will measure r. Neutron EDM experiments will probe θ_QCD suppression. Dark matter detection experiments will either continue their null results (supporting the MOND prediction) or find particles (falsifying it). Measurements of Ω_Λ and μₙ/μₚ will improve.
 
 If the predictions hold, the cube—humanity's oldest symbol of solidity and stability—may take its place alongside Riemannian geometry and quantum mechanics as a foundation of physics.
 

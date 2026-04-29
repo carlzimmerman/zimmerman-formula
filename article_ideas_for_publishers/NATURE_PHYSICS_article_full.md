@@ -10,7 +10,7 @@ Carl Zimmerman¹*
 
 ## Abstract
 
-The Standard Model successfully describes fundamental interactions but offers no explanation for its gauge group SU(3) × SU(2) × U(1) or the existence of exactly three fermion generations. Here we present a geometric framework in which both structures emerge from mathematical constraints rather than empirical fitting. The construction rests on two classical results: the cube is the unique Platonic solid that tessellates three-dimensional Euclidean space, and the number of cube edges (twelve) admits a unique partition into simple Lie algebra dimensions that yields the Standard Model gauge algebra. By formulating physics on an eight-dimensional manifold M⁴ × T³ × S¹, we show that three fermion generations follow from the first Betti number of the 3-torus via the Atiyah-Singer index theorem. The gravitational and gauge sectors are normalized by a single constant Z² = 32π/3, combining the cube's eight vertices with the sphere volume factor appearing in Weyl's eigenvalue law. The framework makes quantitative predictions testable within this decade: tensor-to-scalar ratio r = 0.003, axion mass 57 μeV, and the MOND acceleration scale a₀ = cH₀/Z from first principles. We also derive an unexpected relation μₙ/μₚ = −Ω_Λ connecting nucleon magnetic moments to the dark energy density parameter, currently satisfied to 0.003%.
+The Standard Model successfully describes fundamental interactions but offers no explanation for its gauge group SU(3) × SU(2) × U(1) or the existence of exactly three fermion generations. Here we present a geometric framework in which both structures emerge from mathematical constraints rather than empirical fitting. The construction rests on two classical results: the cube is the unique Platonic solid that tessellates three-dimensional Euclidean space, and the number of cube edges (twelve) admits a unique partition into simple Lie algebra dimensions that yields the Standard Model gauge algebra. By formulating physics on an eight-dimensional manifold M⁴ × T³ × S¹, we show that three fermion generations follow from the first Betti number of the 3-torus via the Atiyah-Singer index theorem. The gravitational and gauge sectors are normalized by a single constant Z² = 32π/3, combining the cube's eight vertices with the sphere volume factor appearing in Weyl's eigenvalue law. The framework makes quantitative predictions testable within this decade: tensor-to-scalar ratio r = 1/(2Z²) ≈ 0.015, a geometric solution to strong CP with θ_QCD = exp(−Z²) ≈ 10⁻¹⁵, and the MOND acceleration scale a₀ = cH₀/Z from first principles. We also derive an unexpected relation μₙ/μₚ = −Ω_Λ connecting nucleon magnetic moments to the dark energy density parameter, currently satisfied to 0.003%.
 
 ---
 
@@ -191,15 +191,15 @@ The framework generates specific predictions for three quantities accessible to 
 
 **Tensor-to-scalar ratio.** Primordial gravitational waves from inflation produce B-mode polarization in the cosmic microwave background. The ratio of tensor to scalar perturbation amplitudes depends on inflationary dynamics. Our framework predicts:
 
-$$r = 0.00298 \pm 0.0003$$
+$$r = \frac{1}{2Z^2} \approx 0.015$$
 
-Current constraints from BICEP/Keck and Planck establish r < 0.036 at 95% confidence. The predicted value lies well below this bound but within projected sensitivity of CMB-S4 (r ~ 0.001) and the LiteBIRD satellite (r ~ 0.002), both expected to report results before 2030.
+Current constraints from BICEP/Keck and Planck establish r < 0.036 at 95% confidence. The predicted value lies below this bound and within projected sensitivity of CMB-S4 (r ~ 0.001) and the LiteBIRD satellite (r ~ 0.01), expected to report results before 2030.
 
-**Axion mass.** The QCD axion, introduced to solve the strong CP problem, acquires mass through QCD instantons. The axion decay constant f_a determines both the mass and the coupling to ordinary matter. Our framework predicts:
+**Strong CP solution.** The QCD Lagrangian permits a CP-violating term proportional to θ_QCD, yet experiments constrain |θ_QCD| < 10⁻¹⁰. Our framework provides a geometric solution:
 
-$$m_a = 57.3 \pm 2 \, \mu\text{eV}$$
+$$\theta_{QCD} = e^{-Z^2} \approx 3 \times 10^{-15}$$
 
-This lies within the sensitivity range of ADMX (Axion Dark Matter eXperiment), currently searching in the 1–100 μeV mass range. Detection at this mass would confirm the prediction; detection outside the 40–80 μeV range would challenge it.
+This exponential suppression solves the strong CP problem without requiring axions. The prediction is testable through neutron electric dipole moment experiments approaching 10⁻²⁸ e·cm sensitivity.
 
 **MOND acceleration scale.** The framework derives the characteristic acceleration of Modified Newtonian Dynamics from first principles:
 
@@ -274,11 +274,11 @@ These limitations do not invalidate the framework but indicate where further wor
 
 Scientific frameworks derive value from their ability to be proven wrong. We identify specific observations that would falsify our predictions:
 
-1. **Tensor-to-scalar ratio:** Detection of r > 0.01 would exclude the predicted r ≈ 0.003 at high significance.
+1. **Tensor-to-scalar ratio:** Detection of r outside the range 0.01–0.03 would exclude the predicted r ≈ 0.015 at high significance.
 
-2. **Axion mass:** Discovery of axions with mass outside the 40–80 μeV range would challenge the framework. A null result from ADMX after complete coverage of this range would also be significant.
+2. **Strong CP / neutron EDM:** Detection of a neutron electric dipole moment > 10⁻²⁶ e·cm would challenge the geometric θ_QCD suppression and suggest axions are needed after all.
 
-3. **Dark matter particles:** Detection of dark matter particles (WIMPs, axion DM, sterile neutrinos) would contradict the framework's prediction that "dark matter" is geometric (MOND) rather than particulate.
+3. **Dark matter particles:** Detection of dark matter particles (WIMPs, sterile neutrinos) would contradict the framework's prediction that "dark matter" is geometric (MOND) rather than particulate.
 
 4. **Nucleon moments vs. dark energy:** As measurements improve, disagreement between μₙ/μₚ and Ωλ beyond combined uncertainties would falsify the predicted equality.
 

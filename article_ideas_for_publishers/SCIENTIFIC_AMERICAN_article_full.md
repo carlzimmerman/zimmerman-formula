@@ -122,9 +122,9 @@ A famous mathematical theorem, proved in 1963 by Michael Atiyah and Isadore Sing
 
 Beautiful ideas mean nothing if they can't be tested. Zimmerman's framework makes specific predictions that experiments can check.
 
-**Gravitational waves from the beginning of time.** The theory predicts a specific strength for gravitational waves created during the Big Bang. This "primordial signal" is measured by studying subtle patterns in the cosmic microwave background—the afterglow of the young universe. Current satellites have set upper limits; upcoming experiments like CMB-S4 and LiteBIRD will have the sensitivity to detect (or rule out) the predicted value within the next decade.
+**Gravitational waves from the beginning of time.** The theory predicts a specific strength for gravitational waves created during the Big Bang: r = 1/(2Z²) ≈ 0.015. This "primordial signal" is measured by studying subtle patterns in the cosmic microwave background—the afterglow of the young universe. Current satellites have set upper limits at 0.036; upcoming experiments like CMB-S4 and LiteBIRD will have the sensitivity to detect (or rule out) the predicted value within the next decade.
 
-**The axion particle.** Physicists have long theorized about a particle called the axion, which could explain both a puzzle in nuclear physics and the nature of dark matter. Zimmerman's framework predicts the axion should have a specific mass: about 57 microelectronvolts—lighter than a billionth of an electron. Experiments at the University of Washington and elsewhere are currently searching in this mass range.
+**The strong CP puzzle.** A decades-old mystery asks why a certain term in nuclear physics is so absurdly small—less than 10⁻¹⁰ when it could naturally be around 1. Most solutions propose a new particle called the axion. Zimmerman's framework takes a different approach: geometry itself suppresses this term exponentially, making it about 10⁻¹⁵. No new particle is needed. Future experiments measuring the neutron's electric dipole moment will test whether this geometric suppression is real.
 
 **The MOND acceleration scale.** Something seems wrong when we observe galaxies—stars at their edges orbit too fast for the visible matter to hold them. Most physicists invoke invisible "dark matter" particles. But Zimmerman's framework offers a different explanation: gravity itself works differently at extremely low accelerations. The theory derives a specific acceleration threshold—about 1.2×10⁻¹⁰ m/s²—below which Newton's laws need modification. This matches what galaxies actually show, and predicts that direct searches for dark matter particles will continue finding nothing.
 
@@ -158,7 +158,7 @@ Zimmerman's framework offers the opposite vision. The constants are necessary, n
 
 This is a Platonic vision, though refined beyond what Plato imagined. Not the elements made of solids, but the forces encoded by them. Not mystical numerology, but testable predictions.
 
-Over the next decade, experiments will deliver verdicts. Satellites will measure gravitational waves. Detectors will search for axions. Dark matter detection experiments will either continue their decades-long null results (supporting MOND) or finally find particles (contradicting the framework). Either the predictions will hold, pointing toward a geometric foundation for physics, or they will fail, sending theorists back to the drawing board.
+Over the next decade, experiments will deliver verdicts. Satellites will measure gravitational waves. Neutron experiments will test the strong CP suppression. Dark matter detection experiments will either continue their decades-long null results (supporting MOND) or finally find particles (contradicting the framework). Either the predictions will hold, pointing toward a geometric foundation for physics, or they will fail, sending theorists back to the drawing board.
 
 In the meantime, the cube sits on your desk, wooden or plastic or crystalline, its eight corners and twelve edges holding mysteries that physicists are only beginning to explore.
 
@@ -194,8 +194,8 @@ The ancient Greeks discovered all five and considered them sacred. Modern mathem
 
 | Prediction | What It Means | When We'll Know |
 |------------|---------------|-----------------|
-| Gravitational wave strength (r ≈ 0.003) | Specific signal from Big Bang | Late 2020s |
-| Axion mass (~57 μeV) | Particle that could solve strong CP problem | Ongoing |
+| Gravitational wave strength (r ≈ 0.015) | Specific signal from Big Bang | Late 2020s |
+| Strong CP suppression (θ_QCD ≈ 10⁻¹⁵) | No axion needed for nuclear physics puzzle | 2030s (neutron EDM) |
 | MOND acceleration (a₀ = cH₀/Z) | Gravity changes at low accelerations | Ongoing galaxy studies |
 | Nuclear-cosmic link | μₙ/μₚ = −Ω_Λ | As measurements improve |
 
