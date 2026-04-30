@@ -142,9 +142,9 @@ $$T = \left(\frac{\partial S}{\partial E}\right)^{-1}$$
 - **Verlinde:** Statistical averages with fluctuations
 - **Carl:** Exact fractions from counting
 
-### 4. What is Dark Matter?
-- **Verlinde:** Displaced entropy (elastic response)
-- **Carl:** Geometric fraction (6/19)
+### 4. What Explains Galactic Anomalies?
+- **Verlinde:** Displaced entropy (elastic response, no DM particles)
+- **Carl:** MOND with a₀ = cH₀/Z (no DM particles)
 
 ---
 

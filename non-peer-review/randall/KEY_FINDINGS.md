@@ -20,7 +20,7 @@ The cross-review reveals a **fundamental dimensional disagreement**: Randall use
 | Spatial dimensions | 5+ (with warping) | 3 only |
 | Hierarchy source | Exponential warp factor | Z² scaling (incomplete) |
 | Extra dimension tests | KK modes at colliders | No KK modes ever |
-| Dark matter | Hidden sector particles | Geometric effect |
+| "Dark matter" effects | Hidden sector particles | MOND (no DM) |
 | Parameters | kr_c ≈ 12 (tuned) | Z² fixed |
 
 **Key insight:** Both use geometry to explain physics; they disagree on which geometry.
@@ -80,16 +80,17 @@ The exchange honestly shows Carl's attempts to derive the hierarchy:
 
 ---
 
-### 6. The Dark Matter Debate
+### 6. The "Dark Matter" Question (MOND-based)
 
 | Feature | RS | Z² |
 |---------|-----|-----|
-| Dark matter is | Particles on hidden brane | Geometric effect |
-| Bullet Cluster | Natural explanation | Requires development |
-| Direct detection | Possible | Never |
-| Current status | Null results | Supports Z² |
+| What explains galactic anomalies? | DM particles on hidden brane | MOND (no dark matter) |
+| Bullet Cluster | Natural with particle DM | Requires development |
+| Direct DM detection | Possible | Never (falsifies Z² if found) |
+| Current status | Null results | Supports Z²'s MOND approach |
 
-**The Bullet Cluster remains a challenge for geometric/MOND-type explanations.**
+**Z² uses MOND: there is NO dark matter.** Gravitational anomalies arise from the acceleration scale a₀ = cH₀/Z.
+**The Bullet Cluster remains a challenge for MOND-type explanations.**
 
 ---
 
@@ -123,9 +124,9 @@ The exchange honestly shows Carl's attempts to derive the hierarchy:
 - **Randall:** Yes, extra dimensions are string-motivated
 - **Carl:** No, strings are artifacts of continuous approximations
 
-### 3. What is Dark Matter?
-- **Randall:** Particles on hidden brane
-- **Carl:** Geometric effect (MOND-like)
+### 3. What Explains Galactic Anomalies?
+- **Randall:** Dark matter particles on hidden brane
+- **Carl:** MOND—no dark matter exists; anomalies from a₀ = cH₀/Z
 
 ### 4. Is the Hierarchy Problem Solved?
 - **Randall:** Yes, by RS warping
@@ -157,7 +158,7 @@ The exchange honestly shows Carl's attempts to derive the hierarchy:
 |------|---------------|---------------|
 | **KK modes** | Exist somewhere | Don't exist |
 | **Modified gravity at small scales** | Possible | No |
-| **Dark matter direct detection** | Possible | No |
+| **Dark matter direct detection** | Possible | Never (falsifies Z²) |
 | **Hierarchy derived from geometry?** | Yes (with tuning) | Not yet |
 
 ---

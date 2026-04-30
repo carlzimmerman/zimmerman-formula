@@ -154,7 +154,7 @@ $$m_t : m_c : m_u \approx 40,000 : 200 : 1$$
 
 **The author's claim:**
 
-Dark matter is a geometric effect (similar to MOND), not a particle.
+There is no dark matter. The gravitational anomalies attributed to dark matter are MOND effects arising from the acceleration scale $a_0 = cH_0/Z \approx 1.2 \times 10^{-10}$ m/s². This is not "geometric dark matter"—it's a modification of gravity at low accelerations.
 
 **My critique:**
 
@@ -176,7 +176,7 @@ The author and I share a commitment to geometry as fundamental. But we disagree 
 | **Dimensions** | 5 (or more) | 3+1 only |
 | **Geometry** | Warped | Flat (cubic) |
 | **Hierarchy source** | Exponential warping | "Geometric scaling" |
-| **Dark matter** | Hidden sector particles | Geometric effect |
+| **"Dark matter" effects** | Hidden sector particles | MOND (no DM exists) |
 | **Extra dimension tests** | KK modes at LHC | No KK modes |
 
 The LHC will help decide. If KK gravitons or other extra-dimensional signatures appear, my approach is validated. If they never appear, the author's 3D-only framework gains support.
@@ -360,7 +360,7 @@ Extra dimensions are a beautiful mathematical idea. But beauty doesn't guarantee
 | **KK modes** | Exist at some scale | Don't exist |
 | **Graviton signatures** | Modified at high E | Standard 4D gravity |
 | **Hierarchy derivation** | From warp factor | From Z² geometry (incomplete) |
-| **Dark matter** | Hidden sector particles | Geometric effect |
+| **"Dark matter" effects** | Hidden sector particles | MOND (no DM exists) |
 
 The $Z^2$ framework makes the simpler assumption: 3 dimensions are enough.
 
@@ -384,7 +384,7 @@ The $Z^2$ framework makes the simpler assumption: 3 dimensions are enough.
 
 **RANDALL:** Exactly. And my geometry has testable consequences—KK modes, modified graviton behavior, dark matter signatures. What does your geometry predict?
 
-**CARL:** No KK modes. Standard 4D gravity at all scales. Dark matter as a geometric effect, not a particle.
+**CARL:** No KK modes. Standard 4D gravity at all scales. No dark matter—what we observe are MOND effects from the acceleration scale $a_0 = cH_0/Z$.
 
 **RANDALL:** The no-KK prediction is testable. If the LHC or future colliders find evidence of extra dimensions, you're falsified.
 
@@ -428,7 +428,7 @@ Still not 17 orders. I acknowledge this is a weak point.
 |---------|--------------|-----------|
 | **Dimensions** | 5 or more | 3+1 only |
 | **Hierarchy mechanism** | Warp factor | $Z^2$ scaling (incomplete) |
-| **Dark matter** | Hidden sector particles | Geometric effect |
+| **"Dark matter" effects** | Hidden sector particles | MOND (no DM exists) |
 | **KK modes** | Predicted | Absent |
 | **Parameters** | $kr_c \approx 12$ tuned | $Z^2$ fixed geometrically |
 

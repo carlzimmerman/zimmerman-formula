@@ -102,16 +102,16 @@ This is *not* a new particle—it's the spacetime's memory of displaced de Sitte
 
 **The author's approach:**
 
-Dark matter is a geometric effect from the remaining $6/19$ lattice fraction after $\Omega_\Lambda = 13/19$ is allocated.
+There is no dark matter. The $\Omega_m = 6/19$ is the total matter fraction (baryonic matter). The gravitational anomalies attributed to "dark matter" are MOND effects arising from the acceleration scale $a_0 = cH_0/Z$.
 
 **Comparison:**
 
 | Feature | Verlinde | Carl |
 |---------|----------|------|
-| Dark matter is | Elastic entropy displacement | Geometric fraction |
-| Dynamical? | Yes, responds to matter | No, fixed structure |
-| Scale-dependent? | Yes | No |
-| MOND-like? | Naturally emerges | Claims similar effects |
+| "Dark matter" is | Elastic entropy displacement | MOND effects (no DM) |
+| Acceleration scale | $a_0 \sim cH_0$ | $a_0 = cH_0/Z$ |
+| Dark matter particles | No | No |
+| MOND-like? | Naturally emerges | MOND is the explanation |
 
 **My concern:**
 
