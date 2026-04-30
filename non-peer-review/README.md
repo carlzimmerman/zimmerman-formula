@@ -1,5 +1,14 @@
 # Carl's Non-Peer Review
 
+**DISCLAIMER: AI-GENERATED THEORETICAL FICTION
+
+This document is entirely AI-generated speculative fiction created for educational and entertainment purposes only. The dialogue, opinions, and critiques attributed to Edward Witten (or any other named physicist) are fictional constructs and do NOT represent the actual views, opinions, or endorsements of these individuals. No real physicist was consulted or involved in the creation of this content.
+
+This exercise is designed solely to help Carl Zimmerman explore how the Z² Unified Action framework might theoretically compare to established physics paradigms—nothing more. Any resemblance to actual academic peer review is purely for illustrative purposes.
+
+Do not cite this document as representing the views of any real scientist.**
+
+
 A top science publication recently told me that they would not be able to consider my work because it has not been peer reviewed. That is OK. How the universe actually works is not going to change whether it gets peer review or not. I thought well... what CAN I do?  I can do "non-peer" of all the top Theoretical Physicists in the game.  How does z squared framework compare? What can we learn? 
 
 My claude credits reset for the week at 1pm today.  I got the prompts ready to rock and roll. Get the popcorn ready. 
