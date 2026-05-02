@@ -408,4 +408,4 @@ All computational biology outputs are **theoretical predictions only**. Not peer
 
 > *"I have always been a tinkerer and thinker. Before I go to sleep every night I close my eyes and teleport myself up into space protected by a shiny ball of light, and look down at earth and gaze at its beauty."*
 >
-> — Carl Zimmerman, Charlotte NC, March 2026
+> — Carl Zimmerman, Charlotte NC, March 25th, 2026
