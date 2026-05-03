@@ -322,7 +322,7 @@ def run_all_predictions() -> dict:
 
     # Future prediction
     results["tensor_scalar_ratio"] = {
-        "formula": "8/(N_e × Z²)",
+        "formula": "1/(2Z²) = 3/(64π)",
         "prediction": predict_tensor_to_scalar(),
         "empirical": "TBD (LiteBIRD 2027-2028)",
         "error_percent": None
