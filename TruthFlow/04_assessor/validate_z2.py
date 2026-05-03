@@ -95,8 +95,8 @@ Z2_PREDICTIONS = {
         "description": "M_Planck / v_Higgs ratio",
     },
     "tensor_scalar_r": {
-        "formula": "8/(55 × Z²)",
-        "compute": lambda: 8 / (55 * Z_SQUARED),
+        "formula": "1/(2Z²) = 3/(64π)",
+        "compute": lambda: 1 / (2 * Z_SQUARED),
         "description": "Tensor-to-scalar ratio (CMB)",
     },
 }

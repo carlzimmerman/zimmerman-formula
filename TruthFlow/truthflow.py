@@ -69,8 +69,8 @@ PREDICTIONS = {
 
     # Future tests
     "tensor_scalar_r": {
-        "formula": "8/(55×Z²)",
-        "value": 8 / (55 * Z2),
+        "formula": "1/(2Z²) = 3/(64π)",
+        "value": 1 / (2 * Z2),
         "derivation": "Inflation prediction (LiteBIRD 2027-2028)",
     },
 }

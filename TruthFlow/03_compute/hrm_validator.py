@@ -154,13 +154,13 @@ Z2_PREDICTIONS = {
         "next_experiment": None
     },
     "tensor_scalar_r": {
-        "formula": "8/(55×Z²)",
-        "compute": lambda: 8 / (55 * Z2_SQUARED),
+        "formula": "1/(2Z²) = 3/(64π)",
+        "compute": lambda: 1 / (2 * Z2_SQUARED),
         "derivation": DerivationLevel.PARTIAL,
         "mechanism_known": False,
         "notes": "Inflation prediction, not yet measured",
         "falsifiable": True,
-        "falsification_test": "r < 0.005 OR r > 0.03",
+        "falsification_test": "r < 0.005 OR r > 0.025",
         "next_experiment": "LiteBIRD"
     },
     "gauge_bosons": {
