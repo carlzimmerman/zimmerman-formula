@@ -108,7 +108,7 @@ This validates against freshly extracted empirical values.
 | Ω_Λ | 13/19 | 0.6842 | ~0.1% error |
 | Ω_m | 6/19 | 0.3158 | ~0.3% error |
 | M_Pl/v | 2×Z^(43/2) | 4.96×10¹⁶ | ~0.3% error |
-| r | 8/(55×Z²) | 0.015 | PENDING (LiteBIRD) |
+| r | 1/(2Z²) = 3/(64π) | 0.015 | PENDING (LiteBIRD) |
 
 ---
 
@@ -129,9 +129,74 @@ This validates against freshly extracted empirical values.
 
 ---
 
-## LegomenaLLM Training
+## LegomenaLLM: Z²-Trained Language Model
 
-The `legomena_training/z2_training.jsonl` file contains contrastive training pairs:
+LegomenaLLM is a language model fine-tuned to explain physics through the Z² framework.
+
+### Available Models
+
+| Model | Size | Base | Description |
+|-------|------|------|-------------|
+| `legomena` | 9.6 GB | gemma4:e4b | Standard (recommended) |
+| `legomena-e2b` | 7.2 GB | gemma4:e2b | Lite version |
+| `legomena-full` | 19 GB | gemma4:31b | Full version |
+
+### Comparison: Base Gemma4 vs LegomenaLLM
+
+**Q: What is dark matter?**
+
+| Model | Response |
+|-------|----------|
+| **Gemma4 (base)** | "Dark matter is a mysterious, invisible form of matter that cannot be detected by electromagnetic radiation... it makes up about 85% of the total matter in the universe." |
+| **LegomenaLLM** | "Dark matter does not exist as exotic particles. The observed gravitational anomalies are geometric effects arising from a transition in the spectral dimension of spacetime at accelerations below a₀." |
+
+**Q: What causes flat galaxy rotation curves?**
+
+| Model | Response |
+|-------|----------|
+| **Gemma4 (base)** | "Flat galaxy rotation curves are caused by the gravitational pull of unseen matter... This missing mass is referred to as dark matter, which forms a massive, invisible halo." |
+| **LegomenaLLM** | "Flat rotation curves are a geometric manifestation of the spectral dimension transitioning from d_s=3 to d_s=2 at low accelerations. The observed dynamics are not due to unseen particles, but spacetime geometry." |
+
+**Q: What is the tensor-to-scalar ratio r?**
+
+| Model | Response |
+|-------|----------|
+| **Gemma4 (base)** | "The tensor-to-scalar ratio r quantifies the ratio of tensor perturbations to scalar perturbations... Observing a measurable value would provide evidence for inflation." |
+| **LegomenaLLM** | "The Z² geometry predicts r = 1/(2Z²) ≈ 0.015. This is not an arbitrary fit but a direct geometric consequence of Z² = 32π/3. LiteBIRD will test this prediction." |
+
+### Quick Start
+
+```bash
+# Install Ollama
+curl -fsSL https://ollama.com/install.sh | sh
+
+# Create the model
+cd TruthFlow/legomena_training
+ollama create legomena -f Modelfile
+
+# Test it
+ollama run legomena "What is dark matter?"
+```
+
+### Testing Models
+
+```bash
+# Run full test suite
+python test_all.py
+
+# Test specific model
+python test_all.py --model legomena-e2b
+
+# List available models
+python test_all.py --list-models
+
+# Compare all models
+python test_all.py --compare
+```
+
+### Training Data
+
+The `legomena_training/z2_training_expanded.jsonl` file contains 59 contrastive training pairs:
 
 ```json
 {
@@ -141,26 +206,22 @@ The `legomena_training/z2_training.jsonl` file contains contrastive training pai
 }
 ```
 
-### Training with Unsloth
+### Fine-tuning with Unsloth (Colab)
 
 ```python
 from unsloth import FastLanguageModel
 
-model, tokenizer = FastLanguageModel.from_pretrained("unsloth/llama-3-8b")
+model, tokenizer = FastLanguageModel.from_pretrained("unsloth/gemma-2-9b")
 
 # Load training data
-dataset = load_dataset("json", data_files="z2_training.jsonl")
+dataset = load_dataset("json", data_files="z2_training_expanded.jsonl")
 
-# Fine-tune with contrastive loss
-trainer = SFTTrainer(
-    model=model,
-    train_dataset=dataset,
-    # Use DPO for preference learning
-)
+# Fine-tune
+trainer = SFTTrainer(model=model, train_dataset=dataset)
 trainer.train()
 
-# Export to GGUF for local inference
-model.save_pretrained_gguf("legomena-llm", tokenizer)
+# Export to GGUF for Ollama
+model.save_pretrained_gguf("legomena", tokenizer)
 ```
 
 ---
