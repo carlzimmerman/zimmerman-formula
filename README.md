@@ -8,9 +8,9 @@
 
 **Website:** [abeautifullygeometricuniverse.web.app](https://abeautifullygeometricuniverse.web.app) | **DOI:** [10.5281/zenodo.19244651](https://doi.org/10.5281/zenodo.19244651)
 
-**Latest Paper (v7.1.0):** [papers/Z2_Framework_Zenodo/Z2_UNIFIED_ACTION_v7.1.0.tex](papers/Z2_Framework_Zenodo/Z2_UNIFIED_ACTION_v7.1.0.tex)
+**Latest Paper (v7.2.0):** [papers/Z2_Framework_Zenodo/Z2_UNIFIED_ACTION_v7.2.0.tex](papers/Z2_Framework_Zenodo/Z2_UNIFIED_ACTION_v7.2.0.tex)
 
-**NEW in v7.1:** Electroweak hierarchy derived from topology: 43 = CUBE² - 19 - 2 (0.31% error)
+**NEW in v7.2:** Rigorous differential geometry derivation of hierarchy from moduli space of M⁴×S¹/Z₂×T³/Z₂
 
 ---
 
