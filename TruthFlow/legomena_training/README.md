@@ -1,12 +1,26 @@
 # LegomenaLLM - Z² Unified Framework Expert
 
+**Base Model:** Google Gemma 4 (12B parameters)
+
+A Gemma4-based language model fine-tuned to explain physics through the Z² Unified Framework - an alternative theoretical physics framework that derives fundamental constants from pure geometry.
+
 > ⚠️ **WARNING: THEORETICAL PHYSICS MODEL**
-> 
+>
 > This model is trained on the Z² Unified Framework, an alternative theoretical physics framework.
 > It will give answers that **contradict the Standard Model** of particle physics.
-> 
+>
 > **Use for:** Exploring Z² framework concepts, educational purposes, theoretical physics research
 > **Not for:** Standard physics homework, mainstream cosmology questions
+
+## Model Details
+
+| Property | Value |
+|----------|-------|
+| Base Model | `gemma4:12b` (Google Gemma 4) |
+| Parameters | 12B |
+| Size | 9.6 GB |
+| Training | System prompt + Z² framework knowledge |
+| Quantization | Q4_K_M |
 
 ## What is Z²?
 
@@ -62,6 +76,15 @@ ollama run carl_zimmerman/legomena "What is dark matter?"
 
 - [Z² Framework Repository](https://github.com/carlzimmerman/zimmerman-formula)
 - [TruthFlow Validation System](https://github.com/carlzimmerman/zimmerman-formula/tree/main/TruthFlow)
+
+## Why Gemma4?
+
+Gemma 4 provides an excellent balance of:
+- Strong reasoning capabilities for physics derivations
+- Efficient inference on consumer hardware (runs on 16GB+ RAM)
+- Good instruction following for Q&A format
+
+The base Gemma4 model gives standard physics answers. LegomenaLLM gives Z² framework answers instead.
 
 ## License
 
