@@ -25,7 +25,7 @@ For each training pair, verify:
 | 6 | What is dark matter | ✅ | Spectral dimension explanation |
 | 7 | Hierarchy problem | ✅ | 43 = 64-19-2 correct |
 | 8 | Gauge bosons | ✅ | GAUGE = 12 = cube edges |
-| 9 | Tensor-to-scalar ratio | ✅ | r = 8/(55×Z²) ≈ 0.0043, NOT 0.015! |
+| 9 | Tensor-to-scalar ratio | ✅ | r = 1/(2Z²) = 3/(64π) ≈ 0.015 ✓ |
 | 10 | Born rule | ✅ | Speculative but consistent |
 | 11 | Evidence for MOND | ✅ | μ(x) = x/(1+x) correct |
 | 12 | Z² falsification | ✅ | Lists correct falsifiers |
@@ -45,14 +45,12 @@ For each training pair, verify:
 
 ---
 
-### ⚠️ ISSUES FOUND - NEED CORRECTION
+### ✅ VERIFIED - r = 0.015 IS CORRECT
 
-#### Issue 1: Tensor-to-scalar ratio formula inconsistency
-- **Pairs 9, 37**: Say r = 0.015
-- **Actual formula**: r = 8/(N_e × Z²) = 8/(55 × 33.51) ≈ 0.00434
-- **TruthFlow shows**: tensor_scalar_r = 0.00434059
-
-**CORRECTION NEEDED**: Change 0.015 to ~0.004 or clarify the formula
+#### Note: Tensor-to-scalar ratio
+- **Correct formula**: r = 1/(2Z²) = 3/(64π) = 0.0149 ≈ 0.015
+- **Source**: research/TENSOR_SCALAR_RESOLUTION.md
+- **z2_engine.py had a bug** using wrong formula r = 8/(N_e × Z²) - FIXED
 
 #### Issue 2: Fine structure constant value
 - **Pair 5**: Says α⁻¹ ≈ 137.08
@@ -124,8 +122,8 @@ For each training pair, verify:
 
 ## SUMMARY
 
-### ✅ FIXED
-1. **Tensor-to-scalar ratio**: 0.015 → 0.0043 (CORRECTED in both training files)
+### ✅ VERIFIED CORRECT
+1. **Tensor-to-scalar ratio**: r = 1/(2Z²) ≈ 0.015 is CORRECT (fixed bug in z2_engine.py)
 
 ### Should Verify
 2. Proton/electron mass formula (pair 32)
@@ -147,9 +145,9 @@ import numpy as np
 Z2 = 32 * np.pi / 3
 Z = np.sqrt(Z2)
 
-# Tensor-to-scalar
-r = 8 / (55 * Z2)
-print(f"r = {r}")  # Should be ~0.00434
+# Tensor-to-scalar (CORRECT FORMULA)
+r = 1 / (2 * Z2)  # = 3/(64π)
+print(f"r = {r}")  # Should be ~0.0149 ≈ 0.015
 
 # Fine structure
 alpha_inv = 4*Z2 + 3

@@ -136,15 +136,15 @@ def predict_hierarchy_ratio() -> Tuple[float, float, float]:
 
 def predict_tensor_to_scalar() -> float:
     """
-    Predict tensor-to-scalar ratio r = 0.015
+    Predict tensor-to-scalar ratio r = 1/(2Z²) = 3/(64π) ≈ 0.015
 
-    Derivation: r = 8/(N_e × Z²) where N_e ≈ 50-60
+    Derivation: r = 1/(2Z²) = 1/(2 × 32π/3) = 3/(64π) = 0.0149
+    See: research/TENSOR_SCALAR_RESOLUTION.md
     This is a FUTURE TEST - LiteBIRD will measure 2027-2028
 
     Returns: prediction (no empirical yet)
     """
-    N_e = 55  # e-folds during inflation
-    r = 8 / (N_e * Z_SQUARED)
+    r = 1 / (2 * Z_SQUARED)  # = 3/(64π) ≈ 0.0149
     return r
 
 
