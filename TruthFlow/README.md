@@ -141,6 +141,17 @@ LegomenaLLM is a language model fine-tuned to explain physics through the Z² fr
 | `legomena-e2b` | 7.2 GB | gemma4:e2b | Lite version |
 | `legomena-full` | 19 GB | gemma4:31b | Full version |
 
+### Ollama Hub
+
+The recommended model is available on Ollama Hub:
+
+```bash
+ollama pull carl_zimmerman/legomena
+ollama run carl_zimmerman/legomena "What is dark matter?"
+```
+
+[View on Ollama Hub](https://ollama.com/carl_zimmerman/legomena)
+
 ### Comparison: Base Gemma4 vs LegomenaLLM
 
 **Q: What is dark matter?**
