@@ -52,7 +52,7 @@ Z2 = 32 * np.pi / 3  # = 33.510321638...
 Z = np.sqrt(Z2)       # = 5.788809821...
 
 # ============================================================================
-# Z² PREDICTIONS
+# Z² PREDICTIONS WITH OFFICIAL FALLBACK MEASUREMENTS
 # ============================================================================
 
 PREDICTIONS = {
@@ -60,36 +60,43 @@ PREDICTIONS = {
         "formula": "13/19",
         "value": 13/19,
         "keywords": ["Omega_Lambda", "dark energy density", "cosmological constant"],
+        "fallback": {"value": 0.6847, "uncertainty": 0.0073, "source": "Planck 2020"},
     },
     "Omega_m": {
         "formula": "6/19",
         "value": 6/19,
         "keywords": ["Omega_m", "matter density", "total matter"],
+        "fallback": {"value": 0.315, "uncertainty": 0.007, "source": "Planck 2020"},
     },
     "H0": {
         "formula": "Za₀/c ≈ 71.5",
         "value": 71.5,
         "keywords": ["Hubble constant", "H_0", "km/s/Mpc"],
+        "fallback": {"value": 67.4, "uncertainty": 0.5, "source": "Planck 2020"},
     },
     "alpha_inverse": {
         "formula": "4Z² + 3",
         "value": 4*Z2 + 3,
         "keywords": ["fine structure", "alpha", "1/137"],
+        "fallback": {"value": 137.035999084, "uncertainty": 0.000000021, "source": "CODATA 2022"},
     },
     "sin2_theta_W": {
         "formula": "3/13",
         "value": 3/13,
         "keywords": ["weak mixing", "Weinberg angle", "sin²θ"],
+        "fallback": {"value": 0.23122, "uncertainty": 0.00004, "source": "PDG 2024"},
     },
     "tensor_scalar_r": {
         "formula": "1/(2Z²)",
         "value": 1/(2*Z2),
         "keywords": ["tensor-to-scalar", "r <", "r =", "primordial"],
+        "fallback": {"value": None, "uncertainty": None, "source": "Awaiting LiteBIRD 2027-2028", "upper_limit": 0.036},
     },
     "w0": {
         "formula": "-1 exactly",
         "value": -1.0,
         "keywords": ["equation of state", "w =", "w₀"],
+        "fallback": {"value": -0.99, "uncertainty": 0.15, "source": "DESI 2024"},
     },
 }
 
@@ -263,7 +270,7 @@ def compute_sigma(prediction: float, measurement: float, uncertainty: float) -> 
     return abs(prediction - measurement) / uncertainty
 
 def assess_predictions(extracted: Dict[str, List[EmpiricalValue]]) -> List[ValidationResult]:
-    """Validate Z² predictions against extracted empirical values."""
+    """Validate Z² predictions against extracted or official empirical values."""
     print("\n" + "="*60)
     print("STEP 3: VALIDATING Z² PREDICTIONS")
     print("="*60)
@@ -273,34 +280,42 @@ def assess_predictions(extracted: Dict[str, List[EmpiricalValue]]) -> List[Valid
     for name, pred_data in PREDICTIONS.items():
         z2_val = pred_data["value"]
         formula = pred_data["formula"]
+        fallback = pred_data.get("fallback", {})
 
-        # Find matching empirical values
+        # Find matching empirical values from extraction
         empirical_values = extracted.get(name, [])
 
-        if not empirical_values:
-            # No extracted data - use fallback hardcoded values
+        # Use extracted value if available, otherwise use official fallback
+        if empirical_values:
+            best = min(empirical_values, key=lambda v: v.uncertainty if v.uncertainty > 0 else float('inf'))
+            emp_value = best.value
+            emp_uncertainty = best.uncertainty
+            emp_source = f"arXiv:{best.source}"
+        elif fallback.get("value") is not None:
+            emp_value = fallback["value"]
+            emp_uncertainty = fallback.get("uncertainty", 0)
+            emp_source = f"Official: {fallback.get('source', 'Unknown')}"
+        else:
+            # Pending measurement (like tensor_scalar_r)
             results.append(ValidationResult(
                 quantity=name,
                 z2_prediction=z2_val,
                 z2_formula=formula,
                 empirical_value=0,
                 empirical_uncertainty=0,
-                empirical_source="No data extracted",
+                empirical_source=fallback.get("source", "Awaiting measurement"),
                 sigma=0,
                 percent_error=0,
-                status="NO_DATA"
+                status="PENDING"
             ))
             continue
 
-        # Use best (highest confidence or lowest uncertainty) value
-        best = min(empirical_values, key=lambda v: v.uncertainty if v.uncertainty > 0 else float('inf'))
-
-        sigma = compute_sigma(z2_val, best.value, best.uncertainty)
-        pct_error = abs(z2_val - best.value) / abs(best.value) * 100 if best.value != 0 else 0
+        sigma = compute_sigma(z2_val, emp_value, emp_uncertainty)
+        pct_error = abs(z2_val - emp_value) / abs(emp_value) * 100 if emp_value != 0 else 0
 
         # Determine status
-        if best.uncertainty == 0:
-            status = "EXACT" if z2_val == best.value else "WRONG"
+        if emp_uncertainty == 0:
+            status = "EXACT" if z2_val == emp_value else "WRONG"
         elif sigma < 2:
             status = "VALIDATED"
         elif sigma < 3:
@@ -314,9 +329,9 @@ def assess_predictions(extracted: Dict[str, List[EmpiricalValue]]) -> List[Valid
             quantity=name,
             z2_prediction=z2_val,
             z2_formula=formula,
-            empirical_value=best.value,
-            empirical_uncertainty=best.uncertainty,
-            empirical_source=best.source,
+            empirical_value=emp_value,
+            empirical_uncertainty=emp_uncertainty,
+            empirical_source=emp_source,
             sigma=sigma,
             percent_error=pct_error,
             status=status
