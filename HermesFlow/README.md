@@ -1,9 +1,9 @@
-# HermesFlow v1.4.0
+# HermesFlow v1.5.0
 
-## Autonomous Scientific Discovery System
+## Autonomous Scientific Discovery System with Iterative Learning
 
 **Author:** Carl Zimmerman
-**Version:** 1.4.0
+**Version:** 1.5.0
 **Date:** May 4, 2026
 
 ---
@@ -367,13 +367,74 @@ HermesFlow/
 
 ---
 
+## Iterative Learning (v1.5.0)
+
+HermesFlow now includes a **feedback loop** where validated discoveries train the model:
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    ITERATIVE LEARNING LOOP                      │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│   ┌──────────┐     ┌──────────┐     ┌──────────┐              │
+│   │  BLIND   │────▶│ VALIDATE │────▶│  ADD TO  │              │
+│   │   TEST   │     │STATISTIC │     │  TRUTH   │              │
+│   └──────────┘     └──────────┘     │  STORE   │              │
+│        ▲                            └────┬─────┘              │
+│        │                                 │                     │
+│        │           ┌──────────┐          ▼                     │
+│        │           │  CREATE  │     ┌──────────┐              │
+│        └───────────│   NEW    │◀────│ GENERATE │              │
+│                    │  MODEL   │     │ TRAINING │              │
+│                    └──────────┘     └──────────┘              │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### Usage
+
+```python
+from iterative_learning import IterativeLearner
+
+learner = IterativeLearner()
+
+# Add a validated finding
+learner.add_glacier_finding()  # or any validated discovery
+
+# Create new model iteration
+iteration = learner.create_iteration()
+
+# Compare before/after
+learner.compare_before_after()
+```
+
+### Demonstrated Result
+
+**Before learning (legomena-31b):**
+> "No mention of Swiss glacier mass balance in validated predictions"
+
+**After learning (legomena-31b-iter1):**
+> "Swiss glacier mean |mass balance| = 1/φ = 0.6180 m w.e./yr
+> Measured = 0.6167, Error = 0.21%, N=19,017, Source: GLAMOS"
+
+### Model Configuration
+
+Set the base model via environment variable:
+```bash
+export LEGOMENA_BASE_MODEL="legomena-31b"  # default
+# or
+export LEGOMENA_BASE_MODEL="legomena-4b"   # faster, less accurate
+```
+
+---
+
 ## Future Work
 
 - [ ] Browser automation for JavaScript-heavy sites
 - [ ] PDF table extraction
 - [ ] NetCDF/HDF5 scientific format support
 - [ ] Cross-domain relationship discovery
-- [ ] Iterative learning from validated findings
+- [x] ~~Iterative learning from validated findings~~ (DONE in v1.5.0)
 
 ---
 
