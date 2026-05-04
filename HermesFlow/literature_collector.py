@@ -21,14 +21,18 @@ Date: May 3, 2026
 import re
 import json
 import os
+import subprocess
 import requests
 from typing import Dict, List, Optional, Tuple
-from dataclasses import dataclass, asdict
+from dataclasses import dataclass, asdict, field
 from datetime import datetime
 from urllib.parse import quote_plus
 
 # Camofox for anti-detection browsing
 CAMOFOX_URL = os.environ.get("CAMOFOX_URL", "http://localhost:9377")
+
+# Legomena model for intelligent parsing
+LEGOMENA_MODEL = os.environ.get("LEGOMENA_MODEL", "legomena-31b")
 
 
 @dataclass
@@ -111,9 +115,174 @@ class LiteratureCollector:
         r'(\d+)/(\d+)',
     ]
 
-    def __init__(self):
+    def __init__(self, use_legomena: bool = True):
         self.cache = {}
         self.measurements_found = []
+        self.use_legomena = use_legomena
+        self._legomena_available = None  # Lazy check
+
+    def _is_legomena_available(self) -> bool:
+        """Check if Legomena model is available via Ollama."""
+        if self._legomena_available is not None:
+            return self._legomena_available
+
+        try:
+            result = subprocess.run(
+                ["ollama", "list"],
+                capture_output=True, text=True, timeout=5
+            )
+            self._legomena_available = "legomena" in result.stdout.lower()
+        except Exception:
+            self._legomena_available = False
+
+        return self._legomena_available
+
+    def _call_legomena(self, prompt: str, timeout: int = 60) -> Optional[str]:
+        """Call Legomena model for intelligent parsing."""
+        if not self._is_legomena_available():
+            return None
+
+        try:
+            result = subprocess.run(
+                ["ollama", "run", LEGOMENA_MODEL, prompt],
+                capture_output=True, text=True, timeout=timeout
+            )
+            # Clean ANSI codes
+            text = re.sub(r'\x1b\[[0-9;]*[a-zA-Z]', '', result.stdout)
+            return text.strip()
+        except Exception:
+            return None
+
+    def extract_with_legomena(self, content: str, topic: str) -> List[Measurement]:
+        """
+        Use Legomena LLM to intelligently extract measurements from text.
+
+        This is more powerful than regex - it understands context and can:
+        - Identify what values are being measured
+        - Extract values with proper units
+        - Understand uncertainty notation
+        - Recognize physical constants
+
+        Args:
+            content: Text content to parse
+            topic: Research topic for context
+
+        Returns:
+            List of Measurement objects
+        """
+        if not self.use_legomena or not self._is_legomena_available():
+            return []
+
+        # Truncate content if too long
+        max_chars = 4000
+        if len(content) > max_chars:
+            content = content[:max_chars] + "..."
+
+        prompt = f"""Extract all numerical measurements from this text about {topic}.
+
+TEXT:
+{content}
+
+Return ONLY valid JSON array. Each measurement should have:
+- name: what is being measured (e.g., "fine_structure_constant", "wind_speed")
+- value: the numerical value (number only)
+- uncertainty: uncertainty if given (number or null)
+- unit: the unit (e.g., "kt", "GeV", "degrees", or "" if dimensionless)
+
+Example output:
+[
+  {{"name": "alpha_inverse", "value": 137.036, "uncertainty": 0.001, "unit": ""}},
+  {{"name": "wind_speed", "value": 34, "uncertainty": null, "unit": "kt"}}
+]
+
+Return ONLY the JSON array, no other text:"""
+
+        response = self._call_legomena(prompt, timeout=90)
+        if not response:
+            return []
+
+        # Parse JSON from response
+        measurements = []
+        try:
+            # Find JSON array in response
+            start = response.find('[')
+            end = response.rfind(']') + 1
+            if start >= 0 and end > start:
+                json_str = response[start:end]
+                data = json.loads(json_str)
+
+                for item in data:
+                    if isinstance(item, dict) and 'name' in item and 'value' in item:
+                        try:
+                            measurements.append(Measurement(
+                                name=str(item['name']),
+                                value=float(item['value']),
+                                uncertainty=float(item['uncertainty']) if item.get('uncertainty') else None,
+                                unit=str(item.get('unit', '')),
+                                source=f"Legomena extraction: {topic}",
+                                context=f"LLM-extracted from {topic} content"
+                            ))
+                        except (ValueError, TypeError):
+                            continue
+        except json.JSONDecodeError:
+            pass
+
+        return measurements
+
+    def analyze_z2_relevance(self, content: str, topic: str) -> Dict:
+        """
+        Use Legomena to analyze potential Z² connections in content.
+
+        Args:
+            content: Text content to analyze
+            topic: Research topic
+
+        Returns:
+            Dict with Z² relevance analysis
+        """
+        if not self.use_legomena or not self._is_legomena_available():
+            return {"error": "Legomena not available"}
+
+        # Truncate content
+        max_chars = 3000
+        if len(content) > max_chars:
+            content = content[:max_chars] + "..."
+
+        prompt = f"""Analyze this text about {topic} for potential connections to Z² = 32π/3 ≈ 33.51.
+
+Z² is a geometric constant (cube × sphere ratio) that appears in:
+- Fine structure constant: α⁻¹ = 4Z² + 3 ≈ 137
+- Dark energy density: Ω_Λ = 13/19 ≈ 0.684
+- Golden ratio relationships: φ = 1.618, 1/φ = 0.618
+
+TEXT:
+{content}
+
+Analyze and return JSON:
+{{
+  "potential_z2_connections": [
+    {{"measurement": "name", "value": number, "possible_formula": "formula", "reasoning": "why"}}
+  ],
+  "key_constants_found": ["list of numerical constants mentioned"],
+  "relevance_score": 0-10,
+  "summary": "brief analysis"
+}}
+
+Return ONLY valid JSON:"""
+
+        response = self._call_legomena(prompt, timeout=90)
+        if not response:
+            return {"error": "Legomena call failed"}
+
+        try:
+            start = response.find('{')
+            end = response.rfind('}') + 1
+            if start >= 0 and end > start:
+                return json.loads(response[start:end])
+        except json.JSONDecodeError:
+            pass
+
+        return {"error": "Failed to parse response", "raw": response[:500]}
 
     def _is_camofox_available(self) -> bool:
         """Check if Camofox server is running."""
@@ -214,19 +383,34 @@ class LiteratureCollector:
         }
         return keywords.get(domain, [])
 
-    def extract_measurements(self, content: str, context: str = "") -> List[Measurement]:
+    def extract_measurements(self, content: str, context: str = "",
+                              topic: str = None) -> List[Measurement]:
         """
         Extract numerical measurements from text content.
+
+        Uses Legomena LLM for intelligent extraction if available,
+        falls back to regex patterns.
 
         Args:
             content: Text content to parse
             context: Source context for attribution
+            topic: Research topic (helps Legomena understand context)
 
         Returns:
             List of Measurement objects
         """
         measurements = []
 
+        # Try Legomena first for intelligent extraction
+        if self.use_legomena and topic:
+            legomena_results = self.extract_with_legomena(content, topic)
+            if legomena_results:
+                measurements.extend(legomena_results)
+                # If Legomena found results, return them (more accurate)
+                if len(measurements) >= 2:
+                    return measurements
+
+        # Fallback to regex patterns
         # Look for common physics patterns
         patterns = {
             # Fine structure constant
@@ -313,7 +497,8 @@ class LiteratureCollector:
             try:
                 content = self._fetch_url(source.url)
                 if content:
-                    measurements = self.extract_measurements(content, source.name)
+                    # Pass topic to enable Legomena extraction
+                    measurements = self.extract_measurements(content, source.name, topic=topic)
                     result["measurements"].extend([asdict(m) for m in measurements])
                 else:
                     result["errors"].append(f"Failed to fetch: {source.url}")
@@ -351,22 +536,34 @@ class LiteratureCollector:
         Returns:
             Dict with extracted data or None
         """
-        # Use Wikipedia API
+        # Use Wikipedia API (requires User-Agent header)
         api_url = f"https://en.wikipedia.org/api/rest_v1/page/summary/{quote_plus(topic)}"
+        headers = {
+            "User-Agent": "HermesFlow/1.1 (Z2 Research; contact@zimmerman-research.org)"
+        }
 
         try:
-            response = requests.get(api_url, timeout=10)
+            response = requests.get(api_url, headers=headers, timeout=10)
             if response.status_code == 200:
                 data = response.json()
-                return {
+                extract = data.get("extract", "")
+
+                result = {
                     "title": data.get("title"),
-                    "extract": data.get("extract"),
+                    "extract": extract,
                     "url": data.get("content_urls", {}).get("desktop", {}).get("page"),
                     "measurements": self.extract_measurements(
-                        data.get("extract", ""),
-                        f"Wikipedia: {topic}"
+                        extract,
+                        f"Wikipedia: {topic}",
+                        topic=topic
                     )
                 }
+
+                # If Legomena available, also analyze for Z² relevance
+                if self.use_legomena and self._is_legomena_available():
+                    result["z2_analysis"] = self.analyze_z2_relevance(extract, topic)
+
+                return result
         except Exception:
             pass
 
@@ -385,10 +582,13 @@ class LiteratureCollector:
         """
         # arXiv API
         api_url = f"http://export.arxiv.org/api/query?search_query=all:{quote_plus(query)}&max_results={max_results}"
+        headers = {
+            "User-Agent": "HermesFlow/1.1 (Z2 Research; contact@zimmerman-research.org)"
+        }
 
         papers = []
         try:
-            response = requests.get(api_url, timeout=15)
+            response = requests.get(api_url, headers=headers, timeout=15)
             if response.status_code == 200:
                 # Parse Atom feed (simplified)
                 content = response.text
@@ -401,15 +601,19 @@ class LiteratureCollector:
                     link_match = re.search(r'<id>(.*?)</id>', entry)
 
                     if title_match:
+                        title = title_match.group(1).strip()
+                        summary = summary_match.group(1).strip() if summary_match else ""
+
                         paper = {
-                            "title": title_match.group(1).strip(),
-                            "summary": summary_match.group(1).strip() if summary_match else "",
+                            "title": title,
+                            "summary": summary,
                             "url": link_match.group(1) if link_match else "",
                         }
-                        # Extract measurements from abstract
+                        # Extract measurements from abstract with Legomena
                         paper["measurements"] = self.extract_measurements(
-                            paper["summary"],
-                            f"arXiv: {paper['title'][:50]}"
+                            summary,
+                            f"arXiv: {title[:50]}",
+                            topic=query  # Use search query as topic
                         )
                         papers.append(paper)
         except Exception:
