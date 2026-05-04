@@ -39,8 +39,8 @@ from urllib.parse import urljoin, urlparse
 
 LEGOMENA_MODEL = os.environ.get("LEGOMENA_MODEL", "legomena-4b")
 
-# Version with location-aware discovery
-__version__ = "1.5.1"
+# Version with enhanced data acquisition
+__version__ = "1.6.0"
 
 
 @dataclass
@@ -152,10 +152,17 @@ class HermesExplorer:
                 if not matches:
                     continue
 
+            # Enhanced data detection (v1.6.0)
+            data_extensions = ['.csv', '.txt', '.json', '.nc', '.dat', '.asc', '.data', '.ascii']
+            data_keywords = ['download', 'export', 'data.']
+            is_data = (
+                any(ext in href.lower() for ext in data_extensions) or
+                any(kw in href.lower() for kw in data_keywords)
+            )
             links.append({
                 "url": full_url,
                 "text": text,
-                "is_data": any(ext in href.lower() for ext in ['.csv', '.txt', '.json', '.nc'])
+                "is_data": is_data
             })
 
         return links
@@ -179,22 +186,281 @@ class HermesExplorer:
 
         return None
 
-    def tool_parse(self, content: bytes) -> Optional[pd.DataFrame]:
-        """Parse data content."""
+    def tool_parse(self, content: bytes, content_type: str = None) -> Optional[pd.DataFrame]:
+        """
+        Parse data content with multi-format support (v1.6.0).
+
+        Supports:
+        - CSV files
+        - ASCII fixed-width tables (NOAA style)
+        - JSON data arrays
+        - HTML embedded tables
+        """
+        text_content = None
         try:
-            # Try CSV with header skip (common for scientific data)
-            df = pd.read_csv(io.BytesIO(content), skiprows=[1], low_memory=False, na_values=[' ', ''])
-            if len(df) > 100 and len(df.columns) > 5:
+            text_content = content.decode('utf-8', errors='ignore')
+        except:
+            pass
+
+        # Detect if this looks like whitespace-delimited data (NOAA style)
+        # Check for multiple whitespace-separated numbers
+        if text_content:
+            first_lines = text_content.strip().split('\n')[:5]
+            looks_like_ascii = False
+            for line in first_lines:
+                parts = line.split()
+                if len(parts) > 3:
+                    # Check if most parts are numbers
+                    numeric_parts = sum(1 for p in parts if self._is_numeric(p))
+                    if numeric_parts >= len(parts) * 0.7:
+                        looks_like_ascii = True
+                        break
+
+            if looks_like_ascii:
+                df = self._parse_ascii_table(text_content)
+                if df is not None and len(df) > 10:
+                    self._log(f"  Parsed ASCII table: {len(df)} rows, {len(df.columns)} cols")
+                    return df
+
+        # Try standard CSV
+        try:
+            df = pd.read_csv(io.BytesIO(content), low_memory=False)
+            if len(df) > 30 and len(df.columns) >= 2:
+                self._log(f"  Parsed CSV: {len(df)} rows, {len(df.columns)} cols")
                 return df
         except:
             pass
 
         try:
-            df = pd.read_csv(io.BytesIO(content), low_memory=False)
-            if len(df) > 100:
+            df = pd.read_csv(io.BytesIO(content), skiprows=[1], low_memory=False, na_values=[' ', ''])
+            if len(df) > 30 and len(df.columns) >= 2:
+                self._log(f"  Parsed CSV (skip header): {len(df)} rows, {len(df.columns)} cols")
                 return df
         except:
             pass
+
+        # Try JSON
+        if text_content:
+            df = self._parse_json_data(text_content)
+            if df is not None and len(df) > 10:
+                self._log(f"  Parsed JSON: {len(df)} rows, {len(df.columns)} cols")
+                return df
+
+        # Try HTML tables
+        if text_content and '<table' in text_content.lower():
+            df = self._parse_html_tables(text_content)
+            if df is not None and len(df) > 10:
+                self._log(f"  Parsed HTML table: {len(df)} rows, {len(df.columns)} cols")
+                return df
+
+        return None
+
+    def _is_numeric(self, s: str) -> bool:
+        """Check if string is a number."""
+        try:
+            float(s)
+            return True
+        except:
+            return False
+
+    # =========================================================================
+    # ENHANCED DATA ACQUISITION (v1.6.0)
+    # =========================================================================
+
+    def _parse_ascii_table(self, text: str) -> Optional[pd.DataFrame]:
+        """
+        Parse ASCII fixed-width tables like NOAA data.
+
+        Handles multiple formats:
+        - NOAA MEI: YEAR followed by 12 monthly values
+        - NOAA SOI: Similar format
+        - General fixed-width scientific data
+        """
+        lines = text.strip().split('\n')
+
+        # Skip comment lines and find data start
+        data_lines = []
+        header_line = None
+        skip_first_data = False
+
+        for i, line in enumerate(lines):
+            stripped = line.strip()
+            # Skip empty lines and common comment patterns
+            if not stripped or stripped.startswith('#') or stripped.startswith('//'):
+                continue
+            # Skip lines that are mostly dashes or equals (separators)
+            if len(stripped) > 5 and stripped.count('-') / len(stripped) > 0.5:
+                continue
+            if len(stripped) > 5 and stripped.count('=') / len(stripped) > 0.5:
+                continue
+
+            # Detect NOAA year-range header (e.g., "1979     2026")
+            parts = stripped.split()
+            if len(parts) == 2 and all(p.isdigit() and len(p) == 4 for p in parts):
+                # This is a year range header, skip it
+                skip_first_data = True
+                continue
+
+            # First non-comment line might be header
+            if header_line is None:
+                # Check if it looks like a header (contains letters, not just numbers)
+                alpha_count = sum(1 for c in stripped if c.isalpha())
+                digit_count = sum(1 for c in stripped if c.isdigit() or c in '.-')
+                if alpha_count > digit_count:
+                    header_line = stripped
+                    continue
+
+            data_lines.append(line)
+
+        if len(data_lines) < 10:  # Lowered threshold
+            return None
+
+        # Try whitespace-delimited first (most common for NOAA)
+        try:
+            text_for_csv = '\n'.join(data_lines)
+            df = pd.read_csv(io.StringIO(text_for_csv), sep=r'\s+', engine='python', header=None)
+
+            if len(df) > 10 and len(df.columns) >= 2:
+                # For NOAA monthly data: first column is year, rest are months
+                if len(df.columns) == 13:
+                    # NOAA monthly format: YEAR + 12 months
+                    df.columns = ['YEAR', 'DJ', 'JF', 'FM', 'MA', 'AM', 'MJ',
+                                  'JJ', 'JA', 'AS', 'SO', 'ON', 'ND']
+                elif len(df.columns) == 12:
+                    # Just 12 monthly values
+                    df.columns = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                                  'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                self._log(f"  Parsed whitespace-delimited: {len(df)} rows, {len(df.columns)} cols")
+                return df
+        except Exception as e:
+            pass
+
+        # Try to parse as fixed-width
+        try:
+            text_for_fwf = '\n'.join(data_lines)
+            df = pd.read_fwf(io.StringIO(text_for_fwf), infer_nrows=100, header=None)
+
+            # Clean up - drop columns that are all NaN
+            df = df.dropna(axis=1, how='all')
+
+            if len(df) > 10 and len(df.columns) >= 2:
+                return df
+        except Exception as e:
+            pass
+
+        return None
+
+    def _parse_json_data(self, text: str) -> Optional[pd.DataFrame]:
+        """Parse JSON data into DataFrame."""
+        try:
+            data = json.loads(text)
+
+            # If it's a list of dicts, convert directly
+            if isinstance(data, list) and len(data) > 0 and isinstance(data[0], dict):
+                return pd.DataFrame(data)
+
+            # If it's a dict with a 'data' key
+            if isinstance(data, dict):
+                for key in ['data', 'values', 'records', 'results', 'items']:
+                    if key in data and isinstance(data[key], list):
+                        return pd.DataFrame(data[key])
+
+            # If it's a dict of arrays (columnar format)
+            if isinstance(data, dict) and all(isinstance(v, list) for v in data.values()):
+                return pd.DataFrame(data)
+
+        except:
+            pass
+
+        return None
+
+    def _parse_html_tables(self, html: str) -> Optional[pd.DataFrame]:
+        """Extract data tables from HTML."""
+        try:
+            tables = pd.read_html(io.StringIO(html))
+
+            # Find the largest table with numeric data
+            best_table = None
+            best_score = 0
+
+            for table in tables:
+                if len(table) < 10:
+                    continue
+
+                # Score by size and numeric content
+                numeric_cols = table.select_dtypes(include=['number']).shape[1]
+                score = len(table) * (numeric_cols + 1)
+
+                if score > best_score:
+                    best_score = score
+                    best_table = table
+
+            return best_table
+
+        except:
+            pass
+
+        return None
+
+    def _detect_api_endpoints(self, html: str, base_url: str) -> List[str]:
+        """
+        Detect API endpoints from HTML/JavaScript.
+
+        Looks for patterns like:
+        - /api/v1/data
+        - data.json
+        - fetch('...')
+        """
+        endpoints = []
+
+        # API URL patterns
+        patterns = [
+            r'["\'](/api/[^"\']+)["\']',
+            r'["\']([^"\']+\.json)["\']',
+            r'["\']([^"\']+/data/[^"\']+)["\']',
+            r'fetch\(["\']([^"\']+)["\']',
+            r'url:\s*["\']([^"\']+)["\']',
+        ]
+
+        for pattern in patterns:
+            matches = re.findall(pattern, html)
+            for match in matches:
+                if match.startswith('/'):
+                    full_url = urljoin(base_url, match)
+                elif match.startswith('http'):
+                    full_url = match
+                else:
+                    full_url = urljoin(base_url, match)
+
+                if full_url not in endpoints:
+                    endpoints.append(full_url)
+
+        return endpoints[:10]  # Limit to 10 most relevant
+
+    def tool_fetch_data(self, url: str) -> Optional[pd.DataFrame]:
+        """
+        Fetch and parse data from a URL with format auto-detection.
+        Enhanced for API endpoints and various formats.
+        """
+        self._log(f"FETCH DATA: {url[:60]}...")
+
+        try:
+            response = self.session.get(url, timeout=60)
+            if not response.ok:
+                return None
+
+            content = response.content
+            content_type = response.headers.get('content-type', '').lower()
+
+            # Try to parse based on content
+            df = self.tool_parse(content, content_type)
+
+            if df is not None:
+                self._record("fetch_data", url, f"Got {len(df)} rows", "")
+                return df
+
+        except Exception as e:
+            self._record("fetch_data", url, f"Error: {e}", "")
 
         return None
 
@@ -485,8 +751,8 @@ Just give the translated queries, one per line:"""
         for r in unique_results[:5]:
             self._log(f"  {r['title'][:40]}: {r['url'][:50]}")
 
-        # Step 4: Explore top portals
-        self._log("\n--- Step 4: Explore Portals ---")
+        # Step 4: Explore top portals (ENHANCED in v1.6.0)
+        self._log("\n--- Step 4: Explore Portals (v1.6.0 Enhanced) ---")
 
         for result in unique_results[:5]:
             portal_url = result['url']
@@ -496,10 +762,37 @@ Just give the translated queries, one per line:"""
             if not html:
                 continue
 
+            # NEW v1.6.0: Try to extract data tables directly from HTML
+            df = self._parse_html_tables(html)
+            if df is not None and len(df) > 30:
+                self._log(f"  SUCCESS (HTML table): {len(df)} rows!")
+                return DataDiscovery(
+                    success=True,
+                    url=portal_url,
+                    data=df,
+                    steps=self.steps,
+                    description=f"Extracted HTML table from {portal_url}"
+                )
+
+            # NEW v1.6.0: Detect and try API endpoints
+            api_endpoints = self._detect_api_endpoints(html, portal_url)
+            for api_url in api_endpoints[:3]:
+                self._log(f"  Trying API: {api_url[:50]}...")
+                df = self.tool_fetch_data(api_url)
+                if df is not None and len(df) > 30:
+                    self._log(f"  SUCCESS (API): {len(df)} rows!")
+                    return DataDiscovery(
+                        success=True,
+                        url=api_url,
+                        data=df,
+                        steps=self.steps,
+                        description=f"Found data via API: {api_url}"
+                    )
+
             # Find data links
             data_links = self.tool_extract_links(
                 html, portal_url,
-                filter_terms=['data', 'csv', 'download', 'access', 'dataset']
+                filter_terms=['data', 'csv', 'download', 'access', 'dataset', 'ascii', 'txt', 'json']
             )
 
             self._log(f"  Found {len(data_links)} data-related links")
@@ -519,47 +812,67 @@ Just give the translated queries, one per line:"""
                     data_links = [l for l in data_links if l['url'] == recommended] + \
                                 [l for l in data_links if l['url'] != recommended]
 
-            # Try data links
-            for link in data_links[:5]:
+            # Try data links with enhanced parsing
+            for link in data_links[:8]:  # Increased from 5 to 8
                 link_url = link['url']
 
-                if link['is_data']:
-                    # Direct data file
-                    content = self.tool_download(link_url)
-                    if content:
-                        df = self.tool_parse(content)
-                        if df is not None:
-                            self._log(f"  SUCCESS: {len(df)} rows!")
-                            return DataDiscovery(
-                                success=True,
-                                url=link_url,
-                                data=df,
-                                steps=self.steps,
-                                description=f"Found data via {portal_url}"
-                            )
+                # NEW v1.6.0: Try to fetch and parse any link that might have data
+                df = self.tool_fetch_data(link_url)
+                if df is not None and len(df) > 30:
+                    self._log(f"  SUCCESS: {len(df)} rows!")
+                    return DataDiscovery(
+                        success=True,
+                        url=link_url,
+                        data=df,
+                        steps=self.steps,
+                        description=f"Found data via {portal_url}"
+                    )
 
-                else:
-                    # Navigate deeper
+                # Navigate deeper for non-data links
+                if not link['is_data']:
                     sub_html = self.tool_fetch(link_url)
                     if not sub_html:
                         continue
 
-                    sub_links = self.tool_extract_links(sub_html, link_url, filter_terms=['.csv', '.txt'])
+                    # Try HTML tables on sub-page
+                    df = self._parse_html_tables(sub_html)
+                    if df is not None and len(df) > 30:
+                        self._log(f"  SUCCESS (sub-page HTML table): {len(df)} rows!")
+                        return DataDiscovery(
+                            success=True,
+                            url=link_url,
+                            data=df,
+                            steps=self.steps,
+                            description=f"Extracted HTML table from {link_url}"
+                        )
+
+                    # Try API endpoints on sub-page
+                    sub_api_endpoints = self._detect_api_endpoints(sub_html, link_url)
+                    for api_url in sub_api_endpoints[:2]:
+                        df = self.tool_fetch_data(api_url)
+                        if df is not None and len(df) > 30:
+                            self._log(f"  SUCCESS (sub-page API): {len(df)} rows!")
+                            return DataDiscovery(
+                                success=True,
+                                url=api_url,
+                                data=df,
+                                steps=self.steps,
+                                description=f"Found via API: {api_url}"
+                            )
+
+                    sub_links = self.tool_extract_links(sub_html, link_url, filter_terms=['.csv', '.txt', '.json', 'data', 'ascii'])
 
                     for sub_link in sub_links[:5]:
-                        if sub_link['is_data']:
-                            content = self.tool_download(sub_link['url'])
-                            if content:
-                                df = self.tool_parse(content)
-                                if df is not None:
-                                    self._log(f"  SUCCESS: {len(df)} rows!")
-                                    return DataDiscovery(
-                                        success=True,
-                                        url=sub_link['url'],
-                                        data=df,
-                                        steps=self.steps,
-                                        description=f"Found via navigation: {portal_url} -> {link_url}"
-                                    )
+                        df = self.tool_fetch_data(sub_link['url'])
+                        if df is not None and len(df) > 30:
+                            self._log(f"  SUCCESS: {len(df)} rows!")
+                            return DataDiscovery(
+                                success=True,
+                                url=sub_link['url'],
+                                data=df,
+                                steps=self.steps,
+                                description=f"Found via navigation: {portal_url} -> {link_url}"
+                            )
 
         return DataDiscovery(
             success=False,

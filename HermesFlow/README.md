@@ -1,17 +1,25 @@
-# HermesFlow v1.5.1
+# HermesFlow v1.6.0
 
-## Autonomous Scientific Discovery System with Location-Aware Discovery
+## Autonomous Scientific Discovery System with Enhanced Data Acquisition
 
 **Author:** Carl Zimmerman
-**Version:** 1.5.1 (location-aware)
+**Version:** 1.6.0 (enhanced data acquisition)
 **Date:** May 4, 2026
 
-### What's New in v1.5.1
+### What's New in v1.6.0
 
-- **Geographic Context Detection**: Automatically detects when a topic has a specific location (e.g., "Venice water levels")
+- **ASCII Table Parser**: Parses NOAA-style fixed-width data tables
+- **HTML Table Extraction**: Extracts data tables embedded in HTML pages
+- **API Endpoint Detection**: Finds and fetches JSON API endpoints from JavaScript
+- **JSON Data Parser**: Converts JSON API responses to DataFrames
+- **Enhanced Format Detection**: Recognizes more data file extensions (.dat, .asc, .ascii, .data)
+
+### From v1.5.1
+
+- **Geographic Context Detection**: Automatically detects when a topic has a specific location
 - **Regional Data Source Discovery**: Asks Legomena for region-specific data sources dynamically
 - **Multi-language Search Queries**: Generates search queries in the local language when appropriate
-- **Location-aware Scoring**: Prioritizes regional data portals (e.g., .it domains for Italian topics)
+- **Location-aware Scoring**: Prioritizes regional data portals
 
 ---
 
