@@ -1,0 +1,95 @@
+# TruthFlow Hermes Agent Configuration
+# =====================================
+# Uses Hermes Agent with Legomena models for autonomous Z² research
+
+agent:
+  name: "TruthFlow Research Agent"
+  description: "Autonomous Z² physics research with HRM honesty assessment"
+
+# Model Configuration
+model:
+  provider: "ollama"
+  default: "legomena-31b"  # Most capable
+  alternatives:
+    - "legomena-e4b"       # Balanced
+    - "legomena-e2b"       # Fast
+    - "legomena-4b"        # Minimal
+  temperature: 0.6
+  context_length: 32768
+
+# Skills to Enable
+skills:
+  enabled:
+    - "research/z2-truthflow"  # Our custom skill
+    - "research/arxiv"          # Paper fetching
+    - "data-science/python"     # Computation
+  custom_path: "./hermes_agent/skills"
+
+# Memory Configuration
+memory:
+  type: "sqlite"
+  path: "./truth_database.db"
+  retention_days: 365
+
+# Data Sources
+data_sources:
+  physics:
+    - name: "CODATA"
+      url: "https://physics.nist.gov/cuu/Constants/"
+      type: "constants"
+    - name: "PDG"
+      url: "https://pdg.lbl.gov/"
+      type: "particles"
+  cosmology:
+    - name: "Planck"
+      description: "CMB and cosmological parameters"
+    - name: "BICEP/Keck"
+      description: "CMB polarization"
+  neutrinos:
+    - name: "NuFIT"
+      url: "http://www.nu-fit.org/"
+      type: "oscillation"
+  geophysics:
+    - name: "USGS"
+      url: "https://earthquake.usgs.gov/"
+      type: "api"
+    - name: "NOAA"
+      url: "https://www.noaa.gov/"
+      type: "api"
+
+# HRM Configuration
+hrm:
+  levels: 3
+  thresholds:
+    validated: 0.8
+    speculative: 0.5
+    reject: 0.3
+  require_computational_verification: true
+  require_consistency_check: true
+
+# Research Pipeline
+pipeline:
+  steps:
+    - name: "hypothesis"
+      description: "Generate Z² prediction"
+    - name: "data_fetch"
+      description: "Get empirical measurements"
+    - name: "compute"
+      description: "Calculate and triple-verify"
+    - name: "hrm_assess"
+      description: "3-level honesty assessment"
+    - name: "consistency"
+      description: "Check against truth database"
+    - name: "store"
+      description: "Add to database if valid"
+
+# Output Configuration
+output:
+  research_sessions: "./research_sessions"
+  truth_database: "./truth_database.json"
+  training_data: "./legomena_training"
+
+# Logging
+logging:
+  level: "INFO"
+  file: "./logs/truthflow.log"
