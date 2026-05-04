@@ -150,9 +150,41 @@ All proposed modifications require wet-lab validation before agricultural deploy
 
 The Z² Unified Action framework identifies geometrically precise aromatic locks in every major crop enzyme examined, with statistical significance confirmed by Monte Carlo testing. The mathematical constants 5.62 Å, 5.72 Å, 6.08 Å, and 18.53° appear to be universal structural attractors across all domains of life. This work establishes global prior art for the application of geometric phase-lock analysis to agricultural biotechnology under the AGPL-3.0-or-later license.
 
+## DISCLAIMER
+
+**THIS IS PURELY COMPUTATIONAL RESEARCH.** The findings, hypotheses, and proposed applications described in this manuscript are the result of in silico (computer-based) structural analysis only. They have NOT been validated through:
+
+- Wet-laboratory experiments (in vitro or in vivo)
+- Field trials or greenhouse studies
+- Peer review by an academic journal
+- Regulatory review by any agricultural or food safety authority (e.g., USDA, EPA, EFSA)
+
+**No claims are made regarding:**
+- The efficacy, safety, or viability of any proposed genetic modification (CRISPR-Z or otherwise) in living organisms
+- The suitability of any computational result for medical, pharmaceutical, or agricultural application
+- The therapeutic value of any compound, peptide, or structural modification described herein
+
+**Specific limitations of this computational work:**
+1. Force field calculations (MMFF94) are approximations of quantum mechanical reality and do not capture the full complexity of biological systems
+2. Static crystal structures do not represent the dynamic behavior of proteins in living cells
+3. Statistical correlations between aromatic distances and Z-Manifold constants do not establish causation
+4. The Z² Unified Action score uses an arbitrary scaling factor (θ/10) that has not been derived from first principles
+5. All proposed CRISPR-Z mutations require extensive computational molecular dynamics simulation, in vitro biochemical assays, and in vivo phenotyping before any agricultural deployment could be considered
+6. The Monte Carlo null model assumes uniform distance distributions, which may not accurately represent protein-specific structural constraints
+
+**This manuscript is published for the sole purposes of:**
+1. Establishing timestamped prior art under the AGPL-3.0-or-later license
+2. Contributing to open science by making computational methodologies freely available
+3. Providing a reproducible computational framework for further investigation by qualified researchers
+
+**The authors are not licensed agricultural scientists, geneticists, or regulatory professionals.** Any application of the methods described herein to living organisms should only be undertaken by qualified professionals in compliance with all applicable biosafety regulations and ethical guidelines.
+
+**No agricultural product, genetically modified organism, or therapeutic agent has been created, tested, or validated as part of this research.**
+
 ## Data Availability
 All code, raw data, and analysis scripts: https://github.com/carlzimmerman/zimmerman-formula  
-License: AGPL-3.0-or-later / CC-BY-4.0
+License: AGPL-3.0-or-later / CC-BY-4.0  
+DOI: 10.5281/zenodo.20018005
 
 ## References
 1. Unno, H. et al. (2006). Atomic structure of plant glutamine synthetase. *J. Biol. Chem.*, 281, 29287. PDB: 2D3A.
