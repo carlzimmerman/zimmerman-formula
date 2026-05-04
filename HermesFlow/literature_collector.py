@@ -528,7 +528,7 @@ Return ONLY valid JSON:"""
     def search_wikipedia(self, topic: str) -> Optional[Dict]:
         """
         Search Wikipedia for structured data about a topic.
-        Uses Wikipedia API for reliable data extraction.
+        Uses Wikipedia API to get full article extract for better data.
 
         Args:
             topic: Topic to search
@@ -536,14 +536,63 @@ Return ONLY valid JSON:"""
         Returns:
             Dict with extracted data or None
         """
-        # Use Wikipedia API (requires User-Agent header)
-        api_url = f"https://en.wikipedia.org/api/rest_v1/page/summary/{quote_plus(topic)}"
         headers = {
             "User-Agent": "HermesFlow/1.1 (Z2 Research; contact@zimmerman-research.org)"
         }
 
+        # First, try to get the full extract using Wikipedia API query endpoint
+        # This returns more content than the summary endpoint
+        query_url = (
+            f"https://en.wikipedia.org/w/api.php?"
+            f"action=query&format=json&prop=extracts&exintro=false&explaintext=true"
+            f"&titles={quote_plus(topic)}&redirects=1"
+        )
+
         try:
-            response = requests.get(api_url, headers=headers, timeout=10)
+            response = requests.get(query_url, headers=headers, timeout=15)
+            if response.status_code == 200:
+                data = response.json()
+                pages = data.get("query", {}).get("pages", {})
+
+                # Get the first page result
+                for page_id, page_data in pages.items():
+                    if page_id == "-1":
+                        # Page not found, try summary endpoint as fallback
+                        break
+
+                    extract = page_data.get("extract", "")
+                    title = page_data.get("title", topic)
+
+                    # Truncate if too long (keep first 10000 chars for analysis)
+                    if len(extract) > 10000:
+                        extract = extract[:10000] + "..."
+
+                    result = {
+                        "title": title,
+                        "extract": extract,
+                        "extract_length": len(extract),
+                        "url": f"https://en.wikipedia.org/wiki/{quote_plus(title)}",
+                        "measurements": self.extract_measurements(
+                            extract,
+                            f"Wikipedia: {title}",
+                            topic=topic
+                        )
+                    }
+
+                    # If Legomena available, also analyze for Z² relevance
+                    if self.use_legomena and self._is_legomena_available():
+                        result["z2_analysis"] = self.analyze_z2_relevance(extract, topic)
+
+                    return result
+
+        except Exception as e:
+            pass
+
+        # Fallback: try the REST summary endpoint
+        summary_url = f"https://en.wikipedia.org/api/rest_v1/page/summary/{quote_plus(topic)}"
+
+        try:
+            response = requests.get(summary_url, headers=headers, timeout=10)
             if response.status_code == 200:
                 data = response.json()
                 extract = data.get("extract", "")
@@ -551,6 +600,7 @@ Return ONLY valid JSON:"""
                 result = {
                     "title": data.get("title"),
                     "extract": extract,
+                    "extract_length": len(extract),
                     "url": data.get("content_urls", {}).get("desktop", {}).get("page"),
                     "measurements": self.extract_measurements(
                         extract,
@@ -558,10 +608,6 @@ Return ONLY valid JSON:"""
                         topic=topic
                     )
                 }
-
-                # If Legomena available, also analyze for Z² relevance
-                if self.use_legomena and self._is_legomena_available():
-                    result["z2_analysis"] = self.analyze_z2_relevance(extract, topic)
 
                 return result
         except Exception:
@@ -626,34 +672,127 @@ Return ONLY valid JSON:"""
 # Integration with HermesFlow
 # =============================================================================
 
+def extract_keywords(topic: str) -> List[str]:
+    """
+    Extract searchable keywords from a problem statement.
+
+    Converts "How to remove PFAS from wastewater" into
+    ["PFAS", "wastewater", "PFAS removal", "wastewater treatment"]
+    """
+    # Common stop words to remove
+    stop_words = {
+        'how', 'to', 'the', 'a', 'an', 'is', 'are', 'was', 'were', 'be', 'been',
+        'being', 'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would',
+        'could', 'should', 'may', 'might', 'must', 'shall', 'can', 'of', 'in',
+        'on', 'at', 'by', 'for', 'with', 'about', 'into', 'through', 'during',
+        'before', 'after', 'above', 'below', 'from', 'up', 'down', 'out', 'off',
+        'over', 'under', 'again', 'further', 'then', 'once', 'here', 'there',
+        'when', 'where', 'why', 'what', 'which', 'who', 'whom', 'this', 'that',
+        'these', 'those', 'am', 'and', 'but', 'if', 'or', 'because', 'as',
+        'until', 'while', 'although', 'even', 'though', 'using', 'use', 'based',
+        'principles', 'principle', 'geometric', 'geometry', 'method', 'methods'
+    }
+
+    # Split and clean
+    words = topic.lower().replace(',', ' ').replace('.', ' ').split()
+
+    # Keep important words
+    keywords = []
+    for word in words:
+        word = word.strip()
+        if len(word) > 2 and word not in stop_words:
+            keywords.append(word)
+
+    # Also keep acronyms (all caps in original)
+    for word in topic.split():
+        if word.isupper() and len(word) > 1:
+            keywords.insert(0, word)  # Prioritize acronyms
+
+    # Create bigrams for common phrases
+    bigrams = []
+    for i in range(len(keywords) - 1):
+        bigrams.append(f"{keywords[i]} {keywords[i+1]}")
+
+    # Combine and dedupe
+    all_keywords = keywords + bigrams
+    seen = set()
+    unique = []
+    for k in all_keywords:
+        if k.lower() not in seen:
+            seen.add(k.lower())
+            unique.append(k)
+
+    return unique[:10]  # Return top 10 keywords
+
+
 def collect_literature_for_research(topic: str) -> Dict:
     """
     Main entry point for literature collection.
 
+    Extracts keywords from the problem and searches multiple sources.
+
     Args:
-        topic: Research topic
+        topic: Research topic or problem statement
 
     Returns:
         Dict ready for Z² analysis
     """
     collector = LiteratureCollector()
 
-    # Collect from all sources
-    result = collector.collect(topic)
+    # Extract searchable keywords
+    keywords = extract_keywords(topic)
 
-    # Also try Wikipedia API
-    wiki_data = collector.search_wikipedia(topic)
-    if wiki_data:
-        result["wikipedia"] = wiki_data
+    result = {
+        "topic": topic,
+        "keywords": keywords,
+        "sources": [],
+        "measurements": [],
+        "wikipedia": None,
+        "arxiv_papers": []
+    }
 
-    # Try arXiv
-    arxiv_papers = collector.search_arxiv(topic, max_results=3)
-    if arxiv_papers:
-        result["arxiv_papers"] = arxiv_papers
-        # Add measurements from papers
-        for paper in arxiv_papers:
-            for m in paper.get("measurements", []):
-                result["measurements"].append(asdict(m) if hasattr(m, '__dict__') else m)
+    # Search Wikipedia for each keyword (try primary keywords first)
+    wiki_found = False
+    for kw in keywords[:5]:
+        if not wiki_found:
+            wiki_data = collector.search_wikipedia(kw)
+            if wiki_data and wiki_data.get("extract"):
+                result["wikipedia"] = wiki_data
+                wiki_found = True
+                # Extract measurements from Wikipedia
+                if wiki_data.get("measurements"):
+                    for m in wiki_data["measurements"]:
+                        result["measurements"].append(
+                            asdict(m) if hasattr(m, '__dict__') else m
+                        )
+
+    # Search arXiv with keyword combinations
+    arxiv_queries = [
+        " ".join(keywords[:3]),  # First 3 keywords
+        keywords[0] if keywords else topic,  # Primary keyword
+    ]
+
+    for query in arxiv_queries:
+        papers = collector.search_arxiv(query, max_results=3)
+        for paper in papers:
+            # Avoid duplicates
+            if paper.get("title") not in [p.get("title") for p in result["arxiv_papers"]]:
+                result["arxiv_papers"].append(paper)
+                # Extract measurements from paper
+                for m in paper.get("measurements", []):
+                    result["measurements"].append(
+                        asdict(m) if hasattr(m, '__dict__') else m
+                    )
+
+    # Collect from domain sources
+    domain_result = collector.collect(topic)
+    result["sources"] = domain_result.get("sources", [])
+
+    # Add any additional measurements from domain collection
+    for m in domain_result.get("measurements", []):
+        result["measurements"].append(
+            asdict(m) if hasattr(m, '__dict__') else m
+        )
 
     return result
 
