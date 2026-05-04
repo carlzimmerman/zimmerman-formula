@@ -37,6 +37,13 @@ from typing import Dict, List, Optional, Any
 from dataclasses import dataclass, asdict
 import subprocess
 
+# Import literature collector for dynamic source discovery
+try:
+    from literature_collector import LiteratureCollector, collect_literature_for_research
+    LITERATURE_AVAILABLE = True
+except ImportError:
+    LITERATURE_AVAILABLE = False
+
 # Camofox configuration
 CAMOFOX_URL = os.environ.get("CAMOFOX_URL", "http://localhost:9377")
 
@@ -189,12 +196,13 @@ class ResearchTools:
                 break
 
         if not strategy:
-            # Generic search - try to fetch if Camofox available
-            if self._is_camofox_available():
-                # Would search Wikipedia, etc.
-                pass
-            return {"error": f"No search strategy for topic: {topic}",
-                    "available_topics": list(SEARCH_STRATEGIES.keys())}
+            # Use dynamic literature collector
+            if LITERATURE_AVAILABLE:
+                return self._dynamic_literature_research(topic, search_queries)
+            else:
+                return {"error": f"No search strategy for topic: {topic}",
+                        "available_topics": list(SEARCH_STRATEGIES.keys()),
+                        "hint": "Install literature_collector for dynamic search"}
 
         # Use known measurements (or fetch live if Camofox available)
         measurements = strategy["known_measurements"]
@@ -231,6 +239,84 @@ class ResearchTools:
         results["summary"] = {
             "measurements_analyzed": len(measurements),
             "validated_matches": len(results["best_discoveries"]),
+            "best_match": min(results["z2_matches"], key=lambda x: x["error_pct"]) if results["z2_matches"] else None
+        }
+
+        return results
+
+    def _dynamic_literature_research(self, topic: str, search_queries: List[str] = None) -> Dict:
+        """
+        Dynamically research ANY topic using literature collector.
+
+        Args:
+            topic: Any research topic
+            search_queries: Optional specific search terms
+
+        Returns:
+            Research results with dynamically discovered measurements
+        """
+        results = {
+            "topic": topic,
+            "mode": "dynamic_literature",
+            "sources_searched": [],
+            "measurements_found": [],
+            "z2_matches": [],
+            "best_discoveries": []
+        }
+
+        # Use literature collector
+        lit_data = collect_literature_for_research(topic)
+
+        results["sources_searched"] = [s.get("url", s.get("name", "")) for s in lit_data.get("sources", [])]
+
+        # Extract measurements
+        measurements = {}
+        for m in lit_data.get("measurements", []):
+            name = m.get("name", f"value_{len(measurements)}")
+            value = m.get("value")
+            if value and isinstance(value, (int, float)):
+                measurements[name] = value
+
+        results["measurements_found"] = list(measurements.items())
+
+        # Search for Z² patterns
+        for target, measured in measurements.items():
+            match = self.research_any(
+                domain=topic,
+                target=target,
+                measured_value=measured,
+                uncertainty=0.01,
+                source="literature_collector"
+            )
+
+            results["z2_matches"].append({
+                "target": target,
+                "measured": measured,
+                "best_formula": match["best_formula"],
+                "predicted": match["predicted"],
+                "error_pct": match["percent_error"],
+                "verdict": match["verdict"]
+            })
+
+            if match["verdict"] == "VALIDATED":
+                results["best_discoveries"].append({
+                    "target": target,
+                    "formula": match["best_formula"],
+                    "error": match["percent_error"]
+                })
+
+        # Add Wikipedia and arXiv info
+        if lit_data.get("wikipedia"):
+            results["wikipedia"] = lit_data["wikipedia"].get("title")
+
+        if lit_data.get("arxiv_papers"):
+            results["arxiv_papers"] = len(lit_data["arxiv_papers"])
+
+        # Summary
+        results["summary"] = {
+            "measurements_analyzed": len(measurements),
+            "validated_matches": len(results["best_discoveries"]),
+            "sources_checked": len(results["sources_searched"]),
             "best_match": min(results["z2_matches"], key=lambda x: x["error_pct"]) if results["z2_matches"] else None
         }
 
