@@ -39,6 +39,9 @@ from urllib.parse import urljoin, urlparse
 
 LEGOMENA_MODEL = os.environ.get("LEGOMENA_MODEL", "legomena-4b")
 
+# Version with location-aware discovery
+__version__ = "1.5.1"
+
 
 @dataclass
 class ExplorationStep:
@@ -219,6 +222,114 @@ Answer concisely:"""
         return ""
 
     # =========================================================================
+    # LOCATION-AWARE DISCOVERY (v1.5.1)
+    # =========================================================================
+
+    def _detect_geographic_context(self, topic: str) -> Optional[Dict]:
+        """
+        Dynamically detect if topic has geographic context.
+        Returns location info or None.
+        """
+        question = f"""Does this topic have a specific geographic location?
+Topic: "{topic}"
+
+If yes, respond with EXACTLY this format:
+LOCATION: [place name]
+COUNTRY: [country name]
+LANGUAGE: [primary language for data]
+
+If no specific location, respond with:
+GLOBAL
+
+Answer:"""
+
+        response = self.tool_ask(question)
+
+        if "GLOBAL" in response.upper() or "LOCATION:" not in response:
+            return None
+
+        # Parse location info
+        location = {}
+        for line in response.split('\n'):
+            if 'LOCATION:' in line:
+                location['place'] = line.split('LOCATION:')[1].strip()
+            elif 'COUNTRY:' in line:
+                location['country'] = line.split('COUNTRY:')[1].strip()
+            elif 'LANGUAGE:' in line:
+                location['language'] = line.split('LANGUAGE:')[1].strip()
+
+        if location.get('place'):
+            self._log(f"Geographic context detected: {location}")
+            return location
+
+        return None
+
+    def _get_regional_data_sources(self, topic: str, domain: str,
+                                   location: Dict) -> List[str]:
+        """
+        Ask Legomena for region-specific data sources dynamically.
+        No hardcoded databases - pure reasoning.
+        """
+        place = location.get('place', '')
+        country = location.get('country', '')
+        language = location.get('language', 'English')
+
+        question = f"""I need scientific data about: {topic}
+Domain: {domain}
+Location: {place}, {country}
+
+What are the SPECIFIC data sources for this region? Consider:
+1. National government agencies (environment, weather, science)
+2. Regional monitoring organizations
+3. University research centers
+4. EU/international programs covering this area
+
+List the most relevant data sources with their website domains if known.
+Focus on sources that provide downloadable data files.
+
+Answer concisely:"""
+
+        response = self.tool_ask(question)
+        self._log(f"Regional sources from Legomena: {response[:200]}...")
+
+        # Extract organization names and URLs
+        sources = []
+
+        # Extract capitalized organization names
+        org_names = re.findall(r'\b([A-Z][A-Za-z0-9\-\.]{2,}[A-Za-z0-9]*)\b', response)
+        sources.extend([n for n in org_names if n not in ['CSV', 'JSON', 'API', 'URL', 'HTTP', 'The', 'For', 'Data']])
+
+        # Extract any URLs mentioned
+        urls = re.findall(r'https?://[^\s<>"\']+', response)
+
+        return list(set(sources))[:8], urls[:5]
+
+    def _generate_multilingual_queries(self, topic: str, location: Dict) -> List[str]:
+        """
+        Generate search queries in multiple languages for the location.
+        """
+        place = location.get('place', '')
+        language = location.get('language', 'English')
+
+        if language.lower() == 'english':
+            return []  # No extra queries needed
+
+        question = f"""Translate this search query to {language}:
+"official data download {topic}"
+
+Also provide a query for "{place} scientific measurements data"
+
+Just give the translated queries, one per line:"""
+
+        response = self.tool_ask(question)
+        queries = [q.strip() for q in response.split('\n') if q.strip() and len(q) > 10]
+
+        if queries:
+            self._log(f"Multi-language queries: {queries[:3]}")
+
+        return queries[:3]
+
+    # =========================================================================
     # EXPLORATION STRATEGIES
     # =========================================================================
 
@@ -234,7 +345,7 @@ Answer concisely:"""
         4. Download: Get actual data files
         """
         self._log(f"\n{'='*60}")
-        self._log(f"HERMES EXPLORER")
+        self._log(f"HERMES EXPLORER v{__version__}")
         self._log(f"Topic: {topic}")
         self._log(f"Domain: {domain}")
         self._log(f"Looking for: {quantities}")
@@ -243,8 +354,28 @@ Answer concisely:"""
         self.steps = []
         self.visited = set()
 
+        # Step 0: Detect geographic context (NEW in v1.5.1)
+        self._log("--- Step 0: Detect Geographic Context ---")
+        location = self._detect_geographic_context(topic)
+
+        regional_sources = []
+        regional_urls = []
+        multilingual_queries = []
+
+        if location:
+            self._log(f"Location detected: {location.get('place', 'unknown')}, {location.get('country', 'unknown')}")
+
+            # Get region-specific sources
+            regional_sources, regional_urls = self._get_regional_data_sources(topic, domain, location)
+            self._log(f"Regional sources: {regional_sources[:5]}")
+
+            # Get multilingual search queries
+            multilingual_queries = self._generate_multilingual_queries(topic, location)
+        else:
+            self._log("No specific geographic context - using global search")
+
         # Step 1: Ask about data sources
-        self._log("--- Step 1: Identify Data Sources ---")
+        self._log("\n--- Step 1: Identify Data Sources ---")
         sources_question = f"What are the main scientific databases for {domain} that would have {', '.join(quantities[:3])}? List database names."
 
         sources_response = self.tool_ask(sources_question)
@@ -253,7 +384,10 @@ Answer concisely:"""
         # Extract database names
         database_names = re.findall(r'\b([A-Z][A-Z0-9\-]{2,}[A-Za-z0-9]*)\b', sources_response)
         database_names = [d for d in database_names if d not in ['CSV', 'JSON', 'API', 'URL', 'HTTP']]
-        self._log(f"Databases identified: {database_names[:5]}")
+
+        # Add regional sources to database list (NEW in v1.5.1)
+        database_names = regional_sources + database_names
+        self._log(f"Databases identified: {database_names[:8]}")
 
         # Step 2: Search for data portals
         self._log("\n--- Step 2: Search for Data Portals ---")
@@ -262,6 +396,16 @@ Answer concisely:"""
             f"{topic} official data download",
             f"{domain} scientific data portal",
         ]
+
+        # Add location-specific queries (NEW in v1.5.1)
+        if location:
+            place = location.get('place', '')
+            country = location.get('country', '')
+            search_queries.insert(0, f"{place} {topic} data CSV download")
+            search_queries.insert(1, f"{country} {domain} official data portal")
+
+        # Add multilingual queries (NEW in v1.5.1)
+        search_queries.extend(multilingual_queries)
 
         # Add database-specific searches
         for db in database_names[:3]:
@@ -274,6 +418,10 @@ Answer concisely:"""
 
             if len(all_results) >= 10:
                 break
+
+        # Add regional URLs directly (NEW in v1.5.1)
+        for url in regional_urls:
+            all_results.insert(0, {"url": url, "title": f"Regional: {url[:40]}"})
 
         # Deduplicate by domain
         seen_domains = set()
@@ -289,10 +437,33 @@ Answer concisely:"""
         # Step 3: Prioritize results
         self._log("\n--- Step 3: Prioritize Portals ---")
 
-        # Prefer .gov, .edu, and known scientific domains
+        # Build location-aware scoring (NEW in v1.5.1)
+        location_terms = []
+        if location:
+            location_terms = [
+                location.get('place', '').lower(),
+                location.get('country', '').lower(),
+            ]
+            # Add country TLD
+            country = location.get('country', '').lower()
+            country_tlds = {
+                'italy': '.it', 'germany': '.de', 'france': '.fr',
+                'spain': '.es', 'switzerland': '.ch', 'austria': '.at',
+                'netherlands': '.nl', 'belgium': '.be', 'uk': '.uk',
+                'japan': '.jp', 'china': '.cn', 'australia': '.au',
+            }
+            if country in country_tlds:
+                location_terms.append(country_tlds[country])
+
+        # Prefer .gov, .edu, regional, and known scientific domains
         def score_result(r):
             url = r['url'].lower()
             score = 0
+
+            # Regional sources get highest priority (NEW in v1.5.1)
+            if any(term in url for term in location_terms if term):
+                score += 20
+
             if '.gov' in url:
                 score += 10
             if '.edu' in url:
@@ -301,6 +472,12 @@ Answer concisely:"""
                 score += 15
             if 'data' in url:
                 score += 5
+
+            # Regional TLDs for scientific data
+            regional_tlds = ['.it', '.de', '.fr', '.ch', '.eu']
+            if any(tld in url for tld in regional_tlds):
+                score += 5
+
             return score
 
         unique_results.sort(key=score_result, reverse=True)

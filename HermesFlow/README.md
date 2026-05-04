@@ -1,10 +1,17 @@
-# HermesFlow v1.5.0
+# HermesFlow v1.5.1
 
-## Autonomous Scientific Discovery System with Iterative Learning
+## Autonomous Scientific Discovery System with Location-Aware Discovery
 
 **Author:** Carl Zimmerman
-**Version:** 1.5.0
+**Version:** 1.5.1 (location-aware)
 **Date:** May 4, 2026
+
+### What's New in v1.5.1
+
+- **Geographic Context Detection**: Automatically detects when a topic has a specific location (e.g., "Venice water levels")
+- **Regional Data Source Discovery**: Asks Legomena for region-specific data sources dynamically
+- **Multi-language Search Queries**: Generates search queries in the local language when appropriate
+- **Location-aware Scoring**: Prioritizes regional data portals (e.g., .it domains for Italian topics)
 
 ---
 

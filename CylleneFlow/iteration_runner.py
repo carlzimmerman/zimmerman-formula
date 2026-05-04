@@ -29,9 +29,14 @@ from typing import Dict, List, Optional, Callable
 # Add parent directory for HermesFlow imports
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from .truth_store import TruthStore
-from .training_generator import TrainingGenerator
-from .model_updater import ModelUpdater
+try:
+    from .truth_store import TruthStore
+    from .training_generator import TrainingGenerator
+    from .model_updater import ModelUpdater
+except ImportError:
+    from truth_store import TruthStore
+    from training_generator import TrainingGenerator
+    from model_updater import ModelUpdater
 
 
 class IterationRunner:
