@@ -19,6 +19,10 @@ Stages:
 
 Author: Carl Zimmerman
 Date: May 4, 2026
+
+Version History:
+- v1.5.0: Added derivation mode to DiscoveryStage
+- v1.6.0: Added MetisFlow integration for research-driven derivation
 """
 
 import os
@@ -134,6 +138,12 @@ class DiscoveryStage(Stage):
     v1.5.0: Added derivation mode
     - When target_constant is set, uses TruthEngine for Z² formula discovery
     - Otherwise, uses HermesFlow for web data discovery
+
+    v1.6.0: Added MetisFlow integration (research-driven derivation)
+    - MetisFlow researches existing derivations in literature
+    - Assesses Z² relevance before attempting derivation
+    - Provides mathematical path guidance to TruthEngine
+    - Skips derivation if no Z² relevance found
     """
 
     def __init__(self, topic: str, domain: str, quantities: List[str],
@@ -178,13 +188,56 @@ class DiscoveryStage(Stage):
 
     def _run_derivation_discovery(self, state: PipelineState, start: float) -> StageResult:
         """
-        Use TruthEngine to discover Z² formula matches for the target constant.
+        Use MetisFlow + TruthEngine for principled Z² derivation.
 
-        This is the derivation path where we:
-        1. Take a known target value (e.g., von Karman = 0.41)
-        2. Find Z² formulas that produce this value
-        3. Create a Discovery with the derivation results
+        v1.6.0: Added MetisFlow integration for research-driven derivation
+        1. MetisFlow researches existing derivations in literature
+        2. Assesses if Z² approach is viable
+        3. Creates derivation strategy
+        4. TruthEngine attempts derivation with strategy guidance
         """
+        print(f"[Discovery] Z² derivation pipeline: {self.target_constant}")
+
+        # =====================================================================
+        # STEP 1: METISFLOW RESEARCH (Wisdom before action)
+        # =====================================================================
+        metis_result = None
+        strategy = None
+
+        try:
+            from MetisFlow import MetisEngine, ZSquaredRelevance
+
+            print(f"[MetisFlow] Researching: {self.target_constant}")
+            metis = MetisEngine(verbose=False)
+            metis_result = metis.research(self.target_constant, self.target_value)
+            strategy = metis_result.strategy
+
+            print(f"[MetisFlow] Research complete:")
+            print(f"  - Derivation exists: {metis_result.derivation_exists}")
+            print(f"  - Z² viable: {metis_result.z_squared_viable}")
+            print(f"  - Approach: {strategy.recommended_approach.value}")
+            print(f"  - Confidence: {strategy.confidence_score:.2f}")
+
+            # Check if Z² approach is viable
+            if strategy.z_squared_relevance == ZSquaredRelevance.NONE:
+                print(f"[MetisFlow] SKIPPING: No Z² relevance for {self.target_constant}")
+                self.emit(EventType.DISCOVERY_FAILED, {
+                    "reason": f"MetisFlow: No Z² relevance for {self.target_constant}",
+                    "recommendation": metis_result.recommendation
+                })
+                return self._failure(
+                    f"No Z² relevance: {metis_result.recommendation}",
+                    time.time() - start
+                )
+
+        except ImportError:
+            print(f"[MetisFlow] Not available, proceeding without research")
+        except Exception as e:
+            print(f"[MetisFlow] Research failed: {e}, proceeding without strategy")
+
+        # =====================================================================
+        # STEP 2: TRUTHENGINE DERIVATION (Guided by MetisFlow strategy)
+        # =====================================================================
         print(f"[Discovery] Using TruthEngine for Z² derivation: {self.target_constant}")
 
         try:
@@ -201,6 +254,23 @@ class DiscoveryStage(Stage):
             if result.get('formulas'):
                 best = result.get('best_formula', 'unknown')
                 best_error = result.get('best_error', 100)
+
+                # Include MetisFlow research in raw_data
+                metis_data = {}
+                if metis_result and strategy:
+                    metis_data = {
+                        'metis_research': {
+                            'derivation_exists': metis_result.derivation_exists,
+                            'z_squared_viable': metis_result.z_squared_viable,
+                            'z_squared_relevance': strategy.z_squared_relevance.value,
+                            'recommended_approach': strategy.recommended_approach.value,
+                            'z_squared_connection': strategy.z_squared_connection,
+                            'confidence_score': strategy.confidence_score,
+                            'physical_meaning': strategy.physical_meaning,
+                            'mathematical_path': strategy.mathematical_path[:200] if strategy.mathematical_path else "",
+                            'recommendation': metis_result.recommendation
+                        }
+                    }
 
                 discovery = Discovery(
                     discovery_id=Discovery.generate_id(self.target_constant, self.domain),
@@ -220,9 +290,10 @@ class DiscoveryStage(Stage):
                         'best_formula': best,
                         'best_error': best_error,
                         'formulas': result.get('formulas', []),
-                        'derivation_status': result.get('status', 'unknown')
+                        'derivation_status': result.get('status', 'unknown'),
+                        **metis_data
                     },
-                    steps_taken=1
+                    steps_taken=2 if metis_result else 1  # Count MetisFlow as a step
                 )
 
                 self.emit(EventType.DISCOVERY_FOUND, {
