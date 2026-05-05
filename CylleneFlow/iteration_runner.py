@@ -38,10 +38,12 @@ try:
     from .truth_store import TruthStore
     from .training_generator import TrainingGenerator
     from .model_updater import ModelUpdater
+    from .deepener import Deepener, BatchDeepener, ResearchQuestion
 except ImportError:
     from truth_store import TruthStore
     from training_generator import TrainingGenerator
     from model_updater import ModelUpdater
+    from deepener import Deepener, BatchDeepener, ResearchQuestion
 
 # MnemosyneLake integration (v1.2.0)
 try:
@@ -105,6 +107,20 @@ class IterationRunner:
 
         # Discovery function (can be customized)
         self.discovery_fn: Optional[Callable] = None
+
+        # Recursive deepening (v1.3.0)
+        self.deepener = Deepener(
+            model=self.base_model,
+            max_depth=3,
+            verbose=True
+        )
+        self.batch_deepener = BatchDeepener(
+            deepener=self.deepener,
+            batch_threshold=3,
+            significance_threshold=0.6
+        )
+        self.enable_deepening = True  # Toggle for recursive research
+        self.deepening_results: List[Dict] = []  # Track what we deepened into
 
     def set_discovery_function(self, fn: Callable):
         """Set custom discovery function for the domain."""
@@ -171,6 +187,23 @@ class IterationRunner:
                     lake_synced += 1
 
         self._log(f"Added {new_truths} new truths ({lake_synced} synced to MnemosyneLake)")
+
+        # =====================================================================
+        # RECURSIVE DEEPENING (v1.3.0)
+        # =====================================================================
+        # When we find something significant, automatically investigate deeper
+        deepened_findings = []
+        if self.enable_deepening and validated:
+            deepened_findings = self._process_for_deepening(validated, iteration)
+            if deepened_findings:
+                self._log(f"Deepening yielded {len(deepened_findings)} additional findings")
+                # Add deepened findings to truth store
+                for df in deepened_findings:
+                    if self.truth_store.add(df):
+                        new_truths += 1
+                        truth_id = self._sync_truth_to_mnemosyne(df)
+                        if truth_id:
+                            lake_synced += 1
 
         # Generate training data
         if new_truths > 0:
@@ -472,6 +505,167 @@ class IterationRunner:
         stats = self.mnemosyne_lake.get_statistics()
         stats["available"] = True
         return stats
+
+    # =========================================================================
+    # RECURSIVE DEEPENING (v1.3.0)
+    # =========================================================================
+
+    def _process_for_deepening(self, findings: List[Dict], iteration: int) -> List[Dict]:
+        """
+        Process validated findings for potential recursive deepening.
+
+        When we find something significant (e.g., CV(dmin) ≈ φ with 0.007% error),
+        this triggers deeper investigation automatically.
+
+        Returns:
+            List of additional findings from deep investigation
+        """
+        all_deeper_findings = []
+
+        for finding in findings:
+            # Check with batch deepener first
+            decision = self.batch_deepener.add_finding(finding)
+
+            if decision is not None:
+                # Highly significant - immediate deepening
+                self._log(f"[Deepener] HIGHLY SIGNIFICANT: {finding.get('quantity')} ≈ {finding.get('target')}")
+                self._log(f"[Deepener] Significance: {decision.significance_score:.2f}")
+                self._log(f"[Deepener] {decision.reasoning}")
+
+                if decision.should_deepen and decision.questions:
+                    deeper = self._execute_deepening(decision, finding, iteration)
+                    all_deeper_findings.extend(deeper)
+                    self.deepening_results.append({
+                        "parent_finding": finding,
+                        "decision": {
+                            "significance": decision.significance_score,
+                            "questions_count": len(decision.questions),
+                            "recommended_depth": decision.recommended_depth
+                        },
+                        "deeper_findings": len(deeper)
+                    })
+
+        # Check if we should process batched findings
+        if self.batch_deepener.should_process_batch():
+            self._log(f"[Deepener] Processing batch of {len(self.batch_deepener.pending_findings)} findings")
+            batch = self.batch_deepener.process_batch()
+
+            for finding, decision in batch:
+                if decision.should_deepen and decision.questions:
+                    deeper = self._execute_deepening(decision, finding, iteration)
+                    all_deeper_findings.extend(deeper)
+
+        return all_deeper_findings
+
+    def _execute_deepening(
+        self,
+        decision,
+        parent_finding: Dict,
+        iteration: int
+    ) -> List[Dict]:
+        """
+        Execute the deepening research for a finding.
+
+        Takes the generated questions and runs research on each.
+        """
+        deeper_findings = []
+
+        for question in decision.questions[:3]:  # Limit to top 3 questions per finding
+            self._log(f"[Deepener] Investigating: {question.question[:60]}...")
+
+            try:
+                # Run discovery with the question as topic
+                refined_topic = f"{question.question} {question.domain} data"
+                sub_findings = self._run_discovery_for_question(
+                    refined_topic,
+                    question.domain,
+                    iteration
+                )
+
+                # Validate sub-findings
+                validated_sub = self._validate_findings(sub_findings)
+
+                if validated_sub:
+                    self._log(f"[Deepener] Found {len(validated_sub)} deeper findings")
+                    deeper_findings.extend(validated_sub)
+
+            except Exception as e:
+                self._log(f"[Deepener] Question research failed: {e}")
+
+        return deeper_findings
+
+    def _run_discovery_for_question(
+        self,
+        question: str,
+        domain: str,
+        iteration: int
+    ) -> List[Dict]:
+        """
+        Run discovery for a specific question generated by the deepener.
+        """
+        try:
+            from HermesFlow.hermes_v2 import HermesV2
+
+            hermes = HermesV2(verbose=False)
+            result = hermes.acquire(topic=question, domain=domain)
+
+            if result.success and result.z2_patterns:
+                return result.z2_patterns
+            else:
+                return []
+
+        except ImportError:
+            # Fallback to HermesExplorer
+            try:
+                from HermesFlow.hermes_explorer import HermesExplorer
+
+                explorer = HermesExplorer(verbose=False)
+                result = explorer.explore_for_data(
+                    topic=question,
+                    domain=domain,
+                    quantities=["value", "measurement", "ratio"]
+                )
+
+                if result.success and result.data is not None:
+                    return self._analyze_for_z2(result.data, iteration)
+                else:
+                    return []
+
+            except ImportError:
+                self._log("[Deepener] No discovery tools available")
+                return []
+
+    def cleanup_models(self, keep_latest: bool = True) -> int:
+        """
+        Cleanup intermediate model iterations to save storage.
+
+        Called automatically after experiments or manually.
+        """
+        return self.model_updater.cleanup_intermediate_models(
+            keep_base=True,
+            keep_latest=keep_latest
+        )
+
+    def consolidate_knowledge(self) -> str:
+        """
+        Consolidate all knowledge into a single model.
+
+        Call this after a successful experiment to create one model
+        with all accumulated truths instead of keeping multiple iterations.
+        """
+        all_truths = self.truth_store.get_all()
+        return self.model_updater.consolidate_to_single_model(all_truths)
+
+    def get_deepening_summary(self) -> Dict:
+        """Get summary of all deepening activities."""
+        return {
+            "deepener_state": self.deepener.get_summary(),
+            "deepening_sessions": len(self.deepening_results),
+            "total_deeper_findings": sum(
+                r.get("deeper_findings", 0) for r in self.deepening_results
+            ),
+            "batch_pending": len(self.batch_deepener.pending_findings)
+        }
 
 
 def run_venice_experiment():

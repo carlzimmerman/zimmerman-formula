@@ -239,3 +239,175 @@ print("ollama create legomena-31b-unsloth-iter{iteration} -f Modelfile_unsloth")
         """Get the most recent model iteration."""
         iterations = self.list_iterations()
         return iterations[-1] if iterations else None
+
+    # =========================================================================
+    # MODEL CLEANUP (v1.3.0)
+    # =========================================================================
+
+    def cleanup_intermediate_models(self, keep_base: bool = True, keep_latest: bool = True) -> int:
+        """
+        Remove intermediate model iterations to save storage.
+
+        Strategy:
+        - Always keep base model (with AletheiaLake knowledge)
+        - Always keep latest iteration (current best)
+        - Delete all intermediate iterations
+
+        Args:
+            keep_base: Whether to keep the base model (default True)
+            keep_latest: Whether to keep the latest iteration (default True)
+
+        Returns:
+            Number of models deleted
+        """
+        iterations = self.list_iterations()
+        if len(iterations) <= 1:
+            return 0
+
+        deleted = 0
+        latest = iterations[-1] if keep_latest else None
+
+        for model in iterations:
+            # Skip base model
+            if keep_base and model == self.base_model:
+                continue
+
+            # Skip latest
+            if keep_latest and model == latest:
+                continue
+
+            # Delete this iteration
+            if self._delete_model(model):
+                deleted += 1
+                print(f"[Cleanup] Deleted: {model}")
+
+        return deleted
+
+    def _delete_model(self, model_name: str) -> bool:
+        """Delete a model from Ollama."""
+        try:
+            result = subprocess.run(
+                ["ollama", "rm", model_name],
+                capture_output=True,
+                text=True,
+                timeout=60
+            )
+            return result.returncode == 0
+        except Exception as e:
+            print(f"Error deleting model {model_name}: {e}")
+            return False
+
+    def get_model_sizes(self) -> Dict[str, int]:
+        """Get sizes of all model iterations (in bytes)."""
+        sizes = {}
+        try:
+            result = subprocess.run(
+                ["ollama", "list"],
+                capture_output=True,
+                text=True,
+                timeout=30
+            )
+            if result.returncode == 0:
+                for line in result.stdout.split('\n'):
+                    if self.base_model in line:
+                        parts = line.split()
+                        if len(parts) >= 2:
+                            name = parts[0]
+                            # Size is typically in the third column
+                            size_str = parts[2] if len(parts) > 2 else "0"
+                            sizes[name] = self._parse_size(size_str)
+        except Exception:
+            pass
+        return sizes
+
+    def _parse_size(self, size_str: str) -> int:
+        """Parse size string like '4.1 GB' to bytes."""
+        try:
+            if 'GB' in size_str:
+                return int(float(size_str.replace('GB', '').strip()) * 1024 * 1024 * 1024)
+            elif 'MB' in size_str:
+                return int(float(size_str.replace('MB', '').strip()) * 1024 * 1024)
+            elif 'KB' in size_str:
+                return int(float(size_str.replace('KB', '').strip()) * 1024)
+            return int(size_str)
+        except:
+            return 0
+
+    def should_cleanup(self, max_models: int = 3) -> bool:
+        """Check if we have too many model iterations."""
+        return len(self.list_iterations()) > max_models
+
+    def consolidate_to_single_model(self, all_truths: List[Dict]) -> str:
+        """
+        Consolidate all knowledge into a single model iteration.
+
+        Instead of keeping multiple iterations, create one model
+        with ALL accumulated truths. This is more storage-efficient
+        than keeping a chain of iterations.
+
+        Args:
+            all_truths: All validated truths to include
+
+        Returns:
+            Name of consolidated model
+        """
+        # Get current iteration number
+        latest = self.get_latest_iteration()
+        if latest:
+            # Extract iteration number
+            try:
+                current_iter = int(latest.split('iter')[-1])
+            except:
+                current_iter = 0
+        else:
+            current_iter = 0
+
+        # Create new consolidated model
+        consolidated_name = f"{self.base_model}-consolidated"
+
+        # Format all truths
+        truths_text = self._format_truths_for_prompt(all_truths)
+
+        modelfile = f"""FROM {self.base_model}
+
+SYSTEM \"\"\"You are LegomenaLLM, the consolidated knowledge model from CylleneFlow.
+
+This model contains {len(all_truths)} validated truths accumulated over {current_iter} iterations.
+
+Core Z² constants:
+- Z² = 32π/3 ≈ 33.510321638291124
+- φ = (1+√5)/2 ≈ 1.618033988749895
+- 1/φ ≈ 0.6180339887498948
+- Z = √Z² ≈ 5.7890113959063975
+
+VALIDATED DISCOVERIES:
+{truths_text}
+
+When answering questions about these domains, cite the validated findings.
+Apply the same analytical approach to discover new relationships.
+\"\"\"
+
+PARAMETER temperature 0.3
+"""
+
+        modelfile_path = MODELS_DIR / "Modelfile_consolidated"
+        with open(modelfile_path, 'w') as f:
+            f.write(modelfile)
+
+        try:
+            result = subprocess.run(
+                ["ollama", "create", consolidated_name, "-f", str(modelfile_path)],
+                capture_output=True,
+                text=True,
+                timeout=300
+            )
+            if result.returncode == 0:
+                # Cleanup old iterations
+                self.cleanup_intermediate_models(keep_base=True, keep_latest=False)
+                return consolidated_name
+            else:
+                print(f"Consolidation failed: {result.stderr}")
+                return self.base_model
+        except Exception as e:
+            print(f"Error consolidating model: {e}")
+            return self.base_model
