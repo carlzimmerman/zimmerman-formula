@@ -158,6 +158,17 @@ class FormulaGenerator:
     def __init__(self):
         self.z2 = Z2
         self.z = Z
+        self.phi = (1 + np.sqrt(5)) / 2  # Golden ratio
+        self.sqrt2 = np.sqrt(2)
+        self.sqrt3 = np.sqrt(3)
+
+    def _check_and_add(self, candidates: list, human: str, python: str,
+                       val: float, target: float, tolerance: float):
+        """Helper to check and add a candidate if within tolerance."""
+        if target == 0:
+            return
+        if abs(val - target) / abs(target) < tolerance:
+            candidates.append((human, python, val))
 
     def generate_candidates(self, target: float, tolerance: float = 0.1) -> List[Tuple[str, str, float]]:
         """
@@ -167,70 +178,197 @@ class FormulaGenerator:
         """
         candidates = []
 
-        # Powers of Z
-        for n in range(-6, 7):
+        # Handle zero target
+        if target == 0:
+            return []
+
+        # =================================================================
+        # SIMPLE FRACTIONS (for values like 0.41)
+        # =================================================================
+        for a in range(1, 20):
+            for b in range(1, 50):
+                if a != b:
+                    val = a / b
+                    self._check_and_add(candidates, f"{a}/{b}", f"{a}/{b}", val, target, tolerance)
+
+        # =================================================================
+        # INVERSE Z FORMS (for small values)
+        # =================================================================
+        for n in range(1, 8):
+            val = 1 / (self.z ** n)
+            self._check_and_add(candidates, f"1/Z^{n}", f"1/Z**{n}", val, target, tolerance)
+
+            val = 1 / (self.z2 ** n)
+            self._check_and_add(candidates, f"1/Z²^{n}", f"1/Z2**{n}", val, target, tolerance)
+
+            # With coefficients
+            for coef in [2, 3, 4, 8, 12, 16, np.pi]:
+                coef_str = "π" if coef == np.pi else str(int(coef))
+                val = coef / (self.z ** n)
+                self._check_and_add(candidates, f"{coef_str}/Z^{n}", f"{coef}/Z**{n}", val, target, tolerance)
+
+                val = 1 / (coef * self.z ** n)
+                self._check_and_add(candidates, f"1/{coef_str}Z^{n}", f"1/({coef}*Z**{n})", val, target, tolerance)
+
+        # =================================================================
+        # π/Z² FORMS (universal geometric coupling)
+        # =================================================================
+        for n in range(1, 6):
+            val = np.pi / (self.z2 ** n)
+            self._check_and_add(candidates, f"π/Z²^{n}", f"np.pi/Z2**{n}", val, target, tolerance)
+
+            for m in range(1, 8):
+                val = m * np.pi / (self.z2 ** n)
+                self._check_and_add(candidates, f"{m}π/Z²^{n}", f"{m}*np.pi/Z2**{n}", val, target, tolerance)
+
+                val = np.pi / (m * self.z2 ** n)
+                self._check_and_add(candidates, f"π/{m}Z²^{n}", f"np.pi/({m}*Z2**{n})", val, target, tolerance)
+
+        # =================================================================
+        # POWERS OF Z (both positive and negative)
+        # =================================================================
+        for n in range(-8, 9):
             if n == 0:
                 continue
             val = self.z ** n
-            if abs(val - target) / target < tolerance:
-                candidates.append((f"Z^{n}", f"Z**{n}", val))
+            self._check_and_add(candidates, f"Z^{n}", f"Z**{n}", val, target, tolerance)
 
             # With coefficients
-            for coef in [2, 3, 4, 8, 16, 64]:
+            for coef in [2, 3, 4, 5, 6, 8, 12, 16, 32, 64]:
                 val2 = coef * self.z ** n
-                if abs(val2 - target) / target < tolerance:
-                    candidates.append((f"{coef}Z^{n}", f"{coef}*Z**{n}", val2))
+                self._check_and_add(candidates, f"{coef}Z^{n}", f"{coef}*Z**{n}", val2, target, tolerance)
 
                 val3 = self.z ** n / coef
-                if abs(val3 - target) / target < tolerance:
-                    candidates.append((f"Z^{n}/{coef}", f"Z**{n}/{coef}", val3))
+                self._check_and_add(candidates, f"Z^{n}/{coef}", f"Z**{n}/{coef}", val3, target, tolerance)
 
-        # Z² based
-        for n in range(-3, 4):
+        # =================================================================
+        # POWERS OF Z² (compact forms)
+        # =================================================================
+        for n in range(-4, 5):
             if n == 0:
                 continue
             val = self.z2 ** n
-            if abs(val - target) / target < tolerance:
-                candidates.append((f"Z²^{n}", f"Z2**{n}", val))
+            self._check_and_add(candidates, f"Z²^{n}", f"Z2**{n}", val, target, tolerance)
 
-            for coef in [2, 3, 4, 8, 16]:
+            for coef in [2, 3, 4, 8, 16, 32]:
                 val2 = coef * self.z2 ** n
-                if abs(val2 - target) / target < tolerance:
-                    candidates.append((f"{coef}×Z²^{n}", f"{coef}*Z2**{n}", val2))
+                self._check_and_add(candidates, f"{coef}×Z²^{n}", f"{coef}*Z2**{n}", val2, target, tolerance)
 
-        # Linear combinations
-        linear_forms = [
-            (f"Z² + {n}", f"Z2 + {n}", self.z2 + n) for n in range(-20, 30, 1)
-        ] + [
-            (f"Z² - {n}", f"Z2 - {n}", self.z2 - n) for n in range(1, 30)
-        ] + [
-            (f"{n}Z + {m}", f"{n}*Z + {m}", n*self.z + m)
-            for n in range(1, 10) for m in range(-10, 20)
-        ] + [
-            (f"Z² + {n}π", f"Z2 + {n}*np.pi", self.z2 + n*np.pi) for n in range(1, 5)
-        ] + [
-            (f"{n}π + Z", f"{n}*np.pi + Z", n*np.pi + self.z) for n in [16, 32, 64, 128]
+                val3 = self.z2 ** n / coef
+                self._check_and_add(candidates, f"Z²^{n}/{coef}", f"Z2**{n}/{coef}", val3, target, tolerance)
+
+        # =================================================================
+        # LINEAR COMBINATIONS
+        # =================================================================
+        for n in range(-30, 50):
+            val = self.z2 + n
+            self._check_and_add(candidates, f"Z² + {n}", f"Z2 + {n}", val, target, tolerance)
+
+        for n in range(1, 15):
+            for m in range(-20, 30):
+                val = n * self.z + m
+                self._check_and_add(candidates, f"{n}Z + {m}", f"{n}*Z + {m}", val, target, tolerance)
+
+        for n in range(1, 10):
+            val = self.z2 + n * np.pi
+            self._check_and_add(candidates, f"Z² + {n}π", f"Z2 + {n}*np.pi", val, target, tolerance)
+
+            val = self.z2 - n * np.pi
+            self._check_and_add(candidates, f"Z² - {n}π", f"Z2 - {n}*np.pi", val, target, tolerance)
+
+        for n in [8, 16, 32, 64, 128]:
+            val = n * np.pi + self.z
+            self._check_and_add(candidates, f"{n}π + Z", f"{n}*np.pi + Z", val, target, tolerance)
+
+        # =================================================================
+        # SQRT FORMS (cube geometry, lattice)
+        # =================================================================
+        sqrt_forms = [
+            ("√Z²", "np.sqrt(Z2)", np.sqrt(self.z2)),
+            ("Z×√3", "Z * np.sqrt(3)", self.z * self.sqrt3),
+            ("Z/√3", "Z / np.sqrt(3)", self.z / self.sqrt3),
+            ("Z²×√3", "Z2 * np.sqrt(3)", self.z2 * self.sqrt3),
+            ("Z²/√3", "Z2 / np.sqrt(3)", self.z2 / self.sqrt3),
+            ("√(Z²/3)", "np.sqrt(Z2/3)", np.sqrt(self.z2 / 3)),
+            ("√(3/Z²)", "np.sqrt(3/Z2)", np.sqrt(3 / self.z2)),
+            ("Z×√2", "Z * np.sqrt(2)", self.z * self.sqrt2),
+            ("Z/√2", "Z / np.sqrt(2)", self.z / self.sqrt2),
         ]
 
-        for human, python, val in linear_forms:
-            if abs(val - target) / target < tolerance:
-                candidates.append((human, python, val))
+        for n in range(2, 6):
+            sqrt_forms.append((f"Z^{n}×√3", f"Z**{n} * np.sqrt(3)", self.z**n * self.sqrt3))
+            sqrt_forms.append((f"√3/Z^{n}", f"np.sqrt(3)/Z**{n}", self.sqrt3 / self.z**n))
 
-        # With sqrt(3) (cube geometry)
-        sqrt3_forms = [
-            (f"Z⁴×√3", f"Z**4 * np.sqrt(3)", self.z**4 * np.sqrt(3)),
-            (f"Z³×√3", f"Z**3 * np.sqrt(3)", self.z**3 * np.sqrt(3)),
-            (f"Z²×√3", f"Z2 * np.sqrt(3)", self.z2 * np.sqrt(3)),
+        for human, python, val in sqrt_forms:
+            self._check_and_add(candidates, human, python, val, target, tolerance)
+
+        # =================================================================
+        # GOLDEN RATIO COMBINATIONS
+        # =================================================================
+        phi_forms = [
+            ("φ/Z", "((1+np.sqrt(5))/2)/Z", self.phi / self.z),
+            ("Z/φ", "Z/((1+np.sqrt(5))/2)", self.z / self.phi),
+            ("φ/Z²", "((1+np.sqrt(5))/2)/Z2", self.phi / self.z2),
+            ("Z²/φ", "Z2/((1+np.sqrt(5))/2)", self.z2 / self.phi),
+            ("1/φZ", "1/(((1+np.sqrt(5))/2)*Z)", 1 / (self.phi * self.z)),
         ]
 
-        for human, python, val in sqrt3_forms:
-            if abs(val - target) / target < tolerance:
-                candidates.append((human, python, val))
+        for human, python, val in phi_forms:
+            self._check_and_add(candidates, human, python, val, target, tolerance)
 
-        # Sort by error
-        candidates.sort(key=lambda x: abs(x[2] - target) / target)
+        # =================================================================
+        # PHYSICS-MOTIVATED FORMS
+        # =================================================================
+        # Dimensional analysis forms (often appear in critical phenomena)
+        physics_forms = []
 
-        return candidates[:10]  # Return top 10
+        # 1/Z^n forms with pi (surface/volume ratios)
+        for n in range(1, 5):
+            physics_forms.append((f"2π/Z^{n}", f"2*np.pi/Z**{n}", 2*np.pi / self.z**n))
+            physics_forms.append((f"4π/Z^{n}", f"4*np.pi/Z**{n}", 4*np.pi / self.z**n))
+            physics_forms.append((f"π²/Z^{n}", f"np.pi**2/Z**{n}", np.pi**2 / self.z**n))
+
+        # Bekenstein (4) and cube (8) geometric constants
+        for n in range(1, 5):
+            physics_forms.append((f"4/Z^{n}", f"4/Z**{n}", 4 / self.z**n))
+            physics_forms.append((f"8/Z^{n}", f"8/Z**{n}", 8 / self.z**n))
+            physics_forms.append((f"12/Z^{n}", f"12/Z**{n}", 12 / self.z**n))  # edges of cube
+
+        # Logarithmic forms (important for scaling laws)
+        physics_forms.append(("1/ln(Z²)", "1/np.log(Z2)", 1 / np.log(self.z2)))
+        physics_forms.append(("ln(Z)/Z", "np.log(Z)/Z", np.log(self.z) / self.z))
+        physics_forms.append(("1/(Z×ln(Z))", "1/(Z*np.log(Z))", 1 / (self.z * np.log(self.z))))
+
+        for human, python, val in physics_forms:
+            self._check_and_add(candidates, human, python, val, target, tolerance)
+
+        # =================================================================
+        # LATTICE AND SPHERE PACKING FORMS
+        # =================================================================
+        lattice_forms = [
+            ("π/6Z", "np.pi/(6*Z)", np.pi / (6 * self.z)),  # sphere packing
+            ("π/12Z", "np.pi/(12*Z)", np.pi / (12 * self.z)),  # face-centered
+            ("π²/Z³", "np.pi**2/Z**3", np.pi**2 / self.z**3),
+            ("3/8Z", "3/(8*Z)", 3 / (8 * self.z)),  # BCC packing factor
+        ]
+
+        for human, python, val in lattice_forms:
+            self._check_and_add(candidates, human, python, val, target, tolerance)
+
+        # =================================================================
+        # REMOVE DUPLICATES AND SORT BY ERROR
+        # =================================================================
+        seen = set()
+        unique_candidates = []
+        for human, python, val in candidates:
+            key = f"{val:.12f}"
+            if key not in seen:
+                seen.add(key)
+                unique_candidates.append((human, python, val))
+
+        unique_candidates.sort(key=lambda x: abs(x[2] - target) / abs(target))
+
+        return unique_candidates[:15]  # Return top 15
 
 # ============================================================================
 # TRUTH ENGINE CORE
@@ -495,6 +633,104 @@ print(f"Status:      {prediction.status}")
             print("\n[FAILED PREDICTIONS] (Honest about failures)")
             for p in self.failed:
                 print(f"  {p.name}: {p.formula_str} (σ={p.sigma:.2f}, err={p.percent_error:.4f}%)")
+
+    def derive_constant(self, target: str, target_value: float, assignment: str) -> Dict:
+        """
+        Attempt to derive a Z² formula for a constant.
+
+        This is the entry point for AlpheusFlow derivation tasks.
+
+        Args:
+            target: Name of the constant (e.g., "von Karman Constant")
+            target_value: Expected value (e.g., 0.41)
+            assignment: Full derivation prompt/description
+
+        Returns:
+            Dictionary with derivation results
+        """
+        print(f"\n{'='*70}")
+        print(f"TruthEngine: Deriving {target}")
+        print(f"{'='*70}")
+        print(f"Target value: {target_value}")
+        print(f"Assignment: {assignment[:100]}...")
+        print()
+
+        result = {
+            'target': target,
+            'target_value': target_value,
+            'assignment': assignment,
+            'z2_value': Z2,
+            'z_value': Z,
+            'timestamp': datetime.now().isoformat()
+        }
+
+        # Generate candidate Z² formulas
+        candidates = self.generator.generate_candidates(target_value, tolerance=0.1)
+
+        if not candidates:
+            print(f"  No Z² formula candidates found for {target} = {target_value}")
+            result['status'] = 'no_candidates'
+            result['formulas'] = []
+            return result
+
+        print(f"  Found {len(candidates)} candidate formulas:")
+
+        validated_formulas = []
+        for formula_human, formula_python, predicted in candidates:
+            error = abs(predicted - target_value)
+            percent_error = (error / abs(target_value)) * 100 if target_value != 0 else error
+
+            formula_result = {
+                'formula': formula_human,
+                'formula_python': formula_python,
+                'predicted': predicted,
+                'target': target_value,
+                'error': error,
+                'percent_error': percent_error
+            }
+
+            # Determine status based on error
+            if percent_error < 0.1:
+                formula_result['status'] = 'EXCELLENT'
+                print(f"    ★ {formula_human} = {predicted:.10f} (error: {percent_error:.4f}%)")
+            elif percent_error < 1.0:
+                formula_result['status'] = 'GOOD'
+                print(f"    ✓ {formula_human} = {predicted:.10f} (error: {percent_error:.4f}%)")
+            elif percent_error < 5.0:
+                formula_result['status'] = 'FAIR'
+                print(f"    ~ {formula_human} = {predicted:.10f} (error: {percent_error:.4f}%)")
+            else:
+                formula_result['status'] = 'POOR'
+                print(f"    - {formula_human} = {predicted:.10f} (error: {percent_error:.4f}%)")
+
+            validated_formulas.append(formula_result)
+
+        result['formulas'] = validated_formulas
+
+        # Find best formula
+        best = min(validated_formulas, key=lambda x: x['percent_error'])
+        result['best_formula'] = best['formula']
+        result['best_predicted'] = best['predicted']
+        result['best_error'] = best['percent_error']
+
+        if best['percent_error'] < 1.0:
+            result['status'] = 'SUCCESS'
+            result['derivation_status'] = 'Z² formula found'
+        elif best['percent_error'] < 5.0:
+            result['status'] = 'PARTIAL'
+            result['derivation_status'] = 'Approximate Z² formula found'
+        else:
+            result['status'] = 'FAILED'
+            result['derivation_status'] = 'No good Z² formula found'
+
+        print()
+        print(f"  Best formula: {best['formula']} = {best['predicted']:.10f}")
+        print(f"  Target value: {target_value}")
+        print(f"  Error: {best['percent_error']:.4f}%")
+        print(f"  Status: {result['status']}")
+
+        return result
+
 
 # ============================================================================
 # MAIN

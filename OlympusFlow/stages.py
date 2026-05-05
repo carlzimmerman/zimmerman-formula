@@ -129,26 +129,124 @@ class Stage(ABC, EventEmitter):
 
 class DiscoveryStage(Stage):
     """
-    Discover data from web sources.
-    Wraps HermesFlow for data acquisition.
+    Discover data from web sources OR derive Z² formulas.
+
+    v1.5.0: Added derivation mode
+    - When target_constant is set, uses TruthEngine for Z² formula discovery
+    - Otherwise, uses HermesFlow for web data discovery
     """
 
     def __init__(self, topic: str, domain: str, quantities: List[str],
-                 model: str = None, **kwargs):
+                 model: str = None,
+                 target_constant: str = "", target_value: float = 0.0,
+                 **kwargs):
         super().__init__("DiscoveryStage", kwargs)
         self.topic = topic
         self.domain = domain
         self.quantities = quantities
         self.model = model or os.environ.get("LEGOMENA_MODEL", "legomena-moe")
 
+        # Z² Derivation mode (v1.5.0)
+        self.target_constant = target_constant
+        self.target_value = target_value
+        self.is_derivation = bool(target_constant and target_value)
+
     def run(self, input_data: Any, state: PipelineState) -> StageResult:
-        """Run data discovery using HeliconLake + HermesFlow."""
+        """
+        Run discovery:
+        - Derivation mode: Use TruthEngine to find Z² formula matches
+        - Data mode: Use HermesFlow for web data discovery
+        """
         start = time.time()
 
         self.emit(EventType.DISCOVERY_STARTED, {
             "topic": self.topic,
-            "domain": self.domain
+            "domain": self.domain,
+            "mode": "derivation" if self.is_derivation else "data"
         })
+
+        # =====================================================================
+        # DERIVATION MODE: Use TruthEngine for Z² formula matching
+        # =====================================================================
+        if self.is_derivation:
+            return self._run_derivation_discovery(state, start)
+
+        # =====================================================================
+        # DATA MODE: Use HermesFlow for web data discovery
+        # =====================================================================
+        return self._run_data_discovery(state, start)
+
+    def _run_derivation_discovery(self, state: PipelineState, start: float) -> StageResult:
+        """
+        Use TruthEngine to discover Z² formula matches for the target constant.
+
+        This is the derivation path where we:
+        1. Take a known target value (e.g., von Karman = 0.41)
+        2. Find Z² formulas that produce this value
+        3. Create a Discovery with the derivation results
+        """
+        print(f"[Discovery] Using TruthEngine for Z² derivation: {self.target_constant}")
+
+        try:
+            from TruthFlow import TruthEngine
+
+            engine = TruthEngine()
+            result = engine.derive_constant(
+                target=self.target_constant,
+                target_value=self.target_value,
+                assignment=self.topic
+            )
+
+            # Create Discovery contract with derivation results
+            if result.get('formulas'):
+                best = result.get('best_formula', 'unknown')
+                best_error = result.get('best_error', 100)
+
+                discovery = Discovery(
+                    discovery_id=Discovery.generate_id(self.target_constant, self.domain),
+                    topic=self.topic,
+                    domain=self.domain,
+                    quantities=[self.target_constant],
+                    success=True,
+                    source=DataSource(
+                        url="",
+                        title=f"Z² Derivation: {self.target_constant}",
+                        domain=self.domain,
+                        format=DataFormat.JSON.value
+                    ),
+                    raw_data={
+                        'target_constant': self.target_constant,
+                        'target_value': self.target_value,
+                        'best_formula': best,
+                        'best_error': best_error,
+                        'formulas': result.get('formulas', []),
+                        'derivation_status': result.get('status', 'unknown')
+                    },
+                    steps_taken=1
+                )
+
+                self.emit(EventType.DISCOVERY_FOUND, {
+                    "type": "derivation",
+                    "target": self.target_constant,
+                    "best_formula": best,
+                    "error": best_error
+                })
+
+                state.discoveries.append(discovery)
+                return self._success(discovery, time.time() - start)
+            else:
+                self.emit(EventType.DISCOVERY_FAILED, {
+                    "reason": "No Z² formula candidates found"
+                })
+                return self._failure("No Z² formula candidates found", time.time() - start)
+
+        except ImportError as e:
+            return self._failure(f"TruthEngine not available: {e}", time.time() - start)
+        except Exception as e:
+            return self._failure(str(e), time.time() - start)
+
+    def _run_data_discovery(self, state: PipelineState, start: float) -> StageResult:
+        """Use HermesFlow for web data discovery (original behavior)."""
 
         # STEP 1: Query HeliconLake for cached sources
         helicon_sources = []

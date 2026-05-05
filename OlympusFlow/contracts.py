@@ -299,6 +299,12 @@ class PipelineConfig(Contract):
     verbose: bool = True
     persist_state: bool = True
 
+    # Z² Derivation support (v1.5.0)
+    # When target_constant is set, use TruthEngine for derivation instead of data discovery
+    target_constant: str = ""            # Name of constant to derive (e.g., "von Karman Constant")
+    target_value: float = 0.0            # Known value to match (e.g., 0.41)
+    is_derivation: bool = False          # Explicitly flag as derivation task
+
 
 @dataclass
 class StageResult(Contract):

@@ -48,12 +48,7 @@ except ImportError:
     OLYMPUS_AVAILABLE = False
     print("Warning: OlympusFlow not available")
 
-# Import TruthFlow for derivation tasks
-try:
-    from TruthFlow import TruthEngine
-    TRUTHFLOW_AVAILABLE = True
-except ImportError:
-    TRUTHFLOW_AVAILABLE = False
+# TruthFlow is now used by OlympusFlow's DiscoveryStage for derivation tasks
 
 
 @dataclass
@@ -162,11 +157,10 @@ class AlpheusOrchestrator:
         task_output_dir.mkdir(parents=True, exist_ok=True)
 
         try:
-            # Determine which engine to use based on task type
-            if task.category in ["derivation", "z2_proof"]:
-                result = self._run_derivation_task(task, task_output_dir)
-            else:
-                result = self._run_research_task(task, task_output_dir)
+            # ALL tasks go through OlympusFlow research pipeline
+            # AlpheusFlow is purely the queue manager
+            # OlympusFlow stages handle all processing (discovery, analysis, verification, storage)
+            result = self._run_research_task(task, task_output_dir)
 
             # Record result
             self.queue.complete_task(
@@ -187,95 +181,55 @@ class AlpheusOrchestrator:
         finally:
             self.current_task = None
 
-    def _run_derivation_task(self, task: ResearchTask,
-                              output_dir: Path) -> Dict:
-        """Run a Z² constant derivation task."""
-        self._log(f"Running derivation: {task.target_constant}")
-
-        result = {
-            'task_id': task.id,
-            'target': task.target_constant,
-            'target_value': task.target_value,
-            'assignment': task.description,
-            'status': 'attempted'
-        }
-
-        # Use TruthFlow if available
-        if TRUTHFLOW_AVAILABLE:
-            try:
-                engine = TruthEngine()
-                proof_result = engine.derive_constant(
-                    target=task.target_constant,
-                    target_value=task.target_value,
-                    assignment=task.description
-                )
-                result.update(proof_result)
-                result['status'] = 'completed'
-            except Exception as e:
-                result['error'] = str(e)
-                result['status'] = 'failed'
-        else:
-            # Fallback: Use OlympusFlow for data discovery + analysis
-            if OLYMPUS_AVAILABLE:
-                config = PipelineConfig(
-                    name=task.name,
-                    topic=task.description,
-                    domain=task.domain or "physics",
-                    quantities=task.quantities or [task.target_constant],
-                    max_iterations=2,
-                    verbose=True
-                )
-
-                pipeline = Pipeline(task.name, config, output_dir=output_dir)
-                pipeline.add_stage(DiscoveryStage(
-                    topic=task.description,
-                    domain=task.domain or "physics",
-                    quantities=task.quantities or []
-                ))
-                pipeline.add_stage(AnalysisStage())
-                pipeline.add_stage(VerificationStage())
-                pipeline.add_stage(StorageStage())
-
-                pipeline_result = pipeline.run(max_iterations=2)
-                result['pipeline_result'] = pipeline_result
-                result['status'] = 'completed'
-            else:
-                result['status'] = 'skipped'
-                result['error'] = 'No engine available'
-
-        # Save result to file
-        result_file = output_dir / "result.json"
-        result_file.write_text(json.dumps(result, indent=2, default=str))
-
-        return result
-
     def _run_research_task(self, task: ResearchTask,
                            output_dir: Path) -> Dict:
-        """Run a general research task through OlympusFlow."""
-        self._log(f"Running research: {task.name}")
+        """
+        Run a task through OlympusFlow.
+
+        Handles both:
+        - Data discovery tasks (search web for data)
+        - Derivation tasks (find Z² formula matches when target_constant is set)
+        """
+        is_derivation = bool(task.target_constant and task.target_value)
+        task_type = "derivation" if is_derivation else "research"
+        self._log(f"Running {task_type}: {task.name}")
 
         result = {
             'task_id': task.id,
             'topic': task.description,
             'domain': task.domain,
+            'task_type': task_type,
             'status': 'attempted'
         }
+
+        if is_derivation:
+            result['target_constant'] = task.target_constant
+            result['target_value'] = task.target_value
 
         if OLYMPUS_AVAILABLE:
             config = PipelineConfig(
                 name=task.name,
                 topic=task.description,
                 domain=task.domain or "unknown",
-                quantities=task.quantities or [],
-                max_iterations=3,
-                verbose=True
+                quantities=task.quantities or [task.target_constant] if task.target_constant else [],
+                max_iterations=3 if not is_derivation else 1,  # Derivations only need 1 iteration
+                verbose=True,
+                # Z² derivation parameters (v1.5.0)
+                target_constant=task.target_constant,
+                target_value=task.target_value,
+                is_derivation=is_derivation
             )
 
             pipeline = Pipeline(task.name, config, output_dir=output_dir)
+
+            # DiscoveryStage now handles both data discovery AND derivation
             pipeline.add_stage(DiscoveryStage(
                 topic=task.description,
                 domain=task.domain or "unknown",
-                quantities=task.quantities or []
+                quantities=task.quantities or [],
+                # Pass derivation parameters to stage
+                target_constant=task.target_constant,
+                target_value=task.target_value
             ))
             pipeline.add_stage(AnalysisStage())
             pipeline.add_stage(VerificationStage())
