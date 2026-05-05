@@ -3,14 +3,22 @@
 OLYMPUSFLOW - Pipeline Orchestrator
 ====================================
 
-The unified orchestrator that ties all components together.
+The unified orchestrator using the Two-Lake Architecture:
 
-Features:
-- Declarative pipeline definition
-- Automatic state management
-- Event emission for monitoring
-- Iteration support for learning loops
-- Persistence for resumability
+    AletheiaLake (Permanent) ← Ground truths, never changes
+           ↑
+    Validate against
+           |
+    MnemosyneLake (Session) ← Temporary working memory
+           |
+    graduate_to_training() → Training data for Legomena
+
+Flow:
+    1. Create session-scoped MnemosyneLake
+    2. Run HermesFlow discovery → Add to MnemosyneLake
+    3. Validate against AletheiaLake ground truths
+    4. Graduate validated truths to training data
+    5. Clear session when done
 
 Usage:
     pipeline = Pipeline(
@@ -22,12 +30,8 @@ Usage:
         )
     )
 
-    pipeline.add_stage(DiscoveryStage(...))
-    pipeline.add_stage(AnalysisStage(...))
-    pipeline.add_stage(VerificationStage(...))
-    pipeline.add_stage(StorageStage(...))
-
     results = pipeline.run(max_iterations=10)
+    # Automatically graduates validated truths and clears session
 
 Author: Carl Zimmerman
 Date: May 4, 2026
@@ -57,6 +61,19 @@ from .stages import (
     VerificationStage, StorageStage, TrainingStage
 )
 
+# Two-Lake Architecture imports
+try:
+    from AletheiaLake import AletheiaLake
+    ALETHEIA_AVAILABLE = True
+except ImportError:
+    ALETHEIA_AVAILABLE = False
+
+try:
+    from MnemosyneLake import MnemosyneLake
+    MNEMOSYNE_AVAILABLE = True
+except ImportError:
+    MNEMOSYNE_AVAILABLE = False
+
 
 # =============================================================================
 # PIPELINE
@@ -66,18 +83,22 @@ class Pipeline(EventEmitter):
     """
     Main pipeline orchestrator for Z² research.
 
+    Two-Lake Architecture:
+    - AletheiaLake: Permanent ground truths (loaded once)
+    - MnemosyneLake: Session working memory (clears after run)
+
     Coordinates:
     - HermesFlow (discovery)
     - Analysis (pattern finding)
-    - TruthFlow (verification)
-    - MnemosyneLake (storage)
-    - Legomena (training)
+    - TruthFlow/AletheiaLake (verification against ground truths)
+    - MnemosyneLake (session storage)
+    - Training export (graduates validated truths)
     """
 
     def __init__(self, name: str, config: PipelineConfig,
                  output_dir: Optional[Path] = None):
         """
-        Initialize pipeline.
+        Initialize pipeline with Two-Lake Architecture.
 
         Args:
             name: Pipeline name
@@ -108,6 +129,32 @@ class Pipeline(EventEmitter):
             pipeline_id=PipelineState.generate_id(name),
             config=config.to_dict()
         )
+
+        # =====================================================================
+        # TWO-LAKE ARCHITECTURE
+        # =====================================================================
+
+        # AletheiaLake: Permanent ground truths (load once)
+        self.aletheia_lake = None
+        if ALETHEIA_AVAILABLE:
+            self.aletheia_lake = AletheiaLake()
+            self.emit(EventType.STAGE_STARTED, {
+                "stage": "AletheiaLake",
+                "truths_loaded": len(self.aletheia_lake.get_all_truths())
+            })
+
+        # MnemosyneLake: Session-scoped working memory
+        self.session_id = f"{name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+        self.mnemosyne_lake = None
+        if MNEMOSYNE_AVAILABLE:
+            self.mnemosyne_lake = MnemosyneLake(session_id=self.session_id)
+            self.emit(EventType.STAGE_STARTED, {
+                "stage": "MnemosyneLake",
+                "session_id": self.session_id
+            })
+
+        # Training output path
+        self.training_output = self.output_dir / "training_graduated.jsonl"
 
         # Stages
         self.stages: List[Stage] = []
@@ -203,7 +250,39 @@ class Pipeline(EventEmitter):
         total_time = time.time() - start_time
         self.state.current_phase = ResearchPhase.COMPLETE.value
 
+        # =====================================================================
+        # TWO-LAKE FINALIZATION
+        # =====================================================================
+
+        # Graduate validated truths to training data
+        graduated_count = 0
+        if self.mnemosyne_lake:
+            training_data = self.mnemosyne_lake.graduate_to_training(
+                output_path=str(self.training_output),
+                min_hrm=self.config.min_hrm_threshold
+            )
+            graduated_count = len(training_data)
+
+            self.emit(EventType.TRAINING_COMPLETED, {
+                "graduated_truths": graduated_count,
+                "output_file": str(self.training_output)
+            })
+
+            # Get session summary before clearing
+            session_summary = self.mnemosyne_lake.get_session_summary()
+
+            # Clear session memory
+            self.mnemosyne_lake.clear_session()
+
+            self.emit(EventType.STAGE_COMPLETED, {
+                "stage": "MnemosyneLake",
+                "session_cleared": True,
+                "session_summary": session_summary
+            })
+
         summary = self._generate_summary(results, total_time)
+        summary["graduated_to_training"] = graduated_count
+        summary["session_id"] = self.session_id
 
         self.emit(EventType.PIPELINE_COMPLETED, summary)
 
@@ -225,6 +304,10 @@ class Pipeline(EventEmitter):
                 "iteration": iteration
             })
 
+            # Pass lakes to verification stage
+            if stage.name == "VerificationStage":
+                stage.aletheia_lake = self.aletheia_lake
+
             # Run stage
             result = stage.run(current_input, self.state)
             stage_results.append(result)
@@ -236,13 +319,37 @@ class Pipeline(EventEmitter):
 
             current_input = result.output
 
-            # Track new truths
+            # Track new truths and add to MnemosyneLake
             if stage.name == "VerificationStage" and result.output:
                 new_truths = len([t for t in result.output
                                  if t.status == "validated"])
 
-                # Call truth callbacks
+                # Add validated truths to session memory (MnemosyneLake)
                 for truth in result.output:
+                    if self.mnemosyne_lake and truth.status == "validated":
+                        # Convert OlympusFlow truth to MnemosyneLake format
+                        # FULL CONVERSION - preserve all fields
+                        from MnemosyneLake import VerifiedTruth as MnemoTruth
+                        mnemosyne_truth = MnemoTruth(
+                            truth_id=truth.truth_id,
+                            domain=truth.domain,
+                            claim=truth.claim,
+                            z2_prediction=truth.z2_prediction,
+                            measured_value=truth.measured_value,
+                            measured_uncertainty=truth.measured_uncertainty,
+                            percent_error=truth.percent_error,
+                            sigma_deviation=truth.sigma_deviation,
+                            hrm_score=truth.hrm_score,
+                            data_source=truth.data_source,
+                            data_url=truth.data_url,
+                            status=truth.status,
+                            z2_formula=truth.z2_formula,
+                            notes=f"Ground truth ref: {truth.ground_truth_ref}" if truth.ground_truth_ref else truth.notes,
+                            citations=list(truth.citations) if truth.citations else None
+                        )
+                        self.mnemosyne_lake.add_truth(mnemosyne_truth)
+
+                    # Call truth callbacks
                     for callback in self._on_truth_found:
                         try:
                             callback(truth)

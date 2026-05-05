@@ -128,34 +128,45 @@ class VerifiedTruth:
 
 class MnemosyneLake:
     """
-    The truth datalake - stores and manages verified computational truths.
+    SESSION-SCOPED truth datalake for HermesFlow research loops.
+
+    Named after Mnemosyne, Greek goddess of memory - this is the
+    TEMPORARY working memory for research sessions.
+
+    Architecture:
+        AletheiaLake (permanent) ← Ground truths, never changes
+             ↑
+        Validate against
+             |
+        MnemosyneLake (this)    ← Session working memory
+             |
+        graduate_to_training()  → Export validated discoveries
 
     Usage:
-        lake = MnemosyneLake()
+        # Create session-scoped lake
+        lake = MnemosyneLake(session_id="earthquake_research_20260504")
 
-        # Add a truth
-        truth = VerifiedTruth(
-            truth_id=lake.generate_id("Omega_Lambda"),
-            domain="cosmology",
-            claim="Dark energy density matches Z² prediction",
-            z2_prediction=0.6842,  # 13/19
-            measured_value=0.6847,
-            measured_uncertainty=0.007,
-            data_source="Planck 2020",
-            hrm_score=0.9
-        )
+        # Add discoveries during research
         lake.add_truth(truth)
 
-        # Query truths
-        physics_truths = lake.query(domain="physics", min_hrm=0.8)
+        # Graduate validated truths to training data
+        training_data = lake.graduate_to_training(min_hrm=0.8)
 
-        # Export for training
-        exporter = TruthExporter(lake)
-        training_data = exporter.export_for_legomena()
+        # Clear session when done
+        lake.clear_session()
     """
 
-    def __init__(self, storage_path: Optional[str] = None):
-        """Initialize the lake with optional custom storage path."""
+    def __init__(self, storage_path: Optional[str] = None,
+                 session_id: Optional[str] = None,
+                 persist: bool = False):
+        """
+        Initialize the lake with optional session management.
+
+        Args:
+            storage_path: Custom storage path (default: ./truths)
+            session_id: Unique session identifier (auto-generated if None)
+            persist: If True, persist to disk; if False, in-memory only
+        """
         if storage_path:
             self.storage_path = Path(storage_path)
         else:
@@ -164,7 +175,26 @@ class MnemosyneLake:
         self.storage_path.mkdir(parents=True, exist_ok=True)
         self.index_file = self.storage_path / "truth_index.json"
         self.truths: Dict[str, VerifiedTruth] = {}
-        self._load_index()
+
+        # Session management
+        self.session_id = session_id or self._generate_session_id()
+        self.persist = persist
+        self.session_start = datetime.now().isoformat()
+        self._session_stats = {
+            "truths_added": 0,
+            "truths_validated": 0,
+            "truths_graduated": 0
+        }
+
+        # Only load from disk if persisting
+        if self.persist:
+            self._load_index()
+
+    def _generate_session_id(self) -> str:
+        """Generate a unique session ID."""
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        random_suffix = hashlib.sha256(str(datetime.now().timestamp()).encode()).hexdigest()[:6]
+        return f"session_{timestamp}_{random_suffix}"
 
     def _load_index(self):
         """Load the truth index from disk."""
@@ -197,7 +227,15 @@ class MnemosyneLake:
 
         # Store the truth
         self.truths[truth.truth_id] = truth
-        self._save_index()
+
+        # Update session stats
+        self._session_stats["truths_added"] += 1
+        if truth.status == TruthStatus.VALIDATED.value:
+            self._session_stats["truths_validated"] += 1
+
+        # Only persist if configured to do so
+        if self.persist:
+            self._save_index()
 
         return truth.truth_id
 
@@ -308,6 +346,115 @@ class MnemosyneLake:
             "avg_hrm_score": sum(hrm_scores) / len(hrm_scores),
             "validated_count": by_status.get(TruthStatus.VALIDATED.value, 0),
             "speculative_count": by_status.get(TruthStatus.SPECULATIVE.value, 0)
+        }
+
+    # =========================================================================
+    # SESSION MANAGEMENT (Two-Lake Architecture)
+    # =========================================================================
+
+    def clear_session(self) -> Dict:
+        """
+        Clear all session data (working memory).
+
+        This is called at the end of a research session to free memory.
+        Use graduate_to_training() BEFORE clearing to export validated truths.
+
+        Returns:
+            Summary of what was cleared
+        """
+        summary = self.get_session_summary()
+
+        # Clear in-memory truths
+        self.truths.clear()
+        self._session_stats = {
+            "truths_added": 0,
+            "truths_validated": 0,
+            "truths_graduated": 0
+        }
+
+        # Reset session
+        old_session = self.session_id
+        self.session_id = self._generate_session_id()
+        self.session_start = datetime.now().isoformat()
+
+        return {
+            "cleared_session": old_session,
+            "new_session": self.session_id,
+            "summary": summary
+        }
+
+    def graduate_to_training(self, output_path: Optional[str] = None,
+                             min_hrm: float = 0.8) -> List[Dict]:
+        """
+        Graduate validated truths to Legomena training data.
+
+        Only truths meeting the min_hrm threshold are graduated.
+        This is the bridge between session memory and permanent training data.
+
+        Args:
+            output_path: Path to write JSONL training file
+            min_hrm: Minimum HRM score to graduate (default 0.8)
+
+        Returns:
+            List of training examples
+        """
+        validated = self.query(min_hrm=min_hrm)
+        training_data = []
+
+        for truth in validated:
+            example = {
+                "instruction": f"Apply Z² framework to verify: {truth.claim}",
+                "input": json.dumps({
+                    "domain": truth.domain,
+                    "claim": truth.claim,
+                    "z2_prediction": truth.z2_prediction,
+                    "measured_value": truth.measured_value,
+                    "data_source": truth.data_source
+                }),
+                "output": json.dumps({
+                    "verified": True,
+                    "hrm_score": truth.hrm_score,
+                    "percent_error": truth.percent_error,
+                    "sigma_deviation": truth.sigma_deviation,
+                    "z2_formula": truth.z2_formula,
+                    "conclusion": f"Z² prediction validated with HRM={truth.hrm_score:.2f}"
+                }),
+                "metadata": {
+                    "session_id": self.session_id,
+                    "graduated_at": datetime.now().isoformat(),
+                    "truth_id": truth.truth_id
+                }
+            }
+            training_data.append(example)
+
+        # Update stats
+        self._session_stats["truths_graduated"] = len(training_data)
+
+        # Write to file if path provided
+        if output_path:
+            with open(output_path, 'w') as f:
+                for item in training_data:
+                    f.write(json.dumps(item) + '\n')
+
+        return training_data
+
+    def get_session_summary(self) -> Dict:
+        """
+        Get a summary of the current session.
+
+        Returns:
+            Dictionary with session statistics
+        """
+        stats = self.get_statistics()
+        return {
+            "session_id": self.session_id,
+            "session_start": self.session_start,
+            "total_truths": stats.get("total", 0),
+            "validated_truths": stats.get("validated_count", 0),
+            "speculative_truths": stats.get("speculative_count", 0),
+            "avg_hrm_score": stats.get("avg_hrm_score", 0),
+            "domains": list(stats.get("by_domain", {}).keys()),
+            "session_stats": self._session_stats
         }
 
 

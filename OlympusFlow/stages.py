@@ -338,14 +338,20 @@ class AnalysisStage(Stage):
 
 class VerificationStage(Stage):
     """
-    Verify findings using HRM (Hierarchical Recursive Meta-assessment).
-    Converts findings to verified truths.
+    Verify findings using HRM (Hierarchical Recursive Meta-assessment)
+    AND validate against AletheiaLake ground truths.
+
+    Two-Lake Architecture:
+    - Findings are validated against AletheiaLake Z² predictions
+    - AletheiaLake matches boost HRM score (validated framework)
+    - Contradictions with AletheiaLake are flagged
     """
 
     def __init__(self, min_hrm: float = 0.8, use_llm: bool = True, **kwargs):
         super().__init__("VerificationStage", kwargs)
         self.min_hrm = min_hrm
         self.use_llm = use_llm
+        self.aletheia_lake = None  # Set by pipeline
 
     def run(self, input_data: List[Finding], state: PipelineState) -> StageResult:
         """Verify findings and create truths."""
@@ -379,7 +385,50 @@ class VerificationStage(Stage):
         return self._success(truths, time.time() - start)
 
     def _verify_finding(self, finding: Finding) -> Optional[VerifiedTruth]:
-        """Run HRM assessment on a finding."""
+        """
+        Run HRM assessment AND AletheiaLake validation on a finding.
+
+        The Two-Lake Architecture validates new discoveries against
+        established Z² ground truths stored in AletheiaLake.
+        """
+        # =====================================================================
+        # ALETHEIALAKE VALIDATION (Two-Lake Architecture)
+        # =====================================================================
+        aletheia_match = None
+        aletheia_boost = 0.0
+        ground_truth_ref = None
+
+        if self.aletheia_lake:
+            aletheia_match = self._check_against_aletheia(finding)
+            if aletheia_match:
+                ground_truth_ref = aletheia_match.get("truth_name")
+                deviation_sigma = aletheia_match.get("deviation_sigma", float('inf'))
+
+                # Boost score if finding matches Z² ground truth
+                if deviation_sigma < 1.0:
+                    aletheia_boost = 0.15  # Strong match with ground truth
+                    self.emit(EventType.TRUTH_CREATED, {
+                        "type": "aletheia_match",
+                        "finding": finding.quantity,
+                        "ground_truth": ground_truth_ref,
+                        "deviation_sigma": deviation_sigma
+                    })
+                elif deviation_sigma < 2.0:
+                    aletheia_boost = 0.10  # Consistent with ground truth
+                elif deviation_sigma > 3.0:
+                    aletheia_boost = -0.20  # CONTRADICTS ground truth!
+                    self.emit(EventType.VERIFICATION_FAILED, {
+                        "type": "aletheia_contradiction",
+                        "finding": finding.quantity,
+                        "ground_truth": ground_truth_ref,
+                        "deviation_sigma": deviation_sigma,
+                        "warning": "Finding contradicts Z² ground truth"
+                    })
+
+        # =====================================================================
+        # HRM ASSESSMENT
+        # =====================================================================
+
         # Level 1: Basic honesty check
         l1_score = self._assess_level_1(finding)
 
@@ -402,6 +451,9 @@ class VerificationStage(Stage):
         )
         final_score = hrm.compute_final()
 
+        # Apply AletheiaLake boost/penalty
+        final_score = max(0, min(1.0, final_score + aletheia_boost))
+
         # Create truth
         truth = VerifiedTruth(
             truth_id=VerifiedTruth.generate_id(
@@ -417,17 +469,59 @@ class VerificationStage(Stage):
             hrm_score=final_score,
             hrm_assessment=hrm,
             data_source=f"Discovered via OlympusFlow",
-            data_url=finding.source_url
+            data_url=finding.source_url,
+            ground_truth_ref=ground_truth_ref  # Track which AletheiaLake truth matched
         )
         truth.update_status()
 
         self.emit(EventType.TRUTH_CREATED, {
             "claim": truth.claim,
             "hrm_score": truth.hrm_score,
-            "status": truth.status
+            "status": truth.status,
+            "aletheia_match": ground_truth_ref
         })
 
         return truth
+
+    def _check_against_aletheia(self, finding: Finding) -> Optional[Dict]:
+        """
+        Check if finding matches any AletheiaLake ground truth.
+
+        Returns match info if found, None otherwise.
+        """
+        if not self.aletheia_lake:
+            return None
+
+        # Get all truths in the same domain
+        domain_truths = self.aletheia_lake.get_truths_by_domain(finding.domain)
+
+        best_match = None
+        best_deviation = float('inf')
+
+        for truth in domain_truths:
+            # Check if the prediction values are close
+            if truth.z2_prediction is not None and finding.measured_value is not None:
+                # Calculate deviation
+                if finding.measured_uncertainty and finding.measured_uncertainty > 0:
+                    deviation = abs(finding.measured_value - truth.z2_prediction) / finding.measured_uncertainty
+                else:
+                    # Use percent difference as fallback
+                    deviation = abs(finding.measured_value - truth.z2_prediction) / max(abs(truth.z2_prediction), 1e-10) * 100
+
+                if deviation < best_deviation:
+                    best_deviation = deviation
+                    best_match = {
+                        "truth_name": truth.name,
+                        "z2_prediction": truth.z2_prediction,
+                        "measured_value": finding.measured_value,
+                        "deviation_sigma": deviation,
+                        "formula": truth.formula
+                    }
+
+        # Only return if reasonably close (within 10 sigma)
+        if best_match and best_deviation < 10:
+            return best_match
+        return None
 
     def _assess_level_1(self, finding: Finding) -> float:
         """Level 1: Basic honesty - Is this statistically significant?"""

@@ -151,6 +151,7 @@ class Finding(Contract):
     percent_error: float
     sample_size: int
     source_url: str
+    measured_uncertainty: Optional[float] = None  # For AletheiaLake validation
     discovered_at: str = field(default_factory=lambda: datetime.now().isoformat())
 
     @staticmethod
@@ -216,6 +217,7 @@ class VerifiedTruth(Contract):
     citations: List[str] = field(default_factory=list)
     verified_at: str = field(default_factory=lambda: datetime.now().isoformat())
     notes: str = ""
+    ground_truth_ref: Optional[str] = None  # Reference to AletheiaLake truth if matched
 
     @staticmethod
     def generate_id(claim: str, domain: str) -> str:
