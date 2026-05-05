@@ -41,6 +41,19 @@ except ImportError:
         HeliconLake = None
         SourceEntry = None
 
+# DatabaseQueryHandler integration
+try:
+    from .database_query_handler import DatabaseQueryHandler, QueryResult
+    DATABASE_HANDLER_AVAILABLE = True
+except ImportError:
+    try:
+        from database_query_handler import DatabaseQueryHandler, QueryResult
+        DATABASE_HANDLER_AVAILABLE = True
+    except ImportError:
+        DATABASE_HANDLER_AVAILABLE = False
+        DatabaseQueryHandler = None
+        QueryResult = None
+
 # Constants
 Z2 = 32 * 3.14159265358979 / 3
 Z = Z2 ** 0.5
@@ -148,10 +161,11 @@ class UniversalDataDiscovery:
     }
 
     def __init__(self, use_legomena: bool = True, use_web_search: bool = True,
-                 use_helicon_lake: bool = True):
+                 use_helicon_lake: bool = True, use_database_apis: bool = True):
         self.use_legomena = use_legomena
         self.use_web_search = use_web_search
         self.use_helicon_lake = use_helicon_lake
+        self.use_database_apis = use_database_apis
         self.discovered_domains: Dict[str, DomainProfile] = {}
         self.discovered_sources: Dict[str, DataSource] = {}
 
@@ -163,6 +177,16 @@ class UniversalDataDiscovery:
                 print(f"HeliconLake initialized: {self.helicon_lake.get_statistics()['total_sources']} sources")
             except Exception as e:
                 print(f"HeliconLake initialization failed: {e}")
+
+        # Initialize DatabaseQueryHandler for API access
+        self.db_handler = None
+        if use_database_apis and DATABASE_HANDLER_AVAILABLE:
+            try:
+                self.db_handler = DatabaseQueryHandler(verbose=True)
+                apis = self.db_handler.get_available_apis()
+                print(f"DatabaseQueryHandler initialized: {len(apis)} known APIs")
+            except Exception as e:
+                print(f"DatabaseQueryHandler initialization failed: {e}")
 
     def _call_legomena(self, prompt: str, timeout: int = None) -> Optional[str]:
         """Call Legomena for intelligent reasoning."""
@@ -306,14 +330,38 @@ JSON response:"""
         Discover authoritative data sources for a domain.
 
         PRIORITY ORDER:
-        1. Query HeliconLake for known sources
-        2. Validate known sources are still active
-        3. Fall back to web search if needed
-        4. Register new discoveries to HeliconLake
+        1. Query known database APIs (DatabaseQueryHandler)
+        2. Query HeliconLake for cached sources
+        3. Validate known sources are still active
+        4. Fall back to web search if needed
+        5. Register new discoveries to HeliconLake
         """
         sources = []
 
-        # STEP 1: Query HeliconLake first (if available)
+        # STEP 0: Query known database APIs first (most reliable)
+        if self.db_handler:
+            topic = domain.subdomain if domain.subdomain else None
+            api_matches = self.db_handler.find_apis_for_domain(domain.name, topic)
+
+            if api_matches:
+                print(f"DatabaseQueryHandler: Found {len(api_matches)} known APIs for {domain.name}/{topic}")
+                for config in api_matches:
+                    sources.append(DataSource(
+                        name=config.name,
+                        url=config.base_url,
+                        source_type=SourceType.API,
+                        quality=DataQuality.AUTHORITATIVE,
+                        description=config.description,
+                        access_method="api",
+                        quantities_available=config.quantities
+                    ))
+
+                # If we found good API sources, we can return early for efficiency
+                if len(api_matches) >= 2:
+                    print(f"DatabaseQueryHandler: Using {len(api_matches)} API sources")
+                    return sources
+
+        # STEP 1: Query HeliconLake for cached sources (if available)
         if self.helicon_lake:
             lake_sources = self.helicon_lake.find_sources(domain.name, domain.subdomain)
             if lake_sources:
@@ -490,6 +538,12 @@ JSON:"""
         """
         measurements = []
 
+        # Try DatabaseQueryHandler first for known APIs
+        if self.db_handler and source.source_type == SourceType.API:
+            measurements = self._fetch_from_known_api(source, quantities)
+            if measurements:
+                return measurements
+
         if source.source_type == SourceType.API:
             measurements = self._fetch_from_api(source, quantities)
         elif source.source_type == SourceType.CSV:
@@ -499,6 +553,51 @@ JSON:"""
         else:
             # Web scrape as fallback
             measurements = self._fetch_from_web(source, quantities)
+
+        return measurements
+
+    def _fetch_from_known_api(self, source: DataSource, quantities: List[str]) -> List[Measurement]:
+        """Fetch from a known API using DatabaseQueryHandler."""
+        measurements = []
+
+        if not self.db_handler:
+            return measurements
+
+        # Find matching API by URL or name
+        for api_name, config in self.db_handler.known_apis.items():
+            if config.base_url == source.url or config.name == source.name:
+                result = self.db_handler.query(api_name)
+
+                if result.success and result.data is not None:
+                    df = result.data
+                    print(f"DatabaseQueryHandler: Got {len(df)} rows from {api_name}")
+
+                    # Extract measurements from DataFrame
+                    for col in df.columns:
+                        col_lower = col.lower()
+                        for q in quantities:
+                            if q.lower() in col_lower or col_lower in q.lower():
+                                # Get column statistics
+                                if df[col].dtype in ['float64', 'int64', 'float32', 'int32']:
+                                    values = df[col].dropna()
+                                    if len(values) > 0:
+                                        measurements.append(Measurement(
+                                            quantity=q,
+                                            value=float(values.mean()),
+                                            uncertainty=float(values.std()) if len(values) > 1 else None,
+                                            unit="",
+                                            source=source.name,
+                                            source_url=source.url,
+                                            quality=source.quality,
+                                            context=f"mean of {len(values)} values, range [{values.min():.4f}, {values.max():.4f}]"
+                                        ))
+
+                    # Also store the full DataFrame for later analysis
+                    if not hasattr(self, 'fetched_dataframes'):
+                        self.fetched_dataframes = {}
+                    self.fetched_dataframes[api_name] = df
+
+                break
 
         return measurements
 

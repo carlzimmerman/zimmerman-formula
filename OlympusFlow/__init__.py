@@ -61,7 +61,7 @@ v1.4.0 Changes (May 5, 2026):
 - Pipeline summary now includes deepening_findings count
 """
 
-__version__ = "1.4.0"
+__version__ = "1.5.0"  # Added StatisticalValidator for rigorous significance testing
 
 # Core components
 from .contracts import (
@@ -103,6 +103,21 @@ from .constants import (
     get_target, matches_z2_target, hrm_to_status
 )
 
+# Statistical validation (eliminates false positives)
+from .statistical_validator import (
+    StatisticalValidator,
+    PatternCandidate,
+    ValidationResult,
+    MonteCarloValidator,
+    MultipleComparisonCorrector,
+    EffectSizeCalculator,
+    TemporalStabilityTester,
+    MultiSourceCorroborator,
+    LegomenaCodeGenerator,
+    validate_pattern_quick,
+    TARGETS
+)
+
 __all__ = [
     # Version
     "__version__",
@@ -140,5 +155,18 @@ __all__ = [
     "Z2", "Z", "PHI", "INV_PHI", "PI", "E",
     "Z2_TARGETS",
     "HRMThresholds", "PatternThresholds", "ValidationThresholds",
-    "get_target", "matches_z2_target", "hrm_to_status"
+    "get_target", "matches_z2_target", "hrm_to_status",
+
+    # Statistical validation
+    "StatisticalValidator",
+    "PatternCandidate",
+    "ValidationResult",
+    "MonteCarloValidator",
+    "MultipleComparisonCorrector",
+    "EffectSizeCalculator",
+    "TemporalStabilityTester",
+    "MultiSourceCorroborator",
+    "LegomenaCodeGenerator",
+    "validate_pattern_quick",
+    "TARGETS"
 ]
