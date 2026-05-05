@@ -122,7 +122,7 @@ PARAMETER temperature 0.3
     def _format_truths_for_prompt(self, truths: List[Dict]) -> str:
         """Format truths for system prompt."""
         lines = []
-        for t in truths[-15]:  # Last 15 truths to avoid prompt overflow
+        for t in truths[-15:]:  # Last 15 truths to avoid prompt overflow
             domain = t.get('domain', 'unknown')
             quantity = t.get('quantity', 'unknown')
             target = t.get('target', 'unknown')
