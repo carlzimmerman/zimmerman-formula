@@ -59,6 +59,18 @@ v1.4.0 Changes (May 5, 2026):
 - Generates research questions from findings and runs HermesFlow on each
 - New events: DEEPENING_TRIGGERED, DEEPENING_STARTED, DEEPENING_COMPLETED
 - Pipeline summary now includes deepening_findings count
+
+v1.5.0 Changes (May 5, 2026):
+- Added StatisticalValidator for rigorous significance testing
+- Monte Carlo null distribution validation (10,000 permutations)
+- FDR/Bonferroni multiple comparison correction
+- Effect size calculations (Cohen's d)
+- Multi-source corroboration requirements
+- Temporal stability testing across time periods
+- Physical mechanism plausibility scoring via Legomena
+- Legomena-assisted code generation for computational confirmation scripts
+- DatabaseQueryHandler for structured API access to scientific databases
+- Known APIs: GVP, SILSO, USGS, NOAA, PDG, and more
 """
 
 __version__ = "1.5.0"  # Added StatisticalValidator for rigorous significance testing

@@ -97,35 +97,19 @@ class DatabaseQueryHandler:
             # VOLCANOLOGY
             # =========================================================
 
-            "smithsonian_gvp_eruptions": APIConfig(
-                name="Smithsonian GVP Eruptions",
-                base_url="https://volcano.si.edu/database/webservices/GVPWebService.asmx/GetEruptions",
+            # Note: Smithsonian GVP SOAP API requires special authentication
+            # Use the Holocene eruptions CSV download instead
+            "smithsonian_gvp_holocene": APIConfig(
+                name="Smithsonian GVP Holocene Eruptions",
+                base_url="https://volcano.si.edu/database/list_volcano_holocene.cfm",
                 method="GET",
-                default_params={
-                    "vn": "",  # Volcano number (empty = all)
-                    "ed": "true",  # Include eruption details
-                },
-                response_format="xml",
+                default_params={},
+                response_format="html_table",
                 rate_limit_seconds=2.0,
-                description="Global Volcanism Program eruption database",
+                description="Global Volcanism Program Holocene eruption database",
                 domains=["volcanology", "geophysics"],
-                topics=["volcano", "eruption", "VEI", "tephra"],
-                quantities=["VEI", "eruption_count", "start_date", "end_date", "tephra_volume"]
-            ),
-
-            "smithsonian_gvp_volcanoes": APIConfig(
-                name="Smithsonian GVP Volcanoes",
-                base_url="https://volcano.si.edu/database/webservices/GVPWebService.asmx/GetVolcanoes",
-                method="GET",
-                default_params={
-                    "reg": "",  # Region (empty = all)
-                },
-                response_format="xml",
-                rate_limit_seconds=2.0,
-                description="Global Volcanism Program volcano list",
-                domains=["volcanology"],
-                topics=["volcano", "location", "type"],
-                quantities=["latitude", "longitude", "elevation", "volcano_type"]
+                topics=["volcano", "eruption", "VEI", "holocene"],
+                quantities=["VEI", "eruption_count", "latitude", "longitude", "elevation"]
             ),
 
             "noaa_significant_volcanoes": APIConfig(

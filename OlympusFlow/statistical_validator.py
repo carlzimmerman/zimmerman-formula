@@ -511,8 +511,13 @@ Output ONLY the Python code, no explanations:
                 # Try to find code without markdown blocks
                 code = response
 
-            # Save script
-            script_name = f"validate_{pattern.quantity.replace('/', '_')}_{pattern.target_name}.py"
+            # Save script (sanitize filename)
+            safe_quantity = pattern.quantity.replace('/', '_').replace(' ', '_')
+            safe_target = pattern.target_name.replace('/', '_').replace(' ', '_')
+            script_name = f"validate_{safe_quantity}_{safe_target}.py"
+
+            # Ensure output directory exists
+            self.output_dir.mkdir(parents=True, exist_ok=True)
             script_path = self.output_dir / script_name
 
             # Add header
