@@ -39,8 +39,10 @@ from urllib.parse import urljoin, urlparse
 
 LEGOMENA_MODEL = os.environ.get("LEGOMENA_MODEL", "legomena-4b")
 
-# Version with enhanced data acquisition
-__version__ = "1.6.0"
+# Version with intelligent validation
+__version__ = "1.7.0"
+
+# No hardcoded sources - everything discovered dynamically
 
 
 @dataclass
@@ -596,6 +598,165 @@ Just give the translated queries, one per line:"""
         return queries[:3]
 
     # =========================================================================
+    # DATA VALIDATION (v1.7.0) - The key missing piece
+    # =========================================================================
+
+    def _validate_data_relevance(self, df: pd.DataFrame, topic: str,
+                                  source_url: str) -> Tuple[bool, str]:
+        """
+        Dynamically validate if the downloaded data is actually relevant.
+
+        This is the KEY fix - instead of accepting any data, we verify it
+        actually relates to what we're looking for.
+
+        Returns: (is_valid, reason)
+        """
+        if df is None or len(df) < 10:
+            return False, "Insufficient data"
+
+        # Get column names and sample values
+        columns = list(df.columns)
+        sample_values = []
+        for col in columns[:8]:
+            try:
+                vals = df[col].dropna().head(3).tolist()
+                sample_values.append(f"{col}: {vals}")
+            except:
+                pass
+
+        # Ask Legomena to validate
+        question = f"""I'm looking for data about: {topic}
+
+I found this data from: {source_url}
+
+Columns: {columns[:15]}
+Sample data:
+{chr(10).join(sample_values[:6])}
+
+QUESTION: Does this data actually relate to "{topic}"?
+
+Answer with EXACTLY one of:
+- RELEVANT: [brief reason why]
+- IRRELEVANT: [brief reason why]
+- UNCERTAIN: [what's missing]
+
+Answer:"""
+
+        response = self.tool_ask(question)
+
+        if "RELEVANT" in response.upper():
+            self._log(f"  ✓ Data validated as relevant")
+            return True, response
+        elif "IRRELEVANT" in response.upper():
+            self._log(f"  ✗ Data rejected: {response[:80]}")
+            return False, response
+        else:
+            # Uncertain - apply additional checks
+            self._log(f"  ? Uncertain relevance: {response[:80]}")
+            # If uncertain, check for obvious garbage patterns
+            if self._looks_like_garbage(df, topic):
+                return False, "Failed garbage detection"
+            return True, "Passed fallback checks"
+
+    def _looks_like_garbage(self, df: pd.DataFrame, topic: str) -> bool:
+        """
+        Detect obviously wrong data without relying on LLM.
+
+        Patterns that indicate garbage:
+        - Columns named 'emoji', 'icon', 'badge', etc.
+        - All string columns with no numbers
+        - YouTube/social media patterns
+        """
+        columns_lower = [str(c).lower() for c in df.columns]
+
+        # Garbage column indicators
+        garbage_patterns = ['emoji', 'badge', 'icon', 'avatar', 'thumbnail',
+                           'subscriber', 'follower', 'like', 'view', 'share',
+                           'playlist', 'channel', 'video', 'stream']
+
+        if any(pattern in ' '.join(columns_lower) for pattern in garbage_patterns):
+            self._log(f"  ✗ Garbage detected: social media patterns in columns")
+            return True
+
+        # Check for numeric content - scientific data should have numbers
+        numeric_cols = df.select_dtypes(include=['number']).shape[1]
+        if numeric_cols < 1 and len(df.columns) > 3:
+            self._log(f"  ✗ Garbage detected: no numeric columns")
+            return True
+
+        # Check if any column relates to topic keywords
+        topic_words = set(topic.lower().split())
+        topic_words -= {'data', 'the', 'of', 'and', 'for', 'a', 'in', 'to'}
+
+        # At least one column should relate to topic
+        has_relevant_column = False
+        for col in columns_lower:
+            if any(word in col for word in topic_words if len(word) > 2):
+                has_relevant_column = True
+                break
+
+        # Not having a relevant column is suspicious but not definitive
+        # Let other checks decide
+
+        return False
+
+    def _extract_topic_location(self, topic: str) -> Optional[Dict]:
+        """
+        Better location extraction for topics like 'Venice acqua alta'.
+
+        Uses pattern matching + LLM fallback.
+        """
+        # Common location patterns in scientific topics
+        known_locations = {
+            'venice': {'place': 'Venice', 'country': 'Italy', 'language': 'Italian'},
+            'tokyo': {'place': 'Tokyo', 'country': 'Japan', 'language': 'Japanese'},
+            'london': {'place': 'London', 'country': 'UK', 'language': 'English'},
+            'arctic': {'place': 'Arctic', 'country': 'International', 'language': 'English'},
+            'antarctic': {'place': 'Antarctica', 'country': 'International', 'language': 'English'},
+            'alps': {'place': 'Alps', 'country': 'Switzerland', 'language': 'German'},
+            'california': {'place': 'California', 'country': 'USA', 'language': 'English'},
+            'florida': {'place': 'Florida', 'country': 'USA', 'language': 'English'},
+            'hawaii': {'place': 'Hawaii', 'country': 'USA', 'language': 'English'},
+            'adriatic': {'place': 'Adriatic', 'country': 'Italy', 'language': 'Italian'},
+        }
+
+        topic_lower = topic.lower()
+
+        # Check for known locations
+        for location, info in known_locations.items():
+            if location in topic_lower:
+                self._log(f"Quick location match: {info['place']}")
+                return info
+
+        # Fall through to LLM-based detection
+        return None
+
+    def _try_return_validated(self, df: pd.DataFrame, url: str,
+                               topic: str, description: str) -> Optional[DataDiscovery]:
+        """
+        Validate data before returning it as a discovery.
+
+        Returns DataDiscovery if valid, None if invalid (continue searching).
+        """
+        if df is None:
+            return None
+
+        # Run validation
+        is_valid, reason = self._validate_data_relevance(df, topic, url)
+
+        if is_valid:
+            return DataDiscovery(
+                success=True,
+                url=url,
+                data=df,
+                steps=self.steps,
+                description=description
+            )
+        else:
+            self._log(f"  Rejected: {reason[:60]}")
+            return None
+
+    # =========================================================================
     # EXPLORATION STRATEGIES
     # =========================================================================
 
@@ -620,9 +781,15 @@ Just give the translated queries, one per line:"""
         self.steps = []
         self.visited = set()
 
-        # Step 0: Detect geographic context (NEW in v1.5.1)
+        # Step 0: Detect geographic context (IMPROVED in v1.7.0)
         self._log("--- Step 0: Detect Geographic Context ---")
-        location = self._detect_geographic_context(topic)
+
+        # Try quick pattern match first (v1.7.0)
+        location = self._extract_topic_location(topic)
+
+        # Fall back to LLM-based detection
+        if not location:
+            location = self._detect_geographic_context(topic)
 
         regional_sources = []
         regional_urls = []
@@ -693,10 +860,17 @@ Just give the translated queries, one per line:"""
         seen_domains = set()
         unique_results = []
         for r in all_results:
-            domain_name = urlparse(r['url']).netloc
-            if domain_name not in seen_domains:
-                seen_domains.add(domain_name)
-                unique_results.append(r)
+            try:
+                url = r.get('url', '')
+                if not url or not url.startswith('http'):
+                    continue
+                domain_name = urlparse(url).netloc
+                if domain_name and domain_name not in seen_domains:
+                    seen_domains.add(domain_name)
+                    unique_results.append(r)
+            except (ValueError, TypeError):
+                # Skip malformed URLs
+                continue
 
         self._log(f"Found {len(unique_results)} unique portals")
 
@@ -751,127 +925,190 @@ Just give the translated queries, one per line:"""
         for r in unique_results[:5]:
             self._log(f"  {r['title'][:40]}: {r['url'][:50]}")
 
-        # Step 4: Explore top portals (ENHANCED in v1.6.0)
-        self._log("\n--- Step 4: Explore Portals (v1.6.0 Enhanced) ---")
+        # Step 4: LEGOMENA-GUIDED EXPLORATION (v1.7.0 - completely redesigned)
+        self._log("\n--- Step 4: Legomena-Guided Exploration (v1.7.0) ---")
 
-        for result in unique_results[:5]:
+        # Ask Legomena to analyze the search results and recommend the best path
+        portal_summary = "\n".join([f"{i+1}. {r['title']}: {r['url']}"
+                                   for i, r in enumerate(unique_results[:8])])
+
+        guidance_question = f"""I found these potential data sources for "{topic}":
+
+{portal_summary}
+
+Which ONE portal is MOST likely to have DOWNLOADABLE data files (CSV, TXT, JSON)?
+Consider:
+- Government/scientific institution sources (.gov, .edu, .ch) are usually best
+- Direct data links are better than documentation pages
+- URLs with "data", "download", "csv" are promising
+
+Reply with ONLY:
+BEST: [number 1-8]
+REASON: [one sentence why]"""
+
+        guidance = self.tool_ask(guidance_question)
+        self._log(f"Legomena guidance: {guidance[:100]}...")
+
+        # Parse recommended portal
+        best_match = re.search(r'BEST:\s*(\d+)', guidance)
+        best_idx = int(best_match.group(1)) - 1 if best_match else 0
+        best_idx = min(max(0, best_idx), len(unique_results) - 1)
+
+        # Prioritize Legomena's recommendation, but keep others as fallback
+        ordered_results = [unique_results[best_idx]] + \
+                         [r for i, r in enumerate(unique_results) if i != best_idx]
+
+        # Explore with reasoning (not brute force)
+        for result in ordered_results[:3]:  # Only try top 3, not 5
             portal_url = result['url']
-            self._log(f"\nExploring: {portal_url[:60]}")
+            self._log(f"\nExploring recommended: {portal_url[:60]}")
 
             html = self.tool_fetch(portal_url)
             if not html:
                 continue
 
-            # NEW v1.6.0: Try to extract data tables directly from HTML
-            df = self._parse_html_tables(html)
-            if df is not None and len(df) > 30:
-                self._log(f"  SUCCESS (HTML table): {len(df)} rows!")
-                return DataDiscovery(
-                    success=True,
-                    url=portal_url,
-                    data=df,
-                    steps=self.steps,
-                    description=f"Extracted HTML table from {portal_url}"
-                )
+            # Ask Legomena: What's the path to downloadable data on this page?
+            page_links = self.tool_extract_links(html, portal_url)
+            link_summary = "\n".join([f"- {l['text'][:50]}: {l['url'][:60]}"
+                                     for l in page_links[:20] if l['text'].strip()])
 
-            # NEW v1.6.0: Detect and try API endpoints
-            api_endpoints = self._detect_api_endpoints(html, portal_url)
-            for api_url in api_endpoints[:3]:
-                self._log(f"  Trying API: {api_url[:50]}...")
-                df = self.tool_fetch_data(api_url)
-                if df is not None and len(df) > 30:
-                    self._log(f"  SUCCESS (API): {len(df)} rows!")
-                    return DataDiscovery(
-                        success=True,
-                        url=api_url,
-                        data=df,
-                        steps=self.steps,
-                        description=f"Found data via API: {api_url}"
-                    )
+            nav_question = f"""I'm on a data portal looking for {topic} data.
 
-            # Find data links
-            data_links = self.tool_extract_links(
-                html, portal_url,
-                filter_terms=['data', 'csv', 'download', 'access', 'dataset', 'ascii', 'txt', 'json']
-            )
+Here are the links on this page:
+{link_summary[:2000]}
 
-            self._log(f"  Found {len(data_links)} data-related links")
+Which link leads to DOWNLOADABLE DATA FILES?
+Look for:
+- Direct download links (.csv, .txt, .json, .dat)
+- "Download" or "Export" buttons
+- Data access pages
 
-            # Ask which to follow
-            if len(data_links) > 3:
-                link_summary = "\n".join([f"- {l['text'][:40]}: {l['url'][:50]}"
-                                         for l in data_links[:10]])
-                follow_question = f"I'm looking for {topic} data.\nWhich link should I follow?\n{link_summary}"
-                follow_response = self.tool_ask(follow_question)
+Reply with ONLY the full URL that will give me data:
+URL: [the url]"""
 
-                # Extract recommended URL
-                url_match = re.search(r'https?://[^\s<>"\']+', follow_response)
-                if url_match:
-                    recommended = url_match.group()
-                    # Put it first
-                    data_links = [l for l in data_links if l['url'] == recommended] + \
-                                [l for l in data_links if l['url'] != recommended]
+            nav_response = self.tool_ask(nav_question)
+            url_match = re.search(r'URL:\s*(https?://[^\s<>"\']+)', nav_response)
 
-            # Try data links with enhanced parsing
-            for link in data_links[:8]:  # Increased from 5 to 8
+            if url_match:
+                recommended_url = url_match.group(1)
+                self._log(f"  Legomena recommends: {recommended_url[:50]}")
+
+                # Try the recommended URL
+                df = self.tool_fetch_data(recommended_url)
+                if df is not None and len(df) > 20:
+                    is_valid, reason = self._validate_data_relevance(df, topic, recommended_url)
+                    if is_valid:
+                        self._log(f"  SUCCESS: {len(df)} rows!")
+                        return DataDiscovery(
+                            success=True,
+                            url=recommended_url,
+                            data=df,
+                            steps=self.steps,
+                            description=f"Found via Legomena-guided navigation: {recommended_url}"
+                        )
+
+            # Fallback: Try data-looking links directly
+            data_links = [l for l in page_links if any(ext in l['url'].lower()
+                         for ext in ['.csv', '.txt', '.json', '.dat', 'download', 'export'])]
+
+            for link in data_links[:3]:
                 link_url = link['url']
-
-                # NEW v1.6.0: Try to fetch and parse any link that might have data
+                if link_url in self.visited:
+                    continue
+                self._log(f"  Trying: {link_url[:50]}...")
                 df = self.tool_fetch_data(link_url)
-                if df is not None and len(df) > 30:
-                    self._log(f"  SUCCESS: {len(df)} rows!")
-                    return DataDiscovery(
-                        success=True,
-                        url=link_url,
-                        data=df,
-                        steps=self.steps,
-                        description=f"Found data via {portal_url}"
-                    )
-
-                # Navigate deeper for non-data links
-                if not link['is_data']:
-                    sub_html = self.tool_fetch(link_url)
-                    if not sub_html:
-                        continue
-
-                    # Try HTML tables on sub-page
-                    df = self._parse_html_tables(sub_html)
-                    if df is not None and len(df) > 30:
-                        self._log(f"  SUCCESS (sub-page HTML table): {len(df)} rows!")
+                if df is not None and len(df) > 20:
+                    is_valid, reason = self._validate_data_relevance(df, topic, link_url)
+                    if is_valid:
+                        self._log(f"  SUCCESS: {len(df)} rows!")
                         return DataDiscovery(
                             success=True,
                             url=link_url,
                             data=df,
                             steps=self.steps,
-                            description=f"Extracted HTML table from {link_url}"
+                            description=f"Found data via {portal_url}"
                         )
 
-                    # Try API endpoints on sub-page
-                    sub_api_endpoints = self._detect_api_endpoints(sub_html, link_url)
-                    for api_url in sub_api_endpoints[:2]:
-                        df = self.tool_fetch_data(api_url)
-                        if df is not None and len(df) > 30:
-                            self._log(f"  SUCCESS (sub-page API): {len(df)} rows!")
+        # =====================================================================
+        # FALLBACK STRATEGIES (v1.7.0) - Try alternative approaches
+        # =====================================================================
+        self._log("\n--- Fallback: Alternative Search Strategies ---")
+
+        # Fallback 1: Ask Legomena for direct suggestions
+        fallback_question = f"""I'm looking for scientific data about: {topic}
+Domain: {domain}
+I need quantities like: {', '.join(quantities[:3])}
+
+My initial search didn't find downloadable data. What specific databases,
+APIs, or data sources should I try? Give me DIRECT URLs if you know them.
+
+Be specific - name the exact organization and data portal."""
+
+        fallback_response = self.tool_ask(fallback_question)
+        self._log(f"Fallback suggestions: {fallback_response[:200]}...")
+
+        # Extract URLs from the response
+        fallback_urls = re.findall(r'https?://[^\s<>"\']+', fallback_response)
+
+        for url in fallback_urls[:5]:
+            if url in self.visited:
+                continue
+
+            self._log(f"Trying fallback URL: {url[:50]}...")
+            df = self.tool_fetch_data(url)
+
+            if df is not None and len(df) > 20:
+                # Validate relevance
+                is_valid, reason = self._validate_data_relevance(df, topic, url)
+                if is_valid:
+                    self._log(f"  FALLBACK SUCCESS: {len(df)} rows!")
+                    return DataDiscovery(
+                        success=True,
+                        url=url,
+                        data=df,
+                        steps=self.steps,
+                        description=f"Found via fallback reasoning: {url}"
+                    )
+
+        # Fallback 2: Try broader search with different keywords
+        self._log("\n--- Fallback: Broader Search ---")
+
+        broader_queries = [
+            f"{domain} database CSV download",
+            f"{quantities[0] if quantities else topic} historical data",
+            f"international {domain} monitoring data portal",
+        ]
+
+        for query in broader_queries:
+            self._log(f"Broader search: {query}")
+            results = self.tool_search(query)
+
+            for result in results[:3]:
+                if result['url'] in self.visited:
+                    continue
+
+                html = self.tool_fetch(result['url'])
+                if not html:
+                    continue
+
+                # Look for data files
+                data_links = self.tool_extract_links(
+                    html, result['url'],
+                    filter_terms=['.csv', '.txt', '.json', 'download', 'data']
+                )
+
+                for link in data_links[:3]:
+                    df = self.tool_fetch_data(link['url'])
+                    if df is not None and len(df) > 20:
+                        is_valid, reason = self._validate_data_relevance(df, topic, link['url'])
+                        if is_valid:
+                            self._log(f"  BROADER SUCCESS: {len(df)} rows!")
                             return DataDiscovery(
                                 success=True,
-                                url=api_url,
+                                url=link['url'],
                                 data=df,
                                 steps=self.steps,
-                                description=f"Found via API: {api_url}"
-                            )
-
-                    sub_links = self.tool_extract_links(sub_html, link_url, filter_terms=['.csv', '.txt', '.json', 'data', 'ascii'])
-
-                    for sub_link in sub_links[:5]:
-                        df = self.tool_fetch_data(sub_link['url'])
-                        if df is not None and len(df) > 30:
-                            self._log(f"  SUCCESS: {len(df)} rows!")
-                            return DataDiscovery(
-                                success=True,
-                                url=sub_link['url'],
-                                data=df,
-                                steps=self.steps,
-                                description=f"Found via navigation: {portal_url} -> {link_url}"
+                                description=f"Found via broader search: {query}"
                             )
 
         return DataDiscovery(
@@ -879,7 +1116,7 @@ Just give the translated queries, one per line:"""
             url="",
             data=None,
             steps=self.steps,
-            description="Could not find data after exploration"
+            description="Could not find data after exploration and fallback strategies"
         )
 
 

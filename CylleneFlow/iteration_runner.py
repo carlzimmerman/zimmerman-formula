@@ -77,6 +77,11 @@ class IterationRunner:
         self.results: List[Dict] = []
         self.results_file = self.experiment_dir / "results.json"
 
+        # Failure learning (v1.1.0)
+        self.failed_approaches: List[Dict] = []  # Track what didn't work
+        self.successful_patterns: List[Dict] = []  # Track what worked
+        self.learning_context: str = ""  # Context for next iteration
+
         # Discovery function (can be customized)
         self.discovery_fn: Optional[Callable] = None
 
@@ -169,9 +174,15 @@ class IterationRunner:
         }
 
     def _run_discovery(self, iteration: int) -> List[Dict]:
-        """Run discovery for the domain."""
+        """Run discovery for the domain with failure learning."""
         if self.discovery_fn:
             return self.discovery_fn(self.topic, iteration)
+
+        # Build refined topic with learning context (v1.1.0)
+        refined_topic = self.topic
+        if iteration > 1 and self.learning_context:
+            self._log(f"Using learning context: {self.learning_context[:100]}...")
+            refined_topic = f"{self.topic} ({self.learning_context})"
 
         # Default: Try to import HermesFlow
         try:
@@ -179,14 +190,39 @@ class IterationRunner:
 
             explorer = HermesExplorer(verbose=True)
             result = explorer.explore_for_data(
-                topic=self.topic,
+                topic=refined_topic,
                 domain=self.domain,
                 quantities=["value", "measurement", "rate", "ratio"]
             )
 
             if result.success and result.data is not None:
+                # Track successful approach
+                self.successful_patterns.append({
+                    "iteration": iteration,
+                    "url": result.url,
+                    "description": result.description,
+                    "rows": len(result.data),
+                    "columns": list(result.data.columns)[:10]
+                })
+
                 # Analyze for Z² patterns
-                return self._analyze_for_z2(result.data, iteration)
+                findings = self._analyze_for_z2(result.data, iteration)
+
+                # Update learning context based on results
+                if findings:
+                    self.learning_context = f"Found patterns in {result.url}, check related datasets"
+                else:
+                    self.learning_context = f"Data from {result.url} didn't show Z² patterns, try different quantities"
+
+                return findings
+            else:
+                # Track failure for learning
+                self.failed_approaches.append({
+                    "iteration": iteration,
+                    "topic": refined_topic,
+                    "reason": result.description
+                })
+                self.learning_context = f"Previous search failed: {result.description}. Try alternative data sources"
 
         except ImportError:
             self._log("HermesFlow not available, using stub discovery", "WARN")
