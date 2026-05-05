@@ -39,8 +39,15 @@ from urllib.parse import urljoin, urlparse
 
 LEGOMENA_MODEL = os.environ.get("LEGOMENA_MODEL", "legomena-moe")
 
-# Version with dynamic persistent exploration
-__version__ = "1.8.0"
+# Version with dynamic persistent exploration + topic validation
+__version__ = "1.9.0"
+
+# Import TopicValidator for domain drift prevention
+try:
+    from topic_validator import TopicValidator, validate_discovery
+    TOPIC_VALIDATOR_AVAILABLE = True
+except ImportError:
+    TOPIC_VALIDATOR_AVAILABLE = False
 
 # No hardcoded sources - everything discovered dynamically
 
@@ -606,17 +613,40 @@ Just give the translated queries, one per line:"""
     # =========================================================================
 
     def _validate_data_relevance(self, df: pd.DataFrame, topic: str,
-                                  source_url: str) -> Tuple[bool, str]:
+                                  source_url: str, domain: str = None) -> Tuple[bool, str]:
         """
         Dynamically validate if the downloaded data is actually relevant.
 
         This is the KEY fix - instead of accepting any data, we verify it
         actually relates to what we're looking for.
 
+        v1.9.0: Added TopicValidator for faster keyword-based validation
+        before falling back to LLM.
+
         Returns: (is_valid, reason)
         """
         if df is None or len(df) < 10:
             return False, "Insufficient data"
+
+        # FIRST: Try fast keyword-based TopicValidator (v1.9.0)
+        if TOPIC_VALIDATOR_AVAILABLE and domain:
+            try:
+                validator = TopicValidator(verbose=False)
+                result = validator.validate_dataframe(df, topic, domain)
+
+                # If TopicValidator is confident, use its result
+                if result.confidence >= 0.6:
+                    if result.is_valid:
+                        self._log(f"  ✓ TopicValidator: {result.reason}")
+                        return True, f"TopicValidator: {result.reason}"
+                    else:
+                        self._log(f"  ✗ TopicValidator rejected: {result.reason}")
+                        return False, f"TopicValidator: {result.reason}"
+
+                # If TopicValidator is uncertain (confidence < 0.6), fall through to LLM
+                self._log(f"  ? TopicValidator uncertain ({result.confidence:.2f}), using LLM")
+            except Exception as e:
+                self._log(f"  ! TopicValidator error: {e}, falling back to LLM")
 
         # Get column names and sample values
         columns = list(df.columns)
@@ -736,7 +766,8 @@ Answer:"""
         return None
 
     def _try_return_validated(self, df: pd.DataFrame, url: str,
-                               topic: str, description: str) -> Optional[DataDiscovery]:
+                               topic: str, description: str,
+                               domain: str = None) -> Optional[DataDiscovery]:
         """
         Validate data before returning it as a discovery.
 
@@ -745,8 +776,8 @@ Answer:"""
         if df is None:
             return None
 
-        # Run validation
-        is_valid, reason = self._validate_data_relevance(df, topic, url)
+        # Run validation (v1.9.0: pass domain for TopicValidator)
+        is_valid, reason = self._validate_data_relevance(df, topic, url, domain)
 
         if is_valid:
             return DataDiscovery(
@@ -765,7 +796,8 @@ Answer:"""
     # =========================================================================
 
     def _explore_portal_deeply(self, portal_url: str, html: str, topic: str,
-                               quantities: List[str], depth: int = 0) -> Optional[DataDiscovery]:
+                               quantities: List[str], depth: int = 0,
+                               domain: str = None) -> Optional[DataDiscovery]:
         """
         Deep exploration of a data portal page.
 
@@ -777,6 +809,8 @@ Answer:"""
         2. Categorizing them (direct files vs. intermediate pages)
         3. Trying direct files first
         4. Then recursively exploring intermediate pages
+
+        v1.9.0: Added domain parameter for TopicValidator integration.
         """
         if depth > 2:  # Prevent infinite recursion
             return None
@@ -840,7 +874,7 @@ Answer:"""
 
             df = self.tool_fetch_data(file_url)
             if df is not None and len(df) > 10:
-                is_valid, reason = self._validate_data_relevance(df, topic, file_url)
+                is_valid, reason = self._validate_data_relevance(df, topic, file_url, domain)
                 if is_valid:
                     self._log(f"    SUCCESS: {len(df)} rows from {file_info['ext']}")
                     return DataDiscovery(
@@ -860,7 +894,7 @@ Answer:"""
             self._log(f"    Trying API: {api_url[:50]}...")
             df = self.tool_fetch_data(api_url)
             if df is not None and len(df) > 10:
-                is_valid, reason = self._validate_data_relevance(df, topic, api_url)
+                is_valid, reason = self._validate_data_relevance(df, topic, api_url, domain)
                 if is_valid:
                     self._log(f"    SUCCESS via API: {len(df)} rows")
                     return DataDiscovery(
@@ -882,7 +916,7 @@ Answer:"""
                 page_html = self.tool_fetch(page_url)
                 if page_html:
                     result = self._explore_portal_deeply(
-                        page_url, page_html, topic, quantities, depth + 1
+                        page_url, page_html, topic, quantities, depth + 1, domain
                     )
                     if result and result.success:
                         return result
@@ -1154,7 +1188,7 @@ REASON: [one sentence]"""
 
             # v1.8.0: Use deep exploration to find data files recursively
             discovery = self._explore_portal_deeply(
-                portal_url, html, topic, quantities, depth=0
+                portal_url, html, topic, quantities, depth=0, domain=domain
             )
             if discovery and discovery.success:
                 return discovery
@@ -1190,7 +1224,7 @@ URL: [full url]"""
                     rec_html = self.tool_fetch(recommended_url)
                     if rec_html:
                         discovery = self._explore_portal_deeply(
-                            recommended_url, rec_html, topic, quantities, depth=1
+                            recommended_url, rec_html, topic, quantities, depth=1, domain=domain
                         )
                         if discovery and discovery.success:
                             return discovery
@@ -1198,7 +1232,7 @@ URL: [full url]"""
                     # Direct file URL
                     df = self.tool_fetch_data(recommended_url)
                     if df is not None and len(df) > 20:
-                        is_valid, reason = self._validate_data_relevance(df, topic, recommended_url)
+                        is_valid, reason = self._validate_data_relevance(df, topic, recommended_url, domain)
                         if is_valid:
                             return DataDiscovery(
                                 success=True,
@@ -1214,7 +1248,7 @@ URL: [full url]"""
                 self._log(f"  Trying pattern: {purl.split('/')[-1]}")
                 df = self.tool_fetch_data(purl)
                 if df is not None and len(df) > 20:
-                    is_valid, reason = self._validate_data_relevance(df, topic, purl)
+                    is_valid, reason = self._validate_data_relevance(df, topic, purl, domain)
                     if is_valid:
                         return DataDiscovery(
                             success=True,
@@ -1255,8 +1289,8 @@ Be specific - name the exact organization and data portal."""
             df = self.tool_fetch_data(url)
 
             if df is not None and len(df) > 20:
-                # Validate relevance
-                is_valid, reason = self._validate_data_relevance(df, topic, url)
+                # Validate relevance (v1.9.0: domain-aware validation)
+                is_valid, reason = self._validate_data_relevance(df, topic, url, domain)
                 if is_valid:
                     self._log(f"  FALLBACK SUCCESS: {len(df)} rows!")
                     return DataDiscovery(
@@ -1290,7 +1324,7 @@ Be specific - name the exact organization and data portal."""
 
                 # v1.8.0: Use deep exploration on search results
                 discovery = self._explore_portal_deeply(
-                    result['url'], html, topic, quantities, depth=0
+                    result['url'], html, topic, quantities, depth=0, domain=domain
                 )
                 if discovery and discovery.success:
                     self._log(f"  BROADER SUCCESS via deep exploration!")
@@ -1305,7 +1339,7 @@ Be specific - name the exact organization and data portal."""
                 for link in data_links[:3]:
                     df = self.tool_fetch_data(link['url'])
                     if df is not None and len(df) > 20:
-                        is_valid, reason = self._validate_data_relevance(df, topic, link['url'])
+                        is_valid, reason = self._validate_data_relevance(df, topic, link['url'], domain)
                         if is_valid:
                             self._log(f"  BROADER SUCCESS: {len(df)} rows!")
                             return DataDiscovery(
