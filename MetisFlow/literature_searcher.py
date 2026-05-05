@@ -246,7 +246,7 @@ class LiteratureSearcher:
                 "paper_title": "Turbulent Flow Near a Wall",
                 "authors": ["Theodore von Karman"],
                 "year": 1930,
-                "approach": "dimensional_analysis",
+                "approach": "dimensional",
                 "key_equations": ["u/u* = (1/κ)ln(y/y₀)", "κ ≈ 0.41"],
                 "abstract": "The von Karman constant κ ≈ 0.41 appears in the logarithmic law "
                            "of the wall for turbulent boundary layers. Its value is determined "
@@ -288,7 +288,7 @@ class LiteratureSearcher:
                 "paper_title": "Über irreversible Strahlungsvorgänge",
                 "authors": ["Max Planck"],
                 "year": 1899,
-                "approach": "dimensional_analysis",
+                "approach": "dimensional",
                 "key_equations": ["l_P = √(ℏG/c³) ≈ 1.6×10⁻³⁵ m"],
                 "abstract": "Planck length is constructed from fundamental constants h, G, c "
                            "using dimensional analysis. It represents the scale where quantum "

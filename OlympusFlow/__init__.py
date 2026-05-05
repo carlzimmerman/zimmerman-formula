@@ -71,9 +71,18 @@ v1.5.0 Changes (May 5, 2026):
 - Legomena-assisted code generation for computational confirmation scripts
 - DatabaseQueryHandler for structured API access to scientific databases
 - Known APIs: GVP, SILSO, USGS, NOAA, PDG, and more
+
+v1.6.0 Changes (May 5, 2026):
+- Unified Derivation Pipeline for Z² constant derivation
+- DerivationChain data structure with step-by-step derivation tracking
+- DerivationEngine with Legomena-powered reasoning
+- First-principles detection (starts from Z² axiom, has physics step)
+- Automatic routing: AletheiaLake (first-principles) vs MnemosyneLake (derived)
+- MetisFlow integration for literature research before derivation
+- Clean data flow: DerivationTask → DerivationChain → VerifiedDerivation
 """
 
-__version__ = "1.5.0"  # Added StatisticalValidator for rigorous significance testing
+__version__ = "1.6.0"  # Unified Derivation Pipeline
 
 # Core components
 from .contracts import (
@@ -130,6 +139,28 @@ from .statistical_validator import (
     TARGETS
 )
 
+# Unified Derivation Pipeline (v1.6.0)
+from .derivation_contracts import (
+    DerivationStep,
+    DerivationChain,
+    VerifiedDerivation,
+    DerivationLevel,
+    ChainStatus,
+    StorageDestination,
+    ZSquaredRelevance as DerivationRelevance,
+    KNOWN_FIRST_PRINCIPLES,
+    create_z2_axiom_step,
+    evaluate_formula_z_content
+)
+
+from .derivation_engine import DerivationEngine
+
+from .derivation_pipeline import (
+    DerivationPipeline,
+    DerivationTask,
+    PipelineResult
+)
+
 __all__ = [
     # Version
     "__version__",
@@ -180,5 +211,21 @@ __all__ = [
     "MultiSourceCorroborator",
     "LegomenaCodeGenerator",
     "validate_pattern_quick",
-    "TARGETS"
+    "TARGETS",
+
+    # Unified Derivation Pipeline (v1.6.0)
+    "DerivationStep",
+    "DerivationChain",
+    "VerifiedDerivation",
+    "DerivationLevel",
+    "ChainStatus",
+    "StorageDestination",
+    "DerivationRelevance",
+    "KNOWN_FIRST_PRINCIPLES",
+    "create_z2_axiom_step",
+    "evaluate_formula_z_content",
+    "DerivationEngine",
+    "DerivationPipeline",
+    "DerivationTask",
+    "PipelineResult"
 ]
