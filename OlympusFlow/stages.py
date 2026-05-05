@@ -44,6 +44,14 @@ from .contracts import (
 )
 from .events import EventEmitter, EventType, get_event_bus
 
+# HeliconLake integration for source registry
+try:
+    from HermesFlow.helicon_lake import HeliconLake
+    HELICON_AVAILABLE = True
+except ImportError:
+    HELICON_AVAILABLE = False
+    HeliconLake = None
+
 
 # =============================================================================
 # STAGE INTERFACE
@@ -134,13 +142,26 @@ class DiscoveryStage(Stage):
         self.model = model or os.environ.get("LEGOMENA_MODEL", "legomena-moe")
 
     def run(self, input_data: Any, state: PipelineState) -> StageResult:
-        """Run data discovery using HermesFlow."""
+        """Run data discovery using HeliconLake + HermesFlow."""
         start = time.time()
 
         self.emit(EventType.DISCOVERY_STARTED, {
             "topic": self.topic,
             "domain": self.domain
         })
+
+        # STEP 1: Query HeliconLake for cached sources
+        helicon_sources = []
+        if HELICON_AVAILABLE:
+            try:
+                helicon_lake = HeliconLake()
+                helicon_sources = helicon_lake.find_sources(self.domain, self.topic)
+                if helicon_sources:
+                    print(f"[HeliconLake] Found {len(helicon_sources)} cached sources for {self.domain}/{self.topic}")
+                    for src in helicon_sources[:3]:
+                        print(f"  - {src.url[:60]}...")
+            except Exception as e:
+                print(f"[HeliconLake] Query failed: {e}")
 
         try:
             from HermesFlow.hermes_explorer import HermesExplorer
@@ -149,11 +170,55 @@ class DiscoveryStage(Stage):
             os.environ["LEGOMENA_MODEL"] = self.model
 
             explorer = HermesExplorer(verbose=self.config.get("verbose", True))
-            result = explorer.explore_for_data(
-                topic=self.topic,
-                domain=self.domain,
-                quantities=self.quantities
-            )
+
+            # STEP 2: Try HeliconLake sources first
+            result = None
+            if helicon_sources:
+                for src in helicon_sources[:3]:  # Try top 3 cached sources
+                    try:
+                        print(f"[HeliconLake] Trying cached source: {src.url}")
+                        result = explorer.try_specific_url(
+                            url=src.url,
+                            topic=self.topic,
+                            quantities=self.quantities
+                        )
+                        if result and result.success:
+                            print(f"[HeliconLake] Successfully used cached source!")
+                            # Mark as validated
+                            if HELICON_AVAILABLE:
+                                helicon_lake.validate_source(src.id)
+                            break
+                    except Exception as e:
+                        print(f"[HeliconLake] Cached source failed: {e}")
+                        if HELICON_AVAILABLE:
+                            helicon_lake.mark_dead(src.id)
+                        continue
+
+            # STEP 3: Fall back to HermesFlow discovery
+            if not result or not result.success:
+                print(f"[Discovery] Falling back to HermesFlow web discovery...")
+                result = explorer.explore_for_data(
+                    topic=self.topic,
+                    domain=self.domain,
+                    quantities=self.quantities
+                )
+
+                # STEP 4: Register successful discovery to HeliconLake
+                if result.success and HELICON_AVAILABLE and result.url:
+                    try:
+                        helicon_lake.register_source({
+                            'url': result.url,
+                            'description': f"Discovered data for {self.topic}",
+                            'domains': [self.domain],
+                            'topics': [self.topic] + self.quantities[:3],
+                            'quantities': self.quantities,
+                            'format': self._detect_format(result.url),
+                            'discovered_by': 'DiscoveryStage',
+                            'discovery_method': 'HermesFlow'
+                        })
+                        print(f"[HeliconLake] Registered new source: {result.url[:60]}...")
+                    except Exception as e:
+                        print(f"[HeliconLake] Registration failed: {e}")
 
             if result.success and result.data is not None:
                 # Create Discovery contract

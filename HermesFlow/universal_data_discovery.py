@@ -28,6 +28,19 @@ from datetime import datetime
 from enum import Enum
 from abc import ABC, abstractmethod
 
+# HeliconLake integration
+try:
+    from .helicon_lake import HeliconLake, SourceEntry
+    HELICON_AVAILABLE = True
+except ImportError:
+    try:
+        from helicon_lake import HeliconLake, SourceEntry
+        HELICON_AVAILABLE = True
+    except ImportError:
+        HELICON_AVAILABLE = False
+        HeliconLake = None
+        SourceEntry = None
+
 # Constants
 Z2 = 32 * 3.14159265358979 / 3
 Z = Z2 ** 0.5
@@ -134,11 +147,22 @@ class UniversalDataDiscovery:
         "codata": "https://physics.nist.gov/cuu/Constants/",
     }
 
-    def __init__(self, use_legomena: bool = True, use_web_search: bool = True):
+    def __init__(self, use_legomena: bool = True, use_web_search: bool = True,
+                 use_helicon_lake: bool = True):
         self.use_legomena = use_legomena
         self.use_web_search = use_web_search
+        self.use_helicon_lake = use_helicon_lake
         self.discovered_domains: Dict[str, DomainProfile] = {}
         self.discovered_sources: Dict[str, DataSource] = {}
+
+        # Initialize HeliconLake for source registry
+        self.helicon_lake = None
+        if use_helicon_lake and HELICON_AVAILABLE:
+            try:
+                self.helicon_lake = HeliconLake()
+                print(f"HeliconLake initialized: {self.helicon_lake.get_statistics()['total_sources']} sources")
+            except Exception as e:
+                print(f"HeliconLake initialization failed: {e}")
 
     def _call_legomena(self, prompt: str, timeout: int = None) -> Optional[str]:
         """Call Legomena for intelligent reasoning."""
@@ -281,9 +305,44 @@ JSON response:"""
         """
         Discover authoritative data sources for a domain.
 
-        Uses web search + LLM reasoning to find real data sources.
+        PRIORITY ORDER:
+        1. Query HeliconLake for known sources
+        2. Validate known sources are still active
+        3. Fall back to web search if needed
+        4. Register new discoveries to HeliconLake
         """
         sources = []
+
+        # STEP 1: Query HeliconLake first (if available)
+        if self.helicon_lake:
+            lake_sources = self.helicon_lake.find_sources(domain.name, domain.subdomain)
+            if lake_sources:
+                print(f"HeliconLake: Found {len(lake_sources)} known sources for {domain.name}/{domain.subdomain}")
+                for src in lake_sources:
+                    # Convert HeliconLake entry to DataSource
+                    sources.append(DataSource(
+                        name=src.description or src.url,
+                        url=src.url,
+                        source_type=SourceType.DATABASE,
+                        quality=DataQuality.AUTHORITATIVE if src.authority_score > 0.7 else DataQuality.INSTITUTIONAL,
+                        description=src.description,
+                        access_method=src.format,
+                        quantities_available=src.quantities
+                    ))
+
+                # If we have active sources, return them
+                active_sources = [s for s in lake_sources if s.validation_status == 'active']
+                if active_sources:
+                    print(f"HeliconLake: Using {len(active_sources)} active sources")
+                    return sources
+
+                # Otherwise validate what we have
+                print("HeliconLake: Validating known sources...")
+                for src in lake_sources[:3]:  # Validate top 3
+                    self.helicon_lake.validate_source(src.id)
+
+        # STEP 2: Fall back to web search
+        print(f"Searching web for {domain.name}/{domain.subdomain} sources...")
 
         # Search for authoritative sources
         search_queries = [
@@ -346,6 +405,29 @@ Response:"""
 
         # Update domain profile
         domain.known_sources = sources[:10]  # Keep top 10
+
+        # STEP 3: Register new discoveries to HeliconLake
+        if self.helicon_lake and sources:
+            registered = 0
+            for src in sources[:5]:  # Register top 5
+                try:
+                    self.helicon_lake.register_source({
+                        'url': src.url,
+                        'description': src.description or src.name,
+                        'domains': [domain.name],
+                        'topics': [domain.subdomain] if domain.subdomain else [],
+                        'quantities': src.quantities_available,
+                        'format': src.access_method,
+                        'organization': src.name,
+                        'authority_score': 0.9 if src.quality == DataQuality.AUTHORITATIVE else 0.7 if src.quality == DataQuality.INSTITUTIONAL else 0.5,
+                        'discovered_by': 'UniversalDataDiscovery',
+                        'discovery_method': 'web_search'
+                    })
+                    registered += 1
+                except Exception as e:
+                    pass  # Don't fail on registration errors
+            if registered > 0:
+                print(f"HeliconLake: Registered {registered} new sources")
 
         return sources
 

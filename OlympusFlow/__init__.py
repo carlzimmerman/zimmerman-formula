@@ -95,6 +95,14 @@ from .stages import (
 
 from .pipeline import Pipeline, research
 
+# Constants (centralized Z² values and thresholds)
+from .constants import (
+    Z2, Z, PHI, INV_PHI, PI, E,
+    Z2_TARGETS,
+    HRMThresholds, PatternThresholds, ValidationThresholds,
+    get_target, matches_z2_target, hrm_to_status
+)
+
 __all__ = [
     # Version
     "__version__",
@@ -126,5 +134,11 @@ __all__ = [
 
     # Pipeline
     "Pipeline",
-    "research"
+    "research",
+
+    # Constants
+    "Z2", "Z", "PHI", "INV_PHI", "PI", "E",
+    "Z2_TARGETS",
+    "HRMThresholds", "PatternThresholds", "ValidationThresholds",
+    "get_target", "matches_z2_target", "hrm_to_status"
 ]

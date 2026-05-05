@@ -414,6 +414,12 @@ class Pipeline(EventEmitter):
                                 self.deepening_findings.extend(deeper)
                                 new_truths += len(deeper)
 
+                                # Persist deepening findings to MnemosyneLake
+                                if deeper and MNEMOSYNE_AVAILABLE and self.mnemosyne_lake:
+                                    persisted = self._persist_deepening_findings(deeper, truth)
+                                    if persisted > 0:
+                                        print(f"[Deepening] Persisted {persisted} findings to MnemosyneLake")
+
         # Process any batched findings at end of iteration
         deeper_from_batch = self._process_deepening_batch()
         if deeper_from_batch:
@@ -532,6 +538,62 @@ class Pipeline(EventEmitter):
                 deeper_findings.extend(deeper)
 
         return deeper_findings
+
+    def _persist_deepening_findings(self, deeper_findings: List[Dict], parent_truth) -> int:
+        """
+        Persist deepening findings to MnemosyneLake.
+
+        Converts Z² pattern findings from deepening to VerifiedTruth objects
+        and stores them for training and future reference.
+        """
+        persisted = 0
+
+        if not MNEMOSYNE_AVAILABLE or not self.mnemosyne_lake:
+            return 0
+
+        for finding in deeper_findings:
+            try:
+                # Create a MnemosyneLake truth from the deepening finding
+                from MnemosyneLake import VerifiedTruth as MnemoTruth
+
+                truth_id = hashlib.md5(
+                    f"{finding.get('quantity', '')}:{finding.get('value', 0):.6f}:{datetime.now().isoformat()}".encode()
+                ).hexdigest()[:16]
+
+                mnemosyne_truth = MnemoTruth(
+                    truth_id=f"deep-{truth_id}",
+                    domain=finding.get('domain', parent_truth.domain if parent_truth else 'unknown'),
+                    claim=f"Deepening: {finding.get('quantity', 'unknown')} = {finding.get('value', 0):.4f} ≈ {finding.get('target', 'Z²')}",
+                    z2_prediction=finding.get('target_value', 0.0),
+                    measured_value=finding.get('value', 0.0),
+                    measured_uncertainty=None,
+                    percent_error=finding.get('error_percent', 10.0),
+                    sigma_deviation=None,
+                    hrm_score=0.6,  # Base score for deepening findings
+                    data_source=finding.get('source', 'deepening'),
+                    data_url=finding.get('url', ''),
+                    status='speculative',  # Start as speculative, can be validated later
+                    z2_formula=finding.get('target', 'Z²'),
+                    notes=f"Deepening finding. Parent: {finding.get('parent_question', 'unknown')[:50]}",
+                    citations=None
+                )
+
+                self.mnemosyne_lake.add_truth(mnemosyne_truth)
+                persisted += 1
+
+                # Emit event for tracking
+                self.emit(EventType.TRUTH_STORED, {
+                    "truth_id": mnemosyne_truth.truth_id,
+                    "type": "deepening",
+                    "quantity": finding.get('quantity'),
+                    "target": finding.get('target')
+                })
+
+            except Exception as e:
+                print(f"[Deepening] Failed to persist finding: {e}")
+                continue
+
+        return persisted
 
     def _save_state(self):
         """Save current state to disk."""

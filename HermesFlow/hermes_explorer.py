@@ -95,6 +95,126 @@ class HermesExplorer:
         self.steps.append(ExplorationStep(action, input, result, reasoning))
 
     # =========================================================================
+    # DIRECT URL ACCESS (for HeliconLake cached sources)
+    # =========================================================================
+
+    def try_specific_url(self, url: str, topic: str,
+                         quantities: List[str]) -> DataDiscovery:
+        """
+        Try to fetch data from a specific known URL.
+
+        Used by HeliconLake to test cached sources before web search.
+
+        Args:
+            url: The URL to try
+            topic: Research topic for context
+            quantities: What we're looking for
+
+        Returns:
+            DataDiscovery with success/failure and any data found
+        """
+        self._log(f"\n{'='*60}")
+        self._log(f"TRYING SPECIFIC URL")
+        self._log(f"URL: {url}")
+        self._log(f"{'='*60}\n")
+
+        self.steps = []
+        self.visited = set()
+
+        try:
+            # Step 1: Fetch the page
+            self._log("Step 1: Fetching URL...")
+            content = self.tool_fetch(url)
+
+            if not content:
+                self._log("Failed to fetch URL")
+                return DataDiscovery(
+                    success=False,
+                    url=url,
+                    data=None,
+                    steps=self.steps,
+                    description="Failed to fetch URL"
+                )
+
+            # Step 2: Try to parse as data
+            self._log("Step 2: Attempting to parse data...")
+
+            # Check if it's a landing page or direct data
+            if isinstance(content, bytes):
+                df = self.tool_parse(content)
+                if df is not None and len(df) > 0:
+                    self._log(f"Parsed {len(df)} rows, {len(df.columns)} columns")
+                    return DataDiscovery(
+                        success=True,
+                        url=url,
+                        data=df,
+                        steps=self.steps,
+                        description=f"Successfully fetched data from cached source"
+                    )
+
+            # Step 3: If landing page, try to find data links
+            self._log("Step 3: Searching for data links...")
+
+            if isinstance(content, str):
+                # Look for data file links
+                import re
+                data_links = re.findall(
+                    r'href=["\']([^"\']*\.(csv|txt|json|dat|data)[^"\']*)["\']',
+                    content, re.IGNORECASE
+                )
+
+                if data_links:
+                    # Try each data link
+                    for href, ext in data_links[:5]:
+                        # Make absolute URL
+                        if href.startswith('/'):
+                            from urllib.parse import urlparse
+                            parsed = urlparse(url)
+                            full_url = f"{parsed.scheme}://{parsed.netloc}{href}"
+                        elif not href.startswith('http'):
+                            full_url = url.rstrip('/') + '/' + href
+                        else:
+                            full_url = href
+
+                        self._log(f"Trying data link: {full_url[:60]}...")
+
+                        try:
+                            data_content = self.tool_fetch(full_url)
+                            if data_content:
+                                df = self.tool_parse(data_content)
+                                if df is not None and len(df) > 0:
+                                    self._log(f"SUCCESS: {len(df)} rows from {full_url}")
+                                    return DataDiscovery(
+                                        success=True,
+                                        url=full_url,
+                                        data=df,
+                                        steps=self.steps,
+                                        description=f"Data from cached source link"
+                                    )
+                        except Exception as e:
+                            self._log(f"Link failed: {e}")
+                            continue
+
+            # Failed to get data
+            return DataDiscovery(
+                success=False,
+                url=url,
+                data=None,
+                steps=self.steps,
+                description="Could not extract data from URL"
+            )
+
+        except Exception as e:
+            self._log(f"Error: {e}")
+            return DataDiscovery(
+                success=False,
+                url=url,
+                data=None,
+                steps=self.steps,
+                description=f"Error: {str(e)}"
+            )
+
+    # =========================================================================
     # TOOLS
     # =========================================================================
 
