@@ -1,18 +1,23 @@
 #!/usr/bin/env python3
 """
-ITERATION RUNNER
-================
+ITERATION RUNNER (v1.2.0)
+=========================
 
-Orchestrates iterative learning experiments.
+Orchestrates iterative learning experiments with MnemosyneLake integration.
 
 Runs the full loop:
 1. Explore topic with current model (via HermesFlow)
 2. Find Z² relationships
 3. Validate statistically
-4. Add to truth store
-5. Generate training examples
+4. Add to truth store AND MnemosyneLake
+5. Generate training examples from MnemosyneLake truths
 6. Update model
 7. Repeat until diminishing returns
+
+v1.2.0 Changes:
+- Integrated MnemosyneLake for truth persistence
+- Pull base truths from lake for iteration context
+- Sync validated truths to lake for training
 
 Author: Carl Zimmerman
 Date: May 4, 2026
@@ -26,7 +31,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Optional, Callable
 
-# Add parent directory for HermesFlow imports
+# Add parent directory for imports
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 try:
@@ -37,6 +42,13 @@ except ImportError:
     from truth_store import TruthStore
     from training_generator import TrainingGenerator
     from model_updater import ModelUpdater
+
+# MnemosyneLake integration (v1.2.0)
+try:
+    from MnemosyneLake import MnemosyneLake, VerifiedTruth, TruthExporter
+    MNEMOSYNE_AVAILABLE = True
+except ImportError:
+    MNEMOSYNE_AVAILABLE = False
 
 
 class IterationRunner:
@@ -73,6 +85,12 @@ class IterationRunner:
         self.training_gen = TrainingGenerator(self.experiment_dir / "training_data.jsonl")
         self.model_updater = ModelUpdater(self.base_model)
 
+        # MnemosyneLake integration (v1.2.0)
+        self.mnemosyne_lake = None
+        if MNEMOSYNE_AVAILABLE:
+            self.mnemosyne_lake = MnemosyneLake()
+            self._log("MnemosyneLake connected")
+
         # Results tracking
         self.results: List[Dict] = []
         self.results_file = self.experiment_dir / "results.json"
@@ -81,6 +99,9 @@ class IterationRunner:
         self.failed_approaches: List[Dict] = []  # Track what didn't work
         self.successful_patterns: List[Dict] = []  # Track what worked
         self.learning_context: str = ""  # Context for next iteration
+
+        # Base context from MnemosyneLake (v1.2.0)
+        self.base_truths_context = self._load_base_truths_context()
 
         # Discovery function (can be customized)
         self.discovery_fn: Optional[Callable] = None
@@ -138,13 +159,18 @@ class IterationRunner:
         validated = self._validate_findings(findings)
         self._log(f"Found {len(findings)} total, {len(validated)} validated")
 
-        # Add to truth store
+        # Add to truth store AND MnemosyneLake (v1.2.0)
         new_truths = 0
+        lake_synced = 0
         for f in validated:
             if self.truth_store.add(f):
                 new_truths += 1
+                # Sync to MnemosyneLake
+                truth_id = self._sync_truth_to_mnemosyne(f)
+                if truth_id:
+                    lake_synced += 1
 
-        self._log(f"Added {new_truths} new truths")
+        self._log(f"Added {new_truths} new truths ({lake_synced} synced to MnemosyneLake)")
 
         # Generate training data
         if new_truths > 0:
@@ -178,11 +204,15 @@ class IterationRunner:
         if self.discovery_fn:
             return self.discovery_fn(self.topic, iteration)
 
-        # Build refined topic with learning context (v1.1.0)
+        # Build refined topic with learning context (v1.1.0) and base truths (v1.2.0)
         refined_topic = self.topic
         if iteration > 1 and self.learning_context:
             self._log(f"Using learning context: {self.learning_context[:100]}...")
             refined_topic = f"{self.topic} ({self.learning_context})"
+
+        # Include base truths from MnemosyneLake (v1.2.0)
+        if self.base_truths_context and iteration == 1:
+            self._log(f"Base truths context loaded ({len(self.base_truths_context)} chars)")
 
         # Default: Try to import HermesFlow
         try:
@@ -358,6 +388,90 @@ class IterationRunner:
         log_file = self.experiment_dir / "experiment.log"
         with open(log_file, 'a') as f:
             f.write(f"[{ts}] [{level}] {msg}\n")
+
+    # =========================================================================
+    # MNEMOSYNE LAKE INTEGRATION (v1.2.0)
+    # =========================================================================
+
+    def _load_base_truths_context(self) -> str:
+        """
+        Load base truths from MnemosyneLake to provide context for iterations.
+
+        This gives the model knowledge of existing validated truths before
+        it starts exploring new domains.
+        """
+        if not self.mnemosyne_lake:
+            return ""
+
+        validated = self.mnemosyne_lake.get_all_validated()
+        if not validated:
+            return ""
+
+        context_parts = ["Known Z² truths:"]
+        for truth in validated[:10]:  # Top 10 most confident
+            if truth.z2_prediction and truth.measured_value:
+                context_parts.append(
+                    f"- {truth.claim}: predicted {truth.z2_prediction:.4f}, "
+                    f"measured {truth.measured_value:.4f} ({truth.percent_error:.2f}% error)"
+                )
+            else:
+                context_parts.append(f"- {truth.claim} (HRM: {truth.hrm_score:.2f})")
+
+        return "\n".join(context_parts)
+
+    def _sync_truth_to_mnemosyne(self, finding: Dict) -> Optional[str]:
+        """
+        Sync a validated finding to MnemosyneLake.
+
+        Returns the truth_id if successful.
+        """
+        if not self.mnemosyne_lake:
+            return None
+
+        # Create VerifiedTruth from finding
+        claim = f"{finding['quantity']} matches {finding['target']}"
+        truth_id = self.mnemosyne_lake.generate_id(claim, self.domain)
+
+        truth = VerifiedTruth(
+            truth_id=truth_id,
+            domain=self.domain,
+            claim=claim,
+            z2_prediction=finding.get('target_value'),
+            measured_value=finding.get('value'),
+            percent_error=finding.get('error_percent'),
+            hrm_score=0.8 if finding.get('error_percent', 100) < 1 else 0.7,
+            data_source=f"CylleneFlow experiment: {self.experiment_name}",
+            verification_method="Statistical analysis of empirical data",
+            notes=f"Found in iteration {finding.get('iteration', 0)}, n={finding.get('n_samples', 0)}"
+        )
+
+        self.mnemosyne_lake.add_truth(truth)
+        return truth_id
+
+    def _export_training_from_lake(self) -> int:
+        """
+        Export all validated truths from MnemosyneLake for training.
+
+        Returns number of training examples exported.
+        """
+        if not self.mnemosyne_lake:
+            return 0
+
+        exporter = TruthExporter(self.mnemosyne_lake)
+        output_path = self.experiment_dir / "mnemosyne_training.jsonl"
+        training_data = exporter.export_for_legomena(str(output_path), min_hrm=0.7)
+
+        self._log(f"Exported {len(training_data)} training examples from MnemosyneLake")
+        return len(training_data)
+
+    def get_lake_stats(self) -> Dict:
+        """Get statistics from MnemosyneLake."""
+        if not self.mnemosyne_lake:
+            return {"available": False}
+
+        stats = self.mnemosyne_lake.get_statistics()
+        stats["available"] = True
+        return stats
 
 
 def run_venice_experiment():
