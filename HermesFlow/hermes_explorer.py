@@ -37,7 +37,7 @@ from dataclasses import dataclass
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin, urlparse
 
-LEGOMENA_MODEL = os.environ.get("LEGOMENA_MODEL", "legomena-4b")
+LEGOMENA_MODEL = os.environ.get("LEGOMENA_MODEL", "legomena-moe")
 
 # Version with dynamic persistent exploration
 __version__ = "1.8.0"

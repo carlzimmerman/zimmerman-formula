@@ -349,7 +349,7 @@ class Pipeline(EventEmitter):
     @classmethod
     def create_default(cls, topic: str, domain: str,
                        quantities: List[str] = None,
-                       model: str = "legomena-31b-clean") -> "Pipeline":
+                       model: str = "legomena-moe") -> "Pipeline":
         """
         Create a pipeline with default stages.
 
@@ -392,7 +392,7 @@ class Pipeline(EventEmitter):
 # =============================================================================
 
 def research(topic: str, domain: str, quantities: List[str] = None,
-             iterations: int = 5, model: str = "legomena-31b-clean") -> Dict:
+             iterations: int = 5, model: str = "legomena-moe") -> Dict:
     """
     Quick function to run research on a topic.
 

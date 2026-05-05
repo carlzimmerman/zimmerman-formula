@@ -293,7 +293,7 @@ class PipelineConfig(Contract):
     quantities: List[str] = field(default_factory=list)
     max_iterations: int = 10
     min_hrm_threshold: float = 0.8
-    model_name: str = "legomena-31b-clean"
+    model_name: str = "legomena-moe"
     verbose: bool = True
     persist_state: bool = True
 

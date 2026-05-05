@@ -131,7 +131,7 @@ class DiscoveryStage(Stage):
         self.topic = topic
         self.domain = domain
         self.quantities = quantities
-        self.model = model or os.environ.get("LEGOMENA_MODEL", "legomena-31b-clean")
+        self.model = model or os.environ.get("LEGOMENA_MODEL", "legomena-moe")
 
     def run(self, input_data: Any, state: PipelineState) -> StageResult:
         """Run data discovery using HermesFlow."""
