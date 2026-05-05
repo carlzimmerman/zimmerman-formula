@@ -1,0 +1,123 @@
+"""
+OLYMPUSFLOW - Unified Research Orchestrator
+============================================
+
+OlympusFlow is the central orchestrator for Z² research, bringing together:
+- HermesFlow (data discovery)
+- TruthFlow (verification)
+- CylleneFlow (iterative learning)
+- MnemosyneLake (truth storage)
+- Legomena (reasoning)
+
+Named after Mount Olympus, home of the Greek gods.
+
+Quick Start:
+    from OlympusFlow import research
+
+    results = research(
+        topic="USGS earthquake magnitude data",
+        domain="seismology",
+        quantities=["magnitude", "depth"],
+        iterations=5
+    )
+
+Full Control:
+    from OlympusFlow import Pipeline, PipelineConfig
+    from OlympusFlow.stages import (
+        DiscoveryStage, AnalysisStage,
+        VerificationStage, StorageStage
+    )
+
+    config = PipelineConfig(
+        name="earthquake_research",
+        topic="USGS earthquake data",
+        domain="seismology",
+        quantities=["magnitude", "depth"]
+    )
+
+    pipeline = Pipeline("eq_research", config)
+    pipeline.add_stage(DiscoveryStage(...))
+    pipeline.add_stage(AnalysisStage())
+    pipeline.add_stage(VerificationStage())
+    pipeline.add_stage(StorageStage())
+
+    results = pipeline.run(max_iterations=10)
+
+Event Hooks:
+    from OlympusFlow.events import on, EventType
+
+    @on(EventType.TRUTH_CREATED)
+    def handle_truth(event):
+        print(f"New truth: {event.payload['claim']}")
+
+Author: Carl Zimmerman
+Date: May 4, 2026
+"""
+
+__version__ = "1.0.0"
+
+# Core components
+from .contracts import (
+    # Enums
+    ResearchPhase, TruthStatus, DataFormat,
+
+    # Data contracts
+    DataSource, Discovery, Finding,
+    HRMAssessment, VerifiedTruth,
+    TrainingExample, TrainingBatch,
+
+    # Pipeline contracts
+    PipelineConfig, StageResult, PipelineState, Event
+)
+
+from .events import (
+    EventBus, EventType, EventEmitter,
+    ConsoleLogger, MetricsCollector,
+    get_event_bus, set_event_bus, on, emit
+)
+
+from .stages import (
+    Stage,
+    DiscoveryStage,
+    AnalysisStage,
+    VerificationStage,
+    StorageStage,
+    TrainingStage,
+    SequentialStages
+)
+
+from .pipeline import Pipeline, research
+
+__all__ = [
+    # Version
+    "__version__",
+
+    # Enums
+    "ResearchPhase", "TruthStatus", "DataFormat",
+
+    # Data contracts
+    "DataSource", "Discovery", "Finding",
+    "HRMAssessment", "VerifiedTruth",
+    "TrainingExample", "TrainingBatch",
+
+    # Pipeline contracts
+    "PipelineConfig", "StageResult", "PipelineState", "Event",
+
+    # Events
+    "EventBus", "EventType", "EventEmitter",
+    "ConsoleLogger", "MetricsCollector",
+    "get_event_bus", "set_event_bus", "on", "emit",
+
+    # Stages
+    "Stage",
+    "DiscoveryStage",
+    "AnalysisStage",
+    "VerificationStage",
+    "StorageStage",
+    "TrainingStage",
+    "SequentialStages",
+
+    # Pipeline
+    "Pipeline",
+    "research"
+]
