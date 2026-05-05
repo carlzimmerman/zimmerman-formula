@@ -54,6 +54,19 @@ except ImportError:
         DatabaseQueryHandler = None
         QueryResult = None
 
+# AutonomousAPIDiscovery integration
+try:
+    from .autonomous_api_discovery import AutonomousAPIDiscovery, DiscoveryResult
+    AUTONOMOUS_DISCOVERY_AVAILABLE = True
+except ImportError:
+    try:
+        from autonomous_api_discovery import AutonomousAPIDiscovery, DiscoveryResult
+        AUTONOMOUS_DISCOVERY_AVAILABLE = True
+    except ImportError:
+        AUTONOMOUS_DISCOVERY_AVAILABLE = False
+        AutonomousAPIDiscovery = None
+        DiscoveryResult = None
+
 # Constants
 Z2 = 32 * 3.14159265358979 / 3
 Z = Z2 ** 0.5
@@ -187,6 +200,15 @@ class UniversalDataDiscovery:
                 print(f"DatabaseQueryHandler initialized: {len(apis)} known APIs")
             except Exception as e:
                 print(f"DatabaseQueryHandler initialization failed: {e}")
+
+        # Initialize AutonomousAPIDiscovery for self-learning
+        self.auto_discovery = None
+        if use_database_apis and AUTONOMOUS_DISCOVERY_AVAILABLE:
+            try:
+                self.auto_discovery = AutonomousAPIDiscovery(verbose=True)
+                print(f"AutonomousAPIDiscovery initialized: ready for self-learning")
+            except Exception as e:
+                print(f"AutonomousAPIDiscovery initialization failed: {e}")
 
     def _call_legomena(self, prompt: str, timeout: int = None) -> Optional[str]:
         """Call Legomena for intelligent reasoning."""
@@ -360,6 +382,37 @@ JSON response:"""
                 if len(api_matches) >= 2:
                     print(f"DatabaseQueryHandler: Using {len(api_matches)} API sources")
                     return sources
+
+        # STEP 0.5: If no known APIs, try AUTONOMOUS DISCOVERY
+        if not sources and self.auto_discovery:
+            print(f"No known APIs for {domain.name} - triggering AUTONOMOUS DISCOVERY...")
+            topic = domain.subdomain if domain.subdomain else ""
+
+            discovery_result = self.auto_discovery.discover(domain.name, topic)
+
+            if discovery_result.working_configs:
+                print(f"AutonomousAPIDiscovery: Discovered {len(discovery_result.working_configs)} working APIs!")
+                for config in discovery_result.working_configs:
+                    sources.append(DataSource(
+                        name=config.name,
+                        url=config.base_url,
+                        source_type=SourceType.API,
+                        quality=DataQuality.INSTITUTIONAL,  # Auto-discovered = medium confidence
+                        description=config.description,
+                        access_method="api",
+                        quantities_available=config.quantities
+                    ))
+
+                    # Also add to db_handler for immediate use
+                    if self.db_handler:
+                        api_key = f"auto_{domain.name}_{len(self.db_handler.known_apis)}"
+                        self.db_handler.known_apis[api_key] = config
+
+                if sources:
+                    print(f"AutonomousAPIDiscovery: Using {len(sources)} newly discovered APIs")
+                    return sources
+            else:
+                print(f"AutonomousAPIDiscovery: No working APIs found ({discovery_result.apis_discovered} analyzed, {len(discovery_result.failed_attempts)} failed)")
 
         # STEP 1: Query HeliconLake for cached sources (if available)
         if self.helicon_lake:
