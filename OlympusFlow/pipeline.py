@@ -74,6 +74,13 @@ try:
 except ImportError:
     MNEMOSYNE_AVAILABLE = False
 
+# CylleneFlow Deepener for recursive research (v1.4.0)
+try:
+    from CylleneFlow.deepener import Deepener, BatchDeepener
+    DEEPENER_AVAILABLE = True
+except ImportError:
+    DEEPENER_AVAILABLE = False
+
 
 # =============================================================================
 # PIPELINE
@@ -168,6 +175,34 @@ class Pipeline(EventEmitter):
         # Callbacks
         self._on_iteration_complete: List[Callable] = []
         self._on_truth_found: List[Callable] = []
+
+        # =====================================================================
+        # RECURSIVE DEEPENING (v1.4.0)
+        # =====================================================================
+        # When significant findings are discovered, automatically investigate
+        # deeper by generating research questions and recursing.
+        self.deepener = None
+        self.batch_deepener = None
+        self.enable_deepening = config.enable_deepening if hasattr(config, 'enable_deepening') else True
+
+        if DEEPENER_AVAILABLE and self.enable_deepening:
+            self.deepener = Deepener(
+                max_depth=getattr(config, 'max_deepening_depth', 3),
+                verbose=config.verbose
+            )
+            self.batch_deepener = BatchDeepener(
+                deepener=self.deepener,
+                batch_threshold=getattr(config, 'deepening_batch_threshold', 3),
+                significance_threshold=getattr(config, 'deepening_significance_threshold', 0.6)
+            )
+            self.emit(EventType.STAGE_STARTED, {
+                "stage": "Deepener",
+                "max_depth": getattr(config, 'max_deepening_depth', 3),
+                "enabled": True
+            })
+
+        # Track deepening results
+        self.deepening_findings: List[Dict] = []
 
     def add_stage(self, stage: Stage) -> "Pipeline":
         """Add a stage to the pipeline. Returns self for chaining."""
@@ -356,10 +391,40 @@ class Pipeline(EventEmitter):
                         except Exception as e:
                             print(f"Truth callback error: {e}")
 
+                    # =========================================================
+                    # RECURSIVE DEEPENING (v1.4.0)
+                    # =========================================================
+                    # When we find significant truths, analyze them for deeper
+                    # research opportunities
+                    if self.deepener and truth.status == "validated":
+                        deepening_finding = self._convert_truth_to_finding(truth)
+                        if deepening_finding:
+                            decision = self.batch_deepener.add_finding(deepening_finding)
+
+                            # Immediate deepening for highly significant findings
+                            if decision is not None and decision.should_deepen:
+                                self.emit(EventType.DEEPENING_TRIGGERED, {
+                                    "finding": deepening_finding.get('quantity'),
+                                    "significance": decision.significance_score,
+                                    "questions": len(decision.questions)
+                                })
+
+                                # Execute deepening (triggers HermesFlow for each question)
+                                deeper = self._execute_deepening(decision, deepening_finding)
+                                self.deepening_findings.extend(deeper)
+                                new_truths += len(deeper)
+
+        # Process any batched findings at end of iteration
+        deeper_from_batch = self._process_deepening_batch()
+        if deeper_from_batch:
+            self.deepening_findings.extend(deeper_from_batch)
+            new_truths += len(deeper_from_batch)
+
         return {
             "iteration": iteration,
             "stage_results": [r.to_dict() for r in stage_results],
             "new_truths": new_truths,
+            "deepening_findings": len(self.deepening_findings),
             "total_truths": len(self.state.truths),
             "duration": time.time() - iteration_start
         }
@@ -371,6 +436,102 @@ class Pipeline(EventEmitter):
 
         recent_truths = [r.get("new_truths", 0) for r in results[-3:]]
         return all(t == 0 for t in recent_truths)
+
+    # =========================================================================
+    # RECURSIVE DEEPENING METHODS (v1.4.0)
+    # =========================================================================
+
+    def _convert_truth_to_finding(self, truth) -> Optional[Dict]:
+        """Convert OlympusFlow truth to deepener finding format."""
+        try:
+            return {
+                "domain": truth.domain,
+                "quantity": truth.claim[:50] if truth.claim else "unknown",
+                "value": truth.measured_value if truth.measured_value else 0,
+                "target": truth.z2_formula if truth.z2_formula else "Z²",
+                "target_value": truth.z2_prediction if truth.z2_prediction else 0,
+                "error_percent": truth.percent_error if truth.percent_error else 100,
+                "n_samples": 100,  # Default if not available
+                "context": f"OlympusFlow: {truth.data_source}"
+            }
+        except Exception as e:
+            print(f"[Deepener] Could not convert truth: {e}")
+            return None
+
+    def _execute_deepening(self, decision, finding: Dict) -> List[Dict]:
+        """
+        Execute deepening by running HermesFlow on generated questions.
+
+        This is the recursive research loop - when we find something
+        significant, we automatically investigate deeper.
+        """
+        deeper_findings = []
+
+        if not decision.questions:
+            return deeper_findings
+
+        self.emit(EventType.DEEPENING_STARTED, {
+            "finding": finding.get('quantity'),
+            "questions": len(decision.questions),
+            "recommended_depth": decision.recommended_depth
+        })
+
+        for question in decision.questions[:3]:  # Limit to top 3
+            try:
+                # Try HermesV2 first
+                try:
+                    from HermesFlow.hermes_v2 import HermesV2
+                    hermes = HermesV2(verbose=False)
+                    result = hermes.acquire(
+                        topic=question.question,
+                        domain=question.domain
+                    )
+
+                    if result.success and result.z2_patterns:
+                        for pattern in result.z2_patterns:
+                            pattern['depth'] = 'deepening'
+                            pattern['parent_question'] = question.question[:50]
+                            deeper_findings.append(pattern)
+
+                except ImportError:
+                    # Fallback to HermesExplorer
+                    from HermesFlow.hermes_explorer import HermesExplorer
+                    explorer = HermesExplorer(verbose=False)
+                    result = explorer.explore_for_data(
+                        topic=question.question,
+                        domain=question.domain,
+                        quantities=["value", "measurement"]
+                    )
+
+                    if result.success and result.data is not None:
+                        # Would need to analyze data for patterns here
+                        pass
+
+            except Exception as e:
+                print(f"[Deepener] Question research failed: {e}")
+                continue
+
+        self.emit(EventType.DEEPENING_COMPLETED, {
+            "finding": finding.get('quantity'),
+            "deeper_findings": len(deeper_findings)
+        })
+
+        return deeper_findings
+
+    def _process_deepening_batch(self) -> List[Dict]:
+        """Process any batched findings waiting for deepening."""
+        if not self.batch_deepener or not self.batch_deepener.should_process_batch():
+            return []
+
+        deeper_findings = []
+        batch = self.batch_deepener.process_batch()
+
+        for finding, decision in batch:
+            if decision.should_deepen:
+                deeper = self._execute_deepening(decision, finding)
+                deeper_findings.extend(deeper)
+
+        return deeper_findings
 
     def _save_state(self):
         """Save current state to disk."""
@@ -390,6 +551,8 @@ class Pipeline(EventEmitter):
             "total_findings": len(self.state.findings),
             "total_truths": len(self.state.truths),
             "validated_truths": len([t for t in self.state.truths if t.status == "validated"]),
+            "deepening_enabled": self.enable_deepening,
+            "deepening_findings": len(self.deepening_findings),
             "total_time_seconds": total_time,
             "metrics": self.metrics.get_summary()
         }

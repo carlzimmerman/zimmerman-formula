@@ -82,6 +82,13 @@ class EventType:
     ITERATION_COMPLETED = "iteration.completed"
     DIMINISHING_RETURNS = "iteration.diminishing_returns"
 
+    # Recursive deepening events (v1.4.0)
+    DEEPENING_TRIGGERED = "deepening.triggered"
+    DEEPENING_STARTED = "deepening.started"
+    DEEPENING_COMPLETED = "deepening.completed"
+    DEEPENING_QUESTION = "deepening.question"
+    DEEPENING_FINDING = "deepening.finding"
+
 
 # =============================================================================
 # EVENT BUS

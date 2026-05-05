@@ -52,9 +52,16 @@ Event Hooks:
 
 Author: Carl Zimmerman
 Date: May 4, 2026
+
+v1.4.0 Changes (May 5, 2026):
+- Integrated CylleneFlow Deepener for recursive research
+- When significant findings discovered, automatically investigates deeper
+- Generates research questions from findings and runs HermesFlow on each
+- New events: DEEPENING_TRIGGERED, DEEPENING_STARTED, DEEPENING_COMPLETED
+- Pipeline summary now includes deepening_findings count
 """
 
-__version__ = "1.0.0"
+__version__ = "1.4.0"
 
 # Core components
 from .contracts import (
