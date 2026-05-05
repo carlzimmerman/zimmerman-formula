@@ -39,8 +39,8 @@ from urllib.parse import urljoin, urlparse
 
 LEGOMENA_MODEL = os.environ.get("LEGOMENA_MODEL", "legomena-4b")
 
-# Version with intelligent validation
-__version__ = "1.7.0"
+# Version with dynamic persistent exploration
+__version__ = "1.8.0"
 
 # No hardcoded sources - everything discovered dynamically
 
@@ -567,8 +567,12 @@ Answer concisely:"""
         org_names = re.findall(r'\b([A-Z][A-Za-z0-9\-\.]{2,}[A-Za-z0-9]*)\b', response)
         sources.extend([n for n in org_names if n not in ['CSV', 'JSON', 'API', 'URL', 'HTTP', 'The', 'For', 'Data']])
 
-        # Extract any URLs mentioned
-        urls = re.findall(r'https?://[^\s<>"\']+', response)
+        # Extract any URLs mentioned (handle markdown links properly)
+        # First try to extract from markdown [text](url) format
+        markdown_urls = re.findall(r'\]\((https?://[^)]+)\)', response)
+        # Then extract raw URLs, excluding markdown artifacts
+        raw_urls = re.findall(r'https?://[^\s<>"\'\)\]]+', response)
+        urls = list(set(markdown_urls + raw_urls))
 
         return list(set(sources))[:8], urls[:5]
 
@@ -757,6 +761,170 @@ Answer:"""
             return None
 
     # =========================================================================
+    # DYNAMIC PERSISTENT EXPLORATION (v1.8.0)
+    # =========================================================================
+
+    def _explore_portal_deeply(self, portal_url: str, html: str, topic: str,
+                               quantities: List[str], depth: int = 0) -> Optional[DataDiscovery]:
+        """
+        Deep exploration of a data portal page.
+
+        This is the KEY to dynamic data discovery - we persistently explore
+        the portal until we find actual data files, not just portal pages.
+
+        Works for ANY domain/topic by:
+        1. Extracting ALL links that might lead to data
+        2. Categorizing them (direct files vs. intermediate pages)
+        3. Trying direct files first
+        4. Then recursively exploring intermediate pages
+        """
+        if depth > 2:  # Prevent infinite recursion
+            return None
+
+        self._log(f"  Deep exploration (depth={depth}): {portal_url[:50]}...")
+
+        # Extract ALL links from the page
+        soup = BeautifulSoup(html, 'html.parser')
+
+        # Categorize links
+        direct_data_files = []  # .csv, .json, .txt, etc.
+        intermediate_pages = []  # Pages that might have data links
+        api_endpoints = []  # API URLs
+
+        for a in soup.find_all('a', href=True):
+            href = a['href']
+            text = a.get_text().strip()[:80]
+
+            # Skip empty or javascript links
+            if not href or href.startswith('#') or href.startswith('javascript:'):
+                continue
+
+            full_url = urljoin(portal_url, href)
+
+            # Skip already visited
+            if full_url in self.visited:
+                continue
+
+            href_lower = href.lower()
+
+            # Category 1: Direct data files (highest priority)
+            data_extensions = ['.csv', '.txt', '.json', '.nc', '.dat', '.asc',
+                              '.geojson', '.xml', '.data', '.tsv']
+            if any(ext in href_lower for ext in data_extensions):
+                direct_data_files.append({
+                    'url': full_url,
+                    'text': text,
+                    'ext': next((ext for ext in data_extensions if ext in href_lower), '')
+                })
+                continue
+
+            # Category 2: API endpoints
+            if '/api/' in href_lower or 'query' in href_lower or 'service' in href_lower:
+                api_endpoints.append({'url': full_url, 'text': text})
+                continue
+
+            # Category 3: Intermediate pages that might have data
+            data_keywords = ['data', 'download', 'export', 'feed', 'catalog',
+                            'archive', 'database', 'dataset', 'summary', 'output']
+            if any(kw in href_lower or kw in text.lower() for kw in data_keywords):
+                intermediate_pages.append({'url': full_url, 'text': text})
+
+        self._log(f"    Found: {len(direct_data_files)} data files, "
+                  f"{len(intermediate_pages)} intermediate pages, "
+                  f"{len(api_endpoints)} APIs")
+
+        # Strategy 1: Try direct data files first (most efficient)
+        for file_info in direct_data_files[:10]:  # Try up to 10 files
+            file_url = file_info['url']
+            self._log(f"    Trying data file: {file_url.split('/')[-1]}")
+
+            df = self.tool_fetch_data(file_url)
+            if df is not None and len(df) > 10:
+                is_valid, reason = self._validate_data_relevance(df, topic, file_url)
+                if is_valid:
+                    self._log(f"    SUCCESS: {len(df)} rows from {file_info['ext']}")
+                    return DataDiscovery(
+                        success=True,
+                        url=file_url,
+                        data=df,
+                        steps=self.steps,
+                        description=f"Found via deep exploration: {file_url}"
+                    )
+
+        # Strategy 2: Try API endpoints
+        for api_info in api_endpoints[:5]:
+            api_url = api_info['url']
+            if api_url in self.visited:
+                continue
+
+            self._log(f"    Trying API: {api_url[:50]}...")
+            df = self.tool_fetch_data(api_url)
+            if df is not None and len(df) > 10:
+                is_valid, reason = self._validate_data_relevance(df, topic, api_url)
+                if is_valid:
+                    self._log(f"    SUCCESS via API: {len(df)} rows")
+                    return DataDiscovery(
+                        success=True,
+                        url=api_url,
+                        data=df,
+                        steps=self.steps,
+                        description=f"Found via API endpoint: {api_url}"
+                    )
+
+        # Strategy 3: Recursively explore intermediate pages (deeper exploration)
+        if depth < 2:
+            for page_info in intermediate_pages[:3]:  # Only explore top 3
+                page_url = page_info['url']
+                if page_url in self.visited:
+                    continue
+
+                self._log(f"    Exploring intermediate: {page_info['text'][:30]}")
+                page_html = self.tool_fetch(page_url)
+                if page_html:
+                    result = self._explore_portal_deeply(
+                        page_url, page_html, topic, quantities, depth + 1
+                    )
+                    if result and result.success:
+                        return result
+
+        return None
+
+    def _construct_common_data_urls(self, base_url: str, topic: str,
+                                    quantities: List[str]) -> List[str]:
+        """
+        Dynamically construct common data URL patterns.
+
+        Many data portals follow similar URL patterns. Instead of hardcoding,
+        we ask Legomena to suggest URL patterns based on the portal structure.
+        """
+        question = f"""I'm on this data portal: {base_url}
+Topic: {topic}
+Looking for: {', '.join(quantities[:3])}
+
+What are common URL patterns that might give me downloadable data?
+Consider patterns like:
+- /data/download.csv
+- /api/v1/data?format=csv
+- /summary/all.csv
+- /export?type=csv
+
+Give me 3-5 specific URL patterns to try (relative to base URL):"""
+
+        response = self.tool_ask(question)
+
+        # Extract URL patterns from response
+        patterns = []
+        for line in response.split('\n'):
+            # Look for paths that look like URLs
+            path_match = re.search(r'(/[a-zA-Z0-9/_\-\.]+(?:\?[a-zA-Z0-9=&]+)?)', line)
+            if path_match:
+                full_url = urljoin(base_url, path_match.group(1))
+                if full_url not in self.visited:
+                    patterns.append(full_url)
+
+        return patterns[:5]
+
+    # =========================================================================
     # EXPLORATION STRATEGIES
     # =========================================================================
 
@@ -925,108 +1093,135 @@ Answer:"""
         for r in unique_results[:5]:
             self._log(f"  {r['title'][:40]}: {r['url'][:50]}")
 
-        # Step 4: LEGOMENA-GUIDED EXPLORATION (v1.7.0 - completely redesigned)
-        self._log("\n--- Step 4: Legomena-Guided Exploration (v1.7.0) ---")
+        # Step 4: DYNAMIC PERSISTENT EXPLORATION (v1.8.0 - completely redesigned)
+        self._log("\n--- Step 4: Dynamic Persistent Exploration (v1.8.0) ---")
 
-        # Ask Legomena to analyze the search results and recommend the best path
-        portal_summary = "\n".join([f"{i+1}. {r['title']}: {r['url']}"
-                                   for i, r in enumerate(unique_results[:8])])
+        # Handle case where no results found
+        if not unique_results:
+            self._log("No search results found, going directly to fallback")
+            ordered_results = []
+        else:
+            # Ask Legomena to analyze the search results and recommend the best path
+            portal_summary = "\n".join([f"{i+1}. {r['title']}: {r['url']}"
+                                       for i, r in enumerate(unique_results[:8])])
 
-        guidance_question = f"""I found these potential data sources for "{topic}":
+            guidance_question = f"""I found these potential data sources for "{topic}":
 
 {portal_summary}
 
-Which ONE portal is MOST likely to have DOWNLOADABLE data files (CSV, TXT, JSON)?
+Which portals are MOST likely to have DOWNLOADABLE data files (CSV, TXT, JSON)?
 Consider:
-- Government/scientific institution sources (.gov, .edu, .ch) are usually best
-- Direct data links are better than documentation pages
-- URLs with "data", "download", "csv" are promising
+- Government/scientific institution sources (.gov, .edu) are usually best
+- URLs with "data", "download", "feed", "csv" are promising
+- Avoid documentation or help pages
 
-Reply with ONLY:
+Reply with:
 BEST: [number 1-8]
-REASON: [one sentence why]"""
+ALSO_TRY: [second best number]
+REASON: [one sentence]"""
 
-        guidance = self.tool_ask(guidance_question)
-        self._log(f"Legomena guidance: {guidance[:100]}...")
+            guidance = self.tool_ask(guidance_question)
+            self._log(f"Legomena guidance: {guidance[:100]}...")
 
-        # Parse recommended portal
-        best_match = re.search(r'BEST:\s*(\d+)', guidance)
-        best_idx = int(best_match.group(1)) - 1 if best_match else 0
-        best_idx = min(max(0, best_idx), len(unique_results) - 1)
+            # Parse recommended portals
+            best_match = re.search(r'BEST:\s*(\d+)', guidance)
+            also_match = re.search(r'ALSO_TRY:\s*(\d+)', guidance)
+            best_idx = int(best_match.group(1)) - 1 if best_match else 0
+            also_idx = int(also_match.group(1)) - 1 if also_match else 1
 
-        # Prioritize Legomena's recommendation, but keep others as fallback
-        ordered_results = [unique_results[best_idx]] + \
-                         [r for i, r in enumerate(unique_results) if i != best_idx]
+            best_idx = min(max(0, best_idx), len(unique_results) - 1)
+            also_idx = min(max(0, also_idx), len(unique_results) - 1)
 
-        # Explore with reasoning (not brute force)
-        for result in ordered_results[:3]:  # Only try top 3, not 5
+            # Prioritize Legomena's recommendations
+            seen = set()
+            ordered_results = []
+            for idx in [best_idx, also_idx]:
+                if idx not in seen:
+                    ordered_results.append(unique_results[idx])
+                    seen.add(idx)
+            for i, r in enumerate(unique_results):
+                if i not in seen:
+                    ordered_results.append(r)
+
+        # PERSISTENT EXPLORATION: Try each portal with deep exploration
+        for result in ordered_results[:4]:  # Try top 4 portals
             portal_url = result['url']
-            self._log(f"\nExploring recommended: {portal_url[:60]}")
+            self._log(f"\nDeep exploration: {portal_url[:60]}")
 
             html = self.tool_fetch(portal_url)
             if not html:
                 continue
 
-            # Ask Legomena: What's the path to downloadable data on this page?
+            # v1.8.0: Use deep exploration to find data files recursively
+            discovery = self._explore_portal_deeply(
+                portal_url, html, topic, quantities, depth=0
+            )
+            if discovery and discovery.success:
+                return discovery
+
+            # If deep exploration didn't find direct files, try Legomena guidance
             page_links = self.tool_extract_links(html, portal_url)
-            link_summary = "\n".join([f"- {l['text'][:50]}: {l['url'][:60]}"
-                                     for l in page_links[:20] if l['text'].strip()])
+            link_summary = "\n".join([f"- {l['text'][:40]}: {l['url'][:50]}"
+                                     for l in page_links[:25] if l['text'].strip()])
 
             nav_question = f"""I'm on a data portal looking for {topic} data.
 
-Here are the links on this page:
-{link_summary[:2000]}
+Links on this page:
+{link_summary[:2500]}
 
-Which link leads to DOWNLOADABLE DATA FILES?
+Which link leads to ACTUAL DATA FILES (not documentation)?
 Look for:
-- Direct download links (.csv, .txt, .json, .dat)
-- "Download" or "Export" buttons
-- Data access pages
+- Direct files: .csv, .txt, .json, .dat, .nc
+- Feed/summary pages with data listings
+- API or query endpoints
 
-Reply with ONLY the full URL that will give me data:
-URL: [the url]"""
+Reply with the BEST URL for data:
+URL: [full url]"""
 
             nav_response = self.tool_ask(nav_question)
-            url_match = re.search(r'URL:\s*(https?://[^\s<>"\']+)', nav_response)
+            url_match = re.search(r'URL:\s*\[?(?:\[[^\]]*\]\()?(https?://[^\s<>"\'\)\]]+)', nav_response)
 
             if url_match:
                 recommended_url = url_match.group(1)
-                self._log(f"  Legomena recommends: {recommended_url[:50]}")
+                self._log(f"  Legomena suggests: {recommended_url[:50]}")
 
-                # Try the recommended URL
-                df = self.tool_fetch_data(recommended_url)
-                if df is not None and len(df) > 20:
-                    is_valid, reason = self._validate_data_relevance(df, topic, recommended_url)
-                    if is_valid:
-                        self._log(f"  SUCCESS: {len(df)} rows!")
-                        return DataDiscovery(
-                            success=True,
-                            url=recommended_url,
-                            data=df,
-                            steps=self.steps,
-                            description=f"Found via Legomena-guided navigation: {recommended_url}"
+                # If it's a page (not a file), explore it deeply too
+                if not any(ext in recommended_url.lower() for ext in ['.csv', '.txt', '.json', '.dat']):
+                    rec_html = self.tool_fetch(recommended_url)
+                    if rec_html:
+                        discovery = self._explore_portal_deeply(
+                            recommended_url, rec_html, topic, quantities, depth=1
                         )
+                        if discovery and discovery.success:
+                            return discovery
+                else:
+                    # Direct file URL
+                    df = self.tool_fetch_data(recommended_url)
+                    if df is not None and len(df) > 20:
+                        is_valid, reason = self._validate_data_relevance(df, topic, recommended_url)
+                        if is_valid:
+                            return DataDiscovery(
+                                success=True,
+                                url=recommended_url,
+                                data=df,
+                                steps=self.steps,
+                                description=f"Found via Legomena guidance: {recommended_url}"
+                            )
 
-            # Fallback: Try data-looking links directly
-            data_links = [l for l in page_links if any(ext in l['url'].lower()
-                         for ext in ['.csv', '.txt', '.json', '.dat', 'download', 'export'])]
-
-            for link in data_links[:3]:
-                link_url = link['url']
-                if link_url in self.visited:
-                    continue
-                self._log(f"  Trying: {link_url[:50]}...")
-                df = self.tool_fetch_data(link_url)
+            # v1.8.0: Try constructing common URL patterns
+            pattern_urls = self._construct_common_data_urls(portal_url, topic, quantities)
+            for purl in pattern_urls:
+                self._log(f"  Trying pattern: {purl.split('/')[-1]}")
+                df = self.tool_fetch_data(purl)
                 if df is not None and len(df) > 20:
-                    is_valid, reason = self._validate_data_relevance(df, topic, link_url)
+                    is_valid, reason = self._validate_data_relevance(df, topic, purl)
                     if is_valid:
-                        self._log(f"  SUCCESS: {len(df)} rows!")
                         return DataDiscovery(
                             success=True,
-                            url=link_url,
+                            url=purl,
                             data=df,
                             steps=self.steps,
-                            description=f"Found data via {portal_url}"
+                            description=f"Found via pattern matching: {purl}"
                         )
 
         # =====================================================================
@@ -1047,8 +1242,10 @@ Be specific - name the exact organization and data portal."""
         fallback_response = self.tool_ask(fallback_question)
         self._log(f"Fallback suggestions: {fallback_response[:200]}...")
 
-        # Extract URLs from the response
-        fallback_urls = re.findall(r'https?://[^\s<>"\']+', fallback_response)
+        # Extract URLs from the response (handle markdown links properly)
+        markdown_urls = re.findall(r'\]\((https?://[^)]+)\)', fallback_response)
+        raw_urls = re.findall(r'https?://[^\s<>"\'\)\]]+', fallback_response)
+        fallback_urls = list(set(markdown_urls + raw_urls))
 
         for url in fallback_urls[:5]:
             if url in self.visited:
@@ -1070,12 +1267,12 @@ Be specific - name the exact organization and data portal."""
                         description=f"Found via fallback reasoning: {url}"
                     )
 
-        # Fallback 2: Try broader search with different keywords
-        self._log("\n--- Fallback: Broader Search ---")
+        # Fallback 2: Try broader search with different keywords (v1.8.0 enhanced)
+        self._log("\n--- Fallback: Broader Search with Deep Exploration ---")
 
         broader_queries = [
-            f"{domain} database CSV download",
-            f"{quantities[0] if quantities else topic} historical data",
+            f"{domain} CSV data download feed",
+            f"{quantities[0] if quantities else topic} CSV download",
             f"international {domain} monitoring data portal",
         ]
 
@@ -1091,7 +1288,15 @@ Be specific - name the exact organization and data portal."""
                 if not html:
                     continue
 
-                # Look for data files
+                # v1.8.0: Use deep exploration on search results
+                discovery = self._explore_portal_deeply(
+                    result['url'], html, topic, quantities, depth=0
+                )
+                if discovery and discovery.success:
+                    self._log(f"  BROADER SUCCESS via deep exploration!")
+                    return discovery
+
+                # Fallback: Try data-looking links directly
                 data_links = self.tool_extract_links(
                     html, result['url'],
                     filter_terms=['.csv', '.txt', '.json', 'download', 'data']
