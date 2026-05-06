@@ -300,6 +300,45 @@ TOPIC_KNOWLEDGE = {
             {"name": "Heaps exponent β", "value": 0.5, "uncertainty": 0.05, "source": "V ~ N^β"},
         ]
     },
+    "monarch-butterfly": {
+        "description": "Monarch butterfly navigation - sun compass, magnetoreception, and migration",
+        "constants": [
+            # Flight direction (dimensionless, normalized to circle)
+            # Mean flight vector α = 211°-233°, typically ~215-220°
+            {"name": "Migration bearing (215°/360°)", "value": 215/360, "uncertainty": 0.02, "source": "Reppert lab flight simulator"},
+            {"name": "Migration bearing (220°/360°)", "value": 220/360, "uncertainty": 0.02, "source": "Reppert lab mean α"},
+
+            # Sun compass rate (degrees per hour, normalized)
+            {"name": "Sun azimuth rate (15°/h normalized)", "value": 15/360, "uncertainty": 0.005, "source": "Solar mechanics"},
+            {"name": "Sun azimuth rate factor (15/24)", "value": 15/24, "uncertainty": 0.01, "source": "Degrees per hour"},
+
+            # Circadian clock
+            {"name": "Circadian period ratio (24h/24h)", "value": 1.0, "uncertainty": 0.02, "source": "Circadian biology"},
+
+            # UV-A/Blue light magnetoreception (wavelength ratios)
+            {"name": "Cry1 wavelength threshold (420/1000 nm)", "value": 0.420, "uncertainty": 0.01, "source": "Nature Comms 2021"},
+            {"name": "UV-A/blue range ratio (420/380)", "value": 420/380, "uncertainty": 0.02, "source": "Magnetoreception window"},
+            {"name": "Blue light peak (450/1000 nm)", "value": 0.450, "uncertainty": 0.01, "source": "Flavin photoreduction"},
+
+            # Overwintering location
+            {"name": "Overwintering latitude (19.6°/90°)", "value": 19.6/90, "uncertainty": 0.01, "source": "Michoacán Mexico"},
+            {"name": "Overwintering latitude sin", "value": 0.335, "uncertainty": 0.01, "source": "sin(19.6°)"},
+
+            # Migration geometry
+            {"name": "Migration distance ratio (3500/40000 km)", "value": 3500/40000, "uncertainty": 0.01, "source": "Distance/Earth circumference"},
+            {"name": "Daily travel/total (100/3500)", "value": 100/3500, "uncertainty": 0.005, "source": "Daily fraction"},
+
+            # Clock-shift response (6h delay → ~145° shift)
+            {"name": "Clock-shift ratio (145°/360°)", "value": 145/360, "uncertainty": 0.02, "source": "Reppert clock-shift experiments"},
+            {"name": "Clock-shift per hour (145/6)", "value": 145/6, "uncertainty": 1.0, "source": "Degrees per hour delay"},
+
+            # Flight altitude ratio
+            {"name": "Flight altitude ratio (300m/3000m)", "value": 300/3000, "uncertainty": 0.02, "source": "Flight vs overwintering elevation"},
+
+            # Magnetic inclination response
+            {"name": "180° reversal normalized", "value": 0.5, "uncertainty": 0.02, "source": "RAMI response"},
+        ]
+    },
 }
 
 
@@ -330,6 +369,8 @@ def find_topic(query: str) -> str:
         return "kolmogorov"
     if "zipf" in query_lower or "city" in query_lower or "urban" in query_lower or "rank-frequency" in query_lower or "city population" in query_lower:
         return "zipf"
+    if "monarch" in query_lower or "butterfly" in query_lower or "migration" in query_lower or "magnetoreception" in query_lower or "cryptochrome" in query_lower:
+        return "monarch-butterfly"
 
     return None
 
