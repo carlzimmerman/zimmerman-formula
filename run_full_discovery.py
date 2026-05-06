@@ -94,6 +94,40 @@ TOPIC_KNOWLEDGE = {
             {"name": "6/Z² (test)", "value": 6/(32*math.pi/3), "uncertainty": 0.001, "source": "Z² prediction"},
         ]
     },
+    "condensed-matter": {
+        "description": "Condensed matter physics - superconductivity, quantum Hall, phase transitions",
+        "constants": [
+            # BCS Superconductivity
+            {"name": "BCS gap ratio Δ₀/kT_c", "value": 3.528, "uncertainty": 0.01, "source": "BCS theory (weak coupling)"},
+            {"name": "BCS coherence peak ratio", "value": 1.764, "uncertainty": 0.01, "source": "BCS theory"},
+            {"name": "BCS specific heat jump ΔC/γT_c", "value": 1.426, "uncertainty": 0.01, "source": "BCS theory"},
+
+            # Lindemann melting
+            {"name": "Lindemann melting parameter", "value": 0.1, "uncertainty": 0.02, "source": "Empirical (~0.1 for most solids)"},
+
+            # Quantum Hall
+            {"name": "Fine structure constant α", "value": 1/137.036, "uncertainty": 0.00001, "source": "QED/von Klitzing"},
+            {"name": "1/α (inverse fine structure)", "value": 137.036, "uncertainty": 0.001, "source": "CODATA 2018"},
+
+            # Fermi liquid
+            {"name": "Landau F₀ˢ (liquid He-3)", "value": -0.75, "uncertainty": 0.05, "source": "He-3 experiments"},
+            {"name": "Wilson ratio (heavy fermion)", "value": 2.0, "uncertainty": 0.2, "source": "Heavy fermion metals"},
+
+            # Mott transition
+            {"name": "Mott criterion (n^(1/3)a_B)", "value": 0.26, "uncertainty": 0.02, "source": "Mott 1961"},
+
+            # Universality
+            {"name": "2D Ising critical exponent β", "value": 0.125, "uncertainty": 0.001, "source": "Onsager exact"},
+            {"name": "3D Ising critical exponent β", "value": 0.3265, "uncertainty": 0.001, "source": "Monte Carlo"},
+            {"name": "3D Ising critical exponent ν", "value": 0.6301, "uncertainty": 0.001, "source": "Monte Carlo"},
+
+            # Electron-phonon
+            {"name": "McMillan T_c prefactor", "value": 1.04, "uncertainty": 0.05, "source": "McMillan equation"},
+
+            # Kosterlitz-Thouless
+            {"name": "KT universal jump", "value": 0.6366, "uncertainty": 0.001, "source": "2/π (exact)"},
+        ]
+    },
     "eddington": {
         "description": "Eddington luminosity and stellar radiation limits",
         "constants": [
@@ -137,6 +171,135 @@ TOPIC_KNOWLEDGE = {
             {"name": "Inner/outer core ratio", "value": 0.351, "uncertainty": 0.001, "source": "Seismology"},
         ]
     },
+    "earth-core": {
+        "description": "Earth's internal structure - core, mantle, and crust ratios",
+        "constants": [
+            # Radius ratios (relative to Earth radius R_E = 6371 km)
+            {"name": "Inner core radius/R_E", "value": 0.192, "uncertainty": 0.001, "source": "PREM model (1221/6371)"},
+            {"name": "Outer core radius/R_E", "value": 0.546, "uncertainty": 0.001, "source": "PREM model (3480/6371)"},
+            {"name": "Inner/outer core radius", "value": 0.351, "uncertainty": 0.001, "source": "PREM (1221/3480)"},
+            {"name": "Core/Earth radius", "value": 0.546, "uncertainty": 0.001, "source": "CMB at 3480 km"},
+
+            # Volume ratios
+            {"name": "Core volume fraction", "value": 0.163, "uncertainty": 0.002, "source": "PREM model"},
+            {"name": "Inner core volume/total core", "value": 0.043, "uncertainty": 0.001, "source": "PREM model"},
+            {"name": "Mantle volume fraction", "value": 0.838, "uncertainty": 0.002, "source": "PREM model"},
+
+            # Mass ratios
+            {"name": "Core mass fraction", "value": 0.325, "uncertainty": 0.002, "source": "PREM model"},
+            {"name": "Inner core mass fraction", "value": 0.017, "uncertainty": 0.001, "source": "PREM model"},
+
+            # Density ratios
+            {"name": "Core/mantle density ratio", "value": 2.35, "uncertainty": 0.05, "source": "PREM (~10.5/4.5)"},
+            {"name": "Inner/outer core density", "value": 1.22, "uncertainty": 0.02, "source": "PREM (12.8/10.5)"},
+
+            # Seismic velocity ratios at CMB
+            {"name": "V_p jump at CMB", "value": 0.60, "uncertainty": 0.01, "source": "PREM (8.0/13.7)"},
+            {"name": "V_s/V_p in mantle", "value": 0.55, "uncertainty": 0.01, "source": "PREM model"},
+
+            # Temperature/pressure ratios
+            {"name": "CMB/surface temperature ratio", "value": 13.8, "uncertainty": 1.0, "source": "~4000K/290K"},
+            {"name": "ICB/CMB pressure ratio", "value": 2.63, "uncertainty": 0.1, "source": "330/125 GPa"},
+        ]
+    },
+    "gutenberg-richter": {
+        "description": "Gutenberg-Richter Law - earthquake magnitude-frequency scaling",
+        "constants": [
+            # The b-value: N = 10^(a - bM) where N = cumulative number, M = magnitude
+            {"name": "b-value (global average)", "value": 1.0, "uncertainty": 0.05, "source": "Global seismology"},
+            {"name": "b-value (mid-ocean ridges)", "value": 0.9, "uncertainty": 0.05, "source": "Oceanic seismicity"},
+            {"name": "b-value (subduction zones)", "value": 1.1, "uncertainty": 0.05, "source": "Subduction seismicity"},
+
+            # Energy scaling: E ~ 10^(1.5M)
+            {"name": "Energy exponent (1.5)", "value": 1.5, "uncertainty": 0.01, "source": "Gutenberg-Richter"},
+            {"name": "Magnitude step energy ratio", "value": 31.6, "uncertainty": 1.0, "source": "10^1.5 ≈ 31.6"},
+
+            # Aftershock scaling (Omori's law)
+            {"name": "Omori exponent p", "value": 1.0, "uncertainty": 0.1, "source": "Aftershock decay"},
+            {"name": "Bath's law constant", "value": 1.2, "uncertainty": 0.1, "source": "Largest aftershock"},
+
+            # Stress drop ratios
+            {"name": "Stress drop coefficient", "value": 3.0, "uncertainty": 0.5, "source": "MPa typical"},
+            {"name": "Seismic efficiency", "value": 0.06, "uncertainty": 0.02, "source": "Energy radiated/total"},
+
+            # Fracture mechanics
+            {"name": "Fault roughness exponent", "value": 0.8, "uncertainty": 0.1, "source": "Hurst exponent"},
+        ]
+    },
+    "kleiber": {
+        "description": "Kleiber's Law - metabolic scaling in biology",
+        "constants": [
+            # The famous 3/4 exponent: P = P_0 * M^(3/4)
+            {"name": "Kleiber exponent (3/4)", "value": 0.75, "uncertainty": 0.01, "source": "Metabolic scaling"},
+            {"name": "Surface-to-volume exponent (2/3)", "value": 0.6667, "uncertainty": 0.01, "source": "Geometric baseline"},
+
+            # Related biological scaling laws
+            {"name": "Heart rate scaling exponent", "value": -0.25, "uncertainty": 0.02, "source": "f_heart ~ M^(-1/4)"},
+            {"name": "Lifespan scaling exponent", "value": 0.25, "uncertainty": 0.02, "source": "τ ~ M^(1/4)"},
+            {"name": "Blood vessel scaling", "value": 0.75, "uncertainty": 0.02, "source": "WBE theory"},
+
+            # Branching network ratios
+            {"name": "Branching ratio (area)", "value": 1.26, "uncertainty": 0.05, "source": "Murray's law (2^(1/3))"},
+            {"name": "Branching ratio (length)", "value": 1.59, "uncertainty": 0.05, "source": "WBE (2^(1/2))"},
+
+            # Metabolic prefactor ratios
+            {"name": "Mammal/reptile metabolic ratio", "value": 7.0, "uncertainty": 1.0, "source": "Endotherm vs ectotherm"},
+            {"name": "Unicellular scaling exponent", "value": 1.0, "uncertainty": 0.05, "source": "Single cell"},
+
+            # Quarter-power laws
+            {"name": "Quarter power (1/4)", "value": 0.25, "uncertainty": 0.01, "source": "Universal scaling"},
+        ]
+    },
+    "kolmogorov": {
+        "description": "Kolmogorov turbulence - energy cascade scaling",
+        "constants": [
+            # The famous 5/3 power law: E(k) ~ k^(-5/3)
+            {"name": "Kolmogorov exponent (-5/3)", "value": -1.6667, "uncertainty": 0.01, "source": "Turbulence theory"},
+            {"name": "5/3 (positive)", "value": 1.6667, "uncertainty": 0.01, "source": "Kolmogorov"},
+
+            # Kolmogorov microscale ratios
+            {"name": "η/L (Re^(-3/4))", "value": 0.75, "uncertainty": 0.01, "source": "Scale ratio exponent"},
+            {"name": "Velocity ratio exponent (1/4)", "value": 0.25, "uncertainty": 0.01, "source": "u_η/u_L"},
+
+            # Kolmogorov constant
+            {"name": "Kolmogorov constant C_K", "value": 1.5, "uncertainty": 0.1, "source": "Energy spectrum"},
+
+            # Intermittency corrections
+            {"name": "She-Leveque β", "value": 0.6667, "uncertainty": 0.02, "source": "2/3 intermittency"},
+            {"name": "She-Leveque Δ", "value": 2.0, "uncertainty": 0.1, "source": "Filament codimension"},
+
+            # Energy cascade ratios
+            {"name": "Energy cascade time ratio", "value": 0.5, "uncertainty": 0.05, "source": "τ_n/τ_{n-1}"},
+            {"name": "Enstrophy production constant", "value": 0.7, "uncertainty": 0.1, "source": "2D turbulence"},
+
+            # Velocity structure function
+            {"name": "Second-order exponent (2/3)", "value": 0.6667, "uncertainty": 0.01, "source": "S_2(r) ~ r^(2/3)"},
+        ]
+    },
+    "zipf": {
+        "description": "Zipf's Law - rank-frequency distribution in cities and language",
+        "constants": [
+            # The Zipf exponent: f ~ r^(-α) where r = rank
+            {"name": "Zipf exponent (cities)", "value": 1.0, "uncertainty": 0.1, "source": "Urban scaling"},
+            {"name": "Zipf exponent (language)", "value": 1.0, "uncertainty": 0.05, "source": "Word frequency"},
+
+            # City-related scaling
+            {"name": "City area exponent", "value": 0.85, "uncertainty": 0.05, "source": "A ~ P^0.85"},
+            {"name": "Infrastructure exponent", "value": 0.85, "uncertainty": 0.05, "source": "Road length"},
+            {"name": "GDP exponent (superlinear)", "value": 1.15, "uncertainty": 0.05, "source": "Economic output"},
+
+            # Urban density scaling
+            {"name": "Density exponent", "value": 0.15, "uncertainty": 0.05, "source": "ρ ~ P^0.15"},
+            {"name": "Walking speed scaling", "value": 0.1, "uncertainty": 0.03, "source": "Pace of life"},
+
+            # Network centrality
+            {"name": "Betweenness scaling", "value": 2.0, "uncertainty": 0.2, "source": "Network theory"},
+            {"name": "Clustering coefficient decay", "value": -0.75, "uncertainty": 0.1, "source": "C ~ k^(-0.75)"},
+
+            # Heaps' law (vocabulary growth)
+            {"name": "Heaps exponent β", "value": 0.5, "uncertainty": 0.05, "source": "V ~ N^β"},
+        ]
+    },
 }
 
 
@@ -146,6 +309,8 @@ def find_topic(query: str) -> str:
 
     if "rar" in query_lower or "radial acceleration" in query_lower or "mond" in query_lower or "acceleration scale" in query_lower or "milgrom" in query_lower:
         return "rar"
+    if "condensed" in query_lower or "superconducti" in query_lower or "bcs" in query_lower or "quantum hall" in query_lower or "ising" in query_lower or "fermi liquid" in query_lower:
+        return "condensed-matter"
     if "eddington" in query_lower or "luminosity" in query_lower or "stellar" in query_lower:
         return "eddington"
     if "roche" in query_lower or "tidal" in query_lower:
@@ -154,6 +319,17 @@ def find_topic(query: str) -> str:
         return "titius-bode"
     if "geodynamo" in query_lower or "magnetic reynolds" in query_lower or "dynamo" in query_lower:
         return "geodynamo"
+    # Put earthquake/gutenberg BEFORE earth-core to avoid "earth" matching first
+    if "gutenberg" in query_lower or "richter" in query_lower or "earthquake" in query_lower or "seismic" in query_lower or "b-value" in query_lower:
+        return "gutenberg-richter"
+    if "earth" in query_lower or "core" in query_lower or "prem" in query_lower or "mantle" in query_lower:
+        return "earth-core"
+    if "kleiber" in query_lower or "metabolic" in query_lower or "allometric" in query_lower or "3/4 power" in query_lower or "biological scaling" in query_lower:
+        return "kleiber"
+    if "kolmogorov" in query_lower or "turbulence" in query_lower or "5/3" in query_lower or "energy cascade" in query_lower or "navier" in query_lower:
+        return "kolmogorov"
+    if "zipf" in query_lower or "city" in query_lower or "urban" in query_lower or "rank-frequency" in query_lower or "city population" in query_lower:
+        return "zipf"
 
     return None
 
