@@ -39,6 +39,7 @@ from OlympusFlow.derivation_engine import DerivationEngine
 from OlympusFlow.derivation_contracts import DerivationLevel, ChainStatus
 from OlympusFlow.sympy_verifier import SymPyVerifier, VerificationLevel
 from OlympusFlow.prediction_generator import PredictionGenerator, TestablePrediction
+from OlympusFlow.cyllene_bridge import CylleneBridge
 
 
 class ControllerState(Enum):
@@ -80,6 +81,7 @@ class ControllerStats:
     targets_generated: int = 0
     predictions_generated: int = 0
     high_value_predictions: int = 0
+    cyllene_deepenings: int = 0
 
     def to_dict(self) -> Dict:
         return asdict(self)
@@ -119,6 +121,7 @@ class AutonomousController:
         self.learning = LearningLoop(self.output_dir / "learning")
         self.sympy_verifier = SymPyVerifier(verbose=False)  # Formal algebraic verification
         self.prediction_gen = PredictionGenerator()  # Testable prediction generation
+        self.cyllene = CylleneBridge(verbose=False)  # Deepener integration
 
         # Queue (priority queue - lower number = higher priority)
         self.queue: PriorityQueue = PriorityQueue()
@@ -463,7 +466,7 @@ class AutonomousController:
             for p in high_value[:3]:  # Show top 3
                 self.log(f"    - {p.description}")
 
-        # Generate follow-up targets
+        # Generate follow-up targets from learning loop
         suggestions = self.learning.suggest_similar_targets(result)
         for s in suggestions[:3]:  # Add top 3 suggestions
             if s.target_value > 0:
@@ -476,6 +479,25 @@ class AutonomousController:
                 )
                 self.add_target(new_target)
                 self.stats.targets_generated += 1
+
+        # Step 8: CylleneBridge deepening - ask "why does this work?"
+        # For first-principles derivations, generate deeper research targets
+        if chain.level == DerivationLevel.FIRST_PRINCIPLES:
+            cyllene_targets = self.cyllene.generate_followup_targets(result, max_targets=3)
+            for ct in cyllene_targets:
+                if ct.get("target_value", 0) > 0:
+                    new_target = DerivationTarget(
+                        constant_name=ct["constant_name"],
+                        target_value=ct["target_value"],
+                        domain=ct.get("domain", "general"),
+                        priority=ct.get("priority", 0.6),
+                        source="cyllene_deepener"
+                    )
+                    self.add_target(new_target)
+                    self.stats.targets_generated += 1
+
+            if cyllene_targets:
+                self.log(f"  CylleneBridge: +{len(cyllene_targets)} deepening targets")
 
         # Callback
         if self.on_success:
