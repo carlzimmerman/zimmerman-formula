@@ -127,28 +127,47 @@
 
 ---
 
-## Current Automation Gaps
+## Automation Status (Updated May 6, 2026)
 
-| Step | Component | Status | Gap |
-|------|-----------|--------|-----|
-| 1 | HermesFlow web_tools | ✓ Built | Not integrated with pipeline |
-| 2 | MetisFlow literature | ✓ Built | Uses mock, not real web |
-| 3 | Domain Creation | ❌ Manual | Need JSON registry |
-| 4-7 | BriareusFlow + OlympusFlow | ✓ Automated | None |
-| 8 | CylleneFlow deepening | ✓ Built | Not looping back |
+| Step | Component | Status | Notes |
+|------|-----------|--------|-------|
+| 1 | HermesFlow web_tools | ✓ Integrated | Connected via ResearchBridge |
+| 2 | MetisFlow literature | ✓ Updated | Now uses ResearchBridge for web search |
+| 3 | Domain Creation | ✓ Automated | JSON-based DomainRegistry |
+| 4-7 | BriareusFlow + OlympusFlow | ✓ Automated | Full pipeline working |
+| 8 | CylleneFlow deepening | ✓ Built | Not looping back yet |
 
 ---
 
-## Key Integration Needed
+## Integration Complete!
 
-**HermesFlow has web tools but they're not connected to the pipeline!**
+**ResearchBridge connects HermesFlow to BriareusFlow:**
 
 ```
-CURRENT:
-  User → [Claude searches web manually] → Domain → BriareusFlow → ...
+NEW AUTOMATED PIPELINE:
+  User → ResearchBridge → HermesFlow.web_search → ConstantExtractor
+                                                        ↓
+  DomainRegistry ← JSON Domain ← ExtractedConstants
+       ↓
+  BriareusFlow → Pattern Search → OlympusFlow → Results
+```
 
-SHOULD BE:
-  User → HermesFlow.web_search → MetisFlow.extract → DomainRegistry → BriareusFlow → ...
+### New Components Created:
+- **HermesFlow/research_bridge.py** - Bridges web research to pattern discovery
+  - ResearchBridge: Web search → constant extraction → domain creation
+  - ConstantExtractor: NLP/regex parsing of scientific text
+  - DomainRegistry: JSON-based domain management
+
+### Usage:
+```bash
+# Known topic (hardcoded)
+python run_discovery.py "Eddington luminosity"
+
+# Unknown topic (web research)
+python run_discovery.py "monarch butterfly navigation" --research
+
+# Fully automated
+python test_automated_discovery.py --topic "new topic"
 ```
 
 ---

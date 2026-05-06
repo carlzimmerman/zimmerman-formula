@@ -6,21 +6,36 @@ METISFLOW - Literature Searcher
 Searches scientific literature for derivations of physical constants.
 Uses web search and paper databases to find how constants have been derived.
 
+Now integrated with HermesFlow ResearchBridge for real web search!
+
 Author: Carl Zimmerman
 Date: May 5, 2026
+Updated: May 6, 2026 - Added HermesFlow integration
 """
 
 import re
 import json
 import time
+import asyncio
 from typing import List, Dict, Optional, Tuple
 from dataclasses import dataclass
 from datetime import datetime
+from pathlib import Path
+import sys
 
 from .derivation_strategy import (
     LiteratureSource, DerivationApproach, DerivationFramework,
     ZSquaredRelevance, DerivationStrategy
 )
+
+# Try to import HermesFlow ResearchBridge
+try:
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+    from HermesFlow.research_bridge import ResearchBridge, HERMES_AVAILABLE
+    BRIDGE_AVAILABLE = True
+except ImportError:
+    BRIDGE_AVAILABLE = False
+    HERMES_AVAILABLE = False
 
 
 # Keywords that indicate different derivation approaches
@@ -86,14 +101,33 @@ class LiteratureSearcher:
     Searches scientific literature for derivations of physical constants.
 
     Uses multiple strategies:
-    1. Direct web search for derivation papers
-    2. ArXiv search for recent research
-    3. Wikipedia/scholarpedia for established derivations
+    1. HermesFlow web search (NEW - uses real web tools)
+    2. Direct web search for derivation papers
+    3. ArXiv search for recent research
+    4. Wikipedia/scholarpedia for established derivations
+    5. Built-in knowledge base (fallback)
     """
 
-    def __init__(self, verbose: bool = True):
+    def __init__(self, verbose: bool = True, use_web: bool = True):
+        """
+        Initialize the literature searcher.
+
+        Args:
+            verbose: Print progress messages
+            use_web: Use HermesFlow web search when available (default: True)
+        """
         self.verbose = verbose
+        self.use_web = use_web
         self.search_history: List[Dict] = []
+
+        # Initialize ResearchBridge if available
+        self.bridge = None
+        if use_web and BRIDGE_AVAILABLE and HERMES_AVAILABLE:
+            try:
+                self.bridge = ResearchBridge(verbose=verbose)
+                self._log("HermesFlow ResearchBridge initialized")
+            except Exception as e:
+                self._log(f"Warning: Could not initialize ResearchBridge: {e}")
 
     def _log(self, msg: str):
         if self.verbose:
@@ -105,16 +139,25 @@ class LiteratureSearcher:
         Search for papers/sources that derive a physical constant.
 
         Returns list of LiteratureSource objects with derivation info.
+
+        Uses HermesFlow web tools when available, falls back to knowledge base.
         """
         sources = []
 
-        # Generate search queries
+        # Try HermesFlow web search first
+        if self.bridge and self.use_web:
+            self._log(f"Using HermesFlow web search for: {constant_name}")
+            try:
+                web_sources = asyncio.run(self._search_with_hermes(constant_name, constant_value))
+                sources.extend(web_sources)
+            except Exception as e:
+                self._log(f"Web search failed: {e}, falling back to knowledge base")
+
+        # Also search knowledge base
         queries = self._generate_search_queries(constant_name, constant_value)
 
         for query in queries:
-            self._log(f"Searching: {query}")
-            # In a real implementation, this would call web search APIs
-            # For now, we'll use the knowledge base approach
+            self._log(f"Searching knowledge base: {query}")
             results = self._search_knowledge_base(constant_name, constant_value)
             sources.extend(results)
 
@@ -128,6 +171,42 @@ class LiteratureSearcher:
 
         self._log(f"Found {len(unique_sources)} unique sources")
         return unique_sources
+
+    async def _search_with_hermes(self, constant_name: str,
+                                   constant_value: float = None) -> List[LiteratureSource]:
+        """
+        Search using HermesFlow ResearchBridge.
+
+        Returns LiteratureSource objects from web search results.
+        """
+        sources = []
+
+        if not self.bridge:
+            return sources
+
+        # Research the topic
+        domain = await self.bridge.research_topic(constant_name)
+
+        # Convert extracted constants to LiteratureSource objects
+        for source_url in domain.sources:
+            src = LiteratureSource(
+                title=f"Web research: {constant_name}",
+                authors=[],
+                year=2026,
+                url=source_url,
+                abstract=f"Automated research on {constant_name} via HermesFlow",
+                key_equations=[],
+                derivation_type=DerivationApproach.UNKNOWN,
+                relevance_score=0.7
+            )
+            sources.append(src)
+
+        # Log extracted constants
+        self._log(f"HermesFlow found {len(domain.constants)} constants:")
+        for const in domain.constants[:5]:
+            self._log(f"  {const.get('name', 'Unknown')}: {const.get('value', 0):.6f}")
+
+        return sources
 
     def _generate_search_queries(self, constant_name: str,
                                   constant_value: float = None) -> List[str]:

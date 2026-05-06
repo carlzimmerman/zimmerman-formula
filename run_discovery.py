@@ -9,19 +9,22 @@ Usage:
     python run_discovery.py "Eddington luminosity ratio"
     python run_discovery.py "Roche limit coefficient"
     python run_discovery.py "Titius-Bode law"
+    python run_discovery.py "monarch butterfly navigation" --research  # Web research
 
 The engine handles everything:
-1. Research the topic → extract constants
+1. Research the topic → extract constants (via HermesFlow if --research)
 2. BriareusFlow → brute-force pattern search
 3. OlympusFlow → rigorous validation
 4. Report findings
 
 Author: Carl Zimmerman
 Date: May 6, 2026
+Updated: May 6, 2026 - Added HermesFlow integration via ResearchBridge
 """
 
 import sys
 import math
+import asyncio
 import argparse
 from typing import List, Dict, Any
 from dataclasses import dataclass
@@ -36,6 +39,19 @@ from BriareusFlow import (
     Z_SQUARED,
     Z
 )
+
+# Try to import HermesFlow ResearchBridge for web research
+try:
+    from HermesFlow.research_bridge import (
+        ResearchBridge,
+        DomainRegistry,
+        run_automated_discovery,
+        HERMES_AVAILABLE
+    )
+    RESEARCH_BRIDGE_AVAILABLE = True
+except ImportError:
+    RESEARCH_BRIDGE_AVAILABLE = False
+    HERMES_AVAILABLE = False
 
 
 # =============================================================================
@@ -295,13 +311,55 @@ def run_discovery(query: str, verbose: bool = True, timeout: float = 60) -> Dict
     }
 
 
+async def run_web_research(query: str, verbose: bool = True, timeout: float = 60) -> Dict[str, Any]:
+    """
+    Run discovery with web research via HermesFlow ResearchBridge.
+
+    This is used for topics not in the hardcoded TOPIC_KNOWLEDGE.
+    It uses HermesFlow web tools to search for scientific data.
+
+    Args:
+        query: Topic to research
+        verbose: Print progress
+        timeout: Search timeout
+
+    Returns:
+        Full results dict
+    """
+    if not RESEARCH_BRIDGE_AVAILABLE:
+        print("Error: HermesFlow ResearchBridge not available")
+        print("Install HermesFlow or use a known topic from TOPIC_KNOWLEDGE")
+        return {"error": "ResearchBridge not available"}
+
+    # Use the automated discovery pipeline
+    return await run_automated_discovery(query, timeout=timeout, verbose=verbose)
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Z² Discovery Engine")
     parser.add_argument("query", nargs="?", default="Eddington luminosity ratio",
                         help="Topic to research (e.g., 'Eddington luminosity ratio')")
     parser.add_argument("--timeout", type=float, default=60, help="Search timeout")
     parser.add_argument("--quiet", action="store_true", help="Less output")
+    parser.add_argument("--research", action="store_true",
+                        help="Use HermesFlow web research for unknown topics")
 
     args = parser.parse_args()
 
-    run_discovery(args.query, verbose=not args.quiet, timeout=args.timeout)
+    # Check if topic is in knowledge base
+    topic = find_topic(args.query)
+
+    if topic:
+        # Use hardcoded knowledge base
+        run_discovery(args.query, verbose=not args.quiet, timeout=args.timeout)
+    elif args.research and RESEARCH_BRIDGE_AVAILABLE:
+        # Use web research
+        print(f"Topic not in knowledge base, using HermesFlow web research...")
+        asyncio.run(run_web_research(args.query, verbose=not args.quiet, timeout=args.timeout))
+    else:
+        print(f"Unknown topic: {args.query}")
+        print(f"Available topics: {list(TOPIC_KNOWLEDGE.keys())}")
+        if RESEARCH_BRIDGE_AVAILABLE:
+            print(f"\nTip: Use --research to search the web for unknown topics")
+        else:
+            print(f"\nNote: Install HermesFlow to enable web research for unknown topics")
