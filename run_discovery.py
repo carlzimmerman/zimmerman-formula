@@ -116,6 +116,37 @@ TOPIC_KNOWLEDGE = {
             {"name": "ln(φ)", "value": math.log((1+math.sqrt(5))/2), "uncertainty": 0.0001, "source": "Mathematics"},
         ]
     },
+    "river-network": {
+        "description": "River network scaling laws - Hack's law, Horton's laws, fractal geometry",
+        "constants": [
+            # Hack's Law: L = C * A^h
+            {"name": "Hack exponent h (original)", "value": 0.6, "uncertainty": 0.02, "source": "Hack 1957"},
+            {"name": "Hack exponent h (mean)", "value": 0.57, "uncertainty": 0.02, "source": "Global average"},
+            {"name": "Hack exponent h (Mueller)", "value": 0.55, "uncertainty": 0.02, "source": "Mueller large basins"},
+            {"name": "Hack exponent h (theoretical)", "value": 0.568, "uncertainty": 0.01, "source": "Percolation theory"},
+            # Horton's Bifurcation Ratio R_B
+            {"name": "Bifurcation ratio R_B (mean)", "value": 4.0, "uncertainty": 0.5, "source": "Horton's law"},
+            {"name": "Bifurcation ratio R_B (min)", "value": 3.0, "uncertainty": 0.2, "source": "Horton's law"},
+            {"name": "Bifurcation ratio R_B (max)", "value": 5.0, "uncertainty": 0.2, "source": "Horton's law"},
+            {"name": "Bifurcation ratio R_B (random)", "value": 3.618, "uncertainty": 0.1, "source": "Random network theory"},
+            # Horton's Length Ratio R_L
+            {"name": "Length ratio R_L", "value": 2.0, "uncertainty": 0.3, "source": "Horton's law"},
+            {"name": "Length ratio R_L (typical)", "value": 2.3, "uncertainty": 0.3, "source": "Empirical"},
+            # Horton's Area Ratio R_A
+            {"name": "Area ratio R_A", "value": 4.5, "uncertainty": 0.5, "source": "Horton's law"},
+            # Fractal Dimensions
+            {"name": "Fractal dimension D_T (min)", "value": 1.7, "uncertainty": 0.05, "source": "Tokunaga networks"},
+            {"name": "Fractal dimension D_T (max)", "value": 1.8, "uncertainty": 0.05, "source": "Tokunaga networks"},
+            {"name": "Fractal dimension D_T (mean)", "value": 1.75, "uncertainty": 0.05, "source": "River networks"},
+            {"name": "Stream branch fractal", "value": 1.84, "uncertainty": 0.05, "source": "Measured"},
+            # Drainage density exponents
+            {"name": "Drainage density fractal", "value": 0.71, "uncertainty": 0.05, "source": "Measured"},
+            # Dimensionless ratios
+            {"name": "h × 2 (Hack doubled)", "value": 1.14, "uncertainty": 0.04, "source": "Computed"},
+            {"name": "R_B / R_L (ratio of ratios)", "value": 4.0/2.0, "uncertainty": 0.2, "source": "Computed"},
+            {"name": "ln(R_B)/ln(R_L) (fractal)", "value": math.log(4)/math.log(2), "uncertainty": 0.1, "source": "Fractal dimension"},
+        ]
+    },
     "turbulence": {
         "description": "Turbulence constants - empirically observed, no first-principles derivation",
         "constants": [
@@ -199,6 +230,8 @@ def find_topic(query: str) -> str:
         return "snowflake"
     if "turbulence" in query_lower or "karman" in query_lower or "kármán" in query_lower or "strouhal" in query_lower or "reynolds" in query_lower:
         return "turbulence"
+    if "river" in query_lower or "hack" in query_lower or "horton" in query_lower or "drainage" in query_lower or "stream" in query_lower or "bifurcation" in query_lower:
+        return "river-network"
 
     # Default to eddington for astrophysics queries
     if any(w in query_lower for w in ["black hole", "accretion", "thomson", "kerr"]):
