@@ -207,6 +207,36 @@ TOPIC_KNOWLEDGE = {
             {"name": "120°/360° = 1/3", "value": 1/3, "uncertainty": 0.0001, "source": "Hexagonal fraction"},
             {"name": "Tetrahedral/360°", "value": math.degrees(math.acos(-1/3))/360, "uncertainty": 0.0001, "source": "Computed"},
         ]
+    },
+    "earthquake-aftershock": {
+        "description": "Earthquake aftershock decay - Omori's law, Båth's law, Gutenberg-Richter",
+        "constants": [
+            # Omori's Law: n(t) = K / (c + t)^p
+            {"name": "Omori p-value (universal)", "value": 1.0, "uncertainty": 0.1, "source": "Omori 1894"},
+            {"name": "Omori p-value (California)", "value": 1.22, "uncertainty": 0.03, "source": "California sequences"},
+            {"name": "Omori p-value (Morocco 2023)", "value": 1.56, "uncertainty": 0.02, "source": "Morocco earthquake study"},
+            {"name": "Omori p-value (global mean)", "value": 1.1, "uncertainty": 0.1, "source": "Global average"},
+            {"name": "Omori c (time delay)", "value": 0.02, "uncertainty": 0.01, "source": "Days, typical"},
+            # Båth's Law: ΔM = M_mainshock - M_largest_aftershock
+            {"name": "Båth law ΔM", "value": 1.2, "uncertainty": 0.1, "source": "Båth 1965"},
+            {"name": "Båth law (precise)", "value": 1.18, "uncertainty": 0.05, "source": "Global catalog"},
+            # Gutenberg-Richter Law: log₁₀(N) = a - b*M
+            {"name": "Gutenberg-Richter b-value", "value": 1.0, "uncertainty": 0.05, "source": "Gutenberg-Richter"},
+            {"name": "G-R b-value (global)", "value": 0.95, "uncertainty": 0.05, "source": "Global seismicity"},
+            {"name": "G-R b-value (subduction)", "value": 0.85, "uncertainty": 0.1, "source": "Subduction zones"},
+            {"name": "G-R b-value (volcanic)", "value": 1.3, "uncertainty": 0.1, "source": "Volcanic regions"},
+            # Energy-magnitude relationship: log₁₀(E) = 1.5*M + 4.8
+            {"name": "Energy-magnitude factor", "value": 1.5, "uncertainty": 0.01, "source": "Kanamori 1977"},
+            {"name": "Energy constant 4.8", "value": 4.8, "uncertainty": 0.1, "source": "Joules convention"},
+            # Aftershock productivity: log₁₀(N) = α*M + β
+            {"name": "Aftershock productivity α", "value": 1.0, "uncertainty": 0.1, "source": "Felzer et al"},
+            {"name": "Aftershock zone L/rupture", "value": 1.5, "uncertainty": 0.2, "source": "Rupture scaling"},
+            # Dimensionless ratios
+            {"name": "10^(ΔM) energy ratio", "value": 10**1.2, "uncertainty": 1, "source": "Computed from Båth"},
+            {"name": "Energy ratio 10^(1.5)", "value": 10**1.5, "uncertainty": 0.5, "source": "Per magnitude step"},
+            {"name": "Omori p - 1 (departure)", "value": 0.1, "uncertainty": 0.1, "source": "Deviation from unity"},
+            {"name": "b/p ratio", "value": 1.0/1.1, "uncertainty": 0.05, "source": "Scaling connection"},
+        ]
     }
 }
 
@@ -232,6 +262,8 @@ def find_topic(query: str) -> str:
         return "turbulence"
     if "river" in query_lower or "hack" in query_lower or "horton" in query_lower or "drainage" in query_lower or "stream" in query_lower or "bifurcation" in query_lower:
         return "river-network"
+    if "earthquake" in query_lower or "aftershock" in query_lower or "omori" in query_lower or "seism" in query_lower or "gutenberg" in query_lower or "richter" in query_lower or "båth" in query_lower or "bath" in query_lower:
+        return "earthquake-aftershock"
 
     # Default to eddington for astrophysics queries
     if any(w in query_lower for w in ["black hole", "accretion", "thomson", "kerr"]):
