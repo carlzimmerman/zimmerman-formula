@@ -1,0 +1,333 @@
+#!/usr/bin/env python3
+"""
+OLYMPUSFLOW - Ground Truth Lookup
+===================================
+
+Integrates the independent ground truth oracle with the honest pipeline.
+This provides pre-computed answers about Z² connections.
+
+KEY FINDINGS FROM INDEPENDENT ANALYSIS:
+- 50 constants examined
+- 34 are pure numerology (pattern matching, not physics)
+- Only 1 potentially real Z² connection: fine structure constant
+- Most constants already rigorously derived by other physics
+
+Author: Carl Zimmerman
+Date: May 5, 2026
+"""
+
+import json
+from pathlib import Path
+from typing import Dict, Optional, Tuple
+from dataclasses import dataclass
+from enum import Enum
+
+
+class DerivationStatus(Enum):
+    """Status of how a constant is derived in established physics."""
+    DERIVED = "derived"                       # Rigorously derived from first principles
+    PARTIALLY_DERIVED = "partially_derived"   # Form derived, value empirical
+    EMPIRICAL = "empirical"                   # Purely measured, no derivation
+    UNKNOWN = "unknown"                       # Open problem in physics
+
+
+class Z2ConnectionQuality(Enum):
+    """Quality of Z² connection."""
+    STRONG = "strong"        # Physical mechanism + numerical match
+    NUMERICAL_ONLY = "numerical"  # Match but no physics
+    WEAK = "weak"            # Forced fit or poor match
+    NONE = "none"            # No connection found
+    TAUTOLOGY = "tautology"  # Circular (e.g., π = 3Z²/32 by definition)
+
+
+@dataclass
+class GroundTruthEntry:
+    """Ground truth information about a constant."""
+    name: str
+    target_value: float
+    unit: str
+    uncertainty: float
+    source: str
+    derivation_status: DerivationStatus
+    physics_explanation: str
+    known_derivation: str
+    z2_connection_known: bool
+    z2_comment: str
+    category: str
+    domain: str
+
+    # From our Z² analysis
+    z2_formula: str = ""
+    z2_computed: float = 0.0
+    z2_error_percent: float = 100.0
+    z2_quality: Z2ConnectionQuality = Z2ConnectionQuality.NONE
+    is_numerology: bool = True
+    honest_assessment: str = ""
+
+
+class GroundTruthOracle:
+    """
+    Oracle for ground truth about Z² connections.
+
+    Loaded from independent analysis stored outside OlympusFlow.
+    """
+
+    # Path to ground truth data (outside OlympusFlow)
+    ORACLE_DIR = Path("/Users/carlzimmerman/new_physics/ground_truth_oracle")
+    ORACLE_DATA = ORACLE_DIR / "oracle_data.json"
+    Z2_SUMMARY = ORACLE_DIR / "z2_derivation_summary.json"
+
+    def __init__(self, verbose: bool = False):
+        self.verbose = verbose
+        self._entries: Dict[str, GroundTruthEntry] = {}
+        self._z2_summary: Dict = {}
+        self._load_oracle()
+
+    def _log(self, msg: str):
+        if self.verbose:
+            print(f"[GroundTruthOracle] {msg}")
+
+    def _load_oracle(self):
+        """Load ground truth data from external oracle."""
+        # Load main oracle data
+        if self.ORACLE_DATA.exists():
+            data = json.loads(self.ORACLE_DATA.read_text())
+            for entry in data.get("entries", []):
+                self._entries[entry["name"].lower()] = GroundTruthEntry(
+                    name=entry["name"],
+                    target_value=entry["target_value"],
+                    unit=entry.get("unit", ""),
+                    uncertainty=entry.get("uncertainty", 0),
+                    source=entry.get("source", ""),
+                    derivation_status=DerivationStatus(entry.get("derivation_status", "unknown")),
+                    physics_explanation=entry.get("physics_explanation", ""),
+                    known_derivation=entry.get("known_derivation", ""),
+                    z2_connection_known=entry.get("z2_connection_known", False),
+                    z2_comment=entry.get("z2_comment", ""),
+                    category=entry.get("category", ""),
+                    domain=entry.get("domain", "")
+                )
+            self._log(f"Loaded {len(self._entries)} oracle entries")
+
+        # Load Z² derivation summary
+        if self.Z2_SUMMARY.exists():
+            self._z2_summary = json.loads(self.Z2_SUMMARY.read_text())
+            self._log("Loaded Z² derivation summary")
+
+    def lookup(self, constant_name: str) -> Optional[GroundTruthEntry]:
+        """
+        Look up ground truth for a constant.
+
+        Returns GroundTruthEntry or None if not found.
+        """
+        # Try exact match
+        key = constant_name.lower().strip()
+        if key in self._entries:
+            return self._entries[key]
+
+        # Try fuzzy match
+        for oracle_key, entry in self._entries.items():
+            if key in oracle_key or oracle_key in key:
+                return entry
+
+        return None
+
+    def get_z2_assessment(self, constant_name: str) -> Tuple[str, bool]:
+        """
+        Get Z² connection assessment from our independent analysis.
+
+        Returns (assessment_text, is_numerology)
+        """
+        # Check strong connections from summary
+        strong = self._z2_summary.get("strong_connections", [])
+        for conn in strong:
+            if constant_name.lower() in conn.get("name", "").lower():
+                return (conn.get("physics", ""), conn.get("is_numerology", False))
+
+        # Check no-connection list
+        no_conn = self._z2_summary.get("no_z2_connection", [])
+        for item in no_conn:
+            if constant_name.lower() in item.lower():
+                return (f"No Z² connection: {item}", False)
+
+        # Default: likely numerology
+        return ("Numerical match found, but physical connection unproven.", True)
+
+    def is_already_derived(self, constant_name: str) -> bool:
+        """Check if this constant is already rigorously derived in physics."""
+        entry = self.lookup(constant_name)
+        if entry:
+            return entry.derivation_status == DerivationStatus.DERIVED
+        return False
+
+    def get_established_derivation(self, constant_name: str) -> str:
+        """Get the established physics derivation if it exists."""
+        entry = self.lookup(constant_name)
+        if entry and entry.known_derivation:
+            return entry.known_derivation
+        return ""
+
+    def should_warn_numerology(self, constant_name: str) -> bool:
+        """Check if we should warn about numerology."""
+        entry = self.lookup(constant_name)
+        if entry:
+            # Warn if already derived by other physics
+            if entry.derivation_status == DerivationStatus.DERIVED:
+                return True
+            # Warn if no known Z² connection
+            if not entry.z2_connection_known:
+                return True
+        return True  # Default: warn
+
+    def get_warning_message(self, constant_name: str) -> str:
+        """Generate appropriate warning message for this constant."""
+        entry = self.lookup(constant_name)
+        if not entry:
+            return "Constant not in ground truth oracle - exercise caution."
+
+        warnings = []
+
+        if entry.derivation_status == DerivationStatus.DERIVED:
+            warnings.append(
+                f"ALREADY DERIVED: {entry.known_derivation}. "
+                "A Z² formula would be redundant unless it provides new insight."
+            )
+
+        if entry.derivation_status == DerivationStatus.EMPIRICAL:
+            warnings.append(
+                "This constant is EMPIRICAL (measured, not derived). "
+                "Any Z² formula is numerology unless physical mechanism is proven."
+            )
+
+        if not entry.z2_connection_known:
+            warnings.append(entry.z2_comment)
+
+        return " ".join(warnings) if warnings else ""
+
+    def get_summary(self) -> Dict:
+        """Get summary of ground truth oracle."""
+        return {
+            "total_entries": len(self._entries),
+            "z2_summary": self._z2_summary.get("summary", {}),
+            "key_finding": self._z2_summary.get("key_finding", ""),
+            "honest_conclusion": self._z2_summary.get("honest_conclusion", {})
+        }
+
+
+# =============================================================================
+# SPECIAL CASE: Fine Structure Constant
+# =============================================================================
+
+# The ONLY potentially real Z² connection in physics
+FINE_STRUCTURE_CONNECTION = {
+    "hypothesis": "α⁻¹ = 4Z² + 3",
+    "z2_value": 33.510321638291124,
+    "predicted_alpha_inverse": 4 * 33.510321638291124 + 3,  # = 137.0412...
+    "measured_alpha_inverse": 137.035999177,  # CODATA 2022
+    "discrepancy_percent": abs(137.0412 - 137.036) / 137.036 * 100,  # ~0.004%
+    "status": "UNPROVEN - numerical match is close but mechanism unknown",
+    "implications": [
+        "IF true, graphene opacity = πα = π/(4Z² + 3)",
+        "IF true, many QED quantities would have Z² expressions",
+        "BUT: No physical mechanism proposed for why α should equal 1/(4Z² + 3)"
+    ]
+}
+
+
+def get_alpha_connection_status() -> str:
+    """Get status of the fine structure constant connection."""
+    return f"""
+FINE STRUCTURE CONSTANT - Z² CONNECTION STATUS
+===============================================
+
+Hypothesis: α⁻¹ = 4Z² + 3
+
+Z² = {FINE_STRUCTURE_CONNECTION['z2_value']}
+Predicted α⁻¹ = {FINE_STRUCTURE_CONNECTION['predicted_alpha_inverse']:.6f}
+Measured α⁻¹  = {FINE_STRUCTURE_CONNECTION['measured_alpha_inverse']} (CODATA 2022)
+Discrepancy   = {FINE_STRUCTURE_CONNECTION['discrepancy_percent']:.4f}%
+
+Status: {FINE_STRUCTURE_CONNECTION['status']}
+
+Implications if true:
+{chr(10).join('- ' + imp for imp in FINE_STRUCTURE_CONNECTION['implications'])}
+
+HONEST ASSESSMENT:
+The numerical match is intriguing (~0.004% error) but insufficient for a claim.
+The value 3 and coefficient 4 appear arbitrary without physical justification.
+This requires theoretical derivation or experimental confirmation.
+"""
+
+
+# =============================================================================
+# QUICK LOOKUP FUNCTIONS
+# =============================================================================
+
+_oracle = None
+
+def get_oracle() -> GroundTruthOracle:
+    """Get singleton oracle instance."""
+    global _oracle
+    if _oracle is None:
+        _oracle = GroundTruthOracle()
+    return _oracle
+
+
+def lookup(constant_name: str) -> Optional[GroundTruthEntry]:
+    """Quick lookup in ground truth oracle."""
+    return get_oracle().lookup(constant_name)
+
+
+def is_numerology(constant_name: str) -> bool:
+    """Check if Z² connection for this constant is likely numerology."""
+    oracle = get_oracle()
+    _, is_num = oracle.get_z2_assessment(constant_name)
+    return is_num
+
+
+def get_warning(constant_name: str) -> str:
+    """Get warning message for this constant."""
+    return get_oracle().get_warning_message(constant_name)
+
+
+# =============================================================================
+# DEMO
+# =============================================================================
+
+if __name__ == "__main__":
+    print("Ground Truth Oracle Test")
+    print("=" * 60)
+
+    oracle = GroundTruthOracle(verbose=True)
+
+    # Test lookups
+    test_constants = [
+        "von Karman Constant",
+        "Feigenbaum Delta",
+        "Graphene Opacity",
+        "Fine Structure Constant",
+        "Conductance Quantum"
+    ]
+
+    for name in test_constants:
+        print(f"\n{name}")
+        print("-" * 40)
+
+        entry = oracle.lookup(name)
+        if entry:
+            print(f"  Status: {entry.derivation_status.value}")
+            print(f"  Known derivation: {entry.known_derivation[:60]}...")
+            print(f"  Z² known: {entry.z2_connection_known}")
+            print(f"  Warning: {oracle.get_warning_message(name)[:80]}...")
+        else:
+            print("  Not found in oracle")
+
+    # Show fine structure connection
+    print("\n" + "=" * 60)
+    print(get_alpha_connection_status())
+
+    # Show summary
+    print("\n" + "=" * 60)
+    summary = oracle.get_summary()
+    print(f"Total entries: {summary['total_entries']}")
+    print(f"Key finding: {summary.get('key_finding', 'N/A')}")

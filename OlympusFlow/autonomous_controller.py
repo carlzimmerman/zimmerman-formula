@@ -37,6 +37,7 @@ from OlympusFlow.formula_generator import FormulaGenerator, FormulaCandidate
 from OlympusFlow.learning_loop import LearningLoop, SuggestedTarget
 from OlympusFlow.derivation_engine import DerivationEngine
 from OlympusFlow.derivation_contracts import DerivationLevel, ChainStatus
+from OlympusFlow.sympy_verifier import SymPyVerifier, VerificationLevel
 
 
 class ControllerState(Enum):
@@ -113,6 +114,7 @@ class AutonomousController:
         self.engine = DerivationEngine(verbose=verbose)
         self.formula_gen = FormulaGenerator(max_error=1.0, verbose=False)
         self.learning = LearningLoop(self.output_dir / "learning")
+        self.sympy_verifier = SymPyVerifier(verbose=False)  # Formal algebraic verification
 
         # Queue (priority queue - lower number = higher priority)
         self.queue: PriorityQueue = PriorityQueue()
@@ -388,6 +390,33 @@ class AutonomousController:
                 [chain.final_formula]
             )
             return
+
+        # Step 6: SymPy Formal Verification
+        # Add algebraic verification to catch any remaining numerology
+        sympy_result = self.sympy_verifier.verify(
+            formula=chain.final_formula,
+            target_value=target.target_value,
+            uncertainty=target.target_value * 0.01  # 1% default uncertainty
+        )
+
+        result["sympy_verification"] = {
+            "level": sympy_result.level.value,
+            "z2_appears": sympy_result.z2_appears,
+            "z2_essential": sympy_result.z2_essential,
+            "simplified": sympy_result.simplified_formula,
+            "relative_error": sympy_result.relative_error
+        }
+
+        # Log SymPy results
+        self.log(f"  SymPy Level: {sympy_result.level.value}")
+        if sympy_result.z2_appears:
+            self.log(f"  Z² Present: Yes (essential: {sympy_result.z2_essential})")
+
+        # If SymPy finds Z² is not essential when LLM thought it was, warn
+        if sympy_result.z2_appears and not sympy_result.z2_essential:
+            result["warnings"] = result.get("warnings", [])
+            result["warnings"].append("Z² may be coincidental - not algebraically essential")
+            self.log(f"  WARNING: Z² may not be algebraically essential")
 
         # Success!
         self.log(f"  SUCCESS: {chain.level.value}")
