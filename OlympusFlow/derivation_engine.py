@@ -31,6 +31,7 @@ from .derivation_contracts import (
     Z2, Z, PHI, create_z2_axiom_step, evaluate_formula_z_content,
     KNOWN_FIRST_PRINCIPLES
 )
+from .formula_generator import FormulaGenerator, FormulaType
 
 # Legomena model and timeouts - NO RUSHING
 LEGOMENA_MODEL = os.environ.get("LEGOMENA_MODEL", "legomena-moe")
@@ -63,6 +64,7 @@ class DerivationEngine:
     def __init__(self, verbose: bool = True):
         self.verbose = verbose
         self.legomena_available = self._check_legomena()
+        self.formula_gen = FormulaGenerator(max_error=1.0, verbose=False)
         self.timing: Dict[str, float] = {}
 
     def _log(self, msg: str):
@@ -674,62 +676,31 @@ FORMULA_HINT: [suggest Z²-based formula like "Z²/x" or "aZ + b"]"""
 
     def _pattern_match(self, target: float) -> Tuple[str, float, float]:
         """
-        Pattern match against Z² formulas.
+        Pattern match against Z² formulas using FormulaGenerator.
 
         This is the FALLBACK when no physical derivation exists.
         Returns (formula, computed_value, percent_error)
+
+        Uses FormulaGenerator for comprehensive formula search including:
+        - Simple fractions (a/b)
+        - Z² polynomial forms (aZ² + b)
+        - Z linear forms (aZ + b)
+        - Geometric functions (arccos, arctan)
+        - Pi-based expressions
+        - Known first-principles templates
         """
         # Handle edge case where target is 0 or very small
         if abs(target) < 1e-15:
             return "", 0, 100
 
-        # Generate candidates
-        candidates = []
+        # Use FormulaGenerator for comprehensive search
+        result = self.formula_gen.search(target)
 
-        # Simple fractions (mark as non-Z)
-        for a in range(1, 30):
-            for b in range(1, 30):
-                if a != b:
-                    val = a / b
-                    err = abs(target - val) / abs(target) * 100
-                    if err < 5:
-                        candidates.append((f"{a}/{b}", val, err, False))
+        if result.best_match:
+            best = result.best_match
+            return best.formula_str, best.computed_value, best.percent_error
 
-        # Z-based formulas
-        z_formulas = [
-            ("Z", Z), ("Z²", Z2), ("1/Z", 1/Z), ("1/Z²", 1/Z2),
-            ("Z/10", Z/10), ("Z²/10", Z2/10), ("Z²/100", Z2/100),
-            ("Z + 1", Z + 1), ("Z - 1", Z - 1),
-            ("2Z", 2*Z), ("Z/2", Z/2),
-            ("π/Z", math.pi/Z), ("Z/π", Z/math.pi),
-        ]
-
-        for formula, val in z_formulas:
-            err = abs(target - val) / target * 100
-            if err < 5:
-                candidates.append((formula, val, err, True))
-
-        # aZ + b forms
-        for a in range(-5, 6):
-            for b in range(-20, 21):
-                if a != 0:
-                    val = a * Z + b
-                    err = abs(target - val) / target * 100
-                    if err < 5:
-                        candidates.append((f"{a}Z + {b}" if b >= 0 else f"{a}Z - {-b}", val, err, True))
-
-        # Sort by error
-        candidates.sort(key=lambda x: x[2])
-
-        # Prefer Z-containing formulas
-        z_candidates = [c for c in candidates if c[3]]
-        if z_candidates:
-            best = z_candidates[0]
-            return best[0], best[1], best[2]
-        elif candidates:
-            best = candidates[0]
-            return best[0], best[1], best[2]
-
+        # No match found
         return "", 0, 100
 
     def verify(self, chain: DerivationChain,
