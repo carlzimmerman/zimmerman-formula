@@ -38,6 +38,7 @@ from OlympusFlow.learning_loop import LearningLoop, SuggestedTarget
 from OlympusFlow.derivation_engine import DerivationEngine
 from OlympusFlow.derivation_contracts import DerivationLevel, ChainStatus
 from OlympusFlow.sympy_verifier import SymPyVerifier, VerificationLevel
+from OlympusFlow.prediction_generator import PredictionGenerator, TestablePrediction
 
 
 class ControllerState(Enum):
@@ -77,6 +78,8 @@ class ControllerStats:
     queue_size: int = 0
     running_time_seconds: float = 0
     targets_generated: int = 0
+    predictions_generated: int = 0
+    high_value_predictions: int = 0
 
     def to_dict(self) -> Dict:
         return asdict(self)
@@ -115,6 +118,7 @@ class AutonomousController:
         self.formula_gen = FormulaGenerator(max_error=1.0, verbose=False)
         self.learning = LearningLoop(self.output_dir / "learning")
         self.sympy_verifier = SymPyVerifier(verbose=False)  # Formal algebraic verification
+        self.prediction_gen = PredictionGenerator()  # Testable prediction generation
 
         # Queue (priority queue - lower number = higher priority)
         self.queue: PriorityQueue = PriorityQueue()
@@ -433,6 +437,31 @@ class AutonomousController:
 
         # Learn from success
         self.learning.learn_from_success(result)
+
+        # Step 7: Generate Testable Predictions
+        # This is what distinguishes physics from numerology
+        predictions = self.prediction_gen.generate_predictions(result)
+        result["testable_predictions"] = [
+            {
+                "id": p.prediction_id,
+                "type": p.prediction_type.value,
+                "description": p.description,
+                "predicted_value": p.predicted_value,
+                "distinguishing_power": p.distinguishing_power,
+                "testability": p.testability
+            }
+            for p in predictions
+        ]
+
+        # Log high-value predictions and update stats
+        high_value = [p for p in predictions if p.distinguishing_power >= 0.7]
+        self.stats.predictions_generated += len(predictions)
+        self.stats.high_value_predictions += len(high_value)
+
+        if high_value:
+            self.log(f"  Generated {len(predictions)} predictions ({len(high_value)} high-value)")
+            for p in high_value[:3]:  # Show top 3
+                self.log(f"    - {p.description}")
 
         # Generate follow-up targets
         suggestions = self.learning.suggest_similar_targets(result)
