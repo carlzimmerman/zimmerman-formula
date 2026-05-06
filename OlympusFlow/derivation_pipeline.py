@@ -170,8 +170,8 @@ class DerivationPipeline:
         if self.mnemosyne is None:
             try:
                 from MnemosyneLake import MnemosyneLake
-                self.mnemosyne = MnemosyneLake()
-                self._log("✓ MnemosyneLake loaded")
+                self.mnemosyne = MnemosyneLake(persist=True)
+                self._log("✓ MnemosyneLake loaded (persist=True)")
             except ImportError:
                 self._log("⚠ MnemosyneLake not available")
 
@@ -385,7 +385,9 @@ class DerivationPipeline:
 
     def _save_result(self, task: DerivationTask, result: PipelineResult):
         """Save result to output directory."""
+        import re
         normalized = task.constant_name.lower().replace(" ", "_")
+        normalized = re.sub(r'[/\\:*?"<>|]', '_', normalized)  # Remove filesystem-unsafe chars
         output_file = self.output_dir / f"{normalized}_result.json"
 
         data = {

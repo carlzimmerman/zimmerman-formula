@@ -32,8 +32,13 @@ from .derivation_contracts import (
     KNOWN_FIRST_PRINCIPLES
 )
 
-# Legomena model
+# Legomena model and timeouts - NO RUSHING
 LEGOMENA_MODEL = os.environ.get("LEGOMENA_MODEL", "legomena-moe")
+LEGOMENA_TIMEOUT = int(os.environ.get("LEGOMENA_TIMEOUT", "600"))  # 10 min default
+
+# Multi-prompt configuration
+MULTI_PROMPT_ATTEMPTS = int(os.environ.get("DERIVATION_ATTEMPTS", "4"))
+SKEPTICAL_THRESHOLD = 0.75  # Below this confidence, run skeptical challenge
 
 # Experimental data sources (will be queried via web search)
 EXPERIMENTAL_SOURCES = {
@@ -86,17 +91,26 @@ class DerivationEngine:
             self._log(f"✗ Ollama not available: {e}")
         return False
 
-    def _ask_legomena(self, prompt: str, timeout: int = 60) -> str:
+    def _ask_legomena(self, prompt: str, timeout: int = None) -> str:
         """
         Ask Legomena for reasoning about physics.
+
+        Args:
+            prompt: The prompt to send
+            timeout: Timeout in seconds (defaults to LEGOMENA_TIMEOUT env var)
 
         Returns empty string if not available.
         """
         if not self.legomena_available:
             return ""
 
+        # Use environment timeout if not specified - NO RUSHING
+        if timeout is None:
+            timeout = LEGOMENA_TIMEOUT
+
         start = time.time()
         try:
+            self._log(f"  Calling Legomena (timeout={timeout}s)...")
             result = subprocess.run(
                 ["ollama", "run", LEGOMENA_MODEL],
                 input=prompt,
@@ -110,11 +124,259 @@ class DerivationEngine:
             if result.returncode == 0:
                 return result.stdout.strip()
         except subprocess.TimeoutExpired:
-            self._log(f"  Legomena timeout after {timeout}s")
+            elapsed = time.time() - start
+            self._log(f"  Legomena timeout after {elapsed:.1f}s (limit was {timeout}s)")
         except Exception as e:
             self._log(f"  Legomena error: {e}")
 
         return ""
+
+    def _multi_prompt_derive(self, constant_name: str, target_value: float,
+                              initial_response: Dict) -> Dict:
+        """
+        Multi-prompt refinement for derivations.
+
+        Like how the user prompts Claude multiple times to dig deeper,
+        we challenge Legomena with follow-up prompts to improve answers.
+
+        Args:
+            constant_name: The constant being derived
+            target_value: Target numerical value
+            initial_response: First attempt results (connection, mechanism, confidence, formula_hint)
+
+        Returns:
+            Refined response with best derivation found
+        """
+        connection = initial_response.get('connection', 'NO')
+        mechanism = initial_response.get('mechanism', '')
+        confidence = initial_response.get('confidence', 0.3)
+        formula_hint = initial_response.get('formula_hint', '')
+
+        best_result = initial_response.copy()
+        attempts_log = [f"Attempt 1: {connection}, conf={confidence:.2f}"]
+
+        # =====================================================================
+        # ATTEMPT 2: Skeptical Challenge (if confidence < threshold)
+        # =====================================================================
+        if confidence < SKEPTICAL_THRESHOLD or connection not in ['YES']:
+            self._log("  Running skeptical challenge (Attempt 2)...")
+
+            skeptical_prompt = f"""You previously analyzed {constant_name} = {target_value}
+
+Your initial assessment:
+- Connection: {connection}
+- Mechanism: {mechanism}
+- Confidence: {confidence}
+- Formula hint: {formula_hint}
+
+Now be SKEPTICAL. Challenge yourself:
+
+1. Is this connection DERIVED from Z² geometry, or just a NUMERICAL COINCIDENCE?
+   - A true derivation has a physical mechanism (dimensional analysis, symmetry, DOF counting)
+   - Numerology is when you find arithmetic combinations that match but have no physics
+
+2. What would FALSIFY this Z² connection?
+   - If you can't think of a falsification test, the connection is likely numerology
+
+3. Are there SIMPLER explanations that don't involve Z²?
+   - Standard physics derivations (from thermodynamics, QFT, etc.)
+   - Pure dimensional analysis without Z²
+
+Think HARDER. Be HONEST. Don't overclaim.
+
+Respond in EXACT format:
+REVISED_CONNECTION: [YES/MAYBE/NO/NUMEROLOGY]
+REVISED_MECHANISM: [better physical mechanism OR "no mechanism - numerical only"]
+REVISED_CONFIDENCE: [0.0 to 1.0, be more conservative]
+CLASSIFICATION: [DERIVED/MATCHES/NUMEROLOGY/UNDETERMINED]
+FALSIFICATION: [what would disprove this?]"""
+
+            skeptical_response = self._ask_legomena(skeptical_prompt, timeout=None)
+
+            if skeptical_response:
+                revised_connection = connection
+                revised_confidence = confidence
+                classification = "UNDETERMINED"
+                falsification = ""
+
+                for line in skeptical_response.split('\n'):
+                    if 'REVISED_CONNECTION:' in line:
+                        revised_connection = line.split('REVISED_CONNECTION:')[1].strip().upper()
+                    elif 'REVISED_MECHANISM:' in line:
+                        revised_mech = line.split('REVISED_MECHANISM:')[1].strip()
+                        if revised_mech and len(revised_mech) > len(mechanism):
+                            mechanism = revised_mech
+                    elif 'REVISED_CONFIDENCE:' in line:
+                        try:
+                            revised_confidence = float(line.split('REVISED_CONFIDENCE:')[1].strip())
+                        except:
+                            pass
+                    elif 'CLASSIFICATION:' in line:
+                        classification = line.split('CLASSIFICATION:')[1].strip().upper()
+                    elif 'FALSIFICATION:' in line:
+                        falsification = line.split('FALSIFICATION:')[1].strip()
+
+                # Update best if skeptical challenge improved understanding
+                if revised_confidence != confidence or classification != "UNDETERMINED":
+                    best_result['connection'] = revised_connection
+                    best_result['mechanism'] = mechanism
+                    best_result['confidence'] = revised_confidence
+                    best_result['classification'] = classification
+                    best_result['falsification'] = falsification
+                    attempts_log.append(f"Attempt 2 (skeptical): {classification}, conf={revised_confidence:.2f}")
+
+                    confidence = revised_confidence
+                    connection = revised_connection
+
+        # =====================================================================
+        # ATTEMPT 3: Alternative Approaches (try multiple derivation methods)
+        # =====================================================================
+        if MULTI_PROMPT_ATTEMPTS >= 3 and connection not in ['NO', 'NUMEROLOGY']:
+            self._log("  Trying alternative approaches (Attempt 3)...")
+
+            alternatives_prompt = f"""For {constant_name} = {target_value}, try MULTIPLE derivation approaches:
+
+METHOD A - Dimensional Analysis:
+- What dimensions does this constant have?
+- Can Z² = 32π/3 (dimensionless) appear naturally?
+
+METHOD B - Geometric Derivation:
+- Z² = 32π/3 = (4π)(8/3) relates to sphere/cube geometry
+- Does this constant involve angles, solid angles, or geometric ratios?
+
+METHOD C - DOF Counting:
+- Z² relates to dimensional counting (3 space + 1 time = 4)
+- Does this constant involve counting degrees of freedom?
+
+METHOD D - Optimization/Variational:
+- Some constants emerge from optimization principles
+- Could Z² appear in a variational derivation?
+
+METHOD E - Symmetry/Group Theory:
+- Z² involves SU(2), cube symmetry group
+- Does this constant involve gauge groups or discrete symmetries?
+
+For EACH method that could work, show the derivation steps.
+
+Respond in EXACT format:
+BEST_METHOD: [A/B/C/D/E]
+DERIVATION_STEPS: [numbered steps of the best derivation]
+FORMULA: [the Z²-based formula]
+COMPUTED_VALUE: [numerical result]
+METHOD_CONFIDENCE: [0.0 to 1.0]"""
+
+            alternatives_response = self._ask_legomena(alternatives_prompt, timeout=None)
+
+            if alternatives_response:
+                best_method = ""
+                derivation_steps = ""
+                formula = formula_hint
+                computed = 0.0
+                method_confidence = confidence
+
+                for line in alternatives_response.split('\n'):
+                    if 'BEST_METHOD:' in line:
+                        best_method = line.split('BEST_METHOD:')[1].strip()
+                    elif 'FORMULA:' in line:
+                        new_formula = line.split('FORMULA:')[1].strip()
+                        if new_formula:
+                            formula = new_formula
+                    elif 'COMPUTED_VALUE:' in line:
+                        try:
+                            computed = float(line.split('COMPUTED_VALUE:')[1].strip())
+                        except:
+                            pass
+                    elif 'METHOD_CONFIDENCE:' in line:
+                        try:
+                            method_confidence = float(line.split('METHOD_CONFIDENCE:')[1].strip())
+                        except:
+                            pass
+                    elif 'DERIVATION_STEPS:' in line:
+                        derivation_steps = line.split('DERIVATION_STEPS:')[1].strip()
+
+                # If this attempt found a better derivation
+                if method_confidence > confidence or (computed > 0 and formula):
+                    best_result['best_method'] = best_method
+                    best_result['derivation_steps'] = derivation_steps
+                    best_result['formula_hint'] = formula
+                    best_result['computed_value'] = computed
+                    best_result['confidence'] = max(confidence, method_confidence)
+                    attempts_log.append(f"Attempt 3 (alternatives): Method {best_method}, conf={method_confidence:.2f}")
+
+                    confidence = best_result['confidence']
+
+        # =====================================================================
+        # ATTEMPT 4: Final Synthesis (meta-review of all attempts)
+        # =====================================================================
+        if MULTI_PROMPT_ATTEMPTS >= 4:
+            self._log("  Final synthesis (Attempt 4)...")
+
+            synthesis_prompt = f"""Synthesize your analysis of {constant_name} = {target_value}
+
+Your attempts so far:
+{chr(10).join(attempts_log)}
+
+Current best:
+- Connection: {best_result.get('connection', 'UNKNOWN')}
+- Mechanism: {best_result.get('mechanism', 'none')}
+- Confidence: {best_result.get('confidence', 0)}
+- Classification: {best_result.get('classification', 'UNDETERMINED')}
+- Formula: {best_result.get('formula_hint', 'none')}
+
+FINAL JUDGMENT:
+
+1. Is this Z² connection REAL (derived from physics) or COINCIDENTAL (numerology)?
+   Be brutally honest. Most numerical matches are coincidences.
+
+2. What is the SINGLE BEST derivation path, if any exists?
+
+3. What is your FINAL confidence (0.0-1.0)?
+   - 0.9+: Clear first-principles derivation with physical mechanism
+   - 0.7-0.9: Strong evidence but some uncertainty
+   - 0.5-0.7: Plausible but needs more investigation
+   - 0.3-0.5: Weak evidence, possibly coincidence
+   - <0.3: Likely numerology, no real connection
+
+4. What would CHANGE YOUR MIND?
+
+Respond in EXACT format:
+FINAL_VERDICT: [DERIVED/MATCHES/NUMEROLOGY/INCONCLUSIVE]
+FINAL_MECHANISM: [the physical mechanism if DERIVED, otherwise "none"]
+FINAL_FORMULA: [the formula if derived]
+FINAL_CONFIDENCE: [0.0 to 1.0]
+HONEST_ASSESSMENT: [one sentence summary]"""
+
+            synthesis_response = self._ask_legomena(synthesis_prompt, timeout=None)
+
+            if synthesis_response:
+                for line in synthesis_response.split('\n'):
+                    if 'FINAL_VERDICT:' in line:
+                        best_result['final_verdict'] = line.split('FINAL_VERDICT:')[1].strip().upper()
+                    elif 'FINAL_MECHANISM:' in line:
+                        final_mech = line.split('FINAL_MECHANISM:')[1].strip()
+                        if final_mech and final_mech.lower() != 'none':
+                            best_result['mechanism'] = final_mech
+                    elif 'FINAL_FORMULA:' in line:
+                        final_formula = line.split('FINAL_FORMULA:')[1].strip()
+                        if final_formula:
+                            best_result['formula_hint'] = final_formula
+                    elif 'FINAL_CONFIDENCE:' in line:
+                        try:
+                            best_result['confidence'] = float(line.split('FINAL_CONFIDENCE:')[1].strip())
+                        except:
+                            pass
+                    elif 'HONEST_ASSESSMENT:' in line:
+                        best_result['honest_assessment'] = line.split('HONEST_ASSESSMENT:')[1].strip()
+
+                attempts_log.append(f"Attempt 4 (synthesis): {best_result.get('final_verdict', 'N/A')}, conf={best_result.get('confidence', 0):.2f}")
+
+        best_result['attempts_log'] = attempts_log
+        best_result['num_attempts'] = len(attempts_log)
+
+        self._log(f"  Multi-prompt completed: {len(attempts_log)} attempts")
+        self._log(f"  Final: {best_result.get('final_verdict', best_result.get('connection', 'N/A'))}, conf={best_result.get('confidence', 0):.2f}")
+
+        return best_result
 
     def derive(self, constant_name: str, target_value: float,
                strategy: Optional[Dict] = None) -> DerivationChain:
@@ -220,7 +482,7 @@ MECHANISM: [one sentence describing physical mechanism]
 CONFIDENCE: [0.0 to 1.0]
 FORMULA_HINT: [suggest Z²-based formula like "Z²/x" or "aZ + b"]"""
 
-        connection_response = self._ask_legomena(physical_prompt, timeout=90)
+        connection_response = self._ask_legomena(physical_prompt, timeout=None)
 
         # Parse response
         connection = "NO"
@@ -242,9 +504,40 @@ FORMULA_HINT: [suggest Z²-based formula like "Z²/x" or "aZ + b"]"""
                 elif 'FORMULA_HINT:' in line:
                     formula_hint = line.split('FORMULA_HINT:')[1].strip()
 
-        self._log(f"  Connection: {connection}")
-        self._log(f"  Mechanism: {mechanism[:50]}..." if len(mechanism) > 50 else f"  Mechanism: {mechanism}")
-        self._log(f"  Confidence: {confidence}")
+        self._log(f"  Initial: Connection={connection}, Confidence={confidence}")
+
+        # =====================================================================
+        # MULTI-PROMPT REFINEMENT (like user prompting Claude multiple times)
+        # =====================================================================
+        initial_response = {
+            'connection': connection,
+            'mechanism': mechanism,
+            'confidence': confidence,
+            'formula_hint': formula_hint
+        }
+
+        # Run multi-prompt refinement to dig deeper
+        if MULTI_PROMPT_ATTEMPTS > 1 and self.legomena_available:
+            self._log("Running multi-prompt refinement...")
+            refined = self._multi_prompt_derive(constant_name, target_value, initial_response)
+
+            # Update with refined results
+            connection = refined.get('connection', connection)
+            mechanism = refined.get('mechanism', mechanism)
+            confidence = refined.get('confidence', confidence)
+            formula_hint = refined.get('formula_hint', formula_hint)
+
+            # Store multi-prompt refinement results
+            chain.refinement_metadata = {
+                'attempts': refined.get('num_attempts', 1),
+                'final_verdict': refined.get('final_verdict', 'UNKNOWN'),
+                'classification': refined.get('classification', 'UNDETERMINED'),
+                'honest_assessment': refined.get('honest_assessment', ''),
+                'falsification': refined.get('falsification', ''),
+                'attempts_log': refined.get('attempts_log', [])
+            }
+
+        self._log(f"  Final: Connection={connection}, Confidence={confidence}")
 
         # Step 3: Try to build mathematical connection
         self._log("Step 3: Building mathematical connection...")
@@ -386,6 +679,10 @@ FORMULA_HINT: [suggest Z²-based formula like "Z²/x" or "aZ + b"]"""
         This is the FALLBACK when no physical derivation exists.
         Returns (formula, computed_value, percent_error)
         """
+        # Handle edge case where target is 0 or very small
+        if abs(target) < 1e-15:
+            return "", 0, 100
+
         # Generate candidates
         candidates = []
 
@@ -394,7 +691,7 @@ FORMULA_HINT: [suggest Z²-based formula like "Z²/x" or "aZ + b"]"""
             for b in range(1, 30):
                 if a != b:
                     val = a / b
-                    err = abs(target - val) / target * 100
+                    err = abs(target - val) / abs(target) * 100
                     if err < 5:
                         candidates.append((f"{a}/{b}", val, err, False))
 
@@ -475,9 +772,13 @@ FORMULA_HINT: [suggest Z²-based formula like "Z²/x" or "aZ + b"]"""
                     chain.computed_value - experimental_value
                 ) / verified.experimental_uncertainty
             else:
-                verified.deviation_sigma = abs(
-                    chain.computed_value - experimental_value
-                ) / experimental_value * 100
+                # Use percent difference as fallback (avoid division by zero)
+                if abs(experimental_value) > 1e-15:
+                    verified.deviation_sigma = abs(
+                        chain.computed_value - experimental_value
+                    ) / abs(experimental_value) * 100
+                else:
+                    verified.deviation_sigma = abs(chain.computed_value - experimental_value) * 1e10
 
             self._log(f"  Experimental: {experimental_value} ± {verified.experimental_uncertainty}")
             self._log(f"  Computed: {chain.computed_value}")
@@ -512,7 +813,7 @@ VALUE: 0.6847
 UNCERTAINTY: 0.0073
 SOURCE: Planck 2018"""
 
-            response = self._ask_legomena(prompt, timeout=30)
+            response = self._ask_legomena(prompt, timeout=None)
 
             if response:
                 result = {}

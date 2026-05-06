@@ -361,7 +361,10 @@ class MetisEngine:
 
     def _save_strategy(self, strategy: DerivationStrategy):
         """Save strategy to disk."""
+        # Sanitize filename (remove problematic characters)
+        import re
         normalized = strategy.target_constant.lower().replace(" ", "_")
+        normalized = re.sub(r'[/\\:*?"<>|]', '_', normalized)  # Remove filesystem-unsafe chars
         filepath = self.output_dir / f"{normalized}_strategy.json"
         filepath.write_text(json.dumps(strategy.to_dict(), indent=2))
         self._log(f"Saved strategy to {filepath}")

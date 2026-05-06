@@ -80,9 +80,19 @@ v1.6.0 Changes (May 5, 2026):
 - Automatic routing: AletheiaLake (first-principles) vs MnemosyneLake (derived)
 - MetisFlow integration for literature research before derivation
 - Clean data flow: DerivationTask → DerivationChain → VerifiedDerivation
+
+v1.7.0 Changes (May 5, 2026):
+- HONEST PIPELINE: Complete rebuild with truthful labeling
+- Honest data contracts: EvidenceLevel, SourceType, DerivationType
+- Real experimental data API: CODATA, NIST, PDG (no hardcoding)
+- SymPy symbolic verification engine for algebraic proof
+- Clear separation: ALGEBRAIC_PROOF vs NUMERICAL_FIT vs LLM_SPECULATION
+- Experimental values from real APIs, not LLM assertions
+- Full audit trail and honest warnings
+- NO FALSE CLAIMS - everything labeled with true evidence level
 """
 
-__version__ = "1.6.0"  # Unified Derivation Pipeline
+__version__ = "1.7.0"  # Honest Pipeline - No False Claims
 
 # Core components
 from .contracts import (
@@ -161,6 +171,30 @@ from .derivation_pipeline import (
     PipelineResult
 )
 
+# Honest Pipeline (v1.7.0) - No False Claims
+from .honest_contracts import (
+    HonestStep,
+    HonestDerivation,
+    HonestResult,
+    ExperimentalValue,
+    EvidenceLevel,
+    SourceType,
+    DerivationType,
+    ConnectionStrength
+)
+
+from .experimental_api import ExperimentalDataAPI
+
+from .symbolic_engine import SymbolicEngine
+
+from .honest_derivation import HonestDerivationEngine
+
+from .honest_pipeline import (
+    HonestPipeline,
+    HonestTask,
+    HonestPipelineResult
+)
+
 __all__ = [
     # Version
     "__version__",
@@ -227,5 +261,21 @@ __all__ = [
     "DerivationEngine",
     "DerivationPipeline",
     "DerivationTask",
-    "PipelineResult"
+    "PipelineResult",
+
+    # Honest Pipeline (v1.7.0) - No False Claims
+    "HonestStep",
+    "HonestDerivation",
+    "HonestResult",
+    "ExperimentalValue",
+    "EvidenceLevel",
+    "SourceType",
+    "DerivationType",
+    "ConnectionStrength",
+    "ExperimentalDataAPI",
+    "SymbolicEngine",
+    "HonestDerivationEngine",
+    "HonestPipeline",
+    "HonestTask",
+    "HonestPipelineResult"
 ]

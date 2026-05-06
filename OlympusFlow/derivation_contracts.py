@@ -161,6 +161,9 @@ class DerivationChain:
     chain_id: str = ""
     timestamp: str = ""
 
+    # Multi-prompt refinement results
+    refinement_metadata: Dict[str, Any] = field(default_factory=dict)
+
     def __post_init__(self):
         if not self.chain_id:
             self.chain_id = self._generate_id()
@@ -276,7 +279,8 @@ class DerivationChain:
             "weakest_step_idx": self.weakest_step_idx,
             "physical_mechanism": self.physical_mechanism,
             "dimensional_analysis": self.dimensional_analysis,
-            "timestamp": self.timestamp
+            "timestamp": self.timestamp,
+            "refinement_metadata": self.refinement_metadata
         }
 
     def summary(self) -> str:
@@ -306,6 +310,20 @@ class DerivationChain:
             f"First Principles: {'YES' if self.is_first_principles() else 'NO'}",
             f"AletheiaLake Qualified: {'YES' if self.qualifies_for_aletheia() else 'NO'}"
         ])
+
+        # Multi-prompt refinement results
+        if self.refinement_metadata:
+            lines.extend([
+                "",
+                "Multi-Prompt Refinement:",
+                f"  Attempts: {self.refinement_metadata.get('attempts', 1)}",
+                f"  Final Verdict: {self.refinement_metadata.get('final_verdict', 'N/A')}",
+                f"  Classification: {self.refinement_metadata.get('classification', 'N/A')}",
+            ])
+            if self.refinement_metadata.get('honest_assessment'):
+                lines.append(f"  Assessment: {self.refinement_metadata['honest_assessment']}")
+            if self.refinement_metadata.get('falsification'):
+                lines.append(f"  Falsification: {self.refinement_metadata['falsification']}")
 
         return "\n".join(lines)
 
