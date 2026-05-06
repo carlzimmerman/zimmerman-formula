@@ -15,12 +15,23 @@ Version: 2.0.0
 """
 
 import json
+import math
 import time
 from dataclasses import dataclass, field, asdict
 from typing import List, Dict, Optional, Tuple
 from pathlib import Path
 from datetime import datetime
 from enum import Enum
+
+# Import bandit selector for intelligent template selection
+try:
+    from OlympusFlow.bandit_selector import (
+        ContextualTemplateBandit, FormulaTemplateBandit,
+        SelectionStrategy, SelectionResult
+    )
+    BANDIT_AVAILABLE = True
+except ImportError:
+    BANDIT_AVAILABLE = False
 
 
 class SuccessType(Enum):
@@ -99,12 +110,13 @@ class LearningLoop:
     - Template weights (which templates to try first)
     """
 
-    def __init__(self, storage_dir: Optional[Path] = None):
+    def __init__(self, storage_dir: Optional[Path] = None, use_bandit: bool = True):
         """
         Initialize the learning loop.
 
         Args:
             storage_dir: Directory to store learned patterns
+            use_bandit: Whether to use multi-armed bandit for template selection
         """
         self.storage_dir = storage_dir or Path("/tmp/learning_loop")
         self.storage_dir.mkdir(parents=True, exist_ok=True)
@@ -114,12 +126,22 @@ class LearningLoop:
         self.failures: List[FailureRecord] = []
         self.template_weights: Dict[str, float] = self._default_weights()
 
+        # Multi-armed bandit for intelligent template selection
+        self.use_bandit = use_bandit and BANDIT_AVAILABLE
+        if self.use_bandit:
+            self.bandit = ContextualTemplateBandit(
+                storage_path=self.storage_dir / "bandits"
+            )
+        else:
+            self.bandit = None
+
         # Statistics
         self.stats = {
             "total_successes": 0,
             "total_failures": 0,
             "patterns_learned": 0,
-            "suggestions_made": 0
+            "suggestions_made": 0,
+            "bandit_enabled": self.use_bandit
         }
 
         # Load existing data
@@ -181,11 +203,22 @@ class LearningLoop:
             )
             self.patterns[pattern_id] = pattern
 
-        # Update template weights
+        # Update template weights (legacy)
         if formula_type in self.template_weights:
             self.template_weights[formula_type] *= 1.05
             self.template_weights[formula_type] = min(
                 self.template_weights[formula_type], 20.0
+            )
+
+        # Update multi-armed bandit (modern approach)
+        if self.use_bandit and self.bandit:
+            derivation_level = result.get("derivation_level", "derived")
+            hrm_score = result.get("hrm_score", result.get("confidence", 0.5))
+            self.bandit.update(
+                domain=domain,
+                template_type=formula_type,
+                derivation_level=derivation_level,
+                hrm_score=hrm_score
             )
 
         self.stats["total_successes"] += 1
@@ -239,11 +272,23 @@ class LearningLoop:
 
         self.failures.append(record)
 
-        # Downweight templates that failed
+        # Downweight templates that failed (legacy)
         for formula in attempted:
             for template_type in self.template_weights:
                 if template_type in formula.lower():
                     self.template_weights[template_type] *= 0.98
+
+        # Update multi-armed bandit with failure
+        if self.use_bandit and self.bandit:
+            # Infer template type from attempted formulas
+            template_type = self._infer_template_type(attempted)
+            if template_type:
+                self.bandit.update(
+                    domain=domain,
+                    template_type=template_type,
+                    derivation_level="failed",
+                    hrm_score=0.0
+                )
 
         self.stats["total_failures"] += 1
 
@@ -331,6 +376,163 @@ class LearningLoop:
             "geometry": ["mathematics", "materials"],
         }
         return domain_map.get(domain, [])
+
+    def _infer_template_type(self, formulas: List[str]) -> Optional[str]:
+        """
+        Infer the template type from a list of attempted formulas.
+
+        Args:
+            formulas: List of formula strings that were attempted
+
+        Returns:
+            Most likely template type, or None if can't determine
+        """
+        if not formulas:
+            return None
+
+        # Pattern matching for template types
+        type_counts = {
+            "simple_fraction": 0,
+            "integer_z2": 0,
+            "z_polynomial": 0,
+            "z_fraction": 0,
+            "geometric": 0,
+            "pi_based": 0,
+            "compound": 0
+        }
+
+        for formula in formulas:
+            formula_lower = formula.lower()
+
+            if "/" in formula and ("z" not in formula_lower or formula.count("/") == 1):
+                # Simple fraction like 3/13
+                if all(c.isdigit() or c in "/-" for c in formula.replace(" ", "")):
+                    type_counts["simple_fraction"] += 1
+                    continue
+
+            if "z²" in formula_lower or "z**2" in formula_lower or "z^2" in formula_lower:
+                if "/" in formula:
+                    type_counts["z_fraction"] += 1
+                else:
+                    type_counts["integer_z2"] += 1
+                continue
+
+            if "z" in formula_lower and ("+" in formula or "-" in formula):
+                type_counts["z_polynomial"] += 1
+                continue
+
+            if "arccos" in formula_lower or "arctan" in formula_lower or "arcsin" in formula_lower:
+                type_counts["geometric"] += 1
+                continue
+
+            if "π" in formula or "pi" in formula_lower:
+                type_counts["pi_based"] += 1
+                continue
+
+            if formula.count("(") > 1 or formula.count("/") > 1:
+                type_counts["compound"] += 1
+                continue
+
+            # Default: simple fraction
+            type_counts["simple_fraction"] += 1
+
+        # Return the most common type
+        if max(type_counts.values()) == 0:
+            return None
+
+        return max(type_counts.keys(), key=lambda k: type_counts[k])
+
+    def get_template_priority_bandit(
+        self,
+        domain: str = "general",
+        n: int = 5
+    ) -> List[Tuple[str, float]]:
+        """
+        Get template priority from multi-armed bandit.
+
+        This uses Thompson Sampling to recommend templates,
+        balancing exploration and exploitation.
+
+        Args:
+            domain: Physics domain for contextual selection
+            n: Number of templates to return
+
+        Returns:
+            List of (template_name, estimated_value) sorted by value
+        """
+        if not self.use_bandit or not self.bandit:
+            # Fall back to legacy weights
+            return self.get_template_priority()[:n]
+
+        # Get bandit recommendation
+        templates = self.bandit.select_template_order(domain, n)
+
+        # Get estimated values for each
+        stats = self.bandit.get_stats()
+        domain_stats = stats.get("domains", {}).get(domain, stats.get("global", {}))
+        arms = domain_stats.get("arms", {})
+
+        result = []
+        for template in templates:
+            if template in arms:
+                value = arms[template].get("success_rate", 0.5)
+            else:
+                value = 0.5  # Default
+            result.append((template, value))
+
+        return result
+
+    def get_exploration_summary(self) -> Dict:
+        """
+        Get summary of exploration vs exploitation behavior.
+
+        Returns:
+            Dict with exploration statistics
+        """
+        if not self.use_bandit or not self.bandit:
+            return {"bandit_enabled": False}
+
+        stats = self.bandit.get_stats()
+        global_stats = stats.get("global", {})
+
+        # Calculate exploration metrics
+        total_pulls = global_stats.get("total_pulls", 0)
+        arms = global_stats.get("arms", {})
+
+        if total_pulls == 0:
+            return {
+                "bandit_enabled": True,
+                "total_pulls": 0,
+                "exploration_needed": True
+            }
+
+        # Entropy of pull distribution (higher = more exploration)
+        pulls = [a.get("pulls", 0) for a in arms.values()]
+        total = sum(pulls)
+        if total > 0:
+            probs = [p / total for p in pulls if p > 0]
+            entropy = -sum(p * (p and math.log(p) or 0) for p in probs)
+            max_entropy = math.log(len(arms))
+            exploration_ratio = entropy / max_entropy if max_entropy > 0 else 0
+        else:
+            exploration_ratio = 1.0
+
+        # Find undertested arms
+        mean_pulls = total_pulls / len(arms) if arms else 0
+        undertested = [
+            name for name, a in arms.items()
+            if a.get("pulls", 0) < mean_pulls * 0.5
+        ]
+
+        return {
+            "bandit_enabled": True,
+            "total_pulls": total_pulls,
+            "total_successes": global_stats.get("total_successes", 0),
+            "success_rate": global_stats.get("success_rate", 0),
+            "exploration_ratio": exploration_ratio,
+            "undertested_templates": undertested,
+            "top_templates": global_stats.get("ranking", [])[:3]
+        }
 
     def get_template_priority(self) -> List[Tuple[str, float]]:
         """
