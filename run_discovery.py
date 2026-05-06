@@ -115,6 +115,36 @@ TOPIC_KNOWLEDGE = {
             {"name": "φ²", "value": ((1+math.sqrt(5))/2)**2, "uncertainty": 0.0001, "source": "Mathematics"},
             {"name": "ln(φ)", "value": math.log((1+math.sqrt(5))/2), "uncertainty": 0.0001, "source": "Mathematics"},
         ]
+    },
+    "snowflake": {
+        "description": "Snowflake and ice crystal structure (Ice Ih)",
+        "constants": [
+            # Exact geometric values
+            {"name": "Hexagonal arm angle", "value": 60.0, "uncertainty": 0.0001, "source": "Hexagonal symmetry"},
+            {"name": "Internal hexagon angle", "value": 120.0, "uncertainty": 0.0001, "source": "Hexagonal symmetry"},
+            {"name": "Tetrahedral angle arccos(-1/3)", "value": math.degrees(math.acos(-1/3)), "uncertainty": 0.0001, "source": "Exact geometry"},
+            {"name": "-cos(tetrahedral) = 1/3", "value": 1/3, "uncertainty": 0.0001, "source": "Exact"},
+            {"name": "Number of arms", "value": 6, "uncertainty": 0.0001, "source": "Hexagonal symmetry"},
+            # Bond angles
+            {"name": "H-O-H angle in ice", "value": 109.47, "uncertainty": 0.01, "source": "Ice Ih structure"},
+            {"name": "H-O-H angle in water", "value": 104.5, "uncertainty": 0.1, "source": "Liquid water"},
+            {"name": "Water/ice angle ratio", "value": 104.5/109.47, "uncertainty": 0.001, "source": "Computed"},
+            # Bond lengths (Angstroms)
+            {"name": "O-O hydrogen bond", "value": 2.76, "uncertainty": 0.01, "source": "Ice Ih neutron diffraction"},
+            {"name": "O-H covalent bond", "value": 1.01, "uncertainty": 0.01, "source": "Ice Ih structure"},
+            {"name": "O-H/O-O bond ratio", "value": 1.01/2.76, "uncertainty": 0.005, "source": "Computed"},
+            # Density
+            {"name": "Ice Ih density", "value": 0.917, "uncertainty": 0.001, "source": "Ice physics"},
+            {"name": "Ice/water density ratio", "value": 0.917, "uncertainty": 0.001, "source": "Ice physics"},
+            # Lattice spacings
+            {"name": "Interlayer spacing (nm)", "value": 0.276, "uncertainty": 0.001, "source": "Ice Ih crystallography"},
+            {"name": "Inter-plane spacing (nm)", "value": 0.0923, "uncertainty": 0.001, "source": "Ice Ih crystallography"},
+            {"name": "Plane/layer spacing ratio", "value": 0.0923/0.276, "uncertainty": 0.005, "source": "Computed"},
+            # Dimensionless angles as fractions of circle
+            {"name": "60°/360° = 1/6", "value": 1/6, "uncertainty": 0.0001, "source": "Hexagonal fraction"},
+            {"name": "120°/360° = 1/3", "value": 1/3, "uncertainty": 0.0001, "source": "Hexagonal fraction"},
+            {"name": "Tetrahedral/360°", "value": math.degrees(math.acos(-1/3))/360, "uncertainty": 0.0001, "source": "Computed"},
+        ]
     }
 }
 
@@ -134,6 +164,8 @@ def find_topic(query: str) -> str:
         return "geodynamo"
     if "golden" in query_lower or "fibonacci" in query_lower:
         return "golden"
+    if "snowflake" in query_lower or "ice crystal" in query_lower or "ice ih" in query_lower:
+        return "snowflake"
 
     # Default to eddington for astrophysics queries
     if any(w in query_lower for w in ["black hole", "accretion", "thomson", "kerr"]):
