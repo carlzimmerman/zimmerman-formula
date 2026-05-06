@@ -237,6 +237,35 @@ TOPIC_KNOWLEDGE = {
             {"name": "Omori p - 1 (departure)", "value": 0.1, "uncertainty": 0.1, "source": "Deviation from unity"},
             {"name": "b/p ratio", "value": 1.0/1.1, "uncertainty": 0.05, "source": "Scaling connection"},
         ]
+    },
+    "kleiber": {
+        "description": "Kleiber's law metabolic scaling - quarter-power biology",
+        "constants": [
+            # Kleiber's Law: B ∝ M^α where α ≈ 3/4
+            {"name": "Kleiber exponent (observed)", "value": 0.75, "uncertainty": 0.01, "source": "Kleiber 1932"},
+            {"name": "Kleiber exponent (mammals)", "value": 0.74, "uncertainty": 0.02, "source": "Mammalian data"},
+            {"name": "Kleiber exponent (birds)", "value": 0.72, "uncertainty": 0.02, "source": "Avian data"},
+            {"name": "Kleiber exponent (fish)", "value": 0.79, "uncertainty": 0.03, "source": "Fish metabolic data"},
+            {"name": "Kleiber exponent (plants)", "value": 0.75, "uncertainty": 0.02, "source": "Plant growth"},
+            # West-Brown-Enquist theoretical derivation
+            {"name": "WBE theoretical 3/4", "value": 3/4, "uncertainty": 0.001, "source": "West-Brown-Enquist 1997"},
+            # Related quarter-power scaling laws
+            {"name": "Heart rate exponent", "value": -0.25, "uncertainty": 0.01, "source": "Heart rate ~ M^-1/4"},
+            {"name": "Lifespan exponent", "value": 0.25, "uncertainty": 0.02, "source": "Lifespan ~ M^1/4"},
+            {"name": "Circulation time exp", "value": 0.25, "uncertainty": 0.01, "source": "Blood circuit time"},
+            {"name": "Aorta radius exponent", "value": 0.375, "uncertainty": 0.01, "source": "Aorta ~ M^3/8"},
+            # Surface area scaling (alternative theory)
+            {"name": "Surface area exponent", "value": 2/3, "uncertainty": 0.01, "source": "Rubner isometry"},
+            {"name": "Rubner 2/3 law", "value": 0.667, "uncertainty": 0.01, "source": "Rubner 1883"},
+            # Dimensionless ratios
+            {"name": "3/4 exact", "value": 0.75, "uncertainty": 0.0001, "source": "Quarter-power exact"},
+            {"name": "1/4 exact", "value": 0.25, "uncertainty": 0.0001, "source": "Quarter-power exact"},
+            {"name": "3/8 exact", "value": 0.375, "uncertainty": 0.0001, "source": "Eighth-power exact"},
+            {"name": "Kleiber/Rubner ratio", "value": 0.75/0.667, "uncertainty": 0.01, "source": "Computed"},
+            {"name": "4 × Kleiber exp", "value": 3.0, "uncertainty": 0.01, "source": "Dimensionality"},
+            {"name": "1 - Kleiber exp", "value": 0.25, "uncertainty": 0.01, "source": "Complementary"},
+            {"name": "Kleiber exp squared", "value": 0.5625, "uncertainty": 0.01, "source": "Computed"},
+        ]
     }
 }
 
@@ -264,6 +293,8 @@ def find_topic(query: str) -> str:
         return "river-network"
     if "earthquake" in query_lower or "aftershock" in query_lower or "omori" in query_lower or "seism" in query_lower or "gutenberg" in query_lower or "richter" in query_lower or "båth" in query_lower or "bath" in query_lower:
         return "earthquake-aftershock"
+    if "kleiber" in query_lower or "metabolic" in query_lower or "allometric" in query_lower or "quarter-power" in query_lower or "3/4 law" in query_lower:
+        return "kleiber"
 
     # Default to eddington for astrophysics queries
     if any(w in query_lower for w in ["black hole", "accretion", "thomson", "kerr"]):
