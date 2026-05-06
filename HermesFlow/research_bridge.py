@@ -55,17 +55,24 @@ import sys
 # Add parent directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-# Try to import HermesFlow web tools
+# Try to import Firecrawl search (lightweight standalone module)
 try:
-    from HermesFlow.hermes_agent.tools.web_tools import (
-        web_search_tool,
-        web_extract_tool,
-        check_web_api_key
+    from HermesFlow.firecrawl_search import (
+        FirecrawlSearcher,
+        is_firecrawl_available,
+        extract_constants_from_content
     )
-    HERMES_AVAILABLE = True
+    FIRECRAWL_AVAILABLE = is_firecrawl_available()
+    if FIRECRAWL_AVAILABLE:
+        print("[ResearchBridge] Firecrawl web search available")
+    else:
+        print("[ResearchBridge] Warning: Firecrawl API key not found")
 except ImportError:
-    HERMES_AVAILABLE = False
-    print("[ResearchBridge] Warning: HermesFlow web tools not available")
+    FIRECRAWL_AVAILABLE = False
+    print("[ResearchBridge] Warning: Firecrawl search module not available")
+
+# Legacy: Try to import full HermesFlow web tools (complex dependencies)
+HERMES_AVAILABLE = False  # Disabled - use lightweight Firecrawl instead
 
 # Import BriareusFlow types
 try:
@@ -411,9 +418,17 @@ class ResearchBridge:
             self.domains_dir = Path(__file__).parent.parent / "BriareusFlow" / "domains"
         self.domains_dir.mkdir(parents=True, exist_ok=True)
 
-        # Check HermesFlow availability
-        if not HERMES_AVAILABLE:
-            self._log("Warning: HermesFlow web tools not available - using mock search")
+        # Initialize Firecrawl searcher if available
+        self.firecrawl = None
+        if FIRECRAWL_AVAILABLE:
+            try:
+                self.firecrawl = FirecrawlSearcher(verbose=verbose)
+                self._log("Firecrawl web search initialized")
+            except Exception as e:
+                self._log(f"Warning: Could not initialize Firecrawl: {e}")
+
+        if not self.firecrawl:
+            self._log("Warning: Web search not available - using mock search")
 
     def _log(self, msg: str):
         if self.verbose:
@@ -439,12 +454,12 @@ class ResearchBridge:
         all_constants = []
         all_sources = []
 
-        for query in queries[:3]:  # Limit to 3 queries
+        for query in queries[:2]:  # Limit to 2 queries (Firecrawl rate limits)
             self._log(f"Searching: {query}")
 
-            if HERMES_AVAILABLE and check_web_api_key():
-                # Use HermesFlow web tools
-                constants, sources = await self._search_with_hermes(query, num_results)
+            if self.firecrawl:
+                # Use Firecrawl web search
+                constants, sources = self._search_with_firecrawl(query, num_results)
             else:
                 # Fallback to mock search
                 constants, sources = self._search_mock(query)
@@ -471,50 +486,67 @@ class ResearchBridge:
     def _generate_queries(self, topic: str) -> List[str]:
         """Generate search queries for a topic."""
         return [
-            f"{topic} scientific measurements",
-            f"{topic} physics constants data",
-            f"{topic} quantitative research values",
-            f"{topic} numerical parameters",
+            f"{topic} scientific constants measurements",
+            f"{topic} physics numerical values data",
         ]
 
-    async def _search_with_hermes(self, query: str,
-                                   num_results: int) -> Tuple[List[ExtractedConstant], List[str]]:
-        """Search using HermesFlow web tools."""
+    def _search_with_firecrawl(self, query: str,
+                                num_results: int) -> Tuple[List[ExtractedConstant], List[str]]:
+        """Search using Firecrawl and extract constants."""
         constants = []
         sources = []
 
-        # Web search
-        search_result = web_search_tool(query, limit=num_results)
-        search_data = json.loads(search_result)
-
-        if not search_data.get('success'):
-            self._log(f"Search failed: {search_data.get('error', 'Unknown error')}")
+        if not self.firecrawl:
             return constants, sources
 
-        # Get URLs from search results
-        urls = []
-        for result in search_data.get('data', {}).get('web', []):
-            url = result.get('url', '')
-            if url:
-                urls.append(url)
-                sources.append(url)
+        # Search
+        results = self.firecrawl.search(query, limit=num_results)
 
-        if not urls:
+        if not results:
+            self._log("No search results found")
             return constants, sources
 
-        # Extract content from URLs
-        self._log(f"Extracting content from {len(urls)} URLs")
-        extract_result = await web_extract_tool(urls[:5], format="markdown")
-        extract_data = json.loads(extract_result)
+        # Extract content from top results
+        for result in results[:3]:  # Limit extractions
+            sources.append(result.url)
 
-        # Extract constants from content
-        for result in extract_data.get('results', []):
-            content = result.get('content', '')
-            url = result.get('url', '')
-
-            if content:
-                extracted = self.extractor.extract_from_text(content, url)
+            # Use snippet first (faster)
+            if result.snippet:
+                extracted = self.extractor.extract_from_text(result.snippet, result.url)
                 constants.extend(extracted)
+
+            # Optionally scrape full content for top result
+            if result == results[0]:
+                try:
+                    content = self.firecrawl.scrape_url(result.url)
+                    if content.success and content.content:
+                        self._log(f"Scraped {len(content.content)} chars from {result.title[:40]}...")
+                        extracted = self.extractor.extract_from_text(content.content, result.url)
+                        constants.extend(extracted)
+                except Exception as e:
+                    self._log(f"Scrape failed: {e}")
+
+        return constants, sources
+
+    async def _search_with_hermes_legacy(self, query: str,
+                                   num_results: int) -> Tuple[List[ExtractedConstant], List[str]]:
+        """Legacy: Search using HermesFlow web tools (complex dependencies)."""
+        constants = []
+        sources = []
+
+        # This method is kept for backwards compatibility but disabled
+        # Use _search_with_firecrawl instead
+        return constants, sources
+
+    def _search_with_hermes_disabled(self, query: str,
+                                      num_results: int) -> Tuple[List[ExtractedConstant], List[str]]:
+        """Disabled: Original HermesFlow search (kept for reference)."""
+        constants = []
+        sources = []
+
+        # Web search - disabled, using Firecrawl instead
+        # search_result = web_search_tool(query, limit=num_results)
+        # ...
 
         return constants, sources
 
@@ -556,6 +588,45 @@ class ResearchBridge:
                     source_text="The Gutenberg-Richter b-value is typically around 1.0",
                     source_url="mock://earthquake.research",
                     confidence=0.9
+                ),
+            ]
+        elif 'turbulence' in query.lower() or 'karman' in query.lower() or 'reynolds' in query.lower():
+            mock_constants = [
+                ExtractedConstant(
+                    name="von Kármán constant",
+                    value=0.41,
+                    uncertainty=0.01,
+                    unit="",
+                    source_text="The von Kármán constant κ ≈ 0.41 in turbulent boundary layers",
+                    source_url="mock://turbulence.research",
+                    confidence=0.9
+                ),
+                ExtractedConstant(
+                    name="Strouhal number",
+                    value=0.21,
+                    uncertainty=0.01,
+                    unit="",
+                    source_text="The Strouhal number for vortex shedding is approximately 0.21",
+                    source_url="mock://turbulence.research",
+                    confidence=0.9
+                ),
+                ExtractedConstant(
+                    name="Critical Reynolds (pipe)",
+                    value=2300,
+                    uncertainty=100,
+                    unit="",
+                    source_text="Turbulence transition in pipes occurs at Re ≈ 2300",
+                    source_url="mock://turbulence.research",
+                    confidence=0.85
+                ),
+                ExtractedConstant(
+                    name="Kolmogorov constant",
+                    value=1.5,
+                    uncertainty=0.1,
+                    unit="",
+                    source_text="The Kolmogorov constant C_K ≈ 1.5 in the energy spectrum",
+                    source_url="mock://turbulence.research",
+                    confidence=0.8
                 ),
             ]
 

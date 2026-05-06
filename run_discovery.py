@@ -116,6 +116,37 @@ TOPIC_KNOWLEDGE = {
             {"name": "ln(φ)", "value": math.log((1+math.sqrt(5))/2), "uncertainty": 0.0001, "source": "Mathematics"},
         ]
     },
+    "turbulence": {
+        "description": "Turbulence constants - empirically observed, no first-principles derivation",
+        "constants": [
+            # von Kármán constant
+            {"name": "von Kármán κ", "value": 0.41, "uncertainty": 0.01, "source": "Turbulent boundary layers"},
+            {"name": "von Kármán κ (Bailey 2014)", "value": 0.40, "uncertainty": 0.02, "source": "Bailey et al 2014"},
+            {"name": "von Kármán κ (Nagib)", "value": 0.384, "uncertainty": 0.01, "source": "Nagib & Chauhan 2008"},
+            # Strouhal number
+            {"name": "Strouhal St (cylinder)", "value": 0.21, "uncertainty": 0.01, "source": "Vortex shedding"},
+            {"name": "Strouhal St (universal)", "value": 0.20, "uncertainty": 0.01, "source": "Bluff bodies"},
+            {"name": "Strouhal St* (wake)", "value": 0.178, "uncertainty": 0.01, "source": "Roshko 1954"},
+            # Critical Reynolds numbers
+            {"name": "Re_crit (pipe)", "value": 2300, "uncertainty": 100, "source": "Pipe flow transition"},
+            {"name": "Re_crit (Schiller)", "value": 2320, "uncertainty": 50, "source": "Schiller lower critical"},
+            {"name": "Re_crit (theoretical)", "value": 1840, "uncertainty": 50, "source": "Axisymmetric stability"},
+            {"name": "Re_crit (flat plate)", "value": 500000, "uncertainty": 50000, "source": "Boundary layer transition"},
+            # Kolmogorov constants
+            {"name": "Kolmogorov C_K", "value": 1.5, "uncertainty": 0.1, "source": "Energy spectrum"},
+            {"name": "Kolmogorov C_2", "value": 2.0, "uncertainty": 0.1, "source": "Structure function"},
+            # Turbulence exponents
+            {"name": "Kolmogorov -5/3 exponent", "value": -5/3, "uncertainty": 0.01, "source": "Inertial range"},
+            {"name": "Richardson 4/3 exponent", "value": 4/3, "uncertainty": 0.01, "source": "Eddy diffusion"},
+            # Other empirical constants
+            {"name": "Sphere drag C_d", "value": 0.47, "uncertainty": 0.02, "source": "Sphere at Re>1000"},
+            {"name": "Critical Weber We_crit", "value": 12, "uncertainty": 1, "source": "Droplet breakup"},
+            {"name": "Smagorinsky C_s", "value": 0.17, "uncertainty": 0.02, "source": "LES modeling"},
+            # Dimensionless ratios
+            {"name": "1/κ (log law slope)", "value": 1/0.41, "uncertainty": 0.05, "source": "Wall law"},
+            {"name": "κ²", "value": 0.41**2, "uncertainty": 0.01, "source": "Squared von Kármán"},
+        ]
+    },
     "snowflake": {
         "description": "Snowflake and ice crystal structure (Ice Ih)",
         "constants": [
@@ -166,6 +197,8 @@ def find_topic(query: str) -> str:
         return "golden"
     if "snowflake" in query_lower or "ice crystal" in query_lower or "ice ih" in query_lower:
         return "snowflake"
+    if "turbulence" in query_lower or "karman" in query_lower or "kármán" in query_lower or "strouhal" in query_lower or "reynolds" in query_lower:
+        return "turbulence"
 
     # Default to eddington for astrophysics queries
     if any(w in query_lower for w in ["black hole", "accretion", "thomson", "kerr"]):
