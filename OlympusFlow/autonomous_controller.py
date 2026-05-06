@@ -283,6 +283,91 @@ class AutonomousController:
         self.log(f"Runtime: {self.stats.running_time_seconds:.1f}s")
         self.log("=" * 60)
 
+    def run(
+        self,
+        max_iterations: int = None,
+        timeout: float = None,
+        stop_on_empty: bool = True
+    ):
+        """
+        Run the autonomous derivation engine.
+
+        Args:
+            max_iterations: Maximum number of targets to process (None = unlimited)
+            timeout: Maximum runtime in seconds (None = unlimited)
+            stop_on_empty: Stop when queue is empty (default True)
+
+        Returns:
+            Dict with run statistics
+        """
+        import time
+        start_time = time.time()
+        iterations = 0
+
+        self.state = ControllerState.RUNNING
+        self._running = True
+        self.stats.started_at = datetime.now().isoformat()
+
+        self.log("=" * 60)
+        self.log("AUTONOMOUS Z² ENGINE STARTING")
+        self.log(f"Max iterations: {max_iterations or 'unlimited'}")
+        self.log(f"Timeout: {timeout or 'unlimited'}s")
+        self.log(f"Queue size: {self.queue.qsize()}")
+        self.log("=" * 60)
+
+        try:
+            while self._running:
+                # Check timeout
+                if timeout and (time.time() - start_time) > timeout:
+                    self.log("Timeout reached")
+                    break
+
+                # Check max iterations
+                if max_iterations and iterations >= max_iterations:
+                    self.log(f"Max iterations ({max_iterations}) reached")
+                    break
+
+                # Check queue
+                if self.queue.empty():
+                    self._generate_new_targets()
+                    if self.queue.empty():
+                        if stop_on_empty:
+                            self.log("Queue empty, stopping")
+                            break
+                        else:
+                            time.sleep(1)  # Wait for new targets
+                            continue
+
+                # Process target
+                target = self.queue.get()
+                self._process_target(target)
+                self.stats.total_targets_processed += 1
+                iterations += 1
+
+                # Periodic checkpoint
+                elapsed = time.time() - start_time
+                if elapsed > 0 and int(elapsed) % self.checkpoint_interval == 0:
+                    self._save_checkpoint()
+
+        except KeyboardInterrupt:
+            self.log("Interrupted by user")
+        except Exception as e:
+            self.log(f"Error: {e}")
+            raise
+        finally:
+            self.stats.running_time_seconds = time.time() - start_time
+            self._save_checkpoint()
+            self.state = ControllerState.STOPPED
+
+        return {
+            "iterations": iterations,
+            "runtime": time.time() - start_time,
+            "successes": self.stats.successful_derivations,
+            "failures": self.stats.failed_derivations,
+            "numerology_rejected": self.stats.numerology_rejected,
+            "first_principles": self.stats.first_principles_found
+        }
+
     def run_n(self, n: int):
         """
         Run the loop for exactly n targets.
@@ -290,23 +375,7 @@ class AutonomousController:
         Args:
             n: Number of targets to process
         """
-        self.state = ControllerState.RUNNING
-        self._running = True
-
-        for i in range(n):
-            if self.queue.empty():
-                self._generate_new_targets()
-                if self.queue.empty():
-                    break
-
-            target = self.queue.get()
-            self._process_target(target)
-            self.stats.total_targets_processed += 1
-
-            self.log(f"Progress: {i+1}/{n}")
-
-        self._save_checkpoint()
-        self.state = ControllerState.STOPPED
+        return self.run(max_iterations=n, stop_on_empty=True)
 
     def _process_target(self, target: DerivationTarget):
         """

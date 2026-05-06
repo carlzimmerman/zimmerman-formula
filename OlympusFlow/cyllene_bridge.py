@@ -82,40 +82,42 @@ class CylleneBridge:
             print(f"[CylleneBridge] {msg}")
 
     def _load_related_constants(self) -> Dict[str, List[Dict]]:
-        """Load knowledge base of related physics constants."""
+        """Load knowledge base of related physics constants with actual values."""
         return {
             # If we derive sin²θ_W, consider these related
             "sin²θ_W": [
-                {"name": "cos²θ_W", "relation": "1 - sin²θ_W", "domain": "particle_physics"},
-                {"name": "ρ parameter", "relation": "M_W²/(M_Z² cos²θ_W)", "domain": "particle_physics"},
-                {"name": "g'/g ratio", "relation": "tan(θ_W)", "domain": "particle_physics"},
+                {"name": "cos²θ_W", "value": 0.76878, "relation": "1 - sin²θ_W", "domain": "particle_physics"},
+                {"name": "M_W/M_Z ratio", "value": 0.8815, "relation": "cos(θ_W)", "domain": "particle_physics"},
+                {"name": "sin²θ_W(M_Z)", "value": 0.23122, "relation": "At Z pole", "domain": "particle_physics"},
             ],
 
             # If we derive α⁻¹
             "α⁻¹": [
-                {"name": "α⁻¹(M_Z)", "relation": "RG running to Z pole", "domain": "particle_physics"},
-                {"name": "α_s(M_Z)", "relation": "Strong coupling at Z", "domain": "particle_physics"},
-                {"name": "g²/4π", "relation": "Electroweak g coupling", "domain": "particle_physics"},
+                {"name": "α⁻¹(M_Z)", "value": 127.95, "relation": "RG running to Z pole", "domain": "particle_physics"},
+                {"name": "α_s(M_Z)", "value": 0.1179, "relation": "Strong coupling at Z", "domain": "particle_physics"},
+                {"name": "α_em", "value": 0.00729735, "relation": "1/137.036", "domain": "particle_physics"},
             ],
 
             # If we derive Ω_Λ
             "Ω_Λ": [
-                {"name": "Ω_m", "relation": "1 - Ω_Λ (flat universe)", "domain": "cosmology"},
-                {"name": "H_0", "relation": "Hubble constant", "domain": "cosmology"},
-                {"name": "w", "relation": "Dark energy EOS parameter", "domain": "cosmology"},
-                {"name": "q_0", "relation": "Deceleration parameter", "domain": "cosmology"},
+                {"name": "Ω_m", "value": 0.315, "relation": "1 - Ω_Λ (flat universe)", "domain": "cosmology"},
+                {"name": "Ω_b h²", "value": 0.0224, "relation": "Baryon density", "domain": "cosmology"},
+                {"name": "σ_8", "value": 0.811, "relation": "Matter fluctuation amplitude", "domain": "cosmology"},
             ],
 
             # Thermodynamics
             "γ": [
-                {"name": "C_p/C_v ratio", "relation": "Same as γ", "domain": "thermodynamics"},
-                {"name": "sound speed", "relation": "√(γRT/M)", "domain": "thermodynamics"},
+                {"name": "γ_diatomic", "value": 1.4, "relation": "7/5 for diatomic", "domain": "thermodynamics"},
+                {"name": "C_v/R (monoatomic)", "value": 1.5, "relation": "3/2", "domain": "thermodynamics"},
+            ],
+
+            # cos²θ_W leads back to sin²θ_W
+            "cos²θ_W": [
+                {"name": "sin²θ_W", "value": 0.23122, "relation": "1 - cos²θ_W", "domain": "particle_physics"},
             ],
 
             # Default for unknown constants
-            "_default": [
-                {"name": "[related constant]", "relation": "search for related quantities", "domain": "general"},
-            ]
+            "_default": []
         }
 
     def derivation_to_finding(self, derivation: Dict) -> Dict:
@@ -345,9 +347,12 @@ class CylleneBridge:
             if "[" in r["name"]:
                 continue
 
+            # Get actual value if available
+            target_value = r.get("value", 0)
+
             targets.append({
                 "constant_name": r["name"],
-                "target_value": 0,  # Will need to look up
+                "target_value": target_value,
                 "domain": r.get("domain", domain),
                 "priority": 0.7,
                 "source": "cyllene_bridge_related",
