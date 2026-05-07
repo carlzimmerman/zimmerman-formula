@@ -172,6 +172,9 @@ class DaemonStats:
     to_mnemosyne: int = 0
     training_examples: int = 0
 
+    # Cyllene Deepening
+    deepening_questions: int = 0
+
     # Hecate
     hecate_passes: int = 0
     hecate_warns: int = 0
@@ -659,9 +662,17 @@ class OlympusDaemon:
 
     def _deepen(self, result: Dict):
         """
-        DEEPEN phase: Generate follow-up research questions.
+        DEEPEN phase: Generate follow-up research questions using CylleneFlow.
+
+        When a first-principles or derived result is found, the Deepener
+        analyzes its significance and generates research questions like:
+        - "Why does this pattern emerge?"
+        - "Do similar patterns exist in related domains?"
+        - "What other constants might show this relationship?"
+
+        These questions are converted to ResearchTasks and added to the queue.
         """
-        if not self._cyllene:
+        if self._cyllene is None or self._queue is None:
             return
 
         # Only deepen successful results
@@ -669,10 +680,79 @@ class OlympusDaemon:
         if level not in ["first_principles", "derived"]:
             return
 
-        # TODO: Generate research questions and add to queue
-        # questions = self._cyllene.analyze_finding(result)
-        # for q in questions:
-        #     self._queue.add(convert_question_to_task(q))
+        try:
+            # Import ResearchTask and TaskPriority
+            from OlympusFlow.flows.alpheus import ResearchTask, TaskPriority
+            import hashlib
+
+            # Convert result to finding format for Deepener
+            finding = {
+                "domain": result.get("domain", "general"),
+                "quantity": result.get("constant_name", result.get("name", "unknown")),
+                "value": result.get("computed_value", result.get("target_value", 0)),
+                "target": result.get("formula", "Z²"),
+                "target_value": result.get("target_value", 0),
+                "error_percent": result.get("percent_error", 1.0),
+                "error": result.get("percent_error", 1.0),
+                "n_samples": 1,  # Single derivation
+                "hrm_score": result.get("hrm_score", 0.5),
+                "derivation_level": level
+            }
+
+            # Analyze with Deepener
+            decision = self._cyllene.analyze_finding(finding)
+
+            if not decision.should_deepen:
+                self._log(f"  Deepener: No deepening needed ({decision.reasoning})")
+                return
+
+            self._log(f"  Deepener: Significance {decision.significance_score:.2f}, "
+                      f"generating {len(decision.questions)} questions")
+
+            # Convert questions to ResearchTasks and add to queue
+            tasks_added = 0
+            for q in decision.questions:
+                # Generate unique task ID
+                task_id = hashlib.md5(
+                    f"{q.question}:{result.get('constant_name', '')}".encode()
+                ).hexdigest()[:8]
+
+                # Create description that guides the derivation
+                description = (
+                    f"Follow-up from {result.get('constant_name', 'unknown')}: "
+                    f"{q.question} "
+                    f"Rationale: {q.rationale}. "
+                    f"Expected data type: {q.expected_data_type}. "
+                    f"Focus on Z² = 32π/3 derivation principles."
+                )
+
+                # Map question priority to TaskPriority
+                if q.priority == 1:
+                    priority = TaskPriority.HIGH
+                elif q.priority == 2:
+                    priority = TaskPriority.NORMAL
+                else:
+                    priority = TaskPriority.LOW
+
+                task = ResearchTask(
+                    id=f"deep_{task_id}",
+                    name=f"deepening_{q.domain}_{task_id}",
+                    description=description,
+                    category=q.domain,
+                    priority=priority,
+                    target_value=result.get("target_value", 0),
+                    domain=q.domain
+                )
+
+                self._queue.add(task)
+                tasks_added += 1
+
+            if tasks_added > 0:
+                self._log(f"  Deepener: Added {tasks_added} follow-up tasks to queue")
+                self.stats.deepening_questions += tasks_added
+
+        except Exception as e:
+            self._log(f"  Deepener error: {e}", "WARN")
 
     # =========================================================================
     # CONTROL
