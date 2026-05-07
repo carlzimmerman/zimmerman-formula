@@ -22,6 +22,10 @@ Usage:
 # Import flows as they are migrated
 from .ergon import ActionDeriver, ActionDerivation, LAGRANGIAN_TEMPLATES
 from .metis import MetisEngine, ZSquaredRelevance, DerivationStrategy
+from .briareus import (
+    BriareusController, PatternSearchEngine, GeometricInterpreter,
+    SearchConfig, SearchTarget, SearchPriority, OlympusBridge
+)
 
 __all__ = [
     # Ergon Flow
@@ -32,4 +36,12 @@ __all__ = [
     "MetisEngine",
     "ZSquaredRelevance",
     "DerivationStrategy",
+    # Briareus Flow
+    "BriareusController",
+    "PatternSearchEngine",
+    "GeometricInterpreter",
+    "SearchConfig",
+    "SearchTarget",
+    "SearchPriority",
+    "OlympusBridge",
 ]

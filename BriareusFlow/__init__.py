@@ -2,30 +2,29 @@
 BRIAREUSFLOW - The Hundred-Handed Phenomenological Discovery Engine
 ====================================================================
 
-Named after Briareus (Aegaeon), the hundred-handed giant of Greek mythology.
-Fitting for a multi-threaded brute-force search engine.
+DEPRECATED: This module has moved to OlympusFlow.flows.briareus
 
-BriareusFlow is the PUBLIC equivalent of the private BruteFlow.
-It systematically explores phenomenological patterns:
+Please update imports:
+    OLD: from BriareusFlow import BriareusController
+    NEW: from OlympusFlow.flows.briareus import BriareusController
 
-1. Takes findings with empirical evidence but incomplete proofs
-2. Brute-force searches for mathematical patterns
-3. Tests dimensional consistency
-4. Identifies simple coefficients (π, √2, Z², etc.)
-5. Classifies by derivation level (PHENOMENOLOGICAL vs FIRST_PRINCIPLES)
-6. Feeds discoveries to OlympusFlow for rigorous validation
+    OR: from OlympusFlow.flows import BriareusController
 
-Key Difference from OlympusFlow:
-- OlympusFlow REJECTS numerology (requires physical mechanism)
-- BriareusFlow EXPLORES phenomenological patterns that MIGHT have mechanisms
-- BriareusFlow is exploratory; OlympusFlow is validating
-
-Author: Carl Zimmerman
-Date: May 6, 2026
-Version: 1.0.0
+This file re-exports from the new location for backward compatibility.
 """
 
-from .phenomenological import (
+import warnings
+
+warnings.warn(
+    "BriareusFlow has moved to OlympusFlow.flows.briareus. "
+    "Please update imports: from OlympusFlow.flows.briareus import BriareusController",
+    DeprecationWarning,
+    stacklevel=2
+)
+
+# Re-export from new location
+from OlympusFlow.flows.briareus import (
+    # Phenomenological
     PhenomenologicalFinding,
     FindingCategory,
     DiscoveryPath,
@@ -35,41 +34,32 @@ from .phenomenological import (
     FindingBatch,
     Z_SQUARED,
     Z,
-    PHI
-)
-
-from .pattern_search import (
+    PHI,
+    # Pattern search
     PatternSearchEngine,
     SearchResult,
     CoefficientMatch,
     PatternMatch,
-    CoefficientType
-)
-
-from .geometric_interpreter import (
+    CoefficientType,
+    # Geometric interpreter
     GeometricInterpreter,
     GeometricInterpretation,
-    GeometryType
-)
-
-from .briareus_controller import (
+    GeometryType,
+    # Controller
     BriareusController,
     SearchConfig,
     SearchTarget,
     SearchPriority,
     BriareusResult,
-    STANDARD_PHYSICS_TARGETS
-)
-
-from .olympus_bridge import (
+    STANDARD_PHYSICS_TARGETS,
+    # OlympusFlow bridge
     OlympusBridge,
     BridgeConfig,
-    integrate_with_olympusflow
+    integrate_with_olympusflow,
 )
 
 __version__ = "1.0.0"
 __all__ = [
-    # Phenomenological
     "PhenomenologicalFinding",
     "FindingCategory",
     "DiscoveryPath",
@@ -80,25 +70,21 @@ __all__ = [
     "Z_SQUARED",
     "Z",
     "PHI",
-    # Pattern search
     "PatternSearchEngine",
     "SearchResult",
     "CoefficientMatch",
     "PatternMatch",
     "CoefficientType",
-    # Geometric interpreter
     "GeometricInterpreter",
     "GeometricInterpretation",
     "GeometryType",
-    # Controller
     "BriareusController",
     "SearchConfig",
     "SearchTarget",
     "SearchPriority",
     "BriareusResult",
     "STANDARD_PHYSICS_TARGETS",
-    # OlympusFlow bridge
     "OlympusBridge",
     "BridgeConfig",
-    "integrate_with_olympusflow"
+    "integrate_with_olympusflow",
 ]
