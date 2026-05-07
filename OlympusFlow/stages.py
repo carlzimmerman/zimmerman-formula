@@ -241,7 +241,7 @@ class DiscoveryStage(Stage):
         print(f"[Discovery] Using TruthEngine for Z² derivation: {self.target_constant}")
 
         try:
-            from TruthFlow import TruthEngine
+            from OlympusFlow.flows.truth import TruthEngine
 
             engine = TruthEngine()
             result = engine.derive_constant(

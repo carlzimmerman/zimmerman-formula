@@ -1,25 +1,31 @@
-#!/usr/bin/env python3
 """
-TRUTHFLOW - Z² Validation Pipeline
-====================================
+TRUTHFLOW - Z2 Validation Pipeline
+===================================
 
-Self-discovering validation system that accumulates empirical evidence
-for Z² predictions against official measurements.
+DEPRECATED: This module has moved to OlympusFlow.flows.truth
 
-Features:
-1. Formula discovery - search for Z² relationships
-2. Data fetching - get real measurements from databases
-3. Script generation - create verification code
-4. Accumulation - validated predictions added to framework
-5. Falsification tracking - failures are logged honestly
+Please update imports:
+    OLD: from TruthFlow import TruthEngine
+    NEW: from OlympusFlow.flows.truth import TruthEngine
 
-Author: Carl Zimmerman
-Date: May 3, 2026
+    OR: from OlympusFlow.flows import TruthEngine
+
+This file re-exports from the new location for backward compatibility.
 """
+
+import warnings
+
+warnings.warn(
+    "TruthFlow has moved to OlympusFlow.flows.truth. "
+    "Please update imports: from OlympusFlow.flows.truth import TruthEngine",
+    DeprecationWarning,
+    stacklevel=2
+)
 
 __version__ = "1.0.0"
 
-from .truth_engine import (
+# Re-export from new location
+from OlympusFlow.flows.truth import (
     TruthEngine,
     FormulaGenerator,
     Prediction,

@@ -26,6 +26,7 @@ from .briareus import (
     BriareusController, PatternSearchEngine, GeometricInterpreter,
     SearchConfig, SearchTarget, SearchPriority, OlympusBridge
 )
+from .truth import TruthEngine, FormulaGenerator, Prediction, Discovery
 
 __all__ = [
     # Ergon Flow
@@ -44,4 +45,9 @@ __all__ = [
     "SearchTarget",
     "SearchPriority",
     "OlympusBridge",
+    # Truth Flow
+    "TruthEngine",
+    "FormulaGenerator",
+    "Prediction",
+    "Discovery",
 ]
