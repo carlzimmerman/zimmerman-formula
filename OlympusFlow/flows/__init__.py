@@ -31,6 +31,11 @@ from .cyllene import (
     TruthStore, TrainingGenerator, ModelUpdater, IterationRunner,
     Deepener, BatchDeepener, ResearchQuestion, DeepeningDecision
 )
+from .alpheus import (
+    ResearchQueue, ResearchTask, TaskStatus, TaskPriority, BatchConfig,
+    AlpheusOrchestrator, run_queue, submit_task, get_queue_status,
+    pause_queue, resume_queue
+)
 
 __all__ = [
     # Ergon Flow
@@ -63,4 +68,16 @@ __all__ = [
     "BatchDeepener",
     "ResearchQuestion",
     "DeepeningDecision",
+    # Alpheus Flow
+    "ResearchQueue",
+    "ResearchTask",
+    "TaskStatus",
+    "TaskPriority",
+    "BatchConfig",
+    "AlpheusOrchestrator",
+    "run_queue",
+    "submit_task",
+    "get_queue_status",
+    "pause_queue",
+    "resume_queue",
 ]

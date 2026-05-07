@@ -1,56 +1,36 @@
-#!/usr/bin/env python3
 """
 ALPHEUSFLOW - Research Queue Orchestrator
 ==========================================
 
-Named after Alpheus, the Greek river god. Rivers flow sequentially -
-just like research tasks flowing through this queue.
+DEPRECATED: This module has moved to OlympusFlow.flows.alpheus
 
-AlpheusFlow sits ABOVE OlympusFlow and manages:
-1. Research request queue (add tasks for processing)
-2. Sequential execution (one task at a time through OlympusFlow)
-3. Batch processing (run multiple related tasks)
-4. Progress tracking and persistence
-5. Results aggregation
+Please update imports:
+    OLD: from AlpheusFlow import ResearchQueue
+    NEW: from OlympusFlow.flows.alpheus import ResearchQueue
 
-Architecture:
-```
-    AlpheusFlow (Queue Orchestrator)
-         |
-         v
-    OlympusFlow (Pipeline Runner)
-         |
-    +---------+---------+---------+
-    v         v         v         v
- Hermes    Apollo   TruthFlow  Cyllene
- (Data)   (Analysis) (Verify)  (Deepen)
-```
+    OR: from OlympusFlow.flows import ResearchQueue
 
-Quick Start:
-    from AlpheusFlow import ResearchQueue, submit_task, run_queue
-
-    # Submit tasks
-    submit_task("Derive von Karman constant from Z2 geometry")
-    submit_task("Derive Feigenbaum delta from cubic tessellation")
-
-    # Process all tasks
-    run_queue()
-
-Author: Carl Zimmerman
-Date: May 5, 2026
+This file re-exports from the new location for backward compatibility.
 """
+
+import warnings
+
+warnings.warn(
+    "AlpheusFlow has moved to OlympusFlow.flows.alpheus. "
+    "Please update imports: from OlympusFlow.flows.alpheus import ResearchQueue",
+    DeprecationWarning,
+    stacklevel=2
+)
 
 __version__ = "1.0.0"
 
-from .queue import (
+# Re-export from new location
+from OlympusFlow.flows.alpheus import (
     ResearchQueue,
     ResearchTask,
     TaskStatus,
     TaskPriority,
-    BatchConfig
-)
-
-from .orchestrator import (
+    BatchConfig,
     AlpheusOrchestrator,
     run_queue,
     submit_task,
