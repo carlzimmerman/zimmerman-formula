@@ -27,6 +27,10 @@ from .briareus import (
     SearchConfig, SearchTarget, SearchPriority, OlympusBridge
 )
 from .truth import TruthEngine, FormulaGenerator, Prediction, Discovery
+from .cyllene import (
+    TruthStore, TrainingGenerator, ModelUpdater, IterationRunner,
+    Deepener, BatchDeepener, ResearchQuestion, DeepeningDecision
+)
 
 __all__ = [
     # Ergon Flow
@@ -50,4 +54,13 @@ __all__ = [
     "FormulaGenerator",
     "Prediction",
     "Discovery",
+    # Cyllene Flow
+    "TruthStore",
+    "TrainingGenerator",
+    "ModelUpdater",
+    "IterationRunner",
+    "Deepener",
+    "BatchDeepener",
+    "ResearchQuestion",
+    "DeepeningDecision",
 ]
