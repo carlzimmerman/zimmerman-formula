@@ -27,24 +27,24 @@ Architecture:
     │                     (24/7 Orchestrator)                              │
     ├─────────────────────────────────────────────────────────────────────┤
     │                                                                      │
-    │   ┌─────────────────────────────────────────────────────────────┐   │
-    │   │                        HECATE                                │   │
-    │   │              (Watches all transitions)                       │   │
-    │   └─────────────────────────────────────────────────────────────┘   │
-    │                              │                                       │
-    │        ┌─────────────────────┼─────────────────────┐                │
-    │        │                     │                     │                │
-    │        ▼                     ▼                     ▼                │
+    │   ┌──────────────────────┐    ┌──────────────────────┐              │
+    │   │       HECATE         │    │     PERSEPHONE       │              │
+    │   │ (Execution Supervisor│    │ (Lifecycle Orchestr.)│              │
+    │   │  real-time oversight)│    │ seasonal transitions │              │
+    │   └──────────────────────┘    └──────────────────────┘              │
+    │            │                              │                          │
+    │            │ watches                      │ graduates/banishes       │
+    │            ▼                              ▼                          │
     │   ┌─────────┐          ┌─────────┐          ┌─────────┐            │
     │   │ ALPHEUS │          │ PIPELINE│          │ CYLLENE │            │
     │   │ (Queue) │─────────▶│ (Run)   │─────────▶│ (Learn) │            │
     │   └─────────┘          └─────────┘          └─────────┘            │
     │        │                     │                     │                │
-    │        │                     │                     │                │
     │        ▼                     ▼                     ▼                │
     │   ┌─────────────────────────────────────────────────────────────┐   │
     │   │                         LAKES                                │   │
-    │   │  Aletheia (truths)  Mnemosyne (memory)  Helicon (sources)   │   │
+    │   │  Upper: Aletheia (truths), Mnemosyne (memory), Helicon      │   │
+    │   │  Lower: Tartarus (errors), Lethe (hallucinat.), Labyrinth   │   │
     │   └─────────────────────────────────────────────────────────────┘   │
     │                                                                      │
     └─────────────────────────────────────────────────────────────────────┘
@@ -133,6 +133,13 @@ class DaemonConfig:
     enable_hecate: bool = True
     hecate_blocking: bool = True
 
+    # Persephone (Lifecycle Orchestrator)
+    enable_persephone: bool = True
+    persephone_at_shutdown: bool = True          # Run seasonal cycle at shutdown
+    persephone_periodic_interval: int = 0        # Run every N iterations (0 = disabled)
+    persephone_hrm_threshold: float = 0.80       # Min HRM for graduation
+    persephone_adversarial_threshold: float = 0.60  # Min adversarial survival
+
     # Output
     output_dir: str = "daemon_outputs"
     checkpoint_file: str = "daemon_checkpoint.json"
@@ -170,6 +177,14 @@ class DaemonStats:
     hecate_warns: int = 0
     hecate_halts: int = 0
 
+    # Persephone (Lifecycle)
+    persephone_graduations: int = 0
+    persephone_banishments_tartarus: int = 0
+    persephone_banishments_lethe: int = 0
+    persephone_banishments_labyrinth: int = 0
+    persephone_retentions: int = 0
+    persephone_training_pairs: int = 0
+
     # Timing
     total_runtime_seconds: float = 0
     avg_iteration_seconds: float = 0
@@ -193,6 +208,7 @@ class OlympusDaemon:
         self._honest_pipeline = None
         self._queue = None
         self._hecate = None
+        self._persephone = None  # Lifecycle Orchestrator
         self._mnemosyne = None
         self._aletheia = None
         self._cyllene = None
@@ -273,7 +289,7 @@ class OlympusDaemon:
         except ImportError as e:
             self._log(f"⚠ ResearchQueue not available: {e}", "WARN")
 
-        # Hecate
+        # Hecate (Execution Supervisor)
         if self.config.enable_hecate:
             try:
                 from OlympusFlow.watchers import HecateWatcher, WatcherConfig
@@ -284,6 +300,20 @@ class OlympusDaemon:
                 self._log("✓ Hecate watcher loaded")
             except ImportError as e:
                 self._log(f"⚠ Hecate not available: {e}", "WARN")
+
+        # Persephone (Lifecycle Orchestrator)
+        if self.config.enable_persephone:
+            try:
+                from OlympusFlow.watchers.persephone import PersephoneOrchestrator, PersephoneConfig
+                persephone_config = PersephoneConfig(
+                    graduation_hrm_threshold=self.config.persephone_hrm_threshold,
+                    graduation_adversarial_threshold=self.config.persephone_adversarial_threshold,
+                    verbose=self.config.verbose
+                )
+                self._persephone = PersephoneOrchestrator(persephone_config)
+                self._log("✓ Persephone orchestrator loaded")
+            except ImportError as e:
+                self._log(f"⚠ Persephone not available: {e}", "WARN")
 
         # Lakes
         try:
@@ -369,6 +399,13 @@ class OlympusDaemon:
                 self.stats.avg_iteration_seconds = (
                     self.stats.total_runtime_seconds / self.stats.iterations
                 )
+
+                # Periodic Persephone review
+                if (self.config.persephone_periodic_interval > 0 and
+                    self._persephone and
+                    self.stats.iterations % self.config.persephone_periodic_interval == 0):
+                    self._log("Running periodic Persephone review...")
+                    self._run_persephone_cycle()
 
                 # Callback
                 if self.on_iteration_complete:
@@ -666,6 +703,10 @@ class OlympusDaemon:
         self.state = DaemonState.STOPPING
         self._log("Shutting down...")
 
+        # Run Persephone seasonal cycle at shutdown
+        if self.config.persephone_at_shutdown and self._persephone:
+            self._run_persephone_cycle()
+
         # Final checkpoint
         self._checkpoint()
 
@@ -678,6 +719,42 @@ class OlympusDaemon:
 
         self._log("Daemon stopped")
         self._print_final_stats()
+
+    def _run_persephone_cycle(self):
+        """Run Persephone's seasonal lifecycle cycle."""
+        if not self._persephone:
+            return
+
+        self._log("\n" + "=" * 70)
+        self._log("PERSEPHONE LIFECYCLE REVIEW")
+        self._log("=" * 70)
+
+        try:
+            cycle_stats = self._persephone.run_seasonal_cycle()
+
+            # Update daemon stats
+            self.stats.persephone_graduations += len(cycle_stats.get("graduated", []))
+            self.stats.persephone_retentions += len(cycle_stats.get("retained", []))
+            self.stats.persephone_training_pairs += len(cycle_stats.get("training_pairs", []))
+
+            # Count banishments by destination
+            for banishment in cycle_stats.get("banished", []):
+                dest = banishment.get("destination", "")
+                if dest == "tartarus":
+                    self.stats.persephone_banishments_tartarus += 1
+                elif dest == "lethe":
+                    self.stats.persephone_banishments_lethe += 1
+                elif dest == "labyrinth":
+                    self.stats.persephone_banishments_labyrinth += 1
+
+            self._log(f"Persephone cycle complete:")
+            self._log(f"  Graduated: {len(cycle_stats.get('graduated', []))}")
+            self._log(f"  Retained: {len(cycle_stats.get('retained', []))}")
+            self._log(f"  Banished: {len(cycle_stats.get('banished', []))}")
+            self._log(f"  Training pairs: {len(cycle_stats.get('training_pairs', []))}")
+
+        except Exception as e:
+            self._log(f"Persephone cycle error: {e}", "ERROR")
 
     def _checkpoint(self):
         """Save daemon state to disk."""
@@ -728,6 +805,14 @@ class OlympusDaemon:
         print(f"  Passes: {s.hecate_passes}")
         print(f"  Warnings: {s.hecate_warns}")
         print(f"  Halts: {s.hecate_halts}")
+        print()
+        print("Persephone Lifecycle:")
+        print(f"  Graduations → Aletheia: {s.persephone_graduations}")
+        print(f"  Retentions (Mnemosyne): {s.persephone_retentions}")
+        print(f"  Banishments → Tartarus: {s.persephone_banishments_tartarus}")
+        print(f"  Banishments → Lethe: {s.persephone_banishments_lethe}")
+        print(f"  Banishments → Labyrinth: {s.persephone_banishments_labyrinth}")
+        print(f"  Training pairs: {s.persephone_training_pairs}")
         print("=" * 70)
 
 

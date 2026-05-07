@@ -12,8 +12,8 @@ Architecture:
                     │           WATCHERS                   │
                     │  (Middleware Supervisors)            │
                     ├─────────────────────────────────────┤
-                    │  Hecate: Stage transition auditor    │
-                    │  [Future: Argus, Cerberus, etc.]    │
+                    │  Hecate: Execution supervisor        │
+                    │  Persephone: Lifecycle orchestrator  │
                     └─────────────────────────────────────┘
                               │
                               │ intercepts & audits
@@ -24,9 +24,26 @@ Architecture:
     │ Hermes  │    │  StageResult object │    │ Aletheia│
     │ Metis   │    │  passes through     │    │Mnemosyne│
     │ Truth   │    │  watcher validation │    │ Helicon │
-    │ Cyllene │    │                     │    │         │
-    └─────────┘    └─────────────────────┘    └─────────┘
-```
+    │ Cyllene │    │                     │    │Tartarus │
+    └─────────┘    └─────────────────────┘    │ Lethe   │
+                                              │Labyrinth│
+                                              └─────────┘
+
+Two Complementary Orchestrators:
+--------------------------------
+1. HECATE (Execution Supervisor):
+   - Real-time process monitoring
+   - Stage transition validation
+   - Consensus checking during research
+   - Halts on critical issues
+
+2. PERSEPHONE (Lifecycle Orchestrator):
+   - State transitions between lakes
+   - Seasonal graduation/banishment cycles
+   - Training data harvest
+   - Spring: Graduation to AletheiaLake (HRM >= 0.80)
+   - Winter: Banishment to Tartarus/Lethe/Labyrinth
+   - Autumn: Harvest contrastive pairs for training
 
 Design Principles:
 1. NON-BLOCKING by default (observes, doesn't halt)
@@ -35,28 +52,27 @@ Design Principles:
 4. IMMUTABLE audit trail (watcher notes cannot be deleted)
 5. REAL-TIME monitoring (hooks into stage transitions)
 
-Watcher Types:
-- Hecate: Primary supervisor, consensus + framework verification
-- [Future] Argus: Multi-source correlation checker
-- [Future] Cerberus: Entry/exit guardian for lakes
-
 Usage:
     from OlympusFlow.watchers import HecateWatcher, WatcherConfig
+    from OlympusFlow.watchers.persephone import PersephoneOrchestrator
 
-    # Create watcher
+    # Hecate for real-time oversight
     hecate = HecateWatcher(config=WatcherConfig(
         blocking_threshold=0.5,
         dual_model=True
     ))
 
-    # Attach to pipeline
-    pipeline.attach_watcher(hecate)
+    # Persephone for lifecycle management
+    persephone = PersephoneOrchestrator()
 
-    # Run pipeline (Hecate watches all transitions)
+    # Run pipeline with Hecate watching
     results = pipeline.run()
+
+    # Run Persephone seasonal cycle at end of session
+    cycle_stats = persephone.run_seasonal_cycle()
 """
 
-__version__ = "1.0.0"
+__version__ = "3.1.0"
 
 # Core contracts
 from .contracts import (
@@ -68,8 +84,21 @@ from .contracts import (
 # Base watcher
 from .base import BaseWatcher
 
-# Hecate watcher
+# Hecate watcher (Execution Supervisor)
 from .hecate import HecateWatcher, HecatePrompts, ConsensusBridge, FrameworkValidator
+
+# Persephone orchestrator (Lifecycle Orchestrator)
+from .persephone import (
+    PersephoneOrchestrator,
+    PersephoneConfig,
+    Season,
+    LifecycleDecision,
+    GraduationResult,
+    BanishmentResult,
+    SpringGraduator,
+    WinterBanisher,
+    AdversarialReviewer
+)
 
 __all__ = [
     "__version__",
@@ -86,9 +115,19 @@ __all__ = [
     "FrameworkCheck",
     # Base
     "BaseWatcher",
-    # Hecate
+    # Hecate (Execution Supervisor)
     "HecateWatcher",
     "HecatePrompts",
     "ConsensusBridge",
     "FrameworkValidator",
+    # Persephone (Lifecycle Orchestrator)
+    "PersephoneOrchestrator",
+    "PersephoneConfig",
+    "Season",
+    "LifecycleDecision",
+    "GraduationResult",
+    "BanishmentResult",
+    "SpringGraduator",
+    "WinterBanisher",
+    "AdversarialReviewer",
 ]
