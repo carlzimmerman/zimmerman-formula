@@ -169,7 +169,7 @@ class DerivationPipeline:
         """Lazy load MnemosyneLake."""
         if self.mnemosyne is None:
             try:
-                from MnemosyneLake import MnemosyneLake
+                from OlympusFlow.lakes.mnemosyne import MnemosyneLake
                 self.mnemosyne = MnemosyneLake(persist=True)
                 self._log("✓ MnemosyneLake loaded (persist=True)")
             except ImportError:
@@ -365,7 +365,7 @@ class DerivationPipeline:
 
         if self.mnemosyne:
             # Create VerifiedTruth for MnemosyneLake
-            from MnemosyneLake import VerifiedTruth
+            from OlympusFlow.lakes.mnemosyne import VerifiedTruth
 
             truth = VerifiedTruth(
                 truth_id=verified.chain.chain_id,

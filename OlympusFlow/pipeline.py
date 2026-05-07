@@ -69,7 +69,7 @@ except ImportError:
     ALETHEIA_AVAILABLE = False
 
 try:
-    from MnemosyneLake import MnemosyneLake
+    from OlympusFlow.lakes.mnemosyne import MnemosyneLake
     MNEMOSYNE_AVAILABLE = True
 except ImportError:
     MNEMOSYNE_AVAILABLE = False
@@ -364,7 +364,7 @@ class Pipeline(EventEmitter):
                     if self.mnemosyne_lake and truth.status == "validated":
                         # Convert OlympusFlow truth to MnemosyneLake format
                         # FULL CONVERSION - preserve all fields
-                        from MnemosyneLake import VerifiedTruth as MnemoTruth
+                        from OlympusFlow.lakes.mnemosyne import VerifiedTruth as MnemoTruth
                         mnemosyne_truth = MnemoTruth(
                             truth_id=truth.truth_id,
                             domain=truth.domain,
@@ -554,7 +554,7 @@ class Pipeline(EventEmitter):
         for finding in deeper_findings:
             try:
                 # Create a MnemosyneLake truth from the deepening finding
-                from MnemosyneLake import VerifiedTruth as MnemoTruth
+                from OlympusFlow.lakes.mnemosyne import VerifiedTruth as MnemoTruth
 
                 truth_id = hashlib.md5(
                     f"{finding.get('quantity', '')}:{finding.get('value', 0):.6f}:{datetime.now().isoformat()}".encode()

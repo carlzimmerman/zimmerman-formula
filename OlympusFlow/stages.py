@@ -836,7 +836,7 @@ class StorageStage(Stage):
             return self._success({"stored": 0}, time.time() - start)
 
         try:
-            from MnemosyneLake import MnemosyneLake, VerifiedTruth as LakeTruth
+            from OlympusFlow.lakes.mnemosyne import MnemosyneLake, VerifiedTruth as LakeTruth
 
             if self.lake is None:
                 self.lake = MnemosyneLake()
@@ -901,7 +901,7 @@ class TrainingStage(Stage):
         })
 
         try:
-            from MnemosyneLake import MnemosyneLake, TruthExporter
+            from OlympusFlow.lakes.mnemosyne import MnemosyneLake, TruthExporter
 
             lake = MnemosyneLake()
             exporter = TruthExporter(lake)

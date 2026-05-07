@@ -47,7 +47,7 @@ except ImportError:
 
 # MnemosyneLake integration (v1.2.0)
 try:
-    from MnemosyneLake import MnemosyneLake, VerifiedTruth, TruthExporter
+    from OlympusFlow.lakes.mnemosyne import MnemosyneLake, VerifiedTruth, TruthExporter
     MNEMOSYNE_AVAILABLE = True
 except ImportError:
     MNEMOSYNE_AVAILABLE = False

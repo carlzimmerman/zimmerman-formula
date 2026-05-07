@@ -161,7 +161,7 @@ def run_blind_al_test():
     print("-" * 50)
 
     if result.output and pipeline.mnemosyne_lake:
-        from MnemosyneLake import VerifiedTruth as MnemoTruth
+        from OlympusFlow.lakes.mnemosyne import VerifiedTruth as MnemoTruth
 
         for truth in result.output:
             if truth.status == "validated":

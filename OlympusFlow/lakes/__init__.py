@@ -27,7 +27,15 @@ from .aletheia import (
     PHI,
 )
 
-# MnemosyneLake and HeliconLake will be added as they are migrated
+from .mnemosyne import (
+    MnemosyneLake,
+    VerifiedTruth,
+    TruthExporter,
+    TruthStatus,
+    TruthDomain,
+)
+
+# HeliconLake will be added when migrated
 
 __all__ = [
     # Aletheia Lake
@@ -40,4 +48,10 @@ __all__ = [
     "Z2_SQUARED",
     "Z",
     "PHI",
+    # Mnemosyne Lake
+    "MnemosyneLake",
+    "VerifiedTruth",
+    "TruthExporter",
+    "TruthStatus",
+    "TruthDomain",
 ]

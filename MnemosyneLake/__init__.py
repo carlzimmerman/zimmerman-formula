@@ -1,33 +1,42 @@
 """
-MNEMOSYNE LAKE - Truth Datalake for Z² Research
+MNEMOSYNE LAKE - Truth Datalake for Z2 Research
 ================================================
 
-Named after Mnemosyne, the Greek goddess of memory and mother of the Muses.
+DEPRECATED: This module has moved to OlympusFlow.lakes.mnemosyne
 
-This module provides a datalake for storing computationally verified truths
-discovered through the autonomous research workflow. Truths are:
+Please update imports:
+    OLD: from MnemosyneLake import MnemosyneLake
+    NEW: from OlympusFlow.lakes.mnemosyne import MnemosyneLake
 
-1. COMPUTATIONAL - Verified through real data analysis, not speculation
-2. PERSISTENT - Stored for aggregation and pattern discovery
-3. TRAINABLE - Exportable for Legomena training via CylleneFlow
-4. VERSIONED - Tracked over time as measurements improve
+    OR: from OlympusFlow.lakes import MnemosyneLake
 
-Architecture:
-- MnemosyneLake: Main storage and retrieval interface
-- VerifiedTruth: Schema for truth records
-- TruthExporter: Export truths for training
-
-Integration:
-- HermesFlow discovers data
-- TruthFlow validates findings
-- MnemosyneLake stores verified truths
-- CylleneFlow exports for training
-
-Author: Carl Zimmerman
-Date: May 4, 2026
+This file re-exports from the new location for backward compatibility.
 """
 
-from .lake import MnemosyneLake, VerifiedTruth, TruthExporter
+import warnings
+
+# Issue deprecation warning (but don't spam - only once per session)
+warnings.warn(
+    "MnemosyneLake has moved to OlympusFlow.lakes.mnemosyne. "
+    "Please update imports: from OlympusFlow.lakes import MnemosyneLake",
+    DeprecationWarning,
+    stacklevel=2
+)
+
+# Re-export from new location
+from OlympusFlow.lakes.mnemosyne import (
+    MnemosyneLake,
+    VerifiedTruth,
+    TruthExporter,
+    TruthStatus,
+    TruthDomain,
+)
 
 __version__ = "1.0.0"
-__all__ = ["MnemosyneLake", "VerifiedTruth", "TruthExporter"]
+__all__ = [
+    "MnemosyneLake",
+    "VerifiedTruth",
+    "TruthExporter",
+    "TruthStatus",
+    "TruthDomain",
+]
