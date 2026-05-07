@@ -159,7 +159,7 @@ class DerivationPipeline:
         """Lazy load AletheiaLake."""
         if self.aletheia is None:
             try:
-                from AletheiaLake import AletheiaLake
+                from OlympusFlow.lakes.aletheia import AletheiaLake
                 self.aletheia = AletheiaLake()
                 self._log("✓ AletheiaLake loaded")
             except ImportError:
@@ -340,7 +340,7 @@ class DerivationPipeline:
 
         if self.aletheia:
             # Create Z2Truth
-            from AletheiaLake import Z2Truth, DerivationLevel as ALDLevel
+            from OlympusFlow.lakes.aletheia import Z2Truth, DerivationLevel as ALDLevel
 
             truth = Z2Truth(
                 name=task.constant_name.lower().replace(" ", "_"),

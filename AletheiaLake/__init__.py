@@ -2,23 +2,29 @@
 ALETHEIALAKE - Permanent Ground Truth Storage
 =============================================
 
-Named after Aletheia, Greek goddess of truth and disclosure.
+DEPRECATED: This module has moved to OlympusFlow.lakes.aletheia
 
-This lake stores the IMMUTABLE ground truths of the Z² framework.
-These are derived predictions that have been empirically validated
-and should NEVER be modified or challenged during research loops.
+Please update imports:
+    OLD: from AletheiaLake import AletheiaLake
+    NEW: from OlympusFlow.lakes.aletheia import AletheiaLake
 
-Architecture:
-    AletheiaLake (this) ← Ground truths, never changes
-         ↑
-    Validate against
-         |
-    MnemosyneLake     ← Temporary working memory for HermesFlow
-         |
-    graduate_to_training() → Training data for Legomena
+    OR: from OlympusFlow.lakes import AletheiaLake
+
+This file re-exports from the new location for backward compatibility.
 """
 
-from .lake import (
+import warnings
+
+# Issue deprecation warning (but don't spam - only once per session)
+warnings.warn(
+    "AletheiaLake has moved to OlympusFlow.lakes.aletheia. "
+    "Please update imports: from OlympusFlow.lakes import AletheiaLake",
+    DeprecationWarning,
+    stacklevel=2
+)
+
+# Re-export from new location
+from OlympusFlow.lakes.aletheia import (
     AletheiaLake,
     Z2Truth,
     ValidationResult,
@@ -28,6 +34,8 @@ from .lake import (
     Z2_SQUARED,
     Z,
     PHI,
+    get_z2_predictions,
+    validate_measurement,
 )
 
 __all__ = [
@@ -40,4 +48,6 @@ __all__ = [
     "Z2_SQUARED",
     "Z",
     "PHI",
+    "get_z2_predictions",
+    "validate_measurement",
 ]

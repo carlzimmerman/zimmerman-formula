@@ -63,7 +63,7 @@ from .stages import (
 
 # Two-Lake Architecture imports
 try:
-    from AletheiaLake import AletheiaLake
+    from OlympusFlow.lakes.aletheia import AletheiaLake
     ALETHEIA_AVAILABLE = True
 except ImportError:
     ALETHEIA_AVAILABLE = False

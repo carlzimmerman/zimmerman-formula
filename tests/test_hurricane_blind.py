@@ -27,7 +27,7 @@ import math
 from datetime import datetime
 
 # Verify hurricane is NOT in AletheiaLake (blind test requirement)
-from AletheiaLake import AletheiaLake
+from OlympusFlow.lakes.aletheia import AletheiaLake
 
 def verify_blind_test():
     """Ensure no hurricane-related truths exist."""
