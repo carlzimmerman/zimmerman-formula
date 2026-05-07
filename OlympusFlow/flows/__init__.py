@@ -36,6 +36,11 @@ from .alpheus import (
     AlpheusOrchestrator, run_queue, submit_task, get_queue_status,
     pause_queue, resume_queue
 )
+from .hermes import (
+    HermesFlowRunner, ResearchBridge, AutonomousAgent,
+    ScientificMethod, ScientificValidator, DatabaseQueryHandler,
+    HermesNavigator, TruthDatabase, TopicValidator, HermesDataAgent
+)
 
 __all__ = [
     # Ergon Flow
@@ -80,4 +85,15 @@ __all__ = [
     "get_queue_status",
     "pause_queue",
     "resume_queue",
+    # Hermes Flow
+    "HermesFlowRunner",
+    "ResearchBridge",
+    "AutonomousAgent",
+    "ScientificMethod",
+    "ScientificValidator",
+    "DatabaseQueryHandler",
+    "HermesNavigator",
+    "TruthDatabase",
+    "TopicValidator",
+    "HermesDataAgent",
 ]
