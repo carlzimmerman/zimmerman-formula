@@ -197,6 +197,9 @@ class OlympusDaemon:
         self._aletheia = None
         self._cyllene = None
 
+        # Current task tracking
+        self._current_task_id = None
+
         # Control
         self.running = False
         self.paused = False
@@ -416,6 +419,10 @@ class OlympusDaemon:
 
         if not result:
             self._log("No result from test phase")
+            # Mark task as failed if we have one
+            if self._current_task_id and self._queue:
+                self._queue.fail_task(self._current_task_id, "No result from test phase")
+                self._current_task_id = None
             return
 
         # 4. VALIDATE: Check result
@@ -431,6 +438,10 @@ class OlympusDaemon:
         if assessment and not assessment.get("allow_continue", True):
             self._log("Hecate HALTED this result", "WARN")
             self.stats.hecate_halts += 1
+            # Mark task as failed due to Hecate halt
+            if self._current_task_id and self._queue:
+                self._queue.fail_task(self._current_task_id, f"Hecate HALT: {assessment.get('reason', 'unknown')}")
+                self._current_task_id = None
             if self.config.halt_on_hecate_block:
                 if self.on_halt:
                     self.on_halt(result, assessment)
@@ -443,6 +454,15 @@ class OlympusDaemon:
         # 7. DEEPEN: Generate follow-up questions
         self.state = DaemonState.DEEPENING
         self._deepen(result)
+
+        # 8. COMPLETE: Mark task as done in queue
+        if self._current_task_id and self._queue:
+            self._queue.complete_task(
+                self._current_task_id,
+                result=result,
+                output_path=result.get("output_path", "")
+            )
+            self._current_task_id = None
 
         self.state = DaemonState.IDLE
 
@@ -459,10 +479,14 @@ class OlympusDaemon:
         2. Cyllene deepening questions
         3. Auto-generated from gaps in AletheiaLake
         """
+        # Reset current task tracking
+        self._current_task_id = None
+
         # Try queue first
         if self._queue:
-            task = self._queue.get_next()
+            task = self._queue.pop_next()  # Use pop_next to mark as RUNNING
             if task:
+                self._current_task_id = task.id  # Track for completion
                 self.stats.observations += 1
                 return {
                     "constant_name": task.name,

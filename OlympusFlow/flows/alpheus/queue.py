@@ -83,7 +83,25 @@ class ResearchTask:
         d = asdict(self)
         d['priority'] = self.priority.value
         d['status'] = self.status.value
+        # Sanitize result dict for JSON serialization
+        d['result'] = self._sanitize_for_json(d.get('result', {}))
         return d
+
+    @staticmethod
+    def _sanitize_for_json(obj):
+        """Recursively convert objects to JSON-serializable types."""
+        if obj is None:
+            return None
+        if isinstance(obj, (str, int, float, bool)):
+            return obj
+        if isinstance(obj, Enum):
+            return obj.value
+        if isinstance(obj, dict):
+            return {k: ResearchTask._sanitize_for_json(v) for k, v in obj.items()}
+        if isinstance(obj, (list, tuple)):
+            return [ResearchTask._sanitize_for_json(item) for item in obj]
+        # Fallback: convert to string
+        return str(obj)
 
     @classmethod
     def from_dict(cls, d: Dict) -> 'ResearchTask':
