@@ -110,6 +110,11 @@ class FormulaGenerator:
             "alpha_inverse": ("4*Z² + 3", 4 * Z_SQUARED + 3, "Fine structure from geometry"),
             "gamma_heat": ("5/3", 5/3, "Heat capacity from DOF"),
             "tetrahedral": ("arccos(-1/3)", math.degrees(math.acos(-1/3)), "Tetrahedral from geometry"),
+            "tensor_to_scalar_r": ("1/(2Z²)", 1/(2*Z_SQUARED), "CMB tensor-to-scalar ratio"),
+            "omega_matter": ("6/19", 6/19, "Matter fraction from holographic"),
+            "pmns_theta12": ("arcsin(1/√3)", math.degrees(math.asin(1/math.sqrt(3))), "PMNS solar angle"),
+            "pmns_theta23": ("45°", 45.0, "PMNS atmospheric angle (maximal)"),
+            "pmns_theta13": ("arcsin(1/√(2Z²))", math.degrees(math.asin(1/math.sqrt(2*Z_SQUARED))), "PMNS reactor angle"),
         }
 
     def search(self, target: float, exhaustive: bool = False) -> FormulaSearchResult:
@@ -321,6 +326,33 @@ class FormulaGenerator:
                         target_value=target,
                         percent_error=error,
                         parameters={"a": a, "z_power": z_power}
+                    ))
+
+        # 1/(aZ) and 1/(aZ²) - for small values like r = 1/(2Z²)
+        for a in range(1, 20):
+            for z_power in [1, 2]:
+                self.stats["z_polynomials_tried"] += 1
+
+                z_val = Z if z_power == 1 else Z_SQUARED
+                value = 1 / (a * z_val)
+
+                error = abs(value - target) / abs(target) * 100 if target != 0 else abs(value) * 100
+
+                if error <= self.max_error:
+                    z_str = "Z" if z_power == 1 else "Z²"
+                    if a == 1:
+                        formula = f"1/{z_str}"
+                    else:
+                        formula = f"1/({a}{z_str})"
+
+                    candidates.append(FormulaCandidate(
+                        formula_str=formula,
+                        formula_type=FormulaType.Z_FRACTION,
+                        computed_value=value,
+                        target_value=target,
+                        percent_error=error,
+                        parameters={"a": a, "z_power": z_power, "form": "inverse"},
+                        physical_hint=f"Inverse Z² scaling with factor {a}"
                     ))
 
         return candidates
