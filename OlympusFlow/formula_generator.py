@@ -40,7 +40,7 @@ class FormulaType(Enum):
     GEOMETRIC = "geometric"                   # arccos(a/b), arctan(a/b)
     COMPOUND = "compound"                     # (aZ + b)/(cZ + d)
     INTEGER_Z2 = "integer_z2"                # aZ² + b (integers)
-    KNOWN_FIRST_PRINCIPLES = "first_principles"
+    KNOWN_FIRST_PRINCIPLES = "known_first_principles"
 
 
 @dataclass

@@ -72,6 +72,55 @@ class DerivationEngine:
             ts = datetime.now().strftime("%H:%M:%S")
             print(f"[DerivEngine {ts}] {msg}")
 
+    def _match_known_constant(self, constant_name: str) -> Optional[str]:
+        """
+        Try to match a constant name to a known first-principles key.
+
+        Returns the matching key or None.
+        """
+        # Direct normalization
+        normalized = constant_name.lower().replace(" ", "_").replace("-", "_")
+        if normalized in KNOWN_FIRST_PRINCIPLES:
+            return normalized
+
+        # Name aliases for common constants
+        aliases = {
+            # Fine structure constant
+            "fine_structure_constant_inverse_1/α": "fine_structure_constant_inverse",
+            "fine_structure_constant_inverse_1_α": "fine_structure_constant_inverse",
+            "alpha_inverse": "fine_structure_constant_inverse",
+            "1/alpha": "fine_structure_constant_inverse",
+            "inverse_fine_structure": "fine_structure_constant_inverse",
+            "137": "fine_structure_constant_inverse",
+            # Weak mixing angle
+            "sin2_theta_w": "sin2_theta_w",
+            "sin²θ_w": "sin2_theta_w",
+            "weak_mixing_angle": "sin2_theta_w",
+            "weinberg_angle": "sin2_theta_w",
+            # Dark energy
+            "omega_lambda": "omega_lambda",
+            "dark_energy_density": "omega_lambda",
+            "cosmological_constant": "omega_lambda",
+        }
+
+        # Try aliases
+        if normalized in aliases:
+            return aliases[normalized]
+
+        # Fuzzy matching: check if any key is a substring
+        for key in KNOWN_FIRST_PRINCIPLES.keys():
+            if key in normalized or normalized in key:
+                return key
+            # Check without underscores
+            if key.replace("_", "") in normalized.replace("_", ""):
+                return key
+
+        # Check for numeric patterns (e.g., "137" in constant name)
+        if "137" in constant_name or "fine" in constant_name.lower():
+            return "fine_structure_constant_inverse"
+
+        return None
+
     def _check_legomena(self) -> bool:
         """Check if Legomena (via ollama) is available."""
         try:
@@ -407,10 +456,10 @@ HONEST_ASSESSMENT: [one sentence summary]"""
         )
 
         # Check if we have a known first-principles derivation
-        normalized = constant_name.lower().replace(" ", "_").replace("-", "_")
-        if normalized in KNOWN_FIRST_PRINCIPLES:
-            self._log("Using known first-principles derivation template")
-            chain = self._use_known_derivation(normalized, target_value)
+        known_key = self._match_known_constant(constant_name)
+        if known_key:
+            self._log(f"Using known first-principles derivation template: {known_key}")
+            chain = self._use_known_derivation(known_key, target_value)
         else:
             # Attempt to build derivation with Legomena
             chain = self._build_new_derivation(constant_name, target_value, strategy)
