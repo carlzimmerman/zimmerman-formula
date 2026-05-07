@@ -1,48 +1,45 @@
 """
-ErgonFlow - Action Principle Derivation Engine
-==============================================
+ERGONFLOW - Action Principle Derivations
+=========================================
 
-Derives the physical action principles (Lagrangians) that REQUIRE
-Z² relationships to be true.
+DEPRECATED: This module has moved to OlympusFlow.flows.ergon
 
-Named after Ergon (Greek: work/action) - the fundamental quantity
-in the principle of least action.
+Please update imports:
+    OLD: from ErgonFlow import ActionDeriver
+    NEW: from OlympusFlow.flows.ergon import ActionDeriver
 
-Components:
-- ActionDeriver: Main derivation engine
-- LagrangianTemplates: Standard physics Lagrangians
-- DomainAnalyzer: Maps domains to physics frameworks
-- ProofVerifier: Checks mathematical rigor
-- Z2Interpreter: Geometric meanings of Z²
+    OR: from OlympusFlow.flows import ActionDeriver
 
-Author: Carl Zimmerman
-Date: May 6, 2026
-Version: 1.0.0
+This file re-exports from the new location for backward compatibility.
 """
 
-from pathlib import Path
+import warnings
+
+warnings.warn(
+    "ErgonFlow has moved to OlympusFlow.flows.ergon. "
+    "Please update imports: from OlympusFlow.flows.ergon import ActionDeriver",
+    DeprecationWarning,
+    stacklevel=2
+)
+
+# Re-export from new location
+from OlympusFlow.flows.ergon import (
+    ActionDeriver,
+    ActionDerivation,
+    LAGRANGIAN_TEMPLATES,
+    LagrangianTemplate,
+    PhysicsFramework,
+    get_templates_for_domain,
+    get_template_with_z2_potential,
+)
 
 __version__ = "1.0.0"
-__author__ = "Carl Zimmerman"
-
-# Module directory
-ERGON_DIR = Path(__file__).parent
-
-# Try to import main components (will be added incrementally)
-try:
-    from ErgonFlow.action_deriver import ActionDeriver, ActionDerivation
-except ImportError:
-    ActionDeriver = None
-    ActionDerivation = None
-
-try:
-    from ErgonFlow.lagrangian_templates import LAGRANGIAN_TEMPLATES
-except ImportError:
-    LAGRANGIAN_TEMPLATES = {}
-
 __all__ = [
     "ActionDeriver",
     "ActionDerivation",
     "LAGRANGIAN_TEMPLATES",
-    "__version__",
+    "LagrangianTemplate",
+    "PhysicsFramework",
+    "get_templates_for_domain",
+    "get_template_with_z2_potential",
 ]
