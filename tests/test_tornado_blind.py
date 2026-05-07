@@ -58,7 +58,7 @@ print("-" * 40)
 
 # Check HeliconLake for tornado sources
 try:
-    from HermesFlow.helicon_lake import HeliconLake
+    from OlympusFlow.lakes.helicon import HeliconLake
     lake = HeliconLake()
     tornado_sources = lake.find_sources("meteorology", "tornado")
     print(f"  HeliconLake tornado sources: {len(tornado_sources)}")

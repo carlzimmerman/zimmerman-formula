@@ -34,14 +34,15 @@ import pandas as pd
 # Import from sibling modules
 try:
     from .database_query_handler import DatabaseQueryHandler, APIConfig, QueryResult
-    from .helicon_lake import HeliconLake, SourceEntry
 except ImportError:
     from database_query_handler import DatabaseQueryHandler, APIConfig, QueryResult
-    try:
-        from helicon_lake import HeliconLake, SourceEntry
-    except ImportError:
-        HeliconLake = None
-        SourceEntry = None
+
+# HeliconLake from new location
+try:
+    from OlympusFlow.lakes.helicon import HeliconLake, SourceEntry
+except ImportError:
+    HeliconLake = None
+    SourceEntry = None
 
 # Legomena config
 LEGOMENA_MODEL = os.environ.get("LEGOMENA_MODEL", "legomena-moe")

@@ -35,7 +35,10 @@ from .mnemosyne import (
     TruthDomain,
 )
 
-# HeliconLake will be added when migrated
+from .helicon import (
+    HeliconLake,
+    SourceEntry,
+)
 
 __all__ = [
     # Aletheia Lake
@@ -54,4 +57,7 @@ __all__ = [
     "TruthExporter",
     "TruthStatus",
     "TruthDomain",
+    # Helicon Lake
+    "HeliconLake",
+    "SourceEntry",
 ]

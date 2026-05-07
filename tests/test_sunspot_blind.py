@@ -58,7 +58,7 @@ print("-" * 40)
 
 # Check HeliconLake for sunspot sources
 try:
-    from HermesFlow.helicon_lake import HeliconLake
+    from OlympusFlow.lakes.helicon import HeliconLake
     lake = HeliconLake()
     sunspot_sources = lake.find_sources("astronomy", "sunspot")
     print(f"  HeliconLake sunspot sources: {len(sunspot_sources)}")

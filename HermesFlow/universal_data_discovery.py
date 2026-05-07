@@ -30,16 +30,12 @@ from abc import ABC, abstractmethod
 
 # HeliconLake integration
 try:
-    from .helicon_lake import HeliconLake, SourceEntry
+    from OlympusFlow.lakes.helicon import HeliconLake, SourceEntry
     HELICON_AVAILABLE = True
 except ImportError:
-    try:
-        from helicon_lake import HeliconLake, SourceEntry
-        HELICON_AVAILABLE = True
-    except ImportError:
-        HELICON_AVAILABLE = False
-        HeliconLake = None
-        SourceEntry = None
+    HELICON_AVAILABLE = False
+    HeliconLake = None
+    SourceEntry = None
 
 # DatabaseQueryHandler integration
 try:

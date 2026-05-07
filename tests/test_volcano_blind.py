@@ -58,7 +58,7 @@ print("-" * 40)
 
 # Check HeliconLake for volcano sources
 try:
-    from HermesFlow.helicon_lake import HeliconLake
+    from OlympusFlow.lakes.helicon import HeliconLake
     lake = HeliconLake()
     volcano_sources = lake.find_sources("volcanology", "volcano")
     print(f"  HeliconLake volcano sources: {len(volcano_sources)}")

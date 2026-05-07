@@ -50,7 +50,7 @@ from .events import EventEmitter, EventType, get_event_bus
 
 # HeliconLake integration for source registry
 try:
-    from HermesFlow.helicon_lake import HeliconLake
+    from OlympusFlow.lakes.helicon import HeliconLake
     HELICON_AVAILABLE = True
 except ImportError:
     HELICON_AVAILABLE = False
