@@ -24,6 +24,7 @@ def load_all_topics():
     """Load all 660 topics from autonomous research."""
     topics_dir = Path("OlympusFlow/discoveries/autonomous_research")
     topics = []
+    skipped_no_value = 0
 
     for f in sorted(topics_dir.glob("*.json")):
         if f.name == "research_summary.json":
@@ -34,26 +35,73 @@ def load_all_topics():
         try:
             data = json.loads(f.read_text())
 
-            # Extract topic info
+            # Extract target value from nested structure
+            # Priority: best_z2_match > constants[0] > top-level fields
+            target_value = 0
+            constant_name = f.stem
+
+            if data.get("best_z2_match") and data["best_z2_match"].get("constant_value"):
+                target_value = data["best_z2_match"]["constant_value"]
+                if data["best_z2_match"].get("constant_name"):
+                    constant_name = data["best_z2_match"]["constant_name"]
+            elif data.get("constants") and len(data["constants"]) > 0:
+                target_value = data["constants"][0].get("value", 0)
+                if data["constants"][0].get("name"):
+                    constant_name = data["constants"][0]["name"]
+            else:
+                # Fallback to top-level fields
+                target_value = data.get("experimental_value", data.get("value", 0))
+                constant_name = data.get("constant_name", f.stem)
+
+            # Skip topics with no target value - can't derive without a target
+            if target_value == 0:
+                skipped_no_value += 1
+                continue
+
+            # Extract pre-discovered Z² patterns as hints
+            z2_patterns = []
+            if data.get("all_z2_matches"):
+                z2_patterns = [
+                    {"formula": m["formula"], "error": m.get("percent_error", 0)}
+                    for m in data["all_z2_matches"][:5]  # Top 5 patterns
+                ]
+            elif data.get("z2_patterns"):
+                z2_patterns = data["z2_patterns"]
+
+            # Extract best formula hint
+            best_formula = None
+            best_error = None
+            if data.get("best_z2_match"):
+                best_formula = data["best_z2_match"].get("formula")
+                best_error = data["best_z2_match"].get("percent_error")
+
             topic = {
-                "name": data.get("constant_name", f.stem),
-                "target_value": data.get("experimental_value", data.get("value", 0)),
+                "name": constant_name,
+                "target_value": target_value,
                 "domain": data.get("domain", "physics"),
                 "description": data.get("description", ""),
                 "source": data.get("source", ""),
-                "z2_patterns": data.get("z2_patterns", []),
+                "z2_patterns": z2_patterns,
+                "best_formula": best_formula,
+                "best_error": best_error,
                 "category": "autonomous_discovery"
             }
 
-            # Create a research question
+            # Create a research question with context
             if not topic["description"]:
-                topic["description"] = f"Investigate Z² connections for {topic['name']} = {topic['target_value']}"
+                desc = f"Investigate Z² connections for {topic['name']} = {topic['target_value']}"
+                if best_formula:
+                    desc += f". Pre-discovered pattern: {best_formula} ({best_error:.2f}% error)"
+                topic["description"] = desc
 
             topics.append(topic)
 
         except Exception as e:
             print(f"Error loading {f}: {e}")
             continue
+
+    if skipped_no_value > 0:
+        print(f"  Skipped {skipped_no_value} topics with no target value")
 
     return topics
 
@@ -65,11 +113,28 @@ def create_queue_tasks(topics):
 
     tasks = []
     for i, topic in enumerate(topics):
-        # Create detailed assignment
+        # Build Z² hints from pre-discovered patterns
         z2_hints = ""
+        if topic.get("best_formula"):
+            z2_hints = f" HINT: Pre-discovered Z² pattern: {topic['best_formula']}"
+            if topic.get("best_error") is not None:
+                z2_hints += f" ({topic['best_error']:.2f}% error)"
+            z2_hints += "."
+
         if topic.get("z2_patterns"):
             patterns = topic["z2_patterns"][:3]  # Top 3 patterns
-            z2_hints = f" Known Z² patterns to investigate: {patterns}"
+            formulas = [p["formula"] if isinstance(p, dict) else p for p in patterns]
+            z2_hints += f" Additional patterns to investigate: {formulas}"
+
+        # Determine priority based on pre-discovered error
+        priority = TaskPriority.NORMAL
+        if topic.get("best_error") is not None:
+            if topic["best_error"] < 1.0:
+                priority = TaskPriority.HIGH  # <1% error - promising!
+            elif topic["best_error"] < 5.0:
+                priority = TaskPriority.NORMAL
+            else:
+                priority = TaskPriority.LOW
 
         assignment = (
             f"Derive the value {topic['name']} = {topic['target_value']} from Z² = 32π/3 first principles. "
@@ -87,7 +152,7 @@ def create_queue_tasks(topics):
             name=topic["name"],
             description=assignment,
             category=topic.get("category", "physics"),
-            priority=TaskPriority.NORMAL,
+            priority=priority,
             target_value=topic.get("target_value", 0),
             domain=topic.get("domain", "physics")
         )
