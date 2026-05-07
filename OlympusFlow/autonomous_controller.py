@@ -161,6 +161,13 @@ class AutonomousController:
         with open(self.output_dir / "controller.log", "a") as f:
             f.write(f"[{datetime.now().isoformat()}] {msg}\n")
 
+    def _get_version(self) -> str:
+        """Get OlympusFlow version from VERSION file."""
+        version_file = Path(__file__).parent / "VERSION"
+        if version_file.exists():
+            return version_file.read_text().strip()
+        return "unknown"
+
     def add_target(self, target: DerivationTarget):
         """Add a target to the queue."""
         self.queue.put(target)
@@ -451,7 +458,8 @@ class AutonomousController:
             "hrm_score": verified.hrm_score,
             "destination": verified.destination.value,
             "processing_time": elapsed,
-            "timestamp": datetime.now().isoformat()
+            "timestamp": datetime.now().isoformat(),
+            "olympusflow_version": self._get_version()
         }
 
         # Check for numerology rejection
