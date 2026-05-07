@@ -21,10 +21,15 @@ Usage:
 
 # Import flows as they are migrated
 from .ergon import ActionDeriver, ActionDerivation, LAGRANGIAN_TEMPLATES
+from .metis import MetisEngine, ZSquaredRelevance, DerivationStrategy
 
 __all__ = [
     # Ergon Flow
     "ActionDeriver",
     "ActionDerivation",
     "LAGRANGIAN_TEMPLATES",
+    # Metis Flow
+    "MetisEngine",
+    "ZSquaredRelevance",
+    "DerivationStrategy",
 ]

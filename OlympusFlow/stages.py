@@ -205,7 +205,7 @@ class DiscoveryStage(Stage):
         strategy = None
 
         try:
-            from MetisFlow import MetisEngine, ZSquaredRelevance
+            from OlympusFlow.flows.metis import MetisEngine, ZSquaredRelevance
 
             print(f"[MetisFlow] Researching: {self.target_constant}")
             metis = MetisEngine(verbose=False)

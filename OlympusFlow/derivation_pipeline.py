@@ -149,7 +149,7 @@ class DerivationPipeline:
         """Lazy load MetisFlow."""
         if self.metis is None:
             try:
-                from MetisFlow import MetisEngine
+                from OlympusFlow.flows.metis import MetisEngine
                 self.metis = MetisEngine(verbose=self.verbose)
                 self._log("✓ MetisFlow loaded")
             except ImportError:

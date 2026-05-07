@@ -1,51 +1,47 @@
-#!/usr/bin/env python3
 """
-METISFLOW - The Wisdom Engine
-==============================
+METISFLOW - Literature Research and Strategy
+=============================================
 
-Research-driven derivation framework that thinks before acting.
+DEPRECATED: This module has moved to OlympusFlow.flows.metis
 
-Metis was the Titan goddess of wisdom, prudent counsel, and deep thought.
-She was the first wife of Zeus and the mother of Athena.
+Please update imports:
+    OLD: from MetisFlow import MetisEngine
+    NEW: from OlympusFlow.flows.metis import MetisEngine
 
-MetisFlow embodies the principle of "research before derivation" -
-understanding HOW constants have been derived in literature before
-attempting our own Z² derivation.
+    OR: from OlympusFlow.flows import MetisEngine
 
-Pipeline Position:
-    AlpheusFlow (Queue) → MetisFlow (Research) → OlympusFlow (Execute)
-
-Author: Carl Zimmerman
-Date: May 5, 2026
+This file re-exports from the new location for backward compatibility.
 """
 
-from .derivation_strategy import (
+import warnings
+
+warnings.warn(
+    "MetisFlow has moved to OlympusFlow.flows.metis. "
+    "Please update imports: from OlympusFlow.flows.metis import MetisEngine",
+    DeprecationWarning,
+    stacklevel=2
+)
+
+# Re-export from new location
+from OlympusFlow.flows.metis import (
+    MetisEngine,
     DerivationStrategy,
     DerivationApproach,
     DerivationFramework,
     ZSquaredRelevance,
     LiteratureSource,
-    MetisResearchResult
+    MetisResearchResult,
+    LiteratureSearcher,
 )
 
-from .literature_searcher import LiteratureSearcher
-
-from .metis_engine import MetisEngine
-
+__version__ = "1.0.0"
 __all__ = [
-    # Core engine
     "MetisEngine",
-
-    # Strategy contracts
     "DerivationStrategy",
     "DerivationApproach",
     "DerivationFramework",
     "ZSquaredRelevance",
     "LiteratureSource",
     "MetisResearchResult",
-
-    # Searcher
-    "LiteratureSearcher"
+    "LiteratureSearcher",
 ]
-
-__version__ = "1.0.0"
