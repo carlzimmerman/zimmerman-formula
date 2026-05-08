@@ -22,7 +22,7 @@ Why This Matters:
 
 Author: Carl Zimmerman
 Date: May 6, 2026
-Version: 1.0.0
+Version: 3.0.0
 """
 
 import math

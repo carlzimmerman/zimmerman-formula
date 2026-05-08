@@ -54,7 +54,7 @@ Usage:
     pipeline.attach_watcher(hecate)
 """
 
-__version__ = "1.0.0"
+__version__ = "3.0.0"
 
 from .watcher import HecateWatcher
 from .prompts import HecatePrompts

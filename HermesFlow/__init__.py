@@ -22,7 +22,7 @@ warnings.warn(
     stacklevel=2
 )
 
-__version__ = "1.0.0"
+__version__ = "3.0.0"
 
 # Re-export from new location
 from OlympusFlow.flows.hermes import (

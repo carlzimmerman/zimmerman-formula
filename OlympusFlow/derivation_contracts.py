@@ -347,6 +347,13 @@ class VerifiedDerivation:
     experimental_source: str = ""
     deviation_sigma: float = float('inf')
 
+    # Provenance (for Persephone graduation)
+    source_url: str = ""           # URL to authoritative source
+    citation: str = ""             # Full citation/reference
+    verbatim_quote: str = ""       # Exact quote from source
+    page_number: str = ""          # Page number in source
+    doi: str = ""                  # DOI if available
+
     # HRM Assessment
     hrm_honesty: float = 0.0      # Is the derivation honest?
     hrm_rigor: float = 0.0        # Is the math rigorous?

@@ -40,7 +40,7 @@ from urllib.parse import urljoin, urlparse
 LEGOMENA_MODEL = os.environ.get("LEGOMENA_MODEL", "legomena-moe")
 
 # Version with dynamic persistent exploration + topic validation
-__version__ = "1.9.0"
+__version__ = "3.0.0"
 
 # Import TopicValidator for domain drift prevention
 try:

@@ -37,7 +37,7 @@ Usage:
     runner.consolidate_knowledge()
 """
 
-__version__ = "1.3.0"
+__version__ = "3.0.0"
 
 from .truth_store import TruthStore
 from .training_generator import TrainingGenerator

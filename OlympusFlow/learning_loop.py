@@ -11,7 +11,7 @@ Learns from successful and failed derivations to improve future searches:
 
 Author: Carl Zimmerman
 Date: May 6, 2026
-Version: 2.0.0
+Version: 3.0.0
 """
 
 import json

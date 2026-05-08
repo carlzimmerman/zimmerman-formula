@@ -460,6 +460,27 @@ class AletheiaLake:
                 if t.experimental_value is not None or
                    t.name in ["tensor_scalar_r", "theta_qcd"]]
 
+    def get_recent_truths(self, limit: int = 50) -> List[Dict]:
+        """
+        Get recent truths for Persephone training harvest.
+
+        Returns truths as dicts with keys expected by PersephoneOrchestrator.
+        Since Z2Truth doesn't have timestamps, returns all truths up to limit.
+        """
+        truths = []
+        for truth in list(self._truths.values())[:limit]:
+            truths.append({
+                "name": truth.name,
+                "formula": truth.formula,
+                "derivation": truth.derivation_notes,
+                "derivation_level": truth.derivation_level.value if hasattr(truth.derivation_level, 'value') else str(truth.derivation_level),
+                "hrm_score": 0.9,  # Aletheia truths are high confidence
+                "z2_prediction": truth.z2_prediction,
+                "domain": truth.domain,
+                "claim": truth.claim
+            })
+        return truths
+
     def summary(self) -> Dict:
         """Get summary of AletheiaLake."""
         return {

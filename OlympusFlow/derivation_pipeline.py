@@ -87,11 +87,13 @@ class PipelineResult:
 
     # Outcome
     success: bool = False
-    stored_to: str = ""  # "aletheia", "mnemosyne", or "rejected"
+    stored_to: str = ""  # "aletheia", "mnemosyne", "tartarus", "lethe", "labyrinth"
     truth_id: str = ""   # ID if stored
+    banishment_lake: str = ""  # If rejected: which underworld lake
+    banishment_reason: str = ""  # Why it was banished
 
     def summary(self) -> Dict:
-        return {
+        result = {
             "constant": self.task.constant_name,
             "target_value": self.task.target_value,
             "level": self.verified.chain.level.value,
@@ -104,6 +106,11 @@ class PipelineResult:
             "stored_to": self.stored_to,
             "total_time_seconds": self.total_time
         }
+        # Add banishment info if rejected
+        if self.banishment_lake:
+            result["banishment_lake"] = self.banishment_lake
+            result["banishment_reason"] = self.banishment_reason
+        return result
 
 
 # =============================================================================
@@ -137,8 +144,14 @@ class DerivationPipeline:
             "failed": 0,
             "to_aletheia": 0,
             "to_mnemosyne": 0,
-            "rejected": 0
+            "to_tartarus": 0,   # Empirical failures
+            "to_lethe": 0,      # Hallucinations/sycophancy
+            "to_labyrinth": 0,  # Logical dead-ends
+            "rejected": 0       # Total rejections (sum of above 3)
         }
+
+        # Lazy-loaded components
+        self.banisher = None  # HecateBanisher for routing rejections
 
     def _log(self, msg: str):
         if self.verbose:
@@ -174,6 +187,16 @@ class DerivationPipeline:
                 self._log("✓ MnemosyneLake loaded (persist=True)")
             except ImportError:
                 self._log("⚠ MnemosyneLake not available")
+
+    def _load_banisher(self):
+        """Lazy load HecateBanisher for routing rejected findings."""
+        if self.banisher is None:
+            try:
+                from OlympusFlow.watchers.hecate.banisher import HecateBanisher
+                self.banisher = HecateBanisher(verbose=self.verbose)
+                self._log("✓ HecateBanisher loaded")
+            except ImportError as e:
+                self._log(f"⚠ HecateBanisher not available: {e}")
 
     def run(self, task: DerivationTask) -> PipelineResult:
         """
@@ -309,10 +332,50 @@ class DerivationPipeline:
             self._log(f"│  → Stored to MnemosyneLake (working memory)")
 
         else:
-            result.stored_to = "rejected"
+            # Route rejection to appropriate underworld lake via Hecate
             result.success = False
             self.stats["rejected"] += 1
-            self._log(f"│  ✗ Rejected: {verified.rejection_reason}")
+
+            # Try to use HecateBanisher for intelligent routing
+            self._load_banisher()
+            if self.banisher:
+                # Build derivation result for classification
+                derivation_data = {
+                    "target_constant": task.constant_name,
+                    "target_value": task.target_value,
+                    "formula": verified.chain.final_formula,
+                    "computed_value": verified.chain.computed_value,
+                    "percent_error": verified.chain.percent_error,
+                    "sigma_deviation": verified.deviation_sigma,
+                    "hrm_score": verified.hrm_score,
+                    "level": verified.chain.level.value,
+                    "physical_mechanism": verified.chain.physical_mechanism,
+                    "refinement_metadata": getattr(verified.chain, 'refinement_metadata', {})
+                }
+
+                # Let Hecate decide which lake to banish to
+                lake_name, entry_id = self.banisher.banish(derivation_data, task_id=verified.chain.chain_id)
+                result.stored_to = lake_name
+                result.banishment_lake = lake_name
+                result.banishment_reason = verified.rejection_reason
+                result.truth_id = entry_id
+
+                # Update specific lake stats
+                if lake_name == "tartarus":
+                    self.stats["to_tartarus"] += 1
+                    self._log(f"│  ⚡ Cast into TARTARUS: {verified.rejection_reason}")
+                elif lake_name == "lethe":
+                    self.stats["to_lethe"] += 1
+                    self._log(f"│  💀 Cast into LETHE: {verified.rejection_reason}")
+                elif lake_name == "labyrinth":
+                    self.stats["to_labyrinth"] += 1
+                    self._log(f"│  🌀 Cast into LABYRINTH: {verified.rejection_reason}")
+                else:
+                    self._log(f"│  ✗ Banished to {lake_name}: {verified.rejection_reason}")
+            else:
+                # Fallback if banisher not available
+                result.stored_to = "rejected"
+                self._log(f"│  ✗ Rejected: {verified.rejection_reason}")
 
         result.storage_time = time.time() - start_storage
         self._log(f"└─ Storage: {result.storage_time:.1f}s")
@@ -360,7 +423,7 @@ class DerivationPipeline:
             self._log(f"│  (AletheiaLake is immutable - manual review required)")
 
     def _store_to_mnemosyne(self, task: DerivationTask, verified: VerifiedDerivation):
-        """Store to MnemosyneLake."""
+        """Store to MnemosyneLake with full provenance."""
         self._load_mnemosyne()
 
         if self.mnemosyne:
@@ -376,12 +439,21 @@ class DerivationPipeline:
                 measured_value=task.target_value,
                 percent_error=verified.chain.percent_error,
                 hrm_score=verified.hrm_score,
-                data_source="DerivationPipeline",
-                status="validated" if verified.hrm_score > 0.8 else "pending"
+                data_source=verified.experimental_source or "DerivationPipeline",
+                data_url=verified.source_url,
+                status="validated" if verified.hrm_score > 0.8 else "pending",
+                # Provenance fields for Persephone graduation
+                source_url=verified.source_url,
+                citation=verified.citation,
+                verbatim_quote=verified.verbatim_quote,
+                page_number=verified.page_number,
+                doi=verified.doi
             )
 
             self.mnemosyne.add_truth(truth)
             self._log(f"│  Added to MnemosyneLake: {truth.truth_id}")
+            if verified.citation:
+                self._log(f"│  Citation: {verified.citation[:60]}...")
 
     def _save_result(self, task: DerivationTask, result: PipelineResult):
         """Save result to output directory."""
@@ -443,7 +515,10 @@ class DerivationPipeline:
         self._log(f"\nStorage:")
         self._log(f"  → AletheiaLake: {self.stats['to_aletheia']}")
         self._log(f"  → MnemosyneLake: {self.stats['to_mnemosyne']}")
-        self._log(f"  ✗ Rejected: {self.stats['rejected']}")
+        self._log(f"\nUnderworld (Rejected: {self.stats['rejected']}):")
+        self._log(f"  ⚡ Tartarus (empirical failures): {self.stats['to_tartarus']}")
+        self._log(f"  💀 Lethe (hallucinations): {self.stats['to_lethe']}")
+        self._log(f"  🌀 Labyrinth (dead-ends): {self.stats['to_labyrinth']}")
         self._log(f"{'═'*70}\n")
 
         return results

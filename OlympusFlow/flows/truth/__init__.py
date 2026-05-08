@@ -26,7 +26,7 @@ Usage:
     predictions = engine.discover("fine_structure_constant")
 """
 
-__version__ = "1.0.0"
+__version__ = "3.0.0"
 
 from .truth_engine import (
     TruthEngine,

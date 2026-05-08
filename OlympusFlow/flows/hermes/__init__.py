@@ -33,7 +33,7 @@ Usage:
     results = runner.run_research("von Karman constant")
 """
 
-__version__ = "1.0.0"
+__version__ = "3.0.0"
 
 # Core components
 from .hermesflow_runner import HermesFlowRunner, DataQualityFilter

@@ -206,6 +206,23 @@ class LetheLake(BaseBanishmentLake):
                              if consensus_counts else None
         }
 
+    def get_recent_forgotten(self, limit: int = 20) -> List[Dict]:
+        """
+        Get recent forgotten entries for Persephone training harvest.
+
+        Returns entries as dicts with keys expected by PersephoneOrchestrator.
+        """
+        forgotten = []
+        for entry in list(self.entries.values())[:limit]:
+            forgotten.append({
+                "name": entry.original_claim,
+                "formula": entry.original_formula,
+                "derivation": entry.physical_mechanism,
+                "banishment_reason": entry.banishment_reason,
+                "hallucination_type": entry.derivation_level  # "hallucinated" or "sycophantic"
+            })
+        return forgotten
+
     def scrub_from_mnemosyne_prompt(self) -> str:
         """
         Generate a prompt to instruct Legomena to forget these entries.

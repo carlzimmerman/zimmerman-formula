@@ -13,7 +13,7 @@ This lake stores validated data source URLs and metadata so HermesFlow can:
 
 Author: Carl Zimmerman
 Date: May 5, 2026
-Version: 1.0.0
+Version: 3.0.0
 """
 
 import json

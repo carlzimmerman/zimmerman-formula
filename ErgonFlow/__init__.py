@@ -33,7 +33,7 @@ from OlympusFlow.flows.ergon import (
     get_template_with_z2_potential,
 )
 
-__version__ = "1.0.0"
+__version__ = "3.0.0"
 __all__ = [
     "ActionDeriver",
     "ActionDerivation",

@@ -87,6 +87,13 @@ class VerifiedTruth:
     raw_data_sample: Optional[List[Any]] = None
     citations: Optional[List[str]] = None
 
+    # Provenance fields for Persephone graduation
+    source_url: str = ""           # URL to authoritative source (alias for data_url)
+    citation: str = ""             # Full citation/reference string
+    verbatim_quote: str = ""       # Exact quote from source
+    page_number: str = ""          # Page number in source
+    doi: str = ""                  # DOI if available
+
     def to_dict(self) -> Dict:
         """Convert to dictionary."""
         return asdict(self)
@@ -319,6 +326,26 @@ class MnemosyneLake:
     def get_all_validated(self) -> List[VerifiedTruth]:
         """Get all validated truths (HRM >= 0.8)."""
         return self.query(status=TruthStatus.VALIDATED.value)
+
+    def get_all_findings(self) -> List[Dict]:
+        """
+        Get all findings for Persephone lifecycle review.
+
+        Returns truths as dicts with keys expected by PersephoneOrchestrator:
+        - id: truth_id
+        - name: claim (constant name)
+        - hrm_score: HRM assessment score
+        - Plus all other VerifiedTruth fields
+        """
+        findings = []
+        for truth in self.truths.values():
+            finding = truth.to_dict()
+            # Add aliases for Persephone compatibility
+            finding["id"] = finding.get("truth_id", "unknown")
+            finding["name"] = finding.get("claim", "unknown")
+            finding["constant_name"] = finding.get("claim", "unknown")
+            findings.append(finding)
+        return findings
 
     def get_by_domain(self, domain: str) -> List[VerifiedTruth]:
         """Get all truths for a specific domain."""

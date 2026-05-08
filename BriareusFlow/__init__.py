@@ -58,7 +58,7 @@ from OlympusFlow.flows.briareus import (
     integrate_with_olympusflow,
 )
 
-__version__ = "1.0.0"
+__version__ = "3.0.0"
 __all__ = [
     "PhenomenologicalFinding",
     "FindingCategory",

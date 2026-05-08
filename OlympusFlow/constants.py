@@ -157,7 +157,7 @@ def hrm_to_status(hrm_score: float) -> str:
 # MODULE INFO
 # =============================================================================
 
-__version__ = "1.0.0"
+__version__ = "3.0.0"
 __all__ = [
     "Z2", "Z", "PHI", "INV_PHI", "PI", "E",
     "Z2_TARGETS",

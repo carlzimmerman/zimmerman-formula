@@ -1,6 +1,6 @@
 # OlympusFlow Architecture
 
-**Version:** 2.1.0
+**Version:** 3.0.0
 **Last Updated:** May 7, 2026
 
 ## Overview
@@ -169,12 +169,12 @@ Results now include `olympusflow_version` field:
 {
     "constant_name": "sin2_theta_w",
     "formula": "3/13",
-    "olympusflow_version": "2.1.0",
+    "olympusflow_version": "3.0.0",
     ...
 }
 ```
 
-## Key Discoveries (as of v2.1.0)
+## Key Discoveries (as of v3.0.0)
 
 | Constant | Formula | HRM | Destination |
 |----------|---------|-----|-------------|

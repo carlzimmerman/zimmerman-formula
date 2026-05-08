@@ -30,7 +30,7 @@ from .derivation_strategy import (
 )
 from .literature_searcher import LiteratureSearcher
 
-__version__ = "1.0.0"
+__version__ = "3.0.0"
 __all__ = [
     "MetisEngine",
     "DerivationStrategy",

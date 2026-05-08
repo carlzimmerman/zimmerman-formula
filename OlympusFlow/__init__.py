@@ -90,9 +90,27 @@ v1.7.0 Changes (May 5, 2026):
 - Experimental values from real APIs, not LLM assertions
 - Full audit trail and honest warnings
 - NO FALSE CLAIMS - everything labeled with true evidence level
+
+v3.0.0 Changes (May 7, 2026):
+- THREE UNDERWORLD BANISHMENT LAKES:
+  - TartarusLake: For empirical failures (good logic, bad data match)
+  - LetheLake: For hallucinations and sycophancy (consensus defaults)
+  - LabyrinthLake: For logical dead-ends (stuck but potentially valuable)
+- HECATE BANISHER: Automatic routing of failed derivations
+  - Failure classification: EMPIRICAL_MISMATCH, NUMEROLOGY, HALLUCINATION, etc.
+  - HecateBanishmentNote with correction guidance
+  - Sycophancy detection for consensus-term markers
+  - "Thread" checking in Labyrinth for escape paths
+- ENHANCED DERIVATION PIPELINE:
+  - Integrated HecateBanisher into storage stage
+  - Banishment lake tracking in pipeline stats
+  - Underworld breakdown in final statistics
+- HELICON LAKE: Source registry with domain indexing
+- ALETHEIA LAKE: Ground truth Z² derivations (7 validated entries)
+- Full version bump across all lakes, flows, and watchers
 """
 
-__version__ = "1.7.0"  # Honest Pipeline - No False Claims
+__version__ = "3.0.0"  # Hecate Banishment + Three Underworld Lakes
 
 # Core components
 from .contracts import (

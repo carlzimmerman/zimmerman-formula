@@ -108,6 +108,24 @@ class TartarusLake(BaseBanishmentLake):
             if e.sigma_deviation <= max_sigma
         ]
 
+    def get_recent_failures(self, limit: int = 20) -> List[Dict]:
+        """
+        Get recent failures for Persephone training harvest.
+
+        Returns entries as dicts with keys expected by PersephoneOrchestrator.
+        """
+        failures = []
+        for entry in list(self.entries.values())[:limit]:
+            failures.append({
+                "name": entry.original_claim,
+                "formula": entry.original_formula,
+                "derivation": entry.physical_mechanism,
+                "banishment_reason": entry.banishment_reason,
+                "sigma_deviation": entry.sigma_deviation,
+                "percent_error": entry.percent_error
+            })
+        return failures
+
     def analyze_patterns(self) -> Dict:
         """
         Analyze patterns in empirical failures.

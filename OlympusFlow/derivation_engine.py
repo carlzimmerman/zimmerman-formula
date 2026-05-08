@@ -773,6 +773,7 @@ FORMULA_HINT: [suggest Z²-based formula like "Z²/x" or "aZ + b"]"""
         verified = VerifiedDerivation(chain=chain)
 
         # Get experimental data if not provided
+        exp_data = None
         if experimental_value is None:
             self._log("  Searching for experimental value...")
             exp_data = self._search_experimental_value(chain.target_constant)
@@ -785,6 +786,14 @@ FORMULA_HINT: [suggest Z²-based formula like "Z²/x" or "aZ + b"]"""
             verified.experimental_value = experimental_value
             verified.experimental_uncertainty = experimental_uncertainty or experimental_value * 0.01
             verified.experimental_source = experimental_source
+
+            # Copy provenance fields if we got them from search
+            if exp_data:
+                verified.source_url = exp_data.get('source_url', '')
+                verified.citation = exp_data.get('citation', '')
+                verified.verbatim_quote = exp_data.get('verbatim_quote', '')
+                verified.page_number = exp_data.get('page_number', '')
+                verified.doi = exp_data.get('doi', '')
 
             # Calculate deviation
             if verified.experimental_uncertainty > 0:
@@ -815,41 +824,80 @@ FORMULA_HINT: [suggest Z²-based formula like "Z²/x" or "aZ + b"]"""
 
     def _search_experimental_value(self, constant_name: str) -> Optional[Dict]:
         """
-        Search for experimental value of a constant.
+        Search for experimental value of a constant with full provenance.
 
         Uses Legomena to parse search results if available.
+        Returns dict with value, uncertainty, source, and provenance fields.
         """
         # First, try asking Legomena directly (it has training data)
         if self.legomena_available:
             prompt = f"""What is the current best experimental measurement of {constant_name}?
 
-Provide ONLY these fields:
-VALUE: [number]
-UNCERTAINTY: [number, 1-sigma error]
-SOURCE: [measurement source]
+Provide ALL these fields (use "N/A" if unknown):
+VALUE: [number - the measured value]
+UNCERTAINTY: [number - 1-sigma error]
+SOURCE: [brief source name, e.g., "Planck 2018", "PDG 2024", "CODATA 2022"]
+SOURCE_URL: [URL to the paper or data source]
+CITATION: [full citation, e.g., "Planck Collaboration (2020), A&A 641, A6"]
+DOI: [DOI if available, e.g., "10.1051/0004-6361/201833910"]
+VERBATIM_QUOTE: [exact quote of the measurement from the source]
+PAGE: [page number or table number where value appears]
 
 Example:
 VALUE: 0.6847
 UNCERTAINTY: 0.0073
-SOURCE: Planck 2018"""
+SOURCE: Planck 2018
+SOURCE_URL: https://arxiv.org/abs/1807.06209
+CITATION: Planck Collaboration (2020), Planck 2018 results. VI. Cosmological parameters, A&A 641, A6
+DOI: 10.1051/0004-6361/201833910
+VERBATIM_QUOTE: "Ωλ = 0.6847 ± 0.0073 (Table 2)"
+PAGE: Table 2, page 24"""
 
             response = self._ask_legomena(prompt, timeout=None)
 
             if response:
                 result = {}
                 for line in response.split('\n'):
-                    if 'VALUE:' in line:
+                    line = line.strip()
+                    if line.startswith('VALUE:'):
                         try:
-                            result['value'] = float(line.split('VALUE:')[1].strip())
+                            val_str = line.split('VALUE:')[1].strip()
+                            # Handle scientific notation and clean up
+                            val_str = val_str.split()[0] if val_str else ""
+                            result['value'] = float(val_str)
                         except:
                             pass
-                    elif 'UNCERTAINTY:' in line:
+                    elif line.startswith('UNCERTAINTY:'):
                         try:
-                            result['uncertainty'] = float(line.split('UNCERTAINTY:')[1].strip())
+                            unc_str = line.split('UNCERTAINTY:')[1].strip()
+                            unc_str = unc_str.split()[0] if unc_str else ""
+                            result['uncertainty'] = float(unc_str)
                         except:
                             pass
-                    elif 'SOURCE:' in line:
-                        result['source'] = line.split('SOURCE:')[1].strip()
+                    elif line.startswith('SOURCE:'):
+                        val = line.split('SOURCE:')[1].strip()
+                        if val and val.lower() != 'n/a':
+                            result['source'] = val
+                    elif line.startswith('SOURCE_URL:'):
+                        val = line.split('SOURCE_URL:')[1].strip()
+                        if val and val.lower() != 'n/a' and val.startswith('http'):
+                            result['source_url'] = val
+                    elif line.startswith('CITATION:'):
+                        val = line.split('CITATION:')[1].strip()
+                        if val and val.lower() != 'n/a':
+                            result['citation'] = val
+                    elif line.startswith('DOI:'):
+                        val = line.split('DOI:')[1].strip()
+                        if val and val.lower() != 'n/a':
+                            result['doi'] = val
+                    elif line.startswith('VERBATIM_QUOTE:'):
+                        val = line.split('VERBATIM_QUOTE:')[1].strip()
+                        if val and val.lower() != 'n/a':
+                            result['verbatim_quote'] = val
+                    elif line.startswith('PAGE:'):
+                        val = line.split('PAGE:')[1].strip()
+                        if val and val.lower() != 'n/a':
+                            result['page_number'] = val
 
                 if 'value' in result:
                     return result

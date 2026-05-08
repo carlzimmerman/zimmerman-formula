@@ -22,7 +22,7 @@ Key Difference from OlympusFlow:
 
 Author: Carl Zimmerman
 Date: May 6, 2026
-Version: 1.0.0
+Version: 3.0.0
 """
 
 from .phenomenological import (
@@ -67,7 +67,7 @@ from .olympus_bridge import (
     integrate_with_olympusflow
 )
 
-__version__ = "1.0.0"
+__version__ = "3.0.0"
 __all__ = [
     # Phenomenological
     "PhenomenologicalFinding",

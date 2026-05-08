@@ -40,7 +40,7 @@ Author: Carl Zimmerman
 Date: May 5, 2026
 """
 
-__version__ = "1.0.0"
+__version__ = "3.0.0"
 
 from .queue import (
     ResearchQueue,
