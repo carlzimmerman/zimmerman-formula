@@ -1,0 +1,88 @@
+{
+  "task": {
+    "constant_name": "hydrogen_ground_state_hyperfine_splitting",
+    "target_value": 1420.405751768,
+    "domain": "atomic_physics",
+    "assignment": "Ground state hyperfine splitting of hydrogen (21 cm line) in MHz. Physical context: The famous 21 cm line. \u03bd_HFS \u2248 (8/3)\u03b1\u00b2g_p(m_e/m_p)R_\u221ec. Z\u00b2 hint: \u03bd_HFS/(\u03b1\u00b2 R_\u221e c) might have Z\u00b2-geometric significance."
+  },
+  "result": {
+    "constant": "hydrogen_ground_state_hyperfine_splitting",
+    "target_value": 1420.405751768,
+    "level": "failed",
+    "status": "invalid",
+    "formula": "\u03b1\u207b\u00b9 = 4Z\u00b2 + 3",
+    "computed_value": 137.0412865531645,
+    "percent_error": 90.3519620092648,
+    "hrm_score": 0.46625000000000005,
+    "destination": "rejected",
+    "stored_to": "tartarus",
+    "total_time_seconds": 63.13890719413757,
+    "banishment_lake": "tartarus",
+    "banishment_reason": "Low HRM score: 0.47"
+  },
+  "chain": {
+    "chain_id": "75b0956ba146",
+    "target_constant": "Fine Structure Constant Inverse",
+    "target_value": 1420.405751768,
+    "steps": [
+      {
+        "step": 1,
+        "premise": "Z\u00b2 = 32\u03c0/3 is the fundamental geometric constant",
+        "operation": "Definition (Axiom)",
+        "result": "Z\u00b2 \u2248 33.51 defines electromagnetic coupling strength",
+        "justification": "Solid angle of unit sphere \u00d7 8/3, fundamental to QED vertex factor",
+        "formula_in": "Z\u00b2 = 32\u03c0/3",
+        "formula_out": "Z\u00b2 \u2248 33.51",
+        "is_axiomatic": true,
+        "is_physical": true,
+        "confidence": 1.0
+      },
+      {
+        "step": 2,
+        "premise": "QED coupling emerges from geometric phase space",
+        "operation": "Dimensional analysis of electron-photon vertex",
+        "result": "\u03b1 relates to available phase space at the vertex",
+        "justification": "Fine structure constant measures EM interaction strength",
+        "formula_in": "\u03b1 = e\u00b2/(4\u03c0\u03b5\u2080\u210fc)",
+        "formula_out": "\u03b1\u207b\u00b9 ~ geometric factor",
+        "is_axiomatic": false,
+        "is_physical": true,
+        "confidence": 0.9
+      },
+      {
+        "step": 3,
+        "premise": "Z\u00b2 sets the geometric phase space factor",
+        "operation": "Counting electromagnetic degrees of freedom",
+        "result": "\u03b1\u207b\u00b9 = 4Z\u00b2 + 3",
+        "justification": "4 from spacetime dimensions, Z\u00b2 from geometric solid angle, +3 from spatial DOF",
+        "formula_in": "4 \u00d7 Z\u00b2 + 3",
+        "formula_out": "\u03b1\u207b\u00b9 = 4(32\u03c0/3) + 3 \u2248 137.041",
+        "is_axiomatic": false,
+        "is_physical": true,
+        "confidence": 0.85
+      }
+    ],
+    "final_formula": "\u03b1\u207b\u00b9 = 4Z\u00b2 + 3",
+    "computed_value": 137.0412865531645,
+    "percent_error": 90.3519620092648,
+    "level": "failed",
+    "status": "invalid",
+    "starts_from_z2": true,
+    "has_physical_step": true,
+    "all_justified": true,
+    "overall_confidence": 0.765,
+    "weakest_step_idx": 2,
+    "physical_mechanism": "Electromagnetic coupling strength determined by Z\u00b2 geometric phase space",
+    "dimensional_analysis": "",
+    "timestamp": "2026-05-07T23:34:50.090433",
+    "refinement_metadata": {}
+  },
+  "timing": {
+    "metis": 0.0008919239044189453,
+    "derivation": 0.0002658367156982422,
+    "verification": 63.13709378242493,
+    "storage": 0.0005719661712646484,
+    "total": 63.13890719413757
+  },
+  "timestamp": "2026-05-07T23:35:53.228365"
+}
