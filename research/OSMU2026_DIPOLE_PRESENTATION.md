@@ -262,19 +262,90 @@ If R = 1/Ω_m is confirmed:
 
 ---
 
-## 8. Conclusion
+## 8. Survey Differences: A Critical Issue
+
+### 8.1 The Radio vs Quasar Discrepancy
+
+| Survey Type | Observed R | Z² Prediction | Tension |
+|-------------|------------|---------------|---------|
+| Radio (NVSS, RACS) | ~3.0 | 3.17 | 0.3σ |
+| Quasar (CatWISE) | 2.0-2.7 | 3.17 | 1-2σ |
+
+**Key question:** Is R truly universal, or does it depend on source population?
+
+### 8.2 Possible Explanations for Survey Differences
+
+**1. Selection Effects (systematics):**
+- Declination-dependent sensitivity variations
+- Flux calibration and direction-dependent effects
+- Galactic plane masking differences
+- Resolution/blending of extended sources
+
+**2. Spectral Index Variations:**
+- CatWISE spectral indices non-Gaussian
+- Lower spectral indices for fainter sources (α = 1.07 for <0.08 mJy)
+- Ellis-Baldwin factor [2 + x(1+α)] varies with population
+
+**3. Clustering Contributions:**
+- Local structure induces positive correlation
+- Shot noise levels differ between catalogs
+- Clustering term adds to kinematic dipole
+
+**4. Catalog Systematics:**
+- RACS-low in tension with BOTH CatWISE and NVSS
+- Suggests possible RACS-specific systematic
+- NVSS and CatWISE concordant despite different amplitudes
+
+### 8.3 Z² Requirement: Universality
+
+The Z² prediction R = 19/6 requires:
+- **Same R for all wavelengths** (radio, IR, optical)
+- **Same R for all source types** (galaxies, quasars, AGN)
+- **Same R at all redshifts** (if purely kinematic)
+
+**Current status:** Surveys show R = 2.0-3.0 with significant scatter. Cannot yet determine if this is:
+- Systematic variations (favors Z²: true R is universal, ~3)
+- Physical variations (disfavors Z²: different populations have different R)
+
+### 8.4 Critical Test
+
+If future high-precision surveys consistently show:
+- R(radio) ≈ 3.0 ± 0.1
+- R(quasar) ≈ 2.5 ± 0.1
+
+This would **falsify** Z² unless a mechanism explains why quasars sample fewer DoF.
+
+Conversely, if systematic corrections bring all surveys to R ≈ 3.17 ± 0.15, this would **strongly support** Z².
+
+---
+
+## 9. Conclusion
 
 The cosmic dipole anomaly is one of the most significant challenges to standard cosmology. The Z² framework offers a specific, parameter-free prediction:
 
 $$R = \frac{19}{6} = \frac{1}{\Omega_m} = 3.1\overline{6}$$
 
-Current observations show R = 2-4 with best estimates around 2.5-3, consistent with Z² within uncertainties. The angular offset of ~39° is consistent with T³/Z₂ cubic topology.
+### 9.1 Current Status
 
-**Bottom line:** The Z² prediction sits in the middle of the observed range and will be decisively tested by Euclid/LSST/SKA within 3-5 years. If confirmed, it would be:
+| Test | Z² Prediction | Observed | Verdict |
+|------|---------------|----------|---------|
+| Amplitude (radio) | 3.17 | ~3.0 | **Consistent** |
+| Amplitude (quasar) | 3.17 | 2.0-2.7 | Tension (~2σ) |
+| Angular offset | 35°/45°/55° | 39° ± 8° | **Consistent** |
+| R × Ω_m = 1 | 1.00 | 0.95 ± 0.15 | **Consistent** |
 
-1. The first theoretical explanation of the dipole anomaly
+### 9.2 Bottom Line
+
+The Z² prediction sits in the middle of the observed range and will be decisively tested by Euclid/LSST/SKA within 3-5 years.
+
+**The key question:** Is R universal across source populations? If yes (and R ≈ 3.17), Z² is confirmed. If no, Z² must be modified or abandoned.
+
+### 9.3 If Confirmed
+
+1. First theoretical explanation of the dipole anomaly
 2. Independent confirmation of Z² DoF structure
 3. Evidence for a deeper geometric origin of cosmological parameters
+4. ΛCDM would require modification (though not abandonment)
 
 ---
 
