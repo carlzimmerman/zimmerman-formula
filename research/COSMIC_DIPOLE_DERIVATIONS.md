@@ -302,6 +302,266 @@ $$d_{Z²} = \frac{1}{\Omega_m} [2 + x(1+\alpha)] \frac{v}{c} \cos\theta$$
 
 ---
 
+---
+
+## Derivation IV: Boltzmann Hierarchy Approach (New)
+
+### IV.1 Setup
+
+The cosmic dipole arises from our velocity **v** relative to the cosmic rest frame. For the CMB, this produces a temperature dipole via the Doppler effect. For matter surveys, this affects both source counts (aberration) and observed fluxes (boosting).
+
+The key question: How does the Boltzmann hierarchy encode the DoF structure?
+
+### IV.2 The CMB Dipole
+
+The CMB photon distribution function f(ν, n̂) in the moving frame:
+
+$$f(\nu, \hat{n}) = \frac{1}{e^{h\nu/k_B T(\hat{n})} - 1}$$
+
+where the temperature varies with direction:
+
+$$T(\hat{n}) = T_0 \left(1 + \frac{\vec{v} \cdot \hat{n}}{c}\right) + O(v^2)$$
+
+This gives dipole amplitude:
+
+$$\frac{\Delta T}{T_0} = \frac{v}{c} \cos\theta$$
+
+where θ is the angle from the direction of motion.
+
+### IV.3 The Matter Dipole
+
+For a flux-limited survey, the number density of sources in direction n̂:
+
+$$n(\hat{n}) = n_0 \left(1 + D \cos\theta\right)$$
+
+where the dipole amplitude D includes:
+
+1. **Aberration:** Change in solid angle
+   $$D_{aber} = 2 \frac{v}{c}$$
+
+2. **Doppler boosting:** Flux change affects which sources make the cut
+   $$D_{boost} = x(1+\alpha) \frac{v}{c}$$
+
+Combined (Ellis & Baldwin):
+$$D_{kin} = [2 + x(1+\alpha)] \frac{v}{c}$$
+
+### IV.4 The DoF Connection
+
+**Hypothesis:** The Boltzmann equation for each DoF type includes a coupling to the velocity field. The total response is the sum over all coupled DoF.
+
+For CMB (coupled to N_total DoF):
+$$D_{CMB} = \sum_{i=1}^{N_{total}} d_i = N_{total} \times \bar{d}$$
+
+For matter (coupled to N_matter DoF):
+$$D_{matter} = \sum_{i=1}^{N_{matter}} d_i = N_{matter} \times \bar{d}$$
+
+If each DoF contributes equally (d_i = d̄ for all i):
+
+$$\frac{D_{CMB}}{D_{matter}} = \frac{N_{total}}{N_{matter}} = \frac{19}{6}$$
+
+**But this gives the INVERSE of what we need!**
+
+### IV.5 The Correct Scaling
+
+Let me reconsider. The dipole we observe is a *fractional* anisotropy. If the total signal is:
+
+$$O_{total} = \sum_{i=1}^{N} O_i$$
+
+and each O_i has dipole component d_i:
+
+$$D = \frac{\sum d_i}{\sum O_i} = \frac{N \bar{d}}{N \bar{O}} = \frac{\bar{d}}{\bar{O}}$$
+
+This is N-independent! The fractional dipole doesn't depend on how many DoF contribute.
+
+**However**, consider the *response* to velocity. If the coupling of each DoF to velocity depends on the energy fraction in that DoF:
+
+$$d_i = g_i \frac{v}{c}$$
+
+where g_i is the coupling constant for DoF i.
+
+For CMB, the energy is distributed across 19 DoF, so each has coupling:
+$$g_i^{CMB} = \frac{g_{total}}{19}$$
+
+For matter, the energy is distributed across 6 DoF:
+$$g_i^{matter} = \frac{g_{total}}{6}$$
+
+Then:
+$$D_{CMB} = \sum_{i=1}^{19} \frac{g_{total}}{19} \frac{v}{c} = g_{total} \frac{v}{c}$$
+
+$$D_{matter} = \sum_{i=1}^{6} \frac{g_{total}}{6} \frac{v}{c} = g_{total} \frac{v}{c}$$
+
+Still equal! The extra coupling per DoF compensates for fewer DoF.
+
+### IV.6 The Missing Ingredient
+
+The derivation fails because we're summing linearly. The 19/6 ratio requires a *nonlinear* relationship.
+
+**Possibility 1: Variance, not mean**
+
+If the observable is the variance (power spectrum) rather than mean:
+
+$$\sigma^2_{CMB} \propto \sum_{i=1}^{19} \sigma^2_i = 19 \sigma^2_0$$
+$$\sigma^2_{matter} \propto \sum_{i=1}^{6} \sigma^2_i = 6 \sigma^2_0$$
+
+Ratio of standard deviations: √(19/6) ≈ 1.78 ≠ 3.17
+
+**Possibility 2: Inverse weighting**
+
+If each DoF contributes inversely to the total:
+$$D_i \propto \frac{1}{N}$$
+
+Then:
+$$D_{CMB} = \frac{A}{19}, \quad D_{matter} = \frac{A}{6}$$
+
+Ratio: 19/6 ✓
+
+**But why inverse weighting?**
+
+**Possibility 3: Energy conservation**
+
+The total dipole power is fixed by the velocity v. This power is distributed across N DoF. Each DoF gets a share 1/N of the total power.
+
+The dipole amplitude scales as √(power), so:
+$$D_i \propto \sqrt{1/N}$$
+
+This gives √(19/6) ≈ 1.78 for amplitude ratio.
+
+But if we consider **energy** (amplitude squared):
+$$E_{CMB} \propto 1, \quad E_{matter} \propto 1$$
+
+Energy is conserved, not amplitude.
+
+### IV.7 Honest Assessment
+
+**I cannot derive the 1/N amplitude scaling from first principles.**
+
+The standard statistical mechanics approaches give:
+- Linear sum: ratio = 1 (no amplification)
+- Variance: ratio = √(N_total/N_matter) ≈ 1.78
+- Equal energy per DoF: ratio = 1
+
+None of these give 19/6 ≈ 3.17.
+
+**What would be needed:**
+A physical principle that makes dipole amplitude inversely proportional to the number of DoF sampled. This might involve:
+- Information theory (partial sampling increases apparent signal)
+- Aliasing (undersampled modes project onto observed modes)
+- Non-equilibrium thermodynamics (matter is decoupled from vacuum DoF)
+
+This remains an **open problem**.
+
+---
+
+## Derivation V: Information-Theoretic Approach (Speculative)
+
+### V.1 The Aliasing Hypothesis
+
+When observing N modes from a system with M total modes (N < M), information about the unobserved M-N modes is "aliased" into the observed modes.
+
+In signal processing, undersampling causes high-frequency power to appear at low frequencies. For the dipole:
+
+- Full observation (M modes): dipole power distributed across M modes
+- Partial observation (N modes): dipole power concentrated in N modes
+
+### V.2 Power Conservation
+
+If total dipole power P_total is conserved:
+
+$$P_{total} = \sum_{i=1}^{M} P_i = M \times P_{avg}$$
+
+For full observation:
+$$P_{CMB} = P_{avg}$$
+
+For partial observation (aliasing):
+$$P_{matter} = \frac{M}{N} \times P_{avg}$$
+
+Since dipole amplitude D ∝ √P:
+
+$$\frac{D_{matter}}{D_{CMB}} = \sqrt{\frac{M}{N}} = \sqrt{\frac{19}{6}} \approx 1.78$$
+
+**This gives √(19/6), not 19/6.**
+
+### V.3 Amplitude (not power) aliasing?
+
+What if aliasing adds *amplitude* not power?
+
+If unobserved modes contribute amplitude to observed modes:
+
+$$D_{matter} = D_{intrinsic} + D_{aliased}$$
+
+where D_aliased comes from the M-N unobserved modes.
+
+If each unobserved mode contributes its full amplitude to the observed dipole:
+
+$$D_{matter} = D_0 + \frac{M-N}{N} D_0 = D_0 \times \frac{M}{N}$$
+
+This gives M/N = 19/6 ✓
+
+**But why would amplitude (not power) add?**
+
+This would require coherent aliasing—all unobserved modes aliasing in phase with the observed dipole. This seems fine-tuned.
+
+### V.4 Fisher Information Approach
+
+The Fisher information for estimating velocity v from N DoF:
+
+$$I_N(v) = \sum_{i=1}^{N} I_i(v) = N \times I_0(v)$$
+
+More DoF → more information → better velocity estimate.
+
+The variance of velocity estimate:
+$$\sigma_v^2 = \frac{1}{I_N(v)} = \frac{1}{N \times I_0}$$
+
+For CMB (N=19): σ_v ∝ 1/√19
+For matter (N=6): σ_v ∝ 1/√6
+
+The *measured* velocity includes noise:
+$$v_{measured} = v_{true} + \sigma_v \times \epsilon$$
+
+For a fixed realization of noise ε, the matter measurement has larger error bars but not a systematically larger v.
+
+**This doesn't explain a systematic dipole amplification.**
+
+### V.5 The Crux of the Problem
+
+None of the information-theoretic approaches give the 19/6 amplitude ratio.
+
+The problem is that all standard frameworks (statistical mechanics, signal processing, information theory) treat modes as independent. In such frameworks:
+- Adding modes increases signal-to-noise
+- But doesn't change the mean signal
+- Amplitude ratios scale as √(N_2/N_1), not N_2/N_1
+
+**To get N_2/N_1 scaling, we need:**
+- Modes that are NOT independent
+- Or a non-linear coupling between velocity and dipole
+- Or a completely different physical mechanism
+
+### V.6 A Speculative Mechanism: "DoF Leverage"
+
+**Wild speculation:** What if the dipole response scales inversely with the "stiffness" of the medium?
+
+A medium with more DoF is "stiffer" (more ways to absorb perturbations).
+A medium with fewer DoF is "softer" (perturbations have larger effect).
+
+If "stiffness" S ∝ N (number of DoF):
+$$D \propto \frac{v}{S} = \frac{v}{N}$$
+
+Then:
+$$\frac{D_{matter}}{D_{CMB}} = \frac{N_{CMB}}{N_{matter}} = \frac{19}{6}$$ ✓
+
+**This is the right scaling!**
+
+But what physical principle underlies "stiffness ∝ N"?
+
+Possibly related to:
+- Degrees of freedom in the equation of state
+- Bulk modulus from thermodynamics
+- Entropy density
+
+This requires further investigation.
+
+---
+
 ## Summary: Status of Derivations
 
 | Derivation | Core Result | Gap Level | Path to Completion |
@@ -309,6 +569,7 @@ $$d_{Z²} = \frac{1}{\Omega_m} [2 + x(1+\alpha)] \frac{v}{c} \cos\theta$$
 | I. Phase-Space | D ∝ 1/N | Medium | Need field theory proof |
 | II. Angular Offset | θ ∈ {35°, 45°, 55°} | High | Need physical mechanism |
 | III. Ellis-Baldwin | d = (19/6) d_kin | Low | Need v_eff justification |
+| IV. Boltzmann | **FAILED** | Critical | Cannot derive 1/N scaling |
 
 **Overall assessment:**
 
