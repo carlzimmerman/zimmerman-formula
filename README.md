@@ -4,6 +4,15 @@
 >
 > — Johannes Kepler, *Harmonices Mundi* (1619)
 
+<p align="center">
+  <img src="images/davinci_cube.jpg" alt="Leonardo da Vinci's Geometric Cube Sketches" width="500"/>
+</p>
+
+<p align="center">
+  <em>Leonardo da Vinci's geometric studies of the cube inscribed in a sphere — the same geometry underlying Z² = 8 × (4π/3).</em><br/>
+  <small>Image: Frank J. Swetz (Penn State), "<a href="https://www.maa.org/press/periodicals/convergence/leonardo-da-vincis-geometric-sketches-cube">Leonardo da Vinci's Geometric Sketches - Cube</a>," <em>Convergence</em> (June 2010), DOI:10.4169/loci002559</small>
+</p>
+
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19244651.svg)](https://doi.org/10.5281/zenodo.19244651)
 
 **Website:** [abeautifullygeometricuniverse.web.app](https://abeautifullygeometricuniverse.web.app) | **DOI:** [10.5281/zenodo.19244651](https://doi.org/10.5281/zenodo.19244651)
