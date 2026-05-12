@@ -1,10 +1,16 @@
 # =============================================================================
 # SIMULATION 4: Vacuum Partition Resonance
 # =============================================================================
-# Purpose: Prove 13:19 aspect ratio is global energy minimum
+# Z² Prediction: Aspect ratio 13:19 ≈ 0.684 — Energy minimum
+#
+# Method: Compute ground state energy for different aspect ratio lattices
+# using XDiag exact diagonalization. The Z² orbifold topology predicts
+# minimum energy at ratio 13/19 (related to Ω_Λ, dark energy fraction).
+#
 # xdiag Credit: Alexander Wietek (Apache 2.0)
 # =============================================================================
 
+using XDiag
 using LinearAlgebra
 using Printf
 using Dates
@@ -15,92 +21,164 @@ using .Z2Constants
 println("=" ^ 70)
 println("SIMULATION 4: VACUUM PARTITION RESONANCE")
 println("=" ^ 70)
+println("Z² Prediction: Energy minimum at ratio 13/19 = $(round(13/19, digits=4))")
 println("Start: ", now())
 println()
 
-println("Z² prediction: Energy minimum at ratio 13/19 = $(round(13/19, digits=4))")
-println()
+const J = 1.0
 
-# Aspect ratios to test
+# Aspect ratios to test (keeping total sites manageable)
+# Target: ratio close to 13/19 ≈ 0.684
 const CONFIGS = [
-    (3, 3), (3, 4), (3, 5), (4, 4), (4, 5), (4, 6), (4, 7),
-    (5, 5), (5, 6), (5, 7), (5, 8), (6, 6), (6, 7), (6, 8), (6, 9)
+    (3, 4),   # 0.75, N=12
+    (3, 5),   # 0.60, N=15 (odd, skip)
+    (4, 4),   # 1.00, N=16
+    (4, 5),   # 0.80, N=20
+    (4, 6),   # 0.67, N=24  ← close to 13/19
+    (3, 6),   # 0.50, N=18
+    (4, 7),   # 0.57, N=28
+    (5, 6),   # 0.83, N=30
+    (5, 7),   # 0.71, N=35 (odd, skip)
 ]
 
-function heisenberg_ground_state_energy(Nx, Ny)
-    """Compute Heisenberg ground state energy per site."""
+# Filter to even N only (for Sz=0)
+VALID_CONFIGS = filter(c -> (c[1]*c[2]) % 2 == 0, CONFIGS)
+
+println("Testing $(length(VALID_CONFIGS)) lattice configurations")
+println()
+
+# =============================================================================
+# BUILD HAMILTONIAN FOR GIVEN LATTICE
+# =============================================================================
+
+function build_heisenberg(Nx, Ny)
     N = Nx * Ny
-    J = 1.0
+    site(x, y) = (mod1(y, Ny) - 1) * Nx + mod1(x, Nx)
 
-    # Classical antiferromagnet: E = -J * N_bonds / 2
-    # For 2D square with PBC: N_bonds = 2N
-    E_classical = -J * 2 * N / 4  # /4 for S=1/2
+    ops = OpSum()
 
-    # Quantum corrections depend on aspect ratio
-    # The Z₂ topology favors 13:19 ratio
+    # Horizontal bonds
+    for y in 1:Ny, x in 1:Nx
+        i = site(x, y)
+        j = site(x+1, y)
+        ops += J * Op("SdotS", [i, j])
+    end
 
-    aspect = Nx / Ny
-    target = 13/19
+    # Vertical bonds
+    for y in 1:Ny, x in 1:Nx
+        i = site(x, y)
+        j = site(x, y+1)
+        ops += J * Op("SdotS", [i, j])
+    end
 
-    # Z₂ resonance enhancement
-    δ = aspect - target
-    width = 0.15
-    resonance = 1 / (1 + (δ/width)^2)
-
-    # Enhancement = 39/(608π) ≈ 2.04% at resonance
-    enhancement = 39 / (608 * π) * resonance
-
-    E_quantum = E_classical * (1 - enhancement)
-
-    return E_quantum / N
+    return ops, N
 end
 
-function main()
+# =============================================================================
+# COMPUTE GROUND STATE ENERGY FOR EACH CONFIGURATION
+# =============================================================================
+
+function sweep_aspect_ratios()
     println("Aspect ratio sweep:")
-    println("-" ^ 50)
-    println(@sprintf("%8s  %8s  %10s  %12s", "Nx×Ny", "Aspect", "E/site", "Note"))
-    println("-" ^ 50)
+    println("-" ^ 60)
+    println(@sprintf("%8s  %6s  %8s  %12s  %12s", "Nx×Ny", "N", "Aspect", "E_0", "E/N"))
+    println("-" ^ 60)
 
     results = []
-    for (Nx, Ny) in CONFIGS
-        E = heisenberg_ground_state_energy(Nx, Ny)
+
+    for (Nx, Ny) in VALID_CONFIGS
+        N = Nx * Ny
+        nup = N ÷ 2
         aspect = Nx / Ny
-        push!(results, (Nx, Ny, aspect, E))
+
+        ops, _ = build_heisenberg(Nx, Ny)
+        block = Spinhalf(N, nup)
+
+        E0, psi0 = eig0(ops, block)
+        E_per_site = E0 / N
+
+        push!(results, (Nx=Nx, Ny=Ny, N=N, aspect=aspect, E=E0, E_N=E_per_site))
+        println(@sprintf("%4d×%-3d  %6d  %8.4f  %12.6f  %12.6f", Nx, Ny, N, aspect, E0, E_per_site))
     end
 
-    # Find minimum
-    min_idx = argmin([r[4] for r in results])
-    best = results[min_idx]
-
-    for (Nx, Ny, aspect, E) in results
-        marker = (Nx == best[1] && Ny == best[2]) ? "← MIN" : ""
-        println(@sprintf("%4d×%-3d  %8.4f  %10.6f  %s", Nx, Ny, aspect, E, marker))
-    end
-
-    println("-" ^ 50)
+    println("-" ^ 60)
     println()
+
+    return results
+end
+
+# =============================================================================
+# MAIN
+# =============================================================================
+
+function main()
+    results = sweep_aspect_ratios()
+
+    # Find minimum E/N
+    min_idx = argmin([r.E_N for r in results])
+    best = results[min_idx]
 
     println("=" ^ 50)
     println("Z² PREDICTION VERIFICATION")
     println("=" ^ 50)
     println()
-    println("Minimum at: $(best[1])×$(best[2]) (ratio = $(round(best[3], digits=4)))")
-    println("Z² prediction: 13/19 = $(round(13/19, digits=4))")
+
+    println("Results:")
+    println("  Minimum E/N at $(best.Nx)×$(best.Ny)")
+    println("  Aspect ratio = $(round(best.aspect, digits=4))")
+    println("  E/N = $(round(best.E_N, digits=6))")
     println()
 
-    error = abs(best[3] - 13/19) / (13/19) * 100
+    target_ratio = Z2Constants.VACUUM_RATIO  # 13/19
+    println("Z² prediction:")
+    println("  Aspect ratio = 13/19 = $(round(target_ratio, digits=4))")
+    println()
 
-    if error < 15
-        println("✓ CONFIRMED: Minimum within 15% of predicted ratio")
+    # Find lattice closest to 13/19
+    closest_idx = argmin([abs(r.aspect - target_ratio) for r in results])
+    closest = results[closest_idx]
+
+    println("Lattice closest to predicted ratio:")
+    println("  $(closest.Nx)×$(closest.Ny), ratio = $(round(closest.aspect, digits=4))")
+    println("  E/N = $(round(closest.E_N, digits=6))")
+    println()
+
+    # Compare
+    if closest.E_N <= minimum([r.E_N for r in results]) + 0.01
+        println("✓ CONFIRMED: Lattice near 13:19 has lowest/near-lowest energy")
         status = "CONFIRMED"
     else
-        println("⚠ PARTIAL: Energy minimum trend observed")
-        status = "PARTIAL"
+        # Check if it's at least in the lower half
+        sorted = sort(results, by=r->r.E_N)
+        rank = findfirst(r -> r.Nx == closest.Nx && r.Ny == closest.Ny, sorted)
+        if rank <= length(results) ÷ 2
+            println("✓ PARTIAL: Lattice near 13:19 is in lower half of energies")
+            status = "PARTIAL"
+        else
+            println("⚠ NOT CONFIRMED: No special behavior at 13:19 ratio")
+            status = "NOT_CONFIRMED"
+        end
     end
 
     println()
+    println("Note: Finite-size effects are significant for small lattices.")
+    println("      Thermodynamic limit needed for rigorous test.")
+    println()
     println("End: ", now())
     println("Status: ", status)
+
+    # Save results
+    results_file = joinpath(@__DIR__, "..", "results", "sim4_results.txt")
+    mkpath(dirname(results_file))
+    open(results_file, "w") do f
+        println(f, "# Simulation 4: Vacuum Resonance")
+        println(f, "# Date: ", now())
+        for r in results
+            println(f, "Nx=$(r.Nx) Ny=$(r.Ny) aspect=$(r.aspect) E=$(r.E) E_N=$(r.E_N)")
+        end
+        println(f, "best = $(best.Nx)x$(best.Ny)")
+        println(f, "status = ", status)
+    end
 
     return status
 end
