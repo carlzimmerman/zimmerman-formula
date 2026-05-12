@@ -955,19 +955,7 @@ The factor of 2 in (2 × 55 = 110) comes from the **2D nature of the skyrmion te
 
 The T³/Z₂ topology can be tested through cryogenic condensed matter experiments:
 
-#### 9.3.1 Prediction A: Topological Casimir Resonance
-
-**Theory:** The cosmological constant is the global Casimir energy of the fundamental domain, restricted to a 13/19 DoF partition.
-
-**Test:** A nanoscale rectangular Casimir cavity engineered to a strict **13:19 aspect ratio** will couple to this macroscopic vacuum partition.
-
-**Signature:** A **2.04% constructive deviation** from standard QED Casimir pressure:
-
-$$\frac{\Delta F}{F_c} = \frac{39}{608\pi} = \frac{3 \times 13}{32 \times 19 \times \pi} = 0.0204$$
-
-The structure constants (3, 13, 19, 32, π) all appear in this formula.
-
-#### 9.3.2 Prediction B: Cosmological Shear Coupling
+#### 9.3.1 Prediction A: Cosmological Shear Coupling
 
 **Theory:** The T³ fundamental domain mandates a traceless spatial shear (σ_μν) along its 35.26° diagonals.
 
@@ -979,7 +967,7 @@ $$\frac{\Delta\rho}{\rho_0} = \frac{1}{32\pi} = \varepsilon$$
 
 The angle 35.26° is the **cube body diagonal angle** — the fundamental angle of sphere-inscribed-in-cube geometry.
 
-#### 9.3.3 Prediction C: Macroscopic Parity Decay
+#### 9.3.2 Prediction B: Macroscopic Parity Decay
 
 **Theory:** The Z₂ vacuum globally suppresses right-handed states.
 

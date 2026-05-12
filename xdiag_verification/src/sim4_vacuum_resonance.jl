@@ -1,14 +1,21 @@
 # =============================================================================
 # SIMULATION 4: Vacuum Partition Resonance (Aspect Ratio Sweep)
 # =============================================================================
+#
+# ⚠️  DEPRECATED: This prediction has been FALSIFIED.
+#
+# The amplitude audit (May 12, 2026) proved that:
+# - Casimir energy E(α) has minimum at α = 1 (square), NOT at 13/19
+# - There is NO physical mechanism connecting cosmological Ω_Λ = 13/19
+#   to a micron-scale cavity geometry
+# - Scale mismatch: cosmological (10²⁶ m) vs lab-scale
+#
+# This simulation is retained for historical record only.
+# See: research/theoretical/AMPLITUDE_AUDIT_RESULTS.md
+#
+# Original (incorrect) claim:
 # Purpose: Prove that 13:19 dimensional aspect ratio represents the
 #          global topological energy minimum for Casimir-like boundaries
-#
-# Physics: The T³/Z₂ orbifold enforces a 19 DoF partition where 13 belong
-#          to vacuum (dark energy) and 6 to matter. A cavity with 13:19
-#          aspect ratio should show resonant Casimir enhancement.
-#
-# Prediction: Ground state energy minimum at aspect ratio 13/19 = 0.6842
 #
 # xdiag Library Credit: Alexander Wietek (Apache 2.0 License)
 # =============================================================================

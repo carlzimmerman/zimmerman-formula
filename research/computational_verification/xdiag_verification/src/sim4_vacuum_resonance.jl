@@ -1,11 +1,18 @@
 # =============================================================================
 # SIMULATION 4: Vacuum Partition Resonance
 # =============================================================================
-# Z² Prediction: Aspect ratio 13:19 ≈ 0.684 — Energy minimum
 #
-# Method: Compute ground state energy for different aspect ratio lattices
-# using XDiag exact diagonalization. The Z² orbifold topology predicts
-# minimum energy at ratio 13/19 (related to Ω_Λ, dark energy fraction).
+# ⚠️  DEPRECATED: This prediction has been FALSIFIED (May 12, 2026).
+#
+# The amplitude audit proved that:
+# - Casimir energy E(α) has minimum at α = 1 (square), NOT at 13/19
+# - There is NO physical mechanism connecting cosmological Ω_Λ to cavity geometry
+# - Scale mismatch: cosmological (10²⁶ m) vs lab-scale
+#
+# This simulation is retained for historical record only.
+# See: research/theoretical/AMPLITUDE_AUDIT_RESULTS.md
+#
+# Original (incorrect) claim: Aspect ratio 13:19 — Energy minimum
 #
 # xdiag Credit: Alexander Wietek (Apache 2.0)
 # =============================================================================

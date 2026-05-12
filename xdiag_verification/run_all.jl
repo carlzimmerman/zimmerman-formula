@@ -102,10 +102,10 @@ if n_success == n_total
     println()
     println("The Z² framework predictions have been computationally verified:")
     println("  1. Chiral zero-mode deletion (Ψ_R(0) = 0)")
-    println("  2. Parity decay asymmetry (S = 3/110 = 2.73%)")
-    println("  3. Resistivity minimum at 35.26°")
-    println("  4. Energy minimum at 13:19 aspect ratio")
-    println("  5. Tensor mode suppression (S = 3/110)")
+    println("  2. Parity decay asymmetry (S = 3/110 = 2.73%) [PHENOMENOLOGICAL]")
+    println("  3. Resistivity minimum at 35.26° [PROVEN]")
+    println("  4. Energy minimum at 13:19 aspect ratio [DEPRECATED - FALSE]")
+    println("  5. Tensor mode suppression (S = 3/110) [PHENOMENOLOGICAL]")
 else
     println("⚠ Some simulations failed - review output above")
 end
