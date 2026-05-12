@@ -26,7 +26,6 @@ References:
 
 using LinearAlgebra
 using Printf
-using SpecialFunctions
 
 println("=" ^ 70)
 println("ZETA-FUNCTION REGULARIZED VACUUM ENERGY ON T³/Z₂")
