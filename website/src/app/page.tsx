@@ -254,6 +254,10 @@ export default function Home() {
               <div className="text-2xl mb-1">!</div>
               <div className="text-sm font-medium text-red-700">2026 Predictions</div>
             </Link>
+            <Link href="/office-hours" className="p-4 bg-purple-50 rounded border border-purple-200 hover:border-purple-400 text-center transition-colors min-h-[72px] flex flex-col justify-center">
+              <div className="text-2xl mb-1">📚</div>
+              <div className="text-sm font-medium text-purple-700">Office Hours</div>
+            </Link>
           </div>
         </div>
 
