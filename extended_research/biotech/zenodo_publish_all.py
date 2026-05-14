@@ -3,9 +3,17 @@ import json
 import os
 import sys
 
-TOKEN = os.getenv("ZENODO_ACCESS_TOKEN")
+ENV_PATH = "/Users/carlzimmerman/new_physics/.env"
+TOKEN = None
+
+if os.path.exists(ENV_PATH):
+    with open(ENV_PATH) as f:
+        for line in f:
+            if line.startswith("ZENODO_ACCESS_TOKEN="):
+                TOKEN = line.strip().split("=", 1)[1]
+
 if not TOKEN:
-    print("[!] Error: Please set the ZENODO_ACCESS_TOKEN environment variable.")
+    print(f"[!] Error: Please add ZENODO_ACCESS_TOKEN=your_token_here to {ENV_PATH}")
     print("    You can get one at: https://zenodo.org/account/settings/applications/")
     sys.exit(1)
 
