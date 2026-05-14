@@ -148,14 +148,18 @@ GALAXY_DATABASE = [
         reference="Robertson et al. (2024); Schouws et al. (2025)",
         notes="Most distant spectroscopically confirmed. Upper limit only."
     ),
+    # NOTE: CEERS-1749 ("Schrödinger's Galaxy") was REMOVED from this list.
+    # Originally thought to be z ≈ 17 (or z ≈ 10.9), spectroscopy confirmed z = 4.9.
+    # It is a low-redshift interloper (dusty starburst), not a z > 10 galaxy.
+    # Reference: Arrabal Haro et al. (2023), Naidu et al. (2022)
     Galaxy(
-        name="CEERS-1749",
-        redshift=10.9,
-        stellar_mass=3e10,
-        mass_error_factor=2,
+        name="CEERS2_588",
+        redshift=11.04,
+        stellar_mass=5e8,
+        mass_error_factor=3,
         status="awaiting",
-        reference="Finkelstein et al. (2022)",
-        notes="Very massive for this redshift."
+        reference="Arrabal Haro et al. (2023); Harikane et al. (2024)",
+        notes="Spectroscopically confirmed at z=11.04."
     ),
     Galaxy(
         name="Maisie's Galaxy",
