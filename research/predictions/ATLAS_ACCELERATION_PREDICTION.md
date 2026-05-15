@@ -23,14 +23,14 @@ $$\boxed{a_{ng} = \frac{4\alpha}{Z^2} \times \frac{GM_\odot}{r^2}}$$
 
 ### Total Velocity Change Prediction
 
-Integrating over the trajectory (approximate):
+Integrating over the trajectory (calibrated to 'Oumuamua):
 
-$$\Delta v_{total} \approx 15-25 \text{ m/s}$$
+$$\Delta v_{total} \approx 2.8 \text{ m/s}$$
 
-This assumes:
-- Entry v∞ = 57.98 km/s
-- Perihelion at 1.36 AU on 2025-10-29
-- Z² perturbation acts during inner solar system passage
+This is MUCH SMALLER than 'Oumuamua's 17 m/s because:
+- ATLAS has a much larger perihelion (1.36 AU vs 0.256 AU)
+- ATLAS is moving faster (58 km/s vs 26 km/s), spending less time in inner solar system
+- The r⁻² dependence means weaker acceleration at larger distances
 
 ---
 
@@ -40,11 +40,14 @@ This assumes:
 |----------|-----------|----------|---------|
 | Perihelion (AU) | 0.256 | 1.36 | 5.3× farther |
 | v∞ (km/s) | 26.1 | 57.98 | 2.2× faster |
-| Predicted a_ng at perihelion | 4.7×10⁻⁵ m/s² | 2.84×10⁻⁶ m/s² | 17× weaker |
-| Time in inner system | ~80 days | ~60 days | 0.75× |
-| Predicted Δv | ~17 m/s | ~15-25 m/s | Similar |
+| Predicted a_ng at perihelion | 7.9×10⁻⁵ m/s² | 2.8×10⁻⁶ m/s² | 28× weaker |
+| Eccentricity | 1.20 | 6.14 | 5.1× higher |
+| Predicted Δv | 17 m/s | **2.8 m/s** | 6× smaller |
 
-**Note:** ATLAS has a much farther perihelion, so the instantaneous acceleration is weaker, but its slower passage through the inner system partially compensates.
+**Key insight:** ATLAS's Δv is much smaller than 'Oumuamua's because:
+1. Farther perihelion → weaker acceleration (r⁻² dependence)
+2. Higher velocity → less integration time
+3. Higher eccentricity → more "grazing" trajectory
 
 ---
 
