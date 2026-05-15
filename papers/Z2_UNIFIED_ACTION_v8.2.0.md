@@ -4,7 +4,7 @@
 
 **Carl Zimmerman**
 
-**Version 8.1.0 — May 12, 2026**
+**Version 8.2.0 — May 15, 2026**
 
 ---
 
@@ -711,6 +711,52 @@ m_μ/m_e = 37Z²/6 = 206.65 (0.06% error)
 
 ---
 
+## Acknowledgments
+
+We thank Dr. Orlando Luongo for thorough and constructive review that identified critical theoretical gaps in the original manuscript. His feedback led to significant improvements in establishing the dynamical foundation of the Z² framework, including explicit derivation of field equations, perturbation theory, and observational fits. The framework is substantially stronger as a result of this critique.
+
+See `/research/PEER_REVIEW_RESPONSE.md` for the complete point-by-point response to his critique.
+
+---
+
+## Supporting Documents: Dynamical Framework
+
+The following documents provide complete derivations addressing the dynamical foundation of the Z² framework (located in `/research/dynamical_framework/`):
+
+### Core Framework (8 Foundational Gaps)
+
+| Document | Content |
+|----------|---------|
+| `action_principle.md` | 7D action on M₄ × T³/Z₂ with string theory embedding |
+| `field_equations.md` | Modified Einstein + Yang-Mills equations from variational principle |
+| `gr_recovery.md` | Standard GR recovery in appropriate limit |
+| `perturbation_theory.md` | Complete perturbation theory; r = 1/(2Z²) derived |
+| `structure_formation.md` | Linear growth D(a) and power spectrum P(k) |
+| `observational_fits.md` | Full χ² comparison to CMB/BAO/SN data |
+| `topology_vs_dynamics.md` | Distinction: topology constrains, action determines dynamics |
+| `bekenstein_derivation.md` | BEKENSTEIN = 4 from geometric principles |
+
+### Additional Derivations
+
+| Document | Key Result |
+|----------|------------|
+| `DARK_ENERGY_W_DERIVATION.md` | w = -1 exactly (frozen orbifold moduli) |
+| `BARYOGENESIS_DERIVATION.md` | η_B ~ 10⁻¹⁰ via leptogenesis mechanism |
+| `GW_POLARIZATION_DERIVATION.md` | h_× = 0 (cross polarization projected out by Z₂) |
+| `KK_MODE_SPECTRUM_DERIVATION.md` | m_KK ~ 10¹⁸ GeV (no fifth force) |
+| `AXION_SECTOR_ANALYSIS.md` | No axion from T³/Z₂; θ_QCD = 0 topologically |
+| `PBH_ABUNDANCE_DERIVATION.md` | f_PBH ≈ 0 (slow-roll insufficient) |
+
+### Computational Verification
+
+Quantitative Python analyses in `/research/gap_computations/`:
+- `gw_polarization_analysis.py` — Detection power, event requirements
+- `dark_energy_w_analysis.py` — χ² comparison, Euclid forecast
+- `baryogenesis_analysis.py` — Leptogenesis parameter space
+- `pbh_abundance_analysis.py` — Press-Schechter formation probability
+
+---
+
 ## References
 
 1. Arnowitt, R., Deser, S., & Misner, C. W. (1962). "The Dynamics of General Relativity." *Gravitation: An Introduction to Current Research*.
@@ -726,11 +772,18 @@ m_μ/m_e = 37Z²/6 = 206.65 (0.06% error)
 **Version History:**
 - v6.0.2: Original submission (criticized by Quaranta)
 - v8.0.3: Added action principle, line element, mass hierarchy
-- **v8.1.0: First-principles derivations consolidated from LAGRANGIAN_FROM_GEOMETRY_v1.5.0.md**
+- v8.1.0: First-principles derivations consolidated from LAGRANGIAN_FROM_GEOMETRY_v1.5.0.md
   - sin²θ_W = 1/BEKENSTEIN - α_s/(2π) = 0.231 (0.01% error, DERIVED)
   - Ω_Λ = 13/19 via DoF counting + de Sitter attractor (0.1% error, DERIVED)
   - α⁻¹ = 4Z² + 3 via Atiyah-Patodi-Singer (0.004% error, DERIVED)
-  - All three key predictions now have rigorous first-principles derivations
+- **v8.2.0: Complete dynamical framework (response to Luongo peer review)**
+  - Added acknowledgment section crediting Dr. Orlando Luongo
+  - 8 foundational gaps addressed with explicit derivations
+  - Field equations, GR recovery, perturbation theory established
+  - Observational fits: CMB/BAO/SN χ² analysis complete
+  - Additional derivations: w = -1, baryogenesis, GW polarization, KK modes
+  - Computational verification in `/research/gap_computations/`
+  - See `/research/PEER_REVIEW_RESPONSE.md` for complete response
 
 ---
 
