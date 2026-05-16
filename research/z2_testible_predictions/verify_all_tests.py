@@ -27,7 +27,13 @@ Z = np.sqrt(Z_SQUARED)       # = 5.788810...
 # Derived cosmological parameters
 OMEGA_LAMBDA = 13 / 19      # = 0.6842105...
 OMEGA_MATTER = 6 / 19       # = 0.3157895...
-H0_Z2 = 71.5                # km/s/Mpc (predicted)
+
+# IMPORTANT: Z² does NOT predict H₀ directly!
+# Z² predicts the RATIO Ω_Λ/Ω_m = 13/6 = 2.167
+# H₀ must be determined by observation
+H0_PLANCK = 67.36           # km/s/Mpc (Planck 2018 measurement)
+H0_SHOES = 73.04            # km/s/Mpc (SH0ES 2022 measurement)
+H0_Z2 = H0_PLANCK           # Use Planck value with Z² density ratios
 
 # Magic angle
 THETA_MAGIC_RAD = np.arctan(1 / np.sqrt(2))
@@ -162,16 +168,29 @@ def hubble_z2(z: float) -> float:
     return H0_Z2 * np.sqrt(OMEGA_MATTER * (1 + z)**3 + OMEGA_LAMBDA)
 
 
-def age_universe_z2() -> float:
-    """Age of universe in Z² cosmology in Gyr."""
-    # H0 in 1/Gyr: H0 [km/s/Mpc] * 3.24e-20 [Mpc/km] * 3.15e16 [s/Gyr]
-    H0_per_Gyr = H0_Z2 * 3.24078e-20 * 3.15576e16
+def age_universe_z2(H0_km_s_Mpc: float = None) -> float:
+    """
+    Age of universe in Z² cosmology in Gyr.
+
+    IMPORTANT: Z² predicts Ω ratios, NOT H₀.
+    t₀ = I(Ω_m, Ω_Λ) / H₀
+
+    where I is a dimensionless integral that depends only on density parameters.
+    H₀ must be measured independently.
+    """
+    if H0_km_s_Mpc is None:
+        H0_km_s_Mpc = H0_PLANCK  # Use Planck H₀ by default
+
+    # Convert H0 to 1/Gyr
+    # 977.8 km/s/Mpc = 1/Gyr
+    H0_per_Gyr = H0_km_s_Mpc / 977.8
 
     def integrand(z):
-        Hz = H0_per_Gyr * np.sqrt(OMEGA_MATTER * (1 + z)**3 + OMEGA_LAMBDA)
-        return 1 / ((1 + z) * Hz)
+        E_z = np.sqrt(OMEGA_MATTER * (1 + z)**3 + OMEGA_LAMBDA)
+        return 1 / ((1 + z) * E_z)
 
-    t0, _ = integrate.quad(integrand, 0, np.inf)
+    I, _ = integrate.quad(integrand, 0, 1000)  # Dimensionless integral
+    t0 = I / H0_per_Gyr
     return t0
 
 
@@ -217,9 +236,18 @@ def Yp_bbn_z2() -> float:
 
 
 def theta12_geometric() -> float:
-    """Geometric prediction for θ₁₂ from Z² geometry."""
-    # Candidate: arcsin(1/√3) = 33.56°
-    return np.degrees(np.arcsin(1 / np.sqrt(3)))
+    """
+    Geometric prediction for θ₁₂ from Z² geometry.
+
+    Candidate: arcsin(1/√3) = 33.56°
+
+    This comes from the relationship:
+    sin(θ) = 1/√3 relates to the cube diagonal geometry
+    in T³/Z₂ orbifold.
+
+    NOTE: This is a CANDIDATE prediction, not rigorously derived.
+    """
+    return np.degrees(np.arcsin(1 / np.sqrt(3)))  # 33.56°
 
 
 # =============================================================================
@@ -514,7 +542,9 @@ def test_13_bbn_helium() -> TestResult:
 def test_14_universe_age() -> TestResult:
     """Test 14: Age of the Universe t₀."""
     obs = OBSERVATIONAL_DATA['t0_planck']
-    pred = age_universe_z2()
+    # Use Planck H₀ with Z² Ω values
+    # Z² only predicts Ω ratios, not H₀
+    pred = age_universe_z2(H0_PLANCK)
     pred_err = 0.05
 
     tension = compute_tension(pred, pred_err, obs['value'], obs['error'])
@@ -529,7 +559,7 @@ def test_14_universe_age() -> TestResult:
         tension_sigma=tension,
         status=status_from_tension(tension),
         source=obs['source'],
-        notes=f"Z² age = {pred:.2f} Gyr"
+        notes=f"Z² age = {pred:.2f} Gyr (using Planck H₀={H0_PLANCK})"
     )
 
 
