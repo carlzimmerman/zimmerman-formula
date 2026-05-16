@@ -61,7 +61,7 @@ class Config:
     n_random_centers: int = 5000    # Number of random centers to test
 
     # Detection parameters
-    correlation_threshold: float = 0.5  # Minimum correlation for match
+    correlation_threshold: float = 0.50  # Minimum correlation for match
     significance_threshold: float = 3.0  # Sigma threshold for detection
 
     def __post_init__(self):
@@ -114,27 +114,80 @@ def generate_simulated_cmb(nside: int = 256, seed: int = 42) -> np.ndarray:
     return cmb_map
 
 
-def load_planck_map(filename: str = None) -> Optional[np.ndarray]:
+def load_planck_map(filename: str = None,
+                    mask_file: str = None,
+                    target_nside: int = None) -> Tuple[Optional[np.ndarray], Optional[np.ndarray]]:
     """
-    Load Planck CMB map.
+    Load Planck CMB map with optional mask and downsampling.
 
-    If filename not provided, attempts to download SMICA map.
+    Parameters:
+    -----------
+    filename : str
+        Path to SMICA FITS file (e.g., COM_CMB_IQU-smica_2048_R3.00_full.fits)
+    mask_file : str
+        Path to mask FITS file (e.g., COM_Mask_CMB-common-Mask-Int_2048_R3.00.fits)
+    target_nside : int
+        Target resolution (for downsampling). If None, use native resolution.
+
+    Returns:
+    --------
+    cmb_map : array or None
+        Temperature map in μK
+    mask : array or None
+        Binary mask (1 = good, 0 = masked)
     """
     if not HEALPY_AVAILABLE:
         print("Cannot load Planck map without healpy")
-        return None
+        return None, None
 
-    if filename is not None:
-        try:
-            cmb_map = hp.read_map(filename, verbose=False)
-            return cmb_map
-        except Exception as e:
-            print(f"Error loading map: {e}")
-            return None
+    if filename is None:
+        print("No Planck map provided. Use generate_simulated_cmb() instead.")
+        return None, None
 
-    # Could add download functionality here
-    print("No Planck map provided. Use generate_simulated_cmb() instead.")
-    return None
+    try:
+        # Load temperature map (field 0 in IQU file)
+        print(f"   Loading CMB map from: {filename}")
+        cmb_map = hp.read_map(filename, field=0, verbose=False)
+        native_nside = hp.get_nside(cmb_map)
+        print(f"   Native resolution: NSIDE = {native_nside}")
+
+        # Convert from K to μK (Planck maps are in K)
+        if np.std(cmb_map) < 1e-3:  # Likely in K
+            cmb_map = cmb_map * 1e6
+            print(f"   Converted from K to μK")
+
+        # Load mask if provided
+        mask = None
+        if mask_file is not None:
+            print(f"   Loading mask from: {mask_file}")
+            mask = hp.read_map(mask_file, field=0, verbose=False)
+            # Mask may have multiple fields, we want the first one
+            if len(mask.shape) > 1:
+                mask = mask[0]
+            # Ensure binary (some masks use different conventions)
+            mask = (mask > 0.5).astype(float)
+            sky_fraction = np.mean(mask)
+            print(f"   Sky fraction (unmasked): {sky_fraction*100:.1f}%")
+
+        # Downsample if requested
+        if target_nside is not None and target_nside < native_nside:
+            print(f"   Downsampling from NSIDE={native_nside} to NSIDE={target_nside}...")
+            cmb_map = hp.ud_grade(cmb_map, target_nside)
+            if mask is not None:
+                mask = hp.ud_grade(mask, target_nside)
+                # Re-threshold after downsampling
+                mask = (mask > 0.5).astype(float)
+
+        print(f"   Temperature range: {cmb_map.min():.1f} to {cmb_map.max():.1f} μK")
+        print(f"   RMS: {np.std(cmb_map):.1f} μK")
+
+        return cmb_map, mask
+
+    except Exception as e:
+        print(f"Error loading map: {e}")
+        import traceback
+        traceback.print_exc()
+        return None, None
 
 
 # =============================================================================
@@ -208,9 +261,25 @@ def get_circle_pixels(theta_center: float, phi_center: float,
 def extract_circle_profile(cmb_map: np.ndarray,
                           theta_center: float, phi_center: float,
                           radius: float, nside: int,
-                          n_points: int = 360) -> Tuple[np.ndarray, np.ndarray]:
+                          n_points: int = 360,
+                          mask: np.ndarray = None) -> Tuple[np.ndarray, np.ndarray, float]:
     """
     Extract temperature profile along a circle.
+
+    Parameters:
+    -----------
+    cmb_map : array
+        CMB temperature map
+    theta_center, phi_center : float
+        Center position (radians)
+    radius : float
+        Circle radius (radians)
+    nside : int
+        HEALPix resolution
+    n_points : int
+        Number of sample points
+    mask : array or None
+        Binary mask (1 = good, 0 = masked)
 
     Returns:
     --------
@@ -218,11 +287,21 @@ def extract_circle_profile(cmb_map: np.ndarray,
         Temperature values around circle
     psi : array
         Angle around circle
+    good_fraction : float
+        Fraction of unmasked pixels (1.0 if no mask)
     """
     pixels, psi = get_circle_pixels(theta_center, phi_center,
                                     radius, nside, n_points)
     T = cmb_map[pixels]
-    return T, psi
+
+    good_fraction = 1.0
+    if mask is not None:
+        mask_values = mask[pixels]
+        good_fraction = np.mean(mask_values)
+        # Set masked pixels to NaN for later interpolation
+        T = np.where(mask_values > 0.5, T, np.nan)
+
+    return T, psi, good_fraction
 
 
 # =============================================================================
@@ -251,7 +330,7 @@ def correlation_with_reversal(T1: np.ndarray, T2: np.ndarray,
     Parameters:
     -----------
     T1, T2 : arrays
-        Temperature profiles (same length)
+        Temperature profiles (same length), may contain NaN for masked pixels
     phase_search : bool
         If True, search over phase offsets to maximize correlation
 
@@ -264,18 +343,37 @@ def correlation_with_reversal(T1: np.ndarray, T2: np.ndarray,
     """
     n = len(T1)
 
+    # Handle NaN values (masked pixels)
+    valid1 = ~np.isnan(T1)
+    valid2 = ~np.isnan(T2)
+
+    # If too many masked pixels, return low correlation
+    if np.sum(valid1) < n * 0.5 or np.sum(valid2) < n * 0.5:
+        return 0.0, 0.0
+
+    # Interpolate over NaN values for FFT
+    if np.any(~valid1):
+        T1 = np.interp(np.arange(n), np.where(valid1)[0], T1[valid1])
+    if np.any(~valid2):
+        T2 = np.interp(np.arange(n), np.where(valid2)[0], T2[valid2])
+
     # Reverse T2 (for -ψ)
     T2_reversed = T2[::-1]
 
     if not phase_search:
         # Direct correlation without phase search
         corr = np.corrcoef(T1, T2_reversed)[0, 1]
-        return corr, 0.0
+        return corr if not np.isnan(corr) else 0.0, 0.0
 
     # Search over phase offsets using FFT cross-correlation
     # Normalize
-    T1_norm = (T1 - np.mean(T1)) / np.std(T1)
-    T2_norm = (T2_reversed - np.mean(T2_reversed)) / np.std(T2_reversed)
+    std1 = np.std(T1)
+    std2 = np.std(T2_reversed)
+    if std1 < 1e-10 or std2 < 1e-10:
+        return 0.0, 0.0
+
+    T1_norm = (T1 - np.mean(T1)) / std1
+    T2_norm = (T2_reversed - np.mean(T2_reversed)) / std2
 
     # Cross-correlation via FFT
     fft1 = np.fft.fft(T1_norm)
@@ -296,7 +394,9 @@ def search_matched_circles(cmb_map: np.ndarray,
                           n_centers: int = 1000,
                           n_points: int = 360,
                           threshold: float = 0.5,
-                          include_centers: List[Tuple[float, float]] = None) -> List[dict]:
+                          include_centers: List[Tuple[float, float]] = None,
+                          mask: np.ndarray = None,
+                          min_good_fraction: float = 0.7) -> List[dict]:
     """
     Search for matched circles at given radius.
 
@@ -316,6 +416,10 @@ def search_matched_circles(cmb_map: np.ndarray,
         Correlation threshold for detection
     include_centers : list of (theta, phi) tuples
         Additional specific centers to test (for validation)
+    mask : array or None
+        Binary mask (1 = good, 0 = masked)
+    min_good_fraction : float
+        Minimum fraction of unmasked pixels required (default 0.7)
 
     Returns:
     --------
@@ -337,15 +441,22 @@ def search_matched_circles(cmb_map: np.ndarray,
             theta_centers = np.append(theta_centers, theta_c)
             phi_centers = np.append(phi_centers, phi_c)
 
+    n_skipped = 0
     for i, (theta, phi) in enumerate(zip(theta_centers, phi_centers)):
         # Get antipodal center
         theta_anti, phi_anti = compute_antipodal_center(theta, phi)
 
         # Extract profiles
-        T1, psi1 = extract_circle_profile(cmb_map, theta, phi,
-                                          radius, nside, n_points)
-        T2, psi2 = extract_circle_profile(cmb_map, theta_anti, phi_anti,
-                                          radius, nside, n_points)
+        T1, psi1, frac1 = extract_circle_profile(cmb_map, theta, phi,
+                                                  radius, nside, n_points, mask)
+        T2, psi2, frac2 = extract_circle_profile(cmb_map, theta_anti, phi_anti,
+                                                  radius, nside, n_points, mask)
+
+        # Skip if too many masked pixels
+        if frac1 < min_good_fraction or frac2 < min_good_fraction:
+            n_skipped += 1
+            all_correlations.append(0.0)
+            continue
 
         # Compute correlation with reversal (T³/Z₂ matching)
         corr, phase = correlation_with_reversal(T1, T2)
@@ -358,6 +469,7 @@ def search_matched_circles(cmb_map: np.ndarray,
                 'radius': radius_deg,
                 'correlation': corr,
                 'phase': np.degrees(phase),
+                'good_fraction': min(frac1, frac2),
             })
 
     return matches, np.array(all_correlations)
@@ -371,7 +483,8 @@ def compute_null_distribution(cmb_map: np.ndarray,
                              radius_deg: float,
                              nside: int,
                              n_trials: int = 1000,
-                             n_points: int = 360) -> np.ndarray:
+                             n_points: int = 360,
+                             mask: np.ndarray = None) -> np.ndarray:
     """
     Compute null distribution of correlations for random circle pairs.
 
@@ -396,8 +509,12 @@ def compute_null_distribution(cmb_map: np.ndarray,
         if np.abs(sep - np.pi) < 0.1:  # Too close to antipodal
             continue
 
-        T1, _ = extract_circle_profile(cmb_map, theta1, phi1, radius, nside, n_points)
-        T2, _ = extract_circle_profile(cmb_map, theta2, phi2, radius, nside, n_points)
+        T1, _, frac1 = extract_circle_profile(cmb_map, theta1, phi1, radius, nside, n_points, mask)
+        T2, _, frac2 = extract_circle_profile(cmb_map, theta2, phi2, radius, nside, n_points, mask)
+
+        # Skip if too many masked pixels
+        if frac1 < 0.7 or frac2 < 0.7:
+            continue
 
         corr, _ = correlation_with_reversal(T1, T2)
         null_correlations.append(corr)
@@ -615,53 +732,82 @@ def plot_results(cmb_map: np.ndarray,
 # =============================================================================
 
 def run_full_analysis(use_injection: bool = True,
-                     injection_amplitude: float = 30.0):
+                     injection_amplitude: float = 30.0,
+                     planck_map_file: str = None,
+                     planck_mask_file: str = None,
+                     target_nside: int = None):
     """
     Run complete matched circles analysis.
 
     Parameters:
     -----------
     use_injection : bool
-        If True, inject artificial matched circles for validation
+        If True, inject artificial matched circles for validation (only for simulated)
     injection_amplitude : float
         Amplitude of injected signal (μK)
+    planck_map_file : str
+        Path to Planck SMICA FITS file (if provided, uses real data)
+    planck_mask_file : str
+        Path to Planck mask FITS file
+    target_nside : int
+        Target resolution for downsampling (default: use native or config)
     """
     print("=" * 70)
     print("CMB MATCHED CIRCLES SEARCH FOR T³/Z₂ TOPOLOGY")
     print("=" * 70)
 
-    # Generate or load CMB map
-    print("\n1. Generating CMB map...")
-    nside = config.nside
-    cmb_map = generate_simulated_cmb(nside)
-    print(f"   Map resolution: NSIDE = {nside} ({12*nside**2} pixels)")
-    print(f"   Temperature range: {cmb_map.min():.1f} to {cmb_map.max():.1f} μK")
+    mask = None
+    injection_center = None
+    injection_radius = None
 
-    # Optional: inject matched circles for validation
-    if use_injection:
-        print(f"\n2. Injecting artificial matched circles (amplitude = {injection_amplitude} μK)...")
-        injection_center = (np.pi/3, np.pi/4)
-        injection_radius = 45.0
-        cmb_map = inject_matched_circles(cmb_map, nside,
-                                         radius_deg=injection_radius,
-                                         amplitude=injection_amplitude,
-                                         center=injection_center)
-        print(f"   Injected at center: ({np.degrees(injection_center[0]):.1f}°, {np.degrees(injection_center[1]):.1f}°)")
-        print(f"   Circle radius: {injection_radius}°")
+    # Load Planck data or generate simulated
+    if planck_map_file is not None:
+        print("\n1. Loading Planck CMB map...")
+        cmb_map, mask = load_planck_map(
+            planck_map_file,
+            mask_file=planck_mask_file,
+            target_nside=target_nside or 512  # Downsample for speed
+        )
+
+        if cmb_map is None:
+            print("ERROR: Failed to load Planck map")
+            return None, None, None
+
+        nside = hp.get_nside(cmb_map)
+        use_injection = False  # Don't inject into real data
+    else:
+        print("\n1. Generating simulated CMB map...")
+        nside = config.nside
+        cmb_map = generate_simulated_cmb(nside)
+        print(f"   Map resolution: NSIDE = {nside} ({12*nside**2} pixels)")
+        print(f"   Temperature range: {cmb_map.min():.1f} to {cmb_map.max():.1f} μK")
+
+        # Optional: inject matched circles for validation
+        if use_injection:
+            print(f"\n2. Injecting artificial matched circles (amplitude = {injection_amplitude} μK)...")
+            injection_center = (np.pi/3, np.pi/4)
+            injection_radius = 45.0
+            cmb_map = inject_matched_circles(cmb_map, nside,
+                                             radius_deg=injection_radius,
+                                             amplitude=injection_amplitude,
+                                             center=injection_center)
+            print(f"   Injected at center: ({np.degrees(injection_center[0]):.1f}°, {np.degrees(injection_center[1]):.1f}°)")
+            print(f"   Circle radius: {injection_radius}°")
 
     # Search for matched circles
-    print("\n3. Searching for matched circles...")
+    step = 3 if planck_map_file else 2
+    print(f"\n{step}. Searching for matched circles...")
     all_matches = []
     all_correlations = {}
     null_distributions = {}
 
     # If injection test, include the injection center in search
     specific_centers = None
-    if use_injection:
+    if use_injection and injection_center is not None:
         specific_centers = [injection_center]
 
     for radius in config.circle_radii_deg:
-        print(f"   Radius = {radius}°...", end=" ")
+        print(f"   Radius = {radius}°...", end=" ", flush=True)
 
         # Search antipodal pairs
         matches, correlations = search_matched_circles(
@@ -669,7 +815,8 @@ def run_full_analysis(use_injection: bool = True,
             n_centers=config.n_random_centers,
             n_points=config.n_points_per_circle,
             threshold=config.correlation_threshold,
-            include_centers=specific_centers
+            include_centers=specific_centers,
+            mask=mask
         )
 
         all_correlations[radius] = correlations
@@ -679,7 +826,8 @@ def run_full_analysis(use_injection: bool = True,
         null = compute_null_distribution(
             cmb_map, radius, nside,
             n_trials=500,
-            n_points=config.n_points_per_circle
+            n_points=config.n_points_per_circle,
+            mask=mask
         )
         null_distributions[radius] = null
 
@@ -775,24 +923,60 @@ NEXT STEPS:
 
 if __name__ == "__main__":
     import sys
+    import os
 
     # Command line options:
-    #   --no-injection : Run without injection (for real analysis)
+    #   --planck : Use Planck SMICA data (looks for files in planck_data/)
+    #   --planck-map <file> : Specify Planck map file
+    #   --planck-mask <file> : Specify Planck mask file
+    #   --nside <value> : Target NSIDE for downsampling (default 512)
+    #   --no-injection : Run without injection (for simulated analysis)
     #   --injection-amplitude <value> : Set injection amplitude (default 150 μK)
 
     use_injection = True
     injection_amplitude = 150.0
+    planck_map = None
+    planck_mask = None
+    target_nside = 512
+
+    # Data directory
+    data_dir = os.path.dirname(os.path.abspath(__file__))
+
+    # Parse arguments
+    if "--planck" in sys.argv:
+        # Use default Planck file locations
+        planck_map = os.path.join(data_dir, "COM_CMB_IQU-smica_2048_R3.00_full.fits")
+        planck_mask = os.path.join(data_dir, "COM_Mask_CMB-common-Mask-Int_2048_R3.00.fits")
+        print("\n*** Running on REAL PLANCK DATA ***\n")
+
+    if "--planck-map" in sys.argv:
+        idx = sys.argv.index("--planck-map")
+        planck_map = sys.argv[idx + 1]
+
+    if "--planck-mask" in sys.argv:
+        idx = sys.argv.index("--planck-mask")
+        planck_mask = sys.argv[idx + 1]
+
+    if "--nside" in sys.argv:
+        idx = sys.argv.index("--nside")
+        target_nside = int(sys.argv[idx + 1])
 
     if "--no-injection" in sys.argv:
         use_injection = False
-        print("\n*** Running WITHOUT injection (real analysis mode) ***\n")
-    else:
-        if "--injection-amplitude" in sys.argv:
-            idx = sys.argv.index("--injection-amplitude")
-            injection_amplitude = float(sys.argv[idx + 1])
+        if planck_map is None:
+            print("\n*** Running simulated data WITHOUT injection ***\n")
+
+    if "--injection-amplitude" in sys.argv:
+        idx = sys.argv.index("--injection-amplitude")
+        injection_amplitude = float(sys.argv[idx + 1])
+
+    if planck_map is None and use_injection:
         print(f"\n*** Running with INJECTED matched circles (amplitude = {injection_amplitude} μK) ***\n")
 
     matches, correlations, nulls = run_full_analysis(
         use_injection=use_injection,
-        injection_amplitude=injection_amplitude
+        injection_amplitude=injection_amplitude,
+        planck_map_file=planck_map,
+        planck_mask_file=planck_mask,
+        target_nside=target_nside
     )
