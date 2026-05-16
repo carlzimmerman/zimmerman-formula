@@ -8,7 +8,7 @@
 
 The Z² framework (Z² = 32π/3 = 33.510321) proposes that fundamental constants arise from T³/Z₂ orbifold compactification. This document summarizes the current empirical status after critical self-corrections in May 2026.
 
-**Overall Assessment:** Framework has strong matches for cosmological parameters, one significant tension (birefringence), and two retracted predictions. Decisive tests coming 2027-2031.
+**Overall Assessment:** Framework has strong matches for cosmological parameters, one significant tension (birefringence), two conjectured relationships (α, r), and two retracted predictions. Decisive tests coming 2027-2031.
 
 ---
 
@@ -46,7 +46,10 @@ The Z² framework (Z² = 32π/3 = 33.510321) proposes that fundamental constants
 
 | Prediction | Value | Status |
 |------------|-------|--------|
+| α⁻¹ | 4Z² + 3 = 137.04 | Components meaningful, combination not derived |
 | r (tensor/scalar) | 0.015 | Testable but not rigorously derived |
+
+**Note on α:** The components (4 = rank(G_SM), Z² = 32π/3, 3 = b₁(T³)) have geometric/topological meaning. The 0.004% match is impressive. However, the specific combination α⁻¹ = 4Z² + 3 is assumed, not proven from first principles. See `ALPHA_DERIVATION_AUDIT_MAY2026.md`.
 
 ### Retracted (May 2026)
 
@@ -75,10 +78,27 @@ From the T³/Z₂ orbifold and Z² = 32π/3:
 4. **Dark energy:**
    - w = -1 exactly (moduli frozen by orbifold fixed points)
 
-5. **Null predictions:**
+5. **Topological quantities:**
+   - χ(T³/Z₂) = 4 (Euler characteristic)
+   - N_gen = b₁(T³) = 3 (fermion generations)
+   - 8 fixed points (Z₂ orbifold structure)
+
+6. **Null predictions:**
    - No QCD axion (B-field Z₂-odd, projected out)
    - No observable KK modes (m ~ 10¹⁸ GeV)
    - No PBH dark matter (insufficient perturbation amplitude)
+   - No cosmic birefringence β = 0�� (no pseudoscalar survives)
+
+---
+
+## What Is Conjectured (Not Derived)
+
+| Formula | Match | Issue |
+|---------|-------|-------|
+| α⁻¹ = 4Z² + 3 | 0.004% | Components meaningful, but WHY this combination? |
+| r = 1/(2Z²) | TBD | Originally relied on h_× projection (wrong) |
+
+These are **patterns with physical intuition**, not first-principles derivations.
 
 ---
 
@@ -111,6 +131,7 @@ From the T³/Z₂ orbifold and Z² = 32π/3:
 
 | Observation | Reason |
 |-------------|--------|
+| α⁻¹ ≠ 4Z² + 3 | Only a conjecture (though 0.004% match is striking) |
 | r ≠ 0.015 | Only a conjecture |
 | h_× ≠ 0 | Already retracted |
 | PBH found | Would need extension |
@@ -146,7 +167,7 @@ From the T³/Z₂ orbifold and Z² = 32π/3:
 ### Weaknesses
 - Birefringence tension is serious (4.9σ)
 - Most predictions are null results (hard to confirm)
-- r prediction lost rigorous basis
+- α and r formulas are conjectures, not derivations
 - No unique "smoking gun" yet
 
 ### Key Uncertainties
@@ -159,11 +180,12 @@ From the T³/Z₂ orbifold and Z² = 32π/3:
 ## Summary Table
 
 ```
-VERIFIED:     Ω_Λ/Ω_m, n_s, a₀           (strong matches)
-CONSISTENT:   w, axion, fifth force      (no conflict)
-TENSION:      β = 0° vs 0.33°            (4.9σ - most serious)
-CONJECTURE:   r = 0.015                  (testable, not derived)
-RETRACTED:    h_× = 0, r derivation      (May 2026 corrections)
+DERIVED:      Ω_Λ/Ω_m, n_s, N, a₀, w=-1, β=0  (from orbifold geometry)
+VERIFIED:     Ω_Λ/Ω_m, n_s, a₀                 (strong matches)
+CONSISTENT:   w, axion, fifth force            (no conflict)
+TENSION:      β = 0° vs 0.33°                  (4.9σ - most serious)
+CONJECTURE:   α⁻¹ = 4Z² + 3, r = 0.015        (patterns, not derived)
+RETRACTED:    h_× = 0, r derivation            (May 2026 corrections)
 ```
 
 ---
