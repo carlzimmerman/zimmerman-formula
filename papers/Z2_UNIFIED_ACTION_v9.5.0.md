@@ -4,7 +4,7 @@
 
 **Carl Zimmerman**
 
-**Version 9.4.0 — May 15, 2026**
+**Version 9.5.0 — May 15, 2026**
 
 ---
 
@@ -69,6 +69,7 @@ C. [The BEKENSTEIN Number: Honest Assessment](#appendix-c)
 D. [String Theory vs Numerology: A Methodological Note](#appendix-d)
 E. [Steelman Case: Z² as Numerology](#appendix-e)
 F. [Refutation: Why Z² Is Not Numerology](#appendix-f)
+G. [10 Experimental Tests: Quantitative Predictions](#appendix-g)
 
 ---
 
@@ -1746,6 +1747,223 @@ The charge of numerology cannot be definitively refuted until predictions are te
 
 ---
 
+## Appendix G: 10 Experimental Tests — Quantitative Predictions
+
+*This appendix presents specific, quantitative experimental tests with computed predictions, detection requirements, and timelines.*
+
+### G.1 Overview
+
+| Test | Z² Prediction | Current Status | Timeline |
+|------|---------------|----------------|----------|
+| 1. Crystal Magic Angle | 0.56% resistivity drop at 35.26° | Testable NOW | 2024 |
+| 2. GW h_× Null Test | h_× = 0 exactly | ~10 events for 95% power | 2025-2027 |
+| 3. Spatial Flatness | Ω_k = 0.0000 exactly | σ(Ω_k) ~ 0.0004 | 2030-2035 |
+| 4. CMB Topology | T³/Z₂ matched circles | Not yet searched | 2027 |
+| 5. Dark Energy w(z) | w = -1.000 exactly | DESI hints w ≠ -1 | 2030 |
+| 6. Tensor-to-Scalar r | r = 0.0149 ± 0.0005 | r < 0.036 | 2032 |
+| 7. α Constancy | Δα/α = 0 exactly | Consistent | Ongoing |
+| 8. Non-Gaussianity f_NL | f_NL ~ 0.01 | σ(f_NL) ~ 5 | 2035+ |
+| 9. Cosmic Birefringence | β = 0° exactly | **β = 0.33° ± 0.07° (4.9σ tension)** | 2027 |
+| 10. GW Phase | Discrete mode effects | Challenging | 2040+ |
+
+### G.2 Test 1: Crystal Magic Angle Alignment
+
+**Prediction:** The magic angle θ = arctan(1/√2) = 35.264° creates measurable resistivity anomaly when cubic crystals align with cosmic preferred directions.
+
+**Mechanism:** The tensor coupling for phonon scattering:
+$$C(\theta) = \frac{9}{4}\sin^2\theta - \frac{3}{4}$$
+
+vanishes exactly at the magic angle (where sin²θ = 1/3).
+
+**Quantitative Prediction:**
+- Resistivity at θ = 0°: ρ/ρ₀ = 1.0056
+- Resistivity at θ = 35.26°: ρ/ρ₀ = 1.0000
+- **Anomaly: 0.56% resistivity drop**
+
+**Experimental Requirements:**
+- High-purity cubic crystal (Si, Ge, NaCl)
+- Precision rotation stage (< 0.1° accuracy)
+- Four-point resistivity measurement (< 0.1% precision)
+- Temperature stability (< 0.01 K)
+
+**Status:** Testable immediately with existing laboratory equipment.
+
+### G.3 Test 2: Gravitational Wave Cross-Polarization Null Test
+
+**Prediction:** h_× = 0 for all gravitational wave events (Z₂ projects out cross polarization).
+
+**Statistical Analysis:**
+- GR predicts: h_×/h_+ ~ 1 (random orientations)
+- Z² predicts: h_×/h_+ = 0 exactly
+
+**Detection Power (5σ significance):**
+
+| Events | P(support Z² | Z² true) | P(reject Z² | GR true) |
+|--------|--------------------------|-------------------------|
+| 10 | >99% | >99% |
+| 25 | >99% | >99% |
+| 50 | >99% | >99% |
+
+**Conclusion:** ~10 high-SNR events sufficient for definitive test.
+
+**Timeline:** LIGO O4/O5 (2025-2027) will provide sufficient events.
+
+### G.4 Test 3: Ultra-Precision Spatial Flatness
+
+**Prediction:** Ω_k = 0.00000... exactly (from 6/19 + 13/19 = 1).
+
+**Current and Projected Constraints:**
+
+| Experiment | σ(Ω_k) | Significance for Ω_k = 0.001 |
+|------------|--------|------------------------------|
+| Planck 2018 | 0.0007 | 1.4σ |
+| Planck + BAO | 0.0004 | 2.5σ |
+| Combined 2030 | 0.0002 | 5.0σ |
+| Combined 2035 | 0.0001 | 10σ |
+
+**Falsification:** Detection of Ω_k ≠ 0 at >5σ would falsify Z².
+
+### G.5 Test 4: CMB Topology Search
+
+**Prediction:** T³/Z₂ topology creates matched circles in CMB.
+
+**Key Signatures:**
+- 8 fixed points (orbifold singularities)
+- 3 pairs of matched circles (half of T³ due to Z₂)
+- Angular radius depends on fundamental domain size
+
+| L_fund (c/H₀) | θ_circle |
+|---------------|----------|
+| 0.5 | 85.5° |
+| 1.0 | 81.0° |
+| 2.0 | 71.7° |
+| 5.0 | 38.2° |
+
+**Method:** Cornish-Spergel-Starkman search with T³/Z₂-specific templates.
+
+### G.6 Test 5: Dark Energy Equation of State
+
+**Prediction:** w(z) = -1.000 exactly at all redshifts (cosmological constant from frozen orbifold moduli).
+
+**Current Tension:**
+- DESI Year 1 hints: w₀ = -0.55, wₐ = -1.30 (2.5σ from ΛCDM)
+- If confirmed: **Z² FALSIFIED**
+
+**Future Precision:**
+
+| Experiment | σ(w₀) | Decisive? |
+|------------|-------|-----------|
+| DESI Y5 | 0.030 | Yes |
+| Euclid | 0.025 | Yes |
+| Combined 2030 | 0.015 | Yes |
+
+### G.7 Test 6: Tensor-to-Scalar Ratio
+
+**Prediction:** r = 1/(2Z²) = 3/(64π) = 0.01492
+
+**Falsification Range:** r < 0.012 or r > 0.018 falsifies Z² at 3σ.
+
+**Experimental Landscape:**
+
+| Experiment | Sensitivity | Z² Detection |
+|------------|-------------|--------------|
+| BICEP/Keck 2021 | r < 0.036 | Below limit ✓ |
+| LiteBIRD | σ(r) = 0.002 | **7.5σ detection** |
+| CMB-S4 | σ(r) = 0.003 | 5.0σ detection |
+| PICO | σ(r) = 0.0005 | 30σ detection |
+
+### G.8 Test 7: Fine Structure Constant Constancy
+
+**Prediction:** If α⁻¹ = 4Z² + 3 is geometric, then Δα/α = 0 everywhere and everywhen.
+
+**Current Constraints:**
+
+| Method | z | Δα/α | Consistent? |
+|--------|---|------|-------------|
+| Atomic clocks | 0 | 0 ± 10⁻¹⁸ | ✓ |
+| Oklo reactor | 0 | 0 ± 10⁻⁷ | ✓ |
+| Quasar z~1 | 1 | (-5±10)×10⁻⁶ | ✓ |
+| Quasar z~4 | 4 | (-2±3)×10⁻⁵ | ✓ |
+| CMB | 1100 | 0 ± 4×10⁻³ | ✓ |
+
+**Note:** Webb et al. spatial dipole claim (Δα/α ~ 10⁻⁵) not independently confirmed.
+
+### G.9 Test 8: Primordial Non-Gaussianity
+
+**Predictions from T³/Z₂ perturbation theory:**
+$$f_{NL}^{local} = \frac{5}{12Z^2} = 0.0124$$
+$$f_{NL}^{equil} = -\frac{3}{8Z^2} = -0.0112$$
+$$f_{NL}^{ortho} = \frac{1}{4Z^2} = 0.0075$$
+
+**Current Status:** Planck σ(f_NL) ~ 5, insufficient to test Z² prediction of f_NL ~ 0.01.
+
+**Future:** SKA 21cm cosmology may achieve σ(f_NL) ~ 0.1 by 2040s.
+
+### G.10 Test 9: Cosmic Birefringence **[CRITICAL TENSION]**
+
+**Prediction:** β = 0° exactly (Z₂-odd B-field projected out → no axion → no birefringence).
+
+**Current Measurements:**
+- Minami & Komatsu 2020: β = 0.35° ± 0.14°
+- Planck PR4 + WMAP: β = 0.30° ± 0.11°
+- Diego-Palazuelos 2022: β = 0.36° ± 0.11°
+- **Weighted average: β = 0.33° ± 0.07°**
+
+**Tension with Z²: 4.9σ**
+
+**Implications:**
+- If confirmed at 5σ: **Z² FALSIFIED** (or requires modification)
+- LiteBIRD will achieve σ(β) ~ 0.01° → decisive test by 2030
+
+**This is currently the most serious experimental challenge to the Z² framework.**
+
+### G.11 Test 10: GW Phase Coherence
+
+**Concept:** Discretized tensor modes on T³/Z₂ create subtle phase deviations in GW waveforms.
+
+**Assessment:** Direct detection challenging with current technology. The primary GW test is the h_× = 0 null test (Test 2).
+
+### G.12 Summary: Critical Path
+
+**Immediate (2024-2026):**
+- Test 1: Crystal magic angle (tabletop experiment)
+- Test 7: Continued α constancy monitoring
+
+**Near-term (2025-2030):**
+- Test 2: GW h_× = 0 (LIGO O4/O5)
+- Test 9: Birefringence confirmation (LiteBIRD)
+- Test 5: Dark energy w(z) (DESI/Euclid)
+
+**Medium-term (2030-2035):**
+- Test 6: Tensor-to-scalar r (LiteBIRD)
+- Test 4: CMB topology search
+- Test 3: Ultra-precision flatness
+
+### G.13 Falsification Criteria
+
+The Z² framework is **falsified** if ANY of the following occur:
+
+1. **h_× ≠ 0** detected in GW at >5σ
+2. **w ≠ -1** confirmed at >5σ (DESI full survey)
+3. **r < 0.012 or r > 0.018** measured by LiteBIRD
+4. **β ≠ 0** confirmed at >5σ (cosmic birefringence)
+5. **Ω_k ≠ 0** detected at >5σ
+6. **Δα/α ≠ 0** confirmed across multiple methods
+
+**Current status:** Test 9 (birefringence) shows 4.9σ tension. This is the most urgent experimental constraint.
+
+### G.14 What Can Be Done Today
+
+**Test 1 (Crystal Magic Angle)** requires only:
+- Cubic crystal sample
+- Rotation stage with 0.1° precision
+- Four-point resistivity measurement
+- Knowledge of CMB dipole direction (ℓ = 264°, b = 48°)
+
+This experiment could be performed in any solid-state physics laboratory within weeks.
+
+---
+
 ## References
 
 1. Arnowitt, R., Deser, S., & Misner, C. W. (1962). "The Dynamics of General Relativity." *Gravitation: An Introduction to Current Research*.
@@ -1801,13 +2019,21 @@ We thank Dr. Orlando Luongo for constructive feedback that identified key theore
   - Comparison to historical numerology (Eddington, Dirac)
   - Criteria for escaping numerology charge
   - Included for intellectual honesty
-- **v9.4.0: Refutation of numerology charge (Appendix F)**
+- v9.4.0: Refutation of numerology charge (Appendix F)
   - F.1-F.15: Point-by-point refutation of Appendix E
   - Statistical argument: joint coincidence probability ~10⁻¹⁵
   - T³/Z₂ uniquely constrained by physics requirements
   - Predictions are sharp, committed, and falsifiable
   - Fewer parameters than Standard Model
   - Verdict: Awaiting experimental adjudication
+- **v9.5.0: 10 Experimental Tests with quantitative predictions (Appendix G)**
+  - G.1-G.14: Complete experimental program
+  - Test 1: Crystal magic angle (0.56% drop at 35.26°) — testable TODAY
+  - Test 2: GW h_× = 0 null test (~10 events for 95% power)
+  - Test 6: Tensor-to-scalar r = 0.0149 (LiteBIRD 7.5σ)
+  - **Test 9: Cosmic birefringence shows 4.9σ TENSION with Z² prediction**
+  - Falsification criteria explicitly stated
+  - Computational analysis in `/research/experimental_tests/`
 
 ---
 
