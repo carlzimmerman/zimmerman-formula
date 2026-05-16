@@ -12,7 +12,13 @@ We performed the **first CMB matched circles search specifically designed for T�
 
 ### Key Result
 
-**NO CONVINCING EVIDENCE** for T³/Z₂ cosmic topology at detectable scales (L < 20 Gpc).
+**NO EVIDENCE** for T³/Z₂ cosmic topology at detectable scales (L < 20 Gpc).
+
+**Definitive findings from comprehensive analysis:**
+- 50,000 random centers tested across 9 radii
+- Maximum correlation: 0.48 (at r=15°)
+- **ZERO circle pairs above 0.5 correlation threshold**
+- Correlations consistent with CMB non-Gaussianity + foreground residuals
 
 This is consistent with:
 - Simply connected (infinite) universe
@@ -116,6 +122,48 @@ T³/Z₂ fundamental domain: L > d_LSS ≈ 14 Gpc (95% CL)
 | **This work** | **T³/Z₂** | **No detection** |
 
 **Key difference**: Previous searches looked for **direct matching** (T₁(ψ) = T₂(ψ)). This work searches for **reversed matching** (T₁(ψ) = T₂(-ψ)), the signature of T³/Z₂.
+
+---
+
+---
+
+## Deep Investigation Results
+
+### Correlation Discrepancy Resolved
+
+Initial searches showed correlations up to 0.66. Deep investigation revealed this was due to **mask interpolation artifacts**:
+
+| Method | Max Correlation | Explanation |
+|--------|-----------------|-------------|
+| With interpolation | 0.5-0.7 | Artificially inflated |
+| Raw data | 0.3-0.5 | True values |
+
+Interpolating over masked pixels creates artificial smoothness that correlates better.
+
+### Comprehensive Search (50,000 centers)
+
+| Radius | Max Corr | Above 0.4 | Above 0.5 | Mean |
+|--------|----------|-----------|-----------|------|
+| 15° | 0.483 | 19 | 0 | 0.236 |
+| 18° | 0.416 | 4 | 0 | 0.224 |
+| 20° | 0.424 | 2 | 0 | 0.218 |
+| 25° | 0.357 | 0 | 0 | 0.205 |
+| 30° | 0.356 | 0 | 0 | 0.197 |
+| 35° | 0.378 | 0 | 0 | 0.193 |
+| 40° | 0.361 | 0 | 0 | 0.189 |
+| 45° | 0.380 | 0 | 0 | 0.186 |
+| 50° | 0.357 | 0 | 0 | 0.183 |
+
+**Key findings:**
+- **ZERO pairs exceed 0.5 correlation threshold**
+- Small radii (15°) show slightly higher max (but still below threshold)
+- Mean correlations (~0.2) match expectations from CMB properties
+
+### Why No Topology Detection
+
+1. **No dominant radius**: All radii show similar correlation ranges
+2. **No clustering**: High-correlation pairs spread across sky randomly
+3. **Statistical consistency**: Results match non-Gaussian CMB expectations
 
 ---
 
