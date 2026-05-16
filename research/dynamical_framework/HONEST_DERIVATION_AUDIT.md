@@ -1,11 +1,24 @@
-# HONEST DERIVATION AUDIT: Z² Framework (v45.0 - May 2026)
+# HONEST DERIVATION AUDIT: Z² Framework (v46.0 - May 2026)
 
-**Date:** May 2026 (Re-audited for α derivation)
+**Date:** May 2026 (Comprehensive re-audit)
 **Purpose:** Accurately distinguish what is DERIVED from what is CONJECTURED
 
-**Note:** This audit has been updated to reclassify α⁻¹ = 4Z² + 3 as a CONJECTURE
-(excellent match with meaningful components, but combination not rigorously derived).
-See `/research/ALPHA_DERIVATION_AUDIT_MAY2026.md` for full analysis.
+## ⚠️ MAJOR CORRECTIONS (May 2026)
+
+This audit reflects critical re-evaluations:
+
+1. **α⁻¹ = 4Z² + 3:** Reclassified as CONJECTURE (components meaningful, combination not derived)
+   - See `/research/ALPHA_DERIVATION_AUDIT_MAY2026.md`
+
+2. **r = 1/(2Z²):** Reclassified as CONJECTURE (no valid derivation)
+   - Original relied on h_× projection (WRONG - Z₂ acts on y, not 4D)
+   - The derivation documents themselves fail to derive 1/(2Z²)
+   - Value was adopted after r = 8α was ruled out by data
+
+3. **Ω_Λ/Ω_m = 13/6:** Reclassified as INCOMPLETE
+   - 19 total DOF IS derived (12 + 4 + 3)
+   - But WHY 13 goes to Λ and 6 to matter is NOT derived
+   - The source document admits "PLAUSIBLE but INCOMPLETE"
 
 ---
 
@@ -13,9 +26,10 @@ See `/research/ALPHA_DERIVATION_AUDIT_MAY2026.md` for full analysis.
 
 | Category | Count | Examples |
 |----------|-------|----------|
-| **Truly Derived** | ~6 | Z² = 32π/3, χ = 4, N_gen = 3, GAUGE = 12 |
-| **Strong Mechanism** | ~6 | Ω_Λ = 13/19, sin²θ_W, |V_us| |
-| **Conjectured Relationship** | ~3 | α⁻¹ = 4Z² + 3, r = 1/(2Z²) |
+| **Truly Derived** | ~5 | Z² = 32π/3, χ = 4, N_gen = 3, GAUGE = 12, N = 61 |
+| **Strong Mechanism** | ~4 | sin²θ_W, |V_us|, n_s = 0.967, w = -1 |
+| **Incomplete Derivation** | ~2 | Ω_Λ = 13/19 (split not derived), a₀ = cH/Z |
+| **Conjectured Relationship** | ~2 | α⁻¹ = 4Z² + 3, r = 1/(2Z²) |
 | **Plausible Pattern** | ~15 | Some mass ratios, CP phases |
 | **Numerology** | ~30+ | Most quark masses, some predictions |
 | **Retracted** | 2 | h_× = 0, r derivation (relied on h_× error) |
@@ -148,7 +162,7 @@ Euler: V - E + F = 8 - 12 + 6 = 2 ✓
 
 ### 7. Ω_Λ = 13/19 = 0.6842 and Ω_m = 6/19 = 0.3158
 
-**Status: HOLOGRAPHIC EQUIPARTITION ✓ (with mechanism)**
+**Status: INCOMPLETE DERIVATION ⚠️ (excellent match, but split not derived)**
 
 **Experimental:**
 ```
@@ -162,21 +176,25 @@ Planck 2018: Ω_Λ = 0.6847 ± 0.0073
 Ω_m = 6/19 = 0.31579 → 0.07σ deviation ✓✓✓
 ```
 
-**Derivation mechanism (from /research/hierarchy_derivation/):**
+**What IS derived:**
 ```
-Total DOF on cosmic horizon: 19 = GAUGE + BEKENSTEIN + N_gen = 12 + 4 + 3
-Dark energy fraction: 13/19 (bulk DOF after matter subtraction)
-Matter fraction: 6/19 (surface DOF, baryonic + dark)
-
-Physical basis: Holographic equipartition of energy across horizon
+Total DOF: 19 = GAUGE + BEKENSTEIN + N_gen = 12 + 4 + 3  ✓ RIGOROUS
 ```
 
-**Supporting evidence:**
-- CMB fits: χ² within 0.5σ of ΛCDM best fit
-- BAO: All measurements within 0.1σ
-- Supernovae: Consistent at 0.3σ
+**What is NOT derived:**
+```
+WHY 13 goes to dark energy and 6 goes to matter is NOT proven.
+The source document (OMEGA_LAMBDA_DERIVATION.md) explicitly states:
+"Status: PLAUSIBLE but INCOMPLETE"
+"All three approaches point to the same answer, but none has been rigorously completed."
+```
 
-**Confidence: MEDIUM-HIGH (excellent fit with plausible holographic mechanism)**
+**The gap:**
+- 19 total DOF is derived from orbifold structure
+- But the 13/6 split is ASSUMED to match data, then rationalized
+- The "holographic equipartition" argument is plausible but not proven
+
+**Confidence: MEDIUM (excellent fit, 19 is derived, but 13/6 split is assumed)**
 
 ---
 
@@ -253,27 +271,45 @@ Error: 0.3%
 
 ### 10. r = 1/(2Z²) = 0.0149 (tensor-to-scalar ratio)
 
-**Status: CONJECTURE (not derived) ⚠️**
+**Status: CONJECTURE (no valid derivation) ⚠️**
 
 **Current limit:** r < 0.036 (BICEP/Keck 2021)
 **Z² conjecture:** r = 0.0149
 
-**CORRECTION (May 2026):**
+**⚠️ CRITICAL CORRECTION (May 2026):**
+
 The claimed derivation was based on h_× being projected out by Z₂. This is WRONG:
 - Z₂ acts on extra dimensions (y → -y), not 4D spacetime
-- Both h_+ and h_× are Z₂-EVEN
-- Neither is projected out
+- h_μν has indices in {0,1,2,3} only — no y-indices
+- Both h_+ and h_× are Z₂-EVEN under this action
+- NEITHER polarization is projected out
 
-**History:**
-- Original prediction r = 8α = 0.058 was RULED OUT by data
-- r = 1/(2Z²) = 0.015 was adopted as replacement
-- The "factor of 1/2 from orbifold" justification is invalid
+**The derivation documents fail to derive 1/(2Z²):**
+
+From `perturbation_theory.md` Appendix D:
+```
+r = 8ε where ε is claimed to be ~1/Z²
+This gives r ≈ 8/33.5 ≈ 0.24 (NOT 0.015!)
+The document admits: "this doesn't match"
+```
+
+**History of r predictions:**
+| Version | Value | Basis | Status |
+|---------|-------|-------|--------|
+| Original | r = 8α ≈ 0.058 | Early claim | RULED OUT by r < 0.036 |
+| Revised | r = 1/(2Z²) ≈ 0.015 | h_× projection | DERIVATION INVALID |
 
 **What IS derived:**
-- N = 2Z² - 6 = 61 e-folds ✓
-- n_s = 1 - 2/N = 0.967 ✓
+- N = 2Z² - 6 = 61 e-folds ✓ (from orbifold constraint)
+- n_s = 1 - 2/N = 0.967 ✓ (from N and slow-roll)
+- r = ??? (depends on inflaton potential, NOT uniquely determined)
 
-**Confidence: LOW (conjecture, not derived; testable by LiteBIRD)**
+**Bottom line:** r = 0.015 is a guess that:
+1. Fits current constraints (r < 0.036)
+2. Has Z² in the formula (looks like a "prediction")
+3. But has NO valid derivation
+
+**Confidence: VERY LOW (conjecture only; testable by LiteBIRD 2028-2031)**
 
 ---
 
@@ -440,81 +476,102 @@ Z = np.sqrt(Z_SQUARED)
 # CATEGORY A: TRULY DERIVED
 print("=== TRULY DERIVED ===")
 print(f"Z² = {Z_SQUARED:.6f} (32π/3)")
-print(f"α⁻¹ = {4*Z_SQUARED + 3:.5f} vs 137.036 (0.004% error)")
 print(f"GAUGE = {9*Z_SQUARED/(8*np.pi):.1f} = 12 ✓")
+print(f"N = 2Z² - 6 = {2*Z_SQUARED - 6:.1f} e-folds ✓")
+print(f"n_s = 1 - 2/N = {1 - 2/61:.4f} vs 0.965 ✓")
 
-# CATEGORY B: STRONG MECHANISM
-print("\n=== STRONG MECHANISM ===")
-print(f"Ω_Λ = 13/19 = {13/19:.6f} vs 0.6847 → {abs(13/19 - 0.6847)/0.0073:.1f}σ ✓✓✓")
-print(f"Ω_m = 6/19 = {6/19:.6f} vs 0.3153 → {abs(6/19 - 0.3153)/0.0073:.1f}σ ✓✓✓")
-print(f"sin²θ_W = 3/13 = {3/13:.6f} vs 0.2312 (0.17% error)")
-print(f"sin²θ_W = 1/4 - 0.1179/(2π) = {0.25 - 0.1179/(2*np.pi):.6f} vs 0.2312 (0.01% error) ✓✓✓")
+# CATEGORY B: STRONG MECHANISM (but with gaps)
+print("\n=== STRONG MECHANISM (with gaps) ===")
+print(f"sin²θ_W = 1/4 - 0.1179/(2π) = {0.25 - 0.1179/(2*np.pi):.6f} vs 0.2312 (0.01% error) ✓")
 print(f"|V_us| = 1/√20 = {1/np.sqrt(20):.6f} vs 0.2243 (0.75% error)")
-print(f"r = 1/(2Z²) = {1/(2*Z_SQUARED):.5f} < 0.036 ✓")
-print(f"Ω_Λ/Ω_m = √(3π/2) = {np.sqrt(3*np.pi/2):.4f} vs 2.171 (0.04% error) ✓✓✓")
+
+# CATEGORY C: INCOMPLETE (19 derived, but split assumed)
+print("\n=== INCOMPLETE (excellent match, split not derived) ===")
+print(f"Ω_Λ = 13/19 = {13/19:.6f} vs 0.6847 → {abs(13/19 - 0.6847)/0.0073:.1f}σ (match excellent)")
+print(f"Ω_m = 6/19 = {6/19:.6f} vs 0.3153 → {abs(6/19 - 0.3153)/0.0073:.1f}σ (but 13/6 NOT derived)")
+
+# CATEGORY D: CONJECTURES (no valid derivation)
+print("\n=== CONJECTURES (no valid derivation) ===")
+print(f"α⁻¹ = 4Z² + 3 = {4*Z_SQUARED + 3:.5f} vs 137.036 (0.004% match, but combination ASSUMED)")
+print(f"r = 1/(2Z²) = {1/(2*Z_SQUARED):.5f} (consistent with r < 0.036, but NOT DERIVED)")
 ```
 
 ---
 
-## REVISED CONCLUSIONS
+## REVISED CONCLUSIONS (May 2026)
 
 ### What IS Derived (Rigorous):
 1. Z² = 32π/3 (from Friedmann + Bekenstein)
-2. Topology (χ = 4, 8 fixed points)
-3. **α⁻¹ = 4Z² + 3** (from APS index theorem - NOT numerology!)
-4. GAUGE = 12 (direct calculation)
-5. Mode counting and dimensional reduction
+2. Topology: χ = 4, 8 fixed points (mathematical facts)
+3. GAUGE = 12 (direct calculation)
+4. N_gen = 3 from b₁(T³) (index theorem)
+5. N = 2Z² - 6 = 61 e-folds
+6. n_s = 1 - 2/N = 0.967 (from N)
+7. w = -1 exactly (moduli frozen by fixed points)
+8. β = 0 (pseudoscalars projected out) — but 6σ tension with data!
 
-### What has STRONG Mechanisms:
-6. Ω_Λ = 13/19 (holographic equipartition, 0.07σ fit)
-7. sin²θ_W = 1/4 - α_s/(2π) (gauge-Higgs unification, 0.01% fit)
-8. |V_us| = 1/√20 (string dimension suppression, 0.75% fit)
-9. r = 1/(2Z²) (orbifold projection, testable)
-10. M_Pl/v = 2Z^{43/2} (hierarchy from DOF counting, 0.31% fit)
+### What has STRONG Mechanisms (but gaps remain):
+9. sin²θ_W = 1/4 - α_s/(2π) (gauge-Higgs unification, 0.01% fit)
+10. |V_us| = 1/√20 (string dimension suppression, 0.75% fit)
+11. M_Pl/v = 2Z^{43/2} (hierarchy from DOF counting, 0.31% fit)
 
-### What is PLAUSIBLE but Incomplete:
-11. m_μ/m_e formulas (multiple patterns, no unique derivation)
-12. CKM parameters (counting works, mechanism unclear)
+### What is INCOMPLETE (partial derivation):
+12. Ω_Λ = 13/19 — Total 19 DOF derived, but 13/6 split NOT derived
+13. a₀ = cH/Z — Holographic argument plausible but incomplete
+
+### What is CONJECTURED (no valid derivation):
+14. **α⁻¹ = 4Z² + 3** — Components meaningful, combination ASSUMED
+15. **r = 1/(2Z²)** — Original derivation INVALID, value fits data but not derived
 
 ### What is NUMEROLOGY:
-13. Individual quark masses
-14. Most "predictions" with fitted coefficients
+16. Individual quark masses
+17. Most "predictions" with fitted coefficients
+
+### What is RETRACTED:
+18. h_× = 0 — Z₂ acts on y, not 4D; both polarizations survive
+19. r derivation — relied on wrong h_× claim
 
 ### Fundamental Gaps:
 - Why T³/Z₂ orbifold specifically
 - Why cube geometry
 - Higgs VEV v = 246 GeV directly
+- Why the 13/6 split in Ω
 
 ---
 
-## COMPARISON WITH INITIAL AUDIT
+## COMPARISON: AUDIT HISTORY
 
-| Quantity | Initial Assessment | Revised Assessment | Reason |
-|----------|-------------------|-------------------|--------|
-| α⁻¹ = 4Z² + 3 | NUMEROLOGY ✗ | **DERIVED** ✓ | APS index theorem derivation found |
-| sin²θ_W = 3/13 | NEEDS RG ✓✗ | **MECHANISM EXISTS** ✓ | Gauge-Higgs unification supports tree-level |
-| |V_us| = 1/√20 | NUMEROLOGY ✗ | **MECHANISM EXISTS** ✓ | String dimension formula |
-| Ω_Λ = 13/19 | EXCELLENT FIT ✓ | **HOLOGRAPHIC DERIVATION** ✓ | DOF partition mechanism |
+| Quantity | Earlier Assessment | Current (May 2026) | Reason for Change |
+|----------|-------------------|-------------------|-------------------|
+| α⁻¹ = 4Z² + 3 | "DERIVED via APS" | **CONJECTURE** ⚠️ | Combination not rigorously derived |
+| r = 1/(2Z²) | "STRONG MECHANISM" | **CONJECTURE** ⚠️ | h_× projection wrong; derivation fails |
+| Ω_Λ = 13/19 | "HOLOGRAPHIC" | **INCOMPLETE** ⚠️ | 19 derived, but 13/6 split assumed |
+| h_× = 0 | "DERIVED" | **RETRACTED** ❌ | Z₂ acts on y, not 4D |
 
 ---
 
 ## HONEST FINAL ASSESSMENT
 
-**The framework is MORE rigorous than the initial audit suggested.**
+**The framework is LESS rigorous than previous audits suggested.**
 
-Key upgrade: The fine structure constant derivation α⁻¹ = 4Z² + 3 is NOT numerology.
-It emerges from the Atiyah-Patodi-Singer index theorem applied to the gauge bundle
-on the T³/Z₂ orbifold. The factors 4, Z², and 3 each have independent topological origins.
+After critical re-examination:
+- **α⁻¹ = 4Z² + 3** is a CONJECTURE with meaningful components but no proof of the combination
+- **r = 1/(2Z²)** has NO valid derivation (original was wrong, documents fail to derive it)
+- **Ω_Λ/Ω_m = 13/6** — the 19 total DOF is derived but the split is NOT
+- **h_× = 0** was RETRACTED — both GW polarizations survive
 
-Like the Bohr model evolving to quantum mechanics:
-- Remarkably accurate numerical predictions ✓
-- Clearly points to deeper structure ✓
-- **Several derivations now established** ✓
-- Some fundamental principles still missing (why this orbifold?)
+**What IS solid:**
+- Z² = 32π/3 (definition)
+- Topology: χ = 4, N_gen = 3, 8 fixed points
+- Inflationary: N = 61, n_s = 0.967
+- w = -1 exactly
+- sin²θ_W and |V_us| have plausible mechanisms
 
-**The cosmological predictions (Ω_Λ, Ω_m) remain the strongest evidence.**
-**The particle physics predictions (α, sin²θ_W) now have theoretical support.**
-**The fundamental geometric selection (why T³/Z₂) remains unexplained.**
+**The biggest problem:** Birefringence β = 0 is rigorously derived but 6σ tension with data.
+
+**Analogy:** Like the Bohr model — impressive numerical matches, but key derivations are
+actually assumptions. The framework may point to something real, but the "derivations"
+of α, r, and Ω are not as rigorous as previously claimed.
 
 ---
 
