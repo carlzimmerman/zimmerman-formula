@@ -1,4 +1,4 @@
-# Z² Framework: Tensor-to-Scalar Ratio Prediction
+# Z² Framework: Tensor-to-Scalar Ratio Analysis
 
 **CMB Primordial Gravitational Wave Analysis**
 
@@ -6,9 +6,23 @@
 
 ---
 
+## ⚠️ STATUS UPDATE (May 2026)
+
+**r = 1/(2Z²) = 0.0149 is now classified as a CONJECTURE, not a derived prediction.**
+
+The original derivation claimed the Z₂ projection eliminates half the tensor modes (h_×).
+This has been shown to be INCORRECT - see `kaluza_klein_reduction_rigorous.py`.
+
+**What IS derived:** N = 61 e-folds, n_s = 0.967
+**What is CONJECTURE:** r = 1/(2Z²) = 0.015
+
+---
+
 ## Abstract
 
-The Z² framework predicts a specific value for the tensor-to-scalar ratio: r = 1/(2Z²) = 0.0149. This prediction arises from the mode structure of perturbations on the T³/Z₂ orbifold, where the Z₂ projection eliminates half of the tensor modes. We compare this prediction with current CMB constraints (r < 0.034 at 95% CL from Planck + BICEP/Keck 2018) and find it is fully consistent. The prediction will be decisively tested by LiteBIRD (launch ~2028).
+~~The Z² framework predicts a specific value for the tensor-to-scalar ratio: r = 1/(2Z²) = 0.0149. This prediction arises from the mode structure of perturbations on the T³/Z₂ orbifold, where the Z₂ projection eliminates half of the tensor modes.~~
+
+**REVISED:** The Z² framework derives N = 61 e-folds and n_s = 0.967 from first principles. The value r = 1/(2Z²) = 0.0149 is a **conjecture** (not derived), adopted after the original r = 8α was ruled out by data. It is consistent with current CMB constraints (r < 0.034) and will be tested by LiteBIRD (launch ~2028).
 
 ---
 

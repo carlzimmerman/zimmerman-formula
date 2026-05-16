@@ -6,11 +6,38 @@
 
 ---
 
+## ⚠️ CORRECTION NOTICE (May 2026)
+
+**The r = 1/(2Z²) "derivation" in this document has been revised.**
+
+### What was WRONG:
+The derivation in Section 5.3 claimed h_× is Z₂-odd and projected out.
+A rigorous Kaluza-Klein analysis (`kaluza_klein_reduction_rigorous.py`) proved this is INCORRECT:
+- The Z₂ acts on EXTRA dimensions (y → -y), not 4D spacetime
+- h_μν has indices in {0,1,2,3} only — no y-indices
+- Both h_+ and h_× are Z₂-EVEN under this action
+- NEITHER polarization is projected out
+
+### Revised Status:
+- **r = 1/(2Z²) = 0.015 is now classified as a CONJECTURE, not a derivation**
+- The formula was adopted after the original r = 8α = 0.058 was ruled out by data
+- It is consistent with current bounds (r < 0.034) and testable by LiteBIRD
+- But it is NOT derived from first principles
+
+### What IS Derived:
+- N = 2Z² - 6 = 61 e-folds ✓
+- n_s = 1 - 2/N = 0.967 ✓ (matches observation)
+- r = ??? (depends on inflaton potential, not uniquely determined)
+
+---
+
 ## 1. Overview
 
-This document develops cosmological perturbation theory within the Z² framework. We show how the orbifold structure constrains allowed perturbation modes and derive the tensor-to-scalar ratio r = 1/(2Z²) from first principles.
+This document develops cosmological perturbation theory within the Z² framework.
 
-**Key result**: The Z₂ orbifold projection eliminates half the gravitational wave modes, leading to r = 1/(2Z²) ≈ 0.015.
+**What IS derived:** The e-folding number N = 61 and spectral index n_s = 0.967.
+
+**What is a CONJECTURE:** r = 1/(2Z²) = 0.015 (testable but not rigorously derived).
 
 ---
 

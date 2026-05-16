@@ -257,20 +257,27 @@ Error: 0.3%
 
 ### 10. r = 1/(2Z²) = 0.0149 (tensor-to-scalar ratio)
 
-**Status: TESTABLE PREDICTION WITH MECHANISM ✓**
+**Status: CONJECTURE (not derived) ⚠️**
 
 **Current limit:** r < 0.036 (BICEP/Keck 2021)
-**Z² prediction:** r = 0.0149
+**Z² conjecture:** r = 0.0149
 
-**Derivation (from perturbation theory):**
-```
-On T³/Z₂, Z₂-even modes survive: cos(nπx/L)
-Z₂-odd modes projected out: sin(nπx/L)
-Tensor modes halved → r ∝ 1/Z²
-Factor 1/2 from orbifold projection
-```
+**CORRECTION (May 2026):**
+The claimed derivation was based on h_× being projected out by Z₂. This is WRONG:
+- Z₂ acts on extra dimensions (y → -y), not 4D spacetime
+- Both h_+ and h_× are Z₂-EVEN
+- Neither is projected out
 
-**Confidence: MEDIUM (mechanism exists, testable by CMB-S4)**
+**History:**
+- Original prediction r = 8α = 0.058 was RULED OUT by data
+- r = 1/(2Z²) = 0.015 was adopted as replacement
+- The "factor of 1/2 from orbifold" justification is invalid
+
+**What IS derived:**
+- N = 2Z² - 6 = 61 e-folds ✓
+- n_s = 1 - 2/N = 0.967 ✓
+
+**Confidence: LOW (conjecture, not derived; testable by LiteBIRD)**
 
 ---
 

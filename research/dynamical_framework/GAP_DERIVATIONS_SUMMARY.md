@@ -193,6 +193,7 @@ Dark matter is NOT PBHs in Z²
 | w(z) | w = -1 exactly | Swampland: w > -1 | 2027-2030 |
 | η_B | ~ 10⁻¹⁰ | Consistent | Existing data |
 | ~~h_×/h_+~~ | ~~0~~ **[RETRACTED]** | ~~GR: ~1~~ | N/A |
+| r (tensor/scalar) | 0.015 **(CONJECTURE)** | Various | LiteBIRD 2028-31 |
 | Fifth force | None observable | X17, dark photon | Ongoing |
 | Axion DM | None | ADMX: m ~ μeV | Ongoing |
 | PBH DM | f ≈ 0 | Some models: f ~ 1 | Ongoing |
@@ -223,7 +224,7 @@ No particle dark matter required
 | Z² Position | Conflicting Theory | Resolution By |
 |-------------|-------------------|---------------|
 | w = -1 | Swampland | Euclid w(z) |
-| r = 0.015 | LQC, Ekpyrotic (r ~ 0) | LiteBIRD |
+| r = 0.015 **(CONJECTURE)** | LQC, Ekpyrotic (r ~ 0) | LiteBIRD |
 | ~~h_× = 0~~ | ~~GR (h_× = h_+)~~ | **[RETRACTED - not a conflict]** |
 | No axion | QCD axion DM | ADMX limits |
 | No PBH | PBH DM models | Lensing surveys |
@@ -238,6 +239,9 @@ No particle dark matter required
 3. No KK modes at accessible energies ✓
 4. No axion from orbifold ✓
 5. No PBHs from inflation ✓
+
+### Conjectures (not derived):
+6. r = 1/(2Z²) = 0.015 ⚠️ (testable by LiteBIRD, but derivation relied on h_× projection which is wrong)
 
 ### Order of Magnitude:
 6. η_B ~ 10⁻¹⁰ (correct, but not precise value)
