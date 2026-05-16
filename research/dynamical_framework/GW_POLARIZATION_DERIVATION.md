@@ -1,6 +1,55 @@
-# First-Principles Derivation: Gravitational Wave Polarization from T³/Z₂
+# ⚠️ CORRECTION NOTICE: Gravitational Wave Polarization from T³/Z₂
 
-**Quantitative Predictions for GW Detectors**
+## ❌ THIS DERIVATION HAS BEEN SHOWN TO BE INCORRECT
+
+**Updated: May 2026**
+
+---
+
+## CRITICAL ERROR IDENTIFIED
+
+**The claim h_× = 0 is NOT a valid prediction of T³/Z₂.**
+
+A rigorous Kaluza-Klein reduction (see `kaluza_klein_reduction_rigorous.py` in `/research/z2_testible_predictions/`) has demonstrated that:
+
+1. **The Z₂ orbifold acts on EXTRA dimensions only:** y^i → -y^i for i = 4, 5, 6
+2. **The 4D graviton h_μν has indices in {0,1,2,3}** - it has NO y-indices
+3. **Both h_+ = h₁₁ and h_× = h₁₂ are EVEN under Z₂** (y → -y)
+4. **Both polarizations SURVIVE the T³/Z₂ projection**
+
+### The Error in This Document
+
+Section 2.3 conflated TWO DIFFERENT OPERATIONS:
+- **Z₂ orbifold action:** y → -y (acts on extra dimensions)
+- **π/2 rotation:** x ↔ y in 4D spacetime
+
+These are COMPLETELY DIFFERENT transformations. The statement "Under rotation by π/2: h_× → -h_× therefore Z₂-odd" is **logically invalid** because the Z₂ is NOT a rotation in 4D spacetime.
+
+### Implications
+
+- **h_× = 0 should be REMOVED from Z² predictions**
+- **GW170817 does NOT constrain the Z² framework**
+- **The "falsification" from GW polarization data is INVALID**
+
+### Correct Statement
+
+On T³/Z₂, the 4D graviton has BOTH polarizations:
+```
+h_+ survives    (Z₂-even)
+h_× survives    (Z₂-even, NOT odd as incorrectly claimed below)
+```
+
+---
+
+## ⚠️ HISTORICAL DOCUMENT BELOW (CONTAINS ERRORS)
+
+The following is preserved for reference but should NOT be used as a valid derivation.
+
+---
+
+# [DEPRECATED] First-Principles Derivation: Gravitational Wave Polarization from T³/Z₂
+
+**⚠️ THIS DERIVATION IS INCORRECT - SEE CORRECTION ABOVE**
 
 **Carl Zimmerman | May 2026**
 
@@ -8,19 +57,19 @@
 
 ## Executive Summary
 
-The Z² framework makes the most dramatic prediction in gravitational wave physics:
+~~The Z² framework makes the most dramatic prediction in gravitational wave physics:~~
 ```
-h_× = 0    (cross polarization is exactly zero)
-h_+/h_× = ∞
+h_× = 0    [INCORRECT - see correction above]
+h_+/h_× = ∞  [INCORRECT]
 ```
 
-This document provides:
-1. The first-principles derivation from orbifold mode projection
-2. Quantitative detector predictions (LIGO, ET, LISA)
-3. Statistical tests to distinguish from GR
-4. Current constraints and future timeline
+~~This document provides:~~
+1. ~~The first-principles derivation from orbifold mode projection~~ [FLAWED]
+2. Quantitative detector predictions (LIGO, ET, LISA) [INVALID]
+3. Statistical tests to distinguish from GR [NOT APPLICABLE]
+4. Current constraints and future timeline [MOOT]
 
-**This is potentially THE signature test of the Z² framework.**
+~~**This is potentially THE signature test of the Z² framework.**~~ [RETRACTED]
 
 ---
 

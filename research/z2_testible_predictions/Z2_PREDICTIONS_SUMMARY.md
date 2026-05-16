@@ -11,14 +11,14 @@ This document summarizes all testable predictions from the Z² framework and the
 | Prediction | Test | Result | Status |
 |------------|------|--------|--------|
 | T³/Z₂ topology | CMB matched circles | No detection at L < 14 Gpc | **NULL** |
-| h_× = 0 (GW) | GWTC-3 inclinations | Appears inconsistent (9.2σ) | **INCONCLUSIVE**¹ |
+| ~~h_× = 0 (GW)~~ | ~~GWTC-3 inclinations~~ | ~~Appears inconsistent~~ | **RETRACTED**¹ |
 | Quadrupole suppression | Low-ℓ CMB | 21% of expected | **CONSISTENT** |
 | Large-angle correlations | CMB C(θ) | Near zero for θ > 60° | **CONSISTENT** |
 | Ω_Λ/Ω_m = 13/6 | Planck 2018 | 2.172 ± 0.049 vs 2.167 | **EXCELLENT** |
 | w = -1 | Planck/DESI | Mild tension (1-2σ) | **UNCERTAIN** |
 | β = 0° | Cosmic birefringence | 0.33° ± 0.07° (4.9σ) | **TENSION** |
 
-¹ *Important caveat: GWTC-3 analysis assumes GR templates. Proper test requires custom h_×=0 waveform analysis.*
+¹ **CORRECTION (May 2026):** The h_× = 0 derivation was found to be INCORRECT. See `kaluza_klein_reduction_rigorous.py` for proof that both polarizations survive T³/Z₂ projection. GW data does NOT constrain Z².
 
 ---
 
@@ -46,35 +46,44 @@ If T³/Z₂ topology exists:
 
 ---
 
-## 2. Gravitational Wave Polarization h_× = 0
+## 2. ~~Gravitational Wave Polarization h_× = 0~~ **[RETRACTED]**
 
-### Prediction
-Z₂ projection eliminates cross-polarization: h_× = 0 identically
+### ⚠️ CORRECTION NOTICE (May 2026)
 
-### Test
-Analyzed GWTC-3 catalog inclination angles (13 events)
+**The h_× = 0 prediction has been RETRACTED.**
 
-### Result: **APPEARS INCONSISTENT** (but with major caveat)
+A rigorous Kaluza-Klein reduction analysis (`kaluza_klein_reduction_rigorous.py`) demonstrated that the original derivation was **fundamentally flawed**.
 
-```
-Observed mean |h_×/h_+|: 0.378
-GR expected:            0.590 ± 0.268
-Z² prediction:          0.000
+### The Error
 
-Test vs GR:    z = 0.9σ  → CONSISTENT with GR
-Test vs Z²:   z = 9.2σ  → INCONSISTENT with Z²
-```
+The original derivation claimed:
+> "h_× is odd under π/2 rotation → Z₂-odd → projected out"
 
-### Critical Caveat
-**CIRCULAR REASONING**: GWTC-3 parameter estimation assumes GR templates!
+This conflated TWO DIFFERENT OPERATIONS:
+1. **Z₂ orbifold action**: y → -y (acts on EXTRA dimensions only)
+2. **π/2 rotation**: x ↔ y in 4D spacetime
 
-If h_× = 0, the inferred inclination angles would be biased. A proper test requires:
-1. Fitting GW events with h_× = 0 templates
-2. Comparing Bayesian evidence: P(data|GR) vs P(data|Z²)
-3. This requires significant computational resources
+These are completely different transformations!
 
-### Recommendation
-This is the **strongest available test** of Z². A dedicated GW analysis with h_× = 0 templates could definitively confirm or refute Z².
+### Correct Analysis
+
+Under the actual Z₂ orbifold (y^i → -y^i for i = 4, 5, 6):
+- h_μν has indices in {0,1,2,3} only (NO y-indices)
+- h₁₁ (contributes to h_+) → EVEN under Z₂
+- h₁₂ (= h_×) → EVEN under Z₂
+
+**BOTH polarizations survive the T³/Z₂ projection!**
+
+### Implication
+
+- **h_× = 0 is NOT a valid Z² prediction**
+- **GW170817 and GWTC-3 data do NOT constrain Z²**
+- **This removes a major apparent "strike" against the framework**
+
+### See Also
+- `kaluza_klein_reduction_rigorous.py` (definitive proof)
+- `hcross_derivation_HONEST_REVIEW.md` (detailed error analysis)
+- `GW_POLARIZATION_DERIVATION.md` (marked as deprecated)
 
 ---
 
@@ -200,12 +209,12 @@ LiteBIRD (2030s) will measure β to ±0.01°
 
 ### Evidence AGAINST Z² (or requiring further investigation)
 1. **Cosmic birefringence** - 4.9σ tension (needs confirmation)
-2. **GW polarization** - Appears inconsistent (but circular reasoning caveat)
+2. ~~**GW polarization** - Appears inconsistent~~ **[REMOVED - derivation was incorrect]**
 3. **DESI w ≠ -1** - Mild tension (needs more data)
 
 ### RECOMMENDED NEXT STEPS
-1. **HIGH PRIORITY**: GW analysis with h_× = 0 templates
-2. **MEDIUM PRIORITY**: Wait for LiteBIRD birefringence measurement
+1. ~~**HIGH PRIORITY**: GW analysis with h_× = 0 templates~~ **[MOOT - h_× = 0 is not a valid prediction]**
+2. **HIGH PRIORITY**: Wait for LiteBIRD birefringence measurement
 3. **MEDIUM PRIORITY**: Wait for DESI Year 3+ dark energy constraints
 
 ---
@@ -231,10 +240,12 @@ The Z² framework makes **specific, falsifiable predictions**. Our analysis show
 
 1. The matched circles test came up **null** - no topology detected at L < 14 Gpc
 2. The famous CMB low-ℓ anomalies are **consistent with T³/Z₂ topology**
-3. The GW polarization test appears inconsistent but has a **major circular reasoning caveat**
+3. ~~The GW polarization test appears inconsistent~~ **[MOOT - h_× = 0 derivation was incorrect; GW data does not constrain Z²]**
 4. The cosmic birefringence measurement shows **4.9σ tension** - most concerning
 
-**Overall Assessment**: Z² is neither confirmed nor refuted. The low-ℓ CMB anomalies provide supporting evidence, while the birefringence measurement is concerning but needs independent confirmation. A definitive test would be GW analysis with custom h_× = 0 templates.
+**Overall Assessment**: Z² is neither confirmed nor refuted. The low-ℓ CMB anomalies provide supporting evidence, while the birefringence measurement is concerning but needs independent confirmation. The GW polarization "test" is no longer relevant since h_× = 0 is not a valid Z² prediction.
+
+**Key Update (May 2026)**: The rigorous Kaluza-Klein reduction shows that BOTH graviton polarizations survive T³/Z₂ projection. GW170817 and GWTC-3 are not tests of Z².
 
 ---
 

@@ -20,7 +20,7 @@ This document summarizes the six first-principles derivations created to address
 |-----|----------|--------|----------|
 | Dark energy w = -1 | HIGH | ✓ DERIVED | DARK_ENERGY_W_DERIVATION.md |
 | Matter-antimatter asymmetry | HIGH | ✓ DERIVED | BARYOGENESIS_DERIVATION.md |
-| GW polarization | MEDIUM | ✓ DERIVED | GW_POLARIZATION_DERIVATION.md |
+| GW polarization | MEDIUM | ❌ RETRACTED | GW_POLARIZATION_DERIVATION.md (INCORRECT) |
 | KK modes / fifth force | MEDIUM | ✓ DERIVED | KK_MODE_SPECTRUM_DERIVATION.md |
 | Axion sector | MEDIUM | ✓ ANALYZED | AXION_SECTOR_ANALYSIS.md |
 | PBH abundance | LOW | ✓ DERIVED | PBH_ABUNDANCE_DERIVATION.md |
@@ -79,29 +79,35 @@ Can Z² derive the observed baryon asymmetry η_B = 6 × 10⁻¹⁰?
 
 ---
 
-## 3. Gravitational Wave Polarization
+## 3. ~~Gravitational Wave Polarization~~ **[RETRACTED]**
 
-**File:** `GW_POLARIZATION_DERIVATION.md`
+**File:** `GW_POLARIZATION_DERIVATION.md` **(MARKED AS INCORRECT)**
 
-### The Question
-What is the quantitative detector prediction for h_× = 0?
+### ⚠️ CORRECTION NOTICE (May 2026)
 
-### The Derivation
-1. **Z₂ parity analysis**: h_+ is even, h_× is odd under orbifold
-2. **h_× = 0 exactly** — cross polarization projected out
-3. **50% power reduction** in detectors averaged over sky
-4. **Linear polarization only** — no circular polarization
+**This derivation has been shown to be INCORRECT.**
 
-### Key Result
+See `kaluza_klein_reduction_rigorous.py` for the definitive analysis.
+
+### The Error
+The original derivation claimed h_× is "Z₂-odd" based on its behavior under π/2 rotation.
+
+This was WRONG because:
+- The Z₂ orbifold acts on EXTRA dimensions (y → -y)
+- It is NOT a rotation in 4D spacetime
+- h_μν (including h₁₂ = h_×) has no y-indices → EVEN under Z₂
+
+### Correct Result
 ```
-h_×/h_+ = 0 (exactly)
-Only plus polarization survives
+Both h_+ and h_× are Z₂-EVEN
+Both polarizations SURVIVE the T³/Z₂ projection
+h_× ≠ 0 in general
 ```
 
-### Testable Prediction
-- LIGO O4/O5 can test with ~25 high-SNR events
-- Decisive test by 2027-2030
-- **This is Z²'s most extraordinary testable prediction**
+### Implication
+- **h_× = 0 is NOT a Z² prediction**
+- **GW data does NOT constrain Z²**
+- This removes a major apparent falsification
 
 ---
 
@@ -186,7 +192,7 @@ Dark matter is NOT PBHs in Z²
 |------------|---------------|-----------|---------------|
 | w(z) | w = -1 exactly | Swampland: w > -1 | 2027-2030 |
 | η_B | ~ 10⁻¹⁰ | Consistent | Existing data |
-| h_×/h_+ | 0 | GR: ~1 | 2025-2030 |
+| ~~h_×/h_+~~ | ~~0~~ **[RETRACTED]** | ~~GR: ~1~~ | N/A |
 | Fifth force | None observable | X17, dark photon | Ongoing |
 | Axion DM | None | ADMX: m ~ μeV | Ongoing |
 | PBH DM | f ≈ 0 | Some models: f ~ 1 | Ongoing |
@@ -218,7 +224,7 @@ No particle dark matter required
 |-------------|-------------------|---------------|
 | w = -1 | Swampland | Euclid w(z) |
 | r = 0.015 | LQC, Ekpyrotic (r ~ 0) | LiteBIRD |
-| h_× = 0 | GR (h_× = h_+) | LIGO O5/ET |
+| ~~h_× = 0~~ | ~~GR (h_× = h_+)~~ | **[RETRACTED - not a conflict]** |
 | No axion | QCD axion DM | ADMX limits |
 | No PBH | PBH DM models | Lensing surveys |
 
@@ -228,7 +234,7 @@ No particle dark matter required
 
 ### Rigorously Derived:
 1. w = -1 from moduli stabilization ✓
-2. h_× = 0 from Z₂ projection ✓
+2. ~~h_× = 0 from Z₂ projection~~ ❌ **INCORRECT** (see correction above)
 3. No KK modes at accessible energies ✓
 4. No axion from orbifold ✓
 5. No PBHs from inflation ✓
@@ -240,6 +246,12 @@ No particle dark matter required
 - Exact neutrino mass spectrum for precise η_B
 - Detailed RH neutrino sector for leptogenesis
 - θ_QCD = 0 mechanism needs full derivation
+
+### RETRACTED (May 2026):
+- h_× = 0 derivation was based on a fundamental error
+- Z₂ acts on extra dimensions, NOT as 4D rotation
+- Both GW polarizations survive T³/Z₂ projection
+- GW data does NOT constrain Z² framework
 
 ---
 
