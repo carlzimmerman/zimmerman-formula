@@ -1,10 +1,11 @@
-# HONEST DERIVATION AUDIT: Z² Framework (v44.0 - REVISED)
+# HONEST DERIVATION AUDIT: Z² Framework (v45.0 - May 2026)
 
-**Date:** May 2026 (Revised after repository review)
-**Purpose:** Accurately distinguish what is DERIVED from what is PATTERN MATCHING
+**Date:** May 2026 (Re-audited for α derivation)
+**Purpose:** Accurately distinguish what is DERIVED from what is CONJECTURED
 
-**Note:** The initial v44.0 audit was TOO HARSH. After reviewing the full repository,
-several items classified as "numerology" actually have rigorous derivations.
+**Note:** This audit has been updated to reclassify α⁻¹ = 4Z² + 3 as a CONJECTURE
+(excellent match with meaningful components, but combination not rigorously derived).
+See `/research/ALPHA_DERIVATION_AUDIT_MAY2026.md` for full analysis.
 
 ---
 
@@ -12,10 +13,12 @@ several items classified as "numerology" actually have rigorous derivations.
 
 | Category | Count | Examples |
 |----------|-------|----------|
-| **Truly Derived** | ~8 | Z² = 32π/3, χ = 4, α⁻¹ = 4Z² + 3 |
+| **Truly Derived** | ~6 | Z² = 32π/3, χ = 4, N_gen = 3, GAUGE = 12 |
 | **Strong Mechanism** | ~6 | Ω_Λ = 13/19, sin²θ_W, |V_us| |
+| **Conjectured Relationship** | ~3 | α⁻¹ = 4Z² + 3, r = 1/(2Z²) |
 | **Plausible Pattern** | ~15 | Some mass ratios, CP phases |
 | **Numerology** | ~30+ | Most quark masses, some predictions |
+| **Retracted** | 2 | h_× = 0, r derivation (relied on h_× error) |
 
 ---
 
@@ -73,48 +76,41 @@ Fixed points: 2³ = 8
 
 ### 4. α⁻¹ = 4Z² + 3 = 137.04
 
-**Status: DERIVED VIA INDEX THEOREM ✓ (UPGRADED from initial assessment)**
+**Status: CONJECTURED RELATIONSHIP ⚠️ (RE-EVALUATED May 2026)**
 
-**CORRECTION:** The initial audit classified this as "numerology." This was WRONG.
-The derivation exists in `/papers/ALPHA_FIRST_PRINCIPLES_DERIVATION.md` and
-`/research/dynamical_framework/action_principle.md`.
+**CORRECTION (May 2026):** A rigorous audit found that while the individual
+components have geometric/topological meaning, the COMBINATION α⁻¹ = 4Z² + 3
+is NOT rigorously derived. See `/research/ALPHA_DERIVATION_AUDIT_MAY2026.md`.
 
-**Derivation chain (from APS Index Theorem):**
+**What IS rigorous:**
 ```
-STEP 1: Factor of 4
-  - Gauss-Bonnet theorem on S²: ∫R dA = 4π = 2χ(S²)
-  - χ(S²) = 2, so the prefactor = 2χ(S²) = 4
-  - Physical: electromagnetic field on sphere has topological charge
-
-STEP 2: Factor Z² = 32π/3
-  - Bekenstein-Hawking: S = A/(4ℓ_P²) → relates area to entropy
-  - Friedmann: H² = (8πG/3)ρ → cosmological dynamics
-  - η-invariant of T³/Z₂: η = 8 × (4π/3) = 32π/3 = Z²
-  - Physical: spectral asymmetry of Dirac operator on orbifold
-
-STEP 3: Factor of 3
-  - Atiyah-Singer index theorem: index = b₁(T³) = 3
-  - First Betti number counts independent 1-cycles
-  - Physical: 3 fermion generations from topology
-
-STEP 4: Combination via APS
-  - Atiyah-Patodi-Singer index on manifold with boundary:
-  - index = (bulk) + (boundary) = 4Z² + 3
-  - Result: α⁻¹ = 4Z² + 3 ≈ 137.04
+- 4 = rank(G_SM) = rank(SU(3) × SU(2) × U(1))  ✓ Standard gauge theory
+- Z² = 32π/3 (consistently defined in framework)  ✓
+- 3 = b₁(T³) = N_gen  ✓ Atiyah-Singer index theorem
 ```
 
-**From action_principle.md Section 4.3:**
-> "This is not numerology—it emerges from the index theorem applied to
-> the gauge bundle on the orbifold."
+**What is NOT rigorous:**
+```
+- "Each Cartan generator contributes Z² to vacuum polarization"
+  → This is ASSUMED, not derived from QFT
 
-**Numerical verification:**
+- "Each fermion generation contributes +1 to α⁻¹"
+  → Standard QED gives Δα⁻¹ ∝ Σ Q_f² log(μ/m_f), NOT N_gen
+
+- Why the structure is α⁻¹ = 4Z² + 3 (additive, not multiplicative)
+  → NOT motivated from gauge theory principles
+```
+
+**Numerical match:**
 ```
 α⁻¹ = 4(32π/3) + 3 = 137.04128...
 Experimental: 137.035999084 ± 0.000000021
-Error: 0.004% (needs RG running correction)
+Error: 0.004% (impressive but doesn't prove derivation)
 ```
 
-**Confidence: HIGH (theorem-based derivation)**
+**Classification:** Pattern with physical intuition, not first-principles derivation.
+
+**Confidence: MEDIUM (excellent match, meaningful components, but combination not proven)**
 
 ---
 
