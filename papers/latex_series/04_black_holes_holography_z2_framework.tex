@@ -12,6 +12,7 @@
 \newtheorem{theorem}{Theorem}
 \newtheorem{proposition}{Proposition}
 \newtheorem{definition}{Definition}
+\newtheorem{conjecture}{Conjecture}
 
 \title{Black Hole Entropy and Holography in the $T^3/\mathbb{Z}_2$ Framework:\\
 The Bekenstein Bound and Cosmological Information}
@@ -25,8 +26,28 @@ The Bekenstein Bound and Cosmological Information}
 \maketitle
 
 \begin{abstract}
-We examine the role of black hole physics and holography in the $T^3/\mathbb{Z}_2$ orbifold framework. The Bekenstein-Hawking entropy formula $S = A/(4\ell_P^2)$ provides a crucial ingredient: the factor of 4, which we denote BEKENSTEIN. This parameter appears in the master constant $\mathbb{Z}_2 = 2 \times \text{BEKENSTEIN} \times (4\pi/3)$ and propagates to cosmological predictions including $\Omega_\Lambda = 13/19$ and $\alpha^{-1} = 137$. We provide an honest assessment: BEKENSTEIN = 4 is taken from established physics rather than derived from the orbifold. A first-principles derivation remains an open problem, though suggestive connections to spinor dimensions and string theory microstate counting exist.
+We examine the role of black hole physics and holography in the $T^3/\mathbb{Z}_2$ orbifold framework. The Bekenstein-Hawking entropy formula $S = A/(4\ell_P^2)$ provides a crucial ingredient: the factor of 4, which we denote BEKENSTEIN. This parameter appears in the master constant $\mathbb{Z}_2 = 2 \times \text{BEKENSTEIN} \times (4\pi/3)$ and propagates to cosmological predictions including $\Omega_\Lambda = 13/19$ and $\alpha^{-1} = 137$. \textbf{Honesty note:} BEKENSTEIN = 4 is taken from established physics rather than derived from the orbifold. A first-principles derivation remains an open problem. We present this limitation transparently and discuss what a complete derivation would require.
 \end{abstract}
+
+\section{Derivation Status Summary}
+
+We clearly distinguish derived, assumed, and open results:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lccc}
+\toprule
+Claim & Status & Confidence & Notes \\
+\midrule
+$S_{BH} = A/(4\ell_P^2)$ & \textcolor{green!50!black}{Established} & Certain & Hawking's derivation \\
+BEKENSTEIN = 4 (from GR) & \textcolor{green!50!black}{Established} & Certain & Standard physics \\
+BEKENSTEIN from $T^3/\mathbb{Z}_2$ & \textcolor{red}{NOT DERIVED} & --- & Open problem \\
+19 total DOF & Derived & High & Algebraic \\
+$\Omega_\Lambda = 13/19$ & \textcolor{red}{Conjectured} & Low & 13/6 split assumed \\
+\bottomrule
+\end{tabular}
+\caption{Derivation status for black hole / holography predictions}
+\end{table}
 
 \section{Introduction}
 
@@ -45,37 +66,90 @@ This paper examines what this connection means, what is derived versus assumed, 
 
 \section{The Bekenstein-Hawking Formula}
 
-\subsection{Hawking's Derivation}
+\subsection{Step-by-Step Hawking Derivation}
 
-Hawking (1974) showed that black holes emit thermal radiation at temperature:
+We show explicitly where the factor 4 comes from.
+
+\textbf{Step 1: Schwarzschild Geometry}
+
+The metric of a Schwarzschild black hole:
 \begin{equation}
-T_H = \frac{\hbar c^3}{8\pi GM k_B}
+ds^2 = -\left(1 - \frac{r_s}{r}\right)c^2 dt^2 + \left(1 - \frac{r_s}{r}\right)^{-1}dr^2 + r^2 d\Omega^2
 \end{equation}
 
-Combined with the first law of black hole thermodynamics ($dM = T_H dS$):
+where the Schwarzschild radius is:
+\begin{equation}
+r_s = \frac{2GM}{c^2}
+\end{equation}
+
+The horizon area:
+\begin{equation}
+A = 4\pi r_s^2 = 4\pi \left(\frac{2GM}{c^2}\right)^2 = \frac{16\pi G^2 M^2}{c^4}
+\end{equation}
+
+\textbf{Step 2: Surface Gravity}
+
+The surface gravity at the horizon:
+\begin{equation}
+\kappa = \frac{c^4}{4GM}
+\end{equation}
+
+This is derived from the metric: $\kappa = \lim_{r \to r_s} \frac{d}{dr}\sqrt{-g_{tt}}\cdot\sqrt{g_{rr}}$.
+
+\textbf{Step 3: Hawking Temperature}
+
+Hawking (1974) showed that the horizon radiates at temperature:
+\begin{equation}
+T_H = \frac{\hbar \kappa}{2\pi c k_B} = \frac{\hbar c^3}{8\pi GM k_B}
+\end{equation}
+
+The factor $8\pi$ comes from: $2\pi$ (thermal periodicity) $\times$ 4 (from $\kappa$).
+
+\textbf{Step 4: First Law of Black Hole Thermodynamics}
+
+\begin{equation}
+dM = T_H dS_{BH}
+\end{equation}
+
+Integrating:
 \begin{equation}
 dS_{BH} = \frac{dM}{T_H} = \frac{8\pi GM k_B}{\hbar c^3} dM
 \end{equation}
 
-Integrating and using the area formula $A = 16\pi G^2 M^2/c^4$:
 \begin{equation}
-S_{BH} = \frac{A}{4\ell_P^2}
+S_{BH} = \int_0^M \frac{8\pi GM' k_B}{\hbar c^3} dM' = \frac{4\pi G M^2 k_B}{\hbar c^3}
 \end{equation}
 
-\subsection{The Factor of 4}
+\textbf{Step 5: Express in Terms of Area}
 
-The coefficient 1/4 arises from:
+Using $A = 16\pi G^2 M^2/c^4$:
+\begin{equation}
+M^2 = \frac{Ac^4}{16\pi G^2}
+\end{equation}
+
+Substituting:
+\begin{equation}
+S_{BH} = \frac{4\pi G k_B}{\hbar c^3} \cdot \frac{Ac^4}{16\pi G^2} = \frac{Ac k_B}{4G\hbar} = \frac{A k_B}{4\ell_P^2}
+\end{equation}
+
+\textbf{Result:} The coefficient 1/4 emerges from combining:
 \begin{itemize}
-    \item The $8\pi$ in Hawking temperature (from surface gravity)
-    \item The $16\pi$ in area formula (from Schwarzschild geometry)
-    \item The integration of the first law
+    \item Factor of $16\pi$ in area formula (Schwarzschild geometry)
+    \item Factor of $8\pi$ in Hawking temperature (surface gravity + thermal periodicity)
+    \item Factor of $4\pi$ from integration
 \end{itemize}
 
-This factor is \textit{universal} in Einstein gravity, independent of spacetime dimension.
+\subsection{The Factor of 4: Physical Meaning}
 
-\subsection{Physical Meaning}
+The coefficient 1/4 means each Planck area $\ell_P^2$ on the horizon encodes $\ln(2)/4 \approx 0.173$ bits of information.
 
-Each Planck area $\ell_P^2$ on the horizon encodes approximately $1/4$ bit of information. The horizon is a holographic screen where all interior information is encoded.
+\textbf{This factor is universal in Einstein gravity.} It appears in all 4D black holes regardless of:
+\begin{itemize}
+    \item Mass (Schwarzschild)
+    \item Charge (Reissner-Nordstr\"om)
+    \item Angular momentum (Kerr)
+    \item Cosmological constant (de Sitter)
+\end{itemize}
 
 \section{BEKENSTEIN in the $\mathbb{Z}_2$ Framework}
 
@@ -99,79 +173,105 @@ From BEKENSTEIN = 4, the framework derives:
 \begin{align}
 \text{GAUGE} &= \frac{9\mathbb{Z}_2}{8\pi} = 12 \quad \text{(gauge bosons)} \\
 \text{Total DOF} &= \text{GAUGE} + \text{BEKENSTEIN} + N_{gen} = 12 + 4 + 3 = 19 \\
-\Omega_\Lambda &= \frac{13}{19} \quad \text{(dark energy fraction)}
+\Omega_\Lambda &= \frac{13}{19} \quad \text{(dark energy fraction, conjectured)}
 \end{align}
 
 \subsection{The Honest Status}
 
-\textbf{BEKENSTEIN = 4 is assumed, not derived.}
+\textcolor{red}{\textbf{BEKENSTEIN = 4 is assumed, not derived from the orbifold.}}
 
 The relationship $\mathbb{Z}_2 = 2 \times 4 \times (4\pi/3)$ was defined with the factor 4 chosen to match known physics. Extracting BEKENSTEIN = 4 from $\mathbb{Z}_2$ is circular.
 
+\textbf{What would NOT be circular:}
+\begin{itemize}
+    \item Deriving $S = A/(4\ell_P^2)$ from orbifold microstate counting
+    \item Showing that the 4 emerges from $T^3/\mathbb{Z}_2$ topology independently
+    \item Computing the coefficient from a first-principles quantum gravity calculation on the orbifold
+\end{itemize}
+
+\textbf{None of these have been done.}
+
 \section{Derivation Attempts}
 
-\subsection{Attempt 1: Holographic Bound}
+\subsection{Attempt 1: String Theory Microstate Counting}
 
-The Bekenstein bound:
+Strominger-Vafa (1996) computed entropy for BPS black holes in Type IIB string theory:
 \begin{equation}
-S \leq \frac{2\pi E R}{\hbar c}
+S_{string} = 2\pi\sqrt{N_1 N_5 n}
 \end{equation}
 
-For a black hole ($E = Mc^2$, $R = 2GM/c^2$):
-\begin{equation}
-S \leq \frac{4\pi G M^2}{\hbar c} = \frac{A}{4\ell_P^2}
-\end{equation}
+where $N_1$, $N_5$ are D-brane charges and $n$ is momentum. This matches $S = A/(4G_N)$.
 
-\textbf{Assessment:} The factor 4 emerges from GR (Schwarzschild geometry), not from $T^3/\mathbb{Z}_2$ topology.
+\textbf{Key insight:} The factor 4 emerged from counting microscopic states, not from geometric assumptions.
 
-\subsection{Attempt 2: Spinor Dimensions}
-
-In 4D spacetime:
-\begin{align}
-\dim(\text{Weyl spinor}) &= 2 \\
-\dim(\text{Dirac spinor}) &= 4
-\end{align}
-
-The coincidence BEKENSTEIN = $\dim(\text{Dirac spinor})$ is suggestive.
-
-\textbf{Assessment:} Correlation, not derivation. No mechanism connects spinor dimension to entropy coefficient.
-
-\subsection{Attempt 3: String Microstate Counting}
-
-Strominger-Vafa (1996) computed BPS black hole entropy:
-\begin{equation}
-S_{string} = \log(N_{microstates}) = \frac{A}{4G_N}
-\end{equation}
-
-The factor 4 emerged from D-brane counting on specific Calabi-Yau manifolds.
-
-\textbf{Assessment:} Most promising approach. For $T^3/\mathbb{Z}_2$, would require:
+\textbf{What would be needed for $T^3/\mathbb{Z}_2$:}
 \begin{enumerate}
-    \item Explicit D-brane configuration
-    \item Open string state counting
-    \item Verification that orbifold structure determines the coefficient
+    \item Embed $T^3/\mathbb{Z}_2$ in a consistent string compactification
+    \item Specify D-brane configuration (e.g., D1-D5 on orbifold)
+    \item Count open string states using orbifold CFT techniques
+    \item Show $S = A/(4G_N)$ with 4 arising from orbifold structure
 \end{enumerate}
 
-This calculation has not been done.
+\textbf{Status:} Not computed. This is the most promising approach.
+
+\subsection{Attempt 2: Loop Quantum Gravity}
+
+In LQG, black hole entropy comes from counting spin network states piercing the horizon:
+\begin{equation}
+S_{LQG} = \frac{\gamma_0}{\gamma} \frac{A}{4\ell_P^2}
+\end{equation}
+
+where $\gamma$ is the Barbero-Immirzi parameter, determined by matching to Hawking's result.
+
+\textbf{What would be needed for $T^3/\mathbb{Z}_2$:}
+\begin{enumerate}
+    \item Formulate LQG on orbifold background
+    \item Show orbifold structure determines $\gamma = \gamma_0$
+    \item Derive coefficient = 1/4 without external input
+\end{enumerate}
+
+\textbf{Status:} Not attempted.
+
+\subsection{Attempt 3: Dimensional Arguments}
+
+BEKENSTEIN = 4 = number of spacetime dimensions.
+
+\begin{conjecture}[Dimensional Coincidence]
+The factor 4 in Bekenstein-Hawking entropy equals the spacetime dimension because:
+\begin{equation}
+S \propto \frac{A}{\text{dim}(M) \cdot \ell_P^2}
+\end{equation}
+\end{conjecture}
+
+\textbf{Evidence:} In $D$ dimensions, the entropy formula becomes $S = A/(4G_D)$ with a different numerical coefficient. Some studies suggest the coefficient scales with dimension.
+
+\textbf{Status:} Suggestive but not a derivation.
 
 \subsection{Attempt 4: Fixed Point Counting}
 
 $T^3/\mathbb{Z}_2$ has 8 fixed points: $8 = 2^3 = 2 \times 4$.
 
-\textbf{Assessment:} Numerology. The factorization is arbitrary ($8 = 8 \times 1$ equally valid).
+The factorization $\mathbb{Z}_2 = 2 \times 4 \times (4\pi/3)$ might encode:
+\begin{itemize}
+    \item Factor of 2: quotient structure
+    \item Factor of 4: BEKENSTEIN
+    \item Factor of $4\pi/3$: solid angle
+\end{itemize}
 
-\section{Summary of Attempts}
+\textbf{Status:} Numerology. The factorization is arbitrary ($8 = 8 \times 1$ equally valid).
+
+\subsection{Summary of Attempts}
 
 \begin{table}[h]
 \centering
-\begin{tabular}{lcc}
+\begin{tabular}{lccc}
 \toprule
-Approach & Result & Status \\
+Approach & Key Idea & Result & Status \\
 \midrule
-Holographic bound & Not from orbifold & Failed \\
-Spinor dimensions & Correlation only & Incomplete \\
-String counting & Not computed & Open \\
-Fixed points & Arbitrary & Failed \\
+String theory & D-brane counting & Promising & Not computed \\
+LQG & Spin networks & Possible & Not attempted \\
+Dimensions & $4 = D$ & Suggestive & Not derivation \\
+Fixed points & $8 = 2 \times 4$ & Numerology & Failed \\
 \bottomrule
 \end{tabular}
 \caption{Derivation attempt summary}
@@ -190,113 +290,67 @@ Despite the BEKENSTEIN gap, the framework makes specific predictions about horiz
 
 These have physical interpretations:
 \begin{itemize}
-    \item GAUGE = 12: Standard Model gauge bosons
+    \item GAUGE = 12: Standard Model gauge bosons ($8 + 3 + 1$)
     \item BEKENSTEIN = 4: Gravitational/holographic sector
-    \item $N_{gen}$ = 3: Fermion generations
+    \item $N_{gen}$ = 3: Fermion generations (from $b_1(T^3)$)
 \end{itemize}
 
-\subsection{Energy Partitioning}
+\textbf{Derivation status:}
+\begin{itemize}
+    \item GAUGE = 12: Derived algebraically from $\mathbb{Z}_2$
+    \item BEKENSTEIN = 4: Assumed from GR
+    \item $N_{gen}$ = 3: Derived topologically
+    \item Total = 19: Follows from above
+\end{itemize}
 
+\subsection{Energy Partitioning (Conjectured)}
+
+\begin{conjecture}[13/6 Split]
 The 19 DOF partition energy between matter and dark energy:
 \begin{align}
 \text{Matter DOF} &= 6 \quad \Rightarrow \quad \Omega_m = \frac{6}{19} = 0.316 \\
 \text{Dark energy DOF} &= 13 \quad \Rightarrow \quad \Omega_\Lambda = \frac{13}{19} = 0.684
 \end{align}
+\end{conjecture}
+
+\textcolor{red}{\textbf{The 13/6 split is NOT derived}}---see Paper 2 (Dark Energy) for detailed discussion.
 
 \subsection{Observational Agreement}
 
+Despite the lack of derivation, numerical agreement is striking:
+
 \begin{table}[h]
 \centering
-\begin{tabular}{lcc}
+\begin{tabular}{lccc}
 \toprule
-Parameter & $\mathbb{Z}_2$ & Planck 2018 \\
+Parameter & $\mathbb{Z}_2$ & Planck 2018 & Tension \\
 \midrule
-$\Omega_\Lambda$ & 0.6842 & $0.685 \pm 0.007$ \\
-$\Omega_m$ & 0.3158 & $0.315 \pm 0.007$ \\
+$\Omega_\Lambda$ & 0.6842 & $0.685 \pm 0.007$ & $0.1\sigma$ \\
+$\Omega_m$ & 0.3158 & $0.315 \pm 0.007$ & $0.1\sigma$ \\
 \bottomrule
 \end{tabular}
 \caption{Energy density comparison}
 \end{table}
-
-Excellent agreement at $0.1\sigma$ level.
-
-\section{The Cosmological Constant Problem}
-
-\subsection{The Hierarchy}
-
-The observed cosmological constant:
-\begin{equation}
-\Lambda_{obs} \sim 10^{-120} M_P^4
-\end{equation}
-
-is famously 120 orders of magnitude smaller than naive QFT expectations.
-
-\subsection{$\mathbb{Z}_2$ Perspective}
-
-In the framework, $\Lambda$ is determined by topology:
-\begin{equation}
-\Lambda \propto \frac{M_P^4}{\mathbb{Z}_2^n}
-\end{equation}
-
-For $n \approx 60$ and $\mathbb{Z}_2 \approx 33.5$:
-\begin{equation}
-\mathbb{Z}_2^{60} \sim 10^{91}
-\end{equation}
-
-While not exactly $10^{120}$, the framework suggests topology can generate extreme hierarchies.
-
-\subsection{Open Questions}
-
-\begin{enumerate}
-    \item What determines the exponent $n$?
-    \item How does BEKENSTEIN enter the hierarchy?
-    \item Is there a stabilization mechanism?
-\end{enumerate}
-
-These remain unresolved.
-
-\section{Black Hole Information Paradox}
-
-\subsection{The Problem}
-
-If black holes evaporate completely via Hawking radiation, what happens to information thrown in? Pure states seemingly evolve to mixed states, violating quantum mechanics.
-
-\subsection{$\mathbb{Z}_2$ Perspective}
-
-The orbifold structure suggests:
-\begin{enumerate}
-    \item Information is encoded on the horizon (holographic)
-    \item The BEKENSTEIN factor relates horizon area to information capacity
-    \item The $\mathbb{Z}_2$ symmetry may constrain how information is processed
-\end{enumerate}
-
-However, no concrete resolution of the paradox emerges from the framework.
 
 \section{Connections to Other Predictions}
 
 \subsection{The Fine Structure Constant}
 
 \begin{equation}
-\alpha^{-1} = 4\mathbb{Z}_2 + 3 = 137.04
+\alpha^{-1} = 4\mathbb{Z}_2 + 3 = \text{BEKENSTEIN} \times \mathbb{Z}_2 + N_{gen} = 137.04
 \end{equation}
 
-The factor 4 here may be related to BEKENSTEIN:
+The appearance of BEKENSTEIN suggests a connection between holography and electromagnetism.
+
+\subsection{The Strong Coupling}
+
 \begin{equation}
-\alpha^{-1} = \text{BEKENSTEIN} \times \mathbb{Z}_2 + N_{gen}
+\alpha_s(M_Z) = \frac{4}{\mathbb{Z}_2} = \frac{\text{BEKENSTEIN}}{\mathbb{Z}_2} \approx 0.119
 \end{equation}
 
-This suggests a deep connection between holography (BEKENSTEIN) and electromagnetism ($\alpha$).
+Again, BEKENSTEIN appears.
 
-\subsection{Gauge Coupling Unification}
-
-The strong coupling:
-\begin{equation}
-\alpha_s(M_Z) = \frac{4}{\mathbb{Z}_2} \approx 0.119
-\end{equation}
-
-Again, the factor 4 (BEKENSTEIN) appears.
-
-\subsection{Pattern}
+\subsection{Pattern of 4s}
 
 BEKENSTEIN = 4 appears throughout the framework:
 \begin{itemize}
@@ -304,81 +358,70 @@ BEKENSTEIN = 4 appears throughout the framework:
     \item Fine structure: $\alpha^{-1} = 4\mathbb{Z}_2 + 3$
     \item Strong coupling: $\alpha_s = 4/\mathbb{Z}_2$
     \item Spacetime dimensions: $D = 4$
+    \item Euler characteristic: $\chi(T^3/\mathbb{Z}_2) = 4$
 \end{itemize}
 
-Whether this indicates deep physics or coincidence is unclear.
+\textcolor{orange}{\textbf{Whether this indicates deep physics or coincidence is unclear.}}
 
-\section{What Would Complete the Derivation}
+\section{Gaps and Limitations}
 
-\subsection{String Theory Approach}
-
-Calculate microstate entropy for BPS black holes on $T^6/(\mathbb{Z}_2 \times \mathbb{Z}_2)$:
-\begin{enumerate}
-    \item Specify D-brane configuration (D1-D5 or similar)
-    \item Count open string states using orbifold CFT
-    \item Show $S = A/(4G_N)$ with 4 from orbifold structure
-\end{enumerate}
-
-\subsection{Loop Quantum Gravity Approach}
-
-Use spin network states:
-\begin{enumerate}
-    \item Quantize horizon area: $A = 8\pi\gamma \ell_P^2 \sum \sqrt{j(j+1)}$
-    \item Determine Barbero-Immirzi parameter $\gamma$ from orbifold
-    \item Show entropy coefficient is 1/4
-\end{enumerate}
-
-\subsection{Holographic Approach}
-
-Use AdS/CFT correspondence:
-\begin{enumerate}
-    \item Embed $T^3/\mathbb{Z}_2$ in AdS compactification
-    \item Compute CFT partition function
-    \item Extract entropy from free energy
-\end{enumerate}
-
-\section{Honest Assessment}
-
-\subsection{What is Established}
+\subsection{What is NOT Derived}
 
 \begin{enumerate}
-    \item BEKENSTEIN = 4 from standard Hawking calculation
-    \item The framework correctly incorporates this value
-    \item Predictions using BEKENSTEIN agree with observations
+    \item \textbf{BEKENSTEIN = 4 from orbifold}: The key parameter is input from GR
+    \item \textbf{The 13/6 DOF split}: Why 13 $\to$ dark energy, 6 $\to$ matter
+    \item \textbf{Cosmological constant magnitude}: Why $\Lambda \sim 10^{-120} M_P^4$
+    \item \textbf{Information paradox resolution}: No concrete mechanism
 \end{enumerate}
 
-\subsection{What is Assumed}
+\subsection{What Would Complete the Derivation}
 
 \begin{enumerate}
-    \item BEKENSTEIN = 4 is input, not output
-    \item The decomposition $\mathbb{Z}_2 = 2 \times 4 \times (4\pi/3)$ is a definition
-    \item No orbifold-specific derivation exists
+    \item \textbf{String theory}: D-brane counting on $T^3/\mathbb{Z}_2$ giving $S = A/(4G_N)$
+    \item \textbf{LQG}: Spin network calculation with orbifold determining Barbero-Immirzi
+    \item \textbf{Holography}: AdS/CFT partition function on orbifold background
+    \item \textbf{Any approach}: First-principles derivation of coefficient = 1/4 from topology
 \end{enumerate}
 
-\subsection{What is Open}
+\subsection{Comparison with Other Frameworks}
 
-\begin{enumerate}
-    \item First-principles derivation of BEKENSTEIN from topology
-    \item Understanding why BEKENSTEIN = $D_{spacetime}$
-    \item Resolution of cosmological constant hierarchy
-\end{enumerate}
+\begin{table}[h]
+\centering
+\begin{tabular}{lccc}
+\toprule
+Framework & Derives $S = A/4\ell_P^2$? & Method & Status \\
+\midrule
+GR + QFT & Yes & Hawking radiation & Established \\
+String theory & Yes & Microstate counting & For some BH \\
+LQG & Partially & Spin networks + fit & Requires input \\
+$\mathbb{Z}_2$ framework & No & Assumes from GR & Gap \\
+\bottomrule
+\end{tabular}
+\caption{Comparison of black hole entropy derivations}
+\end{table}
 
 \section{Conclusion}
 
 The Bekenstein-Hawking entropy formula provides the crucial parameter BEKENSTEIN = 4 to the $\mathbb{Z}_2$ framework. This value propagates to numerous predictions:
 \begin{align}
-\text{Total DOF} &= 19 \\
-\Omega_\Lambda &= 13/19 = 0.684 \\
-\alpha^{-1} &= 4\mathbb{Z}_2 + 3 = 137
+\text{Total DOF} &= 19 \quad \text{(derived)} \\
+\Omega_\Lambda &= 13/19 = 0.684 \quad \text{(conjectured)} \\
+\alpha^{-1} &= 4\mathbb{Z}_2 + 3 = 137 \quad \text{(conjectured)}
 \end{align}
 
-However, BEKENSTEIN = 4 is taken from established physics rather than derived from $T^3/\mathbb{Z}_2$ geometry. A first-principles derivation remains an important open problem.
+\textbf{Honest assessment:}
+\begin{itemize}
+    \item BEKENSTEIN = 4 is taken from established physics, not derived from $T^3/\mathbb{Z}_2$
+    \item This is a genuine gap in the framework
+    \item A first-principles derivation remains an important open problem
+    \item The framework is honest about this limitation
+\end{itemize}
 
-The framework is honest about this limitation: it incorporates known physics without pretending to derive everything. Future work in string theory or quantum gravity may provide the missing derivation.
+Future work in string theory, loop quantum gravity, or other quantum gravity approaches may provide the missing derivation. Until then, BEKENSTEIN = 4 should be understood as imported physics rather than a prediction.
 
 \section*{Acknowledgments}
 
-The author thanks the theoretical physics community for developing the holographic principle and black hole thermodynamics.
+The author thanks Bekenstein, Hawking, Strominger, and Vafa for foundational work on black hole entropy, and acknowledges that BEKENSTEIN = 4 is their result, not ours.
 
 \begin{thebibliography}{99}
 
@@ -388,8 +431,14 @@ Bekenstein, J.D. (1973). ``Black Holes and Entropy.'' Phys. Rev. D 7, 2333.
 \bibitem{hawking1974}
 Hawking, S.W. (1974). ``Black hole explosions?'' Nature 248, 30.
 
+\bibitem{hawking1975}
+Hawking, S.W. (1975). ``Particle Creation by Black Holes.'' Commun. Math. Phys. 43, 199.
+
 \bibitem{strominger1996}
 Strominger, A., Vafa, C. (1996). ``Microscopic Origin of the Bekenstein-Hawking Entropy.'' Phys. Lett. B 379, 99.
+
+\bibitem{ashtekar2004}
+Ashtekar, A., et al. (2004). ``Isolated Horizons: Hamiltonian Evolution and the First Law.'' Phys. Rev. D 62, 104025.
 
 \bibitem{susskind1995}
 Susskind, L. (1995). ``The World as a Hologram.'' J. Math. Phys. 36, 6377.
