@@ -6,34 +6,54 @@
 
 ---
 
+## ⚠️ IMPORTANT: h_× = 0 Prediction RETRACTED
+
+The gravitational wave polarization analysis (`gw_polarization_analysis.py`) contains a **RETRACTED** prediction. The original claim that h_× = 0 was **WRONG**:
+
+- **Error:** Assumed Z₂ projects out h_× polarization
+- **Correction:** Z₂ acts on extra dimensions (y → -y), not 4D spacetime
+- **Reality:** Both h_+ and h_× are Z₂-EVEN and survive
+- **Correct Z² Prediction:** Standard 2 GW polarizations (same as GR)
+
+See `/research/dynamical_framework/HONEST_DERIVATION_AUDIT.md` (line 549) for details.
+
+---
+
 ## Overview
 
 This directory contains computational analyses that quantify the first-principles derivations in `/research/dynamical_framework/`. Each script generates numerical predictions, statistical tests, and publication-quality visualizations.
 
 ## Scripts
 
-| Script | Analysis | Key Output |
-|--------|----------|------------|
-| `gw_polarization_analysis.py` | GW h_× = 0 prediction | Detection power, event requirements |
-| `dark_energy_w_analysis.py` | w = -1 vs DESI/Swampland | χ² comparison, forecast constraints |
-| `baryogenesis_analysis.py` | η_B from leptogenesis | CP asymmetry, parameter space |
-| `pbh_abundance_analysis.py` | f_PBH from inflation | Power spectrum, formation probability |
+| Script | Analysis | Status |
+|--------|----------|--------|
+| `gw_polarization_analysis.py` | GW h_× = 0 prediction | ⚠️ **RETRACTED** |
+| `dark_energy_w_analysis.py` | w = -1 vs DESI/Swampland | ✅ Active |
+| `baryogenesis_analysis.py` | η_B from leptogenesis | ✅ Active |
+| `pbh_abundance_analysis.py` | f_PBH from inflation | ✅ Active |
 
 ## Results Summary
 
-### 1. Gravitational Wave Polarization
+### 1. Gravitational Wave Polarization ⚠️ RETRACTED
 
 ```
-Z² Prediction: h_× = 0 (cross polarization exactly zero)
-GR Prediction: h_× ≈ h_+ (equal on average)
+ORIGINAL (WRONG):
+  Z² Prediction: h_× = 0 (cross polarization exactly zero)
 
-Key Results:
-  • 50% power reduction in Z² vs GR
-  • ~10-25 events needed for 3σ distinction
-  • LIGO O4/O5 can provide definitive test by 2027
+CORRECTED:
+  Z² Prediction: Standard 2 polarizations (h_+ and h_×), same as GR
+
+Reason for retraction:
+  Z₂ acts on extra dimensions (y → -y), not 4D spacetime.
+  Both h_+ and h_× are Z₂-EVEN under y → -y and survive.
+
+What Z² ACTUALLY predicts for GWs:
+  • r = 0.015 ± 0.002 (tensor-to-scalar ratio) [CONJECTURED]
+  • n_t = -r/8 ≈ -0.002 (tensor spectral index)
+  • Standard 2 polarizations (no exotic modes)
 ```
 
-**Output:** `gw_polarization_analysis.png`
+**Output:** `gw_polarization_analysis.png` (historical reference only)
 
 ### 2. Dark Energy Equation of State
 
@@ -121,14 +141,21 @@ python pbh_abundance_analysis.py
 
 ## Connection to Derivation Documents
 
-| Computation | Derivation Document |
-|-------------|---------------------|
-| GW polarization | `GW_POLARIZATION_DERIVATION.md` |
-| Dark energy | `DARK_ENERGY_W_DERIVATION.md` |
-| Baryogenesis | `BARYOGENESIS_DERIVATION.md` |
-| PBH abundance | `PBH_ABUNDANCE_DERIVATION.md` |
+| Computation | Derivation Document | Status |
+|-------------|---------------------|--------|
+| GW polarization | `GW_POLARIZATION_DERIVATION.md` | ⚠️ RETRACTED |
+| Dark energy | `DARK_ENERGY_W_DERIVATION.md` | ✅ Active |
+| Baryogenesis | `BARYOGENESIS_DERIVATION.md` | ✅ Active |
+| PBH abundance | `PBH_ABUNDANCE_DERIVATION.md` | ✅ Active |
+
+## Retraction History
+
+| Date | Claim | Reason |
+|------|-------|--------|
+| May 2026 | h_× = 0 | Z₂ acts on y, not 4D; both polarizations Z₂-even |
 
 ---
 
 *Part of Z² Framework research*
 *May 2026*
+*Updated with retraction notice: May 2026*

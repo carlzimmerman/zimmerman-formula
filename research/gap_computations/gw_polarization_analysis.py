@@ -2,13 +2,37 @@
 """
 Gravitational Wave Polarization Analysis for Z² Framework
 
-Computes:
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                           ⚠️  RETRACTED ANALYSIS  ⚠️                          ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║  The h_× = 0 prediction analyzed in this script has been RETRACTED.          ║
+║                                                                              ║
+║  REASON: The Z₂ orbifold acts on extra dimensions (y → -y), NOT on 4D       ║
+║  spacetime. The metric perturbation h_μν has indices μ,ν ∈ {0,1,2,3} only — ║
+║  no y-indices. Under this action:                                            ║
+║                                                                              ║
+║    h_+(x, y) → h_+(x, -y) = h_+(x, y)  [Z₂-EVEN]                            ║
+║    h_×(x, y) → h_×(x, -y) = h_×(x, y)  [Z₂-EVEN]                            ║
+║                                                                              ║
+║  BOTH polarizations are Z₂-even and SURVIVE. Neither is projected out.      ║
+║                                                                              ║
+║  CORRECT Z² PREDICTION: Standard 2 GW polarizations (same as GR)            ║
+║                                                                              ║
+║  See: /research/dynamical_framework/HONEST_DERIVATION_AUDIT.md (line 549)   ║
+║       /research/dynamical_framework/GW_POLARIZATION_DERIVATION.md           ║
+║       /papers/latex_series/07_gravitational_waves_z2_framework.tex          ║
+║                                                                              ║
+║  This script is preserved for historical reference only.                     ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+ORIGINAL PURPOSE (now invalid):
 1. Statistical power to distinguish h_× = 0 from GR
 2. Simulated detector responses
 3. Bayesian model comparison
 4. Required number of events for definitive test
 
 Carl Zimmerman | May 2026
+RETRACTION DATE: May 2026
 """
 
 import numpy as np
@@ -24,8 +48,23 @@ Z_SQUARED = 32 * np.pi / 3  # = 33.510321638...
 Z = np.sqrt(Z_SQUARED)       # = 5.788810...
 
 print("=" * 70)
-print("GRAVITATIONAL WAVE POLARIZATION ANALYSIS")
-print("Z² Framework Prediction: h_× = 0 (cross polarization projected out)")
+print("⚠️  RETRACTED ANALYSIS - FOR HISTORICAL REFERENCE ONLY  ⚠️")
+print("=" * 70)
+print()
+print("The h_× = 0 prediction has been RETRACTED.")
+print("Reason: Z₂ acts on extra dimensions (y → -y), not 4D spacetime.")
+print("Both h_+ and h_× are Z₂-EVEN and survive.")
+print()
+print("CORRECT Z² PREDICTION: Standard 2 GW polarizations (same as GR)")
+print()
+print("See: HONEST_DERIVATION_AUDIT.md for details")
+print("=" * 70)
+print()
+print("--- Original analysis below (for historical reference) ---")
+print()
+print("=" * 70)
+print("GRAVITATIONAL WAVE POLARIZATION ANALYSIS [RETRACTED]")
+print("Original claim: h_× = 0 (cross polarization projected out)")
 print("=" * 70)
 
 # =============================================================================
@@ -468,25 +507,31 @@ print("SUMMARY: GW POLARIZATION TEST OF Z² FRAMEWORK")
 print("=" * 70)
 
 print("""
-┌─────────────────────────────────────────────────────────────────────┐
-│                    KEY RESULTS                                       │
-├─────────────────────────────────────────────────────────────────────┤
-│  Z² Prediction: h_× = 0 (cross polarization exactly zero)           │
-│  GR Prediction: h_× ≈ h_+ (equal on average)                        │
-├─────────────────────────────────────────────────────────────────────┤
-│  Power Reduction: Z² predicts 50% less detected GW power            │
-├─────────────────────────────────────────────────────────────────────┤
-│  Detection Requirements (SNR~25):                                    │
-│    • 3σ distinction: ~10-25 events                                  │
-│    • 5σ distinction: ~25-50 events                                  │
-├─────────────────────────────────────────────────────────────────────┤
-│  Timeline:                                                           │
-│    • LIGO O4 (2023-2025): ~100 events → first constraints           │
-│    • LIGO O5 (2026-2028): ~500 events → definitive test             │
-│    • Einstein Telescope: 10⁵ events/yr → precision measurement      │
-├─────────────────────────────────────────────────────────────────────┤
-│  This is Z²'s MOST EXTRAORDINARY testable prediction!               │
-└─────────────────────────────────────────────────────────────────────┘
+╔═════════════════════════════════════════════════════════════════════╗
+║              ⚠️  THIS ANALYSIS HAS BEEN RETRACTED  ⚠️                ║
+╠═════════════════════════════════════════════════════════════════════╣
+║                                                                     ║
+║  ORIGINAL CLAIM (WRONG):                                            ║
+║    h_× = 0 (cross polarization projected out by Z₂)                 ║
+║                                                                     ║
+║  CORRECTION:                                                        ║
+║    The Z₂ orbifold acts on extra dimensions (y → -y), NOT on 4D    ║
+║    spacetime indices. Since h_μν has μ,ν ∈ {0,1,2,3}, BOTH         ║
+║    polarizations h_+ and h_× are Z₂-EVEN and survive.              ║
+║                                                                     ║
+║  CORRECT Z² PREDICTION:                                             ║
+║    Standard 2 GW polarizations (identical to General Relativity)    ║
+║    No exotic polarization modes (KK modes too heavy)                ║
+║                                                                     ║
+║  WHAT Z² ACTUALLY PREDICTS FOR GWs:                                 ║
+║    • r = 0.015 ± 0.002 (tensor-to-scalar ratio) [CONJECTURED]      ║
+║    • n_t = -r/8 ≈ -0.002 (tensor spectral index)                   ║
+║    • Both h_+ and h_× present (standard GR)                        ║
+║    • No extra polarization modes                                    ║
+║                                                                     ║
+║  The analysis above is preserved for historical reference only.     ║
+║                                                                     ║
+╚═════════════════════════════════════════════════════════════════════╝
 """)
 
-print("\nAnalysis complete.")
+print("\nRetracted analysis complete (historical reference only).")
