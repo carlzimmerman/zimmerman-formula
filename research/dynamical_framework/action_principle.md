@@ -8,12 +8,20 @@
 
 ## 1. Executive Summary
 
-The Z² framework has been criticized for lacking a proper action principle—the variational foundation from which field equations and dynamics derive. This document establishes that foundation through two complementary approaches:
+The Z² framework has been criticized for lacking a proper action principle—the variational foundation from which field equations and dynamics derive. This document establishes that foundation:
 
-1. **Kaluza-Klein (KK) Approach**: 7D Einstein-Hilbert-Yang-Mills action on M₄ × T³/Z₂
-2. **String Theory Embedding**: Type IIA on T⁶/(Z₂ × Z₂) orientifold with D6-branes
+**Primary Framework (7D):**
+- **Kaluza-Klein (KK) Approach**: 7D Einstein-Hilbert-Yang-Mills action on M₄ × T³/Z₂
+- This is the **core Z² framework**: 4D spacetime + 3D orbifold = 7D total
 
-Both approaches yield the same 4D effective theory, with Z² = 32π/3 emerging from the compactification geometry.
+**Alternative Validation (10D):**
+- **Type IIA String Embedding**: 10D on T⁶/(Z₂ × Z₂) orientifold with D6-branes
+- This is a **separate construction** that provides independent validation
+- Note: This is NOT the same as the 7D framework
+
+Both approaches yield consistent 4D effective results, with Z² = 32π/3 emerging from compactification geometry. However, they operate in **different dimensional regimes** (7D vs 10D).
+
+> **Note:** The Z² framework is NOT 10D or 11D. The primary framework is 7-dimensional.
 
 **Key result**: The action principle exists and is well-defined. Topology provides constraints and boundary conditions; dynamics derive from extremizing the action.
 
@@ -211,6 +219,15 @@ This gives:
 ---
 
 ## 5. Type IIA String Theory Embedding
+
+> **Important Clarification (May 2026):** The Type IIA embedding described below is a **SEPARATE construction** from the 7D Kaluza-Klein framework (Sections 2-4).
+>
+> - The 7D KK framework uses T³/Z₂ (a 3D compactification): **M₇ = M₄ × T³/Z₂**
+> - The Type IIA embedding uses T⁶/(Z₂ × Z₂) (a 6D compactification): **10D = M₄ × T⁶/(Z₂ × Z₂)**
+>
+> These are **different dimensional regimes**. The fact that both give similar results (α⁻¹ = 4Z² + 3, 3 generations) suggests a deeper connection, but they are NOT the same framework. The 7D KK approach is the **primary** Z² framework; the Type IIA embedding is an **alternative validation** that operates in 10D string theory.
+>
+> Note: This section does NOT claim the Z² framework is 10D or 11D. M-theory (11D) and M-branes do NOT appear in either construction.
 
 ### 5.1 Why String Theory?
 

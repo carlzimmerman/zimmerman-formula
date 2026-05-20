@@ -136,40 +136,42 @@ N_gen = BEKENSTEIN - 1
 
 **Physical reasoning:** The three generations correspond to the three spatial dimensions of spacetime (excluding time).
 
-### 2.4 String Theory Dimensions
+### 2.4 Numerical Coincidences (NOT Derivations)
 
-**Derivation of superstring dimensions:**
+> **Important Clarification (May 2026):** The following numerical coincidences were previously presented as "derivations" of string/M-theory dimensions. This was INCORRECT. The Z² framework is **7-dimensional** (M₄ × T³/Z₂), not 10D or 11D. See `/research/GEOMETRY_DIMENSIONAL_AUDIT.md` for details.
 
-```
-D_string = GAUGE - 2
-         = 12 - 2
-         = 10
-```
-
-**Result: D_string = 10** (superstring theory dimensions)
-
-**Derivation of M-theory dimensions:**
+**Numerical observation (NOT derived from the 7D framework):**
 
 ```
-D_M = GAUGE - 1
-    = 12 - 1
-    = 11
+GAUGE - 2 = 12 - 2 = 10  (coincidentally matches superstring dimensions)
+GAUGE - 1 = 12 - 1 = 11  (coincidentally matches M-theory dimensions)
 ```
 
-**Result: D_M = 11** (M-theory dimensions)
+**Why these are NOT derivations:**
+- The Z² framework operates in 7D (4D spacetime + 3D T³/Z₂ orbifold)
+- The number 8 in CUBE = 8 represents **fixed points**, NOT extra dimensions
+- Subtracting 1 or 2 from GAUGE = 12 has no geometric justification in the T³/Z₂ structure
+- M-theory requires 7 compact dimensions; the Z² framework has only 3
+
+**These numerical coincidences are suggestive but have NO basis in the actual geometry.**
 
 ### 2.5 Summary of Structure Constants
 
-| Constant | Formula | Value | Physical Meaning |
-|----------|---------|-------|------------------|
-| Z-squared | 8 times (4 pi / 3) | 33.510 | Fundamental geometric constant |
-| BEKENSTEIN | 3 Z-squared / (8 pi) | 4 | Spacetime dimensions |
-| GAUGE | 9 Z-squared / (8 pi) | 12 | Gauge generators |
-| N_gen | BEKENSTEIN - 1 | 3 | Fermion generations |
-| D_string | GAUGE - 2 | 10 | Superstring dimensions |
-| D_M | GAUGE - 1 | 11 | M-theory dimensions |
+| Constant | Formula | Value | Physical Meaning | Status |
+|----------|---------|-------|------------------|--------|
+| Z² | 8 × (4π/3) | 33.510 | Fundamental geometric constant | ✓ Derived |
+| BEKENSTEIN | 3Z²/(8π) | 4 | Spacetime dimensions | ✓ Derived |
+| GAUGE | 9Z²/(8π) | 12 | Gauge generators | ✓ Derived |
+| N_gen | BEKENSTEIN - 1 | 3 | Fermion generations | ✓ Derived |
+| ~~D_string~~ | ~~GAUGE - 2~~ | ~~10~~ | ~~Superstring dimensions~~ | ✗ NOT PART OF Z² |
+| ~~D_M~~ | ~~GAUGE - 1~~ | ~~11~~ | ~~M-theory dimensions~~ | ✗ NOT PART OF Z² |
 
-**Key insight:** All the integers of theoretical physics (3, 4, 8, 10, 11, 12) derive from Z-squared = 32 pi / 3.
+**Key insight:** The integers 3, 4, 8, 12 derive from Z² = 32π/3. The numbers 10 and 11 are numerical coincidences that do NOT belong to the 7D framework.
+
+**The Z² Framework Dimensional Structure:**
+- Total dimensions: **7** = 4D spacetime + 3D orbifold (T³/Z₂)
+- Fixed points: **8** (these are 0-dimensional singularities, NOT extra dimensions)
+- NOT 10D or 11D
 
 ---
 
