@@ -522,8 +522,8 @@ If dark matter is TOPOLOGICAL (winding modes), it differs from particles:
 
    Test: Precision CMB measurements (CMB-S4, LiteBIRD)
 
-THE SMOKING GUN:
----------------
+THE DECISIVE TEST:
+-----------------
 If Ω_m/Ω_Λ = 6/13 = 2sin²θ_W exactly, and no particles are ever found,
 the topological origin is confirmed.
 

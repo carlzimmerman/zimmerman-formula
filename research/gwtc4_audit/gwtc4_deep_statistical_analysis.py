@@ -482,7 +482,7 @@ print(f"""
 ║  │  Bootstrap CI            │  [{ci_low_z2:.3f},{ci_high_z2:.3f}] │  -           │  Excl. 0.5   │    ║
 ║  └──────────────────────────────────────────────────────────────────────┘    ║
 ║                                                                              ║
-║  INCLINATION TRAP (The Smoking Gun):                                         ║
+║  INCLINATION TRAP (The Decisive Test):                                         ║
 ║    Edge-on events biased by Δ|cos ι| = {edge_bias:+.3f}                              ║
 ║    Face-on events biased by Δ|cos ι| = {face_bias:+.3f}                              ║
 ║    Edge-on {edge_bias/max(face_bias,0.001):.1f}× more affected than face-on                             ║

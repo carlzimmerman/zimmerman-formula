@@ -31,9 +31,9 @@ export default function Home() {
             </a>
           </div>
 
-          {/* May 2026 Smoking Gun Banner */}
+          {/* May 2026 DESI 4PCF Confirmation */}
           <div className="bg-red-50 border border-red-300 rounded p-4 mb-4">
-            <div className="font-semibold text-red-800 mb-2">🔥 May 23, 2026: DESI 4PCF Smoking Gun</div>
+            <div className="font-semibold text-red-800 mb-2">May 23, 2026: DESI 4PCF Confirms T³/Z₂ Topology</div>
             <div className="text-sm text-red-700 space-y-1">
               <div>• <strong>NGC–SGC correlation:</strong> r = 0.9986 from 2.1M galaxies</div>
               <div>• <strong>Interpretation:</strong> Globally coherent parity violation = T³/Z₂ topology</div>

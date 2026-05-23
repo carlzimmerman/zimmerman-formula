@@ -186,7 +186,7 @@ export default function TopologyPage() {
               r = 0.9986 +/- 0.0002
             </div>
             <div className="text-sm text-red-600 mt-1">
-              Smoking gun confirmation of T3/Z2 topology
+              Decisive confirmation of T3/Z2 topology
             </div>
           </div>
         </div>

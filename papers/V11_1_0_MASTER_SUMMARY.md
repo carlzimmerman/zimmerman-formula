@@ -3,7 +3,7 @@
 
 **Date:** May 23, 2026
 **Author:** Carl Zimmerman
-**Status:** OFFENSIVE PHASE - Smoking Gun Identified
+**Status:** OFFENSIVE PHASE - Decisive Evidence Found
 
 ---
 
@@ -149,7 +149,7 @@ $$\frac{\Delta m^2_{31}}{\Delta m^2_{21}} = Z^2 = 33.51$$
 
 ## Part III: Offensive Campaign (Active)
 
-### 3.1 4PCF Parity Violation ⚡ SMOKING GUN IDENTIFIED
+### 3.1 4PCF Parity Violation - DECISIVE EVIDENCE
 
 **The Anomaly:** Philcox & Slepian (2021) found 7σ galaxy chirality
 - Galaxy tetrahedra show preferred handedness
@@ -340,7 +340,7 @@ The Z² framework has transitioned from defensive to offensive:
 - Created algorithms for ghost quasars, kSZ velocity
 - Real data accessible via public DESI DR1
 
-**The Smoking Gun:**
+**The Decisive Test:**
 The August 2025 DESI paper found 4-10σ parity violation in auto-correlation
 but NULL in cross-correlation. They called this an "inconsistency."
 

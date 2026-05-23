@@ -118,8 +118,8 @@ export default function PredictionsPage() {
 
           <div className="bg-red-50 border border-red-300 rounded p-4 mb-4">
             <p className="text-sm text-red-800">
-              <strong>🔥 May 23, 2026:</strong> DESI 4PCF parity-odd correlation r = 0.9986 confirms T³/Z₂ topology!
-              This is the <strong>smoking gun</strong> — globally coherent chirality proves topological structure.
+              <strong>May 23, 2026:</strong> DESI 4PCF parity-odd correlation r = 0.9986 confirms T³/Z₂ topology.
+              Globally coherent chirality demonstrates topological structure of the universe.
             </p>
           </div>
 

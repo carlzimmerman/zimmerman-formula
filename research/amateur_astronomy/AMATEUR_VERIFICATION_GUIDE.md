@@ -227,7 +227,7 @@ Professional surveys have released MASSIVE datasets:
 
 ---
 
-## The Smoking Gun: What Would Be Convincing?
+## The Decisive Test: What Would Be Convincing?
 
 ### Strong Evidence FOR Z²:
 

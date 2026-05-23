@@ -5,7 +5,7 @@ Bullet Cluster: Zimmerman Formula Analysis
 
 CONTEXT:
 The Bullet Cluster (1E 0657-56) is a merging galaxy cluster at z=0.296.
-It's often called the "smoking gun" proof of dark matter because the
+It's often cited as key evidence for dark matter because the
 gravitational lensing mass is offset from the baryonic (X-ray) mass.
 
 CHALLENGE FOR MOND:
@@ -307,7 +307,7 @@ print(f"""
 │ BULLET CLUSTER - ZIMMERMAN ANALYSIS                        │
 ├────────────────────────────────────────────────────────────┤
 │                                                            │
-│ The Bullet Cluster is often called the "smoking gun"      │
+│ The Bullet Cluster is often cited as key evidence         │
 │ proof of dark matter. But the situation is nuanced.       │
 │                                                            │
 │ Challenge for MOND:                                        │

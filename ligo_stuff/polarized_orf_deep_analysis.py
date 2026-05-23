@@ -528,7 +528,7 @@ print(f"""
 ║  2. CHIRALITY NULL TEST: Powerful                                           ║
 ║     • IF a signal is detected, ratio test distinguishes h+ from unpolarized║
 ║     • Effect size: ~{abs(1/ratio_at_20Hz - 1)*100:.0f}% difference (easily measurable)              ║
-║     • This is the SMOKING GUN for Z² topology                              ║
+║     • This is the DECISIVE TEST for Z² topology                            ║
 ║                                                                             ║
 ║  3. SCIENTIFIC VALUE:                                                       ║
 ║     • Standard LIGO stochastic searches ARE slightly suboptimal for Z²     ║

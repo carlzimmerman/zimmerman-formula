@@ -338,7 +338,7 @@ for det in detectors:
 # SECTION 5: CROSS-BAND CONSISTENCY CHECK
 # =============================================================================
 print("\n" + "=" * 80)
-print("SECTION 5: CROSS-BAND CONSISTENCY (SMOKING GUN)")
+print("SECTION 5: CROSS-BAND CONSISTENCY (DECISIVE TEST)")
 print("=" * 80)
 
 print("""

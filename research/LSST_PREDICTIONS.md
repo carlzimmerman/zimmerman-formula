@@ -111,7 +111,7 @@ m₃ = m_W² × Z^6.5 / M_Pl = 48 meV
 
 **Prediction:** LSST will measure Σm_ν = 56 ± 15 meV
 
-This is a **smoking gun test**. If LSST detects Σm_ν ~ 60 meV, Zimmerman is confirmed!
+This is a **decisive test**. If LSST detects Σm_ν ~ 60 meV, Zimmerman is confirmed.
 
 ---
 

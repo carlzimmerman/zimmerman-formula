@@ -19,7 +19,7 @@ Key Components:
 The Z² Framework Prediction:
 - h₊-only GWs produce a modified HD curve with imaginary (V-mode) component
 - The V-mode correlation peaks at θ ~ 30° with amplitude ~ 0.95 × HD_max
-- Detection of V-mode would be smoking gun for primordial chirality
+- Detection of V-mode would be decisive evidence for primordial chirality
 
 Author: Carl Zimmerman
 Date: May 22, 2026
@@ -103,7 +103,7 @@ def v_mode_correlation(theta: np.ndarray) -> np.ndarray:
     Γ_V(θ) = (3/8) × sin(θ) × (1 + cos(θ)) × ln((1 - cos(θ))/2)
 
     This is ZERO for unpolarized backgrounds and MAXIMAL for h₊-only.
-    The V-mode is the smoking gun signature of primordial chirality.
+    The V-mode is the definitive signature of primordial chirality.
 
     Reference: Seto & Taruya (2007), Kato & Soda (2016)
     """
@@ -156,7 +156,7 @@ Standard GR (M_GR):
 Z² Chiral (M_Z²):
   Γ_real(θ) = Γ_HD(θ) × (1 + χ²)/2  with χ = 1
   Γ_imag(θ) = χ × Γ_V(θ) = (3/8) sin θ (1 + cos θ) ln x
-  The V-mode is the SMOKING GUN for chirality
+  The V-mode is the DECISIVE TEST for chirality
 """)
 
 # Compute and display ORF values
@@ -594,7 +594,7 @@ def v_mode_snr_forecast(n_pulsars: int, t_obs_years: float,
     """
     Forecast SNR for V-mode detection.
 
-    The V-mode correlation is the smoking gun for chiral GWs.
+    The V-mode correlation is the decisive test for chiral GWs.
     Standard GR predicts V = 0; Z² predicts V ≠ 0.
     """
     # Number of pairs

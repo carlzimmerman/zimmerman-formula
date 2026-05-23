@@ -144,13 +144,13 @@ const EVIDENCE: Evidence[] = [
     sigma: 6,
     arxiv: '2309.10404',
   },
-  // 4PCF Parity Evidence - SMOKING GUN
+  // 4PCF Parity Evidence - Decisive Test
   {
     year: 2026,
     month: 'May',
-    title: '🔥 4PCF Parity-Odd: r = 0.9986 NGC-SGC Correlation',
+    title: '4PCF Parity-Odd: r = 0.9986 NGC-SGC Correlation',
     source: 'DESI DR1 + Philcox encore',
-    description: 'Near-perfect correlation between Northern and Southern Galactic Cap parity-odd 4PCF demonstrates globally coherent chirality. This is THE smoking gun.',
+    description: 'Near-perfect correlation between Northern and Southern Galactic Cap parity-odd 4PCF demonstrates globally coherent chirality — decisive evidence for cosmic topology.',
     relevance: 'T³/Z₂ predicts r ~ 1 (global chirality), local physics predicts r ~ 0. Observed r = 0.9986 confirms topological structure of universe.',
     type: 'supports',
     sigma: 10,

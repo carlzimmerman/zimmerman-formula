@@ -107,7 +107,7 @@ Three layers:
 2. **Geometric**: Integrate Z² Friedmann equation (distances 5-11% shorter than ΛCDM)
 3. **Topological**: Apply 20.6 Gpc modulo wrapping
 
-**Work-Order P: The Smoking Gun**
+**Work-Order P: The Decisive Test**
 
 | Coordinate System | Q₄ | Tension from Zero |
 |-------------------|-----|-------------------|

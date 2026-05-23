@@ -71,7 +71,7 @@ From arxiv:2508.09133:
 | Auto-correlation (within patches) | 4-10σ | **Strong parity-odd signal** |
 | Cross-correlation (between patches) | NULL | **No patch-to-patch variation** |
 
-The "inconsistency" they noted is actually the T³/Z₂ smoking gun:
+The "inconsistency" they noted is actually the T³/Z₂ signature:
 - **Local physics** (inflation, etc.) → random chirality per patch → non-zero cross
 - **Global topology** → same chirality everywhere → null cross
 

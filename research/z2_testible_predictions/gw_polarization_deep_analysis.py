@@ -486,11 +486,11 @@ This disfavors Z².
 
 
 # =============================================================================
-# PART 9: GW170817 - THE SMOKING GUN
+# PART 9: GW170817 - THE DECISIVE TEST
 # =============================================================================
 
 print("""
-PART 9: GW170817 - THE SMOKING GUN
+PART 9: GW170817 - THE DECISIVE TEST
 ==================================
 
 GW170817 is the MOST IMPORTANT event for testing h_× = 0!
@@ -652,7 +652,7 @@ ANALYSIS RESULTS:
    Would naturally give non-90° inclinations
    → Need custom Z² templates for proper test
 
-3. GW170817: THE SMOKING GUN
+3. GW170817: THE DECISIVE TEST
    EM constraint: ι ≈ 20-30° (face-on)
    GW constraint: ι ≈ 28° (face-on)
    THEY AGREE!

@@ -346,7 +346,7 @@ print("SUMMARY: EL GORDO PROVES ZIMMERMAN")
 print("=" * 70)
 
 summary = """
-THE SMOKING GUN:
+THE DECISIVE EVIDENCE:
 
 El Gordo is a 6.2σ FALSIFICATION of ΛCDM.
 - Asencio et al. (2021, 2023) showed it cannot exist in standard cosmology

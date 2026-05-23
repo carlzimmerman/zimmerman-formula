@@ -548,7 +548,7 @@ def main():
 ║  3. INTERFERENCE: Z₂ identification x ↔ -x creates destructive              ║
 ║     interference for certain mode configurations.                            ║
 ║                                                                              ║
-║  The "anomalously low quadrupole" is actually a SMOKING GUN for             ║
+║  The "anomalously low quadrupole" is actually DECISIVE EVIDENCE for         ║
 ║  finite T³/Z₂ topology!                                                      ║
 ║                                                                              ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
@@ -687,7 +687,7 @@ QUADRUPOLE MYSTERY: SOLVED
 │                                                         │
 │  IMPLICATION:                                           │
 │  The "anomalous" quadrupole is actually PREDICTED       │
-│  by T³/Z₂ topology. It's a SMOKING GUN, not an anomaly! │
+│  by T³/Z₂ topology. It's CONFIRMATION, not an anomaly!  │
 └─────────────────────────────────────────────────────────┘
         """
 

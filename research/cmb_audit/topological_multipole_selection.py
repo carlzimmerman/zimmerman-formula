@@ -378,7 +378,7 @@ def main():
 
         print(f"  {ell:<5} {wavelength_Gpc:<12.1f} {ratio:<10.2f} {suppression:<15.3f} {pred}")
 
-    log("\n★ SMOKING GUN MULTIPOLES:")
+    log("\n★ KEY DIAGNOSTIC MULTIPOLES:")
     log("  ℓ = 2: Should be ~80-90% suppressed (observed: ~76% low)")
     log("  ℓ = 3: Should be ~40-50% suppressed (observed: anomalous)")
     log("  ℓ = 4,5: Should show ~10-20% deviation")

@@ -2,7 +2,7 @@
 
 ## The Challenge
 
-The Bullet Cluster (1E 0657-56) is often called the "smoking gun" for dark matter and against MOND. Let's analyze it rigorously within the Zimmerman framework.
+The Bullet Cluster (1E 0657-56) is often cited as key evidence for dark matter and against MOND. Let's analyze it rigorously within the Zimmerman framework.
 
 ---
 
@@ -254,7 +254,7 @@ The Bullet Cluster is NOT a falsification of the Zimmerman framework. Instead:
 3. **A ~2× residual remains** - possibly neutrinos or undetected baryons
 4. **Specific predictions** distinguish Zimmerman from both ΛCDM and constant-MOND
 
-**The "smoking gun against MOND" is actually consistent with evolving-a₀ MOND.**
+**This purported "key evidence against MOND" is actually consistent with evolving-a₀ MOND.**
 
 ---
 

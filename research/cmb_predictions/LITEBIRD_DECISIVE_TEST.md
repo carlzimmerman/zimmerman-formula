@@ -1,4 +1,4 @@
-# LiteBIRD Smoking Gun: The Z² Framework's Decisive CMB Test
+# LiteBIRD Decisive Test: The Z² Framework's Definitive CMB Test
 
 **Version:** 1.0
 **Date:** May 2026
@@ -225,7 +225,7 @@ The β = 0° prediction is:
 
 ---
 
-## 6. The Smoking Gun Signature
+## 6. The Definitive Signature
 
 If Z² is correct, LiteBIRD will observe:
 

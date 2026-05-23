@@ -168,7 +168,7 @@ These are **patterns with physical intuition**, not first-principles derivations
 - Most theories predict axions
 - Z2 would have correctly predicted against trends
 
-**Smoking gun (extraordinary):**
+**Decisive evidence (extraordinary):**
 - Direct detection of T3/Z2 topology
 - Matched circles in CMB at L ~ 12-13 Gpc
 
@@ -186,7 +186,7 @@ These are **patterns with physical intuition**, not first-principles derivations
 - Birefringence tension is serious (6 sigma)
 - Omega 13/6 split is NOT derived (only 19 total is)
 - alpha and r formulas are conjectures, not derivations
-- No unique "smoking gun" yet
+- No unique decisive confirmation yet
 
 ### Key Uncertainties
 - Is beta = 0.30 deg real or systematic?

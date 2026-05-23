@@ -634,7 +634,7 @@ NEXT STEPS FOR REAL DATA:
 4. Stack kSZ signal, compare with Z² velocity prediction
 5. Test for vertex-direction correlation
 
-THE SMOKING GUN:
+THE DECISIVE TEST:
   Measured kSZ velocity = Z² predicted vertex outflow
   → Direct detection of topological repulsion
 """)

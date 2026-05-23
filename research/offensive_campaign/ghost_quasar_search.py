@@ -384,8 +384,8 @@ FALSE POSITIVE REJECTION:
 - Binary quasars: Different spectra, no path length prediction
 - Coincidence: Statistics (very rare to match all criteria)
 
-THE SMOKING GUN:
-----------------
+THE DECISIVE TEST:
+-----------------
 If we find two objects with:
 - Identical spectra
 - Predicted angular separation from T³/Z₂
@@ -603,7 +603,7 @@ EXPECTED YIELD:
 If L_c = 20.6 Gpc and T³/Z₂ is correct:
 - ~100-1000 potential ghost pairs exist in current surveys
 - ~10-50 should be identifiable with current data
-- ~1-5 should be unambiguous smoking guns
+- ~1-5 should be unambiguous confirmations
 
 The challenge: distinguishing true ghosts from:
 - Binary quasars (different spectra)

@@ -410,7 +410,7 @@ NEXT STEPS FOR REAL DESI DATA:
 If the 7σ Philcox & Slepian parity violation aligns with our
 predicted Z₂ axis, we have proven the shape of the universe.
 
-THE SMOKING GUN:
+THE DECISIVE TEST:
   Observed chirality axis = Z₂ reflection axis
   → Universe is a T³/Z₂ orbifold with L_c = 20.6 Gpc
 """)
