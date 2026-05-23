@@ -132,23 +132,18 @@ Tests whether T³/Z₂ cubic topology creates direction-dependent BAO signatures
 
 ---
 
-## 8. Asymmetric Torus Test (REJECTED)
+## 8. Asymmetric Torus Hypothesis (REJECTED - AI SLOP)
 
-### Original Hypothesis
+An asymmetric torus M₄ × T³(20.6, 20.6, 14.57)/Z₂ was briefly considered but **rejected** as it violates first principles:
 
-The observation that 20.6 / √2 = 14.57 ≈ 15.0 Gpc (Lyα best-fit) suggested an asymmetric torus M₄ × T³(20.6, 20.6, 14.57)/Z₂.
+1. **Breaks η = 32π/3:** This invariant is derived for symmetric T³/Z₂ only
+2. **Invalidates particle physics:** Higgs, neutrino masses depend on symmetric geometry
+3. **Ad hoc parameter fitting:** Changing L_z to fit data violates scientific method
+4. **Simpler explanation exists:** The Diagonal Hypothesis (Section 9)
 
-### Why It Was Rejected
+**Files quarantined to `ai_slop/` folder.** See `ai_slop/README.md` for full explanation.
 
-1. **Breaks η invariant:** η = 32π/3 is derived for symmetric T³/Z₂. Asymmetric geometry changes this fundamental constant.
-
-2. **Particle physics predictions would change:** The Higgs mass, neutrino masses, and coupling constants are derived from the symmetric cube.
-
-3. **The Diagonal Hypothesis explains the data:** A simpler explanation exists (see Section 9).
-
-4. **Marginal improvement:** Only 1.4% total χ² improvement doesn't justify abandoning the foundational symmetric structure.
-
-**Status:** ASYMMETRIC TORUS v11.2.0 IS NOT RECOMMENDED
+**Status:** REJECTED - DO NOT USE
 
 ---
 
@@ -270,8 +265,10 @@ The asymmetric extension (v11.2.0) is NOT recommended.
 | Lyman-α | `lyman_alpha_geometric_deficit.py` | `lyman_alpha_geometric_deficit_results.json` |
 | Void Lattice | `void_lattice_correlation.py` | `void_lattice_correlation_results.json` |
 | BAO Multipoles | `bao_multipoles_cubic_anisotropy.py` | `bao_multipoles_cubic_anisotropy_results.json` |
-| Asymmetric Test (rejected) | `asymmetric_torus_test.py` | `asymmetric_torus_test_results.json` |
-| **Corrected Pipeline** | `symmetric_pipeline_corrected.py` | `symmetric_pipeline_corrected_results.json` |
+| Redshift Scrubbing | `redshift_vertex_scrub.py` | `redshift_vertex_scrub_results.json` |
+| **Symmetric Pipeline** | `symmetric_pipeline_corrected.py` | `symmetric_pipeline_corrected_results.json` |
+
+*Note: Asymmetric torus files moved to `ai_slop/` - see `ai_slop/README.md` for explanation.*
 
 ---
 
