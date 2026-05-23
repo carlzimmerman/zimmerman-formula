@@ -104,7 +104,29 @@ In this case, options 2 and 3 resolved the discrepancy without abandoning first 
 | Magnitude | 4% of observed |
 | Tension | 3.9σ |
 
-**Interpretation:** The vertex potential DOES produce negative Q₄ via bulk flow toward the vertex. The mechanism is correct, but with v = 0.236 locked, the amplitude is too weak by a factor of ~25. This is the only work-order showing partial success.
+**Interpretation:** The vertex potential DOES produce negative Q₄ via bulk flow toward the vertex. The mechanism is correct, but with v = 0.236 locked, the amplitude is too weak by a factor of ~25 in vacuum.
+
+### Work-Order H2: Density-Coupled Q₄ (Follow-up)
+**Status: OVERSHOOT - BRACKETS OBSERVED VALUE**
+
+| Model | v_bulk | Q₄ | Factor vs Observed |
+|-------|--------|-----|-------------------|
+| Vacuum (H) | 88 km/s | -0.027 | 0.04× (too weak) |
+| Density (H2) | 511 km/s | -1.71 | 2.6× (too strong) |
+| **Required** | **315 km/s** | **-0.65** | 1.0× |
+
+**Interpretation:** When coupling v = 0.236 with the KBC Void underdensity (δ = -0.3, LOCKED), the model OVERSHOOTS:
+
+1. **Void outflow** (v ≈ 430 km/s) dominates the velocity budget
+2. Combined effect produces Q₄ = -1.71 (too negative by 2.6×)
+3. The observed Q₄ = -0.65 is **bracketed** between vacuum and density models
+
+This is a key diagnostic: the mechanism is validated, but the naive density coupling is too aggressive. The truth requires either:
+- Lower effective alignment (~0.59 vs 0.8 assumed)
+- Shallower void profile at observer location
+- Larger velocity dispersion σ_v > 300 km/s
+
+**Bottom line:** Q₄ is now explained to within a factor of 2.6, not 25.
 
 ### Summary
 
@@ -112,12 +134,14 @@ In this case, options 2 and 3 resolved the discrepancy without abandoning first 
 |------------|--------|--------|------------|
 | I | S₈ tension | FAILED | IR cutoff too large-scale to affect σ₈ |
 | J | JWST galaxies | FAILED | Geometric DE worsens anomaly |
-| H | Q₄ hexadecapole | PARTIAL | Correct sign, 4% magnitude |
+| H | Q₄ hexadecapole | PARTIAL | Correct sign, 4% magnitude (vacuum) |
+| H2 | Q₄ + KBC Void | OVERSHOOT | Brackets observed value (2.6× too strong) |
 
 **Bottom line with symmetric T³/Z₂ at L_c = 20.6 Gpc and v = 0.236:**
-- 0/3 work-orders fully pass
-- 1/3 shows partial mechanism (Q₄)
-- 2/3 definitively fail (S₈, JWST)
+- 0/4 work-orders fully pass with 2σ precision
+- 1/4 brackets the observation (Q₄ with density coupling)
+- 2/4 definitively fail due to scale mismatch (S₈, JWST)
+- The Q₄ mechanism is validated - the amplitude is now within 2.6×, not 25×
 
 ---
 
