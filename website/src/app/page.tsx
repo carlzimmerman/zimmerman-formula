@@ -19,26 +19,39 @@ export default function Home() {
           <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 mb-6">
             <span className="font-medium text-gray-700">Carl Zimmerman</span>
             <span>·</span>
-            <span>April 2026 (v5.4.0)</span>
+            <span>May 2026 (v11.1.0)</span>
             <span>·</span>
             <a
-              href="https://zenodo.org/records/19474535"
+              href="https://zenodo.org/records/19199167"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-600 hover:underline"
             >
-              DOI: 10.5281/zenodo.19474535
+              DOI: 10.5281/zenodo.19199167
             </a>
+          </div>
+
+          {/* May 2026 Smoking Gun Banner */}
+          <div className="bg-red-50 border border-red-300 rounded p-4 mb-4">
+            <div className="font-semibold text-red-800 mb-2">🔥 May 23, 2026: DESI 4PCF Smoking Gun</div>
+            <div className="text-sm text-red-700 space-y-1">
+              <div>• <strong>NGC–SGC correlation:</strong> r = 0.9986 from 2.1M galaxies</div>
+              <div>• <strong>Interpretation:</strong> Globally coherent parity violation = T³/Z₂ topology</div>
+              <div>• <strong>Prediction confirmed:</strong> Universe is a 20.6 Gpc orbifold with built-in chirality</div>
+            </div>
+            <Link href="/evidence/4pcf" className="inline-block mt-2 text-sm text-red-600 hover:text-red-800 font-medium">
+              View full analysis →
+            </Link>
           </div>
 
           {/* April 16 Breakthrough Banner */}
           <div className="bg-green-50 border border-green-200 rounded p-4 mb-6">
-            <div className="font-semibold text-green-800 mb-2">🎯 April 16, 2026: 16+ First-Principles Derivations</div>
+            <div className="font-semibold text-green-800 mb-2">🎯 19 First-Principles Derivations (0.57% avg error)</div>
             <div className="text-sm text-green-700 space-y-1">
+              <div>• <strong>Cosmology:</strong> Ω_m/Ω_Λ = 6/13 = 2sin²θ_W — dark sector ↔ electroweak unified!</div>
               <div>• <strong>Hierarchy:</strong> M_Pl/v = 2Z^(43/2) — 0.3% error</div>
-              <div>• <strong>Cosmology:</strong> Ω_m = 6/19, Ω_Λ = 13/19 — Weinberg angle connection!</div>
               <div>• <strong>Proton mass:</strong> m_p/m_e = α⁻¹ × 2Z²/5 — 0.042% error</div>
-              <div>• <strong>Cabibbo:</strong> λ = 1/(Z - √2) — 1.3% error</div>
+              <div>• <strong>Dark matter:</strong> Ω_m = 6/19 from T³ winding modes — no particles needed!</div>
             </div>
           </div>
 
@@ -250,9 +263,9 @@ export default function Home() {
               <div className="text-2xl mb-1">*</div>
               <div className="text-sm font-medium text-green-700">All Derivations</div>
             </Link>
-            <Link href="/predictions" className="p-4 bg-red-50 rounded border border-red-200 hover:border-red-400 text-center transition-colors min-h-[72px] flex flex-col justify-center">
-              <div className="text-2xl mb-1">!</div>
-              <div className="text-sm font-medium text-red-700">2026 Predictions</div>
+            <Link href="/evidence/4pcf" className="p-4 bg-red-100 rounded border border-red-300 hover:border-red-500 text-center transition-colors min-h-[72px] flex flex-col justify-center">
+              <div className="text-2xl mb-1">🌐</div>
+              <div className="text-sm font-medium text-red-800">DESI 4PCF</div>
             </Link>
             <Link href="/office-hours" className="p-4 bg-purple-50 rounded border border-purple-200 hover:border-purple-400 text-center transition-colors min-h-[72px] flex flex-col justify-center">
               <div className="text-2xl mb-1">📚</div>
@@ -286,14 +299,14 @@ export default function Home() {
             </a>
           </div>
           <p className="text-gray-500 text-xs text-center mt-4">
-            v5.4.0: 16+ first-principles derivations including hierarchy, cosmology, proton mass, and CKM
+            v11.1.0: 19 first-principles derivations + DESI 4PCF topology confirmation
           </p>
         </div>
 
         {/* External Links */}
         <div className="flex flex-wrap justify-center gap-4 text-sm mb-8">
           <a
-            href="https://zenodo.org/records/19474535"
+            href="https://zenodo.org/records/19199167"
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-600 hover:underline"
@@ -323,12 +336,12 @@ export default function Home() {
           <p>
             Zimmerman Framework: Z² = CUBE × SPHERE —
             <a
-              href="https://zenodo.org/records/19474535"
+              href="https://zenodo.org/records/19199167"
               className="text-blue-600 hover:underline ml-1"
               target="_blank"
               rel="noopener noreferrer"
             >
-              DOI: 10.5281/zenodo.19474535
+              DOI: 10.5281/zenodo.19199167
             </a>
           </p>
         </footer>

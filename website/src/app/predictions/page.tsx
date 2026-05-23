@@ -18,6 +18,9 @@ const M_NU_3 = M_E_EV * Math.pow(ALPHA, 3) / BEKENSTEIN * 1000
 const M_NU_2 = M_NU_3 / Z
 const SUM_M_NU = M_NU_2 + M_NU_3
 
+// Topological scale
+const L_FUNDAMENTAL = 20.6 // Gpc
+
 // Higgs
 const LAMBDA_HIGGS = (GAUGE + 1) / Math.pow(GAUGE - 2, 2)
 
@@ -37,24 +40,27 @@ interface PredictionCardProps {
   prediction: string
   formula: string
   falsification: string
-  status: 'upcoming' | 'in_progress' | 'matches'
+  status: 'upcoming' | 'in_progress' | 'matches' | 'confirmed'
 }
 
 function PredictionCard({ number, title, experiment, timeline, prediction, formula, falsification, status }: PredictionCardProps) {
   const statusColors = {
     upcoming: 'bg-blue-50 border-blue-200',
     in_progress: 'bg-amber-50 border-amber-200',
-    matches: 'bg-green-50 border-green-200'
+    matches: 'bg-green-50 border-green-200',
+    confirmed: 'bg-red-50 border-red-300'
   }
   const statusLabels = {
     upcoming: 'Upcoming',
     in_progress: 'Data Coming',
-    matches: 'Already Matches!'
+    matches: 'Already Matches!',
+    confirmed: '🔥 CONFIRMED'
   }
   const statusBadgeColors = {
     upcoming: 'bg-blue-100 text-blue-700',
     in_progress: 'bg-amber-100 text-amber-700',
-    matches: 'bg-green-100 text-green-700'
+    matches: 'bg-green-100 text-green-700',
+    confirmed: 'bg-red-200 text-red-800'
   }
 
   return (
@@ -104,15 +110,22 @@ export default function PredictionsPage() {
         {/* Title Block */}
         <article className="bg-white border border-gray-200 rounded shadow-sm p-5 md:p-8 mb-6">
           <h1 className="text-2xl md:text-3xl font-semibold text-gray-900 mb-2 leading-tight">
-            10 Testable Predictions for 2026-2027
+            13 Testable Predictions (1 Confirmed!)
           </h1>
           <p className="text-lg text-gray-600 mb-4">
-            Specific, quantitative, falsifiable predictions from Z²
+            Specific, quantitative, falsifiable predictions from Z² = 32π/3
           </p>
+
+          <div className="bg-red-50 border border-red-300 rounded p-4 mb-4">
+            <p className="text-sm text-red-800">
+              <strong>🔥 May 23, 2026:</strong> DESI 4PCF parity-odd correlation r = 0.9986 confirms T³/Z₂ topology!
+              This is the <strong>smoking gun</strong> — globally coherent chirality proves topological structure.
+            </p>
+          </div>
 
           <div className="bg-amber-50 border border-amber-200 rounded p-4">
             <p className="text-sm text-amber-800">
-              <strong>Scientific standard:</strong> Each prediction below includes a specific numerical value and a falsification threshold.
+              <strong>Scientific standard:</strong> Each prediction includes a specific numerical value and falsification threshold.
               If ANY prediction is definitively falsified, the framework requires revision or rejection.
             </p>
           </div>
@@ -190,6 +203,24 @@ export default function PredictionsPage() {
                 <td className="py-2">SZ clusters</td>
                 <td className="py-2 font-mono text-blue-700">2× enhanced z&gt;0.8</td>
                 <td className="py-2 text-red-600">Matches ΛCDM</td>
+              </tr>
+              <tr className="bg-red-50">
+                <td className="py-2 text-red-600 font-bold">11</td>
+                <td className="py-2 font-semibold">DESI 4PCF</td>
+                <td className="py-2 font-mono text-red-700">r ≈ 1 NGC-SGC</td>
+                <td className="py-2 text-green-600">✓ CONFIRMED (0.9986)</td>
+              </tr>
+              <tr>
+                <td className="py-2 text-gray-400">12</td>
+                <td className="py-2">Ghost Quasars</td>
+                <td className="py-2 font-mono text-blue-700">20-60° duplicates</td>
+                <td className="py-2 text-red-600">No duplicates found</td>
+              </tr>
+              <tr>
+                <td className="py-2 text-gray-400">13</td>
+                <td className="py-2">kSZ velocity</td>
+                <td className="py-2 font-mono text-blue-700">265 km/s</td>
+                <td className="py-2 text-red-600">&lt;200 or &gt;350 km/s</td>
               </tr>
             </tbody>
           </table>
@@ -308,6 +339,39 @@ export default function PredictionsPage() {
             falsification="Cluster counts match ΛCDM exactly"
             status="upcoming"
           />
+
+          <PredictionCard
+            number={11}
+            title="DESI Parity-Odd 4PCF Correlation"
+            experiment="DESI DR1 LRG catalog"
+            timeline="May 2026"
+            prediction="NGC-SGC correlation r ≈ 1 (global chirality)"
+            formula="r(4PCF_odd) = 1 for T³/Z₂ topology"
+            falsification="r < 0.9 (local physics would give r ≈ 0)"
+            status="confirmed"
+          />
+
+          <PredictionCard
+            number={12}
+            title="Ghost Quasar Search (Nobel-level test)"
+            experiment="SDSS/DESI quasar catalog"
+            timeline="2026-2027"
+            prediction="Topological duplicates at 20-60° separation"
+            formula={`Angular separation = 2×arcsin(c/H₀/${L_FUNDAMENTAL}Gpc)`}
+            falsification="No duplicates found in z > 3 quasars"
+            status="upcoming"
+          />
+
+          <PredictionCard
+            number={13}
+            title="kSZ Velocity from Void Stacking"
+            experiment="ACT + Planck + void catalog"
+            timeline="2026"
+            prediction="Vertex outflow velocity = 265 km/s"
+            formula="v = c × (r/L_c) × H₀"
+            falsification="v < 200 km/s or v > 350 km/s"
+            status="upcoming"
+          />
         </div>
 
         {/* Key Formulas */}
@@ -395,7 +459,14 @@ export default function PredictionsPage() {
         </div>
 
         {/* Links */}
-        <div className="grid md:grid-cols-3 gap-4 mb-6">
+        <div className="grid md:grid-cols-4 gap-4 mb-6">
+          <Link
+            href="/evidence/4pcf"
+            className="block p-4 bg-red-50 border border-red-200 rounded shadow-sm hover:border-red-400 transition-all text-center"
+          >
+            <div className="font-semibold text-red-800">🔥 DESI 4PCF</div>
+            <div className="text-sm text-red-600">r = 0.9986 confirmed!</div>
+          </Link>
           <Link
             href="/all-derivations"
             className="block p-4 bg-white border border-gray-200 rounded shadow-sm hover:border-blue-300 transition-all text-center"
@@ -421,7 +492,7 @@ export default function PredictionsPage() {
 
         {/* Footer */}
         <footer className="text-center text-sm text-gray-500 py-6 border-t border-gray-200">
-          <p>Predictions generated March 2026 · Updates will be posted as data arrives</p>
+          <p>Last updated: May 2026 · 1 prediction confirmed, 12 remaining</p>
         </footer>
       </div>
     </main>

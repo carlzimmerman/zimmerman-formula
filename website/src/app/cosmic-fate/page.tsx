@@ -4,9 +4,11 @@ import Link from 'next/link'
 
 const PI = Math.PI
 const Z = 2 * Math.sqrt(8 * PI / 3)
-const OMEGA_LAMBDA = (3 * Z) / (8 + 3 * Z)
-const OMEGA_MATTER = 8 / (8 + 3 * Z)
-const LAMBDA_MATTER_RATIO = OMEGA_LAMBDA / OMEGA_MATTER
+// Topological derivation: Ω_Λ = 13/19, Ω_m = 6/19
+const OMEGA_LAMBDA = 13 / 19  // = 0.6842
+const OMEGA_MATTER = 6 / 19   // = 0.3158
+const LAMBDA_MATTER_RATIO = OMEGA_LAMBDA / OMEGA_MATTER  // = 13/6
+const SIN2_WEINBERG = 3 / 13  // = 0.2308
 
 // Key epochs
 const z_equality = Math.pow(LAMBDA_MATTER_RATIO, 1/3) - 1
@@ -55,22 +57,33 @@ export default function CosmicFatePage() {
 
           <div className="space-y-4">
             <div className="bg-gray-50 border border-gray-200 rounded p-4">
-              <div className="text-sm text-gray-600 mb-2">From de Sitter thermodynamics, the cosmological densities:</div>
-              <div className="font-mono text-center">
-                <div>Ω_Λ = 3Z/(8+3Z) = {OMEGA_LAMBDA.toFixed(4)}</div>
-                <div>Ω_m = 8/(8+3Z) = {OMEGA_MATTER.toFixed(4)}</div>
+              <div className="text-sm text-gray-600 mb-2">From T³/Z₂ topology, the cosmological densities:</div>
+              <div className="font-mono text-center text-lg">
+                <div>Ω_Λ = <strong>13/19</strong> = {OMEGA_LAMBDA.toFixed(4)}</div>
+                <div>Ω_m = <strong>6/19</strong> = {OMEGA_MATTER.toFixed(4)}</div>
+              </div>
+            </div>
+
+            <div className="bg-red-50 border border-red-200 rounded p-4">
+              <div className="text-sm text-red-800 font-semibold mb-2">🔥 Cosmic Weinberg Relation (Breakthrough):</div>
+              <div className="font-mono text-center text-lg mb-2">
+                Ω_m/Ω_Λ = 6/13 = 2×sin²θ_W
+              </div>
+              <div className="text-sm text-gray-700 text-center">
+                The dark matter/dark energy ratio equals twice the Weinberg angle!<br/>
+                <strong>Dark sector and electroweak physics share the same topological origin.</strong>
               </div>
             </div>
 
             <div className="bg-green-50 border border-green-200 rounded p-4">
-              <div className="text-sm text-green-800 font-semibold mb-2">First-Principles Derivation:</div>
+              <div className="text-sm text-green-800 font-semibold mb-2">Topological Derivation:</div>
               <div className="text-xs text-gray-700 space-y-1">
-                <div>1. De Sitter horizon has temperature T<sub>H</sub> = ℏH/(2πk<sub>B</sub>) [Gibbons-Hawking]</div>
-                <div>2. Matter thermalizes to T<sub>H</sub> at late times [Unruh effect]</div>
-                <div>3. At equilibrium: Ω<sub>i</sub> ∝ 1/δ<sub>i</sub> (fluctuation amplitude)</div>
-                <div>4. Matter (3D): δ<sub>m</sub> = v<sub>rms</sub> = <strong>√3</strong> × σ</div>
-                <div>5. Vacuum (positive-definite): δ<sub>Λ</sub> = ⟨|φ|⟩ = <strong>√(2/π)</strong> × σ</div>
-                <div>6. Therefore: Ω<sub>Λ</sub>/Ω<sub>m</sub> = √3/√(2/π) = <strong>√(3π/2) = 3Z/8</strong></div>
+                <div>1. Universe has T³/Z₂ topology with η-invariant Z² = 32π/3</div>
+                <div>2. T³ has b₁ = 3 independent 1-cycles (winding modes)</div>
+                <div>3. Each cycle supports 2 winding modes → <strong>6 topological modes = Ω_m</strong></div>
+                <div>4. The orbifold has 13 gauge degrees of freedom → <strong>13 vacuum modes = Ω_Λ</strong></div>
+                <div>5. Total: 6 + 13 = 19 → <strong>Ω_m = 6/19, Ω_Λ = 13/19</strong></div>
+                <div>6. No dark matter particles needed — it's topological!</div>
               </div>
             </div>
 
@@ -194,10 +207,10 @@ export default function CosmicFatePage() {
 
           <div className="bg-blue-50 border border-blue-200 rounded p-4 mb-4">
             <div className="font-mono text-center text-lg mb-2">
-              Ω_Λ/Ω_m = 3Z/8 = (3/4) × √(8π/3)
+              Ω_Λ/Ω_m = 13/6 = 2.167
             </div>
             <div className="text-center text-sm text-gray-600">
-              = (spatial dims / spacetime dims) × √(8π/3)
+              = (vacuum modes) / (winding modes) from T³/Z₂ topology
             </div>
           </div>
 
