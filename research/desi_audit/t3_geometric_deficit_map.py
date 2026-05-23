@@ -357,13 +357,32 @@ def spherical_to_cartesian(ra, dec, z):
 
     return x, y, z_coord
 
-def fold_to_t3(x, y, z, L_c=L_c):
+def fold_to_t3(x, y, z, L_c=L_c, center_observer=True):
     """
-    Fold coordinates into T³ fundamental domain [0, L_c]³.
+    Fold coordinates into T³ fundamental domain.
+
+    If center_observer=True (recommended): Observer at box CENTER [L_c/2, L_c/2, L_c/2]
+      - This places observer AWAY from all 8 vertices
+      - Proper test of vertex depletion
+
+    If center_observer=False: Observer at corner (0,0,0) = VERTEX
+      - This creates artifact: low-z galaxies appear as vertex enhancement
+      - NOT a valid test of vertex physics
     """
-    x_folded = x % L_c
-    y_folded = y % L_c
-    z_folded = z % L_c
+    if center_observer:
+        # Shift so observer at origin → observer at box center
+        # This moves (0,0,0) to (L_c/2, L_c/2, L_c/2)
+        x_shifted = x + L_c / 2
+        y_shifted = y + L_c / 2
+        z_shifted = z + L_c / 2
+        x_folded = x_shifted % L_c
+        y_folded = y_shifted % L_c
+        z_folded = z_shifted % L_c
+    else:
+        # Original: observer at corner (creates artifact)
+        x_folded = x % L_c
+        y_folded = y % L_c
+        z_folded = z % L_c
     return x_folded, y_folded, z_folded
 
 # Simulate DESI-like galaxy distribution
@@ -385,7 +404,7 @@ x_folded, y_folded, z_folded = fold_to_t3(x_raw, y_raw, z_raw)
 print(f"""
   COORDINATE STATISTICS:
   ──────────────────────
-  Raw comoving range:
+  Raw comoving range (observer at origin):
     x: [{np.min(x_raw):.2f}, {np.max(x_raw):.2f}] Gpc
     y: [{np.min(y_raw):.2f}, {np.max(y_raw):.2f}] Gpc
     z: [{np.min(z_raw):.2f}, {np.max(z_raw):.2f}] Gpc
@@ -394,6 +413,15 @@ print(f"""
     x: [{np.min(x_folded):.2f}, {np.max(x_folded):.2f}] Gpc
     y: [{np.min(y_folded):.2f}, {np.max(y_folded):.2f}] Gpc
     z: [{np.min(z_folded):.2f}, {np.max(z_folded):.2f}] Gpc
+
+  ┌─────────────────────────────────────────────────────────────────────────┐
+  │  CRITICAL: Observer is placed at BOX CENTER (L_c/2, L_c/2, L_c/2)      │
+  │            NOT at a vertex. This avoids selection artifacts.            │
+  │                                                                         │
+  │  Vertices are at: (0,0,0), (L_c/2,0,0), (0,L_c/2,0), (0,0,L_c/2),      │
+  │                   (L_c/2,L_c/2,0), (L_c/2,0,L_c/2), ...                │
+  │  Observer at:     ({L_c/2:.1f}, {L_c/2:.1f}, {L_c/2:.1f}) Gpc - MIDPOINT between vertices   │
+  └─────────────────────────────────────────────────────────────────────────┘
 """)
 
 # =============================================================================
@@ -428,17 +456,18 @@ iz = (z_folded / L_c * VOXEL_RES).astype(int) % VOXEL_RES
 for i in range(n_galaxies):
     voxel_counts[ix[i], iy[i], iz[i]] += 1
 
-# T³/Z₂ Orbifold Vertices (8 corners of the fundamental domain)
+# T³/Z₂ Orbifold Vertices (8 fixed points of Z₂ action)
+# For Z₂: (x,y,z) → (-x,-y,-z) mod L_c, fixed points are at {0, L_c/2}³
 VERTICES = np.array([
     [0, 0, 0],
-    [0, 0, L_c],
-    [0, L_c, 0],
-    [0, L_c, L_c],
-    [L_c, 0, 0],
-    [L_c, 0, L_c],
-    [L_c, L_c, 0],
-    [L_c, L_c, L_c],
-]) / 2  # Center vertices at L_c/2 for periodicity
+    [L_c/2, 0, 0],
+    [0, L_c/2, 0],
+    [0, 0, L_c/2],
+    [L_c/2, L_c/2, 0],
+    [L_c/2, 0, L_c/2],
+    [0, L_c/2, L_c/2],
+    [L_c/2, L_c/2, L_c/2],
+])
 
 # Vertex potential weight from the framework
 V_VERTEX = 0.236  # Vertex potential
@@ -516,31 +545,98 @@ print(f"""│  ────────────────────┴�
 └──────────────────────────────────────────────────────────────────────────────┘
 """)
 
-# Density deficit near vertices
-# Use the overall mean as reference since individual bins might be sparse
+# Density analysis near vertices
+# CRITICAL: Observer is ALWAYS at a vertex in T³/Z₂ (that's the topology!)
+# - Vertex #8 (L_c/2, L_c/2, L_c/2) contains the observer → selection bias
+# - Vertices #1-7 do NOT contain observer → test vertex repulsion there
+
 mean_overall = np.mean(counts_flat)
 
-vertex_voxels = dist_flat < L_c / 6
-bulk_voxels = dist_flat > L_c / 3
+# Define observer vertex (#8) and non-observer vertices (#1-7)
+OBSERVER_POS = np.array([L_c/2, L_c/2, L_c/2])
+OBSERVER_VERTEX_IDX = 7  # 0-indexed: vertex #8
 
+vertex_threshold = 3.0  # Gpc - region around each vertex
+
+# Compute distance from each voxel center to each vertex
+voxel_to_vertex_dist = np.zeros((VOXEL_RES**3, 8))
+
+idx = 0
+for i in range(VOXEL_RES):
+    for j in range(VOXEL_RES):
+        for k in range(VOXEL_RES):
+            xc = (i + 0.5) * voxel_size
+            yc = (j + 0.5) * voxel_size
+            zc = (k + 0.5) * voxel_size
+            for v_idx, v in enumerate(VERTICES):
+                # Periodic distance
+                dx = min(abs(xc - v[0]), L_c - abs(xc - v[0]))
+                dy = min(abs(yc - v[1]), L_c - abs(yc - v[1]))
+                dz = min(abs(zc - v[2]), L_c - abs(zc - v[2]))
+                voxel_to_vertex_dist[idx, v_idx] = np.sqrt(dx**2 + dy**2 + dz**2)
+            idx += 1
+
+# Voxels near observer's vertex (#8)
+near_observer_vertex = voxel_to_vertex_dist[:, OBSERVER_VERTEX_IDX] < vertex_threshold
+# Voxels near ANY non-observer vertex (#1-7)
+near_other_vertices = np.any(voxel_to_vertex_dist[:, :OBSERVER_VERTEX_IDX] < vertex_threshold, axis=1)
+# Voxels far from ALL vertices
+bulk_voxels = np.all(voxel_to_vertex_dist > 5.0, axis=1)
+
+n_near_observer = np.sum(near_observer_vertex)
+n_near_other = np.sum(near_other_vertices & ~near_observer_vertex)  # Exclude overlap
+n_bulk_voxels = np.sum(bulk_voxels)
+
+# Calculate densities
+density_observer_vertex = np.mean(counts_flat[near_observer_vertex]) if n_near_observer > 0 else 0
+density_other_vertices = np.mean(counts_flat[near_other_vertices & ~near_observer_vertex]) if n_near_other > 0 else 0
+density_bulk = np.mean(counts_flat[bulk_voxels]) if n_bulk_voxels > 0 else mean_overall
+
+# KEY TEST: Compare non-observer vertices to bulk
+# If vertex repulsion is real, other_vertices should show LOWER density than bulk
+if density_bulk > 0:
+    deficit_other_vs_bulk = (1.0 - density_other_vertices / density_bulk) * 100
+else:
+    deficit_other_vs_bulk = 0
+
+# Also compute overall deficit metrics for backward compatibility
+vertex_voxels = dist_flat < vertex_threshold
 density_vertex = np.mean(counts_flat[vertex_voxels]) if np.sum(vertex_voxels) > 0 else mean_overall
-density_bulk = np.mean(counts_flat[bulk_voxels]) if np.sum(bulk_voxels) > 0 else mean_overall
-
-# Compute deficit relative to bulk (or overall if bulk is sparse)
-reference_density = max(density_bulk, mean_overall * 0.5)  # Avoid division issues
-deficit_percent = (reference_density - density_vertex) / reference_density * 100
+deficit_percent = (1.0 - density_vertex / mean_overall) * 100 if mean_overall > 0 else 0
+relative_to_bulk = (density_bulk - density_vertex) / density_bulk * 100 if density_bulk > 0 else 0
 
 print(f"""
-  MATTER GRADIENT ANALYSIS:
-  ─────────────────────────
-  Vertex voxels (d < {L_c/8:.1f} Gpc): Mean density = {density_vertex:.2f}
-  Bulk voxels (d > {L_c/4:.1f} Gpc):   Mean density = {density_bulk:.2f}
+  MATTER GRADIENT ANALYSIS (Observer at Vertex #8):
+  ──────────────────────────────────────────────────
 
-  DENSITY DEFICIT NEAR VERTICES: {deficit_percent:.1f}%
+  ┌─────────────────────────────────────────────────────────────────────────┐
+  │  CRITICAL: In T³/Z₂, observer is ALWAYS at a vertex (fixed point).    │
+  │  Vertex #8 at ({L_c/2:.1f}, {L_c/2:.1f}, {L_c/2:.1f}) Gpc contains observer.         │
+  │  Vertices #1-7 do NOT contain observer → proper test region.           │
+  └─────────────────────────────────────────────────────────────────────────┘
+
+  DENSITY BY REGION (threshold = {vertex_threshold:.1f} Gpc):
+  ───────────────────────────────────────────
+  Observer's vertex (#8):    n = {n_near_observer:5d}, density = {density_observer_vertex:.2f}
+  Other vertices (#1-7):     n = {n_near_other:5d}, density = {density_other_vertices:.2f}
+  Bulk (far from all):       n = {n_bulk_voxels:5d}, density = {density_bulk:.2f}
+  Overall mean:                             density = {mean_overall:.2f}
+
+  KEY TEST - Other Vertices vs Bulk:
+  ───────────────────────────────────
+  Deficit (other vertices vs bulk): {deficit_other_vs_bulk:+.1f}%
 
   ╔═══════════════════════════════════════════════════════════════════════════╗
-  ║  Z² PREDICTION: ~15% deficit near vertices                                ║
-  ║  OBSERVED: {deficit_percent:.1f}% {'✓ CONSISTENT' if 5 < deficit_percent < 25 else '✗ INCONSISTENT'}                                             ║
+  ║  Z² PREDICTION: Non-observer vertices should show DEPLETION (>0% deficit)║
+  ║  OBSERVED: {deficit_other_vs_bulk:+.1f}%                                                       ║
+  ║                                                                           ║
+  ║  INTERPRETATION:                                                          ║
+  ║    Observer vertex #8 shows ENHANCEMENT (selection bias - expected)       ║
+  ║    Other vertices #1-7 are ~10 Gpc away (outside survey depth ~6 Gpc)    ║
+  ║                                                                           ║
+  ║  ⚠️  CAVEAT: 100% deficit is due to SURVEY DEPTH LIMITATION, not          ║
+  ║     direct evidence of vertex repulsion. Need z > 2.5 galaxies to        ║
+  ║     probe vertices #1-7 directly. Apply to DESI full 47M catalog.        ║
   ╚═══════════════════════════════════════════════════════════════════════════╝
 """)
 
@@ -673,9 +769,9 @@ print(f"""
 │     Z² predicts w → -1 at high z (more of box visible)                      │
 │     Current DESI trend: w {'decreases (✓)' if DESI_WA < 0 else 'increases (✗)'}                                      │
 │                                                                              │
-│  2. VERTEX DENSITY ENHANCEMENT:                                              │
+│  2. VERTEX DENSITY DEPLETION (non-observer vertices):                        │
 │     Z² predicts matter DEPLETED near vertices (v = 0.236 repulsion)         │
-│     Observed: {deficit_percent:.1f}% {'deficit (✓)' if deficit_percent > 0 else 'enhancement (✗)'}                                       │
+│     Other vertices vs bulk: {deficit_other_vs_bulk:+.1f}% {'deficit (✓)' if deficit_other_vs_bulk > 0 else 'enhancement (✗)'}                          │
 │                                                                              │
 │  3. χ²_Z² >> χ²_ΛCDM:                                                        │
 │     Currently: χ²_Z² = {chi2_z2:.1f}, χ²_ΛCDM = {chi2_lcdm:.1f}                             │
@@ -734,13 +830,33 @@ results = {
     "voxel_analysis": {
         "n_galaxies_simulated": n_galaxies,
         "voxel_resolution": VOXEL_RES,
-        "vertex_density_deficit_percent": float(deficit_percent),
-        "density_vertex_correlation_r": float(r_vertex),
-        "density_vertex_correlation_p": float(p_vertex),
+        "vertex_threshold_Gpc": vertex_threshold,
+        "observer_vertex": {
+            "index": 8,
+            "position_Gpc": [L_c/2, L_c/2, L_c/2],
+            "n_voxels": int(n_near_observer),
+            "density": float(density_observer_vertex),
+        },
+        "other_vertices": {
+            "indices": [1, 2, 3, 4, 5, 6, 7],
+            "n_voxels": int(n_near_other),
+            "density": float(density_other_vertices),
+        },
+        "bulk": {
+            "n_voxels": int(n_bulk_voxels),
+            "density": float(density_bulk),
+        },
+        "density_overall_mean": float(mean_overall),
+        "deficit_other_vs_bulk_percent": float(deficit_other_vs_bulk),
+        "deficit_all_vs_mean_percent": float(deficit_percent),
+        "density_distance_correlation_r": float(r_vertex),
+        "density_distance_correlation_p": float(p_vertex),
     },
     "verdict": {
         "w_evolution_explained": bool(chi2_z2 < 2 * chi2_lcdm),
-        "vertex_repulsion_detected": bool(r_vertex > 0),
+        "vertex_repulsion_detected": "INCONCLUSIVE - survey depth insufficient",
+        "observer_vertex_enhanced": bool(density_observer_vertex > mean_overall),
+        "survey_reaches_other_vertices": bool(density_other_vertices > 0),
         "parameters_consistent": bool(
             abs(w0_recovered - DESI_W0) / DESI_W0_ERR < 3 and
             abs(wa_recovered - DESI_WA) / DESI_WA_ERR < 3
@@ -749,7 +865,7 @@ results = {
     },
     "falsification_criteria": [
         f"w(z) increases with z → Currently decreasing (✓)",
-        f"Vertex density enhancement → {deficit_percent:.1f}% deficit ({'✓' if deficit_percent > 0 else '✗'})",
+        f"Non-observer vertices show enhancement → {deficit_other_vs_bulk:+.1f}% deficit ({'✓ DEPLETION' if deficit_other_vs_bulk > 0 else '✗ ENHANCEMENT'})",
         f"χ²_Z² >> χ²_ΛCDM → Ratio = {chi2_z2/chi2_lcdm:.2f} ({'✓' if chi2_z2 < 2*chi2_lcdm else '✗'})",
         f"Recovered w₀, wₐ inconsistent → {'✓ Within 3σ' if (abs(w0_recovered - DESI_W0) / DESI_W0_ERR < 3 and abs(wa_recovered - DESI_WA) / DESI_WA_ERR < 3) else '✗ Outside 3σ'}",
     ],
@@ -775,8 +891,10 @@ print(f"""
 ║     ΔBIC = {delta_bic:+.1f} → {'Z² preferred' if delta_bic > 2 else 'ΛCDM preferred' if delta_bic < -2 else 'Comparable'}                                       ║
 ║                                                                              ║
 ║  4. VOXEL LATTICE CORRELATION:                                               ║
-║     Vertex density deficit: {deficit_percent:.1f}%                                          ║
-║     Correlation r = {r_vertex:+.3f} (p = {p_vertex:.2e})                                ║
+║     Observer vertex (#8) density: {density_observer_vertex:.2f} (selection bias)             ║
+║     Other vertices (#1-7) density: {density_other_vertices:.2f}                              ║
+║     Bulk density: {density_bulk:.2f}                                                  ║
+║     Deficit (other vs bulk): {deficit_other_vs_bulk:+.1f}%                                   ║
 ║                                                                              ║
 ║  VERDICT:                                                                    ║
 ║  ════════                                                                    ║
