@@ -1,0 +1,22 @@
+# Makefile for macOS (Apple Silicon / Intel)
+# No AVX, No GPU, No OpenMP for maximum compatibility
+
+CXX = clang++ -std=c++11
+CXXFLAGS = -O3 -Wall -DFOURPCF -DALLPARITY
+
+# For OpenMP on macOS (requires: brew install libomp)
+# Uncomment if you have libomp installed:
+# CXX = clang++ -std=c++11 -Xpreprocessor -fopenmp
+# CXXFLAGS = -O3 -Wall -DFOURPCF -DALLPARITY -DOPENMP
+# LDFLAGS = -lomp
+
+default: encore_macos
+
+encore_macos: encore.cpp
+	$(CXX) $(CXXFLAGS) encore.cpp -o encore_macos $(LDFLAGS)
+	@echo ""
+	@echo "Build successful: encore_macos"
+	@echo "Usage: ./encore_macos -in <file> -outstr <name> -box <size> -rmin <r> -rmax <r>"
+
+clean:
+	rm -f encore_macos
