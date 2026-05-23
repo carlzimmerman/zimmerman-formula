@@ -227,17 +227,44 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Theory Foundations */}
+        <div className="bg-white border border-gray-200 rounded shadow-sm p-6 mb-6">
+          <h2 className="text-lg font-semibold text-gray-900 mb-4">Theory</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <Link href="/topology" className="p-4 bg-red-50 rounded border border-red-200 hover:border-red-400 text-center transition-colors min-h-[72px] flex flex-col justify-center">
+              <div className="text-2xl mb-1">🔷</div>
+              <div className="text-sm font-medium text-red-700">T³/Z₂ Topology</div>
+            </Link>
+            <Link href="/dark-matter" className="p-4 bg-blue-50 rounded border border-blue-200 hover:border-blue-400 text-center transition-colors min-h-[72px] flex flex-col justify-center">
+              <div className="text-2xl mb-1">🌑</div>
+              <div className="text-sm font-medium text-blue-700">Dark Matter</div>
+            </Link>
+            <Link href="/ghost-quasars" className="p-4 bg-amber-50 rounded border border-amber-200 hover:border-amber-400 text-center transition-colors min-h-[72px] flex flex-col justify-center">
+              <div className="text-2xl mb-1">👻</div>
+              <div className="text-sm font-medium text-amber-700">Ghost Quasars</div>
+            </Link>
+            <Link href="/why-z2" className="p-4 bg-green-50 rounded border border-green-200 hover:border-green-400 text-center transition-colors min-h-[72px] flex flex-col justify-center">
+              <div className="text-2xl mb-1">?</div>
+              <div className="text-sm font-medium text-green-700">Why Z²?</div>
+            </Link>
+          </div>
+        </div>
+
         {/* Simulations Grid */}
         <div className="bg-white border border-gray-200 rounded shadow-sm p-6 mb-6">
           <h2 className="text-lg font-semibold text-gray-900 mb-4">Explore</h2>
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
             <Link href="/simulate" className="p-4 bg-gray-50 rounded border border-gray-200 hover:border-blue-300 text-center transition-colors min-h-[72px] flex flex-col justify-center">
               <div className="text-2xl mb-1">🌀</div>
-              <div className="text-sm font-medium text-gray-700">Galaxy Rotation</div>
+              <div className="text-sm font-medium text-gray-700">Simulations</div>
             </Link>
             <Link href="/rar" className="p-4 bg-gray-50 rounded border border-gray-200 hover:border-blue-300 text-center transition-colors min-h-[72px] flex flex-col justify-center">
               <div className="text-2xl mb-1">📈</div>
               <div className="text-sm font-medium text-gray-700">RAR</div>
+            </Link>
+            <Link href="/evidence/4pcf" className="p-4 bg-red-100 rounded border border-red-300 hover:border-red-500 text-center transition-colors min-h-[72px] flex flex-col justify-center">
+              <div className="text-2xl mb-1">🌐</div>
+              <div className="text-sm font-medium text-red-800">DESI 4PCF</div>
             </Link>
             <Link href="/el-gordo" className="p-4 bg-gray-50 rounded border border-gray-200 hover:border-blue-300 text-center transition-colors min-h-[72px] flex flex-col justify-center">
               <div className="text-2xl mb-1">💥</div>
@@ -247,14 +274,6 @@ export default function Home() {
               <div className="text-2xl mb-1">🌌</div>
               <div className="text-sm font-medium text-gray-700">Early Universe</div>
             </Link>
-            <Link href="/lattice" className="p-4 bg-blue-50 rounded border border-blue-200 hover:border-blue-400 text-center transition-colors min-h-[72px] flex flex-col justify-center">
-              <div className="text-2xl mb-1">🔲</div>
-              <div className="text-sm font-medium text-blue-700">Cube Lattice</div>
-            </Link>
-            <Link href="/why-z2" className="p-4 bg-amber-50 rounded border border-amber-200 hover:border-amber-400 text-center transition-colors min-h-[72px] flex flex-col justify-center">
-              <div className="text-2xl mb-1">?</div>
-              <div className="text-sm font-medium text-amber-700">Why Z²?</div>
-            </Link>
             <Link href="/cosmic-fate" className="p-4 bg-gray-900 rounded border border-gray-700 hover:border-gray-500 text-center transition-colors min-h-[72px] flex flex-col justify-center">
               <div className="text-2xl mb-1">∞</div>
               <div className="text-sm font-medium text-gray-100">Cosmic Fate</div>
@@ -263,13 +282,17 @@ export default function Home() {
               <div className="text-2xl mb-1">*</div>
               <div className="text-sm font-medium text-green-700">All Derivations</div>
             </Link>
-            <Link href="/evidence/4pcf" className="p-4 bg-red-100 rounded border border-red-300 hover:border-red-500 text-center transition-colors min-h-[72px] flex flex-col justify-center">
-              <div className="text-2xl mb-1">🌐</div>
-              <div className="text-sm font-medium text-red-800">DESI 4PCF</div>
+            <Link href="/predictions" className="p-4 bg-purple-50 rounded border border-purple-200 hover:border-purple-400 text-center transition-colors min-h-[72px] flex flex-col justify-center">
+              <div className="text-2xl mb-1">!</div>
+              <div className="text-sm font-medium text-purple-700">Predictions</div>
             </Link>
-            <Link href="/office-hours" className="p-4 bg-purple-50 rounded border border-purple-200 hover:border-purple-400 text-center transition-colors min-h-[72px] flex flex-col justify-center">
+            <Link href="/evidence" className="p-4 bg-gray-50 rounded border border-gray-200 hover:border-blue-300 text-center transition-colors min-h-[72px] flex flex-col justify-center">
+              <div className="text-2xl mb-1">📊</div>
+              <div className="text-sm font-medium text-gray-700">Evidence</div>
+            </Link>
+            <Link href="/office-hours" className="p-4 bg-gray-50 rounded border border-gray-200 hover:border-blue-300 text-center transition-colors min-h-[72px] flex flex-col justify-center">
               <div className="text-2xl mb-1">📚</div>
-              <div className="text-sm font-medium text-purple-700">Office Hours</div>
+              <div className="text-sm font-medium text-gray-700">Office Hours</div>
             </Link>
           </div>
         </div>
