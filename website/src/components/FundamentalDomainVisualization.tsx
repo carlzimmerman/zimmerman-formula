@@ -201,16 +201,24 @@ export default function FundamentalDomainVisualization({ className = '' }: Props
 
   if (loading) {
     return (
-      <div className={`flex items-center justify-center h-96 bg-gray-900 rounded ${className}`}>
+      <div className={`flex items-center justify-center bg-gray-900 rounded ${className}`} style={{ height: '500px' }}>
         <div className="text-gray-400">Loading DESI galaxy data...</div>
+      </div>
+    )
+  }
+
+  if (!data) {
+    return (
+      <div className={`flex items-center justify-center bg-gray-900 rounded ${className}`} style={{ height: '500px' }}>
+        <div className="text-red-400">Failed to load galaxy data. Check console for errors.</div>
       </div>
     )
   }
 
   return (
     <div className={`relative ${className}`}>
-      <div className="aspect-square w-full max-w-xl mx-auto bg-[#0a0a0a] rounded border border-gray-800">
-        <Canvas camera={{ position: [5, 3, 5], fov: 45 }} gl={{ antialias: true }}>
+      <div className="w-full max-w-xl mx-auto bg-[#0a0a0a] rounded border border-gray-800" style={{ height: '500px' }}>
+        <Canvas camera={{ position: [5, 3, 5], fov: 45 }} gl={{ antialias: true }} style={{ width: '100%', height: '100%' }}>
           <color attach="background" args={['#0a0a0a']} />
           <Scene
             ngcPositions={ngcPositions}
