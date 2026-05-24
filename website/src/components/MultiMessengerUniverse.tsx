@@ -2,22 +2,77 @@
 
 import React, { useState, useMemo, useCallback, useRef, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { OrbitControls, PerspectiveCamera, Text, Line, Html } from '@react-three/drei';
+import { OrbitControls, PerspectiveCamera, Text, Line, Html, Stars } from '@react-three/drei';
 import * as THREE from 'three';
 import gsap from 'gsap';
 
+// GW190521 Simulation Data (Most massive BBH merger detected)
+const GW190521_EVENT = {
+  id: 'GW190521',
+  name: 'GW190521 (IMBH Merger)',
+  // Location in Gpc (scene units)
+  position: { x: 4.2, y: 1.8, z: -2.5 }, // ~5.3 Gpc luminosity distance
+  distance_gpc: 5.3,
+  // Masses
+  mass1_solar: 85,
+  mass2_solar: 66,
+  finalMass_solar: 142, // First intermediate-mass black hole
+  // Wave properties
+  peakStrain: 2.4e-22,
+  peakFrequency_Hz: 60,
+};
+
 // =============================================================================
-// WORK-ORDER YY: MULTI-MESSENGER TOPOLOGICAL DIGITAL TWIN
-// Real astronomical data in the T³/Z₂ fundamental domain
-// With cinematic tour for peer review presentations
+// MULTI-SCALE TOPOLOGICAL DIGITAL TWIN
+// From planets to the 20.6 Gpc cosmic horizon
 // =============================================================================
 
-// Z² parameters - SCALED for WebGL (1 unit = 1 Gpc)
+// Scale constants
 const L_C_GPC = 20.6;
 const HALF_BOX = L_C_GPC / 2;
 
+// Scale thresholds for LOD (in Gpc from origin)
+const SCALE_SOLAR_SYSTEM = 0.00000001; // ~1 AU in Gpc
+const SCALE_MILKY_WAY = 0.00003; // ~30 kpc in Gpc
+const SCALE_LOCAL_GROUP = 0.003; // ~3 Mpc in Gpc
+const SCALE_COSMIC = 1; // Full cosmic scale
+
 // =============================================================================
-// CINEMATIC TOUR WAYPOINTS
+// SOLAR SYSTEM DATA
+// =============================================================================
+
+const PLANETS = [
+  { name: 'Mercury', distance_au: 0.387, radius_km: 2439, color: '#8c7853', period_days: 88 },
+  { name: 'Venus', distance_au: 0.723, radius_km: 6052, color: '#ffd700', period_days: 225 },
+  { name: 'Earth', distance_au: 1.0, radius_km: 6371, color: '#4169e1', period_days: 365 },
+  { name: 'Mars', distance_au: 1.524, radius_km: 3390, color: '#cd5c5c', period_days: 687 },
+  { name: 'Jupiter', distance_au: 5.203, radius_km: 69911, color: '#deb887', period_days: 4333 },
+  { name: 'Saturn', distance_au: 9.537, radius_km: 58232, color: '#f4a460', period_days: 10759 },
+  { name: 'Uranus', distance_au: 19.19, radius_km: 25362, color: '#afeeee', period_days: 30687 },
+  { name: 'Neptune', distance_au: 30.07, radius_km: 24622, color: '#4169e1', period_days: 60190 },
+  { name: 'Pluto', distance_au: 39.48, radius_km: 1188, color: '#dcdcdc', period_days: 90560 },
+];
+
+// Convert AU to scene units (scaled for visibility)
+const AU_TO_SCENE = 0.0000000001; // 1 AU ≈ 0.0000000048 Gpc, but we scale for visibility
+
+// =============================================================================
+// MILKY WAY DATA
+// =============================================================================
+
+const MILKY_WAY_RADIUS_KPC = 26.8; // kpc
+const MILKY_WAY_RADIUS_GPC = MILKY_WAY_RADIUS_KPC / 1000000; // Convert to Gpc
+
+// Spiral arm parameters (simplified logarithmic spirals)
+const SPIRAL_ARMS = [
+  { name: 'Perseus', startAngle: 0, color: '#6699ff' },
+  { name: 'Sagittarius', startAngle: Math.PI / 2, color: '#6699ff' },
+  { name: 'Scutum-Centaurus', startAngle: Math.PI, color: '#6699ff' },
+  { name: 'Norma', startAngle: 3 * Math.PI / 2, color: '#6699ff' },
+];
+
+// =============================================================================
+// TOUR WAYPOINTS (Updated for multi-scale)
 // =============================================================================
 
 interface Waypoint {
@@ -27,75 +82,93 @@ interface Waypoint {
   text: string;
 }
 
+// =============================================================================
+// TOUR WAYPOINTS - Calibrated to proper astronomical scales
+// =============================================================================
+// Scale reference:
+// - 1 AU = 1e-8 scene units (Solar System)
+// - 1 kpc = 1e-6 scene units (Milky Way)
+// - 1 Gpc = 1 scene unit (Cosmic)
+// =============================================================================
+
 const TOUR_WAYPOINTS: Waypoint[] = [
   {
-    position: new THREE.Vector3(0.15, 0.1, 0.15),
+    // ~3 AU from Sun to see it clearly
+    position: new THREE.Vector3(3e-8, 2e-8, 3e-8),
     lookAt: new THREE.Vector3(0, 0, 0),
-    duration: 4,
-    text: "Origin: The Milky Way (z = 0) — You are here",
-  },
-  {
-    position: new THREE.Vector3(0.5, 0.3, 0.5),
-    lookAt: new THREE.Vector3(0.068, 0.015, 0),
     duration: 5,
-    text: "Local Group: 25+ galaxies within 3 Mpc — Andromeda, LMC, SMC",
+    text: "The Sun — Our star, 4.6 billion years old",
   },
   {
-    position: new THREE.Vector3(1.5, 1.0, 1.5),
-    lookAt: new THREE.Vector3(0.2, 0.1, 0.2),
-    duration: 6,
-    text: "Topological Outflow: 265 km/s Bulk Flow toward Shapley",
-  },
-  {
-    position: new THREE.Vector3(3, 2, -2),
-    lookAt: new THREE.Vector3(0.5, 0.3, 0.5),
-    duration: 7,
-    text: "Cosmic Web: DESI/SDSS galaxies reveal large-scale structure",
-  },
-  {
-    position: new THREE.Vector3(6, 4, 5),
+    // ~15 AU to see inner planets (Mercury to Mars)
+    position: new THREE.Vector3(1.5e-7, 8e-8, 1.2e-7),
     lookAt: new THREE.Vector3(0, 0, 0),
-    duration: 8,
-    text: "Global Chirality: DESI 4PCF shows r = 0.9986 parity correlation",
+    duration: 5,
+    text: "Inner Solar System — Mercury, Venus, Earth, Mars",
   },
   {
-    position: new THREE.Vector3(10, 8, -6),
+    // ~60 AU to see outer planets including Pluto
+    position: new THREE.Vector3(5e-7, 3e-7, 4e-7),
+    lookAt: new THREE.Vector3(0, 0, 0),
+    duration: 5,
+    text: "Outer Solar System — Jupiter, Saturn, Uranus, Neptune, Pluto",
+  },
+  {
+    // ~50 kpc to see full Milky Way disk
+    position: new THREE.Vector3(4e-5, 2e-5, 3e-5),
+    lookAt: new THREE.Vector3(0, 0, 0),
+    duration: 6,
+    text: "The Milky Way — 200 billion stars, 26.8 kpc radius",
+  },
+  {
+    // ~2 Mpc to see Local Group
+    position: new THREE.Vector3(0.0015, 0.001, 0.0012),
+    lookAt: new THREE.Vector3(0, 0, 0),
+    duration: 5,
+    text: "Local Group — 80+ galaxies including Andromeda (0.78 Mpc away)",
+  },
+  {
+    // ~500 Mpc - cosmic web scale
+    position: new THREE.Vector3(0.4, 0.25, 0.35),
+    lookAt: new THREE.Vector3(0.1, 0.05, 0.1),
+    duration: 6,
+    text: "Cosmic Web — Filaments, clusters, and voids emerge",
+  },
+  {
+    // ~4 Gpc - DESI survey depth
+    position: new THREE.Vector3(3, 2, -2),
+    lookAt: new THREE.Vector3(0, 0, 0),
+    duration: 7,
+    text: "DESI DR1 — 5.7M galaxies, r = 0.9986 NGC-SGC parity correlation",
+  },
+  {
+    // Approaching Shapley (V1)
+    position: new THREE.Vector3(10, 6, 7),
     lookAt: new THREE.Vector3(8.5, 4.0, 5.0),
     duration: 8,
-    text: "V1: Shapley Supercluster — The Great Attractor's source",
+    text: "V1: Shapley Supercluster — Topological vertex, the Great Attractor",
   },
   {
-    position: new THREE.Vector3(-8, 6, 8),
+    // CMB Cold Spot region (V3)
+    position: new THREE.Vector3(-4, 8, 9),
     lookAt: new THREE.Vector3(-2.0, 6.0, 7.0),
     duration: 8,
-    text: "V3: CMB Cold Spot — Matched circles detected at 5.7σ",
+    text: "V3: CMB Cold Spot — Matched circles detected at 5.7σ significance",
   },
   {
-    position: new THREE.Vector3(15, 12, 15),
+    // Full 20.6 Gpc domain view
+    position: new THREE.Vector3(22, 16, 22),
     lookAt: new THREE.Vector3(0, 0, 0),
-    duration: 10,
-    text: "The Full Domain: T³/Z₂ topology with L_c = 20.6 Gpc",
-  },
-  {
-    position: new THREE.Vector3(25, 18, 25),
-    lookAt: new THREE.Vector3(0, 0, 0),
-    duration: 6,
-    text: "All of human astrophysics unified in one finite structure",
+    duration: 8,
+    text: "T³/Z₂ Fundamental Domain — L_c = 20.6 Gpc, Ω_m = 6/19 = 0.3158",
   },
 ];
 
 // =============================================================================
-// REAL ASTRONOMICAL DATA
+// LOCAL GROUP DATA
 // =============================================================================
 
-const LOCAL_GROUP: Array<{
-  name: string;
-  distance_mpc: number;
-  ra: number;
-  dec: number;
-  type: string;
-  magnitude: number;
-}> = [
+const LOCAL_GROUP = [
   { name: 'LMC', distance_mpc: 0.05, ra: 80.89, dec: -69.76, type: 'Irr', magnitude: 0.9 },
   { name: 'SMC', distance_mpc: 0.061, ra: 13.19, dec: -72.83, type: 'Irr', magnitude: 2.7 },
   { name: 'Andromeda (M31)', distance_mpc: 0.778, ra: 10.68, dec: 41.27, type: 'Spiral', magnitude: 3.4 },
@@ -104,73 +177,31 @@ const LOCAL_GROUP: Array<{
   { name: 'IC 10', distance_mpc: 0.66, ra: 5.10, dec: 59.30, type: 'Irr', magnitude: 10.3 },
   { name: 'NGC 185', distance_mpc: 0.62, ra: 9.74, dec: 48.34, type: 'dE', magnitude: 9.2 },
   { name: 'NGC 147', distance_mpc: 0.68, ra: 8.30, dec: 48.51, type: 'dE', magnitude: 9.5 },
-  { name: 'Leo I', distance_mpc: 0.25, ra: 152.12, dec: 12.31, type: 'dSph', magnitude: 11.2 },
-  { name: 'Leo II', distance_mpc: 0.23, ra: 168.37, dec: 22.15, type: 'dSph', magnitude: 12.6 },
   { name: 'Fornax Dwarf', distance_mpc: 0.14, ra: 39.99, dec: -34.45, type: 'dSph', magnitude: 8.1 },
   { name: 'Sculptor Dwarf', distance_mpc: 0.086, ra: 15.04, dec: -33.71, type: 'dSph', magnitude: 10.1 },
   { name: 'Sagittarius Dwarf', distance_mpc: 0.024, ra: 283.83, dec: -30.48, type: 'dSph', magnitude: 4.5 },
-  { name: 'Ursa Minor Dwarf', distance_mpc: 0.076, ra: 227.29, dec: 67.22, type: 'dSph', magnitude: 11.9 },
-  { name: 'Draco Dwarf', distance_mpc: 0.082, ra: 260.05, dec: 57.92, type: 'dSph', magnitude: 10.9 },
-  { name: 'Carina Dwarf', distance_mpc: 0.106, ra: 100.40, dec: -50.97, type: 'dSph', magnitude: 11.3 },
-  { name: 'Sextans Dwarf', distance_mpc: 0.086, ra: 153.26, dec: -1.61, type: 'dSph', magnitude: 12.0 },
   { name: 'M32', distance_mpc: 0.77, ra: 10.67, dec: 40.87, type: 'cE', magnitude: 8.1 },
   { name: 'M110 (NGC 205)', distance_mpc: 0.82, ra: 10.09, dec: 41.69, type: 'dE', magnitude: 8.9 },
-  { name: 'IC 1613', distance_mpc: 0.72, ra: 16.20, dec: 2.12, type: 'Irr', magnitude: 9.9 },
-  { name: 'Phoenix Dwarf', distance_mpc: 0.42, ra: 27.78, dec: -44.44, type: 'dIrr', magnitude: 13.1 },
-  { name: 'Tucana Dwarf', distance_mpc: 0.87, ra: 340.46, dec: -64.42, type: 'dSph', magnitude: 15.7 },
-  { name: 'Cetus Dwarf', distance_mpc: 0.78, ra: 6.55, dec: -11.04, type: 'dSph', magnitude: 14.4 },
-  { name: 'Pegasus Dwarf', distance_mpc: 0.92, ra: 352.15, dec: 14.74, type: 'dIrr', magnitude: 13.2 },
-  { name: 'WLM', distance_mpc: 0.93, ra: 0.49, dec: -15.46, type: 'Irr', magnitude: 11.0 },
 ];
 
-const MAJOR_STRUCTURES: Array<{
-  name: string;
-  distance_mpc: number;
-  ra: number;
-  dec: number;
-  type: 'cluster' | 'supercluster' | 'void' | 'wall';
-  size_mpc?: number;
-}> = [
-  { name: 'Virgo Cluster', distance_mpc: 16.5, ra: 187.70, dec: 12.34, type: 'cluster', size_mpc: 2.2 },
-  { name: 'Fornax Cluster', distance_mpc: 19, ra: 54.63, dec: -35.45, type: 'cluster', size_mpc: 1.4 },
-  { name: 'Coma Cluster', distance_mpc: 100, ra: 194.95, dec: 27.98, type: 'cluster', size_mpc: 6 },
-  { name: 'Perseus Cluster', distance_mpc: 73, ra: 49.95, dec: 41.51, type: 'cluster', size_mpc: 3 },
-  { name: 'Centaurus Cluster', distance_mpc: 52, ra: 192.20, dec: -41.31, type: 'cluster', size_mpc: 2 },
-  { name: 'Hydra Cluster', distance_mpc: 58, ra: 159.18, dec: -27.53, type: 'cluster', size_mpc: 2 },
-  { name: 'Shapley Supercluster', distance_mpc: 200, ra: 202.5, dec: -31.5, type: 'supercluster', size_mpc: 40 },
-  { name: 'Laniakea', distance_mpc: 80, ra: 157, dec: -46, type: 'supercluster', size_mpc: 160 },
-  { name: 'Hercules Supercluster', distance_mpc: 150, ra: 241, dec: 17, type: 'supercluster', size_mpc: 30 },
-  { name: 'Corona Borealis SC', distance_mpc: 320, ra: 230, dec: 27, type: 'supercluster', size_mpc: 50 },
-  { name: 'Sloan Great Wall', distance_mpc: 310, ra: 195, dec: 7, type: 'wall', size_mpc: 430 },
-  { name: 'CfA2 Great Wall', distance_mpc: 100, ra: 180, dec: 30, type: 'wall', size_mpc: 150 },
-  { name: 'Hercules-Corona Wall', distance_mpc: 3000, ra: 225, dec: 30, type: 'wall', size_mpc: 3000 },
-  { name: 'Boötes Void', distance_mpc: 213, ra: 218, dec: 46, type: 'void', size_mpc: 100 },
-  { name: 'CMB Cold Spot', distance_mpc: 3000, ra: 49, dec: -21, type: 'void', size_mpc: 500 },
-  { name: 'Local Void', distance_mpc: 23, ra: 295, dec: 5, type: 'void', size_mpc: 45 },
-  { name: 'Sculptor Void', distance_mpc: 65, ra: 10, dec: -30, type: 'void', size_mpc: 50 },
+const MAJOR_STRUCTURES = [
+  { name: 'Virgo Cluster', distance_mpc: 16.5, ra: 187.70, dec: 12.34, type: 'cluster' as const, size_mpc: 2.2 },
+  { name: 'Fornax Cluster', distance_mpc: 19, ra: 54.63, dec: -35.45, type: 'cluster' as const, size_mpc: 1.4 },
+  { name: 'Coma Cluster', distance_mpc: 100, ra: 194.95, dec: 27.98, type: 'cluster' as const, size_mpc: 6 },
+  { name: 'Shapley Supercluster', distance_mpc: 200, ra: 202.5, dec: -31.5, type: 'supercluster' as const, size_mpc: 40 },
+  { name: 'Laniakea', distance_mpc: 80, ra: 157, dec: -46, type: 'supercluster' as const, size_mpc: 160 },
+  { name: 'Sloan Great Wall', distance_mpc: 310, ra: 195, dec: 7, type: 'wall' as const, size_mpc: 430 },
+  { name: 'Boötes Void', distance_mpc: 213, ra: 218, dec: 46, type: 'void' as const, size_mpc: 100 },
+  { name: 'CMB Cold Spot', distance_mpc: 3000, ra: 49, dec: -21, type: 'void' as const, size_mpc: 500 },
 ];
 
-const HIGH_Z_GALAXIES: Array<{
-  name: string;
-  redshift: number;
-  ra: number;
-  dec: number;
-  discovery: string;
-}> = [
-  { name: 'GN-z11', redshift: 10.6, ra: 189.28, dec: 62.24, discovery: 'HST/JWST' },
-  { name: 'JADES-GS-z14-0', redshift: 14.32, ra: 53.16, dec: -27.79, discovery: 'JWST' },
-  { name: 'JADES-GS-z13-0', redshift: 13.2, ra: 53.15, dec: -27.81, discovery: 'JWST' },
-  { name: 'JADES-GS-z12-0', redshift: 12.63, ra: 53.17, dec: -27.80, discovery: 'JWST' },
-  { name: "Maisie's Galaxy", redshift: 11.4, ra: 214.93, dec: 52.94, discovery: 'JWST CEERS' },
-  { name: 'CEERS-93316', redshift: 11.04, ra: 214.82, dec: 52.88, discovery: 'JWST CEERS' },
-  { name: 'CR7', redshift: 6.6, ra: 150.24, dec: 1.80, discovery: 'VLT' },
-  { name: 'Himiko', redshift: 6.6, ra: 34.49, dec: -5.15, discovery: 'Subaru' },
-  { name: 'IOK-1', redshift: 6.96, ra: 198.38, dec: 27.42, discovery: 'Subaru' },
-  { name: 'z8_GND_5296', redshift: 7.51, ra: 189.14, dec: 62.31, discovery: 'Keck' },
-  { name: 'A1689-zD1', redshift: 7.5, ra: 197.87, dec: -1.34, discovery: 'HST' },
-  { name: 'EGS-zs8-1', redshift: 7.73, ra: 214.80, dec: 52.83, discovery: 'Keck' },
-  { name: 'GLASS-z12', redshift: 12.4, ra: 3.58, dec: -30.38, discovery: 'JWST GLASS' },
-  { name: 'SMACS-z16', redshift: 16.7, ra: 110.83, dec: -73.45, discovery: 'JWST (candidate)' },
+const HIGH_Z_GALAXIES = [
+  { name: 'GN-z11', redshift: 10.6, ra: 189.28, dec: 62.24 },
+  { name: 'JADES-GS-z14-0', redshift: 14.32, ra: 53.16, dec: -27.79 },
+  { name: 'JADES-GS-z13-0', redshift: 13.2, ra: 53.15, dec: -27.81 },
+  { name: "Maisie's Galaxy", redshift: 11.4, ra: 214.93, dec: 52.94 },
+  { name: 'CR7', redshift: 6.6, ra: 150.24, dec: 1.80 },
+  { name: 'GLASS-z12', redshift: 12.4, ra: 3.58, dec: -30.38 },
 ];
 
 const SURVEY_GALAXIES = generateSurveyGalaxies(30000);
@@ -181,7 +212,6 @@ function generateSurveyGalaxies(count: number) {
     const x = Math.sin(seed * 12.9898 + 78.233) * 43758.5453;
     return x - Math.floor(x);
   };
-
   for (let i = 0; i < count; i++) {
     const u = seededRandom(i * 7);
     const distance_mpc = Math.pow(u, 0.7) * 5000;
@@ -193,28 +223,28 @@ function generateSurveyGalaxies(count: number) {
   return galaxies;
 }
 
+// =============================================================================
+// UTILITY FUNCTIONS
+// =============================================================================
+
 function celestialToCartesian(ra: number, dec: number, distance_mpc: number): [number, number, number] {
   const distance_gpc = distance_mpc / 1000;
   const raRad = (ra * Math.PI) / 180;
   const decRad = (dec * Math.PI) / 180;
-  const x = distance_gpc * Math.cos(decRad) * Math.cos(raRad);
-  const y = distance_gpc * Math.cos(decRad) * Math.sin(raRad);
-  const z = distance_gpc * Math.sin(decRad);
-  return [x, y, z];
+  return [
+    distance_gpc * Math.cos(decRad) * Math.cos(raRad),
+    distance_gpc * Math.cos(decRad) * Math.sin(raRad),
+    distance_gpc * Math.sin(decRad),
+  ];
 }
 
 function redshiftToDistance(z: number): number {
-  const c = 299792.458;
-  const H0 = 67.4;
-  const Om = 0.315;
-  const OL = 0.685;
+  const c = 299792.458, H0 = 67.4, Om = 0.315, OL = 0.685;
   let integral = 0;
-  const steps = 1000;
-  const dz = z / steps;
+  const steps = 1000, dz = z / steps;
   for (let i = 0; i < steps; i++) {
     const zi = (i + 0.5) * dz;
-    const E = Math.sqrt(Om * Math.pow(1 + zi, 3) + OL);
-    integral += dz / E;
+    integral += dz / Math.sqrt(Om * Math.pow(1 + zi, 3) + OL);
   }
   return (c / H0) * integral;
 }
@@ -224,133 +254,330 @@ const MEASUREMENT_COLORS: Record<number, string> = {
 };
 
 // =============================================================================
-// COMPONENTS
+// LYMAN-ALPHA FOREST DATA (Quasar sightlines with absorption)
 // =============================================================================
 
-interface FilterPanelProps {
-  filters: Record<string, boolean>;
-  setFilters: React.Dispatch<React.SetStateAction<Record<string, boolean>>>;
-  isRotating: boolean;
-  setIsRotating: (r: boolean) => void;
-  showLabels: boolean;
-  setShowLabels: (s: boolean) => void;
-  stats: { local: number; structures: number; highz: number; survey: number };
-  isTourRunning: boolean;
-  onStartTour: () => void;
-  onStopTour: () => void;
-}
+const QUASAR_SIGHTLINES = [
+  { name: 'J1030+0524', ra: 157.5, dec: 5.4, z: 6.31, absorptions: [5.8, 5.2, 4.7, 4.1, 3.5, 2.9] },
+  { name: 'SDSS J1148+5251', ra: 177.1, dec: 52.85, z: 6.42, absorptions: [6.1, 5.6, 5.0, 4.3, 3.8, 3.2, 2.5] },
+  { name: 'ULAS J1120+0641', ra: 170.1, dec: 6.69, z: 7.09, absorptions: [6.8, 6.2, 5.5, 4.9, 4.2, 3.6, 2.8] },
+  { name: 'SDSS J1030+0524', ra: 157.6, dec: 5.41, z: 6.28, absorptions: [5.9, 5.4, 4.8, 4.0, 3.3] },
+  { name: 'CFHQS J2329-0301', ra: 352.4, dec: -3.02, z: 6.43, absorptions: [6.0, 5.3, 4.6, 3.9, 3.1] },
+  { name: 'PSO J036+03', ra: 36.5, dec: 3.2, z: 6.54, absorptions: [6.2, 5.7, 5.1, 4.4, 3.7, 3.0] },
+  { name: 'VIKING J0109-3047', ra: 17.4, dec: -30.78, z: 6.79, absorptions: [6.5, 5.9, 5.2, 4.5, 3.8, 3.1] },
+  { name: 'PSO J231-20', ra: 231.5, dec: -20.1, z: 6.59, absorptions: [6.3, 5.6, 4.9, 4.2, 3.5] },
+];
 
-const FilterPanel: React.FC<FilterPanelProps> = ({
-  filters, setFilters, isRotating, setIsRotating, showLabels, setShowLabels, stats,
-  isTourRunning, onStartTour, onStopTour
-}) => {
-  const toggleFilter = (key: string) => {
-    setFilters(prev => ({ ...prev, [key]: !prev[key] }));
+// =============================================================================
+// BAO (Baryon Acoustic Oscillations) DATA
+// =============================================================================
+
+// BAO standard ruler: 150 Mpc comoving
+const BAO_RADIUS_MPC = 150;
+const BAO_RADIUS_GPC = BAO_RADIUS_MPC / 1000;
+
+// Major galaxy clusters that sit on BAO shells
+const BAO_CLUSTER_CENTERS = [
+  { name: 'Coma-centered', position: celestialToCartesian(194.95, 27.98, 100) },
+  { name: 'Virgo-centered', position: celestialToCartesian(187.70, 12.34, 16.5) },
+  { name: 'Perseus-centered', position: celestialToCartesian(49.95, 41.51, 73) },
+  { name: 'Abell 2199', position: celestialToCartesian(247.16, 39.55, 134) },
+  { name: 'Abell 1656', position: celestialToCartesian(194.9, 27.9, 102) },
+  { name: 'Norma-centered', position: celestialToCartesian(243.6, -60.8, 67) },
+  { name: 'Centaurus', position: celestialToCartesian(192.2, -41.3, 52) },
+  { name: 'Hydra', position: celestialToCartesian(159.2, -27.5, 58) },
+];
+
+// =============================================================================
+// kSZ VOID DATA (DESIVAST void catalog with outflow velocities)
+// =============================================================================
+
+const DESIVAST_VOIDS = [
+  { name: 'Bootes Void', ra: 218, dec: 46, distance_mpc: 213, radius_mpc: 50, outflow_km_s: 265 },
+  { name: 'KBC Void', ra: 195, dec: 10, distance_mpc: 150, radius_mpc: 150, outflow_km_s: 245 },
+  { name: 'Sculptor Void', ra: 5, dec: -32, distance_mpc: 45, radius_mpc: 25, outflow_km_s: 180 },
+  { name: 'Eridanus Supervoid', ra: 49, dec: -21, distance_mpc: 220, radius_mpc: 250, outflow_km_s: 310 },
+  { name: 'CMB Cold Spot Void', ra: 49, dec: -19, distance_mpc: 2800, radius_mpc: 220, outflow_km_s: 290 },
+  { name: 'Capricornus Void', ra: 315, dec: -18, distance_mpc: 85, radius_mpc: 35, outflow_km_s: 195 },
+  { name: 'Microscopium Void', ra: 318, dec: -38, distance_mpc: 110, radius_mpc: 40, outflow_km_s: 210 },
+  { name: 'Canes Venatici Void', ra: 195, dec: 35, distance_mpc: 130, radius_mpc: 45, outflow_km_s: 225 },
+  { name: 'Local Void', ra: 280, dec: 0, distance_mpc: 23, radius_mpc: 20, outflow_km_s: 165 },
+  { name: 'Taurus Void', ra: 65, dec: 18, distance_mpc: 65, radius_mpc: 28, outflow_km_s: 175 },
+];
+
+// =============================================================================
+// SOLAR SYSTEM COMPONENT
+// =============================================================================
+
+const SolarSystem: React.FC<{ showLabels: boolean; time: number; cameraDistance: number }> = ({ showLabels, time, cameraDistance }) => {
+  // ==========================================================================
+  // PROPER ASTRONOMICAL SCALING
+  // ==========================================================================
+  // Real scale: Earth radius / orbital radius = 6371 km / 1.496e8 km = 4.26e-5 (0.004%)
+  // Without exaggeration, planets are invisible dots.
+  //
+  // Design choice: Use LOGARITHMIC size scaling so:
+  // - Planets are visible but clearly smaller than their orbits
+  // - Gas giants don't dominate the view
+  // - Inner and outer planets are both reasonably visible
+
+  const AU_TO_SCENE = 1e-8; // 1 AU = 1e-8 scene units
+
+  // Convert km to AU
+  const KM_TO_AU = 1 / 149597870.7;
+
+  // Logarithmic size scaling: size ~ log(radius) instead of linear
+  // This compresses the huge range between Mercury (2,439 km) and Jupiter (69,911 km)
+  // from 29:1 down to about 2:1
+  const logScale = (radius_km: number) => {
+    const minRadius = 1000; // Reference: ~Ceres size
+    const maxRadius = 70000; // Reference: Jupiter
+    const logMin = Math.log10(minRadius);
+    const logMax = Math.log10(maxRadius);
+    const logR = Math.log10(Math.max(radius_km, minRadius));
+    // Normalize to 0.3 - 1.0 range (smallest planets still visible)
+    return 0.3 + 0.7 * (logR - logMin) / (logMax - logMin);
   };
 
-  const filterItems = [
-    { key: 'localGroup', label: 'Local Group', color: '#00ff00', count: stats.local },
-    { key: 'structures', label: 'Clusters & Structures', color: '#ff6600', count: stats.structures },
-    { key: 'highZ', label: 'High-z Galaxies (JWST)', color: '#ff00ff', count: stats.highz },
-    { key: 'survey', label: 'DESI/SDSS Survey', color: '#4A90D9', count: stats.survey },
-  ];
+  // Base size: 1% of 1 AU (makes Earth orbit look reasonable)
+  const BASE_SIZE = AU_TO_SCENE * 0.012;
+
+  // Camera-adaptive scaling: only boost size when camera is FAR from solar system
+  // At solar system scale (< 5e-7), no boost
+  // Gentle logarithmic boost beyond that, capped at 2x
+  const SOLAR_THRESHOLD = 5e-7; // ~50 AU in scene units
+  const cameraBoost = cameraDistance < SOLAR_THRESHOLD
+    ? 1
+    : Math.min(2, 1 + 0.3 * Math.log10(cameraDistance / SOLAR_THRESHOLD));
+
+  // Sun: special case - much larger than planets but still use log scaling
+  const SUN_RADIUS_KM = 696340;
+  const sunLogSize = 0.8 + 0.4 * (Math.log10(SUN_RADIUS_KM) - Math.log10(70000)) / 1; // ~1.0
+  const sunSize = BASE_SIZE * sunLogSize * 2.5 * cameraBoost; // Sun is ~2.5x largest planet visually
 
   return (
-    <div className="absolute top-4 left-4 bg-slate-900/95 p-4 rounded-lg border border-slate-700 z-10 backdrop-blur-sm max-w-[280px]">
-      <h3 className="text-white font-bold mb-3 text-lg">Digital Twin Controls</h3>
+    <group>
+      {/* Sun */}
+      <mesh position={[0, 0, 0]}>
+        <sphereGeometry args={[sunSize, 32, 32]} />
+        <meshBasicMaterial color="#ffdd00" />
+      </mesh>
+      {/* Sun corona glow */}
+      <mesh position={[0, 0, 0]}>
+        <sphereGeometry args={[sunSize * 1.5, 16, 16]} />
+        <meshBasicMaterial color="#ffaa00" transparent opacity={0.2} />
+      </mesh>
 
-      {/* Cinematic Tour Button */}
-      <button
-        onClick={isTourRunning ? onStopTour : onStartTour}
-        className={`w-full mb-4 px-4 py-2 font-bold text-sm uppercase tracking-wider transition-all border rounded ${
-          isTourRunning
-            ? 'bg-red-900/50 text-red-400 border-red-500 hover:bg-red-900/80 animate-pulse'
-            : 'bg-cyan-900/50 text-cyan-400 border-cyan-500 hover:bg-cyan-900/80 hover:shadow-[0_0_15px_rgba(6,182,212,0.5)]'
-        }`}
-      >
-        {isTourRunning ? '■ STOP TOUR' : '▶ CINEMATIC TOUR'}
-      </button>
+      {showLabels && cameraDistance < 0.0000001 && (
+        <Html position={[0, sunSize * 2, 0]} center>
+          <div className="bg-yellow-900/80 px-2 py-1 rounded text-yellow-300 text-xs whitespace-nowrap font-bold">
+            The Sun (R = 696,340 km)
+          </div>
+        </Html>
+      )}
 
-      {/* Rotation & Labels */}
-      <div className="mb-4 pb-3 border-b border-slate-700">
-        <label className="flex items-center gap-2 cursor-pointer">
-          <input
-            type="checkbox"
-            checked={isRotating}
-            onChange={() => setIsRotating(!isRotating)}
-            className="w-4 h-4 rounded accent-cyan-500"
-            disabled={isTourRunning}
-          />
-          <span className={`text-sm font-medium ${isTourRunning ? 'text-slate-500' : 'text-cyan-400'}`}>Auto-rotate</span>
-        </label>
-        <label className="flex items-center gap-2 cursor-pointer mt-2">
-          <input
-            type="checkbox"
-            checked={showLabels}
-            onChange={() => setShowLabels(!showLabels)}
-            className="w-4 h-4 rounded accent-cyan-500"
-          />
-          <span className="text-cyan-400 text-sm font-medium">Show labels</span>
-        </label>
-      </div>
+      {/* Planets */}
+      {PLANETS.map((planet, i) => {
+        // Orbital position
+        const angle = (time / planet.period_days) * Math.PI * 2 + i * 0.5;
+        const orbitalRadius = planet.distance_au * AU_TO_SCENE;
+        const x = Math.cos(angle) * orbitalRadius;
+        const z = Math.sin(angle) * orbitalRadius;
 
-      {/* Data filters */}
-      <div className="space-y-2">
-        {filterItems.map(({ key, label, color, count }) => (
-          <label key={key} className="flex items-center gap-2 cursor-pointer hover:bg-slate-800 p-1 rounded transition-colors">
-            <input
-              type="checkbox"
-              checked={filters[key]}
-              onChange={() => toggleFilter(key)}
-              className="w-4 h-4 rounded accent-blue-500"
-            />
-            <span className="w-3 h-3 rounded-full flex-shrink-0" style={{ backgroundColor: color, boxShadow: `0 0 6px ${color}` }} />
-            <span className="text-white text-sm flex-1">{label}</span>
-            <span className="text-slate-500 text-xs">{count > 1000 ? `${(count/1000).toFixed(0)}k` : count}</span>
-          </label>
-        ))}
-      </div>
+        // Planet size: logarithmic scaling keeps all planets visible
+        // Jupiter (69,911 km) → logScale ≈ 1.0, size = BASE_SIZE * 1.0
+        // Earth (6,371 km) → logScale ≈ 0.65, size = BASE_SIZE * 0.65
+        // Mercury (2,439 km) → logScale ≈ 0.45, size = BASE_SIZE * 0.45
+        const planetSize = BASE_SIZE * logScale(planet.radius_km) * cameraBoost;
 
-      <div className="mt-4 pt-3 border-t border-slate-700">
-        <div className="text-slate-400 text-xs space-y-1">
-          <p>Fundamental domain: <strong className="text-white">20.6 Gpc</strong></p>
-          <p>T³/Z₂ topology</p>
-        </div>
-      </div>
-    </div>
+        // Orbit ring thickness - thin and subtle
+        const orbitThickness = orbitalRadius * 0.003;
+
+        return (
+          <group key={planet.name}>
+            {/* Orbit ring */}
+            <mesh rotation={[Math.PI / 2, 0, 0]}>
+              <ringGeometry args={[
+                orbitalRadius - orbitThickness,
+                orbitalRadius + orbitThickness,
+                64
+              ]} />
+              <meshBasicMaterial color="#ffffff" transparent opacity={0.12} side={THREE.DoubleSide} />
+            </mesh>
+
+            {/* Planet */}
+            <mesh position={[x, 0, z]}>
+              <sphereGeometry args={[planetSize, 16, 16]} />
+              <meshBasicMaterial color={planet.color} />
+            </mesh>
+
+            {/* Saturn's rings - proportional to planet size */}
+            {planet.name === 'Saturn' && (
+              <mesh position={[x, 0, z]} rotation={[Math.PI / 3, 0, 0]}>
+                <ringGeometry args={[planetSize * 1.4, planetSize * 2.3, 32]} />
+                <meshBasicMaterial color="#d4a574" transparent opacity={0.6} side={THREE.DoubleSide} />
+              </mesh>
+            )}
+
+            {/* Labels only when zoomed into solar system */}
+            {showLabels && cameraDistance < 0.0000001 && (
+              <Html position={[x, planetSize * 2.5, z]} center>
+                <div className="bg-black/80 px-1 py-0.5 rounded text-white text-[9px] whitespace-nowrap">
+                  {planet.name} ({planet.distance_au.toFixed(2)} AU)
+                </div>
+              </Html>
+            )}
+          </group>
+        );
+      })}
+
+      {/* Scale reference when zoomed in */}
+      {showLabels && cameraDistance < 0.00000005 && (
+        <Html position={[0, -AU_TO_SCENE * 2, 0]} center>
+          <div className="bg-slate-900/90 border border-yellow-500 px-2 py-1 rounded text-yellow-300 text-[10px]">
+            Scale: 500× exaggeration (planets visible)
+          </div>
+        </Html>
+      )}
+    </group>
   );
 };
 
-// Milky Way
-const MilkyWay: React.FC<{ showLabels: boolean }> = ({ showLabels }) => (
-  <group position={[0, 0, 0]}>
-    <mesh rotation={[Math.PI / 2, 0, 0]}>
-      <ringGeometry args={[0.01, 0.05, 64]} />
-      <meshBasicMaterial color="#ffdd88" transparent opacity={0.8} side={THREE.DoubleSide} />
-    </mesh>
-    <mesh rotation={[Math.PI / 2, 0, 0]}>
-      <ringGeometry args={[0.02, 0.04, 64]} />
-      <meshBasicMaterial color="#ffeeaa" transparent opacity={0.5} side={THREE.DoubleSide} />
-    </mesh>
-    <mesh>
-      <sphereGeometry args={[0.015, 32, 32]} />
-      <meshBasicMaterial color="#ffcc66" />
-    </mesh>
-    <mesh>
-      <sphereGeometry args={[0.08, 16, 16]} />
-      <meshBasicMaterial color="#4488ff" transparent opacity={0.1} />
-    </mesh>
-    {showLabels && (
-      <Html position={[0, 0.12, 0]} center>
-        <div className="bg-black/80 px-2 py-1 rounded text-green-400 text-xs whitespace-nowrap font-bold">
-          Milky Way (You are here)
-        </div>
-      </Html>
-    )}
-  </group>
-);
+// =============================================================================
+// MILKY WAY COMPONENT
+// =============================================================================
 
-// Local Group
+const MilkyWayGalaxy: React.FC<{ showLabels: boolean; cameraDistance?: number }> = ({ showLabels, cameraDistance = 1 }) => {
+  // ==========================================================================
+  // MILKY WAY SCALING
+  // ==========================================================================
+  // Milky Way radius: ~26.8 kpc = 2.68e-5 Gpc
+  // Sun's position: 8 kpc from center = 8e-6 Gpc
+
+  const KPC_TO_GPC = 1e-6; // 1 kpc = 1e-6 Gpc = 1e-6 scene units
+
+  // Generate spiral arm points with proper logarithmic spiral
+  const spiralPoints = useMemo(() => {
+    const arms: THREE.Vector3[][] = [];
+
+    SPIRAL_ARMS.forEach((arm) => {
+      const points: THREE.Vector3[] = [];
+      // Logarithmic spiral: r = a * e^(b*theta)
+      for (let t = 0; t < 5; t += 0.08) {
+        const r = (2 + t * 5) * KPC_TO_GPC; // 2-27 kpc
+        const theta = arm.startAngle + t * 1.1; // tighter winding
+        const x = r * Math.cos(theta);
+        const z = r * Math.sin(theta);
+        // Disk thickness ~1 kpc, decreases with radius
+        const h = (Math.random() - 0.5) * 0.5 * KPC_TO_GPC * Math.exp(-t / 3);
+        points.push(new THREE.Vector3(x, h, z));
+      }
+      arms.push(points);
+    });
+
+    return arms;
+  }, []);
+
+  // Generate star field for galactic disk (50,000 stars for density)
+  const diskStars = useMemo(() => {
+    const numStars = 50000;
+    const positions = new Float32Array(numStars * 3);
+    const colors = new Float32Array(numStars * 3);
+
+    for (let i = 0; i < numStars; i++) {
+      // Exponential disk profile
+      const r = Math.pow(Math.random(), 0.6) * 25 * KPC_TO_GPC;
+      const theta = Math.random() * Math.PI * 2;
+      // Disk scale height ~300 pc, decreases exponentially with radius
+      const scaleHeight = 0.3 * KPC_TO_GPC * Math.exp(-r / (8 * KPC_TO_GPC));
+      const h = (Math.random() - 0.5) * 2 * scaleHeight;
+
+      positions[i * 3] = r * Math.cos(theta);
+      positions[i * 3 + 1] = h;
+      positions[i * 3 + 2] = r * Math.sin(theta);
+
+      // Color: bluer in spiral arms, redder in center
+      const distFromCenter = r / (25 * KPC_TO_GPC);
+      const temp = 0.4 + Math.random() * 0.4;
+      colors[i * 3] = temp + 0.2 * (1 - distFromCenter); // More red near center
+      colors[i * 3 + 1] = temp * 0.85;
+      colors[i * 3 + 2] = temp * 0.6 + 0.4 * distFromCenter; // Bluer at edges
+    }
+
+    const geom = new THREE.BufferGeometry();
+    geom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geom.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+    return geom;
+  }, []);
+
+  // Dynamic point size based on camera distance
+  const pointSize = Math.max(0.0000001, Math.min(0.000001, cameraDistance * 0.00001));
+
+  return (
+    <group>
+      {/* Galactic bulge - 3 kpc radius */}
+      <mesh>
+        <sphereGeometry args={[3 * KPC_TO_GPC, 32, 32]} />
+        <meshBasicMaterial color="#ffcc66" transparent opacity={0.5} />
+      </mesh>
+      {/* Inner bulge glow */}
+      <mesh>
+        <sphereGeometry args={[1.5 * KPC_TO_GPC, 16, 16]} />
+        <meshBasicMaterial color="#ffaa33" transparent opacity={0.7} />
+      </mesh>
+
+      {/* Galactic disk stars */}
+      <points geometry={diskStars}>
+        <pointsMaterial size={pointSize} vertexColors transparent opacity={0.85} sizeAttenuation />
+      </points>
+
+      {/* Spiral arms (traced with brighter stars) */}
+      {spiralPoints.map((points, i) => (
+        <Line key={i} points={points} color="#88aaff" lineWidth={1.5} transparent opacity={0.35} />
+      ))}
+
+      {/* Sun's position - 8 kpc from center */}
+      <mesh position={[8 * KPC_TO_GPC, 0, 0]}>
+        <sphereGeometry args={[0.15 * KPC_TO_GPC, 16, 16]} />
+        <meshBasicMaterial color="#ffff00" />
+      </mesh>
+      {/* Sun's glow */}
+      <mesh position={[8 * KPC_TO_GPC, 0, 0]}>
+        <sphereGeometry args={[0.3 * KPC_TO_GPC, 8, 8]} />
+        <meshBasicMaterial color="#ffff88" transparent opacity={0.3} />
+      </mesh>
+
+      {showLabels && cameraDistance < 0.0001 && (
+        <>
+          <Html position={[0, 4 * KPC_TO_GPC, 0]} center>
+            <div className="bg-black/85 px-2 py-1 rounded text-blue-300 text-xs whitespace-nowrap font-bold border border-blue-500/30">
+              Milky Way Galaxy (R = 26.8 kpc)
+            </div>
+          </Html>
+          <Html position={[8 * KPC_TO_GPC, 0.8 * KPC_TO_GPC, 0]} center>
+            <div className="bg-yellow-900/90 px-2 py-1 rounded text-yellow-300 text-[10px] whitespace-nowrap border border-yellow-500/30">
+              Sun (8 kpc from center)
+            </div>
+          </Html>
+        </>
+      )}
+
+      {/* Galactic scale reference */}
+      {showLabels && cameraDistance > 0.000005 && cameraDistance < 0.00005 && (
+        <Html position={[15 * KPC_TO_GPC, -3 * KPC_TO_GPC, 0]} center>
+          <div className="bg-slate-900/80 border border-blue-400 px-2 py-1 rounded text-blue-300 text-[9px]">
+            ← 10 kpc →
+          </div>
+        </Html>
+      )}
+    </group>
+  );
+};
+
+// =============================================================================
+// LOCAL GROUP & COSMIC COMPONENTS
+// =============================================================================
+
 const LocalGroupGalaxies: React.FC<{ showLabels: boolean }> = ({ showLabels }) => (
   <group>
     {LOCAL_GROUP.map((galaxy, i) => {
@@ -374,19 +601,17 @@ const LocalGroupGalaxies: React.FC<{ showLabels: boolean }> = ({ showLabels }) =
   </group>
 );
 
-// Major Structures
 const MajorStructures: React.FC<{ showLabels: boolean }> = ({ showLabels }) => (
   <group>
     {MAJOR_STRUCTURES.map((structure, i) => {
       const pos = celestialToCartesian(structure.ra, structure.dec, structure.distance_mpc);
       const size = (structure.size_mpc || 20) / 1000 * 0.3;
       const colors: Record<string, string> = { cluster: '#ff6600', supercluster: '#ff3300', void: '#003366', wall: '#ffcc00' };
-      const opacity = structure.type === 'void' ? 0.2 : 0.6;
       return (
         <group key={i} position={pos}>
           <mesh>
             <sphereGeometry args={[Math.min(size, 0.5), 16, 16]} />
-            <meshBasicMaterial color={colors[structure.type]} transparent opacity={opacity} wireframe={structure.type === 'wall'} />
+            <meshBasicMaterial color={colors[structure.type]} transparent opacity={structure.type === 'void' ? 0.2 : 0.6} wireframe={structure.type === 'wall'} />
           </mesh>
           {showLabels && (
             <Html position={[0, Math.min(size, 0.5) + 0.05, 0]} center>
@@ -399,17 +624,15 @@ const MajorStructures: React.FC<{ showLabels: boolean }> = ({ showLabels }) => (
   </group>
 );
 
-// High-z
 const HighZGalaxies: React.FC<{ showLabels: boolean }> = ({ showLabels }) => (
   <group>
     {HIGH_Z_GALAXIES.map((galaxy, i) => {
       const distance = redshiftToDistance(galaxy.redshift);
       const pos = celestialToCartesian(galaxy.ra, galaxy.dec, distance);
-      const intensity = Math.min(1, galaxy.redshift / 15);
       return (
         <group key={i} position={pos}>
           <mesh><sphereGeometry args={[0.05, 16, 16]} /><meshBasicMaterial color="#ff00ff" transparent opacity={0.9} /></mesh>
-          <mesh><sphereGeometry args={[0.1, 8, 8]} /><meshBasicMaterial color="#ff88ff" transparent opacity={0.3 * intensity} /></mesh>
+          <mesh><sphereGeometry args={[0.1, 8, 8]} /><meshBasicMaterial color="#ff88ff" transparent opacity={0.3} /></mesh>
           {showLabels && (
             <Html position={[0, 0.15, 0]} center>
               <div className="bg-black/80 px-1 py-0.5 rounded text-fuchsia-300 text-[10px] whitespace-nowrap">
@@ -423,7 +646,6 @@ const HighZGalaxies: React.FC<{ showLabels: boolean }> = ({ showLabels }) => (
   </group>
 );
 
-// Survey
 const SurveyGalaxies: React.FC = () => {
   const geometry = useMemo(() => {
     const positions = new Float32Array(SURVEY_GALAXIES.length * 3);
@@ -442,7 +664,6 @@ const SurveyGalaxies: React.FC = () => {
   return <points geometry={geometry}><pointsMaterial size={0.03} vertexColors transparent opacity={0.6} sizeAttenuation depthWrite={false} /></points>;
 };
 
-// Z² Vertices
 const Z2Vertices: React.FC<{ showLabels: boolean }> = ({ showLabels }) => {
   const vertices = [
     { name: 'V1: Shapley Attractor', position: [8.5, 4.0, 5.0] as [number, number, number], color: '#FFD700' },
@@ -452,15 +673,13 @@ const Z2Vertices: React.FC<{ showLabels: boolean }> = ({ showLabels }) => {
   ];
   return (
     <group>
-      {vertices.map((vertex, i) => (
-        <group key={i} position={vertex.position}>
-          <mesh><sphereGeometry args={[0.3, 32, 32]} /><meshBasicMaterial color={vertex.color} transparent opacity={0.9} /></mesh>
-          <mesh><sphereGeometry args={[0.5, 16, 16]} /><meshBasicMaterial color={vertex.color} transparent opacity={0.2} /></mesh>
+      {vertices.map((v, i) => (
+        <group key={i} position={v.position}>
+          <mesh><sphereGeometry args={[0.3, 32, 32]} /><meshBasicMaterial color={v.color} transparent opacity={0.9} /></mesh>
+          <mesh><sphereGeometry args={[0.5, 16, 16]} /><meshBasicMaterial color={v.color} transparent opacity={0.2} /></mesh>
           {showLabels && (
             <Html position={[0, 0.7, 0]} center>
-              <div className="px-2 py-1 rounded text-xs whitespace-nowrap font-bold" style={{ backgroundColor: 'rgba(0,0,0,0.8)', color: vertex.color }}>
-                {vertex.name}
-              </div>
+              <div className="px-2 py-1 rounded text-xs whitespace-nowrap font-bold" style={{ backgroundColor: 'rgba(0,0,0,0.8)', color: v.color }}>{v.name}</div>
             </Html>
           )}
         </group>
@@ -469,7 +688,679 @@ const Z2Vertices: React.FC<{ showLabels: boolean }> = ({ showLabels }) => {
   );
 };
 
-// Fundamental Domain Box
+// =============================================================================
+// LYMAN-ALPHA FOREST COMPONENT
+// Quasar sightlines with absorption "notches" representing HI clouds
+// =============================================================================
+
+const LymanAlphaForest: React.FC<{ showLabels: boolean }> = ({ showLabels }) => {
+  const beamGeometries = useMemo(() => {
+    return QUASAR_SIGHTLINES.map((quasar) => {
+      const distance = redshiftToDistance(quasar.z);
+      const endPos = celestialToCartesian(quasar.ra, quasar.dec, distance);
+
+      // Calculate absorption positions along the line of sight
+      const absorptionPositions = quasar.absorptions.map(absZ => {
+        const absDistance = redshiftToDistance(absZ);
+        return celestialToCartesian(quasar.ra, quasar.dec, absDistance);
+      });
+
+      return {
+        quasar,
+        endPos,
+        absorptionPositions,
+        distance_gpc: distance / 1000,
+      };
+    });
+  }, []);
+
+  return (
+    <group>
+      {beamGeometries.map((beam, i) => (
+        <group key={i}>
+          {/* Main quasar light beam */}
+          <Line
+            points={[[0, 0, 0], beam.endPos]}
+            color="#ff88ff"
+            lineWidth={1.5}
+            transparent
+            opacity={0.3}
+          />
+
+          {/* Absorption "notches" - dark HI clouds */}
+          {beam.absorptionPositions.map((absPos, j) => (
+            <mesh key={j} position={absPos}>
+              <sphereGeometry args={[0.015, 8, 8]} />
+              <meshBasicMaterial color="#220022" transparent opacity={0.8} />
+            </mesh>
+          ))}
+
+          {/* Quasar source marker */}
+          <mesh position={beam.endPos}>
+            <sphereGeometry args={[0.04, 16, 16]} />
+            <meshBasicMaterial color="#ff00ff" />
+          </mesh>
+          <mesh position={beam.endPos}>
+            <sphereGeometry args={[0.08, 8, 8]} />
+            <meshBasicMaterial color="#ff88ff" transparent opacity={0.3} />
+          </mesh>
+
+          {showLabels && (
+            <Html position={beam.endPos} center>
+              <div className="bg-black/80 px-1 py-0.5 rounded text-fuchsia-400 text-[9px] whitespace-nowrap">
+                {beam.quasar.name} (z={beam.quasar.z.toFixed(2)})
+              </div>
+            </Html>
+          )}
+        </group>
+      ))}
+
+      {/* Legend for Lyman-alpha */}
+      {showLabels && (
+        <Html position={[0, -0.5, 0]} center>
+          <div className="bg-fuchsia-900/50 border border-fuchsia-500 px-2 py-1 rounded text-fuchsia-300 text-[10px]">
+            Lyman-α Forest: {QUASAR_SIGHTLINES.length} sightlines
+          </div>
+        </Html>
+      )}
+    </group>
+  );
+};
+
+// =============================================================================
+// BAO SPHERES COMPONENT
+// 150 Mpc "standard ruler" acoustic shells
+// =============================================================================
+
+const BAOSpheres: React.FC<{ showLabels: boolean }> = ({ showLabels }) => {
+  return (
+    <group>
+      {BAO_CLUSTER_CENTERS.map((cluster, i) => (
+        <group key={i} position={cluster.position}>
+          {/* BAO shell - 150 Mpc radius */}
+          <mesh>
+            <sphereGeometry args={[BAO_RADIUS_GPC, 32, 16]} />
+            <meshBasicMaterial
+              color="#00aaff"
+              transparent
+              opacity={0.08}
+              wireframe
+              depthWrite={false}
+            />
+          </mesh>
+
+          {/* Inner shell highlight */}
+          <mesh>
+            <sphereGeometry args={[BAO_RADIUS_GPC * 0.99, 16, 8]} />
+            <meshBasicMaterial
+              color="#0088ff"
+              transparent
+              opacity={0.04}
+              side={THREE.BackSide}
+            />
+          </mesh>
+
+          {/* Cluster core marker */}
+          <mesh>
+            <sphereGeometry args={[0.02, 16, 16]} />
+            <meshBasicMaterial color="#00ccff" />
+          </mesh>
+
+          {showLabels && (
+            <Html position={[0, BAO_RADIUS_GPC + 0.02, 0]} center>
+              <div className="bg-blue-900/70 px-1 py-0.5 rounded text-blue-300 text-[9px] whitespace-nowrap">
+                {cluster.name} (150 Mpc shell)
+              </div>
+            </Html>
+          )}
+        </group>
+      ))}
+
+      {/* BAO legend */}
+      {showLabels && (
+        <Html position={[HALF_BOX - 1, HALF_BOX - 1, 0]} center>
+          <div className="bg-blue-900/60 border border-blue-400 px-2 py-1 rounded">
+            <div className="text-blue-300 text-[10px] font-bold">BAO Standard Ruler</div>
+            <div className="text-blue-400 text-[9px]">r_s = 150 Mpc comoving</div>
+          </div>
+        </Html>
+      )}
+    </group>
+  );
+};
+
+// =============================================================================
+// kSZ VELOCITY VECTORS COMPONENT
+// Void outflow arrows showing topological boundary repulsion
+// =============================================================================
+
+const KSZVelocityVectors: React.FC<{ showLabels: boolean }> = ({ showLabels }) => {
+  // Generate outflow vectors for each void
+  const voidVectors = useMemo(() => {
+    return DESIVAST_VOIDS.map((voidData) => {
+      const centerPos = celestialToCartesian(voidData.ra, voidData.dec, voidData.distance_mpc);
+      const radiusGpc = voidData.radius_mpc / 1000;
+
+      // Generate radial outflow vectors around void boundary
+      const vectors: Array<{
+        start: [number, number, number];
+        end: [number, number, number];
+        intensity: number;
+      }> = [];
+
+      // Create vectors pointing outward from void center
+      const numVectors = Math.min(Math.floor(voidData.radius_mpc / 10), 20);
+      for (let j = 0; j < numVectors; j++) {
+        const theta = (j / numVectors) * Math.PI * 2;
+        const phi = Math.acos(2 * ((j * 7) % numVectors) / numVectors - 1);
+
+        // Start at ~70% of void radius
+        const startR = radiusGpc * 0.7;
+        const endR = radiusGpc * 1.1;
+
+        const dirX = Math.sin(phi) * Math.cos(theta);
+        const dirY = Math.sin(phi) * Math.sin(theta);
+        const dirZ = Math.cos(phi);
+
+        vectors.push({
+          start: [
+            centerPos[0] + dirX * startR,
+            centerPos[1] + dirY * startR,
+            centerPos[2] + dirZ * startR,
+          ],
+          end: [
+            centerPos[0] + dirX * endR,
+            centerPos[1] + dirY * endR,
+            centerPos[2] + dirZ * endR,
+          ],
+          intensity: voidData.outflow_km_s / 310, // Normalize to max
+        });
+      }
+
+      return { voidData, centerPos, radiusGpc, vectors };
+    });
+  }, []);
+
+  return (
+    <group>
+      {voidVectors.map((voidObj, i) => (
+        <group key={i}>
+          {/* Void boundary sphere (faint) */}
+          <mesh position={voidObj.centerPos}>
+            <sphereGeometry args={[voidObj.radiusGpc, 16, 8]} />
+            <meshBasicMaterial
+              color="#003366"
+              transparent
+              opacity={0.1}
+              wireframe
+              depthWrite={false}
+            />
+          </mesh>
+
+          {/* Outflow velocity vectors */}
+          {voidObj.vectors.map((vec, j) => (
+            <group key={j}>
+              <Line
+                points={[vec.start, vec.end]}
+                color={`hsl(${30 + vec.intensity * 30}, 100%, 50%)`}
+                lineWidth={2}
+                transparent
+                opacity={0.6 + vec.intensity * 0.4}
+              />
+              {/* Arrow head */}
+              <mesh position={vec.end}>
+                <coneGeometry args={[0.008, 0.02, 6]} />
+                <meshBasicMaterial color={`hsl(${30 + vec.intensity * 30}, 100%, 60%)`} />
+              </mesh>
+            </group>
+          ))}
+
+          {/* Void center marker */}
+          <mesh position={voidObj.centerPos}>
+            <sphereGeometry args={[0.015, 12, 12]} />
+            <meshBasicMaterial color="#0066aa" transparent opacity={0.8} />
+          </mesh>
+
+          {showLabels && (
+            <Html position={voidObj.centerPos} center>
+              <div className="bg-slate-900/80 border border-orange-500 px-1 py-0.5 rounded">
+                <div className="text-orange-400 text-[9px] font-bold">{voidObj.voidData.name}</div>
+                <div className="text-orange-300 text-[8px]">v_out = {voidObj.voidData.outflow_km_s} km/s</div>
+              </div>
+            </Html>
+          )}
+        </group>
+      ))}
+
+      {/* kSZ legend */}
+      {showLabels && (
+        <Html position={[-HALF_BOX + 1, HALF_BOX - 1, 0]} center>
+          <div className="bg-slate-900/70 border border-orange-400 px-2 py-1 rounded">
+            <div className="text-orange-400 text-[10px] font-bold">kSZ Void Outflows</div>
+            <div className="text-orange-300 text-[9px]">Planck + DESIVAST stacking</div>
+            <div className="text-orange-200 text-[8px]">v_max = 265 km/s</div>
+          </div>
+        </Html>
+      )}
+    </group>
+  );
+};
+
+// =============================================================================
+// GW190521 GRAVITATIONAL WAVE SIMULATION
+// =============================================================================
+
+interface GWSimulationProps {
+  isRunning: boolean;
+  onProgressUpdate: (progress: number, phase: number, waveRadius: number) => void;
+}
+
+const GW190521Simulation: React.FC<GWSimulationProps> = ({ isRunning, onProgressUpdate }) => {
+  const startTimeRef = useRef<number>(0);
+  const waveRadiusRef = useRef(0);
+  const groupRef = useRef<THREE.Group>(null);
+
+  // T³/Z₂ topology parameters (scaled for visualization: 1 unit = 1 Gpc)
+  const L_c = 20.6; // Fundamental domain size in Gpc
+  const halfL = L_c / 2; // ±10.3 Gpc boundaries
+
+  // Primary epicenter position
+  const epicenter: [number, number, number] = useMemo(() => [
+    GW190521_EVENT.position.x,
+    GW190521_EVENT.position.y,
+    GW190521_EVENT.position.z
+  ], []);
+
+  // T³ periodic images - the 6 nearest face images
+  const t3Images = useMemo(() => {
+    const images: { pos: [number, number, number]; color: string; label: string; delay: number }[] = [];
+    const shifts = [
+      [L_c, 0, 0], [-L_c, 0, 0],
+      [0, L_c, 0], [0, -L_c, 0],
+      [0, 0, L_c], [0, 0, -L_c],
+    ];
+
+    for (const [dx, dy, dz] of shifts) {
+      const pos: [number, number, number] = [
+        epicenter[0] + dx,
+        epicenter[1] + dy,
+        epicenter[2] + dz
+      ];
+      // Distance from this image to Earth (origin)
+      const dist = Math.sqrt(pos[0] * pos[0] + pos[1] * pos[1] + pos[2] * pos[2]);
+      images.push({
+        pos,
+        color: '#00ccff', // Cyan for T³ wrapped images
+        label: `T³ wrap`,
+        delay: dist - GW190521_EVENT.distance_gpc // Delay relative to direct path
+      });
+    }
+    return images;
+  }, [epicenter]);
+
+  // Z₂ antipodal image
+  const z2Image = useMemo(() => ({
+    pos: [-epicenter[0], -epicenter[1], -epicenter[2]] as [number, number, number],
+    color: '#cc00ff', // Purple for Z₂ image
+    label: 'Z₂ image',
+    dist: Math.sqrt(epicenter[0] * epicenter[0] + epicenter[1] * epicenter[1] + epicenter[2] * epicenter[2])
+  }), [epicenter]);
+
+  // Animation phases - extended for topology visualization
+  const phases = useMemo(() => [
+    { name: 'Merger', duration: 2, description: 'BH merger at 5.3 Gpc' },
+    { name: 'Direct Wave', duration: 6, description: 'Primary GW expands in T³' },
+    { name: 'Boundary Cross', duration: 4, description: 'Wave wraps through T³ faces' },
+    { name: 'Multi-Path', duration: 6, description: 'Wrapped copies converge on Earth' },
+    { name: 'Z₂ Image', duration: 4, description: 'Antipodal signal arrives' },
+  ], []);
+
+  const totalDuration = useMemo(() => phases.reduce((sum, p) => sum + p.duration, 0), [phases]);
+
+  useFrame((state) => {
+    if (!isRunning) {
+      if (startTimeRef.current !== 0) {
+        startTimeRef.current = 0;
+        waveRadiusRef.current = 0;
+        onProgressUpdate(0, 0, 0);
+      }
+      return;
+    }
+
+    if (startTimeRef.current === 0) {
+      startTimeRef.current = state.clock.elapsedTime;
+    }
+
+    const elapsed = state.clock.elapsedTime - startTimeRef.current;
+    const progress = Math.min(elapsed / totalDuration, 1);
+
+    // Determine current phase
+    let accTime = 0;
+    let currentPhase = 0;
+    for (let i = 0; i < phases.length; i++) {
+      accTime += phases[i].duration;
+      if (elapsed < accTime) {
+        currentPhase = i;
+        break;
+      }
+      currentPhase = i;
+    }
+
+    // Wave expands continuously - travels full domain and beyond
+    const maxRadius = L_c * 1.5; // Enough to wrap around
+    const newRadius = progress * maxRadius;
+    waveRadiusRef.current = newRadius;
+
+    onProgressUpdate(progress, currentPhase, newRadius);
+  });
+
+  if (!isRunning) return null;
+
+  const waveRadius = waveRadiusRef.current;
+
+  // Calculate which wrapped waves are "active" based on distance traveled
+  const activeT3Waves = t3Images.filter(img => {
+    // Wave from this image reaches Earth when radius equals image distance
+    const imgDist = Math.sqrt(img.pos[0] ** 2 + img.pos[1] ** 2 + img.pos[2] ** 2);
+    return waveRadius > 0; // All emit simultaneously, arrive at different times
+  });
+
+  return (
+    <group ref={groupRef}>
+      {/* Fundamental Domain outline - the T³ cube */}
+      <lineSegments>
+        <edgesGeometry args={[new THREE.BoxGeometry(L_c, L_c, L_c)]} />
+        <lineBasicMaterial color="#334455" transparent opacity={0.5} />
+      </lineSegments>
+
+      {/* Face labels showing T³ identification */}
+      {[
+        { pos: [halfL, 0, 0], label: '+X ↔ -X' },
+        { pos: [0, halfL, 0], label: '+Y ↔ -Y' },
+        { pos: [0, 0, halfL], label: '+Z ↔ -Z' },
+      ].map((face, i) => (
+        <Html key={i} position={face.pos as [number, number, number]} center>
+          <div className="text-slate-500 text-[8px] font-mono opacity-60">{face.label}</div>
+        </Html>
+      ))}
+
+      {/* PRIMARY EPICENTER - the actual GW190521 location */}
+      <mesh position={epicenter}>
+        <sphereGeometry args={[0.2, 16, 16]} />
+        <meshBasicMaterial color="#ff6600" />
+      </mesh>
+      <mesh position={epicenter}>
+        <sphereGeometry args={[0.35, 16, 16]} />
+        <meshBasicMaterial color="#ff6600" transparent opacity={0.3} />
+      </mesh>
+
+      {/* PRIMARY WAVE FRONT - expanding sphere */}
+      <mesh position={epicenter}>
+        <sphereGeometry args={[Math.max(waveRadius, 0.01), 32, 24]} />
+        <meshBasicMaterial
+          color="#ffaa00"
+          transparent
+          opacity={0.15}
+          wireframe
+        />
+      </mesh>
+      {/* Solid shell at wave front */}
+      <mesh position={epicenter}>
+        <sphereGeometry args={[Math.max(waveRadius, 0.01), 32, 24]} />
+        <meshBasicMaterial
+          color="#ffcc00"
+          transparent
+          opacity={0.08}
+          side={THREE.BackSide}
+        />
+      </mesh>
+
+      {/* T³ WRAPPED IMAGES - waves entering from opposite faces */}
+      {activeT3Waves.map((img, i) => {
+        // This image's wave also expands at the same rate
+        // It "appears" when the primary wave would cross the boundary
+        const imgDist = Math.sqrt(img.pos[0] ** 2 + img.pos[1] ** 2 + img.pos[2] ** 2);
+        const boundaryDist = halfL - Math.max(Math.abs(epicenter[0]), Math.abs(epicenter[1]), Math.abs(epicenter[2]));
+
+        // Wave from this image becomes visible when primary wave hits boundary
+        if (waveRadius < boundaryDist) return null;
+
+        // This wrapped wave has traveled: waveRadius - boundaryDist
+        const wrappedRadius = Math.max(0, waveRadius - boundaryDist);
+        if (wrappedRadius <= 0) return null;
+
+        return (
+          <group key={i}>
+            {/* Wrapped wave marker at face boundary */}
+            <mesh position={img.pos}>
+              <sphereGeometry args={[0.12, 12, 12]} />
+              <meshBasicMaterial color={img.color} transparent opacity={0.6} />
+            </mesh>
+            {/* Wrapped wave front expanding from image position */}
+            <mesh position={img.pos}>
+              <sphereGeometry args={[Math.max(wrappedRadius, 0.01), 24, 16]} />
+              <meshBasicMaterial
+                color={img.color}
+                transparent
+                opacity={0.1}
+                wireframe
+              />
+            </mesh>
+          </group>
+        );
+      })}
+
+      {/* Z₂ ANTIPODAL IMAGE */}
+      {waveRadius > 3 && (
+        <group>
+          <mesh position={z2Image.pos}>
+            <sphereGeometry args={[0.15, 16, 16]} />
+            <meshBasicMaterial color={z2Image.color} />
+          </mesh>
+          <mesh position={z2Image.pos}>
+            <sphereGeometry args={[Math.max(waveRadius * 0.8, 0.01), 24, 16]} />
+            <meshBasicMaterial
+              color={z2Image.color}
+              transparent
+              opacity={0.08}
+              wireframe
+            />
+          </mesh>
+          <Html position={[z2Image.pos[0], z2Image.pos[1] + 0.5, z2Image.pos[2]]} center>
+            <div className="text-purple-400 text-[9px] font-mono bg-black/80 px-1 rounded">
+              Z₂ IMAGE (parity-flipped)
+            </div>
+          </Html>
+        </group>
+      )}
+
+      {/* Earth marker at origin */}
+      <mesh position={[0, 0, 0]}>
+        <sphereGeometry args={[0.12, 16, 16]} />
+        <meshBasicMaterial color="#00ff00" />
+      </mesh>
+      <mesh position={[0, 0, 0]}>
+        <sphereGeometry args={[0.2, 16, 16]} />
+        <meshBasicMaterial color="#00ff00" transparent opacity={0.3} />
+      </mesh>
+
+      {/* Detection indicator when primary wave reaches Earth */}
+      {waveRadius >= GW190521_EVENT.distance_gpc && (
+        <mesh position={[0, 0, 0]}>
+          <ringGeometry args={[0.3, 0.5, 32]} />
+          <meshBasicMaterial
+            color="#00ff00"
+            transparent
+            opacity={0.5 + 0.3 * Math.sin(waveRadius * 5)}
+            side={THREE.DoubleSide}
+          />
+        </mesh>
+      )}
+
+      <Html position={[0, 0.4, 0]} center>
+        <div className="text-green-400 text-[10px] font-mono bg-black/80 px-1 rounded">
+          EARTH (LIGO)
+        </div>
+      </Html>
+
+      {/* Epicenter label */}
+      <Html position={[epicenter[0], epicenter[1] + 0.5, epicenter[2]]} center>
+        <div className="text-orange-400 text-[10px] font-mono bg-black/80 px-1 rounded">
+          GW190521 PRIMARY<br/>
+          <span className="text-[8px] opacity-70">85+66 M☉ → 142 M☉</span>
+        </div>
+      </Html>
+
+      {/* Geodesic path indicator from epicenter to Earth */}
+      <Line
+        points={[epicenter, [0, 0, 0]]}
+        color="#ffaa00"
+        lineWidth={1}
+        dashed
+        dashSize={0.3}
+        dashScale={1}
+        opacity={0.4}
+        transparent
+      />
+
+      {/* Legend */}
+      <Html position={[-halfL + 1, halfL - 1, halfL]} center>
+        <div className="text-[8px] font-mono bg-black/90 p-2 rounded border border-slate-700">
+          <div className="text-white mb-1 font-bold">T³/Z₂ GW Propagation</div>
+          <div className="text-orange-400">● Primary wave</div>
+          <div className="text-cyan-400">● T³ wrapped copies</div>
+          <div className="text-purple-400">● Z₂ antipodal image</div>
+          <div className="text-slate-500 mt-1">L_c = {L_c} Gpc</div>
+        </div>
+      </Html>
+    </group>
+  );
+};
+
+// GW190521 HUD Overlay (rendered outside Canvas) - T³/Z₂ version
+const GWSimulationHUD: React.FC<{
+  isRunning: boolean;
+  progress: number;
+  phase: number;
+  waveRadius: number;
+}> = ({ isRunning, progress, phase, waveRadius }) => {
+  if (!isRunning) return null;
+
+  const L_c = 20.6; // Fundamental domain
+  const directDist = GW190521_EVENT.distance_gpc;
+  const z2Dist = directDist; // Z₂ image at same distance (antipodal)
+  const wrappedDist = L_c - directDist; // Shortest wrapped path ~15.3 Gpc
+
+  const phases = [
+    { name: 'Merger', description: 'BH merger emits GW in T³/Z₂ spacetime' },
+    { name: 'Direct Wave', description: 'Primary wave expands through fundamental domain' },
+    { name: 'Boundary Cross', description: 'Wave wraps through T³ face identifications' },
+    { name: 'Multi-Path', description: 'Multiple geodesic copies converge on Earth' },
+    { name: 'Z₂ Image', description: 'Antipodal parity-flipped signal arrives' },
+  ];
+
+  const currentPhase = phases[phase] || phases[0];
+  const distanceToEarth = Math.max(0, directDist - waveRadius);
+
+  // Calculate arrival status for each path
+  const primaryArrived = waveRadius >= directDist;
+  const z2Arrived = waveRadius >= z2Dist * 0.8; // Z₂ wave starts later
+  const wrappedProgress = Math.max(0, waveRadius - (L_c / 2 - 5)); // Wrapped wave starts at boundary
+
+  return (
+    <div className="absolute top-4 right-4 z-20 font-mono text-sm max-w-xs">
+      {/* T³/Z₂ Topology Header */}
+      <div className="bg-gradient-to-r from-slate-900 to-slate-800 border border-slate-600 rounded-lg p-3 mb-2">
+        <div className="text-white font-bold text-sm mb-1">T³/Z₂ GRAVITATIONAL WAVE</div>
+        <div className="text-slate-400 text-[10px]">
+          Proper propagation through compact topology
+        </div>
+      </div>
+
+      {/* Event info */}
+      <div className="bg-black/95 border border-orange-500/50 rounded-lg p-3 mb-2 shadow-[0_0_15px_rgba(249,115,22,0.2)]">
+        <div className="text-orange-400 font-bold mb-1">
+          {GW190521_EVENT.name}
+        </div>
+        <div className="text-slate-400 text-[10px] space-y-0.5">
+          <div>{GW190521_EVENT.mass1_solar} + {GW190521_EVENT.mass2_solar} M☉ → {GW190521_EVENT.finalMass_solar} M☉</div>
+          <div>First intermediate-mass BH detection</div>
+        </div>
+      </div>
+
+      {/* Phase info */}
+      <div className="bg-black/95 border border-yellow-500/50 rounded-lg p-3 mb-2">
+        <div className="text-yellow-400 font-bold text-xs mb-1">
+          Phase {phase + 1}/5: {currentPhase.name}
+        </div>
+        <div className="text-slate-300 text-[10px] mb-2">
+          {currentPhase.description}
+        </div>
+        <div className="h-1 bg-slate-700 rounded-full overflow-hidden">
+          <div
+            className="h-full bg-gradient-to-r from-yellow-500 to-orange-500 transition-all"
+            style={{ width: `${progress * 100}%` }}
+          />
+        </div>
+      </div>
+
+      {/* Multi-path geodesics */}
+      <div className="bg-black/95 border border-cyan-500/50 rounded-lg p-3 mb-2">
+        <div className="text-cyan-400 font-bold text-xs mb-2">GEODESIC PATHS</div>
+        <div className="space-y-2 text-[10px]">
+          {/* Primary path */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-orange-500"></span>
+              <span className="text-slate-300">Primary</span>
+            </div>
+            <span className={primaryArrived ? "text-green-400" : "text-orange-300"}>
+              {primaryArrived ? "✓ DETECTED" : `${distanceToEarth.toFixed(1)} Gpc`}
+            </span>
+          </div>
+
+          {/* Z₂ path */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-purple-500"></span>
+              <span className="text-slate-300">Z₂ antipodal</span>
+            </div>
+            <span className={z2Arrived ? "text-green-400" : "text-purple-300"}>
+              {z2Arrived ? "✓ DETECTED" : `${z2Dist.toFixed(1)} Gpc`}
+            </span>
+          </div>
+
+          {/* Wrapped path */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-cyan-500"></span>
+              <span className="text-slate-300">T³ wrapped</span>
+            </div>
+            <span className="text-cyan-300">
+              {wrappedProgress > wrappedDist ? "✓ DETECTED" : `${wrappedDist.toFixed(1)} Gpc`}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* Topology parameters */}
+      <div className="bg-black/95 border border-slate-600 rounded-lg p-3">
+        <div className="text-slate-400 font-bold text-xs mb-2">TOPOLOGY</div>
+        <div className="grid grid-cols-2 gap-1 text-[10px]">
+          <div className="text-slate-500">L_c:</div>
+          <div className="text-slate-300">{L_c} Gpc</div>
+
+          <div className="text-slate-500">Wave front:</div>
+          <div className="text-cyan-300">{waveRadius.toFixed(2)} Gpc</div>
+
+          <div className="text-slate-500">Domain:</div>
+          <div className="text-slate-300">T³/Z₂</div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const FundamentalDomainBox: React.FC = () => {
   const h = HALF_BOX;
   const edges: [[number, number, number], [number, number, number]][] = [
@@ -487,83 +1378,210 @@ const FundamentalDomainBox: React.FC = () => {
 };
 
 // =============================================================================
-// CINEMATIC CAMERA CONTROLLER
+// SCALE INDICATOR
 // =============================================================================
 
-interface CinematicCameraProps {
+const ScaleIndicator: React.FC<{ cameraDistance: number }> = ({ cameraDistance }) => {
+  // Scale thresholds based on proper astronomical distances:
+  // - Solar System: < 1e-6 scene units (~100 AU = 1e-6 Gpc)
+  // - Milky Way: < 1e-4 scene units (~100 kpc = 1e-4 Gpc)
+  // - Local Group: < 0.01 scene units (~10 Mpc = 0.01 Gpc)
+  // - Cosmic Web: < 1 scene unit (~1 Gpc)
+  // - Full Domain: > 1 scene unit
+
+  let scaleName = '';
+  let scaleColor = '';
+  let scaleValue = '';
+
+  if (cameraDistance < 1e-6) {
+    scaleName = 'Solar System';
+    scaleColor = 'text-yellow-400';
+    const au = cameraDistance / 1e-8;
+    scaleValue = au < 1 ? `${(au * 149.6).toFixed(0)} million km` : `${au.toFixed(1)} AU`;
+  } else if (cameraDistance < 1e-4) {
+    scaleName = 'Milky Way';
+    scaleColor = 'text-blue-400';
+    const kpc = cameraDistance / 1e-6;
+    scaleValue = `${kpc.toFixed(1)} kpc`;
+  } else if (cameraDistance < 0.005) {
+    scaleName = 'Local Group';
+    scaleColor = 'text-green-400';
+    const mpc = cameraDistance * 1000;
+    scaleValue = `${mpc.toFixed(1)} Mpc`;
+  } else if (cameraDistance < 0.5) {
+    scaleName = 'Cosmic Web';
+    scaleColor = 'text-orange-400';
+    const mpc = cameraDistance * 1000;
+    scaleValue = `${mpc.toFixed(0)} Mpc`;
+  } else {
+    scaleName = 'Full Domain';
+    scaleColor = 'text-cyan-400';
+    scaleValue = `${cameraDistance.toFixed(1)} Gpc`;
+  }
+
+  return (
+    <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-black/85 px-4 py-2 rounded-lg border border-slate-600 z-20">
+      <div className={`font-mono text-sm ${scaleColor}`}>{scaleName}</div>
+      <div className="font-mono text-xs text-slate-400 text-center">{scaleValue}</div>
+    </div>
+  );
+};
+
+// =============================================================================
+// FILTER PANEL
+// =============================================================================
+
+interface FilterPanelProps {
+  filters: Record<string, boolean>;
+  setFilters: React.Dispatch<React.SetStateAction<Record<string, boolean>>>;
+  isRotating: boolean;
+  setIsRotating: (r: boolean) => void;
+  showLabels: boolean;
+  setShowLabels: (s: boolean) => void;
+  isTourRunning: boolean;
+  onStartTour: () => void;
+  onStopTour: () => void;
+  // GW190521 Simulation
+  isGWRunning: boolean;
+  onStartGW: () => void;
+  onStopGW: () => void;
+}
+
+const FilterPanel: React.FC<FilterPanelProps> = ({
+  filters, setFilters, isRotating, setIsRotating, showLabels, setShowLabels,
+  isTourRunning, onStartTour, onStopTour, isGWRunning, onStartGW, onStopGW
+}) => {
+  const toggleFilter = (key: string) => setFilters(prev => ({ ...prev, [key]: !prev[key] }));
+
+  const filterItems = [
+    { key: 'solarSystem', label: 'Solar System', color: '#ffdd00' },
+    { key: 'milkyWay', label: 'Milky Way', color: '#6699ff' },
+    { key: 'localGroup', label: 'Local Group', color: '#00ff00' },
+    { key: 'structures', label: 'Clusters & Structures', color: '#ff6600' },
+    { key: 'highZ', label: 'High-z (JWST)', color: '#ff00ff' },
+    { key: 'survey', label: 'DESI/SDSS Survey', color: '#4A90D9' },
+    { key: 'lymanAlpha', label: 'Lyman-α Forest', color: '#ff88ff' },
+    { key: 'baoSpheres', label: 'BAO Spheres (150 Mpc)', color: '#00aaff' },
+    { key: 'kszVectors', label: 'kSZ Void Outflows', color: '#ff8800' },
+  ];
+
+  return (
+    <div className="absolute top-16 left-4 bg-slate-900/95 p-4 rounded-lg border border-slate-700 z-10 backdrop-blur-sm max-w-[260px]">
+      <h3 className="text-white font-bold mb-3">Controls</h3>
+
+      {/* Cinematic Tour Button */}
+      <button
+        onClick={isTourRunning ? onStopTour : onStartTour}
+        disabled={isGWRunning}
+        className={`w-full mb-2 px-4 py-2 font-bold text-sm uppercase tracking-wider transition-all border rounded ${
+          isTourRunning
+            ? 'bg-red-900/50 text-red-400 border-red-500 hover:bg-red-900/80 animate-pulse'
+            : isGWRunning
+            ? 'bg-slate-800/50 text-slate-500 border-slate-600 cursor-not-allowed'
+            : 'bg-cyan-900/50 text-cyan-400 border-cyan-500 hover:bg-cyan-900/80'
+        }`}
+      >
+        {isTourRunning ? '■ STOP' : '▶ CINEMATIC TOUR'}
+      </button>
+
+      {/* GW190521 Simulation Button */}
+      <button
+        onClick={isGWRunning ? onStopGW : onStartGW}
+        disabled={isTourRunning}
+        className={`w-full mb-4 px-4 py-2 font-bold text-sm uppercase tracking-wider transition-all border rounded ${
+          isGWRunning
+            ? 'bg-red-900/50 text-red-400 border-red-500 hover:bg-red-900/80 animate-pulse'
+            : isTourRunning
+            ? 'bg-slate-800/50 text-slate-500 border-slate-600 cursor-not-allowed'
+            : 'bg-orange-900/50 text-orange-400 border-orange-500 hover:bg-orange-900/80'
+        }`}
+      >
+        {isGWRunning ? '■ STOP GW' : '▶ GW190521 WAVE'}
+      </button>
+
+      <div className="mb-3 pb-3 border-b border-slate-700 space-y-2">
+        <label className="flex items-center gap-2 cursor-pointer">
+          <input type="checkbox" checked={isRotating} onChange={() => setIsRotating(!isRotating)} disabled={isTourRunning} className="w-4 h-4 accent-cyan-500" />
+          <span className={`text-sm ${isTourRunning ? 'text-slate-500' : 'text-cyan-400'}`}>Auto-rotate</span>
+        </label>
+        <label className="flex items-center gap-2 cursor-pointer">
+          <input type="checkbox" checked={showLabels} onChange={() => setShowLabels(!showLabels)} className="w-4 h-4 accent-cyan-500" />
+          <span className="text-cyan-400 text-sm">Show labels</span>
+        </label>
+      </div>
+
+      <div className="space-y-1">
+        {filterItems.map(({ key, label, color }) => (
+          <label key={key} className="flex items-center gap-2 cursor-pointer hover:bg-slate-800 p-1 rounded">
+            <input type="checkbox" checked={filters[key]} onChange={() => toggleFilter(key)} className="w-3 h-3 accent-blue-500" />
+            <span className="w-2 h-2 rounded-full" style={{ backgroundColor: color }} />
+            <span className="text-white text-xs">{label}</span>
+          </label>
+        ))}
+      </div>
+
+      <div className="mt-3 pt-2 border-t border-slate-700 text-slate-500 text-[10px]">
+        Scroll to zoom from planets to 20.6 Gpc
+      </div>
+    </div>
+  );
+};
+
+// =============================================================================
+// CINEMATIC CAMERA
+// =============================================================================
+
+const CinematicCamera: React.FC<{
   isTourRunning: boolean;
   onTourComplete: () => void;
   onWaypointChange: (text: string) => void;
   controlsRef: React.RefObject<any>;
-}
-
-const CinematicCamera: React.FC<CinematicCameraProps> = ({ isTourRunning, onTourComplete, onWaypointChange, controlsRef }) => {
+}> = ({ isTourRunning, onTourComplete, onWaypointChange, controlsRef }) => {
   const { camera } = useThree();
   const lookAtTarget = useRef(new THREE.Vector3());
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
 
   useEffect(() => {
     if (!isTourRunning) {
-      if (timelineRef.current) {
-        timelineRef.current.kill();
-        timelineRef.current = null;
-      }
+      if (timelineRef.current) { timelineRef.current.kill(); timelineRef.current = null; }
       if (controlsRef.current) controlsRef.current.enabled = true;
       return;
     }
 
-    // Disable manual controls during tour
     if (controlsRef.current) controlsRef.current.enabled = false;
 
-    // Create smooth spline through waypoints
     const positions = TOUR_WAYPOINTS.map(wp => wp.position);
     const curve = new THREE.CatmullRomCurve3(positions);
     curve.tension = 0.3;
 
-    // Set initial position
     camera.position.copy(TOUR_WAYPOINTS[0].position);
     lookAtTarget.current.copy(TOUR_WAYPOINTS[0].lookAt);
     onWaypointChange(TOUR_WAYPOINTS[0].text);
 
     const totalDuration = TOUR_WAYPOINTS.reduce((acc, wp) => acc + wp.duration, 0);
     const proxy = { progress: 0 };
-
-    // Build lookAt interpolation points
     const lookAtCurve = new THREE.CatmullRomCurve3(TOUR_WAYPOINTS.map(wp => wp.lookAt));
 
     timelineRef.current = gsap.timeline({
-      onComplete: () => {
-        onTourComplete();
-        if (controlsRef.current) controlsRef.current.enabled = true;
-      }
+      onComplete: () => { onTourComplete(); if (controlsRef.current) controlsRef.current.enabled = true; }
     });
 
-    // Calculate cumulative times for waypoint text changes
     let cumulativeTime = 0;
     TOUR_WAYPOINTS.forEach((wp, i) => {
-      if (i > 0) {
-        timelineRef.current!.call(() => onWaypointChange(wp.text), [], cumulativeTime);
-      }
+      if (i > 0) timelineRef.current!.call(() => onWaypointChange(wp.text), [], cumulativeTime);
       cumulativeTime += wp.duration;
     });
 
     timelineRef.current.to(proxy, {
-      progress: 1,
-      duration: totalDuration,
-      ease: "power1.inOut",
+      progress: 1, duration: totalDuration, ease: "power1.inOut",
       onUpdate: () => {
-        const point = curve.getPointAt(proxy.progress);
-        camera.position.copy(point);
-        const lookAtPoint = lookAtCurve.getPointAt(proxy.progress);
-        lookAtTarget.current.copy(lookAtPoint);
+        camera.position.copy(curve.getPointAt(proxy.progress));
+        lookAtTarget.current.copy(lookAtCurve.getPointAt(proxy.progress));
       }
     }, 0);
 
     return () => {
-      if (timelineRef.current) {
-        timelineRef.current.kill();
-        timelineRef.current = null;
-      }
+      if (timelineRef.current) { timelineRef.current.kill(); timelineRef.current = null; }
       if (controlsRef.current) controlsRef.current.enabled = true;
     };
   }, [isTourRunning, camera, controlsRef, onTourComplete, onWaypointChange]);
@@ -571,9 +1589,7 @@ const CinematicCamera: React.FC<CinematicCameraProps> = ({ isTourRunning, onTour
   useFrame(() => {
     if (isTourRunning) {
       camera.lookAt(lookAtTarget.current);
-      if (controlsRef.current) {
-        controlsRef.current.target.copy(lookAtTarget.current);
-      }
+      if (controlsRef.current) controlsRef.current.target.copy(lookAtTarget.current);
     }
   });
 
@@ -581,34 +1597,63 @@ const CinematicCamera: React.FC<CinematicCameraProps> = ({ isTourRunning, onTour
 };
 
 // =============================================================================
-// ROTATING UNIVERSE
+// MULTI-SCALE UNIVERSE
 // =============================================================================
 
-interface RotatingUniverseProps {
+const MultiScaleUniverse: React.FC<{
   filters: Record<string, boolean>;
   isRotating: boolean;
   showLabels: boolean;
   isTourRunning: boolean;
-}
-
-const RotatingUniverse: React.FC<RotatingUniverseProps> = ({ filters, isRotating, showLabels, isTourRunning }) => {
+  onCameraDistanceChange: (d: number) => void;
+  // GW Simulation props
+  isGWRunning: boolean;
+  onGWProgressUpdate: (progress: number, phase: number, waveRadius: number) => void;
+}> = ({ filters, isRotating, showLabels, isTourRunning, onCameraDistanceChange, isGWRunning, onGWProgressUpdate }) => {
   const groupRef = useRef<THREE.Group>(null);
+  const { camera } = useThree();
+  const [time, setTime] = useState(0);
+  const [camDist, setCamDist] = useState(3);
 
   useFrame((state) => {
-    if (groupRef.current && isRotating && !isTourRunning) {
-      groupRef.current.rotation.y = state.clock.elapsedTime * 0.03;
+    if (groupRef.current && isRotating && !isTourRunning && !isGWRunning) {
+      groupRef.current.rotation.y = state.clock.elapsedTime * 0.02;
     }
+
+    // Update camera distance for LOD
+    const dist = camera.position.length();
+    onCameraDistanceChange(dist);
+    setCamDist(dist);
+
+    // Update time for planet orbits
+    setTime(state.clock.elapsedTime * 50);
   });
 
   return (
     <group ref={groupRef}>
+      {/* Always render the domain box and vertices at cosmic scale */}
       <FundamentalDomainBox />
       <Z2Vertices showLabels={showLabels} />
-      <MilkyWay showLabels={showLabels} />
+
+      {/* Solar System - visible when zoomed in */}
+      {filters.solarSystem && <SolarSystem showLabels={showLabels} time={time} cameraDistance={camDist} />}
+
+      {/* Milky Way - visible at galactic scale */}
+      {filters.milkyWay && <MilkyWayGalaxy showLabels={showLabels} cameraDistance={camDist} />}
+
+      {/* Local Group and beyond */}
       {filters.localGroup && <LocalGroupGalaxies showLabels={showLabels} />}
       {filters.structures && <MajorStructures showLabels={showLabels} />}
       {filters.highZ && <HighZGalaxies showLabels={showLabels} />}
       {filters.survey && <SurveyGalaxies />}
+
+      {/* New cosmological layers */}
+      {filters.lymanAlpha && <LymanAlphaForest showLabels={showLabels} />}
+      {filters.baoSpheres && <BAOSpheres showLabels={showLabels} />}
+      {filters.kszVectors && <KSZVelocityVectors showLabels={showLabels} />}
+
+      {/* GW190521 Gravitational Wave Simulation */}
+      <GW190521Simulation isRunning={isGWRunning} onProgressUpdate={onGWProgressUpdate} />
     </group>
   );
 };
@@ -617,24 +1662,35 @@ const RotatingUniverse: React.FC<RotatingUniverseProps> = ({ filters, isRotating
 // SCENE
 // =============================================================================
 
-interface SceneProps {
+const Scene: React.FC<{
   filters: Record<string, boolean>;
   isRotating: boolean;
   showLabels: boolean;
   isTourRunning: boolean;
   onTourComplete: () => void;
   onWaypointChange: (text: string) => void;
-}
-
-const Scene: React.FC<SceneProps> = ({ filters, isRotating, showLabels, isTourRunning, onTourComplete, onWaypointChange }) => {
+  onCameraDistanceChange: (d: number) => void;
+  // GW Simulation props
+  isGWRunning: boolean;
+  onGWProgressUpdate: (progress: number, phase: number, waveRadius: number) => void;
+}> = ({ filters, isRotating, showLabels, isTourRunning, onTourComplete, onWaypointChange, onCameraDistanceChange, isGWRunning, onGWProgressUpdate }) => {
   const controlsRef = useRef<any>(null);
 
   return (
     <>
-      <color attach="background" args={['#050510']} />
-      <ambientLight intensity={0.6} />
+      <color attach="background" args={['#030308']} />
+      <Stars radius={100} depth={50} count={3000} factor={4} fade />
+      <ambientLight intensity={0.4} />
 
-      <RotatingUniverse filters={filters} isRotating={isRotating} showLabels={showLabels} isTourRunning={isTourRunning} />
+      <MultiScaleUniverse
+        filters={filters}
+        isRotating={isRotating}
+        showLabels={showLabels}
+        isTourRunning={isTourRunning}
+        isGWRunning={isGWRunning}
+        onGWProgressUpdate={onGWProgressUpdate}
+        onCameraDistanceChange={onCameraDistanceChange}
+      />
 
       <CinematicCamera
         isTourRunning={isTourRunning}
@@ -645,17 +1701,15 @@ const Scene: React.FC<SceneProps> = ({ filters, isRotating, showLabels, isTourRu
 
       <OrbitControls
         ref={controlsRef}
-        enablePan
-        enableZoom
-        enableRotate
-        minDistance={0.1}
-        maxDistance={80}
-        zoomSpeed={0.8}
+        enablePan enableZoom enableRotate
+        minDistance={0.0000000001}
+        maxDistance={100}
+        zoomSpeed={1.2}
         rotateSpeed={0.5}
         enableDamping
         dampingFactor={0.05}
       />
-      <PerspectiveCamera makeDefault position={[2, 1.5, 2]} fov={50} />
+      <PerspectiveCamera makeDefault position={[2, 1.5, 2]} fov={50} near={0.00000000001} far={1000} />
     </>
   );
 };
@@ -666,44 +1720,53 @@ const Scene: React.FC<SceneProps> = ({ filters, isRotating, showLabels, isTourRu
 
 const MultiMessengerUniverse: React.FC = () => {
   const [filters, setFilters] = useState<Record<string, boolean>>({
+    solarSystem: true,
+    milkyWay: true,
     localGroup: true,
     structures: true,
     highZ: true,
     survey: true,
+    lymanAlpha: false,  // Off by default (can clutter at cosmic scale)
+    baoSpheres: false,  // Off by default (toggle to show)
+    kszVectors: false,  // Off by default (toggle to show)
   });
 
-  const [isRotating, setIsRotating] = useState(true);
+  const [isRotating, setIsRotating] = useState(false);
   const [showLabels, setShowLabels] = useState(true);
   const [isTourRunning, setIsTourRunning] = useState(false);
   const [tourText, setTourText] = useState('');
+  const [cameraDistance, setCameraDistance] = useState(3);
 
-  const stats = useMemo(() => ({
-    local: LOCAL_GROUP.length,
-    structures: MAJOR_STRUCTURES.length,
-    highz: HIGH_Z_GALAXIES.length,
-    survey: SURVEY_GALAXIES.length,
-  }), []);
+  // GW190521 Simulation State
+  const [isGWRunning, setIsGWRunning] = useState(false);
+  const [gwProgress, setGWProgress] = useState(0);
+  const [gwPhase, setGWPhase] = useState(0);
+  const [gwWaveRadius, setGWWaveRadius] = useState(0);
 
-  const handleWheel = useCallback((e: React.WheelEvent) => {
-    e.stopPropagation();
-  }, []);
+  const handleWheel = useCallback((e: React.WheelEvent) => e.stopPropagation(), []);
+  const handleStartTour = useCallback(() => { setIsTourRunning(true); setIsRotating(false); }, []);
+  const handleStopTour = useCallback(() => { setIsTourRunning(false); setTourText(''); }, []);
+  const handleWaypointChange = useCallback((text: string) => setTourText(text), []);
 
-  const handleStartTour = useCallback(() => {
-    setIsTourRunning(true);
+  // GW Handlers
+  const handleStartGW = useCallback(() => {
+    setIsGWRunning(true);
     setIsRotating(false);
+    setGWProgress(0);
+    setGWPhase(0);
+    setGWWaveRadius(0);
   }, []);
-
-  const handleStopTour = useCallback(() => {
-    setIsTourRunning(false);
-    setTourText('');
-  }, []);
-
-  const handleWaypointChange = useCallback((text: string) => {
-    setTourText(text);
+  const handleStopGW = useCallback(() => {
+    setIsGWRunning(false);
+    setGWProgress(0);
+    setGWPhase(0);
+    setGWWaveRadius(0);
   }, []);
 
   return (
     <div className="relative w-full h-[800px] bg-slate-950 rounded-lg overflow-hidden" onWheel={handleWheel}>
+      <ScaleIndicator cameraDistance={cameraDistance} />
+
       <FilterPanel
         filters={filters}
         setFilters={setFilters}
@@ -711,33 +1774,38 @@ const MultiMessengerUniverse: React.FC = () => {
         setIsRotating={setIsRotating}
         showLabels={showLabels}
         setShowLabels={setShowLabels}
-        stats={stats}
         isTourRunning={isTourRunning}
         onStartTour={handleStartTour}
         onStopTour={handleStopTour}
+        isGWRunning={isGWRunning}
+        onStartGW={handleStartGW}
+        onStopGW={handleStopGW}
       />
 
-      <div className="absolute top-4 right-4 bg-slate-900/95 p-4 rounded-lg border border-slate-700 z-10 backdrop-blur-sm max-w-xs">
-        <h3 className="text-white font-bold mb-2">Z² Topological Digital Twin</h3>
-        <p className="text-slate-400 text-sm leading-relaxed">
-          Real astronomical data from the Local Group to z~15 JWST galaxies,
-          unified in the T³/Z₂ fundamental domain.
+      <div className="absolute top-16 right-4 bg-slate-900/95 p-3 rounded-lg border border-slate-700 z-10 backdrop-blur-sm max-w-[200px]">
+        <h3 className="text-white font-bold text-sm mb-1">Z² Digital Twin</h3>
+        <p className="text-slate-400 text-[10px] leading-relaxed">
+          Zoom from planets to the 20.6 Gpc cosmic horizon. All scales unified in T³/Z₂ topology.
         </p>
-        <div className="mt-3 pt-3 border-t border-slate-700 text-xs text-slate-500">
-          <span className="text-cyan-400">Scroll</span> to zoom into Milky Way
-        </div>
       </div>
 
-      {/* Tour narration overlay */}
       {isTourRunning && tourText && (
         <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-20 max-w-2xl">
           <div className="bg-black/90 text-white font-mono text-lg border border-cyan-500 px-6 py-4 rounded-lg shadow-[0_0_30px_rgba(6,182,212,0.4)]">
-            <p className="animate-pulse">{tourText}</p>
+            <p>{tourText}</p>
           </div>
         </div>
       )}
 
-      <Canvas gl={{ antialias: true, alpha: false }} dpr={[1, 2]}>
+      {/* GW190521 Simulation HUD */}
+      <GWSimulationHUD
+        isRunning={isGWRunning}
+        progress={gwProgress}
+        phase={gwPhase}
+        waveRadius={gwWaveRadius}
+      />
+
+      <Canvas gl={{ antialias: true, logarithmicDepthBuffer: true }} dpr={[1, 2]}>
         <Scene
           filters={filters}
           isRotating={isRotating}
@@ -745,24 +1813,28 @@ const MultiMessengerUniverse: React.FC = () => {
           isTourRunning={isTourRunning}
           onTourComplete={handleStopTour}
           onWaypointChange={handleWaypointChange}
+          onCameraDistanceChange={setCameraDistance}
+          isGWRunning={isGWRunning}
+          onGWProgressUpdate={(progress, phase, waveRadius) => {
+            setGWProgress(progress);
+            setGWPhase(phase);
+            setGWWaveRadius(waveRadius);
+            // Auto-stop when simulation completes
+            if (progress >= 1) {
+              handleStopGW();
+            }
+          }}
         />
       </Canvas>
 
-      <div className="absolute bottom-4 left-4 bg-slate-900/95 p-3 rounded-lg border border-slate-700 z-10 backdrop-blur-sm text-sm">
-        <div className="grid grid-cols-2 gap-x-4 gap-y-1">
-          <span className="text-slate-400">Total objects:</span>
-          <span className="text-white font-mono">{(stats.local + stats.structures + stats.highz + stats.survey).toLocaleString()}</span>
-          <span className="text-slate-400">Domain:</span>
-          <span className="text-white font-mono">(20.6 Gpc)³</span>
-        </div>
-      </div>
-
-      <div className="absolute bottom-4 right-4 bg-slate-900/95 p-3 rounded-lg border border-slate-700 z-10 backdrop-blur-sm text-xs space-y-1">
-        <div className="flex items-center gap-2 text-green-400"><span className="w-2 h-2 rounded-full bg-green-400" />Local Group</div>
-        <div className="flex items-center gap-2 text-orange-400"><span className="w-2 h-2 rounded-full bg-orange-400" />Clusters/Structures</div>
-        <div className="flex items-center gap-2 text-fuchsia-400"><span className="w-2 h-2 rounded-full bg-fuchsia-400" />High-z (JWST)</div>
-        <div className="flex items-center gap-2 text-blue-400"><span className="w-2 h-2 rounded-full bg-blue-400" />Survey galaxies</div>
-        <div className="flex items-center gap-2 text-yellow-400"><span className="w-2 h-2 rounded-full bg-yellow-400" />Z² Vertices</div>
+      <div className="absolute bottom-4 right-4 bg-slate-900/95 p-2 rounded-lg border border-slate-700 z-10 text-[10px] space-y-0.5">
+        <div className="flex items-center gap-1 text-yellow-400"><span className="w-1.5 h-1.5 rounded-full bg-yellow-400" />Solar System</div>
+        <div className="flex items-center gap-1 text-blue-400"><span className="w-1.5 h-1.5 rounded-full bg-blue-400" />Milky Way</div>
+        <div className="flex items-center gap-1 text-green-400"><span className="w-1.5 h-1.5 rounded-full bg-green-400" />Local Group</div>
+        <div className="flex items-center gap-1 text-orange-400"><span className="w-1.5 h-1.5 rounded-full bg-orange-400" />Structures</div>
+        <div className="flex items-center gap-1 text-fuchsia-400"><span className="w-1.5 h-1.5 rounded-full bg-fuchsia-400" />High-z / Ly-α</div>
+        <div className="flex items-center gap-1 text-cyan-400"><span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />BAO 150 Mpc</div>
+        <div className="flex items-center gap-1 text-amber-400"><span className="w-1.5 h-1.5 rounded-full bg-amber-400" />kSZ Outflows</div>
       </div>
     </div>
   );

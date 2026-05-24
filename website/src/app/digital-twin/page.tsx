@@ -4,9 +4,18 @@ import React from 'react';
 import dynamic from 'next/dynamic';
 
 // Dynamically import to avoid SSR issues with Three.js
+// Original Multi-Messenger Universe with full astronomical data
 const MultiMessengerUniverse = dynamic(
   () => import('../../components/MultiMessengerUniverse'),
-  { ssr: false, loading: () => <div className="w-full h-[800px] bg-slate-950 flex items-center justify-center text-white">Loading Digital Twin...</div> }
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-[800px] bg-slate-950 flex flex-col items-center justify-center text-white font-mono">
+        <div className="text-cyan-400 text-lg mb-4">INITIALIZING Z² DIGITAL TWIN...</div>
+        <div className="text-slate-500 text-sm animate-pulse">Loading 30,000+ galaxies...</div>
+      </div>
+    )
+  }
 );
 
 export default function DigitalTwinPage() {
