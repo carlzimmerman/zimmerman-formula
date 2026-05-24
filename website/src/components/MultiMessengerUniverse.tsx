@@ -83,86 +83,205 @@ interface Waypoint {
 }
 
 // =============================================================================
-// TOUR WAYPOINTS - Calibrated to proper astronomical scales
+// T³/Z₂ TOPOLOGY TOUR - Travel through the orbifold geometry
 // =============================================================================
-// Scale reference:
-// - 1 AU = 1e-8 scene units (Solar System)
-// - 1 kpc = 1e-6 scene units (Milky Way)
-// - 1 Gpc = 1 scene unit (Cosmic)
+// This tour demonstrates the compact topology by:
+// 1. Starting at cosmic overview showing the full fundamental domain
+// 2. Flying through face boundaries (T³ identification)
+// 3. Visiting topological vertices (Z₂ fixed points)
+// 4. Demonstrating antipodal identification
 // =============================================================================
 
-const TOUR_WAYPOINTS: Waypoint[] = [
+interface TopologyWaypoint {
+  position: THREE.Vector3;
+  lookAt: THREE.Vector3;
+  duration: number;
+  text: string;
+  type: 'normal' | 'boundary_cross' | 'vertex' | 'z2_demo';
+  boundaryAxis?: 'x' | 'y' | 'z'; // Which face we're crossing
+}
+
+// The 8 Z₂ vertices at corners of the fundamental domain
+const Z2_VERTICES = {
+  V1: new THREE.Vector3(HALF_BOX, HALF_BOX, HALF_BOX),      // Shapley direction
+  V2: new THREE.Vector3(-HALF_BOX, HALF_BOX, HALF_BOX),
+  V3: new THREE.Vector3(HALF_BOX, -HALF_BOX, HALF_BOX),     // CMB Cold Spot
+  V4: new THREE.Vector3(-HALF_BOX, -HALF_BOX, HALF_BOX),
+  V5: new THREE.Vector3(HALF_BOX, HALF_BOX, -HALF_BOX),
+  V6: new THREE.Vector3(-HALF_BOX, HALF_BOX, -HALF_BOX),
+  V7: new THREE.Vector3(HALF_BOX, -HALF_BOX, -HALF_BOX),
+  V8: new THREE.Vector3(-HALF_BOX, -HALF_BOX, -HALF_BOX),
+};
+
+const TOPOLOGY_TOUR: TopologyWaypoint[] = [
+  // === PHASE 1: COSMIC OVERVIEW ===
   {
-    // ~3 AU from Sun to see it clearly
-    position: new THREE.Vector3(3e-8, 2e-8, 3e-8),
-    lookAt: new THREE.Vector3(0, 0, 0),
-    duration: 5,
-    text: "The Sun — Our star, 4.6 billion years old",
-  },
-  {
-    // ~15 AU to see inner planets (Mercury to Mars)
-    position: new THREE.Vector3(1.5e-7, 8e-8, 1.2e-7),
-    lookAt: new THREE.Vector3(0, 0, 0),
-    duration: 5,
-    text: "Inner Solar System — Mercury, Venus, Earth, Mars",
-  },
-  {
-    // ~60 AU to see outer planets including Pluto
-    position: new THREE.Vector3(5e-7, 3e-7, 4e-7),
-    lookAt: new THREE.Vector3(0, 0, 0),
-    duration: 5,
-    text: "Outer Solar System — Jupiter, Saturn, Uranus, Neptune, Pluto",
-  },
-  {
-    // ~50 kpc to see full Milky Way disk
-    position: new THREE.Vector3(4e-5, 2e-5, 3e-5),
+    position: new THREE.Vector3(25, 18, 25),
     lookAt: new THREE.Vector3(0, 0, 0),
     duration: 6,
-    text: "The Milky Way — 200 billion stars, 26.8 kpc radius",
+    text: "T³/Z₂ Fundamental Domain — The entire observable universe fits in this 20.6 Gpc box",
+    type: 'normal',
   },
   {
-    // ~2 Mpc to see Local Group
-    position: new THREE.Vector3(0.0015, 0.001, 0.0012),
+    position: new THREE.Vector3(18, 12, 18),
     lookAt: new THREE.Vector3(0, 0, 0),
     duration: 5,
-    text: "Local Group — 80+ galaxies including Andromeda (0.78 Mpc away)",
+    text: "Opposite faces are identified — Space wraps around like a 3D video game",
+    type: 'normal',
+  },
+
+  // === PHASE 2: APPROACH +X BOUNDARY ===
+  {
+    position: new THREE.Vector3(8, 2, 0),
+    lookAt: new THREE.Vector3(HALF_BOX, 0, 0),
+    duration: 5,
+    text: "Approaching the +X boundary at 10.3 Gpc...",
+    type: 'normal',
   },
   {
-    // ~500 Mpc - cosmic web scale
-    position: new THREE.Vector3(0.4, 0.25, 0.35),
-    lookAt: new THREE.Vector3(0.1, 0.05, 0.1),
+    position: new THREE.Vector3(HALF_BOX - 0.5, 2, 0),
+    lookAt: new THREE.Vector3(HALF_BOX + 2, 0, 0),
+    duration: 4,
+    text: "At the edge of the fundamental domain — what lies beyond?",
+    type: 'normal',
+  },
+
+  // === PHASE 3: CROSS +X → -X (T³ DEMONSTRATION) ===
+  {
+    position: new THREE.Vector3(-HALF_BOX + 0.5, 2, 0),
+    lookAt: new THREE.Vector3(-HALF_BOX - 2, 0, 0),
+    duration: 0.5, // Quick transition to show the "teleport"
+    text: "⚡ BOUNDARY CROSSING — We've wrapped to -X face!",
+    type: 'boundary_cross',
+    boundaryAxis: 'x',
+  },
+  {
+    position: new THREE.Vector3(-8, 3, 1),
+    lookAt: new THREE.Vector3(0, 0, 0),
+    duration: 5,
+    text: "T³ topology: +X and -X are the SAME face — not a teleport, a continuous path",
+    type: 'normal',
+  },
+
+  // === PHASE 4: VISIT VERTEX V1 (Shapley) ===
+  {
+    position: new THREE.Vector3(6, 6, 6),
+    lookAt: Z2_VERTICES.V1,
+    duration: 5,
+    text: "Traveling toward V1 — The Shapley Supercluster direction",
+    type: 'normal',
+  },
+  {
+    position: Z2_VERTICES.V1.clone().multiplyScalar(0.85),
+    lookAt: Z2_VERTICES.V1,
     duration: 6,
-    text: "Cosmic Web — Filaments, clusters, and voids emerge",
+    text: "V1: Shapley vertex at (+10.3, +10.3, +10.3) Gpc — A Z₂ fixed point",
+    type: 'vertex',
   },
+
+  // === PHASE 5: Z₂ ANTIPODAL DEMONSTRATION ===
   {
-    // ~4 Gpc - DESI survey depth
-    position: new THREE.Vector3(3, 2, -2),
+    position: new THREE.Vector3(4, 4, 4),
     lookAt: new THREE.Vector3(0, 0, 0),
-    duration: 7,
-    text: "DESI DR1 — 5.7M galaxies, r = 0.9986 NGC-SGC parity correlation",
+    duration: 4,
+    text: "Now for the Z₂ involution — Every point p is identified with -p",
+    type: 'normal',
   },
   {
-    // Approaching Shapley (V1)
-    position: new THREE.Vector3(10, 6, 7),
-    lookAt: new THREE.Vector3(8.5, 4.0, 5.0),
-    duration: 8,
-    text: "V1: Shapley Supercluster — Topological vertex, the Great Attractor",
+    position: new THREE.Vector3(5, 3, 2),
+    lookAt: new THREE.Vector3(5, 3, 2).multiplyScalar(0.5),
+    duration: 5,
+    text: "We're at position (5, 3, 2) Gpc...",
+    type: 'z2_demo',
   },
   {
-    // CMB Cold Spot region (V3)
-    position: new THREE.Vector3(-4, 8, 9),
-    lookAt: new THREE.Vector3(-2.0, 6.0, 7.0),
-    duration: 8,
-    text: "V3: CMB Cold Spot — Matched circles detected at 5.7σ significance",
+    position: new THREE.Vector3(-5, -3, -2),
+    lookAt: new THREE.Vector3(-5, -3, -2).multiplyScalar(0.5),
+    duration: 0.5,
+    text: "⚡ Z₂ FLIP — Now at (-5, -3, -2) Gpc — the SAME physical location!",
+    type: 'z2_demo',
   },
   {
-    // Full 20.6 Gpc domain view
-    position: new THREE.Vector3(22, 16, 22),
+    position: new THREE.Vector3(-6, -4, -3),
     lookAt: new THREE.Vector3(0, 0, 0),
-    duration: 8,
-    text: "T³/Z₂ Fundamental Domain — L_c = 20.6 Gpc, Ω_m = 6/19 = 0.3158",
+    duration: 5,
+    text: "The Z₂ involution means the universe has no preferred orientation",
+    type: 'normal',
+  },
+
+  // === PHASE 6: VISIT V3 (CMB Cold Spot) ===
+  {
+    position: new THREE.Vector3(4, -6, 6),
+    lookAt: Z2_VERTICES.V3,
+    duration: 5,
+    text: "Traveling to V3 — The CMB Cold Spot direction",
+    type: 'normal',
+  },
+  {
+    position: Z2_VERTICES.V3.clone().multiplyScalar(0.85),
+    lookAt: Z2_VERTICES.V3,
+    duration: 6,
+    text: "V3: CMB Cold Spot vertex — Matched circles detected here at 5.7σ",
+    type: 'vertex',
+  },
+
+  // === PHASE 7: DEMONSTRATE +Z → -Z CROSSING ===
+  {
+    position: new THREE.Vector3(0, 0, HALF_BOX - 1),
+    lookAt: new THREE.Vector3(0, 0, HALF_BOX + 2),
+    duration: 5,
+    text: "Approaching the +Z boundary...",
+    type: 'normal',
+  },
+  {
+    position: new THREE.Vector3(0, 0, -HALF_BOX + 1),
+    lookAt: new THREE.Vector3(0, 0, -HALF_BOX - 2),
+    duration: 0.5,
+    text: "⚡ WRAPPED through +Z → -Z face",
+    type: 'boundary_cross',
+    boundaryAxis: 'z',
+  },
+  {
+    position: new THREE.Vector3(2, 3, -7),
+    lookAt: new THREE.Vector3(0, 0, 0),
+    duration: 5,
+    text: "Three independent wrapping directions — this is why it's called T³ (3-torus)",
+    type: 'normal',
+  },
+
+  // === PHASE 8: GW190521 LOCATION ===
+  {
+    position: new THREE.Vector3(6, 3, -1),
+    lookAt: new THREE.Vector3(GW190521_EVENT.position.x, GW190521_EVENT.position.y, GW190521_EVENT.position.z),
+    duration: 5,
+    text: "GW190521 merger site — 5.3 Gpc away, first IMBH detection",
+    type: 'normal',
+  },
+
+  // === PHASE 9: RETURN TO OVERVIEW ===
+  {
+    position: new THREE.Vector3(15, 12, 15),
+    lookAt: new THREE.Vector3(0, 0, 0),
+    duration: 5,
+    text: "The complete T³/Z₂ orbifold — A finite universe with no boundary",
+    type: 'normal',
+  },
+  {
+    position: new THREE.Vector3(25, 18, 25),
+    lookAt: new THREE.Vector3(0, 0, 0),
+    duration: 6,
+    text: "L_c = 20.6 Gpc | Ω_m = 6/19 | 8 vertices | ∞ topology but finite volume",
+    type: 'normal',
   },
 ];
+
+// Legacy waypoints for backwards compatibility
+const TOUR_WAYPOINTS: Waypoint[] = TOPOLOGY_TOUR.map(wp => ({
+  position: wp.position,
+  lookAt: wp.lookAt,
+  duration: wp.duration,
+  text: wp.text,
+}));
 
 // =============================================================================
 // LOCAL GROUP DATA
@@ -1528,72 +1647,265 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
 };
 
 // =============================================================================
-// CINEMATIC CAMERA
+// TOPOLOGICAL CAMERA ENGINE (Directive TTT)
+// Handles T³ boundary wrapping and Z₂ parity inversions
 // =============================================================================
+
+// Apply T³ modulo wrap to a position
+const wrapT3 = (pos: THREE.Vector3): { wrapped: THREE.Vector3; didWrap: boolean; axis: string | null } => {
+  const wrapped = pos.clone();
+  let didWrap = false;
+  let axis: string | null = null;
+
+  if (wrapped.x > HALF_BOX) { wrapped.x -= L_C_GPC; didWrap = true; axis = 'x'; }
+  if (wrapped.x < -HALF_BOX) { wrapped.x += L_C_GPC; didWrap = true; axis = 'x'; }
+  if (wrapped.y > HALF_BOX) { wrapped.y -= L_C_GPC; didWrap = true; axis = 'y'; }
+  if (wrapped.y < -HALF_BOX) { wrapped.y += L_C_GPC; didWrap = true; axis = 'y'; }
+  if (wrapped.z > HALF_BOX) { wrapped.z -= L_C_GPC; didWrap = true; axis = 'z'; }
+  if (wrapped.z < -HALF_BOX) { wrapped.z += L_C_GPC; didWrap = true; axis = 'z'; }
+
+  return { wrapped, didWrap, axis };
+};
+
+// Apply Z₂ parity inversion
+const applyZ2 = (pos: THREE.Vector3): THREE.Vector3 => {
+  return pos.clone().multiplyScalar(-1);
+};
+
+// Calculate shortest geodesic on T³ between two points
+const geodesicT3 = (from: THREE.Vector3, to: THREE.Vector3): THREE.Vector3 => {
+  const delta = to.clone().sub(from);
+
+  // For each axis, check if wrapping is shorter
+  if (Math.abs(delta.x) > HALF_BOX) {
+    delta.x = delta.x > 0 ? delta.x - L_C_GPC : delta.x + L_C_GPC;
+  }
+  if (Math.abs(delta.y) > HALF_BOX) {
+    delta.y = delta.y > 0 ? delta.y - L_C_GPC : delta.y + L_C_GPC;
+  }
+  if (Math.abs(delta.z) > HALF_BOX) {
+    delta.z = delta.z > 0 ? delta.z - L_C_GPC : delta.z + L_C_GPC;
+  }
+
+  return from.clone().add(delta);
+};
+
+// Boundary Grid Component - shows when approaching boundary
+const BoundaryGrid: React.FC<{ cameraPos: THREE.Vector3; approaching: boolean }> = ({ cameraPos, approaching }) => {
+  if (!approaching) return null;
+
+  // Determine which boundary we're approaching
+  const grids: JSX.Element[] = [];
+  const threshold = 2; // Start showing grid 2 Gpc from boundary
+
+  const axes: Array<{ axis: 'x' | 'y' | 'z'; sign: 1 | -1 }> = [
+    { axis: 'x', sign: 1 }, { axis: 'x', sign: -1 },
+    { axis: 'y', sign: 1 }, { axis: 'y', sign: -1 },
+    { axis: 'z', sign: 1 }, { axis: 'z', sign: -1 },
+  ];
+
+  for (const { axis, sign } of axes) {
+    const dist = sign * (sign === 1 ? HALF_BOX - cameraPos[axis] : cameraPos[axis] + HALF_BOX);
+    if (dist < threshold && dist > 0) {
+      const opacity = 1 - (dist / threshold);
+      const position: [number, number, number] = [0, 0, 0];
+      const rotation: [number, number, number] = [0, 0, 0];
+      position[axis === 'x' ? 0 : axis === 'y' ? 1 : 2] = sign * HALF_BOX;
+      if (axis === 'x') rotation[1] = Math.PI / 2;
+      if (axis === 'y') rotation[0] = Math.PI / 2;
+
+      grids.push(
+        <group key={`${axis}${sign}`} position={position} rotation={rotation}>
+          <gridHelper
+            args={[L_C_GPC, 20, '#00ffff', '#004444']}
+            rotation={[Math.PI / 2, 0, 0]}
+          />
+          <mesh>
+            <planeGeometry args={[L_C_GPC, L_C_GPC]} />
+            <meshBasicMaterial
+              color="#00ffff"
+              transparent
+              opacity={opacity * 0.1}
+              side={THREE.DoubleSide}
+            />
+          </mesh>
+        </group>
+      );
+    }
+  }
+
+  return <>{grids}</>;
+};
 
 const CinematicCamera: React.FC<{
   isTourRunning: boolean;
   onTourComplete: () => void;
   onWaypointChange: (text: string) => void;
+  onBoundaryCross: (axis: string) => void;
+  onParityFlip: () => void;
   controlsRef: React.RefObject<any>;
-}> = ({ isTourRunning, onTourComplete, onWaypointChange, controlsRef }) => {
+}> = ({ isTourRunning, onTourComplete, onWaypointChange, onBoundaryCross, onParityFlip, controlsRef }) => {
   const { camera } = useThree();
   const lookAtTarget = useRef(new THREE.Vector3());
-  const timelineRef = useRef<gsap.core.Timeline | null>(null);
+  const currentSegment = useRef(0);
+  const segmentProgress = useRef(0);
+  const isAnimating = useRef(false);
 
   useEffect(() => {
     if (!isTourRunning) {
-      if (timelineRef.current) { timelineRef.current.kill(); timelineRef.current = null; }
+      currentSegment.current = 0;
+      segmentProgress.current = 0;
+      isAnimating.current = false;
       if (controlsRef.current) controlsRef.current.enabled = true;
       return;
     }
 
     if (controlsRef.current) controlsRef.current.enabled = false;
 
-    const positions = TOUR_WAYPOINTS.map(wp => wp.position);
-    const curve = new THREE.CatmullRomCurve3(positions);
-    curve.tension = 0.3;
-
-    camera.position.copy(TOUR_WAYPOINTS[0].position);
-    lookAtTarget.current.copy(TOUR_WAYPOINTS[0].lookAt);
-    onWaypointChange(TOUR_WAYPOINTS[0].text);
-
-    const totalDuration = TOUR_WAYPOINTS.reduce((acc, wp) => acc + wp.duration, 0);
-    const proxy = { progress: 0 };
-    const lookAtCurve = new THREE.CatmullRomCurve3(TOUR_WAYPOINTS.map(wp => wp.lookAt));
-
-    timelineRef.current = gsap.timeline({
-      onComplete: () => { onTourComplete(); if (controlsRef.current) controlsRef.current.enabled = true; }
-    });
-
-    let cumulativeTime = 0;
-    TOUR_WAYPOINTS.forEach((wp, i) => {
-      if (i > 0) timelineRef.current!.call(() => onWaypointChange(wp.text), [], cumulativeTime);
-      cumulativeTime += wp.duration;
-    });
-
-    timelineRef.current.to(proxy, {
-      progress: 1, duration: totalDuration, ease: "power1.inOut",
-      onUpdate: () => {
-        camera.position.copy(curve.getPointAt(proxy.progress));
-        lookAtTarget.current.copy(lookAtCurve.getPointAt(proxy.progress));
-      }
-    }, 0);
+    // Initialize at first waypoint
+    camera.position.copy(TOPOLOGY_TOUR[0].position);
+    lookAtTarget.current.copy(TOPOLOGY_TOUR[0].lookAt);
+    onWaypointChange(TOPOLOGY_TOUR[0].text);
+    currentSegment.current = 0;
+    isAnimating.current = true;
 
     return () => {
-      if (timelineRef.current) { timelineRef.current.kill(); timelineRef.current = null; }
+      isAnimating.current = false;
       if (controlsRef.current) controlsRef.current.enabled = true;
     };
-  }, [isTourRunning, camera, controlsRef, onTourComplete, onWaypointChange]);
+  }, [isTourRunning, camera, controlsRef, onWaypointChange]);
 
-  useFrame(() => {
-    if (isTourRunning) {
-      camera.lookAt(lookAtTarget.current);
-      if (controlsRef.current) controlsRef.current.target.copy(lookAtTarget.current);
+  useFrame((state, delta) => {
+    if (!isTourRunning || !isAnimating.current) return;
+
+    const segmentIndex = currentSegment.current;
+    if (segmentIndex >= TOPOLOGY_TOUR.length - 1) {
+      onTourComplete();
+      isAnimating.current = false;
+      if (controlsRef.current) controlsRef.current.enabled = true;
+      return;
+    }
+
+    const fromWaypoint = TOPOLOGY_TOUR[segmentIndex];
+    const toWaypoint = TOPOLOGY_TOUR[segmentIndex + 1];
+
+    // Handle boundary_cross type - instant teleport
+    if (toWaypoint.type === 'boundary_cross' || toWaypoint.type === 'z2_demo') {
+      const teleportSpeed = 3; // Very fast for boundary crossings
+      segmentProgress.current += delta * teleportSpeed;
+
+      if (segmentProgress.current >= 1) {
+        // Execute the teleport
+        camera.position.copy(toWaypoint.position);
+        lookAtTarget.current.copy(toWaypoint.lookAt);
+
+        // Trigger effects
+        if (toWaypoint.type === 'boundary_cross' && toWaypoint.boundaryAxis) {
+          onBoundaryCross(toWaypoint.boundaryAxis);
+        }
+        if (toWaypoint.type === 'z2_demo') {
+          onParityFlip();
+        }
+
+        onWaypointChange(toWaypoint.text);
+        currentSegment.current++;
+        segmentProgress.current = 0;
+      }
+    } else {
+      // Normal smooth animation between waypoints
+      const speed = 1 / toWaypoint.duration;
+      segmentProgress.current += delta * speed;
+
+      // Smooth easing
+      const t = Math.min(segmentProgress.current, 1);
+      const eased = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+
+      // Interpolate position - use geodesic path on T³
+      const targetPos = geodesicT3(fromWaypoint.position, toWaypoint.position);
+      camera.position.lerpVectors(fromWaypoint.position, targetPos, eased);
+
+      // Apply T³ wrap if we crossed a boundary during interpolation
+      const { wrapped, didWrap, axis } = wrapT3(camera.position);
+      if (didWrap && axis) {
+        camera.position.copy(wrapped);
+        onBoundaryCross(axis);
+      }
+
+      // Interpolate lookAt
+      lookAtTarget.current.lerpVectors(fromWaypoint.lookAt, toWaypoint.lookAt, eased);
+
+      if (segmentProgress.current >= 1) {
+        onWaypointChange(toWaypoint.text);
+        currentSegment.current++;
+        segmentProgress.current = 0;
+      }
+    }
+
+    // Apply look at
+    camera.lookAt(lookAtTarget.current);
+    if (controlsRef.current) {
+      controlsRef.current.target.copy(lookAtTarget.current);
     }
   });
 
-  return null;
+  return <BoundaryGrid cameraPos={camera.position} approaching={isTourRunning} />;
+};
+
+// =============================================================================
+// BOUNDARY RUPTURE OVERLAY (Directive VVV)
+// =============================================================================
+
+const BoundaryRuptureOverlay: React.FC<{
+  isActive: boolean;
+  axis: string | null;
+  isParityFlip: boolean;
+}> = ({ isActive, axis, isParityFlip }) => {
+  if (!isActive) return null;
+
+  return (
+    <div className="absolute inset-0 pointer-events-none z-30 flex items-center justify-center">
+      {/* Chromatic aberration flash effect */}
+      <div
+        className={`absolute inset-0 ${isParityFlip ? 'bg-purple-500' : 'bg-cyan-500'} animate-pulse`}
+        style={{
+          opacity: 0.3,
+          mixBlendMode: 'screen',
+          animation: 'flash 0.3s ease-out',
+        }}
+      />
+
+      {/* Main text overlay */}
+      <div className="text-center animate-bounce">
+        <div
+          className={`text-4xl font-bold tracking-widest mb-2 ${
+            isParityFlip ? 'text-purple-400' : 'text-cyan-400'
+          }`}
+          style={{
+            textShadow: isParityFlip
+              ? '0 0 20px #a855f7, 0 0 40px #a855f7'
+              : '0 0 20px #22d3ee, 0 0 40px #22d3ee',
+          }}
+        >
+          {isParityFlip ? '⟲ Z₂ PARITY FLIP' : `⚡ T³ BOUNDARY CROSSED`}
+        </div>
+        <div className="text-xl text-white font-mono">
+          {isParityFlip
+            ? 'COORDINATES INVERTED: p → -p'
+            : `${axis?.toUpperCase()} AXIS WRAPPED: +${HALF_BOX.toFixed(1)} ↔ -${HALF_BOX.toFixed(1)} Gpc`}
+        </div>
+      </div>
+
+      {/* Edge glow effect */}
+      <div
+        className="absolute inset-0 border-8"
+        style={{
+          borderColor: isParityFlip ? '#a855f7' : '#22d3ee',
+          boxShadow: `inset 0 0 50px ${isParityFlip ? '#a855f7' : '#22d3ee'}`,
+          opacity: 0.5,
+        }}
+      />
+    </div>
+  );
 };
 
 // =============================================================================
@@ -1670,10 +1982,12 @@ const Scene: React.FC<{
   onTourComplete: () => void;
   onWaypointChange: (text: string) => void;
   onCameraDistanceChange: (d: number) => void;
+  onBoundaryCross: (axis: string) => void;
+  onParityFlip: () => void;
   // GW Simulation props
   isGWRunning: boolean;
   onGWProgressUpdate: (progress: number, phase: number, waveRadius: number) => void;
-}> = ({ filters, isRotating, showLabels, isTourRunning, onTourComplete, onWaypointChange, onCameraDistanceChange, isGWRunning, onGWProgressUpdate }) => {
+}> = ({ filters, isRotating, showLabels, isTourRunning, onTourComplete, onWaypointChange, onCameraDistanceChange, onBoundaryCross, onParityFlip, isGWRunning, onGWProgressUpdate }) => {
   const controlsRef = useRef<any>(null);
 
   return (
@@ -1696,6 +2010,8 @@ const Scene: React.FC<{
         isTourRunning={isTourRunning}
         onTourComplete={onTourComplete}
         onWaypointChange={onWaypointChange}
+        onBoundaryCross={onBoundaryCross}
+        onParityFlip={onParityFlip}
         controlsRef={controlsRef}
       />
 
@@ -1709,7 +2025,7 @@ const Scene: React.FC<{
         enableDamping
         dampingFactor={0.05}
       />
-      <PerspectiveCamera makeDefault position={[2, 1.5, 2]} fov={50} near={0.00000000001} far={1000} />
+      <PerspectiveCamera makeDefault position={[25, 18, 25]} fov={50} near={0.00000000001} far={1000} />
     </>
   );
 };
@@ -1743,10 +2059,33 @@ const MultiMessengerUniverse: React.FC = () => {
   const [gwPhase, setGWPhase] = useState(0);
   const [gwWaveRadius, setGWWaveRadius] = useState(0);
 
+  // Boundary crossing state (Directive VVV)
+  const [isRuptureActive, setIsRuptureActive] = useState(false);
+  const [ruptureAxis, setRuptureAxis] = useState<string | null>(null);
+  const [isParityFlip, setIsParityFlip] = useState(false);
+
   const handleWheel = useCallback((e: React.WheelEvent) => e.stopPropagation(), []);
   const handleStartTour = useCallback(() => { setIsTourRunning(true); setIsRotating(false); }, []);
   const handleStopTour = useCallback(() => { setIsTourRunning(false); setTourText(''); }, []);
   const handleWaypointChange = useCallback((text: string) => setTourText(text), []);
+
+  // Boundary crossing handler (Directive TTT)
+  const handleBoundaryCross = useCallback((axis: string) => {
+    setRuptureAxis(axis);
+    setIsParityFlip(false);
+    setIsRuptureActive(true);
+    // Flash for 1.5 seconds
+    setTimeout(() => setIsRuptureActive(false), 1500);
+  }, []);
+
+  // Parity flip handler (Z₂)
+  const handleParityFlip = useCallback(() => {
+    setRuptureAxis(null);
+    setIsParityFlip(true);
+    setIsRuptureActive(true);
+    // Flash for 1.5 seconds
+    setTimeout(() => setIsRuptureActive(false), 1500);
+  }, []);
 
   // GW Handlers
   const handleStartGW = useCallback(() => {
@@ -1805,6 +2144,13 @@ const MultiMessengerUniverse: React.FC = () => {
         waveRadius={gwWaveRadius}
       />
 
+      {/* Boundary Rupture Overlay (Directive VVV) */}
+      <BoundaryRuptureOverlay
+        isActive={isRuptureActive}
+        axis={ruptureAxis}
+        isParityFlip={isParityFlip}
+      />
+
       <Canvas gl={{ antialias: true, logarithmicDepthBuffer: true }} dpr={[1, 2]}>
         <Scene
           filters={filters}
@@ -1814,6 +2160,8 @@ const MultiMessengerUniverse: React.FC = () => {
           onTourComplete={handleStopTour}
           onWaypointChange={handleWaypointChange}
           onCameraDistanceChange={setCameraDistance}
+          onBoundaryCross={handleBoundaryCross}
+          onParityFlip={handleParityFlip}
           isGWRunning={isGWRunning}
           onGWProgressUpdate={(progress, phase, waveRadius) => {
             setGWProgress(progress);
