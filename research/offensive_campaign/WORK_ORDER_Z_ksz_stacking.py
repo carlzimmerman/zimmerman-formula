@@ -106,6 +106,7 @@ def load_planck_map():
 
     # Try different locations
     possible_files = [
+        OUTPUT_DIR / 'planck_cmb_smica.fits',  # From matched circles analysis
         DATA_DIR / 'planck_smica_T_pruned.fits',
         DATA_DIR / 'COM_CMB_IQU-smica_2048_R3.00_full.fits',
     ]
