@@ -1751,6 +1751,20 @@ const CinematicCamera: React.FC<{
   const segmentProgress = useRef(0);
   const isAnimating = useRef(false);
 
+  // Use refs to avoid stale closure in useFrame
+  const onBoundaryCrossRef = useRef(onBoundaryCross);
+  const onParityFlipRef = useRef(onParityFlip);
+  const onWaypointChangeRef = useRef(onWaypointChange);
+  const onTourCompleteRef = useRef(onTourComplete);
+
+  // Keep refs up to date
+  useEffect(() => {
+    onBoundaryCrossRef.current = onBoundaryCross;
+    onParityFlipRef.current = onParityFlip;
+    onWaypointChangeRef.current = onWaypointChange;
+    onTourCompleteRef.current = onTourComplete;
+  });
+
   useEffect(() => {
     if (!isTourRunning) {
       currentSegment.current = 0;
@@ -1780,7 +1794,7 @@ const CinematicCamera: React.FC<{
 
     const segmentIndex = currentSegment.current;
     if (segmentIndex >= TOPOLOGY_TOUR.length - 1) {
-      onTourComplete();
+      onTourCompleteRef.current();
       isAnimating.current = false;
       if (controlsRef.current) controlsRef.current.enabled = true;
       return;
@@ -1791,7 +1805,7 @@ const CinematicCamera: React.FC<{
 
     // Handle boundary_cross type - instant teleport
     if (toWaypoint.type === 'boundary_cross' || toWaypoint.type === 'z2_demo') {
-      const teleportSpeed = 3; // Very fast for boundary crossings
+      const teleportSpeed = 2; // Slightly slower so user sees it
       segmentProgress.current += delta * teleportSpeed;
 
       if (segmentProgress.current >= 1) {
@@ -1799,15 +1813,17 @@ const CinematicCamera: React.FC<{
         camera.position.copy(toWaypoint.position);
         lookAtTarget.current.copy(toWaypoint.lookAt);
 
-        // Trigger effects
+        // Trigger effects using refs (avoids stale closure)
         if (toWaypoint.type === 'boundary_cross' && toWaypoint.boundaryAxis) {
-          onBoundaryCross(toWaypoint.boundaryAxis);
+          console.log('BOUNDARY CROSS TRIGGERED:', toWaypoint.boundaryAxis);
+          onBoundaryCrossRef.current(toWaypoint.boundaryAxis);
         }
         if (toWaypoint.type === 'z2_demo') {
-          onParityFlip();
+          console.log('PARITY FLIP TRIGGERED');
+          onParityFlipRef.current();
         }
 
-        onWaypointChange(toWaypoint.text);
+        onWaypointChangeRef.current(toWaypoint.text);
         currentSegment.current++;
         segmentProgress.current = 0;
       }
@@ -1828,14 +1844,15 @@ const CinematicCamera: React.FC<{
       const { wrapped, didWrap, axis } = wrapT3(camera.position);
       if (didWrap && axis) {
         camera.position.copy(wrapped);
-        onBoundaryCross(axis);
+        console.log('WRAP DURING INTERPOLATION:', axis);
+        onBoundaryCrossRef.current(axis);
       }
 
       // Interpolate lookAt
       lookAtTarget.current.lerpVectors(fromWaypoint.lookAt, toWaypoint.lookAt, eased);
 
       if (segmentProgress.current >= 1) {
-        onWaypointChange(toWaypoint.text);
+        onWaypointChangeRef.current(toWaypoint.text);
         currentSegment.current++;
         segmentProgress.current = 0;
       }
