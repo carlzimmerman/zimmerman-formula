@@ -247,7 +247,7 @@ function FundamentalDomain() {
         [-h, h, -h],
         [-h, h, h],
       ],
-    ] as [number[], number[]][];
+    ] as [[number, number, number], [number, number, number]][];
   }, []);
 
   return (
@@ -255,7 +255,7 @@ function FundamentalDomain() {
       {edges.map((edge, i) => (
         <Line
           key={i}
-          points={edge as [number, number, number][]}
+          points={edge}
           color="#00ffff"
           lineWidth={2}
           transparent
