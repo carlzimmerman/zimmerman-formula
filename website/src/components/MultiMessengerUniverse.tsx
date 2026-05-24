@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState, useRef, useMemo, useEffect } from 'react';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import React, { useState, useRef, useMemo, useCallback } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, PerspectiveCamera, Text, Line } from '@react-three/drei';
 import * as THREE from 'three';
 
@@ -20,16 +20,17 @@ const MEASUREMENT_TYPES = {
   MICROWAVE: { id: 6, name: 'CMB (Planck/WMAP)', color: '#D0021B' },
 };
 
-// Z² parameters
-const L_C_MPC = 20600;
-const L_C_HALF = L_C_MPC / 2;
+// Z² parameters - SCALED for WebGL (1 unit = 1000 Mpc = 1 Gpc)
+const SCALE = 0.001; // Convert Mpc to Gpc for manageable scene units
+const L_C_GPC = 20.6; // Fundamental domain in Gpc (scene units)
+const HALF_BOX = L_C_GPC / 2; // ±10.3 Gpc
 
-// Z² vertices (galactic to approximate equatorial)
+// Z² vertices (scaled to Gpc)
 const Z2_VERTICES = [
-  { name: 'V1 (Shapley)', position: [8500, 4000, 5000], color: '#FFD700' },
-  { name: 'V2 (Anti-Shapley)', position: [-7000, -3000, -5000], color: '#00FFFF' },
-  { name: 'V3 (Cold Spot)', position: [-2000, 6000, 7000], color: '#FF00FF' },
-  { name: 'V4 (Southern)', position: [1000, -5000, -8000], color: '#00FF00' },
+  { name: 'V1 (Shapley)', position: [8.5, 4.0, 5.0] as [number, number, number], color: '#FFD700' },
+  { name: 'V2 (Anti-Shapley)', position: [-7.0, -3.0, -5.0] as [number, number, number], color: '#00FFFF' },
+  { name: 'V3 (Cold Spot)', position: [-2.0, 6.0, 7.0] as [number, number, number], color: '#FF00FF' },
+  { name: 'V4 (Southern)', position: [1.0, -5.0, -8.0] as [number, number, number], color: '#00FF00' },
 ];
 
 // =============================================================================
@@ -39,37 +40,45 @@ const Z2_VERTICES = [
 interface FilterPanelProps {
   filters: Record<string, boolean>;
   setFilters: React.Dispatch<React.SetStateAction<Record<string, boolean>>>;
+  pointCounts: Record<string, number>;
 }
 
-const FilterPanel: React.FC<FilterPanelProps> = ({ filters, setFilters }) => {
+const FilterPanel: React.FC<FilterPanelProps> = ({ filters, setFilters, pointCounts }) => {
   const toggleFilter = (key: string) => {
     setFilters(prev => ({ ...prev, [key]: !prev[key] }));
   };
 
+  const totalVisible = Object.entries(filters)
+    .filter(([_, enabled]) => enabled)
+    .reduce((sum, [key]) => sum + (pointCounts[key] || 0), 0);
+
   return (
-    <div className="absolute top-4 left-4 bg-slate-900/90 p-4 rounded-lg border border-slate-700 z-10">
-      <h3 className="text-white font-bold mb-3 text-lg">Empirical Equipment Filters</h3>
+    <div className="absolute top-4 left-4 bg-slate-900/95 p-4 rounded-lg border border-slate-700 z-10 backdrop-blur-sm">
+      <h3 className="text-white font-bold mb-3 text-lg">Equipment Filters</h3>
       <div className="space-y-2">
         {Object.entries(MEASUREMENT_TYPES).map(([key, { name, color }]) => (
-          <label key={key} className="flex items-center gap-2 cursor-pointer hover:bg-slate-800 p-1 rounded">
+          <label key={key} className="flex items-center gap-2 cursor-pointer hover:bg-slate-800 p-1 rounded transition-colors">
             <input
               type="checkbox"
               checked={filters[key]}
               onChange={() => toggleFilter(key)}
-              className="w-4 h-4 rounded"
+              className="w-4 h-4 rounded accent-blue-500"
             />
             <span
-              className="w-3 h-3 rounded-full"
-              style={{ backgroundColor: color }}
+              className="w-3 h-3 rounded-full flex-shrink-0"
+              style={{ backgroundColor: color, boxShadow: `0 0 6px ${color}` }}
             />
             <span className="text-white text-sm">{name}</span>
+            <span className="text-slate-500 text-xs ml-auto">
+              {((pointCounts[key] || 0) / 1000).toFixed(1)}k
+            </span>
           </label>
         ))}
       </div>
       <div className="mt-4 pt-3 border-t border-slate-700">
-        <div className="text-slate-400 text-xs">
-          <p>Box size: {L_C_MPC.toLocaleString()} Mpc</p>
-          <p>= 20.6 Gpc fundamental domain</p>
+        <div className="text-slate-400 text-xs space-y-1">
+          <p><strong className="text-white">{(totalVisible / 1000).toFixed(1)}k</strong> points visible</p>
+          <p>Box: L<sub>c</sub> = 20.6 Gpc</p>
         </div>
       </div>
     </div>
@@ -83,99 +92,97 @@ interface PointCloudProps {
 const PointCloud: React.FC<PointCloudProps> = ({ filters }) => {
   const pointsRef = useRef<THREE.Points>(null);
 
-  // Generate sample data (in production, load from z2_master_coordinates.bin)
-  const { positions, colors, types } = useMemo(() => {
+  // Generate points with proper filtering via geometry regeneration
+  const { geometry, visibleCount } = useMemo(() => {
     const n = 50000;
-    const pos = new Float32Array(n * 3);
-    const col = new Float32Array(n * 3);
-    const typ = new Int32Array(n);
-
-    // Generate points for each measurement type
     const typeKeys = Object.keys(MEASUREMENT_TYPES);
 
+    // First pass: count visible points
+    const visibleIndices: number[] = [];
     for (let i = 0; i < n; i++) {
+      const typeIdx = i % typeKeys.length;
+      const typeKey = typeKeys[typeIdx];
+      if (filters[typeKey]) {
+        visibleIndices.push(i);
+      }
+    }
+
+    const visibleCount = visibleIndices.length;
+    const pos = new Float32Array(visibleCount * 3);
+    const col = new Float32Array(visibleCount * 3);
+
+    // Use seeded random for consistent positions
+    const seededRandom = (seed: number) => {
+      const x = Math.sin(seed * 12.9898 + 78.233) * 43758.5453;
+      return x - Math.floor(x);
+    };
+
+    for (let j = 0; j < visibleCount; j++) {
+      const i = visibleIndices[j];
       const typeIdx = i % typeKeys.length;
       const typeKey = typeKeys[typeIdx];
       const typeInfo = MEASUREMENT_TYPES[typeKey as keyof typeof MEASUREMENT_TYPES];
 
-      // Position within box
-      pos[i * 3] = (Math.random() - 0.5) * L_C_MPC * 0.8;
-      pos[i * 3 + 1] = (Math.random() - 0.5) * L_C_MPC * 0.8;
-      pos[i * 3 + 2] = (Math.random() - 0.5) * L_C_MPC * 0.8;
+      // Seeded random position within box (consistent across filter changes)
+      pos[j * 3] = (seededRandom(i * 3) - 0.5) * L_C_GPC * 0.9;
+      pos[j * 3 + 1] = (seededRandom(i * 3 + 1) - 0.5) * L_C_GPC * 0.9;
+      pos[j * 3 + 2] = (seededRandom(i * 3 + 2) - 0.5) * L_C_GPC * 0.9;
 
       // Color from type
       const color = new THREE.Color(typeInfo.color);
-      col[i * 3] = color.r;
-      col[i * 3 + 1] = color.g;
-      col[i * 3 + 2] = color.b;
-
-      typ[i] = typeInfo.id;
+      col[j * 3] = color.r;
+      col[j * 3 + 1] = color.g;
+      col[j * 3 + 2] = color.b;
     }
 
-    return { positions: pos, colors: col, types: typ };
-  }, []);
-
-  // Update visibility based on filters
-  const geometry = useMemo(() => {
     const geom = new THREE.BufferGeometry();
-    geom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    geom.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-    return geom;
-  }, [positions, colors]);
+    geom.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+    geom.setAttribute('color', new THREE.BufferAttribute(col, 3));
 
-  // Filter shader material
-  const material = useMemo(() => {
-    return new THREE.PointsMaterial({
-      size: 50,
-      vertexColors: true,
-      transparent: true,
-      opacity: 0.7,
-      sizeAttenuation: true,
-    });
-  }, []);
+    return { geometry: geom, visibleCount };
+  }, [filters]);
 
-  // Update point sizes based on filters
-  useEffect(() => {
-    if (!pointsRef.current) return;
-
-    const sizes = new Float32Array(positions.length / 3);
-    const typeKeys = Object.keys(MEASUREMENT_TYPES);
-
-    for (let i = 0; i < sizes.length; i++) {
-      const typeIdx = i % typeKeys.length;
-      const typeKey = typeKeys[typeIdx];
-      sizes[i] = filters[typeKey] ? 50 : 0;
+  // Slow rotation
+  useFrame((state) => {
+    if (pointsRef.current) {
+      pointsRef.current.rotation.y = state.clock.elapsedTime * 0.02;
     }
-
-    // Note: For production, use custom shader for GPU-based filtering
-  }, [filters, positions]);
+  });
 
   return (
-    <points ref={pointsRef} geometry={geometry} material={material} />
+    <points ref={pointsRef} geometry={geometry}>
+      <pointsMaterial
+        size={0.08}
+        vertexColors
+        transparent
+        opacity={0.85}
+        sizeAttenuation={true}
+        depthWrite={false}
+      />
+    </points>
   );
 };
 
 const FundamentalDomainBox: React.FC = () => {
-  const boxSize = L_C_MPC;
-  const halfSize = boxSize / 2;
+  const h = HALF_BOX;
 
-  // Box edges
-  const edges = [
+  // Box edges as proper tuples
+  const edges: [[number, number, number], [number, number, number]][] = [
     // Bottom face
-    [[-halfSize, -halfSize, -halfSize], [halfSize, -halfSize, -halfSize]],
-    [[halfSize, -halfSize, -halfSize], [halfSize, halfSize, -halfSize]],
-    [[halfSize, halfSize, -halfSize], [-halfSize, halfSize, -halfSize]],
-    [[-halfSize, halfSize, -halfSize], [-halfSize, -halfSize, -halfSize]],
+    [[-h, -h, -h], [h, -h, -h]],
+    [[h, -h, -h], [h, h, -h]],
+    [[h, h, -h], [-h, h, -h]],
+    [[-h, h, -h], [-h, -h, -h]],
     // Top face
-    [[-halfSize, -halfSize, halfSize], [halfSize, -halfSize, halfSize]],
-    [[halfSize, -halfSize, halfSize], [halfSize, halfSize, halfSize]],
-    [[halfSize, halfSize, halfSize], [-halfSize, halfSize, halfSize]],
-    [[-halfSize, halfSize, halfSize], [-halfSize, -halfSize, halfSize]],
+    [[-h, -h, h], [h, -h, h]],
+    [[h, -h, h], [h, h, h]],
+    [[h, h, h], [-h, h, h]],
+    [[-h, h, h], [-h, -h, h]],
     // Vertical edges
-    [[-halfSize, -halfSize, -halfSize], [-halfSize, -halfSize, halfSize]],
-    [[halfSize, -halfSize, -halfSize], [halfSize, -halfSize, halfSize]],
-    [[halfSize, halfSize, -halfSize], [halfSize, halfSize, halfSize]],
-    [[-halfSize, halfSize, -halfSize], [-halfSize, halfSize, halfSize]],
+    [[-h, -h, -h], [-h, -h, h]],
+    [[h, -h, -h], [h, -h, h]],
+    [[h, h, -h], [h, h, h]],
+    [[-h, h, -h], [-h, h, h]],
   ];
 
   return (
@@ -183,32 +190,26 @@ const FundamentalDomainBox: React.FC = () => {
       {edges.map((edge, i) => (
         <Line
           key={i}
-          points={edge as [number, number, number][]}
-          color="#4A5568"
-          lineWidth={1}
+          points={edge}
+          color="#00ffff"
+          lineWidth={1.5}
           transparent
-          opacity={0.5}
+          opacity={0.4}
         />
       ))}
 
-      {/* Corner labels */}
-      <Text
-        position={[halfSize * 1.1, 0, 0]}
-        fontSize={500}
-        color="#718096"
-        anchorX="center"
-        anchorY="middle"
-      >
+      {/* Axis labels */}
+      <Text position={[h + 1, 0, 0]} fontSize={0.8} color="#00ffff" anchorX="left">
         +10.3 Gpc
       </Text>
-      <Text
-        position={[-halfSize * 1.1, 0, 0]}
-        fontSize={500}
-        color="#718096"
-        anchorX="center"
-        anchorY="middle"
-      >
+      <Text position={[-h - 1, 0, 0]} fontSize={0.8} color="#00ffff" anchorX="right">
         -10.3 Gpc
+      </Text>
+      <Text position={[0, h + 1, 0]} fontSize={0.8} color="#00ffff" anchorX="center">
+        +10.3 Gpc
+      </Text>
+      <Text position={[0, 0, h + 1]} fontSize={0.8} color="#00ffff" anchorX="center">
+        +10.3 Gpc
       </Text>
     </group>
   );
@@ -218,37 +219,51 @@ const VertexMarkers: React.FC = () => {
   return (
     <group>
       {Z2_VERTICES.map((vertex, i) => (
-        <group key={i} position={vertex.position as [number, number, number]}>
+        <group key={i} position={vertex.position}>
           {/* Glowing sphere */}
           <mesh>
-            <sphereGeometry args={[300, 32, 32]} />
-            <meshBasicMaterial color={vertex.color} transparent opacity={0.8} />
+            <sphereGeometry args={[0.3, 32, 32]} />
+            <meshBasicMaterial color={vertex.color} transparent opacity={0.9} />
           </mesh>
 
-          {/* Arrow pointing outward */}
-          <arrowHelper
-            args={[
-              new THREE.Vector3(...vertex.position).normalize(),
-              new THREE.Vector3(0, 0, 0),
-              1000,
-              vertex.color,
-              200,
-              100
-            ]}
-          />
+          {/* Outer glow */}
+          <mesh>
+            <sphereGeometry args={[0.5, 16, 16]} />
+            <meshBasicMaterial color={vertex.color} transparent opacity={0.3} />
+          </mesh>
 
           {/* Label */}
           <Text
-            position={[0, 500, 0]}
-            fontSize={200}
+            position={[0, 0.8, 0]}
+            fontSize={0.4}
             color={vertex.color}
             anchorX="center"
             anchorY="bottom"
+            outlineWidth={0.02}
+            outlineColor="#000000"
           >
             {vertex.name}
           </Text>
         </group>
       ))}
+
+      {/* Earth/Observer at origin */}
+      <group position={[0, 0, 0]}>
+        <mesh>
+          <sphereGeometry args={[0.2, 32, 32]} />
+          <meshBasicMaterial color="#00ff00" />
+        </mesh>
+        <Text
+          position={[0, 0.5, 0]}
+          fontSize={0.35}
+          color="#00ff00"
+          anchorX="center"
+          outlineWidth={0.02}
+          outlineColor="#000000"
+        >
+          Earth (Observer)
+        </Text>
+      </group>
     </group>
   );
 };
@@ -256,8 +271,8 @@ const VertexMarkers: React.FC = () => {
 const Scene: React.FC<{ filters: Record<string, boolean> }> = ({ filters }) => {
   return (
     <>
-      <ambientLight intensity={0.5} />
-      <pointLight position={[10000, 10000, 10000]} intensity={0.5} />
+      <color attach="background" args={['#0a0a1a']} />
+      <ambientLight intensity={0.6} />
 
       <FundamentalDomainBox />
       <VertexMarkers />
@@ -267,10 +282,15 @@ const Scene: React.FC<{ filters: Record<string, boolean> }> = ({ filters }) => {
         enablePan={true}
         enableZoom={true}
         enableRotate={true}
-        minDistance={1000}
-        maxDistance={50000}
+        minDistance={5}
+        maxDistance={80}
+        zoomSpeed={0.8}
+        rotateSpeed={0.5}
+        // Don't capture events when pointer leaves canvas
+        enableDamping={true}
+        dampingFactor={0.05}
       />
-      <PerspectiveCamera makeDefault position={[15000, 15000, 15000]} fov={60} />
+      <PerspectiveCamera makeDefault position={[25, 18, 25]} fov={50} />
     </>
   );
 };
@@ -289,34 +309,74 @@ const MultiMessengerUniverse: React.FC = () => {
     MICROWAVE: true,
   });
 
-  return (
-    <div className="relative w-full h-[800px] bg-slate-950 rounded-lg overflow-hidden">
-      <FilterPanel filters={filters} setFilters={setFilters} />
+  // Point counts per type (50k total, evenly distributed)
+  const pointCounts = useMemo(() => {
+    const perType = Math.floor(50000 / 6);
+    return {
+      SPECTROSCOPY: perType,
+      PHOTOMETRY: perType,
+      RADIO: perType,
+      XRAY: perType,
+      ASTROMETRY: perType,
+      MICROWAVE: perType + (50000 % 6),
+    };
+  }, []);
 
-      <div className="absolute top-4 right-4 bg-slate-900/90 p-4 rounded-lg border border-slate-700 z-10">
+  // Prevent scroll from propagating to page when over canvas
+  const handleWheel = useCallback((e: React.WheelEvent) => {
+    e.stopPropagation();
+  }, []);
+
+  return (
+    <div
+      className="relative w-full h-[800px] bg-slate-950 rounded-lg overflow-hidden"
+      onWheel={handleWheel}
+    >
+      <FilterPanel filters={filters} setFilters={setFilters} pointCounts={pointCounts} />
+
+      <div className="absolute top-4 right-4 bg-slate-900/95 p-4 rounded-lg border border-slate-700 z-10 backdrop-blur-sm max-w-xs">
         <h3 className="text-white font-bold mb-2">Z² Topological Digital Twin</h3>
-        <p className="text-slate-400 text-sm">
-          Multi-messenger astronomical data unified in the<br />
+        <p className="text-slate-400 text-sm leading-relaxed">
+          Multi-messenger astronomical data unified in the
           T³/Z₂ fundamental domain (L<sub>c</sub> = 20.6 Gpc)
         </p>
         <div className="mt-3 pt-3 border-t border-slate-700">
           <p className="text-xs text-slate-500">
-            Drag to rotate • Scroll to zoom • Shift+drag to pan
+            <span className="text-cyan-400">Drag</span> to rotate • <span className="text-cyan-400">Scroll</span> to zoom • <span className="text-cyan-400">Right-drag</span> to pan
           </p>
         </div>
       </div>
 
-      <Canvas>
+      <Canvas
+        gl={{ antialias: true, alpha: false }}
+        dpr={[1, 2]}
+      >
         <Scene filters={filters} />
       </Canvas>
 
       {/* Stats overlay */}
-      <div className="absolute bottom-4 left-4 bg-slate-900/90 p-3 rounded-lg border border-slate-700 z-10">
+      <div className="absolute bottom-4 left-4 bg-slate-900/95 p-3 rounded-lg border border-slate-700 z-10 backdrop-blur-sm">
         <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-sm">
           <span className="text-slate-400">Active filters:</span>
-          <span className="text-white">{Object.values(filters).filter(Boolean).length}/6</span>
-          <span className="text-slate-400">Box volume:</span>
-          <span className="text-white">(20.6 Gpc)³</span>
+          <span className="text-white font-mono">{Object.values(filters).filter(Boolean).length}/6</span>
+          <span className="text-slate-400">Domain:</span>
+          <span className="text-white font-mono">(20.6 Gpc)³</span>
+        </div>
+      </div>
+
+      {/* Legend */}
+      <div className="absolute bottom-4 right-4 bg-slate-900/95 p-3 rounded-lg border border-slate-700 z-10 backdrop-blur-sm text-xs">
+        <div className="flex items-center gap-2 text-yellow-400">
+          <span className="w-2 h-2 rounded-full bg-yellow-400"></span>
+          <span>Z² Topological Vertices</span>
+        </div>
+        <div className="flex items-center gap-2 text-green-400 mt-1">
+          <span className="w-2 h-2 rounded-full bg-green-400"></span>
+          <span>Observer (Earth)</span>
+        </div>
+        <div className="flex items-center gap-2 text-cyan-400 mt-1">
+          <span className="w-2 h-2 rounded-full bg-cyan-400 opacity-50"></span>
+          <span>Fundamental Domain</span>
         </div>
       </div>
     </div>
