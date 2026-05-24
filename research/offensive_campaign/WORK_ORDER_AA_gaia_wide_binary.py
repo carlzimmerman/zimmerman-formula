@@ -175,7 +175,8 @@ def z2_velocity(mass_total_msun, separation_au):
     # Z² topological enhancement factor
     # f(x) smoothly transitions from 0 at high-a to 1 at low-a
     x = a_N / A_TOPO
-    f = 1 - np.exp(-1/x) if x > 0 else 1
+    # Handle array case properly
+    f = np.where(x > 0, 1 - np.exp(-1/x), 1)
 
     # Enhancement ratio from Ω_m = 6/19
     # The "dark matter" fraction is (13/19)/(6/19) = 13/6 of baryonic
