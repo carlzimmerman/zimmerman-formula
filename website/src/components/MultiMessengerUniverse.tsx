@@ -1853,6 +1853,7 @@ const CinematicCamera: React.FC<{
 
 // =============================================================================
 // BOUNDARY RUPTURE OVERLAY (Directive VVV)
+// Full-screen flash when crossing T³ boundaries or Z₂ parity flip
 // =============================================================================
 
 const BoundaryRuptureOverlay: React.FC<{
@@ -1862,48 +1863,116 @@ const BoundaryRuptureOverlay: React.FC<{
 }> = ({ isActive, axis, isParityFlip }) => {
   if (!isActive) return null;
 
+  const color = isParityFlip ? '#a855f7' : '#22d3ee';
+  const bgColor = isParityFlip ? 'rgba(168, 85, 247, 0.4)' : 'rgba(34, 211, 238, 0.4)';
+
   return (
-    <div className="absolute inset-0 pointer-events-none z-30 flex items-center justify-center">
-      {/* Chromatic aberration flash effect */}
+    <div
+      className="absolute inset-0 pointer-events-none flex items-center justify-center"
+      style={{ zIndex: 9999 }}
+    >
+      {/* Full screen flash */}
       <div
-        className={`absolute inset-0 ${isParityFlip ? 'bg-purple-500' : 'bg-cyan-500'} animate-pulse`}
+        className="absolute inset-0"
         style={{
-          opacity: 0.3,
-          mixBlendMode: 'screen',
-          animation: 'flash 0.3s ease-out',
+          background: `radial-gradient(circle at center, ${bgColor} 0%, transparent 70%)`,
+          animation: 'rupture-flash 1.5s ease-out forwards',
+        }}
+      />
+
+      {/* Scan lines effect */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: `repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            ${color}22 2px,
+            ${color}22 4px
+          )`,
+          animation: 'scan-lines 0.1s linear infinite',
         }}
       />
 
       {/* Main text overlay */}
-      <div className="text-center animate-bounce">
+      <div
+        className="text-center relative"
+        style={{
+          animation: 'rupture-text 1.5s ease-out forwards',
+        }}
+      >
         <div
-          className={`text-4xl font-bold tracking-widest mb-2 ${
-            isParityFlip ? 'text-purple-400' : 'text-cyan-400'
+          className={`text-5xl md:text-6xl font-black tracking-widest mb-4 ${
+            isParityFlip ? 'text-purple-300' : 'text-cyan-300'
           }`}
           style={{
-            textShadow: isParityFlip
-              ? '0 0 20px #a855f7, 0 0 40px #a855f7'
-              : '0 0 20px #22d3ee, 0 0 40px #22d3ee',
+            textShadow: `0 0 30px ${color}, 0 0 60px ${color}, 0 0 90px ${color}`,
+            letterSpacing: '0.2em',
           }}
         >
-          {isParityFlip ? '⟲ Z₂ PARITY FLIP' : `⚡ T³ BOUNDARY CROSSED`}
+          {isParityFlip ? '⟲ Z₂ PARITY FLIP' : '⚡ T³ BOUNDARY CROSSED'}
         </div>
-        <div className="text-xl text-white font-mono">
+        <div
+          className="text-2xl md:text-3xl text-white font-mono font-bold"
+          style={{
+            textShadow: `0 0 20px ${color}`,
+          }}
+        >
           {isParityFlip
             ? 'COORDINATES INVERTED: p → -p'
-            : `${axis?.toUpperCase()} AXIS WRAPPED: +${HALF_BOX.toFixed(1)} ↔ -${HALF_BOX.toFixed(1)} Gpc`}
+            : `${axis?.toUpperCase()} AXIS: +${HALF_BOX.toFixed(1)} ↔ -${HALF_BOX.toFixed(1)} Gpc`}
+        </div>
+        <div className="mt-4 text-lg text-slate-300 font-mono">
+          {isParityFlip
+            ? 'Same physical location, opposite orientation'
+            : 'Continuous geodesic through periodic boundary'}
         </div>
       </div>
 
-      {/* Edge glow effect */}
+      {/* Corner brackets */}
+      {[
+        { top: 0, left: 0, borderTop: `4px solid ${color}`, borderLeft: `4px solid ${color}` },
+        { top: 0, right: 0, borderTop: `4px solid ${color}`, borderRight: `4px solid ${color}` },
+        { bottom: 0, left: 0, borderBottom: `4px solid ${color}`, borderLeft: `4px solid ${color}` },
+        { bottom: 0, right: 0, borderBottom: `4px solid ${color}`, borderRight: `4px solid ${color}` },
+      ].map((style, i) => (
+        <div
+          key={i}
+          className="absolute w-20 h-20"
+          style={{
+            ...style,
+            boxShadow: `0 0 20px ${color}`,
+          }}
+        />
+      ))}
+
+      {/* Edge glow */}
       <div
-        className="absolute inset-0 border-8"
+        className="absolute inset-0"
         style={{
-          borderColor: isParityFlip ? '#a855f7' : '#22d3ee',
-          boxShadow: `inset 0 0 50px ${isParityFlip ? '#a855f7' : '#22d3ee'}`,
-          opacity: 0.5,
+          border: `3px solid ${color}`,
+          boxShadow: `inset 0 0 100px ${color}40, 0 0 50px ${color}40`,
         }}
       />
+
+      {/* Inline keyframe styles */}
+      <style>{`
+        @keyframes rupture-flash {
+          0% { opacity: 1; }
+          100% { opacity: 0; }
+        }
+        @keyframes rupture-text {
+          0% { transform: scale(1.2); opacity: 0; }
+          20% { transform: scale(1); opacity: 1; }
+          80% { transform: scale(1); opacity: 1; }
+          100% { transform: scale(0.9); opacity: 0; }
+        }
+        @keyframes scan-lines {
+          0% { transform: translateY(0); }
+          100% { transform: translateY(4px); }
+        }
+      `}</style>
     </div>
   );
 };
@@ -2144,13 +2213,6 @@ const MultiMessengerUniverse: React.FC = () => {
         waveRadius={gwWaveRadius}
       />
 
-      {/* Boundary Rupture Overlay (Directive VVV) */}
-      <BoundaryRuptureOverlay
-        isActive={isRuptureActive}
-        axis={ruptureAxis}
-        isParityFlip={isParityFlip}
-      />
-
       <Canvas gl={{ antialias: true, logarithmicDepthBuffer: true }} dpr={[1, 2]}>
         <Scene
           filters={filters}
@@ -2174,6 +2236,13 @@ const MultiMessengerUniverse: React.FC = () => {
           }}
         />
       </Canvas>
+
+      {/* Boundary Rupture Overlay (Directive VVV) - MUST be after Canvas to render on top */}
+      <BoundaryRuptureOverlay
+        isActive={isRuptureActive}
+        axis={ruptureAxis}
+        isParityFlip={isParityFlip}
+      />
 
       <div className="absolute bottom-4 right-4 bg-slate-900/95 p-2 rounded-lg border border-slate-700 z-10 text-[10px] space-y-0.5">
         <div className="flex items-center gap-1 text-yellow-400"><span className="w-1.5 h-1.5 rounded-full bg-yellow-400" />Solar System</div>
