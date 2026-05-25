@@ -6,7 +6,19 @@
 // =============================================================================
 
 import { create } from 'zustand';
-import * as THREE from 'three';
+
+// Plain object types for SSR-safe state (THREE objects created at runtime)
+interface Vector3Like {
+  x: number;
+  y: number;
+  z: number;
+}
+
+interface EulerLike {
+  x: number;
+  y: number;
+  z: number;
+}
 
 // Vessel types available to players
 export type VesselType = 'ufo' | 'truck' | 'sedan' | 'plane' | 'donut';
@@ -90,10 +102,10 @@ export interface PlayerState {
   position: PlayerPosition;
 
   // Velocity vector (Gpc per second)
-  velocity: THREE.Vector3;
+  velocity: Vector3Like;
 
   // Rotation (Euler angles)
-  rotation: THREE.Euler;
+  rotation: EulerLike;
 
   // Propulsion state
   isWarping: boolean;
@@ -113,8 +125,8 @@ export interface PlayerState {
 
   // Movement
   setPosition: (pos: PlayerPosition) => void;
-  setVelocity: (vel: THREE.Vector3) => void;
-  setRotation: (rot: THREE.Euler) => void;
+  setVelocity: (vel: Vector3Like) => void;
+  setRotation: (rot: EulerLike) => void;
 
   // Propulsion
   startWarp: () => void;
@@ -139,8 +151,8 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
   isSelectingVessel: false,
   activeVessel: 'ufo',
   position: { ...INITIAL_POSITION },
-  velocity: new THREE.Vector3(0, 0, 0),
-  rotation: new THREE.Euler(0, 0, 0),
+  velocity: { x: 0, y: 0, z: 0 },
+  rotation: { x: 0, y: 0, z: 0 },
   isWarping: false,
   warpFactor: 0,
   boundariesCrossed: 0,
@@ -154,7 +166,7 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
     isPlayerMode: true,
     isSelectingVessel: false,
     position: { ...INITIAL_POSITION },
-    velocity: new THREE.Vector3(0, 0, 0),
+    velocity: { x: 0, y: 0, z: 0 },
     boundariesCrossed: 0,
     parityFlips: 0,
     currentParity: 1,
@@ -171,8 +183,8 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
 
   // Movement
   setPosition: (pos) => set({ position: pos }),
-  setVelocity: (vel) => set({ velocity: vel.clone() }),
-  setRotation: (rot) => set({ rotation: rot.clone() }),
+  setVelocity: (vel) => set({ velocity: { x: vel.x, y: vel.y, z: vel.z } }),
+  setRotation: (rot) => set({ rotation: { x: rot.x, y: rot.y, z: rot.z } }),
 
   // Propulsion
   startWarp: () => set({ isWarping: true }),
@@ -193,8 +205,8 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
   // Reset
   resetToOrigin: () => set({
     position: { ...INITIAL_POSITION },
-    velocity: new THREE.Vector3(0, 0, 0),
-    rotation: new THREE.Euler(0, 0, 0),
+    velocity: { x: 0, y: 0, z: 0 },
+    rotation: { x: 0, y: 0, z: 0 },
     isWarping: false,
     warpFactor: 0,
     boundariesCrossed: 0,

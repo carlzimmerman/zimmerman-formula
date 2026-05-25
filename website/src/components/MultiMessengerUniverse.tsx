@@ -7,9 +7,13 @@ import * as THREE from 'three';
 import gsap from 'gsap';
 
 // Player Mode imports (Directives WWW, XXX, YYY, ZZZ)
-import PlayerController, { PlayerHUD } from './PlayerMode/PlayerController';
-import VesselSelector from './PlayerMode/VesselSelector';
+import dynamic from 'next/dynamic';
 import { usePlayerStore } from '../store/playerStore';
+
+// Dynamic imports to avoid SSR issues with THREE.js
+const PlayerController = dynamic(() => import('./PlayerMode/PlayerController'), { ssr: false });
+const PlayerHUD = dynamic(() => import('./PlayerMode/PlayerController').then(mod => ({ default: mod.PlayerHUD })), { ssr: false });
+const VesselSelector = dynamic(() => import('./PlayerMode/VesselSelector'), { ssr: false });
 
 // GW190521 Simulation Data (Most massive BBH merger detected)
 const GW190521_EVENT = {

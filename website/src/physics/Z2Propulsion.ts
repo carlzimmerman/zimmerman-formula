@@ -132,15 +132,24 @@ export function applyZ2Inversion(
  */
 export function updatePropulsion(
   currentPosition: PlayerPosition,
-  currentVelocity: THREE.Vector3,
-  currentRotation: THREE.Euler,
+  currentVelocity: THREE.Vector3 | { x: number; y: number; z: number },
+  currentRotation: THREE.Euler | { x: number; y: number; z: number },
   vesselType: VesselType,
   input: PropulsionInput
 ): PropulsionResult {
   const config = VESSEL_CONFIGS[vesselType];
 
+  // Ensure we have proper THREE objects (Zustand may serialize to plain objects)
+  const velocity = currentVelocity instanceof THREE.Vector3
+    ? currentVelocity
+    : new THREE.Vector3(currentVelocity.x, currentVelocity.y, currentVelocity.z);
+
+  const rotation = currentRotation instanceof THREE.Euler
+    ? currentRotation
+    : new THREE.Euler(currentRotation.x, currentRotation.y, currentRotation.z);
+
   // Create rotation matrix from current orientation
-  const rotationMatrix = new THREE.Matrix4().makeRotationFromEuler(currentRotation);
+  const rotationMatrix = new THREE.Matrix4().makeRotationFromEuler(rotation);
 
   // Calculate movement direction in world space
   const forward = new THREE.Vector3(0, 0, -1).applyMatrix4(rotationMatrix);
@@ -149,9 +158,9 @@ export function updatePropulsion(
 
   // Apply rotation from mouse input
   const newRotation = new THREE.Euler(
-    currentRotation.x + input.pitch,
-    currentRotation.y + input.yaw,
-    currentRotation.z
+    rotation.x + input.pitch,
+    rotation.y + input.yaw,
+    rotation.z
   );
 
   // Clamp pitch to prevent flipping
@@ -175,7 +184,7 @@ export function updatePropulsion(
 
   // Apply acceleration
   const acceleration = thrust.multiplyScalar(config.acceleration * speedMultiplier * input.delta);
-  const newVelocity = currentVelocity.clone().add(acceleration);
+  const newVelocity = velocity.clone().add(acceleration);
 
   // Apply drag (more drag at sub-light to feel responsive)
   const drag = input.warp ? 0.98 : 0.9;
