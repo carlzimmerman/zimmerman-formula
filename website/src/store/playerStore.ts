@@ -146,6 +146,15 @@ export interface PlayerState {
   recordParityFlip: () => void;
   flipParity: () => void;
 
+  // Mobile touch input
+  touchInput: {
+    forward: number;
+    right: number;
+    yaw: number;
+    pitch: number;
+  };
+  setTouchInput: (input: Partial<{ forward: number; right: number; yaw: number; pitch: number }>) => void;
+
   // Reset
   resetToOrigin: () => void;
 }
@@ -167,6 +176,7 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
   boundariesCrossed: 0,
   parityFlips: 0,
   currentParity: 1,
+  touchInput: { forward: 0, right: 0, yaw: 0, pitch: 0 },
 
   // Actions
   setVessel: (vessel) => set({ activeVessel: vessel }),
@@ -210,6 +220,11 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
   })),
   flipParity: () => set((state) => ({
     currentParity: state.currentParity === 1 ? -1 : 1,
+  })),
+
+  // Mobile touch input
+  setTouchInput: (input) => set((state) => ({
+    touchInput: { ...state.touchInput, ...input },
   })),
 
   // Reset

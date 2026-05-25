@@ -6,7 +6,7 @@
 
 'use client';
 
-import React, { useRef, useEffect, useCallback } from 'react';
+import React, { useRef, useEffect, useCallback, useState } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 import { usePlayerStore, PlayerPosition } from '../../store/playerStore';
@@ -47,6 +47,7 @@ const PlayerController: React.FC<PlayerControllerProps> = ({
     rotation,
     isWarping,
     currentParity,
+    touchInput,
     setPosition,
     setVelocity,
     setRotation,
@@ -57,15 +58,20 @@ const PlayerController: React.FC<PlayerControllerProps> = ({
   } = usePlayerStore();
 
   // Input state - Flight Sim style (no pointer lock!)
+  // Works with both keyboard (desktop) and touch (mobile)
   const inputRef = useRef({
-    forward: 0,    // W/S = throttle
-    right: 0,      // Q/E = strafe
+    forward: 0,    // W/S = throttle / Left joystick Y
+    right: 0,      // Q/E = strafe / Left joystick X
     up: 0,         // R/F = vertical
-    yaw: 0,        // Arrow Left/Right = turn
-    pitch: 0,      // Arrow Up/Down = pitch
+    yaw: 0,        // Arrow Left/Right = turn / Right joystick X
+    pitch: 0,      // Arrow Up/Down = pitch / Right joystick Y
     roll: 0,       // A/D = roll
-    warp: false,   // Shift = warp drive
+    warp: false,   // Shift = warp drive / Warp button
   });
+
+  // Touch state for mobile controls
+  const leftTouchRef = useRef<{ id: number; startX: number; startY: number } | null>(null);
+  const rightTouchRef = useRef<{ id: number; startX: number; startY: number } | null>(null);
 
   // Handle keyboard input - FLIGHT SIM CONTROLS (no mouse capture!)
   // Left hand: WASD + QE + RF for thrust
@@ -151,6 +157,12 @@ const PlayerController: React.FC<PlayerControllerProps> = ({
     // Clamp delta to prevent huge jumps
     const clampedDelta = Math.min(delta, 0.1);
 
+    // Combine keyboard and touch input (touch overrides if non-zero)
+    const combinedForward = touchInput.forward !== 0 ? touchInput.forward : inputRef.current.forward;
+    const combinedRight = touchInput.right !== 0 ? touchInput.right : inputRef.current.right;
+    const combinedYaw = touchInput.yaw !== 0 ? touchInput.yaw * 0.03 : inputRef.current.yaw;
+    const combinedPitch = touchInput.pitch !== 0 ? touchInput.pitch * 0.03 : inputRef.current.pitch;
+
     // Get propulsion result - steering is continuous (not reset like mouse)
     const result = updatePropulsion(
       position,
@@ -158,12 +170,12 @@ const PlayerController: React.FC<PlayerControllerProps> = ({
       rotation,
       activeVessel,
       {
-        forward: inputRef.current.forward,
-        right: inputRef.current.right,
+        forward: combinedForward,
+        right: combinedRight,
         up: inputRef.current.up,
-        yaw: inputRef.current.yaw,      // Continuous from arrow keys
-        pitch: inputRef.current.pitch,  // Continuous from arrow keys
-        roll: inputRef.current.roll,    // Roll from A/D
+        yaw: combinedYaw,
+        pitch: combinedPitch,
+        roll: inputRef.current.roll,
         warp: inputRef.current.warp,
         delta: clampedDelta,
       }
@@ -282,6 +294,160 @@ const PlayerController: React.FC<PlayerControllerProps> = ({
   );
 };
 
+// =============================================================================
+// MOBILE CONTROLS - Virtual Joysticks for Touch Devices
+// =============================================================================
+
+interface VirtualJoystickProps {
+  side: 'left' | 'right';
+  onMove: (x: number, y: number) => void;
+  onEnd: () => void;
+  label: string;
+}
+
+const VirtualJoystick: React.FC<VirtualJoystickProps> = ({ side, onMove, onEnd, label }) => {
+  const joystickRef = useRef<HTMLDivElement>(null);
+  const knobRef = useRef<HTMLDivElement>(null);
+  const touchIdRef = useRef<number | null>(null);
+  const centerRef = useRef({ x: 0, y: 0 });
+
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    if (touchIdRef.current !== null) return;
+    const touch = e.touches[0];
+    touchIdRef.current = touch.identifier;
+
+    const rect = joystickRef.current?.getBoundingClientRect();
+    if (rect) {
+      centerRef.current = {
+        x: rect.left + rect.width / 2,
+        y: rect.top + rect.height / 2,
+      };
+    }
+  }, []);
+
+  const handleTouchMove = useCallback((e: React.TouchEvent) => {
+    e.preventDefault();
+    const touch = Array.from(e.touches).find(t => t.identifier === touchIdRef.current);
+    if (!touch || !joystickRef.current) return;
+
+    const rect = joystickRef.current.getBoundingClientRect();
+    const maxDist = rect.width / 2 - 20;
+
+    let dx = touch.clientX - centerRef.current.x;
+    let dy = touch.clientY - centerRef.current.y;
+
+    // Clamp to circle
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    if (dist > maxDist) {
+      dx = (dx / dist) * maxDist;
+      dy = (dy / dist) * maxDist;
+    }
+
+    // Move knob visually
+    if (knobRef.current) {
+      knobRef.current.style.transform = `translate(${dx}px, ${dy}px)`;
+    }
+
+    // Normalize to -1 to 1
+    onMove(dx / maxDist, dy / maxDist);
+  }, [onMove]);
+
+  const handleTouchEnd = useCallback((e: React.TouchEvent) => {
+    const touch = Array.from(e.changedTouches).find(t => t.identifier === touchIdRef.current);
+    if (touch) {
+      touchIdRef.current = null;
+      if (knobRef.current) {
+        knobRef.current.style.transform = 'translate(0px, 0px)';
+      }
+      onEnd();
+    }
+  }, [onEnd]);
+
+  return (
+    <div
+      ref={joystickRef}
+      className={`absolute bottom-24 ${side === 'left' ? 'left-4' : 'right-4'} w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-black/40 border-2 border-cyan-500/50 flex items-center justify-center touch-none`}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
+      {/* Label */}
+      <div className="absolute -top-6 text-cyan-400 text-xs font-mono">{label}</div>
+      {/* Knob */}
+      <div
+        ref={knobRef}
+        className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-cyan-500/60 border-2 border-cyan-400 transition-transform duration-75"
+      />
+    </div>
+  );
+};
+
+// Mobile controls overlay
+export const MobileControls: React.FC<{
+  onLeftJoystick: (x: number, y: number) => void;
+  onRightJoystick: (x: number, y: number) => void;
+  onLeftEnd: () => void;
+  onRightEnd: () => void;
+  onWarpStart: () => void;
+  onWarpEnd: () => void;
+  isWarping: boolean;
+}> = ({ onLeftJoystick, onRightJoystick, onLeftEnd, onRightEnd, onWarpStart, onWarpEnd, isWarping }) => {
+  return (
+    <div className="absolute inset-0 pointer-events-none z-30 md:hidden">
+      {/* Left joystick - Thrust */}
+      <div className="pointer-events-auto">
+        <VirtualJoystick
+          side="left"
+          onMove={onLeftJoystick}
+          onEnd={onLeftEnd}
+          label="THRUST"
+        />
+      </div>
+
+      {/* Right joystick - Steering */}
+      <div className="pointer-events-auto">
+        <VirtualJoystick
+          side="right"
+          onMove={onRightJoystick}
+          onEnd={onRightEnd}
+          label="STEER"
+        />
+      </div>
+
+      {/* Warp button */}
+      <div className="pointer-events-auto absolute bottom-28 left-1/2 -translate-x-1/2">
+        <button
+          onTouchStart={onWarpStart}
+          onTouchEnd={onWarpEnd}
+          className={`px-6 py-3 rounded-full font-bold text-sm transition-all ${
+            isWarping
+              ? 'bg-orange-500 text-white animate-pulse'
+              : 'bg-black/60 text-orange-400 border-2 border-orange-500/50'
+          }`}
+        >
+          {isWarping ? '⚡ WARPING' : '🚀 WARP'}
+        </button>
+      </div>
+
+      {/* Up/Down buttons */}
+      <div className="pointer-events-auto absolute right-4 top-1/2 -translate-y-1/2 flex flex-col gap-2">
+        <button
+          onTouchStart={(e) => { e.preventDefault(); }}
+          className="w-12 h-12 rounded-full bg-black/60 border-2 border-slate-500/50 text-slate-400 font-bold"
+        >
+          ↑
+        </button>
+        <button
+          onTouchStart={(e) => { e.preventDefault(); }}
+          className="w-12 h-12 rounded-full bg-black/60 border-2 border-slate-500/50 text-slate-400 font-bold"
+        >
+          ↓
+        </button>
+      </div>
+    </div>
+  );
+};
+
 // HUD component for player mode
 export const PlayerHUD: React.FC = () => {
   const {
@@ -294,7 +460,27 @@ export const PlayerHUD: React.FC = () => {
     parityFlips,
     currentParity,
     stopPlayerMode,
+    startWarp,
+    stopWarp,
+    setTouchInput,
   } = usePlayerStore();
+
+  // Mobile control handlers
+  const handleLeftJoystick = useCallback((x: number, y: number) => {
+    setTouchInput({ right: x, forward: -y }); // Y inverted for intuitive control
+  }, [setTouchInput]);
+
+  const handleRightJoystick = useCallback((x: number, y: number) => {
+    setTouchInput({ yaw: -x, pitch: -y }); // Inverted for intuitive control
+  }, [setTouchInput]);
+
+  const handleLeftEnd = useCallback(() => {
+    setTouchInput({ forward: 0, right: 0 });
+  }, [setTouchInput]);
+
+  const handleRightEnd = useCallback(() => {
+    setTouchInput({ yaw: 0, pitch: 0 });
+  }, [setTouchInput]);
 
   if (!isPlayerMode) return null;
 
@@ -319,24 +505,35 @@ export const PlayerHUD: React.FC = () => {
 
   return (
     <div className="absolute inset-0 pointer-events-none z-40">
-      {/* Top bar */}
-      <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-black/80 border border-cyan-500/50 rounded-lg px-6 py-2 flex items-center gap-6 pointer-events-auto">
-        <div className="text-cyan-400 font-mono text-sm">
-          <span className="text-slate-500">VESSEL:</span> {activeVessel.toUpperCase()}
+      {/* Mobile Controls - Only visible on small screens */}
+      <MobileControls
+        onLeftJoystick={handleLeftJoystick}
+        onRightJoystick={handleRightJoystick}
+        onLeftEnd={handleLeftEnd}
+        onRightEnd={handleRightEnd}
+        onWarpStart={startWarp}
+        onWarpEnd={stopWarp}
+        isWarping={isWarping}
+      />
+
+      {/* Top bar - Responsive */}
+      <div className="absolute top-2 sm:top-4 left-1/2 -translate-x-1/2 bg-black/80 border border-cyan-500/50 rounded-lg px-3 sm:px-6 py-1 sm:py-2 flex items-center gap-2 sm:gap-6 pointer-events-auto">
+        <div className="text-cyan-400 font-mono text-xs sm:text-sm">
+          <span className="text-slate-500 hidden sm:inline">VESSEL:</span> {activeVessel.toUpperCase()}
         </div>
-        <div className={`font-mono text-sm ${isWarping ? 'text-orange-400 animate-pulse' : 'text-slate-400'}`}>
-          {isWarping ? '⚡ WARP ACTIVE' : 'SUB-LIGHT'}
+        <div className={`font-mono text-xs sm:text-sm ${isWarping ? 'text-orange-400 animate-pulse' : 'text-slate-400'}`}>
+          {isWarping ? '⚡ WARP' : 'SUB-LIGHT'}
         </div>
         <button
           onClick={stopPlayerMode}
-          className="text-red-400 hover:text-red-300 text-sm font-bold"
+          className="text-red-400 hover:text-red-300 text-xs sm:text-sm font-bold"
         >
-          [ESC] EXIT
+          EXIT
         </button>
       </div>
 
-      {/* Left panel - Position */}
-      <div className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/80 border border-slate-600 rounded-lg p-4 font-mono text-xs space-y-2">
+      {/* Left panel - Position (hidden on mobile) */}
+      <div className="hidden md:block absolute left-4 top-1/2 -translate-y-1/2 bg-black/80 border border-slate-600 rounded-lg p-4 font-mono text-xs space-y-2">
         <div className="text-slate-500 mb-2">POSITION (Gpc)</div>
         <div className="text-cyan-400">X: {position.x.toFixed(3)}</div>
         <div className="text-cyan-400">Y: {position.y.toFixed(3)}</div>
@@ -351,46 +548,54 @@ export const PlayerHUD: React.FC = () => {
         </div>
       </div>
 
-      {/* Right panel - Stats */}
-      <div className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/80 border border-slate-600 rounded-lg p-4 font-mono text-xs space-y-2">
-        <div className="text-slate-500 mb-2">TELEMETRY</div>
+      {/* Right panel - Stats (hidden on mobile, compact on tablet) */}
+      <div className="hidden sm:block absolute right-2 sm:right-4 top-16 sm:top-1/2 sm:-translate-y-1/2 bg-black/80 border border-slate-600 rounded-lg p-2 sm:p-4 font-mono text-[10px] sm:text-xs space-y-1 sm:space-y-2">
+        <div className="text-slate-500 mb-1 sm:mb-2">TELEMETRY</div>
         <div>
           <span className="text-slate-500">SPEED:</span>
-          <span className="text-green-400 ml-2">{speed.toFixed(4)} Gpc/s</span>
+          <span className="text-green-400 ml-1 sm:ml-2">{speed.toFixed(4)}</span>
         </div>
-        <div>
+        <div className="hidden sm:block">
           <span className="text-slate-500">FROM ORIGIN:</span>
           <span className="text-white ml-2">{quadrant.distanceFromOrigin.toFixed(2)} Gpc</span>
         </div>
-        <div className="border-t border-slate-700 pt-2 mt-2">
+        <div className="border-t border-slate-700 pt-1 sm:pt-2 mt-1 sm:mt-2">
           <div className="text-slate-500">TO BOUNDARY</div>
           <div className={boundary.distance < 1 ? 'text-orange-400' : 'text-white'}>
-            {boundary.distance.toFixed(2)} Gpc ({boundary.axis.toUpperCase()})
+            {boundary.distance.toFixed(2)} ({boundary.axis.toUpperCase()})
           </div>
         </div>
-        <div className="border-t border-slate-700 pt-2 mt-2">
+        <div className="border-t border-slate-700 pt-1 sm:pt-2 mt-1 sm:mt-2">
           <div className="text-slate-500">TOPOLOGY</div>
-          <div className="text-cyan-400">T³ Wraps: {boundariesCrossed}</div>
-          <div className="text-purple-400">Z₂ Flips: {parityFlips}</div>
+          <div className="text-cyan-400">T³: {boundariesCrossed}</div>
+          <div className="text-purple-400">Z₂: {parityFlips}</div>
           <div className={currentParity === 1 ? 'text-green-400' : 'text-red-400'}>
-            Parity: {currentParity === 1 ? '+1' : '-1'}
+            P: {currentParity === 1 ? '+1' : '-1'}
           </div>
         </div>
         {nearestBlackHole && (
-          <div className="border-t border-slate-700 pt-2 mt-2">
-            <div className="text-slate-500">NEAREST BLACK HOLE</div>
+          <div className="border-t border-slate-700 pt-1 sm:pt-2 mt-1 sm:mt-2">
+            <div className="text-slate-500">BLACK HOLE</div>
             <div className={isLockedInBlackHole ? 'text-red-500' : isNearBlackHole ? 'text-orange-400' : 'text-white'}>
-              {nearestBlackHole.hole.name}
+              {nearestBlackHole.hole.name.split(' ')[0]}
             </div>
             <div className={isNearBlackHole ? 'text-red-400' : 'text-slate-400'}>
-              {nearestBlackHole.distance.toFixed(4)} Gpc
+              {nearestBlackHole.distance.toFixed(3)}
             </div>
           </div>
         )}
       </div>
 
-      {/* Bottom - Controls reminder - Flight Sim Style */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/80 border border-slate-700 rounded-lg px-6 py-3 font-mono">
+      {/* Mobile mini-stats - Top right corner on small screens */}
+      <div className="sm:hidden absolute top-12 right-2 bg-black/70 border border-slate-600 rounded px-2 py-1 font-mono text-[9px]">
+        <div className="text-green-400">{speed.toFixed(3)} Gpc/s</div>
+        <div className={boundary.distance < 1 ? 'text-orange-400' : 'text-slate-400'}>
+          {boundary.axis.toUpperCase()}: {boundary.distance.toFixed(1)}
+        </div>
+      </div>
+
+      {/* Bottom - Controls reminder - Desktop only */}
+      <div className="hidden md:block absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/80 border border-slate-700 rounded-lg px-6 py-3 font-mono">
         <div className="flex gap-8 text-xs">
           <div className="text-slate-400">
             <div className="text-cyan-400 font-bold mb-1">LEFT HAND</div>
