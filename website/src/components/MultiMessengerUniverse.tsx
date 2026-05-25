@@ -6,6 +6,11 @@ import { OrbitControls, PerspectiveCamera, Text, Line, Html, Stars } from '@reac
 import * as THREE from 'three';
 import gsap from 'gsap';
 
+// Player Mode imports (Directives WWW, XXX, YYY, ZZZ)
+import PlayerController, { PlayerHUD } from './PlayerMode/PlayerController';
+import VesselSelector from './PlayerMode/VesselSelector';
+import { usePlayerStore } from '../store/playerStore';
+
 // GW190521 Simulation Data (Most massive BBH merger detected)
 const GW190521_EVENT = {
   id: 'GW190521',
@@ -1564,11 +1569,15 @@ interface FilterPanelProps {
   isGWRunning: boolean;
   onStartGW: () => void;
   onStopGW: () => void;
+  // Player Mode (Directive WWW)
+  isPlayerMode: boolean;
+  onStartPlayerMode: () => void;
 }
 
 const FilterPanel: React.FC<FilterPanelProps> = ({
   filters, setFilters, isRotating, setIsRotating, showLabels, setShowLabels,
-  isTourRunning, onStartTour, onStopTour, isGWRunning, onStartGW, onStopGW
+  isTourRunning, onStartTour, onStopTour, isGWRunning, onStartGW, onStopGW,
+  isPlayerMode, onStartPlayerMode
 }) => {
   const toggleFilter = (key: string) => setFilters(prev => ({ ...prev, [key]: !prev[key] }));
 
@@ -1584,18 +1593,35 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
     { key: 'kszVectors', label: 'kSZ Void Outflows', color: '#ff8800' },
   ];
 
+  const isOtherModeRunning = isTourRunning || isGWRunning;
+
   return (
     <div className="absolute top-16 left-4 bg-slate-900/95 p-4 rounded-lg border border-slate-700 z-10 backdrop-blur-sm max-w-[260px]">
       <h3 className="text-white font-bold mb-3">Controls</h3>
 
+      {/* Player Mode Button (Directive WWW) */}
+      <button
+        onClick={onStartPlayerMode}
+        disabled={isOtherModeRunning || isPlayerMode}
+        className={`w-full mb-2 px-4 py-2 font-bold text-sm uppercase tracking-wider transition-all border rounded ${
+          isPlayerMode
+            ? 'bg-purple-900/50 text-purple-400 border-purple-500 animate-pulse'
+            : isOtherModeRunning
+            ? 'bg-slate-800/50 text-slate-500 border-slate-600 cursor-not-allowed'
+            : 'bg-purple-900/50 text-purple-400 border-purple-500 hover:bg-purple-900/80 hover:shadow-[0_0_20px_rgba(168,85,247,0.4)]'
+        }`}
+      >
+        🚀 PLAYER MODE
+      </button>
+
       {/* Cinematic Tour Button */}
       <button
         onClick={isTourRunning ? onStopTour : onStartTour}
-        disabled={isGWRunning}
+        disabled={isGWRunning || isPlayerMode}
         className={`w-full mb-2 px-4 py-2 font-bold text-sm uppercase tracking-wider transition-all border rounded ${
           isTourRunning
             ? 'bg-red-900/50 text-red-400 border-red-500 hover:bg-red-900/80 animate-pulse'
-            : isGWRunning
+            : (isGWRunning || isPlayerMode)
             ? 'bg-slate-800/50 text-slate-500 border-slate-600 cursor-not-allowed'
             : 'bg-cyan-900/50 text-cyan-400 border-cyan-500 hover:bg-cyan-900/80'
         }`}
@@ -1606,11 +1632,11 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
       {/* GW190521 Simulation Button */}
       <button
         onClick={isGWRunning ? onStopGW : onStartGW}
-        disabled={isTourRunning}
+        disabled={isTourRunning || isPlayerMode}
         className={`w-full mb-4 px-4 py-2 font-bold text-sm uppercase tracking-wider transition-all border rounded ${
           isGWRunning
             ? 'bg-red-900/50 text-red-400 border-red-500 hover:bg-red-900/80 animate-pulse'
-            : isTourRunning
+            : (isTourRunning || isPlayerMode)
             ? 'bg-slate-800/50 text-slate-500 border-slate-600 cursor-not-allowed'
             : 'bg-orange-900/50 text-orange-400 border-orange-500 hover:bg-orange-900/80'
         }`}
@@ -2091,7 +2117,9 @@ const Scene: React.FC<{
   // GW Simulation props
   isGWRunning: boolean;
   onGWProgressUpdate: (progress: number, phase: number, waveRadius: number) => void;
-}> = ({ filters, isRotating, showLabels, isTourRunning, onTourComplete, onWaypointChange, onCameraDistanceChange, onBoundaryCross, onParityFlip, isGWRunning, onGWProgressUpdate }) => {
+  // Player Mode props (Directive WWW)
+  isPlayerMode: boolean;
+}> = ({ filters, isRotating, showLabels, isTourRunning, onTourComplete, onWaypointChange, onCameraDistanceChange, onBoundaryCross, onParityFlip, isGWRunning, onGWProgressUpdate, isPlayerMode }) => {
   const controlsRef = useRef<any>(null);
 
   return (
@@ -2119,8 +2147,18 @@ const Scene: React.FC<{
         controlsRef={controlsRef}
       />
 
+      {/* Player Mode Controller (Directive XXX) */}
+      {isPlayerMode && (
+        <PlayerController
+          onBoundaryCross={onBoundaryCross}
+          onParityFlip={onParityFlip}
+        />
+      )}
+
+      {/* Disable OrbitControls during player mode */}
       <OrbitControls
         ref={controlsRef}
+        enabled={!isPlayerMode}
         enablePan enableZoom enableRotate
         minDistance={0.0000000001}
         maxDistance={100}
@@ -2168,6 +2206,27 @@ const MultiMessengerUniverse: React.FC = () => {
   const [ruptureAxis, setRuptureAxis] = useState<string | null>(null);
   const [isParityFlip, setIsParityFlip] = useState(false);
 
+  // Player Mode state (Directives WWW, XXX, YYY, ZZZ)
+  const { isPlayerMode, isSelectingVessel, openVesselSelector, stopPlayerMode } = usePlayerStore();
+
+  // ESC key to exit player mode
+  useEffect(() => {
+    if (!isPlayerMode) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.code === 'Escape') {
+        stopPlayerMode();
+        // Exit pointer lock
+        if (document.pointerLockElement) {
+          document.exitPointerLock();
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isPlayerMode, stopPlayerMode]);
+
   const handleWheel = useCallback((e: React.WheelEvent) => e.stopPropagation(), []);
   const handleStartTour = useCallback(() => {
     setIsTourRunning(true);
@@ -2211,9 +2270,10 @@ const MultiMessengerUniverse: React.FC = () => {
 
   return (
     <div className="relative w-full h-[800px] bg-slate-950 rounded-lg overflow-hidden" onWheel={handleWheel}>
-      <ScaleIndicator cameraDistance={cameraDistance} />
+      {/* Hide regular UI when in Player Mode */}
+      {!isPlayerMode && <ScaleIndicator cameraDistance={cameraDistance} />}
 
-      <FilterPanel
+      {!isPlayerMode && <FilterPanel
         filters={filters}
         setFilters={setFilters}
         isRotating={isRotating}
@@ -2226,14 +2286,16 @@ const MultiMessengerUniverse: React.FC = () => {
         isGWRunning={isGWRunning}
         onStartGW={handleStartGW}
         onStopGW={handleStopGW}
-      />
+        isPlayerMode={isPlayerMode}
+        onStartPlayerMode={openVesselSelector}
+      />}
 
-      <div className="absolute top-16 right-4 bg-slate-900/95 p-3 rounded-lg border border-slate-700 z-10 backdrop-blur-sm max-w-[200px]">
+      {!isPlayerMode && <div className="absolute top-16 right-4 bg-slate-900/95 p-3 rounded-lg border border-slate-700 z-10 backdrop-blur-sm max-w-[200px]">
         <h3 className="text-white font-bold text-sm mb-1">Z² Digital Twin</h3>
         <p className="text-slate-400 text-[10px] leading-relaxed">
           Zoom from planets to the 20.6 Gpc cosmic horizon. All scales unified in T³/Z₂ topology.
         </p>
-      </div>
+      </div>}
 
       {isTourRunning && tourText && (
         <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-20 max-w-2xl">
@@ -2272,6 +2334,7 @@ const MultiMessengerUniverse: React.FC = () => {
               handleStopGW();
             }
           }}
+          isPlayerMode={isPlayerMode}
         />
       </Canvas>
 
@@ -2282,15 +2345,22 @@ const MultiMessengerUniverse: React.FC = () => {
         isParityFlip={isParityFlip}
       />
 
-      <div className="absolute bottom-4 right-4 bg-slate-900/95 p-2 rounded-lg border border-slate-700 z-10 text-[10px] space-y-0.5">
-        <div className="flex items-center gap-1 text-yellow-400"><span className="w-1.5 h-1.5 rounded-full bg-yellow-400" />Solar System</div>
-        <div className="flex items-center gap-1 text-blue-400"><span className="w-1.5 h-1.5 rounded-full bg-blue-400" />Milky Way</div>
-        <div className="flex items-center gap-1 text-green-400"><span className="w-1.5 h-1.5 rounded-full bg-green-400" />Local Group</div>
-        <div className="flex items-center gap-1 text-orange-400"><span className="w-1.5 h-1.5 rounded-full bg-orange-400" />Structures</div>
-        <div className="flex items-center gap-1 text-fuchsia-400"><span className="w-1.5 h-1.5 rounded-full bg-fuchsia-400" />High-z / Ly-α</div>
-        <div className="flex items-center gap-1 text-cyan-400"><span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />BAO 150 Mpc</div>
-        <div className="flex items-center gap-1 text-amber-400"><span className="w-1.5 h-1.5 rounded-full bg-amber-400" />kSZ Outflows</div>
-      </div>
+      {/* Player Mode Overlays (Directives WWW, XXX) */}
+      <VesselSelector />
+      <PlayerHUD />
+
+      {/* Hide legend when in Player Mode */}
+      {!isPlayerMode && (
+        <div className="absolute bottom-4 right-4 bg-slate-900/95 p-2 rounded-lg border border-slate-700 z-10 text-[10px] space-y-0.5">
+          <div className="flex items-center gap-1 text-yellow-400"><span className="w-1.5 h-1.5 rounded-full bg-yellow-400" />Solar System</div>
+          <div className="flex items-center gap-1 text-blue-400"><span className="w-1.5 h-1.5 rounded-full bg-blue-400" />Milky Way</div>
+          <div className="flex items-center gap-1 text-green-400"><span className="w-1.5 h-1.5 rounded-full bg-green-400" />Local Group</div>
+          <div className="flex items-center gap-1 text-orange-400"><span className="w-1.5 h-1.5 rounded-full bg-orange-400" />Structures</div>
+          <div className="flex items-center gap-1 text-fuchsia-400"><span className="w-1.5 h-1.5 rounded-full bg-fuchsia-400" />High-z / Ly-α</div>
+          <div className="flex items-center gap-1 text-cyan-400"><span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />BAO 150 Mpc</div>
+          <div className="flex items-center gap-1 text-amber-400"><span className="w-1.5 h-1.5 rounded-full bg-amber-400" />kSZ Outflows</div>
+        </div>
+      )}
     </div>
   );
 };
