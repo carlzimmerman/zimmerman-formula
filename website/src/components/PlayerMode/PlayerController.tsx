@@ -163,6 +163,9 @@ const PlayerController: React.FC<PlayerControllerProps> = ({
     const combinedYaw = touchInput.yaw !== 0 ? touchInput.yaw * 0.03 : inputRef.current.yaw;
     const combinedPitch = touchInput.pitch !== 0 ? touchInput.pitch * 0.03 : inputRef.current.pitch;
 
+    // Combine keyboard warp (inputRef) with store warp (mobile button)
+    const combinedWarp = inputRef.current.warp || isWarping;
+
     // Get propulsion result - steering is continuous (not reset like mouse)
     const result = updatePropulsion(
       position,
@@ -176,7 +179,7 @@ const PlayerController: React.FC<PlayerControllerProps> = ({
         yaw: combinedYaw,
         pitch: combinedPitch,
         roll: inputRef.current.roll,
-        warp: inputRef.current.warp,
+        warp: combinedWarp,
         delta: clampedDelta,
       }
     );
