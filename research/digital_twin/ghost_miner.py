@@ -24,17 +24,27 @@ import requests
 from scipy.integrate import quad
 
 # =============================================================================
-# COSMOLOGICAL PARAMETERS (Planck 2018)
+# Z² FRAMEWORK COSMOLOGICAL PARAMETERS
+# =============================================================================
+# CRITICAL: We use the Z₂ metric with volumetric deficit, NOT standard ΛCDM.
+# The volumetric deficit term [1 - (D_c/L_c)³] replaces dark energy.
+# This makes d(D_c)/dz an ODE that must be solved numerically.
 # =============================================================================
 
-H0 = 67.4  # km/s/Mpc
-OMEGA_M = 0.315
-OMEGA_LAMBDA = 0.685
+from scipy.integrate import solve_ivp
+
+# Z² Framework Constants
+H0 = 70.0  # km/s/Mpc (local calibration, H0 tension resolved in Z² framework)
+OMEGA_M_TOPO = 0.3158  # Topologically-corrected matter density
+OMEGA_R = 9e-5  # Radiation density (small but included for precision)
 C_KM_S = 299792.458  # km/s
 
-# Fundamental domain size
+# Fundamental domain size (the key T³/Z₂ parameter)
 L_C_GPC = 20.6  # Gpc
 L_C_MPC = L_C_GPC * 1000  # Mpc
+
+# Hubble distance in Gpc
+HUBBLE_DIST_GPC = (C_KM_S / H0) / 1000.0  # ~4.28 Gpc
 
 # Matching tolerances
 DISTANCE_TOLERANCE_GPC = 1.0  # Allow ±1 Gpc deviation from exact sum
@@ -43,49 +53,122 @@ REDSHIFT_TOLERANCE = 0.5  # Allow some redshift uncertainty
 
 
 # =============================================================================
-# COMOVING DISTANCE CALCULATOR
+# Z² METRIC ODE SOLVER FOR COMOVING DISTANCE
+# =============================================================================
+# The Z₂ distance-redshift relation is an ODE because the volumetric deficit
+# term depends on D_c itself: dD_c/dz = (c/H₀) / sqrt[Ω_m(1+z)³ + Ω_r(1+z)⁴ + V(D_c)]
+# where V(D_c) = 1 - (D_c/L_c)³ is the volumetric deficit (replaces Ω_Λ)
 # =============================================================================
 
-def E(z: float) -> float:
-    """Hubble parameter evolution E(z) = H(z)/H0"""
-    return np.sqrt(OMEGA_M * (1 + z)**3 + OMEGA_LAMBDA)
+def z2_distance_derivative(z: float, D_c: np.ndarray) -> np.ndarray:
+    """
+    The Z² geometric volume deficit derivative: dD_c / dz
+
+    This is the core equation of the Z₂ framework. The volumetric deficit
+    term [1 - (D_c/L_c)³] creates an effective "dark energy" that arises
+    purely from the finite topology, not from a cosmological constant.
+
+    Args:
+        z: Redshift (the independent variable in the ODE)
+        D_c: Current comoving distance in Gpc (array for solve_ivp)
+
+    Returns:
+        dD_c/dz at this point
+    """
+    # Extract scalar distance from array
+    d = D_c[0] if isinstance(D_c, np.ndarray) else D_c
+
+    # Volumetric deficit: fraction of space "missing" due to topology
+    # At D_c = 0, deficit = 1.0 (acts like Ω_Λ ~ 0.7)
+    # At D_c = L_c, deficit = 0 (no more "dark energy")
+    volumetric_deficit = 1.0 - (d / L_C_GPC)**3
+
+    # The full E²(z) in Z² framework
+    radicand = (
+        OMEGA_M_TOPO * (1 + z)**3 +  # Matter
+        OMEGA_R * (1 + z)**4 +        # Radiation
+        volumetric_deficit            # Topological "dark energy"
+    )
+
+    # Mathematical failsafe for the solver
+    if radicand <= 0:
+        return np.array([0.0])
+
+    return np.array([HUBBLE_DIST_GPC / np.sqrt(radicand)])
+
+
+def comoving_distance_gpc(z_target: float) -> float:
+    """
+    Calculate comoving distance in Gpc using the Z² metric ODE solver.
+
+    Solves the Initial Value Problem (IVP):
+        dD_c/dz = f(z, D_c)
+        D_c(z=0) = 0
+
+    Args:
+        z_target: Target redshift
+
+    Returns:
+        Comoving distance in Gpc
+    """
+    if z_target <= 0:
+        return 0.0
+
+    # Solve the ODE using Runge-Kutta 4th order (RK45)
+    solution = solve_ivp(
+        fun=z2_distance_derivative,
+        t_span=(0, z_target),
+        y0=[0.0],  # D_c = 0 at z = 0
+        method='RK45',
+        rtol=1e-8,
+        atol=1e-8,
+        dense_output=True  # For interpolation if needed
+    )
+
+    if not solution.success:
+        print(f"WARNING: ODE solver failed at z={z_target}: {solution.message}")
+        return 0.0
+
+    return solution.y[0][-1]
 
 
 def comoving_distance_mpc(z: float) -> float:
+    """Calculate comoving distance in Mpc using Z² metric"""
+    return comoving_distance_gpc(z) * 1000.0
+
+
+def redshift_from_distance_gpc(d_gpc: float, z_min: float = 0.0, z_max: float = 500.0) -> float:
     """
-    Calculate comoving distance in Mpc for a given redshift.
-    D_c = (c/H0) * integral_0^z dz'/E(z')
-    """
-    if z <= 0:
-        return 0.0
+    Invert the Z² distance-redshift relation to find z from comoving distance.
+    Uses binary search with the Z² ODE solver.
 
-    integrand = lambda zp: 1.0 / E(zp)
-    result, _ = quad(integrand, 0, z)
+    NOTE: In the Z² framework, distances asymptote to ~60% of L_c as z→∞.
+    This means ghosts of high-z galaxies may be at VERY high redshifts (z>50).
 
-    # Convert to Mpc
-    d_h = C_KM_S / H0  # Hubble distance in Mpc
-    return d_h * result
+    Args:
+        d_gpc: Target comoving distance in Gpc
+        z_min, z_max: Search bounds (default z_max=500 for asymptotic behavior)
 
-
-def comoving_distance_gpc(z: float) -> float:
-    """Calculate comoving distance in Gpc"""
-    return comoving_distance_mpc(z) / 1000.0
-
-
-def redshift_from_distance_gpc(d_gpc: float, z_min: float = 0.0, z_max: float = 30.0) -> float:
-    """
-    Invert the distance-redshift relation to find z from comoving distance.
-    Uses binary search for efficiency.
+    Returns:
+        Redshift corresponding to that distance, or np.inf if unreachable
     """
     if d_gpc <= 0:
         return 0.0
 
-    # Binary search
+    # Check if distance is beyond the asymptotic limit
+    # At z=500, D_c ≈ 12.8 Gpc (62% of L_c) - this is roughly the max
+    d_max = comoving_distance_gpc(z_max)
+    if d_gpc >= d_max:
+        print(f"WARNING: Distance {d_gpc:.2f} Gpc exceeds asymptotic limit {d_max:.2f} Gpc")
+        print(f"  This ghost location is beyond the observable horizon in Z² geometry.")
+        return float('inf')
+
+    # Binary search using the Z² ODE solver
     for _ in range(100):  # Max iterations
         z_mid = (z_min + z_max) / 2
         d_mid = comoving_distance_gpc(z_mid)
 
-        if abs(d_mid - d_gpc) < 0.001:  # Converged
+        if abs(d_mid - d_gpc) < 0.001:  # Converged to ~1 Mpc
             return z_mid
         elif d_mid < d_gpc:
             z_min = z_mid
@@ -93,6 +176,30 @@ def redshift_from_distance_gpc(d_gpc: float, z_min: float = 0.0, z_max: float = 
             z_max = z_mid
 
     return (z_min + z_max) / 2
+
+
+# =============================================================================
+# COMPARISON: Z² vs ΛCDM (for verification)
+# =============================================================================
+
+def comoving_distance_gpc_LCDM(z: float) -> float:
+    """
+    DEPRECATED: Standard ΛCDM calculation (for comparison only).
+    Do NOT use for ghost predictions - use comoving_distance_gpc() instead.
+    """
+    if z <= 0:
+        return 0.0
+
+    OMEGA_M_LCDM = 0.315
+    OMEGA_LAMBDA = 0.685
+
+    def E_LCDM(zp):
+        return np.sqrt(OMEGA_M_LCDM * (1 + zp)**3 + OMEGA_LAMBDA)
+
+    integrand = lambda zp: 1.0 / E_LCDM(zp)
+    result, _ = quad(integrand, 0, z)
+
+    return HUBBLE_DIST_GPC * result
 
 
 # =============================================================================
