@@ -436,16 +436,20 @@ def main():
     print()
 
     # Try to load CMB map
-    # First try WMAP (smaller, faster for testing)
+    # Prefer Planck (higher resolution) over WMAP
     wmap_path = Path(__file__).parent.parent / "offensive_campaign" / "wmap_ilc_9yr.fits"
     planck_path = Path(__file__).parent.parent / "offensive_campaign" / "planck_cmb_smica.fits"
 
-    if wmap_path.exists():
+    # Check for command line argument to force WMAP
+    import sys
+    use_wmap = "--wmap" in sys.argv
+
+    if planck_path.exists() and not use_wmap:
+        cmb_map, nside = load_cmb_map(planck_path, field=0)  # I_STOKES
+        map_name = "Planck SMICA"
+    elif wmap_path.exists():
         cmb_map, nside = load_cmb_map(wmap_path)
         map_name = "WMAP ILC 9yr"
-    elif planck_path.exists():
-        cmb_map, nside = load_cmb_map(planck_path)
-        map_name = "Planck SMICA"
     else:
         print("ERROR: No CMB map found!")
         print(f"  Tried: {wmap_path}")
@@ -460,11 +464,17 @@ def main():
     print("FULL SKY SEARCH FOR MATCHED ANTIPODAL CIRCLES")
     print("="*70 + "\n")
 
+    # Finer grid for Planck, coarser for WMAP
+    if "Planck" in map_name:
+        n_theta, n_phi = 36, 72  # 5° resolution
+    else:
+        n_theta, n_phi = 20, 40  # Coarser for faster testing
+
     results = search_all_antipodal_circles(
         cmb_map, nside,
         alpha=ALPHA_RAD,
-        n_theta=20,  # Coarse search first
-        n_phi=40
+        n_theta=n_theta,
+        n_phi=n_phi
     )
 
     # Find best matches
