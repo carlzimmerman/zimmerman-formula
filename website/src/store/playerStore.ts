@@ -159,8 +159,9 @@ export interface PlayerState {
   resetToOrigin: () => void;
 }
 
-// Initial position: Earth orbit (origin of the fundamental domain)
-const INITIAL_POSITION: PlayerPosition = { x: 0, y: 0, z: 0 };
+// Initial position: Safe spawn point outside all black hole event horizons
+// Sgr A* is at origin with 0.001 Gpc horizon, so start at 0.1 Gpc (100 Mpc) away
+const INITIAL_POSITION: PlayerPosition = { x: 0.1, y: 0.05, z: 0.1 };
 
 export const usePlayerStore = create<PlayerState>((set, get) => ({
   // Initial state

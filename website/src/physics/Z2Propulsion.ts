@@ -57,10 +57,10 @@ export const COSMIC_BLACK_HOLES: BlackHole[] = [
   {
     id: 'SagA',
     name: 'Sagittarius A*',
-    position: { x: 0, y: 0, z: 0 }, // Galactic center (near origin)
+    position: { x: -0.05, y: 0, z: -0.05 }, // Galactic center (~50 Mpc offset for gameplay)
     mass_solar: 4e6,
-    eventHorizon_gpc: 0.001, // 1 Mpc
-    influenceRadius_gpc: 0.01, // 10 Mpc
+    eventHorizon_gpc: 0.002, // 2 Mpc
+    influenceRadius_gpc: 0.02, // 20 Mpc
   },
 ];
 
