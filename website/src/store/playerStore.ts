@@ -33,13 +33,17 @@ export interface VesselConfig {
   acceleration: number;
 }
 
+// Vessel scale factor: 0.001 Gpc = 1 Mpc (roughly galaxy-cluster scale for visibility)
+// The Sun is ~4.5×10⁻¹⁷ Gpc - we use larger for gameplay visibility
+const VESSEL_SCALE_BASE = 0.001; // Base scale in Gpc
+
 export const VESSEL_CONFIGS: Record<VesselType, VesselConfig> = {
   ufo: {
     id: 'ufo',
     name: 'Classic Saucer',
     description: 'Retro flying saucer with smooth handling',
     color: '#00ff88',
-    scale: 1.0,
+    scale: VESSEL_SCALE_BASE * 1.0,
     maxSpeed: 2.0,
     acceleration: 0.5,
   },
@@ -48,7 +52,7 @@ export const VESSEL_CONFIGS: Record<VesselType, VesselConfig> = {
     name: 'Space Trucker',
     description: 'Heavy hauler - slow but steady',
     color: '#ff6600',
-    scale: 1.5,
+    scale: VESSEL_SCALE_BASE * 1.5,
     maxSpeed: 1.0,
     acceleration: 0.2,
   },
@@ -57,7 +61,7 @@ export const VESSEL_CONFIGS: Record<VesselType, VesselConfig> = {
     name: 'Cosmic Taxi',
     description: 'Nimble space sedan for quick trips',
     color: '#ffcc00',
-    scale: 0.8,
+    scale: VESSEL_SCALE_BASE * 0.8,
     maxSpeed: 3.0,
     acceleration: 0.8,
   },
@@ -66,7 +70,7 @@ export const VESSEL_CONFIGS: Record<VesselType, VesselConfig> = {
     name: 'Starfighter',
     description: 'Fast and agile spacecraft',
     color: '#0088ff',
-    scale: 1.2,
+    scale: VESSEL_SCALE_BASE * 1.2,
     maxSpeed: 4.0,
     acceleration: 1.0,
   },
@@ -75,7 +79,7 @@ export const VESSEL_CONFIGS: Record<VesselType, VesselConfig> = {
     name: 'The Cosmic Donut',
     description: 'A giant space donut. Why not?',
     color: '#ff88cc',
-    scale: 2.0,
+    scale: VESSEL_SCALE_BASE * 2.0,
     maxSpeed: 1.5,
     acceleration: 0.3,
   },
@@ -94,6 +98,9 @@ export interface PlayerState {
   // Mode
   isPlayerMode: boolean;
   isSelectingVessel: boolean;
+
+  // Player identity (for labels/multiplayer)
+  playerName: string;
 
   // Vessel
   activeVessel: VesselType;
@@ -122,6 +129,7 @@ export interface PlayerState {
   stopPlayerMode: () => void;
   openVesselSelector: () => void;
   closeVesselSelector: () => void;
+  setPlayerName: (name: string) => void;
 
   // Movement
   setPosition: (pos: PlayerPosition) => void;
@@ -149,6 +157,7 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
   // Initial state
   isPlayerMode: false,
   isSelectingVessel: false,
+  playerName: 'Pilot', // Default name, can be customized
   activeVessel: 'ufo',
   position: { ...INITIAL_POSITION },
   velocity: { x: 0, y: 0, z: 0 },
@@ -180,6 +189,7 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
 
   openVesselSelector: () => set({ isSelectingVessel: true }),
   closeVesselSelector: () => set({ isSelectingVessel: false }),
+  setPlayerName: (name) => set({ playerName: name }),
 
   // Movement
   setPosition: (pos) => set({ position: pos }),

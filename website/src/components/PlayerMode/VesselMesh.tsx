@@ -9,6 +9,7 @@
 
 import React, { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
+import { Html } from '@react-three/drei';
 import * as THREE from 'three';
 import { VesselType, VESSEL_CONFIGS } from '../../store/playerStore';
 
@@ -16,6 +17,8 @@ interface VesselMeshProps {
   vesselType: VesselType;
   isWarping?: boolean;
   parity?: 1 | -1;
+  playerName?: string;
+  showLabel?: boolean;
 }
 
 // UFO - Classic flying saucer
@@ -251,6 +254,8 @@ export const VesselMesh: React.FC<VesselMeshProps> = ({
   vesselType,
   isWarping = false,
   parity = 1,
+  playerName,
+  showLabel = true,
 }) => {
   const config = VESSEL_CONFIGS[vesselType];
 
@@ -274,6 +279,20 @@ export const VesselMesh: React.FC<VesselMeshProps> = ({
   return (
     <group scale={config.scale * (parity === -1 ? -1 : 1)}>
       {getMesh()}
+      {/* Player name label - floats above vessel */}
+      {showLabel && playerName && (
+        <Html
+          position={[0, 400, 0]}  // Above vessel (scaled up because group is scaled down)
+          center
+          distanceFactor={0.001}  // Scale with distance
+          occlude={false}
+          style={{ pointerEvents: 'none' }}
+        >
+          <div className="bg-black/70 border border-cyan-500/50 rounded px-2 py-0.5 whitespace-nowrap">
+            <span className="text-cyan-400 text-xs font-mono">{playerName}</span>
+          </div>
+        </Html>
+      )}
     </group>
   );
 };
