@@ -1789,10 +1789,23 @@ const CinematicCamera: React.FC<{
     };
   }, [isTourRunning, camera, controlsRef, onWaypointChange]);
 
+  // Track isTourRunning in a ref to avoid stale closure
+  const isTourRunningRef = useRef(isTourRunning);
+  useEffect(() => {
+    isTourRunningRef.current = isTourRunning;
+  }, [isTourRunning]);
+
   useFrame((state, delta) => {
-    if (!isTourRunning || !isAnimating.current) return;
+    if (!isTourRunningRef.current || !isAnimating.current) return;
 
     const segmentIndex = currentSegment.current;
+
+    // Debug logging every 60 frames
+    if (Math.floor(state.clock.elapsedTime * 60) % 60 === 0) {
+      const nextWp = TOPOLOGY_TOUR[segmentIndex + 1];
+      console.log(`Segment ${segmentIndex}, next type: ${nextWp?.type}, progress: ${segmentProgress.current.toFixed(2)}`);
+    }
+
     if (segmentIndex >= TOPOLOGY_TOUR.length - 1) {
       onTourCompleteRef.current();
       isAnimating.current = false;
@@ -1809,17 +1822,20 @@ const CinematicCamera: React.FC<{
       segmentProgress.current += delta * teleportSpeed;
 
       if (segmentProgress.current >= 1) {
+        console.log('=== TELEPORT WAYPOINT REACHED ===');
+        console.log('Type:', toWaypoint.type, 'Axis:', toWaypoint.boundaryAxis);
+
         // Execute the teleport
         camera.position.copy(toWaypoint.position);
         lookAtTarget.current.copy(toWaypoint.lookAt);
 
         // Trigger effects using refs (avoids stale closure)
         if (toWaypoint.type === 'boundary_cross' && toWaypoint.boundaryAxis) {
-          console.log('BOUNDARY CROSS TRIGGERED:', toWaypoint.boundaryAxis);
+          console.log('>>> CALLING onBoundaryCross with:', toWaypoint.boundaryAxis);
           onBoundaryCrossRef.current(toWaypoint.boundaryAxis);
         }
         if (toWaypoint.type === 'z2_demo') {
-          console.log('PARITY FLIP TRIGGERED');
+          console.log('>>> CALLING onParityFlip');
           onParityFlipRef.current();
         }
 
@@ -1870,7 +1886,7 @@ const CinematicCamera: React.FC<{
 
 // =============================================================================
 // BOUNDARY RUPTURE OVERLAY (Directive VVV)
-// Full-screen flash when crossing T³ boundaries or Z₂ parity flip
+// Smooth cinematic transition when crossing T³ boundaries or Z₂ parity flip
 // =============================================================================
 
 const BoundaryRuptureOverlay: React.FC<{
@@ -1881,113 +1897,115 @@ const BoundaryRuptureOverlay: React.FC<{
   if (!isActive) return null;
 
   const color = isParityFlip ? '#a855f7' : '#22d3ee';
-  const bgColor = isParityFlip ? 'rgba(168, 85, 247, 0.4)' : 'rgba(34, 211, 238, 0.4)';
 
   return (
     <div
       className="absolute inset-0 pointer-events-none flex items-center justify-center"
       style={{ zIndex: 9999 }}
     >
-      {/* Full screen flash */}
+      {/* Smooth vignette overlay */}
       <div
         className="absolute inset-0"
         style={{
-          background: `radial-gradient(circle at center, ${bgColor} 0%, transparent 70%)`,
-          animation: 'rupture-flash 1.5s ease-out forwards',
+          background: `radial-gradient(ellipse at center, transparent 30%, ${color}30 100%)`,
+          animation: 'smooth-vignette 2s ease-in-out forwards',
         }}
       />
 
-      {/* Scan lines effect */}
+      {/* Subtle horizontal line sweep */}
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 overflow-hidden"
         style={{
-          background: `repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 2px,
-            ${color}22 2px,
-            ${color}22 4px
-          )`,
-          animation: 'scan-lines 0.1s linear infinite',
-        }}
-      />
-
-      {/* Main text overlay */}
-      <div
-        className="text-center relative"
-        style={{
-          animation: 'rupture-text 1.5s ease-out forwards',
+          animation: 'line-sweep 2s ease-in-out forwards',
         }}
       >
         <div
-          className={`text-5xl md:text-6xl font-black tracking-widest mb-4 ${
-            isParityFlip ? 'text-purple-300' : 'text-cyan-300'
+          className="absolute left-0 right-0 h-1"
+          style={{
+            background: `linear-gradient(90deg, transparent, ${color}, transparent)`,
+            boxShadow: `0 0 30px 10px ${color}`,
+            top: '50%',
+            transform: 'translateY(-50%)',
+          }}
+        />
+      </div>
+
+      {/* Main text overlay - smooth fade */}
+      <div
+        className="text-center relative"
+        style={{
+          animation: 'smooth-text 2s ease-in-out forwards',
+        }}
+      >
+        <div
+          className={`text-3xl md:text-4xl font-bold tracking-wide mb-3 ${
+            isParityFlip ? 'text-purple-200' : 'text-cyan-200'
           }`}
           style={{
-            textShadow: `0 0 30px ${color}, 0 0 60px ${color}, 0 0 90px ${color}`,
-            letterSpacing: '0.2em',
+            textShadow: `0 0 40px ${color}`,
+            letterSpacing: '0.15em',
           }}
         >
-          {isParityFlip ? '⟲ Z₂ PARITY FLIP' : '⚡ T³ BOUNDARY CROSSED'}
+          {isParityFlip ? 'Z₂ PARITY INVERSION' : 'T³ BOUNDARY TRANSITION'}
         </div>
         <div
-          className="text-2xl md:text-3xl text-white font-mono font-bold"
+          className="text-xl md:text-2xl text-white/90 font-mono"
           style={{
-            textShadow: `0 0 20px ${color}`,
+            textShadow: `0 0 20px ${color}80`,
           }}
         >
           {isParityFlip
-            ? 'COORDINATES INVERTED: p → -p'
-            : `${axis?.toUpperCase()} AXIS: +${HALF_BOX.toFixed(1)} ↔ -${HALF_BOX.toFixed(1)} Gpc`}
-        </div>
-        <div className="mt-4 text-lg text-slate-300 font-mono">
-          {isParityFlip
-            ? 'Same physical location, opposite orientation'
-            : 'Continuous geodesic through periodic boundary'}
+            ? 'p → −p'
+            : `${axis?.toUpperCase()}: +${HALF_BOX.toFixed(1)} ↔ −${HALF_BOX.toFixed(1)} Gpc`}
         </div>
       </div>
 
-      {/* Corner brackets */}
+      {/* Subtle corner accents */}
       {[
-        { top: 0, left: 0, borderTop: `4px solid ${color}`, borderLeft: `4px solid ${color}` },
-        { top: 0, right: 0, borderTop: `4px solid ${color}`, borderRight: `4px solid ${color}` },
-        { bottom: 0, left: 0, borderBottom: `4px solid ${color}`, borderLeft: `4px solid ${color}` },
-        { bottom: 0, right: 0, borderBottom: `4px solid ${color}`, borderRight: `4px solid ${color}` },
-      ].map((style, i) => (
+        { top: 20, left: 20 },
+        { top: 20, right: 20 },
+        { bottom: 20, left: 20 },
+        { bottom: 20, right: 20 },
+      ].map((pos, i) => (
         <div
           key={i}
-          className="absolute w-20 h-20"
+          className="absolute w-12 h-12"
           style={{
-            ...style,
-            boxShadow: `0 0 20px ${color}`,
+            ...pos,
+            borderTop: i < 2 ? `2px solid ${color}80` : 'none',
+            borderBottom: i >= 2 ? `2px solid ${color}80` : 'none',
+            borderLeft: i % 2 === 0 ? `2px solid ${color}80` : 'none',
+            borderRight: i % 2 === 1 ? `2px solid ${color}80` : 'none',
+            animation: 'smooth-corners 2s ease-in-out forwards',
           }}
         />
       ))}
 
-      {/* Edge glow */}
-      <div
-        className="absolute inset-0"
-        style={{
-          border: `3px solid ${color}`,
-          boxShadow: `inset 0 0 100px ${color}40, 0 0 50px ${color}40`,
-        }}
-      />
-
-      {/* Inline keyframe styles */}
+      {/* Inline keyframe styles - all smooth, no bounce */}
       <style>{`
-        @keyframes rupture-flash {
-          0% { opacity: 1; }
+        @keyframes smooth-vignette {
+          0% { opacity: 0; }
+          15% { opacity: 1; }
+          85% { opacity: 1; }
           100% { opacity: 0; }
         }
-        @keyframes rupture-text {
-          0% { transform: scale(1.2); opacity: 0; }
-          20% { transform: scale(1); opacity: 1; }
-          80% { transform: scale(1); opacity: 1; }
-          100% { transform: scale(0.9); opacity: 0; }
+        @keyframes smooth-text {
+          0% { opacity: 0; transform: translateY(10px); }
+          15% { opacity: 1; transform: translateY(0); }
+          85% { opacity: 1; transform: translateY(0); }
+          100% { opacity: 0; transform: translateY(-10px); }
         }
-        @keyframes scan-lines {
-          0% { transform: translateY(0); }
-          100% { transform: translateY(4px); }
+        @keyframes smooth-corners {
+          0% { opacity: 0; transform: scale(0.8); }
+          15% { opacity: 1; transform: scale(1); }
+          85% { opacity: 1; transform: scale(1); }
+          100% { opacity: 0; transform: scale(1.1); }
+        }
+        @keyframes line-sweep {
+          0% { opacity: 0; }
+          10% { opacity: 1; }
+          50% { opacity: 1; }
+          100% { opacity: 0; }
         }
       `}</style>
     </div>
@@ -2151,7 +2169,10 @@ const MultiMessengerUniverse: React.FC = () => {
   const [isParityFlip, setIsParityFlip] = useState(false);
 
   const handleWheel = useCallback((e: React.WheelEvent) => e.stopPropagation(), []);
-  const handleStartTour = useCallback(() => { setIsTourRunning(true); setIsRotating(false); }, []);
+  const handleStartTour = useCallback(() => {
+    setIsTourRunning(true);
+    setIsRotating(false);
+  }, []);
   const handleStopTour = useCallback(() => { setIsTourRunning(false); setTourText(''); }, []);
   const handleWaypointChange = useCallback((text: string) => setTourText(text), []);
 
