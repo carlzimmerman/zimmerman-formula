@@ -13,6 +13,9 @@ import { usePlayerStore } from '../store/playerStore';
 // CMB Evidence Layer (Phase 4 - Topology Proof)
 import { CMBEvidenceLayer, CMBEvidenceHUD, getCMBViewPosition, CMB_CIRCLE_DATA } from './CMBEvidenceLayer';
 
+// Performance Monitoring
+import { MinimalFPS } from './PerformanceHUD';
+
 // Dynamic imports to avoid SSR issues with THREE.js
 const PlayerController = dynamic(() => import('./PlayerMode/PlayerController'), { ssr: false });
 const PlayerHUD = dynamic(() => import('./PlayerMode/PlayerController').then(mod => ({ default: mod.PlayerHUD })), { ssr: false });
@@ -2518,6 +2521,32 @@ const MultiScaleUniverse: React.FC<{
 // SCENE
 // =============================================================================
 
+// FPS Monitor Component
+const FPSMonitor: React.FC<{ onFPSUpdate: (fps: number) => void }> = ({ onFPSUpdate }) => {
+  const framesRef = useRef<number[]>([]);
+  const lastTimeRef = useRef(performance.now());
+
+  useFrame(() => {
+    const now = performance.now();
+    const delta = now - lastTimeRef.current;
+    lastTimeRef.current = now;
+
+    framesRef.current.push(delta);
+    if (framesRef.current.length > 30) {
+      framesRef.current.shift();
+    }
+
+    // Calculate FPS every 10 frames to avoid excessive updates
+    if (framesRef.current.length % 10 === 0) {
+      const avgDelta = framesRef.current.reduce((a, b) => a + b, 0) / framesRef.current.length;
+      const fps = Math.round(1000 / avgDelta);
+      onFPSUpdate(fps);
+    }
+  });
+
+  return null;
+};
+
 const Scene: React.FC<{
   filters: Record<string, boolean>;
   isRotating: boolean;
@@ -2536,7 +2565,9 @@ const Scene: React.FC<{
   isPlayerMode: boolean;
   // CMB Proof props (Phase 4)
   isCMBProofActive: boolean;
-}> = ({ filters, isRotating, showLabels, isTourRunning, onTourComplete, onWaypointChange, onCameraDistanceChange, onBoundaryCross, onParityFlip, isGWRunning, selectedGWEvent, onGWProgressUpdate, isPlayerMode, isCMBProofActive }) => {
+  // Performance monitoring
+  onFPSUpdate: (fps: number) => void;
+}> = ({ filters, isRotating, showLabels, isTourRunning, onTourComplete, onWaypointChange, onCameraDistanceChange, onBoundaryCross, onParityFlip, isGWRunning, selectedGWEvent, onGWProgressUpdate, isPlayerMode, isCMBProofActive, onFPSUpdate }) => {
   const controlsRef = useRef<any>(null);
 
   return (
@@ -2599,6 +2630,9 @@ const Scene: React.FC<{
       />
       {/* Start at Earth/Solar System scale - user zooms out to cosmic view */}
       <PerspectiveCamera makeDefault position={[0.00005, 0.00003, 0.00005]} fov={50} near={0.00000000001} far={1000} />
+
+      {/* FPS Monitoring */}
+      <FPSMonitor onFPSUpdate={onFPSUpdate} />
     </>
   );
 };
@@ -2628,6 +2662,9 @@ const MultiMessengerUniverse: React.FC = () => {
   // CMB Proof Mode state (Phase 4)
   const [isCMBProofActive, setIsCMBProofActive] = useState(false);
   const [cameraDistance, setCameraDistance] = useState(3);
+
+  // Performance monitoring
+  const [fps, setFps] = useState(60);
 
   // GW Simulation State
   const [isGWRunning, setIsGWRunning] = useState(false);
@@ -2788,6 +2825,7 @@ const MultiMessengerUniverse: React.FC = () => {
           }}
           isPlayerMode={isPlayerMode}
           isCMBProofActive={isCMBProofActive}
+          onFPSUpdate={setFps}
         />
       </Canvas>
 
@@ -2815,6 +2853,9 @@ const MultiMessengerUniverse: React.FC = () => {
           <div className="flex items-center gap-1 text-amber-400"><span className="w-1.5 h-1.5 rounded-full bg-amber-400" />kSZ Outflows</div>
         </div>
       )}
+
+      {/* Minimal FPS Counter */}
+      <MinimalFPS fps={fps} />
     </div>
   );
 };
