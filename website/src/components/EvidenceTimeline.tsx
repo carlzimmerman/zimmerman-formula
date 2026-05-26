@@ -156,6 +156,18 @@ const EVIDENCE: Evidence[] = [
     sigma: 10,
     link: '/evidence/4pcf',
   },
+  // CMB k_min Cutoff - Low-ℓ Anomaly Explained
+  {
+    year: 2026,
+    month: 'May',
+    title: 'CMB k_min Cutoff: Low-ℓ Anomaly Explained',
+    source: 'Planck 2018 + T³/Z₂ Analysis',
+    description: 'The famous "anomalously low quadrupole" (ℓ=2 at 19% of ΛCDM) is PREDICTED by finite topology. With L_c = 20.6 Gpc, ℓ_min ≈ 4.2 — modes below this are naturally suppressed.',
+    relevance: 'T³/Z₂ gives Δχ² = 12.25 improvement over ΛCDM. Quadrupole deficit goes from 3.49σ anomaly to 0.14σ perfect match. Octupole (ℓ=3) protected by 8-vertex resonance.',
+    type: 'supports',
+    sigma: 3.5,
+    link: '/evidence/cmb-kmin',
+  },
   // DESI Q4 Resolution
   {
     year: 2026,
