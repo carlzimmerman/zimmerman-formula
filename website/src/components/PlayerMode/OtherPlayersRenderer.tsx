@@ -138,11 +138,12 @@ function OtherPlayerVessel({ player }: OtherPlayerVesselProps) {
         />
       </mesh>
 
-      {/* Player name label */}
+      {/* Player name label - small but visible */}
       <Html
-        position={[0, scale * 1.2, 0]}
+        position={[0, scale * 1.5, 0]}
         center
-        distanceFactor={15}
+        distanceFactor={8}
+        occlude={false}
         style={{
           pointerEvents: 'none',
           userSelect: 'none',
@@ -150,19 +151,48 @@ function OtherPlayerVessel({ player }: OtherPlayerVesselProps) {
       >
         <div
           style={{
-            background: 'rgba(0, 0, 0, 0.8)',
+            position: 'relative',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '4px',
+            background: 'rgba(0, 0, 0, 0.9)',
             color: player.color,
-            padding: '2px 8px',
-            borderRadius: '4px',
-            fontSize: '11px',
+            padding: '3px 8px',
+            borderRadius: '12px',
+            fontSize: '9px',
             fontWeight: 'bold',
             whiteSpace: 'nowrap',
-            border: `1px solid ${player.color}`,
-            textShadow: '0 0 4px rgba(0,0,0,0.8)',
+            border: `1.5px solid ${player.color}`,
+            boxShadow: `0 0 10px ${player.color}50, 0 2px 6px rgba(0,0,0,0.6)`,
+            textShadow: `0 0 4px ${player.color}`,
+            letterSpacing: '0.3px',
           }}
         >
+          {/* Vessel icon */}
+          <span style={{ fontSize: '10px' }}>
+            {player.vessel === 'ufo' && '🛸'}
+            {player.vessel === 'truck' && '🚛'}
+            {player.vessel === 'sedan' && '🚗'}
+            {player.vessel === 'plane' && '✈️'}
+            {player.vessel === 'donut' && '🍩'}
+          </span>
           {player.name}
-          {player.isWarping && ' [WARP]'}
+          {/* Warp indicator - inline */}
+          {player.isWarping && (
+            <span
+              style={{
+                background: '#00ffff',
+                color: '#000',
+                padding: '1px 3px',
+                borderRadius: '4px',
+                fontSize: '6px',
+                fontWeight: 'bold',
+                marginLeft: '2px',
+              }}
+            >
+              ⚡
+            </span>
+          )}
         </div>
       </Html>
 
