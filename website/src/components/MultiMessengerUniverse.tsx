@@ -10,26 +10,239 @@ import gsap from 'gsap';
 import dynamic from 'next/dynamic';
 import { usePlayerStore } from '../store/playerStore';
 
+// CMB Evidence Layer (Phase 4 - Topology Proof)
+import { CMBEvidenceLayer, CMBEvidenceHUD, getCMBViewPosition, CMB_CIRCLE_DATA } from './CMBEvidenceLayer';
+
 // Dynamic imports to avoid SSR issues with THREE.js
 const PlayerController = dynamic(() => import('./PlayerMode/PlayerController'), { ssr: false });
 const PlayerHUD = dynamic(() => import('./PlayerMode/PlayerController').then(mod => ({ default: mod.PlayerHUD })), { ssr: false });
 const VesselSelector = dynamic(() => import('./PlayerMode/VesselSelector'), { ssr: false });
+const OtherPlayersRenderer = dynamic(() => import('./PlayerMode/OtherPlayersRenderer'), { ssr: false });
+const MultiplayerHUD = dynamic(() => import('./PlayerMode/OtherPlayersRenderer').then(mod => ({ default: mod.MultiplayerHUD })), { ssr: false });
 
-// GW190521 Simulation Data (Most massive BBH merger detected)
-const GW190521_EVENT = {
-  id: 'GW190521',
-  name: 'GW190521 (IMBH Merger)',
-  // Location in Gpc (scene units)
-  position: { x: 4.2, y: 1.8, z: -2.5 }, // ~5.3 Gpc luminosity distance
-  distance_gpc: 5.3,
-  // Masses
-  mass1_solar: 85,
-  mass2_solar: 66,
-  finalMass_solar: 142, // First intermediate-mass black hole
-  // Wave properties
-  peakStrain: 2.4e-22,
-  peakFrequency_Hz: 60,
-};
+// =============================================================================
+// GRAVITATIONAL WAVE EVENT CATALOG
+// GWTC-1, GWTC-2, GWTC-3, GWTC-4 events from LIGO-Virgo-KAGRA
+// =============================================================================
+
+interface GWEvent {
+  id: string;
+  name: string;
+  type: 'BBH' | 'BNS' | 'NSBH';
+  description: string;
+  position: { x: number; y: number; z: number };
+  distance_gpc: number;
+  mass1_solar: number;
+  mass2_solar: number;
+  finalMass_solar: number;
+  peakStrain: number;
+  peakFrequency_Hz: number;
+  date: string;
+  significance: string;
+}
+
+// Generate random position at given distance
+function positionAtDistance(d: number, seed: number): { x: number; y: number; z: number } {
+  const phi = (seed * 137.5) % 360 * Math.PI / 180;
+  const theta = Math.acos(2 * ((seed * 0.618) % 1) - 1);
+  return {
+    x: d * Math.sin(theta) * Math.cos(phi),
+    y: d * Math.sin(theta) * Math.sin(phi),
+    z: d * Math.cos(theta)
+  };
+}
+
+const GW_EVENTS: GWEvent[] = [
+  // === HISTORIC FIRSTS ===
+  {
+    id: 'GW150914',
+    name: 'GW150914 (First Detection)',
+    type: 'BBH',
+    description: 'First direct detection of gravitational waves',
+    position: positionAtDistance(0.44, 1),
+    distance_gpc: 0.44,
+    mass1_solar: 36,
+    mass2_solar: 29,
+    finalMass_solar: 62,
+    peakStrain: 1.0e-21,
+    peakFrequency_Hz: 150,
+    date: '2015-09-14',
+    significance: 'Nobel Prize 2017 - Confirmed Einstein\'s prediction'
+  },
+  {
+    id: 'GW170817',
+    name: 'GW170817 (BNS + Kilonova)',
+    type: 'BNS',
+    description: 'First binary neutron star merger with EM counterpart',
+    position: positionAtDistance(0.04, 2),
+    distance_gpc: 0.04,
+    mass1_solar: 1.46,
+    mass2_solar: 1.27,
+    finalMass_solar: 2.7,
+    peakStrain: 1.0e-22,
+    peakFrequency_Hz: 400,
+    date: '2017-08-17',
+    significance: 'Multi-messenger astronomy birth - GRB 170817A + AT 2017gfo'
+  },
+  // === EXTREME MASS EVENTS ===
+  {
+    id: 'GW190521',
+    name: 'GW190521 (IMBH Merger)',
+    type: 'BBH',
+    description: 'First intermediate-mass black hole detection',
+    position: { x: 4.2, y: 1.8, z: -2.5 },
+    distance_gpc: 5.3,
+    mass1_solar: 85,
+    mass2_solar: 66,
+    finalMass_solar: 142,
+    peakStrain: 2.4e-22,
+    peakFrequency_Hz: 60,
+    date: '2019-05-21',
+    significance: 'First BH in 100-1000 M☉ range - IMBH confirmed'
+  },
+  {
+    id: 'GW231123',
+    name: 'GW231123 (Most Massive)',
+    type: 'BBH',
+    description: 'Highest total mass BBH merger observed',
+    position: positionAtDistance(7.2, 4),
+    distance_gpc: 7.2,
+    mass1_solar: 137,
+    mass2_solar: 103,
+    finalMass_solar: 228,
+    peakStrain: 1.8e-22,
+    peakFrequency_Hz: 35,
+    date: '2023-11-23',
+    significance: 'GWTC-4 record holder - 240 M☉ total mass'
+  },
+  // === MASS GAP MYSTERIES ===
+  {
+    id: 'GW190814',
+    name: 'GW190814 (Mass Gap)',
+    type: 'NSBH',
+    description: 'Mystery object in the mass gap',
+    position: positionAtDistance(0.24, 5),
+    distance_gpc: 0.24,
+    mass1_solar: 23,
+    mass2_solar: 2.6,
+    finalMass_solar: 25,
+    peakStrain: 5.0e-22,
+    peakFrequency_Hz: 250,
+    date: '2019-08-14',
+    significance: '2.6 M☉ object: heaviest NS or lightest BH?'
+  },
+  {
+    id: 'GW230627',
+    name: 'GW230627 (Lightest BH)',
+    type: 'BBH',
+    description: 'Lowest mass component in GWTC-4',
+    position: positionAtDistance(1.1, 6),
+    distance_gpc: 1.1,
+    mass1_solar: 8.2,
+    mass2_solar: 5.79,
+    finalMass_solar: 13.5,
+    peakStrain: 3.0e-22,
+    peakFrequency_Hz: 180,
+    date: '2023-06-27',
+    significance: '5.79 M☉ - probing the lower mass gap'
+  },
+  // === HIGH SNR / PRECISION EVENTS ===
+  {
+    id: 'GW240615',
+    name: 'GW240615 (Best Localized)',
+    type: 'BBH',
+    description: 'Most precisely localized GW event',
+    position: positionAtDistance(0.85, 7),
+    distance_gpc: 0.85,
+    mass1_solar: 30,
+    mass2_solar: 26,
+    finalMass_solar: 53,
+    peakStrain: 8.0e-22,
+    peakFrequency_Hz: 120,
+    date: '2024-06-15',
+    significance: '6 sq deg localization - 30x moon size'
+  },
+  {
+    id: 'GW250114',
+    name: 'GW250114 (Kerr Verified)',
+    type: 'BBH',
+    description: 'Strongest evidence for Kerr black holes',
+    position: positionAtDistance(0.405, 8),
+    distance_gpc: 0.405,
+    mass1_solar: 33.76,
+    mass2_solar: 32.26,
+    finalMass_solar: 62.9,
+    peakStrain: 1.2e-21,
+    peakFrequency_Hz: 140,
+    date: '2025-01-14',
+    significance: 'Ringdown confirms GR black hole predictions'
+  },
+  // === NSBH EVENTS ===
+  {
+    id: 'GW200115',
+    name: 'GW200115 (NS-BH Merger)',
+    type: 'NSBH',
+    description: 'Confirmed neutron star-black hole merger',
+    position: positionAtDistance(0.30, 9),
+    distance_gpc: 0.30,
+    mass1_solar: 5.7,
+    mass2_solar: 1.5,
+    finalMass_solar: 7.0,
+    peakStrain: 4.0e-22,
+    peakFrequency_Hz: 200,
+    date: '2020-01-15',
+    significance: 'First confirmed NSBH detection'
+  },
+  {
+    id: 'GW230518',
+    name: 'GW230518 (NSBH Candidate)',
+    type: 'NSBH',
+    description: 'O4 neutron star-black hole candidate',
+    position: positionAtDistance(0.94, 10),
+    distance_gpc: 0.94,
+    mass1_solar: 6.8,
+    mass2_solar: 1.8,
+    finalMass_solar: 8.4,
+    peakStrain: 2.5e-22,
+    peakFrequency_Hz: 220,
+    date: '2023-05-18',
+    significance: 'Associated with SN 2023ixf search window'
+  },
+  // === DISTANT / COSMOLOGICAL EVENTS ===
+  {
+    id: 'GW250118',
+    name: 'GW250118 (Distant BBH)',
+    type: 'BBH',
+    description: 'High-redshift BBH merger',
+    position: positionAtDistance(5.8, 11),
+    distance_gpc: 5.8,
+    mass1_solar: 44,
+    mass2_solar: 31,
+    finalMass_solar: 71,
+    peakStrain: 1.5e-22,
+    peakFrequency_Hz: 55,
+    date: '2025-01-18',
+    significance: 'Probes BH populations at z~0.9'
+  },
+  {
+    id: 'GW250108',
+    name: 'GW250108 (Heavy Distant)',
+    type: 'BBH',
+    description: 'Massive merger at cosmological distance',
+    position: positionAtDistance(3.8, 12),
+    distance_gpc: 3.8,
+    mass1_solar: 54,
+    mass2_solar: 36,
+    finalMass_solar: 86,
+    peakStrain: 2.0e-22,
+    peakFrequency_Hz: 65,
+    date: '2025-01-08',
+    significance: '90 M☉ total at 3.8 Gpc'
+  }
+];
+
+// Default event for backwards compatibility
+const GW190521_EVENT = GW_EVENTS.find(e => e.id === 'GW190521')!;
 
 // =============================================================================
 // MULTI-SCALE TOPOLOGICAL DIGITAL TWIN
@@ -1075,15 +1288,16 @@ const KSZVelocityVectors: React.FC<{ showLabels: boolean }> = ({ showLabels }) =
 };
 
 // =============================================================================
-// GW190521 GRAVITATIONAL WAVE SIMULATION
+// GRAVITATIONAL WAVE SIMULATION - Configurable for any event
 // =============================================================================
 
 interface GWSimulationProps {
   isRunning: boolean;
+  selectedEvent: GWEvent;
   onProgressUpdate: (progress: number, phase: number, waveRadius: number) => void;
 }
 
-const GW190521Simulation: React.FC<GWSimulationProps> = ({ isRunning, onProgressUpdate }) => {
+const GWSimulation: React.FC<GWSimulationProps> = ({ isRunning, selectedEvent, onProgressUpdate }) => {
   const startTimeRef = useRef<number>(0);
   const waveRadiusRef = useRef(0);
   const groupRef = useRef<THREE.Group>(null);
@@ -1092,12 +1306,12 @@ const GW190521Simulation: React.FC<GWSimulationProps> = ({ isRunning, onProgress
   const L_c = 20.6; // Fundamental domain size in Gpc
   const halfL = L_c / 2; // ±10.3 Gpc boundaries
 
-  // Primary epicenter position
+  // Primary epicenter position - from selected event
   const epicenter: [number, number, number] = useMemo(() => [
-    GW190521_EVENT.position.x,
-    GW190521_EVENT.position.y,
-    GW190521_EVENT.position.z
-  ], []);
+    selectedEvent.position.x,
+    selectedEvent.position.y,
+    selectedEvent.position.z
+  ], [selectedEvent]);
 
   // T³ periodic images - the 6 nearest face images
   const t3Images = useMemo(() => {
@@ -1120,7 +1334,7 @@ const GW190521Simulation: React.FC<GWSimulationProps> = ({ isRunning, onProgress
         pos,
         color: '#00ccff', // Cyan for T³ wrapped images
         label: `T³ wrap`,
-        delay: dist - GW190521_EVENT.distance_gpc // Delay relative to direct path
+        delay: dist - selectedEvent.distance_gpc // Delay relative to direct path
       });
     }
     return images;
@@ -1136,12 +1350,12 @@ const GW190521Simulation: React.FC<GWSimulationProps> = ({ isRunning, onProgress
 
   // Animation phases - extended for topology visualization
   const phases = useMemo(() => [
-    { name: 'Merger', duration: 2, description: 'BH merger at 5.3 Gpc' },
+    { name: 'Merger', duration: 2, description: `${selectedEvent.type} merger at ${selectedEvent.distance_gpc.toFixed(1)} Gpc` },
     { name: 'Direct Wave', duration: 6, description: 'Primary GW expands in T³' },
     { name: 'Boundary Cross', duration: 4, description: 'Wave wraps through T³ faces' },
     { name: 'Multi-Path', duration: 6, description: 'Wrapped copies converge on Earth' },
     { name: 'Z₂ Image', duration: 4, description: 'Antipodal signal arrives' },
-  ], []);
+  ], [selectedEvent]);
 
   const totalDuration = useMemo(() => phases.reduce((sum, p) => sum + p.duration, 0), [phases]);
 
@@ -1313,7 +1527,7 @@ const GW190521Simulation: React.FC<GWSimulationProps> = ({ isRunning, onProgress
       </mesh>
 
       {/* Detection indicator when primary wave reaches Earth */}
-      {waveRadius >= GW190521_EVENT.distance_gpc && (
+      {waveRadius >= selectedEvent.distance_gpc && (
         <mesh position={[0, 0, 0]}>
           <ringGeometry args={[0.3, 0.5, 32]} />
           <meshBasicMaterial
@@ -1334,8 +1548,8 @@ const GW190521Simulation: React.FC<GWSimulationProps> = ({ isRunning, onProgress
       {/* Epicenter label */}
       <Html position={[epicenter[0], epicenter[1] + 0.5, epicenter[2]]} center>
         <div className="text-orange-400 text-[10px] font-mono bg-black/80 px-1 rounded">
-          GW190521 PRIMARY<br/>
-          <span className="text-[8px] opacity-70">85+66 M☉ → 142 M☉</span>
+          {selectedEvent.id} PRIMARY<br/>
+          <span className="text-[8px] opacity-70">{selectedEvent.mass1_solar}+{selectedEvent.mass2_solar} M☉ → {selectedEvent.finalMass_solar} M☉</span>
         </div>
       </Html>
 
@@ -1365,19 +1579,20 @@ const GW190521Simulation: React.FC<GWSimulationProps> = ({ isRunning, onProgress
   );
 };
 
-// GW190521 HUD Overlay (rendered outside Canvas) - T³/Z₂ version
+// GW Simulation HUD Overlay (rendered outside Canvas) - T³/Z₂ version
 const GWSimulationHUD: React.FC<{
   isRunning: boolean;
+  selectedEvent: GWEvent;
   progress: number;
   phase: number;
   waveRadius: number;
-}> = ({ isRunning, progress, phase, waveRadius }) => {
+}> = ({ isRunning, selectedEvent, progress, phase, waveRadius }) => {
   if (!isRunning) return null;
 
   const L_c = 20.6; // Fundamental domain
-  const directDist = GW190521_EVENT.distance_gpc;
+  const directDist = selectedEvent.distance_gpc;
   const z2Dist = directDist; // Z₂ image at same distance (antipodal)
-  const wrappedDist = L_c - directDist; // Shortest wrapped path ~15.3 Gpc
+  const wrappedDist = L_c - directDist; // Shortest wrapped path
 
   const phases = [
     { name: 'Merger', description: 'BH merger emits GW in T³/Z₂ spacetime' },
@@ -1408,11 +1623,11 @@ const GWSimulationHUD: React.FC<{
       {/* Event info */}
       <div className="bg-black/95 border border-orange-500/50 rounded-lg p-3 mb-2 shadow-[0_0_15px_rgba(249,115,22,0.2)]">
         <div className="text-orange-400 font-bold mb-1">
-          {GW190521_EVENT.name}
+          {selectedEvent.name}
         </div>
         <div className="text-slate-400 text-[10px] space-y-0.5">
-          <div>{GW190521_EVENT.mass1_solar} + {GW190521_EVENT.mass2_solar} M☉ → {GW190521_EVENT.finalMass_solar} M☉</div>
-          <div>First intermediate-mass BH detection</div>
+          <div>{selectedEvent.mass1_solar} + {selectedEvent.mass2_solar} M☉ → {selectedEvent.finalMass_solar} M☉</div>
+          <div className="text-slate-500">{selectedEvent.significance}</div>
         </div>
       </div>
 
@@ -1569,19 +1784,24 @@ interface FilterPanelProps {
   isTourRunning: boolean;
   onStartTour: () => void;
   onStopTour: () => void;
-  // GW190521 Simulation
+  // GW Simulation
   isGWRunning: boolean;
+  selectedGWEvent: GWEvent;
+  onSelectGWEvent: (event: GWEvent) => void;
   onStartGW: () => void;
   onStopGW: () => void;
   // Player Mode (Directive WWW)
   isPlayerMode: boolean;
   onStartPlayerMode: () => void;
+  // CMB Proof Mode (Phase 4)
+  isCMBProofActive: boolean;
+  onToggleCMBProof: () => void;
 }
 
 const FilterPanel: React.FC<FilterPanelProps> = ({
   filters, setFilters, isRotating, setIsRotating, showLabels, setShowLabels,
-  isTourRunning, onStartTour, onStopTour, isGWRunning, onStartGW, onStopGW,
-  isPlayerMode, onStartPlayerMode
+  isTourRunning, onStartTour, onStopTour, isGWRunning, selectedGWEvent, onSelectGWEvent, onStartGW, onStopGW,
+  isPlayerMode, onStartPlayerMode, isCMBProofActive, onToggleCMBProof
 }) => {
   const toggleFilter = (key: string) => setFilters(prev => ({ ...prev, [key]: !prev[key] }));
 
@@ -1603,19 +1823,34 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
     <div className="absolute top-16 left-4 bg-slate-900/95 p-4 rounded-lg border border-slate-700 z-10 backdrop-blur-sm max-w-[260px]">
       <h3 className="text-white font-bold mb-3">Controls</h3>
 
-      {/* Player Mode Button (Directive WWW) */}
+      {/* CMB PROOF Button (Phase 4 - Topology Evidence) */}
+      <button
+        onClick={onToggleCMBProof}
+        disabled={isOtherModeRunning || isPlayerMode}
+        className={`w-full mb-2 px-4 py-2 font-bold text-sm uppercase tracking-wider transition-all border rounded ${
+          isCMBProofActive
+            ? 'bg-yellow-900/50 text-yellow-400 border-yellow-500 animate-pulse shadow-[0_0_20px_rgba(234,179,8,0.4)]'
+            : (isOtherModeRunning || isPlayerMode)
+            ? 'bg-slate-800/50 text-slate-500 border-slate-600 cursor-not-allowed'
+            : 'bg-yellow-900/50 text-yellow-400 border-yellow-500 hover:bg-yellow-900/80 hover:shadow-[0_0_20px_rgba(234,179,8,0.4)]'
+        }`}
+      >
+        {isCMBProofActive ? '■ EXIT CMB' : '★ CMB PROOF'}
+      </button>
+
+      {/* Player Mode Button (Directive WWW) - Primary action */}
       <button
         onClick={onStartPlayerMode}
         disabled={isOtherModeRunning || isPlayerMode}
-        className={`w-full mb-2 px-4 py-2 font-bold text-sm uppercase tracking-wider transition-all border rounded ${
+        className={`w-full mb-2 px-4 py-3 font-bold text-sm uppercase tracking-wider transition-all border-2 rounded ${
           isPlayerMode
             ? 'bg-purple-900/50 text-purple-400 border-purple-500 animate-pulse'
             : isOtherModeRunning
             ? 'bg-slate-800/50 text-slate-500 border-slate-600 cursor-not-allowed'
-            : 'bg-purple-900/50 text-purple-400 border-purple-500 hover:bg-purple-900/80 hover:shadow-[0_0_20px_rgba(168,85,247,0.4)]'
+            : 'bg-purple-900/60 text-purple-300 border-purple-400 hover:bg-purple-800/80 hover:shadow-[0_0_25px_rgba(168,85,247,0.5)] hover:scale-[1.02]'
         }`}
       >
-        🚀 PLAYER MODE
+        🚀 START CRAFT
       </button>
 
       {/* Cinematic Tour Button */}
@@ -1633,20 +1868,71 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
         {isTourRunning ? '■ STOP' : '▶ CINEMATIC TOUR'}
       </button>
 
-      {/* GW190521 Simulation Button */}
-      <button
-        onClick={isGWRunning ? onStopGW : onStartGW}
-        disabled={isTourRunning || isPlayerMode}
-        className={`w-full mb-4 px-4 py-2 font-bold text-sm uppercase tracking-wider transition-all border rounded ${
-          isGWRunning
-            ? 'bg-red-900/50 text-red-400 border-red-500 hover:bg-red-900/80 animate-pulse'
-            : (isTourRunning || isPlayerMode)
-            ? 'bg-slate-800/50 text-slate-500 border-slate-600 cursor-not-allowed'
-            : 'bg-orange-900/50 text-orange-400 border-orange-500 hover:bg-orange-900/80'
-        }`}
-      >
-        {isGWRunning ? '■ STOP GW' : '▶ GW190521 WAVE'}
-      </button>
+      {/* GW Event Selector & Simulation */}
+      <div className="mb-4 space-y-2">
+        <label className="text-orange-400 text-xs font-bold block">GRAVITATIONAL WAVE EVENT</label>
+        <select
+          value={selectedGWEvent.id}
+          onChange={(e) => {
+            const event = GW_EVENTS.find(ev => ev.id === e.target.value);
+            if (event) onSelectGWEvent(event);
+          }}
+          disabled={isGWRunning || isTourRunning || isPlayerMode}
+          className="w-full bg-slate-800 text-white text-xs p-2 rounded border border-orange-500/50 focus:border-orange-400 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          <optgroup label="Historic Firsts">
+            {GW_EVENTS.filter(e => ['GW150914', 'GW170817'].includes(e.id)).map(event => (
+              <option key={event.id} value={event.id}>
+                {event.id} - {event.type} ({event.mass1_solar}+{event.mass2_solar}M☉)
+              </option>
+            ))}
+          </optgroup>
+          <optgroup label="Extreme Mass">
+            {GW_EVENTS.filter(e => ['GW190521', 'GW231123'].includes(e.id)).map(event => (
+              <option key={event.id} value={event.id}>
+                {event.id} - {event.type} ({event.mass1_solar}+{event.mass2_solar}M☉)
+              </option>
+            ))}
+          </optgroup>
+          <optgroup label="Mass Gap / Precision">
+            {GW_EVENTS.filter(e => ['GW190814', 'GW230627', 'GW240615', 'GW250114'].includes(e.id)).map(event => (
+              <option key={event.id} value={event.id}>
+                {event.id} - {event.type} ({event.mass1_solar}+{event.mass2_solar}M☉)
+              </option>
+            ))}
+          </optgroup>
+          <optgroup label="NS-BH Mergers">
+            {GW_EVENTS.filter(e => ['GW200115', 'GW230518'].includes(e.id)).map(event => (
+              <option key={event.id} value={event.id}>
+                {event.id} - {event.type} ({event.mass1_solar}+{event.mass2_solar}M☉)
+              </option>
+            ))}
+          </optgroup>
+          <optgroup label="Distant Events">
+            {GW_EVENTS.filter(e => ['GW250118', 'GW250108'].includes(e.id)).map(event => (
+              <option key={event.id} value={event.id}>
+                {event.id} - {event.type} ({event.distance_gpc.toFixed(1)} Gpc)
+              </option>
+            ))}
+          </optgroup>
+        </select>
+        <div className="text-[10px] text-slate-400 px-1">
+          {selectedGWEvent.description}
+        </div>
+        <button
+          onClick={isGWRunning ? onStopGW : onStartGW}
+          disabled={isTourRunning || isPlayerMode}
+          className={`w-full px-4 py-2 font-bold text-sm uppercase tracking-wider transition-all border rounded ${
+            isGWRunning
+              ? 'bg-red-900/50 text-red-400 border-red-500 hover:bg-red-900/80 animate-pulse'
+              : (isTourRunning || isPlayerMode)
+              ? 'bg-slate-800/50 text-slate-500 border-slate-600 cursor-not-allowed'
+              : 'bg-orange-900/50 text-orange-400 border-orange-500 hover:bg-orange-900/80'
+          }`}
+        >
+          {isGWRunning ? '■ STOP SIMULATION' : '▶ SIMULATE GW'}
+        </button>
+      </div>
 
       <div className="mb-3 pb-3 border-b border-slate-700 space-y-2">
         <label className="flex items-center gap-2 cursor-pointer">
@@ -1915,6 +2201,116 @@ const CinematicCamera: React.FC<{
 };
 
 // =============================================================================
+// CMB CAMERA CONTROLLER (Phase 4 - CMB Proof Flight)
+// Smooth camera animation to view the matched topology circles
+// =============================================================================
+
+const CMBCameraController: React.FC<{
+  isCMBProofActive: boolean;
+  controlsRef: React.RefObject<any>;
+}> = ({ isCMBProofActive, controlsRef }) => {
+  const { camera } = useThree();
+  const hasAnimatedRef = useRef(false);
+  const isFlightCompleteRef = useRef(false);
+  const originalPositionRef = useRef<THREE.Vector3 | null>(null);
+  const originalTargetRef = useRef<THREE.Vector3 | null>(null);
+  const startTimeRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    if (isCMBProofActive && !hasAnimatedRef.current) {
+      // Store original camera state
+      originalPositionRef.current = camera.position.clone();
+      if (controlsRef.current) {
+        originalTargetRef.current = controlsRef.current.target.clone();
+      }
+
+      // Get CMB view position
+      const cmbView = getCMBViewPosition();
+      isFlightCompleteRef.current = false;
+
+      // Animate camera to CMB view - smooth flight
+      gsap.to(camera.position, {
+        x: cmbView.position.x,
+        y: cmbView.position.y,
+        z: cmbView.position.z,
+        duration: 4,
+        ease: 'power2.inOut',
+        onComplete: () => {
+          isFlightCompleteRef.current = true;
+          startTimeRef.current = null; // Reset for orbit
+        }
+      });
+
+      if (controlsRef.current) {
+        gsap.to(controlsRef.current.target, {
+          x: cmbView.target.x,
+          y: cmbView.target.y,
+          z: cmbView.target.z,
+          duration: 4,
+          ease: 'power2.inOut',
+        });
+      }
+
+      hasAnimatedRef.current = true;
+    } else if (!isCMBProofActive && hasAnimatedRef.current) {
+      // Return to original position
+      isFlightCompleteRef.current = false;
+
+      if (originalPositionRef.current) {
+        gsap.to(camera.position, {
+          x: originalPositionRef.current.x,
+          y: originalPositionRef.current.y,
+          z: originalPositionRef.current.z,
+          duration: 3,
+          ease: 'power2.inOut',
+        });
+      }
+
+      if (controlsRef.current && originalTargetRef.current) {
+        gsap.to(controlsRef.current.target, {
+          x: originalTargetRef.current.x,
+          y: originalTargetRef.current.y,
+          z: originalTargetRef.current.z,
+          duration: 3,
+          ease: 'power2.inOut',
+        });
+      }
+
+      hasAnimatedRef.current = false;
+    }
+  }, [isCMBProofActive, camera, controlsRef]);
+
+  // Very slow rotation ONLY after flight is complete - no bouncing
+  useFrame((state) => {
+    if (isCMBProofActive && isFlightCompleteRef.current && controlsRef.current) {
+      // Initialize start time on first frame after flight
+      if (startTimeRef.current === null) {
+        startTimeRef.current = state.clock.elapsedTime;
+      }
+
+      const elapsed = state.clock.elapsedTime - startTimeRef.current;
+      const cmbView = getCMBViewPosition();
+      const radius = cmbView.position.length();
+      const rotationSpeed = 0.015; // Very slow
+
+      // Calculate orbit position based on initial CMB view angle
+      const baseAngle = Math.atan2(cmbView.position.z, cmbView.position.x);
+      const currentAngle = baseAngle + elapsed * rotationSpeed;
+
+      // Smooth orbit at fixed radius and height
+      camera.position.x = Math.cos(currentAngle) * radius * 0.85;
+      camera.position.z = Math.sin(currentAngle) * radius * 0.85;
+      camera.position.y = cmbView.position.y; // Keep height stable
+
+      camera.lookAt(0, 0, 0);
+      controlsRef.current.target.set(0, 0, 0);
+    }
+  });
+
+  return null;
+};
+
+// =============================================================================
 // BOUNDARY RUPTURE OVERLAY (Directive VVV)
 // Smooth cinematic transition when crossing T³ boundaries or Z₂ parity flip
 // =============================================================================
@@ -2054,8 +2450,9 @@ const MultiScaleUniverse: React.FC<{
   onCameraDistanceChange: (d: number) => void;
   // GW Simulation props
   isGWRunning: boolean;
+  selectedGWEvent: GWEvent;
   onGWProgressUpdate: (progress: number, phase: number, waveRadius: number) => void;
-}> = ({ filters, isRotating, showLabels, isTourRunning, onCameraDistanceChange, isGWRunning, onGWProgressUpdate }) => {
+}> = ({ filters, isRotating, showLabels, isTourRunning, onCameraDistanceChange, isGWRunning, selectedGWEvent, onGWProgressUpdate }) => {
   const groupRef = useRef<THREE.Group>(null);
   const { camera } = useThree();
   const [time, setTime] = useState(0);
@@ -2098,8 +2495,8 @@ const MultiScaleUniverse: React.FC<{
       {filters.baoSpheres && <BAOSpheres showLabels={showLabels} />}
       {filters.kszVectors && <KSZVelocityVectors showLabels={showLabels} />}
 
-      {/* GW190521 Gravitational Wave Simulation */}
-      <GW190521Simulation isRunning={isGWRunning} onProgressUpdate={onGWProgressUpdate} />
+      {/* Gravitational Wave Simulation */}
+      {isGWRunning && <GWSimulation isRunning={isGWRunning} selectedEvent={selectedGWEvent} onProgressUpdate={onGWProgressUpdate} />}
     </group>
   );
 };
@@ -2120,10 +2517,13 @@ const Scene: React.FC<{
   onParityFlip: () => void;
   // GW Simulation props
   isGWRunning: boolean;
+  selectedGWEvent: GWEvent;
   onGWProgressUpdate: (progress: number, phase: number, waveRadius: number) => void;
   // Player Mode props (Directive WWW)
   isPlayerMode: boolean;
-}> = ({ filters, isRotating, showLabels, isTourRunning, onTourComplete, onWaypointChange, onCameraDistanceChange, onBoundaryCross, onParityFlip, isGWRunning, onGWProgressUpdate, isPlayerMode }) => {
+  // CMB Proof props (Phase 4)
+  isCMBProofActive: boolean;
+}> = ({ filters, isRotating, showLabels, isTourRunning, onTourComplete, onWaypointChange, onCameraDistanceChange, onBoundaryCross, onParityFlip, isGWRunning, selectedGWEvent, onGWProgressUpdate, isPlayerMode, isCMBProofActive }) => {
   const controlsRef = useRef<any>(null);
 
   return (
@@ -2138,9 +2538,13 @@ const Scene: React.FC<{
         showLabels={showLabels}
         isTourRunning={isTourRunning}
         isGWRunning={isGWRunning}
+        selectedGWEvent={selectedGWEvent}
         onGWProgressUpdate={onGWProgressUpdate}
         onCameraDistanceChange={onCameraDistanceChange}
       />
+
+      {/* CMB Evidence Layer (Phase 4 - Topology Proof) */}
+      <CMBEvidenceLayer visible={isCMBProofActive} />
 
       <CinematicCamera
         isTourRunning={isTourRunning}
@@ -2148,6 +2552,12 @@ const Scene: React.FC<{
         onWaypointChange={onWaypointChange}
         onBoundaryCross={onBoundaryCross}
         onParityFlip={onParityFlip}
+        controlsRef={controlsRef}
+      />
+
+      {/* CMB Camera Flight Controller */}
+      <CMBCameraController
+        isCMBProofActive={isCMBProofActive}
         controlsRef={controlsRef}
       />
 
@@ -2159,10 +2569,13 @@ const Scene: React.FC<{
         />
       )}
 
-      {/* Disable OrbitControls during player mode */}
+      {/* Multiplayer Other Players (Firebase Realtime) */}
+      {isPlayerMode && <OtherPlayersRenderer />}
+
+      {/* Disable OrbitControls during player mode or CMB proof */}
       <OrbitControls
         ref={controlsRef}
-        enabled={!isPlayerMode}
+        enabled={!isPlayerMode && !isCMBProofActive}
         enablePan enableZoom enableRotate
         minDistance={0.0000000001}
         maxDistance={100}
@@ -2171,7 +2584,8 @@ const Scene: React.FC<{
         enableDamping
         dampingFactor={0.05}
       />
-      <PerspectiveCamera makeDefault position={[25, 18, 25]} fov={50} near={0.00000000001} far={1000} />
+      {/* Start at Earth/Solar System scale - user zooms out to cosmic view */}
+      <PerspectiveCamera makeDefault position={[0.00005, 0.00003, 0.00005]} fov={50} near={0.00000000001} far={1000} />
     </>
   );
 };
@@ -2197,10 +2611,14 @@ const MultiMessengerUniverse: React.FC = () => {
   const [showLabels, setShowLabels] = useState(true);
   const [isTourRunning, setIsTourRunning] = useState(false);
   const [tourText, setTourText] = useState('');
+
+  // CMB Proof Mode state (Phase 4)
+  const [isCMBProofActive, setIsCMBProofActive] = useState(false);
   const [cameraDistance, setCameraDistance] = useState(3);
 
-  // GW190521 Simulation State
+  // GW Simulation State
   const [isGWRunning, setIsGWRunning] = useState(false);
+  const [selectedGWEvent, setSelectedGWEvent] = useState<GWEvent>(GW_EVENTS[2]); // Default to GW190521
   const [gwProgress, setGWProgress] = useState(0);
   const [gwPhase, setGWPhase] = useState(0);
   const [gwWaveRadius, setGWWaveRadius] = useState(0);
@@ -2272,6 +2690,14 @@ const MultiMessengerUniverse: React.FC = () => {
     setGWWaveRadius(0);
   }, []);
 
+  // CMB Proof Handler (Phase 4)
+  const handleToggleCMBProof = useCallback(() => {
+    setIsCMBProofActive((prev) => !prev);
+    if (!isCMBProofActive) {
+      setIsRotating(false); // Disable rotation when entering CMB mode
+    }
+  }, [isCMBProofActive]);
+
   return (
     <div className="relative w-full h-[800px] bg-slate-950 rounded-lg overflow-hidden" onWheel={handleWheel}>
       {/* Hide regular UI when in Player Mode */}
@@ -2288,10 +2714,14 @@ const MultiMessengerUniverse: React.FC = () => {
         onStartTour={handleStartTour}
         onStopTour={handleStopTour}
         isGWRunning={isGWRunning}
+        selectedGWEvent={selectedGWEvent}
+        onSelectGWEvent={setSelectedGWEvent}
         onStartGW={handleStartGW}
         onStopGW={handleStopGW}
         isPlayerMode={isPlayerMode}
         onStartPlayerMode={openVesselSelector}
+        isCMBProofActive={isCMBProofActive}
+        onToggleCMBProof={handleToggleCMBProof}
       />}
 
       {!isPlayerMode && <div className="absolute top-16 right-4 bg-slate-900/95 p-3 rounded-lg border border-slate-700 z-10 backdrop-blur-sm max-w-[200px]">
@@ -2309,13 +2739,17 @@ const MultiMessengerUniverse: React.FC = () => {
         </div>
       )}
 
-      {/* GW190521 Simulation HUD */}
+      {/* GW Simulation HUD */}
       <GWSimulationHUD
         isRunning={isGWRunning}
+        selectedEvent={selectedGWEvent}
         progress={gwProgress}
         phase={gwPhase}
         waveRadius={gwWaveRadius}
       />
+
+      {/* CMB Evidence HUD (Phase 4 - Topology Proof) */}
+      <CMBEvidenceHUD visible={isCMBProofActive} />
 
       <Canvas gl={{ antialias: true, logarithmicDepthBuffer: true }} dpr={[1, 2]}>
         <Scene
@@ -2329,6 +2763,7 @@ const MultiMessengerUniverse: React.FC = () => {
           onBoundaryCross={handleBoundaryCross}
           onParityFlip={handleParityFlip}
           isGWRunning={isGWRunning}
+          selectedGWEvent={selectedGWEvent}
           onGWProgressUpdate={(progress, phase, waveRadius) => {
             setGWProgress(progress);
             setGWPhase(phase);
@@ -2339,6 +2774,7 @@ const MultiMessengerUniverse: React.FC = () => {
             }
           }}
           isPlayerMode={isPlayerMode}
+          isCMBProofActive={isCMBProofActive}
         />
       </Canvas>
 
@@ -2352,6 +2788,7 @@ const MultiMessengerUniverse: React.FC = () => {
       {/* Player Mode Overlays (Directives WWW, XXX) */}
       <VesselSelector />
       <PlayerHUD />
+      <MultiplayerHUD />
 
       {/* Hide legend when in Player Mode */}
       {!isPlayerMode && (

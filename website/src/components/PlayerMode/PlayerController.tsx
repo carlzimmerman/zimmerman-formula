@@ -12,6 +12,8 @@ import * as THREE from 'three';
 import { usePlayerStore, PlayerPosition } from '../../store/playerStore';
 import { updatePropulsion, distanceToNearestBoundary, getQuadrantInfo, BlackHoleLockState, COSMIC_BLACK_HOLES } from '../../physics/Z2Propulsion';
 import { VesselMesh } from './VesselMesh';
+import { useMultiplayer } from '../../hooks/useMultiplayer';
+import { useMultiplayerStore } from '../../store/multiplayerStore';
 
 const L_C = 20.6;
 const HALF_L = L_C / 2;
@@ -56,6 +58,9 @@ const PlayerController: React.FC<PlayerControllerProps> = ({
     recordBoundaryCross,
     flipParity,
   } = usePlayerStore();
+
+  // Multiplayer hook for broadcasting position
+  const { broadcastPosition } = useMultiplayer();
 
   // Input state - Flight Sim style (no pointer lock!)
   // Works with both keyboard (desktop) and touch (mobile)
@@ -229,6 +234,9 @@ const PlayerController: React.FC<PlayerControllerProps> = ({
       result.newPosition.y,
       result.newPosition.z
     );
+
+    // Broadcast position to multiplayer (throttled inside hook)
+    broadcastPosition();
   });
 
   if (!isPlayerMode) return null;
@@ -468,6 +476,13 @@ export const PlayerHUD: React.FC = () => {
     setTouchInput,
   } = usePlayerStore();
 
+  const {
+    isMultiplayerEnabled,
+    isConnected,
+    otherPlayers,
+    setMultiplayerEnabled,
+  } = useMultiplayerStore();
+
   // Mobile control handlers
   const handleLeftJoystick = useCallback((x: number, y: number) => {
     setTouchInput({ right: x, forward: -y }); // Y inverted for intuitive control
@@ -527,6 +542,23 @@ export const PlayerHUD: React.FC = () => {
         <div className={`font-mono text-xs sm:text-sm ${isWarping ? 'text-orange-400 animate-pulse' : 'text-slate-400'}`}>
           {isWarping ? '⚡ WARP' : 'SUB-LIGHT'}
         </div>
+        {/* Multiplayer toggle */}
+        <button
+          onClick={() => setMultiplayerEnabled(!isMultiplayerEnabled)}
+          className={`font-mono text-xs sm:text-sm px-2 py-0.5 rounded transition-colors ${
+            isMultiplayerEnabled
+              ? isConnected
+                ? 'bg-green-900/50 text-green-400 border border-green-500/50'
+                : 'bg-yellow-900/50 text-yellow-400 border border-yellow-500/50 animate-pulse'
+              : 'bg-gray-800/50 text-gray-400 hover:text-white border border-gray-600'
+          }`}
+        >
+          {isMultiplayerEnabled
+            ? isConnected
+              ? `👥 ${otherPlayers.size + 1}`
+              : '⏳ ...'
+            : '👤 SOLO'}
+        </button>
         <button
           onClick={stopPlayerMode}
           className="text-red-400 hover:text-red-300 text-xs sm:text-sm font-bold"

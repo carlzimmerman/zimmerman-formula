@@ -2,12 +2,14 @@
 // VESSEL SELECTOR UI (Directive WWW)
 // =============================================================================
 // Modal for selecting which vessel to fly in the Z² universe
+// Now with multiplayer mode selection
 // =============================================================================
 
 'use client';
 
 import React from 'react';
 import { VesselType, VESSEL_CONFIGS, usePlayerStore } from '../../store/playerStore';
+import { useMultiplayerStore } from '../../store/multiplayerStore';
 
 const VesselSelector: React.FC = () => {
   const {
@@ -17,6 +19,11 @@ const VesselSelector: React.FC = () => {
     closeVesselSelector,
     startPlayerMode,
   } = usePlayerStore();
+
+  const {
+    isMultiplayerEnabled,
+    setMultiplayerEnabled,
+  } = useMultiplayerStore();
 
   if (!isSelectingVessel) return null;
 
@@ -123,6 +130,42 @@ const VesselSelector: React.FC = () => {
           </div>
         </div>
 
+        {/* Mode Selection */}
+        <div className="mb-6">
+          <label className="text-slate-400 text-xs font-bold block mb-2">FLIGHT MODE</label>
+          <div className="grid grid-cols-2 gap-3">
+            <button
+              onClick={() => setMultiplayerEnabled(false)}
+              className={`p-3 rounded-lg border-2 transition-all ${
+                !isMultiplayerEnabled
+                  ? 'border-cyan-400 bg-cyan-900/30 shadow-[0_0_15px_rgba(6,182,212,0.3)]'
+                  : 'border-slate-600 bg-slate-800/50 hover:border-slate-500'
+              }`}
+            >
+              <div className="text-2xl mb-1">🚀</div>
+              <div className="text-white font-bold text-sm">SOLO</div>
+              <div className="text-slate-400 text-[10px]">Explore alone</div>
+            </button>
+            <button
+              onClick={() => setMultiplayerEnabled(true)}
+              className={`p-3 rounded-lg border-2 transition-all ${
+                isMultiplayerEnabled
+                  ? 'border-green-400 bg-green-900/30 shadow-[0_0_15px_rgba(34,197,94,0.3)]'
+                  : 'border-slate-600 bg-slate-800/50 hover:border-slate-500'
+              }`}
+            >
+              <div className="text-2xl mb-1">👥</div>
+              <div className="text-white font-bold text-sm">MULTIPLAYER</div>
+              <div className="text-slate-400 text-[10px]">See other pilots</div>
+            </button>
+          </div>
+          {isMultiplayerEnabled && (
+            <div className="mt-2 p-2 bg-green-900/20 border border-green-500/30 rounded text-xs text-green-300">
+              <span className="font-bold">MULTIPLAYER ENABLED:</span> Your position will be shared with other pilots in real-time via Firebase.
+            </div>
+          )}
+        </div>
+
         {/* Controls Info */}
         <div className="bg-slate-800/30 rounded-lg p-3 mb-6 text-xs text-slate-400">
           <div className="grid grid-cols-2 gap-2">
@@ -143,9 +186,13 @@ const VesselSelector: React.FC = () => {
           </button>
           <button
             onClick={handleLaunch}
-            className="flex-1 px-6 py-3 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold rounded-lg transition-all shadow-[0_0_20px_rgba(6,182,212,0.4)]"
+            className={`flex-1 px-6 py-3 text-white font-bold rounded-lg transition-all ${
+              isMultiplayerEnabled
+                ? 'bg-gradient-to-r from-green-600 to-cyan-600 hover:from-green-500 hover:to-cyan-500 shadow-[0_0_20px_rgba(34,197,94,0.4)]'
+                : 'bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 shadow-[0_0_20px_rgba(6,182,212,0.4)]'
+            }`}
           >
-            🚀 LAUNCH
+            {isMultiplayerEnabled ? '👥 LAUNCH MULTIPLAYER' : '🚀 LAUNCH SOLO'}
           </button>
         </div>
       </div>

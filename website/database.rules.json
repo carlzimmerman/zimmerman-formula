@@ -1,0 +1,44 @@
+{
+  "rules": {
+    "players": {
+      // Anyone can read all players (needed to see other vessels)
+      ".read": true,
+
+      "$playerId": {
+        // Players can only write their own data
+        ".write": true,
+
+        // Validate player data structure
+        ".validate": "newData.hasChildren(['name', 'vessel', 'position', 'rotation', 'velocity', 'color', 'lastUpdate'])",
+
+        "name": {
+          ".validate": "newData.isString() && newData.val().length <= 20"
+        },
+        "vessel": {
+          ".validate": "newData.isString()"
+        },
+        "position": {
+          ".validate": "newData.hasChildren(['x', 'y', 'z'])"
+        },
+        "rotation": {
+          ".validate": "newData.hasChildren(['x', 'y', 'z'])"
+        },
+        "velocity": {
+          ".validate": "newData.hasChildren(['x', 'y', 'z'])"
+        },
+        "isWarping": {
+          ".validate": "newData.isBoolean()"
+        },
+        "currentParity": {
+          ".validate": "newData.val() === 1 || newData.val() === -1"
+        },
+        "color": {
+          ".validate": "newData.isString()"
+        },
+        "lastUpdate": {
+          ".validate": "newData.isNumber()"
+        }
+      }
+    }
+  }
+}
