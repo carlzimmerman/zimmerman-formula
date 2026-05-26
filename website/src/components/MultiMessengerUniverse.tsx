@@ -13,6 +13,11 @@ import { usePlayerStore } from '../store/playerStore';
 // CMB Evidence Layer (Phase 4 - Topology Proof)
 import { CMBEvidenceLayer, CMBEvidenceHUD, getCMBViewPosition, CMB_CIRCLE_DATA } from './CMBEvidenceLayer';
 
+// Evidence Layer Components (Directives QQQQ, RRRR, SSSS)
+import { CMBParitySphere, ParityEvidenceHUD } from './evidence/CMBParitySphere';
+import { IsotropyBreaker, IsotropyBreakerHUD } from './evidence/IsotropyBreaker';
+import { KinematicFlowMap, DarkFlowHUD } from './evidence/KinematicFlowMap';
+
 // Performance Monitoring
 import { MinimalFPS } from './PerformanceHUD';
 
@@ -1812,12 +1817,20 @@ interface FilterPanelProps {
   // CMB Proof Mode (Phase 4)
   isCMBProofActive: boolean;
   onToggleCMBProof: () => void;
+  // Evidence Layers (Directives QQQQ, RRRR, SSSS)
+  isParityActive: boolean;
+  onToggleParity: () => void;
+  isAxisOfEvilActive: boolean;
+  onToggleAxisOfEvil: () => void;
+  isDarkFlowActive: boolean;
+  onToggleDarkFlow: () => void;
 }
 
 const FilterPanel: React.FC<FilterPanelProps> = ({
   filters, setFilters, isRotating, setIsRotating, showLabels, setShowLabels,
   isTourRunning, onStartTour, onStopTour, isGWRunning, selectedGWEvent, onSelectGWEvent, onStartGW, onStopGW,
-  isPlayerMode, onStartPlayerMode, isCMBProofActive, onToggleCMBProof
+  isPlayerMode, onStartPlayerMode, isCMBProofActive, onToggleCMBProof,
+  isParityActive, onToggleParity, isAxisOfEvilActive, onToggleAxisOfEvil, isDarkFlowActive, onToggleDarkFlow
 }) => {
   const toggleFilter = (key: string) => setFilters(prev => ({ ...prev, [key]: !prev[key] }));
 
@@ -1853,6 +1866,53 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
       >
         {isCMBProofActive ? '■ EXIT CMB' : '★ CMB PROOF'}
       </button>
+
+      {/* Evidence Layers (Directives QQQQ, RRRR, SSSS) */}
+      <div className="mb-3 space-y-1.5">
+        <label className="text-cyan-400 text-xs font-bold block">TOPOLOGY EVIDENCE</label>
+
+        {/* Parity Asymmetry (QQQQ) */}
+        <button
+          onClick={onToggleParity}
+          disabled={isOtherModeRunning || isPlayerMode}
+          className={`w-full px-3 py-1.5 text-xs uppercase tracking-wider transition-all border rounded flex items-center justify-between ${
+            isParityActive
+              ? 'bg-cyan-900/50 text-cyan-400 border-cyan-500 shadow-[0_0_10px_rgba(6,182,212,0.3)]'
+              : 'bg-slate-800/50 text-slate-400 border-slate-600 hover:border-cyan-500/50 hover:text-cyan-300'
+          }`}
+        >
+          <span>Z₂ Parity</span>
+          <span className={`w-2 h-2 rounded-full ${isParityActive ? 'bg-cyan-400' : 'bg-slate-600'}`} />
+        </button>
+
+        {/* Axis of Evil (RRRR) */}
+        <button
+          onClick={onToggleAxisOfEvil}
+          disabled={isOtherModeRunning || isPlayerMode}
+          className={`w-full px-3 py-1.5 text-xs uppercase tracking-wider transition-all border rounded flex items-center justify-between ${
+            isAxisOfEvilActive
+              ? 'bg-yellow-900/50 text-yellow-400 border-yellow-500 shadow-[0_0_10px_rgba(234,179,8,0.3)]'
+              : 'bg-slate-800/50 text-slate-400 border-slate-600 hover:border-yellow-500/50 hover:text-yellow-300'
+          }`}
+        >
+          <span>Axis of Evil</span>
+          <span className={`w-2 h-2 rounded-full ${isAxisOfEvilActive ? 'bg-yellow-400' : 'bg-slate-600'}`} />
+        </button>
+
+        {/* Dark Flow (SSSS) */}
+        <button
+          onClick={onToggleDarkFlow}
+          disabled={isOtherModeRunning || isPlayerMode}
+          className={`w-full px-3 py-1.5 text-xs uppercase tracking-wider transition-all border rounded flex items-center justify-between ${
+            isDarkFlowActive
+              ? 'bg-red-900/50 text-red-400 border-red-500 shadow-[0_0_10px_rgba(239,68,68,0.3)]'
+              : 'bg-slate-800/50 text-slate-400 border-slate-600 hover:border-red-500/50 hover:text-red-300'
+          }`}
+        >
+          <span>Dark Flow</span>
+          <span className={`w-2 h-2 rounded-full ${isDarkFlowActive ? 'bg-red-400' : 'bg-slate-600'}`} />
+        </button>
+      </div>
 
       {/* Player Mode Button (Directive WWW) - Primary action */}
       <button
@@ -2565,9 +2625,13 @@ const Scene: React.FC<{
   isPlayerMode: boolean;
   // CMB Proof props (Phase 4)
   isCMBProofActive: boolean;
+  // Evidence Layer props (Directives QQQQ, RRRR, SSSS)
+  isParityActive: boolean;
+  isAxisOfEvilActive: boolean;
+  isDarkFlowActive: boolean;
   // Performance monitoring
   onFPSUpdate: (fps: number) => void;
-}> = ({ filters, isRotating, showLabels, isTourRunning, onTourComplete, onWaypointChange, onCameraDistanceChange, onBoundaryCross, onParityFlip, isGWRunning, selectedGWEvent, onGWProgressUpdate, isPlayerMode, isCMBProofActive, onFPSUpdate }) => {
+}> = ({ filters, isRotating, showLabels, isTourRunning, onTourComplete, onWaypointChange, onCameraDistanceChange, onBoundaryCross, onParityFlip, isGWRunning, selectedGWEvent, onGWProgressUpdate, isPlayerMode, isCMBProofActive, isParityActive, isAxisOfEvilActive, isDarkFlowActive, onFPSUpdate }) => {
   const controlsRef = useRef<any>(null);
 
   return (
@@ -2589,6 +2653,11 @@ const Scene: React.FC<{
 
       {/* CMB Evidence Layer (Phase 4 - Topology Proof) */}
       <CMBEvidenceLayer visible={isCMBProofActive} />
+
+      {/* Evidence Layers (Directives QQQQ, RRRR, SSSS) */}
+      <CMBParitySphere visible={isParityActive} />
+      <IsotropyBreaker visible={isAxisOfEvilActive} />
+      <KinematicFlowMap visible={isDarkFlowActive} />
 
       <CinematicCamera
         isTourRunning={isTourRunning}
@@ -2662,6 +2731,11 @@ const MultiMessengerUniverse: React.FC = () => {
   // CMB Proof Mode state (Phase 4)
   const [isCMBProofActive, setIsCMBProofActive] = useState(false);
   const [cameraDistance, setCameraDistance] = useState(3);
+
+  // Evidence Layers state (Directives QQQQ, RRRR, SSSS)
+  const [isParityActive, setIsParityActive] = useState(false);
+  const [isAxisOfEvilActive, setIsAxisOfEvilActive] = useState(false);
+  const [isDarkFlowActive, setIsDarkFlowActive] = useState(false);
 
   // Performance monitoring
   const [fps, setFps] = useState(60);
@@ -2748,6 +2822,19 @@ const MultiMessengerUniverse: React.FC = () => {
     }
   }, [isCMBProofActive]);
 
+  // Evidence Layer Handlers (Directives QQQQ, RRRR, SSSS)
+  const handleToggleParity = useCallback(() => {
+    setIsParityActive((prev) => !prev);
+  }, []);
+
+  const handleToggleAxisOfEvil = useCallback(() => {
+    setIsAxisOfEvilActive((prev) => !prev);
+  }, []);
+
+  const handleToggleDarkFlow = useCallback(() => {
+    setIsDarkFlowActive((prev) => !prev);
+  }, []);
+
   return (
     <div className="relative w-full h-[800px] bg-slate-950 rounded-lg overflow-hidden" onWheel={handleWheel}>
       {/* Hide regular UI when in Player Mode */}
@@ -2772,6 +2859,12 @@ const MultiMessengerUniverse: React.FC = () => {
         onStartPlayerMode={openVesselSelector}
         isCMBProofActive={isCMBProofActive}
         onToggleCMBProof={handleToggleCMBProof}
+        isParityActive={isParityActive}
+        onToggleParity={handleToggleParity}
+        isAxisOfEvilActive={isAxisOfEvilActive}
+        onToggleAxisOfEvil={handleToggleAxisOfEvil}
+        isDarkFlowActive={isDarkFlowActive}
+        onToggleDarkFlow={handleToggleDarkFlow}
       />}
 
       {!isPlayerMode && <div className="absolute top-16 right-4 bg-slate-900/95 p-3 rounded-lg border border-slate-700 z-10 backdrop-blur-sm max-w-[200px]">
@@ -2801,6 +2894,11 @@ const MultiMessengerUniverse: React.FC = () => {
       {/* CMB Evidence HUD (Phase 4 - Topology Proof) */}
       <CMBEvidenceHUD visible={isCMBProofActive} />
 
+      {/* Evidence Layer HUDs (Directives QQQQ, RRRR, SSSS) */}
+      <ParityEvidenceHUD visible={isParityActive} />
+      <IsotropyBreakerHUD visible={isAxisOfEvilActive} />
+      <DarkFlowHUD visible={isDarkFlowActive} />
+
       <Canvas gl={{ antialias: true, logarithmicDepthBuffer: true }} dpr={[1, 2]}>
         <Scene
           filters={filters}
@@ -2825,6 +2923,9 @@ const MultiMessengerUniverse: React.FC = () => {
           }}
           isPlayerMode={isPlayerMode}
           isCMBProofActive={isCMBProofActive}
+          isParityActive={isParityActive}
+          isAxisOfEvilActive={isAxisOfEvilActive}
+          isDarkFlowActive={isDarkFlowActive}
           onFPSUpdate={setFps}
         />
       </Canvas>
