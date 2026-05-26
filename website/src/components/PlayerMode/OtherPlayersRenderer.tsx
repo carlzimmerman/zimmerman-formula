@@ -48,6 +48,9 @@ interface OtherPlayerVesselProps {
   player: OtherPlayer;
 }
 
+// Minimum scale for visibility at cosmic distances
+const MIN_VESSEL_SCALE = 0.15; // 150 Mpc - visible at Gpc scales
+
 function OtherPlayerVessel({ player }: OtherPlayerVesselProps) {
   const groupRef = useRef<THREE.Group>(null);
   const currentPosition = useRef(new THREE.Vector3(
@@ -62,7 +65,8 @@ function OtherPlayerVessel({ player }: OtherPlayerVesselProps) {
   ));
 
   const vesselConfig = VESSEL_CONFIGS[player.vessel] || VESSEL_CONFIGS.ufo;
-  const scale = vesselConfig.scale;
+  // Use larger scale for visibility - minimum 0.15 Gpc
+  const scale = Math.max(vesselConfig.scale * 100, MIN_VESSEL_SCALE);
 
   // Interpolate position smoothly
   useFrame((_, delta) => {
@@ -102,13 +106,34 @@ function OtherPlayerVessel({ player }: OtherPlayerVesselProps) {
 
   return (
     <group ref={groupRef}>
+      {/* Beacon glow - always visible at distance */}
+      <mesh>
+        <sphereGeometry args={[scale * 1.5, 16, 16]} />
+        <meshBasicMaterial
+          color={player.color}
+          transparent
+          opacity={0.15}
+        />
+      </mesh>
+
+      {/* Outer pulse ring for visibility */}
+      <mesh rotation={[Math.PI / 2, 0, 0]}>
+        <ringGeometry args={[scale * 1.2, scale * 1.4, 32]} />
+        <meshBasicMaterial
+          color={player.color}
+          transparent
+          opacity={0.4}
+          side={THREE.DoubleSide}
+        />
+      </mesh>
+
       {/* Main vessel mesh */}
       <mesh castShadow>
         {vesselGeometry}
         <meshStandardMaterial
           color={player.color}
           emissive={player.color}
-          emissiveIntensity={player.isWarping ? 0.5 : 0.2}
+          emissiveIntensity={player.isWarping ? 0.8 : 0.4}
           metalness={0.7}
           roughness={0.3}
         />
@@ -116,27 +141,35 @@ function OtherPlayerVessel({ player }: OtherPlayerVesselProps) {
 
       {/* Warp glow when warping */}
       {player.isWarping && (
-        <mesh scale={1.3}>
+        <mesh scale={1.5}>
           {vesselGeometry}
           <meshBasicMaterial
-            color={player.color}
+            color="#00ffff"
             transparent
-            opacity={0.3}
+            opacity={0.4}
             side={THREE.BackSide}
           />
         </mesh>
       )}
 
       {/* Parity indicator ring */}
-      <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, scale * 0.6, 0]}>
-        <ringGeometry args={[scale * 0.15, scale * 0.2, 16]} />
+      <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, scale * 0.8, 0]}>
+        <ringGeometry args={[scale * 0.2, scale * 0.3, 16]} />
         <meshBasicMaterial
           color={player.currentParity === 1 ? '#00ff00' : '#ff0000'}
           transparent
-          opacity={0.8}
+          opacity={0.9}
           side={THREE.DoubleSide}
         />
       </mesh>
+
+      {/* Point light beacon - visible from far away */}
+      <pointLight
+        color={player.color}
+        intensity={player.isWarping ? 3 : 1.5}
+        distance={scale * 20}
+        decay={1}
+      />
 
       {/* Player name label - small but visible */}
       <Html
