@@ -1013,16 +1013,17 @@ const SurveyGalaxies: React.FC = () => {
 
 const Z2Vertices: React.FC<{ showLabels: boolean }> = ({ showLabels }) => {
   // The 8 Z₂ fixed points are at the corners of the fundamental domain (±10.3 Gpc)
-  // These are the orbifold singularities where the Z₂ involution has fixed points
+  // These are orbifold singularities where fermion generations are localized
+  // NOT locations of specific astronomical structures - purely topological features
   const vertices = [
-    { name: 'V1: Shapley', position: [HALF_BOX, HALF_BOX, HALF_BOX] as [number, number, number], color: '#FFD700' },
-    { name: 'V2', position: [-HALF_BOX, HALF_BOX, HALF_BOX] as [number, number, number], color: '#FF6B6B' },
-    { name: 'V3: Cold Spot', position: [HALF_BOX, -HALF_BOX, HALF_BOX] as [number, number, number], color: '#4ECDC4' },
-    { name: 'V4', position: [-HALF_BOX, -HALF_BOX, HALF_BOX] as [number, number, number], color: '#45B7D1' },
-    { name: 'V5', position: [HALF_BOX, HALF_BOX, -HALF_BOX] as [number, number, number], color: '#96CEB4' },
-    { name: 'V6', position: [-HALF_BOX, HALF_BOX, -HALF_BOX] as [number, number, number], color: '#FFEAA7' },
-    { name: 'V7', position: [HALF_BOX, -HALF_BOX, -HALF_BOX] as [number, number, number], color: '#DDA0DD' },
-    { name: 'V8: Anti-Shapley', position: [-HALF_BOX, -HALF_BOX, -HALF_BOX] as [number, number, number], color: '#00FFFF' },
+    { name: 'Z₂ (+,+,+)', position: [HALF_BOX, HALF_BOX, HALF_BOX] as [number, number, number], color: '#FFD700' },
+    { name: 'Z₂ (-,+,+)', position: [-HALF_BOX, HALF_BOX, HALF_BOX] as [number, number, number], color: '#FF6B6B' },
+    { name: 'Z₂ (+,-,+)', position: [HALF_BOX, -HALF_BOX, HALF_BOX] as [number, number, number], color: '#4ECDC4' },
+    { name: 'Z₂ (-,-,+)', position: [-HALF_BOX, -HALF_BOX, HALF_BOX] as [number, number, number], color: '#45B7D1' },
+    { name: 'Z₂ (+,+,-)', position: [HALF_BOX, HALF_BOX, -HALF_BOX] as [number, number, number], color: '#96CEB4' },
+    { name: 'Z₂ (-,+,-)', position: [-HALF_BOX, HALF_BOX, -HALF_BOX] as [number, number, number], color: '#FFEAA7' },
+    { name: 'Z₂ (+,-,-)', position: [HALF_BOX, -HALF_BOX, -HALF_BOX] as [number, number, number], color: '#DDA0DD' },
+    { name: 'Z₂ (-,-,-)', position: [-HALF_BOX, -HALF_BOX, -HALF_BOX] as [number, number, number], color: '#00FFFF' },
   ];
   return (
     <group>
