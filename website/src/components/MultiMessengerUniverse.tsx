@@ -275,9 +275,6 @@ const PLANETS = [
   { name: 'Pluto', distance_au: 39.48, radius_km: 1188, color: '#dcdcdc', period_days: 90560 },
 ];
 
-// Convert AU to scene units (scaled for visibility)
-const AU_TO_SCENE = 0.0000000001; // 1 AU ≈ 0.0000000048 Gpc, but we scale for visibility
-
 // =============================================================================
 // MILKY WAY DATA
 // =============================================================================
@@ -987,13 +984,22 @@ const HighZGalaxies: React.FC<{ showLabels: boolean }> = ({ showLabels }) => (
   </group>
 );
 
+// T³ coordinate wrapping - keeps positions within ±HALF_BOX
+function wrapCoordinate(value: number): number {
+  const wrapped = ((value + HALF_BOX) % L_C_GPC + L_C_GPC) % L_C_GPC - HALF_BOX;
+  return wrapped;
+}
+
 const SurveyGalaxies: React.FC = () => {
   const geometry = useMemo(() => {
     const positions = new Float32Array(SURVEY_GALAXIES.length * 3);
     const colors = new Float32Array(SURVEY_GALAXIES.length * 3);
     SURVEY_GALAXIES.forEach((galaxy, i) => {
       const pos = celestialToCartesian(galaxy.ra, galaxy.dec, galaxy.distance_mpc);
-      positions[i * 3] = pos[0]; positions[i * 3 + 1] = pos[1]; positions[i * 3 + 2] = pos[2];
+      // Apply T³ wrapping to keep within fundamental domain (±10.3 Gpc)
+      positions[i * 3] = wrapCoordinate(pos[0]);
+      positions[i * 3 + 1] = wrapCoordinate(pos[1]);
+      positions[i * 3 + 2] = wrapCoordinate(pos[2]);
       const color = new THREE.Color(MEASUREMENT_COLORS[galaxy.type] || '#ffffff');
       colors[i * 3] = color.r; colors[i * 3 + 1] = color.g; colors[i * 3 + 2] = color.b;
     });
@@ -1006,11 +1012,17 @@ const SurveyGalaxies: React.FC = () => {
 };
 
 const Z2Vertices: React.FC<{ showLabels: boolean }> = ({ showLabels }) => {
+  // The 8 Z₂ fixed points are at the corners of the fundamental domain (±10.3 Gpc)
+  // These are the orbifold singularities where the Z₂ involution has fixed points
   const vertices = [
-    { name: 'V1: Shapley Attractor', position: [8.5, 4.0, 5.0] as [number, number, number], color: '#FFD700' },
-    { name: 'V2: Anti-Shapley', position: [-7.0, -3.0, -5.0] as [number, number, number], color: '#00FFFF' },
-    { name: 'V3: CMB Cold Spot', position: [-2.0, 6.0, 7.0] as [number, number, number], color: '#FF00FF' },
-    { name: 'V4: Southern Vertex', position: [1.0, -5.0, -8.0] as [number, number, number], color: '#00FF00' },
+    { name: 'V1: Shapley', position: [HALF_BOX, HALF_BOX, HALF_BOX] as [number, number, number], color: '#FFD700' },
+    { name: 'V2', position: [-HALF_BOX, HALF_BOX, HALF_BOX] as [number, number, number], color: '#FF6B6B' },
+    { name: 'V3: Cold Spot', position: [HALF_BOX, -HALF_BOX, HALF_BOX] as [number, number, number], color: '#4ECDC4' },
+    { name: 'V4', position: [-HALF_BOX, -HALF_BOX, HALF_BOX] as [number, number, number], color: '#45B7D1' },
+    { name: 'V5', position: [HALF_BOX, HALF_BOX, -HALF_BOX] as [number, number, number], color: '#96CEB4' },
+    { name: 'V6', position: [-HALF_BOX, HALF_BOX, -HALF_BOX] as [number, number, number], color: '#FFEAA7' },
+    { name: 'V7', position: [HALF_BOX, -HALF_BOX, -HALF_BOX] as [number, number, number], color: '#DDA0DD' },
+    { name: 'V8: Anti-Shapley', position: [-HALF_BOX, -HALF_BOX, -HALF_BOX] as [number, number, number], color: '#00FFFF' },
   ];
   return (
     <group>
