@@ -14,6 +14,17 @@
  * =============================================================================
  */
 
+// Original evidence layers (QQQQ, RRRR, SSSS)
 export { CMBParitySphere, ParityEvidenceHUD } from './CMBParitySphere';
 export { IsotropyBreaker, IsotropyBreakerHUD } from './IsotropyBreaker';
 export { KinematicFlowMap, DarkFlowHUD } from './KinematicFlowMap';
+
+// Multi-messenger layers (TTTT, UUUU, VVVV)
+export { GravitationalGraveyard, GraveyardHUD } from './GravitationalGraveyard';
+export { GeometricGravity, MONDHUD } from './GeometricGravity';
+export { RadioMirrors, RadioGhostHUD } from './RadioMirrors';
+
+// Frontier layers (WWWW, XXXX, YYYY)
+export { LocalMONDAnchor, WideBinaryHUD } from './LocalMONDAnchor';
+export { DispersionTomography, DispersionHUD } from './DispersionTomography';
+export { CosmicWindShader, CosmicWindHUD } from './CosmicWindShader';

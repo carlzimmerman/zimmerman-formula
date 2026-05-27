@@ -13,10 +13,16 @@ import { usePlayerStore } from '../store/playerStore';
 // CMB Evidence Layer (Phase 4 - Topology Proof)
 import { CMBEvidenceLayer, CMBEvidenceHUD, getCMBViewPosition, CMB_CIRCLE_DATA } from './CMBEvidenceLayer';
 
-// Evidence Layer Components (Directives QQQQ, RRRR, SSSS)
+// Evidence Layer Components (Directives QQQQ, RRRR, SSSS, TTTT, UUUU, VVVV, WWWW, XXXX, YYYY)
 import { CMBParitySphere, ParityEvidenceHUD } from './evidence/CMBParitySphere';
 import { IsotropyBreaker, IsotropyBreakerHUD } from './evidence/IsotropyBreaker';
 import { KinematicFlowMap, DarkFlowHUD } from './evidence/KinematicFlowMap';
+import { GravitationalGraveyard, GraveyardHUD } from './evidence/GravitationalGraveyard';
+import { GeometricGravity, MONDHUD } from './evidence/GeometricGravity';
+import { RadioMirrors, RadioGhostHUD } from './evidence/RadioMirrors';
+import { LocalMONDAnchor, WideBinaryHUD } from './evidence/LocalMONDAnchor';
+import { DispersionTomography, DispersionHUD } from './evidence/DispersionTomography';
+import { CosmicWindShader, CosmicWindHUD } from './evidence/CosmicWindShader';
 
 // Performance Monitoring
 import { MinimalFPS } from './PerformanceHUD';
@@ -1824,13 +1830,29 @@ interface FilterPanelProps {
   onToggleAxisOfEvil: () => void;
   isDarkFlowActive: boolean;
   onToggleDarkFlow: () => void;
+  // Evidence Layers (Directives TTTT, UUUU, VVVV)
+  isGWGraveyardActive: boolean;
+  onToggleGWGraveyard: () => void;
+  isMONDActive: boolean;
+  onToggleMOND: () => void;
+  isRadioGhostsActive: boolean;
+  onToggleRadioGhosts: () => void;
+  // Evidence Layers (Directives WWWW, XXXX, YYYY)
+  isWideBinariesActive: boolean;
+  onToggleWideBinaries: () => void;
+  isFRBActive: boolean;
+  onToggleFRB: () => void;
+  isKSZActive: boolean;
+  onToggleKSZ: () => void;
 }
 
 const FilterPanel: React.FC<FilterPanelProps> = ({
   filters, setFilters, isRotating, setIsRotating, showLabels, setShowLabels,
   isTourRunning, onStartTour, onStopTour, isGWRunning, selectedGWEvent, onSelectGWEvent, onStartGW, onStopGW,
   isPlayerMode, onStartPlayerMode, isCMBProofActive, onToggleCMBProof,
-  isParityActive, onToggleParity, isAxisOfEvilActive, onToggleAxisOfEvil, isDarkFlowActive, onToggleDarkFlow
+  isParityActive, onToggleParity, isAxisOfEvilActive, onToggleAxisOfEvil, isDarkFlowActive, onToggleDarkFlow,
+  isGWGraveyardActive, onToggleGWGraveyard, isMONDActive, onToggleMOND, isRadioGhostsActive, onToggleRadioGhosts,
+  isWideBinariesActive, onToggleWideBinaries, isFRBActive, onToggleFRB, isKSZActive, onToggleKSZ
 }) => {
   const toggleFilter = (key: string) => setFilters(prev => ({ ...prev, [key]: !prev[key] }));
 
@@ -1911,6 +1933,90 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
         >
           <span>Dark Flow</span>
           <span className={`w-2 h-2 rounded-full ${isDarkFlowActive ? 'bg-red-400' : 'bg-slate-600'}`} />
+        </button>
+
+        {/* GW Graveyard (TTTT) */}
+        <button
+          onClick={onToggleGWGraveyard}
+          disabled={isOtherModeRunning || isPlayerMode}
+          className={`w-full px-3 py-1.5 text-xs uppercase tracking-wider transition-all border rounded flex items-center justify-between ${
+            isGWGraveyardActive
+              ? 'bg-purple-900/50 text-purple-400 border-purple-500 shadow-[0_0_10px_rgba(168,85,247,0.3)]'
+              : 'bg-slate-800/50 text-slate-400 border-slate-600 hover:border-purple-500/50 hover:text-purple-300'
+          }`}
+        >
+          <span>GW Graveyard</span>
+          <span className={`w-2 h-2 rounded-full ${isGWGraveyardActive ? 'bg-purple-400' : 'bg-slate-600'}`} />
+        </button>
+
+        {/* MOND Gravity (UUUU) */}
+        <button
+          onClick={onToggleMOND}
+          disabled={isOtherModeRunning || isPlayerMode}
+          className={`w-full px-3 py-1.5 text-xs uppercase tracking-wider transition-all border rounded flex items-center justify-between ${
+            isMONDActive
+              ? 'bg-green-900/50 text-green-400 border-green-500 shadow-[0_0_10px_rgba(34,197,94,0.3)]'
+              : 'bg-slate-800/50 text-slate-400 border-slate-600 hover:border-green-500/50 hover:text-green-300'
+          }`}
+        >
+          <span>MOND Lensing</span>
+          <span className={`w-2 h-2 rounded-full ${isMONDActive ? 'bg-green-400' : 'bg-slate-600'}`} />
+        </button>
+
+        {/* Radio Ghosts (VVVV) */}
+        <button
+          onClick={onToggleRadioGhosts}
+          disabled={isOtherModeRunning || isPlayerMode}
+          className={`w-full px-3 py-1.5 text-xs uppercase tracking-wider transition-all border rounded flex items-center justify-between ${
+            isRadioGhostsActive
+              ? 'bg-orange-900/50 text-orange-400 border-orange-500 shadow-[0_0_10px_rgba(251,146,60,0.3)]'
+              : 'bg-slate-800/50 text-slate-400 border-slate-600 hover:border-orange-500/50 hover:text-orange-300'
+          }`}
+        >
+          <span>Radio Ghosts</span>
+          <span className={`w-2 h-2 rounded-full ${isRadioGhostsActive ? 'bg-orange-400' : 'bg-slate-600'}`} />
+        </button>
+
+        {/* Wide Binaries (WWWW) */}
+        <button
+          onClick={onToggleWideBinaries}
+          disabled={isOtherModeRunning || isPlayerMode}
+          className={`w-full px-3 py-1.5 text-xs uppercase tracking-wider transition-all border rounded flex items-center justify-between ${
+            isWideBinariesActive
+              ? 'bg-emerald-900/50 text-emerald-400 border-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.3)]'
+              : 'bg-slate-800/50 text-slate-400 border-slate-600 hover:border-emerald-500/50 hover:text-emerald-300'
+          }`}
+        >
+          <span>Wide Binaries</span>
+          <span className={`w-2 h-2 rounded-full ${isWideBinariesActive ? 'bg-emerald-400' : 'bg-slate-600'}`} />
+        </button>
+
+        {/* FRB Tomography (XXXX) */}
+        <button
+          onClick={onToggleFRB}
+          disabled={isOtherModeRunning || isPlayerMode}
+          className={`w-full px-3 py-1.5 text-xs uppercase tracking-wider transition-all border rounded flex items-center justify-between ${
+            isFRBActive
+              ? 'bg-teal-900/50 text-teal-400 border-teal-500 shadow-[0_0_10px_rgba(20,184,166,0.3)]'
+              : 'bg-slate-800/50 text-slate-400 border-slate-600 hover:border-teal-500/50 hover:text-teal-300'
+          }`}
+        >
+          <span>FRB Tomography</span>
+          <span className={`w-2 h-2 rounded-full ${isFRBActive ? 'bg-teal-400' : 'bg-slate-600'}`} />
+        </button>
+
+        {/* kSZ Cosmic Wind (YYYY) */}
+        <button
+          onClick={onToggleKSZ}
+          disabled={isOtherModeRunning || isPlayerMode}
+          className={`w-full px-3 py-1.5 text-xs uppercase tracking-wider transition-all border rounded flex items-center justify-between ${
+            isKSZActive
+              ? 'bg-amber-900/50 text-amber-400 border-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.3)]'
+              : 'bg-slate-800/50 text-slate-400 border-slate-600 hover:border-amber-500/50 hover:text-amber-300'
+          }`}
+        >
+          <span>kSZ Wind</span>
+          <span className={`w-2 h-2 rounded-full ${isKSZActive ? 'bg-amber-400' : 'bg-slate-600'}`} />
         </button>
       </div>
 
@@ -2629,9 +2735,17 @@ const Scene: React.FC<{
   isParityActive: boolean;
   isAxisOfEvilActive: boolean;
   isDarkFlowActive: boolean;
+  // Evidence Layer props (Directives TTTT, UUUU, VVVV)
+  isGWGraveyardActive: boolean;
+  isMONDActive: boolean;
+  isRadioGhostsActive: boolean;
+  // Evidence Layer props (Directives WWWW, XXXX, YYYY)
+  isWideBinariesActive: boolean;
+  isFRBActive: boolean;
+  isKSZActive: boolean;
   // Performance monitoring
   onFPSUpdate: (fps: number) => void;
-}> = ({ filters, isRotating, showLabels, isTourRunning, onTourComplete, onWaypointChange, onCameraDistanceChange, onBoundaryCross, onParityFlip, isGWRunning, selectedGWEvent, onGWProgressUpdate, isPlayerMode, isCMBProofActive, isParityActive, isAxisOfEvilActive, isDarkFlowActive, onFPSUpdate }) => {
+}> = ({ filters, isRotating, showLabels, isTourRunning, onTourComplete, onWaypointChange, onCameraDistanceChange, onBoundaryCross, onParityFlip, isGWRunning, selectedGWEvent, onGWProgressUpdate, isPlayerMode, isCMBProofActive, isParityActive, isAxisOfEvilActive, isDarkFlowActive, isGWGraveyardActive, isMONDActive, isRadioGhostsActive, isWideBinariesActive, isFRBActive, isKSZActive, onFPSUpdate }) => {
   const controlsRef = useRef<any>(null);
 
   return (
@@ -2658,6 +2772,16 @@ const Scene: React.FC<{
       <CMBParitySphere visible={isParityActive} />
       <IsotropyBreaker visible={isAxisOfEvilActive} />
       <KinematicFlowMap visible={isDarkFlowActive} />
+
+      {/* Evidence Layers (Directives TTTT, UUUU, VVVV) */}
+      {isGWGraveyardActive && <GravitationalGraveyard />}
+      {isMONDActive && <GeometricGravity position={[0, -3, 0]} scale={4} />}
+      {isRadioGhostsActive && <RadioMirrors />}
+
+      {/* Evidence Layers (Directives WWWW, XXXX, YYYY) */}
+      {isWideBinariesActive && <LocalMONDAnchor />}
+      {isFRBActive && <DispersionTomography />}
+      {isKSZActive && <CosmicWindShader />}
 
       <CinematicCamera
         isTourRunning={isTourRunning}
@@ -2736,6 +2860,16 @@ const MultiMessengerUniverse: React.FC = () => {
   const [isParityActive, setIsParityActive] = useState(false);
   const [isAxisOfEvilActive, setIsAxisOfEvilActive] = useState(false);
   const [isDarkFlowActive, setIsDarkFlowActive] = useState(false);
+
+  // Evidence Layers state (Directives TTTT, UUUU, VVVV)
+  const [isGWGraveyardActive, setIsGWGraveyardActive] = useState(false);
+  const [isMONDActive, setIsMONDActive] = useState(false);
+  const [isRadioGhostsActive, setIsRadioGhostsActive] = useState(false);
+
+  // Evidence Layers state (Directives WWWW, XXXX, YYYY)
+  const [isWideBinariesActive, setIsWideBinariesActive] = useState(false);
+  const [isFRBActive, setIsFRBActive] = useState(false);
+  const [isKSZActive, setIsKSZActive] = useState(false);
 
   // Performance monitoring
   const [fps, setFps] = useState(60);
@@ -2865,6 +2999,18 @@ const MultiMessengerUniverse: React.FC = () => {
         onToggleAxisOfEvil={handleToggleAxisOfEvil}
         isDarkFlowActive={isDarkFlowActive}
         onToggleDarkFlow={handleToggleDarkFlow}
+        isGWGraveyardActive={isGWGraveyardActive}
+        onToggleGWGraveyard={() => setIsGWGraveyardActive(p => !p)}
+        isMONDActive={isMONDActive}
+        onToggleMOND={() => setIsMONDActive(p => !p)}
+        isRadioGhostsActive={isRadioGhostsActive}
+        onToggleRadioGhosts={() => setIsRadioGhostsActive(p => !p)}
+        isWideBinariesActive={isWideBinariesActive}
+        onToggleWideBinaries={() => setIsWideBinariesActive(p => !p)}
+        isFRBActive={isFRBActive}
+        onToggleFRB={() => setIsFRBActive(p => !p)}
+        isKSZActive={isKSZActive}
+        onToggleKSZ={() => setIsKSZActive(p => !p)}
       />}
 
       {!isPlayerMode && <div className="absolute top-16 right-4 bg-slate-900/95 p-3 rounded-lg border border-slate-700 z-10 backdrop-blur-sm max-w-[200px]">
@@ -2899,6 +3045,16 @@ const MultiMessengerUniverse: React.FC = () => {
       <IsotropyBreakerHUD visible={isAxisOfEvilActive} />
       <DarkFlowHUD visible={isDarkFlowActive} />
 
+      {/* Evidence Layer HUDs (Directives TTTT, UUUU, VVVV) */}
+      {isGWGraveyardActive && <GraveyardHUD events={[]} clusteringRatio={0.38} />}
+      {isMONDActive && <MONDHUD deepMONDFraction={0.21} transitionalFraction={0.12} newtonianFraction={0.67} boundaryContribution={0.103} />}
+      {isRadioGhostsActive && <RadioGhostHUD totalSources={20} mirrorCandidates={169} bestGhostProb={0.623} orcClustering={0.37} />}
+
+      {/* Evidence Layer HUDs (Directives WWWW, XXXX, YYYY) */}
+      {isWideBinariesActive && <WideBinaryHUD deepMondCount={11} transitionalCount={3} newtonianCount={2} meanBoostDeepMond={1.62} meanBoostNewtonian={1.02} />}
+      {isFRBActive && <DispersionHUD totalFRBs={19} axisCount={8} diagonalCount={9} anisotropyRatio={0.14} maxDM={1426} />}
+      {isKSZActive && <CosmicWindHUD totalClusters={14} windMagnitude={1271} windDirection={{ l: 262.6, b: -18.7 }} bestAxis="Y" alignmentAngle={20.1} />}
+
       <Canvas gl={{ antialias: true, logarithmicDepthBuffer: true }} dpr={[1, 2]}>
         <Scene
           filters={filters}
@@ -2926,6 +3082,12 @@ const MultiMessengerUniverse: React.FC = () => {
           isParityActive={isParityActive}
           isAxisOfEvilActive={isAxisOfEvilActive}
           isDarkFlowActive={isDarkFlowActive}
+          isGWGraveyardActive={isGWGraveyardActive}
+          isMONDActive={isMONDActive}
+          isRadioGhostsActive={isRadioGhostsActive}
+          isWideBinariesActive={isWideBinariesActive}
+          isFRBActive={isFRBActive}
+          isKSZActive={isKSZActive}
           onFPSUpdate={setFps}
         />
       </Canvas>
