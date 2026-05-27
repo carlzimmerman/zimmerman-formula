@@ -269,27 +269,120 @@ const GW190521_EVENT = GW_EVENTS.find(e => e.id === 'GW190521')!;
 const L_C_GPC = 20.6;
 const HALF_BOX = L_C_GPC / 2;
 
-// Scale thresholds for LOD (in Gpc from origin)
-const SCALE_SOLAR_SYSTEM = 0.00000001; // ~1 AU in Gpc
-const SCALE_MILKY_WAY = 0.00003; // ~30 kpc in Gpc
-const SCALE_LOCAL_GROUP = 0.003; // ~3 Mpc in Gpc
-const SCALE_COSMIC = 1; // Full cosmic scale
+// Scale thresholds for LOD (in Gpc from origin) - TRUE HYPERREAL SCALE
+const TRUE_AU_GPC = 4.848e-15; // 1 AU in Gpc (true scale)
+const SCALE_EARTH_SURFACE = TRUE_AU_GPC * 4e-5;    // ~6000 km in Gpc (Earth radius)
+const SCALE_SOLAR_SYSTEM = TRUE_AU_GPC * 50;       // ~50 AU in Gpc (Kuiper belt)
+const SCALE_OORT_CLOUD = TRUE_AU_GPC * 50000;      // ~50000 AU in Gpc (Oort cloud)
+const SCALE_MILKY_WAY = 0.00003;                   // ~30 kpc in Gpc
+const SCALE_LOCAL_GROUP = 0.003;                   // ~3 Mpc in Gpc
+const SCALE_COSMIC = 1;                            // Full cosmic scale
 
 // =============================================================================
-// SOLAR SYSTEM DATA
+// SOLAR SYSTEM DATA - J2000 Keplerian Elements for TRUE positions
 // =============================================================================
+// Source: NASA JPL Horizons ephemeris data
+// Reference epoch: J2000.0 = January 1, 2000, 12:00 TT
 
-const PLANETS = [
-  { name: 'Mercury', distance_au: 0.387, radius_km: 2439, color: '#8c7853', period_days: 88 },
-  { name: 'Venus', distance_au: 0.723, radius_km: 6052, color: '#ffd700', period_days: 225 },
-  { name: 'Earth', distance_au: 1.0, radius_km: 6371, color: '#4169e1', period_days: 365 },
-  { name: 'Mars', distance_au: 1.524, radius_km: 3390, color: '#cd5c5c', period_days: 687 },
-  { name: 'Jupiter', distance_au: 5.203, radius_km: 69911, color: '#deb887', period_days: 4333 },
-  { name: 'Saturn', distance_au: 9.537, radius_km: 58232, color: '#f4a460', period_days: 10759 },
-  { name: 'Uranus', distance_au: 19.19, radius_km: 25362, color: '#afeeee', period_days: 30687 },
-  { name: 'Neptune', distance_au: 30.07, radius_km: 24622, color: '#4169e1', period_days: 60190 },
-  { name: 'Pluto', distance_au: 39.48, radius_km: 1188, color: '#dcdcdc', period_days: 90560 },
+interface PlanetData {
+  name: string;
+  radius_km: number;
+  color: string;
+  // Keplerian orbital elements (J2000 epoch)
+  a: number;           // Semi-major axis (AU)
+  e: number;           // Eccentricity
+  i: number;           // Inclination (degrees)
+  omega: number;       // Longitude of ascending node (degrees)
+  w: number;           // Argument of perihelion (degrees)
+  M0: number;          // Mean anomaly at J2000 (degrees)
+  n: number;           // Mean motion (degrees/day)
+}
+
+const PLANETS: PlanetData[] = [
+  // Mercury - fastest, most eccentric inner planet
+  { name: 'Mercury', radius_km: 2439.7, color: '#8c7853',
+    a: 0.38709927, e: 0.20563593, i: 7.00497902, omega: 48.33076593, w: 77.45779628, M0: 174.796, n: 4.09233445 },
+  // Venus - nearly circular orbit
+  { name: 'Venus', radius_km: 6051.8, color: '#ffd700',
+    a: 0.72333566, e: 0.00677672, i: 3.39467605, omega: 76.67984255, w: 131.60246718, M0: 50.115, n: 1.60213034 },
+  // Earth - our reference point
+  { name: 'Earth', radius_km: 6371.0, color: '#4169e1',
+    a: 1.00000261, e: 0.01671123, i: 0.00001531, omega: -11.26064, w: 102.93768193, M0: 357.529, n: 0.98560028 },
+  // Mars - red planet
+  { name: 'Mars', radius_km: 3389.5, color: '#cd5c5c',
+    a: 1.52371034, e: 0.09339410, i: 1.84969142, omega: 49.55953891, w: -23.94362959, M0: 19.373, n: 0.52402068 },
+  // Jupiter - gas giant king
+  { name: 'Jupiter', radius_km: 69911, color: '#deb887',
+    a: 5.20288700, e: 0.04838624, i: 1.30439695, omega: 100.47390909, w: 14.72847983, M0: 20.020, n: 0.08308529 },
+  // Saturn - ringed wonder
+  { name: 'Saturn', radius_km: 58232, color: '#f4a460',
+    a: 9.53667594, e: 0.05386179, i: 2.48599187, omega: 113.66242448, w: 92.59887831, M0: 317.020, n: 0.03349791 },
+  // Uranus - tilted ice giant
+  { name: 'Uranus', radius_km: 25362, color: '#afeeee',
+    a: 19.18916464, e: 0.04725744, i: 0.77263783, omega: 74.01692503, w: 170.95427630, M0: 142.238, n: 0.01176904 },
+  // Neptune - distant blue giant
+  { name: 'Neptune', radius_km: 24622, color: '#1e90ff',
+    a: 30.06992276, e: 0.00859048, i: 1.77004347, omega: 131.78422574, w: 44.96476227, M0: 256.228, n: 0.00606020 },
+  // Pluto - dwarf planet (for completeness)
+  { name: 'Pluto', radius_km: 1188.3, color: '#dcdcdc',
+    a: 39.48211675, e: 0.24882730, i: 17.14001206, omega: 110.30393684, w: 224.06891629, M0: 14.53, n: 0.00397459 },
 ];
+
+// J2000 epoch in JavaScript Date
+const J2000_EPOCH = new Date('2000-01-01T12:00:00Z').getTime();
+
+/**
+ * Calculate planet position using Keplerian orbital mechanics
+ * Returns position in AU relative to Sun at origin
+ */
+function calculatePlanetPosition(planet: PlanetData, date: Date): { x: number; y: number; z: number } {
+  // Days since J2000
+  const daysSinceJ2000 = (date.getTime() - J2000_EPOCH) / (1000 * 60 * 60 * 24);
+
+  // Mean anomaly at current date (degrees)
+  const M = (planet.M0 + planet.n * daysSinceJ2000) % 360;
+  const M_rad = M * Math.PI / 180;
+
+  // Solve Kepler's equation for eccentric anomaly (Newton-Raphson)
+  let E = M_rad;
+  for (let i = 0; i < 10; i++) {
+    E = E - (E - planet.e * Math.sin(E) - M_rad) / (1 - planet.e * Math.cos(E));
+  }
+
+  // True anomaly
+  const nu = 2 * Math.atan2(
+    Math.sqrt(1 + planet.e) * Math.sin(E / 2),
+    Math.sqrt(1 - planet.e) * Math.cos(E / 2)
+  );
+
+  // Distance from Sun
+  const r = planet.a * (1 - planet.e * Math.cos(E));
+
+  // Convert orbital elements to radians
+  const i_rad = planet.i * Math.PI / 180;
+  const omega_rad = planet.omega * Math.PI / 180;
+  const w_rad = planet.w * Math.PI / 180;
+
+  // Position in orbital plane
+  const x_orb = r * Math.cos(nu);
+  const y_orb = r * Math.sin(nu);
+
+  // Transform to ecliptic coordinates (simplified - ignoring nutation)
+  const cos_w = Math.cos(w_rad);
+  const sin_w = Math.sin(w_rad);
+  const cos_omega = Math.cos(omega_rad);
+  const sin_omega = Math.sin(omega_rad);
+  const cos_i = Math.cos(i_rad);
+  const sin_i = Math.sin(i_rad);
+
+  const x = (cos_w * cos_omega - sin_w * sin_omega * cos_i) * x_orb +
+            (-sin_w * cos_omega - cos_w * sin_omega * cos_i) * y_orb;
+  const y = (cos_w * sin_omega + sin_w * cos_omega * cos_i) * x_orb +
+            (-sin_w * sin_omega + cos_w * cos_omega * cos_i) * y_orb;
+  const z = (sin_w * sin_i) * x_orb + (cos_w * sin_i) * y_orb;
+
+  return { x, y, z };
+}
 
 // =============================================================================
 // MILKY WAY DATA
@@ -666,69 +759,74 @@ const DESIVAST_VOIDS = [
 
 const SolarSystem: React.FC<{ showLabels: boolean; time: number; cameraDistance: number }> = ({ showLabels, time, cameraDistance }) => {
   // ==========================================================================
-  // PROPER ASTRONOMICAL SCALING
+  // TRUE HYPERREAL ASTRONOMICAL SCALING
   // ==========================================================================
-  // Real scale: Earth radius / orbital radius = 6371 km / 1.496e8 km = 4.26e-5 (0.004%)
-  // Without exaggeration, planets are invisible dots.
+  // This is REAL SCALE. No exaggeration. The beauty is in how small we are.
   //
-  // Design choice: Use LOGARITHMIC size scaling so:
-  // - Planets are visible but clearly smaller than their orbits
-  // - Gas giants don't dominate the view
-  // - Inner and outer planets are both reasonably visible
+  // Conversion chain:
+  // 1 AU = 149,597,870.7 km
+  // 1 parsec = 206,265 AU = 3.086e13 km
+  // 1 kpc = 206,265,000 AU
+  // 1 Gpc = 206,265,000,000,000 AU
+  // Therefore: 1 AU = 4.848e-15 Gpc
+  //
+  // At true scale, if the Sun were 1 meter diameter:
+  // - Earth would be 1 cm, located 107 meters away
+  // - Jupiter would be 10 cm, located 556 meters away
+  // - Neptune would be 3.5 cm, located 3.2 kilometers away
 
-  const AU_TO_SCENE = 1e-8; // 1 AU = 1e-8 scene units
+  const TRUE_AU_TO_GPC = 4.848e-15; // TRUE SCALE: 1 AU in Gpc
+  const KM_TO_GPC = TRUE_AU_TO_GPC / 149597870.7; // 1 km in Gpc
 
-  // Convert km to AU
-  const KM_TO_AU = 1 / 149597870.7;
+  // True physical radii (in Gpc)
+  const SUN_RADIUS_GPC = 696340 * KM_TO_GPC;      // 2.26e-17 Gpc
+  const EARTH_RADIUS_GPC = 6371 * KM_TO_GPC;      // 2.06e-19 Gpc
+  const JUPITER_RADIUS_GPC = 69911 * KM_TO_GPC;   // 2.27e-18 Gpc
 
-  // Logarithmic size scaling: size ~ log(radius) instead of linear
-  // This compresses the huge range between Mercury (2,439 km) and Jupiter (69,911 km)
-  // from 29:1 down to about 2:1
-  const logScale = (radius_km: number) => {
-    const minRadius = 1000; // Reference: ~Ceres size
-    const maxRadius = 70000; // Reference: Jupiter
-    const logMin = Math.log10(minRadius);
-    const logMax = Math.log10(maxRadius);
-    const logR = Math.log10(Math.max(radius_km, minRadius));
-    // Normalize to 0.3 - 1.0 range (smallest planets still visible)
-    return 0.3 + 0.7 * (logR - logMin) / (logMax - logMin);
-  };
+  // Finder marker scale: visible at intermediate zoom levels
+  // These help you FIND the planets, then disappear when you're close enough to see them
+  const FINDER_SCALE = Math.max(0, Math.min(1, (cameraDistance - 1e-16) / (1e-13 - 1e-16)));
+  const showFinders = cameraDistance > 1e-16 && cameraDistance < 1e-12;
 
-  // Base size: 1% of 1 AU (makes Earth orbit look reasonable)
-  const BASE_SIZE = AU_TO_SCENE * 0.012;
+  // At extremely close zoom (< 1e-16), show true scale
+  // Between 1e-16 and 1e-13, blend between true and finder scale
+  const sunDisplaySize = SUN_RADIUS_GPC * (1 + FINDER_SCALE * 1e4);
 
-  // Camera-adaptive scaling: only boost size when camera is FAR from solar system
-  // At solar system scale (< 5e-7), no boost
-  // Gentle logarithmic boost beyond that, capped at 2x
-  const SOLAR_THRESHOLD = 5e-7; // ~50 AU in scene units
-  const cameraBoost = cameraDistance < SOLAR_THRESHOLD
-    ? 1
-    : Math.min(2, 1 + 0.3 * Math.log10(cameraDistance / SOLAR_THRESHOLD));
-
-  // Sun: special case - much larger than planets but still use log scaling
-  const SUN_RADIUS_KM = 696340;
-  const sunLogSize = 0.8 + 0.4 * (Math.log10(SUN_RADIUS_KM) - Math.log10(70000)) / 1; // ~1.0
-  const sunSize = BASE_SIZE * sunLogSize * 2.5 * cameraBoost; // Sun is ~2.5x largest planet visually
+  // Scale indicator for how far we are from true scale
+  const scaleExaggeration = showFinders ? Math.round(1 + FINDER_SCALE * 1e4) : 1;
 
   return (
     <group>
-      {/* Sun */}
+      {/* Sun - TRUE SCALE */}
       <mesh position={[0, 0, 0]}>
-        <sphereGeometry args={[sunSize, 32, 32]} />
+        <sphereGeometry args={[sunDisplaySize, 32, 32]} />
         <meshBasicMaterial color="#ffdd00" />
       </mesh>
-      {/* Sun corona glow */}
+      {/* Sun corona glow - helps locate at intermediate zoom */}
       <mesh position={[0, 0, 0]}>
-        <sphereGeometry args={[sunSize * 1.5, 16, 16]} />
-        <meshBasicMaterial color="#ffaa00" transparent opacity={0.2} />
+        <sphereGeometry args={[sunDisplaySize * 2, 16, 16]} />
+        <meshBasicMaterial color="#ffaa00" transparent opacity={showFinders ? 0.4 : 0.15} />
       </mesh>
 
-      {showLabels && cameraDistance < 0.0000001 && (
-        <Html position={[0, sunSize * 2, 0]} center>
+      {/* Sun finder beacon - visible from galactic scale */}
+      {showFinders && (
+        <mesh position={[0, 0, 0]}>
+          <sphereGeometry args={[cameraDistance * 0.02, 8, 8]} />
+          <meshBasicMaterial color="#ffff00" transparent opacity={0.6} />
+        </mesh>
+      )}
+
+      {showLabels && cameraDistance < 1e-13 && (
+        <Html position={[0, sunDisplaySize * 3, 0]} center>
           <div className="bg-yellow-900/80 px-2 py-1 rounded text-yellow-300 text-xs whitespace-nowrap font-bold border border-yellow-400/50">
             <div className="text-center">
               <span className="text-yellow-200">☀ The Sun</span>
               <div className="text-[9px] text-yellow-400/80 mt-0.5">R = 696,340 km</div>
+              {scaleExaggeration > 1 && (
+                <div className="text-[8px] text-orange-400 mt-0.5">
+                  Finder mode: {scaleExaggeration.toLocaleString()}× size
+                </div>
+              )}
               <div className="text-[8px] text-cyan-400 mt-1 border-t border-yellow-400/30 pt-1">
                 YOU ARE HERE
               </div>
@@ -737,54 +835,77 @@ const SolarSystem: React.FC<{ showLabels: boolean; time: number; cameraDistance:
         </Html>
       )}
 
-      {/* Planets */}
-      {PLANETS.map((planet, i) => {
-        // Orbital position
-        const angle = (time / planet.period_days) * Math.PI * 2 + i * 0.5;
-        const orbitalRadius = planet.distance_au * AU_TO_SCENE;
-        const x = Math.cos(angle) * orbitalRadius;
-        const z = Math.sin(angle) * orbitalRadius;
+      {/* Planets - TRUE POSITIONS based on current datetime */}
+      {PLANETS.map((planet) => {
+        // Calculate TRUE position using Keplerian mechanics
+        const now = new Date();
+        const pos = calculatePlanetPosition(planet, now);
 
-        // Planet size: logarithmic scaling keeps all planets visible
-        // Jupiter (69,911 km) → logScale ≈ 1.0, size = BASE_SIZE * 1.0
-        // Earth (6,371 km) → logScale ≈ 0.65, size = BASE_SIZE * 0.65
-        // Mercury (2,439 km) → logScale ≈ 0.45, size = BASE_SIZE * 0.45
-        const planetSize = BASE_SIZE * logScale(planet.radius_km) * cameraBoost;
+        // Convert AU to Gpc (TRUE SCALE)
+        const x = pos.x * TRUE_AU_TO_GPC;
+        const y = pos.z * TRUE_AU_TO_GPC; // Swap y/z for Three.js coordinate system
+        const z = pos.y * TRUE_AU_TO_GPC;
 
-        // Orbit ring thickness - thin and subtle
-        const orbitThickness = orbitalRadius * 0.003;
+        // Orbital radius for ring display
+        const orbitalRadius = planet.a * TRUE_AU_TO_GPC;
+
+        // Planet physical size - TRUE SCALE with finder mode
+        const trueRadius = planet.radius_km * KM_TO_GPC;
+        const planetDisplaySize = trueRadius * (1 + FINDER_SCALE * 1e4);
+
+        // Orbit ring - true scale but visible thickness
+        const orbitThickness = Math.max(orbitalRadius * 0.001, trueRadius * 10);
 
         return (
           <group key={planet.name}>
-            {/* Orbit ring */}
+            {/* Orbit ring - always visible as reference */}
             <mesh rotation={[Math.PI / 2, 0, 0]}>
               <ringGeometry args={[
                 orbitalRadius - orbitThickness,
                 orbitalRadius + orbitThickness,
-                64
+                128
               ]} />
-              <meshBasicMaterial color="#ffffff" transparent opacity={0.12} side={THREE.DoubleSide} />
+              <meshBasicMaterial color="#ffffff" transparent opacity={0.08} side={THREE.DoubleSide} />
             </mesh>
 
-            {/* Planet */}
-            <mesh position={[x, 0, z]}>
-              <sphereGeometry args={[planetSize, 16, 16]} />
+            {/* Planet - TRUE SCALE (with finder boost when far) */}
+            <mesh position={[x, y, z]}>
+              <sphereGeometry args={[planetDisplaySize, 16, 16]} />
               <meshBasicMaterial color={planet.color} />
             </mesh>
 
+            {/* Planet finder beacon - visible at intermediate zoom */}
+            {showFinders && (
+              <mesh position={[x, y, z]}>
+                <sphereGeometry args={[cameraDistance * 0.008, 8, 8]} />
+                <meshBasicMaterial color={planet.color} transparent opacity={0.5} />
+              </mesh>
+            )}
+
             {/* Saturn's rings - proportional to planet size */}
             {planet.name === 'Saturn' && (
-              <mesh position={[x, 0, z]} rotation={[Math.PI / 3, 0, 0]}>
-                <ringGeometry args={[planetSize * 1.4, planetSize * 2.3, 32]} />
+              <mesh position={[x, y, z]} rotation={[Math.PI / 3, 0, 0]}>
+                <ringGeometry args={[planetDisplaySize * 1.4, planetDisplaySize * 2.3, 32]} />
                 <meshBasicMaterial color="#d4a574" transparent opacity={0.6} side={THREE.DoubleSide} />
               </mesh>
             )}
 
-            {/* Labels only when zoomed into solar system */}
-            {showLabels && cameraDistance < 0.0000001 && (
-              <Html position={[x, planetSize * 2.5, z]} center>
+            {/* Earth detail - show continents hint when very close */}
+            {planet.name === 'Earth' && cameraDistance < trueRadius * 100 && (
+              <mesh position={[x, y, z]}>
+                <sphereGeometry args={[planetDisplaySize * 1.01, 32, 32]} />
+                <meshBasicMaterial color="#228B22" transparent opacity={0.3} wireframe />
+              </mesh>
+            )}
+
+            {/* Labels when zoomed to solar system scale */}
+            {showLabels && cameraDistance < 1e-13 && cameraDistance > orbitalRadius * 0.1 && (
+              <Html position={[x, y + planetDisplaySize * 3, z]} center>
                 <div className="bg-black/80 px-1 py-0.5 rounded text-white text-[9px] whitespace-nowrap">
-                  {planet.name} ({planet.distance_au.toFixed(2)} AU)
+                  {planet.name} ({planet.a.toFixed(planet.a < 2 ? 2 : 1)} AU)
+                  {planet.name === 'Earth' && (
+                    <span className="text-cyan-400 ml-1">← HOME</span>
+                  )}
                 </div>
               </Html>
             )}
@@ -792,11 +913,33 @@ const SolarSystem: React.FC<{ showLabels: boolean; time: number; cameraDistance:
         );
       })}
 
-      {/* Scale reference when zoomed in */}
-      {showLabels && cameraDistance < 0.00000005 && (
-        <Html position={[0, -AU_TO_SCENE * 2, 0]} center>
-          <div className="bg-slate-900/90 border border-yellow-500 px-2 py-1 rounded text-yellow-300 text-[10px]">
-            Scale: 500× exaggeration (planets visible)
+      {/* Scale indicator - shows current zoom level */}
+      {showLabels && cameraDistance < 1e-12 && cameraDistance > 1e-16 && (
+        <Html position={[0, -cameraDistance * 0.3, 0]} center>
+          <div className="bg-slate-900/90 border border-cyan-500 px-2 py-1 rounded text-cyan-300 text-[10px]">
+            <div className="text-center">
+              <div className="text-[8px] text-slate-400">Zoom depth</div>
+              <div className="font-mono">
+                {cameraDistance > 1e-14
+                  ? `${(cameraDistance / TRUE_AU_TO_GPC).toFixed(0)} AU`
+                  : `${(cameraDistance / TRUE_AU_TO_GPC * 149597870.7).toExponential(1)} km`
+                }
+              </div>
+              {scaleExaggeration > 1 && (
+                <div className="text-[8px] text-orange-400 mt-1">
+                  Planets enlarged {scaleExaggeration.toLocaleString()}× to find
+                </div>
+              )}
+            </div>
+          </div>
+        </Html>
+      )}
+
+      {/* TRUE SCALE indicator when finally at real scale */}
+      {showLabels && cameraDistance < 1e-16 && (
+        <Html position={[0, -sunDisplaySize * 5, 0]} center>
+          <div className="bg-green-900/90 border border-green-400 px-2 py-1 rounded text-green-300 text-[10px] font-bold">
+            TRUE SCALE - No exaggeration
           </div>
         </Html>
       )}
@@ -1811,22 +1954,53 @@ const FundamentalDomainBox: React.FC = () => {
 // =============================================================================
 
 const ScaleIndicator: React.FC<{ cameraDistance: number }> = ({ cameraDistance }) => {
-  // Scale thresholds based on proper astronomical distances:
-  // - Solar System: < 1e-6 scene units (~100 AU = 1e-6 Gpc)
-  // - Milky Way: < 1e-4 scene units (~100 kpc = 1e-4 Gpc)
-  // - Local Group: < 0.01 scene units (~10 Mpc = 0.01 Gpc)
-  // - Cosmic Web: < 1 scene unit (~1 Gpc)
-  // - Full Domain: > 1 scene unit
+  // TRUE HYPERREAL scale thresholds
+  // 1 AU = 4.848e-15 Gpc (true astronomical scale)
+  // 1 kpc = 1e-6 Gpc
+  // 1 Mpc = 1e-3 Gpc
+  const AU_IN_GPC = 4.848e-15;
+  const KM_IN_GPC = AU_IN_GPC / 149597870.7;
 
   let scaleName = '';
   let scaleColor = '';
   let scaleValue = '';
 
-  if (cameraDistance < 1e-6) {
-    scaleName = 'Solar System';
+  if (cameraDistance < AU_IN_GPC * 0.01) {
+    // Sub-AU scale: planetary distances (< 0.01 AU = ~1.5 million km)
+    scaleName = 'Planetary';
+    scaleColor = 'text-green-400';
+    const km = cameraDistance / KM_IN_GPC;
+    if (km < 1000) {
+      scaleValue = `${km.toFixed(0)} km`;
+    } else if (km < 1e6) {
+      scaleValue = `${(km / 1000).toFixed(0)} thousand km`;
+    } else {
+      scaleValue = `${(km / 1e6).toFixed(2)} million km`;
+    }
+  } else if (cameraDistance < AU_IN_GPC * 10) {
+    // Inner Solar System (0.01 - 10 AU)
+    scaleName = 'Inner Solar System';
     scaleColor = 'text-yellow-400';
-    const au = cameraDistance / 1e-8;
-    scaleValue = au < 1 ? `${(au * 149.6).toFixed(0)} million km` : `${au.toFixed(1)} AU`;
+    const au = cameraDistance / AU_IN_GPC;
+    scaleValue = `${au.toFixed(2)} AU`;
+  } else if (cameraDistance < AU_IN_GPC * 100) {
+    // Outer Solar System (10 - 100 AU)
+    scaleName = 'Outer Solar System';
+    scaleColor = 'text-orange-400';
+    const au = cameraDistance / AU_IN_GPC;
+    scaleValue = `${au.toFixed(1)} AU`;
+  } else if (cameraDistance < AU_IN_GPC * 100000) {
+    // Oort Cloud region (100 - 100,000 AU)
+    scaleName = 'Oort Cloud';
+    scaleColor = 'text-red-400';
+    const au = cameraDistance / AU_IN_GPC;
+    scaleValue = au < 1000 ? `${au.toFixed(0)} AU` : `${(au / 1000).toFixed(1)}k AU`;
+  } else if (cameraDistance < 1e-6) {
+    // Interstellar to galactic (100k AU to 1 kpc)
+    scaleName = 'Interstellar';
+    scaleColor = 'text-purple-400';
+    const ly = cameraDistance / (AU_IN_GPC * 63241); // 1 ly = 63241 AU
+    scaleValue = ly < 1000 ? `${ly.toFixed(0)} ly` : `${(ly / 1000).toFixed(1)}k ly`;
   } else if (cameraDistance < 1e-4) {
     scaleName = 'Milky Way';
     scaleColor = 'text-blue-400';
@@ -2908,19 +3082,21 @@ const Scene: React.FC<{
       {isPlayerMode && <OtherPlayersRenderer />}
 
       {/* Disable OrbitControls during player mode or CMB proof */}
+      {/* HYPERREAL: minDistance allows zoom to Earth surface scale (~1e-20 Gpc) */}
       <OrbitControls
         ref={controlsRef}
         enabled={!isPlayerMode && !isCMBProofActive}
         enablePan enableZoom enableRotate
-        minDistance={0.0000000001}
+        minDistance={1e-22}
         maxDistance={100}
-        zoomSpeed={1.2}
+        zoomSpeed={1.5}
         rotateSpeed={0.5}
         enableDamping
         dampingFactor={0.05}
       />
-      {/* Start at Earth/Solar System scale - user zooms out to cosmic view */}
-      <PerspectiveCamera makeDefault position={[0.00005, 0.00003, 0.00005]} fov={50} near={0.00000000001} far={1000} />
+      {/* HYPERREAL: Camera supports zoom from cosmic scale (100 Gpc) to Earth surface (~1e-20 Gpc) */}
+      {/* Logarithmic depth buffer handles this 22 order of magnitude range */}
+      <PerspectiveCamera makeDefault position={[0.00005, 0.00003, 0.00005]} fov={50} near={1e-24} far={1000} />
 
       {/* FPS Monitoring */}
       <FPSMonitor onFPSUpdate={onFPSUpdate} />
