@@ -37,6 +37,9 @@ import { CMBAxisOfEvil, CMBAxisOfEvilHUD } from './evidence/CMBAxisOfEvil';
 import { PTAInterferometer, PTAInterferometerHUD } from './evidence/PTAInterferometer';
 import { MONDLensingShader, MONDLensingHUD } from './evidence/MONDLensingShader';
 
+// Topological Ghosts - T³ mirror images
+import { TopologicalGhosts, TopologicalGhostsHUD } from './evidence/TopologicalGhosts';
+
 // Performance Monitoring
 import { MinimalFPS } from './PerformanceHUD';
 
@@ -2107,6 +2110,9 @@ interface FilterPanelProps {
   onTogglePTA: () => void;
   isMONDLensingActive: boolean;
   onToggleMONDLensing: () => void;
+  // Topological Ghosts
+  isGhostsActive: boolean;
+  onToggleGhosts: () => void;
   // Mobile collapse state
   isCollapsed: boolean;
   onToggleCollapse: () => void;
@@ -2124,6 +2130,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
   isVelocityRiversActive, onToggleVelocityRivers, isVPOSActive, onToggleVPOS,
   isCMBAxisOfEvilActive, onToggleCMBAxisOfEvil, isPTAActive, onTogglePTA,
   isMONDLensingActive, onToggleMONDLensing,
+  isGhostsActive, onToggleGhosts,
   isCollapsed, onToggleCollapse
 }) => {
   const toggleFilter = (key: string) => setFilters(prev => ({ ...prev, [key]: !prev[key] }));
@@ -2173,10 +2180,24 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
       </div>
 
       {/* Scrollable Evidence Layers Container */}
-      <div className="overflow-y-auto flex-1 pr-1 mb-3 scrollbar-thin scrollbar-thumb-slate-600 scrollbar-track-transparent" style={{ maxHeight: '45vh' }}>
+      <div className="overflow-y-auto flex-1 pr-1 mb-3 scrollbar-thin scrollbar-thumb-slate-600 scrollbar-track-transparent" style={{ maxHeight: '65vh' }}>
         {/* Evidence Layers (Directives QQQQ, RRRR, SSSS) */}
         <div className="mb-3 space-y-1.5">
           <label className="text-cyan-400 text-xs font-bold block sticky top-0 bg-slate-900/95 py-1 -mt-1">TOPOLOGY EVIDENCE</label>
+
+        {/* Topological Ghosts (T³ mirror images) */}
+        <button
+          onClick={onToggleGhosts}
+          disabled={isOtherModeRunning || isPlayerMode}
+          className={`w-full px-3 py-1.5 text-xs uppercase tracking-wider transition-all border rounded flex items-center justify-between ${
+            isGhostsActive
+              ? 'bg-cyan-900/50 text-cyan-400 border-cyan-500 shadow-[0_0_10px_rgba(6,182,212,0.3)]'
+              : 'bg-slate-800/50 text-slate-400 border-slate-600 hover:border-cyan-500/50 hover:text-cyan-300'
+          }`}
+        >
+          <span>T³ Ghost Images</span>
+          <span className={`w-2 h-2 rounded-full ${isGhostsActive ? 'bg-cyan-400' : 'bg-slate-600'}`} />
+        </button>
 
         {/* CMB Matched Circles (Phase 4) */}
         <button
@@ -2566,18 +2587,8 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
         </label>
       </div>
 
-      <div className="space-y-1">
-        {filterItems.map(({ key, label, color }) => (
-          <label key={key} className="flex items-center gap-2 cursor-pointer hover:bg-slate-800 p-1 rounded">
-            <input type="checkbox" checked={filters[key]} onChange={() => toggleFilter(key)} className="w-3 h-3 accent-blue-500" />
-            <span className="w-2 h-2 rounded-full" style={{ backgroundColor: color }} />
-            <span className="text-white text-xs">{label}</span>
-          </label>
-        ))}
-      </div>
-
       <div className="mt-3 pt-2 border-t border-slate-700 text-slate-500 text-[10px]">
-        Scroll to zoom from planets to 20.6 Gpc
+        Scroll to zoom from planets to 20.6 Gpc | Toggle layers in bottom-right
       </div>
       </div>
       {/* End Fixed Action Buttons */}
@@ -3196,9 +3207,11 @@ const Scene: React.FC<{
   isCMBAxisOfEvilActive: boolean;
   isPTAActive: boolean;
   isMONDLensingActive: boolean;
+  // Topological Ghosts
+  isGhostsActive: boolean;
   // Performance monitoring
   onFPSUpdate: (fps: number) => void;
-}> = ({ filters, isRotating, showLabels, isTourRunning, onTourComplete, onWaypointChange, onCameraDistanceChange, onBoundaryCross, onParityFlip, isGWRunning, selectedGWEvent, onGWProgressUpdate, isPlayerMode, isCMBProofActive, isParityActive, isAxisOfEvilActive, isDarkFlowActive, isGWGraveyardActive, isMONDActive, isRadioGhostsActive, isWideBinariesActive, isFRBActive, isKSZActive, isDESIActive, isClusterMapActive, isCosmicWebActive, isVoidsActive, isVelocityRiversActive, isVPOSActive, isCMBAxisOfEvilActive, isPTAActive, isMONDLensingActive, onFPSUpdate }) => {
+}> = ({ filters, isRotating, showLabels, isTourRunning, onTourComplete, onWaypointChange, onCameraDistanceChange, onBoundaryCross, onParityFlip, isGWRunning, selectedGWEvent, onGWProgressUpdate, isPlayerMode, isCMBProofActive, isParityActive, isAxisOfEvilActive, isDarkFlowActive, isGWGraveyardActive, isMONDActive, isRadioGhostsActive, isWideBinariesActive, isFRBActive, isKSZActive, isDESIActive, isClusterMapActive, isCosmicWebActive, isVoidsActive, isVelocityRiversActive, isVPOSActive, isCMBAxisOfEvilActive, isPTAActive, isMONDLensingActive, isGhostsActive, onFPSUpdate }) => {
   const controlsRef = useRef<any>(null);
 
   return (
@@ -3250,6 +3263,9 @@ const Scene: React.FC<{
       {isCMBAxisOfEvilActive && <CMBAxisOfEvil visible={true} />}
       {isPTAActive && <PTAInterferometer visible={true} />}
       {isMONDLensingActive && <MONDLensingShader visible={true} />}
+
+      {/* Topological Ghost Images - T³ wrapping visualization */}
+      {isGhostsActive && <TopologicalGhosts visible={true} showConnections={true} />}
 
       <CinematicCamera
         isTourRunning={isTourRunning}
@@ -3355,6 +3371,9 @@ const MultiMessengerUniverse: React.FC = () => {
   const [isCMBAxisOfEvilActive, setIsCMBAxisOfEvilActive] = useState(false);
   const [isPTAActive, setIsPTAActive] = useState(false);
   const [isMONDLensingActive, setIsMONDLensingActive] = useState(false);
+
+  // Topological Ghosts - T³ mirror images
+  const [isGhostsActive, setIsGhostsActive] = useState(false);
 
   // Onboarding overlay state (shows scroll instructions on first visit)
   const [showOnboarding, setShowOnboarding] = useState(true);
@@ -3550,6 +3569,8 @@ const MultiMessengerUniverse: React.FC = () => {
         onTogglePTA={() => setIsPTAActive(p => !p)}
         isMONDLensingActive={isMONDLensingActive}
         onToggleMONDLensing={() => setIsMONDLensingActive(p => !p)}
+        isGhostsActive={isGhostsActive}
+        onToggleGhosts={() => setIsGhostsActive(p => !p)}
         isCollapsed={isPanelCollapsed}
         onToggleCollapse={() => setIsPanelCollapsed(p => !p)}
       />}
@@ -3610,6 +3631,9 @@ const MultiMessengerUniverse: React.FC = () => {
         {isCMBAxisOfEvilActive && <CMBAxisOfEvilHUD visible={isCMBAxisOfEvilActive} alignmentAngle={1.36} probabilityRandom={0.001} quadrupoleGalactic={{ l: 240, b: 63 }} octupoleGalactic={{ l: 237, b: 63 }} />}
         {isPTAActive && <PTAInterferometerHUD visible={isPTAActive} totalPulsars={68} gwbAmplitude={2.4e-15} gwbSignificance="3.5σ" standingWaveModes={5} />}
         {isMONDLensingActive && <MONDLensingHUD visible={isMONDLensingActive} totalSystems={18} mondValidatesCount={10} validationRate={55.6} a0={1.2e-10} />}
+
+        {/* Topological Ghosts HUD */}
+        {isGhostsActive && <TopologicalGhostsHUD visible={isGhostsActive} totalStructures={17} fundamentalDomain={20.6} />}
       </div>
 
       <Canvas gl={{ antialias: true, logarithmicDepthBuffer: true }} dpr={[1, 2]}>
@@ -3654,6 +3678,7 @@ const MultiMessengerUniverse: React.FC = () => {
           isCMBAxisOfEvilActive={isCMBAxisOfEvilActive}
           isPTAActive={isPTAActive}
           isMONDLensingActive={isMONDLensingActive}
+          isGhostsActive={isGhostsActive}
           onFPSUpdate={setFps}
         />
       </Canvas>
