@@ -250,6 +250,7 @@ export function VelocityRivers({
                 opacity={0.1}
                 side={THREE.BackSide}
                 blending={THREE.AdditiveBlending}
+                depthWrite={false}
               />
             </mesh>
 

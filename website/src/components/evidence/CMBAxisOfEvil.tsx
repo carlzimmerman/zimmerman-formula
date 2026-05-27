@@ -209,6 +209,7 @@ export function CMBAxisOfEvil({
               opacity={0.1}
               side={THREE.DoubleSide}
               blending={THREE.AdditiveBlending}
+              depthWrite={false}
             />
           </mesh>
         </group>

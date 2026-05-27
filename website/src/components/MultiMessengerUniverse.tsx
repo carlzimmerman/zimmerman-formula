@@ -3636,7 +3636,7 @@ const MultiMessengerUniverse: React.FC = () => {
         {isGhostsActive && <TopologicalGhostsHUD visible={isGhostsActive} totalStructures={17} fundamentalDomain={20.6} />}
       </div>
 
-      <Canvas gl={{ antialias: true, logarithmicDepthBuffer: true }} dpr={[1, 2]}>
+      <Canvas gl={{ antialias: true, logarithmicDepthBuffer: true, powerPreference: 'high-performance' }} dpr={[1, 2]}>
         <Scene
           filters={filters}
           isRotating={isRotating}

@@ -232,6 +232,7 @@ export function PTAInterferometer({
                 transparent
                 opacity={0.2}
                 blending={THREE.AdditiveBlending}
+                depthWrite={false}
               />
             </mesh>
 

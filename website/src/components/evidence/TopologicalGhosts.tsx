@@ -343,6 +343,7 @@ export function TopologicalGhosts({
                 transparent
                 opacity={0.2}
                 blending={THREE.AdditiveBlending}
+                depthWrite={false}
               />
             </mesh>
 
@@ -384,6 +385,7 @@ export function TopologicalGhosts({
                       transparent
                       opacity={pulseOpacity}
                       blending={THREE.AdditiveBlending}
+                      depthWrite={false}
                     />
                   </mesh>
 

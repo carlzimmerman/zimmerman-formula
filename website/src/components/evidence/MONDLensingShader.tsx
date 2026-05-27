@@ -188,6 +188,7 @@ export function MONDLensingShader({
                     transparent
                     opacity={0.15}
                     blending={THREE.AdditiveBlending}
+                    depthWrite={false}
                   />
                 </mesh>
 
@@ -252,6 +253,7 @@ export function MONDLensingShader({
                       opacity={0.1}
                       side={THREE.DoubleSide}
                       blending={THREE.AdditiveBlending}
+                      depthWrite={false}
                     />
                   </mesh>
                 )}
