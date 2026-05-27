@@ -24,6 +24,7 @@ import { LocalMONDAnchor, WideBinaryHUD } from './evidence/LocalMONDAnchor';
 import { DispersionTomography, DispersionHUD } from './evidence/DispersionTomography';
 import { CosmicWindShader, CosmicWindHUD } from './evidence/CosmicWindShader';
 import { DESIGalaxies, DESIGalaxiesHUD } from './evidence/DESIGalaxies';
+import { GalaxyClusterMap, ClusterMapHUD } from './evidence/GalaxyClusterMap';
 
 // Performance Monitoring
 import { MinimalFPS } from './PerformanceHUD';
@@ -542,10 +543,11 @@ const MAJOR_STRUCTURES = [
   { name: 'Fornax Cluster', distance_mpc: 19, ra: 54.63, dec: -35.45, type: 'cluster' as const, size_mpc: 1.4 },
   { name: 'Coma Cluster', distance_mpc: 100, ra: 194.95, dec: 27.98, type: 'cluster' as const, size_mpc: 6 },
   { name: 'Shapley Supercluster', distance_mpc: 200, ra: 202.5, dec: -31.5, type: 'supercluster' as const, size_mpc: 40 },
-  { name: 'Laniakea', distance_mpc: 80, ra: 157, dec: -46, type: 'supercluster' as const, size_mpc: 160 },
+  // Great Attractor: center of Laniakea, direction RA 201° Dec -44°, distance ~65 Mpc (Tully et al. 2014)
+  { name: 'Great Attractor', distance_mpc: 65, ra: 201, dec: -44, type: 'supercluster' as const, size_mpc: 50 },
   { name: 'Sloan Great Wall', distance_mpc: 310, ra: 195, dec: 7, type: 'wall' as const, size_mpc: 430 },
   { name: 'Boötes Void', distance_mpc: 213, ra: 218, dec: 46, type: 'void' as const, size_mpc: 100 },
-  { name: 'CMB Cold Spot', distance_mpc: 3000, ra: 49, dec: -21, type: 'void' as const, size_mpc: 500 },
+  { name: 'CMB Cold Spot', distance_mpc: 3000, ra: 49, dec: -19, type: 'void' as const, size_mpc: 500 },
 ];
 
 const HIGH_Z_GALAXIES = [
@@ -1847,6 +1849,8 @@ interface FilterPanelProps {
   onToggleKSZ: () => void;
   isDESIActive: boolean;
   onToggleDESI: () => void;
+  isClusterMapActive: boolean;
+  onToggleClusterMap: () => void;
 }
 
 const FilterPanel: React.FC<FilterPanelProps> = ({
@@ -1856,7 +1860,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
   isParityActive, onToggleParity, isAxisOfEvilActive, onToggleAxisOfEvil, isDarkFlowActive, onToggleDarkFlow,
   isGWGraveyardActive, onToggleGWGraveyard, isMONDActive, onToggleMOND, isRadioGhostsActive, onToggleRadioGhosts,
   isWideBinariesActive, onToggleWideBinaries, isFRBActive, onToggleFRB, isKSZActive, onToggleKSZ,
-  isDESIActive, onToggleDESI
+  isDESIActive, onToggleDESI, isClusterMapActive, onToggleClusterMap
 }) => {
   const toggleFilter = (key: string) => setFilters(prev => ({ ...prev, [key]: !prev[key] }));
 
@@ -2034,6 +2038,20 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
         >
           <span>DESI Galaxies</span>
           <span className={`w-2 h-2 rounded-full ${isDESIActive ? 'bg-blue-400' : 'bg-slate-600'}`} />
+        </button>
+
+        {/* Galaxy Clusters */}
+        <button
+          onClick={onToggleClusterMap}
+          disabled={isOtherModeRunning || isPlayerMode}
+          className={`w-full px-3 py-1.5 text-xs uppercase tracking-wider transition-all border rounded flex items-center justify-between ${
+            isClusterMapActive
+              ? 'bg-yellow-900/50 text-yellow-400 border-yellow-500 shadow-[0_0_10px_rgba(234,179,8,0.3)]'
+              : 'bg-slate-800/50 text-slate-400 border-slate-600 hover:border-yellow-500/50 hover:text-yellow-300'
+          }`}
+        >
+          <span>Galaxy Clusters</span>
+          <span className={`w-2 h-2 rounded-full ${isClusterMapActive ? 'bg-yellow-400' : 'bg-slate-600'}`} />
         </button>
       </div>
 
@@ -2762,9 +2780,10 @@ const Scene: React.FC<{
   isKSZActive: boolean;
   // Survey data layers
   isDESIActive: boolean;
+  isClusterMapActive: boolean;
   // Performance monitoring
   onFPSUpdate: (fps: number) => void;
-}> = ({ filters, isRotating, showLabels, isTourRunning, onTourComplete, onWaypointChange, onCameraDistanceChange, onBoundaryCross, onParityFlip, isGWRunning, selectedGWEvent, onGWProgressUpdate, isPlayerMode, isCMBProofActive, isParityActive, isAxisOfEvilActive, isDarkFlowActive, isGWGraveyardActive, isMONDActive, isRadioGhostsActive, isWideBinariesActive, isFRBActive, isKSZActive, isDESIActive, onFPSUpdate }) => {
+}> = ({ filters, isRotating, showLabels, isTourRunning, onTourComplete, onWaypointChange, onCameraDistanceChange, onBoundaryCross, onParityFlip, isGWRunning, selectedGWEvent, onGWProgressUpdate, isPlayerMode, isCMBProofActive, isParityActive, isAxisOfEvilActive, isDarkFlowActive, isGWGraveyardActive, isMONDActive, isRadioGhostsActive, isWideBinariesActive, isFRBActive, isKSZActive, isDESIActive, isClusterMapActive, onFPSUpdate }) => {
   const controlsRef = useRef<any>(null);
 
   return (
@@ -2804,6 +2823,7 @@ const Scene: React.FC<{
 
       {/* Survey data layers */}
       {isDESIActive && <DESIGalaxies />}
+      {isClusterMapActive && <GalaxyClusterMap visible={true} />}
 
       <CinematicCamera
         isTourRunning={isTourRunning}
@@ -2895,6 +2915,7 @@ const MultiMessengerUniverse: React.FC = () => {
 
   // Survey data layers
   const [isDESIActive, setIsDESIActive] = useState(false);
+  const [isClusterMapActive, setIsClusterMapActive] = useState(false);
 
   // Onboarding overlay state (shows scroll instructions on first visit)
   const [showOnboarding, setShowOnboarding] = useState(true);
@@ -3065,6 +3086,8 @@ const MultiMessengerUniverse: React.FC = () => {
         onToggleKSZ={() => setIsKSZActive(p => !p)}
         isDESIActive={isDESIActive}
         onToggleDESI={() => setIsDESIActive(p => !p)}
+        isClusterMapActive={isClusterMapActive}
+        onToggleClusterMap={() => setIsClusterMapActive(p => !p)}
       />}
 
       {!isPlayerMode && <div className="absolute top-16 right-4 bg-slate-900/95 p-3 rounded-lg border border-slate-700 z-10 backdrop-blur-sm max-w-[200px]">
@@ -3109,6 +3132,7 @@ const MultiMessengerUniverse: React.FC = () => {
       {isFRBActive && <DispersionHUD totalFRBs={19} axisCount={8} diagonalCount={9} anisotropyRatio={0.14} maxDM={1426} />}
       {isKSZActive && <CosmicWindHUD totalClusters={14} windMagnitude={1271} windDirection={{ l: 262.6, b: -18.7 }} bestAxis="Y" alignmentAngle={20.1} />}
       {isDESIActive && <DESIGalaxiesHUD visible={isDESIActive} />}
+      {isClusterMapActive && <ClusterMapHUD visible={isClusterMapActive} comaMembers={800} virgoMembers={600} shapleyMembers={900} />}
 
       <Canvas gl={{ antialias: true, logarithmicDepthBuffer: true }} dpr={[1, 2]}>
         <Scene
@@ -3144,6 +3168,7 @@ const MultiMessengerUniverse: React.FC = () => {
           isFRBActive={isFRBActive}
           isKSZActive={isKSZActive}
           isDESIActive={isDESIActive}
+          isClusterMapActive={isClusterMapActive}
           onFPSUpdate={setFps}
         />
       </Canvas>

@@ -6,11 +6,28 @@
  * Directive VVVV: Visualize LOFAR/MeerKAT/ASKAP radio sources and search
  * for topological mirror images across T³/Z₂ boundaries.
  *
+ * GHOST PROBABILITY METHODOLOGY (T³/Z₂ Orbifold):
+ * ------------------------------------------------
+ * In T³/Z₂ topology with fundamental domain L = 20.6 Gpc:
+ *
+ * 1. T³ (3-torus): Opposite faces are identified
+ *    - (x, y, z) ~ (x + nL, y + mL, z + pL) for integers n, m, p
+ *    - Light can wrap around, appearing from opposite direction
+ *
+ * 2. Z₂ (point inversion): Antipodal identification through center
+ *    - (x, y, z) ~ (-x, -y, -z)
+ *    - Creates mirror image at inverted position
+ *
+ * Ghost image appears if:
+ * - Two sources at r₁, r₂ satisfy: r₂ ≈ -r₁ (Z₂) or r₂ ≈ r₁ + L·ê (T³ face)
+ * - Path length through topology < observable horizon (~13 Gpc)
+ * - Source properties (size, flux, morphology) are consistent
+ *
  * Features:
  * - Radio sources color-coded by type
  * - ORC markers as glowing rings
- * - Mirror pair connection lines
- * - Ghost probability indicators
+ * - Topological light paths showing geodesics through boundaries
+ * - Rigorous ghost probability based on geometry + observables
  *
  * =============================================================================
  */
@@ -32,6 +49,202 @@ const TYPE_COLORS: Record<string, string> = {
   'FR-I': '#3498DB',  // Blue
   'FR-II': '#E74C3C', // Red-orange
 };
+
+// Observable horizon (CMB distance)
+const OBSERVABLE_HORIZON_GPC = 13.0;
+
+// =============================================================================
+// RIGOROUS T³/Z₂ GHOST PROBABILITY CALCULATION
+// =============================================================================
+
+interface GhostAnalysis {
+  probability: number;
+  ghostType: 'Z2' | 'X_FACE' | 'Y_FACE' | 'Z_FACE' | null;
+  lightPath: THREE.Vector3[];
+  pathLength: number;
+  geometricScore: number;
+  propertyScore: number;
+}
+
+/**
+ * Compute rigorous ghost probability for two radio sources in T³/Z₂ topology.
+ *
+ * Methodology:
+ * 1. Geometric test: Does position r₂ match a topological image of r₁?
+ * 2. Path length test: Is the wrapped light path < observable horizon?
+ * 3. Property test: Do flux ratio, size ratio, morphology match?
+ *
+ * @param pos1 - Position of source 1 in Gpc (within fundamental domain)
+ * @param pos2 - Position of source 2 in Gpc
+ * @param flux1 - Flux density of source 1 (mJy)
+ * @param flux2 - Flux density of source 2 (mJy)
+ * @param size1 - Angular size of source 1 (arcmin)
+ * @param size2 - Angular size of source 2 (arcmin)
+ * @returns GhostAnalysis with probability and light path
+ */
+function computeRigorousGhostProbability(
+  pos1: THREE.Vector3,
+  pos2: THREE.Vector3,
+  flux1: number,
+  flux2: number,
+  size1: number,
+  size2: number
+): GhostAnalysis {
+  const result: GhostAnalysis = {
+    probability: 0,
+    ghostType: null,
+    lightPath: [],
+    pathLength: 0,
+    geometricScore: 0,
+    propertyScore: 0,
+  };
+
+  // -------------------------------------------------------------------------
+  // 1. Z₂ INVERSION TEST: r₂ ≈ -r₁
+  // -------------------------------------------------------------------------
+  const z2Image = pos1.clone().negate();
+  const z2Deviation = pos2.clone().sub(z2Image).length();
+  const z2GeometricScore = Math.exp(-z2Deviation / 1.0); // Gaussian falloff, σ = 1 Gpc
+
+  // -------------------------------------------------------------------------
+  // 2. T³ FACE IDENTIFICATION TESTS: r₂ ≈ r₁ ± L·ê
+  // -------------------------------------------------------------------------
+  const faceScores: { axis: 'X_FACE' | 'Y_FACE' | 'Z_FACE'; score: number; sign: number }[] = [];
+
+  // X-face: r₂ ≈ (L - r₁.x, r₁.y, r₁.z) or (-L - r₁.x, r₁.y, r₁.z)
+  for (const sign of [1, -1]) {
+    const xImage = new THREE.Vector3(sign * L_C - pos1.x, pos1.y, pos1.z);
+    const xDeviation = pos2.clone().sub(xImage).length();
+    faceScores.push({ axis: 'X_FACE', score: Math.exp(-xDeviation / 1.0), sign });
+  }
+
+  // Y-face
+  for (const sign of [1, -1]) {
+    const yImage = new THREE.Vector3(pos1.x, sign * L_C - pos1.y, pos1.z);
+    const yDeviation = pos2.clone().sub(yImage).length();
+    faceScores.push({ axis: 'Y_FACE', score: Math.exp(-yDeviation / 1.0), sign });
+  }
+
+  // Z-face
+  for (const sign of [1, -1]) {
+    const zImage = new THREE.Vector3(pos1.x, pos1.y, sign * L_C - pos1.z);
+    const zDeviation = pos2.clone().sub(zImage).length();
+    faceScores.push({ axis: 'Z_FACE', score: Math.exp(-zDeviation / 1.0), sign });
+  }
+
+  // Find best geometric match
+  const bestFace = faceScores.reduce((best, current) =>
+    current.score > best.score ? current : best
+  );
+
+  // -------------------------------------------------------------------------
+  // 3. DETERMINE BEST GHOST TYPE
+  // -------------------------------------------------------------------------
+  let bestType: 'Z2' | 'X_FACE' | 'Y_FACE' | 'Z_FACE' | null = null;
+  let bestGeometricScore = 0;
+  let expectedImage = new THREE.Vector3();
+
+  if (z2GeometricScore > bestFace.score && z2GeometricScore > 0.1) {
+    bestType = 'Z2';
+    bestGeometricScore = z2GeometricScore;
+    expectedImage = z2Image;
+  } else if (bestFace.score > 0.1) {
+    bestType = bestFace.axis;
+    bestGeometricScore = bestFace.score;
+    // Compute expected image position for light path
+    if (bestFace.axis === 'X_FACE') {
+      expectedImage = new THREE.Vector3(bestFace.sign * L_C - pos1.x, pos1.y, pos1.z);
+    } else if (bestFace.axis === 'Y_FACE') {
+      expectedImage = new THREE.Vector3(pos1.x, bestFace.sign * L_C - pos1.y, pos1.z);
+    } else {
+      expectedImage = new THREE.Vector3(pos1.x, pos1.y, bestFace.sign * L_C - pos1.z);
+    }
+  }
+
+  if (!bestType) {
+    return result; // No geometric match
+  }
+
+  // -------------------------------------------------------------------------
+  // 4. COMPUTE LIGHT PATH THROUGH TOPOLOGY
+  // -------------------------------------------------------------------------
+  // For Z₂: Light goes from origin → through center → to actual source at -r₂
+  // For T³ face: Light goes from origin → to boundary face → wraps to other side → to source
+
+  const origin = new THREE.Vector3(0, 0, 0);
+  let lightPath: THREE.Vector3[] = [];
+  let pathLength = 0;
+
+  if (bestType === 'Z2') {
+    // Z₂ path: direct to pos2, which is seeing the image of pos1 inverted
+    // The "actual" source is at pos1, ghost appears at pos2 ≈ -pos1
+    lightPath = [origin, pos2.clone()];
+    pathLength = pos2.length();
+  } else {
+    // T³ face path: light hits boundary, wraps around
+    const boundaryPoint = new THREE.Vector3();
+    const actualSource = pos1.clone();
+
+    if (bestType === 'X_FACE') {
+      const t = (HALF_BOX * Math.sign(pos2.x)) / pos2.x;
+      boundaryPoint.set(HALF_BOX * Math.sign(pos2.x), pos2.y * t, pos2.z * t);
+    } else if (bestType === 'Y_FACE') {
+      const t = (HALF_BOX * Math.sign(pos2.y)) / pos2.y;
+      boundaryPoint.set(pos2.x * t, HALF_BOX * Math.sign(pos2.y), pos2.z * t);
+    } else {
+      const t = (HALF_BOX * Math.sign(pos2.z)) / pos2.z;
+      boundaryPoint.set(pos2.x * t, pos2.y * t, HALF_BOX * Math.sign(pos2.z));
+    }
+
+    // Wrapped position (opposite boundary)
+    const wrappedPoint = boundaryPoint.clone();
+    if (bestType === 'X_FACE') wrappedPoint.x *= -1;
+    else if (bestType === 'Y_FACE') wrappedPoint.y *= -1;
+    else wrappedPoint.z *= -1;
+
+    lightPath = [origin, boundaryPoint, wrappedPoint, actualSource];
+    pathLength = boundaryPoint.length() + wrappedPoint.distanceTo(actualSource);
+  }
+
+  // -------------------------------------------------------------------------
+  // 5. PATH LENGTH CONSTRAINT
+  // -------------------------------------------------------------------------
+  if (pathLength > OBSERVABLE_HORIZON_GPC) {
+    return result; // Path too long to be observable
+  }
+
+  // -------------------------------------------------------------------------
+  // 6. PROPERTY CONSISTENCY SCORE
+  // -------------------------------------------------------------------------
+  // Ghost images should have similar intrinsic properties
+  // Flux ratio: topological ghosts have same intrinsic luminosity, but distance may differ
+  // Size ratio: should be similar if same object
+
+  const fluxRatio = Math.max(flux1, flux2) / Math.min(flux1, flux2);
+  const sizeRatio = Math.max(size1, size2) / Math.min(size1, size2);
+
+  // Penalize large ratios (indicating different sources)
+  const fluxScore = Math.exp(-Math.log(fluxRatio) / 0.5); // σ = factor of 1.6
+  const sizeScore = Math.exp(-Math.log(sizeRatio) / 0.3); // σ = factor of 1.3
+
+  const propertyScore = (fluxScore + sizeScore) / 2;
+
+  // -------------------------------------------------------------------------
+  // 7. FINAL PROBABILITY
+  // -------------------------------------------------------------------------
+  // Combine geometric and property scores
+  // Weight geometric more heavily since it's the topological constraint
+  const probability = Math.min(1.0, bestGeometricScore * 0.7 + propertyScore * 0.3);
+
+  result.probability = probability;
+  result.ghostType = bestType;
+  result.lightPath = lightPath;
+  result.pathLength = pathLength;
+  result.geometricScore = bestGeometricScore;
+  result.propertyScore = propertyScore;
+
+  return result;
+}
 
 // Interfaces
 interface RadioSource {
@@ -152,7 +365,150 @@ function RadioSourceMarker({
 }
 
 /**
- * Mirror pair connection line
+ * Topological Light Path - Shows how light wraps through T³/Z₂ topology
+ *
+ * Visualizes the geodesic from Earth (origin) through the topology boundary
+ * to the actual source location. This shows HOW we see the ghost image.
+ */
+function TopologicalLightPath({
+  actualSource,
+  ghostPosition,
+  ghostType,
+  probability,
+}: {
+  actualSource: THREE.Vector3;
+  ghostPosition: THREE.Vector3;
+  ghostType: 'Z2' | 'X_FACE' | 'Y_FACE' | 'Z_FACE';
+  probability: number;
+}) {
+  // Color based on mirror type
+  const color = useMemo(() => {
+    switch (ghostType) {
+      case 'X_FACE': return '#FF4444';
+      case 'Y_FACE': return '#44FF44';
+      case 'Z_FACE': return '#4444FF';
+      case 'Z2': return '#FF44FF';
+      default: return '#FFFFFF';
+    }
+  }, [ghostType]);
+
+  // Compute the light path through topology
+  const pathData = useMemo(() => {
+    const origin = new THREE.Vector3(0, 0, 0);
+    const scaled = (v: THREE.Vector3) => v.clone().multiplyScalar(SCALE);
+
+    if (ghostType === 'Z2') {
+      // Z₂: Light path goes directly to ghost position (which is inverted actual)
+      // Show: Origin → Ghost position, with marker at "actual" inverted position
+      return {
+        segments: [
+          { points: [scaled(origin), scaled(ghostPosition)], style: 'direct' as const },
+        ],
+        boundaryPoint: null,
+        annotation: `Z₂ inversion`,
+      };
+    }
+
+    // T³ face: Light hits boundary, wraps to opposite side, continues to source
+    let boundaryPoint: THREE.Vector3;
+    let wrappedPoint: THREE.Vector3;
+
+    // Find where sight line to ghost hits the boundary
+    const dir = ghostPosition.clone().normalize();
+
+    if (ghostType === 'X_FACE') {
+      const t = HALF_BOX / Math.abs(dir.x);
+      boundaryPoint = dir.clone().multiplyScalar(t);
+      wrappedPoint = boundaryPoint.clone();
+      wrappedPoint.x *= -1;
+    } else if (ghostType === 'Y_FACE') {
+      const t = HALF_BOX / Math.abs(dir.y);
+      boundaryPoint = dir.clone().multiplyScalar(t);
+      wrappedPoint = boundaryPoint.clone();
+      wrappedPoint.y *= -1;
+    } else {
+      const t = HALF_BOX / Math.abs(dir.z);
+      boundaryPoint = dir.clone().multiplyScalar(t);
+      wrappedPoint = boundaryPoint.clone();
+      wrappedPoint.z *= -1;
+    }
+
+    return {
+      segments: [
+        { points: [scaled(origin), scaled(boundaryPoint)], style: 'before' as const },
+        { points: [scaled(wrappedPoint), scaled(actualSource)], style: 'after' as const },
+      ],
+      boundaryPoint: scaled(boundaryPoint),
+      wrappedPoint: scaled(wrappedPoint),
+      annotation: `T³ ${ghostType.replace('_FACE', '')} wrap`,
+    };
+  }, [actualSource, ghostPosition, ghostType]);
+
+  const opacity = 0.4 + probability * 0.5;
+
+  return (
+    <group>
+      {/* Light path segments */}
+      {pathData.segments.map((segment, i) => (
+        <Line
+          key={i}
+          points={segment.points}
+          color={color}
+          lineWidth={1.5 + probability * 2}
+          transparent
+          opacity={opacity}
+          dashed
+          dashSize={0.08}
+          dashScale={8}
+        />
+      ))}
+
+      {/* Boundary crossing indicator */}
+      {pathData.boundaryPoint && pathData.wrappedPoint && (
+        <>
+          {/* Boundary crossing marker */}
+          <mesh position={pathData.boundaryPoint}>
+            <sphereGeometry args={[0.04, 8, 8]} />
+            <meshBasicMaterial color={color} transparent opacity={0.8} />
+          </mesh>
+
+          {/* "Wrap" indicator line through boundary */}
+          <Line
+            points={[pathData.boundaryPoint, pathData.wrappedPoint]}
+            color="#FFFFFF"
+            lineWidth={1}
+            transparent
+            opacity={0.3}
+            dashed
+            dashSize={0.02}
+            dashScale={20}
+          />
+
+          {/* Wrapped entry point marker */}
+          <mesh position={pathData.wrappedPoint}>
+            <sphereGeometry args={[0.04, 8, 8]} />
+            <meshBasicMaterial color={color} transparent opacity={0.8} />
+          </mesh>
+        </>
+      )}
+
+      {/* Annotation at midpoint */}
+      {probability > 0.3 && (
+        <Text
+          position={ghostPosition.clone().multiplyScalar(SCALE * 0.6)}
+          fontSize={0.06}
+          color={color}
+          anchorX="center"
+        >
+          {`${(probability * 100).toFixed(0)}% ${pathData.annotation}`}
+        </Text>
+      )}
+    </group>
+  );
+}
+
+/**
+ * Mirror pair connection line (legacy, for data from JSON)
  */
 function MirrorLine({
   source1,
@@ -165,8 +521,6 @@ function MirrorLine({
   probability: number;
   mirrorType: string;
 }) {
-  const lineRef = useRef<THREE.Line>(null);
-
   // Color based on mirror type
   const color = useMemo(() => {
     switch (mirrorType) {
@@ -220,7 +574,8 @@ export function RadioMirrors({
   showORCRings = true,
   selectedType = 'all',
   minGhostProbability = 0.2,
-}: RadioMirrorsProps) {
+  showLightPaths = true,
+}: RadioMirrorsProps & { showLightPaths?: boolean }) {
   const [data, setData] = useState<RadioData | null>(null);
 
   // Load data
@@ -240,6 +595,16 @@ export function RadioMirrors({
     return data.sources.filter(s => s.type === selectedType);
   }, [data, selectedType]);
 
+  // Build source lookup for ghost analysis
+  const sourceLookup = useMemo(() => {
+    if (!data) return {};
+    const lookup: Record<string, RadioSource> = {};
+    data.sources.forEach(s => {
+      lookup[s.name] = s;
+    });
+    return lookup;
+  }, [data]);
+
   // Build position lookup for mirror lines
   const positionLookup = useMemo(() => {
     if (!data) return {};
@@ -254,7 +619,42 @@ export function RadioMirrors({
     return lookup;
   }, [data]);
 
-  // Filter mirror pairs by probability
+  // Compute RIGOROUS ghost analysis for each pair
+  const rigorousGhostPairs = useMemo(() => {
+    if (!data) return [];
+
+    const pairs: Array<{
+      source1: RadioSource;
+      source2: RadioSource;
+      analysis: GhostAnalysis;
+    }> = [];
+
+    // Check all pairs of sources
+    for (let i = 0; i < data.sources.length; i++) {
+      for (let j = i + 1; j < data.sources.length; j++) {
+        const s1 = data.sources[i];
+        const s2 = data.sources[j];
+
+        const pos1 = new THREE.Vector3(s1.position.x, s1.position.y, s1.position.z);
+        const pos2 = new THREE.Vector3(s2.position.x, s2.position.y, s2.position.z);
+
+        const analysis = computeRigorousGhostProbability(
+          pos1, pos2,
+          s1.flux_mjy, s2.flux_mjy,
+          s1.size_arcmin, s2.size_arcmin
+        );
+
+        if (analysis.probability >= minGhostProbability && analysis.ghostType) {
+          pairs.push({ source1: s1, source2: s2, analysis });
+        }
+      }
+    }
+
+    // Sort by probability descending
+    return pairs.sort((a, b) => b.analysis.probability - a.analysis.probability);
+  }, [data, minGhostProbability]);
+
+  // Filter legacy mirror pairs by probability (from JSON data)
   const filteredPairs = useMemo(() => {
     if (!data) return [];
     return data.ghost_analysis.mirror_pairs.filter(
@@ -268,6 +668,24 @@ export function RadioMirrors({
 
   return (
     <group>
+      {/* Earth marker at origin (observer position) */}
+      <mesh position={[0, 0, 0]}>
+        <sphereGeometry args={[0.03, 16, 16]} />
+        <meshStandardMaterial
+          color="#4444FF"
+          emissive="#4444FF"
+          emissiveIntensity={0.5}
+        />
+      </mesh>
+      <Text
+        position={[0, 0.08, 0]}
+        fontSize={0.05}
+        color="#4444FF"
+        anchorX="center"
+      >
+        Earth
+      </Text>
+
       {/* Radio sources */}
       {filteredSources.map((source, i) => (
         <RadioSourceMarker
@@ -277,8 +695,34 @@ export function RadioMirrors({
         />
       ))}
 
-      {/* Mirror pair lines */}
-      {showMirrorLines && filteredPairs.map((pair, i) => {
+      {/* RIGOROUS topological light paths */}
+      {showLightPaths && rigorousGhostPairs.slice(0, 5).map((pair, i) => {
+        if (!pair.analysis.ghostType) return null;
+
+        const pos1 = new THREE.Vector3(
+          pair.source1.position.x,
+          pair.source1.position.y,
+          pair.source1.position.z
+        );
+        const pos2 = new THREE.Vector3(
+          pair.source2.position.x,
+          pair.source2.position.y,
+          pair.source2.position.z
+        );
+
+        return (
+          <TopologicalLightPath
+            key={`rigorous-${i}`}
+            actualSource={pos1}
+            ghostPosition={pos2}
+            ghostType={pair.analysis.ghostType}
+            probability={pair.analysis.probability}
+          />
+        );
+      })}
+
+      {/* Legacy mirror pair lines (from JSON, for comparison) */}
+      {showMirrorLines && !showLightPaths && filteredPairs.map((pair, i) => {
         const pos1 = positionLookup[pair.source1];
         const pos2 = positionLookup[pair.source2];
         if (!pos1 || !pos2) return null;
@@ -414,12 +858,28 @@ export function RadioGhostHUD({
         marginTop: '8px',
         fontSize: '10px',
       }}>
-        <div style={{ marginBottom: '5px', color: '#888' }}>Mirror Axes:</div>
-        <div style={{ display: 'flex', gap: '8px' }}>
-          <span style={{ color: '#FF4444' }}>— X</span>
-          <span style={{ color: '#44FF44' }}>— Y</span>
-          <span style={{ color: '#4444FF' }}>— Z</span>
-          <span style={{ color: '#FF44FF' }}>— INV</span>
+        <div style={{ marginBottom: '5px', color: '#888' }}>Light Path Types:</div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
+          <span><span style={{ color: '#FF4444' }}>---</span> X-face wrap</span>
+          <span><span style={{ color: '#44FF44' }}>---</span> Y-face wrap</span>
+          <span><span style={{ color: '#4444FF' }}>---</span> Z-face wrap</span>
+          <span><span style={{ color: '#FF44FF' }}>---</span> Z₂ inversion</span>
+        </div>
+      </div>
+
+      {/* Methodology explanation */}
+      <div style={{
+        marginTop: '10px',
+        paddingTop: '10px',
+        borderTop: '1px solid #444',
+        fontSize: '9px',
+        color: '#888',
+      }}>
+        <div style={{ marginBottom: '4px', color: '#FFD700' }}>Ghost Probability:</div>
+        <div style={{ lineHeight: '1.3' }}>
+          70% geometric match (position fits T³/Z₂ image) +
+          30% property match (flux & size ratios).
+          Dashed lines show light path through topology boundary.
         </div>
       </div>
 

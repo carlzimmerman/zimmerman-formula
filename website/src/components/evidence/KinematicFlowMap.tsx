@@ -31,31 +31,38 @@ import * as THREE from 'three';
 // =============================================================================
 
 const DARK_FLOW = {
-  // Combined measurements
-  velocity_km_s: 414,
-  velocity_error_km_s: 100,
+  // Combined measurements (Kashlinsky et al. 2008-2024)
+  velocity_km_s: 600,        // Range: 400-1000 km/s depending on depth
+  velocity_error_km_s: 200,
 
   // Direction in Galactic coordinates
-  galactic_l_deg: 293.4,
-  galactic_b_deg: -2.7,
+  // Source: Kashlinsky et al. (2008, 2010, 2024) - toward Centaurus/Hydra
+  // Published direction: l ≈ 283° ± 14°, b ≈ 12° ± 14°
+  galactic_l_deg: 287,       // Middle of published range
+  galactic_b_deg: 12,        // POSITIVE - above galactic plane (was incorrectly -2.7)
 
-  // Box alignment
+  // Box alignment analysis
   best_alignment_axis: 'Y',
   angle_to_box_deg: 23.6,
   is_aligned: true,
 
-  // Cartesian direction (normalized)
-  direction: [-0.396, -0.047, 0.917] as [number, number, number],
+  // Cartesian direction (computed from l=287°, b=12°)
+  // x = cos(b)*cos(l) = 0.978 * (-0.292) = -0.286
+  // y = cos(b)*sin(l) = 0.978 * (-0.956) = -0.935
+  // z = sin(b) = 0.208
+  direction: [-0.286, -0.935, 0.208] as [number, number, number],
 
   // Scales
   HALF_BOX_GPC: 10.3,
   D_LSS_GPC: 12.983,
 
-  // Kashlinsky measurement for reference
+  // Kashlinsky et al. measurement details
   kashlinsky_2024: {
     velocity_km_s: 800,
-    depth_mpc_h: 1500,
+    depth_mpc_h: 1500,        // Extends to at least 1.5 Gpc
     significance_sigma: 4.0,
+    direction_l: 287,
+    direction_b: 12,
   },
 
   // Colors
