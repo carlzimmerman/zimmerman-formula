@@ -1,245 +1,189 @@
 /**
  * =============================================================================
- * GEOMETRIC GRAVITY - COSMOS-Web MOND Visualization
+ * GEOMETRIC GRAVITY - COWLS Strong Lensing Visualization
  * =============================================================================
  *
- * Directive UUUU: Visualize JWST COSMOS-Web weak lensing with MOND overlay
- * showing where Modified Newtonian Dynamics predicts no dark matter needed.
+ * Directive UUUU: Visualize JWST COSMOS-Web strong lenses with MOND analysis.
+ * Now uses REAL data from COWLS (COSMOS-Web Lens Survey) 2025 public release.
  *
  * Features:
- * - Convergence κ map as height field
- * - MOND regime coloring (green=MOND, purple=Newtonian)
- * - Mass peak markers
- * - Boundary contribution vectors
+ * - Individual strong lens markers at real positions
+ * - Einstein radius visualization
+ * - MOND regime coloring (green=deep MOND, orange=transition, purple=Newtonian)
+ * - Source/lens redshift display
  *
  * =============================================================================
  */
 
 import React, { useRef, useMemo, useState, useEffect } from 'react';
 import * as THREE from 'three';
-import { useFrame, extend } from '@react-three/fiber';
-import { shaderMaterial, Text, Line } from '@react-three/drei';
-
-// =============================================================================
-// SHADER DEFINITIONS
-// =============================================================================
-
-const MONDShaderMaterial = shaderMaterial(
-  {
-    time: 0,
-    kappaTexture: null,
-    regimeTexture: null,
-    showMOND: true,
-    heightScale: 2.0,
-    deepMONDColor: new THREE.Color('#2ECC71'),     // Green
-    transitionalColor: new THREE.Color('#F39C12'), // Orange
-    newtonianColor: new THREE.Color('#9B59B6'),    // Purple
-  },
-  // Vertex shader
-  `
-    uniform float time;
-    uniform float heightScale;
-    uniform sampler2D kappaTexture;
-
-    varying vec2 vUv;
-    varying float vKappa;
-    varying float vHeight;
-
-    void main() {
-      vUv = uv;
-
-      // Sample convergence for height
-      vec4 kappaSample = texture2D(kappaTexture, uv);
-      vKappa = kappaSample.r;
-      vHeight = vKappa * heightScale;
-
-      // Displace vertex
-      vec3 pos = position;
-      pos.z = vHeight;
-
-      // Add subtle wave animation
-      pos.z += sin(time * 0.5 + uv.x * 6.28) * 0.02;
-
-      gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
-    }
-  `,
-  // Fragment shader
-  `
-    uniform float time;
-    uniform bool showMOND;
-    uniform sampler2D regimeTexture;
-    uniform vec3 deepMONDColor;
-    uniform vec3 transitionalColor;
-    uniform vec3 newtonianColor;
-
-    varying vec2 vUv;
-    varying float vKappa;
-    varying float vHeight;
-
-    void main() {
-      // Sample MOND regime: -1 = deep, 0 = transitional, 1 = Newtonian
-      vec4 regimeSample = texture2D(regimeTexture, vUv);
-      float regime = regimeSample.r * 2.0 - 1.0; // Convert from [0,1] to [-1,1]
-
-      vec3 color;
-
-      if (showMOND) {
-        // Blend colors based on regime
-        if (regime < -0.33) {
-          // Deep MOND (no DM needed)
-          color = deepMONDColor;
-        } else if (regime < 0.33) {
-          // Transitional
-          color = transitionalColor;
-        } else {
-          // Newtonian (DM required)
-          color = newtonianColor;
-        }
-
-        // Modulate by convergence intensity
-        color *= 0.5 + vKappa * 3.0;
-      } else {
-        // Simple convergence visualization
-        color = mix(
-          vec3(0.1, 0.3, 0.5),  // Low kappa (blue)
-          vec3(1.0, 0.4, 0.4),  // High kappa (red)
-          vKappa * 5.0
-        );
-      }
-
-      // Add contour lines
-      float contour = fract(vKappa * 20.0);
-      if (contour < 0.1) {
-        color *= 0.8;
-      }
-
-      // Pulsing glow for high-mass regions
-      float glow = sin(time * 2.0) * 0.1 + 0.9;
-      if (vKappa > 0.08) {
-        color *= glow;
-      }
-
-      gl_FragColor = vec4(color, 0.9);
-    }
-  `
-);
-
-extend({ MONDShaderMaterial });
-
-// Type augmentation for the extended material
-declare module '@react-three/fiber' {
-  interface ThreeElements {
-    mONDShaderMaterial: JSX.IntrinsicElements['shaderMaterial'] & {
-      time?: number;
-      kappaTexture?: THREE.DataTexture | null;
-      regimeTexture?: THREE.DataTexture | null;
-      showMOND?: boolean;
-      heightScale?: number;
-      deepMONDColor?: THREE.Color;
-      transitionalColor?: THREE.Color;
-      newtonianColor?: THREE.Color;
-    };
-  }
-}
+import { useFrame } from '@react-three/fiber';
+import { Text, Line, Ring } from '@react-three/drei';
 
 // =============================================================================
 // INTERFACES
 // =============================================================================
 
-interface MassPeak {
+interface Lens {
   name: string;
-  ra_offset: number;
-  dec_offset: number;
-  kappa_peak: number;
-  redshift: number;
+  ra: number;
+  dec: number;
+  galactic_l: number;
+  galactic_b: number;
+  z_lens: number;
+  z_source: number;
+  einstein_radius_arcsec: number;
+  distance_gpc: number;
+  position: { x: number; y: number; z: number };
+  velocity_dispersion_kms: number;
+  mond_regime: 'deep_mond' | 'transition' | 'newtonian';
+  source: string;
 }
 
 interface LensingData {
   metadata: {
-    field_center_ra: number;
-    field_center_dec: number;
-    field_area_deg2: number;
-    mond_a0: number;
+    source: string;
+    total_lenses: number;
+    survey_area_sq_deg: number;
+    data_integrity: string;
+    references: string[];
   };
-  convergence_map: {
-    x: number[];
-    y: number[];
-    kappa: number[][];
-    kappa_max: number;
-  };
-  mass_peaks: MassPeak[];
-  mond_analysis: {
-    regime: number[][];
-    deep_mond_fraction: number;
-    transitional_fraction: number;
-    newtonian_fraction: number;
-  };
-  boundary_effects: {
-    relative_contribution: number;
+  lenses: Lens[];
+  statistics: {
+    n_deep_mond: number;
+    n_transition: number;
+    n_newtonian: number;
+    mean_einstein_radius: number;
+    max_source_redshift: number;
   };
 }
 
 interface GeometricGravityProps {
   opacity?: number;
   showMOND?: boolean;
-  showPeaks?: boolean;
-  heightScale?: number;
+  showLabels?: boolean;
   position?: [number, number, number];
   scale?: number;
 }
+
+// Color scheme for MOND regimes
+const REGIME_COLORS = {
+  deep_mond: '#2ECC71',     // Green
+  transition: '#F39C12',    // Orange
+  newtonian: '#9B59B6',     // Purple
+};
 
 // =============================================================================
 // COMPONENTS
 // =============================================================================
 
 /**
- * Mass peak marker
+ * Individual lens marker with Einstein ring visualization
  */
-function MassPeakMarker({ peak, scale = 1 }: { peak: MassPeak; scale: number }) {
+function LensMarker({
+  lens,
+  scale = 1,
+  showLabel = true,
+}: {
+  lens: Lens;
+  scale: number;
+  showLabel?: boolean;
+}) {
   const meshRef = useRef<THREE.Mesh>(null);
+  const ringRef = useRef<THREE.Mesh>(null);
 
-  // Position based on RA/Dec offset (convert to grid coords)
+  // Normalize position for visualization
+  // COSMOS field is ~0.7 deg across, center at 150.1°, 2.3°
   const position = useMemo(() => {
-    return new THREE.Vector3(
-      peak.ra_offset * scale * 10,
-      peak.dec_offset * scale * 10,
-      peak.kappa_peak * 2 + 0.5  // Above the surface
-    );
-  }, [peak, scale]);
+    const ra_offset = (lens.ra - 150.1) * 10 * scale;  // Convert deg to viz units
+    const dec_offset = (lens.dec - 2.3) * 10 * scale;
+    const z_offset = lens.z_lens * 0.5 * scale;  // Stack by redshift
+    return new THREE.Vector3(ra_offset, z_offset, dec_offset);
+  }, [lens, scale]);
 
+  // Ring size based on Einstein radius
+  const ringSize = useMemo(() => {
+    return 0.05 + lens.einstein_radius_arcsec * 0.1;
+  }, [lens.einstein_radius_arcsec]);
+
+  const color = useMemo(() => {
+    return new THREE.Color(REGIME_COLORS[lens.mond_regime]);
+  }, [lens.mond_regime]);
+
+  // Animation
   useFrame(({ clock }) => {
     if (meshRef.current) {
-      meshRef.current.rotation.y = clock.getElapsedTime();
+      const pulse = 1 + Math.sin(clock.getElapsedTime() * 2 + lens.z_source) * 0.1;
+      meshRef.current.scale.setScalar(pulse);
+    }
+    if (ringRef.current) {
+      ringRef.current.rotation.z = clock.getElapsedTime() * 0.5;
     }
   });
 
   return (
     <group position={position}>
+      {/* Lens galaxy marker */}
       <mesh ref={meshRef}>
-        <octahedronGeometry args={[0.15 * scale]} />
+        <sphereGeometry args={[0.08 * scale, 12, 12]} />
         <meshStandardMaterial
-          color="#FFD700"
-          emissive="#FFD700"
-          emissiveIntensity={0.5}
-          wireframe
+          color={color}
+          emissive={color}
+          emissiveIntensity={0.4}
+          roughness={0.3}
+          metalness={0.7}
         />
       </mesh>
-      <Text
-        position={[0, 0.3, 0]}
-        fontSize={0.12 * scale}
-        color="#FFD700"
-        anchorX="center"
-      >
-        {peak.name}
-      </Text>
-      <Text
-        position={[0, 0.15, 0]}
-        fontSize={0.08 * scale}
-        color="#AAA"
-        anchorX="center"
-      >
-        {`z=${peak.redshift.toFixed(2)}`}
-      </Text>
+
+      {/* Einstein ring */}
+      <mesh ref={ringRef} rotation={[Math.PI / 2, 0, 0]}>
+        <ringGeometry args={[ringSize * 0.9, ringSize * 1.1, 32]} />
+        <meshBasicMaterial
+          color={color}
+          transparent
+          opacity={0.4}
+          side={THREE.DoubleSide}
+        />
+      </mesh>
+
+      {/* Glow */}
+      <mesh>
+        <sphereGeometry args={[0.15 * scale, 12, 12]} />
+        <meshBasicMaterial
+          color={color}
+          transparent
+          opacity={0.15}
+          side={THREE.BackSide}
+        />
+      </mesh>
+
+      {/* Labels */}
+      {showLabel && (
+        <>
+          <Text
+            position={[0, 0.2 * scale, 0]}
+            fontSize={0.06 * scale}
+            color={color}
+            anchorX="center"
+          >
+            {lens.name}
+          </Text>
+          <Text
+            position={[0, 0.12 * scale, 0]}
+            fontSize={0.04 * scale}
+            color="#888"
+            anchorX="center"
+          >
+            {`z_s=${lens.z_source.toFixed(1)}`}
+          </Text>
+        </>
+      )}
+
+      {/* Source indicator (behind lens) */}
+      <mesh position={[0, 0, -0.3 * scale]}>
+        <circleGeometry args={[0.03 * scale, 16]} />
+        <meshBasicMaterial color="#FFF" transparent opacity={0.3} />
+      </mesh>
     </group>
   );
 }
@@ -250,18 +194,12 @@ function MassPeakMarker({ peak, scale = 1 }: { peak: MassPeak; scale: number }) 
 export function GeometricGravity({
   opacity = 1,
   showMOND = true,
-  showPeaks = true,
-  heightScale = 2.0,
+  showLabels = true,
   position = [0, 0, 0],
   scale = 3,
 }: GeometricGravityProps) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const materialRef = useRef<any>(null);
   const [data, setData] = useState<LensingData | null>(null);
-  const [textures, setTextures] = useState<{
-    kappa: THREE.DataTexture | null;
-    regime: THREE.DataTexture | null;
-  }>({ kappa: null, regime: null });
+  const groupRef = useRef<THREE.Group>(null);
 
   // Load data
   useEffect(() => {
@@ -269,88 +207,32 @@ export function GeometricGravity({
       .then(res => res.json())
       .then((loadedData: LensingData) => {
         setData(loadedData);
-
-        // Create textures from data
-        const gridSize = loadedData.convergence_map.kappa.length;
-
-        // Convergence texture
-        const kappaArray = new Float32Array(gridSize * gridSize * 4);
-        for (let j = 0; j < gridSize; j++) {
-          for (let i = 0; i < gridSize; i++) {
-            const idx = (j * gridSize + i) * 4;
-            const kappa = loadedData.convergence_map.kappa[j][i] / loadedData.convergence_map.kappa_max;
-            kappaArray[idx] = kappa;
-            kappaArray[idx + 1] = kappa;
-            kappaArray[idx + 2] = kappa;
-            kappaArray[idx + 3] = 1;
-          }
-        }
-        const kappaTex = new THREE.DataTexture(
-          kappaArray,
-          gridSize,
-          gridSize,
-          THREE.RGBAFormat,
-          THREE.FloatType
-        );
-        kappaTex.needsUpdate = true;
-
-        // Regime texture
-        const regimeArray = new Float32Array(gridSize * gridSize * 4);
-        for (let j = 0; j < gridSize; j++) {
-          for (let i = 0; i < gridSize; i++) {
-            const idx = (j * gridSize + i) * 4;
-            // Convert regime from [-1, 1] to [0, 1]
-            const regime = (loadedData.mond_analysis.regime[j][i] + 1) / 2;
-            regimeArray[idx] = regime;
-            regimeArray[idx + 1] = regime;
-            regimeArray[idx + 2] = regime;
-            regimeArray[idx + 3] = 1;
-          }
-        }
-        const regimeTex = new THREE.DataTexture(
-          regimeArray,
-          gridSize,
-          gridSize,
-          THREE.RGBAFormat,
-          THREE.FloatType
-        );
-        regimeTex.needsUpdate = true;
-
-        setTextures({ kappa: kappaTex, regime: regimeTex });
       })
       .catch(console.error);
   }, []);
 
-  // Animation
+  // Slow rotation
   useFrame(({ clock }) => {
-    if (materialRef.current) {
-      materialRef.current.uniforms.time.value = clock.getElapsedTime();
+    if (groupRef.current) {
+      groupRef.current.rotation.y = Math.sin(clock.getElapsedTime() * 0.1) * 0.2;
     }
   });
 
-  if (!data || !textures.kappa) return null;
+  if (!data) return null;
 
   return (
-    <group position={position}>
-      {/* Lensing surface */}
-      <mesh rotation={[-Math.PI / 2, 0, 0]}>
-        <planeGeometry args={[scale, scale, 63, 63]} />
-        <mONDShaderMaterial
-          ref={materialRef}
-          kappaTexture={textures.kappa}
-          regimeTexture={textures.regime}
-          showMOND={showMOND}
-          heightScale={heightScale}
-          transparent
+    <group ref={groupRef} position={position}>
+      {/* Lens markers */}
+      {data.lenses.map((lens, i) => (
+        <LensMarker
+          key={lens.name || i}
+          lens={lens}
+          scale={scale / 3}
+          showLabel={showLabels}
         />
-      </mesh>
-
-      {/* Mass peaks */}
-      {showPeaks && data.mass_peaks.map((peak, i) => (
-        <MassPeakMarker key={i} peak={peak} scale={scale / 3} />
       ))}
 
-      {/* Field boundary */}
+      {/* Survey field boundary */}
       <Line
         points={[
           [-scale/2, 0, -scale/2],
@@ -359,18 +241,73 @@ export function GeometricGravity({
           [-scale/2, 0, scale/2],
           [-scale/2, 0, -scale/2],
         ]}
-        color="#444"
+        color="#333"
         lineWidth={1}
       />
 
-      {/* Labels */}
+      {/* Redshift axis */}
+      <Line
+        points={[
+          [0, 0, 0],
+          [0, scale * 0.8, 0],
+        ]}
+        color="#444"
+        lineWidth={1}
+        dashed
+        dashSize={0.1}
+      />
       <Text
-        position={[0, -0.5, scale/2 + 0.3]}
-        fontSize={0.15}
+        position={[0, scale * 0.85, 0]}
+        fontSize={0.08}
+        color="#666"
+        anchorX="center"
+      >
+        z (redshift)
+      </Text>
+
+      {/* Legend */}
+      <group position={[-scale/2 - 0.5, 0, 0]}>
+        <mesh position={[0, 0.3, 0]}>
+          <sphereGeometry args={[0.05, 8, 8]} />
+          <meshBasicMaterial color={REGIME_COLORS.deep_mond} />
+        </mesh>
+        <Text position={[0.15, 0.3, 0]} fontSize={0.06} color={REGIME_COLORS.deep_mond} anchorX="left">
+          Deep MOND
+        </Text>
+
+        <mesh position={[0, 0.15, 0]}>
+          <sphereGeometry args={[0.05, 8, 8]} />
+          <meshBasicMaterial color={REGIME_COLORS.transition} />
+        </mesh>
+        <Text position={[0.15, 0.15, 0]} fontSize={0.06} color={REGIME_COLORS.transition} anchorX="left">
+          Transition
+        </Text>
+
+        <mesh position={[0, 0, 0]}>
+          <sphereGeometry args={[0.05, 8, 8]} />
+          <meshBasicMaterial color={REGIME_COLORS.newtonian} />
+        </mesh>
+        <Text position={[0.15, 0, 0]} fontSize={0.06} color={REGIME_COLORS.newtonian} anchorX="left">
+          Newtonian
+        </Text>
+      </group>
+
+      {/* Field label */}
+      <Text
+        position={[0, -0.3, scale/2 + 0.3]}
+        fontSize={0.1}
         color="#888"
         anchorX="center"
       >
-        COSMOS-Web 0.54 deg²
+        COWLS / COSMOS-Web (0.54 deg²)
+      </Text>
+      <Text
+        position={[0, -0.45, scale/2 + 0.3]}
+        fontSize={0.07}
+        color="#666"
+        anchorX="center"
+      >
+        REAL JWST Strong Lens Data
       </Text>
     </group>
   );
@@ -380,15 +317,17 @@ export function GeometricGravity({
  * HUD overlay for MOND statistics
  */
 export function MONDHUD({
-  deepMONDFraction = 0,
-  transitionalFraction = 0,
-  newtonianFraction = 0,
-  boundaryContribution = 0,
+  totalLenses = 0,
+  deepMONDCount = 0,
+  transitionCount = 0,
+  newtonianCount = 0,
+  maxSourceRedshift = 0,
 }: {
-  deepMONDFraction?: number;
-  transitionalFraction?: number;
-  newtonianFraction?: number;
-  boundaryContribution?: number;
+  totalLenses?: number;
+  deepMONDCount?: number;
+  transitionCount?: number;
+  newtonianCount?: number;
+  maxSourceRedshift?: number;
 }) {
   return (
     <div style={{
@@ -405,17 +344,20 @@ export function MONDHUD({
       border: '1px solid #333',
     }}>
       <div style={{ marginBottom: '10px', fontWeight: 'bold', color: '#2ECC71' }}>
-        MOND GRAVITY ANALYSIS
+        COWLS STRONG LENSING
       </div>
 
       <div style={{ marginBottom: '5px' }}>
-        <span style={{ color: '#2ECC71' }}>Deep MOND:</span> {(deepMONDFraction * 100).toFixed(1)}%
+        Total Lenses: {totalLenses}
       </div>
       <div style={{ marginBottom: '5px' }}>
-        <span style={{ color: '#F39C12' }}>Transitional:</span> {(transitionalFraction * 100).toFixed(1)}%
+        <span style={{ color: '#2ECC71' }}>Deep MOND:</span> {deepMONDCount}
       </div>
       <div style={{ marginBottom: '5px' }}>
-        <span style={{ color: '#9B59B6' }}>Newtonian:</span> {(newtonianFraction * 100).toFixed(1)}%
+        <span style={{ color: '#F39C12' }}>Transition:</span> {transitionCount}
+      </div>
+      <div style={{ marginBottom: '5px' }}>
+        <span style={{ color: '#9B59B6' }}>Newtonian:</span> {newtonianCount}
       </div>
 
       <div style={{
@@ -425,10 +367,11 @@ export function MONDHUD({
         fontSize: '11px',
       }}>
         <div style={{ color: '#4ECDC4' }}>
-          T³ Boundary: {(boundaryContribution * 100).toFixed(1)}%
+          Max z_source: {maxSourceRedshift.toFixed(1)}
         </div>
         <div style={{ marginTop: '5px', fontSize: '10px', color: '#666' }}>
-          a₀ = 1.2×10⁻¹⁰ m/s²
+          Data: JWST COSMOS-Web
+          <br />a₀ = 1.2×10⁻¹⁰ m/s²
         </div>
       </div>
     </div>

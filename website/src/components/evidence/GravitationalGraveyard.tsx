@@ -38,7 +38,19 @@ const VERTICES = [
   [-1, -1, 1], [1, -1, 1], [-1, 1, 1], [1, 1, 1],
 ].map(([x, y, z]) => new THREE.Vector3(x * HALF_BOX * SCALE, y * HALF_BOX * SCALE, z * HALF_BOX * SCALE));
 
-// GW Event interface
+// GW Event interface (matches JSON structure from gw_catalog_fetcher.py)
+interface GWEventRaw {
+  name: string;
+  type: 'BBH' | 'BNS' | 'NSBH';
+  mfinal_solar: number;
+  distance_gpc: number;
+  snr: number;
+  position_gpc: { x: number; y: number; z: number } | null;
+  boundary_distance_gpc: number;
+  nearest_vertex: number;
+}
+
+// Transformed event for visualization
 interface GWEvent {
   name: string;
   type: 'BBH' | 'BNS' | 'NSBH';
@@ -219,12 +231,50 @@ export function GravitationalGraveyard({
   const [loading, setLoading] = useState(true);
   const groupRef = useRef<THREE.Group>(null);
 
-  // Load GW data
+  // Load GW data and transform to visualization format
   useEffect(() => {
     fetch('/data/gw_graveyard_data.json')
       .then(res => res.json())
       .then(data => {
-        setEvents(data.events || []);
+        // Transform raw events to visualization format
+        const transformedEvents: GWEvent[] = (data.events || [])
+          .filter((e: GWEventRaw) => e.position_gpc !== null)
+          .map((e: GWEventRaw) => {
+            // Determine nearest boundary from nearest_vertex
+            const vertexSigns = [
+              [-1, -1, -1], [1, -1, -1], [-1, 1, -1], [1, 1, -1],
+              [-1, -1, 1], [1, -1, 1], [-1, 1, 1], [1, 1, 1],
+            ];
+            const vertex = vertexSigns[e.nearest_vertex] || [0, 0, 0];
+
+            // Find which axis is closest to boundary
+            const pos = e.position_gpc!;
+            const distX = Math.min(HALF_BOX - Math.abs(pos.x), Math.abs(pos.x) + HALF_BOX);
+            const distY = Math.min(HALF_BOX - Math.abs(pos.y), Math.abs(pos.y) + HALF_BOX);
+            const distZ = Math.min(HALF_BOX - Math.abs(pos.z), Math.abs(pos.z) + HALF_BOX);
+
+            let nearest_boundary = '+X';
+            if (distX <= distY && distX <= distZ) {
+              nearest_boundary = pos.x > 0 ? '+X' : '-X';
+            } else if (distY <= distX && distY <= distZ) {
+              nearest_boundary = pos.y > 0 ? '+Y' : '-Y';
+            } else {
+              nearest_boundary = pos.z > 0 ? '+Z' : '-Z';
+            }
+
+            return {
+              name: e.name,
+              type: e.type,
+              total_mass: e.mfinal_solar,
+              distance_gpc: e.distance_gpc,
+              snr: e.snr,
+              position: e.position_gpc!,
+              boundary_distance: e.boundary_distance_gpc,
+              nearest_boundary,
+            };
+          });
+
+        setEvents(transformedEvents);
         setLoading(false);
       })
       .catch(err => {

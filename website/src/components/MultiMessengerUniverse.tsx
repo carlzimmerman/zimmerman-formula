@@ -3047,7 +3047,7 @@ const MultiMessengerUniverse: React.FC = () => {
 
       {/* Evidence Layer HUDs (Directives TTTT, UUUU, VVVV) */}
       {isGWGraveyardActive && <GraveyardHUD events={[]} clusteringRatio={0.38} />}
-      {isMONDActive && <MONDHUD deepMONDFraction={0.21} transitionalFraction={0.12} newtonianFraction={0.67} boundaryContribution={0.103} />}
+      {isMONDActive && <MONDHUD totalLenses={16} deepMONDCount={3} transitionCount={5} newtonianCount={8} maxSourceRedshift={9.1} />}
       {isRadioGhostsActive && <RadioGhostHUD totalSources={20} mirrorCandidates={169} bestGhostProb={0.623} orcClustering={0.37} />}
 
       {/* Evidence Layer HUDs (Directives WWWW, XXXX, YYYY) */}

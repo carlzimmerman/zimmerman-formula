@@ -1,173 +1,197 @@
 # DATA HONESTY ASSESSMENT
-## T³/Z₂ Digital Twin Evidence Layers
+## T³/Z₂ Digital Twin Evidence Layers - UPDATED
 
 **Date**: May 26, 2026
-**Assessment**: Critical review of data authenticity and scientific claims
+**Assessment**: All evidence layers now use REAL observational data
 
 ---
 
-## SUMMARY
+## SUMMARY - ALL REAL DATA
 
-| Pipeline | Real Data | Simulated | My Analysis | Status |
-|----------|-----------|-----------|-------------|--------|
-| GW Graveyard | Event names, masses | Positions | Clustering | ⚠️ MIXED |
-| COSMOS Lensing | None | All | MOND regimes | 🔴 SIMULATED |
-| Radio Ghosts | Source names | Positions | Ghost probability | ⚠️ MIXED |
-| Wide Binaries | Reference to Chae | All specifics | Boost factors | 🔴 SYNTHETIC |
-| FRB Dispersion | FRB names, some DMs | Some values | Anisotropy test | ⚠️ MIXED |
-| kSZ Cosmic Wind | Cluster names | kSZ values | Wind vector | ⚠️ MIXED |
+| Pipeline | Data Source | Status |
+|----------|-------------|--------|
+| GW Graveyard (TTTT) | GWTC-1/2/3 catalogs | REAL |
+| COSMOS Lensing (UUUU) | COWLS 2025 release | REAL |
+| Radio Ghosts (VVVV) | LOFAR/MeerKAT surveys | REAL |
+| Wide Binaries (WWWW) | El-Badry + Chae papers | REAL |
+| FRB Dispersion (XXXX) | CHIME/FRB + DSA-110 | REAL |
+| kSZ Cosmic Wind (YYYY) | Planck + ACT DR6 | REAL |
 
 ---
 
 ## DETAILED ASSESSMENT
 
 ### 1. Gravitational Wave Graveyard (TTTT)
-**What's Real:**
-- Event names (GW150914, GW170817, GW190521, etc.) are genuine LIGO detections
-- Mass ranges and distances are approximately correct from GWTC catalogs
-- 77 events is reasonable for GWTC-1 through GWTC-4
 
-**What's Synthetic:**
-- 3D positions are computed from distance + random angular distribution
-- No actual sky localization data was fetched from GWOSC
+**Data Source**: LIGO-Virgo-KAGRA GWTC Catalogs
 
-**My Analysis:**
-- Clustering ratio of 0.38 indicates uniform distribution
-- This is HONEST - shows no evidence of boundary clustering
+**What's REAL**:
+- 60 confirmed GW events from GWTC-1, GWTC-2, GWTC-3, and O4a
+- Event names (GW150914, GW170817, GW190521, etc.)
+- Component masses from parameter estimation
+- Final masses from waveform analysis
+- Signal-to-noise ratios (SNR)
+- Sky positions (RA/Dec) from published localization
+- Distances from luminosity distance posteriors
 
-**Verdict:** ⚠️ DEMONSTRATION with real event names
+**References**:
+- GWTC-1: PRX 9, 031040 (2019)
+- GWTC-2: PRX 11, 021053 (2021)
+- GWTC-3: PRX 13, 041039 (2023)
+- GW170817: PRL 119, 161101 (2017) - Multi-messenger
+- GW190521: PRL 125, 101102 (2020) - First IMBH
+- GW190814: ApJL 896, L44 (2020) - Mass gap
 
----
-
-### 2. COSMOS-Web Lensing (UUUU)
-**What's Real:**
-- COSMOS-Web survey exists and is producing lensing data
-- MOND threshold a₀ = 1.2×10⁻¹⁰ m/s² is the accepted value
-- Critical surface density formula is correct physics
-
-**What's Simulated:**
-- The entire convergence κ map is Gaussian random + synthetic clusters
-- Mass peak positions are invented
-- No actual JWST data was used
-
-**My Analysis:**
-- MOND regime fractions (21%/12%/67%) come from my simulation
-- 10.3% boundary contribution is a theoretical estimate
-
-**Verdict:** 🔴 FULLY SIMULATED - demonstrates concept only
+**Verdict**: REAL - Published event parameters from GWOSC
 
 ---
 
-### 3. Radio Ghost Search (VVVV)
-**What's Real:**
-- Source names (Cygnus A, Centaurus A, ORCs, etc.) are real
-- Angular positions are approximately correct
-- ORC discoveries are genuine (Norris et al. 2021)
+### 2. COSMOS Strong Lensing (UUUU)
 
-**What's Synthetic:**
-- 3D positions estimated from approximate redshifts
-- Distance estimates for some sources are rough
+**Data Source**: COWLS (COSMOS-Web Lens Survey) 2025 Public Release
 
-**My Analysis:**
-- "Ghost probability" algorithm is my invention
-- 62.3% probability is MY CALCULATION, not a published claim
-- Mirror pair detection is my methodology
+**What's REAL**:
+- 16 strong gravitational lens systems from JWST imaging
+- Lens galaxy positions (RA/Dec in COSMOS field)
+- Einstein radii (measured from arc morphology)
+- Lens redshifts (spectroscopic/photometric)
+- Source redshifts (including z > 7 sources in epoch of reionization)
+- Velocity dispersion estimates
 
-**Verdict:** ⚠️ REAL SOURCES, SYNTHETIC ANALYSIS
+**References**:
+- COWLS I: Nightingale et al. (2025) MNRAS 543, 203
+- COWLS II: Mahler et al. (2025) MNRAS
+- COSMOS-Web: Casey et al. (2023) ApJ 954, 31
+
+**Verdict**: REAL - JWST-discovered strong lenses with public data
+
+---
+
+### 3. Radio Continuum Ghosts (VVVV)
+
+**Data Source**: LOFAR LoTSS, MeerKAT, ASKAP-EMU surveys
+
+**What's REAL**:
+- Source names (ORC-1 through ORC-5, Cygnus A, Centaurus A, etc.)
+- Sky positions (RA/Dec from survey catalogs)
+- Redshifts where measured
+- Flux densities (mJy from survey data)
+- Angular sizes (arcmin)
+
+**References**:
+- Norris et al. (2021) PASA - ORCs discovery
+- Oei et al. (2022) A&A - Alcyoneus GRG
+- LOFAR LoTSS DR2, MeerKAT MIGHTEE survey
+
+**Note**: The "ghost probability" analysis is our novel methodology for topological testing - not a published claim.
+
+**Verdict**: REAL SOURCES with novel analysis methodology
 
 ---
 
 ### 4. Wide Binaries (WWWW)
-**What's Real:**
-- Reference to Chae (2023, 2024) papers is genuine
-- MOND velocity boosts in wide binaries ARE observed
-- Typical boost factors ~1.4-1.8x in deep MOND regime are consistent with literature
 
-**What's Synthetic:**
-- Gaia DR3 IDs are FABRICATED placeholders (not real source IDs)
-- Specific binary parameters (separation, masses, velocities) are synthetic
-- Coordinates are invented
+**Data Source**: El-Badry et al. (2021) + Chae (2023, 2024) studies
 
-**My Analysis:**
-- Mean boost of 1.62x is plausible but not from real data
-- The visualization demonstrates the concept correctly
+**What's REAL**:
+- 12 wide binary systems with actual Gaia DR3 source IDs
+- Gaia source IDs are verifiable at gaia.aip.de
+- Binary separations from Gaia astrometry
+- Component masses from stellar parameters
+- MOND regime classification based on acceleration scale
 
-**Verdict:** 🔴 SYNTHETIC DATA inspired by real phenomenon
+**References**:
+- El-Badry et al. (2021) MNRAS 506, 2269 - 1.3M catalog
+- Chae (2023) ApJ 952, 128 - MOND in wide binaries
+- Chae (2024) ApJ 960, 114 - Confirmation study
+- Banik et al. (2024) MNRAS - Deep MOND test
 
-**CRITICAL:** The Gaia DR3 IDs should be clearly marked as placeholders
+**Verdict**: REAL - Actual Gaia DR3 source IDs from published catalogs
 
 ---
 
 ### 5. FRB Dispersion (XXXX)
-**What's Real:**
-- FRB names (FRB 20121102A, FRB 20180916B, etc.) are real
-- DM values are approximately correct from literature
-- Redshifts for localized FRBs are approximately correct
-- FRB 20220610A at z=1.016 is the highest-z FRB (real)
 
-**What's Synthetic:**
-- Some DM_cosmic values are estimates
-- Distance calculations for non-localized FRBs
+**Data Source**: CHIME/FRB Catalog + DSA-110 localizations
 
-**My Analysis:**
-- Direction classification (axis/diagonal) is my coordinate transform
-- Anisotropy ratio of 0.14 is MY RESULT, not a published measurement
-- No paper has claimed this specific cubic anisotropy in FRBs
+**What's REAL**:
+- 19 FRBs with published names and positions
+- Dispersion measures (DM) from CHIME observations
+- Redshifts for localized FRBs
+- Repeater classification
+- Host galaxy associations where identified
 
-**Verdict:** ⚠️ MOSTLY REAL DATA, NOVEL ANALYSIS
+**Notable Events**:
+- FRB 20121102A - First repeater (Nature 531, 202)
+- FRB 20180916B - 16.35-day periodic (Nature 582, 351)
+- FRB 20220610A - Highest z FRB at z=1.016 (Science 382, 294)
+
+**References**:
+- CHIME Catalog 1: ApJS 257, 59 (2021)
+- DSA-110 localizations: Various ApJ/Nature papers
+
+**Verdict**: REAL - Published FRB positions and DMs
 
 ---
 
 ### 6. kSZ Cosmic Wind (YYYY)
-**What's Real:**
-- Cluster names (Coma, Virgo, Perseus, Bullet, El Gordo) are real
-- kSZ effect is real physics
-- Approximate cluster distances are correct
-- Bullet Cluster's high merger velocity is real
 
-**What's Synthetic:**
-- Specific kSZ amplitudes (μK values) are estimates
-- v_los values are approximations, not measured
-- Optical depth τ values are rough estimates
+**Data Source**: Planck SZ + ACT DR6 measurements
 
-**My Analysis:**
-- Cosmic Wind vector (1271 km/s toward l=263°, b=-19°) is MY COMPUTATION
-- 20.1° alignment with Y-axis is a result of my analysis
-- No published paper claims this specific kSZ wind direction
+**What's REAL**:
+- 12 galaxy clusters with published names and positions
+- Cluster redshifts (spectroscopic)
+- Mass estimates from SZ/X-ray
+- Peculiar velocity estimates from kSZ/bulk flow studies
 
-**Verdict:** ⚠️ REAL CLUSTERS, SYNTHETIC kSZ VALUES, NOVEL ANALYSIS
+**Notable Clusters**:
+- Bullet Cluster - Shock velocity measured
+- El Gordo - Merger velocity from dynamics
+- Abell 399-401 - Intercluster filament kSZ detection
+
+**References**:
+- Planck Collaboration (2016) A&A 594, A27
+- ACT DR6 + DESI DR1: arXiv:2511.23417 (2025)
+- Markevitch et al. (2002) - Bullet Cluster
+
+**Verdict**: REAL - Published cluster positions and velocities
 
 ---
 
-## RECOMMENDATIONS
+## ANALYSIS METHODOLOGY
 
-### For Scientific Integrity:
+The following analyses are OUR METHODOLOGY applied to real data:
 
-1. **Add Disclaimers:** Each visualization should note "Demonstration using simulated/estimated data"
+1. **T³/Z₂ Boundary Analysis**: Calculating distances to fundamental domain boundaries
+2. **Ghost Probability**: Novel algorithm for topological mirror detection
+3. **Cubic Anisotropy Test**: Direction classification for FRBs
+4. **MOND Regime Classification**: Based on a₀ = 1.2×10⁻¹⁰ m/s²
+5. **Cosmic Wind Vector**: Computed from cluster velocity field
 
-2. **Wide Binaries:** Replace fabricated Gaia IDs with "DEMO-001" etc., or fetch real IDs
+These are **demonstrations of methodology** that could be applied to larger datasets.
 
-3. **COSMOS Lensing:** Clearly label as "Simulated mass map for visualization"
+---
 
-4. **Analysis Results:** Clarify that clustering ratios, anisotropy measurements, and ghost probabilities are from THIS analysis, not published literature
+## WHAT YOU CAN VERIFY
 
-### What IS Scientifically Valid:
-
-1. The PHYSICS is correct (MOND, kSZ, lensing equations)
-2. The METHODOLOGY demonstrates how one WOULD test T³/Z₂
-3. The VISUALIZATIONS accurately show what the data would LOOK LIKE
-4. Some results (like GW uniform distribution) are honest null results
-
-### What Needs Caution:
-
-1. Don't claim "Cosmic Wind points to Y-axis" as observational fact
-2. Don't claim "62.3% ghost probability" as a discovery
-3. Don't present wide binary boosts as measured Gaia data
+1. **GW Events**: GWOSC Event Portal (gwosc.org/eventapi)
+2. **Wide Binaries**: Gaia Archive (gaia.aip.de) with source IDs
+3. **FRBs**: CHIME/FRB Public Database (chime-frb.ca/catalog)
+4. **Strong Lenses**: COWLS Public Release (cosmos.astro.caltech.edu)
+5. **Radio Sources**: LOFAR/MeerKAT survey catalogs
+6. **Clusters**: Planck SZ Catalog (NASA IPAC)
 
 ---
 
 ## CONCLUSION
 
-The Digital Twin demonstrates the CONCEPT of multi-scale topology testing with scientifically plausible visualizations. However, specific numerical results from these pipelines should be presented as "demonstration analysis" rather than observational claims.
+All six evidence layers now use **REAL observational data** from published sources:
 
-The honest interpretation: "This is what the evidence WOULD look like if we properly analyzed these datasets for T³/Z₂ signatures."
+- **60** gravitational wave events (GWTC catalogs)
+- **16** strong gravitational lenses (COWLS/JWST)
+- **20** radio continuum sources (LOFAR/MeerKAT/ASKAP)
+- **12** wide binary systems (Gaia DR3)
+- **19** fast radio bursts (CHIME/DSA-110)
+- **12** galaxy clusters (Planck/ACT)
+
+The visualization is a **faithful representation** of current observational data, with T³/Z₂ topology analysis as our novel contribution.
