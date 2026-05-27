@@ -2107,6 +2107,9 @@ interface FilterPanelProps {
   onTogglePTA: () => void;
   isMONDLensingActive: boolean;
   onToggleMONDLensing: () => void;
+  // Mobile collapse state
+  isCollapsed: boolean;
+  onToggleCollapse: () => void;
 }
 
 const FilterPanel: React.FC<FilterPanelProps> = ({
@@ -2120,7 +2123,8 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
   isCosmicWebActive, onToggleCosmicWeb, isVoidsActive, onToggleVoids,
   isVelocityRiversActive, onToggleVelocityRivers, isVPOSActive, onToggleVPOS,
   isCMBAxisOfEvilActive, onToggleCMBAxisOfEvil, isPTAActive, onTogglePTA,
-  isMONDLensingActive, onToggleMONDLensing
+  isMONDLensingActive, onToggleMONDLensing,
+  isCollapsed, onToggleCollapse
 }) => {
   const toggleFilter = (key: string) => setFilters(prev => ({ ...prev, [key]: !prev[key] }));
 
@@ -2138,9 +2142,35 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
 
   const isOtherModeRunning = isTourRunning || isGWRunning;
 
+  // Collapsed state - show only toggle button on mobile
+  if (isCollapsed) {
+    return (
+      <button
+        onClick={onToggleCollapse}
+        className="absolute top-16 left-4 bg-slate-900/95 p-3 rounded-lg border border-cyan-500 z-10 backdrop-blur-sm hover:bg-slate-800 transition-all shadow-[0_0_15px_rgba(6,182,212,0.3)]"
+        aria-label="Open controls"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    );
+  }
+
   return (
-    <div className="absolute top-16 left-4 bg-slate-900/95 p-4 rounded-lg border border-slate-700 z-10 backdrop-blur-sm max-w-[260px] max-h-[calc(100vh-120px)] flex flex-col">
-      <h3 className="text-white font-bold mb-3 flex-shrink-0">Controls</h3>
+    <div className="absolute top-16 left-4 bg-slate-900/95 p-4 rounded-lg border border-slate-700 z-10 backdrop-blur-sm max-w-[260px] max-h-[calc(100vh-120px)] flex flex-col md:max-w-[260px] max-w-[calc(100vw-32px)]">
+      <div className="flex items-center justify-between mb-3 flex-shrink-0">
+        <h3 className="text-white font-bold">Controls</h3>
+        <button
+          onClick={onToggleCollapse}
+          className="md:hidden p-1 text-slate-400 hover:text-white transition-colors"
+          aria-label="Close controls"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
 
       {/* Scrollable Evidence Layers Container */}
       <div className="overflow-y-auto flex-1 pr-1 mb-3 scrollbar-thin scrollbar-thumb-slate-600 scrollbar-track-transparent" style={{ maxHeight: '45vh' }}>
@@ -3329,6 +3359,15 @@ const MultiMessengerUniverse: React.FC = () => {
   // Onboarding overlay state (shows scroll instructions on first visit)
   const [showOnboarding, setShowOnboarding] = useState(true);
 
+  // Mobile panel collapse state - default collapsed on mobile
+  const [isPanelCollapsed, setIsPanelCollapsed] = useState(false);
+
+  // Auto-collapse on mobile on mount
+  useEffect(() => {
+    const isMobile = window.innerWidth < 768;
+    setIsPanelCollapsed(isMobile);
+  }, []);
+
   // Performance monitoring
   const [fps, setFps] = useState(60);
 
@@ -3511,9 +3550,11 @@ const MultiMessengerUniverse: React.FC = () => {
         onTogglePTA={() => setIsPTAActive(p => !p)}
         isMONDLensingActive={isMONDLensingActive}
         onToggleMONDLensing={() => setIsMONDLensingActive(p => !p)}
+        isCollapsed={isPanelCollapsed}
+        onToggleCollapse={() => setIsPanelCollapsed(p => !p)}
       />}
 
-      {!isPlayerMode && <div className="absolute top-16 right-4 bg-slate-900/95 p-3 rounded-lg border border-slate-700 z-10 backdrop-blur-sm max-w-[200px]">
+      {!isPlayerMode && <div className="absolute top-16 right-4 bg-slate-900/95 p-3 rounded-lg border border-slate-700 z-10 backdrop-blur-sm max-w-[200px] hidden md:block">
         <h3 className="text-white font-bold text-sm mb-1">Z² Digital Twin</h3>
         <p className="text-slate-400 text-[10px] leading-relaxed">
           Zoom from planets to the 20.6 Gpc cosmic horizon. All scales unified in T³/Z₂ topology.
@@ -3537,36 +3578,39 @@ const MultiMessengerUniverse: React.FC = () => {
         waveRadius={gwWaveRadius}
       />
 
-      {/* CMB Evidence HUD (Phase 4 - Topology Proof) */}
-      <CMBEvidenceHUD visible={isCMBProofActive} />
+      {/* HUDs Container - Hidden on mobile for cleaner view */}
+      <div className="hidden md:block">
+        {/* CMB Evidence HUD (Phase 4 - Topology Proof) */}
+        <CMBEvidenceHUD visible={isCMBProofActive} />
 
-      {/* Evidence Layer HUDs (Directives QQQQ, RRRR, SSSS) */}
-      <ParityEvidenceHUD visible={isParityActive} />
-      <IsotropyBreakerHUD visible={isAxisOfEvilActive} />
-      <DarkFlowHUD visible={isDarkFlowActive} />
+        {/* Evidence Layer HUDs (Directives QQQQ, RRRR, SSSS) */}
+        <ParityEvidenceHUD visible={isParityActive} />
+        <IsotropyBreakerHUD visible={isAxisOfEvilActive} />
+        <DarkFlowHUD visible={isDarkFlowActive} />
 
-      {/* Evidence Layer HUDs (Directives TTTT, UUUU, VVVV) */}
-      {isGWGraveyardActive && <GraveyardHUD events={[]} clusteringRatio={0.38} />}
-      {isMONDActive && <MONDHUD totalLenses={16} deepMONDCount={3} transitionCount={5} newtonianCount={8} maxSourceRedshift={9.1} />}
-      {isRadioGhostsActive && <RadioGhostHUD totalSources={20} mirrorCandidates={169} bestGhostProb={0.623} orcClustering={0.37} />}
+        {/* Evidence Layer HUDs (Directives TTTT, UUUU, VVVV) */}
+        {isGWGraveyardActive && <GraveyardHUD events={[]} clusteringRatio={0.38} />}
+        {isMONDActive && <MONDHUD totalLenses={16} deepMONDCount={3} transitionCount={5} newtonianCount={8} maxSourceRedshift={9.1} />}
+        {isRadioGhostsActive && <RadioGhostHUD totalSources={20} mirrorCandidates={169} bestGhostProb={0.623} orcClustering={0.37} />}
 
-      {/* Evidence Layer HUDs (Directives WWWW, XXXX, YYYY) */}
-      {isWideBinariesActive && <WideBinaryHUD deepMondCount={11} transitionalCount={3} newtonianCount={2} meanBoostDeepMond={1.62} meanBoostNewtonian={1.02} />}
-      {isFRBActive && <DispersionHUD totalFRBs={19} axisCount={8} diagonalCount={9} anisotropyRatio={0.14} maxDM={1426} />}
-      {isKSZActive && <CosmicWindHUD totalClusters={14} windMagnitude={1271} windDirection={{ l: 262.6, b: -18.7 }} bestAxis="Y" alignmentAngle={20.1} />}
-      {isDESIActive && <DESIGalaxiesHUD visible={isDESIActive} />}
-      {isClusterMapActive && <ClusterMapHUD visible={isClusterMapActive} comaMembers={800} virgoMembers={600} shapleyMembers={900} />}
+        {/* Evidence Layer HUDs (Directives WWWW, XXXX, YYYY) */}
+        {isWideBinariesActive && <WideBinaryHUD deepMondCount={11} transitionalCount={3} newtonianCount={2} meanBoostDeepMond={1.62} meanBoostNewtonian={1.02} />}
+        {isFRBActive && <DispersionHUD totalFRBs={19} axisCount={8} diagonalCount={9} anisotropyRatio={0.14} maxDM={1426} />}
+        {isKSZActive && <CosmicWindHUD totalClusters={14} windMagnitude={1271} windDirection={{ l: 262.6, b: -18.7 }} bestAxis="Y" alignmentAngle={20.1} />}
+        {isDESIActive && <DESIGalaxiesHUD visible={isDESIActive} />}
+        {isClusterMapActive && <ClusterMapHUD visible={isClusterMapActive} comaMembers={800} virgoMembers={600} shapleyMembers={900} />}
 
-      {/* Deep Universe HUDs */}
-      {isCosmicWebActive && <CosmicWebHUD visible={isCosmicWebActive} galaxyCount={500000} sourceCounts={{ BGS: 50000, LRG: 200000, ELG: 200000, QSO: 50000 }} />}
-      {isVoidsActive && <CrystallineVoidsHUD visible={isVoidsActive} totalVoids={321} literatureVoids={21} syntheticVoids={300} bccScore={0.0} />}
-      {isVelocityRiversActive && <VelocityRiversHUD visible={isVelocityRiversActive} totalGalaxies={5026} bulkFlowVelocity={254} bulkFlowDirection={{ l: 295, b: 14 }} />}
-      {isVPOSActive && <VPOSSatellitesHUD visible={isVPOSActive} totalSatellites={17} onPlaneCount={14} offPlaneCount={3} onPlaneFraction={0.824} orbitalPoleAlignment={0.449} />}
+        {/* Deep Universe HUDs */}
+        {isCosmicWebActive && <CosmicWebHUD visible={isCosmicWebActive} galaxyCount={500000} sourceCounts={{ BGS: 50000, LRG: 200000, ELG: 200000, QSO: 50000 }} />}
+        {isVoidsActive && <CrystallineVoidsHUD visible={isVoidsActive} totalVoids={321} literatureVoids={21} syntheticVoids={300} bccScore={0.0} />}
+        {isVelocityRiversActive && <VelocityRiversHUD visible={isVelocityRiversActive} totalGalaxies={5026} bulkFlowVelocity={254} bulkFlowDirection={{ l: 295, b: 14 }} />}
+        {isVPOSActive && <VPOSSatellitesHUD visible={isVPOSActive} totalSatellites={17} onPlaneCount={14} offPlaneCount={3} onPlaneFraction={0.824} orbitalPoleAlignment={0.449} />}
 
-      {/* CMB/GW Evidence HUDs (Directives EEEE, FFFF, GGGG) */}
-      {isCMBAxisOfEvilActive && <CMBAxisOfEvilHUD visible={isCMBAxisOfEvilActive} alignmentAngle={1.36} probabilityRandom={0.001} quadrupoleGalactic={{ l: 240, b: 63 }} octupoleGalactic={{ l: 237, b: 63 }} />}
-      {isPTAActive && <PTAInterferometerHUD visible={isPTAActive} totalPulsars={68} gwbAmplitude={2.4e-15} gwbSignificance="3.5σ" standingWaveModes={5} />}
-      {isMONDLensingActive && <MONDLensingHUD visible={isMONDLensingActive} totalSystems={18} mondValidatesCount={10} validationRate={55.6} a0={1.2e-10} />}
+        {/* CMB/GW Evidence HUDs (Directives EEEE, FFFF, GGGG) */}
+        {isCMBAxisOfEvilActive && <CMBAxisOfEvilHUD visible={isCMBAxisOfEvilActive} alignmentAngle={1.36} probabilityRandom={0.001} quadrupoleGalactic={{ l: 240, b: 63 }} octupoleGalactic={{ l: 237, b: 63 }} />}
+        {isPTAActive && <PTAInterferometerHUD visible={isPTAActive} totalPulsars={68} gwbAmplitude={2.4e-15} gwbSignificance="3.5σ" standingWaveModes={5} />}
+        {isMONDLensingActive && <MONDLensingHUD visible={isMONDLensingActive} totalSystems={18} mondValidatesCount={10} validationRate={55.6} a0={1.2e-10} />}
+      </div>
 
       <Canvas gl={{ antialias: true, logarithmicDepthBuffer: true }} dpr={[1, 2]}>
         <Scene
@@ -3648,9 +3692,9 @@ const MultiMessengerUniverse: React.FC = () => {
         </div>
       )}
 
-      {/* Clickable layer legend - Hide when in Player Mode */}
+      {/* Clickable layer legend - Hide on mobile and when in Player Mode */}
       {!isPlayerMode && (
-        <div className="absolute bottom-4 right-4 bg-slate-900/95 p-2 rounded-lg border border-slate-700 z-10 text-[10px] space-y-0.5">
+        <div className="absolute bottom-4 right-4 bg-slate-900/95 p-2 rounded-lg border border-slate-700 z-10 text-[10px] space-y-0.5 hidden md:block">
           <div
             className={`flex items-center gap-1 cursor-pointer hover:bg-slate-800 px-1 rounded transition-opacity ${filters.solarSystem ? 'text-yellow-400' : 'text-yellow-400/30'}`}
             onClick={() => setFilters(prev => ({ ...prev, solarSystem: !prev.solarSystem }))}
