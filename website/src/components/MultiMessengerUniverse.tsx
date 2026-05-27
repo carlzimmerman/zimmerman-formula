@@ -3161,21 +3161,22 @@ const MultiMessengerUniverse: React.FC = () => {
       <MultiplayerHUD />
 
       {/* Onboarding Overlay - shows scroll instructions on first load */}
+      {/* z-[9999] ensures it's above drei Html labels which have their own stacking context */}
       {showOnboarding && !isPlayerMode && (
-        <div className="absolute inset-0 flex items-center justify-center z-50 pointer-events-none">
-          <div className="bg-black/80 backdrop-blur-md border border-cyan-500/50 rounded-xl p-8 max-w-md text-center animate-pulse">
-            <div className="text-cyan-400 text-6xl mb-4">⟳</div>
-            <h2 className="text-white text-2xl font-bold mb-3">You are here</h2>
-            <p className="text-slate-300 text-lg mb-4">
-              Starting at the <span className="text-yellow-400 font-bold">Milky Way</span>
+        <div className="absolute inset-0 flex items-center justify-center z-[9999] pointer-events-none">
+          <div className="bg-black/95 backdrop-blur-xl border-2 border-cyan-400 rounded-xl p-10 max-w-lg text-center shadow-[0_0_80px_rgba(0,255,255,0.5)]">
+            <div className="text-cyan-400 text-7xl mb-6">⟳</div>
+            <h2 className="text-white text-3xl font-bold mb-4">You are here</h2>
+            <p className="text-slate-200 text-xl mb-6">
+              Starting at the <span className="text-yellow-400 font-bold text-2xl">Milky Way</span>
             </p>
-            <div className="flex items-center justify-center gap-3 text-cyan-400 text-xl mb-4">
-              <span className="text-3xl">↕</span>
+            <div className="flex items-center justify-center gap-4 text-cyan-400 text-2xl mb-6">
+              <span className="text-4xl">↕</span>
               <span>Scroll to zoom out to the cosmos</span>
             </div>
-            <div className="text-slate-500 text-sm space-y-1">
-              <p><span className="text-cyan-400">Drag</span> to rotate • <span className="text-cyan-400">Scroll</span> to zoom</p>
-              <p className="text-xs mt-2 opacity-70">Click anywhere to dismiss</p>
+            <div className="text-slate-400 text-base space-y-2">
+              <p><span className="text-cyan-400 font-semibold">Drag</span> to rotate • <span className="text-cyan-400 font-semibold">Scroll</span> to zoom</p>
+              <p className="text-sm mt-3 opacity-80">Click anywhere to dismiss</p>
             </div>
           </div>
         </div>
