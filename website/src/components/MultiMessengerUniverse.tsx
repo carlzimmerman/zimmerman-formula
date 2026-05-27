@@ -23,6 +23,7 @@ import { RadioMirrors, RadioGhostHUD } from './evidence/RadioMirrors';
 import { LocalMONDAnchor, WideBinaryHUD } from './evidence/LocalMONDAnchor';
 import { DispersionTomography, DispersionHUD } from './evidence/DispersionTomography';
 import { CosmicWindShader, CosmicWindHUD } from './evidence/CosmicWindShader';
+import { DESIGalaxies, DESIGalaxiesHUD } from './evidence/DESIGalaxies';
 
 // Performance Monitoring
 import { MinimalFPS } from './PerformanceHUD';
@@ -1844,6 +1845,8 @@ interface FilterPanelProps {
   onToggleFRB: () => void;
   isKSZActive: boolean;
   onToggleKSZ: () => void;
+  isDESIActive: boolean;
+  onToggleDESI: () => void;
 }
 
 const FilterPanel: React.FC<FilterPanelProps> = ({
@@ -1852,7 +1855,8 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
   isPlayerMode, onStartPlayerMode, isCMBProofActive, onToggleCMBProof,
   isParityActive, onToggleParity, isAxisOfEvilActive, onToggleAxisOfEvil, isDarkFlowActive, onToggleDarkFlow,
   isGWGraveyardActive, onToggleGWGraveyard, isMONDActive, onToggleMOND, isRadioGhostsActive, onToggleRadioGhosts,
-  isWideBinariesActive, onToggleWideBinaries, isFRBActive, onToggleFRB, isKSZActive, onToggleKSZ
+  isWideBinariesActive, onToggleWideBinaries, isFRBActive, onToggleFRB, isKSZActive, onToggleKSZ,
+  isDESIActive, onToggleDESI
 }) => {
   const toggleFilter = (key: string) => setFilters(prev => ({ ...prev, [key]: !prev[key] }));
 
@@ -2017,6 +2021,20 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
         >
           <span>kSZ Wind</span>
           <span className={`w-2 h-2 rounded-full ${isKSZActive ? 'bg-amber-400' : 'bg-slate-600'}`} />
+        </button>
+
+        {/* DESI Galaxies */}
+        <button
+          onClick={onToggleDESI}
+          disabled={isOtherModeRunning || isPlayerMode}
+          className={`w-full px-3 py-1.5 text-xs uppercase tracking-wider transition-all border rounded flex items-center justify-between ${
+            isDESIActive
+              ? 'bg-blue-900/50 text-blue-400 border-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.3)]'
+              : 'bg-slate-800/50 text-slate-400 border-slate-600 hover:border-blue-500/50 hover:text-blue-300'
+          }`}
+        >
+          <span>DESI Galaxies</span>
+          <span className={`w-2 h-2 rounded-full ${isDESIActive ? 'bg-blue-400' : 'bg-slate-600'}`} />
         </button>
       </div>
 
@@ -2743,9 +2761,11 @@ const Scene: React.FC<{
   isWideBinariesActive: boolean;
   isFRBActive: boolean;
   isKSZActive: boolean;
+  // Survey data layers
+  isDESIActive: boolean;
   // Performance monitoring
   onFPSUpdate: (fps: number) => void;
-}> = ({ filters, isRotating, showLabels, isTourRunning, onTourComplete, onWaypointChange, onCameraDistanceChange, onBoundaryCross, onParityFlip, isGWRunning, selectedGWEvent, onGWProgressUpdate, isPlayerMode, isCMBProofActive, isParityActive, isAxisOfEvilActive, isDarkFlowActive, isGWGraveyardActive, isMONDActive, isRadioGhostsActive, isWideBinariesActive, isFRBActive, isKSZActive, onFPSUpdate }) => {
+}> = ({ filters, isRotating, showLabels, isTourRunning, onTourComplete, onWaypointChange, onCameraDistanceChange, onBoundaryCross, onParityFlip, isGWRunning, selectedGWEvent, onGWProgressUpdate, isPlayerMode, isCMBProofActive, isParityActive, isAxisOfEvilActive, isDarkFlowActive, isGWGraveyardActive, isMONDActive, isRadioGhostsActive, isWideBinariesActive, isFRBActive, isKSZActive, isDESIActive, onFPSUpdate }) => {
   const controlsRef = useRef<any>(null);
 
   return (
@@ -2782,6 +2802,9 @@ const Scene: React.FC<{
       {isWideBinariesActive && <LocalMONDAnchor />}
       {isFRBActive && <DispersionTomography />}
       {isKSZActive && <CosmicWindShader />}
+
+      {/* Survey data layers */}
+      {isDESIActive && <DESIGalaxies />}
 
       <CinematicCamera
         isTourRunning={isTourRunning}
@@ -2870,6 +2893,9 @@ const MultiMessengerUniverse: React.FC = () => {
   const [isWideBinariesActive, setIsWideBinariesActive] = useState(false);
   const [isFRBActive, setIsFRBActive] = useState(false);
   const [isKSZActive, setIsKSZActive] = useState(false);
+
+  // Survey data layers
+  const [isDESIActive, setIsDESIActive] = useState(false);
 
   // Performance monitoring
   const [fps, setFps] = useState(60);
@@ -3011,6 +3037,8 @@ const MultiMessengerUniverse: React.FC = () => {
         onToggleFRB={() => setIsFRBActive(p => !p)}
         isKSZActive={isKSZActive}
         onToggleKSZ={() => setIsKSZActive(p => !p)}
+        isDESIActive={isDESIActive}
+        onToggleDESI={() => setIsDESIActive(p => !p)}
       />}
 
       {!isPlayerMode && <div className="absolute top-16 right-4 bg-slate-900/95 p-3 rounded-lg border border-slate-700 z-10 backdrop-blur-sm max-w-[200px]">
@@ -3054,6 +3082,7 @@ const MultiMessengerUniverse: React.FC = () => {
       {isWideBinariesActive && <WideBinaryHUD deepMondCount={11} transitionalCount={3} newtonianCount={2} meanBoostDeepMond={1.62} meanBoostNewtonian={1.02} />}
       {isFRBActive && <DispersionHUD totalFRBs={19} axisCount={8} diagonalCount={9} anisotropyRatio={0.14} maxDM={1426} />}
       {isKSZActive && <CosmicWindHUD totalClusters={14} windMagnitude={1271} windDirection={{ l: 262.6, b: -18.7 }} bestAxis="Y" alignmentAngle={20.1} />}
+      {isDESIActive && <DESIGalaxiesHUD visible={isDESIActive} />}
 
       <Canvas gl={{ antialias: true, logarithmicDepthBuffer: true }} dpr={[1, 2]}>
         <Scene
@@ -3088,6 +3117,7 @@ const MultiMessengerUniverse: React.FC = () => {
           isWideBinariesActive={isWideBinariesActive}
           isFRBActive={isFRBActive}
           isKSZActive={isKSZActive}
+          isDESIActive={isDESIActive}
           onFPSUpdate={setFps}
         />
       </Canvas>

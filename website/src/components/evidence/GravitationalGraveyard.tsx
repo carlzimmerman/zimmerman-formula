@@ -123,20 +123,8 @@ function GWEventMarker({
     }
   }, [event.nearest_boundary, position]);
 
-  // Animation
-  useFrame(({ clock }) => {
-    if (!meshRef.current) return;
-
-    if (pulseEnabled) {
-      const pulse = Math.sin(clock.getElapsedTime() * pulseFrequency * Math.PI) * 0.3 + 1;
-      meshRef.current.scale.setScalar(pulse);
-
-      if (glowRef.current) {
-        (glowRef.current.material as THREE.MeshBasicMaterial).opacity =
-          0.1 + Math.sin(clock.getElapsedTime() * pulseFrequency * Math.PI * 2) * 0.1;
-      }
-    }
-  });
+  // Static - no pulsing animation (cosmetic effect not based on real data)
+  // SNR is a detection metric, not a physical pulsation property
 
   return (
     <group position={position}>
@@ -184,18 +172,11 @@ function GWEventMarker({
  * Vertex marker at T³/Z₂ fixed points
  */
 function VertexMarker({ position, index }: { position: THREE.Vector3; index: number }) {
-  const meshRef = useRef<THREE.Mesh>(null);
-
-  useFrame(({ clock }) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.x = clock.getElapsedTime() * 0.5;
-      meshRef.current.rotation.y = clock.getElapsedTime() * 0.3;
-    }
-  });
+  // Static vertex markers - T³/Z₂ fixed points don't rotate
 
   return (
     <group position={position}>
-      <mesh ref={meshRef}>
+      <mesh>
         <octahedronGeometry args={[0.4]} />
         <meshStandardMaterial
           color="#FFD700"

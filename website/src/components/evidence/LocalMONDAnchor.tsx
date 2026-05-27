@@ -219,18 +219,21 @@ function WideBinaryPair({
   const star1Ref = useRef<THREE.Mesh>(null);
   const star2Ref = useRef<THREE.Mesh>(null);
 
-  // Position based on RA/Dec (simplified projection)
+  // Position based on RA/Dec with REAL distance
+  // Wide binaries are ~50-200 pc from Earth (negligible at Gpc scales)
+  // Scale: 1 unit = 50 pc for local visualization
   const position = useMemo(() => {
-    const theta = (binary.ra / 360) * Math.PI * 2;
-    const phi = ((binary.dec + 90) / 180) * Math.PI;
-    const r = 2 + index * 0.3; // Radial spread
+    const ra_rad = (binary.ra / 180) * Math.PI;
+    const dec_rad = (binary.dec / 180) * Math.PI;
+    // Real distance scaled for visualization (50 pc = 1 unit)
+    const r = binary.distance_pc / 50;
 
     return new THREE.Vector3(
-      r * Math.sin(phi) * Math.cos(theta),
-      r * Math.sin(phi) * Math.sin(theta),
-      r * Math.cos(phi)
+      r * Math.cos(dec_rad) * Math.cos(ra_rad),
+      r * Math.cos(dec_rad) * Math.sin(ra_rad),
+      r * Math.sin(dec_rad)
     );
-  }, [binary, index]);
+  }, [binary]);
 
   const color = useMemo(() => new THREE.Color(REGIME_COLORS[binary.regime]), [binary.regime]);
 
@@ -243,20 +246,17 @@ function WideBinaryPair({
     return Math.log10(binary.separation_au) * 0.1;
   }, [binary.separation_au]);
 
-  // Orbital animation with velocity boost visualization
-  useFrame(({ clock }) => {
-    if (groupRef.current) {
-      // Rotation speed proportional to observed velocity
-      const t = clock.getElapsedTime() * ORBIT_SPEED * binary.observed_boost;
-
-      if (star1Ref.current && star2Ref.current) {
-        star1Ref.current.position.x = separation * Math.cos(t);
-        star1Ref.current.position.y = separation * Math.sin(t);
-        star2Ref.current.position.x = -separation * Math.cos(t);
-        star2Ref.current.position.y = -separation * Math.sin(t);
-      }
+  // Static positions - no orbital animation
+  // (Real orbital periods are ~10,000+ years, animation would be unrealistic)
+  // Stars placed at fixed separation along x-axis
+  useEffect(() => {
+    if (star1Ref.current && star2Ref.current) {
+      star1Ref.current.position.x = separation;
+      star1Ref.current.position.y = 0;
+      star2Ref.current.position.x = -separation;
+      star2Ref.current.position.y = 0;
     }
-  });
+  }, [separation]);
 
   // Tether endpoint (toward boundary)
   const tetherEnd = useMemo(() => {
@@ -312,14 +312,22 @@ function WideBinaryPair({
         />
       )}
 
-      {/* Label */}
+      {/* Label with Gaia ID */}
       <Text
-        position={[0, separation + 0.15, 0]}
-        fontSize={0.06}
+        position={[0, separation + 0.2, 0]}
+        fontSize={0.05}
         color={color}
         anchorX="center"
       >
-        {binary.observed_boost.toFixed(2)}x
+        {binary.name}
+      </Text>
+      <Text
+        position={[0, separation + 0.12, 0]}
+        fontSize={0.04}
+        color="#aaa"
+        anchorX="center"
+      >
+        {binary.separation_au.toFixed(0)} AU | {binary.regime.replace('_', ' ')}
       </Text>
     </group>
   );
@@ -354,12 +362,7 @@ export function LocalMONDAnchor({
     return data.binaries.filter(b => b.regime === selectedRegime);
   }, [data, selectedRegime]);
 
-  // Slow rotation
-  useFrame(({ clock }) => {
-    if (groupRef.current) {
-      groupRef.current.rotation.y = clock.getElapsedTime() * 0.05;
-    }
-  });
+  // Static - no rotation (binaries should stay in fixed positions)
 
   if (!data) return null;
 

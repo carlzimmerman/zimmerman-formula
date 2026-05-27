@@ -28,3 +28,6 @@ export { RadioMirrors, RadioGhostHUD } from './RadioMirrors';
 export { LocalMONDAnchor, WideBinaryHUD } from './LocalMONDAnchor';
 export { DispersionTomography, DispersionHUD } from './DispersionTomography';
 export { CosmicWindShader, CosmicWindHUD } from './CosmicWindShader';
+
+// Survey data layers
+export { DESIGalaxies, DESIGalaxiesHUD } from './DESIGalaxies';
