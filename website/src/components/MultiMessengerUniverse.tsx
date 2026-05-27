@@ -725,8 +725,14 @@ const SolarSystem: React.FC<{ showLabels: boolean; time: number; cameraDistance:
 
       {showLabels && cameraDistance < 0.0000001 && (
         <Html position={[0, sunSize * 2, 0]} center>
-          <div className="bg-yellow-900/80 px-2 py-1 rounded text-yellow-300 text-xs whitespace-nowrap font-bold">
-            The Sun (R = 696,340 km)
+          <div className="bg-yellow-900/80 px-2 py-1 rounded text-yellow-300 text-xs whitespace-nowrap font-bold border border-yellow-400/50">
+            <div className="text-center">
+              <span className="text-yellow-200">☀ The Sun</span>
+              <div className="text-[9px] text-yellow-400/80 mt-0.5">R = 696,340 km</div>
+              <div className="text-[8px] text-cyan-400 mt-1 border-t border-yellow-400/30 pt-1">
+                YOU ARE HERE
+              </div>
+            </div>
           </div>
         </Html>
       )}
@@ -804,12 +810,24 @@ const SolarSystem: React.FC<{ showLabels: boolean; time: number; cameraDistance:
 
 const MilkyWayGalaxy: React.FC<{ showLabels: boolean; cameraDistance?: number }> = ({ showLabels, cameraDistance = 1 }) => {
   // ==========================================================================
-  // MILKY WAY SCALING
+  // MILKY WAY SCALING - HYPERREAL POSITIONING
   // ==========================================================================
   // Milky Way radius: ~26.8 kpc = 2.68e-5 Gpc
-  // Sun's position: 8 kpc from center = 8e-6 Gpc
+  // Sun's position: 8.178 kpc from center (Reid et al. 2019, GRAVITY Collab.)
+  //
+  // HYPERREAL APPROACH: The observer (Solar System) is at origin [0,0,0].
+  // The Milky Way center is 8.178 kpc AWAY from us, toward Sagittarius A*.
+  // We offset the entire galaxy so the Sun's position coincides with origin.
 
   const KPC_TO_GPC = 1e-6; // 1 kpc = 1e-6 Gpc = 1e-6 scene units
+  const SUN_GALACTIC_RADIUS_KPC = 8.178; // GRAVITY Collaboration 2019
+
+  // Offset to place Sun at origin: shift galaxy center by -8.178 kpc
+  const GALACTIC_CENTER_OFFSET: [number, number, number] = [
+    -SUN_GALACTIC_RADIUS_KPC * KPC_TO_GPC,
+    0,
+    0
+  ];
 
   // Generate spiral arm points with proper logarithmic spiral
   const spiralPoints = useMemo(() => {
@@ -869,7 +887,13 @@ const MilkyWayGalaxy: React.FC<{ showLabels: boolean; cameraDistance?: number }>
   const pointSize = Math.max(0.0000001, Math.min(0.000001, cameraDistance * 0.00001));
 
   return (
-    <group>
+    <group position={GALACTIC_CENTER_OFFSET}>
+      {/*
+       * HYPERREAL: This group is offset so that Sun's position (8.178 kpc from center)
+       * coincides with the scene origin [0,0,0]. The Solar System component renders
+       * at [0,0,0], which is exactly where the Sun should be within the Milky Way.
+       */}
+
       {/* Galactic bulge - 3 kpc radius */}
       <mesh>
         <sphereGeometry args={[3 * KPC_TO_GPC, 32, 32]} />
@@ -891,35 +915,43 @@ const MilkyWayGalaxy: React.FC<{ showLabels: boolean; cameraDistance?: number }>
         <Line key={i} points={points} color="#88aaff" lineWidth={1.5} transparent opacity={0.35} />
       ))}
 
-      {/* Sun's position - 8 kpc from center */}
-      <mesh position={[8 * KPC_TO_GPC, 0, 0]}>
-        <sphereGeometry args={[0.15 * KPC_TO_GPC, 16, 16]} />
-        <meshBasicMaterial color="#ffff00" />
-      </mesh>
-      {/* Sun's glow */}
-      <mesh position={[8 * KPC_TO_GPC, 0, 0]}>
-        <sphereGeometry args={[0.3 * KPC_TO_GPC, 8, 8]} />
-        <meshBasicMaterial color="#ffff88" transparent opacity={0.3} />
-      </mesh>
+      {/*
+       * NOTE: No separate Sun mesh needed here anymore!
+       * The Sun IS at the origin, rendered by SolarSystem component.
+       * This creates true hyperreal nesting: zoom from cosmic scale → Milky Way → Sun → planets
+       */}
 
+      {/* "YOU ARE HERE" marker at Sun's position within the galaxy */}
+      {showLabels && cameraDistance > 0.000001 && cameraDistance < 0.0001 && (
+        <Html position={[SUN_GALACTIC_RADIUS_KPC * KPC_TO_GPC, 1.5 * KPC_TO_GPC, 0]} center>
+          <div className="bg-yellow-900/95 px-2 py-1 rounded text-yellow-300 text-[10px] whitespace-nowrap font-bold border border-yellow-400/60 animate-pulse">
+            <div className="text-center">
+              <span className="text-cyan-400">← YOU ARE HERE</span>
+              <div className="text-[8px] text-yellow-400/80 mt-0.5">Sun • 8.178 kpc from center</div>
+            </div>
+          </div>
+        </Html>
+      )}
+
+      {/* Galactic Center label (Sagittarius A*) */}
       {showLabels && cameraDistance < 0.0001 && (
         <>
           <Html position={[0, 4 * KPC_TO_GPC, 0]} center>
-            <div className="bg-black/85 px-2 py-1 rounded text-blue-300 text-xs whitespace-nowrap font-bold border border-blue-500/30">
-              Milky Way Galaxy (R = 26.8 kpc)
+            <div className="bg-black/85 px-2 py-1 rounded text-orange-300 text-xs whitespace-nowrap font-bold border border-orange-500/30">
+              Sagittarius A* (Galactic Center)
             </div>
           </Html>
-          <Html position={[8 * KPC_TO_GPC, 0.8 * KPC_TO_GPC, 0]} center>
-            <div className="bg-yellow-900/90 px-2 py-1 rounded text-yellow-300 text-[10px] whitespace-nowrap border border-yellow-500/30">
-              Sun (8 kpc from center)
+          <Html position={[0, -2 * KPC_TO_GPC, 0]} center>
+            <div className="bg-black/85 px-1 py-0.5 rounded text-blue-300 text-[9px] whitespace-nowrap border border-blue-500/30">
+              Supermassive Black Hole: 4×10⁶ M☉
             </div>
           </Html>
         </>
       )}
 
-      {/* Galactic scale reference */}
+      {/* Galactic scale reference - shows when zoomed to galactic scale */}
       {showLabels && cameraDistance > 0.000005 && cameraDistance < 0.00005 && (
-        <Html position={[15 * KPC_TO_GPC, -3 * KPC_TO_GPC, 0]} center>
+        <Html position={[7 * KPC_TO_GPC, -3 * KPC_TO_GPC, 0]} center>
           <div className="bg-slate-900/80 border border-blue-400 px-2 py-1 rounded text-blue-300 text-[9px]">
             ← 10 kpc →
           </div>
@@ -935,6 +967,30 @@ const MilkyWayGalaxy: React.FC<{ showLabels: boolean; cameraDistance?: number }>
 
 const LocalGroupGalaxies: React.FC<{ showLabels: boolean }> = ({ showLabels }) => (
   <group>
+    {/* HYPERREAL: Milky Way marker at origin - "You Are Here" at Local Group scale */}
+    <group position={[0, 0, 0]}>
+      <mesh>
+        <sphereGeometry args={[0.015, 16, 16]} />
+        <meshBasicMaterial color="#88aaff" transparent opacity={0.9} />
+      </mesh>
+      {/* Spiral structure hint */}
+      <mesh rotation={[Math.PI / 2, 0, 0]}>
+        <ringGeometry args={[0.008, 0.025, 32]} />
+        <meshBasicMaterial color="#88aaff" transparent opacity={0.4} side={THREE.DoubleSide} />
+      </mesh>
+      {showLabels && (
+        <Html position={[0, 0.03, 0]} center>
+          <div className="bg-blue-900/90 px-2 py-1 rounded text-blue-200 text-[10px] whitespace-nowrap font-bold border border-cyan-400/60">
+            <div className="text-center">
+              <span className="text-cyan-400">MILKY WAY</span>
+              <div className="text-[8px] text-blue-300/80 mt-0.5">You Are Here</div>
+            </div>
+          </div>
+        </Html>
+      )}
+    </group>
+
+    {/* Other Local Group members */}
     {LOCAL_GROUP.map((galaxy, i) => {
       const pos = celestialToCartesian(galaxy.ra, galaxy.dec, galaxy.distance_mpc);
       const size = Math.max(0.008, 0.02 - galaxy.magnitude * 0.001);
