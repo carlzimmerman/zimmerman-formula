@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo, useCallback, useRef, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { OrbitControls, PerspectiveCamera, Text, Line, Html, Stars } from '@react-three/drei';
+import { OrbitControls, PerspectiveCamera, Text, Line, Html, Stars, Environment } from '@react-three/drei';
 import * as THREE from 'three';
 import gsap from 'gsap';
 
@@ -39,6 +39,9 @@ import { MONDLensingShader, MONDLensingHUD } from './evidence/MONDLensingShader'
 
 // Topological Ghosts - T³ mirror images
 import { TopologicalGhosts, TopologicalGhostsHUD } from './evidence/TopologicalGhosts';
+
+// Standing Wave Nodes - T³ resonance visualization
+import { StandingWaveNodes, StandingWaveNodesHUD } from './evidence/StandingWaveNodes';
 
 // Performance Monitoring
 import { MinimalFPS } from './PerformanceHUD';
@@ -2113,6 +2116,11 @@ interface FilterPanelProps {
   // Topological Ghosts
   isGhostsActive: boolean;
   onToggleGhosts: () => void;
+  // Standing Wave Nodes
+  isStandingWavesActive: boolean;
+  onToggleStandingWaves: () => void;
+  standingWaveMode: number;
+  onStandingWaveModeChange: (mode: number) => void;
   // Mobile collapse state
   isCollapsed: boolean;
   onToggleCollapse: () => void;
@@ -2131,6 +2139,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
   isCMBAxisOfEvilActive, onToggleCMBAxisOfEvil, isPTAActive, onTogglePTA,
   isMONDLensingActive, onToggleMONDLensing,
   isGhostsActive, onToggleGhosts,
+  isStandingWavesActive, onToggleStandingWaves, standingWaveMode, onStandingWaveModeChange,
   isCollapsed, onToggleCollapse
 }) => {
   const toggleFilter = (key: string) => setFilters(prev => ({ ...prev, [key]: !prev[key] }));
@@ -2197,6 +2206,20 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
         >
           <span>T³ Ghost Images</span>
           <span className={`w-2 h-2 rounded-full ${isGhostsActive ? 'bg-cyan-400' : 'bg-slate-600'}`} />
+        </button>
+
+        {/* Standing Wave Nodes */}
+        <button
+          onClick={onToggleStandingWaves}
+          disabled={isOtherModeRunning || isPlayerMode}
+          className={`w-full px-3 py-1.5 text-xs uppercase tracking-wider transition-all border rounded flex items-center justify-between ${
+            isStandingWavesActive
+              ? 'bg-green-900/50 text-green-400 border-green-500 shadow-[0_0_10px_rgba(34,197,94,0.3)]'
+              : 'bg-slate-800/50 text-slate-400 border-slate-600 hover:border-green-500/50 hover:text-green-300'
+          }`}
+        >
+          <span>Standing Wave Nodes</span>
+          <span className={`w-2 h-2 rounded-full ${isStandingWavesActive ? 'bg-green-400' : 'bg-slate-600'}`} />
         </button>
 
         {/* CMB Matched Circles (Phase 4) */}
@@ -3209,15 +3232,27 @@ const Scene: React.FC<{
   isMONDLensingActive: boolean;
   // Topological Ghosts
   isGhostsActive: boolean;
+  // Standing Wave Nodes
+  isStandingWavesActive: boolean;
+  standingWaveMode: number;
   // Performance monitoring
   onFPSUpdate: (fps: number) => void;
-}> = ({ filters, isRotating, showLabels, isTourRunning, onTourComplete, onWaypointChange, onCameraDistanceChange, onBoundaryCross, onParityFlip, isGWRunning, selectedGWEvent, onGWProgressUpdate, isPlayerMode, isCMBProofActive, isParityActive, isAxisOfEvilActive, isDarkFlowActive, isGWGraveyardActive, isMONDActive, isRadioGhostsActive, isWideBinariesActive, isFRBActive, isKSZActive, isDESIActive, isClusterMapActive, isCosmicWebActive, isVoidsActive, isVelocityRiversActive, isVPOSActive, isCMBAxisOfEvilActive, isPTAActive, isMONDLensingActive, isGhostsActive, onFPSUpdate }) => {
+}> = ({ filters, isRotating, showLabels, isTourRunning, onTourComplete, onWaypointChange, onCameraDistanceChange, onBoundaryCross, onParityFlip, isGWRunning, selectedGWEvent, onGWProgressUpdate, isPlayerMode, isCMBProofActive, isParityActive, isAxisOfEvilActive, isDarkFlowActive, isGWGraveyardActive, isMONDActive, isRadioGhostsActive, isWideBinariesActive, isFRBActive, isKSZActive, isDESIActive, isClusterMapActive, isCosmicWebActive, isVoidsActive, isVelocityRiversActive, isVPOSActive, isCMBAxisOfEvilActive, isPTAActive, isMONDLensingActive, isGhostsActive, isStandingWavesActive, standingWaveMode, onFPSUpdate }) => {
   const controlsRef = useRef<any>(null);
+
+  // Test: Toggle panorama background (set to true to test Telesterion)
+  const usePanorama = true; // Set to true to test panorama background
 
   return (
     <>
-      <color attach="background" args={['#030308']} />
-      <Stars radius={100} depth={50} count={3000} factor={4} fade />
+      {usePanorama ? (
+        <Environment files="/greek_telesterion_2k.hdr" background />
+      ) : (
+        <>
+          <color attach="background" args={['#030308']} />
+          <Stars radius={100} depth={50} count={3000} factor={4} fade />
+        </>
+      )}
       <ambientLight intensity={0.4} />
 
       <MultiScaleUniverse
@@ -3266,6 +3301,19 @@ const Scene: React.FC<{
 
       {/* Topological Ghost Images - T³ wrapping visualization */}
       {isGhostsActive && <TopologicalGhosts visible={true} showConnections={true} />}
+
+      {/* Standing Wave Nodes - T³ resonance */}
+      {isStandingWavesActive && (
+        <StandingWaveNodes
+          visible={true}
+          showNodalPlanes={true}
+          showAmplitudeField={true}
+          showVoidCorrelation={true}
+          showBAOResonance={false}
+          selectedMode={standingWaveMode}
+          maxMode={5}
+        />
+      )}
 
       <CinematicCamera
         isTourRunning={isTourRunning}
@@ -3374,6 +3422,10 @@ const MultiMessengerUniverse: React.FC = () => {
 
   // Topological Ghosts - T³ mirror images
   const [isGhostsActive, setIsGhostsActive] = useState(false);
+
+  // Standing Wave Nodes - T³ resonance
+  const [isStandingWavesActive, setIsStandingWavesActive] = useState(false);
+  const [standingWaveMode, setStandingWaveMode] = useState(2);
 
   // Onboarding overlay state (shows scroll instructions on first visit)
   const [showOnboarding, setShowOnboarding] = useState(true);
@@ -3571,6 +3623,10 @@ const MultiMessengerUniverse: React.FC = () => {
         onToggleMONDLensing={() => setIsMONDLensingActive(p => !p)}
         isGhostsActive={isGhostsActive}
         onToggleGhosts={() => setIsGhostsActive(p => !p)}
+        isStandingWavesActive={isStandingWavesActive}
+        onToggleStandingWaves={() => setIsStandingWavesActive(p => !p)}
+        standingWaveMode={standingWaveMode}
+        onStandingWaveModeChange={setStandingWaveMode}
         isCollapsed={isPanelCollapsed}
         onToggleCollapse={() => setIsPanelCollapsed(p => !p)}
       />}
@@ -3634,6 +3690,16 @@ const MultiMessengerUniverse: React.FC = () => {
 
         {/* Topological Ghosts HUD */}
         {isGhostsActive && <TopologicalGhostsHUD visible={isGhostsActive} totalStructures={17} fundamentalDomain={20.6} />}
+
+        {/* Standing Wave Nodes HUD */}
+        {isStandingWavesActive && (
+          <StandingWaveNodesHUD
+            visible={isStandingWavesActive}
+            selectedMode={standingWaveMode}
+            maxMode={5}
+            onModeChange={setStandingWaveMode}
+          />
+        )}
       </div>
 
       <Canvas gl={{ antialias: true, logarithmicDepthBuffer: true, powerPreference: 'high-performance' }} dpr={[1, 2]}>
@@ -3679,6 +3745,8 @@ const MultiMessengerUniverse: React.FC = () => {
           isPTAActive={isPTAActive}
           isMONDLensingActive={isMONDLensingActive}
           isGhostsActive={isGhostsActive}
+          isStandingWavesActive={isStandingWavesActive}
+          standingWaveMode={standingWaveMode}
           onFPSUpdate={setFps}
         />
       </Canvas>
