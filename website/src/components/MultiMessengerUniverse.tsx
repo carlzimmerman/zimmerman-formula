@@ -1878,24 +1878,23 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
     <div className="absolute top-16 left-4 bg-slate-900/95 p-4 rounded-lg border border-slate-700 z-10 backdrop-blur-sm max-w-[260px]">
       <h3 className="text-white font-bold mb-3">Controls</h3>
 
-      {/* CMB PROOF Button (Phase 4 - Topology Evidence) */}
-      <button
-        onClick={onToggleCMBProof}
-        disabled={isOtherModeRunning || isPlayerMode}
-        className={`w-full mb-2 px-4 py-2 font-bold text-sm uppercase tracking-wider transition-all border rounded ${
-          isCMBProofActive
-            ? 'bg-yellow-900/50 text-yellow-400 border-yellow-500 animate-pulse shadow-[0_0_20px_rgba(234,179,8,0.4)]'
-            : (isOtherModeRunning || isPlayerMode)
-            ? 'bg-slate-800/50 text-slate-500 border-slate-600 cursor-not-allowed'
-            : 'bg-yellow-900/50 text-yellow-400 border-yellow-500 hover:bg-yellow-900/80 hover:shadow-[0_0_20px_rgba(234,179,8,0.4)]'
-        }`}
-      >
-        {isCMBProofActive ? '■ EXIT CMB' : '★ CMB PROOF'}
-      </button>
-
       {/* Evidence Layers (Directives QQQQ, RRRR, SSSS) */}
       <div className="mb-3 space-y-1.5">
         <label className="text-cyan-400 text-xs font-bold block">TOPOLOGY EVIDENCE</label>
+
+        {/* CMB Matched Circles (Phase 4) */}
+        <button
+          onClick={onToggleCMBProof}
+          disabled={isOtherModeRunning || isPlayerMode}
+          className={`w-full px-3 py-1.5 text-xs uppercase tracking-wider transition-all border rounded flex items-center justify-between ${
+            isCMBProofActive
+              ? 'bg-yellow-900/50 text-yellow-400 border-yellow-500 shadow-[0_0_10px_rgba(234,179,8,0.3)]'
+              : 'bg-slate-800/50 text-slate-400 border-slate-600 hover:border-yellow-500/50 hover:text-yellow-300'
+          }`}
+        >
+          <span>CMB Circles</span>
+          <span className={`w-2 h-2 rounded-full ${isCMBProofActive ? 'bg-yellow-400' : 'bg-slate-600'}`} />
+        </button>
 
         {/* Parity Asymmetry (QQQQ) */}
         <button
