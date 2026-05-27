@@ -15,9 +15,8 @@
  * =============================================================================
  */
 
-import React, { useRef, useMemo, useState, useEffect } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import * as THREE from 'three';
-import { useFrame } from '@react-three/fiber';
 import { Line, Text } from '@react-three/drei';
 
 // Constants
@@ -66,24 +65,18 @@ interface FRBData {
 interface DispersionTomographyProps {
   opacity?: number;
   showCones?: boolean;
-  flashEnabled?: boolean;
 }
 
 /**
- * Single FRB marker with flash animation
+ * Single FRB marker - REAL DATA
+ * Position from CHIME/DSA-110/ASKAP catalogs, color by dispersion measure
  */
 function FRBMarker({
   frb,
-  flashEnabled = true,
 }: {
   frb: FRB;
-  flashEnabled?: boolean;
 }) {
-  const meshRef = useRef<THREE.Mesh>(null);
-  const glowRef = useRef<THREE.Mesh>(null);
-  const [flashPhase, setFlashPhase] = useState(Math.random() * Math.PI * 2);
-
-  // Position
+  // Position from catalog
   const position = useMemo(() => {
     if (frb.position) {
       return new THREE.Vector3(
@@ -103,7 +96,7 @@ function FRBMarker({
     );
   }, [frb]);
 
-  // Color based on DM
+  // Color based on DM (real measurement)
   const color = useMemo(() => {
     const dm = frb.dm_cosmic;
     if (dm < 200) return new THREE.Color(DM_COLORS.low);
@@ -111,30 +104,18 @@ function FRBMarker({
     return new THREE.Color(DM_COLORS.high);
   }, [frb.dm_cosmic]);
 
-  // Size based on fluence (or fixed for non-repeaters)
+  // Size: repeaters slightly larger (real property)
   const size = useMemo(() => {
     return frb.repeater ? 0.08 : 0.05;
   }, [frb.repeater]);
 
-  // Flash animation
-  useFrame(({ clock }) => {
-    if (!flashEnabled || !meshRef.current) return;
-
-    const t = clock.getElapsedTime();
-    // Random flash pattern
-    const flash = Math.pow(Math.sin(t * 3 + flashPhase), 8);
-
-    meshRef.current.scale.setScalar(1 + flash * 2);
-
-    if (glowRef.current) {
-      (glowRef.current.material as THREE.MeshBasicMaterial).opacity = 0.1 + flash * 0.5;
-    }
-  });
+  // Static - no flash animation
+  // (Real FRB bursts are milliseconds, not observable in this visualization timescale)
 
   return (
     <group position={position}>
       {/* Core marker */}
-      <mesh ref={meshRef}>
+      <mesh>
         <sphereGeometry args={[size, 12, 12]} />
         <meshStandardMaterial
           color={color}
@@ -144,7 +125,7 @@ function FRBMarker({
       </mesh>
 
       {/* Glow */}
-      <mesh ref={glowRef}>
+      <mesh>
         <sphereGeometry args={[size * 3, 12, 12]} />
         <meshBasicMaterial
           color={color}
@@ -154,7 +135,7 @@ function FRBMarker({
         />
       </mesh>
 
-      {/* Dispersion cone to Earth */}
+      {/* Line to Earth - shows sightline through IGM */}
       <Line
         points={[new THREE.Vector3(0, 0, 0), position.clone().negate()]}
         color={color}
@@ -175,12 +156,10 @@ function FRBMarker({
 export function DispersionTomography({
   opacity = 1,
   showCones = true,
-  flashEnabled = true,
 }: DispersionTomographyProps) {
   const [data, setData] = useState<FRBData | null>(null);
-  const groupRef = useRef<THREE.Group>(null);
 
-  // Load data
+  // Load real FRB data
   useEffect(() => {
     fetch('/data/frb_dispersion_data.json')
       .then(res => res.json())
@@ -190,18 +169,13 @@ export function DispersionTomography({
       .catch(console.error);
   }, []);
 
-  // Slow rotation
-  useFrame(({ clock }) => {
-    if (groupRef.current) {
-      groupRef.current.rotation.y = clock.getElapsedTime() * 0.02;
-    }
-  });
+  // Static - no group rotation (FRBs are at fixed sky positions)
 
   if (!data) return null;
 
   return (
-    <group ref={groupRef}>
-      {/* Earth marker at center */}
+    <group>
+      {/* Earth marker at center (observer position) */}
       <mesh>
         <sphereGeometry args={[0.05, 16, 16]} />
         <meshStandardMaterial
@@ -219,12 +193,11 @@ export function DispersionTomography({
         Earth
       </Text>
 
-      {/* FRB markers */}
+      {/* FRB markers - REAL positions from CHIME/DSA-110/ASKAP */}
       {data.frbs.map((frb, i) => (
         <FRBMarker
           key={frb.name || i}
           frb={frb}
-          flashEnabled={flashEnabled}
         />
       ))}
 

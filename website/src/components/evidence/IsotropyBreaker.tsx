@@ -22,8 +22,7 @@
  * =============================================================================
  */
 
-import React, { useRef, useMemo } from 'react';
-import { useFrame } from '@react-three/fiber';
+import React, { useMemo } from 'react';
 import { Line } from '@react-three/drei';
 import * as THREE from 'three';
 
@@ -165,28 +164,24 @@ interface HarmonicLobeProps {
   visible: boolean;
 }
 
+/**
+ * Harmonic Lobe - visualization of spherical harmonic shapes
+ * Based on real Planck CMB multipole measurements
+ */
 function HarmonicLobe({ ell, axisDirection, scale, color, visible }: HarmonicLobeProps) {
-  const meshRef = useRef<THREE.Mesh>(null);
-
   const geometry = useMemo(() => generateSphericalHarmonicMesh(ell), [ell]);
 
-  // Compute rotation to align with axis
+  // Compute rotation to align with measured axis direction
   const quaternion = useMemo(() => {
     const q = new THREE.Quaternion();
     q.setFromUnitVectors(new THREE.Vector3(0, 1, 0), axisDirection.clone().normalize());
     return q;
   }, [axisDirection]);
 
-  // Pulsing animation
-  useFrame((state) => {
-    if (meshRef.current) {
-      const pulse = 0.95 + 0.05 * Math.sin(state.clock.elapsedTime * 2 + ell);
-      meshRef.current.scale.setScalar(scale * pulse);
-    }
-  });
+  // Static - no pulsing animation (CMB multipoles are fixed measurements)
 
   return (
-    <mesh ref={meshRef} quaternion={quaternion} visible={visible}>
+    <mesh quaternion={quaternion} scale={scale} visible={visible}>
       <primitive object={geometry} attach="geometry" />
       <meshBasicMaterial
         color={color}

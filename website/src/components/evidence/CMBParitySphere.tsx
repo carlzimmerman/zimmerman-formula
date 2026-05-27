@@ -195,20 +195,13 @@ interface MultipoleMarkerProps {
 }
 
 function MultipoleMarker({ position, ell, isOdd, visible }: MultipoleMarkerProps) {
-  const meshRef = useRef<THREE.Mesh>(null);
-
   const color = isOdd ? PARITY_DATA.oddColor : PARITY_DATA.evenColor;
   const size = 0.3 + (0.5 / ell); // Larger markers for lower ℓ
 
-  useFrame((state) => {
-    if (meshRef.current) {
-      const pulse = 0.9 + 0.1 * Math.sin(state.clock.elapsedTime * 3 + ell);
-      meshRef.current.scale.setScalar(pulse);
-    }
-  });
+  // Static - no pulsing animation (multipole positions are fixed mathematical locations)
 
   return (
-    <mesh ref={meshRef} position={position} visible={visible}>
+    <mesh position={position} visible={visible}>
       <sphereGeometry args={[size, 16, 16]} />
       <meshBasicMaterial
         color={color}

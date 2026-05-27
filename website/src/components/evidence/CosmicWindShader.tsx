@@ -1,31 +1,32 @@
 /**
  * =============================================================================
- * COSMIC WIND SHADER - kSZ Photon Collision Visualization
+ * COSMIC WIND SHADER - kSZ Galaxy Cluster Visualization
  * =============================================================================
  *
- * Directive YYYY: Visualize the kSZ effect as CMB photons colliding with
- * moving galaxy clusters, producing Doppler-shifted temperature fluctuations.
+ * Directive YYYY: Visualize galaxy clusters with measured line-of-sight
+ * velocities from kSZ effect measurements.
  *
- * Features:
- * - CMB photon particles from boundary
- * - Galaxy cluster markers
- * - Collision flashes with color shift
- * - Cosmic Wind vector overlay
+ * REAL DATA ONLY:
+ * - Galaxy cluster positions from Planck SZ + ACT catalogs
+ * - Cluster masses from SZ/X-ray scaling relations
+ * - Line-of-sight velocities from kSZ measurements (Bullet, El Gordo)
+ *   or bulk flow models (nearby clusters)
+ * - Cosmic wind vector derived from cluster velocity field
+ *
+ * NO SIMULATED ELEMENTS - removed CMB photon particle animation
+ * (photon trajectories were conceptual, not real data)
  *
  * =============================================================================
  */
 
-import React, { useRef, useMemo, useState, useEffect } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import * as THREE from 'three';
-import { useFrame } from '@react-three/fiber';
 import { Line, Text } from '@react-three/drei';
 
 // Constants
 const L_C = 20.6;
 const HALF_BOX = L_C / 2;
 const SCALE = 0.3;
-const PHOTON_SPEED = 0.02;
-const NUM_PHOTONS = 100;
 
 // Color scheme
 const COLORS = {
@@ -71,115 +72,38 @@ interface KSZData {
 
 interface CosmicWindShaderProps {
   opacity?: number;
-  showPhotons?: boolean;
   showWind?: boolean;
 }
 
-/**
- * CMB Photon particle
- */
-function CMBPhoton({
-  startPosition,
-  clusters,
-  onCollision,
-}: {
-  startPosition: THREE.Vector3;
-  clusters: Cluster[];
-  onCollision?: (cluster: Cluster) => void;
-}) {
-  const meshRef = useRef<THREE.Mesh>(null);
-  const [color, setColor] = useState(new THREE.Color(COLORS.neutral));
-  const [position, setPosition] = useState(startPosition.clone());
-  const [hasCollided, setHasCollided] = useState(false);
-
-  // Direction toward Earth
-  const direction = useMemo(() => {
-    return startPosition.clone().negate().normalize();
-  }, [startPosition]);
-
-  useFrame(() => {
-    if (!meshRef.current) return;
-
-    // Move toward Earth
-    const newPos = position.clone().add(direction.clone().multiplyScalar(PHOTON_SPEED));
-
-    // Check for cluster collisions
-    if (!hasCollided) {
-      for (const cluster of clusters) {
-        const clusterPos = new THREE.Vector3(
-          cluster.position.x * SCALE,
-          cluster.position.y * SCALE,
-          cluster.position.z * SCALE
-        );
-
-        const dist = newPos.distanceTo(clusterPos);
-        const collisionRadius = 0.15 + cluster.mass_1e14_msun * 0.005;
-
-        if (dist < collisionRadius) {
-          // Collision! Apply Doppler shift
-          setHasCollided(true);
-          if (cluster.direction === 'toward') {
-            setColor(new THREE.Color(COLORS.blueshift));
-          } else {
-            setColor(new THREE.Color(COLORS.redshift));
-          }
-          onCollision?.(cluster);
-          break;
-        }
-      }
-    }
-
-    // Reset when reaching center
-    if (newPos.length() < 0.1) {
-      setPosition(startPosition.clone());
-      setColor(new THREE.Color(COLORS.neutral));
-      setHasCollided(false);
-    } else {
-      setPosition(newPos);
-    }
-
-    meshRef.current.position.copy(newPos);
-  });
-
-  return (
-    <mesh ref={meshRef} position={position}>
-      <sphereGeometry args={[0.02, 8, 8]} />
-      <meshBasicMaterial color={color} transparent opacity={0.8} />
-    </mesh>
-  );
-}
+// CMB Photon simulation REMOVED - was not based on real data
+// (100 randomly generated particles were conceptual visualization only)
 
 /**
- * Galaxy cluster marker
+ * Galaxy cluster marker - REAL DATA
+ * Position from Planck/ACT catalogs, size scaled by mass, color by velocity direction
  */
 function ClusterMarker({ cluster }: { cluster: Cluster }) {
-  const meshRef = useRef<THREE.Mesh>(null);
-  const glowRef = useRef<THREE.Mesh>(null);
-
   const position = useMemo(() => new THREE.Vector3(
     cluster.position.x * SCALE,
     cluster.position.y * SCALE,
     cluster.position.z * SCALE
   ), [cluster]);
 
+  // Size scaled by cluster mass (real measurement)
   const size = useMemo(() => {
     return 0.05 + cluster.mass_1e14_msun * 0.003;
   }, [cluster.mass_1e14_msun]);
 
+  // Color indicates line-of-sight velocity direction (real measurement)
   const color = useMemo(() => {
     return cluster.direction === 'toward' ? COLORS.blueshift : COLORS.redshift;
   }, [cluster.direction]);
 
-  useFrame(({ clock }) => {
-    if (meshRef.current) {
-      const pulse = 1 + Math.sin(clock.getElapsedTime() * 2 + cluster.ksz_amplitude_uk) * 0.2;
-      meshRef.current.scale.setScalar(pulse);
-    }
-  });
+  // Static - no pulsing animation (kSZ amplitude is a measurement, not a pulsation)
 
   return (
     <group position={position}>
-      <mesh ref={meshRef}>
+      <mesh>
         <sphereGeometry args={[size, 12, 12]} />
         <meshStandardMaterial
           color={COLORS.cluster}
@@ -187,7 +111,7 @@ function ClusterMarker({ cluster }: { cluster: Cluster }) {
           emissiveIntensity={0.5}
         />
       </mesh>
-      <mesh ref={glowRef}>
+      <mesh>
         <sphereGeometry args={[size * 2, 12, 12]} />
         <meshBasicMaterial
           color={color}
@@ -241,17 +165,16 @@ function CosmicWindArrow({ wind }: { wind: CosmicWind }) {
 }
 
 /**
- * Main Cosmic Wind visualization
+ * Main Cosmic Wind visualization - REAL DATA ONLY
+ * Shows galaxy clusters at measured positions with velocity directions
  */
 export function CosmicWindShader({
   opacity = 1,
-  showPhotons = true,
   showWind = true,
 }: CosmicWindShaderProps) {
   const [data, setData] = useState<KSZData | null>(null);
-  const groupRef = useRef<THREE.Group>(null);
 
-  // Load data
+  // Load real cluster data
   useEffect(() => {
     fetch('/data/ksz_cosmic_wind_data.json')
       .then(res => res.json())
@@ -261,35 +184,13 @@ export function CosmicWindShader({
       .catch(console.error);
   }, []);
 
-  // Generate photon start positions on boundary sphere
-  const photonStarts = useMemo(() => {
-    const positions: THREE.Vector3[] = [];
-    for (let i = 0; i < NUM_PHOTONS; i++) {
-      const theta = Math.random() * Math.PI * 2;
-      const phi = Math.acos(2 * Math.random() - 1);
-      const r = HALF_BOX * SCALE * 0.8;
-
-      positions.push(new THREE.Vector3(
-        r * Math.sin(phi) * Math.cos(theta),
-        r * Math.sin(phi) * Math.sin(theta),
-        r * Math.cos(phi)
-      ));
-    }
-    return positions;
-  }, []);
-
-  // Slow rotation
-  useFrame(({ clock }) => {
-    if (groupRef.current) {
-      groupRef.current.rotation.y = clock.getElapsedTime() * 0.01;
-    }
-  });
+  // Static - no group rotation (clusters are at fixed positions)
 
   if (!data) return null;
 
   return (
-    <group ref={groupRef}>
-      {/* Earth at center */}
+    <group>
+      {/* Earth at center (observer position) */}
       <mesh>
         <sphereGeometry args={[0.08, 16, 16]} />
         <meshStandardMaterial
@@ -299,34 +200,13 @@ export function CosmicWindShader({
         />
       </mesh>
 
-      {/* Cluster markers */}
+      {/* Cluster markers - REAL positions from Planck/ACT catalogs */}
       {data.clusters.map((cluster, i) => (
         <ClusterMarker key={cluster.name || i} cluster={cluster} />
       ))}
 
-      {/* CMB Photons */}
-      {showPhotons && photonStarts.map((start, i) => (
-        <CMBPhoton
-          key={i}
-          startPosition={start}
-          clusters={data.clusters}
-        />
-      ))}
-
-      {/* Cosmic Wind vector */}
+      {/* Cosmic Wind vector - derived from cluster velocity field */}
       {showWind && <CosmicWindArrow wind={data.cosmic_wind} />}
-
-      {/* Boundary shell (where CMB photons originate) */}
-      <mesh>
-        <sphereGeometry args={[HALF_BOX * SCALE * 0.8, 32, 32]} />
-        <meshBasicMaterial
-          color="#88FF88"
-          transparent
-          opacity={0.02}
-          side={THREE.BackSide}
-          wireframe
-        />
-      </mesh>
 
       {/* Fundamental domain frame */}
       <lineSegments>

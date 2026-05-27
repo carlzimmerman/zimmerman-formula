@@ -22,8 +22,7 @@
  * =============================================================================
  */
 
-import React, { useRef, useMemo } from 'react';
-import { useFrame } from '@react-three/fiber';
+import React, { useMemo } from 'react';
 import { Line } from '@react-three/drei';
 import * as THREE from 'three';
 
@@ -92,31 +91,25 @@ interface FlowArrowProps {
   opacity: number;
 }
 
+/**
+ * Flow Arrow - visualizes measured dark flow direction
+ */
 function FlowArrow({ position, direction, scale, color, opacity }: FlowArrowProps) {
-  const meshRef = useRef<THREE.Group>(null);
-
-  // Compute rotation to align arrow with direction
+  // Compute rotation to align arrow with measured flow direction
   const quaternion = useMemo(() => {
     const q = new THREE.Quaternion();
     q.setFromUnitVectors(new THREE.Vector3(0, 1, 0), direction.clone().normalize());
     return q;
   }, [direction]);
 
-  // Subtle animation
-  useFrame((state) => {
-    if (meshRef.current) {
-      const phase = state.clock.elapsedTime * 2 + position.x * 0.1;
-      const pulse = 0.9 + 0.1 * Math.sin(phase);
-      meshRef.current.scale.setScalar(pulse);
-    }
-  });
+  // Static - no pulsing (flow direction is a measured velocity, not a pulsation)
 
   const arrowLength = scale * 0.5;
   const coneRadius = scale * 0.08;
   const coneHeight = scale * 0.15;
 
   return (
-    <group ref={meshRef} position={position} quaternion={quaternion}>
+    <group position={position} quaternion={quaternion}>
       {/* Arrow shaft */}
       <mesh position={[0, arrowLength / 2, 0]}>
         <cylinderGeometry args={[coneRadius * 0.3, coneRadius * 0.3, arrowLength, 8]} />
@@ -282,9 +275,10 @@ interface AttractorFaceProps {
   visible: boolean;
 }
 
+/**
+ * Attractor Face - shows the T³ boundary face in the flow direction
+ */
 function AttractorFace({ flowDirection, halfBox, visible }: AttractorFaceProps) {
-  const meshRef = useRef<THREE.Mesh>(null);
-
   // Determine which face is the attractor (in the flow direction)
   const faceInfo = useMemo(() => {
     const dir = flowDirection.clone().normalize();
@@ -312,18 +306,12 @@ function AttractorFace({ flowDirection, halfBox, visible }: AttractorFaceProps) 
     return { position: facePosition, quaternion };
   }, [flowDirection, halfBox]);
 
-  // Pulsing animation
-  useFrame((state) => {
-    if (meshRef.current) {
-      const pulse = 0.3 + 0.2 * Math.sin(state.clock.elapsedTime * 1.5);
-      (meshRef.current.material as THREE.MeshBasicMaterial).opacity = pulse;
-    }
-  });
+  // Static - no pulsing (boundary face is a fixed geometric feature)
 
   if (!visible) return null;
 
   return (
-    <mesh ref={meshRef} position={faceInfo.position} quaternion={faceInfo.quaternion}>
+    <mesh position={faceInfo.position} quaternion={faceInfo.quaternion}>
       <planeGeometry args={[halfBox * 2, halfBox * 2]} />
       <meshBasicMaterial
         color={DARK_FLOW.boundaryColor}

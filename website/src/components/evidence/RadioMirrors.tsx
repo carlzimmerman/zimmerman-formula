@@ -17,8 +17,7 @@
 
 import React, { useRef, useMemo, useState, useEffect } from 'react';
 import * as THREE from 'three';
-import { useFrame } from '@react-three/fiber';
-import { Line, Text, Ring } from '@react-three/drei';
+import { Line, Text } from '@react-three/drei';
 
 // Constants
 const L_C = 20.6;
@@ -83,6 +82,10 @@ interface RadioMirrorsProps {
 /**
  * Radio source marker
  */
+/**
+ * Radio source marker - REAL DATA
+ * Position from LOFAR/MeerKAT/ASKAP catalogs, size by flux, color by type
+ */
 function RadioSourceMarker({
   source,
   isORC = false,
@@ -90,9 +93,6 @@ function RadioSourceMarker({
   source: RadioSource;
   isORC?: boolean;
 }) {
-  const meshRef = useRef<THREE.Mesh>(null);
-  const ringRef = useRef<THREE.Mesh>(null);
-
   const position = useMemo(() => new THREE.Vector3(
     source.position.x * SCALE,
     source.position.y * SCALE,
@@ -101,30 +101,18 @@ function RadioSourceMarker({
 
   const color = useMemo(() => new THREE.Color(TYPE_COLORS[source.type] || '#888'), [source.type]);
 
-  // Size based on log flux
+  // Size based on log flux (real measurement)
   const size = useMemo(() => {
     const logFlux = Math.log10(source.flux_mjy + 1);
     return 0.05 + logFlux * 0.03;
   }, [source.flux_mjy]);
 
-  useFrame(({ clock }) => {
-    if (meshRef.current) {
-      // Gentle pulse
-      const pulse = 1 + Math.sin(clock.getElapsedTime() * 2) * 0.1;
-      meshRef.current.scale.setScalar(pulse);
-    }
-
-    // ORC ring rotation
-    if (ringRef.current) {
-      ringRef.current.rotation.x = clock.getElapsedTime() * 0.5;
-      ringRef.current.rotation.y = clock.getElapsedTime() * 0.3;
-    }
-  });
+  // Static - no pulsing/rotation (radio sources are fixed sky positions)
 
   return (
     <group position={position}>
       {/* Core marker */}
-      <mesh ref={meshRef}>
+      <mesh>
         <sphereGeometry args={[size, 12, 12]} />
         <meshStandardMaterial
           color={color}
@@ -146,9 +134,9 @@ function RadioSourceMarker({
         />
       </mesh>
 
-      {/* ORC-specific ring */}
+      {/* ORC-specific ring - static (ORCs are Odd Radio Circles at fixed sky positions) */}
       {isORC && (
-        <mesh ref={ringRef}>
+        <mesh>
           <torusGeometry args={[size * 3, size * 0.3, 8, 32]} />
           <meshStandardMaterial
             color="#FF6B6B"
@@ -234,7 +222,6 @@ export function RadioMirrors({
   minGhostProbability = 0.2,
 }: RadioMirrorsProps) {
   const [data, setData] = useState<RadioData | null>(null);
-  const groupRef = useRef<THREE.Group>(null);
 
   // Load data
   useEffect(() => {
@@ -275,17 +262,12 @@ export function RadioMirrors({
     );
   }, [data, minGhostProbability]);
 
-  // Slow rotation
-  useFrame(({ clock }) => {
-    if (groupRef.current) {
-      groupRef.current.rotation.y = clock.getElapsedTime() * 0.02;
-    }
-  });
+  // Static - no group rotation (sources are at fixed sky positions)
 
   if (!data) return null;
 
   return (
-    <group ref={groupRef}>
+    <group>
       {/* Radio sources */}
       {filteredSources.map((source, i) => (
         <RadioSourceMarker

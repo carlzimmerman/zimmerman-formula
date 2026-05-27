@@ -15,10 +15,9 @@
  * =============================================================================
  */
 
-import React, { useRef, useMemo, useState, useEffect } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import * as THREE from 'three';
-import { useFrame } from '@react-three/fiber';
-import { Text, Line, Ring } from '@react-three/drei';
+import { Text, Line } from '@react-three/drei';
 
 // =============================================================================
 // INTERFACES
@@ -78,7 +77,8 @@ const REGIME_COLORS = {
 // =============================================================================
 
 /**
- * Individual lens marker with Einstein ring visualization
+ * Individual lens marker - REAL DATA from JWST COSMOS-Web
+ * Position from catalog, color by MOND regime, ring by Einstein radius
  */
 function LensMarker({
   lens,
@@ -89,10 +89,7 @@ function LensMarker({
   scale: number;
   showLabel?: boolean;
 }) {
-  const meshRef = useRef<THREE.Mesh>(null);
-  const ringRef = useRef<THREE.Mesh>(null);
-
-  // Normalize position for visualization
+  // Position from real catalog coordinates
   // COSMOS field is ~0.7 deg across, center at 150.1°, 2.3°
   const position = useMemo(() => {
     const ra_offset = (lens.ra - 150.1) * 10 * scale;  // Convert deg to viz units
@@ -101,30 +98,22 @@ function LensMarker({
     return new THREE.Vector3(ra_offset, z_offset, dec_offset);
   }, [lens, scale]);
 
-  // Ring size based on Einstein radius
+  // Ring size based on Einstein radius (real measurement)
   const ringSize = useMemo(() => {
     return 0.05 + lens.einstein_radius_arcsec * 0.1;
   }, [lens.einstein_radius_arcsec]);
 
+  // Color by MOND regime (derived from velocity dispersion)
   const color = useMemo(() => {
     return new THREE.Color(REGIME_COLORS[lens.mond_regime]);
   }, [lens.mond_regime]);
 
-  // Animation
-  useFrame(({ clock }) => {
-    if (meshRef.current) {
-      const pulse = 1 + Math.sin(clock.getElapsedTime() * 2 + lens.z_source) * 0.1;
-      meshRef.current.scale.setScalar(pulse);
-    }
-    if (ringRef.current) {
-      ringRef.current.rotation.z = clock.getElapsedTime() * 0.5;
-    }
-  });
+  // Static - no pulsing or rotation (lens positions are fixed measurements)
 
   return (
     <group position={position}>
       {/* Lens galaxy marker */}
-      <mesh ref={meshRef}>
+      <mesh>
         <sphereGeometry args={[0.08 * scale, 12, 12]} />
         <meshStandardMaterial
           color={color}
@@ -135,8 +124,8 @@ function LensMarker({
         />
       </mesh>
 
-      {/* Einstein ring */}
-      <mesh ref={ringRef} rotation={[Math.PI / 2, 0, 0]}>
+      {/* Einstein ring - static (shows measured Einstein radius) */}
+      <mesh rotation={[Math.PI / 2, 0, 0]}>
         <ringGeometry args={[ringSize * 0.9, ringSize * 1.1, 32]} />
         <meshBasicMaterial
           color={color}
@@ -199,9 +188,8 @@ export function GeometricGravity({
   scale = 3,
 }: GeometricGravityProps) {
   const [data, setData] = useState<LensingData | null>(null);
-  const groupRef = useRef<THREE.Group>(null);
 
-  // Load data
+  // Load real COWLS lens data
   useEffect(() => {
     fetch('/data/cosmos_lensing_data.json')
       .then(res => res.json())
@@ -211,17 +199,12 @@ export function GeometricGravity({
       .catch(console.error);
   }, []);
 
-  // Slow rotation
-  useFrame(({ clock }) => {
-    if (groupRef.current) {
-      groupRef.current.rotation.y = Math.sin(clock.getElapsedTime() * 0.1) * 0.2;
-    }
-  });
+  // Static - no group rotation (lenses are at fixed sky positions)
 
   if (!data) return null;
 
   return (
-    <group ref={groupRef} position={position}>
+    <group position={position}>
       {/* Lens markers */}
       {data.lenses.map((lens, i) => (
         <LensMarker
