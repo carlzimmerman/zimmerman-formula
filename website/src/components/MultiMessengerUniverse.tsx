@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo, useCallback, useRef, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { OrbitControls, PerspectiveCamera, Text, Line, Html, Stars, Environment } from '@react-three/drei';
+import { OrbitControls, PerspectiveCamera, Text, Line, Html, Stars } from '@react-three/drei';
 import * as THREE from 'three';
 import gsap from 'gsap';
 
@@ -3240,19 +3240,10 @@ const Scene: React.FC<{
 }> = ({ filters, isRotating, showLabels, isTourRunning, onTourComplete, onWaypointChange, onCameraDistanceChange, onBoundaryCross, onParityFlip, isGWRunning, selectedGWEvent, onGWProgressUpdate, isPlayerMode, isCMBProofActive, isParityActive, isAxisOfEvilActive, isDarkFlowActive, isGWGraveyardActive, isMONDActive, isRadioGhostsActive, isWideBinariesActive, isFRBActive, isKSZActive, isDESIActive, isClusterMapActive, isCosmicWebActive, isVoidsActive, isVelocityRiversActive, isVPOSActive, isCMBAxisOfEvilActive, isPTAActive, isMONDLensingActive, isGhostsActive, isStandingWavesActive, standingWaveMode, onFPSUpdate }) => {
   const controlsRef = useRef<any>(null);
 
-  // Test: Toggle panorama background (set to true to test Telesterion)
-  const usePanorama = true; // Set to true to test panorama background
-
   return (
     <>
-      {usePanorama ? (
-        <Environment files="/greek_telesterion_2k.hdr" background />
-      ) : (
-        <>
-          <color attach="background" args={['#030308']} />
-          <Stars radius={100} depth={50} count={3000} factor={4} fade />
-        </>
-      )}
+      <color attach="background" args={['#030308']} />
+      <Stars radius={100} depth={50} count={3000} factor={4} fade />
       <ambientLight intensity={0.4} />
 
       <MultiScaleUniverse
