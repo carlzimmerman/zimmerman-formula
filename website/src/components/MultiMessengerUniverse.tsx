@@ -835,25 +835,24 @@ const SolarSystem: React.FC<{ showLabels: boolean; time: number; cameraDistance:
         </Html>
       )}
 
-      {/* Planets - TRUE POSITIONS based on current datetime */}
-      {PLANETS.map((planet) => {
-        // Calculate TRUE position using Keplerian mechanics
+      {/* Planets - TRUE POSITIONS based on current datetime (calculated once on page load) */}
+      {useMemo(() => {
+        // Calculate positions ONCE based on current date
         const now = new Date();
-        const pos = calculatePlanetPosition(planet, now);
-
-        // Convert AU to Gpc (TRUE SCALE)
-        const x = pos.x * TRUE_AU_TO_GPC;
-        const y = pos.z * TRUE_AU_TO_GPC; // Swap y/z for Three.js coordinate system
-        const z = pos.y * TRUE_AU_TO_GPC;
-
-        // Orbital radius for ring display
-        const orbitalRadius = planet.a * TRUE_AU_TO_GPC;
-
-        // Planet physical size - TRUE SCALE with finder mode
-        const trueRadius = planet.radius_km * KM_TO_GPC;
+        return PLANETS.map((planet) => {
+          const pos = calculatePlanetPosition(planet, now);
+          return {
+            planet,
+            x: pos.x * TRUE_AU_TO_GPC,
+            y: pos.z * TRUE_AU_TO_GPC, // Swap y/z for Three.js
+            z: pos.y * TRUE_AU_TO_GPC,
+            orbitalRadius: planet.a * TRUE_AU_TO_GPC,
+            trueRadius: planet.radius_km * KM_TO_GPC,
+          };
+        });
+      }, []).map(({ planet, x, y, z, orbitalRadius, trueRadius }) => {
+        // Display sizes (recalculated when camera distance changes)
         const planetDisplaySize = trueRadius * (1 + FINDER_SCALE * 1e4);
-
-        // Orbit ring - true scale but visible thickness
         const orbitThickness = Math.max(orbitalRadius * 0.001, trueRadius * 10);
 
         return (
@@ -2915,8 +2914,8 @@ const MultiScaleUniverse: React.FC<{
     onCameraDistanceChange(dist);
     setCamDist(dist);
 
-    // Update time for planet orbits
-    setTime(state.clock.elapsedTime * 50);
+    // Planet positions are now based on actual current date (calculated once)
+    // No animation - planets are where they ACTUALLY ARE right now
   });
 
   return (
