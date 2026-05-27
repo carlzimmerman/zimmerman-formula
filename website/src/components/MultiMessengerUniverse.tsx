@@ -3104,16 +3104,58 @@ const MultiMessengerUniverse: React.FC = () => {
       <PlayerHUD />
       <MultiplayerHUD />
 
-      {/* Hide legend when in Player Mode */}
+      {/* Clickable layer legend - Hide when in Player Mode */}
       {!isPlayerMode && (
         <div className="absolute bottom-4 right-4 bg-slate-900/95 p-2 rounded-lg border border-slate-700 z-10 text-[10px] space-y-0.5">
-          <div className="flex items-center gap-1 text-yellow-400"><span className="w-1.5 h-1.5 rounded-full bg-yellow-400" />Solar System</div>
-          <div className="flex items-center gap-1 text-blue-400"><span className="w-1.5 h-1.5 rounded-full bg-blue-400" />Milky Way</div>
-          <div className="flex items-center gap-1 text-green-400"><span className="w-1.5 h-1.5 rounded-full bg-green-400" />Local Group</div>
-          <div className="flex items-center gap-1 text-orange-400"><span className="w-1.5 h-1.5 rounded-full bg-orange-400" />Structures</div>
-          <div className="flex items-center gap-1 text-fuchsia-400"><span className="w-1.5 h-1.5 rounded-full bg-fuchsia-400" />High-z / Ly-α</div>
-          <div className="flex items-center gap-1 text-cyan-400"><span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />BAO 150 Mpc</div>
-          <div className="flex items-center gap-1 text-amber-400"><span className="w-1.5 h-1.5 rounded-full bg-amber-400" />kSZ Outflows</div>
+          <div
+            className={`flex items-center gap-1 cursor-pointer hover:bg-slate-800 px-1 rounded transition-opacity ${filters.solarSystem ? 'text-yellow-400' : 'text-yellow-400/30'}`}
+            onClick={() => setFilters(prev => ({ ...prev, solarSystem: !prev.solarSystem }))}
+          >
+            <span className={`w-1.5 h-1.5 rounded-full ${filters.solarSystem ? 'bg-yellow-400' : 'bg-yellow-400/30 ring-1 ring-yellow-400/50'}`} />
+            Solar System
+          </div>
+          <div
+            className={`flex items-center gap-1 cursor-pointer hover:bg-slate-800 px-1 rounded transition-opacity ${filters.milkyWay ? 'text-blue-400' : 'text-blue-400/30'}`}
+            onClick={() => setFilters(prev => ({ ...prev, milkyWay: !prev.milkyWay }))}
+          >
+            <span className={`w-1.5 h-1.5 rounded-full ${filters.milkyWay ? 'bg-blue-400' : 'bg-blue-400/30 ring-1 ring-blue-400/50'}`} />
+            Milky Way
+          </div>
+          <div
+            className={`flex items-center gap-1 cursor-pointer hover:bg-slate-800 px-1 rounded transition-opacity ${filters.localGroup ? 'text-green-400' : 'text-green-400/30'}`}
+            onClick={() => setFilters(prev => ({ ...prev, localGroup: !prev.localGroup }))}
+          >
+            <span className={`w-1.5 h-1.5 rounded-full ${filters.localGroup ? 'bg-green-400' : 'bg-green-400/30 ring-1 ring-green-400/50'}`} />
+            Local Group
+          </div>
+          <div
+            className={`flex items-center gap-1 cursor-pointer hover:bg-slate-800 px-1 rounded transition-opacity ${filters.structures ? 'text-orange-400' : 'text-orange-400/30'}`}
+            onClick={() => setFilters(prev => ({ ...prev, structures: !prev.structures }))}
+          >
+            <span className={`w-1.5 h-1.5 rounded-full ${filters.structures ? 'bg-orange-400' : 'bg-orange-400/30 ring-1 ring-orange-400/50'}`} />
+            Structures
+          </div>
+          <div
+            className={`flex items-center gap-1 cursor-pointer hover:bg-slate-800 px-1 rounded transition-opacity ${filters.highZ ? 'text-fuchsia-400' : 'text-fuchsia-400/30'}`}
+            onClick={() => setFilters(prev => ({ ...prev, highZ: !prev.highZ }))}
+          >
+            <span className={`w-1.5 h-1.5 rounded-full ${filters.highZ ? 'bg-fuchsia-400' : 'bg-fuchsia-400/30 ring-1 ring-fuchsia-400/50'}`} />
+            High-z / Ly-α
+          </div>
+          <div
+            className={`flex items-center gap-1 cursor-pointer hover:bg-slate-800 px-1 rounded transition-opacity ${filters.baoSpheres ? 'text-cyan-400' : 'text-cyan-400/30'}`}
+            onClick={() => setFilters(prev => ({ ...prev, baoSpheres: !prev.baoSpheres }))}
+          >
+            <span className={`w-1.5 h-1.5 rounded-full ${filters.baoSpheres ? 'bg-cyan-400' : 'bg-cyan-400/30 ring-1 ring-cyan-400/50'}`} />
+            BAO 150 Mpc
+          </div>
+          <div
+            className={`flex items-center gap-1 cursor-pointer hover:bg-slate-800 px-1 rounded transition-opacity ${filters.kszVectors ? 'text-amber-400' : 'text-amber-400/30'}`}
+            onClick={() => setFilters(prev => ({ ...prev, kszVectors: !prev.kszVectors }))}
+          >
+            <span className={`w-1.5 h-1.5 rounded-full ${filters.kszVectors ? 'bg-amber-400' : 'bg-amber-400/30 ring-1 ring-amber-400/50'}`} />
+            kSZ Outflows
+          </div>
         </div>
       )}
 

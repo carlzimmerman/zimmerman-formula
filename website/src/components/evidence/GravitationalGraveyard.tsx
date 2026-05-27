@@ -289,12 +289,8 @@ export function GravitationalGraveyard({
     return events.filter(e => e.type === selectedType);
   }, [events, selectedType]);
 
-  // Slow rotation
-  useFrame(({ clock }) => {
-    if (groupRef.current) {
-      groupRef.current.rotation.y = clock.getElapsedTime() * 0.02;
-    }
-  });
+  // Static - no rotation (GW events should remain spatially fixed)
+  // If you want optional rotation, pass a rotationSpeed prop
 
   if (loading) return null;
 
