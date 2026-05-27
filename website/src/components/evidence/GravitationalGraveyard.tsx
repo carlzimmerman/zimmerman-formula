@@ -238,7 +238,14 @@ export function GravitationalGraveyard({
       .then(data => {
         // Transform raw events to visualization format
         const transformedEvents: GWEvent[] = (data.events || [])
-          .filter((e: GWEventRaw) => e.position_gpc !== null)
+          .filter((e: GWEventRaw) => {
+            // Filter out events without valid positions
+            const pos = e.position_gpc;
+            return pos !== null && pos !== undefined &&
+                   typeof pos.x === 'number' &&
+                   typeof pos.y === 'number' &&
+                   typeof pos.z === 'number';
+          })
           .map((e: GWEventRaw) => {
             // Determine nearest boundary from nearest_vertex
             const vertexSigns = [
@@ -248,7 +255,7 @@ export function GravitationalGraveyard({
             const vertex = vertexSigns[e.nearest_vertex] || [0, 0, 0];
 
             // Find which axis is closest to boundary
-            const pos = e.position_gpc!;
+            const pos = e.position_gpc as { x: number; y: number; z: number };
             const distX = Math.min(HALF_BOX - Math.abs(pos.x), Math.abs(pos.x) + HALF_BOX);
             const distY = Math.min(HALF_BOX - Math.abs(pos.y), Math.abs(pos.y) + HALF_BOX);
             const distZ = Math.min(HALF_BOX - Math.abs(pos.z), Math.abs(pos.z) + HALF_BOX);
@@ -268,7 +275,7 @@ export function GravitationalGraveyard({
               total_mass: e.mfinal_solar,
               distance_gpc: e.distance_gpc,
               snr: e.snr,
-              position: e.position_gpc!,
+              position: pos,
               boundary_distance: e.boundary_distance_gpc,
               nearest_boundary,
             };
