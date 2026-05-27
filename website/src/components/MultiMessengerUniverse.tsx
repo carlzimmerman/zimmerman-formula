@@ -26,6 +26,17 @@ import { CosmicWindShader, CosmicWindHUD } from './evidence/CosmicWindShader';
 import { DESIGalaxies, DESIGalaxiesHUD } from './evidence/DESIGalaxies';
 import { GalaxyClusterMap, ClusterMapHUD } from './evidence/GalaxyClusterMap';
 
+// Deep Universe Layers (Cosmic Web, Voids, Velocity Field, VPOS)
+import { CosmicWeb, CosmicWebHUD } from './evidence/CosmicWeb';
+import { CrystallineVoids, CrystallineVoidsHUD } from './evidence/CrystallineVoids';
+import { VelocityRivers, VelocityRiversHUD } from './evidence/VelocityRivers';
+import { VPOSSatellites, VPOSSatellitesHUD } from './evidence/VPOSSatellites';
+
+// CMB Axis of Evil, PTA Interferometer, MOND Lensing (Directives EEEE, FFFF, GGGG)
+import { CMBAxisOfEvil, CMBAxisOfEvilHUD } from './evidence/CMBAxisOfEvil';
+import { PTAInterferometer, PTAInterferometerHUD } from './evidence/PTAInterferometer';
+import { MONDLensingShader, MONDLensingHUD } from './evidence/MONDLensingShader';
+
 // Performance Monitoring
 import { MinimalFPS } from './PerformanceHUD';
 
@@ -2080,6 +2091,22 @@ interface FilterPanelProps {
   onToggleDESI: () => void;
   isClusterMapActive: boolean;
   onToggleClusterMap: () => void;
+  // Deep Universe Layers
+  isCosmicWebActive: boolean;
+  onToggleCosmicWeb: () => void;
+  isVoidsActive: boolean;
+  onToggleVoids: () => void;
+  isVelocityRiversActive: boolean;
+  onToggleVelocityRivers: () => void;
+  isVPOSActive: boolean;
+  onToggleVPOS: () => void;
+  // CMB/GW Evidence Layers (Directives EEEE, FFFF, GGGG)
+  isCMBAxisOfEvilActive: boolean;
+  onToggleCMBAxisOfEvil: () => void;
+  isPTAActive: boolean;
+  onTogglePTA: () => void;
+  isMONDLensingActive: boolean;
+  onToggleMONDLensing: () => void;
 }
 
 const FilterPanel: React.FC<FilterPanelProps> = ({
@@ -2089,7 +2116,11 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
   isParityActive, onToggleParity, isAxisOfEvilActive, onToggleAxisOfEvil, isDarkFlowActive, onToggleDarkFlow,
   isGWGraveyardActive, onToggleGWGraveyard, isMONDActive, onToggleMOND, isRadioGhostsActive, onToggleRadioGhosts,
   isWideBinariesActive, onToggleWideBinaries, isFRBActive, onToggleFRB, isKSZActive, onToggleKSZ,
-  isDESIActive, onToggleDESI, isClusterMapActive, onToggleClusterMap
+  isDESIActive, onToggleDESI, isClusterMapActive, onToggleClusterMap,
+  isCosmicWebActive, onToggleCosmicWeb, isVoidsActive, onToggleVoids,
+  isVelocityRiversActive, onToggleVelocityRivers, isVPOSActive, onToggleVPOS,
+  isCMBAxisOfEvilActive, onToggleCMBAxisOfEvil, isPTAActive, onTogglePTA,
+  isMONDLensingActive, onToggleMONDLensing
 }) => {
   const toggleFilter = (key: string) => setFilters(prev => ({ ...prev, [key]: !prev[key] }));
 
@@ -2108,12 +2139,14 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
   const isOtherModeRunning = isTourRunning || isGWRunning;
 
   return (
-    <div className="absolute top-16 left-4 bg-slate-900/95 p-4 rounded-lg border border-slate-700 z-10 backdrop-blur-sm max-w-[260px]">
-      <h3 className="text-white font-bold mb-3">Controls</h3>
+    <div className="absolute top-16 left-4 bg-slate-900/95 p-4 rounded-lg border border-slate-700 z-10 backdrop-blur-sm max-w-[260px] max-h-[calc(100vh-120px)] flex flex-col">
+      <h3 className="text-white font-bold mb-3 flex-shrink-0">Controls</h3>
 
-      {/* Evidence Layers (Directives QQQQ, RRRR, SSSS) */}
-      <div className="mb-3 space-y-1.5">
-        <label className="text-cyan-400 text-xs font-bold block">TOPOLOGY EVIDENCE</label>
+      {/* Scrollable Evidence Layers Container */}
+      <div className="overflow-y-auto flex-1 pr-1 mb-3 scrollbar-thin scrollbar-thumb-slate-600 scrollbar-track-transparent" style={{ maxHeight: '45vh' }}>
+        {/* Evidence Layers (Directives QQQQ, RRRR, SSSS) */}
+        <div className="mb-3 space-y-1.5">
+          <label className="text-cyan-400 text-xs font-bold block sticky top-0 bg-slate-900/95 py-1 -mt-1">TOPOLOGY EVIDENCE</label>
 
         {/* CMB Matched Circles (Phase 4) */}
         <button
@@ -2284,6 +2317,118 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
         </button>
       </div>
 
+      {/* Deep Universe Layers (Cosmic Web, Voids, Velocity, VPOS) */}
+      <div className="mb-3 space-y-1.5">
+        <label className="text-emerald-400 text-xs font-bold block">DEEP UNIVERSE</label>
+
+        {/* Cosmic Web */}
+        <button
+          onClick={onToggleCosmicWeb}
+          disabled={isOtherModeRunning || isPlayerMode}
+          className={`w-full px-3 py-1.5 text-xs uppercase tracking-wider transition-all border rounded flex items-center justify-between ${
+            isCosmicWebActive
+              ? 'bg-blue-900/50 text-blue-400 border-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.3)]'
+              : 'bg-slate-800/50 text-slate-400 border-slate-600 hover:border-blue-500/50 hover:text-blue-300'
+          }`}
+        >
+          <span>Cosmic Web</span>
+          <span className={`w-2 h-2 rounded-full ${isCosmicWebActive ? 'bg-blue-400' : 'bg-slate-600'}`} />
+        </button>
+
+        {/* Crystalline Voids */}
+        <button
+          onClick={onToggleVoids}
+          disabled={isOtherModeRunning || isPlayerMode}
+          className={`w-full px-3 py-1.5 text-xs uppercase tracking-wider transition-all border rounded flex items-center justify-between ${
+            isVoidsActive
+              ? 'bg-purple-900/50 text-purple-400 border-purple-500 shadow-[0_0_10px_rgba(168,85,247,0.3)]'
+              : 'bg-slate-800/50 text-slate-400 border-slate-600 hover:border-purple-500/50 hover:text-purple-300'
+          }`}
+        >
+          <span>Cosmic Voids</span>
+          <span className={`w-2 h-2 rounded-full ${isVoidsActive ? 'bg-purple-400' : 'bg-slate-600'}`} />
+        </button>
+
+        {/* Velocity Rivers */}
+        <button
+          onClick={onToggleVelocityRivers}
+          disabled={isOtherModeRunning || isPlayerMode}
+          className={`w-full px-3 py-1.5 text-xs uppercase tracking-wider transition-all border rounded flex items-center justify-between ${
+            isVelocityRiversActive
+              ? 'bg-orange-900/50 text-orange-400 border-orange-500 shadow-[0_0_10px_rgba(249,115,22,0.3)]'
+              : 'bg-slate-800/50 text-slate-400 border-slate-600 hover:border-orange-500/50 hover:text-orange-300'
+          }`}
+        >
+          <span>Velocity Rivers</span>
+          <span className={`w-2 h-2 rounded-full ${isVelocityRiversActive ? 'bg-orange-400' : 'bg-slate-600'}`} />
+        </button>
+
+        {/* VPOS Satellites */}
+        <button
+          onClick={onToggleVPOS}
+          disabled={isOtherModeRunning || isPlayerMode}
+          className={`w-full px-3 py-1.5 text-xs uppercase tracking-wider transition-all border rounded flex items-center justify-between ${
+            isVPOSActive
+              ? 'bg-emerald-900/50 text-emerald-400 border-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.3)]'
+              : 'bg-slate-800/50 text-slate-400 border-slate-600 hover:border-emerald-500/50 hover:text-emerald-300'
+          }`}
+        >
+          <span>VPOS Satellites</span>
+          <span className={`w-2 h-2 rounded-full ${isVPOSActive ? 'bg-emerald-400' : 'bg-slate-600'}`} />
+        </button>
+        </div>
+
+      {/* CMB/GW Evidence Layers (Directives EEEE, FFFF, GGGG) */}
+      <div className="mb-3 space-y-1.5">
+        <label className="text-rose-400 text-xs font-bold block">CMB & GW EVIDENCE</label>
+
+        {/* CMB Axis of Evil (Planck multipole alignment) */}
+        <button
+          onClick={onToggleCMBAxisOfEvil}
+          disabled={isOtherModeRunning || isPlayerMode}
+          className={`w-full px-3 py-1.5 text-xs uppercase tracking-wider transition-all border rounded flex items-center justify-between ${
+            isCMBAxisOfEvilActive
+              ? 'bg-amber-900/50 text-amber-400 border-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.3)]'
+              : 'bg-slate-800/50 text-slate-400 border-slate-600 hover:border-amber-500/50 hover:text-amber-300'
+          }`}
+        >
+          <span>CMB Axis of Evil</span>
+          <span className={`w-2 h-2 rounded-full ${isCMBAxisOfEvilActive ? 'bg-amber-400' : 'bg-slate-600'}`} />
+        </button>
+
+        {/* PTA Interferometer (NANOGrav GWB) */}
+        <button
+          onClick={onTogglePTA}
+          disabled={isOtherModeRunning || isPlayerMode}
+          className={`w-full px-3 py-1.5 text-xs uppercase tracking-wider transition-all border rounded flex items-center justify-between ${
+            isPTAActive
+              ? 'bg-teal-900/50 text-teal-400 border-teal-500 shadow-[0_0_10px_rgba(20,184,166,0.3)]'
+              : 'bg-slate-800/50 text-slate-400 border-slate-600 hover:border-teal-500/50 hover:text-teal-300'
+          }`}
+        >
+          <span>PTA Interferometer</span>
+          <span className={`w-2 h-2 rounded-full ${isPTAActive ? 'bg-teal-400' : 'bg-slate-600'}`} />
+        </button>
+
+        {/* MOND Strong Lensing (JWST COSMOS-Web) */}
+        <button
+          onClick={onToggleMONDLensing}
+          disabled={isOtherModeRunning || isPlayerMode}
+          className={`w-full px-3 py-1.5 text-xs uppercase tracking-wider transition-all border rounded flex items-center justify-between ${
+            isMONDLensingActive
+              ? 'bg-lime-900/50 text-lime-400 border-lime-500 shadow-[0_0_10px_rgba(132,204,22,0.3)]'
+              : 'bg-slate-800/50 text-slate-400 border-slate-600 hover:border-lime-500/50 hover:text-lime-300'
+          }`}
+        >
+          <span>JWST MOND Lensing</span>
+          <span className={`w-2 h-2 rounded-full ${isMONDLensingActive ? 'bg-lime-400' : 'bg-slate-600'}`} />
+        </button>
+        </div>
+      </div>
+      {/* End Scrollable Container */}
+
+      {/* Fixed Action Buttons */}
+      <div className="flex-shrink-0 border-t border-slate-700 pt-3">
       {/* Player Mode Button (Directive WWW) - Primary action */}
       <button
         onClick={onStartPlayerMode}
@@ -2404,6 +2549,8 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
       <div className="mt-3 pt-2 border-t border-slate-700 text-slate-500 text-[10px]">
         Scroll to zoom from planets to 20.6 Gpc
       </div>
+      </div>
+      {/* End Fixed Action Buttons */}
     </div>
   );
 };
@@ -3010,9 +3157,18 @@ const Scene: React.FC<{
   // Survey data layers
   isDESIActive: boolean;
   isClusterMapActive: boolean;
+  // Deep Universe layers
+  isCosmicWebActive: boolean;
+  isVoidsActive: boolean;
+  isVelocityRiversActive: boolean;
+  isVPOSActive: boolean;
+  // CMB/GW Evidence layers (Directives EEEE, FFFF, GGGG)
+  isCMBAxisOfEvilActive: boolean;
+  isPTAActive: boolean;
+  isMONDLensingActive: boolean;
   // Performance monitoring
   onFPSUpdate: (fps: number) => void;
-}> = ({ filters, isRotating, showLabels, isTourRunning, onTourComplete, onWaypointChange, onCameraDistanceChange, onBoundaryCross, onParityFlip, isGWRunning, selectedGWEvent, onGWProgressUpdate, isPlayerMode, isCMBProofActive, isParityActive, isAxisOfEvilActive, isDarkFlowActive, isGWGraveyardActive, isMONDActive, isRadioGhostsActive, isWideBinariesActive, isFRBActive, isKSZActive, isDESIActive, isClusterMapActive, onFPSUpdate }) => {
+}> = ({ filters, isRotating, showLabels, isTourRunning, onTourComplete, onWaypointChange, onCameraDistanceChange, onBoundaryCross, onParityFlip, isGWRunning, selectedGWEvent, onGWProgressUpdate, isPlayerMode, isCMBProofActive, isParityActive, isAxisOfEvilActive, isDarkFlowActive, isGWGraveyardActive, isMONDActive, isRadioGhostsActive, isWideBinariesActive, isFRBActive, isKSZActive, isDESIActive, isClusterMapActive, isCosmicWebActive, isVoidsActive, isVelocityRiversActive, isVPOSActive, isCMBAxisOfEvilActive, isPTAActive, isMONDLensingActive, onFPSUpdate }) => {
   const controlsRef = useRef<any>(null);
 
   return (
@@ -3053,6 +3209,17 @@ const Scene: React.FC<{
       {/* Survey data layers */}
       {isDESIActive && <DESIGalaxies />}
       {isClusterMapActive && <GalaxyClusterMap visible={true} />}
+
+      {/* Deep Universe layers */}
+      {isCosmicWebActive && <CosmicWeb visible={true} />}
+      {isVoidsActive && <CrystallineVoids visible={true} />}
+      {isVelocityRiversActive && <VelocityRivers visible={true} />}
+      {isVPOSActive && <VPOSSatellites visible={true} />}
+
+      {/* CMB/GW Evidence layers (Directives EEEE, FFFF, GGGG) */}
+      {isCMBAxisOfEvilActive && <CMBAxisOfEvil visible={true} />}
+      {isPTAActive && <PTAInterferometer visible={true} />}
+      {isMONDLensingActive && <MONDLensingShader visible={true} />}
 
       <CinematicCamera
         isTourRunning={isTourRunning}
@@ -3147,6 +3314,17 @@ const MultiMessengerUniverse: React.FC = () => {
   // Survey data layers
   const [isDESIActive, setIsDESIActive] = useState(false);
   const [isClusterMapActive, setIsClusterMapActive] = useState(false);
+
+  // Deep Universe layers (Cosmic Web, Voids, Velocity, VPOS)
+  const [isCosmicWebActive, setIsCosmicWebActive] = useState(false);
+  const [isVoidsActive, setIsVoidsActive] = useState(false);
+  const [isVelocityRiversActive, setIsVelocityRiversActive] = useState(false);
+  const [isVPOSActive, setIsVPOSActive] = useState(false);
+
+  // CMB/GW Evidence layers (Directives EEEE, FFFF, GGGG)
+  const [isCMBAxisOfEvilActive, setIsCMBAxisOfEvilActive] = useState(false);
+  const [isPTAActive, setIsPTAActive] = useState(false);
+  const [isMONDLensingActive, setIsMONDLensingActive] = useState(false);
 
   // Onboarding overlay state (shows scroll instructions on first visit)
   const [showOnboarding, setShowOnboarding] = useState(true);
@@ -3319,6 +3497,20 @@ const MultiMessengerUniverse: React.FC = () => {
         onToggleDESI={() => setIsDESIActive(p => !p)}
         isClusterMapActive={isClusterMapActive}
         onToggleClusterMap={() => setIsClusterMapActive(p => !p)}
+        isCosmicWebActive={isCosmicWebActive}
+        onToggleCosmicWeb={() => setIsCosmicWebActive(p => !p)}
+        isVoidsActive={isVoidsActive}
+        onToggleVoids={() => setIsVoidsActive(p => !p)}
+        isVelocityRiversActive={isVelocityRiversActive}
+        onToggleVelocityRivers={() => setIsVelocityRiversActive(p => !p)}
+        isVPOSActive={isVPOSActive}
+        onToggleVPOS={() => setIsVPOSActive(p => !p)}
+        isCMBAxisOfEvilActive={isCMBAxisOfEvilActive}
+        onToggleCMBAxisOfEvil={() => setIsCMBAxisOfEvilActive(p => !p)}
+        isPTAActive={isPTAActive}
+        onTogglePTA={() => setIsPTAActive(p => !p)}
+        isMONDLensingActive={isMONDLensingActive}
+        onToggleMONDLensing={() => setIsMONDLensingActive(p => !p)}
       />}
 
       {!isPlayerMode && <div className="absolute top-16 right-4 bg-slate-900/95 p-3 rounded-lg border border-slate-700 z-10 backdrop-blur-sm max-w-[200px]">
@@ -3365,6 +3557,17 @@ const MultiMessengerUniverse: React.FC = () => {
       {isDESIActive && <DESIGalaxiesHUD visible={isDESIActive} />}
       {isClusterMapActive && <ClusterMapHUD visible={isClusterMapActive} comaMembers={800} virgoMembers={600} shapleyMembers={900} />}
 
+      {/* Deep Universe HUDs */}
+      {isCosmicWebActive && <CosmicWebHUD visible={isCosmicWebActive} galaxyCount={500000} sourceCounts={{ BGS: 50000, LRG: 200000, ELG: 200000, QSO: 50000 }} />}
+      {isVoidsActive && <CrystallineVoidsHUD visible={isVoidsActive} totalVoids={321} literatureVoids={21} syntheticVoids={300} bccScore={0.0} />}
+      {isVelocityRiversActive && <VelocityRiversHUD visible={isVelocityRiversActive} totalGalaxies={5026} bulkFlowVelocity={254} bulkFlowDirection={{ l: 295, b: 14 }} />}
+      {isVPOSActive && <VPOSSatellitesHUD visible={isVPOSActive} totalSatellites={17} onPlaneCount={14} offPlaneCount={3} onPlaneFraction={0.824} orbitalPoleAlignment={0.449} />}
+
+      {/* CMB/GW Evidence HUDs (Directives EEEE, FFFF, GGGG) */}
+      {isCMBAxisOfEvilActive && <CMBAxisOfEvilHUD visible={isCMBAxisOfEvilActive} alignmentAngle={1.36} probabilityRandom={0.001} quadrupoleGalactic={{ l: 240, b: 63 }} octupoleGalactic={{ l: 237, b: 63 }} />}
+      {isPTAActive && <PTAInterferometerHUD visible={isPTAActive} totalPulsars={68} gwbAmplitude={2.4e-15} gwbSignificance="3.5σ" standingWaveModes={5} />}
+      {isMONDLensingActive && <MONDLensingHUD visible={isMONDLensingActive} totalSystems={18} mondValidatesCount={10} validationRate={55.6} a0={1.2e-10} />}
+
       <Canvas gl={{ antialias: true, logarithmicDepthBuffer: true }} dpr={[1, 2]}>
         <Scene
           filters={filters}
@@ -3400,6 +3603,13 @@ const MultiMessengerUniverse: React.FC = () => {
           isKSZActive={isKSZActive}
           isDESIActive={isDESIActive}
           isClusterMapActive={isClusterMapActive}
+          isCosmicWebActive={isCosmicWebActive}
+          isVoidsActive={isVoidsActive}
+          isVelocityRiversActive={isVelocityRiversActive}
+          isVPOSActive={isVPOSActive}
+          isCMBAxisOfEvilActive={isCMBAxisOfEvilActive}
+          isPTAActive={isPTAActive}
+          isMONDLensingActive={isMONDLensingActive}
           onFPSUpdate={setFps}
         />
       </Canvas>
