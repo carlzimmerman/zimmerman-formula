@@ -361,9 +361,25 @@ export function GraveyardHUD({
       }}>
         <div>Total Events: {events.length}</div>
         <div>Clustering Ratio: {clusteringRatio.toFixed(2)}</div>
-        <div style={{ marginTop: '5px', fontSize: '10px', color: '#666' }}>
-          Source: LIGO-Virgo-KAGRA GWTC-4
+      </div>
+
+      {/* Event Type Legend */}
+      <div style={{
+        marginTop: '10px',
+        paddingTop: '10px',
+        borderTop: '1px solid #444',
+        fontSize: '10px',
+      }}>
+        <div style={{ marginBottom: '5px', color: '#888' }}>Event Types:</div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+          <span><span style={{ color: TYPE_COLORS.BBH }}>●</span> BBH = Binary Black Hole</span>
+          <span><span style={{ color: TYPE_COLORS.BNS }}>●</span> BNS = Binary Neutron Star</span>
+          <span><span style={{ color: TYPE_COLORS.NSBH }}>●</span> NSBH = Neutron Star + Black Hole</span>
         </div>
+      </div>
+
+      <div style={{ marginTop: '8px', fontSize: '10px', color: '#666' }}>
+        Source: LIGO-Virgo-KAGRA GWTC-4
       </div>
     </div>
   );

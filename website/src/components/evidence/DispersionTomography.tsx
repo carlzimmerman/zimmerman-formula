@@ -294,10 +294,40 @@ export function DispersionHUD({
         <div style={{ marginBottom: '5px' }}>
           Max DM: {maxDM} pc/cm³
         </div>
-        <div style={{ fontSize: '9px', color: '#666', marginTop: '5px' }}>
-          DM along axes vs diagonals
-          <br />tests cubic geometry
+      </div>
+
+      {/* DM Color Legend */}
+      <div style={{
+        marginTop: '10px',
+        paddingTop: '10px',
+        borderTop: '1px solid #444',
+        fontSize: '10px',
+      }}>
+        <div style={{ marginBottom: '5px', color: '#888' }}>Dispersion Measure:</div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
+          <span><span style={{ color: '#4ECDC4' }}>●</span> Low DM (&lt;200 pc/cm³)</span>
+          <span><span style={{ color: '#F39C12' }}>●</span> Medium DM (200-600)</span>
+          <span><span style={{ color: '#FF6B6B' }}>●</span> High DM (&gt;600 pc/cm³)</span>
         </div>
+      </div>
+
+      {/* Direction Legend */}
+      <div style={{
+        marginTop: '8px',
+        fontSize: '10px',
+      }}>
+        <div style={{ marginBottom: '5px', color: '#888' }}>Sightline Direction:</div>
+        <div style={{ display: 'flex', gap: '8px' }}>
+          <span style={{ color: '#FF4444' }}>— X</span>
+          <span style={{ color: '#44FF44' }}>— Y</span>
+          <span style={{ color: '#4444FF' }}>— Z</span>
+        </div>
+      </div>
+
+      <div style={{ fontSize: '9px', color: '#666', marginTop: '8px' }}>
+        DM along axes vs diagonals
+        <br />tests cubic geometry
+        <br />Data: CHIME / DSA-110 / ASKAP
       </div>
     </div>
   );

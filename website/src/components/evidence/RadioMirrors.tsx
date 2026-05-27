@@ -392,12 +392,43 @@ export function RadioGhostHUD({
         </div>
       </div>
 
+      {/* Source Type Legend */}
       <div style={{
         marginTop: '10px',
+        paddingTop: '10px',
+        borderTop: '1px solid #444',
         fontSize: '10px',
-        color: '#666'
       }}>
-        LOFAR / MeerKAT / ASKAP
+        <div style={{ marginBottom: '5px', color: '#888' }}>Source Types:</div>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+          <span style={{ color: '#FF6B6B' }}>● ORC</span>
+          <span style={{ color: '#4ECDC4' }}>● GRG</span>
+          <span style={{ color: '#9B59B6' }}>● Relic</span>
+          <span style={{ color: '#3498DB' }}>● FR-I</span>
+          <span style={{ color: '#E74C3C' }}>● FR-II</span>
+        </div>
+      </div>
+
+      {/* Mirror Line Legend */}
+      <div style={{
+        marginTop: '8px',
+        fontSize: '10px',
+      }}>
+        <div style={{ marginBottom: '5px', color: '#888' }}>Mirror Axes:</div>
+        <div style={{ display: 'flex', gap: '8px' }}>
+          <span style={{ color: '#FF4444' }}>— X</span>
+          <span style={{ color: '#44FF44' }}>— Y</span>
+          <span style={{ color: '#4444FF' }}>— Z</span>
+          <span style={{ color: '#FF44FF' }}>— INV</span>
+        </div>
+      </div>
+
+      <div style={{
+        marginTop: '8px',
+        fontSize: '9px',
+        color: '#555'
+      }}>
+        Data: LOFAR / MeerKAT / ASKAP
       </div>
     </div>
   );

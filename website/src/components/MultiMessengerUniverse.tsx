@@ -2863,7 +2863,7 @@ const MultiMessengerUniverse: React.FC = () => {
     localGroup: true,
     structures: true,
     highZ: true,
-    survey: true,
+    survey: false,  // DISABLED: Was 30,000 SIMULATED random positions (not real data). Use DESI Galaxies toggle instead for real data.
     lymanAlpha: false,  // Off by default (can clutter at cosmic scale)
     baoSpheres: false,  // Off by default (toggle to show)
     kszVectors: false,  // Off by default (toggle to show)
@@ -2895,6 +2895,9 @@ const MultiMessengerUniverse: React.FC = () => {
 
   // Survey data layers
   const [isDESIActive, setIsDESIActive] = useState(false);
+
+  // Onboarding overlay state (shows scroll instructions on first visit)
+  const [showOnboarding, setShowOnboarding] = useState(true);
 
   // Performance monitoring
   const [fps, setFps] = useState(60);
@@ -2932,7 +2935,31 @@ const MultiMessengerUniverse: React.FC = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isPlayerMode, stopPlayerMode]);
 
-  const handleWheel = useCallback((e: React.WheelEvent) => e.stopPropagation(), []);
+  const handleWheel = useCallback((e: React.WheelEvent) => {
+    e.stopPropagation();
+    // Dismiss onboarding on scroll
+    if (showOnboarding) setShowOnboarding(false);
+  }, [showOnboarding]);
+
+  // Auto-dismiss onboarding after 8 seconds
+  useEffect(() => {
+    if (showOnboarding) {
+      const timer = setTimeout(() => setShowOnboarding(false), 8000);
+      return () => clearTimeout(timer);
+    }
+  }, [showOnboarding]);
+
+  // Dismiss onboarding on any click or key
+  useEffect(() => {
+    if (!showOnboarding) return;
+    const dismiss = () => setShowOnboarding(false);
+    window.addEventListener('click', dismiss);
+    window.addEventListener('keydown', dismiss);
+    return () => {
+      window.removeEventListener('click', dismiss);
+      window.removeEventListener('keydown', dismiss);
+    };
+  }, [showOnboarding]);
   const handleStartTour = useCallback(() => {
     setIsTourRunning(true);
     setIsRotating(false);
@@ -3132,6 +3159,27 @@ const MultiMessengerUniverse: React.FC = () => {
       <VesselSelector />
       <PlayerHUD />
       <MultiplayerHUD />
+
+      {/* Onboarding Overlay - shows scroll instructions on first load */}
+      {showOnboarding && !isPlayerMode && (
+        <div className="absolute inset-0 flex items-center justify-center z-50 pointer-events-none">
+          <div className="bg-black/80 backdrop-blur-md border border-cyan-500/50 rounded-xl p-8 max-w-md text-center animate-pulse">
+            <div className="text-cyan-400 text-6xl mb-4">⟳</div>
+            <h2 className="text-white text-2xl font-bold mb-3">You are here</h2>
+            <p className="text-slate-300 text-lg mb-4">
+              Starting at the <span className="text-yellow-400 font-bold">Milky Way</span>
+            </p>
+            <div className="flex items-center justify-center gap-3 text-cyan-400 text-xl mb-4">
+              <span className="text-3xl">↕</span>
+              <span>Scroll to zoom out to the cosmos</span>
+            </div>
+            <div className="text-slate-500 text-sm space-y-1">
+              <p><span className="text-cyan-400">Drag</span> to rotate • <span className="text-cyan-400">Scroll</span> to zoom</p>
+              <p className="text-xs mt-2 opacity-70">Click anywhere to dismiss</p>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Clickable layer legend - Hide when in Player Mode */}
       {!isPlayerMode && (

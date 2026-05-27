@@ -485,12 +485,29 @@ export function WideBinaryHUD({
         <div style={{ marginBottom: '5px' }}>
           <span style={{ color: '#9B59B6' }}>Newtonian boost:</span> {meanBoostNewtonian.toFixed(2)}x
         </div>
-        <div style={{ marginTop: '8px', fontSize: '10px', color: '#FFD700' }}>
-          a₀ = 1.2×10⁻¹⁰ m/s²
+      </div>
+
+      {/* MOND Regime Legend */}
+      <div style={{
+        marginTop: '10px',
+        paddingTop: '10px',
+        borderTop: '1px solid #444',
+        fontSize: '10px',
+      }}>
+        <div style={{ marginBottom: '5px', color: '#888' }}>Acceleration Regimes:</div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
+          <span><span style={{ color: REGIME_COLORS.deep_mond }}>●</span> Deep MOND (a ≪ a₀)</span>
+          <span><span style={{ color: REGIME_COLORS.transitional }}>●</span> Transitional (a ~ a₀)</span>
+          <span><span style={{ color: REGIME_COLORS.newtonian }}>●</span> Newtonian (a ≫ a₀)</span>
         </div>
-        <div style={{ fontSize: '9px', color: '#666', marginTop: '3px' }}>
-          T³ volume ➔ local gravity
-        </div>
+      </div>
+
+      <div style={{ marginTop: '8px', fontSize: '10px', color: '#FFD700' }}>
+        a₀ = 1.2×10⁻¹⁰ m/s²
+      </div>
+      <div style={{ fontSize: '9px', color: '#666', marginTop: '3px' }}>
+        T³ volume ➔ local gravity
+        <br />Data: Gaia DR3 (Chae 2023/2024)
       </div>
     </div>
   );

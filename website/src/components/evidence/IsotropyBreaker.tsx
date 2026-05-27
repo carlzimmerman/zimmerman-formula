@@ -73,14 +73,20 @@ const AXIS_OF_EVIL = {
 // HELPER: Convert Galactic to Cartesian
 // =============================================================================
 
+/**
+ * Convert Galactic coordinates to Cartesian (IAU convention)
+ * x → toward Galactic Center (l=0°, b=0°)
+ * y → direction of Galactic rotation (l=90°, b=0°)
+ * z → toward North Galactic Pole (b=90°)
+ */
 function galacticToCartesian(l_deg: number, b_deg: number, distance: number): THREE.Vector3 {
   const l_rad = (l_deg * Math.PI) / 180;
   const b_rad = (b_deg * Math.PI) / 180;
 
   return new THREE.Vector3(
-    distance * Math.cos(b_rad) * Math.cos(l_rad),
-    distance * Math.sin(b_rad),
-    distance * Math.cos(b_rad) * Math.sin(l_rad)
+    distance * Math.cos(b_rad) * Math.cos(l_rad),  // x
+    distance * Math.cos(b_rad) * Math.sin(l_rad),  // y
+    distance * Math.sin(b_rad)                      // z
   );
 }
 
