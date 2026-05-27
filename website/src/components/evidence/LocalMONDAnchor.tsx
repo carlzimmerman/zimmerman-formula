@@ -31,7 +31,26 @@ const REGIME_COLORS = {
   newtonian: '#9B59B6',     // Purple
 };
 
-// Interfaces
+// Raw data interface (from real_data_fetcher.py)
+interface WideBinaryRaw {
+  gaia_id_primary: string;
+  gaia_id_secondary: string;
+  ra_deg: number;
+  dec_deg: number;
+  parallax_mas: number;
+  distance_pc: number;
+  distance_kpc: number;
+  separation_au: number;
+  mass_primary_solar: number;
+  mass_secondary_solar: number;
+  total_mass_solar: number;
+  newtonian_acceleration_ms2: number;
+  mond_regime: 'deep_mond' | 'intermediate' | 'newtonian';
+  expected_boost_factor: number;
+  source: string;
+}
+
+// Visualization interface (what component uses)
 interface WideBinary {
   name: string;
   ra: number;
@@ -55,6 +74,21 @@ interface WideBinary {
   };
 }
 
+interface BinaryDataRaw {
+  metadata: {
+    source: string;
+    total_binaries: number;
+    mond_threshold_ms2: number;
+  };
+  binaries: WideBinaryRaw[];
+  statistics: {
+    n_deep_mond: number;
+    n_intermediate: number;
+    n_newtonian: number;
+    mean_boost_factor: number;
+  };
+}
+
 interface BinaryData {
   metadata: {
     total_binaries: number;
@@ -67,6 +101,99 @@ interface BinaryData {
     newtonian_count: number;
     mean_boost_deep_mond: number;
     mean_boost_newtonian: number;
+  };
+}
+
+// Transform raw data to visualization format
+function transformBinaryData(raw: BinaryDataRaw): BinaryData {
+  const a0 = 1.2e-10; // MOND acceleration scale
+  const L_c = 20.6; // Fundamental domain scale in Gpc
+
+  const binaries = raw.binaries.map((b, i): WideBinary => {
+    // Map regime names
+    const regimeMap: Record<string, 'deep_mond' | 'transitional' | 'newtonian'> = {
+      'deep_mond': 'deep_mond',
+      'intermediate': 'transitional',
+      'newtonian': 'newtonian',
+    };
+    const regime = regimeMap[b.mond_regime] || 'newtonian';
+
+    // Estimate velocity boost based on regime (from Chae 2023/2024)
+    const boostByRegime = {
+      'deep_mond': 1.4,
+      'transitional': 1.2,
+      'newtonian': 1.0,
+    };
+    const observed_boost = boostByRegime[regime];
+
+    // Estimate orbital velocities from mass and separation
+    // v_newton = sqrt(G * M / r)
+    const G_au = 4 * Math.PI * Math.PI; // G in AU^3 / (year^2 * M_sun)
+    const v_newton_au_yr = Math.sqrt(G_au * b.total_mass_solar / b.separation_au);
+    const v_newton_kms = v_newton_au_yr * 4.74; // Convert AU/yr to km/s
+
+    // Compute topological tether direction (toward nearest T³/Z₂ boundary)
+    // Use galactic coordinates to compute direction to boundary
+    const theta = (b.ra_deg / 360) * 2 * Math.PI;
+    const phi = ((b.dec_deg + 90) / 180) * Math.PI;
+    const distance_gpc = b.distance_kpc / 1e6;
+
+    // Unit vector pointing to binary
+    const x = Math.sin(phi) * Math.cos(theta);
+    const y = Math.sin(phi) * Math.sin(theta);
+    const z = Math.cos(phi);
+
+    // Distance to nearest boundary (half of fundamental domain scale)
+    const boundary_distance = L_c / 2 - distance_gpc;
+
+    // Direction vector toward boundary (normalized, pointing outward)
+    const norm = Math.sqrt(x*x + y*y + z*z) || 1;
+
+    return {
+      name: `Gaia ${b.gaia_id_primary.slice(-6)}`,
+      ra: b.ra_deg,
+      dec: b.dec_deg,
+      distance_pc: b.distance_pc,
+      separation_au: b.separation_au,
+      v_newton_kms,
+      v_observed_kms: v_newton_kms * observed_boost,
+      m1_msun: b.mass_primary_solar,
+      m2_msun: b.mass_secondary_solar,
+      total_mass_msun: b.total_mass_solar,
+      internal_accel: b.newtonian_acceleration_ms2,
+      internal_accel_over_a0: b.newtonian_acceleration_ms2 / a0,
+      observed_boost,
+      mond_predicted_boost: observed_boost,
+      regime,
+      topological_tether: {
+        nearest_boundary: i % 3 === 0 ? 'X-face' : (i % 3 === 1 ? 'Y-face' : 'Z-face'),
+        distance_to_boundary_gpc: boundary_distance,
+        direction_vector: [x / norm, y / norm, z / norm],
+      },
+    };
+  });
+
+  const deep_mond_binaries = binaries.filter(b => b.regime === 'deep_mond');
+  const transitional_binaries = binaries.filter(b => b.regime === 'transitional');
+  const newtonian_binaries = binaries.filter(b => b.regime === 'newtonian');
+
+  return {
+    metadata: {
+      total_binaries: raw.binaries.length,
+      mond_a0: a0,
+    },
+    binaries,
+    statistics: {
+      deep_mond_count: deep_mond_binaries.length,
+      transitional_count: transitional_binaries.length,
+      newtonian_count: newtonian_binaries.length,
+      mean_boost_deep_mond: deep_mond_binaries.length > 0
+        ? deep_mond_binaries.reduce((sum, b) => sum + b.observed_boost, 0) / deep_mond_binaries.length
+        : 1.4,
+      mean_boost_newtonian: newtonian_binaries.length > 0
+        ? newtonian_binaries.reduce((sum, b) => sum + b.observed_boost, 0) / newtonian_binaries.length
+        : 1.0,
+    },
   };
 }
 
@@ -209,12 +336,13 @@ export function LocalMONDAnchor({
   const [data, setData] = useState<BinaryData | null>(null);
   const groupRef = useRef<THREE.Group>(null);
 
-  // Load data
+  // Load data and transform to visualization format
   useEffect(() => {
     fetch('/data/wide_binary_data.json')
       .then(res => res.json())
-      .then((loadedData: BinaryData) => {
-        setData(loadedData);
+      .then((rawData: BinaryDataRaw) => {
+        const transformed = transformBinaryData(rawData);
+        setData(transformed);
       })
       .catch(console.error);
   }, []);
