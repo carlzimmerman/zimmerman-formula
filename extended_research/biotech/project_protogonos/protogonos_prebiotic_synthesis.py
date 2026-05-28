@@ -32,12 +32,17 @@ class MineralSurface:
     porosity: float # 0-1
 
 # Candidate prebiotic minerals
+# VALIDATED crystallographic data from XRD/neutron diffraction:
+# - Montmorillonite basal spacing: 9.6-12.3 Å (NOT 5.8 Å - that was incorrect!)
+# - Iron Pyrite FeS2 lattice parameter: 5.417 Å (BEST Z² MATCH - only 6.8% error!)
+# - Quartz: 4.91 Å
+# - Calcite: 4.99 Å
 MINERALS = [
-    MineralSurface("Montmorillonite Clay", 5.80, -0.1, 0.4), # Highly Z² compliant
-    MineralSurface("Iron Pyrite (FeS2)", 5.41, 0.2, 0.1),
+    MineralSurface("Iron Pyrite (FeS2)", 5.417, 0.2, 0.1),  # VALIDATED: Best Z² match (6.8% error)
+    MineralSurface("Montmorillonite Clay", 9.6, -0.1, 0.4),  # CORRECTED: Actual basal spacing
     MineralSurface("Quartz (SiO2)", 4.91, -0.05, 0.05),
     MineralSurface("Calcite (CaCO3)", 4.99, 0.1, 0.05),
-    MineralSurface("Ideal Z2 Mineral", Z_CONSTANT, 0.0, 0.5)
+    MineralSurface("Ideal Z2 Mineral", Z_CONSTANT, 0.0, 0.5)  # Theoretical reference
 ]
 
 class PrebioticThermodynamics:

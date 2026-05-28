@@ -63,9 +63,18 @@ class OpenMMProtocellThermodynamics:
         # sigma = distance where potential is zero
         # epsilon = depth of the well
         
-        # To align with physical prebiotic fatty acids, optimal packing
-        # is inherently tied to the Z-distance.
-        sigma = (Z_CONSTANT * 0.8908987) * unit.angstroms # Derived such that r_min = 2^(1/6)*sigma = Z_CONSTANT
+        # HONESTY NOTE: This is CIRCULAR REASONING.
+        # We set sigma specifically so that r_min = 2^(1/6)*sigma = Z_CONSTANT.
+        # This doesn't prove Z² governs membrane spacing - it assumes it.
+        #
+        # ACTUAL experimental data (from SAXS/XRD):
+        # - Bilayer thickness: 45-50 Å
+        # - Phospholipid headgroup region: 8-9 Å (NOT 5.79 Å!)
+        # - The original claim of 5.79 Å headgroup spacing is INCORRECT.
+        #
+        # What this simulation actually shows: IF we program Z-scale interactions,
+        # we get Z-scale results. This is a theoretical demonstration, not a derivation.
+        sigma = (Z_CONSTANT * 0.8908987) * unit.angstroms # CIRCULAR: r_min programmed to equal Z_CONSTANT
         epsilon = 1.5 * unit.kilocalories_per_mole
         
         force = mm.CustomNonbondedForce("4*epsilon*((sigma/r)^12 - (sigma/r)^6)")

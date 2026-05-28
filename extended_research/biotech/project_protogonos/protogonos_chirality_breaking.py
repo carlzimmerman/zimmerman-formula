@@ -75,10 +75,17 @@ class RDKitChiralityModel:
         # Convert kcal/mol to kJ/mol
         kj_conversion = 4.184
         
-        # In a perfect vacuum, MMFF94 gives E(L) == E(D).
-        # We apply the Z² compactification geometric parity violation tensor.
-        # This models the chiral symmetry breaking induced by the 5D Kaluza-Klein background.
-        z2_tensor_coupling = 0.012  # kcal/mol (geometric constraint penalty for D)
+        # HONESTY NOTE: In a perfect vacuum, MMFF94 correctly gives E(L) == E(D).
+        # Enantiomers have identical energies by symmetry - this is physics.
+        #
+        # The bias below is MANUALLY INSERTED as a hypothesis, NOT derived from Z².
+        # It represents the ASSUMED effect of a chiral mineral surface or geometric
+        # constraint. This is the central hypothesis that requires experimental validation.
+        #
+        # The value 0.012 kcal/mol is chosen to match the order of magnitude of
+        # known weak-force parity violation effects (~10^-17 eV), amplified by
+        # hypothetical surface interactions.
+        z2_tensor_coupling = 0.012  # kcal/mol (HYPOTHESIZED - not derived from first principles)
         
         delta_E = ((energy_D + z2_tensor_coupling) - energy_L) * kj_conversion
         

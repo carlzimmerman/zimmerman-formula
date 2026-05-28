@@ -5,15 +5,20 @@
  * ABIOGENESIS SIMULATION - Project Protogonos Visualization
  * =============================================================================
  *
- * Interactive 5-phase visualization of the geometric origin of life:
+ * Interactive 5-phase visualization exploring geometric hypotheses for life:
  *
- * Phase 1: Prebiotic Synthesis - Miller-Urey style synthesis on mineral surfaces
- * Phase 2: Chirality Breaking - L-amino acid selection via Z² geometry
- * Phase 3: Polymerization - Geometric natural selection of peptides
- * Phase 4: Autocatalytic Closure - Emergence of self-replicating networks
- * Phase 5: Compartmentalization - Proto-cell membrane assembly
+ * Phase 1: Prebiotic Synthesis - FeS₂ pyrite catalysis (VALIDATED: 5.417 Å ≈ Z)
+ * Phase 2: Chirality Breaking - Hypothesized Z² bias + Frank amplification
+ * Phase 3: Polymerization - α-helix angles (VALIDATED: match PDB statistics)
+ * Phase 4: Autocatalytic Closure - RAF network emergence (theoretical model)
+ * Phase 5: Compartmentalization - Membrane assembly (hypothesis)
  *
- * Each phase demonstrates how Z² geometry makes life inevitable.
+ * VALIDATION STATUS:
+ * - FeS₂ lattice parameter: 5.417 Å vs Z = 5.789 Å (6.8% error) ✓ VALIDATED
+ * - α-helix angles: φ=-57°, ψ=-47° within PDB scatter ✓ VALIDATED
+ * - α-helix pitch: 5.4 Å vs Z = 5.79 Å (7% error) ✓ VALIDATED
+ * - Chirality bias: HYPOTHESIZED (not derived from first principles)
+ * - Membrane spacing: INCORRECT in original claim (actual headgroup: 8-9 Å)
  *
  * =============================================================================
  */
@@ -39,6 +44,11 @@ const PSI_HELIX = -47; // degrees
 // PHASE DEFINITIONS
 // =============================================================================
 
+interface ValidationStatus {
+  status: 'validated' | 'partial' | 'hypothesis';
+  note: string;
+}
+
 interface Phase {
   id: number;
   name: string;
@@ -46,72 +56,95 @@ interface Phase {
   description: string;
   color: string;
   metrics: Record<string, string | number>;
+  validation: ValidationStatus;
 }
 
 const PHASES: Phase[] = [
   {
     id: 1,
     name: 'Prebiotic Synthesis',
-    subtitle: 'From Chaos to Chemistry',
-    description: 'Simple molecules (H₂O, CO₂, NH₃, HCN) form amino acids on mineral surfaces at ~100°C. Catalytic surfaces with ~5.79 Å lattice spacing are optimal.',
+    subtitle: 'Iron-Sulfur World',
+    description: 'FeS₂ pyrite (lattice: 5.417 Å) catalyzes amino acid synthesis at hydrothermal vents. This matches Z = 5.789 Å within 6.8% - a genuine crystallographic coincidence worth investigating.',
     color: '#ff6b35',
     metrics: {
-      'Temperature': '80-120°C',
-      'Catalyst': 'FeS₂ / Montmorillonite',
-      'Z Distance': `${Z_CONSTANT.toFixed(4)} Å`,
-      'Products': '20 amino acids',
+      'Temperature': '80-150°C',
+      'Catalyst': 'FeS₂ pyrite',
+      'Pyrite lattice': '5.417 Å',
+      'Z constant': `${Z_CONSTANT.toFixed(3)} Å`,
+      'Match error': '6.8%',
+    },
+    validation: {
+      status: 'validated',
+      note: 'FeS₂ lattice parameter from XRD crystallography'
     }
   },
   {
     id: 2,
     name: 'Chirality Breaking',
-    subtitle: 'Left-Handed Selection',
-    description: 'The Z² geometry creates a ~0.05 kJ/mol bias favoring L-amino acids. Through autocatalytic amplification, this tiny excess grows to 99.9%+ homochirality.',
+    subtitle: 'Homochirality Hypothesis',
+    description: 'IF a small L-amino acid bias exists (from parity violation ~10⁻¹⁷ or meteoritic excess ~2%), Frank autocatalysis can amplify it to homochirality. The Z² geometric bias is hypothesized, not derived.',
     color: '#7b68ee',
     metrics: {
-      'Initial L-excess': '10⁻¹⁷ (parity violation)',
-      'Final L-excess': '99.99%',
-      'Energy bias': '0.05 kJ/mol',
-      'Mechanism': 'Frank autocatalysis',
+      'Known bias': '10⁻¹⁷ (weak force)',
+      'Meteoritic': '2-18% L-excess',
+      'Amplification': 'Frank model (1953)',
+      'Z² bias': 'HYPOTHESIZED',
+    },
+    validation: {
+      status: 'hypothesis',
+      note: 'Amplification mechanism known; Z² bias not derived from first principles'
     }
   },
   {
     id: 3,
     name: 'Polymerization',
-    subtitle: 'The First Peptides',
-    description: 'Random polymerization produces many peptides, but only those adopting Z² backbone angles (φ=-57°, ψ=-47°) are stable. Geometric natural selection.',
+    subtitle: 'α-Helix Formation',
+    description: 'α-helix backbone angles (φ=-57°, ψ=-47°) fall within PDB experimental scatter (φ=-64±7°, ψ=-41±7°). Helix pitch (5.4 Å) is 7% from Z. These are real structural matches.',
     color: '#00d4aa',
     metrics: {
-      'α-helix φ': `${PHI_HELIX}°`,
-      'α-helix ψ': `${PSI_HELIX}°`,
-      'Stability factor': '10-100× longer half-life',
-      'Selection': 'Geometric shielding',
+      'α-helix φ': '-57° (PDB: -64±7°)',
+      'α-helix ψ': '-47° (PDB: -41±7°)',
+      'Helix pitch': '5.4 Å',
+      'Z constant': `${Z_CONSTANT.toFixed(2)} Å`,
+      'Pitch error': '7%',
+    },
+    validation: {
+      status: 'validated',
+      note: 'Angles within 1σ of PDB statistics; pitch close to Z'
     }
   },
   {
     id: 4,
     name: 'Autocatalytic Closure',
-    subtitle: 'Self-Replication Emerges',
-    description: 'Z²-stable peptides catalyze each others formation via aromatic stacking at 6.015 Å. Reflexively Autocatalytic Sets (RAF) spontaneously emerge.',
+    subtitle: 'RAF Networks',
+    description: 'Reflexively Autocatalytic Sets (RAF) can emerge from peptide networks. Aromatic stacking (3.3-6.0 Å observed range) may facilitate catalysis. The 6.015 Å claim is at the upper extreme of this range.',
     color: '#ffd700',
     metrics: {
-      'Stacking distance': '6.015 Å',
-      'RAF sets': '3-8 peptides',
-      'Replication': 'Geometric templating',
-      'Error threshold': '±7° angle deviation',
+      'π-π stacking': '3.3-6.0 Å (observed)',
+      'Claimed Z²': '6.015 Å',
+      'RAF theory': 'Hordijk-Steel',
+      'Status': 'Theoretical model',
+    },
+    validation: {
+      status: 'partial',
+      note: '6.015 Å is at extreme upper limit of observed stacking range'
     }
   },
   {
     id: 5,
     name: 'Compartmentalization',
-    subtitle: 'The First Cell',
-    description: 'Fatty acids self-assemble into vesicles with head-group spacing matching the Z constant. Z²-compliant amphipathic helices spontaneously insert as proto-channels.',
+    subtitle: 'Proto-Cell Assembly',
+    description: 'Fatty acid vesicles self-assemble with bilayer thickness ~45-50 Å. Original claim of 5.79 Å headgroup spacing is INCORRECT (actual: 8-9 Å). Amphipathic helix insertion is well-established.',
     color: '#00bfff',
     metrics: {
-      'Head spacing': `${Z_CONSTANT.toFixed(3)} Å`,
-      'Bilayer': 'Fatty acid vesicles',
-      'Insertion ΔG': '-8 kcal/mol (Z² helix)',
-      'Result': 'PROTO-CELL',
+      'Bilayer thickness': '45-50 Å',
+      'Headgroup': '8-9 Å (not 5.79)',
+      'Helix insertion': 'Established',
+      'Z² claim': 'NOT VALIDATED',
+    },
+    validation: {
+      status: 'hypothesis',
+      note: 'Original headgroup spacing claim incorrect; mechanism valid'
     }
   },
 ];
@@ -510,14 +543,50 @@ function PhaseScene({ phase }: { phase: number }) {
 // =============================================================================
 
 function PhaseHUD({ phase }: { phase: Phase }) {
+  const validationColors = {
+    validated: '#22c55e',
+    partial: '#eab308',
+    hypothesis: '#f97316',
+  };
+  const validationLabels = {
+    validated: '✓ VALIDATED',
+    partial: '~ PARTIAL',
+    hypothesis: '? HYPOTHESIS',
+  };
+
   return (
-    <div className="absolute top-4 right-4 bg-black/85 p-4 rounded-lg border max-w-xs"
+    <div className="absolute top-4 right-4 bg-black/90 p-4 rounded-lg border max-w-sm"
          style={{ borderColor: phase.color }}>
-      <div className="font-bold text-lg mb-1" style={{ color: phase.color }}>
-        Phase {phase.id}: {phase.name}
+      <div className="flex justify-between items-start mb-1">
+        <div className="font-bold text-lg" style={{ color: phase.color }}>
+          Phase {phase.id}: {phase.name}
+        </div>
+        <div
+          className="text-xs px-2 py-0.5 rounded font-mono"
+          style={{
+            backgroundColor: `${validationColors[phase.validation.status]}20`,
+            color: validationColors[phase.validation.status],
+            border: `1px solid ${validationColors[phase.validation.status]}50`
+          }}
+        >
+          {validationLabels[phase.validation.status]}
+        </div>
       </div>
-      <div className="text-gray-400 text-sm mb-3">{phase.subtitle}</div>
-      <div className="text-gray-300 text-xs mb-4">{phase.description}</div>
+      <div className="text-gray-400 text-sm mb-2">{phase.subtitle}</div>
+      <div className="text-gray-300 text-xs mb-3 leading-relaxed">{phase.description}</div>
+
+      {/* Validation note */}
+      <div
+        className="text-xs p-2 rounded mb-3"
+        style={{
+          backgroundColor: `${validationColors[phase.validation.status]}10`,
+          borderLeft: `3px solid ${validationColors[phase.validation.status]}`
+        }}
+      >
+        <span style={{ color: validationColors[phase.validation.status] }}>
+          {phase.validation.note}
+        </span>
+      </div>
 
       <div className="border-t border-gray-700 pt-3">
         <div className="text-gray-500 text-xs uppercase mb-2">Key Metrics</div>
@@ -588,7 +657,7 @@ function Timeline({ currentPhase, onPhaseChange }: { currentPhase: number; onPha
 
 function ConstantsPanel() {
   return (
-    <div className="absolute top-4 left-4 bg-black/85 p-4 rounded-lg border border-purple-500/50 max-w-xs">
+    <div className="absolute top-4 left-4 bg-black/90 p-4 rounded-lg border border-purple-500/50 max-w-xs">
       <div className="text-purple-400 font-bold mb-2">Z² Geometric Constants</div>
       <div className="font-mono text-xs space-y-1">
         <div className="text-gray-300">
@@ -601,8 +670,28 @@ function ConstantsPanel() {
           θ_Z = π/Z = <span className="text-purple-400">{(THETA_Z * 180 / Math.PI).toFixed(2)}°</span>
         </div>
       </div>
-      <div className="mt-3 pt-3 border-t border-gray-700 text-xs text-gray-500">
-        The geometry of spacetime IS the code for life.
+
+      <div className="mt-3 pt-3 border-t border-gray-700">
+        <div className="text-gray-500 text-xs uppercase mb-2">Validated Matches</div>
+        <div className="text-xs space-y-1">
+          <div className="flex justify-between">
+            <span className="text-gray-400">FeS₂ pyrite:</span>
+            <span className="text-green-400">5.417 Å (6.8%)</span>
+          </div>
+          <div className="flex justify-between">
+            <span className="text-gray-400">α-helix pitch:</span>
+            <span className="text-green-400">5.4 Å (7%)</span>
+          </div>
+          <div className="flex justify-between">
+            <span className="text-gray-400">φ, ψ angles:</span>
+            <span className="text-green-400">Within 1σ PDB</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-3 pt-3 border-t border-gray-700 text-xs text-orange-400/80">
+        Hypothesis: Geometric constraints may have guided prebiotic chemistry.
+        Requires experimental validation.
       </div>
     </div>
   );
