@@ -3662,7 +3662,7 @@ const MultiMessengerUniverse: React.FC = () => {
         {isRadioGhostsActive && <RadioGhostHUD totalSources={20} mirrorCandidates={169} bestGhostProb={0.623} orcClustering={0.37} />}
 
         {/* Evidence Layer HUDs (Directives WWWW, XXXX, YYYY) */}
-        {isWideBinariesActive && <WideBinaryHUD deepMondCount={11} transitionalCount={3} newtonianCount={2} meanBoostDeepMond={1.62} meanBoostNewtonian={1.02} />}
+        {isWideBinariesActive && <WideBinaryHUD deepMondCount={20} transitionalCount={10} newtonianCount={10} meanBoostDeepMond={14.31} meanBoostNewtonian={1.0} />}
         {isFRBActive && <DispersionHUD totalFRBs={19} axisCount={8} diagonalCount={9} anisotropyRatio={0.14} maxDM={1426} />}
         {isKSZActive && <CosmicWindHUD totalClusters={14} windMagnitude={1271} windDirection={{ l: 262.6, b: -18.7 }} bestAxis="Y" alignmentAngle={20.1} />}
         {isDESIActive && <DESIGalaxiesHUD visible={isDESIActive} />}
