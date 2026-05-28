@@ -130,7 +130,7 @@ export function VelocityRivers({
     if (!data?.galaxies) return [];
 
     return data.galaxies
-      .filter(g => g.v_pec_kms > 0 && g.d_mpc > 0) // Filter out zero-velocity or at-origin galaxies
+      .filter(g => g.v_pec_kms !== 0 && g.d_mpc > 0) // Filter out zero-velocity or at-origin galaxies
       .map((galaxy): ProcessedGalaxy => {
         // Position - data is already in Gpc
         const position = new THREE.Vector3(galaxy.x, galaxy.y, galaxy.z);
