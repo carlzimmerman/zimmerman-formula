@@ -251,6 +251,18 @@ function getWrapColor(offset: [number, number, number]): string {
   return '#ffffff'; // XYZ: white
 }
 
+// Format wrap direction as human-readable string
+function formatWrapDirection(offset: [number, number, number]): string {
+  const [nx, ny, nz] = offset;
+  const parts: string[] = [];
+
+  if (nx !== 0) parts.push(nx > 0 ? '+X' : '-X');
+  if (ny !== 0) parts.push(ny > 0 ? '+Y' : '-Y');
+  if (nz !== 0) parts.push(nz > 0 ? '+Z' : '-Z');
+
+  return parts.join('');
+}
+
 export function TopologicalGhosts({
   visible = true,
   opacity = 0.8,
@@ -417,19 +429,25 @@ export function TopologicalGhosts({
                     />
                   )}
 
-                  {/* Ghost label */}
-                  {showLabels && gi === 0 && ( // Only label closest ghost
+                  {/* Ghost label - shows structure name + wrap direction */}
+                  {showLabels && (
                     <Html position={ghost.position} center>
                       <div style={{
-                        background: 'rgba(0,0,0,0.7)',
-                        padding: '2px 6px',
-                        borderRadius: '3px',
-                        fontSize: '8px',
+                        background: 'rgba(0,0,0,0.85)',
+                        padding: '3px 8px',
+                        borderRadius: '4px',
+                        fontSize: '9px',
                         color: wrapColor,
                         whiteSpace: 'nowrap',
-                        opacity: 0.8,
+                        opacity: 0.9,
+                        border: `1px solid ${wrapColor}40`,
                       }}>
-                        Ghost [{ghost.offset.join(',')}]
+                        <div style={{ fontWeight: 'bold', color: structure.color }}>
+                          {structure.name}
+                        </div>
+                        <div style={{ fontSize: '7px', color: '#aaa', marginTop: '1px' }}>
+                          Ghost {formatWrapDirection(ghost.offset)} • {ghost.distance.toFixed(1)} Gpc
+                        </div>
                       </div>
                     </Html>
                   )}
