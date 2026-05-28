@@ -39,41 +39,40 @@ interface VelocityRiversProps {
 
 interface Galaxy {
   name?: string;
-  x_mpc: number;
-  y_mpc: number;
-  z_mpc: number;
-  vx: number;
-  vy: number;
-  vz: number;
-  v_total: number;
-  distance_mpc: number;
+  x: number;       // Cartesian position in Mpc
+  y: number;
+  z: number;
+  d_mpc: number;   // Distance from observer
+  v_pec_kms: number;  // Peculiar velocity magnitude (km/s)
+  v_pec_l: number;    // Velocity direction: galactic longitude (deg)
+  v_pec_b: number;    // Velocity direction: galactic latitude (deg)
+  v_los?: number;     // Line-of-sight velocity component
 }
 
 interface Attractor {
   name: string;
-  x_mpc: number;
-  y_mpc: number;
-  z_mpc: number;
-  mass_description: string;
-  distance_mpc: number;
-  influence_type: string;
+  x: number;  // Position in Gpc
+  y: number;
+  z: number;
+  d_mpc: number;
+  v_infall_kms?: number;
+  mass_1e15_msun?: number;
 }
 
-interface ProcessedGalaxy extends Galaxy {
+interface ProcessedGalaxy {
+  name?: string;
   position: THREE.Vector3;
+  velocity: THREE.Vector3;  // Cartesian velocity vector
   tailEnd: THREE.Vector3;
   color: THREE.Color;
   size: number;
+  v_total: number;  // Total velocity magnitude
 }
 
 interface VelocityData {
   metadata: {
     total_galaxies: number;
-    bulk_flow: {
-      velocity_km_s: number;
-      l_deg: number;
-      b_deg: number;
-    };
+    fundamental_domain_gpc?: number;
   };
   attractors: Attractor[];
   galaxies: Galaxy[];
@@ -130,32 +129,51 @@ export function VelocityRivers({
   const processedGalaxies = useMemo(() => {
     if (!data?.galaxies) return [];
 
-    return data.galaxies.map((galaxy): ProcessedGalaxy => {
-      const position = new THREE.Vector3(
-        galaxy.x_mpc * MPC_TO_GPC,
-        galaxy.y_mpc * MPC_TO_GPC,
-        galaxy.z_mpc * MPC_TO_GPC
-      );
+    return data.galaxies
+      .filter(g => g.v_pec_kms > 0 && g.d_mpc > 0) // Filter out zero-velocity or at-origin galaxies
+      .map((galaxy): ProcessedGalaxy => {
+        // Position in Gpc
+        const position = new THREE.Vector3(
+          galaxy.x * MPC_TO_GPC,
+          galaxy.y * MPC_TO_GPC,
+          galaxy.z * MPC_TO_GPC
+        );
 
-      const vel = new THREE.Vector3(
-        galaxy.vx * velocityScale,
-        galaxy.vy * velocityScale,
-        galaxy.vz * velocityScale
-      );
+        // Convert galactic velocity (magnitude + l,b direction) to cartesian
+        const v = galaxy.v_pec_kms;
+        const l = (galaxy.v_pec_l || 0) * Math.PI / 180;
+        const b = (galaxy.v_pec_b || 0) * Math.PI / 180;
 
-      const tailEnd = position.clone().sub(vel);
-      const color = getVelocityColor(galaxy.vz);
-      const velMagnitude = galaxy.v_total / 1000;
-      const size = 0.002 + velMagnitude * 0.001;
+        // Galactic to cartesian conversion
+        const vx = v * Math.cos(b) * Math.cos(l);
+        const vy = v * Math.cos(b) * Math.sin(l);
+        const vz = v * Math.sin(b);
 
-      return {
-        ...galaxy,
-        position,
-        tailEnd,
-        color,
-        size,
-      };
-    });
+        const velocity = new THREE.Vector3(
+          vx * velocityScale,
+          vy * velocityScale,
+          vz * velocityScale
+        );
+
+        const tailEnd = position.clone().sub(velocity);
+
+        // Color based on line-of-sight velocity (z component approximation)
+        const vLOS = galaxy.v_los ?? vz;
+        const color = getVelocityColor(vLOS);
+
+        const velMagnitude = v / 1000;
+        const size = 0.002 + velMagnitude * 0.001;
+
+        return {
+          name: galaxy.name,
+          position,
+          velocity,
+          tailEnd,
+          color,
+          size,
+          v_total: v,
+        };
+      });
   }, [data, velocityScale]);
 
   // Combined velocity tail geometry (single draw call)
@@ -251,20 +269,15 @@ export function VelocityRivers({
       )}
 
       {/* Major attractors (kept as individual meshes - only ~5) */}
-      {showAttractors && data.attractors.map((attractor, i) => {
-        const pos = [
-          attractor.x_mpc * MPC_TO_GPC,
-          attractor.y_mpc * MPC_TO_GPC,
-          attractor.z_mpc * MPC_TO_GPC,
-        ] as [number, number, number];
-
-        const isRepeller = attractor.influence_type === 'repeller';
-        const color = isRepeller ? '#ff4400' : '#00ffaa';
-        const size = isRepeller ? 0.02 : 0.025;
+      {showAttractors && data.attractors?.map((attractor, i) => {
+        // Attractor positions are already in Gpc
+        const pos = [attractor.x, attractor.y, attractor.z] as [number, number, number];
+        const color = '#00ffaa';
+        const size = 0.02 + (attractor.mass_1e15_msun || 1) * 0.005;
 
         return (
           <group key={attractor.name}>
-            {/* Attractor/Repeller marker */}
+            {/* Attractor marker */}
             <mesh
               position={pos}
               userData={{ isAttractor: true, index: i, baseScale: size }}
@@ -279,7 +292,7 @@ export function VelocityRivers({
 
             {/* Influence sphere */}
             <mesh position={pos}>
-              <sphereGeometry args={[attractor.distance_mpc * MPC_TO_GPC * 0.3, 16, 16]} />
+              <sphereGeometry args={[attractor.d_mpc * MPC_TO_GPC * 0.5, 16, 16]} />
               <meshBasicMaterial
                 color={color}
                 transparent
@@ -293,25 +306,11 @@ export function VelocityRivers({
         );
       })}
 
-      {/* Bulk flow direction indicator */}
-      {data.metadata?.bulk_flow && (
-        <arrowHelper
-          args={[
-            new THREE.Vector3(
-              Math.cos(data.metadata.bulk_flow.b_deg * Math.PI / 180) *
-                Math.cos(data.metadata.bulk_flow.l_deg * Math.PI / 180),
-              Math.sin(data.metadata.bulk_flow.b_deg * Math.PI / 180),
-              Math.cos(data.metadata.bulk_flow.b_deg * Math.PI / 180) *
-                Math.sin(data.metadata.bulk_flow.l_deg * Math.PI / 180)
-            ).normalize(),
-            new THREE.Vector3(0, 0, 0),
-            0.5,
-            0xffaa00,
-            0.1,
-            0.05,
-          ]}
-        />
-      )}
+      {/* Earth/observer marker at origin */}
+      <mesh position={[0, 0, 0]}>
+        <sphereGeometry args={[0.005, 8, 8]} />
+        <meshBasicMaterial color="#ffffff" />
+      </mesh>
     </group>
   );
 }
@@ -322,14 +321,10 @@ export function VelocityRivers({
 export function VelocityRiversHUD({
   visible = false,
   totalGalaxies = 0,
-  bulkFlowVelocity = 0,
-  bulkFlowDirection = { l: 0, b: 0 },
   attractors = [] as Attractor[],
 }: {
   visible?: boolean;
   totalGalaxies?: number;
-  bulkFlowVelocity?: number;
-  bulkFlowDirection?: { l: number; b: number };
   attractors?: Attractor[];
 }) {
   if (!visible) return null;
@@ -359,26 +354,12 @@ export function VelocityRiversHUD({
       </div>
 
       <div style={{ borderTop: '1px solid #333', paddingTop: '8px', marginTop: '8px' }}>
-        <div style={{ color: '#00ffaa', fontSize: '11px', marginBottom: '5px' }}>
-          Bulk Flow
+        <div style={{ color: '#00ffaa', fontSize: '10px', marginBottom: '3px' }}>
+          Major Attractors
         </div>
-        <div style={{ marginBottom: '3px' }}>
-          <span style={{ color: '#aaa' }}>Velocity:</span>{' '}
-          <span style={{ color: '#fff' }}>{bulkFlowVelocity.toFixed(0)} km/s</span>
-        </div>
-        <div style={{ marginBottom: '3px', fontSize: '10px' }}>
-          <span style={{ color: '#aaa' }}>Direction:</span>{' '}
-          l={bulkFlowDirection.l.toFixed(1)}°, b={bulkFlowDirection.b.toFixed(1)}°
-        </div>
-      </div>
-
-      <div style={{ borderTop: '1px solid #333', paddingTop: '8px', marginTop: '8px' }}>
-        <div style={{ color: '#ff4400', fontSize: '10px', marginBottom: '3px' }}>
-          Major Structures
-        </div>
-        {attractors.slice(0, 4).map((a, i) => (
-          <div key={i} style={{ fontSize: '9px', marginBottom: '2px', color: a.influence_type === 'repeller' ? '#ff4400' : '#00ffaa' }}>
-            {a.name}: {a.distance_mpc.toFixed(0)} Mpc
+        {attractors.slice(0, 5).map((a, i) => (
+          <div key={i} style={{ fontSize: '9px', marginBottom: '2px', color: '#00ffaa' }}>
+            {a.name}: {a.d_mpc} Mpc
           </div>
         ))}
       </div>

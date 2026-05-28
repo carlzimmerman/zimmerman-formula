@@ -3671,7 +3671,7 @@ const MultiMessengerUniverse: React.FC = () => {
         {/* Deep Universe HUDs */}
         {isCosmicWebActive && <CosmicWebHUD visible={isCosmicWebActive} galaxyCount={500000} sourceCounts={{ BGS: 50000, LRG: 200000, ELG: 200000, QSO: 50000 }} />}
         {isVoidsActive && <CrystallineVoidsHUD visible={isVoidsActive} totalVoids={321} literatureVoids={21} syntheticVoids={300} bccScore={0.0} />}
-        {isVelocityRiversActive && <VelocityRiversHUD visible={isVelocityRiversActive} totalGalaxies={5026} bulkFlowVelocity={254} bulkFlowDirection={{ l: 295, b: 14 }} />}
+        {isVelocityRiversActive && <VelocityRiversHUD visible={isVelocityRiversActive} totalGalaxies={5026} />}
         {isVPOSActive && <VPOSSatellitesHUD visible={isVPOSActive} totalSatellites={17} onPlaneCount={14} offPlaneCount={3} onPlaneFraction={0.824} orbitalPoleAlignment={0.449} />}
 
         {/* CMB/GW Evidence HUDs (Directives EEEE, FFFF, GGGG) */}
