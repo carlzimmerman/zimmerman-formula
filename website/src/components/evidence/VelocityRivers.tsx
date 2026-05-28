@@ -28,6 +28,7 @@
 import React, { useRef, useMemo, useEffect, useState } from 'react';
 import * as THREE from 'three';
 import { useFrame } from '@react-three/fiber';
+import { Html } from '@react-three/drei';
 
 interface VelocityRiversProps {
   visible?: boolean;
@@ -269,7 +270,10 @@ export function VelocityRivers({
         // Attractor positions are already in Gpc
         const pos = [attractor.x, attractor.y, attractor.z] as [number, number, number];
         const color = '#00ffaa';
-        const size = 0.02 + (attractor.mass_1e15_msun || 1) * 0.005;
+        // 10x larger base size for visibility in 20.6 Gpc domain
+        const size = 0.2 + (attractor.mass_1e15_msun || 1) * 0.05;
+        // Influence sphere scales with distance from us
+        const influenceRadius = Math.max(0.3, attractor.d_mpc * MPC_TO_GPC * 2);
 
         return (
           <group key={attractor.name}>
@@ -286,18 +290,44 @@ export function VelocityRivers({
               />
             </mesh>
 
-            {/* Influence sphere */}
+            {/* Influence sphere - larger for cosmic scale visibility */}
             <mesh position={pos}>
-              <sphereGeometry args={[attractor.d_mpc * MPC_TO_GPC * 0.5, 16, 16]} />
+              <sphereGeometry args={[influenceRadius, 16, 16]} />
               <meshBasicMaterial
                 color={color}
                 transparent
-                opacity={0.1}
+                opacity={0.15}
                 side={THREE.BackSide}
                 blending={THREE.AdditiveBlending}
                 depthWrite={false}
               />
             </mesh>
+
+            {/* Attractor label */}
+            <Html
+              position={[pos[0], pos[1] + size + 0.3, pos[2]]}
+              center
+              distanceFactor={15}
+              style={{ pointerEvents: 'none' }}
+            >
+              <div style={{
+                background: 'rgba(0,0,0,0.8)',
+                padding: '4px 8px',
+                borderRadius: '4px',
+                border: '1px solid #00ffaa',
+                whiteSpace: 'nowrap',
+                fontSize: '10px',
+                fontFamily: 'monospace',
+                color: '#00ffaa',
+                textShadow: '0 0 5px #00ffaa',
+              }}>
+                {attractor.name}
+                <br />
+                <span style={{ fontSize: '8px', color: '#aaa' }}>
+                  {attractor.d_mpc} Mpc | {(attractor.mass_1e15_msun || 0).toFixed(1)}×10¹⁵ M☉
+                </span>
+              </div>
+            </Html>
           </group>
         );
       })}

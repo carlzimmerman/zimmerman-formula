@@ -3685,8 +3685,8 @@ const MultiMessengerUniverse: React.FC = () => {
 
         {/* Evidence Layer HUDs (Directives WWWW, XXXX, YYYY) */}
         {isWideBinariesActive && <WideBinaryHUD deepMondCount={20} transitionalCount={10} newtonianCount={10} meanBoostDeepMond={14.31} meanBoostNewtonian={1.0} />}
-        {isFRBActive && <DispersionHUD totalFRBs={19} axisCount={8} diagonalCount={9} anisotropyRatio={0.14} maxDM={1426} />}
-        {isKSZActive && <CosmicWindHUD totalClusters={14} windMagnitude={1271} windDirection={{ l: 262.6, b: -18.7 }} bestAxis="Y" alignmentAngle={20.1} />}
+        {isFRBActive && <DispersionHUD totalFRBs={19} axisCount={7} diagonalCount={11} anisotropyRatio={0.64} maxDM={1458} />}
+        {isKSZActive && <CosmicWindHUD totalClusters={12} windMagnitude={1271} windDirection={{ l: 262.6, b: -18.7 }} bestAxis="Y" alignmentAngle={20.1} />}
         {isDESIActive && <DESIGalaxiesHUD visible={isDESIActive} />}
         {isClusterMapActive && <ClusterMapHUD visible={isClusterMapActive} comaMembers={800} virgoMembers={600} shapleyMembers={900} />}
 
@@ -3698,7 +3698,7 @@ const MultiMessengerUniverse: React.FC = () => {
 
         {/* CMB/GW Evidence HUDs (Directives EEEE, FFFF, GGGG) */}
         {isCMBAxisOfEvilActive && <CMBAxisOfEvilHUD visible={isCMBAxisOfEvilActive} alignmentAngle={1.36} probabilityRandom={0.001} quadrupoleGalactic={{ l: 240, b: 63 }} octupoleGalactic={{ l: 237, b: 63 }} />}
-        {isPTAActive && <PTAInterferometerHUD visible={isPTAActive} totalPulsars={68} gwbAmplitude={2.4e-15} gwbSignificance="3.5σ" standingWaveModes={5} />}
+        {isPTAActive && <PTAInterferometerHUD visible={isPTAActive} totalPulsars={66} gwbAmplitude={2.4e-15} gwbSignificance="3.5σ" standingWaveModes={5} />}
         {isMONDLensingActive && <MONDLensingHUD visible={isMONDLensingActive} totalSystems={18} mondValidatesCount={10} validationRate={55.6} a0={1.2e-10} />}
 
         {/* Topological Ghosts HUD */}
