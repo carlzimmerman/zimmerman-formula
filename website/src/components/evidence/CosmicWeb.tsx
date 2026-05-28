@@ -230,7 +230,6 @@ export function CosmicWeb({
       <meshBasicMaterial
         transparent
         opacity={opacity}
-        vertexColors
         blending={THREE.AdditiveBlending}
         depthWrite={false}
       />
