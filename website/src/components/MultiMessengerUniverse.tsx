@@ -2100,6 +2100,8 @@ interface FilterPanelProps {
   // Deep Universe Layers
   isCosmicWebActive: boolean;
   onToggleCosmicWeb: () => void;
+  isCosmicWebGhostsActive: boolean;
+  onToggleCosmicWebGhosts: () => void;
   isVoidsActive: boolean;
   onToggleVoids: () => void;
   isVelocityRiversActive: boolean;
@@ -2134,7 +2136,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
   isGWGraveyardActive, onToggleGWGraveyard, isMONDActive, onToggleMOND, isRadioGhostsActive, onToggleRadioGhosts,
   isWideBinariesActive, onToggleWideBinaries, isFRBActive, onToggleFRB, isKSZActive, onToggleKSZ,
   isDESIActive, onToggleDESI, isClusterMapActive, onToggleClusterMap,
-  isCosmicWebActive, onToggleCosmicWeb, isVoidsActive, onToggleVoids,
+  isCosmicWebActive, onToggleCosmicWeb, isCosmicWebGhostsActive, onToggleCosmicWebGhosts, isVoidsActive, onToggleVoids,
   isVelocityRiversActive, onToggleVelocityRivers, isVPOSActive, onToggleVPOS,
   isCMBAxisOfEvilActive, onToggleCMBAxisOfEvil, isPTAActive, onTogglePTA,
   isMONDLensingActive, onToggleMONDLensing,
@@ -2408,6 +2410,22 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
           <span>Cosmic Web</span>
           <span className={`w-2 h-2 rounded-full ${isCosmicWebActive ? 'bg-blue-400' : 'bg-slate-600'}`} />
         </button>
+
+        {/* T³ Ghost Images sub-toggle (only shown when Cosmic Web active) */}
+        {isCosmicWebActive && (
+          <button
+            onClick={onToggleCosmicWebGhosts}
+            disabled={isOtherModeRunning || isPlayerMode}
+            className={`w-full ml-4 px-3 py-1 text-[10px] uppercase tracking-wider transition-all border rounded flex items-center justify-between ${
+              isCosmicWebGhostsActive
+                ? 'bg-cyan-900/50 text-cyan-400 border-cyan-500 shadow-[0_0_10px_rgba(34,211,238,0.3)]'
+                : 'bg-slate-800/50 text-slate-500 border-slate-700 hover:border-cyan-500/50 hover:text-cyan-300'
+            }`}
+          >
+            <span>↳ T³ Ghost Images</span>
+            <span className={`w-1.5 h-1.5 rounded-full ${isCosmicWebGhostsActive ? 'bg-cyan-400' : 'bg-slate-600'}`} />
+          </button>
+        )}
 
         {/* Crystalline Voids */}
         <button
@@ -3223,6 +3241,7 @@ const Scene: React.FC<{
   isClusterMapActive: boolean;
   // Deep Universe layers
   isCosmicWebActive: boolean;
+  isCosmicWebGhostsActive: boolean;
   isVoidsActive: boolean;
   isVelocityRiversActive: boolean;
   isVPOSActive: boolean;
@@ -3237,7 +3256,7 @@ const Scene: React.FC<{
   standingWaveMode: number;
   // Performance monitoring
   onFPSUpdate: (fps: number) => void;
-}> = ({ filters, isRotating, showLabels, isTourRunning, onTourComplete, onWaypointChange, onCameraDistanceChange, onBoundaryCross, onParityFlip, isGWRunning, selectedGWEvent, onGWProgressUpdate, isPlayerMode, isCMBProofActive, isParityActive, isAxisOfEvilActive, isDarkFlowActive, isGWGraveyardActive, isMONDActive, isRadioGhostsActive, isWideBinariesActive, isFRBActive, isKSZActive, isDESIActive, isClusterMapActive, isCosmicWebActive, isVoidsActive, isVelocityRiversActive, isVPOSActive, isCMBAxisOfEvilActive, isPTAActive, isMONDLensingActive, isGhostsActive, isStandingWavesActive, standingWaveMode, onFPSUpdate }) => {
+}> = ({ filters, isRotating, showLabels, isTourRunning, onTourComplete, onWaypointChange, onCameraDistanceChange, onBoundaryCross, onParityFlip, isGWRunning, selectedGWEvent, onGWProgressUpdate, isPlayerMode, isCMBProofActive, isParityActive, isAxisOfEvilActive, isDarkFlowActive, isGWGraveyardActive, isMONDActive, isRadioGhostsActive, isWideBinariesActive, isFRBActive, isKSZActive, isDESIActive, isClusterMapActive, isCosmicWebActive, isCosmicWebGhostsActive, isVoidsActive, isVelocityRiversActive, isVPOSActive, isCMBAxisOfEvilActive, isPTAActive, isMONDLensingActive, isGhostsActive, isStandingWavesActive, standingWaveMode, onFPSUpdate }) => {
   const controlsRef = useRef<any>(null);
 
   return (
@@ -3280,7 +3299,7 @@ const Scene: React.FC<{
       {isClusterMapActive && <GalaxyClusterMap visible={true} />}
 
       {/* Deep Universe layers */}
-      {isCosmicWebActive && <CosmicWeb visible={true} />}
+      {isCosmicWebActive && <CosmicWeb visible={true} showGhosts={isCosmicWebGhostsActive} />}
       {isVoidsActive && <CrystallineVoids visible={true} />}
       {isVelocityRiversActive && <VelocityRivers visible={true} />}
       {isVPOSActive && <VPOSSatellites visible={true} />}
@@ -3402,6 +3421,7 @@ const MultiMessengerUniverse: React.FC = () => {
 
   // Deep Universe layers (Cosmic Web, Voids, Velocity, VPOS)
   const [isCosmicWebActive, setIsCosmicWebActive] = useState(false);
+  const [isCosmicWebGhostsActive, setIsCosmicWebGhostsActive] = useState(false); // T³ educational ghosts
   const [isVoidsActive, setIsVoidsActive] = useState(false);
   const [isVelocityRiversActive, setIsVelocityRiversActive] = useState(false);
   const [isVPOSActive, setIsVPOSActive] = useState(false);
@@ -3600,6 +3620,8 @@ const MultiMessengerUniverse: React.FC = () => {
         onToggleClusterMap={() => setIsClusterMapActive(p => !p)}
         isCosmicWebActive={isCosmicWebActive}
         onToggleCosmicWeb={() => setIsCosmicWebActive(p => !p)}
+        isCosmicWebGhostsActive={isCosmicWebGhostsActive}
+        onToggleCosmicWebGhosts={() => setIsCosmicWebGhostsActive(p => !p)}
         isVoidsActive={isVoidsActive}
         onToggleVoids={() => setIsVoidsActive(p => !p)}
         isVelocityRiversActive={isVelocityRiversActive}
@@ -3669,7 +3691,7 @@ const MultiMessengerUniverse: React.FC = () => {
         {isClusterMapActive && <ClusterMapHUD visible={isClusterMapActive} comaMembers={800} virgoMembers={600} shapleyMembers={900} />}
 
         {/* Deep Universe HUDs */}
-        {isCosmicWebActive && <CosmicWebHUD visible={isCosmicWebActive} galaxyCount={500000} sourceCounts={{ BGS: 50000, LRG: 200000, ELG: 200000, QSO: 50000 }} />}
+        {isCosmicWebActive && <CosmicWebHUD visible={isCosmicWebActive} galaxyCount={2300} sourceCounts={{ BGS: 1800, LRG: 300, ELG: 150, QSO: 50 }} showGhosts={isCosmicWebGhostsActive} />}
         {isVoidsActive && <CrystallineVoidsHUD visible={isVoidsActive} totalVoids={321} literatureVoids={21} syntheticVoids={300} bccScore={0.0} />}
         {isVelocityRiversActive && <VelocityRiversHUD visible={isVelocityRiversActive} totalGalaxies={5026} />}
         {isVPOSActive && <VPOSSatellitesHUD visible={isVPOSActive} totalSatellites={17} onPlaneCount={14} offPlaneCount={3} onPlaneFraction={0.824} orbitalPoleAlignment={0.449} />}
@@ -3729,6 +3751,7 @@ const MultiMessengerUniverse: React.FC = () => {
           isDESIActive={isDESIActive}
           isClusterMapActive={isClusterMapActive}
           isCosmicWebActive={isCosmicWebActive}
+          isCosmicWebGhostsActive={isCosmicWebGhostsActive}
           isVoidsActive={isVoidsActive}
           isVelocityRiversActive={isVelocityRiversActive}
           isVPOSActive={isVPOSActive}
