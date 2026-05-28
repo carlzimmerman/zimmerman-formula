@@ -89,29 +89,26 @@ export function CosmicWeb({
 
         // Process each cluster
         // Scale factor: cluster data is in Mpc (local universe ~200 Mpc)
-        // T³ box is 20.6 Gpc - scale up to fill visible volume
-        const SCALE_TO_GPC = 0.05; // Map ~200 Mpc local volume to ~10 Gpc visible range
+        // T³ box walls at ±10.3 Gpc - scale to fit INSIDE the fundamental domain
+        // Raw data spans ~-213 to +67 Mpc, scale 0.035 keeps within ±8 Gpc
+        const SCALE_TO_GPC = 0.035;
+        const HALF_BOX = 10.3; // T³ wall position in Gpc
 
-        Object.values(clusterData.clusters || {}).forEach((cluster: any, clusterIdx: number) => {
-          const clusterInfo = cluster.cluster;
+        Object.values(clusterData.clusters || {}).forEach((cluster: any) => {
           const members = cluster.members || [];
-
-          // Offset clusters in different directions to spread them out
-          const clusterAngles = [0, 2.094, 4.189]; // 0°, 120°, 240°
-          const angle = clusterAngles[clusterIdx % 3];
-          const clusterSpread = 3; // Gpc spread between clusters
 
           members.forEach((member: any) => {
             if (!member.position) return;
 
-            // Scale positions and apply cluster offset for visual separation
-            const baseX = member.position.x * SCALE_TO_GPC;
-            const baseY = member.position.y * SCALE_TO_GPC;
-            const baseZ = member.position.z * SCALE_TO_GPC;
+            // Scale positions - no artificial offsets, preserve natural structure
+            let x = member.position.x * SCALE_TO_GPC;
+            let y = member.position.y * SCALE_TO_GPC;
+            let z = member.position.z * SCALE_TO_GPC;
 
-            // Offset each cluster in a different direction
-            const offsetX = Math.cos(angle) * clusterSpread * clusterIdx;
-            const offsetZ = Math.sin(angle) * clusterSpread * clusterIdx;
+            // Clamp to stay inside T³ fundamental domain
+            x = Math.max(-HALF_BOX + 0.1, Math.min(HALF_BOX - 0.1, x));
+            y = Math.max(-HALF_BOX + 0.1, Math.min(HALF_BOX - 0.1, y));
+            z = Math.max(-HALF_BOX + 0.1, Math.min(HALF_BOX - 0.1, z));
 
             // Assign galaxy types based on redshift
             let type: string;
@@ -128,9 +125,9 @@ export function CosmicWeb({
             sourceCounts[type] = (sourceCounts[type] || 0) + 1;
 
             objects.push({
-              x: baseX + offsetX,
-              y: baseY,
-              z: baseZ + offsetZ,
+              x,
+              y,
+              z,
               redshift: member.redshift,
               type,
             });

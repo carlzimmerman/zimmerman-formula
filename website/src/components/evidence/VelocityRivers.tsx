@@ -132,12 +132,8 @@ export function VelocityRivers({
     return data.galaxies
       .filter(g => g.v_pec_kms > 0 && g.d_mpc > 0) // Filter out zero-velocity or at-origin galaxies
       .map((galaxy): ProcessedGalaxy => {
-        // Position in Gpc
-        const position = new THREE.Vector3(
-          galaxy.x * MPC_TO_GPC,
-          galaxy.y * MPC_TO_GPC,
-          galaxy.z * MPC_TO_GPC
-        );
+        // Position - data is already in Gpc
+        const position = new THREE.Vector3(galaxy.x, galaxy.y, galaxy.z);
 
         // Convert galactic velocity (magnitude + l,b direction) to cartesian
         const v = galaxy.v_pec_kms;
