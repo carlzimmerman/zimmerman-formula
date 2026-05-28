@@ -1,68 +1,76 @@
 /**
- * =============================================================================
- * FIREBASE CONFIGURATION - Z² Universe Multiplayer
- * =============================================================================
+ * Firebase Client Configuration
  *
- * Firebase Realtime Database for multiplayer vessel synchronization.
- * Players can see each other flying through the T³/Z₂ cosmos!
+ * NOTE: Firebase client config values are designed to be public.
+ * Security is enforced via:
+ * 1. Domain restrictions on API keys (Google Cloud Console)
+ * 2. Firebase Security Rules (for Firestore/Database)
+ * 3. App Check (optional additional layer)
  *
- * SETUP REQUIRED:
- * 1. Go to Firebase Console: https://console.firebase.google.com
- * 2. Select project: abeautifullygeometricuniverse
- * 3. Enable Realtime Database (Build → Realtime Database → Create Database)
- * 4. Set rules to allow read/write (for development):
- *    {
- *      "rules": {
- *        ".read": true,
- *        ".write": true
- *      }
- *    }
- * 5. Copy your config from Project Settings → General → Your apps → Web app
- *
- * =============================================================================
+ * Environment variables are used for flexibility, not secrecy.
  */
 
 import { initializeApp, getApps, FirebaseApp } from 'firebase/app';
+import { getAnalytics, isSupported, Analytics } from 'firebase/analytics';
 import { getDatabase, Database } from 'firebase/database';
 
-// Firebase configuration - Public keys (security is in database rules)
 const firebaseConfig = {
-  apiKey: "AIzaSyAI4qRD2NUybVRUgUT5Ryv9kqNhaeJtXIc",
-  authDomain: "abeautifullygeometricuniverse.firebaseapp.com",
-  databaseURL: "https://abeautifullygeometricuniverse-default-rtdb.firebaseio.com",
-  projectId: "abeautifullygeometricuniverse",
-  storageBucket: "abeautifullygeometricuniverse.firebasestorage.app",
-  messagingSenderId: "232552319342",
-  appId: "1:232552319342:web:a0aca6437295d31bed597f",
-  measurementId: "G-MD6553PLSY"
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
-// Initialize Firebase (singleton pattern for Next.js)
-let app: FirebaseApp;
-let database: Database;
+// Initialize Firebase only if config is present
+let app: FirebaseApp | undefined;
+let analytics: Analytics | undefined;
+let database: Database | undefined;
 
-export function getFirebaseApp(): FirebaseApp {
-  if (!app && typeof window !== 'undefined') {
-    if (getApps().length === 0) {
-      app = initializeApp(firebaseConfig);
-    } else {
-      app = getApps()[0];
-    }
+export function getFirebaseApp(): FirebaseApp | undefined {
+  if (typeof window === 'undefined') return undefined;
+
+  if (!firebaseConfig.apiKey || !firebaseConfig.projectId) {
+    // Config not set - analytics disabled (development without .env.local)
+    return undefined;
   }
+
+  if (!app && getApps().length === 0) {
+    app = initializeApp(firebaseConfig);
+  } else if (!app) {
+    app = getApps()[0];
+  }
+
   return app;
 }
 
-export function getFirebaseDatabase(): Database | null {
-  if (typeof window === 'undefined') return null;
+export async function getFirebaseAnalytics(): Promise<Analytics | undefined> {
+  if (typeof window === 'undefined') return undefined;
 
-  if (!database) {
-    const firebaseApp = getFirebaseApp();
-    if (firebaseApp) {
-      database = getDatabase(firebaseApp);
+  const firebaseApp = getFirebaseApp();
+  if (!firebaseApp) return undefined;
+
+  if (!analytics) {
+    const supported = await isSupported();
+    if (supported) {
+      analytics = getAnalytics(firebaseApp);
     }
   }
-  return database;
+
+  return analytics;
 }
 
-// Export for convenience
-export { firebaseConfig };
+export function getFirebaseDatabase(): Database | undefined {
+  if (typeof window === 'undefined') return undefined;
+
+  const firebaseApp = getFirebaseApp();
+  if (!firebaseApp) return undefined;
+
+  if (!database) {
+    database = getDatabase(firebaseApp);
+  }
+
+  return database;
+}

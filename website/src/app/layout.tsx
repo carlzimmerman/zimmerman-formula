@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
+import { Analytics } from '@/components/Analytics'
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -117,6 +118,7 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased">
+        <Analytics />
         {children}
       </body>
     </html>

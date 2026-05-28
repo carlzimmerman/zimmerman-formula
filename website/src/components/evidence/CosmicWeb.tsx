@@ -1,19 +1,20 @@
 /**
  * =============================================================================
- * COSMIC WEB - DESI DR1 Galaxy Distribution Renderer
+ * COSMIC WEB - Galaxy Cluster Distribution Visualization
  * =============================================================================
  *
- * Renders the large-scale structure of the universe using DESI DR1 data.
- * Uses WebGL InstancedMesh for efficient rendering of millions of galaxies.
+ * Renders galaxy cluster structures using real cluster member data.
+ * Data sources: Coma (A1656), Virgo, Shapley Supercluster catalogs.
+ * Uses WebGL InstancedMesh for GPU-efficient rendering.
  *
- * Galaxy types:
- * - BGS (Bright Galaxy Survey): z < 0.4, cyan
- * - LRG (Luminous Red Galaxies): 0.01 < z < 1.5, red
- * - ELG (Emission Line Galaxies): 0.6 < z < 1.6, blue
- * - QSO (Quasars): 0.5 < z < 4.0, magenta
+ * Galaxy types (by redshift):
+ * - BGS: z < 0.02, cyan - Bright nearby galaxies
+ * - LRG: 0.02 < z < 0.03, red - Luminous red galaxies
+ * - ELG: 0.03 < z < 0.04, blue - Emission line galaxies
+ * - QSO: z > 0.04, magenta - Quasars/AGN
  *
  * Coordinates: Cartesian (X,Y,Z) in Gpc, Earth at origin
- * Fundamental domain: L_c = 20.6 Gpc
+ * Note: Local cluster data scaled to fill T³ visualization volume
  *
  * =============================================================================
  */
@@ -87,17 +88,30 @@ export function CosmicWeb({
         const sourceCounts: Record<string, number> = {};
 
         // Process each cluster
+        // Scale factor: cluster data is in Mpc (local universe ~200 Mpc)
+        // T³ box is 20.6 Gpc - scale up to fill visible volume
+        const SCALE_TO_GPC = 0.05; // Map ~200 Mpc local volume to ~10 Gpc visible range
+
         Object.values(clusterData.clusters || {}).forEach((cluster: any, clusterIdx: number) => {
           const clusterInfo = cluster.cluster;
           const members = cluster.members || [];
 
-          members.forEach((member: any, i: number) => {
+          // Offset clusters in different directions to spread them out
+          const clusterAngles = [0, 2.094, 4.189]; // 0°, 120°, 240°
+          const angle = clusterAngles[clusterIdx % 3];
+          const clusterSpread = 3; // Gpc spread between clusters
+
+          members.forEach((member: any) => {
             if (!member.position) return;
 
-            // Scale from Mpc to Gpc and center around observer
-            // Add some spread based on cluster distance
-            const scale = 0.001; // Mpc to Gpc
-            const clusterOffset = clusterInfo.distance_mpc * scale * 0.1;
+            // Scale positions and apply cluster offset for visual separation
+            const baseX = member.position.x * SCALE_TO_GPC;
+            const baseY = member.position.y * SCALE_TO_GPC;
+            const baseZ = member.position.z * SCALE_TO_GPC;
+
+            // Offset each cluster in a different direction
+            const offsetX = Math.cos(angle) * clusterSpread * clusterIdx;
+            const offsetZ = Math.sin(angle) * clusterSpread * clusterIdx;
 
             // Assign galaxy types based on redshift
             let type: string;
@@ -114,9 +128,9 @@ export function CosmicWeb({
             sourceCounts[type] = (sourceCounts[type] || 0) + 1;
 
             objects.push({
-              x: member.position.x * scale + (clusterIdx - 1) * clusterOffset,
-              y: member.position.y * scale,
-              z: member.position.z * scale,
+              x: baseX + offsetX,
+              y: baseY,
+              z: baseZ + offsetZ,
               redshift: member.redshift,
               type,
             });
@@ -212,7 +226,7 @@ export function CosmicWeb({
       args={[undefined, undefined, count]}
       frustumCulled={false}
     >
-      <sphereGeometry args={[0.008, 4, 4]} />
+      <sphereGeometry args={[0.05, 6, 6]} />
       <meshBasicMaterial
         transparent
         opacity={opacity}
@@ -254,7 +268,7 @@ export function CosmicWebHUD({
       boxShadow: '0 0 20px rgba(74, 144, 217, 0.3)',
     }}>
       <div style={{ marginBottom: '10px', fontWeight: 'bold', color: '#4A90D9' }}>
-        COSMIC WEB - DESI DR1
+        COSMIC WEB - CLUSTER DATA
       </div>
 
       <div style={{ marginBottom: '8px', fontSize: '11px' }}>
@@ -279,7 +293,7 @@ export function CosmicWebHUD({
         fontSize: '9px',
         color: '#666',
       }}>
-        L_c = 20.6 Gpc fundamental domain
+        Data: Coma, Virgo, Shapley clusters
         <br />
         Earth at origin (0, 0, 0)
       </div>
