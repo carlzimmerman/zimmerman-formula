@@ -74,26 +74,68 @@ export function CosmicWeb({
   const [data, setData] = useState<CosmicWebData | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // Load cosmic web data
+  // Load cosmic web data from cluster members
   useEffect(() => {
     if (!visible) return;
 
-    fetch('/data/desi_cosmic_web.json')
+    fetch('/data/cluster_members_data.json')
       .then(res => res.json())
-      .then((cosmicData: CosmicWebData) => {
-        setData(cosmicData);
+      .then((clusterData: any) => {
+        // Transform cluster data into cosmic web format
+        const objects: GalaxyObject[] = [];
+        const types = ['BGS', 'LRG', 'ELG', 'QSO'];
+        const sourceCounts: Record<string, number> = {};
+
+        // Process each cluster
+        Object.values(clusterData.clusters || {}).forEach((cluster: any, clusterIdx: number) => {
+          const clusterInfo = cluster.cluster;
+          const members = cluster.members || [];
+
+          members.forEach((member: any, i: number) => {
+            if (!member.position) return;
+
+            // Scale from Mpc to Gpc and center around observer
+            // Add some spread based on cluster distance
+            const scale = 0.001; // Mpc to Gpc
+            const clusterOffset = clusterInfo.distance_mpc * scale * 0.1;
+
+            // Assign galaxy types based on redshift
+            let type: string;
+            if (member.redshift < 0.02) {
+              type = 'BGS';
+            } else if (member.redshift < 0.03) {
+              type = 'LRG';
+            } else if (member.redshift < 0.04) {
+              type = 'ELG';
+            } else {
+              type = 'QSO';
+            }
+
+            sourceCounts[type] = (sourceCounts[type] || 0) + 1;
+
+            objects.push({
+              x: member.position.x * scale + (clusterIdx - 1) * clusterOffset,
+              y: member.position.y * scale,
+              z: member.position.z * scale,
+              redshift: member.redshift,
+              type,
+            });
+          });
+        });
+
+        setData({
+          metadata: {
+            total_objects: objects.length,
+            source_counts: sourceCounts,
+            fundamental_domain_gpc: 20.6,
+          },
+          objects,
+        });
         setLoading(false);
       })
       .catch(err => {
         console.error('Failed to load cosmic web data:', err);
-        // Fallback to smaller dataset
-        fetch('/data/desi_galaxies.json')
-          .then(res => res.json())
-          .then(fallbackData => {
-            setData(fallbackData);
-            setLoading(false);
-          })
-          .catch(() => setLoading(false));
+        setLoading(false);
       });
   }, [visible]);
 

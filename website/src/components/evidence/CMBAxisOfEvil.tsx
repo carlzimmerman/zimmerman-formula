@@ -23,7 +23,6 @@
 
 import React, { useRef, useMemo, useEffect, useState } from 'react';
 import * as THREE from 'three';
-import { useFrame } from '@react-three/fiber';
 import { Line } from '@react-three/drei';
 
 interface CMBAxisOfEvilProps {
@@ -86,7 +85,6 @@ export function CMBAxisOfEvil({
   const sphereRef = useRef<THREE.Mesh>(null);
   const [data, setData] = useState<CMBData | null>(null);
   const [loading, setLoading] = useState(true);
-  const timeRef = useRef(0);
 
   // Load CMB data
   useEffect(() => {
@@ -104,14 +102,7 @@ export function CMBAxisOfEvil({
       });
   }, [visible]);
 
-  // Animation - subtle pulsing of intersection rings
-  useFrame((state, delta) => {
-    timeRef.current += delta;
-    if (sphereRef.current) {
-      const material = sphereRef.current.material as THREE.MeshBasicMaterial;
-      material.opacity = opacity * (0.8 + 0.2 * Math.sin(timeRef.current * 0.3));
-    }
-  });
+  // No animation - static visualization for scientific accuracy
 
   // Generate intersection circle geometry
   const intersectionCircles = useMemo(() => {
