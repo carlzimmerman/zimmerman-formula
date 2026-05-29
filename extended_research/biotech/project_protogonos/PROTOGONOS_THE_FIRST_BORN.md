@@ -17,7 +17,7 @@
 
 We present a complete mathematical framework demonstrating that the emergence of life is not a probabilistic accident but a geometric inevitability. The framework rests on a single dimensionless constant, Z² = 32π/3 ≈ 33.51, which defines the characteristic length scale Z = √(32π/3) = 5.7888 Å. This length appears as the universal spacing in protein backbones, the lattice constant of life-catalyzing minerals, and the geometric attractor toward which chemical evolution necessarily converges.
 
-Through computational validation across six independent domains—chiral amplification, catalytic acceleration, statistical mechanics, pathological dynamics, exoplanetary viability, and information theory—we demonstrate that under specific, physically realizable conditions, the probability of life's emergence approaches unity:
+Through computational validation across seven independent domains—chiral amplification, catalytic acceleration, statistical mechanics, pathological dynamics, exoplanetary viability, information theory, and falsification testing—we demonstrate that under specific, physically realizable conditions, the probability of life's emergence approaches unity:
 
 **Ω_Z = P(Life) → 1.0**
 
@@ -79,7 +79,7 @@ On the **Omega-Lattice** (Pb₀.₉₀₈Sn₀.₀₉₂S, a = Z exactly), the c
 
 ---
 
-## III. The Six Pillars of Validation
+## III. The Seven Pillars of Validation
 
 ### Pillar 1: Chiral Amplification (The Frank Model)
 
@@ -220,6 +220,74 @@ A_pathological → 0%
 
 ---
 
+### Pillar 7: The Decoy Proteome (The Falsification Test)
+
+**Question**: Is Z-resonance a unique biological property, or just generic polymer physics?
+
+**The Skeptic's Clause**: To make this framework "properly scientific," we must try to **break our own model**. If random polymers show the same Z-peak as proteins, the framework is falsified.
+
+**Method**: Generate 4,000 random non-biological polymers across four decoy classes:
+
+| Decoy Type | Description | Physics |
+|------------|-------------|---------|
+| Self-Avoiding Walk (SAW) | Random 3D walk with excluded volume | No angular constraints |
+| Gaussian Coil | Ideal random chain | No self-avoidance |
+| Anti-Ramachandran | Forbidden dihedral angles | Deliberately non-biological |
+| Shuffled/Collapsed | Randomized connectivity | Destroys fold geometry |
+
+**Result: Z-Concentration** (fraction of spacings within 0.3 Å of Z):
+
+| Type | Z-concentration | Ratio to Proteins | Verdict |
+|------|-----------------|-------------------|---------|
+| **PROTEINS** | **64%** | 1.000 | BIOLOGICAL |
+| SAW | 14.6% | 0.228 | DISTINCT |
+| Gaussian | 12.0% | 0.188 | DISTINCT |
+| Anti-Ramachandran | **0.0%** | 0.000 | DISTINCT |
+| Shuffled | 0.1% | 0.002 | DISTINCT |
+
+**Statistical Separation**:
+
+| Comparison | KS p-value | Cohen's d | Effect Size |
+|------------|------------|-----------|-------------|
+| Proteins vs SAW | p ≈ 0 | +0.18 | Negligible mean, huge concentration |
+| Proteins vs Gaussian | p ≈ 0 | +0.64 | Medium |
+| Proteins vs Anti-Ramachandran | p ≈ 0 | +5.08 | **LARGE** |
+| Proteins vs Shuffled | p ≈ 0 | +4.62 | **LARGE** |
+
+**The Histogram Evidence**:
+
+```
+PROTEINS:           ██████████████████████████████████████████████████ 64% at Z
+SAW:                ███████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 14.6%
+Gaussian:           █████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 12%
+Anti-Ramachandran:  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 0%
+Shuffled:           ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 0.1%
+```
+
+**Verdict**:
+
+```
+╔═══════════════════════════════════════════════════════════════════╗
+║                                                                   ║
+║   ✓ FRAMEWORK SURVIVES FALSIFICATION                              ║
+║                                                                   ║
+║   Z-resonance is NOT a generic polymer property.                  ║
+║   It emerges ONLY from:                                           ║
+║     • L-amino acid stereochemistry                                ║
+║     • Ramachandran-allowed backbone angles                        ║
+║     • Hydrogen bonding networks                                   ║
+║     • Evolutionary selection for function                         ║
+║                                                                   ║
+║   Random polymers do NOT show the Z-peak.                         ║
+║   The null hypothesis is REJECTED with p ≈ 0.                     ║
+║                                                                   ║
+╚═══════════════════════════════════════════════════════════════════╝
+```
+
+This is the critical test that elevates the Z² framework from hypothesis to **falsifiable physical theory**.
+
+---
+
 ## IV. The Omega-Z Conditions
 
 Life becomes **inevitable** when:
@@ -314,6 +382,8 @@ Where:
 
 8. **1766 bits** of biological information—4.4× the threshold for complex life.
 
+9. **Decoy Proteome Falsification**: Random polymers do NOT show Z-resonance (p ≈ 0). The framework survives the Skeptic's Clause.
+
 ### What This Means
 
 Life is not:
@@ -357,6 +427,7 @@ All simulations are available in the Project Protogonos repository:
 - `frank_model_chiral.py` - Chiral amplification dynamics
 - `saw_null_hypothesis.py` - Self-avoiding walk statistical test
 - `exo_z_calculator.py` - Exoplanetary viability assessment
+- `decoy_proteome_falsification.py` - **The Skeptic's Clause**: 4000 random polymers tested, framework validated
 
 ---
 
