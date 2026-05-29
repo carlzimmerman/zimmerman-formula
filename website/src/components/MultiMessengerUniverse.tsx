@@ -2160,41 +2160,60 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
 
   const isOtherModeRunning = isTourRunning || isGWRunning;
 
-  // Collapsed state - show only toggle button on mobile
+  // Collapsed state - show only toggle button
   if (isCollapsed) {
     return (
       <button
         onClick={onToggleCollapse}
-        className="absolute top-16 left-4 bg-slate-900/95 p-3 rounded-lg border border-cyan-500 z-10 backdrop-blur-sm hover:bg-slate-800 transition-all shadow-[0_0_15px_rgba(6,182,212,0.3)]"
-        aria-label="Open controls"
+        className="absolute top-16 left-4 bg-black/90 p-3 rounded border border-cyan-500/60 z-10 backdrop-blur-sm hover:border-cyan-400 transition-all shadow-[0_0_20px_rgba(6,182,212,0.2),inset_0_0_20px_rgba(6,182,212,0.05)]"
+        aria-label="Open navigation console"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
+        <div className="relative">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <div className="absolute -top-1 -right-1 w-2 h-2 bg-cyan-400 rounded-full animate-pulse" />
+        </div>
       </button>
     );
   }
 
   return (
-    <div className="absolute top-16 left-4 bg-slate-900/95 p-4 rounded-lg border border-slate-700 z-10 backdrop-blur-sm max-w-[260px] max-h-[calc(100vh-120px)] flex flex-col md:max-w-[260px] max-w-[calc(100vw-32px)]">
-      <div className="flex items-center justify-between mb-3 flex-shrink-0">
-        <h3 className="text-white font-bold">Controls</h3>
+    <div className="absolute top-16 left-4 bg-black/95 rounded border border-cyan-900/80 z-10 backdrop-blur-md max-w-[280px] max-h-[calc(100vh-120px)] flex flex-col md:max-w-[280px] max-w-[calc(100vw-32px)] shadow-[0_0_30px_rgba(6,182,212,0.15),inset_0_0_30px_rgba(6,182,212,0.03)]">
+      {/* Cockpit Frame - Top */}
+      <div className="absolute -top-px left-4 right-4 h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent" />
+      <div className="absolute top-0 left-0 w-3 h-3 border-l-2 border-t-2 border-cyan-500/60 rounded-tl" />
+      <div className="absolute top-0 right-0 w-3 h-3 border-r-2 border-t-2 border-cyan-500/60 rounded-tr" />
+
+      {/* Header */}
+      <div className="flex items-center justify-between p-3 border-b border-cyan-900/50 flex-shrink-0 bg-gradient-to-r from-cyan-950/30 via-transparent to-cyan-950/30">
+        <div className="flex items-center gap-2">
+          <div className="flex gap-1">
+            <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse" />
+            <div className="w-1.5 h-1.5 bg-cyan-600 rounded-full" />
+            <div className="w-1.5 h-1.5 bg-cyan-800 rounded-full" />
+          </div>
+          <h3 className="text-cyan-400 font-mono text-xs tracking-[0.2em] uppercase">Nav Console</h3>
+        </div>
         <button
           onClick={onToggleCollapse}
-          className="md:hidden p-1 text-slate-400 hover:text-white transition-colors"
-          aria-label="Close controls"
+          className="p-1 text-cyan-600 hover:text-cyan-400 transition-colors"
+          aria-label="Minimize console"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 12H6" />
           </svg>
         </button>
       </div>
 
       {/* Scrollable Evidence Layers Container */}
-      <div className="overflow-y-auto flex-1 pr-1 mb-3 scrollbar-thin scrollbar-thumb-slate-600 scrollbar-track-transparent" style={{ maxHeight: '65vh' }}>
+      <div className="overflow-y-auto flex-1 pr-1 scrollbar-thin scrollbar-thumb-cyan-900/50 scrollbar-track-transparent p-3" style={{ maxHeight: '65vh' }}>
         {/* Evidence Layers (Directives QQQQ, RRRR, SSSS) */}
-        <div className="mb-3 space-y-1.5">
-          <label className="text-cyan-400 text-xs font-bold block sticky top-0 bg-slate-900/95 py-1 -mt-1">TOPOLOGY EVIDENCE</label>
+        <div className="mb-4 space-y-1.5">
+          <label className="text-cyan-500 text-[10px] font-mono tracking-[0.15em] uppercase block sticky top-0 bg-black/95 py-1.5 -mt-1 border-b border-cyan-900/30 flex items-center gap-2">
+            <span className="w-1 h-3 bg-cyan-500/60" />
+            Topology Systems
+          </label>
 
         {/* Topological Ghosts (T³ mirror images) */}
         <button
@@ -2394,8 +2413,11 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
       </div>
 
       {/* Deep Universe Layers (Cosmic Web, Voids, Velocity, VPOS) */}
-      <div className="mb-3 space-y-1.5">
-        <label className="text-emerald-400 text-xs font-bold block">DEEP UNIVERSE</label>
+      <div className="mb-4 space-y-1.5">
+        <label className="text-emerald-500 text-[10px] font-mono tracking-[0.15em] uppercase block py-1.5 border-b border-emerald-900/30 flex items-center gap-2">
+          <span className="w-1 h-3 bg-emerald-500/60" />
+          Deep Field Sensors
+        </label>
 
         {/* Cosmic Web */}
         <button
@@ -2472,7 +2494,10 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
 
       {/* CMB/GW Evidence Layers (Directives EEEE, FFFF, GGGG) */}
       <div className="mb-3 space-y-1.5">
-        <label className="text-rose-400 text-xs font-bold block">CMB & GW EVIDENCE</label>
+        <label className="text-rose-500 text-[10px] font-mono tracking-[0.15em] uppercase block py-1.5 border-b border-rose-900/30 flex items-center gap-2">
+          <span className="w-1 h-3 bg-rose-500/60" />
+          Waveform Detectors
+        </label>
 
         {/* CMB Axis of Evil (Planck multipole alignment) */}
         <button
@@ -2520,40 +2545,49 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
       {/* End Scrollable Container */}
 
       {/* Fixed Action Buttons */}
-      <div className="flex-shrink-0 border-t border-slate-700 pt-3">
+      <div className="flex-shrink-0 border-t border-cyan-900/40 pt-3 px-3 pb-3 bg-gradient-to-b from-transparent to-cyan-950/20">
       {/* Player Mode Button (Directive WWW) - Primary action */}
       <button
         onClick={onStartPlayerMode}
         disabled={isOtherModeRunning || isPlayerMode}
-        className={`w-full mb-2 px-4 py-3 font-bold text-sm uppercase tracking-wider transition-all border-2 rounded ${
+        className={`w-full mb-2 px-4 py-2.5 font-mono text-xs uppercase tracking-[0.15em] transition-all border rounded relative overflow-hidden ${
           isPlayerMode
-            ? 'bg-purple-900/50 text-purple-400 border-purple-500 animate-pulse'
+            ? 'bg-purple-900/40 text-purple-400 border-purple-500/80 shadow-[0_0_15px_rgba(168,85,247,0.3),inset_0_0_20px_rgba(168,85,247,0.1)]'
             : isOtherModeRunning
-            ? 'bg-slate-800/50 text-slate-500 border-slate-600 cursor-not-allowed'
-            : 'bg-purple-900/60 text-purple-300 border-purple-400 hover:bg-purple-800/80 hover:shadow-[0_0_25px_rgba(168,85,247,0.5)] hover:scale-[1.02]'
+            ? 'bg-slate-900/50 text-slate-600 border-slate-700 cursor-not-allowed'
+            : 'bg-purple-950/60 text-purple-300 border-purple-500/60 hover:border-purple-400 hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] hover:text-purple-200'
         }`}
       >
-        🚀 START CRAFT
+        <span className="relative z-10 flex items-center justify-center gap-2">
+          <span className={`w-2 h-2 rounded-full ${isPlayerMode ? 'bg-purple-400 animate-pulse' : 'bg-purple-600'}`} />
+          {isPlayerMode ? 'Craft Active' : 'Launch Craft'}
+        </span>
       </button>
 
       {/* Cinematic Tour Button */}
       <button
         onClick={isTourRunning ? onStopTour : onStartTour}
         disabled={isGWRunning || isPlayerMode}
-        className={`w-full mb-2 px-4 py-2 font-bold text-sm uppercase tracking-wider transition-all border rounded ${
+        className={`w-full mb-2 px-4 py-2 font-mono text-xs uppercase tracking-[0.15em] transition-all border rounded ${
           isTourRunning
-            ? 'bg-red-900/50 text-red-400 border-red-500 hover:bg-red-900/80 animate-pulse'
+            ? 'bg-red-950/50 text-red-400 border-red-500/60 shadow-[0_0_15px_rgba(239,68,68,0.2)]'
             : (isGWRunning || isPlayerMode)
-            ? 'bg-slate-800/50 text-slate-500 border-slate-600 cursor-not-allowed'
-            : 'bg-cyan-900/50 text-cyan-400 border-cyan-500 hover:bg-cyan-900/80'
+            ? 'bg-slate-900/50 text-slate-600 border-slate-700 cursor-not-allowed'
+            : 'bg-cyan-950/40 text-cyan-400 border-cyan-600/50 hover:border-cyan-500 hover:shadow-[0_0_15px_rgba(6,182,212,0.2)]'
         }`}
       >
-        {isTourRunning ? '■ STOP' : '▶ CINEMATIC TOUR'}
+        <span className="flex items-center justify-center gap-2">
+          <span className={`text-[10px] ${isTourRunning ? 'text-red-400' : ''}`}>{isTourRunning ? '||' : '|>'}</span>
+          {isTourRunning ? 'End Tour' : 'Cinematic Tour'}
+        </span>
       </button>
 
       {/* GW Event Selector & Simulation */}
       <div className="mb-4 space-y-2">
-        <label className="text-orange-400 text-xs font-bold block">GRAVITATIONAL WAVE EVENT</label>
+        <label className="text-orange-500 text-[10px] font-mono tracking-[0.15em] uppercase block py-1.5 border-b border-orange-900/30 flex items-center gap-2">
+          <span className="w-1 h-3 bg-orange-500/60" />
+          GW Event Playback
+        </label>
         <select
           value={selectedGWEvent.id}
           onChange={(e) => {
@@ -2617,22 +2651,33 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
         </button>
       </div>
 
-      <div className="mb-3 pb-3 border-b border-slate-700 space-y-2">
-        <label className="flex items-center gap-2 cursor-pointer">
-          <input type="checkbox" checked={isRotating} onChange={() => setIsRotating(!isRotating)} disabled={isTourRunning} className="w-4 h-4 accent-cyan-500" />
-          <span className={`text-sm ${isTourRunning ? 'text-slate-500' : 'text-cyan-400'}`}>Auto-rotate</span>
+      <div className="mb-3 pb-3 border-b border-cyan-900/30 space-y-2">
+        <label className="flex items-center gap-3 cursor-pointer group">
+          <div className={`w-8 h-4 rounded-full relative transition-colors ${isRotating ? 'bg-cyan-600' : 'bg-slate-700'} ${isTourRunning ? 'opacity-50' : ''}`}>
+            <div className={`absolute top-0.5 w-3 h-3 rounded-full bg-white shadow transition-all ${isRotating ? 'left-4' : 'left-0.5'}`} />
+          </div>
+          <input type="checkbox" checked={isRotating} onChange={() => setIsRotating(!isRotating)} disabled={isTourRunning} className="sr-only" />
+          <span className={`text-xs font-mono ${isTourRunning ? 'text-slate-600' : 'text-cyan-500 group-hover:text-cyan-400'}`}>Auto-Rotate</span>
         </label>
-        <label className="flex items-center gap-2 cursor-pointer">
-          <input type="checkbox" checked={showLabels} onChange={() => setShowLabels(!showLabels)} className="w-4 h-4 accent-cyan-500" />
-          <span className="text-cyan-400 text-sm">Show labels</span>
+        <label className="flex items-center gap-3 cursor-pointer group">
+          <div className={`w-8 h-4 rounded-full relative transition-colors ${showLabels ? 'bg-cyan-600' : 'bg-slate-700'}`}>
+            <div className={`absolute top-0.5 w-3 h-3 rounded-full bg-white shadow transition-all ${showLabels ? 'left-4' : 'left-0.5'}`} />
+          </div>
+          <input type="checkbox" checked={showLabels} onChange={() => setShowLabels(!showLabels)} className="sr-only" />
+          <span className="text-xs font-mono text-cyan-500 group-hover:text-cyan-400">Labels</span>
         </label>
       </div>
 
-      <div className="mt-3 pt-2 border-t border-slate-700 text-slate-500 text-[10px]">
-        Scroll to zoom from planets to 20.6 Gpc | Toggle layers in bottom-right
+      <div className="text-cyan-700 text-[9px] font-mono leading-relaxed">
+        Scroll: Zoom | Drag: Rotate | ESC: Exit
       </div>
       </div>
       {/* End Fixed Action Buttons */}
+
+      {/* Cockpit Frame - Bottom */}
+      <div className="absolute bottom-0 left-0 w-3 h-3 border-l-2 border-b-2 border-cyan-500/60 rounded-bl" />
+      <div className="absolute bottom-0 right-0 w-3 h-3 border-r-2 border-b-2 border-cyan-500/60 rounded-br" />
+      <div className="absolute -bottom-px left-4 right-4 h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent" />
     </div>
   );
 };

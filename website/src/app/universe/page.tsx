@@ -50,10 +50,10 @@ export default function UniversePage() {
 
         <MultiMessengerUniverse />
 
-        <footer className="mt-4 text-slate-500 text-sm font-mono">
+        <footer className="mt-4 text-slate-600 text-xs font-mono">
           <div className="flex justify-between items-center">
             <span>Z² Framework v11.1.0</span>
-            <span>🖱️ Scroll to zoom | Drag to rotate | ESC to exit modes</span>
+            <span className="text-slate-500">Scroll: zoom | Drag: rotate | ESC: exit modes</span>
           </div>
         </footer>
       </div>
