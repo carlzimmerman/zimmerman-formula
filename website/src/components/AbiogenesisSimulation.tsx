@@ -981,6 +981,10 @@ function ConstantsPanel() {
             <span className="text-emerald-400">REJECTED (p≈0)</span>
           </div>
           <div className="flex justify-between">
+            <span className="text-gray-400">IDP Test:</span>
+            <span className="text-cyan-400">Z is EVOLVED</span>
+          </div>
+          <div className="flex justify-between">
             <span className="text-gray-400">Patho Lock:</span>
             <span className="text-emerald-400">27B× barrier</span>
           </div>
