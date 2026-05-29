@@ -62,7 +62,12 @@ interface Phase {
   metrics: Record<string, string | number>;
   verdict: string;
   category: 'biological' | 'physical';
+  scriptName: string;  // Python script filename
+  scriptUrl: string;   // Full GitHub URL
 }
+
+// GitHub base URL for validation scripts
+const GITHUB_BASE = 'https://github.com/carlzimmerman/zimmerman-formula/blob/main/extended_research/biotech/project_protogonos/computational_abiogenesis/';
 
 const PHASES: Phase[] = [
   {
@@ -79,7 +84,9 @@ const PHASES: Phase[] = [
       'Mechanism': 'L+L→2L, L+D→∅',
     },
     verdict: '✓ VALIDATED: Homochirality is EXPLOSIVE, not gradual',
-    category: 'biological'
+    category: 'biological',
+    scriptName: 'chiral_amplification_frank.py',
+    scriptUrl: GITHUB_BASE + 'chiral_amplification_frank.py',
   },
   {
     id: 2,
@@ -95,7 +102,9 @@ const PHASES: Phase[] = [
       'Best mineral': 'Galena (5.94 Å)',
     },
     verdict: '✓ VALIDATED: Z-spacing is catalytically optimal',
-    category: 'biological'
+    category: 'biological',
+    scriptName: 'dft_galena_test.py',
+    scriptUrl: GITHUB_BASE + 'dft_galena_test.py',
   },
   {
     id: 3,
@@ -111,7 +120,9 @@ const PHASES: Phase[] = [
       'Deviation from Z': '+1.8%',
     },
     verdict: '✓ VALIDATED: Z is biological signal, NOT random geometry',
-    category: 'biological'
+    category: 'biological',
+    scriptName: 'saw_null_hypothesis.py',
+    scriptUrl: GITHUB_BASE + 'saw_null_hypothesis.py',
   },
   {
     id: 4,
@@ -127,7 +138,9 @@ const PHASES: Phase[] = [
       'Barrier ratio': '27 billion ×',
     },
     verdict: '✓ VALIDATED: Neurodegeneration = Loss of Aliveness',
-    category: 'biological'
+    category: 'biological',
+    scriptName: 'z2_final_simulations.py',
+    scriptUrl: GITHUB_BASE + 'z2_final_simulations.py',
   },
   {
     id: 5,
@@ -143,7 +156,9 @@ const PHASES: Phase[] = [
       'Super-Venus': '100%',
     },
     verdict: '✓ VALIDATED: Z-window explains Fermi Paradox',
-    category: 'biological'
+    category: 'biological',
+    scriptName: 'exo_z_calculator.py',
+    scriptUrl: GITHUB_BASE + 'exo_z_calculator.py',
   },
   {
     id: 6,
@@ -159,7 +174,9 @@ const PHASES: Phase[] = [
       'Threshold': '400 bits',
     },
     verdict: '✓ VALIDATED: 4.4× information capacity of minimum life',
-    category: 'biological'
+    category: 'biological',
+    scriptName: 'information_entropy_analysis.py',
+    scriptUrl: GITHUB_BASE + 'information_entropy_analysis.py',
   },
   {
     id: 7,
@@ -175,7 +192,9 @@ const PHASES: Phase[] = [
       'KS p-value': '≈ 0',
     },
     verdict: '✓ VALIDATED: Framework SURVIVES falsification',
-    category: 'biological'
+    category: 'biological',
+    scriptName: 'decoy_proteome_falsification.py',
+    scriptUrl: GITHUB_BASE + 'decoy_proteome_falsification.py',
   },
   {
     id: 8,
@@ -191,7 +210,9 @@ const PHASES: Phase[] = [
       'Z-conc (worst)': '24%',
     },
     verdict: '✓ VALIDATED: High-res data confirms Z-peak is real',
-    category: 'biological'
+    category: 'biological',
+    scriptName: 'high_res_pdb_audit.py',
+    scriptUrl: GITHUB_BASE + 'high_res_pdb_audit.py',
   },
   {
     id: 9,
@@ -207,7 +228,9 @@ const PHASES: Phase[] = [
       'Aliveness': '3.45%',
     },
     verdict: '✓ VALIDATED: Perfect Z-template exists',
-    category: 'physical'
+    category: 'physical',
+    scriptName: 'omega_z_optimization.py',
+    scriptUrl: GITHUB_BASE + 'omega_z_optimization.py',
   },
   {
     id: 10,
@@ -223,7 +246,9 @@ const PHASES: Phase[] = [
       'Critical distance': '1541 nm',
     },
     verdict: '✓ SOLVED: Local fields >> planetary fields',
-    category: 'physical'
+    category: 'physical',
+    scriptName: 'magnetic_junction_analysis.py',
+    scriptUrl: GITHUB_BASE + 'magnetic_junction_analysis.py',
   },
   {
     id: 11,
@@ -239,7 +264,9 @@ const PHASES: Phase[] = [
       'Mars Ω_Z': '0.95',
     },
     verdict: '✓ VALIDATED: Mars was Z-optimal in Noachian era',
-    category: 'physical'
+    category: 'physical',
+    scriptName: 'solar_system_z_audit.py',
+    scriptUrl: GITHUB_BASE + 'solar_system_z_audit.py',
   },
   {
     id: 12,
@@ -255,7 +282,9 @@ const PHASES: Phase[] = [
       'Overall Ω_Z': '100%',
     },
     verdict: '★ ACHIEVED: P(Life) → 1.0',
-    category: 'physical'
+    category: 'physical',
+    scriptName: 'omega_z_final_100.py',
+    scriptUrl: GITHUB_BASE + 'omega_z_final_100.py',
   },
 ];
 
@@ -932,6 +961,24 @@ function PhaseInfoPanel({ phase }: { phase: Phase }) {
             <span style={{ color: phase.color }}>{value}</span>
           </div>
         ))}
+      </div>
+
+      {/* GitHub Script Link */}
+      <div className="border-t border-gray-700 pt-3 mt-3">
+        <a
+          href={phase.scriptUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-2 text-xs text-gray-400 hover:text-white transition-colors group"
+        >
+          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+          </svg>
+          <span className="group-hover:underline">{phase.scriptName}</span>
+          <svg className="w-3 h-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+        </a>
       </div>
     </div>
   );
