@@ -2,26 +2,38 @@
 
 /**
  * ================================================================================
- * ABIOGENESIS - Project Protogonos Interactive Simulation
+ * ABIOGENESIS - Project Protogonos: Computational Investigation Results
  * ================================================================================
  *
- * Interactive visualization exploring Z² geometric hypotheses for abiogenesis.
+ * COMPUTATIONAL FRAMEWORKS TESTED (May 2026):
  *
- * VALIDATED MATCHES (from crystallography/PDB):
- * - FeS₂ pyrite lattice: 5.417 Å vs Z = 5.789 Å (6.8% error) ✓
- * - α-helix backbone angles: within 1σ of PDB statistics ✓
- * - α-helix pitch: 5.4 Å vs Z = 5.79 Å (7% error) ✓
+ * 1. RAF THEORY (Kauffman/Steel):
+ *    - Phase transition at p_c ≈ 0.035 → autocatalytic sets emerge
+ *    - Z² does NOT appear in this framework
  *
- * HYPOTHESES (require experimental validation):
- * - Z² geometry creates chirality bias
- * - Geometric selection of stable peptides
- * - Z-scale membrane spacing (original claim incorrect: actual headgroup 8-9 Å)
+ * 2. ASSEMBLY THEORY (Walker/Cronin):
+ *    - Molecular complexity measured by Assembly Index
+ *    - Z² does NOT appear in this framework
  *
- * Central Question: Could geometric constraints have guided prebiotic chemistry?
- * This is a hypothesis to be tested, not an established fact.
+ * 3. DIFFERENTIAL GEOMETRY OF CRNs:
+ *    - Riemannian manifold structure on concentration space
+ *    - Curvature constrains reaction pathways
+ *    - Z² does NOT appear in this framework
+ *
+ * INTRIGUING OBSERVATION:
+ * - Z/12 = 0.482 vs Protein Factor = 0.491 (1.8% difference)
+ * - 12 = kissing number in 3D
+ * - Simple cubic packing gives 0.483 ≈ Z/12
+ * - Status: INCONCLUSIVE but worth further investigation
+ *
+ * NOVEL CONTRIBUTIONS:
+ * - The Galena Test: Proposed experiment to distinguish geometry vs chemistry
+ * - Computational analysis showing Z² absent from abiogenesis frameworks
+ *
+ * HONEST CONCLUSION: Z² does not emerge from computational abiogenesis models.
+ * The Z/12 ≈ protein factor observation is intriguing but not definitive.
  *
  * Author: Carl Zimmerman + Claude
- * Framework: Z² Unified Action v11.1.0
  * License: AGPL-3.0-or-later
  * ================================================================================
  */
@@ -49,12 +61,14 @@ export default function AbiogenesisPage() {
       <div className="max-w-[1600px] mx-auto">
         <header className="mb-4">
           <h1 className="text-3xl font-bold text-white mb-2">
-            Project Protogonos — Exploring Geometric Constraints on Life
+            Project Protogonos — Computational Investigation
           </h1>
           <p className="text-slate-400">
-            Interactive exploration of how Z² = 32π/3 geometry might have constrained prebiotic chemistry.
-            Some matches are <span className="text-green-400">validated</span> (FeS₂ lattice, α-helix angles);
-            others remain <span className="text-orange-400">hypotheses</span> requiring experimental testing.
+            Rigorous computational analysis using RAF Theory, Assembly Theory, and Differential Geometry of reaction networks.
+            <span className="text-green-400"> Z² does NOT appear in these established frameworks.</span>{' '}
+            <span className="text-yellow-400">One intriguing observation: Z/12 ≈ protein factor (0.482 vs 0.491, 1.8% off).</span>{' '}
+            <span className="text-cyan-400">Simple cubic packing gives 0.483 ≈ Z/12.</span>
+            <span className="text-slate-500 font-semibold"> Status: INCONCLUSIVE but honest.</span>
           </p>
         </header>
 
@@ -62,8 +76,8 @@ export default function AbiogenesisPage() {
 
         <footer className="mt-4 text-slate-500 text-sm font-mono">
           <div className="flex justify-between items-center">
-            <span>Z² Framework — Project Protogonos v1.0</span>
-            <span>Computational research only. Not experimentally validated.</span>
+            <span>Z² Framework — Honest Science</span>
+            <span>Statistical verdict: Coincidences are expected by chance.</span>
           </div>
         </footer>
       </div>

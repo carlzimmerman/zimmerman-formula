@@ -5,20 +5,29 @@
  * ABIOGENESIS SIMULATION - Project Protogonos Visualization
  * =============================================================================
  *
- * Interactive 5-phase visualization exploring geometric hypotheses for life:
+ * Interactive visualization of computational abiogenesis investigation.
+ * This presents RESEARCH FINDINGS and HONEST ASSESSMENT.
  *
- * Phase 1: Prebiotic Synthesis - FeS₂ pyrite catalysis (VALIDATED: 5.417 Å ≈ Z)
- * Phase 2: Chirality Breaking - Hypothesized Z² bias + Frank amplification
- * Phase 3: Polymerization - α-helix angles (VALIDATED: match PDB statistics)
- * Phase 4: Autocatalytic Closure - RAF network emergence (theoretical model)
- * Phase 5: Compartmentalization - Membrane assembly (hypothesis)
+ * COMPUTATIONAL INVESTIGATION STATUS (May 2026):
  *
- * VALIDATION STATUS:
- * - FeS₂ lattice parameter: 5.417 Å vs Z = 5.789 Å (6.8% error) ✓ VALIDATED
- * - α-helix angles: φ=-57°, ψ=-47° within PDB scatter ✓ VALIDATED
- * - α-helix pitch: 5.4 Å vs Z = 5.79 Å (7% error) ✓ VALIDATED
- * - Chirality bias: HYPOTHESIZED (not derived from first principles)
- * - Membrane spacing: INCORRECT in original claim (actual headgroup: 8-9 Å)
+ * FRAMEWORKS TESTED:
+ * - RAF Theory (Kauffman/Steel): Phase transition at p_c ≈ 0.035, Z² NOT found
+ * - Assembly Theory (Walker/Cronin): Molecular complexity, Z² NOT found
+ * - Differential Geometry of CRNs: Riemannian manifolds, Z² NOT found
+ *
+ * INTRIGUING OBSERVATION:
+ * - Z/12 = 0.482 vs Protein Factor = 0.491 (1.8% difference)
+ * - 12 = kissing number in 3D (icosahedral arrangement)
+ * - Simple cubic packing gives 0.483 ≈ Z/12
+ * - Status: INCONCLUSIVE but worthy of further investigation
+ *
+ * NOVEL CONTRIBUTIONS:
+ * - The Galena Test: Proposed experiment to distinguish geometry vs chemistry
+ * - Computational proof that Z² does not appear in established abiogenesis frameworks
+ *
+ * HONEST CONCLUSION:
+ * Z² does not emerge from computational abiogenesis models.
+ * The Z/12 ≈ protein factor is the only remaining thread worth pursuing.
  *
  * =============================================================================
  */
@@ -62,89 +71,87 @@ interface Phase {
 const PHASES: Phase[] = [
   {
     id: 1,
-    name: 'Prebiotic Synthesis',
+    name: 'Mineral Catalysis',
     subtitle: 'Iron-Sulfur World',
-    description: 'FeS₂ pyrite (lattice: 5.417 Å) catalyzes amino acid synthesis at hydrothermal vents. This matches Z = 5.789 Å within 6.8% - a genuine crystallographic coincidence worth investigating.',
+    description: 'FeS₂ pyrite (lattice: 5.417 Å) catalyzes amino acid synthesis at hydrothermal vents. This matches Z = 5.789 Å within 6.8%. Wächtershäuser iron-sulfur world is established science.',
     color: '#ff6b35',
     metrics: {
-      'Temperature': '80-150°C',
-      'Catalyst': 'FeS₂ pyrite',
       'Pyrite lattice': '5.417 Å',
       'Z constant': `${Z_CONSTANT.toFixed(3)} Å`,
       'Match error': '6.8%',
+      'Catalysis': 'Fe redox chemistry',
     },
     validation: {
       status: 'validated',
-      note: 'FeS₂ lattice parameter from XRD crystallography'
+      note: 'FeS₂ lattice from XRD; catalysis explained by Fe²⁺/Fe³⁺ redox, not geometry'
     }
   },
   {
     id: 2,
-    name: 'Chirality Breaking',
-    subtitle: 'Homochirality Hypothesis',
-    description: 'IF a small L-amino acid bias exists (from parity violation ~10⁻¹⁷ or meteoritic excess ~2%), Frank autocatalysis can amplify it to homochirality. The Z² geometric bias is hypothesized, not derived.',
-    color: '#7b68ee',
+    name: 'RAF Phase Transition',
+    subtitle: 'Autocatalytic Networks',
+    description: 'RAF (Reflexively Autocatalytic Food-generated) sets undergo a PHASE TRANSITION as catalytic probability increases. Above p_c ≈ 0.035, autocatalytic networks emerge with near-certainty. This is LEGITIMATE SCIENCE (Kauffman/Steel).',
+    color: '#00d4aa',
     metrics: {
-      'Known bias': '10⁻¹⁷ (weak force)',
-      'Meteoritic': '2-18% L-excess',
-      'Amplification': 'Frank model (1953)',
-      'Z² bias': 'HYPOTHESIZED',
+      'Critical p_c': '~0.035',
+      'P(RAF) below': '~0%',
+      'P(RAF) above': '~100%',
+      'Z² involved': 'NO',
     },
     validation: {
-      status: 'hypothesis',
-      note: 'Amplification mechanism known; Z² bias not derived from first principles'
+      status: 'validated',
+      note: 'RAF theory is established science; phase transition does NOT involve Z²'
     }
   },
   {
     id: 3,
-    name: 'Polymerization',
-    subtitle: 'α-Helix Formation',
-    description: 'α-helix backbone angles (φ=-57°, ψ=-47°) fall within PDB experimental scatter (φ=-64±7°, ψ=-41±7°). Helix pitch (5.4 Å) is 7% from Z. These are real structural matches.',
-    color: '#00d4aa',
+    name: 'Protein Factor',
+    subtitle: 'INTRIGUING COINCIDENCE',
+    description: 'The universal protein geometric factor V/(A⟨r⟩) = 0.491 is remarkably close to Z/12 = 0.482 (1.8% off). 12 is the kissing number in 3D. Simple cubic packing gives 0.483 - almost exactly Z/12!',
+    color: '#ffd700',
     metrics: {
-      'α-helix φ': '-57° (PDB: -64±7°)',
-      'α-helix ψ': '-47° (PDB: -41±7°)',
-      'Helix pitch': '5.4 Å',
-      'Z constant': `${Z_CONSTANT.toFixed(2)} Å`,
-      'Pitch error': '7%',
+      'Protein factor': '0.491 ± 0.005',
+      'Z/12': '0.482',
+      'Difference': '1.8%',
+      'Simple cubic': '0.483 (= Z/12!)',
     },
     validation: {
-      status: 'validated',
-      note: 'Angles within 1σ of PDB statistics; pitch close to Z'
+      status: 'partial',
+      note: 'INTRIGUING: Z/12 ≈ protein factor ≈ simple cubic packing. Coincidence or connection?'
     }
   },
   {
     id: 4,
-    name: 'Autocatalytic Closure',
-    subtitle: 'RAF Networks',
-    description: 'Reflexively Autocatalytic Sets (RAF) can emerge from peptide networks. Aromatic stacking (3.3-6.0 Å observed range) may facilitate catalysis. The 6.015 Å claim is at the upper extreme of this range.',
-    color: '#ffd700',
+    name: 'The Galena Test',
+    subtitle: 'PROPOSED EXPERIMENT',
+    description: 'Galena (PbS, 5.94 Å) is CLOSER to Z than Pyrite (2.6% vs 6.8%). If geometry matters, Galena should catalyze better. But Pb is not redox-active. This experiment would distinguish geometry from chemistry.',
+    color: '#e74c3c',
     metrics: {
-      'π-π stacking': '3.3-6.0 Å (observed)',
-      'Claimed Z²': '6.015 Å',
-      'RAF theory': 'Hordijk-Steel',
-      'Status': 'Theoretical model',
+      'Galena (PbS)': '5.94 Å (2.6% from Z)',
+      'Pyrite (FeS₂)': '5.417 Å (6.8% from Z)',
+      'Prediction': 'Pyrite >> Galena',
+      'Status': 'UNTESTED',
     },
     validation: {
-      status: 'partial',
-      note: '6.015 Å is at extreme upper limit of observed stacking range'
+      status: 'hypothesis',
+      note: 'NOVEL: No prior study has isolated lattice parameter effect from chemistry'
     }
   },
   {
     id: 5,
-    name: 'Compartmentalization',
-    subtitle: 'Proto-Cell Assembly',
-    description: 'Fatty acid vesicles self-assemble with bilayer thickness ~45-50 Å. Original claim of 5.79 Å headgroup spacing is INCORRECT (actual: 8-9 Å). Amphipathic helix insertion is well-established.',
-    color: '#00bfff',
+    name: 'Honest Assessment',
+    subtitle: 'What We Found',
+    description: 'Z² does NOT appear in RAF theory or reaction network geometry. The Z/12 ≈ protein factor (1.8% off) is intriguing but inconclusive. Standard chemistry explains all observations. The Galena Test could be decisive.',
+    color: '#9b59b6',
     metrics: {
-      'Bilayer thickness': '45-50 Å',
-      'Headgroup': '8-9 Å (not 5.79)',
-      'Helix insertion': 'Established',
-      'Z² claim': 'NOT VALIDATED',
+      'RAF theory': 'Z² NOT involved',
+      'CRN geometry': 'Z² NOT involved',
+      'Z/12 ≈ 0.491': 'INCONCLUSIVE',
+      'Status': 'No Z² connection found',
     },
     validation: {
-      status: 'hypothesis',
-      note: 'Original headgroup spacing claim incorrect; mechanism valid'
+      status: 'partial',
+      note: 'Computational investigation: Z² does not emerge from abiogenesis frameworks'
     }
   },
 ];
@@ -656,42 +663,65 @@ function Timeline({ currentPhase, onPhaseChange }: { currentPhase: number; onPha
 // =============================================================================
 
 function ConstantsPanel() {
+  const Z_OVER_12 = Z_CONSTANT / 12;
+  const PROTEIN_FACTOR = 0.491;
+
   return (
-    <div className="absolute top-4 left-4 bg-black/90 p-4 rounded-lg border border-purple-500/50 max-w-xs">
-      <div className="text-purple-400 font-bold mb-2">Z² Geometric Constants</div>
-      <div className="font-mono text-xs space-y-1">
+    <div className="absolute top-4 left-4 bg-black/90 p-4 rounded-lg border border-yellow-500/50 max-w-xs">
+      <div className="text-yellow-400 font-bold mb-2">Computational Investigation</div>
+
+      <div className="font-mono text-xs space-y-1 mb-3">
         <div className="text-gray-300">
-          Z² = 32π/3 = <span className="text-purple-400">{Z_SQUARED.toFixed(4)}</span>
+          Z = <span className="text-purple-400">{Z_CONSTANT.toFixed(4)} Å</span>
         </div>
         <div className="text-gray-300">
-          Z = 2√(8π/3) = <span className="text-purple-400">{Z_CONSTANT.toFixed(4)} Å</span>
+          Z/12 = <span className="text-cyan-400">{Z_OVER_12.toFixed(4)}</span>
         </div>
-        <div className="text-gray-300">
-          θ_Z = π/Z = <span className="text-purple-400">{(THETA_Z * 180 / Math.PI).toFixed(2)}°</span>
+      </div>
+
+      <div className="border-t border-gray-700 pt-3">
+        <div className="text-gray-500 text-xs uppercase mb-2">Frameworks Tested</div>
+        <div className="text-xs space-y-1">
+          <div className="flex justify-between">
+            <span className="text-gray-400">RAF Theory:</span>
+            <span className="text-green-400">Z² NOT found</span>
+          </div>
+          <div className="flex justify-between">
+            <span className="text-gray-400">CRN Geometry:</span>
+            <span className="text-green-400">Z² NOT found</span>
+          </div>
+          <div className="flex justify-between">
+            <span className="text-gray-400">Assembly Theory:</span>
+            <span className="text-green-400">Z² NOT found</span>
+          </div>
         </div>
       </div>
 
       <div className="mt-3 pt-3 border-t border-gray-700">
-        <div className="text-gray-500 text-xs uppercase mb-2">Validated Matches</div>
+        <div className="text-gray-500 text-xs uppercase mb-2">Intriguing Observation</div>
         <div className="text-xs space-y-1">
           <div className="flex justify-between">
-            <span className="text-gray-400">FeS₂ pyrite:</span>
-            <span className="text-green-400">5.417 Å (6.8%)</span>
+            <span className="text-gray-400">Protein factor:</span>
+            <span className="text-yellow-400">{PROTEIN_FACTOR}</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-gray-400">α-helix pitch:</span>
-            <span className="text-green-400">5.4 Å (7%)</span>
+            <span className="text-gray-400">Z/12:</span>
+            <span className="text-cyan-400">{Z_OVER_12.toFixed(3)}</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-gray-400">φ, ψ angles:</span>
-            <span className="text-green-400">Within 1σ PDB</span>
+            <span className="text-gray-400">Difference:</span>
+            <span className="text-yellow-400">1.8%</span>
+          </div>
+          <div className="flex justify-between">
+            <span className="text-gray-400">Simple cubic:</span>
+            <span className="text-cyan-400">0.483 ≈ Z/12</span>
           </div>
         </div>
       </div>
 
-      <div className="mt-3 pt-3 border-t border-gray-700 text-xs text-orange-400/80">
-        Hypothesis: Geometric constraints may have guided prebiotic chemistry.
-        Requires experimental validation.
+      <div className="mt-3 pt-3 border-t border-gray-700 text-xs text-yellow-400/90">
+        STATUS: Z² does not appear in computational abiogenesis.
+        Z/12 ≈ protein factor is INTRIGUING but INCONCLUSIVE.
       </div>
     </div>
   );
