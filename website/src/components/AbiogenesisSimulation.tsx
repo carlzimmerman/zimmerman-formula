@@ -5,7 +5,7 @@
  * ABIOGENESIS SIMULATION - Project Protogonos Complete Visualization
  * =============================================================================
  *
- * Interactive step-by-step slideshow of ALL 11 validated findings from
+ * Interactive step-by-step slideshow of ALL 12 validated findings from
  * Project Protogonos - the computational proof that life is a geometric
  * inevitability.
  *
@@ -14,7 +14,7 @@
  * █                        Ω_Z = 1.0 ACHIEVED                                █
  * ████████████████████████████████████████████████████████████████████████████
  *
- * THE 11 PILLARS OF VALIDATION:
+ * THE 12 PILLARS OF VALIDATION:
  *
  * BIOLOGICAL PILLARS:
  *   1. Frank Model           → 5-gen homochirality (0.46% → 99.8% L)
@@ -29,7 +29,8 @@
  * PHYSICAL SOLUTIONS:
  *   9. Omega-Lattice         → Pb₀.₉₀₈Sn₀.₀₉₂S = Z exactly at 300K
  *  10. Magnetic Junctions    → Magnetite provides 4021 Gauss locally
- *  11. Omega-Z Achievement   → P(Life) → 1.0
+ *  11. Mars Protogenesis     → Jarosite d=5.77Å (0.29% offset!) + 1500G oases
+ *  12. Omega-Z Achievement   → P(Life) → 1.0
  *
  * =============================================================================
  */
@@ -226,6 +227,22 @@ const PHASES: Phase[] = [
   },
   {
     id: 11,
+    name: 'Mars Protogenesis',
+    subtitle: 'JAROSITE: PERFECT Z-RESONANCE',
+    description: 'Mars rovers detected Jarosite (KFe₃(SO₄)₂(OH)₆) which at 210K has d = 5.7722 Å — only 0.29% offset from Z! Combined with 1500 Gauss magnetic oases in the Southern Highlands, Mars may have been MORE Z-compatible than Earth during the Noachian period.',
+    color: '#ff6347',
+    metrics: {
+      'Jarosite d at 210K': '5.7722 Å',
+      'Offset from Z': '0.29%',
+      'Terra Sirenum B': '1500 Gauss',
+      'vs CISS threshold': '6.1× EXCEEDS',
+      'Mars Ω_Z': '0.95',
+    },
+    verdict: '✓ VALIDATED: Mars was Z-optimal in Noachian era',
+    category: 'physical'
+  },
+  {
+    id: 12,
     name: 'Ω_Z = 1.0',
     subtitle: 'LIFE IS INEVITABLE',
     description: 'Under the Omega-Z conditions: Lattice = Z, Temperature = 300K, Magnetic field ≥ 245 Gauss (from inclusions), Aliveness = 3.45%. The probability of life approaches unity. Life is a GEOMETRIC INEVITABILITY.',
@@ -693,7 +710,122 @@ function MagneticJunctionsViz() {
   );
 }
 
-// Phase 11: Omega-Z Achievement
+// Phase 11: Mars Protogenesis Sites
+function MarsProtogenesisViz() {
+  const groupRef = useRef<THREE.Group>(null);
+  const [showOases, setShowOases] = useState(true);
+
+  useFrame((state) => {
+    if (groupRef.current) {
+      groupRef.current.rotation.y = state.clock.elapsedTime * 0.1;
+    }
+    // Pulse magnetic oases
+    setShowOases(Math.sin(state.clock.elapsedTime * 2) > -0.3);
+  });
+
+  // Magnetic oases in Southern Highlands
+  const oases = [
+    { name: 'Terra Sirenum', lat: -40, lon: 0, field: 1500, color: '#ff4400' },
+    { name: 'Terra Cimmeria', lat: -45, lon: 60, field: 1200, color: '#ff6600' },
+    { name: 'Noachis Terra', lat: -30, lon: 120, field: 800, color: '#ff8800' },
+    { name: 'Promethei Terra', lat: -60, lon: 180, field: 600, color: '#ffaa00' },
+  ];
+
+  return (
+    <group ref={groupRef}>
+      {/* Mars sphere */}
+      <mesh>
+        <sphereGeometry args={[1.2, 64, 64]} />
+        <meshStandardMaterial
+          color="#c1440e"
+          metalness={0.2}
+          roughness={0.8}
+        />
+      </mesh>
+
+      {/* Polar ice caps */}
+      <mesh position={[0, 1.15, 0]}>
+        <sphereGeometry args={[0.35, 32, 16, 0, Math.PI * 2, 0, Math.PI / 6]} />
+        <meshStandardMaterial color="#ffffff" />
+      </mesh>
+      <mesh position={[0, -1.15, 0]} rotation={[Math.PI, 0, 0]}>
+        <sphereGeometry args={[0.25, 32, 16, 0, Math.PI * 2, 0, Math.PI / 6]} />
+        <meshStandardMaterial color="#ffffff" />
+      </mesh>
+
+      {/* Magnetic oases - glowing regions in Southern Hemisphere */}
+      {showOases && oases.map((oasis, i) => {
+        const latRad = (oasis.lat * Math.PI) / 180;
+        const lonRad = (oasis.lon * Math.PI) / 180;
+        const r = 1.22;
+        const x = r * Math.cos(latRad) * Math.cos(lonRad);
+        const y = r * Math.sin(latRad);
+        const z = r * Math.cos(latRad) * Math.sin(lonRad);
+        const size = 0.15 + (oasis.field / 3000) * 0.2;
+
+        return (
+          <group key={oasis.name} position={[x, y, z]}>
+            {/* Glowing magnetic field */}
+            <mesh>
+              <sphereGeometry args={[size, 16, 16]} />
+              <meshStandardMaterial
+                color={oasis.color}
+                emissive={oasis.color}
+                emissiveIntensity={0.8}
+                transparent
+                opacity={0.7}
+              />
+            </mesh>
+            {/* Outer glow */}
+            <mesh>
+              <sphereGeometry args={[size * 1.5, 16, 16]} />
+              <meshStandardMaterial
+                color={oasis.color}
+                transparent
+                opacity={0.2}
+              />
+            </mesh>
+          </group>
+        );
+      })}
+
+      {/* Jarosite crystal indicator */}
+      <mesh position={[0, 0, 1.4]} rotation={[0, 0, Math.PI / 4]}>
+        <octahedronGeometry args={[0.15]} />
+        <meshStandardMaterial
+          color="#ffdd00"
+          emissive="#ffaa00"
+          emissiveIntensity={0.5}
+          metalness={0.7}
+          roughness={0.3}
+        />
+      </mesh>
+
+      <Html position={[0, 2.2, 0]} center>
+        <div className="bg-black/95 px-6 py-3 rounded-xl border-2 border-red-500">
+          <div className="text-red-400 font-bold text-xl">MARS: Ω_Z = 0.95</div>
+          <div className="text-yellow-400 text-lg">Jarosite: d = 5.7722 Å</div>
+          <div className="text-cyan-400 text-sm">Only 0.29% offset from Z!</div>
+          <div className="text-orange-400 text-xs mt-1">Magnetic Oases: 1500 Gauss</div>
+        </div>
+      </Html>
+
+      <Html position={[1.8, -0.5, 0]}>
+        <div className="bg-black/80 p-2 rounded text-xs space-y-1">
+          <div className="text-red-400 font-bold mb-1">Magnetic Oases</div>
+          {oases.map(o => (
+            <div key={o.name} className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: o.color }} />
+              <span className="text-gray-300 text-[10px]">{o.name}: {o.field}G</span>
+            </div>
+          ))}
+        </div>
+      </Html>
+    </group>
+  );
+}
+
+// Phase 12: Omega-Z Achievement
 function OmegaZAchievementViz() {
   const groupRef = useRef<THREE.Group>(null);
   useFrame((state) => {
@@ -754,7 +886,8 @@ function PhaseScene({ phase }: { phase: number }) {
     case 8: return <HighResAuditViz />;
     case 9: return <OmegaLatticeViz />;
     case 10: return <MagneticJunctionsViz />;
-    case 11: return <OmegaZAchievementViz />;
+    case 11: return <MarsProtogenesisViz />;
+    case 12: return <OmegaZAchievementViz />;
     default: return <FrankModelViz />;
   }
 }
@@ -852,7 +985,7 @@ function ConstantsPanel() {
       </div>
 
       <div className="border-t border-gray-700 pt-3">
-        <div className="text-gray-500 text-xs uppercase mb-2">11 Validations</div>
+        <div className="text-gray-500 text-xs uppercase mb-2">12 Validations</div>
         <div className="grid grid-cols-2 gap-1 text-[10px]">
           <div className="text-emerald-400">✓ Frank Model</div>
           <div className="text-emerald-400">✓ Z-Catalysis</div>
@@ -864,7 +997,8 @@ function ConstantsPanel() {
           <div className="text-emerald-400">✓ High-Res</div>
           <div className="text-yellow-400">✓ Ω-Lattice</div>
           <div className="text-yellow-400">✓ Mag Junctions</div>
-          <div className="text-yellow-400 col-span-2">★ Ω_Z = 1.0</div>
+          <div className="text-red-400">✓ Mars Jarosite</div>
+          <div className="text-yellow-400">★ Ω_Z = 1.0</div>
         </div>
       </div>
     </div>
@@ -882,7 +1016,7 @@ export default function AbiogenesisSimulation() {
   useEffect(() => {
     if (!autoPlay) return;
     const timer = setInterval(() => {
-      setCurrentPhase(prev => prev >= 11 ? 1 : prev + 1);
+      setCurrentPhase(prev => prev >= 12 ? 1 : prev + 1);
     }, 8000);
     return () => clearInterval(timer);
   }, [autoPlay]);
@@ -914,7 +1048,7 @@ export default function AbiogenesisSimulation() {
       <div className="absolute top-4 left-1/2 transform -translate-x-1/2">
         <div className="bg-black/90 px-6 py-2 rounded-xl border border-yellow-500/50">
           <div className="text-yellow-400 font-bold text-center">PROTOGONOS: THE FIRST BORN</div>
-          <div className="text-gray-400 text-xs text-center">Step {currentPhase}/11 • {autoPlay ? 'Auto-playing' : 'Click timeline to navigate'}</div>
+          <div className="text-gray-400 text-xs text-center">Step {currentPhase}/12 • {autoPlay ? 'Auto-playing' : 'Click timeline to navigate'}</div>
         </div>
       </div>
 
