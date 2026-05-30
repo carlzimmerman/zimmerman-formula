@@ -1,0 +1,170 @@
+# =============================================================================
+# LAMMPS ReaxFF Simulation: Z-Derived Frequency Resonance on C-F Bonds
+# Project Potimos - PFAS Mineralization Research
+#
+# Purpose: Test whether 518 kHz (Z-derived) driving frequency produces
+#          enhanced C-F bond dissociation compared to control frequencies.
+#
+# Hypothesis: f_Z/10^12 = 517.9 kHz is a subharmonic of C-F stretch (32.2 THz)
+#             and may show stochastic resonance in cavitation conditions.
+#
+# Author: Carl Zimmerman
+# License: AGPL-3.0
+# Date: May 2026
+# =============================================================================
+
+# ----- Initialization -----
+units           real
+atom_style      charge
+boundary        p p p
+
+# ----- Force Field -----
+# ReaxFF for C/H/O/F systems
+# Note: Requires ffield.reax.CHOFNa or similar parameterization
+# Download from: https://github.com/lammps/lammps/tree/develop/potentials
+pair_style      reaxff NULL
+pair_coeff      * * ffield.reax.CHOF C H O F
+
+# ----- Read PFOA Structure -----
+# PFOA: C8F17COOH (perfluorooctanoic acid)
+# Generate with: python3 generate_pfoa_lammps.py
+read_data       pfoa_water.data
+
+# ----- Neighbor Settings -----
+neighbor        2.0 bin
+neigh_modify    every 10 delay 0 check yes
+
+# ----- ReaxFF Charge Equilibration -----
+fix             qeq all qeq/reaxff 1 0.0 10.0 1.0e-6 reaxff
+
+# ----- Groups -----
+group           pfas type 1 2 3 4      # C, H, O, F atoms
+group           water type 5 6         # O, H of water (if present)
+group           fluorine type 4        # F atoms only
+group           carbon type 1          # C atoms only
+
+# =============================================================================
+# Z-DERIVED DRIVING FREQUENCY
+# =============================================================================
+# f_Z = c/Z where Z = sqrt(32*pi/3) Angstrom = 5.7888 A
+# f_Z/10^12 = 517.9 kHz = 5.179e5 Hz
+#
+# In LAMMPS "real" units:
+#   time unit = femtoseconds (fs)
+#   period = 1/f = 1/(5.179e5 Hz) = 1.931e-6 s = 1.931e9 fs
+#
+# For MD timescales, we use accelerated dynamics:
+#   Scale frequency by 10^6 to reach fs regime
+#   Effective period = 1931 fs (still slow for MD)
+#
+# Alternative: Use pressure coupling to mimic cavitation
+# =============================================================================
+
+variable        f_Z_kHz equal 517.9           # Z-derived frequency (kHz)
+variable        f_control1 equal 500.0        # Standard sonochemistry (kHz)
+variable        f_control2 equal 536.0        # Off-resonance control (kHz)
+
+# Accelerated frequency for MD (scale by 10^9 to reach THz regime)
+# This tests the harmonic coupling principle at accessible timescales
+variable        f_accel equal 0.0322          # THz (C-F stretch / 1000)
+variable        period_fs equal 1000/${f_accel}/1000  # Period in fs
+variable        omega equal 2*PI/${period_fs}  # Angular frequency
+
+# ----- Thermodynamic Settings -----
+variable        T_ambient equal 300.0         # Room temperature (K)
+variable        T_cavitation equal 5000.0     # Cavitation hotspot (K)
+variable        P_ambient equal 1.0           # 1 atm
+variable        P_cavitation equal 1000.0     # ~1000 atm cavitation pressure
+
+# =============================================================================
+# SIMULATION PROTOCOL: Oscillating Pressure Field
+# =============================================================================
+# Mimics cavitation bubble collapse with periodic pressure pulses
+# at the Z-derived frequency
+
+# ----- Stage 1: Equilibration at ambient conditions -----
+fix             npt_equil all npt temp ${T_ambient} ${T_ambient} 100.0 &
+                iso ${P_ambient} ${P_ambient} 1000.0
+
+thermo          1000
+thermo_style    custom step temp press pe ke etotal vol
+
+dump            equil all custom 1000 equil.lammpstrj id type x y z
+
+run             50000  # 50 ps equilibration
+
+undump          equil
+unfix           npt_equil
+
+# ----- Stage 2: Oscillating pressure simulation -----
+# Apply sinusoidal pressure oscillation to mimic acoustic driving
+
+variable        time equal step*0.001         # Time in ps
+variable        P_osc equal ${P_ambient}+${P_cavitation}*sin(${omega}*${time})
+
+fix             npt_osc all npt temp ${T_ambient} ${T_ambient} 100.0 &
+                iso v_P_osc v_P_osc 100.0
+
+# ----- Monitor C-F Bond Lengths -----
+# Compute all C-F distances to track bond stretching/breaking
+
+compute         cf_dist all pair/local dist
+compute         cf_bonds carbon group/group fluorine pair yes
+
+# Bond order analysis (ReaxFF provides this)
+fix             reax_bonds all reaxff/bonds 1000 bonds.reaxff
+
+# ----- Data Collection -----
+# Track potential energy, temperature, pressure, and C-F distances
+
+thermo          100
+thermo_style    custom step temp press pe ke etotal vol v_P_osc
+
+dump            traj all custom 100 z_resonance.lammpstrj id type x y z vx vy vz
+dump_modify     traj sort id
+
+# Per-atom stress for local energy analysis
+compute         stress all stress/atom NULL
+dump            stress all custom 1000 stress.lammpstrj id type c_stress[1] c_stress[2] c_stress[3]
+
+# ----- Production Run -----
+# Run for multiple oscillation periods
+
+variable        n_periods equal 100
+variable        run_steps equal ${n_periods}*${period_fs}
+
+run             ${run_steps}
+
+# =============================================================================
+# POST-PROCESSING NOTES
+# =============================================================================
+#
+# After running simulations at f_Z (518 kHz scaled) and controls:
+#
+# 1. Parse bonds.reaxff to count C-F bond breaking events
+#    grep "C F" bonds.reaxff | awk '{if($3 < 0.3) print}' > broken_bonds.txt
+#
+# 2. Compare dissociation rates:
+#    - N_break(518 kHz) vs N_break(500 kHz) vs N_break(536 kHz)
+#
+# 3. Look for stochastic resonance signature:
+#    - Plot bond_order vs time for each frequency
+#    - Resonance = larger amplitude fluctuations at f_Z
+#
+# 4. Statistical significance:
+#    - Run 10+ replicas with different initial velocities
+#    - t-test on dissociation counts
+#
+# =============================================================================
+
+# ----- Cleanup -----
+write_data      final_state.data
+write_restart   restart.z_resonance
+
+print "============================================================"
+print "Z-RESONANCE SIMULATION COMPLETE"
+print "============================================================"
+print "Z-derived frequency: ${f_Z_kHz} kHz"
+print "Oscillation periods: ${n_periods}"
+print "Check bonds.reaxff for C-F bond order evolution"
+print "============================================================"
