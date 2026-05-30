@@ -18,7 +18,8 @@
 **PLUS:**
 - Multi-Messenger Digital Twin with 264,306 observations
 - Real DESI DR1 galaxy positions (100,000 LRGs)
-- Interactive evidence layer visualizations
+  - Interactive evidence layer visualizations
+  - 
 - 60 FPS GPU-optimized rendering
 - Deployed at https://abeautifullygeometricuniverse.web.app
 
