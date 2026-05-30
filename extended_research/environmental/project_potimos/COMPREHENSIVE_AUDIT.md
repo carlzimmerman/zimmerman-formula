@@ -1,7 +1,7 @@
 # Project Potimos: Comprehensive Research Audit
 
 **Date:** May 30, 2026
-**Reviewer:** Computational Analysis (Claude Opus 4.5)
+**Reviewer:** Computational Analysis
 **Status:** Complete - Ready for Zenodo Publication
 
 ---
@@ -301,5 +301,4 @@ The work is **publication-ready** for Zenodo and suitable for submission to peer
 ---
 
 **Audit completed:** May 30, 2026
-**Auditor:** Claude Opus 4.5 (Anthropic)
-**Signed:** Computational analysis assistant to Carl Zimmerman
+**Author:** Carl Zimmerman
