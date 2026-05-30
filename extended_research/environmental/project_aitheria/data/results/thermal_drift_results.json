@@ -1,0 +1,111 @@
+{
+  "metadata": {
+    "analysis": "Thermal Lattice Drift Audit",
+    "date": "2026-05-30",
+    "author": "Carl Zimmerman",
+    "purpose": "Determine if Z-strained stanene survives flue gas temperatures"
+  },
+  "sweep_summary": {
+    "T_min_K": 300,
+    "T_max_K": 600,
+    "T_critical_K": 355.1020408163265,
+    "T_critical_C": 81.95204081632653
+  },
+  "flue_gas_analysis": {
+    "T_min_150C": {
+      "temperature_K": 423,
+      "temperature_C": 149.85000000000002,
+      "lattice_constant_A": 5.799490390983422,
+      "drift_from_Z_percent": 0.18450000000001687,
+      "strain_from_native_percent": 24.18608974268569,
+      "is_stable": false,
+      "stability_notes": "WARNING: T = 150\u00b0C is >70% of melting point; NOTE: Analysis assumes substrate-supported stanene; Freestanding stanene may buckle at high strain"
+    },
+    "T_typical_200C": {
+      "temperature_K": 473,
+      "temperature_C": 199.85000000000002,
+      "lattice_constant_A": 5.80383199851077,
+      "drift_from_Z_percent": 0.25949999999998236,
+      "strain_from_native_percent": 24.279057783956517,
+      "is_stable": false,
+      "stability_notes": "WARNING: T = 200\u00b0C is >70% of melting point; NOTE: Analysis assumes substrate-supported stanene; Freestanding stanene may buckle at high strain"
+    },
+    "T_max_300C": {
+      "temperature_K": 573,
+      "temperature_C": 299.85,
+      "lattice_constant_A": 5.8125152135654705,
+      "drift_from_Z_percent": 0.40950000000000264,
+      "strain_from_native_percent": 24.464993866498283,
+      "is_stable": false,
+      "stability_notes": "WARNING: T = 300\u00b0C is >70% of melting point; NOTE: Analysis assumes substrate-supported stanene; Freestanding stanene may buckle at high strain"
+    }
+  },
+  "cooling_requirements": {
+    "at_200C": {
+      "cooling_required": true,
+      "delta_T_K": 123,
+      "cooling_power_kW": 110700.0,
+      "cooling_power_MW": 110.7,
+      "message": "Need to cool 123 K, requiring ~110.7 MW"
+    },
+    "at_300C": {
+      "cooling_required": true,
+      "delta_T_K": 223,
+      "cooling_power_kW": 200700.0,
+      "cooling_power_MW": 200.7,
+      "message": "Need to cool 223 K, requiring ~200.7 MW"
+    }
+  },
+  "substrate_compensation": {
+    "substrates": {
+      "SiC": {
+        "alpha": 4e-06,
+        "type": "positive",
+        "notes": "Standard substrate, adds to expansion"
+      },
+      "BN": {
+        "alpha": -2.7e-06,
+        "type": "negative (in-plane)",
+        "notes": "Partial compensation possible"
+      },
+      "Graphite": {
+        "alpha": -1e-06,
+        "type": "negative (a-axis)",
+        "notes": "Could partially compensate"
+      },
+      "ZrW2O8": {
+        "alpha": -9e-06,
+        "type": "strongly negative",
+        "notes": "Best NTE material, but epitaxy unclear"
+      },
+      "Engineered_metamaterial": {
+        "alpha": "tunable",
+        "type": "designed",
+        "notes": "Could be designed to match stanene expansion"
+      }
+    },
+    "bilayer_analysis": {
+      "stanene_thickness_nm": 0.5,
+      "BN_thickness_nm": 1.0,
+      "alpha_stanene": 1.5e-05,
+      "alpha_BN": -2.7e-06,
+      "alpha_net": 3.2e-06,
+      "compensation_achieved": true,
+      "notes": "BN substrate could reduce effective expansion by ~50%"
+    }
+  },
+  "verdict": {
+    "viability_200C": "RED",
+    "viability_300C": "RED",
+    "p_thermal_survival_200C": 0.1,
+    "p_thermal_survival_300C": 0.05,
+    "key_uncertainty": "2D stanene thermal expansion coefficient not well characterized"
+  },
+  "recommendations": [
+    "Use NTE substrate (BN or ZrW2O8) for thermal compensation",
+    "Pre-cool flue gas to <200\u00b0C",
+    "Measure actual \u03b1 for fabricated stanene samples",
+    "Consider active strain compensation"
+  ],
+  "ultrathink_status": "MARGINAL - Requires mitigation strategies"
+}
