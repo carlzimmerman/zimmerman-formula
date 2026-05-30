@@ -1,0 +1,269 @@
+{
+  "metadata": {
+    "project": "Project Potimos",
+    "component": "Stage 3: Z-Resonant Sonochemical Destructor",
+    "version": "1.0",
+    "license": "AGPL-3.0",
+    "date": "2026-05-30",
+    "author": "Carl Zimmerman",
+    "units": "SI (meters, Hz, Watts)"
+  },
+
+  "fundamental_constants": {
+    "Z_squared": {
+      "value": 33.51032163829112,
+      "formula": "32π/3",
+      "description": "Geometric stability constant"
+    },
+    "Z_angstrom": {
+      "value": 5.788810036466141,
+      "unit": "Å",
+      "description": "Z stability attractor length"
+    },
+    "Z_meters": {
+      "value": 5.788810036466141e-10,
+      "unit": "m"
+    },
+    "f_Z": {
+      "value": 5.178827014731554e+17,
+      "unit": "Hz",
+      "description": "Fundamental Z frequency (c/Z)"
+    },
+    "f_sono": {
+      "value": 517882.7014731554,
+      "unit": "Hz",
+      "description": "Sonochemistry target (f_Z/10^12)"
+    },
+    "scaling_bridge": {
+      "value": 1e12,
+      "description": "Frequency-to-energy conversion factor"
+    }
+  },
+
+  "chamber_geometry": {
+    "form_factor": "hexagonal_prism",
+    "rationale": "Optimized for standing wave stability and uniform acoustic field",
+    "material": {
+      "primary": "316L Stainless Steel",
+      "grade": "ASTM A240",
+      "thickness_mm": 6.0,
+      "corrosion_resistance": "Excellent for fluoride ions"
+    },
+    "internal_coating": {
+      "composition": "Omega-Lattice (Pb₀.₉₁Sn₀.₀₉S)",
+      "thickness_um": 50,
+      "purpose": "Z-resonant mineral interface",
+      "crystal_structure": "Galena derivative",
+      "lattice_constant_A": 5.936
+    },
+    "dimensions": {
+      "inner_diameter_mm": 200,
+      "height_mm": 300,
+      "volume_L": 9.42,
+      "wall_angle_deg": 60,
+      "aspect_ratio": 1.5
+    },
+    "ports": {
+      "inlet": {
+        "diameter_mm": 25,
+        "position": "top_center",
+        "flow_direction": "axial"
+      },
+      "outlet": {
+        "diameter_mm": 25,
+        "position": "bottom_center",
+        "flow_direction": "axial"
+      },
+      "sampling": {
+        "count": 3,
+        "diameter_mm": 6,
+        "positions": ["side_120deg_spacing"]
+      }
+    }
+  },
+
+  "transducer_array": {
+    "type": "piezoelectric_ceramic",
+    "material": {
+      "composition": "PZT-8 (Lead Zirconate Titanate)",
+      "manufacturer_spec": "Navy Type III",
+      "Curie_temperature_C": 300,
+      "d33_pC_N": 225,
+      "mechanical_Q": 1000
+    },
+    "configuration": {
+      "count": 6,
+      "arrangement": "hexagonal_ring",
+      "mounting": "radial_inward",
+      "focal_point": "chamber_center"
+    },
+    "individual_transducer": {
+      "diameter_mm": 50,
+      "thickness_mm": 4.0,
+      "resonant_frequency_kHz": 517.942,
+      "impedance_ohm": 50,
+      "max_power_W": 100
+    },
+    "operating_parameters": {
+      "frequency_Hz": 517942.0,
+      "frequency_tolerance_Hz": 1.0,
+      "phase_sync_required": true,
+      "duty_cycle_percent": 100,
+      "power_density_W_cm2": 50,
+      "total_acoustic_power_W": 600
+    }
+  },
+
+  "control_system": {
+    "frequency_reference": {
+      "type": "GPS-disciplined oscillator",
+      "stability_ppm": 0.01,
+      "purpose": "Maintain f_Z/10^12 lock"
+    },
+    "modulation": {
+      "type": "T-PWM",
+      "description": "Topological Pulse-Width Modulation",
+      "carrier_frequency_kHz": 517.942,
+      "phase_resolution_deg": 0.1
+    },
+    "feedback": {
+      "acoustic_sensor": {
+        "type": "Hydrophone array",
+        "count": 3,
+        "bandwidth_kHz": "100-1000",
+        "purpose": "Cavitation monitoring"
+      },
+      "chemical_sensors": {
+        "fluoride": {
+          "type": "Ion-selective electrode",
+          "range_mg_L": "0.01-1000",
+          "response_time_s": 30
+        },
+        "TOC": {
+          "type": "UV-persulfate oxidation",
+          "range_mg_L": "0.1-100",
+          "purpose": "Mineralization verification"
+        }
+      }
+    },
+    "safety": {
+      "pressure_relief_bar": 10,
+      "temperature_limit_C": 60,
+      "interlock": "acoustic_power_cutoff_on_fault"
+    }
+  },
+
+  "cavitation_parameters": {
+    "resonant_bubble": {
+      "radius_um": 6.35,
+      "diameter_um": 12.7,
+      "derivation": "Minnaert equation at f = 517.9 kHz"
+    },
+    "collapse_conditions": {
+      "peak_temperature_K": 5000,
+      "peak_pressure_atm": 1000,
+      "collapse_time_ns": 1,
+      "heating_rate_K_s": 1e10
+    },
+    "energy_concentration": {
+      "factor": 1e12,
+      "input_acoustic_W": 600,
+      "hotspot_power_density_W_m3": 1e18
+    },
+    "radical_generation": {
+      "OH_radical_yield_umol_J": 0.1,
+      "mechanism": "Thermal dissociation of H2O at collapse"
+    }
+  },
+
+  "process_parameters": {
+    "residence_time_min": 10,
+    "flow_rate_L_min": 1.0,
+    "temperature_C": {
+      "inlet": 25,
+      "max_bulk": 40,
+      "control": "External cooling jacket"
+    },
+    "pH": {
+      "operating_range": "6-8",
+      "optimal": 7.0
+    },
+    "dissolved_gas": {
+      "type": "Air or O2",
+      "saturation_percent": 100,
+      "purpose": "Nucleation sites for cavitation"
+    }
+  },
+
+  "performance_targets": {
+    "PFAS": {
+      "inlet_ng_L": 10000,
+      "outlet_ng_L": 10,
+      "destruction_percent": 99.9
+    },
+    "microplastics": {
+      "inlet_count_mL": 1000,
+      "outlet_count_mL": 1,
+      "fragmentation_percent": 99.9
+    },
+    "mineralization": {
+      "fluoride_recovery_percent": 95,
+      "CO2_generation": "stoichiometric",
+      "byproducts": "none detected"
+    },
+    "energy": {
+      "specific_energy_kWh_m3": 2.0,
+      "comparison": "Lower than electrochemical oxidation (5-10 kWh/m3)"
+    }
+  },
+
+  "materials_bill": {
+    "chamber": {
+      "316L_SS_sheet_m2": 0.5,
+      "omega_lattice_coating_g": 100,
+      "gaskets_PTFE": 4
+    },
+    "transducers": {
+      "PZT8_discs": 6,
+      "mounting_brackets_SS": 6,
+      "electrical_feedthroughs": 6
+    },
+    "control": {
+      "GPS_oscillator": 1,
+      "signal_generator": 1,
+      "power_amplifier_600W": 1,
+      "hydrophones": 3,
+      "fluoride_ISE": 1,
+      "TOC_analyzer": 1
+    },
+    "plumbing": {
+      "SS_tubing_m": 5,
+      "valves": 4,
+      "flow_meter": 1,
+      "cooling_jacket": 1
+    }
+  },
+
+  "assembly_notes": [
+    "All welds must be full-penetration and passivated",
+    "Omega-lattice coating applied via PVD sputtering",
+    "Transducers bonded with conductive epoxy, cured at 80°C for 2h",
+    "Phase calibration required after assembly using reference hydrophone",
+    "Frequency sweep test (500-540 kHz) to verify resonance at 517.9 kHz",
+    "Pressure test to 15 bar before operation"
+  ],
+
+  "regulatory_compliance": {
+    "pressure_vessel": "ASME Section VIII Div 1",
+    "electrical": "IEC 61010-1",
+    "EMC": "FCC Part 18 (Industrial)",
+    "materials_contact": "NSF/ANSI 61 (drinking water)"
+  },
+
+  "licensing": {
+    "hardware_design": "AGPL-3.0",
+    "control_software": "AGPL-3.0",
+    "fundamental_physics": "CC BY 4.0",
+    "attribution": "Project Potimos, Z² Unified Framework (Zimmerman, 2026)"
+  }
+}
