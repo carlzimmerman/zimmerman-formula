@@ -3,6 +3,29 @@
 Project Potimos: Reconciliation Physics
 Bridging the Gaps Identified in Honest Assessment
 
+Copyright (C) 2026 Carl Zimmerman
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU Affero General Public License for more details.
+
+NOVEL CONTRIBUTIONS (original to this work):
+- Z constant derivation: Z = sqrt(32*pi/3) = 5.7888 Angstrom
+- f_sono = c/Z / 10^12 = 517.9 kHz frequency derivation
+- 220x synergy quantification model
+- Broadband coupling efficiency calculation
+
+BUILDS UPON (prior art, not claimed as novel):
+- General PFAS sonochemistry (USPTO 12528721)
+- Surface adsorption at bubble interface (Vecitis et al., J. Phys. Chem. C)
+- Rayleigh-Plesset bubble dynamics
+
 This module addresses three critical null results:
 1. Energy Bridge Gap: 10^12 (frequency) vs 10^6.4 (energy) - 5.6 orders
 2. Near-Integer Harmonic: 0.21 deviation from exact integer
@@ -12,7 +35,6 @@ Scientific approach: Find the physics that bridges these gaps.
 
 Author: Carl Zimmerman
 Date: 2026-05-30
-License: AGPL-3.0
 """
 
 import numpy as np

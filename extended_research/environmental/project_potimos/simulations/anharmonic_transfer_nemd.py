@@ -3,6 +3,23 @@
 Anharmonic Energy Transfer NEMD Simulation
 Project Potimos - Phase I Refinement
 
+Copyright (C) 2026 Carl Zimmerman
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+NOVEL CONTRIBUTIONS (original to this work):
+- 517.9 kHz frequency derived from Z = sqrt(32*pi/3)
+- Integration of Rayleigh-Plesset dynamics with Z-framework
+- Energy concentration analysis tied to frequency bridge
+
+BUILDS UPON (prior art, not claimed as novel):
+- Rayleigh-Plesset bubble dynamics equations
+- General cavitation physics
+- Power spectral density methods
+
 Models cavitation bubble collapse at Z-derived frequency (517.9 kHz)
 and computes Power Spectral Density to verify energy transfer to 32.2 THz
 
@@ -13,7 +30,6 @@ Key Questions Addressed:
 
 Author: Carl Zimmerman
 Date: 2026-05-30
-License: AGPL-3.0
 """
 
 import numpy as np

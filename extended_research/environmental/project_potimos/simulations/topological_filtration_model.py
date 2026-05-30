@@ -3,6 +3,26 @@
 Topological Filtration Computational Framework
 Project Potimos - Phase II
 
+Copyright (C) 2026 Carl Zimmerman
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+NOVEL CONTRIBUTIONS (original to this work):
+- Berry Phase membrane design for water purification
+- M-CISS (Magnetic Chiral-Induced Spin Selectivity) filtration mechanism
+- Soliton-gated membrane concept for selective transport
+- Z-geometry integration with topological surface states
+- Topological insulator application to water treatment (first in literature)
+
+BUILDS UPON (prior art, not claimed as novel):
+- Berry Phase physics (established quantum mechanics)
+- Topological insulator band theory
+- General membrane transport equations
+- Landau-de Gennes soliton dynamics
+
 Implements computational models for:
 1. Berry Phase Sieving (momentum-space filtration)
 2. M-CISS Spin-Sieving (chiral rejection)
@@ -10,7 +30,6 @@ Implements computational models for:
 4. Integrated Treatment Train simulation
 
 Author: Carl Zimmerman
-License: AGPL-3.0
 Date: May 2026
 """
 

@@ -5,10 +5,28 @@ Project Potimos v11.4.0
 
 Topological Lithium Recovery from Wastewater Brines
 
+Copyright (C) 2026 Carl Zimmerman
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+NOVEL CONTRIBUTIONS (original to this work):
+- Z/2 = 2.89 Angstrom pore derivation for lithium selectivity
+- Berry Phase membrane design framework for ion separation
+- Stanene application for water filtration (first in literature)
+- M-CISS mechanism for selective ion capture
+- Integration with Z-geometry framework
+
+BUILDS UPON (prior art, not claimed as novel):
+- Subnanometer pore ion selectivity (graphene/MXene literature)
+- Ionic radii and hydration shell thermodynamics
+- General membrane transport theory
+
 This module implements the Z-Mining algorithm for selective ion recovery
 using Berry Phase topological membranes with Z-geometry pores.
 
-License: AGPL-3.0 | Patent Pending
 Author: Carl Zimmerman
 Date: 2026-05-30
 """
