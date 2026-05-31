@@ -324,10 +324,17 @@ export default function SimulatePage() {
               <div className="mt-6 p-4 bg-gray-900/50 rounded border border-gray-800">
                 <h3 className="text-sm font-bold text-gray-400 uppercase mb-2">Key Result</h3>
                 <p className="text-gray-300 text-sm">
-                  The near-perfect correlation between Northern and Southern Galactic Caps
-                  indicates parity violation is <em>globally coherent</em>, consistent with
-                  T³/Z₂ topology where η = Z² = 32π/3 defines a single chirality axis
-                  for the entire universe.
+                  The correlation between Northern and Southern Galactic Caps would indicate
+                  parity violation that is <em>globally coherent</em> — qualitatively
+                  consistent with a chiral T³/Z₂ spatial topology, in which the orbifold&apos;s
+                  Z₂ inversion fixes a single handedness for the whole space.
+                </p>
+                <p className="text-gray-500 text-xs mt-2">
+                  Note: the chirality arises from the orbifold Z₂ projection, not from an
+                  eta-invariant. The Dirac eta invariant of T³/Z₂ is 0 (see reviews/), so the
+                  earlier identification η = Z² = 32π/3 was incorrect; Z² = 32π/3 = 8×(4π/3)
+                  is the compactification scale (an input), and its relation to a cosmic-scale
+                  parity signal is not established.
                 </p>
               </div>
             </div>
