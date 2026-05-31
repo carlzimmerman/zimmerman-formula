@@ -2,16 +2,27 @@
 
 /**
  * =============================================================================
- * ABIOGENESIS SIMULATION - Project Protogonos Complete Visualization
+ * ABIOGENESIS SIMULATION - Project Protogonos Visualization
  * =============================================================================
  *
- * Interactive step-by-step slideshow of ALL 12 validated findings from
- * Project Protogonos - the computational proof that life is a geometric
- * inevitability.
+ * HONESTY NOTICE (May 2026):
+ * This visualization presents HYPOTHESES, not proven facts.
+ * See EARTH_ABIOGENESIS_HONESTY_ASSESSMENT.md for critical self-evaluation.
+ *
+ * KEY CAVEATS:
+ * - "25 million × enhancement" is a made-up number with no derivation
+ * - "Ω_Z = 1.0" result came from simulation with tuned parameters (circular reasoning)
+ * - Mars magnetic field values were WRONG (0.015 Gauss, not 1500 Gauss)
+ * - Probability estimates are speculation, not measured values
+ *
+ * WHAT IS VALID:
+ * - Z² = 32π/3 observed in protein backbone data (real PDB observation)
+ * - Frank model for chirality (established science)
+ * - General pathway stages (scientific consensus)
  *
  * ████████████████████████████████████████████████████████████████████████████
  * █                     PROTOGONOS: THE FIRST BORN                           █
- * █                        Ω_Z = 1.0 ACHIEVED                                █
+ * █                 Ω_Z FRAMEWORK (Speculative - See Caveats)                █
  * ████████████████████████████████████████████████████████████████████████████
  *
  * THE 12 PILLARS OF VALIDATION:
@@ -91,17 +102,17 @@ const PHASES: Phase[] = [
   {
     id: 2,
     name: 'Z-Catalysis',
-    subtitle: '25 MILLION × RATE ENHANCEMENT',
-    description: 'DFT quantum simulation shows polymerization at Z-spacing (5.789 Å) has activation barrier of only 0.51 eV vs 1.03 eV at other spacings. This produces 25 million × faster reaction rates.',
+    subtitle: 'RATE ENHANCEMENT (Hypothesized)',
+    description: '⚠️ CAVEAT: The "25 million ×" factor is HYPOTHETICAL - no derivation or experimental data. The concept that Z-spacing may be catalytically favorable is plausible but unquantified.',
     color: '#ff6b35',
     metrics: {
-      'ΔG‡ at Z': '0.51 eV',
-      'ΔG‡ at 6.5Å': '1.03 eV',
-      'Rate enhancement': '25,000,000×',
-      'L/D selectivity': '2.0',
+      'ΔG‡ at Z (model)': '0.51 eV',
+      'ΔG‡ at 6.5Å (model)': '1.03 eV',
+      'Rate enhancement': '⚠️ UNVERIFIED',
+      'L/D selectivity': 'Unknown',
       'Best mineral': 'Galena (5.94 Å)',
     },
-    verdict: '✓ VALIDATED: Z-spacing is catalytically optimal',
+    verdict: '⚠️ HYPOTHETICAL: Enhancement factor needs experimental validation',
     category: 'biological',
     scriptName: 'dft_galena_test.py',
     scriptUrl: GITHUB_BASE + 'dft_galena_test.py',
@@ -145,17 +156,17 @@ const PHASES: Phase[] = [
   {
     id: 5,
     name: 'Exo-Z Calculator',
-    subtitle: 'Ω_Z ABIOGENESIS PROBABILITY',
-    description: 'The Ω_Z score combines lattice resonance, solvent, magnetic field, chiral bias, thermal, and energy factors. Mars (Noachian era) scored highest at 91% due to jarosite\'s near-perfect Z-match. Venus clouds score 74% - limited by transient lightning-only magnetic fields.',
+    subtitle: 'Ω_Z SCORING (Speculative)',
+    description: '⚠️ CAVEAT: These scores are SPECULATIVE. Framework is based on N=1 (Earth only). Mars score was based on WRONG magnetic field data (0.015 Gauss, not 1500). All probabilities are uncertain.',
     color: '#9b59b6',
     metrics: {
-      'Mars (Noachian)': '91%',
-      'Earth (Vents)': '87%',
-      'Europa': '77%',
-      'Venus Clouds': '74%',
-      'Titan': '22%',
+      'Mars (Noachian)': '⚠️ 40-70% (revised)',
+      'Earth (Vents)': '~87% (N=1 basis)',
+      'Europa': '⚠️ Uncertain',
+      'Venus Clouds': '⚠️ 5-10% life exists',
+      'Framework basis': 'Earth only (N=1)',
     },
-    verdict: '✓ VALIDATED: Z-window explains Fermi Paradox',
+    verdict: '⚠️ SPECULATIVE: Framework extrapolation is uncertain',
     category: 'biological',
     scriptName: 'exo_z_calculator.py',
     scriptUrl: GITHUB_BASE + 'exo_z_calculator.py',
@@ -253,35 +264,35 @@ const PHASES: Phase[] = [
   {
     id: 11,
     name: 'Mars Protogenesis',
-    subtitle: 'JAROSITE: PERFECT Z-RESONANCE',
-    description: 'Mars rovers detected Jarosite (KFe₃(SO₄)₂(OH)₆) which at 210K has d = 5.7722 Å — only 0.29% offset from Z! Combined with 1500 Gauss magnetic oases in the Southern Highlands, Mars may have been MORE Z-compatible than Earth during the Noachian period.',
+    subtitle: 'JAROSITE Z-MATCH (Magnetic Field ERROR)',
+    description: '⚠️ CRITICAL ERROR: Magnetic fields were stated in WRONG UNITS. Actual: ~0.015 Gauss (not 1500). This is 16,000× BELOW CISS threshold. Jarosite Z-match IS real (Opportunity confirmed), but magnetic oasis argument is INVALID.',
     color: '#ff6347',
     metrics: {
-      'Jarosite d at 210K': '5.7722 Å',
-      'Offset from Z': '0.29%',
-      'Terra Sirenum B': '1500 Gauss',
-      'vs CISS threshold': '6.1× EXCEEDS',
-      'Mars Ω_Z': '0.95',
+      'Jarosite d at 210K': '5.7722 Å ✓',
+      'Offset from Z': '0.29% ✓ (real)',
+      'Terra Sirenum B': '⚠️ 0.015 Gauss (NOT 1500)',
+      'vs CISS threshold': '❌ 16,000× BELOW',
+      'Mars Ω_Z': '⚠️ 0.4-0.7 (revised)',
     },
-    verdict: '✓ VALIDATED: Mars was Z-optimal in Noachian era',
+    verdict: '⚠️ PARTIAL: Jarosite valid, magnetic field argument INVALID',
     category: 'physical',
     scriptName: 'solar_system_z_audit.py',
     scriptUrl: GITHUB_BASE + 'solar_system_z_audit.py',
   },
   {
     id: 12,
-    name: 'Ω_Z = 1.0',
-    subtitle: 'LIFE IS INEVITABLE',
-    description: 'Under the Omega-Z conditions: Lattice = Z, Temperature = 300K, Magnetic field ≥ 245 Gauss (from inclusions), Aliveness = 3.45%. The probability of life approaches unity. Life is a GEOMETRIC INEVITABILITY.',
+    name: 'Ω_Z Framework',
+    subtitle: '⚠️ CIRCULAR REASONING IDENTIFIED',
+    description: '⚠️ CRITICAL: The "Ω_Z = 1.0" result is CIRCULAR REASONING. Parameters were tuned to produce desired result. The simulation proves only that our parameter choices work, not that life is inevitable. See EARTH_ABIOGENESIS_HONESTY_ASSESSMENT.md',
     color: '#f39c12',
     metrics: {
-      'Omega-Lattice': '100%',
-      'Thermal Resonance': '100%',
-      'Information': '100%',
-      'Homochirality': '99.9%',
-      'Overall Ω_Z': '100%',
+      'Simulation result': '⚠️ Circular',
+      'Parameter basis': 'Made up',
+      'Z² = 32π/3': '✓ Real observation',
+      'Pathway concept': '✓ Plausible',
+      'Quantification': '❌ Unvalidated',
     },
-    verdict: '★ ACHIEVED: P(Life) → 1.0',
+    verdict: '⚠️ RETRACTED: "Life is inevitable" claim is circular reasoning',
     category: 'physical',
     scriptName: 'omega_z_final_100.py',
     scriptUrl: GITHUB_BASE + 'omega_z_final_100.py',
@@ -484,14 +495,14 @@ function PathologicalLockViz() {
   );
 }
 
-// Phase 5: Exo-Z Calculator
+// Phase 5: Exo-Z Calculator (REVISED with caveats)
 function ExoZCalcViz() {
   const [idx, setIdx] = useState(0);
   const worlds = [
-    { name: 'Mars (Noachian)', viability: 91, color: '#ff6347' },
-    { name: 'Earth (Vents)', viability: 87, color: '#00aaff' },
-    { name: 'Europa', viability: 77, color: '#4488ff' },
-    { name: 'Venus Clouds', viability: 74, color: '#ffcc00' },
+    { name: 'Mars (REVISED)', viability: '40-70', color: '#ff6347', note: '⚠️ B-field error' },
+    { name: 'Earth (N=1 basis)', viability: 87, color: '#00aaff', note: '✓' },
+    { name: 'Europa', viability: '?', color: '#4488ff', note: '⚠️ Uncertain' },
+    { name: 'Venus Clouds', viability: '5-10', color: '#ffcc00', note: '⚠️ Speculative' },
   ];
 
   useEffect(() => {
@@ -524,7 +535,9 @@ function ExoZCalcViz() {
       <Html position={[0, 1.8, 0]} center>
         <div className="bg-black/95 px-6 py-3 rounded-xl border-2" style={{ borderColor: worlds[idx].color }}>
           <div className="font-bold text-lg" style={{ color: worlds[idx].color }}>{worlds[idx].name}</div>
-          <div className="text-emerald-400 text-3xl font-bold">Ω_Z = {worlds[idx].viability}%</div>
+          <div className="text-yellow-400 text-2xl font-bold">Ω_Z = {worlds[idx].viability}%</div>
+          <div className="text-orange-400 text-xs">{worlds[idx].note}</div>
+          <div className="text-gray-500 text-xs mt-1">Framework: N=1 (Earth only)</div>
         </div>
       </Html>
     </group>
@@ -831,11 +844,12 @@ function MarsProtogenesisViz() {
       </mesh>
 
       <Html position={[0, 2.2, 0]} center>
-        <div className="bg-black/95 px-6 py-3 rounded-xl border-2 border-red-500">
-          <div className="text-red-400 font-bold text-xl">MARS: Ω_Z = 0.95</div>
-          <div className="text-yellow-400 text-lg">Jarosite: d = 5.7722 Å</div>
-          <div className="text-cyan-400 text-sm">Only 0.29% offset from Z!</div>
-          <div className="text-orange-400 text-xs mt-1">Magnetic Oases: 1500 Gauss</div>
+        <div className="bg-black/95 px-6 py-3 rounded-xl border-2 border-yellow-500">
+          <div className="text-yellow-400 font-bold text-xl">⚠️ MARS (Revised)</div>
+          <div className="text-emerald-400 text-lg">Jarosite: d = 5.7722 Å ✓</div>
+          <div className="text-cyan-400 text-sm">0.29% offset from Z (valid)</div>
+          <div className="text-red-400 text-xs mt-1">❌ B-field: 0.015 Gauss (NOT 1500)</div>
+          <div className="text-orange-400 text-xs">Ω_Z revised: 0.4-0.7</div>
         </div>
       </Html>
 
@@ -889,10 +903,11 @@ function OmegaZAchievementViz() {
       <pointLight position={[0, 0, 0]} color="#00ff88" intensity={3} distance={5} />
 
       <Html position={[0, 2.2, 0]} center>
-        <div className="bg-black/95 px-8 py-4 rounded-xl border-2 border-yellow-500">
-          <div className="text-yellow-400 font-bold text-3xl">Ω_Z = 1.0</div>
-          <div className="text-emerald-400 text-xl">LIFE IS INEVITABLE</div>
-          <div className="text-gray-300 text-sm mt-2">Z² = 32π/3 is the equation of existence</div>
+        <div className="bg-black/95 px-8 py-4 rounded-xl border-2 border-red-500">
+          <div className="text-red-400 font-bold text-2xl">⚠️ CIRCULAR REASONING</div>
+          <div className="text-yellow-400 text-lg">Ω_Z = 1.0 claim RETRACTED</div>
+          <div className="text-gray-300 text-sm mt-2">Parameters were tuned to produce result</div>
+          <div className="text-emerald-400 text-xs mt-1">Z² = 32π/3 observation remains valid</div>
         </div>
       </Html>
     </group>
@@ -1013,15 +1028,18 @@ function Timeline({ currentPhase, onPhaseChange }: { currentPhase: number; onPha
 
 function ConstantsPanel() {
   return (
-    <div className="absolute top-4 left-4 bg-black/95 p-4 rounded-xl border border-emerald-500/50 max-w-xs">
-      <div className="flex items-center gap-2 mb-3">
-        <div className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse" />
-        <div className="text-emerald-400 font-bold">PROTOGONOS VALIDATED</div>
+    <div className="absolute top-4 left-4 bg-black/95 p-4 rounded-xl border border-yellow-500/50 max-w-xs">
+      <div className="flex items-center gap-2 mb-2">
+        <div className="w-3 h-3 rounded-full bg-yellow-500 animate-pulse" />
+        <div className="text-yellow-400 font-bold">⚠️ SPECULATIVE</div>
+      </div>
+      <div className="text-orange-400 text-[10px] mb-3">
+        See honesty assessments for caveats
       </div>
 
       <div className="font-mono text-xs space-y-1 mb-3">
         <div className="text-gray-300">
-          Z² = <span className="text-yellow-400">32π/3 = 33.51</span>
+          Z² = <span className="text-yellow-400">32π/3 = 33.51</span> <span className="text-emerald-400">(✓ real)</span>
         </div>
         <div className="text-gray-300">
           Z = <span className="text-purple-400">{Z_CONSTANT.toFixed(4)} Å</span>
@@ -1032,20 +1050,20 @@ function ConstantsPanel() {
       </div>
 
       <div className="border-t border-gray-700 pt-3">
-        <div className="text-gray-500 text-xs uppercase mb-2">12 Validations</div>
+        <div className="text-gray-500 text-xs uppercase mb-2">Status (Revised)</div>
         <div className="grid grid-cols-2 gap-1 text-[10px]">
           <div className="text-emerald-400">✓ Frank Model</div>
-          <div className="text-emerald-400">✓ Z-Catalysis</div>
+          <div className="text-yellow-400">⚠️ Z-Catalysis</div>
           <div className="text-emerald-400">✓ SAW Null</div>
           <div className="text-emerald-400">✓ Patho Lock</div>
-          <div className="text-emerald-400">✓ Exo-Z</div>
+          <div className="text-yellow-400">⚠️ Exo-Z</div>
           <div className="text-emerald-400">✓ Info Density</div>
           <div className="text-emerald-400">✓ Decoy Test</div>
           <div className="text-emerald-400">✓ High-Res</div>
-          <div className="text-yellow-400">✓ Ω-Lattice</div>
-          <div className="text-yellow-400">✓ Mag Junctions</div>
-          <div className="text-red-400">✓ Mars Jarosite</div>
-          <div className="text-yellow-400">★ Ω_Z = 1.0</div>
+          <div className="text-emerald-400">✓ Ω-Lattice</div>
+          <div className="text-emerald-400">✓ Mag Junctions</div>
+          <div className="text-red-400">⚠️ Mars B-field</div>
+          <div className="text-red-400">❌ Ω_Z=1.0</div>
         </div>
       </div>
     </div>
