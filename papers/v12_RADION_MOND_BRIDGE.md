@@ -104,8 +104,36 @@ modulus makes a₀ ~ cH(z) natural, with the geometric factor 1/Z; deriving Λ a
 field's mass remain open."* That is the real Tier B — a genuine upgrade over the shared
 symbol, and an honest distance short of a derivation.
 
+## 7. The horizon derivation (architecture C), worked — `horizon_a0_derivation.py`
+
+Attempting to *derive* a₀ = cH/Z from de Sitter horizon thermodynamics, the result splits
+cleanly into a derived half and a fit half:
+
+- **DERIVED — the evolution.** Tying a₀ to the *instantaneous* horizon (T_dS = ℏH(z)/2πk_B,
+  equivalently the horizon acceleration cH(z)) forces **a₀(z)/a₀(0) = E(z)** regardless of
+  the O(1). The falsifiable, distinctive prediction is route-independent. This is the win.
+- **DERIVED — the order of magnitude.** a₀ ~ cH falls out of multiple standard routes:
+  Unruh = de Sitter crossover (factor 1), Milgrom modified-inertia (2), surface gravity of
+  the critical mass at R_H (½), Verlinde volume-entropy (~⅙).
+- **FIT — the specific Z.** Decompose Z = 2√(8π/3): the **√(8π/3) is just Friedmann** (it
+  appears automatically when you write a₀ = (c/2)√(Gρ_c) instead of cH/Z — a unit conversion,
+  no new physics). The residual **factor 2 is the only genuinely free O(1)**, and clean
+  derivations spread it over {½, 1, 2, 2π, 6}. No route forces exactly 2√(8π/3); Z is the
+  *best-fit* member (the framework's own `a0_cH0_Z_check.py` concedes the factor 2 is
+  "assembled by hand"). Empirically the observed a₀ favors the ~6 family — Verlinde's ⅙
+  (1.0×) and Milgrom's 1/2π (0.9×) land as close to the data as Z does.
+- **CONJECTURE — the geometric pin.** The hope that the coupling **Z = √(volume modulus) =
+  √(32π/3)** would let the geometry fix the O(1) is the interlocking-web *posit*, not a
+  holographic identity. It converts one unproven number (the O(1)) into another (the
+  modulus, itself the unproven compactification input). A hypothesis to test, not a closure.
+
+**Architecture C therefore half-closes the derivation:** the testable scaling and the order
+of magnitude are derived *and* both tensions (heavy-vs-light, varying-constants) are dodged,
+because the radion stays frozen and the evolution rides on H(z). The price: the radion sets
+the *coupling*, the horizon sets the *dynamics* — and the precise 1/Z remains a fit.
+
 ---
 
-*Reproducibility: `reviews/radion_mond_bridge.py`, `reviews/a0_construction_connection.py`,
-`reviews/a0_cH0_Z_check.py`, `reviews/radion_stabilization_test.py`,
-`reviews/radion_casimir_attempt.py`.*
+*Reproducibility: `reviews/radion_mond_bridge.py`, `reviews/horizon_a0_derivation.py`,
+`reviews/a0_construction_connection.py`, `reviews/a0_cH0_Z_check.py`,
+`reviews/radion_stabilization_test.py`, `reviews/radion_casimir_attempt.py`.*
