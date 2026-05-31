@@ -5,12 +5,24 @@
     "z_constant": 5.788810036466141,
     "ciss_threshold_gauss": 245
   },
+  "honesty_assessment": {
+    "date": "2026-05-30",
+    "critical_errors_found": [
+      "MAGNETIC FIELD UNIT ERROR: Values should be 0.015-0.02 Gauss, not 1500 Gauss",
+      "Mars crustal fields are ~12,000x BELOW CISS threshold (245 Gauss)",
+      "Probability estimates (70%, 5%) were made-up numbers"
+    ],
+    "confidence_revised": "LOW-MODERATE",
+    "see_full_assessment": "MARS_HONESTY_ASSESSMENT.md"
+  },
   "executive_summary": {
     "omega_z_noachian": 0.946,
-    "probability_category": "VERY HIGH (>90%)",
-    "best_mineral": "Jarosite (0.29% Z-offset - BEST IN SOLAR SYSTEM)",
-    "key_finding": "Mars had 500-600 Myr head start on Earth for abiogenesis",
-    "mars_advantage": "Jarosite is 9\u00d7 closer to Z than Earth's galena"
+    "omega_z_revised_range": "0.4-0.7 (magnetic field factor invalidated)",
+    "probability_category_original": "VERY HIGH (>90%)",
+    "probability_category_revised": "UNCERTAIN - framework has major issues",
+    "best_mineral": "Jarosite (0.18% Z-offset - real measurement)",
+    "key_finding": "Mars had 500-700 Myr head start on Earth (timeline debated)",
+    "mars_advantage": "Jarosite is closer to Z than galena (real), but magnetic field argument INVALID"
   },
   "mineral_analysis": {
     "minerals_at_280K": [
@@ -114,15 +126,20 @@
     }
   },
   "magnetic_analysis": {
-    "oases": [
+    "CRITICAL_ERROR": "UNIT ERROR IDENTIFIED - See MARS_HONESTY_ASSESSMENT.md",
+    "error_explanation": "Field values were incorrectly stated in Gauss. Actual units are nanotesla (nT). 1500 nT = 0.015 Gauss, which is 16,000x BELOW CISS threshold",
+    "section_status": "INVALID - Mars crustal fields cannot support CISS",
+    "oases_INVALIDATED": [
       {
         "name": "Terra Sirenum",
         "latitude": -40,
-        "field_gauss": 1500,
-        "ciss_ratio": 6.1,
-        "ciss_capable": true,
+        "field_nT_actual": 1500,
+        "field_gauss_actual": 0.015,
+        "field_gauss_claimed_ERROR": 1500,
+        "ciss_ratio_actual": 0.00006,
+        "ciss_capable": false,
         "area_km2": 500000,
-        "notes": "STRONGEST anomaly - prime abiogenesis site"
+        "notes": "INVALIDATED - Field is 0.015 Gauss, not 1500 Gauss"
       },
       {
         "name": "Terra Cimmeria",
@@ -326,9 +343,31 @@
     "testable_hypothesis": "If Mars life existed, fossils should cluster near magnetic oases in Southern Highlands"
   },
   "conclusion": {
-    "primary_finding": "Mars (Noachian) achieved \u03a9_Z = 0.95 - highest in solar system",
-    "secondary_finding": "Mars was habitable 500-600 Myr before Earth",
-    "implication": "Mars may have been the ORIGIN of life in our solar system",
-    "probability_we_are_martians": "~5-10%"
+    "original_claims": {
+      "primary_finding": "Mars (Noachian) achieved Omega_Z = 0.95 - highest in solar system",
+      "secondary_finding": "Mars was habitable 500-600 Myr before Earth",
+      "implication": "Mars may have been the ORIGIN of life in our solar system",
+      "probability_we_are_martians": "~5-10%"
+    },
+    "revised_honest_assessment": {
+      "primary_finding": "Mars had favorable mineral conditions (jarosite Z-match is real)",
+      "secondary_finding": "Mars was habitable earlier than Earth (timeline debated but plausible)",
+      "critical_error": "MAGNETIC FIELD ARGUMENT IS INVALID - wrong units used",
+      "revised_omega_z": "0.4-0.7 range (not 0.95)",
+      "probability_mars_had_life": "10-30% (not 70%)",
+      "probability_we_are_martians": "0.1-2% (not 5-10%)"
+    },
+    "what_remains_valid": [
+      "Jarosite exists on Mars (Opportunity confirmed)",
+      "Jarosite has close Z-match (real crystallography)",
+      "Mars had liquid water in Noachian (geological evidence)",
+      "Mars was habitable before Earth (debated but reasonable)"
+    ],
+    "what_is_invalid": [
+      "Magnetic oases supporting CISS (unit error)",
+      "70% probability Mars had life (made up)",
+      "5% panspermia probability (made up)",
+      "VERY HIGH probability category (overclaimed)"
+    ]
   }
 }
