@@ -49,6 +49,25 @@ a₀(z)=a₀(0)E(z) makes deep-MOND v_flat = (G M a₀(z))¹ᐟ⁴ **larger** at
 - **STATUS: PASS-so-far.** If z>10 rotations come in at the constant-a₀ value, **the program is
   dead** and there is no unified theory to build. *Everything below is contingent on this gate.*
   (`jwst_rotation_predictions.py`)
+- **REFINEMENT (from Gate 1.5):** the test must target **deep-MOND (low-acceleration)** systems —
+  extended, gas-rich, low-surface-brightness — where g_N < a₀. The compact, bright, *baryon-
+  dominated* galaxies that dominate high-z samples are **Newtonian** (g_N > a₀) and say nothing
+  about a₀. Select for low acceleration, not just high redshift.
+
+### Gate 1.5 — The intermediate-z TFR test (data available *now*)
+Scaling MOND predicts a sharp, **monotonic** BTFR zero-point shift: at fixed v_flat,
+Δlog M_b = −log E(z) (−0.23 dex by z=0.9, −0.54 by z=2.3). This was proposed as a modified-
+gravity test in 2008 (arXiv:0809.2790).
+- **The data (Übler+2017, KMOS3D):** *non-monotonic* — the baryonic-TFR zero-point goes **down**
+  to z~0.9 (right direction) then **up** to z~2.3 (wrong direction). Übler fit it with a ΛCDM
+  toy model (gas + DM evolution), no a₀ evolution needed.
+- **The confound that decides it:** the high-z samples are compact/high-surface-density →
+  g_N/a₀ rises with z (~1.5–1.7× by z=2) → **Newtonian, baryon-dominated, declining rotation
+  curves** (Genzel/Lang+2017, ~90% baryon-dominated by z~2.2). So the "wrong-direction" segment
+  is in the **wrong regime** to test deep-MOND a₀.
+- **STATUS: SURVIVES — but neither confirmed nor refuted.** Not a clean kill (the would-be-
+  killing segment is Newtonian); not a clean win (ΛCDM fits; selection biases out the deep-MOND
+  systems). Its real value is the refinement above. (`scaling_mond_btfr_evolution.py`)
 
 ### Gate 2 — Cosmological consistency: re-fit the CMB with *scaling* a₀(z)
 Skordis–Złośnik RelMOND fits the CMB with **constant** a₀. Here a₀ is **~2×10⁴ × larger** at
