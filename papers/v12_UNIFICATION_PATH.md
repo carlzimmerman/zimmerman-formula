@@ -56,8 +56,14 @@ recombination — but a₀/cH = 1/Z stays *constant* at every epoch, so the MOND
 fraction of horizon dynamics (arguably *more* natural than constant-a₀).
 - **Pass/fail:** modify an SZ/`hi_class`-type Boltzmann code with a₀(z)=cH(z)/Z; demand the
   TT/EE peaks + lensing stay within Planck error.
-- **STATUS: OPEN — the single most important *theory* calculation.** Computable with existing
-  tools; not done; not faked. This is where the cosmology lives or dies at recombination.
+- **STATUS: SCOPED** (`gate2_cmb_scaling_a0.py`). Three honest findings: (i) **self-similar** —
+  a₀/cH=1/Z and λ_MOND/R_H=2/Z are *constant* at every epoch, so recombination is **not** a
+  special danger epoch (scaling *removes* the low-acceleration epoch that constant-a₀ has —
+  a point in its favor); (ii) any effect lands at **large scales (low ℓ)**, not the damping
+  tail (at z_rec: λ_MOND=0.072 Mpc, r_s=0.132 Mpc, R_H=0.207 Mpc); (iii) the full pass/fail
+  **reduces to one question** — does a₀ enter the SZ *cosmological background/linear* equations,
+  or only the *quasi-static* (galaxy) limit? If the latter, the scaling is invisible to the CMB.
+  The Boltzmann re-fit is still the real gate; it is now well-defined, not faked.
 
 ### Gate 3 — Derivation fork: where does the O(1) come from?
 a₀ ~ cH is derived; the divisor is the open piece. The de Sitter **temperature** gives **2π**
