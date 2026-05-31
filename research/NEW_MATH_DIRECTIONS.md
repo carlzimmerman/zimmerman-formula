@@ -487,25 +487,67 @@ A transcendental number cannot arise from pure representation theory. This is a 
 
 ---
 
-## The Only Remaining Route: Radion Stabilization
+## Radion Stabilization: Also Ruled Out
 
-A LOCAL term cannot be a transcendental volume. But a DYNAMICAL scale might.
+The radion stabilization route has also been tested (see `reviews/radion_stabilization_test.py`) and found wanting:
 
-If a physical field (the radion) acquires a vacuum expectation value through some stabilization mechanism, that VEV could potentially carry 32π/3.
+### Why Stabilization Cannot Derive 32π/3
 
-This would be:
-- Not a spectral invariant
-- Not an equivariant fixed-point contribution
-- A dynamical mechanism where geometry stabilizes to Z² = 32π/3
+1. **Massless bulk fields cannot stabilize** — Dimensional analysis forces V(R) ~ C/R⁴, which is monotonic (no minimum).
 
-This is speculative but does not violate the algebraic/transcendental distinction.
+2. **Adding a second scale gives a tunable minimum** — e.g., V(R) = -C/R⁴ + D/R⁶ has minimum at R_min = sqrt(3D/2C). The location is set by the continuous ratio D/C.
+
+3. **Goldberger-Wise is also tunable** — V(R) = P exp(-2mR) - Q exp(-mR) has minimum at R_min = (1/m) ln(2P/Q). Any target is reachable by choosing (m, P/Q).
+
+4. **4π/3 appears in Weyl law but is renormalized away** — It multiplies the UV-divergent vacuum energy, which is absorbed into bulk cosmological constant. The finite Casimir energy is an Epstein-zeta number, NOT 4π/3.
+
+5. **Quantization-protected minima give integers** — Flux quantization could fix R_min, but N is an integer. 32π/3 is transcendental — the π must come from continuous scales, which are tunable.
+
+### Verdict
+
+R_min is a smooth function of continuous inputs. Demanding R_min = Z²/(2π) is one equation solved for the inputs. The unexplained 32π/3 just moves down one level into the potential parameters.
+
+**Radion stabilization does not derive Z² — it relocates the scale-setting.**
 
 ---
 
-## Conclusion (Updated)
+## Final Conclusion
 
-**All spectral/heat-kernel approaches to deriving η_local = 4π/3 have failed.**
+**ALL approaches to deriving Z² = 32π/3 have been ruled out:**
 
-The honest calculation gives σ(p) = 1 per fixed point, total = 8 (the number of fixed points, a topological invariant).
+| Approach | Result | Why It Fails |
+|----------|--------|--------------|
+| APS eta invariant | η = 0 | Spectrum is symmetric |
+| Heat kernel coefficients | Rational | Eta of flat orbifolds are Dedekind sums |
+| Twisted trace | σ(p) = 1, total = 8 | Algebraic, not transcendental |
+| Spinorial volume | RETRACTED | Circular: 4π/3 was inserted |
+| Radion stabilization | TUNABLE | 32π/3 moves to potential parameters |
 
-The only remaining path is radion stabilization — a dynamical mechanism outside standard spectral geometry.
+### The Fundamental Obstruction
+
+**Equivariant fixed-point contributions are ALGEBRAIC** (integers, rationals from representation theory).
+
+**4π/3 is TRANSCENDENTAL** (contains π).
+
+A transcendental number cannot arise from:
+- Spectral invariants of flat orbifolds
+- Representation-theoretic fixed-point formulas
+- Quantization-protected dynamical minima
+
+### The Honest Answer
+
+The calculation gives **8** — the number of fixed points of T³/Z₂, which equals dim H*(T³).
+
+This IS a meaningful topological invariant. The INTEGER 8 is the physics.
+
+The number 32π/3 = 8 × (4π/3) is the **Friedmann DEFINITION**: 8 fixed points times the ball volume. It is not derived from any standard invariant; it is the starting point of the framework.
+
+---
+
+## Status
+
+**The central mathematical claim of the Z² framework remains unproven.**
+
+Z² = 32π/3 may have physical significance as a chosen normalization, but the assertion that it equals an eta invariant, heat kernel coefficient, or dynamically derived scale is not supported by mathematics.
+
+Honest path forward: Acknowledge Z² as a definitional input, not a derived quantity.
