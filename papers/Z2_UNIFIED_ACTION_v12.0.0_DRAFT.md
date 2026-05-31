@@ -123,18 +123,46 @@ the MOND acceleration scale **tracks the cosmic expansion rate**:
 
 Crucially, **this prediction is independent of the value of Z** — Z sets only the z = 0
 normalization and cancels from the redshift scaling. So the cosmological claim stands or
-falls on its own, independent of the entire particle-physics apparatus.
+falls on its own, independent of the entire particle-physics apparatus. (Physical basis: the
+a₀ ≈ cH₀ coincidence is long known — Milgrom; the *evolving* hypothesis is the covariant
+choice a₀ ∝ H(z) rather than a₀ ∝ √Λ = const. The two are observationally distinguishable
+only at high z.)
 
-- **Status at z ≈ 6–10:** GN-z11 (z = 10.6) has σ_v consistent with the evolving scale,
-  though with a tuned geometric factor and a wide error bar; the JADES z ≈ 6 sample scatters
-  (≈6.5σ, both directions), where stellar-mass uncertainties dominate and the prediction is
-  not discriminating (`reviews/` and `research/z2_mond_predictions/`).
-- **The decisive test (forward, pre-registered):** velocity dispersions of z > 10 galaxies
-  (GLASS-z12, JADES-GS-z14, future JWST/ELT), predicted with a **single fixed geometric
-  factor logged in advance.** Evolving-a₀ and constant-a₀ diverge by ≳100% there, exceeding
-  the mass-uncertainty budget.
-- **Falsifier:** if z > 10 kinematics track constant-a₀ MOND or ΛCDM rather than
-  √(Ω_m(1+z)³+Ω_Λ), the cosmological claim is dead.
+**The observable.** In the deep-MOND regime the baryonic Tully–Fisher relation is exact and
+parameter-free for rotation, with a fixed isothermal coefficient for dispersion:
+
+> v_flat⁴ = G · M_bar · a₀(z) ,  σ = (4/9)^{1/4} v_flat = 0.816 v_flat .
+
+So an evolving a₀ shifts the BTFR zero-point with redshift by **E(z)^{1/4}**, the clean,
+distinctive signature.
+
+**Pre-registration (2026-05-31; `reviews/a0_evolution_predictions.py`).** The geometric
+coefficients are **fixed in advance** — f_geom = 1 (rotation), 0.816 (dispersion), **no
+per-galaxy tuning** (unlike the v11 "0.0σ" GN-z11 fit, which used f_geom = 1.5). Predicted
+v_flat (km/s) for named z > 10 galaxies, evolving vs. constant a₀:
+
+| Galaxy | z | M⋆ (M☉) | E(z) | **v_flat (evolving)** | v_flat (const) | ratio E^{1/4} |
+|---|---|---|---|---|---|---|
+| GN-z11 | 10.6 | 1.0×10⁹ | 22.2 | **137** | 63 | 2.17 |
+| GHZ2 / GLASS-z12 | 12.3 | 8×10⁸ | 27.4 | **137** | 60 | 2.29 |
+| JADES-GS-z14-0 | 14.3 | 4×10⁸ | 33.7 | **121** | 50 | 2.41 |
+| MoM-z14 (cand.) | 14.4 | 5×10⁸ | 34.1 | **128** | 53 | 2.42 |
+
+- **The test.** Evolving-a₀ predicts v_flat ≈ 120–140 km/s at z > 10; constant-a₀ MOND predicts
+  ≈ 50–65 km/s — a factor **2.2–2.4** gap (= E(z)^{1/4}) that **exceeds** the stellar-mass
+  uncertainty (~0.3–0.5 dex → ~20–30% in v_flat). The regimes are cleanly separable.
+- **Current status (honest).** GN-z11 is the only z > 10 galaxy with measured kinematics. With
+  the *fixed* coefficients, v_flat = 137 and σ = 112 km/s are consistent within ~1σ with the
+  measured v_rot = 257(+138/−117) and σ = 91(+18/−32) — *consistent and noisy*, not the tuned
+  "0.0σ" of v11. The z ≈ 6 JADES sample scatters (≈6.5σ) where mass errors dominate and the
+  test does not discriminate.
+- **Falsifier.** If the measured v_flat/σ of GHZ2, JADES-GS-z14, or future z > 12 galaxies
+  track the **constant-a₀** values (~50–65 km/s) or ΛCDM dark-matter halos rather than the
+  evolving values (~120–140 km/s), then a₀(z) ∝ H(z) — and with it v12's one distinctive
+  claim — is falsified.
+- **Caveats.** v_flat is the asymptotic deep-MOND value (a < a₀(z)); compact cores may be
+  partly Newtonian, so the robust signature is the redshift *trend* of the BTFR zero-point,
+  not any single normalization. Gas raises v_flat by ~2^{1/4} = 1.19.
 
 ---
 
