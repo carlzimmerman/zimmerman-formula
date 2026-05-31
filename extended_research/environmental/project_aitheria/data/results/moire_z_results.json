@@ -1,0 +1,94 @@
+{
+  "metadata": {
+    "analysis": "Moir\u00e9 Z-Lattice Analysis (Aitheria 2.0)",
+    "date": "2026-05-30",
+    "author": "Carl Zimmerman"
+  },
+  "moire_matching": {
+    "Z_constant_A": 5.788810036466141,
+    "graphene_a": 2.46,
+    "theta_for_Z_graphene": 24.535323829025852,
+    "theta_for_Z_hbn": 24.940639205093543,
+    "magic_angle": 1.1,
+    "magic_angle_period_A": 128.1361657000531,
+    "ratio_Z_to_magic_period": 0.04517701934375692
+  },
+  "ultrathink": {
+    "twist_angle_analysis": {
+      "required_angle_deg": 24.535323829025852,
+      "magic_angle_deg": 1.1,
+      "ratio_to_magic": 22.304839844568956,
+      "is_achievable": true,
+      "notes": [
+        "24.5\u00b0 is achievable via CVD growth or mechanical transfer",
+        "Large angles (>10\u00b0) result in nearly decoupled layers",
+        "Interlayer coupling DECREASES with angle",
+        "Magic angle physics (flat bands) NOT present at 24.5\u00b0"
+      ]
+    },
+    "interlayer_coupling": {
+      "potential_at_magic_eV": 0.1,
+      "potential_at_24deg_eV": 0.0029703135147008315,
+      "ratio": 0.029703135147008314,
+      "coupling_strength": "WEAK",
+      "notes": [
+        "At 24.5\u00b0, layers are nearly decoupled",
+        "Moir\u00e9 potential amplitude: ~3.0 meV",
+        "Much weaker than magic angle (~100 meV)",
+        "Electronic effects minimal at large angles"
+      ]
+    },
+    "molecule_trapping": {
+      "CO2_adsorption_eV": 0.15,
+      "N2_adsorption_eV": 0.07,
+      "CO2_residence_time_300C": 2.0862420055873906e-11,
+      "N2_residence_time_300C": 4.127656228008521e-12,
+      "selectivity_ratio": 5.054301740128063,
+      "CO2_stable_at_300C": false,
+      "notes": [
+        "CO2 physisorption: 150 meV",
+        "At 300\u00b0C, kT = 49 meV",
+        "E_ads/kT = 3.04 (need >5 for stability)",
+        "CO2 residence time: 2.09e-11 s",
+        "PROBLEM: Physisorption too weak at 300\u00b0C!"
+      ]
+    },
+    "moire_relevance": {
+      "moire_period_A": 5.788810036466141,
+      "CO2_diameter_A": 3.3,
+      "ratio": 1.7541848595351943,
+      "can_see_structure": true,
+      "notes": [
+        "Moir\u00e9 period (5.79 \u00c5) / CO2 (3.30 \u00c5) = 1.75",
+        "CO2 CAN partially resolve the Moir\u00e9 structure",
+        "BUT: Moir\u00e9 potential (~20 meV) << physisorption (150 meV)",
+        "The Moir\u00e9 modulation is a perturbation, not the main effect",
+        "Z-periodicity adds ~10% to already-weak physisorption"
+      ]
+    },
+    "fundamental_problem": {
+      "thermal_energy_300C_meV": 49.375409999999995,
+      "physisorption_energy_meV": 150.0,
+      "moire_modulation_meV": 2.9703135147008313,
+      "ratio_thermal_to_binding": 0.3291694,
+      "verdict": "THERMAL NOISE STILL DOMINATES",
+      "explanation": [
+        "At 300\u00b0C, thermal energy kT = 49 meV",
+        "Physisorption energy = 150 meV",
+        "Moir\u00e9 modulation = ~20 meV",
+        "Ratio E_ads/kT = 3.0 (need >5 for stable adsorption)",
+        "Molecules desorb in ~10\u207b\u2079 seconds at 300\u00b0C",
+        "The Moir\u00e9 pattern doesn't change this fundamental limit"
+      ]
+    }
+  },
+  "verdict": {
+    "thermal_stability_solved": true,
+    "interlayer_coupling": "WEAK at 24.5\u00b0",
+    "physisorption_viable": false,
+    "moire_adds_value": false,
+    "p_success": 0.1,
+    "recommendation": "Need chemisorption, not physisorption; Z-constant irrelevant"
+  },
+  "ultrathink_status": "RED - Physisorption too weak at industrial temps"
+}

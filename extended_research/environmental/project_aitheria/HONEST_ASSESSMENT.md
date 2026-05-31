@@ -252,6 +252,83 @@ This is not a failure - it's a successful application of rigorous scientific ana
 
 ---
 
+## Addendum: Aitheria 2.0 Pivots (Also Failed)
+
+### Pivot 1: Z-Pore MOF Approach
+
+**Concept:** Use MOFs with pore sizes tuned to Z (5.79 Å) or Z/2 (2.89 Å) for molecular sieving.
+
+**Result:** FAILED
+
+| Pore Size | Status | Problem |
+|-----------|--------|---------|
+| Z = 5.79 Å | TOO LARGE | Both CO₂ (3.3 Å) and N₂ (3.64 Å) pass through |
+| Z/2 = 2.89 Å | TOO SMALL | Excludes CO₂ (target molecule!) |
+| Optimal: 3.3-3.8 Å | No Z-connection | Best MOFs (SIFSIX) already exist |
+
+**Some Z-harmonics hit the sweet spot (Z/√3 = 3.34 Å, Z×2/π = 3.69 Å), but:**
+- This is post-hoc numerology
+- We're cherry-picking harmonics
+- No physical reason for these specific ratios
+- Optimal pore size is determined by CO₂'s kinetic diameter, not Z
+
+### Pivot 2: Moiré Superlattice Approach
+
+**Concept:** Use twisted bilayer graphene at 24.5° to create Z-periodicity. Graphene survives 300°C (solving thermal stability).
+
+**Result:** FAILED
+
+| Parameter | Value | Problem |
+|-----------|-------|---------|
+| Twist angle for Z | 24.5° | Achievable (GOOD) |
+| Interlayer coupling | 3 meV | VERY WEAK (vs 100 meV at magic angle) |
+| CO₂ physisorption | 150 meV | TOO WEAK at 300°C |
+| CO₂ residence time at 300°C | 21 ps | Desorbs instantly |
+| E_ads/kT at 300°C | 3.0 | Need >5 for stability |
+
+**The Fundamental Problem Remains:**
+- Thermal noise (kT = 49 meV at 300°C) dominates
+- Physisorption (~150 meV) is too weak
+- Moiré modulation (~3 meV) is negligible perturbation
+- **The Z-constant is irrelevant to adsorption chemistry**
+
+### What Would Actually Work
+
+For CO₂ capture at industrial temperatures (150-300°C):
+
+1. **Chemisorption, not physisorption**
+   - Amine groups: E_ads ~ 500-1000 meV
+   - Metal oxide sites: E_ads ~ 800-1500 meV
+   - These survive thermal desorption
+
+2. **Temperature/Pressure-Swing Adsorption**
+   - Capture at low T (50°C) where physisorption works
+   - Release at high T (150°C)
+   - This is how industrial carbon capture operates
+
+3. **The Z-constant offers no advantage because:**
+   - Adsorption energy is determined by chemical bonding
+   - Not by geometric lattice constants
+   - 5.79 Å periodicity doesn't strengthen molecular bonds
+
+---
+
+## Final Verdict: Project Aitheria
+
+| Approach | Thermal | Mechanism | Z-Relevance | Status |
+|----------|---------|-----------|-------------|--------|
+| 1.0: SAW Nudge | FAIL (Sn melts) | FAIL (SNR=10⁻⁹) | None | DEAD |
+| 2.0a: Z-Pore MOF | N/A | Post-hoc fit | Numerology | DEAD |
+| 2.0b: Moiré Graphene | PASS | FAIL (21 ps desorption) | Irrelevant | DEAD |
+
+**Probability of Z² framework enabling gas-phase capture: <1%**
+
+The Z-constant appears to have no relevance to gas-phase chemistry at industrial temperatures. The fundamental physics (thermal noise, weak physisorption, molecular kinetics) doesn't care about geometric constants.
+
+---
+
 *Ultrathink analysis completed May 30, 2026*
 
 *"Better to know the truth now than to discover it after building a factory."*
+
+*"The Z-constant may govern liquid-phase cavitation dynamics, but gas-phase chemistry plays by different rules."*

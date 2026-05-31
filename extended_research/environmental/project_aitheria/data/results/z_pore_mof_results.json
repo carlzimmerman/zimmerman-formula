@@ -1,0 +1,123 @@
+{
+  "metadata": {
+    "analysis": "Z-Pore MOF Analysis",
+    "date": "2026-05-30",
+    "author": "Carl Zimmerman",
+    "purpose": "Determine if Z-pores offer CO2 capture advantage"
+  },
+  "z_constant_A": 5.788810036466141,
+  "molecular_diameters": {
+    "H2": 2.89,
+    "He": 2.6,
+    "H2O": 2.65,
+    "CO2": 3.3,
+    "Ar": 3.4,
+    "O2": 3.46,
+    "N2": 3.64,
+    "CH4": 3.8,
+    "Xe": 3.96,
+    "Kr": 3.6,
+    "SF6": 5.5,
+    "C3H8": 4.3
+  },
+  "z_harmonics": {
+    "Z": 5.788810036466141,
+    "Z/2": 2.8944050182330705,
+    "Z/\u221a2": 4.093306831785953,
+    "Z/\u03c0": 1.8426354638471225,
+    "Z/2\u03c0": 0.9213177319235613,
+    "Z\u00d7(2/\u03c0)": 3.685270927694245,
+    "Z\u00d7(1/\u221a\u03c0)": 3.265986323710904,
+    "2Z/3": 3.859206690977427,
+    "Z/\u221a3": 3.342171032841334,
+    "Z\u00d7(\u03c0/6)": 3.031013847264815,
+    "Z\u00d70.57": 3.2996217207857,
+    "Z\u00d70.66": 3.820614624067653,
+    "\u221a(Z)": 2.4059946044133476,
+    "Z\u00b2/10": 3.3510321638291125
+  },
+  "optimal_range": [
+    3.3,
+    3.8
+  ],
+  "harmonics_in_sweet_spot": [
+    [
+      "Z\u00d7(2/\u03c0)",
+      3.685270927694245
+    ],
+    [
+      "Z/\u221a3",
+      3.342171032841334
+    ],
+    [
+      "Z\u00b2/10",
+      3.3510321638291125
+    ]
+  ],
+  "reverse_engineering": {
+    "3.3": {
+      "ratio_to_Z": 0.5700653466277036,
+      "closest_nice_number": "1/\u221a\u03c0",
+      "nice_value": 0.5641895835477563,
+      "error_percent": 1.0414518898061056
+    },
+    "3.5": {
+      "ratio_to_Z": 0.6046147615748371,
+      "closest_nice_number": "1/\u221a3",
+      "nice_value": 0.5773502691896258,
+      "error_percent": 4.722348605376061
+    },
+    "3.7": {
+      "ratio_to_Z": 0.6391641765219707,
+      "closest_nice_number": "2/\u03c0",
+      "nice_value": 0.6366197723675814,
+      "error_percent": 0.39967406995963545
+    },
+    "3.84": {
+      "ratio_to_Z": 0.6633487669849641,
+      "closest_nice_number": "2/3",
+      "nice_value": 0.6666666666666666,
+      "error_percent": 0.4976849522553728
+    }
+  },
+  "benchmark_comparison": {
+    "SIFSIX-3-Cu": {
+      "pore_size": 3.5,
+      "CO2_N2_selectivity": 2000,
+      "notes": "Best for DAC"
+    },
+    "SIFSIX-3-Zn": {
+      "pore_size": 3.84,
+      "CO2_N2_selectivity": 1818,
+      "notes": "Benchmark CO2/N2 selectivity"
+    },
+    "SIFSIX-3-Ni": {
+      "pore_size": 3.8,
+      "CO2_N2_selectivity": 1500,
+      "notes": "Good stability"
+    },
+    "Zeolite-4A": {
+      "pore_size": 4.0,
+      "CO2_N2_selectivity": 50,
+      "notes": "Commercial standard"
+    },
+    "Zeolite-13X": {
+      "pore_size": 10.0,
+      "CO2_N2_selectivity": 10,
+      "notes": "Large pore, low selectivity"
+    },
+    "MOF-74-Mg": {
+      "pore_size": 11.0,
+      "CO2_N2_selectivity": 150,
+      "notes": "Open metal sites"
+    }
+  },
+  "verdict": {
+    "z_works": false,
+    "z_half_works": false,
+    "any_harmonic_works": true,
+    "p_z_outperforms_sifsix": 0.05,
+    "recommendation": "Use established MOFs (SIFSIX-3); Z offers no advantage"
+  },
+  "ultrathink_status": "RED - Z-constant mismatched to molecular scale"
+}
