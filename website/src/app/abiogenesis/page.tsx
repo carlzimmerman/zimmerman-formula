@@ -31,7 +31,7 @@
  *    - Mechanism of Alzheimer's, Parkinson's, prion diseases
  *
  * 6. EXO-Z CALCULATOR - Alien Biochemistry
- *    - Venus clouds: 98% viability (polyphosphazene + H₂SO₄)
+ *    - Ω_Z scores: Mars 91%, Earth 87%, Europa 77%, Venus 74%
  *    - Z-window is extremely narrow → Fermi Paradox
  *
  * Author: Carl Zimmerman + Claude
@@ -69,7 +69,7 @@ export default function AbiogenesisPage() {
             <span className="text-orange-400">Z-Catalysis: 25M× enhancement at Z-spacing.</span>{' '}
             <span className="text-yellow-400">SAW Null: REJECTED (p≈0) — Z is biological signal.</span>{' '}
             <span className="text-red-400">Pathological Lock: A→0 = 27B× unfolding barrier.</span>{' '}
-            <span className="text-purple-400">Exo-Z: Venus 98% viable.</span>
+            <span className="text-purple-400">Exo-Z: Mars 91%, Venus 74%.</span>
           </p>
         </header>
 

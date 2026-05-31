@@ -21,7 +21,7 @@
  *   2. Z-Catalysis           → 25 million × enhancement at Z-spacing
  *   3. SAW Null Rejection    → p ≈ 0, Z is biological signal
  *   4. Pathological Lock     → A→0 = 27 billion × harder to unfold
- *   5. Exo-Z Viability       → Venus 98%, Super-Venus 100%
+ *   5. Exo-Z Viability       → Mars 91%, Earth 87%, Venus 74%
  *   6. Information Density   → 1766 bits (4.4× threshold)
  *   7. Decoy Falsification   → Random polymers show NO Z-peak
  *   8. High-Res PDB Audit    → Z-peak sharpens 52% with resolution
@@ -145,15 +145,15 @@ const PHASES: Phase[] = [
   {
     id: 5,
     name: 'Exo-Z Calculator',
-    subtitle: 'ALIEN BIOCHEMISTRY VIABILITY',
-    description: 'The Z-window for life is narrow (±2.5% of Z). Venus clouds score 98% viability with polyphosphazene biochemistry. A "Super-Venus" with Pb-Sn sulfide mineralogy at 300K scores 100%.',
+    subtitle: 'Ω_Z ABIOGENESIS PROBABILITY',
+    description: 'The Ω_Z score combines lattice resonance, solvent, magnetic field, chiral bias, thermal, and energy factors. Mars (Noachian era) scored highest at 91% due to jarosite\'s near-perfect Z-match. Venus clouds score 74% - limited by transient lightning-only magnetic fields.',
     color: '#9b59b6',
     metrics: {
-      'Earth (Hadean)': '95%',
-      'Venus Clouds': '98%',
-      'Europa': '72%',
-      'Titan': '45%',
-      'Super-Venus': '100%',
+      'Mars (Noachian)': '91%',
+      'Earth (Vents)': '87%',
+      'Europa': '77%',
+      'Venus Clouds': '74%',
+      'Titan': '22%',
     },
     verdict: '✓ VALIDATED: Z-window explains Fermi Paradox',
     category: 'biological',
@@ -488,10 +488,10 @@ function PathologicalLockViz() {
 function ExoZCalcViz() {
   const [idx, setIdx] = useState(0);
   const worlds = [
-    { name: 'Venus Clouds', viability: 98, color: '#ffcc00' },
-    { name: 'Earth (Hadean)', viability: 95, color: '#00aaff' },
-    { name: 'Europa', viability: 72, color: '#4488ff' },
-    { name: 'Super-Venus', viability: 100, color: '#00ff88' },
+    { name: 'Mars (Noachian)', viability: 91, color: '#ff6347' },
+    { name: 'Earth (Vents)', viability: 87, color: '#00aaff' },
+    { name: 'Europa', viability: 77, color: '#4488ff' },
+    { name: 'Venus Clouds', viability: 74, color: '#ffcc00' },
   ];
 
   useEffect(() => {
@@ -524,7 +524,7 @@ function ExoZCalcViz() {
       <Html position={[0, 1.8, 0]} center>
         <div className="bg-black/95 px-6 py-3 rounded-xl border-2" style={{ borderColor: worlds[idx].color }}>
           <div className="font-bold text-lg" style={{ color: worlds[idx].color }}>{worlds[idx].name}</div>
-          <div className="text-emerald-400 text-3xl font-bold">{worlds[idx].viability}% Viable</div>
+          <div className="text-emerald-400 text-3xl font-bold">Ω_Z = {worlds[idx].viability}%</div>
         </div>
       </Html>
     </group>
