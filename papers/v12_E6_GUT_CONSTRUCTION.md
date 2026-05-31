@@ -50,10 +50,19 @@ distinctive to this framework):
 | Prediction | Result | Status |
 |---|---|---|
 | Gauge unification | M_GUT ~ 2×10¹⁶ GeV, α_GUT⁻¹ ~ 24 | works (SUSY) |
-| sin²θ_W(M_Z) | **0.2309** vs measured 0.2312 (0.1%) | `e6_gauge_unification.py` |
+| sin²θ_W(M_Z) | **0.231** (1-loop 0.2309 vs 0.2312; honest level **~1%**) | `e6_gauge_unification`, `e6_two_loop_unification` |
 | b–τ Yukawa unification | m_b/m_τ ~ 2.40 vs 2.35 (3rd gen) | `e6_gut_predictions.py` |
 | Neutrino seesaw (νᶜ in 16) | m_ν ~ 0.01–0.1 eV (M_R ~ 10¹⁴⁻¹⁵) | works |
-| Proton decay (dim-6) | τ ~ 10³⁶ yr | Hyper-K target |
+| Proton decay (dim-6) | τ ~ 6×10³⁵ yr (**∝ M_X⁴**, soft) | Hyper-K target · `e6_proton_lifetime` |
+
+**Honest caveats now backed by computation (don't oversell row 2 and row 5):**
+- The sin²θ_W "0.1%" is a **leading-log corner**. Adding 2-loop running + the SUSY
+  threshold spreads the prediction by ~0.0038 — *larger* than the 0.0003 gap to the
+  measured value. The defensible claim is "SUSY unification predicts sin²θ_W ≈ 0.231,
+  confirmed at the **~1%** level," not a part-per-thousand hit (`e6_two_loop_unification.py`).
+- The proton lifetime scales as **M_X⁴**: a factor 3 in the GUT scale swings τ by 81×
+  (3.7×10³⁴ → 3.0×10³⁶ yr). "A Hyper-K target" is honest only at the *low* end of the
+  GUT-scale range (`e6_proton_lifetime.py`).
 
 ## 5. Honest construction status
 
@@ -62,7 +71,11 @@ proton-decay removal; gauge unification; sin²θ_W; b–τ; seesaw.
 
 **Open (the hard parts, shared with all of string phenomenology):**
 1. **Exotic-free vacuum** — lifting the vector-like 10+1 per 27 via explicit Wilson lines is
-   the decades-hard model-building search (Faraggi et al.).
+   the decades-hard model-building search (Faraggi et al.). `e6_wilson_exotic_lifting.py`
+   proves the *simplest* tool (a single U(1)_ψ Wilson line) provably **cannot** do it — the
+   16 has charge ±1, which generates the whole charge lattice, so any Wilson line that keeps
+   the 16 keeps the exotics too. A real solution needs the full shift + multi-Wilson +
+   flat-direction machinery under modular invariance: a search, not a formula.
 2. **SUSY** — every headline prediction requires it; it is unseen at the LHC.
 3. **Moduli stabilization** — the parameter *values* (masses, couplings, and Z² itself)
    are moduli-dependent and not derived. The landscape.
@@ -76,5 +89,6 @@ outside this skyscraper entirely: the evolving-a₀ cosmology (which needs none 
 ---
 
 *Reproducibility: `reviews/{z2z2_three_generations, e6_orbifold_spectrum, e6_gauge_unification,
-e6_gut_predictions, e6_doublet_triplet, generation_number_tadpole_anomaly}.py` and
+e6_two_loop_unification, e6_gut_predictions, e6_doublet_triplet, e6_proton_lifetime,
+e6_wilson_exotic_lifting, generation_number_tadpole_anomaly}.py` and
 `papers/v12_FORMAL_CORE_action.md`.*
