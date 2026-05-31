@@ -1,8 +1,13 @@
 # Option C: New Mathematics to Rigorize η_local = 4π/3
 
 **Date:** 2026-05-31
-**Status:** RESEARCH PROGRAM — Speculative but Concrete Directions
-**Goal:** Find or construct a mathematical framework where Z₂ fixed points canonically contribute 4π/3
+**Status:** RETRACTED — All spectral approaches failed; only radion stabilization remains
+**Goal:** ~~Find or construct a mathematical framework where Z₂ fixed points canonically contribute 4π/3~~
+
+> **UPDATE:** The spinorial heat kernel approach was retracted after independent verification
+> showed the calculation was circular (4π/3 was inserted, not derived). The genuine twisted
+> trace gives σ(p) = 1 per fixed point, total = 8. See `reviews/twisted_heat_trace_check.py`
+> and `reviews/spinorial_heat_kernel_RETRACTED.md` for details.
 
 ---
 
@@ -449,40 +454,58 @@ And for M = T³/Z₂:
 
 ---
 
-## What Remains to Do
+## UPDATE: SPINORIAL HEAT KERNEL APPROACH RETRACTED
 
-1. **Define Tr^{tw} rigorously** — The twisted trace at a singular point needs careful definition via regularization
+**Date:** 2026-05-31
 
-2. **Compute the heat kernel** — Explicit calculation for Dirac on R³/Z₂ with Pin⁻ structure
+The spinorial heat kernel approach (Direction 6 and the "Combined Approach") has been **RETRACTED**.
 
-3. **Prove the limit exists** — Show the proposed limit is well-defined and finite
+See `reviews/twisted_heat_trace_check.py` for the honest calculation that exposes the circularity.
 
-4. **Verify the value** — Calculate and confirm it equals 4π/3
+### What Went Wrong
 
-5. **Establish connection to eta** — Show this "local spectral charge" has properties analogous to eta invariants
+The calculation in `research/computational_math/spinorial_heat_kernel.py` **inserted** 4π/3 at line 163 rather than deriving it:
+```python
+vol_effective = (4 * PI / 3) * R**3  # HARD-CODED, not derived
+```
+
+### The Honest Answer
+
+The genuine twisted (equivariant) heat trace gives:
+- **Scalar:** Tr(σ e^{-tΔ}) = 1/8 (finite, no volume)
+- **Spinor twist:** tr_S[γ] = 0 (the Pin⁻ Clifford element is traceless)
+- **Per fixed point:** σ(p) = 1 (an integer)
+- **Total over 8 points:** Σ σ(p) = 8
+
+The honest answer is the **INTEGER 8**, not 32π/3.
+
+### Why 4π/3 Cannot Appear
+
+Equivariant fixed-point contributions are **ALGEBRAIC** (from representation theory: characters, determinants, multiplicities). The number 4π/3 is **TRANSCENDENTAL** (contains π).
+
+A transcendental number cannot arise from pure representation theory. This is a mathematical impossibility, not a computational difficulty.
 
 ---
 
-## Conclusion
+## The Only Remaining Route: Radion Stabilization
 
-There IS a plausible mathematical path to rigorizing η_local = 4π/3:
+A LOCAL term cannot be a transcendental volume. But a DYNAMICAL scale might.
 
-The **spinorial heat kernel measure** approach, using the twisted trace over Pin⁻ spinors, appears to give 4π/3 through a calculation involving:
-- Heat kernel on R³/Z₂
-- Twisted trace selecting the correct sector
-- Normalization extracting the volume coefficient
+If a physical field (the radion) acquires a vacuum expectation value through some stabilization mechanism, that VEV could potentially carry 32π/3.
 
-This is **not proven** but is a concrete conjecture with a clear path to proof.
+This would be:
+- Not a spectral invariant
+- Not an equivariant fixed-point contribution
+- A dynamical mechanism where geometry stabilizes to Z² = 32π/3
 
-The key insight: **Spinors with Pin⁻ structure on R³/Z₂ "see" the full covering space volume, not the quotient volume**, leading to the factor of 4π/3.
+This is speculative but does not violate the algebraic/transcendental distinction.
 
 ---
 
-## Next Steps
+## Conclusion (Updated)
 
-1. Perform the explicit heat kernel calculation for Dirac on R³/Z₂
-2. Verify the twisted trace formula
-3. Write up as a mathematical paper/preprint
-4. Submit for peer review
+**All spectral/heat-kernel approaches to deriving η_local = 4π/3 have failed.**
 
-This would constitute **new mathematics** — a novel orbifold invariant derived from spinorial heat kernel theory.
+The honest calculation gives σ(p) = 1 per fixed point, total = 8 (the number of fixed points, a topological invariant).
+
+The only remaining path is radion stabilization — a dynamical mechanism outside standard spectral geometry.

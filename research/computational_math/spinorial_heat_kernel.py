@@ -3,6 +3,28 @@
 Spinorial Heat Kernel Calculation for R³/Z₂
 ============================================
 
+██████╗ ███████╗████████╗██████╗  █████╗  ██████╗████████╗███████╗██████╗
+██╔══██╗██╔════╝╚══██╔══╝██╔══██╗██╔══██╗██╔════╝╚══██╔══╝██╔════╝██╔══██╗
+██████╔╝█████╗     ██║   ██████╔╝███████║██║        ██║   █████╗  ██║  ██║
+██╔══██╗██╔══╝     ██║   ██╔══██╗██╔══██║██║        ██║   ██╔══╝  ██║  ██║
+██║  ██║███████╗   ██║   ██║  ██║██║  ██║╚██████╗   ██║   ███████╗██████╔╝
+╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝   ╚═╝   ╚══════╝╚═════╝
+
+THIS DERIVATION IS CIRCULAR AND HAS BEEN RETRACTED.
+
+The 4π/3 is HARD-CODED at line 163, not derived:
+    vol_effective = (4 * PI / 3) * R**3
+
+The genuine twisted trace gives σ(p) = 1 per fixed point, total = 8.
+See reviews/twisted_heat_trace_check.py for the honest calculation.
+See reviews/spinorial_heat_kernel_RETRACTED.md for full explanation.
+
+The honest answer is the INTEGER 8 (= #fixed points), NOT 32π/3.
+Equivariant fixed-point contributions are ALGEBRAIC; 4π/3 is TRANSCENDENTAL.
+
+Original (flawed) description preserved below for reference:
+-----------------------------------------------------------------------------
+
 Testing the conjecture:
     σ(p) = lim_{t→0} [(4πt)^{3/2} × Tr^{tw}(e^{-tD²})|_{B_1(p)}] = 4π/3
 
@@ -10,6 +32,7 @@ This would provide a rigorous derivation of η_local = 4π/3.
 
 Author: Carl Zimmerman + Claude
 Date: May 31, 2026
+Status: RETRACTED - Circular reasoning exposed
 """
 
 import numpy as np
