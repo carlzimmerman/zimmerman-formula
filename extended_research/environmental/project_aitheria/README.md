@@ -1,8 +1,29 @@
 # Project Aitheria: Topological Gas Valorization from Industrial Exhaust
 
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
+![Status: ARCHIVED](https://img.shields.io/badge/Status-ARCHIVED-red)
 
-## Overview
+> *"If you try something and you fail, you gotta be honest about it."*
+> — Carl Zimmerman
+
+---
+
+## PROJECT STATUS: ARCHIVED
+
+**This research endeavor has been closed after rigorous ultrathink analysis.**
+
+All proposed mechanisms failed:
+- SAW Nudge: SNR = 10⁻⁹ (thermal noise dominates)
+- Z-Pore MOFs: Post-hoc numerology (no physical basis)
+- Moiré Graphene: 21 ps desorption time (molecules don't stick)
+
+**Conclusion:** The Z² framework is a **liquid-phase phenomenon**. Gas-phase chemistry at industrial temperatures is governed by entropy, not geometric constants.
+
+See `HONEST_ASSESSMENT.md` for complete analysis.
+
+---
+
+## Overview (Historical)
 
 Project Aitheria applies the Z² Unified Framework to industrial flue gas treatment. Unlike traditional filtration (which suffers from clogging and pressure drop), Aitheria proposes a **Topological Diverter** approach: using Z-strained surfaces to "nudge" high-value or high-penalty atoms out of the main gas flow.
 

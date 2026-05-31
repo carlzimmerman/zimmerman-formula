@@ -1,5 +1,8 @@
 # Project Aitheria: Honest Assessment
 
+> *"If you try something and you fail, you gotta be honest about it."*
+> — Carl Zimmerman
+
 **Author:** Carl Zimmerman
 **Date:** May 30, 2026
 **License:** AGPL-3.0

@@ -6,6 +6,11 @@ AGPL-3.0 License
 Author: Carl Zimmerman
 Date: May 2026
 
+"If you try something and you fail, you gotta be honest about it."
+    — Carl Zimmerman
+
+STATUS: PROJECT ARCHIVED - See HONEST_ASSESSMENT.md
+
 Z²-derived constants for gas-phase topological diversion from industrial flue gas.
 
 CRITICAL NOTE: These are THEORETICAL parameters requiring experimental validation.
