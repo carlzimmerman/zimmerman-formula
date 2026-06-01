@@ -47,7 +47,7 @@ The reuse of {3, 4, 8, 12, 19} is shared *bookkeeping*, not forced *physics*.
 edge off the premise is **z-invariant** (a₀/cH = 1/Z at *every* epoch), while a coincidence
 between two cosmic numbers is not. Applied to candidates, it *keeps* new forced relations —
 the BTFR/Faber-Jackson slope stays 4 with a 1/E(z) intercept; a redshift-mixed RAR must
-broaden by log E(z_max); the phantom-halo density runs as E(z); dispersions clock as E(z)^¼
+broaden by log E(z_max); the phantom-halo density runs as √E(z); dispersions clock as E(z)^¼
 (de Graaff's actual channel) — and *rejects* the tempting ones: a₀↔T_CMB drifts ×1.66 across
 z, a₀↔particle scales drift ×10. It also flags two new **independent** a₀ nodes — the KiDS
 weak-lensing RAR (confirmed → ledger +5) and Gaia wide binaries (contested → a +6-or-falsify
