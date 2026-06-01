@@ -84,7 +84,7 @@ modern constraint on modified-gravity actions, and it is a *design filter* here:
 | O(1) coupling Z = 2√(8π/3) | **fit** (the horizon alone gives ~2π; `desitter_factor_audit.py`) |
 | V(χ) → observed Λ | **open** (the cosmological-constant problem) |
 | Z = √(volume modulus 32π/3) | **conjecture** (the interlocking-web posit) |
-| **CMB fit with *scaling* a₀(z)** | **OPEN — the key check** |
+| **CMB fit with *scaling* a₀(z)** | **advanced** (`toe_cmb_calculation.py`): background benign, a₀≠dust; δφ Boltzmann run still open |
 
 **The one calculation I will not fake (§4 of the script):** Skordis–Złośnik fit the CMB with
 **constant** a₀. Here a₀ is ~2×10⁴ × larger at recombination. The ratio a₀/cH = 1/Z stays
@@ -92,6 +92,17 @@ constant (so the MOND effect is a fixed fraction of horizon dynamics at every ep
 *more* natural than constant-a₀), but whether the SZ CMB fit **survives** the scaling a₀(z)
 must be recomputed. It is not done here, and scaling MOND does **not** automatically inherit
 SZ's CMB success.
+
+**Now partly done — `toe_cmb_calculation.py`.** Taking the framework as foundation (no CDM)
+and computing forward: (i) the background is *benign* — a₀ is ~2×10⁴× larger at recombination
+yet a₀/cH = 1/Z is epoch-independent, so the cosmic dynamical regime is unchanged; (ii) the
+*decisive* internal result — since a₀²∝ρ_χ, for ρ_χ to be CMB dust (∝(1+z)³) one needs
+a₀∝(1+z)^1.5, and the real galaxy a₀(z) data **rejects that exponent at 5σ** (χ²=27.5),
+preferring √ρ_total (the premise, χ²=3.8). So a₀'s own density tracks the *smooth* total
+density (∝H²) and **cannot be the clustering dark matter** — the very exponent that fits
+galaxies forbids it. The clustering must therefore come from the relativistic sector's scalar
+*perturbations* δφ (the SZ mechanism), with a₀ promoted to a₀(z). The genuinely remaining
+check is that one modified-Boltzmann run — sharply posed now, not vague.
 
 ## 6. Answer
 
