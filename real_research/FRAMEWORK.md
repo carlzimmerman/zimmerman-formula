@@ -97,8 +97,10 @@ entire honest content — no more, and no less.
 ---
 
 *Reproduce:* `python reviews/sparc_rar_honest.py` (the anchor) ·
+`python schwarzschild_friedmann_core.py` (every derivation, self-checking) ·
 `python a0_evolution_pipeline.py` (the predictions) ·
-`python a0_evolution_pipeline.py --selftest` (estimator check).
+`python a0_evolution_pipeline.py --selftest` (estimator check). ·
+TOE scope and the emergent-gravity path: `TOE_REVIEW.md`.
 *Foundations:* Milgrom 1983; McGaugh, Lelli & Schombert 2016 (SPARC); Skordis & Złośnik
 2021 (AeST); Cai & Kim 2005 (apparent-horizon thermodynamics).
 *Supersedes* the v12 "TOE" papers in `papers/`, which overreached by bolting on the
