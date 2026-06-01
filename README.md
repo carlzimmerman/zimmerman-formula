@@ -93,6 +93,23 @@ python real_research/a0_evolution_pipeline.py --selftest   # estimator validatio
 python real_research/reviews/is_Z_special.py          # why the constant numerology is empty
 ```
 
+## Preserved as open research
+
+This repository is kept intact — warts and all — as a documented record of a research
+program that mostly did not survive contact with data, because a *labeled* dead end is
+more useful than a quiet deletion.
+
+- **Nothing is deleted.** Every failed line of work is preserved under `ai_slop/`,
+  including the autonomous-agent swarm that generated it and the multi-GB raw datasets
+  (Planck/Gaia/LIGO/DESI), which are kept on disk (gitignored, not committed).
+- **The audit is reviewable as a diff.** The session that audited the program and rebuilt
+  the honest core is captured on two frozen branches — `baseline-pre-audit` (before) →
+  `honest-core-rebuild` (after):
+  <https://github.com/carlzimmerman/zimmerman-formula/compare/baseline-pre-audit...honest-core-rebuild>
+- **Forward work continues** in `real_research/`, held to the bar the audit set: one real
+  anchor (SPARC a₀), one posited number (the coefficient Z), one falsifiable prediction
+  (a₀(z)), and an honest open question (can horizon thermodynamics derive the coefficient).
+
 ## The point
 
 This is what science actually is: you have an idea, you push it hard, you test it
