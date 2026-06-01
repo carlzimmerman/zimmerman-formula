@@ -77,9 +77,16 @@ Boltzmann re-fit is **unrun** and is the honest open theory task.
   the density fork E(z) vs (1+z)^1.5. *(geometric, defensible, not first-principles)*
 - **POSITED:** the coefficient 1/Z — one dimensionless number, hostage to H₀, bracketed
   but not pinned by entropy arguments.
-- **OPEN:** the AeST Boltzmann re-fit with a₀(z); whether the coefficient is geometric or
-  emergent; and the prediction itself, **untested** for lack of real high-z deep-MOND
-  kinematics.
+- **OPEN, now sharpened:**
+  - *(i) the coefficient* — horizon entropy gives 1/(2·3) = **1/6**, **not** 1/√(32π/3);
+    the geometric Z just swaps the integer dimension 3 for √(8π/3)=2.894, a 3.5%
+    near-miss, and the emergent 1/6 is arguably the more principled value
+    (`coefficient_from_horizon_entropy.py`). The data is H₀-hostage and cannot decide.
+    *This weakens the specific number Z — but not the prediction, which is coeff-free.*
+  - *(ii) AeST CMB consistency* — the background is provably a₀-independent (100θ\* =
+    1.0411, unchanged); the one residual step is the perturbation-level Boltzmann re-fit
+    with time-dependent a₀(z) (`aest_cmb_consistency.py`). Likely safe, not yet proven.
+  - *(iii) the prediction itself*, **untested** for lack of real high-z deep-MOND kinematics.
 - **DEAD (in ../ai_slop/, with the audit that killed it):** α⁻¹=4Z²+3 and all constant
   numerology; the 20.6 Gpc T³ topology; chirality/parity "detections"; topological
   ghosts; the protein/abiogenesis "resonance"; the Z² hurricane model; the E₆-orbifold
@@ -99,7 +106,9 @@ entire honest content — no more, and no less.
 *Reproduce:* `python reviews/sparc_rar_honest.py` (the anchor) ·
 `python schwarzschild_friedmann_core.py` (every derivation, self-checking) ·
 `python a0_evolution_pipeline.py` (the predictions) ·
-`python a0_evolution_pipeline.py --selftest` (estimator check). ·
+`python a0_evolution_pipeline.py --selftest` (estimator check) ·
+`python coefficient_from_horizon_entropy.py` (front 1: the coefficient) ·
+`python aest_cmb_consistency.py` (front 2: CMB safety). ·
 TOE scope and the emergent-gravity path: `TOE_REVIEW.md`.
 *Foundations:* Milgrom 1983; McGaugh, Lelli & Schombert 2016 (SPARC); Skordis & Złośnik
 2021 (AeST); Cai & Kim 2005 (apparent-horizon thermodynamics).
