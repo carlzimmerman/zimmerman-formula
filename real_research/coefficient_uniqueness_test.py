@@ -70,6 +70,24 @@ def main():
     print("   web (the real evidence, +4) is INDIFFERENT to whether Z=5.79, 6, or 2π.")
     print("   It confirms a0 EVOLVES; it says nothing about the coefficient's origin.")
 
+    print("\n(4) Carl's sharper question: is √(32π/3) the ONLY natural form that hits 5.79?")
+    fried = math.sqrt(8 * math.pi / 3)
+    print(f"   First reframe: Z = F·√(8π/3); √(8π/3)={fried:.3f} is the FRIEDMANN factor (LOCKED,")
+    print("   not a geometry choice). Only the O(1) factor F is free -- and the data can't pin it:")
+    for Fv, nm in [(2.0, "Schwarzschild -> √(32π/3)=5.79"),
+                   (6 / fried, "Verlinde     -> 6"),
+                   (2 * math.pi / fried, "Milgrom      -> 2π=6.28")]:
+        print(f"     F = {Fv:.3f}  -> Z = {Fv*fried:.3f}   ({nm})")
+    forms = {"√(32π/3)=√(8·V3)": Zf, "29/5": 5.8, "23/4": 5.75, "√34": math.sqrt(34),
+             "35/6": 35/6, "18/π": 18 / math.pi, "2^(5/2)": 2 ** 2.5}
+    near = sorted([(n, v) for n, v in forms.items() if abs(v - Zf) / Zf < 0.01],
+                  key=lambda x: abs(x[1] - Zf))
+    print(f"   simple/geometric forms within 1% of 5.789: {len(near)} --")
+    for n, v in near:
+        print(f"     {v:.4f} ({(v-Zf)/Zf*100:+.2f}%)  {n}")
+    print("   => √(32π/3) is the CLOSEST natural form, but NOT alone (29/5 is 0.19%, √34 0.73%).")
+    print("   And the target is 5.79 only for Planck+a0=1.13 (it is 5.46 for a0=1.20; 6.28 for SH0ES).")
+
     print("\n" + "=" * 78)
     print("  VERDICT -- engaging the argument, not dismissing it")
     print("=" * 78)
