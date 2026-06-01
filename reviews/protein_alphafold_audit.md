@@ -49,10 +49,14 @@ audit agrees and adds the technical reasons (no control; symmetry bias; ipTM ≠
   rational* coefficients tuned to hit four well-known angles (−57°, −47°, −129°, +135°) that
   carry wide error bars (±7–15°). One free rational per angle = a fit, not a derivation —
   identical to α⁻¹=4Z²+3.
-- **Normal-mode "resonance" p<10⁻²⁴** (modes near n/Z²): an implausibly large significance from 4
-  proteins. The harmonics n/Z² are *dense* (spacing ~0.03), so *any* frequency lies near some n;
-  the p-value almost certainly does not account for harmonic density / unit choice. A classic
-  dense-comb artifact, not a 24-sigma physics detection.
+- **Normal-mode "resonance" p<10⁻²⁴** (modes near n/Z²): **verified by reading
+  `batch_z2_test.py`.** Two artifacts: (i) the "mean deviation 0.011 vs random 0.25" is a
+  dense-comb nearest-harmonic effect with the null `random_expected = 0.25` **hardcoded**, not
+  simulated; (ii) the headline p-value is `stats.pearsonr(mode_indices[:10], freq_norm[:10])` —
+  the correlation between mode *number* and mode *frequency*. Normal modes are returned **sorted
+  by frequency**, so this correlates a sequence with its own sort key (~1 by construction, p→0)
+  and tests nothing about Z². The "24-sigma" is "frequencies increase with mode index," not a
+  Z² detection.
 
 ## Bottom line
 
