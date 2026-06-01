@@ -54,6 +54,15 @@ Three layers, each a real, active research program:
 - **Make the horizon evolve and a₀(z) ~ cH(z) — this is scaling-MOND.** Your evolving-a₀ is not
   a bolt-on here; it is *what this framework predicts.* (`horizon_a0_derivation.py`,
   `desitter_factor_audit.py`: the de Sitter route gives a₀ ~ cH/2π, in the right family.)
+- **Keystone (`emergent_a0_apparent_horizon.py`):** scaling is not assumed — it is the *natural*
+  output. The thermodynamically active surface is the **apparent horizon** R_A = c/H(z) (its first
+  law dE=TdS reproduces the Friedmann equations — Cai–Kim 2005; Padmanabhan), and its acceleration
+  scale c²/R_A = cH(z) **evolves**. Constant-a₀ would require tying a₀ to the *asymptotic event
+  horizon* (cH_∞), a final-state surface that is not active during structure formation. So
+  **evolving-a₀ is the natural prediction, and the z>10 test discriminates *which horizon* sources
+  the dark sector** — apparent (instantaneous) vs event (final). One measurement, a deep answer.
+  (Bonus: observed a₀ = cH₀/Z exactly, vs cH_∞/Z = 9.9×10⁻¹¹, 17% low — today's data already
+  leans toward the apparent horizon, though within a₀'s systematic.)
 
 **Layer 3 — the Standard Model as the matter content.**
 - The E₆ orbifold (`v12_E6_GUT_CONSTRUCTION.md`) supplies gauge group + chiral generations — a
