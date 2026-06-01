@@ -56,8 +56,26 @@ same lines. That convergence is the evidence.
   stabilization — **Gate 2 (fixing the modulus and landing Λ) remains genuinely open.** Checking
   the best candidate confirms the gap is real, not closed.
 
-Still unread: `NIELSEN_NINOMIYA_DOMAIN_WALL_SOLUTION.py`; the `*_audit/` cosmology dirs (data tests
-of the survivor — leaning legitimate).
+**`NIELSEN_NINOMIYA_DOMAIN_WALL_SOLUTION.py` — READ. Verdict: best background physics in the
+catalog, incoherent derivation, and it touches the real survivor *without correctly doing it*.**
+- **Correct** (more than any other numerology script): the Nielsen–Ninomiya theorem + the
+  momentum-space doubling argument (D(p)=iΣγ^μ sin(p_μ a)/a, 2^d doublers; §1); the four standard
+  evasions (§2); the Kaplan domain-wall zero modes ψ_{L,R}∝e^{∓∫m} (§3); and the **Standard-Model
+  anomaly cancellations, computed correctly** (§7: 3·(1/6)+(−1/2)=0, U(1)³=0, grav·U(1)=0).
+- **But the application fails three ways:** (a) it builds on the broken GW "5D holographic
+  structure," inheriting the flat-torus≠AdS category error; (b) it reuses kL=38.44 for the *doubler
+  suppression* — an unrelated quantity (doubler separation ≠ Planck/weak hierarchy); (c) **N_gen=3
+  is "derived" four incoherent ways in one file** — floor(m₀L/π) *(which the author's own code
+  comment admits fails: "# This doesn't quite work with kL~38. Let me reconsider")*, orbifold fixed
+  points *("(some factor)" placeholder)*, "number of T³ cycles," and an asserted Index=3×1×1.
+- **The physics error:** generations are **not** the number of 1-cycles of T³ (H₁=ℤ³). The
+  legitimate count is the **chiral index / twisted sectors** on the *even-dimensional* (T²)³/(Z₂×Z₂),
+  which `reviews/z2z2_three_generations.py` does correctly (3 from 3 twisted sectors). So the
+  chirality survivor is real — but **this script reaches "3" by the wrong route.**
+- **Upshot:** even the script touching the one legitimate piece is a muddled numerology version of
+  it. The survivor (3 chiral generations) stands on the twisted-sector index, *not* on this file.
+
+Still unread: the `*_audit/` cosmology dirs (data tests of the survivor — leaning legitimate).
 
 ## Verdict
 
