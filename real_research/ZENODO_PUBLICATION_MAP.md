@@ -35,17 +35,41 @@ numerology discredits the real part by association. The fix is separation, not d
 | **a₀ = cH/Z, Z=2√(8π/3)=5.789** | **KEEP** — novel *framing* of Milgrom's a₀≈cH₀; Z is a posited coefficient | `schwarzschild_friedmann_core.py`, `NOVELTY.md` |
 | **a₀(z)=a₀(0)E(z) evolves** | **KEEP — the strongest result**; now data-favored, constant a₀ excluded **5σ** | `a0_powerlaw_confrontation.py`, `rar_evolution_test.py` |
 | a₀↔Λ floor, BTFR, RAR, the over-constrained web (+4) | **KEEP** | `REAL_WEB.py`, `mond_first_principles.py` |
-| **Z² = 32π/3 "derived from η(T³/Z₂)=8×(4π/3)"** | **RETRACT the derivation** (keep Z as a *posit*) | category error: η is a spectral-asymmetry invariant, 4π/3 is the unit-3-ball *volume* — unrelated. `reviews/eta_local_bruning_seeley.py`, `twisted_heat_trace_check.py` |
-| **α⁻¹ = 4Z² + 3** | **RETRACT** — numerology, ~0 bits | the *same* family fits Dunbar's number (4Z²+16) and tropopause T (6Z²+16) to <0.03%; `reviews/false_discovery_rate.py`, `SALVAGE_LEDGER.md` |
-| sin²θ_W, Koide, CKM, PMNS, 9 fermion masses, GAUGE=12 | **RETRACT** — same integer-fit genre | `is_Z_special.py`, `false_discovery_rate.py` |
-| genetic code (4=Bekenstein, 20=gauge+cube) | **RETRACT** — domain-jump on integers | `SALVAGE_LEDGER.md` §2 logic |
-| "physics, mathematics, biology, **consciousness, and time** from first principles" | **RETRACT** — no derivable content | — |
+| **Z² = 32π/3 "derived from η(T³/Z₂)=8×(4π/3)"** | **RETRACT the derivation [SCRIPT-PROVEN]** (keep Z as a *posit*) | `eta_local_bruning_seeley.py`: η density = **0 at every momentum** (±\|p\| cancel); 4π/3 is the unit-ball volume from D→\|D\|; **scale-invariance kill** (η is scale-free, a volume scales as c³). `twisted_heat_trace_check.py`: honest trace = integer **8** |
+| **α⁻¹ = 4Z² + 3** | **RETRACT [SCRIPT-PROVEN]** | `false_discovery_rate.py`: the 34,073-formula search hits an **arbitrary** target in [100,150] to ≤0.004% **19.9%** of the time → ~0 bits; same family fits Dunbar's # & tropopause T <0.03% |
+| Koide, CKM, PMNS, 9 fermion masses, GAUGE=12 | **RETRACT [SCRIPT-PROVEN]** | `is_Z_special.py`: **52 of 64** "derivations" contain **no Z** — integer arithmetic on {3,4,8,12} that reproduces for *any* base value |
+| **sin²θ_W = 2·Ω_m/Ω_Λ** | **SOFTEN — coincidence, not evidence (keep, not proof)** | `omega_weinberg_relation_test.py`: *consistent* within the 3.4% cosmological window in every scheme, mechanism-free, "not yet tested" — **not cleanly dead.** My blanket "retract" was too harsh |
+| genetic code (4=Bekenstein, 20=gauge+cube) | **RETRACT [ARGUED — no script]** | exact-integer relabeling (4=4, 20=12+8): no fit error to compute, unfalsifiable; argument only |
+| "physics, mathematics, biology, **consciousness, and time** from first principles" | **RETRACT [ARGUED — no content]** | nothing to compute |
 | M-theory 11D / M2+M5 branes | **already retracted by you** (correct) | your `ERRATA` Corrections 1–4 |
-| T³/Z₂ 20.6 Gpc cosmic topology | **RETRACT** — excluded / undetectable | `reviews/matched_circle_*` |
-| cosmic dipole R=19/6 | **RETRACT** — fitted ratio; observed R fell to ~1.5–2 | `WEB_SYNTHESIS.md` §7 |
+| T³/Z₂ 20.6 Gpc cosmic topology | **RETRACT [SCRIPT-PROVEN]** | `matched_circle_planck_verification.py`: R_i=0.74·χ_rec excluded by a wide margin vs Planck (α_min~15°, R_i>0.97χ_rec) |
+| cosmic dipole R=19/6 | **RETRACT [ARGUED + data]** | fitted ratio; observed R fell to ~1.5–2 (arXiv:2511.00822) — argument + external data, no repo confirmation script |
 | therapeutics (c-Myc, NaV1.7, PETase, CFTR, D2R, AMPs; Kd, "cures") | **PRIOR-ART ONLY, no efficacy** | your own `LEGITIMATE_FINDINGS.md` concedes this |
 
 ---
+
+## Evidence grades — what I actually *showed* (don't dismiss without showing)
+
+Fair challenge: a "RETRACT" next to a script name is still a dismissal until the script is run.
+Running them rather than citing them tightened the map in three ways:
+
+- **SCRIPT-PROVEN dead** — the script *demonstrates* the failure, it is not asserted:
+  - **α=4Z²+3** → 19.9% look-elsewhere in α's range (the hit is the *expected* output of a 34k search).
+  - **η(T³/Z₂)=32π/3** → η density is **0 everywhere**; the 4π/3 is an inserted unit-ball volume; a
+    scale-free invariant *cannot* equal a c³-scaling volume (extension-independent kill shot).
+  - **Koide/CKM/PMNS/masses** → 52/64 "derivations" have **no Z** — they hold for any base value.
+  - **20.6 Gpc topology** → excluded by a wide margin against the real Planck matched-circle bound.
+- **I had one too harsh — corrected:** **sin²θ_W = 2Ω_m/Ω_Λ** is, per its own script, a *consistent*
+  coincidence inside the 3.4% cosmological window (mechanism-free, not yet testable) — **not cleanly
+  dead.** It is "keep as a not-yet-evidence coincidence," not "retract." Softened above.
+- **Argued, not script-proven (stated honestly):** the genetic code (exact-integer relabeling),
+  "consciousness/time" (no content), and the dipole 19/6 (fitted ratio + the observed value falling)
+  rest on *argument* and external data, not a repo confirmation script — a weaker basis, flagged as such.
+
+So: I did not dismiss without showing — and showing it both *hardened* the core retractions (α, the
+eta-derivation, the constants, the topology are provably dead) and *caught my own overreach* on the
+Weinberg relation. That asymmetry — provable where it's dead, honest where it's only argued — is the
+whole point.
 
 ## What your errata still needs (the gap)
 
