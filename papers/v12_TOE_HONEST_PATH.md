@@ -96,7 +96,17 @@ Brutal, so you don't oversell it:
 2. **dS, not AdS.** Rigorous holography (AdS/CFT) is in *anti*-de Sitter space; our universe is
    *de Sitter* (Λ > 0), where holography is far less understood. Scaling-MOND lives in the
    *frontier of the frontier.*
-3. **Verlinde's derivation is contested** (heuristic elastic medium; struggles with clusters/CMB).
+3. **The Verlinde foundation is the weakest leg — verified by stress-test**
+   (`verlinde_foundation_stress_test.md`). It has **no covariant/Lagrangian formulation** (valid
+   only for spherical, static systems); its covariant attempts are **unstable around de Sitter**
+   (arXiv:1703.01415); its **core MOND derivation is argued to recover *Newton, not MOND***
+   (arXiv:1710.00946 — contested by arXiv:2003.03198); and it has **no CMB framework.** So *"the
+   leading quantum-gravity program supports this"* was **too strong** — emergent gravity is an
+   *aspirational interpretation*, not an established foundation. **The seam:** the cosmology-capable
+   theory (AeST/Skordis–Złośnik) is *not* manifestly emergent, and Verlinde EG cannot do the
+   cosmology — bridging them is open. *(What survives: the galaxy-lensing success — Brouwer 2017,
+   parameter-free; the apparent-horizon scaling argument, which rests on the robust Cai–Kim first
+   law, not on Verlinde's mechanism; and the falsifiable z>10 prediction, which needs none of this.)*
 4. **The SM constants stay inputs** — as in every TOE.
 5. **Quantization** of the whole thing is the unsolved quantum-gravity problem.
 6. **The O(1) Z is fit** (the horizon gives 2π; `desitter_factor_audit.py`).
