@@ -1,305 +1,102 @@
-# The Z² Framework
+# The Zimmerman Formula — a post-mortem, and the one piece that survived
 
-<p align="center">
-  <img src="images/davinci_cube.jpg" alt="Leonardo da Vinci's Geometric Cube Sketches" width="500"/>
-</p>
+**Status (2026-06-01): most of this program is invalidated.** What began as a single
+real observation — the MOND acceleration scale a₀ ≈ cH₀ — sprawled, largely under
+autonomous AI agents, into ~1,650 commits of numerology and cross-domain overclaims.
+A full audit against real open data found that **essentially all of the headline
+claims fail.** This README documents that honestly, the way a lab notebook should
+record a hypothesis that didn't survive contact with the data. One falsifiable
+prediction is left standing; it is not yet confirmed, and it might be wrong too — but
+it is real science, and it is testable.
 
-<p align="center">
-  <em>Leonardo da Vinci's geometric studies of the cube inscribed in a sphere — the same geometry underlying Z² = 8 × (4π/3).</em><br/>
-  <small>Image: Frank J. Swetz (Penn State), "<a href="https://www.maa.org/press/periodicals/convergence/leonardo-da-vincis-geometric-sketches-cube">Leonardo da Vinci's Geometric Sketches - Cube</a>," <em>Convergence</em> (June 2010), DOI:10.4169/loci002559</small>
-</p>
-
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19244651.svg)](https://doi.org/10.5281/zenodo.19244651)
-
-**Website:** [abeautifullygeometricuniverse.web.app](https://abeautifullygeometricuniverse.web.app) | **DOI:** [10.5281/zenodo.19244651](https://doi.org/10.5281/zenodo.19244651)
-
----
-
-## Abstract
-
-The Z² framework proposes that 53 physical constants derive from a single geometric invariant:
-
-$$Z^2 = \text{CUBE} \times \text{SPHERE} = 8 \times \frac{4\pi}{3} = \frac{32\pi}{3} \approx 33.51$$
-
-The framework is built on a 7-dimensional spacetime M₄ × T³/Z₂, where the orbifold T³/Z₂ contains 8 fixed points corresponding to the vertices of a cube. The eta invariant of this orbifold equals Z², providing the geometric origin of physical constants.
-
-**Status:** Theoretical framework with 53 derivations. Empirical validation ongoing (DESI, LiteBIRD, Euclid).
+> *"The first principle is that you must not fool yourself — and you are the easiest
+> person to fool."* — R. Feynman. We fooled ourselves for a while. This is the correction.
 
 ---
 
-## Research Tracks
-
-| Discipline | Entry Point | Key Prediction |
-|------------|-------------|----------------|
-| **Cosmology** | [Cosmology Track](#cosmology-track) | Ω_Λ = 13/19 = 0.6842 |
-| **Particle Physics** | [Particle Physics Track](#particle-physics-track) | α⁻¹ = 4Z² + 3 = 137.04 |
-| **Modified Gravity** | [MOND Track](#mond-track) | μ(x) = x/(1+x), a₀ = cH₀/Z |
-| **Quantum Gravity** | [Quantum Gravity Track](#quantum-gravity-track) | d_s(x) = 2 + μ(x) |
-| **Critical Review** | [Falsification Criteria](#falsification-criteria) | Binary tests |
-
----
-
-## Theoretical Foundation
-
-### Geometric Structure
-
-The framework is defined on a 7-dimensional manifold:
-
-$$\mathcal{M}_7 = M_4 \times T^3/\mathbb{Z}_2$$
-
-| Component | Description |
-|-----------|-------------|
-| M₄ | 4D Minkowski spacetime |
-| T³/Z₂ | 3D orbifold (torus with antipodal identification) |
-| Fixed points | 8 (vertices of fundamental cube) |
-| Total dimensions | 7 |
-
-### Fundamental Constant
-
-$$Z^2 = \eta(T^3/\mathbb{Z}_2) = 8 \times \frac{4\pi}{3} = \frac{32\pi}{3}$$
-
-where η denotes the Atiyah-Patodi-Singer eta invariant.
-
-### Key Identities
-
-| Identity | Formula | Value | Interpretation |
-|----------|---------|-------|----------------|
-| Z² | CUBE × SPHERE | 32π/3 ≈ 33.51 | Eta invariant |
-| BEKENSTEIN | 3Z²/(8π) | 4 | Spacetime dimensions |
-| GAUGE | 9Z²/(8π) | 12 | SM gauge bosons |
-| N_gen | BEKENSTEIN - 1 | 3 | Fermion generations |
-
----
-
-## Cosmology Track
-
-### Derivation of Ω_Λ
-
-From the horizon entropy partition on T³/Z₂:
-
-$$\Omega_\Lambda = \frac{13}{19} = 0.6842$$
-
-| Parameter | Z² Formula | Predicted | Observed | Deviation |
-|-----------|------------|-----------|----------|-----------|
-| Ω_Λ | 13/19 | 0.6842 | 0.6847 ± 0.007 | 0.07σ |
-| Ω_m | 6/19 | 0.3158 | 0.315 ± 0.007 | 0.1σ |
-| w | -1 (exact) | -1.000 | -1.03 ± 0.03 | 1σ |
-
-### Coupled Dark Energy
-
-The modulus field φ of the compact space drives dark energy with tracker behavior:
-
-$$\rho_\phi \propto a^{-3(1+w_\phi)}, \quad w_\phi \to -1 \text{ at late times}$$
-
-**Key documents:**
-- [research/OP3_COSMOLOGICAL_RATIO_DERIVATION.md](research/OP3_COSMOLOGICAL_RATIO_DERIVATION.md)
-- [research/COUPLED_DARK_ENERGY_FROM_MODULUS.md](research/COUPLED_DARK_ENERGY_FROM_MODULUS.md)
-
----
-
-## Particle Physics Track
-
-### Gauge Couplings at M_Z
-
-| Coupling | Z² Formula | Predicted | Measured | Error |
-|----------|------------|-----------|----------|-------|
-| α⁻¹ (fine structure) | 4Z² + 3 | 137.04 | 137.036 | 0.003% |
-| sin²θ_W | 3/13 | 0.2308 | 0.2312 | 0.17% |
-| α_s(M_Z) | √2/12 | 0.1179 | 0.1179 | 0.04% |
-| α₂⁻¹(M_Z) | Z² - 4 | 29.5 | 29.6 | 0.3% |
-
-### Electroweak Hierarchy
-
-$$\frac{M_{Pl}}{v} = 2 \times Z^{43/2}, \quad \text{where } 43 = \text{CUBE}^2 - 19 - 2$$
-
-| Quantity | Formula | Predicted | Measured | Error |
-|----------|---------|-----------|----------|-------|
-| M_Pl/v | 2Z^(43/2) | 4.97×10¹⁶ | 4.96×10¹⁶ | 0.31% |
-| Higgs VEV | (4/5)M_Pl Z⁻²¹ | 246 GeV | 246.2 GeV | 0.08% |
-
-### Threshold Corrections
-
-Including 2-loop threshold corrections:
-
-$$\alpha^{-1}(M_Z) = 4Z^2 + 3 - \Delta\alpha_{\text{had}} - \Delta\alpha_{\text{lep}}$$
-
-**Key documents:**
-- [research/OP2_THRESHOLD_CORRECTIONS_DERIVATION.md](research/OP2_THRESHOLD_CORRECTIONS_DERIVATION.md)
-- [research/GAUGE_UNIFICATION.md](research/GAUGE_UNIFICATION.md)
-
----
-
-## MOND Track
-
-### Interpolating Function
-
-From entropy partition between local and horizon degrees of freedom:
-
-$$\mu(x) = \frac{x}{1+x}, \quad x = \frac{a}{a_0}$$
-
-### SPARC Validation
-
-Analysis of 175 galaxies from SPARC database (Lelli+ 2017):
-
-| Function | Form | χ²/dof |
-|----------|------|--------|
-| Z² | x/(1+x) | 0.034 |
-| Standard | x/√(1+x²) | 0.236 |
-| RAR | 1-exp(-√x) | 0.588 |
-
-### MOND Scale
-
-$$a_0 = \frac{cH_0}{Z} = 1.18 \times 10^{-10} \text{ m/s}^2$$
-
-Observed: (1.20 ± 0.02) × 10⁻¹⁰ m/s² (1.7% deviation)
-
-**Key documents:**
-- [research/spectral_dimension/corrected_sparc_verification.py](research/spectral_dimension/corrected_sparc_verification.py)
-- [research/spectral_dimension/FIRST_PRINCIPLES_DERIVATION.md](research/spectral_dimension/FIRST_PRINCIPLES_DERIVATION.md)
-
----
-
-## Quantum Gravity Track
-
-### Spectral Dimension
-
-From the entropy partition:
-
-$$d_s(x) = 2 + \mu(x) = 2 + \frac{x}{1+x}$$
-
-| Regime | x | d_s | Physics |
-|--------|---|-----|---------|
-| UV (x → 0) | 0 | 2 | Holographic |
-| Transition | 1 | 2.5 | MOND scale |
-| IR (x → ∞) | ∞ | 3 | Newtonian |
-
-This matches results from CDT, Asymptotic Safety, and Loop Quantum Gravity.
-
-### Eta Invariant Calculation
-
-The eta invariant of T³/Z₂ with Pin⁻ structure:
-
-$$\eta(T^3/\mathbb{Z}_2) = 8 \times \eta_{\text{local}}(R^3/\mathbb{Z}_2) = 8 \times \frac{4\pi}{3} = Z^2$$
-
-**Key documents:**
-- [research/OP1_RIGOROUS_FOUNDATIONS.md](research/OP1_RIGOROUS_FOUNDATIONS.md)
-- [research/spectral_dimension/Z2_FRAMEWORK_COMPLETE_VERIFICATION.md](research/spectral_dimension/Z2_FRAMEWORK_COMPLETE_VERIFICATION.md)
-
----
-
-## Falsification Criteria
-
-### Binary Falsifiers
-
-If **any** of the following are observed, the framework is falsified:
-
-| Test | Z² Prediction | Falsification Condition | Current Status |
-|------|---------------|-------------------------|----------------|
-| Axion detection | No axions exist | Axion discovered | Not found (ADMX, HAYSTAC) |
-| WIMP detection | No WIMPs exist | WIMP discovered | Not found (LZ, XENONnT) |
-| Tensor-to-scalar r | r = 0.015 | r ≠ 0.015 (>3σ) | Pending (LiteBIRD 2028+) |
-| Dark energy EOS | w = -1 exactly | w ≠ -1 (>5σ) | w = -1.03 ± 0.03 |
-| Ω_Λ value | 13/19 = 0.6842 | Ω_Λ ≠ 0.684 (>3σ) | 0.6847 ± 0.007 ✓ |
-| Proton decay | τ_p > 10³⁵ yr | Proton decay observed | τ_p > 2.4×10³⁴ yr |
-| μ(x) form | x/(1+x) | Different form preferred (>5σ) | χ² = 0.034 ✓ |
-
-### Precision Tests
-
-| Prediction | Z² Value | Required Precision | Experiment |
-|------------|----------|-------------------|------------|
-| α⁻¹ | 137.04 | Already achieved | QED measurements |
-| sin²θ_W | 0.2308 | 0.1% | Z-pole, W mass |
-| Δm²_atm/Δm²_sol | Z² = 33.5 | 3% | JUNO, DUNE |
-
-### Gravitational Wave Test
-
-Stochastic background polarization test (H1-L1 baseline, 20-200 Hz band):
-
-| Scenario | R-ratio | Status |
-|----------|---------|--------|
-| Pure noise | R ≈ 1.0 | Baseline (high variance) |
-| Unpolarized (GR) | R ≈ 3.3 | Expected for astrophysical SGWB |
-| h+ polarized (Z²) | R ≈ 0.48 | Would indicate chiral vacuum |
-
-Discrimination ratio: 7x between polarization states. Pipeline validated via mock signal injection (R = 0.45 recovered for h+ injection).
-
-SNR ≥ 6.9 required for 5σ discrimination. Analysis pipeline validated on O3a data.
-
-**Key documents:**
-- [ligo_stuff/lvk_proposal/polarization_diagnostic_proposal.tex](ligo_stuff/lvk_proposal/polarization_diagnostic_proposal.tex)
-- [research/TESTABLE_PREDICTIONS.md](research/TESTABLE_PREDICTIONS.md)
-
----
-
-## Complete Predictions (53 Derivations)
-
-### Summary by Category
-
-| Category | Count | Sub-percent accuracy |
-|----------|-------|---------------------|
-| Cosmological parameters | 8 | 7 |
-| Gauge couplings | 6 | 6 |
-| Particle masses/ratios | 8 | 5 |
-| CKM matrix elements | 6 | 4 |
-| PMNS matrix elements | 5 | 4 |
-| Nucleon properties | 4 | 3 |
-| MOND/galaxy dynamics | 5 | 4 |
-| Structure constants | 8 | 8 |
-| Quantum corrections | 3 | 2 |
-| **Total** | **53** | **43** |
-
-**Full catalog:** [research/EXPANDED_FORMULA_CATALOG.md](research/EXPANDED_FORMULA_CATALOG.md)
-
----
-
-## Repository Structure
+## Timeline
+
+| date | what happened |
+|---|---|
+| **2026-03-17** | First commit: *"The Zimmerman Formula: a novel MOND–cosmology relationship."* The legitimate core — a₀ ≈ cH₀/Z fit to real SPARC rotation curves, with high-z predictions. |
+| **2026-03 → 05** | Rapid sprawl (1,600+ commits, autonomous agents): α⁻¹=4Z²+3 and ~100 "constant derivations"; a 20.6 Gpc cubic-topology universe; galaxy chirality / parity "detections"; topological quasar ghosts; protein/abiogenesis "Z-resonance"; a Z² hurricane model; an E₆-orbifold "Theory of Everything." |
+| **2026-05** | The project's *own* honesty files begin flagging problems (`MATHEMATICAL_HONESTY_ASSESSMENT`, `Z2_STATISTICAL_VERDICT`, `Z2_HURRICANE_FINAL_VERDICT`, `EARTH_ABIOGENESIS_HONESTY_ASSESSMENT`, …). |
+| **2026-06-01** | Systematic external audit of every calculation run on real data. **Verdict: the data is real; the positive results are not.** Repo reorganized: failed work quarantined, the surviving prediction isolated and sharpened. |
+
+## What was invalidated, and why
+
+Full evidence: **`real_research/reviews/DATA_AUDIT.md`** (six forensic audits across ~45
+data scripts) and **`real_research/reviews/OPUS_PHYSICS_REVIEW.md`**. In short — the
+data was genuinely downloaded (Planck, DESI, SDSS, Gaia, SPARC, RCSB, NOAA, LIGO…), but
+**every defensible real-data measurement returned a null or a falsification**, and every
+"detection" traced to one of: synthetic data dressed as real, circular self-injection
+(generate data from the model, then "recover" it), a hardcoded/cited number, a units
+bug, or unpenalized look-elsewhere.
+
+| claim | verdict |
+|---|---|
+| α⁻¹ = 4Z²+3 and the ~100 constant "derivations" | **numerology** — Z is interchangeable; 81% of the "derivations" never contain Z (`is_Z_special.py`) |
+| 20.6 Gpc T³/Z₂ cosmic topology | **excluded** by Planck matched circles (`matched_circle_*`) |
+| galaxy chirality / 7σ parity | the "7σ" is a *pasted citation*; real DESI runs are null (z=−0.08) |
+| topological quasar ghosts | **none** — candidates ruled out by real BOSS spectra |
+| wide-binary "16σ MOND" | a velocity **units bug** (ratios ~1000×) |
+| protein / abiogenesis "Z-resonance" | 5.8 Å is trivial backbone geometry; PDB test gives z=−0.59σ; the sim is admittedly circular |
+| Z² hurricane prediction | **falsified** on NOAA data (3.4× off, p≈0) |
+| E₆-orbifold "Theory of Everything" | inherited model-building bolted on; derives nothing |
+
+## What survived
+
+One real anchor, one novel reading, one falsifiable prediction — written up in
+**`real_research/FRAMEWORK.md`**:
+
+1. **Real:** a₀ = (1.13 ± 0.06)×10⁻¹⁰ m/s² from the genuine 175-galaxy SPARC RAR
+   (`real_research/reviews/sparc_rar_honest.py`). This is mainstream MOND, reproduced
+   cleanly — but it is the 40-year-old Milgrom result, *not* evidence for the value Z.
+2. **Novel (from the audit, not the original):** the coefficient's ½ is a **Schwarzschild
+   surface-gravity** form a₀ = c²/2R of the cosmic free-fall scale — not de Sitter
+   (`schwarzschild_factor_and_density_fork.py`). This is a genuine, if heuristic, new reading.
+3. **Falsifiable:** a₀(z)/a₀(0) = **E(z)** (or, on the matter-only branch, (1+z)^1.5).
+   H₀- and Z-independent; testable with real high-z rotation velocities. The honest test
+   pipeline is `real_research/a0_evolution_pipeline.py` — and it has **zero real-data
+   support yet**, because no high-z deep-MOND kinematics are on disk and I will not fake
+   them (which is exactly what the invalidated `examples/07` did).
+
+## Repository structure
 
 ```
-zimmerman-formula/
-├── papers/                 # LaTeX papers and derivations
-├── research/               # Technical analysis and verification
-│   ├── spectral_dimension/ # d_s(x) derivation and SPARC analysis
-│   ├── dynamical_framework/# Action principle and field equations
-│   └── OP1, OP2, OP3...    # Open problem solutions
-├── ligo_stuff/             # Gravitational wave analysis pipeline
-├── examples/               # Worked examples with code
-└── core_theory/            # Foundational documents
+real_research/        # the honest core
+  FRAMEWORK.md           # the surviving scaling-MOND framework
+  a0_evolution_pipeline.py  # the falsifiable test, real-data-ready (no monotonicity trick)
+  reviews/               # the full audit + every honest analysis script
+    DATA_AUDIT.md           # forensic ledger of what failed and why
+    OPUS_PHYSICS_REVIEW.md  # referee-style review
+    sparc_rar_honest.py     # the real a0 anchor
+    ...
+  data/                  # real data on disk (SPARC, KMOS3D)
+  papers/                # the v12 synthesis attempts (superseded by FRAMEWORK.md)
+
+ai_slop/              # everything that failed/was invalid, PRESERVED not deleted
+                      #   numerology, topology, chirality, ghosts, biotech,
+                      #   meteorology, the E6 TOE, and the autonomous-agent swarm
+                      #   (HermesFlow/TruthFlow/…) that generated most of it.
 ```
 
----
+Nothing was deleted. Failed work is quarantined in `ai_slop/` as the historical record —
+because documenting a dead end *is* part of the science.
 
-## Citation
+## Reproduce
 
-```bibtex
-@article{zimmerman_z2_framework_2026,
-  author    = {Zimmerman, Carl},
-  title     = {The Z² Framework: Derivation of Standard Model Parameters
-               from a 7D Orbifold Compactification},
-  year      = {2026},
-  publisher = {Zenodo},
-  doi       = {10.5281/zenodo.19244651},
-  url       = {https://doi.org/10.5281/zenodo.19244651}
-}
+```bash
+python real_research/reviews/sparc_rar_honest.py      # the real a0 = 1.13e-10 anchor
+python real_research/a0_evolution_pipeline.py         # the falsifiable predictions
+python real_research/a0_evolution_pipeline.py --selftest   # estimator validation
+python real_research/reviews/is_Z_special.py          # why the constant numerology is empty
 ```
 
----
+## The point
 
-## License
-
-| Component | License |
-|-----------|---------|
-| Software | [AGPLv3](https://www.gnu.org/licenses/agpl-3.0.en.html) |
-| Documentation | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
-
----
-
-## Author
-
-**Carl Zimmerman** — Charlotte, NC
-
-- Website: [abeautifullygeometricuniverse.web.app](https://abeautifullygeometricuniverse.web.app)
-- GitHub: [github.com/carlzimmerman/zimmerman-formula](https://github.com/carlzimmerman/zimmerman-formula)
-
----
-
-*"Geometria una et aeterna est in mente Dei refulgens."* — Johannes Kepler, *Harmonices Mundi* (1619)
+This is what science actually is: you have an idea, you push it hard, you test it
+against reality, and when reality says no, **you say so, you keep the wreckage labeled,
+and you carry forward only the one piece that still stands.** The surviving prediction
+a₀(z) ∝ E(z) is worth testing precisely because the same honesty that demolished the
+rest can also kill it cleanly — or, for the first time in this program, confirm something.
