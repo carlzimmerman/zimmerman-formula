@@ -71,6 +71,32 @@ eta-derivation, the constants, the topology are provably dead) and *caught my ow
 Weinberg relation. That asymmetry — provable where it's dead, honest where it's only argued — is the
 whole point.
 
+## Harshness re-audit (Carl: "make sure you weren't harsh elsewhere / more legit science in there")
+
+Re-ran the strongest pro-framework candidates fresh (not trusting the devil's-advocate files):
+
+- **MORE legit than I credited — the *evolution* is DERIVED, not posited.** `horizon_a0_derivation.py`:
+  tying a₀ to the instantaneous horizon **forces a₀(z)∝H(z)∝E(z), route-independently, and it
+  needs no Z.** I had been calling the whole thing "posited"; that under-sold it. The falsifiable
+  prediction has a *derivation*; only the O(1) coefficient is fit. **Elevate this.**
+- **The "unique geometry" argument, tested** (`coefficient_uniqueness_test.py`): 32π/3 is a
+  *legitimate* value (its √(8π/3) is the real Friedmann factor — not arbitrary), **but not
+  uniquely selected** — Z=cH₀/a₀ is degenerate with H₀ (Planck+SPARC→√(32π/3), TRGB→6=Verlinde,
+  SH0ES→2π=Milgrom), a ±17% band holds many simple constants, and the web is *Z-independent* (Z
+  cancels in every edge), so it cannot confirm the value. So "only this geometry works and the
+  web follows" does not hold — but the number is not arbitrary numerology either. Fair middle.
+- **Ω_Λ≈13/19, Ω_m≈6/19, sin²θ_W=2Ω** — softened correctly, with the right reason now:
+  `cosmic_weinberg_relation.py` shows these are **why-now coincidences** (a time-varying ratio
+  equal to a near-constant only at the present epoch) — real ~1% matches worth *recording*, but
+  *not testable as laws* (DESI confirms the value, not the relation). **Record, don't bank** —
+  and do not tier them with the falsifiable a₀(z) trend. (Note: the *interlocking* claim that
+  13/19 explains *both* Ω_Λ *and* μ_n/μ_p is still dead — μ_n/μ_p is the quark model's −2/3.)
+- **No other major over-harshness found.** α=4Z²+3, the eta-derivation, the constants census, and
+  the 20.6 Gpc topology are **script-proven dead** (shown above), not devil's advocacy.
+
+Net: the one thing I under-credited is real and important — **the evolving prediction is derived,
+not assumed.** That strengthens the surviving paper; it does not revive the constants.
+
 ## What your errata still needs (the gap)
 
 Your `ERRATA_DIMENSIONAL_STRUCTURE.md` "What Should Be Preserved" table lists these as ✓ Correct.
