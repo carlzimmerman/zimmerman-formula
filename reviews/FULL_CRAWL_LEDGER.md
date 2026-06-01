@@ -34,12 +34,30 @@ same lines. That convergence is the evidence.
 | `consciousness/`, `love/`, `music_z2/`, `mysterious_connections/`, `digital_twin/` | ~30 | **number mysticism** | Z² applied to consciousness/music/"mysterious connections." |
 | **`mond/`, `mond_toolkit/`, `z2_mond_predictions/`, `full_sparc_analysis/`, `btfr_evolution/`, `jwst_evolution/`, `expansion_history/`, `*_audit/`** | ~60 | **the SURVIVOR** | the evolving-a₀ / MOND-cosmology work — the one legitimate, forward-testable thread, built out this session into the scaling-MOND program. |
 
-## Candidates I did NOT fully read (flagged honestly)
+## Candidates — `GOLDBERGER_WISE` now read in full (it was the one that could have mattered)
 
-`GOLDBERGER_WISE_MODULUS_STABILIZATION.py`, `NIELSEN_NINOMIYA_DOMAIN_WALL_SOLUTION.py` (real
-physics vocabulary — likely in service of fixing Z²=32π/3/N_gen, but unread); the `*_audit/`
-cosmology dirs (data tests of the survivor — leaning legitimate, not individually re-run here).
-If any of these matters to you, name it and I'll read it in full the way I read the instanton one.
+**`GOLDBERGER_WISE_MODULUS_STABILIZATION.py` — READ. Verdict: numerology + a category error,
+*and* it is not actually a stabilization.**
+- §2's review of the real Goldberger–Wise mechanism is *correct textbook RS physics* (bulk scalar
+  Φ(y)=v₀e^{εky}+v₁e^{(4−ε)k(y−L)}, ε=2+√(4+m²/k²), minimum kL≈(4/ε)ln(v₀/v₁)). Stated accurately.
+- But the *application* is a fit: kL = (GAUGE·N_gen+1) + √2 + 1/(GAUGE·N_gen) = 37 + 1.414 + 0.028
+  = **38.442**, reverse-engineered from the *required* ln(M_Pl/v)=38.44 — **three fitted terms
+  (a chosen integer + two "corrections") for one number.** The √2 is rationalized as
+  "√(Vol S²/Vol S¹)=√(4π/2π)" — a **dimensionally meaningless** area-over-length ratio; the 1/36
+  is an *asserted, uncomputed* "one-loop determinant ~ 1/N"; and the script's own sensitivity scan
+  (§8) literally tries {1, √2, √3, 2} and shows √2 *fits best* — a fit, labeled a derivation.
+  "NO FREE PARAMETERS" (line 414) is therefore false.
+- **Category error:** the warped-hierarchy formula v=M_Pl·e^{−kL} requires **AdS warping** (the RS
+  e^{−ky} factor). The framework's space is a **flat (T²)³/(Z₂×Z₂) torus** — no warp factor; the
+  KK scale there is power-law 1/R, not M_Pl·e^{−kL}. §9 even maps "T³×R ↔ 5D AdS," which is the
+  error. No bulk-scalar profile is solved and no radion potential is minimized.
+- **Constructive upshot (this is why it was worth reading):** the script *named* for the
+  stabilization does **not contain one**. So the repo has *not* secretly already solved radion
+  stabilization — **Gate 2 (fixing the modulus and landing Λ) remains genuinely open.** Checking
+  the best candidate confirms the gap is real, not closed.
+
+Still unread: `NIELSEN_NINOMIYA_DOMAIN_WALL_SOLUTION.py`; the `*_audit/` cosmology dirs (data tests
+of the survivor — leaning legitimate).
 
 ## Verdict
 
