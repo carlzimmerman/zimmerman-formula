@@ -78,11 +78,13 @@ Boltzmann re-fit is **unrun** and is the honest open theory task.
 - **POSITED:** the coefficient 1/Z — one dimensionless number, hostage to H₀, bracketed
   but not pinned by entropy arguments.
 - **OPEN, now sharpened:**
-  - *(i) the coefficient* — horizon entropy gives 1/(2·3) = **1/6**, **not** 1/√(32π/3);
-    the geometric Z just swaps the integer dimension 3 for √(8π/3)=2.894, a 3.5%
-    near-miss, and the emergent 1/6 is arguably the more principled value
-    (`coefficient_from_horizon_entropy.py`). The data is H₀-hostage and cannot decide.
-    *This weakens the specific number Z — but not the prediction, which is coeff-free.*
+  - *(i) the coefficient* — **no uncontested route pins it.** Bare holography gives
+    Newton (no a₀); MOND needs an extra volume-entropy ingredient. Verlinde's
+    **contested** emergent gravity gives ≈cH/6; the geometric reading gives cH/Z by
+    construction; the two agree to 3.5% and the H₀-hostage data cannot choose
+    (`coefficient_from_horizon_entropy.py`). Neither $1/6$ nor $1/Z$ is *derived* — the
+    coefficient stays the one posit. *(The prediction below is coefficient-free, so this
+    does not touch it.)*
   - *(ii) AeST CMB consistency* — the background is provably a₀-independent (100θ\* =
     1.0411, unchanged); the one residual step is the perturbation-level Boltzmann re-fit
     with time-dependent a₀(z) (`aest_cmb_consistency.py`). Likely safe, not yet proven.
