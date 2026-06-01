@@ -42,6 +42,17 @@ not by the cosmic baryon asymmetry. Each constant carries its own 1–2 free int
 shows a 34,000-formula search hits an arbitrary O(100) target to 0.004% ~20% of the time.
 The reuse of {3, 4, 8, 12, 19} is shared *bookkeeping*, not forced *physics*.
 
+## A test, not just a verdict
+`web_search_relations.py` turns the real/illusory split into an objective filter: a genuine
+edge off the premise is **z-invariant** (a₀/cH = 1/Z at *every* epoch), while a coincidence
+between two cosmic numbers is not. Applied to candidates, it *keeps* new forced relations —
+the BTFR/Faber-Jackson slope stays 4 with a 1/E(z) intercept; a redshift-mixed RAR must
+broaden by log E(z_max); the phantom-halo density runs as E(z); dispersions clock as E(z)^¼
+(de Graaff's actual channel) — and *rejects* the tempting ones: a₀↔T_CMB drifts ×1.66 across
+z, a₀↔particle scales drift ×10. It also flags two new **independent** a₀ nodes — the KiDS
+weak-lensing RAR (confirmed → ledger +5) and Gaia wide binaries (contested → a +6-or-falsify
+fork). The same z-evolution that makes the core real now vets every future claim.
+
 ## Verdict
 The web is **real where it flows through one equation** (Friedmann/MOND) — the cosmology
 core, over-constrained and now data-supported. It is **illusory where it jumps between
