@@ -16,11 +16,20 @@ forces ~9 edges through ACTUAL equations (Friedmann + MOND), and -- the decisive
 several of the nodes are measured by INDEPENDENT experiments (Planck CMB, SPARC rotation
 curves, MUSE-DARK high-z kinematics, de Graaff JADES masses). The script:
 
-  (1) enumerates the edges (each a forced equation, computed);
-  (2) anchors the single free number on Planck's CMB H0 and PREDICTS the galaxy-scale
-      nodes, then compares to their independent measurements -- the coherence residuals;
-  (3) writes the OVER-CONSTRAINT LEDGER: N_independent_measurements - N_free_parameters.
-      Real web -> positive (over-constrained). Constants web -> <= 0 (a fit).
+  (1)  states the premise and its ONE free number;
+  (1b) THE GENERATOR -- shows the web is one dimensionless invariant a0/cH = 1/Z cast,
+       by dimensional analysis, into six unit-costumes (acceleration, length, surface
+       density, velocity, temperature, time). That is *why* the nodes interlock;
+  (2)  enumerates the 9 edges (each a forced equation, computed);
+  (2b) EXTENDED forced consequences -- what else flows: BTFR velocity-as-a-clock
+       (v ~ E^1/4), the migrating HSB/LSB surface density (Sigma_M ~ E(z)), a0-cosmography
+       (a0(z) IS H(z), a 4th dark-energy probe), and eternal MOND (a0 floors at Lambda);
+  (3)  anchors the single free number on Planck's CMB H0 and PREDICTS the galaxy-scale
+       nodes, then compares to their independent measurements -- the coherence residuals;
+  (4)  writes the OVER-CONSTRAINT LEDGER: N_independent_measurements - N_free_parameters.
+       Real web -> positive (over-constrained). Constants web -> <= 0 (a fit);
+  (4b) WHERE THE FLOW STOPS -- the honest boundary (no SM constants, no Z derivation,
+       no lensing/CMB peaks without a relativistic completion).
 
 Contrast is the whole point: the constants "web" (alpha = 4Z^2+3, ...) jumps between
 unrelated domains, each carrying its own free integers, so its ledger is <= 0 -- no
@@ -37,6 +46,8 @@ G = 6.674e-11
 MPC = 3.0857e22
 HBAR = 1.054571817e-34
 KB = 1.380649e-23
+MSUN = 1.989e30
+PC = 3.0857e16
 
 # ---- the ONE structural number and the cosmology it lives in ----
 Z = 2 * math.sqrt(8 * math.pi / 3)          # = sqrt(32pi/3) = 5.788810
@@ -84,6 +95,39 @@ def part1_premise():
     print("    (equivalently H0). And even that is not free: Planck's CMB fixes H0, SPARC")
     print("    fixes a0, and the premise says they must be the SAME number. That equality")
     print("    is the keystone the rest of the web hangs from.")
+    print()
+
+
+# ====================================================================================
+def part1b_generator():
+    print("=" * 84)
+    print("(1b) THE GENERATOR -- one dimensionless invariant in six unit-costumes")
+    print("=" * 84)
+    print(f"  a0/(cH) = 1/Z = {1/Z:.5f}  is a PURE number, held fixed at every epoch.")
+    print("  Multiplied by the right combination of c, G, hbar, kB it MUST appear as a")
+    print("  different-looking quantity in each subfield -- dimensional analysis on ONE")
+    print("  constant, not a coincidence between domains:")
+    print()
+    a0 = A0_SPARC
+    RH = c / H_si(H0_PLANCK)
+    la = c ** 2 / a0
+    SigM_msun = (a0 / G) * PC ** 2 / MSUN
+    T_a0 = HBAR * a0 / (2 * math.pi * c * KB)
+    t_dyn_over_tH = math.sqrt(8 * math.pi / 3)          # t_dyn = 1/sqrt(G rho_c) = sqrt(8pi/3)/H
+    print(f"  {'costume':<15}{'quantity':<25}{'value':>18}   where it lives")
+    rows = [
+        ("acceleration", "a0 = cH/Z",             f"{a0:.2e} m/s^2",            "rotation curves (RAR)"),
+        ("length",       "l_a = c^2/a0 = Z R_H",  f"{la/RH:.2f} R_H",           "cosmography / horizon"),
+        ("surface dens.", "Sigma_M = a0/G",       f"{SigM_msun:.0f} Msun/pc^2", "disk stability (HSB/LSB)"),
+        ("velocity",     "v^4 = G M a0",          "~ E(z)^1/4",                "Tully-Fisher zero-point"),
+        ("temperature",  "T_a0 = T_dS / Z",       f"{T_a0:.1e} K",             "horizon thermodynamics"),
+        ("time",         "t_dyn = 1/sqrt(G rho)", f"{t_dyn_over_tH:.3f} t_H",   "cosmic collapse/free-fall"),
+    ]
+    for cost, q, v, w in rows:
+        print(f"  {cost:<15}{q:<25}{v:>18}   {w}")
+    print()
+    print("  Same invariant, six walls. The 'web' is the shadow of 1/Z through Friedmann")
+    print("  into six observational windows -- which is exactly why the nodes interlock.")
     print()
 
 
@@ -147,6 +191,64 @@ def part2_edges():
     print("     and every edge moves together -- there is no per-edge knob to turn.")
     print()
     return len(edges)
+
+
+# ====================================================================================
+def part2b_extended():
+    print("=" * 84)
+    print("(2b) EXTENDED FORCED CONSEQUENCES -- what else flows, with the data channel")
+    print("=" * 84)
+    a0 = A0_SPARC
+
+    # C1: velocity zero-point as a clock
+    print("  C1 [FORCED] BTFR velocity zero-point is a clock:  v ~ E(z)^(1/4) at fixed M")
+    print("     deep-MOND v^4 = G M a0, so at fixed baryonic mass v scales as a0^(1/4):")
+    for z in (0.5, 1, 2, 6):
+        b = E(z) ** 0.25
+        print(f"       z={z:<4} E(z)={E(z):>5.2f}   v/v0 = E^1/4 = {b:.3f}   (+{(b-1)*100:.0f}%)")
+    print("     [channel] high-z Tully-Fisher / MUSE-DARK kinematics -- the SHARPEST")
+    print("     near-term falsifier. (The 15% MUSE-DARK over-shoot propagates here too.)")
+    print()
+
+    # C2: critical surface density migrates
+    SigM = (a0 / G) * PC ** 2 / MSUN
+    print("  C2 [FORCED] HSB/LSB critical surface density migrates:  Sigma_M = a0/G ~ E(z)")
+    print(f"     {'z':>6}{'Sigma_M [Msun/pc^2]':>22}")
+    for z in (0, 1, 2, 6):
+        print(f"     {z:>6}{SigM * E(z):>22.0f}")
+    print("     [corollary, SUGGESTIVE] if disks settle near this line, the Freeman-law")
+    print("     characteristic surface brightness should itself rise as E(z) at high z.")
+    print()
+
+    # C3: a0-cosmography -- a0(z) IS H(z)
+    print("  C3 [FORCED] a0-cosmography: a0(z) IS H(z).  H(z) = Z a0(z)/c -- no ladder,")
+    print("     no candles, no CMB. Measured a0 at several z reconstructs E(z), hence")
+    print("     Omega_m, Omega_L, w(z): a 4th, purely DYNAMICAL dark-energy probe.")
+    print(f"     {'z':>5}{'a0(z) measured':>17}{'H(z)=Z a0/c':>14}{'LCDM H0 E(z)':>14}{'resid':>8}")
+    for z, a0z, src in [(0, A0_SPARC, "SPARC"), (1, A0_MUSEDARK_z1, "MUSE-DARK")]:
+        Hr = H_from_a0(a0z)
+        Hl = H0_PLANCK * E(z)
+        print(f"     {z:>5}{a0z:>17.2e}{Hr:>14.1f}{Hl:>14.1f}{pct(Hr, Hl):>7.0f}%   [{src}]")
+    print("     => method validated at z=0 (lands on Planck); the z~1 point sits ~18% high,")
+    print("     the SAME tension MUSE-DARK report ('a0 grows faster than H(z)').")
+    print()
+
+    # C4: eternal MOND
+    floor = a0 * math.sqrt(OL)
+    q0 = OM / 2 - OL
+    print("  C4 [FORCED] MOND is eternal: a0 floors at the Lambda value, never switches off")
+    print(f"     a0_floor = a0(0) sqrt(OL) = {floor:.2e};  today only {(1/math.sqrt(OL)-1)*100:.1f}% above it.")
+    print(f"     q0 = {q0:+.3f} -> a0 drifting at {-(1+q0):+.3f} H0, freezing toward the floor as q->-1.")
+    print("     Dark matter (the RAR) and dark energy (Lambda) are ONE scale at its two ends.")
+    print()
+
+    # C5/C6 interpretive / suggestive
+    print("  C5 [INTERPRETIVE] the 40-year MOND coincidence a0~cH0 dissolves: a0 = cH(z)/Z")
+    print("     holds at ALL z, so 'now' is not special -- there is no coincidence to explain.")
+    print("  C6 [SUGGESTIVE] a0 was LARGER early (E(z) rises), so boosted gravity reached")
+    print("     higher accelerations -> faster early collapse: the right DIRECTION for JWST's")
+    print("     too-massive-too-early galaxies. NOT a calculation (needs a covariant theory).")
+    print()
 
 
 # ====================================================================================
@@ -235,6 +337,22 @@ def part4_ledger(n_edges):
 
 
 # ====================================================================================
+def part4b_boundary():
+    print("=" * 84)
+    print("(4b) WHERE THE FLOW STOPS -- the honest boundary (matters as much as what flows)")
+    print("=" * 84)
+    print("  * It does NOT reach the Standard Model constants. alpha, sin^2 theta_W, the")
+    print("    mass ratios -- none flow from a0=cH/Z. The generator is gravity + cosmology")
+    print("    only; the constants 'web' stays a fit (ledger -3), NOT an extension of this.")
+    print("  * It does NOT derive Z. The equation USES Z=2 sqrt(8pi/3); the factor-of-2")
+    print("    (Schwarzschild/horizon) is a posit, not a theorem. The generator is assumed.")
+    print("  * It does NOT give lensing or the CMB acoustic peaks. Newtonian-MOND+Friedmann")
+    print("    has no relativistic completion built in; those need an AeST-like theory and")
+    print("    are NOT forced here. Claiming them would repeat the overreach the audit killed.")
+    print()
+
+
+# ====================================================================================
 def part5_verdict():
     print("=" * 84)
     print("(5) VERDICT")
@@ -256,9 +374,12 @@ def part5_verdict():
 
 def main():
     part1_premise()
+    part1b_generator()
     n_edges = part2_edges()
+    part2b_extended()
     part3_coherence()
     part4_ledger(n_edges)
+    part4b_boundary()
     part5_verdict()
 
 

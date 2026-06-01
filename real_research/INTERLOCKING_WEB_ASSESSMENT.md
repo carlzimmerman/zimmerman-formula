@@ -11,6 +11,20 @@ One premise, **a₀ = (c/2)√(Gρ_c) = cH(z)/Z**, forces a connected set of rel
 a₀↔ρ_c, a₀↔H₀, a₀↔Λ (the de Sitter floor), a₀(z)↔E(z), a₀↔q (deceleration), a₀↔T_dS,
 a₀↔the RAR knee, a₀↔the BTFR, a₀↔high-z M_dyn/M_bar.
 
+**The generator.** All of these are *one* dimensionless invariant — **a₀/cH = 1/Z = 0.173**,
+held fixed at every epoch — cast by dimensional analysis into different unit-costumes: an
+acceleration (the RAR), a length (ℓ_a = c²/a₀ = Z·R_H), a surface density (Σ_M = a₀/G ≈ 811
+M_⊙/pc², the HSB/LSB line), a velocity (the BTFR zero-point), a temperature (T_dS/Z), and a
+time (t_dyn = √(8π/3)/H). That is *why* the nodes interlock — they are six shadows of one
+number. Holding 1/Z fixed while H(z) evolves forces four more testable relations (`REAL_WEB.py`
+Part 2b): the BTFR velocity zero-point becomes a clock (v ∝ E(z)^¼ at fixed baryonic mass,
++32% by z=2), the HSB/LSB surface density migrates as E(z), a₀(z) *is* H(z) (**a₀-cosmography**
+— a 4th, purely dynamical dark-energy probe; it reconstructs Planck's H₀ at z=0 and sits ~18%
+high at z≈1 on MUSE-DARK), and MOND is **eternal** (a₀ floors at Λ, today only ~21% above).
+Where the flow **stops** matters as much: it does *not* reach the Standard-Model constants,
+does *not* derive Z (the factor-of-2 is a posit), and does *not* give lensing or the CMB peaks
+without a relativistic completion — claiming those would repeat the overreach the audit removed.
+
 These are **over-constrained**: the *same* a₀ must simultaneously fit SPARC (a₀=1.13×10⁻¹⁰),
 the measured H₀ (→ 67, Planck), Λ, the MUSE-DARK measurement a₀(z≈1)=2.38×10⁻¹⁰, *and*
 de Graaff's high-z dynamical masses — **independent measurements that cohere.** That is a
