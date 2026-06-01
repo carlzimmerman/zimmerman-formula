@@ -70,23 +70,21 @@ def main():
     print("   web (the real evidence, +4) is INDIFFERENT to whether Z=5.79, 6, or 2π.")
     print("   It confirms a0 EVOLVES; it says nothing about the coefficient's origin.")
 
-    print("\n(4) Carl's sharper question: is √(32π/3) the ONLY natural form that hits 5.79?")
+    print("\n(4) Carl's sharper question: is √(32π/3) the ONLY/closest form that hits 5.79?")
+    print("    [CORRECTION: an earlier version compared distance to √(32π/3) ITSELF -- circular,")
+    print("     so it trivially read '0.00%'. Compare to the actual DATA value instead.]")
+    Zdata = Zof(67.4, 1.13)        # the real cH0/a0, NOT the framework's own number
     fried = math.sqrt(8 * math.pi / 3)
-    print(f"   First reframe: Z = F·√(8π/3); √(8π/3)={fried:.3f} is the FRIEDMANN factor (LOCKED,")
-    print("   not a geometry choice). Only the O(1) factor F is free -- and the data can't pin it:")
-    for Fv, nm in [(2.0, "Schwarzschild -> √(32π/3)=5.79"),
-                   (6 / fried, "Verlinde     -> 6"),
-                   (2 * math.pi / fried, "Milgrom      -> 2π=6.28")]:
-        print(f"     F = {Fv:.3f}  -> Z = {Fv*fried:.3f}   ({nm})")
-    forms = {"√(32π/3)=√(8·V3)": Zf, "29/5": 5.8, "23/4": 5.75, "√34": math.sqrt(34),
-             "35/6": 35/6, "18/π": 18 / math.pi, "2^(5/2)": 2 ** 2.5}
-    near = sorted([(n, v) for n, v in forms.items() if abs(v - Zf) / Zf < 0.01],
-                  key=lambda x: abs(x[1] - Zf))
-    print(f"   simple/geometric forms within 1% of 5.789: {len(near)} --")
-    for n, v in near:
-        print(f"     {v:.4f} ({(v-Zf)/Zf*100:+.2f}%)  {n}")
-    print("   => √(32π/3) is the CLOSEST natural form, but NOT alone (29/5 is 0.19%, √34 0.73%).")
-    print("   And the target is 5.79 only for Planck+a0=1.13 (it is 5.46 for a0=1.20; 6.28 for SH0ES).")
+    print(f"   DATA value Z = cH0/a0 (Planck 67.4, SPARC 1.13) = {Zdata:.4f}. Ranked honestly:")
+    forms = {"√(32π/3) [framework]": Zf, "29/5": 5.8, "√34": math.sqrt(34), "23/4": 5.75,
+             "35/6": 35 / 6, "18/π": 18 / math.pi, "6 [Verlinde]": 6.0, "2π [Milgrom]": 2 * math.pi}
+    for n, v in sorted(forms.items(), key=lambda x: abs(x[1] - Zdata)):
+        print(f"     {v:.4f}   {abs(v-Zdata)/Zdata*100:5.2f}%   {n}")
+    print("   => 29/5 = 5.800 is CLOSER to the data than √(32π/3). So √(32π/3) is NOT even the")
+    print("      closest fit, let alone the only one -- several tie. NOT unique, full stop.")
+    print("   The ONLY thing distinguishing √(32π/3): Z = F·√(8π/3), √(8π/3)=2.894 is FRIEDMANN")
+    print("   (locked physics), and F=2 is the Schwarzschild READING (F=2.07->6, F=2.17->2π also")
+    print("   fit). Its basis is a physical FORM, not a unique or closest number.")
 
     print("\n" + "=" * 78)
     print("  VERDICT -- engaging the argument, not dismissing it")
