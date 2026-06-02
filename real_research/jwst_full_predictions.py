@@ -44,7 +44,7 @@ def main():
         ("FORCED", "rotation velocity / baryonic Tully-Fisher (rotators)",
          "v^4=G M a0(z): zero-point shifts -log10 E(z) dex: -0.48 (z=2), -1.02 (z=6), -1.31 (z=10). [Ubler+17: -0.45@z2.3]"),
         ("FORCED", "dynamical-to-stellar mass ratio M_dyn/M_*",
-         "M_dyn/M_bar ~ sqrt(E(z)): x3.2 (z=6), x4.5 (z=10). [de Graaff+24: up to 40 at z~6 needs this]"),
+         "M_dyn/M_bar ~ sqrt(E(z)): x3.2 (z=6), x4.5 (z=10) -- DEEP-MOND ONLY (compact galaxies go Newtonian). [de Graaff+24 M_dyn/M*~40 is ~10x beyond this boost: NOT support -- see reviews/redteam_the_puzzle.py]"),
         ("FORCED", "resolved radial-acceleration relation g_obs vs g_bar",
          "the MOND knee g_dagger=a0(z)=E(z)*a0(0) moves to HIGHER acceleration with z."),
         ("FORCED", "scatter of a redshift-MIXED kinematic sample",

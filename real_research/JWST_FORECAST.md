@@ -54,9 +54,13 @@ is a signature that no combination of ΛCDM with measurement systematics can cou
 **Dynamical masses rise as √E(z).** In MOND the apparent "dark matter" of a galaxy — the gap
 between its kinematic mass and its baryonic mass — grows with a₀. So the ratio M_dyn/M⋆ measured
 from JWST spectroscopy should climb with redshift as √E: a factor of three by z≈6, four and a
-half by z≈10. This is already hinted at: de Graaff and collaborators (2024) find dynamical-to-
-stellar ratios as high as 40 in JADES galaxies at z ≈ 5.5–7.4, values that an unchanging a₀
-struggles to reach.
+half by z≈10. **Two cautions, from a hard look at the numbers (`reviews/redteam_the_puzzle.py`):**
+this is a *deep-MOND* prediction — it needs g_bar < a₀(z), so it applies to **extended,
+low-surface-brightness** high-z galaxies; compact, massive ones sit near the *Newtonian* regime
+(g/a₀ ∝ (1+z)^{½}, rising with z), where the boost shrinks. And the often-cited de Graaff et al.
+(2024) ratios M_dyn/M⋆ up to 40 in compact JADES galaxies are **not** evidence for this: the
+evolving-a₀ boost reaches only ~3 for such compact systems — an order of magnitude short — so if
+those ratios are real they are a puzzle *for* MOND, not a confirmation of it.
 
 **The Tully–Fisher and Faber–Jackson relations shift.** Because v⁴ = G·M·a₀(z), a galaxy of
 fixed baryonic mass spins faster at high redshift, and the zero-point of the mass–velocity
