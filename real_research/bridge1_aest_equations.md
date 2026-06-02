@@ -47,6 +47,40 @@ scalar's energy density behave like dust (below) and fit the CMB — and it cont
 
 ---
 
+## The finishing result: a₀ is absent from LINEAR cosmology (order-counting)
+
+CMB-safety is not just sector separation — it is an **order-counting theorem on the action**.
+
+On FRW the scalar is purely temporal, $\bar\phi=\bar\phi(t)$, and $A^\mu$ is the unit timelike
+frame. Since $\mathcal Y=q^{\mu\nu}\nabla_\mu\phi\nabla_\nu\phi$ with $q^{\mu\nu}=g^{\mu\nu}+A^\mu A^\nu$
+projecting **orthogonal** to $A$:
+
+- **background:** $\bar{\mathcal Y}=q̄^{\mu\nu}\nabla_\mu\bar\phi\,\nabla_\nu\bar\phi = 0$ (the
+  spatial projection of a temporal gradient vanishes);
+- **linear order:** $\delta\mathcal Y = 2\,q̄^{\mu\nu}\nabla_\mu\bar\phi\,\nabla_\nu\delta\phi = 0$
+  (same projection kills the cross term). So $\mathcal Y = q̄^{\mu\nu}\nabla_\mu\delta\phi\,\nabla_\nu\delta\phi+\dots = \mathbf{O(\delta\phi^2)}$.
+
+The a₀-dependent piece is the non-analytic MOND term $\mathcal F\supset\frac{2\lambda_s}{(1+\lambda_s)a_0}\mathcal Y^{3/2}$.
+With $\mathcal Y=O(\delta\phi^2)$ this is $(\delta\phi^2)^{3/2}=\mathbf{O(\delta\phi^3)}$ — *third*
+order. It contributes **nothing to the second-order action**, i.e. nothing to the **linear** EOMs.
+The linear perturbations are governed instead by (i) the analytic kinetic term $-(2-K_B)\mathcal Y$
+($O(\delta\phi^2)$, coefficient $(2-K_B)$ is **a₀-free**) and (ii) the temporal $\mathcal K(\mathcal Q)$
+(dust + Λ, **a₀-free**).
+
+> **Result (from the action):** a₀ appears in neither the FRW background ($\bar{\mathcal Y}=0$) nor
+> the linear perturbations (the MOND term is $O(\delta\phi^3)$). So $a_0\to a_0(z)$ leaves the
+> **linear CMB and P(k) exactly invariant.** The running enters only at nonlinear / quasi-static
+> (galaxy) order — exactly where the high-z RAR data tests it.
+
+This **establishes Bridge 1's CMB-safety analytically.** The Boltzmann run would *confirm* (the
+linear $C_\ell$ are a₀-independent); the genuinely new physics of running a₀ is in **nonlinear
+structure formation** — the z>2 RAR front.
+
+**Caveat:** the $\mathcal Y^{3/2}$ non-analyticity at $\mathcal Y=0$ makes perturbation theory around
+the cosmological background delicate (the quasi-static/screening matching needs care — the AeST
+authors treat this). The leading order-counting (a₀ absent from the linear sector) is robust; a
+careful second-order/nonlinear treatment is where running a₀ first bites.
+
 ## Background (FRW)
 
 - scalar EOM integrates to $\;\dfrac{d\mathcal K}{d\mathcal Q} = \dfrac{I_0}{a^3}\;$ ($I_0$ = integration const);
