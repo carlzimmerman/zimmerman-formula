@@ -32,7 +32,7 @@ calculation not yet done (and not faked).
         │  ── does running a0 break the microwave background? ──
   7. CMB          a0 absent at linear order; 2nd-order ~0.01–0.1%              [DERIVED+OPEN]
         │  ── what does the premise force for formed galaxies? ──
-  8. CASCADE      one E(z) drives all: M_dyn/M*∝√E, v∝E¼, BTFR∝−logE, …        [DERIVED]
+  8. CASCADE      one E(z) drives all — but DEEP-MOND targets only             [DERIVED, qualified]
         │  ── the same θ that evolves a0 also sets it locally → ──
   9. EFE          environmental EFE + cosmic evolution = one mechanism          [DERIVED+OPEN]
         │  ── what is left to close? ──
@@ -134,13 +134,24 @@ Planck's ~0.3–1%, but soft because of the 𝒴^{3/2} non-analyticity). *Check:
 
 **→ raises:** granting the premise, what is *forced* for the galaxies JWST will measure?
 
-## 8. The consequence cascade — one E(z) drives everything  **[DERIVED]**
+## 8. The consequence cascade — one E(z), but deep-MOND targets only  **[DERIVED, qualified]**
 
-Because v⁴=GM·a₀(z) and the deep-MOND relations scale with a₀(z)=a₀(0)E(z):
-M_dyn/M⋆ ∝ √E, v & σ ∝ E¼, BTFR/Faber–Jackson zero-point ∝ −log E, sizes ∝ 1/√E, critical
-surface density ∝ E. **Every channel keys off the *same* E(z)** — a coherence no ΛCDM+systematics
-combination forges. That simultaneous coherence across channels is the experimental fingerprint.
-*Check:* `jwst_full_predictions.py`, `JWST_FORECAST.md`.
+Because v⁴=GM·a₀(z): M_dyn/M⋆ ∝ √E, v & σ ∝ E¼, BTFR/Faber–Jackson zero-point ∝ −log E, sizes ∝
+1/√E, Σ ∝ E. **Every channel keys off the *same* E(z)**, and that simultaneous coherence is the
+fingerprint no ΛCDM+systematics conspiracy (or sample selection) forges coherently. With Piece 3
+weak, **this is now *the* decisive test.** But the red-team (`reviews/redteam_the_puzzle.py`)
+adds two hard caveats that *sharpen* it:
+
+- **These are DEEP-MOND scalings** (they need g_bar < a₀(z)). High-z galaxies are compact, and at
+  fixed mass g/a₀ ∝ (1+z)^{0.5} — so the compact, massive targets trend **Newtonian**, where the
+  boosts vanish. The test must target **extended / low-surface-brightness** high-z galaxies, *not*
+  the compact "impossible" ones.
+- **de Graaff's M_dyn/M⋆ ≈ 40 is NOT support.** The evolving-a₀ boost for a realistic compact
+  JADES galaxy is only ~1.5–3 (an order of magnitude short); reaching 40 needs a ~14 kpc diffuse
+  system. If those ratios are real they cut **against** the MOND explanation — earlier drafts that
+  cited de Graaff as a hint had the sign backwards.
+
+*Check:* `jwst_full_predictions.py`, `reviews/redteam_the_puzzle.py`.
 
 **→ raises:** the same θ that evolves a₀ also sets it locally — is there a second phenomenology?
 
@@ -184,5 +195,14 @@ EFE.** *Check:* `reviews/GEOMETRIC_ACTION_theta_coupling.md`, `reviews/nonlinear
 
 Everything above is either **[KNOWN]** (inherited), **[POSIT]** (Z, chosen), **[DERIVED]**
 (forced by the premise), **[DATA]** (a ~2σ hint, not yet a detection — Piece 3), or **[OPEN]**
-(one nonlinear calc + the EFE). There is no numerology load-bearing anywhere in the chain — and
-the one empirical leg is honestly weak, which is exactly why JWST (Piece 8) is decisive.
+(one nonlinear calc + the EFE). There is no numerology load-bearing anywhere in the chain.
+
+But a full red-team (`reviews/redteam_the_puzzle.py`) leaves the **empirical case weak on every
+leg**: Piece 3 is ~2σ and single-point-driven; Piece 8's boosts are deep-MOND-only (suppressed
+for the compact high-z targets, and de Graaff's M_dyn/M⋆≈40 actually cuts *against* the framework,
+not for it); Pieces 1/2/4 rest on a re-dressed coincidence, a chosen density, and a hand-inserted
+coupling. What *survives* the attack is the **structure**: the action, and the exact linear
+CMB-safety (Piece 7 — δq⁰⁰=0, verified under the harder test). **Honest standing: a coherent,
+falsifiable model with no current positive evidence above ~2σ.** JWST can still decide it — but
+only on *extended* high-z galaxies, via the cross-channel coherence (Piece 8), not the compact
+ones and not the current three-point fit.
