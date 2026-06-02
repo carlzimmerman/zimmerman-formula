@@ -87,6 +87,38 @@ The honest ceiling is the dark sector + gravity — not the matter sector.
 3. **a₀-cosmography vs SNe/BAO** → does the dark-energy w(z) from galaxy dynamics match the standard
    probes? (Bridge 3's test.)
 
+## RESULTS — what each bridge actually yielded (worked through, 2026-06-01)
+
+This section is no longer a plan; it records what the calculations gave.
+
+**Bridge 1 — effectively closed on its decisive question.** Using the *real* AeST action
+(`bridge1_aest_equations.md`, sourced from arXiv:2007.00082): an **order-counting theorem** —
+on the FRW background the scalar is temporal, so 𝒴=O(δφ²) and the a₀-bearing MOND term is
+O(δφ³), **absent from the linear equations**. So running a₀ leaves the linear CMB/P(k) *exactly*
+invariant. Confirmed numerically: `bridge1_linear_boltzmann.py` solves the linear
+Einstein–Boltzmann system, verified against **Planck's r_s=144.3 Mpc and ℓ_A=301.7** and BBKS,
+and the running-a₀ effect comes out **0.00**. *Remaining:* full C_ℓ peak heights at Planck
+precision (a CLASS patch with the vector sector) — but that reproduces SZ's known AeST fit; it
+does not change the running-a₀ answer, which is settled. **Verdict: a₀(z) is CMB-safe.**
+
+**Bridge 2 — reported straight; does NOT close.** `bridge2_coefficient_thermodynamics.py`:
+horizon thermodynamics derives the *evolution* a₀∝H (route-independent) and the order of
+magnitude, but **does not pin the coefficient** — Unruh=dS gives Z=1, Milgrom 2π=6.28, Verlinde
+~6, the framework 5.79; the framework's "Schwarzschild c²/2R" reading is *not* self-consistent
+(the enclosed mass is 8π/3× the Schwarzschild mass for R, so R is not a real horizon). Honest
+decomposition: √(8π/3)=2.894 is real Friedmann (derived); the factor of 2 is a **posit**. The
+physical readings cluster within 8.5%, inside a₀'s ~20% systematic, so data can't choose.
+**It costs the framework nothing — the 5σ prediction is the evolution, which is Z-independent.**
+
+**Bridge 3 — sourced and falsifiable.** `bridge3_dark_sector_unification.py`: AeST's 𝒦(𝒬) =
+−2Λ + 𝒦₂(𝒬−𝒬₀)² carries **dark matter (the dust mode) and dark energy (Λ) in one function**;
+the evolving a₀ ties them (floors at Λ). a₀-cosmography reconstructs H(z) from galaxy dynamics —
+lands on Planck at z=0, the known ~25% MUSE-DARK tension at z≈0.9. **Waiting on a₀ at z>2.**
+
+**The decisive test, made plug-and-play.** `a0_decisive_pipeline.py` + `data/a0_of_z.csv`:
+current data p=0.80±0.17 (constant excluded 5σ); a single clean a₀ at z=3 (3%) sharpens it to
+p≈0.99±0.04. Drop the data in, the verdict updates.
+
 ## Honest odds
 
 Bridge 1 is tractable and the obvious next move; Bridge 2 is hard and contested; Bridge 3 is the
