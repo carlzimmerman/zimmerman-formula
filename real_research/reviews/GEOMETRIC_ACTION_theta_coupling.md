@@ -116,7 +116,11 @@ deep-MOND limit is imposed to fit galaxies, as in every MOND theory).
 
 **Open — the decisive, un-faked checks:**
 1. the full **nonlinear / second-order** CMB + P(k) run with running a₀ (an hi_class patch);
-   linear-order safety [C] is necessary, not sufficient;
+   linear-order safety [C] is necessary, not sufficient. *Scoped in `nonlinear_cmb_scoping.py`:*
+   at recombination a₀ is ~2×10⁴ larger and acoustic scales sit at g/a₀ ~ 10⁻³ (the deep-MOND,
+   𝒴→0 corner), so the second-order C_ℓ correction is estimated at ~0.01–0.1% — likely below
+   Planck's ~0.3–1% near the 3rd peak, but the 𝒴^{3/2} non-analyticity makes the estimate soft,
+   so the run is genuinely required (and would either close Bridge 1 or bound p from the CMB);
 2. **ghost / gradient stability** of the θ-dressed free function;
 3. the $\mathcal Y^{3/2}$ **non-analyticity** at $\mathcal Y=0$ (quasi-static ↔ cosmology matching);
 4. the full aether **back-reaction** of $a_0(\theta)$ in bound systems (the $\nabla\!\cdot\!\mathbf B$ term).
