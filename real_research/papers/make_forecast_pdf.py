@@ -6,7 +6,7 @@ from reportlab.lib import colors
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.enums import TA_CENTER, TA_JUSTIFY
 from reportlab.platypus import (SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle,
-                                HRFlowable)
+                                HRFlowable, Image)
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 
@@ -63,13 +63,21 @@ S += [P("The one sharp consequence: a<sub>0</sub> evolves", S_h),
    "rejected at 5σ</b>, and so is the matter-only (1+z)<super>3/2</super> alternative. The data, for "
    "the first time, lean toward evolution.")]
 
+S += [Spacer(1,3),
+ Image("real_research/figures/fig1_a0_evolution.png", width=4.75*inch, height=3.04*inch, hAlign='CENTER'),
+ P("Figure 1.  The MOND acceleration scale measured at three redshifts. A constant a<sub>0</sub> "
+   "(dashed) is excluded at 5σ; the data favor a<sub>0</sub> ∝ E(z) with exponent 0.80 ± 0.17 "
+   "(navy). The shaded band marks where JWST kinematics at z &gt; 2 will decide it. "
+   "[a0_decisive_pipeline.py]", S_cap)]
+
+
 S += [P("Why JWST is the decisive instrument", S_h),
  P("The effect grows fast with redshift. By z = 6, a<sub>0</sub> would be ten times its local value; by "
    "z = 10, twenty times. JWST reaches exactly this regime. And the crucial point — the thing that makes "
    "this a real test rather than a story — is that <b>every observable scales with the same number, "
    "E(z)</b>. A coherent dependence across many independent measurements, all driven by one quantity, is "
    "a signature that no combination of ΛCDM with measurement systematics can counterfeit.")]
-tab = Table([["redshift","E(z) = a₀(z)/a₀(0)","M_dyn/M⋆  (×√E)","velocities (×E¼)","Tully–Fisher shift (−log E)"],
+tab = Table([["redshift","E(z) = a₀(z)/a₀(0)","M_dyn/M*  (×√E)","velocities (×E¼)","Tully–Fisher shift (−log E)"],
              ["2","3.0","×1.7","+32%","−0.48 dex"],
              ["6","10.4","×3.2","+80%","−1.0 dex"],
              ["10","20.5","×4.5","+113%","−1.3 dex"]],
@@ -80,10 +88,17 @@ tab.setStyle(TableStyle([("FONTNAME",(0,0),(-1,-1),"DJ"),("FONTSIZE",(0,0),(-1,-
   ("ALIGN",(0,0),(-1,-1),"CENTER"),("TOPPADDING",(0,0),(-1,-1),3),("BOTTOMPADDING",(0,0),(-1,-1),3)]))
 S += [tab, Spacer(1,6)]
 
+S += [Image("real_research/figures/fig2_predictions.png", width=4.75*inch, height=3.04*inch, hAlign='CENTER'),
+ P("Figure 2.  Each JWST observable is a different power of the SAME quantity E(z), so the whole "
+   "prediction set rises and falls together with one number. The star marks de Graaff (2024) "
+   "M<sub>dyn</sub>/M<sub>*</sub> ≈ 40 at z ≈ 6. Coherence across channels is the signature; "
+   "independent scatter would refute it. [jwst_full_predictions.py]", S_cap)]
+
+
 S += [P("The predictions", S_h),
  P("<b>Dynamical masses rise as √E(z).</b> In MOND the apparent “dark matter” of a galaxy — the gap "
    "between its kinematic mass and its baryonic mass — grows with a<sub>0</sub>. So the ratio "
-   "M<sub>dyn</sub>/M<sub>⋆</sub> measured from JWST spectroscopy should climb with redshift as √E: a "
+   "M<sub>dyn</sub>/M<sub>*</sub> measured from JWST spectroscopy should climb with redshift as √E: a "
    "factor of three by z≈6, four and a half by z≈10. This is already hinted at: de Graaff and "
    "collaborators (2024) find dynamical-to-stellar ratios as high as 40 in JADES galaxies at z ≈ "
    "5.5–7.4, values that an unchanging a<sub>0</sub> struggles to reach."),
@@ -120,7 +135,7 @@ S += [P("What this does <i>not</i> predict — and why that matters", S_h),
 S += [P("How to run the test", S_h),
  P("Do not fit a single galaxy. <b>Measure the dynamical-mass ratio, the Tully–Fisher zero-point, the "
    "dispersions, the sizes, and the surface densities across a span of redshift, and ask whether they "
-   "all key off the same E(z).</b> If M<sub>dyn</sub>/M<sub>⋆</sub> ∝ √E <i>and</i> the zero-point ∝ "
+   "all key off the same E(z).</b> If M<sub>dyn</sub>/M<sub>*</sub> ∝ √E <i>and</i> the zero-point ∝ "
    "−log E <i>and</i> the dispersions ∝ E<super>1/4</super>, simultaneously, with one consistent "
    "expansion history — that coherence is the fingerprint of an evolving a<sub>0</sub>, and nothing else "
    "makes it. If the channels scatter independently, the idea is wrong, and the same data say so "
