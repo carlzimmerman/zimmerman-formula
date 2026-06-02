@@ -22,13 +22,13 @@ calculation not yet done (and not faked).
         │  ── if a0 tracks the density literally, then it must evolve ──
   2. EVOLUTION    a0(z) = a0(0)E(z)  coefficient-free (Z cancels)               [DERIVED]
         │  ── confront the only distinctive claim with data ──
-  3. DATA         p = 0.80 ± 0.17    constant & matter-only both ~5σ out        [DATA]
+  3. DATA         p = 0.80 ± 0.17    ~2σ hint (5σ naive; systematics cut it)    [DATA: weak]
         │  ── does it have a covariant home? ──
   4. ACTION       AeST + a0 = cθ/3Z  θ = ∇·A; evolution becomes a field eqn     [KNOWN+POSIT]
         │  ── does the action deliver a0=cH/Z where the galaxies are? ──
   5. LOCAL        galaxy sees θ≈3H(z) anti-screening, to 1e-6                   [DERIVED]
         │  ── which density does a0 track — Λ or ρ_total? ──
-  6. FORK         data pick θ=3H      √ρ_total over √Λ (de Sitter) & √ρ_matter  [DATA]
+  6. FORK         data lean θ=3H      √ρ_total > √Λ & √ρ_m (~2σ, see Piece 3)   [DATA: weak]
         │  ── does running a0 break the microwave background? ──
   7. CMB          a0 absent at linear order; 2nd-order ~0.01–0.1%              [DERIVED+OPEN]
         │  ── what does the premise force for formed galaxies? ──
@@ -64,14 +64,24 @@ Everything downstream is its consequence.
 
 **→ raises:** is it true? It is already testable.
 
-## 3. The data — p = 0.80 ± 0.17  **[DATA: favored, thin]**
+## 3. The data — p = 0.80 ± 0.17, but only a ~2σ hint  **[DATA: weak, single-point-driven]**
 
 Fitting a₀(z)=a₀(0)E(z)^p to the local SPARC scale, Vărăşteanu (z≈0.05) and MUSE-DARK (z≈0.9):
-**p = 0.80 ± 0.17.** Constant a₀ (p=0) is rejected at ~5σ; matter-only (1+z)^{3/2} (p=1.5) at
-~5σ. The data, for the first time, lean toward evolution.
-**Status:** real but **thin** — three heterogeneous points, the z≈0.9 datum doing the work; an
-evolving RAR is *also* expected in ΛCDM from halo evolution. A live discriminator, not a verdict.
-JWST is decisive. *Check:* `a0_powerlaw_confrontation.py`, `a0_decisive_pipeline.py`.
+**p = 0.80 ± 0.17**, and *naively* constant a₀ (p=0) is rejected at 5.0σ. **A direct attempt to
+kill it (`reviews/stresstest_piece3_evolution.py`) cuts that down — honestly:**
+
+- **Jackknife:** drop the single z≈0.9 point and the rejection collapses to **1.2σ**. The only
+  measurement carrying a redshift lever arm is MUSE-DARK; the whole "evolution" rides on it.
+- **Inter-method systematic:** the two *local* points (1.20 vs 1.69 at essentially the same z)
+  disagree at 1.7σ — which a₀ evolution *cannot* explain, so there is a ~0.28 inter-method
+  systematic the quoted errors miss. Folding it in drops the constant-a₀ rejection to **~2σ**.
+- **ΛCDM-degenerate:** denser high-z halos *and* dispersion-vs-rotation sample selection both push
+  apparent a₀ up with z; three heterogeneous points cannot separate that from fundamental a₀(z).
+
+**Status:** the *direction* is real (a₀ at z≈0.9 sits above the local value), but this is a **~2σ
+hint, not a detection — the premise is not yet empirically established.** That is the honest leg
+the whole chain currently stands on. *Check:* `a0_powerlaw_confrontation.py`,
+`reviews/stresstest_piece3_evolution.py`.
 
 **→ raises:** can an evolving a₀ live inside a real relativistic theory, or is it just a fit?
 
@@ -97,7 +107,7 @@ So the coupling delivers a₀=cH(z)/Z exactly where the rotation curves are meas
 
 **→ raises:** a₀ could track √Λ (de Sitter, constant) or √ρ_total (=H, evolving). Which?
 
-## 6. The fork — the data select √ρ_total  **[DATA: discriminant]**
+## 6. The fork — the data lean to √ρ_total  **[DATA: weak discriminant]**
 
 | a₀ couples to | p | distance from fit |
 |---|:--:|:--:|
@@ -105,11 +115,11 @@ So the coupling delivers a₀=cH(z)/Z exactly where the rotation curves are meas
 | **θ = 3H ∝ √ρ_total (this coupling)** | 1 | **1.2σ favored** |
 | √ρ_matter | 1.5 | 4.1σ rejected |
 
-The evolution **selects the aether-expansion coupling** and rejects the purely-geometric
-de-Sitter origin that emergent-gravity stories most naturally give. (Distances here are the
-linearized |p−p_fit|/σ_p; the rigorous profile-χ² of Piece 3 gives the same verdict — p=0 and
-p=1.5 both ~5σ out, p=1 at ~1σ.) *Check:* `reviews/theta_3H_coupling.py` [D],
-`relativistic_frontier.py`.
+The evolution **favors the aether-expansion coupling** and disfavors the purely-geometric
+de-Sitter origin that emergent-gravity stories most naturally give. (Distances here use the
+naive p=0.80±0.17; per Piece 3's stress-test the *effective* significance is ~2σ, not 4–5σ — so
+read this as a **weak preference** for p≈1, not a rejection of the alternatives.) *Check:*
+`reviews/theta_3H_coupling.py` [D], `reviews/stresstest_piece3_evolution.py`.
 
 **→ raises:** running a₀ to ~20,000× its value at recombination — does that wreck the CMB?
 
@@ -169,9 +179,10 @@ EFE.** *Check:* `reviews/GEOMETRIC_ACTION_theta_coupling.md`, `reviews/nonlinear
 
 > The acceleration scale that governs galaxies is the cosmic density's own acceleration —
 > so it must evolve as E(z); that evolution is a field-equation output of an aether-expansion
-> coupling, it survives the linear CMB, it is the coupling the current data prefer, and JWST
-> kinematics will confirm or kill it within a few years.
+> coupling, it survives the linear CMB, it is the coupling the current data *weakly* favor
+> (~2σ, single-point-driven), and JWST kinematics will confirm or kill it within a few years.
 
 Everything above is either **[KNOWN]** (inherited), **[POSIT]** (Z, chosen), **[DERIVED]**
-(forced by the premise), **[DATA]** (favored, thin), or **[OPEN]** (one nonlinear calc + the EFE).
-There is no numerology load-bearing anywhere in the chain.
+(forced by the premise), **[DATA]** (a ~2σ hint, not yet a detection — Piece 3), or **[OPEN]**
+(one nonlinear calc + the EFE). There is no numerology load-bearing anywhere in the chain — and
+the one empirical leg is honestly weak, which is exactly why JWST (Piece 8) is decisive.
