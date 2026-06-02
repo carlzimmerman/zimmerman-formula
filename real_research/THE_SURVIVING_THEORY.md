@@ -34,7 +34,7 @@ calculation not yet done (and not faked).
         │  ── what does the premise force for formed galaxies? ──
   8. CASCADE      one E(z) drives all — but DEEP-MOND targets only             [DERIVED, qualified]
         │  ── the same θ that evolves a0 also sets it locally → ──
-  9. EFE          WITHDRAWN — ∇·B/3H ≠ g_ext/a₀ is a category error             [WITHDRAWN]
+  9. EFE          ∇·B claim dead; but EFE ∝ 1/E(z) is the one distinctive card  [REVISED]
         │  ── what is left to close? ──
  10. FRONTIER     the open checks collapse to TWO                               [OPEN]
 ```
@@ -142,10 +142,12 @@ BBKS/Planck), `reviews/nonlinear_cmb_scoping.py`.
 ## 8. The consequence cascade — one E(z), but deep-MOND targets only  **[DERIVED, qualified]**
 
 Because v⁴=GM·a₀(z): M_dyn/M⋆ ∝ √E, v & σ ∝ E¼, BTFR/Faber–Jackson zero-point ∝ −log E, sizes ∝
-1/√E, Σ ∝ E. **Every channel keys off the *same* E(z)**, and that simultaneous coherence is the
-fingerprint no ΛCDM+systematics conspiracy (or sample selection) forges coherently. With Piece 3
-weak, **this is now *the* decisive test.** But the red-team (`reviews/redteam_the_puzzle.py`)
-adds two hard caveats that *sharpen* it:
+1/√E, Σ ∝ E. Every channel keys off the same E(z) — but a hard look
+(`reviews/viable_region_research.py`) shows **this coherence is *not* distinctive after all:**
+ΛCDM's *apparent* a₀ also rises ≈ E(z) (Magneticum), so the same deep-MOND algebra hands ΛCDM the
+*same* √E / E¼ / −log E powers. The coherence I earlier called "the fingerprint" is **degenerate**
+(the real discriminators are the RAR *scatter* and the *EFE evolution* — Piece 9). Two further
+caveats from the red-team (`reviews/redteam_the_puzzle.py`):
 
 - **These are DEEP-MOND scalings** (they need g_bar < a₀(z)). High-z galaxies are compact, and at
   fixed mass g/a₀ ∝ (1+z)^{0.5} — so the compact, massive targets trend **Newtonian**, where the
@@ -160,16 +162,18 @@ adds two hard caveats that *sharpen* it:
 
 **→ raises:** the same θ that evolves a₀ also sets it locally — is there a second phenomenology?
 
-## 9. The EFE "bonus" — withdrawn: it is a category error  **[WITHDRAWN]**
+## 9. The External Field Effect — one distinctive prediction survives  **[REVISED]**
 
-An earlier version of this map claimed the same θ unifies cosmic evolution and the External Field
-Effect — 3H evolves a₀, ∇·B gives the EFE. **The round-2 red-team (`reviews/redteam_round2.py`)
-retracts this.** The framework's environmental knob is δθ/3H = ∇·B/3H — a ratio of *expansion
-rates* (∇·B has units 1/time). The standard MOND EFE knob is g_ext/a₀ — a ratio of *accelerations*.
-They are different dimensionful objects and different mechanisms (the EFE suppresses deep-MOND at
-*fixed* a₀; this *changes* a₀). And the standard EFE is still present, inherited from MOND — so the
-framework has **two** distinct environmental effects, not one. There may be a real new environmental
-dependence here, but it is **not** the EFE, and it is unquantified. *Check:* `reviews/redteam_round2.py`.
+An earlier version claimed the same θ *unifies* evolution and the EFE (∇·B "is" the EFE). Round 2
+**retracted that** as a category error: ∇·B/3H is an expansion-rate ratio, not the EFE's
+acceleration ratio g_ext/a₀ (`reviews/redteam_round2.py`). **But** researching the viable region
+(`reviews/viable_region_research.py`) recovers a genuine, distinctive prediction from the *standard*
+EFE (g_ext/a₀, inherited from MOND): with a₀ → a₀(z)=a₀(0)E(z), the **same** environment gives a
+**weaker** EFE at high z, η = g_ext/a₀(z) ∝ 1/E(z). So high-z galaxies in dense environments should
+behave more like *isolated* deep-MOND systems. This is distinct from **both** ΛCDM (no host effect
+on the internal RAR) **and** constant-a₀ MOND (constant EFE) — the framework's **one genuinely
+distinctive, falsifiable card.** It is also its hardest to measure, with no z≳4 data yet. *Check:*
+`reviews/viable_region_research.py`.
 
 **→ raises:** what is actually left to close the theory?
 
@@ -212,8 +216,9 @@ not for it); Pieces 1/2/4 rest on a re-dressed coincidence, a chosen density, an
 coupling. What *survives* the attack is the **structure**: the action, and the exact linear
 CMB-safety (Piece 7 — δq⁰⁰=0, verified under the harder test). **Honest standing: a coherent,
 falsifiable model with no current positive evidence above ~2σ.** JWST can still decide it — but
-only on *extended* high-z galaxies, via the cross-channel coherence (Piece 8), not the compact
-ones and not the current three-point fit.
+only on *extended* high-z galaxies, and (per the viable-region research) **not** via the
+cross-channel coherence (ΛCDM-degenerate) — via the **EFE's redshift-weakening** and the **RAR
+intrinsic scatter** (Piece 9), not the compact galaxies and not the current three-point fit.
 
 *Round 2 (`reviews/redteam_round2.py`) went further: Piece 9 (the EFE "unification") is **withdrawn**
 as a category error (∇·B/3H is an expansion-rate ratio, not the EFE's g_ext/a₀); the CMB success is
