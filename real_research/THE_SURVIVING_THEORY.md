@@ -20,7 +20,7 @@ calculation not yet done (and not faked).
         │
   1. PREMISE      a0 = cH/Z          MOND scale = cosmic-acceleration scale     [KNOWN+POSIT]
         │  ── if a0 tracks the density literally, then it must evolve ──
-  2. EVOLUTION    a0(z) = a0(0)E(z)  coefficient-free (Z cancels)               [DERIVED]
+  2. EVOLUTION    a0(z)=a0(0)E(z)    Milgrom's 2014 idea; ΛCDM mimics it        [DERIVED, not novel]
         │  ── confront the only distinctive claim with data ──
   3. DATA         p = 0.80 ± 0.17    ~2σ hint (5σ naive; systematics cut it)    [DATA: weak]
         │  ── does it have a covariant home? ──
@@ -54,15 +54,17 @@ showed thermodynamics fixes the *evolution*, not the coefficient.
 **→ raises:** if a₀ is literally set by the density ρ_c, and ρ_c falls as the universe expands,
 a₀ cannot be constant. What does it do?
 
-## 2. The evolution — a₀(z) = a₀(0)·E(z)  **[DERIVED, coefficient-free]**
+## 2. The evolution — a₀(z) = a₀(0)·E(z)  **[DERIVED, but NOT novel]**
 
-With ρ_c(z) ∝ E(z)², the premise forces
-$$a_0(z)=a_0(0)\,E(z),\qquad E(z)=\sqrt{\Omega_m(1+z)^3+\Omega_\Lambda}.$$
-**Z cancels in the ratio** a₀(z)/a₀(0) — so this prediction carries *no* free coefficient and
-cannot be tuned. **This is the single distinctive, falsifiable claim of the whole framework.**
-Everything downstream is its consequence.
+With ρ_c(z) ∝ E(z)², the premise forces a₀(z)=a₀(0)E(z), E(z)=√(Ω_m(1+z)³+Ω_Λ). **Z cancels in
+the ratio**, so the prediction carries no free coefficient — the framework's one distinctive,
+falsifiable claim. **But it is not original.** Milgrom himself proposed a₀∝cH evolving with cosmic
+time in **2014** (arXiv:1412.4344, Phys. Rev. D); the framework only fixes a particular coefficient
+(Z, non-unique) and exponent (p=1). And the *observable* is degenerate with ΛCDM: the **Magneticum**
+hydro simulations (arXiv:2206.04333) find the apparent best-fit a₀ rises **×3 by z=2.3 with no
+fundamental evolution** — matching E(2.3)=3.46. *Check:* `reviews/NOVELTY_AND_DEGENERACY.md`.
 
-**→ raises:** is it true? It is already testable.
+**→ raises:** is it true *and distinguishable from ΛCDM*? Only at z≳4 on extended galaxies — not yet.
 
 ## 3. The data — p = 0.80 ± 0.17, but only a ~2σ hint  **[DATA: weak, single-point-driven]**
 
@@ -219,3 +221,12 @@ as a category error (∇·B/3H is an expansion-rate ratio, not the EFE's g_ext/a
 **sharp, falsifiable *variant* of relativistic MOND** (constant-a₀ AeST → evolving-a₀ AeST) whose one
 distinctive prediction is unconfirmed. Piece 5 (anti-screening) and Piece 7 (CMB-safety) were attacked
 and **held**. Net after two rounds: publishable as a hypothesis plus a sharp test — **not as evidence.***
+
+***The capstone (`reviews/NOVELTY_AND_DEGENERACY.md`):** even that one distinctive prediction is
+**not original** — Milgrom proposed evolving a₀∝cH in 2014 (arXiv:1412.4344) — and its observable is
+**reproduced by ΛCDM** (Magneticum sims: apparent a₀ ×3 by z=2.3, vs E(2.3)=3.46). So the set of
+claims that are *original AND distinctive AND confirmed* is **empty**. The honest end state: a
+coherent, falsifiable, CMB-safe **implementation** of Milgrom's 2014 evolving-a₀ idea, with a specific
+(non-unique) coefficient and a specific covariant coupling — a tidy piece of work, not a discovery.
+It is decidable only at z≳4 on extended galaxies, where evolving-a₀ and ΛCDM apparent-a₀ finally
+diverge — a test no one has run.*
