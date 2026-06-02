@@ -55,15 +55,20 @@ story.append(P("<b>Abstract.</b> We examine the proposal that the MOND accelerat
   "cosmic dynamical acceleration, a<sub>0</sub> = (c/2)√(Gρ<sub>c</sub>) = cH(z)/Z with "
   "Z = 2√(8π/3) ≈ 5.789. Algebraically this is Milgrom's coincidence a<sub>0</sub> ≈ cH<sub>0</sub> "
   "re-expressed through the Friedmann relation; its distinctive, coefficient-free consequence is "
-  "that a<sub>0</sub> <i>evolves</i> as a<sub>0</sub>(z) = a<sub>0</sub>(0)·E(z). Fitting this to the "
-  "2026 data (SPARC, Vărăşteanu, MUSE-DARK) gives an exponent p = 0.80 ± 0.17 in "
-  "a<sub>0</sub> ∝ E(z)<super>p</super>, excluding constant a<sub>0</sub> at 5σ and the matter-only "
-  "(1+z)<super>3/2</super> branch at 5σ. The premise generates an over-constrained web (one number, "
-  "five independent measurements that cohere), and bridges toward a relativistic dark-sector theory: "
-  "we show, from the AeST action, that a<sub>0</sub> is absent from the linear cosmological "
-  "perturbations, so a running a<sub>0</sub> leaves the CMB exactly invariant. We are explicit about "
-  "the boundaries: the O(1) coefficient is a posit, not a derivation; and the framework says nothing "
-  "forced about the Standard-Model constants. The decisive test is one clean a<sub>0</sub> at z &gt; 2.",
+  "that a<sub>0</sub> <i>evolves</i> as a<sub>0</sub>(z) = a<sub>0</sub>(0)·E(z) — an idea due to "
+  "Milgrom (2014); our contribution is an explicit covariant realization and a proof of its "
+  "CMB-safety. Fitting a<sub>0</sub> ∝ E(z)<super>p</super> to the 2026 data (SPARC, Vărăşteanu, "
+  "MUSE-DARK) gives p = 0.80 ± 0.17; constant a<sub>0</sub> is excluded at 5σ in the nominal fit, but "
+  "a jackknife and an inter-method systematic reduce this to ≈2σ, so we treat it as a suggestive hint, "
+  "not a detection. From the AeST action, promoting a<sub>0</sub> to the aether expansion "
+  "a<sub>0</sub> = cθ/3Z, we show — by order-counting reinforced by the exact identity "
+  "δq<super>00</super> = 0 — that a<sub>0</sub> is absent from the linear perturbations, so running "
+  "a<sub>0</sub> leaves the linear CMB exactly invariant (confirmed numerically: r<sub>s</sub> = 144.3 "
+  "Mpc, ℓ<sub>A</sub> = 301.7). The boundaries are explicit: the O(1) coefficient is a posit; the "
+  "Standard-Model constants do not follow; and the apparent-a<sub>0</sub> evolution is itself "
+  "reproduced by ΛCDM simulations, so the amplitude does not discriminate. The one prediction that "
+  "does — a redshift-weakening external field effect, η = g<sub>ext</sub>/a<sub>0</sub>(z) ∝ 1/E(z) — "
+  "is forecast to require a dedicated z &gt; 4 campaign.",
   S_abs))
 story.append(Spacer(1, 6))
 
@@ -87,11 +92,17 @@ story.append(P("Because a<sub>0</sub> tracks a cosmic density, it evolves. The p
 story.append(EQ("<i>a</i><sub>0</sub>(z) / <i>a</i><sub>0</sub>(0) = E(z) = "
   "√(Ω<sub>m</sub>(1+z)<super>3</super> + Ω<sub>Λ</sub>)."))
 story.append(P("Fitting a<sub>0</sub>(z) = A·E(z)<super>p</super> to the real compilation, marginalizing "
-  "the normalization A, yields the result below. Constant a<sub>0</sub> (p = 0) and the matter-only "
-  "branch (effectively p = 3/2) are each excluded at 5σ; the premise (p = 1) is consistent at 1.1σ. "
-  "The dominant uncertainty is the ~40% spread in the local anchor, not the redshift law. We note "
-  "honestly that an evolving relation is also expected in ΛCDM from halo evolution, so this is "
-  "<i>favored over constant</i>, not a unique confirmation."))
+  "the normalization A, yields the result below. In the nominal fit, constant a<sub>0</sub> (p = 0) and "
+  "the matter-only branch (p = 3/2) are each excluded at 5σ and the premise (p = 1) is consistent at "
+  "1.1σ. This significance is fragile, and we say so: a jackknife shows the rejection of constant "
+  "a<sub>0</sub> rests almost entirely on the single z ≈ 0.9 point (dropping it leaves 1.2σ), and the "
+  "1.7σ discrepancy between the two near-coincident local anchors (1.20 vs 1.69 at z ≈ 0) evidences an "
+  "inter-method systematic σ<sub>sys</sub> ≈ 0.28 that, folded in, reduces the rejection to ≈2σ — a "
+  "suggestive hint, not a detection. Two honest caveats: (i) an evolving relation is also expected in "
+  "ΛCDM — Magneticum simulations find apparent a<sub>0</sub> rising ×3 by z = 2.3, matching "
+  "E(2.3) = 3.46 with no fundamental evolution, so the data favor 'evolving over constant', not this "
+  "framework over ΛCDM; (ii) de Graaff's z ≈ 6 ratios M<sub>dyn</sub>/M<sub>★</sub> ~ 40 are <i>not</i> "
+  "support — the evolving-a<sub>0</sub> boost reaches only ~3 for such compact (near-Newtonian) systems."))
 data = [
   ["z", "a₀ (10⁻¹⁰ m/s²)", "source"],
   ["0.00", "1.20 ± 0.26", "SPARC — McGaugh, Lelli & Schombert 2016"],
@@ -117,12 +128,13 @@ story.append(P("The content is a single dimensionless invariant, a<sub>0</sub>/c
   "(the radial-acceleration relation), a length (ℓ = c<super>2</super>/a<sub>0</sub> = Z·R<sub>H</sub>), "
   "a surface density (Σ = a<sub>0</sub>/G), a velocity (the baryonic Tully–Fisher zero-point), a "
   "temperature (T<sub>dS</sub>/Z), and a time (the cosmic free-fall time). From the one premise about "
-  "a dozen relations follow as forced consequences. The web is <i>over-constrained</i>: the same "
-  "a<sub>0</sub> must simultaneously fit SPARC, the Planck H<sub>0</sub>, the de-Sitter (Λ) floor, the "
-  "MUSE-DARK measurement at z ≈ 1, and de Graaff's z ≈ 6 dynamical masses — five independent "
-  "determinations pinned by one number, net +4. We use this to draw the honest line: a real relation "
-  "is z-invariant (a<sub>0</sub>/cH stays 1/Z); a coincidence between cosmic numbers is not. The same "
-  "test that keeps these edges <i>rejects</i> the Standard-Model-constant 'derivations' (Section 5)."))
+  "a set of relations follow as forced consequences. The web is <i>over-constrained</i>: the same "
+  "a<sub>0</sub> must simultaneously fit the SPARC scale, the de-Sitter (Λ) floor "
+  "a<sub>0</sub>(0)√Ω<sub>Λ</sub>, and the intermediate-z points (Vărăşteanu, MUSE-DARK) — several "
+  "determinations across cosmic time keyed to one number (the relation H<sub>0</sub> = Za<sub>0</sub>/c "
+  "is an identity, not an independent check). We use this to draw the honest line: a real relation is "
+  "z-invariant (a<sub>0</sub>/cH stays 1/Z); a coincidence between cosmic numbers is not. The same test "
+  "that keeps these edges <i>rejects</i> the Standard-Model-constant 'derivations' (Section 5)."))
 
 story.append(H("4.&nbsp; Three bridges toward a theory of the dark sector"))
 story.append(P("<b>Bridge 1 (relativistic completion — CMB-safety, established).</b> The covariant home "
@@ -131,7 +143,10 @@ story.append(P("<b>Bridge 1 (relativistic completion — CMB-safety, established
   "expansion θ = ∇·A = 3H is a minimal modification. From the AeST action, a<sub>0</sub> enters only "
   "the spatial free-function term <i>F</i> ∝ <i>Y</i><super>3/2</super>/a<sub>0</sub>; on the FRW background the "
   "scalar is temporal, so <i>Y</i> = O(δφ<super>2</super>) and the a<sub>0</sub>-term is O(δφ<super>3</super>) "
-  "— absent from the linear equations. Hence running a<sub>0</sub> leaves the linear CMB and matter "
+  "— absent from the linear equations. The one term the standard order-counting omits, "
+  "δq<super>00</super>·(dφ/dt)<super>2</super>, also vanishes exactly: the unit-timelike constraint "
+  "forces δq<super>00</super> = δg<super>00</super> + 2A<super>0</super>δA<super>0</super> = 2Ψ − 2Ψ = 0, "
+  "even with the aether perturbed. Hence running a<sub>0</sub> leaves the linear CMB and matter "
   "power spectrum <i>exactly</i> invariant. A direct solution of the linear Einstein–Boltzmann system "
   "confirms this numerically (the running-a<sub>0</sub> effect is 0) and reproduces the Planck sound "
   "horizon r<sub>s</sub> = 144.3 Mpc and acoustic scale ℓ<sub>A</sub> = 301.7. The CMB-fitting dust "
@@ -161,25 +176,31 @@ story.append(P("This is a candidate theory of the <i>dark sector</i> (gravity, d
   "the surviving result trustworthy."))
 
 story.append(H("6.&nbsp; The decisive test"))
-story.append(P("One clean deep-MOND measurement of a<sub>0</sub> at z &gt; 2 — from resolved JWST/ALMA "
-  "kinematics or dispersions — pins the exponent p to ±0.1, because E(z) is large there "
-  "(E(3) ≈ 4.6). It confirms the premise or kills it, independently of the coefficient and of the "
-  "Hubble tension. That single datum decides the framework."))
+story.append(P("Pinning the exponent p by measuring a<sub>0</sub> at z &gt; 2 tests evolution against "
+  "constant a<sub>0</sub>, but does <i>not</i> separate this framework from ΛCDM, whose apparent "
+  "a<sub>0</sub> also rises as E(z) (Section 2). The deep-MOND cascade (M<sub>dyn</sub>/M<sub>★</sub> ∝ "
+  "√E, σ ∝ E<super>1/4</super>, Tully–Fisher zero-point ∝ −log E) shares this degeneracy. The one "
+  "discriminating observable is the external field effect: with a<sub>0</sub> → a<sub>0</sub>(z), "
+  "η = g<sub>ext</sub>/a<sub>0</sub>(z) ∝ 1/E(z), so the EFE <i>weakens</i> with redshift — distinct "
+  "from ΛCDM (no host effect) and constant-a<sub>0</sub> MOND (constant EFE). Solving the MOND EFE, the "
+  "distinctive signal is ≈0.1 dex, below the per-galaxy scatter (~0.3 dex); a 3σ detection needs "
+  "~600–1600 extended, environment-classified, kinematically-resolved galaxies at z &gt; 4 — a "
+  "dedicated multi-cycle JWST/ALMA(/ELT) program. That measurement, not a single pointing, decides it."))
 
 story.append(Spacer(1, 6))
 story.append(HRFlowable(width="100%", thickness=0.5, color=colors.HexColor("#bbbbbb"), spaceAfter=5))
 story.append(P("References", S_h))
 refs = [
- "Milgrom, M. 1983, ApJ 270, 365. — 2011, arXiv:1110.2580 (MOND's acceleration scale as a fundamental quantity).",
+ "Milgrom, M. 1983, ApJ 270, 365. — 2011, arXiv:1110.2580. — 2014, Phys. Rev. D 91, 044009; arXiv:1412.4344 (cosmological variation of the MOND constant, a₀ ∝ cH).",
  "McGaugh, S., Lelli, F., Schombert, J. 2016, Phys. Rev. Lett. 117, 201101 (SPARC radial-acceleration relation).",
- "Famaey, B. &amp; McGaugh, S. 2012, Living Rev. Relativity 15, 10.",
- "Gnedin, O. 2008, arXiv:0809.2790 (redshift evolution of the Tully–Fisher relation as a test of modified gravity).",
  "Skordis, C. &amp; Złošnik, T. 2021, Phys. Rev. Lett. 127, 161302; arXiv:2007.00082 (Aether–Scalar–Tensor theory).",
- "Verlinde, E. 2017, SciPost Phys. 2, 016 (Emergent gravity and the dark universe).",
+ "Tian, Y. et al. 2022, MNRAS 518, 257; arXiv:2206.04333 (apparent a₀ evolution in ΛCDM; Magneticum).",
+ "Verlinde, E. 2017, SciPost Phys. 2, 016; Gnedin, O. 2008, arXiv:0809.2790; Famaey &amp; McGaugh 2012, Living Rev. Rel. 15, 10.",
  "de Graaff, A. et al. 2024 (JADES dynamical masses, z = 5.5–7.4); MUSE-DARK III 2026; Vărăşteanu et al. 2025.",
- "Reproducibility: real_research/ — a0_decisive_pipeline.py, REAL_WEB.py, bridge1_linear_boltzmann.py, "
- "bridge1_aest_equations.md, bridge2_coefficient_thermodynamics.py, bridge3_dark_sector_unification.py, "
- "false_discovery_rate.py, can_another_number_do_it.py (github.com/carlzimmerman/zimmerman-formula).",
+ "Reproducibility: real_research/ — a0_powerlaw_confrontation.py, bridge1_linear_boltzmann.py, "
+ "reviews/theta_3H_coupling.py (a₀=cθ/3Z, δq⁰⁰=0), reviews/stresstest_piece3_evolution.py (5σ→2σ), "
+ "reviews/efe_evolution_forecast.py, reviews/parameter_space_map.py, false_discovery_rate.py; full "
+ "assessment in COMPLETE_ASSESSMENT.md (github.com/carlzimmerman/zimmerman-formula).",
 ]
 for r in refs:
     story.append(Paragraph(r, S_ref))
