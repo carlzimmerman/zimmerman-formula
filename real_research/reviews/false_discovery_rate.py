@@ -15,12 +15,12 @@ The question the repo's own META_HONESTY_ASSESSMENT.md says was never answered:
 If the answer is "almost always," then a 0.004% retrodiction carries essentially zero
 evidential weight -- it is the expected output of the search, not a discovery.
 
-This script reconstructs the exact search space from BriareusFlow/pattern_search.py
+This script reconstructs the exact search space from ai_slop/BriareusFlow/pattern_search.py
 (same building blocks, same integer ranges, same families) and measures the best
 achievable relative error for (a) alpha^-1 specifically and (b) thousands of arbitrary
 targets, with no fitting to physics.
 
-Pure-stdlib + numpy. Run:  python reviews/false_discovery_rate.py
+Pure-stdlib + numpy. Run (from repo root):  python real_research/reviews/false_discovery_rate.py
 """
 
 import math
