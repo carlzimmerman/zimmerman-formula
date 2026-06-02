@@ -116,6 +116,7 @@ because documenting a dead end *is* part of the science.
 ## Reproduce
 
 ```bash
+python real_research/a0_decisive_pipeline.py          # THE decisive test (add z>2 data -> it sharpens)
 python real_research/reviews/sparc_rar_honest.py      # the real a0 = 1.13e-10 anchor
 python real_research/a0_powerlaw_confrontation.py     # the evolving a0: constant rejected 5σ
 python real_research/REAL_WEB.py                       # the over-constrained web (+4)
@@ -123,6 +124,14 @@ python real_research/reviews/is_Z_special.py          # why the constant numerol
 python real_research/can_another_number_do_it.py      # a random number "derives" the constants too
 python real_research/reviews/false_discovery_rate.py  # the 34k-formula look-elsewhere baseline
 ```
+
+**Toward a theory of the dark sector** (not a TOE — the constants don't connect; `can_another_number_do_it.py`):
+the surviving framework bridges to a unified dark-sector theory on three fronts —
+`BRIDGE_TO_UNIFICATION.md`. **Bridge 1** (covariant completion): the real AeST equations
+(`bridge1_aest_equations.md`, sourced from arXiv:2007.00082) give an order-counting theorem —
+a₀ is absent from the linear cosmology, so running a₀ leaves the CMB exactly invariant.
+**Bridge 3** (DM = DE = one scale): AeST's 𝒦(𝒬) carries both the dust mode *and* Λ, tied by the
+evolving a₀ (`bridge3_dark_sector_unification.py`). The decisive datum for both: a clean a₀ at z>2.
 
 ## Preserved as open research
 
