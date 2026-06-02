@@ -172,8 +172,11 @@ EFE (g_ext/a₀, inherited from MOND): with a₀ → a₀(z)=a₀(0)E(z), the **
 **weaker** EFE at high z, η = g_ext/a₀(z) ∝ 1/E(z). So high-z galaxies in dense environments should
 behave more like *isolated* deep-MOND systems. This is distinct from **both** ΛCDM (no host effect
 on the internal RAR) **and** constant-a₀ MOND (constant EFE) — the framework's **one genuinely
-distinctive, falsifiable card.** It is also its hardest to measure, with no z≳4 data yet. *Check:*
-`reviews/viable_region_research.py`.
+distinctive, falsifiable card.** It is also its hardest to measure: a rigorous forecast
+(`reviews/efe_evolution_forecast.py`) puts the signal at only **~0.1 dex** against ~0.3 dex
+per-galaxy noise, requiring **~600–1600 extended, environment-classified, kinematically-resolved
+z≳4 galaxies** (with gas masses) — ~10–30× beyond current JWST samples. **A next-decade campaign,
+not a this-cycle test.** *Check:* `reviews/viable_region_research.py`, `reviews/efe_evolution_forecast.py`.
 
 **→ raises:** what is actually left to close the theory?
 
