@@ -34,7 +34,7 @@ calculation not yet done (and not faked).
         │  ── what does the premise force for formed galaxies? ──
   8. CASCADE      one E(z) drives all — but DEEP-MOND targets only             [DERIVED, qualified]
         │  ── the same θ that evolves a0 also sets it locally → ──
-  9. EFE          environmental EFE + cosmic evolution = one mechanism          [DERIVED+OPEN]
+  9. EFE          WITHDRAWN — ∇·B/3H ≠ g_ext/a₀ is a category error             [WITHDRAWN]
         │  ── what is left to close? ──
  10. FRONTIER     the open checks collapse to TWO                               [OPEN]
 ```
@@ -129,8 +129,11 @@ On FRW the spatial 𝒴̄=0 (q⁰⁰=−1+1=0), so the a₀-term is O(δφ³): *
 equation.** Peaks do not move (r_s, ℓ_A unchanged), the transfer function is a₀-invariant — and
 the θ-dressing doesn't lower the order (θ̄=3H̄≠0). The first a₀-dependent effect is **second
 order**, where a₀ is ~2×10⁴ larger; the estimated C_ℓ correction is **~0.01–0.1%** (likely below
-Planck's ~0.3–1%, but soft because of the 𝒴^{3/2} non-analyticity). *Check:*
-`bridge1_linear_boltzmann.py` (verified vs BBKS/Planck), `reviews/nonlinear_cmb_scoping.py`.
+Planck's ~0.3–1%, but soft because of the 𝒴^{3/2} non-analyticity). *Round-2 caveat
+(`reviews/redteam_round2.py`):* this safety is sound math, but it protects a CMB fit that **AeST
+itself** bought with a tuned dust-mimic free function 𝒦(𝒬) — the CMB success is **inherited and
+tuned**, not predicted by this framework. *Check:* `bridge1_linear_boltzmann.py` (verified vs
+BBKS/Planck), `reviews/nonlinear_cmb_scoping.py`.
 
 **→ raises:** granting the premise, what is *forced* for the galaxies JWST will measure?
 
@@ -155,13 +158,16 @@ adds two hard caveats that *sharpen* it:
 
 **→ raises:** the same θ that evolves a₀ also sets it locally — is there a second phenomenology?
 
-## 9. The EFE bonus — evolution and environment, one mechanism  **[DERIVED + OPEN]**
+## 9. The EFE "bonus" — withdrawn: it is a category error  **[WITHDRAWN]**
 
-a₀ is set by the local aether expansion θ. Its cosmic part (3H) gives the **redshift evolution**;
-its inhomogeneous part (∇·B) is exactly where the **External Field Effect** enters. So a₀ depends
-on both epoch *and* environment through one quantity — a structural prediction, not two knobs.
-The precise EFE map needs the aether back-reaction solved. *Check:* `reviews/theta_3H_coupling.py`
-[B], `mond_first_principles.py` (EFE).
+An earlier version of this map claimed the same θ unifies cosmic evolution and the External Field
+Effect — 3H evolves a₀, ∇·B gives the EFE. **The round-2 red-team (`reviews/redteam_round2.py`)
+retracts this.** The framework's environmental knob is δθ/3H = ∇·B/3H — a ratio of *expansion
+rates* (∇·B has units 1/time). The standard MOND EFE knob is g_ext/a₀ — a ratio of *accelerations*.
+They are different dimensionful objects and different mechanisms (the EFE suppresses deep-MOND at
+*fixed* a₀; this *changes* a₀). And the standard EFE is still present, inherited from MOND — so the
+framework has **two** distinct environmental effects, not one. There may be a real new environmental
+dependence here, but it is **not** the EFE, and it is unquantified. *Check:* `reviews/redteam_round2.py`.
 
 **→ raises:** what is actually left to close the theory?
 
@@ -206,3 +212,10 @@ CMB-safety (Piece 7 — δq⁰⁰=0, verified under the harder test). **Honest s
 falsifiable model with no current positive evidence above ~2σ.** JWST can still decide it — but
 only on *extended* high-z galaxies, via the cross-channel coherence (Piece 8), not the compact
 ones and not the current three-point fit.
+
+*Round 2 (`reviews/redteam_round2.py`) went further: Piece 9 (the EFE "unification") is **withdrawn**
+as a category error (∇·B/3H is an expansion-rate ratio, not the EFE's g_ext/a₀); the CMB success is
+**inherited from a tuned AeST**, not predicted here; and stripped to its core the framework is a
+**sharp, falsifiable *variant* of relativistic MOND** (constant-a₀ AeST → evolving-a₀ AeST) whose one
+distinctive prediction is unconfirmed. Piece 5 (anti-screening) and Piece 7 (CMB-safety) were attacked
+and **held**. Net after two rounds: publishable as a hypothesis plus a sharp test — **not as evidence.***
