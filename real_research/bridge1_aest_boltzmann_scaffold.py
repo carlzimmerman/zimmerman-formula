@@ -95,8 +95,14 @@ def galaxy_force(gN: float, a0z: float, kind: str = "simple") -> float:
 
 
 # ====================================================================================
-# SECTION 3 -- linear perturbations  [TODO: the AeST-specific terms need the paper]
+# SECTION 3 -- linear perturbations  [TODO: AeST terms now SOURCED in bridge1_aest_equations.md]
 # ====================================================================================
+# The actual AeST equations (action Eq.5, background, perturbations Eqs.11-12, the MOND/dust
+# limits, and the theta-coupling a0->a0(theta)=c*theta/(3Z)) are transcribed from arXiv:2007.00082
+# in real_research/bridge1_aest_equations.md. KEY (sourced): a0 lives in the F(Y) spatial sector;
+# the CMB dust-mode lives in K(Q) temporal sector -> running a0 leaves the dust-mode untouched.
+# The stubs below are no longer black boxes -- they point to the specific sourced equations to
+# transcribe (verifying exact coefficients vs the PDF) and SOLVE inside hi_class.
 @dataclass
 class Perturbations:
     """Linear perturbation variables (conformal Newtonian gauge), Fourier mode k.
@@ -125,8 +131,9 @@ def scalar_perturbation_source(p: Perturbations, bg: Background, z: float):
       * the theta-coupling: a0 -> a0(z), so the MOND-scale parameter in K becomes time-dependent.
     DO NOT fabricate -- transcribe from the paper."""
     raise NotImplementedError(
-        "scalar perturbation source: transcribe Skordis-Zlosnik 2021 perturbed scalar EOM; "
-        "make the MOND-scale parameter time-dependent via a0(z)=cH/Z. See module docstring.")
+        "scalar perturbation source: use chi=phi+phidot*alpha, gamma=phidot-phidot*Psi; the EOM "
+        "is driven by dK/dQ (Q-sector) with a0 entering only via F's Y-sector terms. See "
+        "bridge1_aest_equations.md (arXiv:2007.00082 Eqs. 11-12); promote a0->a0(theta)=c*theta/3Z.")
 
 
 def aether_perturbation_source(p: Perturbations, bg: Background, z: float):
@@ -135,7 +142,8 @@ def aether_perturbation_source(p: Perturbations, bg: Background, z: float):
     Lagrange multiplier perturbation). This sector is what keeps c_GW=c and what the
     theta-coupling acts through (theta = div A). Transcribe from the paper; do not invent."""
     raise NotImplementedError(
-        "aether perturbation source: needs the AeST vector EOM + unit-constraint multiplier.")
+        "aether perturbation source: AeST Eq. 12  K_B(Edot + H E) = (dK/dQ) chi - (2-K_B)[...]; "
+        "see bridge1_aest_equations.md. The vector sector keeps c_GW=c and carries theta=div A.")
 
 
 def einstein_constraints(p: Perturbations, bg: Background, z: float):
