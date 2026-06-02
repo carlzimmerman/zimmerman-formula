@@ -125,6 +125,16 @@ deep-MOND limit is imposed to fit galaxies, as in every MOND theory).
 3. the $\mathcal Y^{3/2}$ **non-analyticity** at $\mathcal Y=0$ (quasi-static ↔ cosmology matching);
 4. the full aether **back-reaction** of $a_0(\theta)$ in bound systems (the $\nabla\!\cdot\!\mathbf B$ term).
 
+**These four are really two.** At linear order the θ-coupled theory *is* constant-a₀ AeST —
+the a₀-term is $O(\delta\phi^3)$, so the quadratic action is unchanged and **inherits AeST's
+established linear ghost-freedom, $c_{\rm GW}=c$, and CMB fit.** Everything a₀-dependent — the
+second-order CMB (1), the stability of the dressed term (2), and the non-analyticity (3) —
+therefore collapses to a *single* question: what the $\mathcal Y^{3/2}$ term does at second order
+around the cosmological $\mathcal Y=0$ corner. The only genuinely separate check is (4), the
+quasi-static aether back-reaction in bound systems — and that one is also a phenomenological
+*opportunity*, since it is exactly where the External Field Effect lives. So the frontier is
+narrower than it looks: **one nonlinear cosmological calculation, plus the EFE.**
+
 **Bottom line.** There *is* a geometric action for the surviving finding: AeST with its MOND
 scale promoted to the aether expansion, $a_0=c\theta/3Z$. It makes the evolution a field-theory
 output, keeps the linear CMB, and is the coupling the data prefer — while deriving none of the
