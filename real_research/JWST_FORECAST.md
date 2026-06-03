@@ -32,8 +32,13 @@ have been *larger in the past*:
 This prediction is **coefficient-free** — the posited number Z cancels in the ratio — so it
 cannot be tuned. It is the single distinctive claim, and it is already testable. Fitting the
 2026 data (the local SPARC scale, Vărăşteanu's z≈0.05 sample, and the MUSE-DARK measurement at
-z≈0.9) gives a₀ ∝ E(z)^p with **p = 0.80 ± 0.17: constant a₀ is rejected at 5σ, and so is the
-matter-only (1+z)^{3/2} alternative.** The data, for the first time, lean toward evolution.
+z≈0.9) gives a₀ ∝ E(z)^p with **p = 0.80 ± 0.17**. *Honest significance (corrected from an
+earlier overstatement):* the naive "5σ" rejection of constant a₀ assumes three heterogeneous
+measurements are commensurate to their tiny quoted errors; folding in the inter-method
+systematic the local pair already demands drops it to **~2σ**, and dropping the single
+high-leverage z≈0.9 point drops it to **~1.2σ**. It is also degenerate with ΛCDM RAR-evolution
+plus selection. So the honest status is a **~2σ hint in the predicted direction, not a
+detection** (`reviews/stresstest_piece3_evolution.py`). The value is in the *forward* test.
 
 ## Why JWST is the decisive instrument
 
@@ -95,6 +100,42 @@ or the ultraviolet luminosity function — those are the physics of gas and star
 Naming them as victories, as earlier versions of this work did, was a mistake. The honest
 boundary is part of the prediction.
 
+## GN-z11, and the compact-galaxy trap
+
+The most-discussed massive early galaxy, **GN-z11 at z = 10.60**, makes the regime caveat
+concrete. JWST IFS (Xu et al. 2024) measures M⋆ ≈ 1.3×10⁹ M⊙, a dynamical mass M_dyn = (1.1 ±
+0.4)×10⁹ M⊙ — *dominated by the stellar component* — a rotation ≈ 205 km/s, and a half-light
+radius of only **~60 pc**; it also hosts an AGN (Maiolino et al. 2024). Run the numbers
+(`reviews/jwst_predictions_comprehensive.py`): at z = 10.6, E = 22.2 and a₀(z) = 2.7×10⁻⁹ m/s²,
+but GN-z11's internal acceleration is g_bar = GM⋆/R_e² ≈ 4.9×10⁻⁸ m/s² — so **g_bar/a₀(z) ≈ 18,
+deeply Newtonian.** The MOND transition radius is r_M ≈ 257 pc, well *outside* the 60-pc
+half-light radius. The framework therefore predicts **no boost** (ν ≈ 1.05, i.e. M_dyn/M⋆ ≈ 1),
+and the observed M_dyn/M⋆ ≈ 0.87 **agrees — but trivially**: no enhancement was predicted, none
+is seen, and the same is true of plain Newton and ΛCDM. **GN-z11 does not test the framework.**
+It is the wrong *kind* of galaxy (compact, not extended), AGN-contaminated, and its
+"massiveness" is a *star-formation* puzzle (efficiency, IMF, feedback-free collapse) that a₀(z)
+does not touch. The √E ≈ 4.7× boost lives only in **extended, low-surface-brightness** galaxies
+where g_bar < a₀(z) — exactly the systems current high-z kinematic samples under-represent.
+
+## When the data arrives
+
+The relevant observations exist *now* and are growing, but the *clean* test targets are still
+scarce:
+- **Already public / published:** GN-z11 dynamics (Xu et al. 2024); JADES/NIRSpec ionised-gas
+  kinematics and dynamical masses at z ≳ 6 (Übler et al. 2023); JWST-SUSPENSE stellar kinematics
+  of z > 1 quiescent galaxies (2025); the JADES rotation-distribution analysis (2025). Most JWST
+  Cycle 1–2 spectroscopy has passed its 12-month proprietary period and is on MAST; Cycle 3–4
+  data become public through 2026–2027.
+- **The gap:** these samples are dominated by *compact*, often AGN-bearing systems (Newtonian →
+  no signal), lack gas masses, and carry no environment split — so they are uninformative for
+  the √E boost and silent on the EFE. de Graaff et al. (2024) ratios up to ~40 are upper limits
+  on compact galaxies, *not* support.
+- **What it takes:** a dedicated, environment-resolved, *extended*-galaxy kinematic campaign
+  (JWST + ALMA gas masses now; ELT/HARMONI for the z ≳ 6 lever arm, ~2029+). The distinctive
+  EFE-vs-z signal needs ~600–1600 such galaxies — a next-decade measurement
+  (`EFE_vs_z_Forecast_2026`). The cross-channel **coherence** test can begin sooner, as soon as a
+  few dozen extended z > 2 galaxies have simultaneous M_dyn, baryons, sizes and dispersions.
+
 ## How to run the test
 
 Do not fit a single galaxy. **Measure the dynamical-mass ratio, the Tully–Fisher zero-point, the
@@ -117,9 +158,12 @@ decide it.
 
 ---
 
-*Reproducibility:* `a0_decisive_pipeline.py` (the 5σ data fit), `jwst_full_predictions.py` (the
-full prediction map), `bridge1_aest_equations.md` (why a₀ is absent from linear growth), and the
-repository at github.com/carlzimmerman/zimmerman-formula.
-*Key data:* McGaugh, Lelli & Schombert 2016 (SPARC); Übler et al. 2017 (KMOS³ᴰ); de Graaff et
-al. 2024 (JADES); Vărăşteanu et al. 2025; MUSE-DARK III 2026. *Foundations:* Milgrom 1983;
-Skordis & Złośnik 2021 (the relativistic completion); Verlinde 2017.
+*Reproducibility:* `reviews/stresstest_piece3_evolution.py` (the a₀(z) data fit, honestly ~2σ
+after systematics), `reviews/jwst_predictions_comprehensive.py` (the full prediction map +
+regime check + GN-z11), `bridge1_aest_equations.md` (why a₀ is absent from linear growth), and
+the repository at github.com/carlzimmerman/zimmerman-formula.
+*Key data:* McGaugh, Lelli & Schombert 2016 (SPARC); Übler et al. 2017 (KMOS³ᴰ); Übler et al.
+2023 (JADES kinematics, z≳6); Xu et al. 2024 (GN-z11 dynamics, arXiv:2404.16963); Maiolino et
+al. 2024 (GN-z11 AGN); de Graaff et al. 2024 (JADES compacts — upper limits); Vărăşteanu et al.
+2025; MUSE-DARK III 2026. *Foundations:* Milgrom 1983; Skordis & Złośnik 2021 (the relativistic
+completion); Verlinde 2017.
