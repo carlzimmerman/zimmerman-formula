@@ -13,7 +13,7 @@ the surface gravity of the cosmic horizon, evolving as E(z). Nothing here revive
 
 | # | Project | Verdict | The one-line finding |
 |---|---------|---------|----------------------|
-| 1 | Deep-MOND sign | **OPEN (sharpened)** | The sign is **DOF-freezing** (verified, right sign); a₀~cH **forced** when freezing scale = T_dS. Mechanism standard, *spectrum posited*. Reduced to one calc: the de Sitter horizon density of states. |
+| 1 | Deep-MOND sign | **OPEN (advanced)** | The sign is **DOF-freezing** (verified, right sign); a₀~cH **forced** when freezing scale = T_dS. **1b:** the freezing spectrum is no longer *posited* — MOND needs a **flat DOS**, which the **(1+1)D near-horizon** sector gives (3D bulk gives g∝E², wrong) and dimensional reduction **forces**. Gap narrowed to 2 quantities computable in DSSYK → **#1 merges with #4**. |
 | 2 | AeST 𝒦(𝒬) | **NEGATIVE** | The horizon forces the *local* 𝒥(𝒴), **not** 𝒦(𝒬): the cosmological dust needs a scale ~2×10⁴·H₀. It's the "second dark thing"; reduces to #9. |
 | 3 | Apparent vs event (theory) | **LEAN (→framework)** | Verified: dQ=TdS on the **apparent** horizon *is* Friedmann (Cai–Kim); the event horizon fails the laws. So "a₀ from horizon thermodynamics" → **rises with z**. Theory now leans to the framework. |
 | 4 | Complexity sign | **NEGATIVE** | Where computable (CV/DSSYK), the route gives **Newton** (δV linear in mass). The complexity-*rate* door is open but a long shot. |
@@ -41,9 +41,13 @@ the surface gravity of the cosmic horizon, evolving as E(z). Nothing here revive
 1. **The engine is most defensible as modified *gravity* (AeST, #5) sourced by the *apparent* horizon's
    thermodynamics (#3).** Theory is no longer neutral — it *leans* to the framework's rising-a₀ bet, from
    the same Cai–Kim physics that gives Friedmann. That is the single most important new theoretical result.
-2. **The deep-MOND sign is obtainable but not derived (#1).** DOF-freezing gives the right sign and forces
-   a₀~cH; the freezing *spectrum* is posited. The whole open theory problem is now **one** concrete
-   QFT-in-de-Sitter calculation, not a vague gap.
+2. **The deep-MOND sign is obtainable, and now structurally motivated (#1, #1b).** DOF-freezing gives the
+   right sign and forces a₀~cH. The follow-up (#1b) removed the "posited spectrum" objection: MOND requires
+   a **flat density of states**, the 3D bulk de Sitter modes give the wrong one (g∝E²), and the **(1+1)D
+   near-horizon** sector gives exactly the flat DOS — *forced* by near-horizon dimensional reduction
+   (membrane paradigm / 2D anomaly / near-horizon CFT). The open core is now two concrete quantities (the
+   probe's coupling to the 2D sector; the exact cutoff that pins Z), both computable in the **DSSYK dual** —
+   so the theory prize (#1) and the holographic frontier (#4) **merge** into one solvable target.
 3. **The data lean to the framework, nothing is decisive in-house (#11, #12, #13, #15).** Rising a₀ ~2.5σ,
    EFE ~4.8σ, a₀–mass correlation, Crater II — all real, all systematic- or external-data-limited. The
    honest significances are stated as such, never inflated.
