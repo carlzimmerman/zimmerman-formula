@@ -7,6 +7,11 @@ MOND forms structure FASTER (enhanced gravity), and the framework's RISING a0(z)
 even larger at high z. This file DERIVES the deep-MOND spherical-collapse time in closed form (verified
 three ways elsewhere), proves it is shorter than Newtonian by (g_N/a0)^(1/4), and applies it to the JWST
 era. Rigorous where it can be; honest that a stellar-mass function needs a modified N-body. Needs numpy/scipy.
+
+CORRECTION: 'forms galaxies earliest of the three' is too strong -- see project_stresstest_07_19.py. MOND
+out-pulls LambdaCDM-with-DM only at LOW surface density (g_N < a0 E(z)/(Om/Ob)^2); for the COMPACT high-z
+galaxies JWST flags, LambdaCDM-with-DM gives more gravity. The closed-form collapse stands; the claim is
+restricted to diffuse/large-scale structure.
 """
 import numpy as np
 from scipy.integrate import quad, solve_ivp

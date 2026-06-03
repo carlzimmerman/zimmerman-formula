@@ -7,6 +7,12 @@ pressure support bias high-z rotation curves. Weak LENSING does not use kinemati
 phantom-halo mass directly from light bending. In deep MOND (AeST lenses on baryons+phantom) the phantom
 mass M_ph ~ sqrt(M_bar a0), so at fixed baryonic mass M_ph ~ sqrt(a0(z)) ~ sqrt(E(z)). This file derives the
 signature and forecasts it. A clean, orthogonal cross-check. Needs numpy.
+
+CORRECTION: 'immune to the kinematic confounds' is right, but do NOT read it as immune to GAS -- see
+project_stresstest_07_19.py. M_lens ~ sqrt(M_bar a0) still needs a per-galaxy GAS CENSUS (at fixed M_star
+the rising gas fraction inflates M_lens comparably to the wanted sqrt(E(z))). The real, distinct advantage
+is independence from the PRESSURE/KINEMATIC confound (no velocities used), so lensing and dynamics fail
+differently -- not freedom from the gas census.
 """
 import numpy as np
 
