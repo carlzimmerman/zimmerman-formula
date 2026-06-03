@@ -16,6 +16,10 @@ patch -- and makes real progress. The result, all verified by direct computation
 
 That converts Project 1's posit into a structural consequence, and narrows the remaining gap to two precise,
 DSSYK-connected items. Honest about what is and is not established. Needs numpy + scipy.
+
+CORRECTION: the word 'forced' below is too strong -- see project01c_stresstest_1b.py, which attacks this
+chain, finds a real entropy-vs-MOND mode-count tension, tightens the claim to the (1+1)D RADIAL s-wave
+(not the generic 2D surface), and supplies a candidate -- but unproven -- resolution. Read 1b with 1c.
 """
 import numpy as np
 from scipy.integrate import quad
