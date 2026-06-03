@@ -22,8 +22,8 @@ the surface gravity of the cosmic horizon, evolving as E(z). Nothing here revive
 | 7 | MOND collapse / JWST | **WIN (derivation)** | Closed form t_MOND = √(π/2)·r_max/(GMa₀)^¼, **verified 3 ways**; rising a₀ forms galaxies **earliest** (∝E(z)^¼) — toward the JWST tension. |
 | 8 | a₀-cosmography | **LEAN** | H₀ = Z·a₀/c ~ 71±10 (local camp, not decisive). The a₀(z) **slope** = (3/2)Ω_m → independent q(z). |
 | 9 | Dark-sector budget | **NEGATIVE (honest)** | Dark matter = **two roles of one scalar**: galaxy phantom (explained, no halo) + 𝒦(𝒬) dust (Ω_DM only *relocated*, still fitted). Wins at galaxy scale, not the cosmic census. |
-| 10 | a₀(z) compilation | **WIN (in-house half)** | One standardized deep-MOND-tail pipeline + gas census + the survey shopping list (~50–150 clean galaxies). The highest-value data project, fully specified. |
-| 11 | Forward-model fit | **LEAN (honest)** | Rising vs constant is **~5σ naive → ~2.5σ** with a gas/pressure systematic → a coin toss without the z=0.9 point. Real but modest. |
+| 10 | a₀(z) compilation | **WIN (pipeline) / sobering (data)** | Pipeline + gas census + survey list fully specified. **10b ran it on REAL KMOS³ᴰ data (135 gals): a₀ comes out ~4× local, rises *with mass* (a high-accel bias), and the z-trend is flat-to-declining — NOT the rise.** KMOS³ᴰ is too massive/dispersion-supported to test a₀; validates the deep-MOND-tail requirement. Real high-z data are systematics-dominated. |
+| 11 | Forward-model fit | **LEAN → weak** | Rising vs constant is **~5σ naive → ~2.5σ** with a systematic → a coin toss without the z=0.9 point. And the high-z a₀ estimates **disagree at ~2×** (MUSE-DARK 2.4 vs KMOS³ᴰ 5; #10b) — even the 3-point "evidence" is systematics-dominated. Real but **weak and unconfirmed**. |
 | 12 | EFE airtight + evolve | **WIN + LEAN** | In-house **~4.8σ** EFE in SPARC (one caveat: outer kinematics); framework predicts the ΛCDM-forbidden **η ∝ 1/E(z)**. |
 | 13 | a₀-universality | **OPEN (real problem)** | χ²/dof = 770 (stat) → 5 (0.13-dex sys) → ~1 only at ~0.29 dex. Residual scatter **correlates with mass (r=0.37)** — suggestive of a₀∝√ρ but degenerate; needs photometric densities. |
 | 14 | Wide binaries | **OPEN (foundation)** | Galactic field (g_ext=1.74a₀) → predicted excess only ~15–20% → Chae/Banik is a systematics fight. **Gaia DR4** decides "is there an a₀ at all." |
@@ -78,10 +78,15 @@ neither inflated nor dismissed. (`reviews/project01c_*, project03b_*, project12b
 ## The bottom line
 
 The framework reduces to **one robust claim** (a₀ is cosmic-horizon-scale) and **one falsifiable bet**
-(it tracks the *apparent* horizon, so a₀ rises as E(z)). After 20 projects: the bet is now **theoretically
-favored** (#3), **derivation-grade in its consequences** (#7, #19), **weakly data-favored** (#11, #12),
-**decisively testable** (#17, #19), and **honest about its open core** (#1), **its boundary** (#2, #9),
-and **its weaknesses** (#6, #13, #16). Nothing here derives the Standard Model from a number — and that
-discipline is exactly what makes the surviving physics worth taking to a referee.
+(it tracks the *apparent* horizon, so a₀ rises as E(z)). After 20 projects **plus an adversarial sweep that
+attacked the framework's own claims**: the bet is **theoretically motivated but conditional** (#1b/#3b —
+not "forced"), **derivation-grade in its consequences with the LCDM comparisons deflated** (#7/#19
+corrected), **decisively testable** (#17, #19), and **honest about its open core** (#1), **its boundary**
+(#2, #9), and **its weaknesses** (#6, #13, #16). The empirical case is **weaker than the curated compilation
+implied**: the EFE is robust (#12b) but the direct rising-a₀ evidence is ~2.5σ and **not confirmed by the
+real high-z data** (#10b — KMOS³ᴰ is systematics-dominated and flat-to-declining). Net: **one robust claim,
+one bet not yet won or lost, a theory advance that is identified-not-derived, and a clean decisive test still
+to run.** Nothing here derives the Standard Model from a number — and the sweep that deflated the framework's
+own overreaches wherever they occurred is exactly what makes the surviving physics worth taking to a referee.
 
 *Companion: `FRAMEWORK_RESEARCH_PROGRAM_20.md` (the program); `reviews/project01..20_*.py` (the work).*
