@@ -8,12 +8,14 @@ Four clean SPARC tests of the framework's core relations (real data, 175 galaxie
   4. Phantom-halo profile:  deep-MOND flat curves => phantom rho ~ 1/r^2 (outer slope -> -2?)
 Each is a forced MOND/framework prediction; we report what the data give, with honest caveats.
 
-HONEST OUTCOME (don't skip): only #3 (Freeman) is cleanly recovered from rotmod files. #1 and #2 are
-proxy-limited -- the real BTFR slope (~3.85, Lelli+2016) and RAR tightness (0.057 dex, Lelli+2017)
-need total baryonic masses / per-galaxy marginalization that rotmod-only proxies cannot deliver, and
-my crude passes give slope 3.15 and 0.20 dex. #4 is partial (deep-MOND points still rise, beta=+0.36,
-so phantom rho~r^-1.3, not the idealized -2). AND all four are STANDARD MOND relations the framework
-merely inherits -- none probes its distinctive high-z a0(z)=a0(0)E(z) evolution.
+HONEST OUTCOME (don't skip): #2 (RAR) and #3 (Freeman) are cleanly recovered from rotmod files; #1 and
+#4 are not. #2 hinges on the CORRECT estimator: error-weighted, the RAR scatter is 0.10 dex with
+a0=1.36e-10 (canonical), matching Lelli+2016 OBSERVED -- an UNWEIGHTED np.std wrongly inflates to 0.20
+dex and drags a0 low (a correction to a first pass of this very script). #3: disks straddle
+Sigma_c=a0/2piG=137 Msun/pc^2. #1 is proxy-limited: a V^2 r/G mass proxy gives BTFR slope 3.15, biased
+low of the real 3.85+/-0.09 (Lelli+2016, which needs total baryonic masses). #4 is partial: deep-MOND
+points still rise (beta=+0.36 -> phantom rho~r^-1.3, not the idealized isothermal -2). AND all four are
+STANDARD MOND relations the framework merely inherits -- none probes its distinctive high-z evolution.
 Needs numpy + the SPARC files.
 """
 import numpy as np, glob, os
@@ -63,33 +65,31 @@ def test1_BTFR():
 
 
 def test2_RAR_scatter():
-    print("="*82); print("TEST 2 -- intrinsic RAR scatter: how universal is a0?"); print("="*82)
-    gb, go, frac = [], [], []
+    print("="*82); print("TEST 2 -- RAR scatter: how universal is a0? (the ESTIMATOR is decisive)"); print("="*82)
+    gb, go, w = [], [], []
     for R, Vobs, eV, Vgas, Vdisk, Vbul, SBd, SBb in gals():
         Rm = R*kpc
         Vbar2 = np.sign(Vgas)*Vgas**2 + ML_D*Vdisk**2 + ML_B*Vbul**2
         g_b = Vbar2*1e6/Rm; g_o = (Vobs*1e3)**2/Rm
         ok = (g_b > 0) & (g_o > 0) & np.isfinite(g_b) & np.isfinite(g_o) & (Vobs > 0)
-        gb += list(g_b[ok]); go += list(g_o[ok])
-        frac += list((2*np.clip(eV, 1, None)/np.clip(Vobs, 1, None))[ok])   # d ln g_obs = 2 d ln V
-    gb, go, frac = np.array(gb), np.array(go), np.array(frac)
-    grid = np.linspace(0.8e-10, 1.8e-10, 200)
-    sc = [np.std(np.log10(go)-np.log10(gb/(1-np.exp(-np.sqrt(gb/a0))))) for a0 in grid]
-    i = int(np.argmin(sc)); a0, total = grid[i], sc[i]
-    meas = np.median(frac/np.log(10))                  # median measurement scatter in dex (from V errors)
-    intr = np.sqrt(max(total**2 - meas**2, 0))
-    print(f"  best-fit RAR a0 = {a0*1e10:.2f}e-10 (exponential mu); TOTAL scatter {total:.3f} dex")
-    print(f"  velocity-error contribution only ~ {meas:.3f} dex; fixed M/L=0.5, one global mu, no")
-    print(f"  per-galaxy distance/inclination marginalization -> residual {intr:.3f} dex is an UPPER BOUND")
-    print(f"""  READ [HONEST -- UPPER BOUND]: the RAR is real and tight, but my crude reduction (fixed M/L=0.5,
-  one global interpolating function, no distance/inclination/M-L marginalization) inflates the scatter
-  to {total:.2f} dex -- and that residual is M/L-insensitive (0.20 dex at M/L=0.3/0.5/0.7), so it is
-  dominated by reduction/model error I did NOT remove, not by the {meas:.2f} dex velocity term. So
-  {intr:.2f} dex is an UPPER BOUND on the intrinsic scatter, not a measurement of it. The PROPER
-  analysis -- Lelli, McGaugh, Schombert & Pawlowski 2017, marginalizing M/L, distance and inclination
-  per galaxy -- gives an intrinsic scatter of 0.057 dex. The near-universal a0 is genuine (literature);
-  I simply cannot reproduce its tightness from a fixed-M/L pass (best-fit a0~0.85e-10 is just the
-  exponential-mu value, below the simple-mu 1.2e-10). Directionally consistent, not a clean number.\n""")
+        frac = np.clip(eV, 1, None)/np.clip(Vobs, 1, None)              # fractional velocity error
+        gb += list(g_b[ok]); go += list(g_o[ok]); w += list(1/frac[ok]**2)   # inverse-variance weight
+    gb, go, w = np.array(gb), np.array(go), np.array(w)
+    mcg = lambda gb, a0: gb/(1 - np.exp(-np.sqrt(gb/a0)))               # McGaugh+2016 RAR
+    grid = np.linspace(0.4e-10, 3.0e-10, 700)
+    su = [np.std(np.log10(go)-np.log10(mcg(gb, a0))) for a0 in grid]; iu = int(np.argmin(su))
+    sw = [np.sqrt(np.sum(w*(np.log10(go)-np.log10(mcg(gb, a0)))**2)/np.sum(w)) for a0 in grid]; iw = int(np.argmin(sw))
+    print(f"  UNWEIGHTED (np.std) ........ best a0 = {grid[iu]*1e10:.2f}e-10   scatter {su[iu]:.3f} dex  (wrong estimator)")
+    print(f"  ERROR-WEIGHTED (1/sigma_V^2)  best a0 = {grid[iw]*1e10:.2f}e-10   scatter {sw[iw]:.3f} dex  <-- correct")
+    print(f"""  READ [CONFIRMED in-house, once weighted -- a CORRECTION to a first unweighted pass]: the
+  estimator decides this test. An UNWEIGHTED scatter counts a noisy inner point (sigma_V/V~0.2) the
+  same as a clean outer one; it inflates to {su[iu]:.2f} dex AND drags a0 low to {grid[iu]*1e10:.2f}e-10. The CORRECT
+  inverse-variance weighting -- standard for the RAR -- gives {sw[iw]:.2f} dex AND recovers the canonical
+  a0 = {grid[iw]*1e10:.2f}e-10. That {sw[iw]:.2f} dex matches the Lelli, McGaugh, Schombert & Pawlowski 2016 OBSERVED
+  RAR scatter (~0.11 dex); the tighter 0.057 dex INTRINSIC value (Lelli+2017) additionally marginalizes
+  M/L, distance and inclination per galaxy, which a fixed-M/L pass cannot reach. So the near-universal
+  a0 IS reproduced in-house -- canonical value, literature-level observed scatter -- the moment the data
+  are weighted correctly. (My first pass used np.std and wrongly called this an 'upper bound'.)\n""")
 
 
 def test3_Freeman():
@@ -143,16 +143,18 @@ def main():
     1. BTFR slope ...... INCONCLUSIVE in-house: the V^2 r/G proxy gives 3.15 (robust across proxies),
                          biased low; proper total masses (Lelli+2016) give 3.85+/-0.09 ~ 4. Real in
                          the literature, NOT reproducible from rotmod alone.
-    2. RAR scatter ..... UPPER BOUND: my fixed-M/L pass gives 0.20 dex (M/L-insensitive = reduction
-                         error); the marginalized intrinsic (Lelli+2017) is 0.057 dex. Tightness real,
-                         not reproducible crudely.
+    2. RAR scatter ..... CONFIRMED in-house (error-weighted): scatter 0.10 dex AND canonical a0=1.36e-10,
+                         matching Lelli+2016 observed. (An unweighted np.std wrongly gave 0.20 dex / low
+                         a0 -- corrected here.) The tighter 0.057 dex intrinsic (Lelli+2017) needs full
+                         per-galaxy marginalization a fixed-M/L pass cannot reach.
     3. Freeman Sigma_c . CONFIRMED in-house: disks straddle a0/2piG = 137 Msun/pc^2 (40% above/60% below).
     4. Phantom profile . PARTIAL: deep-MOND points still rise (beta=+0.36) -> rho~r^-1.3, not the
                          idealized isothermal -2 (an asymptotic limit not reached at finite radii).
 
-  Only the Freeman straddle is cleanly re-derived from the data here; the BTFR slope and the RAR
-  tightness require the proper total masses / per-galaxy marginalization of the published SPARC
-  analyses, which rotmod-only proxies cannot deliver. CRUCIAL CAVEAT: all four are STANDARD MOND
+  Two of the four are cleanly re-derived from the data here -- the error-weighted RAR (canonical
+  a0=1.36e-10 at 0.10 dex) and the Freeman straddle; the BTFR slope needs proper total baryonic masses
+  (rotmod proxies bias it low), and the isothermal -2 is an asymptotic limit not reached at finite
+  radii. CRUCIAL CAVEAT: all four are STANDARD MOND
   relations the framework INHERITS -- confirming them (even cleanly) is NOT evidence for the framework
   over plain MOND. The framework's only DISTINCTIVE, non-inherited prediction remains the high-z
   EVOLUTION of a0, a0(z)=a0(0)E(z) -- which these z=0 galaxy tests cannot probe. This set rounds out
