@@ -82,11 +82,15 @@ The framework reduces to **one robust claim** (a₀ is cosmic-horizon-scale) and
 attacked the framework's own claims**: the bet is **theoretically motivated but conditional** (#1b/#3b —
 not "forced"), **derivation-grade in its consequences with the LCDM comparisons deflated** (#7/#19
 corrected), **decisively testable** (#17, #19), and **honest about its open core** (#1), **its boundary**
-(#2, #9), and **its weaknesses** (#6, #13, #16). The empirical case is **weaker than the curated compilation
-implied**: the EFE is robust (#12b) but the direct rising-a₀ evidence is ~2.5σ and **not confirmed by the
-real high-z data** (#10b — KMOS³ᴰ is systematics-dominated and flat-to-declining). Net: **one robust claim,
-one bet not yet won or lost, a theory advance that is identified-not-derived, and a clean decisive test still
-to run.** Nothing here derives the Standard Model from a number — and the sweep that deflated the framework's
-own overreaches wherever they occurred is exactly what makes the surviving physics worth taking to a referee.
+(#2, #9), and **its weaknesses** (#6, #13, #16). The empirical case **inverted under real data**: the EFE is robust (#12b), but the direct rising-a₀ evidence
+is now **mildly disfavored**, not favored. The two largest real high-z samples — **KMOS³ᴰ** (#10b: flat-to-
+declining) and **KROSS** (#10c: with a realistic gas correction, a₀ at z~0.85 ≈ the *local* constant value,
+below the framework's predicted 1.96) — both **lean against the rise**. The curated 3-point "rise" rested on
+a single high point those samples don't corroborate. It's gas-limited (a ~1–2σ lean, not a refutation), but
+the real data point the wrong way for the framework. Net: **one robust claim** (a₀ is cosmic-horizon-scale),
+**one falsifiable bet now mildly disfavored** (the rise), a theory advance that's identified-not-derived,
+three named weaknesses, and a clean decisive test (#17, deep-MOND tail + per-galaxy gas) still needed to
+settle it. Nothing here derives the Standard Model from a number — and the sweep that deflated the
+framework's own claims wherever they overreached is exactly what makes the surviving physics honest.
 
 *Companion: `FRAMEWORK_RESEARCH_PROGRAM_20.md` (the program); `reviews/project01..20_*.py` (the work).*
