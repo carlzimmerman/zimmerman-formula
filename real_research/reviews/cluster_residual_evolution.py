@@ -117,7 +117,17 @@ def main():
   NET: unlike the Bullet (contested, possibly OK), the relaxed-cluster residual is
   a real and fairly decisive MOND shortfall, and evolving a0 buys only a marginal,
   currently-untestable improvement. Honest -- this is a place the framework, and
-  MOND generally, still fails.""")
+  MOND generally, still fails.
+
+  CORRECTION (do not soft-pedal this): the residual-vs-z IS a genuine test of the
+  DISTINCTIVE evolving-a0 claim -- so it is wrong to wave clusters away as 'only
+  the foundational MOND risk, not a wound to the novelty'. They test the novelty.
+  And the dominant confound runs the WRONG way for us: flux-limited high-z samples
+  select the hottest, most massive clusters (higher g_N/a0 -> less boost -> LARGER
+  residual / higher required-a0 with z), an effect ~20-30%, comparable to or bigger
+  than our predicted ~20% DECLINE. So the raw cluster trend, if anything, leans
+  AGAINST evolving a0. It is not a free pass -- it is an open test currently tilted
+  against the distinctive claim, pending a fixed-temperature re-analysis.""")
     print("="*82)
 
 
