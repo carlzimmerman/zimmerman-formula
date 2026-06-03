@@ -44,6 +44,18 @@ a single measurable number can reach. *This is the legitimate sense in which the
 > *not under control*. So this is the right *direction*, not an established *result*. Treat it as
 > the frame the findings point toward, not a derivation.
 
+> **Update (June 2026) — the de Sitter gap, pursued.** This deepest gap is now partly tractable: the
+> **DSSYK–de Sitter duality** (2023–2026) gives a solvable model of the de Sitter static patch, and de
+> Sitter **complexity = volume grows linearly ∝ S_dS** (2508.10093). Worked through in
+> `reviews/desitter_complexity_sign.py` + `reviews/DESITTER_COMPLEXITY_FRONTIER.md`. Net, honestly: (i)
+> a₀∼cH is dimensionally *forced* for any de Sitter mechanism (the O(1) is not, per the number-field
+> no-go); (ii) complexity *tracks entropy* at leading order, so it is no shortcut to a₀; (iii) the
+> **decisive, verified result** — the MOND sign comes from modifying the **DOF/entropy** (Debye
+> freezing → a=√(g_N a₀), and it fits SPARC at 0.100 dex), **not** the temperature (→ anti-MOND); (iv)
+> complexity's genuine *unclaimed* prize is the deep-MOND **sign from the second law of complexity** —
+> a real, precisely-stated open problem, in a model that is finally under control. No derivation is
+> claimed that has not been done.
+
 ## 3. The single bridge to particle physics — and it is one-way
 
 There is exactly one real link to the Standard Model: the **vacuum energy / cosmological constant.**
