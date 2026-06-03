@@ -92,26 +92,47 @@ distinct from ΛCDM; **[HINT]** ~2σ data; **[LIMIT]** a genuine failure; **[OPE
 | failure | why | status |
 |---|---|---|
 | **galaxy clusters** | MOND under-predicts cluster mass by ~2×; **not** fixed by evolution (residual is at z~0.3) | **LIMIT** (inherited) |
-| **the Bullet Cluster** | lensing mass tracks the collisionless galaxies, not the dominant gas; pure MOND can't make the offset. TeVeS/AeST fit it **only** with added ~2 eV neutrinos + central dark mass (Angus, Famaey & Zhao 2006) — "MOND + dark matter," not MOND. **The original repo claimed this "solved"; it is not.** | **LIMIT** (inherited, was overclaimed) |
+| **the Bullet Cluster** | the lensing convergence (Clowe 2006) is reconstructed *model-independently* — the offset onto the galaxies is geometric, **not** an a₀/GR assumption. The naive "MOND lensing must track the gas" is **wrong**: QUMOND phantom mass is nonlinear in baryon *density*, so κ can peak off the gas (Angus+06). Hernandez 2026 (arXiv:2604.10811) claims a **pure-baryon constant-a₀ QUMOND fit** (offset+amplitude); arXiv:2605.10022 + my own toy (`reviews/bullet_qumond_redo.py`) find the effect too weak / a residual remains. **Genuinely contested in 2026 — not a clean falsification, not cleanly resolved.** a₀-evolution is irrelevant (+17% at z=0.3). | **CONTESTED/OPEN** (inherited, constant-a₀) |
 | **cosmic DM budget** | the galaxy phantom halo is local; it does *not* supply Ω_DM≈0.265 — AeST needs the separate 𝒬-sector dust mode. "Dark matter" here is **two things**, not one | **LIMIT** |
 | **the coefficient Z** | a posit; provably not entropy-derivable (square-root vs rational) | **LIMIT** |
 
 ---
 
-## 3. The Bullet Cluster, since you asked
+## 3. The Bullet Cluster, since you asked — *corrected after re-examination*
 
-The original 452-claim repo listed the Bullet Cluster among its "solved problems." It is not solved
-— not by this framework, not by MOND. The physics: in the 1E 0657-558 collision, the **X-ray gas
-(the bulk of the baryons) is in the center**, slowed by ram pressure, while the **galaxies passed
-through**. Gravitational lensing shows the **mass peak is on the galaxies, offset from the gas.** A
-gravity-follows-baryons theory (MOND) predicts the lensing on the *gas* — the opposite of what is
-seen. To put the mass where the galaxies are, you need a **collisionless** component that is *not*
-the gas — which is dark matter by definition. Relativistic MOND (TeVeS, and by extension AeST) can
-reproduce the Bullet only by adding ~2 eV neutrinos (hot dark matter) *and* residual central dark
-mass (Angus, Famaey & Zhao 2006). That is a fit *with* dark matter, not a MOND victory. **Evolving
-a₀ does nothing for it** (the cluster is at z≈0.3, where a₀ is within 16% of today's). So: a genuine,
-inherited, unsolved failure — and a clean example of why the original "we solved N problems" framing
-was the overreach this review removed.
+I earlier called this a clean "inherited, unsolved failure" needing ~2 eV neutrinos. **That was based
+on the 2006 consensus and is outdated; the honest 2026 status is *contested*.** Here is the corrected
+picture, built from the actual measurement papers (`reviews/bullet_qumond_redo.py`):
+
+**How it was measured.** Clowe et al. (2006) reconstruct the weak+strong-lensing **convergence map
+κ(x) model-independently** — *no* assumption about the gravity law or a₀. So the famous **offset**
+(κ peaks on the galaxies, displaced from the dominant X-ray gas) is a geometric fact about where
+light bends. a₀ enters *only* when a theory tries to predict κ from the baryons. (The *amplitude* —
+the factor ~7–8 "missing mass" — does depend on the gravity law; the *offset* does not.)
+
+**The naive disproof is wrong.** "MOND gravity sits on the gas, so κ must peak on the gas" is the
+*linear* caricature. In MOND/QUMOND the phantom mass is a **nonlinear functional of baryon density**,
+so κ need **not** trace the baryonic surface density (Angus, Famaey & Zhao 2006 — *"κ can be non-zero
+where there is no projected matter"*). Compact galaxy concentrations source a sharply-peaked phantom
+(Σ_p ∝ 1/R), diffuse gas a flat one — so the minority, compact galaxies can dominate the convergence.
+
+**Where it stands in 2026 — genuinely split.** Hernandez (2026, arXiv:2604.10811) computes constant-a₀
+QUMOND for the real Bullet baryons and claims it reproduces **both the offset and the amplitude with
+pure baryons, no neutrinos** (galaxies = 7% of baryons but ~48% of phantom mass). Against that:
+arXiv:2605.10022 still finds a **residual** missing mass centred on the galaxies, and **my own
+independent toy** (a fair test with the gas dominating the baryonic Σ) finds the density-weighting
+**too weak to flip the lensing peak** unless the galaxies are modelled very compactly — so I *cannot*
+certify the pure-baryon fit. Net: **the offset is no longer the airtight falsification it is sold as,
+but it is not cleanly resolved either.** An open, actively debated problem.
+
+**What this means for the framework.** The Bullet is **constant-a₀ MOND** through and through —
+a₀-evolution changes nothing (+17% at z≈0.3). So it neither falsifies nor supports the framework's
+one distinctive idea; it rides entirely on the **foundational** question already flagged as risk #1
+in §0 (*is MOND real?*). It is **not** an independent kill-shot. *(Minor correction to the earlier
+draft: the original repo's own script logged the Bullet as "challenging but not fatal," not "solved" —
+less of an overclaim than I first said.)* And the separate, deeper **cluster residual-mass problem**
+(MOND under-predicts relaxed-cluster masses by ~2×) remains a genuine inherited MOND weakness,
+independent of the Bullet offset (see the "galaxy clusters" row above).
 
 ---
 
@@ -120,7 +141,7 @@ was the overreach this review removed.
 | | finding |
 |---|---|
 | **galaxy-scale wins** (rotation curves, BTFR, lensing, dwarfs, Local Group) | real but **inherited from Milgrom** — evidence for MOND, not for *this* framework |
-| **cluster / Bullet failure** | real and **inherited** — MOND's problem, not fixed by evolution |
+| **cluster residual / Bullet** | the relaxed-cluster ~2× residual is real and **inherited**; the Bullet *offset* is now **contested** (Hernandez 2026 vs the residual literature), not a clean failure — either way **inherited** MOND, not fixed nor tested by evolution |
 | **the only distinctive content** | the **high-redshift evolution** (a₀∝E(z)) and its consequences — the EFE-weakening, the a₀-cosmography (H₀ and q from galaxies), the BAO cross-check |
 | **the foundation** | **conditional on MOND being real — currently unresolved (§0)** |
 
