@@ -66,6 +66,33 @@ verified decisive fact), and a verdict. No route is advocated; the verdict follo
 
 ---
 
+## Geometric theories — a correction (the class the scorecard under-covered)
+
+The scorecard above covered the emergent-gravity/thermodynamic engines and the relativistic-MOND field
+theories, but omitted the explicitly **geometric** modified-gravity class. Filling that gap
+(`reviews/geometric_theories_and_siv.py`):
+
+- **Maeder's Scale-Invariant Vacuum (SIV) — the closest cousin.** A geometric theory (scale-invariant
+  empty space; Dirac 1973, Bouvier–Maeder 1979, Maeder 2017+) that **contains MOND** ("MOND as a
+  peculiar case of SIV", MNRAS 520, 1447, 2023), **derives** a₀ from cosmology
+  (2πa₀ ∼ cH₀ ∼ c²√(Λ/3)), and **predicts a₀ evolves** (arXiv:2409.11425, MNRAS-L 535, L13, 2024). So
+  the framework's headline "a₀ evolves" is **not unique to it**; it is the same a₀∼cH∼c²√Λ family from a
+  geometric *scale-invariance* principle rather than the framework's surface-gravity/density reading.
+  Status: serious and published (MNRAS/A&A), but a **minority paradigm** (scale-invariance of the vacuum
+  is a strong, non-mainstream gauge). **Crucially, SIV predicts a₀ DECREASES with z** — a₀(z=3) ≈ 0.42
+  a₀(0) — **opposite** to the framework's increase, E(3) = 4.57. So the framework is a genuine, *distinct*
+  cousin, and the z≈3 test becomes a **3-way discriminator**: framework 4.6 vs SIV 0.42 vs constant 1.0,
+  ~10× apart at z=3.
+- **Conformal/Weyl gravity (Mannheim–Kazanas)** and **MOG (Moffat, STVG)** are other geometric
+  MOND-alternatives, but their acceleration scales are not tied to cH/E(z) (conformal's γ₀ is
+  cosmological but distinct; MOG's is fitted), so they are MOND-adjacent, not the same tie.
+
+This does **not** change the meta-finding (no route *derives* the framework's increasing-E(z) trend or
+its coefficient), but it corrects the omission and **sharpens** the framework: the distinctive claim is
+not "a₀ evolves" (shared) but "a₀ *increases* as E(z), opposite to SIV" — bolder, cleaner, and
+discriminating. Honest risk: current data read ~flat, which leans toward SIV/constant, against the
+framework's strong increase.
+
 ## What we learned (the honest meta-finding)
 
 1. **MOND from fundamental physics is a crowded field, not an exotic one** — entropy-modification,

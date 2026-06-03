@@ -73,6 +73,15 @@ established physics. Every route was walked (`reviews/established_paths_to_mond.
   the *field's* universal open problem, not the framework's alone. Modified inertia is the engine to
   **quote** (data + evolution, `reviews/modified_inertia_pressure_test.py`); modified gravity/AeST is the
   engine to **build** (a covariant action). Neither is *derived*; they fail differently.
+- **Geometric theories (correction to "every route").** The walk omitted the explicitly *geometric*
+  modified-gravity class. The closest cousin is **Maeder's Scale-Invariant Vacuum (SIV)** — a geometric
+  theory that *contains* MOND and ties a₀ to cH₀∼c²√Λ — and it **also predicts a₀ evolves, but
+  DECREASING** with z (a₀(z=3)≈0.42 a₀(0)), *opposite* to the framework's E(3)=4.57. So the framework is
+  not alone, but it is genuinely **distinct**, and the z≈3 test upgrades to a **3-way discriminator**
+  (framework 4.6 / SIV 0.42 / constant 1.0, ~10× apart at z=3). Conformal/Weyl gravity and MOG are other
+  geometric MOND-alternatives with non-cosmological scales. (`reviews/geometric_theories_and_siv.py`.)
+  **This sharpens the distinctive claim** from "a₀ evolves" (shared) to "a₀ *increases* as E(z), opposite
+  to SIV" — bolder and discriminating, though current ~flat data lean toward SIV/constant.
 
 ### A.3 The observational case — tightened (the only thing that can move the verdict)
 - **z≈3 a₀ measurement** (`z3_a0_Measurement_Proposal_2026`): reading a₀ from **deep-MOND points**
