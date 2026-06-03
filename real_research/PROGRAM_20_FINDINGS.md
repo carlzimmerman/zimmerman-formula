@@ -59,6 +59,22 @@ the surface gravity of the cosmic horizon, evolving as E(z). Nothing here revive
    both show a₀ rising as E(z), the case is essentially closed; if the z~3 ratio comes back 1.0, the
    distinctive bet is dead. Either way, falsifiable.
 
+## The adversarial sweep (the load-bearing claims, attacked)
+
+After the program, the three strongest claims were stress-tested — *try to break them before believing them*:
+
+- **#1b → #1c (theory, the deep-MOND spectrum):** the "forced" claim was **withdrawn**. Real tension found
+  (area-law entropy is 3D, MOND needs the s-wave), *resolved* by a spherical-probe→monopole selection rule.
+  Status: identified + motivated, **not derived**.
+- **#3 → #3b (theory, the apparent-horizon lean):** **downgraded** from "theory leans to the framework" to
+  "conditional, two-ingredient support" (Cai–Kim + Deser–Levin), event reading not excluded.
+- **#12 → #12b (data, the EFE):** **hardened** — survives a₀-absorption (3.7–6.0σ with a₀ fixed by high-g
+  data), split-half, and jackknife. Only the outer-kinematics systematic stands.
+
+**The asymmetry is the finding:** under attack, the *theory* supports weakened and two overclaims got
+corrected; the *empirical* EFE strengthened. That is the integrity check working — reported as found,
+neither inflated nor dismissed. (`reviews/project01c_*, project03b_*, project12b_*`.)
+
 ## The bottom line
 
 The framework reduces to **one robust claim** (a₀ is cosmic-horizon-scale) and **one falsifiable bet**
