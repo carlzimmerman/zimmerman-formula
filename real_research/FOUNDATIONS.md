@@ -34,7 +34,7 @@ Padmanabhan). `reviews/emergent_inertia_derivation.py`.
 
 | claim | status |
 |---|---|
-| The observable universe is "Machian": `G M_H/(R_H c²) = 1/2` *exactly* for ρ=ρ_crit | **`[DERIVED]`** (exact; the one clean non-arbitrary ½) |
+| The observable universe is "Machian": `G M_H/(R_H c²) = 1/2` *exactly* for ρ=ρ_crit (equivalently `R_s(M_H)=R_H` — the Hubble sphere is self-Schwarzschild) | **`[DERIVED]`** — *but a standard, decades-old result*: it is just ρ=ρ_crit re-expressed (Sciama 1953; the `GM/Rc²~1` flatness/Mach coincidence). **Not novel**, and note this ½ lands on the *Hubble* radius (Z=2, ruled out 2.7σ), not on the free-fall horizon |
 | Inertia ← gravitational coupling to matter ⇒ the natural rate is the **free-fall rate √(Gρ)**, not the expansion rate H (they coincide only at criticality, H=√(8π/3)·√(Gρ)) | **`[GROUNDED]`** |
 | MOND onset where a particle's Unruh temperature ≈ the cosmic-horizon temperature ⇒ `a₀ ~ c·(rate)` | **`[GROUNDED]`** |
 | A *complete* modified-inertia dynamics (a consistent equation of motion for general, non-closed orbits) | **`[OPEN]`** — open in the literature too (Milgrom 1994, 2011: defined only for closed orbits) |
