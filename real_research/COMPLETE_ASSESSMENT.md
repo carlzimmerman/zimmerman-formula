@@ -33,6 +33,17 @@ not the model.
 | a₀(z) = a₀(0)E(z) (evolution) | **not novel** (Milgrom 2014); ΛCDM-degenerate to z≈2.3 |
 | θ-coupled AeST action + linear CMB-safety | **sound** but a tuned/inherited host; the real residual |
 | EFE ∝ 1/E(z) | the **one distinctive** prediction; next-decade to test |
+| **Is MOND real at all?** | **unresolved & the deepest risk** — Gaia wide binaries: Banik+23 exclude MOND at 16–19σ, Chae+23–26 find MOND *for* it; a₀-universality contested. The whole framework is **conditional** on this |
+
+> **Foundational caveat (added after the consequence-mapping):** earlier drafts of this assessment
+> treated MOND as "inherited and solid." That is too generous. MOND's most direct local tests
+> (Gaia wide binaries; a₀-universality) are *actively contested and unresolved*, and a reasonable
+> reading of the current literature can lean *against* MOND. Since the framework is built on a₀
+> being a real acceleration scale, **if MOND falls, the framework dies at the root.** The honest
+> risk hierarchy and the full conditional consequence-map are in `STATE_OF_THE_FRAMEWORK.md`. Also
+> note: the Bullet Cluster, listed as "solved" by the original 452-claim repo, is **not** solved —
+> it is an inherited MOND failure (relativistic MOND fits it only by adding ~2 eV neutrinos + central
+> dark mass; Angus, Famaey & Zhao 2006).
 
 ---
 
