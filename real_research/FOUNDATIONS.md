@@ -5,6 +5,10 @@ an emergent-gravity theory of the dark sector. Every rung carries an honest labe
 "theory of everything" rebuilt as the theory of the one thing it can actually be — gravity and
 inertia at low acceleration, and how their scale is set by the cosmos.*
 
+> **Published:** the core result — the evolving scale `a₀(z)=a₀(0)E(z)` and its CMB-safe
+> covariant realization — is on the record at **Zenodo: <https://zenodo.org/records/20528908>**
+> (*Scaling MOND with z*). This document is the broader theoretical spine behind that paper.
+
 **Labels:** `[DERIVED]` forced by algebra/standard physics · `[GROUNDED]` made physically natural by
 the foundation, not arbitrary, but not a theorem · `[POSIT]` a free O(1) choice · `[DEGENERATE]`
 real but indistinguishable from ΛCDM · `[DISTINCTIVE]` non-degenerate and falsifiable · `[OPEN]`
@@ -43,6 +47,27 @@ Padmanabhan). `reviews/emergent_inertia_derivation.py`.
 (Layer 2) — those are not assumed, they follow from inertia tracking the cosmic gravitational rate.
 **What it does not buy:** the exact coefficient (the naive Machian value is the *expansion*-horizon
 one, `a₀=cH/2`, Z=2, which the data **exclude** at 2.7σ — see Layer 1), and a full dynamics.
+
+### Layer 0b — how far the foundation has now been pushed (the derivation frontier)
+
+Starting from a clean slate (assuming *nothing* about AeST) and pushing into horizon
+thermodynamics, the structure of a relativistic MOND theory is now substantially *derived*, not
+assumed. The chain, with honest labels:
+
+| step | result | status | code |
+|---|---|---|---|
+| de Sitter–Unruh temperature | `T(a)=(ℏ/2πck_B)√(a²+(cH)²)` → modified inertia `μ(a)`, the MOND a² law, a₀~cH, and **a₀(z)∝E(z)** | **`[DERIVED]`** | `desitter_unruh_mond.py` |
+| the interpolation function | the *full* μ(a) is fixed (not just the deep tail); `g_obs=√(g_bar²+g_bar·a₀)` fits the SPARC RAR at **0.105 dex vs 0.101** for McGaugh, with no shape freedom | **`[DERIVED + data-consistent]`** | `desitter_unruh_RAR_test.py` |
+| field content | metric + **unit timelike vector A_μ** (the cosmic frame; ∇·A=3H, sympy) + **scalar φ** are *forced* by "geometry + preferred frame + long-range MOND" | **`[FORCED]`** | `clean_slate_field_theory.py` |
+| CMB-safety | the MOND term must use `q^{μν}=g^{μν}+A^μA^ν`; **q⁰⁰=0 on FRW (computed)** ⇒ a₀ absent from the background ⇒ the CMB-safety of Layer 3 *falls out of the frame structure* | **`[DERIVED]`** | `clean_slate_field_theory.py` |
+| the 𝒴^{3/2} kinetic power | forced by the deep-MOND √-law (n=3/2), and given an **entropic origin** via de Sitter entropy *displacement* (Verlinde 2016) — `[DERIVED-but-CONTESTED]`: rests on a volume-law de Sitter entropy that many reject | **`[FORCED; entropic origin contested]`** | `yphi32_from_entropy.py` |
+
+So ~80% of AeST's structure is now derived from the horizon foundation — *the AeST class is forced,
+not assumed.* **Still open** (the genuine, paper-length frontier): a rigorous *covariant*
+(non-heuristic) entropy derivation; whether the covariant interpolation matches the modified-inertia
+one above; and **𝒦(𝒬)**, the cosmological function (the CDM-mimicking background). Stated to the
+term in `reviews/OPEN_PROBLEM_yphi32_KQ.md`. None of it is numerology
+(`reviews/web_of_connections_audit.py` partitions the whole web with certainty).
 
 ---
 
