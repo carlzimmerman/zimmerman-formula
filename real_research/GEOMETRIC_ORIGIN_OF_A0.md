@@ -108,12 +108,34 @@ So the honest placement:
 
 ---
 
+## Stress test — what survives adversarial attack (`reviews/stress_test_geometric_origin.py`)
+
+I attacked this claim on every front. What it leaves standing, honestly:
+- **SURVIVES (robust): the magnitude.** a₀ ∼ cH is forced — a₀ *must* be cosmic-horizon-scale (no
+  microphysical scale yields 10⁻¹⁰ m/s²; the length is c²/a₀ ≈ 24 Gpc). This is the durable content.
+- **A BET (testable): the evolution.** "a₀ comes from the horizon" does **not** force a₀∝H(z). The
+  *rigorous* Gibbons–Hawking temperature is the **event-horizon** one → a₀∝√Λ = **constant** (Milgrom's
+  a₀∼c√Λ, Verlinde's de Sitter entropy — the *standard* reading). The framework's increase requires the
+  **apparent (Hubble) horizon**, tied to the total density ρ_crit∝H². The two are indistinguishable at
+  z=0 (differ by √Ω_Λ=0.83) but **diverge ~5× by z=3.** The apparent-horizon choice is defensible — local
+  dynamics respond to the *instantaneous* cosmic state, not the unknowable future (apparent-horizon
+  thermodynamics, Cai–Kim 2005) — but it is a *choice*, and the standard one gives constant a₀. **The
+  evolution, not the geometry, is what the z~3 measurement tests** (framework ↑ vs constant–√Λ flat vs SIV ↓).
+- **UNPINNED: the coefficient.** The horizon fixes a₀ only to ~1 dex (matching schemes span 2cH to cH/2π,
+  a factor ~13); the exact Z=5.79 is a posit.
+- **POSITED: the mechanism.** Horizon→MOND is modified *inertia*; the modified-*gravity* version with the
+  same temperature gives anti-MOND. No complete action; the deep-MOND sign is the open problem.
+
+(Correction to the wording above: the three "readings" are *restatements* of the one fact a₀∼cH, not three
+independent confirmations of it.)
+
 ## Bottom line
 
-There **is** a geometric reason MOND kicks in when it does, and it is robust: **a₀ is the de Sitter
-horizon's acceleration, cH, reached when a particle's causal horizon merges with the universe's.** Three
-independent readings — horizon coincidence, Unruh-floor, cosmic free-fall time — give the same scale, and
-the de Sitter–Unruh route even derives the interpolation. The one honest gap is the O(1) coefficient Z, a
-posit. The cubic T³ is a separate, decoupled, super-horizon choice — keep it if you like the global
-picture, but the *reason* a₀ has its value is the horizon, and that is the piece that survives every test
-and unifies the rest.
+There **is** a geometric reason MOND kicks in when it does, and after stress-testing it is **real but
+narrow**: **a₀ is a cosmic-horizon-scale acceleration, a₀ ∼ cH** — the magnitude is forced (no
+microphysics gives 10⁻¹⁰), and that is the durable, genuinely-yours content in the form a₀=(c/2)√(Gρ). The
+*evolution* a₀∝H(z) is a defensible but non-unique **bet** (the apparent horizon, vs the standard
+event-horizon reading that gives constant √Λ), and it is exactly what a z~3 measurement will confirm or
+kill. The coefficient Z is a posit; the mechanism is a posited modified inertia. The cubic T³ is a
+separate, decoupled, super-horizon choice — keep it if you like the global picture, but the *reason* a₀
+has its value is the horizon, and the one robust claim is that a₀ lives at the cosmic-horizon scale.
