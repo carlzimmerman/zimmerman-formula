@@ -90,16 +90,18 @@ systematic (#10d: αCO, unmeasured atomic gas, V_flat) gives a₀ ~ 0.5–2.5×1
 framework-vs-constant gap itself* — so the honest verdict is **inconclusive with a central preference for
 constant**, not a clean disfavoring. (That softening is the same stress-test discipline applied to a
 framework-*unfavorable* result.) Net: **one robust claim** (a₀ is cosmic-horizon-scale) and **one falsifiable
-bet now disfavored from two independent directions.** The galaxy data lean constant but are gas-limited
+bet now under pressure from two independent directions.** The galaxy data lean constant but are gas-limited
 (#10b–d); and — the **gas-independent** result (#6b) — rising a₀ forces the CMB acoustic perturbations into
-deep MOND at recombination, an ~5× over-driving that **strongly disfavors the rise unless AeST's δq⁰⁰=0
-cancellation is a structural identity under a₀(t)** (a heuristic pending a 2nd-order Boltzmann calc, but
-decidable with existing Planck — no gas census). Both directions point toward **constant a₀ = the event
-horizon = the *standard* emergent-gravity reading**, which would cost the framework its distinctive content
-(the rise) while leaving the surviving core (a₀~cH at z=0) and the EFE intact. The honest trajectory is
-**against** the apparent-horizon bet. The theory thread runs the other way: the deep-MOND *sign* mechanism is
-now derived in the DSSYK dual (#4c–d). So: a genuine surviving result and a real theory advance, with the
-distinctive empirical bet currently **losing** — reported straight, the dead numerology still closed, and the
-one rescue (δq⁰⁰=0 structural under a₀(t)) named precisely. Nothing here derives the Standard Model from a number.
+deep MOND at recombination, an ~5× over-driving that would sink it **unless AeST's δq⁰⁰=0 cancellation is a
+structural identity under a₀(t).** That escape is *genuinely plausible* — making the MOND scalar invisible to
+the linear CMB is precisely what AeST was built to do — so this is a **sharp gas-independent test with an
+uncertain outcome**, not a kill: if the cancellation is structural, rising a₀ is CMB-safe and the only
+residual is the small 2nd-order non-Gaussianity (#6); if it is regime-dependent, rising a₀ is in serious
+trouble. Either way it is **decidable now with existing Planck** (no telescope time, no gas census) via a
+2nd-order AeST analysis — the highest-leverage open calculation. The theory thread runs *toward* the
+framework: the deep-MOND *sign* mechanism is now derived in the DSSYK dual (#4c–d). So: a genuine surviving
+result, a real theory advance, and a distinctive empirical bet whose fate now hangs on **two named, decidable
+calculations** (δq⁰⁰=0 structural under a₀(t); the gas-clean #17 measurement) — reported straight, the dead
+numerology still closed, the Standard Model still untouched.
 
 *Companion: `FRAMEWORK_RESEARCH_PROGRAM_20.md` (the program); `reviews/project01..20_*.py` (the work).*
