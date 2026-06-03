@@ -50,7 +50,15 @@ the make-or-break test (and the reason the a₀-universality debate, §0, matter
 framework adds a covariant realization (Paper I), a linear-CMB-safety proof (Paper II), and the
 consequence map below. Everything that is *not* the density law is inherited from Milgrom (1983) and
 Skordis–Złošnik (2021). **Caveat:** the coarse-graining scale in "ambient ρ" is currently an input,
-not derived — the central open problem.
+not derived — and the next line shows it is worse than open.
+
+> **Update (this session) — the environmental face is *disfavoured*.** The SPARC RAR excludes it: the
+> coarse-graining scale that makes clusters dense enough to need a₀ ~13× (~3 Mpc) predicts ~0.24 dex
+> of a₀ scatter across field galaxies, vs the observed intrinsic RAR scatter ≲0.06 dex — excluded ~4×
+> (`reviews/sparc_environmental_a0_test.py`). No single smoothing scale fixes clusters *and* keeps the
+> RAR tight. So the density law survives only in its **cosmic** form — **a₀(z)=a₀(0)·E(z)** — which is
+> real but modest (Milgrom 2014, ΛCDM-degenerate, ~2σ) and does **not** fix clusters. The grand
+> "a₀ from local density" reading is caught between clusters and galaxies.
 
 ---
 
@@ -101,7 +109,7 @@ distinct from ΛCDM; **[HINT]** ~2σ data; **[LIMIT]** a genuine failure; **[OPE
 ### The failures — stated plainly
 | failure | why | status |
 |---|---|---|
-| **galaxy clusters** | MOND needs a₀ **~10–13× the galaxy value, rising inward** (Blaksley & Bonamente 2009, 38 clusters). This is the WRONG test of a₀(*z*) but the RIGHT test of **a₀=(c/2)√(Gρ)**: a cluster is a ~200× Mpc-scale overdensity, so the *density* formula predicts in-cluster a₀ ≈ √200 ≈ **14× cosmic** — on the required value — and ∝√ρ(r), rising inward as observed. The residual that leaves standard MOND ~3× short **closes to ~1.0**. Standard MOND (universal a₀) cannot do this; cf. EMOND (Hodson & Zhao 2017), but the √ρ form is **parameter-free**. **Caveats:** needs ρ = *Mpc-smoothed ambient* density (local clumpy reading gives a₀ ~10³× too big in galaxy disks); possible core over-prediction; predicts **environmental a₀-variation** (cluster galaxies > field) — testable, in tension with strict RAR universality. `reviews/cluster_a0_from_density_HIS_FORMULA.py` | **OPEN / promising** — a distinctive density-a₀ mechanism, *not* the failure I'd called it |
+| **galaxy clusters** | MOND needs a₀ **~10–13× the galaxy value, rising inward** (Blaksley & Bonamente 2009). The density law **a₀=(c/2)√(Gρ)** predicts exactly this *in isolation*: a cluster is a ~200× overdensity → a₀ ≈ √200 ≈ 14× cosmic, ∝√ρ(r) rising inward, residual → ~1.0 (`reviews/cluster_a0_from_density_HIS_FORMULA.py`). **But the SPARC RAR kills the environmental reading needed to get there** (`reviews/sparc_environmental_a0_test.py`): the cluster-fixing smoothing (~3 Mpc) predicts ~0.24 dex of a₀ scatter across field galaxies vs the observed intrinsic RAR scatter ≲0.06 dex — **excluded ~4×**. No single smoothing scale fixes clusters *and* keeps the RAR tight (the two want scales ~15× apart). So clusters stay unresolved — now for a *precise* reason: the density law is **caught between clusters and galaxies**. | **LIMIT** — density law can't fix clusters without breaking the RAR |
 | **the Bullet Cluster** | the lensing convergence (Clowe 2006) is reconstructed *model-independently* — the offset onto the galaxies is geometric, **not** an a₀/GR assumption. The naive "MOND lensing must track the gas" is **wrong**: QUMOND phantom mass is nonlinear in baryon *density*, so κ can peak off the gas (Angus+06). Hernandez 2026 (arXiv:2604.10811) claims a **pure-baryon constant-a₀ QUMOND fit** (offset+amplitude); arXiv:2605.10022 + my own toy (`reviews/bullet_qumond_redo.py`) find the effect too weak / a residual remains. **Genuinely contested in 2026 — not a clean falsification, not cleanly resolved.** a₀-evolution is irrelevant (+17% at z=0.3). | **CONTESTED/OPEN** (inherited, constant-a₀) |
 | **cosmic DM budget** | the galaxy phantom halo is local; it does *not* supply Ω_DM≈0.265 — AeST needs the separate 𝒬-sector dust mode. "Dark matter" here is **two things**, not one | **LIMIT** |
 | **the coefficient Z** | a posit; provably not entropy-derivable (square-root vs rational) | **LIMIT** |
