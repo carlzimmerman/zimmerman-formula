@@ -32,6 +32,63 @@ follows. Read everything below in that light.
 
 ---
 
+## A. June 2026 session — consolidation: integrity, the engine search, the observational case
+
+A sustained pass that (i) hardened the repo's epistemic hygiene, (ii) walked every established route to
+the deep-MOND *mechanism*, and (iii) tightened the observational case. Findings, with their artifacts:
+
+### A.1 Integrity — the claims are now machine-checkable
+- **The hallucinations are proven, reproducibly** (`reviews/prove_hallucinations.py`,
+  `reviews/HALLUCINATIONS_PROVEN.md`): eight failure classes — constant numerology, trivial identity,
+  fabricated positive, false arithmetic, units crime, fake computation, circular reasoning, assertion
+  inflation — each shown by a decisive rerunnable test, including a **fabricated positive** (an FRB
+  "null test" on synthetic data whose headline contradicts its own 18.6σ numbers). A taxonomy maps any
+  dead file to a proven class.
+- **The surviving repo was independently re-verified** (`reviews/VERIFICATION_LEDGER_2026-06.md`): all
+  140 scripts run; every spine claim matches its numbers; the central identity is exact algebra; the
+  topology is excluded; numerology carries ~0 bits; the published paper's numbers check out. One real
+  self-caught error (an *unweighted* RAR estimator) was corrected — error-weighted, SPARC recovers the
+  **canonical a₀ = 1.36×10⁻¹⁰ at 0.10 dex** (`reviews/sparc_four_tests.py`,
+  `reviews/predicted_a0_rar_consistency.py`).
+- **ai_slop was read bottom-up** (`reviews/AI_SLOP_SALVAGE_REVIEW_2026-06.md`): the real physics and the
+  numerology came from one Mar-2026 burst; no *new* finding survives, but a reusable FDR/null harness and
+  two honest self-falsifications (hurricane eye/RMW, LIGO chirality) were recovered.
+
+### A.2 The engine search — the deep-MOND mechanism is unsolved on *every* route
+a₀=cH/Z is a **scaling law**; the "engine" (why a₀∼cH, and the deep-MOND *sign*) must come from
+established physics. Every route was walked (`reviews/established_paths_to_mond.py`,
+`reviews/ESTABLISHED_PATHS_LEDGER.md`):
+- **temperature** modification → **anti-MOND** (the one clean elimination); **DOF/entropy**
+  (Debye/Verlinde) → MOND, but the modification is **posited/fitted/contested** everywhere (verified in
+  the 2025 entropic-MOND papers: one fits a₀, one inverse-engineers the entropy); **modified inertia** →
+  best data fit but **non-local, no action**; **superfluid DM** → adds particles; **Deur** → contested;
+  **TeVeS** → falsified by GW170817.
+- **The de Sitter complexity frontier was pursued to its boundary** (`reviews/DESITTER_COMPLEXITY_THREAD.md`
+  + four scripts). A real reframing survived — *MOND needs a volume-extensive source, and complexity is
+  the volume-law quantity*, which explains why Verlinde must posit a volume-law entropy — but the actual
+  calculation **failed**: the maximal-slice response is linear (→ Newton), the sign is likely backwards
+  (self-retracted), and the saturation route is closed by an e^(10¹²²) timescale. **Complexity is not the
+  engine.**
+- **Net:** no route derives the deep-MOND sign + interpolation from uncontested first principles — it is
+  the *field's* universal open problem, not the framework's alone. Modified inertia is the engine to
+  **quote** (data + evolution, `reviews/modified_inertia_pressure_test.py`); modified gravity/AeST is the
+  engine to **build** (a covariant action). Neither is *derived*; they fail differently.
+
+### A.3 The observational case — tightened (the only thing that can move the verdict)
+- **z≈3 a₀ measurement** (`z3_a0_Measurement_Proposal_2026`): reading a₀ from **deep-MOND points**
+  (interpolation-function-independent) and **gas-dominated** anchors (M/L-robust), and using the
+  **ratio** a₀(z=3)/a₀(0) (common systematics cancel), the constant-a₀ rejection rises from ~7σ to
+  **~13–16σ** (≈15 galaxies → ~11σ). `reviews/z3_forecast_tightened.py`.
+- **EFE-vs-z** (`EFE_vs_z_Forecast_2026`): the double-difference cancels the absolute scale and mean
+  M/L, leaving differential M/L as the floor — the ΛCDM-**forbidden** η ∝ 1/E(z) is the one distinctive
+  test.
+
+**Where this leaves the framework.** The in-house work is at a natural boundary: the integrity is now
+mechanical, the engine question is honestly answered (*unsolved by everyone*), and the future is a single
+high-z measurement. None of it changes §0 — it all remains **conditional on MOND being real**.
+
+---
+
 ## 1. The one original claim
 
 Stripped of inherited MOND and the dead numerology, the framework's distinctive content is best
@@ -183,3 +240,13 @@ fails, and conditional on a foundation still under fire.**
 `reviews/widening_lensing_bao_LG_dsph.py`, `reviews/efe_evolution_forecast.py`; the foundational
 risk in the Banik (2023, MNRAS 527, 4573) vs Chae (2023–2026) wide-binary literature; the Bullet
 Cluster in Angus, Famaey & Zhao (2006). Papers I & II in `papers/`.
+
+*June 2026 session artifacts (§A):* integrity — `reviews/prove_hallucinations.py`,
+`reviews/HALLUCINATIONS_PROVEN.md`, `reviews/VERIFICATION_LEDGER_2026-06.md`,
+`reviews/AI_SLOP_SALVAGE_REVIEW_2026-06.md`; the engine search —
+`reviews/established_paths_to_mond.py`, `reviews/ESTABLISHED_PATHS_LEDGER.md`,
+`reviews/DESITTER_COMPLEXITY_THREAD.md` (+ `desitter_complexity_sign.py`,
+`complexity_mond_source_hypothesis.py`, `dssyk_cv_elastic_attempt.py`),
+`reviews/modified_inertia_pressure_test.py`; the data — `reviews/sparc_four_tests.py`,
+`reviews/predicted_a0_rar_consistency.py`, `reviews/z3_forecast_tightened.py`. The de Sitter complexity
+status is also pointered in `THEORETICAL_CONTEXT.md` §2.
