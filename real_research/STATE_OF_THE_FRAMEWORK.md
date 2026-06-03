@@ -34,13 +34,23 @@ follows. Read everything below in that light.
 
 ## 1. The one original claim
 
-Stripped of inherited MOND and the dead numerology, the framework's sole distinctive content is:
+Stripped of inherited MOND and the dead numerology, the framework's distinctive content is best
+stated not as the redshift evolution alone but as the **density law** behind it:
 
-> **a₀(z) = a₀(0)·E(z)** — the MOND acceleration scale tracks the cosmic density and so *evolves*.
+> **a₀ = (c/2)·√(Gρ)** — the MOND scale is set by the *ambient density* ρ.
 
-This is Milgrom's 2014 idea; the framework adds an explicit covariant realization (Paper I), a
-linear-CMB-safety proof (Paper II), and the consequence map below. Everything that is *not* the
-evolution is inherited from Milgrom (1983) and Skordis–Złošnik (2021).
+This has **two** faces, and I had only been testing the first:
+> - **(cosmic)** ρ = ρ̄(z) gives **a₀(z) = a₀(0)·E(z)** — the evolution (Milgrom's 2014 idea).
+> - **(environmental)** ρ = the *local* ambient density (Mpc-smoothed) gives a **larger a₀ inside
+>   overdensities** — so clusters (a ~200× overdensity) get a₀ ~14× cosmic, ≈ what they *require*.
+
+The environmental face is the sharper, more distinctive claim (it is *not* just Milgrom 2014; it is
+kin to EMOND, Hodson–Zhao 2017, but parameter-free). It predicts **a₀ varies with environment** —
+the make-or-break test (and the reason the a₀-universality debate, §0, matters so much). The
+framework adds a covariant realization (Paper I), a linear-CMB-safety proof (Paper II), and the
+consequence map below. Everything that is *not* the density law is inherited from Milgrom (1983) and
+Skordis–Złošnik (2021). **Caveat:** the coarse-graining scale in "ambient ρ" is currently an input,
+not derived — the central open problem.
 
 ---
 
@@ -91,7 +101,7 @@ distinct from ΛCDM; **[HINT]** ~2σ data; **[LIMIT]** a genuine failure; **[OPE
 ### The failures — stated plainly
 | failure | why | status |
 |---|---|---|
-| **galaxy clusters** | MOND under-predicts cluster mass; the a₀ **required** to fix clusters is **~10–13× the galaxy value** and **varies with radius and between clusters** (Blaksley & Bonamente 2009, 38 clusters; Angus+08) — a *structural*, not normalization, failure. Evolving a₀ reaches 10× only at z~7 (no clusters there); at z≤2 the gap is still ~4×. Predicts residual ∝ 1/√E(z) — a **genuine test of the distinctive claim**, but only ~20% over z=0.14–0.89, within scatter and confounded by selection that **leans *against*** us (hotter high-z clusters → bigger residual, ~20–30%, comparable to/larger than the predicted decline). So clusters are *not* a free pass for the evolving-a₀ idea — an open test currently tilted against it. `reviews/cluster_residual_evolution.py` | **LIMIT** (inherited, structural; a₀-evolution cannot cure, and the z-test leans against) |
+| **galaxy clusters** | MOND needs a₀ **~10–13× the galaxy value, rising inward** (Blaksley & Bonamente 2009, 38 clusters). This is the WRONG test of a₀(*z*) but the RIGHT test of **a₀=(c/2)√(Gρ)**: a cluster is a ~200× Mpc-scale overdensity, so the *density* formula predicts in-cluster a₀ ≈ √200 ≈ **14× cosmic** — on the required value — and ∝√ρ(r), rising inward as observed. The residual that leaves standard MOND ~3× short **closes to ~1.0**. Standard MOND (universal a₀) cannot do this; cf. EMOND (Hodson & Zhao 2017), but the √ρ form is **parameter-free**. **Caveats:** needs ρ = *Mpc-smoothed ambient* density (local clumpy reading gives a₀ ~10³× too big in galaxy disks); possible core over-prediction; predicts **environmental a₀-variation** (cluster galaxies > field) — testable, in tension with strict RAR universality. `reviews/cluster_a0_from_density_HIS_FORMULA.py` | **OPEN / promising** — a distinctive density-a₀ mechanism, *not* the failure I'd called it |
 | **the Bullet Cluster** | the lensing convergence (Clowe 2006) is reconstructed *model-independently* — the offset onto the galaxies is geometric, **not** an a₀/GR assumption. The naive "MOND lensing must track the gas" is **wrong**: QUMOND phantom mass is nonlinear in baryon *density*, so κ can peak off the gas (Angus+06). Hernandez 2026 (arXiv:2604.10811) claims a **pure-baryon constant-a₀ QUMOND fit** (offset+amplitude); arXiv:2605.10022 + my own toy (`reviews/bullet_qumond_redo.py`) find the effect too weak / a residual remains. **Genuinely contested in 2026 — not a clean falsification, not cleanly resolved.** a₀-evolution is irrelevant (+17% at z=0.3). | **CONTESTED/OPEN** (inherited, constant-a₀) |
 | **cosmic DM budget** | the galaxy phantom halo is local; it does *not* supply Ω_DM≈0.265 — AeST needs the separate 𝒬-sector dust mode. "Dark matter" here is **two things**, not one | **LIMIT** |
 | **the coefficient Z** | a posit; provably not entropy-derivable (square-root vs rational) | **LIMIT** |
