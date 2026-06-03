@@ -1,0 +1,204 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,graphicx,xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage{caption}
+\captionsetup{font=small,labelfont=bf}
+\newcommand{\az}{a_0}
+\newcommand{\Ez}{E(z)}
+\newcommand{\msun}{M_\odot}
+
+\title{\bf Does the MOND scale track the apparent or the event horizon?\\
+An evolving-$a_0$ framework, its one theory advance,\\ and why current data cannot yet decide}
+\author{Carl Zimmerman\\[2pt]\small\it with computational review support}
+\date{June 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent
+The Milgromian acceleration $\az\simeq1.2\times10^{-10}\,\mathrm{m\,s^{-2}}$ coincides with $cH_0$ to
+order unity. We take this seriously as a statement that $\az$ is the surface gravity of the cosmic
+horizon, $\az=\tfrac{c}{2}\sqrt{G\rho}=cH/Z$ with $Z=2\sqrt{8\pi/3}$, and ask the one question that
+makes it falsifiable: does $\az$ track the \emph{apparent} (Hubble) horizon, so that $\az(z)=\az(0)\Ez$
+\emph{rises} with redshift, or the \emph{event} (de Sitter) horizon, so that $\az\propto\sqrt{\Lambda}$
+is \emph{constant}? We report an honest accounting. On the theory side we make one concrete advance: the
+deep-MOND \emph{sign} requires a flat density of states, which is supplied by the $(1{+}1)$-dimensional
+near-horizon (s-wave) sector and not by the $3$D bulk; we identify the spectrum and a candidate
+probe-coupling selection rule, but stop short of a derivation, which reduces to a defined calculation in
+the double-scaled SYK dual. On the data side, the External Field Effect---the one ${\Lambda}$CDM-hard
+MOND signature---is present in SPARC at ${\sim}4.8\sigma$ and survives adversarial tests. The direct
+$\az(z)$ test, however, is \emph{inconclusive}: re-analysing the two largest real high-$z$ kinematic
+samples (KMOS$^{\rm 3D}$, KROSS) we find the curated ``rise'' does not survive, the central estimates
+lean toward constant $\az$, but an irreducible gas$+V_{\rm flat}$ systematic spans the entire
+framework-versus-constant gap. We conclude that the distinctive prediction is neither supported nor
+excluded by existing data, and that the decisive test is a dedicated deep-MOND-tail measurement at
+$z\simeq1$--$3$ with a per-galaxy molecular$+$atomic gas census. We state the framework's open core and
+its weaknesses explicitly, and we do not connect $\az$ to the Standard Model.
+\end{abstract}
+
+\section{The coincidence, taken literally}
+That the MOND scale satisfies $\az\sim cH_0$ is an old observation \cite{milgrom1983,famaey2012}. In
+emergent-gravity pictures \cite{jacobson1995,verlinde2011} an infrared acceleration scale tied to the
+cosmic horizon is natural rather than accidental. We write the scale as the surface gravity of the
+free-fall horizon at the radius $R_*=c/\sqrt{G\rho}$ set by the ambient density $\rho$,
+\begin{equation}
+  \az=\frac{c}{2}\sqrt{G\rho}=\frac{c^2}{2R_*}=\frac{cH}{Z},\qquad Z=2\sqrt{8\pi/3}\simeq5.79,
+  \label{eq:a0}
+\end{equation}
+where the second equality uses $\rho=\rho_{\rm crit}=3H^2/8\pi G$. With the observed $\az$ this gives
+$H_0\simeq71\,\mathrm{km\,s^{-1}Mpc^{-1}}$, in the late-time camp but not competitive with the distance
+ladder once the unpinned factor $Z$ (the surface-gravity ``$2$'') and the ${\sim}20\%$ stellar $M/L$
+systematic are included. Equation~(\ref{eq:a0}) reproduces the standard MOND phenomenology---the
+baryonic Tully--Fisher relation $V^4=G M_{\rm b}\az$, the radial-acceleration relation
+\cite{mcgaugh2016}, the Freeman surface density $\az/2\pi G$---and we claim nothing there that MOND does
+not already claim. Our single new physical content is the \emph{evolution} implied by tying $\az$ to the
+\emph{instantaneous} cosmic density.
+
+\paragraph{The one falsifiable question.} Equation~(\ref{eq:a0}) with $\rho=\rho_{\rm crit}(z)$ gives
+$\az(z)=\az(0)\Ez$ with $\Ez=\sqrt{\Omega_m(1+z)^3+\Omega_\Lambda}$: $\az$ \emph{rises}. But the standard
+emergent-gravity reading ties $\az$ to the cosmological constant, $\az\sim c\sqrt{\Lambda/3}$, which is
+\emph{constant}. These are the \emph{apparent} (Hubble) and \emph{event} (de Sitter) horizons
+respectively; they agree at $z=0$ to within $\sqrt{\Omega_\Lambda}=0.83$, smaller than the systematic
+floor, and diverge by $E(3)\simeq4.6$ by $z\simeq3$. The entire framework reduces to: \emph{which horizon
+sets the infrared scale of gravity?} Everything below is an attempt to answer it honestly.
+
+\section{The deep-MOND sign: identified, not derived}
+The hardest open problem in any emergent-MOND program is the \emph{sign}: gravity must be
+\emph{enhanced} at low acceleration. A temperature-modified Clausius relation gives the wrong sign
+(anti-MOND); the right sign comes from \emph{freezing degrees of freedom}. On a holographic screen with
+$N=Ac^3/G\hbar$ bits and equipartition $Mc^2=\tfrac12 N_{\rm eff}k_BT$, freezing out a fraction
+$N_{\rm eff}/N\to(a/\az)$ below $\az$ raises the temperature required to store the energy and yields
+$a=\sqrt{\az g_N}$---enhanced, with $\az\sim cH$ once the freezing scale equals the de Sitter
+temperature $T_{\rm dS}=\hbar H/2\pi k_B$.
+
+\paragraph{What forces the freezing law.} The freezing is linear, $N_{\rm eff}\propto T$, only for a
+\emph{flat} density of states $g(E)=\mathrm{const}$: writing $g(E)\propto E^p$ gives
+$N_{\rm eff}(T)\propto T^{p+1}$, and deep MOND requires $p=0$. We computed the relevant spectra in the
+de Sitter static patch by the 't~Hooft brick-wall method \cite{thooft1985}. The \emph{full $3$D} bulk
+modes give $g(E)\propto E^2$ ($p=2$, $N_{\rm eff}\propto T^3$)---the area-law entropy and the correct
+$T_{\rm dS}$, but \emph{not} MOND. The \emph{$(1{+}1)$D near-horizon s-wave} gives $g(E)=\mathrm{const}$
+($p=0$): the flat spectrum that yields the deep-MOND law. Near-horizon dimensional reduction (the
+membrane paradigm; the $2$D conformal anomaly derivation of Hawking flux; the near-horizon CFT whose
+Cardy entropy is the area law) makes the relevant degrees of freedom $(1{+}1)$-dimensional.
+
+\paragraph{What we do not claim.} The area-law entropy lives in the $3$D modes while MOND lives in the
+s-wave, so the two are not the same set; we offer a resolution---a spherically symmetric probe sources
+only the monopole ($\ell=0$), whose sector is the flat one, so the \emph{force} is mediated by the
+s-wave while the \emph{entropy} is carried by all $\ell$---but this is a selection-rule argument, not a
+proof, and the $\az/cH$ coefficient that a sharp cutoff predicts ($3/\pi^2$, i.e.\ $\az\simeq0.30\,cH$)
+is the right order but $\sim$1.7$\times$ the observed value, so $Z$ is \emph{not} pinned. The honest
+status is: the sign is \emph{identified} (flat $(1{+}1)$D spectrum, Gibbons--Hawking cutoff) and
+\emph{motivated}, but \emph{not derived}. The remaining steps---the equipartition projection onto
+$\ell=0$ and the exact cutoff---are a defined calculation in the double-scaled SYK (DSSYK) theory that
+is the proposed dual of the $2$D de Sitter static patch \cite{narovlansky2023}; we verified one
+necessary condition, that the DSSYK density of states is flat near the de Sitter point.
+
+\section{The theoretical lean is conditional}
+Rigorous FRW horizon thermodynamics favours the apparent horizon: applying $\delta Q=T\,dS$ on the
+apparent horizon $R_A=c/H$ reproduces the Friedmann equation exactly (Cai--Kim \cite{caikim2005}),
+whereas the event horizon is teleological and fails the first and generalized second laws in a general
+FRW universe. Thus ``$\az$ from horizon thermodynamics'' selects the apparent horizon, i.e.\ rising
+$\az$. But this is a \emph{lean, not a proof}, on two counts. First, Cai--Kim concerns the cosmic
+\emph{background} (Friedmann); the link to the \emph{local} $\az$ requires a second ingredient, the
+Deser--Levin \cite{deserlevin1997} de Sitter--Unruh floor $T(a)=(\hbar/2\pi ck_B)\sqrt{a^2+(cH)^2}$,
+which saturates at $T_{\rm dS}$ and places the MOND knee at $a\sim cH$. Second, the constant-$\az$
+reading rests on a different but internally consistent premise---$\Lambda$ as the fundamental infrared
+cutoff---which the thermodynamics does not exclude. So theory provides a coherent, two-ingredient
+package \emph{for} the rising reading and does not exclude the alternative; it does not decide the
+question.
+
+\section{Empirical status}
+\subsection{The External Field Effect: a robust leg}
+The External Field Effect (EFE) is the one signature $\Lambda$CDM does not naturally produce: because
+MOND is nonlinear it violates the Strong Equivalence Principle, so a uniform external field suppresses a
+system's internal MOND boost \cite{chae2020}. In the SPARC radial-acceleration relation
+\cite{lelli2016} we find the outer-disk residual turning negative ($\sim$$-0.1$~dex) with growing
+scatter ($0.16\!\to\!0.26$~dex) below $g_{\rm bar}\sim e_N\az$ with $e_N\sim0.03$, at
+$\sim4.8\sigma$ when the significance is deflated to the number of \emph{galaxies}. It survives
+adversarial tests: fixing $\az$ on the high-acceleration points alone (so the downturn cannot be
+absorbed) leaves it at $3.7$--$6.0\sigma$; it appears in both random halves and survives a jackknife.
+The one caveat these cannot remove is the outer-disk kinematic systematic (warps, non-circular motions,
+beam smearing), which only a per-galaxy environment correlation settles. We regard the EFE as genuine,
+foundation-level evidence that gravity is Milgromian, independent of the evolution question.
+
+\subsection{The direct $\az(z)$ test is inconclusive}
+A curated three-point compilation (local SPARC; Varasteanu 2025; a MUSE-DARK $z\!=\!0.9$ point) favours
+rising $\az$ at a naive $\sim5\sigma$, falling to $\sim2.5\sigma$ once a redshift-growing gas/pressure
+systematic is marginalized, and to a coin toss if the single $z\!=\!0.9$ point is dropped. We therefore
+re-analysed the two largest \emph{real} high-$z$ kinematic samples directly.
+\begin{itemize}\itemsep2pt
+\item \textbf{KMOS$^{\rm 3D}$} (\"Ubler et al.\ 2017 \cite{ubler2017}; 135 galaxies, $z=0.6$--$2.5$):
+the baryonic-Tully--Fisher $\az=V_c^4/(G M_{\rm b})$ is ${\sim}4\times$ the local value and \emph{rises
+with mass}---a high-acceleration bias---and its redshift trend is flat-to-declining, not rising. The
+sample is too massive and too dispersion-supported to measure $\az$ cleanly.
+\item \textbf{KROSS} (Harrison et al.\ 2017 \cite{harrison2017}; 381 rotation-dominated galaxies,
+$z\simeq0.85$): with a realistic molecular-gas correction \cite{tacconi2018} the BTFR normalization
+gives $\az(0.85)$ consistent with the \emph{local} (constant) value, below the framework's predicted
+$1.96\times10^{-10}$. Only an unphysical no-gas treatment matches the rise.
+\end{itemize}
+Crucially, decomposing the irreducible systematics---the CO-to-H$_2$ factor, the \emph{unmeasured}
+atomic gas, and whether $V_c$ reaches $V_{\rm flat}$ (which $\az\propto V^4$ amplifies)---yields
+$\az(0.85)\in[0.5,2.5]\times10^{-10}$, \emph{wider} than the framework ($1.96$) to constant ($1.20$)
+gap. The central estimate leans constant, but the systematic spans both models. The honest verdict is
+\emph{inconclusive with a central preference for constant}: the curated ``rise'' does not survive, but
+the data do not exclude the framework either. No existing sample resolves this, because the
+gas-measured samples are massive/high-surface-brightness (wrong regime) while the kinematic samples lack
+per-galaxy gas.
+
+\section{Weaknesses, stated plainly}
+(i) \emph{Clusters.} MOND's residual-mass problem (a factor ${\sim}2$ in relaxed clusters) is not
+relieved by the cosmic $\az(z)$, which boosts the dynamical mass only as $\sqrt{\Ez}$ ($\sim$8\% at
+$z=0.3$) and cannot be made environment-dependent without breaking the tight galaxy RAR.
+(ii) \emph{$\az$ universality.} A per-galaxy SPARC analysis rejects a strictly universal $\az$ at high
+formal significance ($\chi^2/\mathrm{dof}\!\sim\!770$ statistical), reduced but not erased by the
+standard $0.13$~dex systematic floor ($\chi^2/\mathrm{dof}\!\sim\!5$); the residual scatter correlates
+with mass at $r\!\sim\!0.37$, suggestive of a density dependence but degenerate with fitting artifacts.
+(iii) \emph{Second-order CMB.} Linear $C_\ell$ are $\az$-independent, but rising $\az$ drives
+recombination into the deep-MOND regime (whereas constant $\az$ leaves it Newtonian), amplifying a
+second-order, non-Gaussian imprint through the non-analytic $\mathcal{Y}^{3/2}$ term---a potential
+discriminator and a potential tension that a second-order Boltzmann calculation must settle.
+
+\section{The decisive test}
+The clean experiment is a direct $\az$ measurement in a population of rotation-supported, deep-MOND-tail
+discs at $z\simeq1$--$3$, analysed as a stellar-$M/L$- and $Z$-cancelling \emph{ratio} $\az(z)/\az(0)$,
+with a per-galaxy molecular$+$atomic gas census and resolved rotation curves reaching $V_{\rm flat}$.
+The three readings separate as $\az(3)/\az(0)=4.6$ (apparent/rising), $1.0$ (event/constant), $0.42$
+(scale-invariant vacuum \cite{maeder2017}, falling). An independent, kinematics-free cross-check is the
+weak-lensing prediction that the phantom mass at fixed baryonic mass scales as $\sqrt{\Ez}$
+($+34\%$ by $z=1$), accessible to Euclid/Rubin/JWST stacking---immune to the pressure systematic though
+not to the gas census. We stress that these are the experiments that decide the question; existing data
+do not.
+
+\section{Conclusion}
+The surviving, defensible content is one equation, Eq.~(\ref{eq:a0}): the MOND scale as cosmic-horizon
+surface gravity, with the standard MOND phenomenology following and one new, falsifiable consequence---an
+evolving $\az$. The deep-MOND sign is identified with the flat $(1{+}1)$D near-horizon spectrum and a
+candidate coupling rule, but not derived; the derivation reduces to a defined DSSYK calculation. The
+apparent-horizon reading is theoretically favoured but only conditionally. Empirically the EFE is a
+robust, $\Lambda$CDM-hard detection, while the distinctive evolving-$\az$ prediction is currently
+\emph{undecided}: the real high-$z$ data are gas-systematics-limited, with central values leaning
+constant. We have deflated the framework's own claims---favourable and unfavourable---wherever they
+overreached, and we connect $\az$ to gravity alone and not to the Standard Model. Whether the infrared
+scale of gravity tracks the apparent or the event horizon is, on the present evidence, an open and
+sharply testable question.
+
+\begin{thebibliography}{99}\small
+\bibitem{milgrom1983} M.~Milgrom, \textit{ApJ} \textbf{270}, 365 (1983).
+\bibitem{famaey2012} B.~Famaey \& S.~McGaugh, \textit{Living Rev.\ Rel.} \textbf{15}, 10 (2012).
+\bibitem{jacobson1995} T.~Jacobson, \textit{PRL} \textbf{75}, 1260 (1995).
+\bibitem{verlinde2011} E.~Verlinde, \textit{JHEP} \textbf{04}, 029 (2011).
+\bibitem{mcgaugh2016} S.~McGaugh, F.~Lelli \& J.~Schombert, \textit{PRL} \textbf{117}, 201101 (2016).
+\bibitem{thooft1985} G.~'t~Hooft, \textit{Nucl.\ Phys.\ B} \textbf{256}, 727 (1985).
+\bibitem{narovlansky2023} V.~Narovlansky \& H.~Verlinde, arXiv:2310.16994 (2023).
+\bibitem{caikim2005} R.-G.~Cai \& S.~P.~Kim, \textit{JHEP} \textbf{02}, 050 (2005).
+\bibitem{deserlevin1997} S.~Deser \& O.~Levin, \textit{Class.\ Quantum Grav.} \textbf{14}, L163 (1997).
+\bibitem{chae2020} K.-H.~Chae et al., \textit{ApJ} \textbf{904}, 51 (2020).
+\bibitem{lelli2016} F.~Lelli, S.~McGaugh \& J.~Schombert, \textit{AJ} \textbf{152}, 157 (2016).
+\bibitem{ubler2017} H.~\"Ubler et al., \textit{ApJ} \textbf{842}, 121 (2017).
+\bibitem{harrison2017} C.~Harrison et al., \textit{MNRAS} \textbf{467}, 1965 (2017).
+\bibitem{tacconi2018} L.~Tacconi et al., \textit{ApJ} \textbf{853}, 179 (2018).
+\bibitem{maeder2017} A.~Maeder, \textit{ApJ} \textbf{834}, 194 (2017).
+\end{thebibliography}
+\end{document}
