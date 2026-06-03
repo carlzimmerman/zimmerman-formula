@@ -18,7 +18,7 @@ the surface gravity of the cosmic horizon, evolving as E(z). Nothing here revive
 | 3 | Apparent vs event (theory) | **LEAN (→framework)** | Verified: dQ=TdS on the **apparent** horizon *is* Friedmann (Cai–Kim); the event horizon fails the laws. So "a₀ from horizon thermodynamics" → **rises with z**. Theory now leans to the framework. |
 | 4 | Complexity sign | **NEGATIVE** | Where computable (CV/DSSYK), the route gives **Newton** (δV linear in mass). The complexity-*rate* door is open but a long shot. |
 | 5 | Modified-inertia action | **WIN (no-go)** | Verified: local modified inertia → **Ostrogradski ghost**; only Milgrom's non-local action escapes (acausal). ⇒ implement a₀ as **modified gravity (AeST)**. |
-| 6 | Second-order CMB | **OPEN + risk** | Rising a₀ puts recombination in **deep MOND** (constant a₀ is Newtonian) → amplified second-order non-Gaussianity. A **discriminator** *and* an honest **tension**; needs a 2nd-order Boltzmann calc. |
+| 6 | Second-order CMB | **TENSION (gas-independent)** | Rising a₀ puts recombination in **deep MOND** (constant a₀ is Newtonian). **6b:** the boost ν~24 would over-drive the acoustic peaks ~5× (Ω_b·ν~1.2 vs Ω_dm~0.27) and MOND-boosted baryons can't mimic CDM — a **gas-independent** test (Ω_b, Ω_dm only) decidable with **existing Planck**. Strongly disfavors rising a₀ **unless** δq⁰⁰=0 is a *structural* identity under a₀(t) — the one named rescue. Heuristic; needs a 2nd-order AeST Boltzmann calc to firm up. |
 | 7 | MOND collapse / JWST | **WIN (derivation)** | Closed form t_MOND = √(π/2)·r_max/(GMa₀)^¼, **verified 3 ways**; rising a₀ forms galaxies **earliest** (∝E(z)^¼) — toward the JWST tension. |
 | 8 | a₀-cosmography | **LEAN** | H₀ = Z·a₀/c ~ 71±10 (local camp, not decisive). The a₀(z) **slope** = (3/2)Ω_m → independent q(z). |
 | 9 | Dark-sector budget | **NEGATIVE (honest)** | Dark matter = **two roles of one scalar**: galaxy phantom (explained, no halo) + 𝒦(𝒬) dust (Ω_DM only *relocated*, still fitted). Wins at galaxy scale, not the cosmic census. |
@@ -89,11 +89,17 @@ support the rise; their **central estimates lean constant.** But decomposing the
 systematic (#10d: αCO, unmeasured atomic gas, V_flat) gives a₀ ~ 0.5–2.5×10⁻¹⁰ — *wider than the
 framework-vs-constant gap itself* — so the honest verdict is **inconclusive with a central preference for
 constant**, not a clean disfavoring. (That softening is the same stress-test discipline applied to a
-framework-*unfavorable* result.) Net: **one robust claim** (a₀ is cosmic-horizon-scale), **one falsifiable
-bet the real data neither support nor cleanly kill** (central leans constant, irreducibly gas-limited), a
-theory advance that's identified-not-derived, three named weaknesses, and a **decisive test (#17, deep-MOND
-tail + per-galaxy CO+HI + resolved V_flat) that no existing sample can substitute for** — now demonstrated by
-hitting the wall directly. Nothing here derives the Standard Model from a number, and the sweep deflated the
-framework's claims — favorable *and* unfavorable — wherever they overreached.
+framework-*unfavorable* result.) Net: **one robust claim** (a₀ is cosmic-horizon-scale) and **one falsifiable
+bet now disfavored from two independent directions.** The galaxy data lean constant but are gas-limited
+(#10b–d); and — the **gas-independent** result (#6b) — rising a₀ forces the CMB acoustic perturbations into
+deep MOND at recombination, an ~5× over-driving that **strongly disfavors the rise unless AeST's δq⁰⁰=0
+cancellation is a structural identity under a₀(t)** (a heuristic pending a 2nd-order Boltzmann calc, but
+decidable with existing Planck — no gas census). Both directions point toward **constant a₀ = the event
+horizon = the *standard* emergent-gravity reading**, which would cost the framework its distinctive content
+(the rise) while leaving the surviving core (a₀~cH at z=0) and the EFE intact. The honest trajectory is
+**against** the apparent-horizon bet. The theory thread runs the other way: the deep-MOND *sign* mechanism is
+now derived in the DSSYK dual (#4c–d). So: a genuine surviving result and a real theory advance, with the
+distinctive empirical bet currently **losing** — reported straight, the dead numerology still closed, and the
+one rescue (δq⁰⁰=0 structural under a₀(t)) named precisely. Nothing here derives the Standard Model from a number.
 
 *Companion: `FRAMEWORK_RESEARCH_PROGRAM_20.md` (the program); `reviews/project01..20_*.py` (the work).*
