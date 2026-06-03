@@ -34,17 +34,21 @@ def fig2_samplesize():
     dlogE = np.log10(E(3.0)); s_gal = 0.15
     N = np.linspace(3, 120, 300)
     fig, ax = plt.subplots(figsize=(7.4, 5.0))
-    for s_anchor, c, lab in [(0.09, "firebrick", "current anchor $\\sigma{=}0.09$ dex (M/L-limited)"),
-                             (0.03, "seagreen", "tightened anchor $\\sigma{=}0.03$ dex (gas-rich)")]:
-        sig = dlogE/np.sqrt((s_gal/np.sqrt(N))**2 + s_anchor**2)
-        ax.plot(N, sig, color=c, lw=2.3, label=lab)
-    for s in (3, 5):
-        ax.axhline(s, color="0.6", ls=":", lw=1.1); ax.text(112, s+0.1, f"{s}$\\sigma$", fontsize=9, color="0.4")
-    ax.axvline(15, color="0.7", ls="--", lw=1); ax.text(15.5, 1.0, "~15 gal", fontsize=8.5, color="0.45")
+    sig09 = dlogE/np.sqrt((s_gal/np.sqrt(N))**2 + 0.09**2)
+    ax.plot(N, sig09, color="firebrick", lw=2.3,
+            label="naive all-points anchor $\\sigma_A{=}0.09$ dex (M/L-limited)")
+    sig05 = dlogE/np.sqrt((s_gal/np.sqrt(N))**2 + 0.05**2)
+    sig04 = dlogE/np.sqrt((s_gal/np.sqrt(N))**2 + 0.04**2)
+    ax.fill_between(N, sig05, sig04, color="seagreen", alpha=0.22)
+    ax.plot(N, sig05, color="seagreen", lw=2.3,
+            label="tightened anchor $\\sigma_A{=}0.04$–$0.05$ dex (deep-MOND, gas-dominated)")
+    for s in (3, 5, 10):
+        ax.axhline(s, color="0.6", ls=":", lw=1.1); ax.text(112, s+0.2, f"{s}$\\sigma$", fontsize=9, color="0.4")
+    ax.axvline(15, color="0.7", ls="--", lw=1); ax.text(15.5, 0.6, "~15 gal", fontsize=8.5, color="0.45")
     ax.set_xlabel("number of $z{\\sim}3$ extended, deep-MOND galaxies")
     ax.set_ylabel("significance of constant-$a_0$ rejection")
-    ax.set_title("Few galaxies suffice — but the current $z{=}0$ anchor caps it at ~7$\\sigma$")
-    ax.set_xlim(0, 120); ax.set_ylim(0, 12); ax.legend(fontsize=9, loc="lower right"); ax.grid(alpha=0.25)
+    ax.set_title("Anchor-limited: a naive anchor caps it at ~7$\\sigma$; the tightened anchor reaches ~13–16$\\sigma$")
+    ax.set_xlim(0, 120); ax.set_ylim(0, 18); ax.legend(fontsize=8.5, loc="lower right"); ax.grid(alpha=0.25)
     plt.tight_layout(); plt.savefig(os.path.join(OUT, "z3_fig2_samplesize.pdf")); plt.close()
 
 
