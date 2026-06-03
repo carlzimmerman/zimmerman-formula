@@ -9,6 +9,12 @@ z~0.85 is consistent with the LOCAL (constant) value, BELOW the framework's pred
 Only the unphysical no-gas case matches the framework. The gas census is the entire systematic. Reported
 straight, with the caveats that stop it being overstated. Data: data/kross_harrison2017.csv (Vizier
 J/MNRAS/467/1965). Needs numpy.
+
+CORRECTION: 'mildly disfavors at ~1-2 sigma' is slightly too strong -- see project10d_gas_systematic.py.
+Decomposing the irreducible systematics (alpha_CO, unmeasured atomic gas, V_flat) gives a0 ~ 0.5-2.5e-10,
+WIDER than the framework-vs-constant gap. Honest verdict: INCONCLUSIVE with a central preference for
+constant -- not a clean disfavoring. The central estimate below still stands; the systematic does not let it
+become a verdict.
 """
 import numpy as np, os
 
