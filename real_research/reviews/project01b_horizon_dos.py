@@ -88,6 +88,25 @@ def part5_chain():
         whose spectrum is forced and whose cutoff is Gibbons-Hawking -- both motivated, neither posited.\n""")
 
 
+def part5b_coefficient():
+    print("="*92); print("PART 5b -- [computed] does the cutoff PIN the a0/cH coefficient (i.e. Z)?"); print("="*92)
+    from scipy.integrate import quad as _q
+    # flat DOS g0 up to a SHARP cutoff E_D=T_dS (units T_dS=1): N_eff/N_full = 2U/T / g0, low-T slope -> pi^2/3
+    Ts = np.array([0.02, 0.05, 0.1])
+    sharp = np.polyfit(Ts, [2*_q(lambda E: E/np.expm1(E/T), 0, 1)[0]/T for T in Ts], 1)[0]
+    Nf = _q(lambda E: np.exp(-E), 0, np.inf)[0]
+    smooth = np.polyfit(Ts, [2*_q(lambda E: E*np.exp(-E)/np.expm1(E/T), 0, np.inf)[0]/T/Nf for T in Ts], 1)[0]
+    print(f"""  Match the deep-MOND relation N_eff/N_full = a/a0 to the flat-DOS freezing N_eff/N_full = k (T/T_dS),
+  with T/T_dS = a/(cH). Then a/a0 = k a/(cH) => a0 = (1/k) cH.  The slope k depends on the cutoff SHAPE:
+     SHARP cutoff at T_dS:   k = pi^2/3 = {sharp:.2f}   -> a0 = {1/sharp:.3f} cH   (effective Z = {sharp:.2f})
+     SMOOTH (exp) cutoff:    k = {smooth:.2f}        -> a0 = {1/smooth:.3f} cH   (effective Z = {smooth:.2f})
+     OBSERVED:               a0 = 0.183 cH (effective Z = 5.46) ; framework Z = 5.79.
+  => HONEST: the model makes the coefficient COMPUTABLE (it is set by the spectral edge, not free) and gets
+  the right SCALE -- a0 ~ 0.3 cH, within ~1.7x of observed. But the toy sharp/exp edges give Z ~ 3, NOT the
+  observed/framework Z ~ 5.5-5.8. So this does NOT derive Z; it shows the residual factor ~1.7 lives entirely
+  in the true near-horizon spectral-edge shape. Right scale and a computable -- but not yet pinned -- O(1).\n""")
+
+
 def part6_gap():
     print("="*92); print("PART 6 -- the honest remaining gap (now narrow, and DSSYK-connected)"); print("="*92)
     print("""  What is NOT yet established (stated plainly):
@@ -118,7 +137,7 @@ def verdict():
 
 def main():
     print("#"*92); print("# PROJECT 1b -- the horizon density of states and the origin of the deep-MOND freezing"); print("#"*92 + "\n")
-    part1_dos_to_freezing(); part2_bulk_3d(); part3_swave_2d(); part4_why_2d(); part5_chain(); part6_gap(); verdict()
+    part1_dos_to_freezing(); part2_bulk_3d(); part3_swave_2d(); part4_why_2d(); part5_chain(); part5b_coefficient(); part6_gap(); verdict()
 
 
 if __name__ == "__main__":
