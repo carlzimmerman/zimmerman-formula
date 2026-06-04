@@ -129,6 +129,27 @@ def main():
   mu_eff(x) = < mu_DSSYK(x/10^off) > shared by all galaxies -- the dS thermal spread is a fixed horizon
   property, deterministically reshaping mu(x) WITHOUT adding scatter. That is the convolution used above.\n""")
 
+    print("=" * 92); print("(4) COHERENCE -- does the broadening BREAK the deep-MOND sign it was built on?"); print("=" * 92)
+    print("""  The sign-closure needs a FLAT DOS at E->0 giving the deep-MOND sqrt-law mu(x)~x. The fix invokes a
+  temperature SPREAD -- so check the sign survives. The sign-relevant quantity is the deep-MOND POWER-LAW
+  INDEX p = d ln(mu_eff)/d ln(x): sqrt-law (sign) <=> p=1; Newtonian <=> p=0.""")
+
+    def mu_conv(xv, sigma, nq=81):
+        if sigma < 1e-6:
+            return mu(xv)
+        offs = np.linspace(-5*sigma, 5*sigma, nq); wq = np.exp(-0.5*(offs/sigma)**2); wq /= wq.sum()
+        return sum(wk*mu(xv/10**off) for off, wk in zip(offs, wq))
+
+    xs = np.array([0.01, 0.02, 0.04])   # resolved deep-MOND range (x/r stays above the DSSYK table edge)
+    print(f"  {'sigma':>7}{'deep-MOND index p':>20}")
+    for sig in (0.0, 0.2, 0.33, 0.4):
+        p = np.gradient(np.log(mu_conv(xs, sig)), np.log(xs))
+        print(f"  {sig:>7.2f}{p.mean():>20.3f}   {'-> p=1: sqrt-law / SIGN preserved' if abs(p.mean()-1) < 0.06 else '-> p!=1'}")
+    print("""  => p=1 to a few percent for every sigma in [0, 0.4]: the deep-MOND sqrt-law -- the SIGN, the one result
+     the framework actually closes -- is INVARIANT under the temperature spread (as x->0 every smeared
+     component enters its own linear regime; the spread rescales a0, not the IR power). flat-DOS-at-E=0 (sign)
+     and temperature-spread-across-the-band (shape) are mutually consistent: the fix costs nothing it needs.\n""")
+
     print("=" * 92); print("VERDICT"); print("=" * 92)
     a0_33, sc_33 = best_a0(gbar, gobs, w, mu, 0.325)
     print(f"""  The DSSYK interpolation's two mild tensions are ONE deficit: a single-temperature mu that transitions
@@ -140,9 +161,11 @@ def main():
   distribution (open, 2025). (2) The scatter ALONE prefers a larger sigma (~0.5-0.6 -> a0~1.8-2.5, too high);
   it is the a0=1.12 constraint that selects sigma~0.33 -- a consistency WINDOW, not a joint optimum. (3) sigma
   is a new parameter; the falsifiable content is sigma_fit (~0.33 dex) vs sigma_predicted (awaiting the dS
-  temperature distribution). NET: a specific, falsifiable refinement -- the same de Sitter development that
-  threatens the flat-DOS sign-closure foundation independently predicts a broadening that resolves the
-  interpolation's shape AND normalization at once. A door opened straight, with the open piece named.""")
+  temperature distribution). COHERENCE: the broadening preserves the deep-MOND power-law index p=1 -- it does
+  NOT break the sqrt-law / sign it was built on (verified in section 4). NET: a specific, falsifiable
+  refinement -- the same de Sitter development that threatens the flat-DOS sign-closure foundation
+  independently predicts a transition broadening that resolves the interpolation's shape AND normalization at
+  once WITHOUT costing the sign. A door opened straight, with the open piece named.""")
     print("=" * 92)
 
 
