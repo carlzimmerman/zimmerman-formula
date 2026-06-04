@@ -14,13 +14,15 @@ Stripped to what survives scrutiny, your work is **a genuine contribution to eme
 MOND acceleration is the surface-gravity scale of the cosmic horizon, a₀ = (c/2)√(Gρ) = cH/Z, and — the real
 advance of this session — **the deep-MOND *sign* (why gravity is *enhanced* at low acceleration) now closes**
 as a derived property of the de Sitter horizon's degrees of freedom in the DSSYK dual. The scale a₀~cH is
-dimensionally forced; the coefficient Z is reasoned to ~2π. One **distinctive, falsifiable** prediction
-remains: does a₀ *rise* with redshift (it tracks the apparent horizon) or stay *constant* (the event horizon)?
-The data are now **genuinely split**: MUSE-DARK III (2026, intermediate z) finds a₀ rising *faster* than H(z),
-while the **Big Wheel — the cleanest z=3.25 disk — gives a₀ ≈ the *local* value, no rise** (it spins too slowly
-for a risen a₀). So the *specific* a₀ ∝ cH(z)/Z law is squeezed from both sides, and the strong ×5 rise to z~3
-is **disfavored by the one clean high-z rotation curve** — a real tension in the framework's central bet, to be
-settled by a *sample* of clean z~3 gas-traced disks (the Big Wheel is the first, and it points against). The grand original claims — a theory of everything, the Standard Model from Z², 
+dimensionally forced; the coefficient Z is reasoned to ~2π. The session's hardest-won result is an **internal
+correction**: the original headline — a₀ *rises* with redshift (tracking the *apparent* horizon, a₀ ∝ cH) — was
+a **wrong-horizon error**. The framework's own microscopic engine (DSSYK = the de Sitter *static patch* = the
+*event* horizon) implies a₀ ~ √Λ ~ √ρ_DE, which is **constant-to-mildly-declining, not rising** — and *that* is
+what the high-z disks (Big Wheel, RC100, Milgrom/Genzel: a₀ not risen ×5) actually favor. So the rising bet is
+abandoned; the consistent prediction (a₀ tracks the event horizon, ∝√ρ_DE) both fixes the internal
+inconsistency and fits the data, and **DESI's evolving dark energy then predicts the mild decline** — the first
+quantitative tie from a cosmological measurement to the galaxy MOND scale. A humbling revision, not a
+vindication: the framework, done consistently, predicts the *opposite* of its original distinctive claim. The grand original claims — a theory of everything, the Standard Model from Z², 
 chirality from geometry — are **dead with certainty**. So: not a TOE, but a real, honest, publishable piece of
 gravitational physics with a genuine sign-derivation and one live bet.
 
@@ -31,8 +33,7 @@ gravitational physics with a genuine sign-derivation and one live bet.
 | 1 | **a₀ ≈ cH₀** (the coincidence) | Observed fact | ~100% (it's measured) |
 | 2 | **The deep-MOND sign + emergent-gravity mechanism** | **Derived** (DSSYK freezing; matter element now **verified** = published Okuyama 2023 eq. 18) | **~75–85%** — the literature check *passed*; competing mechanisms still exist |
 | 3 | **MOND is real** (galaxy dynamics is modified gravity, not particle dark matter) | EFE detected ~4.8σ; RAR tight; wide binaries pending | **~50%** — genuinely contested in the field; ΛCDM is mainstream |
-| 4a | **Bet, *direction*: a₀ *rises* (apparent horizon), not constant (event horizon)** | **Genuinely contested coin-flip** (`reviews/project_highz_a0_synthesis.py`): MUSE-DARK III *and* the 2024 A&A TF sample (faster V at fixed M_bar) support a *mild* rise; Übler/KMOS³ᴰ + Big Wheel lean constant/down. BTFR sign is systematics-dominated (pressure support, Tolman-dimming selection) | **~55–65%** — a real coin-flip; a *mild* rise is alive and not excluded |
-| 4b | **Bet, *rate*: a₀ ∝ cH(z)/Z = E(z) exactly** (×3 at z=2, ×5 at z=3.25) | **Multiply disfavored**: Milgrom (2017) excludes ~4a₀ at z~2 and a₀∝(1+z)^1.5; the Big Wheel excludes ×5 at z=3.25; MUSE is *faster* than E(z) — no direct probe matches E(z) | **~10–20%** — *downgraded*: the specific strong-rise law is excluded/disfavored by 4 independent direct lines; a *mild* rise survives, the ∝E(z) form largely doesn't |
+| 4 | **The a₀(z) law — RESOLVED by internal consistency** (`reviews/project_which_horizon_dssyk.py`): the DSSYK engine is the de Sitter **event** horizon, so a₀ ~ √Λ ~ √ρ_DE — **constant-to-mildly-declining, NOT rising**. The original a₀ ∝ cH (apparent horizon, ×5 rise) was a **wrong-horizon error**, disfavored by both the dual and the high-z disks | **The *consistent* claim (a₀ ~ √ρ_DE, event horizon): ~55–65%** — fits the high-z disks, DESI-anchored. **The *original* rising ∝E(z) bet: ~5–10%** — abandoned as a wrong-horizon mistake (a humbling revision, not a vindication) |
 | 5 | **TOE / Standard Model / chirality from Z²** | Disproven (decoupling theorem; 8 hallucination classes) | **~0%** — closed with certainty |
 
 ## What is genuinely SOLVED or SOLID
@@ -59,17 +60,18 @@ gravitational physics with a genuine sign-derivation and one live bet.
 
 - **The coefficient Z** — reasoned to ~2π, one O(1) (free-fall vs Hubble frequency × surface-gravity ½) left
   for the DSSYK dictionary. Not brute, not uniquely derived.
-- **The distinctive bet — now under real tension from BOTH directions.** *Intermediate z* (MUSE-DARK III 2026,
-  `reviews/project_literature_2026d.py`): a₀ rises, *faster* than H(z) — constant a₀ rejected, but steeper than
-  E(z). *Direct z~3* (the Big Wheel disk, `reviews/project_highz_bigwheel_a0.py`): a₀^eff = V_flat⁴/(G·M_bar)
-  ≈ **1×10⁻¹⁰ — the *local* value** (robust gas-only ceiling 2.6×10⁻¹⁰), versus the predicted ~6×10⁻¹⁰. The
-  disk spins at 280 km/s; a risen a₀ would demand ~374+ km/s. **So the single cleanest z~3 rotation curve does
-  NOT show the predicted ×5 rise — it disfavors a₀ ∝ E(z).** The two real datasets *disagree* (MUSE too fast,
-  Big Wheel too slow), which is the honest state: a smooth cH(z)/Z rise to z~3 is squeezed from both sides.
-  Caveats: the Big Wheel is one massive baryon-rich disk (its SED stellar mass is even *over*estimated, bounded
-  here via M_dyn); ADF22.1's elevated a₀^eff is its proto-cluster missing-mass, not a clean probe. **The
-  decisive program is now a *sample* of clean z~3 gas-traced disks** — the Big Wheel is point one, and it
-  points the wrong way for the strong-rise prediction.
+- **The a₀(z) law — now RESOLVED internally, and it overturns the original bet** (`reviews/project_which_horizon_dssyk.py`).
+  The framework quietly used *two* different horizons: emergent gravity's *apparent* (Hubble) horizon → a₀ ∝ cH
+  (rising), and the DSSYK dual's de Sitter *event* horizon → a₀ ∝ √Λ ∝ √ρ_DE (constant/declining). Its
+  microscopic **engine is the event horizon**, so the consistent prediction is a₀ ~ √ρ_DE — *not* rising. This
+  is selected *both* by internal consistency and by the data: the direct high-z disks (Big Wheel a₀^eff ≈ local,
+  not the predicted ×6; RC100; Milgrom/Genzel "all but exclude ~4a₀ at z~2") **disfavor the rise and favor
+  constant/declining**. So the original distinctive headline (rising ∝E(z)) is **abandoned as a wrong-horizon
+  error**; the consistent claim (a₀ ~ √ρ_DE) fits the data and is **DESI-anchored** (DESI's measured ρ_DE(z)
+  evolution predicts the mild decline — `reviews/project_desi_a0z_crossprediction.py`). Honest cost: the new
+  claim is *degenerate with constant-a₀ MOND at z=0* (differ only by √Ω_Λ), so it is far **less distinctive**
+  than the rising bet, testable only by z-evolution — a clean deep-MOND z~3 disk still decides. (MUSE-DARK III's
+  *faster*-than-H(z) intermediate-z rise is now the outlier against both the engine and the direct disks.)
 - **Two literature calculations** — verify the matter element vs Berkooz/Lin (makes the sign *formally* closed);
   the DSSYK-dictionary coefficient (pins Z). Both defined, neither in-session-derivable.
 - **The interpolation's residual shape deficit** (this session, `reviews/project_manytemp_broadening.py`) — the

@@ -146,6 +146,14 @@ apparent-horizon rise (the framework's original headline) is *not*. **This is th
 between a cosmological dark-energy measurement and the galaxy MOND scale. It is conjecture-dependent (a₀~√ρ_DE
 is unproven; DESI evolving DE is 2.8–4.2σ), but it is sharply falsifiable.**
 
+**And the conjecture has now largely turned into a derivation (`reviews/project_which_horizon_dssyk.py`):** the
+framework's microscopic engine — DSSYK = the de Sitter *static patch* — **is the event horizon**, so a₀ ~ √Λ ~
+√ρ_DE is *selected by the dual itself*, not merely borrowed from Milgrom. The original a₀ ∝ cH (apparent
+horizon, rising ∝E(z)) was a **wrong-horizon error**, inconsistent with the dual *and* disfavored by the high-z
+disks. So the framework done consistently predicts a₀ **constant-to-mildly-declining** — the *opposite* of its
+original rising headline, and the version the data favor. A humbling but coherence-restoring correction: the
+engine fixes the framework's worst observational tension, at the cost of its flashiest claim.
+
 ---
 
 ## 4. The consolidated falsifiable predictions
