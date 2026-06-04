@@ -65,3 +65,47 @@ The verdict moves **only** when a **ΛCDM-impossible signal is confirmed.** Conc
 Until one of those lands, the honest verdict is fixed: **a real, falsifiable theory, strongest on galaxy scales,
 carrying genuine standing risk, whose validation hinges entirely on a ΛCDM-impossible signal that is currently
 contested or split — not won, and not lost.** Anyone claiming otherwise, in either direction, is ahead of the data.
+
+---
+
+## Extension — more discriminators (2026-06-04 deep dive), and two corrections to the above
+
+A second literature sweep added tests that cut **both ways**, and flagged two places my matrix above was too strong.
+
+### New ΛCDM-stressing tests (pro-MOND — but every one has a live escape)
+
+| Test | ΛCDM | MOND | Tension | Escape route | Instrument |
+|---|---|---|---|---|---|
+| **Fast galactic bars** | DM halo drags bars slow (R>1.4) via dynamical friction | no halo → bars stay fast (R≈1) | **8σ** (Roshan+ 2021 vs EAGLE/TNG) | simulation numerics / resolution (Frankel+ 2022) | MaNGA/SAMI now |
+| **El Gordo** (z=0.87, ~2×10¹⁵ M⊙, ~2500 km/s) | too massive/fast/early | natural (faster growth + boost) | **6.2σ** (Asencio+ 2023) | cluster mass/velocity systematics; rare-tail | JWST/Euclid 2024–28 |
+| **KBC void + H₀** | local void too deep; growth too slow | deep voids natural; relieves H₀ tension | claimed **7σ** (Haslbauer+ 2020) | void depth/profile contested (likely shallower) | DESI/4MOST/Rubin 2026–30 |
+| **Planes of satellites (M31, Cen A)** | isotropic accretion; planes rare | tidal-dwarf planes natural | co-rotation <1% of analogs | MW plane now *escapable* (transient, Sawala 2023); M31/Cen A harder | Gaia DR4, Rubin+Euclid |
+
+**The genuine pattern worth seeing:** El Gordo, the KBC void, JWST early galaxies, *and* fast bars all probe the **same axis — faster early structure growth**, which is exactly what MOND predicts. Each has an individual escape, but they **point the same way**, and that coherence is a real (if soft) pro-MOND signal — more than the sum of four isolated anomalies.
+
+### New robust ANTI-MOND tests (these deepen the framework's exposure)
+
+| Test | Verdict |
+|---|---|
+| **Cluster RAR / residual mass** (Li+ 2024) | **Clean, against MOND** — cluster centrals follow an *offset* RAR; MOND still needs ~2× extra unseen mass. Sharpens the "clusters" row with 2024 RAR-framed data. |
+| **Weak-lensing RAR early/late split** (Brouwer+ 2021) | **6σ, against *pure* MOND** — property-independent modified gravity *cannot* make the RAR depend on galaxy type; the split needs a baryonic (circumgalactic-gas) explanation. |
+
+### Two corrections to my matrix above (honesty flags)
+
+1. **The "CMB 3rd peak → ΛCDM wins" row was too strong.** Skordis–Złośnik **AeST** (2021, PRL) reproduces the
+   acoustic peaks **and** keeps c_GW=c. Honest framing: *MOND-as-modified-gravity-alone loses the CMB, but
+   covariant MOND fits it by adding a field that behaves dark-matter-like at early times* — which blurs the MOND/DM
+   distinction rather than a clean ΛCDM win. (It's still a cost: the economy survives only at galaxy scale.)
+2. **GW170817 killed *TeVeS*, not MOND.** The c_GW=c bound (10⁻¹⁵) falsified Bekenstein's TeVeS and its cousins,
+   but AeST/RelMOND survives. So it's a clean kill of a *specific relativistic realization*, not of MOND broadly —
+   and it's the template for what a real "kill" looks like.
+
+### The deepened, honest asymmetry
+
+The extension makes the asymmetry **sharper**, not softer: the robust **anti-MOND** results (cluster RAR, the
+lensing early/late split, the standing CMB/cluster costs) are **more robust** than any single **pro-MOND** anomaly
+(bars, El Gordo, void, planes — all "ΛCDM-stressed with a live escape"). So the framework's exposure is genuinely
+**multi-front**. *But* the pro-MOND items share a coherent structure-growth axis, and the two clean ΛCDM-kill doors
+(EFE, wide binaries) remain the decisive ones. Net: more tests on the board, the same verdict — **contested, the
+framework carrying more standing risk, the kill-doors still unconfirmed** — now with a clearer map of exactly
+where each model is pressed.
