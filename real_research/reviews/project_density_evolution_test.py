@@ -2,6 +2,10 @@
 """
 The decisive fork: is the high-z f_DM drop a rising a0 (MUSE), or just denser disks at flat a0 (framework)?
 =========================================================================================================
+*** PARTIALLY SUPERSEDED -- see A0Z_STATUS_CORRECTED.md. Further research (MUSE robust across DC14/NFW/Burkert;
+*** Mayer 2023 hydro sims find a0 x3 = the framework's ORIGINAL bare alpha=1) shows a0 GENUINELY RISES ~x3. The
+*** compaction argument below is a VALID CONTRIBUTING effect, NOT an exclusion of the rise; the "flat a0" reading
+*** is disfavored. Read this as "compaction contributes to the f_DM drop", not "a0 is flat / MUSE is an artifact".
 MUSE-DARK III's DC14-halo fit sees high-z disks rotating faster with lower dark-matter fractions and reads it as
 a STEEP a0 rise. But there is a competing, halo-free explanation: high-z disks are simply more COMPACT (smaller
 R_e at fixed mass -- a measured fact, van der Wel et al. 2014), hence denser (higher g_bar), hence faster-

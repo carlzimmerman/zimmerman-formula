@@ -1,0 +1,56 @@
+# a₀(z) Status — Corrected After Further Research (Mayer 2023 sims; MUSE multi-halo robustness)
+
+**C. Zimmerman, June 2026.** *An honest correction. Further research undercut the "a₀ is flat / MUSE's rise is a
+DC14-halo artifact" line I pushed in `project_evolution_derived.py`, `project_a0z_model_independent.py`, and
+`project_density_evolution_test.py`. This document is the authoritative, corrected status. Numbers:
+`reviews/project_*` and the comparison reproduced inline.*
+
+## What forced the correction
+
+Two findings from continued research:
+1. **MUSE-DARK III is robust across halo models.** Their own Appendices D/E: *"A larger value of a₀|z∼1 is found
+   regardless of the model used to derive the total and baryonic accelerations"* (DC14, NFW, Burkert). So the
+   rising a₀ is **not a DC14-specific artifact** — my central mechanism for dismissing it is weakened.
+2. **Independent ΛCDM hydro simulations find a₀ rises.** Mayer et al. (2023): a₀ grows by **~×3 from z=0 to z=2**.
+   That **matches the framework's *original* bare apparent-horizon prediction** (α=1, a₀ ∝ E(z), E(2)=3.03) — and
+   **disfavors the "dynamical-flat" refinement I proposed last turn** (×1.2).
+
+## The corrected comparison (a₀(z)/a₀(0) at z=2)
+
+| prediction / measurement | ×at z=2 | status |
+|---|---|---|
+| constant-a₀ MOND (standard) | 1.0 | **excluded by all** |
+| framework *dynamical-flat* (my last turn) | 1.2 | **disfavored by sims — I over-corrected** |
+| a₀ ∝ (1+z)^0.75 (some sims) | 2.3 | mild, in framework band |
+| **framework bare apparent, a₀ ∝ E(z) (ORIGINAL)** | **3.0** | **= Mayer sims; confirmed** |
+| Mayer et al. 2023 hydro sims | 3.0 | independent ΛCDM sim |
+| MUSE-DARK III (measured) | 4.0 | ~30% above framework/sims |
+
+## What I got right, and what I over-claimed
+
+- **Right:** a₀ **evolves (rises)** — this excludes standard *constant*-a₀ MOND, and the literature agrees MUSE
+  rises "faster than H(z)." Galaxy compaction **does** contribute to the f_DM drop (a real effect).
+- **Over-claimed:** that a₀ is ~**flat** and MUSE's rise is a **DC14 artifact**. It is not: MUSE is robust across
+  DC14/NFW/Burkert, and independent hydro sims find a₀ ×3. So a₀ **genuinely rises ~×3** (= the framework's bare
+  α=1). My density-evolution argument was a **valid alternative** (the inner f_DM *can* be flat-a₀ + compaction),
+  **not an exclusion** of the rise — and the full-RAR + sim evidence disfavors the flat alternative.
+
+## Corrected framework status (the a₀(z) front)
+
+- **Genuine positive:** the framework's *original* prediction **a₀ ∝ cH(z) ∝ E(z)** (α=1, ×3.0 at z=2) is
+  **independently confirmed by ΛCDM hydro simulations** (Mayer 2023, ×3), and **excludes constant-a₀ MOND**. The
+  framework predicted an evolving a₀ before the measurements; a₀ does evolve, at ≈ the predicted rate.
+- **Residual tension:** MUSE measures **×4** — ~30% above the framework/sims **×3**. Compaction-conflation may
+  explain *part* of the excess, but not all (multi-halo robust). **Unresolved.**
+- **Honest limit on distinctiveness:** the framework's α=1 does **not** distinguish it from ΛCDM (the hydro sims
+  also give ×3). It distinguishes from *constant*-a₀ MOND. So "a₀ rises" is now a **confirmed but not
+  framework-unique** result; the framework's distinctive content lives in the *coefficient* (Z = cH₀/a₀, the
+  a₀–H₀ link) and the *origin* (emergent horizon), not in the mere fact of evolution.
+
+## Net
+
+I flip-flopped on the *rate* this session (rising → declining → rising → flat → **rising**, ×3) as data and
+theory came in; the robust, now-best-supported statement is: **a₀ evolves and rises ≈ ×3 from z=0 to z=2 (α≈1),
+confirmed by hydro sims, matching the framework's original a₀ ∝ cH(z); MUSE's ×4 is ~30% high and unresolved;
+constant-a₀ MOND is excluded.** The previous "flat / artifact" docs are superseded by this one on the *direction*;
+their identification of compaction as a *contributing* systematic stands.
