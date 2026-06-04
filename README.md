@@ -20,6 +20,20 @@ same deepened review also hardened the negatives: a **random number** reproduces
 the mass ratios as well as 32π/3 does, and the coefficient Z is not uniquely selected by the
 data. See `real_research/EQUATIONS.md` and `real_research/WEB_SYNTHESIS.md`.
 
+**Update (2026-06-04, de Sitter deepening — and a correction to the "5σ" claim above):** A sustained review
+reframed the surviving core as **emergent gravity from the de Sitter horizon** — a₀ = c²√(Λ/32π), with **six
+exact equivalent first-principles forms** and a clean dark-sector **seesaw a₀ = c·E_Λ²/(2ℏE_P)** tying a₀ to the
+vacuum-energy scale (2.24 meV). It also **corrected the a₀(z) "5σ" reading above**: against the *primary*
+literature (McGaugh+ 2024; Milgrom 2017), **"constant-a₀ MOND is excluded" is false** — constant a₀ is mainstream
+and fully viable; the one clean measured rise (MUSE-DARK III 2026) runs *faster* than E(z) and reads as ΛCDM; and
+the earlier "Mayer confirms it" was a **miscite** (Mayer 2022 is a ΛCDM *simulation* whose rise *favors* ΛCDM). So
+the distinctive a₀(z) prediction is **contested and currently leaning unfavorable**, not data-favored. New this
+session: a **falsification matrix** (`FALSIFICATION_MATRIX.md`), a **literature exhaustion** showing *no one*
+derives the MOND sign+coefficient from the horizon — Milgrom himself calls it open
+(`ROUTES_TO_THE_DEEPMOND_SIGN.md`), a **coefficient-forcing** analysis (`FORCING_THE_COEFFICIENT.md`), a
+**dark-matter-history** ledger (`DARK_MATTER_HISTORY.md`), and the **"ΛCDM fits, MOND predicts"** demonstration on
+real SPARC data (`LCDM_FITS_VS_MOND_PREDICTS.md`).
+
 ---
 
 ## Timeline
@@ -65,16 +79,17 @@ One real anchor, one novel reading, one falsifiable prediction — written up in
 2. **Novel (from the audit, not the original):** the coefficient's ½ is a **Schwarzschild
    surface-gravity** form a₀ = c²/2R of the cosmic free-fall scale — not de Sitter
    (`schwarzschild_factor_and_density_fork.py`). This is a genuine, if heuristic, new reading.
-3. **Falsifiable — and now data-favored.** a₀(z)/a₀(0) = **E(z)**, H₀- and Z-independent.
-   Two updates since the first audit: (a) the evolution is **derived** — horizon thermodynamics
-   forces a₀ ∝ H(z) route-independently, and needs no Z (`reviews/horizon_a0_derivation.py`);
-   (b) it has now been **tested on real 2026 data** — SPARC (z≈0), Vărăşteanu 2025 (z≈0.05),
-   MUSE-DARK III 2026 (z≈0.9): fitting a₀(z)=A·E(z)^p gives **p = 0.80 ± 0.17**, with the
-   **constant-a₀ null rejected at 5σ** and the matter-only (1+z)^1.5 branch *also* excluded at 5σ
-   (`a0_powerlaw_confrontation.py`, `rar_evolution_test.py`). **Honest caveats:** the dominant
-   uncertainty is a ~40% local-anchor systematic (SPARC 1.20 vs Vărăşteanu 1.69), and an evolving
-   RAR is *also* expected in ΛCDM from halo evolution — so this is "favored over constant,"
-   **not** a unique confirmation. The decisive test remains a clean deep-MOND a₀ at z>2.
+3. **Falsifiable — contested, leaning unfavorable (corrected 2026-06-04).** a₀(z)/a₀(0) = **E(z)**,
+   H₀- and Z-independent, and the evolution is **derived** — horizon thermodynamics forces a₀ ∝ H(z)
+   route-independently, needing no Z (`reviews/horizon_a0_derivation.py`). An earlier read claimed the
+   constant-a₀ null "rejected at 5σ"; the *primary* literature overturns it
+   (`reviews/project_a0z_reconciled.py`): **McGaugh+ 2024 and Milgrom 2017 favor constant a₀** (mainstream,
+   fully viable); the one clean measured rise (MUSE-DARK III 2026) runs *faster* than E(z), is halo-dependent,
+   and is read by its own authors as ΛCDM; and the prior "Mayer confirms it" was a **miscite** — Mayer 2022 is a
+   ΛCDM *simulation* whose apparent-a₀ rise *favors* ΛCDM. So the distinctive prediction is **contested and
+   currently leaning against the framework**, not data-favored. The decisive test remains a clean *halo-free*
+   deep-MOND a₀ at z>2 — and the only genuinely ΛCDM-impossible discriminators (the **external field effect** and
+   **wide binaries**) are the sole paths to a kill (`FALSIFICATION_MATRIX.md`).
 
 The full structure these sit in — one premise, ~13 forced edges, a +4 over-constrained web, and
 the honest boundary (no Standard-Model constants, no CMB without a relativistic completion) — is
@@ -116,13 +131,22 @@ because documenting a dead end *is* part of the science.
 ## Reproduce
 
 ```bash
-python real_research/a0_decisive_pipeline.py          # THE decisive test (add z>2 data -> it sharpens)
-python real_research/reviews/sparc_rar_honest.py      # the real a0 = 1.13e-10 anchor
-python real_research/a0_powerlaw_confrontation.py     # the evolving a0: constant rejected 5σ
-python real_research/REAL_WEB.py                       # the over-constrained web (+4)
-python real_research/reviews/is_Z_special.py          # why the constant numerology is empty
-python real_research/can_another_number_do_it.py      # a random number "derives" the constants too
-python real_research/reviews/false_discovery_rate.py  # the 34k-formula look-elsewhere baseline
+# the surviving empirical core
+python real_research/reviews/sparc_rar_honest.py                    # the real a0 = 1.13e-10 anchor (175 SPARC)
+python real_research/reviews/project_lcdm_fits_vs_mond_predicts.py  # LCDM fits (332 halos) vs MOND predicts (1 a0)
+python real_research/reviews/project_a0z_reconciled.py             # a0(z): corrected primary-data status (contested)
+
+# the de Sitter framework (2026-06-04 deepening)
+python real_research/reviews/project_first_principles_equations.py # 32pi decomposed + six exact forms of a0
+python real_research/reviews/project_a0_vacuum_energy_seesaw.py    # a0 = c E_Lambda^2/(2 hbar E_P), the cosmic seesaw
+python real_research/reviews/project_forcing_the_coefficient.py    # can Z be forced? (GR-forced up to the route)
+python real_research/reviews/project_decision_matrix.py            # the falsification matrix (kill-thresholds)
+python real_research/reviews/project_routes_to_sign.py            # literature exhausted: no one derives sign+coeff
+
+# the honest negatives (the numerology is dead)
+python real_research/reviews/is_Z_special.py                       # why the constant numerology is empty
+python real_research/can_another_number_do_it.py                  # a random number "derives" the constants too
+python real_research/reviews/false_discovery_rate.py               # the 34k-formula look-elsewhere baseline
 ```
 
 **Toward a theory of the dark sector** (not a TOE — the constants don't connect; `can_another_number_do_it.py`):
