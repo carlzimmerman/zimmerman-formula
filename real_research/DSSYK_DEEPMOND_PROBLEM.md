@@ -87,6 +87,27 @@ This is the sharpest, most honest state of the deep-MOND-sign problem reached he
 from "why this sign?" to two named, literature-defined calculations, with the mechanism verified by direct
 computation and nothing fabricated.
 
+### Update (project 4g) — Calculation 1's clean route is trivial; the sign reduces to one dictionary statement
+
+Pushing Calculation 1 on the **true** chord vacuum (not the 4e θ₂=π/2 shortcut) reaches an honest negative that
+sharpens the prize and **retires a tempting wrong closure** (`reviews/project04g_matter_chord_support.py`):
+
+- **Sum rule.** The established matter kernel obeys ∫dμ(θ₂) M(θ₁,θ₂) = 1 exactly (checked to 1e-8), so it is a
+  normalized transition kernel and **O_Δ|0⟩ = |0⟩**: the matter operator *preserves* the chord vacuum (ψ_n =
+  δ_{n0}). "O_Δ|0⟩ has central support" is therefore **true but trivial** — it is just the vacuum — and the
+  "kernel positivity ⇒ central support ⇒ sign closes" argument is **vacuous**.
+- **The real content** is the *conditional* kernel P(θ₁|θ₂): a probe stays near its own energy. A **central**
+  probe (E=0) keeps ~47% of its weight at the center → linear freezing → MOND; an **edge** probe (|E|~0.9) keeps
+  ~4% → sub-linear → **not** MOND.
+- **So the deep-MOND sign reduces to one dictionary statement:** *a physical near-horizon (low-acceleration)
+  matter probe maps to the spectral center E=0.* The bulk picture (horizon = maximal entropy = spectral center)
+  makes this very plausible, but it is the open chord↔depth dictionary item — **not derived**. Project 4f
+  tacitly *assumed* a central probe, so its "sign closes at very high confidence" is **downgraded** to: *sign
+  holds iff the near-horizon probe sits at the center — very likely (bulk), not proven.*
+
+**Honest status, revised:** mechanism derived; coupling reduces to one open dictionary statement (the naive
+vacuum route is trivial); coefficient Z open. The prize is bounded and real, now stated without the overclaim.
+
 **References.** Berkooz, Isachenko, Narovlansky, Torrents, *JHEP* (2018), arXiv:1811.02584 (DSSYK spectrum &
 correlators); H. Lin, *JHEP* (2022), arXiv:2208.07032 (the bulk/chord Hilbert space & matter); Narovlansky &
 Verlinde, arXiv:2310.16994 (DSSYK–de Sitter); Rahman, arXiv:2209.09997 (dS JT & DSSYK); Susskind,
