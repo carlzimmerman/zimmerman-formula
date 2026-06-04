@@ -59,17 +59,22 @@ def main():
         print(f"  z={z:>4}:  predicted a0/a0(0) = E(z) = {E(z):.2f}x")
     print()
     rows = [
-        ("Big Wheel z=3.25",     "DIRECT disk",      "a0 <~ 2.6x (ceiling); ~1x",  "EXCLUDES 5x"),
-        ("Milgrom/Genzel z~2",   "DIRECT RC",        "g=(3-11)a0; excl ~4x",       "EXCLUDES (1+z)^1.5"),
-        ("RC100 z=0.6-2.5",      "DIRECT, ~100",     "baryon-dom, declining RCs",  "~local a0 (upper bnds)"),
-        ("KMOS3D baryonic TF",   "kinematics",       "BTFR zero-point ~constant",  "a0 ~ CONSTANT"),
-        ("Wu&Kroupa z<1.2",      "TF-MOND",          "marg. favors a0~sqrt(Lam)",  "CONSTANT favored"),
-        ("MUSE-DARK III z<1.4",  "INDIRECT RAR fit", "a0=1.0+1.59z (rising)",      "RISING (dissenter)"),
+        ("Big Wheel z=3.25",     "DIRECT disk",      "a0 <~ 2.6x; ~local (mild ok)", "EXCLUDES 5x"),
+        ("Milgrom/Genzel z~2",   "DIRECT RC",        "g=(3-11)a0; excl ~4x",        "EXCLUDES strong rise"),
+        ("RC100 z=0.6-2.5",      "DIRECT, ~100",     "baryon-dom, declining RCs",   "~local (upper bnds)"),
+        ("2024 A&A TF z=0.6-2.5", "DIRECT TF",       "FASTER V at fixed M_bar",     "MILD RISE (supports)"),
+        ("Ubler/KMOS3D z<2.5",   "kinematics",       "higher M_bar at fixed V",     "a0 lower/constant"),
+        ("Wu&Kroupa z<1.2",      "TF-MOND",          "marg. favors a0~sqrt(Lam)",   "CONSTANT favored"),
+        ("MUSE-DARK III z<1.4",  "INDIRECT RAR fit", "a0=1.0+1.59z (rising)",       "RISING (supports)"),
     ]
-    print(f"  {'probe':22}{'method':18}{'finding':30}{'on a0(z)':>22}")
+    print(f"  {'probe':24}{'method':18}{'finding':31}{'on a0(z)':>22}")
     for r in rows:
-        print(f"  {r[0]:22}{r[1]:18}{r[2]:30}{r[3]:>22}")
-    print()
+        print(f"  {r[0]:24}{r[1]:18}{r[2]:31}{r[3]:>22}")
+    print("""  NOTE the split: the STRONG x5 rise is excluded by the high accelerations (Big Wheel, Milgrom); but the
+  BTFR SIGN for a MILD rise is genuinely CONTESTED -- 2024 A&A TF & MUSE-DARK III support rising, Ubler/Big
+  Wheel lean constant/down. Pressure-support + selection (Tolman dimming) systematics dominate the sign, and
+  the 2024 TF slope is 3.21 (not the deep-MOND 4): these massive disks are high-acceleration, not clean a0
+  probes. A mild rise (+10-20% faster V => a0 x1.5-2) threads all of it; the framework's x5 (~+50% faster) does not.\n""")
 
     print("="*92); print("HOW THE BIG WHEEL WAS MEASURED -- the honest caveat Carl flagged"); print("="*92)
     print("""  V_rot=280 km/s is the inclination-corrected MAXIMUM, measured at 1 R_eff = 9.6 kpc. There g_obs = V^2/R
@@ -79,17 +84,22 @@ def main():
   => the right statement is "a0 <~ 2-3x local at z~3 (5x excluded)", corroborated by the whole direct sample,
   not "a0 = 1e-10 measured". The conclusion (strong rise disfavored) is robust; the precision is not.\n""")
 
-    print("="*92); print("VERDICT"); print("="*92)
-    print(f"""  No -- the Big Wheel is not the only z>1 probe, and the others CORROBORATE it. Every DIRECT high-z
-  rotation-curve constraint (Big Wheel z=3.25; Milgrom on Genzel z~2; RC100; the ~constant baryonic-TF zero-
-  point) disfavors the framework's strong a0 ∝ E(z) rise: massive high-z disks are baryon-dominated, high-
-  acceleration systems whose rotation is reproduced with ~local a0, and a ~4-5x rise (predicted E(2)={E(2):.1f}x,
-  E(3.25)={E(3.25):.1f}x) is excluded/disfavored. The ONE result favoring a strong rise -- MUSE-DARK III -- is an
-  indirect intermediate-z RAR fit. So the central bet is squeezed toward CONSTANT or at most MILD rise; the
-  specific cH(z)/Z = E(z) law is in real, multiply-corroborated observational tension. Honest both ways: the
-  direct disks give upper bounds (not precision a0), and MUSE could carry fit systematics -- but the WEIGHT of
-  direct evidence is against the x5 rise. The clean settler remains a deep-MOND (low-acceleration, OUTER)
-  rotation curve of a normal z~3 disk -- not a baryon-dominated monster sitting at 3-11 a0.""")
+    print("="*92); print("VERDICT -- corrected to be balanced (an earlier draft overstated the case)"); print("="*92)
+    print(f"""  No -- the Big Wheel is not the only z>1 probe, and the picture is GENUINELY MIXED, splitting cleanly by
+  AMPLITUDE of the rise:
+   * STRONG rise (a0 ∝ E(z): x{E(2):.1f} at z=2, x{E(3.25):.1f} at z=3.25) -- ROBUSTLY DISFAVORED. The massive high-z disks sit
+     at g=(3-11)a0 (high-acceleration); a x4-5 rise would over-boost their abundant baryons and over-predict
+     rotation. Milgrom (2017) 'all but excludes ~4a0 at z~2'; the Big Wheel excludes x5 at z=3.25. This is the
+     framework's SPECIFIC bet, and it is in real tension.
+   * MILD rise (a0 x1.5-2 by z~2) -- ALIVE and CONTESTED. The 2024 A&A TF sample finds high-z disks rotate
+     FASTER at fixed M_bar (=> a0 higher), and MUSE-DARK III finds rising; Ubler/KMOS3D and the Big Wheel lean
+     constant/down. The BTFR sign is dominated by pressure-support + selection systematics (and the high-z TF
+     slope is 3.21, not the deep-MOND 4 -- these are not clean a0 probes). So a mild rise is neither confirmed
+     nor excluded.
+  HONEST NET: the framework's QUALITATIVE bet (a0 rises with z, apparent horizon) is a live coin-flip; its
+  QUANTITATIVE law (a0 ∝ cH(z)/Z = E(z), a x5 rise to z~3) is disfavored. The clean settler remains a deep-MOND
+  (low-acceleration, OUTER) rotation curve of a NORMAL z~3 disk -- not a baryon-dominated monster at 3-11 a0,
+  which only ever yields an upper bound.""")
     print("="*92)
 
 
