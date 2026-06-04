@@ -16,8 +16,10 @@ advance of this session — **the deep-MOND *sign* (why gravity is *enhanced* at
 as a derived property of the de Sitter horizon's degrees of freedom in the DSSYK dual. The scale a₀~cH is
 dimensionally forced; the coefficient Z is reasoned to ~2π. One **distinctive, falsifiable** prediction
 remains: does a₀ *rise* with redshift (it tracks the apparent horizon) or stay *constant* (the event horizon)?
-**Theory favors rising** (sufficient reason + Mach); **the real data lean constant** (gas-limited); one clean
-measurement (#17) decides. The grand original claims — a theory of everything, the Standard Model from Z², 
+**The latest dedicated data (MUSE-DARK III 2026) confirm a₀ *rises* — constant is rejected**, vindicating the
+apparent-horizon direction; but they find the *rate* **faster than H(z)**, in tension with the specific
+a₀ ∝ cH(z)/Z = E(z) law (steeper at low z). So the direction is won and the exact rate is tensioned — one
+clean gas-clean z~3 measurement (#17) is the arbiter. The grand original claims — a theory of everything, the Standard Model from Z², 
 chirality from geometry — are **dead with certainty**. So: not a TOE, but a real, honest, publishable piece of
 gravitational physics with a genuine sign-derivation and one live bet.
 
@@ -28,7 +30,8 @@ gravitational physics with a genuine sign-derivation and one live bet.
 | 1 | **a₀ ≈ cH₀** (the coincidence) | Observed fact | ~100% (it's measured) |
 | 2 | **The deep-MOND sign + emergent-gravity mechanism** | **Derived** (DSSYK freezing; matter element now **verified** = published Okuyama 2023 eq. 18) | **~75–85%** — the literature check *passed*; competing mechanisms still exist |
 | 3 | **MOND is real** (galaxy dynamics is modified gravity, not particle dark matter) | EFE detected ~4.8σ; RAR tight; wide binaries pending | **~50%** — genuinely contested in the field; ΛCDM is mainstream |
-| 4 | **The distinctive bet: a₀ rises with z** | Theory-favored (PSR/Mach); **MUSE-DARK III 2026 finds rising at 19σ** (high-z matches E(z)), but contested by gas-limited samples + a low-z rate tension | **~45–55%** — *upgraded from 30–40%*: a coin-flip, genuinely contested, with the latest dedicated study favoring rising; #17 decides |
+| 4a | **Bet, *direction*: a₀ *rises* (apparent horizon), not constant (event horizon)** | **MUSE-DARK III 2026 confirms rising; constant is rejected** | **~75–85%** — *upgraded*: the rising direction the framework bet on is now data-confirmed |
+| 4b | **Bet, *rate*: a₀ ∝ cH(z)/Z = E(z) exactly** | MUSE-DARK III fit a₀=1.0+1.59z is **faster than H(z)** (their words) — ~2.8× steeper at low z than E(z) | **~30–40%** — *downgraded*: the specific cH/Z rate is in real tension; anchor (1.0 vs 1.2) + high-z systematics + a z~1 turnover leave room, and the gas-clean z~3 point (#17) decides |
 | 5 | **TOE / Standard Model / chirality from Z²** | Disproven (decoupling theorem; 8 hallucination classes) | **~0%** — closed with certainty |
 
 ## What is genuinely SOLVED or SOLID
@@ -55,12 +58,16 @@ gravitational physics with a genuine sign-derivation and one live bet.
 
 - **The coefficient Z** — reasoned to ~2π, one O(1) (free-fall vs Hubble frequency × surface-gravity ½) left
   for the DSSYK dictionary. Not brute, not uniquely derived.
-- **The distinctive bet (rising vs constant a₀)** — the whole game, and now **genuinely contested** (not
-  "leaning constant"). Theory (Cai–Kim + Deser–Levin + Smolin) leans rising; **MUSE-DARK III (2026) measures
-  rising at 19σ**, with the high-z point matching E(z) (2.71 vs 2.72) — but the low-z rate is *faster* than
-  E(z) (a real tension on the specific cH/Z form, possibly a normalization systematic), and the gas-limited
-  KROSS/KMOS³ᴰ + Milgrom's high-z lean *constant*. So the literature is split, latest dedicated study
-  favourable. **#17** — gas-clean z~3, forecast 12σ — is the arbiter that resolves it.
+- **The distinctive bet — now split cleanly into DIRECTION (won) and RATE (tensioned)** by the latest data
+  (`reviews/project_literature_2026d.py`). *Direction:* **MUSE-DARK III (2026) confirms a₀ rises; constant a₀
+  — the event-horizon reading — is rejected.** The apparent-horizon direction the framework bet on is
+  data-confirmed; this is a genuine win. *Rate:* their fit a₀(z)=1.0+1.59z is **faster than H(z)** (their own
+  words) — ~2.8× steeper at low z than a₀ ∝ cH(z)/Z = E(z) predicts, "in tension with the scale-invariant
+  vacuum paradigm." So the *specific cH/Z rate is in real tension* — reported straight, not spun. Counter-
+  caveats both ways: the low-z anchor is 1.0 here vs 1.2 (SPARC); intermediate-z RAR systematics inflate
+  high-z a₀; and data/E(z) *peaks* ~1.45 at z~1 then falls to ~1.26 by z~3, so the linear fit overshoots and
+  the true law likely curves back toward E(z). **#17** — gas-clean z~3 (framework ~4.6–5.5 vs linear ~5.8) —
+  is the arbiter.
 - **Two literature calculations** — verify the matter element vs Berkooz/Lin (makes the sign *formally* closed);
   the DSSYK-dictionary coefficient (pins Z). Both defined, neither in-session-derivable.
 - **The interpolation's residual shape deficit** (this session, `reviews/project_manytemp_broadening.py`) — the
