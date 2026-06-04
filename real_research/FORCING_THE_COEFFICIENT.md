@@ -46,19 +46,25 @@ temperature* is unforced. (The observed cH₀/a₀ = 5.46–5.91 brackets all of
 *knows* space is 3D (Z₃ = 5.79) — whereas the Unruh 2π is identical in every dimension. A gravitational/density
 scale *should* carry the 3D fingerprint; a purely thermal one wouldn't. Suggestive, not a proof.
 
-**The one genuine forcing avenue (currently blocked):** the DSSYK horizon-DOS freezing fixes a₀/cH from the central
-density-of-states slope c₁ ≈ 1.6/√(1−q) times two dictionary numbers (λ_dS from S_dS≈10¹²², and T_dS/E₀). **If the
-de Sitter dictionary were settled, the coefficient would be forced.** It is *not* — the DSSYK↔dS dictionary is
-center-vs-edge **contested** (`project04g`; Verlinde 2505.08116 vs. Susskind). So a forcing is *conceivable but
-blocked by an unsettled duality.* This is the live frontier — the only place Z could actually be derived.
+**The one forcing avenue — now COMPUTED TO FAIL (downgraded June 2026, `project_dssyk_force_Z_verdict.py`):** the
+DSSYK horizon-DOS freezing gives a₀/cH = c₁·(T_dS/E₀) with c₁ = √(8/π)/√(1−q) and T_dS/E₀ = λ/(4π). Worked to the
+physical de Sitter limit, the two factors **do not compensate** — the slope grows as (1−q)^{−1/2} but the
+temperature window shrinks as (1−q)^{+1} (faster) — giving **a₀/cH = √(8/π)/(4π)·√λ = 0.127·√λ → 0 as λ→0**, i.e.
+**Z → ∞**. Since S_dS = 4π²/λ, the physical horizon (S_dS≈10¹²²) forces **Z ≈ 10⁶¹**, missing 5.789 by ~60 orders;
+the λ that *would* give 5.789 implies a **21-nat ("21-bit") universe**, excluded by 122 orders. (Center placement,
+Narovlansky–Verlinde — the only one with MOND-compatible *linear* freezing; the Okuyama edge placement has the
+wrong, super-linear T^{3/2} law.) So this is **not "blocked by an unsettled dictionary" — even with the favorable
+dictionary fully settled, the freezing forces the *wrong* (divergent) answer.** The DSSYK route does **not** derive
+Z. ⟵ *This corrects the earlier, too-generous "if settled, forced" framing.*
 
 ## Verdict — exactly as far as the math goes
 
 - **FORCED:** the 8π (Einstein coupling) and the 3 (Friedmann). Z's prime content is GR.
 - **CONVENTION:** the outer factor-2 (surface-gravity ½).
 - **NOT FORCED:** the density-vs-temperature **route** — an 8% O(1) spread the data slightly resolve toward Z and
-  the dimension-dependence softly favors, but no principle *selects*. The only potential closure (the DSSYK
-  coefficient) is open.
+  the dimension-dependence softly favors, but no principle *selects*. The one potential closure (the DSSYK
+  coefficient) is now **computed to FAIL** (Z→∞ in the physical limit; see above) — so Z stays route-forced by GR,
+  not uniquely forced, and the make-or-break derivation route is **dead**, not merely open.
 
 So Z is **traceable and route-forced** — every factor has a physical origin, and within the gravitational route it
 is the value 3D space forces — **but not uniquely forced**, because the route itself is a choice. **And a separate,
