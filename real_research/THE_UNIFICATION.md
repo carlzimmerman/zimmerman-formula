@@ -5,6 +5,23 @@ assumption and its normalization tension named in the first screen, not buried. 
 
 ---
 
+## ⚠ SUPERSEDED BY DATA (later in session): the central prediction of this document is refuted
+
+This document's headline — a₀ tracks the dark-energy density, **a₀(z) ∝ √ρ_DE, a mild *decline*** — was tested
+against the first multi-point **direct** a₀(z) measurement and **failed**. **MUSE-DARK III** (Mercier et al.
+2026 A&A, arXiv:2604.22613; 79 galaxies, 0.33<z<1.44) measures **a₀(z) = 1.0 + 1.59 z, a₁ = +1.59 ± 0.10 — a₀
+*rises* with redshift at ~16σ.** The √ρ_DE reading predicts a₀ ≈ flat (×0.99 at z=1); the data give ×2.6. So the
+**event-horizon / declining claim is refuted**, and with it the specific "a₀ = the dark-energy scale, declining"
+unification framed here. What survives is weaker and points the other way: a₀ *rises* with z, consistent in
+**direction** with the *apparent*-horizon reading a₀ ~ cH(z) (the original framework, which this document had
+argued against) — though the rate is ~30% steeper than ∝E(z), so even that is not a clean fit. The
+MOND–dark-energy *identification* (a₀ set by the cosmological horizon's surface gravity) may still hold at the
+order-of-magnitude level, but the sharp, distinctive, falsifiable form asserted below (√ρ_DE tracking) is
+**empirically dead**. See `reviews/project_a0z_muse_test.py` and the correction in `THE_FULL_ANSWER.md`. The
+text below is preserved as the record of the claim that the data overturned.
+
+---
+
 ## Claim (one paragraph)
 
 The MOND acceleration scale a₀ is the **surface gravity of the de Sitter *event* horizon**, a₀ ~ c√(Λ/3) ~

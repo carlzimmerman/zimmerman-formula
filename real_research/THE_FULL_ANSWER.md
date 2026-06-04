@@ -8,6 +8,24 @@ rest is trustworthy.*
 
 ---
 
+## ⚠ CORRECTION (later in session): the direct a₀(z) data REVERSE Layer 4 — a₀ *rises*
+
+After the verdict below was written, I tested the revised (event-horizon, **declining**) a₀(z) prediction
+against the first multi-point **direct** a₀(z) measurement — **MUSE-DARK III** (Mercier et al. 2026 A&A,
+arXiv:2604.22613; 79 galaxies, 0.33<z<1.44, DC14 primary): **a₀(z) = 1.0 + 1.59 z, with a₁ = +1.59 ± 0.10 — a₀
+*rises* with redshift at ~16σ.** This **refutes the event-horizon / declining revision** (which predicts ~flat:
+×0.99 at z=1, while the data give ×2.6) and **confirms the *original* apparent-horizon prediction *in
+direction*** — a₀ increases with z. The apparent horizon also wins the normalization (a₀(0)=cH₀/Z=1.12, 7% low,
+vs event 0.93, 22% low). **So revert to a₀ ~ cH(z) (rising):** the session's "wrong-horizon" revision was itself
+the error, and the framework's original distinctive call (a₀ rises) is the one a real measurement supports.
+**Open quantitative tension:** MUSE rises ~30% *faster* than ∝E(z), and the z=3.25 Big Wheel sits *below* the
+∝E(z) extrapolation — no single horizon nails the rate, and the data are partly method-split (RAR-fits rise
+fast; baryon-dominated disks plateau). Numbers: `reviews/project_a0z_muse_test.py`. **Everything in Layer 4 and
+the a₀(z) discussion below predates this and must be read through this correction** (the high-z-disk reasoning
+that motivated the declining revision over-weighted baryon-dominated *upper limits*; MUSE is the direct probe).
+
+---
+
 ## The one-paragraph answer
 
 Stripped to what survives scrutiny, your work is **a genuine contribution to emergent-gravity MOND**: the
@@ -33,7 +51,7 @@ gravitational physics with a genuine sign-derivation and one live bet.
 | 1 | **a₀ ≈ cH₀** (the coincidence) | Observed fact | ~100% (it's measured) |
 | 2 | **The deep-MOND sign + emergent-gravity mechanism** | **Derived** (DSSYK freezing; matter element now **verified** = published Okuyama 2023 eq. 18) | **~75–85%** — the literature check *passed*; competing mechanisms still exist |
 | 3 | **MOND is real** (galaxy dynamics is modified gravity, not particle dark matter) | EFE detected ~4.8σ; RAR tight; wide binaries pending | **~50%** — genuinely contested in the field; ΛCDM is mainstream |
-| 4 | **The a₀(z) law — RESOLVED by internal consistency** (`reviews/project_which_horizon_dssyk.py`): the DSSYK engine is the de Sitter **event** horizon, so a₀ ~ √Λ ~ √ρ_DE — **constant-to-mildly-declining, NOT rising**. The original a₀ ∝ cH (apparent horizon, ×5 rise) was a **wrong-horizon error**, disfavored by both the dual and the high-z disks | **The *consistent* claim (a₀ ~ √ρ_DE, event horizon): ~55–65%** — fits the high-z disks, DESI-anchored. **The *original* rising ∝E(z) bet: ~5–10%** — abandoned as a wrong-horizon mistake (a humbling revision, not a vindication) |
+| 4 | **The a₀(z) law — the DIRECT data say a₀ RISES** (`reviews/project_a0z_muse_test.py`, supersedes the internal-consistency argument): MUSE-DARK III measures **a₁ = +1.59 ± 0.10 (~16σ rise)**, refuting the event-horizon/declining revision (predicts ~flat) and **confirming the original *rising* direction**. Revert to a₀ ~ cH(z) (apparent), which also wins the normalization | **a₀ rises with z: ~60–70%** (one direct but model-dependent measurement; needs replication). **The specific ∝E(z) rate: ~30%** (MUSE rises ~30% faster; the z=3.25 Big Wheel is lower — no single horizon nails the rate). **The event-horizon declining revision: ~10%** — refuted by the direct data (a correction of the session's own correction) |
 | 5 | **TOE / Standard Model / chirality from Z²** | Disproven (decoupling theorem; 8 hallucination classes) | **~0%** — closed with certainty |
 
 ## What is genuinely SOLVED or SOLID
