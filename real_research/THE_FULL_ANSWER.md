@@ -26,9 +26,9 @@ gravitational physics with a genuine sign-derivation and one live bet.
 | Layer | Claim | Status | My calibrated odds it's right |
 |---|---|---|---|
 | 1 | **a₀ ≈ cH₀** (the coincidence) | Observed fact | ~100% (it's measured) |
-| 2 | **The deep-MOND sign + emergent-gravity mechanism** | **Essentially derived this session** (DSSYK freezing; matter element pinned by 4 limits) | **~70–80%** — a real result, pending literature verification of the exact element; competing mechanisms exist |
+| 2 | **The deep-MOND sign + emergent-gravity mechanism** | **Derived** (DSSYK freezing; matter element now **verified** = published Okuyama 2023 eq. 18) | **~75–85%** — the literature check *passed*; competing mechanisms still exist |
 | 3 | **MOND is real** (galaxy dynamics is modified gravity, not particle dark matter) | EFE detected ~4.8σ; RAR tight; wide binaries pending | **~50%** — genuinely contested in the field; ΛCDM is mainstream |
-| 4 | **The distinctive bet: a₀ rises as E(z)** | Theory-favored (PSR/Mach), data-disfavored (gas-limited), untested cleanly | **~30–40%** — the real gamble; #17 decides |
+| 4 | **The distinctive bet: a₀ rises with z** | Theory-favored (PSR/Mach); **MUSE-DARK III 2026 finds rising at 19σ** (high-z matches E(z)), but contested by gas-limited samples + a low-z rate tension | **~45–55%** — *upgraded from 30–40%*: a coin-flip, genuinely contested, with the latest dedicated study favoring rising; #17 decides |
 | 5 | **TOE / Standard Model / chirality from Z²** | Disproven (decoupling theorem; 8 hallucination classes) | **~0%** — closed with certainty |
 
 ## What is genuinely SOLVED or SOLID
@@ -36,8 +36,9 @@ gravitational physics with a genuine sign-derivation and one live bet.
 - **The deep-MOND sign** (the hardest open problem in *any* emergent-MOND program): DOF-freezing gives the
   enhancement; the flat (1+1)D near-horizon spectrum is the DSSYK chord-vacuum measure; the matter element is
   the q-deformed Schwarzian, **pinned by four independent checks** (Δ→0 identity, positivity, symmetry, the
-  q→1 Schwarzian limit shown analytically + numerically). The probe couples to the central flat modes → the
-  √-law. *Why MOND has its sign is, to this work's standard, answered.*
+  q→1 Schwarzian limit shown analytically + numerically) — and the form is now **verified** as the *published*
+  DSSYK matter element (Okuyama 2023, eq. 18), not a conjecture. The probe couples to the central flat modes →
+  the √-law. *Why MOND has its sign is, to this work's standard, answered, on established machinery.*
 - **The scale a₀~cH** is dimensionally forced (c × the free-fall frequency √(Gρ) is a unique acceleration).
 - **The EFE** is a real ~4.8σ detection that survives every adversarial test — the best evidence MOND is real.
 - **The CMB** is structurally blind to a₀ (𝒥(𝒴) third-order; 𝒴̄=0), so evolving a₀ is CMB-safe.
@@ -46,9 +47,12 @@ gravitational physics with a genuine sign-derivation and one live bet.
 
 - **The coefficient Z** — reasoned to ~2π, one O(1) (free-fall vs Hubble frequency × surface-gravity ½) left
   for the DSSYK dictionary. Not brute, not uniquely derived.
-- **The distinctive bet (rising vs constant a₀)** — the whole game. Theory (Cai–Kim + Deser–Levin + Smolin)
-  leans rising; real KMOS³ᴰ+KROSS lean constant (gas-limited, central value low). **#17** — the gas-clean z~3
-  deep-MOND-tail measurement (real targets built, forecast 12σ) — is the arbiter.
+- **The distinctive bet (rising vs constant a₀)** — the whole game, and now **genuinely contested** (not
+  "leaning constant"). Theory (Cai–Kim + Deser–Levin + Smolin) leans rising; **MUSE-DARK III (2026) measures
+  rising at 19σ**, with the high-z point matching E(z) (2.71 vs 2.72) — but the low-z rate is *faster* than
+  E(z) (a real tension on the specific cH/Z form, possibly a normalization systematic), and the gas-limited
+  KROSS/KMOS³ᴰ + Milgrom's high-z lean *constant*. So the literature is split, latest dedicated study
+  favourable. **#17** — gas-clean z~3, forecast 12σ — is the arbiter that resolves it.
 - **Two literature calculations** — verify the matter element vs Berkooz/Lin (makes the sign *formally* closed);
   the DSSYK-dictionary coefficient (pins Z). Both defined, neither in-session-derivable.
 - **Ω_DM's value** — relational (the aether's energy) but fitted.
