@@ -44,8 +44,16 @@ def main():
     print(f"""  (i)  CMB-SAFE: a0 lives in J(Y), and J(Y) is THIRD order in CMB perturbations because Ybar=0 (project 6c).
        Making a0 depend on theta therefore does NOT touch the linear CMB. The very insight that retracted the
        6b 'CMB disfavoring' is what makes this construction CMB-safe -- the episode turns net-positive.
-  (ii) RAR-UNIVERSAL: a galaxy is threaded by the cosmic aether, so theta ~ 3H_cosmic inside it -> a0 ~ cH/Z,
-       the SAME for every galaxy at a given epoch. The tight (~0.1 dex) RAR is preserved.
+  (ii) RAR-UNIVERSAL? -- THE CRITICAL CAVEAT (this claim was initially OVERSTATED). It holds ONLY if the
+       aether stays near the cosmic value theta~3H INSIDE galaxies. But a bound galaxy does NOT expand, so a
+       matter-tracking (soft) aether goes quasi-static there, theta->0, which would give a0->0 -- fatal. A
+       sufficiently STIFF aether (cosmologically locked) keeps theta~3H inside galaxies -> a0~cH/Z universal.
+       So RAR-universality is CONTINGENT on the aether stiffness parameters (a make-or-break open question),
+       NOT established. The same difficulty defeats a0~sqrt(R): inside a galaxy R is dominated by the LOCAL
+       baryons (R_local >> R_cosmic), so a0~sqrt(R) would track local density, not the universal cosmic value.
+       => the deep issue: a0=cH/Z is a COSMIC (background) value, and making it uniform inside galaxies from a
+       LOCAL covariant field is hard. This is a genuine obstacle that the CONSTANT-a0 (Lambda) reading -- a
+       true constant, trivially uniform -- does NOT face. It is a theoretical point AGAINST the rising bet.
   (iii)RISING: theta = 3H(z) -> a0(z) = cH(z)/Z prop E(z). a0(z=2)/a0(0) = E(2) = {E(2):.2f} -- the distinctive bet,
        now from a covariant coupling rather than a phenomenological coincidence.\n""")
 
@@ -63,13 +71,17 @@ def main():
       disturbed), a0 would deviate from cH/Z there -- a potential environmental signature (connects to the
       project-13 a0-vs-environment question), to be worked out.\n""")
 
-    print("="*92); print("PROJECT 3c VERDICT"); print("="*92)
-    print("""  The framework's distinctive rising-a0 bet is covariantly REALIZABLE: a0 = (c/3Z) div(A), the MOND scale
-  tied to the AeST aether's expansion. It reproduces a0=cH/Z exactly, is CMB-safe (via the 6c insight),
-  preserves the tight RAR, and rises as E(z). This converts 'a0 ~ cH' from a coincidence into a covariant
-  coupling using existing structure -- a genuine constructive step, and the silver lining of the retracted CMB
-  argument: rising a0 is not only CMB-safe, it is naturally built. What remains is to prove the coupling is
-  ghost-free and to derive (not posit) the coefficient Z. Reported as a real advance with its open edges named.""")
+    print("="*92); print("PROJECT 3c VERDICT (corrected -- weaker than first stated)"); print("="*92)
+    print("""  a0 = (c/3Z) div(A) reproduces a0=cH/Z at the cosmic BACKGROUND and is CMB-safe (6c). That much is real.
+  BUT the RAR-universality I first claimed is NOT established: it requires the aether to stay theta~3H INSIDE
+  bound galaxies, which holds only for a sufficiently STIFF aether -- a soft (matter-tracking) aether goes
+  static (theta->0) and the construction FAILS (a0->0). And the obvious alternatives fail too: a0~sqrt(R)
+  tracks LOCAL density inside galaxies (R_local >> R_cosmic), not the cosmic value. The deep obstacle:
+  a0=cH/Z is a cosmic (background) quantity, and reproducing it UNIFORMLY inside galaxies from a LOCAL
+  covariant field is genuinely hard -- a difficulty the CONSTANT-a0 (Lambda) reading does not have. So this
+  is NOT a clean realization; it is a tentative direction with a make-or-break open question (the aether
+  stiffness), and on balance it exposes a THEORETICAL obstacle to the rising bet rather than removing one.
+  Reported honestly: my initial 'covariantly realizable, RAR preserved' was too strong, corrected here.""")
     print("="*92)
 
 
