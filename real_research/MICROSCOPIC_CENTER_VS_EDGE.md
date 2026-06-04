@@ -69,9 +69,22 @@ emergent-gravity / DSSYK bridge,
 
 The center-vs-edge question was the one thread that could turn the coefficient from "natural packaging" into
 "forced." Pushing it gives a clear partial win: **the center is the data-favored reading**, so the framework's
-foundation is firmer than "contested assumption" — but the coefficient remains tied to the free coupling q. The
-genuinely decisive remaining moves are now sharp: **(1)** pin q independently (the de Sitter entropy S_dS = e^N
-relation, or an independent DSSYK observable), which would *force* Z; **(2)** watch whether the DSSYK literature
-resolves center-vs-edge — if it lands on the center, the framework's deep-MOND derivation closes; if the edge,
-the framework predicts it should *not*, since the edge is inconsistent with flat rotation curves. Either way the
-question is now decidable, and galaxy dynamics has a vote.
+foundation is firmer than "contested assumption" — but the coefficient remains tied to the free coupling q.
+
+**Update — pinning q (the move that would have *forced* Z) instead *refutes* the microscopic coefficient**
+(`reviews/project_pin_q.py`). The de Sitter entropy *does* fix q, via the Narovlansky–Verlinde dictionary:
+λ = 4π²/S_dS, so q = exp(−4π²/S_dS). But our de Sitter has S_dS ~ 10¹²², so **q → 1 (the semiclassical limit)** —
+and there the framework's relation Z = 4ρ₀(q)/√(1−q) ~ (2ρ₀/π)√S_dS **diverges** (Z ~ 2.5×10⁶⁰, a₀ ~ 2.6×10⁻⁷⁰
+m s⁻², off by ~60 orders of magnitude). The value Z = 5.79 (a₀ ~ 1.2×10⁻¹⁰) requires **S_dS ~ 520 — a
+Planck-scale de Sitter (R_dS ~ 23 l_P), not ours.** So the s = Z match at q ≈ 0.925 was a coincidence at an
+unphysical point; pinning q to the *actual* de Sitter breaks the coefficient relation. **The coefficient is
+therefore not forced from below** — neither geometrically (the deep-geometry result: simple criteria give Z = 1
+or 2, the extra Friedmann factor isn't uniquely fixed) nor microscopically. Z = 2√(8π/3) stands as a natural
+geometric packaging that fits to ~6%, honestly open.
+
+**What survives the refutation:** the deep-MOND **sign** is q-*independent* — the flat-center DOS gives the
+√-law and flat rotation curves for *any* q — so the SIGN derivation and the center-is-data-favored result are
+untouched. Only the COEFFICIENT's microscopic derivation fails. The remaining decidable move is now just **(2)**:
+watch whether the DSSYK literature resolves center-vs-edge — if the center, the framework's *sign* closes; the
+*coefficient* will need either a 6% a₀ measurement (to pick 2√(8π/3) vs 2π) or a genuinely different mechanism.
+Galaxy dynamics still has a vote — on the sign, not the coefficient.
