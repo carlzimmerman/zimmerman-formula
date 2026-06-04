@@ -7,6 +7,12 @@ from BBN/CMB, no galaxy gas census. And it turns out to be the SHARPEST test of 
 existing Planck data. The result is a genuine, gas-independent finding -- and an honest one: it strongly
 DISFAVORS the framework's rising-a0 bet, unless a specific cancellation holds. Reported straight, because a
 decisive test that leans the 'wrong' way is exactly what the integrity contract is for. Needs numpy.
+
+*** RETRACTED -- see project06c_cmb_correction.py. This argument is WRONG: it applies the GALAXY MOND boost
+nu=sqrt(a0/g) to small CMB perturbations, but in AeST the MOND invariant Y is the spatial gradient of phi
+with Ybar=0, so J(Y)=Y^{3/2} is THIRD order in CMB perturbations -- negligible regardless of a0. The CMB does
+NOT cleanly constrain rising a0. Kept for the record (and the regime-flip in Part 1 is real); the conclusion
+is withdrawn. ***
 """
 import numpy as np
 
