@@ -42,6 +42,14 @@ gravitational physics with a genuine sign-derivation and one live bet.
 - **The scale a₀~cH** is dimensionally forced (c × the free-fall frequency √(Gρ) is a unique acceleration).
 - **The EFE** is a real ~4.8σ detection that survives every adversarial test — the best evidence MOND is real.
 - **The CMB** is structurally blind to a₀ (𝒥(𝒴) third-order; 𝒴̄=0), so evolving a₀ is CMB-safe.
+- **The MOND interpolation is DERIVED, not fitted, and it works at precision level** (this session,
+  `reviews/precision_rar_test.py`): the freezing fraction = the DSSYK chord-vacuum spectral measure *is* the
+  interpolation μ(x). On a clean 153-galaxy / 2696-point SPARC RAR with a real error budget, the derived form
+  gives 0.138 dex scatter vs the *fitted* McGaugh's 0.130 (ratio 1.06), simple/standard 0.130/0.134 — a
+  one-parameter DERIVED interpolation matching one-parameter FITTED ones to within 6%, and the shape is nearly
+  q-independent. Standard MOND *fits* this function; the framework *derives* it. (Caveat: the error budget is
+  ~13% over, so the robust statement is the relative derived-vs-fitted comparison, not an absolute intrinsic
+  scatter.)
 
 ## What stays HONESTLY OPEN
 
@@ -55,6 +63,16 @@ gravitational physics with a genuine sign-derivation and one live bet.
   favourable. **#17** — gas-clean z~3, forecast 12σ — is the arbiter that resolves it.
 - **Two literature calculations** — verify the matter element vs Berkooz/Lin (makes the sign *formally* closed);
   the DSSYK-dictionary coefficient (pins Z). Both defined, neither in-session-derivable.
+- **The interpolation's residual shape deficit** (this session, `reviews/project_manytemp_broadening.py`) — the
+  *single-temperature* DSSYK μ transitions ~1 decade too fast; the real RAR is ~2 decades broad. This shows up
+  two ways at once: ~6% excess scatter **and** a best-fit a₀=0.80 (~30% below the framework's own cH₀/Z=1.12).
+  A de Sitter temperature *spread* (the 2025 Lin/Rahman-Susskind "many temperatures" program) broadens the
+  transition and closes **both** at σ≈0.33 dex (scatter→0.132=McGaugh; a₀→1.13=cH₀/Z), and **preserves the
+  deep-MOND sign** (power-law index p=1 invariant under the spread — the fix costs nothing it needs). But σ is
+  effectively *fitted*: a Tolman static-patch estimate makes σ~0.33 *possible* (near-horizon cutoff) but
+  cutoff-sensitive, not *predicted*. So: a specific, falsifiable refinement (σ_fit~0.33 vs σ_predicted), open
+  until the many-temperatures dS measure is pinned down — the same development that also unsettles the sign's
+  flat-DOS foundation.
 - **Ω_DM's value** — relational (the aether's energy) but fitted.
 
 ## The honest bottom line
