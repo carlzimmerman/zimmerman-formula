@@ -15,13 +15,18 @@ m s⁻², 6% below the observed value — parameter-free. (ii) **Shape:** the de
 horizon degree-of-freedom freezing reproduces the SPARC radial acceleration relation (RAR) to ≈6% in scatter
 with no shape parameter. (iii) **Evolution:** because the cosmic horizon grows, a₀ should *rise* toward higher
 redshift. Using the first multi-point **direct** measurement of a₀(z) — MUSE-DARK III, 79 star-forming galaxies
-over 0.33 < z < 1.44 — we find a₀ increases at ≈16σ (a₀(z) = 1.0 + 1.59z ×10⁻¹⁰, a₁ = +1.59 ± 0.10). This
-**excludes a constant a₀** (standard MOND's central assumption) and matches the *sign* of the horizon
-prediction. Two tensions are reported in full: the measured rate is ≈30% steeper than the simplest a₀ ∝ E(z)
-law, and a single z = 3.25 disk (the "Big Wheel") sits below *both* extrapolations, so the high-redshift
-behaviour is not yet pinned. We conclude that the MOND scale is cosmological and evolving — a result that
-favours an emergent-gravity origin over a fundamental constant — while the exact a₀(z) law and the microscopic
-derivation remain open. The decisive future test is a clean, gas-traced a₀ measurement at z ≈ 2–3.
+over 0.33 < z < 1.44 — we find a₀ increases at ≈16σ within that analysis (a₀(z) = 1.0 + 1.59z ×10⁻¹⁰, a₁ = +1.59
+± 0.10). Taken at face value this **disfavours a constant a₀** and matches the *sign* of the horizon prediction.
+**We stress that the result is discriminating but not yet established:** it stands in direct tension with the
+prior high-redshift MOND literature, which has read baryon-dominated high-z disks as consistent with a *constant*
+a₀ (Milgrom 2017) and which, in Tully–Fisher evolution tests, has tended to *exclude* the a₀ ∝ cH(z) coupling in
+favour of a constant (√Λ-tracking) scale. The central physical question is therefore which cosmological quantity
+a₀ tracks — the evolving expansion rate H(z) (rising) or the dark-energy density √Λ (≈constant) — and the two
+readings of the present data conflict. Two further tensions are reported in full: the MUSE rate is ≈30% steeper
+than the simplest a₀ ∝ E(z) law, and a single z = 3.25 disk (the "Big Wheel") sits below *both* extrapolations.
+We conclude, cautiously, that the evidence now favours an *evolving* over a *fundamental-constant* a₀, while the
+*direction* of evolution, the exact law, and the microscopic derivation all remain open. The decisive future
+test is a clean, gas-traced a₀ measurement at z ≈ 2–3 with the inner-radius selection effect controlled.
 
 ---
 
@@ -41,7 +46,8 @@ coincidence, the acceleration scale of bound, sub-kpc systems is fixed by the si
 a statement most naturally realized in **emergent-gravity** programs, where the gravitational field equations
 arise thermodynamically from the entropy of causal horizons (Jacobson 1995; Padmanabhan 2010; Verlinde 2011,
 2017). In Verlinde's 2017 construction the de Sitter horizon's volume-law entanglement entropy supplies an
-extra elastic response below exactly a₀ ~ cH₀, reproducing MOND phenomenology.
+extra elastic response below exactly a₀ ~ cH₀, reproducing MOND phenomenology (a specific mechanism since
+contested — §5 — which we cite for motivation only and do not rely on).
 
 If a₀ is a horizon surface gravity, it cannot be a constant of Nature: the horizon evolves, so **a₀ must evolve
 with redshift.** This is the sharp, falsifiable departure from standard MOND, in which a₀ is a universal
@@ -53,8 +59,9 @@ normalization and shape.
 
 We are explicit about scope. We make **no** claim to a theory of everything, to the Standard Model, or to a
 microscopic completion; earlier numerological versions of those claims are abandoned. The defensible result
-here is narrow and empirical — *a₀ evolves, and it rises* — together with the phenomenological interpretation
-that it does so because it tracks the cosmic horizon.
+here is narrow and empirical — *the data now favour an a₀ that **evolves** rather than a universal constant* —
+together with the phenomenological interpretation that it does so because it tracks the cosmic horizon. Whether
+it tracks H(z) (rising) or √Λ (≈constant) is the open question this paper sharpens but does not close.
 
 ## 2. The horizon hypothesis
 
@@ -70,17 +77,24 @@ becomes
 
 >  a₀ = (c/2)√(G·3H²/8πG) = cH/Z,  Z ≡ 2√(8π/3) = 5.7888…  (2)
 
-so Z is **not a free number** but the Friedmann conversion between density and expansion rate. This is the
-emergent-gravity *apparent* (Hubble) horizon reading: a₀ tracks the instantaneous expansion rate, and since H(z)
+so Z is **not a free parameter** but the Friedmann conversion between density and expansion rate. We are careful
+about its status: Z is **not derived from below** in any emergent-gravity framework. Holographic equipartition
+(Padmanabhan 2010) reproduces the Friedmann 8π/3 only by fixing its horizon degree-of-freedom prefactor to the
+Bekenstein–Hawking value — matching general relativity rather than predicting the number. The honest statement
+is that a₀ = cH/Z places the MOND scale at the cosmic-horizon surface gravity *up to an order-unity factor that
+emergent gravity also cannot independently fix*; we adopt the Friedmann value Z = 2√(8π/3) = 5.789 (close to but
+distinct from Milgrom's a₀ ≈ cH₀/2π, i.e. Z = 2π = 6.28). This is the emergent-gravity *apparent* (Hubble) horizon reading: a₀ tracks the instantaneous expansion rate, and since H(z)
 = H₀E(z) with E(z) = √(Ω_m(1+z)³ + Ω_Λ) increases with z, the hypothesis predicts
 
 >  **a₀(z) = cH₀E(z)/Z  →  a₀ rises with redshift.**  (3)
 
 A second reading uses the **dark-energy density** ρ_Λ (the de Sitter *event* horizon), giving a₀ = cH_Λ/Z with
 H_Λ = H₀√Ω_Λ, which is constant for a cosmological constant and mildly declining for the evolving dark energy
-favoured by DESI (2024, 2025). We tested this branch as well; §4.3 shows the data exclude it. The two readings
-differ by √Ω_Λ = 0.83 in normalization and in the *sign* of the predicted evolution, so the data discriminate
-between them cleanly.
+favoured by DESI (2024, 2025). This √Λ-tracking branch is the one the prior MOND literature has tended to favour
+(Milgrom 2017). The two readings differ by √Ω_Λ = 0.83 in normalization and, crucially, in the *sign* of the
+predicted evolution — so a robust a₀(z) measurement discriminates between them. §4.3 shows the new MUSE data
+favour the rising (H(z)) branch while the prior high-z literature favours the constant (√Λ) branch; we report
+that conflict rather than resolve it.
 
 ## 3. Data and methods
 
@@ -180,9 +194,16 @@ Normalizing to a₀(0) and comparing the three hypotheses at z = 1:
 | Event horizon, a₀ ∝ √ρ_DE (DESI) | 0.99 (≈flat) | 2.6 | **excluded** (predicts flat/declining) |
 | Apparent horizon, a₀ ∝ E(z) | 1.79 | 2.6 | right **sign**, ≈31% too shallow |
 
-The data **exclude a constant acceleration scale** and exclude the declining (event-horizon/dark-energy) branch.
-They confirm the *direction* predicted by the apparent (Hubble) horizon: a₀ rises with redshift. This is the
-first observational evidence that the MOND scale is not a universal constant.
+Within the MUSE-DARK III analysis the data **exclude a constant acceleration scale** at ≈16σ and exclude the
+declining (event-horizon/dark-energy) branch, favouring the *direction* predicted by the apparent (Hubble)
+horizon: a₀ rises with redshift. **This must be weighed against the prior literature, which points the other
+way** (§5): Milgrom (2017) reads the z ≈ 1–2.4 baryon-dominated disks of Genzel et al. as consistent with a
+*constant* a₀, and earlier Tully–Fisher evolution analyses have *excluded* the a₀ ∝ cH(z) coupling within their
+uncertainties. The disagreement is not yet resolvable from published data and most plausibly hinges on whether
+the intermediate-z RAR fit (within a DC14 halo model) cleanly isolates the deep-MOND regime or is biased by the
+high-acceleration, baryon-dominated inner radii that dominate high-z kinematics. We therefore record this as the
+first *direct multi-point* indication that a₀ is not constant — a discriminating but contested result — not as an
+established fact.
 
 ### 4.4 The rate is not yet pinned (reported in full)
 
@@ -232,11 +253,31 @@ normalization is 6–22% from the central observed value depending on branch; an
 best-fit scale is ≈30% low. None of these individually overturns the central result (a₀ rises), but each must be
 controlled before the rate law can be claimed.
 
-**Relation to other work.** An evolving a₀ is consistent with the long-standing a₀ ~ cH₀ coincidence (Milgrom),
-with emergent-gravity expectations (Verlinde 2017), and with reports of lower dark-matter fractions and offset
-Tully–Fisher zero-points in high-z disks (Genzel et al. 2017; Nestor Shachar et al. 2023). It is in tension with
-analyses that treat a₀ as fixed when modelling high-z kinematics, and it is distinct from ΛCDM, which predicts no
-universal acceleration scale at all.
+**Direct confrontation with the prior high-z MOND literature (the central caveat).** Honesty requires placing
+this result against the work that points the other way. (i) **Milgrom (2017)** examined the same class of high-z
+rotation-dominated disks and argued they are consistent with a *constant* a₀: because such systems are
+baryon-dominated and sit at accelerations of several a₀, they probe the *Newtonian* part of the RAR and do not by
+themselves require an evolving scale. Our MUSE-based claim survives this objection *only if* the MUSE RAR fit
+genuinely reaches the sub-a₀ regime in the outer disk (it nominally does, via extended Hα/[Oiii] curves down to
+M\* ≈ 10^8.8) rather than inferring a₀ from the high-acceleration interior; verifying this is the single most
+important robustness check outstanding. (ii) **Tully–Fisher evolution tests** have historically *excluded* the a₀
+∝ cH(z) coupling within uncertainties and mildly favoured a constant (√Λ-tracking) a₀ — i.e. the prior consensus
+is closer to our *event-horizon* branch than our *apparent-horizon* one. (iii) **Milgrom himself** has leaned
+toward a₀ ∝ √Λ (constant) over a₀ ∝ H(z) precisely to avoid evolution. The new element here is that MUSE-DARK
+III is the first dataset to *measure* the transition scale multi-point rather than test a fixed value; if its
+rising signal is real it overturns this prior reading, and if it is a halo-model/selection artefact it does not.
+We deliberately do not adjudicate.
+
+**On the emergent-gravity pedigree.** We invoke emergent gravity as motivation, not as a derivation we lean on.
+Verlinde's (2017) specific MOND construction is contested at the level of its own internal consistency
+(Dai & Stojkovic 2017 argue the elastic calculation recovers Newtonian, not MONDian, gravity) and fails on dwarf
+spheroidals, cluster cores, and the detailed SPARC RAR shape (Lelli et al. 2017). Our use of the horizon picture
+is limited to the dimensional/thermodynamic statement a₀ ~ (horizon surface gravity), which predates and does not
+require Verlinde's particular elasticity mechanism.
+
+**Relation to the broader data.** An evolving a₀ is qualitatively consistent with reports of lower dark-matter
+fractions and offset Tully–Fisher zero-points in high-z disks (Genzel et al. 2017; Nestor Shachar et al. 2023),
+and is distinct from ΛCDM, which predicts no universal acceleration scale at all.
 
 ## 6. Conclusions
 
@@ -244,17 +285,22 @@ universal acceleration scale at all.
    parameter-free.
 2. The RAR transition *shape* is reproduced to 6% by horizon degree-of-freedom freezing with no shape parameter
    (with a ≈30%-low fitted scale as a stated imperfection).
-3. The first direct multi-point measurement of a₀(z) shows the scale **rises with redshift at ≈16σ**, excluding
-   both a constant a₀ and a dark-energy-tracking (declining) a₀, and confirming the *direction* of the
-   cosmic-horizon prediction.
-4. The exact a₀(z) **rate** is unresolved: MUSE rises ≈30% faster than ∝E(z), and a z = 3.25 disk sits below both
-   extrapolations, indicating a turnover or method-dependent systematics by z ≈ 3.
+3. The first direct multi-point measurement of a₀(z) (MUSE-DARK III) shows the scale **rises with redshift at
+   ≈16σ within that analysis**, favouring an evolving over a constant a₀. This is **discriminating but contested**:
+   it conflicts with the prior high-z MOND literature (Milgrom 2017; Tully–Fisher tests), which favours a constant
+   (√Λ-tracking) scale. Resolving the conflict requires confirming that the MUSE fit reaches the deep-MOND regime
+   and is not biased by baryon-dominated inner radii.
+4. The exact a₀(z) **rate** is likewise unresolved: MUSE rises ≈30% faster than ∝E(z), and a z = 3.25 disk sits
+   below both extrapolations, indicating a turnover or method-dependent systematics by z ≈ 3.
 5. The decisive future measurement is a clean, gas-traced a₀ at z ≈ 2–3; a model-independent re-extraction of the
    MUSE slope is the immediate next step.
 
-The headline is modest but, we believe, real: **the acceleration scale of galaxies is cosmological and not
-constant.** If it survives replication, that fact alone selects emergent, horizon-based gravity over both
-standard (constant-a₀) MOND and dark-matter models with no intrinsic acceleration scale.
+The headline is modest and deliberately hedged: **the first direct multi-point data favour a MOND scale that is
+cosmological and evolving rather than a fundamental constant — but this conflicts with the prior high-z reading
+and is not yet established.** If it survives replication and the systematic checks above, that fact alone would
+select emergent, horizon-based gravity over both standard (constant-a₀) MOND and dark-matter models with no
+intrinsic acceleration scale. That "if" is the whole game, and we have tried to state it honestly rather than
+sell the result.
 
 ## References (representative)
 
