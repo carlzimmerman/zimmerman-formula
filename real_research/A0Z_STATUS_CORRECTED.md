@@ -1,3 +1,13 @@
+> **⚠️ SUPERSEDED IN PART (June 2026) by `reviews/project_a0z_reconciled.py`.** A primary-literature sweep with
+> corrected attributions overturns two claims below: (1) **"constant-a₀ MOND is excluded" is FALSE** — McGaugh+
+> 2024 (arXiv:2406.17930) and Milgrom 2017 (arXiv:1703.06110) favor constant a₀, the mainstream position; (2)
+> **"Mayer confirms the framework" is WRONG** — Mayer+ **2022** (arXiv:2206.04333) is a *ΛCDM simulation* whose
+> apparent-a₀ rise *favors ΛCDM and is used to reject constant-a₀ MOND*; the framework's rise is degenerate with
+> ΛCDM, not confirmed. The strongest measured rise (MUSE-DARK III 2026, arXiv:2604.22613) is real (~19σ) but runs
+> *faster than cH(z)*, is read as ΛCDM by its authors, and has a +0.45 dex stellar-mass escape hatch. Honest net:
+> a₀∝cH(z) is **consistent-with-but-not-confirmed and in genuine tension** with the mainstream high-z data — not
+> killed, but contested and leaning unfavorable. Read `project_a0z_reconciled.py` for the corrected status.
+
 # a₀(z) Status — Corrected After Further Research (Mayer 2023 sims; MUSE multi-halo robustness)
 
 **C. Zimmerman, June 2026.** *An honest correction. Further research undercut the "a₀ is flat / MUSE's rise is a
