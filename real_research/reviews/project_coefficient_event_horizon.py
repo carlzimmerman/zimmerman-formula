@@ -51,10 +51,10 @@ def main():
     HL = H0*np.sqrt(OL)
     print("="*92); print("(1) THE SAME Z FOR BOTH HORIZONS -- it follows from a0=(c/2)sqrt(G rho), not a free fit"); print("="*92)
     print(f"  {'reading':28}{'density':14}{'a0 = (c/2)sqrt(G rho)':>24}{'= c*rate/Z, Z=':>16}")
-    for lab, rho, rate in [("apparent (~H0)", "rho_crit", rho_crit), ("event (~H_L)", "rho_Lambda", rho_L)]:
-        rt = H0 if lab.startswith("apparent") else HL
-        a0 = (c/2)*np.sqrt(G*rho)
-        print(f"  {lab:28}{rho:14}{a0/1e-10:>21.3f}e-10{c*rt/a0:>16.3f}")
+    for lab, rhoname, rhoval, rt in [("apparent (~H0)", "rho_crit", rho_crit, H0),
+                                     ("event (~H_L)", "rho_Lambda", rho_L, HL)]:
+        a0 = (c/2)*np.sqrt(G*rhoval)
+        print(f"  {lab:28}{rhoname:14}{a0/1e-10:>21.3f}e-10{c*rt/a0:>16.3f}")
     a0_gm = (c/2)*np.sqrt(G*np.sqrt(rho_crit*rho_L))
     print(f"  {'geometric mean':28}{'sqrt(crit*L)':14}{a0_gm/1e-10:>21.3f}e-10{'(Z*'+f'{np.sqrt(OL)**0.5:.2f}'+' eff)':>16}")
     print(f"  observed: a0 = {a0_obs/1e-10:.2f} +- 0.26 e-10\n")
