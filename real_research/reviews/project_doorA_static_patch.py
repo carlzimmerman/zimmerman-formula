@@ -77,8 +77,9 @@ def main():
     for H0km in (67.4, 70.0, 73.0):
         coeff = c*Hofkm(H0km)/a0_obs
         print(f"  {'OBSERVED cH0/a0 at H0='+str(H0km):<34}{coeff:>20.3f}")
-    print(f"  => observed coefficient 5.46-5.91 sits ON Z={Z:.2f}, slightly BELOW 2pi={2*np.pi:.2f}: data mildly favor Z.")
-    print(f"     (a0 ~20% uncertain, so 'favor' is soft. Z and 2pi agree to {100*abs(Z-2*np.pi)/(2*np.pi):.0f}%.)\n")
+    print(f"  => observed 5.46-5.91 brackets Z={Z:.2f}, 6.0, and 2pi={2*np.pi:.2f}. With a0's ~20% systematic ALL")
+    print(f"     three are within ~1 sigma: current data do NOT discriminate (see coefficient_vs_hubble_tension.py).")
+    print(f"     The ~8% Hubble tension alone spans the {100*abs(Z-2*np.pi)/(2*np.pi):.0f}% Z-2pi gap; need a0 to ~2.4% AND H0 resolved.\n")
 
     print("="*92); print("VERDICT"); print("="*92)
     print("""  FORCED (the derivation genuinely closes): a0 proportional to c sqrt(Lambda) = cH -- the de Sitter horizon
@@ -86,9 +87,10 @@ def main():
   Verlinde's entropic displacement. This is a real horizon origin, not a dimensional-analysis assembly.
   NOT UNIQUELY FORCED (where it stops short): the exact coefficient. Z=2sqrt(8pi/3)=5.79 is the Friedmann-
   free-fall value -- 8pi from the Einstein coupling, 3 from Friedmann, 1/2 from the surface-gravity convention --
-  sitting in a tight cluster with the thermal 2pi=6.28. The data (cH0/a0=5.5-5.9) land on Z and mildly prefer it
-  over 2pi, but a0's error bar keeps this soft. Honest status: the scale is derived; Z is the data-preferred,
-  well-motivated O(1), not an airtight first-principles constant.""")
+  sitting in a tight cluster with the thermal 2pi=6.28. The data (cH0/a0=5.5-5.9) bracket Z, 6, and 2pi, but with
+  a0's ~20% systematic all three are within ~1 sigma -- current data do NOT discriminate, and the ~8% Hubble
+  tension alone spans the gap. Honest status: the scale is derived; Z is a well-motivated O(1) consistent with
+  (not singled out by) the data, not an airtight first-principles constant.""")
     print("#"*92)
 
 
