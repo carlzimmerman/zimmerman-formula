@@ -158,7 +158,11 @@ def main():
   And sigma~0.3-0.4 dex is the ORDER the 2025 'many temperatures of de Sitter' program (Lin-Susskind,
   Rahman-Susskind) suggests -- so the broadening is theory-motivated, not a tuned patch.
   HONEST CAVEATS: (1) sigma is FITTED here; a real win needs it DERIVED from a specific many-temperatures
-  distribution (open, 2025). (2) The scatter ALONE prefers a larger sigma (~0.5-0.6 -> a0~1.8-2.5, too high);
+  distribution (open, 2025). A back-of-envelope Tolman estimate (T_local=T_dS/sqrt(1-r^2/L^2), proper-volume
+  weighted) CAN produce sigma~0.33 -- but only for a near-horizon cutoff u_max=r/L~0.999 (sigma is just ~0.22
+  at u_max=0.99), so the value is set by the near-horizon divergence and is cutoff-SENSITIVE: the geometry
+  makes sigma~0.3-0.5 possible, not predicted. sigma stays effectively fitted. (2) The scatter ALONE prefers a
+  larger sigma (~0.5-0.6 -> a0~1.8-2.5, too high);
   it is the a0=1.12 constraint that selects sigma~0.33 -- a consistency WINDOW, not a joint optimum. (3) sigma
   is a new parameter; the falsifiable content is sigma_fit (~0.33 dex) vs sigma_predicted (awaiting the dS
   temperature distribution). COHERENCE: the broadening preserves the deep-MOND power-law index p=1 -- it does
