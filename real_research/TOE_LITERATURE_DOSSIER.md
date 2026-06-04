@@ -20,6 +20,11 @@ result.*
   MOND to spacetime thermodynamics.
 - *Critique:* Gao, *Is Gravity an Entropic Force?* (arXiv:1002.2668) — ⚠️ argues entropic-gravity derivations
   are not watertight; the thermodynamic structure may be compatible with gravity being fundamental.
+- **The program is LIVE (2025–26):** *Relativistic MOND from Modified Entropic Gravity* (arXiv:2511.05632);
+  *Emergent Dark Gravity from (Non)Holographic Screens* (arXiv:1806.10195, 1/r dark force + Tully–Fisher);
+  *Generalized mass-to-horizon entropy: structure growth & GWs* (arXiv:2510.00673) — ✅ independent groups are
+  actively building exactly this (relativistic MOND + dark energy from generalized horizon entropy). The
+  emergent-horizon synthesis is a real, active research direction; the framework's DSSYK engine slots into it.
 
 ## B. The a₀–cosmology connection (Pillar 6, the link)
 
@@ -67,8 +72,11 @@ result.*
 ## F. DESI — the evolving dark energy result
 
 - **DESI DR2 2025** BAO + CMB + SNe — ⚠️ evolving DE (w₀ > −1, wₐ < 0) preferred over Λ at **2.8–4.2σ**
-  (SNe-dependent: Pantheon+, Union3, DES-Y5). Berkeley Lab / arXiv:2503.xxxxx + many follow-ups (2508.10514,
-  2512.07281). **Not settled; could revert to Λ.** Turns a₀(z) into a prediction (`project_desi_a0z_crossprediction.py`).
+  (SNe-dependent: Pantheon+, Union3, DES-Y5). Berkeley Lab + many follow-ups (2508.10514, 2512.07281).
+  **Crucial nuance:** the *pivot* EOS w_p ≈ −0.9 ± 0.1 at z_p ≈ 0.34 is **within 1σ of Λ** — the significance is
+  in the *evolution* (wₐ), not a large deviation at any single z, and current data can't distinguish CPL from
+  other forms (arXiv:2602.05368, 2506.18230). **Not settled; could revert to Λ.** Turns a₀(z) into a prediction
+  (`project_desi_a0z_crossprediction.py`), with that uncertainty inherited.
 - DESI 2024 full-shape: Ωm ≈ 0.296, σ8 ≈ 0.84; Σmν < 0.071 eV — ⚠️ tight; constrains modified-gravity growth.
 
 ## G. Local MOND tests (Layer 3 — is MOND real)
