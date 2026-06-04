@@ -114,6 +114,19 @@ result.*
 - *In-repo:* `project_cluster_erass1_a0z.py` — eRASS1 R500 masses reproduce the factor-2 but cannot test a₀(z)
   (overdensity kinematics); needs resolved profiles.
 
+## K. JWST early structure formation (a MOND prediction, apparently confirmed — contested)
+
+- **McGaugh et al. 2024**, *Accelerated Structure Formation* (arXiv:2406.17930, ApJ ad834d) — ✅🔭 the 6<z<10
+  excess of ~10¹⁰ M⊙ galaxies, and giant early disks (incl. the *Big Wheel* z=3.25), were **predicted by MOND
+  decades in advance** (Sanders 1998; McGaugh 1999; Sanders 2008): MOND drives *accelerated* early structure.
+  A rare case where the framework's gravity makes early massive structure *natural* rather than "impossible."
+- **"Resolution of the Massive Early JWST Galaxy Tension"** (arXiv:2511.13708, 2025) — ⚔️ argues the excess is
+  largely a *systematics* artifact (mass/selection), resolvable within ΛCDM. So the "crisis" is contested.
+- *Two-edged for this framework:* the **same** high-z disks that disfavor the steep a₀∝E(z) *rate* (§H) also
+  **support MOND's accelerated structure formation** by merely existing. And note the internal tension: Newtonian
+  MOND predicts *fast* early structure (JWST ✅), but the relativistic completion AeST forms structure *too late*
+  (§I ⚠️) — the relativistic theory does not yet reproduce MOND's own structure-formation success.
+
 ---
 
 ## One-screen status of the program
@@ -129,6 +142,7 @@ result.*
 | MOND is real (local) | EFE 8–11σ | ✅ EFE strong; ⚔️ wide binaries contested |
 | a₀ rises ∝ E(z) | MUSE-DARK III | ⚔️ disfavored by high-z disks; mild rise/decline alive |
 | Cosmological completion | AeST | ⚠️ CMB ok via dust mode; structure/third-peak open |
+| Early structure (JWST) | McGaugh 2024 | ✅ MOND predicted it decades early; ⚔️ ΛCDM-systematics contest |
 
 **Bottom line:** every row is published physics; the framework's distinctive contribution is one row (the DSSYK
 sign + derived interpolation); the unification across rows is the open conjecture; and the program is now

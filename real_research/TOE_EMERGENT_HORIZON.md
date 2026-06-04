@@ -162,6 +162,12 @@ is unproven; DESI evolving DE is 2.8–4.2σ), but it is sharply falsifiable.**
    (`reviews/project_manytemp_broadening.py`).
 5. **The external field effect** — the framework's strongest *local* signature (~4.8σ in SPARC); a clean MOND
    prediction with no ΛCDM analogue. *Not independently re-verified this session — the top open to-do.*
+6. **Accelerated early structure (a retrodiction now testable)** — MOND predicted *fast* early structure
+   formation decades ago (Sanders 1998, McGaugh 1999); JWST's "impossible" early massive galaxies — including
+   the Big Wheel itself — match it (McGaugh 2024, arXiv:2406.17930). *Two-edged and honest:* the same high-z
+   disks that disfavor the steep a₀-rate **support** MOND by existing; but ΛCDM-systematics papers contest the
+   excess (arXiv:2511.13708), and the relativistic completion (AeST) forms structure *too late* — so MOND's own
+   structure-formation success is not yet reproduced by its covariant theory.
 
 ## 5. Open problems — what would actually complete it
 
