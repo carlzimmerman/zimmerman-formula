@@ -92,6 +92,49 @@ The honest reading:
 2. **Settling de Sitter = spectral centre** (the DSSYK center-vs-edge question) would turn the conditional Z =
    2√(8π/3) (q\* ≈ 0.926) into a derivation — or break it.
 
+## Part II — the geometric-mean *unification*, a₀ as curvature, and the two-horizon question
+
+Pushing further surfaces a coherent structure (numbers: `reviews/project_geometric_unification.py`).
+
+**The geometric-mean theme runs at two levels, not one.** Not only is the *scale* a geometric mean (r_M =
+(8π/3)^{1/4}√(r_s R_H)); the deep-MOND *law* is too:
+
+>  **g_obs = √(g_N · a₀)**  (deep-MOND)  —  the observed gravity is the **geometric mean of the local (baryonic)
+>  acceleration g_N and the cosmic acceleration a₀**.
+
+So MOND is a UV/IR geometric-mean structure in *both* its scale and its dynamics. Note the law g = √(g_N a₀) is
+**coefficient-clean** — Z enters *only* through a₀ = cH/Z, never the deep-MOND relation itself.
+
+**a₀ is the cosmological curvature.** Since a₀/c² = 1/(Z R_H) is an inverse length — a curvature — the
+event-horizon reading is literally
+
+>  **a₀ = c²√(Λ/32π)   ⟺   Λ = 32π (a₀/c²)²**,
+
+i.e. the MOND acceleration is the de Sitter curvature scale √Λ expressed as an acceleration. The galactic-dynamics
+scale and the cosmological constant are **one geometric quantity** (this is Milgrom's a₀ ~ c²√Λ, made exact with
+the framework's coefficient).
+
+**Where Z² = 32π/3 legitimately lives.** The a₀–Λ conversion factor is 32π = 3Z², with Z² = 32π/3. So the
+project's old number **Z² = 32π/3 — once misused to "derive the Standard Model" (numerology) — has a real home**:
+it is the geometric conversion between the cosmological constant and the MOND acceleration, Λ = 3Z²(a₀/c²)².
+Reclaimed from numerology to its honest geometric role.
+
+**The sharpened two-horizon question (the payoff).** There are two horizons, giving two a₀'s that *diverge into
+the past* and *converge in the de Sitter future*:
+
+| | horizon | a₀ | evolution | status |
+|---|---|---|---|---|
+| **event** (global / de Sitter / DSSYK) | c/H_Λ | c²√(Λ/32π) = 0.93 | constant | the **cleanest identity** |
+| **apparent** (local / Hubble / Padmanabhan) | c/H(z) | cH(z)/Z, today 1.12 | rising | what **MUSE favors** |
+
+The high-z a₀(z) measurement sits exactly where they diverge, so it *discriminates* them — and MUSE picks the
+**apparent (local)** horizon. So geometry offers the more elegant identity (a₀ = the cosmological curvature,
+constant), but the **data select the local horizon** (a₀ tracks the evolving H, not the fixed Λ). The consequence
+is sharp: **the framework should ground in *local* apparent-horizon emergent gravity (Padmanabhan/Jacobson), and
+the DSSYK *event*-horizon derivation — though microscopically more rigorous — is tied to the constant/Λ branch the
+data argue against.** Geometry sharpens the question; only the a₀(z) data answer it. This is the same conclusion
+the empirical work reached, now forced by the geometric structure itself.
+
 ## Bottom line
 
 The deep geometry we can *claim*, cleanly, is the **self-dual bridge**: a₀ is a cosmic-horizon surface gravity,
