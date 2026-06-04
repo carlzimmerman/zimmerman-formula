@@ -10,6 +10,15 @@ parameters. Numbers: `reviews/project_parameter_space.py`.*
 Two parameters: **Z_eff** (the z=0 coefficient) and **α** (the evolution exponent). The interpolation *shape* is
 derived (the DSSYK chord measure, ~q-independent), so it is **not** a free parameter.
 
+> **⚠ UPDATE — the box is really ~1D: α is *derived*, not free** (`reviews/project_evolution_derived.py`).
+> If a₀ tracks the apparent-horizon surface gravity, the proper *dynamical* (Cai-Cao-Hu/Hayward) surface gravity
+> κ ~ H(1 + Ḣ/2H²) fixes the evolution to a single curve: a₀(z) ~ H(z)(1 − ¾Ω_m(1+z)³/E²), **nearly flat for
+> z < 1.5** (a₀(1)/a₀(0) = 0.96), rising only at high z (a₀(3.25) ~ 2.1, consistent with the Big Wheel). The bare
+> "a₀ ∝ H" reading gives α = 1; the dynamical reading gives α_eff ~ 0 at low z. **Both give α ≤ 1**, so the
+> reading-independent claim is **α ≤ 1** — which *excludes MUSE's steep α ~ 1.3–1.6*. So the evolution is a
+> derived curve (not a free parameter): the framework sides with the high-z disks + Milgrom's constant reading,
+> and MUSE's steep rate is the outlier it predicts against. The section below predates this and treats α as free.
+
 ## Parameter 1 — Z_eff (normalization = 2 × 3D-density factor)
 
 | constraint | range |
