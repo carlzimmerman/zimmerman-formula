@@ -95,10 +95,15 @@ bet that remains gas-limited and undecided.** The galaxy data lean constant but 
 term is third-order in CMB perturbations (𝒴̄=0), so the linear CMB is structurally a₀-blind. No CMB
 shortcut.) So the distinctive bet is neither confirmed nor killed by existing data, and the **decisive test
 is the gas-clean #17 measurement** (the real target list is built, forecast to 12σ). The theory thread runs
-*toward* the framework: the deep-MOND *sign* mechanism is now **derived in the DSSYK dual** (#4c–d), with two
-bounded calculations to finish. So: a genuine surviving result (a₀~cH, the EFE), a real theory advance, and a
-distinctive empirical bet that is honestly **open** — pending one clean observation. Reported straight,
-favorable and unfavorable overclaims *both* corrected (including my own CMB "breakthrough"), the dead
-numerology closed, the Standard Model untouched.
+*toward* the framework: the deep-MOND *sign* mechanism is now **derived in the DSSYK dual** (#4c–e, the
+matter element likely closing it). And under **Smolin's principles (PSR + relationalism + the reality of
+time)** the *rising/relational* a₀ is the **theoretically favored** reading — a₀=cH/Z is Machian (local scale
+from the global horizon), explained by the cosmic state rather than tied to brute Λ; this **reverses #3d**,
+whose "tilt to constant" used a non-relational local-realizability criterion (under Mach, a₀'s non-locality is
+the *feature*). The standing PSR-debt is the still-underived coefficient Z. So: a genuine surviving result
+(a₀~cH, the EFE), a real theory advance, theory leaning *rising* on principled grounds while the gas-limited
+data lean *constant*, and a distinctive empirical bet that is honestly **open** — the gas-clean #17 the
+arbiter. Reported straight, favorable and unfavorable overclaims *both* corrected (including my own CMB
+"breakthrough" and the 3c realization), the dead numerology closed, the Standard Model untouched.
 
 *Companion: `FRAMEWORK_RESEARCH_PROGRAM_20.md` (the program); `reviews/project01..20_*.py` (the work).*
