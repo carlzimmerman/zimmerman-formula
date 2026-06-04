@@ -18,7 +18,7 @@ the surface gravity of the cosmic horizon, evolving as E(z). Nothing here revive
 | 3 | Apparent vs event (theory) | **LEAN (→framework)** | Verified: dQ=TdS on the **apparent** horizon *is* Friedmann (Cai–Kim); the event horizon fails the laws. So "a₀ from horizon thermodynamics" → **rises with z**. Theory now leans to the framework. |
 | 4 | Complexity sign | **NEGATIVE** | Where computable (CV/DSSYK), the route gives **Newton** (δV linear in mass). The complexity-*rate* door is open but a long shot. |
 | 5 | Modified-inertia action | **WIN (no-go)** | Verified: local modified inertia → **Ostrogradski ghost**; only Milgrom's non-local action escapes (acausal). ⇒ implement a₀ as **modified gravity (AeST)**. |
-| 6 | Second-order CMB | **TENSION (gas-independent)** | Rising a₀ puts recombination in **deep MOND** (constant a₀ is Newtonian). **6b:** the boost ν~24 would over-drive the acoustic peaks ~5× (Ω_b·ν~1.2 vs Ω_dm~0.27) and MOND-boosted baryons can't mimic CDM — a **gas-independent** test (Ω_b, Ω_dm only) decidable with **existing Planck**. Strongly disfavors rising a₀ **unless** δq⁰⁰=0 is a *structural* identity under a₀(t) — the one named rescue. Heuristic; needs a 2nd-order AeST Boltzmann calc to firm up. |
+| 6 | Second-order CMB | **NO constraint (6b retracted)** | I claimed (6b) a gas-independent CMB test disfavoring rising a₀, then **retracted it (6c): it was wrong.** AeST's MOND invariant 𝒴 is the *spatial gradient* of φ, so 𝒴̄=0 cosmologically and 𝒥(𝒴)=𝒴^{3/2} is **third-order** in CMB perturbations — negligible regardless of a₀. a₀ lives in the galaxy sector (𝒥); the linear CMB is the 𝒦(𝒬) sector and is **structurally a₀-blind.** No gas-independent CMB shortcut. (Self-corrected.) |
 | 7 | MOND collapse / JWST | **WIN (derivation)** | Closed form t_MOND = √(π/2)·r_max/(GMa₀)^¼, **verified 3 ways**; rising a₀ forms galaxies **earliest** (∝E(z)^¼) — toward the JWST tension. |
 | 8 | a₀-cosmography | **LEAN** | H₀ = Z·a₀/c ~ 71±10 (local camp, not decisive). The a₀(z) **slope** = (3/2)Ω_m → independent q(z). |
 | 9 | Dark-sector budget | **NEGATIVE (honest)** | Dark matter = **two roles of one scalar**: galaxy phantom (explained, no halo) + 𝒦(𝒬) dust (Ω_DM only *relocated*, still fitted). Wins at galaxy scale, not the cosmic census. |
@@ -90,18 +90,15 @@ systematic (#10d: αCO, unmeasured atomic gas, V_flat) gives a₀ ~ 0.5–2.5×1
 framework-vs-constant gap itself* — so the honest verdict is **inconclusive with a central preference for
 constant**, not a clean disfavoring. (That softening is the same stress-test discipline applied to a
 framework-*unfavorable* result.) Net: **one robust claim** (a₀ is cosmic-horizon-scale) and **one falsifiable
-bet now under pressure from two independent directions.** The galaxy data lean constant but are gas-limited
-(#10b–d); and — the **gas-independent** result (#6b) — rising a₀ forces the CMB acoustic perturbations into
-deep MOND at recombination, an ~5× over-driving that would sink it **unless AeST's δq⁰⁰=0 cancellation is a
-structural identity under a₀(t).** That escape is *genuinely plausible* — making the MOND scalar invisible to
-the linear CMB is precisely what AeST was built to do — so this is a **sharp gas-independent test with an
-uncertain outcome**, not a kill: if the cancellation is structural, rising a₀ is CMB-safe and the only
-residual is the small 2nd-order non-Gaussianity (#6); if it is regime-dependent, rising a₀ is in serious
-trouble. Either way it is **decidable now with existing Planck** (no telescope time, no gas census) via a
-2nd-order AeST analysis — the highest-leverage open calculation. The theory thread runs *toward* the
-framework: the deep-MOND *sign* mechanism is now derived in the DSSYK dual (#4c–d). So: a genuine surviving
-result, a real theory advance, and a distinctive empirical bet whose fate now hangs on **two named, decidable
-calculations** (δq⁰⁰=0 structural under a₀(t); the gas-clean #17 measurement) — reported straight, the dead
-numerology still closed, the Standard Model still untouched.
+bet that remains gas-limited and undecided.** The galaxy data lean constant but are gas-limited (#10b–d).
+(I briefly thought the CMB gave a gas-independent verdict — #6b — but **retracted it** (#6c): AeST's MOND
+term is third-order in CMB perturbations (𝒴̄=0), so the linear CMB is structurally a₀-blind. No CMB
+shortcut.) So the distinctive bet is neither confirmed nor killed by existing data, and the **decisive test
+is the gas-clean #17 measurement** (the real target list is built, forecast to 12σ). The theory thread runs
+*toward* the framework: the deep-MOND *sign* mechanism is now **derived in the DSSYK dual** (#4c–d), with two
+bounded calculations to finish. So: a genuine surviving result (a₀~cH, the EFE), a real theory advance, and a
+distinctive empirical bet that is honestly **open** — pending one clean observation. Reported straight,
+favorable and unfavorable overclaims *both* corrected (including my own CMB "breakthrough"), the dead
+numerology closed, the Standard Model untouched.
 
 *Companion: `FRAMEWORK_RESEARCH_PROGRAM_20.md` (the program); `reviews/project01..20_*.py` (the work).*
