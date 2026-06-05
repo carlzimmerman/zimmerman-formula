@@ -10,10 +10,17 @@
 The framework's a₀ = c²√(Λ/32π) is *exactly* tied to the vacuum-energy scale E_Λ ≡ ρ_Λ^{1/4} = **2.24 meV**:
 
 > **a₀ = c·E_Λ² / (2ℏ·E_Planck)**  — the galactic acceleration is the *square* of the vacuum-energy scale,
-> suppressed by the Planck energy. (Verified: 9.36×10⁻¹¹ m/s², matching c²√(Λ/32π) exactly.)
+> suppressed by the Planck energy. (Verified to equal the **formula** c²√(Λ/32π) = 9.36×10⁻¹¹ m/s² exactly — note
+> this is the Λ-only de Sitter value; the *observed* a₀ ≈ 1.2×10⁻¹⁰ is ~28% higher, the usual epoch/√Ω_Λ gap, so
+> this is a formula-identity, not an empirical match.)
 
 > **E_Λ = √[(2/Z)·E_Planck·E_Hubble]**  — the meV vacuum-energy scale is the **geometric mean** of the Planck
-> (UV) energy and the Hubble (IR) energy, with the framework's coefficient 2/Z.
+> (UV) energy and the Hubble (IR) energy, with the framework's coefficient 2/Z. **Honest caveat (verified,
+> `reviews/project_lambda_value_ckn.py`):** this geometric mean is an algebraic *identity* — it holds iff
+> Z²=32π/3, given only standard ρ_Λ = 3H²c²/8πG and the definition of Z — so it *restates* the a₀↔Λ coincidence
+> in UV/IR language, carrying no new information about the *value* of Λ. The seesaw is exactly the Cohen–Kaplan–
+> Nelson bound *saturated* (4/Z² = 3/8π sits where CKN's free O(1) sits): it inherits CKN's magnitude win
+> (ρ_Λ ~ M_P²H², the right ~10⁻¹²²) **and** CKN's debts (saturation, the IR cutoff = c/H, no additive constant).
 
 This is the holographic / Cohen–Kaplan–Nelson **cosmic seesaw**: the tiny dark-energy scale sits exactly between
 the largest (Planck) and smallest (Hubble) energies in physics — and a₀ is its square over the Planck scale.
