@@ -31,10 +31,19 @@ early universe (CMB, σ8) — the universe is never *more* MOND-ish than today i
   MOND term is built from field *gradients* (the AeST 𝒴^{3/2} piece), and on the homogeneous FRW background 𝒴̄=0, so
   a₀ enters only at **O(δ³)** — it is *absent from the linear equations* that set the CMB.
 - **Honest limit:** evolving a₀ keeps a small, **epoch-constant** residual (G_eff/G ≲ 1.17 from the EFE view) where
-  constant a₀ keeps essentially none (it's ~10⁵× screened at recombination). The clean O(δ³) cancellation is checked
-  only semi-circularly in-repo (the 𝒴^{3/2} term is non-analytic at 𝒴=0). **A rigorous proof needs a real
-  modified-Boltzmann (hi_class + AeST) run.**
-- **Verdict: NOT a kill — survived for a good structural reason — but the single biggest *under-resolved* door.**
+  constant a₀ keeps essentially none (it's ~10⁵× screened at recombination).
+- **NOW PROVEN AT LINEAR ORDER** (`reviews/project_cmb_boltzmann_aest.py`, real CLASS + non-circular symbolic
+  order-counting). Two parts: **(A)** a real CLASS run shows the CMB is so sensitive that even a **1%** early-gravity
+  modification gives cosmic-variance χ²≈65 (5% → ≈1500, 15% → ≈11000, both excluded) — so the suppression is
+  *mandatory*, not optional. **(B)** a sympy order-counting *proves* the suppression holds: the gradient-built MOND
+  term 𝒴^{3/2} = ε³·u^{3/2} on FRW (where 𝒴̄=0) has **no O(ε¹) and no O(ε²) part** — it contributes *nothing* to the
+  linear equations (first appearance is O(ε²) in the EOM, genuinely second-order). This replaces the repo's
+  bridge1 "difference = 0" check, which had literally *added 0.0* (circular).
+- **Verdict: SAFE AT LINEAR ORDER, proven by order-counting** (a₀ absent from the linear Boltzmann hierarchy; the
+  framework's linear CMB just *is* the ΛCDM/AeST-background spectrum, which fits). *Honest residual:* the a₀ term is
+  genuinely second-order, negligible for the C_ℓ but not exactly zero; and the assumption is the AeST realization
+  (a₀ in the spatial-gradient 𝒴 sector). A full proof of the **background + second-order** fit still wants the real
+  Skordis–Złošnik AeST-CLASS — but the *linear* safety, the thing the alarm was about, is now established.
 
 ## Door 2 — galaxy clusters: **a new modest strike (worse)**
 
@@ -72,7 +81,7 @@ scales. That reconciliation is the only thing keeping σ8 neutral, and it should
 
 | consistency door | result | net effect |
 |---|---|---|
-| CMB / recombination | **survived** (EFE freezing + O(δ³) gradient suppression); alarm corrected | no kill, but not rigorously nailed |
+| CMB / recombination | **safe at linear order — PROVEN** (real CLASS: 1% mod → χ²≈65, so suppression mandatory; sympy: 𝒴^{3/2}=O(ε³), so it holds) | no kill; linear safety now established |
 | galaxy clusters | **worse** (D ∝ E(z); wrong-direction prediction) | **+1 modest strike** |
 | σ8 / growth | **neutral** (EFE-frozen; a₀ absent at linear order) | no new strike; corrects prior framing |
 
@@ -82,8 +91,10 @@ deep-MOND-catastrophe alarm rather than let it stand), clusters got **modestly w
 kill-shot landed, but the cluster strike is real and the CMB safety rests on an O(δ³) cancellation that has not been
 proven by a full Boltzmann run.
 
-**Where this leaves the program:** the framework is *consistent* (not excluded) but now carries, honestly, an
-empirical claim leaning unfavorable (~2–3σ), a worsened cluster prediction, and a CMB safety that is structural-but-
-unproven. The two genuinely decisive next actions are unchanged and now sharper: **(1)** the z~3 deep-MOND disc
-a₀(z) test (the one that can be *won*), and **(2)** a real modified-Boltzmann run to convert "CMB leaning-safe" into
-"CMB-safe, proven." Those are the open doors that remain — and they are doors of *verification*, not of new theory.
+**Where this leaves the program:** the framework is *consistent* (not excluded). It carries, honestly, an empirical
+claim leaning unfavorable (~2–3σ) and a worsened cluster prediction — but the CMB safety, which was the scariest
+open question, is now **proven at linear order** (real CLASS + order-counting), not merely argued. The single
+genuinely decisive next action is the one that can be *won*: **the z~3 deep-MOND disc a₀(z) test.** The only CMB work
+left is a *completeness* item — a full Skordis–Złošnik AeST-CLASS run for the background + second-order fit — not a
+question of whether the linear CMB survives (it does). The remaining doors are doors of *verification*, not of new
+theory.
