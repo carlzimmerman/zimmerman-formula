@@ -96,3 +96,33 @@ entanglement) **host/reproduce but do not force**, it closed the one remaining l
 negative, and it **caught and corrected a real mis-attribution** in the freshly-written 32π decomposition (surface
 gravity → free-fall prefactor; κ gives 12). No route manufactured a win; the one tempting "upgrade" (the factor-4
 forcing) was tested and honestly returned to convention.
+
+---
+
+## The mechanism-class closure — even bound-saturation doesn't force it
+
+The structural reason ("symmetry fixes the cubic *form* but never the breaking *scale*") closes the *symmetry*
+routes — but symmetry is only **one of the three ways physics fixes a scale or a dimensionless coefficient**. A
+*bound* and a *dynamically generated scale* are not symmetries, so they could in principle evade the obstruction.
+Both are now checked (`reviews/project_maxforce_minaccel.py`):
+
+| mechanism class | how it fixes a scale | does it force 32π? |
+|---|---|---|
+| **(1) Symmetry** | a symmetry forces the *form* of the term | 🔴 No — fixes |∇φ|³, never the breaking scale (structural) |
+| **(2) Bound saturation** | max force F=c⁴/4G, min accel, horizon surface gravity | 🔴 No — gives cH/a₀ = **1–2** (the kinematic cluster), Λc⁴/a₀² = 3 or 12; never 5.79/32π |
+| **(3) Dimensional transmutation** | a dimensionless coupling + RG running → a scale | 🔴 No — would give exp(−1/bg), a *tuned transcendental*; and there is no a₀ running coupling anyway |
+
+The bound-saturation result is the sharpest new datum: every bound (naive horizon c²/L, de Sitter surface gravity
+c²/2L, maximum force over the Hubble mass, Unruh = de Sitter temperature) lands a₀ at **cH/a₀ ≈ 1–2** — a *different,
+lower* O(1) cluster than the density/thermal routes (~6). So the coefficient spread across mechanisms is wider than
+the 5.79–6.28 previously emphasized: it runs **1 → 12** (Λc⁴/a₀²: kinematic 3–12, density/thermal ~100), and the
+framework's specific 5.789 comes **only** from the density factor √(3/8π) of the Friedmann route. No bound, and no
+symmetry, and no transmutation selects it.
+
+**So the closure is now complete across all three mechanism classes.** The *scale* a₀ ~ cH is **over-determined** —
+every mechanism reproduces it, which is real physics and explains why the Milgrom coincidence is so robust. The
+*coefficient* is fixed by **none** of them. That is the final, honest shape of the question: **Z is GR-traceable and
+route-forced, not uniquely forced — and there is now no remaining class of scale-fixing mechanism that could force
+it, short of a genuinely new principle.** The action therefore moves off the coefficient (closed) and onto the two
+things that can still decide the framework: the *empirical* test of a₀(z) ∝ H(z) (its one distinctive falsifiable
+signature), and the *value* of Λ (the cosmological-constant problem, owed by everyone).
