@@ -62,16 +62,19 @@ def main():
         ("FRAMEWORK: free-fall / surface-gravity 1/2", 0.5,            "a0=c^2/2L; reaches c/2 in a vacuum time"),
         ("no prefactor (kappa=1)",                     1.0,            "the bare a0 = c sqrt(G rho_L) -- EXCLUDED"),
         ("Jeans scale  a0 = c^2/lambda_J",             1/np.sqrt(np.pi), "lambda_J = c sqrt(pi/G rho) -> kappa=1/sqrt(pi)"),
-        ("thermal 2pi (Marongwe-Kauffman a0=cH0/2pi)", None,          "a0 = cH0/2pi (their derived value)"),
+        ("thermal 2pi (Marongwe-Kauffman a0=cH_L/2pi)", None,         "a0=c H_Lambda/2pi -> kappa=sqrt(6)/(3 sqrt(pi)), Z=2pi"),
     ]
     print(f"   {'reading':<46}{'kappa':>8}{'-> Z':>8}{'a0 [m/s^2]':>14}   note")
-    A0_MK = C * H0 / (2 * np.pi)
+    A0_TH = C * H_LAM / (2 * np.pi)               # thermal a0 with the PURE-Lambda de Sitter rate H_Lambda (consistent w/ kappa def)
     for name, kap, note in readings:
         if kap is None:
-            kap = A0_MK / (C * OMEGA_L); a0v = A0_MK
+            kap = A0_TH / (C * OMEGA_L); a0v = A0_TH
         else:
             a0v = a0_from_kappa(kap)
         print(f"   {name:<46}{kap:>8.3f}{Z_from_kappa(kap):>8.2f}{a0v:>14.2e}   {note}")
+    A0_MK_H0 = C * H0 / (2 * np.pi)               # reference only: SAME formula with the MEASURED H0 (full LCDM) -> different footing
+    print(f"   {'  [ref] same formula with measured H0 (full LCDM)':<46}"
+          f"{A0_MK_H0/(C*OMEGA_L):>8.3f}{C*H_LAM/A0_MK_H0:>8.2f}{A0_MK_H0:>14.2e}   a0=cH0/2pi (the value MK actually quote)")
     print()
 
     # data band on kappa
@@ -83,8 +86,8 @@ def main():
         print(f"   {lab:<22} a0={a0o:.2e}  ->  kappa={a0o/(C*OMEGA_L):.3f}   Z={C*H_LAM/a0o:.2f}")
     klo, khi = 9.0e-11 / (C * OMEGA_L), 1.30e-10 / (C * OMEGA_L)
     print(f"\n   DATA-ALLOWED BAND: kappa in [{klo:.2f}, {khi:.2f}].")
-    print(f"   -> EXCLUDES kappa=1 (no prefactor). INCLUDES 1/2={0.5:.2f} (low edge, matches simple-mu),")
-    print(f"      1/sqrt(pi)={1/np.sqrt(np.pi):.2f} and the thermal {A0_MK/(C*OMEGA_L):.2f} (more central).\n")
+    print(f"   -> EXCLUDES kappa=1 (no prefactor). INCLUDES 1/2={0.5:.2f} (low edge, matches simple-mu)")
+    print(f"      and 1/sqrt(pi)={1/np.sqrt(np.pi):.2f} (central); the consistent thermal {A0_TH/(C*OMEGA_L):.2f} sits just below the band.\n")
 
     print("=" * 100)
     print("(4) VERDICT -- is the 4 legit, logical, explainable?")
@@ -97,7 +100,8 @@ def main():
                 a0 brings a particle to c/2 in one vacuum free-fall time. (Or, holographically, the 4 is the
                 Bekenstein-Hawking 1/4 of the de Sitter horizon entropy -- the same number with a deeper origin.)
    FORCED?:     Not uniquely, at the ~10% level. kappa=1/2 sits at the LOW edge of the data band [{klo:.2f},{khi:.2f}];
-                the central value mildly prefers kappa~0.56-0.59 (the Jeans 1/sqrt(pi)=0.56 or thermal 0.56 readings).
+                the central value mildly prefers kappa~0.56 (the Jeans 1/sqrt(pi)=0.56); the thermal 2pi reading, taken
+                consistently with H_Lambda, instead lands at kappa=sqrt(6)/(3 sqrt(pi))~0.46 (Z=2pi), just below the band.
                 These differ from 1/2 by <~15%, below the interpolating-function systematic, so the data cannot
                 separate them. Pinning the 4 EXACTLY requires committing to a specific covariant theory: AeST fixes it
                 through the normalization of its free function C(Q) (currently inserted), and Marongwe-Kauffman's
