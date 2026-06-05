@@ -2,6 +2,10 @@
 """
 COMBINED FORECAST -- joint statistical reach of the four channels on the a0-evolution law.
 ==========================================================================================
+*** SUPERSEDED for the bottom line: this script gives STATISTICS-ONLY reach (30 discs@z3 -> 3sig, 80 -> 5sig). It
+    OMITS the DESI w0/wa uncertainty, which is partly degenerate with the evolution exponent beta and imposes a
+    MARGINALIZED FLOOR sigma(beta) ~ 0.62@z3 / 0.50@z5 that is INDEPENDENT of sample size -- capping single-redshift
+    significance at ~1.6-2.0 sigma for ANY N. Use combined_fisher_ultra.py for the honest, marginalized forecast. ***
 Synthesis of Doors 1-4. We collapse the whole framework's distinctive content to a SINGLE number and ask how well
 the combined data can measure it.
 
