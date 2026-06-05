@@ -47,9 +47,9 @@ print("="*84)
 sqrt83 = np.sqrt(8*np.pi/3)
 routes = [
     ("simplest horizon: c^2/a0 = c/sqrt(Grho) (Rindler hor. = free-fall light-cross)",
-     1.0*sqrt83, "K=c -> a0=c sqrt(Grho); NO factor 2 -> Z=sqrt(8pi/3)=2.89 -> a0=2.3e-10 RULED OUT"),
+     1.0*sqrt83, "K=c -> a0=c sqrt(G rho_L); NO factor 2 -> Z=sqrt(8pi/3)=2.89 -> a0=1.87e-10 (~2x high) RULED OUT"),
     ("FRAMEWORK: c^2/a0 = 2 c/sqrt(Grho)  (horizon = 2x free-fall length)",
-     2.0*sqrt83, "K=c/2 -> a0=(c/2)sqrt(Grho) -> Z=5.79 -> a0=1.13e-10  MATCHES"),
+     2.0*sqrt83, "K=c/2 -> a0=(c/2)sqrt(G rho_L) -> Z=5.79 -> a0=9.36e-11 (LOW EDGE of the data band)"),
     ("surface gravity of a horizon: kappa=c^2/(2R) (the Schwarzschild/Rindler 1/2)",
      2.0*sqrt83, "the 1/2 in kappa=c^2/2R IS the factor -> same K=c/2 -> Z=5.79"),
     ("free-fall clock: v gained over t_g=1/sqrt(Grho) equals c/2",
@@ -60,6 +60,9 @@ for name, Z, note in routes:
     print(f"    {name:70}{Z:>7.2f}")
     print(f"        -> {note}")
 
+print("\n    (Dimensionful a0 above use rho_L = rho_Lambda = OmL*rho_c, the DARK-ENERGY density: framework")
+print("     9.36e-11, no-prefactor 1.87e-10. Using the TOTAL rho_c inflates both by 1/sqrt(OmL)=1.208 to")
+print("     1.13e-10 / 2.3e-10 -- the cH0-footing values that look like a closer data match but are off-thesis.)")
 print("\n    The three routes that give 5.79 all rest on ONE unproven step: a coefficient 1/2")
 print("    (Rindler-horizon = 2x the free-fall length / surface-gravity 1/2 / 'v=c/2'). The")
 print("    SIMPLEST horizon condition gives NO 2 (Z=2.89), which the data kill. So the 2 is")

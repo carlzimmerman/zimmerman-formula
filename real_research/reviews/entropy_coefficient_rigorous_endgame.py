@@ -31,6 +31,8 @@ H0 = 71.5e3 / MPC
 A0 = 1.20e-10
 Z = 2 * math.sqrt(8 * math.pi / 3)
 cH0 = C * H0
+OL = 0.685                          # dark-energy fraction
+cH_L = cH0 * math.sqrt(OL)          # PURE-Lambda de Sitter rate cH_Lambda = sqrt(OmL)*cH0 (NOT cH0)
 
 
 def main():
@@ -69,14 +71,18 @@ def main():
     print("=" * 78)
     print("(D) THE PUNCHLINE -- entropy vs geometry is a CONCRETE 3.6% fork")
     print("=" * 78)
-    a_verlinde = cH0 / 6
-    a_geom = cH0 / Z
-    a_gh = cH0 / (2 * math.pi)
-    print(f"   {'value':<34}{'a0/cH':>9}{'a0 [m/s^2]':>13}")
-    print(f"   {'emergent gravity (Verlinde 1/6)':<34}{1/6:>9.4f}{a_verlinde:>13.3e}")
-    print(f"   {'Gibbons-Hawking (1/2pi)':<34}{1/(2*math.pi):>9.4f}{a_gh:>13.3e}")
-    print(f"   {'FRAMEWORK geometric 1/sqrt(32pi/3)':<34}{1/Z:>9.4f}{a_geom:>13.3e}")
-    print(f"   {'observed (central)':<34}{A0/cH0:>9.4f}{A0:>13.3e}")
+    a_verlinde = cH_L / 6
+    a_geom = cH_L / Z
+    a_gh = cH_L / (2 * math.pi)
+    print(f"   {'reading (a0 on PURE-Lambda cH_Lambda)':<38}{'a0/cH':>8}{'a0 [m/s^2]':>13}")
+    print(f"   {'emergent gravity (Verlinde 1/6)':<38}{1/6:>8.4f}{a_verlinde:>13.3e}")
+    print(f"   {'Gibbons-Hawking (1/2pi)':<38}{1/(2*math.pi):>8.4f}{a_gh:>13.3e}")
+    print(f"   {'FRAMEWORK geometric 1/sqrt(32pi/3)':<38}{1/Z:>8.4f}{a_geom:>13.3e}")
+    print(f"   {'observed central (measured)':<38}{A0/cH_L:>8.4f}{A0:>13.3e}")
+    print(f"   NOTE: a0 above uses the PURE-Lambda rate cH_Lambda = sqrt(OmL)*cH0 = {cH_L:.2e} (NOT cH0={cH0:.2e}).")
+    print(f"   All three readings (8.6-9.9e-11) sit BELOW observed 1.20e-10 -- the framework's geometric a0 is")
+    print(f"   at the data band's LOW EDGE. (The earlier 'geometric = observed 1.20e-10' was a cH0-footing")
+    print(f"   artifact: Verlinde/GH natively quote the cH0 version, 1.208x larger.)")
     print()
     d_gv = abs(a_geom - a_verlinde) / a_verlinde * 100
     print(f"   geometric vs emergent-gravity: differ by {d_gv:.1f}%.")

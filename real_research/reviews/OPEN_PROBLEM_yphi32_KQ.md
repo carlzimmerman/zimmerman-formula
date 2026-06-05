@@ -77,6 +77,35 @@ background from the same entropy that gives a₀.
 / 6 / 5.79 depending on route) is data-degenerate and falsifiable predictions are Z-free, so this is
 lowest priority — but a derivation that *also* outputs Z would be decisive.
 
+> **THE LAST OPEN ROUTE IS NOW WORKED — STILL A NULL (strained-horizon O(ε³), `project_strained_horizon_cubic_O3.py`).**
+> The definitive verdict had left exactly one route un-run: the *off-saddle* covariant `O(ε³)` free
+> energy of the `C(𝒬)Y^{3/2}` vertex on a **strained (inhomogeneous)** de Sitter horizon — the
+> "Verlinde-4/3-survival fork" (does the genuine 3/2 power leave the sphere-volume 4/3 uncancelled →
+> κ=½, or cancelled → Verlinde 6?). Worked in full in sympy, it resolves **AGAINST closure**, and
+> reveals *why*: **a power mismatch, not a 4/3 survival.** Verlinde gets a number (6) only because his
+> strain energy is **quadratic** (`ε²`) and the horizon entropy/area response is **also** `ε²` (the
+> area of a trace-free-strained sphere is `δA=(16π/5)R²ε²`, the `O(ε)` term vanishing — sympy-exact),
+> so `ε²` cancels and the sphere 4/3 collapses to the `1/d` ball factor → `d(d−1)=6` (the bare integral
+> ratio is `(d−1)²/d`). The **covariant cubic vertex** makes the strain free energy `O(ε³)` while the
+> horizon stays `O(ε²)`: **3 ≠ 2**, so `F_MOND = δQ` is not an identity — it fixes the *strain amplitude*
+> `ε`, leaving `a₀` (hence κ) carrying an **unfixed `ε`** (a continuous freedom, not ½). Equivalently the
+> cubic **on-shell action is logarithmic** (`∫dr/r`, IR-cut at `R_dS`): there is *no* sphere 4/3 to
+> survive — the angular `4π` is eaten by the `1/(12π)` leaving a bare `1/3` × an arbitrary
+> `ln(R_dS/r_min)`; the action is `M^{3/2}` while the first law `δQ=TδS=−Mc²` (exact, ℏ cancels) is `M¹`.
+> **The steel-man** (expand `Y^{3/2}` around a nonzero background gradient to get a finite `O(ε²)` MOND
+> term) **fails by the same `Ȳ=0` fact**: `Y^{3/2}=(Ȳ+εb+ε²s)^{3/2}` has `O(ε²)` coefficient
+> `3(4Ȳs+b²)/(8√Ȳ)`, which needs `Ȳ≠0` — but the covariant projector `q⁰⁰=0` forces `Ȳ=0` on the
+> horizon (the CMB-safety property), where that coefficient **diverges** (`b²/√Ȳ`, the named
+> non-analyticity); any self-consistent strained background has `Ȳ~ε²` → `Y^{3/2}~ε³` again. **So the
+> off-saddle route hits the SAME obstruction as the homogeneous saddle, in a new guise:** on-saddle
+> `Ȳ=0` *hides* a₀; off-saddle the non-analytic 3/2 power forces `ε³≠ε²` and the coefficient *cannot be
+> read off*. Forcing a number anyway needs an extra posit (ε=1, or a choice of integration region, or a
+> stress-balance ansatz) and **different posits give different rationals, none ½**. The principle the
+> task asked for ("what decides survival vs cancellation?") is answered: **the degree of the vertex vs
+> the degree of the area functional (3 vs 2)** — and the very 3/2 power the framework needs is precisely
+> what breaks Verlinde's cancellation, not in favor of 4/3, but by introducing an unfixed strain scale.
+> **κ=½ is NOT forced; the freedom persists.** This is the last route; item D is closed as a rigorous null.
+
 > **RESOLVED AS A RIGOROUS NULL (June 2026 horizon-entropy sweep).** Six independent de Sitter
 > horizon-entropy routes were pushed to their limit (Jacobson–Clausius, Padmanabhan–Debye,
 > Verlinde volume-law, AeST-action-as-entropy, pure factor-bookkeeping, dS-CFT/Cardy) and

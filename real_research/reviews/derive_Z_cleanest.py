@@ -21,23 +21,28 @@ the sqrt(8pi/3) is R_* expressed through Friedmann. No separate loose '2'.
 import numpy as np
 
 c, G, Mpc = 2.99792458e8, 6.674e-11, 3.0857e22
-H0 = 67.4e3/Mpc
-rho = 3*H0**2/(8*np.pi*G)
+H0 = 67.4e3/Mpc; OmL = 0.685                  # H0 and the dark-energy fraction
+# a0 is sourced by the DARK-ENERGY density rho_Lambda (the framework's a0<->Lambda thesis),
+# NOT the total critical density rho_c. Using rho_c here would inflate a0 by 1/sqrt(OmL)=1.208.
+rho = OmL * 3*H0**2/(8*np.pi*G)               # rho_Lambda  (pure-Lambda / dark-energy density)
+H_L = H0*np.sqrt(OmL)                          # pure-Lambda de Sitter rate (cH_L = c^2 sqrt(Lambda/3))
 
 # the single principle, computed
-R_star = c/np.sqrt(G*rho)               # free-fall horizon radius
-a0     = c**2/(2*R_star)                # surface gravity there
-Z      = c*H0/a0
+R_star = c/np.sqrt(G*rho)               # free-fall horizon radius = L_Lambda
+a0     = c**2/(2*R_star)                # surface gravity there = (c/2) sqrt(G rho_Lambda)
+Z      = c*H_L/a0                        # = cH_Lambda/a0 (pure-Lambda footing), NOT cH0/a0
 
 print("="*82)
 print("ONE-PRINCIPLE DERIVATION: a0 = surface gravity at the free-fall horizon")
 print("="*82)
-print(f"  free-fall rate     sqrt(G rho)      = {np.sqrt(G*rho):.3e} 1/s   (t_ff = {1/np.sqrt(G*rho):.2e} s)")
-print(f"  free-fall horizon  R_* = c/sqrt(Grho)= {R_star:.3e} m = {R_star/Mpc/1e3:.1f} Gpc")
-print(f"  Hubble radius      R_H = c/H0        = {c/H0:.3e} m = {c/H0/Mpc/1e3:.1f} Gpc")
-print(f"     -> R_* / R_H = {R_star/(c/H0):.3f} = sqrt(8pi/3) = {np.sqrt(8*np.pi/3):.3f}  (Friedmann)")
-print(f"  surface gravity    a0 = c^2/(2 R_*)  = {a0:.3e} m/s^2   (observed a0 ~ 1.2e-10)")
-print(f"  => Z = c H0 / a0   = {Z:.3f}        target 2 sqrt(8pi/3) = {2*np.sqrt(8*np.pi/3):.3f}  MATCH")
+print(f"  free-fall rate     sqrt(G rho_L)    = {np.sqrt(G*rho):.3e} 1/s   (t_ff = {1/np.sqrt(G*rho):.2e} s)")
+print(f"  free-fall horizon  R_* = c/sqrt(Grho_L)={R_star:.3e} m = {R_star/Mpc/1e3:.1f} Gpc  (= L_Lambda)")
+print(f"  de Sitter horizon  R_dS = c/H_Lambda = {c/H_L:.3e} m = {c/H_L/Mpc/1e3:.1f} Gpc")
+print(f"     -> R_* / R_dS = {R_star/(c/H_L):.3f} = sqrt(8pi/3) = {np.sqrt(8*np.pi/3):.3f}  (Friedmann, pure-Lambda)")
+print(f"  surface gravity    a0 = c^2/(2 R_*)  = {a0:.3e} m/s^2   (framework value; observed a0~1.1-1.2e-10,")
+print(f"                                                        so this sits at the LOW EDGE of the data band)")
+print(f"  => Z = c H_Lambda / a0 = {Z:.3f}    = 2 sqrt(8pi/3) = {2*np.sqrt(8*np.pi/3):.3f}  (an ALGEBRAIC identity of the")
+print(f"     (c/2)sqrt(Grho) form for ANY rho -- it confirms the FORM, not the data value of a0)")
 
 print("\n"+"="*82)
 print("WHY THIS IS CLEANER (and what is still a posit)")
@@ -63,8 +68,10 @@ print(f"""  * It is ONE object, not two factors. The 1/2 is no longer a loose co
   The data still cannot distinguish 5.79 from 6 or 2pi (Z in ~[5.5,6.5]); this derivation
   wins on PARSIMONY and physical transparency, not on a measurement.
 
-  PAPER-READY STATEMENT:
-     a0 = c^2/(2 R_*),   R_* = c/sqrt(G rho)   (free-fall horizon)
-        = (c/2) sqrt(G rho) = c H(z) / [2 sqrt(8pi/3)],
-     'the surface gravity of the cosmic gravitational free-fall horizon'.""")
+  PAPER-READY STATEMENT (pure-Lambda footing):
+     a0 = c^2/(2 R_*),   R_* = c/sqrt(G rho_Lambda)   (free-fall horizon = L_Lambda)
+        = (c/2) sqrt(G rho_Lambda) = c H_Lambda / [2 sqrt(8pi/3)],   H_Lambda = c sqrt(Lambda/3),
+     'the surface gravity of the cosmic gravitational free-fall horizon'.
+     [rho_Lambda is the DARK-ENERGY density (a0<->Lambda thesis), NOT rho_critical; using rho_c
+      inflates a0 by 1/sqrt(OmL)=1.208 (-> 1.13e-10) and silently swaps to the rising-a0 branch.]""")
 print("="*82)

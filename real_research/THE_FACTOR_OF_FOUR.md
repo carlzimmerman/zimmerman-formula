@@ -56,6 +56,37 @@ So:
 > *above*, the motivated readings now fan out across ½ rather than clustering, which only sharpens the "not forced"
 > conclusion.
 
+## The one canonical Z convention (and the two slips that fake 10.03 and 7.0)
+
+**Every Z in this repo means one thing — fix it once and all comparisons are apples-to-apples.** `a₀`
+can be written several algebraically-equal ways (`c²√(Λ/32π)`, `(c/2)√(Gρ_Λ)`, `cH_Λ/Z`), and the
+de Sitter Friedmann **3** hides *inside* the rate `H_Λ = c√(Λ/3)`. Reinstate `√Λ` without folding that
+3 back in — or swap the pure-Λ rate `H_Λ` for the measured `H₀` — and Z jumps by an O(1) factor that is
+pure bookkeeping, not physics.
+
+> **Canonical (use this, always):** `Z ≡ cH_Λ/a₀`, with `H_Λ = c√(Λ/3)` the **pure-Λ de Sitter rate**
+> and `κ` defined by `a₀ = κ·c√(Gρ_Λ)`, `ρ_Λ = 3H_Λ²/(8πG)`. Then (sympy-exact) **`Z² = 8π/(3κ²)`**, so
+> **`κ = ½ ⇒ Z² = 32π/3 ⇒ Z = √(32π/3) = 5.789`**.
+
+| what you actually wrote | Z you get | why it's wrong | exact gap vs canonical |
+|---|---|---|---|
+| `Z = cH_Λ/a₀`, κ=½ — **canonical** | **5.789** = √(32π/3) | — | 1 |
+| `Z = c²√Λ / a₀` | 10.03 = √(32π) = 4√(2π) | `c²√Λ = √3·cH_Λ`; the Friedmann 3 was dropped | **×√3 (≈1.73)** |
+| `Z = cH₀/a₀` | ≈ 7.0 | used the measured `H₀` (full ΛCDM), not `H_Λ = H₀√Ω_Λ` | **×1/√Ω_Λ (≈1.21)** |
+
+**Rule: convert every Z to `cH_Λ/a₀` before comparing two of them.** A Z of 10.03 (`= 4√(2π)`) or ~7.0
+is a units slip, not a new derivation. (All three reproduced in `predictions/factor_of_four.py` §5; this
+is the convention behind the cleanup logged in `reviews/OPEN_PROBLEM_yphi32_KQ.md`.)
+
+*One coincidence to not trip on:* the spurious `10.03 = √(32π)` is **numerically identical** to the
+*legitimate* `Z₂ = 8√(π/2)` — the canonical Z in a hypothetical **2-spatial-dimensional** universe,
+tabulated in `THE_GEOMETRY_OF_Z.md` (`Z_d = 8√(π/[d(d−1)])`). They coincide because dropping the Friedmann
+3 is **algebraically the same** as setting `d(d−1)=2` (the standard `/3 = d(d−1)/2` at `d=3`; erasing it
+pretends `d=2`). So `√(32π)` is the right Z *for 2D space* and the wrong Z *for our 3D space* — seeing it
+in `THE_GEOMETRY_OF_Z.md` does **not** license it as a `d=3` value. (Relatedly, `PENROSE_CROSS_DOORS.md`
+uses `10.03` correctly in the *other* direction — as the acceleration ratio by which the bare guess
+`a₀=c²√Λ` overshoots, whose canonical Z is `1/√3=0.577`. Same √3, different slot.)
+
 ## Bottom line
 
 The 4 = (½)² is a **legitimate, explainable free-fall / Bekenstein–Hawking prefactor**, data-selected to be ≈½ —

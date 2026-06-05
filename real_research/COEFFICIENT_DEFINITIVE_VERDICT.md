@@ -34,6 +34,12 @@ and the devil's-advocate exhaustion shows **every candidate structure gives the 
 A literal second ¼ gives **11.58, not 5.79**. The only thing that lands the framework's value is the rational `κ = ½`
 inserted by the free-fall convention.
 
+> *Convention note — every Z above uses the **one canonical definition** `Z ≡ cH_Λ/a₀` (pure-Λ rate
+> `H_Λ = c√(Λ/3)`, `κ` against `√(Gρ_Λ)`), giving `Z² = 8π/(3κ²)`, so `κ=½ ⇒ Z=√(32π/3)=5.789`. Writing the
+> numerator as `c²√Λ` instead silently drops the Friedmann √3 and fakes `4√(2π)=10.03`; using `H₀` for `H_Λ`
+> fakes ≈7.0. Convert every Z to `cH_Λ/a₀` before comparing. Full guard + table:
+> `THE_FACTOR_OF_FOUR.md` → "The one canonical Z convention."*
+
 **(c) Number-field no-go: `√(32π/3) ∉ ℚ(π)` (valuation proof).** Every horizon-thermodynamic constant (Unruh `1/2π`,
 BH `¼`, area `4πR²`, equipartition `½`, Friedmann `⅓`, integer dimension counts) lies in `ℚ(π)`. Treating π as
 transcendental (`ℚ(π) ≅ ℚ(t)`), the radicand `32t/3` has a **simple zero at t = 0 → valuation 1 (odd)**; every square
@@ -77,11 +83,22 @@ matching"). **Nobody derives the coefficient. Everybody matches it. The framewor
 - **`OPEN_PROBLEM_yphi32_KQ.md` item D is closed as a rigorous null.** Items A/B/C (the form, the inertia↔gravity
   equivalence, the 𝒦(𝒬) cosmology) remain genuinely open; the coefficient is **structurally unfixable** by equilibrium
   horizon thermodynamics.
-- **The one bounded thing that could still close it** (outside the homogeneous saddle, which is *why* the homogeneous
-  entropy can't): a covariant `O(ε³)` on-shell free-energy computation of the `C(𝒬)Y^{3/2}` vertex on a **strained
-  (inhomogeneous) de Sitter horizon**, checking whether the strain trace leaves the sphere-volume `4/3` uncancelled
-  and pins `κ=½`. Until that exists, the coefficient is a convention.
+- **The one bounded thing that could still close it — NOW DONE, and it does not close it (the last bounded route).**
+  A third workflow carried out the covariant `O(ε³)` on-shell free-energy computation of the `C(𝒬)Y^{3/2}` vertex on a
+  **strained (inhomogeneous) de Sitter horizon** six independent ways (the AQUAL IR-cutoff integral was reproduced by
+  hand: `F = −⅓√(GM³a₀)·½ ln(3a₀/GΛM)`). It fails by **three exact, sympy-proven obstructions**: **(a) power
+  mismatch** — the MOND free energy scales as `M^{3/2}√a₀·ln M` while the Schwarzschild–de Sitter horizon heat is
+  `T δS = −Mc²` (`M¹`, a₀-free), so `solve(δQ=TδS, a₀)` is **empty** — *there is no equation for a₀*; **(b) Gauss-law
+  a₀-blindness** — the Iyer–Wald canonical momentum collapses to the bare Newtonian flux `Θʳ=−M/4πr²`, so a₀ cancels
+  for *any* `Y^p` (the horizon probe sees only the enclosed mass, never the coupling) — *this is the off-saddle twin
+  of `Ȳ=0`*; **(c) degree mismatch** — the cubic `Y^{3/2}` vertex is `O(ε³)` while the area response is `O(ε²)`, and
+  `3≠2`, so no ε-free rational survives (the Verlinde 4/3 cancellation breaks not by leaving `4/3` but by unequal
+  powers). The one clean ½ that appears (`a₀=c²√(Λ/12)=cH/2`) sits on the **wrong, π-free form** (off by exactly
+  `√(8π/3)`) and is an ansatz, not a Clausius identity. **There is no further bounded route.**
 
-**Bottom line:** this is a rigorous, satisfying null. The coefficient is not derivable from horizon entropy — by
-anyone, by a structural obstruction (the `Ȳ=0` saddle-blindness + the number-field no-go), not by lack of effort — and
-it costs the framework nothing, because every falsifiable test is coefficient-free.
+**Bottom line:** this is a rigorous, *complete* null — now established by **both** the homogeneous no-go **and** the
+off-saddle strained-horizon attempt, via *independent* structural mechanisms (`Ȳ=0` saddle-blindness; Gauss-law
+a₀-blindness; the `√(32π/3)∉ℚ(π)` number-field no-go). The coefficient is not derivable from horizon entropy — by
+anyone, by structure, not by lack of effort — the search space is **exhausted**, and it costs the framework nothing
+because every falsifiable test is coefficient-free. **Z = √(32π/3) is, finally and completely, a data-selected
+convention.**

@@ -109,6 +109,21 @@ def main():
    BOTTOM LINE: the 4 = (1/2)^2 is a legitimate, explainable free-fall/Bekenstein-Hawking prefactor, data-selected to
                 be ~1/2 -- well-motivated and not numerology -- but its last ~10-15% (exactly 4 vs ~3.3) awaits a
                 first-principles dynamical normalization, and it cancels entirely in the coefficient-free bridge.""")
+
+    # convention guard: read the SAME a0 through three different numerators -> only one is canonical
+    print()
+    print("=" * 100)
+    print("(5) Z-CONVENTION GUARD -- the ONE canonical Z is cH_Lambda/a0; other numerators give spurious numbers")
+    print("=" * 100)
+    Z_canon = C * H_LAM / A0                       # canonical:  cH_Lambda / a0   -> sqrt(32pi/3)
+    Z_bare  = C**2 * np.sqrt(LAM) / A0             # SLIP:       c^2 sqrt(Lambda)/a0 -> sqrt(32pi) = 4 sqrt(2pi)
+    Z_H0    = C * H0 / A0                           # SLIP:       cH0 / a0   (measured H0, full LCDM)
+    print(f"   canonical  Z = cH_Lambda/a0   = {Z_canon:6.3f}  = sqrt(32pi/3) = {np.sqrt(32*np.pi/3):.3f}   <- USE THIS")
+    print(f"   SLIP       Z = c^2 sqrt(L)/a0 = {Z_bare:6.3f}  = sqrt(32pi) = 4 sqrt(2pi) = {4*np.sqrt(2*np.pi):.3f}"
+          f"  (dropped Friedmann 3: c^2 sqrt(L) = sqrt(3) * cH_Lambda)")
+    print(f"   SLIP       Z = cH0/a0         = {Z_H0:6.3f}  (used measured H0, not pure-L H_Lambda; off by 1/sqrt(OmL))")
+    print(f"   exact gaps:  c^2 sqrt(L) / cH_Lambda = sqrt(3) = {np.sqrt(3):.4f};   H0 / H_Lambda = 1/sqrt(OmL) = {1/np.sqrt(OmL):.4f}")
+    print( "   RULE: convert every Z to cH_Lambda/a0 before comparing. 10.03 (=4 sqrt(2pi)) and ~7.0 are bookkeeping, not physics.")
     print("#" * 100)
 
 
