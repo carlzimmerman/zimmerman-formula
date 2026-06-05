@@ -57,7 +57,7 @@ Everything reduces to: which tests are which, what the kill-threshold is, and wh
 | | tests | status |
 |---|---|---|
 | **Can kill ΛCDM** | EFE, wide-binary boost | **both UNCONFIRMED** (contested / split) — *no clean ΛCDM kill is in hand* |
-| **Can kill the framework** | CMB, clusters, a₀(z) **rising** ∝√ρ_total, wide-binary null | **partly ALREADY realized** (CMB & clusters lost; a₀(z) **leaning UNFAVOURABLE** — MUSE-DARK III shows a ~30σ apparent rise; faithful √ρ_DE survives only via the ΛCDM-apparent-a₀ degeneracy → empirically *mute-to-unfavourable*) |
+| **Can kill the framework** | CMB, clusters, a₀(z) **rising** ∝√ρ_total, wide-binary null, **Cassini quadrupole** | **partly ALREADY realized** (CMB & clusters lost; a₀(z) **leaning UNFAVOURABLE** — MUSE-DARK III shows a ~30σ apparent rise; faithful √ρ_DE survives only via the ΛCDM-apparent-a₀ degeneracy → empirically *mute-to-unfavourable*). **NEW near-term pressure:** the Cassini Solar-System quadrupole excludes RAR-fitting modified-gravity interp functions at **3–15σ** (Desmond+2024 → 2026 update) — the framework inherits this via AeST and **cannot** invoke modified-inertia (it is modified gravity); escape = AeST `K(𝒬)` screening, *uncomputed*. The one kill-pressure that does **not** wait for z~3. See `CASSINI_QUADRUPOLE_CONSTRAINT.md`. |
 
 **Read it straight: the framework currently carries *more* live falsification exposure than ΛCDM.** ΛCDM has
 *lost nothing* it can't absorb (it owns the CMB and clusters; the galaxy RAR it fine-tunes), while the framework
