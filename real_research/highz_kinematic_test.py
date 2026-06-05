@@ -3,6 +3,20 @@
 The real test: evolving vs constant a0 against EXISTING high-z kinematics.
 =========================================================================
 
+  *** CORRECTED June 2026 -- THE "MILDLY FAVORS EVOLVING" VERDICT BELOW IS RETRACTED. ***
+  A literature check (see THE_FABER_JACKSON_CHANNEL.md) shows this test is INVALID for two reasons the original
+  missed: (1) REGIME -- de Graaff+2024's are CENTRAL dispersions at g ~ 3-11 a0 (high-acceleration; cf. Milgrom
+  2017 arXiv:1703.06110), NOT the deep-MOND (g << a0) regime where the FJ relation sigma^4=(4/9)GMa0 holds, so they
+  do not validly probe a0(z) at all; (2) DEGENERACY -- M_dyn/M_* up to 40 is explained EQUALLY by dark-matter
+  domination OR low star-formation efficiency (de Graaff's own reading), so it is not evidence for an evolving
+  scale. Moreover the directly-relevant PUBLISHED tests DISFAVOR a0 proportional cH(z): Limbach-Psaltis-Ozel 2008
+  (arXiv:0809.2790, TF to z=1.2) exclude both a0~cH0 and a0~sqrt(Lambda) within formal errors but MARGINALLY FAVOR
+  the sqrt(Lambda) (constant/geometric) coupling over the H(z) one; Milgrom 2017 "all but excludes ~4 a0 at z~2".
+  The framework's E(2)=3.0 a0 sits uncomfortably close to that boundary. So the honest status is: the geometric/
+  constant core is favored, the EVOLVING claim is disfavored -- this script's pro-evolving read does not survive.
+  Kept for the record; read the verdict as SUPERSEDED.
+
+
 Not "wait for future data" -- there ARE resolved high-z dispersions now. This tests
 a0(z)=a0(0)*E(z) vs constant a0 against de Graaff et al. 2024 (A&A 684, A87,
 arXiv:2308.09742): 6 JADES/NIRSpec galaxies at 5.5<z<7.4. The sample values below
