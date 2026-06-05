@@ -111,8 +111,23 @@ by ~300× — catastrophic. Coupling to the *uniform* dark energy via 𝒬 is ex
 construction*.) So the realization now passes **ghost-freedom, c_GW=c, CMB-safety, *and* universality.** *Honest
 caveat:* this is an order-of-magnitude argument; the full check needs the quasi-static AeST 𝒬-profile in a galaxy and
 confirmation that the standard-AeST (already CMB-fit) aether stiffness is unchanged by C(𝒬). Locality is downgraded
-from "make-or-break" to **"likely benign, pending the full quasi-static solution."** So: a working theory for
-constant Λ, constructed-not-derived, with its biggest flagged threat now substantially defused.
+from "make-or-break" to **"likely benign, pending the full quasi-static solution."**
+
+**Update — the dynamical-DE strong-coupling caveat is also checked, and also BENIGN**
+(`reviews/project_aest_strongcoupling_check.py`). C(𝒬) ∝ 1/√ρ_DE blows up (~170×) as ρ_DE→0 in the deep past — but
+*only at z~1100* (recombination), where there are **no nonlinear MOND structures** (𝒴≈0; only linear δ~10⁻⁵). The
+first galaxies form at z≲10–20, where C is merely ~3–5× — mild. **The strong-coupling epoch and the structure-forming
+epoch do not overlap, so C never acts on a real MOND system.** Moreover a₀→0 *smoothly* as ρ_DE→0 (no MOND force to
+destabilize — C→∞ just encodes "no MOND in the early universe," which is CMB-safe), and it is a *continuation* of
+deep-MOND's intrinsic 𝒴^{3/2} strong coupling that **every** MOND theory already has — not a new defect. *Honest
+residue:* MOND's strong-coupling/UV predictivity is a genuine open issue for all MOND theories; the framework
+inherits but does not worsen it.
+
+So: a working theory for constant Λ, constructed-not-derived, that passes **ghost-freedom, c_GW=c, CMB-safety, and
+universality**, with **both** of its flagged caveats (locality, strong coupling) now examined and **benign**. The
+genuine remaining issues reduce to two — the coupling C(𝒬) is **inserted not derived** (theory-purity, and the
+coefficient is route-forced anyway), and MOND's **shared** strong-coupling/UV-completion problem — plus the **z~3
+experiment.** That is a notably clean place for a modified-gravity dark-sector theory to stand.
 
 ### B. The experiment — a concrete observing proposal (`reviews/project_z3_observing_proposal.py`)
 
