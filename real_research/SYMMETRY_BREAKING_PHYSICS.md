@@ -15,6 +15,27 @@ conformal symmetry breaks** into its observable structure. Every claim is tagged
 > (Newtonian, harmonic) phase above; **(c) NO Goldstone** — the breaking is *explicit*, not
 > spontaneous; **(d) no genuinely new observable** falls out. Each is argued below.
 
+> **⚠ Priority / novelty (added June 2026 after a literature check — read before citing this as original).**
+> The core is **not new**, and most of the synthesis is already published:
+> - **Milgrom 2009** ("The MOND limit from spacetime scale invariance," ApJ 698:1630, arXiv:0810.4065) established
+>   deep-MOND scale invariance, the SO(4,1) conformal group = de Sitter isometry, and the cubic ℒ∝|∇φ|³/a₀. *Nuance
+>   his result forces us to state correctly:* Milgrom frames the scale-invariant theory as the **a₀→∞ limit** and
+>   names **rest mass** as the symmetry obstruction — so "a₀ is a small explicit-breaking parameter like a quark
+>   mass" is a *re-coordinatization* of his statement, not a new fact.
+> - **Singh 2026** ("A Relativistic MOND," arXiv:2601.04290, Jan 2026 — our ledger's "closest competitor") already
+>   assembles the **entire package** as one connected argument: SO(4,1) deep-MOND + a₀ = c²/(ξ·ℓ_dS) set by an IR
+>   de Sitter vacuum + the GR–MOND crossover, with a₀ "not inserted as an independent parameter." This covers
+>   verdicts (a), (b), and the a₀↔Λ welding — published five months before this document.
+> - The **a₀ ~ c²√Λ ~ cH₀** coincidence is Milgrom's, since 1998 (astro-ph/9805346; arXiv:2001.09729).
+>
+> The **one** element the literature does *not* state explicitly is verdict **(c)** in its sharp negative form:
+> *because the breaking is explicit (a non-invariant AQUAL operator), Goldstone's theorem does not apply → no MOND
+> dilaton, no fifth force, no extra GW polarization → searching for a MOND scalar is the wrong experiment; this
+> distinguishes AQUAL-MOND from the Scale-Invariant-Vacuum/Weyl program (arXiv:2001.04978) and spontaneous-dilaton
+> models (arXiv:2601.01938).* That corollary is correct, clarifying, and currently un-stated — but it is **one line
+> of textbook Goldstone logic on a known fact**, borderline-obvious to a referee. **Verdict: do not write this as a
+> discovery; at most an attributed expository note whose narrow new claim is corollary (c).**
+
 ---
 
 ## 0. The setup (from the anharmonic result)
