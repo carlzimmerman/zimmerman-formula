@@ -56,6 +56,31 @@ confirm* — its signal is small precisely because it tracks the slowly-varying 
 fast-varying Hubble rate. The disfavored Hubble version would have been easy to detect (and was, against it); the
 surviving version needs precision the current data don't yet have.
 
+## What's actually in DR1 (checked against the release, 2503.14745 + the data-products page)
+
+DR1 is **18.7M redshifts** (13.1M galaxies, 1.6M QSOs, z=0–4) plus: the **redshift catalog**, **LSS clustering
+catalogs**, and **value-added catalogs** (stellar mass, emission-line fluxes, SED fits, AGN classification). What it
+does **not** contain: resolved rotation curves, velocity-dispersion *profiles*, dynamical masses — **no internal
+kinematics.** DESI is single-fiber spectroscopy of positions, not a kinematics survey. So there is no direct a₀ in DR1.
+
+**The one concrete avenue it *does* enable** — and nobody has done it: the **emission-line widths** of the millions
+of ELGs (to z≈1.6) are an *integrated* kinematic tracer, so one could build a **statistical line-width Tully–Fisher
+relation** vs redshift and read a₀(z) off its zero-point. The catch is quantitative:
+
+| z (DESI reach) | a₀/a₀(0) (√ρ_DE) | V_flat shift |
+|---|---|---|
+| 0.5 | 1.06 | +1.5% |
+| 1.0 | 1.01 | +0.2% |
+| 1.5 | 0.94 | −1.7% |
+
+Within DESI's range (z<1.6) the faithful √ρ_DE signal is **<2% in V_flat** — *below* the systematic floor of
+integrated line-width TF (~5–10%: inclination, fiber aperture, seeing, line-width→V calibration). **Statistics are
+not the limit** (millions of ELGs pin the mean to <0.1%); **systematics are.** To reach a 1–2% signal you'd need the
+line-width→velocity systematics controlled to ~1% across redshift — hard and unprecedented, though the sample size
+makes it conceivable. Even done perfectly, it would mostly **reconfirm "a₀ near-constant to z~1.6"** (killing the
+steep Hubble version, consistent with √ρ_DE *and* constant). The *decisive* √ρ_DE signal (~7% in V) is at **z~3,
+beyond DESI's reach** — resolved JWST/ALMA kinematics, not DESI single-fiber spectra.
+
 ## Bottom line
 
 **DESI cannot confirm a₀(z) ∝ √ρ_DE.** It supplies the ρ_DE(z) *input* — and DR2's 4.2σ-leaning evolving-DE result
