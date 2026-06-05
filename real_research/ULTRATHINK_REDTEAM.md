@@ -7,10 +7,21 @@ my own headline claim.*
 
 ---
 
-## #1 — The "one scale" unification is PARTIAL (a correction to my own overclaim)
+## #1 — The "one scale" unification is PARTIAL (a self-inflicted inconsistency, not a new discovery)
 
-I have been saying *dark matter and dark energy are two faces of one scale — 95% of the universe from Λ.* **Worked
-adversarially, that is only true at galaxy scales.** Quantified (`verified inline`):
+**Accuracy note (added after C.Z. flagged it):** this was **not** a fresh ultrathink finding. The point —
+"dark matter here is *two things, not one*" — was **already established and written turns earlier**, e.g.
+`STATE_OF_THE_FRAMEWORK.md` ("the galaxy phantom halo is local; it does not supply Ω_DM≈0.265 — AeST needs the
+separate 𝒬-sector dust mode. 'Dark matter' here is two things, not one"), `bridge1_aest_equations.md` ("fit the CMB
+— and it contains no a₀"), `THE_SURVIVING_THEORY.md`, `TOE_LITERATURE_DOSSIER.md`, `FRAMEWORK.md`. What actually
+happened is that a *newer* doc (`THE_DARK_UNIVERSE_THEORY.md`) introduced the inflated headline "95% from one scale"
+that contradicted the already-documented limit, and the red-team then dramatized catching that contradiction as a
+deep insight. It was neither new nor deep — it was an overclaim I created and then theatrically "corrected." The
+honest content below is right; the framing of it as a discovery was not.
+
+I have been saying *dark matter and dark energy are two faces of one scale — 95% of the universe from Λ.* That
+headline is wrong, and the careful docs already knew it. **The truth, documented all along, is that the unification
+holds only at galaxy scales.** Quantified:
 
 - **Galaxies** (isolated, g < a₀): the a₀-modification reproduces rotation curves with no dark matter. Here the
   unification holds — galaxy "dark matter" = a₀ = √Λ. *Validated on 175 SPARC galaxies to ~10%.*
