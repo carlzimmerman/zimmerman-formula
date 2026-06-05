@@ -25,6 +25,20 @@ prefactor cancel. The dark-energy history that DESI measures fixes all four pred
 | **1** | **Gravitational lensing** | reproduces KiDS lensing RAR (Brouwer+2021, z~0.3) | **saturated deflection** α∞=2π√(GMa₀)/c² (b-independent — no halo mimics it); amplitude **non-monotonic** (peak z~0.4) | `door1_gravitational_lensing.py` |
 | **3** | **Early galaxies** (JWST/ALMA) | high-z discs sit ~on the z=0 BTFR within errors | discs **~11–16% below** the z=0 BTFR at z=4–6 — a **sign test** that excludes the rising √ρ_total reading | `door3_early_galaxies.py` |
 
+## The synthesis: one number, and the road to 5σ (`combined_forecast.py`)
+
+The whole distinctive claim collapses to a single parameter: `a₀(z) = a₀(0)·[ρ_DE(z)/ρ_DE0]^(β/2)`, with **β=1 the
+framework** and **β=0 ordinary MOND** (constant a₀ — the null where all distinctive content vanishes). A Fisher
+forecast (calibrated against the independent Monte Carlo: 30 discs @ z=3 → 3σ) gives the joint reach:
+
+- **Honest structural fact:** ρ_DE is nearly flat below z~2 (it even peaks at z~0.4), so the evolution lever arm is
+  negligible there. **All** the constraining power lives at **z > 2**. The low-z channels (dwarfs, local lensing, the
+  SPARC RAR) do *not* test the evolution — they pin a₀(0) so the high-z offset has a rock-solid anchor.
+- **Redshift beats sample size:** a disc at z~5 is worth ~3.5× a disc at z~3 (the lever arm grows). ~25 clean discs
+  at z~5 plus a z~3 anchor reach **5σ** on β; ~60 discs at z~3–4 also reach 5σ.
+- **Why existing samples can't decide yet:** today's resolved high-z discs cluster at z~1–2.5, where the predicted
+  BTFR offset is only a few percent — below current per-galaxy precision (hence consistent with the z=0 BTFR).
+
 ## Honest scorecard (the whole truth, not the highlight reel)
 
 - **Genuine successes inherited from MOND:** the z=0 MDAR/RAR (0.195 dex), most dwarf dispersions, and the lensing
@@ -55,6 +69,7 @@ python door4_mdar_evolution.py      # needs ../data/sparc_data/  (included)
 python door2_dwarf_spheroidals.py
 python door1_gravitational_lensing.py
 python door3_early_galaxies.py
+python combined_forecast.py          # joint Fisher reach on the evolution strength beta
 ```
 Each writes a figure to `../figures/doorN_*.png` and prints its full numeric table + verdict. Dependencies: `numpy`
 (+ `matplotlib` for figures). No network, no fitting, no hidden parameters — the only inputs are the published a₀
