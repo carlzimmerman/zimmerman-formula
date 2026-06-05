@@ -73,8 +73,8 @@ Required: derive `𝒦(𝒬)`'s form (or its `w(𝒬)`) from the horizon entropy
 observed `r_s`, `ℓ_A`, and growth — not just a₀-safety (already proven) but a *positive* CDM-like
 background from the same entropy that gives a₀.
 
-**D. Pin the coefficient (optional, won't change predictions).** The O(1) in `a₀=cH/Z` (Z = 0.5 / 2π
-/ 6 / 5.79 depending on route) is data-degenerate and falsifiable predictions are Z-free, so this is
+**D. Pin the coefficient (optional, won't change predictions).** The O(1) in `a₀=cH_Λ/Z` (Z = 5.79 / 6 / 2π
+depending on route; the framework's ½ is the *κ*, whose Z is 5.79 — not a fourth Z) is data-degenerate and falsifiable predictions are Z-free, so this is
 lowest priority — but a derivation that *also* outputs Z would be decisive.
 
 > **THE LAST OPEN ROUTE IS NOW WORKED — STILL A NULL (strained-horizon O(ε³), `project_strained_horizon_cubic_O3.py`).**
@@ -132,8 +132,11 @@ lowest priority — but a derivation that *also* outputs Z would be decisive.
 > prior route (DSSYK / bound / surface-gravity / Penrose / spontaneous-radiation gave Z=1 or by-hand
 > 2π, never 5.79). The coefficient remains a posit; predictions are Z-free, so this does not touch any
 > falsifiable test. See `THE_FACTOR_OF_FOUR.md` and the full verdict in the June-2026 horizon-entropy
-> report. *(Cleanup flagged: `THE_FACTOR_OF_FOUR.md`'s "thermal 2π" row uses cH₀ not cH_Λ — the
-> pure-Λ value is `κ=√6/(3√π)=0.461 ⇒ Z=2π=6.28`, which strengthens the not-forced conclusion.)*
+> report. *(Cleanup APPLIED: `THE_FACTOR_OF_FOUR.md`'s "thermal 2π" row now uses cH_Λ — `κ=√6/(3√π)=0.461 ⇒
+> Z=2π=6.28`, with the cH₀-based κ≈0.557 kept only for reference. The same cH₀-for-cH_Λ substitution was
+> then found and fixed in five `reviews/` scripts — `derive_Z_cleanest.py` (was "PAPER-READY" at a₀=1.13e-10),
+> `entropy_coefficient_rigorous_endgame.py`, `the_one_quarter_target.py`, `derive_Z_firstprinciples.py`,
+> `holographic_entropy_chase.py` — each had inflated a₀ by 1/√Ω_Λ=1.208. See `COEFFICIENT_FOOTING_AUDIT_2026-06.md`.)*
 
 ---
 

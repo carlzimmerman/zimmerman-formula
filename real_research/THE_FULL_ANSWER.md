@@ -1,5 +1,14 @@
 # The full answer
 
+> **⚠ 2026-06-05 — the Layer-4 "a₀ rises ⇒ framework's call confirmed (~60–70%)" pivot below is OVER-STATED;
+> see [`A0Z_MUSE_DARK_III_CONFRONTATION.md`](A0Z_MUSE_DARK_III_CONFRONTATION.md).** Two fixes: (1) the source is
+> **Ciocan, Bouché et al.** (A&A 709, L16), **not "Mercier et al."** — fix the citation throughout. (2) MUSE's
+> rise is in the *fitted* RAR a₀ and is **ΛCDM-degenerate** (Mayer+2023: ΛCDM with *no* fundamental a₀ yields the
+> same apparent ×3 rise) and runs *"faster than H(z)"* — so it does **not** confirm a rising *fundamental* a₀,
+> and the *rising* ∝cH(z) branch it "supports" is the **ρ_total footing-bug**, not the canonical a₀=(c/2)√(Gρ_Λ)
+> (constant/declining) reading. Honest grade: **WEAKENED & CONTESTED, a₀(z) is non-diagnostic** — it leans
+> *against* the canonical reading but does not confirm the framework. Down-grade the "~60–70% framework win."
+
 **Carl Zimmerman · June 2026.** *You asked for the full answer, having gone through every door we could open
 in-session under sufficient reason. Here it is — the complete, calibrated verdict on the framework, layer by
 layer, with honest probabilities and nothing spun in either direction. Two of my own exciting claims were

@@ -51,7 +51,8 @@ a single measurable number can reach. *This is the legitimate sense in which the
 > a₀∼cH is dimensionally *forced* for any de Sitter mechanism (the O(1) is not, per the number-field
 > no-go); (ii) complexity *tracks entropy* at leading order, so it is no shortcut to a₀; (iii) the
 > **decisive, verified result** — the MOND sign comes from modifying the **DOF/entropy** (Debye
-> freezing → a=√(g_N a₀), and it fits SPARC at 0.100 dex), **not** the temperature (→ anti-MOND); (iv)
+> freezing → a=√(g_N a₀)), **not** the temperature (→ anti-MOND) — though whether the DOF route *also*
+> fits SPARC is **untested** (the earlier "0.100 dex" fit was retracted as fabricated); (iv)
 > complexity's genuine *unclaimed* prize is the deep-MOND **sign from the second law of complexity** —
 > a real, precisely-stated open problem, in a model that is finally under control. No derivation is
 > claimed that has not been done.

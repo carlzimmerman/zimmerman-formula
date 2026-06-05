@@ -1,3 +1,12 @@
+> **⚠️ FURTHER SUPERSEDED (2026-06-05) by [`A0Z_MUSE_DARK_III_CONFRONTATION.md`](A0Z_MUSE_DARK_III_CONFRONTATION.md)**
+> (+ `reviews/project_a0z_MUSE_DARK_III_confrontation.py`). That file fixes the deeper error this whole document
+> shares: it treats the **rising** a₀∝cH(z) as "the framework's prediction." It is **not** — the **canonical**
+> reading is a₀=(c/2)√(G·ρ_Λ), which is **constant (ΛCDM) / declining (DESI)**; the rising ∝E(z) branch is the
+> ρ_total footing-bug. So MUSE's rise is in tension with the *canonical* reading and *overshoots* the rising
+> branch. Verified significance is ~30σ on the authors' offset (~15σ on the slope), not the "~19σ" below. Net
+> grade: **WEAKENED & CONTESTED, leaning unfavourable** — the rise is real but ΛCDM-degenerate, so a₀(z) neither
+> confirms nor cleanly refutes the framework. The "a₀ rises ≈×3 = confirmed" verdict below is **retracted**.
+>
 > **⚠️ SUPERSEDED IN PART (June 2026) by `reviews/project_a0z_reconciled.py`.** A primary-literature sweep with
 > corrected attributions overturns two claims below: (1) **"constant-a₀ MOND is excluded" is FALSE** — McGaugh+
 > 2024 (arXiv:2406.17930) and Milgrom 2017 (arXiv:1703.06110) favor constant a₀, the mainstream position; (2)

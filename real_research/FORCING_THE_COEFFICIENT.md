@@ -38,7 +38,10 @@ scale or a **temperature/quantum** scale:
 
 An **~8% spread**, and **no first-principles argument is known to select the route.** *That* is the precise reason
 Z is "reproduced, not forced" — not that its factors are mysterious (they aren't), but that the choice *density vs.
-temperature* is unforced. (The observed cH₀/a₀ = 5.46–5.91 brackets all of them, leaning slightly to Z.)
+temperature* is unforced. (The observed ratio brackets all of them, but on consistent footing it does **not** lean to
+½: the *measured* `cH₀/a₀ = 5.46–5.91` must be put on the same pure-Λ basis as these route-Z's — `cH_Λ/a₀ =
+(5.46–5.91)·√Ω_Λ ≈ 4.5–4.9`, i.e. κ ≈ 0.56–0.64 — which leans toward Jeans/higher-κ; the framework's ½ (Z=5.79) is
+viable but at the **low edge**. See `reviews/COEFFICIENT_FOOTING_AUDIT_2026-06.md` §4a.)
 
 ## The one soft discriminator — and the one open avenue
 

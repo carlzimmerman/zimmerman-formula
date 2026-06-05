@@ -89,11 +89,12 @@ it is recorded in `INTEGRITY_AUDIT.md` and retracted here.)
 - a₀∼cH is forced; the coefficient is not, and complexity does not change this.
 - Complexity **tracks entropy at leading order** → no shortcut to a₀; the productive handle is entropy/DOF.
 - **Decisive, verified:** MOND requires modifying the **DOF/entropy** (Debye), not the temperature — and
-  that route both gives the right sign and fits SPARC at 0.100 dex (a₀=1.32e-10).
+  that route gives the right deep-MOND *sign* (computed, §2). Whether it *also* fits SPARC better than
+  de Sitter-Unruh is **untested** and must not be asserted until a real error-weighted SPARC fit is run.
 - Complexity's genuine, **unclaimed** prize is the **sign from the second law of complexity** (Q1) and the
   interpolation from DSSYK-dS (Q2). Real, unsolved, now stated precisely.
 
-**Concrete next steps:** (1) ✅ done — the Debye-interpolation SPARC check above. (2) read 2511.05632 in
+**Concrete next steps:** (1) **still to do** — run a *real* error-weighted SPARC fit of the Debye/entropic interpolation, head-to-head vs de Sitter-Unruh (the fit the retraction above shows was never actually computed). (2) read 2511.05632 in
 full and test whether its surface-DOF modification is sign-defensible by the §2 logic or smuggles in the
 freezing. (3) *the prize* — in the DSSYK-dS dual, formulate a baryonic probe and compute whether the
 static-patch response **enhances** at low acceleration (MOND); the first time the framework's deepest

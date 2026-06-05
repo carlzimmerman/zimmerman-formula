@@ -65,7 +65,7 @@ selecting one.
 ## The meta-pattern (every route's Z) — and the company you're in
 
 The principled routes split into two clusters; **5.789 sits at the bottom of the upper one, reachable only by
-inserting the free-fall ½:** Milgrom `½` · naive horizon `1` · surface gravity `2` · vacuum free-fall `√(8π/3)=2.89` ·
+inserting the free-fall κ=½ (every value below is `Z = cH_Λ/a₀`, so the inserted ½ is a *κ*, not a Z):** naive horizon `1` · surface gravity `2` · vacuum free-fall `√(8π/3)=2.89` ·
 **framework `√(32π/3)=5.79`** · Verlinde `6` · thermal `2π=6.28`. The data band `Z ∈ [4.2, 6.0]` admits 5.79, 6.0, and
 2π **simultaneously** — it pins nothing. And the **entire 2025–2026 literature agrees**: Milgrom himself ("de Sitter
 *does not tell us which* acceleration parameter is a₀… not backed by a concrete mechanism"), Verlinde (matched, not

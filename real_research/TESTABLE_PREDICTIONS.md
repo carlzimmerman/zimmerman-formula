@@ -29,11 +29,20 @@ A prediction matters for "ΛCDM is broken" **only if ΛCDM cannot accommodate it
 | **External field effect (z=0)** | gravity depends on *external* field | **forbidden** (shell theorem) | EFE breaks strong equivalence | **⛔ ΛCDM-IMPOSSIBLE** | Gaia wide binaries; galaxy RCs in fields | now | **Strongest distinctive test.** Chae 4–5σ detection — but **contested**. The single best shot at a kill. |
 | **Wide binaries** | sub-a₀ pairs feel MOND boost | Newtonian | ~+20% boost (EFE-reduced to ~+5% locally) | **⛔ ΛCDM-IMPOSSIBLE** | **Gaia** DR3 → DR4 | now → ~2026–27 | **The foundation, and it's SPLIT**: Banik 16–19σ *against* MOND vs Chae *for*. **Gaia DR4 may decide it.** |
 | **EFE weakens with z** (η=g_ext/a₀(z) ∝ 1/E(z); ×3 weaker by z=2) | a₀ rises → galaxies more isolated-MOND early | **no EFE at all** | high-z galaxies cleaner MOND | **⛔ ΛCDM-IMPOSSIBLE** | JWST NIRSpec + ALMA [CII] high-z RCs | ~3–5 yr | Framework-distinctive; **forecast only**, needs halo-free high-z rotation curves. |
-| **a₀(z) = cH(z)/Z** (×1.8 z=1, ×3 z=2, ×4.6 z=3) | a₀∝cH; the one original idea | apparent a₀ also ∝E(z) | a₀ rises as E(z) | ◐ DISCRIMINATING | JWST/ALMA halo-free dynamics; MUSE-DARK | now → ~3 yr | **Leaning UNFAVORABLE**: MUSE rise is *faster* than E(z) and needs a halo; McGaugh/Milgrom favor constant. 3-way discriminator (us 4.6 / constant 1.0 / SIV 0.4 at z=3) *if* measured clean. |
+| **a₀(z) ∝ √ρ_DE** ⚠️(corrected) (≈1.0 z=1, 0.81 z=2, **0.70** z=3 under DESI; **constant** if w=−1) | a₀ set by Λ=dark-energy density (32π/de Sitter/CKN tie), **not** ρ_total | apparent a₀ ∝E(z) from ΛCDM sims (Mayer 2022) | a₀ **constant or mild decline** (below 1) | ◐ DISCRIMINATING | JWST/ALMA halo-free dynamics + DESI DR3; MUSE-DARK | now → ~2027 | **CONTESTED, leaning UNFAVOURABLE**: MUSE-DARK III ~30σ apparent rise refutes the canonical constant; faithful √ρ_DE survives only via the ΛCDM-apparent-a₀ degeneracy (*mute-to-unfavourable*, see `A0Z_MUSE_DARK_III_CONFRONTATION.md`). Decisive = **sign of the z~3 BTFR offset** (us ~0.70 *below* / constant 1.0 / rising 4.6 *far above*). |
 | **a₀-cosmography** (H₀=Z·a₀/c=71.5; q₀=−0.53) | a₀ and its slope encode H₀,q | from CMB/SNe | from galaxy dynamics | = DEGENERATE | SPARC + H₀ ladder | now | Cute, real — but H₀-hostage (Door A/B), q₀ = ΛCDM. Matching, not beating. |
 | **JWST early massive galaxies** | MOND → accelerated early collapse | late assembly (z≲1, 1998 benchmark) | galaxies virialized by z≈10 | ◐ DISCRIMINATING | JWST JADES/CEERS/COSMOS-Web; Roman | now → 2030 | **A-priori directional win** (Sanders 1998 — real dated priority) **but NOT decisive**: ΛCDM absorbs it (revised masses, AGN/LRDs, bursty SF, Eddington bias; Krishnan–Abazajian 2026 PRD). No spec-confirmed object breaks the baryon budget. |
 | **Galaxy clusters** | a₀-set dynamics | fits with DM | under-predicts ~2× | ✗ FAILURE | eROSITA, lensing | done | MOND needs residual mass. **ΛCDM wins.** |
 | **CMB acoustic peaks / BAO / LSS** | linear physics | fits superbly | needs AeST completion | ✗ FAILURE | Planck, DESI | done | ΛCDM fits the peaks and P(k); AeST still under test. **ΛCDM wins.** |
+
+> **⚠️ a₀(z) rows — corrected (2026-06-05) to the settled √ρ_DE reading.** The `a₀(z)` row (and the *"EFE weakens
+> with z"* row, which assumes a₀∝E(z)) were written for the *superseded* rising reading. Per
+> [`THE_DARK_ENERGY_TRACKING_READING.md`](THE_DARK_ENERGY_TRACKING_READING.md) +
+> [`DOORS_FINAL_DISPOSITION.md`](DOORS_FINAL_DISPOSITION.md), the framework's faithful claim is **a₀∝√ρ_DE → constant
+> (w=−1) or a mild decline (~0.70 at z=3 under DESI)**, *not* the rising ∝E(z) form (the ρ_total/ρ_DE conflation, the
+> same 1/√Ω_Λ error as the static coefficient bug). The **EFE-vs-z** row (η∝1/E(z)) inherits this and **flips sign**
+> under a declining a₀ — it still needs separate reconciliation against the EFE-vs-z forecast. Current data grade:
+> [`A0Z_MUSE_DARK_III_CONFRONTATION.md`](A0Z_MUSE_DARK_III_CONFRONTATION.md) (leaning unfavourable).
 
 ## The honest reading
 
@@ -42,7 +51,7 @@ A prediction matters for "ΛCDM is broken" **only if ΛCDM cannot accommodate it
 2. **Wide binaries (Gaia DR4).** The cleanest, most local test of whether a₀ is real at all — and it's *split* right now (Banik vs Chae, over hidden triples and sample cuts). **Gaia DR4 is the near-term decider**, and it cuts both ways: it could confirm MOND *or* kill the whole foundation at 16–19σ.
 
 **Where we are *not* winning, honestly:**
-- The framework's **own** distinctive prediction — a₀∝E(z) — is **leaning against us**: the one direct measurement (MUSE-DARK III) rises *faster* than E(z) and doesn't survive halo-free analysis, and the mainstream (McGaugh, Milgrom) favors *constant* a₀.
+- The framework's **own** distinctive prediction is a₀∝**√ρ_DE** (constant if w=−1; a mild decline to ~0.70 at z=3 under DESI) — *not* the rising a₀∝E(z) form, which was the ρ_total/ρ_DE conflation. Correcting that fixes the *direction* of the claim, but the a₀(z) front still **leans unfavourable**: MUSE-DARK III measures a ~30σ *apparent* rise that refutes the canonical constant, and the faithful √ρ_DE reading survives only because that rise is the ΛCDM-degenerate apparent a₀ (a baryon-fraction quantity, reproduced by ΛCDM sims), not the framework's Λ-tied scale — an escape that cuts both ways. *Honest net:* empirically **mute-to-unfavourable** (grade in `A0Z_MUSE_DARK_III_CONFRONTATION.md`); the distinctive signal is a contingent ~30% decline decided only by the z~3 BTFR-offset sign. [Corrected 2026-06-05.]
 - **JWST early galaxies** are a real *directional* MOND brownie-point with dated priority, but the field has absorbed them into ΛCDM; they are **not** the decisive proof.
 - **Clusters and the CMB go to ΛCDM**, full stop.
 

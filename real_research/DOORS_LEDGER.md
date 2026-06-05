@@ -38,8 +38,10 @@ coincidence. So the honest map: **a₀-from-the-horizon is real and worth pushin
 Two independent routes give a₀ = cH/O(1): **Unruh** (T_dS=ℏH/2πk_B → a₀=cH/2π) and **Friedmann free-fall**
 (a₀=(c/2)√(Gρ_crit)=cH/Z, Z=2√(8π/3)). **Forced:** a₀∝c√Λ — the horizon origin of the MOND scale, robust across
 Unruh, Friedmann, and Verlinde's entropic derivation. **Not uniquely forced:** the exact O(1) — Z=5.79 and 2π=6.28
-agree to 8%, but the observed cH₀/a₀ (5.46–5.91) lands *on Z* and slightly below 2π, so the data softly favor the
-framework's coefficient. **Next:** turn the scale-argument into a genuine derivation via the de Sitter static-patch
+agree to 8% and the data do not pick between them: on the same pure-Λ footing as Z, the observed ratio is
+`cH_Λ/a₀ ≈ 4.5–4.9` (κ≈0.56–0.64), sitting *below* 5.79 — the framework's ½ is viable but at the **low edge**, not
+softly favored. (The cross-footed `cH₀/a₀=5.46–5.91` is what makes it *look* like it lands on 5.79; see
+`reviews/COEFFICIENT_FOOTING_AUDIT_2026-06.md` §4a.) **Next:** turn the scale-argument into a genuine derivation via the de Sitter static-patch
 (modular Hamiltonian / stretched horizon).
 
 ### 🟢 Door F′ — DSSYK↔de Sitter (feeds Door A)

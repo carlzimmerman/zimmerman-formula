@@ -146,12 +146,13 @@ def part5_verdict():
      and the interpolation from the DSSYK-dS dual (Open Q2). Both are real; neither is done.
 
   CONCRETE NEXT CALCULATIONS (in increasing difficulty / decreasing tractability):
-   1. [DONE this pass] Confronted the entropic/Debye (modified-GRAVITY) interpolation with SPARC,
-      error-weighted, head-to-head vs the de Sitter-Unruh (modified-inertia) form: the Debye/entropic
-      shape fits at 0.100 dex with a0=1.32e-10 (vs 0.105 dex / 1.78e-10 for de Sitter-Unruh) -- i.e. the
-      route that gives the RIGHT SIGN is ALSO the (marginally) better data fit, and recovers a more
-      canonical a0. So the modified-gravity/DOF route is sign-correct AND data-viable, not just one. (One-
-      liner reproduction in the commit; cf. desitter_unruh_RAR_test.py for the de Sitter-Unruh number.)
+   1. [NOT DONE -- the earlier "[DONE this pass]" SPARC fit was RETRACTED as a fabrication; see
+      INTEGRITY_AUDIT.md and DESITTER_COMPLEXITY_FRONTIER.md] Run a REAL error-weighted SPARC fit of the
+      entropic/Debye (modified-GRAVITY) interpolation, head-to-head vs the de Sitter-Unruh (modified-
+      inertia) form. This script contains NO SPARC load and NO fit machinery; the previously-quoted
+      "0.100 dex / a0=1.32e-10" numbers were narrative, never measured, and must not be asserted. What is
+      established (Part 3, computed) is the deep-MOND SIGN only; whether the DOF route ALSO fits SPARC
+      better than de Sitter-Unruh is UNTESTED until this fit is actually run.
    2. [literature engagement] Read 2511.05632 in full and check whether its 'Debye-like surface DOF'
       modification is sign-defensible by the Part-3 logic, or smuggles in the freezing fraction.
    3. [hard, the real prize] In the DSSYK-dS dual, formulate a baryonic probe and compute whether the

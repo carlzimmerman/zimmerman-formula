@@ -1,5 +1,13 @@
 # a₀ Is the Dark-Energy Scale: a MOND–Dark-Energy Unification, and Its Falsifiable Prediction
 
+> **⚠ 2026-06-05 — read with [`A0Z_MUSE_DARK_III_CONFRONTATION.md`](A0Z_MUSE_DARK_III_CONFRONTATION.md).** This
+> doc's √ρ_DE *decline* is in tension with MUSE-DARK III's measured rise, but "**failed → revert to rising**" is
+> too strong: (1) cite **Ciocan, Bouché et al.** (A&A 709, L16), **not "Mercier et al."** (2) MUSE's rise is
+> **ΛCDM-degenerate** (Mayer+2023) and *"faster than H(z)"*, so it does **not** establish a rising *fundamental*
+> a₀ — it is non-diagnostic of this framework, not a clean refutation of the √ρ_DE reading. Net grade: the
+> declining reading is **WEAKENED & CONTESTED**, survives via the fitted≠fundamental degeneracy (which also
+> strips its distinctiveness) — not "failed," and the rising branch is *not* thereby confirmed.
+
 **The session's novel, defensible result, stated as a research program — with its single load-bearing
 assumption and its normalization tension named in the first screen, not buried. Carl Zimmerman, June 2026.**
 
