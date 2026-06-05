@@ -56,12 +56,44 @@ density." The reading faithful to the framework's actual statement (*a₀ is set
   away from z=0, and that non-interchangeability is the content of this note. The √ρ_DE form is the one tied to the
   cosmological *constant*; the √ρ_total form is the one the data disfavor.
 
+## The fork resolves toward √ρ_DE (`reviews/project_a0_dark_energy_consistency.py`)
+
+The two forms aren't both fundamental — they agree only at z=0 (the cH₀ ≈ c²√Λ "why-now" coincidence) and diverge
+in the past. Which is the real law? **Both the framework's deep structure and the data select √ρ_DE:**
+- *Structure:* the de Sitter horizon, the CKN bound, the cosmic seesaw, and the 32π itself all tie a₀ to **Λ = ρ_DE**.
+  Conceptually a₀ is "MOND as a vacuum effect" (Milgrom) — a vacuum/dark-energy scale, not a total-density scale.
+  cH(z)/Z is the Friedmann *packaging* that equals it only today; reading it as the fundamental law over-extrapolates
+  the coincidence.
+- *Data:* Limbach (2008) and Milgrom (2017) disfavor the rising √ρ_total form. So the data independently pick √ρ_DE.
+
+## The faithful (declining-under-DESI) reading is *cleaner* on consistency
+
+Re-running the stress-tests for the √ρ_DE+DESI reading (where a₀ *declines* at high z, the opposite of the Hubble
+version):
+- **CMB — trivially safe.** a₀(z=1100) ≈ 0.7% of today (ρ_DE → 0 in the phantom past), so the early universe is
+  essentially Newtonian — even cleaner than the Hubble version (which needed gradient suppression to tame a *huge*
+  early a₀).
+- **Clusters — improved.** The MOND residual D ∝ a₀ *declines* at high z (0.81 at z=2), so the cluster discrepancy
+  *shrinks* — reversing the Hubble version's worsening, on the one front that had gotten worse.
+- **σ8 — a favorable trade-off.** a₀ is absent from linear growth (O(δ³)), so linear σ8 is unchanged; the *nonlinear*
+  MOND enhancement weakens as a₀ declines — which *helps* the low-S8 tension but *weakens* the (soft, contested)
+  El Gordo pro-MOND argument.
+
+## The reframe: a₀(z) is a galaxy-scale probe of dark energy
+
+Putting it together: **a₀ tracks the dark-energy density**, so a₀(z) becomes a *galaxy-scale probe of dark-energy
+evolution.* Measuring a₀ at z~3 tests whether dark energy is constant (a₀ flat) or evolving (a₀ ~ 0.7×) — the same
+question DESI is asking with BAO, approached through galaxy dynamics. That is a genuinely distinctive, principled,
+and now-motivated role for the framework, and it is its most data-consistent and consistency-cleanest reading.
+
 ## Bottom line
 
 The framework's faithful empirical claim is: **a₀ is set by the dark-energy density.** Under ΛCDM that means
 constant a₀ (safe, the geometric core). Under DESI's dynamical dark energy it means a **mild decline** (a₀ ~ 0.7 at
-z=3) — distinctive, DESI-tied, z~3-testable, and consistent with the very data (Limbach, Milgrom) that disfavored
-the *rising* version. The rising version, it turns out, was the framework reading its own formula with ρ_total in
-place of ρ_DE. Correcting that conflation is the single biggest improvement to the framework's empirical standing in
-this whole evaluation — not because it manufactures a win, but because it shows the data never disfavored the
-faithful claim in the first place.
+z=3) — distinctive, DESI-tied, z~3-testable, consistent with the very data (Limbach, Milgrom) that disfavored the
+*rising* version, *and cleaner on CMB/clusters than that version*. The rising version, it turns out, was the
+framework reading its own formula with ρ_total in place of ρ_DE. Correcting that conflation — and following it to
+"a₀(z) is a dark-energy probe" — is the single biggest improvement to the framework's standing in this evaluation:
+not a manufactured win, but the recognition that the data never disfavored the faithful claim, and that the faithful
+claim is both cleaner and more interesting than the one it replaced. *(Honest residue: the distinctive declining
+branch is contingent on DESI, which is ~2–4σ and contested; under constant Λ it is simply the constant core.)*
