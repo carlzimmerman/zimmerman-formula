@@ -69,8 +69,15 @@ python door4_mdar_evolution.py      # needs ../data/sparc_data/  (included)
 python door2_dwarf_spheroidals.py
 python door1_gravitational_lensing.py
 python door3_early_galaxies.py
+python door5_external_field_effect.py  # 5th channel: the SEP-violating, halo-proof EFE and its evolution
 python combined_forecast.py          # joint Fisher reach on the evolution strength beta
+python coefficient_landscape.py      # is 32pi un-derivable? -> data-selected (Z in [4.2,6.0]); not numerology
+python predictions_catalog.py        # writes ../PREDICTIONS_100.md (104 labeled predictions)
 ```
+
+**See also:** `../EVOLVING_BTFR_LITERATURE.md` — an honest comparison to Marongwe & Kauffman (2025), who
+independently published an evolving-BTFR (evolving-a₀) proposal from a different theory; documents how this framework
+is distinguishable (coefficient √(32π/3) vs their 2π; mild √ρ_DE vs their steep exponential; the unique DESI bridge).
 Each writes a figure to `../figures/doorN_*.png` and prints its full numeric table + verdict. Dependencies: `numpy`
 (+ `matplotlib` for figures). No network, no fitting, no hidden parameters — the only inputs are the published a₀
 anchor, the DESI w₀-wₐ dark-energy law, and the real galaxy data in `../data/`.
