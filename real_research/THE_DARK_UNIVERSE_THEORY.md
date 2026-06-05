@@ -18,9 +18,16 @@ thing — the cosmological constant Λ:**
 - **Dark matter (galactic) = the a₀-modification of gravity**, with a₀ = c²√(Λ/32π) — *the same Λ*, now acting on
   galaxy scales. There is no dark-matter particle; the flat rotation curves are Λ's galactic fingerprint.
 
-So **dark matter phenomenology and dark energy are two faces of the vacuum** — ~95% of the universe from one number.
-If true, that replaces the two deepest puzzles in cosmology with a single one (the vacuum energy). That is a *real*
-and *ambitious* unification. It deserves to be stated plainly, and it deserves not to be inflated past what it is.
+So **the galactic dark-matter phenomenology and dark energy are two faces of the vacuum.** That is real and worth
+stating plainly.
+
+> **⚠ Correction (June 2026, `ULTRATHINK_REDTEAM.md`) — do not inflate this to "95% from one scale."** Worked
+> adversarially, the unification is **partial.** It holds at *galaxy* scales (a₀ ∝ √Λ, validated on SPARC). But the
+> **cosmic** dark matter — the CMB third peak and clusters require a clustering, dust-like component of density
+> Ω_dm ≈ 0.27 — is *not* supplied by a₀ (a force modification contributes zero to Ω). It needs AeST's **separate
+> 𝒬-field** (or sterile neutrinos): a *second* dark component, **not tied to Λ.** So the framework unifies the
+> *galaxy-scale dark-matter phenomenology* with dark energy; it does **not** unify the *cosmic* dark matter with
+> dark energy. The honest claim is that narrower one — not "95% of the universe from one number."
 
 ## Why it is *not* a TOE
 
