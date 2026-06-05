@@ -30,7 +30,7 @@ rather than be inserted.
 
 | # | Step | What it is | Difficulty | Who owes it |
 |---|---|---|---|---|
-| **B1** | **Entanglement-equilibrium derivation** | Insert a de Sitter volume-law term into Jacobson's equilibrium and *derive* a₀ ∝ √Λ (not insert C(𝒬)). The live door. | hard, novel | this framework's best shot at new content |
+| **B1** | **Entanglement-equilibrium derivation** | Insert a de Sitter volume-law term into Jacobson's equilibrium and *derive* a₀ ∝ √Λ (not insert C(𝒬)). The live door. | hard, novel | **HALF DONE** (`reviews/project_b1_emergent_sqrtDE.py`): the bridge *form* a₀ ∝ √ρ_DE now emerges from de Sitter vacuum entropy; only the O(1) coefficient stays route-forced |
 | **B2** | **Holographic/CKN closure** | Derive the saturation that fixes ρ_Λ ~ M_P²H² (not just inherit it); connect to the event-horizon cutoff. | hard, CC-adjacent | shared with holographic-DE |
 | **B3** | **The value of Λ** | The cosmological-constant problem: why E_Λ/E_P ≈ 1.8×10⁻³¹. | **unsolved** | *everyone* — the deepest debt |
 
