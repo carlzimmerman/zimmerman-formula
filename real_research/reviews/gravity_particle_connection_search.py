@@ -44,7 +44,7 @@ cands = [
  ("5. Dark Dimension (Montero-Vafa-Valenzuela 2022): small Lambda -> light KK tower",
   "FAIL [CONJECTURAL + CONTRADICTS]",
   f"The closest REAL modern link: the Swampland distance conjecture ties small Lambda to a tower at "
-  f"~Lambda^(1/4) ~ {((3*H0**2/(8*np.pi*G))*0.685*c**2)**0.25/eV*1e3:.0f} meV (a ~micron extra "
+  f"~Lambda^(1/4) ~ {((3*H0**2/(8*np.pi*G))*0.685*c**2*(1.0546e-34*c)**3)**0.25/eV*1e3:.2f} meV (a ~micron extra "
   "dimension) that could be dark matter. BUT (a) it rests on the Swampland CONJECTURES (not derived), "
   "and (b) it predicts PARTICLE dark matter -- which CONTRADICTS this framework's modified-gravity "
   "dark sector. So it is not a connection the framework can own; if anything it competes with it."),

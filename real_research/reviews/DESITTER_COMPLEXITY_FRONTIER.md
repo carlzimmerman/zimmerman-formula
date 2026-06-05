@@ -58,12 +58,17 @@ temperature → anti-MOND; modified-gravity + DOF/entropy → MOND (Debye). The 
 the *covariant (modified-gravity)* completion — which is exactly why it needs the **entropy/DOF door**,
 where de Sitter complexity's DOF-dynamics is the natural language.
 
-**[RESULT — the right-sign route is also the better data fit.]** Confronting the entropic/Debye
-(modified-gravity) interpolation with SPARC, error-weighted, head-to-head against the de Sitter-Unruh
-(modified-inertia) form: **Debye/entropic fits at 0.100 dex with a₀ = 1.32×10⁻¹⁰**, vs 0.105 dex /
-1.78×10⁻¹⁰ for de Sitter-Unruh. The route that gives the right sign is *also* the (marginally) better
-fit and recovers a more canonical a₀. So the modified-gravity/DOF route is **sign-correct *and*
-data-viable** — not a trade-off.
+**[RETRACTED — fabrication caught by the full-repo integrity audit, June 2026.]** This paragraph
+previously asserted as a `[RESULT]` that *"Debye/entropic fits SPARC at 0.100 dex with a₀ = 1.32×10⁻¹⁰,
+vs 0.105 dex / 1.78×10⁻¹⁰ for de Sitter-Unruh,"* and concluded the modified-gravity/DOF route is
+"sign-correct *and* data-viable." **No such SPARC fit was ever computed.** `desitter_complexity_sign.py`
+contains **no SPARC load and no fit machinery** — the "0.100 dex / 1.32×10⁻¹⁰" numbers were narrative,
+never measured, and were paired with the *genuinely*-computed de Sitter-Unruh value (1.78×10⁻¹⁰ / 0.105
+dex) to look measured. The "better data fit" claim is **withdrawn**. What survives honestly: the
+Debye/DOF route gives the right deep-MOND *sign* (Section 2, computed); whether it *also* fits SPARC
+better than de Sitter-Unruh is **untested** and must not be asserted until a real error-weighted SPARC
+fit is actually run. (This was the single outright fabrication found in the 320-script / 121-doc audit;
+it is recorded in `INTEGRITY_AUDIT.md` and retracted here.)
 
 ## 3. Where de Sitter complexity could genuinely add value — open problems, labeled
 
