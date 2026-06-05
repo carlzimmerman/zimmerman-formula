@@ -83,3 +83,30 @@ one that looked shut.
 
 *Reproduce:* `reviews/project_event_horizon_a0z.py`. *Supersedes the "event horizon ≡ constant" reading in*
 `reviews/apparent_vs_event_discriminators.py`.
+
+---
+
+## Developing the door (`reviews/project_event_horizon_develop.py`)
+
+Two follow-ups — one improves the door, one honestly closes a tempting extension.
+
+**Consistency re-check — a genuine improvement.** Re-running the stress-tests I did for the Hubble version:
+- **Clusters: much milder.** The MOND cluster residual D ∝ a₀, so D(z)/D₀ tracks a₀(z). The event version rises
+  ×1.20 (z=1), ×1.47 (z=2) — versus the Hubble version's ×1.79, ×3.03. The cluster *strike is much softer.* The
+  event-horizon formulation is *gentler on the one thing that got worse* under the version the data disfavored.
+- **CMB: still safe.** a₀(event, z=1100) is still ~300× today, but a₀ is absent from the linear equations by the
+  O(δ³) gradient suppression *regardless of its value* — so the same linear-order proof holds.
+- **σ8: still neutral, by one mechanism instead of two.** The EFE-freezing argument (a_H/a₀ = Z, frozen) was
+  specific to the Hubble version and *breaks* here (a_H/a₀ rises 1.0, 1.5, 2.1 at z=0,1,2). But σ8 stays neutral via
+  the O(δ³) suppression alone. Honest: the event version loses the EFE-freezing bonus but keeps neutrality.
+
+**The DESI extension — does not pan out.** The event horizon *is* the holographic-dark-energy IR cutoff (Li 2004).
+The tempting move: go fully holographic (ρ_DE ∝ 1/R_e²), so the *same* structure sets a₀ *and* a now-testable w(z)
+to compare against DESI 2024. It fails: standard event-horizon holographic DE gives w = −(1/3)(1 + 2√Ω_DE/c_h), so
+**w₀ ≈ −0.89** (in DESI's ballpark) but **wₐ ≈ +0.23** — a *thawing* history (w: −1/3 → −1). **DESI wants wₐ ≈
+−0.75** (phantom-crossing). Opposite evolution. So there is no bonus DESI connection; the event-horizon a₀ door
+**stands on a constant-Λ (ΛCDM) background only.**
+
+**Net:** the event-horizon door is consolidated and modestly improved — viable, distinctive, *and* gentler on
+clusters than the disfavored Hubble version — but it does not extend to dark-energy phenomenology, and it still
+rests on the single z~3 deep-MOND measurement to confirm or kill.
