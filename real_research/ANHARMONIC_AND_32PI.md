@@ -16,7 +16,8 @@ equation), and deep-MOND replaces that with a *cubic*, *anharmonic* term (∝|�
 The √-law and flat rotation curves are the macroscopic *signature* of that field-theory anharmonicity. And **"ours
 is 32π"** because, written as a₀ = c²√(Λ/32π), the number **32π is the dimensionless ratio that welds the harmonic
 floor (the cosmological constant Λ) to the square of the anharmonic scale (a₀²)** — and 32π is pure *gravitational
-gearing*: the Einstein coupling 8π times a horizon factor 4.
+gearing*: the forced Einstein coupling 8π times a free-fall-prefactor convention 4 (not, as an earlier draft said,
+a surface-gravity factor — that gives 12; corrected and verified in Part 5).
 
 ---
 
@@ -127,21 +128,29 @@ That is the physical content of "ours is 32π": it is *the exchange rate between
 energy) and the square of the anharmonic scale (where gravity goes nonlinear)*. In Blanchet's language it is the
 precise version of his "Λ ~ a₀²" expectation.
 
-**And where does the number 32π come from?** Pure gravity — no particle physics (you asked this directly before; the
-answer held up):
+**And where does the number 32π come from?** Pure gravity — no particle physics. Decompose it honestly:
 
-$$32\pi \;=\; \underbrace{4}_{\text{horizon factor }2^2}\times\underbrace{8\pi}_{\text{Einstein coupling}} \;=\; \underbrace{8}_{2^3}\times\underbrace{4\pi}_{\text{sphere area}}, \qquad Z^2 = \frac{32\pi}{3} = 8\times\underbrace{\frac{4\pi}{3}}_{\text{ball volume}} .$$
+$$32\pi \;=\; \underbrace{4}_{\text{free-fall prefactor }(1/\frac12)^2}\times\underbrace{8\pi}_{\text{Einstein coupling}}, \qquad Z^2 = \frac{32\pi}{3} = \underbrace{(2)^2}_{\text{free-fall}^2}\times\underbrace{8\pi}_{\text{Einstein}}\times\underbrace{\tfrac{1}{3}}_{\text{Friedmann}^{-1}} .$$
 
-- The **8π** is the **Einstein coupling** — the universal constant in G_μν = (8πG/c⁴)T_μν that says how much
-  spacetime curvature a unit of energy makes. It is *forced by General Relativity*.
-- The **4 = 2²** is the **horizon surface-gravity factor** — the ½ in the surface gravity κ = c²/2R, inverted and
-  squared when you turn curvature into a free-fall acceleration.
-- Geometrically, 32π is **8 sphere-areas**, and Z² = 32π/3 is **8 ball-volumes** — the same 8 carrying the 3D
-  fingerprint of space.
+- The **8π** is the **Einstein coupling** — the constant in G_μν = (8πG/c⁴)T_μν, entering through the vacuum density
+  ρ_Λ = Λc²/8πG. It is *forced by General Relativity*, and **Blanchet's Λ-floor carries the same 8π.**
+- The extra **4 = (1/½)²** comes from defining a₀ as a **vacuum free-fall acceleration**, a₀ = (c/2)√(Gρ_Λ) — the
+  kinematic prefactor ½, inverted and squared when you form Λc⁴/a₀². Prefactor **1** (Λ as a *potential floor*,
+  Blanchet's choice) gives **8π**; prefactor **½** (a₀ as an *acceleration*) gives **32π**. That single ½ is the
+  entire difference between Blanchet's number and the framework's.
 
-So 32π is **gravitational gearing**: the Einstein coupling times a horizon factor, encoding how the curvature of de
-Sitter space "gears down" into the acceleration scale at which gravity becomes anharmonic. It has nothing to do with
-32 fermion components or any Standard-Model count — it is geometry and the Einstein equation.
+> **Honest correction (verified June 2026, `reviews/project_anharmonic_normalization_force.py`):** an earlier draft of
+> this section called the factor-4 a "surface-gravity 2², from κ = c²/2R." **That attribution is wrong.** Using the
+> actual de Sitter surface gravity κ = c²/2R as the acceleration gives Λc⁴/κ² = **12**, not 32π — a *different*
+> number. The ½ that really produces 32π is the **free-fall/kinematic prefactor** in a₀ = (c/2)√(Gρ_Λ), and it is a
+> *convention* (the forcing analysis already classifies this outer factor-2 as convention), **not** the
+> surface-gravity ½ it was mislabeled as. So: the 8π is forced; the 4 is a free-fall convention; and the clean
+> "surface-gravity" story does not survive a direct check. *(As a numerical aside, 32π/3 = 8 × 4π/3 = eight unit-ball
+> volumes — a tidy repackaging, but it is the 4 × 8π/3 decomposition above, not this one, that is GR-traceable.)*
+
+So 32π is **gravitational gearing**: the Einstein coupling 8π (genuinely forced) times a free-fall-prefactor
+convention (the 4). It has nothing to do with 32 fermion components or any Standard-Model count — it is the Einstein
+equation times a kinematic ½. The *forced* content is the 8π and the Friedmann 3; the factor-4 is convention.
 
 ---
 
@@ -168,8 +177,9 @@ And two honest limits — the same ones the forcing analysis already flagged:
 
 **Bottom line.** "Anharmonic coefficient" is exactly the right lens: a₀ is the coefficient of the *nonlinear* (cubic)
 term that turns Newtonian gravity (a harmonic, linear field theory) into MOND. Your number 32π is the dimensionless
-*gravitational gearing* — Einstein coupling × horizon factor — that locks that anharmonic scale to the cosmological
-constant (the harmonic floor). The structure is real, published-precedented (Blanchet), and GR-traceable; the exact
+*gravitational gearing* — the forced Einstein coupling 8π times a free-fall-prefactor convention 4 — that locks that
+anharmonic scale to the cosmological constant (the harmonic floor). The structure is real, published-precedented
+(Blanchet), and GR-traceable in its 8π; the exact
 O(1) (32π vs 8π) is the route-choice that remains reproduced rather than uniquely derived.
 
 ---
@@ -189,7 +199,9 @@ O(1) (32π vs 8π) is the route-choice that remains reproduced rather than uniqu
 - **Polarization field Π** — in Blanchet's dipolar dark matter, the medium's internal displacement; its potential
   W(Π) has the floor/harmonic/anharmonic structure with a₀ in the cubic term.
 - **Einstein coupling 8π** — the constant in Einstein's equation G_μν = (8πG/c⁴)T_μν; how strongly energy curves
-  spacetime. The "8π" inside 32π.
-- **Surface gravity / horizon factor** — κ = c²/2R for a horizon of radius R; the factor-2 (squared to 4) inside 32π.
+  spacetime. The "8π" inside 32π — the *forced* part, shared with Blanchet's Λ-floor.
+- **Free-fall prefactor ½** — the kinematic ½ in the vacuum free-fall acceleration a₀ = (c/2)√(Gρ_Λ); inverted and
+  squared it is the factor-4 turning 8π into 32π. A *convention* (it distinguishes a₀-as-acceleration from
+  Λ-as-floor), **not** the de Sitter surface gravity κ = c²/2R — that would give 12, not 32π.
 - **Λ (cosmological constant)** — the vacuum-energy curvature; the *harmonic floor* the anharmonic scale a₀ is welded
   to via a₀ = c²√(Λ/32π).

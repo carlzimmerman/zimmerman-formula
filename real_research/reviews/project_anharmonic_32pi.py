@@ -24,9 +24,11 @@ WHY OURS IS 32pi. The 32pi is NOT the anharmonic coefficient itself -- it is the
 HARMONIC FLOOR (Lambda) to the ANHARMONIC SCALE (a0): from a0 = c^2 sqrt(Lambda/32pi),
    32pi = Lambda c^4 / a0^2     (the curvature-to-acceleration-squared ratio; dimensionless)
 i.e. "the MOND nonlinearity turns on at the acceleration whose square, times 32pi, equals the cosmological-constant
-curvature." And 32pi = 4 x 8pi = (surface-gravity factor 2)^2 x (Einstein coupling 8pi); geometrically 32pi = 8 x
-4pi (sphere area), and Z^2 = 32pi/3 = 8 x 4pi/3 (ball volume). Blanchet's floor uses 8pi, ours 32pi -- same
-structure, an O(1) (factor ~4) apart, the route-choice the forcing analysis already flagged. Needs numpy.
+curvature." And 32pi = 4 x 8pi: the 8pi is the Einstein coupling (FORCED, via rho_L=Lam c^2/8piG); the extra 4 is
+(1/(1/2))^2 from defining a0 as a vacuum FREE-FALL acceleration a0=(c/2)sqrt(G rho_L). CORRECTED (June 2026): that
+1/2 is NOT the de Sitter surface gravity kappa=c^2/2R -- using kappa gives Lam c^4/kappa^2 = 12, not 32pi -- it is a
+free-fall/kinematic convention (prefactor 1 -> Blanchet's 8pi floor; prefactor 1/2 -> 32pi). Blanchet's floor uses
+8pi, ours 32pi -- same structure, the route/convention factor-4 the forcing analysis already flagged. Needs numpy.
 """
 import numpy as np
 
@@ -51,11 +53,17 @@ def main():
     print(f"   meaning: MOND's nonlinearity turns on where a0^2 * 32pi = Lambda c^4 (the cosmological curvature).")
     print(f"   (with the OBSERVED a0=1.2e-10, Lambda c^4/a0^2 = {Lam*c**4/(1.2e-10)**2:.0f} -- ~off by the usual ~20-30%.)\n")
 
-    print("="*92); print("(3) WHERE 32pi COMES FROM (pure gravity)"); print("="*92)
-    print(f"   32pi = {32*np.pi:.3f} = 4 x 8pi = (surface-gravity factor 2)^2 x (Einstein coupling 8pi)")
-    print(f"        = 2^3 x 4pi = (coupling factors) x (unit-sphere AREA 4pi = {4*np.pi:.3f})")
-    print(f"   Z^2 = 32pi/3 = 8 x (4pi/3) = (coupling) x (unit-BALL VOLUME 4pi/3 = {4*np.pi/3:.3f})")
-    print(f"   => 32pi is gravitational gearing (Einstein coupling x horizon factor), NOT particle physics.\n")
+    print("="*92); print("(3) WHERE 32pi COMES FROM (pure gravity) -- corrected attribution"); print("="*92)
+    print(f"   32pi = {32*np.pi:.3f} = 4 x 8pi.  8pi = Einstein coupling (FORCED, via rho_L = Lam c^2/8piG).")
+    print(f"   The extra 4 = (1/(1/2))^2 comes from defining a0 as a vacuum FREE-FALL acceleration")
+    print(f"   a0 = (c/2)sqrt(G rho_L): the kinematic prefactor 1/2, inverted and squared in Lam c^4/a0^2.")
+    print(f"     prefactor 1   (Lam as a potential FLOOR, Blanchet) -> Lam c^4/a0^2 = 8pi  = {8*np.pi:.2f}")
+    print(f"     prefactor 1/2 (a0 as an ACCELERATION, framework)   -> Lam c^4/a0^2 = 32pi = {32*np.pi:.2f}")
+    print(f"   CORRECTION (verified): this 1/2 is NOT the de Sitter surface gravity kappa=c^2/2R --")
+    print(f"     using kappa as a0 gives Lam c^4/kappa^2 = 12, a different number. The factor-2 is a free-fall")
+    print(f"     CONVENTION (FORCING doc already classifies the outer factor-2 as convention), not surface gravity.")
+    print(f"   (Numerical aside: 32pi/3 = 8 x 4pi/3 = eight unit-ball volumes -- a clean repackaging, but it is the")
+    print(f"    4 x 8pi/3 decomposition above, free-fall^2 x Einstein x Friedmann^-1, that is GR-traceable.)\n")
 
     print("="*92); print("(4) BLANCHET's potential -- the same anharmonic structure, an O(1) apart"); print("="*92)
     print("   W(Pi) = Lambda/8pi + 2pi Pi^2 + (16pi^2/3a0) Pi^3 + ...")
