@@ -49,17 +49,22 @@ The two desiderata pull apart: the property that makes the framework CMB-safe an
 is the property that exposes it to Cassini; the property that would evade Cassini (modified inertia) has no covariant
 completion. **This is a genuine tension in the framework's realization story, not a cosmetic one.**
 
-## Is it a kill? No — but the escape is uncomputed, not free
+## Is it a kill? No — but the escape narrowed sharply (update, see `AEST_MASS_SCALE_two_doors.md`)
 
-AeST carries a free function `K(𝒬)`. In principle a `K(𝒬)` with a sharp-enough feature can **screen** the
-solar-system fifth force (suppress the quadrupole) — AeST has the freedom. The question is whether the **same**
-`K(𝒬)` that reproduces the gradual RAR transition *also* satisfies the sharp Cassini quadrupole. That is precisely
-the Desmond tension transplanted from phenomenological MOND into AeST — and **it has not been computed**. Skordis–
-Złošnik checked PPN consistency, but not the joint RAR+Cassini-quadrupole fit under the 2026 bound. So:
+AeST's natural screening structure is its **mass term `μ²Φ`** (the feature absent in TeVeS/QUMOND). One would hope it
+suppresses the solar-system quadrupole. **It cannot, by scale:** the AeST mass is `μ ≲ 1 Mpc⁻¹` (`1/μ ≳ 1 Mpc`,
+pinned by the CMB/stability fit), so at 50 AU `(μr)² ~ 6×10⁻²⁰` — the `μ²Φ` term is ~40 orders down and AeST reduces
+to **pure QUMOND** in the Solar System. The earlier hope ("AeST `K(𝒬)`/`μ` could screen — uncomputed, could go either
+way") is **excluded** for the μ-channel.
 
-- **Not excluded** — AeST's `K(𝒬)` freedom is a real, untested escape hatch.
-- **Not safe** — the casual "modified inertia evades it" line is *not* available to the framework, and the tension is
-  strengthening with data (8.7σ → 3–15σ in two years).
+The remaining escape narrows to the interpolation/screening parameter `β₀` (or the `χ`-field) doing something special
+in the external-field configuration. But `β₀` **sets the RAR transition sharpness** — exactly the quantity Desmond
+shows is too gradual for Cassini. So the Desmond tension transplants into `β₀` essentially intact. So:
+
+- **Not formally excluded** — the joint RAR+Cassini-quadrupole fit in full AeST (β₀, χ, EFE) has not been computed.
+- **But the optimism is gone** — AeST's one *natural* screening scale (1/μ ~ Mpc) is ~10 orders too large to help the
+  Solar System, and the surviving knob (`β₀`) is the one the RAR already pins. The casual "modified inertia evades it"
+  line is *not* available to the framework, and the tension is strengthening (8.7σ → 3–15σ in two years).
 
 ## Disposition — a SECOND framework-relevant exposure
 

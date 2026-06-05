@@ -49,6 +49,17 @@ On **9830 real eRASS1 clusters**, with the framework's *own* a0 = 9.36×10⁻¹�
 
 **The distinctive a0(z) claim is irrelevant to it.** To erase η needs a0 ×4.6 (≈ +0.66 dex, since M_eff ∝ √a0); a0(z)~√ρ_DE supplies only +0.025 dex (~4%) by the cluster epoch z~0.3 — **off by ~1.5 orders of magnitude**. Honest caveats both ways: (i) absolute η carries ~50% WL/scaling-relation systematic, so the *magnitude* (not existence) is uncertain; (ii) I do **not** claim η worsens with mass in *this* catalog — with eRASS1's own FGAS500 the η–M500 slope is slightly *negative* (−0.03), so "worsens with mass" is baryon-prescription-dependent here; (iii) KATRIN (<0.8 eV, now 0.45 eV) has removed the canonical ~2 eV-neutrino escape, **hardening** the shared tension.
 
+**But — unlike phenomenological MOND — the framework's *covariant* realization carries an intrinsic candidate** (see
+`AEST_MASS_SCALE_two_doors.md`). AeST is not plain QUMOND: its mass term `μ²Φ` (`1/μ ≳ 1 Mpc`, pinned by the CMB fit)
+switches on **at the cluster scale**, producing an oscillatory regime where the RAR "peaks then drops as if there were
+negative mass density" — and the AeST authors note **"similar features of the galaxy-cluster RAR have been reported…
+the potential to address the shortcomings of MOND in clusters"** (Durakovic & Skordis 2024). So the deficit may be
+supplied by a field the framework *already needs*, switched on at the right scale (and off in galaxies). **Two serious
+caveats keep this a candidate, not a cure:** the oscillatory regime involves negative-energy-density condensates the
+AeST literature flags as **expected-unstable** (Mistele+2023), and only isothermal toy models exist — the eRASS1
+η ≈ 2 is **not yet shown closed**. Net: the heaviest liability moves from "MOND fails, needs an *ad hoc* component" to
+"AeST has an *intrinsic* mechanism, caveated by a possible instability and no quantitative fit."
+
 ### 3b. The Bullet Cluster — SHARED, serious, but OPEN/contested
 The lensing-convergence peaks sit on the **collisionless galaxies**, not on the dominant (~85–90%) X-ray gas. The 2026 JWST strong-lensing analysis (Famaey, arXiv:2605.10022) finds baryon-only MOND reaches only κ ≈ 0.5 where the data demand κ ≥ 1, and a **~3.4×10¹⁴ M⊙ collisionless residual on the galaxies** (factor-few-to-~10 in cores). a0(z) does **nothing** here — the Bullet is pure constant-a0 MOND at z = 0.296.
 **Not cleanly fatal, because as of 2026 it is actively contested**: Hernandez (arXiv:2604.10811) argues QUMOND density-weighting (compact galaxies → sharp phantom vs diffuse gas → broad phantom) reproduces the on-galaxy peaks from baryons alone. The repo's *own* "non-equilibrium phantom" escape is correctly self-flagged **BROKEN** (the AeST field re-settles in R/c ≈ 2 Myr ≪ the 150 Myr collision, so the phantom tracks the gas). **Honest verdict:** clusters and the Bullet are where this framework — like *all* MOND — still needs a second dark component (the AeST Q-field engineered as dust, or eV-scale sterile neutrinos). Addressable in principle, unresolved in practice; a standing liability, neither a clean kill nor a win.
