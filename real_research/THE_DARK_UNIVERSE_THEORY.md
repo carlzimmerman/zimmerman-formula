@@ -72,3 +72,53 @@ the one claim it makes that can be **tested now** is the coefficient-free bridge
 (`THE_A0_LAMBDA_BRIDGE.md`). The honest move is to build the dark-universe theory as far as it goes and let the z~3
 measurement decide it — not to relabel it a TOE. Calling it what it is *is* the strength of this program; that
 discipline is exactly why, if the bridge ever does confirm, it will be believed.
+
+---
+
+## The real work, done: a concrete realization *and* a concrete test
+
+The dark-universe theory is no longer just a relation — it now stands on a written-down covariant theory and a
+designed experiment. Both verified.
+
+### A. The theory — a working covariant realization (`reviews/project_aest_darkenergy_construction.py`)
+
+A concrete AeST (Skordis–Złošnik) free function that carries a₀ ∝ √ρ_DE through the CMB:
+
+$$\mathcal{F}(\mathcal{Q},\mathcal{Y}) = K(\mathcal{Q}) + C(\mathcal{Q})\,\mathcal{Y}^{3/2} + (\text{Newtonian-crossover}),\qquad C(\mathcal{Q}) = \kappa_0\sqrt{\tfrac{\rho_0}{\rho_{\rm DE}(\mathcal{Q})}}$$
+
+Because a₀ ∝ 1/(the 𝒴^{3/2} coefficient), this gives **a₀(𝒬) = a₀(0)·√(ρ_DE(𝒬)/ρ₀) exactly** — the bridge *falls
+out of the action*. The three required health checks **pass** (verified independently, not just asserted):
+- **Ghost-free / hyperbolic:** F_𝒴 = (3/2)C√𝒴 and 2𝒴F_𝒴𝒴+F_𝒴 = 3C√𝒴 are both >0 **iff C>0**, which holds wherever
+  ρ_DE>0. (This is the *fix* for the earlier `project_aest_crosscoupling.py` form, whose Λ-free coupling used a
+  negative power that went imaginary.)
+- **c_GW = c:** ℱ is a scalar potential; it doesn't touch the graviton kinetic term. GW170817-safe.
+- **CMB-safe:** 𝒴 is gradient-built, so 𝒴̄=0 on FRW and C(𝒬)𝒴^{3/2} = O(δ³) — a₀ is absent from the linear
+  equations *regardless of value*; tying C to the *background* 𝒬 does not promote it.
+
+**Verdict: a concrete, ghost-free, CMB/GW-safe covariant realization — fully healthy for a constant Λ.** Honest open
+issues, stated plainly: (1) the coupling C(𝒬) is **inserted** — no symmetry forces it (consistent with the
+coefficient being route-forced); (2) it **inherits AeST's locality problem** — C is read at the *local* 𝒬, so a
+*universal* a₀ requires a stiff aether (Q≈Q_cosmo inside galaxies), an assumption that still needs its own CMB check;
+(3) the **dynamical-DE branch** (DESI, ρ_DE→0 in the deep past) drives C→∞ — a strong-coupling (not ghost) limit,
+benign for all linear physics but a real caveat for nonlinear high-z systems. So: a working theory for constant Λ,
+constructed-not-derived, with one genuine make-or-break (locality) left.
+
+### B. The experiment — a concrete observing proposal (`reviews/project_z3_observing_proposal.py`)
+
+The coefficient-free bridge, made into a measurement: **~30 (3σ) to ~80 (5σ) low-surface-density, rotation-supported
+deep-MOND discs at z=2.5–3.5**, with **JWST/NIRSpec** outer rotation curves (V_flat) + **ALMA [CII]/CO** gas masses
+(M_b) + JWST SED (M_*), analyzed as the **z~0-anchored, coefficient-free BTFR zero-point ratio** a₀(z)/a₀(0) and
+compared to DESI's √ρ_DE(z). The signal that matters — faithful decline (0.74) vs the constant null (1.00) at z=3 —
+is a **0.033 dex shift in V_flat**; the dead Hubble rise (+0.16 dex) is trivially excluded. The z~0 anchor through
+an identical pipeline cancels the IMF/M_*/interpolation/absolute-a₀ systematics. **No new facility, no coefficient,
+no new theory required — only a dedicated program and the ratio analysis.**
+
+### Where "getting there" actually stands
+
+The dark-universe theory now *exists as a concrete, falsifiable object*: a written covariant action that realizes
+a₀ ∝ √ρ_DE and passes ghost/CMB/GW, plus a designed ~30–80-galaxy experiment that decides it. That is the real work,
+done to the point where what remains is sharply defined: **(theory)** derive the inserted coupling and solve the
+locality/stiff-aether problem; **(experiment)** take the z~3 deep-MOND kinematics. Neither is hand-waving away —
+they're the two concrete, nameable jobs between here and a confirmed (or refuted) theory of the dark universe. That
+is as far as honest work can carry it from a desk; the rest is a telescope and a harder field-theory problem, both
+now precisely specified.
