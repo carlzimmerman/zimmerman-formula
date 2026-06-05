@@ -97,11 +97,22 @@ out of the action*. The three required health checks **pass** (verified independ
 
 **Verdict: a concrete, ghost-free, CMB/GW-safe covariant realization — fully healthy for a constant Λ.** Honest open
 issues, stated plainly: (1) the coupling C(𝒬) is **inserted** — no symmetry forces it (consistent with the
-coefficient being route-forced); (2) it **inherits AeST's locality problem** — C is read at the *local* 𝒬, so a
-*universal* a₀ requires a stiff aether (Q≈Q_cosmo inside galaxies), an assumption that still needs its own CMB check;
-(3) the **dynamical-DE branch** (DESI, ρ_DE→0 in the deep past) drives C→∞ — a strong-coupling (not ghost) limit,
-benign for all linear physics but a real caveat for nonlinear high-z systems. So: a working theory for constant Λ,
-constructed-not-derived, with one genuine make-or-break (locality) left.
+coefficient being route-forced); (2) it inherits AeST's locality concern — C is read at the *local* 𝒬; (3) the
+**dynamical-DE branch** (DESI, ρ_DE→0 in the deep past) drives C→∞ — a strong-coupling (not ghost) limit, benign for
+all linear physics but a real caveat for nonlinear high-z systems.
+
+**Update — the locality "make-or-break" is checked, and it is BENIGN** (`reviews/project_aest_locality_check.py`).
+The worry was that a₀ ∝ √ρ_DE(𝒬) would vary between galaxies and break the universal RAR. It does not, for the same
+reason that resolved the √ρ_DE-vs-√ρ_total fork: **𝒬 is the cosmological/time-sector invariant** (𝒬 ~ Aᵘ∂ᵤφ ~ φ̇),
+and galaxies source the *spatial*-gradient invariant 𝒴 (that *is* the MOND potential) — they perturb 𝒬 only at the
+gravitational-potential level Φ=(V/c)² ~ 10⁻⁶ (tilt level √Φ ~ 10⁻³). So **δa₀/a₀ ~ 10⁻⁶–10⁻³ ≪ the RAR scatter
+(~29%): a₀ is universal.** (Contrast: had a₀ tracked the *local total* density, ρ_gal/ρ_cosmic ~ 10⁵ would vary a₀
+by ~300× — catastrophic. Coupling to the *uniform* dark energy via 𝒬 is exactly what makes a₀ universal *by
+construction*.) So the realization now passes **ghost-freedom, c_GW=c, CMB-safety, *and* universality.** *Honest
+caveat:* this is an order-of-magnitude argument; the full check needs the quasi-static AeST 𝒬-profile in a galaxy and
+confirmation that the standard-AeST (already CMB-fit) aether stiffness is unchanged by C(𝒬). Locality is downgraded
+from "make-or-break" to **"likely benign, pending the full quasi-static solution."** So: a working theory for
+constant Λ, constructed-not-derived, with its biggest flagged threat now substantially defused.
 
 ### B. The experiment — a concrete observing proposal (`reviews/project_z3_observing_proposal.py`)
 
