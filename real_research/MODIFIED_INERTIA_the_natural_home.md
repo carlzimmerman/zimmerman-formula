@@ -46,10 +46,15 @@ Modified inertia is the framework's natural home, but it is **not a finished hou
   CMB-passing modified-inertia MOND has **not** been constructed. AeST remains the *only* complete CMB-safe
   realization — and it is modified gravity. So the framework currently *needs* AeST for the CMB, and *inherits* its
   Cassini exposure, precisely because the better home is unbuilt.
-- **It is, however, an active program** (so the door is open, not walled): local-Lagrangian modified-inertia attempts
-  (arXiv:1904.07321), Machian / Sciama-inertia constructions conceptually close to the free-fall-clock idea
-  (arXiv:2410.19007), and metric-only UV-vanishing IR deformations recovering AQUAL at low acceleration
-  (arXiv:2601.04290, 2026). None yet does the CMB, but the direction is alive.
+- **It is, however, an active program** (so the door is open, not walled): the local-Lagrangian attempt
+  (arXiv:1904.07321, Costa–Franzmann–Pereira — *not* Milgrom; carries a linearly-growing instability valid only ~3 Gyr),
+  Machian / Sciama-inertia constructions conceptually close to the free-fall-clock idea (arXiv:2410.19007), and —
+  closest of all — **Luo 2026 (arXiv:2602.14515), a genuinely *covariant-start* de Sitter–Unruh modified-inertia
+  construction** that derives the MOND interpolation and BTFR from `a_bg=√(Λ/48)` (= √(2π/3)·the framework's a₀, same
+  Λ-scale, O(1)-different coefficient — C.Z.-verified), but works only for ~circular orbits and does **not** attempt
+  the CMB. *(Correction, 2026-06-05: arXiv:2601.04290 is modified **gravity** — an emergent-tetrad/MacDowell–Mansouri
+  IR metric deformation recovering AQUAL — **not** a modified-inertia attempt; removed from this list. Caught by the
+  open-doors agent sweep; see `OPEN_DOORS_AGENT_SWEEP_2026-06-05.md`.)* None yet does the CMB, but the direction is alive.
 
 ## The catch, sharpened — it is a Cassini / CMB / a₀(z) *trilemma*, and the CMB is the hard corner
 
