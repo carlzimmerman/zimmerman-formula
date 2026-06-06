@@ -54,11 +54,17 @@ On **9830 real eRASS1 clusters**, with the framework's *own* a0 = 9.36×10⁻¹�
 switches on **at the cluster scale**, producing an oscillatory regime where the RAR "peaks then drops as if there were
 negative mass density" — and the AeST authors note **"similar features of the galaxy-cluster RAR have been reported…
 the potential to address the shortcomings of MOND in clusters"** (Durakovic & Skordis 2024). So the deficit may be
-supplied by a field the framework *already needs*, switched on at the right scale (and off in galaxies). **Two serious
-caveats keep this a candidate, not a cure:** the oscillatory regime involves negative-energy-density condensates the
-AeST literature flags as **expected-unstable** (Mistele+2023), and only isothermal toy models exist — the eRASS1
-η ≈ 2 is **not yet shown closed**. Net: the heaviest liability moves from "MOND fails, needs an *ad hoc* component" to
-"AeST has an *intrinsic* mechanism, caveated by a possible instability and no quantitative fit."
+supplied by a field the framework *already needs*, switched on at the right scale (and off in galaxies). **Caveats keep
+this a candidate, not a cure — but the instability worry is milder than first stated (update, agent-sweep + C.Z.
+re-verified against SZ21):** the *linear* instability is **secular (linear-in-time), ghost-free, and confined to
+super-Mpc scales k < μ** ("a nonpropagating mode with a linear time dependence may have unbounded Hamiltonian … for
+k < μ and bounded otherwise," Skordis–Złošnik 2021, arXiv:2109.13287) — *not* an exponential ghost/tachyon, and the
+authors argue it is cosmologically subdominant. So the cluster mechanism is **not** destroyed by a fast blow-up; what
+remains unsettled is the *nonlinear* oscillatory-regime stability (Mistele+2023's "expected-unstable" negative-density
+features vs Durakovic–Skordis 2024's "the |∇Φ|=0 singularities are only apparent, nothing physical"), and the fact
+that only isothermal toy models exist — the eRASS1 η ≈ 2 is **not yet shown closed**. Net: the heaviest liability moves
+from "MOND fails, needs an *ad hoc* component" to "AeST has an *intrinsic* mechanism whose linear stability is benign
+(secular/IR/ghost-free), with the nonlinear cluster regime and a quantitative η-fit still open."
 
 ### 3b. The Bullet Cluster — SHARED, serious, but OPEN/contested
 The lensing-convergence peaks sit on the **collisionless galaxies**, not on the dominant (~85–90%) X-ray gas. The 2026 JWST strong-lensing analysis (Famaey, arXiv:2605.10022) finds baryon-only MOND reaches only κ ≈ 0.5 where the data demand κ ≥ 1, and a **~3.4×10¹⁴ M⊙ collisionless residual on the galaxies** (factor-few-to-~10 in cores). a0(z) does **nothing** here — the Bullet is pure constant-a0 MOND at z = 0.296.

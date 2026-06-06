@@ -98,5 +98,67 @@ of the coefficient, and the distinctive a₀(z) claim remains DESI-hostage. Noth
    they disagree by 1/√Ω_L=21%, and one script (`coefficient_vs_hubble_tension.py`) still uses the **disfavored rising**
    a₀(z)∝E(z) branch. Flagged for a follow-up cleanup pass (not yet applied — unreviewed agent edits were reverted).
 
+## Re-run wave — the 19 previously-failed doors (completed clean, hardened schema)
+
+On balance **honestly negative for the framework's distinctive/theoretical claims, while confirming the shared MOND
+phenomenology.**
+
+**Theory / coefficient (against):**
+- **`mod-inertia-coefficient`** — the coefficient is **not forced in the inertia route either**. Milgrom 1999 gives
+  two inconsistent O(1) values [(Λ/3)^½, 2(Λ/3)^½], both overshooting empirical a₀ by 4.5–9×. **C.Z.-verified:
+  Z=√(32π/3)=5.789 is *identically* a_dS/a₀(framework)** — the inertia route lands on the bare de Sitter scale, not the
+  framework footing. *Both* routes leave the coefficient free.
+- **`trilemma-nogo`** — a **conditional no-go is proved**: if ONE d.o.f. sources galaxy-MOND + CMB-mimic + a₀(z), then
+  {Cassini, CMB, a₀(z)} is impossible. The only loophole is a **second independent dark sector — which kills the
+  framework's "one number unifies both dark sectors" claim.** Either the trilemma is strict, or the unification dies.
+- **`aest-quasistatic-cassini`** (COMPUTED) — the RAR-fitting AeST β₀≈0.99 gives a solar-system EFE quadrupole
+  **Q2 ≈ 1.8×10⁻²⁶ s⁻² = 11× the 2026 Cassini bound** (1.6×10⁻²⁷). The β₀ that fits SPARC does **not** thread Cassini —
+  the exposure is now *computed*, not merely inherited, and fails by ~11×.
+- **`lensing-mod-inertia`** (no-go) — modified inertia has **no standalone relativistic theory that bends light**; every
+  MOND that lenses correctly (TeVeS/AeST/mimetic) is modified *gravity* via a metric. A structural obstruction for the
+  framework's natural home.
+- **`elliptical-etg-RAR`** — ETGs follow the RAR but with g†≈1.5×10⁻¹⁰ (ABOVE the disk 1.2×10⁻¹⁰): pressure-supported
+  systems push empirical a₀ *higher*, making the framework's low 9.36×10⁻¹¹ look worse.
+- **`rggr-running-G`** — RGGR has no built-in a₀; competes, doesn't corroborate.
+
+**Empirical (favorable):**
+- **`dwarfs-udg-efe`** (FOR) — MOND's **EFE at a₀=9.36×10⁻¹¹ is net-confirmed**: Crater II a-priori prediction (σ=2.1
+  vs observed 2.7; McGaugh 2016), 8–11σ statistical EFE detection, DF2 consistent. The framework's best
+  ΛCDM-impossible signal holds.
+- **`desitter-unruh-sign-fit`** (FOR) — the Layer-0 de Sitter–Unruh modified-inertia model gives the right deep-MOND
+  sign (enhancement) and a **real 0.105 dex SPARC fit** (reproduced at 0.103 dex in `desitter_unruh_RAR_test.py`; the
+  named `desitter_unruh_mond.py` is pedagogical — a labeling slip, not a fabrication).
+- **`ephemerides-llr`** (mixed) — the **modified-inertia branch evades all solar-system tests** (internal g≫a₀); the
+  AeST branch carries ~1–2σ ephemeris EFE tension.
+
+**Distinctive a₀(z) claim (mixed-to-against):**
+- **`a0z-2026-data`** (against) — 2025–2026 direct a₀(z) channels lean **rising** (~2–3σ), opposite the framework's
+  declining — but weak / systematics-limited.
+- **`sne-bao-rhoDE-crosscheck`** (mixed) — the declining a₀(z) is **BAO-driven (DESI), not SNe-driven**;
+  a₀(z=3)/a₀(0)=0.71–0.89 across Pantheon+/Union3/DES-SN5YR; SNe alone non-diagnostic.
+- **`jwst-highz-a0-probe`** (mixed) — JWST early structure softly disfavors rising-toward-past a₀; consistent with
+  constant/declining.
+
+**Sharp discriminators (came back blunt/contested):**
+- **`rar-scatter-inertia-vs-gravity`** (mixed) — the RAR's ~0.058 dex intrinsic scatter does **not** cleanly favor
+  modified inertia (AeST predicts comparably tight scatter); best-fit a₀=1.34×10⁻¹⁰. The hoped-for discriminator is blunt.
+- **`kbc-void-hubble`, `el-gordo`, `fast-galaxy-bars`, `renzos-rule`** (mixed) — all real MOND wins (KBC void ~6σ,
+  El Gordo ~6σ, fast bars >5σ, Renzo's rule holds at 0.11 dex), but they test MOND's *shared* phenomenology / HDM
+  cosmology, **not** this framework's distinctive a₀(z); several contested by 2024–2026 ΛCDM sims.
+
+**Neutral:** `gw-standard-sirens`, `isw-cmb-lensing` — AeST is GR-like at propagation/linear scales (α_M=0,
+d_GW=d_EM; mimics ΛCDM), non-diagnostic.
+
+## Net of the full 38-door sweep
+
+**Not refuted.** Shared MOND phenomenology corroborated (dwarf EFE net-confirmed; the scale via 6+ independent routes;
+the Layer-0 fit real; the cluster instability is benign/secular). But on balance **honestly negative for the
+distinctive and theoretical claims**: the coefficient is not forced in *either* route; the AeST Cassini quadrupole is
+now computed and fails by **11×**; modified inertia **can't lens** (structural); the direct a₀(z) data lean **rising**;
+the ETG a₀ sits even **higher** (framework low); and the trilemma is a **conditional no-go that costs the unification
+claim** unless a second dark sector is added. The honest verdict is unchanged and *sharpened*: a viable Λ-derived MOND
+whose distinctive content is undecided-leaning-unfavorable — now with the Cassini failure **quantified (11×)** and the
+"one-number unification" shown to be in tension with the trilemma. Verdict still belongs to **DESI + z~3 (~2027)**.
+
 *Companion: the agents' analysis scripts remain on disk (untracked, unreviewed) pending selective verification; this
-ledger records only the C.Z.-verified findings. The 19 re-run doors will be appended when they land.*
+ledger records only the C.Z.-verified findings.*

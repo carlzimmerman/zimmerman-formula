@@ -61,7 +61,10 @@ The remaining escape narrows to the interpolation/screening parameter `β₀` (o
 in the external-field configuration. But `β₀` **sets the RAR transition sharpness** — exactly the quantity Desmond
 shows is too gradual for Cassini. So the Desmond tension transplants into `β₀` essentially intact. So:
 
-- **Not formally excluded** — the joint RAR+Cassini-quadrupole fit in full AeST (β₀, χ, EFE) has not been computed.
+- **Now computed, and it fails** (update, 2026-06-05 agent sweep): the RAR-fitting AeST interpolation β₀≈0.99 yields a
+  solar-system EFE quadrupole **Q2 ≈ 1.8×10⁻²⁶ s⁻² ≈ 11× the 2026 Cassini bound** (1.6×10⁻²⁷). The β₀ that fits SPARC
+  does **not** thread Cassini — so this is no longer "uncomputed, maybe evadable"; the AeST realization, at its
+  RAR-fitting parameters, is **directly excluded at ~11×** unless χ/EFE subtleties (uncomputed) rescue it.
 - **But the optimism is gone** — AeST's one *natural* screening scale (1/μ ~ Mpc) is ~10 orders too large to help the
   Solar System, and the surviving knob (`β₀`) is the one the RAR already pins. The casual "modified inertia evades it"
   line is *not* available to the framework, and the tension is strengthening (8.7σ → 3–15σ in two years).
