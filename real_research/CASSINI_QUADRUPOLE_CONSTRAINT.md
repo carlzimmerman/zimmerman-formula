@@ -61,14 +61,20 @@ The remaining escape narrows to the interpolation/screening parameter `β₀` (o
 in the external-field configuration. But `β₀` **sets the RAR transition sharpness** — exactly the quantity Desmond
 shows is too gradual for Cassini. So the Desmond tension transplants into `β₀` essentially intact. So:
 
-- **Now computed, and it fails — by a factor that is IF/normalization-dependent but robustly > 1** (update,
-  2026-06-05 agent sweep; *C.Z. re-ran the script and corrected an over-precise first claim of "11×"*). With the
-  RAR-fitting AeST interpolation, the solar-system EFE quadrupole exceeds the 2026 Cassini bound (Q2 ≤ 1.6×10⁻²⁷ s⁻²):
-  Desmond+2024 Table 1's RAR-like interpolating functions give Q2 ~ (3–6)×10⁻²⁷ (**a few×**, their 3–15σ tension),
-  while this repo's AeST-ν computation gives Q2 ~ (2–5)×10⁻²⁶ (**~10–30×**, exact normalization uncertain). **The
-  conclusion is robust — the β₀ that fits SPARC does *not* thread Cassini — but the precise factor is not pinned
-  (a few× to ~30×).** So it is no longer "uncomputed/maybe-evadable"; the AeST realization at its RAR-fitting
-  parameters is directly excluded unless χ/EFE subtleties (uncomputed) rescue it.
+- **Now computed, verified by a 10-facet audit (9/10 confirm), and it fails robustly** (update, 2026-06-05; C.Z.
+  re-derived the formula and corrected *two* earlier mis-statements — one of them mine). The RAR-fitting QUMOND/AeST
+  EFE quadrupole, from the verified Desmond eq.(10–12) `Q2 = (3a₀^{3/2}/2√(GM))·q(ẽ)` with `q ≈ 0.21–0.27`, is
+  **Q2 ≈ 3–5×10⁻²⁶ s⁻²** (framework a₀: 3.2e-26; RAR a₀: 3.6–4.8e-26) — reproduced from scratch and matching
+  **Desmond+2024 Table 1 (~2.9×10⁻²⁶)** and **Hees+2016 (~3.5–4.4×10⁻²⁶)**.
+  - *Correction 1 (mine — retracted):* an earlier version cited "Desmond ~3–6×10⁻²⁷ (a few×)." That was a **10× unit
+    misread** of Desmond's ×10⁻²⁷ table; the real value is ~3×10⁻²⁶. My "a few×" walk-back was wrong.
+  - *Correction 2 (the bound):* "Q2 ≤ 1.6×10⁻²⁷" is wrong — 1.6×10⁻²⁷ is the **central value** of the *measurement*
+    `Q2 = (1.6 ± 1.8)×10⁻²⁷`, which is consistent with **zero** at 0.9σ. The honest 2σ ceiling is ~5×10⁻²⁷.
+  - **Net:** Q2 ~3–5×10⁻²⁶ is **~15–25σ over the central value (~6–9× the 2σ ceiling) = Desmond's published 3–15σ.**
+    Every escape (sharper IF, the framework's *lower* a₀, M/L, the 2σ bound) still leaves Q2 ≥ ~3×10⁻²⁶; AeST's
+    quasi-static limit **= QUMOND at the Sun** (verified), so it is *not* an evadable AeST-specific artifact. The β₀
+    that fits SPARC does not thread Cassini — **robust**, modulo a ~1.2× inline-q normalization quibble in the repo
+    script (which independent reproductions confirm anyway).
 - **But the optimism is gone** — AeST's one *natural* screening scale (1/μ ~ Mpc) is ~10 orders too large to help the
   Solar System, and the surviving knob (`β₀`) is the one the RAR already pins. The casual "modified inertia evades it"
   line is *not* available to the framework, and the tension is strengthening (8.7σ → 3–15σ in two years).

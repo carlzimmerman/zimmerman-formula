@@ -111,11 +111,14 @@ phenomenology.**
 - **`trilemma-nogo`** — a **conditional no-go is proved**: if ONE d.o.f. sources galaxy-MOND + CMB-mimic + a₀(z), then
   {Cassini, CMB, a₀(z)} is impossible. The only loophole is a **second independent dark sector — which kills the
   framework's "one number unifies both dark sectors" claim.** Either the trilemma is strict, or the unification dies.
-- **`aest-quasistatic-cassini`** (COMPUTED) — the RAR-fitting AeST interpolation gives a solar-system EFE quadrupole
-  that **exceeds the 2026 Cassini bound** (Q2 ≤ 1.6×10⁻²⁷ s⁻²): Desmond+2024's RAR-like IFs → a few× (their 3–15σ),
-  this repo's AeST-ν calc → ~10–30× (normalization-dependent). *(C.Z. re-ran the script and corrected an over-precise
-  "11×" headline — the factor is a few× to ~30×, IF/normalization-dependent; the failure itself is robust.)* The β₀
-  that fits SPARC does **not** thread Cassini — now *computed*, not merely inherited.
+- **`aest-quasistatic-cassini`** (COMPUTED; verified by a follow-up 10-facet audit, 9/10 confirm) — the RAR-fitting
+  QUMOND/AeST EFE quadrupole is **Q2 ≈ 3–5×10⁻²⁶ s⁻²**, reproduced from scratch and matching Desmond+2024 Table 1
+  (~2.9×10⁻²⁶) and Hees+2016 (~3.5–4.4×10⁻²⁶). Against the Cassini measurement `Q2=(1.6±1.8)×10⁻²⁷` (consistent with
+  zero; honest 2σ ceiling ~5×10⁻²⁷), that is **~15–25σ over the central value (~6–9× the 2σ ceiling) = Desmond's
+  published 3–15σ**. *(Two corrections to my own earlier text: "Desmond ~3–6×10⁻²⁷" was a 10× unit misread — it is
+  ~3×10⁻²⁶; and "Q2 ≤ 1.6×10⁻²⁷" is the central value, not a ceiling. The "few×" and "11×" framings were both wrong;
+  the failure is **robust** and matches the literature.)* AeST = QUMOND at the Sun, so it is not evadable; β₀ does
+  not thread Cassini.
 - **`lensing-mod-inertia`** (no-go) — modified inertia has **no standalone relativistic theory that bends light**; every
   MOND that lenses correctly (TeVeS/AeST/mimetic) is modified *gravity* via a metric. A structural obstruction for the
   framework's natural home.
@@ -156,7 +159,7 @@ d_GW=d_EM; mimics ΛCDM), non-diagnostic.
 **Not refuted.** Shared MOND phenomenology corroborated (dwarf EFE net-confirmed; the scale via 6+ independent routes;
 the Layer-0 fit real; the cluster instability is benign/secular). But on balance **honestly negative for the
 distinctive and theoretical claims**: the coefficient is not forced in *either* route; the AeST Cassini quadrupole is
-now computed and **fails robustly** (a few× to ~30× over the bound, IF-dependent); modified inertia **can't lens**
+now computed and **fails robustly** (Q2~3–5×10⁻²⁶, ~15–25σ / Desmond's 3–15σ — see the audit correction above); modified inertia **can't lens**
 (structural); the Layer-0 de Sitter–Unruh fit, though real (0.105 dex), prefers a₀=1.78×10⁻¹⁰ (~2× high — the same
 coefficient overshoot); the direct a₀(z) data lean **rising**;
 the ETG a₀ sits even **higher** (framework low); and the trilemma is a **conditional no-go that costs the unification
