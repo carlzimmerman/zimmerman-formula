@@ -45,3 +45,16 @@ changes *nothing* about what the telescopes will decide. To assert a first-princ
 explicit calculation shows does not exist would be the numerology trap this whole project is built to avoid. The honest
 statement is the one above: **√(8π/3) forced, the 2 a motivated choice, the question empirically moot.** The live
 science is the evolution test (DESI + z~3, ~2027), where the coefficient does not even appear.
+
+## Closure (2026-06-05): the coefficient is TWO unforced choices, framework picks the least-justified combo
+
+Ultrathinking *both* factors closes the question. Z = 2√(8π/3) = a product of **two independent choices**, neither
+forced: **(A) which frequency** — `√(Gρ_Λ)` (bare free-fall rate → radius R\*) vs `H_Λ = √(8π/3)√(Gρ_Λ)` (GR expansion
+rate → Hubble horizon R_H); the √(8π/3) is the Friedmann normalization, and using R\* vs R_H is the *free-fall clock vs
+causal clock* choice. **(B) which surface gravity** — `c²/2R` (black-hole, the 2) vs `c²/R` (cosmological/Rindler, no 2).
+Four clean combos: **R_H+cosmo Z=1 · R_H+BH Z=2 · R\*+cosmo Z=2.894 · R\*+BH Z=5.789 (framework)**. The **data want
+Z≈4.5** — on *none* of them. And the framework's combo is the least warranted: at R\* the enclosed mass's Schwarzschild
+radius is 8.38 R\*, so **R\* is *inside* the would-be horizon — not a BH horizon**, so the BH 2 doesn't belong there
+(the vacuum-BH coincidence justifying a 2 holds at R_H, not R\*). The cleanest forced reading is **κ=1** (Z=2.894 or 1),
+not κ=½. **Final: only `a₀ ∝ √(Gρ_Λ)` is forced; the coefficient is a motivated construction, not derivable — bottom of
+the question, and empirically moot.**
