@@ -63,11 +63,17 @@ dissolves the Cassini and a₀(z) exposures but **buys a CMB exposure in return*
 The honest object is a trilemma, not a free lunch.* I checked **why** no CMB-safe modified inertia exists, rather
 than just asserting it:
 
-- **The CMB-epoch perturbations straddle a₀.** At recombination the peculiar gravitational accelerations
-  `g = |∇Φ|c²` (with `Φ ~ 3×10⁻⁵`) run from `g ~ a₀` at low-ℓ (Sachs–Wolfe, ℓ≲30) to `g ~ 10–40 a₀` at the acoustic
-  peaks (ℓ ~ 220–1000) — *spanning the MOND transition*. A **direct** inertia modification therefore changes the
-  acoustic physics by `~a₀/g ~ 2–8%` at the peaks (above Planck's <1% precision) and by order-unity at low-ℓ. (Numbers
-  reproduced inline; OOM, but the straddling is robust.)
+- **The acoustic-shift sub-problem is mild (correction, 2026-06-05 — my earlier "2–8%" was an overstatement).** At
+  recombination the peculiar accelerations `g = |∇Φ|c²` run from `g ~ a₀` at low-ℓ to `g ~ 10–150 a₀` at the peaks. With
+  a **data-realistic (fast) interpolation** the inertia correction `ν−1` at the peaks is only **2.7% / 0.2% / 0.003%**
+  at peaks 1/2/3 (C.Z.-verified; the open-doors `cmb-mod-inertia-quantitative` agent found < 0.1% averaged) — the
+  peak-*position* shift is small/absorbable. *My "2–8%" used the gradual simple-μ at the first peak only.* So the
+  acoustic-physics modification does **not**, by itself, kill the CMB.
+- **The real CMB obstruction is the missing dark-matter mimic, not the acoustic shift.** Modified inertia supplies
+  **no gravitating pressureless component** (`Ω_c = 0`), so it under-predicts the **third-peak height** — the classic
+  MOND-CMB failure, untouched by any μ choice. *That* is what makes the corner fatal. (Cassini meanwhile stays exposed:
+  the EFE sits at `g ~ 1.8 a₀` where `ν−1 ~ 28%`.) So the corner is **refined, not dissolved** — CMB-fatal for the
+  DM-mimic reason, with the acoustic shift demoted to a minor effect.
 - **No `Ȳ=0` escape is available to inertia.** AeST is CMB-safe because its *scalar field* has a kinetic term that
   vanishes on FRW (`Ȳ=0`), so the MOND piece is off at the background and the dark sector behaves as **dust** — the
   field does *double duty*: it both **supplies the CMB dark-matter mimic** (Ω≈0.265, the 3rd-peak height) and keeps
