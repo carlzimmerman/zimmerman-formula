@@ -7,6 +7,14 @@ test and is therefore unfalsifiable.** So for everything that can be measured, t
 `uniqueness_dimensional_proof.py` (Buckingham-Π by linear algebra). Stated below with exact scope — theorem vs premise
 vs data — so it is a proof, not a numerology claim.*
 
+> **⚠️ CORRECTED (2026-06-06) — read `UNIQUENESS_REDTEAM_CORRECTION_2026-06-06.md`.** An adversarial red-team found this
+> doc **overclaims**. Retracted: "**density = ρ_DE is FORCED**" (data only exclude ρ_total/Verlinde; ρ_DE-vs-*constant
+> a₀* is degenerate, `Δχ²≈0` — decided only by the untested z>1.5 decline). "Exactly one Π-group" is **conditional** on
+> pre-restricting inputs to {c, Λ}; admitting H₀ opens a 2nd group `Ω_Λ`. Honest result: **conditional on the premise**
+> (a₀ = the dark-energy free-fall scale) the √ρ_DE form + parameter-free evolution follow, and ρ_total is excluded — but
+> the premise *is the content* and is contestable (Milgrom calls H₀-vs-Λ "moot"; Verlinde/EMOND/constant-a₀ live). Not
+> "it forces itself."
+
 ## The premise (one conceptual input, strongly motivated)
 
 > **`a₀` is a universal, *local* property of spacetime/inertia** — the acceleration at which Newtonian dynamics

@@ -5,6 +5,14 @@
 dependence on Planck-insensitivity, and the density-selection's reliance on data) both have strong independent
 resolutions, and four independent derivations converge on the same scale. Verified in `uniqueness_robustness.py`.*
 
+> **⚠️ CORRECTED (2026-06-06) — read `UNIQUENESS_REDTEAM_CORRECTION_2026-06-06.md`.** A red-team broke **Robustness 2**:
+> the de Sitter–Unruh mechanism does **NOT** independently select ρ_DE — Milgrom 2020 calls the H₀-vs-Λ choice "moot",
+> and `T_Unruh=T_horizon` gives ρ_DE only for the de Sitter *event* horizon (vacuum), ρ_total for the actual apparent
+> horizon. Robustness-2 was circular (retracted as an *independent* selection). The Planck-loophole closure
+> (Robustness 1) is naturalness-preferred + testable, **not strictly forced** (a tuned κ could absorb n). The four-route
+> *convergence* (Robustness 3) and the √ρ-given-premise core stand; the marquee "second independent derivation of ρ_DE"
+> does not.
+
 ## Robustness 1 — the exponent ½ is forced to ~1%, even allowing Planck sensitivity (and it's testable)
 
 The original proof assumed `a₀` is built from `{c, Λ}` with no quantum scale. **Adversarial relaxation:** allow
