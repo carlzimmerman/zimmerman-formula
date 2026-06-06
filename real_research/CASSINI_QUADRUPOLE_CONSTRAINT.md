@@ -79,15 +79,24 @@ shows is too gradual for Cassini. So the Desmond tension transplants into `β₀
   Solar System, and the surviving knob (`β₀`) is the one the RAR already pins. The casual "modified inertia evades it"
   line is *not* available to the framework, and the tension is strengthening (8.7σ → 3–15σ in two years).
 
-## Is it generic? Yes — and it exposes a concept/realization mismatch (update)
+## Is it generic? Mostly — but a Vainshtein-screened MOND *does* escape it (CORRECTION, 2026-06-05)
 
-Can the framework escape by swapping AeST for a *different* CMB-safe relativistic MOND? **Checked — no.** Two facts
-from the relativistic-MOND literature settle it:
+*Earlier this doc said "every covariant MOND fails Cassini — swapping realization does not help." That was an
+**overclaim**, and I'm correcting it. The failure is generic to **QUMOND-like** theories (no Solar-System screening),
+but **not** to a MOND with a Vainshtein/k-mouflage screen.*
 
-1. **Every full-fledged relativistic MOND is *modified gravity*** (AeST, RMOND, BIMOND, Khronon-Tensor). They all
-   reduce to a QUMOND/AQUAL-like equation in the *stationary* weak field, so they **all** source the EFE quadrupole —
-   Hees+2014 already noted Cassini "excludes a large part of relativistic MOND theories." Swapping realization does
-   not swap out the quadrupole.
+1. **QUMOND-like theories all fail** (AeST, RMOND, BIMOND, Khronon-Tensor). They reduce to a QUMOND/AQUAL-like equation
+   in the *stationary* weak field, so they **all** source the EFE quadrupole — Hees+2014: Cassini "excludes a large
+   part of relativistic MOND theories." AeST is one of these, and its μ²Φ is the wrong scale to screen the Sun (1/μ ~
+   Mpc), so it fails. **But "QUMOND-like" is not "all MOND."**
+2. **A Galileon k-mouflage MOND escapes Cassini — genuinely.** Babichev, Deffayet & Esposito-Farèse 2011
+   (arXiv:1106.2538, *"Improving relativistic MOND with Galileon k-mouflage"*) adds a covariant Galileon term whose
+   **Vainshtein screening** suppresses the fifth force in the Solar System (the Sun's Vainshtein radius ~100 pc) while
+   keeping MOND at galaxy scales — and **"the Cassini bound can be achieved."** So the framework's Cassini failure is
+   **specific to the AeST realization (no screening), not a death sentence for the idea**: a Galileon-k-mouflage *host*
+   is Cassini-safe. (Honest cost: that host builds on TeVeS and likely re-incurs the CMB-3rd-peak problem — its
+   cosmology is studied in arXiv:1702.00683 and needs a separate check — so it may trade the Cassini corner of the
+   trilemma for the CMB corner. But the Cassini corner is *escapable*, which I had wrongly closed.)
 2. **The khronon doesn't help.** Khronon-Tensor MOND gives "order-unity corrections in *non-stationary* systems" while
    "stationary solutions remain stable to khronon perturbations" (arXiv:2302.14846) — but the Solar-System EFE is
    *quasi-stationary*, so the khronon's distinctive physics is absent exactly where Cassini bites. Same QUMOND
