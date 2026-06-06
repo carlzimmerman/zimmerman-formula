@@ -5,6 +5,26 @@ Cassini, the framework's real frontier is the **realization**. This scopes the m
 2025 literature genuinely supports it. Honest throughout: this is a buildable research program with real obstacles, not
 a solved theory.*
 
+> **⚠️ SUPERSEDED / CORRECTED (2026-06-06) — read `REALIZATION_REDTEAM_galileon_singular_surface_2026-06-06.md` first.**
+> I ran the make-or-break computation this doc names (three adversarial agents). **It went against the optimistic
+> verdict below.** Summary of what changed:
+> - **The one-field version is structurally DEAD.** It hits the published **Bruneton–Esposito-Farèse singular-surface
+>   ghost** (the MOND scalar's non-analytic kinetic term flips sign between the spacelike galactic gradient and the
+>   timelike cosmological background → a surface around every galaxy where the scalar stops propagating). AeST escapes
+>   this *only* via its unit-timelike aether; a single scalar has no such protection, and `a₀²=G·V(φ)` makes it worse.
+>   The fix requires *becoming AeST* — losing the "one field" economy and reinstating AeST's Cassini bill.
+> - **Two overclaims below are withdrawn:** (1) "the 2025 DESI result favors my field" — *conflation of two operators*;
+>   the DESI-favored field is kinetic-gravity-braiding+potential, **not** the cubic-Galileon screen (which is ruled out
+>   at 7.8σ by ISW). (2) BDEF's Solar-System screen is a **curvature-coupled L₄/L₅** covariant Galileon, **not** the flat
+>   cubic `(∂φ)²□φ` this doc attributes to it.
+> - **The backreaction is O(1), not negligible** (`a₀~cH₀ ⟹ y~O(1)` on the background) → `a₀∝√ρ_DE` is *imposed-and-must-
+>   be-checked*, **not "derived."**
+> - **What survives:** the galaxy-scale RAR (robustly, `δa₀/a₀~10⁻⁷` across a galaxy) **and** the phenomenological kernel
+>   `a₀(z)∝√ρ_DE` (untouched — it never needs the covariant host). The *realization* failed; the *falsifiable claim* did
+>   not. Net: this **reinforces** the `THE_IRREDUCIBLE_FRAMEWORK` retreat — bank the kernel, stop chasing the host.
+>
+> *The optimistic scoping below is left intact as the audit trail of what the calculation was meant to test.*
+
 ## The target (the trilemma, with the dark-energy tie)
 
 A covariant theory that simultaneously:
@@ -24,8 +44,10 @@ A covariant theory that simultaneously:
   the data already prefer it.
 - **φ as the MOND mediator.** [LITERATURE] Babichev–Deffayet–Esposito-Farèse (arXiv:1106.2538) build a relativistic
   MOND from a Galileon scalar — MOND curves at galaxy scales, **no fine-tuned interpolation function**.
-- **φ as the Vainshtein screen.** [LITERATURE] The *same* Galileon term k-mouflage-screens the Solar System (Sun's
+- **φ as the Vainshtein screen.** [LITERATURE] A Galileon term k-mouflage-screens the Solar System (Sun's
   Vainshtein radius ~100 pc) → **Cassini bound achievable** at PN order. This is the Cassini escape AeST lacks.
+  *[CORRECTED 06-06: it is **not** the "same" term as the DE Galileon, and BDEF's actual screen is a curvature-coupled
+  L₄/L₅ Galileon, not the flat cubic `(∂φ)²□φ` — the DE-favored and screening operators are different; see red-team doc.]*
 - **A separate sector for the CMB 3rd peak** — cold dark matter, an 11 eV sterile-ν, or a superfluid (Berezhiani–Khoury).
   *(The trilemma no-go already proved a second sector is unavoidable; this is the agreed cost.)*
 
