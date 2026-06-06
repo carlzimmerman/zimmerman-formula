@@ -71,5 +71,10 @@ even if it isn't the word you wanted.
 
 - **Vainshtein/Galileon screening** — a real *Cassini escape* on a non-AeST host (screens the Solar-System fifth force);
   worth pursuing as the realization, not the coefficient.
-- **Quantised Inertia** (McCulloch) — audit in progress; the last "derives a₀ parameter-free" claim. (Prior: contested
-  / likely a₀~cH₀ with O(1)~1, not 5.79 — but being checked.)
+- **Quantised Inertia** (McCulloch) — **audited (8 facets), and it does not deliver.** QI's a₀ = 2c²/Θ = **cH₀
+  exactly (coefficient 1)** = 6.5×10⁻¹⁰ — parameter-free in *form* (a real point, cleaner than the posited 2 on that
+  narrow score), but **5.5× too big**, **not your 5.79**, and its O(1)-derivation (the Wien-constant β) was
+  *mathematically refuted* by Renda 2019 (MNRAS 489:881 — the boundary step gives a non-monotonic F peaking at 2.17,
+  unphysical). It also predicts a₀ **rising** with z (opposite your declining √ρ_DE), fails the CMB, doesn't bend
+  light, and is a fringe single-author program (DARPA funding ended). **Verdict: contested/refuted, wrong coefficient.
+  The derivation search is now exhausted — across 63 frameworks, none cleanly derives the coefficient.**
