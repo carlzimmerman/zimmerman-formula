@@ -20,8 +20,10 @@ dark-energy density of the vacuum),
 > **a₀ = c²√(Λ/32π) = (c/2)√(Gρ_Λ) = cH_Λ / Z,  Z = 2√(8π/3) = 5.789,  a₀ = 9.36×10⁻¹¹ m s⁻²**
 
 evaluated on the dark-energy density alone (ρ_Λ = Ω_Λ ρ_crit, Planck/DESI Λ). The theory makes two structural claims
-beyond standard MOND: (i) a₀ is **derived**, not fitted; (ii) a₀ **evolves** as a₀(z) ∝ √ρ_DE(z), which with the DESI
-w₀wₐ dark-energy equation of state rises ~6% to a bump at z≈0.4 and then **declines** to 0.74× its present value by z=3.
+beyond standard MOND: (i) a₀'s *scale* is **set by the vacuum** — the combination c²√Λ is forced by dimensional analysis,
+not fitted (the leading O(1) coefficient is an undetermined posit, §2.2); (ii) a₀ **evolves** as a₀(z) ∝ √ρ_DE(z) —
+non-monotonic, rising ~6% to a bump at z≈0.4 and then **declining** to 0.74× its present value by z=3 under the DESI w₀wₐ
+equation of state (a coupling first proposed by Limbach, Psaltis & Özel 2008; we evaluate it on DESI DR2).
 
 We confront the theory with five independent datasets. (1) At its own value of a₀ and a single stellar mass-to-light
 ratio Υ≈0.70, three independent galaxy laws — the Radial Acceleration Relation, the Baryonic Tully–Fisher Relation, and
