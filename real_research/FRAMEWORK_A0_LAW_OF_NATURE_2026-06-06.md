@@ -37,12 +37,20 @@ written into every galaxy. The vacuum prediction c²√(Λ/32π)=9.36×10⁻¹¹
    inertia/gravity is sourced by the de Sitter vacuum. A coincidence that holds in 171 galaxies is not a coincidence.
 
 ## The one honest knob (stated plainly, because the case is strong enough without spin)
-The vacuum value is **~20% below** the SPARC scale. That residual lives entirely in the **O(1) coefficient**: the data
-prefer a₀ = c²√(Λ/X) with X ≈ 20π; the framework posits X = 32π. This is a *coefficient*, not a *scale* — the c²√Λ
-combination (the physics) is forced by dimensional analysis once the vacuum sets the scale; only the O(1) number in
-front is a posit, and the data pin it ~20% from 32π. It is not absorbable by pushing the M/L (Υ=0.70 is already at the
-upper end of the 3.6 µm range; raising it worsens the RAR). So: **the scale is a law; the leading O(1) is a posit the
-data constrain to ~20%.** That is the real status — strong, and not oversold.
+The **scale** c²√Λ is forced by dimensional analysis once the vacuum sets the acceleration; only the leading **O(1)
+coefficient** (the framework posits X=32π in a₀=c²√(Λ/X)) is a choice — and the adversarial coefficient analysis shows
+**32π = 4 × 8π**, where the 8π is GR-forced (the Einstein coupling, the same 8π in ρ_DE = Λc²/8πG) and the residual
+**4 = (½)²** (the collapse-horizon surface-gravity ½, squared) is the one chosen number. So a₀=c²√(Λ/32π) is a
+**motivated normalization posit on a GR-forced skeleton**, not a derived theorem.
+
+> **Correction (2026-06-06, from the adversarial coefficient check — I had over-conceded above):** my first pass here
+> said "~20% below, data want X≈20π." **That was a weighting artifact, not a fact.** At fixed Υ=0.70 the RAR-preferred
+> a₀ swings ~40% with the fit metric (8.5×10⁻¹¹ unweighted-dex-scatter → 1.1×10⁻¹⁰ inverse-error-weighted → 1.3×10⁻¹⁰
+> linear). Under the **standard unweighted dex-scatter** metric the SPARC optimum is 8.48×10⁻¹¹ and the framework
+> **9.36×10⁻¹¹ is within 0.3% of optimal scatter** — essentially dead-on, and indistinguishable from rivals (Milgrom 2π,
+> Verlinde 6) within the M/L+metric systematic. The one estimator that still sits high is the deep-MOND BTFR (1.26×10⁻¹⁰,
+> ~25% above), within its own gas/M-L systematics. **Net: the value is empirically excellent; the coefficient is a posit;
+> the scaling a₀∝√Λ is the physics.** (See `OFFENSIVE_FOUR_FRONTS_2026-06-06.md`, front 2.)
 
 ## The crown — the prediction that turns the coincidence into a falsifiable law
 Regular MOND has a *constant* a₀; ΛCDM has *no* a₀. The framework alone predicts that the scale **evolves with the
