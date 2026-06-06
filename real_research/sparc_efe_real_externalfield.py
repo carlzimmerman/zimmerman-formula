@@ -41,18 +41,22 @@ def resid(nm,lo,hi):
     gb=Vbar2*1e6/Rm; go=(Vobs*1e3)**2/Rm
     m=(gb>0)&(go>0)&np.isfinite(gb)&np.isfinite(go)&(Vobs>0)&(gb>=lo)&(gb<hi)
     return np.mean(np.log10(go[m])-np.log10(g_RAR(gb[m]))) if m.sum() else np.nan
-def gext(ra,dec,cz,dmin,dmax):
-    # MOND external field: each contributor's field is MOND-enhanced (g_N<a0 -> sqrt(g_N a0)), vector-summed.
+def gext(ra,dec,cz,dmin,dmax,mode="mondpc"):
+    # external field models (the nonlinear MOND field of a distribution is genuinely ambiguous to approximate):
+    #   newt   = Newtonian net (vector sum of GM/d^2)
+    #   sqrtN  = single MOND-enhance of the Newtonian NET field: sqrt(g_newt*a0)  [same RANK as newt]
+    #   mondpc = per-contributor MOND enhance then vector-sum  [over-weights distant deep-MOND structure]
     d=cz/H0; ra=np.radians(ra); dec=np.radians(dec)
     sx=d*np.cos(dec)*np.cos(ra); sy=d*np.cos(dec)*np.sin(ra); sz=d*np.sin(dec)
     dx=cx-sx; dy=cy-sy; dz=cz3-sz; r=np.sqrt(dx**2+dy**2+dz**2)
     s=(r>dmin)&(r<dmax)
     if s.sum()==0: return 0.0,0.0
-    rm=r[s]*Mpc; M=Mcat[s]
-    gN=G*M/rm**2; gM=np.where(gN<a0,np.sqrt(gN*a0),gN)        # MOND-enhanced per contributor
-    ux=dx[s]*Mpc/rm; uy=dy[s]*Mpc/rm; uz=dz[s]*Mpc/rm
-    gxv=np.sum(gM*ux); gyv=np.sum(gM*uy); gzv=np.sum(gM*uz)
-    return np.sqrt(gxv**2+gyv**2+gzv**2), np.sum(gM)          # (net vector, scalar sum) MOND fields
+    rm=r[s]*Mpc; M=Mcat[s]; ux=dx[s]*Mpc/rm; uy=dy[s]*Mpc/rm; uz=dz[s]*Mpc/rm
+    gN=G*M/rm**2
+    g=gN if mode in ("newt","sqrtN") else np.where(gN<a0,np.sqrt(gN*a0),gN)
+    gxv=np.sum(g*ux); gyv=np.sum(g*uy); gzv=np.sum(g*uz); gnet=np.sqrt(gxv**2+gyv**2+gzv**2)
+    if mode=="sqrtN": gnet=np.sqrt(gnet*a0) if gnet<a0 else gnet
+    return gnet, np.sum(g)
 def spear(x,y):
     x,y=np.array(x),np.array(y); ok=np.isfinite(x)&np.isfinite(y); x,y=x[ok],y[ok]; n=len(x)
     rx=np.argsort(np.argsort(x)).astype(float); ry=np.argsort(np.argsort(y)).astype(float)
@@ -89,5 +93,12 @@ for dmin,dmax in [(0.5,40),(1.0,40),(2.0,40),(1.0,30),(1.0,60)]:
     n,rs,p=spear(E,RL); print(f"  dmin={dmin} dmax={dmax} Mpc (vector): N={n} r={rs:+.3f} p={p:.3f}")
 Es=[np.log10(max(eNs[nm],1e-4)) for nm in names]; n,rs,p=spear(Es,RL)
 print(f"  scalar field Sum(GM/d^2):           N={n} r={rs:+.3f} p={p:.3f}")
-print("\n  VERDICT printed by reading the EFE-sensitive r,p above: a robust NEGATIVE low-g_bar correlation that")
-print("  vanishes in the Newtonian control = the EFE detected in-house, no dark matter. A null = unconfirmed here.")
+
+print("\n"+"="*90); print("FIELD-MODEL DEPENDENCE (the honest caveat: the nonlinear MOND field is ambiguous to approximate)"); print("="*90)
+for mode,desc in [("newt","Newtonian net (vector sum GM/d^2)"),("sqrtN","single sqrt-enhance of Newtonian net"),
+                  ("mondpc","per-contributor MOND enhance (used above)")]:
+    E=[np.log10(max(gext(pos[nm]["ra"],pos[nm]["dec"],pos[nm]["cz"],1.0,40.0,mode)[0]/a0,1e-6)) for nm in names]
+    n,rs,p=spear(E,RL); print(f"  {desc:42s}: N={n} r={rs:+.3f} p={p:.3f}")
+print("""  => IF the EFE-sensitive sign FLIPS between field models, the ~1-sigma hint is NOT robust to the field
+     approximation -- it is approximation-dependent, not an in-house detection. The proper external field is
+     the nonlinear MOND solution for the whole mass distribution (or Chae's exact e_N); neither simple sum is it.""")

@@ -1,10 +1,15 @@
-# The rigorous EFE test: real external field from 2MRS — a right-sign hint (~1σ), not yet a detection
+# The rigorous EFE test: real external field from 2MRS — APPROXIMATION-DEPENDENT, not an in-house detection
 
-*C. Zimmerman, 2026-06-06. Did it properly: pulled the full 2MRS catalog (44,599 galaxies), computed the ACTUAL
-MOND external field at each SPARC galaxy (mass-weighted, distance-weighted, MOND-enhanced vector sum), and redid the EFE
-correlation. Result: with the *real* field the correlation flips to the **correct (EFE) sign** and is **robust**, but
-it is ~1σ — a hint, not a detection. No dark matter anywhere. Honest. Script: `sparc_efe_real_externalfield.py`;
-catalog: `data/2mrs_catalog.csv`.*
+*C. Zimmerman, 2026-06-06. Did it properly: pulled the full 2MRS catalog (44,599 galaxies), computed the external field
+at each SPARC galaxy, and redid the EFE correlation. Honest verdict after stress-testing my own result: the correlation
+is **field-model-dependent** — the apparent right-sign hint appears with one external-field approximation and VANISHES
+with another, and is ~1σ at best. So in-house, the EFE is **neither confirmed nor refuted.** No dark matter anywhere.
+Script: `sparc_efe_real_externalfield.py`; catalog: `data/2mrs_catalog.csv`.*
+
+> **⚠️ I initially wrote "right-sign hint, robust" — then stress-tested it and it's NOT robust.** The sign of the
+> EFE-sensitive correlation FLIPS with the external-field model: Newtonian net field → r=+0.015 (null); per-contributor
+> MOND-enhanced field → r=−0.097 (the "hint"). Neither is the true nonlinear MOND field of the mass distribution. So the
+> ~1σ hint is an **approximation artifact, not a detection.** Corrected below.
 
 ## What I built (the rigorous external field)
 - **Catalog:** full 2MRS (Huchra+2012), 44,599 galaxies, 38,611 with good redshifts; K-band → baryonic (stellar) mass;
@@ -27,18 +32,19 @@ catalog: `data/2mrs_catalog.csv`.*
 **Robustness (EFE-sensitive, varying group-exclusion and radius):** r = −0.088, −0.097, −0.103, −0.098, −0.115 across
 dmin∈{0.5,1,2} Mpc, dmax∈{30,40,60} Mpc; scalar field −0.071. **The negative sign is stable everywhere.**
 
-## Honest reading
-- **This is real progress over the previous null.** With the overdensity *proxy* the correlation was the *wrong sign*
-  (r=+0.11). With the *real* MOND external field it flips to the **EFE-predicted negative sign** and stays there across
-  every analysis choice — galaxies in stronger external fields *do* sit (slightly) more below the RAR at low g_bar.
-- **But it is not a detection.** r≈−0.10, p≈0.29 — about **1σ**. The hint is in the right direction; the significance
-  is not there. Two honest reasons: (i) the **mean-residual statistic is far weaker** than a full per-galaxy
-  rotation-curve fit (Chae's method extracts the EFE from the whole curve shape, not one binned number); (ii) SPARC's
-  e_N **dynamic range is narrow** (0.09–0.20 — a large common cosmic-web background with little galaxy-to-galaxy
-  variation), which is what a correlation needs.
-- **Consistent with the published EFE.** Chae et al. 2020/2021 detect the EFE at ~4–5σ using the full RC fit. My
-  weaker test recovers the same *sign*, sub-threshold. So: in-house, with the real field, **the EFE shows up in the
-  right direction but not significantly** — neither a confirmation nor a refutation, an honest ~1σ lean.
+## Honest reading (after stress-testing)
+- **The correlation is field-model-dependent — this is the decisive caveat.** The EFE-sensitive sign FLIPS with how the
+  (nonlinear) MOND external field is approximated: **Newtonian net field → r=+0.015** (null/wrong sign); **per-contributor
+  MOND enhancement → r=−0.097** (the apparent hint). It is robust to dmin/dmax *within* the MOND-enhanced model, but not
+  to the model choice itself. Since neither simple sum is the true nonlinear MOND field, **the hint is an approximation
+  artifact, not a detection.**
+- **Not significant in any case.** The best correlation is r≈−0.10, p≈0.29 — about **1σ**. Two reasons it's
+  under-powered: (i) the **mean-residual statistic is far weaker** than a full per-galaxy rotation-curve fit (Chae's
+  method extracts the EFE from the whole curve shape); (ii) SPARC's e_N **dynamic range is narrow** (a large common
+  cosmic-web background swamps the galaxy-to-galaxy variation a correlation needs).
+- **Neither confirms nor refutes the published EFE.** Chae et al. 2020/2021 detect it at ~4–5σ using the full RC fit and
+  a carefully-modeled field. My simple correlation cannot reproduce that robustly — the in-house verdict is **unresolved**,
+  not a lean. (I initially over-read it as a robust hint; the field-model check corrected me.)
 
 ## The forward step to clinch it
 The mean-residual correlation has wrung out what it can. To reach significance, do the **full per-galaxy MOND+EFE
