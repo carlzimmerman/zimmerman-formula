@@ -29,6 +29,14 @@ framework-vs-flat split. The galaxies are already observed — this is a re-anal
 
 ## Part 2 — The TOE parameter space reduced to the Λ-ladder corridor (and the exponent objection resolved)
 
+> **⚠️ RETRACTED as a TOE corridor (2026-06-06) — see `CORRECTION_NO_DARK_MATTER_2026-06-06.md`.** The dark dimension's
+> KK gravitons ARE cold dark matter — incompatible with this framework's core premise (MOND: no dark matter, the missing
+> mass is modified dynamics). Importing it was a category error (defaulting to the dark-matter paradigm the framework
+> replaces). The dimensional fact below — a₀∝Λ^{1/2} at the Higuchi edge of the [1/4,1/2] window — survives as a real
+> observation, but it is NOT a path *through* a dark-matter scenario. The framework-consistent TOE path is **emergent
+> gravity (no particles)**, where galaxies, clusters, the CMB, and the cosmic acceleration are ALL modified dynamics
+> sourced by the vacuum Λ. Part 1 (the RC100 deep-MOND data result) stands.
+
 The surviving path to unification is the **dark dimension** (Montero–Vafa–Valenzuela 2022): one mesoscopic extra
 dimension whose size is set by Λ, deriving an *entire dark sector from one number*. The Λ-ladder, with the framework's
 a₀ added as the IR rung:
