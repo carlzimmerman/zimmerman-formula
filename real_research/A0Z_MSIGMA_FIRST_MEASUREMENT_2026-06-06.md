@@ -16,11 +16,16 @@ is systematic-dominated by the 4th-power error amplification. A genuine first me
 
 ## Results
 
-| subsample | N | a₀/a₀_loc (median) | reading |
+| subsample | N | a₀/a₀_loc | reading |
 |---|---|---|---|
-| **z<2 (KLASS, AO-resolved)** | 9 | **0.9** | consistent with constant **and** framework; **disfavors** Verlinde (which needs ~2.4 at z=1.5) |
+| **z<2 (KLASS, AO-resolved)** | 9 | **0.90** (68% CI 0.70–1.00 stat; **0.45–1.80** with gas) | consistent with framework (1.01) **and** flat (1.00); **~1σ below** Verlinde (1.76) |
 | z>3 (JADES/SL) | 3 | 14.9 | systematic-dominated (turbulence + thin-disk assumption + small N) |
 | all deep-MOND | 12 | 1.4 (range **0.1–30**) | factor-~300 per-object scatter; trend p=+1.9 (spurious, ≈Verlinde) |
+
+The headline data point (bootstrap, 20k resamples): **a₀(z≈1.0)/a₀(0) = 0.90 (+0.10/−0.20 stat, ×/÷2 gas).** The
+framework (1.01) and flat (1.00) both sit inside the stat error; Verlinde (1.76) is at the upper edge (~1σ, weaker once
+the gas systematic is folded in). So this first M–σ point **mildly disfavors the steep rise and is consistent with
+flat/framework** — the same direction as every other probe, now from an independent method.
 
 - **The density selection works** (Carl's reframe is sound): it correctly tags the deep-MOND low-mass tail (12 of 30) and
   rejects the high-acceleration massive disks (de Graaff's logM*~9 z>6 disks → g/a₀~2–4, Newtonian, correctly cut).
