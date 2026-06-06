@@ -1,7 +1,7 @@
 # The Zimmerman Theory of Gravity
 ## The galaxy acceleration scale is set by the cosmological constant: a₀ = c²√(Λ/32π)
 
-**Author:** Carl P. Zimmerman (Briar Creek Tech) · correspondence: carlpzimmerman@gmail.com
+**Author:** Carl P. Zimmerman (Briar Creek Tech) · correspondence: carl@briarcreektech.com
 **Version:** Working whitepaper, draft 1 — 2026-06-06
 **Code & data:** https://github.com/carlzimmerman/zimmerman-formula (all scripts and data files cited below are in `real_research/`)
 **Status:** A falsifiable proposal offered for independent testing. Every quantitative claim links to a runnable Python
@@ -34,7 +34,9 @@ field leans in the **predicted** direction (r=+0.218) but is under-powered (~1.4
 **hard**: it inherits and slightly deepens MOND's unsolved galaxy-cluster residual, its O(1) coefficient (32π) is a
 motivated posit rather than a theorem, and it lacks a complete ghost-free covariant completion. We close with a
 comprehensive table of falsifiable predictions and the instruments (ELT, JWST, Gaia, Euclid/Rubin, XRISM/Athena, SKA,
-DESI) that will confirm or kill them this decade.
+DESI) that will confirm or kill them this decade, and — critically — we specify the **precise empirical confirmations
+and their quantitative thresholds required to promote this proposal from candidate to established law** (§9), showing
+that the single decisive measurement, deep-MOND kinematics at z≈3, is reachable within the decade.
 
 ---
 
@@ -250,7 +252,93 @@ confirmed where every rival fails. ELT-class spectroscopy reaches this within th
 
 ---
 
-## 9. Reproducibility — scripts and data
+## 9. From candidate to law: the empirical confirmations required
+
+"Law of nature" is a high bar with definite content. A relation earns the title only by satisfying, at minimum:
+**(i) universality** across a stated domain; **(ii) a parameter-free form** whose constants are fixed externally rather
+than fitted to the data they explain; **(iii) a *novel* prediction** — a statement not used in the relation's
+construction — that is then confirmed by measurement (this is the hallmark that separates a law from a successful fit);
+**(iv) independent corroboration** by methods that could have disagreed; and **(v) survival of falsification** as
+precision improves. Judged by that standard, the Zimmerman Theory is today a **strong candidate, not yet a law**: its
+galaxy-scale relations are parameter-free and on-target and it has excluded one rival, but its *defining* novel claim —
+that a₀ is caused by Λ and therefore **declines** with redshift — is not yet confirmed, its premise (no dark matter) is
+not yet decisively demonstrated, and it is not universal (clusters fail). This section states exactly what must be
+measured, and to what precision, to close each gap. None of it requires trusting the author; it requires telescopes.
+
+### 9.1 The claim decomposes into four testable propositions
+The theory is not one assertion but four, at different confirmation status — and conflating them is how a partial result
+gets oversold:
+
+- **(A) The premise:** gravity is modified; there is no dark matter. *Confirmed uniquely by a Strong-Equivalence-
+  Principle violation* (the EFE): in any dark-matter theory the SEP is exact, so a clean EFE detection falsifies dark
+  matter outright.
+- **(B) The value:** a₀ = 9.36×10⁻¹¹ m s⁻² specifically (not merely "an a₀"). *Confirmed by pinning a₀ where the stellar
+  M/L degeneracy is broken.*
+- **(C) The origin:** the value is *set by Λ* (dark energy), not merely numerically near c√Λ today. *Confirmed only by
+  the evolution* a₀(z) ∝ √ρ_DE(z). This is the proposition that makes the law specifically Zimmerman's rather than
+  generic MOND.
+- **(D) The coefficient:** X = 32π. *Confirmed by precision on (B) plus a first-principles derivation.*
+
+Confirming (A)+(B) would establish a modified-gravity law of the MOND family. **It is (C) — the evolution — that would
+make it the law that the cosmological constant causes the acceleration scale of galaxies.** That is the prize, and it is
+the one piece current data cannot yet deliver.
+
+### 9.2 The required confirmations, with quantitative thresholds
+
+| ID | Establishes | Status now | Required measurement | Threshold to confirm | Falsifier | Instrument / when |
+|---|---|---|---|---|---|---|
+| **C1** | (A) modified gravity, no dark matter | Chae+2020/21 EFE **4–5σ** in SPARC (published); 1.4σ in-house (data-limited); wide-binary claims contested | EFE detected in a sample selected for a **range** of external fields; magnitude set by a₀=9.36×10⁻¹¹. **Independent** check in Solar-neighborhood wide binaries (no galaxy modeling) | **Two independent ≥3σ SEP-violation detections, jointly >5σ**, both consistent with a₀=9.36×10⁻¹¹ | A clean SEP-**respecting** null (internal dynamics independent of external field) in a high-dynamic-range sample ⇒ dark matter; theory dead | Environment-selected RC samples (now); **Gaia DR4 2026 / DR5 ~2030** wide binaries |
+| **C2** | (B) the specific value | a₀ ≈ 1.0–1.3×10⁻¹⁰ across RAR/BTFR/MDA — within the M/L+metric band of 9.36×10⁻¹¹ (under unweighted scatter, within 0.3% of optimal); degeneracy-limited | a₀ pinned where M/L is **irrelevant**: gas-dominated dwarfs, Gaia wide binaries (known masses), MW vertical kinematics | **a₀ = 9.36×10⁻¹¹ to <5%, and >3σ distinct from regular-MOND 1.2×10⁻¹⁰** | a₀ pinned to 1.2×10⁻¹⁰ at >3σ in an M/L-free system ⇒ the value (and 32π) is wrong (generic MOND survives) | Gas-rich SPARC/SKA dwarfs; Gaia wide binaries; MW surveys (now–2030) |
+| **C3** ★ | **(C) the Λ-origin — the decisive test** | rising-cH rival **excluded** (Δχ²≈49); the predicted decline **undetected** (degenerate with constant); MUSE-DARK III rising-tension (non-diagnostic) | a₀(z) at z≈2–3 to **~15%**, returning **0.74–0.86× local**; ideally the z≈0.4 bump. Cross-check: same a₀(z) must match the **ρ_DE(z) DESI infers from BAO** | **a₀(z) consistent with √ρ_DE(z) and inconsistent with BOTH constant AND rising at >3σ, AND concordant with DESI's ρ_DE(z)** | a₀(z) **constant** to z≈3 ⇒ Λ-link unconfirmed (degenerates to MOND); a₀(z) **rising** ⇒ dark-energy footing wrong, theory falsified as written | **ELT/HARMONI 2028–2032**, JWST+ALMA (now), SKA; DESI DR2+ |
+| **C4** | (D) coefficient & completion | 32π = 4×8π is a posit (8π GR-forced, 4=(½)² chosen); no ghost-free covariant action | Derive the (½)² collapse-horizon factor from a stated principle; **or** pin a₀ precisely enough to select 32π observationally; build a ghost-free completion passing Cassini | A derivation of X=32π, **or** a₀ to <2% selecting 32π over 8π/12π²/6; completion with |γ−1|<2×10⁻⁵ | A completion forced to violate Cassini ⇒ no viable field theory (the law could still stand phenomenologically) | Theory + precision a₀ (open-ended) |
+| **C5** | universality (domain) | cluster residual **2.33×** at R500 (worse than regular MOND's 2.07×) | Resolve whether the cluster residual is **baryonic** (missing baryons / IGIMF / neutrinos) at the framework a₀, **or** bound the law's domain explicitly | Cluster residual reconciled at a₀=9.36×10⁻¹¹ within systematics, **or** a stated, physically-motivated domain of validity | A transition-region test (clusters with g_bar≈a₀) failing where a₀ actually operates ⇒ not universal | XRISM (now), **Athena ~2037**; X-COP/CHEX-MATE reanalysis |
+
+### 9.3 Why C3 is decisive, and what it concretely requires
+The static value (C2) cannot, by itself, establish the *origin* claim: a₀ ≈ c√Λ today is compatible with both "Λ causes
+a₀" and "a₀ is a constant that happens to sit near c√Λ." Only the **time-dependence** breaks that degeneracy, because the
+two hypotheses diverge with redshift — one tracks the (declining) dark-energy density, the other does not move at all.
+This is the theory's one genuinely novel, pre-registered prediction, and confirming it would be its Eddington-1919
+moment.
+
+It is also the hardest measurement, and honesty requires stating *why*. The predicted signal at z=3 is
+log₁₀(0.737) = **−0.13 dex** in a₀. Against the per-galaxy scatter of deep-MOND a₀ measurements (~0.4 dex, from RC100),
+detecting it requires
+- **N ≈ 80 clean deep-MOND rotation curves at z≈3 for a 3σ detection, ≈230 for 5σ** (N ≈ (0.4/(0.13/nσ))²);
+- and, because the bump at z≈0.4 is only +0.025 dex, even larger samples or exquisite control to map the full shape.
+
+More limiting than N is the **systematic floor**: at z≈3 the baryonic acceleration depends on molecular gas and on
+pressure-support (asymmetric-drift) corrections, each carrying ≳0.1 dex uncertainty that does **not** average down. The
+decisive test therefore needs not just a large sample but **control of the high-z baryon systematic below ~0.1 dex** —
+which is precisely what ELT-class spectroscopy **plus** ALMA gas maps can deliver, and why this is a late-2020s rather
+than a present-day measurement.
+
+### 9.4 Independent corroboration: the multi-probe concordance that would clinch it
+A single a₀(z) curve, however clean, is one method. The strongest form of confirmation is **concordance**: the same
+declining a₀(z) showing up in measurements that could have disagreed —
+1. **deep-MOND rotation curves** at z≈2–3 (C3, kinematic);
+2. the **BTFR zero-point** shifting with z as a₀(z) (P3 — an independent kinematic estimator);
+3. **galaxy–galaxy lensing** RAR at the same a₀ across cosmic time (P5 — a non-kinematic probe);
+4. the **ρ_DE(z) DESI infers from BAO** (P7 — a pure-cosmology probe, no galaxies at all).
+If a kinematic a₀(z) and a BAO-inferred ρ_DE(z) — two utterly independent measurements — trace the same curve, the claim
+"the cosmological constant sets the galaxy acceleration scale" passes from suggestive to established. That four-way
+concordance is the empirical content of calling this a law.
+
+### 9.5 The confirmation ladder — where we stand
+| Rung | The claim | Requires | Status |
+|---|---|---|---|
+| 1 | A parameter-free galaxy acceleration law exists (a₀ ~ c√Λ reproduces RAR/BTFR/MDA) | C2 (within systematics) | **✓ in hand** at galaxy scales |
+| 2 | The premise is modified gravity, not dark matter | C1 (EFE/SEP) | **◐ partial** — 4–5σ published, needs independent + environment-selected |
+| 3 | **The scale is *caused by Λ* — it evolves as √ρ_DE** (Zimmerman's law) | **C3** | **✗ outstanding — the decisive test** |
+| 4 | Universal across its domain | C5 (clusters resolved or bounded) | **✗ outstanding** (clusters fail) |
+| 5 | A complete theory (covariant + derived coefficient) | C4 | **✗ open** |
+
+**We are at rung 1, reaching for 2.** The promotion that matters — to rung 3, the specifically Zimmerman claim — hinges
+on one class of measurement: deep-MOND kinematics at z≈3, cross-checked against DESI's dark-energy history. If that
+returns a₀ declining as √ρ_DE, the cosmological constant will have been shown to set *and govern the evolution of* the
+acceleration scale of galaxies — and the proposal becomes a law. If it returns a₀ constant, the theory survives only as
+generic MOND; if rising, it is falsified. The test is sharp, it is pre-registered here, and it is reachable this decade.
+
+## 10. Reproducibility — scripts and data
 
 All analyses are plain-Python (numpy/astropy), self-contained, and committed. Repo:
 `https://github.com/carlzimmerman/zimmerman-formula`, directory `real_research/`.
@@ -273,7 +361,7 @@ files are included; the eRASS1 FITS catalog is public at the link above.
 
 ---
 
-## 10. Discussion
+## 11. Discussion
 
 **Versus ΛCDM.** ΛCDM fits cosmology superbly but has no acceleration constant and no first-principles account of the
 RAR/BTFR tightness or of a₀'s value. The Zimmerman Theory supplies the missing constant from the vacuum and predicts an
@@ -293,14 +381,18 @@ completion. It is offered here in falsifiable form precisely so the community ca
 
 ---
 
-## 11. Conclusion
+## 12. Conclusion
 
 The cosmological constant appears to set the acceleration scale of galaxies: a₀ = c²√(Λ/32π) = 9.36×10⁻¹¹ m s⁻²,
 evolving as √ρ_DE(z). At this single value, three independent galaxy laws coincide to 8%; the rising-cH alternative is
 excluded; the External Field Effect — impossible in ΛCDM — leans the predicted way. The theory is hard on clusters,
 its coefficient is a posit, and its covariant completion is unwritten — all stated openly. Its central novel claim, a
-declining a₀(z) with a z≈0.4 bump, is cleanly falsifiable with ELT-class spectroscopy this decade. We invite the
-community to run the scripts, pull the public data, and test it.
+declining a₀(z) with a z≈0.4 bump, is cleanly falsifiable with ELT-class spectroscopy this decade.
+
+**The promotion criterion is explicit (§9): it becomes a law when a₀ is shown to evolve as √ρ_DE(z) — at >3σ against
+both constant and rising alternatives, and concordant with the dark-energy history DESI infers from BAO.** Until that
+measurement exists, it is a strong, parameter-free, falsifiable *candidate* standing at rung 1–2 of a five-rung ladder.
+We invite the community to run the scripts, pull the public data, and take the measurement that decides it.
 
 ---
 
