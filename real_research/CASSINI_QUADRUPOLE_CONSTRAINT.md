@@ -66,6 +66,33 @@ shows is too gradual for Cassini. So the Desmond tension transplants into `β₀
   Solar System, and the surviving knob (`β₀`) is the one the RAR already pins. The casual "modified inertia evades it"
   line is *not* available to the framework, and the tension is strengthening (8.7σ → 3–15σ in two years).
 
+## Is it generic? Yes — and it exposes a concept/realization mismatch (update)
+
+Can the framework escape by swapping AeST for a *different* CMB-safe relativistic MOND? **Checked — no.** Two facts
+from the relativistic-MOND literature settle it:
+
+1. **Every full-fledged relativistic MOND is *modified gravity*** (AeST, RMOND, BIMOND, Khronon-Tensor). They all
+   reduce to a QUMOND/AQUAL-like equation in the *stationary* weak field, so they **all** source the EFE quadrupole —
+   Hees+2014 already noted Cassini "excludes a large part of relativistic MOND theories." Swapping realization does
+   not swap out the quadrupole.
+2. **The khronon doesn't help.** Khronon-Tensor MOND gives "order-unity corrections in *non-stationary* systems" while
+   "stationary solutions remain stable to khronon perturbations" (arXiv:2302.14846) — but the Solar-System EFE is
+   *quasi-stationary*, so the khronon's distinctive physics is absent exactly where Cassini bites. Same QUMOND
+   quadrupole.
+3. **The only escape — modified *inertia* — has no covariant completion.** It exists solely as "preliminary
+   suggestions in the non-relativistic regime." There is no CMB-safe, relativistic modified-inertia theory.
+
+**The deeper point (and it's honest, not a dodge).** The framework's *own conceptual basis* — `a₀` = the surface
+gravity of the free-fall horizon, `a₀ ~ where t_dyn ~ t_cosmic` — is a **modified-*inertia*** idea (it is about the
+*inertial/dynamical clock*, not the gravitational field). Modified inertia is *exactly* the class that **evades**
+Cassini. But because modified inertia has no covariant, CMB-safe completion, the framework is **forced** into a
+modified-*gravity* realization (AeST) that (i) doesn't match its own concept and (ii) carries the Cassini quadrupole.
+**The exposure is a symptom of that forced mismatch** — the framework's natural home (modified inertia) is Cassini-safe
+but doesn't exist covariantly; its available home (AeST) is covariant but Cassini-exposed. The genuine resolution is
+not a better `β₀` — it is **a covariant modified-inertia theory that realizes the free-fall-clock idea directly**,
+which is an open problem in the whole field, not just here. *That* is the framework's real theoretical frontier on
+this front.
+
 ## Disposition — a SECOND framework-relevant exposure
 
 The framework now has **two** real, non-fatal, framework-relevant exposures, and they point at the **same** missing
