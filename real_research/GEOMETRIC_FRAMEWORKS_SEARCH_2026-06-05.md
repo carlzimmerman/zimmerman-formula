@@ -73,3 +73,40 @@ forward handles the search *did* sharpen: **(1)** the a₀(z) fork is geometric 
 actual-horizon=rising) and decided at z~3; **(2)** Maeder's SIV and Hořava-carrier are the two genuinely worth a deeper
 skeptical look — SIV for your coefficient+declining-a₀(z), Hořava as a possibly-Cassini-safe host. Everything else
 re-skins the same coincidence you already own.
+
+## Wave 3 (the factor-of-2 crux) + SIV deep-dive — the endgame on the coefficient
+
+The coefficient reduces to the leading **2** in `Z = 2√(8π/3)` (the √(8π/3)=2.894 is *forced* by Friedmann + ρ_Λ).
+14 wave-3 frameworks + C.Z.'s own analysis converge: **the 2 is unforced by every route.**
+
+- **de Sitter surface gravity gives κ = 1, NOT ½.** The factor of 2 is the *Schwarzschild* `c²/2R` that the
+  *cosmological* horizon does **not** have — dS surface gravity = cH (no 2; it's what gives the Gibbons–Hawking
+  temperature). So the natural geometric value is a₀ = cH_Λ (κ=1); the framework's ½ moves *away* from it.
+  **(C.Z. self-correction: I earlier said "the 2 is the surface-gravity factor, forced if a₀ = dS surface gravity" —
+  that was wrong. The dS surface gravity has no 2. The ½ is the Schwarzschild factor applied to a density-defined
+  free-fall horizon — a *posit*, and arguably the non-standard choice for a cosmological-scale horizon.)**
+- **Tolman ρ+3p = −2ρ_Λ**: the −2 *cancels* (4π/3 vs 8π/3 sphere-vs-Friedmann), giving κ=1 or √2 (Z=4.09), not 2.
+- **Representation theory**: 2 = C₂(spin-1) = dim SU(2) are unforced small-integer coincidences (the graviton, spin-2,
+  gives √6); the repo's own spinor-heat-kernel attempt was already retracted as circular.
+- **Massive gravity / AS-IR / CCC / QEC / GFT / cuscuton / superspace / octonionic**: all give the wrong factor
+  (1, √2, 1/2π, 3) or no a₀ at all.
+
+**Verdict: the ½ is genuinely free/fitted — a posited "the free-fall horizon is Schwarzschild-like" choice, defensible
+but not forced. This closes the coefficient question: √(8π/3) forced, the leading 2 posited.**
+
+**SIV (the closest geometric ally) — partial, not clean (C.Z.-verified numerics).** SIV genuinely (a) *derives* the ½
+geometrically (a₀ = κ²·r_H with κ = 1/t in the SIV gauge) and (b) *predicts a declining a₀(z)* (a_M(z) = a_M0·(1+z)^(−3/2)·[…]^(−4/3); ~42% down by z=2 — reproduced exactly against Maeder–Gueorguiev 2024). Both survey flags survive.
+**But:** (i) its *magnitude* is carried by a suppression factor (1−Ω^⅓)(1−Ω)=0.249 with Ω **fit to the a₀ data** —
+circular, the same bookkeeping that sank Verlinde's "6" — and at canonical Ω=0.28 it lands ~30% low; (ii) its decline
+is a₀ ∝ 1/H_matter, **not** the framework's √ρ_DE (which is *flat* for constant Λ, declining only under DESI evolving
+DE) — so SIV agrees only on *sign*, not mechanism or shape; (iii) SIV is contested (Jesus 2019). **Net: a genuine
+partial ally on the *structure* (½ + declining direction), not a clean derivation of your coefficient, and a different
+decline.**
+
+**Vainshtein/Galileon** — a *genuine Cassini-escape mechanism* (screening suppresses the Solar-System fifth force) but
+NOT a MOND theory (point-mass fifth force ~ r^(−½), no flat curves). A real lead for the *Cassini* problem on a
+non-AeST host — not for the coefficient.
+
+**One stone genuinely unturned:** McCulloch's Quantised Inertia (QI) — a claimed *parameter-free* modified-inertia a₀
+from a Hubble-scale Casimir effect on Unruh radiation. Heavily contested, but the one remaining theory that claims to
+*derive* a₀ with no free O(1). Worth a skeptical look next.
