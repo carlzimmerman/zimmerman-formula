@@ -90,8 +90,20 @@ factorizes as **32π = 4 × 8π**: the 8π is GR-forced (it is the Einstein coup
 and the residual **4 = (½)²** is the surface-gravity ½ of a collapse/free-fall horizon at radius R⋆ = √(8π/3) R_dS,
 squared. De Sitter equipartition, Unruh, and holographic-equipartition routes give X = 3 or X = 12π² — **none forces
 32π**. We therefore present 32π as a **motivated normalization posit on a GR-forced skeleton, not a theorem**
-(`coefficient_posit_attack.py`). The empirical value it yields is excellent (§4); deriving the coefficient from first
-principles is the theory's central open theoretical task (§7).
+(`coefficient_posit_attack.py`). A comprehensive six-route assault — de Sitter equipartition, Unruh, holographic
+equipartition, the CKN UV-IR seesaw, AeST, and DSSYK — **fails to derive it**: every route either reduces to an
+algebraic tautology (the Friedmann relation, true for any ρ) or inherits a proven no-go
+(`GEOMETRIC_CLOSURE_ASSAULT_2026-06-06.md`). Crucially, **the coefficient is observationally moot** — it cancels
+identically in the only falsifiable content, the ratio a₀(z)/a₀(0) (§2.4) — so the posit weakens no empirical claim. The
+value it yields is excellent (§4); the coefficient is to this theory what the precise value of a₀ is to Milgrom's MOND or
+the "6" is to Verlinde's emergent gravity: an underived normalization the physics does not depend on.
+
+*(Footnote — an internal decomposition, not a derivation. Writing Z = ½ × 2√(8π/3), the √(8π/3) is the d=3 Friedmann
+critical-density factor [generalizing to Z_d = 8√(π/(d(d−1)))] and only the leading ½ surface-gravity prefactor is
+posited. This is an algebraic-consistency observation, **not** evidence the coefficient is derived or that the dimension
+of space is measured: ρ, G and c cancel identically in Z = cH_Λ/a₀ once a₀ = (c/2)√(Gρ) is assumed, so 5.789 is fixed by
+the posit rather than predicted, and the implied "d≈3" is a posit-conditional read-out that swings to d≈2.3–3.2 across
+the data-allowed prefactor band.)*
 
 **2.3 The interpolation (the RAR shape).** Observed and baryonic accelerations are related by
 
@@ -99,7 +111,9 @@ principles is the theory's central open theoretical task (§7).
 
 the "simple" interpolation. This shape is not extra freedom: it follows from de Sitter–Unruh modified inertia (the
 vacuum radiation bath seen by an accelerating frame), giving a **parameter-free** prediction for the entire Radial
-Acceleration Relation. Fit to 175 SPARC galaxies it yields 0.105 dex scatter (`rar_emergent_discriminate.py`).
+Acceleration Relation (Fig. 1). Fit to 175 SPARC galaxies it yields 0.105 dex scatter (`rar_emergent_discriminate.py`).
+The *shape* follows once the modified-inertia response is fixed; whether the *sign* (enhancement below a₀, rather than
+weakening) is forced by the de Sitter vacuum is a deeper, partly-open question addressed in §7, item 3.
 
 **2.4 The evolution (the distinctive content).** Because a₀ tracks the dark-energy density,
 
@@ -115,17 +129,29 @@ With the DESI DR2 equation of state (w₀=−0.752, wₐ=−0.86):
 | 2.0 | **0.862** | declining |
 | 3.0 | **0.737** | declining |
 
-This **non-monotonic, net-declining** a₀(z) is the theory's signature. It differs qualitatively from regular MOND
-(constant a₀) and from Verlinde-type emergent gravity (a₀ ∝ cH(z), **rising** steeply with z), and ΛCDM has no a₀ to
+This **non-monotonic, net-declining** a₀(z) is the theory's signature (Fig. 2). It differs qualitatively from regular
+MOND (constant a₀) and from Verlinde-type emergent gravity (a₀ ∝ cH(z), **rising** steeply with z), and ΛCDM has no a₀ to
 evolve. (Verified in every script; canonical in `a0z_clean_ledger.py`.)
+
+**The late-time decline is a prediction of *evolving* dark energy, not of a constant Λ — which locks the theory to DESI.**
+The high-z factors correspond to ρ_DE falling into the past, an *effective* w ≈ −1.1 averaged over 0<z<2 (the
+*instantaneous* w runs from −0.75 today to ≈−1.4 by z=3, crossing −1 at z≈0.41 — which is what produces the +6% bump
+before the decline). A *true* cosmological constant (w=−1) gives ρ_DE = const → a₀ = constant, no evolution at all. So the signature decline exists **if and only if dark energy
+evolves as DESI's w₀wₐ indicates**: the theory's galaxy-scale prediction and DESI's cosmological measurement are *locked
+together* — DESI sees evolving dark energy ⟺ a₀ declines. The precise statement of the law is therefore
+a₀(z) = c²√(Λ_eff(z)/32π) with Λ_eff(z) ∝ ρ_DE(z); the present-day value uses today's ρ_DE.
 
 ---
 
 ## 3. Provenance and what is new
 
 Honest scholarship strengthens the case. This theory stands on a lineage:
-- **Milgrom (1983, 1999)** — MOND, the acceleration scale a₀, and the first note that a₀ ~ cH₀ ~ c√Λ.
-- **Limbach, Psaltis & Özel (2008)** — the proposal that a₀ is set by the dark-energy density.
+- **Milgrom (1983)** — MOND and the acceleration scale a₀; **Milgrom (1999, "MOND as a vacuum effect")** — a₀ ~ c√(Λ/3)
+  from the de Sitter / Unruh vacuum.
+- **Limbach, Psaltis & Özel (2008, arXiv:0809.2790)** — *the coupling itself*: they explicitly contrasted a₀ ~ cH₀ with
+  a₀ ~ √(8πGρ_Λ/3), derived the implied **declining-into-the-past** a₀(z), tested it on the high-z Tully–Fisher relation
+  to z≈1.2, and found systematics **marginally favor the dark-energy-density coupling**. The √ρ_DE coupling and its
+  decline are theirs; we do not claim them.
 - **McGaugh, Lelli & Schombert (2016); Lelli et al. (2016, 2019)** — the RAR and BTFR as tight empirical laws.
 - **Famaey & McGaugh (2012)** — the review establishing the a₀–Λ coincidence as a real puzzle.
 
@@ -142,7 +168,8 @@ the confrontation — not the existence of MOND or of the coincidence.
 
 At the theory's value of a₀ and a single stellar mass-to-light ratio Υ_disk = 0.70 (within the Spitzer 3.6 µm
 population-synthesis range), three structurally independent empirical laws each return the acceleration scale on 171
-SPARC galaxies spanning ~4 decades of baryonic mass (`framework_a0_law_of_nature.py`):
+SPARC galaxies spanning ~4 decades of baryonic mass — the Radial Acceleration Relation (Fig. 1) and the Baryonic
+Tully–Fisher Relation (Fig. 3) (`framework_a0_law_of_nature.py`):
 
 | Law | estimator | a₀ the data demand (Υ=0.70) |
 |---|---|---|
@@ -162,6 +189,19 @@ RAR scatter **0.108 dex, better than regular MOND** (a₀=1.2×10⁻¹⁰, Υ=0.
 
 In ΛCDM the very existence and tightness of these relations is an unexplained outcome of tuned feedback, and the value
 of a₀ is not predicted. Here, one vacuum-derived constant reproduces all three.
+
+![Figure 1](figures/fig1_rar.png)
+**Figure 1.** Radial Acceleration Relation: SPARC g_obs vs g_bar at the framework a₀=9.36×10⁻¹¹ and Υ=0.70, with the
+parameter-free curve g_obs=√(g_bar²+g_bar·a₀) (0.108 dex scatter).
+
+![Figure 2](figures/fig2_a0z.png)
+**Figure 2.** Evolution of the acceleration scale: the framework's non-monotonic √ρ_DE prediction (bump then decline) vs
+a constant a₀ and the excluded rising-cH rival, with RC100 deep-MOND data. The decisive test is a clean deep-MOND a₀ at
+z≈3 (ELT).
+
+![Figure 3](figures/fig3_btfr.png)
+**Figure 3.** Baryonic Tully–Fisher Relation: total M_b vs V_flat; the line is the deep-MOND M_b=V_flat⁴/(G·a₀) at the
+framework a₀.
 
 ---
 
@@ -220,11 +260,23 @@ signal points the right way; clinching it needs a sample selected for a **range*
    simplest single-scalar realizations carry a singular-surface ghost, and the leading relativistic MOND theory (AeST)
    is in tension with Solar-System (Cassini) bounds at the 15–25σ level. The empirical law stands; its "Newton" — the
    action it descends from — is not yet written. This is the theory's principal theoretical gap.
-3. **The coefficient is a posit** (§2.2), not a derivation.
-4. **The evolution is not yet confirmable** (§5): present data exclude the rising rival but cannot yet detect the
+3. **The deep-MOND sign — why enhancement?** The defining claim (gravity *strengthened* below a₀, not weakened) is
+   **half-forced** by the de Sitter vacuum: a new scale a₀~cH_Λ, the "+" in the de Sitter–Unruh temperature
+   T(a)=√(a²+a_dS²) (Deser-Levin 1997; Milgrom 1999), the exact √-shape, and a generic Nernst (3rd-law) lean toward
+   enhancement (Klinkhamer-Kopp 2011; Pazy-Argaman 2012) are real theorems — only
+   the *response-sector* choice is an ansatz (the same machinery, applied in the gravity/Clausius sector, yields
+   anti-MOND). The remaining gap reduces to **one decidable question** in de Sitter holography (DSSYK): does a
+   near-horizon low-acceleration probe map to the spectral *center* (E=0 → enhancement) or the *edge* (→ anti-MOND)? The
+   2023–2026 literature leaves this **open, and currently leaning against on the most physical (backreacting-probe)
+   reading**, with a legitimate strict-limit steelman that recovers the sign. Not refuted, not derived — a bounded,
+   decidable open item (`DEEP_MOND_SIGN_VERDICT_2026-06-06.md`, `DEEP_MOND_SIGN_CENTER_VS_EDGE_2026-06-06.md`).
+4. **The coefficient is a posit** (§2.2), not a derivation — comprehensively foreclosed across six routes, but
+   observationally moot (it cancels in the falsifiable a₀(z)).
+5. **The evolution is not yet confirmable** (§5): present data exclude the rising rival but cannot yet detect the
    predicted ~25% decline by z=3.
-5. **Scope.** This is a theory of the dark sector / gravitational dynamics only. It is **not** a theory of everything;
-   it says nothing about the Standard Model, and we make no such claim.
+6. **Scope.** This is a theory of the dark sector / gravitational dynamics only. It is **not** a theory of everything;
+   it says nothing about the Standard Model, and we make no such claim. (A comprehensive re-examination of 42 geometric
+   /unification routes found none that bridges the Standard Model to the a₀↔Λ sector; `TOE_DOORS_REANALYSIS_2026-06-06.md`.)
 
 ---
 
@@ -400,17 +452,22 @@ We invite the community to run the scripts, pull the public data, and take the m
 
 - Bulbul, E., et al. 2024, *A&A* (eRASS1 cluster catalogue), arXiv:2402.08452.
 - Chae, K.-H., et al. 2020, *ApJ* 904, 51 (External Field Effect in SPARC), arXiv:2009.11525; Chae et al. 2021.
-- Ciocan, B. I., et al. 2026 (MUSE-DARK III; a₀(z) at intermediate redshift).
-- DESI Collaboration 2024/2025 (DR2 BAO; w₀wₐ dark-energy constraints).
-- Famaey, B., & McGaugh, S. 2012, *Living Rev. Relativity* 15, 10 (MOND review), arXiv:1112.3960.
+- Ciocan, B. I., Bouché, N., et al. 2026, *A&A* 709, L16 (MUSE-DARK III; a₀(z) — *rising*, ΛCDM-degenerate), arXiv:2604.22613.
+- Del Popolo, A., & Chan, M. H. 2024, *Phys. Dark Univ.* 43, 101393 (deep-MOND RC100 subset; a₀(z) leans declining <1σ), arXiv:2405.01841.
+- DESI Collaboration 2025 (DR2 BAO; w₀=−0.752, wₐ=−0.86), arXiv:2503.14738.
+- Deser, S., & Levin, O. 1997, *Class. Quantum Grav.* 14, L163 (de Sitter–Unruh temperature T∝√(a²+a_dS²)); Narnhofer, Peter & Thirring 1996, *Int. J. Mod. Phys. B* 10, 1507.
+- Famaey, B., & McGaugh, S. 2012, *Living Rev. Relativity* 15, 10 (MOND review; a₀–Λ coincidence), arXiv:1112.3960.
 - Harrison, C. M., et al. 2017, *MNRAS* 467, 1965 (KROSS), arXiv:1701.05561.
+- Klinkhamer, F. R., & Kopp, M. 2011 (entropic gravity & a₀); Pazy, E., & Argaman, N. 2012 (MOND from a vacuum/Unruh argument) — the Nernst/3rd-law lean.
 - Lelli, F., McGaugh, S., & Schombert, J. 2016, *AJ* 152, 157 (SPARC), arXiv:1606.09251; Lelli et al. 2019 (BTFR).
-- Limbach, M. A., Psaltis, D., & Özel, F. 2008 (a₀ and the dark-energy density), arXiv:0809.2790.
-- Mayer, L., et al. 2023 (ΛCDM degeneracy of apparent a₀(z) evolution).
+- Limbach, M. A., Psaltis, D., & Özel, F. 2008 (the a₀↔dark-energy-density coupling; declining a₀(z); high-z TFR test), arXiv:0809.2790.
+- Mayer, L., et al. 2022 (ΛCDM degeneracy of apparent a₀(z) evolution), arXiv:2206.04333.
 - McGaugh, S., Lelli, F., & Schombert, J. 2016, *PRL* 117, 201101 (Radial Acceleration Relation), arXiv:1609.05917.
-- Milgrom, M. 1983, *ApJ* 270, 365 (MOND); Milgrom 1999 (a₀ and the cosmological constant).
-- Nestor-Shachar, A., et al. 2023, *ApJ* (RC100 high-z rotation curves); deep-MOND subset, Del Popolo & Chan 2024, arXiv:2405.01841.
+- Milgrom, M. 1983, *ApJ* 270, 365 (MOND); 1999, *Phys. Lett. A* 253, 273 ("MOND as a vacuum effect"; a₀~c√(Λ/3)), arXiv:astro-ph/9805346; 2017 (cluster a₀ z-independence), arXiv:1703.06110.
+- Nestor-Shachar, A., et al. 2023, *ApJ* (RC100 high-z rotation curves).
 - Planck Collaboration 2020, *A&A* 641, A6 (cosmological parameters).
+- Rodrigues, D. C., Marra, V., et al. 2018, *Nature Astronomy* 2, 668; 2020, *MNRAS* (a₀-universality challenge), arXiv:2002.03946.
+- Tian, Y., et al. 2024 (cluster MOND offset z-independence, vs a rising a₀), arXiv:2402.12016.
 - Übler, H., et al. 2017, *ApJ* 842, 121 (KMOS3D), arXiv:1703.04321.
 
 ## Appendix A — public data access
