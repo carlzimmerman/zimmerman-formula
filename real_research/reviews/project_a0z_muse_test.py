@@ -7,7 +7,7 @@ measurement of a0(z) now exists, and it is decisive -- against the session's REV
 prediction, and broadly FOR the ORIGINAL (apparent-horizon, rising) one.
 
 THE DATA (verified from the source, not memory):
-  MUSE-DARK III, Mercier et al., 2026 A&A (arXiv:2604.22613): 79 star-forming galaxies, 0.33<z<1.44, RAR fit
+  MUSE-DARK III, Ciocan et al., 2026 A&A (arXiv:2604.22613): 79 star-forming galaxies, 0.33<z<1.44, RAR fit
   with a DC14 halo profile (primary analysis). Result:
       a0(z) = a0(0) + a1 z,   a0(0) = 1.0 +/- 0.04,   a1 = +1.59 +/- 0.10  (x 1e-10 m/s^2)
   i.e. a0 RISES with redshift at ~16 sigma; binned values climb 1.99 -> 2.71; a0|z~1 = 2.38(+0.12/-0.10).

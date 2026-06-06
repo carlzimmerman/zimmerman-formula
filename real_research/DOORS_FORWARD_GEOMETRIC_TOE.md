@@ -158,5 +158,5 @@ test before believing. The a₀(z) measurement is the hinge; everything geometri
 `reviews/project_*.py`; and the paper `PAPER_evolving_a0.md`. Specific load-bearing references — Jacobson 1995;
 Padmanabhan 2010; Verlinde 2017 + Dai–Stojkovic 2017 + Lelli et al. 2017; Narovlansky–Verlinde 2023;
 Blommaert–Mertens–Papalini 2024; Rahman 2025 (edge) vs Susskind/Verlinde (center); Chandrasekaran–Penington–Witten
-2022; Milgrom 2017; Mercier et al. 2026 (MUSE-DARK III); and, for the matter wall, Connes NCG, Nielsen–Ninomiya,
+2022; Milgrom 2017; Ciocan et al. 2026 (MUSE-DARK III); and, for the matter wall, Connes NCG, Nielsen–Ninomiya,
 and the string-landscape multiplicity.*

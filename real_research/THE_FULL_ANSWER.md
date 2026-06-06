@@ -20,7 +20,7 @@ rest is trustworthy.*
 ## ⚠ CORRECTION (later in session): the direct a₀(z) data REVERSE Layer 4 — a₀ *rises*
 
 After the verdict below was written, I tested the revised (event-horizon, **declining**) a₀(z) prediction
-against the first multi-point **direct** a₀(z) measurement — **MUSE-DARK III** (Mercier et al. 2026 A&A,
+against the first multi-point **direct** a₀(z) measurement — **MUSE-DARK III** (Ciocan et al. 2026 A&A,
 arXiv:2604.22613; 79 galaxies, 0.33<z<1.44, DC14 primary): **a₀(z) = 1.0 + 1.59 z, with a₁ = +1.59 ± 0.10 — a₀
 *rises* with redshift at ~16σ.** This **refutes the event-horizon / declining revision** (which predicts ~flat:
 ×0.99 at z=1, while the data give ×2.6) and **confirms the *original* apparent-horizon prediction *in

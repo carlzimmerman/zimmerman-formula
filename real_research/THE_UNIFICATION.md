@@ -16,7 +16,7 @@ assumption and its normalization tension named in the first screen, not buried. 
 ## ⚠ SUPERSEDED BY DATA (later in session): the central prediction of this document is refuted
 
 This document's headline — a₀ tracks the dark-energy density, **a₀(z) ∝ √ρ_DE, a mild *decline*** — was tested
-against the first multi-point **direct** a₀(z) measurement and **failed**. **MUSE-DARK III** (Mercier et al.
+against the first multi-point **direct** a₀(z) measurement and **failed**. **MUSE-DARK III** (Ciocan et al.
 2026 A&A, arXiv:2604.22613; 79 galaxies, 0.33<z<1.44) measures **a₀(z) = 1.0 + 1.59 z, a₁ = +1.59 ± 0.10 — a₀
 *rises* with redshift at ~16σ.** The √ρ_DE reading predicts a₀ ≈ flat (×0.99 at z=1); the data give ×2.6. So the
 **event-horizon / declining claim is refuted**, and with it the specific "a₀ = the dark-energy scale, declining"

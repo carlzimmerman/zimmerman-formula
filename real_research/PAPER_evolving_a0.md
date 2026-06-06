@@ -53,7 +53,7 @@ If a₀ is a horizon surface gravity, it cannot be a constant of Nature: the hor
 with redshift.** This is the sharp, falsifiable departure from standard MOND, in which a₀ is a universal
 constant. Until recently the prediction was untestable — a₀ had only ever been measured locally. That has
 changed: deep IFU surveys now resolve rotation support in galaxies to z > 1, and the first multi-point
-measurement of the RAR transition scale as a function of redshift has appeared (MUSE-DARK III; Mercier et al.
+measurement of the RAR transition scale as a function of redshift has appeared (MUSE-DARK III; Ciocan et al.
 2026). This paper confronts the evolving-a₀ hypothesis with that measurement, after first fixing the local
 normalization and shape.
 
@@ -124,7 +124,7 @@ free of Υ. We report the median and its bootstrap error over Υ ∈ {0.3, 0.5, 
 
 ### 3.3 Direct a₀(z): MUSE-DARK III and high-redshift disks
 
-**MUSE-DARK III** (Mercier et al. 2026, A&A; arXiv:2604.22613) measures the RAR transition scale as a function
+**MUSE-DARK III** (Ciocan et al. 2026, A&A; arXiv:2604.22613) measures the RAR transition scale as a function
 of redshift for 79 star-forming galaxies (M\* > 10^8.8 M⊙, complete) at 0.33 < z < 1.44 in the MUSE Hubble Ultra
 Deep Field. Rotation curves from Hα/[Oiii] kinematics are combined with baryonic profiles; the RAR is fit with a
 DC14 halo + baryons model (their primary analysis) and the transition acceleration extracted per redshift bin
@@ -307,7 +307,7 @@ sell the result.
 Banks & Fischler 2001; Bulbul et al. 2024 (eRASS1); Chae et al. 2020, 2021 (external field effect); DESI
 Collaboration 2024, 2025 (evolving dark energy); Genzel et al. 2017; Jacobson 1995; Lelli, McGaugh & Schombert
 2016 (SPARC); Lelli et al. 2017 (RAR scatter); Lin & Susskind 2024; McGaugh, Lelli & Schombert 2016 (RAR);
-Mercier et al. 2026 (MUSE-DARK III, arXiv:2604.22613); Milgrom 1983, 1999; Narovlansky & Verlinde 2023; Nestor
+Ciocan et al. 2026 (MUSE-DARK III, arXiv:2604.22613); Milgrom 1983, 1999; Narovlansky & Verlinde 2023; Nestor
 Shachar et al. 2023 (RC100); Okuyama 2023 (DSSYK matter element); Padmanabhan 2010; Rahman & Susskind 2024;
 Verlinde 2011, 2017.
 
