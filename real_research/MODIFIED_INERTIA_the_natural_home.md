@@ -78,10 +78,16 @@ a different subset:
 | **Modified inertia** (the framework's concept) | ✓ (COM accel.) | ✓ (time-nonlocal) | ✗ (acoustic mod + no DM-mimic) |
 | **AeST** (modified gravity) | ✗ (3–15σ quadrupole) | ~ (parameterized via K(𝒬)) | ✓ (Ȳ=0 + dust mode) |
 
-No known theory holds all three. **Fairness both ways:** the modified-inertia CMB failure is *not proven fatal* — the
-~few% peak shift might be partly absorbed by re-fitting parameters, and a small *real* component (e.g. light sterile
-neutrinos) could supply the peak heights while inertia does galaxies. But nobody has shown it works, and it has the
-two concrete obstructions above. So: **unsolved and obstructed, not merely unbuilt.**
+No known theory holds all three. **Fairness both ways:** the modified-inertia CMB failure is *not proven fatal*. There
+is a **concrete resolution candidate** — **modified inertia + an 11 eV sterile neutrino** (the Angus/McGaugh νHDM
+route): the sterile neutrino, at the same energy density as CDM, **fits the CMB power spectrum well** (mass tuned to
+~11 eV within ±10%) and supplies the 3rd-peak height, while modified inertia does galaxies (Cassini-safe) and carries
+a₀(z) naturally. That would thread all three corners. **But it carries a real, threefold price, reported straight:**
+(i) it **gives up the framework's "one number unifies both dark sectors" claim** — the neutrino is a *separate* dark
+sector unrelated to a₀; (ii) the 11 eV neutrino's **phase-space (Tremaine–Gunn) limit is ~2× too small** to fill
+cluster cores, so clusters are only *partially* helped; (iii) the *modified-inertia*-specific version (the Cassini-safe
+one) is **underexplored** — νHDM has been tried with modified *gravity* (TeVeS), not inertia. So: a real candidate
+path, not a clean win, and **unsolved-but-not-walled**, not merely unbuilt.
 
 ## Disposition — the real theoretical frontier, restated
 
