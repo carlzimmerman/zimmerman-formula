@@ -13,8 +13,11 @@ Step-by-step to turn the paper into a Zenodo record yourself. You upload the PDF
 - `ZIMMERMAN_THEORY_OF_GRAVITY.zenodo.json` — the metadata, machine-readable.
 
 ## Step 1 — make the PDF on Overleaf
+**Easiest (foolproof):** locally zip the whole `real_research/papers/` folder and use Overleaf **New Project → Upload Project** on the zip — it keeps the `figures/` folder intact, so the images just work. Then jump to step 3.
+
+Otherwise, manually:
 1. Overleaf → **New Project → Upload Project** (or a blank project), and upload **`ZIMMERMAN_THEORY_OF_GRAVITY.tex`**.
-2. Create a folder named **`figures/`** and upload **all eight PNGs** into it.
+2. Upload **all eight PNGs**. They can go in a folder named **`figures/`** **or** directly in the project root — the `.tex` finds them in both (it sets `\graphicspath`).
 3. Menu → Compiler → **XeLaTeX** (recommended; pdfLaTeX also works — every glyph is mapped both ways).
 4. Recompile, then **Download → PDF**. That PDF is what you upload to Zenodo.
 
@@ -47,5 +50,6 @@ The dynamics of galaxies require either unseen matter or a modification of gravi
 ## Regenerating the .tex (only if you edit the .md)
 ```
 cd real_research/papers
-pandoc ZIMMERMAN_THEORY_OF_GRAVITY.md -s --include-in-header=unicode_header.tex -o ZIMMERMAN_THEORY_OF_GRAVITY.tex
+bash build_tex.sh
 ```
+This runs pandoc and applies the Overleaf-compatibility fixes (strips `alt=`, makes the figure paths bare so they resolve in `figures/` **or** the project root).
