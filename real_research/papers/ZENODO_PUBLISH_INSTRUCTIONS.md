@@ -12,6 +12,9 @@ Step-by-step to turn the paper into a Zenodo record yourself. You upload the PDF
 - `zimmerman_theory_charts.py` — regenerates figures 2, 4, 5, 6, 7, 8 (figures 1 and 3 are the SPARC data plots).
 - `ZIMMERMAN_THEORY_OF_GRAVITY.zenodo.json` — the metadata, machine-readable.
 
+## Step 0 — the PDF is already built (skip Overleaf if you want)
+A compiled, **figures-included** PDF is committed right here: **`ZIMMERMAN_THEORY_OF_GRAVITY.pdf`**. You can upload that straight to Zenodo (Phase B) and skip Overleaf entirely. Only do Step 1 if you edit the paper and need to recompile (`bash build_tex.sh`).
+
 ## Step 1 — make the PDF on Overleaf
 **Easiest (foolproof):** locally zip the whole `real_research/papers/` folder and use Overleaf **New Project → Upload Project** on the zip — it keeps the `figures/` folder intact, so the images just work. Then jump to step 3.
 
