@@ -230,26 +230,56 @@ Four independent door-sweeps — 42 geometric/unification frameworks, 9 quantum-
 
 ---
 
-## 11. Future predictions — what will confirm or kill the theory this decade
+## 11. The full set of testable predictions
 
-Every entry is a **falsifiable** statement with a discriminator against the alternatives. "Kills" means a clean result in the stated direction would falsify the law as written.
+This is the complete, de-duplicated prediction set — every entry with its computed value, its class, the instrument and timeline, and the result that would confirm or kill it. All numbers reproduce from the committed scripts (`predictions/`, `reviews/project_predictions_table.py`).
 
-| # | Prediction | Quantitative target | Instrument / survey | ~Timeline | Discriminates from | Confirms / Kills |
-|---|---|---|---|---|---|---|
-| **P1** | **a₀ declines at high z** | a₀(z=3) = 0.74 a₀(0); a₀(z=2)=0.86 | ELT/HARMONI & MOSAIC deep-MOND rotation curves; JWST/NIRSpec disks | 2028–2032 | ΛCDM (no a₀); MOND (flat); Verlinde (rising) | A clean deep-MOND z≈3 RC giving a₀ ≥ a₀(0) **kills** it; ≈0.74 a₀(0) **confirms** |
-| **P2** | **The z≈0.4 bump** | a₀ peaks at +6% near z=0.4, then falls | Intermediate-z TFR/RC: MUSE, JWST, DESI peculiar velocities | 2026–2030 | All others (uniquely non-monotonic) | A monotonic a₀(z) with no bump **disfavors** it |
-| **P3** | **BTFR zero-point evolves** | BTFR normalization ∝ a₀(z): ~0.13 dex lighter M_b at fixed V by z=3 | JWST, ELT, SKA high-z HI/Hα TFR | 2027–2033 | ΛCDM/MOND (no/flat evolution) | A non-evolving BTFR zero-point to z≈3 **disfavors** the decline |
-| **P4** | **EFE / SEP violation at the theory's a₀** | internal dynamics suppressed in strong external fields; wide-binary deviation onset at s ≳ 7000 AU set by a₀=9.36×10⁻¹¹ | Gaia DR4/DR5 wide binaries; environment-selected RC samples | 2026–2030 | **All dark-matter models** (SEP exact); regular MOND (slightly different onset) | A null EFE in a high-dynamic-range sample **kills** the modified-gravity premise; detection at a₀=9.36×10⁻¹¹ **confirms** |
-| **P5** | **Lensing RAR holds to the same a₀** | galaxy–galaxy weak-lensing g_obs(g_bar) follows the same curve at large radii | KiDS, DES, **Euclid**, **Rubin/LSST** | 2025–2032 | ΛCDM (halo scatter); tests a₀ in a non-kinematic probe | A lensing acceleration relation with a different a₀ or large intrinsic scatter **disfavors** it |
-| **P6** | **Dwarf-spheroidal dynamics are EFE-modulated** | MW satellites' dispersions depend on Galactic external field, not just internal mass | Gaia + spectroscopy of MW dSphs; Rubin satellites | 2025–2030 | ΛCDM (halo-only) | Dispersions independent of external field **disfavor** EFE |
-| **P7** | **a₀(z) tracks DESI's w(z)** | the same ρ_DE(z) that fits DESI BAO must fit the a₀(z) trend | **DESI** DR2+ × the high-z a₀(z) compilation | 2026–2029 | Verlinde (a₀∝cH); MOND (constant) | a₀(z) inconsistent with the DESI-inferred ρ_DE(z) **kills** the "a₀ from dark energy" claim |
-| **P8** | **Cluster residual is weakly z-dependent** | the ~2× residual varies <10% to z≈1 | **XRISM** (now), **Athena** (~2037); X-COP/CHEX-MATE reanalysis | 2026–2037 | rising-cH (predicts stronger z-trend) | A strong rising cluster-a₀(z) trend **disfavors** the declining law |
-| **P9** | **High-z galaxies look baryon-dominated early** | rotation support without dark halos at z≳2 (RC100 already deep-MOND) | JWST, ELT, SKA | ongoing–2033 | ΛCDM (needs assembled halos) | Massive, dispersion-free, halo-dominated z≳3 discs **disfavor** it |
-| **P10** | **No new physics in the Solar System beyond GR** | any covariant completion must satisfy Cassini \|γ−1\| < 2×10⁻⁵ | existing + BepiColombo, future ranging | — | — (a hard constraint the completion must pass) | A completion that violates Cassini is **dead on arrival** (§10.2) |
+**The honest frame.** Almost everything *measured today* — the a₀ value, rotation curves, dwarfs, lensing, clusters, wide binaries — is **shared with ordinary constant-a₀ MOND**: real and validated, but a test of the *value* of a₀, not of this theory specifically. The **only content distinctive to the Zimmerman Theory is the evolution** a₀(z) = a₀(0)·√(ρ_DE(z)/ρ_DE(0)), which constant-a₀ MOND fixes at 1. The decisive predictions (numbers 10–14, in bold) are therefore all *evolution* predictions, and all are **forward** — no clean z≳2 halo-free kinematics exist yet (Figure 2).
 
-**The single cleanest test (P1).** One well-measured deep-MOND rotation curve at z≈3 decides the central novel claim: if a₀ there is at or above its local value, the declining-√ρ_DE law is falsified; if it is ~0.74× local, the law is confirmed where every rival fails. ELT-class spectroscopy reaches this within the decade.
+**Class codes.** **KILL** = ΛCDM-impossible (a confirmed one *kills* ΛCDM) · **DIST** = distinctive to this theory (vs constant-a₀ MOND) · **INH** = inherited MOND success (real, not unique) · **DEG** = degenerate (ΛCDM matches) · **FAIL** = standing failure/tension.
 
----
+### 11.1 The master prediction table
+
+| # | Prediction | Computed value / target | Class | Instrument / timeline | Confirms / Kills |
+|---|---|---|---|---|---|
+| 1 | **a₀ value** a₀ = c²√(Λ/32π) = (c/2)√(Gρ_Λ) | **9.36×10⁻¹¹ m s⁻²** (±0.96% stat, ±14% syst) | INH | SPARC RAR / done | within M/L+metric band; pin via M/L-free systems (C2) |
+| 2 | **Coefficient** Z = cH_Λ/a₀ = √(32π/3); κ = ½ | **5.789** and **0.500** (exact, ℏ⁰); data band Z∈[4.2,6.0] | DIST (value) | measured a₀ / done | a₀ to <2% selecting 32π over 8π, 12π² |
+| 3 | **RAR / MDAR** g_obs = √(g_bar²+g_bar·a₀) | **0.105–0.108 dex** scatter (175 SPARC) | INH | SPARC; WALLABY/SKA / ongoing | a lensing or kinematic RAR at a different a₀ disfavours |
+| 4 | **BTFR** V_flat = (G M_b a₀)^¼, slope 4 | 10¹⁰ M⊙ → 106 km s⁻¹ | INH | SPARC; SKA HI / done | slope ≠ 4, or large intrinsic scatter, disfavours |
+| 5 | **Faber–Jackson / Freeman Σ** Σ_c = a₀/2πG | a₀-set, exact | INH | local surveys / done | validated; standard MOND |
+| 6 | **Dwarf-spheroidal σ via EFE** σ = (4 G M a₀/81)^¼ | Crater II ≈ 2 km s⁻¹ (obs ~2.7; ΛCDM ~4) | INH | Keck/VLT spectroscopy / partial | σ independent of the host field disfavours EFE |
+| 7 | **Lensing — saturated deflection** α_∞ = 2π√(G M a₀)/c² (impact-parameter-independent) | **0.51″ / 5.08″ / 16.1″** (10¹¹/10¹³/10¹⁴ M⊙); non-monotonic, peak z≈0.4 | DIST (saturation + evolution) | KiDS, DES, **Euclid**, **Rubin** / 2025–32 | no saturation, or a different a₀, disfavours |
+| 8 | **Wide binaries** velocity boost at s_t = √(GM/a₀) | **s_t ≈ 9,750 AU**; boost **+2–11%** (EFE-reduced) | KILL | **Gaia DR4/DR5** / 2026–30 | a robust boost surviving triple-rejection **kills ΛCDM**; a hard Newtonian null **kills the premise** |
+| 9 | **External Field Effect (z=0)** internal dynamics depend on g_ext (SEP violation) | Chae **4–5σ** (published); **+1.4σ** in-house (data-limited) | KILL | environment-selected RCs / now | an independent ≥3σ EFE **kills ΛCDM**; a clean SEP-respecting null **kills** modified gravity |
+| **10** | **a₀(z) ↔ Λ bridge** (coefficient-free): a₀(z)/a₀(0) = √(ρ_DE(z)/ρ_DE(0)) | **1.01 / 0.86 / 0.74** at z = 1/2/3 | **DIST** | ELT/HARMONI + ALMA; DESI / 2028–32 | a₀(z=3) ≥ local **kills** it; ≈0.74 local **confirms** |
+| **11** | **High-z BTFR offset** (the cleanest sign test): d log V = ¼·log₁₀(ρ_DE ratio) | **−7.3% in V at z=3** (−0.033 dex); −16% at z=6 | **DIST** | JWST/ALMA z≳3 resolved RCs / now–2033 | a **positive or flat** offset (discs at/above the z=0 BTFR) **kills** the bridge |
+| **12** | **EFE strengthens with z** η = g_ext/a₀(z) ∝ 1/√ρ_DE (a₀ declines ⇒ η rises) | **+36% by z=3**; marginal galaxies cross to Newtonian | **DIST** | high-z grouped-galaxy kinematics / 3–5 yr | EFE weakening (or absent) at high z disfavours |
+| **13** | **The z≈0.4 bump** a₀ peaks +6% then declines (instantaneous w crosses −1 at z≈0.41) | +6% in a₀ (+1.5% in V) at z≈0.4 | **DIST** | intermediate-z TFR/RC: MUSE, JWST / 2026–30 | a monotonic a₀(z) with no bump disfavours |
+| **14** | **a₀(z) ↔ DESI concordance** the same ρ_DE(z) that fits BAO must fit a₀(z) | joint consistency | **DIST** | DESI DR2+ × high-z a₀(z) / 2026–29 | a₀(z) inconsistent with the DESI-inferred ρ_DE(z) **kills** the Λ-origin |
+| 15 | **JWST early massive galaxies** accelerated early collapse (Sanders 1998 priority) | discs virialized by z≈10 | DEG/DIST | JWST/Roman / now–2030 | a-priori directional win, but ΛCDM absorbs it — not decisive |
+| 16 | **a₀-cosmography** read H₀, q₀ off galaxy dynamics | H₀ = 71.5, q₀ = −0.53 | DEG | SPARC + H₀ ladder / now | matches ΛCDM — a capability, not new physics |
+| 17 | **Galaxy clusters** residual after the MOND boost | **η = 1.92 ± 0.20** (misses ~1.9× at R500) | FAIL | eRASS1 (9,830) / done | inherited MOND failure, deepened at the lower a₀ (§10.1) |
+| 18 | **CMB third peak** | needs the AeST completion + dark field | FAIL | Planck / done | pure MOND under-predicts it; AeST fits by adding a field |
+| 19 | **Cassini quadrupole (AeST realization)** | excluded at **3–15σ** (Desmond+2024) | FAIL (realization) | Solar System / now | native-absent in modified inertia (§4.6); a live exposure of the AeST completion |
+| 20 | **No new Solar-System physics beyond GR** | \|γ−1\| < 2×10⁻⁵ | constraint | BepiColombo, ranging / ongoing | a completion that violates Cassini is dead on arrival |
+
+### 11.2 The sign test and the decisive-test forecast
+The cleanest single discriminator is the **sign of the high-z BTFR offset** (prediction 11): the Zimmerman Theory predicts discs *below* the z=0 relation (−7.3% in V at z=3); constant-a₀ MOND predicts *zero* offset; the rising √ρ_total reading predicts the *opposite* sign (+16% at z=1 to +80% at z=6). **One clean z≳3 BTFR point splits all three.** Statistically ~30 clean deep-MOND discs at z=3 give 3σ and ~60 give 5σ — **but** marginalizing over the DESI w₀/wₐ uncertainty imposes a floor σ(β) ≈ 0.5–0.6 *independent of sample size*, capping single-redshift significance at ~1.6–2.0σ. **A clean 5σ therefore needs multi-redshift BTFR (z=3 and z=5) and a ~2× tighter DESI prior** — above ~30 discs the bottleneck is DESI, not telescope time. (The one direct multi-point measurement to date, MUSE-DARK III, currently reads a₀ *rising* and is in tension with the decline; it is ΛCDM-degenerate and method-localized (§7), so the evolution front is **contested, leaning unfavourable** until clean z≈3 halo-free kinematics arrive.)
+
+### 11.3 The falsification matrix (the symmetric scoreboard)
+> *Only a ΛCDM-impossible signal can break ΛCDM; only a MOND-impossible result can break the theory.*
+
+**What can kill ΛCDM** (the KILL doors): the **External Field Effect** (Chae 4–5σ, contested — independent confirmation is the prize) and a **wide-binary boost** surviving triple-rejection (Gaia DR4). Both are **currently contested or split** — no clean ΛCDM kill is yet in hand.
+
+**What can kill the Zimmerman Theory:** the **CMB third peak** and **clusters** (already lost by pure MOND, survived only via the AeST completion's added field); **a₀(z) rising ∝ √ρ_total** (a steep high-z rise falsifies the Λ-origin); a **wide-binary null** at the theory's ~3–15% sensitivity (falsifies the local premise); and the **Cassini quadrupole** on the AeST realization (3–15σ; native-absent in modified inertia, but live for the only CMB-safe completion built so far). **Read straight: the theory currently carries *more* live falsification exposure than ΛCDM** — which is the signature of a real, falsifiable theory, not a fitted one.
+
+### 11.4 Structure-growth coherence, and the standing exposure (both ways)
+Four ΛCDM-stressing anomalies point the *same* way — faster early structure growth, exactly what MOND predicts: **fast galactic bars** (8σ, Roshan+2021), **El Gordo** (a z=0.87, ~2×10¹⁵ M⊙ supercluster collision, 6.2σ, Asencio+2023), the **KBC void + H₀** (claimed 7σ, Haslbauer+2020), and JWST's **early massive galaxies**. Each has an individual escape, but the coherence across one physical axis is a real (if soft) pro-MOND signal — more than the sum of four isolated anomalies. **Against** the theory, robustly: the **cluster RAR offset** (Li+2024), the **weak-lensing early/late RAR split** (6σ, Brouwer+2021 — which property-independent modified gravity cannot make and a baryonic explanation must), and the standing CMB/cluster costs. The exposure is genuinely multi-front, and we report it as such.
+
+### 11.5 Meta-falsifiers and the near-term deciders
+**Meta-falsifiers.** (i) **DESI reverts to w = −1** ⇒ a₀ constant ⇒ the distinctive content vanishes (the theory degenerates to ordinary MOND); its distinctiveness is *hostage* to DESI's dynamical-DE signal (verdict ~2027, DR3). (ii) A **direct dark-matter detection** kills MOND and this theory together. (iii) The **rising √ρ_total reading** proving correct falsifies the dark-energy footing.
+
+**The three near-term deciders, in priority order.** (1) **Independent confirmation of the EFE** — a second method reproducing Chae at ≥4σ; the fastest, cleanest potential ΛCDM kill, needing no new telescope. (2) **Gaia DR4 wide binaries** (~2026–27) — the foundation: a confirmed boost validates the premise, a hard null at the theory's sensitivity falsifies it. (3) **Halo-free high-z a₀(z)** (JWST/ALMA + DESI DR3 ~2027, then ELT ~2030) — the distinctive claim, via the sign of the z≈3 BTFR offset. Until one of these lands, the honest verdict is fixed: a real, falsifiable theory, strongest at galaxy scales, carrying genuine standing risk, whose validation hinges on a ΛCDM-impossible signal that is currently contested or split — not won, and not lost.
 
 ## 12. From candidate to law: the empirical confirmations required
 
