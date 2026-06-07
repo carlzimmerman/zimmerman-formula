@@ -1,5 +1,5 @@
 # The Zimmerman Theory of Gravity
-## The galaxy acceleration scale is set by the cosmological constant: a₀ = c²√(Λ/32π)
+## The galaxy acceleration scale is set by the cosmological constant: $a_0 = c^2\sqrt{\Lambda/32\pi}$
 ### Comprehensive edition — the law, its de Sitter-vacuum foundation, its redshift evolution, and the measurements that decide it
 
 **Author:** Carl P. Zimmerman (Briar Creek Tech) · correspondence: carl@briarcreektech.com
@@ -13,7 +13,7 @@
 
 The dynamics of galaxies require either unseen matter or a modification of gravity below a characteristic acceleration **a₀ ≈ 1.2×10⁻¹⁰ m s⁻²**. It has long been noted (Milgrom 1983, 1999; Famaey & McGaugh 2012) that this scale numerically coincides with c√Λ and with cH₀ — a coincidence ΛCDM treats as accidental. The **Zimmerman Theory of Gravity** proposes that the coincidence is causal: the acceleration scale is **set by the cosmological constant** (the dark-energy density of the vacuum),
 
-> **a₀ = c²√(Λ/32π) = (c/2)√(Gρ_Λ) = cH_Λ / Z,  Z = 2√(8π/3) = √(32π/3) = 5.789,  a₀ = 9.36×10⁻¹¹ m s⁻²**
+$$a_0 = c^2\sqrt{\frac{\Lambda}{32\pi}} = \frac{c}{2}\sqrt{G\rho_\Lambda} = \frac{cH_\Lambda}{Z}, \quad Z = 2\sqrt{\frac{8\pi}{3}} = \sqrt{\frac{32\pi}{3}} = 5.789, \quad a_0 = 9.36\times10^{-11}\ \mathrm{m\,s^{-2}}$$
 
 evaluated on the dark-energy density alone (ρ_Λ = Ω_Λ ρ_crit). Beyond the empirical confrontation, this comprehensive edition assembles the full **theoretical foundation** the framework has earned, layer by layer with honest labels: (i) the deep-MOND **shape** g_obs = √(g_bar² + g_bar·a₀) is **derived** — it is Milgrom's (1999) de Sitter–Unruh modified-inertia form, over-determined across three routes, not a fitted interpolation; (ii) the **existence** of a₀ is supplied **volume-law-free** by that modified-inertia route (the kinematic de Sitter–Unruh temperature of Deser–Levin 1997), so the framework's deepest vulnerability is properly the *covariant completion*, not "does a₀ exist"; (iii) the deep-MOND **sign** (enhancement, not screening) is **forced for galaxy-scale probes**, conditional on the Narovlansky–Verlinde de Sitter/DSSYK dictionary, by a computed matter-chord kernel that *also* predicts MOND's empirical failure in clusters; (iv) the **value of Λ** itself is welded to a₀ as the two ends of one Cohen–Kaplan–Nelson UV–IR √Λ ladder (ρ_obs = (3/8π)M_P²H², the CKN bound exactly saturated); and (v) the framework's distinctive **evolving** dark energy is **string-swampland-compatible** precisely where a static-Λ ΛCDM is swampland-forbidden. We are equally explicit about the limits: the O(1) coefficient (32π) is an undetermined posit (foreclosed across a six-route assault); the value-of-Λ welding *relocates* rather than *solves* the cosmological-constant problem; this is a theory of **gravity and the dark sector, not a theory of everything** (the Standard Model is untouched; §9, §13). We confront the law with five independent datasets — at its own a₀ and a single Υ≈0.70 the Radial Acceleration, Baryonic Tully–Fisher, and deep-MOND mass-discrepancy relations agree to 8%; the **rising** a₀ ∝ cH rival is excluded (Δχ²≈49); the ΛCDM-impossible External Field Effect leans the predicted way (~1.4σ, data-limited) — and we specify the precise empirical thresholds (§12) that would promote the proposal from candidate to law. The single decisive measurement, deep-MOND kinematics at z≈3 returning a₀(z=3) = 0.74 a₀(0), is reachable with ELT-class spectroscopy this decade.
 
@@ -39,7 +39,7 @@ In ΛCDM this is a coincidence: there is no acceleration constant in the theory 
 
 **2.1 The acceleration scale.** The single new constant is
 
-  a₀ = c²√(Λ/32π) = (c/2)√(Gρ_Λ) = √(8πGρ_Λ/3) · (c/Z) = cH_Λ/Z,
+$$a_0 = c^2\sqrt{\frac{\Lambda}{32\pi}} = \frac{c}{2}\sqrt{G\rho_\Lambda} = \sqrt{\frac{8\pi G\rho_\Lambda}{3}}\cdot\frac{c}{Z} = \frac{cH_\Lambda}{Z},$$
 
 with Z = 2√(8π/3) = √(32π/3) = 5.789, H_Λ = √(Λc²/3) the de Sitter (pure-Λ) expansion rate, and **ρ_Λ the dark-energy density alone** (ρ_Λ = Ω_Λ ρ_crit; not the total matter+Λ density). With the Planck/DESI values (Ω_Λ=0.685, H₀=67.4 km s⁻¹ Mpc⁻¹, Λ=1.09×10⁻⁵² m⁻²):
 
@@ -51,13 +51,13 @@ with Z = 2√(8π/3) = √(32π/3) = 5.789, H_Λ = √(Λc²/3) the de Sitter (p
 
 **2.3 The interpolation (the RAR shape).** Observed and baryonic accelerations are related by
 
-  **g_obs = √(g_bar² + g_bar·a₀)**,
+$$g_{\mathrm{obs}} = \sqrt{g_{\mathrm{bar}}^2 + g_{\mathrm{bar}}\cdot a_0},$$
 
 the "simple" interpolation. This shape is **not extra freedom** — §4.3 shows it is the closed-form solution of de Sitter–Unruh modified inertia, identical to Milgrom's (1999) independently-derived form. It gives a **parameter-free** prediction for the entire Radial Acceleration Relation (Fig. 1); fit to 175 SPARC galaxies it yields 0.105 dex scatter (`rar_emergent_discriminate.py`).
 
 **2.4 The evolution (the distinctive content).** Because a₀ tracks the dark-energy density,
 
-  **a₀(z) = a₀ · √(ρ_DE(z)/ρ_DE(0))**,  ρ_DE(z)/ρ_DE(0) = (1+z)^{3(1+w₀+wₐ)} e^{−3wₐ z/(1+z)}  (CPL).
+$$a_0(z) = a_0\cdot\sqrt{\frac{\rho_{\mathrm{DE}}(z)}{\rho_{\mathrm{DE}}(0)}}, \qquad \frac{\rho_{\mathrm{DE}}(z)}{\rho_{\mathrm{DE}}(0)} = (1+z)^{3(1+w_0+w_a)}\, e^{-3w_a z/(1+z)} \quad (\mathrm{CPL}).$$
 
 With the DESI DR2 equation of state (w₀=−0.752, wₐ=−0.86):
 
