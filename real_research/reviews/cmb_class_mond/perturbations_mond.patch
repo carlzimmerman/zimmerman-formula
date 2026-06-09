@@ -1,0 +1,91 @@
+--- /opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/classy/source/perturbations.c	2026-05-18 11:36:35
++++ source/perturbations.c	2026-06-09 18:24:10
+@@ -25,6 +25,53 @@
+  */
+ 
+ #include "perturbations.h"
++
++/* === ZIMMERMAN MODIFIED-INERTIA helper (2026-06-09) ============================
++   Returns the framework's deep-MOND-shaped peceuliar force given the Newtonian one:
++     g_obs = sign(g)*sqrt(g^2 + |g|*a0_code),   a0_code = a0(z)*k*a / (c^2/L_Mpc).
++   This is the modified-INERTIA reading (forces produce more acceleration below a0).
++   Branch + a0(0) from env: MOND_MODE in {off,flat,rising,declining}, MOND_A0.
++   Applied to BOTH the tight-coupling and post-tca baryon Euler, so the modification
++   acts over the full acoustic history, not just at last scattering. */
++static double _zimmerman_gforce(double gbar, double a, double k) {
++  static int    _init = 0, _mode = 0;
++  static double _a0   = 9.36e-11, _amp = 1.0;
++  if (_init == 0) {
++    char *s = getenv("MOND_MODE");
++    if (s != NULL) {
++      if      (strcmp(s,"flat")==0)      _mode = 1;
++      else if (strcmp(s,"rising")==0)    _mode = 2;
++      else if (strcmp(s,"declining")==0) _mode = 3;
++    }
++    char *sa = getenv("MOND_A0");   if (sa  != NULL) _a0  = atof(sa);
++    /* MOND_AMP = the PHYSICAL per-mode perturbation amplitude (curvature ~ sqrt(A_s) ~ 4.6e-5).
++       Because modified inertia is NONLINEAR in the acceleration, its strength depends on the
++       absolute amplitude -- which CLASS integrates at an arbitrary O(1) normalization. We make it
++       explicit: a0code is divided by _amp so the nonlinear boost is evaluated at the physical
++       acceleration g_phys = _amp*g_code. _amp=1 = CLASS-internal normalization (unphysical). */
++    char *sp = getenv("MOND_AMP");  if (sp  != NULL) _amp = atof(sp);
++    _init = 1;
++  }
++  if (_mode == 0 || gbar == 0.) return gbar;
++  double z = 1.0/a - 1.0, a0z = _a0;
++  if (_mode == 2) {                                  /* rising  a0 ~ E(z) (total-H) */
++    a0z *= sqrt(0.315*(1.0+z)*(1.0+z)*(1.0+z) + 0.685);
++  } else if (_mode == 3) {                           /* declining a0 ~ sqrt(rho_DE) DESI w0wa */
++    double w0=-0.752, wa=-0.86, ai=1.0/(1.0+z);
++    a0z *= sqrt(pow(1.0+z, 3.0*(1.0+w0+wa)) * exp(-3.0*wa*(1.0-ai)));
++  }
++  double a0code = a0z * k * a / 2.915e-6 / _amp;     /* a0(z)[SI] -> code force units, at physical amplitude */
++  if (getenv("MOND_DBG") != NULL) {                  /* calibration probe: a_proper in code units near recomb */
++    static int _dbgn = 0;
++    if (_dbgn < 15 && z > 1080. && z < 1100. && k > 0.018 && k < 0.025) {
++      fprintf(stderr, "ZDBG z=%.1f k=%.4f a=%.3e gbar_code=%.4e aproc_code=%.4e a0code=%.4e\n",
++              z, k, a, gbar, 2.915e-6*fabs(gbar)/(k*a), a0code);
++      _dbgn++;
++    }
++  }
++  return (gbar > 0. ? 1.0 : -1.0) * sqrt(gbar*gbar + fabs(gbar)*a0code);
++}
++/* === end Zimmerman helper === */
+ #include "parallel.h"
+ 
+ 
+@@ -9077,12 +9124,12 @@
+ 
+       /* without tca */
+ 
+-      /** - ----> perturbed recombination has an impact **/
++      /** - ----> perturbed recombination has an impact; baryon peculiar force gets the modified-inertia boost (Zimmerman helper) **/
+       dy[pv->index_pt_theta_b] =
+         - a_prime_over_a*theta_b
+-        + metric_euler
+-        + k2*delta_p_b_over_rho_b
+-        + R*pvecthermo[pth->index_th_dkappa]*(theta_g-theta_b);
++        + _zimmerman_gforce(metric_euler
++                            + k2*delta_p_b_over_rho_b
++                            + R*pvecthermo[pth->index_th_dkappa]*(theta_g-theta_b), a, k);
+ 
+       if (pth->has_idm_b == _TRUE_) {
+         dy[pv->index_pt_theta_b] += S_idm_b*R_idm_b*(theta_idm-theta_b);
+@@ -9096,12 +9143,12 @@
+                  error_message,
+                  error_message);
+ 
+-      /* perturbed recombination has an impact **/
++      /* perturbed recombination has an impact; tight-coupling baryon force also gets the modified-inertia boost (Zimmerman helper) **/
+       dy[pv->index_pt_theta_b] =
+-        (-a_prime_over_a*theta_b
+-         +k2*(delta_p_b_over_rho_b+R*(delta_g/4.-s2_squared*ppw->tca_shear_g))
+-         +R*ppw->tca_slip)/(1.+R)
+-        +metric_euler;
++        -a_prime_over_a*theta_b/(1.+R)
++        + _zimmerman_gforce((k2*(delta_p_b_over_rho_b+R*(delta_g/4.-s2_squared*ppw->tca_shear_g))
++                             +R*ppw->tca_slip)/(1.+R)
++                            + metric_euler, a, k);
+ 
+       if (pth->has_idm_g == _TRUE_) {
+         dy[pv->index_pt_theta_b] +=
