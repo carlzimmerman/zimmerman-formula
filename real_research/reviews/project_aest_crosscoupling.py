@@ -32,6 +32,16 @@ So the welding a0 ~ sqrt(Lambda) is a CHOICE of free function inserted by hand, 
 covariant MOND theory. No symmetry forces it. This is the expected, acceptable, honest answer.
 
 Needs sympy + numpy.  Run:  python real_research/reviews/project_aest_crosscoupling.py
+
+----------------------------------------------------------------------------------------------------------------------
+CROSS-REFERENCE (resolved 2026-06-09): Part 4's locality worry above -- "the welded coefficient is evaluated at the
+LOCAL Q inside a galaxy, not pinned to the cosmological Q0 -> environment-dependent a0" -- is RESOLVED (against this
+worry, in favor of project_aest_locality_check.py) by aest_locality_theta_profile.py. Under the static-aether theorem
+(Eling & Jacobson 2006, gr-qc/0603058) a virialized galaxy forces the unit aether purely timelike (A^i = 0), so
+Q = phibar-dot / sqrt(1+2Phi) ~ Q0 to ~1e-6; the cross term v*dphi' that makes Q look environment-dependent in Part 4
+VANISHES for the correct static aether (Part 4 implicitly used a non-static A^i != 0 aether). Contingent on staticity;
+only merging/collapsing (dPhi/dt != 0) systems get a transient ~few-% wobble. NOTE: this resolves only the Q-LOCALITY
+sub-point; this file's MAIN verdict (the a0 ~ sqrt(Lambda) welding is INSERTED, not symmetry-forced) is unaffected.
 """
 import sympy as sp
 import numpy as np

@@ -15,6 +15,16 @@ the observed RAR scatter (~0.11 dex ~ 29%). So a0 is universal to ~1e-3 or bette
 CONTRAST: had a0 tracked the LOCAL TOTAL density (the rejected sqrt rho_total reading), rho_gal/rho_cosmic ~ 1e5
 would make a0 vary ~300x between galaxies -- catastrophic. Coupling a0 to rho_DE via the uniform cosmological Q is
 exactly what makes a0 universal by construction. Needs numpy.
+
+------------------------------------------------------------------------------------------------------------------
+CROSS-REFERENCE (resolved 2026-06-09): the disagreement between THIS file ("Q ~ Q_cosmo, benign") and
+project_aest_crosscoupling.py Part 4 ("Q_local environment-dependent, not pinned to Q0") is RESOLVED -- in favor of
+this file -- by aest_locality_theta_profile.py. Via the static-aether theorem (Eling & Jacobson 2006, gr-qc/0603058)
+a virialized (time-independent-potential) galaxy forces the unit aether purely timelike, A^i = 0, so BOTH
+theta = nabla.A and Q = A^mu d_mu phi are pinned to their cosmological values to O(|Phi|) ~ 1e-6 (tighter than the
+~1e-3 bound here). crosscoupling Part 4's "environment-dependent" cross term v*dphi' VANISHES for the correct static
+aether -- it was implicitly a non-static (A^i != 0) artifact. Contingent on staticity: relaxed galaxies pinned; only
+actively merging/collapsing systems (dPhi/dt != 0) get a small transient wobble (see that script's Part D).
 """
 import numpy as np
 
