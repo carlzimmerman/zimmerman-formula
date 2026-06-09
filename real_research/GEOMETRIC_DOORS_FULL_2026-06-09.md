@@ -13,7 +13,7 @@ On the two legs these doors touched, the run is a **net positive** for the frame
 
 | Door | Computed result (corrected) | Speaks to | Survived verify? | Verdict |
 |---|---|---|---|---|
-| **CMB μ-kernel** | a₀(z_rec): RISING=1.9×10⁻⁶ (deep-MOND, ~3300% peak shift, unabsorbable) · DECLINING=5.5×10⁻¹³ (169× below today, deep-Newtonian, ≤0.04 ℓ, Δχ²~0) · FLAT=9.4×10⁻¹¹ (straddles the knee). On a **real CAMB Planck-2018 background**, two independent oscillator methods. | **selects-declining** | **TRUE** (FLAT made *harsher*) | **CMB SELECTS-DECLINING** (decisive, convention-robust). DECLINING safe even under the framework's OWN slow simple-IF shape. FLAT CMB-excluded under that same shape (1–2%, 4–9 ℓ, Δχ²=81); rescued only by a *faster* n≥2 IF = a different shape. |
+| **CMB μ-kernel** | a₀(z_rec): RISING=1.9×10⁻⁶ (deep-MOND, ~3300% peak shift, unabsorbable) · DECLINING=5.5×10⁻¹³ (169× below today, deep-Newtonian, ≤0.04 ℓ, Δχ²~0) · FLAT=9.4×10⁻¹¹ (straddles the knee). On a **real CAMB Planck-2018 background**, two independent oscillator methods. | **selects-declining** | **TRUE** (FLAT made *harsher*) | **CMB SELECTS-DECLINING** (decisive, convention-robust). DECLINING safe even under the framework's OWN slow simple-IF shape. FLAT CMB-excluded under that same shape (1–2%, 4–9 ℓ; **Δχ²≈81 is provisional — WKB + toy-ODE on a CAMB background, NOT a Boltzmann hierarchy; do not quote as manuscript-grade until the CLASS Euler-hook run**); rescued only by a *faster* n≥2 IF = a different shape. |
 | **DSSYK w(E)** | Galaxy α=m/M_dS≤2.65×10⁻³ → spectral **CENTER** → freezing β~1 → **p≈0.50 → deep-MOND enhancement** (framework's "+" sign). COMPUTED, robust over Δ∈[0.1,2], q≤0.7, 3 maps. | **derives-sign (given NV)** | **TRUE** (cluster rider downgraded) | **DERIVES-GIVEN-NV** (galaxies) — upgraded from "open, leaning against." Forced *given* the N-V center dictionary; **flips to anti-MOND under Okuyama** (the one live dispute). The "same kernel predicts cluster failure" rider **did not survive** (C1/C2 cherry-pick; under the consistent law clusters also give p≈0.50). |
 | **BIMOND FRW** | Symmetric twin-FRW → a_eff **constant** = a₀ (eq.87, a₀-primary inverse). Asymmetric matter-era → G_e=G/(1+M_G) **rises** to ~2πG (Milgrom's DM-mimic design). A graceful **decline IS constructible** (M_G>0, ghost-free). | forbids → **disfavors** | **FALSE** | **BIMOND DISFAVORS-DECLINING** (not FORBIDS). Builds the *opposite* (rising G_e); decline is against-the-grain but **not** ghost-forbidden. |
 | **GEMS embedding** | a_N(dS)=cH_Λ → a₀=9.37×10⁻¹¹ **exactly** at the dS fixed point. Off-dS a_N²=H²+(Ḣ/H)² is a **non-forced gauge choice** (Gauss–Codazzi leaves a 2-param family; declining is equally valid). Finder's Cai–Kim backstop had a **sign error**; the literature-correct Kodama–Hayward scalar leans **mild/constant**. | rising → **anchors-scale only** | **FALSE** | **GEMS ANCHORS-SCALE only** — NET NEUTRAL on evolution. Neither helps declining nor lands the "against declining" blow it claimed. |
@@ -32,10 +32,32 @@ On the two legs these doors touched, the run is a **net positive** for the frame
 
 ## Next steps (priority order)
 1. **CMB μ-kernel inside CLASS/CAMB's own Euler equation** (the hook neither code exposes) — convert Door 1's WKB+toy-ODE peak positions to a full modified-inertia Boltzmann hierarchy. Highest-priority undone computation.
-2. **Quantify the DM-mimic 3rd-peak** as a real fit — the genuinely branch-independent CMB threat to the modified-*inertia* realization (verifier got P3/P2≈0.92 stripping CDM, not the finder's 0.53 — value is sensitive; pin it).
+2. ~~**Quantify the DM-mimic 3rd-peak**~~ **— DONE by hand (see addendum below): P3/P2 pinned at 0.53 (finder confirmed; the 0.92 was an incomplete-strip artifact); baryon-only fails Planck, unrescuable.**
 3. **Adjudicate N-V vs Okuyama** — the entire residual in Door 2. Compute w(E) for a backreacting finite-mass probe: nonzero at E=0 (center, MOND) or peaks at the edge (anti-MOND).
 4. **Run the un-done AeST static-spherical-galaxy solve** — do AeST's full field equations drive A^r→0 (θ pinned, rising viable) or permit a virial tilt (θ swamped, rising fatal)? The literal make-or-break for Door 5.
 5. **Fix the manuscript specifics** (the 3 corrected spot-checks above) in the paper and the corpus.
 6. **Press a₀(z≈3)** (high-z BTFR/RAR, MUSE-DARK III, DESI w₀wₐ) — the only gate-independent arbiter. State 0.74 as the *maximal* decline and a non-adiabatic extrapolation (ε≈4–28 at z=3) before requesting ELT time; rising ≈4.6 excluded regardless; any value <1 favours decline.
 
 *Full per-door computations, the adversarial refutations, and every reproduced number: workflow `w8kgyydtw` transcript.*
+
+---
+
+## Post-Fable addendum (2026-06-09) — the syllogism, the P3/P2 hand-check, and the tally clarification
+
+**The syllogism the run produced (the strongest pro-framework argument so far — every link conditional).**
+*IF the framework's own **derived** deep-MOND shape (the slow simple-IF, §4.3) is right, AND IF the toy-oscillator CMB analysis holds, THEN constant a₀ is CMB-excluded, rising is excluded by everything, and **declining wins by elimination** — the framework's shape plus Planck forces evolution in the declining direction.* The conditions are where the weight sits:
+- **Declining's CMB-safety is nearly structural**, not new content: ρ_DE(z)∝(1+z)^(−1.836)·e^(2.58z/(1+z)) under DESI w₀wₐ puts a₀(1100) ≈ 169× below today by definition of the footing. The genuinely new content is the **FLAT exclusion** and the **rising kill**.
+- **The FLAT exclusion is (i) method-limited** — WKB + toy-ODE on a CAMB background is *not* a Boltzmann hierarchy; **Δχ²≈81 is provisional and must not be quoted as manuscript-grade until the CLASS Euler-hook run** — **and (ii) a "shadow of Cassini"**: the slow simple-IF that gets FLAT CMB-excluded is the *same* shape that produces the Cassini quadrupole. Constant-a₀ MOND escapes both with a faster n≥2 IF — **but the framework can't take that exit, because the slow IF is its one genuinely *derived* result (§4.3).** The framework's rigidity is what closes its own escape routes: a virtue (falsifiable) or the start of the obituary, and **the CLASS run decides which.**
+
+**The DM-mimic 3rd peak, pinned by hand (`reviews/cmb_third_peak_dm_mimic.py`, real CAMB).** Resolving the finder-vs-verifier P3/P2 = 0.53 vs 0.92 split — Fable correctly demanded a hand check, not a third agent:
+
+| Universe | P3/P2 | z_eq |
+|---|---|---|
+| ΛCDM (Planck) | **0.98** | 3400 |
+| Pure-baryon (omch²→0; the physical modified-inertia universe) | **0.53** | 540 |
+| All-baryon (keep Ω_m by relabelling CDM as baryons) | 0.42 | 3400 |
+| Best baryon-only rescue over (h, n_s, Ω_b) | 0.54 | — |
+
+**The finder's 0.53 is confirmed; the verifier's 0.92 is NOT reproduced by any physical strip** (it left the clustering partly in / mismeasured) — the reverse of the usual finder/verifier correction, exactly the *AI-verified ≠ verified* case. Baryon-only fails Planck's 3rd peak (0.42–0.54 ≪ 0.98) and **cannot be rescued** by tuning; the boost needs a non-oscillating clustering component (CDM, or AeST's extra field).
+
+**Tally clarification (Fable, adopted).** "CMB selects declining" answers **which footing perturbs the oscillator least — not whether the framework has a CMB story.** The declining inertia modification is negligible at recombination, so it supplies *none* of the 3rd-peak driving. **Without AeST's extra field the framework has no standalone CMB story** — and AeST is the host that natively speaks **rising** and carries the (corrected) ~9σ/~15σ Cassini quadrupole. **The hybrid's union-of-exposures did not shrink this run; it got quantified.** The evolution leg remains underived, an ansatz at z=3 (ε≈4–28), awaiting the telescope — but the elimination argument now runs *in the framework's favor*, conditional on the CLASS run and the slow-IF shape.
