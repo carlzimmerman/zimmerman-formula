@@ -17,13 +17,14 @@ The relative projected velocity between the two components vs projected separati
 5. **Chance-alignment rejection:** use the `shift` control catalog to estimate and subtract the contamination fraction per (s) bin — the standard El-Badry R-statistic.
 6. **Hidden-triple rejection:** the dominant systematic. Apply the published triple-flagging (over-luminosity / RUWE / the v-excess tail). **This is a candidate fork variable — vary the stringency and record the effect.**
 
-## The fork hypotheses (what to vary, pre-stated)
-The Chae-vs-Banik disagreement on identical data must trace to one or more of:
-- **(F1) hidden-triple / chance-alignment rejection stringency** — looser → more contamination → spurious high-velocity tail → apparent boost (Banik's claim); stricter → null.
-- **(F2) eccentricity prior** — the deprojection from sky-plane Δv to the 3D relative velocity depends on the assumed e-distribution; Chae and Banik differ here.
-- **(F3) deprojection / estimator statistics** — Chae's per-pair MCMC vs Banik's binned-ratio estimator can weight the tails differently.
-- **(F4) acceleration binning + the a₀ value** — where the transition bin falls.
-The deliverable is a **table: each fork variable × its effect on the inferred boost/null**, identifying which single choice flips 5σ↔16σ.
+## The fork map (re-registered 2026-06-09 per WB-1 — split hidden triples out of contamination)
+The Chae-vs-Banik disagreement on identical data traces to:
+- **F1 — chance alignments (line-of-sight interlopers): [CLOSED].** First pass: the deep-MOND boost survives a 500× tighter `R_chance_align` cut → not chance-alignment-driven.
+- **F4 — hidden triples (bound binary + unresolved close companion): [OPEN, PRIMARY].** Banik's actual mechanism, and **invisible to `R_chance_align` by construction** (the system is a real binary on the sky). They inflate v/v_N *twice*: photocenter wobble adds spurious velocity to the numerator, the unseen mass makes v_N too small in the denominator. RUWE screens some, not all; the surviving fraction is the contested number. **This is the main event.**
+- **F2 — eccentricity distribution: [OPEN].** Sky-plane → 3D deprojection depends on f(e); Hwang+2022 superthermal α(s) (e rises with separation) is the teeth.
+- **F3 — projection/phase statistics: [OPEN].** Phase sampled uniformly in *mean* anomaly (Kepler), random orientation — Chae's MCMC vs Banik's binned estimator weight the tails differently.
+- *(noise inflation — D1 — is the other open systematic, not a "fork" but a floor; see WB-2.)*
+The deliverable is the **fork table** (each variable × its effect on the inferred boost/null), and the twin-resampling Monte-Carlo (WB-3/WB-4) that adjudicates it.
 
 ## Null & decision rule (pre-registered)
 - H0 (Newton): the deprojected relative-velocity distribution matches the Newtonian Monte-Carlo at the measured (M, s, e-prior) with no excess.

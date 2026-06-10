@@ -39,7 +39,10 @@ for rc in (0.5,0.1,0.01,0.001):
     print(f"   Rca<{rc:<6}: deep-MOND median = {np.median(ratio[b]):.3f}  (N={b.sum():,})")
 print("""
 RESULT (no verdict): the v_sky/v_N ratio RISES into deep-MOND (~0.68 -> ~0.88-0.96), and the rise SURVIVES a
-500x tighter contamination cut -> NOT contamination-driven (fork F1 closed against Banik's contamination
-mechanism). The remaining fork is the Newtonian deprojection (eccentricity/phase, F2/F3): a matched Newtonian
-Monte-Carlo must be built to test whether projected eccentric orbits reproduce the trend without MOND. Until
-then: the disputed signal is real and not contamination; the interpretation is open. C1/C2, NOT C3.""")
+500x tighter R_chance_align cut. CORRECTION (Fable, WB-1): this closes only F1 = LINE-OF-SIGHT chance
+alignments. R_chance_align is BLIND to HIDDEN TRIPLES (a bound binary with an unresolved close companion) by
+construction -- and hidden triples are Banik's PRIMARY contamination mechanism: they inflate v/v_N TWICE
+(photocenter wobble in the numerator, missing companion mass making v_N too small in the denominator). So the
+honest statement is 'NOT chance-alignment-driven' -- the broader 'contamination' claim is RETRACTED. Fork map: F1 chance-
+alignment [CLOSED], F2 eccentricity [OPEN], F3 projection/phase [OPEN], F4 hidden triples [OPEN, PRIMARY].
+The decisive test is the twin-resampling Newtonian/MOND Monte-Carlo (with F4 modeled). C1/C2, NOT C3.""")

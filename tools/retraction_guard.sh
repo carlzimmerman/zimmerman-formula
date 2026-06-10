@@ -10,7 +10,7 @@ if [ -z "$FILES" ]; then FILES=$(git diff --cached --name-only --diff-filter=ACM
 [ -z "$FILES" ] && exit 0
 
 # retracted/over-stated claims used as LIVE (extended regex). Keep TIGHT to avoid false positives.
-PATTS='CMB SELECTS-DECLINING|CMB selects declining|selects-declining|constant a. is CMB-excluded|excludes constant\+rising|D(chi2|χ²?)\s*[~≈=]\s*117|19[–-]26\s*(σ|sigma)|same kernel (that gives|predicts).{0,30}cluster (failure|breakdown)|lone (CMB )?survivor|0\.74 \(max|0\.737 maximal|syllogism (HOLDS|holds)'
+PATTS='CMB SELECTS-DECLINING|CMB selects declining|selects-declining|constant a. is CMB-excluded|excludes constant\+rising|D(chi2|χ²?)\s*[~≈=]\s*117|19[–-]26\s*(σ|sigma)|same kernel (that gives|predicts).{0,30}cluster (failure|breakdown)|lone (CMB )?survivor|0\.74 \(max|0\.737 maximal|syllogism (HOLDS|holds)|not contamination-driven'
 # words that, present on the same line, mean the claim is being retracted/quoted, not asserted:
 SAFE='retract|RETRACT|supersed|SUPERSED|artifact|corrected|CORRECTED|⚠|stale|no longer|was a |→\s*~?0|->\s*~?0|not (excluded|a verdict|establish|supported)|wrong|provisional|did not survive|downgrad|rider|method-dependent|method artifact|cherry-pick|leaning against|CONTESTED|OPEN|earlier (draft|edition|version)|an earlier'
 
