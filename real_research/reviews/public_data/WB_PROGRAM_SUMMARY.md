@@ -24,6 +24,10 @@ and what does the framework's a₀ say?
    it had produced a spurious ~0.48 (and the WB-2 0.27) super-escape. Faithful value ≈ **0.10**. Both earlier numbers retracted.
 3. **Faithful super-escape ≈ 0.10 for BOTH teams' cuts**, stable across the RUWE 1.2–1.4 bracket — the clean sample is usable.
 
+**Diagnostic dispositions:** D1 (noise), D2 (super-escape), D4 (mass-sensitivity) all run and reported. **D5 (Banik Appendix-E
+velocity-treatment swap): NOT run** — superseded by the estimator-fork finding (the dispute's central fork is Chae-deprojects-3D
+vs Banik-stays-projected, which the deprojection MC already targets); D5 is retained as available future methodology work.
+
 ## The verdict: **AMBIGUOUS / degeneracy-limited — the framework is NOT excluded**
 - The deep-MOND median ṽ rises modestly (0.56→0.65→0.82). Calibrated on the high-acceleration anchor, the data sit **~3σ above
   the flat-contamination Newtonian baseline** and **far below** the naive boost.
