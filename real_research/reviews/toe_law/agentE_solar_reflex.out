@@ -1,0 +1,143 @@
+====================================================================================================
+agentE SOLAR-REFLEX KILL-TEST (Door IVb) — per-body instantaneous F4, the Sun included
+run date 2026-06-10 ; EOM per body: mu(|a|/s) a_vec = g_N ; mu(x)=x/sqrt(1+x^2)
+normalizations: HOSTILE s = cH_Lambda = 5.418e-10 m/s^2 ; framework s = a0 = 9.360e-11 m/s^2
+====================================================================================================
+
+[0] CONFIGURATION
+    bodies: Sun, Venus, EMB, Mars, Jupiter, Saturn (EMB = Earth-Moon barycenter; Mercury omitted — handled analytically in [8])
+    elements: J2000 heliocentric (Standish/JPL approximate elements Table 1); e_J = 0.0483862
+    span 35.0 yr = 1.19 Saturn periods = 2.95 Jupiter periods; DOP853 rtol=1e-12 atol=1e-14
+    obs emulation: Mars range 5.0-35.0 yr, 10-d cadence, 1096 pts, sigma=1.5 m
+                   Saturn range 4.5-17.64 yr (Cassini-like), 30-d cadence, 161 pts, sigma=25.0 m (loose variant 75.0 m)
+                   [variant E only] Jupiter range 16.0-25.4 yr (Juno-era), 30-d cadence, 116 pts, sigma=15.0 m
+    fit emulation: linearized weighted LSQ on numerically-differenced Newton partials; noiseless data (residual-vs-sigma comparison)
+    simplifications: Newtonian truth+model (GR common-mode at 1e-8 of signal), geometric ranges (no light-time), no asteroids, no per-pass biases except variant C
+
+    running 89 wave-1 integrations on 8 workers...
+    wave-1 done in 5 s (ref nfev=35525)
+
+[1] INTEGRATOR VALIDATION
+    Newton control relative energy drift over 35 yr : 4.486e-14
+    cross-tolerance range floor (rtol 1e-13 vs 1e-12), RMS [m]: Mars 1.754e-01 ; Saturn 1.461e-01
+    (pessimistic absolute-error bound; the signal chain shares the integrator and benefits from common-mode cancellation — see linearity check [6])
+
+[2] THE SUN'S ANOMALOUS RESPONSE (from the hostile truth run)
+    |a_sun| over 35 yr: mean 2.091e-07 m/s^2 ; min 1.283e-07 ; max 2.835e-07
+    delta_a_sun HOSTILE  : mean 7.175e-13 m/s^2 ; pk-pk 6.262e-13 (87.3% of mean)
+    delta_a_sun framework: mean 2.141e-14 m/s^2 ; pk-pk 1.869e-14 (87.3% of mean)
+    stable-inversion identity: max |delta_a/(s^2/2|a|) - 1| = 2.23e-05  (x_sun~386 hostile)
+    anti-correlation of delta_a_sun with GM_J template g_J = GM_J/r_SJ^2:
+      raw corr = -0.4509 ; after 825-d boxcar (inner-planet ripple removed) = -0.6793
+      (smoothed corr is not -1 because the Jupiter-Saturn synodic (19.9 yr) also modulates |a_sun|; against the e_J cycle alone the anomaly is anti-phased)
+      smoothed delta_a modulation (pk-pk)/mean = 0.368  [analytic ~ 4e_J(1+e_J) + Saturn term ~ 0.194+]
+      residual after projecting onto {1, g_J(t)}: 6.5% of mean (the statically-unabsorbable fraction at acceleration level; ~2x2e_J because the anomaly is ANTI-correlated with the template)
+
+[3] PRE-FIT RANGE SIGNALS (F4 truth minus Newton at identical ICs/GMs) [m]
+    HOSTILE                                   : Mars RMS   2303.169 peak   6487.702 | Saturn RMS  37726.165 peak  71840.687
+    framework                                 : Mars RMS     68.900 peak    194.026 | Saturn RMS   1125.941 peak   2143.989
+    hostile Sun-only-F4                       : Mars RMS   2303.365 peak   6488.332 | Saturn RMS  37659.377 peak  71716.583
+    hostile frozen-mu (orbit-averaged limit)  : Mars RMS   5417.289 peak  15276.333 | Saturn RMS  39303.074 peak  72296.745
+
+[4] LINEARIZED FIT SURVEY — post-fit residuals vs ranging accuracy
+    NOTE: this table is the LINEARIZED projection — useful for comparing fit CONFIGS,
+    but NOT verdict-grade (see [4b]/[10]: its optimum exploits cancellations that break
+    nonlinearly). The decisive numbers are the LM fits in [4b] and the verdict [9].
+    columns: post-fit RMS / peak [m]; absorb = pre-RMS/post-RMS; margin = sigma/post-RMS
+  truth: HOSTILE s=cH_Lam
+    fit A  GMsun+GMjup+36 IC      | Mars+Sat : mars:   269.247/  812.214 abs      8.6x marg     0.01 | sat:   976.473/ 2323.192 abs     38.6x marg     0.03  -> FAIL  [sqrt(chi2_w)=   5963.1] | dGM_J/GM_J = -8.26e-06
+    fit B  Juno-anchored (no GMjup)| Mars+Sat : mars:   287.587/  788.666 abs      8.0x marg     0.01 | sat:   665.454/ 1758.540 abs     56.7x marg     0.04  -> FAIL  [sqrt(chi2_w)=   6356.2]
+    fit C  all-6 GM+IC+seg-biases | Mars+Sat : mars:   249.835/  767.754 abs      9.2x marg     0.01 | sat:   519.912/ 1413.832 abs     72.6x marg     0.05  -> FAIL  [sqrt(chi2_w)=   5520.3] | dGM_J/GM_J = -7.58e-06
+    fit D  as A                   | Mars only: mars:   237.344/  763.608 abs      9.7x marg     0.01  -> FAIL  [sqrt(chi2_w)=   5238.3] | dGM_J/GM_J = -7.32e-06
+    fit E  as A                   | M+S+Jup  : mars:   304.018/  878.207 abs      7.6x marg     0.00 | sat:  1213.402/ 2773.924 abs     31.1x marg     0.02 | jup:   992.945/ 2598.746 abs      9.8x marg     0.02  -> FAIL  [sqrt(chi2_w)=   6775.7] | dGM_J/GM_J = -1.20e-05
+    fit F  KITCHEN SINK (beyond-real bound) : mars:   190.709/  897.392 abs     12.1x marg     0.01 | sat:   201.935/  573.806 abs    186.8x marg     0.12  -> FAIL  [sqrt(chi2_w)=   4210.3] | dGM_J/GM_J = -9.97e-06
+
+  truth: FRAMEWORK s=a0
+    fit A  GMsun+GMjup+36 IC      | Mars+Sat : mars:     8.036/   24.241 abs      8.6x marg     0.19 | sat:    29.141/   69.331 abs     38.6x marg     0.86  -> FAIL  [sqrt(chi2_w)=    178.0] | dGM_J/GM_J = -2.47e-07
+    fit B  Juno-anchored (no GMjup)| Mars+Sat : mars:     8.583/   23.538 abs      8.0x marg     0.17 | sat:    19.860/   52.484 abs     56.7x marg     1.26  -> FAIL  [sqrt(chi2_w)=    189.7]
+    fit C  all-6 GM+IC+seg-biases | Mars+Sat : mars:     7.456/   22.914 abs      9.2x marg     0.20 | sat:    15.516/   42.196 abs     72.6x marg     1.61  -> FAIL  [sqrt(chi2_w)=    164.8] | dGM_J/GM_J = -2.26e-07
+    fit D  as A                   | Mars only: mars:     7.084/   22.788 abs      9.7x marg     0.21  -> FAIL  [sqrt(chi2_w)=    156.3] | dGM_J/GM_J = -2.18e-07
+    fit E  as A                   | M+S+Jup  : mars:     9.074/   26.211 abs      7.6x marg     0.17 | sat:    36.212/   82.784 abs     31.1x marg     0.69 | jup:    29.633/   77.558 abs      9.8x marg     0.51  -> FAIL  [sqrt(chi2_w)=    202.2] | dGM_J/GM_J = -3.58e-07
+    fit F  KITCHEN SINK (beyond-real bound) : mars:     5.692/   26.785 abs     12.1x marg     0.26 | sat:     6.027/   17.128 abs    186.8x marg     4.15  -> FAIL  [sqrt(chi2_w)=    125.7] | dGM_J/GM_J = -2.98e-07
+
+  truth: hostile, Sun-only-F4
+    fit A  GMsun+GMjup+36 IC      | Mars+Sat : mars:   269.247/  812.216 abs      8.6x marg     0.01 | sat:   977.500/ 2328.637 abs     38.5x marg     0.03  -> FAIL  [sqrt(chi2_w)=   5963.1] | dGM_J/GM_J = -8.26e-06
+    fit B  Juno-anchored (no GMjup)| Mars+Sat : mars:   287.586/  788.670 abs      8.0x marg     0.01 | sat:   665.775/ 1758.542 abs     56.6x marg     0.04  -> FAIL  [sqrt(chi2_w)=   6356.2]
+
+  truth: hostile, frozen-mu
+    fit A  GMsun+GMjup+36 IC      | Mars+Sat : mars:   269.828/  871.998 abs     20.1x marg     0.01 | sat:   961.691/ 2168.380 abs     40.9x marg     0.03  -> FAIL  [sqrt(chi2_w)=   5975.2] | dGM_J/GM_J = -5.90e-06
+    fit B  Juno-anchored (no GMjup)| Mars+Sat : mars:   279.472/  854.535 abs     19.4x marg     0.01 | sat:   709.724/ 1569.534 abs     55.4x marg     0.04  -> FAIL  [sqrt(chi2_w)=   6178.6]
+
+[4b] HOSTILE VERIFICATION OF THE FIT EMULATION (a kill claim owes its own audit)
+    fit A (hostile): rank/ncol = 38/38 ; normalized-column SV range 4.64e+00..5.45e-10
+    rcond sweep, fit A (f4_host) Mars/Sat post-RMS [m]: 1e-06: 301.54/802.26 | 1e-08: 284.14/1015.40 | 1e-10: 269.25/976.47 | 1e-12: 269.25/976.47 | 1e-14: 269.25/976.47
+    rcond sweep, fit A (f4_frame) Mars/Sat post-RMS [m]: 1e-06: 9.00/23.94 | 1e-08: 8.48/30.30 | 1e-10: 8.04/29.14 | 1e-12: 8.04/29.14 | 1e-14: 8.04/29.14
+    independent solver (LAPACK gelsy vs gelsd): max |resid diff| = 1.24e-03 m ; RMS agree to 1.17e-08
+    POST-FIT PIPELINE FLOOR (fit A applied to rtol-crossing noise): Mars 0.005 m ; Saturn 0.024 m (signal/floor: hostile 49555x ; framework 1479x Mars)
+    --- true nonlinear fits (Levenberg-Marquardt, partials re-integrated each iteration; the verdict-grade numbers) ---
+    LM HOSTILE   fit A (GM_sun,GM_J,36 IC): 10 iters, chi2 2.951e+09 -> 6.934e+07 ; Mars   376.647/ 1162.977 m ; Saturn   968.582/ 2066.328 m ; dlnGM = -2.86e-10, -7.67e-06
+    LM HOSTILE   fit B (Juno-anchored)   : 12 iters, chi2 2.951e+09 -> 8.576e+07 ; Mars   419.413/ 1418.389 m ; Saturn   522.197/ 1218.094 m ; dlnGM = -2.23e-10
+    LM HOSTILE   fit A + kitchen sink  :  6 iters, chi2 1.820e+09 -> 4.795e+07 ; Mars   314.341/ 1055.161 m ; Saturn   245.761/ 1067.100 m ; dlnGM = -1.41e-10, -1.11e-05
+    LM FRAMEWORK fit A (GM_sun,GM_J,36 IC): 12 iters, chi2 2.639e+06 -> 7.945e+04 ; Mars    12.743/   41.146 m ; Saturn    36.888/  110.689 m ; dlnGM = -4.14e-12, -2.42e-07
+    LM FRAMEWORK fit B (Juno-anchored)   : 12 iters, chi2 2.639e+06 -> 8.779e+04 ; Mars    13.419/   47.751 m ; Saturn    17.470/   45.785 m ; dlnGM = -2.60e-12
+    LM FRAMEWORK fit A + kitchen sink  :  8 iters, chi2 1.629e+06 -> 4.213e+04 ; Mars     9.318/   31.027 m ; Saturn     7.106/   33.452 m ; dlnGM = -4.22e-12, -3.32e-07
+    LM FRAMEWORK fit A restart (x1.15)  :  8 iters, chi2 1.315e+05 -> 7.078e+04 ; Mars    12.025/   38.112 m ; Saturn    36.203/   94.570 m ; dlnGM = -5.17e-12, -3.00e-07
+    linearized-vs-LM calibration: fit A hostile 269.2 m (lin) vs 376.6 m (LM) Mars ; framework 8.0 vs 12.7 m
+    uniqueness/convergence probe: framework-A restart (x1.15) converges to chi2 7.0776e+04 vs 7.9445e+04 -> LM convergence slack ~12% in chi2 (~6% in RMS), param-vector cosine 0.9972 (same basin) — immaterial against the margins below
+    post-fit residual structure (LM nonlinear fit A, hostile):
+      Mars  : sinusoid amplitudes [m] @ P_Jup 11.86 yr:    26.16 ; @ E-J synodic 1.092 yr:   319.28 ; @ M-J synodic 2.235 yr:    64.67 ; @ E-M synodic 2.135 yr:    23.25
+              top FFT lines (period yr, amp m): (1.07, 230.1) ; (1.11, 225.3) ; (1.88, 148.3)
+      Saturn: @ P_Jup 11.86 yr:   405.32 ; @ J-S synodic 19.86 yr:    62.98 ; @ S-E synodic 1.035 yr:   392.20
+              top FFT lines (period yr, amp m): (1.10, 962.2) ; (6.61, 864.6) ; (13.22, 637.1)
+    post-fit residual structure (LM + kitchen-sink, hostile): Mars top FFT: (1.11, 214.9) ; (1.07, 212.2) ; (1.00, 208.9)
+
+[5] PRESCRIPTION & ATTRIBUTION
+    Sun-only-F4 / full-F4 pre-fit signal ratio: Mars 1.000 ; Saturn 0.998  (~1 -> the SUN channel dominates the full per-body signal)
+    frozen-mu / instantaneous pre-fit ratio   : Mars 2.352 ; Saturn 1.042
+    eps_sun frozen value = 3.588e-06 (vs instantaneous mean 3.588e-06) ; planet eps frozen: Venus 1.1e-15, EMB 4.2e-15, Mars 2.4e-14, Jupiter 3.1e-12, Saturn 3.3e-11
+
+[6] SCALING CHECKS
+    hostile/framework pre-fit signal ratio: Mars 33.428 ; Saturn 33.506 ; expected s^2 ratio = 33.506  -> linear-regime + integrator-noise check
+    per-planet heliocentric displacement (Sun-only-F4, hostile), with the naive forced-epicycle product peak*|n^2-n_J^2|:
+      Venus   : peak  5880.66 m ; peak*|n^2-nJ^2| = 4.586e+00
+      EMB     : peak  7200.33 m ; peak*|n^2-nJ^2| = 2.116e+00
+      Mars    : peak 18292.77 m ; peak*|n^2-nJ^2| = 1.492e+00
+      Saturn  : peak 286660.46 m ; peak*|n^2-nJ^2| = 5.045e-01
+      -> the product is NOT constant (x9 spread): the displacement is dominated by SECULAR pumping (slowly-rotating field torque), not the equilibrium epicycle. Stated plainly; the Mercury number in [8] is therefore a BRACKET, not a law.
+
+[7] RANGING-ACCURACY & CONVENTION PINS (web-verified 2026-06-10)
+    Mars range: ~1 m systematics-limited (DSN station calibration), MGS/Odyssey/MRO 1-m class data used in ephemerides — JPL IPN Progress Report 42-190 (Folkner-era, "Station-Specific Errors in Mars Ranging"); EPM2021 fits MRO/ODY ranges with station-bias models (iaaras.ru/en/dept/ephemeris/epm/2021). Adopted sigma = 1.5 m.
+    Saturn/Cassini range: normal points ~10 m (Folkner et al. 2008, DE421-era, as quoted in the INPOP19a Cassini analysis: Fienga et al. 2020, A&A 640, A6); DE430-based Cassini residuals show a 12-yr sinusoid of FULL amplitude ~70 m (Hees et al. 2016, AJ 152:94, arXiv:1604.03180 — the Planet Nine ranging paper); INPOP17a shows a ~50 m annual signature (same A&A analysis). Adopted sigma = 25 m (loose variant 75 m).
+    Jupiter: DE440 fits Juno radio range + VLBA (Park et al. 2021, AJ 161:105, ssd.jpl.nasa.gov/doc/de440_de441.html). GM_J is measured INDEPENDENTLY by Juno orbital tracking: GM_J = 1.266865341e17 m^3/s^2 with relative uncertainty ~1e-8-1e-9 (Durante et al. 2020, GRL 47, e2019GL086572) — at Juno periapsis |a|~25 m/s^2, F4 is OFF (x~1e11), so the Juno GM_J is F4-clean: any ephemeris GM_J shift >> 1e-8 relative is independently refuted. That is fit config B ("Juno-anchored").
+    Mercury/BepiColombo MORE: 2-way range ~1 cm RMS at 4 s integration, in-flight verified (arXiv:2111.04499 INPOP-BepiColombo simulations; arXiv:2211.04881), daily normal points 2026-2028.5 assumed in published simulations.
+
+[8] MERCURY / BEPICOLOMBO SENSITIVITY (order-of-magnitude BRACKET; Mercury not integrated, see [6] caveat)
+    Mercury heliocentric response bracket (hostile, PRE-fit): equilibrium-epicycle floor f/n^2 ~ 1.0 m ; Mars-product scaling ~ 293 m
+    framework normalization (/33.5): ~3 cm .. 8.7 m PRE-fit; even at the strongest absorption seen in any fit here (7x), the framework signal sits at ~0.43 cm .. 119 cm
+    vs BepiColombo MORE sigma ~ 1 cm (in-flight verified): the framework-normalization signal is at-to-above MORE's single-pass noise across the whole bracket — BUT the published MORE campaign window is ~2.5 yr (2026-2028.5), only 0.21 of the 11.86-yr carrier, so much of the slow template is IC/bias-absorbable over so short an arc. Treat as a strong FUTURE check (and a decisive one if MORE-class ranging persists over a decade), not a present bound. Stated as sensitivity, not verdict.
+
+[9] VERDICT (both ways, full weight; decisive numbers = the TRUE NONLINEAR (LM) fits)
+  HOSTILE (s = cH_Lambda = 5.418e-10 m/s^2):
+    LM fit A (GM_sun, GM_J, 36 IC):      FAIL  (Mars   376.65 m vs 1.5 m ->   251.1x over ; Saturn   968.58 m vs 25.0 m ->   38.7x [vs loose 75.0 m ->  12.9x])
+    LM fit B (Juno-anchored GM_J):       FAIL  (Mars   419.41 m ; Saturn   522.20 m)
+    LM + kitchen sink (beyond-real):     FAIL  (Mars   314.34 m ->   209.6x over ; Saturn   245.76 m)
+  FRAMEWORK (s = a0 = 9.36e-11 m/s^2):
+    LM fit A (GM_sun, GM_J, 36 IC):      FAIL  (Mars    12.74 m vs 1.5 m ->     8.5x over ; Saturn    36.89 m vs 25.0 m ->    1.5x [vs loose 75.0 m ->   0.5x])
+    LM fit B (Juno-anchored GM_J):       FAIL  (Mars    13.42 m ; Saturn    17.47 m)
+    LM + kitchen sink (beyond-real):     FAIL  (Mars     9.32 m ->     6.2x over ; Saturn     7.11 m)
+  CRITICAL NORMALIZATION (residual ~ s^2, linearity verified in [6]): instantaneous per-body F4 hides below Mars ranging accuracy only for
+    s < 3.21e-11 (conservative fit A) .. 3.76e-11 m/s^2 (kitchen-sink bound) = (0.34 .. 0.40) x a0 = cH_Lambda / (14 .. 17)
+    -> BOTH candidate normalizations sit above the survival line: the bath value cH_Lambda by ~17x, the empirical a0 by ~2.9x in s (=8.5x in residual).
+  STRUCTURE OF THE KILL: the unabsorbable carrier is the Earth-Jupiter synodic (~1.09 yr) + P_Jup (11.86 yr) response to the Sun's Jupiter-ward anomalous reflex (the r_J^2-anti-correlated template of [2]); at framework normalization the kill is MARS-CARRIED (Cassini alone would be marginal: fit-B Saturn 17.5 m vs 25 m tight / 75 m loose). No realistic nuisance lives at the E-J synodic over a 30-yr arc (annual systematics separate from 1.0921 yr after ~12 yr of data; asteroid templates live at 3-6 yr).
+  GM_J NOTE: every fit that may move GM_J wants |dlnGM_J| ~ 2e-7..1e-5 — i.e. 20x..1000x the Juno determination uncertainty (~1e-8, Durante+2020): the absorbed configurations are independently refuted by Juno, which is why the Juno-anchored fit B is the realistic case (and it fails too).
+
+[10] BUG LOG (own-work bugs caught during this run)
+    1. Pre-run: stray invalid token (`i in_`) in the name_idx dict comprehension — syntax error, caught on read-through before first execution; fixed.
+    2. Pre-run: make_rhs was passed gm=None for non-tuple modes (would crash every F4 run); caught on read-through; fixed to pass GM explicitly.
+    3. First full run: numpy matmul on macOS Accelerate raised spurious divide/overflow/invalid RuntimeWarnings inside clean lstsq/projection calls; investigated — solutions verified finite and cross-checked against LAPACK gelsy (max residual difference printed in [4b]); warnings isolated with errstate + isfinite asserts rather than ignored blindly.
+    4. First full run: Mercury/BepiColombo extrapolation printed in cm with a misleading "absorption factor from fit A" (9x) — replaced with the kitchen-sink absorption bound and an explicit window-length caveat.
+    5. Initial fit-A absorption (8.6x) looked suspiciously WEAK against an analytic prior of stronger absorption — this suspicion was CORRECT in part: see 6-7.
+    6. The nonlinear forward check EXPLODED (1e6 m vs 269 m linearized) and frozen-Jacobian Gauss-Newton DIVERGED. Unit test (3-parameter known perturbation, direct integration vs linear prediction) proved the column/parameter mapping exact to ~0.13% of response — so the failure was not a mapping bug: the linearized optimum lives at parameter excursions (e.g. dGM_J/GM_J ~ -8e-6 + large compensating IC moves) whose second-order dynamics break the linear cancellation. A LINEARIZED EMULATION IS NOT VERDICT-GRADE FOR THIS PROBLEM.
+    7. Resolution: full Levenberg-Marquardt fits with the Jacobian re-INTEGRATED every iteration (a real mini ephemeris fit), run for fits A/B/kitchen-sink at both normalizations, with a displaced-restart uniqueness probe. The verdict in [9] rests exclusively on these LM numbers; the linear table [4] is retained as a config survey only.
+
+    [output assembled in 314 s total]

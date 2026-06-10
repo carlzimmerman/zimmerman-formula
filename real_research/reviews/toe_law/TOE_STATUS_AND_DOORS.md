@@ -106,3 +106,21 @@ wall), its solar-system standing is **prescription-laden** (instantaneous vs orb
 one night — which is what hostile pushing is FOR. What survives untouched: the kernel a₀ = c²√(Λ/32π) (+ the
 conditional declining branch), the trilemma map (amended), and the spec sheet any future mechanism must beat — now
 extended by the lensing wall, the solar reflex, and the anti-MOND no-go.
+
+## Door IVb verdict (Agent E, the last of the six fronts — framework-unfavorable, full weight)
+**The solar reflex KILLS instantaneous/CoM-worldline F4 at BOTH normalizations** (`agentE_solar_reflex.{py,out}`,
+true nonlinear Levenberg–Marquardt ephemeris-fit emulation, Jacobian re-integrated per iteration; the agent caught its
+own linearized version as non-verdict-grade and superseded it): hostile s=cH → Mars residual 377 m vs 1.5 m accuracy
+(×251); framework s=a₀ → 12.7 m (×8.5, Mars-carried; Cassini alone marginal). Survival line: s < (0.34–0.40)·a₀ —
+both candidate normalizations sit above it. The unabsorbable carrier is the Earth–Jupiter synodic (1.09 yr) response
+to the Sun's r_J²-anti-correlated anomalous reflex; GM_J-absorbing fits need |δlnGM_J| 20–1000× the Juno uncertainty
+(independently refuted). Because the Sun's |a| is quasi-steady, orbit-averaging does NOT rescue it (unlike the planetary
+precession channel); the constituent-acceleration escape would switch off galactic MOND for stars (incoherent).
+**Net F4 status after all six fronts: a GALACTIC-ONLY effective shape — its solar-system MI embedding is dead under
+every coherent point-worldline reading; its bath mechanism is refuted at all orders and couplings (Doors I, I-b); it
+cannot carry lensing (the 40.5σ wall). What survives of the entire night: the kernel a₀ = c²√(Λ/32π) as banked
+phenomenology; the hardened ~9σ lensing falsifier; the re-closed trilemma around a now much more tightly specified
+missing object (trajectory-NONLOCAL matter sector — the instantaneous reading is data-dead, Milgrom's theorem always
+required nonlocality anyway — plus a lensing-carrying metric partner, with non-Huygens fields as the unique bath-side
+mechanism opening); and one open laboratory door (sub-a₀ atom interferometry, which tests the proper-acceleration
+reading the solar-reflex kill does NOT touch — free-fall atoms have a_proper ≈ 0, the Sun does not).**
