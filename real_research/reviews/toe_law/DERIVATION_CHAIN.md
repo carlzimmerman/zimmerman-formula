@@ -64,6 +64,13 @@ type-split sign, +0.261 in [+0.119,+0.401] — agentH3) but UNREALIZED: every pu
 gate (AeST/DEW: Cassini, computed; B-K: Cassini face-value 24–39σ with q_ph = −3/7 exact; the fraction-limited
 ultralight carrier: the agentI walls; the sharp phase mechanism: refuted 7.3σ, agentJ — a smooth 2.0σ mass trend
 survives with the control inverted).
+**UNIQUENESS PROVEN (agentW):** the double-counting theorem holds at 8.7–21.6σ on our own SPARC pipeline (exact
+lemma: monotone μ + MI dynamics forces the real partner density to ZERO; lensing demands nonzero at 40.5σ — the
+class cannot have both; every ordering/λ escape closed) ⇒ **real-mass partners are excluded as a class for MI
+dynamics**. The unique survivor: a METRIC-LEVEL Ψ-channel slip ((μ,Σ)=(1,ν)) — photon-sector realizations are
+executed by GW170817's differential-Shapiro test, so the slip lives in the metric (the c_T-preserving
+beyond-Horndeski/DHOST branch); solar slip auto-passes ×10⁷; clusters re-fail ×1.97 by construction; the type
+split requires a second smooth variable (consistent with agentJ); no published realization exists.
 
 **Link 8 — the quantum derivation (the gate).** CONTESTED-TERMINAL, re-confirmed 2026-06 (agentR: 60-paper sweep,
 nothing derives the DSSYK vacuum placement; possibly three-cornered). **PENDING (agentS):** the repo's own

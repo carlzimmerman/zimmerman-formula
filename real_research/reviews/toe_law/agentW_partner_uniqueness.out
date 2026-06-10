@@ -1,0 +1,169 @@
+SPARC galaxies loaded: 175
+
+========================================================================================================
+PART 0 — GATES (banked values must reproduce before anything is believed)
+========================================================================================================
+
+G1 SPARC == mi_f4_sparc_shape_test.out   (each function its own best-Upsilon; unweighted dex)
+  framework McGaugh RAR      bestUd=0.52  0.1950  (banked 0.1950)  PASS
+  framework fw sqrt(1+1/y)   bestUd=0.60  0.1969  (banked 0.1969)  PASS
+  framework simple           bestUd=0.50  0.1951  (banked 0.1951)  PASS
+  framework F4 standard      bestUd=0.64  0.1984  (banked 0.1984)  PASS
+  canonical McGaugh RAR      bestUd=0.46  0.1977  (banked 0.1977)  PASS
+  canonical fw sqrt(1+1/y)   bestUd=0.52  0.1968  (banked 0.1968)  PASS
+  canonical simple           bestUd=0.44  0.1975  (banked 0.1975)  PASS
+  canonical F4 standard      bestUd=0.58  0.1980  (banked 0.1980)  PASS
+
+G2 lensing wall == f4_lensing_wall.out   (Brouwer+2021 released isolated RAR, full covariance)
+  baryon-only : chi2= 1658.9/15 -> 40.5 sigma   (banked 1658.9 -> 40.5)
+  framework nu: chi2=  206.8/15 -> 12.5 sigma   (banked  206.8 -> 12.5)
+  deep-5 amplitude ratio data/baryon =  229.7x      (banked 229.7x)
+  G2 PASS — same conversion (G=4.301e-3 pc Msun^-1 (km/s)^2) the banked wall used.
+
+========================================================================================================
+PART 1a — THE LEMMA AND THE DEEP-REGIME OVERSHOOT (analytic, then exact)
+========================================================================================================
+
+LEMMA (uniqueness; same monotonicity Milgrom-22 imposes): x*mu(x) monotone => the MI response to a total
+Newtonian field g_N is the unique a = nu(g_N/a0)*g_N. If the observed RAR a = nu(g_bar/a0)*g_bar holds,
+then g_N = g_bar EXACTLY, i.e. the real partner density vanishes everywhere kinematics probes. The lensing
+RAR demands g_partner = [nu-1]*g_bar (else baryon-only: 40.5 sigma, G2). The class cannot have both.
+Deep-limit overshoot factors (g_dyn/g_obs at lam=1):  B -> 2 - 1/nu(y) -> 2 (0.301 dex);
+A -> nu(nu(y)*y) -> y^(-1/4) (UNBOUNDED — the 'partial cancellation' ordering overshoots MORE below y=1/16):
+      g_bar  y(fw a0) |  A factor  A dex |  B factor  B dex   (McGaugh nu)
+      1e-13   0.00107 |     6.001  0.778 |     1.968  0.294
+      1e-12    0.0107 |     3.559  0.551 |     1.902  0.279
+      1e-11     0.107 |     2.167  0.336 |     1.721  0.236
+      1e-10      1.07 |     1.381  0.140 |     1.356  0.132
+      1e-09      10.7 |     1.037  0.016 |     1.038  0.016
+
+========================================================================================================
+PART 1b — THE OVERSHOOT ON SPARC (lam=1: the lensing-demanded partner; best-Upsilon granted)
+========================================================================================================
+columns: best-Ud | unweighted (weighted) dex scatter | mean offset all pts | deep (g_bar<1e-11):
+mean offset, then the KILL STATISTIC t_exc = (deep mean - SAME-shape lam=0 baseline deep mean)/SEM, where
+SEM = per-galaxy SD of the model's own deep residuals / sqrt(n_gal) — data noise in the denominator,
+galaxy-level independence (conservative); [n_gal/n_pts]; charitable per-point sqrt(dchi2) with sigma_int
+calibrated so the lam=0 baseline gives chi2/N = 1. Negative offset = the model OVERSHOOTS the data.
+
+=== a0 = framework 9.36e-11 ===
+  McGaugh RAR      lam=0 baseline: Ud=0.52 0.1950  deep mean -0.0307 dex (t_raw=-1.6, n_gal=129)  [sigma_int=0.1536]
+    ordering A  lam=1 : Ud=0.30 0.3263 (0.1986)  all -0.1759 | deep -0.3495 dex  excess t =  17.8 sigma [146/1549]  sqrt(dchi2)=  84.6
+    ordering B  lam=1 : Ud=0.30 0.2470 (0.1432)  all -0.0850 | deep -0.1997 dex  excess t =   9.9 sigma [146/1549]  sqrt(dchi2)=  48.9
+      [cut g_bar<3e-12] ordering A: deep -0.4931 vs baseline -0.1158 -> excess t =  10.7 sigma (n_gal=69)
+      [cut g_bar<3e-12] ordering B: deep -0.2797 vs baseline -0.1158 -> excess t =   4.7 sigma (n_gal=69)
+  fw sqrt(1+1/y)   lam=0 baseline: Ud=0.60 0.1969  deep mean -0.0158 dex (t_raw=-0.8, n_gal=124)  [sigma_int=0.1571]
+    ordering A  lam=1 : Ud=0.32 0.2883 (0.1794)  all -0.1111 | deep -0.2782 dex  excess t =  14.5 sigma [146/1511]  sqrt(dchi2)=  65.9
+    ordering B  lam=1 : Ud=0.32 0.2357 (0.1511)  all -0.0455 | deep -0.1654 dex  excess t =   8.7 sigma [146/1511]  sqrt(dchi2)=  41.0
+  simple           lam=0 baseline: Ud=0.50 0.1951  deep mean -0.0240 dex (t_raw=-1.3, n_gal=130)  [sigma_int=0.1544]
+    ordering A  lam=1 : Ud=0.30 0.3274 (0.1969)  all -0.1870 | deep -0.3537 dex  excess t =  18.4 sigma [146/1549]  sqrt(dchi2)=  84.5
+    ordering B  lam=1 : Ud=0.30 0.2454 (0.1382)  all -0.0922 | deep -0.2007 dex  excess t =  10.4 sigma [146/1549]  sqrt(dchi2)=  47.2
+  F4 standard      lam=0 baseline: Ud=0.64 0.1984  deep mean -0.0170 dex (t_raw=-0.8, n_gal=121)  [sigma_int=0.1594]
+    ordering A  lam=1 : Ud=0.42 0.2844 (0.1777)  all -0.1093 | deep -0.2825 dex  excess t =  14.2 sigma [137/1369]  sqrt(dchi2)=  62.2
+    ordering B  lam=1 : Ud=0.40 0.2405 (0.1549)  all -0.0565 | deep -0.1854 dex  excess t =   9.4 sigma [137/1396]  sqrt(dchi2)=  41.5
+
+=== a0 = canonical 1.2e-10 ===
+  McGaugh RAR      lam=0 baseline: Ud=0.46 0.1977  deep mean -0.0526 dex (t_raw=-2.9, n_gal=134)  [sigma_int=0.1557]
+    ordering A  lam=1 : Ud=0.30 0.3703 (0.2320)  all -0.2378 | deep -0.4208 dex  excess t =  20.5 sigma [146/1549]  sqrt(dchi2)= 101.2
+    ordering B  lam=1 : Ud=0.30 0.2712 (0.1547)  all -0.1343 | deep -0.2532 dex  excess t =  11.8 sigma [146/1549]  sqrt(dchi2)=  59.6
+      [cut g_bar<3e-12] ordering A: deep -0.5669 vs baseline -0.1564 -> excess t =  11.6 sigma (n_gal=69)
+      [cut g_bar<3e-12] ordering B: deep -0.3335 vs baseline -0.1564 -> excess t =   5.0 sigma (n_gal=69)
+  fw sqrt(1+1/y)   lam=0 baseline: Ud=0.52 0.1968  deep mean -0.0424 dex (t_raw=-2.3, n_gal=129)  [sigma_int=0.1557]
+    ordering A  lam=1 : Ud=0.30 0.3249 (0.1998)  all -0.1629 | deep -0.3460 dex  excess t =  16.7 sigma [146/1549]  sqrt(dchi2)=  82.6
+    ordering B  lam=1 : Ud=0.30 0.2543 (0.1537)  all -0.0847 | deep -0.2146 dex  excess t =  10.0 sigma [146/1549]  sqrt(dchi2)=  51.6
+  simple           lam=0 baseline: Ud=0.44 0.1975  deep mean -0.0463 dex (t_raw=-2.6, n_gal=137)  [sigma_int=0.1561]
+    ordering A  lam=1 : Ud=0.30 0.3723 (0.2332)  all -0.2479 | deep -0.4245 dex  excess t =  21.1 sigma [146/1549]  sqrt(dchi2)= 101.7
+    ordering B  lam=1 : Ud=0.30 0.2707 (0.1525)  all -0.1405 | deep -0.2540 dex  excess t =  12.2 sigma [146/1549]  sqrt(dchi2)=  58.9
+  F4 standard      lam=0 baseline: Ud=0.58 0.1980  deep mean -0.0547 dex (t_raw=-2.8, n_gal=124)  [sigma_int=0.1563]
+    ordering A  lam=1 : Ud=0.34 0.3206 (0.2059)  all -0.1398 | deep -0.3377 dex  excess t =  15.4 sigma [144/1478]  sqrt(dchi2)=  80.5
+    ordering B  lam=1 : Ud=0.32 0.2603 (0.1719)  all -0.0702 | deep -0.2175 dex  excess t =   9.5 sigma [146/1511]  sqrt(dchi2)=  55.0
+
+  MOND-default row (a0=1.2e-10, Upsilon FIXED 0.5, McGaugh nu):
+    ordering A: scatter 0.4058 (baseline 0.1989); deep -0.4856 vs baseline -0.0709 -> excess t =  21.6 sigma
+    ordering B: scatter 0.3149 (baseline 0.1989); deep -0.3271 vs baseline -0.0709 -> excess t =  13.8 sigma
+
+========================================================================================================
+PART 1c — THE ESCAPE CHARACTERIZED: free MI scale a0_MI (partner fixed by lensing at a0)
+========================================================================================================
+If the MI response scale a0_MI is freed while the partner stays lensing-fixed at a0, where does the
+dynamics fit want a0_MI? (best-Upsilon granted at every point; McGaugh nu, framework a0; unweighted dex)
+  ordering A: a0_MI/a0 grid [0.   0.02 0.05 0.1  0.2  0.35 0.5  0.75 1.   1.5 ]
+               scatter      [0.195  0.1959 0.1997 0.2083 0.2266 0.2512 0.2719 0.3008 0.3263 0.369 ]
+    -> minimum at a0_MI = 0.00 x a0 : 0.1950 dex   (a0_MI = a0, the MI-class point: 0.3263)
+  ordering B: a0_MI/a0 grid [0.   0.02 0.05 0.1  0.2  0.35 0.5  0.75 1.   1.5 ]
+               scatter      [0.195  0.1965 0.1988 0.2025 0.2095 0.2185 0.2264 0.2368 0.247  0.2673]
+    -> minimum at a0_MI = 0.00 x a0 : 0.1950 dex   (a0_MI = a0, the MI-class point: 0.2470)
+READING: the joint system's best fit drives the inertia modification toward ZERO — a0_MI -> 0 is
+pure Newtonian inertia + a real phantom-profile halo = particle dark matter with extra steps. The escape
+from the overshoot exists ONLY as the limit that deletes premise (a). Inside the class (a0_MI = a0) both
+orderings stand at the 1b kill. The ordering ambiguity is hereby CLOSED, not merely characterized.
+
+========================================================================================================
+PART 1d — THE PINCER DIAL: partner fraction lam (dynamics vs lensing, jointly)
+========================================================================================================
+lam = fraction of the MOND-phantom profile carried as real partner mass. Dynamics: per-galaxy deep
+excess t (McGaugh nu, framework a0, best-Ud per lam, ordering A / B). Lensing: photons see
+[1+lam*(nu-1)]*g_bar vs the Brouwer bins (full covariance) -> sigma. Joint = max(dyn, lens) per ordering.
+   lam | sig_lens |  t_dyn A  t_dyn B |  joint A  joint B
+   0.0 |     40.5 |      0.0      0.0 |     40.5     40.5
+   0.1 |     36.9 |      2.8      0.9 |     36.9     36.9
+   0.2 |     34.1 |      5.5      2.1 |     34.1     34.1
+   0.3 |     31.3 |      7.5      3.0 |     31.3     31.3
+   0.4 |     28.5 |      9.5      4.1 |     28.5     28.5
+   0.5 |     25.7 |     10.9      5.2 |     25.7     25.7
+   0.6 |     23.0 |     12.3      6.2 |     23.0     23.0
+   0.7 |     20.2 |     13.8      6.8 |     20.2     20.2
+   0.8 |     17.4 |     15.3      7.6 |     17.4     17.4
+   0.9 |     14.7 |     16.6      8.8 |     16.6     14.7
+   1.0 |     12.0 |     17.8      9.9 |     17.8     12.0
+  ordering A: best compromise lam = 0.9 still fails jointly at 16.6 sigma
+  ordering B: best compromise lam = 1.0 still fails jointly at 12.0 sigma
+
+========================================================================================================
+PART 2 — LENS-ONLY SLIP: the numbers the memo carries
+========================================================================================================
+
+2a required slip (gate vs agentI item 3a: 61 / 19 / 6 at 1e-13/1e-12/1e-11, McGaugh nu, fw a0):
+   g_bar=1e-13: nu= 31.10 -> required Psi'/Phi' = 2nu-1 =   61.2
+   g_bar=1e-12: nu= 10.18 -> required Psi'/Phi' = 2nu-1 =   19.4
+   g_bar=1e-11: nu=  3.59 -> required Psi'/Phi' = 2nu-1 =    6.2
+
+2b solar-system slip of an a0-keyed profile (gamma_eff - 1 = 2[nu(y)-1]; Cassini |gamma-1|<=2.3e-5):
+   place                                  g_N     y(fw) | 2(nu-1) simple  2(nu-1) exp-RAR
+   Cassini conjunction b=1.6 Rsun    1.07e+02  1.14e+12 |       1.75e-12    ~e^-1,069,734
+   VLBI-ish b=10 Rsun                2.74e+00  2.93e+10 |       6.83e-11      ~e^-171,157
+   Saturn 9.58 AU                    6.46e-05   6.9e+05 |       2.90e-06          ~e^-831
+   100 AU                            5.93e-07  6.34e+03 |       3.16e-04          5.4e-35
+   y=2000 radius                     1.87e-07     2e+03 |       1.00e-03          7.6e-20
+   (the tasking's e^-sqrt(2000) ~ 3.8e-20 corresponds to r ~ 178 AU;
+    at Cassini's conjunction sqrt(y) = 1,069,734 -- the exponential slip is zero to all orders;
+    even the POWER-LAW (simple-nu) slip passes Cassini by x1.3e+07.)
+
+2c the slip partner inherits the ABSOLUTE lensing-RAR shape (Brouwer bins, full covariance):
+   a0=fw : McGaugh RAR  193.8->12.0s | fw sqrt(1+1/y)  206.8->12.5s | simple  193.7->12.0s | F4 standard  207.4->12.5s
+   a0=can: McGaugh RAR  115.9-> 8.6s | fw sqrt(1+1/y)  122.8-> 8.9s | simple  115.9-> 8.6s | F4 standard  123.0-> 8.9s
+   (whatever shape the slip is keyed to, the published absolute tension rides along — banked caveat.)
+
+2d clusters (illustrative-canonical numbers; Sanders 1999/2003 residual factor ~2 re-derived):
+   M_bar(<1Mpc)=7e13, M_lens=5e14: g_bar=9.76e-12, slip-lensing pred (McGaugh RAR) = 3.54e-11, observed = 6.97e-11 -> shortfall x1.97
+   M_bar(<1Mpc)=7e13, M_lens=5e14: g_bar=9.76e-12, slip-lensing pred (simple) = 3.55e-11, observed = 6.97e-11 -> shortfall x1.96
+   -> a slip keyed to nu(g_bar/a0) re-fails clusters by the SAME ~x2 MOND residual, by construction.
+
+2e the type-split requirement (the slip cannot be a function of g_bar alone):
+   measured early-above-late at fixed g_bar: +0.261 dex (u-r; hardened 8.6-9.2 sigma; own catalog).
+   A slip keyed to g_bar alone predicts EXACTLY 0 split -> faces the same ~9-sigma kill as type-blind MOND,
+   and in a lens-only hybrid there is no real-mass SHMR difference to hide behind (H3-T4's escape is closed
+   to it): the FULL +0.261 dex must come from slip-amplitude modulation by a second variable.
+   agentJ bounds its shape: sharp condensation staircase REFUTED 7.3 sigma; smooth 1-halo-safe mass trend
+   +0.122 +/- 0.062 dex/dex (2.0 sigma), control inverted (clean bins carry it). The slip's second variable
+   must be SMOOTH in halo mass and deliver ~0.26 dex between classes at fixed g_bar.
+
+========================================================================================================
+PART 3 — ADJUDICATION AGAINST THE PRE-REGISTERED THRESHOLDS
+========================================================================================================
+  ordering A: WEAKEST kill across all shapes/footings = 14.2 sigma (excess -0.266 dex; framework 9.36e-11, F4 standard)
+  ordering B: WEAKEST kill across all shapes/footings = 8.7 sigma (excess -0.150 dex; framework 9.36e-11, fw sqrt(1+1/y))
+  Threshold was: theorem HOLDS if every cell >= 0.2 dex excess at >= 5 sigma. See table above; the
+  .md adjudicates. The a0_MI scan (1c) closes the ordering escape: its only refuge is a0_MI -> 0 = no MI.
+
+done.
