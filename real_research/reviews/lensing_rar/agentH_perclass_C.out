@@ -1,0 +1,78 @@
+lens catalog: 181,477 isolated lenses -> v4 (fluxscale +0.15 dex); median logM*=10.591
+  early: N=88,079  med logM*=10.74  med logMgal=10.81  med z=0.310
+  late: N=93,398  med logM*=10.33  med logMgal=10.45  med z=0.305
+
+== machinery validation (must reproduce lr_battery.out / lr_sersic_crosscheck.out) ==
+  u-r    baseline: chi2=119.9 sigma=8.8   (expected 119.9, 8.8)
+  u-r    generic bracket (3.53,4.33): sigma=5.0   (expected 5.0)
+  Sersic baseline: chi2=69.1 sigma=5.8   (expected 69.1, 5.8)
+  Sersic generic bracket (3.53,4.33): sigma=2.1   (expected 2.1)
+  common per-bin factor invariance: chi2 119.9264 -> 119.9264 (must be equal; only f_e/f_l matters)
+
+== PRIMARY (M13 SHMR x D08 c200c, type-blind, mean, window 0.03-3 Mpc): per-bin x and C ==
+   g_bar      x_early(16/50/84)      x_late(16/50/84)      N_e     N_l    C_e    C_l   dlogC
+  1.38e-15   49.45/ 55.06/ 58.07   47.43/ 53.99/ 57.07   70033   88631  3.348  3.350  -0.0002
+  2.44e-15   33.07/ 39.98/ 43.53   34.93/ 40.30/ 42.92   88079   93398  3.372  3.370  +0.0002
+  4.30e-15   24.90/ 30.10/ 32.77   26.30/ 30.34/ 32.32   88079   93398  3.395  3.393  +0.0002
+  7.59e-15   18.75/ 22.66/ 24.67   19.80/ 22.84/ 24.33   88079   93398  3.422  3.420  +0.0002
+  1.34e-14   14.11/ 17.06/ 18.57   14.90/ 17.19/ 18.32   88079   93398  3.454  3.452  +0.0003
+  2.36e-14   10.62/ 12.84/ 13.98   11.22/ 12.94/ 13.79   88079   93398  3.493  3.490  +0.0003
+  4.17e-14    8.00/  9.67/ 10.53    8.45/  9.75/ 10.38   88079   93398  3.538  3.535  +0.0004
+  7.36e-14    6.02/  7.28/  7.93    6.36/  7.34/  7.81   88079   93398  3.592  3.589  +0.0004
+  1.30e-13    4.53/  5.48/  5.97    4.79/  5.52/  5.88   88079   93398  3.657  3.653  +0.0005
+  2.29e-13    3.41/  4.13/  4.49    3.60/  4.16/  4.43   88079   93398  3.734  3.729  +0.0006
+  4.04e-13    2.57/  3.11/  3.38    2.72/  3.13/  3.33   88079   93189  3.825  3.819  +0.0007
+  7.13e-13    1.93/  2.34/  2.55    2.07/  2.37/  2.51   88076   90115  3.931  3.922  +0.0010
+  1.26e-12    1.46/  1.76/  1.92    1.63/  1.81/  1.89   87942   79678  4.055  4.037  +0.0020
+  2.22e-12    1.09/  1.33/  1.44    1.27/  1.39/  1.43   87053   65662  4.196  4.169  +0.0028
+  3.92e-12    0.82/  0.99/  1.09    0.91/  1.05/  1.08   82519   50097  4.356  4.326  +0.0030
+  mean dlogC = +0.0008 dex   (generic bracket asserted -0.089)
+  SIGN CHECK: dlogC<0 ('early smaller C', the asserted erosion direction) in 1/15 bins;
+              dlogC>0 (early LARGER C -> split STRENGTHENS) in 14/15 bins.
+  -> mechanism: at fixed g_bar, R ~ sqrt(Mgal); early types' larger M* put them in larger halos whose
+     r_s grows about as fast as R, so x_early ~< x_late — the generic bracket's x~10-vs-1 premise does
+     NOT emerge from the measured populations (it implicitly held the halo fixed while moving R).
+
+== CONFIG GRID: refined surviving sigma per axis (per-bin measured C_e[b],C_l[b]) ==
+SHMR  c(M,z) typedepMh conctilt |  <dlogC> |  u-r sig   (dex) | Sersic sig   (dex)
+M13   D08    False     False    |  +0.0008 |      8.8  +0.261 |        5.8  +0.186
+M13   DM14   False     False    |  +0.0009 |      8.8  +0.262 |        5.8  +0.186
+B13   D08    False     False    |  +0.0007 |      8.8  +0.261 |        5.8  +0.185
+B13   DM14   False     False    |  +0.0009 |      8.8  +0.261 |        5.8  +0.186
+M13   D08    True      False    |  +0.0123 |      9.2  +0.273 |        6.3  +0.197
+B13   DM14   True      False    |  +0.0111 |      9.2  +0.272 |        6.3  +0.196
+M13   D08    False     True     |  -0.0039 |      8.6  +0.257 |        5.6  +0.181
+B13   D08    False     True     |  -0.0038 |      8.6  +0.257 |        5.6  +0.181
+M13   D08    True      True     |  +0.0070 |      9.0  +0.268 |        6.1  +0.192
+  SPREAD across SHMR/c/type-dep choices: u-r 8.6-9.2 sigma; Sersic 5.6-6.3 sigma   (baselines 8.8 / 5.8; generic bracket gave 5.0 / 2.1)
+
+== ROBUSTNESS (u-r axis | Sersic axis) ==
+  median instead of mean <nfw_C(x)>                       <dlogC>=+0.0006  u-r  8.8  Sersic  5.8
+  R^2 (source-count) weighting                            <dlogC>=+0.0017  u-r  8.8  Sersic  5.9
+  no radial window (all R)                                <dlogC>=+0.0005  u-r  8.8  Sersic  5.8
+  composite C: halo + point-mass baryons                  <dlogC>=-0.0023  u-r  8.7  Sersic  5.7
+  global M_h x1.5 (halo-definition robustness)            <dlogC>=+0.0009  u-r  8.8  Sersic  5.8
+  global M_h x0.67                                        <dlogC>=+0.0008  u-r  8.8  Sersic  5.8
+  early-only extra c x1.2 (assembly-bias amplitude)       <dlogC>=-0.0042  u-r  8.6  Sersic  5.6
+  v3-like masses (logM* -0.15 dex, Mgal rebuilt)          <dlogC>=-0.0011  u-r  8.7  Sersic  5.7
+
+== HOSTILE PROBE: uniform extra concentration boost on EARLY types only (on top of primary) ==
+   kc     <dlogC>   u-r sigma   Sersic sigma
+   1.0    +0.0008      8.8         5.8
+   1.2    -0.0042      8.6         5.6
+   1.5    -0.0099      8.4         5.4
+   2.0    -0.0164      8.2         5.1
+   2.5    -0.0208      8.0         5.0
+   3.0    -0.0240      7.9         4.9
+   4.0    -0.0286      7.7         4.7
+   6.0    -0.0339      7.6         4.5
+  -> u-r drops below 5 sigma at kc~NEVER (not even at 6x), below 3 sigma at kc~NEVER;
+     published assembly-bias / relaxed-fit amplitudes are ~1.1-1.3x; kc>~2 has no published support.
+     Even an indefensible 6x early-only concentration boost leaves the u-r split at >7 sigma.
+
+====================================================================================================
+AGENT-H VERDICT (per-bin MEASURED type-differential conversion, both ways):
+  the split survives the measured type-differential ESD->g_obs conversion at 8.6-9.2 sigma (u-r)
+  and 5.6-6.3 sigma (Sersic) across SHMR (M13/B13, +type-dep) x c(M,z) (D08/DM14, +tilt) choices —
+  the measured concentration differential erodes the split LESS than the generic bracket (which gave 5.0/2.1):
+  the asserted erosion direction does not emerge from the measured populations; the exposure HARDENS.

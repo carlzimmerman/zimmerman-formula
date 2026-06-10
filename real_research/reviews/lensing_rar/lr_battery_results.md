@@ -1,3 +1,10 @@
+> ⚠️ **AXIS-1 NUMBERS SUPERSEDED (2026-06-10, `agentH_perclass_C.md`).** The "erodes to 5.0σ (u−r) / 2.1σ (Sérsic)"
+> survival figures below used a GENERIC concentration bracket whose premise fails when measured: with per-class halo
+> properties from our own lens catalog (9 SHMR × c(M,z) configs), the type-differential is ΔlogC ≈ +0.001 dex —
+> ~100× smaller and OPPOSITE-SIGNED (split-strengthening, 14/15 bins). **Refined survival: 8.6–9.2σ (u−r), 5.6–6.3σ
+> (Sérsic); both axes corroborate; the Sérsic axis is NOT conversion-limited; the exposure HARDENS.** The bracket
+> rows below stand as the audit trail of an escape route that was over-generous and is now closed by measurement.
+
 # Lensing-RAR battery — results (LR, on Brouwer+2021's released ESD profiles)
 
 *C. Zimmerman, 2026-06-10. Bound by `lr_preregistration.md` (hostility INVERTED). Ran on the public ESD release

@@ -1,0 +1,114 @@
+====================================================================================================
+SECTION 0 -- backgrounds and sanity
+====================================================================================================
+lab kinematic background (P-A): Earth rotation 0.0228 m/s^2 (dominant), solar orbit 5.93e-03, galactic 2.15e-10
+  -> |a_kin| range over a day: [0.0169, 0.0288] m/s^2; nominal 0.0228
+lab proper background (P-B, suspended body): g = 9.80 m/s^2
+kernel closure check: c*E_Lambda^2/(2 hbar E_Planck) = 9.359e-11 m/s^2 (= a0 to <1%; the banked CKN-seesaw identity)
+
+====================================================================================================
+TASK 1 -- Gundlach et al. PRL 98, 150801 (2007): torsion-balance test of F = ma
+====================================================================================================
+pendulum: kappa=2.36e-09 N m/rad, tau0=795.0 s, r_e=0.023 m -> I=3.778e-05 kg m^2
+published bound: F prop a over a in [5e-14, 2.7e-11] m/s^2, residuals ~ +-2e-14 m/s^2;
+  fractional precision: 0.07% at top of range, O(40%) at the 5e-14 floor
+
+--- P-A / P-B / P-C (background-anchored readings): predicted deviation 1/(2 x_bg^2) ---
+  s=framework 9.36e-11       P-A kinematic 2.28e-2 : x_bg=2.438e+08  dev=8.41e-18  margin vs 0.2% bound = 2.4e+14x  -> SAFE
+  s=framework 9.36e-11       P-B proper 9.80       : x_bg=1.047e+11  dev=4.56e-23  margin vs 0.2% bound = 4.4e+19x  -> SAFE
+  s=hostile cH_L 5.42e-10    P-A kinematic 2.28e-2 : x_bg=4.211e+07  dev=2.82e-16  margin vs 0.2% bound = 7.1e+12x  -> SAFE
+  s=hostile cH_L 5.42e-10    P-B proper 9.80       : x_bg=1.808e+10  dev=1.53e-21  margin vs 0.2% bound = 1.3e+18x  -> SAFE
+  P-C (linearized kernel about background): response to the mHz oscillation inherits mu(x_bg); amplitude
+  cannot enter a LINEAR kernel -> same numbers as above. Additionally the bath-kernel memory time at a=9.8 is
+  tau_c = 2 pi c/a = 1.92e+08 s -> omega_pend*tau_c = 1.5e+06 >> 1: the pendulum is deep-UV for the kernel;
+  the oscillation sees the BARE inertia (suppression beyond the static estimate). SAFE.
+
+--- P-D (amplitude reading; = the paper's own Eq. (2)) : full ODE integration ---
+  validation vs paper Fig. 1 (a0=1e-12, A=200 nrad): predicted period 537 s (ratio 0.68); the figure shows ~3 cycles in ~1600 s (~530 s). OK
+  s = framework 9.36e-11:
+    a_N=5.0e-14 (floor (their smallest confirmed)): Y=5.34e-04 nu=   43.27 (accel excess    4227.2%) period->   115 s (x0.145)  observed |dev|< 40.0% -> effect-size kill x     106
+    a_N=1.0e-11 (mid-range                       ): Y=1.07e-01 nu=    3.14 (accel excess     214.2%) period->   427 s (x0.538)  observed |dev|<  0.2% -> effect-size kill x    1071
+    a_N=2.7e-11 (top of range                    ): Y=2.88e-01 nu=    2.00 (accel excess     100.1%) period->   --  observed |dev|<  0.1% -> effect-size kill x    1351
+    P-D exclusion (ultra-conservative: 50% at the 5e-14 floor): s_kill=8.4e-14 -> this s EXCLUDED x   1116
+    P-D exclusion (their 0.2% proportionality at 1e-11       ): s_kill=6.3e-13 -> this s EXCLUDED x    148
+  s = hostile cH_L 5.42e-10:
+    a_N=5.0e-14 (floor (their smallest confirmed)): Y=9.23e-05 nu=  104.12 (accel excess   10311.8%) period->    74 s (x0.093)  observed |dev|< 40.0% -> effect-size kill x     258
+    a_N=1.0e-11 (mid-range                       ): Y=1.85e-02 nu=    7.40 (accel excess     639.6%) period->   278 s (x0.350)  observed |dev|<  0.2% -> effect-size kill x    3198
+    a_N=2.7e-11 (top of range                    ): Y=4.98e-02 nu=    4.54 (accel excess     353.7%) period->   --  observed |dev|<  0.1% -> effect-size kill x    4774
+    P-D exclusion (ultra-conservative: 50% at the 5e-14 floor): s_kill=8.4e-14 -> this s EXCLUDED x   6464
+    P-D exclusion (their 0.2% proportionality at 1e-11       ): s_kill=6.3e-13 -> this s EXCLUDED x    855
+
+--- the one P-A lab loophole, quantified (Ignatiev PRL 98, 101101 (2007), gr-qc/0612159) ---
+  s=framework 9.36e-11      : kinematic-cancellation window 2s/(omega_E a_rot) = 1.1e-04 s (Ignatiev-class ~1 ms, twice/yr, ~80deg lat); never attempted
+  s=hostile cH_L 5.42e-10   : kinematic-cancellation window 2s/(omega_E a_rot) = 6.5e-04 s (Ignatiev-class ~1 ms, twice/yr, ~80deg lat); never attempted
+
+====================================================================================================
+TASK 2 -- atom interferometry: free-falling atoms (proper acceleration ~ 0)
+====================================================================================================
+--- existing gravimeter data (PCC99: |dg/g| ~ 3e-9; resol. 2e-8/shot, 1e-10/2 days) ---
+  P-A  s=framework 9.36e-11      : falling atom x=g/s=1.047e+11 -> dg/g=4.56e-23  margin vs 3e-9: 6.6e+13x  SAFE/UNTESTABLE
+  P-A  s=hostile cH_L 5.42e-10   : falling atom x=g/s=1.808e+10 -> dg/g=1.53e-21  margin vs 3e-9: 2.0e+12x  SAFE/UNTESTABLE
+  P-B  (proper): between pulses the atom is FORCE-FREE -> the worldline law mu(a)a=F reads 0=0; photon kicks
+       occur at a_pulse ~ v_rec/tau ~ 1.177e-02/1e-5 ~ 1e+03 m/s^2 (x>>1, Newtonian recoil).
+       -> F4-P-B predicts EXACTLY the standard phase k_eff g T^2: existing AI gravimeter data are SILENT on F4. NO reading is tested by published AI data.
+
+--- THE DOOR: designed applied-force protocol (free-fall atom + calibrated sub-a0 force) ---
+    observable: extra differential phase dphi = k_eff (a - F/m) T^2, a = nu(y) F/m, y=(F/m)/s
+    instrument class [A20]: k_eff=1.611e+07 1/m, T=0.955 s; demonstrated differential-acceleration accuracy: 1.76e-11 (stat) / 3.77e-11 (total) m/s^2
+  s=framework 9.36e-11:
+     y=(F/m)/s      nu    a/F-1  Delta_a [m/s^2]  dphi [rad] sigma(stat) sigma(tot)
+         0.100   3.242   224.2%         2.10e-11    3.08e-04        1.19       0.56
+         0.250   2.129   112.9%         2.64e-11    3.88e-04        1.50       0.70
+         0.486   1.618    61.8%         2.81e-11    4.13e-04        1.59       0.75
+         1.000   1.272    27.2%         2.55e-11    3.74e-04        1.44       0.68
+         2.000   1.099     9.9%         1.85e-11    2.71e-04        1.05       0.49
+    optimum y=0.49: Delta_a = 2.81e-11 m/s^2 = 1.6 sigma(stat) / 0.7 sigma(tot) per A20-equivalent campaign
+  s=hostile cH_L 5.42e-10:
+     y=(F/m)/s      nu    a/F-1  Delta_a [m/s^2]  dphi [rad] sigma(stat) sigma(tot)
+         0.100   3.242   224.2%         1.22e-10    1.79e-03        6.89       3.22
+         0.250   2.129   112.9%         1.53e-10    2.25e-03        8.67       4.06
+         0.486   1.618    61.8%         1.63e-10    2.39e-03        9.23       4.32
+         1.000   1.272    27.2%         1.47e-10    2.17e-03        8.36       3.91
+         2.000   1.099     9.9%         1.07e-10    1.57e-03        6.06       2.84
+    optimum y=0.49: Delta_a = 1.63e-10 m/s^2 = 9.2 sigma(stat) / 4.3 sigma(tot) per A20-equivalent campaign
+
+====================================================================================================
+TASK 3 -- MICROSCOPE (final results 2022): eta(Ti,Pt) = [-1.5 +- 2.3 +- 1.5]e-15
+====================================================================================================
+orbit: r=7081 km -> g=7.95 m/s^2; radial gravity gradient 2GM/r^3 = 2.245e-06 /s^2
+published bound: eta = -1.5e-15 +- 2.7e-15 (total 1sigma); differential-acceleration scale eta*g = 2.2e-14 m/s^2
+
+--- the EP channel: F4 prediction (ALL readings) ---
+  mu multiplies the inertia of BOTH masses identically (same trajectory, same x, composition-blind)
+  -> eta_F4 = 0 exactly. Measured: -1.5 +- 2.7 e-15 -> consistent at 0.55 sigma.
+  VERDICT: PASS but BLIND -- the celebrated 1e-15 carries ZERO bits about universal modified inertia.
+
+--- P-A (banked): common-mode inertia deviation ---
+  s=framework 9.36e-11      : x=8.49e+10 -> common-mode dev 6.93e-23; no published channel at this level. SAFE/UNTESTABLE
+  s=hostile cH_L 5.42e-10   : x=1.47e+10 -> common-mode dev 2.32e-21; no published channel at this level. SAFE/UNTESTABLE
+
+--- P-B (proper): the test masses' x = applied electrostatic acceleration / s ---
+  applied-acceleration source                 a [m/s^2] |      x_fw   mu_fw |    x_host mu_host
+  gravity gradient @ 10 um offset               2.2e-11 |  2.40e-01  0.2333 |  4.14e-02  0.0414
+  gravity gradient @ 20 um offset               4.5e-11 |  4.80e-01  0.4326 |  8.29e-02  0.0826
+  gravity gradient @ 100 um offset              2.2e-10 |  2.40e+00  0.9230 |  4.14e-01  0.3827
+  centrifugal, V3 spin (2.94 mHz) @ 20 um       6.8e-09 |  7.30e+01  0.9999 |  1.26e+01  0.9969
+  drag-free in-band residual (class)            1.0e-12 |  1.07e-02  0.0107 |  1.85e-03  0.0018
+  in-flight calibration stimuli (class)         1.0e-07 |  1.07e+03  1.0000 |  1.85e+02  1.0000
+  -> under P-B the masses genuinely STRADDLE x=1 (the only macroscopic precision system that does),
+     but the F4 effect is a COMMON-MODE force/acceleration scale factor 1/mu(x): degenerate with gain
+     calibration (done at x>>1) and offset estimation. NOT constrained by the published eta; a dedicated
+     instrument-consistency reanalysis could reach the few-% to 10x anomalies predicted at x ~ 0.1-10.
+
+====================================================================================================
+TASK 4 -- storage-ring g-2 and the CKN bridge
+====================================================================================================
+muon in the BNL/FNAL ring: proper acceleration gamma^2 v^2/rho = 1.08e+19 m/s^2
+  s=framework 9.36e-11      : x=1.16e+29 -> F4 inertia correction 3.7e-59 (vs a_mu precision ~1e-10): NOTHING
+  s=hostile cH_L 5.42e-10   : x=2.00e+28 -> F4 inertia correction 1.3e-57 (vs a_mu precision ~1e-10): NOTHING
+CKN-EFT channel [BD21]: lab g-2 bounds L_eff(m_e) > ~10 nm vs CKN-motivated 1e5 km -> ~16 orders of
+magnitude short; 'far from being sensitive to the depletions motivated by quantum gravity'. The framework's
+CKN content is the SATURATED bound with a free O(1) (banked: CKN_LAMBDA_VALUE_VERDICT; FORCING_ROUTES_REWORKED)
+-> NO forced laboratory prediction exists on this axis. The banked no-numerology boundary stands.
+
+done.
