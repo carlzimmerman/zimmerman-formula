@@ -114,7 +114,7 @@ def stage_stack():
     for i0 in range(0,len(zl),chunk):
         sl=slice(i0,min(i0+chunk,len(zl)))
         for j,(rl,dl,zl_,chil_,Mg,ty) in enumerate(zip(ln['ra'][sl],ln['dec'][sl],zl[sl],chil[sl],ln['Mgal'][sl],ln['typ'][sl])):
-            theta_max=3.0/chil_  # rad, 3 Mpc transverse
+            theta_max=3.0*(1+zl_)/chil_  # rad: 3 Mpc PROPER transverse
             ii=treeS.query_ball_point([np.radians(rl),np.radians(dl)],theta_max)
             ii=np.array(ii,dtype=int)
             if ii.size<5: continue
@@ -122,23 +122,34 @@ def stage_stack():
             ii=ii[back]
             if ii.size<5: continue
             dra=(np.radians(raS[ii])-np.radians(rl))*np.cos(np.radians(dl)); dde=np.radians(decS[ii])-np.radians(dl)
-            R=np.hypot(dra,dde)*chil_/(1+zl_)*(1+zl_)  # comoving transverse; proper-vs-comoving per Brouwer [GAP: convention check vs released profiles]
+            R=np.hypot(dra,dde)*chil_/(1+zl_)   # PROPER transverse distance, Mpc (units-fix v2; validation adjudicates)
             phi=np.arctan2(dde,dra)
             et=-(e1[ii]*np.cos(2*phi)+e2[ii]*np.sin(2*phi))
             chis=DC(zB[ii]); Dls=(chis-chil_)/(1+zB[ii]); Dl=chil_/(1+zl_); Ds=chis/(1+zB[ii])
-            inv_sc=np.clip(4*np.pi*G/(c**2)*(Dl*Mpc)*(Dls/Ds),1e-30,None)/(Msun/Mpc**2)  # (Msun/Mpc^2)^-1
-            gbar=G*Mg*Msun/(R*Mpc/ (1+0)  )**2  # proper distance for g  [GAP: a/comoving factor folded into validation]
+            # Sigma_crit^-1 in SI (m^2/kg); estimator stays SI throughout (v1 mangled this by DIVIDING by Msun/Mpc^2)
+            inv_sc=np.clip(4*np.pi*G/(c**2)*(Dl*Mpc)*(Dls/Ds),0,None)
+            gbar=G*Mg*Msun/(R*Mpc)**2
             k=np.digitize(gbar,gbar_edges)-1
-            ok=(k>=0)&(k<15)
+            ok=(k>=0)&(k<15)&(inv_sc>0)
             ww=w[ii]*inv_sc**2
-            np.add.at(acc[ty]['wgE'],k[ok],(ww*et/inv_sc)[ok]); np.add.at(acc[ty]['w'],k[ok],ww[ok]); np.add.at(acc[ty]['n'],k[ok],1)
+            np.add.at(acc[ty]['wgE'],k[ok],(ww*et/np.where(inv_sc>0,inv_sc,1))[ok]); np.add.at(acc[ty]['w'],k[ok],ww[ok]); np.add.at(acc[ty]['n'],k[ok],1)
         print(f"  lenses {min(i0+chunk,len(zl)):,}/{len(zl):,}",flush=True)
+    KG_M2_PER_MSUN_PC2=Msun/(3.0857e16)**2   # 2.0887e-3 kg/m^2 per Msun/pc^2
+    cen=np.sqrt(gbar_edges[:-1]*gbar_edges[1:])
+    # validation targets: the released Fig-8 split profiles (bias-corrected)
+    B=os.path.join(D,'brouwer2021_rar')
+    try:
+        rel={0:np.loadtxt(os.path.join(B,'Fig-8_RAR-KiDS-isolated_Colorbin_1.txt')),
+             1:np.loadtxt(os.path.join(B,'Fig-8_RAR-KiDS-isolated_Colorbin_2.txt'))}
+    except Exception: rel=None
     for ty,lab in ((0,'late'),(1,'early')):
-        esd=acc[ty]['wgE']/np.maximum(acc[ty]['w'],1e-30)/ (Mpc/3.0857e16)**0  # Msun/Mpc^2 -> /pc^2: /1e12
-        print(f"\n{lab}: ESD_t (Msun/pc^2) per g_bar bin:")
-        print(np.array2string(esd/1e12,precision=3))
+        esd=acc[ty]['wgE']/np.maximum(acc[ty]['w'],1e-300)/KG_M2_PER_MSUN_PC2   # -> Msun/pc^2
+        print(f"\n{lab}: g_bar-bin centre | OUR ESD_t (Msun/pc^2) | released Brouwer (bias-corr) | ratio")
+        for k in range(15):
+            r=rel[ty][k,1]/rel[ty][k,4] if rel is not None else np.nan
+            print(f"  {cen[k]:.2e} | {esd[k]:10.3f} | {r:10.3f} | {esd[k]/r if r else np.nan:6.2f}")
     np.savez(os.path.join(D,'lr_esd_remeasured.npz'),**{f"{k}_{t}":acc[t][k] for t in (0,1) for k in acc[t]})
-    print("-> wrote lr_esd_remeasured.npz; NEXT: validate point-by-point vs brouwer2021_rar/Fig-8 profiles before ANY sigma is computed.")
+    print("-> wrote lr_esd_remeasured.npz. Validation gate: ratios ~1 (within ~20-30%) across bins before ANY sigma is computed.")
 
 if __name__=="__main__":
     ap=argparse.ArgumentParser(); ap.add_argument('--stage',choices=['lens','stack'],required=True)
