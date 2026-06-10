@@ -51,8 +51,19 @@ independently motivated and would itself need to be ~M_gas=M\* differential to w
 - **a₀-independent:** the split is type-dependence at *fixed g_bar* (the released x-axis), so it does not involve a₀ at all —
   no binning-scale freedom to appeal to (cf. the WB note's a₀-insensitivity check, here automatic).
 
+## Sérsic-split cross-check (run 2026-06-10, `lr_sersic_crosscheck.py`) — both-ways, moderates the verdict
+The second independent morphology axis (threshold n = 2.0, recovered from the covariance bin-edges, as u−r = 2.5 was):
+**baseline 5.8σ (χ²=69.1/15), early above late in 15/15 bins, +0.185 dex** — the split's *existence and direction* are
+**classification-robust** (both proxies, all bins). **But the conversion-differential erosion is axis-dependent:** the same
+physical (C_early, C_late) = (3.53, 4.33) that leaves u−r at 5.0σ leaves Sérsic at **2.1σ** (aggressive → 0.6σ) — and the
+n-split is precisely the axis where the conversion systematic is most directly motivated (Sérsic index *is* concentration).
+Gas axis a fortiori: closing the Sérsic split needs differential M_gas/M\* ≈ 1.47 (> the u−r 1.09), which eROSITA disfavours.
+**Per-axis verdict: u−r = Outcome A (hardens, 5.0σ surviving); Sérsic = Outcome C (partial survival, ~2σ residual,
+conversion-limited).** Referee-grade summary line: *the early/late RAR split survives the type-differential ESD→g_obs
+conversion systematic at 5.0σ (u−r) / 2.1σ (Sérsic).* Next refinement (not run): per-class C from the actual R/r_s
+distributions in the lens catalog — the bracket may be generous to u−r and conservative to Sérsic, or vice versa; noted both ways.
+
 ## What remains (does not change the sign, may change the magnitude)
-- **Sérsic split** (`Fig-8_..._Sersicbin_1/2`) as the second axis — run as a cross-check (Brouwer report 6σ per split).
 - **Satellite-fraction (Axis 3)** and **full sphericity/profile (Axis 4)** beyond the C-bracket — secondary; the isolation cut
   bounds satellites, and Axis 1 is the leading conversion term.
 - **Independent shear re-measurement** (the 16 GB SOM-gold stack) — validates the released profiles from scratch; demoted to
