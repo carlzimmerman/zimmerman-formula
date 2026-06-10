@@ -1,0 +1,239 @@
+
+================================================================================================
+[A1] sympy: Deser-Levin worldline in the dS4 embedding; Z(s) pullback; KMS periodicity
+================================================================================================
+  X.X = H**(-2)   (must be 1/H^2)      -> OK
+  u.u = -1   (must be -1)         -> OK
+  A.A = a**2   (must be a^2: proper acceleration) -> OK
+  Z(s) = H^2 X(tau).X(tau-s) = (H**2*cosh(s*sqrt(H**2 + a**2)) + a**2)/(H**2 + a**2)
+  Z(s) == (H^2 cosh(kappa s) + a^2)/kappa^2      -> OK
+  1 - Z(s) == -2(H^2/kappa^2) sinh^2(kappa s/2)  -> OK
+  => hypergeometric argument w = (1+Z)/2 = 1 + beta sinh^2(kappa s/2), beta = H^2/kappa^2:
+     the pullback depends on TWO invariants (kappa, beta), not kappa alone.
+  KMS geometric periodicity Z(s + 2 pi i/kappa) - Z(s) = 0  -> OK (period 2pi/kappa for EVERY mass)
+
+================================================================================================
+[A2] sympy: conformal point reduces to the Deser-Levin kernel; tail coefficient (M^2-2H^2)/8pi
+================================================================================================
+  Gamma(2)Gamma(1) 2F1(2,1;2;w) = 1/(1 - w)   -> OK
+  conformal pullback W(s) = -(H**2 + a**2)/(8*pi**2*(cosh(s*sqrt(H**2 + a**2)) - 1))
+  == -kappa^2/(16 pi^2 sinh^2(kappa s/2)) (Deser-Levin thermal kernel, kappa-ONLY) -> OK
+  tail coefficient (H^2/8pi)(1/4 - nu^2) = (-2*H**2 + M**2)/(8*pi)  -> OK: (M^2-2H^2)/(8pi), zero IFF M^2 = 2H^2 (conformal)
+
+================================================================================================
+[B1] discontinuity identity: Im 2F1(h+,h-;2;x-i0) = pi(1/4-nu^2)/(Gam(h+)Gam(h-)) * 2F1(h+,h-;2;1-x)
+================================================================================================
+  (the timelike cut x>1; boundary value from BELOW = Wightman ordering s-i*eps, s>0)
+          nu        x      Im F(x-i d), d=1e-12                prediction     rel.err
+        0.30      1.3        4.423100051104e-01        4.423100051240e-01     3.1e-11
+        0.30      3.0        1.763116830983e-01        1.763116830986e-01     1.7e-12
+        0.30     10.0        4.532389551043e-02        4.532389551045e-02     2.6e-13
+        0.30    100.0        3.102472265937e-03        3.102472265937e-03     1.8e-14
+        0.90      1.3       -7.891253121557e-01       -7.891253121508e-01     6.3e-12
+        0.90      3.0       -4.469405525994e-01       -4.469405525994e-01     1.6e-13
+        0.90     10.0       -2.071120001365e-01       -2.071120001365e-01     2.2e-14
+        0.90    100.0       -5.085796499405e-02       -5.085796499405e-02     2.0e-15
+        1.45      1.3       -1.535477335047e-01       -1.535477335046e-01     8.5e-13
+        1.45      3.0       -1.457128844684e-01       -1.457128844684e-01     1.2e-13
+        1.45     10.0       -1.364131186510e-01       -1.364131186510e-01     3.3e-14
+        1.45    100.0       -1.213061837572e-01       -1.213061837572e-01     3.2e-15
+       0.70i      1.3        3.166868217335e+00        3.166868217361e+00     8.3e-12
+       0.70i      3.0        9.002702181004e-01        9.002702181008e-01     4.8e-13
+       0.70i     10.0        1.013652907356e-01        1.013652907356e-01     3.7e-14
+       0.70i    100.0       -2.315721955238e-03       -2.315721955238e-03     2.5e-14
+       2.50i      1.3        3.351389141506e+02        3.351389141514e+02     2.4e-12
+       2.50i      3.0       -4.366153115531e+01       -4.366153115534e+01     7.7e-13
+       2.50i     10.0        5.091747608807e+00        5.091747608807e+00     1.6e-13
+       2.50i    100.0        1.783392484768e-01        1.783392484768e-01     2.2e-14
+  delta -> 0 convergence at nu=0.9, x=3:
+    delta=1e-06:  rel.err = 1.63e-07
+    delta=1e-09:  rel.err = 1.63e-10
+    delta=1e-12:  rel.err = 1.63e-13
+  degenerate-case identity 2F1~(a,b;0;y) = a b y 2F1(a+1,b+1;2;y): rel.err = 4.5e-08  (c->0 limit, c=1e-7)
+
+================================================================================================
+[B2] closed-form tail vs direct boundary value 2 Im W_BD(s - i eps): two independent routes
+================================================================================================
+  complementary m=0.8, (a,H)=(0.6,0.8)
+    s= 0.4:  2 Im W(s-ieps) = -2.514144800047e-02   T_closed = -2.514144784643e-02   rel.diff = 6.1e-09
+    s= 1.0:  2 Im W(s-ieps) = -2.352869802618e-02   T_closed = -2.352869801795e-02   rel.diff = 3.5e-10
+    s= 2.5:  2 Im W(s-ieps) = -1.619341544607e-02   T_closed = -1.619341544612e-02   rel.diff = 3.2e-12
+  principal     m=2.0, (a,H)=(0.6,0.8)  [m/H=2.5, nu=2i]
+    s= 0.4:  2 Im W(s-ieps) = +9.982689412890e-02   T_closed = +9.982689430703e-02   rel.diff = 1.8e-09
+    s= 1.0:  2 Im W(s-ieps) = +6.351448400623e-02   T_closed = +6.351448402252e-02   rel.diff = 2.6e-10
+    s= 2.5:  2 Im W(s-ieps) = -3.514314869564e-03   T_closed = -3.514314871081e-03   rel.diff = 4.3e-10
+  complementary m=0.5, (a,H)=(0.0,1.0)  [geodesic]
+    s= 0.4:  2 Im W(s-ieps) = -6.928726171413e-02   T_closed = -6.928726156721e-02   rel.diff = 2.1e-09
+    s= 1.0:  2 Im W(s-ieps) = -6.763682829246e-02   T_closed = -6.763682828726e-02   rel.diff = 7.7e-11
+    s= 2.5:  2 Im W(s-ieps) = -6.064981117610e-02   T_closed = -6.064981117786e-02   rel.diff = 2.9e-11
+  principal     m=2.0, (a,H)=(1.5,0.9)
+    s= 0.4:  2 Im W(s-ieps) = +8.718781200069e-02   T_closed = +8.718781217661e-02   rel.diff = 2.0e-09
+    s= 1.0:  2 Im W(s-ieps) = +5.162921760777e-02   T_closed = +5.162921762300e-02   rel.diff = 2.9e-10
+    s= 2.5:  2 Im W(s-ieps) = -1.811024341330e-03   T_closed = -1.811024341898e-03   rel.diff = 3.1e-10
+
+================================================================================================
+[B3] distributional check: INT C_eps(s) f(s) ds  ->  -(1/2pi) f'(0) + INT T(s) f(s) ds (coefficient of i)
+================================================================================================
+  CONFORMAL ANCHOR (M^2=2H^2 via nu=1/2 field) at (a,H)=(0.6,0.8)
+    -(1/2pi) f'(0) = -0.159154943    tail integral = +0.000000000    TARGET = -0.159154943
+    eps=4e-03:  action = -0.157724516
+    eps=2e-03:  action = -0.158437831
+    eps=1e-03:  action = -0.158795911
+    Richardson(eps->0) = -0.159154939   |extr - target| = 3.81e-09  rel = 2.4e-08
+  massive complementary m=1.0, (a,H)=(0.6,0.8)
+    -(1/2pi) f'(0) = -0.159154943    tail integral = -0.009915537    TARGET = -0.169070480
+    eps=4e-03:  action = -0.167586004
+    eps=2e-03:  action = -0.168326295
+    eps=1e-03:  action = -0.168697899
+    Richardson(eps->0) = -0.169070476   |extr - target| = 3.88e-09  rel = 2.3e-08
+  massive principal     m=2.0, (a,H)=(0.6,0.8)
+    -(1/2pi) f'(0) = -0.159154943    tail integral = +0.069915802    TARGET = -0.089239142
+    eps=4e-03:  action = -0.088288684
+    eps=2e-03:  action = -0.088762504
+    eps=1e-03:  action = -0.089000469
+    Richardson(eps->0) = -0.089239138   |extr - target| = 3.04e-09  rel = 3.4e-08
+
+================================================================================================
+[C1] small-mass expansion: T(s) = -(H^2/4pi) + (m^2/8pi)[1 - (2/3) g(y)] + O(m^4)
+================================================================================================
+  g(y) = y/(2(1-y)) - ln(1-y),  y = -(H^2/kappa^2) sinh^2(kappa s/2)  [xi=0: M=m]
+  probe (a,H)=(0.6,0.8), s=1.3:  y = -0.310693,  g(y) = -0.389078
+       m       (F-1)/h_-    -> g(y)?           T_exact       T_smallmass     abs.err
+    0.20     -0.38527008   -0.389078  -4.8939233678e-02  -4.8925207832e-02    1.40e-05
+    0.10     -0.38812783   -0.389078  -5.0429366694e-02  -5.0428488300e-02    8.78e-07
+    0.05     -0.38884053   -0.389078  -5.0804363345e-02  -5.0804308417e-02    5.49e-08
+  error scaling err(m)/err(m/2) = 15.97, 15.99  (O(m^4) predicts ~16)
+  secular regime s >> 1/kappa (still m<<H): g -> -1/2 - kappa s - ln(beta/4):
+    T ~ -(H^2/4pi) + (m^2/8pi)[4/3 + (2/3)(kappa s + ln(beta/4))]
+    -> the slope offset carries ln(beta) = ln(H^2/kappa^2): EXPLICIT non-kappa structure;
+       valid until kappa s ~ 3H^2/m^2, beyond which the exact tail decays as exp(-h_- kappa s).
+
+================================================================================================
+[C2] sympy small-s series of the tail SHAPE: trajectory (a^2) enters at s^4
+================================================================================================
+  2F1(h+,h-;2;y(s)) = 1 + (-M2/8) s^2 + (-M2*(-2*H2 - M2 + 2*a2)/192) s^4 + O(s^6)
+  s^2 coefficient = -M^2/8        -> OK (mass-only: NO trajectory info at s^2)
+  s^4 coefficient = (M^2/192)(M^2+2H^2-2a^2) -> OK
+  => T(s) = (M^2-2H^2)/(8pi) sgn(s) [1 - M^2 s^2/8 + (M^2/192)(M^2+2H^2-2a^2) s^4 + ...]
+     STEP   T(0+) = (M^2-2H^2)/8pi = (M^2-2kappa^2+2a^2)/8pi:  d T(0+)/d(a^2) |_kappa = 1/(4pi)
+            (exact, mass-independent) -- the LEADING non-kappa structure, at order s^0;
+     SHAPE  the a^2 dependence enters at s^4 with coefficient -(M^2/96) a^2 * pref.
+     In (kappa, H): s^4 coeff = (M^2/192)(M^2+4H^2-2kappa^2): explicit H^2 at fixed kappa.
+
+================================================================================================
+[C3] large-s asymptotics: T -> pref*[A_- (-y)^{-h_-} + A_+ (-y)^{-h_+}], rates (3/2 -+ nu) kappa
+================================================================================================
+  complementary nu=0.8: m=H sqrt(1.61), (a,H)=(0.6,0.8)
+    kappa*s= 12.0:  T_exact = -6.8732648201e-06   T_asym = -6.8733571970e-06   rel.err = 1.3e-05
+    kappa*s= 20.0:  T_exact = -2.5416520571e-08   T_asym = -2.5416520686e-08   rel.err = 4.5e-09
+    kappa*s= 30.0:  T_exact = -2.3176866774e-11   T_asym = -2.3176866774e-11   rel.err = 2.0e-13
+  principal nu=2i:      m=2.5H,         (a,H)=(0.6,0.8)
+    kappa*s= 12.0:  T_exact = -2.4445268781e-09   T_asym = -2.4444304958e-09   rel.err = 3.9e-05
+    kappa*s= 20.0:  T_exact = +2.2066381578e-14   T_asym = +2.2066381518e-14   rel.err = 2.7e-09
+    kappa*s= 30.0:  T_exact = +8.6839648171e-21   T_asym = +8.6839648171e-21   rel.err = 6.8e-13
+  decay rates: complementary (3/2-nu)kappa [slow for light fields: h_- ~ m^2/(3H^2)];
+  principal: e^{-3 kappa s/2} times ringing at mu*kappa, mu=sqrt(m^2/H^2-9/4); at a=0 these are
+  the dS quasinormal rates H(Delta_-+n) [Lopez-Ortega gr-qc/0605027]. AMPLITUDE carries
+  (beta/4)^{-h_-} and (principal) phase mu*ln(beta): non-kappa structure also at late times.
+
+================================================================================================
+[D1] THE GATE TABLE: fixed kappa = 1, fixed field m = 0.5 (xi = 0); vary (a,H) with a^2+H^2 = 1
+================================================================================================
+  agentF's lemma (conformal field): C(s) IDENTICAL for every (a,H) -- the same (i/2pi)delta'(s).
+  Massive field: tail T(s) tabulated below in units 1/(8pi), i.e. entries are 8pi*T(s).
+
+       a       H         series    nu/mu   8piT(0+)        s=0.5        s=1.0        s=2.0        s=4.0        s=8.0
+   0.000  1.0000  complementary    1.414    -1.7500  -1.7366e+00  -1.6999e+00  -1.5872e+00  -1.3424e+00  -9.5258e-01
+   0.600  0.8000  complementary    1.364    -1.0300  -1.0220e+00  -9.9891e-01  -9.1829e-01  -7.1742e-01  -4.1700e-01
+   0.800  0.6000  complementary    1.247    -0.4700  -4.6632e-01  -4.5517e-01  -4.1085e-01  -2.7734e-01  -1.0270e-01
+   0.950  0.3122      principal    0.560     0.0550   5.4564e-02   5.3186e-02   4.6731e-02   1.8264e-02   2.3809e-05
+   0.999  0.0447      principal   11.082     0.2460   2.4405e-01   2.3775e-01   2.0598e-01   1.3777e-02  -8.5639e-05
+   1.000  0.0000  flat (Bessel)        -     0.2500   2.4801e-01   2.4161e-01   2.0925e-01   1.1614e-02   2.7512e-03
+
+  SPREAD ACROSS THE FAMILY AT FIXED kappa = 1 (the gate quantity):
+    s= 0.5:  min = -1.737e+00  max = +2.480e-01  spread = 1.985e+00  dyn.range max|T|/min|T| = 3.2e+01  SIGN FLIP
+    s= 1.0:  min = -1.700e+00  max = +2.416e-01  spread = 1.942e+00  dyn.range max|T|/min|T| = 3.2e+01  SIGN FLIP
+    s= 2.0:  min = -1.587e+00  max = +2.093e-01  spread = 1.796e+00  dyn.range max|T|/min|T| = 3.4e+01  SIGN FLIP
+    s= 4.0:  min = -1.342e+00  max = +1.826e-02  spread = 1.361e+00  dyn.range max|T|/min|T| = 1.2e+02  SIGN FLIP
+    s= 8.0:  min = -9.526e-01  max = +2.751e-03  spread = 9.553e-01  dyn.range max|T|/min|T| = 4.0e+04  SIGN FLIP
+  step column: 8piT(0+) = m^2-2H^2 runs from -1.75 (geodesic) to +0.25 (flat): sign flip ON the family.
+
+  CONFORMAL CONTROL on the same family (must vanish: Huygens):
+    (a,H)=(0.00,1.000):  2 Im W_conf(s=1 - i*1e-10) = -1.01e-11  (O(eps): pure contact, NO tail)
+    (a,H)=(0.60,0.800):  2 Im W_conf(s=1 - i*1e-10) = -1.01e-11  (O(eps): pure contact, NO tail)
+    (a,H)=(0.80,0.600):  2 Im W_conf(s=1 - i*1e-10) = -1.01e-11  (O(eps): pure contact, NO tail)
+
+  WITHIN ONE UNIVERSE (fixed H = 0.6, m = 0.5): tail at s = 1 vs a  [conformal field: identically 0]:
+    a =  0.0:  8pi T(1) = -4.558810e-01
+    a =  0.8:  8pi T(1) = -4.551697e-01
+    a =  2.0:  8pi T(1) = -4.510114e-01
+    a =  5.0:  8pi T(1) = -4.072595e-01
+
+================================================================================================
+[D2] flat-space validation: three independent routes
+================================================================================================
+  route 1 (dS closed form, H->0): vs route 0 (Bessel J1 closed form), (a,H)=(0.99995,0.01), m=1:
+    s= 0.7:  T_dS = +3.72964853e-02   T_flatJ1 = +3.73039253e-02   rel.diff = 2.0e-04  (O(H^2)=1e-04)
+    s= 1.5:  T_dS = +2.77645268e-02   T_flatJ1 = +2.77695851e-02   rel.diff = 1.8e-04  (O(H^2)=1e-04)
+    s= 3.0:  T_dS = -2.95374949e-03   T_flatJ1 = -2.95978138e-03   rel.diff = 2.0e-03  (O(H^2)=1e-04)
+  route 2 (independent special function): Wightman K1-pullback boundary value, Rindler a=1, m=1:
+    s= 0.7:  2 Im W_K1 = +3.73039253e-02   T_flatJ1 = +3.73039253e-02   rel.diff = 9.1e-12
+    s= 1.5:  2 Im W_K1 = +2.77695851e-02   T_flatJ1 = +2.77695851e-02   rel.diff = 1.9e-12
+    s= 3.0:  2 Im W_K1 = -2.95978138e-03   T_flatJ1 = -2.95978138e-03   rel.diff = 4.2e-12
+  route 3 (mode integral, inertial): -(1/4pi^2) INT k^2 e^{-eta k} sin(w t)/w dk -> m J1(mt)/(8 pi t):
+    eta=0.100:  I(eta) = +1.05390381e-02
+    eta=0.050:  I(eta) = +1.10171354e-02
+    eta=0.025:  I(eta) = +1.12381740e-02
+    Richardson(eta->0) = +1.14472058e-02   target Im W = +1.14735755e-02   rel.err = 2.3e-03
+
+================================================================================================
+[D3] minimally coupled massless limit (xi=0, m->0): T -> -(H^2/4pi) sgn(s): a-BLIND, H-AWARE
+================================================================================================
+  The commutator is STATE-INDEPENDENT (Pauli-Jordan; canonical), so the m->0 limit is clean even
+  though no dS-invariant Fock vacuum exists at m=0 (Allen 1985): the IR pathology (the divergent
+  constant zero-mode ~ 3H^4/(8pi^2 m^2) in W) is symmetric-part-only and cancels in C(s).
+  Limit check at (a,H)=(0.6,0.8), target -H^2/4pi = -5.09295818e-02:
+    m= 0.10:  max_s |T - (-H^2/4pi)| over s in {0.5,1,2,5} = 1.36e-03   (-> 0 like m^2)
+    m= 0.03:  max_s |T - (-H^2/4pi)| over s in {0.5,1,2,5} = 1.23e-04   (-> 0 like m^2)
+    m= 0.01:  max_s |T - (-H^2/4pi)| over s in {0.5,1,2,5} = 1.37e-05   (-> 0 like m^2)
+  a-BLINDNESS at fixed H (the residual within-universe trajectory-blindness of the m->0 endpoint):
+    a= 0.0:  T(1) = -5.0929535950e-02   diff from a=0: 0.0e+00
+    a= 0.6:  T(1) = -5.0929535787e-02   diff from a=0: 1.6e-10
+    a= 3.0:  T(1) = -5.0929530933e-02   diff from a=0: 5.0e-09
+  H-AWARENESS at fixed kappa: kappa=1 pairs (a,H)=(0,1) vs (0.8,0.6) vs flat:
+    (a,H)=(0.0,1.0):  T(1) = -7.95774226e-02  (-> -H^2/4pi = -7.95774715e-02)
+    (a,H)=(0.8,0.6):  T(1) = -2.86478463e-02  (-> -H^2/4pi = -2.86478898e-02)
+    flat (1,0):       T(1) = +3.97887304e-08  (-> 0: massless flat = Huygens)
+  => 2F1(3,0;2;y) == 1: the m->0 tail is the s-CONSTANT -(H^2/4pi)sgn(s); spectral density
+     rho(w) = w/2pi + H^2/(2pi w): the famous dS 1/w IR enhancement, a-independent at fixed H.
+     Retarded tail = +H^2/4pi inside the cone: matches the known MMC dS Green function
+     [Burko-Harte-Poisson gr-qc/0201020]. Order of limits: (m->0, H->0) do not commute.
+
+================================================================================================
+[D4] KMS at T = kappa/2pi for EVERY mass: W(s - 2pi i/kappa + i eta) -> W(-s - i eta)
+================================================================================================
+  complementary m=0.8: eta=1e-03:  |W(s-i(beta-eta)) - W(-s-i eta)|/|W| = 4.6e-25
+  complementary m=0.8: eta=1e-06:  |W(s-i(beta-eta)) - W(-s-i eta)|/|W| = 9.3e-26
+  principal m=2.0: eta=1e-03:  |W(s-i(beta-eta)) - W(-s-i eta)|/|W| = 3.5e-25
+  principal m=2.0: eta=1e-06:  |W(s-i(beta-eta)) - W(-s-i eta)|/|W| = 6.9e-26
+  => Deser-Levin temperature kappa/2pi is mass-INDEPENDENT (geometric: Z has imaginary period
+     2pi/kappa). What the tail changes is NOT the temperature but the SPECTRAL FUNCTION, which
+     now depends on (kappa, beta) = (kappa, H^2/kappa^2) instead of being universal.
+
+================================================================================================
+[GATE] DECISION SUMMARY
+================================================================================================
+  C(s) = (i/2pi) delta'(s) + (i/8pi)(M^2-2H^2) sgn(s) 2F1(3/2+nu, 3/2-nu; 2; -(H^2/kappa^2) sinh^2(kappa|s|/2))
+  - conformal anchor (M^2 = 2H^2): tail coefficient EXACTLY zero -> (i/2pi)delta'(s) reproduced  [A2,B3]
+  - massive scalar, BOTH series: the tail depends on (kappa, beta=H^2/kappa^2), i.e. on a and H
+    SEPARATELY. At fixed kappa = 1 (m = 0.5) the tail spans order-1 ranges WITH a sign flip at every
+    s probed, and a dynamic range ~4e4 at s = 8, across the (a,H) family  [D1]. Trajectory-blindness
+    is BROKEN.
+  - leading non-kappa structure: step T(0+) = (M^2-2H^2)/8pi with d/d(a^2)|_kappa = 1/4pi exactly;
+    shape: a^2 enters at s^4; late time: rates (3/2 -+ nu)kappa with beta-dependent amplitude/phase.
+  - the m->0 minimal endpoint is the degenerate boundary: constant tail -(H^2/4pi)sgn(s): H-aware but
+    a-blind within a fixed universe (and its noise sector is the Allen-pathological one).
+  => GATE-OPENS: dissipation on the Deser-Levin family DOES carry (a,H) information beyond kappa for
+     every M^2 not in {0, 2H^2}. agentF's all-orders census does NOT extend to non-Huygens fields:
+     its premise (universal contact dissipation kernel) is false for every m > 0.
+done.
