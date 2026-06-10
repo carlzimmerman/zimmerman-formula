@@ -1,0 +1,202 @@
+==============================================================================
+PART A: geometry + slot-gradient identities (independent re-run + slot 2)
+==============================================================================
+[A1] X.X-1/H^2, u.u+1, a.a-a^2, e.e-1, e.u, e.X = 0 , 0 , 0 , 0 , 0 , 0
+[A2] Z - (H^2 cosh(ks)+a^2)/k^2 = 0
+[A2] (1-Z) + (2H^2/k^2) sinh^2(ks/2) = 0
+[A3] W_pullback - DeserLevin(-k^2/16pi^2/sinh^2(ks/2)) = 0   [thermal at T_eff = kappa/2pi]
+[A4] e(tau).X(tau-s)   - (a/k^2)(cosh ks - 1) = 0
+[A4] e(tau-s).X(tau)   - (a/k^2)(cosh ks - 1) = 0
+     => BOTH slot contractions equal the SAME even function: the
+        gradient identity holds at EITHER vertex, for EITHER ordering.
+[A4] *** IDENTITY (slot 1) ***  e.gradW + a W = 0
+[A4] *** IDENTITY (slot 2) ***  e'.gradW + a W = 0
+     => with W(s) = <phi(z(tau)) phi(z(tau-s))>:
+        <phi' d_e phi> = -a W(-s),  <d_e phi  phi'> = -a W(s):
+        each longitudinal-gradient vertex carries EXACTLY one factor a;
+        everything else is a function of kappa only.
+
+==============================================================================
+PART B: THE NEW LEMMA — the pulled-back field COMMUTATOR is (i/2pi) d'(s),
+        EXACTLY, INDEPENDENT of (a,H): dissipation is trajectory-blind
+==============================================================================
+[B1] Laurent of csch^2(x) about 0: x**6/675 - 2*x**4/189 + x**2/15 - 1/3 + x**(-2)
+     W_kappa(s -+ i eps) = -(1/4pi^2)(s -+ i eps)^{-2}  +  [EVEN ANALYTIC
+     series in s with kappa-dependent coefficients].  The analytic part is
+     CONTINUOUS at s=0, so it cancels between the two i*eps prescriptions:
+       C(s) = W(s-i eps) - W(s+i eps)
+            = -(1/4pi^2)[(s-i eps)^{-2} - (s+i eps)^{-2}]  ->  (i/2pi) d'(s).
+     ALL kappa-dependence cancels: the commutator kernel — hence the exact
+     dissipation kernel and the resummed gamma = lambda^2/8pi — is the SAME
+     for every (a,H).  [FT check: FT[(i/2pi) d'] = w/2pi = S(w)-S(-w). OK]
+[B2] numeric: INT C_eps(s) phi(s) ds  vs  -(i/2pi) phi'(0)  [phi = exp(-s^2)cos(0.7s+0.3)]
+     kappa=  0.5 eps=1e-03:  INT = 0.0000000000+0.0328462561j   target = 0.0000000000+0.0329234512j
+     kappa=  0.5 eps=1e-04:  INT = 0.0000000000+0.0329157221j   target = 0.0000000000+0.0329234512j
+     kappa=  0.5 eps=1e-05:  INT = 0.0000000000+0.0329226782j   target = 0.0000000000+0.0329234512j
+     kappa=  2.0 eps=1e-03:  INT = 0.0000000000+0.0328454929j   target = 0.0000000000+0.0329234512j
+     kappa=  2.0 eps=1e-04:  INT = 0.0000000000+0.0329156457j   target = 0.0000000000+0.0329234512j
+     kappa=  2.0 eps=1e-05:  INT = 0.0000000000+0.0329226705j   target = 0.0000000000+0.0329234512j
+     kappa= 10.0 eps=1e-03:  INT = 0.0000000000+0.0327977822j   target = 0.0000000000+0.0329234512j
+     kappa= 10.0 eps=1e-04:  INT = 0.0000000000+0.0329108747j   target = 0.0000000000+0.0329234512j
+     kappa= 10.0 eps=1e-05:  INT = 0.0000000000+0.0329221934j   target = 0.0000000000+0.0329234512j
+     => kappa-INDEPENDENT and -> (i/2pi) d'(s): LEMMA verified.
+     CONSEQUENCE (the loophole-killer): in the exact quantum Langevin
+     equation  Qdd + 2 gamma Qd + Omega_R^2 Q = -lambda phi_in(z(tau)),
+     gamma = lambda^2/(8 pi) and Omega_R are (a,H)-INDEPENDENT at every
+     coupling; the ONLY (a,H)-dependence of the exact interacting steady
+     state enters through the NOISE correlator W_kappa = kappa-only.
+     Non-perturbative resummation changes the VALUE of the response, not
+     its kappa-only character.
+
+==============================================================================
+PART C: the no-go ODE (independent re-run) — now binding the EXACT G
+==============================================================================
+[C1] G + (a^2/kappa) G' = C a/(2pi kappa)  =>  G = (C*kappa/2 + pi*C1)/(pi*sqrt(-H**2 + kappa**2))
+     Every solution knows H explicitly and has a pole at kappa = H (a=0).
+     The EXACT resummed G(kappa; Omega_R, gamma) computed below is built
+     solely from kappa-thermal correlators and (a,H)-independent (gamma,
+     Omega_R): it cannot satisfy this ODE unless C = 0 (ordinary inertia).
+     => the susceptibility structure m_resp ∝ a/kappa is excluded at
+        EVERY coupling strength in the Gaussian class, not just at
+        finite order: THE NON-PERTURBATIVE LOOPHOLE CLOSES HERE.
+
+==============================================================================
+PART D: exact resummed numerics
+==============================================================================
+[D1] two independent routes for the EXACT G (resummed), spectral vs time:
+     kap= 2.0 Om=1.0 gam= 0.1:  spec +8.47773525e-03   time +8.47773525e-03   ratio 1.0000000
+     kap= 2.0 Om=1.0 gam= 1.0:  spec +4.99103730e-03   time +4.99103730e-03   ratio 1.0000000
+     kap= 0.5 Om=2.0 gam= 5.0:  spec +1.18640598e-04   time +1.18640560e-04   ratio 1.0000003
+     kap= 8.0 Om=1.0 gam= 3.0:  spec +1.17577827e-02   time +1.17539751e-02   ratio 1.0003239
+
+[D2] WEAK-COUPLING ANCHOR: gamma->0 must reproduce agentB's lambda^2 result
+     map (mu- vs Q-normalization): G -> G_th^B/(2 Omega); low-T closed form
+     kap^2/(48 pi^2 Om^2)  [= his T^2/(6 Om) coefficient 1/6, mapped]
+     kap= 2.0: G(gam=1e-3) = +9.218635e-03   G_th^B/2Om = +9.226834e-03   ratio = 0.99911
+     kap= 0.3: G(gam=1e-3) = +1.917688e-04   G_th^B/2Om = +1.917688e-04   ratio = 1.00000
+     kap= 0.1: G(gam=1e-3) = +2.112979e-05   G_th^B/2Om = +2.112979e-05   ratio = 1.00000
+     low-T closed form at kap=0.1: kap^2/(48pi^2 Om^2) = +2.110858e-05  [compare line above]
+
+[D3] FDT/CANONICAL CONSISTENCY of the resummation (exact, all couplings):
+     Im<Q(s)Q(0)>_int = -h(s)/2  <=>  (2 gam/pi) INT_0^inf w |h~|^2 sin(ws) dw
+     = h(s)/2.  (Commutator is state/kappa-independent; this LOCKS
+     gamma = lambda^2/8pi: the canonical [Q,P]=i is preserved at all lambda.)
+     Om=1.0, gam=0.3, s=1.7:  lhs=+3.14336919e-01   h/2=+3.14337565e-01   ratio=0.999998
+     Om=1.0, gam=4.0, s=0.6:  lhs=+5.92394716e-02   h/2=+5.92398719e-02   ratio=0.999993
+
+[D4] STRONG COUPLING: G(kappa) across gamma/Omega = 1e-3 .. 1e2  (Omega=1)
+     [gamma = lambda^2/8pi: gamma/Omega >> 1 IS the non-perturbative regime]
+     gam\kap         0.1        0.3        1.0        3.0       10.0       30.0      100.0
+       0.001  +2.113e-05 +1.918e-04 +2.397e-03 +1.628e-02 +4.397e-02 +7.153e-02 +1.020e-01
+       0.010  +2.113e-05 +1.918e-04 +2.390e-03 +1.614e-02 +4.369e-02 +7.120e-02 +1.016e-01
+       0.100  +2.113e-05 +1.917e-04 +2.318e-03 +1.488e-02 +4.107e-02 +6.810e-02 +9.837e-02
+       1.000  +2.105e-05 +1.852e-04 +1.715e-03 +8.404e-03 +2.589e-02 +4.888e-02 +7.752e-02
+       3.000  +2.046e-05 +1.585e-04 +1.071e-03 +4.330e-03 +1.429e-02 +3.150e-02 +5.707e-02
+      10.000  +1.712e-05 +9.745e-05 +4.719e-04 +1.636e-03 +5.543e-03 +1.457e-02 +3.313e-02
+      30.000  +1.084e-05 +4.640e-05 +1.857e-04 +5.958e-04 +2.013e-03 +5.771e-03 +1.608e-02
+     100.000  +4.750e-06 +1.675e-05 +6.028e-05 +1.858e-04 +6.236e-04 +1.847e-03 +5.811e-03
+     high-kappa log-slope (kap 30->100), per coupling, vs 1/(4 pi^2) = 0.025330:
+       gam=   0.01:  slope = +0.025289   (ratio to 1/4pi^2: +0.9984)
+       gam=   1.00:  slope = +0.023789   (ratio to 1/4pi^2: +0.9391)
+       gam=  10.00:  slope = +0.015416   (ratio to 1/4pi^2: +0.6086)
+       gam= 100.00:  slope = +0.003292   (ratio to 1/4pi^2: +0.1300)
+     deep-kappa check, gam=10, kap 1000->3000: slope = +0.024834  (ratio to 1/4pi^2: +0.9804)
+     [the universal +log asymptote sets in for kappa >> gamma, as expected:
+      the strong-coupling slope deficit at kap<=100 is pre-asymptotic]
+     => at EVERY coupling probed: G > 0 and finite at all kappa, rising to
+        the universal +log growth (bath ADDS inertia: anti-MOND direction).
+        Strong coupling ATTENUATES the dressing (G falls with gamma at
+        fixed kappa) but never flips it into a deficit in the gapped class.
+        And G is kappa-only BY CONSTRUCTION (Part B): the census structure
+        -a[G(kappa)] is EXACT at strong coupling, not a perturbative artifact.
+
+[D5] ADIABATIC SUSCEPTIBILITY m_resp = G + (a^2/kappa) G'  vs  F4 target
+     mu_F4 = x/sqrt(1+x^2), x = a/H  (dS, H=1; induced part shown;
+     total inertia = m_bare + lam^2[m_resp_induced]).
+   --- Omega=2.0, gamma=0.02  [weak (gam/Om=0.01)] ---
+     x=a/H      m_resp_ind        mu_F4
+       0.001  +5.431523e-04      0.00100
+       0.100  +5.600057e-04      0.09950
+       0.500  +9.711064e-04      0.44721
+       1.000  +2.336024e-03      0.70711
+       2.000  +8.197734e-03      0.89443
+       5.000  +3.022359e-02      0.98058
+      20.000  +6.831541e-02      0.99875
+     a->0 floor: +5.431523e-04   (F4 needs m_eff -> 0: a NONZERO
+     kappa-only floor at every coupling; growing at large a vs mu->1)
+   --- Omega=2.0, gamma=2.00  [strong (gam/Om=1)] ---
+     x=a/H      m_resp_ind        mu_F4
+       0.001  +4.940761e-04      0.00100
+       0.100  +5.080136e-04      0.09950
+       0.500  +8.352480e-04      0.44721
+       1.000  +1.779560e-03      0.70711
+       2.000  +4.781979e-03      0.89443
+       5.000  +1.526028e-02      0.98058
+      20.000  +4.441600e-02      0.99875
+     a->0 floor: +4.940761e-04   (F4 needs m_eff -> 0: a NONZERO
+     kappa-only floor at every coupling; growing at large a vs mu->1)
+   --- Omega=2.0, gamma=20.00  [ultra-strong (gam/Om=10)] ---
+     x=a/H      m_resp_ind        mu_F4
+       0.001  +1.971540e-04      0.00100
+       0.100  +2.010540e-04      0.09950
+       0.500  +2.876319e-04      0.44721
+       1.000  +5.020875e-04      0.70711
+       2.000  +1.050214e-03      0.89443
+       5.000  +2.806773e-03      0.98058
+      20.000  +1.082605e-02      0.99875
+     a->0 floor: +1.971540e-04   (F4 needs m_eff -> 0: a NONZERO
+     kappa-only floor at every coupling; growing at large a vs mu->1)
+
+[D5b] FLAT SPACE (H=0, kappa=a, Unruh bath): induced m_resp = d(aG(a))/da
+      [F4 itself degenerates to ORDINARY inertia in flat space; the exact
+       Gaussian bath instead gives a log-growing thermal dressing >0 —
+       anti-MOND direction, no F4 structure either]
+      Om=2.0, gam= 0.02: m_resp_ind(a=0.5,2,10,50) = +4.0010e-04, +7.5617e-03, +4.9998e-02, +9.1801e-02
+      Om=2.0, gam= 2.00: m_resp_ind(a=0.5,2,10,50) = +3.8419e-04, +4.6092e-03, +2.8523e-02, +6.7047e-02
+
+[D6] BEST-AFFINE-MIMIC SCAN: min over (Omega,gamma) of the max deviation of
+     c0 + c1*m_resp_ind(x) from mu_F4(x) on x in [0.1, 30] (free affine
+     (c0,c1) = the most charitable reading; least-squares fit, raw result).
+     Om=  0.10 gam=   0.01:  max|dev| = 0.2537   (c0=+4.735e-02, c1=+7.383e+00)
+     Om=  0.30 gam=   0.01:  max|dev| = 0.2627   (c0=+2.271e-01, c1=+7.439e+00)
+     Om=  0.10 gam=   0.10:  max|dev| = 0.2702   (c0=+1.685e-01, c1=+7.687e+00)
+     Om=  0.30 gam=   0.10:  max|dev| = 0.2773   (c0=+2.666e-01, c1=+7.731e+00)
+     Om=  1.00 gam=   0.01:  max|dev| = 0.3210   (c0=+4.012e-01, c1=+7.838e+00)
+     Om=  1.00 gam=   0.10:  max|dev| = 0.3267   (c0=+4.069e-01, c1=+8.068e+00)
+     BEST max-deviation over the whole exact Gaussian class: 0.2537
+     (mu_F4 spans 0.0995 -> 0.9994 on this range: a ~ 25%-of-range miss; SPARC-grade shape fidelity is
+      %-level.  The exact class cannot even caricature the F4 shape.)
+
+[D7] HUNT FOR AN INERTIA-DEFICIT (MOND-direction) CORNER: the gapless,
+     strongly coupled detector (Omega_R -> 0, gamma large) — the corner
+     where the spectral weight sits maximally below resonance and the
+     negative (w > Omega) region of Re h~ dominates the bulk. RAW NUMBERS:
+     Om= 0.001, gam=  1.0:  G(kap=0.3,1,3,10,30) = +1.852e-03, +5.817e-03, +1.487e-02, +3.345e-02, +5.662e-02
+     Om= 0.001, gam= 10.0:  G(kap=0.3,1,3,10,30) = +1.895e-04, +6.280e-04, +1.852e-03, +5.817e-03, +1.487e-02
+     Om= 0.030, gam=  1.0:  G(kap=0.3,1,3,10,30) = +1.819e-03, +5.779e-03, +1.483e-02, +3.340e-02, +5.658e-02
+     Om= 0.200, gam=  3.0:  G(kap=0.3,1,3,10,30) = +5.372e-04, +1.931e-03, +5.673e-03, +1.597e-02, +3.328e-02
+     => NO inertia-deficit corner exists even here: the IR sliver of
+        Re h~ (>0 below Omega_R) plus the sum rule INT_0^inf Re h~ dw = 0
+        keep the thermal mass POSITIVE.  The exact Gaussian class is
+        anti-MOND at EVERY (Omega, gamma, kappa) probed — the bath only
+        ever ADDS inertia.  (Note the corner is IR-delicate anyway:
+        <Q^2> diverges as Omega_R -> 0 at fixed gamma.)
+
+[D8] the composite-vertex channel magnitude: Delta<Q^2>(kappa), kappa-only
+     (the self-field vertex renormalizes an a*Q^2 worldline operator; its
+      finite part is scheme-fixed; magnitude shown; STRUCTURE: a x kappa-only)
+     Om=2.0, gam= 0.02: Delta<Q^2>(kap=0.5,2,8) = +1.6796e-05, +1.2614e-03, +1.3258e-01
+     Om=2.0, gam= 2.00: Delta<Q^2>(kap=0.5,2,8) = +1.6380e-03, +2.3067e-02, +2.0680e-01
+
+==============================================================================
+RAW SUMMARY (no tuning anywhere):
+  - commutator pullback = (i/2pi) d'(s), kappa-INDEPENDENT (Part B lemma)
+    => exact dissipation/gamma trajectory-blind; exact steady state kappa-only
+  - exact resummed G(kappa; Omega, gamma): finite for all kappa, all gamma;
+    matches agentB at weak coupling; +log growth at high kappa (slope 1/4pi^2)
+  - m_resp = G + (a^2/kappa)G': NONZERO kappa-only floor at a->0 at every
+    coupling; F4's mu = a/kappa excluded by the Part-C ODE for the EXACT G
+  - best affine mimic of mu_F4 over the whole class: max|dev| printed above
+  - inertia-deficit corner hunt (gapless + strong coupling): see [D7] raw
+    numbers; in every case the response is kappa-only: NOT the F4 structure
+==============================================================================

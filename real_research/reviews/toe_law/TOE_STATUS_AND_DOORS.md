@@ -90,9 +90,12 @@ A(κ)+a²B(κ) with κ-only coefficients; matching dT_eff/da requires a G(κ) wi
 direction** (adds inertia at low a; MOND needs a deficit). The census extends to every finite order in λ. **F4 loses
 its λ²-mechanism candidacy** (the pre-registered kill condition fired). Raw coefficients: 1, 0, 1/6, 1/2π² — none is Z;
 the 1/6 vs 1/Z near-miss (3.5%) flagged as structurally meaningless. Priority search: genuine absence (the
-susceptibility form is unpublished — and now also mechanism-less). Named loopholes, not pursued tonight:
-non-perturbative regime (vanishing inertia is exactly where perturbation theory around m_bare must fail),
-minimally-coupled scalar (dS IR pathology breaks Deser-Levin), field-level realizations (Door II's hybrid).
+susceptibility form is unpublished — and now also mechanism-less). Named loopholes — **the non-perturbative one CLOSED same day (Door I-b, `agentF_nonpert_detector.md`):** the exactly
+solvable Gaussian detector gives the A(κ)+a²B(κ) form at ALL orders (new lemma: the pulled-back commutator is
+trajectory-blind, δ′(s), every κ-term cancels); the bath only ever ADDS inertia (G>0, five decades of coupling); the
+"perturbation theory must fail" intuition tested and FALSE. The unique bath-side escape remaining: **non-Huygens
+fields** (massive / minimally-coupled-in-dS, retarded tails → trajectory-dependent dissipation); plus extended
+detectors and the field-level hybrid (Door II). Composite point detectors do NOT escape.
 
 ## The honest post-swarm status of F4 (the Bohr-rule grade DOWNGRADES — say it plainly)
 F4 stands as a **kill-test-surviving effective shape**: deep-MOND ✓, Saturn radial ✓ (binding at hostile normalization),
