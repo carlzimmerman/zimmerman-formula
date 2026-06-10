@@ -28,9 +28,13 @@ and what does the framework's a₀ say?
 - The deep-MOND median ṽ rises modestly (0.56→0.65→0.82). Calibrated on the high-acceleration anchor, the data sit **~3σ above
   the flat-contamination Newtonian baseline** and **far below** the naive boost.
 - That 3σ excess is **fully absorbed** by a separation-dependent triple fraction (~0.16 in the deep bins) that *independently*
-  matches the measured super-escape → **the data do not require a boost.**
-- But it is **not a Newtonian win either**: the deepest bin (N=104) keeps a residual; a *correctly-scaled* mild framework boost
-  (~0.63–0.66) sits right on the reliable-bin data (0.647); and the framework's own integrated prediction is prior-sensitive.
+  matches the measured super-escape → **the data do not require a boost.** (Caveat: that absorption uses the Newtonian √2 escape
+  threshold; under the framework's EFE-suppressed ceiling 1.65 the same √2–1.65 pairs are boosted-bound, not triples — the
+  discriminator is hypothesis-laden, WB-F #1.)
+- But it is **not a Newtonian win either**: the deepest bin (N=104) keeps a residual — **but it is ≈1.7–2.4σ standalone, NOT
+  significant**; a *correctly-scaled* mild framework boost (~0.63–0.66) is **consistent with the reliable-bin data (0.647) under
+  the literature's orbital priors** (not "sits on" — the framework's integrated prediction is itself a-prior-sensitive, and that
+  prior-sensitivity weakens *everyone's* WB significances, the published 16σ and 5σ included).
 - **Boost ↔ contamination is intrinsically degenerate in the sky-projected DR3 observable.** Neither confirmed nor excluded.
 
 ## What would decide it

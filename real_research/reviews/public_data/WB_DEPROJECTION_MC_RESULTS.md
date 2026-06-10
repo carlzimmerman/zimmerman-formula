@@ -46,12 +46,22 @@ the deep bins (physically expected — wider pairs are more triple-contaminated)
 Reported in both directions, per the project rule:
 - **Not a boost (the honest near-null):** the reliable deep bin's 3σ excess is degenerate with — and fully absorbed by —
   separation-dependent contamination that the super-escape *independently* supports. The data do **not require** a boost.
-- **Not a Newtonian dismissal either:** (a) the deepest bin retains a residual over even generous contamination; (b) the real
-  limiter is the boost↔contamination **degeneracy**, not a decisive null; (c) a *correctly-computed* (mild, ~15–20%) framework
-  boost would predict deep median ≈0.63–0.66 — **strikingly close to the reliable-bin data (0.647)**. The framework is **NOT
-  excluded** by these wide binaries; it sits inside the degeneracy with Newton+contamination.
+- **Not a Newtonian dismissal either:** (a) the deepest bin (N=104) retains a residual over the calibrated Newton model —
+  **but quantify it: z ≈ 2.4σ vs nominal contamination, ≈1.7σ vs the generous (f_triple→0.16) contamination the data support,
+  i.e. NOT significant standalone**; (b) the real limiter is the boost↔contamination **degeneracy**, not a decisive null; (c) a
+  *correctly-computed* (mild, ~15–20%) framework boost would predict deep median ≈0.63–0.66 — **consistent with the reliable-bin
+  data (0.647) under the literature's orbital priors** (see the prior-sensitivity caveat below; this is NOT a "lands-on-the-data"
+  claim). The framework is **NOT excluded** by these wide binaries; it sits inside the degeneracy with Newton+contamination.
 - The sky-projected DR3 observable **cannot** break this degeneracy. **Gaia DR4 line-of-sight RVs (full 3D deprojection) can** —
   the pre-registered decider.
+
+### Prior-sensitivity caveat (Correction 2 — applies to everyone's WB significances)
+The "~0.63–0.66" framework number is **not prior-free**. The orbit-integration probe (WB-3b) showed the framework's deep-bin ṽ
+depends on the unconstrained 3D **semi-major-axis prior**; the literature "~15–20% shift" inherits a *specific* (near-circular-scale,
+Banik-library) orbital prior. The same prior-sensitivity propagates into **all** published WB significances — the 16σ Newtonian
+null and the 5σ boost alike — because each assumes an orbital-element distribution that the sky-projected data do not pin. This is
+itself a finding: WB gravity tests are **orbital-prior-limited** until DR4's line-of-sight velocities constrain the (a, e) library.
+Phrase everywhere as "consistent with, under the literature's orbital priors" — never "lands on."
 
 ## Limitations / next steps (logged, not hidden)
 1. **Naive boost** (multiplier, not integrated modified-gravity orbit) → MOND-MC is an upper bound; the next refinement is full
