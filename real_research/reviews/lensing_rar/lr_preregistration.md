@@ -16,13 +16,18 @@ applies here, with ONE inversion (below). Inline execution, no swarms. C1/C2 onl
 ## Pre-registered outcomes (decided now, before the data)
 - **(A) — the split replicates robustly AND survives the systematics battery → the standing falsifier HARDENS.** The ledger
   records it with magnitude (σ, dex offset between the two RARs); the manuscript's exposure section is rewritten to LEAD with
-  it. *This is the framework-unfavorable outcome and it is on the table at full weight.*
+  it. *This is the framework-unfavorable outcome and it is on the table at full weight.* **LOCKED WORDING (enrichment):** A must
+  read "hardens the exposure **AGAINST property-independent modified gravity**" and may **NOT** read "ΛCDM confirmed" — Brouwer's
+  own simulations (MICE vs BAHAMAS) **disagree with each other** about the split, so no single dark-matter model is validated by it;
+  the split is an exposure to the *framework's* type-blind force law, not a vindication of a specific DM model.
 - **(B) — the split's significance is ABSORBED by one or more systematics → exposure downgraded to systematics-limited, with
   the dominant term named and quantified.** The candidate systematics (each tested as its own axis, §Battery):
   1. **Stellar M/L by morphology** — early types host older populations → higher M/L; a type-dependent M/L offset moves g_bar.
   2. **Hot-gas / missing-baryon budget in early types** — *this is the PUBLISHED MOND-side response.* Our job is to **QUANTIFY
      whether a plausible hot-gas/CGM baryon budget closes 6σ — NOT to assert it.** Early-type X-ray/CGM baryons not in the
-     stellar+cold-gas g_bar would shift early types rightward onto the late-type relation.
+     stellar+cold-gas g_bar would shift early types rightward onto the late-type relation. **Enrichment (protective):** Brouwer
+     themselves call the missing-baryon uncertainty "the single most severe limitation of our analysis" — so if outcome B obtains,
+     it is documented as **the paper's own named limitation**, not our invention. (And it is now testable against post-2021 eROSITA.)
   3. **Satellite-fraction contamination** — the isolated-lens selection admits a type-dependent satellite fraction; satellites'
      ESD carries the host halo → biases g_obs differently for the two populations.
   4. **ESD → g_obs conversion** — the deprojection assumes sphericity / a specific density-profile form; quantify the

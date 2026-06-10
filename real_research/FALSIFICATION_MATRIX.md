@@ -106,7 +106,7 @@ A second literature sweep added tests that cut **both ways**, and flagged two pl
 | Test | Verdict |
 |---|---|
 | **Cluster RAR / residual mass** (Li+ 2024) | **Clean, against MOND** — cluster centrals follow an *offset* RAR; MOND still needs ~2× extra unseen mass. Sharpens the "clusters" row with 2024 RAR-framed data. |
-| **Weak-lensing RAR early/late split** (Brouwer+ 2021) | **6σ, against *pure* MOND** — property-independent modified gravity *cannot* make the RAR depend on galaxy type; the split needs a baryonic (circumgalactic-gas) explanation. |
+| **Weak-lensing RAR early/late split** (Brouwer+ 2021) | **AUDITED 2026-06 → HARDENED.** Re-ran on Brouwer's released ESD profiles: split **8.8σ** (validates ≥6σ point-by-point; early types baryon-deficient by +0.26 dex g_obs). A *physical* ESD→g_obs conversion-factor differential (early types more concentrated, C 4.33→3.53) erodes it to **5.0σ** (real ~0.09 dex systematic, survives). The CGM-gas escape needs a **differential M_gas/M\*≈1.1** — and **eROSITA (Zhang+2025) finds NO hot-CGM differential below log M\*=11** (Brouwer's regime), so the escape is **disfavoured**. ⇒ hardens **against property-independent modified gravity** (incl. this framework's type-blind law); NOT "ΛCDM confirmed" (MICE vs BAHAMAS disagree). The strongest standing anti-framework result. See `reviews/lensing_rar/lr_battery_results.md`. |
 
 ### Two corrections to my matrix above (honesty flags)
 

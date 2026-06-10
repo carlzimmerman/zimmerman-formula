@@ -1,5 +1,11 @@
 # LR data acquisition — full KiDS-1000 + GAMA re-run (Carl's choice: gold standard)
 
+> **REORDER (Fable, 2026-06-10):** Brouwer's **measured ESD profiles are a public release** (`brouwer2021_rar.tar`, 2.3 MB,
+> kids.strw.leidenuniv.nl/sci_data — pre-split per figure incl. Fig-8 colour/Sérsic early/late + covariances). The systematics
+> **battery runs directly on these profiles** (see `lr_battery_results.md`), so GAP-1 (the exact u−r threshold, which turned out
+> to be **2.5** from the covariance bin-edges) is moot for the battery. The **16 GB shear stack demotes to an independent
+> re-measurement** (validate the released profiles from scratch). The battery is DONE; the re-measurement is the open track.
+
 *C. Zimmerman, 2026-06-10. Provenance log for the from-scratch ESD re-run. DOI-pinned per the standing rule. The large FITS
 are gitignored (`real_research/data/lensing_rar/.gitignore`); this log + the pipeline scripts are the versioned record.*
 
