@@ -1,0 +1,206 @@
+/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/scipy/integrate/_quadpack_py.py:1260: IntegrationWarning: The algorithm does not converge.  Roundoff error is detected
+  in the extrapolation table.  It is assumed that the requested tolerance
+  cannot be achieved, and that the returned result (if full_output = 1) is 
+  the best which can be obtained.
+  quad_r = quad(f, low, high, args=args, full_output=self.full_output,
+########################################################################################################
+# agentH3 GAUNTLET -- superfluid-DM-class hybrid (Berezhiani-Khoury) vs the banked kill-tests
+# pre-registered forks: agentH3_gauntlet.md (locked before this run)
+########################################################################################################
+
+========================================================================================================
+PART 0  published parameters reproduced from scratch (gate)
+========================================================================================================
+  BFK-2018 fiducial (arXiv:1711.05748): m=1.0 eV, Lambda=0.05 meV, alpha=5.700, beta=2
+    abar = alpha^3 Lambda^2/M_Pl = 8.660e-11 m/s^2   [BFK eq49 quotes 0.87e-10; B-K calibrated to ~1.2e-10]
+    alpha^(3/2) Lambda = 0.680 meV   [B-K eq60: ~0.8 meV]
+    sqrt(alpha)/m = 2.387 /eV ; cbar(a_theta=abar) = 377.2 km/s   [Mistele quotes 375 km/s for BFK]
+  B-K-2015 fiducial (arXiv:1507.01019): m=0.6 eV, Lambda=0.20 meV, alpha=2.515, beta=2
+    abar = alpha^3 Lambda^2/M_Pl = 1.190e-10 m/s^2   [BFK eq49 quotes 0.87e-10; B-K calibrated to ~1.2e-10]
+    alpha^(3/2) Lambda = 0.798 meV   [B-K eq60: ~0.8 meV]
+    sqrt(alpha)/m = 2.643 /eV ; cbar(a_theta=abar) = 489.5 km/s   [Mistele quotes 375 km/s for BFK]
+  GATE: abar and cbar reproduce the published values -> PASS
+
+========================================================================================================
+PART 1  geography: is the solar system inside the MW superfluid core?
+========================================================================================================
+  R_T <= 310 (m/eV)^-8/7 (M/1e12)^1/7 (sigma/m)^2/7 kpc =   83.2 kpc   [BFK fiducial (m=1 eV, sigma/m=0.01)]
+  R_T <= 310 (m/eV)^-8/7 (M/1e12)^1/7 (sigma/m)^2/7 kpc =  149.1 kpc   [BFK formula at B-K m=0.6 eV]
+  B-K 2015 condensate radius (their eq 45 worked value, m=0.6 eV, Lam=0.2 meV): ~158 kpc
+  BFK worked galaxy examples: 49-82 kpc (their eqs 51-52); MW-mass halo: tens-to-150 kpc
+  Sun at R0 = 8.2 kpc  ->  INSIDE the coherent phase by ~x6-19 in radius, ALL published configs.
+  (MW M<~1e12/h: 'almost completely condensate' -- 1507.01019 eq 18 context.)
+  => The phonon force EXISTS at the solar position; the solar system does NOT escape by geography.
+
+========================================================================================================
+PART 2  the screening-criterion chain, computed from the published parameters
+========================================================================================================
+  [B-K's published escape is one sentence: 'in the vicinity of individual stars the phonon EFT breaks
+   down' (1507.01019 sec 3.2) -- no radius, no criterion. Computing every standard candidate:]
+
+  --- BFK-2018 fiducial ---
+  local galactic a_theta = sqrt(abar g_bar) = 9.76e-11..1.25e-10 m/s^2  (g_bar bracket 1.1e-10..1.8e-10)
+  (a) LONGITUDINAL SOUND SPEED  cbar = 425..544 km/s ;  V_sun = 233 km/s  ->  Mach 0.43..0.55  SUBSONIC
+      V_crit_perp = 418..535 km/s -> the naive Landau/supersonic
+      screen does NOT engage at the solar circle (the Sun is ~x2 below the critical speed).
+  (b) DISRUPTION BUBBLE (infall sqrt(2GM/r) > cbar): r_dis = 0.0060..0.0098 AU
+      vs Mercury 0.387 AU: the bubble is x39+ inside Mercury -- protects NOTHING
+      planetary. (And structurally: the Sun's mass sources phonons in the INTACT region r > r_dis
+      regardless -- excising a 0.01-AU core does not turn off the Sun-sourced phonon force at planets.)
+  (c) COHERENCE: lambda_dB = 1.60 mm vs interparticle l = 13.6 um -> ratio 118 >> 1: coherent at planetary radii (B-K's own premise holds there)
+  (d) HEALING LENGTH xi = hbar/(m cbar) = 0.12 mm -- no AU-scale decoherence scale exists
+  (e) SUPERLUMINAL BREAKDOWN: around the Sun a_theta(r) = sqrt(abar GM)/r -> cbar(r) = c at
+      r = 10.4 AU: INSIDE this radius the published dispersion gives cbar > c --
+      the non-relativistic phonon EFT is formally out of its domain for r < 10.4 AU
+      (Mercury..Saturn inside or at the edge). This is the one computed sense in which the EFT
+      'breaks down near stars' -- but it removes PREDICTIVITY, not the force: the static background
+      solution a_phi = sqrt(abar a_b) is what the theory offers, and perturbations about it are
+      superluminal. No screening mechanism emerges from the published EFT at planetary radii.
+  (f) CHERENKOV (published): exclusion sqrt(alpha)/m in [0.34, 3.29] /eV (beta=2, Mistele eq 17);
+      this config: 2.39 /eV -> EXCLUDED  (stellar phonon Cherenkov losses; evaded only by the two-field variant, arXiv:2009.03003,
+      whose STATIC force -- the thing the gauntlet tests -- is engineered to be the same).
+
+  --- B-K-2015 fiducial ---
+  local galactic a_theta = sqrt(abar g_bar) = 1.14e-10..1.46e-10 m/s^2  (g_bar bracket 1.1e-10..1.8e-10)
+  (a) LONGITUDINAL SOUND SPEED  cbar = 471..602 km/s ;  V_sun = 233 km/s  ->  Mach 0.39..0.50  SUBSONIC
+      V_crit_perp = 463..592 km/s -> the naive Landau/supersonic
+      screen does NOT engage at the solar circle (the Sun is ~x2 below the critical speed).
+  (b) DISRUPTION BUBBLE (infall sqrt(2GM/r) > cbar): r_dis = 0.0049..0.0080 AU
+      vs Mercury 0.387 AU: the bubble is x48+ inside Mercury -- protects NOTHING
+      planetary. (And structurally: the Sun's mass sources phonons in the INTACT region r > r_dis
+      regardless -- excising a 0.01-AU core does not turn off the Sun-sourced phonon force at planets.)
+  (c) COHERENCE: lambda_dB = 2.66 mm vs interparticle l = 11.4 um -> ratio 232 >> 1: coherent at planetary radii (B-K's own premise holds there)
+  (d) HEALING LENGTH xi = hbar/(m cbar) = 0.18 mm -- no AU-scale decoherence scale exists
+  (e) SUPERLUMINAL BREAKDOWN: around the Sun a_theta(r) = sqrt(abar GM)/r -> cbar(r) = c at
+      r = 11.5 AU: INSIDE this radius the published dispersion gives cbar > c --
+      the non-relativistic phonon EFT is formally out of its domain for r < 11.5 AU
+      (Mercury..Saturn inside or at the edge). This is the one computed sense in which the EFT
+      'breaks down near stars' -- but it removes PREDICTIVITY, not the force: the static background
+      solution a_phi = sqrt(abar a_b) is what the theory offers, and perturbations about it are
+      superluminal. No screening mechanism emerges from the published EFT at planetary radii.
+  (f) CHERENKOV (published): exclusion sqrt(alpha)/m in [0.34, 3.29] /eV (beta=2, Mistele eq 17);
+      this config: 2.64 /eV -> EXCLUDED  (stellar phonon Cherenkov losses; evaded only by the two-field variant, arXiv:2009.03003,
+      whose STATIC force -- the thing the gauntlet tests -- is engineered to be the same).
+
+========================================================================================================
+PART 3  T1: Cassini Q2 + direct ephemeris confrontation
+========================================================================================================
+  -- T1a: the DIRECT in-system phonon force (face-value reading R1) --
+  a_phi(r) = sqrt(abar GM_sun)/r  inside r_EFE = sqrt(GM/g_bar,ext); EFE transition:
+    r_EFE = 6288 AU (g_bar mid) -- all planets are DEEP inside the Sun-dominated phonon zone
+    k = sqrt(abar GM) = 1.072e+05 m^2/s^2  (abar = 8.66e-11, BFK-2018 fiducial)
+    planet    a_phi [m/s^2]  a_phi/g_N   dpom [mas/cy]   bound [mas/cy]        over
+    Mercury        1.85e-06   4.68e-05      -1.245e+07  INPOP15a-C2 +0.00+/-1.05    5.9e+06x
+    Venus          9.91e-07   8.74e-05      -9.207e+06                             
+    Earth          7.17e-07   1.21e-04      -7.830e+06                             
+    Mars           4.70e-07   1.84e-04      -6.330e+06  EPM2011 -0.02+/-0.04    8.6e+07x
+    Jupiter        1.38e-07   6.29e-04      -3.431e+06                             
+    Saturn         7.52e-08   1.15e-03      -2.534e+06  INPOP15a-C2 +0.05+/-0.20    6.3e+06x
+    machinery validation (Saturn): analytic -3.6175e-03, Gauss-integral -3.6175e-03, 2-body LRL -3.6246e-03 rad/orbit (ratio 1.002; 60-orbit fit -- the osculating-omega
+    libration ~k/(g_N e) is x6 the per-orbit secular term, so short arcs alias it)
+    validation (const radial A=1e-12): analytic +9.6200e-08 vs Gauss +9.6200e-08 rad/orbit
+
+  -- T1b: the EFE quadrupole proper (verified Desmond eq (10)-(12) machinery) --
+  anchors (must reproduce agentD_dew_quadrupole.out PART 2):
+    RAR nu    a0=1.2e-10 etilde=1.792: q=-0.2720 (banked -0.2720)  Q2=+4.654e-26 (banked +4.654e-26)  -> PASS
+    simple nu a0=1.2e-10 etilde=1.792: q=-0.2849 (banked -0.2849)  Q2=+4.876e-26 (banked +4.876e-26)  -> PASS
+  phonon sector: nu_ph(y) = 1 + y^(-1/2) (the MOND form persists at ALL y; no Newtonian-restoration knee),
+  e_N set DIRECTLY = g_bar,MW(R0)/abar (the phonon is sourced by baryons; no nu-inversion):
+    BFK-2018 fiducial  g_bar=1.1e-10 e_N= 1.27: q=-0.4286  Q2=+4.497e-26 s^-2  =  24.1 sigma over Cassini-2026; boost eta-1=+74%
+    BFK-2018 fiducial  g_bar=1.5e-10 e_N= 1.73: q=-0.4286  Q2=+4.497e-26 s^-2  =  24.1 sigma over Cassini-2026; boost eta-1=+63%  [vmax 80->160: dq/q = 8.4e-08]
+    BFK-2018 fiducial  g_bar=1.8e-10 e_N= 2.08: q=-0.4286  Q2=+4.497e-26 s^-2  =  24.1 sigma over Cassini-2026; boost eta-1=+58%
+    B-K-2015 fiducial  g_bar=1.1e-10 e_N= 0.92: q=-0.4286  Q2=+7.241e-26 s^-2  =  39.3 sigma over Cassini-2026; boost eta-1=+87%
+    B-K-2015 fiducial  g_bar=1.5e-10 e_N= 1.26: q=-0.4286  Q2=+7.241e-26 s^-2  =  39.3 sigma over Cassini-2026; boost eta-1=+74%  [vmax 80->160: dq/q = 4.5e-08]
+    B-K-2015 fiducial  g_bar=1.8e-10 e_N= 1.51: q=-0.4286  Q2=+7.241e-26 s^-2  =  39.3 sigma over Cassini-2026; boost eta-1=+68%
+  exactness check: for the scale-free nu_ph - 1 = y^(-1/2) the substitution v -> sqrt(eN) w removes eN
+  from the q-integral entirely; the coefficient is a pure number, q_ph = -3/7:
+    eN=0.5: q_ph = -0.428571   (-3/7 = -0.428571)
+    eN=1.0: q_ph = -0.428571   (-3/7 = -0.428571)
+    eN=2.0: q_ph = -0.428571   (-3/7 = -0.428571)
+    eN=4.0: q_ph = -0.428571   (-3/7 = -0.428571)
+    [formulation caveat: the phonon statics are AQUAL-form; the repo-measured AQUAL/QUMOND ratio on
+     mu_simple is 0.875 (agentD PART 4) -- a ~12% effect, immaterial at these sigma levels.]
+  -- T1 screened reading R2: Q2_ph = 0, all rows above -> 0; passes trivially. But PART 2 shows NO
+     computed criterion shuts the force off at planetary radii; the only computed breakdown (superluminal
+     zone, ~10 AU) removes predictivity, not the force. R2 = 'escapes by incompleteness' (prereg T1 fork A).
+
+========================================================================================================
+PART 4  T2: the agentE solar-reflex budget
+========================================================================================================
+  SfDM is force-based, not magnitude-keyed inertia: the reflex channel is the phonon force ON THE SUN
+  sourced by Jupiter (r_J-modulated, the agentE carrier). Budget line (agentE [2],[9]):
+    survival s < 0.34 a0  <=>  quasi-steady anomalous solar response < 2.42e-15 m/s^2
+  R1 face-value (BFK-2018 fiducial): delta_a_sun = 1.31e-10 (EFE-suppressed) .. 4.26e-09 (isolated) m/s^2
+    over budget: x5.4e+04 .. x1.8e+06
+    r_J-modulated fraction (Jupiter e=0.0484): pk-pk ~ 1.3e-11..8.2e-10 m/s^2 --
+    the TIME-VARYING part alone is x5e+03+ over the line; not GM-absorbable
+    (agentE: GM_J-absorbing fits are independently refuted by Juno at 20-1000x).
+  R2 screened: delta_a_sun = 0 -> passes trivially (same incompleteness price as T1-R2).
+
+========================================================================================================
+PART 5  T3: SPARC pooled RAR vs the McGaugh baseline
+========================================================================================================
+  published-fit ledger first (the task premise corrected): BFK 1711.05748 fit TWO galaxies
+  (IC 2574, UGC 2953; sec VII) and quote NO RAR scatter -- there is no published BFK SPARC-wide fit.
+  The published SPARC-wide confrontation is Mistele+ 2201.07282 (169 galaxies): 'even the best fits ...
+  unsatisfactory'; M/L 'unnatural dependence on size'; best fits sit in the NON-MOND regime; forcing the
+  MOND regime -> strong-lensing tension. And 2009.03003: the MOND-limit condition fails (eps>=1) at r>~20 kpc.
+  This run: the phonon-only skeleton nu_ph at the PUBLISHED abar (zero freedom), both Upsilon conventions:
+
+  Upsilon_disk = 0.5 (3389 points):
+    McGaugh nu, framework a0 (banked baseline): unweighted 0.1953 dex  [mi_f4_hostile gate 0.1953: PASS]  (this-run weighted: 0.1122)
+    McGaugh nu, canonical a0=1.2e-10:           unweighted 0.1989 dex  (per the #1 rule both footings shown)
+    SfDM phonon-only, published abar=8.66e-11 (BFK-2018): unweighted 0.2031 dex (weighted 0.1009)  -> penalty +0.0078 unw
+    SfDM phonon-only, published abar=1.19e-10 (B-K-2015): unweighted 0.2185 dex (weighted 0.1125)  -> penalty +0.0233 unw
+    SfDM phonon-only, FREE abar fit: best abar = 6.20e-11 -> 0.1976 dex  (penalty vs McGaugh +0.0023)
+    high-acceleration overshoot (y > 10, N=134): model-data = +0.0688 dex  [the unscreened y^(-1/2) tail]
+    [condensate gravity ADDS to g_obs at all radii -> can only worsen the overshoot as a one-function
+     RAR; as a per-galaxy FIT it adds freedom -- that is what 2201.07282 ran, verdict above.]
+
+  Upsilon_disk = 0.7 (3389 points):
+    McGaugh nu, framework a0 (banked baseline): unweighted 0.2095 dex  [mi_f4_hostile gate 0.2095: PASS]  (this-run weighted: 0.1042)
+    McGaugh nu, canonical a0=1.2e-10:           unweighted 0.2245 dex  (per the #1 rule both footings shown)
+    SfDM phonon-only, published abar=8.66e-11 (BFK-2018): unweighted 0.2432 dex (weighted 0.1508)  -> penalty +0.0336 unw
+    SfDM phonon-only, published abar=1.19e-10 (B-K-2015): unweighted 0.2677 dex (weighted 0.1779)  -> penalty +0.0582 unw
+    SfDM phonon-only, FREE abar fit: best abar = 3.59e-11 -> 0.2142 dex  (penalty vs McGaugh +0.0046)
+    high-acceleration overshoot (y > 10, N=193): model-data = +0.2145 dex  [the unscreened y^(-1/2) tail]
+    [condensate gravity ADDS to g_obs at all radii -> can only worsen the overshoot as a one-function
+     RAR; as a per-galaxy FIT it adds freedom -- that is what 2201.07282 ran, verdict above.]
+
+========================================================================================================
+PART 6  T5: the WB/DR4 knee + the spec-sheet mass-band clash
+========================================================================================================
+  No dedicated published SfDM wide-binary prediction exists (searched 2026-06-10; the WB literature
+  covers MOND-as-gravity classes). Computed here from the published force law, both readings:
+  R1 face-value: WB separations (2-30 kAU) sit OUTSIDE every computed breakdown scale (bubble ~0.01 AU,
+  superluminal zone ~10 AU) and INSIDE r_EFE (~6000 AU partially) -- the EFE-saturated boost applies:
+    BFK-2018 fiducial  g_bar=1.1e-10: e_N= 1.27  force boost eta-1 = +74%  velocity boost sqrt(eta)-1 = +31.9%
+    BFK-2018 fiducial  g_bar=1.5e-10: e_N= 1.73  force boost eta-1 = +63%  velocity boost sqrt(eta)-1 = +27.8%
+    BFK-2018 fiducial  g_bar=1.8e-10: e_N= 2.08  force boost eta-1 = +58%  velocity boost sqrt(eta)-1 = +25.6%
+    B-K-2015 fiducial  g_bar=1.1e-10: e_N= 0.92  force boost eta-1 = +87%  velocity boost sqrt(eta)-1 = +36.6%
+    B-K-2015 fiducial  g_bar=1.5e-10: e_N= 1.26  force boost eta-1 = +74%  velocity boost sqrt(eta)-1 = +32.0%
+    B-K-2015 fiducial  g_bar=1.8e-10: e_N= 1.51  force boost eta-1 = +68%  velocity boost sqrt(eta)-1 = +29.5%
+
+  DR4-fork placement (banked: F4 +2-4%, simple +13-16%, McGaugh +11-14% velocity):
+    SfDM face-value: +28% velocity -- the LARGEST boost of any candidate on the board;
+    DR3 placement (mi_f4_widebinary_efe Newton-MC medians 0.588/0.639; data 0.647+-0.02/0.816+-0.075):
+    SfDM-shifted medians ~0.751/0.817 -> bin-1 sits ~5 sigma
+    ABOVE the data (contamination-degeneracy caveat rides); a DR4 clean null at ~3% kills it decisively.
+    -> prereg T5 fork A: SfDM lands on the DETECTION branch of the DR4 fork, OPPOSITE F4.
+  R2 maximally-screened: null branch (Newton-degenerate) -- requires the same uncomputed screen as T1-R2,
+  now stretched from 10 AU to >30 kAU with no published mechanism at all.
+
+  -- the m-band clash (flagged in the task; arithmetic, no fork) --
+    BFK-2018 fiducial: m = 1.0 eV = 6.2e+23x the spec band TOP (1.6e-24 eV); 23.8 decades above
+    B-K-2015 fiducial: m = 0.6 eV = 3.7e+23x the spec band TOP (1.6e-24 eV); 23.6 decades above
+    forcing m into the band at fixed (abar, alpha): cbar ~ 1/m -> local cbar = c already at m = 1.7e-03 eV;
+    at the band top (1.6e-24 eV) cbar/c ~ 1.0e+21 -- the non-relativistic phonon EFT cannot
+    exist there; and R_T(m=1.6e-24 eV) = 4.9e+29 kpc vs horizon ~1.4e7 kpc (23
+    decades past it) -- the collisional-thermalization picture is void: the band belongs to fuzzy-DM-class
+    mechanisms, NOT the B-K superfluid. Conversely B-K's knee abar = alpha^3 Lambda^2/M_Pl is Lambda-set,
+    m-free: the spec's DR4 knee-position discriminator (~5e-28 eV) cannot probe it, and B-K's a0 carries
+    NO Lambda_cosmological tie (banked: 'a0 is a fitted phonon coupling, not cH').
+
+########################################################################################################
+# verdict assembly in agentH3_gauntlet.md
+########################################################################################################
