@@ -1,0 +1,288 @@
+
+====================================================================================================
+[N3-0] CONVENTIONS & CONSTANTS (repo footings carried BOTH ways per the working rule)
+====================================================================================================
+  H_Lambda = 1.8073e-18 s^-1 = 1.1896e-33 eV ;  1/H_Lambda = 17.53 Gyr
+  a0 = 9.360e-11 m/s^2 ; cH_Lambda = 5.418e-10 ; Z = cH_L/a0 = 5.788
+  x_gal == a0/cH_Lambda = 0.1728 (=1/Z) ; both-ways alt: a0_MOND/cH0 = 0.1832
+  m_p = 9.3827e+08 eV ; M_Pl,red = 2.4353e+27 eV ; m_p/M_red = 3.8528e-19
+  H/M_red = 4.8846e-61   <- the hierarchy that will decide the window
+  budgets: Saturn quad-tail 2.3e-15 ; Folkner 1e-14 ; agentE line s<3.21e-11 => solar-response budget 2.45e-15 m/s^2
+  x (=a/cH_L): Sun 387.6 ; Saturn 1.192e+05 ; Mars 4.714e+06 ; galaxy 0.0018..1.8
+  Lambda-domination z=0.296 (t=3.50 Gyr) ; accel onset z=0.632 (t=6.10 Gyr)  =>  t_dS*H_Lambda in [0.199, 0.348], mid 0.274
+
+====================================================================================================
+[N3-A1] EXACT PIECE 1 (sympy): massless minimally coupled scalar in dS4 — retarded tail = H^2/4pi, CONSTANT inside the cone [matches BHP gr-qc/0201020 eq. 6.1 after 4pi-normalization]
+====================================================================================================
+  BD mode u_k = e^(-ik eta)(1 - i/(k eta))/sqrt(2k):  EOM residual = 0   Wronskian u u*' - u* u' = I
+  Im[u u*'] structure check (should be 0): 0
+  primitives: Int (1-cos pk)/k^2 = pi*p/2 ;  Int sin(pk)/k = pi/2
+  a(eta) a(eta') eta eta' = H**(-2)  =>  TAIL of G_ret = H^2/(4 pi), constant inside the cone. [EXACT]
+  cross-anchor [BHP eq. 6.1]: G_smooth = 1/C^2 = H^2 in their gauss-4pi normalization (eq. 2.10:
+  box G = -4pi delta/sqrt(-g)); divide by 4pi -> H^2/4pi. Consistency: their dS mass-loss eq. 6.8
+  dm/dtau = -q^2 H^2 (gauss) = -q^2 H^2/4pi (natural) = q * d/dtau[q (H^2/4pi) tau] — the SAME tail. OK
+
+====================================================================================================
+[N3-A2] EXACT PIECE 2 (mpmath): the MASSIVE tail V(P) in dS from the BD hypergeometric discontinuity [SSV hep-th/0110007 form] — four independent anchors
+====================================================================================================
+  branch orientation: raw Im at (mh=0.5, P=1+1e-6) = +0.875000 -> global sign +1 applied
+  calibration check vs EXACT cone value (1 - mh^2/2): 0.875000 vs 0.875000
+
+  anchor (i): m->0 plateau == 1 (BHP constant tail), mh = 0.01:
+     v(P=       1) = +0.999950
+     v(P=       2) = +0.999931
+     v(P=      10) = +0.999880
+     v(P=   1e+03) = +0.999726
+     v(P=   1e+06) = +0.999496
+  anchor (ii): cone values v(1+) vs EXACT (1 - mh^2/2)  [Hadamard transport]:
+     mh=0.10: numeric +0.995000  exact +0.995000  ratio +1.000000
+     mh=0.50: numeric +0.875000  exact +0.875000  ratio +1.000000
+     mh=1.00: numeric +0.500000  exact +0.500000  ratio +1.000000
+     mh=1.30: numeric +0.155000  exact +0.155000  ratio +1.000000
+     mh=1.45: numeric -0.051250  exact -0.051250  ratio +1.000000
+  anchor (iii): conformal point mh = sqrt(2): v should vanish for ALL P:
+     v(P=       1) = -7.295e-17
+     v(P=      10) = -2.486e-17
+     v(P=   1e+04) = -2.734e-20
+  anchor (iv): large-P falloff exponent -> h- = 3/2 - nu  (fit d ln v/d ln P, P in [e^25, e^33]):
+     mh=0.30: fitted slope -0.03031  vs  -h- = -0.03031
+     mh=0.50: fitted slope -0.08579  vs  -h- = -0.08579
+     mh=1.00: fitted slope -0.38197  vs  -h- = -0.38197
+     mh=1.30: fitted slope -0.75167  vs  -h- = -0.75167
+
+====================================================================================================
+[N3-A3] EXACT PIECE 3 (sympy): the IR signature — SY equilibrium variance & the equilibration cap [SY astro-ph/9407016]
+====================================================================================================
+  SY equilibrium <phi^2> = 3*H**4/(8*pi**2*m**2)   [target 3H^4/(8 pi^2 m^2)]
+  Langevin balance d<phi^2>/dt = H^3/4pi^2 - (2m^2/3H)<phi^2>: equilibrium = 3*H**4/(8*pi**2*m**2)
+  relaxation time tau_relax = 3H/(2 m^2) = 1.5 (H/m)^2 / H ;  growth law (m->0): <phi^2> = H^3 t/4pi^2
+     mh= 0.1: tau_relax*H =   150.00  vs t_dS*H = 0.27  -> equilibrated? NO — cap binds
+     mh= 0.3: tau_relax*H =    16.67  vs t_dS*H = 0.27  -> equilibrated? NO — cap binds
+     mh= 1.0: tau_relax*H =     1.50  vs t_dS*H = 0.27  -> equilibrated? NO — cap binds
+  => the 3H^4/8pi^2m^2 enhancement is NOT available in our universe for m << H: usable variance
+     is capped at H^3 t_dS/4pi^2 = 0.0069 H^2 (m-independent).  [SY + Lambda timeline]
+
+====================================================================================================
+[N3-A4] EXACT PIECE 4 (sympy): Deser-Levin worldline invariant — P(dtau) = 1 + (2H^2/k^2) sinh^2(k dtau/2), kappa = sqrt(a^2+H^2)  [DL gr-qc/9706018]
+====================================================================================================
+  embedding P = H^2 X.X' - target check: 0
+  |a| = -H**2*r*sqrt(-1/(H**2*r**2 - 1)) ;  a^2 + H^2 = -H**2/((H*r - 1)*(H*r + 1)) = H^2/(1-H^2 r^2)
+  => P(dtau) = 1 + (H^2/k^2)(cosh(k dtau) - 1) = 1 + (2H^2/k^2) sinh^2(k dtau/2), k = sqrt(a^2+H^2)  [EXACT]
+     T_eff = kappa/2pi [DL]; geodesic a=0: P = cosh(H dtau) OK ; flat H->0: Rindler sinh^2 OK
+  NOTE: this P(dtau; a) is what the massive tail V(P) sees -> the dissipation kernel is
+  TRAJECTORY-DEPENDENT — the structure agentF's blindness lemma says is the unique bath-side escape.
+
+====================================================================================================
+[N3-B1] THE MEMORY DRESSING: dm(a) = -q^2 (H^2/4pi) tau_eff(a/H; m/H)  [BHP/Quinn lineage: m_eff = m0 + q*phi_self, phi_self = -q Int G_ret -> mass-REDUCING]
+====================================================================================================
+  building tail splines (mpmath hyp2f1) ...
+
+  tau_eff(x; mh) * H   — STEADY-STATE (eternal-dS idealization).  small-m anchor: tau_eff(0) -> (1/h-)(1/2)^{h-} ~ 3H/m^2:
+             x | mh=0.01  | mh=0.05  | mh=0.1   | mh=0.3   | mh=0.5   | mh=1     | mh=1.2   | mh=1.3   | mh=1.4   | mh=1.45 
+             0 |     3e+04 |   1.2e+03 |       299 |      32.4 |        11 |      1.76 |     0.728 |     0.354 |    0.0407 |   -0.0988
+       0.01727 |     3e+04 |   1.2e+03 |       299 |      32.4 |        11 |      1.76 |     0.728 |     0.354 |    0.0407 |   -0.0988   <- a0/10
+           0.1 |  2.99e+04 |  1.19e+03 |       298 |      32.2 |      10.9 |      1.76 |     0.726 |     0.354 |    0.0406 |   -0.0987
+        0.1728 |  2.96e+04 |  1.18e+03 |       295 |      31.9 |      10.8 |      1.75 |     0.723 |     0.352 |    0.0405 |   -0.0984   <- a0(frame)
+           0.3 |  2.87e+04 |  1.15e+03 |       287 |      31.1 |      10.6 |      1.72 |     0.714 |     0.348 |    0.0401 |   -0.0975
+             1 |  2.12e+04 |       848 |       212 |      23.3 |      8.17 |      1.45 |     0.621 |     0.307 |    0.0358 |   -0.0875
+             3 |  9.49e+03 |       380 |      95.3 |      10.9 |      4.09 |     0.878 |     0.402 |     0.205 |    0.0245 |   -0.0607
+            10 |  2.99e+03 |       120 |      30.2 |      3.65 |      1.49 |     0.388 |     0.188 |    0.0984 |    0.0121 |   -0.0303
+            30 |     1e+03 |      40.2 |      10.2 |      1.29 |     0.561 |     0.166 |    0.0833 |    0.0442 |   0.00549 |   -0.0138
+           100 |       300 |      12.1 |      3.08 |     0.411 |     0.189 |    0.0619 |    0.0317 |     0.017 |   0.00213 |  -0.00538
+         387.6 |      77.4 |      3.12 |     0.802 |     0.113 |     0.055 |    0.0195 |    0.0101 |   0.00547 |  0.000689 |  -0.00175   <- SUN
+          1000 |        30 |      1.21 |     0.313 |    0.0455 |     0.023 |   0.00849 |   0.00446 |   0.00241 |  0.000305 | -0.000774
+         1e+04 |         3 |     0.122 |    0.0317 |   0.00499 |    0.0027 |   0.00108 |  0.000575 |  0.000313 |  3.97e-05 | -0.000101
+     1.192e+05 |     0.252 |    0.0103 |    0.0027 |  0.000458 |  0.000263 |  0.000111 |  5.99e-05 |  3.27e-05 |  4.16e-06 | -1.06e-05   <- SATURN
+     4.714e+06 |   0.00637 |  0.000261 |  6.99e-05 |  1.31e-05 |  8.01e-06 |   3.6e-06 |  1.95e-06 |  1.07e-06 |  1.36e-07 | -3.48e-07   <- MARS
+  check tau_eff(0; mh=0.05) = 1199 vs (1/h-)(1/2)^h- = 1199  (h- = 0.0008336; small-m law 3/mh^2 = 1200)
+  check tau_eff(0; mh=0.1) = 299 vs (1/h-)(1/2)^h- = 299  (h- = 0.003337; small-m law 3/mh^2 = 300)
+  check tau_eff(0; mh=0.3) = 32.36 vs (1/h-)(1/2)^h- = 32.31  (h- = 0.03031; small-m law 3/mh^2 = 33.33)
+
+  CAPPED at t_dS (physical universe, t_dS*H = 0.27): tau_eff^cap(x; mh)*H:
+             x | mh=0.01  | mh=0.05  | mh=0.1   | mh=0.3   | mh=0.5   | mh=1     | mh=1.2   | mh=1.3   | mh=1.4   | mh=1.45 
+             0 |     0.274 |     0.273 |     0.272 |     0.261 |     0.239 |     0.136 |    0.0763 |    0.0422 |   0.00544 |   -0.0139
+       0.01727 |     0.274 |     0.273 |     0.272 |     0.261 |     0.239 |     0.136 |    0.0763 |    0.0422 |   0.00544 |   -0.0139   <- a0/10
+           0.1 |     0.274 |     0.273 |     0.272 |     0.261 |     0.239 |     0.136 |    0.0763 |    0.0422 |   0.00544 |   -0.0139
+        0.1728 |     0.274 |     0.273 |     0.272 |     0.261 |     0.239 |     0.136 |    0.0763 |    0.0422 |   0.00544 |   -0.0139   <- a0(frame)
+           0.3 |     0.274 |     0.273 |     0.272 |     0.261 |     0.239 |     0.136 |    0.0763 |    0.0422 |   0.00544 |   -0.0139
+             1 |     0.274 |     0.273 |     0.272 |     0.261 |     0.239 |     0.136 |    0.0763 |    0.0422 |   0.00544 |   -0.0139
+             3 |     0.274 |     0.273 |     0.272 |     0.261 |     0.239 |     0.136 |    0.0763 |    0.0422 |   0.00544 |   -0.0139
+            10 |     0.274 |     0.273 |     0.272 |     0.261 |     0.239 |     0.136 |    0.0761 |    0.0421 |   0.00543 |   -0.0139
+            30 |     0.274 |     0.273 |     0.272 |      0.26 |     0.237 |     0.131 |    0.0718 |    0.0393 |   0.00501 |   -0.0128
+           100 |     0.274 |     0.272 |     0.267 |     0.224 |     0.166 |    0.0619 |    0.0317 |     0.017 |   0.00213 |  -0.00538
+         387.6 |     0.273 |     0.264 |     0.239 |     0.108 |     0.055 |    0.0195 |    0.0101 |   0.00547 |  0.000689 |  -0.00175   <- SUN
+          1000 |     0.273 |     0.247 |     0.187 |    0.0455 |     0.023 |   0.00849 |   0.00446 |   0.00241 |  0.000305 | -0.000774
+         1e+04 |     0.262 |     0.109 |    0.0317 |   0.00499 |    0.0027 |   0.00108 |  0.000575 |  0.000313 |  3.97e-05 | -0.000101
+     1.192e+05 |     0.167 |    0.0103 |    0.0027 |  0.000458 |  0.000263 |  0.000111 |  5.99e-05 |  3.27e-05 |  4.16e-06 | -1.06e-05   <- SATURN
+     4.714e+06 |   0.00637 |  0.000261 |  6.99e-05 |  1.31e-05 |  8.01e-06 |   3.6e-06 |  1.95e-06 |  1.07e-06 |  1.36e-07 | -3.48e-07   <- MARS
+
+  SELF-CAUGHT CORRECTION (bug-log discipline): the pre-registered guess for the high-a falloff of
+  tau_eff was the P-space power x^-(1+2h-). The computation REFUTES it: the worldline integral is
+  dominated by the NEAR-CONE plateau (recent past, P ~ 1 for y < ~2 ln kappa), giving the EXACT-asym law
+       tau_eff(x>>1) ~ (v_cone/kappa) * (2 ln kappa + 1/h- + c0),   v_cone = 1 - mh^2/2
+  i.e. a (ln x)/x tail — the LINEAR-tail (F1/Milgrom-99) ephemeris class, at EVERY mass. Verification:
+     mh= 0.3, x=   1e+03: tau_eff*kappa/v_cone =   47.662  vs  2 ln kappa + 1/h- =   46.812   (c0 = +0.850)
+     mh= 0.3, x=   1e+04: tau_eff*kappa/v_cone =   52.267  vs  2 ln kappa + 1/h- =   51.417   (c0 = +0.850)
+     mh=   1, x=   1e+03: tau_eff*kappa/v_cone =   16.989  vs  2 ln kappa + 1/h- =   16.434   (c0 = +0.555)
+     mh=   1, x=   1e+04: tau_eff*kappa/v_cone =   21.595  vs  2 ln kappa + 1/h- =   21.039   (c0 = +0.556)
+     mh= 1.3, x=   1e+03: tau_eff*kappa/v_cone =   15.561  vs  2 ln kappa + 1/h- =   15.146   (c0 = +0.415)
+     mh= 1.3, x=   1e+04: tau_eff*kappa/v_cone =   20.167  vs  2 ln kappa + 1/h- =   19.751   (c0 = +0.416)
+  (consequence: there is NO mass-tunable solar-safe exponent corridor; see [N3-B3].)
+
+  profile diagnostics g(x) = tau_eff(x)/tau_eff(0)  [steady-state]:
+      mh |  g(x_gal) |    g(SUN) |  g(SATURN) | hi-x slope fit (1e3->1e4) | x at 10% drop (capped)
+    0.01 |     0.985 |   0.00258 |   8.39e-06 |   -1.000 (log/x law: ~ -0.9) |  2.51e+04
+    0.05 |     0.985 |   0.00261 |   8.55e-06 |   -0.998 (log/x law: ~ -0.9) |  1.26e+03
+     0.1 |     0.985 |   0.00268 |   9.04e-06 |   -0.994 (log/x law: ~ -0.9) |       398
+     0.3 |     0.986 |   0.00348 |   1.42e-05 |   -0.960 (log/x law: ~ -0.9) |       100
+     0.5 |     0.988 |   0.00501 |   2.39e-05 |   -0.930 (log/x law: ~ -0.9) |      63.1
+       1 |     0.992 |     0.011 |   6.31e-05 |   -0.896 (log/x law: ~ -0.9) |      39.8
+     1.2 |     0.994 |    0.0139 |   8.23e-05 |   -0.890 (log/x law: ~ -0.9) |      39.8
+     1.3 |     0.994 |    0.0154 |   9.22e-05 |   -0.887 (log/x law: ~ -0.9) |      39.8
+     1.4 |     0.995 |    0.0169 |   0.000102 |   -0.885 (log/x law: ~ -0.9) |      39.8
+    1.45 |     0.995 |    0.0177 |   0.000107 |   -0.884 (log/x law: ~ -0.9) |      31.6
+  -> sign: dm < 0 (inertia DEFICIT, larger at low a) for mh < sqrt(2): the MOND sign — the first
+     MOND-signed object any bath channel has produced (Doors I/I-b were anti-MOND). Flagged for N2:
+     the deep limit SATURATES (g -> 1, mu -> 1 - eps = const) — NOT the mu ~ x deep-MOND structure;
+     and in the CAPPED (physical) case the profile is FLAT across the entire galactic decade
+     (bend sits at x >~ 30-100): the a-dependence MOND needs at x ~ 0.02..2 is not there. [structure: N2's lane]
+
+====================================================================================================
+[N3-B2] WINDOW CHANNEL (i) — THE COUPLING WALL. Required: |dm|/m ~ O(1) at x_gal.  dm = -q^2 (H^2/4pi) tau_eff ; q = beta m/M_red (universal quintessence coupling)
+====================================================================================================
+  eps(x_gal) = |dm|/m per nucleon = beta^2 (m_p/M_red)(H/M_red) tau_eff H/4pi ; (m_p/M_red)(H/M_red) = 1.882e-79
+
+      mh |  eps(Cassini b=3.4e-3) |  eps(beta=1) |  eps(q=1/nucleon) | beta_req(eps=1) | F_phi/F_N req |  vs Cassini
+    0.01 |              4.713e-86 |    4.098e-81 |         2.761e-44 |       1.562e+40 |     4.881e+80 | x 2.12e+85
+    0.05 |              4.707e-86 |    4.093e-81 |         2.757e-44 |       1.563e+40 |     4.887e+80 | x 2.12e+85
+     0.1 |              4.689e-86 |    4.077e-81 |         2.747e-44 |       1.566e+40 |     4.905e+80 | x 2.13e+85
+     0.3 |              4.499e-86 |    3.913e-81 |         2.636e-44 |       1.599e+40 |     5.112e+80 | x 2.22e+85
+     0.5 |              4.120e-86 |    3.583e-81 |         2.414e-44 |       1.671e+40 |     5.582e+80 | x 2.43e+85
+       1 |              2.349e-86 |    2.043e-81 |         1.376e-44 |       2.213e+40 |     9.791e+80 | x 4.26e+85
+     1.2 |              1.314e-86 |    1.142e-81 |         7.696e-45 |       2.959e+40 |     1.751e+81 | x 7.61e+85
+     1.3 |              7.267e-87 |    6.319e-82 |         4.257e-45 |       3.978e+40 |     3.165e+81 | x 1.38e+86
+     1.4 |              9.368e-88 |    8.146e-83 |         5.488e-46 |       1.108e+41 |     2.455e+82 | x 1.07e+87
+    1.45 |             -2.400e-87 |   -2.087e-82 |        -1.406e-45 |             inf |           inf | x      inf
+
+  note mh=1.45 row: negative eps = the anti-MOND sign past the conformal point (inertia ADDED at
+  low a) — that mass range cannot do the galactic job at ANY coupling; beta_req = inf is exact.
+  eternal-dS idealization instead of the cap: eps(beta=1, mh=0.05) = 1.770e-77; the formal mh->0 divergence (tau ~ 3/mh^2) is the BHP
+  secular runaway [gr-qc/0201020: the charge radiates ALL its mass — destruction, not MOND] and is
+  killed physically by the t_dS cap anyway (the dressing is then ~m-independent, ~0.27/H). Verdict unmoved.
+  REQUIRED for the window: eps*g ~ 1 (charitable 0.1). Best allowed (Cassini, best mh): 4.71e-86
+  visceral anchors: q_req(eps=1, mh=1) = 8.52e+21 per nucleon
+   -> scalar exchange between two protons = 2 beta_req^2 = 9.79e+80 x gravity
+      (EM Coulomb p-p is 1.2e36 x gravity: the required fifth force is ~8.2e+44 x COULOMB)
+
+  coherent-body variant (field coherent over the body; eps_body = N eps_1, breaks universality:
+  dm/M would scale with M — a 10-dex EP/RAR violation across the SPARC mass range; numbers anyway):
+   nucleon           : N = 1.000e+00 ; eps_body(Cassini) = 2.349e-86 ; beta_req(eps=1) = 2.213e+40 (force ratio 9.79e+80 x gravity)
+   star (Msun)       : N = 1.189e+57 ; eps_body(Cassini) = 2.792e-29 ; beta_req(eps=1) = 6.418e+11 (force ratio 8.24e+23 x gravity)
+   galaxy 1e11 Msun  : N = 1.189e+68 ; eps_body(Cassini) = 2.792e-18 ; beta_req(eps=1) = 2.030e+06 (force ratio 8.24e+12 x gravity)
+  [MIC 2209.15487]: composition-DEPENDENT couplings are bound ~1e-13..1e-15 in eta — even harsher.
+  [JJKT 1407.0059]: chameleon screening cannot rescue it — screening that hides the solar coupling
+  also raises m_phi locally AND in galaxies (rho_gal >> rho_cosmic), killing the light-tail there first.
+  [CAR astro-ph/9806099]: the quintessence-coupling suppression requirement is the same statement.
+
+====================================================================================================
+[N3-B3] WINDOW CHANNEL (ii) — SOLAR SHAPE CORRIDOR (coupling unconstrained, magnitude-keyed term). dm(a) keyed to |a|: delta_a = eps g(x) a ; galactic job eps g(x_gal) = 1
+====================================================================================================
+  budgets: Saturn radial 2.3e-15 (quad-tail line) / 1e-14 (Folkner); solar-reflex response 2.45e-15 (agentE survival line, Mars-carried)
+  [steady-state profile used — the most favorable to the mechanism; the capped one only flattens it]
+
+      mh |     h- | dA(Sat)/budget | dA(Sun)/budget | verdict (eps set to galactic job)
+    0.01 |  0.000 |      2.392e+05 |      2.242e+05 | solar-DEAD
+    0.05 |  0.001 |      2.437e+05 |      2.263e+05 | solar-DEAD
+     0.1 |  0.003 |      2.576e+05 |      2.330e+05 | solar-DEAD
+     0.3 |  0.030 |      4.034e+05 |      3.024e+05 | solar-DEAD
+     0.5 |  0.086 |      6.811e+05 |      4.343e+05 | solar-DEAD
+       1 |  0.382 |      1.788e+06 |      9.528e+05 | solar-DEAD
+     1.2 |  0.600 |      2.326e+06 |      1.201e+06 | solar-DEAD
+     1.3 |  0.752 |      2.604e+06 |      1.328e+06 | solar-DEAD
+     1.4 |  0.961 |      2.886e+06 |      1.456e+06 | solar-DEAD
+    1.45 |  1.116 |      3.028e+06 |      1.520e+06 | WRONG SIGN (anti-MOND past m^2=2H^2) + solar-DEAD
+
+  WHY no mass evades it: the high-a tail of the dressing is (v_cone/kappa)(2 ln kappa + 1/h- + c0)
+  — a (ln x)/x falloff at EVERY mass [N3-B1 correction]: the F1/Milgrom-99 LINEAR-tail class the repo
+  killed at x54,000 (MI_BATH_TAIL_CONSTRAINT.md), softened only by the log. There is no exponent to tune:
+  the near-cone amplitude that carries the high-a tail is H^2/4pi x (1 - m^2/2H^2) — and the dS-distinctive
+  part of that cone amplitude (subtracting the flat-space massive tail -m^2/8pi) is H^2/4pi EXACTLY,
+  mass-INDEPENDENT: no subtraction scheme changes the class. Past m^2 = 2H^2 the amplitude flips sign
+  (anti-MOND: inertia ADDED at low a) and the channel can no longer do the galactic job at all.
+  shape-only cap (coupling completely unconstrained): max galactic magnitude-keyed term allowed by the
+  solar budgets = 4.180e-06 a0 (at mh = 0.01) — short of the MOND job (=1 a0) by 2.4e+05.
+  -> the SHAPE wall alone closes the magnitude-keyed channel by ~5 orders, independent of the
+     ~80-order coupling wall in [N3-B2]. Two independent walls, each sufficient.
+
+====================================================================================================
+[N3-B4] WINDOW CHANNEL (iii) — FREQUENCY-SUPPRESSED BRACKET (H/Omega)^p, p in {1,2}  [coordination with N2: bracketed, not blocked]
+====================================================================================================
+  Omega/H_Lambda:  dwarf edge (a=1e-12, v=20km/s): 27.7 ; RAR knee (a=a0, v=220km/s): 235 ; massive edge (a=1e-9, v=300km/s): 1.84e+03
+                   Saturn (29.5 yr): 3.74e+09 ; Mars (1.88 yr): 5.86e+10 ; E-J synodic (1.092 yr): 1.01e+11
+
+  p = 1:  required raw amplitude s_p = a0 (Omega_gal/H)^p to do the MOND job at galaxies:
+   dwarf edge (a=1e-12, v=20km/s)    : s_p = 2.590e-09 m/s^2 (=      4.78 cH_L) ; Saturn exposure 6.924e-19 (budget 2e-15) ; Mars exposure 4.421e-20 (line 3.2e-11)
+   RAR knee (a=a0, v=220km/s)        : s_p = 2.203e-08 m/s^2 (=      40.7 cH_L) ; Saturn exposure 5.892e-18 (budget 2e-15) ; Mars exposure 3.762e-19 (line 3.2e-11)
+   massive edge (a=1e-9, v=300km/s)  : s_p = 1.726e-07 m/s^2 (=       319 cH_L) ; Saturn exposure 4.616e-17 (budget 2e-15) ; Mars exposure 2.947e-18 (line 3.2e-11)
+
+  p = 2:  required raw amplitude s_p = a0 (Omega_gal/H)^p to do the MOND job at galaxies:
+   dwarf edge (a=1e-12, v=20km/s)    : s_p = 7.164e-08 m/s^2 (=       132 cH_L) ; Saturn exposure 5.122e-27 (budget 2e-15) ; Mars exposure 2.088e-29 (line 3.2e-11)
+   RAR knee (a=a0, v=220km/s)        : s_p = 5.187e-06 m/s^2 (=  9.57e+03 cH_L) ; Saturn exposure 3.709e-25 (budget 2e-15) ; Mars exposure 1.512e-27 (line 3.2e-11)
+   massive edge (a=1e-9, v=300km/s)  : s_p = 3.184e-04 m/s^2 (=  5.88e+05 cH_L) ; Saturn exposure 2.277e-23 (budget 2e-15) ; Mars exposure 9.281e-26 (line 3.2e-11)
+
+  -> solar-system side: SAFE for p >= 1 (exposures 1e2..1e8 BELOW budgets — frequency suppression
+     does open solar room, as the prompt anticipated). Source side: the required raw amplitude is
+     30..1900x a0 (p=1) or 1e3..3.6e6 x a0 (p=2) PER UNIT MASS — the bath ceiling at the maximum
+     allowed coupling is the [N3-B2] eps-scale (~1e-85 a0-equivalent): short by >= 87 orders.
+     Also flagged for N2: Omega = a/v imprints a v-dependence at fixed a — a (H/Omega)^p term breaks
+     RAR universality across the SPARC v-range (x15 spread at p=1) — structure-level liability.
+
+====================================================================================================
+[N3-B5] DRAG CHANNEL (order of magnitude): tail dissipation on an orbiting worldline
+====================================================================================================
+  upper bound at Cassini coupling, v = 220 km/s: delta_a_drag <= 6.847e-98 m/s^2  = 7.316e-88 a0   (any Omega-suppression lowers it further)
+
+====================================================================================================
+[N3-C] RAW COEFFICIENT LEDGER (reported in isolation, BEFORE any comparison)
+====================================================================================================
+   tail amplitude coefficient (x H^2)                 [EXACT, A1+BHP] = 0.079577
+   cone-value mass factor: 1 - m^2/(2H^2) -> '1/2' at m=H [EXACT, A2] = 0.500000
+   SY variance coefficient (x H^4/m^2)                [EXACT, A3]    = 0.037995
+   small-m decay rate coefficient: h- -> (1/3)(m/H)^2 [EXACT]        = 0.333333
+   comoving saturated dressing: |dm| = (3/4pi) q^2 H^3/m^2 [EXACT-asym] = 0.238732
+   dressing-variance identity factor: |dm| = 2pi q^2 <phi^2>/kappa   = 6.283185
+   P-space kernel falloff exponent h- at m=H (NOT the worldline-tail power; cf B1) [EXACT] = 0.381966
+   trajectory invariant coefficient (2H^2/k^2) sinh^2 [EXACT, A4]    = 2.000000
+
+  POST-HOC COMPARISON (flagged as such; targets 1/Z = 0.172741, 1/2pi = 0.159155, 1/2, 2, Z = 5.7890):
+     0.07958  nearest 1/2pi = 0.15915  off by   50.0%
+     0.50000  nearest   1/2 = 0.50000  off by    0.0%
+     0.03800  nearest 1/2pi = 0.15915  off by   76.1%
+     0.33333  nearest   2/Z = 0.34548  off by    3.5%
+     0.23873  nearest   1/Z = 0.17274  off by   38.2%
+     6.28319  nearest     2 = 2.00000  off by  214.2%
+     0.38197  nearest   2/Z = 0.34548  off by   10.6%
+     2.00000  nearest     2 = 2.00000  off by    0.0%
+   verdict: NOTHING lands on Z or 1/Z. Closest accidents: 1/3 vs 2/Z (3.5% — the SAME 3.5% family
+   as agentB's banked 1/6-vs-1/Z near-miss, doubled; structurally meaningless, recorded so nobody
+   'discovers' it later) and the trivial 1/2's. Consistent with the banked verdict: Z is data-selected.
+
+====================================================================================================
+[N3-D] VERDICT ASSEMBLY (numbers the memo quotes)
+====================================================================================================
+  tail kernel per unit mass is the RIGHT SIZE in H-units at galactic x (bend at kappa ~ H: the dS
+  bath 'knows' where a0 is — that part of the framework motivation SURVIVES);
+  the AMPLITUDE conversion (bath energy H -> nucleon inertia m_p) costs (m_p/M_red)(H/M_red):
+   best eps at Cassini coupling  : 4.71e-86   (need ~1; short by 2.1e+85)
+   best eps at beta = 1          : 4.10e-81   (short by 2.4e+80)
+   best eps at q = 1 per nucleon : 2.76e-44
+   coherent star at Cassini      : 2.80e-29 (+ universality break)
+  shape wall alone (coupling unconstrained): galactic magnitude-keyed term capped at 4.2e-06 a0
+  — the dressing's high-a tail is (ln x)/x at every mass: the banked F1 ephemeris class; no corridor.
+  frequency channel: solar-safe but source-impossible (>= 87 orders).
+  WINDOW: EMPTY — by margins (1e27..1e86) that no footing/convention choice (Z vs 2pi vs 2; a0 vs cH;
+  H_Lambda vs H0; capped vs eternal) can dent. Stated at full weight, both directions:
+  the door is structurally REAL (trajectory-dependent, MOND-signed — unique among all bath channels
+  probed tonight) and numerically HOPELESS at any coupling a light scalar is allowed to have.
+
+[done]
