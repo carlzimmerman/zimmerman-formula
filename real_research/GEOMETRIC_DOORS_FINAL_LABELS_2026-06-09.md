@@ -39,6 +39,6 @@ Net on the two final labels: **one closed, one leaning (not closed).**
 3. **Harden the AeST stability** — full 6-dof ghost/gradient spectrum (current result rides the c_GW=c branch signs).
 4. **Nail the FRW/McVittie outer BC** — the pinning is contingent on it supplying θ_bg=3H.
 5. **DSSYK: banked.** CONTESTED-TERMINAL; only external resolution of the N-V-vs-Okuyama dS dictionary could close it, and the internal dynamics lean to the edge. Stop re-litigating.
-6. **Press a₀(z≈3)** — the sole evolution arbiter (declining ~0.74 maximal, non-adiabatic; rising ~4.6 excluded; constant 1.0; the CMB does *not* discriminate declining from constant, so z≈3 is the only thing that can).
+6. **Press a₀(z≈3)** — the sole evolution arbiter. Declining predicts **~0.65–0.74** (response gate ~0.65, zero-lag 0.737 — *not* "maximal decline"; band [~0.37, 1.0] gate/IC-dependent, given the Step-4 coupling + gate selection; `reviews/gamma_th_blind/`); rising ~4.6 excluded; constant 1.0; the CMB does *not* discriminate declining from constant (bath), so z≈3 is the only thing that can.
 
 *All 37 decisive scripts: `real_research/reviews/labels_close/`. Process failure (the hung agent) and the salvage method documented above; the verdicts rest on completed agents + saved scripts + independent re-runs, not on the un-adjudicated workflow tail.*
