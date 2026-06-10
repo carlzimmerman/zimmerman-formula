@@ -28,8 +28,12 @@ balance, agentQ). The length scale is not inserted — it appears.
 - The framework's Z: data-certain (SPARC-optimal within 0.3% under the locked unweighted metric), π-bearing, underived.
 - Verlinde's 6: **CONDITIONAL-derived** (dimension-forced, (d−3)/((d−2)(d−1)) at d=4, zero tunable freedom — given
   five named postulates; agentP). 6 vs 5.789 = 3.65%: empirically degenerate at RAR precision forever.
-- **PENDING (agentT):** does the Jacobson-breakdown geometry force 32π/3 symbolically? (The merger-depth identity
-  (cH/a₀)² = Z² is algebra; whether geometry *selects* it is the open computation.) → [SLOT-T]
+- **RESOLVED (agentT): O(1)-NULL.** Geometry does NOT force 32π/3: no symbolic match under any of three independent
+  breakdown definitions; the candidate spread is ×39 and threshold-set (the spread is the answer); the Killing-failure
+  route yields a strengthening theorem instead (the O(x²·Riemann) terms vanish IDENTICALLY in exact dS, so agentQ's
+  identity is exact on bookkeeping grounds alone). At a ≲ a₀ the construction ceases to be local — it becomes GH
+  thermodynamics of the cosmological horizon (the Λ sector). Z stays data-selected; Verlinde's conditional 6 remains
+  the only derivation-flavored candidate; the two are empirically degenerate. Echo #3 recorded: Hr(a) = a/κ = μ_F4.
 
 **Link 5 — the mechanism: how T_eff becomes inertia.** CLOSED-NEGATIVE at the worldline, by theorems, exhaustively:
 - δQ = TδS **cannot** do it (agentQ: Clausius consumes T; MOND needs dT/da — the lanes are provably disjoint).

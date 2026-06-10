@@ -1,0 +1,159 @@
+==================================================================================================
+PART A -- THE STATIONARY (DESER-LEVIN) FAMILY: r(a), ell(a), derived from the metric
+==================================================================================================
+   [A1 |a|^2 = H^4 r^2/(1-H^2r^2)  =>  a(r) = H^2 r/sqrt(1-H^2 r^2)  (full Christoffels)] PASS
+      NOTE: with H in 1/time and c restored, a(r) = H^2 r/sqrt(1-H^2r^2/c^2) -- the
+      prompt's draft form 'a = (Hr/sqrt(1-H^2r^2))c^2' is dimensionally off; corrected here.
+   [A2 r(a) = a/(H sqrt(a^2+H^2))   [=> H r(a) = a/sqrt(a^2+H^2) = mu_F4, an IDENTITY echo]] PASS
+   [A3 ell(r) = (pi/2 - asin(H r))/H = acos(H r)/H] PASS
+   [A4 a(ell)^2 = H^2 cot^2(H ell)  [both sides > 0 on 0 < H ell < pi/2 => a = H cot(H ell)]] PASS
+   [A5 H ell(a) = arctan(H/a)   [cos(atan(H/a)) = H r(a); both angles in (0,pi/2)]] PASS
+      The bookkeeping variable below: x = H ell = arctan(H/a), i.e. H/a = tan x.
+      Deep-MOND onset a0 = cH/Z  <=>  x0 = arctan(Z) (agentQ's 89%-depth point).
+
+==================================================================================================
+PART B -- DEFINITION (a): THE MERGER CONDITION (Rindler depth vs distance to horizon)
+==================================================================================================
+  Rindler depth d_R = 1/a = tan(x)/H ;  proper distance to cosmological horizon ell = x/H.
+   [B1 d/dx(tan x - x) = tan^2 x  (>0 on (0,pi/2); value 0 at x=0 => tan x > x STRICTLY)] PASS
+      => the strict equality 1/a = ell has NO finite-a solution: the flat Rindler depth
+         ALWAYS overshoots the true distance to the horizon; equality only as a -> oo.
+         The literal merger condition is a sharp NON-boundary (ill-posed as an equality).
+   [B2 misfit (tan x - x)/x = x^2/3 + 2x^4/15 + ...  (leading coefficient EXACTLY 1/3)] PASS
+   [B3 in H/a: misfit = (1/3)(H/a)^2 - (4/45)(H/a)^4 + ...  (leading coefficient 1/3 exact)] PASS
+  B4. boundary = threshold choice (tan x = (1+m*)x; at the root c_a = a/cH = 1/((1+m*)x*)):
+      misfit =  1/2:  x* = 0.96740,  c_a = 0.68913
+      misfit =    1:  x* = 1.16556,  c_a = 0.42898
+      misfit =    2:  x* = 1.32419,  c_a = 0.25173
+      misfit =    3:  x* = 1.39325,  c_a = 0.17944
+   [B5 root identity cot x* = 1/((1+m*) x*) at each root (residual < 1e-20)] PASS
+   [B6 d_R = full static-patch depth pi/(2H)  =>  c_a = 2/pi exactly] PASS
+      d_R = curvature radius 1/H        =>  c_a = 1 (tan x = 1, x = pi/4)
+      SPREAD for definition (a): c_a in {0.1794 (m*=3), 0.2517 (m*=2), 0.4290 (m*=1), 0.6366 (patch), 0.6891 (m*=1/2), 1 (curv.)}
+  B7. misfit at a = a0 (x0 = arctan Z = 1.39974 = 89.1% depth):  m(a0) = (Z - arctan Z)/arctan Z = 3.13564
+      |m(a0) - pi|/pi = 1.89e-03  -- a 0.19% near-miss to pi.
+      FLAG: numerology-bait. 'Z = (1+pi) arctan Z' has no derivation behind it; transcendental
+      coincidence; structurally meaningless per the repo's coefficient discipline. NOT fed.
+
+==================================================================================================
+PART C -- DEFINITION (b): THE KILLING-FAILURE TERM (GJS 1112.6215), EXACT IN dS
+==================================================================================================
+   [C1 dS: ALL components of the O(x^2) Killing-failure tensor vanish IDENTICALLY (coefficient = 0)] PASS
+   [C2 perturbed Riemann (R_0202 += delta): failure tensor is NONZERO and exactly linear in delta] PASS
+      exact failure components (perturbed case, through O(x^2); kappa = boost normalization):
+        S_01 = -delta*kappa*x2**2/6
+        S_02 = delta*kappa*x1*x2/6
+        S_10 = -delta*kappa*x2**2/6
+        S_12 = delta*kappa*x0*x2/6
+        S_20 = delta*kappa*x1*x2/6
+        S_21 = delta*kappa*x0*x2/6
+        S_22 = -delta*kappa*x0*x1/3
+      WHY the dS coefficient is exactly zero (theorem, classical): an isometry fixing p
+      satisfies phi(exp_p v) = exp_p(d phi_p v), so ANY Killing field vanishing at p is EXACTLY
+      linear in Riemann normal coordinates. dS is maximally symmetric: the local boost about any
+      horizon point IS an exact Killing field (the static-patch boost), and Jacobson's chi = its
+      exact linearization. The GJS O(x^2*Riemann) failure is the statement for GENERIC backgrounds;
+      its dS coefficient VANISHES because the dS Riemann is invariant under the full Lorentz
+      stabilizer (machine check C1); breaking that invariance (C2) switches the failure back on.
+   [C3 closed-form dS RNC metric: Lie_chi g = 0 EXACTLY, all components, ALL orders in x] PASS
+   [C4 closed form matches the RNC expansion: phi = 1 - (H^2/3)s + O(s^2)] PASS
+   [C5a Sherman-Morrison inverse: G * Ginv = Id exactly] PASS
+   [C5b numeric Ricci spot-check: |R_mn - 3H^2 g_mn| < 1e-9 at random spacelike points (max 1.3e-14)] PASS
+      => In EXACT dS the (b)-channel failure term is ZERO TO ALL ORDERS: Jacobson's local
+      boost is not approximate there -- it is the static-patch boost itself. Definition (b)
+      yields NO breakdown acceleration proportional to cH: in exact dS the channel is EMPTY
+      (c_b = none); in PERTURBED dS the failure is O(x^2 * delta-Riemann), i.e. set by the
+      MATTER perturbation (delta R ~ G T), not by H -- a boundary on a different axis entirely.
+      REFINEMENT of agentQ Part F: the scheme spread {0,1/6,1/3,1/2} stands on the
+      acceleration/weight bookkeeping choices alone; it is NOT degenerate with Killing-failure
+      terms in exact dS (those vanish). agentQ's R1-exactness is STRENGTHENED.
+   [C6 norm-channel deviation 1 - sin(x)/x = x^2/6 - x^4/120  (leading coefficient 1/6 exact)] PASS
+   [C7 norm deviation NEVER reaches O(1) inside the patch: max = 1 - 2/pi = 0.3634 at x = pi/2] PASS
+      temperature channel x/sin(x) - 1: max at patch edge = pi/2 - 1 = 0.5708
+      at the MOND onset a0 (x0 = arctan Z): norm channel = 0.2960 (29.5%), temperature channel = 0.4205 (41.9%)
+      => the graded flat-bookkeeping error is SUB-O(1) even at a0; reaching deviation = 1
+         requires x = pi (norm) or x = 1.8955 (temp): BOTH OUTSIDE the static patch.
+      extrapolated small-x boundary (deviation=1 with leading term only): c = 1/sqrt(6)
+      = 0.4082 -- flagged: the extrapolation is invalid (x <= pi/2 < sqrt(6)); scheme only.
+
+==================================================================================================
+PART D -- DEFINITION (c): EQUILIBRIUM/ADIABATIC (light-crossing time vs inverse temperature)
+==================================================================================================
+   [D1 flat: t_cross * T_Unruh = 1/(2pi) EXACTLY -- a- and H-independent: NEVER breaks] PASS
+   [D2 exact ratio P(a) = ell(a)*T_DL(a): P(a->oo) = 1/(2pi), P(a->0) = 1/4 -- BOUNDED] PASS
+   [D3 deviation series: 2pi*P = 1 + (1/6)(H/a)^2 + ...  (SAME 1/6 as the norm channel)] PASS
+   [D4 P(a) monotone, in [1/(2pi), 1/4] on the whole family (grid check)] PASS
+      P(a)*2pi from a=100H to a=0.001H: ['1.0000', '1.0017', '1.0175', '1.1107', '1.3357', '1.4205', '1.5415', '1.5698']
+      at a0: 2pi*P = 1.4205  (57% above flat; max 2pi/4 = 1.571)
+      => the EXACT equilibrium ratio never becomes O(1): it runs from 1/(2pi) = 0.159 to
+         1/4 = 0.25 over the ENTIRE acceleration range. The criterion NEVER fires.
+   [D5 radar time integrand 1/sin(H ell): antiderivative log(tan(H ell/2))/H -> -oo at the horizon] PASS
+      (the radar reading diverges at EVERY a -- exactly as in flat Rindler; not H-keyed)
+   [D6a 'T_DL/T_U = 2' threshold  =>  a = H/sqrt(3)  (c = 1/sqrt(3) = 0.5774)] PASS
+   [D6b 'naive ratio = 1' threshold  =>  a = H/sqrt(4pi^2-1)  (c = 0.1612)] PASS
+      D6c 'flat patch 1/a = curvature radius 1/H'  =>  c = 1
+      D6d 'flat patch 1/a = patch depth pi/(2H)'   =>  c = 2/pi = 0.6366
+      D6e 'thermal wavelength 2pi/a = 1/H'         =>  c = 2pi = 6.2832
+
+==================================================================================================
+PART E -- RAW c_i TABLE FIRST, THEN the single sharp symbolic question (match to 1/Z?)
+==================================================================================================
+   definition / variant                         c exact                     c numeric   depends on
+   (a) merger, misfit threshold 300%            1/(4 x*), tan x*=4x*          0.17944   threshold m*=3
+   (a) merger, misfit threshold 200%            1/(3 x*), tan x*=3x*          0.25173   threshold m*=2
+   (a) merger, misfit threshold 100%            1/(2 x*), tan x*=2x*          0.42898   threshold m*=1
+   (a) merger, depth = full patch               2/pi                          0.63662   which depth scale
+   (a) merger, misfit threshold 50%             1/(1.5 x*)                    0.68913   threshold m*=1/2
+   (a) merger, depth = curvature radius         1                             1.00000   which depth scale
+   (b) Killing failure, exact dS                NONE (failure = 0, all orders)       None   -- channel empty
+   (b) graded norm channel, extrapolated        1/sqrt(6)                     0.40825   invalid extrapolation
+   (c) exact equilibrium ratio                  NONE (bounded, never fires)       None   -- no boundary
+   (c) T_DL/T_U = 2 threshold                   1/sqrt(3)                     0.57735   threshold W=2
+   (c) naive ratio = 1 threshold                1/sqrt(4pi^2-1)               0.16121   2pi placement + threshold
+   (c) flat patch vs curvature radius           1                             1.00000   which length pair
+   (c) thermal wavelength vs 1/H                2pi                           6.28319   which length pair
+
+   SPREAD of finite candidates: [0.1612, 6.2832] -- a factor 39.0
+   comparison set (AFTER): 1/Z = 0.17275, 1 , Z = 5.78881, 2pi = 6.28319, 1/6 = 0.16667
+
+  E1. symbolic match tests, c^2 vs 3/(32 pi)  [equality would force the stated pi-identity]:
+      2/pi              : c^2 - 3/(32pi) = (128 - 3*pi)/(32*pi**2) = +0.37544  (match would force pi = 128/3: FALSE) -> NO MATCH
+      1                 : c^2 - 3/(32pi) = (-3/32 + pi)/pi = +0.97016  (match would force pi = 3/32: FALSE) -> NO MATCH
+      1/sqrt(6)         : c^2 - 3/(32pi) = (-9 + 16*pi)/(96*pi) = +0.13683  (match would force pi = 9/16: FALSE) -> NO MATCH
+      1/sqrt(3)         : c^2 - 3/(32pi) = (-9 + 32*pi)/(96*pi) = +0.30349  (match would force pi = 9/32: FALSE) -> NO MATCH
+      1/sqrt(4pi^2-1)   : c^2 - 3/(32pi) = (-12*pi**2 + 3 + 32*pi)/(-32*pi + 128*pi**3) = -0.00385  (match would force 12pi^2 - 32pi - 3 = 0 (pi algebraic): FALSE) -> NO MATCH
+      2pi               : c^2 - 3/(32pi) = (-3 + 128*pi**3)/(32*pi) = +39.44858  (match would force pi^3 = 3/128: FALSE) -> NO MATCH
+   [E1 NO symbolic candidate equals 1/Z (each match would force a false/transcendence-violating pi-identity)] PASS
+      transcendental-root candidates (numeric only): ['0.68913', '0.42898', '0.25173', '0.17944'] vs 1/Z = 0.17275
+   [E2 the threshold producing c_a = 1/Z is m* = misfit(a0) EXACTLY (tautological crossing)] PASS
+      crossing threshold m* = 3.13564 = m(a0); nothing selects it. The m*=3 row
+      (c = 0.17944, 3.9% from 1/Z) is a FLAGGED NEAR-MISS: an artifact of m(a0) = 3.1356 ~ 3; threshold-set, not structure.
+      closest finite candidate to 1/Z: c = 0.17944, gap 3.9%
+      NEAR-MISS FLAGS (all structurally meaningless, per discipline):
+        1/sqrt(4pi^2-1) = 0.16121 vs 1/Z = 0.17275 (6.7%) and vs 1/6 (3.3%): threshold artifacts
+        2pi = 6.2832 vs Z = 5.7888 (8.5%): (2pi)^2 = 4pi^2 vs Z^2 = 32pi/3 <=> pi vs 8/3 -- distinct
+        misfit(a0) = 3.13564 vs pi (0.19%): transcendental coincidence (Part B7)
+
+==================================================================================================
+MACHINE-CHECK SUMMARY: ALL PASS
+==================================================================================================
+VERDICT (pre-registered trichotomy; details in agentT_zgeometry.md):
+ O(1)-NULL, with two channels resolving to the ILL-POSED horn -- and NO symbolic match anywhere.
+ (a) MERGER: the strict condition 1/a = ell has NO finite solution (tan x > x: the flat Rindler
+     depth always overshoots the true horizon distance). The graded misfit has EXACT leading
+     coefficient 1/3 and grows without bound, but the boundary is set ENTIRELY by a free threshold:
+     c_a = {0.18, 0.25, 0.43, 0.64, 0.69, 1} for thresholds {300%,200%,100%,patch,50%,curv}.
+ (b) KILLING FAILURE: in exact dS the GJS O(x^2*Riemann) failure coefficient is EXACTLY ZERO at
+     all orders (theorem: Killing fields vanishing at p are exactly linear in RNC; dS's local
+     boost is the static-patch boost). The channel produces NO cH-proportional boundary at all;
+     in perturbed dS it scales with the matter perturbation, not H. The graded flat-bookkeeping
+     error (coefficient 1/6 exact) stays sub-O(1) everywhere inside the patch (max 36%/57%).
+ (c) EQUILIBRIUM: flat reading = 1/(2pi) exactly, scale-invariant, never breaks; exact reading
+     bounded in [1/(2pi), 1/4] over the ENTIRE range -- never fires; radar reading diverges at
+     every a equally. A boundary appears only by threshold fiat: c in {0.16, 0.58, 0.64, 1, 2pi}.
+ SHARP QUESTION: no computed c_i equals 1/sqrt(32pi/3) symbolically -- each candidate match would
+ force a false pi-identity (rational pi or pi algebraic). Spread of defensible finite candidates:
+ a factor ~39. THE SPREAD IS THE ANSWER: nothing is forced. Z stays DATA-SELECTED; the banked
+ verdict stands; agentQ's 89%-depth merger reading remains a CONSISTENCY statement, not a
+ derivation -- and its R1-exactness is STRENGTHENED (in exact dS the construction with the exact
+ boost is exact at every a; what fails at low a is LOCALITY of the wedge, not the thermodynamics).
