@@ -11,7 +11,14 @@ repo -> this is the physics + the decision protocol. Needs numpy.
 """
 import numpy as np
 
-G, a0, Msun, kpc, AU = 6.674e-11, 1.2e-10, 1.989e30, 3.0857e19, 1.496e11
+G, Msun, kpc, AU, c = 6.674e-11, 1.989e30, 3.0857e19, 1.496e11, 2.998e8
+
+# Framework a0 = (c/2) sqrt(G rho_Lambda) = c^2 sqrt(Lambda/32pi): the dark-energy-fixed
+# acceleration scale, NOT textbook MOND's 1.2e-10. rho_Lambda = Omega_Lambda * rho_crit.
+H0, Omega_Lambda = 2.184e-18, 0.685          # H0 in s^-1 (=67.4 km/s/Mpc); Planck Omega_Lambda
+rho_crit = 3 * H0**2 / (8 * np.pi * G)
+rho_Lambda = Omega_Lambda * rho_crit
+a0 = (c / 2) * np.sqrt(G * rho_Lambda)       # = 9.36e-11 m/s^2 (kappa=1/2, pure-Lambda)
 
 
 def main():
@@ -19,12 +26,12 @@ def main():
     g_ext = (230e3)**2/(8.2*kpc)
     print("="*92); print("THE REGIME -- why the predicted signal is small"); print("="*92)
     print(f"  Galactic external field at the Sun:  g_ext = V^2/R = {g_ext:.2e} = {g_ext/a0:.2f} a0.")
-    print(f"  So wide binaries are NOT isolated deep-MOND -- they sit in a MILD external field ~1.7 a0, which")
+    print(f"  So wide binaries are NOT isolated deep-MOND -- they sit in a MILD external field ~{g_ext/a0:.1f} a0, which")
     print(f"  SUPPRESSES the MOND boost. Internal acceleration vs separation:")
     for s in (2000, 5000, 10000, 20000):
         gi = G*1.5*Msun/(s*AU)**2
         print(f"     s={s:>6} AU:  g_int = {gi:.2e} = {gi/a0:5.2f} a0")
-    print("""  At the s~5000-20000 AU sweet spot, g_int ~ a0 ~ g_ext/1.7. The predicted MOND excess in orbital
+    print(f"""  At the s~5000-20000 AU sweet spot, g_int ~ a0 ~ g_ext/{g_ext/a0:.1f}. The predicted MOND excess in orbital
   velocity is therefore only ~15-20% -- a small signal riding on top of large astrophysical confusion.\n""")
 
     print("="*92); print("WHY CHAE AND BANIK DISAGREE (it is systematics, not the gravity law)"); print("="*92)
