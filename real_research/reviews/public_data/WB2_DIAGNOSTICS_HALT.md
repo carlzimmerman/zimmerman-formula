@@ -1,3 +1,11 @@
+> ⚠️ **SUPERSEDED IN PART by `WB_R1_EXACT_REPLICATION.md` (2026-06-09).** This doc's headline super-escape number
+> (**0.27**, and its derived "≥27% unbound junk") was inflated by **two compounding factors**: (1) a *looser hybrid*
+> selection (no separation cut, no triple screen) and (2) a **rough/extrapolated mass estimator**. The faithful
+> published-selection replication with the corrected Banik-cubic mass pipeline gives a deep-bin super-escape of **~0.10**,
+> below the 0.15 trigger. **The 0.27 is corrected — do not cite it as the faithful number.** What STANDS: the
+> stop-and-report *discipline* (both triggers fired on the looser sample → HALT was correct given those inputs), and the
+> methodological requirement that any boost claim survive a noise+triple deconvolution. See WB-R1 for the faithful table.
+
 # WB-2 diagnostics — BOTH stop-triggers fired → HALT before the Monte-Carlo (relay to Fable)
 
 *C. Zimmerman, 2026-06-09. The two gating diagnostics (`wb2_diagnostics.py`) on the 73,670-pair selection. Per the standing block, D1 σ/v_N > 0.3 and D2 super-escape > 15% in the deep bins are **stop-and-report triggers**. Both fired. The Monte-Carlo build is HELD until the state is relayed.*
