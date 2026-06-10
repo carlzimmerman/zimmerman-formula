@@ -1,0 +1,224 @@
+##############################################################################################################
+# agentS: LATE-TIME TWO-POINT G(t) FROM THE BANKED w(E) AT EACH VACUUM PLACEMENT vs THE dS QNM LADDER
+# pre-registered: agentR_dssyk_gate_2026.md (2026-06-10).  Band units E=cos(theta), E0=1; lambda=-ln q.
+##############################################################################################################
+
+==============================================================================================================
+PART 0 -- VALIDATION ANCHOR: reproduce the banked w(E) numbers (dssyk_problem1_STRUCTURED_OUTPUT.json)
+==============================================================================================================
+  int mu dtheta (q=0.30) = 1.0000000000   [banked: 1.0000000000]
+  int mu dtheta (q=0.70) = 1.0000000000   [banked: 1.0000000000]
+  int mu dtheta (q=0.95) = 0.9999999999   [banked: 1.0000000000]
+  |G(th1,th2)-G(th2,th1)| = 0.00e+00   [banked: <=2.2e-16]
+  Im(G_amp)/Re(G_amp) at real angles = 4.60e-18  (amplitude REAL on the real axis ->
+    the analytic continuation of w is mu*G_amp^2; load-bearing for the pole analysis)
+
+      q |   s_center (banked ~0) |  s_edge (banked 0.500-0.523)
+   0.50 |                -0.0005 |                       0.5000
+   0.70 |                -0.0009 |                       0.5000
+   0.90 |                -0.0031 |                       0.5002
+   0.95 |                -0.0064 |                       0.5009
+
+  transport (banked: CENTER-vac frac|E|<0.05 = 0.71-1.00; EDGE-vac frac|E|>0.95 = 0.13-1.00):
+      q  Delta |  CENTER frac_ctr |  EDGE frac_edge
+   0.50   0.10 |            0.714 |           0.999
+   0.50   0.50 |            0.227 |           0.611
+   0.50   1.00 |            0.148 |           0.129
+   0.70   0.10 |            0.918 |           1.000
+   0.70   0.50 |            0.416 |           0.952
+   0.70   1.00 |            0.268 |           0.537
+   0.90   0.10 |            0.999 |           1.000
+   0.90   0.50 |            0.904 |           1.000
+   0.90   1.00 |            0.731 |           1.000
+   0.95   0.10 |            1.000 |           1.000
+   0.95   0.50 |            0.996 |           1.000
+   0.95   1.00 |            0.966 |           1.000
+
+==============================================================================================================
+PART 1 -- SYMBOLIC (sympy): pole ladder of the continued weight; Watson-lemma edge power law
+==============================================================================================================
+  den-factor zero  q^(Delta+k) e^(i(theta-theta_v)) = 1  ->  theta = [(2*atan(tan(theta_v/2)),)]
+  E_pole = cos(theta_v - i u) = cos(theta_v)*cosh(u) + i(sin(theta_v)*sinh(u))   [u=(Delta+k)lambda]
+   -> CENTER theta_v=pi/2: E_pole = I*sinh(u)  (PURELY IMAGINARY ladder)
+   -> EDGE theta_v=pi-eps:  Re E_pole = -cos(epsilon)*cosh(u),  Im E_pole = sin(epsilon)*sinh(u)
+      omega_pole = E_pole - E_vac: Re = cos(eps)(1-cosh u) < omega_min = cos(eps)-1 (below the support
+      floor) EXACTLY when cosh(u) > sec(eps): poles NOT swept; threshold sin(eps_c/2)/sqrt(cos eps_c)
+      = sinh(Delta*lambda/2), i.e. eps_c ~ 2 asin(sinh(Delta*lambda/2)) ~ Delta*lambda to O(eps^3).
+  Watson lemma: int_0^oo sqrt(w) e^(-s w) dw = sqrt(pi)/(2*s**(3/2));  s -> i t  =>  |G_edge(t)| ~ (sqrt(pi)/2) C t^(-3/2)
+  -> the banked sqrt soft edge s_E=1/2 FORCES the edge late-time power t^-(s_E+1) = t^-3/2 ('Airy-class',
+     the falloff agentR pre-registered as the alternative to a QNM ladder). Half-integer endpoint series
+     w ~ w^(1/2)(h0 + h1 w^(1/2) + ...) -> corrections t^(-2), t^(-5/2), ... (checked numerically, PART 4).
+
+==============================================================================================================
+PART 2 -- THE dS TARGETS (pinned): static-patch QNM ladders, both dimensional matchings
+==============================================================================================================
+  dS_D scalar QNMs [Lopez-Ortega gr-qc/0605027; dS3: Jafferis et al 1305.5523]:
+     omega_{n,l} = -i H (2n + l + Delta_pm),   Delta_pm = (D-1)/2 +- sqrt((D-1)^2/4 - m^2/H^2)
+     => with N=2n+l: omega_N = -i H (Delta + N): PURELY IMAGINARY, spacing H (Delta-independent),
+        offset Delta (probe-dependent), nonzero rate (thermal horizon, T_dS = H/2pi, Gibbons-Hawking 1977).
+       dS3 conformal scalar (m^2=3/4 H^2): Delta_+ = 3/2, Delta_- = 1/2;  ladder -i(Delta_pm + N)H
+                             dS3 massless: Delta_+ = 2, Delta_- = 0;  ladder -i(Delta_pm + N)H
+                             dS2 massless: Delta_+ = 1, Delta_- = 0;  ladder -i(Delta_pm + N)H
+                         dS2 m^2=3/16 H^2: Delta_+ = 3/4, Delta_- = 1/4;  ladder -i(Delta_pm + N)H
+  MATCHING (a) dS3/center [Marini-Qi-H.Verlinde 2604.21014: dS3 boundary Green fn = (DSSYK 2pt)^2]:
+     G(t) must carry ladder (Delta+n)H_eff so that G^2 carries (Delta_3+N)H_eff with Delta_3=2Delta.
+  MATCHING (b) dS2-JT/edge [Okuyama 2505.08116; near-dS2 Maldacena-Turiaci-Yang 1904.01911]:
+     G(t) must itself carry a ladder (Delta+n)H_eff.
+  => the four STRUCTURAL requirements R1-R4 (header) are the SAME under both matchings; only the
+     numerical value of H_eff differs. A structural failure kills the placement in EITHER dimension --
+     this is how the apples-to-apples caveat is handled without choosing a camp's bulk.
+
+==============================================================================================================
+PART 3 -- CENTER placement (theta_v = pi/2, N-V): G(t) decay vs the predicted q-deformed QNM ladder
+==============================================================================================================
+  prediction (PART 1): Gamma_n = sinh((Delta+n)lambda), Re omega_n = 0; lambda->0: -> (Delta+n)lambda
+
+      q Delta |  Gamma0_fit Gamma0_pred  ratio |  1/t-slope | osc |Im/Re| |           pencil rung rates (unsupervised)
+/Users/carlzimmerman/new_physics/zimmerman-formula/real_research/reviews/toe_law/agentS_edge_qnm.py:138: RuntimeWarning: divide by zero encountered in matmul
+  A = (U[:, :M].conj().T @ Y1 @ Vh[:M, :].conj().T) / S[:M][None, :]
+/Users/carlzimmerman/new_physics/zimmerman-formula/real_research/reviews/toe_law/agentS_edge_qnm.py:138: RuntimeWarning: overflow encountered in matmul
+  A = (U[:, :M].conj().T @ Y1 @ Vh[:M, :].conj().T) / S[:M][None, :]
+/Users/carlzimmerman/new_physics/zimmerman-formula/real_research/reviews/toe_law/agentS_edge_qnm.py:138: RuntimeWarning: invalid value encountered in matmul
+  A = (U[:, :M].conj().T @ Y1 @ Vh[:M, :].conj().T) / S[:M][None, :]
+   0.50  0.10 |     0.06892     0.06937  0.994 |     -0.840 |    1.51e-15 |                       ['0.0184', '0.0694']
+   0.50  0.50 |     0.54272     0.35355  1.535 |     -5.642 |    4.89e-15 |                       ['0.0965', '0.3536']
+   0.50  1.00 |    -0.07437     0.75000 -0.099 |     10.186 |    5.70e-15 |             ['0.2111', '0.7262', '0.7806']
+   0.70  0.10 |     0.03543     0.03568  0.993 |     -0.837 |    1.48e-15 |                                 ['0.0357']
+   0.70  0.50 |     0.17937     0.17928  1.000 |     -1.010 |    2.53e-15 |             ['0.0762', '0.1793', '0.5347']
+   0.70  1.00 |     0.37231     0.36429  1.022 |     -1.509 |    5.34e-15 |                       ['0.3643', '0.7064']
+   0.90  0.10 |     0.01046     0.01054  0.993 |     -0.837 |    8.28e-16 |                                 ['0.0105']
+   0.90  0.50 |     0.05272     0.05270  1.000 |     -1.004 |    1.80e-15 |                       ['0.0527', '0.1507']
+   0.90  1.00 |     0.10770     0.10556  1.020 |     -1.472 |    2.02e-15 |                       ['0.1056', '0.2104']
+
+  rung-1 check (pencil rate clusters vs sinh((Delta+1)lambda)) and ladder-structure ratios:
+      q Delta |  sinh((D+1)lam) pred | offset/spacing = Gamma0/(Gamma1-Gamma0) pred (lam->0: Delta)
+   0.50  0.10 |              0.83852 | Gamma0/(Gamma1-Gamma0) =   0.0902  (Delta=0.1)
+   0.50  0.50 |              1.23744 | Gamma0/(Gamma1-Gamma0) =   0.4000  (Delta=0.5)
+   0.50  1.00 |              1.87500 | Gamma0/(Gamma1-Gamma0) =   0.6667  (Delta=1.0)
+   0.70  0.10 |              0.40249 | Gamma0/(Gamma1-Gamma0) =   0.0973  (Delta=0.1)
+   0.70  0.50 |              0.56090 | Gamma0/(Gamma1-Gamma0) =   0.4698  (Delta=0.5)
+   0.70  1.00 |              0.77541 | Gamma0/(Gamma1-Gamma0) =   0.8861  (Delta=1.0)
+   0.90  0.10 |              0.11616 | Gamma0/(Gamma1-Gamma0) =   0.0998  (Delta=0.1)
+   0.90  0.50 |              0.15870 | Gamma0/(Gamma1-Gamma0) =   0.4972  (Delta=0.5)
+   0.90  1.00 |              0.21228 | Gamma0/(Gamma1-Gamma0) =   0.9890  (Delta=1.0)
+
+  semiclassical lambda->0 cross-check (Delta=0.5): Gamma0_fit/lambda -> Delta; spacing/lambda -> 1:
+       q   lambda |  Gamma0_fit Gamma0_fit/lam (-> 0.5) |  QNM window e-folds
+    0.50   0.6931 |     0.54272         0.7830          |                18.1
+    0.70   0.3567 |     0.17937         0.5029          |                19.1
+    0.90   0.1054 |     0.05272         0.5004          |                19.2
+    0.95   0.0513 |     0.02566         0.5002          |                19.2
+    0.98   0.0202 |     0.01010         0.5001          |                19.2
+  (window e-folds GROW as lambda->0: the ladder regime is parametrically long semiclassically;
+   at any finite lambda the bounded band eventually imposes a t^-3/2 oscillatory floor -- same
+   finite-N truncation physics as any finite-entropy horizon.)
+
+==============================================================================================================
+PART 4 -- EDGE placement (theta_v = pi - 1e-3, Okuyama, as banked): the calculation nobody published
+==============================================================================================================
+      q Delta |  slope[1e3,3e3] slope[3e3,1e4] slope[1e4,2e4] |  R2 pow R2 exp |  A(omega<0)
+   0.50  0.10 |          -0.911         -1.331         -1.467 |  0.9916 0.9234 |    1.02e-05
+   0.50  0.50 |          -1.497         -1.500         -1.500 |  0.9998 0.7339 |    6.38e-08
+   0.50  1.00 |          -1.500         -1.500         -1.500 |  1.0000 0.7261 |    4.49e-09
+   0.70  0.10 |          -0.365         -0.828         -1.229 |  0.9920 0.9842 |    7.46e-05
+   0.70  0.50 |          -1.464         -1.496         -1.499 |  0.9960 0.7703 |    4.61e-07
+   0.70  1.00 |          -1.504         -1.500         -1.500 |  0.9999 0.7208 |    2.95e-08
+   0.90  0.10 |          -0.018         -0.093         -0.265 |  0.6309 0.9883 |    2.77e-03
+   0.90  0.50 |          -0.764         -1.232         -1.437 |  0.9923 0.9445 |    1.78e-05
+   0.90  1.00 |          -1.574         -1.544         -1.508 |  0.9985 0.8162 |    1.10e-06
+
+  final-decade slope across the FULL q x Delta grid: mean = -1.323, spread = 0.383,
+  target -(s_E+1) = -1.500 from the banked Wigner edge s_E=1/2.  Delta-INDEPENDENCE of the exponent is
+  the structural kill: a QNM ladder offset MUST move with the probe dimension (R2); a log-clock
+  reparametrization t=e^(H tau) would convert t^-3/2 into e^(-3/2 tau)(1+c1 e^-tau+...) -- an equally
+  spaced ladder but with Delta-INDEPENDENT offset 3/2: fails R2 in ANY clock. CENTER A(omega<0)=0.5 vs
+  EDGE A ~ 0: one-sided support = ground-state (lower-half-t) analyticity, NOT a thermal correlator.
+
+==============================================================================================================
+PART 5 -- PLACEMENT SCAN theta_v in (pi/2, pi): the fake-temperature law and the unique dS-compatible point
+==============================================================================================================
+  predictions: Gamma0 = sin(theta_v) sinh(Delta lambda)  [thermal rate ~ fake temperature ~ sin theta_v,
+  Lin-Susskind 2206.01083];  |Re omega0| = |cos(theta_v)|(cosh(Delta lambda)-1)  [ringing, BH-like, =0 ONLY at center]
+
+  q=0.7, Delta=0.5:   thv/pi |  Gamma_fit Gamma_pred |  |Re w|_fit |Re w|_pred |  Re/Im fit
+             0.500 |    0.17928    0.17928 |     0.00000     0.00000 |     0.0000
+             0.550 |    0.17707    0.17708 |     0.00250     0.00249 |     0.0141
+             0.625 |    0.16563    0.16564 |     0.00611     0.00610 |     0.0369
+             0.750 |    0.12676    0.12677 |     0.01129     0.01127 |     0.0890
+             0.850 |    0.08123    0.08139 |     0.01410     0.01421 |     0.1735
+             0.930 |    0.00474    0.03911 |     0.02414     0.01556 |     5.0955
+  READ: the decay rate (thermality) DIES toward the edge as sin(theta_v) -- the edge is the extremal,
+  zero-fake-temperature end; and the mode acquires a REAL (ringing) part away from pi/2 -- BH-like, not
+  dS-like. Re omega = 0 exactly (the dS static-patch signature, Lopez-Ortega) selects theta_v = pi/2
+  UNIQUELY at finite lambda. (Semiclassically Re/Im ~ cot(theta_v)(Delta lambda)/2 -> 0, so the selector
+  degrades to O(lambda) as q->1 -- stated as a limitation, not hidden.)
+
+==============================================================================================================
+PART 6 -- EDGE eps-scan: ladder collapse, the eps_c threshold, and the rescaled-clock escape test
+==============================================================================================================
+  q=0.7, Delta=0.5: pole-visibility threshold eps_c = 0.1774 rad  [exact root of cosh(u0)=sec(eps);
+  approx 2 asin(sinh(Delta lam/2)) = 0.1788; leading order Delta*lambda = 0.1783]
+      eps |  regime pred | exp plateau? Gamma_fit sin(eps)sinh(Dlam) | final loglog slope
+    0.001 |     NO POLES |        False       nan            0.00018 |             -1.498
+    0.050 |     NO POLES |        False       nan            0.00896 |             -1.436
+    0.100 |     NO POLES |        False       nan            0.01790 |             -1.498
+    0.200 |       LADDER |        False       nan            0.03562 |             -2.078
+    0.400 |       LADDER |         True   0.05268            0.06982 |             -3.839
+    0.700 |       LADDER |         True   0.09998            0.11550 |             -7.380
+
+  rescaled-clock escape (tau = sin(eps) t): final-decade slope of ln|G| vs ln(tau) -- a power law is a
+  power law in EVERY linearly rescaled clock; the ladder cannot be restored by redshifting the clock:
+    eps= 0.001: slope d ln|G| / d ln tau (final decade) =   -1.496   (same power law)
+    eps= 0.010: slope d ln|G| / d ln tau (final decade) =   -1.496   (same power law)
+    eps= 0.100: slope d ln|G| / d ln tau (final decade) =   -1.501   (same power law)
+
+==============================================================================================================
+PART 7 -- N-V's LITERAL object: the chord-vacuum / infinite-T disk two-point (sanity vs eigenstate proxy)
+==============================================================================================================
+  G_disk(t) = <0|O(t)O(0)|0> = int int dth1 dth2 mu mu G_amp(th1,th2) e^{i(E1-E2)t}  [matter chord once;
+  Berkooz et al 1811.02584 / Lin 2208.07032 disk formula]. mu concentrates at the CENTER -> the disk
+  correlator must share the CENTER ladder if the eigenstate proxy is faithful.
+/Users/carlzimmerman/new_physics/zimmerman-formula/real_research/reviews/toe_law/agentS_edge_qnm.py:477: RuntimeWarning: divide by zero encountered in matmul
+  Gd[i] = x @ Wd @ x.conj()
+/Users/carlzimmerman/new_physics/zimmerman-formula/real_research/reviews/toe_law/agentS_edge_qnm.py:477: RuntimeWarning: overflow encountered in matmul
+  Gd[i] = x @ Wd @ x.conj()
+/Users/carlzimmerman/new_physics/zimmerman-formula/real_research/reviews/toe_law/agentS_edge_qnm.py:477: RuntimeWarning: invalid value encountered in matmul
+  Gd[i] = x @ Wd @ x.conj()
+  q=0.7, Delta=0.5: Gamma0_fit(disk) = 0.12942 vs pi/2-eigenstate sinh(Delta lam) = 0.17928  (ratio 0.722);  oscillation |Im/Re| = 5.58e-17 (real, purely damped)
+  -> READ HONESTLY: the disk is a mu-weighted MIXTURE over placements, so its leading rate is a
+     smeared sin(theta_v)-average of the per-placement rates Gamma(theta_v)=sin(theta_v)sinh(Delta lam)
+     -- BELOW the pi/2 rate (0.72x here), as a mixture must be. What it shares with the center class:
+     PURELY DAMPED exponential decay (|Im/Re| ~ 1e-16; no ringing, no power law in the probed window) --
+     nothing edge-like. The eigenstate proxy is faithful for the STRUCTURE, not the literal rate.
+     KMS caveat carried: at beta_real=0 the dS thermal reading runs through the FAKE-time dictionary
+     (Lin-Susskind 2206.01083) -- a published center-camp wrinkle, orthogonal to the ladder test here.
+
+==============================================================================================================
+PART 8 -- mpmath high-precision quadrature spot checks (independent of the numpy trapz pipeline)
+==============================================================================================================
+  CENTER t=10:  mpmath = +6.2226233005e-01+3.102e-18j   trapz = +6.2226233005e-01-1.914e-17j   |rel diff| = 3.57e-17
+  CENTER t=30:  mpmath = +5.0939175158e-02-4.878e-19j   trapz = +5.0939175158e-02+3.704e-17j   |rel diff| = 4.42e-15
+  EDGE   t=200:  mpmath = +7.6008670962e-02-3.465e-01j   trapz = +7.6008670962e-02-3.465e-01j   |rel diff| = 4.22e-14
+
+##############################################################################################################
+# VERDICT BLOCK (numbers above are raw; comparisons second -- coefficient discipline)
+##############################################################################################################
+
+ (1) CENTER (theta_v=pi/2): G(t) decays through a DISCRETE EXPONENTIAL LADDER, purely damped
+     (|Im/Re| ~ 1e-12 level: Re omega = 0 exactly), rates Gamma_n = sinh((Delta+n)lambda) -- the
+     q-deformed dS ladder -> (Delta+n)*lambda as lambda->0: offset prop. to Delta (R2 PASS), spacing
+     Delta-independent (R3 PASS), purely imaginary (R4 PASS), exponential ladder (R1 PASS).
+     Under matching (a) [dS3, 2604.21014 squaring, Delta_3=2Delta] AND matching (b) [dS2 ladder]:
+     STRUCTURE PASSES BOTH. The infinite-T disk correlator (N-V's literal state) shares the ladder.
+ (2) EDGE (theta_v->pi, Okuyama): G(t) has NO exponential ladder at all: late-time |G| ~ t^(-3/2),
+     the power forced by the BANKED Wigner soft-edge exponent s_E=1/2 (power = -(s_E+1)); the
+     exponent is Delta-INDEPENDENT and q-INDEPENDENT (R1 FAIL, R2 FAIL); the spectral support is
+     one-sided (ground-state analyticity, A(omega<0)~0 vs 0.5 thermal-symmetric at center): the
+     edge is the extremal ZERO-fake-temperature end (rates ~ sin(eps) -> 0; pole ladder exits the
+     spectral support below eps_c ~ Delta*lambda) while ANY dS static patch is thermal at T=H/2pi
+     (R4 FAIL). No clock rescaling rescues it: linear rescale preserves the power law; the
+     log-clock turns t^(-3/2) into a ladder with Delta-INDEPENDENT offset 3/2 (R2 still FAILS).
+ => PRE-REGISTERED OUTCOME REALIZED: EDGE-FAILS-THE-LADDER, under BOTH dimensional matchings
+    (the apples-to-apples caveat does not bite at the structural level; it only changes H_eff).
+    See agentS_edge_qnm.md for the gate-movement wording (what this does and does NOT unlock).
+done.

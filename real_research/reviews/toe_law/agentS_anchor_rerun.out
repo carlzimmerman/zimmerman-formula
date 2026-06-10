@@ -1,0 +1,390 @@
+############################################################################
+# agentS VALIDATION ANCHOR: rerun of the committed banked-w(E) scripts
+# (door2_dssyk_wE_center_vs_edge_DIRECT.py, dssyk_wE_center_vs_edge_INDEPENDENT.py,
+#  REDERIVE_dssyk_center_edge.py, edge_exponent_check.py, chord_vacuum_placement_test.py,
+#  steelman_both_ways.py, door2_dssyk_perprobe_both_maps.py)
+# rerun date: 2026-06-10, by agentS (pre-registered in agentR_dssyk_gate_2026.md)
+############################################################################
+
+================== RUN: edge_exponent_check.py ==================
+Soft-edge exponent of the ENERGY DOS rho(E), where rho(E) = mu(theta)*|dtheta/dE|.
+Expect rho(E) ~ (E0-|E|)^s with s=1/2 (Wigner sqrt edge), independent of q.
+
+       q | s_theta(mu vs phi) | s_E (rho vs edge-dist)
+    0.30 |             2.0000 |                 0.5000
+    0.50 |             2.0000 |                 0.5000
+    0.70 |             2.0000 |                 0.5000
+    0.90 |             2.0004 |                 0.5002
+    0.95 |             2.0018 |                 0.5009
+    0.99 |             2.0456 |                 0.5228
+
+CONCLUSION: in THETA, mu ~ phi^2 (s_theta=2). In ENERGY, rho(E) ~ sqrt(E0-|E|) (s_E=1/2),
+the universal Wigner sqrt soft edge -- q-independent. So the EDGE freezing exponent is
+p_MOND=(s_E+1)/(s_E+2)=(1.5)/(2.5)=3/5 -> g~g_bar^0.6 = anti-MOND, for ANY q. The earlier
+fixed-fraction window overstated s because it sat OUTSIDE the asymptotic sqrt regime.
+The CENTER (rho ~ const, s_E=0 -> p=1/2 -> MOND) and EDGE (s_E=1/2 -> p=3/5 -> anti-MOND)
+discriminator is therefore SOLID and q-robust. Only the PLACEMENT of |vac> is contested.
+
+================== RUN: chord_vacuum_placement_test.py ==================
+############################################################################################
+# CLOSURE TEST: is theta_vac DERIVED by the chord algebra or an external dictionary?
+############################################################################################
+
+[TEST A] CHORD VACUUM |0>: <theta|0>^2 mu(theta) -- where does the algebra's own ground
+         state of N_hat live? (q=0.7)
+    peak at theta=1.5708 (pi/2=1.5708); mean|E|/E0=0.2215; frac within 5% of center=0.139
+    => the chord vacuum |0> (N_hat ground state) sits at the spectral CENTER. [N-V-favorable]
+
+[TEST C] HAMILTONIAN H=(a+a^dag)/sqrt(1-q): its eigenvalue E(theta)=2cos(theta)/sqrt(1-q).
+    lowest E (H-ground)  at theta=pi  -> EDGE  (E=-E0=-3.651)
+    highest E            at theta=0   -> EDGE  (E=+E0=3.651)
+    E=0 / max entropy    at theta=pi/2-> CENTER
+    => the algebra supplies BOTH a natural CENTER state (N_hat-vacuum / infinite-T /
+       max-entropy) AND natural EDGE states (H extremal eigenstates).
+
+[TEST B] THE EQUALS SIGN. de Sitter static patch = WHICH state?
+    N-V 2310.16994 : |dS> := infinite-temperature (rho ~ Identity, max entropy) -> CENTER theta=pi/2
+    Okuyama 2505.08116 : |dS> := triple-scaling saddle around theta=pi -> EDGE
+    Both are states in the SAME chord Hilbert space; the chord commutation relations
+    [a, a^dag]_q = 1 do NOT contain the clause 'static patch = center' or '= edge'.
+    That identification is the HOLOGRAPHIC DICTIONARY, supplied externally.
+
+############################################################################################
+# VERDICT: theta_vac is ASSUMED (dictionary), NOT DERIVED by the chord algebra.
+#   - The algebra HAS a center state (N_hat-vacuum, infinite-T) and edge states (H-ground).
+#   - WHICH ONE is 'de Sitter' is the contested N-V-vs-Okuyama dictionary, unsettled in 2026.
+#   - Both placements are internally consistent; the chord algebra cannot pick.
+#   => CONTESTED-TERMINAL: the deep-MOND SIGN is undecidable WITHIN DSSYK; it requires
+#      external resolution of the de Sitter dictionary. This is a real CLOSURE (a proof of
+#      undecidability-within-the-framework), distinct from 'open/more-work-needed'.
+############################################################################################
+
+================== RUN: steelman_both_ways.py ==================
+BOTH-WAYS: does the deep-MOND a->0 limit force the CENTER independent of the dictionary?
+
+  M_dS = 3.768e+14 Msun.  Displacement of theta_src from the empty placement ~ alpha:
+         dwarf 1e7: alpha=2.65e-08 -> theta displacement ~ 2.65e-08 rad
+       spiral 3e10: alpha=7.96e-05 -> theta displacement ~ 7.96e-05 rad
+      massive 1e12: alpha=2.65e-03 -> theta displacement ~ 2.65e-03 rad
+      cluster 1e15: alpha=2.65e+00 -> theta displacement ~ 2.65e+00 rad
+
+  STEELMAN (pro-framework, scored fairly):
+    * IF de Sitter (the empty static patch) is placed at the CENTER (N-V), then a galaxy probe
+      with alpha<=2.65e-3 sits within ~0.003 rad of the center -> stays on FLAT DOS (s=0) ->
+      p=1/2 -> MOND. The deep-MOND a->0 (alpha->0) limit lands EXACTLY on the center. STRONG.
+    * The chord vacuum |0> (N_hat ground state) and the infinite-T/max-entropy state BOTH sit at
+      the center -- so under the N-V dictionary the algebra's natural states AGREE with MOND.
+
+  ANTI-STEELMAN (pro-edge, scored equally hard):
+    * IF de Sitter is placed at the EDGE (Okuyama, derived via a triple-scaling limit around
+      theta=pi that REPRODUCES dS-JT gravity -- a construction-level argument, not a guess),
+      then the empty static patch is AT the edge, and a small-alpha probe sits within ~alpha of
+      the EDGE -> SQRT DOS (s=1/2) -> p=3/5 -> anti-MOND. The deep-MOND a->0 limit lands on the
+      EDGE. The displacement argument is SYMMETRIC: 'small alpha -> close to the empty placement'
+      is true for BOTH center and edge. alpha->0 does NOT pick which empty placement is dS.
+    * Rahman-Susskind themselves: generic backreacting matter cords are confined to the
+      stretched horizon (edge/tail); only O(N)-singlets reach the bulk center. A physical galaxy
+      is not an exact singlet.
+
+  NET: the alpha->0 (deep-MOND) limit forces the probe to the EMPTY-static-patch placement, but
+  it does NOT tell you WHERE that empty placement IS. That 'where' is the dS dictionary -- center
+  (N-V) or edge (Okuyama). BOTH are construction-backed in the 2026 literature, NEITHER is forced
+  by the chord algebra. So the sign is genuinely two-valued at the level of first principles.
+
+  => The CENTER/MOND reading is NOT reflexively dismissed: it is fully recovered UNDER N-V, and
+     the algebra's own ground/max-entropy states favor center. But it is NOT forced, because the
+     EDGE/anti-MOND reading is equally construction-backed UNDER Okuyama. CONTESTED-TERMINAL.
+
+  DEGENERACY-BREAK CHECK (q=0.7): does q^{Delta N} on an EDGE vacuum leak to the center?
+    Delta=0.10: weight leaked to center (|E|/E0<0.10) = 0.0000  (edge-vac stays at edge => kernel does NOT rescue MOND from an edge placement)
+    Delta=0.50: weight leaked to center (|E|/E0<0.10) = 0.0000  (edge-vac stays at edge => kernel does NOT rescue MOND from an edge placement)
+    Delta=1.00: weight leaked to center (|E|/E0<0.10) = 0.0000  (edge-vac stays at edge => kernel does NOT rescue MOND from an edge placement)
+
+  => The diagonal kernel TRANSPORTS faithfully; it cannot convert an edge dS into a
+     center one. The sign is set entirely by the (contested) placement. Confirmed both ways.
+
+================== RUN: dssyk_wE_center_vs_edge_INDEPENDENT.py ==================
+####################################################################################################
+# INDEPENDENT: w(E)=mu|<E|O_Delta|vac>|^2 at CENTER vs EDGE; p_MOND=(s+1)/(s+2)
+####################################################################################################
+
+ M_dS = c^2/(G H_Lambda) = 3.768e+14 Msun
+   galaxy alpha=m/M_dS: dwarf(1e7)=2.65e-08, spiral(3e10)=7.96e-05, massive(1e12)=2.65e-03, cluster(1e15)=2.65e+00
+   => galaxies alpha <= 2.65e-3; clusters alpha=O(1).
+
+====================================================================================================
+STEP 0 -- LOCAL DOS EXPONENT of the q-Gaussian (the discriminator's input)
+====================================================================================================
+       q |   s_center (expect ~0) |   s_edge (expect ~0.5)
+    0.30 |                -0.0016 |                 1.0292
+    0.50 |                -0.0025 |                 1.1040
+    0.70 |                -0.0045 |                 1.3620
+    0.90 |                -0.0143 |                 3.0516
+    0.95 |                -0.0289 |                 5.7188
+
+  READ: s_center ~ 0 (FLAT DOS at the spectral center) and s_edge ~ 1/2 (SQUARE-ROOT soft
+  edge). These are the two inputs to the freezing discriminator:
+      center s=0 -> p_MOND=1/2 -> g~sqrt(g_bar)  = MOND (enhancement)
+      edge   s=1/2 -> p_MOND=3/5 -> g~g_bar^0.6   = anti-MOND
+
+====================================================================================================
+STEP 1 -- realized weight w(E) per placement; where it lives & p_MOND
+====================================================================================================
+      q  Delta  placement |  region frac_ctr frac_edge mean|E|/E0  s_seen  p_MOND  sign
+   0.50   0.10     CENTER |  CENTER    0.714     0.000     0.0411  -0.002   0.499  MOND (enhancement)
+   0.50   0.10       EDGE |    EDGE    0.000     0.999     0.9976   1.104   0.678  anti-MOND (weaker)
+   0.50   0.50     CENTER |  CENTER    0.227     0.000     0.1466  -0.002   0.499  MOND (enhancement)
+   0.50   0.50       EDGE |    EDGE    0.000     0.611     0.9428   1.104   0.678  anti-MOND (weaker)
+   0.50   1.00     CENTER |  CENTER    0.148     0.000     0.2151  -0.002   0.499  MOND (enhancement)
+   0.50   1.00       EDGE |    EDGE    0.001     0.129     0.8004   1.104   0.678  anti-MOND (weaker)
+   0.70   0.10     CENTER |  CENTER    0.918     0.000     0.0212  -0.004   0.499  MOND (enhancement)
+   0.70   0.10       EDGE |    EDGE    0.000     1.000     0.9994   1.362   0.703  anti-MOND (weaker)
+   0.70   0.50     CENTER |  CENTER    0.416     0.000     0.0778  -0.004   0.499  MOND (enhancement)
+   0.70   0.50       EDGE |    EDGE    0.000     0.952     0.9843   1.362   0.703  anti-MOND (weaker)
+   0.70   1.00     CENTER |  CENTER    0.268     0.000     0.1204  -0.004   0.499  MOND (enhancement)
+   0.70   1.00       EDGE |    EDGE    0.000     0.537     0.9396   1.362   0.703  anti-MOND (weaker)
+   0.90   0.10     CENTER |  CENTER    0.999     0.000     0.0063  -0.014   0.496  MOND (enhancement)
+   0.90   0.10       EDGE |    EDGE    0.000     1.000     0.9999   3.052   0.802  anti-MOND (weaker)
+   0.90   0.50     CENTER |  CENTER    0.904     0.000     0.0232  -0.014   0.496  MOND (enhancement)
+   0.90   0.50       EDGE |    EDGE    0.000     1.000     0.9986   3.052   0.802  anti-MOND (weaker)
+   0.90   1.00     CENTER |  CENTER    0.731     0.000     0.0367  -0.014   0.496  MOND (enhancement)
+   0.90   1.00       EDGE |    EDGE    0.000     1.000     0.9945   3.052   0.802  anti-MOND (weaker)
+   0.95   0.10     CENTER |  CENTER    1.000     0.000     0.0031  -0.029   0.493  MOND (enhancement)
+   0.95   0.10       EDGE |    EDGE    0.000     1.000     1.0000   5.719   0.870  anti-MOND (weaker)
+   0.95   0.50     CENTER |  CENTER    0.996     0.000     0.0113  -0.029   0.493  MOND (enhancement)
+   0.95   0.50       EDGE |    EDGE    0.000     1.000     0.9997   5.719   0.870  anti-MOND (weaker)
+   0.95   1.00     CENTER |  CENTER    0.966     0.000     0.0179  -0.029   0.493  MOND (enhancement)
+   0.95   1.00       EDGE |    EDGE    0.000     1.000     0.9987   5.719   0.870  anti-MOND (weaker)
+
+  READ: the diagonal operator q^{Delta N} TRANSPORTS the weight to where the vacuum is placed
+  (CENTER-vac -> weight near center -> s=0 -> p=1/2 -> MOND; EDGE-vac -> weight near edge ->
+  s=1/2 -> p=3/5 -> anti-MOND). The SIGN is therefore a 1:1 readout of theta_vac.
+
+====================================================================================================
+STEP 2 -- THE EXACT LINE WHERE PLACEMENT ENTERS (DERIVED or ASSUMED?)
+====================================================================================================
+  The placement enters ONLY at the literal argument 'theta_vac' passed to G_amp / w(E):
+        CENTER:  theta_vac = np.pi/2      (E=0)     <- Narovlansky-Verlinde dictionary
+        EDGE  :  theta_vac = np.pi - eps  (E=E0)    <- Okuyama dictionary
+  NOTHING in q^{Delta N}, in mu(theta), or in the q-Hermite recursion privileges pi/2 over pi.
+  Test: is theta_vac fixed by any algebraic condition (lowest energy? cyclicity? unique
+  invariant state?)? The chord vacuum |0> (zero chords) is the ground state of N_hat, but its
+  ENERGY placement E(theta) is a SEPARATE map; the de Sitter <-> theta_vac identification is the
+  HOLOGRAPHIC DICTIONARY, supplied externally (N-V put it at pi/2; Okuyama derives pi via a
+  triple-scaling limit around theta=pi reproducing dS-JT). => theta_vac is ASSUMED (dictionary),
+  not DERIVED by the chord algebra. Both placements are internally consistent.
+
+================== RUN: door2_dssyk_perprobe_both_maps.py ==================
+##################################################################################################
+# DOOR 2 -- FINAL deep-MOND sign for a PHYSICAL finite-mass de Sitter probe (per-probe, both maps)
+##################################################################################################
+
+ M_dS=3.768e+14 Msun.  p=1/(s+2): s=0(flat center)->p=1/2 MOND; s=1/2(sqrt edge)->p=2/5 anti-MOND.
+
+==================================================================================================
+DEEP-MOND SIGN per probe, displacement map = A: linear theta-displace E_src=cos[pi/2(1-alpha)]  (framework reading)
+==================================================================================================
+          object      mass      alpha      E_src  local DOS s  p=1/(s+2)   V(r)~r^       sign
+           dwarf     1e+07   2.65e-08  4.169e-08       -0.003      0.501     -0.001(FLAT)       MOND
+          spiral     3e+10   7.96e-05  1.251e-04       -0.003      0.501     -0.001(FLAT)       MOND
+         massive     1e+12   2.65e-03  4.169e-03       -0.004      0.501     -0.001(FLAT)       MOND
+           group     1e+13   2.65e-02  4.168e-02       -0.039      0.510     -0.010(FLAT)       MOND
+         cluster     1e+15   2.65e+00  1.000e+00        0.662      0.376   +0.124(RISING)  anti-MOND
+
+==================================================================================================
+DEEP-MOND SIGN per probe, displacement map = B: direct E_src=min(alpha,1)  (alternative: deficit = fractional band energy)
+==================================================================================================
+          object      mass      alpha      E_src  local DOS s  p=1/(s+2)   V(r)~r^       sign
+           dwarf     1e+07   2.65e-08  2.654e-08       -0.003      0.501     -0.001(FLAT)       MOND
+          spiral     3e+10   7.96e-05  7.962e-05       -0.003      0.501     -0.001(FLAT)       MOND
+         massive     1e+12   2.65e-03  2.654e-03       -0.004      0.501     -0.001(FLAT)       MOND
+           group     1e+13   2.65e-02  2.654e-02       -0.016      0.504     -0.004(FLAT)       MOND
+         cluster     1e+15   2.65e+00  1.000e+00        0.662      0.376   +0.124(RISING)  anti-MOND
+
+==================================================================================================
+DEEP-MOND SIGN per probe, displacement map = C: E_src=min(sqrt(alpha),1)  (alternative: energy ~ sqrt deficit)
+==================================================================================================
+          object      mass      alpha      E_src  local DOS s  p=1/(s+2)   V(r)~r^       sign
+           dwarf     1e+07   2.65e-08  1.629e-04       -0.003      0.501     -0.001(FLAT)       MOND
+          spiral     3e+10   7.96e-05  8.923e-03       -0.005      0.501     -0.001(FLAT)       MOND
+         massive     1e+12   2.65e-03  5.152e-02       -0.060      0.515     -0.015(FLAT)       MOND
+           group     1e+13   2.65e-02  1.629e-01       -0.283      0.582     -0.082(fall)          ?
+         cluster     1e+15   2.65e+00  1.000e+00        0.662      0.376   +0.124(RISING)  anti-MOND
+
+==================================================================================================
+BOTH-WAYS VERDICT
+==================================================================================================
+  Across ALL three displacement conventions (A linear, B direct, C sqrt), the GALAXY result is
+  identical and convention-robust: a galaxy (alpha<=2.65e-3) sits at E_src well inside the flat-center
+  window (s~0) -> p=1/2 -> FLAT rotation curves -> deep-MOND ENHANCEMENT (the framework's sign, BTFR v^4~M).
+  Even the most aggressive map (B: E_src=alpha directly) puts a 1e12-Msun galaxy at E_src=2.7e-3,
+  still flat-center. The galaxy verdict does NOT depend on the contested map.
+
+  The CLUSTER result is also convention-robust in DIRECTION: alpha=O(1) pushes the source to the band
+  EDGE (s=+0.5) -> p=2/5 -> RISING curves -> MOND FAILS. The SAME calc that gives galaxies MOND gives
+  clusters its known empirical breakdown -- an unforced consistency, not put in by hand.
+
+  This is the content the prior round (4g) left as a DICTIONARY ASSERTION ('near-horizon probe sits at
+  center -- very likely, not proven'): now COMPUTED. The probe's energy is fixed by its conical deficit
+  alpha=m/M_dS, and the resulting local DOS slope -> p is read off directly. Galaxies land at the center
+  for ANY reasonable deficit->energy map, because alpha is so tiny (<=2.65e-3): that smallness, not a
+  chosen dictionary, is what forces the center.
+
+================== RUN: REDERIVE_dssyk_center_edge.py ==================
+/Users/carlzimmerman/new_physics/zimmerman-formula/real_research/reviews/REDERIVE_dssyk_center_edge.py:127: RuntimeWarning: divide by zero encountered in matmul
+  O_E = (V.T * D) @ V          # (N,N) matrix in energy basis
+/Users/carlzimmerman/new_physics/zimmerman-formula/real_research/reviews/REDERIVE_dssyk_center_edge.py:127: RuntimeWarning: overflow encountered in matmul
+  O_E = (V.T * D) @ V          # (N,N) matrix in energy basis
+/Users/carlzimmerman/new_physics/zimmerman-formula/real_research/reviews/REDERIVE_dssyk_center_edge.py:127: RuntimeWarning: invalid value encountered in matmul
+  O_E = (V.T * D) @ V          # (N,N) matrix in energy basis
+################################################################################################
+# INDEPENDENT REDERIVATION -- DSSYK center vs edge, deep-MOND sign
+################################################################################################
+
+[VALIDATE] q-Pochhammer vs q-exponential identity 1/(z;q)_inf = sum z^n/(q;q)_n:
+    q=0.30: |lhs-rhs| = 6.66e-16
+    q=0.70: |lhs-rhs| = 2.22e-15
+    q=0.95: |lhs-rhs| = 2.13e-14
+
+[VALIDATE] closed measure normalizes to 1 (int_0^pi mu dtheta):
+    q=0.30: int mu dtheta = 1.0000000000
+    q=0.70: int mu dtheta = 1.0000000000
+    q=0.95: int mu dtheta = 1.0000000000
+
+[CROSS-CHECK] band edge from Jacobi spectrum vs analytic E0 = 2/sqrt(1-q):
+    q=0.30: max|E_jacobi|=2.3904  E0_analytic=2.3905  ratio=1.0000
+    q=0.70: max|E_jacobi|=3.6514  E0_analytic=3.6515  ratio=1.0000
+    q=0.90: max|E_jacobi|=6.3245  E0_analytic=6.3246  ratio=1.0000
+
+[CROSS-CHECK] Jacobi-vacuum DOS vs closed q-Gaussian measure (correlation of shapes):
+    q=0.30: shape correlation(Jacobi DOS, closed rho) = 0.99752
+    q=0.70: shape correlation(Jacobi DOS, closed rho) = 0.99853
+    q=0.90: shape correlation(Jacobi DOS, closed rho) = 0.99907
+
+================================================================================================
+(C1)/(C2) LOCAL DOS EXPONENT  rho(E) ~ |dist|^s  -- center expect s=0, edge expect s=1/2
+================================================================================================
+
+  (a) From the CLOSED measure, energy DOS rho(E)=mu(theta)/|dE/dtheta|:
+           q |   s_center |     s_edge
+        0.30 |    -0.0003 |     0.5000
+        0.50 |    -0.0005 |     0.5000
+        0.70 |    -0.0009 |     0.5000
+        0.90 |    -0.0031 |     0.5002
+        0.95 |    -0.0064 |     0.5009
+        0.99 |    -0.0326 |     0.5228
+
+  (b) SYMBOLIC (sympy) edge exponent from the Pochhammer prefactor near theta=pi:
+      |1 - e^(2 i theta)|^2  with theta=pi-phi  ~  4*phi**2   (leading phi^2)
+      => mu ~ phi^2 in theta;  edge-dist ~ phi^2  =>  phi ~ sqrt(edge);
+         rho(E)=mu/|dE/dtheta|, |dE/dtheta|~sin(theta)~phi  => rho ~ phi^2/phi = phi ~ sqrt(edge)
+         => ENERGY DOS rho(E) ~ (E0-|E|)^{1/2}.  s_edge = 1/2  (Wigner sqrt), q-INDEPENDENT.
+
+  (c) From the INDEPENDENT JACOBI spectrum (eigenvalue density), edge exponent:
+           q |  s_edge (Jacobi)
+        0.50 |          -0.4967
+        0.70 |          -0.4963
+        0.90 |          -0.4945
+
+================================================================================================
+(C3) FREEZING DISCRIMINATOR  p_MOND = (s+1)/(s+2)
+================================================================================================
+    s=0.00 [ center (flat)] -> p_MOND = 0.5000  -> g_obs ~ g_bar^0.500  [MOND (enhancement)]
+    s=0.50 [   edge (sqrt)] -> p_MOND = 0.6000  -> g_obs ~ g_bar^0.600  [anti-MOND]
+
+================================================================================================
+(C4) TRANSPORT via explicit matrix O_Delta=q^{Delta N} in the energy basis (independent route)
+================================================================================================
+        q  Delta   place |  frac|E|/E0<0.05  frac|E|/E0>0.95  region
+     0.50   0.10  CENTER |           0.7148           0.0000  CENTER
+     0.50   0.10    EDGE |           0.0000           0.9992  EDGE
+     0.50   0.50  CENTER |           0.2280           0.0000  CENTER
+     0.50   0.50    EDGE |           0.0000           0.6111  EDGE
+     0.50   1.00  CENTER |           0.1481           0.0001  CENTER
+     0.50   1.00    EDGE |           0.0013           0.1292  EDGE
+     0.70   0.10  CENTER |           0.9187           0.0000  CENTER
+     0.70   0.10    EDGE |           0.0000           1.0000  EDGE
+     0.70   0.50  CENTER |           0.4169           0.0000  CENTER
+     0.70   0.50    EDGE |           0.0000           0.9529  EDGE
+     0.70   1.00  CENTER |           0.2680           0.0000  CENTER
+     0.70   1.00    EDGE |           0.0000           0.5397  EDGE
+     0.90   0.10  CENTER |           0.9987           0.0000  CENTER
+     0.90   0.10    EDGE |           0.0000           1.0000  EDGE
+     0.90   0.50  CENTER |           0.9025           0.0000  CENTER
+     0.90   0.50    EDGE |           0.0000           1.0000  EDGE
+     0.90   1.00  CENTER |           0.7292           0.0000  CENTER
+     0.90   1.00    EDGE |           0.0000           0.9999  EDGE
+     0.95   0.10  CENTER |           1.0000           0.0000  CENTER
+     0.95   0.10    EDGE |           0.0000           1.0000  EDGE
+     0.95   0.50  CENTER |           0.9953           0.0000  CENTER
+     0.95   0.50    EDGE |           0.0000           1.0000  EDGE
+     0.95   1.00  CENTER |           0.9635           0.0000  CENTER
+     0.95   1.00    EDGE |           0.0000           1.0000  EDGE
+
+  READ: the explicit matrix q^{Delta N} in the energy basis keeps a CENTER-placed source's
+  weight at the center and an EDGE-placed source's weight at the edge -- the SAME transport
+  result the finder got from Okuyama's closed G(th1,th2), via a totally different machine
+  (Jacobi eigenvectors of the chord Hamiltonian). The sign is a 1:1 readout of the placement.
+
+================== RUN: door2_dssyk_wE_center_vs_edge_DIRECT.py ==================
+####################################################################################################
+# DOOR 2 DECISIVE: matter-chord spectral weight w(E)=|<E|O_Delta|vac>|^2, vacuum at CENTER vs EDGE
+####################################################################################################
+
+ M_dS = c^2/(G H_Lambda) = 3.768e+14 Msun.  Galaxy conical deficit alpha=m/M_dS:
+          dwarf 1e7:  alpha = 2.654e-08
+        spiral 3e10:  alpha = 7.962e-05
+       massive 1e12:  alpha = 2.654e-03
+       cluster 1e15:  alpha = 2.654e+00
+   => galaxies alpha <= 2.65e-3 (1e12 Msun). Clusters alpha = O(1).
+
+====================================================================================================
+PART 1 -- Does the matter chord stay PEAKED where the vacuum is placed? (finite Delta)
+====================================================================================================
+  vacuum at CENTER theta_vac=pi/2 (E=0)  vs  vacuum at EDGE theta_vac=pi-eps (E=-E0)
+      q  Delta |  CENTER: frac|E|<.05  mean|E| |   EDGE: frac|E|>.95  mean|E|
+   0.50   0.10 |                0.714    0.041 |               0.999    0.998
+   0.50   0.50 |                0.227    0.147 |               0.611    0.943
+   0.50   1.00 |                0.148    0.215 |               0.129    0.800
+   0.70   0.10 |                0.918    0.021 |               1.000    0.999
+   0.70   0.50 |                0.416    0.078 |               0.952    0.984
+   0.70   1.00 |                0.268    0.120 |               0.537    0.940
+   0.90   0.10 |                0.999    0.006 |               1.000    1.000
+   0.90   0.50 |                0.904    0.023 |               1.000    0.999
+   0.90   1.00 |                0.731    0.037 |               1.000    0.994
+   0.95   0.10 |                1.000    0.003 |               1.000    1.000
+   0.95   0.50 |                0.996    0.011 |               1.000    1.000
+   0.95   1.00 |                0.966    0.018 |               1.000    0.999
+
+  READ: if 'CENTER frac|E|<.05' stays HIGH and 'EDGE frac|E|>.95' stays HIGH, the matter chord
+  is PEAKED AT THE VACUUM in both cases -> the diagonal kernel transports, and the SIGN rides
+  entirely on WHERE the vacuum is placed (center vs edge), which the algebra does NOT decide.
+
+====================================================================================================
+PART 2 -- Freezing exponent p read DIRECTLY off the realized weight W(E), per placement
+====================================================================================================
+      q  Delta |  CENTER-vac s      p       sign |   EDGE-vac s      p       sign
+   0.50   0.10 |        -0.086  0.522       MOND |       -0.785  0.823          ?
+   0.50   0.50 |        -0.005  0.501       MOND |        0.530  0.395  anti-MOND
+   0.50   1.00 |        -0.002  0.500       MOND |        0.954  0.339  anti-MOND
+   0.70   0.10 |        -0.229  0.565          ? |       -0.958  0.960          ?
+   0.70   0.50 |        -0.018  0.505       MOND |       -0.026  0.507       MOND
+   0.70   1.00 |        -0.006  0.502       MOND |        0.745  0.364  anti-MOND
+   0.90   0.10 |        -0.642  0.737          ? |       -1.000  1.000          ?
+   0.90   0.50 |        -0.160  0.544          ? |       -0.882  0.894          ?
+   0.90   1.00 |        -0.066  0.517       MOND |       -0.437  0.640          ?
+   0.95   0.10 |        -0.833  0.857          ? |       -1.000  1.000          ?
+   0.95   0.50 |        -0.392  0.622          ? |       -0.992  0.992          ?
+   0.95   1.00 |        -0.214  0.560          ? |       -0.899  0.908          ?
+
+====================================================================================================
+PART 3 -- Does the CHORD ALGEBRA itself pick the vacuum? (the closure question)
+====================================================================================================
+  The kernel G(th_E, th_vac) is symmetric under th_vac -> any point in [0,pi]; nothing in
+  q^{Delta N} or the q-Gaussian measure privileges theta_vac=pi/2 over theta_vac=pi. Both are
+  legitimate energy eigenstates. The placement is the EXTERNAL dictionary input:
+     - CENTER: Narovlansky-Verlinde 2310.16994 (max-entropy infinite-T static patch = E=0).
+     - EDGE  : Okuyama 2505.08116 (semiclassical near-edge JT; 'different from' Susskind/Verlinde).
+  Aguilar-Gutierrez 2506.21447: NO unique bulk dual -- the dual is sector-dependent. So the
+  algebra TRANSPORTS (Part 1) but does NOT DECIDE the placement (Part 3) -> the sign is CONTESTED
+  /dictionary-dependent at the level of first principles, and CLOSES only conditionally on N-V.

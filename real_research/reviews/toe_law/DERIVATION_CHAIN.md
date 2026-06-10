@@ -72,9 +72,14 @@ executed by GW170817's differential-Shapiro test, so the slip lives in the metri
 beyond-Horndeski/DHOST branch); solar slip auto-passes ×10⁷; clusters re-fail ×1.97 by construction; the type
 split requires a second smooth variable (consistent with agentJ); no published realization exists.
 
-**Link 8 — the quantum derivation (the gate).** CONTESTED-TERMINAL, re-confirmed 2026-06 (agentR: 60-paper sweep,
-nothing derives the DSSYK vacuum placement; possibly three-cornered). **PENDING (agentS):** the repo's own
-edge-vs-QNM discriminator — the unpublished calculation that could collapse the contest. → [SLOT-S]
+**Link 8 — the quantum derivation (the gate).** CONTESTED-TERMINAL at the algebra level (agentR: 60-paper sweep,
+nothing derives the placement) — **now EDGE-WOUNDED at the observable level (agentS, the repo's own unpublished
+discriminator):** the center placement reproduces the dS QNM ladder exactly (purely damped, Γₙ = sinh((Δ+n)λ),
+4-digit matches, Re ω = 0 selecting θ = π/2 uniquely); the edge FAILS structurally under both dimensional
+matchings (t^(−3/2) locked at coefficient level, Δ- and q-independent; one-sided/zero-temperature spectral
+support vs required dS thermality; rungs exit the spectrum below ε_c = Δλ). The contest collapses toward the
+MOND-favorable center for the sign-relevant object; the edge camp's sole rescue severs its own anti-MOND reading.
+NOT unlocked: Z, a₀, the unconditional sign — the gate's derivation step remains with the field.
 
 **Link 9 — the empirical perimeter (what the chain must survive, all ours, all owned end-to-end).** DATA:
 SPARC 0.105 dex at the framework a₀; the lensing split at **6.8σ from our own 181k-lens re-measurement**
@@ -89,4 +94,4 @@ places**, each now bounded by a theorem or a contest rather than by ignorance: t
 degenerate; T pending), the mechanism (5: target specified to a sentence; every worldline route closed), and the
 quantum gate (8: contested; S pending). A complete TOE claim requires closing 5 and 8 and adjudicating 4. Nothing
 published or computed tonight closes them — and everything computed tonight makes them *smaller and sharper* than
-they have ever been. The two pending slots ([SLOT-T], [SLOT-S]) are patched when the in-flight agents land.
+they have ever been. All chain slots are now resolved; the sole remaining in-flight computation (agentV, the mechanism's kernel fingerprint) refines Link 5 when it lands.
