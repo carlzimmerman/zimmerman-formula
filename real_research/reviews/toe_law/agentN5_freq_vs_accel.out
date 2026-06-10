@@ -1,0 +1,163 @@
+agentN5: frequency-keyed vs acceleration-keyed inertia on SPARC (Door IVb discriminator)
+  constants: H0=2.2685e-18 s^-1  Omega_J=1.6785e-08 s^-1  |a_sun|=2.0900e-07 m/s^2
+  solar budget: framework std reflex 2.096e-14 m/s^2 ; survival line 2.465e-15 (strict, 8.5x) .. 3.382e-15 (loose, 6.2x)
+SPARC galaxies loaded: 175 ; points 3391 ; Omega_obs/H0 range 30..36667 (median 259)
+
+===================================================================================================
+P0  BASELINE: acceleration-keyed nu(g_bar/a0), per-function best-Ud (reproduction gate)
+===================================================================================================
+  a0 = framework 9.36e-11:
+    fw sqrt(1+1/y)   bestUd  0.60  unweighted 0.1969  weighted 0.1168
+    McGaugh RAR      bestUd  0.52  unweighted 0.1950  weighted 0.1106
+    simple           bestUd  0.50  unweighted 0.1951  weighted 0.1124
+    F4 standard      bestUd  0.64  unweighted 0.1984  weighted 0.1238
+  a0 = canonical 1.2e-10:
+    fw sqrt(1+1/y)   bestUd  0.52  unweighted 0.1968  weighted 0.1168
+    McGaugh RAR      bestUd  0.46  unweighted 0.1977  weighted 0.1105
+    simple           bestUd  0.44  unweighted 0.1975  weighted 0.1129
+    F4 standard      bestUd  0.58  unweighted 0.1980  weighted 0.1175
+  reproduction gate (McGaugh 0.1950 / F4-std 0.1984 at framework a0): PASS
+  best accel-keyed law (any shape, any footing): unweighted 0.1950 dex ; weighted 0.1105
+
+===================================================================================================
+P1  PURE FREQUENCY-KEYING: mu(Omega/Omega0) a = g_bar  (Omega0 and Ud fitted per shape)
+===================================================================================================
+  mu_standard self-consistent (PRIMARY)  bestUd  0.52  Omega0 1.359e-15 s^-1  unw 0.2213 (D=+0.0263)  wgt 0.1458 (D=+0.0354)
+  mu_standard observed-Omega (check)     bestUd  0.66  Omega0 9.501e-16 s^-1  unw 0.2966 (D=+0.1016)  wgt 0.1888 (D=+0.0783)
+  mu_simple   self-consistent (PRIMARY)  bestUd  0.42  Omega0 1.196e-15 s^-1  unw 0.2176 (D=+0.0226)  wgt 0.1343 (D=+0.0238)
+  mu_simple   observed-Omega (check)     bestUd  0.52  Omega0 8.360e-16 s^-1  unw 0.2806 (D=+0.0856)  wgt 0.1695 (D=+0.0590)
+    note mu_standard: observed-Omega/self-consistent deep-inflation check: 0.2966 vs 0.2213 (expected obs > sc by ~3/2 in deep residuals)
+    note mu_simple: observed-Omega/self-consistent deep-inflation check: 0.2806 vs 0.2176 (expected obs > sc by ~3/2 in deep residuals)
+  => best pure frequency-keyed law (self-consistent): 0.2176 dex = +0.0226 vs best accel-keyed 0.1950  => SPARC-DEAD (>+0.020)
+
+===================================================================================================
+P2  PER-GALAXY STRUCTURE: does frequency-keying fail systematically with V_flat?
+    (predicted: pure-freq deep slope ~ -2/3 per dex V_flat self-consistent; accel laws ~ 0)
+===================================================================================================
+  accel McGaugh (control)            [all             ] N=175  slope +0.331/dex  r=+0.474  terciles(lo,hi) -0.154,+0.001  V>=150 minus V<80: +0.145+-0.034 dex (4.3 sig)
+  accel McGaugh (control)            [deep g_bar<1e-10] N=173  slope +0.358/dex  r=+0.507  terciles(lo,hi) -0.154,+0.023  V>=150 minus V<80: +0.159+-0.034 dex (4.7 sig)
+  accel F4-standard (control)        [all             ] N=175  slope +0.320/dex  r=+0.455  terciles(lo,hi) -0.135,+0.012  V>=150 minus V<80: +0.135+-0.034 dex (3.9 sig)
+  accel F4-standard (control)        [deep g_bar<1e-10] N=170  slope +0.374/dex  r=+0.526  terciles(lo,hi) -0.133,+0.050  V>=150 minus V<80: +0.167+-0.034 dex (4.9 sig)
+  freq mu_standard self-consistent   [all             ] N=175  slope -0.119/dex  r=-0.156  terciles(lo,hi) +0.037,-0.102  V>=150 minus V<80: -0.148+-0.035 dex (4.2 sig)
+  freq mu_standard self-consistent   [deep g_bar<1e-10] N=173  slope -0.170/dex  r=-0.213  terciles(lo,hi) +0.037,-0.124  V>=150 minus V<80: -0.188+-0.036 dex (5.2 sig)
+  freq mu_simple self-consistent     [all             ] N=175  slope -0.093/dex  r=-0.124  terciles(lo,hi) +0.026,-0.097  V>=150 minus V<80: -0.131+-0.034 dex (3.9 sig)
+  freq mu_simple self-consistent     [deep g_bar<1e-10] N=173  slope -0.119/dex  r=-0.155  terciles(lo,hi) +0.026,-0.104  V>=150 minus V<80: -0.154+-0.035 dex (4.4 sig)
+  DIFFERENTIAL (the discriminating statement -- baseline per-galaxy trend is shared systematics):
+    freq mu_standard minus accel control [all             ]: slope shift -0.450/dex (predicted deep shift ~ -2/3 self-consistent, attenuated by non-deep points)
+    freq mu_standard minus accel control [deep g_bar<1e-10]: slope shift -0.528/dex (predicted deep shift ~ -2/3 self-consistent, attenuated by non-deep points)
+    freq mu_simple   minus accel control [all             ]: slope shift -0.424/dex (predicted deep shift ~ -2/3 self-consistent, attenuated by non-deep points)
+    freq mu_simple   minus accel control [deep g_bar<1e-10]: slope shift -0.477/dex (predicted deep shift ~ -2/3 self-consistent, attenuated by non-deep points)
+
+===================================================================================================
+P3  HYBRID: accel-keyed with frequency-dressed scale a0_eff = a0_ref [(1+Om/H0)/(1+Om_ref/H0)]^-p
+    corridor scan over p (a0_ref and Ud refit at every p; self-consistent solve)
+===================================================================================================
+  shape mu_std:
+    p=0.00  bestUd  0.60  a0_ref 1.084e-10  (a0_eff at median Omega 1.084e-10)  unw 0.1976 (D=+0.0026)  wgt 0.1206
+    p=0.05  bestUd  0.62  a0_ref 1.084e-10  (a0_eff at median Omega 1.048e-10)  unw 0.1969 (D=+0.0019)  wgt 0.1176
+    p=0.10  bestUd  0.62  a0_ref 1.109e-10  (a0_eff at median Omega 1.038e-10)  unw 0.1964 (D=+0.0014)  wgt 0.1173
+    p=0.15  bestUd  0.62  a0_ref 1.109e-10  (a0_eff at median Omega 1.004e-10)  unw 0.1961 (D=+0.0010)  wgt 0.1187
+    p=0.20  bestUd  0.62  a0_ref 1.136e-10  (a0_eff at median Omega 9.939e-11)  unw 0.1959 (D=+0.0008)  wgt 0.1187
+    p=0.30  bestUd  0.64  a0_ref 1.136e-10  (a0_eff at median Omega 9.298e-11)  unw 0.1958 (D=+0.0008)  wgt 0.1184
+    p=0.50  bestUd  0.66  a0_ref 1.163e-10  (a0_eff at median Omega 8.330e-11)  unw 0.1970 (D=+0.0020)  wgt 0.1210
+    p=0.75  bestUd  0.68  a0_ref 1.218e-10  (a0_eff at median Omega 7.390e-11)  unw 0.2000 (D=+0.0050)  wgt 0.1259
+    p=1.00  bestUd  0.70  a0_ref 1.247e-10  (a0_eff at median Omega 6.404e-11)  unw 0.2039 (D=+0.0089)  wgt 0.1321
+  shape mu_simple:
+    p=0.00  bestUd  0.52  a0_ref 8.773e-11  (a0_eff at median Omega 8.773e-11)  unw 0.1951 (D=+0.0000)  wgt 0.1119
+    p=0.05  bestUd  0.52  a0_ref 8.981e-11  (a0_eff at median Omega 8.687e-11)  unw 0.1942 (D=-0.0008)  wgt 0.1112
+    p=0.10  bestUd  0.54  a0_ref 8.773e-11  (a0_eff at median Omega 8.207e-11)  unw 0.1935 (D=-0.0016)  wgt 0.1093
+    p=0.15  bestUd  0.54  a0_ref 8.981e-11  (a0_eff at median Omega 8.126e-11)  unw 0.1928 (D=-0.0022)  wgt 0.1089
+    p=0.20  bestUd  0.54  a0_ref 9.194e-11  (a0_eff at median Omega 8.046e-11)  unw 0.1924 (D=-0.0026)  wgt 0.1088
+    p=0.30  bestUd  0.56  a0_ref 9.194e-11  (a0_eff at median Omega 7.528e-11)  unw 0.1918 (D=-0.0032)  wgt 0.1077
+    p=0.50  bestUd  0.58  a0_ref 9.413e-11  (a0_eff at median Omega 6.744e-11)  unw 0.1919 (D=-0.0031)  wgt 0.1094
+    p=0.75  bestUd  0.60  a0_ref 9.636e-11  (a0_eff at median Omega 5.844e-11)  unw 0.1937 (D=-0.0013)  wgt 0.1141
+    p=1.00  bestUd  0.62  a0_ref 9.865e-11  (a0_eff at median Omega 5.065e-11)  unw 0.1967 (D=+0.0016)  wgt 0.1198
+  shape McGaugh-RAR (nu-form):
+    p=0.00  bestUd  0.54  a0_ref 8.569e-11  (a0_eff at median Omega 8.569e-11)  unw 0.1949 (D=-0.0002)  wgt 0.1118
+    p=0.05  bestUd  0.54  a0_ref 8.773e-11  (a0_eff at median Omega 8.485e-11)  unw 0.1940 (D=-0.0010)  wgt 0.1111
+    p=0.10  bestUd  0.56  a0_ref 8.569e-11  (a0_eff at median Omega 8.016e-11)  unw 0.1933 (D=-0.0018)  wgt 0.1093
+    p=0.15  bestUd  0.56  a0_ref 8.773e-11  (a0_eff at median Omega 7.938e-11)  unw 0.1927 (D=-0.0023)  wgt 0.1091
+    p=0.20  bestUd  0.56  a0_ref 8.981e-11  (a0_eff at median Omega 7.860e-11)  unw 0.1923 (D=-0.0028)  wgt 0.1090
+    p=0.30  bestUd  0.58  a0_ref 8.981e-11  (a0_eff at median Omega 7.353e-11)  unw 0.1918 (D=-0.0033)  wgt 0.1082
+    p=0.50  bestUd  0.60  a0_ref 9.194e-11  (a0_eff at median Omega 6.588e-11)  unw 0.1920 (D=-0.0030)  wgt 0.1103
+    p=0.75  bestUd  0.62  a0_ref 9.636e-11  (a0_eff at median Omega 5.844e-11)  unw 0.1941 (D=-0.0009)  wgt 0.1150
+    p=1.00  bestUd  0.64  a0_ref 9.865e-11  (a0_eff at median Omega 5.065e-11)  unw 0.1975 (D=+0.0024)  wgt 0.1212
+  headline p=0.5, p=1 cross-check in observed-Omega mode (constraint form):
+    std    p=0.5: self-consistent 0.1970 ; observed-Omega 0.2138
+    std    p=1.0: self-consistent 0.2039 ; observed-Omega 0.2358
+    simple p=0.5: self-consistent 0.1919 ; observed-Omega 0.2076
+    simple p=1.0: self-consistent 0.1967 ; observed-Omega 0.2263
+    rar    p=0.5: self-consistent 0.1920 ; observed-Omega 0.2078
+    rar    p=1.0: self-consistent 0.1975 ; observed-Omega 0.2273
+  per-galaxy structure of the dressed law (std shape):
+  hybrid std p=0.5                   [all             ] N=175  slope +0.249/dex  r=+0.357  terciles(lo,hi) -0.116,-0.010  V>=150 minus V<80: +0.093+-0.034 dex (2.7 sig)
+  hybrid std p=0.5                   [deep g_bar<1e-10] N=170  slope +0.273/dex  r=+0.389  terciles(lo,hi) -0.113,+0.009  V>=150 minus V<80: +0.102+-0.035 dex (2.9 sig)
+  hybrid std p=1.0                   [all             ] N=175  slope +0.167/dex  r=+0.237  terciles(lo,hi) -0.082,-0.028  V>=150 minus V<80: +0.042+-0.035 dex (1.2 sig)
+  hybrid std p=1.0                   [deep g_bar<1e-10] N=170  slope +0.182/dex  r=+0.257  terciles(lo,hi) -0.079,-0.012  V>=150 minus V<80: +0.045+-0.036 dex (1.3 sig)
+
+===================================================================================================
+P5  SOLAR-REFLEX CONSISTENCY at Omega_J (the Door-IVb budget) + the corridor
+===================================================================================================
+  budget: delta_a_sun <= 2.47e-15 m/s^2 (strict fit-A) / 3.38e-15 (loose); framework std-mu accel-keyed reflex = 2.10e-14 (the 8.5x-over kill)
+  variant                                       delta_a_sun  suppress.  verdict
+  accel std (F4) framework         [context]      2.096e-14   1.0e+00x  SOLAR FAIL | SPARC-ALIVE (D=+0.0034) 
+  accel simple framework           [context]      9.360e-11   2.2e-04x  SOLAR FAIL | SPARC-ALIVE (D=+0.0001) 
+  accel McGaugh-RAR framework      [context]      6.285e-28   3.3e+13x  SOLAR PASS | SPARC-ALIVE (D=+0.0000) ** PASSES BOTH **
+  pure freq mu_standard (Omega0=1.36e-15)         6.854e-22   3.1e+07x  SOLAR PASS | SPARC-DEAD (D=+0.0263) 
+  pure freq mu_simple (Omega0=1.20e-15)           1.489e-14   1.4e+00x  SOLAR FAIL | SPARC-DEAD (D=+0.0226) 
+  hybrid std    p=0.5 (a0_ref=1.16e-10)           5.823e-22   3.6e+07x  SOLAR PASS | SPARC-ALIVE (D=+0.0020) ** PASSES BOTH **
+  hybrid std    p=1.0 (a0_ref=1.25e-10)           1.207e-29   1.7e+15x  SOLAR PASS | SPARC-ALIVE (D=+0.0089) ** PASSES BOTH **
+  hybrid simple p=0.5 (a0_ref=9.41e-11)           1.263e-14   1.7e+00x  SOLAR FAIL | SPARC-ALIVE (D=-0.0031) 
+  hybrid simple p=1.0 (a0_ref=9.86e-11)           1.777e-18   1.2e+04x  SOLAR PASS | SPARC-ALIVE (D=+0.0016) ** PASSES BOTH **
+  hybrid rar    p=0.5 (a0_ref=9.19e-11)           <1e-300          inf  SOLAR PASS | SPARC-ALIVE (D=-0.0030) ** PASSES BOTH **
+  hybrid rar    p=1.0 (a0_ref=9.86e-11)           <1e-300          inf  SOLAR PASS | SPARC-ALIVE (D=+0.0024) ** PASSES BOTH **
+
+  CORRIDOR per shape: smallest p passing solar (strict line) vs largest p with SPARC D<=+0.010
+    std   : p_min(solar) = 0.069 ; p_max(SPARC,+0.010) = 1.000  => CORRIDOR [0.069, 1.000] NON-EMPTY
+    simple: p_min(solar) = 0.593 ; p_max(SPARC,+0.010) = 1.000  => CORRIDOR [0.593, 1.000] NON-EMPTY
+    rar   : p_min(solar) = 0.000 ; p_max(SPARC,+0.010) = 1.000  => CORRIDOR [0.000, 1.000] NON-EMPTY
+    (p interpolated between scan points; a0_ref(p) from each p's own SPARC fit; strict fit-A line; the line is std-template-derived -- approximate for other shapes; p_max quoted within the scanned family p<=1)
+
+  SIDE PREDICTION (corridor-discriminating): dressing factor S = a0_eff/a0_ref at the
+  wide-binary frequency Omega_WB = 4.16e-13 s^-1 (7 kAU, 1.5 Msun; Omega_WB/H0 = 1.8e+05):
+    p=0.069: S(Omega_WB) = 0.607  -> wide-binary MOND boost suppressed
+    p=0.300: S(Omega_WB) = 0.114  -> wide-binary MOND boost suppressed
+    p=0.500: S(Omega_WB) = 0.027  -> wide-binary MOND boost OFF (Newtonian)
+    p=1.000: S(Omega_WB) = 0.001  -> wide-binary MOND boost OFF (Newtonian)
+    => a detected WB anomaly at full MOND amplitude (Chae-type) would cap p <~ 0.1 and pinch the std
+       corridor [0.069, ~0.1]; a WB null (Banik-type) is consistent with any corridor p. Same logic
+       kills lab/atom-interferometer MOND signatures for ANY corridor p (lab Omega/H0 >~ 1e17).
+
+===================================================================================================
+VERDICT (pre-registered thresholds; both directions, full weight)
+===================================================================================================
+  pure freq mu_standard: SPARC +0.0263 dex (DEAD) ; solar delta_a 6.85e-22 (pass)
+  pure freq mu_simple  : SPARC +0.0226 dex (DEAD) ; solar delta_a 1.49e-14 (FAIL)
+  robustness of the pure-freq SPARC death (the working rule: a 'fails' needs the same rigor):
+    mu_standard: vs same-shape free-a0 accel optimum 0.1976: +0.0237 ; weighted 0.1458 vs accel-best-weighted 0.1105: +0.0354 ; observed-Omega mode worse (0.2966); Ud freedom granted; Omega0 grid-interior
+    mu_simple  : vs same-shape free-a0 accel optimum 0.1951: +0.0225 ; weighted 0.1343 vs accel-best-weighted 0.1105: +0.0238 ; observed-Omega mode worse (0.2806); Ud freedom granted; Omega0 grid-interior
+  hybrid (dressed accel-keying): headline p=0.5 / p=1.0 penalties (std shape): +0.0020 / +0.0089 dex
+  both-ways note: mild dressing IMPROVES the unweighted fit (best 0.1918 at shape=rar, p=0.30, -0.0033 vs accel best) -- at the level of known per-galaxy
+  systematics (distance/inclination/M-L correlated with V_flat); NOT claimed as a detection.
+  corridor std   : [0.069, 1.000] NON-EMPTY
+  corridor simple: [0.593, 1.000] NON-EMPTY
+  corridor rar   : [0.000, 1.000] NON-EMPTY
+
+  BOTTOM LINE (three-way, full weight):
+  (1) PURE frequency-keying is SPARC-DEAD: best variant +0.023 dex over the acceleration-keyed law
+      (past the pre-registered DEAD threshold +0.020; 2.3x the ALIVE line +0.010), with the PREDICTED
+      failure signature -- per-galaxy residuals
+      run against V_flat (sign-flip of the control trend; a = Omega*V is the mechanism). The only
+      solar-safe pure-freq shape (standard) is exactly the SPARC-dead one; the simple shape fails BOTH.
+      Frequency-keying as a REPLACEMENT for acceleration-keying is excluded by the data.
+  (2) The acceleration-keyed exponential-tail shape (McGaugh RAR) ALREADY passes the Door-IVb solar
+      budget undressed (delta_a ~ 6e-28): the solar-reflex kill is specific to power-law-tail mu
+      (F4-standard, simple) -- frequency arguments are NOT needed for solar safety in general.
+  (3) For F4's OWN shape the rescue corridor is OPEN: weak frequency DRESSING of acceleration-keying,
+      a0_eff = a0 [(1+Omega/H0)/(1+Omega_ref/H0)]^-p with p in [0.069, 1.0], passes the solar budget
+      AND costs <0.010 dex on SPARC (p<~0.3 costs nothing at all). The Door-IVb kill of F4 is therefore
+      EVADABLE by one power-law dressing factor -- at the price of a falsifiable side prediction:
+      suppressed wide-binary anomaly (S_WB = 0.6 at the corridor floor, OFF for p>=0.5) and no lab-scale
+      MOND signatures. A confirmed full-amplitude WB detection would pinch the corridor to ~[0.07, 0.1].
+
+  total runtime 240.3 s
