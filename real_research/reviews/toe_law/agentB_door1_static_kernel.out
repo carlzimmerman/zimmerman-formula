@@ -1,0 +1,120 @@
+==============================================================================
+PART A: dS4 embedding geometry + the key identity (symbolic)
+==============================================================================
+[A1] X.X - 1/H^2          = 0
+[A1] u.u + 1              = 0
+[A1] a_int.a_int - a^2    = 0
+[A1] e.e - 1, e.u, e.X    = 0 , 0 , 0
+[A2] Z - (H^2 cosh(ks)+a^2)/k^2 = 0
+[A2] (1-Z) + (2H^2/k^2)sinh^2(ks/2) = 0
+[A3] W_pullback - Deser-Levin form  = 0    [thermal at T_eff = kappa/2pi; comoving a->0 gives the banked -(H^2/16pi^2)/sinh^2(Hs/2)]
+[A4] e(tau).X(tau-s) - (a/k^2)(cosh(ks)-1) = 0
+[A4] *** KEY IDENTITY ***  e.gradW(s) + a*W(s) = 0
+     => <f_rad>(stationary) = -2 lam^2 Im INT_0^inf ds g(s) e.gradW(s)
+        = +2 a lam^2 Im INT_0^inf ds g(s) W_kappa(s)  =  -a * lam^2 * G(kappa,Omega)
+        EXACTLY ordinary-inertia form; G depends on (kappa, Omega, state) ONLY.
+[A5] e.e' - (a^2 cosh(ks)+H^2)/k^2 = 0    <-- EXPLICIT (a,H)-mix: the one place a/kappa structure could still enter
+[A5] K_FF(s) = e^A e'^B grad_A grad'_B W  (closed form, handoff):
+      -(H**2 + a**2)*(2*a**2*(exp(2*s*sqrt(H**2 + a**2)) - 2*exp(s*sqrt(H**2 + a**2)) + 1)**2 - (exp(s*sqrt(H**2 + a**2)) - 1)**2*(2*H**2*exp(s*sqrt(H**2 + a**2)) + a**2*exp(2*s*sqrt(H**2 + a**2)) + a**2))*exp(s*sqrt(H**2 + a**2))/(4*pi**2*(exp(s*sqrt(H**2 + a**2)) - 1)**6)
+[A5] K_perp(s) = grad_3 grad'_3 W = (H**2 + a**2)**2/(32*pi**2*sinh(s*sqrt(H**2 + a**2)/2)**4)   [kappa-only exactly]
+[A6] *** SECOND IDENTITY ***  K_FF(s) - [K_perp(s) + a^2 W(s)] = 0
+     => the ENTIRE anisotropy of the lambda^2 response kernel is the single
+        term a^2 W(s): every lambda^2 response coefficient has the form
+        A(kappa,Omega) + a^2 B(kappa,Omega) — linear in a^2, kappa-only
+        coefficients.  mu_F4 = a/kappa = sqrt(kappa^2-H^2)/kappa is NOT
+        linear in H^2 at fixed kappa => excluded at lambda^2 in ALL
+        channels (static, drag, omega^2-inertia), not just the adiabatic one.
+        At order lambda^(2n): polynomial of degree n in a^2 — still excluded;
+        only a non-perturbative resummation could produce |a|/kappa.
+
+==============================================================================
+PART B: flat-space (4D Rindler) cross-check of the identity, no embedding
+==============================================================================
+[B1] W_flat pullback - (-a^2/16pi^2)/sinh^2(as/2) = 0
+[B2] flat KEY IDENTITY  e.gradW + a*W = 0
+
+==============================================================================
+PART C: the no-go ODE (symbolic) — can G(kappa) fake the F4 kernel?
+==============================================================================
+[C1] ODE:  G + (a^2/kappa) G' = C a/(2pi kappa),  a^2 = kappa^2 - H^2
+[C1] General solution: (C*kappa/2 + pi*C1)/(pi*sqrt(-H**2 + kappa**2))
+     -> EVERY solution depends explicitly on H and has a pole at kappa=H (a=0).
+     But G is built from the kappa-thermal worldline correlators alone and
+     CANNOT know H separately.  => No such G exists unless C = 0.
+     C = 0 forces m_resp = const (pure renormalization): ORDINARY inertia.
+     *** The susceptibility structure dT_eff/da CANNOT emerge in the
+         adiabatic channel — at lambda^2 and, by the contraction census
+         (every worldline scalar is kappa-only; the single force vertex
+         carries exactly one factor a), at ALL orders in lambda. ***
+
+==============================================================================
+PART D: numerics — the induced thermal mass G_th(Omega,kappa) and its shape
+==============================================================================
+[D1] cross-check time-domain vs PV-spectral route, (Om,kap)=(1,2) and (1,0.3):
+     Om= 1.0 kap= 2.0:  time +1.84536689e-02   PV +1.84536689e-02   ratio 1.000000
+     Om= 1.0 kap= 0.3:  time +3.83537674e-04   PV +3.83537674e-04   ratio 1.000000
+[D2] LOW-T asymptote (kappa << Omega): expect G_th -> kap^2/(24 pi^2 Om)
+     i.e. lambda^2 T_eff^2/(6 Om) — RAW COEFFICIENT (in T-units): 1/6
+     kap=0.05: G_th=+1.055693e-05  k^2/(24pi^2 Om)=+1.055429e-05  ratio=1.0003
+     kap=0.10: G_th=+4.225958e-05  k^2/(24pi^2 Om)=+4.221716e-05  ratio=1.0010
+     kap=0.20: G_th=+1.695576e-04  k^2/(24pi^2 Om)=+1.688686e-04  ratio=1.0041
+[D3] GAPLESS limit: G_th(Om->0, kap) -> 0 (finite part of the static force
+     is EXACTLY zero for gapless detectors; only the kappa-independent UV
+     mass renormalization survives).  Numerically:
+     Om= 0.10, kap=2: G_th = +1.226754e-02   (G_th/Om = +1.22675e-01)
+     Om= 0.03, kap=2: G_th = +5.505935e-03   (G_th/Om = +1.83531e-01)
+     Om= 0.01, kap=2: G_th = +2.391753e-03   (G_th/Om = +2.39175e-01)
+[D4] HIGH-T behaviour (kappa >> Omega): scaling probe
+     kap=  10.0: G_th=+8.801200e-02   G_th/(Om ln(kap/Om))=+3.822313e-02
+     kap=  30.0: G_th=+1.431322e-01   G_th/(Om ln(kap/Om))=+4.208288e-02
+     kap= 100.0: G_th=+2.040646e-01   G_th/(Om ln(kap/Om))=+4.431208e-02
+     log-slope dG_th/dln(kappa) = 0.050610  vs 1/(2 pi^2) = 0.050661  (ratio 0.9990)
+     => G_th ~ (Om/2pi^2)[ln(kappa/Om) + O(1)]: same 1/2pi^2 family as the
+        banked gapless rate Gamma_th = lam^2 kappa/2pi^2 — machinery-consistent.
+
+[D5] THE STRUCTURE TABLE: adiabatic kernel m_resp vs F4 target, H=1
+     m_resp(a,H) = G_th(kappa) + (a^2/kappa) dG_th/dkappa   [renormalized]
+     F4 target  : C * a/(2pi kappa)  -> must VANISH at a->0; m_resp does not.
+   --- Omega = 0.5 (in units of H) ---
+     x=a/H      m_resp           mu_F4=x/sqrt(1+x^2)   F4-diff-shape
+       0.01   +9.229066e-03       0.01000             0.02000
+       0.10   +9.449069e-03       0.09950             0.19802
+       0.50   +1.424967e-02       0.44721             0.80498
+       1.00   +2.470708e-02       0.70711             1.06066
+       2.00   +4.280427e-02       0.89443             1.07331
+       5.00   +6.829346e-02       0.98058             1.01830
+      20.00   +1.040993e-01       0.99875             1.00124
+     a->0 floor: m_resp = +9.226835e-03  (F4 requires 0; nonzero => thermal-mass structure, NOT susceptibility)
+   --- Omega = 2.0 (in units of H) ---
+     x=a/H      m_resp           mu_F4=x/sqrt(1+x^2)   F4-diff-shape
+       0.01   +2.173439e-03       0.01000             0.02000
+       0.10   +2.240211e-03       0.09950             0.19802
+       0.50   +3.885828e-03       0.44721             0.80498
+       1.00   +9.361338e-03       0.70711             1.06066
+       2.00   +3.303412e-02       0.89443             1.07331
+       5.00   +1.220910e-01       0.98058             1.01830
+      20.00   +2.748334e-01       0.99875             1.00124
+     a->0 floor: m_resp = +2.172765e-03  (F4 requires 0; nonzero => thermal-mass structure, NOT susceptibility)
+   --- Omega = 10.0 (in units of H) ---
+     x=a/H      m_resp           mu_F4=x/sqrt(1+x^2)   F4-diff-shape
+       0.01   +4.227227e-04       0.01000             0.02000
+       0.10   +4.352867e-04       0.09950             0.19802
+       0.50   +7.399964e-04       0.44721             0.80498
+       1.00   +1.693819e-03       0.70711             1.06066
+       2.00   +5.534127e-03       0.89443             1.07331
+       5.00   +3.385122e-02       0.98058             1.01830
+      20.00   +4.821356e-01       0.99875             1.00124
+     a->0 floor: m_resp = +4.225958e-04  (F4 requires 0; nonzero => thermal-mass structure, NOT susceptibility)
+
+[D6] Gibbs-weighted (equilibrated detector at T_eff): thermal part is odd in
+     Omega => G_th_eq = tanh(pi Om/kap) * G_th(Om,kap): still (kappa,Om)-only.
+     Om=2.0, kap=1.0: tanh-factor 0.99999  G_eq=+2.172750e-03
+     Om=2.0, kap=4.0: tanh-factor 0.91715  G_eq=+3.384965e-02
+
+==============================================================================
+RAW COEFFICIENTS produced by this calculation (Stage-3, reported in isolation):
+   geometric prefactor in f_rad = -a * lam^2 * G:        exactly 1
+   gapless static finite part:                           exactly 0
+   low-T thermal mass  G_th = lam^2 T_eff^2/(6 Omega):   coefficient 1/6
+   gapless transition rate (consistency w/ banked):      kappa/(4 pi^2) per leg
+==============================================================================

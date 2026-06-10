@@ -1,0 +1,149 @@
+====================================================================================================
+agentA F4 ECCENTRIC-ORBIT KILL-TEST (Door IVa)  —  run date 2026-06-10
+EOM: mu(|a|/s)*a_vec = -g_N(r) r_hat, mu_std = x/sqrt(1+x^2); HOSTILE s=5.418e-10 leads.
+====================================================================================================
+
+[1] SOLVER VALIDATION (Newton-on-delta vs independent q-series vs mpmath 50-digit)
+    worst |Newton-series|/delta over 20 regimes : 2.803e-16
+    worst |Newton-mpmath50|/delta                      : 2.803e-16
+    conditioning demo (naive double closed-form u-g vs mpmath), physical s:
+      Mercury  hostile: delta/g = 9.362e-17; naive-double rel err = 1.00e+00  (Newton rel err = 1.32e-16)
+      Saturn   hostile: delta/g = 3.516e-11; naive-double rel err = 3.32e-06  (Newton rel err = 1.84e-16)
+
+[2] ANALYTIC CROSS-CHECK (closed form vs independent Gauss-average quadrature w/ exact delta)
+    Delta_pomega/orbit = -pi (4+e^2) sqrt(1-e^2) s^2 a^4 / (2 (GM)^2)   [retrograde]
+    e=0.206 s_c=1e-04: closed -6.213652e-08  quad -6.213652e-08  ratio 1.000000
+    e=0.206 s_c=1e-03: closed -6.213652e-06  quad -6.213634e-06  ratio 0.999997
+    e=0.093 s_c=1e-04: closed -6.269482e-08  quad -6.269481e-08  ratio 1.000000
+    e=0.093 s_c=1e-03: closed -6.269482e-06  quad -6.269465e-06  ratio 0.999997
+    e=0.057 s_c=1e-04: closed -6.278065e-08  quad -6.278065e-08  ratio 1.000000
+    e=0.057 s_c=1e-03: closed -6.278065e-06  quad -6.278049e-06  ratio 0.999997
+
+[3] TWO-BODY INTEGRATIONS — planet as F4 body, Sun as source (DOP853 rtol=1e-12, atol=1e-13;
+    per-planet canonical units GM=1, a=1)
+    Sampling: once per unperturbed period; pomega from Laplace-Runge-Lenz vector; OLS fits.
+
+  [3a] CONTROLS (s=0, 1000 orbits) — integrator floor:
+    Mercury : spurious pomega slope = +1.126e-11 +/- 1.0e-16 rad/orbit ; d ln a_osc = -1.192e-12/orbit ; d Emod/|E| = -1.192e-12/orbit  (nfev=661193)
+    Mars    : spurious pomega slope = +1.449e-11 +/- 4.7e-17 rad/orbit ; d ln a_osc = -2.505e-13/orbit ; d Emod/|E| = -2.505e-13/orbit  (nfev=603017)
+    Saturn  : spurious pomega slope = +1.751e-11 +/- 2.6e-16 rad/orbit ; d ln a_osc = -9.873e-14/orbit ; d Emod/|E| = -9.873e-14/orbit  (nfev=590093)
+
+  [3b] AMPLIFIED-s VALIDATION (300 orbits each; gate: |numeric/analytic - 1| <= 20%):
+    Mercury  s_c=1.000e-04: meas -6.212525e-08  analytic -6.213652e-08  ratio 0.9998 [OK ]  drift d ln a=-1.2e-12/orb
+    Mercury  s_c=3.162e-04: meas -6.213532e-07  analytic -6.213652e-07  ratio 1.0000 [OK ]  drift d ln a=-1.2e-12/orb
+    Mercury  s_c=1.000e-03: meas -6.213570e-06  analytic -6.213652e-06  ratio 1.0000 [OK ]  drift d ln a=-1.2e-12/orb
+    Mercury  s^2-scaling: d log|dpom|/d log s = 2.0001 (expect 2)
+    Mars     s_c=1.000e-04: meas -6.268032e-08  analytic -6.269482e-08  ratio 0.9998 [OK ]  drift d ln a=-2.5e-13/orb
+    Mars     s_c=3.162e-04: meas -6.269326e-07  analytic -6.269482e-07  ratio 1.0000 [OK ]  drift d ln a=-2.5e-13/orb
+    Mars     s_c=1.000e-03: meas -6.269364e-06  analytic -6.269482e-06  ratio 1.0000 [OK ]  drift d ln a=-2.5e-13/orb
+    Mars     s^2-scaling: d log|dpom|/d log s = 2.0001 (expect 2)
+    Saturn   s_c=1.000e-04: meas -6.276312e-08  analytic -6.278065e-08  ratio 0.9997 [OK ]  drift d ln a=-9.9e-14/orb
+    Saturn   s_c=3.162e-04: meas -6.277876e-07  analytic -6.278065e-07  ratio 1.0000 [OK ]  drift d ln a=-9.9e-14/orb
+    Saturn   s_c=1.000e-03: meas -6.277903e-06  analytic -6.278065e-06  ratio 1.0000 [OK ]  drift d ln a=-1.0e-13/orb
+    Saturn   s^2-scaling: d log|dpom|/d log s = 2.0001 (expect 2)
+    AMPLIFIED GATE: PASSED
+
+  [3c] PHYSICAL-s RUNS (1000 orbits; representability noted):
+      NOTE: canonical perturbation delta/g = s_c^2/2: Saturn-hostile 3.5e-11 (1.6e5 eps),
+      Saturn-framework 1.0e-12 (4.8e3 eps), Mars-hostile 2.3e-14 (~100 eps): integrable;
+      Mercury-hostile 9.4e-17 and Mercury/Mars-framework: AT/BELOW double eps —
+      direct integration structurally cannot represent the perturbation; those verdicts
+      rest on the amplified-s-validated analytic law (gate above).
+      CONTROL SUBTRACTION: DOP853 has a reproducible spurious LRL rotation (controls above,
+      +1.1e-11..+1.8e-11 rad/orbit, s-independent since the perturbed RHS differs from the
+      control by <= 3.5e-11 relative). Corrected slope = measured - control(same e, rtol, N).
+      Validity is demonstrated empirically: three independent (planet,s) runs land on the
+      analytic value after subtraction (see 'corrected ratio').
+    Saturn   hostile   s_c=8.385e-06: meas -4.239e-10  - control +1.751e-11  => corrected -4.414e-10 rad/orb
+             analytic -4.414e-10   raw ratio +0.960   corrected ratio +1.0000   -> -3.071e-01 mas/cy measured
+             secular: d ln a_osc = -9.87e-14/orb ; d Emod/|E| = -9.87e-14/orb  (control floor: -9.87e-14, -9.87e-14)
+    Saturn   framework s_c=1.449e-06: meas +4.339e-12  - control +1.751e-11  => corrected -1.317e-11 rad/orb
+             analytic -1.317e-11   raw ratio -0.329   corrected ratio +1.0000   -> -9.164e-03 mas/cy measured
+             secular: d ln a_osc = -9.87e-14/orb ; d Emod/|E| = -9.87e-14/orb  (control floor: -9.87e-14, -9.87e-14)
+    Mars     hostile   s_c=2.122e-07: meas +1.421e-11  - control +1.449e-11  => corrected -2.811e-13 rad/orb
+             analytic -2.823e-13   raw ratio -50.322   corrected ratio +0.9957   -> -3.082e-03 mas/cy measured
+             secular: d ln a_osc = -2.50e-13/orb ; d Emod/|E| = -2.50e-13/orb  (control floor: -2.50e-13, -2.50e-13)
+    Mercury  hostile   s_c=1.368e-08: meas +1.126e-11  - control +1.126e-11  => corrected -1.442e-15 rad/orb
+             analytic -1.163e-15   raw ratio -9676.893   corrected ratio +1.2391   -> -1.235e-04 mas/cy measured
+             secular: d ln a_osc = -1.19e-12/orb ; d Emod/|E| = -1.19e-12/orb  (control floor: -1.19e-12, -1.19e-12)
+      (Mercury-hostile: the perturbation delta/g = 9.4e-17 sits below double eps, so the
+       perturbed trajectory is near-bit-identical to the control; the corrected number is the
+       subtraction's roundoff remainder, NOT a calibrated measurement — its proximity to the
+       analytic value (ratio 1.24) is encouraging but unclaimable. Verdict rests on the
+       amplified-s-validated law, which was verified at Mercury's own e=0.206 to 0.02%.)
+
+  [3c-bis] rtol-ROBUSTNESS of the control subtraction (Saturn hostile, 300 orbits, rtol=1e-13):
+    control +1.705e-12, perturbed -4.397e-10, corrected -4.414e-10 vs analytic -4.414e-10  -> ratio +1.0000
+
+  [3d] ORBIT-AVERAGED PRESCRIPTION (mu at time-averaged |a| of previous orbit):
+    Saturn   hostile : 1/mu_bar-1 -> 3.5041e-11 (analytic ~ s_c^2 beta^2/2 = 3.5041e-11);
+             post-convergence |Delta_pomega| per orbit <= 1.95e-11 rad ; |da/a| per orbit <= 1.23e-13  -> ZERO precession/drift (Kepler w/ GM_eff)
+    Mercury  hostile : 1/mu_bar-1 -> 8.9647e-17 (analytic ~ s_c^2 beta^2/2 = 8.9647e-17);
+             post-convergence |Delta_pomega| per orbit <= 1.10e-11 rad ; |da/a| per orbit <= 1.65e-12  -> ZERO precession/drift (Kepler w/ GM_eff)
+    Mars     hostile : 1/mu_bar-1 -> 2.2320e-14 (analytic ~ s_c^2 beta^2/2 = 2.2320e-14);
+             post-convergence |Delta_pomega| per orbit <= 1.58e-11 rad ; |da/a| per orbit <= 3.25e-13  -> ZERO precession/drift (Kepler w/ GM_eff)
+    Mercury  amplified s_c=1e-3: instantaneous predicts -6.21e-06 rad/orb; orbit-averaged measured <= 1.1e-11 rad/orb  (collapse factor >= 5.6e+05)
+    Mars     amplified s_c=1e-3: instantaneous predicts -6.27e-06 rad/orb; orbit-averaged measured <= 1.6e-11 rad/orb  (collapse factor >= 4.0e+05)
+    Saturn   amplified s_c=1e-3: instantaneous predicts -6.28e-06 rad/orb; orbit-averaged measured <= 1.9e-11 rad/orb  (collapse factor >= 3.2e+05)
+    Orbit-averaged relic observable (per-planet GM_eff/GM - 1 = 1/mu_bar - 1, analytic):
+      Mercury  hostile  : 8.96e-17  (cross-planet Kepler-ratio anomaly; degenerate per-planet with fitted GM_sun)
+      Mercury  framework: 2.68e-18  (cross-planet Kepler-ratio anomaly; degenerate per-planet with fitted GM_sun)
+      Mars     hostile  : 2.23e-14  (cross-planet Kepler-ratio anomaly; degenerate per-planet with fitted GM_sun)
+      Mars     framework: 6.66e-16  (cross-planet Kepler-ratio anomaly; degenerate per-planet with fitted GM_sun)
+      Saturn   hostile  : 3.50e-11  (cross-planet Kepler-ratio anomaly; degenerate per-planet with fitted GM_sun)
+      Saturn   framework: 1.05e-12  (cross-planet Kepler-ratio anomaly; degenerate per-planet with fitted GM_sun)
+
+[4] PREDICTIONS (verified analytic law; Saturn/Mars also measured directly) vs PINNED BOUNDS
+    criterion: PASS if |pred - central| < 2 sigma for EVERY pinned bound (worst tension shown).
+    '|pred|/sig_t' = prediction size in units of the tightest 1-sigma; 'margin' = sig_t/|pred|.
+    planet   s       prescription    pred mas/cy                    worst bound (tension) |pred|/sig_t  margin verdict
+    ------------------------------------------------------------------------------------------------------------------------
+    Mercury  cH_Lam  instantaneous    -9.968e-05     INPOP10a arXiv:1108.5546 (0.75 sig)     9.49e-05 1.1e+04 PASS
+    Mercury  cH_Lam  orbit-averaged   +0.000e+00           (zero precession — all bounds)          0.0     inf PASS
+    Mercury  a0_fw   instantaneous    -2.975e-06     INPOP10a arXiv:1108.5546 (0.75 sig)     2.83e-06 3.5e+05 PASS
+    Mercury  a0_fw   orbit-averaged   +0.000e+00           (zero precession — all bounds)          0.0     inf PASS
+    Mars     cH_Lam  instantaneous    -3.095e-03     EPM2011  arXiv:1306.3043 (0.46 sig)     8.36e-02      12 PASS
+    Mars     cH_Lam  orbit-averaged   +0.000e+00           (zero precession — all bounds)          0.0     inf PASS
+    Mars     a0_fw   instantaneous    -9.237e-05     EPM2011  arXiv:1306.3043 (0.54 sig)     2.50e-03   4e+02 PASS
+    Mars     a0_fw   orbit-averaged   +0.000e+00           (zero precession — all bounds)          0.0     inf PASS
+    Saturn   cH_Lam  instantaneous    -3.071e-01 INPOP15a-C2 arXiv:1601.00947 (1.79 sig)     1.54e+00    0.65 PASS
+    Saturn   cH_Lam  orbit-averaged   +0.000e+00           (zero precession — all bounds)          0.0     inf PASS
+    Saturn   a0_fw   instantaneous    -9.164e-03     EPM2011  arXiv:1306.3043 (0.66 sig)     4.58e-02      22 PASS
+    Saturn   a0_fw   orbit-averaged   +0.000e+00           (zero precession — all bounds)          0.0     inf PASS
+
+    Saturn cH_Lam instantaneous — per-bound tensions (the binding case):
+      EPM2011  arXiv:1306.3043         -0.32 +/- 0.47 : tension +0.03 sigma ; room to 2-sigma edge = +0.927 mas/cy
+      INPOP10a arXiv:1108.5546         +0.15 +/- 0.65 : tension -0.70 sigma ; room to 2-sigma edge = +0.843 mas/cy
+      INPOP15a-C1 arXiv:1601.00947     +1.20 +/- 5.00 : tension -0.30 sigma ; room to 2-sigma edge = +8.493 mas/cy
+      INPOP15a-C2 arXiv:1601.00947     +0.05 +/- 0.20 : tension -1.79 sigma ; room to 2-sigma edge = +0.043 mas/cy
+    -> the test is now BINDING at the hostile normalization: |pred| = 1.5x the tightest
+       1-sigma (INPOP15a-C2), passing only at the 2-sigma criterion with 0.04 mas/cy of room;
+       under EPM2011/INPOP10a/INPOP15a-C1 it passes comfortably (<= 0.7 sigma). The factor-25
+       spread among published Saturn sigmas (0.20..5.0 mas/cy) is an ephemeris-systematics
+       statement — both ways: no kill claimable on the tightest reading alone, no comfort
+       claimable from the loosest.
+
+    secular drift (both prescriptions, both s): d(ln a)/dt = 0 EXACTLY (instantaneous = 
+    conservative central force; orbit-averaged = piecewise Kepler). Numerical floors above:
+      Mercury : |d ln a/dt| floor = 5.0e-12/yr (= integrator energy bias, shared
+                with control to machine precision -> physical drift consistent with 0)
+      Mars    : |d ln a/dt| floor = 1.3e-13/yr (= integrator energy bias, shared
+                with control to machine precision -> physical drift consistent with 0)
+      Saturn  : |d ln a/dt| floor = 3.3e-15/yr (= integrator energy bias, shared
+                with control to machine precision -> physical drift consistent with 0)
+    vs GM_dot/GM = -(6.13+/-1.47)e-14/yr (Genova+ 2018, Nat.Comm. 9:289): PASS identically.
+    Circular-channel context (Folkner |da|<1e-14 m/s^2 at Saturn): instantaneous delta_a at
+      hostile  : delta_a(a)=2.27e-15, at aphelion 2.54e-15 m/s^2 -> PASS (margin 3.9x at aphelion)
+      framework: delta_a(a)=6.78e-17, at aphelion 7.57e-17 m/s^2 -> PASS (margin 132.0x at aphelion)
+
+[5] FLAGGED ADDITIONAL CHANNEL (out of assigned scope; arithmetic only): SUN'S MODIFIED REFLEX
+    Per-body instantaneous MI applies mu to the SUN too: |a_sun| ~ GM_jup/r_jup^2 = 2.090e-07 m/s^2 (Jupiter-dominated).
+      hostile  : x_sun=386, anomalous solar acceleration = 7.02e-13 m/s^2  = 70.2x the 1e-14 Folkner Saturn scale (template differs: synodic, Jupiter-directed)
+      framework: x_sun=2233, anomalous solar acceleration = 2.10e-14 m/s^2  = 2.1x the 1e-14 Folkner Saturn scale (template differs: synodic, Jupiter-directed)
+    This channel does NOT vanish under orbit-averaging (the Sun's <|a|> is unchanged), unlike
+    the planet-precession channel. Escape: constituent-acceleration (composite-body) reading of
+    MI — which would also switch off MOND for internally-supported stars (coherence cost for the
+    bath interpretation). Needs an ephemeris-fit-level analysis (degeneracy with fitted masses).
+    NOT folded into the Door-IVa verdict; logged as Door IVa-2.
+
+[6] DONE.

@@ -54,3 +54,52 @@ observation already published (it is NOT in Milgrom-99; wider search unverified)
 with one candidate kernel that has survived five kill-tests and owes two more (the mechanism and the eccentric-orbit
 check), a published rival dead behind it, and a pre-registered observational fork that decides against soft MOND or
 against it by 2027. Doors I and IVa are where the pushing goes next.
+
+---
+
+# SWARM RESULTS (same day, 2026-06-10 — Doors I, II, IVa run in parallel; all three verdicts at full weight)
+
+## Door IVa (eccentric orbits) — **F4 PASSES, but the test became BINDING** (`agentA_f4_eccentric.*`)
+Analytic law derived two ways + integrator-verified: Δϖ/orbit = −π(4+e²)√(1−e²)·s²a⁴/2(GM)² — retrograde, ∝a⁴, so
+**Saturn binds, not Mercury**. Hostile normalization (s = cH): Saturn −0.307 mas/cy vs INPOP15a-C2 (0.05±0.20) =
+**1.79σ — passes only at 2σ**; published-bound spread ×25 (EPM 0.03σ … INPOP15a-C2 1.79σ) = ephemeris-systematics
+statement; framework normalization: 22× margin, comfortable. Secular-drift channel analytically EMPTY (instantaneous
+two-body F4 is a conservative central force). **Prescription-laden: 100% of the signal vanishes under orbit-averaging**
+(closed Kepler ellipses; relic = per-planet GM offset, degenerate with fitted GM☉). **NEW FLAG (Door IVb, opened):
+the Sun's own modified reflex** — a_☉ ≈ 2.1×10⁻⁷ (Jupiter-driven) gives an anomalous solar response of 7.0×10⁻¹³
+(hostile, 70× Folkner scale) / 2.1×10⁻¹⁴ (framework, 2.1×) **that does NOT orbit-average away**; Jupiter-synodic
+template, partially mass-degenerate; needs ephemeris-fit-level analysis. *This, not eccentricity, is now the sharpest
+residual solar-system threat to F4.*
+
+## Door II (covariance) — **NO THEOREM; the perimeter retreat; two new walls** (`agentC_covariance_memo.md`)
+No obstruction theorem exists or can be assembled: Milgrom-94 forbids only locality (nonlocal worldline functionals
+LICENSED); the singular surface kills only local k-essence carriers. **The DEW nonlocal-metric class is ALIVE**
+(Deffayet–Woodard JCAP 04 (2026) 081) with its decisive gates OPEN (Cassini Q₂ uncomputed; CMB unaudited) — the
+trilemma's "closed perimeter" is AMENDED (a real retreat, recorded). Two new walls for F4 specifically: **conformal
+collapse** (any pointwise universal m_eff = a conformal metric redefinition = modified gravity with zero extra lensing
+— genuine covariant MI must be trajectory-nonlocal) and **the lensing-RAR wall**, quantified same-day on our own data
+(`f4_lensing_wall.out`): metric-passive MI predicts baryon-only lensing; Brouwer's released isolated RAR excludes that
+at **40.5σ** (deep-bin amplitude deficit ~230×, unbridgeable by the C-bracket). ⇒ **F4 cannot be the whole theory; the
+missing object is a HYBRID: trajectory-nonlocal MI matter sector + a lensing-carrying metric partner.** Next bounded
+calc: the DEW model's EFE quadrupole vs the 2026 Cassini bound (decides the loophole cell).
+
+## Door I (the mechanism) — **REFUTES at λ², all finite orders, in this model class** (`agentB_door1_*`)
+Machine-verified exact identities (ê·∇W = −aW; K_FF = K_⊥ + a²W) force every λ² worldline response coefficient into
+A(κ)+a²B(κ) with κ-only coefficients; matching dT_eff/da requires a G(κ) with a **pole exactly at the deep-MOND point**
+— impossible (sympy-exact ODE no-go). What the bath actually delivers is **thermal-mass dressing — the ANTI-MOND
+direction** (adds inertia at low a; MOND needs a deficit). The census extends to every finite order in λ. **F4 loses
+its λ²-mechanism candidacy** (the pre-registered kill condition fired). Raw coefficients: 1, 0, 1/6, 1/2π² — none is Z;
+the 1/6 vs 1/Z near-miss (3.5%) flagged as structurally meaningless. Priority search: genuine absence (the
+susceptibility form is unpublished — and now also mechanism-less). Named loopholes, not pursued tonight:
+non-perturbative regime (vanishing inertia is exactly where perturbation theory around m_bare must fail),
+minimally-coupled scalar (dS IR pathology breaks Deser-Levin), field-level realizations (Door II's hybrid).
+
+## The honest post-swarm status of F4 (the Bohr-rule grade DOWNGRADES — say it plainly)
+F4 stands as a **kill-test-surviving effective shape**: deep-MOND ✓, Saturn radial ✓ (binding at hostile normalization),
+SPARC ✓ (Υ-convention-tied), WB-consistent ✓, DR4-fork predictive ✓. But after tonight: its proposed **mechanism is
+refuted** at finite order (the bath gives anti-MOND dressing), it **cannot be the whole theory** (the 40.5σ lensing
+wall), its solar-system standing is **prescription-laden** (instantaneous vs orbit-averaged = the whole signal), and a
+**new threat is open** (the solar reflex, Door IVb). The program gained three walls and lost its mechanism candidate in
+one night — which is what hostile pushing is FOR. What survives untouched: the kernel a₀ = c²√(Λ/32π) (+ the
+conditional declining branch), the trilemma map (amended), and the spec sheet any future mechanism must beat — now
+extended by the lensing wall, the solar reflex, and the anti-MOND no-go.
