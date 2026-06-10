@@ -1,9 +1,12 @@
 # The CLASS Euler-equation hook — modified inertia in a real Boltzmann code (Fable priority #1)
 
-*C. Zimmerman, 2026-06-09. The gold-standard run Fable asked for: inject the framework's deep-MOND shape into the photon–baryon **baryon Euler equation** inside CLASS (a real Boltzmann hierarchy), not the toy single-oscillator ODE — to convert the provisional Δχ²≈81 FLAT exclusion into a full-Boltzmann verdict and adjudicate the syllogism (framework's own shape + Planck ⇒ declining by elimination).*
+> ## ⚠️ SUPERSEDED — the "constant excluded" verdict below is RETRACTED (2026-06-09)
+> This run fed the **per-mode** acoustic acceleration (~10⁻⁹ m/s²) into the **nonlinear** μ-kernel. That is the wrong argument: modified inertia is nonlinear *and nonlocal*, so the μ-argument is the fluid element's **total real-space (bath) acceleration** — the sum over all modes, dominated by small scales — **a_rms≈2×10⁻⁸ m/s² (≈21× a single mode; `../cmb_bath_acceleration.py`).** That puts the acoustic modes deep-Newtonian (x_flat≈220) → **flat/constant a₀ is CMB-SAFE (Δχ²≈0)**, not excluded. **Only rising dies** (a₀(z_rec)=1.9×10⁻⁶ ≫ a_rms, prescription-independent). So "CMB selects declining / constant excluded" was a **per-mode artifact — a manufactured win toward the framework's own declining claim, retracted.** The CMB does **not** discriminate declining from constant. The CLASS *machinery* below (the patch, the validation, the rising kill) is sound and reusable; only the **per-mode μ-argument** is wrong — the fix is the **bath-kernel rerun** (feed a_rms(z), not the per-mode gbar, into the kernel), a standing queue item. Read the rest as the per-mode calculation it is, not as a verdict.
 
-## Result (one line)
-**At full-Boltzmann grade the syllogism HOLDS: constant a₀ → Δχ²≈117 (CMB-excluded), rising → dead, declining → Δχ²≈0 (safe). The framework's own slow simple-IF shape plus Planck leaves DECLINING the lone CMB survivor** — vindicating the toy ODE's provisional ≈81 (same order). **Caveat:** modified inertia is *nonlinear in amplitude*, so this requires the physical-amplitude calibration (below); the number is "order 100, robustly ≫1," not precise to better than a factor of a few.
+*C. Zimmerman, 2026-06-09. The gold-standard run Fable asked for: inject the framework's deep-MOND shape into the photon–baryon **baryon Euler equation** inside CLASS (a real Boltzmann hierarchy), not the toy single-oscillator ODE.*
+
+## Result (one line) — ⚠️ retracted, see banner above
+~~At full-Boltzmann grade the syllogism HOLDS: constant a₀ → Δχ²≈117 (CMB-excluded)…~~ **Corrected:** the per-mode Δχ²≈117 is a manufactured artifact; under the **bath** acceleration flat is CMB-safe (Δχ²≈0), and only **rising is dead**. The CMB kills rising and is blind to declining-vs-constant.
 
 | Run (patched CLASS, both regimes) | peaks ℓ | max\|ΔCₗ/Cₗ\| | Δχ² (θ*-marg, CV-limited) | verdict |
 |---|---|---|---|---|

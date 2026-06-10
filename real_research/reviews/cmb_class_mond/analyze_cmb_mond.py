@@ -46,13 +46,14 @@ for tag, desc in RUNS:
     mx = 100*np.max(np.abs(C[sel]-Co)/np.maximum(Co,1e-30))
     print(f"  {desc:>42}{str(list(peaks(C))):>20}{mx:>8.2f}%{dchi2_marg(C):>12.1f}")
 print("""
-  VERDICT (full Boltzmann, physical amplitude):
-    declining -> Dchi2 ~ 0      SAFE (a0(z_rec)~5.5e-13, modification negligible at any amplitude)
-    constant  -> Dchi2 ~ 117    EXCLUDED (vindicates the toy ODE's provisional ~81, same order)
-    rising    -> catastrophic   DEAD
-  => the framework's own slow simple-IF shape + Planck EXCLUDES constant a0 and rising, leaving DECLINING
-     as the lone CMB survivor -- Fable's syllogism, now at full-Boltzmann grade.
-  CAVEAT: modified inertia is NONLINEAR in amplitude, so the effect vanishes at CLASS's internal O(1)
-     normalization (flat_clsnorm -> 0) and only appears at the PHYSICAL amplitude (calibrated A_PHYS~3.18e-5
-     so a_proper~1e-9 m/s^2 at recomb). Dchi2~117 is 'order 100, robustly >>1', not precise to better than
-     a factor ~few (it scales with the amplitude/prescription). Cosmic-variance-limited, unlensed.""")
+  *** VERDICT RETRACTED (2026-06-09) -- this used the PER-MODE acceleration in a NONLINEAR kernel. ***
+  The correct mu-argument is the real-space BATH acceleration a_rms~2e-8 m/s^2 (../cmb_bath_acceleration.py),
+  not the per-mode ~1e-9. Under the bath, x_flat=a_rms/a0~220 -> deep-Newtonian -> FLAT is CMB-SAFE (Dchi2~0),
+  NOT excluded. Only RISING dies (a0(z_rec)=1.9e-6 >> a_rms). The CMB kills rising and is BLIND to
+  declining-vs-constant. The per-mode numbers below stand as a per-mode calculation; the VERDICT does not.
+
+  per-mode result (the RETRACTED one, kept for the record):
+    declining -> Dchi2 ~ 0      (safe, robust at any amplitude)
+    constant  -> Dchi2 ~ 117    (PER-MODE ARTIFACT -- retracted; bath -> ~0, safe)
+    rising    -> catastrophic   DEAD (survives the correction; a0(z_rec) >> bath)
+  Decisive declining-vs-constant test remains a0(z~3), NOT the CMB.""")
