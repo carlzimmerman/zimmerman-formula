@@ -1,0 +1,170 @@
+====================================================================================================
+agentM MILGROM-2022 (2208.07073) TIME-NONLOCAL MI GAUNTLET -- run date 2026-06-10
+====================================================================================================
+[0] theta(1)=1 verified for all theta families (the normalization his paper fixes to the
+    standard rotation-curve a0/mu -- the SAME constant that pins the own-frequency term below).
+
+====================================================================================================
+[1] SOLAR REFLEX (the agentE channel): A(Omega_J) on the Sun's CoM worldline
+====================================================================================================
+    Sun worldline inventory (per-planet lines): Omega_J = 1.6774e-08 s^-1 ; a_J = 2.0908e-07 m/s^2
+    (agentE integrated mean |a_sun| = 2.091e-7; our Jupiter line = 2.091e-07 -> inventory consistent)
+    galactic line: Omega_gal = 9.2e-16 s^-1, a_gal = 2.15e-10 m/s^2
+
+    A(Omega_J) per Eq. (shiluta): own term a_J*theta(1)=a_J  +  cross terms a_k*theta(Omega_k/Omega_J):
+      theta=2/(1+y^2)    : A = 2.4407e-07  (A/a_J = 1.167; top cross: Saturn 3.21e-08, Uranus 1.38e-09, Neptune 6.72e-10)
+      theta=exp(1-y)     : A = 2.4603e-07  (A/a_J = 1.177; top cross: Saturn 3.39e-08, Uranus 1.66e-09, Neptune 8.55e-10)
+      theta=exp((1-y)/2) : A = 2.3631e-07  (A/a_J = 1.130; top cross: Saturn 2.51e-08, Uranus 1.08e-09, Neptune 5.37e-10)
+    -> the kernel's reflex 'suppression' factor (delta_a ratio vs magnitude-keyed, mu_std tail ~ (a_J/A)^2):
+       theta=2/(1+y^2)    : (a_J/A)^2 = 0.734
+       theta=exp(1-y)     : (a_J/A)^2 = 0.722
+       theta=exp((1-y)/2) : (a_J/A)^2 = 0.783
+
+    delta_a_sun = a_J * c(A/a0), c = 1/mu - 1 (stable form)  vs  budget strict 2.47e-15 / loose 3.38e-15:
+    mu shape     theta          a0/s          x=A/a0  delta_a_sun  x over strict  verdict
+    standard     2/(1+y^2)      fw            2607.6    1.537e-14           6.22  FAIL
+    standard     2/(1+y^2)      canon         2033.9    2.527e-14          10.23  FAIL
+    standard     2/(1+y^2)      cH(host)       450.5    5.151e-13         208.56  FAIL
+    standard     exp(1-y)       fw            2628.6    1.513e-14           6.13  FAIL
+    standard     exp(1-y)       canon         2050.3    2.487e-14          10.07  FAIL
+    standard     exp(1-y)       cH(host)       454.1    5.070e-13         205.24  FAIL
+    standard     exp((1-y)/2)   fw            2524.6    1.640e-14           6.64  FAIL
+    standard     exp((1-y)/2)   canon         1969.2    2.696e-14          10.91  FAIL
+    standard     exp((1-y)/2)   cH(host)       436.2    5.495e-13         222.49  FAIL
+
+    simple       2/(1+y^2)      fw            2607.6    8.018e-11       32461.99  FAIL
+    simple       2/(1+y^2)      canon         2033.9    1.028e-10       41617.93  FAIL
+    simple       2/(1+y^2)      cH(host)       450.5    4.641e-10      187904.97  FAIL
+    simple       exp(1-y)       fw            2628.6    7.954e-11       32202.84  FAIL
+    simple       exp(1-y)       canon         2050.3    1.020e-10       41285.69  FAIL
+    simple       exp(1-y)       cH(host)       454.1    4.604e-10      186404.91  FAIL
+    simple       exp((1-y)/2)   fw            2524.6    8.282e-11       33528.48  FAIL
+    simple       exp((1-y)/2)   canon         1969.2    1.062e-10       42985.23  FAIL
+    simple       exp((1-y)/2)   cH(host)       436.2    4.794e-10      194078.32  FAIL
+
+    McGaugh-RAR  2/(1+y^2)      fw            2607.6    1.391e-29           0.00  PASS
+    McGaugh-RAR  2/(1+y^2)      canon         2033.9    5.421e-27           0.00  PASS
+    McGaugh-RAR  2/(1+y^2)      cH(host)       450.5    1.267e-16           0.05  PASS
+    McGaugh-RAR  exp(1-y)       fw            2628.6    1.133e-29           0.00  PASS
+    McGaugh-RAR  exp(1-y)       canon         2050.3    4.523e-27           0.00  PASS
+    McGaugh-RAR  exp(1-y)       cH(host)       454.1    1.163e-16           0.05  PASS
+    McGaugh-RAR  exp((1-y)/2)   fw            2524.6    3.154e-29           0.00  PASS
+    McGaugh-RAR  exp((1-y)/2)   canon         1969.2    1.117e-26           0.00  PASS
+    McGaugh-RAR  exp((1-y)/2)   cH(host)       436.2    1.780e-16           0.07  PASS
+
+    RESCUE ARITHMETIC (mu_std tail): need A >= a0*sqrt(a_J/(2*budget)):
+      fw: A_req = 6.089e-07 (2.91 x a_J); cross-terms must supply 4.00e-07
+           via galactic line: theta(0) ~ 1860  | via Saturn line: theta(0.403) ~ 21.5
+           consequence: EFE argument theta(0)*a_ex/a0 ~ 4092 -> 1-mu_std = 2.99e-08 -> WB/vertical MOND boost quenched to ~0.000% (vs observed-class ~10-20%)
+      canon: A_req = 7.807e-07 (3.73 x a_J); cross-terms must supply 5.72e-07
+           via galactic line: theta(0) ~ 2659  | via Saturn line: theta(0.403) ~ 30.7
+           consequence: EFE argument theta(0)*a_ex/a0 ~ 5849 -> 1-mu_std = 1.46e-08 -> WB/vertical MOND boost quenched to ~0.000% (vs observed-class ~10-20%)
+
+    NOTE (budget transfer): the agentE survival line was derived for the instantaneous-mu time template.
+    Milgrom-22's per-frequency-constant mu is the FROZEN-mu template; agentE [3]/[4] ran that config:
+    linearized post-fit Mars 269.8 m (frozen) vs 269.2 m (instantaneous) at hostile -> the budget transfers
+    within ~2%. The frozen template's PRE-fit signal is actually LARGER (Mars 5417 vs 2303 m).
+====================================================================================================
+[2] ECCENTRIC ORBITS: per-harmonic Milgrom-22 vs instantaneous-F4 (agentA machinery analog)
+====================================================================================================
+    [gate 1] constant-c (GM-rescaling) secular pomega: -6.812e-19 rad/orbit (expect ~0)  PASS
+    [gate 2] instantaneous mu_std arm vs agentA banked closed form (-pi(4+e^2)sqrt(1-e^2) s^2/2, GM=a=1):
+      e=0.206: measured -6.213649e-06 | agentA closed -6.213652e-06 | ratio 1.0000  PASS
+      e=0.093: measured -6.269478e-06 | agentA closed -6.269482e-06 | ratio 1.0000  PASS
+      e=0.057: measured -6.278062e-06 | agentA closed -6.278065e-06 | ratio 1.0000  PASS
+
+    Milgrom-22 per-harmonic precession at amplified s_c=1e-3 (mu_std), ratio vs instantaneous:
+         e theta           dpomega [rad/orb]  instantaneous  ratio M22/inst
+     0.206 2/(1+y^2)              +1.514e-06     -6.214e-06          -0.244
+     0.206 exp(1-y)               +1.645e-06     -6.214e-06          -0.265
+     0.206 exp((1-y)/2)           +9.190e-07     -6.214e-06          -0.148
+     0.093 2/(1+y^2)              +1.732e-06     -6.269e-06          -0.276
+     0.093 exp(1-y)               +1.824e-06     -6.269e-06          -0.291
+     0.093 exp((1-y)/2)           +1.086e-06     -6.269e-06          -0.173
+     0.057 2/(1+y^2)              +1.803e-06     -6.278e-06          -0.287
+     0.057 exp(1-y)               +1.885e-06     -6.278e-06          -0.300
+     0.057 exp((1-y)/2)           +1.142e-06     -6.278e-06          -0.182
+    s^2-scaling check (theta A, e=0.206): dp(1e-3)/dp(1e-4) = 100.00 (expect 100)
+
+    PHYSICAL predictions [mas/cy] (Standish J2000 a,e; T from Kepler):
+      Mercury  cH(host) : inst(agentA) -9.975e-05 | M22: 2/(1+y^2): +2.432e-05 ; exp(1-y): +2.642e-05 ; exp((1-y)/2): +1.476e-05
+      Mercury  fw a0    : inst(agentA) -2.977e-06 | M22: 2/(1+y^2): +7.258e-07 ; exp(1-y): +7.885e-07 ; exp((1-y)/2): +4.405e-07
+      Mercury  canon a0 : inst(agentA) -4.893e-06 | M22: 2/(1+y^2): +1.193e-06 ; exp(1-y): +1.296e-06 ; exp((1-y)/2): +7.241e-07
+      Mars     cH(host) : inst(agentA) -3.094e-03 | M22: 2/(1+y^2): +8.544e-04 ; exp(1-y): +8.997e-04 ; exp((1-y)/2): +5.355e-04
+      Mars     fw a0    : inst(agentA) -9.233e-05 | M22: 2/(1+y^2): +2.550e-05 ; exp(1-y): +2.685e-05 ; exp((1-y)/2): +1.598e-05
+      Mars     canon a0 : inst(agentA) -1.518e-04 | M22: 2/(1+y^2): +4.191e-05 ; exp(1-y): +4.414e-05 ; exp((1-y)/2): +2.627e-05
+      Saturn   cH(host) : inst(agentA) -3.036e-01 | M22: 2/(1+y^2): +8.747e-02 ; exp(1-y): +9.142e-02 ; exp((1-y)/2): +5.549e-02
+      Saturn   fw a0    : inst(agentA) -9.062e-03 | M22: 2/(1+y^2): +2.611e-03 ; exp(1-y): +2.728e-03 ; exp((1-y)/2): +1.656e-03
+      Saturn   canon a0 : inst(agentA) -1.489e-02 | M22: 2/(1+y^2): +4.291e-03 ; exp(1-y): +4.484e-03 ; exp((1-y)/2): +2.722e-03
+
+    Saturn HOSTILE tension vs INPOP15a-C2 (+0.05 +/- 0.20 mas/cy), the agentA binding bound:
+      theta=2/(1+y^2)    : pred +0.0875 mas/cy -> tension +0.19 sigma (instantaneous agentA: -0.307 -> -1.79 sigma)
+      theta=exp(1-y)     : pred +0.0914 mas/cy -> tension +0.21 sigma (instantaneous agentA: -0.307 -> -1.79 sigma)
+      theta=exp((1-y)/2) : pred +0.0555 mas/cy -> tension +0.03 sigma (instantaneous agentA: -0.307 -> -1.79 sigma)
+    bounds context (agentA [4]): Saturn tightest INPOP15a-C2 = +0.05 +/- 0.20 mas/cy (the 1.79-sigma
+    binding case for instantaneous-hostile); EPM2011 -0.32 +/- 0.47; Mercury bounds are O(0.3-1) mas/cy.
+    McGaugh-RAR mu: c_k ~ e^(-sqrt(x)) ~ 1e-21 at planetary x -> precession ~1e-25 mas/cy, zero. (all theta)
+====================================================================================================
+[3] SPARC: circular orbits reduce EXACTLY to a mu(a/a0)=a_N (his Eq. mdar) -> p=0 acceleration-keyed
+====================================================================================================
+    circular-orbit check, theta=2/(1+y^2)    : A(n)/|a| = 1.000000008  (=1 -> no dressing, p=0)
+    circular-orbit check, theta=exp(1-y)     : A(n)/|a| = 1.000000007  (=1 -> no dressing, p=0)
+    circular-orbit check, theta=exp((1-y)/2) : A(n)/|a| = 1.000000012  (=1 -> no dressing, p=0)
+    -> in N5's parametrization a0_eff = a0*[(1+Omega/H0)/...]^(-p): Milgrom-22 has p IDENTICALLY 0 on
+       single-frequency orbits; A is acceleration-valued ('Only ratios of frequencies enter' -- abstract).
+       It is NOT the pure-frequency class N5 killed at +0.023 dex / 5.2 sigma; it is the p=0 EDGE.
+
+    SPARC galaxies loaded: 175
+
+    === Milgrom-22 SPARC RAR scatter (== acceleration-keyed table), a0 = framework 9.36e-11 ===
+      fw sqrt(1+1/y)   bestUd=0.60  unweighted=0.1969  weighted=0.1168  [gate vs banked 0.1969: PASS]
+      McGaugh RAR      bestUd=0.52  unweighted=0.1950  weighted=0.1106  [gate vs banked 0.1950: PASS]
+      simple           bestUd=0.50  unweighted=0.1951  weighted=0.1124  [gate vs banked 0.1951: PASS]
+      F4 standard      bestUd=0.64  unweighted=0.1984  weighted=0.1238  [gate vs banked 0.1984: PASS]
+
+    === Milgrom-22 SPARC RAR scatter (== acceleration-keyed table), a0 = canonical 1.2e-10 ===
+      fw sqrt(1+1/y)   bestUd=0.52  unweighted=0.1968  weighted=0.1168
+      McGaugh RAR      bestUd=0.46  unweighted=0.1977  weighted=0.1105
+      simple           bestUd=0.44  unweighted=0.1975  weighted=0.1129
+      F4 standard      bestUd=0.58  unweighted=0.1980  weighted=0.1175
+
+====================================================================================================
+[4] WIDE BINARIES: Milgrom-22's theta(0)-ENHANCED EFE vs the banked DR4 fork (mi_f4_widebinary_efe.out)
+====================================================================================================
+    Omega_WB = 4.2e-13 s^-1 ; Omega_gal/Omega_WB = 2.19e-03 -> theta(Omega_ex/Omega_in) = theta(~0)
+    M22 EFE is SCALAR-additive across frequencies (|a^(w)| magnitudes; no vector angle-averaging) and
+    theta(0)-enhanced: A(w_in) = a_in + theta(0)*a_ex   [his Eq. exasa + WB paragraph, quoted in .md]
+
+    === a0 framework: y_ext = 2.30; deep bin y_int = 0.18 ===  (VELOCITY boost %, sqrt(B)-1)
+    shape           banked vector-MI  M22 th0=1  M22 th0=2  M22 th0=e
+    F4/standard                 3.9%       3.8%       1.1%       0.6%
+    simple                     15.2%      18.0%       9.9%       7.5%
+    McGaugh RAR                13.2%      12.1%       6.1%       4.2%
+
+    === a0 canonical: y_ext = 1.79; deep bin y_int = 0.18 ===  (VELOCITY boost %, sqrt(B)-1)
+    shape           banked vector-MI  M22 th0=1  M22 th0=2  M22 th0=e
+    F4/standard                 5.7%       5.8%       1.7%       1.0%
+    simple                     18.3%      21.9%      12.4%       9.4%
+    McGaugh RAR                16.4%      14.8%       8.0%       5.7%
+
+    Reading: theta(0)~2-e cuts the soft-shape (simple/RAR) WB boost from the banked ~13-18% to ~4-10% --
+    Milgrom-22 RESHAPES the DR4 fork: a clean DR4 null at ~3% kills soft-shape M22-MI only if theta(0)<~2;
+    a +10-15% detection kills the theta(0)-enhanced EFE for ALL shapes (it cannot un-enhance);
+    a +4-8% intermediate would SELECT M22-style enhanced-EFE MI over both AQUAL-EFE MOND and F4.
+====================================================================================================
+[5] VERDICT ASSEMBLY (numbers above; prose + quotes in agentM_milgrom2022_gauntlet.md)
+====================================================================================================
+    1. SOLAR REFLEX: the frequency filter is STRUCTURALLY INERT on the Sun's own dominant line --
+       theta(1)=1 (the rotation-curve normalization itself) pins A(Omega_J) >= a_J; cross-terms give
+       A/a_J = 1.13-1.18 only -> delta_a suppression 0.72-0.78 vs required <=0.117 (fw) / 0.072 (canon).
+       Milgrom-22 + power-law mu (standard: x6-11 over budget; simple: x3e4): DEAD at BOTH footings.
+       Milgrom-22 + exponential mu (RAR): PASS by >10^13. The mu-tail, not the filter, decides.
+    2. PRECESSION: the per-harmonic-constant structure SUPPRESSES the instantaneous signal x3.4-6.8
+       and FLIPS ITS SIGN (prograde); Saturn-hostile lands at +0.06..+0.09 mas/cy = 0.0-0.2 sigma on
+       INPOP15a-C2 (vs instantaneous -1.79 sigma): the channel is not just passed, it is RELAXED.
+    3. SPARC: exactly the p=0 acceleration-keyed table (gate reproduced); NOT in N5's killed class;
+       NOT dressed either -- the corridor escape is unavailable; survival rides on the mu-tail alone.
+    4. WB: theta(0)-enhanced scalar EFE cuts the soft-shape boost from ~13-18% to ~4-10% -> DR4 fork
+       reshaped (pre-registered above). LENSING: nonrelativistic pure MI by explicit self-restriction
+       -> baryon-only metric -> the banked 40.5-sigma metric-passive wall stands unanswered.
+[6] DONE.
