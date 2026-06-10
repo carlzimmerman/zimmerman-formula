@@ -41,7 +41,11 @@ def stage_lens():
     L=fits.open(os.path.join(D,'KiDS_DR4_brightsample_LePhare.fits'))[1].data
     assert np.array_equal(b['ID'],L['ID'])
     r=b['MAG_AUTO_CALIB']; z=np.array(b['zphot_ANNz2'],dtype='f8'); masked=b['masked']
-    logM=np.array(L['MASS_MED'],dtype='f8'); ur=np.array(L['MAG_ABS_u']-L['MAG_ABS_r'],dtype='f8')
+    FLUXSCALE_DEX=0.15   # GAP-1b test: Bilicki LePhare masses need the GAaP->total fluxscale correction
+    # (Brouwer: "fluxscale correction required", typical +0.1-0.2 dex). Predicted effect on the gate: masses low
+    # by d shifts g_bar left by d; on the rising ESD (log-slope ~0.5) the ratio inflates ~10^(0.5d) ~ 1.19 -> this
+    # correction should remove ~2/3 of the observed +30%. v4 applies +0.15; the gate adjudicates.
+    logM=np.array(L['MASS_MED'],dtype='f8')+FLUXSCALE_DEX; ur=np.array(L['MAG_ABS_u']-L['MAG_ABS_r'],dtype='f8')
     ra=np.array(b['RAJ2000'],dtype='f8'); dec=np.array(b['DECJ2000'],dtype='f8')
     pool=(r<20)&(z>0.1)&(z<0.5)&(masked==0)&np.isfinite(logM)&(logM>7)   # neighbour pool: NO upper mass cut
     sel=pool&(logM<11.0)&np.isfinite(ur)                                  # the lens sample
