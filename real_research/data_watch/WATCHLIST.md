@@ -29,3 +29,9 @@ write a dated digest to `digests/YYYY-MM-DD.md` (committed; `seen.json` + `log/`
 - **Both-ways, every time:** entries 1 and 3 can each kill OR confirm the framework; record the kill condition with equal weight.
 - **Prior-sensitivity rider (from WB-3b):** any future WB significance — ours or a published one — is orbital-prior-limited until
   3D velocities pin the (a,e) library; carry that caveat into every DR4-triggered assessment.
+
+**7 (added 2026-06-10, Door IVb):** BepiColombo/MORE Mercury-ranging releases → re-run the solar-reflex test
+(`reviews/toe_law/agentE_solar_reflex.py`) on the real arc: the framework-normalization signal brackets 0.4 cm–1.2 m
+post-absorption vs MORE's ~1 cm verified accuracy — window-limited (2.5 yr vs the 11.86-yr carrier), decisive in the
+upper bracket. Owner: `TOE_STATUS_AND_DOORS.md` §Door-IVb. (The constituent-acceleration reading — the sole surviving
+per-body-F4 reading — is untouched by this channel; its coherence cost is on record.)
