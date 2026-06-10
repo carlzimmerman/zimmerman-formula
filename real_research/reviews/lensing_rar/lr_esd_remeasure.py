@@ -124,7 +124,9 @@ def stage_stack():
             dra=(np.radians(raS[ii])-np.radians(rl))*np.cos(np.radians(dl)); dde=np.radians(decS[ii])-np.radians(dl)
             R=np.hypot(dra,dde)*chil_/(1+zl_)   # PROPER transverse distance, Mpc (units-fix v2; validation adjudicates)
             phi=np.arctan2(dde,dra)
-            et=-(e1[ii]*np.cos(2*phi)+e2[ii]*np.sin(2*phi))
+            # v3 convention fix: KiDS e1/e2 frame handedness — the 4-convention diagnostic (20k lenses, 0.3-1 Mpc
+            # annulus) gave +4.0e-4 for the e2-flipped rotation vs +1.0e-4 unflipped -> the flipped one is physical.
+            et=-(e1[ii]*np.cos(2*phi)-e2[ii]*np.sin(2*phi))
             chis=DC(zB[ii]); Dls=(chis-chil_)/(1+zB[ii]); Dl=chil_/(1+zl_); Ds=chis/(1+zB[ii])
             # Sigma_crit^-1 in SI (m^2/kg); estimator stays SI throughout (v1 mangled this by DIVIDING by Msun/Mpc^2)
             inv_sc=np.clip(4*np.pi*G/(c**2)*(Dl*Mpc)*(Dls/Ds),0,None)
