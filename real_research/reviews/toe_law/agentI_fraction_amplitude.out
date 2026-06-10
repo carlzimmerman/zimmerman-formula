@@ -1,0 +1,257 @@
+====================================================================================================
+agentI_fraction_amplitude -- the H4-section-7 GO/NO-GO: fraction-limited carrier vs full MOND amplitude
+====================================================================================================
+
+PINNED INPUTS (raw, before any comparison)
+------------------------------------------
+  H0 = 67.36 km/s/Mpc = 2.1830e-18 s^-1 ; H_Lambda = 1.8063e-18 s^-1 (Planck 2018, 1807.06209)
+  hbar*H0 = 1.4369e-33 eV ; hbar*H_Lambda = 1.1890e-33 eV
+  rho_crit = 8.5230e-27 kg/m^3 ; Omega_c = 0.2645
+  rho_DM_cosmic = 2.2541e-27 kg/m^3 = 1.2644e-06 GeV/cm^3 = 9.7154e-12 eV^4
+  rho_DM_local  = 0.3 GeV/cm^3 (2306.16228) = 2.3051e-06 eV^4   [charity edge 0.4 GeV/cm^3, 1404.1938/2012.11477]
+  rho_baryon_midplane = 0.084 Msun/pc^3 (1509.05334) = 3.19 GeV/cm^3
+  a0 = 9.36e-11 (framework canonical) ; baseline check at 1.2e-10 (regular-MOND default)
+  MW halo: M200 = 1e12 Msun, c200 = 10 (1402.7073; mass cross-pin 1912.02599)
+           -> R200 = 211.7 kpc , Rs = 21.2 kpc
+  MW baryons: M* = 5.0e10 + gas 1.1e10 = 6.10e+10 Msun, Rd = 2.6 kpc (1602.07702)
+  Cassini universal-coupling bound: beta <= 0.00339 (|gamma-1|<=2.3e-5; 1403.7377 -- agentN3 convention)
+  knee band: mc^2 in [1.3e-29, 1.6e-24] eV (hostile top 2.6e-25); DR4 mass 5.0e-28 eV
+  consistency check: 1 GeV/cm^3 = 7.6835e-06 eV^4 (textbook 7.684e-6 -- OK)
+  m >> H check at band floor: m_floor/(hbar*H_Lambda) = 1.09e+04   (entire band is principal-series m >> H; agentN2 sec.4)
+
+====================================================================================================
+PART 1 -- SOURCING ROUTE: phantom mass needed vs mass available in an f-fraction carrier
+====================================================================================================
+
+M_eff(R) = g_obs R^2/G with g_obs from the RAR at a0 (deep-MOND limit sqrt(g_bar a0) shown too);
+M_phantom = M_eff - M_bar(R).  Carrier supply: CLUSTERED f*M_NFW(R) where lambda_dB <= R200
+(the field can be halo-bound), HOMOGENEOUS f*(4pi/3) R^3 rho_DM_cosmic where lambda_dB > R200
+(quasi-homogeneous cosmic background -- H4 sec. B4: it cannot cluster on a galaxy).
+Charity: clustered case uses the FULL NFW profile shape for the carrier (the most favorable
+concentration assumption); baryons treated as enclosed (exact exponential-disc factor).
+
+RAW TABLE (a0 = 9.36e-11, framework):
+ R[kpc]      g_bar  g_bar/a0  g_obs(RAR)  g_dM=sqrt  M_eff[Msun]    M_phant      M_NFW  M_hom(f=1)  f_req,clu  f_req,hom
+     10   7.62e-11     0.815    1.28e-10   8.45e-11     9.20e+10   3.73e+10   4.44e+10    1.39e+05   8.41e-01   2.67e+05
+     20   2.12e-11     0.226    5.59e-11   4.45e-11     1.61e+11   9.98e+10   1.20e+11    1.12e+06   8.28e-01   8.94e+04
+     30   9.45e-12     0.101    3.47e-11   2.97e-11     2.24e+11   1.63e+11   1.99e+11    3.77e+06   8.19e-01   4.33e+04
+     50   3.40e-12     0.036    1.96e-11   1.78e-11     3.51e+11   2.90e+11   3.43e+11    1.74e+07   8.48e-01   1.67e+04
+    100   8.50e-13     0.009    9.35e-12   8.92e-12     6.71e+11   6.10e+11   6.18e+11    1.39e+08   9.88e-01   4.37e+03
+    200   2.13e-13     0.002    4.57e-12   4.46e-12     1.31e+12   1.25e+12   9.69e+11    1.12e+09   1.29e+00   1.12e+03
+    300   9.45e-14     0.001    3.02e-12   2.97e-12     1.95e+12   1.89e+12   1.20e+12    3.77e+09   1.58e+00   5.02e+02
+    500   3.40e-14     0.000    1.80e-12   1.78e-12     3.23e+12   3.17e+12   1.51e+12    1.74e+10   2.10e+00   1.82e+02
+   1000   8.50e-15     0.000    8.96e-13   8.92e-13     6.43e+12   6.37e+12   1.95e+12    1.39e+11   3.27e+00   4.57e+01
+
+  a0-convention check at R = 100 kpc: M_phantom(a0=9.36e-11)/M_phantom(a0=1.2e-10) = 0.878  (a ~13% effect; nothing below turns on it)
+
+COMPARISON 1A -- carrier-to-job ratios at f = 0.01 and f = 0.03 (M_phantom/M_carrier):
+ R[kpc]   clu f=0.01   clu f=0.03   hom f=0.01   hom f=0.03
+     10     8.41e+01     2.80e+01     2.67e+07     8.92e+06
+     20     8.28e+01     2.76e+01     8.94e+06     2.98e+06
+     30     8.19e+01     2.73e+01     4.33e+06     1.44e+06
+     50     8.48e+01     2.83e+01     1.67e+06     5.55e+05
+    100     9.88e+01     3.29e+01     4.37e+05     1.46e+05
+    200     1.29e+02     4.30e+01     1.12e+05     3.73e+04
+    300     1.58e+02     5.25e+01     5.02e+04     1.67e+04
+    500     2.10e+02     7.01e+01     1.82e+04     6.06e+03
+   1000     3.27e+02     1.09e+02     4.57e+03     1.52e+03
+
+COMPARISON 1B -- per-decade required fraction f_req (carrier must source the effect), vs the H4 ledger.
+Regime set by lambda_dB(m) vs R200; f_req quoted at R = 50 kpc (kinematic deep-MOND),
+R = 300 kpc and R = 1 Mpc (the Brouwer lensing band reaches ~Mpc; sourcing must continue there).
+    m[eV]     lam_dB       regime  f_req(50kpc)  f_req(300kpc)  f_req(1Mpc)     ledger f   gap(min)
+  1.3e-29  737.36Mpc  homogeneous      1.67e+04       5.02e+02     4.57e+01  0.01-0.05     9.13e+02
+  1.0e-28   95.86Mpc  homogeneous      1.67e+04       5.02e+02     4.57e+01  0.01-0.05     9.13e+02
+  5.0e-28   19.17Mpc  homogeneous      1.67e+04       5.02e+02     4.57e+01  0.01-0.05     9.13e+02
+  1.0e-27    9.59Mpc  homogeneous      1.67e+04       5.02e+02     4.57e+01  0.03-0.1      4.57e+02
+  1.0e-26    0.96Mpc  homogeneous      1.67e+04       5.02e+02     4.57e+01  0.03-0.1      4.57e+02
+  5.0e-26     192kpc     marginal      8.48e-01       1.58e+00     3.27e+00  0.03-0.1      8.48e+00
+  1.0e-25      96kpc        bound      8.48e-01       1.58e+00     3.27e+00   0.2-0.3      2.83e+00
+  1.0e-24      10kpc        bound      8.48e-01       1.58e+00     3.27e+00   0.2-0.3      2.83e+00
+  1.6e-24       6kpc        bound      8.48e-01       1.58e+00     3.27e+00   0.2-0.3      2.83e+00
+  [gap(min) = MOST charitable radius x MOST charitable ledger edge -- a strict lower bound.
+   At the kinematic radii (<=100 kpc) the homogeneous gaps are 3e5-3e7. And the homogeneous rows are
+   doubly generous: a quasi-homogeneous component cannot concentrate within R at all (its actual
+   differential pull is (4pi/3) G rho_f r); f_req is the 'even if it could all be piled up' reading.]
+
+  STRUCTURAL NOTE (clustered decades): even at f = 1 the sourcing route fails the Mpc lensing
+  continuation: M_phantom(1 Mpc)/M_NFW(1 Mpc) = 3.27 -- the MOND-amplitude lensing RAR
+  measured to ~Mpc (Brouwer+2021, 2106.11677; flat lensing V_c to 1 Mpc, 2406.09685) needs
+  ~3.3x MORE mass than the entire pinned NFW halo carries there. (Caveat, both ways: a ~3x
+  heavier-than-pinned outer halo is the LCDM accommodation question, outside scope; for f <= 0.03
+  the gap is x109 regardless.)  Second structural note: at f < 1 the OTHER (1-f) of the
+  dark sector also gravitates -- crediting the carrier with the full phantom job while a (1-f) CDM-like
+  partner halo sits in the same potential double-counts; the table is therefore GENEROUS to the route.
+
+====================================================================================================
+PART 2 -- MEDIATOR ROUTE: coherent amplitude phi_max = sqrt(2 rho_f)/m vs order-unity coupling need
+====================================================================================================
+
+The carrier does NOT supply the phantom mass; it MEDIATES the inertia/dynamics modification
+(N2 memory channel). Its energy budget then only caps the coherent field amplitude:
+    rho_f = (1/2) m^2 phi^2  =>  phi_max = sqrt(2 rho_f)/m            [oscillating ULDM condensate]
+A linear matter coupling m_p(phi) = m_p (1 + beta phi/MPl_red) -- the N3/quintessence normalization --
+gives a dimensionless dynamics modification
+    eps = beta * phi_max / MPl_red = beta * sqrt(2 f rho_DM) / (m * MPl_red)
+SCALING (the task's derivation): eps ~ beta * sqrt(f) / m at fixed rho_DM -- improves as 1/m at fixed
+density, as anticipated. Order-unity MOND at the RAR knee requires eps >= O(1); this is a NECESSARY
+condition (generous: the DC inertia shift from an oscillating linear term is SECOND order in eps_lin,
+so demanding eps_lin ~ 1 is the charitable floor of the requirement).
+rho_f assignment: f * rho_DM_local where lambda_dB <= R200 (halo-bound), f * rho_DM_cosmic otherwise
+(quasi-homogeneous background; H4 sec. B4). Both shown at the marginal mass.
+
+RAW TABLE (phi_max and eps across the band; f at the H4 ledger hard/charitable edges):
+    m[eV]       regime  rho_f@f=.01  phi_max[eV]    phi/MPl  eps(bC,fh)  eps(bC,fc) eps(b=1,fc)   beta_req  f_req(b=1)
+  1.3e-29  homogeneous     9.72e-14     3.39e+22   1.39e-05    4.72e-08    1.06e-07    3.11e-05   3.21e+04    5.16e+07
+  1.0e-28  homogeneous     9.72e-14     4.41e+21   1.81e-06    6.14e-09    1.37e-08    4.05e-06   2.47e+05    3.05e+09
+  5.0e-28  homogeneous     9.72e-14     8.82e+20   3.62e-07    1.23e-09    2.74e-09    8.10e-07   1.24e+06    7.63e+10
+  1.0e-27  homogeneous     9.72e-14     4.41e+20   1.81e-07    1.06e-09    1.94e-09    5.72e-07   1.75e+06    3.05e+11
+  1.0e-26  homogeneous     9.72e-14     4.41e+19   1.81e-08    1.06e-10    1.94e-10    5.72e-08   1.75e+07    3.05e+13
+  5.0e-26     marginal     2.31e-08     4.29e+21   1.76e-06    1.04e-08    1.89e-08    5.58e-06   1.79e+05    3.22e+09
+  1.0e-25        bound     2.31e-08     2.15e+21   8.82e-07    1.34e-08    1.64e-08    4.83e-06   2.07e+05    1.29e+10
+  1.0e-24        bound     2.31e-08     2.15e+20   8.82e-08    1.34e-09    1.64e-09    4.83e-07   2.07e+06    1.29e+12
+  1.6e-24        bound     2.31e-08     1.34e+20   5.51e-08    8.36e-10    1.02e-09    3.02e-07   3.31e+06    3.29e+12
+
+  marginal mass 5e-26 eV both ways (f=0.1): eps(b=1) local = 5.58e-06, cosmic = 1.14e-08
+
+COMPARISON 2A -- the make-or-break numbers:
+  * BEST decade in the whole band (eps maximal): m = 1.3e-29 eV, eps(beta=1, ledger-charitable f)
+    = 3.11e-05 -> short of order-unity by x3.2e+04 (4.5 dex) EVEN AT
+    GRAVITATIONAL-STRENGTH COUPLING WITH ALL FIFTH-FORCE BOUNDS IGNORED.
+  * With the Cassini bound enforced (beta = 0.00339): best eps = 1.06e-07 -> short by
+    x9.5e+06 (7.0 dex).
+  * The required coupling at the best decade: beta_req = 3.2e+04
+    -> a fifth force beta_req^2 = 1.0e+09 x gravity between unscreened
+    test masses, vs the Cassini-allowed 2*beta_C^2 ~ 2.3e-05: excluded by ~4e+13 in force.
+
+COMPARISON 2B -- MAXIMUM-CHARITY STACK (every dial at its most favorable published-contested edge):
+  bound side  : m = 5e-26 eV (lowest halo-bound), f = 0.1 (contested S8 window 2301.08361),
+                rho_local = 0.4 GeV/cm^3 (1404.1938 high edge), x100 central soliton overdensity
+                (Schive+ 1407.7762-class relation extrapolated far beyond its f=1 validity -- pure charity):
+                eps(beta=1) = 6.44e-05
+  floor side  : m = 1.3e-29 eV (band floor, homogeneous so no soliton possible), f = 0.05:
+                eps(beta=1) = 3.11e-05
+  => the charity-stack maximum over the ENTIRE band is eps = 6.44e-05: the mediator route
+     misses order-unity by >= x1.6e+04 (4.2 dex) with fifth-force bounds IGNORED,
+     and by >= x4.6e+06 (6.7 dex) with Cassini enforced.  NO DECADE PASSES.
+
+COMPARISON 2C -- the 1/m improvement is REAL and it is still not enough:
+  * agentN3's dS-bath coupling wall: beta_req = 2.2e+40 (banked). The condensate carrier at the
+    charity stack brings this down to beta_req = 1.6e+04 -- an improvement of ~36 ORDERS,
+    exactly the 1/m amplitude-per-density gain the route was built for. The remaining gap to Cassini
+    is 6.7 dex (and 4.2 dex to beta=1): the door closed from ~85 orders to ~5-7 orders
+    and is still closed.
+  * VACUUM-CORRELATOR sub-route (amplitude from the field's state-independent retarded tail instead of
+    the condensate): dressing ~ q^2 m/8pi vs N3's q^2(0.27 H/4pi) -> beta_req improves only as
+    sqrt(1.85 m/H) <= 5.0e+04 (band top) -> beta_req >= 4.4e+35: >= 38 orders above Cassini.
+    AND the sign is wrong: N3 sec.2 (machine-verified) -- the tail dressing is MOND-signed ONLY for
+    m^2 < 2H^2; the knee band is m >> H EVERYWHERE (m/H from 1.1e+04 to 1.3e+09),
+    so the in-band vacuum dressing is ANTI-MOND-signed at every decade. The sign (needs m^2 < 2H^2)
+    and the knee (needs m >> H, agentN2 sec.4) CANNOT come from the same field's vacuum tail:
+    structural kill independent of amplitude.
+
+COMPARISON 2D -- QUADRATIC-coupling escape hatch (m_p(phi) = m_p(1 + phi^2/M^2)) checked and closed:
+  eps = 2 rho_f/(m^2 M^2) = 1 requires M = phi_max -- but a universal matter coupling at scale M
+  gives the field a matter-induced mass m_ind = sqrt(2 rho_b)/M in the disc; with midplane baryons:
+    m =  1.3e-29 eV: M_req = 7.58e+22 eV (3.1e-05 MPl) -> m_ind = 9.23e-26 eV = 7.1e+03 x m_bare
+    m =  5.0e-28 eV: M_req = 1.97e+21 eV (8.1e-07 MPl) -> m_ind = 3.55e-24 eV = 7.1e+03 x m_bare
+    m =  1.0e-26 eV: M_req = 1.39e+20 eV (5.7e-08 MPl) -> m_ind = 5.02e-23 eV = 5.0e+03 x m_bare
+    m =  1.6e-24 eV: M_req = 7.35e+20 eV (3.0e-07 MPl) -> m_ind = 9.53e-24 eV = 6.0e+00 x m_bare
+  At the eps=1 coupling the matter-induced mass exceeds the bare mass in EVERY decade (x6 at the
+  band top to x7100 at the floor): the knee position is then set by the LOCAL BARYON density, not by the carrier mass --
+  the universal acceleration-keyed knee (spec items 2+3) is destroyed, and the environment-dependent
+  knee is an RAR-scatter liability of exactly the kind N5 killed at 5.2 sigma. Closed structurally.
+  (Derivative/P(X) couplings: eps ~ 2 xi rho_f/M^4 = 1 at f=0.01-local needs M ~ 0.015 eV -- a
+  universal matter coupling at meV scale is the BK-superfluid structure (Lambda ~ 0.2 meV, 1507.01019):
+  the escape hatch exits INTO the fully mapped Wall-A of agentH4, not out of it.)
+
+====================================================================================================
+PART 3 -- CROSSFIRE: lensing wall / Cherenkov gate / DR4 discriminator
+====================================================================================================
+
+Item 2 returned an EMPTY passing set; the crossfire is run anyway on (i) the hypothetical best
+decade (the band floor) and (ii) the DR4 discriminator mass, both ways at full weight.
+
+(a) THE LENSING WALL (banked: f4_lensing_wall.out -- baryon-only excluded at 40.5 sigma,
+    deep-bin amplitude ratio 229.7x in ESD; Brouwer+2021 2106.11677; flat V_c to 1 Mpc 2406.09685):
+    A mediator does not lens. With dynamics carried by the inertia channel (metric potential
+    stays baryonic, Phi = Phi_bar), the partner must source the LENSING potential alone:
+    grad(Psi) = 2 g_MOND - g_bar  =>  required gravitational slip Psi'/Phi' = 2 nu(g_bar/a0) - 1:
+      g_bar = 1e-13: nu =  31.10 -> slip required =   61.2
+      g_bar = 1e-12: nu =  10.18 -> slip required =   19.4
+      g_bar = 1e-11: nu =   3.59 -> slip required =    6.2
+    The carrier's own convergence cannot help: at 300 kpc its clustered mass fraction of the job
+    is f*M_NFW/M_phantom = 0.019 at f = 0.03 (and zero in the homogeneous decades).
+    NAMED PARTNER REQUIREMENT (explicit, per the task): a metric component sourcing Psi at 10-60x the
+    baryonic Phi-gradient at 0.1-1 Mpc while staying inside the Cassini Q2 window [-2.0,+5.2]e-27 s^-2
+    (2602.17884) at kAU and inside the MW vertical-Jeans budget (1812.08169/1911.12365) in the disc.
+    The pincer, stated plainly:
+      (i)  a partner with real stress-energy arranged MOND-like pulls STARS too -- it double-counts the
+           mediator's dynamics and collapses the architecture to dark matter with extra steps;
+      (ii) a lens-only (slip) partner has NO published field-level realization; the one Phi=Psi template
+           in the literature (1602.05961 sec.6, medium 4-velocity) presupposes a metric MOND force --
+           porting it re-imports the AQUAL static limit and with it the Cassini Q2 kill that took AeST
+           (repo-banked) and DEW (agentD, 8.8-14.6 sigma);
+      (iii) photon-disformal implementations (photons see the dark medium, matter does not) are squeezed
+           by the GW170817 photon/graviton speed coincidence |Delta c|/c <~ 1e-15 (1710.05834) accumulated
+           through the very halo medium that must do the lensing.
+
+(b) THE CHERENKOV GATE (2103.16954-class):
+    Free massive carrier, relativistic branch: omega^2 = m^2 + k^2 -> v_phase = sqrt(1+(m/k)^2) > c
+    for ALL k: true Cherenkov emission is kinematically FORBIDDEN (no subluminal phase velocity).
+    Gapless collective branch (Madelung/quasiparticle): omega = k^2/2m -> v_phase = k/2m; modes
+    slower than v_orb = 220 km/s exist at wavelengths lambda > pi*lambda_dB(v_orb) at EVERY in-band mass:
+      m =  1.3e-29 eV: slow modes at lambda > 2105.90 Mpc
+      m =  5.0e-28 eV: slow modes at lambda > 54.75 Mpc
+      m =  1.0e-25 eV: slow modes at lambda > 273.8 kpc
+      m =  1.6e-24 eV: slow modes at lambda > 17.1 kpc
+    [Both ways: in the homogeneous decades (m <~ 1e-26 eV) the slow modes EXCEED the system size --
+    the gate has no purchase there even in principle; in the bound decades they fit (17-274 kpc).]
+    Exposure scales as (matter coupling)^2 x rho_f. At beta <= beta_C = 0.00339 and f <= 0.03 the
+    drag/emission exposure sits >= x3e+06 below the killed BK point (order-unity effective
+    coupling, all-DM medium; star lifetimes <~10 Gyr there, 2103.16954 via the H1 ledger): the gate
+    PASSES trivially -- but only because the coupling is too small to matter dynamically. THE GATE AND
+    THE AMPLITUDE ARE ONE DIAL: at the amplitude-required beta_req ~ 2e+04 the emission exposure
+    rises ~beta_req^2/O(1) x f ~ 1e7 over the killed point: its <~10 Gyr lifetimes scale toward the
+    kyr class. Any coupling big enough to do MOND re-arms the gate in the bound decades; any coupling
+    small enough to pass the gate cannot do MOND.
+
+(c) THE DR4 KNEE DISCRIMINATOR (m = 5e-28 eV, the hardest ledger pinch f <= 0.013 -- eROSITA
+    2502.03353 neighboring grid point; lambda_dB = 19.2 Mpc -> homogeneous, cosmic-mean density):
+      eps(Cassini) = 1.4e-09  (8.9 dex short)
+      eps(beta=1)  = 4.1e-07  (6.4 dex short)
+    H4 sec.7 framed a two-branch fork: (i) mechanism works at f <= 3% -> band stays open with DR4 as
+    discriminator; (ii) mechanism needs f > 3% -> knee forced into the top decades. THE FORK HAS NO
+    LIVE BRANCH on this route: the top decades are the WORST in the band (eps ~ 1e-10 at Cassini),
+    the floor is best and still 7.0 dex short. The band does not narrow -- it closes.
+
+====================================================================================================
+VERDICT (both ways, full weight)
+====================================================================================================
+
+NO-GO. The f-limited ultralight carrier cannot produce the full MOND-amplitude effect by ANY of the
+three channels available to it, in ANY decade of the knee band, under EVERY convention checked:
+
+  ROUTE A (sourcing, superfluid template): needs f = 0.85-1.3 at 50-200 kpc in the clustered decades
+    (vs ledger 0.1-0.3: gap x2.8-8.5 at the most charitable radius), f > 1 at the Mpc lensing
+    continuation EVEN BEFORE the ledger, and f ~ 2e4-3e5 at the kinematic radii in the homogeneous
+    decades (vs 0.01-0.05: gap 3e5-3e7; >= 9e2 even at the most charitable radius). Dead everywhere.
+  ROUTE B (mediator, condensate amplitude): eps_max = 6.4e-05 at the maximum-charity stack with
+    beta = 1 (fifth-force bounds ignored) -- 4.2 dex short of order-unity; 6.7 dex short with
+    Cassini enforced. beta_req >= 1.6e+04 everywhere = a fifth force >= 2e+08 x gravity. Dead in
+    every decade; the DR4 discriminator mass sits 8.9 dex short -- among the worst points.
+  ROUTE C (vacuum correlator): amplitude inherits N3's wall improved only x5e+04 -> >= 38 orders
+    short, AND anti-MOND-signed across the whole band (sign needs m^2 < 2H^2, knee needs m >> H).
+
+  Convention immunity: a0 footing changes M_phantom by 13%; f-ledger edges, rho_local 0.3->0.4,
+  x100 soliton charity, hostile vs framework band ceiling -- all checked above; none moves any gap
+  by more than ~1 dex against shortfalls of 4-38 orders. The kill is convention-immune BOTH WAYS.
+
+  What the calculation does NOT kill (named, honest): the carrier as KNEE-SETTER with the amplitude
+  paid by something else -- but the only published 'something else' candidates are (i) the dS bath
+  (N3: 1e85 wall, banked), (ii) a metric MOND sector (AeST-class: Cassini Q2, banked), (iii) meV-scale
+  derivative couplings (BK-class: H4 Wall-A, mapped). Every exit from this calculation lands on an
+  already-banked kill. The hybrid build as specced -- fraction-limited carrier supplying the MOND
+  amplitude -- dies PRE-ASSEMBLY; what survives of Door II must find an order-unity amplitude source
+  OUTSIDE the carrier's energy budget, and no published structure supplies one.
+
