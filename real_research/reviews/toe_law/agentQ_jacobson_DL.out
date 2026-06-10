@@ -1,0 +1,146 @@
+==================================================================================================
+PART A -- BASELINE: Jacobson gr-qc/9504004 reproduced symbolically (the validation anchor)
+==================================================================================================
+  A1. local balance with T = kappa/2pi  =>  T_kk = R_kk*eta/(2*pi)
+   [A1 T_kk = (eta/2pi) R_kk, kappa cancels] PASS
+      => R_kk = (2pi/eta) T_kk for all null k => Einstein eqs, G = 1/(4 eta),
+         with Lambda entering ONLY as the Bianchi integration constant. [REPRODUCED]
+  A2. explicit null k^mu=(1/f,1,0,0) in dS static patch: g_mn k^m k^n = 0
+   [A2 g_kk = 0 (Lambda-term invisible to the balance)] PASS
+  A3. d/dx(R/2 + f) = 0  =>  f = C1 - R(x)/2  (Lambda = the constant; NOT derived, NOT modified)
+   [A3 f = -R/2 + const] PASS
+
+==================================================================================================
+PART B -- THE SUBSTRATE: exact dS worldline thermodynamics (full Christoffel computation)
+==================================================================================================
+  B1. u.u = -1;  a^mu = (0, -H**2*r, 0, 0);  |a|^2 = -H**4*r**2/(H**2*r**2 - 1)
+   [B1 |a|^2 = (H^2 r)^2/(1-H^2 r^2)  [=> |a| = H^2 r/sqrt(1-H^2r^2)]] PASS
+   [B2 a^2+H^2 = H^2/(1-H^2r^2)  [=> kappa_DL = H/sqrt(1-H^2r^2)]] PASS
+  B3. (a^2+H^2) * |xi|^2 = H**2   [Deser-Levin = Tolman-shifted Gibbons-Hawking, EXACT]
+   [B3 (T_DL*|xi|)^2 = (H/2pi)^2 exactly (kappa_b = H; positive => T_DL|xi| = H/2pi)] PASS
+  B4. ell(r) = (-asin(H*r) + pi/2)/H  =>  r(ell) = cos(H ell)/H
+      a(ell)^2 = H**2/tan(H*ell)**2  ;  kappa_DL(ell)^2 = H**2/sin(H*ell)**2
+   [B4a a(ell)^2 = H^2 cot^2(H ell)  [=> a = H cot(H ell)]] PASS
+   [B4b kappa_DL(ell)^2 = H^2/sin^2(H ell)  [=> kappa_DL = H/sin(H ell)]] PASS
+      series  a*ell           = -H**4*ell**4/45 - H**2*ell**2/3 + 1
+      series  kappa_DL*ell    = 7*H**4*ell**4/360 + H**2*ell**2/6 + 1
+      series  sqrt(1+(Hell)^2)= -H**4*ell**4/8 + H**2*ell**2/2 + 1    [the flat-frame 'naive' DL]
+   [B4c a*ell = 1 - (Hell)^2/3 - (Hell)^4/45] PASS
+   [B4d kappa_DL*ell = 1 + (Hell)^2/6 + 7(Hell)^4/360] PASS
+   [B4e naive = 1 + (Hell)^2/2 - (Hell)^4/8] PASS
+
+==================================================================================================
+PART C -- READING R1 (Tolman-consistent bookkeeping): the H^2 term propagates NOWHERE
+==================================================================================================
+  C1. (dE_loc/T_DL)^2 = (dQ_xi/|xi|)^2 / (kappa_DL/2pi)^2 = 4*pi**2*deltaQ_xi**2/H**2
+   [C1 dE_loc/T_DL = 2pi dQ_xi / H  -- ell-free AND the H^2-in-quadrature is GONE] PASS
+      With the EXACT Deser-Levin temperature the Clausius ratio collapses to the
+      Killing-normalized Jacobson ratio 2pi*dQ_xi/kappa_b: identical balance, identical
+      equation of state, at ALL orders in H/a. The sqrt(a^2+H^2) is nothing but the Tolman
+      factor of the horizon temperature -- it cancels against the Tolman factor of the
+      locally measured heat. Jacobson-with-DL = Jacobson, identically. Lambda is NOT
+      re-derived (A3: still the integration constant); no MOND; no correction AT ANY ORDER.
+==================================================================================================
+PART D -- READING R2 (proper-frame DL at finite a: the ONLY reading where H survives)
+==================================================================================================
+  D1. balance  =>  T_kk = R_kk*eta*sqrt(H**2 + a**2)/(2*pi*a)   =>  G_eff/G = a/sqrt(H**2 + a**2)
+   [D1 G_eff/G = a/sqrt(a^2+H^2)] PASS
+   [D2a G_eff/G == mu_F4 = a/kappa (the F4 kernel, exactly)] PASS
+   [D2b a/kappa == T_U^flat(a)/T_DL(a)] PASS
+   [D2c a/kappa == 2pi * dT_DL/da  (F4's susceptibility, normalized)] PASS
+      => The Clausius balance consumes T itself; F4 consumes dT/da. By the algebra of
+         the quadrature they are the SAME function a/kappa -- but Clausius hangs it on G
+         (the force side), F4 on m_eff (the inertia side).
+  D3. G_eff/G = (1+x)^(-1/2), x=(H/a)^2  =  -5*x**3/16 + 3*x**2/8 - x/2 + 1  + O(x^4)
+   [D3 coefficients 1, -1/2, +3/8, -5/16] PASS
+   [D4 W = kappa_DL/a >= 1 for all (a,H>0)  [G_eff <= G: no temperature reading can flip it]] PASS
+  D5. G_eff/G = a/sqrt(a^2+(cH)^2)   [Z = sqrt(32pi/3) = 5.7888]
+          a/cH    G_eff/G   regime
+           100     1.0000   Newtonian
+             3     0.9487   transition
+             1     0.7071   transition
+         0.173     0.1702   a = a0 (deep-MOND onset)
+          0.03     0.0300   deep MOND: gravity ~gone
+      at a = a0: G_eff/G = 1/sqrt(1+Z^2) = 0.17023  (footing-independent statement:
+      pure-Lambda (H/a0)^2 = Z^2 = 33.51; rho_total footing (cH0/a0')^2 = 33.60 -- same regime)
+  D6. force-side   a = mu(a) g_N  =>  solutions a = [sqrt(-H**2 + g_N**2)]
+   [D6a force-side: a = sqrt(g_N^2 - H^2) -- REAL ONLY FOR g_N > cH; below: a = 0 (total shutoff)] PASS
+      inertia-side mu(a) a = g_N  =>  a = [sqrt(g_N**2/2 - g_N*sqrt(4*H**2 + g_N**2)/2), sqrt(g_N**2/2 + g_N*sqrt(4*H**2 + g_N**2)/2)]
+   [D6b physical root present in solve()] PASS
+   [D6c inertia-side deep-MOND limit: a^2/(g_N H) -> 1, i.e. a -> sqrt(g_N H) (the MOND enhancement)] PASS
+      SAME function, two legs: on the INERTIA leg a/kappa gives deep-MOND a = sqrt(g_N H)
+      (enhancement -- the observed phenomenology, F4's selling point); on the GRAVITY leg the
+      Clausius balance puts it, the self-consistent response below g_N = cH is a = 0 EXACTLY:
+      gravity does not weaken gradually -- it SHUTS OFF. Anti-MOND in its most extreme form
+      (the banked sign, now exact and structural).
+==================================================================================================
+PART E -- OUTCOME (i) TEST: the correction is NOT a cosmological-constant term
+==================================================================================================
+  E1. correction term = 8 pi G (mu_F4 - 1) T_kk = 8*pi*G*T_kk*a/sqrt(H**2 + a**2) - 8*pi*G*T_kk
+      proportional to T_kk (a SOURCE-coupling rescaling), NOT to g_kk (which is 0, A2).
+   [E1 correction vanishes when T_kk = 0 (so it can NEVER mimic Lambda, which gravitates in vacuum)] PASS
+      Lambda remains exactly where Jacobson left it: the Bianchi integration constant (A3),
+      untouched by the temperature substitution. Outcome (i) does NOT occur.
+==================================================================================================
+PART F -- OUTCOME (iii): the finite-(H/a) construction is SCHEME-AMBIGUOUS, quantified
+==================================================================================================
+  S0 exact-dS DL + exact Tolman weight (R1):  W = 1 + (0)*(H ell)^2 + ...
+  S1 banked coarse swap / flat a=1/ell + flat weight (R2):  W = 1 + (1/2)*(H ell)^2 + ...
+  S2 exact-dS a(ell)=Hcot(Hell) in DL + flat weight:  W = 1 + (1/6)*(H ell)^2 + ...
+  S3 flat a=1/ell in DL + exact Tolman weight:  W = 1 + (1/3)*(H ell)^2 + ...
+   [F1 scheme spread at O((H/a)^2) = {0, 1/6, 1/3, 1/2} -- the coefficient is PURE SCHEME] PASS
+      Jacobson's construction approximates the boost Killing field in a curved background;
+      the candidate chi fails Killing's equation at O(x^2 * Riemann) (gr-qc/9504004; the error
+      budget made explicit in Guedens-Jacobson-Sarkar arXiv:1112.6215). In dS, Riemann ~ H^2, so
+      the construction's OWN neglected terms at the bookkeeping distance ell are O((H ell)^2) --
+      EXACTLY the order at which the schemes disagree. The (H/a)^2 coefficient of any 'finite-a/H
+      Jacobson equation of state' is therefore not determined by the construction: it is gauge.
+   [F2a framework identity (cH_Lambda/a0)^2 = 32pi/3 = Z^2 (exact)] PASS
+  F2. deep-MOND onset a = a0 = cH_L/Z:  (H/a)^2 = Z^2 = 33.51  (expansion parameter ~33x past unity)
+      bookkeeping observer's distance: H*ell = arctan(Z) = 1.3997 rad
+      = 89.1% of the FULL static-patch depth pi/2 = 1.5708
+   [F2b at a <= a0 the 'local' wedge spans >=89% of the static patch -- nothing local remains] PASS
+      Below a0 the local Rindler horizon and the cosmological horizon MERGE (the GEMS
+      content of Deser-Levin: one embedding horizon). The Clausius bookkeeping in the MOND
+      regime is just Gibbons-Hawking thermodynamics of the dS horizon -- the Lambda sector,
+      already in the Einstein equation as the integration constant. There is no separate
+      'low-acceleration equation of state' to derive: the construction has no validity
+      domain AT ALL for a <~ a0.
+==================================================================================================
+PART G -- the covariantization no-go (echo of the Door-II wall, one line)
+==================================================================================================
+  G1. d/dx[mu(x) T] = T0*Derivative(mu(x), x) = 0 with T != 0  =>  mu' = 0: mu = const on the support of T.
+   [G1 any covariant completion of G*mu(a)T_mn forces mu = const (no acceleration-keyed EoS)] PASS
+==================================================================================================
+PART H -- COEFFICIENT DISCIPLINE: raw O(1) numbers FIRST, comparison AFTER
+==================================================================================================
+   raw: (H/a)^2 series                         = 1, -1/2, +3/8, -5/16  (binomial (-1/2 choose n))
+   raw: scheme spread at O((Hell)^2)           = 0, 1/6, 1/3, 1/2
+   raw: Tolman exact-dS coefficient            = 1/6  (kappa_DL*ell expansion)
+   raw: G_eff/G at a=a0                        = 1/sqrt(1+Z^2) = 0.17023
+   raw: H*ell at a0 / (pi/2)                   = 0.8911
+   raw: temperature prefactor                  = 1/2pi (Unruh/DL, unmodified)
+   comparison (AFTER): Z = sqrt(32pi/3) = 5.78881, 1/Z = 0.17275, 6, 2pi = 6.28319
+   - 1/sqrt(1+Z^2) = 0.17023 vs 1/Z = 0.17275: 1.5% apart --
+     the trivial large-Z identity 1/sqrt(1+Z^2) ~ 1/Z; STRUCTURALLY MEANINGLESS, flagged.
+   - 1/6 vs 1/Z: 3.5% near-miss ALREADY flagged meaningless in agentB; here 1/6 is a Tolman
+     series coefficient (kappa_DL*ell) -- again unrelated to Z. No coefficient lands on Z, 6, 2pi.
+==================================================================================================
+MACHINE-CHECK SUMMARY: ALL PASS
+==================================================================================================
+VERDICT (both ways, full weight -- details in agentQ_jacobson_DL.md):
+ R1 (the well-defined reading): Jacobson-with-Deser-Levin = Jacobson IDENTICALLY, all orders
+    in H/a -- T_DL is exactly the Tolman-shifted Gibbons-Hawking temperature (B3), and Clausius
+    only ever consumes the Tolman-invariant ratio (C1). Einstein recovered exactly; Lambda NOT
+    re-derived (still the integration constant, A3); the kk-balance is Lambda-blind (A2, E1).
+ R2 (the only reading where H survives): an observer-indexed, acceleration-keyed rescaling
+    G_eff/G = a/sqrt(a^2+H^2) = mu_F4 EXACTLY (D2a) -- the F4 kernel on the WRONG LEG: a
+    gravity-side deficit at low a (anti-MOND; the banked sign, now exact), with total shutoff
+    below g_N = cH (D6a). The sign cannot flip in ANY temperature reading (D4: quadrature).
+ (iii) sharpened: the (H/a)^2 coefficient is pure scheme ({0,1/6,1/3,1/2}, F1), degenerate with
+    the construction's own neglected O(x^2*Riemann) terms; and in the MOND regime a <= a0 the
+    'local' wedge IS the cosmological horizon (F2) -- the construction has no validity domain.
+ EXTENSION of the banked verdict: horizon thermodynamics cannot reach MOND even with the exact
+ DL temperature, for a reason now precise -- Clausius consumes T (kappa-only, Tolman-trivial);
+ the two-variable (a,H) structure agentN1 proved real lives in the RESPONSE kernel (dissipation),
+ an object the equation-of-state bookkeeping never touches. The MI lane, not the EoS lane.
