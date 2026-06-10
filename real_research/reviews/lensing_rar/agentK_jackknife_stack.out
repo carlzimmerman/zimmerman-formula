@@ -1,0 +1,46 @@
+AGENTK DONE:
+  6.85e-13 |   18.947 +/-  2.707 |   11.528 +/-  3.141 |  1.64 | +1.79
+  1.21e-12 |   20.029 +/-  6.404 |   15.109 +/-  4.147 |  1.33 | +0.64
+  2.13e-12 |   25.607 +/-  6.599 |   26.958 +/-  5.477 |  0.95 | -0.16
+  3.76e-12 |   18.900 +/-  9.893 |   23.280 +/-  7.244 |  0.81 | -0.36
+  late vs released: chi2_diag=19.4 (df=15, p=0.196, 1.3 sigma) ; chi2_fullcov=19.6 (1.3 sigma)
+  [caveat BOTH WAYS: same survey data -> ours & released are CORRELATED; quadrature/full-sum
+   errors OVERSTATE the difference error, so these pulls are LENIENT on consistency. But sample
+   differences (isolation window, colour split 2.0-LePhare vs 2.5-Brouwer, +0.15dex fluxscale)
+   produce COHERENT offsets, which is what the full-cov chi2 is sensitive to.]
+
+early: g_bar | OURS +/- jk_err | RELEASED +/- err | ratio | pull
+  1.33e-15 |    0.944 +/-  0.181 |    1.001 +/-  0.144 |  0.94 | -0.25
+  2.34e-15 |    1.481 +/-  0.178 |    1.759 +/-  0.187 |  0.84 | -1.08
+  4.14e-15 |    2.415 +/-  0.225 |    2.568 +/-  0.243 |  0.94 | -0.46
+  7.30e-15 |    3.320 +/-  0.306 |    3.288 +/-  0.316 |  1.01 | +0.07
+  1.29e-14 |    4.189 +/-  0.359 |    4.062 +/-  0.411 |  1.03 | +0.23
+  2.27e-14 |    6.115 +/-  0.457 |    5.766 +/-  0.538 |  1.06 | +0.49
+  4.01e-14 |    7.539 +/-  0.624 |    7.328 +/-  0.705 |  1.03 | +0.22
+  7.07e-14 |    8.439 +/-  0.877 |    8.861 +/-  0.927 |  0.95 | -0.33
+  1.25e-13 |   11.891 +/-  1.319 |   10.733 +/-  1.218 |  1.11 | +0.65
+  2.20e-13 |   16.697 +/-  1.316 |   12.454 +/-  1.602 |  1.34 | +2.05
+  3.88e-13 |   21.341 +/-  1.776 |   17.618 +/-  2.106 |  1.21 | +1.35
+  6.85e-13 |   24.278 +/-  2.188 |   23.391 +/-  2.779 |  1.04 | +0.25
+  1.21e-12 |   31.953 +/-  4.015 |   30.449 +/-  3.665 |  1.05 | +0.28
+  2.13e-12 |   47.085 +/-  5.241 |   36.818 +/-  4.826 |  1.28 | +1.44
+  3.76e-12 |   52.178 +/-  6.644 |   47.718 +/-  6.410 |  1.09 | +0.48
+  early vs released: chi2_diag=10.8 (df=15, p=0.768, 0.3 sigma) ; chi2_fullcov=11.9 (0.4 sigma)
+  [caveat BOTH WAYS: same survey data -> ours & released are CORRELATED; quadrature/full-sum
+   errors OVERSTATE the difference error, so these pulls are LENIENT on consistency. But sample
+   differences (isolation window, colour split 2.0-LePhare vs 2.5-Brouwer, +0.15dex fluxscale)
+   produce COHERENT offsets, which is what the full-cov chi2 is sensitive to.]
+
+=== (b) OUR OWN early/late split significance (jackknife covariance of the difference) ===
+  early ABOVE late in 14/15 bins; mean dlog10(ESD) = +0.209 dex  (released-profile battery: 15/15, +0.261 dex)
+  chi2(early-late | full 15x15 jackknife Cd) = 126.0 (df=15) -> 9.1 sigma  [raw]
+  Hartlap-corrected (N_jk=50, p=15: factor 0.673): chi2=84.8 -> 6.8 sigma  [HEADLINE]
+  diagonal-only reference: chi2=89.8 -> 7.1 sigma
+  robustness, 25 merged patches: raw 24.6 sigma; Hartlap(0.333) 13.1 sigma
+
+  released-profile analog (lr_battery.out): chi2=119.9 -> 8.8 sigma (their cov, their sample)
+  expected dilutions in OURS vs theirs: 181,477 vs 259,383 isolated lenses (x0.70 -> sigma x~0.84);
+  jackknife cov includes cosmic variance + shape noise (analytic cov is shape-noise-led); colour
+  split at the LePhare valley 2.0 (53/47 early/late) vs Brouwer 2.5 (their convention); isolation
+  Dchi=10 Mpc count-calibrated window. All four DILUTE; quantified in agentK_remeasure_errors.md.
+-> wrote lr_esd_jackknife_analysis.npz
