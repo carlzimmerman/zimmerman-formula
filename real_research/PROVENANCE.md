@@ -40,3 +40,21 @@ The novelty claim is bounded by the author's knowledge of the literature, which 
 literature search is required before claiming the MOND↔DSSYK connection is original. The result is
 "established machinery applied to a new target," which is legitimate physics but must be presented as building
 on the above, not inventing it.
+
+---
+## Triage entry — 2026-06-09 (provenance of orphan working-tree files)
+The following were untracked in the working tree, produced by a **prior session dated 2026-06-05**
+(not the 2026-06-06+ doors/labels-close session), and are **claimed** here after triage:
+- `INTEGRITY_AUDIT.md` — integrity audit grading all 320 `real_research/` scripts (real-data/real-calc/
+  literature/theatre). Verified-by: inspection (it is a report, not re-run).
+- `reviews/A0_COSMICWEB_ENVIRONMENT_2026-06.md` + `reviews/project_sparc_a0_vs_cosmicweb.py` +
+  `data/sparc_a0_environment_table.csv` + `figures/a0_vs_cosmicweb.png` — does a₀ track the cosmic web?
+  **NULL** (Spearman −0.08, p=0.38; slope −0.05±0.08; the +0.5 ρ_local fork excluded across 3 external
+  density fields; 3σ-detectable-slope floor ~0.15 honestly stated). **Verified-by: re-run, null reproduced.**
+  **EFE-adjacent — flag for the EFE workstream (predictions 9/12):** environment-classified a₀ universality.
+- `predictions/project_sparc_groupcontrast_kt2017.py` — companion group-contrast script (same June-5 work).
+
+Quarantined (could not attribute to on-topic work): `FIRST_PRINCIPLES_OF_LIVING.html` ("Optimal Human
+Flourishing" — off-topic), `figures/fig3_hubble_node.png` (orphan, unreferenced) → moved to `unattributed/`.
+Removed: `reviews/REDERIVE_circularity_audit.py` (identical dup of the committed `reviews/labels_close/` copy).
+NOT claimed (unsourced working-tree modification, left in place): `reviews/project14_wide_binaries.py`.
