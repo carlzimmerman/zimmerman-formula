@@ -48,8 +48,13 @@ ONLY this: the solar-system tail kill, which was fatal to the family's natural m
 - This is **construction within one mechanism family**, not a derivation of MOND: the family itself rests on the
   unproven Step-4 link (bath response → inertia), F4 is *selected* by kill-tests, the coefficient stays Z-off, and the
   covariance obstruction (trilemma calc #3) is untouched — F4 is a worldline statement, not a field theory.
-- Next bounded steps, in order of bite: (a) SPARC/RAR re-fit with μ_standard at a₀ = 9.36×10⁻¹¹ vs the McGaugh RAR
-  function (repo machinery exists; does F4's *shape* survive galaxy data as well as its tail survives Saturn?);
+- Next bounded steps, in order of bite: **(a) DONE same day** (`mi_f4_sparc_shape_test.py` + `.out`, 175 SPARC galaxies,
+  pre-registered thresholds, both metrics × both footings): **F4 SURVIVES the RAR shape test** — at the framework a₀ its
+  best unweighted scatter is 0.1984 dex vs the McGaugh function's 0.1950 (**+0.0034, under the 0.01 survival line**),
+  with physical Υ_disk = 0.64 (the weaker knee, ν(1)=1.27 vs 1.58, is absorbed by a slightly higher but in-band M/L);
+  at canonical a₀, +0.0012. The weighted metric penalizes F4 more (0.124 vs 0.111) — reported per the artifact rule; the
+  locked unweighted standard is primary. **F4's scorecard tonight: deep-MOND ✓ (analytic), Saturn ✓ (×4 margin, where
+  Milgrom-99's form fails ×54,000), SPARC shape ✓ (+0.003 dex, physical Υ). Coefficient still Z-off (no claim).**
   (b) wide-binary/EFE phenomenology of F4 (modified-inertia EFE differs from modified-gravity EFE);
-  (c) the covariance question for susceptibility couplings specifically.
+  (c) the covariance question for susceptibility couplings specifically — the real frontier, untouched.
 - Liability ledger rides along unchanged (type-blind: the lensing split; clusters; a₀(z) at z≈3).
