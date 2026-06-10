@@ -89,6 +89,7 @@ print(f"""  LCDM P3/P2 = {r_lcdm:.2f} (Planck observes the 3rd peak nearly as hi
   => CONFIRMED, branch-independent, and HARDER than before (0.42-0.54, not a soft 0.92): the declining a0(z)
      inertia modification is negligible at recombination (the 'CMB-safe' result), so it supplies NONE of the
      3rd-peak driving. A pure modified-INERTIA theory fails Planck's 3rd peak and REQUIRES an extra clustering
-     field. 'CMB selects declining' answers WHICH FOOTING PERTURBS LEAST -- not whether the framework has a
-     CMB story. It does not, without AeST -- the host that natively speaks RISING and carries the ~9-15 sigma
-     Cassini quadrupole. The hybrid's union-of-exposures is real and now quantified.""")
+     field. (The a0(z) branch is moot here: per the bath correction the CMB kills only RISING and is blind to
+     declining-vs-constant, so the 3rd-peak obstruction is branch-INDEPENDENT.) A pure modified-inertia theory
+     has NO CMB story without AeST's clustering field -- the host that natively speaks RISING and carries the
+     ~9-15 sigma Cassini quadrupole. The hybrid's union-of-exposures is real and now quantified.""")

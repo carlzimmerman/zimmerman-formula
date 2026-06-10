@@ -17,6 +17,7 @@ SAFE='retract|RETRACT|supersed|SUPERSED|artifact|corrected|CORRECTED|⚠|stale|n
 hits=0
 for f in $FILES; do
   [ -f "$f" ] || continue
+  case "$f" in */retraction_guard.sh|*CONVENTION_LOCK.md) continue;; esac  # these legitimately list the banned phrases
   while IFS=: read -r ln text; do
     [ -z "$ln" ] && continue
     echo "$text" | grep -Eiq "$SAFE" && continue   # excused: line is retracting/quoting
