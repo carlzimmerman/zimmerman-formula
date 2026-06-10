@@ -51,6 +51,12 @@ balance, agentQ). The length scale is not inserted — it appears.
 passed >10¹³ where power-law tails die ×6–10⁹; precession sign-flipped and suppressed; p≡0 acceleration-keyed;
 SPARC = baseline; the DR4 fork reshaped with a +4–8% positive-selection branch). The filter is inert; the
 exponential tail carries everything — and is therefore what Link 5's mechanism must derive.
+**Covariant home (agentU): BUILDABLE, unbuilt** — the khronon/aether lift with the MOND nonlinearity on the
+INERTIA side: Cassini Q₂ absent BY ARCHITECTURE (Einstein gravity), PPN passes in pinned corners (α ≲ 8×10⁻⁷),
+WEP three-layer verified, no singular-surface analog, agentM's battery transfers <1%, and the MINIMAL cosmological
+writing is a₀ = const ≡ the framework's pure-Λ √ρ_DE branch. Inherited opens, named: conservation/causality of the
+retarded worldline functional (the MI field's shared death-spot; Schwinger–Keldysh = the route) and lensing
+delegated to Link 7.
 
 **Link 7 — the lensing partner.** PROVEN NECESSARY (the 40.5σ metric-passive wall, our own data) and
 PHENOMENOLOGICALLY EXISTENCE-PROVED (the superfluid condensate carries lensing as mass and predicted our measured

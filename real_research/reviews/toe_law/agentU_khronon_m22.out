@@ -1,0 +1,154 @@
+====================================================================================================
+agentU KHRONON-FRAMED COVARIANT M22 -- gate computations, run date 2026-06-10
+====================================================================================================
+
+[0] GATE: reproduce agentM's filter reflex A(Omega_J) and the exponential-tail delta_a_sun
+    theta=2/(1+y^2)    : A/a_J = 1.167
+    theta=exp(1-y)     : A/a_J = 1.177
+    theta=exp((1-y)/2) : A/a_J = 1.130
+    exp-tail (McGaugh-RAR mu) delta_a_sun fw     : 1.13e-29 .. 3.15e-29   (banked agentM: 1.1e-29 .. 3.2e-29)
+    exp-tail (McGaugh-RAR mu) delta_a_sun hostile: 1.16e-16 .. 1.78e-16   (banked agentM: 1.2e-16 .. 1.8e-16; budget 2.47e-15)
+    GATE PASS: conventions identical to agentM; the NR battery baseline is reproduced.
+
+====================================================================================================
+[1] COVARIANT DRESSING: every term the lift ADDS to the Galilean-limit M22 law, sized
+====================================================================================================
+    The covariant variables (u-frame time T, congruence-label trajectory x(T)) differ from the
+    Galilean ones by: (a) boost factor w^2/c^2 (w = velocity w.r.t. u); (b) potential Phi/c^2;
+    (c) Hubble-flow terms O(H*v) and O(H^2*r) in d^2x/dT^2 from the slice metric's expansion.
+    These MULTIPLY/DRESS the argument of mu -- they are not new anomalous forces.
+
+    system                    w_CMB^2/c^2    Phi/c^2  H*v [m/s^2]  H*v/a_char H^2*r [m/s^2]  H^2r/a_char
+    solar system (Saturn)        1.51e-06   1.03e-09     2.10e-14    3.22e-10      6.81e-24     1.04e-19
+    wide binary (5 kAU)          1.51e-06   5.40e-07     4.37e-16    4.37e-06      3.57e-21     3.57e-11
+    galaxy outskirts             1.51e-06   5.40e-07     4.37e-13    3.64e-03      4.44e-15     3.70e-05
+
+    READINGS:
+    - Largest fractional dressing of the mu-argument anywhere: galaxy outskirts H*v/a ~ 3.6e-03
+      (0.4%) -- vs SPARC scatter 0.195 dex (57%) per point: phenomenologically INERT. agentM's SPARC/WB/
+      precession/reflex battery transfers to the covariant lift unchanged at the <1% level.
+    - Solar system: dressing corrections are O(1e-6) MULTIPLYING deviations already exponentially dead --
+      irrelevant in both directions.
+    - The N5 corridor question: the lift's natural dressing is O(H*v/a) <= 0.4%, NOT a power of
+      (1+Omega/H). The corridor escape (p in [0.069,1]) is still NOT manufactured: covariant M22 stays at
+      p = 0, exactly agentM's placement. The exponential mu-tail remains the only reflex-passing member.
+====================================================================================================
+[2] GATE 1a: the frame field's OWN PPN bill (pinned formulas, post-GW170817)
+====================================================================================================
+    Khronometric (hypersurface-orthogonal aether = the khronon; 1711.08845):
+      c_T^2 = 1/(1-beta); GW170817: -3e-15 < c_T-1 < 7e-16  =>  |beta| <~ 1e-15
+      alpha_1 = 4(alpha-2beta)/(1-beta);  alpha_2 = [(alpha-2beta)/(2-alpha)] *
+                [1 - (alpha-2beta)(1+beta+2gamma)/((1-beta)(beta+gamma))]
+      bounds: |alpha_1| < 1e-4, |alpha_2| < 4e-7 ; BBN |(alpha+3gamma+beta)/(2+3gamma+beta)| < 1/8
+
+    generic corner (gamma >> alpha, e.g. gamma=1e-2; alpha_2 ~ alpha/2 binds):
+      max alpha ~ 8.0e-07  (alpha_2 = 3.98e-07; alpha_1 = 3.19e-06; c_S^2 = 1.24e+04 >> 1, Cherenkov-safe)
+    tuned sliver at alpha = 2.5e-05 (the alpha_1 ceiling): alpha_2 cancels for gamma ~ alpha;
+      surviving gamma/alpha in [1.0001, 1.0331] (width 3.31% of alpha) AND c_S^2 >= 1 throughout that window: c_S^2 at edges = 1.000, 1.033
+      NOTE: the cancellation window sits AT the Cherenkov edge c_S^2 ~ 1 (c_S^2 ~ gamma/alpha):
+      gamma < alpha is Cherenkov-dead, gamma > ~1.03*alpha is alpha_2-dead -- a pinched but
+      non-empty sliver. The GENERIC corner alpha <~ 8e-7 is the robust statement.
+
+    Einstein-aether (generic, non-HSO; 1802.04303 Eq. 3.23): |c_13| <= 1e-15, alpha_1 = -4 c_14, and two
+    surviving regions: (i) 0 < c_14 <= 2e-7 with c_14 <~ c_2 <~ 0.095; (ii) 2e-6 <~ c_14 <~ 2.5e-5 with
+    0 <~ c_2 - c_14 <~ 2e-7. Binary pulsars post-GW shrink the space ~10x further but it stays NON-EMPTY
+    (2104.04596; newest single-system bounds 2605.01436 are bounds, not exclusion).
+    => VIABLE CORNERS EXIST for a canonical (MOND-free) frame sector. Distinct from AeST/GEA, whose vector
+    kinetic term must CARRY the MOND nonlinearity and cannot retreat into these corners.
+    BBN check at (alpha,gamma)=(8e-07,1e-02): |(a+3g+b)/(2+3g+b)| = 1.478e-02 < 1/8  OK
+
+====================================================================================================
+[3] GATE 1b: does the u-coupled MATTER sector feed back into PPN? (sympy closed forms + numbers)
+====================================================================================================
+    Structure: every operator the MI functional adds to the worldline dynamics carries a factor
+    eps(x) = 1/mu(x) - 1 or its derivative; u-frame velocity w enters only by DRESSING the
+    mu-argument: x -> x(1 + kappa_w w^2/c^2), kappa_w = O(1). The preferred-frame (alpha_1-type)
+    coefficient generated in the matter sector is therefore  ~ |x eps'(x)| * kappa_w  at the
+    acceleration x of the test body. Sympy closed forms:
+      exp tail  : x*d(eps)/dx = -sqrt(x)*exp(sqrt(x))/(2*exp(2*sqrt(x)) - 4*exp(sqrt(x)) + 2)
+                  (= -(sqrt(x)/2) e^(-sqrt(x))/(1-e^(-sqrt(x)))^2 -- exponentially dead)
+      power tail: x*d(eps)/dx = -1/(x*sqrt(x**2 + 1))   (~ -1/x^2 at large x)
+
+    effective matter-side alpha_1-type coefficient |x eps'(x)| (kappa_w=1):
+    body                a [m/s^2] |  fw: exp-tail  fw: power |  hostile: exp hostile: power
+    Mercury helio        3.96e-02 |      0.00e+00   5.59e-18 |      0.00e+00       1.87e-16
+    Earth helio          5.93e-03 |      0.00e+00   2.49e-16 |      0.00e+00       8.35e-15
+    Saturn helio         6.52e-05 |      0.00e+00   2.06e-12 |     3.84e-149       6.91e-11
+    Neptune helio        6.56e-06 |     1.44e-113   2.04e-10 |      9.06e-47       6.82e-09
+    MICROSCOPE 710km     7.93e+00 |      0.00e+00   1.39e-22 |      0.00e+00       4.67e-21
+    lab 1g               9.81e+00 |      0.00e+00   9.10e-23 |      0.00e+00       3.05e-21
+
+    vs the bounds |alpha_1| < 1e-4, |alpha_2| < 4e-7:
+    - exponential tail: identically zero at every solar-system body (sqrt(x) >= 346 even at the hostile
+      footing at Saturn) -- the feedback is e^(-sqrt(x))-dead. PASS by > 140 orders.
+    - power-law tail: worst precision body (Neptune, hostile) |x eps'| = 6.8e-09
+      -- STILL passes PPN by ~4 orders. Honest both ways: PPN feedback kills NO mu shape; the power-law
+      members die at the solar REFLEX (agentM x6-11), not at PPN. The gate-1b PASS is tail-independent.
+    - strong-field (pulsar) channel alpha_1-hat: pulsar orbital x ~ 1e12 -> feedback = 0. PASS.
+    - OMW's PPN derivation assumes L_m independent of u^mu (1802.04303 Eq. 2.3); the violation of that
+      assumption here is the eps(x)-suppressed coupling above => their pure-aether alpha_1/alpha_2 corners
+      receive corrections bounded by the same factors: the [2] corners survive the matter coupling.
+    OPEN-minor (named, not computed): in deep-MOND regions the matter coupling sources delta-u at
+    O(1) of the matter terms; the galaxy-scale u-profile (tilt/drag of the local frame) is a real
+    computation for the build. Solar-system effect enters only through the eps(x)-dead coupling.
+
+====================================================================================================
+[4] GATE 2: conservation -- the causal-version violation channel, sized per system class
+====================================================================================================
+    Action route (time-symmetric |a(omega)| functional): diffeo-invariant nonlocal action =>
+    generalized Bianchi: total grad_mu T^munu = 0 ON-SHELL, exactly, nonlocality notwithstanding
+    (DEW precedent). But time-symmetric = ACAUSAL (reads the future). Retarded/causal route:
+    Noether guarantee lost; violation confined to [MOND-deviation eps(x)] x [aperiodicity of the
+    trajectory] (for (quasi)periodic orbits the half-line determines the spectrum).
+
+    system                      a [m/s^2]     x (fw)   eps_exp(x)  energy-balance verdict
+    binary pulsar B1913+16       9.88e+01  1.055e+12     0.00e+00  screened: no observable channel
+    triple J0337+1715 outer      1.70e-03  1.816e+07     0.00e+00  screened: no observable channel
+    solar system (Saturn)        6.52e-05  6.966e+05     0.00e+00  screened: no observable channel
+    wide binary deep             1.00e-10  1.068e+00     5.52e-01  O(MOND) -- IS the anomaly itself
+    galaxy outskirts             1.20e-10  1.282e+00     4.76e-01  O(MOND) -- IS the anomaly itself
+
+    => No data-side kill is constructible: every precision energy-balance test (pulsar Pdot at 1e-2
+    precision, solar-system) sits at eps = 0; in galaxies the 'violation' budget is O(the MOND effect)
+    on secular timescales -- unobservable as non-conservation. The gate is STRUCTURAL (well-posedness/
+    causality of the retarded version), not observational. OPEN -- exactly Milgrom's own flagged gap,
+    inherited undiminished by the covariant lift; Schwinger-Keldysh (in-in) + the aether as the
+    momentum reservoir is the named published-adjacent route (1712.07066 precedent class).
+====================================================================================================
+[5] GATE 4: lensing -- what the construction does to photons (exactly nothing)
+====================================================================================================
+    Photons: the MI functional multiplies m; for m = 0 the worldline action is the unmodified null
+    action => photons follow null geodesics of the EINSTEIN metric sourced by baryons + aether stress.
+    Aether-stress contribution: bounded by the [2] corners, fractional metric sourcing <~ c_14 <= 2.5e-5
+    of the baryon terms -- 4+ orders below the needed MOND phantom (~x230 deep-bin deficit, banked).
+    => the banked metric-passive wall applies UNCHANGED: baryon-only lensing is excluded at 40.5 sigma
+    on the repo's own re-measured isolated lensing RAR (f4_lensing_wall.out). FAIL as a whole theory;
+    DELEGATED by construction: this object is the matter-sector HALF of the spec's hybrid (Link 7
+    partner still required; division of labor stated in the .md).
+====================================================================================================
+[6] GATE 5: cosmology -- the two natural a0 readings of the construction
+====================================================================================================
+    (a) a0 = const coupling in the matter functional  == the framework's pure-Lambda branch
+        (a0 propto sqrt(rho_DE) is CONSTANT for a cosmological constant: same object).
+    (b) a0(z) = (c/Z) * (div u)/3 = c H(z)/Z -- the khronon's only natural local scale ==
+        the RIVAL rising branch (DEW 1405.0393 alpha[g] variant; contested MUSE-DARK III reading).
+
+         z  a0_rising/a0_const = E(z)
+       0.0                      1.000
+       0.5                      1.322
+       1.0                      1.790
+       2.0                      3.032
+       3.0                      4.566
+    1100.0                  20503.890
+
+    - The two readings are DEGENERATE at z=0 and diverge by x1.79 at z=1, x20504 at recombination.
+    - Reading (b) at recombination: a0 larger by 2e4 => the deep-MOND regime vastly wider during CMB
+      formation => the CMB gate is much HARDER for the rising reading. Reading (a) inherits the repo's
+      banked phenomenological CMB-safety flag for the flat/constant kernel (bath argument), with the
+      honest caveat that NO Boltzmann-level audit of M22 exists in any frame, ours included.
+    - Background: comoving dust has zero u-frame acceleration AND zero force -- the law is trivially
+      satisfied (0=0); Friedmann renormalization G_cos/G_N is the standard aether factor, BBN-bounded
+      (checked in [2]). The construction does not DECIDE the branch: it makes both expressible. OPEN.
+====================================================================================================
+agentU computations complete. Verdict assembly in agentU_khronon_m22.md.
+====================================================================================================
