@@ -32,6 +32,10 @@ TERMS = [
     "MOND acceleration scale", "external field effect", "emergent gravity",
     "wide binaries", "wide binary test", "MUSE-DARK", "dark energy equation of state",
     "w0waCDM", "evolving dark energy", "high-redshift rotation curves",
+    # WATCHLIST entries 5-6: relativistic-MOND theory + the high-z / a0(z) telescopes
+    "aether scalar tensor", "AeST", "Skordis", "relativistic MOND", "TeVeS",
+    "weak lensing radial acceleration", "DESI DR3", "ELT HARMONI",
+    "JWST rotation curve", "ALMA high-redshift kinematics", "galaxy cluster MOND residual",
 ]
 ATOM = "{http://www.w3.org/2005/Atom}"
 
