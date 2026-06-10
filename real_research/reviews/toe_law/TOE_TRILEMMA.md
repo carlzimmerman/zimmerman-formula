@@ -44,7 +44,10 @@ The completed perimeter points every arrow at the same target: **a covariant com
 1. **Nonlocality structure:** Milgrom proved MOND-as-modified-inertia must be nonlocal in time. Write the minimal
    nonlocal action class (retarded kernel K(t−t′) on the worldline) that reproduces ν(y) in the adiabatic limit; ask
    what K the Γ_th/bath kernel actually implies (the repo's Γ_th gives a candidate K for free — the first time those
-   two threads meet).
+   two threads meet). **[STARTED 2026-06-10, adiabatic/pointwise level: `MI_BATH_TAIL_CONSTRAINT.md` (the natural
+   difference ansatz = Milgrom-99 verbatim is ephemeris-DEAD ×54,000; spec sheet established) and
+   `MI_COUPLING_FAMILY.md` (see-saw no-go in the difference family; the susceptibility coupling m∝dT_eff/da survives —
+   derives μ_standard parameter-free, Saturn-safe ×4, a₀ = cH = Z×framework). The full K(t−t′) construction remains open.]**
 2. **The covariance obstruction, stated precisely:** what exactly fails when the worldline-nonlocal action is lifted to
    a generally-covariant field theory? (Known folklore; making the obstruction a theorem — or finding the loophole —
    is the actual frontier. The singular-surface result above is the analogous theorem for the scalar route.)

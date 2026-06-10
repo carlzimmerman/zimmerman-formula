@@ -1,0 +1,28 @@
+F1 deep: x/2   F1 tail(u=1/x): u**2/2 - u + 1
+F4 deep: -x**3/2 + x   F4 tail(u=1/x): 1 - u**2/2
+
+coupling          eps | deep mu/x (want O(1)) | tail x*(1-mu) (want ->0) | Saturn delta_a (bound 1e-14)
+F1 gapless-diff    None |          0.5       |            1          |  5.42e-10  DEAD x54,183
+F2 gapped/normA     1.0 |          inf       |        0.582          |  3.15e-10  DEAD x31,533
+F2 gapped/normA     5.0 |          inf       |      0.03392          |  1.84e-11  DEAD x1,838
+F2 gapped/normA    13.5 |          inf       |    1.801e-05          |  7.76e-15  SAFE
+F2 gapped/normA    20.0 |          inf       |   -4.587e-07          | -2.25e-15  SAFE
+F3 gapped/normB     1.0 |         0.46       |        1.082          |  5.86e-10  DEAD x58,625
+F3 gapped/normB     5.0 |       0.0854       |        2.534          |  1.37e-09  DEAD x137,295
+F3 gapped/normB    13.5 |     0.000125       |         6.75          |  3.66e-09  DEAD x365,731
+F4 susceptibility  None |            1       |        5e-07          |  2.27e-15  SAFE
+
+F2 tail-safe threshold: eps* = 13.50  (eps*n(eps*) = 1.85e-05)
+   ...but F2 deep-slope at eps*: mu/x|_(x=1e-3) = inf  (deep MOND destroyed)
+
+implied a0:  F1: 2cH = 1.084e-09 (= 11.6x framework)
+             F4:  cH = 5.418e-10 (= 5.79x framework = Z)
+             SPARC-fitting framework value: 9.360e-11
+
+READING: within the difference-family, deep-MOND and an ephemeris-safe tail are MUTUALLY EXCLUSIVE (the gap
+that suppresses the tail kills the deep limit, and vice versa) -- a see-saw no-go. The single escape inside
+the bath family is the SUSCEPTIBILITY coupling F4 (m_eff prop dT_eff/da): it derives mu_standard = x/sqrt(1+x^2)
+parameter-free, passes Saturn by 4x margin (quadratic tail), keeps the deep limit -- and lands a0 = cH, i.e.
+a factor Z (5.79) above the SPARC value instead of 2Z. The coefficient gap is UNCHANGED in kind (Z remains
+data-selected, not derived); what changed is that the tail kill no longer applies to the whole bath route.
+F4 is SELECTED by the spec sheet, not derived from first principles -- construction, not derivation.
