@@ -1,0 +1,180 @@
+/Users/carlzimmerman/new_physics/zimmerman-formula/real_research/reviews/toe_law/agentJ_massbin_phase.py:176: RuntimeWarning: divide by zero encountered in matmul
+  S=J@Cg@J.T
+/Users/carlzimmerman/new_physics/zimmerman-formula/real_research/reviews/toe_law/agentJ_massbin_phase.py:176: RuntimeWarning: overflow encountered in matmul
+  S=J@Cg@J.T
+/Users/carlzimmerman/new_physics/zimmerman-formula/real_research/reviews/toe_law/agentJ_massbin_phase.py:176: RuntimeWarning: invalid value encountered in matmul
+  S=J@Cg@J.T
+========================================================================================================
+PART 0 -- data, covariance, gates
+========================================================================================================
+[gate] g_bar grid IDENTICAL across the 4 mass bins (15 bins, 1.382e-15..3.917e-12 m/s^2) -> the mass-bin TREND is exactly independent of the reference curve (common per-bin subtraction).
+[note] bin-1 has 1 non-positive ESD point (b=15, highest g_bar); mean-dex estimator uses the common valid set b=1..14; GLS amplitude uses all 15.
+[gate] cov diagonal vs profile-file errors: max |sqrt(diag)-err|/err = 5.30e-05 (PASS)
+[gate] covariance positive-definite: min eig = 6.691e-27 (PASS)
+[gate] lens catalog: 181,477 isolated lenses (v4); med logM*=10.591
+mass bins (edges [8.5, 10.3, 10.6, 10.8, 11.0]; 46 lenses below 8.5 excluded by edge):
+  bin1: N=50,822  med logM*=9.898  med logMgal=10.111  med z=0.230  frac early=0.12
+  bin2: N=41,748  med logM*=10.468  med logMgal=10.567  med z=0.296  frac early=0.46
+  bin3: N=43,721  med logM*=10.700  med logMgal=10.771  med z=0.333  frac early=0.65
+  bin4: N=45,140  med logM*=10.899  med logMgal=10.951  med z=0.372  frac early=0.76
+slope axis x = med logM* per bin: [ 9.898 10.468 10.7   10.898] (span 1.00 dex); bin-midpoint robustness row carried in PART 2.
+
+========================================================================================================
+PART 1 -- measured per-mass-bin offsets Dlog10 g_obs (full covariance)
+========================================================================================================
+offsets vs the framework reference (mean-dex b=1..14 | GLS amplitude all 15, per-bin model chi2/dof):
+  bin1 (med logM*=9.90): +0.112 +/- 0.036 dex   |   +0.095 +/- 0.033 dex  (chi2/14=2.9)
+  bin2 (med logM*=10.47): +0.175 +/- 0.024 dex   |   +0.175 +/- 0.022 dex  (chi2/14=2.1)
+  bin3 (med logM*=10.70): +0.177 +/- 0.020 dex   |   +0.170 +/- 0.019 dex  (chi2/14=1.3)
+  bin4 (med logM*=10.90): +0.165 +/- 0.017 dex   |   +0.169 +/- 0.016 dex  (chi2/14=1.7)
+  [convention rows: same offsets under the other reference conventions -- per the #1 rule]
+    framework nu, a0=9.36e-11: offsets [0.112 0.175 0.177 0.165]
+    framework nu, a0=1.20e-10: offsets [0.059 0.121 0.124 0.111]
+    McGaugh nu,  a0=9.36e-11: offsets [0.104 0.166 0.169 0.156]
+    McGaugh nu,  a0=1.20e-10: offsets [0.051 0.113 0.116 0.104]
+  [note] the GLS amplitude chi2/dof >> 1 flags that a single multiplicative amplitude is a poor model of the
+  full profile (the low-g_bar 2-halo upturn); mean-dex is the primary estimator (repo unweighted-dex convention).
+
+bin-1 as empirical reference (mean-dex, correlated errors):
+  bin2-bin1: +0.062 +/- 0.043 dex  (+1.5 sigma)
+  bin3-bin1: +0.065 +/- 0.041 dex  (+1.6 sigma)
+  bin4-bin1: +0.053 +/- 0.040 dex  (+1.3 sigma)
+
+per-g_bar-bin detail (measured offset vs framework ref, dex):
+      g_bar    bin1    bin2    bin3    bin4
+   1.38e-15  +0.177  +0.119  +0.085  -0.013
+   2.44e-15  +0.392  +0.076  +0.265  +0.035
+   4.30e-15  +0.196  +0.263  +0.152  +0.183
+   7.59e-15  +0.002  +0.268  +0.329  +0.216
+   1.34e-14  -0.022  +0.130  +0.200  +0.235
+   2.36e-14  -0.097  +0.278  +0.262  +0.092
+   4.17e-14  +0.116  +0.361  +0.132  +0.288
+   7.36e-14  +0.115  +0.186  +0.192  +0.207
+   1.30e-13  +0.274  +0.345  +0.233  +0.154
+   2.29e-13  +0.151  +0.027  +0.092  +0.264
+   4.04e-13  +0.277  +0.145  +0.147  +0.212
+   7.13e-13  +0.135  +0.089  +0.113  +0.138
+   1.26e-12  -0.027  +0.141  +0.104  +0.158
+   2.22e-12  -0.113  +0.020  +0.176  +0.142
+   3.92e-12    neg.  -0.002  +0.031  +0.091
+
+========================================================================================================
+PART 2 -- the TREND test: slope d(offset)/d(log10 M*), full offset covariance
+========================================================================================================
+primary (mean-dex offsets, framework ref; the slope is reference-independent -- verified below):
+  mean-dex, med-logM* axis                                   slope=+0.041 +/- 0.037 dex/dex (+1.1 sigma); chi2 flat->line 2.7->1.5 (Dchi2=1.2)
+  [gate] slope under all 4 reference conventions identical to machine precision: PASS
+  GLS-amplitude offsets (weighting-convention row)           slope=+0.059 +/- 0.034 dex/dex (+1.8 sigma); chi2 flat->line 5.0->1.9 (Dchi2=3.1)
+  bin-midpoint x-axis (robustness)                           slope=+0.033 +/- 0.026 dex/dex (+1.3 sigma); chi2 flat->line 2.7->1.1 (Dchi2=1.7)
+  bin-index x-axis (rank robustness)                         slope=+0.008 +/- 0.011 dex/dex (+0.7 sigma); chi2 flat->line 2.7->2.2 (Dchi2=0.5)
+
+pairwise monotonicity (mean-dex, correlated errors):
+  bin2-bin1: +0.062 +/- 0.043 (+1.5 sigma)
+  bin3-bin2: +0.003 +/- 0.031 (+0.1 sigma)
+  bin4-bin3: -0.012 +/- 0.026 (-0.5 sigma)
+  monotonic increasing point estimates: False
+
+mass-bin jackknife (drop one bin, mean-dex slope):
+  drop bin1: slope=-0.026 +/- 0.067 (-0.4 sigma)
+  drop bin2: slope=+0.052 +/- 0.040 (+1.3 sigma)
+  drop bin3: slope=+0.039 +/- 0.037 (+1.0 sigma)
+  drop bin4: slope=+0.079 +/- 0.050 (+1.6 sigma)
+
+========================================================================================================
+PART 3 -- the phase chain, quantitatively (SHMR/NFW machinery of agentH3_typesplit, per MASS bin)
+========================================================================================================
+[gate] reproduce agentH3_typesplit per-CLASS phase geography (M13xD08 type-blind):
+  early: med logM_h=12.36; frac above boundary=68%   [gate: med logM_h=12.36 frac=68%]
+  late: med logM_h=11.86; frac above boundary=27%   [gate: med logM_h=11.86 frac=27%]
+
+phase geography per MASS bin (M13xD08; B-K boundary logM_h > 12.15; BFK R_T, m=1eV sigma/m=0.01):
+  bin1 (med logM*=9.90): med logM_h=11.55; frac above boundary=0%; med R_T=72 kpc; med r200=135 kpc; core/r200=0.53
+  bin2 (med logM*=10.47): med logM_h=11.99; frac above boundary=0%; med R_T=83 kpc; med r200=184 kpc; core/r200=0.45
+  bin3 (med logM*=10.70): med logM_h=12.28; frac above boundary=90%; med R_T=91 kpc; med r200=229 kpc; core/r200=0.40
+  bin4 (med logM*=10.90): med logM_h=12.71; frac above boundary=100%; med R_T=105 kpc; med r200=311 kpc; core/r200=0.34
+  -> the chain's premise: frac-above-boundary IS monotonic in M* (0%, 0%, 90%, 100%); the phase mechanism therefore DEMANDS a monotonic offset rise.
+
+predicted offsets (1-halo NFW; vs framework ref; mean over b=1..14) and bin-minus-bin1:
+  config                                    bin1    bin2    bin3    bin4 |     D21    D31    D41 |   slope
+  M13 x D08, type-blind (primary)         -0.135  -0.101  -0.004  +0.209 | +0.034 +0.131 +0.344 | +0.297
+  B13 x DM14, type-blind                  -0.143  -0.126  -0.031  +0.166 | +0.017 +0.112 +0.309 | +0.265
+  M13 x D08 + Mandelbaum16 type-dep       -0.128  -0.054  +0.223  +0.461 | +0.074 +0.351 +0.588 | +0.554
+  M13 x D08, v3-like masses (-0.15)       -0.131  -0.120  -0.073  +0.033 | +0.011 +0.058 +0.164 | +0.140
+  MEASURED (mean-dex)                     +0.112  +0.175  +0.177  +0.165 | +0.062 +0.065 +0.053 | +0.041
+
+predicted vs measured bin-over-bin1 RATIOS (10^D, linear g_obs ratio at fixed g_bar):
+  bin2/bin1: predicted 1.08x (primary)  vs measured 1.15x +/- 0.11
+  bin3/bin1: predicted 1.35x (primary)  vs measured 1.16x +/- 0.11
+  bin4/bin1: predicted 2.21x (primary)  vs measured 1.13x +/- 0.10
+
+linearized chain demand from the type split (agentH3: type-blind +0.119 dex across the 0.41-dex
+early-late med-M* gap -> ~+0.29 dex/dex): this dataset's 1.0-dex span demands ~+0.2..0.3 dex bin4-bin1
+if the offset is a pure function of M* through the halo chain; the direct per-bin prediction above is the
+exact version of that demand (primary D41=+0.344 dex).
+
+========================================================================================================
+PART 4 -- the 2-halo control
+========================================================================================================
+probe radii: med R (windowed, proper Mpc) per (mass bin, g_bar bin); 1-halo-safe = med R < med r200(bin):
+      g_bar | bin1 R(safe) | bin2 R(safe) | bin3 R(safe) | bin4 R(safe)
+   1.38e-15 |   1.141(2h) |   1.928(2h) |   2.439(2h) |   2.849(2h) | 
+   2.44e-15 |   0.859(2h) |   1.452(2h) |   1.836(2h) |   2.260(2h) | 
+   4.30e-15 |   0.646(2h) |   1.093(2h) |   1.382(2h) |   1.702(2h) | 
+   7.59e-15 |   0.487(2h) |   0.823(2h) |   1.041(2h) |   1.281(2h) | 
+   1.34e-14 |   0.366(2h) |   0.619(2h) |   0.783(2h) |   0.964(2h) | 
+   2.36e-14 |   0.276(2h) |   0.466(2h) |   0.590(2h) |   0.726(2h) | 
+   4.17e-14 |   0.208(2h) |   0.351(2h) |   0.444(2h) |   0.547(2h) | 
+   7.36e-14 |   0.156(2h) |   0.264(2h) |   0.334(2h) |   0.411(2h) | 
+   1.30e-13 |   0.118(S) |   0.199(2h) |   0.252(2h) |   0.310(S) | 
+   2.29e-13 |   0.089(S) |   0.150(S) |   0.189(S) |   0.233(S) | 
+   4.04e-13 |   0.067(S) |   0.113(S) |   0.143(S) |   0.176(S) | 
+   7.13e-13 |   0.052(S) |   0.085(S) |   0.107(S) |   0.132(S) | 
+   1.26e-12 |   0.043(S) |   0.064(S) |   0.081(S) |   0.100(S) | 
+   2.22e-12 |   0.036(S) |   0.048(S) |   0.061(S) |   0.075(S) | 
+   3.92e-12 |   0.030(S) |   0.036(S) |   0.046(S) |   0.056(S) | 
+  med r200 per bin (Mpc): [0.135 0.184 0.229 0.311]; ALL-four-safe g_bar bins: [10 11 12 13 14 15] (1-indexed)
+
+(i) 1-halo-safe subset (b in [10 11 12 13 14]): offsets +0.084+/-0.061, +0.084+/-0.045, +0.126+/-0.034, +0.183+/-0.025
+      1-halo-safe slope                                      slope=+0.122 +/- 0.062 dex/dex (+2.0 sigma); chi2 flat->line 5.4->1.5 (Dchi2=3.9)
+      complement (2-halo-dominated bins) slope               slope=+0.000 +/- 0.047 dex/dex (+0.0 sigma); chi2 flat->line 6.4->6.4 (Dchi2=0.0)
+
+(ii) linear-theory module gates: sigma8=0.8 (input); xi0(r)=1 at r=6.9 Mpc = 4.8 Mpc/h [anchor ~5-6 Mpc/h]; 
+     b(nu=1)=0.948... computed b at med halo masses: bin1: b(11.55,z=0.23)=0.79, bin2: b(11.99,z=0.30)=0.89, bin3: b(12.28,z=0.33)=0.98, bin4: b(12.71,z=0.37)=1.17
+     anchor: DeltaSigma_2h(R=1 Mpc proper, z=0.3, b=1) = 0.28 Msun/pc^2 [expect O(1)]
+
+2-halo contamination delta-g/g_obs (per cent) per (mass bin, g_bar bin):
+      g_bar    bin1    bin2    bin3    bin4
+   1.38e-15     22%     36%     48%     76%
+   2.44e-15      9%     28%     22%     49%
+   4.30e-15     10%     12%     20%     24%
+   7.59e-15     10%      8%      9%     15%
+   1.34e-14      7%      7%      8%     10%
+   2.36e-14      5%      3%      5%      9%
+   4.17e-14      2%      2%      4%      4%
+   7.36e-14      1%      2%      2%      3%
+   1.30e-13      1%      1%      1%      2%
+   2.29e-13      0%      1%      1%      1%
+   4.04e-13      0%      0%      1%      1%
+   7.13e-13      0%      0%      0%      1%
+   1.26e-12      0%      0%      0%      0%
+   2.22e-12     -0%      0%      0%      0%
+   3.92e-12    --       -0%      0%      0%
+
+2-halo-INDUCED offset (mean over b=1..14, on top of 1-halo): +0.061, +0.080, +0.078, +0.064  -> induced slope +0.008 dex/dex
+  2-halo-corrected measured slope (x1.0 amplitude, 14 bins): +0.008 +/- 0.048 (+0.2 sigma); offsets +0.090, +0.138, +0.133, +0.077
+  2-halo-corrected measured slope (x0.5 amplitude, 14 bins): +0.021 +/- 0.040 (+0.5 sigma); offsets +0.102, +0.158, +0.157, +0.130
+  2-halo-corrected measured slope (x2.0 amplitude, 13 bins): +0.059 +/- 0.058 (+1.0 sigma); offsets +0.075, +0.125, +0.126, +0.004
+
+predicted TOTAL (1-halo + 2-halo) offsets vs measured (mean over b=1..14):
+  predicted total: -0.074, -0.022, +0.074, +0.273  (slope +0.305)
+  measured       : +0.112, +0.175, +0.177, +0.165  (slope +0.041 +/- 0.037)
+
+========================================================================================================
+VERDICT INPUTS (fork locked in agentJ_massbin_phase.md)
+========================================================================================================
+  chain demand: fcond per bin 0%, 0%, 90%, 100% (monotonic: True); predicted D41=+0.344 dex (primary), slope +0.297 dex/dex
+  measured: offsets [0.112 0.175 0.177 0.165]; slope +0.041 +/- 0.037 (+1.1 sigma); monotonic point estimates: False
+  bin4-bin1 measured +0.053 +/- 0.040 vs chain +0.344
+  2-halo control: safe-subset slope +0.122 +/- 0.062 (+2.0 sigma); 2-halo-induced slope +0.008
+  (verdict text in agentJ_massbin_phase.md -- locked wording: tests the real-lensing-mass class's phase
+   mechanism; does not confirm any model.)
