@@ -1,0 +1,177 @@
+==============================================================================================================
+[L0] CONVENTIONS
+  H_Lambda = 1.8073e-18 s^-1 = 1.1896e-33 eV ; cH_Lambda = 5.418e-10 m/s^2 ; a0(fw) = 9.360e-11
+  beta_Cassini = 3.390e-03 ; tau_eff*H (t_dS cap, N3) = 0.27
+  hierarchy (m_p/M_red)(H/M_red) = 1.882e-79   (N3 quotes 1.9e-79)
+==============================================================================================================
+[L1] THE COHERENCE CRITERION
+--------------------------------------------------------------------------------------------------------------
+[L1a] sympy: the exact two-worldline dS invariant (static-patch pair, separation d, H=1 units)
+  P_AB(s; d)        = sqrt(-H**2*d**2 + 1)*cosh(H*s)
+  Delta P = P_AB - P_AA = (sqrt(-H**2*d**2 + 1) - 1)*cosh(H*s) ; matches (sqrt(1-H^2 d^2)-1) cosh(Hs): True
+  leading pair-shift: Delta P / cosh(Hs) = -H**2*d**2/2 + O(d^6)  ->  |Delta P|/P ~ (H d/c)^2 / 2  EXACT-leading
+  => the cross-pair memory kernel differs from the CoM self-kernel by a UNIFORM P-shift of relative
+     size (Hd/c)^2/2: for the dS bath the spatial coherence scale is the HUBBLE RADIUS, as posited.
+
+[L1b] mpmath: tail-variation scale |dlnV/dP| (the other half of the criterion |dP * dlnV/dP| << 1)
+    m/H      P     V(P) [H^2]    |dlnV/dP|
+   0.30    1.5     7.5262e-02   1.6849e-02
+   0.30    3.0     7.3868e-02   9.4381e-03
+   0.30   10.0     7.1298e-02   3.0038e-03
+   1.00    1.5     3.5659e-02   1.9298e-01
+   1.00    3.0     2.8638e-02   1.1300e-01
+   1.00   10.0     1.8548e-02   3.7431e-02
+   1.40    1.5     1.2791e-03   3.9142e-01
+   1.40    3.0     8.0813e-04   2.4389e-01
+   1.40   10.0     3.0210e-04   8.8185e-02
+  -> |dlnV/dP| = O(0.1-1) for the light (MOND-signed, m^2<2H^2) corner: criterion is (Hd/c)^2/2 * O(1) << 1.
+     MMC endpoint (N1): V = -H^2/4pi CONSTANT in P -> dlnV/dP = 0: coherence EXACT across the whole cone.
+
+[L1c] where coherence actually breaks -- three scales, per body
+  dS-bath coherence length l_c = c/kappa ~ c/H = 1.659e+26 m = 5.38 Gpc
+  body                          N      R [m]   (HR/c)^2/2  spatially coherent (dS bath)?
+  H atom (HI)            1.00e+00   5.30e-11     5.10e-74  YES
+  Cs atom                1.32e+02   3.00e-10     1.64e-72  YES
+  dust grain 1um         7.53e+12   1.00e-06     1.82e-65  YES
+  MICROSCOPE mass        2.40e+26   4.00e-02     2.91e-56  YES
+  Moon                   4.39e+49   1.74e+06     5.48e-41  YES
+  Earth                  3.57e+51   6.37e+06     7.38e-40  YES
+  Jupiter                1.13e+54   6.99e+07     8.88e-38  YES
+  Sun (star)             1.19e+57   6.96e+08     8.80e-36  YES
+  GMC 1e5 Msun           1.19e+62   1.54e+18     4.33e-17  YES
+  GMC 1e7 Msun (max)     1.19e+64   3.09e+18     1.73e-16  YES
+  MW baryons             7.25e+67   9.26e+20     1.56e-11  YES
+  -> EVERY body through the whole Milky Way is inside ONE dS coherence patch: the loophole's premise holds.
+
+  massive in-band carriers (knee band, for completeness; N3: anti-MOND-signed for m^2>2H^2):
+    m = 1.3e-29 eV : lambda_C = 1.52e+22 m = 4.92e+05 pc -> star coherent: True; 50-pc cloud coherent: True; MW coherent: True
+    m = 5.0e-28 eV : lambda_C = 3.95e+20 m = 1.28e+04 pc -> star coherent: True; 50-pc cloud coherent: True; MW coherent: False
+    m = 5.0e-26 eV : lambda_C = 3.95e+18 m = 1.28e+02 pc -> star coherent: True; 50-pc cloud coherent: True; MW coherent: False
+    m = 1.6e-24 eV : lambda_C = 1.23e+17 m = 4.00e+00 pc -> star coherent: True; 50-pc cloud coherent: False; MW coherent: False
+
+  internal/thermal decoherence (solar core T = 1.57e7 K):
+    proton v_th = 6.235e+05 m/s ; charge depletion q -> q/gamma: (v/c)^2/2 = 2.16e-06  (NOT decoherence)
+    collisional proper acceleration a_int ~ v*nu_coll ~ 5.2e+20 m/s^2 ; x_int = a_int/cH = 9.7e+29
+    BUT bound-motion displacement <= R: internal coords enter the pair kernel only at (HR/c)^2/2 <= 8.8e-36 (star)
+    -> the monopole Q = beta*M/M_Pl is conserved under internal motion; the kernel cannot resolve sub-patch
+       structure; the a-keyed (N^2) cross-terms key to the CoM history. Internal temperature does NOT decohere.
+    incoherent control (random-phase MC, N=10000): |sum of N unit vectors| = 105.4 ~ sqrt(N) = 100.0 -> incoherent ensembles give sqrt(N) FLUCTUATION (eps ~ eps_1/sqrt(N): SMALLER)
+==============================================================================================================
+[L2] THE SCALING LEDGER: eps_body = N * eps_1 (coherent), and what N closes each banked wall
+--------------------------------------------------------------------------------------------------------------
+  eps_1(beta=1)      = 4.045e-81   (N3 quotes 4.1e-81)
+  eps_1(beta_Cassini)= 4.648e-86   (N3 quotes 4.7e-86)
+  eps_1(q=1/nucleon) = 2.724e-44   (N3 quotes 2.8e-44)
+
+  Hubble mass M_H = c^3/(G H_Lambda) = 2.234e+53 kg ; N_H = 1.336e+80 nucleons
+  horizon baryon budget (Omega_b h^2 = 0.0224, R = c/H0): M_b = 4.56e+51 kg ; N_b = 2.72e+78
+
+  N_req for eps_body = 1 (the closure ledger):
+    beta = beta_Cassini                             : N_req = 2.15e+85 = 3.60e+58 kg = 1.81e+28 Msun = 1.61e+05 M_Hubble
+    beta = 1 (gravitational)                        : N_req = 2.47e+80 = 4.14e+53 kg = 2.08e+23 Msun = 1.85e+00 M_Hubble
+    q = 1/nucleon (force 1e37 x gravity, already dead): N_req = 3.67e+43 = 6.14e+16 kg = 3.09e-14 Msun = 2.75e-37 M_Hubble
+
+  the gravitational-charge identity (the classical q^2=Gm^2 route, agentN4's 25-dex wall -- ALREADY coherent):
+    eps_classical(M) = G M H/c^3 = r_g/(2 R_H): Sun = 8.904e-24 (N4 quotes 1.1e-23; footing diff x1.2)
+    check r_g/(2R_H) = 8.904e-24 ; closure: eps=1 at M = M_H = 2.23e+53 kg, i.e. x1.1e+23 the Sun
+    -> the 25-dex wall is the SUN'S OWN coherent N^2 number (N = 1.19e57 already inside it);
+       the only 'body' that closes it is the horizon mass itself.
+
+  the vacuum-correlator route (agentI 2c-i, '38 dex' -- a gap in beta, not eps; per-nucleon):
+    eps_1(beta_C) = (beta_C/beta_req)^2 = 5.94e-77 -> N_req = 1.68e+76 = 2.82e+49 kg = 1.42e+19 Msun
+    AND the sign is anti-MOND for m^2 > 2H^2 = the whole knee band (agentI 2c-i): no N flips a sign.
+
+  naive misreadings of the prompt's gaps, corrected:
+    'N = 1e25 closes 25 dex'  -> 1e25 nucleons = 16.7 g (a ~17-gram lab mass) -- WRONG reading:
+       the 25-dex wall is Sun-referenced and already N^2-coherent (above); no kg-scale closure exists.
+    'N = 1e38 closes 38 dex'  -> 1e38 nucleons = 1.67e+11 kg (a ~500-m asteroid) -- WRONG reading:
+       agentI's 38 dex is in beta (eps ~ beta^2): the per-nucleon eps gap is 76.6 dex -> N_req = 1.7e76.
+
+  PER-BODY TABLE (dS-bath/N3 channel, capped, eps = N * eps_1):
+  body                          N |  eps(beta_C) dex short |  eps(beta=1) dex short
+  H atom (HI)            1.00e+00 |     4.65e-86      85.3 |     4.05e-81      80.4
+  Cs atom                1.32e+02 |     6.13e-84      83.2 |     5.34e-79      78.3
+  dust grain 1um         7.53e+12 |     3.50e-73      72.5 |     3.05e-68      67.5
+  MICROSCOPE mass        2.40e+26 |     1.11e-59      59.0 |     9.70e-55      54.0
+  Moon                   4.39e+49 |     2.04e-36      35.7 |     1.78e-31      30.8
+  Earth                  3.57e+51 |     1.66e-34      33.8 |     1.44e-29      28.8
+  Jupiter                1.13e+54 |     5.27e-32      31.3 |     4.59e-27      26.3
+  Sun (star)             1.19e+57 |     5.53e-29      28.3 |     4.81e-24      23.3
+  GMC 1e5 Msun           1.19e+62 |     5.53e-24      23.3 |     4.81e-19      18.3
+  GMC 1e7 Msun (max)     1.19e+64 |     5.53e-22      21.3 |     4.81e-17      16.3
+  MW baryons             7.25e+67 |     3.37e-18      17.5 |     2.93e-13      12.5
+  horizon baryons        2.72e+78 |     1.27e-07       6.9 |     1.10e-02       2.0
+  -> WHICH BODIES GET MOND-STRENGTH: NONE. At the Cassini coupling the largest bound common-acceleration
+     unit (a 1e7 Msun cloud) is 21.6 dex short; a star 28.3 dex; the whole horizon baryon budget 6.9 dex.
+     At beta=1 the HORIZON ITSELF comes within ~2 dex (the r_g ~ R_H tautology) -- but no sub-horizon body does,
+     and beta=1 unscreened is itself Cassini-dead by x9e+04 in gamma-1.
+
+  coupling that WOULD give a star eps=1: beta_req = 4.56e+11
+    -> scalar force 2*beta^2 = 4.2e+23 x gravity between all unscreened bodies;
+    -> over the Cassini gamma-1 budget by x1.8e+28 (in eps terms). DEAD on arrival.
+==============================================================================================================
+[L3] THE KILL TESTS (both ways, full weight)
+--------------------------------------------------------------------------------------------------------------
+[L3a] WEP / tracer universality: eps proportional to M_body is BODY-DEPENDENT inertia
+  predicted gas-vs-star split if the tracer unit differs (atom-unit branch: HI Newtonian, stars MONDian):
+    a0 = 9.36e-11: g_bar=1e-12: dlog g_obs = 1.008 dex ; g_bar=1e-11: dlog g_obs = 0.555 dex ; g_bar=1e-10: dlog g_obs = 0.191 dex
+    a0 = 1.20e-10: g_bar=1e-12: dlog g_obs = 1.059 dex ; g_bar=1e-11: dlog g_obs = 0.601 dex ; g_bar=1e-10: dlog g_obs = 0.223 dex
+  observed: ONE RAR for gas-traced (HI/Halpha) and stellar-traced systems; total scatter 0.13 dex,
+  intrinsic ~0.057 dex (1609.05917; 2693 pts); dSph stellar-dispersion tracers on the same law (1610.08981).
+  -> predicted deep-regime tracer split 0.55-1.0 dex = 4-8x TOTAL scatter, 10-18x intrinsic: KILLED.
+
+  branch table for the 'body' convention (the decision tree, all branches):
+    HI atom (diffuse, unbound)        : eps/eps_star = 8.4e-58
+    GMC 1e5 Msun (bound-cloud unit)   : eps/eps_star = 1.0e+05
+    branch 1 (atom unit):  gas Newtonian vs stars MOND -> 0.55-1.0 dex tracer split vs 0.13 observed: DEAD
+    branch 2 (cloud unit): eps_cloud = 1e3-1e7 x eps_star -> eps > 1 = NEGATIVE inertia (dynamical runaway)
+                           or, saturated by hand at 1 -> needs a new scale AND falls to branch 3: DEAD
+    branch 3 (saturation at some N_sat): can only CAP eps, never raise it -> the L2 magnitude wall stands
+                           (no body reaches 1 at allowed coupling) AND the Sun saturates too -> [L3b]: DEAD
+
+  LLR (Earth vs Moon free fall toward the Sun; Williams-Turyshev-Boggs 2012, arXiv:1203.2150:
+  Delta(m_g/m_i) = (-0.8 +/- 1.3)e-13). Stellar calibration eps(N) = N/N_sun * g(x); x_E = x_M (same helio a):
+    profile flat (over-hostile)   : Delta(m_g/m_i)_E-M = [3.0e-06, 3.0e-06] -> x[2.3e+07, 2.3e+07] over the LLR bound
+    profile N3 (ln x)/x profile   : Delta(m_g/m_i)_E-M = [6.7e-13, 5.0e-12] -> x[5.1e+00, 3.8e+01] over the LLR bound
+    -> over the bound by x5-x39 even on the maximally suppressed profile; x2.2e7 flat. KILLED (subordinate kill).
+
+  MICROSCOPE (2209.15487, eta ~ 1.5e-15): eps(0.4 kg) <= 2.0e-31 at stellar calibration;
+    composition split is binding-energy-level (~1e-3) on top -> eta_pred <~ 1e-34: MICROSCOPE IS BLIND.
+    (honest both ways: lab/space WEP does NOT bind a mass-proportional coupling at this normalization;
+     the kills are astrophysical -- tracers, LLR, and the reflex.)
+
+[L3b] THE SOLAR REFLEX (Door IVb budget, agentE): the Sun has the LARGEST N in the solar system
+  Sun: N = 1.19e+57 (vs Jupiter 1.13e+54 = x1048 smaller); the Sun IS the
+  calibrating body class: eps_sun = eps_star ~ 1 by construction. x_sun = a_sun/cH = 388.
+  retained dressing at x=388: suppressed profile eps_eff = [2.33e-03, 1.75e-02] (= N3 Wall 2);
+  flat reading eps_eff = 1.
+    suppressed lo: anomalous reflex = 4.90e-10 m/s^2 = x2.0e+05 over the agentE budget; Mars-residual equivalent ~ 2.45e+05 m vs 1.5 m
+    suppressed hi: anomalous reflex = 3.67e-09 m/s^2 = x1.5e+06 over the agentE budget; Mars-residual equivalent ~ 1.84e+06 m vs 1.5 m
+    flat         : anomalous reflex = 2.10e-07 m/s^2 = x8.6e+07 over the agentE budget; Mars-residual equivalent ~ 1.05e+08 m vs 1.5 m
+  agentE [5]: Sun-only/full signal ratio = 1.000 (Mars), 0.998 (Saturn) -> the kill is 100% Sun-carried:
+  de-modifying the planets (their smaller N) changes NOTHING; GM_J absorption is Juno-refuted (20-1000x).
+  -> N-scaling makes Door IVb STRICTLY WORSE: the mechanism puts its largest effect on the one body whose
+     anomalous response is budgeted at 2.45e-15 m/s^2. Over budget by 5.3-7.9 dex. KILLED.
+
+[L3c] decoherence: see [L1c] -- internal temperature does NOT break monopole coherence (bounded displacement,
+  conserved Q, kernel blind below the patch scale). BOTH WAYS: no kill from decoherence, and NO RESCUE either:
+  there is no self-decoherence cap N_sat that could make eps universal across tracers at a useful value --
+  a cap only lowers eps, and the magnitude ledger [L2] is already 21.6+ dex short at the largest bound body.
+==============================================================================================================
+[L4] CONVENTION SWEEP (working-rule discipline)
+--------------------------------------------------------------------------------------------------------------
+  H_Lambda (canonical)    : eps_1(beta_C) = 4.65e-86 ; star eps = 5.53e-29 ; dex short = 28.3
+  H_0 (rho_total footing) : eps_1(beta_C) = 5.62e-86 ; star eps = 6.68e-29 ; dex short = 28.2
+  a0 footing for the tracer split (above): 9.36e-11 vs 1.2e-10 moves dlog g_obs by < 0.06 dex.
+  s-footing for the reflex: agentE ran BOTH (s=cH kills x251, s=a0 kills x8.5); our eps_eff >= 2.3e-3 sits
+  x641 above even the HOSTILE killed template. No footing moves any verdict.
+==============================================================================================================
+[L5] VERDICT NUMBERS (summary)
+--------------------------------------------------------------------------------------------------------------
+  coherence premise: REAL (eps ~ N exact for bound bodies; dS patch = 5.4 Gpc; no thermal break)
+  residual magnitude gap after full N^2 credit, Cassini coupling: star 28.3 dex; 1e7-Msun cloud 21.3 dex; horizon baryons 6.9 dex
+  closure body at gravitational coupling: M = M_H = 2.2e+53 kg (eps = r_g/2R_H -> needs r_g ~ R_H)
+  coupling to fix a star instead: beta = 4.6e+11 = force 4e+23 x gravity: dead
+  universality: tracer split 0.55-1.0 dex predicted vs 0.13 dex observed; LLR x5-x39 (suppressed) to x2.2e7 (flat)
+  solar reflex: x2.0e5-8.6e7 over the agentE budget; Sun-only carries 100% of the killed template
+  => the N^2 gain and the WEP violation are THE SAME NUMBER: coherence buys exactly what universality forbids.
