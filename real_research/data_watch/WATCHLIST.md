@@ -35,3 +35,17 @@ write a dated digest to `digests/YYYY-MM-DD.md` (committed; `seen.json` + `log/`
 post-absorption vs MORE's ~1 cm verified accuracy — window-limited (2.5 yr vs the 11.86-yr carrier), decisive in the
 upper bracket. Owner: `TOE_STATUS_AND_DOORS.md` §Door-IVb. (The constituent-acceleration reading — the sole surviving
 per-body-F4 reading — is untouched by this channel; its coherence cost is on record.)
+
+**8 (added 2026-06-11, agentM):** the DR4 wide-binary fork is RESHAPED by the named matter-sector template
+(Milgrom-2022 + exponential tail, θ(0)-enhanced EFE): soft-shape boost cut to 4–10%; a clean ~3% null kills
+soft-M22 only if θ(0)≲2; **+4–8% POSITIVELY SELECTS M22**; +10–15% kills the enhanced EFE for all shapes.
+Supersedes the bare F4-vs-soft fork of entry 1 as the primary reading. Owner: `reviews/toe_law/agentM_milgrom2022_gauntlet.md`.
+
+**9 (added 2026-06-11, agentP):** the coefficient contest's external adjudicators: (a) any third-party
+adjudication of Dai–Stojkovic (1710.00946) vs Yoon (2003.03198) on Verlinde's derivation; (b) reproduction of
+the 2601.01715 dSph 5.2σ claim — if reproduced, it is evidence FOR a ~9.0×10⁻¹¹ scale on the ρ_DE footing
+(framework-relevant, advocacy-flagged). Owner: `reviews/toe_law/agentP_verlinde_coefficient.md`.
+
+**10 (added 2026-06-11, agentS):** any published DSSYK contrastive calculation of the edge placement's late-time
+observables (the field running our agentS discriminator): edge-fails confirms EDGE-WOUNDED → contest collapses
+further; an edge-QNM rescue would re-symmetrize the gate. Owner: `reviews/toe_law/agentS_edge_qnm.md`.
