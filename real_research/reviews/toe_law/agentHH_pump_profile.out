@@ -1,0 +1,106 @@
+========================================================================================
+[HH-0] REGRESSION GATE: agentEE per-k kernel machinery reproduced before any new claim
+========================================================================================
+[0a] Mellin of the free mode, numeric vs Gamma(1-i nu)(-i c)^(i nu - 1):
+     nu =   0.5: rel.diff = 8.16e-32
+     nu =   2.0: rel.diff = 1.67e-31
+     nu =  -1.3: rel.diff = 8.48e-31
+     gate: worst 8.48e-31 < 1e-12  -> PASS
+[0b] |Gamma(1-i nu)|^2 e^(pi nu) - 2 pi nu/(1-e^(-2 pi nu)) = 0
+     gate: exactly 0 -> PASS
+[0c] FT[-sinh^-2(kappa(tau - i eps)/2)] vs residue formula:
+     omega =   0.7: rel.diff = 2.27e-20
+     omega =   2.3: rel.diff = 9.09e-20
+     omega =  -1.1: rel.diff = 4.54e-20
+     gate: worst 9.09e-20 < 1e-10 -> PASS
+[0d] D(omega) contour vs direct (zt_fw = 2.4078, gamma = 3/4, m = 0.5):
+     omega =   3.0: rel.diff = 1.38e-18
+     omega =  12.0: rel.diff = 2.98e-18
+     gate: worst 2.98e-18 < 1e-8 -> PASS
+[0e] saddle fit: ct_fit = 2.140537 vs pred 2.138750, ratio = 1.00084
+     q_fit = -0.3202 vs -1/3; gate (ratio in [1.0006, 1.0011], q to 0.02) -> PASS
+     fingerprint constants ct by footing: fw = 2.1388, canon = 1.9687, hostile = 2.2790
+[0f] A_max = 5.716 (binding at omega = 0.500)
+     gate (A_max in [5.6, 5.8], agentEE banked 5.716) -> PASS
+[HH-0] REGRESSION GATE: ALL PASS — machinery banked, reuse authorized
+========================================================================================
+[HH-1] PUMP PARAMETRIZATION: scale invariance forces ONE universal ODE; the response
+       (commutator) is normalization-free; the worldline density is Mellin-bilinear
+========================================================================================
+[1a] conformal-time pump equation - k^2 x universal w-ODE = 0
+     => ANY scale-invariant linear local pump (gain ghat(k_phys/H), dispersion f(k_phys/H))
+        reduces to ONE k-independent ODE:  g'' - 2 ghat(w) g' + c^2(1 + f(w)) g = 0.
+        (ghat > 0 = physical-time gain; w-derivative sign flip since w runs backward.)
+        Physical gain rate / H = w*ghat(w): H-paced, the (C5) structure, AUTOMATIC.
+[1b] friction elimination residual = 0
+     => g = e^Ghat psi, Ghat' = ghat:  psi'' + Omega2 psi = 0,
+        Omega2 = c^2(1+f) + ghat' - ghat^2  [w-form; physical-time form -ghat'-ghat^2].
+        NOTE the w-sign: with g'' - 2 ghat g', the dressing is e^{+Ghat}, growing toward
+        large w removed... amplitude bookkeeping lives ONLY in e^{Ghat(w1)-Ghat(w2)}:
+     basis (GL2) invariance of Cauchy propagator: residual = 0
+     gain factorization G_c^g = e^(Ghat(w1)-Ghat(w2)) G_c^psi: residual = 0
+     => the RESPONSE the worldline reads is the Cauchy propagator: normalization-FREE
+        (no vacuum choice, no Wronskian normalization enters -- the Bogoliubov lemma's
+        'dynamics object' made explicit). Gain enters ONLY via e^{Ghat(w1)-Ghat(w2)} and
+        via Omega2 inside psi. WLOG scan space = {Ghat-factor} x {Hermitian Omega2 family}.
+[1c] worldline Mellin-bilinear formula:
+     (i) Plancherel pairing at tau = 0.7 - 0.5i: closed = -3.95569223e-02-1.41716161e-01j,
+         Mellin side = -3.95569223e-02-1.41716161e-01j,  rel.diff = 3.38e-31
+     (ii) nu =  0.4: bilinear rho_c = 2.7925268032e-01  vs  2 pi nu/c^2 = 2.7925268032e-01  rel.diff = 0.00e+00
+     (ii) nu =  1.0: bilinear rho_c = 6.9813170080e-01  vs  2 pi nu/c^2 = 6.9813170080e-01  rel.diff = 1.41e-31
+     (ii) nu =  3.7: bilinear rho_c = 2.5830872930e+00  vs  2 pi nu/c^2 = 2.5830872930e+00  rel.diff = 3.05e-31
+     => rho_c(nu) = -2ic[phia~(nu)psib~(-nu) - phib~(nu)psia~(-nu)], free = 2 pi nu/c^2
+        EXACTLY (the [2d] Planck-odd-part recovered through the bilinear). Convention for
+        the scan: NORMALIZE rho_c by (2 pi/c^2) so free rho_c(nu) = nu; then the (C1) tail
+        and the (C3) window A_max = 5.716 compare in agentEE [3d] units directly.
+[1d] g-classes registered for the forward scan (STEP 3):
+     P  power-law tails:        ghat or f = kappa w^{-p}, p in (0,2]; p = 2/3 distinguished
+        (the WKB index-transfer candidate for omega^{1/3}); exactly solvable anchors:
+        p = 2 (Bessel, complex kappa allowed), p = 1 (Coulomb/Whittaker).
+     B  gain bands:             ghat = eps * bump((w - w0)/dw)  (compact, smooth);
+        sharp-edged variant for the endpoint/power-law class.
+     L  log-periodic:           ghat or f = eps cos(Omega ln w) x envelope.
+     D  modified dispersion:    f real: f = kappa w^{-p} (phase-only at WKB order),
+        omega^2 = c^2k^2(1 + f(k/aH)) the X2-named form.
+     X  windowed filter bank:   ghat = sum_j eps_j bump(ln w - ln w_j) = B/L composite.
+     G  Gevrey-3/stable class:  profiles with Mellin g~(mu) ~ e^{-A|mu|^{1/3}} (the
+        index-1/3 stable-subordinator kernel in ln w) -- the inverse-problem candidate.
+     For each: compute Delta rho_c(nu), fit ln|tail| = lnK + q ln nu - ct nu^s (s free),
+     test s = 1/3, the cos(sqrt3 ct nu^{1/3}) lock, additivity, and one-sidedness.
+========================================================================================
+[HH-2] PIPELINE VALIDATION: exact per-k -> worldline rho_c(nu) machinery
+========================================================================================
+[2a] free case through the full pipeline (rho_c must equal nu exactly):
+     nu =   2.0: rho_c = 2.0 (im 0.0e+00)   rel.err vs nu = 2.69e-60
+     nu =   7.0: rho_c = 7.0 (im 0.0e+00)   rel.err vs nu = 1.23e-58
+     nu =  19.0: rho_c = 19.0 (im 0.0e+00)   rel.err vs nu = 7.07e-52
+     nu =  33.0: rho_c = 33.0 (im 0.0e+00)   rel.err vs nu = 1.03e-44
+     gate: worst 1.03e-44 < 1e-18 -> PASS
+[2b] Bessel anchor (F = mu/w^2, mu = 0.4, c = 2): solver vs sqrt(w) H1_lam(cw):
+     ratio const across ray pts 3i,11i: dev = 2.12e-45; ray vs real w_cut: dev = 7.55e-48
+     gate (proportional to ONE Hankel branch everywhere, 1e-30) -> PASS
+     => solver tracks the exact upper-decaying branch through ray+arc+real segment.
+[2c] Bessel rho_c: ODE pipeline vs closed-form Gamma Mellin (nu = 6, 15):
+     nu =    6.0: |pipeline/closed - 1| = 3.82e-46
+     nu =   -6.0: |pipeline/closed - 1| = 4.98e-41
+     nu =  6.0: rho_c closed = 5.8630239140347  (deviation from free: -0.136976)
+     nu =   15.0: |pipeline/closed - 1| = 3.95e-47
+     nu =  -15.0: |pipeline/closed - 1| = 4.86e-35
+     nu = 15.0: rho_c closed = 14.946450615984  (deviation from free: -0.0535494)
+     gate: worst Mellin rel.diff 4.86e-35 < 1e-25 -> PASS
+     => pipeline exact against the Gamma-function closed form (independent of the
+        ODE solver and of the contour). p = 2 column: rho_c - nu is POWER-LAW in nu
+        (Gamma-ratio asymptotics — no exponential of any index), quantified in step3.
+========================================================================================
+[HH-3a0] v2 (real-axis saddle route) FREE gate + v1 cross-check on a scan template
+========================================================================================
+     nu =   4.0: rho_c = 4.0  rel.err = 5.80e-19
+     nu =  20.0: rho_c = 20.0  rel.err = 2.24e-18
+     nu =  36.0: rho_c = 36.0  rel.err = 2.82e-16
+     gate: worst 2.82e-16 < 1e-13 -> PASS
+     contour-invariance (p=2/3 template) nu =  6.0: rho_c = 5.0939362006623  shift under contour change = 2.37e-12
+     contour-invariance (p=2/3 template) nu = 15.0: rho_c = 13.467890327256  shift under contour change = 8.90e-11
+     gate: worst 8.90e-11 < 3e-10 -> PASS
+     => v2 contour-independent to ~1e-10 (the w_cut trig-endpoint template-leakage
+        floor, F(w_cut) ~ 1e-6 kappa; scan signals are O(0.01-1): systematics 8+
+        orders below signal). v2 authorized for the scan.
