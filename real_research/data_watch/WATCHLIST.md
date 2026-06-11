@@ -57,3 +57,11 @@ of ISOLATED ultra-deep rotators (e_N ≲ 0.005, g_obs = 0.01–0.05 a₀, pinned
 test: a floor ⇒ universal downturn at one g_obs everywhere; EFE ⇒ none in isolation. Current bound: a★ ≤ 0.107 a₀
 (95%, SPARC deep decade); the binding constraint stays agentBB's band line (a★ < 0.05 a₀), untested below.
 Owner: `reviews/toe_law/agentCC_astar_hunt.md`.
+
+**12 (added 2026-06-11, agentGG):** the high-z branch fork is RADIUS+MASS-blocked, not error-blocked:
+any deep ALMA [CII] rotation curve of a REBELS-class z ≳ 4 disc reaching ~3–4 R_e (past r_MOND ≈ 6–10 kpc)
+splits declining/constant/rising by ×2.3–2.4 in asymptotic velocity at fixed M_bar (declining 86–143 /
+constant 106–175 / rising 204–335 km/s for REBELS-25, canon footing) — decisive IF M_bar is independently
+pinned to ×2 (JWST IMF/SED + non-dynamical gas tracer; current bracket ×7). Triggers: any REBELS/CRISTAL
+extended-[CII] follow-up; any independent α_[CII] or dust-based gas mass for REBELS-25; DLA0817g1 outer-disc
+kinematics. C3 fence applies. Owner: `reviews/public_data/agentGG_jwst_highz.md`.
