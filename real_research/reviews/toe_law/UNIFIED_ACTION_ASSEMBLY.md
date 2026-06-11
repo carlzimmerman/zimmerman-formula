@@ -76,9 +76,9 @@ complete at the EOM level; if it cannot, the obstruction is the boundary theorem
    medium itself, which inherits σ_req as its derivation target — converging exactly with Theorem X2's pumped-
    reservoir requirement: Link 5's final form is an ACTIVE, dS-breaking medium with a computed fingerprint and a
    priced energy budget. COROLLARY (new falsifiable prediction): no kernel produces the √(a/a₀) onset — μ flattens
-   to const + O(a²) below some a★ (deep-MOND flattening). Honest flags: the m²<2H² sign tension (N-series
-   reconciliation queued); the conformal-balanced legal-mixture residue (named NNLS follow-up); ζ quarantined as a
-   convention re-expression, not a Z derivation.]**
+   to const + O(a²) below some a★ (deep-MOND flattening). Honest flags: the sign question CLOSED by agentAA (DEFICIT ⟺ M² < 2H², intrinsically de Sitter; V's flag retired);
+   the conformal-balanced legal-mixture residue (agentBB in flight); ζ quarantined as a convention re-expression,
+   not a Z derivation.]**
 
 ## The parameter inventory (the entire freedom of the assembled candidate)
 | Parameter | Origin | Status |
