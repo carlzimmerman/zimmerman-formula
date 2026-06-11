@@ -1,0 +1,68 @@
+# THE UNIFIED ACTION — assembly frame (the build, 2026-06-11)
+
+*The blueprint's two halves (agentU: the khronon-M22 matter sector, BUILDABLE; agentW: the metric Ψ-slip lensing
+partner, UNIQUE class) assembled into one action scaffold. The slots below are filled by the in-flight construction
+agents (X: the causal conserving EOM; Y: the explicit slip Lagrangian; Z: the empirical dial; V: the mechanism
+fingerprint). Wording locked: this document assembles a CANDIDATE THEORY scaffold — named, specified, gated — not a
+validated theory. Every gate it must pass is listed with its banked number.*
+
+## The action (scaffold)
+
+S = S_EH[g] + S_u[g, u] + S_m[matter; g, u] + S_slip[g, u]
+
+- **S_EH** — pure Einstein–Hilbert + Λ. Gravity is NOT modified (this is what makes Cassini Q₂ absent by
+  architecture — agentU). Λ is the same Λ that sets a₀: ONE constant, two roles (the framework's distinctive content).
+- **S_u** — the khronon/aether sector supplying the unit timelike frame u^μ: canonical khronon (u = ∂T/|∂T|),
+  parameters in the PPN-viable corner (α ≲ 8×10⁻⁷ generic; the tuned α₂ sliver sits at the Cherenkov edge — agentU).
+  The frame solves the covariance problem Milgrom's theorem leaves (the nonlocal filter needs a time direction).
+- **S_m** — matter worldlines carrying the Milgrom-2022 time-nonlocal kinetic functional evaluated in the u-frame,
+  with the EXPONENTIAL μ-tail (the data-selected member: solar reflex passed >10¹³ where every power-law dies — agentM).
+  **[SLOT-X: the causal, energy-conserving form — the Schwinger–Keldysh/Galley doubled-variable EOM and the aether
+  reservoir flux; in flight. PASS graduates this half to built-at-EOM-level; FAIL is a boundary theorem for all
+  covariant MI.]**
+- **S_slip** — the lens-only Ψ-channel sector: c_T-preserving beyond-Horndeski/DHOST class coupled to the SAME u,
+  producing (μ,Σ) = (1, ν(g_bar/a₀)) — photons see the phantom, matter does not (the double-counting theorem forbids
+  anything else — agentW). **[SLOT-Y: the explicit minimal Lagrangian + the degeneracy/ghost audit; in flight.]**
+
+## The interface conditions (fixed by the banked theorems — non-negotiable)
+1. **One frame:** S_m and S_slip read the SAME u^μ (the 1602.05961 §6 u-machinery, decoupled from its matter force,
+   is the named template — agentW).
+2. **One scale:** a₀ = c²√(Λ/32π) enters both sectors from the same Λ. The coefficient's status is honest: Z
+   data-certain, Verlinde's conditional 6 degenerate beside it (agentP/T); the assembly carries a₀ as the measured value.
+3. **No real partner mass:** the slip sector must carry ZERO stress-energy sourcing matter dynamics at galactic
+   scales (the 8.7–21.6σ double-counting theorem — agentW).
+4. **The dial:** the slip amplitude requires a second smooth variable beyond g_bar (sharp staircase refuted 7.3σ —
+   agentJ). **[SLOT-Z: which variable — mass, redshift, or local density — our own 181k-lens measurement; in flight.]**
+5. **The mechanism slot:** what microphysics produces the exponential tail remains the chain's Link-5 gap.
+   **[SLOT-V: the kernel fingerprint or its boundary theorem; in flight.]**
+
+## The parameter inventory (the entire freedom of the assembled candidate)
+| Parameter | Origin | Status |
+|---|---|---|
+| Λ | measured | fixed |
+| a₀ = c²√(Λ/32π) | the kernel | fixed by Λ (Z data-selected; the one underived number) |
+| θ(y) (the M22 filter) | matter sector | θ(1)=1 fixed by RC normalization; θ(0) = O(few) bounded by agentM's WB fork |
+| μ-tail shape | matter sector | FIXED to exponential by the solar system (agentM — not a choice anymore) |
+| khronon c_i | frame sector | confined to the PPN/Cherenkov corner (agentU) |
+| slip normalization | lensing sector | fixed by the lensing-RAR amplitude (Brouwer/our 6.8σ re-measurement) |
+| the dial | lensing sector | [SLOT-Z] |
+
+## The gate checklist the assembled candidate inherits (every number banked)
+- Solar system: reflex (≤ the agentE line — passes via the exponential tail by >10¹³), precession (passes, sign-flipped),
+  Cassini Q₂ (absent by architecture), solar slip (auto-passes ×10⁷ — verify in Y's explicit model), PPN α₁/α₂ (corner).
+- Galactic: SPARC 0.105 dex at a₀ (= baseline by construction); the RAR tracer-independence; the lensing-RAR amplitude
+  (the slip sector's job) and the type split via the dial (+0.261 dex, sign-matched).
+- Clusters: the ×1.97 re-failure stands — the assembly does NOT fix clusters without the dial extending there
+  (open, stated).
+- Cosmology: CMB via the slip sector's dark-sector behavior [OPEN — the Boltzmann audit is the post-assembly
+  calculation]; a₀(z): the minimal writing is const ≡ the framework's √ρ_DE branch (agentU); the rival ∇·u/3 = H(z)
+  writing is the rising branch — DESI DR3 adjudicates (the registered hostage).
+- GW: c_T = 1 built in; α_M (GW friction) bounded — verify in Y's model.
+- The DR4 fork: the assembly predicts the M22 branch (+4–8% positive selection — agentM's reshaped fork).
+
+## What the assembly is, and is not (locked)
+It is: the first single action ever written to the program's full specification — every term forced or bounded by a
+banked theorem or measurement, with exactly one underived number (Z) and one unnamed dial ([SLOT-Z]).
+It is not: validated. The post-assembly gauntlet (the Boltzmann/CMB audit, the cluster dial, the explicit-model
+verification of every inherited pass) is the next campaign. The TOE claim remains gated on Link 5's mechanism and
+Link 8's quantum derivation — both now bounded, neither closed.
