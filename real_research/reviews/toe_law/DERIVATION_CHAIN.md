@@ -79,6 +79,10 @@ dynamics**. The unique survivor: a METRIC-LEVEL Ψ-channel slip ((μ,Σ)=(1,ν))
 executed by GW170817's differential-Shapiro test, so the slip lives in the metric (the c_T-preserving
 beyond-Horndeski/DHOST branch); solar slip auto-passes ×10⁷; clusters re-fail ×1.97 by construction; the type
 split requires a second smooth variable (consistent with agentJ); no published realization exists.
+**SCALAR CARRIER CLOSED (agentY): OBSTRUCTED by four machine-derived walls** (the kill is the Hamiltonian-constraint
+pollution at 10⁷×, NOT ghosts); survivors: c_T ≡ 1 / α_M ≡ 0 identically; the timelike-only reach of published c_T
+classifications (new boundary); and the field-line-bending generators = the morphology dial with agentZ's sign built
+in. The unique class narrows again: a VECTOR/SPIN-2 carrier on the same u, or nonlocal operators.
 
 **Link 8 — the quantum derivation (the gate).** CONTESTED-TERMINAL at the algebra level (agentR: 60-paper sweep,
 nothing derives the placement) — **now EDGE-WOUNDED at the observable level (agentS, the repo's own unpublished

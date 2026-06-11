@@ -1,0 +1,77 @@
+====================================================================================================
+agentY_gates.py -- the lens-only slip sector: numeric gates
+====================================================================================================
+
+[SG0] GATE against banked numbers (must reproduce agentW/agentI before any new use)
+  slip amplitude targets Psi'/Phi' - 1 = 2(nu-1), McGaugh nu, framework a0:
+    g_bar = 1e-13: 2nu-1 = 61.2   (banked 61.2)   GATE OK
+    g_bar = 1e-12: 2nu-1 = 19.4   (banked 19.4)   GATE OK
+    g_bar = 1e-11: 2nu-1 = 6.2   (banked 6.2)   GATE OK
+  Cassini conjunction y = 1.14e+12 (banked 1.1e12); simple-nu slip = 1.75e-12 (banked 1.8e-12); margin x1.3e+07 (banked x1.3e7)
+  GATE OK
+
+[SGA] KINEMATIC TRACKABILITY: the slip operator CAN carry nu(y) -- the obstruction is mu=1
+  matching identity spot checks (P = 25, McGaugh nu): slip/Phi' vs 2(nu-1):
+    y =  1.0e-03: 2Y(c20+Yc20') = +6.225082e+01   2(nu-1) = 6.225082e+01   ratio-1 = -2.2e-16
+    y =  1.0e-01: 2Y(c20+Yc20') = +5.377172e+00   2(nu-1) = 5.377172e+00   ratio-1 = -6.7e-16
+    y =  1.0e+00: 2Y(c20+Yc20') = +1.163953e+00   2(nu-1) = 1.163953e+00   ratio-1 = +2.2e-16
+    y =  1.0e+01: 2Y(c20+Yc20') = +8.840036e-02   2(nu-1) = 8.840036e-02   ratio-1 = +0.0e+00
+  convergence of the matching integral, all four banked shapes (P = 25, y = 0.1):
+    McGaugh RAR       : c20(Y(y=0.1)) = -1.9300e+06   [finite: trackable]
+    fw sqrt(1+1/y)    : c20(Y(y=0.1)) = -1.5473e+06   [finite: trackable]
+    simple            : c20(Y(y=0.1)) = -2.0472e+06   [finite: trackable]
+    F4 standard       : c20(Y(y=0.1)) = -1.2782e+06   [finite: trackable]
+
+[SGB] THE DECISIVE NUMBER: the matter-channel pollution of the nu-matched model
+  Hernquist M = 1e11 Msun, a = 3 kpc, framework a0, McGaugh nu;
+  pollution diagnostics vs P (= J', the kinetic stiffness):
+    columns: y = 1.0, 0.3, 0.1, 0.03, 0.01;  entries: Delta_Phi/(4 pi G rhob_eff + |divslip|)
+    where rhob_eff is the local matter source -- and the OUTSKIRTS force ratio dg/g_bar
+    P =     1:  dg/g_bar =  +8.35e+05  -2.69e+07  -5.08e+07  -9.05e+07  -1.54e+08    [slip-match check: 2.7e-15]
+    P =     5:  dg/g_bar =  +1.88e+06  -3.08e+07  -5.67e+07  -9.79e+07  -1.62e+08    [slip-match check: 7.3e-15]
+    P =    25:  dg/g_bar =  +2.06e+06  -3.13e+07  -5.76e+07  -9.90e+07  -1.64e+08    [slip-match check: 8.0e-15]
+    P =   125:  dg/g_bar =  +2.09e+06  -3.15e+07  -5.78e+07  -9.92e+07  -1.64e+08    [slip-match check: 3.3e-15]
+  context: the SPARC deep-regime kill bars (agentW): 0.165-0.49 dex coherent overshoot was
+  8.7-21.6 sigma; a |dg/g| of 0.01 ~ 0.004 dex; of 0.1 ~ 0.04 dex; of 1.0 ~ 0.3 dex.
+
+  READING (the channel-routing wall, quantified):
+  - the slip-match is exact (column check ~1e-15): the operators CAN carry nu(y) in the
+    ij-channel. But the SAME operators, at that amplitude, feed the N-channel (Hamiltonian
+    constraint) at |dg/g_bar| ~ 1e7-1e8: ~ (a0 r/c^2)^-1 x the phantom -- and the numbers are
+    P-INDEPENDENT: no kinetic-stiffness suppression. Physical root: a potential-amplitude
+    scalar's anisotropic-stress channel is its WEAKEST channel; forcing phantom-sized ij-stress
+    drives the C-sector Lagrangian ~(a0 r/c^2)^-1 above the EH scale locally. The approximate-mu
+    route is dead by ~7 orders against even the loosest SPARC bar. OBSTRUCTED.
+
+[SGC] WHAT SURVIVES AS ARCHITECTURE (theorems for ANY future carrier on the u-frame)
+  c_T = 1 IDENTICALLY and alpha_M = 0 IDENTICALLY for the entire leaf-tangential operator class
+  (machine theorem, agentY_quasistatic [SA]): no derivative of h_ij enters; GW170817 and the
+  GW-friction gate pass by architecture, INCLUDING inside halos (where Y != 0).
+  FRW quietness (a_mu = 0 comoving => sector off cosmologically): the 1809.03484-class
+  graviton-decay kill (|alpha_H| <~ 1e-10) and dark-energy perturbation bounds are evaded by
+  construction -- the sector has NO cosmological background to decay into.
+  Standard-siren context (pinned approximately, flagged as from-memory values): GW170817-era
+  and GWTC-3-era constraints on the friction parameter sit at sigma(alpha_M/c_M) ~ O(0.1-1)
+  (e.g. Lagos+ 2019-class analyses; dark-siren H0/friction fits). The u-frame class predicts 0.
+  Degeneracy/ghosts: in unitary gauge NO operator carries a time derivative (Y = gam^{ij}
+  d_i chi d_j chi exactly; a_i = d_i ln N exactly): the Ostrogradsky question never arises; the
+  chi-field is elliptic on the leaves (cuscuton-class precedent). The kill is NOT ghosts.
+
+[SGD] THE GATES THE CALIBRATION WOULD HAVE INHERITED (recorded for the obstruction map)
+  Solar (would-be): the nu-matched slip at the Cassini conjunction is the banked number by
+  construction (SG0: 1.75e-12 simple-nu, x1.3e7 inside the bound; exp-tail: dead-dead);
+  the matter channel of an exact-mu member is EXACTLY clean (no reflex, no precession, no Q2).
+  Clusters: an exactly-nu-keyed slip re-fails clusters at the banked x1.97 (agentW gate 2) --
+  in-model arithmetic: g_bar(1 Mpc, 7e13 Msun) = 9.76e-12 m/s^2, y = 0.1, nu = 3.62: M_lens/M_bar predicted = 3.62 vs observed ~7.1 (x1.96 short).
+  The type split (agentZ, +0.194 dex TYPE-IRREDUCIBLE): the one structural insight that
+  SURVIVES the obstruction: the slip generators are TRANSVERSE-DIVERGENCE operators
+  ((a.q) P_T:Dq): their amplitude is keyed to the BENDING of the field lines -- zero for
+  planar, maximal for spherical configurations. ANY future geometry-keyed slip carrier
+  inherits a morphology-tracking dial with the agentZ sign (spheroids > disks at fixed g_bar).
+  required dial: x1.56 in amplitude between types; available geometric range in this
+  operator class: [0 (planar) .. full (spherical)] -- the range covers it; the quantitative
+  disk-vs-spheroid contrast is the named non-spherical computation for the successor carrier.
+
+====================================================================================================
+VERDICT: OBSTRUCTED -- see agentY_psislip_construction.md section 4 for the four-wall map.
+====================================================================================================

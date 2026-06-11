@@ -26,7 +26,14 @@ S = S_EH[g] + S_u[g, u] + S_m[matter; g, u] + S_slip[g, u]
   ONE problem, and the dS-bath reservoir is re-derived as MANDATORY from causality alone, with sign and amount.]**
 - **S_slip** — the lens-only Ψ-channel sector: c_T-preserving beyond-Horndeski/DHOST class coupled to the SAME u,
   producing (μ,Σ) = (1, ν(g_bar/a₀)) — photons see the phantom, matter does not (the double-counting theorem forbids
-  anything else — agentW). **[SLOT-Y: the explicit minimal Lagrangian + the degeneracy/ghost audit; in flight.]**
+  anything else — agentW). **[SLOT-Y RESOLVED (agentY): OBSTRUCTED for the scalar carrier — constructively.** Four machine-derived walls kill
+  every scalar u-DHOST realization (the decisive one: the unique c_T-safe generators feed the Hamiltonian constraint
+  at 10⁷–10⁸× the double-counting bar; NOT ghosts — the degeneracy holds). Survivors banked: c_T ≡ 1 and α_M ≡ 0
+  IDENTICALLY on all backgrounds; the new boundary that published c_T=1 classifications protect only timelike
+  backgrounds (in-halo Δc_T ~ O(10) — reach beyond this program); and the constructive gem: the slip generators are
+  TRANSVERSE-DIVERGENCE (field-line-bending) operators = a built-in morphology-tracking dial with agentZ's sign
+  (spheroids > disks, range covers the ×1.56 needed). The carrier class narrows to: vector/spin-2 on the same u,
+  nonlocal/history operators, or the singular-surface exact route.]**
 
 ## The field equations (the action principle, scaffold level — X/Y supply the specific functionals)
 
