@@ -32,7 +32,7 @@ S = S_EH[g] + S_u[g, u] + S_m[matter; g, u] + S_slip[g, u]
 3. **No real partner mass:** the slip sector must carry ZERO stress-energy sourcing matter dynamics at galactic
    scales (the 8.7–21.6σ double-counting theorem — agentW).
 4. **The dial:** the slip amplitude requires a second smooth variable beyond g_bar (sharp staircase refuted 7.3σ —
-   agentJ). **[SLOT-Z: which variable — mass, redshift, or local density — our own 181k-lens measurement; in flight.]**
+   agentJ). **[SLOT-Z RESOLVED (agentZ): TYPE-IRREDUCIBLE — at fixed M*, z, and local density the type contrast stands at +0.194 dex (6.2σ combined; 1.5σ stratified, direction unanimous); no measured dial drives it. The slip sector must couple to a morphology-tracking quantity (central concentration / dispersion support — beyond this catalog), or the split is structural to the partner.]**
 5. **The mechanism slot:** what microphysics produces the exponential tail remains the chain's Link-5 gap.
    **[SLOT-V: the kernel fingerprint or its boundary theorem; in flight.]**
 
@@ -45,7 +45,7 @@ S = S_EH[g] + S_u[g, u] + S_m[matter; g, u] + S_slip[g, u]
 | μ-tail shape | matter sector | FIXED to exponential by the solar system (agentM — not a choice anymore) |
 | khronon c_i | frame sector | confined to the PPN/Cherenkov corner (agentU) |
 | slip normalization | lensing sector | fixed by the lensing-RAR amplitude (Brouwer/our 6.8σ re-measurement) |
-| the dial | lensing sector | [SLOT-Z] |
+| the dial | lensing sector | TYPE-IRREDUCIBLE (agentZ) — morphology-tracking, not {M*, z, density} |
 
 ## The gate checklist the assembled candidate inherits (every number banked)
 - Solar system: reflex (≤ the agentE line — passes via the exponential tail by >10¹³), precession (passes, sign-flipped),
