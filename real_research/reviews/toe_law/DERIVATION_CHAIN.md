@@ -59,7 +59,27 @@ balance, agentQ). The length scale is not inserted — it appears.
   floor-shaped object (AGC 114905, −0.90 dex, isolated) is inclination-hostage. The only published deep downturn
   (Chae+2021) is environment-keyed = EFE-shaped, not acceleration-keyed = floor-shaped. Decisive test named:
   isolated ultra-deep rotators (e_N ≲ 0.005, g_obs = 0.01–0.05 a₀) — floor ⇒ universal downturn at one g_obs;
-  EFE ⇒ none in isolation. ALL FLAGS CLOSED: the legal-mixture escape is DATA-CLOSED (agentBB: best legal mixture +0.026 dex past the SPARC line AND ×21 over the solar reflex via a forced-positive variance pincer that never opens — no sweet spot exists; V's predicted failure fingerprint observed in the data fit). The boundary theorem is now THEOREM + DATA: no linear field-bath, legal/tuned/balanced, carries the rotation curves. Link 5 = the khronon medium, the only object standing. The sign question is CLOSED (agentAA, 26/26 checks): DEFICIT ⟺ M² < 2H² confirmed — the deficit channel is intrinsically de Sitter (flat space gives an excess); V's contrary flag traced to a vector-vs-scalar Yukawa anchor error; V's theorems untouched.
+  EFE ⇒ none in isolation. **THE SIGMA_REQ SCOPING (agentEE, 2026-06-11): STRUCTURALLY-CAPABLE — for the
+  PUMPED khronon (the X2 object); the MINIMAL/free khronon CANNOT, by machine theorem.** Link 5 is now a DEFINED
+  CALCULATION. (i) V's positivity kill does NOT re-enter: the khronon admits NO dS Kallen-Lehmann representation
+  at all (machine-quantified O(1) irreducible residual on Z-level sets, any measure class, signed included); the
+  replacement two-variable spectral representation over E(3)⋊dilatation is derived, with positivity a per-k kernel
+  condition and NO rigid basis — V's load-bearing step has no analog at the worldline even though stationarity,
+  Bochner positivity, and free-member KMS at κ/2π all survive family-wide. (ii) NEW b-FAMILY THEOREM (sympy-exact):
+  dilatation orbits ARE the Deser–Levin family (a = bκ, κ² = a²+H²); the free pullback on every member is
+  −H²/[16π²c_χ(c_χ²−b²)sinh²(κτ/2)] — anchored at c_χ=1 on N1's banked conformal kernel. (iii) The free khronon's
+  cut tail is IDENTICALLY ZERO (conformal class — an absent object, not a wrong exponent), and the Bogoliubov lemma
+  (exact to 1e-30) shows occupations/squeezing cannot touch the dissipation channel: THE PUMP MUST MODIFY THE
+  DYNAMICS — X2 re-derived from the worldline side, third convergence. (iv) The required pump fingerprint is
+  computed and saddle-verified (contour vs direct 1e-18): Δρ̃_c(ω) ~ A·ω^(−1/3) e^(−c̃ω^(1/3)) cos(√3·c̃·ω^(1/3)+φ̃),
+  one-sided, c̃ = (3/4)·2^(2/3)·ζ̃^(2/3) = 2.139/1.969/2.279 (fw/canon/hostile footings; ζ raw from V, the
+  (16π/3)^(1/4) quarantine intact); positivity window A_max ≈ 5.7 with the oscillation intact. Matching conditions
+  (C1)–(C5) written; the remaining derivation: the scale-invariant gain/dispersion profile g(k_phys/H) of the
+  Λ-pumped khronon, checked against (C1)–(C5). HOSTILE NEGATIVE KEPT: the j₀ factor is even-entire in b ⇒
+  a²-analyticity at a=0 extends to the WHOLE scale-invariant khronon class — the deep-MOND flattening floor a★ is
+  now this route's OWN prediction (agentCC's watch entry 11 is decisive both ways). Bug log: the prior agent's
+  STEP-1 script verified nothing (3 bugs: regulator-mismatched trapezoid, collapsed level-set scan, unreduced sympy
+  difference) — all repaired, claims survived; episode recorded in the memo. ALL FLAGS CLOSED: the legal-mixture escape is DATA-CLOSED (agentBB: best legal mixture +0.026 dex past the SPARC line AND ×21 over the solar reflex via a forced-positive variance pincer that never opens — no sweet spot exists; V's predicted failure fingerprint observed in the data fit). The boundary theorem is now THEOREM + DATA: no linear field-bath, legal/tuned/balanced, carries the rotation curves. Link 5 = the khronon medium, the only object standing. The sign question is CLOSED (agentAA, 26/26 checks): DEFICIT ⟺ M² < 2H² confirmed — the deficit channel is intrinsically de Sitter (flat space gives an excess); V's contrary flag traced to a vector-vs-scalar Yukawa anchor error; V's theorems untouched.
 
 **Link 6 — the effective law (the matter sector).** NAMED: **Milgrom-2022 (time-nonlocal MI) + the exponential
 μ-tail** — the first published object to clear every nonrelativistic wall the program has built (agentM: reflex

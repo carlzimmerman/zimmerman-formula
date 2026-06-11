@@ -1,0 +1,167 @@
+========================================================================================
+[1] THE Z-TEST: khronon-class (sound-speed) field on dS is NOT a function of Z alone
+========================================================================================
+[1a] closed form vs mode integral at (eta,eta',r)=(-1.0,-0.6,0.35), c_s=2.0 (rotated contour):
+     delta=5e-02: closed = -1.44078443e-02+2.23811174e-03j   mode-sum = -1.44078443e-02+2.23811174e-03j   rel.diff = 0.00e+00
+     delta=0e+00: closed = -1.46842295e-02-0.00000000e+00j   mode-sum = -1.46842295e-02+0.00000000e+00j   rel.diff = 1.18e-16
+[1b] Z-level-set test at Z = 1.5 (timelike): scan lam = eta'/eta over [0.05, 0.1, 0.2, 0.3]
+        lam |      W (c_s=1) |      W (c_s=2) |     W (c_s=10)
+       0.05 |  -2.533030e-02 |  -2.296491e-04 |  -1.416723e-06
+        0.1 |  -2.533030e-02 |  -5.005987e-04 |  -3.154851e-06
+        0.2 |  -2.533030e-02 |  -1.194825e-03 |  -7.970515e-06
+        0.3 |  -2.533030e-02 |  -2.146635e-03 |  -1.556871e-05
+     c_s =  1.0: spread = 9.588e-16  -> constant on the Z-level set (Z-only)
+     c_s =  2.0: spread = 1.883e+00  -> VARIES on the Z-level set (NOT Z-only)
+     c_s = 10.0: spread = 2.014e+00  -> VARIES on the Z-level set (NOT Z-only)
+     => c_s=1 conformal member: constant on Z-level sets (dS-invariant, the [A2] check).
+        c_s!=1 khronon-class member: VARIES on Z-level sets. Since EVERY superposition
+        int drho(M^2) W_BD(Z;M^2) -- signed, complex, any series -- is constant on Z-level
+        sets, NO KL-type representation exists. The Bros-Moschella premise fails at its
+        first step (single-invariant dependence), before positivity is even invoked.
+[1c] comoving-worldline pullback, c_s arbitrary:
+     W(t,t')|_(r=0) simplified - target = 0
+     => W(tau) = -H^2/(16 pi^2 c_s^3 sinh^2(H tau/2)): STATIONARY in proper time (dilatation),
+        i*beta-periodic with beta = 2pi/H -> KMS at T_GH SURVIVES foliation breaking (this member);
+        amplitude rescaled 1/c_s^3. Cut class at the cone: POWER LAW (double pole), zero flatness.
+
+========================================================================================
+[2] STEP 2 -- the positivity escape, made precise
+========================================================================================
+[2a] irreducible Z-level-set fluctuation of the khronon W (timelike region):
+      c_chi |    min dev | median dev |    max dev   (dev = std_lam W / |mean_lam W| per level set)
+        2.0 |  6.174e-01 |  7.315e-01 |  1.120e+00
+       10.0 |  6.721e-01 |  7.936e-01 |  1.200e+00
+       30.0 |  6.739e-01 |  7.957e-01 |  1.202e+00
+     => O(1) irreducible residual at every c_chi > 1: the khronon Wightman admits NO
+        representation W = int drho(M^2) W_BD(Z;M^2) for ANY measure class. V's dS-KL
+        frame does not degrade for the khronon -- it never starts.
+[2b] dilatation reduction F_k = k^-3 Psi(k eta, k eta') on the free modes (sympy):
+     F_k - k^-3 Psi(k eta, k eta') = 0
+     => the khronon two-point structure = ONE kernel Psi of TWO scale-invariant variables
+        (y, y') = (k eta, k eta'), integrated over dk/k with the E(3) Plancherel weight.
+        State positivity = Psi positive-definite kernel (rank-one for the free vacuum).
+        This is the Bochner decomposition over the RESIDUAL group, replacing dS-KL:
+        the 'basis' is not a rigid one-parameter family -- Psi itself is dynamical data.
+[2c] the b-family (sympy geometry + pullback):
+     u.u - 1 = 0  (proper-time normalization)
+     a.a + (b kappa)^2 = 0  (proper acceleration a = b*kappa)
+     kappa^2 - (a^2 + H^2) = 0  (the Deser-Levin relation)
+     W_b(tau) - [-H^2/(16 pi^2 c (c^2-b^2) sinh^2(kappa tau/2))] = 0
+     c_chi=1 reduction - banked DL conformal kernel = 0  (anchors b-family vs N1)
+     => on EVERY Deser-Levin member (realized as the dilatation orbit at velocity b = a/kappa
+        relative to the khronon frame): pullback STATIONARY, EXACT conformal/DL shape,
+        KMS at kappa/2pi (i*2pi/kappa periodicity of sinh^2), amplitude
+        A(b) = H^2/(16 pi^2 c_chi (c_chi^2 - b^2)),  b^2 = a^2/(a^2+H^2):
+        (i)  the free khronon tail T-hat == 0 (conformal class: contact + thermal ONLY);
+        (ii) the (a,H)-dependence beyond kappa is an AMPLITUDE factor, ANALYTIC in a^2
+             and O(1/c_chi^2)-suppressed -- V's a->0 analyticity wall is OBEYED, not evaded;
+        (iii) the free khronon sits INSIDE agentF's KMS census: it cannot source mu.
+[2d] worldline Mellin/Bochner structure (free member, b=0, kappa=H):
+     (i) Mellin transform of the free mode, numeric vs closed form Gamma(1-i nu)(-ic)^(i nu - 1):
+         nu=  0.5: |numeric - closed|/|closed| = 8.40e-17
+         nu=  2.0: |numeric - closed|/|closed| = 1.36e-16
+         nu= -1.3: |numeric - closed|/|closed| = 3.50e-16
+     (ii) |Gamma(1-i nu)|^2 e^(pi nu) - 2 pi nu/(1-e^(-2 pi nu)) = 0  (the Planck density)
+     (iii) FT[-sinh^-2(kappa(tau-i eps)/2)] vs (8 pi omega/kappa^2)/(1-e^(-2 pi omega/kappa)):
+         omega=  0.7: rel.diff = 2.27e-20
+         omega=  2.3: rel.diff = 9.09e-20
+         omega= -1.1: rel.diff = 4.54e-20
+     (iv) assembled: rho_free(omega) = (H^2 omega/(2 pi c^3 kappa^2))/(1-e^(-2 pi omega/kappa))
+          -- POSITIVE for every real omega (Bochner), detailed balance rho(-w)=e^(-2 pi w/kappa) rho(w)
+          (KMS at kappa/2pi). Mellin route and closed-form FT agree EXACTLY (identical functions).
+     => WHAT SURVIVES of V's frame at the worldline: stationarity (family-wide), Bochner
+        positivity of the TOTAL density, and KMS for the free member. WHAT DOES NOT SURVIVE:
+        the tail is no longer an AUTONOMOUS positive object -- dS-KL forced sigma(u) into the
+        positive cone of a rigid basis {sigma_M}; here positivity constrains ONLY the sum
+        contact + thermal + tail >= 0 pointwise in omega. A signed flat-oscillatory tail
+        riding a growing positive contact density is NOT excluded. (Quantified in [3d].)
+
+========================================================================================
+[3] STEP 3 -- the asymptotic class: what the khronon CAN and CANNOT carry
+========================================================================================
+[3a] u->0 comparison (zeta = 2.0247 fw; canonical 1.7881; hostile 2.2271):
+            u |  sigma_req (fw) | sigma_req (canon) | sigma_req (hostile) | sigma_free
+        1e-02 |       2.838e+00 |         3.252e+00 |           1.450e+00 | 0 (exactly)
+        1e-04 |       2.731e-03 |         1.128e-02 |          -6.684e-04 | 0 (exactly)
+        1e-06 |       6.105e-19 |         1.438e-15 |           8.843e-22 | 0 (exactly)
+     => the free khronon does not have the wrong asymptotic class -- it has NO cut tail at
+        all (conformal class, N1 one-point-miracle structure). The MINIMAL khronon CANNOT
+        carry sigma_req. The question becomes: what structure can be ADDED?
+[3b] Gaussian state-shaping lemma:
+     (i) commutator density invariance under Bogoliubov (3 random states x 2 nu): max rel.dev = 1.06e-30
+         => occupations/squeezing CANNOT touch the dissipation channel; sigma_chi is a
+            DYNAMICS object. The X2 pump must act as a dynamics modifier (in-medium
+            dispersion/gain), not a state filler -- exactly X2's active-medium statement.
+     (ii) int_0^inf q e^(iaq) dq (b.v.) = -1/a**2  (a = 2 c_chi cosh(kappa tau/2))
+         => squeezed cross kernel  propto  -sech^2(kappa tau/2)/4c^2: Taylor at tau=0: -1/4 + tau**2/16 - tau**4/96 + O(tau**6)
+            ANALYTIC at tau = 0 (and the |B|^2 piece is the time-reversed thermal kernel,
+            also analytic-class). Free + ANY Gaussian shaping = power-law/analytic cut class.
+            The fourth-root essential singularity is unreachable without DYNAMICS change.
+[3c] the required worldline spectral tail (exact-target member, gamma = 3/4):
+     (i) d/du[u^(-3/8) e^(-zeta(1-i)u^(-1/4))] / [u^(-13/8) e^(same)] = -3*u**(1/4)/8 + zeta*(1 - I)/4
+         = zeta(1-i)/4 + O(u^(1/4)): one u-integration of sigma_req shifts the power by
+         +5/4 and the phase by +pi/4 (the 1/(1-i)); subleading O(u^(1/4)) only. PASS
+     (ii) u = H^2 tau^2/2: u^(-3/8) = (H^2/2)^(-3/8) tau^(-3/4); zeta u^(-1/4) = zt/sqrt(tau), zt = zeta (2/H^2)^(1/4). PASS (algebraic)
+     (iii) contour machinery vs direct quadrature (m=0.5, zt_fw = 2^(1/4)*2.0247 = 2.4078):
+          omega=  3.0: contour = 2.255411e-02-3.085908e-03j  direct = 2.255411e-02-3.085908e-03j  rel.diff = 1.38e-18
+          omega= 12.0: contour = -2.669897e-03-3.317643e-05j  direct = -2.669897e-03-3.317643e-05j  rel.diff = 2.98e-18
+     (iv) saddle-class fit over omega in [1e2, 3e4]:
+          ct_fit  = 2.140537   vs  (3/4) 2^(2/3) zt^(2/3) = 2.138750   ratio = 1.00084
+          q_fit   = -0.3202     vs  2 gamma/3 - 5/6 = -0.3333
+          |phase rate| at om^(1/3)=10/20/30 = 3.7054 / 3.7046 / 3.7045
+               vs  sqrt(3) ct = 3.704424   (deepest-point ratio = 1.00002)
+               (measured sign: phase INCREASES with om^(1/3) in the e^(+i om tau) convention --
+                the conjugate saddle branch; magnitude is the invariant statement, cos is even)
+          max |fit residual| (ln-space) = 2.94e-03
+          |D-(2 ct)| subdominance: |D_-|/|D_+| at omega=1000: 5.17e-10  (predicted e^(-ct om^(1/3)) = 5.15e-10)
+     => the pump's REQUIRED spectral fingerprint on the worldline, pinned:
+        Delta-rho_c(omega) ~ A omega^(-1/3) e^(-ct omega^(1/3)) cos(sqrt(3) ct omega^(1/3)+phi),
+        ct(fw: zeta=2.0247) = 2.1388  [omega in units of H; one-sided; signed]
+        ct(canonical: zeta=1.7881) = 1.9687  [omega in units of H; one-sided; signed]
+        ct(hostile: zeta=2.2271) = 2.2790  [omega in units of H; one-sided; signed]
+        Decay/oscillation rate ratio LOCKED at 1/sqrt(3) (the index-1/3 saddle diagonal),
+        the omega-side mirror of sigma_req's -pi/4 diagonal in u^(-1/4).
+[3d] worldline positivity window for the sigma_req-class tail (fw zeta, m=0.5):
+     A_max = 5.716  (binding at omega = 0.500, where 2ImD = -9.1427e-02,
+     rho_free = 5.2258e-01); sign changes of Im D on the grid: 3
+     => FINITE, O(1) headroom: the flat-oscillatory signed tail EMBEDS in a positive
+        total worldline density (binding near omega ~ kappa, exponentially free above).
+        V's moment-tower kill does NOT re-enter: positivity binds the TOTAL, not the tail.
+        The oscillation (sign changes) survives inside the window -- the all-inverse-
+        moments-zero structure is carried by the SIGNED component, untouched.
+[3e] family universality + the a^2-analyticity inheritance:
+     (i) beta kappa^2 - H^2 = 0  (exact, all b)
+     (ii) u(tau;b) = -H**4*tau**4/(24*b**2 - 24) + 12*H**2*b**2*tau**2/(24*b**2 - 24) - 12*H**2*tau**2/(24*b**2 - 24)
+          = (H^2 tau^2/2)(1 + kappa^2 tau^2/12 + ...): leading term b-free; the family
+          enters at relative O(kappa^2 tau^2). At the omega-saddle tau* ~ (zt/omega)^(2/3) -> 0:
+          omega =     100: kappa^2 tau*^2 ~ 6.95e-03  (kappa = 1)
+          omega =   10000: kappa^2 tau*^2 ~ 1.50e-05  (kappa = 1)
+     (iii) free-amplitude family factor 1/(c^2 - b^2): (W_b - W_0)/W_0 = b^2/(c^2 - b^2),
+           e.g. b=0.3, c=3: 0.010101 -- analytic in b^2 = a^2/(a^2+H^2). With the
+           j0 factor even-entire in b, EVERY scale-invariant khronon-medium observable
+           built by dominated q-integration is ANALYTIC IN a^2 at a = 0:
+           agentV's NO-KERNEL corollary (deep-MOND onset unreachable; flattening floor
+           a_* exists) EXTENDS to the whole class. agentCC's watch entry 11 stays the
+           decisive test FOR THE KHRONON ROUTE TOO. (Escape: IR-divergent Psi only --
+           the Allen-corner analog, which destroys the stationary law itself.)
+[3f] c_chi -> infinity: free worldline amplitude ~ 1/c_chi^3 -> 0 (decoupling); pullback
+     SHAPE is c_chi-independent (sinh^-2 for every c_chi > 1): the limit erases the
+     khronon's own zero-point weight and creates nothing. NOT the missing structure.
+
+========================================================================================
+[4] VERDICT SUMMARY (full argument in agentEE_sigma_khronon.md)
+========================================================================================
+
+ STRUCTURALLY-CAPABLE -- for the PUMPED khronon MEDIUM, not the khronon field:
+  - free/minimal khronon: CANNOT (tail exactly 0 on the whole stationary family [2c];
+    KMS census member; Gaussian state-shaping cannot touch the dissipation channel [3b]);
+  - V's dS-KL kill: does NOT re-enter (no KL representation exists [2a]; worldline
+    positivity binds only the TOTAL density; A_max = O(1) window [3d]);
+  - the derivation becomes a DEFINED CALCULATION: find the scale-invariant in-medium
+    dynamics (gain/dispersion profile in k_phys/H) whose worldline commutator density
+    carries the one-sided index-1/3 tail with (ct, sqrt(3)ct, -1/3) pinned in [3c];
+  - inherited walls, unrescued: deep-MOND a^2-analyticity (flattening floor a_* survives
+    [3e]); the physical amplitude invoice (agentI/agentX).
+ Coefficient discipline held: zeta values are agentV's raw banked numbers; (16pi/3)^(1/4)
+ quarantined throughout; NO Z claims.
+

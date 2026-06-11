@@ -89,7 +89,12 @@ complete at the EOM level; if it cannot, the obstruction is the boundary theorem
    priced energy budget. COROLLARY (new falsifiable prediction): no kernel produces the √(a/a₀) onset — μ flattens
    to const + O(a²) below some a★ (deep-MOND flattening). Honest flags: the sign question CLOSED by agentAA (DEFICIT ⟺ M² < 2H², intrinsically de Sitter; V's flag retired);
    the legal-mixture escape DATA-CLOSED (agentBB: +0.026 dex SPARC AND ×21 solar, the variance pincer never opens — the boundary theorem is theorem+data grade); ζ quarantined as a convention re-expression,
-   not a Z derivation.]**
+   not a Z derivation. SIGMA_REQ SCOPED (agentEE): STRUCTURALLY-CAPABLE for the pumped khronon — the minimal/free
+   khronon CANNOT (cut tail identically zero; Bogoliubov: the pump must modify the DYNAMICS = X2 from the worldline
+   side); V's kill does not re-enter (no KL representation exists for the khronon — the two-variable replacement
+   derived); the required pump fingerprint computed (ω^(−1/3) exponential-oscillatory class, c̃ per footing,
+   A_max ≈ 5.7); matching conditions (C1)–(C5) written — the mechanism slot is now a DEFINED CALCULATION:
+   derive g(k_phys/H) of the Λ-pumped khronon and check (C1)–(C5).]**
 
 ## The parameter inventory (the entire freedom of the assembled candidate)
 | Parameter | Origin | Status |
