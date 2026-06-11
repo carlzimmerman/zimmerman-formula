@@ -1,0 +1,115 @@
+==============================================================================
+agentV kernel inversion — machine verification run (incremental)
+==============================================================================
+
+[A] EXACT IDENTITIES (sympy)
+[A1] Z(s) two forms equal: True
+[A1] (dZ/ds)^2 = kappa^2 u(u+t): True
+[A2] X.X = 1/H^2: True
+[A2] u.u = -1: True
+[A2] e.e = 1, e.u = 0, e.X = 0: True, True, True
+[A2] Z = H^2 X.X' reproduces A1 form: True
+[A2] KEY (slot gradient): e.grad1 Z = a*(Z-1) exactly: True -> e.grad1 W = a (Z-1) W'(Z) for every W
+[A2] conformal corollary: W = C/(1-Z) => (Z-1)W' = -W => e.grad1 W = -aW (agentB [A2] recovered)
+[A4] weight normalization (t/2)int u^-1/2 (u+t)^-3/2 du = 1 (must be 1; u=tv substitution)
+[A4] d/du[sqrt(u/(u+t))] = (t/2)u^-1/2 (u+t)^-3/2: True
+[A5] int tau^-1/2 e^-q tau dtau = sqrt(pi/q): True  (=> F = double-Laplace of rho; inversion = unique)
+[A] block done (0s)
+
+[B] ROUTE EQUIVALENCE (toy cut density sigma(1+u) = e^-u, mpmath dps=30)
+[B1] (a,H)=(0.7,1.0): s-route 5.562334558171871e-01  u-route 5.562334558171871e-01  rel.diff 0.00e+00
+[B2]              by-parts probability route 5.562334558171871e-01  rel.diff 1.10e-17
+[B1] (a,H)=(2.3,0.4): s-route 9.177524679152242e-01  u-route 9.177524679152242e-01  rel.diff 0.00e+00
+[B2]              by-parts probability route 9.177524679152242e-01  rel.diff 3.17e-17
+[B] block done (0s)
+
+[C] THE REQUIRED CLASS: all-inverse-moments-zero + forward exponent
+[C1] layer-1 saddle: |phi(t*) - 5*4^(-4/5) c^(4/5) tau^(1/5) e^(4i pi/5)| = 3.94e-31 ; |phi'(t*)| = 3.51e-30
+[C1] layer-2 saddle: |psi(tau*) - (-c e^(-i pi/4) u^(-1/4))| = 1.76e-30 ; |psi'(tau*)| = 4.51e-34
+[C1] => the two layers COMPOSE to r0 = c e^(-i pi/4): zeta = xi = c/sqrt(2) (the -pi/4 diagonal), exactly
+[C2] closed form: M_k(p,phi) prop. Gamma(m+1) cos(phi + pi(m+1)/4)/(zeta sqrt2)^(m+1), m = 4k-4p-3
+[C2]   p=-3/2, phi=pi/2 (sin member): m+1 = 4k+4 -> cos(pi/2 + pi(k+1)) = 0 for ALL k
+[C2]   p=-9/8, phi=-pi/8 (exact-target member): m+1 = 4k+5/2 -> cos(-pi/8 + 5pi/8 + k pi) = 0 for ALL k
+[C2] sympy: int_0^inf w^3 e^-w sin w dw = 0 (k=0, must be 0)
+[C2] sympy: int_0^inf w^7 e^-w sin w dw = 0 (k=1, must be 0)
+[C2] sympy: int_0^inf w^11 e^-w sin w dw = 0 (k=2, must be 0)
+[C2] sympy: int_0^inf w^15 e^-w sin w dw = 0 (k=3, must be 0)
+[C3] numeric inverse moments of rho* = u^-3/2 e^{-u^-1/4} sin(u^-1/4) (w = u^-1/4 form):
+[C3] k=0: M_k = +1.868e-33   envelope scale 4*Gamma(4k+4) = 2.400e+01 -> cancellation 7.8e-35
+[C3] k=1: M_k = +1.151e-30   envelope scale 4*Gamma(4k+4) = 2.016e+04 -> cancellation 5.7e-35
+[C3] k=2: M_k = -3.903e-27   envelope scale 4*Gamma(4k+4) = 1.597e+08 -> cancellation 2.4e-35
+[C3] k=3: M_k = -8.706e-22   envelope scale 4*Gamma(4k+4) = 5.231e+12 -> cancellation 1.7e-34
+[C3] k=4: M_k = -1.161e-16   envelope scale 4*Gamma(4k+4) = 4.866e+17 -> cancellation 2.4e-34
+[C3] k=5: M_k = -1.716e-11   envelope scale 4*Gamma(4k+4) = 1.034e+23 -> cancellation 1.7e-34
+[C3] k=6: M_k = -2.746e-06   envelope scale 4*Gamma(4k+4) = 4.356e+28 -> cancellation 6.3e-35
+[C3] exact-target member p=-9/8, phi=-pi/8: m_k = 4k+3/2:
+[C3] k=0: M_k = +1.916e-35   envelope 4*Gamma = 5.317e+00 -> cancellation 3.6e-36
+[C3] k=1: M_k = +1.135e-32   envelope 4*Gamma = 1.152e+03 -> cancellation 9.9e-36
+[C3] k=2: M_k = -3.385e-29   envelope 4*Gamma = 4.533e+06 -> cancellation 7.5e-36
+[C3] k=3: M_k = -7.746e-24   envelope 4*Gamma = 9.237e+10 -> cancellation 8.4e-35
+[C3] block done (105s)
+[C4] forward transform F(t) = int rho(u)(u+t)^-1/2 du, w = u^-1/4 substitution; dps=40
+[C4] canonical member p=-3/2, phi=pi/2 (sin), zeta=1:
+[C4]   fitted c = 1.402042 vs predicted sqrt(2)*zeta = 1.414214 (ratio 0.991394)
+[C4]   prefactor power q = -0.8127 (branch-point law predicts q = p + 5/8 = -0.8750); lnA=1.616; max resid 3.9e-02
+[C4]   sign(F) constant: True (signs=[-1]); F(t_min) = -2.056217e-14
+[C4]   local exponent sequence (last 4): 1.11821, 1.19110, 1.24626, 1.28791
+[C4] (105s)
+[C4] universality: same member at zeta=1.7:
+[C4]   fitted c = 2.396768 vs predicted sqrt(2)*zeta = 2.404163 (ratio 0.996924)
+[C4]   prefactor power q = -0.8375 (branch-point law predicts q = p + 5/8 = -0.8750); lnA=1.140; max resid 2.4e-02
+[C4]   sign(F) constant: True (signs=[-1]); F(t_min) = -3.960547e-28
+[C4]   local exponent sequence (last 4): 2.10566, 2.17965, 2.23543, 2.27742
+[C4] (106s)
+[C4] EXACT-TARGET member p=-9/8, phi=-pi/8 (q must be -1/2):
+[C4]   fitted c = 1.411686 vs predicted sqrt(2)*zeta = 1.414214 (ratio 0.998213)
+[C4]   prefactor power q = -0.4857 (branch-point law predicts q = p + 5/8 = -0.5000); lnA=1.222; max resid 6.1e-03
+[C4]   sign(F) constant: True (signs=[1]); F(t_min) = 1.136762e-16
+[C4]   local exponent sequence (last 4): 1.24338, 1.28581, 1.31774, 1.34177
+[C4] block done (106s)
+
+[D] DEEP-MOND OBSTRUCTION: E_t[T] analytic at t=2 (slope 1 in eps = 2-t prop. a^2)
+[D] T = e^-u: slopes of [E(2-eps)-E(2)] vs eps: 1.01049, 1.00103, 1.00010, 1.00001  (analytic; target needs 0.25)
+[D] T = (1+u)^-0.3 (light-field h-=0.3 class): slopes of [E(2-eps)-E(2)] vs eps: 1.00781, 1.00077, 1.00008, 1.00001  (analytic; target needs 0.25)
+[D] => m_ind analytic in a^2 at a=0 whenever the geodesic adiabatic response converges:
+    NO-KERNEL for mu ~ sqrt(a/a0) (or any non-integer power of a^2) at the deep-MOND endpoint.
+[D] block done (106s)
+
+[E] LEGALITY
+[E1] (h+)_1 (h-)_1 = prod_(j<1)(x + j(j+3)): True  (POSITIVE for all x>0)
+[E1] (h+)_2 (h-)_2 = prod_(j<2)(x + j(j+3)): True  (POSITIVE for all x>0)
+[E1] (h+)_3 (h-)_3 = prod_(j<3)(x + j(j+3)): True  (POSITIVE for all x>0)
+[E1] (h+)_4 (h-)_4 = prod_(j<4)(x + j(j+3)): True  (POSITIVE for all x>0)
+[E1] => every u-derivative of the mass-M cut at the cone = (M^2-2H^2) x POSITIVE number:
+    flatness tower == all polynomial moments of nu = (x-2) d rho vanish;
+    0 = int (x-2)^2 Q(x)^2 d rho for all polys Q => rho = delta at the conformal point (zero tail). ILLEGAL in class (i).
+[E2] positive power-tail KL weight (flat caricature, w(M)=M^-4 on [1,inf)):
+[E2] sigma(u) fit = 1.000000 -0.666667 sqrt(u) +0.1250 u
+[E2] sqrt(u) coefficient -0.666667 vs sign-locked -C = -0.666667 (C = int x^-2 (1-j) dx > 0 since j<=1)
+[E2] => heavy-tail positive measures give SIGN-DEFINITE ALGEBRAIC lightcone terms, never exponential flatness. ILLEGAL in class (ii).
+[E3] LP cost-of-flatness (positive measure, J flatness conditions + unit positive-part normalization):
+[E3] J= 0  status=0  min total mass = 5.3914e-01
+[E3] J= 1  status=2  min total mass = INFEASIBLE/failed
+[E3] J= 2  status=2  min total mass = INFEASIBLE/failed
+[E3] J= 3  status=2  min total mass = INFEASIBLE/failed
+[E3] J= 4  status=2  min total mass = INFEASIBLE/failed
+[E3] J= 5  status=2  min total mass = INFEASIBLE/failed
+[E3] J= 6  status=2  min total mass = INFEASIBLE/failed
+[E3] J= 7  status=2  min total mass = INFEASIBLE/failed
+[E3] J= 8  status=2  min total mass = INFEASIBLE/failed
+[E3] J= 9  status=2  min total mass = INFEASIBLE/failed
+[E3] J=10  status=2  min total mass = INFEASIBLE/failed
+[E3] (mass growth/infeasibility with J = the positive-measure cost of lightcone flatness diverging)
+[E] block done (108s)
+
+[F] RAW NUMBERS (both footings / conventions, per the working rule)
+[F] framework a0=9.36e-11, H_Lambda: eta = a0/cH = 0.17250 ; zeta = 2^(-1/4) eta^(-1/2) = 2.0247
+[F] canonical a0=1.2e-10,  H_Lambda: eta = a0/cH = 0.22115 ; zeta = 2^(-1/4) eta^(-1/2) = 1.7881
+[F] framework a0, hostile H0 footing: eta = a0/cH = 0.14256 ; zeta = 2^(-1/4) eta^(-1/2) = 2.2271
+[F] structural: ANY O(1) dimensionless zeta in this class gives a0 = cH/(sqrt(2) zeta^2) -- a0 prop. cH automatic.
+[F] amplitude (corollary 1): lambda^2 <Q^2> >= m/(2 H sup|T|): cosmologically large universal charge per mass;
+    m_eff(0)=0 saturates the N2 static-tachyon stability cap exactly at a=0.
+[F] quarantined identity: 2^(-1/4) sqrt(Z) - (16pi/3)^(1/4) = 0  (zeta_framework = (16pi/3)^(1/4) = 2.0232;
+    a re-expression of the eta = 1/Z convention, NOT a derivation of Z).
+
+DONE in 108s.

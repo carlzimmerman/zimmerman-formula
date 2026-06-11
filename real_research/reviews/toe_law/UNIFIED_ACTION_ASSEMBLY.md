@@ -69,7 +69,16 @@ complete at the EOM level; if it cannot, the obstruction is the boundary theorem
 4. **The dial:** the slip amplitude requires a second smooth variable beyond g_bar (sharp staircase refuted 7.3σ —
    agentJ). **[SLOT-Z RESOLVED (agentZ): TYPE-IRREDUCIBLE — at fixed M*, z, and local density the type contrast stands at +0.194 dex (6.2σ combined; 1.5σ stratified, direction unanimous); no measured dial drives it. The slip sector must couple to a morphology-tracking quantity (central concentration / dispersion support — beyond this catalog), or the split is structural to the partner.]**
 5. **The mechanism slot:** what microphysics produces the exponential tail remains the chain's Link-5 gap.
-   **[SLOT-V: the kernel fingerprint or its boundary theorem; in flight.]**
+   **[SLOT-V RESOLVED (agentV): KERNEL-EXISTS-BUT-ILLEGAL + a NO-KERNEL deep-MOND corollary.** The inversion is
+   unique and explicit; the required spectral density σ_req carries a fourth-root essential singularity at the
+   lightcone (all inverse moments zero, Stieltjes-indeterminate) — and dS Källén–Lehmann positivity kills EVERY
+   invariant carrier (α-vacua, interacting, squeezed: closed). The carrier must BREAK dS invariance = the khronon
+   medium itself, which inherits σ_req as its derivation target — converging exactly with Theorem X2's pumped-
+   reservoir requirement: Link 5's final form is an ACTIVE, dS-breaking medium with a computed fingerprint and a
+   priced energy budget. COROLLARY (new falsifiable prediction): no kernel produces the √(a/a₀) onset — μ flattens
+   to const + O(a²) below some a★ (deep-MOND flattening). Honest flags: the m²<2H² sign tension (N-series
+   reconciliation queued); the conformal-balanced legal-mixture residue (named NNLS follow-up); ζ quarantined as a
+   convention re-expression, not a Z derivation.]**
 
 ## The parameter inventory (the entire freedom of the assembled candidate)
 | Parameter | Origin | Status |

@@ -1,0 +1,24 @@
+agentV addendum: exponent extrapolation + two-condition sharpening
+======================================================================
+[X1] computing F(t) for t = 1e-1 .. 1e-8 at dps=80 (exact-target member, zeta=1):
+[X1] F(1e-8) = 1.1401876e-57 ; sign set = [1]
+[X1] local exponent sequence: 0.479270, 0.708980, 0.882440, 1.013460, 1.112401, 1.187072, 1.243381, 1.285806, 1.317743, 1.341766, 1.359825, 1.373393, 1.383583, 1.391232
+[X1] t^(1/4)-extrapolation over last  6 slopes: c_inf = 1.414038  (sqrt(2) = 1.414214; ratio 0.999876)
+[X1] t^(1/4)-extrapolation over last  8 slopes: c_inf = 1.413848  (sqrt(2) = 1.414214; ratio 0.999741)
+[X1] t^(1/4)-extrapolation over last 10 slopes: c_inf = 1.413446  (sqrt(2) = 1.414214; ratio 0.999457)
+[X1] 4-param fit (with t^1/4 subleading): c = 1.414073 (sqrt2: ratio 0.999901), q = -0.4977 (target -0.5000), max resid 1.3e-03
+[X1] done (1s)
+
+[X2] TWO-CONDITION SHARPENING (sympy + LP echo)
+[X2] identity: x*(x-2) - 2*(x-2) = (x-2)^2: True
+[X2] => flatness conditions k=0 (int (x-2)drho = 0) and k=1 (int x(x-2)drho = 0) alone imply
+    int (x-2)^2 drho = 0 => rho = delta at x=2 (conformal point, ZERO tail).
+    The legality kill needs only the FIRST TWO vanishing power corrections at high a, not the full tower.
+[X2] epsilon-relaxed LP (|condition_k| <= eps, k=0,1; unit positive part; min total mass):
+[X2] eps=1e-01: min total mass = 2.6316e-02
+[X2] eps=1e-02: min total mass = 3.9353e-01
+[X2] eps=1e-03: min total mass = 2.6062e+00
+[X2] eps=1e-04: min total mass = 2.8959e+01
+[X2] (mass diverging as eps -> 0: approximate flatness is unboundedly costly for positive measures)
+
+DONE in 1s.
