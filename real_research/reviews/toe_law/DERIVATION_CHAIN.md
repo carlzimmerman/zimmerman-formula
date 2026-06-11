@@ -41,17 +41,25 @@ balance, agentQ). The length scale is not inserted — it appears.
   ε = GMH/c³ = r_g/2R_H — the N² gain IS the WEP violation; 21–28 dex short regardless), non-Huygens tails (N2/N3:
   right SIGN exists — the deficit channel, m²<2H² — but amplitude walls 10⁵–10⁸⁶ and the sign/knee one-field
   contradiction), every coupling route (matter: fifth-force; conformal/clock: Cassini-PPN, 6.7 dex; agentI + inline).
-- **What survives as the mechanism target (the spec, sharpened to a sentence):** a FIELD-LEVEL structure coupling
-  to dT_eff/da on the inertia side, producing the EXPONENTIAL μ-tail, with an amplitude source outside any
-  fraction-limited carrier's energy budget. No published structure supplies it; the repo's construction attempt
-  died pre-assembly with the numbers (agentI).
+- **LINK 5'S FINAL FORM (agents X + V, convergent, 2026-06-11):** the mechanism is an **ACTIVE, dS-invariance-
+  breaking medium — the khronon sector itself — pumped by the Λ/dS energy budget.** Two independent proofs converge:
+  Theorem X2 (causality + vacuum passivity force μ̂(0) ≥ μ̂(∞); deep MOND forces the inversion ⇒ no passive vacuum
+  closes any causal MI; the channel is irreducibly active, and the invoice names the Λ/dS bath as the only reservoir
+  with ×10²–10⁴ to spare) and agentV's positivity theorem (the required kernel exists uniquely but every
+  dS-INVARIANT carrier is killed by Källén–Lehmann positivity ⇒ the carrier must break dS invariance = the khronon
+  medium, which inherits the computed spectral fingerprint σ_req as its derivation target). **What remains underived:
+  one object, one property — the khronon medium's σ_req.** Corollary (NEW PREDICTION): no kernel produces the
+  √(a/a₀) onset — μ flattens to const + O(a²) below some a★ (deep-MOND flattening; falsifiable in future deep-RAR
+  data). Open flags: the m²<2H² sign reconciliation; the conformal-balanced legal-mixture residue (NNLS follow-up).
 
 **Link 6 — the effective law (the matter sector).** NAMED: **Milgrom-2022 (time-nonlocal MI) + the exponential
 μ-tail** — the first published object to clear every nonrelativistic wall the program has built (agentM: reflex
 passed >10¹³ where power-law tails die ×6–10⁹; precession sign-flipped and suppressed; p≡0 acceleration-keyed;
 SPARC = baseline; the DR4 fork reshaped with a +4–8% positive-selection branch). The filter is inert; the
 exponential tail carries everything — and is therefore what Link 5's mechanism must derive.
-**Covariant home (agentU): BUILDABLE, unbuilt** — the khronon/aether lift with the MOND nonlinearity on the
+**Covariant home (agentU → agentX): BUILT AT THE EOM LEVEL** — the Galley/SK causal conserving equation of motion
+exists (validated to 0.03% against every banked number; energy ledger closed at 10⁻¹⁴; zero pre-acceleration; the
+khronon forced twice), conditional on the X2 pumped reservoir = Link 5's medium. Originally:** — the khronon/aether lift with the MOND nonlinearity on the
 INERTIA side: Cassini Q₂ absent BY ARCHITECTURE (Einstein gravity), PPN passes in pinned corners (α ≲ 8×10⁻⁷),
 WEP three-layer verified, no singular-surface analog, agentM's battery transfers <1%, and the MINIMAL cosmological
 writing is a₀ = const ≡ the framework's pure-Λ √ρ_DE branch. Inherited opens, named: conservation/causality of the
