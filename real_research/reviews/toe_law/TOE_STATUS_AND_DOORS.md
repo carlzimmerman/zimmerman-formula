@@ -124,3 +124,39 @@ missing object (trajectory-NONLOCAL matter sector — the instantaneous reading 
 required nonlocality anyway — plus a lensing-carrying metric partner, with non-Huygens fields as the unique bath-side
 mechanism opening); and one open laboratory door (sub-a₀ atom interferometry, which tests the proper-acceleration
 reading the solar-reflex kill does NOT touch — free-fall atoms have a_proper ≈ 0, the Sun does not).**
+
+---
+
+# 2026-06-11 — THE CAMPAIGN DAY: the chain completed, assembled, hostile-audited; the doors after
+
+*Everything above is the 06-10 F4-era state and stands as history. The 06-11 campaign superseded it: the chain's
+authoritative spine is now `DERIVATION_CHAIN.md` (all flags closed), the action scaffold `UNIFIED_ACTION_ASSEMBLY.md`
+(all five slots resolved), and the publication object `papers/WHITEPAPER_TOE_MAP_2026.md` / `zimmerman_toe_map_2026.tex`
++ `.pdf` (the addendum edition, 34 pp, Zenodo-ready). This block records the day's verdicts and the live doors.*
+
+## The day's banked verdicts (each: guard-clean, committed, chain/assembly-patched)
+| Verdict | Commit |
+|---|---|
+| CC — a★ first confrontation: NO-FLATTENING + window untested (a★ ≤ 0.107 a₀ 95%); EFE-vs-floor split; decisive test = watch entry 11 | `40116556` |
+| Paper — LaTeX/Zenodo edition (.tex + 34-pp PDF, 10 verbatim passages verified) | `3770c9c6` |
+| GG — JWST high-z: REGIME-INSUFFICIENT (g_obs = 5.7–24 a₀); the ×2.3–2.4 [CII] branch fork = watch entry 12 | `70b56478` |
+| FF — hostile audit of X: X2 SURVIVES-STRENGTHENED (nonlinear extension); signed ledger ACTIVE-secular (×2.63, the X2 direction); 3 framings corrected; + EE STEP-1 banked | `93524ad1` |
+| Paper — the ADDENDUM edition (six synchronized md+tex edits incl. the 15→8-orders correction; recompiled) | `83721ae1` |
+| EE — σ_req scoping: STRUCTURALLY-CAPABLE for the PUMPED khronon (minimal khronon CANNOT); (C1)–(C5) written; **Link 5 = a defined calculation**; the b-family theorem (dilatation orbits ≡ Deser–Levin); a²-analyticity ⇒ a★ is the route's OWN prediction | `9def577c` |
+| agentE budget cross-check: FF's last flag DOWNGRADED (order-corroborated ×4 inside Folkner; PASS-flip band 1.2–1.8e-16 beyond all published bounds) | `cb07dabb` |
+
+## The live doors (in flight as of 13:00)
+1. **HH — the Link 5 calculation**: the scale-invariant pump profile g(k_phys/H) vs (C1)–(C5), inverse problem
+   included; gates = stability/Cherenkov/PPN/X2-throughput. PROFILE-FOUND would functionally close Link 5.
+2. **II — the CMB/E_G audit of the slip sector** (the assembly's biggest unpaid debt; genuine falsification risk:
+   naive ν diverges at linear scales — raw vs saturated vs EFE-regulated readings, vs Planck A_L + published E_G).
+3. **JJ — the ×2.32 transient fingerprint** vs tidal-dwarf/post-interaction data (the built EOM's one untested
+   novel prediction; EFE confound has opposite sign — separability is the crux).
+4. **DD — the vector carrier on u** vs agentY's four walls (Wall 3, the 10⁷ Hamiltonian-constraint pollution, is
+   the live-or-die point; SAME-WALLS narrows Link 7 to nonlocal-only).
+
+## Process notes that survive the day
+- The monthly-spend-limit kill pattern: agents die silently post-computation; the salvage drill (verify the .out,
+  orphan-complete the memo, label it) is proven (FF, EE-STEP-1, GG-inline). Write-first/incremental discipline is
+  now in every launch prompt.
+- The naming sequence is at JJ; next letters KK, LL, …
