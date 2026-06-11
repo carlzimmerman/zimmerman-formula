@@ -24,6 +24,37 @@ S = S_EH[g] + S_u[g, u] + S_m[matter; g, u] + S_slip[g, u]
   producing (μ,Σ) = (1, ν(g_bar/a₀)) — photons see the phantom, matter does not (the double-counting theorem forbids
   anything else — agentW). **[SLOT-Y: the explicit minimal Lagrangian + the degeneracy/ghost audit; in flight.]**
 
+## The field equations (the action principle, scaffold level — X/Y supply the specific functionals)
+
+Varying S = S_EH + S_u + S_m + S_slip:
+
+**δg (the metric):**
+  G_μν + Λg_μν = 8πG [ T^(m)_μν + T^(u)_μν + T^(slip)_μν ]
+with the structure forced by the banked theorems: T^(slip) contributes ONLY anisotropic stress in the Ψ-channel at
+galactic scales (zero clustering stress-energy — the double-counting theorem, agentW); T^(u) is the standard
+khronon/aether stress (bounded ≲ c_14 ~ 2.5×10⁻⁵ fractional — agentU); T^(m) is the matter stress-energy carrying the
+inertia modification (its conservation status = [SLOT-X]).
+
+**δu (the frame; both sectors source it):**
+  E_u^μ ≡ δS_u/δu_μ + δS_m/δu_μ + δS_slip/δu_μ = 0  (with the unit constraint enforced)
+— the khronon's own dynamics plus TWO matter-side sources: the M22 functional's frame-dependence (the filter reads
+frequencies in the u-frame) and the slip sector's u-coupling. The PPN feedback of the first source was bounded by
+agentU (exponentially zero at precision bodies: x·ε′(x) ~ e^{−√x}); the second source's feedback is part of [SLOT-Y]'s
+degeneracy audit.
+
+**δx (matter worldlines — the inertia side, the framework's distinctive move):**
+  m · 𝕀[a_u; a₀, θ] · a⊥^μ = F^μ
+where 𝕀 is Milgrom-2022's time-nonlocal functional of the u-frame acceleration history (exponential μ-tail; θ(1)=1),
+a⊥ the u-orthogonal acceleration, F^μ the external force. The causal, energy-conserving form of THIS equation —
+the doubled-variable (Schwinger–Keldysh/Galley) writing whose physical limit is retarded and whose energy ledger
+closes onto T^(u) — is [SLOT-X]. Photons: null geodesics of g, period (m factors out) — lensing is carried entirely
+by the Ψ-channel of the metric sourced through S_slip.
+
+**The consistency spine (Bianchi):** ∇^μ[T^(m) + T^(u) + T^(slip)]_μν = 0 total — the assembly's deepest internal
+gate: whatever energy the nonlocal matter sector does not conserve locally must be carried by the aether flux
+(computed in [SLOT-X]) with the slip sector separately conserved. If X's ledger closes, the action principle is
+complete at the EOM level; if it cannot, the obstruction is the boundary theorem for the whole construction.
+
 ## The interface conditions (fixed by the banked theorems — non-negotiable)
 1. **One frame:** S_m and S_slip read the SAME u^μ (the 1602.05961 §6 u-machinery, decoupled from its matter force,
    is the named template — agentW).
