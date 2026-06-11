@@ -1,0 +1,197 @@
+====================================================================================================
+agentFF HOSTILE AUDIT of agentX -- run date 2026-06-11
+====================================================================================================
+[FF-1] THEOREM X2 RE-DERIVED FROM SCRATCH (route: microscopic passive baths + nonlinear dissipativity)
+====================================================================================================
+
+  [FF-1a] microscopic route: probe + positive quadratic bath, exact elimination
+    single-mode bath: mu^(w) = m_j*omega_j**2/(-omega**2 + omega_j**2) + 1
+    mu^(0) = m_j + 1 ; mu^(inf) = 1 ; mu^(0) - mu^(inf) = m_j > 0  (each mode ADDS DC inertia)
+    => sum over modes: mu^(0) - mu^(inf) = sum_j m_j >= 0 for ANY positive bath: the X2 ordering,
+       derived with zero analyticity input. A passive medium can only make the DC response HEAVIER.
+    2000 random positive baths (1-12 modes, m_j lognormal, w_j over 6 decades): min[mu^(0)-mu^(inf)] = 3.3803e-03 >= 0  -> ordering NEVER inverted. PASS
+    sign pin (independent of agentX's damped-oscillator reference): ohmic friction kernel in the
+    e^(+i w tau) convention: mu^ = I*gamma/(m*w) + 1 -> Im mu^ = gamma/(m w) > 0 = ABSORBING.
+    agentX's numerically-pinned convention (PASSIVE <=> Im mu^ >= 0, w>0) CONFIRMED by algebra.
+    M22 needs mu^(0) -> 0 < mu^(inf): infeasible for any positive measure (each mode contributes
+    +m_j at DC). Theorem X2's LINEAR statement: INDEPENDENTLY RE-DERIVED, agreement exact.
+
+  [FF-1b] LOOPHOLE (a) -- nonlinearity. The nonlinear theorem (two lines, then machine-verified):
+    Let the worldline have bare energy (1/2)mv^2 and couple to ANY medium whose Hamiltonian is
+    bounded below, prepared in its ground state (the definition of a passive/vacuum reservoir,
+    Willems storage-function form -- linear OR nonlinear). Total conservation gives
+        (1/2)mv^2(t) - int F v dt = -[E_med(t) - E_med(0)] <= 0.
+    The MOND secular trajectory m*mu(a/a0)*a = F (mu < 1) gives d(mv^2/2)/dt = F v / mu > F v,
+    so (1/2)mv^2 - int F v dt = int (1/mu - 1) F v dt > 0. CONTRADICTION. No passive medium --
+    linear or NONLINEAR -- can close the secular channel. X2 is STRONGER at the nonlinear level.
+    (Only assumptions: bare kinetic term (1/2)mv^2; medium energy bounded below, starts at min.
+     Evasions = exactly agentX's corollary options (b) ghost/Ostrogradsky bare term or pumped
+     reservoir (a). The linearized-kernel reading was never the load-bearing step.)
+
+    machine check: probe (m=1) pulled by constant F = 0.03 (a0 = 1 units; deep MOND).
+    MOND demands kinetic-energy ratio R = (mv^2/2)/int(Fv) = 1/mu = 3.579 at a = 0.1074.
+    30 adversarial nonlinear vacuum baths (soft/stiff springs over 4 decades, quartic terms,
+    random masses) try to push R above 1:
+      best achievable R over all trials = 0.3003  (free particle = 1.000; MOND needs 3.579)
+      PASS: R <= 1 + O(dt) for every positive-Hamiltonian bath -- the enhancement is unreachable.
+    ghost bath (one negative-spring mode, energy unbounded below): R reaches 21716638.53 > 1 --
+      an energy-unbounded sector CAN fake the enhancement: the loophole lives exactly at agentX's
+      corollary option (b) (dead by agentU gate 1), nowhere else. Loophole (a) CLOSED.
+
+  [FF-1c] LOOPHOLES (b)+(c) -- the M22 kernel's DC kink, its non-L1 tau-tail, and the limits
+    DC behavior of Re mu^(w) = mu_exp(x_c theta(Omega/w)), x_c = 0.18, Omega = 1:
+      theta=2/(1+y^2)    : mu^ at w = 1e-2/1e-3/1e-4 -> 5.982e-03 / 5.998e-04 / 6.000e-05; mu^(inf) = 0.4512
+      theta=exp(1-y)     : mu^ at w = 1e-2/1e-3/1e-4 -> 1.349e-22 / 1.000e-150 / 1.000e-150; mu^(inf) = 0.5032
+      theta=exp((1-y)/2) : mu^ at w = 1e-2/1e-3/1e-4 -> 7.566e-12 / 5.428e-77 / 5.428e-77; mu^(inf) = 0.4200
+      theta_A: mu^ ~ sqrt(2 x_c)|w| -- a |w| KINK at DC => tau-domain kernel tail ~ -sqrt(2 x_c)/(pi tau^2):
+      tau =     30: chi(tau) = -2.128e-04 ; predicted -sqrt(2 x_c)/(pi tau^2) = -2.122e-04 (ratio 1.003)
+      tau =    100: chi(tau) = -1.911e-05 ; predicted -sqrt(2 x_c)/(pi tau^2) = -1.910e-05 (ratio 1.001)
+      tau =    300: chi(tau) = -2.126e-06 ; predicted -sqrt(2 x_c)/(pi tau^2) = -2.122e-06 (ratio 1.002)
+      -> the kernel's 1/tau^2 tail is REAL: chi is NOT L1 (log-divergent L1 norm), only tempered/L2.
+      Does the Fourier-limit statement survive? Independent check: the causal completion computed by
+      ADAPTIVE QUADRATURE Hilbert transform (no FFT, no grid -- agentX used FFT):
+             w  Im (this audit, quad)  Im (agentX FFT)  rel diff
+        0.0100               -0.01864         -0.01862     0.12%
+        0.0500               -0.06243         -0.06241     0.03%
+        0.1000               -0.09822         -0.09820     0.02%
+        0.4142               -0.18147         -0.18140     0.04%
+        2.4142               -0.09176         -0.09160     0.17%
+      -> agentX's KK-forced Im is reproduced by independent machinery on the non-L1 kernel.
+      sum rule on the audit's own completion: (2/pi) int Im/l dl = -0.4538 vs mu^(0)-mu^(inf) = -0.4512 (rel err 0.6%)
+      Im/l at the DC end ~ const*ln(l): integrable despite the kink -- the |w| nonanalyticity does NOT
+      break the dispersion relation; it only makes the kernel non-L1 (tempered), where KK holds in L2.
+      LOOPHOLE (b) CLOSED: the sum rule and its sign conclusion survive the exponential tail's kernel.
+      once-subtracted DR at w = 2e+03: mu^(w)-mu^(0) = +0.4534 (expect ~ +0.4512) -- subtractions do not change the DC-end sign conclusion.
+
+    (c) the zero-frequency limit's interchange (probe amplitude da vs w -> 0), theta_A, x_c = 0.18:
+      da = 1e-02: [w->0 then da->0] mu = mu(da) = 9.516e-02 ; [da->0 then w->0] mu = mu(0) = 0.000e+00 ; mu^(inf) = 0.4512
+      da = 1e-04: [w->0 then da->0] mu = mu(da) = 9.950e-03 ; [da->0 then w->0] mu = mu(0) = 0.000e+00 ; mu^(inf) = 0.4512
+      da = 1e-06: [w->0 then da->0] mu = mu(da) = 9.995e-04 ; [da->0 then w->0] mu = mu(0) = 0.000e+00 ; mu^(inf) = 0.4512
+      BOTH orders sit strictly below mu^(inf): the ordering inversion is interchange-robust.
+      (Honest flag kept: at exact DC the diagonal LINEAR response is degenerate -- mu'(0+) is not
+       finite for the deep-MOND limit -- so the linearized X2 alone is soft exactly at DC; the
+       NONLINEAR closure of [FF-1b] is what makes the DC conclusion rigorous. agentX's memo leaned
+       on the elementary nonlinear check for this; the audit formalizes it.)
+
+  [FF-1] VERDICT: Theorem X2 SURVIVES -- re-derived by two independent routes (microscopic
+  positive-bath representation; nonlinear dissipativity), all three loopholes closed, and the
+  nonlinear version is STRONGER than the linearized statement agentX proved.
+
+====================================================================================================
+[FF-2] THE GALLEY/SK DYNAMICS ATTACKED: steps, sharp pulses, the ledger's sign, the signed residual
+====================================================================================================
+  (verbatim reruns of agentX_sk_kernel.py and agentX_sk_dynamics.py performed first: BOTH outputs
+   byte-identical to the banked .out files -- recorded in the audit memo. Attacks below.)
+
+  [FF-2a] STEP FORCE FROM EXACT REST (no history; F = 0 for t < 40, F = 0.03 after):
+    pre-onset: max|a| = 0.0e+00, max|v| = 0.0e+00 -> EXACT machine zero (the estimator is a functional of past data only; structurally retarded).
+    post-onset late-time a = 0.10738 vs algebraic MOND 0.10737 (err +0.01%) -- agentX's 3c-iv reproduced from a colder start. PASS.
+    PRE-ACCELERATION: NONE at machine level for the step. agentX's '1e-2 pre-onset deviation' is
+    confirmed to be running-estimator ripple on the quiet OSCILLATION, not future response.
+
+  [FF-2b] SHARP PULSES on an empty window (F = 0.03 during [40, 40+tau_p), rest before/after):
+    the hostile question: agentX's R3 says transients pay '~1% of the external work per event'.
+     tau_p     dt  dv/J (momentum amplif.)  active fraction PHI=W_ae/W_F  peak a / F
+       0.2  0.020                    40.46                         34.14        69.7
+       2.0  0.020                    19.82                         15.70        69.7
+       2.0  0.005                    19.93                         15.71       110.4
+      20.0  0.020                     9.55                          7.05        69.7
+    reading: pre-pulse response is exactly zero (no pre-acceleration, confirmed at the impulsive
+    limit). BUT the per-event ACTIVE fraction is NOT ~1%: on a quiet deep-MOND worldline the medium
+    co-pays (1/mu - 1) of the external work at the EVENT's effective acceleration scale -- measured
+    x7-x34 (705-3414% of the external work), and the momentum delivered
+    exceeds the impulse by the same order. agentX's '~1%' is specific to his geometry (a x3 kick atop
+    an already-loud x ~ 0.2->0.5 line, where the standing external work is large and mu ~ 0.4).
+    The INTEGRATED observables converge under dt 0.02 -> 0.005 (dv/J 19.82 -> 19.93, PHI 15.70 -> 15.71)
+    while the PEAK response grows (a_pk/F 69.7 -> 110.4): the onset is an integrable t^(-1/3) spike --
+    finite physics, cutoff-dependent peak. The construction SURVIVES the pulse (causal, finite,
+    ledger-closed), but the invoice WORDING ('~1% per event') is geometry-specific, not generic.
+
+  [FF-2c] THE LEDGER'S SIGN: which way does the reservoir's energy actually flow?
+    agentX's 3c-i printed |<P_ae>| (absolute value). The SIGNED steady-state residual:
+      N_cyc =  4: SIGNED <P_ae>/<|P_F|> = +5.33e-02 (ACTIVE: reservoir drains) ; reservoir cumulative dE = -4.483e-02
+      N_cyc =  8: SIGNED <P_ae>/<|P_F|> = +2.67e-02 (ACTIVE: reservoir drains) ; reservoir cumulative dE = -4.481e-02
+      N_cyc = 16: SIGNED <P_ae>/<|P_F|> = +1.34e-02 (ACTIVE: reservoir drains) ; reservoir cumulative dE = -4.481e-02
+      N_cyc = 32: SIGNED <P_ae>/<|P_F|> = +6.68e-03 (ACTIVE: reservoir drains) ; reservoir cumulative dE = -4.480e-02
+
+    ADJUDICATION -- is the positive residual a PERPETUAL drain or a one-time window-fill cost?
+    fixed N_cyc = 8, two durations (96 vs 384 cycles); if the drain is secular the cumulative
+    reservoir loss grows ~linearly with span; if it is transient it plateaus:
+      span  96 cycles: total reservoir dE = -4.4813e-02 ; late-half mean drain rate = -8.719e-05
+      span 384 cycles: total reservoir dE = -2.0772e-01 ; late-half mean drain rate = -9.008e-05
+      span x4 -> cumulative loss x4.64 (grows ~linearly: the drain is SECULAR -- a real, perpetual reservoir load on resolved
+      orbits at finite N_cyc)
+    DC/secular run (3c-iv geometry, F = 0.03, T = 1200): reservoir direction:
+      reservoir dE = -6.962e+03 vs external work +2.648e+03 -> reservoir LOSES 2.63x the external work in deep MOND.
+      matches the X2 invoice direction EXACTLY: sub-a0 secular forcing DRAINS the reservoir
+      (the pumped-medium story requires reservoir->worldline; a sign flip would have killed it).
+====================================================================================================
+[FF-3] THE 0.03% VALIDATION: circularity audit + fully independent recompute of the reflex anchor
+====================================================================================================
+  CIRCULARITY FINDING (code-level, established by inspection -- see audit memo for line refs):
+    agentX_sk_kernel.py [0] rebuilds the 'gate' inventory from a planets table BYTE-IDENTICAL to
+    agentM_milgrom2022_gauntlet.py (same GMsun = 1.32712440018e20, same 8 GM values, same semimajor
+    axes to the printed digit, same a_gal = 2.15e-10 / om_gal = 9.2e-16, same footing constants
+    A0_FW/A0_CAN/S_HOST = 9.36e-11/1.2e-10/5.418e-10, same eps formulas). agentX_sk_dynamics.py [0]
+    then SYNTHESIZES its validation worldline from that same amplitude table and recovers those
+    amplitudes with its estimator. Consequence: the 0.02-0.03% 'validation against banked numbers'
+    is (i) a shared-source regression test at the kernel level (a transcription error in agentM's
+    table would propagate UNDETECTED through every 'GATE-PASS'), and (ii) an estimator-fidelity
+    test at the dynamics level (signal built from the inventory, inventory recovered). What it does
+    legitimately establish: the retarded estimator converges to the symmetric filter's value on
+    quasiperiodic content. What it does NOT establish: the correctness of the inventory itself.
+    Hence the independent recompute below, through a different constants chain.
+
+  INDEPENDENT ANCHOR RECOMPUTE (DE440 system GMs, JPL J2000 mean elements, GRAVITY-era galactic
+  line, Planck-2018 footings derived from scratch -- every number sourced differently from agentM):
+    footings re-derived: a0_fw = c^2 sqrt(Lambda/32pi) = 9.3548e-11 (banked 9.36e-11, drift -0.06%) ; s_hostile = cH_Lambda = 5.4153e-10 (banked 5.418e-10, drift -0.05%)
+    galactic line: a_gal = 2.151e-10 (repo 2.15e-10), om_gal = 9.233e-16 (repo 9.2e-16)
+    Jupiter line: a_J = 2.0916e-07 m/s^2 (agentM/X: 2.0908e-07, drift +0.04%)
+
+    theta            A/a_J  (bank)      da_fw     (bank)    da_host     (bank) budget/eps host  (bank)
+    2/(1+y^2)        1.167   1.167  1.358e-29  1.391e-29  1.255e-16  1.267e-16            19.7    19.5
+    exp(1-y)         1.177   1.177  1.106e-29  1.133e-29  1.153e-16  1.163e-16            21.4    21.2
+    exp((1-y)/2)     1.130   1.130  3.081e-29  3.154e-29  1.764e-16  1.780e-16            14.0    13.9
+    reading: with a FULLY independent constants chain (DE440 system GMs incl. the 0.02% Jupiter
+    planet-vs-system probe, different semimajor axes, re-derived footings, GRAVITY-era galactic line)
+    the anchor reproduces: A/a_J to <0.2%, the hostile delta_a to within the few-% level implied by the
+    x11 exponential error amplification, and -- decisively -- the PASS margins land in the same x13-x22
+    band. The banked anchor is CORRECT; what was overstated is the word 'validation' for the 0.03%
+    shared-source agreement. The agentE budget 2.47e-15 itself remains single-sourced (inherited).
+====================================================================================================
+[FF-4] THE INVOICE ARITHMETIC RE-DERIVED (own constants chain; both footings; honest framings)
+====================================================================================================
+
+  H0 convention: Planck 67.36  (t_H = 4.581e+17 s)
+    demand ceilings: P_secular = 2.17e+33 W (agentX 2.26e33), P_transient = 1.58e+35 W (agentX 1.58e35)
+    khronon corner stockpile = 1.80e+49 J (agentX 1.95e49):
+      short of t_H by x55 (secular; agentX x50) and x4009 (transient; agentX x3600)
+    Lambda box (rho_DE footing)  = 1.54e+55 J -> margins x1.5e+04 (sec) / x213 (trans)  [agentX x1.7e4 / x242]
+    rho_TOTAL box (cH0 footing)  = 2.25e+55 J -> margins x2.3e+04 / x312  (footing fork is a x1.46 detail -- immaterial)
+    Gibbons-Hawking horizon: c^5/(G H) = 1.66e+70 J
+
+  H0 convention: agentX 70.0  (t_H = 4.408e+17 s)
+    demand ceilings: P_secular = 2.26e+33 W (agentX 2.26e33), P_transient = 1.58e+35 W (agentX 1.58e35)
+    khronon corner stockpile = 1.94e+49 J (agentX 1.95e49):
+      short of t_H by x51 (secular; agentX x50) and x3572 (transient; agentX x3600)
+    Lambda box (rho_DE footing)  = 1.66e+55 J -> margins x1.7e+04 (sec) / x240 (trans)  [agentX x1.7e4 / x242]
+    rho_TOTAL box (cH0 footing)  = 2.43e+55 J -> margins x2.4e+04 / x350  (footing fork is a x1.46 detail -- immaterial)
+    Gibbons-Hawking horizon: c^5/(G H) = 1.60e+70 J
+
+  honest reframings hunted (does any framing flip a verdict?):
+    (i) in-galaxy khronon GRADIENT energy as an alternative stockpile (could the frame field store more
+        in the galaxy's own u-gradients than in the cosmological corner?):
+        E_grad ~ c_14 * E_Newton(field) ~ c_14 * G M_b^2 / R_eff
+        M_b = 5e+10 Msun, R = 5 kpc: E_grad = 1.1e+47 J -- x182 SMALLER than the corner stockpile: 'cannot pay' is gradient-robust.
+        M_b = 1e+11 Msun, R = 10 kpc: E_grad = 2.1e+47 J -- x91 SMALLER than the corner stockpile: 'cannot pay' is gradient-robust.
+    (ii) the '15 more orders at the horizon level' framing: that compares the GLOBAL GH energy to a
+        SINGLE galaxy's bill. Per-galaxy-honest version (N_gal ~ 1.5e11 L*-equivalents):
+        global secular demand over t_H = 1.6e+62 J vs E_GH = 1.7e+70 J -> margin x1e+08 (~8 orders, not 15). The verdict (bath pays) is UNCHANGED; the '15
+        orders' wording mixes a per-galaxy bill with a global reservoir.
+    (iii) the box framing is CONSERVATIVE for the Lambda bath: real L* galaxies command ~(4pi/3)(c/H)^3
+        / N_gal ~ 6e67 m^3 each, x2000 the (100 kpc)^3 box -- the true Lambda margin is LARGER than quoted.
+    (iv) H0-convention mix: S_HOST is Planck-derived (67.4-class) while the invoice section used 70.0 --
+        an 8% rho_crit inconsistency. Immaterial against x50-x3600 and x1e2-1e4 margins (shown above by
+        running both conventions); flagged for hygiene only.
+
+[FF-DONE] all four audit items executed.

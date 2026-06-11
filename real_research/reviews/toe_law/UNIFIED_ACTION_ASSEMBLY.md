@@ -23,7 +23,11 @@ S = S_EH[g] + S_u[g, u] + S_m[matter; g, u] + S_slip[g, u]
   **Theorem X2**: causality + vacuum passivity force μ̂(0) ≥ μ̂(∞) while deep MOND forces the inversion ⇒ NO passive
   vacuum closes any causal MI — the channel is irreducibly ACTIVE; the kernel must be pumped. The invoice: khronon
   stockpile short ×50–3600; **the Λ/dS bath pays ×10²–10⁴ (box) / +15 orders (horizon)** — Links 5 and 6 are provably
-  ONE problem, and the dS-bath reservoir is re-derived as MANDATORY from causality alone, with sign and amount.]**
+  ONE problem, and the dS-bath reservoir is re-derived as MANDATORY from causality alone, with sign and amount.
+  HOSTILE-AUDITED (agentFF): X2 re-derived independently and EXTENDED to nonlinear passive media; the EOM survives
+  step/pulse/sign attacks; the signed ledger independently exhibits the SECULAR reservoir drain (2.63x external
+  work, deep MOND) in the X2 direction; three framings corrected (per-event %, the 0.03% "validation" circularity
+  -- anchor re-confirmed via an independent DE440 chain, "+15 orders" -> ~8 per-galaxy-honest), no verdict changes.]**
 - **S_slip** — the lens-only Ψ-channel sector: c_T-preserving beyond-Horndeski/DHOST class coupled to the SAME u,
   producing (μ,Σ) = (1, ν(g_bar/a₀)) — photons see the phantom, matter does not (the double-counting theorem forbids
   anything else — agentW). **[SLOT-Y RESOLVED (agentY): OBSTRUCTED for the scalar carrier — constructively.** Four machine-derived walls kill

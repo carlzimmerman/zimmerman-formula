@@ -68,7 +68,14 @@ SPARC = baseline; the DR4 fork reshaped with a +4–8% positive-selection branch
 exponential tail carries everything — and is therefore what Link 5's mechanism must derive.
 **Covariant home (agentU → agentX): BUILT AT THE EOM LEVEL** — the Galley/SK causal conserving equation of motion
 exists (validated to 0.03% against every banked number; energy ledger closed at 10⁻¹⁴; zero pre-acceleration; the
-khronon forced twice), conditional on the X2 pumped reservoir = Link 5's medium. Originally:** — the khronon/aether lift with the MOND nonlinearity on the
+khronon forced twice), conditional on the X2 pumped reservoir = Link 5's medium. **HOSTILE-AUDITED (agentFF):
+X2 independently re-derived AND extended to NONLINEAR passive media (energy-conservation proof; 30 adversarial
+baths); the EOM survives step/pulse/sign attacks (byte-identical reruns; machine-zero pre-acceleration at the
+impulsive limit); the SIGNED ledger shows the reservoir draining SECULARLY at 2.63× the external work in deep
+MOND — the X2 invoice direction, independently exhibited by the dynamics. Three framings corrected, no verdict
+changes (per-event transient cost is geometry-specific ×7–34 not ~1%; the 0.03% "validation" was a shared-source
+regression test — the anchor separately CONFIRMED via a fully independent DE440/JPL/GRAVITY/Planck chain to <0.2%;
+the "+15 orders" horizon line is ~8 orders per-galaxy-honest). Residual single-source: the agentE budget 2.47e-15.** Originally:** — the khronon/aether lift with the MOND nonlinearity on the
 INERTIA side: Cassini Q₂ absent BY ARCHITECTURE (Einstein gravity), PPN passes in pinned corners (α ≲ 8×10⁻⁷),
 WEP three-layer verified, no singular-surface analog, agentM's battery transfers <1%, and the MINIMAL cosmological
 writing is a₀ = const ≡ the framework's pure-Λ √ρ_DE branch. Inherited opens, named: conservation/causality of the
