@@ -1,0 +1,233 @@
+====================================================================================================
+agentBB LEGAL-MIXTURE ESCAPE TEST -- run date 2026-06-11
+the one escape agentV section 5.2 left open: conformal-balanced positive KL mixture vs the real SPARC RAR
+====================================================================================================
+[0] eta = a0/cH_L: fw 0.17250 ; canon 0.22115   (agentV [F]: 0.17250 / 0.22115)
+[0] solar lines: x_sun = 2.09e-7/a0 -> fw 2233, canon 1742 ; g_Sat = 6.520e-05 -> x_Sat fw 6.966e+05, canon 5.433e+05
+[0] budgets: delta_a_sun <= 2.47e-15 strict / 3.38e-15 loose ; delta_a_Saturn <= 1e-14
+
+====================================================================================================
+[1] ATOM KERNELS K_x(u) = (x-2) 2F1(3/2+nu,3/2-nu;2;-u/2) on the master u-grid
+====================================================================================================
+    grid: 576 nodes, 24/decade, u in [1e-16, 1e8]
+    [norm] t= 2.00e+00: sum w = 0.9999999829  (exact 1; deficit = grid truncation)
+    [norm] t= 5.00e-01: sum w = 0.9999999834  (exact 1; deficit = grid truncation)
+    [norm] t= 6.70e-02: sum w = 0.9999999610  (exact 1; deficit = grid truncation)
+    [norm] t= 1.00e-05: sum w = 0.9999968377  (exact 1; deficit = grid truncation)
+    [norm] t= 1.40e-10: sum w = 0.9991548460  (exact 1; deficit = grid truncation)
+    atoms: 48 masses x = M^2/H^2 in [0.05, 200.0] (principal series above 2.25; boundary pairs near 2)
+    kernel cache HIT (delete agentBB_kernel_cache.npz to rebuild)
+
+    [sanity] endpoints and anchors:
+      K_x(u->0) vs (x-2): x=0.05: -1.9500/-1.9500, x=1.99: -0.0500/-0.0100, x=3.00: +0.4500/+1.0000, x=60.00: +45.3000/+58.0000
+      MMC anchor x=1e-8: 2F1 at u=1e-06: 1.000000 (must be ~1: constant tail)
+      MMC anchor x=1e-8: 2F1 at u=1e+00: 1.000000 (must be ~1: constant tail)
+      MMC anchor x=1e-8: 2F1 at u=1e+06: 1.000000 (must be ~1: constant tail)
+    [resolution] grid-dot vs direct mp.quad (rel diff):
+      x=55.40 t=2.00e+00: grid +7.23799261e+00  direct +7.23799299e+00  rel 5.22e-08
+      x=200.00 t=2.00e+00: grid +1.40355641e+01  direct +1.40355655e+01  rel 9.97e-08
+      x=200.00 t=6.70e-02: grid +7.17553430e+01  direct +7.17553506e+01  rel 1.07e-07
+      x= 0.05 t=2.00e+00: grid -1.92498215e+00  direct -1.92498217e+00  rel 1.09e-08
+      x= 0.05 t=1.00e-05: grid -1.94999234e+00  direct -1.94999850e+00  rel 3.16e-06
+      x= 8.20 t=5.00e-01: grid +3.65517784e+00  direct +3.65517792e+00  rel 2.40e-08
+    [analyticity echo] x=8.2 atom: slopes of E(2-eps)-E(2): 1.0122, 1.0012, 1.0001 (agentV [D]: -> 1.0000; target law would need 0.25)
+
+====================================================================================================
+[2] RESPONSE SURFACES Psi_j(x_acc) = E_t[K_j]/sqrt(1+alpha^2), alpha = eta x_acc
+====================================================================================================
+    PSI built on 2800 x_acc nodes (1e-8..1e6, both footings) (2s)
+
+====================================================================================================
+[3] SPARC -- locked conventions (mi_f4_sparc_shape_test.py); regression gate first
+====================================================================================================
+    SPARC galaxies loaded: 175 ; points: 3391
+    [REG] regression vs locked .out (must reproduce 0.1969/0.1950/0.1951/0.1984 fw etc.):
+      a0 = fw 9.36e-11:
+        fw sqrt(1+1/y)           Ud= 0.60  unw 0.1969  wt 0.1168
+        McGaugh RAR              Ud= 0.52  unw 0.1950  wt 0.1106
+        simple                   Ud= 0.50  unw 0.1951  wt 0.1124
+        F4 standard              Ud= 0.64  unw 0.1984  wt 0.1238
+        McGaugh-MI (exact inv)   Ud= 0.72  unw 0.2189  wt 0.1348
+      a0 = canon 1.20e-10:
+        fw sqrt(1+1/y)           Ud= 0.52  unw 0.1968  wt 0.1168
+        McGaugh RAR              Ud= 0.46  unw 0.1977  wt 0.1105
+        simple                   Ud= 0.44  unw 0.1975  wt 0.1129
+        F4 standard              Ud= 0.58  unw 0.1980  wt 0.1175
+        McGaugh-MI (exact inv)   Ud= 0.66  unw 0.2128  wt 0.1286
+
+    balanced cone: 16 light x 32 heavy = 512 generating pairs (exact parameterization)
+
+====================================================================================================
+[5] NNLS per (footing, sign): positive unbalanced / balanced cone / signed control
+====================================================================================================
+
+  === footing fw (a0=9.36e-11), sign +1 = Quinn-anchored (heavy=deficit) ===
+    top single pairs (surrogate): (0.05,2.0) r=0.868; (1.25,130.0) r=0.868; (1.25,105.0) r=0.868; (1.25,85.0) r=0.868; (1.25,70.0) r=0.868
+    NNLS positive UNBALANCED (illegal 1/a tail) | shape-rms 0.1697 | SPARC unw 0.2352 (Ud 0.30; wt 0.1461) | mu_min band +0.193 all +0.193 mono 0.0e+00
+                                               | m0 +1.21e+00  var=sum c(x-2)^2 1.212e-02  mass 1.212e+02  mass@2 1.21e+02
+    NNLS BALANCED cone (the legal family)      | shape-rms 0.8683 | SPARC unw 0.3776 (Ud 1.20; wt 0.2755) | mu_min band +1.000 all +1.000 mono 0.0e+00
+                                               | m0 +0.00e+00  var=sum c(x-2)^2 0.000e+00  mass 0.000e+00  mass@2 0.00e+00
+
+  === footing fw (a0=9.36e-11), sign -1 = chain-line (light=deficit) ===
+    top single pairs (surrogate): (0.05,2.0) r=0.150; (0.05,2.0) r=0.150; (0.08,2.0) r=0.150; (0.05,2.1) r=0.151; (0.08,2.0) r=0.151
+    NNLS positive UNBALANCED (illegal 1/a tail) | shape-rms 0.1347 | SPARC unw 0.2205 (Ud 0.32; wt 0.1237) | mu_min band +0.175 all +0.175 mono 0.0e+00
+                                               | m0 +2.25e+00  var=sum c(x-2)^2 1.417e+01  mass 9.499e+02  mass@2 9.46e+02
+    NNLS BALANCED cone (the legal family)      | shape-rms 0.1504 | SPARC unw 0.2211 (Ud 0.30; wt 0.1211) | mu_min band +0.184 all +0.184 mono 0.0e+00
+                                               | m0 +0.00e+00  var=sum c(x-2)^2 4.973e+00  mass 2.550e+02  mass@2 2.54e+02
+
+  === footing canon (a0=1.20e-10), sign +1 = Quinn-anchored (heavy=deficit) ===
+    top single pairs (surrogate): (0.05,2.0) r=1.100; (1.25,130.0) r=1.100; (1.25,105.0) r=1.100; (1.25,85.0) r=1.100; (1.25,70.0) r=1.100
+    NNLS positive UNBALANCED (illegal 1/a tail) | shape-rms 0.1705 | SPARC unw 0.2555 (Ud 0.30; wt 0.1745) | mu_min band +0.150 all +0.150 mono 0.0e+00
+                                               | m0 +1.28e+00  var=sum c(x-2)^2 1.278e-02  mass 1.278e+02  mass@2 1.28e+02
+    NNLS BALANCED cone (the legal family)      | shape-rms 1.0997 | SPARC unw 0.3776 (Ud 1.20; wt 0.2755) | mu_min band +1.000 all +1.000 mono 0.0e+00
+                                               | m0 +0.00e+00  var=sum c(x-2)^2 0.000e+00  mass 0.000e+00  mass@2 0.00e+00
+
+  === footing canon (a0=1.20e-10), sign -1 = chain-line (light=deficit) ===
+    top single pairs (surrogate): (0.05,2.0) r=0.150; (0.05,2.0) r=0.150; (0.08,2.0) r=0.150; (0.05,2.1) r=0.150; (0.08,2.0) r=0.150
+    NNLS positive UNBALANCED (illegal 1/a tail) | shape-rms 0.1338 | SPARC unw 0.2311 (Ud 0.30; wt 0.1297) | mu_min band +0.136 all +0.136 mono 0.0e+00
+                                               | m0 +2.23e+00  var=sum c(x-2)^2 1.435e+01  mass 9.578e+02  mass@2 9.54e+02
+    NNLS BALANCED cone (the legal family)      | shape-rms 0.1497 | SPARC unw 0.2346 (Ud 0.30; wt 0.1349) | mu_min band +0.143 all +0.143 mono 0.0e+00
+                                               | m0 +0.00e+00  var=sum c(x-2)^2 5.225e+00  mass 2.680e+02  mass@2 2.67e+02
+
+  [signed control, fw]
+    SIGNED lstsq control (illegal; basis ceiling) | shape-rms 0.0579 | SPARC unw 0.2048 (Ud 0.48; wt 0.1251) | mu_min band +0.115 all +0.115 mono 7.8e-01
+                                               | m0 +0.00e+00  var=sum c(x-2)^2 1.915e+07  mass 1.908e+08  mass@2 1.14e+05
+
+  [signed control, canon]
+    SIGNED lstsq control (illegal; basis ceiling) | shape-rms 0.0558 | SPARC unw 0.2121 (Ud 0.42; wt 0.1313) | mu_min band +0.088 all +0.088 mono 7.8e-01
+                                               | m0 +1.91e-06  var=sum c(x-2)^2 1.853e+07  mass 1.819e+08  mass@2 1.09e+05
+
+====================================================================================================
+[6] POLISH (Powell, locked objective, coarse inner Ud scan; full scan at report)
+====================================================================================================
+
+  === footing fw, sign +1 ===
+    balanced polish: nfev=443 (1s)
+    POLISHED balanced (SPARC-only)             | shape-rms 0.8700 | SPARC unw 0.3778 (Ud 1.20; wt 0.2757) | mu_min band +1.000 all +1.000 mono 0.0e+00
+                                               | m0 +0.00e+00  var=sum c(x-2)^2 1.985e-01  mass 3.593e-03  mass@2 1.75e-05
+    balanced+solar polish: nfev=140 (0s)
+    POLISHED balanced + SOLAR-CONSTRAINED      | shape-rms 0.8707 | SPARC unw 0.3780 (Ud 1.20; wt 0.2758) | mu_min band +1.000 all +1.000 mono 0.0e+00
+                                               | m0 -4.34e-19  var=sum c(x-2)^2 2.529e-01  mass 4.600e-02  mass@2 4.11e-02
+    unbalanced polish: nfev=124 (0s)
+    POLISHED unbalanced (illegal control)      | shape-rms 0.1699 | SPARC unw 0.2354 (Ud 0.30; wt 0.1464) | mu_min band +0.194 all +0.194 mono 0.0e+00
+                                               | m0 +1.28e+00  var=sum c(x-2)^2 1.337e+01  mass 1.212e+02  mass@2 1.21e+02
+
+  === footing fw, sign -1 ===
+    balanced polish: nfev=118 (0s)
+    POLISHED balanced (SPARC-only)             | shape-rms 0.1504 | SPARC unw 0.2211 (Ud 0.30; wt 0.1211) | mu_min band +0.183 all +0.183 mono 0.0e+00
+                                               | m0 -1.53e-16  var=sum c(x-2)^2 4.977e+00  mass 2.550e+02  mass@2 2.54e+02
+    balanced+solar polish: nfev=136 (0s)
+    POLISHED balanced + SOLAR-CONSTRAINED      | shape-rms 0.8279 | SPARC unw 0.3704 (Ud 1.20; wt 0.2701) | mu_min band +0.961 all +0.961 mono 0.0e+00
+                                               | m0 -6.94e-18  var=sum c(x-2)^2 2.404e-01  mass 9.398e+00  mass@2 9.19e+00
+    unbalanced polish: nfev=338 (1s)
+    POLISHED unbalanced (illegal control)      | shape-rms 0.1418 | SPARC unw 0.2201 (Ud 0.42; wt 0.1209) | mu_min band +0.216 all +0.216 mono 0.0e+00
+                                               | m0 +2.53e+00  var=sum c(x-2)^2 3.878e+01  mass 9.634e+02  mass@2 9.60e+02
+
+  === footing canon, sign +1 ===
+    balanced polish: nfev=443 (1s)
+    POLISHED balanced (SPARC-only)             | shape-rms 1.1018 | SPARC unw 0.3778 (Ud 1.20; wt 0.2757) | mu_min band +1.000 all +1.000 mono 0.0e+00
+                                               | m0 +0.00e+00  var=sum c(x-2)^2 1.985e-01  mass 3.593e-03  mass@2 1.75e-05
+    balanced+solar polish: nfev=140 (0s)
+    POLISHED balanced + SOLAR-CONSTRAINED      | shape-rms 1.1026 | SPARC unw 0.3780 (Ud 1.20; wt 0.2758) | mu_min band +1.000 all +1.000 mono 0.0e+00
+                                               | m0 +4.34e-19  var=sum c(x-2)^2 2.529e-01  mass 4.600e-02  mass@2 4.11e-02
+    unbalanced polish: nfev=276 (1s)
+    POLISHED unbalanced (illegal control)      | shape-rms 0.1836 | SPARC unw 0.2356 (Ud 0.30; wt 0.1464) | mu_min band +0.201 all +0.201 mono 0.0e+00
+                                               | m0 +1.35e+00  var=sum c(x-2)^2 2.545e+01  mass 1.277e+02  mass@2 1.28e+02
+
+  === footing canon, sign -1 ===
+    balanced polish: nfev=242 (1s)
+    POLISHED balanced (SPARC-only)             | shape-rms 0.1589 | SPARC unw 0.2211 (Ud 0.30; wt 0.1212) | mu_min band +0.185 all +0.185 mono 0.0e+00
+                                               | m0 -2.57e-16  var=sum c(x-2)^2 4.970e+00  mass 2.547e+02  mass@2 2.53e+02
+    balanced+solar polish: nfev=136 (0s)
+    POLISHED balanced + SOLAR-CONSTRAINED      | shape-rms 1.0504 | SPARC unw 0.3704 (Ud 1.20; wt 0.2701) | mu_min band +0.961 all +0.961 mono 0.0e+00
+                                               | m0 +0.00e+00  var=sum c(x-2)^2 2.403e-01  mass 9.387e+00  mass@2 9.19e+00
+    unbalanced polish: nfev=344 (1s)
+    POLISHED unbalanced (illegal control)      | shape-rms 0.1687 | SPARC unw 0.2201 (Ud 0.42; wt 0.1209) | mu_min band +0.216 all +0.216 mono 0.0e+00
+                                               | m0 +2.55e+00  var=sum c(x-2)^2 3.859e+01  mass 9.713e+02  mass@2 9.67e+02
+
+====================================================================================================
+[6b] AGGRESSIVE RESTARTS: balanced family, the MOND-capable sign (-1), both footings
+====================================================================================================
+    fw restart from-NNLS         : nfev=294 -> SPARC unw 0.2211 (mu_min +0.185)
+    fw restart from-data-median  : nfev=2418 -> SPARC unw 0.2211 (mu_min +0.185)
+    fw: no improvement over 0.2211 (restarts confirm the optimum)
+    canon restart from-NNLS         : nfev=286 -> SPARC unw 0.2211 (mu_min +0.185)
+    canon restart from-data-median  : nfev=5503 -> SPARC unw 0.2211 (mu_min +0.185)
+    canon: no improvement over 0.2211 (restarts confirm the optimum)
+
+====================================================================================================
+[7] SOLAR BUDGETS (agentE reflex strict 2.47e-15 / loose 3.38e-15 ; Saturn radial 1e-14)
+====================================================================================================
+    mixture                                foot  sgn   1-mu(sun)     da_sun  x_strict     da_Sat     x_Sat  tailpow  verdict
+    NNLS UNBALANCED                        fw     +1   3.147e-03  6.598e-10  2.67e+05  6.572e-10  6.57e+04    -1.00  FAIL-sun+FAIL-Sat
+    POLISHED unbalanced                    fw     +1   3.328e-03  6.979e-10  2.83e+05  6.951e-10  6.95e+04    -1.00  FAIL-sun+FAIL-Sat
+    NNLS BALANCED                          fw     +1   0.000e+00  0.000e+00  0.00e+00  0.000e+00  0.00e+00      nan  PASS
+    POLISHED balanced                      fw     +1  -7.081e-09 -1.480e-15  5.99e-01 -3.663e-20  3.66e-06    -2.84  PASS
+    POLISHED balanced+solar                fw     +1  -9.063e-09 -1.894e-15  7.67e-01 -4.676e-20  4.68e-06    -2.84  PASS
+    NNLS UNBALANCED                        fw     -1  -5.832e-03 -1.212e-09  4.91e+05 -1.218e-09  1.22e+05    -1.00  FAIL-sun+FAIL-Sat
+    POLISHED unbalanced                    fw     -1  -6.560e-03 -1.362e-09  5.51e+05 -1.370e-09  1.37e+05    -1.00  FAIL-sun+FAIL-Sat
+    NNLS BALANCED                          fw     -1   2.453e-07  5.127e-14  2.08e+01  1.064e-18  1.06e-04    -2.87  FAIL-sun
+    POLISHED balanced                      fw     -1   2.455e-07  5.131e-14  2.08e+01  1.064e-18  1.06e-04    -2.87  FAIL-sun
+    POLISHED balanced+solar                fw     -1   1.185e-08  2.476e-15  1.00e+00  5.139e-20  5.14e-06    -2.87  PASS(loose)
+    NNLS UNBALANCED                        canon  +1   3.317e-03  6.955e-10  2.82e+05  6.927e-10  6.93e+04    -1.00  FAIL-sun+FAIL-Sat
+    POLISHED unbalanced                    canon  +1   3.501e-03  7.342e-10  2.97e+05  7.312e-10  7.31e+04    -1.00  FAIL-sun+FAIL-Sat
+    NNLS BALANCED                          canon  +1   0.000e+00  0.000e+00  0.00e+00  0.000e+00  0.00e+00      nan  PASS
+    POLISHED balanced                      canon  +1  -7.081e-09 -1.480e-15  5.99e-01 -3.663e-20  3.66e-06    -2.85  PASS
+    POLISHED balanced+solar                canon  +1  -9.063e-09 -1.894e-15  7.67e-01 -4.676e-20  4.68e-06    -2.85  PASS
+    NNLS UNBALANCED                        canon  -1  -5.794e-03 -1.204e-09  4.87e+05 -1.210e-09  1.21e+05    -1.00  FAIL-sun+FAIL-Sat
+    POLISHED unbalanced                    canon  -1  -6.621e-03 -1.375e-09  5.57e+05 -1.383e-09  1.38e+05    -1.00  FAIL-sun+FAIL-Sat
+    NNLS BALANCED                          canon  -1   2.578e-07  5.387e-14  2.18e+01  1.118e-18  1.12e-04    -2.88  FAIL-sun
+    POLISHED balanced                      canon  -1   2.452e-07  5.124e-14  2.07e+01  1.063e-18  1.06e-04    -2.88  FAIL-sun
+    POLISHED balanced+solar                canon  -1   1.185e-08  2.476e-15  1.00e+00  5.137e-20  5.14e-06    -2.88  PASS(loose)
+
+    [7b] PINCER CURVE (fw, sign -1): best balanced scatter vs allowed solar budget k x strict
+         (the band fit needs var = sum c(x-2)^2 ~ 5; the strict sun line caps var; no sweet spot = pincer)
+                k  scatter +over base da_sun/strict       var
+             1.00   0.3707    +0.1757          1.00     0.244
+             3.16   0.3560    +0.1610          3.16     0.762
+            10.00   0.3110    +0.1160          9.98     2.393
+            31.60   0.2211    +0.0261         20.89     5.012
+           100.00   0.2211    +0.0261         20.88     5.008
+
+====================================================================================================
+[8] SHAPE AUTOPSY (framework footing; the sign that serves the escape best)
+====================================================================================================
+    best-escape sign: -1 = chain-line (light=deficit)
+      x=a/a0   mu_tgt  mu_unbal mu_bal(P) mu_bal(Q)  dex(nu_P vs McGaugh)
+        0.01   0.0099    0.2159    0.1835    0.9608               -1.2679
+        0.02   0.0196    0.2159    0.1835    0.9608               -0.9711
+        0.05   0.0476    0.2160    0.1835    0.9608               -0.5857
+        0.10   0.0910    0.2164    0.1837    0.9608               -0.3048
+        0.20   0.1671    0.2179    0.1844    0.9609               -0.0424
+        0.50   0.3365    0.2280    0.1889    0.9611                0.2286
+        1.00   0.5106    0.2631    0.2045    0.9618                0.2935
+        2.00   0.6915    0.3926    0.2628    0.9646                0.2494
+        5.00   0.8768    0.9110    0.5108    0.9765                0.1363
+       10.00   0.9545    1.3652    0.7835    0.9896                0.0613
+       20.00   0.9883    1.4409    0.9410    0.9972                0.0191
+       30.00   0.9958    1.3670    0.9758    0.9988                0.0084
+      100.00   1.0000    1.1400    0.9988    0.9999                0.0005
+    flattening: |dex(nu_P, McGaugh)| > 0.05 for y < 10.904 (the agentV a_* flattening pulled INTO the band)
+    polished balanced spectral content (c_j > 1e-4 of max):
+      x=  0.05: c=1.3009e+00
+      x=  2.01: c=2.5366e+02
+      x=  2.05: c=3.0986e-02
+
+====================================================================================================
+[9] VERDICT (pre-registered thresholds)
+====================================================================================================
+  footing fw: McGaugh baseline 0.1950 | survival 0.2050 | closed line 0.2150
+    sign +1: NNLS bal 0.3776 (+0.1826) ; POL bal 0.3778 (+0.1828) ; POL bal+solar 0.3780 (+0.1830) ; [controls] unbal-pol 0.2354 ; NNLS unbal 0.2352
+    sign -1: NNLS bal 0.2211 (+0.0261) ; POL bal 0.2211 (+0.0261) ; POL bal+solar 0.3704 (+0.1754) ; [controls] unbal-pol 0.2201 ; NNLS unbal 0.2205
+    [signed lstsq ceiling] 0.2048 (+0.0098)
+    BEST LEGAL [fw]: NNLS BALANCED (sign -1) -> 0.2211 = baseline + 0.0261 ; solar FAIL-sun
+  footing canon: McGaugh baseline 0.1977 | survival 0.2077 | closed line 0.2177
+    sign +1: NNLS bal 0.3776 (+0.1799) ; POL bal 0.3778 (+0.1801) ; POL bal+solar 0.3780 (+0.1803) ; [controls] unbal-pol 0.2356 ; NNLS unbal 0.2555
+    sign -1: NNLS bal 0.2346 (+0.0369) ; POL bal 0.2211 (+0.0234) ; POL bal+solar 0.3704 (+0.1727) ; [controls] unbal-pol 0.2201 ; NNLS unbal 0.2311
+    [signed lstsq ceiling] 0.2121 (+0.0144)
+    BEST LEGAL [canon]: POLISHED balanced (sign -1) -> 0.2211 = baseline + 0.0234 ; solar FAIL-sun
+
+  => ESCAPE-CLOSED: no legal (conformal-balanced, KL-positive) mixture reaches baseline+0.02 dex
+     with the solar budgets intact, at EITHER footing, under EITHER sign convention.
+
+DONE in 35s.

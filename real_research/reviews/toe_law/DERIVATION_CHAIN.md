@@ -50,7 +50,7 @@ balance, agentQ). The length scale is not inserted — it appears.
   medium, which inherits the computed spectral fingerprint σ_req as its derivation target). **What remains underived:
   one object, one property — the khronon medium's σ_req.** Corollary (NEW PREDICTION): no kernel produces the
   √(a/a₀) onset — μ flattens to const + O(a²) below some a★ (deep-MOND flattening; falsifiable in future deep-RAR
-  data). Open flag: the conformal-balanced legal-mixture residue (NNLS follow-up, agentBB in flight). The sign question is CLOSED (agentAA, 26/26 checks): DEFICIT ⟺ M² < 2H² confirmed — the deficit channel is intrinsically de Sitter (flat space gives an excess); V's contrary flag traced to a vector-vs-scalar Yukawa anchor error; V's theorems untouched.
+  data). ALL FLAGS CLOSED: the legal-mixture escape is DATA-CLOSED (agentBB: best legal mixture +0.026 dex past the SPARC line AND ×21 over the solar reflex via a forced-positive variance pincer that never opens — no sweet spot exists; V's predicted failure fingerprint observed in the data fit). The boundary theorem is now THEOREM + DATA: no linear field-bath, legal/tuned/balanced, carries the rotation curves. Link 5 = the khronon medium, the only object standing. The sign question is CLOSED (agentAA, 26/26 checks): DEFICIT ⟺ M² < 2H² confirmed — the deficit channel is intrinsically de Sitter (flat space gives an excess); V's contrary flag traced to a vector-vs-scalar Yukawa anchor error; V's theorems untouched.
 
 **Link 6 — the effective law (the matter sector).** NAMED: **Milgrom-2022 (time-nonlocal MI) + the exponential
 μ-tail** — the first published object to clear every nonrelativistic wall the program has built (agentM: reflex
