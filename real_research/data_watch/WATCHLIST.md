@@ -49,3 +49,11 @@ the 2601.01715 dSph 5.2σ claim — if reproduced, it is evidence FOR a ~9.0×10
 **10 (added 2026-06-11, agentS):** any published DSSYK contrastive calculation of the edge placement's late-time
 observables (the field running our agentS discriminator): edge-fails confirms EDGE-WOUNDED → contest collapses
 further; an edge-QNM rescue would re-symmetrize the gate. Owner: `reviews/toe_law/agentS_edge_qnm.md`.
+
+**11 (added 2026-06-11, agentCC):** the deep-MOND flattening (a★) discriminators: (a) the AGC 114905 inclination
+fight (2404.06537 deep-downturn vs 2408.05269/Lelli-2024 i≈15° reconciliation) — the one floor-shaped isolated
+object; (b) BIG-SPARC release → re-run the agentCC two-branch fit on the enlarged deep sample; (c) any kinematics
+of ISOLATED ultra-deep rotators (e_N ≲ 0.005, g_obs = 0.01–0.05 a₀, pinned inclinations) — the named decisive
+test: a floor ⇒ universal downturn at one g_obs everywhere; EFE ⇒ none in isolation. Current bound: a★ ≤ 0.107 a₀
+(95%, SPARC deep decade); the binding constraint stays agentBB's band line (a★ < 0.05 a₀), untested below.
+Owner: `reviews/toe_law/agentCC_astar_hunt.md`.

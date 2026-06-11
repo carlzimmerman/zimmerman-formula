@@ -50,7 +50,16 @@ balance, agentQ). The length scale is not inserted — it appears.
   medium, which inherits the computed spectral fingerprint σ_req as its derivation target). **What remains underived:
   one object, one property — the khronon medium's σ_req.** Corollary (NEW PREDICTION): no kernel produces the
   √(a/a₀) onset — μ flattens to const + O(a²) below some a★ (deep-MOND flattening; falsifiable in future deep-RAR
-  data). ALL FLAGS CLOSED: the legal-mixture escape is DATA-CLOSED (agentBB: best legal mixture +0.026 dex past the SPARC line AND ×21 over the solar reflex via a forced-positive variance pincer that never opens — no sweet spot exists; V's predicted failure fingerprint observed in the data fit). The boundary theorem is now THEOREM + DATA: no linear field-bath, legal/tuned/balanced, carries the rotation curves. Link 5 = the khronon medium, the only object standing. The sign question is CLOSED (agentAA, 26/26 checks): DEFICIT ⟺ M² < 2H² confirmed — the deficit channel is intrinsically de Sitter (flat space gives an excess); V's contrary flag traced to a vector-vs-scalar Yukawa anchor error; V's theorems untouched.
+  data). **First data confrontation (agentCC, 2026-06-11): NO-FLATTENING-DETECTED + DATA-INSUFFICIENT in the
+  allowed window.** SPARC's deep decade (1179 pts, y < 0.1, reaching y = 2.5×10⁻³) prefers a★ = 0 in every variant
+  (both footings, both baseline shapes, shape-only, 87% of galaxy bootstraps); 95% bound a★ ≤ 1.0×10⁻¹¹ = 0.107 a₀
+  — a factor ~2 WEAKER than agentBB's band line (a★ < 0.05 a₀), which remains the binding constraint: the allowed
+  window is untested by existing kinematics (1 SPARC point below where a 0.05 a₀ floor bites). Below SPARC: dSphs
+  sit ON the √ law; the published UFD/MUSE-Faint deviations go UPWARD (wrong sign for the floor); the one
+  floor-shaped object (AGC 114905, −0.90 dex, isolated) is inclination-hostage. The only published deep downturn
+  (Chae+2021) is environment-keyed = EFE-shaped, not acceleration-keyed = floor-shaped. Decisive test named:
+  isolated ultra-deep rotators (e_N ≲ 0.005, g_obs = 0.01–0.05 a₀) — floor ⇒ universal downturn at one g_obs;
+  EFE ⇒ none in isolation. ALL FLAGS CLOSED: the legal-mixture escape is DATA-CLOSED (agentBB: best legal mixture +0.026 dex past the SPARC line AND ×21 over the solar reflex via a forced-positive variance pincer that never opens — no sweet spot exists; V's predicted failure fingerprint observed in the data fit). The boundary theorem is now THEOREM + DATA: no linear field-bath, legal/tuned/balanced, carries the rotation curves. Link 5 = the khronon medium, the only object standing. The sign question is CLOSED (agentAA, 26/26 checks): DEFICIT ⟺ M² < 2H² confirmed — the deficit channel is intrinsically de Sitter (flat space gives an excess); V's contrary flag traced to a vector-vs-scalar Yukawa anchor error; V's theorems untouched.
 
 **Link 6 — the effective law (the matter sector).** NAMED: **Milgrom-2022 (time-nonlocal MI) + the exponential
 μ-tail** — the first published object to clear every nonrelativistic wall the program has built (agentM: reflex

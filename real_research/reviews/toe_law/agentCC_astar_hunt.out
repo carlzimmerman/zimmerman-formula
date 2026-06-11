@@ -1,0 +1,161 @@
+SPARC galaxies loaded: 175
+environment table galaxies: 122 (2M++ 1+delta = the Chae+2021 large-scale field axis)
+
+====================================================================================================
+[0] REGRESSION GATE -- reproduce the locked baseline (mi_f4_sparc_shape_test.out) before anything new
+====================================================================================================
+  a0=9.36e-11: best-Ud 0.52 scatter 0.1950  vs locked (0.52, 0.1950)  -> PASS
+  a0=1.2e-10: best-Ud 0.46 scatter 0.1977  vs locked (0.46, 0.1977)  -> PASS
+
+====================================================================================================
+FOOTING: a0 = fw 9.36e-11  (Upsilon locked at full-sample best 0.52)
+====================================================================================================
+
+[1] DEEP SAMPLE (y = g_bar/a0 < 0.1): 1179 points in 125 galaxies (of 3389 pts / 175 gals)
+    y range: 2.50e-03 .. 0.1 | g_bar: 2.34e-13 .. 9.36e-12 m/s^2
+    g_obs at the deep points: 8.02e-13 .. 9.83e-11 m/s^2 (min g_obs/a0 = 0.009)
+    points below y=0.01: 9   below y=0.005: 1   below y=0.0025: 1
+    12 deepest points (galaxy, y, g_obs/a0, resid_vs_sqrt[dex]):
+      DDO064       y=0.0025  g_obs/a0=0.1370  dsqrt=+0.438
+      UGCA444      y=0.0052  g_obs/a0=0.1348  dsqrt=+0.273
+      UGC07577     y=0.0052  g_obs/a0=0.0255  dsqrt=-0.451
+      UGCA444      y=0.0060  g_obs/a0=0.1212  dsqrt=+0.194
+      NGC3109      y=0.0067  g_obs/a0=0.0496  dsqrt=-0.217
+      D564-8       y=0.0090  g_obs/a0=0.0705  dsqrt=-0.130
+      NGC3741      y=0.0092  g_obs/a0=0.1317  dsqrt=+0.137
+      UGCA444      y=0.0095  g_obs/a0=0.1385  dsqrt=+0.152
+      UGC06667     y=0.0099  g_obs/a0=0.2816  dsqrt=+0.452
+      NGC3741      y=0.0102  g_obs/a0=0.1329  dsqrt=+0.119
+      UGC05750     y=0.0106  g_obs/a0=0.0107  dsqrt=-0.983
+      NGC3109      y=0.0107  g_obs/a0=0.0835  dsqrt=-0.094
+
+[2] BINNED RESIDUALS log10 g_obs - log10 model  (median / mean+-SEM / N) -- the raw shape:
+    y bin               N  med vs sqrt   mean vs sqrt   med vs nu    mean vs nu
+    [0.0000,0.005)    1       +0.438   +0.438+-0.000      +0.427  +0.427+-0.000
+    [0.0050,0.010)    8       +0.144   +0.051+-0.097      +0.123  +0.033+-0.097
+    [0.0100,0.020)   54       +0.096   +0.026+-0.038      +0.068  -0.002+-0.038
+    [0.0200,0.040)  288       +0.024   -0.012+-0.015      -0.015  -0.050+-0.015
+    [0.0400,0.070)  480       +0.040   +0.017+-0.009      -0.009  -0.032+-0.009
+    [0.0700,0.100)  348       +0.064   +0.049+-0.012      +0.003  -0.013+-0.012
+    (floor/EFE signature = the deepest bins diving NEGATIVE vs nu; positive = above the law)
+
+[3] MODEL FITS on the deep sample (profile lnL over sigma_int; unweighted dex RMS primary):
+    M0 pure MOND (locked)          : RMS 0.2295  wRMS 0.1090  lnL 209.57  sig_int 0.165
+    M1 + floor a*  (best)          : RMS 0.2295  lnL 209.57  a* = 0.000e+00 m/s^2 (0.0000 a0)   dlnL vs M0 = +0.00
+    M1 95% one-sided bound         : a* <= 1.000e-11 m/s^2 = 0.1068 a0 (last allowed grid pt; next pt 1.26e-11 excluded)
+    M1 95% two-sided (dchi2=3.84)  : a* <= 1.000e-11 m/s^2 = 0.1068 a0
+    [context] agentBB band line 0.05*a0 = 4.680e-12;  deepest-point reach ~ min g_obs = 8.02e-13
+    M2 + global EFE eN (best)      : RMS 0.2295  lnL 209.57  eN = 0.0000   dlnL vs M0 = +0.00
+    M3 floor+EFE (fine joint)      : RMS 0.2295  lnL 209.57  a* = 0.000e+00, eN = 0.0000   dlnL vs M0 = +0.00
+    AIC (2k - 2lnL, vs M0): M1 +2.00  M2 +2.00  M3 +4.00  (negative = preferred over M0)
+
+[3b] NORMALIZATION CONTROL -- pure dex-offset model g_pred = nu(y)*g_bar*10^c (NOT a floor; the
+     offset direction = deep-band a0/Upsilon renormalization). If it matches M3's gain, the gain
+     is a normalization artifact, not flattening:
+    OFFSET control: best c = -0.005 dex, lnL 209.95, dlnL vs M0 = +0.38
+    -> M3 gain +0.00 vs offset gain +0.38: OFFSET-DEGENERATE (artifact)
+    deep-sample mean residual vs nu: -0.0287 dex (the offset the control absorbs)
+[3c] SHAPE-ONLY (free offset nuisance): best a* = 0.000e+00 (dlnL +0.00 vs a*=0) | 95% one-sided a* <= 1.000e-11 m/s^2 = 0.1068 a0
+[3d] FW-SHAPE baseline nu=sqrt(1+1/y), Ud=0.60 (own-terms robustness): best a* = 0.000e+00 (dlnL +0.00 vs 0) | a*_95 <= 1.000e-11 = 0.1068 a0
+    [robustness] deep-sample best-Ud for M0: 0.44 (RMS 0.2261) -- locked Ud=0.52 retained for all fits above
+
+[4] GALAXY BOOTSTRAP (1000 resamples, coarse a* grid):
+    best a* = 0 (no floor) in 87% of resamples; best a* > 4.68e-12 (band line) in 13%
+    95% bound a*_95: median 7.943e-12, [16,84]% = [7.943e-12, 7.943e-12] m/s^2
+    bound in a0 units: median 0.0849 a0
+
+[5] ENVIRONMENT SPLIT (2M++ 1+delta; the field Chae+2021 keyed eN to):
+    deep points with environment data: 861/1179 (galaxy-level median 1+delta = 2.175)
+    ISOLATED (1+delta < median): N=516 (gals 45, y<0.01 pts 3) | best a* 0.00e+00 (dlnL +0.00; a*_95 1.00e-11) | best eN 0.0000 (dlnL +0.00) | med resid(y<0.01) +0.116 dex
+    DENSE    (1+delta >= median): N=345 (gals 46, y<0.01 pts 2) | best a* 1.00e-11 (dlnL +0.05; a*_95 1.00e-11) | best eN 0.0000 (dlnL +0.00) | med resid(y<0.01) n/a dex
+    [reading] floor predicts the SAME a* both halves; EFE predicts the downturn only/stronger DENSE.
+
+====================================================================================================
+FOOTING: a0 = canon 1.2e-10  (Upsilon locked at full-sample best 0.46)
+====================================================================================================
+
+[1] DEEP SAMPLE (y = g_bar/a0 < 0.1): 1454 points in 141 galaxies (of 3389 pts / 175 gals)
+    y range: 1.32e-03 .. 0.1 | g_bar: 1.59e-13 .. 1.20e-11 m/s^2
+    g_obs at the deep points: 8.02e-13 .. 1.16e-10 m/s^2 (min g_obs/a0 = 0.007)
+    points below y=0.01: 23   below y=0.005: 5   below y=0.0025: 1
+    12 deepest points (galaxy, y, g_obs/a0, resid_vs_sqrt[dex]):
+      DDO064       y=0.0013  g_obs/a0=0.1068  dsqrt=+0.468
+      UGC07577     y=0.0030  g_obs/a0=0.0199  dsqrt=-0.443
+      UGCA444      y=0.0036  g_obs/a0=0.1051  dsqrt=+0.244
+      UGCA444      y=0.0040  g_obs/a0=0.0945  dsqrt=+0.173
+      NGC3109      y=0.0047  g_obs/a0=0.0387  dsqrt=-0.250
+      D564-8       y=0.0067  g_obs/a0=0.0550  dsqrt=-0.174
+      UGC06667     y=0.0068  g_obs/a0=0.2196  dsqrt=+0.424
+      UGCA444      y=0.0070  g_obs/a0=0.1081  dsqrt=+0.112
+      NGC3741      y=0.0072  g_obs/a0=0.1027  dsqrt=+0.084
+      UGC05750     y=0.0074  g_obs/a0=0.0084  dsqrt=-1.013
+      NGC3109      y=0.0077  g_obs/a0=0.0651  dsqrt=-0.129
+      KK98-251     y=0.0079  g_obs/a0=0.0195  dsqrt=-0.658
+
+[2] BINNED RESIDUALS log10 g_obs - log10 model  (median / mean+-SEM / N) -- the raw shape:
+    y bin               N  med vs sqrt   mean vs sqrt   med vs nu    mean vs nu
+    [0.0000,0.005)    5       +0.173   +0.038+-0.150      +0.159  +0.026+-0.150
+    [0.0050,0.010)   18       -0.012   -0.080+-0.092      -0.033  -0.099+-0.092
+    [0.0100,0.020)  120       +0.022   -0.038+-0.026      -0.006  -0.065+-0.026
+    [0.0200,0.040)  459       -0.018   -0.038+-0.010      -0.055  -0.075+-0.010
+    [0.0400,0.070)  543       +0.024   +0.003+-0.009      -0.025  -0.046+-0.009
+    [0.0700,0.100)  309       +0.066   +0.042+-0.010      +0.002  -0.018+-0.010
+    (floor/EFE signature = the deepest bins diving NEGATIVE vs nu; positive = above the law)
+
+[3] MODEL FITS on the deep sample (profile lnL over sigma_int; unweighted dex RMS primary):
+    M0 pure MOND (locked)          : RMS 0.2269  wRMS 0.1135  lnL 269.98  sig_int 0.165
+    M1 + floor a*  (best)          : RMS 0.2269  lnL 269.98  a* = 0.000e+00 m/s^2 (0.0000 a0)   dlnL vs M0 = +0.00
+    M1 95% one-sided bound         : a* <= 1.000e-11 m/s^2 = 0.0833 a0 (last allowed grid pt; next pt 1.26e-11 excluded)
+    M1 95% two-sided (dchi2=3.84)  : a* <= 1.000e-11 m/s^2 = 0.0833 a0
+    [context] agentBB band line 0.05*a0 = 6.000e-12;  deepest-point reach ~ min g_obs = 8.02e-13
+    M2 + global EFE eN (best)      : RMS 0.2269  lnL 269.98  eN = 0.0000   dlnL vs M0 = +0.00
+    M3 floor+EFE (fine joint)      : RMS 0.2219  lnL 290.33  a* = 1.000e-11, eN = 0.0016   dlnL vs M0 = +20.35
+    AIC (2k - 2lnL, vs M0): M1 +2.00  M2 +2.00  M3 -36.70  (negative = preferred over M0)
+
+[3b] NORMALIZATION CONTROL -- pure dex-offset model g_pred = nu(y)*g_bar*10^c (NOT a floor; the
+     offset direction = deep-band a0/Upsilon renormalization). If it matches M3's gain, the gain
+     is a normalization artifact, not flattening:
+    OFFSET control: best c = -0.030 dex, lnL 290.27, dlnL vs M0 = +20.29
+    -> M3 gain +20.35 vs offset gain +20.29: OFFSET-DEGENERATE (artifact)
+    deep-sample mean residual vs nu: -0.0514 dex (the offset the control absorbs)
+[3c] SHAPE-ONLY (free offset nuisance): best a* = 0.000e+00 (dlnL +0.00 vs a*=0) | 95% one-sided a* <= 1.000e-11 m/s^2 = 0.0833 a0
+[3d] FW-SHAPE baseline nu=sqrt(1+1/y), Ud=0.52 (own-terms robustness): best a* = 0.000e+00 (dlnL +0.00 vs 0) | a*_95 <= 1.000e-11 = 0.0833 a0
+    [robustness] deep-sample best-Ud for M0: 0.34 (RMS 0.2200) -- locked Ud=0.46 retained for all fits above
+
+[4] GALAXY BOOTSTRAP (1000 resamples, coarse a* grid):
+    best a* = 0 (no floor) in 76% of resamples; best a* > 6.00e-12 (band line) in 24%
+    95% bound a*_95: median 7.943e-12, [16,84]% = [7.943e-12, 1.259e-11] m/s^2
+    bound in a0 units: median 0.0662 a0
+
+[5] ENVIRONMENT SPLIT (2M++ 1+delta; the field Chae+2021 keyed eN to):
+    deep points with environment data: 1096/1454 (galaxy-level median 1+delta = 2.183)
+    ISOLATED (1+delta < median): N=634 (gals 51, y<0.01 pts 12) | best a* 0.00e+00 (dlnL +0.00; a*_95 1.26e-11) | best eN 0.0000 (dlnL +0.00) | med resid(y<0.01) +0.001 dex
+    DENSE    (1+delta >= median): N=462 (gals 54, y<0.01 pts 5) | best a* 0.00e+00 (dlnL +0.00; a*_95 1.26e-11) | best eN 0.0010 (dlnL +1.42) | med resid(y<0.01) -0.022 dex
+    [reading] floor predicts the SAME a* both halves; EFE predicts the downturn only/stronger DENSE.
+
+====================================================================================================
+[6] PUBLISHED ULTRA-DEEP KINEMATIC POINTS BELOW SPARC'S FLOOR (pinned 2026-06-11; sqrt comparisons
+    computed at BOTH footings; convention g_obs = 3 sigma^2 / r_1/2 [Lelli+2017], r_1/2 = (4/3) R_e)
+====================================================================================================
+-- Milky Way satellites (EFE-dominated environments):
+  Crater II      g_bar=1.10e-14 g_obs=4.99e-13  d_sqrt(fw)=-0.31  d_sqrt(cn)=-0.36  g_ext~0.143a0  Caldwell+17 sigma; McGaugh PRE-predicted 2.1 km/s via EFE
+  Draco          g_bar=5.14e-13 g_obs=2.73e-11  d_sqrt(fw)=+0.60  d_sqrt(cn)=+0.54  g_ext~0.180a0  classical dSph; sits HIGH (EDGE-25 'twin' anomaly vs Carina)
+  Fornax         g_bar=3.11e-12 g_obs=1.41e-11  d_sqrt(fw)=-0.08  d_sqrt(cn)=-0.14  g_ext~0.070a0  classical dSph; the one EDGE-25 object ON/below the RAR
+-- weak-external-field ultrafaints (MUSE-Faint / EDGE-25 sample; offsets are theirs, not refit):
+  Eridanus II / Grus 1 / Leo T / Antlia B + 8 classical dSphs: g_bar 1e-14..1e-10, the dwarfs sit
+  SYSTEMATICALLY +0.3..+0.5 dex ABOVE the RAR extrapolation (arXiv:2510.06905, A&A 2025) -- and the
+  paper itself notes EFE-regime galaxies should scatter BELOW the RAR, 'the opposite is what we see'.
+-- isolated gas-rich UDG (the one DOWNWARD ultra-deep candidate):
+  AGC 114905     g_bar=1.95e-12 g_obs=1.71e-12  d_sqrt(fw)=-0.90  d_sqrt(cn)=-0.95  ISOLATED (eN~0.01)
+                 at i=32deg (Mancera Pina+22/24: BELOW sqrt, isolated -- the floor-shaped object);
+                 at i=15deg (A&A 2024 reanalysis) V->47 km/s, g_obs x4.2 -> d_sqrt(fw)=-0.27: consistent.
+-- quarantined: weak-lensing RAR extensions (Mistele+24: sqrt holds to g_bar~1e-13) test the LENSING
+   channel, which in THIS framework carries the Psi-slip partner (agentW) -- not a kinematic a* probe.
+
+====================================================================================================
+[7] SUMMARY (machine verdict inputs)
+====================================================================================================
+  fw   : deep N=1179 gals=125 | min g_obs=8.02e-13 | M1 dlnL=+0.00 (best a*=0.00e+00) M2 dlnL=+0.00 (eN=0.000) | a*_95=1.000e-11 (0.1068 a0), boot median 7.943e-12 | band line 4.68e-12
+  canon: deep N=1454 gals=141 | min g_obs=8.02e-13 | M1 dlnL=+0.00 (best a*=0.00e+00) M2 dlnL=+0.00 (eN=0.000) | a*_95=1.000e-11 (0.0833 a0), boot median 7.943e-12 | band line 6.00e-12
+
+done.
