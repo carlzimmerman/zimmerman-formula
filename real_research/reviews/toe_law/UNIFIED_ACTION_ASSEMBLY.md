@@ -121,8 +121,17 @@ complete at the EOM level; if it cannot, the obstruction is the boundary theorem
   (the slip sector's job) and the type split via the dial (+0.261 dex, sign-matched).
 - Clusters: the ×1.97 re-failure stands — the assembly does NOT fix clusters without the dial extending there
   (open, stated).
-- Cosmology: CMB via the slip sector's dark-sector behavior [OPEN — the Boltzmann audit is the post-assembly
-  calculation]; a₀(z): the minimal writing is const ≡ the framework's √ρ_DE branch (agentU); the rival ∇·u/3 = H(z)
+- Cosmology: CMB via the slip sector's dark-sector behavior — **AUDITED (agentII): the UNREGULATED linear-scale
+  extension of nu(g_bar/a0) is KILLED, every reading, both footings, convention-robust** (linear structure is
+  sub-a0 for all z < z† ≈ 122–155: raw ⟨Σ²⟩ = 57 vs Planck φφ 1.011±0.028; E_G = 4.8 vs 0.39±0.06; ISW
+  sign-flipped; the EFE-regulated floor falls short ×112–777; the required saturation cap ν ≤ 1.03–1.14 sits
+  BELOW the entire galactic-measured ν range 4.4–306 — no global cap can serve both). **S_slip therefore REQUIRES
+  a second discriminant beyond g_bar** (quantitative target: suppress Σ−1 by ≥50–800× at k ≤ 0.3 h/Mpc while
+  preserving halo ν to r ~ 1–3 Mpc) — converging with agentZ's type dial AND agentDD's keying theorem: a
+  history/frequency-keyed (nonlocal) carrier naturally distinguishes Hubble-flow linear perturbations from
+  settled halos — exactly agentKK's live construction. Honest residue: the near-miss is real (the divergence has
+  accidentally CDM-like SHAPE on the n_eff = −1 plateau, over-delivering ×4–6 with wrong z-evolution), and the
+  matter-sector growth debt (μ = 1 without CDM) is a separate open; a₀(z): the minimal writing is const ≡ the framework's √ρ_DE branch (agentU); the rival ∇·u/3 = H(z)
   writing is the rising branch — DESI DR3 adjudicates (the registered hostage).
 - GW: c_T = 1 built in; α_M (GW friction) bounded — verify in Y's model.
 - The DR4 fork: the assembly predicts the M22 branch (+4–8% positive selection — agentM's reshaped fork).

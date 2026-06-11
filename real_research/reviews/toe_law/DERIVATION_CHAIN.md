@@ -140,6 +140,17 @@ TWO-CARRIER-ROBUST (the (D·b)-keyed divergence/bending engine carries agentZ's 
 geometric range — a design principle of the operator geometry, independent of the final carrier). Bug log: 2
 illegal-normalization dead-ends caught by internal gates (dimensional audit + total-derivative check) before
 banking; the matched legal realization reproduced the W-row to all printed digits.
+**COSMOLOGICAL BOUNDARY (agentII, 2026-06-11): the naive linear-scale extension of the slip law is KILLED —
+convention-robustly** (the framework's own footing gives the SMALLEST kill: ⟨Σ²⟩ = 57 vs the Planck φφ amplitude;
+E_G 73σ; Σ₀ᵉᶠᶠ ~230σ; ISW sign-flipped; EFE-regulation short ×112–777; and the required global cap ν ≤ 1.03–1.14
+sits below the entire measured galactic range ν = 4.4–306 at overlapping g_bar — the charge's own kill criterion).
+The constructive yield CONVERGES with the keying theorem: S_slip needs a second discriminant beyond g_bar
+(suppress Σ−1 by ≥50–800× at linear scales, preserve halo ν) — and a HISTORY/FREQUENCY-keyed nonlocal carrier is
+precisely the object that can carry one (linear-mode field histories are Hubble-rate; halo histories are
+orbital-rate — the same filter that evades the keying wall supplies the discriminant). Three independent results
+(DD's keying, II's boundary, Z's dial) now point at the SAME structure. Honest residue: II's near-miss is real
+(CDM-like shape, ×4–6 over, wrong z-evolution) and the growth debt (μ = 1 without CDM at linear scales) is a
+named open of the assembly, distinct from the slip sector.
 
 **Link 8 — the quantum derivation (the gate).** CONTESTED-TERMINAL at the algebra level (agentR: 60-paper sweep,
 nothing derives the placement) — **now EDGE-WOUNDED at the observable level (agentS, the repo's own unpublished
