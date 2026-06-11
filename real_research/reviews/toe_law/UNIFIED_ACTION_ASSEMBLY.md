@@ -37,7 +37,14 @@ S = S_EH[g] + S_u[g, u] + S_m[matter; g, u] + S_slip[g, u]
   backgrounds (in-halo Δc_T ~ O(10) — reach beyond this program); and the constructive gem: the slip generators are
   TRANSVERSE-DIVERGENCE (field-line-bending) operators = a built-in morphology-tracking dial with agentZ's sign
   (spheroids > disks, range covers the ×1.56 needed). The carrier class narrows to: vector/spin-2 on the same u,
-  nonlocal/history operators, or the singular-surface exact route.]**
+  nonlocal/history operators, or the singular-surface exact route. VECTOR HALF CLOSED (agentDD): scalar AND
+  local-vector u-frame realizations are now machine-obstructed (agentY four walls; agentDD keying theorem +
+  the slip ≡ 0 closure exact for the full one-D condensate basis). THE KEYING THEOREM: any LOCAL Y_a-keyed
+  carrier pollutes the matter channel at (a₀r/c²)⁻¹ × phantom regardless of spin/amplitude — the slip sector
+  must read y NONLOCALLY, echoing the M22 filter: both sectors now demand u-frame nonlocality. Surviving:
+  nonlocal/history slip operators (the convergent prime candidate), the singular-surface route (low prior),
+  non-b⊗b spin-2 (disfavored, not machine-closed). The morphology dial is two-carrier-robust ((D·b)-keyed
+  bending, agentZ's sign); the S-counterterm family banked.]**
 
 ## The field equations (the action principle, scaffold level — X/Y supply the specific functionals)
 

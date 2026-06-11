@@ -1,0 +1,249 @@
+====================================================================================================
+agentDD_vector_carrier.py [D0] -- GATES against banked numbers before any new use
+====================================================================================================
+
+  slip targets Psi'/Phi' - 1 = 2(nu-1), McGaugh nu, framework a0:
+    g_bar=1e-13: 2nu-1 = 61.2 (banked 61.2)  GATE OK
+    g_bar=1e-12: 2nu-1 = 19.4 (banked 19.4)  GATE OK
+    g_bar=1e-11: 2nu-1 = 6.2 (banked 6.2)  GATE OK
+  Cassini y = 1.14e+12 (banked 1.1e12); simple-nu slip = 1.75e-12 (banked 1.8e-12);
+  margin x1.3e+07 (banked x1.3e7)   GATE OK
+  cluster: y(1 Mpc, 7e13 Msun) = 0.10, nu = 3.62, short x1.96 (banked x1.96)   GATE OK
+
+  agentY wall-3 reproduction (pickled eqs, Hernquist, P=1): expect dg/g_bar ~ -2.7e7 @ y=0.3
+    slip-match residual = 2.7e-15 (banked ~1e-15-1e-13); dg/g_bar(y=0.3) = -2.69e+07 (banked -2.7e7)   GATE OK
+
+  [D0] ALL GATES: OK -- proceed
+  [stage D0 done in 4.8s]
+====================================================================================================
+agentDD_vector_carrier.py [D1] -- WALL 1: vector quasi-static derivation (sympy)
+====================================================================================================
+  (3)R assembled; O(e) check vs agentY: True
+  O(eps^2) Lagrangian assembled (C-ops: both tiers kept, the agentY per-channel rule).
+  equations algebraized: eqN (Hamiltonian), eqL (rr), eqM (tangential), eqB (vector EOM).
+
+  GR GATE (vector off):
+    eqN: r*(-4*pi*G*r*rhob(r) + 2*Psi1 + Psi2*r)/(4*pi*G)
+    eqL: r*(-Phi1 + Psi1)/(4*pi*G)
+    eqM: r*(-Phi1 - Phi2*r + Psi1 + Psi2*r)/(4*pi*G)
+    eqB: 0
+    [expect: eqN => lap Psi = 4 pi G rhob ; eqL => Psi'=Phi' first-order; eqB == 0]
+  [full vector equations pickled to agentDD_eqs.pkl]
+
+  WALL-1 PRIMARY MODEL: {U(Z), S(Z) a.b}; F = W = C1 = C2 = 0; S == S0 (normalization):
+    eqB (the vector EOM -- algebraic?):
+      contains b'':  False  ; contains b':  False
+      eqB = Phi1*S0*r**2 - 2*U1*b0*r**2
+    b-branch: [Phi1*S0/(2*U1)]
+
+    THE rr-CONSTRAINT (eqL), {U,S} model:
+      eqL = -2*Phi1*r + 2*Psi1*r
+      Psi' - Phi' (raw)      = 0
+      Psi' - Phi' (on b-EOM) = 0  / [ 1 ]
+      SLIP NONZERO ON-SHELL:  False
+  [primary-model objects pickled to agentDD_D1.pkl]
+  [stage D1 done in 5.0s]
+====================================================================================================
+agentDD_vector_carrier.py [D1b] -- the condensate corner: quasi-static derivation
+====================================================================================================
+  O(eps^2) Lagrangian assembled (slip sector: both tiers kept, agentY per-channel rule).
+  tier check: O1(L_W) nonzero: True | O1(L_S) nonzero: True | O1(L_C) nonzero: True
+  equations algebraized.
+
+  GR GATE (sector off):
+    eqN: r*(-4*pi*G*r*rhob(r) + 2*Psi1 + Psi2*r)/(4*pi*G)
+    eqL: r*(-Phi1 + Psi1)/(4*pi*G)
+    eqM: r*(-Phi1 - Phi2*r + Psi1 + Psi2*r)/(4*pi*G)
+
+  THE rr-CONSTRAINT (eqL), per operator class (others off):
+    [W only]  Psi' - Phi' = 2*Phi1**2*W1  / [ alpha ]
+    [S only]  Psi' - Phi' = Phi1**3*S1*r  / [ alpha**2 ]
+    [C only]  Psi' - Phi' = -C0*Phi1**2*alpha**4*r - 2*C1c*Phi1**4*alpha**2*r + Phi1**5*(-4*C2c*Phi0 + 4*C2c*Psi0) + Phi1**3*(-6*C1c*Phi0*alpha**2 + 8*C1c*Psi0*alpha**2 + 2*C1c*alpha**2) + Phi1*(C0*Psi0*alpha**4 + C0*alpha**4)  / [ C0*Phi1*alpha**4*r + 2*C1c*Phi1**3*alpha**2*r + alpha**5 ]
+
+  THE HAMILTONIAN EQUATION (eqN), per operator class -- the wall-3 structure:
+    [W only]  eqN - eqN_GR = Phi1**4*(8*Phi0*Phi2*W3*r - 8*Phi2*Psi0*W3*r + 4*W2*alpha**2*r) + Phi1**3*(4*Phi0*W2*alpha**2 - 4*Psi0*W2*alpha**2 - 4*Psi1*W2*alpha**2*r) + Phi1**2*(16*Phi0*Phi2*W2*alpha**2*r - 12*Phi2*Psi0*W2*alpha**2*r + 4*Phi2*Psi1*W2*alpha**2*r**2 - 4*Phi2*W2*alpha**2*r) + Phi1*(2*Phi0*W1*alpha**4 + 4*Psi1*W1*alpha**4*r + 2*Psi2*W1*alpha**4*r**2 - 2*W1*alpha**4) + Phi2*(2*Phi0*W1*alpha**4*r + 2*Psi1*W1*alpha**4*r**2 - 2*W1*alpha**4*r) + W0*alpha**6*r  / [ 4*pi*G*alpha**5 ]
+    [S only]  eqN - eqN_GR = Phi1**5*(4*Phi0*Phi2*S3*r**2 - 4*Phi2*Psi0*S3*r**2 + 2*S2*alpha**2*r**2) + Phi1**4*(4*Phi0*S2*alpha**2*r - 4*Psi0*S2*alpha**2*r - 2*Psi1*S2*alpha**2*r**2) + Phi1**3*(14*Phi0*Phi2*S2*alpha**2*r**2 - 10*Phi2*Psi0*S2*alpha**2*r**2 - 2*Phi2*S2*alpha**2*r**2 + 2*S1*alpha**4*r**2) + Phi1**2*(6*Phi0*S1*alpha**4*r - 2*Psi0*S1*alpha**4*r - Psi1*S1*alpha**4*r**2 - 2*S1*alpha**4*r) + Phi1*(6*Phi0*Phi2*S1*alpha**4*r**2 - 3*Phi2*S1*alpha**4*r**2) + 2*Psi0*S0*alpha**6*r + Psi1*S0*alpha**6*r**2 - S0*alpha**6*r  / [ 4*pi*G*alpha**6 ]
+    [C only]  eqN - eqN_GR = C0*Psi0**2*alpha**8 + 6*C0*Psi0*Psi1*alpha**8*r + 2*C0*Psi0*Psi2*alpha**8*r**2 + 2*C0*Psi0*alpha**8 + 2*C0*Psi1**2*alpha**8*r**2 + 6*C0*Psi1*alpha**8*r + 2*C0*Psi2*alpha**8*r**2 + Phi1**7*(-16*C3c*Phi0*alpha**2*r + 16*C3c*Psi0*alpha**2*r - 16*C4c*Phi0**2*Phi2*r + 32*C4c*Phi0*Phi2*Psi0*r - 16*C4c*Phi2*Psi0**2*r) + Phi1**6*(-8*C3c*Phi0**2*alpha**2 + 16*C3c*Phi0*Psi0*alpha**2 + 16*C3c*Phi0*Psi1*alpha**2*r - 8*C3c*Psi0**2*alpha**2 - 16*C3c*Psi0*Psi1*alpha**2*r) + Phi1**5*(-56*C2c*Phi0*alpha**4*r + 40*C2c*Psi0*alpha**4*r - 8*C2c*Psi1*alpha**4*r**2 + 8*C2c*alpha**4*r - 112*C3c*Phi0**2*Phi2*alpha**2*r + 192*C3c*Phi0*Phi2*Psi0*alpha**2*r - 16*C3c*Phi0*Phi2*Psi1*alpha**2*r**2 + 16*C3c*Phi0*Phi2*alpha**2*r - 104*C3c*Phi2*Psi0**2*alpha**2*r + 16*C3c*Phi2*Psi0*Psi1*alpha**2*r**2 - 16*C3c*Phi2*Psi0*alpha**2*r) + Phi1**4*(-32*C2c*Phi0**2*alpha**4 + 48*C2c*Phi0*Psi0*alpha**4 + 32*C2c*Phi0*Psi1*alpha**4*r - 8*C2c*Phi0*Psi2*alpha**4*r**2 + 8*C2c*Phi0*alpha**4 - 28*C2c*Psi0**2*alpha**4 - 40*C2c*Psi0*Psi1*alpha**4*r + 8*C2c*Psi0*Psi2*alpha**4*r**2 - 8*C2c*Psi0*alpha**4 + 8*C2c*Psi1**2*alpha**4*r**2 - 8*C2c*Psi1*alpha**4*r) + Phi1**3*(-24*C1c*Phi0*alpha**6*r + 8*C1c*Psi0*alpha**6*r - 8*C1c*Psi1*alpha**6*r**2 + 8*C1c*alpha**6*r - 164*C2c*Phi0**2*Phi2*alpha**4*r + 216*C2c*Phi0*Phi2*Psi0*alpha**4*r - 56*C2c*Phi0*Phi2*Psi1*alpha**4*r**2 + 56*C2c*Phi0*Phi2*alpha**4*r - 132*C2c*Phi2*Psi0**2*alpha**4*r + 64*C2c*Phi2*Psi0*Psi1*alpha**4*r**2 - 48*C2c*Phi2*Psi0*alpha**4*r + 8*C2c*Phi2*Psi1*alpha**4*r**2) + Phi1**2*(-18*C1c*Phi0**2*alpha**6 + 12*C1c*Phi0*Psi0*alpha**6 - 12*C1c*Phi0*Psi1*alpha**6*r - 12*C1c*Phi0*Psi2*alpha**6*r**2 + 12*C1c*Phi0*alpha**6 - 10*C1c*Psi0**2*alpha**6 + 12*C1c*Psi0*Psi1*alpha**6*r + 16*C1c*Psi0*Psi2*alpha**6*r**2 - 8*C1c*Psi0*alpha**6 + 16*C1c*Psi1**2*alpha**6*r**2 + 4*C1c*Psi2*alpha**6*r**2) + Phi1*(-36*C1c*Phi0**2*Phi2*alpha**6*r + 24*C1c*Phi0*Phi2*Psi0*alpha**6*r - 24*C1c*Phi0*Phi2*Psi1*alpha**6*r**2 + 24*C1c*Phi0*Phi2*alpha**6*r - 18*C1c*Phi2*Psi0**2*alpha**6*r + 36*C1c*Phi2*Psi0*Psi1*alpha**6*r**2 - 12*C1c*Phi2*Psi0*alpha**6*r + 12*C1c*Phi2*Psi1*alpha**6*r**2)  / [ 8*pi*G*alpha**9 ]
+
+  [condensate equations pickled to agentDD_D1b.pkl]
+  [stage D1b done in 3.9s]
+====================================================================================================
+agentDD_vector_carrier.py [D2] -- WALL 2: TT check, condensate operators
+====================================================================================================
+
+  TT background, in-halo (a != 0, spacelike condensate present), O(h^2) scan:
+    (a0) W(Ya)(D.b)   [the slip engine]  : (dh)^2 / h d2h content at O(h^2): False   -> h enters as SOURCE only: c_T = 1, alpha_M = 0 preserved
+    S(Ya)(a.b)        [comparator]      : (dh)^2 / h d2h content at O(h^2): False   -> h enters as SOURCE only: c_T = 1, alpha_M = 0 preserved
+====================================================================================================
+agentDD_vector_carrier.py [D3] -- WALL 3: the pollution numbers (the decisive stage)
+====================================================================================================
+
+  [W only] -- the a-independent slip engine, W'(Ya) = (nu-1)/sqrt(Ya) (closed-form match):
+    slip-match check (slip/Phi' vs 2(nu-1)): max rel err = 6.4e-15
+    columns: y = 1.0, 0.3, 0.1, 0.03, 0.01   (agentY scalar row, P=1: -1.4e7 .. -1.5e8)
+    dg/g_bar =  +2.31e+06  +5.70e+06  +1.17e+07  +2.41e+07  +4.47e+07
+    context: |dg/g| of 0.01 ~ 0.004 dex; 0.1 ~ 0.04 dex; 1.0 ~ 0.3 dex; agentY bar: 8.7-21.6sigma at ~0.2 dex
+
+  [S only] and [C only] -- the a-linear comparators (per-halo numeric calibration;
+   NOTE: their slip needs an explicit r -- S(Ya)/C(Ya) alone cannot match nu(y) universally:
+   the mass-dependence failure of the a-linear class, recorded; pollution measured anyway):
+    [S only] slip-match 3.3e-16;  dg/g_bar =  +1.58e+06  +3.90e+06  +8.15e+06  +1.71e+07  +3.22e+07
+====================================================================================================
+agentDD_vector_carrier.py [D3] -- WALL 3: the pollution numbers (the decisive stage)
+====================================================================================================
+
+  [W only] -- the a-independent slip engine, W'(Ya) = (nu-1)/sqrt(Ya) (closed-form match):
+    slip-match check (slip/Phi' vs 2(nu-1)): max rel err = 6.4e-15
+    columns: y = 1.0, 0.3, 0.1, 0.03, 0.01   (agentY scalar row, P=1: -1.4e7 .. -1.5e8)
+    dg/g_bar =  +2.31e+06  +5.70e+06  +1.17e+07  +2.41e+07  +4.47e+07
+    DeltaPsi/div(slip) (lens-only would be exactly +1):  +2.03e+06  +2.19e+06  +2.31e+06  +2.41e+06  +2.46e+06
+    context: |dg/g| of 0.01 ~ 0.004 dex; 0.1 ~ 0.04 dex; 1.0 ~ 0.3 dex; agentY bar: 8.7-21.6sigma at ~0.2 dex
+
+  [S only] and [C only] -- the a-linear comparators (per-halo numeric calibration;
+   NOTE: their slip needs an explicit r -- S(Ya)/C(Ya) alone cannot match nu(y) universally:
+   the mass-dependence failure of the a-linear class, recorded; pollution measured anyway):
+    [S only] slip-match 3.3e-16;  dg/g_bar =  +1.58e+06  +3.90e+06  +8.15e+06  +1.71e+07  +3.22e+07
+    [C only] slip-match 2.2e-16;  dg/g_bar =  -2.29e+00  -6.59e+00  -1.45e+01  -3.12e+01  -5.92e+01
+
+  [D3 arrays saved to agentDD_D3_frac.npy]
+  [stage D3 done in 1.7s]
+====================================================================================================
+agentDD_vector_carrier.py [D1b] -- the condensate corner: quasi-static derivation
+====================================================================================================
+  O(eps^2) Lagrangian assembled (slip sector: both tiers kept, agentY per-channel rule).
+  tier check: O1(L_W) nonzero: True | O1(L_S) nonzero: False | O1(L_C) nonzero: True
+  equations algebraized.
+
+  GR GATE (sector off):
+    eqN: r*(-4*pi*G*r*rhob(r) + 2*Psi1 + Psi2*r)/(4*pi*G)
+    eqL: r*(-Phi1 + Psi1)/(4*pi*G)
+    eqM: r*(-Phi1 - Phi2*r + Psi1 + Psi2*r)/(4*pi*G)
+
+  THE rr-CONSTRAINT (eqL), per operator class (others off):
+    [W only]  Psi' - Phi' = 2*Phi1**2*W1  / [ alpha ]
+    [S only]  Psi' - Phi' = 0  / [ 1 ]
+    [C only]  Psi' - Phi' = C0*Phi1*alpha**2 + 2*C1c*Phi1**3  / [ alpha**2 ]
+
+  THE HAMILTONIAN EQUATION (eqN), per operator class -- the wall-3 structure:
+    [W only]  eqN - eqN_GR = Phi1**4*(8*Phi0*Phi2*W3*r - 8*Phi2*Psi0*W3*r + 4*W2*alpha**2*r) + Phi1**3*(4*Phi0*W2*alpha**2 - 4*Psi0*W2*alpha**2 - 4*Psi1*W2*alpha**2*r) + Phi1**2*(16*Phi0*Phi2*W2*alpha**2*r - 12*Phi2*Psi0*W2*alpha**2*r + 4*Phi2*Psi1*W2*alpha**2*r**2 - 4*Phi2*W2*alpha**2*r) + Phi1*(2*Phi0*W1*alpha**4 + 4*Psi1*W1*alpha**4*r + 2*Psi2*W1*alpha**4*r**2 - 2*W1*alpha**4) + Phi2*(2*Phi0*W1*alpha**4*r + 2*Psi1*W1*alpha**4*r**2 - 2*W1*alpha**4*r) + W0*alpha**6*r  / [ 4*pi*G*alpha**5 ]
+    [S only]  eqN - eqN_GR = -2*Phi1**3*Phi2*S2*r**2 - 2*Phi1**2*S1*alpha**2*r - 3*Phi1*Phi2*S1*alpha**2*r**2 - S0*alpha**4*r  / [ 4*pi*G*alpha**3 ]
+    [C only]  eqN - eqN_GR = C0*Psi0*alpha**6 + 3*C0*Psi1*alpha**6*r + C0*Psi2*alpha**6*r**2 - C0*alpha**6 + Phi1**5*(4*C2c*alpha**2*r + 8*C3c*Phi0*Phi2*r - 8*C3c*Phi2*Psi0*r) + Phi1**4*(4*C2c*Phi0*alpha**2 - 4*C2c*Psi0*alpha**2 - 4*C2c*Psi1*alpha**2*r) + Phi1**3*(4*C1c*alpha**4*r + 28*C2c*Phi0*Phi2*alpha**2*r - 24*C2c*Phi2*Psi0*alpha**2*r + 4*C2c*Phi2*Psi1*alpha**2*r**2 - 4*C2c*Phi2*alpha**2*r) + Phi1**2*(6*C1c*Phi0*alpha**4 - 4*C1c*Psi0*alpha**4 + 2*C1c*Psi2*alpha**4*r**2 - 2*C1c*alpha**4) + Phi1*(12*C1c*Phi0*Phi2*alpha**4*r - 6*C1c*Phi2*Psi0*alpha**4*r + 6*C1c*Phi2*Psi1*alpha**4*r**2 - 6*C1c*Phi2*alpha**4*r)  / [ 4*pi*G*alpha**6 ]
+
+  [condensate equations pickled to agentDD_D1b.pkl]
+  [stage D1b done in 3.4s]
+====================================================================================================
+agentDD_vector_carrier.py [D3] -- WALL 3: the pollution numbers (the decisive stage)
+====================================================================================================
+
+  [W only] -- the a-independent slip engine, W'(Ya) = (nu-1)/sqrt(Ya) (closed-form match):
+    slip-match check (slip/Phi' vs 2(nu-1)): max rel err = 6.4e-15
+    columns: y = 1.0, 0.3, 0.1, 0.03, 0.01   (agentY scalar row, P=1: -1.4e7 .. -1.5e8)
+    dg/g_bar =  +2.31e+06  +5.70e+06  +1.17e+07  +2.41e+07  +4.47e+07
+    DeltaPsi/div(slip) (lens-only would be exactly +1):  +2.03e+06  +2.19e+06  +2.31e+06  +2.41e+06  +2.46e+06
+    context: |dg/g| of 0.01 ~ 0.004 dex; 0.1 ~ 0.04 dex; 1.0 ~ 0.3 dex; agentY bar: 8.7-21.6sigma at ~0.2 dex
+
+  [C only] -- the legal a-linear one-D carrier: slip/Phi' = C0 + 2 Ya C0' (universal in Ya).
+  Exact match: C0(Ya) = (1/y) * 2 Int_0^y (nu-1) dt,  y = sqrt(Ya)  (homogeneous 1/y mode
+  carries zero slip -- the agentY SGA structure). [S only]: ZERO slip -- pure eqN counterterm.
+    [C only] slip-match 3.8e-15;  dg/g_bar =  +2.31e+06  +5.70e+06  +1.17e+07  +2.41e+07  +4.47e+07
+    [C only] DeltaPsi/div(slip):  +2.03e+06  +2.19e+06  +2.31e+06  +2.41e+06  +2.46e+06
+
+  [D3 arrays saved to agentDD_D3_frac.npy]
+  [stage D3 done in 1.5s]
+====================================================================================================
+agentDD_vector_carrier.py [D4] -- WALL 4: exact lens-only conditions, condensate system
+====================================================================================================
+  slip (W,S system) = 2*Phi1**2*W1/alpha    [S-free: the counterterm cannot touch the slip]
+  Delta_Phi assembled; denominator = 2*Phi1*W1*alpha**3*r**2 + alpha**4*r**2
+  numerator: collecting in the independent data (Phi2, Phi3, r):
+    contains Phi3: False
+    monomial classes in (Phi2, Phi3): [(1, 0), (0, 0)]
+
+    CLASS Phi2^1 Phi3^0:
+      r^2:  -Phi1*(16*Phi1**3*W1*W2 - 2*Phi1**2*S2*alpha + 8*Phi1**2*W2*alpha + 12*Phi1*W1**2*alpha**2 - 3*S1*alpha**3 + 8*W1*alpha**3)
+      r^1:  2*alpha*(2*Phi1**2*W2 + W1*alpha**2)
+
+    CLASS Phi2^0 Phi3^0:
+      r^1:  8*Phi1**5*W1*W2 - 8*Phi1**3*W1**2*alpha**2 + 2*Phi1**2*S1*alpha**3 - 8*Phi1**2*W1*alpha**3 + S0*alpha**5 - W0*alpha**5
+      r^0:  2*Phi1*W1*alpha**3
+
+  [D4 condition system pickled to agentDD_D4.pkl]
+  [stage D4 done in 0.3s]
+====================================================================================================
+agentDD_vector_carrier.py [D4] -- WALL 4: exact lens-only conditions, condensate system
+====================================================================================================
+  [FULL SYSTEM: W, S, AND C all kept]
+  slip = (C0*Phi1*alpha**2 + 2*C1c*Phi1**3 + 2*Phi1**2*W1*alpha)/alpha**2
+  Delta_Phi assembled; denominator = C0*alpha**6*r**2 + 2*C1c*Phi1**2*alpha**4*r**2 + 2*Phi1*W1*alpha**5*r**2 + alpha**6*r**2
+  numerator: collecting in the independent data (Phi2, Phi3, r):
+    contains Phi3: False
+    monomial classes in (Phi2, Phi3): [(1, 0), (0, 0)]
+
+    CLASS Phi2^1 Phi3^0:
+      r^2:  -C0**2*alpha**6 - 16*C0*C1c*Phi1**2*alpha**4 - 8*C0*C2c*Phi1**4*alpha**2 - 8*C0*Phi1**3*W2*alpha**3 - 8*C0*Phi1*W1*alpha**5 - 2*C0*alpha**6 - 28*C1c**2*Phi1**4*alpha**2 - 16*C1c*C2c*Phi1**6 - 16*C1c*Phi1**5*W2*alpha - 40*C1c*Phi1**3*W1*alpha**3 - 16*C1c*Phi1**2*alpha**4 - 16*C2c*Phi1**5*W1*alpha - 8*C2c*Phi1**4*alpha**2 - 16*Phi1**4*W1*W2*alpha**2 + 2*Phi1**3*S2*alpha**3 - 8*Phi1**3*W2*alpha**3 - 12*Phi1**2*W1**2*alpha**4 + 3*Phi1*S1*alpha**5 - 8*Phi1*W1*alpha**5
+      r^1:  2*alpha**2*(3*C1c*Phi1*alpha**2 + 2*C2c*Phi1**3 + 2*Phi1**2*W2*alpha + W1*alpha**3)
+
+    CLASS Phi2^0 Phi3^0:
+      r^1:  -3*C0**2*Phi1*alpha**6 - 6*C0*C1c*Phi1**3*alpha**4 + 4*C0*C2c*Phi1**5*alpha**2 + 4*C0*Phi1**4*W2*alpha**3 - 10*C0*Phi1**2*W1*alpha**5 - 5*C0*Phi1*alpha**6 + 8*C1c*C2c*Phi1**7 + 8*C1c*Phi1**6*W2*alpha - 8*C1c*Phi1**4*W1*alpha**3 - 8*C1c*Phi1**3*alpha**4 + 8*C2c*Phi1**6*W1*alpha + 8*Phi1**5*W1*W2*alpha**2 - 8*Phi1**3*W1**2*alpha**4 + 2*Phi1**2*S1*alpha**5 - 8*Phi1**2*W1*alpha**5 + S0*alpha**7 - W0*alpha**7
+      r^0:  alpha**4*(C0*alpha**2 + 2*C1c*Phi1**2 + 2*Phi1*W1*alpha)
+
+  [D4 condition system pickled to agentDD_D4.pkl]
+  [stage D4 done in 0.6s]
+====================================================================================================
+agentDD_vector_carrier.py [D2] -- WALL 2: TT check, condensate operators
+====================================================================================================
+
+  TT background, in-halo (a != 0, spacelike condensate present), O(h^2) scan:
+====================================================================================================
+agentDD_vector_carrier.py [D4] -- WALL 4: exact lens-only conditions, condensate system
+====================================================================================================
+  [FULL SYSTEM: W, S, AND C all kept]
+  slip = (C0*Phi1*alpha**2 + 2*C1c*Phi1**3 + 2*Phi1**2*W1*alpha)/alpha**2
+  Delta_Phi assembled; denominator = C0*alpha**6*r**2 + 2*C1c*Phi1**2*alpha**4*r**2 + 2*Phi1*W1*alpha**5*r**2 + alpha**6*r**2
+  numerator: collecting in the independent data (Phi2, Phi3, r):
+    contains Phi3: False
+    monomial classes in (Phi2, Phi3): [(1, 0), (0, 0)]
+
+    CLASS Phi2^1 Phi3^0:
+      r^2:  -C0**2*alpha**6 - 16*C0*C1c*Phi1**2*alpha**4 - 8*C0*C2c*Phi1**4*alpha**2 - 8*C0*Phi1**3*W2*alpha**3 - 8*C0*Phi1*W1*alpha**5 - 2*C0*alpha**6 - 28*C1c**2*Phi1**4*alpha**2 - 16*C1c*C2c*Phi1**6 - 16*C1c*Phi1**5*W2*alpha - 40*C1c*Phi1**3*W1*alpha**3 - 16*C1c*Phi1**2*alpha**4 - 16*C2c*Phi1**5*W1*alpha - 8*C2c*Phi1**4*alpha**2 - 16*Phi1**4*W1*W2*alpha**2 + 2*Phi1**3*S2*alpha**3 - 8*Phi1**3*W2*alpha**3 - 12*Phi1**2*W1**2*alpha**4 + 3*Phi1*S1*alpha**5 - 8*Phi1*W1*alpha**5
+      r^1:  2*alpha**2*(3*C1c*Phi1*alpha**2 + 2*C2c*Phi1**3 + 2*Phi1**2*W2*alpha + W1*alpha**3)
+
+    CLASS Phi2^0 Phi3^0:
+      r^1:  -3*C0**2*Phi1*alpha**6 - 6*C0*C1c*Phi1**3*alpha**4 + 4*C0*C2c*Phi1**5*alpha**2 + 4*C0*Phi1**4*W2*alpha**3 - 10*C0*Phi1**2*W1*alpha**5 - 5*C0*Phi1*alpha**6 + 8*C1c*C2c*Phi1**7 + 8*C1c*Phi1**6*W2*alpha - 8*C1c*Phi1**4*W1*alpha**3 - 8*C1c*Phi1**3*alpha**4 + 8*C2c*Phi1**6*W1*alpha + 8*Phi1**5*W1*W2*alpha**2 - 8*Phi1**3*W1**2*alpha**4 + 2*Phi1**2*S1*alpha**5 - 8*Phi1**2*W1*alpha**5 + S0*alpha**7 - W0*alpha**7
+      r^0:  alpha**4*(C0*alpha**2 + 2*C1c*Phi1**2 + 2*Phi1*W1*alpha)
+
+  CONSISTENCY: r^0-class == alpha^6 * (slip/Phi'): True  | Phi2 r^1-class == 2 alpha^4 sqrt(Ya) * d(slip/Phi')/dYa: False
+
+  [D4 condition system pickled to agentDD_D4.pkl]
+  [stage D4 done in 0.6s]
+====================================================================================================
+agentDD_vector_carrier.py [D4] -- WALL 4: exact lens-only conditions, condensate system
+====================================================================================================
+  [FULL SYSTEM: W, S, AND C all kept]
+  slip = (C0*Phi1*alpha**2 + 2*C1c*Phi1**3 + 2*Phi1**2*W1*alpha)/alpha**2
+  Delta_Phi assembled; denominator = C0*alpha**6*r**2 + 2*C1c*Phi1**2*alpha**4*r**2 + 2*Phi1*W1*alpha**5*r**2 + alpha**6*r**2
+  numerator: collecting in the independent data (Phi2, Phi3, r):
+    contains Phi3: False
+    monomial classes in (Phi2, Phi3): [(1, 0), (0, 0)]
+
+    CLASS Phi2^1 Phi3^0:
+      r^2:  -C0**2*alpha**6 - 16*C0*C1c*Phi1**2*alpha**4 - 8*C0*C2c*Phi1**4*alpha**2 - 8*C0*Phi1**3*W2*alpha**3 - 8*C0*Phi1*W1*alpha**5 - 2*C0*alpha**6 - 28*C1c**2*Phi1**4*alpha**2 - 16*C1c*C2c*Phi1**6 - 16*C1c*Phi1**5*W2*alpha - 40*C1c*Phi1**3*W1*alpha**3 - 16*C1c*Phi1**2*alpha**4 - 16*C2c*Phi1**5*W1*alpha - 8*C2c*Phi1**4*alpha**2 - 16*Phi1**4*W1*W2*alpha**2 + 2*Phi1**3*S2*alpha**3 - 8*Phi1**3*W2*alpha**3 - 12*Phi1**2*W1**2*alpha**4 + 3*Phi1*S1*alpha**5 - 8*Phi1*W1*alpha**5
+      r^1:  2*alpha**2*(3*C1c*Phi1*alpha**2 + 2*C2c*Phi1**3 + 2*Phi1**2*W2*alpha + W1*alpha**3)
+
+    CLASS Phi2^0 Phi3^0:
+      r^1:  -3*C0**2*Phi1*alpha**6 - 6*C0*C1c*Phi1**3*alpha**4 + 4*C0*C2c*Phi1**5*alpha**2 + 4*C0*Phi1**4*W2*alpha**3 - 10*C0*Phi1**2*W1*alpha**5 - 5*C0*Phi1*alpha**6 + 8*C1c*C2c*Phi1**7 + 8*C1c*Phi1**6*W2*alpha - 8*C1c*Phi1**4*W1*alpha**3 - 8*C1c*Phi1**3*alpha**4 + 8*C2c*Phi1**6*W1*alpha + 8*Phi1**5*W1*W2*alpha**2 - 8*Phi1**3*W1**2*alpha**4 + 2*Phi1**2*S1*alpha**5 - 8*Phi1**2*W1*alpha**5 + S0*alpha**7 - W0*alpha**7
+      r^0:  alpha**4*(C0*alpha**2 + 2*C1c*Phi1**2 + 2*Phi1*W1*alpha)
+
+  CONSISTENCY: r^0-class == alpha^6 * (slip/Phi'): True  | Phi2 r^1-class == 2 alpha^5 sqrt(Ya) * d(slip/Phi')/dYa: True
+
+  [D4 condition system pickled to agentDD_D4.pkl]
+  [stage D4 done in 0.6s]
+====================================================================================================
+agentDD_vector_carrier.py [D2] -- WALL 2: TT check, condensate operators
+====================================================================================================
+
+  TT background, in-halo (a != 0, spacelike condensate present), O(h^2) scan:
+    [FAST mode: W/S generic-direction passes already banked in this .out -- skipped]
+    C(Ya)(a.b)(D.b)    [retained; n=(1, 0, 2)]   : (dh)^2 / h d2h content at O(h^2): False   -> h enters as SOURCE only: c_T = 1, alpha_M = 0 preserved
+    (D b)^2            [OMITTED aether kin; n=(1, 0, 2)]: (dh)^2 / h d2h content at O(h^2): True   -> TENSOR-CONE SHIFT (wall-2 class)
+    C(Ya)(a.b)(D.b)    [retained; n=(2, 3, 1)]   : (dh)^2 / h d2h content at O(h^2): False   -> h enters as SOURCE only: c_T = 1, alpha_M = 0 preserved

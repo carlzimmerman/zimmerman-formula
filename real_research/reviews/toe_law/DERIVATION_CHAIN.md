@@ -119,6 +119,27 @@ split requires a second smooth variable (consistent with agentJ); no published r
 pollution at 10⁷×, NOT ghosts); survivors: c_T ≡ 1 / α_M ≡ 0 identically; the timelike-only reach of published c_T
 classifications (new boundary); and the field-line-bending generators = the morphology dial with agentZ's sign built
 in. The unique class narrows again: a VECTOR/SPIN-2 carrier on the same u, or nonlocal operators.
+**VECTOR CARRIER CLOSED (agentDD, 2026-06-11): SAME-WALLS — and the closure is sharper than the scalar's.**
+Wall 1 genuinely EVADED (the condensate/hedgehog vector slips — a structural capability no scalar has); Wall 2
+evaded by construction (c_T ≡ 1, α_M ≡ 0 identically, machine, in-halo with the spacelike condensate present).
+But Wall 3 TRANSFERS measured (+2.3×10⁶…+4.5×10⁷ × g_bar at slip-matched amplitude — opposite sign, ×3 smaller
+than the scalar's, equally dead 5–7 orders over the double-counting bar) and Wall 4 TRANSFERS in closed form
+(the exact lens-only condition's geometric class is α⁶·(slip/Φ′) = 0 — the pollution's irreducible core IS the
+slip). **THE KEYING THEOREM (the constructive yield):** the root is not the carrier's spin or stress — it is the
+KEYING: any LOCAL Y_a-keyed (y²-keyed) MOND-amplitude Ψ-slip carrier on the u-frame, scalar or vector, sourced or
+condensate, pollutes the matter channel at (a₀r/c²)⁻¹ × phantom; δY_a/δΦ — the keying's own lapse response — feeds
+the Hamiltonian constraint no matter what field carries the operator. **The carrier must read y NONLOCALLY** —
+converging with the matter sector from the opposite direction (M22's filter is time-nonlocal on the same u; X2
+forced the matter channel active and history-dependent). *The program's two missing-physics slots have collapsed
+into one structural demand: u-frame nonlocality, in both channels.* Surviving candidate space: NONLOCAL/HISTORY
+slip operators (the M22-echo — the convergent prime candidate from BOTH sectors), the singular-surface route
+(logged, low prior), non-b⊗b spin-2 condensates (keying-argument disfavored, not machine-closed). Banked residue:
+the S-counterterm family (zero slip, pure matter-channel feed — a tool no scalar basis had); the GW170817 in-halo
+boundary now covers the vector KINETIC sector ((Db)² at unit norm = Δc_T ~ O(1)); the morphology dial is
+TWO-CARRIER-ROBUST (the (D·b)-keyed divergence/bending engine carries agentZ's TYPE-IRREDUCIBLE sign with the same
+geometric range — a design principle of the operator geometry, independent of the final carrier). Bug log: 2
+illegal-normalization dead-ends caught by internal gates (dimensional audit + total-derivative check) before
+banking; the matched legal realization reproduced the W-row to all printed digits.
 
 **Link 8 — the quantum derivation (the gate).** CONTESTED-TERMINAL at the algebra level (agentR: 60-paper sweep,
 nothing derives the placement) — **now EDGE-WOUNDED at the observable level (agentS, the repo's own unpublished
