@@ -17,9 +17,13 @@ S = S_EH[g] + S_u[g, u] + S_m[matter; g, u] + S_slip[g, u]
   The frame solves the covariance problem Milgrom's theorem leaves (the nonlocal filter needs a time direction).
 - **S_m** — matter worldlines carrying the Milgrom-2022 time-nonlocal kinetic functional evaluated in the u-frame,
   with the EXPONENTIAL μ-tail (the data-selected member: solar reflex passed >10¹³ where every power-law dies — agentM).
-  **[SLOT-X: the causal, energy-conserving form — the Schwinger–Keldysh/Galley doubled-variable EOM and the aether
-  reservoir flux; in flight. PASS graduates this half to built-at-EOM-level; FAIL is a boundary theorem for all
-  covariant MI.]**
+  **[SLOT-X RESOLVED (agentX): PARTIAL — built-at-EOM-level, conditional on a pumped reservoir.** The Galley split
+  EXISTS: a strictly retarded, u-clocked causal EOM (validated to 0.03% against every banked number; zero
+  pre-acceleration; energy ledger closed at 10⁻¹⁴; the khronon forced TWICE — filter frame + causal clock). And
+  **Theorem X2**: causality + vacuum passivity force μ̂(0) ≥ μ̂(∞) while deep MOND forces the inversion ⇒ NO passive
+  vacuum closes any causal MI — the channel is irreducibly ACTIVE; the kernel must be pumped. The invoice: khronon
+  stockpile short ×50–3600; **the Λ/dS bath pays ×10²–10⁴ (box) / +15 orders (horizon)** — Links 5 and 6 are provably
+  ONE problem, and the dS-bath reservoir is re-derived as MANDATORY from causality alone, with sign and amount.]**
 - **S_slip** — the lens-only Ψ-channel sector: c_T-preserving beyond-Horndeski/DHOST class coupled to the SAME u,
   producing (μ,Σ) = (1, ν(g_bar/a₀)) — photons see the phantom, matter does not (the double-counting theorem forbids
   anything else — agentW). **[SLOT-Y: the explicit minimal Lagrangian + the degeneracy/ghost audit; in flight.]**

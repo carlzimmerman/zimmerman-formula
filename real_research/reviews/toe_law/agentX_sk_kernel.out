@@ -1,0 +1,119 @@
+====================================================================================================
+agentX SK-GATE [kernel side] -- run date 2026-06-11
+====================================================================================================
+[0] GATE: rebuild agentM's inventory + reflex numbers before any new use
+    theta=2/(1+y^2)    : A/a_J=1.167 (banked 1.167) ; exp-tail da_sun fw=1.391e-29 ho=1.267e-16 (banked 1.391e-29/1.267e-16) GATE-PASS
+    theta=exp(1-y)     : A/a_J=1.177 (banked 1.177) ; exp-tail da_sun fw=1.133e-29 ho=1.163e-16 (banked 1.133e-29/1.163e-16) GATE-PASS
+    theta=exp((1-y)/2) : A/a_J=1.130 (banked 1.130) ; exp-tail da_sun fw=3.154e-29 ho=1.780e-16 (banked 3.154e-29/1.780e-16) GATE-PASS
+    [0] GATE PASS: agentM machinery reproduced; certified for new use.
+
+====================================================================================================
+[1] SYMPY: the linearized kernel about a single-line background; monotonicity; sum rule on a reference
+====================================================================================================
+    A_bg(w) = 2*x_c/(Omega**2/omega**2 + 1)
+    dA_bg/dw = 4*Omega**2*omega*x_c/(Omega**2 + omega**2)**2   -> strictly > 0 for w,W0,x_c > 0: True
+    mu_exp'(X) = exp(-sqrt(X))/(2*sqrt(X))  (> 0 for X > 0)  => kernel Re mu^(w) STRICTLY RISING in w
+    DC limit  mu^(0)   = 0    (slow probes: vanishing inertia -- deep-MOND enhancement maximal at DC)
+    HF limit  mu^(inf) = 1 - exp(-sqrt(2)*sqrt(x_c))  = mu(theta(0)*x_c)  (EFE-quenched)
+    => M22 requires mu^(0) < mu^(inf) about every deep-MOND background: the INVERTED dielectric ordering.
+    reference kernel mu^ = 1 + g*tau/(1-i w tau):  (2/pi) int Im mu^/lam dlam = g*tau
+    mu^(0) - mu^(inf) = g*tau  -> sum rule (X-7) verified symbolically: PASS
+    => Theorem X2: passivity (Im mu^ >= 0) forces mu^(0) >= mu^(inf); M22 needs the opposite. ACTIVE forced.
+
+    elementary co-payment (1/mu_exp - 1) on secular forcing (medium power / external power):
+      x = 0.05: (1/mu - 1) = 3.991
+      x = 0.18: (1/mu - 1) = 1.892
+      x = 1.00: (1/mu - 1) = 0.582
+
+====================================================================================================
+[2] KRAMERS-KRONIG COMPLETION: machinery validated on analytic reference, then applied to the M22 kernel
+====================================================================================================
+    reference (exp-memory, g=0.3, tau=2.0): Re reproduced to 2.22e-16; Im recovered to 4.81e-04 (sign convention factor SGN = -1 pinned by reference)
+    time-domain power check: <P_medium-on-particle> = -1.2000e-01 (negative = medium ABSORBS) ;
+    analytic Im mu^(w0=1)  = +2.4000e-01  => PASSIVE <=> Im mu^(w>0) >= 0 in this convention. CONSISTENT
+
+    M22 kernel mu^(w) = mu_exp(x_c * theta(Omega/|w|)), Omega = 1, exponential tail:
+      x_c theta           acausal mass  Im(0.414)  Im(2.414) |Im/Re|(0.414) |Im/Re|(2.414)  sign reading
+     0.05 2/(1+y^2)              0.500    -0.1081    -0.0593          0.949          0.234  lo:ACTIVE hi:ACTIVE  (Re err 9.0e-17)
+     0.05 exp(1-y)               0.500    -0.1297    -0.0764          1.243          0.295  lo:ACTIVE hi:ACTIVE  (Re err 1.4e-16)
+     0.05 exp((1-y)/2)           0.500    -0.0992    -0.0412          0.682          0.180  lo:ACTIVE hi:ACTIVE  (Re err 6.9e-17)
+     0.18 2/(1+y^2)              0.500    -0.1814    -0.0916          0.884          0.215  lo:ACTIVE hi:ACTIVE  (Re err 1.4e-16)
+     0.18 exp(1-y)               0.500    -0.2199    -0.1169          1.165          0.270  lo:ACTIVE hi:ACTIVE  (Re err 1.9e-16)
+     0.18 exp((1-y)/2)           0.500    -0.1659    -0.0647          0.644          0.167  lo:ACTIVE hi:ACTIVE  (Re err 1.4e-16)
+     1.00 2/(1+y^2)              0.500    -0.3054    -0.1228          0.731          0.168  lo:ACTIVE hi:ACTIVE  (Re err 2.8e-16)
+     1.00 exp(1-y)               0.500    -0.3822    -0.1533          0.982          0.208  lo:ACTIVE hi:ACTIVE  (Re err 2.8e-16)
+     1.00 exp((1-y)/2)           0.500    -0.2767    -0.0909          0.548          0.133  lo:ACTIVE hi:ACTIVE  (Re err 2.8e-16)
+    reading: the symmetric kernel is ~half acausal (not perturbatively); the minimal causal completion
+    forces |Im| ~ O(kernel rise) at flat-curve epicyclic sidebands -> a FIXED causal kernel damps/pumps
+    epicycles at O(0.01-0.5)/radian in deep MOND: phenomenologically dead. Only the ADAPTIVE
+    (spectrum-resolving) construction survives, parking spectral weight off the populated lines.
+
+    DC-end forced Im (the secular channel), x_c=0.18, theta A: Im mu^ at w = 0.01, 0.05, 0.1:
+      w =  0.01: Re = +0.0060, Im = -0.01862 (ACTIVE)
+      w =  0.05: Re = +0.0295, Im = -0.06241 (ACTIVE)
+      w =  0.10: Re = +0.0579, Im = -0.09820 (ACTIVE)
+
+====================================================================================================
+[3] THEOREM X2 CONSTRUCTIVELY: positive spectral measure CANNOT reproduce the M22 kernel shape
+====================================================================================================
+    [grid guard] dropped 1 lambda node(s); min relative node gap = 1.20e-03; max|M| = 2.30e+05 (finite)
+    target: Re mu^ - mu^(inf) on w in [1e-3, 4] (x_c=0.18, theta A); range = 0.4407
+    NNLS (passive, c >= 0) residual  = 2.3344e+00  (92.7% of target norm)
+    signed LSQ residual              = 7.1590e-13  (0.000% of target norm)
+    at the DC point: target = -0.4506 (NEGATIVE: mu^(0) < mu^(inf)); passive fit = +0.1145
+    direct statement: every passive basis element contributes +1/lam^2 > 0 at DC; a negative DC target
+    is INFEASIBLE for any positive measure. Theorem X2 confirmed constructively.
+
+====================================================================================================
+[4] SOLAR FLUX CHECK: forced-Im observables bounded by eps(x); exp tail at both footings + hostile
+====================================================================================================
+    reflex budget as wobble fraction: 1.181e-08
+    theta          footing     x = A/a0   eps_exp(x)  budget/eps  verdict
+    2/(1+y^2)      fw            2607.6     6.65e-23 177605946114831.4  PASS
+    2/(1+y^2)      canon         2033.9     2.59e-20 455664414358.0  PASS
+    2/(1+y^2)      cH(host)       450.5     6.06e-10        19.5  PASS
+    exp(1-y)       fw            2628.6     5.42e-23 218027780055785.8  PASS
+    exp(1-y)       canon         2050.3     2.16e-20 546129666955.0  PASS
+    exp(1-y)       cH(host)       454.1     5.56e-10        21.2  PASS
+    exp((1-y)/2)   fw            2524.6     1.51e-22 78324384594847.8  PASS
+    exp((1-y)/2)   canon         1969.2     5.34e-20 221117223862.7  PASS
+    exp((1-y)/2)   cH(host)       436.2     8.51e-10        13.9  PASS
+
+    power-law comparison (eps_std = 1/mu_std - 1) at the hostile footing (already reflex-dead x6-11):
+      theta=2/(1+y^2)    : eps_std(450) = 2.464e-06 vs budget fraction 1.181e-08 -> x208.6 OVER (kill ordering preserved)
+      theta=exp(1-y)     : eps_std(454) = 2.425e-06 vs budget fraction 1.181e-08 -> x205.2 OVER (kill ordering preserved)
+      theta=exp((1-y)/2) : eps_std(436) = 2.628e-06 vs budget fraction 1.181e-08 -> x222.5 OVER (kill ordering preserved)
+
+    planetary-x channels (the bodies' OWN centripetal acceleration GMsun/R^2), exp tail, hostile:
+      Mercury : a = 3.957e-02 m/s^2, x_hostile = 7.304e+07, eps_exp = 10^-3711.69
+      Venus   : a = 1.133e-02 m/s^2, x_hostile = 2.092e+07, eps_exp = 10^-1986.36
+      EMB     : a = 5.930e-03 m/s^2, x_hostile = 1.095e+07, eps_exp = 10^-1436.8
+      Mars    : a = 2.554e-03 m/s^2, x_hostile = 4.715e+06, eps_exp = 10^-942.99
+      Jupiter : a = 2.190e-04 m/s^2, x_hostile = 4.043e+05, eps_exp = 10^-276.129
+      Saturn  : a = 6.520e-05 m/s^2, x_hostile = 1.203e+05, eps_exp = 10^-150.654
+      Uranus  : a = 1.610e-05 m/s^2, x_hostile = 2.972e+04, eps_exp = 10^-74.8671
+      Neptune : a = 6.559e-06 m/s^2, x_hostile = 1.211e+04, eps_exp = 10^-47.7833
+    -> every planetary channel's forced flux is suppressed below 10^-150: exactly zero at any precision.
+
+====================================================================================================
+[5] THE FLUX INVOICE: who can pay (kg-m-s numbers; ceilings, stated as ceilings)
+====================================================================================================
+    L*-galaxy orbital energy ~ 1.99e+51 J ; eps_deep ~ 0.5
+    ACTIVE-flux demand ceiling: secular (t_H-paced)  P ~ 2.26e+33 W
+                                transient (t_dyn-paced) P ~ 1.58e+35 W
+
+    khronon-corner stockpile (alpha <= 8e-07): rho_u c^2 = 6.63e-16 J/m^3 ; E(100kpc box) = 1.95e+49 J
+      drain time at secular demand: 8.62e+15 s = 2.73e+08 yr -> covers t_H x1.96e-02  CANNOT PAY
+      drain time at transient demand: 1.24e+14 s = 3.92e+06 yr -> covers t_H x2.81e-04  CANNOT PAY
+
+    Lambda reservoir: rho_L c^2 = 5.72e-10 J/m^3 ; E(100kpc box) = 1.68e+55 J
+      drain time at secular demand: 7.44e+21 s -> covers t_H x1.69e+04
+      drain time at transient demand: 1.07e+20 s -> covers t_H x2.42e+02
+    Gibbons-Hawking horizon scale: c^5/(G H) = 1.60e+70 J (clears the per-galaxy bill by x1e+15 over the Lambda-box number)
+
+    reading: the khronon corner CANNOT be the battery (drains in ~1e8 yr at the secular ceiling, ~1e6 yr
+    at the transient ceiling); the Lambda/dS bath pays with 1e3-1e4 Hubble times of margin at the box level
+    and ~15 more orders at the horizon level. Theorem X2 + this table = the SK gate's invoice: the matter
+    half is built-at-EOM-level CONDITIONAL on a pumped (dS-bath-class) reservoir; the khronon is carrier
+    and clock, not battery.
+[6] DONE (kernel side).

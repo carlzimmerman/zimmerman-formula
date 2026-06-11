@@ -1,0 +1,75 @@
+====================================================================================================
+agentX SK-GATE [dynamics side] -- run date 2026-06-11
+====================================================================================================
+[0] CHECK 3a: causal estimators on the synthetic Sun worldline vs agentM banked numbers
+    synthetic worldline: 7360934 steps, dt = 1.37 d, span = 27701 yr, window N_cyc = 24 cycles/channel (u-clocked, constant-Q)
+    per-line causal estimates vs injected amplitudes:
+      Mercury : injected 6.5699e-09  estimated 6.5699e-09  err +0.00%
+      Venus   : injected 2.7744e-08  estimated 2.7744e-08  err +0.00%
+      EMB     : injected 1.8030e-08  estimated 1.8030e-08  err +0.00%
+      Mars    : injected 8.2434e-10  estimated 8.2440e-10  err +0.01%
+      Jupiter : injected 2.0908e-07  estimated 2.0908e-07  err -0.00%
+      Saturn  : injected 1.8634e-08  estimated 1.8634e-08  err +0.00%
+      Uranus  : injected 7.0293e-10  estimated 7.0289e-10  err -0.01%
+      Neptune : injected 3.3787e-10  estimated 3.3491e-10  err -0.88%
+
+    A_ret(Omega_J) per Eq. shiluta from the CAUSAL estimates (+ galactic line, analytic steady state):
+      theta=2/(1+y^2)    : A_ret/a_J = 1.167 (banked 1.167, drift 0.03%) ; exp-tail da_sun(hostile) = 1.267e-16 (banked 1.267e-16, 0%)
+      theta=exp(1-y)     : A_ret/a_J = 1.177 (banked 1.177, drift 0.02%) ; exp-tail da_sun(hostile) = 1.163e-16 (banked 1.163e-16, 0%)
+      theta=exp((1-y)/2) : A_ret/a_J = 1.130 (banked 1.130, drift 0.02%) ; exp-tail da_sun(hostile) = 1.780e-16 (banked 1.780e-16, 0%)
+      (the delta_a comparison is steep by construction: dln(eps)/dln(A) = -sqrt(x)/2 ~ -11 at hostile x,
+       so a sub-% A-drift moves delta_a by ~10%; the GATE criterion is the 1% A-level agreement.)
+    [0] CHECK 3a PASS: the retarded estimator reproduces the adiabatic (banked) filter values <1%.
+
+====================================================================================================
+[1] CHECK 3b: PRE-ACCELERATION -- symmetric vs retarded on a quiet->loud worldline (a0=1 units)
+====================================================================================================
+    quiet x = 0.1, loud x = 1.0: mu_quiet = 0.2711, mu_loud = 0.6321
+    SYMMETRIC form assigns the pre-onset epoch mu_sym = 0.5019 -> pre-response at 64% of the full quiet->loud shift, BEFORE the force changes.
+    (acausality is O(1) -- the modulus-Fourier functional reads the future at full strength;
+     it decays only as the loud epoch's share of the window -> no exponential protection.)
+    RETARDED estimator pre-onset deviation: max |A_ret - A_quiet|/A_quiet = 1.03e-02 (window ripple only, ~1/(2 pi N_cyc) = 1.99e-02; ZERO future response)  PASS
+    transient-MOND-boost fingerprint: immediately post-step the stale window gives response enhancement mu_loud/mu_ret = 2.320 (-> 1 as the window fills; half-life 1.2 cycles = 0.14 N_cyc -- mu's steep rise at small A front-loads the recovery; full refill ~ N_cyc)
+    ALD comparison: the M22 law is SECOND order plus memory -- no third derivative ever appears, so
+    the ALD runaway/pre-acceleration disease (and its order-reduction cure) has no analog here; the
+    analog risk is multivaluedness of the implicit mu-solve, closed in [2] by monotone x*mu(x).
+
+====================================================================================================
+[2] RUNAWAY AUDIT: the implicit solve a*mu(a/a0) = a_N -- root uniqueness + Picard contraction
+====================================================================================================
+    exp tail : x*mu(x) strictly monotone on [1e-9,1e9]: True -> exactly ONE root for any a_N
+               damped-Picard iterations to 1e-12 across a_N in [1e-6,1e3]: worst = 34  PASS (no runaway, no multi-root, uniform convergence)
+    standard : x*mu(x) strictly monotone on [1e-9,1e9]: True -> exactly ONE root for any a_N
+               damped-Picard iterations to 1e-12 across a_N in [1e-6,1e3]: worst = 34  PASS (no runaway, no multi-root, uniform convergence)
+
+====================================================================================================
+[3] CHECK 3c: the causal EOM integrated -- adiabatic amplitude, ledger closure, flux scaling, kick, DC
+====================================================================================================
+    [3c-i] single line, F0 = 0.06, w0 = 1 (deep MOND):
+      algebraic M22 amplitude: a_ss = 0.17537 (x = 0.175, mu = 0.3421, enhancement a_ss/F0 = 2.923)
+      N_cyc =  4: a_meas = 0.17505 (vs algebraic 0.17537, err -0.18%) ; ledger closure 1.7e-14 ; steady <P_ae>/<|P_F|> = 5.33e-02
+      N_cyc =  8: a_meas = 0.17502 (vs algebraic 0.17537, err -0.20%) ; ledger closure 3.6e-14 ; steady <P_ae>/<|P_F|> = 2.67e-02
+      N_cyc = 16: a_meas = 0.17500 (vs algebraic 0.17537, err -0.21%) ; ledger closure 5.5e-14 ; steady <P_ae>/<|P_F|> = 1.34e-02
+      N_cyc = 32: a_meas = 0.17500 (vs algebraic 0.17537, err -0.21%) ; ledger closure 7.1e-14 ; steady <P_ae>/<|P_F|> = 6.68e-03
+      steady-state residual flux scaling: <P_ae> ~ N_cyc^-1.00 (park-in-the-gaps: resolved spectrum
+      -> conservative; the residual is window ripple, vanishing with memory depth)
+
+    [3c-ii] two lines (w = 1, sqrt(5)), F = (0.05, 0.04):
+      N_cyc =  8: steady <P_ae>/<|P_F|> = 3.10e-03 ; ledger closure 1.4e-14 ; mu_ch(end) = 0.3442, 0.4410
+      N_cyc = 24: steady <P_ae>/<|P_F|> = 2.15e-03 ; ledger closure 3.4e-14 ; mu_ch(end) = 0.3436, 0.4403
+      (quasiperiodic spectrum resolved -> flux -> 0 with window depth; conservation on resolved content)
+
+    [3c-iii] kick test: drive amplitude x3 at t_kick (N_cyc = 16):
+      mu: 0.3417 -> 0.4635; transient (40 cycles): int P_ae dt = +4.502e-02 (0.9% of the external work in the same span; sign ACTIVE (reservoir->worldline))
+      steady flux before kick 1.3e-02, after re-equilibration 7.7e-03 (transient-limited)
+
+    [3c-iv] DC/secular forcing (the X2 channel): constant F_dc on a quiet worldline, DC window T_w = 200:
+      late-time self-consistent a = 0.10738 (algebraic a*mu(a)=F_dc: 0.10737, err +0.01%); enhancement a/F_dc = 3.58
+      mu(late) = 0.2794; medium co-payment P_ae/P_F = (1/mu - 1) = 2.579 (kernel-script elementary value at x = 0.11: 2.579)  CROSS-CHECK PASS
+      measured late-time P_ae/P_F from the run: 2.579
+      sign: P_ae > 0 throughout the secular ramp: True -> the medium DOES NET
+      POSITIVE WORK on the secularly-forced worldline: the ACTIVE channel is real, finite (self-limited
+      by the nonlinearity), and exactly the (1/mu - 1) co-payment of Theorem X2. A vacuum reservoir
+      cannot supply it; the pumped (dS-bath-class) reservoir of the kernel-script invoice must.
+
+[4] DONE (dynamics side).
