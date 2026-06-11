@@ -145,22 +145,36 @@ authoritative spine is now `DERIVATION_CHAIN.md` (all flags closed), the action 
 | EE — σ_req scoping: STRUCTURALLY-CAPABLE for the PUMPED khronon (minimal khronon CANNOT); (C1)–(C5) written; **Link 5 = a defined calculation**; the b-family theorem (dilatation orbits ≡ Deser–Levin); a²-analyticity ⇒ a★ is the route's OWN prediction | `9def577c` |
 | agentE budget cross-check: FF's last flag DOWNGRADED (order-corroborated ×4 inside Folkner; PASS-flip band 1.2–1.8e-16 beyond all published bounds) | `cb07dabb` |
 
-## The live doors (in flight as of 13:00)
-1. **HH — the Link 5 calculation**: the scale-invariant pump profile g(k_phys/H) vs (C1)–(C5), inverse problem
-   included; gates = stability/Cherenkov/PPN/X2-throughput. PROFILE-FOUND would functionally close Link 5.
-2. **II — the CMB/E_G audit of the slip sector** (the assembly's biggest unpaid debt; genuine falsification risk:
-   naive ν diverges at linear scales — raw vs saturated vs EFE-regulated readings, vs Planck A_L + published E_G).
-3. **JJ — the ×2.32 transient fingerprint** vs tidal-dwarf/post-interaction data (the built EOM's one untested
-   novel prediction; EFE confound has opposite sign — separability is the crux). **REPORTED 2026-06-11:
-   CONFRONTED — the "+0.37 dex above the RAR" transplant dead ~11σ (six Lelli-2015 TDGs sit −0.63…−0.68 ± 0.09
-   BELOW the isolated RAR, = settled QUMOND-EFE to −0.13 ± 0.10); the construction's own EFE-embedded prediction
-   (+0.02…+0.07 dex — the external line erases the enhancement) PASSES; NEW STRUCTURAL FINDING: (X-4)'s two
-   operator readings (action-EOM vs implicit-μ) SPLIT on transients — ×2.32 was prescribed-μ only, the action
-   EOM gives suppression (quasi-Newtonian for ~2.6 N_cyc/⟨d(xμ)/dx⟩ orbits) — sign unfixed alongside N_cyc;
-   NON-DIAGNOSTIC between readings on this sample (0.1–3.1σ across convention forks); decisive test = isolated
-   young rotators, three-way split ≥ 0.3 dex = watch entry 13. `agentJJ_transient_fingerprint.md`.**
-4. **DD — the vector carrier on u** vs agentY's four walls (Wall 3, the 10⁷ Hamiltonian-constraint pollution, is
-   the live-or-die point; SAME-WALLS narrows Link 7 to nonlocal-only).
+## The doors — final states (updated 14:35; ONE live, FOUR reported-and-closed)
+
+**LIVE: HH — the Link 5 calculation** (the scale-invariant pump profile g(k_phys/H) vs (C1)–(C5), inverse problem
+included; gates = stability/Cherenkov/PPN/X2-throughput). The day's last agent out; PROFILE-FOUND would
+functionally close Link 5. *(alive, 161 memo lines as of this stamp)*
+
+**REPORTED 2026-06-11 (each: memo + .py + .out committed; chain/assembly patched; closed as a door):**
+- **II — the CMB/E_G audit → KILL of the unregulated linear-scale slip extension** (every reading, both footings,
+  convention-robust; required cap ν ≤ 1.03–1.14 sits below the entire measured galactic range; EFE-regulation
+  short ×112–777). Constructive yield: S_slip requires a second discriminant beyond g_bar — the requirement
+  stands UNOWNED after KK. Honest residue: the CDM-like-shape near-miss; the μ=1 growth debt (separate open).
+  `agentII_cmb_slip_audit.md` @ `641021ad`.
+- **JJ — the transient fingerprint → CONFRONTED + the (X-4) operator-form split found** (the ×2.32 was
+  prescribed-μ only; action-EOM gives suppression — sign unfixed; TDG transplant dead ~11σ; the construction's
+  own EFE-embedded prediction PASSES; decisive three-way test = watch entry 13).
+  `agentJJ_transient_fingerprint.md` @ `25d90036`.
+- **DD — the vector carrier → SAME-WALLS via THE KEYING THEOREM** (walls 3+4 transfer through the keying, not the
+  carrier; the dial two-carrier-robust; the S-counterterm family banked). `agentDD_vector_carrier.md` @ `0c3ff2ee`.
+- **KK — the nonlocal/history slip carrier → OBSTRUCTED by Theorem KK-1 (static equivalence)** — the whole
+  TTI-history class inherits the keying walls verbatim; all three escapes fail; the 'both channels nonlocal'
+  convergence line RETIRED (the lensing job is static). Link 7 after Y+DD+KK: the exposure is UNEXPLAINED by
+  every explored construction route; remaining: singular-surface (low prior), spatial nonlocality (unexplored,
+  unmotivated), non-b⊗b spin-2. `agentKK_nonlocal_slip.md` @ `480f8833`.
+
+**Door-queue after HH lands (not yet launched, priority order):**
+1. The synchronized paper pass (fold DD/II/JJ/KK/HH into md+tex; the paper's ×2.32 row still carries the
+   pre-JJ wording — it needs the operator-split caveat).
+2. The μ=1 growth debt (II's named separate open — the matter sector at linear scales without CDM).
+3. The (X-4) operator-form adjudication (which reading is THE theory? the action-EOM is the principled one —
+   resolve at the construction level, not by data).
 
 ## Process notes that survive the day
 - The monthly-spend-limit kill pattern: agents die silently post-computation; the salvage drill (verify the .out,
