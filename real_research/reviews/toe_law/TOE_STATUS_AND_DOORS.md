@@ -151,7 +151,14 @@ authoritative spine is now `DERIVATION_CHAIN.md` (all flags closed), the action 
 2. **II — the CMB/E_G audit of the slip sector** (the assembly's biggest unpaid debt; genuine falsification risk:
    naive ν diverges at linear scales — raw vs saturated vs EFE-regulated readings, vs Planck A_L + published E_G).
 3. **JJ — the ×2.32 transient fingerprint** vs tidal-dwarf/post-interaction data (the built EOM's one untested
-   novel prediction; EFE confound has opposite sign — separability is the crux).
+   novel prediction; EFE confound has opposite sign — separability is the crux). **REPORTED 2026-06-11:
+   CONFRONTED — the "+0.37 dex above the RAR" transplant dead ~11σ (six Lelli-2015 TDGs sit −0.63…−0.68 ± 0.09
+   BELOW the isolated RAR, = settled QUMOND-EFE to −0.13 ± 0.10); the construction's own EFE-embedded prediction
+   (+0.02…+0.07 dex — the external line erases the enhancement) PASSES; NEW STRUCTURAL FINDING: (X-4)'s two
+   operator readings (action-EOM vs implicit-μ) SPLIT on transients — ×2.32 was prescribed-μ only, the action
+   EOM gives suppression (quasi-Newtonian for ~2.6 N_cyc/⟨d(xμ)/dx⟩ orbits) — sign unfixed alongside N_cyc;
+   NON-DIAGNOSTIC between readings on this sample (0.1–3.1σ across convention forks); decisive test = isolated
+   young rotators, three-way split ≥ 0.3 dex = watch entry 13. `agentJJ_transient_fingerprint.md`.**
 4. **DD — the vector carrier on u** vs agentY's four walls (Wall 3, the 10⁷ Hamiltonian-constraint pollution, is
    the live-or-die point; SAME-WALLS narrows Link 7 to nonlocal-only).
 

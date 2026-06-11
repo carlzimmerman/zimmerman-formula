@@ -65,3 +65,16 @@ constant 106–175 / rising 204–335 km/s for REBELS-25, canon footing) — dec
 pinned to ×2 (JWST IMF/SED + non-dynamical gas tracer; current bracket ×7). Triggers: any REBELS/CRISTAL
 extended-[CII] follow-up; any independent α_[CII] or dust-based gas mass for REBELS-25; DLA0817g1 outer-disc
 kinematics. C3 fence applies. Owner: `reviews/public_data/agentGG_jwst_highz.md`.
+
+**13 (added 2026-06-11, agentJJ):** the transient-fingerprint discriminator: ISOLATED young deep-MOND
+rotators (e_N ≲ 0.05, assembly age ≲ 2 internal orbits, age-dated, resolved HI + pinned inclination)
+split THREE ways at ≥0.3 dex: the IMPL reading of (X-4) ⇒ +0.3…+1.9 dex ABOVE the RAR (N_cyc 8–32,
+≥ +1.4 in the first half-orbit, decaying over 7–24 orbits); the COMP (action-EOM) reading ⇒
+quasi-Newtonian g_obs ≈ g_bar for tens of
+orbits; settled MOND ⇒ on-RAR. One clean object adjudicates all three. Triggers: age-dated isolated
+post-interaction dwarfs far from hosts; JWST-dated young gas discs with HI follow-up. Deficit channel:
+N ≈ 12 TDGs at Lelli-2015 quality separates the COMP floor from settled-EFE at 3σ (gap 0.21 dex).
+Secondary COMP-only channel: ghost-ringing — inflated σ_HI/non-circular power at the remembered parent
+frequency, decaying over N_cyc·T_par. TDGs near parents CANNOT test the positive branch (e_N ≈ 0.2 caps
+it at +0.07 dex; measured −0.13 ± 0.10 vs settled QUMOND-EFE — consistent, NON-DIAGNOSTIC between
+forms). Owner: `reviews/toe_law/agentJJ_transient_fingerprint.md`.

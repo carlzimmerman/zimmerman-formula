@@ -101,6 +101,16 @@ WEP three-layer verified, no singular-surface analog, agentM's battery transfers
 writing is a₀ = const ≡ the framework's pure-Λ √ρ_DE branch. Inherited opens, named: conservation/causality of the
 retarded worldline functional (the MI field's shared death-spot; Schwinger–Keldysh = the route) and lensing
 delegated to Link 7.
+**TRANSIENT FINGERPRINT CONFRONTED (agentJJ, 2026-06-11):** R3's "×2.32, unconstrained by current data" is
+patched twice — (i) the ×2.32 is the IMPLICIT-μ reading only; the literal (X-4) action EOM gives SUPPRESSION on
+the same step (0.70× settled, rising from below; quasi-Newtonian for ~2.6 N_cyc/⟨d(xμ)/dx⟩ orbits from an empty
+window): the (X-4) "⟺" breaks off resolved content — an unfixed OPERATOR-FORM convention alongside N_cyc;
+(ii) the six Lelli-2015 TDGs (0.2–0.8 internal orbits old) now constrain the EFE-embedded regime: −0.63…−0.68 ±
+0.09 dex vs the isolated RAR (the naive "+0.37 dex above" transplant dead ~11σ), −0.13 ± 0.10 vs settled
+QUMOND-EFE — consistent with the construction's own EFE-regulated prediction (+0.02…+0.07 dex: the external
+line erases the enhancement), NON-DIAGNOSTIC between the two operator readings (0.1–3.1σ across EFE-convention
+× zero-point forks). The positive branch lives only in ISOLATED young rotators (+0.3…+1.9 dex vs the COMP
+quasi-Newtonian floor vs settled on-RAR: a three-way split, one clean object decides) = watch entry 13.
 
 **Link 7 — the lensing partner.** PROVEN NECESSARY (the 40.5σ metric-passive wall, our own data) and
 PHENOMENOLOGICALLY EXISTENCE-PROVED (the superfluid condensate carries lensing as mass and predicted our measured
