@@ -44,7 +44,12 @@ S = S_EH[g] + S_u[g, u] + S_m[matter; g, u] + S_slip[g, u]
   must read y NONLOCALLY, echoing the M22 filter: both sectors now demand u-frame nonlocality. Surviving:
   nonlocal/history slip operators (the convergent prime candidate), the singular-surface route (low prior),
   non-b⊗b spin-2 (disfavored, not machine-closed). The morphology dial is two-carrier-robust ((D·b)-keyed
-  bending, agentZ's sign); the S-counterterm family banked.]**
+  bending, agentZ's sign); the S-counterterm family banked. NONLOCAL/HISTORY HALF CLOSED (agentKK): Theorem KK-1
+  (static equivalence) transfers the keying theorem VERBATIM to the entire TTI history-keyed class; all three
+  escapes fail (DC leak at full amplitude; derivative keys blind to statics; the S-family cannot reach the S-free
+  r⁰ core; spectral keys read statics through θ(0)). The 'both channels nonlocal' convergence line is RETIRED —
+  the lensing job is static. Surviving: singular-surface (low prior), spatial nonlocality (not closed,
+  unmotivated), non-b⊗b spin-2. The slip-sector exposure is unexplained by every explored route.]**
 
 ## The field equations (the action principle, scaffold level — X/Y supply the specific functionals)
 
@@ -128,8 +133,8 @@ complete at the EOM level; if it cannot, the obstruction is the boundary theorem
   BELOW the entire galactic-measured ν range 4.4–306 — no global cap can serve both). **S_slip therefore REQUIRES
   a second discriminant beyond g_bar** (quantitative target: suppress Σ−1 by ≥50–800× at k ≤ 0.3 h/Mpc while
   preserving halo ν to r ~ 1–3 Mpc) — converging with agentZ's type dial AND agentDD's keying theorem: a
-  history/frequency-keyed (nonlocal) carrier naturally distinguishes Hubble-flow linear perturbations from
-  settled halos — exactly agentKK's live construction. Honest residue: the near-miss is real (the divergence has
+  history/frequency-keyed (nonlocal) carrier was the named candidate — since CLOSED by agentKK (Theorem KK-1:
+  history keys read statics through their DC weight). The second-discriminant REQUIREMENT stands, now unowned. Honest residue: the near-miss is real (the divergence has
   accidentally CDM-like SHAPE on the n_eff = −1 plateau, over-delivering ×4–6 with wrong z-evolution), and the
   matter-sector growth debt (μ = 1 without CDM) is a separate open; a₀(z): the minimal writing is const ≡ the framework's √ρ_DE branch (agentU); the rival ∇·u/3 = H(z)
   writing is the rising branch — DESI DR3 adjudicates (the registered hostage).

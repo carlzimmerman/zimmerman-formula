@@ -1,0 +1,392 @@
+====================================================================================================
+agentKK_nonlocal_slip.py [K0] -- GATES against banked numbers before any new use
+====================================================================================================
+
+  slip targets Psi'/Phi' - 1 = 2(nu-1), McGaugh nu, framework a0:
+    g_bar=1e-13: 2nu-1 = 61.2 (banked 61.2)  GATE OK
+    g_bar=1e-12: 2nu-1 = 19.4 (banked 19.4)  GATE OK
+    g_bar=1e-11: 2nu-1 = 6.2 (banked 6.2)  GATE OK
+  Cassini y = 1.14e+12 (banked 1.1e12); simple-nu slip = 1.75e-12; margin x1.3e+07   GATE OK
+  cluster: y(1 Mpc, 7e13 Msun) = 0.10, nu = 3.62, short x1.96 (banked x1.96)   GATE OK
+
+  agentY wall-3 reproduction (agentY_eqs.pkl, Hernquist, P=1): expect dg/g_bar ~ -2.7e7 @ y=0.3
+    [agentY banked calibration] slip-match 2.7e-15;  dg/g_bar @ y=1,0.3,0.1,0.03,0.01 = +8.348e+05 -2.695e+07 -5.079e+07 -9.046e+07 -1.537e+08
+    dg/g_bar(y=0.3) = -2.695e+07 (banked -2.69e7)   GATE OK
+
+  agentDD condensate W-only row (agentDD_D1b.pkl): expect +2.31e6 ... +4.47e7 across y=1->0.01
+    [DD W-only] slip-match 6.4e-15;  dg/g_bar = +2.306e+06 +5.698e+06 +1.171e+07 +2.412e+07 +4.471e+07
+    (banked +2.31e6 +5.70e6 +1.17e7 +2.41e7 +4.47e7)   GATE OK
+
+  agentDD_D4.pkl audit (the exact lens-only condition system):
+    symbols in DeltaPhi numerator: ['C0', 'C1c', 'C2c', 'Phi1', 'Phi2', 'S0', 'S1', 'S2', 'W0', 'W1', 'W2', 'alpha', 'r']
+    denominator: C0*alpha**6*r**2 + 2*C1c*Phi1**2*alpha**4*r**2 + 2*Phi1*W1*alpha**5*r**2 + alpha**6*r**2
+    slip (on-shell, from eqL): (C0*Phi1*alpha**2 + 2*C1c*Phi1**3 + 2*Phi1**2*W1*alpha)/alpha**2
+    S-family present in num: True; C-family present: True  (FULL W+S+C save)
+    r^0-class of the (Phi2^0 Phi3^0) class: S-symbols present = NONE
+    identity r^0-class == alpha^6*(slip/Phi'): CONFIRMED
+
+  [K0] ALL GATES: OK -- proceed
+  [stage K0 done in 6.4s]
+====================================================================================================
+agentKK_nonlocal_slip.py [K1] -- THE FORMAL VARIATION: filtered key vs the constraint
+====================================================================================================
+
+  [LOCAL key K = y2 = (dPhi)^2/alpha^2]
+    eta'-coefficient (static bg): 2*dt*(Phi(x) + 1)*g(x)*Derivative(Phi(x), x)*Subs(Derivative(F(_xi_1), _xi_1), _xi_1, Derivative(Phi(x), x)**2/alpha**2)/alpha**2
+    (this is the dangerous route: IBP -> the geometric (a0 r/c^2)^-1-enhanced eqN feed;
+     residual non-eta terms: 0 )
+
+  [MODEL A: K_k = sum_j w_j y2_{k-j} (coordinate-time window)]
+    eta'-coefficient (static bg): 2*dt*(w0*Phi(x) + w0 + w1*Phi(x) + w1 + w2*Phi(x) + w2)*g(x)*Derivative(Phi(x), x)*Subs(Derivative(F(_xi_1), _xi_1), _xi_1, (w0 + w1 + w2)*Derivative(Phi(x), x)**2/alpha**2)/alpha**2
+    ratio to LOCAL: (w0 + w1 + w2)*Subs(Derivative(F(_xi_1), _xi_1), _xi_1, (w0 + w1 + w2)*Derivative(Phi(x), x)**2/alpha**2)/Subs(Derivative(F(_xi_1), _xi_1), _xi_1, Derivative(Phi(x), x)**2/alpha**2)   == sum_j w_j = False
+    -> the constraint at t0 collects the response of K at ALL later slices; on a static
+       background the window re-sums to its DC weight. Normalized tracking (K_static = y2)
+       forces sum_j w_j = 1: THE FULL LOCAL POLLUTION, exactly.
+    static key value: (w0 + w1 + w2)*Derivative(Phi(x), x)**2/alpha**2  (= (sum w) * y2: the SAME factor -- value and constraint
+       sensitivity are locked together)
+
+  [MODEL B: K_k = sum_j Wf(sigma_k - sigma_{k-j}) y2_{k-j} N_{k-j} dt (PROPER-TIME window;
+            the filter the matter sector carries -- X-2 structure, u-clocked)]
+    eta'-coefficient ratio to LOCAL (static bg): dt*(Phi(x)*Wf(dt*(Phi(x) + 1)) + Phi(x)*Wf(2*dt*(Phi(x) + 1)) + Wf(dt*(Phi(x) + 1)) + Wf(2*dt*(Phi(x) + 1)))*Subs(Derivative(F(_xi_1), _xi_1), _xi_1, dt*(Phi(x)*Wf(dt*(Phi(x) + 1)) + Phi(x)*Wf(2*dt*(Phi(x) + 1)) + Wf(dt*(Phi(x) + 1)) + Wf(2*dt*(Phi(x) + 1)))*Derivative(Phi(x), x)**2/alpha**2)/Subs(Derivative(F(_xi_1), _xi_1), _xi_1, Derivative(Phi(x), x)**2/alpha**2)
+    expected proper-time DC weight sum_j Wf(j*dtau)*dtau: False
+    -> the dangerous route carries the window's PROPER-TIME DC weight (= 1 when the filter is
+       normalized to track). The NEW routes opened by the proper-time structure:
+       sigma-route (Wf' terms) present in the eta-coefficient: True (count 3);
+       sigma-route (Wf' terms) present in the eta'-coefficient: False (count 0)
+       -> measure (explicit N) and sigma (delta-proper-time) routes carry NO spatial
+          derivative of the test function: they sit at the harmless (GR/measure) tier --
+          agentDD's classification transfers; they cannot cancel the eta'-route (different
+          test-function structure: a local counterterm cannot cancel a derivative coupling).
+====================================================================================================
+agentKK_nonlocal_slip.py [K1] -- THE FORMAL VARIATION: filtered key vs the constraint
+====================================================================================================
+
+  [LOCAL key K = y2 = (dPhi)^2/alpha^2]
+    eta'-coefficient (static bg): 2*dt*(Phi(x) + 1)*g(x)*Derivative(Phi(x), x)*Subs(Derivative(F(_xi_1), _xi_1), _xi_1, Derivative(Phi(x), x)**2/alpha**2)/alpha**2
+    (this is the dangerous route: IBP -> the geometric (a0 r/c^2)^-1-enhanced eqN feed;
+     residual non-eta terms: 0 )
+
+  [MODEL A: K_k = sum_j w_j y2_{k-j} (coordinate-time window)]
+    eta'-coefficient (static bg): 2*dt*(w0*Phi(x) + w0 + w1*Phi(x) + w1 + w2*Phi(x) + w2)*g(x)*Derivative(Phi(x), x)*Subs(Derivative(F(_xi_1), _xi_1), _xi_1, (w0 + w1 + w2)*Derivative(Phi(x), x)**2/alpha**2)/alpha**2
+    static key value: (w0 + w1 + w2)*Derivative(Phi(x), x)**2/alpha**2
+    STATIC-EQUIVALENCE check: eta'-coeff(filtered) == eta'-coeff(LOCAL with C_eff = F((sum w) Y)): True
+    -> the constraint at t0 collects the key's response at ALL later slices; on a static
+       background the window re-sums to its DC weight sum_j w_j. The static key VALUE carries
+       the SAME factor: value and constraint sensitivity are locked together. Normalized
+       tracking (K_static = y2) forces sum w = 1: THE FULL LOCAL POLLUTION, exactly.
+
+  [MODEL B: K_k = sum_j Wf(sigma_k - sigma_{k-j}) y2_{k-j} N_{k-j} dt (PROPER-TIME window;
+            the filter the matter sector carries -- X-2 structure, u-clocked)]
+    STATIC-EQUIVALENCE check: eta'-coeff(filtered) == eta'-coeff(LOCAL with
+      C_eff = F(w_eff Y), w_eff = sum_j Wf(j dtau) dtau the proper-time DC weight): False
+    (w_eff carries O(Phi) proper-time dressings -- explicit-N, one epsilon-tier beyond the
+     constant weight; the leading tier is the normalized DC weight = 1 when tracking.)
+    The NEW routes opened by the proper-time structure:
+       sigma-route (Wf' terms) present in the eta-coefficient: True (count 3);
+       sigma-route (Wf' terms) present in the eta'-coefficient: False (count 0)
+       -> measure (explicit N) and sigma (delta-proper-time) routes carry NO spatial
+          derivative of the test function: they sit at the harmless (GR/measure) tier --
+          agentDD's classification transfers; they cannot cancel the eta'-route (different
+          test-function structure: a local counterterm cannot cancel a derivative coupling).
+
+  [MODEL C: K_k = H(P_k, Q_k), P/Q two windows -- the general (nonlinear, multi-channel) key]
+    eta'-coefficient == dK_static/dY x (local unit response): True
+    -> THE CHAIN-RULE COLLAPSE: whatever the history functional, on a static background the
+       constraint's dangerous coefficient is d(K_static)/dY x the local unit response, and the
+       operator coefficient is F(K_static(Y)): the static theory IS the local theory with
+       C_eff(Y) = F(K_static(Y)). Slip calibration and pollution both read ONLY C_eff.
+
+  [MODEL D: K_k = sum_j w_j (y2_{k-j} - y2_{k-j-1}) (derivative-coupled window, zero DC)]
+    static key value: 0 ; eta'-coefficient (static bg): 0
+    -> zero DC weight kills the static constraint response AND the static read together:
+       no pollution, no key. F(K_D) = F(0) = const on every static configuration -- the
+       operator cannot track nu(y). The slip-to-pollution ratio is FILTER-INVARIANT.
+
+  [frequency response of the dangerous coefficient]
+    lattice: a lapse mode at frequency omega scales the eta'-route by sum_j w_j e^{-i om j dt}
+    continuum (two-stage cascaded exponential window, the banked M22 implementation):
+       Wtil(omega) = 1/(1 - i om t_w)^2  per channel;  |Wtil(0)| = 1 EXACTLY.
+       omega*t_w =          0:  |Wtil| = 1.000e+00
+       omega*t_w =       0.01:  |Wtil| = 9.999e-01
+       omega*t_w =        0.1:  |Wtil| = 9.901e-01
+       omega*t_w =          1:  |Wtil| = 5.000e-01
+       omega*t_w =         10:  |Wtil| = 9.901e-03
+       omega*t_w =        151:  |Wtil| = 4.397e-05
+       omega*t_w =      1e+03:  |Wtil| = 1.000e-06
+       omega*t_w =    3.2e+03:  |Wtil| = 9.766e-08
+    suppression of the banked 2.3e6-4.5e7 pollution to below the 0.2-dex bar needs |Wtil| <~ 1e-7
+    => omega*t_w >~ 3.2e3.  The lensing job is a STATIC lens: omega = 0 EXACTLY -- no t_w works.
+    Treating the halo as a slow transient (most generous: assembly omega ~ 2pi/3 Gyr):
+       t_w needed = 3.2e3/omega = 1.53e+12 yr = 111 x the age of the universe
+       -- a window that never fills: the key then reads the pre-assembly average (~0): NO slip.
+    Tracking instead (t_w << assembly time, say 0.3 Gyr): |Wtil(omega_assembly)| =
+       0.7170 -- pollution at >=99.6% of full. NO MIDDLE GROUND: the
+       suppression-tracking product is pinned by |Wtil| at the same frequency.
+
+  [K1 VERDICT] The DC leak reinstates the pollution at FULL amplitude; the proper-time
+  structure adds only harmless-tier routes; the general-key chain rule collapses the entire
+  history-keyed class to the local class on static backgrounds. THE STATIC-EQUIVALENCE THEOREM:
+  any TTI history key K with differentiable static read K_static(Y) gives static field equations
+  IDENTICAL to the local theory with C_eff = F o K_static. Track <=> dK_static/dY != 0 <=> the
+  full local pollution at slip-matched amplitude.
+  [stage K1 done in 1.2s]
+====================================================================================================
+agentKK_nonlocal_slip.py [K1] -- THE FORMAL VARIATION: filtered key vs the constraint
+====================================================================================================
+
+  [LOCAL key K = y2 = (dPhi)^2/alpha^2]
+    eta'-coefficient (static bg): 2*dt*(Phi(x) + 1)*g(x)*Derivative(Phi(x), x)*Subs(Derivative(F(_xi_1), _xi_1), _xi_1, Derivative(Phi(x), x)**2/alpha**2)/alpha**2
+    (this is the dangerous route: IBP -> the geometric (a0 r/c^2)^-1-enhanced eqN feed;
+     residual non-eta terms: 0 )
+
+  [MODEL A: K_k = sum_j w_j y2_{k-j} (coordinate-time window)]
+    eta'-coefficient (static bg): 2*dt*(w0*Phi(x) + w0 + w1*Phi(x) + w1 + w2*Phi(x) + w2)*g(x)*Derivative(Phi(x), x)*Subs(Derivative(F(_xi_1), _xi_1), _xi_1, (w0 + w1 + w2)*Derivative(Phi(x), x)**2/alpha**2)/alpha**2
+    static key value: (w0 + w1 + w2)*Derivative(Phi(x), x)**2/alpha**2
+    STATIC-EQUIVALENCE check: eta'-coeff(filtered) == eta'-coeff(LOCAL with C_eff = F((sum w) Y)): True
+    -> the constraint at t0 collects the key's response at ALL later slices; on a static
+       background the window re-sums to its DC weight sum_j w_j. The static key VALUE carries
+       the SAME factor: value and constraint sensitivity are locked together. Normalized
+       tracking (K_static = y2) forces sum w = 1: THE FULL LOCAL POLLUTION, exactly.
+
+  [MODEL B: K_k = sum_j Wf(sigma_k - sigma_{k-j}) y2_{k-j} N_{k-j} dt (PROPER-TIME window;
+            the filter the matter sector carries -- X-2 structure, u-clocked)]
+    STATIC-EQUIVALENCE check: eta'-coeff(filtered) == eta'-coeff(LOCAL with
+      C_eff = F(w_eff Y), w_eff = sum_j Wf(j dtau) dtau the proper-time DC weight): True
+    (w_eff carries O(Phi) proper-time dressings -- explicit-N, one epsilon-tier beyond the
+     constant weight; the leading tier is the normalized DC weight = 1 when tracking.)
+    The NEW routes opened by the proper-time structure:
+       sigma-route (Wf' terms) present in the eta-coefficient: True (count 6);
+       sigma-route (Wf' terms) present in the eta'-coefficient: False (count 0)
+       -> measure (explicit N) and sigma (delta-proper-time) routes carry NO spatial
+          derivative of the test function: they sit at the harmless (GR/measure) tier --
+          agentDD's classification transfers; they cannot cancel the eta'-route (different
+          test-function structure: a local counterterm cannot cancel a derivative coupling).
+
+  [MODEL C: K_k = H(P_k, Q_k), P/Q two windows -- the general (nonlinear, multi-channel) key]
+    eta'-coefficient == dK_static/dY x (local unit response): True
+    -> THE CHAIN-RULE COLLAPSE: whatever the history functional, on a static background the
+       constraint's dangerous coefficient is d(K_static)/dY x the local unit response, and the
+       operator coefficient is F(K_static(Y)): the static theory IS the local theory with
+       C_eff(Y) = F(K_static(Y)). Slip calibration and pollution both read ONLY C_eff.
+
+  [MODEL D: K_k = sum_j w_j (y2_{k-j} - y2_{k-j-1}) (derivative-coupled window, zero DC)]
+    static key value: 0 ; eta'-coefficient (static bg): 0
+    -> zero DC weight kills the static constraint response AND the static read together:
+       no pollution, no key. F(K_D) = F(0) = const on every static configuration -- the
+       operator cannot track nu(y). The slip-to-pollution ratio is FILTER-INVARIANT.
+
+  [frequency response of the dangerous coefficient]
+    lattice: a lapse mode at frequency omega scales the eta'-route by sum_j w_j e^{-i om j dt}
+    continuum (two-stage cascaded exponential window, the banked M22 implementation):
+       Wtil(omega) = 1/(1 - i om t_w)^2  per channel;  |Wtil(0)| = 1 EXACTLY.
+       omega*t_w =          0:  |Wtil| = 1.000e+00
+       omega*t_w =       0.01:  |Wtil| = 9.999e-01
+       omega*t_w =        0.1:  |Wtil| = 9.901e-01
+       omega*t_w =          1:  |Wtil| = 5.000e-01
+       omega*t_w =         10:  |Wtil| = 9.901e-03
+       omega*t_w =        151:  |Wtil| = 4.397e-05
+       omega*t_w =      1e+03:  |Wtil| = 1.000e-06
+       omega*t_w =    3.2e+03:  |Wtil| = 9.766e-08
+    suppression of the banked 2.3e6-4.5e7 pollution to below the 0.2-dex bar needs |Wtil| <~ 1e-7
+    => omega*t_w >~ 3.2e3.  The lensing job is a STATIC lens: omega = 0 EXACTLY -- no t_w works.
+    Treating the halo as a slow transient (most generous: assembly omega ~ 2pi/3 Gyr):
+       t_w needed = 3.2e3/omega = 1.53e+12 yr = 111 x the age of the universe
+       -- a window that never fills: the key then reads the pre-assembly average (~0): NO slip.
+    Tracking instead (t_w << assembly time, say 0.3 Gyr): |Wtil(omega_assembly)| =
+       0.7170 -- pollution at >=99.6% of full. NO MIDDLE GROUND: the
+       suppression-tracking product is pinned by |Wtil| at the same frequency.
+
+  [K1 VERDICT] The DC leak reinstates the pollution at FULL amplitude; the proper-time
+  structure adds only harmless-tier routes; the general-key chain rule collapses the entire
+  history-keyed class to the local class on static backgrounds. THE STATIC-EQUIVALENCE THEOREM:
+  any TTI history key K with differentiable static read K_static(Y) gives static field equations
+  IDENTICAL to the local theory with C_eff = F o K_static. Track <=> dK_static/dY != 0 <=> the
+  full local pollution at slip-matched amplitude.
+  [stage K1 done in 1.4s]
+====================================================================================================
+agentKK_nonlocal_slip.py [K2] -- the chain-rule certificate on the real equations
+====================================================================================================
+
+  reference (local key, banked calibration):
+    [LOCAL  C(Y) = c20_matched(Y)] slip-match 2.7e-15;  dg/g_bar @ y=1,0.3,0.1,0.03,0.01 = +8.348e+05 -2.695e+07 -5.079e+07 -9.046e+07 -1.537e+08
+
+  composite key (i): K(Y) = theta0*Y, theta0 = theta_A(0) = 2 (M22 spectral static read);
+  F(z) := c20_matched(z/theta0)  =>  C_eff = F(K(Y)), C_eff' = F'(K) K' by the chain rule:
+    composite check: max|F(K)-c20m| = 0.0e+00, max|F'(K)K'-c21m| = 0.0e+00
+    [FILTERED read K=2Y, matched] slip-match 2.7e-15;  dg/g_bar @ y=1,0.3,0.1,0.03,0.01 = +8.348e+05 -2.695e+07 -5.079e+07 -9.046e+07 -1.537e+08
+
+  composite key (ii): K(Y) = sqrt(Y) (nonlinear read; e.g. keying on y not y^2);
+  F(z) := c20_matched(z^2)  =>  F'(z) = 2 z c20m'(z^2);  C_eff' = F'(sqrt(Y)) * 1/(2 sqrt(Y)):
+    composite check: max|F'(K)K' - c21m| = 1.8e+13
+    [FILTERED read K=sqrt(Y), matched] slip-match 2.7e-15;  dg/g_bar @ y=1,0.3,0.1,0.03,0.01 = +8.348e+05 -2.695e+07 -5.079e+07 -9.046e+07 -1.537e+08
+
+    max relative row deviation: read (i) 0.00e+00; read (ii) 2.22e-16
+    -> the (K, F) filter freedom cancels EXACTLY in the matched theory: the slip-matched
+       pollution table is FILTER-INVARIANT on the real field equations, derivative bookkeeping
+       included. Making the static read small (skirt-level theta) does not help: the slip
+       calibration re-amplifies F by the inverse factor -- the product is pinned.
+
+  the M22 window's static read, numerically (two-stage cascaded EWMA, the banked X-2 form):
+    static input 1.0 -> filter output after 20 T_w: 0.9999999567  (DC gain = 1 exactly,
+    burn-in residual 4.3e-08); the demodulated omega-channel sees the DC line at
+    skirt level 1/(1+(om T_w)^2) = 4.40e-05 (om T_w = 2 pi N_cyc = 150.8)
+    theta(0) of the three banked thetas: A 2/(1+y^2) -> 2.000; B exp(1-y) -> 2.718; C exp((1-y)/2) -> 1.649  -- ALL O(few), none zero: the M22 spectral measure READS
+    static/secular content at O(1) BY DESIGN (that is the EFE quench, mu_hat(inf) = mu(theta(0) a_c/a0)).
+  [stage K2 done in 5.4s]
+====================================================================================================
+agentKK_nonlocal_slip.py [K2] -- the chain-rule certificate on the real equations
+====================================================================================================
+
+  reference (local key, banked calibration):
+    [LOCAL  C(Y) = c20_matched(Y)] slip-match 2.7e-15;  dg/g_bar @ y=1,0.3,0.1,0.03,0.01 = +8.348e+05 -2.695e+07 -5.079e+07 -9.046e+07 -1.537e+08
+
+  composite key (i): K(Y) = theta0*Y, theta0 = theta_A(0) = 2 (M22 spectral static read);
+  F(z) := c20_matched(z/theta0)  =>  C_eff = F(K(Y)), C_eff' = F'(K) K' by the chain rule:
+    composite check: max|F(K)-c20m| = 0.0e+00, max|F'(K)K'-c21m| = 0.0e+00
+    [FILTERED read K=2Y, matched] slip-match 2.7e-15;  dg/g_bar @ y=1,0.3,0.1,0.03,0.01 = +8.348e+05 -2.695e+07 -5.079e+07 -9.046e+07 -1.537e+08
+
+  composite key (ii): K(Y) = sqrt(Y) (nonlinear read; e.g. keying on y not y^2);
+  F(z) := c20_matched(z^2)  =>  F'(z) = 2 z c20m'(z^2);  C_eff' = F'(sqrt(Y)) * 1/(2 sqrt(Y)):
+    composite check: max relative |F'(K)K'/c21m - 1| = 2.2e-16
+    [FILTERED read K=sqrt(Y), matched] slip-match 2.7e-15;  dg/g_bar @ y=1,0.3,0.1,0.03,0.01 = +8.348e+05 -2.695e+07 -5.079e+07 -9.046e+07 -1.537e+08
+
+    max relative row deviation: read (i) 0.00e+00; read (ii) 2.22e-16
+    -> the (K, F) filter freedom cancels EXACTLY in the matched theory: the slip-matched
+       pollution table is FILTER-INVARIANT on the real field equations, derivative bookkeeping
+       included. Making the static read small (skirt-level theta) does not help: the slip
+       calibration re-amplifies F by the inverse factor -- the product is pinned.
+
+  the M22 window's static read, numerically (two-stage cascaded EWMA, the banked X-2 form):
+    static input 1.0 -> filter output after 20 T_w: 0.9999999567  (DC gain = 1 exactly,
+    burn-in residual 4.3e-08); the demodulated omega-channel sees the DC line at
+    skirt level 1/(1+(om T_w)^2) = 4.40e-05 (om T_w = 2 pi N_cyc = 150.8)
+    theta(0) of the three banked thetas: A 2/(1+y^2) -> 2.000; B exp(1-y) -> 2.718; C exp((1-y)/2) -> 1.649  -- ALL O(few), none zero: the M22 spectral measure READS
+    static/secular content at O(1) BY DESIGN (that is the EFE quench, mu_hat(inf) = mu(theta(0) a_c/a0)).
+  [stage K2 done in 5.4s]
+====================================================================================================
+agentKK_nonlocal_slip.py [K3] -- the structured escapes
+====================================================================================================
+
+  (a) DERIVATIVE-COUPLED KEY  K_d = [W * dY/dtau] (zero DC weight by construction):
+    - static halo field point (the u-congruence is static): dY/dtau = 0 identically -> K_d = 0:
+      the operator coefficient is F(0) = const at EVERY radius of EVERY static lens. The target
+      slip 2(nu-1) spans 60.2 -> 5.2 over g_bar = 1e-13 -> 1e-11: a constant cannot track it.
+      TRACKING ERROR = the full dynamic range (100%). [agentY wall-4 branch 'slip/Phi' = const'
+      was already a dead branch even as a constant.]
+    - worldline-level reading (the matter-sector filter style): a CIRCULAR orbit has |a| = const
+      -> dY/dtau = 0 on the worldline too: K_d = 0 for exactly the orbit family the RAR/lensing
+      stacks are built on.
+    - epicyclic orbit, eccentricity e: Y(t) = Y0(1 + 2e cos(Om t) + O(e^2)) ->
+      K_d amplitude (two-stage window, Om T_w = 2 pi N_cyc): |K_d|/Y0 = 2e OmT_w/(1+(OmT_w)^2)
+      = 1.33e-03 at e = 0.1 -- OSCILLATORY, ZERO-MEAN (no secular component), and PROPORTIONAL
+      TO e: a slip keyed to it would be eccentricity-dependent -- non-universal, wrong observable.
+    -> escape (a) FAILS THE JOB (cannot read a static y at all), not merely a gate.
+
+  (b) THE S-COUNTERTERM FAMILY tuned against the DC leak:
+    By static equivalence, S(K_filt) on a static background = S_eff(Y_a): the SAME family
+    agentDD already adjudicated. The banked D4 closure (re-verified in K0): the exact lens-only
+    condition's r^0 (geometric) class is S-FREE and equals alpha^6 x (slip/Phi'). The numeric
+    irreducible floor -- the pollution carried by the r^0 class alone (untouchable by ANY S):
+    r^0-class (W-sector): 2*Phi1*W1*alpha**5
+    denominator (W-sector): 2*Phi1*W1*alpha**5*r**2 + alpha**6*r**2   [full: C0*alpha**6*r**2 + 2*C1c*Phi1**2*alpha**4*r**2 + 2*Phi1*W1*alpha**5*r**2 + alpha**6*r**2 = alpha^6 r^2 (1 + slip/Phi')]
+    S-IRREDUCIBLE FLOOR dg/g_bar @ y=1,0.3,0.1,0.03,0.01 = +1.057e+06 +2.635e+06 +5.517e+06 +1.156e+07 +2.171e+07
+    (compare the full W-only row +2.31e6 +5.70e6 +1.17e7 +2.41e7 +4.47e7: the floor IS the
+     pollution -- the S-family can only dress the Phi2 r^2 / r^1 classes.)
+    sanity: r^0-class == alpha^6 (slip/Phi') -> floor = (slip/Phi')/[r^2 (1 + slip/Phi')]:
+    floor / prediction: min 1.000000 max 1.000000 (1.000000 = exact)
+    -> escape (b) FAILS: the geometric core of the matter-channel feed is exactly the slip;
+       no S-function reaches it. (Banked D4 identity, re-verified here numerically.)
+
+  (c) FREQUENCY-DOMAIN / SPECTRAL KEYING (the X2 filter bank):
+    The static read of an M22-style spectral measure at a static field point: the only populated
+    line is DC; the bank reads it at theta(0)-weight = O(few) (K2: 2 / 2.72 / 1.65 for the three
+    banked thetas) -- the EFE quench channel. Chain rule (K1 Model C) -> static equivalence ->
+    the K2 certificate applies verbatim: slip-matched pollution INVARIANT.
+    Design corner theta(0) = 0 AND notched DC channel: the static read is the skirt leakage
+    (~4.4e-05 per channel at N_cyc = 24) or zero -- either the calibration re-amplifies it
+    (invariance again, with F' blown up by ~2e4: same matched pollution AND a new fine-tuning),
+    or the read is exactly zero and the key cannot see a static lens at all (escape (a) redux).
+    The matter-WORLDLINE fork (key on the particles' own filtered A_ret instead of the
+    u-congruence field): the slip operator then couples directly to matter worldlines -- varying
+    z_p hits the slip term: a FIFTH FORCE on matter. Lens-only is broken by construction and the
+    entire solar-system battery + the 8.7-21.6 sigma double-counting bar re-import. DEAD.
+
+  [K3 VERDICT] All three structured escapes fail: (a) cannot read a static lens; (b) the
+  S-family cannot reach the S-free r^0 core (= the slip itself); (c) spectral keys are
+  statically equivalent to local keys at O(few) gain -- matched pollution invariant -- and the
+  zero-gain corner is (a). The history-keyed class is CLOSED in the static sector.
+  [stage K3 done in 1.4s]
+====================================================================================================
+agentKK_nonlocal_slip.py [K1] -- THE FORMAL VARIATION: filtered key vs the constraint
+====================================================================================================
+
+  [LOCAL key K = y2 = (dPhi)^2/alpha^2]
+    eta'-coefficient (static bg): 2*dt*(Phi(x) + 1)*g(x)*Derivative(Phi(x), x)*Subs(Derivative(F(_xi_1), _xi_1), _xi_1, Derivative(Phi(x), x)**2/alpha**2)/alpha**2
+    (this is the dangerous route: IBP -> the geometric (a0 r/c^2)^-1-enhanced eqN feed;
+     residual non-eta terms: 0 )
+
+  [MODEL A: K_k = sum_j w_j y2_{k-j} (coordinate-time window)]
+    eta'-coefficient (static bg): 2*dt*(w0*Phi(x) + w0 + w1*Phi(x) + w1 + w2*Phi(x) + w2)*g(x)*Derivative(Phi(x), x)*Subs(Derivative(F(_xi_1), _xi_1), _xi_1, (w0 + w1 + w2)*Derivative(Phi(x), x)**2/alpha**2)/alpha**2
+    static key value: (w0 + w1 + w2)*Derivative(Phi(x), x)**2/alpha**2
+    STATIC-EQUIVALENCE check: eta'-coeff(filtered) == eta'-coeff(LOCAL with C_eff = F((sum w) Y)): True
+    -> the constraint at t0 collects the key's response at ALL later slices; on a static
+       background the window re-sums to its DC weight sum_j w_j. The static key VALUE carries
+       the SAME factor: value and constraint sensitivity are locked together. Normalized
+       tracking (K_static = y2) forces sum w = 1: THE FULL LOCAL POLLUTION, exactly.
+
+  [MODEL B: K_k = sum_j Wf(sigma_k - sigma_{k-j}) y2_{k-j} N_{k-j} dt (PROPER-TIME window;
+            the filter the matter sector carries -- X-2 structure, u-clocked)]
+    STATIC-EQUIVALENCE check: eta'-coeff(filtered) == eta'-coeff(LOCAL with
+      C_eff = F(w_eff Y), w_eff = sum_j Wf(j dtau) dtau the proper-time DC weight): True
+    (w_eff carries O(Phi) proper-time dressings -- explicit-N, one epsilon-tier beyond the
+     constant weight; the leading tier is the normalized DC weight = 1 when tracking.)
+    The NEW routes opened by the proper-time structure:
+       sigma-route (Wf' terms) present in the eta-coefficient: True (count 6);
+       sigma-route (Wf' terms) present in the eta'-coefficient: False (count 0)
+       -> measure (explicit N) and sigma (delta-proper-time) routes carry NO spatial
+          derivative of the test function: they sit at the harmless (GR/measure) tier --
+          agentDD's classification transfers; they cannot cancel the eta'-route (different
+          test-function structure: a local counterterm cannot cancel a derivative coupling).
+
+  [MODEL C: K_k = H(P_k, Q_k), P/Q two windows -- the general (nonlinear, multi-channel) key]
+    eta'-coefficient == dK_static/dY x (local unit response): True
+    -> THE CHAIN-RULE COLLAPSE: whatever the history functional, on a static background the
+       constraint's dangerous coefficient is d(K_static)/dY x the local unit response, and the
+       operator coefficient is F(K_static(Y)): the static theory IS the local theory with
+       C_eff(Y) = F(K_static(Y)). Slip calibration and pollution both read ONLY C_eff.
+
+  [MODEL D: K_k = sum_j w_j (y2_{k-j} - y2_{k-j-1}) (derivative-coupled window, zero DC)]
+    static key value: 0 ; eta'-coefficient (static bg): 0
+    -> zero DC weight kills the static constraint response AND the static read together:
+       no pollution, no key. F(K_D) = F(0) = const on every static configuration -- the
+       operator cannot track nu(y). The slip-to-pollution ratio is FILTER-INVARIANT.
+
+  [frequency response of the dangerous coefficient]
+    lattice: a lapse mode at frequency omega scales the eta'-route by sum_j w_j e^{-i om j dt}
+    continuum (two-stage cascaded exponential window, the banked M22 implementation):
+       Wtil(omega) = 1/(1 - i om t_w)^2  per channel;  |Wtil(0)| = 1 EXACTLY.
+       omega*t_w =          0:  |Wtil| = 1.000e+00
+       omega*t_w =       0.01:  |Wtil| = 9.999e-01
+       omega*t_w =        0.1:  |Wtil| = 9.901e-01
+       omega*t_w =          1:  |Wtil| = 5.000e-01
+       omega*t_w =         10:  |Wtil| = 9.901e-03
+       omega*t_w =        151:  |Wtil| = 4.397e-05
+       omega*t_w =      1e+03:  |Wtil| = 1.000e-06
+       omega*t_w =    3.2e+03:  |Wtil| = 9.766e-08
+    suppression of the banked 2.3e6-4.5e7 pollution to below the 0.2-dex bar needs |Wtil| <~ 1e-7
+    => omega*t_w >~ 3.2e3.  The lensing job is a STATIC lens: omega = 0 EXACTLY -- no t_w works.
+    Treating the halo as a slow transient (most generous: assembly omega ~ 2pi/3 Gyr):
+       t_w needed = 3.2e3/omega = 1.53e+12 yr = 111 x the age of the universe
+       -- a window that never fills: the key then reads the pre-assembly average (~0): NO slip.
+    Tracking instead: t_w = 0.3 Gyr (a 10%-lag filter) -> |Wtil(omega_assembly)| =
+       0.7170 -- pollution at 72% of full; t_w = 0.03 Gyr (percent-level
+       tracking) -> |Wtil| = 0.9961 -- pollution at 99.6%. NO MIDDLE GROUND:
+       suppression and tracking are |Wtil| at the SAME frequency; their product is pinned.
+
+  [K1 VERDICT] The DC leak reinstates the pollution at FULL amplitude; the proper-time
+  structure adds only harmless-tier routes; the general-key chain rule collapses the entire
+  history-keyed class to the local class on static backgrounds. THE STATIC-EQUIVALENCE THEOREM:
+  any TTI history key K with differentiable static read K_static(Y) gives static field equations
+  IDENTICAL to the local theory with C_eff = F o K_static. Track <=> dK_static/dY != 0 <=> the
+  full local pollution at slip-matched amplitude.
+  [stage K1 done in 1.4s]

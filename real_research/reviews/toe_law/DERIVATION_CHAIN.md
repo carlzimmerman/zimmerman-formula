@@ -161,6 +161,33 @@ orbital-rate — the same filter that evades the keying wall supplies the discri
 (DD's keying, II's boundary, Z's dial) now point at the SAME structure. Honest residue: II's near-miss is real
 (CDM-like shape, ×4–6 over, wrong z-evolution) and the growth debt (μ = 1 without CDM at linear scales) is a
 named open of the assembly, distinct from the slip sector.
+**THE NONLOCAL/HISTORY DOOR CLOSED (agentKK, 2026-06-11): OBSTRUCTED — upgraded to a class theorem.** The
+make-or-break computed hostilely as charged: on a static background the constraint's response to a filtered key
+IS the window's DC weight, and tracking normalization forces it to 1 — the key's value and its constraint
+sensitivity are the same number; the pollution reinstates at FULL amplitude. **Theorem KK-1 (static
+equivalence):** any time-translation-invariant history key with a differentiable static read gives static field
+equations IDENTICAL to the local theory (C_eff = F∘K_static) — DD's keying theorem, the pollution tables, and
+the wall-4 slip≡0 closure transfer VERBATIM to the entire time-nonlocal class (certified on the banked agentY
+equations: the −2.695e7 row reproduced to 0 / 2.2e-16 for two nontrivial filtered reads). No frequency middle
+ground: 1e-7 suppression needs t_w = 111× the age of the universe (the window never fills — no slip); a tracking
+window leaves 72–99.6% of the pollution. All three structured escapes fail: derivative-coupled keys read NOTHING
+static (K_d ≡ 0 on static fields and circular orbits — 100% tracking error); the S-counterterm family cannot
+reach the S-free r⁰ core (new closed form: floor = (slip/Φ′)/[r²(1+slip/Φ′)], identity 1.000000; the
+S-irreducible floor +1.1e6…+2.2e7 — 5–7 orders over the bar); spectral/filter-bank keys read statics through
+θ(0) = O(few) and the matched pollution is filter-invariant (the θ(0)=0 corner is the derivative key in
+disguise). **CORRECTION (supersedes the wording above): the 'u-frame nonlocality in both channels' line is
+RETIRED** — X2's nonlocality is a dynamics/causality demand; the lensing job is STATIC, where history is
+invisible; the convergence framing dissolved under computation (the DD-block and II-block convergence sentences
+above are kept for the record and superseded here). **Link 7 final state:** scalar (agentY), local
+vector/condensate (agentDD), and history/filter-keyed (agentKK) realizations ALL machine-obstructed; remaining:
+the singular-surface exact route (low prior — KK-1 shows nonlocal dressing cannot assist it), SPATIAL
+nonlocality (scoped honestly: NOT closed, but carries no M22-echo or convergence argument), and non-b⊗b spin-2
+(unchanged). The lensing exposure stands UNEXPLAINED by every construction route explored to date — a major
+narrowing, stated plainly. Both-ways: the filtered class inherits every static success unchanged (ν-tracking,
+Cassini ×1.3e7, FRW quietness — the W(0)=0 'tension' was a name collision between the operator function and the
+window DC gain, reconciled — and the morphology dial); it is exactly as capable and exactly as dead as the local
+class. KK-1 is symbolic — no a₀/footing/weighting enters. 5-item bug log incl. two caught spurious results (one
+would have faked the equivalence FAILING, one would have faked the derivative key POLLUTING).
 
 **Link 8 — the quantum derivation (the gate).** CONTESTED-TERMINAL at the algebra level (agentR: 60-paper sweep,
 nothing derives the placement) — **now EDGE-WOUNDED at the observable level (agentS, the repo's own unpublished
