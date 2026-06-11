@@ -89,5 +89,9 @@ is a ×1.46 detail — immaterial. Honest reframings hunted:
   direction is a new, independently computed property of the construction** (not assumed).
 - Three framing corrections logged (per-event %, "validation" → regression+fidelity, 15→8 orders);
   none changes a verdict; chain/assembly patched with one line each.
-- Residual single-source: the agentE reflex budget (2.47e-15) — inherited everywhere, worth one
-  independent re-derivation in a future pass.
+- Residual single-source: the agentE reflex budget (2.47e-15) — **DOWNGRADED to order-corroborated
+  (inline cross-check, `agentE_budget_crosscheck.py`)**: sits ×4 inside the published Folkner/Cassini
+  Saturn bound (1e-14) and in the middle of the naive-RMS/published-sensitivity bracket (×20 each
+  side); the banked PASS-flip band (1.2–1.8×10⁻¹⁶) lies beyond every published bound and is reachable
+  only by a dedicated ~20-yr Mars analysis or long-arc BepiColombo (watch entry 7 = the registered
+  tightener). The exact fit machinery remains agentE's — order and reachability now independently anchored.
