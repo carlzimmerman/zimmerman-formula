@@ -1,0 +1,30 @@
+====================================================================================================
+agentHH INDEPENDENT FIT — the keystone extraction, scipy, multi-start, self-validated
+====================================================================================================
+
+(G1) SELF-VALIDATION on the 'pred' column (known: A=1, q=-1/3, al=2.13875, be/al=1.73205, phi=0.3927, s=1/3):
+  [pred] cost = 6.5799e-04  s = 0.33502  al = 2.36224  be/al = 1.55043  q = -0.0236  A = -0.7072  phi = -2.6858
+        basin: 83/200 starts within 1.5x cost; s spread [0.3350,0.3350]  al spread [2.3622,2.3622]
+        SELF-VALIDATION: FAIL (|s-1/3|=0.0017, al/ct=1.1045, lock/sqrt3=0.8951)
+
+(G2) THE DATA column, s free, 200 dispersed starts:
+  [data] cost = 2.3428e-03  s = 0.27241  al = 4.15482  be/al = 1.41878  q = +0.7126  A = -4.9479  phi = +1.8484
+        basin: 57/200 starts within 1.5x cost; s spread [0.2724,0.3420]  al spread [2.1020,4.1548]
+        vs targets: |s-1/3| = 0.0609; al/ct = 1.9426; lock/sqrt3 = 0.8191; q = +0.7126 (target -1/3)
+
+(G3) RIVAL INDICES (s frozen):
+  s = 0.5: best cost = 1.4036e+00  (free-s best = 2.3428e-03; ratio = 599.10x worse)
+  s = 1.0: best cost = 2.6243e+00  (free-s best = 2.3428e-03; ratio = 1120.15x worse)
+
+(G4) CONSTRAINED CLASS FIT — q = -1/3 theory-fixed (removes the finite-window envelope
+      degeneracy q<->al; the class prescribes q, the fit tests s/al/lock):
+  pred (self-validation, q fixed):
+  [pred|q] cost = 1.0336e-02  s = 0.34751  al = 1.87962  be/al = 1.79361  q = -0.3333  A = +0.5617  phi = +0.9004
+        basin: 80/200 starts within 1.5x cost; s spread [0.3475,0.3475]  al spread [1.8796,1.8796]
+        SELF-VALIDATION (constrained): FAIL (|s-1/3|=0.0142, al/ct=0.8788, lock/sqrt3=1.0355)
+  data (q fixed):
+  [data|q] cost = 9.2323e-02  s = 0.29811  al = 2.15906  be/al = 2.29417  q = -0.3333  A = -1.6428  phi = +3.0541
+        basin: 84/200 starts within 1.5x cost; s spread [0.2981,0.3004]  al spread [2.1284,2.1591]
+        vs targets: |s-1/3| = 0.0352; al/ct = 1.0095; lock/sqrt3 = 1.3245
+
+VERDICT-INPUT: the decisive read is (G4): self-validation must PASS constrained, and the data fit's (s, al, lock) vs targets + (G3)'s rival rejection then constitute the record.

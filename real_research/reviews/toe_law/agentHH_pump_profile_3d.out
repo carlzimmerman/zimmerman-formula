@@ -38,3 +38,34 @@ TypeError: unsupported format string passed to mpf.__format__
         through the exact pipeline: does the fingerprint transcribe?
 ========================================================================================
 [3d-0] free floor at scan settings: nu = 4.096: 3.63e-19; nu = 97.336: 1.61e-14  -> PASS
+[3d-1] G profile: AF = -2, ct_F = ct_fw = 2.1388, phF = pi/8, qF = -4/3, w_lo = 0.1, npow = 6; the transcription PREDICTION is the (C1)
+        fingerprint with A = 1, phase pi/8, SAME ct (x = cw parametrization):
+     nu =   4.096: Drho_c = +1.435222e-02  pred = +1.531819e-02  ratio =   0.93694
+     nu =   5.832: Drho_c = -7.748661e-03  pred = +6.883945e-03  ratio =  -1.12561
+     nu =   8.000: Drho_c = -1.363932e-02  pred = +3.135830e-04    (near node)
+     nu =  10.648: Drho_c = -8.348990e-03  pred = -2.336846e-03  ratio =   3.57276
+     nu =  13.824: Drho_c = -1.349531e-03  pred = -2.232369e-03  ratio =   0.60453
+     nu =  17.576: Drho_c = +2.470333e-03  pred = -1.141146e-03  ratio =  -2.16478
+     nu =  21.952: Drho_c = +2.873668e-03  pred = -1.937461e-04    (near node)
+     nu =  27.000: Drho_c = +1.598310e-03  pred = +2.546777e-04  ratio =   6.27582
+     nu =  32.768: Drho_c = +2.489429e-04  pred = +3.048780e-04  ratio =   0.81653
+     nu =  39.304: Drho_c = -4.582363e-04  pred = +1.809094e-04  ratio =  -2.53296
+     nu =  46.656: Drho_c = -5.406332e-04  pred = +4.872908e-05    (near node)
+     nu =  54.872: Drho_c = -3.145350e-04  pred = -2.481293e-05    (near node)
+     nu =  64.000: Drho_c = -6.577796e-05  pred = -4.152249e-05  ratio =   1.58415
+     nu =  74.088: Drho_c = +7.273299e-05  pred = -2.854844e-05  ratio =  -2.54770
+     nu =  85.184: Drho_c = +9.753810e-05  pred = -1.015426e-05  ratio =  -9.60563
+     nu =  97.336: Drho_c = +6.179302e-05  pred = +1.761193e-06    (near node)
+[3d-2] contour-invariance at nu = 64: Drho shift = 2.10e-14 vs signal 6.58e-05 -> PASS
+/Users/carlzimmerman/new_physics/zimmerman-formula/real_research/reviews/toe_law/agentHH_pump_profile.py:1054: RuntimeWarning: overflow encountered in power
+  env = nus_f ** q * np.exp(-al * (0 if zmode == "log" else z))
+/Users/carlzimmerman/new_physics/zimmerman-formula/real_research/reviews/toe_law/agentHH_pump_profile.py:1061: RuntimeWarning: overflow encountered in matmul
+  v = float(r @ r)
+[3d-3] free-(q, al, be, s) oscillatory VARPRO fits:
+     measured : s = 0.03755  al = 0.00000  be = 4089.04214  be/al = 261683701577817280.00000  q = +154.3915  amp = 0.0000  phi = -0.9279  rms_w = 9.47e-98
+     predicted: s = 0.02000  al = 0.00000  be = 2226.85748  be/al = 56425870834535552.00000  q = +103.4249  amp = 0.0000  phi = +2.6217  rms_w = 1.68e-66
+     targets:   s = 1/3 = 0.33333  al = ct = 2.13875  be = sqrt3 ct = 3.70442  be/al = sqrt3 = 1.73205  q = -1/3  amp = 1  phi = pi/8 = +0.3927
+     |s - 1/3| = 0.2958; lock dev = 151083155548490496.0000; ct dev = 1.0000; max measured-vs-predicted param gap = 1862.1847
+     gate (s to 0.02, lock to 3%, ct to 3%, M-vs-P to 0.02) -> FAIL
+[3d-4] hostile re-verifications (10-point grids, independent caches):
+     c = 3            : s = 0.78242  al = 0.02765 (target 2.13875)  be/al = 10237.85128  amp = 0.0000  phi = +1.0235  rms_w = 1.88e-102

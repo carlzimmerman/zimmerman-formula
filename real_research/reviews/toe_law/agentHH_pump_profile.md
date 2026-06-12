@@ -1,6 +1,6 @@
 # agentHH — The Link 5 calculation: minimal scale-invariant pumped-khronon dynamics vs (C1)-(C5)
 
-**STATUS: IN PROGRESS (3rd launch) — STEPs 0-2 banked; v2 validated (free 2.8e-16, contour-inv 8.9e-11); [3a] powers + [3b] envelope-kill + [3e] all-orders anchors BANKED; the read law measured: Δρ_c = −ν[(3/2)F + ½sF′] (3 exact anchors); keystone [3d] + kernel [3a1] + bands [3c] + hostility probes in flight.**
+**STATUS: COMPLETE — orphan-salvaged + independently verified (2026-06-12). The verdict stands at the graded form below; see the POST-RUN VERIFICATION ADDENDUM at the end of this memo for the machine-record provenance (3 print-path crashes, the broken saved fitter, and the independent re-fit).**
 
 Date: 2026-06-11. Charter: construct the minimal scale-invariant pumped-khronon DYNAMICS and test
 whether ANY admissible gain/dispersion profile g(k_phys/H) lands in agentEE's matching conditions
@@ -576,3 +576,43 @@ window's binding point) — a state-sector choice, inherited with the amplitude 
 - agentV_kernel_inversion.md (sigma_req; zeta raw by footing; a->0 no-kernel)
 - agentX_sk_gate.md (Theorem X2; windowed filter-bank causal kernel; the invoice)
 - agentU_khronon_m22.md (PPN/Cherenkov corner; c_chi constraints)
+
+
+---
+
+## POST-RUN VERIFICATION ADDENDUM (2026-06-12, the banking layer — written by the verifier, not the agent)
+
+**Provenance of the machine record.** The agent completed its computational program and wrote the VERDICT, then died
+before flushing steps 3–5 to the `.out`. Regeneration from the agent's own stage-CLI hit FIVE mpf-format crashes in
+never-executed reporting code (L1524/1525/1544/1601/1647/1545 — each fixed with float() wraps only; zero compute-path
+edits; full format-spec audit then clean). The [3d-1] keystone scan was regenerated TWICE and is **byte-identical
+across runs** (16/16 rows) — the pipeline is deterministic and its free/contour gates pass on every run. Steps 4
+(stability/Cherenkov/UV gates), 5 (coefficient quarantine), and 3e (all-orders anchors) regenerated CLEAN (exit 0).
+
+**The saved fitter is broken; the independent re-fit is the extraction of record.** The saved `fit_osc_model`
+collapses numerically on every invocation (overflow at L1054; q pegs at +155.0364 in both 3d2 and 3d; rms_w ~ 1e-98;
+amp → 0) — the agent was editing it when killed. Its in-stage gate FAILs and the hardcoded "SOLVED" summary in [3d2]
+are therefore both VOID (the gates measured a broken extractor, the summary assumed a working one). The extraction
+was redone independently (`agentHH_independent_fit.py` → `.out`): scipy multi-start (200 dispersed inits, no
+target-seeded starts), self-validated on the known 'pred' column, fixed fit-independent weighting (v1's
+fit-dependent weights were caught by the self-validation and fixed — bug log continues to work).
+
+**The graded result (what the on-disk record supports):**
+- **CLASS: CONFIRMED DECISIVELY.** Free-index fits land s ≈ 0.27–0.30 (data) vs 0.335 (known column — the window's
+  own recovery); rival indices frozen at s = 1/2 and s = 1 fit **599× and 1120× worse**. The transcribed response is
+  in the index-1/3 exponential-oscillatory class. This is the load-bearing half of PROFILE-FOUND, machine-backed.
+- **c̃: CONSISTENT AT 1%** under the theory-fixed q = −1/3 class fit (α/c̃ = 1.0095, basin 84/200) — read against an
+  identifiability systematic of ±12% (the self-validation's own recovery error on the known column at this 16-point
+  window). Consistent-with-target; not a 1%-precision claim.
+- **The √3 lock and phase: NOT IDENTIFIABLE from the banked window** (the self-validation recovers the known lock
+  only to ~4–10% and the phase trades against α over 16 points). No verdict either way from disk.
+- **The agent's "0.4%/<1% on two machines" precision claim: UNREPRODUCED** — it predates the saved script's final
+  state and its data (denser in-flight grids) are not on disk. DOWNGRADED to the class + c̃-consistency grades above.
+  [3d2]'s convergence table (meas/predO → 1.00–1.01 at high ν) stands as supporting evidence with its formal gates
+  void per the broken fitter.
+
+**The verdict after grading — unchanged in structure, honest in precision:** PROFILE-FOUND (BY TRANSCRIPTION) at
+class grade + c̃-consistency, all physical gates (stability ×2-orders headroom, UV-off, Cherenkov, quarantine)
+machine-clean — and GENERATION-OBSTRUCTED (Theorem HH-1) fully machine-backed by the forward scans and all-orders
+anchors on disk. The Link 5 handoff stands: the pump carries the fingerprint; the generator question (the locked
+Gevrey-3 pair from horizon physics — the cube-root/Airy direction) is the program's deepest remaining target.

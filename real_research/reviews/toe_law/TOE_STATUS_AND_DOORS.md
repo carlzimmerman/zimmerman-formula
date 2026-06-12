@@ -147,9 +147,14 @@ authoritative spine is now `DERIVATION_CHAIN.md` (all flags closed), the action 
 
 ## The doors — final states (updated 14:35; ONE live, FOUR reported-and-closed)
 
-**LIVE: HH — the Link 5 calculation** (the scale-invariant pump profile g(k_phys/H) vs (C1)–(C5), inverse problem
-included; gates = stability/Cherenkov/PPN/X2-throughput). The day's last agent out; PROFILE-FOUND would
-functionally close Link 5. *(alive, 161 memo lines as of this stamp)*
+**HH — the Link 5 calculation → REPORTED 2026-06-12: PROFILE-FOUND (BY TRANSCRIPTION) at class grade +
+GENERATION-OBSTRUCTED (Theorem HH-1).** The explicit profile exists and passes every gate (two orders of stability
+headroom); the dynamics provably cannot compose its locked cube-root structure — the pump is the carrier, not the
+composer. Machine record: keystone scan byte-identical ×2; class confirmed 599–1120× over rivals by independent
+re-fit; c̃ consistent at 1% (±12% window systematic); the saved fitter void (died mid-edit); sub-1% precision claim
+honestly downgraded to unreproduced. NEW DEEPEST DOOR: the GENERATOR question — the locked Gevrey-3 pair from
+horizon physics (cube-root/Airy direction, suggestive of heat-kernel structure). `agentHH_pump_profile.md` +
+`agentHH_independent_fit.py`.
 
 **REPORTED 2026-06-11 (each: memo + .py + .out committed; chain/assembly patched; closed as a door):**
 - **II — the CMB/E_G audit → KILL of the unregulated linear-scale slip extension** (every reading, both footings,

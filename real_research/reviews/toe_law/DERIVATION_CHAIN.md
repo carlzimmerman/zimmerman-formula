@@ -79,7 +79,26 @@ balance, agentQ). The length scale is not inserted — it appears.
   a²-analyticity at a=0 extends to the WHOLE scale-invariant khronon class — the deep-MOND flattening floor a★ is
   now this route's OWN prediction (agentCC's watch entry 11 is decisive both ways). Bug log: the prior agent's
   STEP-1 script verified nothing (3 bugs: regulator-mismatched trapezoid, collapsed level-set scan, unreduced sympy
-  difference) — all repaired, claims survived; episode recorded in the memo. ALL FLAGS CLOSED: the legal-mixture escape is DATA-CLOSED (agentBB: best legal mixture +0.026 dex past the SPARC line AND ×21 over the solar reflex via a forced-positive variance pincer that never opens — no sweet spot exists; V's predicted failure fingerprint observed in the data fit). The boundary theorem is now THEOREM + DATA: no linear field-bath, legal/tuned/balanced, carries the rotation curves. Link 5 = the khronon medium, the only object standing. The sign question is CLOSED (agentAA, 26/26 checks): DEFICIT ⟺ M² < 2H² confirmed — the deficit channel is intrinsically de Sitter (flat space gives an excess); V's contrary flag traced to a vector-vs-scalar Yukawa anchor error; V's theorems untouched.
+  difference) — all repaired, claims survived; episode recorded in the memo. **THE LINK 5 CALCULATION RUN
+(agentHH, 2026-06-11/12): PROFILE-FOUND (BY TRANSCRIPTION) + GENERATION-OBSTRUCTED (Theorem HH-1) — the mechanism
+slot is FILLED but not GENERATED.** The constructive half: an explicit closed-form pump profile EXISTS —
+F_req(w) ∝ (c_χw)^(−5/3) e^(−c̃(c_χw)^(1/3)) cos(√3·c̃·(c_χw)^(1/3)+φ̃+π/3) — scale-invariant (C5), b-independent
+(C4), and it passes every physical gate with margin (stability A_stab = 1481–2319 vs the 5.716 window — two orders
+of headroom; UV-off at 10^(−164000) for solar-system modes; both Cherenkov corners safe; coefficient quarantine
+clean, NO Z claims). Machine-record grades (independent re-fit; the saved fitter died mid-edit and is void):
+the transcribed response is in the index-1/3 class DECISIVELY (rival indices 599×/1120× worse); c̃ consistent at
+1% under the class fit (±12% identifiability systematic at the banked 16-point window); the √3 lock unidentifiable
+from disk; the agent's sub-1% precision claim downgraded to UNREPRODUCED (in-flight grids not banked). The
+obstruction half, fully machine-backed: THEOREM HH-1 — the khronon's scale-invariant dynamics cannot GENERATE the
+fingerprint (the measured read law −ν[(3/2)F + ½sF′]; gain envelopes cancel — an index-1/3 GAIN leaves no
+index-1/3 response; every structureless class lands outside (C1) at all orders and couplings; nonlinearity
+ε-linear to 0.6%): the only preimages already carry the locked Gevrey-3 pair — **the pump TRANSCRIBES σ_req; it
+does not produce it. Link 5's remaining target, final form: THE GENERATOR — what dS-bath/horizon mechanism outputs
+the locked pair (ζ̃^(2/3)c_χ^(1/3), the 1/√3 lock, the phase)? The 2π/3 lock angle is cube-root/Airy geometry —
+suggestive of horizon heat-kernel structure (direction, NOT banked).** Process record: agent died post-verdict
+pre-flush; 5 print-path crashes fixed (prints only, zero compute edits); the keystone scan byte-identical across
+2 regenerations; the verifier's own first fitter caught by its own self-validation gate and fixed — the bug-log
+culture held through the last layer. ALL FLAGS CLOSED: the legal-mixture escape is DATA-CLOSED (agentBB: best legal mixture +0.026 dex past the SPARC line AND ×21 over the solar reflex via a forced-positive variance pincer that never opens — no sweet spot exists; V's predicted failure fingerprint observed in the data fit). The boundary theorem is now THEOREM + DATA: no linear field-bath, legal/tuned/balanced, carries the rotation curves. Link 5 = the khronon medium, the only object standing. The sign question is CLOSED (agentAA, 26/26 checks): DEFICIT ⟺ M² < 2H² confirmed — the deficit channel is intrinsically de Sitter (flat space gives an excess); V's contrary flag traced to a vector-vs-scalar Yukawa anchor error; V's theorems untouched.
 
 **Link 6 — the effective law (the matter sector).** NAMED: **Milgrom-2022 (time-nonlocal MI) + the exponential
 μ-tail** — the first published object to clear every nonrelativistic wall the program has built (agentM: reflex
