@@ -616,3 +616,11 @@ class grade + c̃-consistency, all physical gates (stability ×2-orders headroom
 machine-clean — and GENERATION-OBSTRUCTED (Theorem HH-1) fully machine-backed by the forward scans and all-orders
 anchors on disk. The Link 5 handoff stands: the pump carries the fingerprint; the generator question (the locked
 Gevrey-3 pair from horizon physics — the cube-root/Airy direction) is the program's deepest remaining target.
+
+**Final run record (2026-06-12, the complete keystone+hostile lap, exit 0, `agentHH_pump_profile_3d.out`):**
+all four [3d-4] hostile variants (coupling, window, canon/hostile footings) reproduce the IDENTICAL
+collapsed-fitter signature (rms_w ~ 1e-102, amp → 0) — the fourth, fifth, sixth, and seventh independent
+confirmations that the saved fitter, not the physics, is what failed; the void-the-fitter call stands. And one
+fitter-INDEPENDENT result landed clean: **Born linearity** — profile amplitude AF −2 → −1 doubles the response
+exactly (ratios 2.006352 / 2.000015 / 2.000013 at ν = 5.8/27/64) — raw-arithmetic confirmation of the
+transcription's Born-order structure, machine-backed.
