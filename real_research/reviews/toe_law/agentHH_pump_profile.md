@@ -205,8 +205,9 @@ ONCE and develops a **positive, sign-definite, NON-oscillatory tail whose ln-dec
 √ν converge to −2.00 (ν = 20…97): an index-1/2 exponential e^{−2√ν}** — slower than the
 transcribed log-normal, faster than any power. Class verdict vs (C1): **fails everything that
 matters — wrong index (1/2 ≠ 1/3), no oscillation, no √3 lock, sign-definite.** Artifact tests
-(contour-invariance; ε-linearity → Born-order ID) + a strong-band (ε = 1) probe bounding any
-ε³-order index-1/3 oscillatory component: in flight ([3c2]/[3c3]). Note the [3c-B] ε = 0.3 tail
+ALL PASS: contour-invariance 2.5e-11 vs signal 5.1e-3 ([3c2-b]); ε-linearity ratio
+2.0026/2.0002 (first order, [3c2-a]); kernel reproduction 0.9974/0.9998 ([3c4-a]); strong-band
+ε³-bound ([3c3], corrected analysis below). Note the [3c-B] ε = 0.3 tail
 data already constrains a hypothetical band-generated (C1)-class term at the required
 c̃ = 2.14 rate: it would have dominated the measured e^{−2√ν} fit at ν ≳ 30 and is absent.
 
@@ -227,6 +228,12 @@ first-order beyond-band content Gaussian-or-worse small at ν ≥ 20 — the mea
 only be SECOND order: the ε-linearity ratio must come out ≈ 4, and a two-saddle
 geometric-mean mechanism (s* ~ √(w₀ν/c)) predicts a ∝ √w₀. A ratio ≈ 2 would mean
 kernel-vs-pipeline conflict → bug hunt.
+
+**The index-1/2 law fully mapped ([3c4-b]):** the constant scales as **a ∝ √w₀** (measured
+a(w₀=6) = 2.875 vs the √w₀-scaled prediction 2.828, 1.7%; the w₀-independent alternative
+fails by 44%): a² = (4/3)w₀ at c = 2 (c-scaling untested) — the geometric mean of the band
+location and the Mellin frequency, i.e. a genuine two-scale boundary-layer channel of the
+first-order kernel.
 
 **OUTCOME — the prediction was WRONG, and the resolution is a real finding ([3c2]/[3c3]/[3c4]):**
 ε-linearity ratio = **2.0026/2.0002 (ν = 36/50): FIRST order.** The index-1/2 tail lives in
@@ -274,6 +281,86 @@ before integration — the would-be ∫F divergence never enters). Validations:
   (√3 to <1%; the wssr rises 5-100x at ±0.016-0.05 around it), amplitude K = 0.964.**
   The exponent triple (s = 1/3, c̃, √3) transcribes through machinery fully independent
   of the pipeline.
+
+### [3c-X] Filter bank and [3c-E] index-1 control
+
+- **X (three log-spaced channels, the X2 constant-Q analog):** in-band the response is the
+  channel-wise operator read (ratios 2.0-2.3 vs naive = the C(p)-mix); beyond the last
+  channel the superposed band-edge index-1/2 sheds take over with a sign flip — no ν^{1/3}
+  oscillation, no lock anywhere on the grid. A bank reaches (C1) only by tuning its weights
+  into the fingerprint (= the [3d] transcription in disguise).
+- **E (F = 0.3e^{−w}, the true-exponential control):** the response CHANGES SIGN at
+  ν/c ≈ 3 — exactly the operator law's own zero crossing (C(p_eff) = (3 − s)/2 = 0 at the
+  saddle s = 3 for an e^{−s} profile: a parameter-free prediction of the read operator,
+  confirmed). Beyond it the s-fit discriminates index 1 (a = 0.448 vs transcription 1/c =
+  0.5 with the (s−3)/2-prefactor bend; s = 1/3 and 1/2 fits much worse) — **the methodology
+  detects a true exponential, reads its index, and even sees the operator's zero crossing.**
+
+### [3d] THE KEYSTONE — the G profile through the exact pipeline: the fingerprint TRANSCRIBES, certified by two independent machines
+
+`agentHH_3dK.py` (v2 pipeline, 16-point ν^{1/3}-uniform grid 4.1-97.3, dps 50, w_cut 1e-3;
+free floor re-certified 3.6e-19/1.6e-14): the test profile AF = −2, q_F = −4/3, φ_F = π/8,
+c̃_F = 2.1388 (fw), w_lo = 0.1:
+
+- **pipeline-vs-kernel pointwise:** the 16 pipeline Δρ_c values match the [3a1-f] Born-kernel
+  values at **1.6e-5 … 1e-3 relative** (largest at low ν = the genuine second-order Born
+  difference; e.g. ν = 27: 1.598310e-3 vs 1.598285e-3; ν = 97.3: 6.179302e-5 vs 6.181585e-5)
+  — two completely independent computations (high-precision ODE + complex-contour Mellin
+  bilinear VS first-order Γ-function kernel quadrature) agree on an exponentially small
+  oscillating signal riding a free density 10⁶ times larger;
+- **the extractions are IDENTICAL across machines** (`agentHH_fit_extract.py`, the
+  two-component operator model): pipeline side **c̃_fit = 2.1300, lock r = 1.732, K = 0.9614,
+  median pointwise 3.3%**; kernel side **2.1300 / 1.732 / 0.9637 / 3.2%**. The c̃ offset
+  (−0.4% from 2.1388) is fit-window bias COMMON to both machines (the same effect agentEE
+  measured as +0.084% on a 100x higher window); the lock sits exactly on √3 with the wssr
+  rising 5-100x within ±1-3%;
+- the in-process [3d-3]/[f] VARPRO fit rows are SUPERSEDED (fitter runaway — bug log 11);
+  the extraction logs carry the banked numbers;
+- **conclusion: the locked Gevrey-3 pair maps onto the (C1)-(C2) fingerprint with the
+  exponent triple (s = 1/3, c̃, √3-lock) preserved and the affine (q, amp, phase) operator
+  bookkeeping measured** — the forward image of the G class IS the fingerprint class, in
+  exact agreement with the Born-inverse construction (the inverse and forward problems agree).
+
+### [3d-4] Hostile re-verifications (standalone parallel rows; extractions, in-process fits superseded per bug 11)
+
+| row | profile c̃ | c̃_fit | lock r_fit | K | median ptwise |
+|---|---|---|---|---|---|
+| **c = 3** (different saddle, contour, W_max) | 2.13875 | **2.1300** | **1.732** | 0.958 | 4.2% |
+| **w_lo = 0.05** (regulator halved) | 2.13875 | **2.1300** | **1.732** | 1.019 | 5.9% |
+| **canon footing** | 1.96871 | 1.9580 (−0.5%) | **1.732** | 0.936 | 4.9% |
+| **hostile footing** | 2.27901 | 2.2460 (−1.4%) | **1.732** | 0.889 | 10.5% |
+
+- the c = 3 row recovers c̃_fit IDENTICAL to c = 2 — the x = c·w parametrization makes the
+  transcription **exactly c-invariant** as constructed; the regulator change moves nothing;
+- the footing rows recover their OWN c̃ with the same small window bias (−0.4/−0.5/−1.4%;
+  the hostile row's fit is degraded — wssr 1.5 vs 0.05-0.13, one near-node outlier — but its
+  minima in both c̃ and the lock are unambiguous);
+- **the 1/√3 lock pins at r = 1.732 in all four rows**;
+- Born linearity (AF −2 → −1, vs the [3d-1] values): ratios **2.006 / 2.000 / 2.000**
+  (ν = 5.8/27/64) — first-order to 0.3% at the window bottom, exact above.
+
+### [3d2] LOOP CLOSURE — the corrected Born inverse forward through the exact pipeline
+
+`step3d2` (the [3a]-measured operator map inverted on the locked class: A_F = 3A/c̃ = +1.4027,
+q_F = −5/3, φ_F = φ̃ + π/3; same grid/settings as [3d]):
+
+- pointwise meas/predO at high-signal points: **0.971-1.024 (0.3-1.4% at ν = 39/64/74)**;
+  the printed [3d2-2] "FAIL 0.359" is a node-filter artifact (the filter used the bare-target
+  phase and admitted predO-node points where a ratio is meaningless — median over its own
+  list is 3.9%); the [3d2-3] in-process fits are the bug-11 runaway, superseded;
+- **extraction (same tool as [3d]): c̃_fit = 2.1300, lock r = 1.732 — the exponent triple
+  again**, identical to both [3d] extractions;
+- **amplitude at the true c̃ on the meaningful half-window (ν ≥ 20): K = 1.0275 (target 1),
+  median pointwise 1.9%** ([3d]'s test profile: K = 0.9943, median 1.3%). The low-ν
+  deviations (±30% at ν ≈ 4) are the operator model's own O(ν^{−2/3}) kernel corrections —
+  seen symmetrically in both machines and both profiles;
+- the /target column behaves exactly as the symbolic impurity analysis predicts (the
+  −(2A/c̃)x^{−5/3}-residual with the +π/3-shifted phase: wild at bare-target nodes, 0.92-0.98
+  at antinodes, → 1 up the window).
+
+**The inverse problem is solved and verified: invert the fingerprint through the measured
+operator map → forward through the exact pipeline → the (C1) fingerprint returns at unit
+amplitude (±3%), exact exponent triple, matchable phase. Forward and inverse agree.**
 
 ### THEOREM HH-1 (saddle transcription / the index no-go) — scope-labeled
 
@@ -381,7 +468,57 @@ structure produces the locked ±2π/3 pair ARE the G class by definition.
 
 ## VERDICT
 
-(pending)
+**PROFILE-FOUND (BY TRANSCRIPTION) + GENERATION-OBSTRUCTED (Theorem HH-1).** Both halves at
+full weight:
+
+**The constructive half — an explicit g exists and passes every gate.** The corrected
+Born-inverse profile
+
+> **F_req(w) = (3A/c̃)(c_χw)^{−5/3} e^{−c̃(c_χw)^{1/3}} cos(√3 c̃ (c_χw)^{1/3} + φ̃ + π/3)**
+> (modulo the kernel's s^{−3} null direction; small-w regulator free below the window;
+> equivalently the regular full-target inversion F(s) = −(2A/X³)∫₀^X x·2ImD dx ≥ −7e-4·A,
+> positive-backbone representative)
+
+is scale-invariant ((C5): a function of k_phys/H only, enters the EOM — Bogoliubov-compliant),
+b-independent ((C4), family universality inherited at βκ² = H²), transcribes through the exact
+pipeline onto the (C1)-(C2) fingerprint with the exponent triple (s = 1/3, c̃ by footing, the
+1/√3 lock) preserved to 0.4%/<1% (two independent machines, identical extractions — [3d]),
+phase affinely matchable (the +π/3/lock-angle map — (C2)), and passes the (C3)+stability gates
+with two orders of headroom (A_stab = 1481-2319 vs the window's 5.716; UV-off at 10^{−164000}
+for solar-system modes; both agentU Cherenkov corners safe; bounded alternating gain-comb or
+positive-dispersion realizations — STEP 4). The amplitude A and the wattage stay with the
+inherited physical normalization (agentI/agentX; NO Z claims).
+
+**The obstruction half — the dynamics cannot GENERATE the fingerprint.** Theorem HH-1: the
+worldline read is the measured operator −ν[(3/2)F + ½sF′]|_{ν/c} (C(p) = (3−p)/2 at six
+points, three all-orders-exact); gain envelopes cancel (an index-1/3 GAIN leaves NO index-1/3
+response — [3b], 3 orders + sign wrong); every structureless scale-invariant class scanned
+(powers — all orders; analytic bands — log-normal + the first-order index-1/2 monotone
+band-edge tail; log-periodic; filter banks; e^{−aw}-class) lands OUTSIDE the (C1) class —
+wrong index, or no oscillation, or no lock; nonlinearity does not rescue it (band response
+ε-linear to ≤0.6% through ε = 1; cubic (C1)-component ≤ 0.04 fingerprint-units in the test
+geometry). **The only preimages of the fingerprint are profiles already carrying the locked
+Gevrey-3 pair — the pump must be HANDED ζ̃^{2/3}·c_χ^{1/3}, the 1/√3 lock, and the phase. The
+minimal scale-invariant pumped khronon TRANSCRIBES σ_req's fingerprint; it does not produce
+it.** Link 5's "derive g(k_phys/H)" therefore sharpens but does NOT close: g now EXISTS in
+closed form with all gates passed — and its index-1/3 locked structure is an INPUT carried
+over one-to-one from σ_req, not an output of the dynamics.
+
+**One-sidedness note ((C1)):** the commutator addition is odd-in-ν automatically; the strict
+θ(ω) completion vs the KMS completion of the same commutator differ at e^{−2πν} (4% at the
+window's binding point) — a state-sector choice, inherited with the amplitude invoice.
+
+**Doors out (for the ledger):**
+1. **The generator question (the sharpened Link 5 core):** what dS-bath/horizon mechanism
+   OUTPUTS a locked Gevrey-3 pair with constant ζ̃^{2/3}c_χ^{1/3}? The 2π/3 lock angle is
+   cube-root/Airy geometry — suggestive of horizon heat-kernel structure (direction, NOT
+   banked).
+2. **The nonlinear index cascade:** the first-order band-edge index-1/2 channel is now mapped
+   (kernel-certified); whether any geometry's higher orders land index-1/3 WITH the lock is
+   bounded only for the tested band — a dedicated nonlinear-response study could close or
+   exploit it.
+3. The state-sector amplitude invoice (1e33-1e35 W) — inherited, untouched, still open at
+   agentX/agentI.
 
 ## Bug log
 
