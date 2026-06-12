@@ -1521,8 +1521,8 @@ def step3d():
         dvals.append(d)
         preds.append(pred)
         cosfac = float(mp.cos(mp.sqrt(3) * ct * mp.mpf(nu) ** third + phF))
-        tag = f"ratio = {d/pred:9.5f}" if abs(cosfac) > 0.4 else "  (near node)"
-        print(f"     nu = {nu:>7.3f}: Drho_c = {d:+.6e}  pred = {pred:+.6e}  {tag}")
+        tag = f"ratio = {float(d/pred):9.5f}" if abs(cosfac) > 0.4 else "  (near node)"
+        print(f"     nu = {nu:>7.3f}: Drho_c = {float(d):+.6e}  pred = {float(pred):+.6e}  {tag}")
 
     # [3d-2] contour invariance for THIS profile at nu = 64 (independent re-verification):
     nuv = 64.0
@@ -1541,8 +1541,8 @@ def step3d():
         mp.mp.dps = old_dps
     d64 = dvals[grid.index(64.0)] if 64.0 in grid else None
     shift = float(abs((altv - 64.0).real - d64))
-    print(f"[3d-2] contour-invariance at nu = 64: Drho shift = {shift:.2e} vs signal "
-          f"{abs(d64):.2e} -> {'PASS' if shift < 0.01 * abs(d64) else 'FAIL'}")
+    print(f"[3d-2] contour-invariance at nu = 64: Drho shift = {float(shift):.2e} vs signal "
+          f"{float(abs(d64)):.2e} -> {'PASS' if shift < 0.01 * abs(d64) else 'FAIL'}")
     assert shift < 0.01 * abs(d64)
 
     # [3d-3] fits: measured vs prediction-on-the-same-window (differential — kills
@@ -1557,7 +1557,7 @@ def step3d():
               f"be/al = {ft['be']/ft['al']:.5f}  q = {ft['q']:+.4f}  amp = {ft['amp']:.4f}  "
               f"phi = {ft['phi']:+.4f}  rms_w = {ft['rms_w']:.2e}")
     print(f"     targets:   s = 1/3 = 0.33333  al = ct = {float(ct):.5f}  "
-          f"be = sqrt3 ct = {float(mp.sqrt(3)*ct):.5f}  be/al = sqrt3 = {s3:.5f}  "
+          f"be = sqrt3 ct = {float(mp.sqrt(3)*ct):.5f}  be/al = sqrt3 = {float(s3):.5f}  "
           f"q = -1/3  amp = 1  phi = pi/8 = {float(mp.pi/8):+.4f}")
     dev_s = abs(fitM["s"] - 1.0 / 3)
     dev_lock = abs(fitM["be"] / fitM["al"] - s3) / s3
@@ -1598,7 +1598,7 @@ def step3d():
     print("     Born linearity (AF -2 -> -1):", end="")
     for nu in nl:
         rat = dvals[grid.index(nu)] / float((r2[nu] - nu).real)
-        print(f"  nu={nu:.1f}: ratio = {rat:.6f}", end="")
+        print(f"  nu={nu:.1f}: ratio = {float(rat):.6f}", end="")
     print("   (2 = exact linearity)")
     print("[3d] => the Born-inverse profile EXISTS, is scale-invariant, analytic,")
     print("     and transcribes through the exact pipeline onto the (C1)-(C2) fingerprint")
@@ -1644,7 +1644,7 @@ def step3d2():
         targ.append(tg)
         rO = d / po if abs(po) > 1e-18 else float('nan')
         rT = d / tg if abs(tg) > 1e-18 else float('nan')
-        print(f"     nu = {nu:>7.3f}: meas = {d:+.6e}  /predO = {rO:8.5f}  /target = {rT:8.5f}")
+        print(f"     nu = {nu:>7.3f}: meas = {float(d):+.6e}  /predO = {float(rO):8.5f}  /target = {float(rT):8.5f}")
     # pointwise loop-closure gate at non-node points (|cos| > 0.4 of the OPERATOR phase):
     devs = []
     for nu, d, po in zip(grid, dv, predO):
