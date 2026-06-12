@@ -1,7 +1,7 @@
 # The Λ-Anchored Acceleration Scale a₀ = c²√(Λ/32π): A Completed Falsification Map, Exact No-Go Results, and the Specification of the Unique Surviving Object
 
 **Carl P. Zimmerman**
-*June 2026, second edition: final pass plus three same-week addenda (hostile audit + data confrontations; the construction round; the Link 5 calculation — final addendum 2026-06-12). Whitepaper prepared for Zenodo deposit. Repository: `zimmerman-formula` (commit-hash provenance in Appendix A).*
+*June 2026, second edition: final pass plus three same-week addenda (hostile audit + data confrontations; the construction round; the Link 5 calculation — final addendum 2026-06-12). Published: **DOI 10.5281/zenodo.20670670** (CC-BY-4.0). Repository: `zimmerman-formula` (commit-hash provenance in Appendix A).*
 
 ---
 
