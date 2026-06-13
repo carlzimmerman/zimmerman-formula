@@ -1,0 +1,135 @@
+==============================================================================
+agentYY ROUTE 2 — relative/generalized entropy S(a) in the type II_1 algebra
+==============================================================================
+
+--- PART A: re-verify the banked modular-temperature identities ---
+[A1] Tolman  sqrt(a^2+H^2)*cos u - H = H*(cos(u)/Abs(cos(u)) - 1)  (expect 0)
+[A2] T_mod - T_DL = H*(-1/Abs(cos(u)) + 1/cos(u))/(2*pi)  (expect 0)
+[A3] T_DL(a) = sqrt(a^2+H^2)/(2 pi) -- the boost-KMS modular temperature.
+     dT_DL/da = a/(2*pi*sqrt(H**2 + a**2))  (= a/(2pi sqrt(a^2+H^2)); the F4 susceptibility agentQ flagged)
+
+--- PART B: Araki relative entropy of two KMS states of the boost ---
+beta(a) = 2 pi / sqrt(a^2 + H^2);  beta_GH = beta(0) = 2 pi / H
+d beta/d a = -2*pi*a/(H**2 + a**2)**(3/2)  (<0: beta DECREASES monotonically in a)
+  -> as a grows the local KMS state gets HOTTER; beta runs monotonically a:0->oo, beta:2pi/H->0
+
+--- PART C: model M1 (single boost-mode oscillator) S_rel(a) ---
+S_rel(b||bG) = -(Omega*(b - bG) - (exp(Omega*b) - 1)*(Omega*b - Omega*bG - log(exp(Omega*b) - 1) + log(exp(Omega*bG) - 1)))/(exp(Omega*b) - 1)
+  check S_rel(bG||bG) = 0  (expect 0)
+  dS_rel/db = Omega*(Omega*b*exp(Omega*b) - Omega*bG*exp(Omega*b) - 2*exp(Omega*b) + 2)/(exp(2*Omega*b) - 2*exp(Omega*b) + 1)
+  -> = (b-bG)*dU/db ; sign(dS_rel/db)=sign(b-bG) since dU/db<0:
+     dU/db = -Omega**2/(4*sinh(Omega*b/2)**2)  (negative for all b,Omega>0)
+
+--- PART D: S_rel(a), dS_rel/da, d2S_rel/da2 -- feature hunt at a~H ---
+
+  Omega/H = 0.2:   a/H,  S_rel,  dS_rel/d(a/H),  d2S_rel/d(a/H)^2
+    a/H=    0.01  S=+4.999335e-05  dS=+9.998578e-03  d2S=+9.998213e-01
+    a/H=     0.1  S=+4.994801e-03  dS=+9.980410e-02  d2S=+9.943522e-01
+    a/H=     0.3  S=+4.461464e-02  dS=+2.948425e-01  d2S=+9.476751e-01
+    a/H=     0.5  S=+1.219692e-01  dS=+4.754529e-01  d2S=+8.504120e-01
+    a/H=     0.7  S=+2.332128e-01  dS=+6.324782e-01  d2S=+7.157376e-01
+    a/H=       1  S=+4.518965e-01  dS=+8.146604e-01  d2S=+5.018117e-01  <-- a=H
+    a/H=   1.414  S=+8.251751e-01  dS=+9.721348e-01  d2S=+2.757728e-01
+    a/H=       2  S=+1.430325e+00  dS=+1.077768e+00  d2S=+1.085075e-01
+    a/H=       3  S=+2.541078e+00  dS=+1.128874e+00  d2S=+1.594967e-02
+    a/H=   5.789  S=+5.684285e+00  dS=+1.115430e+00  d2S=-1.022462e-02  <-- a=cH (a0 onset, Z=5.789)
+    a/H=      10  S=+1.030193e+01  dS=+1.080758e+00  d2S=-6.139924e-03
+    a/H=     100  S=+1.024324e+02  dS=+1.009811e+00  d2S=-9.620637e-05
+
+  Omega/H = 1.0:   a/H,  S_rel,  dS_rel/d(a/H),  d2S_rel/d(a/H)^2
+    a/H=    0.01  S=+1.175733e-06  dS=+2.351846e-04  d2S=+2.353360e-02
+    a/H=     0.1  S=+1.194523e-04  dS=+2.427094e-03  d2S=+2.579644e-02
+    a/H=     0.3  S=+1.214386e-03  dS=+9.156680e-03  d2S=+4.488075e-02
+    a/H=     0.5  S=+4.176028e-03  dS=+2.180271e-02  d2S=+8.512864e-02
+    a/H=     0.7  S=+1.060519e-02  dS=+4.444440e-02  d2S=+1.435882e-01
+    a/H=       1  S=+3.186574e-02  dS=+1.021149e-01  d2S=+2.392194e-01  <-- a=H
+    a/H=   1.414  S=+9.758008e-02  dS=+2.207723e-01  d2S=+3.197175e-01
+    a/H=       2  S=+2.827500e-01  dS=+4.101490e-01  d2S=+3.087111e-01
+    a/H=       3  S=+8.283112e-01  dS=+6.610487e-01  d2S=+1.921581e-01
+    a/H=   5.789  S=+3.142423e+00  dS=+9.314488e-01  d2S=+4.192531e-02  <-- a=cH (a0 onset, Z=5.789)
+    a/H=      10  S=+7.277942e+00  dS=+1.009930e+00  d2S=+6.804811e-03
+    a/H=     100  S=+9.872411e+01  dS=+1.009002e+00  d2S=-8.012832e-05
+
+  Omega/H = 5.0:   a/H,  S_rel,  dS_rel/d(a/H),  d2S_rel/d(a/H)^2
+    a/H=    0.01  S=+7.142750e-17  dS=+1.430126e-14  d2S=+1.436433e-12
+    a/H=     0.1  S=+7.970191e-15  dS=+1.771114e-13  d2S=+2.520939e-12
+    a/H=     0.3  S=+1.759231e-13  dS=+2.352654e-12  d2S=+3.124426e-11
+    a/H=     0.5  S=+2.679974e-12  dS=+3.741461e-11  d2S=+5.295572e-10
+    a/H=     0.7  S=+4.436928e-11  dS=+6.171154e-10  d2S=+8.445180e-09
+    a/H=       1  S=+2.296479e-09  dS=+2.800811e-08  d2S=+3.248601e-07  <-- a=H
+    a/H=   1.414  S=+1.894004e-07  dS=+1.732876e-06  d2S=+1.456131e-05
+    a/H=       2  S=+1.453267e-05  dS=+8.611832e-05  d2S=+4.486805e-04
+    a/H=       3  S=+1.089697e-03  dS=+3.392325e-03  d2S=+8.619600e-03
+    a/H=   5.789  S=+1.294337e-01  dS=+1.209355e-01  d2S=+7.337973e-02  <-- a=cH (a0 onset, Z=5.789)
+    a/H=      10  S=+1.343619e+00  dS=+4.488356e-01  d2S=+6.743354e-02
+    a/H=     100  S=+8.557784e+01  dS=+9.988709e-01  d2S=+1.193075e-04
+
+--- PART E: locate the inflection / max-modular-rate point a*/H vs Omega ---
+  (d2S_rel/da2 = 0  <=>  peak of the modular response dS_rel/da)
+   Omega/H |   a*/H (inflection of S_rel) |       note
+      0.05 |                      2.07802 |       scan
+       0.1 |                      2.50942 |           
+       0.2 |                      3.58787 |           
+       0.5 |                      8.01576 |           
+       1.0 |                     18.48339 |           
+       2.0 |                     49.92100 |           
+       5.0 |                    224.71309 |       scan
+      10.0 |                          nan |       scan
+      30.0 |                      2.11362 |           
+
+  DIAGNOSIS: the inflection a*/H SLIDES with the probe frequency Omega/H.
+  It is NOT locked to a~H. Check the scaling: a* set by beta*Omega ~ O(1)
+  i.e. the inflection is where the LOCAL KMS temperature T_DL ~ Omega (the
+  probe mode thermally activates). a*/H grows as Omega grows -> pure probe scale.
+
+   Omega/H |       a*/H | beta(a*)*Omega = Omega/T_DL*2pi-ish
+       0.1 |     2.5094 | beta*Omega=  0.2326  (Omega/H * 2pi/sqrt(a*^2+1))
+       0.2 |     3.5879 | beta*Omega=  0.3374  (Omega/H * 2pi/sqrt(a*^2+1))
+       0.5 |     8.0158 | beta*Omega=  0.3889  (Omega/H * 2pi/sqrt(a*^2+1))
+       1.0 |    18.4834 | beta*Omega=  0.3394  (Omega/H * 2pi/sqrt(a*^2+1))
+       2.0 |    49.9210 | beta*Omega=  0.2517  (Omega/H * 2pi/sqrt(a*^2+1))
+
+--- PART F: model M2 (genuine dS QNM ladder E_n=lambda(Delta+n)) ---
+  lambda/H (QNM spacing) varied; Delta=1/2 (massless-ish). a* = inflection:
+   lambda/H |       a*/H
+        0.1 |     1.6872
+        0.3 |     1.3239
+        1.0 |     0.7320
+        3.0 |     0.7071
+       10.0 |     0.7071
+
+--- PART G: is a*/H=1/sqrt(2) thermodynamic or just the kinematic map? ---
+  beta(a/H) = 2pi/sqrt((a/H)^2+1)
+  d2 beta/d(a/H)^2 = 2*pi*(2*a_H**2 - 1)/(a_H**2 + 1)**(5/2)
+  inflection of beta(a/H): a/H = [sqrt(2)/2]
+  d2 T_DL/d(a/H)^2 = 1/(2*pi*(a_H**2 + 1)**(3/2))  -> T_DL is CONVEX everywhere, NO inflection (no feature)
+  dT_DL/d(a/H) = a_H/(2*pi*sqrt(a_H**2 + 1))  -> monotone increasing, saturates to 1/2pi; no peak
+
+  Compare: beta(a) inflection at a/H = 1/sqrt(2) = 0.7071067811865476
+  == the M2 cold-limit a*/H = 0.7071. CONFIRMED: the frozen feature is the
+  inflection of the algebraic blueshift map beta=2pi/sqrt(a^2+H^2), i.e. the
+  geometric crossover of sqrt(a^2+H^2) -- DESCRIPTIVE, not a derived extremum.
+
+--- PART H: algebra-level Jacobson dQ=T dS_gen -- evade or inherit Q? ---
+  T_mod * beta_GH = sqrt(a^2+H^2)/H = sqrt(a_H**2 + 1)  (= 1/|xi|, the pure blueshift)
+  => Clausius factor (1 - T_mod beta_GH) = 1 - sqrt(a^2+H^2)/H
+     = 1 - 1/|xi|  -- a PURE Tolman blueshift factor, fixed by geometry.
+  This is the SAME object agentQ found: the a-dependence is the Tolman factor
+  sqrt(a^2+H^2), entering through T_mod, NOT an independent dT/da channel.
+  CONCLUSION: the type II_1 ALGEBRA-level Clausius INHERITS agentQ's no-go.
+  The modular heat consumes <H_mod>; the only a-dependence is the geometric
+  blueshift sqrt(a^2+H^2)=1/|xi| -- exactly the Tolman-trivial factor that
+  cancels (R1) or lands anti-MOND (R2). No dT_DL/da inertia-side channel appears.
+
+--- PART I: strict monotonicity of S_rel(a); nothing at a~cH ---
+  chain rule: dS_rel/da = (dS_rel/db) * (db/da)
+    Correct dS_rel/db = Omega(Omega(b-bG)e^{Omega b} - 2e^{Omega b} + 2)/(1-e^{Omega b})^2
+    (verified < 0 for all b<bG; the naive (b-bG)dU/db factorization is INCOMPLETE)
+    a>0 => b=beta(a) < bG => dS_rel/db < 0 ;  db/da < 0
+    => dS_rel/da = (neg)(neg) = POSITIVE  -- matches the machine scan below.
+  dS_rel/da > 0 at every scanned a in [1e-4, 5000]: True (STRICTLY monotone increasing)
+  => S_rel(a) has NO extremum. Minimum is at a=0 (the GH state itself, S_rel=0).
+  Z=5.789 (a=cH): S_rel and all derivatives are smooth & featureless there
+  (d2S changes sign near a*/H~O(1)-O(200) depending on probe; NEVER pinned to Z).
+
+DONE.
