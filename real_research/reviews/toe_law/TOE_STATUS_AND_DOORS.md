@@ -154,7 +154,12 @@ composer. Machine record: keystone scan byte-identical ×2; class confirmed 599�
 re-fit; c̃ consistent at 1% (±12% window systematic); the saved fitter void (died mid-edit); sub-1% precision claim
 honestly downgraded to unreproduced. NEW DEEPEST DOOR: the GENERATOR question — the locked Gevrey-3 pair from
 horizon physics (cube-root/Airy direction, suggestive of heat-kernel structure). `agentHH_pump_profile.md` +
-`agentHH_independent_fit.py`.
+`agentHH_independent_fit.py`. **SCOPED (agentLL, 2026-06-12): DIRECTION-NARROWED** — the √3 lock fingerprints
+the cubic class uniquely; the fingerprint = the Laplace image of a one-sided negative-argument AIRY density
+(exact); the bare caustic and bare QNM ladder killed honestly; the surviving calculation is ANALYTIC and
+uniquely shaped: derive the khronon b-family edge measure — PASS ⟺ a fourth-root (q = 1/4) oscillatory edge
+singularity with γ_req quarantined; q = 1/4 = agentV's σ_req class (requirement-match, firewalled).
+`agentLL_generator_scoping.md`.
 
 **REPORTED 2026-06-11 (each: memo + .py + .out committed; chain/assembly patched; closed as a door):**
 - **II — the CMB/E_G audit → KILL of the unregulated linear-scale slip extension** (every reading, both footings,

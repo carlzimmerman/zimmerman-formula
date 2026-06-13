@@ -1,0 +1,195 @@
+
+------------------------------------------------------------------------------
+LL-1a  SYMBOLIC: saddle set of the split-cubic exponent Phi(s)=w s^2 - i b/s
+------------------------------------------------------------------------------
+saddle equation: s^3 = -i*beta/(2 w); roots and actions:
+  arg(s*) = -pi/6
+     Phi(s*)/(w^(1/3) beta^(2/3)):  Re = 3*2**(1/3)/4   Im = -3*2**(1/3)*sqrt(3)/4   Im/Re = -sqrt(3)
+  arg(s*) = pi/2
+     Phi(s*)/(w^(1/3) beta^(2/3)):  Re = -3*2**(1/3)/2   Im = 0   Im/Re = 0
+  arg(s*) = -5*pi/6
+     Phi(s*)/(w^(1/3) beta^(2/3)):  Re = 3*2**(1/3)/4   Im = 3*2**(1/3)*sqrt(3)/4   Im/Re = sqrt(3)
+
+Check: |Phi(s*)| common modulus 3*2^(-2/3) = 1.889882
+Admissible (Re>0, decaying) pair sits at action phases -+pi/3  =>  |Im|/Re = sqrt(3) EXACTLY.
+Third root has Re<0 (growing e^{+c w^(1/3)}): Stokes-excluded for a Laplace transform
+of a locally integrable one-sided density (transform must decay in Re w > 0).
+on-shell Phi''(s*) = 6*w  (= 6w exactly, beta-independent fluctuation)
+
+------------------------------------------------------------------------------
+LL-1b  SYMBOLIC: Stokes/descent sectors of the pure cubic e^{-u^3}: 2pi/3 triad
+------------------------------------------------------------------------------
+decay sectors of e^{-u^3}:  Re u^3 > 0  <=>  cos(3 theta) > 0; boundaries cos(3theta)=0 at:
+   theta = [-5*pi/6, -pi/2, -pi/6, pi/6, pi/2, 5*pi/6]
+sector centers (cos(3 theta)=+1): [-2*pi/3, 0, 2*pi/3] ; widths pi/3; separations 2pi/3 — the Stokes triad of the cubic class.
+
+------------------------------------------------------------------------------
+LL-1c  pure-cubic scaling I(w) ~ w^(-1/3): substitution + constant pin
+------------------------------------------------------------------------------
+u -> (W)^(-1/3) v gives I = W^(-1/3) * C3 exactly: index 1/3 from the CUBIC alone.
+constant pin: Ai(0) = 0.355028053887817239260063186004  vs 3^(-2/3)/Gamma(2/3) = 0.355028053887817239260063186004
+
+------------------------------------------------------------------------------
+LL-1d  NUMERIC: F(w)=int_0^inf e^{-wt} cos(beta t^{-1/2}) dt  vs two-saddle formula
+------------------------------------------------------------------------------
+         w              F_numeric               F_saddle        ratio
+      1000    -4.042203883157e-07    -4.007637343624e-07    1.0086252
+     10000    -1.072487318388e-12    -1.068694047462e-12    1.0035494
+    100000     9.913944687382e-24     9.892256400800e-24    1.0021925
+ratio -> 1 with O(w^(-1/3)) drift: the two-saddle (pair at -+pi/3) formula is the asymptote.
+decay rate = (3/2)2^(-2/3) beta^(2/3) w^(1/3); osc rate = sqrt(3) x decay rate. LOCK = sqrt(3).
+
+------------------------------------------------------------------------------
+LL-1e  SYMBOLIC: universality table — ratio tan(pi/(2(k+1))) fingerprints k
+------------------------------------------------------------------------------
+       k        index       arg Phi* (principal)    osc/decay ratio
+     1/3          1/4                     3*pi/8        1 + sqrt(2)
+     1/2          1/3                       pi/3            sqrt(3)
+       1          1/2                       pi/4                  1
+       2          2/3                       pi/6          sqrt(3)/3
+       3          3/4                       pi/8       -1 + sqrt(2)
+STRICTLY MONOTONE in k: ratio sqrt(3) <=> k=1/2 <=> transform index 1/3 (cubic class) UNIQUE.
+k=1 (diffusive/heat image class, index 1/2): ratio tan(pi/4)=1 — NOT sqrt(3).
+
+------------------------------------------------------------------------------
+LL-2a  NUMERIC: the canonical pair  Q(W)=int_0^inf Ai(v) e^{-W/v^3} dv = (1/3) e^{-(3W)^{1/3}}
+------------------------------------------------------------------------------
+       W             Q(W) numeric    (1/3)exp(-(3W)^(1/3))      rel err
+     0.1    1.706662747926350e-01    1.706662747926350e-01     0.00e+00
+       1    7.879845735875159e-02    7.879845735875159e-02     1.56e-31
+       5    2.830195591834982e-02    2.830195591834982e-02     1.09e-31
+      20    6.647729376012101e-03    6.647729376012101e-03     1.16e-31
+     100    4.126372049269960e-04    4.126372049269960e-04     1.17e-31
+=> with B=3^(-1/3):  L[ 3^(-1/3) t^(-4/3) Ai(3^(-1/3) t^(-1/3)) ](w) = e^{-w^{1/3}} exactly
+   (one-sided stable-1/3 density in Airy form; normalization A/B = 1).
+
+------------------------------------------------------------------------------
+LL-2b  NUMERIC: oscillatory member — NEGATIVE-argument Airy density (EXACT closed form)
+------------------------------------------------------------------------------
+       w             L[h] numeric              closed form      rel err
+       8   -1.703744381667625e-01   -1.703742388629820e-01     1.17e-06
+      27   -5.508710384527982e-01   -5.508703658025620e-01     1.22e-06
+      64   -3.702496405538150e-01   -3.702480461237325e-01     4.31e-06
+     125   -8.832462084899684e-02   -8.832150672808582e-02     3.53e-05
+=> EXACT (not asymptotic): decay rate 1/2, osc rate sqrt(3)/2 — the sqrt(3) lock, phase 0 member.
+   w->0 consistency: L[h](0) = 2*3^(1/3) = 2.884499140615 = closed form at w=0 ✓
+   residual is TAIL TRUNCATION, not formula error: |num-closed| at w=27:
+     cutoff u=2500: 8.51e-07   cutoff u=10000: 6.81e-07  (shrinks with cutoff ✓)
+
+------------------------------------------------------------------------------
+LL-2c  SYMBOLIC: the pi/3 phase quantum & prefactor (2/3)-power quantum (t-weight law)
+------------------------------------------------------------------------------
+L[t*h](w) = -d/dw L[h](w);  identity  -dCF - (1/3)w^(-2/3)*CF-shape*cos(...-pi/3) == 0 ?
+  simplify(-dCF - target) = 0
+=> one t-power in the density  ==  prefactor x (1/3) w^{-2/3}  AND  phase shift EXACTLY -pi/3.
+   (phase quantum pi/3 = saddle argument arg t* = -+pi/3; the fingerprint's '+pi/3' is one quantum;
+    LL-1d's mu=0 member shows the half-quantum pi/6 from the s0 prefactor — same origin.)
+
+------------------------------------------------------------------------------
+LL-2d  SYMBOLIC: fingerprint constant ct = (3/4)2^{2/3} zt^{2/3}  <=>  density strength beta = zt/2
+------------------------------------------------------------------------------
+solve  3*2^(-2/3) beta^(2/3) = (3/4)*2^(2/3) zt^(2/3)  =>  beta = [zetatilde/2]
+RAW + QUARANTINED: in c_chi units the fingerprint's essential-singularity strength is zt/2.
+No Z claim; zt itself stays quarantined per discipline.
+
+------------------------------------------------------------------------------
+LL-3  the orientation kill — one-line checks
+------------------------------------------------------------------------------
+(i)  k=1 (e^{-beta/t} image, quadratic class index 1/2): ratio tan(pi/4) = 1  != sqrt(3)
+(ii) pure power density t^alpha: L = w**(-alpha - 1)*gamma(alpha + 1)   — pure power of w, NO essential factor.
+(iii) KMS-thermal (sinh^2 kernel, S4a): tail e^{-2 pi w/kappa} — index 1, osc/decay ratio 0.
+(iv) one-sidedness: transform analytic+decaying in Re w>0 (Paley-Wiener) <=> one-sided density;
+     two-sided support injects the Re<0 (growing) cube-root member: excluded by the fingerprint.
+
+------------------------------------------------------------------------------
+S4a  CANDIDATE (d): exact frequency transform of the sinh^-2 worldline kernel
+------------------------------------------------------------------------------
+       w    kappa                numeric                 closed    rel err
+       1        1    -4.702176538948e-02    -4.702176538948e-02    2.1e-26
+       3        2    -1.521272835267e-03    -1.521272835267e-03    1.1e-25
+       5      1.7    -4.097969931374e-07    -4.097969931374e-07    6.7e-25
+=> single-orbit response tail is BOLTZMANN e^{-2 pi w/kappa}: Gevrey-1 (index 1), per LL-3(iii).
+
+------------------------------------------------------------------------------
+S4b  kappa(b) from the universal short-distance normalization (RECONSTRUCTED — flagged)
+------------------------------------------------------------------------------
+tau->0:  G_b tau^2 -> H**2/(4*pi**2*c_chi*kappa**2*(b**2 - c_chi**2))
+imposing universal -1/(4 pi^2 tau^2): kappa^2 solutions match H^2/(c_chi(c_chi^2-b^2)): [True, True]
+positive branch:  kappa(b) = H/sqrt(c_chi (c_chi^2 - b^2))
+NOTE: the banked EE closed form was quoted with kappa unspecified in the skeleton summary;
+this kappa(b)=H/sqrt(c_chi (c_chi^2-b^2)) is RECONSTRUCTED from the universal UV normalization.
+kappa diverges at the family edge b->c_chi (Deser-Levin: T->inf at the horizon) — physical.
+
+------------------------------------------------------------------------------
+S4c  prefactor-pole cancellation on the family
+------------------------------------------------------------------------------
+1/[(c_chi^2-b^2) kappa(b)^2] = c_chi/H**2   — the b-pole CANCELS exactly in the response.
+=> family superposition:  F(w) ~ w * int db rho(b) exp(-(2 pi w/H) sqrt(c_chi (c_chi^2-b^2)))
+
+------------------------------------------------------------------------------
+S4d  bare edge analysis: exponent E(b) vanishes like sqrt(x) at the edge => POWER LAW only
+------------------------------------------------------------------------------
+E(b=c_chi(1-x)) = sqrt(2)*c_chi**(3/2)*sqrt(x) + O(x^(3/2))   [leading]
+int_0 x^sigma e^{-A w sqrt(x)} dx  (y=sqrt x)  = 2*(1/(A*w))**(2*sigma + 2)*gamma(2*sigma + 2)   — PURE POWER LAW in w.
+numeric ratio test  s(w) = -dlnF/dlnw  (constant <=> power law; ~w^{1/3} growth <=> essential):
+   w:      100 ->      400   local slope = 2.000203
+   w:      400 ->     1600   local slope = 2.000013
+   w:     1600 ->     6400   local slope = 2.000001
+slope -> 2.0 constant: bare-edge class = w^{-2} POWER LAW. Index-1/3 ABSENT from the bare family.
+
+------------------------------------------------------------------------------
+S4e  interior saddle b=0: quadratic, not cubic
+------------------------------------------------------------------------------
+E''(0) = -1/sqrt(c_chi)  (nonzero);  E'''(0) = 0  (zero by parity) => ordinary QUADRATIC saddle;
+b=0 maximizes E (minimum of integrand): subdominant. No interior cubic degeneracy exists.
+
+------------------------------------------------------------------------------
+S4f  local normal form at the coalescence (tau-saddle -> b-edge)
+------------------------------------------------------------------------------
+Joint exponent on the family, unfolded with y=sqrt(x):  Phi_local = -(2 pi w/H) sqrt(2 c_chi^3) y,
+measure 2y dy: LINEAR exponent x smooth measure at an ENDPOINT — Watson-lemma class.
+=> F_bare(w) = sum c_n w^{-2(n+1)}: pure power series. NOT cubic (Airy), NOT even pole-saddle
+   exponential. Uncancelled-pole variant (other normalization): pinch gives power x log — still
+   no essential factor. Fixed-kappa variant: pure thermal e^{-2 pi w/kappa} (index 1). All non-cubic.
+
+------------------------------------------------------------------------------
+S4g  THE CONVERSION THEOREM: edge measure e^{-gamma x^{-q}} => output index 2q/(2q+1)
+------------------------------------------------------------------------------
+x* = (4*gamma**2*q**2/(u0**2*w**2))**(1/(2*q + 1))
+w d(ln action)/dw  = 2*q/(2*q + 1)   ->  index(q) = 2q/(2q+1)
+         q   output index
+       1/8            1/5
+       1/6            1/4
+       1/4            1/3
+       1/2            1/2
+         1            2/3
+solve index = 1/3  =>  q = [1/4]   UNIQUE (index monotone in q).
+=> the Deser-Levin map kappa ~ x^{-1/2} converts a FOURTH-ROOT (q=1/4) essential edge measure
+   into the cubic/index-1/3 class; in u = 2pi/kappa = u0 sqrt(x):  x^{-1/4} = (u/u0)^{-1/2} — the
+   LL-1 k=1/2 singularity EXACTLY. sqrt(3) lock + pi/3 quanta then follow from LL-1/LL-2 iff the
+   edge measure is the OSCILLATORY member cos(gamma x^{-1/4} + phi0).
+
+------------------------------------------------------------------------------
+S4h  END-TO-END NUMERIC: dressed family (q=1/4 oscillatory) reproduces the full class
+------------------------------------------------------------------------------
+         w            F_d numeric             F_d saddle        ratio  drift*w^(1/3)
+      1000    -3.906593121988e-09    -3.119900368582e-09    1.2521532         2.5215
+     10000    -2.116729326975e-15    -1.908113917178e-15    1.1093307         2.3555
+    100000     3.317890874266e-27     3.125077142225e-27    1.0616989         2.8638
+   1000000     5.921933306203e-51     5.640725626803e-51    1.0498531         4.9853
+ratio -> 1 monotonically; drift O(w^{-1/3})-scale (mixed subleading orders expected).
+=> index 1/3, decay (3/2)2^{-2/3}gamma^{2/3}w^{1/3}, osc sqrt(3)x, phase offset in pi/3-quanta:
+   the dressed b-family caustic emits the COMPLETE fingerprint class.
+
+------------------------------------------------------------------------------
+S4i  c-tilde analog of the dressed family — RAW, QUARANTINED
+------------------------------------------------------------------------------
+u0 = 2*sqrt(2)*pi*c_chi**(3/2)/H    (from kappa(b) reconstruction, S4b)
+ct_d (rate of w^{1/3} in the dressed family) = 3*2**(5/6)*pi**(1/3)*sqrt(c_chi)*gamma**(2/3)/(2*H**(1/3))
+matching ct*(c_chi)^{1/3} requires  gamma_req = 2**(1/4)*sqrt(H)*zetatilde/(4*sqrt(pi)*c_chi**(1/4))
+QUARANTINE: gamma is NOT derived — fixing it (and hence zt) requires the family-measure
+derivation from the pump construction (the named confirming calculation). No Z claim.
+
+------------------------------------------------------------------------------
+DONE — all sections executed
+------------------------------------------------------------------------------

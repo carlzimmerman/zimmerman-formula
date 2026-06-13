@@ -95,7 +95,24 @@ index-1/3 response; every structureless class lands outside (C1) at all orders a
 ε-linear to 0.6%): the only preimages already carry the locked Gevrey-3 pair — **the pump TRANSCRIBES σ_req; it
 does not produce it. Link 5's remaining target, final form: THE GENERATOR — what dS-bath/horizon mechanism outputs
 the locked pair (ζ̃^(2/3)c_χ^(1/3), the 1/√3 lock, the phase)? The 2π/3 lock angle is cube-root/Airy geometry —
-suggestive of horizon heat-kernel structure (direction, NOT banked).** Process record: agent died post-verdict
+suggestive of horizon heat-kernel structure (direction, NOT banked).** **THE GENERATOR QUESTION SCOPED
+(agentLL, 2026-06-12): DIRECTION-NARROWED — the question now has a unique mathematical shape.** Lemmas
+(machine-verified, 0 tracebacks): the √3 lock ⟺ the cubic class UNIQUELY (the ratio tan(π/(2(k+1))) is strictly
+monotone in the exponent class k — no other class can fake it); the fingerprint class is EXACTLY the Laplace
+image of a one-sided NEGATIVE-ARGUMENT AIRY DENSITY (the classical Airy connection formula IS the √3 lock;
+closed-form pair verified to 1e-31); the kill list armed (KMS-thermal → index 1, dead; quadratic saddles →
+ratio 1, dead; two-sided support → dead). CANDIDATE KILLS AND SALVAGE: the bare b-family caustic is KILLED
+honestly (the edge pole cancels exactly; the coalescence is Watson-class linear-endpoint → power law, slope
+test 2.000001, robust across κ-readings); the bare dS QNM ladder is killed (pure-imaginary pin). THE SALVAGE
+IS THE RESULT: a conversion theorem — a family-edge measure e^(−γx^(−q)) outputs response index 2q/(2q+1),
+so index 1/3 ⟺ q = 1/4 UNIQUELY — and the Deser–Levin √x map then converts a FOURTH-ROOT oscillatory edge
+measure into the complete fingerprint (end-to-end numeric ratio → 1). q = 1/4 is exactly agentV's σ_req input
+class — flagged as REQUIREMENT-MATCH ONLY (the firewall held; not a derivation). **Link 5's generator question,
+final form: derive the khronon b-family edge measure ρ(b) — PASS ⟺ ρ carries cos(γ(c_χ−b)^(−1/4)) with
+γ_req = 2^(1/4)√H·ζ̃/(4√π·c_χ^(1/4)) (raw, quarantined). The calculation is ANALYTIC (no long compute needed);
+survivors ranked: (d)-dressed primary, (b)-as-Airy-spectral-edge folds in, (a)/(c) secondary with fold tests.**
+Bug honesty: a factor-3 hand-slip in a closed form caught by the agent's own quadrature gate and corrected.
+Process record: agent died post-verdict
 pre-flush; 5 print-path crashes fixed (prints only, zero compute edits); the keystone scan byte-identical across
 2 regenerations; the verifier's own first fitter caught by its own self-validation gate and fixed — the bug-log
 culture held through the last layer. ALL FLAGS CLOSED: the legal-mixture escape is DATA-CLOSED (agentBB: best legal mixture +0.026 dex past the SPARC line AND ×21 over the solar reflex via a forced-positive variance pincer that never opens — no sweet spot exists; V's predicted failure fingerprint observed in the data fit). The boundary theorem is now THEOREM + DATA: no linear field-bath, legal/tuned/balanced, carries the rotation curves. Link 5 = the khronon medium, the only object standing. The sign question is CLOSED (agentAA, 26/26 checks): DEFICIT ⟺ M² < 2H² confirmed — the deficit channel is intrinsically de Sitter (flat space gives an excess); V's contrary flag traced to a vector-vs-scalar Yukawa anchor error; V's theorems untouched.
