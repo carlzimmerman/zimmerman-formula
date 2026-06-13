@@ -111,7 +111,29 @@ class — flagged as REQUIREMENT-MATCH ONLY (the firewall held; not a derivation
 final form: derive the khronon b-family edge measure ρ(b) — PASS ⟺ ρ carries cos(γ(c_χ−b)^(−1/4)) with
 γ_req = 2^(1/4)√H·ζ̃/(4√π·c_χ^(1/4)) (raw, quarantined). The calculation is ANALYTIC (no long compute needed);
 survivors ranked: (d)-dressed primary, (b)-as-Airy-spectral-edge folds in, (a)/(c) secondary with fold tests.**
-Bug honesty: a factor-3 hand-slip in a closed form caught by the agent's own quadrature gate and corrected.
+Bug honesty: a factor-3 hand-slip in a closed form caught by the agent's own quadrature gate and corrected. **THE GENERATOR DERIVATION ATTEMPTED (agentMM, 2026-06-12, a 9-agent
+adversarial workflow: 2 understand + 3 independent derive routes + 3 hostile verifiers + synthesis):
+NEEDS-NEW-INPUT — hostile-verified, all three routes converging, no smuggle surviving.** The bulk specification
+does NOT force the fourth-root edge: the generic/free pump on the Deser-Levin b-family produces only a kinematic
+simple-pole / Watson-thermal (Rayleigh-Jeans) edge in EVERY route. (A, direct, OBSTRUCTED/CONFIRMED) the raw
+amplitude edge is a simple pole, residue -H^2/(32pi^2 c_chi^2); the generic-pump forward density slope converges
+to -1, never -1/4 (machine: -0.039/-0.0004/-4e-6/-4e-8 -> 0 for the density, -1.000000 for the amplitude). (B,
+resurgence, OBSTRUCTED/CONFIRMED) the free Stokes data is a Gevrey<=1 double-pole Matsubara tower — a DIFFERENT
+universality class from the Gevrey-4 ((4n)! ) partner of e^(-zeta u^(-1/4)); an analytic edge map provably cannot
+upgrade a linear pole tower into a confluent fourth-root branch. (C, anomaly/modular, NEEDS-NEW-INPUT/CONFIRMED)
+the foliation/conformal-anomaly sector is SILENT on the edge (Paneitz Delta_4 is rational -> no branch point; the
+modular density is 1/u Rayleigh-Jeans from the boost generator's flat two-sided spectrum) — it relocates the answer
+to the untouched free pump kernel Psi and is the source of the overall verdict. THE FIREWALL HELD: the dangerous
+u ~ sqrt(c_chi-b) -> u^(-1/2) 'fourth-root' laundering was machine-FALSIFIED in all three routes (the forward
+density returns -1, not -1/4); zeta-tilde and (16pi/3)^(1/4) quarantine intact; **the q=1/4 / sigma_req agreement
+is therefore a QUARANTINED RESTATEMENT, not an independent consistency check** (the one forward computation lands
+non-Airy). **Link 5's TRUE final form after this round: sigma_req ~ e^(-zeta u^(-1/4)) is FREE INPUT — Link 5 stands
+as a consistent-but-underivable TRANSCRIPTION awaiting a banked physical mechanism (dS-bath / horizon heat-kernel)
+that forces the negative-argument Airy normal form on the pump's own fluctuation kernel Psi; the generic operator
+lands non-Airy.** The single surviving next calculation: classify the edge spectral-density normal form of the
+pump's OWN fluctuation operator Psi = |phi-tilde(nu)|^2 at b -> c_chi and test for the negative-argument Airy edge
+(PASS forces the fourth-root with gamma = gamma_req) — but the mechanism that would supply the Airy ramp is now the
+named, unbanked input, NOT a calculation on existing machinery.
 Process record: agent died post-verdict
 pre-flush; 5 print-path crashes fixed (prints only, zero compute edits); the keystone scan byte-identical across
 2 regenerations; the verifier's own first fitter caught by its own self-validation gate and fixed — the bug-log
