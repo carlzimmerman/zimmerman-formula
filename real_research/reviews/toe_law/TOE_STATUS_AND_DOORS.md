@@ -171,7 +171,13 @@ MECHANISM-CANDIDATE, FOLD-POSSIBLE-COUPLING-DEPENDENT.** The dS horizon bath FOR
 not cherry-picked) — MM/NN's convex kill downgraded on the sign axis, the active pump DOES bend — but the smooth
 Gibbons-Hawking continuum gives an unbounded (sigma6<0, Cauchy-Schwarz) non-edge-pinned fold, so a CONTROLLED Airy
 fold now hinges on one named unbanked input: a PEAKED dS quasinormal-mode horizon resonance, not further thermal-continuum
-computation. `agentOO_selfenergy_fold.md`. **SHAPED (agentNN, 2026-06-12, 5-agent adversarial workflow): MECHANISM-CANDIDATE —
+computation. `agentOO_selfenergy_fold.md`. **QNM TESTED (agentPP, 2026-06-12): STILL-UNBOUNDED — escalated to a NO-FOLD THEOREM.**
+The dS QNM ladder (purely damped, Re omega=0 — agentS) is BROAD not peaked (Cauchy-Schwarz 0.33-0.6 < 1, Q≡0),
+and the physical khronon branch GAPS/FLATTENS (v_g>=0), never folds. THE THEOREM: any passive (rho>=0) self-energy
+is Herglotz => dk^2/d(omega^2)>0 monotone => NO passive bath can fold (re-verified 0/5000 violations). Converges
+with X2 (the medium must be ACTIVE): the fold lives in the NON-PASSIVE sector. sigma4<0 stays forced; a controlled
+fold now provably requires a squeezed/population-inverted horizon response (Cauchy-Schwarz-violating), not the
+passive dS QNM spectrum. `agentPP_qnm_fold.md`. **SHAPED (agentNN, 2026-06-12, 5-agent adversarial workflow): MECHANISM-CANDIDATE —
 the new input is now a NAMED OPERATOR.** Both formalisms (WKB turning point + heat-kernel proper-time) independently
 re-confirm MM's free=thermal/non-Airy kill (free dispersion strictly convex, no fold; free turning point gives the
 thermal Γ-function S-matrix), then name what the pump must add: a SIGN-INDEFINITE ROTON higher-derivative kinetic

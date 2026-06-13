@@ -158,7 +158,28 @@ thermal continuum gives an unbounded, non-edge-pinned fold, so a controlled boun
 named unbanked input: a PEAKED / internal-scale horizon response (the dS QUASINORMAL-MODE resonance), not on any
 further computation with the smooth thermal bath.** Next calc: test whether the dS QNM-resonant (peaked) horizon
 response supplies sigma6 > 0 AND pins k* at the b->c_chi edge on the Ai(-w) side; PASS then derives rho(b)/q=1/4
-with gamma_req, a featureless-only response leaves the fold unbounded and the generator open.
+with gamma_req, a featureless-only response leaves the fold unbounded and the generator open. **THE QNM RESONANCE TESTED
+(agentPP, 2026-06-12, a 5-agent adversarial workflow): STILL-UNBOUNDED — and the kill ESCALATES to a THEOREM.**
+agentOO named the peaked dS quasinormal-mode horizon resonance as the missing stabilizer source; agentPP tested
+it (the dS QNM ladder is banked from agentS: purely DAMPED, Re omega=0, Gamma_n=sinh((Delta+n)lambda)) and refuted
+it on the merits, both routes CONFIRMED. The QNM response is BROAD/zero-centered, not peaked at finite k: its
+Cauchy-Schwarz moment ratio sits at 0.33-0.6 (and <=0.993 even at the infinitely-sharp delta limit; a single mode
+saturates at 1.000 but a genuine >=2-rung tower cannot) — the SAME unbounded band as OO's smooth continuum; the
+purely-damped modes have quality factor Q(k)≡0 and the only extremum k*=H·Delta/sqrt(c_chi^2+1) tracks the HORIZON,
+not the sonic edge; and the self-consistent physical khronon branch SATURATES to a plateau with group velocity
+v_g >= 0 in every cell — the dS bath GAPS/FLATTENS the dispersion by level repulsion, it does NOT fold it. **THE
+NO-FOLD THEOREM (method-independent, the escalation):** any PASSIVE (rho>=0) self-energy S(x)=sum w_n/(x-W_n^2)
+is Herglotz/Pick, so dk^2/d(omega^2) > 0 STRICTLY for any positive spectrum and any bare speed — monotone to all
+orders => NO passive bath, QNM or thermal continuum, can fold the khronon dispersion (independently re-verified:
+dS/dx>0 over 5000 random positive baths, 0 violations; the branch-end loophole closed). So the controlled fold
+provably CANNOT come from the passive response. **The convergence with X2:** this is the SAME conclusion the
+causality theorem reached from the other side — X2 forced the medium to be ACTIVE/non-passive, and PP now shows the
+FOLD specifically lives in the non-passive sector: the passive part only gaps/flattens. **Link 5 update: sigma4<0
+stays bend-FORCED (OO), but a controlled bounded Airy fold provably requires a NON-PASSIVE / squeezed horizon
+response with negative effective spectral weight (population inversion) that violates I2^2<=I1 I3 — exactly X2's
+mandated active channel — not the passive dS QNM spectrum, which is refuted as the stabilizer source.** Next calc:
+test whether the squeezed/pumped dS horizon response (the X2 active reservoir) supplies the Cauchy-Schwarz-violating
+weight that bounds the fold and pins k* at b->c_chi; a passive-only completion leaves the generator open by theorem.
 Process record: agent died post-verdict
 pre-flush; 5 print-path crashes fixed (prints only, zero compute edits); the keystone scan byte-identical across
 2 regenerations; the verifier's own first fitter caught by its own self-validation gate and fixed — the bug-log
