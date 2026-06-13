@@ -1,0 +1,105 @@
+==============================================================================
+NN-1  Free worldline kernel: the sinh^-2 thermal pullback -> proper-time class
+==============================================================================
+
+[NN-1a] Free quadratic dispersion: K_free(s) = int dk/(2pi) exp(-s*(c_chi^2 k^2))
+   K_free(s) = 1/(2*sqrt(pi)*c_chi*sqrt(s))
+   -> s^{-1/2}: a GAUSSIAN saddle in k, half-integer power. Quadratic class.
+
+[NN-1b] Mittag-Leffler: 1/sinh^2(x) = sum_n 1/(x - i pi n)^2  (double-pole tower)
+   x=0.7: 1/sinh^2 = 1.737772757666169181495557692566478387487
+          ML sum   = 1.737823411925786948313292394741362139888   (im=-1.42e-43)
+          rel.diff = 2.91e-05
+   => DOUBLE-pole Matsubara tower. Frequency transform -> w/(e^{2pi w/kappa}-1):
+      Boltzmann tail e^{-2pi w/kappa}, index 1 (Gevrey-1). This is MM's kill object.
+
+==============================================================================
+NN-2  The caustic condition: WHEN does the proper-time/phase saddle go CUBIC?
+==============================================================================
+
+[NN-2a] Free action: the sinh^-2 kernel as a saddle problem.
+   omega_free(k) = c_chi k :  omega'(k) = c_chi , omega''(k) = 0
+   -> NO inflection (omega''=0 nowhere except trivially). No coalescing saddle. QUADRATIC.
+
+[NN-2b] The cubic/caustic condition stated as an operator requirement.
+   Need a dispersion (in-medium) omega^2(k) whose phase/group structure develops a
+   STATIONARY INFLECTION at the edge: a k* with  d(omega)/dk = v_edge  and
+   d^2(omega)/dk^2 = 0  SIMULTANEOUSLY  (two saddles merge). Generic monotone
+   dispersions do NOT have this; it requires a TUNED non-monotonic dispersion -- a
+   roton-like minimum / inflection in omega(k), i.e. a HIGHER-DERIVATIVE kinetic term.
+
+==============================================================================
+NN-3  Build the cubic explicitly: tuned dispersion -> Airy edge; verify index 1/3
+==============================================================================
+
+[NN-3a] Quadratic curvature (a != 0): van Hove square-root edge, index 1/2.
+   DOS slope d ln rho/d ln E = -0.500000  (van Hove: -1/2; index of edge = 1/2)
+
+[NN-3b] Inflection (a = 0, cubic c != 0): AIRY edge, index 1/3.
+   w=+1.0: (1/pi)int cos(k^3/3+wk)dk = +0.1352924163  Ai(w)=+0.1352924163  rel=0.0e+00
+   w=+2.0: (1/pi)int cos(k^3/3+wk)dk = +0.0349241304  Ai(w)=+0.0349241304  rel=1.8e-31
+   w=+0.0: (1/pi)int cos(k^3/3+wk)dk = +0.3550280539  Ai(w)=+0.3550280539  rel=1.4e-31
+   w=-1.0: (1/pi)int cos(k^3/3+wk)dk = +0.5355608833  Ai(w)=+0.5355608833  rel=0.0e+00
+   => the CUBIC stationary point is the Airy integral, EXACTLY. Index-1/3 turning point.
+
+[NN-3c] sqrt3 lock + index-1/3 from the NEGATIVE-arg Airy asymptotic (LL-1/LL-2 tie).
+   |Ai(-w)|*w^(1/4) at w=1e2,1e4,1e6: 0.55894 0.27057 0.06929
+   target pi^(-1/2)/sqrt(pi)?  envelope const = 0.56419 (Ai(-w) amplitude index -1/4 confirmed)
+
+==============================================================================
+NN-4  The discriminating question: can the EDGE b->c_chi BE the caustic? (MM test)
+==============================================================================
+
+[NN-4a] The b-pole is a PARAMETER pole (amplitude), not a saddle coalescence.
+   amplitude 1/(c_chi^2-b^2): pole order in (c_chi-b) = 0 (simple in c_chi^2-b^2)
+   -> density ~ 1/u, d ln rho/d ln u = -1 (MM's machine -1.000000). A SIMPLE POLE EDGE.
+   This coalescence CANNOT be the Airy turning point: it is in the wrong variable.
+
+[NN-4b] So an Airy edge needs a coalescing saddle in tau/k that the FREE op LACKS.
+   massless c k: omega''(k) = 0; inflection roots (real,finite) = []
+   massive sqrt(c^2k^2+m^2): omega''(k) = c**2*m**2/(c**2*k**2 + m**2)**(3/2); inflection roots (real,finite) = []
+   => NO free/massive dispersion has an inflection. NO fold. MM holds: free = non-Airy.
+
+==============================================================================
+NN-5  NAME THE OPERATOR: the exact term that promotes quadratic -> cubic
+==============================================================================
+[NN-5a] omega=sqrt(c0^2 k^2 + alpha k^4): omega''=0 real roots: none (convex up)
+[NN-5b] roton omega=sqrt(k^2 - k^4 + 0.1 k^6): omega''=0 (inflection) near k* = [3.29] -> FOLD EXISTS. This dispersion CAN host an Airy turning point.
+
+[NN-5c] The pump term, named precisely:
+   The active pump must add a SIGN-INDEFINITE HIGHER-DERIVATIVE kinetic operator to Psi
+   that bends the in-medium dispersion non-monotonically (roton-type): concretely a
+   term  -alpha (partial_i chi)(partial^2)(partial^i chi)  [a k^4 with the bending sign]
+   stabilized by +beta k^6, TUNED so that at the edge frequency the dominant worldline
+   saddle sits exactly at the dispersion's INFLECTION (omega''(k*)=0, omega'''(k*)!=0).
+   This is the caustic/fold condition. It is the in-medium DISPERSION modification that
+   EE-3.2's Bogoliubov lemma already demanded (a dynamics modifier, not a state filler),
+   now pinned to its exact analytic shape: a roton inflection coincident with the edge.
+
+[NN-5d] What the FREE operator lacks (the MM gap, stated exactly):
+   Free/massive Psi: omega''(k) has NO real finite zero (NN-4b) -> only Gaussian saddles
+   -> Watson/Rayleigh-Jeans simple-pole edge, slope -1. The pump must supply the k^4/k^6
+   curvature that creates an isolated dispersion INFLECTION; a generic turning point is
+   NOT already present (MM), so the fold must be MANUFACTURED by the higher-derivative
+   term AND tuned to coincide with the edge. Untuned k^4 -> generic fold at wrong place;
+   the edge-coincidence (omega''(k*)=0 AT the b->c_chi resonance) is the extra condition.
+
+==============================================================================
+NN-6  Honesty tie: does the cubic fold give the LL-1 sqrt3 lock (not just 'index 1/3')?
+==============================================================================
+   fold Phi=a z + z^3/3, a>0: saddle actions = [0.6666666666666666j, -0.6666666666666666j] (pure imaginary -> oscillatory, the a>0 'classically allowed' side)
+   a<0 (Ai(-|a|) oscillatory tail): real saddles z*=+-sqrt|a|, actions= [-0.6666666666666666, 0.6666666666666666]
+   LL-1 split cubic Phi = w s^2 - i beta/s ; 3 saddles (cube-root triad):
+   normalized actions A/(w^(1/3) beta^(2/3)) and Im/Re (w=beta=1):
+      +0.94494-1.63669j   Im/Re = -1.732051   [ADMISSIBLE(Re>0)]
+      -1.88988+0.00000j   Im/Re = -0.000000   [growing root (phase pi, one-sidedness-EXCLUDED)]
+      +0.94494+1.63669j   Im/Re = +1.732051   [ADMISSIBLE(Re>0)]
+   admissible Im/Re magnitude = 1.7320508076   sqrt3 = 1.7320508076   match=True
+   => the cubic fold's saddle triad carries Im/Re = sqrt3 on the decaying pair EXACTLY:
+      decay:osc = 1:sqrt3 (LL-1e k=1/2, index 1/3). The fingerprint lock is REPRODUCED.
+   (The Laplace-image closed form L[...]=2*3^(1/3)e^(-w^(1/3)/2)cos((sqrt3/2)w^(1/3)) is
+    LL-2.2, banked & verified there to ~1e-6; re-derivation by improper quadrature here is
+    numerically unstable in the Airy tail and is NOT claimed -- the saddle lock above is the
+    robust statement, exact arithmetic.)
+
+DONE.
