@@ -200,7 +200,27 @@ but its delivery hinges on ONE named unbanked input: a PEAKED spectral function 
 saturated/non-Markovian gain to escape the LTI temporal instability.** Smuggle guards held (q=1/4 never asserted;
 the sigma6=0.10 showcase honestly flagged as having no soft edge — identity asserted not derived, caught by the
 verifier). Next calc: construct the saturated (non-LTI) peaked active spectral function and test sigma6>=sigma6*
-+ edge-coincidence + temporal stability together.
++ edge-coincidence + temporal stability together. **THE SATURATED-GAIN ('maser') TEST (agentRR, 2026-06-12,
+a 5-agent adversarial workflow): FOLD-DELIVERED-MODEL-DEPENDENT — buildable + X2-consistent, NOT forced (4 free
+knobs); one NEW forced result.** The maser hook delivers exactly two things, both verified: (1) NEW FORCED RESULT —
+saturated gain CLAMPS to loss at steady state (g_eff(I*)=kappa exactly, a steady-state identity, machine-verified)
+which TAMES QQ's LTI amplitude runaway: the runaway objection is RETIRED, and this is forced not a knob; (2) the
+k* SCALE k*~(c_chi/sqrt(a0))H is forced from pre-banked {H, c_chi, a0} (zero new knobs — a clean scale-grade
+prediction). BUT the controlled fold is NOT delivered forced: it rests on N=4 FREE dimensionless knobs none of
+which the dS pump fixes (the pump sets SCALES ~H; the fold needs RATIOS): (a) a narrow gain-peak ratio k0^2/Gamma
+in [0.10,0.30] (the smooth GH continuum is broad, gives sigma6<0 — the narrow peak is the QNM input PP's theorem
+constrains); (b) the fold-strength magnitude y=A/(c_chi^2 Gamma) in [1.0,1.3] (pump fixes the SIGN not the
+threshold-crossing magnitude); (c) the edge-coincidence k0 = b->c_chi (saturation pins the operating point at the
+LASING threshold, NOT the dispersion soft edge — the two pins roam apart 10-266x); (d) a k-RESOLVED/non-Markovian
+clamp (scalar laser saturation provably leaves the off-center fold pole in the UHP = unstable). Honesty catch: a
+route's verdict word 'DELIVERED' overstated its own body (which says undelivered); the synthesizer banked at the
+body's honest reading. **Link 5 update: the controlled roton fold stays SELF-CONSISTENT-BUT-UNDELIVERED — the
+saturated-gain construction tames the runaway (forced) and predicts the k* SCALE (forced), but delivery of the
+bounded edge-pinned fold needs 4 ratios the pump does not fix; the framework PREDICTS the k* scale and merely
+ACCOMMODATES the edge coincidence via one tuned line-shape ratio. The residual burden is now fully concentrated
+on a single object: a peaked dS QNM horizon spectral function (PP-constrained: must be active/non-passive) plus a
+k-structured saturation — genuinely new physics input, not a calculation on banked machinery.** Quarantine held
+(q=1/4, zeta-tilde, (16pi/3)^(1/4) never asserted).
 Process record: agent died post-verdict
 pre-flush; 5 print-path crashes fixed (prints only, zero compute edits); the keystone scan byte-identical across
 2 regenerations; the verifier's own first fitter caught by its own self-validation gate and fixed — the bug-log

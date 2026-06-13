@@ -184,7 +184,13 @@ a negative spectral residue violates Cauchy-Schwarz (bounds the fold, sigma6>0) 
 sigma6*=1/16 exact, soft edge at the triple root u*=4). But the fold is forced only in DIRECTION not MAGNITUDE,
 and the simple LTI gain channel is bounds-but-unstable (exhausted). Delivery hinges on one named input: a peaked
 spectral function on the stable negative-residue branch at sigma6>=sigma6* with k* edge-pinned + saturated gain.
-`agentQQ_active_fold.md`. **SHAPED (agentNN, 2026-06-12, 5-agent adversarial workflow): MECHANISM-CANDIDATE —
+`agentQQ_active_fold.md`. **SATURATED-GAIN TESTED (agentRR, 2026-06-12): FOLD-DELIVERED-MODEL-DEPENDENT.**
+The maser hook is buildable + X2-consistent but NOT forced (N=4 free knobs). NEW FORCED RESULT: saturated gain
+clamps to loss (g_eff=kappa identity) -> QQ's amplitude runaway RETIRED; and the k* SCALE ~(c_chi/sqrt a0)H is
+forced from banked constants. NOT forced: the narrow gain-peak ratio, the fold-strength magnitude, the edge
+coincidence (lasing-threshold pin roams 10-266x from the soft edge), and a k-resolved clamp. Link 5 stays
+SELF-CONSISTENT-BUT-UNDELIVERED; residual burden concentrated on ONE object — a peaked (PP-constrained active)
+dS QNM spectral function + k-structured saturation = genuinely new physics input. `agentRR_saturated_fold.md`. **SHAPED (agentNN, 2026-06-12, 5-agent adversarial workflow): MECHANISM-CANDIDATE —
 the new input is now a NAMED OPERATOR.** Both formalisms (WKB turning point + heat-kernel proper-time) independently
 re-confirm MM's free=thermal/non-Airy kill (free dispersion strictly convex, no fold; free turning point gives the
 thermal Γ-function S-matrix), then name what the pump must add: a SIGN-INDEFINITE ROTON higher-derivative kinetic
