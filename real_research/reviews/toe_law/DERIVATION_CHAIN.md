@@ -219,7 +219,31 @@ saturated-gain construction tames the runaway (forced) and predicts the k* SCALE
 bounded edge-pinned fold needs 4 ratios the pump does not fix; the framework PREDICTS the k* scale and merely
 ACCOMMODATES the edge coincidence via one tuned line-shape ratio. The residual burden is now fully concentrated
 on a single object: a peaked dS QNM horizon spectral function (PP-constrained: must be active/non-passive) plus a
-k-structured saturation — genuinely new physics input, not a calculation on banked machinery.** Quarantine held
+k-structured saturation — genuinely new physics input, not a calculation on banked machinery.** **THE LAST QNM
+DOOR — THE GENERATOR ARC CLOSES (agentSS, 2026-06-12, a 5-agent adversarial workflow): NEEDS-NEW-INPUT, both routes
+CONFIRMED; HONESTLY NOT CIRCULAR.** Tested whether the dS horizon's own heat-kernel symmetry FORCES the gain shape
+onto the edge surface. A REAL hidden symmetry is found and named precisely — the static-patch SL(2,R)~SO(2,1) /
+Tomita-Takesaki MODULAR structure of the Gibbons-Hawking state (the QNM ladder is its lowest-weight discrete-series
+rep) — but it PERMITS, it does not FORCE: it is a scale-free DILATION, and (i) the target moment ratio
+4 j3/j2^2 = 8*Delta SLIDES with the free rep label Delta (dR/dDelta = 8 != 0, machine-verified — not fixed by the
+rep), (ii) under modular flow that ratio carries scaling weight -1 against a scale-DECOUPLED external G_sat
+(c_chi-set, not H-set), and a dilation can only force WEIGHT-0 invariants (verified: invariant-for-all-flow <=>
+weight 0; here weight = -1 != 0), so NO zero-parameter forcing exists; (iii) it supplies no spatial-k to resolve
+RR's clamp (the heat-kernel scale k_H sits ~10^5 BELOW the fold band, k0/k_H ~ c_chi^2/sqrt(a0), re-verified). NOT
+CIRCULAR vs PP's killed passive QNM: the 8*Delta ratio is from the passive descendant measure but used ONLY for
+the moment-ratio coincidence; the weight-(-1) obstruction is residue-sign-independent so it applies to the ACTIVE
+deliverer too — no passive->active smuggle, no manufactured win (the verifier independently reproduced all six
+load-bearing numbers). **END-OF-ARC STATEMENT (honest): the generator arc MM->SS is MONOTONE and CLOSED — MM/NN
+named the roton operator, OO forced the bend (sigma4<0), PP proved no passive bath folds (theorem, converges with
+X2), QQ showed the deliverer must be active-but-stable (active != anti-damped; obstruction ruled out), RR reduced
+it to N=4 free ratios + tamed the runaway + predicted the k* SCALE, SS found the last forcing candidate REAL but a
+permits-not-forces dilation. THE FOURTH-ROOT FOLD MECHANISM IS BUILDABLE AND SELF-CONSISTENT BUT NOT FORCED BY THE
+BANKED MACHINERY: the residual is a peaked, k-resolved, scale-LOCKED active line requiring genuinely new physics —
+specifically a c_chi<->H scale-lock (tying the khronon sound speed to a power of H) or a single-scale active
+k-resonance — NOT a calculation on existing machinery.** The one external dependency, flagged both ways: the
+verdict hinges on c_chi<->H decoupling (structural, not a convention artifact); a future input tying c_chi to a
+power of H would shift SS toward PERMITS-MODEL-DEPENDENT. Quarantine held (only signs/ratios/scaling-weights/
+pole-locations; q=1/4 never asserted). Quarantine held
 (q=1/4, zeta-tilde, (16pi/3)^(1/4) never asserted).
 Process record: agent died post-verdict
 pre-flush; 5 print-path crashes fixed (prints only, zero compute edits); the keystone scan byte-identical across

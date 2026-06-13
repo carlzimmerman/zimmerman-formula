@@ -190,7 +190,13 @@ clamps to loss (g_eff=kappa identity) -> QQ's amplitude runaway RETIRED; and the
 forced from banked constants. NOT forced: the narrow gain-peak ratio, the fold-strength magnitude, the edge
 coincidence (lasing-threshold pin roams 10-266x from the soft edge), and a k-resolved clamp. Link 5 stays
 SELF-CONSISTENT-BUT-UNDELIVERED; residual burden concentrated on ONE object — a peaked (PP-constrained active)
-dS QNM spectral function + k-structured saturation = genuinely new physics input. `agentRR_saturated_fold.md`. **SHAPED (agentNN, 2026-06-12, 5-agent adversarial workflow): MECHANISM-CANDIDATE —
+dS QNM spectral function + k-structured saturation = genuinely new physics input. `agentRR_saturated_fold.md`. **LAST QNM DOOR — ARC CLOSED (agentSS, 2026-06-12): NEEDS-NEW-INPUT, both routes CONFIRMED, not
+circular.** A real dS symmetry is found+named (static-patch SL(2,R)/Tomita-Takesaki modular structure; QNM ladder =
+its discrete-series rep) but it PERMITS not FORCES: a scale-free dilation; the ratio 4j3/j2^2=8Delta slides with the
+free label and carries modular weight -1 against a scale-decoupled G_sat (a dilation forces only weight-0), and it
+gives no spatial-k (k_H ~10^5 below the fold band). The GENERATOR ARC MM->SS is CLOSED: the fourth-root fold is
+BUILDABLE + SELF-CONSISTENT (X2-compatible, runaway tamed, k* scale predicted) but NOT FORCED by banked machinery —
+the residual is genuinely new physics (a c_chi<->H scale-lock or single-scale active k-resonance). `agentSS_qnm_symmetry.md`. **SHAPED (agentNN, 2026-06-12, 5-agent adversarial workflow): MECHANISM-CANDIDATE —
 the new input is now a NAMED OPERATOR.** Both formalisms (WKB turning point + heat-kernel proper-time) independently
 re-confirm MM's free=thermal/non-Airy kill (free dispersion strictly convex, no fold; free turning point gives the
 thermal Γ-function S-matrix), then name what the pump must add: a SIGN-INDEFINITE ROTON higher-derivative kinetic
