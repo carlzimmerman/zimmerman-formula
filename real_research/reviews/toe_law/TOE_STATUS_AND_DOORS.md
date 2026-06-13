@@ -159,7 +159,14 @@ the cubic class uniquely; the fingerprint = the Laplace image of a one-sided neg
 (exact); the bare caustic and bare QNM ladder killed honestly; the surviving calculation is ANALYTIC and
 uniquely shaped: derive the khronon b-family edge measure — PASS ⟺ a fourth-root (q = 1/4) oscillatory edge
 singularity with γ_req quarantined; q = 1/4 = agentV's σ_req class (requirement-match, firewalled).
-`agentLL_generator_scoping.md`.
+`agentLL_generator_scoping.md`. **DERIVATION ATTEMPTED (agentMM, 2026-06-12, 9-agent adversarial workflow): NEEDS-NEW-INPUT,
+hostile-verified.** All three independent routes (direct / resurgence / anomaly) converge: the generic bulk pump
+gives only a simple-pole/Rayleigh-Jeans edge (slope -1, not -1/4) — the fourth-root is FREE INPUT, returning only
+when the pump is HANDED the locked Gevrey-3 pair. The firewall held (the sqrt-map laundering machine-falsified in
+all three; the q=1/4 / σ_req match is a quarantined RESTATEMENT, not a consistency check). Link 5 = a
+consistent-but-underivable transcription; the generator now requires a NAMED, UNBANKED physical mechanism (dS-bath
+/ horizon heat-kernel supplying the negative-argument Airy ramp on the pump kernel Ψ), not a calculation on
+existing machinery. `agentMM_generator_derivation.md`.
 
 **REPORTED 2026-06-11 (each: memo + .py + .out committed; chain/assembly patched; closed as a door):**
 - **II — the CMB/E_G audit → KILL of the unregulated linear-scale slip extension** (every reading, both footings,
