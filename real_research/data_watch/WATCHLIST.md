@@ -78,3 +78,31 @@ Secondary COMP-only channel: ghost-ringing — inflated σ_HI/non-circular power
 frequency, decaying over N_cyc·T_par. TDGs near parents CANNOT test the positive branch (e_N ≈ 0.2 caps
 it at +0.07 dex; measured −0.13 ± 0.10 vs settled QUMOND-EFE — consistent, NON-DIAGNOSTIC between
 forms). Owner: `reviews/toe_law/agentJJ_transient_fingerprint.md`.
+
+---
+
+## 2026-06-13 — agentVV empirical hunt: status updates on the three sharpest registered tests (both footings; arXiv ids HTTP-200 verified)
+
+**Entry 2/12 (a₀(z)) — TENSION, WATCH-grade (framework-UNFAVORABLE, recorded at full weight).** MUSE-DARK III is
+published (Ciocan et al. 2026, **arXiv:2604.22613**, A&A): a₀(z≈1) = (2.38±0.10)×10⁻¹⁰ — **RISING**, ×2.5 above the
+framework's declining √ρ_DE branch (~14σ nominal). **But** the convention-robustness rule applied symmetrically: the
+measured value overshoots even the steepest *rising* rival (E(z)→1.65×10⁻¹⁰) by ×1.4 → a dominant systematic /
+M–L normalization is implicated, so this is a **WATCH-grade weakening, NOT a clean kill** (consistent with the
+banked `project_a0z_muse_confrontation`: rising reading ΛCDM-degenerate, weakened-and-contested, not falsified).
+The deep-[CII] fork (entry 12) stays BLOCKED: CRISTAL (arXiv:2507.11600) reaches r_MOND but the discs are
+interacting/dispersion-dominated/baryon-falling; REBELS-25 M_bar still ×7-bracketed. **NEW LEAD — the M_bar pin:**
+a spatially-resolved α_[CII] tracer paper (A&A 2025, aa55179-25) is the named route to pin REBELS-25's baryonic
+mass to ×2 and open the ×2.3–2.4 branch fork.
+
+**Entry 11 (a★ floor) — NEW-DATA, net NEUTRAL→WATCH; AGC 114905 still inclination-hostage.** The inclination fight
+is NOT resolved — both 2024 A&A papers stand: Mancera Piña 2024 (A&A 689 A344, deep GTC stellar imaging) measures
+i = 31±2° → MOND fails (explicitly excludes the i≈12° rescue); Lelli (arXiv:2408.05269) argues i = 15±2°
+(lopsidedness) → MOND fits. At the GTC-defended i=31° the object is floor-shaped at g_obs = 0.057 a₀_fw,
+−0.54 dex below the √ law, implied a★ ≈ 0.057 a₀ — sitting right on agentBB's binding band-line edge (0.05 a₀),
+so framework-FAVORABLE-but-non-decisive (flagged WATCH, not a confirmation). No new isolated ultra-deep rotator
+reaches the window; BIG-SPARC still not public.
+
+**Entry 1/8 (wide binaries) — NO NEW DECISIVE DATA; trigger STANDS.** Gaia DR4 unreleased. Chae 2025a
+(arXiv:2502.09373, Bayesian 3D DR3): Γ = 0.085±0.040 (~2.1σ, ~4% boost, γ_g≈1.48) — positive, MOND-like, but
+non-discriminating among F4/M22/soft (needs ~2%). Chae 2025b (arXiv:2508.11996, HARPS 3D pilot) = the DR4-decider
+precursor. Owner: `reviews/toe_law/agentVV_empirical_hunt.md` (+ `agentVV_placement.py`).
