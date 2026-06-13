@@ -166,7 +166,14 @@ when the pump is HANDED the locked Gevrey-3 pair. The firewall held (the sqrt-ma
 all three; the q=1/4 / σ_req match is a quarantined RESTATEMENT, not a consistency check). Link 5 = a
 consistent-but-underivable transcription; the generator now requires a NAMED, UNBANKED physical mechanism (dS-bath
 / horizon heat-kernel supplying the negative-argument Airy ramp on the pump kernel Ψ), not a calculation on
-existing machinery. `agentMM_generator_derivation.md`.
+existing machinery. `agentMM_generator_derivation.md`. **SHAPED (agentNN, 2026-06-12, 5-agent adversarial workflow): MECHANISM-CANDIDATE —
+the new input is now a NAMED OPERATOR.** Both formalisms (WKB turning point + heat-kernel proper-time) independently
+re-confirm MM's free=thermal/non-Airy kill (free dispersion strictly convex, no fold; free turning point gives the
+thermal Γ-function S-matrix), then name what the pump must add: a SIGN-INDEFINITE ROTON higher-derivative kinetic
+term (−α(∂χ)∂²(∂χ) + βk⁶) creating a dispersion fold ω''(k*)=0 at the sonic edge — promoting the free simple-pole
+edge to negative-argument Airy (index 1/3). Three undischarged conditions named (k⁴ generation + sign; edge-coincidence
+tuning; Ai(−w) side). Next: compute the in-medium khronon self-energy from the dS-bath/horizon-heat-kernel and test
+the fold lands at b→c_χ on the oscillatory side. `agentNN_horizon_airy.md`.
 
 **REPORTED 2026-06-11 (each: memo + .py + .out committed; chain/assembly patched; closed as a door):**
 - **II — the CMB/E_G audit → KILL of the unregulated linear-scale slip extension** (every reading, both footings,
