@@ -177,7 +177,14 @@ and the physical khronon branch GAPS/FLATTENS (v_g>=0), never folds. THE THEOREM
 is Herglotz => dk^2/d(omega^2)>0 monotone => NO passive bath can fold (re-verified 0/5000 violations). Converges
 with X2 (the medium must be ACTIVE): the fold lives in the NON-PASSIVE sector. sigma4<0 stays forced; a controlled
 fold now provably requires a squeezed/population-inverted horizon response (Cauchy-Schwarz-violating), not the
-passive dS QNM spectrum. `agentPP_qnm_fold.md`. **SHAPED (agentNN, 2026-06-12, 5-agent adversarial workflow): MECHANISM-CANDIDATE —
+passive dS QNM spectrum. `agentPP_qnm_fold.md`. **ACTIVE-RESPONSE TESTED (agentQQ, 2026-06-12): PARTIAL-NEEDS-MORE —
+SELF-CONSISTENT-BUT-UNDELIVERED, OBSTRUCTED ruled out.** Key result (3-way verified): ACTIVE != ANTI-DAMPED —
+a negative spectral residue violates Cauchy-Schwarz (bounds the fold, sigma6>0) while keeping the pole in the LHP
+(stable, causal) — so a stable bounded-fold window provably EXISTS and the fold is NOT obstructed by X2 (threshold
+sigma6*=1/16 exact, soft edge at the triple root u*=4). But the fold is forced only in DIRECTION not MAGNITUDE,
+and the simple LTI gain channel is bounds-but-unstable (exhausted). Delivery hinges on one named input: a peaked
+spectral function on the stable negative-residue branch at sigma6>=sigma6* with k* edge-pinned + saturated gain.
+`agentQQ_active_fold.md`. **SHAPED (agentNN, 2026-06-12, 5-agent adversarial workflow): MECHANISM-CANDIDATE —
 the new input is now a NAMED OPERATOR.** Both formalisms (WKB turning point + heat-kernel proper-time) independently
 re-confirm MM's free=thermal/non-Airy kill (free dispersion strictly convex, no fold; free turning point gives the
 thermal Γ-function S-matrix), then name what the pump must add: a SIGN-INDEFINITE ROTON higher-derivative kinetic

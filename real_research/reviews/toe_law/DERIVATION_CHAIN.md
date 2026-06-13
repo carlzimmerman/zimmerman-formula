@@ -179,7 +179,28 @@ stays bend-FORCED (OO), but a controlled bounded Airy fold provably requires a N
 response with negative effective spectral weight (population inversion) that violates I2^2<=I1 I3 — exactly X2's
 mandated active channel — not the passive dS QNM spectrum, which is refuted as the stabilizer source.** Next calc:
 test whether the squeezed/pumped dS horizon response (the X2 active reservoir) supplies the Cauchy-Schwarz-violating
-weight that bounds the fold and pins k* at b->c_chi; a passive-only completion leaves the generator open by theorem.
+weight that bounds the fold and pins k* at b->c_chi; a passive-only completion leaves the generator open by theorem. **THE ACTIVE-RESPONSE TEST (agentQQ, 2026-06-12, a 5-agent
+adversarial workflow): PARTIAL-NEEDS-MORE — SELF-CONSISTENT-BUT-UNDELIVERED; the feared OBSTRUCTED outcome is
+RULED OUT.** PP's no-fold theorem said the fold must live in the non-passive sector; QQ tested whether the X2
+active pump can supply it WITHOUT contradicting X2's own passivity/stability premises. THE KEY RESULT (verified
+3 ways): **ACTIVE != ANTI-DAMPED** — passivity is broken by the spectral-weight SIGN (a negative residue / gain,
+which CAN violate Cauchy-Schwarz I2^2>I1 I3 to give sigma6>0; independently re-verified, sign-indefinite spectra
+violate CS 422/2000 while passive never do), while STABILITY is set by the pole LOCATION (which the residue sign
+does NOT move — the pole stays in the lower-half plane, causal, no runaway). So a STABLE, causal, bath-limited
+CS-violating window provably EXISTS: the controlled fold is NOT obstructed by X2, and the convergence holds. The
+threshold is exact: sigma6* = 1/16, and AT sigma6* the inflection cubic factorizes to 3(u-4)^3/128 — a triple
+root at u*=4 with omega^2(k*)=0 (the soft edge), the fold's existence point. BUT delivery is NOT yet shown: the
+fold is forced only in DIRECTION (sigma4<0), not MAGNITUDE — and the simple LTI active-gain temporal channel is
+BOUNDS-BUT-UNSTABLE (a visible fold needs gain e~O(1) >> the instability onset e_inst~0.015-0.018~O(gamma), putting
+a growing mode in the upper-half plane), so that channel is exhausted. **Link 5 update: the controlled-fold
+mechanism is SELF-CONSISTENT-BUT-UNDELIVERED — the X2 active pump is provably compatible with X2's passivity
+(active != anti-damped; a stable bounded-fold window exists) and the fold is no longer obstructed by any theorem,
+but its delivery hinges on ONE named unbanked input: a PEAKED spectral function on the STABLE negative-residue
+(active, not anti-damped) branch landing sigma6 >= sigma6* with k* pinned at the b->c_chi edge, plus a
+saturated/non-Markovian gain to escape the LTI temporal instability.** Smuggle guards held (q=1/4 never asserted;
+the sigma6=0.10 showcase honestly flagged as having no soft edge — identity asserted not derived, caught by the
+verifier). Next calc: construct the saturated (non-LTI) peaked active spectral function and test sigma6>=sigma6*
++ edge-coincidence + temporal stability together.
 Process record: agent died post-verdict
 pre-flush; 5 print-path crashes fixed (prints only, zero compute edits); the keystone scan byte-identical across
 2 regenerations; the verifier's own first fitter caught by its own self-validation gate and fixed — the bug-log
