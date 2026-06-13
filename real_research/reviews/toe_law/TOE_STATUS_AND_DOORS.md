@@ -166,7 +166,12 @@ when the pump is HANDED the locked Gevrey-3 pair. The firewall held (the sqrt-ma
 all three; the q=1/4 / σ_req match is a quarantined RESTATEMENT, not a consistency check). Link 5 = a
 consistent-but-underivable transcription; the generator now requires a NAMED, UNBANKED physical mechanism (dS-bath
 / horizon heat-kernel supplying the negative-argument Airy ramp on the pump kernel Ψ), not a calculation on
-existing machinery. `agentMM_generator_derivation.md`. **SHAPED (agentNN, 2026-06-12, 5-agent adversarial workflow): MECHANISM-CANDIDATE —
+existing machinery. `agentMM_generator_derivation.md`. **TESTED (agentNN named the roton operator; agentOO ran the decisive self-energy test, 2026-06-12):
+MECHANISM-CANDIDATE, FOLD-POSSIBLE-COUPLING-DEPENDENT.** The dS horizon bath FORCES the bend sign (sigma4<0, robust,
+not cherry-picked) — MM/NN's convex kill downgraded on the sign axis, the active pump DOES bend — but the smooth
+Gibbons-Hawking continuum gives an unbounded (sigma6<0, Cauchy-Schwarz) non-edge-pinned fold, so a CONTROLLED Airy
+fold now hinges on one named unbanked input: a PEAKED dS quasinormal-mode horizon resonance, not further thermal-continuum
+computation. `agentOO_selfenergy_fold.md`. **SHAPED (agentNN, 2026-06-12, 5-agent adversarial workflow): MECHANISM-CANDIDATE —
 the new input is now a NAMED OPERATOR.** Both formalisms (WKB turning point + heat-kernel proper-time) independently
 re-confirm MM's free=thermal/non-Airy kill (free dispersion strictly convex, no fold; free turning point gives the
 thermal Γ-function S-matrix), then name what the pump must add: a SIGN-INDEFINITE ROTON higher-derivative kinetic

@@ -133,7 +133,32 @@ that forces the negative-argument Airy normal form on the pump's own fluctuation
 lands non-Airy.** The single surviving next calculation: classify the edge spectral-density normal form of the
 pump's OWN fluctuation operator Psi = |phi-tilde(nu)|^2 at b -> c_chi and test for the negative-argument Airy edge
 (PASS forces the fourth-root with gamma = gamma_req) — but the mechanism that would supply the Airy ramp is now the
-named, unbanked input, NOT a calculation on existing machinery.
+named, unbanked input, NOT a calculation on existing machinery. **THE NEW INPUT SHAPED then TESTED (agentNN +
+agentOO, 2026-06-12, two adversarial workflows): MECHANISM-CANDIDATE — the sign axis is now FORCED, a controlled
+fold still needs a peaked horizon response.** agentNN named the operator: the fingerprint = a negative-argument
+Airy density (LL-2), Airy is the universal connection across a linear turning point / cubic fold, and the sonic
+edge b->c_chi is the khronon's own sound horizon; the free khronon is strictly convex (omega''=(k^2+1)^(-3/2)>0,
+no fold — MM/NN firewall, re-verified), so the active pump must carry a SIGN-INDEFINITE ROTON higher-derivative
+kinetic term creating a dispersion fold (omega''(k*)=0, omega'''!=0; existence machine-verified) to promote the
+free thermal simple-pole edge to negative-argument Airy. agentOO then RAN the decisive test — the in-medium
+khronon self-energy from the dS horizon bath (Gibbons-Hawking T_dS=H/2pi) — across two routes (one-loop + spectral)
+with hostile verification: **FOLD-POSSIBLE-COUPLING-DEPENDENT (both routes CONFIRMED).** The bend SIGN sigma4 < 0
+is REAL and, for any passive bath with a super-luminal derivative coupling, FORCED by level-repulsion (the IR
+khronon omega^2=c_chi^2 k^2 -> 0 sits below the gapped bath; spectral route sigma4 = -I2 c_chi^2 < 0 reproduced to
+~1% by three independent methods; loop route generic over a 12/13 contraction-angle scan, NOT cherry-picked) —
+so MM/NN's free-convex kill is DOWNGRADED on the sign axis: the active dS pump DOES bend the dispersion. BUT a
+CONTROLLED bounded fold is NOT forced: the smooth Gibbons-Hawking continuum gives sigma6 < 0 (unbounded runaway,
+no stabilizer — forced by Cauchy-Schwarz I2^2 <= I1*I3 on the spectral moments, independently re-verified: 0/20000
+random positive spectra violate, GH ratios 0.94-0.97 < 1), the edge-coincidence k* is cutoff-free-floating, and
+the one thing the spectrum DOES force — a positive thermal mass / gap — works AGAINST a gapless fold; a scalar
+trilinear coupling or a sub-luminal khronon lands convex (the firewall). Smuggle guards held (q=1/4 never asserted;
+the scalar operator reported convex; coefficient quarantine intact). **Link 5 update: the roton operator is no
+longer free on the SIGN axis (the dS horizon bath forces sigma4 < 0), but it is NOT yet delivered — the bare
+thermal continuum gives an unbounded, non-edge-pinned fold, so a controlled bounded Airy fold now hinges on ONE
+named unbanked input: a PEAKED / internal-scale horizon response (the dS QUASINORMAL-MODE resonance), not on any
+further computation with the smooth thermal bath.** Next calc: test whether the dS QNM-resonant (peaked) horizon
+response supplies sigma6 > 0 AND pins k* at the b->c_chi edge on the Ai(-w) side; PASS then derives rho(b)/q=1/4
+with gamma_req, a featureless-only response leaves the fold unbounded and the generator open.
 Process record: agent died post-verdict
 pre-flush; 5 print-path crashes fixed (prints only, zero compute edits); the keystone scan byte-identical across
 2 regenerations; the verifier's own first fitter caught by its own self-validation gate and fixed — the bug-log
