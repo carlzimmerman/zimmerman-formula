@@ -3,17 +3,6 @@
 Pushing the factor-of-2 question to the bottom: Z is ONE dimensionless number.
 =============================================================================
 
-*** CORRECTION (2026-06-13) — COEFFICIENT FOOTING. This script writes "a0/cH = 1/Z = 0.173" using cH built
-from rho_c (the CRITICAL/total density, see part 1), i.e. cH = cH0. That makes the quoted 0.173 a coefficient
-against cH0 for the rho_TOTAL object a0 = (c/2)sqrt(G rho_c) = cH0/Z = 1.13e-10 -- NOT the framework's
-canonical a0 = c^2 sqrt(Lambda/32pi) = 9.36e-11 (which uses rho_DE, giving a0/cH0 = 0.143 and a0/cH_Lambda
-= 1/Z = 0.173 against cH_Lambda = 0.83*cH0). CONSEQUENCE for part 2: Verlinde 1/6 = 0.167 and Gibbons-Hawking
-1/2pi = 0.159 are coefficients against cH0, so the apt comparison is the framework's vs-cH0 value 0.143 --
-which is the LOW OUTLIER (below both), NOT "bracketed" by them. The "1/6 and 1/2pi bracket 0.173" statement
-compares across different Hubble rates and overstates the agreement (the sqrt(OmL)=0.83 why-now factor is
-doing the work). The structural point (a0/cH is one dimensionless number, G-independent, not horizon-derived)
-STANDS. See real_research/THE_A0_COEFFICIENT_CONVENTION.md.
-
 Last step left it as 'density base (c sqrt(G rho)) vs horizon base (cH), differing
 by sqrt(8pi/3)'. Pushing further dissolves that choice and isolates exactly what
 is irreducible.
