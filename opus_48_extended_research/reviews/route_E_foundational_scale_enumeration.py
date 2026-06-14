@@ -64,18 +64,23 @@ print("""
   whether the foundation FORCES that, and at what smoothing length.
 """)
 
-# representative densities (matter only, for the boost question)
+# representative densities -- MATTER ONLY (the formula adds the rho_DE floor uniformly below).
+# NB: the cosmic-mean and DE-floor rows store the MATTER component, NOT the total, so that the
+# uniform "+rho_DE" recovers the correct total (rho_m + rho_DE):
+#   cosmic mean : rho_m = Om*rho_crit  ->  rho_m + rho_DE = rho_crit (total) -> a0=0.5c sqrt(G rho_crit)=1.13e-10 (1.21x)
+#   DE floor    : rho_m = 0            ->  0     + rho_DE = rho_DE          -> a0=a0_frame (1.00x)
+# (Storing rho_crit / rho_DE here directly would double-count DE, since rho_crit already includes it.)
 rho_disk      = 1e5 * rho_DE       # galaxy disk local gas+stars ~1e5-1e6 rho_DE
 rho_disk_hi   = 1e6 * rho_DE
 rho_clcore    = 730 * rho_DE       # cluster-core gas mean ~ R500 overdensity (banked: 500 rho_crit ~ 725-1000 rho_DE)
 rho_cl_mpc    = 30  * rho_DE       # cluster smoothed over ~Mpc-ambient (the tuned target)
 densities = {
-    "galaxy disk (local)  rho=1e5 rho_DE": rho_disk,
-    "galaxy disk (local hi)rho=1e6 rho_DE": rho_disk_hi,
-    "cluster core (local)  rho=730 rho_DE": rho_clcore,
-    "cluster Mpc-ambient   rho=30  rho_DE": rho_cl_mpc,
-    "cosmic mean           rho=rho_crit"  : rho_crit0,
-    "dark-energy floor     rho=rho_DE"    : rho_DE,
+    "galaxy disk (local)  rho_m=1e5 rho_DE": rho_disk,
+    "galaxy disk (local hi)rho_m=1e6 rho_DE": rho_disk_hi,
+    "cluster core (local)  rho_m=730 rho_DE": rho_clcore,
+    "cluster Mpc-ambient   rho_m=30  rho_DE": rho_cl_mpc,
+    "cosmic mean  rho_m=Om rho_crit(tot rho_crit)": Om*rho_crit0,
+    "dark-energy floor  rho_m=0 (tot rho_DE)"     : 0.0,
 }
 
 # ============================================================================
