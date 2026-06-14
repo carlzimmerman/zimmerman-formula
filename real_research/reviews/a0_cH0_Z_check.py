@@ -3,6 +3,16 @@
 Running the numbers on a0 = cH0/Z, Z = 2 sqrt(8pi/3).
 ====================================================
 
+*** CORRECTION (2026-06-13) — COEFFICIENT FOOTING: this script uses the SUPERSEDED rho_total/H0 form. ***
+This computes a0 = cH0/Z (coefficient 1/Z = 0.173 against the PRESENT rate cH0), which gives 1.13e-10 at
+Planck H0 and only reaches 1.20e-10 by setting H0 = 71.5 -- that H0-rescue is the cH0-vs-cH_Lambda
+conflation. The framework's CANONICAL value is a0 = c^2 sqrt(Lambda/32pi) = c*H_Lambda/Z = 9.36e-11
+(the rho_DE / de Sitter reading), i.e. coefficient 1/Z = 0.173 against cH_Lambda = sqrt(OmL)*cH0 = 0.83*cH0,
+equivalently 0.143 against cH0. Milgrom (0.159) and Verlinde (0.167) use cH0, so the apt comparison is the
+framework's 0.143 (the LOW outlier), NOT 1/Z=0.173. See real_research/THE_A0_COEFFICIENT_CONVENTION.md.
+The numbers below are retained as the historical record; read them as the rho_total/cH0 object, not the
+canonical a0.
+
 The MOND scale a0 ~ cH0 is Milgrom's long-known coincidence. The framework's claim
 is the SPECIFIC factor: a0 = cH0/Z with Z = 2 sqrt(8pi/3) = 5.7888. We compute it
 honestly across the (disputed) H0 range, and compare Z to the other obvious O(1)
