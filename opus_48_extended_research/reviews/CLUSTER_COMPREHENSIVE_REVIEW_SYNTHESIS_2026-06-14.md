@@ -12,15 +12,23 @@ high-priest dismissal. Source memos: `CLUSTER_HISTORY_AND_LIVE_ANGLE`, `CLUSTER_
 
 ## THE HEADLINE (a genuine, under-credited, distinctive hit — and an honest wall)
 
-**The density-law a₀ = (c/2)√(G·ρ) predicts the measured cluster acceleration scale of Tian et al. 2024 with ZERO
-free parameters.** Tian+2024 (A&A 684 A180, arXiv:2402.12016) measured the cluster radial-acceleration relation on
-50 MaNGA + 20 CLASH BCGs + 64 clusters and found a cluster scale **g† = (2.0±0.1)×10⁻⁹ = 17× the galactic a₀**,
-with intrinsic scatter **0.02 dex (4.9%)** — a tight, elevated scale that *universal-constant* MOND has no reason
-to produce (eMOND has to *postulate* A₀(Φ)). The framework **derives** it: at the cluster mean overdensity (R200 ≈
-200·ρ_crit), the density-a₀ boost is √(ρ/ρ_DE) = **17.1×** — landing ON Tian's 17× with no tuning. And because
-R200/R500 are *fixed-overdensity* radii, every cluster has ~the same mean density → a **nearly-universal**
-a₀_cluster → which reproduces Tian's 0.02-dex *tightness* for free. This is real, distinctive, order-correct, and
-genuinely under-credited.
+> **CORRECTION (banked 2026-06-14, both ways — see [[CLUSTER_DENSITY_A0_SHAPE_RECONCILED]]).** This paragraph as
+> first written over-credited the hit. Web-verified fixes: the g†=2e-9 cluster RAR is **Tian et al. 2020** (ApJ 896
+> 70, arXiv:2001.08340; 20 CLASH clusters), NOT the 2024 BCG/MaNGA paper; intrinsic scatter is **0.06 dex (14.7%)**,
+> not 0.02; the density-a₀ boost **lands near Tian only at R200-mean (17×) and OVERSHOOTS ~1.25× at R500-mean (27×)**,
+> not "lands ON." And the central-shape claim below is corrected: the radial sign MATCHES (boost and deficit both
+> rise inward) and a zero-parameter local-ρ boost FLATTENS the deficit to ±30% of unity, but it does NOT cleanly
+> close (residual tilt; over-closes the outskirts).
+
+**The density-law a₀ = (c/2)√(G·ρ) predicts the measured cluster acceleration scale to the right order with ZERO
+free parameters.** Tian et al. **2020** (ApJ 896 70, [arXiv:2001.08340](https://arxiv.org/abs/2001.08340); 20 CLASH
+clusters, WL+SL+X-ray) found an elevated cluster scale **g† = (2.02±0.11)×10⁻⁹ ≈ 17× the galactic a₀** (slope 0.51,
+intrinsic scatter 14.7% ≈ 0.06 dex) — a tight, elevated scale that *universal-constant* MOND has no reason to
+produce (eMOND has to *postulate* A₀(Φ)). The framework **derives** it: the density-a₀ boost √(ρ/ρ_DE) is **17.1× at
+R200-mean** (near Tian) and **27× at R500-mean** (~1.25× overshoot of Tian's 21.6× a₀_F) — order-correct, zero
+parameters; and because fixed-overdensity radii give every cluster ~the same mean density, it predicts a
+**nearly-universal** a₀_cluster, reproducing the relation's tightness. Real, distinctive, order-correct, genuinely
+under-credited.
 
 **But it is NOT a cure** (three independent walls, all credited at full weight):
 1. **No DERIVED smoothing scale threads the ~300-450 kpc core window.** Read at the local BCG-core density (~10⁵
@@ -129,8 +137,9 @@ cure. Concretely:
 
 The cluster ~2× is a REAL but SOFT, CENTRAL, MOND-SHARED liability the framework inherits (13% worse for its lower
 a₀) — not solved, but cleanly understood as a core gas-tracking residual wrapped in a disequilibrium + WL-mass +
-baryon-budget skirt; the framework's one distinctive lever (**density-a₀ lands Tian's 17× cluster scale and its
-0.02-dex tightness with ZERO parameters** — a genuine under-credited hit) is NOT a cure (its per-galaxy form is
+baryon-budget skirt; the framework's one distinctive lever (**density-a₀ lands the right order of Tian 2020's 17×
+cluster scale with ZERO parameters (~1.25× overshoot at R500-mean) and flattens the deficit to ±30% of unity** — a
+genuine under-credited hit) is NOT a cure (its per-galaxy form is
 already falsified at 10.5σ and it rides a non-derived smoothing scale), so clusters are UNDERSTOOD-as-shared and the
 framework's energy belongs on wide binaries.
 
