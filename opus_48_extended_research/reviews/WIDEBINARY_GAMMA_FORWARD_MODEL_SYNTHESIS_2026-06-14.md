@@ -8,6 +8,19 @@ ways. Source memos: `FRAMEWORK_GAMMA_S_FORWARD_MODEL_DR4_FORECAST`, `ROUTE2_WIDE
 `ROUTE3_GEXT_PIN_AND_DR4_FORECAST`, `WB_CONTAMINATION_ROUTE4_VERDICT`, `DR4_WIDEBINARY_FORECAST_ROUTE5` (all
 `_2026-06-14`).*
 
+> **⚠️ RETRACTION (banked 2026-06-14, Carl's catch — see `PURE_MI_WIDEBINARY_GAMMA_ROUTE1` + its REGRADE +
+> `ROUTE3_CORRECTED_MI_DISCRIMINATION`).** The γ cap throughout this memo (1.20–1.32) used McGaugh's **simple-μ**
+> interpolation, which is NORMAL MOND — not the framework's own dS-Unruh modified inertia. (The banked
+> `real_research/efe_clinch_framework.py:95` made the same substitution, labeled "framework Eq.62".) Recomputed on
+> the framework's OWN dS-Unruh ν=√(1+1/y) from the exact vector EOM μ(|a|/a₀)·**a**=**F**, the cap is
+> **γ_cap ≈ 1.137 (isotropic) / 1.198 (transverse), v/v_N = +6.6% to +9.5% — NOT 1.20–1.32.** The a₀ value (9.36e-11)
+> was correct throughout; only the interpolation SHAPE was normal-MOND. Consequences (all AGAINST the framework, no
+> manufactured win): the Newton clinch thins to ~3–4σ at DR4 (from the inflated 5–8σ); MOND-degeneracy is slightly
+> WORSE; the Chae 2026 (~1.5–1.6) tension WORSENS to ~2–3σ below; consistent with Saad-Ting (~1.12). Also STRUCK: the
+> "MI-vs-MG hidden discriminator" — the static MI and AQUAL EFE tensors are identical to 1e-16, so the 1.32→1.137 gap
+> is interpolation SHAPE, not theory class; a real MI-vs-MG test needs Milgrom's time-nonlocal kernel (uncomputed,
+> sign-contested). Read every "1.20–1.32 / γ=1.32" below as the retracted simple-μ value; the framework number is 1.137.
+
 ---
 
 ## THE HEADLINE (revises the banked "sharpest clean discriminator γ=1.32")
