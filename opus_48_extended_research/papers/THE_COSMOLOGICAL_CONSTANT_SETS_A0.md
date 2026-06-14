@@ -1,5 +1,7 @@
 # The Cosmological Constant Sets the Galaxy Acceleration Scale
 
+**Published:** DOI [10.5281/zenodo.20689212](https://doi.org/10.5281/zenodo.20689212) · CC-BY-4.0
+
 ### An affirmative case for a₀ = c²√(Λ/32π), and why ΛCDM's completeness is an assumption, not a result
 
 **C. Zimmerman, 2026.** *Opus 4.8 extended-research edition. Every load-bearing number recomputed on real

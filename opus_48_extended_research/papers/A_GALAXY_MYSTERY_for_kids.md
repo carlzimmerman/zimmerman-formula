@@ -1,5 +1,7 @@
 # Why Do the Stars at the Edge of a Galaxy Go So Fast?
 
+**Published:** DOI [10.5281/zenodo.20689216](https://doi.org/10.5281/zenodo.20689216) · CC-BY-4.0
+
 ### A big space mystery, and my idea about how to solve it
 
 *Written so a curious kid can read it. Every big word gets explained.*

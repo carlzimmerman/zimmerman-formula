@@ -1,5 +1,7 @@
 # Why Galaxies Spin Too Fast — and a One-Number Formula That Explains It
 
+**Published:** DOI [10.5281/zenodo.20689214](https://doi.org/10.5281/zenodo.20689214) · CC-BY-4.0
+
 *Written for a smart, numerate reader with no physics background. No analogies, no jargon without a plain
 definition. If you're comfortable with ratios, powers of ten, exponents, and "how many standard deviations,"
 you have everything you need.*
