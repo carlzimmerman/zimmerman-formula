@@ -1,5 +1,7 @@
 # The Search Was Never Wasted
 
+**Published:** DOI [10.5281/zenodo.20689721](https://doi.org/10.5281/zenodo.20689721) · CC-BY-4.0
+
 ### How the hunt for dark matter built the measurements that make a₀ = c²√(Λ/32π) a decidable claim
 
 **C. Zimmerman, 2026** · Opus 4.8 extended-research edition · *every load-bearing number recomputed on real
