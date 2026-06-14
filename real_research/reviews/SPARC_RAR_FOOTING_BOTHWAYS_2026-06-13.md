@@ -42,6 +42,27 @@ magnitude is **consistent with but non-diagnostic of** the framework a0. This is
 honest anchor (`reviews/sparc_rar_honest.py`) reaches from the H0-hostage side: a0 ~ cH0 to an O(1/6)
 coefficient that the z=0 magnitude alone cannot resolve.
 
+**4. SELF-CORRECTION (added 2026-06-13 PM — the analysis above used the WRONG interpolation; both-ways cuts
+both ways).** Sections 1–3 fit the RAR with **McGaugh's** ν, which is NOT the framework's interpolation. On the
+framework's OWN de Sitter–Unruh derived ν, **g_obs = √(g_bar² + g_bar·a0)**, the picture at Υ=0.70 is *friendlier*
+to the framework, not a deficit:
+
+| interpolation @ Υ=0.70 | optimal a0 | 9.36e-11 offset | scatter penalty |
+|---|---|---|---|
+| McGaugh ν (used in §1–3) | 7.78e-11 | **+20% (high)** | +1.9% |
+| simple ν | 7.54e-11 | +24% (high) | +2.4% |
+| **framework dS–Unruh ν (the right one)** | **1.03e-10** | **−9% (BELOW optimal)** | **+0.51%** |
+
+So under the framework's own interpolation, 9.36e-11 is within **~0.5% of optimal scatter** (the published
+paper's "within 0.3% of optimal scatter" is **DEFENSIBLE**, not overstated — my AM reading that called it
+overstated was itself the artifact: it used McGaugh's ν). The optimal a0 + the penalty depend on BOTH the M/L
+AND the interpolation; across {McGaugh, simple, dS-Unruh}×{Υ=0.5,0.7} the optimum spans ~7.5e-11…1.8e-10 and
+the penalty is ≤~2% worst case (≤0.5% on the framework's ν). **The convention-robust truth is unchanged in
+spirit — small penalty everywhere, non-diagnostic — but the honest framing is "9.36e-11 is within ~0.5% of
+optimal on the framework's own ν," NOT "+20% high." Neither a "~20% too low" (McGaugh-Υ=0.5) NOR a "~20% too
+high" (McGaugh-Υ=0.7) deficit is robust; both are interpolation/M-L artifacts. Do not manufacture a deficit
+from the wrong ν.**
+
 ## Caveats kept both ways
 - This is a0 MAGNITUDE at z=0 only. It does NOT test a0(z) (the one distinctive claim — untestable on
   disk), and does NOT single out Z (the coefficient is H0-hostage; any H0∈67–73 makes cH0/Z fit).

@@ -1,5 +1,8 @@
 # The scaling-MOND web: the whole structure, what it predicts, and where it stands
 
+> **⚠️ COEFFICIENT-FOOTING CORRECTION (2026-06-13):** Any "a₀ = cH₀/Z", "1/Z = 0.173 against cH₀", or "1/Z bracketed by Milgrom 1/2π / Verlinde 1/6" below uses the **superseded footing**. Canonical: a₀ = c²√(Λ/32π) = cH_Λ/Z = 9.36×10⁻¹¹ (ρ_DE; cH_Λ = √Ω_Λ·cH₀ = 0.83·cH₀). The coefficient 1/Z = 0.173 is against **cH_Λ**; against cH₀ it is **0.143**. Milgrom (0.159) and Verlinde (0.167) use cH₀, so the apt comparison is 0.143 — the **low outlier**, NOT bracketed. cH₀/Z = 1.13×10⁻¹⁰ is the ρ_total reading (+20%). See [THE_A0_COEFFICIENT_CONVENTION.md](THE_A0_COEFFICIENT_CONVENTION.md) + [THE_A0_COEFFICIENT_AUDIT_2026-06-13.md](THE_A0_COEFFICIENT_AUDIT_2026-06-13.md).
+
+
 **2026-06-01.** A physicist-ready synthesis of the *real* surviving framework — one premise,
 its forced consequences, the data that now tests them, and the honest frontier. This
 **supersedes nothing in `FRAMEWORK.md`/`NOVELTY.md`** (their calibrated skepticism stands); it
