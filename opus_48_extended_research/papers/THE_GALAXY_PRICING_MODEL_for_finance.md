@@ -139,6 +139,15 @@ citing resolved problems is how you lose credibility):
    *changing over time*. If that holds, the "Λ" in ΛCDM is literally the wrong model — and the *direction* of
    the change is exactly what my model needs (my threshold a₀ is predicted to drift with dark-energy density;
    DESI's signal drifts the same way).
+5. **The benchmark's core accounting assumption looks wrong (the deepest one).** ΛCDM assumes the universe is
+   the same in every direction — like assuming the market is symmetric. But count the distant galaxies on one
+   side of the sky versus the other, and the lopsidedness is **2–3.7× bigger than it's allowed to be**, at ~5
+   standard deviations, found independently in multiple surveys (and re-confirmed in 2025 after the leading
+   data-glitch was ruled out). And it's not isolated: the large-scale "drift" of nearby galaxies is also ~5σ
+   faster than allowed. This isn't a disputed *number* in the model — it's a crack in the *assumption the whole
+   model is built on.* Important caveat, both ways: this points to gravity being modified *as a class* (which is
+   my camp), not to my specific formula, and the measurement still has skeptics. But it's the deepest stress of
+   all, because it questions the foundation, not a line item.
 
 None of these is fatal on its own. Together they say: **ΛCDM is a model that measures what it should explain.
 Its dominance is a consensus trade, not a settled audit.**

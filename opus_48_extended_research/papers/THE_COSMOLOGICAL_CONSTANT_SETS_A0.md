@@ -125,6 +125,17 @@ defused and citing them would be dishonest):
 4. **Λ itself may not be constant.** DESI DR1–DR2 (2024–25) BAO + SNe disfavor a constant Λ at ~3σ (up to ~4σ
    with recalibrated supernovae). If this holds, the "Λ" in ΛCDM is wrong — and the sign (w₀ > −1, w_a < 0,
    ρ_DE lower in the past) is **exactly** the direction this framework's a₀ ∝ √ρ_DE prediction requires.
+5. **The deepest one — an *axiom* is cracking.** The quasar/radio number-count dipole is **2–3.7× larger** than
+   our motion through the CMB predicts, at **~5σ** across independent surveys (Secrest+2021 CatWISE 4.9σ;
+   Dam+2023 5.7σ; Böhme+2025 radio 5.4σ; confirmed by 2025 simulation-based inference after the ecliptic-bias
+   systematic is modelled). This challenges the **Cosmological Principle** — large-scale isotropy — which ΛCDM
+   does not derive but *assumes*. And it does not stand alone: the CosmicFlows-4 bulk flow is 4.8σ too fast for
+   ΛCDM at 200 h⁻¹ Mpc, and the KBC void is ~6σ too deep — anomalies in the *direction modified gravity
+   predicts* (self-regulated structure growth makes deeper voids and faster flows). Haslbauer-Banik-Kroupa find
+   ΛCDM ruled out at ~7σ on Gpc scales by this combination. *Stated honestly:* this is a **class-level** tailwind
+   for modified gravity, not a prediction of the a₀ formula specifically, and the dipole's systematics are still
+   debated — but it strikes ΛCDM at a deeper level than any parameter tension, because it questions the
+   homogeneous-isotropic starting point itself.
 
 None of these *kills* ΛCDM. Together they make the point that matters: **ΛCDM is an empirically successful but
 explanatorily incomplete bookkeeping model — it measures Λ and dark matter rather than deriving them — and it
