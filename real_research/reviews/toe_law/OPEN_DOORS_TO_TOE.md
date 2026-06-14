@@ -130,7 +130,7 @@ hostile-verified, coefficient-quarantined, both-ways; the honest boundary holds.
 
 | Door | Autonomous-run verdict | Commit |
 |---|---|---|
-| **D1 φ (the keystone)** | UNIFIED — the mechanism + quantum gate are provably ONE problem (the state-level DSSYK↔dS *-isomorphism φ); both algebras type II₁ (obstruction ruled out); φ itself unproven (the open new-physics step) | `53fa56bd` |
+| **D1 φ (the keystone)** | UNIFIED, then PROBED — the mechanism + quantum gate are provably ONE problem (the state-level DSSYK↔dS *-isomorphism φ); both algebras type II₁ (obstruction ruled out); φ itself unproven. **VV2 (the hyperfinite angle): ABSTRACT-ISO-CONFIRMED-STATE-OPEN** — the dS observer algebra IS the unique hyperfinite R (Connes-1976 retires UU's "uncountably-many-factors" existence caveat, conditional on the still-OPEN DSSYK-side hyperfiniteness), but even granting both=R, Connes-Størmer-1978 non-homogeneity + agentTT's surviving edge sector leave the state-level φ (GAP A placement + GAP B spectrum) the whole game; the keystone advanced in DIAGNOSIS, not closure | `53fa56bd` → VV2 |
 | **D2 c_χ↔H scale-lock** | FREE-PARAMETER — NOT forced by the khronon EFT (c_χ H-free, dS lever 10⁻⁶⁰; symmetry-forced value is edge-decoupling luminal); genuinely new Hubble-scale physics; THIRD orthogonal route to the same residual | `1d2fef35` |
 | **D4 the coefficient Z** | DATA-SELECTED-CONFIRMED + SHARPENED — Z = 2√(8π/3) SPLITS into a FORCED backbone √(8π/3) (quantum-reproduced: d=3, horizon π) + ONE unforced dial (κ=½); ħ-grading backstop forbids any quantum normalization fixing it; FDR FAIL (2√(πe) closer than Verlinde-6) | `e8a9c5b4` |
 | **D5 lensing carrier** | NEW-WALL — the spatial-nonlocal class CLOSED (acceleration-keyed inherits the keying wall; D·b-keyed entire kernel evades the theorems but fails agentII's k≤0.3 discriminant, slope-37 needs anti-lensing rings); Link 7 has NO surviving carrier (4 classes closed); survivors: singular-surface + non-b⊗b spin-2 only | `69f81a6e` |
@@ -154,3 +154,14 @@ If one thing closes, it is **φ — the state-level DSSYK↔dS *-isomorphism** (
 (Link 8), the gain shape (Link 5), and connect the quantum foundation (D6) to the dynamics — three gaps, one map.
 The named next step is the crossed-product / observer-dressing intertwining (CLPW's worldline dressing ↔ DSSYK's
 length constraint). That is the capstone calculation of the whole program.
+
+**VV2 sharpened the diagnosis (2026-06-13): the existence half of φ is conditionally discharge-able, but the
+construction is the whole game.** Connes 1976 makes the abstract *-isomorphism AUTOMATIC if both algebras are the
+hyperfinite II₁ factor R — and the dS side IS R (established). What this retires is UU's "uncountably many
+non-isomorphic II₁ factors" *existence* caveat — but only conditional on the DSSYK side also being hyperfinite (an
+OPEN question: no DSSYK operator-algebra paper asserts amenability; the Temperley-Lieb/Jones structure is mild
+evidence FOR R, the ≥2-generator regime mild evidence against). And even granting both = R, Connes-Størmer 1978
+(the II₁ state space is non-homogeneous) proves state-matching is NOT made easy by the abstract iso — the distinct
+modular flows are the genuine obstruction. So the capstone is unchanged in shape: φ is the *state-level*
+intertwiner, and that construction (GAP A placement + GAP B full modular spectrum) is exactly as open as before —
+what VV2 delivered is the precise knowledge that the abstract-existence worry was the cheap half.
