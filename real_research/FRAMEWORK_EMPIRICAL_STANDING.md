@@ -1,5 +1,12 @@
 # Empirical-Standing Ledger: a0 = c² √(Λ/32π) = 9.36×10⁻¹¹ m/s²
 
+> **→ For the authoritative both-ways ΛCDM confrontation (2026-06-13), see
+> [`THE_HONEST_LCDM_STRESS_BRIEF.md`](THE_HONEST_LCDM_STRESS_BRIEF.md):** the referee-proof synthesis of two
+> adversarial audits — where the framework strains ΛCDM (arrows, none a kill), where ΛCDM strains itself (4
+> genuine cracks), and where ΛCDM cleanly wins (6 honest losses, incl. **two not broken out in the rows
+> below**: the weak-lensing morphology split 8.8–9.2σ and the Cassini quadrupole). Sharpest discriminator:
+> wide binaries (DR4-gated). The strongest *true* claim against ΛCDM is in its Part V.
+
 *27-agent stress-test of the framework vs 13 observables on real on-disk data (175 SPARC, 9830 eRASS1, 135 KMOS3D, 381 KROSS), adversarially verified. 0 refuted, 2 serious-tension (clusters, Bullet -- both SHARED with all MOND). C.Z. independently verified the load-bearing nuance: the DIFFERENTIAL BTFR z-trend = -0.029+/-0.012 dex/z leans the framework DECLINING (correcting an earlier read that mistook the absolute zero-point systematic for the evolution signal). Honest bottom line: NOT refuted; carries MOND shared tensions; ONE framework-specific exposure (declining a0(z)) is undecided-leaning-unfavorable (MUSE-DARK III rises ~2sigma against, de-systematized from a naive 15-30sigma; intermediate-z trend leans for but systematics-limited); hostage to DESI; verdict belongs to z~3 + DESI DR3.*
 
 
