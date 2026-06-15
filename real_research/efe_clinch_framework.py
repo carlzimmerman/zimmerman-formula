@@ -12,8 +12,13 @@ TWO more powerful statistics, exactly as the prior docs recommended as the forwa
       g_bar (stronger external field -> sits more below the RAR); the Newtonian control is null.
 
   (b) PER-GALAXY EFE-MOND ROTATION-CURVE FIT (Chae's actual method). For each galaxy I fit the FULL curve with the
-      framework's own EFE-MOND law (EFE_paper.tex Eq. 62):
-          g_obs = nu(g_N+g_ext) (g_N+g_ext) - nu(g_ext) g_ext,   nu(y) = 1/2 + sqrt(1/4 + a0/y)   [simple-IF]
+      framework's own EFE-MOND law, dS-Unruh IF (consistent with the isolated RAR g=sqrt(gb^2+gb*a0)):
+          g_obs = nu(g_N+g_ext) (g_N+g_ext) - nu(g_ext) g_ext,   nu(y) = sqrt(1 + a0/y)   [framework dS-Unruh IF]
+      NB (2026-06-14): EFE_paper.tex Eq.62 (line 65) writes nu=1/2+sqrt(1/4+1/y) = simple-mu (NORMAL MOND, the
+      inverse of mu=x/(1+x)) -- INCONSISTENT with the framework's OWN dS-Unruh RAR. Corrected here to the dS-Unruh
+      shape for internal consistency with a0=c^2 sqrt(Lambda/32pi). The EFE-clinch VERDICT is unchanged either way
+      (Method-b headline r=+0.218 p=0.148 -> r=+0.213 p=0.211, right-signed under-powered null). FLAG: the PAPER's
+      Eq.62 should be reconciled to one interpolation -- this is a framework-level inconsistency, not a code bug.
       fitting Upsilon_disk and a KINEMATIC e_N^fit = g_ext/a0 per galaxy. THE TEST: does the kinematically-inferred
       e_N^fit correlate POSITIVELY with the INDEPENDENTLY-MEASURED environmental e_N (from 2MRS)? That positive
       correlation is the EFE -- it cannot be an outer-kinematic artifact (warps/beam-smearing don't know the cosmic
@@ -91,10 +96,10 @@ def gbar(rc,MLd):
 def gobs(rc):
     return (rc["Vobs"]*1e3)**2/(rc["R"]*kpc)
 
-# ---------------- EFE-MOND law (framework, EFE_paper.tex Eq. 62, simple interpolation) ----------------
-def nu(y,a0=A0):                            # nu(y)=1/2+sqrt(1/4+a0/y); deep-MOND nu*y -> sqrt(a0*y)
-    y=np.maximum(y,1e-30); return 0.5+np.sqrt(0.25+a0/y)
-def g_efe(gN,gext_,a0=A0):                  # 1D Famaey-McGaugh EFE approximation (fields aligned)
+# ---------------- EFE-MOND law (framework dS-Unruh IF, nu=sqrt(1+a0/y) -- matches g_rar_iso; see header NB) --------
+def nu(y,a0=A0):                            # framework dS-Unruh nu(y)=sqrt(1+a0/y); nu*y=sqrt(y^2+y*a0); deep-MOND -> sqrt(a0*y)
+    y=np.maximum(y,1e-30); return np.sqrt(1.0+a0/y)
+def g_efe(gN,gext_,a0=A0):                  # 1D EFE construction on the dS-Unruh IF (fields aligned)
     return nu(gN+gext_,a0)*(gN+gext_)-nu(gext_,a0)*gext_ if gext_>0 else nu(gN,a0)*gN
 def g_rar_iso(gb,a0=A0):                    # isolated framework RAR: g=sqrt(gb^2+gb*a0) (the canon interpolation)
     return np.sqrt(gb**2+gb*a0)
@@ -182,7 +187,7 @@ for label,(lo,hi),efe in [("deep-MOND  g_bar<3e-11  (EFE-sensitive)",(0,3e-11),T
 # METHOD (b): PER-GALAXY EFE-MOND ROTATION-CURVE FIT -> kinematic e_N^fit  vs  measured e_N
 # ================================================================================================
 print("\n"+"="*98)
-print("METHOD (b)  PER-GALAXY EFE-MOND FIT (framework Eq.62): fit Upsilon_disk & kinematic e_N^fit per galaxy,")
+print("METHOD (b)  PER-GALAXY EFE-MOND FIT (framework dS-Unruh IF): fit Upsilon_disk & kinematic e_N^fit per galaxy,")
 print("            then test  e_N^fit (kinematic)  vs  e_N (measured from 2MRS).  EFE predicts POSITIVE correlation")
 print("="*98)
 def fit_galaxy(nm,a0=A0,fix_ML=False):
