@@ -108,8 +108,11 @@ verified verbatim; MI is the same sign, θ-enhanced by ~1–6% that sits below t
 it discriminates the MOND premise (MOND-family vs CDM, decisive ~17σ-class with diffuse members) but NOT the framework's
 modified inertia from modified gravity — and the real-data pilots confirm the trap (public catalogs give the EFE-blind
 cluster dispersion or bright-elliptical σ that goes UP via the +12% Faber-Jackson confound; the EFE-sensitive diffuse
-members are ~2–8% of the sample and too faint) — so the framework-distinctive MI-vs-MG content is now below-floor on
-EVERY front and decided ONLY by the in-hand, exclusionary Cassini.
+members are ~2–8% of the sample and too faint) — so the SCALAR σ-sign is MOND-vs-CDM only. **[REFINED: the genuine
+dS-Unruh MI — recomputed after this — DOES yield a distinctive, MG-impossible cluster handle the scalar/MG-patch calc
+threw away: the non-adiabatic relational σ-spread (MI ~5-13%, MG exactly 0 for any a0); see the header banner +
+`GENUINE_MI_CLUSTER_DISTINCTIVE`. So the MI-vs-MG content is NOT "below-floor on every front, only Cassini" — it is the
+in-hand Cassini PLUS the (demanding) relational σ-spread.]**
 
 *Both ways, no exception: the real MOND-vs-CDM σ-sign (a genuine anti-dark-matter test, CDM can't suppress member σ)
 is credited at full weight; the LOSS of the framework's claimed distinctive test (MG predicts the same down-sign; the
