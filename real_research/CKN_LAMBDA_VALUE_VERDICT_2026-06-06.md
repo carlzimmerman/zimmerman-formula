@@ -28,14 +28,23 @@ The dark sector is welded to **one UV-IR seesaw scale √Λ**, and this is genui
 2. **The a₀(z) "evolution unification" is a definitional TAUTOLOGY.** The framework *defines* a₀ = (c/2)√(Gρ_DE), so
    "a₀(z) ∝ √ρ_DE(z) matches DESI" is just ρ_DE fed in by hand and square-rooted — **zero dynamical content**. a₀ tracks
    whatever ρ_DE you feed it.
-3. **As real holographic dynamics, the evolution FAILS — and points the wrong way.** Verified at the density level (no
-   fit): the framework's DESI-CPL a₀(z) is non-monotonic and **declines** (ρ_DE falls to 0.4–0.6 by z=3). But *both*
-   natural holographic constructions go the **opposite** way into the past: Hubble-horizon CKN (Adolf et al. 2406.09964 /
-   2504.15332 — the model that actually beats ΛCDM on DESI DR2 by ~2.6σ) has ρ_DE **rising** (quintessence); future-
-   event-horizon HDE (Li 2004) has ρ_DE **rising** (quintom-A). And holographic DE is **observationally rejected**:
-   ACT DR6 + DESI DR2 (arXiv:2509.02945, Sep 2025) "decisively disfavors both HDE and RDE relative to ΛCDM." So matching
-   holographic DE's evolution would mean matching a *rejected* model — and the framework doesn't even do that; it matches
-   DESI by fiat.
+3. **As real holographic dynamics, the evolution FAILS — and points the wrong way (DIRECTION now RESOLVED, 2026-06-15).**
+   Verified at the density level (no fit): the framework's DESI-CPL a₀(z) is non-monotonic and **declines** (ρ_DE falls
+   to 0.4–0.6 by z=3, w < −1 phantom-crossing). But *both* natural holographic constructions go the **opposite** way
+   into the past. **The flagship live one — the νCKN Hubble-horizon model (Adolf, Hirsch, Krieg, Päs, Tabet, JCAP
+   08(2024)048 = arXiv:2406.09964; DESI-DR2 addendum 2504.15332) — is now PINNED DOWN against the framework**, verified
+   from the paper's own HTML: ρ_Λ(z) = ν·M_Pl²·H(z)²/(16π²) + Λ₀ (eq. for ρ_VED^{1-loop} + classical Λ₀), which for
+   **ν > 0 is QUINTESSENCE-like, w > −1**, so since H(z) grows toward the past ρ_DE **RISES into the past** — the exact
+   OPPOSITE of the framework's declining-a₀(z) (a₀ ∝ √ρ_DE). It requires matter↔dark-energy interconversion (non-
+   separate conservation, eq. 10: ρ̇_Λ + ρ̇_M = −3Hρ_M), and its preference over ΛCDM is **marginal and dataset-
+   dependent**: ν = 1.00 ± 0.46 with Δχ² = −4.6 (~2.1σ) on DESY5, but ν = 0.60 ± 0.49 with Δχ² = −1.2 (non-significant,
+   −1.1σ) on Pantheon+ — yet the **rising direction holds regardless of the significance.** Future-event-horizon HDE
+   (Li 2004) also has ρ_DE **rising** (quintom-A). And holographic DE is independently **observationally rejected**:
+   ACT DR6 + DESI DR2 (arXiv:2509.02945, Sep 2025) "decisively disfavors both HDE and RDE relative to ΛCDM." So the
+   route's one live dynamical hook points AGAINST the framework's a₀(z) bet, not for it — and matching holographic DE's
+   evolution would anyway mean matching a *rejected* model, which the framework doesn't even do (it matches DESI by
+   fiat). **Both ways: the CKN value-magnitude WELDING (item "real win" above) still SURVIVES intact; only the
+   dynamical-evolution leg is REFUTED as support for the framework's declining direction.**
 4. **Internal tension.** The clean CKN-saturated geomean requires a **constant** Λ (w=−1 → a₀ constant in z); the
    DESI-fed declining a₀(z) abandons w=−1. **You cannot have both from one structure.** And the framework's own collapse
    horizon R⋆=√(8π/3)·c/H is the **Hubble** family (a constant rescale → w≈0, Hsu-broken), *not* the event horizon — so
