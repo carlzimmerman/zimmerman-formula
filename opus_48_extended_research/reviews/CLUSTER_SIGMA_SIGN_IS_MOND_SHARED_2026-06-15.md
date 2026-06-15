@@ -9,6 +9,17 @@ the `cluster_standing` memory.*
 
 Framework: dS-Unruh MODIFIED INERTIA; a0=9.36e-11; μ_fw(x)=(√(1+4x²)−1)/(2x); MI-EFE = Milgrom-2022 μ[θ(ω_ex/ω_in)·a_ex/a0].
 
+**⚠️ REFINED 2026-06-15 by `GENUINE_MI_CLUSTER_DISTINCTIVE_2026-06-15.md` (Carl correctly objected this calc used the
+modified-GRAVITY patch, not the genuine MI):** the SCALAR member-σ sign verdict below (MOND-shared, a0-degenerate)
+STANDS *for the scalar* — but it is INCOMPLETE. Recomputing on the GENUINE dS-Unruh modified inertia (Milgrom-2022
+Eqs verified verbatim) recovers a genuinely-distinctive cluster observable the scalar calc threw away: the
+**NON-ADIABATIC RELATIONAL σ-spread** — at matched cluster-centric radius, member internal σ correlates with infall
+phase in MI (~6–13%) but is EXACTLY 0 in MG for ANY a0 (MG depends only on the momentary a_ex) and 0 in CDM →
+non-a0-degenerate, MG-impossible, above floor in principle, for plunging diffuse/UDG/dSph members (ω_ex~ω_in). (The
+simpler "MI-tangential-vs-MG-radial ellipsoid sign" was over-claimed and REFUTED — both are tangential computed
+consistently.) So: scalar σ-sign = MOND-vs-CDM premise test (below); the relational σ-spread = the genuine
+MI-vs-MG-vs-CDM distinctive test.
+
 ---
 
 ## The correction (the corpus framing was WRONG, both ways)
