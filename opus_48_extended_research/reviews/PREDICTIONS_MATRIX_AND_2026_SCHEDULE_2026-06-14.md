@@ -20,7 +20,7 @@ Framework a₀ = c²√(Λ/32π) = **9.355×10⁻¹¹** m/s². Each cell = that 
 | 3 | BTFR (slope 4) | V⁴=GMa₀, slope 4 | slope 3.85, scatter ok (EAGLE) | same | approx | N/A | tie |
 | 4 | Dwarf σ | (4GMa₀/81)¼ | per-halo fit (cusp-core tension) | same | **favored 5.2σ** (2026, 23 dSph) | N/A | tie (Verlinde edges) |
 | 5 | EFE / SEP violation | EFE present | **zero** (SEP holds) | EFE present | N/A | N/A | FW/MOND if confirmed |
-| 6 | Wide-binary γ | **1.137** (+6.6% V) | 1.0 (Newton) | 1.16-1.2 (AQUAL) | 1.29 | N/A | contested (Gaia DR4) |
+| 6 | Wide-binary γ_g | **MI θ(0)-family ~1.10–1.14, MOST-Newtonian** (γ_v~1.05; θ(0)=e→1.10) ⚠️[1.137 was the **MG** value — corrected 2026-06-15, WIDEBINARY_MI_EFE_THETA_CORRECTION] | 1.0 (Newton) | 1.14–1.30 (AQUAL/MG) | 1.53 (simple-μ) | N/A | premise-test, a₀-degenerate (Gaia DR4) |
 | 7 | Cluster η(R500) | **2.33 — fails** | **1.0 (DM)** ✓ | ~2 — fails | fails | N/A | **ΛCDM** |
 | 8 | Lensing morphology split | **0 — fails 8.8σ** | **+0.26 dex** ✓ | 0 — fails | contested | N/A | **ΛCDM** |
 | 9 | a₀(z) evolution | **declining √ρ_DE**; −7.3% V @z=3 | N/A (no a₀) | **constant** (the split) | rising ∝ cH(z) | N/A | FW-distinctive (contested) |

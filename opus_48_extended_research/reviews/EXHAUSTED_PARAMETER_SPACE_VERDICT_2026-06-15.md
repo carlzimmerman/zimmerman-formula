@@ -85,8 +85,12 @@ now contested via the Mistele-2024 isolation reframe).
 ## The falsifiable corners — where the framework actually dies (all near-term)
 
 The framework does NOT die at the soft clusters (survivable, shared, systematic-limited). It dies, if anywhere, at:
-1. **Wide binaries — Gaia DR4 (Dec 2026), sharpest:** predicts its OWN γ_cap≈1.137 (dS-Unruh MI). A clean Newtonian
-   null (γ→1.0) kills the a₀=Λ premise at low acceleration. (MOND-degenerate, so it tests the premise not the value.)
+1. **Wide binaries — Gaia DR4 (Dec 2026), sharpest:** the framework is modified INERTIA, so its EFE carries Milgrom-2022's
+   θ(ω_ex/ω_in)≥1 factor (Eq.35) and predicts the **MOST-Newtonian boost of any MOND — γ_g~1.10 (γ_v~1.05) at the natural
+   θ(0)=e**, a θ(0)-family not a number. (The catalogued γ≈1.137 was the modified-GRAVITY momentary-field value;
+   corrected 2026-06-15, see `WIDEBINARY_MI_EFE_THETA_CORRECTION`.) A clean Newtonian null (γ→1.0) kills the a₀=Λ premise;
+   but the MI-vs-MG split is a₀-degenerate at one a_ex, so it tests the PREMISE, not the distinctive MI physics. Verified
+   Chae 2023 = γ_g=1.49(+0.21/−0.19); the framework sits ~2σ below, consistent with the Newton-camp Saad-Ting 1.12.
 2. **a₀(z) sign — 2030s:** declining √ρ_DE vs the rising rival; a clean rising a₀(z) falsifies the √ρ_DE branch.
    (MUSE-DARK III currently measures rising but is ΛCDM-degenerate, non-diagnostic.)
 3. **Cluster-member kinematics — MUSE+4MOST ~2027-28:** the opposite-sign σ test (framework EFE → σ DOWN vs CDM σ UP),
