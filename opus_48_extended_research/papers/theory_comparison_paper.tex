@@ -1,0 +1,177 @@
+\documentclass[aps,prd,twocolumn,10pt,nofootinbib]{revtex4-2}
+% Fallback: \documentclass[twocolumn,10pt]{article} + \usepackage{amsmath,amssymb}
+\usepackage{amsmath,amssymb,graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
+\usepackage{booktabs}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue]{hyperref}
+
+\begin{document}
+
+\title{Falsifiability and Testable Predictions:\\
+the $a_0=c^2\sqrt{\Lambda/32\pi}$ framework among the major theories of physics}
+\author{C.\ Zimmerman}
+\date{June 2026}
+
+\begin{abstract}
+We place the emergent-gravity framework $a_0=c^2\sqrt{\Lambda/32\pi}=9.36\times10^{-11}\,\mathrm{m\,s^{-2}}$ on the
+same axes as the other leading theories---quantum field theory (the Standard Model), general relativity,
+$\Lambda$CDM, cosmic inflation, standard MOND, Verlinde's emergent gravity, supersymmetry, string theory, and loop
+quantum gravity---and ask two operational questions: how many concrete, dated, \emph{falsifiable} predictions does
+each make, and how many are \emph{confirmed}? The honest answer, stated both ways: quantum field theory and general
+relativity are the gold standard (richly predictive and confirmed to extraordinary precision); $\Lambda$CDM is the
+confirmed concordance model carrying real tensions; the present framework and standard MOND are highly falsifiable
+but only partially confirmed, sitting in the ``testable-not-yet-confirmed'' regime with conceded losses; and string
+theory makes essentially zero unique near-term confirmable predictions, drawing the standard falsifiability
+critique. The framework is decisively \emph{more falsifiable} than string theory---but that is a low bar, it is not
+more predictive than the Standard Model, and its one genuinely distinctive prediction (a declining $a_0(z)$) is
+currently unconfirmed and leaning unfavourable. We give the comparative scorecard, the falsifiability--confirmation
+map, and the per-theory prediction lists.
+\end{abstract}
+
+\maketitle
+
+\section{What ``testable'' means here}
+A theory earns scientific standing by making predictions that could have come out otherwise and then survived the
+test. We score each theory on three operational axes: (i) the number of \emph{concrete, falsifiable} predictions it
+makes---predictions with a stated threshold that a measurement could violate; (ii) how many of those are
+\emph{confirmed}; and (iii) its \emph{falsifiability}---whether a feasible experiment could, even in principle, kill
+it. These axes are qualitative characterisations, not exact data, and we flag them as such; but the gross ordering
+they produce is not in serious dispute. Crucially, ``more falsifiable than theory $X$'' is \emph{not} the same as
+``more correct than $X$,'' and we keep the two separate throughout.
+
+\section{The comparative scorecard}
+Table~\ref{tab:score} summarises. The gradations are deliberately coarse.
+
+\begin{table}[t]
+\caption{Testable predictions across the major theories. ``Predictions'' counts concrete falsifiable claims;
+``confirmed'' is the track record to date; falsifiability is graded $\star$ (effectively unfalsifiable near-term) to
+$\star\!\star\!\star\!\star\!\star$ (sharp, survived every test).}
+\label{tab:score}
+\begin{ruledtabular}
+\begin{tabular}{lccl}
+Theory & Pred. & Confirmed & Falsifiability \\
+\colrule
+QFT / Standard Model & $\sim$25 & nearly all & $\star\!\star\!\star\!\star\!\star$ \\
+General relativity & $\sim$10 & all to date & $\star\!\star\!\star\!\star\!\star$ \\
+$\Lambda$CDM & $\sim$9 & most & $\star\!\star\!\star\!\star$ \\
+Cosmic inflation & $\sim$4 & spectrum only & $\star\!\star\!\star$ \\
+\textbf{This framework} & $\sim$9$^\dagger$ & galaxy RAR (shared) & $\star\!\star\!\star\!\star$ \\
+Standard MOND & $\sim$8 & galaxy-scale yes & $\star\!\star\!\star\!\star$ \\
+Verlinde emergent grav. & $\sim$3 & lensing mixed & $\star\!\star\!\star$ \\
+Supersymmetry & $\sim$5 & none (absent) & $\star\!\star\!\star$ \\
+Loop quantum gravity & $\sim$2 & none & $\star\!\star$ \\
+String theory & $\sim$0 unique & none & $\star$ \\
+\end{tabular}
+\end{ruledtabular}
+\footnotesize $^\dagger$ $\sim$9 dated falsifiable, of which only $\sim$3 are \emph{distinctive} (beyond standard
+MOND); all distinctiveness flows from the single $a_0(z)\!\propto\!\sqrt{\rho_{\rm DE}}$ spine.
+\end{table}
+
+\section{The falsifiability--confirmation map}
+Figure~\ref{fig:map} plots each theory by how falsifiable it is (horizontal) against how confirmed (vertical). The
+upper right is occupied by the Standard Model and general relativity---sharp \emph{and} verified. The present
+framework and standard MOND sit lower right: highly falsifiable, partially confirmed. String theory sits lower
+left, near-unfalsifiable and unconfirmed. The framework's position is the honest one for a young, testable,
+not-yet-established theory---clearly to the right of string theory, clearly below the confirmed giants.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=\columnwidth,height=0.92\columnwidth,
+  xlabel={falsifiability $\longrightarrow$}, ylabel={empirical confirmation $\longrightarrow$},
+  xmin=0,xmax=11,ymin=0,ymax=11, xtick=\empty,ytick=\empty,
+  grid=both, grid style={gray!15}, label style={font=\small},
+  every node near coord/.append style={font=\scriptsize}]
+\addplot[only marks,mark=*,mark size=2.4pt,blue,nodes near coords,point meta=explicit symbolic,
+  every node near coord/.append style={anchor=east,xshift=-3pt}]
+  coordinates {(10,10)[QFT/SM] (9.5,9.6)[GR]};
+\addplot[only marks,mark=*,mark size=2.2pt,teal,nodes near coords,point meta=explicit symbolic,
+  every node near coord/.append style={anchor=west,xshift=3pt}]
+  coordinates {(7.5,8.2)[$\Lambda$CDM] (5,6)[inflation]};
+\addplot[only marks,mark=*,mark size=2.0pt,orange,nodes near coords,point meta=explicit symbolic,
+  every node near coord/.append style={anchor=west,xshift=3pt}]
+  coordinates {(8.4,5.0)[MOND] (5,3)[Verlinde]};
+\addplot[only marks,mark=*,mark size=2.0pt,violet,nodes near coords,point meta=explicit symbolic,
+  every node near coord/.append style={anchor=west,xshift=3pt}]
+  coordinates {(6.8,1.6)[SUSY] (3,1.7)[LQG] (2,1.0)[string]};
+\addplot[only marks,mark=*,mark size=3.0pt,red,nodes near coords,point meta=explicit symbolic,
+  every node near coord/.append style={anchor=west,xshift=4pt,red}]
+  coordinates {(9,4.1)[\textbf{this framework}]};
+\draw[gray!40,dashed] (axis cs:5.5,0)--(axis cs:5.5,11);
+\draw[gray!40,dashed] (axis cs:0,5.5)--(axis cs:11,5.5);
+\end{axis}
+\end{tikzpicture}
+\caption{Each theory placed by falsifiability (right $=$ more) and empirical confirmation (up $=$ more). Quantum
+field theory and general relativity occupy the tested-and-confirmed corner; the present framework and MOND are
+highly falsifiable but only partially confirmed; string theory is near-unfalsifiable and unconfirmed. Axes are
+qualitative.}
+\label{fig:map}
+\end{figure}
+
+\section{Per-theory predictions}
+\textbf{QFT / Standard Model (the ceiling).} The electron anomalous moment is verified to $\sim$0.13 parts per
+trillion---the most precise prediction in science; plus the Higgs (predicted, found 2012), the $W/Z$ bosons,
+neutrino oscillations, running couplings, CP violation, the Lamb shift, the Casimir effect, and a host of masses
+and cross-sections. Nothing else listed approaches this; the framework does not claim to.
+
+\textbf{General relativity.} Perihelion precession, light bending, gravitational redshift, the Shapiro delay,
+frame-dragging, binary-pulsar decay, gravitational waves (2015), the black-hole shadow (2019)---all confirmed.
+
+\textbf{$\Lambda$CDM.} The CMB acoustic-peak spectrum, big-bang nucleosynthesis, the baryon acoustic scale,
+structure growth, lensing maps---broadly confirmed, but the dark-matter particle is undetected after forty years
+and $\Lambda$'s value is unexplained, and it carries the $\sim$5.8$\sigma$ Hubble tension and a $\sim$3$\sigma$
+preference for evolving dark energy.
+
+\textbf{This framework.} $\sim$9 dated, falsifiable predictions: the declining $a_0(z)\!\propto\!\sqrt{\rho_{\rm
+DE}}$ (DESI~DR3, high-$z$ kinematics); the high-$z$ baryonic Tully--Fisher offset; the wide-binary external-field
+boost ($+6.6\%$ in velocity on the framework's own de Sitter--Unruh law, Gaia~DR4); the external field effect
+itself; the lensing radial-acceleration relation; a Solar-System (Cassini) bound; a predicted $a_0$ bump near
+$z\!\approx\!0.4$. The radial-acceleration relation and BTFR successes are \emph{shared with standard MOND}; the
+distinctive content is the $a_0(z)$ evolution---currently leaning $\sim$1.5$\sigma$ unfavourable.
+
+\textbf{Standard MOND.} The radial-acceleration relation (a real, tight success), the BTFR, the external field
+effect, rotation-curve shapes---confirmed at galaxy scale; fails galaxy clusters ($\sim$2$\times$) and the CMB.
+
+\textbf{Supersymmetry.} Superpartners, gauge-coupling unification, a light Higgs. Superpartners are \emph{not}
+found at the LHC (gluinos excluded to $\sim$2.2~TeV); the one prediction that landed (a light Higgs) is shared with
+the Standard Model.
+
+\textbf{String theory.} Requires supersymmetry (absent) and extra dimensions (absent); ``predicts gravity'' is a
+post-diction; the $\sim$$10^{500}$-vacua landscape yields no unique near-term confirmable test, which is the
+substance of the long-standing falsifiability critique.
+
+\textbf{Loop quantum gravity.} Discrete spacetime, a possible Planck-scale Lorentz violation (searched in
+gamma-ray-burst timing, not seen), a big-bounce cosmology---no near-term confirmation.
+
+\section{The honest verdict}
+\textbf{Versus string theory.} The framework is decisively more falsifiable: $\sim$5--6 dated, telescope-named,
+kill-thresholded near-term predictions against essentially zero unique confirmable string predictions. This is a
+genuine virtue---risky, dated bets where the alternative makes none. \emph{Three guardrails, each true and each
+stated:} (i) falsifiability is precisely the axis the framework wins on; (ii) that is a \emph{low bar}---beating
+string theory on testability is not being established; (iii) more predictions $\neq$ more correct, and the framework
+is \emph{not} more predictive than the Standard Model, whose electron $g\!-\!2$ stands at 0.13~ppt.
+
+\textbf{Where the framework actually stands.} It is a falsifiable, internally consistent, $\Lambda$-anchored
+modified-inertia realisation that reproduces MOND's $z\!=\!0$ galaxy record, is sign-aligned with DESI's evolving
+dark energy (the one cosmological tension that points its way), and makes a sharp distinctive bet in $a_0(z)$. It
+also carries real, conceded losses---chief among them an $a_0$-independent $8.6$--$9.2\sigma$ weak-lensing
+morphology split that no choice of convention removes---and an underived coefficient $Z=\sqrt{32\pi/3}$. It does not
+break $\Lambda$CDM, and $\Lambda$CDM does not falsify it; the verdict comes from the 2026--2032 forward tests.
+
+\textbf{Bottom line.} On the one axis that most cleanly separates science from speculation---can a measurement kill
+it?---the framework is among the strongest of the live alternatives and far ahead of string theory. On the axis
+that separates a hypothesis from established physics---is it confirmed?---it sits, honestly, with MOND in the
+testable-but-unproven quadrant, well below quantum field theory and general relativity. Both statements are true at
+once, and keeping them distinct is the whole point.
+
+\begin{thebibliography}{9}
+\bibitem{McGaugh2016} S.~McGaugh, F.~Lelli, J.~Schombert, Phys.\ Rev.\ Lett.\ \textbf{117}, 201101 (2016).
+\bibitem{Riess2024} A.~G.~Riess \emph{et al.}, Astrophys.\ J.\ \textbf{962}, L17 (2024) [Hubble tension].
+\bibitem{DESI2024} DESI Collaboration, arXiv:2503.14738 (2025) [evolving dark energy].
+\bibitem{Woit2006} P.~Woit, \emph{Not Even Wrong} (Basic Books, 2006); L.~Smolin, \emph{The Trouble with Physics}
+(Houghton Mifflin, 2006) [string-theory falsifiability critique].
+\bibitem{Fan2023} X.~Fan \emph{et al.}, Phys.\ Rev.\ Lett.\ \textbf{130}, 071801 (2023) [electron $g\!-\!2$].
+\end{thebibliography}
+
+\end{document}
