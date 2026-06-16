@@ -6,6 +6,7 @@ $$a_0 \;=\; c^2\sqrt{\frac{\Lambda}{32\pi}} \;=\; \frac{c}{2}\sqrt{G\rho_\Lambda
 
 [![Paper DOI](https://img.shields.io/badge/Paper-10.5281%2Fzenodo.20576485-blue)](https://doi.org/10.5281/zenodo.20576485)
 [![Falsification Map DOI](https://img.shields.io/badge/Falsification%20Map%20(June%202026)-10.5281%2Fzenodo.20670670-blueviolet)](https://doi.org/10.5281/zenodo.20670670)
+[![de Sitter Gauge DOI](https://img.shields.io/badge/de%20Sitter%20Gauge%20(June%2016%202026)-10.5281%2Fzenodo.20721540-blueviolet)](https://doi.org/10.5281/zenodo.20721540)
 [![Corpus DOI](https://img.shields.io/badge/Code%20%26%20Data-10.5281%2Fzenodo.20576494-blue)](https://doi.org/10.5281/zenodo.20576494)
 [![Paper PDF](https://img.shields.io/badge/PDF-read%20the%20paper-success)](real_research/papers/ZIMMERMAN_THEORY_OF_GRAVITY.pdf)
 [![License](https://img.shields.io/badge/code-AGPL--3.0-lightgrey)](LICENSE)
@@ -61,6 +62,20 @@ A week-long machine-verified campaign (the `agentA…HH` corpus in [`real_resear
 
 The verification culture is the point: adversarial audits of framework-favorable results, retraction-guarded commits, bug logs where the machine caught its own wrong remembered formulas — and same-week corrections kept in the text.
 
+## 🆕 June 16, 2026 — the third paper: the certified gravity spine
+
+**"The MOND Acceleration Scale as a de Sitter Curvature Scale: Gauged SO(4,1) Gravity Reduces a₀ = c²√(Λ/32π) to a Single Free Number"** — the machine-certified derivation paper. It separates, with three exhaustive certification scripts run on this repo's data, what the proposal *derives* from what it *posits*:
+
+- **Gravity certified unique-in-class** — gauging SO(4,1) → Einstein–Hilbert + Λ is the unique two-derivative parity-even invariant (exactly two quadratic-in-curvature SO(4,1) four-forms exist; exactly one is two-derivative). [`gap1_so41_invariant_uniqueness.py`]
+- **The form forced by 4 mechanisms (corrected from "≥7")** — a 1.5M-decoy false-discovery audit certifies the independent count of routes forcing `a₀ ∝ c²√Λ` is **four**, not seven (three were one Deser–Levin germ re-read). [`gap2_germ_fingerprint_FDR.py`]
+- **One free number** — the gravitational kernel `√(8π/3)` carries the half-integer power of π no curvature-free route produces, leaving the entire residual freedom as **κ = ½** (`a₀` = half the gravitational free-fall acceleration at `ρ_DE`).
+- **Honest boundary** — Λ is an input; the covariant inertia home is a *sibling* of AeST, not a join; the Standard Model is fitted, and **N = 3 is a parity obstruction** over the de Sitter nucleation saddle (the universal status of the flavor puzzle). *"Not a theory of everything yet, as frustrating as it may be."*
+- **Two live tests** — Cassini (in hand) passes the modified-inertia content ~30× under the `|γ−1|` bound where an ungated modified-gravity host fails; `a₀(z=3) ≈ 0.74·a₀(0)`, hostage to DESI w(z).
+
+→ **[Read the PDF](opus_48_extended_research/papers/DESITTER_GAUGE_MOND_SCALE.pdf)** · [Markdown](opus_48_extended_research/papers/DESITTER_GAUGE_MOND_SCALE.md)
+→ Published: **[Zenodo 10.5281/zenodo.20721540](https://doi.org/10.5281/zenodo.20721540)** (CC-BY-4.0)
+→ Certification scripts: [`opus_48_extended_research/reviews/derivation_chain/`](opus_48_extended_research/reviews/derivation_chain/)
+
 ## Repository structure
 
 ```
@@ -105,6 +120,8 @@ bash real_research/papers/build_tex.sh                  # the theory paper
 > Zimmerman, C. P. (2026). *The Zimmerman Theory of Gravity: The Galaxy Acceleration Scale Is Set by the Cosmological Constant (a₀ = c²√(Λ/32π)).* Zenodo. https://doi.org/10.5281/zenodo.20576485
 
 > Zimmerman, C. P. (2026). *The Λ-Anchored Acceleration Scale a₀ = c²√(Λ/32π): A Completed Falsification Map, Exact No-Go Results, and the Specification of the Unique Surviving Object.* Zenodo. https://doi.org/10.5281/zenodo.20670670
+
+> Zimmerman, C. P. (2026). *The MOND Acceleration Scale as a de Sitter Curvature Scale: Gauged SO(4,1) Gravity Reduces a₀ = c²√(Λ/32π) to a Single Free Number.* Zenodo. https://doi.org/10.5281/zenodo.20721540
 
 ## License
 
