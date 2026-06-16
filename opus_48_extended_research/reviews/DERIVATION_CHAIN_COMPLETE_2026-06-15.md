@@ -55,6 +55,20 @@ NO-NEEDS-INSIGHT gap. Priority order:
 3. **`derivation_chain/gap3_conservative_kernel_dissolves_antimond.py`** — proves the C.2 anti-MOND obstruction is a theorem
    about the *superseded additive-passive truncation only*, not the conservative kernel → **cleans the L5 join framing.**
 
+**RUN-CONFIRMED 2026-06-15 (all three executed firsthand on the 16-core/64GB box):**
+- **gap1 → PASS** (15.5 s): EXACTLY two gauge-invariant quadratic-in-F SO(4,1) 4-forms exist (kernel-certified complete);
+  exactly one (the ε-ξ MacDowell-Mansouri term) is 2-derivative parity-even with content EXACTLY EH+Λ. The δ-trace
+  Weyl²/4-derivative branch is a genuine gauge-allowed alternative, excluded ONLY by the 2-derivative-parity-even demand.
+  → L2 "uniquely" is rigorous *with the qualifier*; the selecting input is pinned to exactly that demand.
+- **gap2 --full → CERTIFIED count = 4** (4085 s, 16 procs, 1.5M-decoy FDR, dps=60): the independent germ-orbits are
+  {Deser-Levin dS-Unruh ⊇ dsunruh, grav, mu_fw, tempdiff — all sympy-certified IN-FIELD, exact residual 0}, {conformal},
+  {gaugeYM}, {precanon}. So the corpus "≥7" overcounts — **the certified independent count is 4** (3 routes are the single
+  Deser-Levin quadrature germ re-read under x→λx). FORM still over-determined (4 ≥ 2). BH @ q=1e-6: no null-significant
+  spurious collapses; negative control (distinct mechanisms stay distinct) PASS.
+- **gap3 → PASS** (~92 min, 6M passive baths): the anti-MOND obstruction is DISSOLVED for the conservative even kernel and
+  CONFIRMED (re-scoped) for the passive class → the JOIN_VERDICT C.2/Part-4 fix is justified; join standing UNCHANGED
+  (PARTIAL).
+
 These turn "forced" into "proven-forced" on the gravity side — they raise referee-resistance, they do not produce a TOE.
 
 ## What Carl CAN / MUST NOT say
