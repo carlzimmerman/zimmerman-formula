@@ -9,15 +9,20 @@ import CollapsiblePanel from './CollapsiblePanel'
 const G = 6.67430e-11  // m³/kg/s²
 const c = 299792458    // m/s
 const M_sun = 1.98892e30  // kg
-const a0_local = 1.2e-10  // m/s² (McGaugh et al. 2016)
+const a0_local = 1.2e-10  // m/s² — conventional MOND value (McGaugh et al. 2016), shown for comparison
+const a0_fw = 9.36e-11    // m/s² — framework footing: a₀ = c²√(Λ/32π) = (c/2)√(G·ρ_DE)
 
-// Cosmological parameters (Planck 2018 / Zimmerman)
+// Cosmological parameters (Planck 2018)
 const OMEGA_M = 0.315
 const OMEGA_LAMBDA = 0.685
 
-// E(z) function
-function E_z(z: number): number {
-  return Math.sqrt(OMEGA_M * Math.pow(1 + z, 3) + OMEGA_LAMBDA)
+// Framework's DECLINING acceleration scale: a₀(z) ∝ √ρ_DE(z) — NOT the rival rising
+// branch a₀ ∝ cH(z) ∝ E(z). On a DESI-favored evolving-dark-energy background
+// (CPL w₀=−0.75, wₐ=−0.86), a₀(z=3)/a₀(0) ≈ 0.74 (a −0.033 dex / −7% offset in V).
+const W0 = -0.75, WA = -0.86
+function a0_ratio(z: number): number {
+  const r = Math.pow(1 + z, 3 * (1 + W0 + WA)) * Math.exp(-3 * WA * z / (1 + z))
+  return Math.sqrt(r)
 }
 
 // KMOS3D + KROSS High-z Tully-Fisher Data
@@ -80,28 +85,28 @@ export default function BTFRSimulation() {
   const curves = useMemo(() => {
     const velocities = Array.from({ length: 30 }, (_, i) => 40 + i * 10) // 40 to 330 km/s
 
-    // Local BTFR (z=0)
+    // Local BTFR (z=0), framework footing
     const localCurve = velocities.map(v => ({
       v,
-      logM: btfrPrediction(v, a0_local)
+      logM: btfrPrediction(v, a0_fw)
     }))
 
-    // Zimmerman prediction at z=1 (shifted)
+    // Framework prediction at z=1 (a₀ declines as √ρ_DE)
     const z1Curve = velocities.map(v => ({
       v,
-      logM: btfrPrediction(v, a0_local * E_z(1))
+      logM: btfrPrediction(v, a0_fw * a0_ratio(1))
     }))
 
-    // Zimmerman prediction at z=2
+    // Framework prediction at z=2
     const z2Curve = velocities.map(v => ({
       v,
-      logM: btfrPrediction(v, a0_local * E_z(2))
+      logM: btfrPrediction(v, a0_fw * a0_ratio(2))
     }))
 
-    // Zimmerman prediction at z=3
+    // Framework prediction at z=3
     const z3Curve = velocities.map(v => ({
       v,
-      logM: btfrPrediction(v, a0_local * E_z(3))
+      logM: btfrPrediction(v, a0_fw * a0_ratio(3))
     }))
 
     return { localCurve, z1Curve, z2Curve, z3Curve }
@@ -114,12 +119,13 @@ export default function BTFRSimulation() {
     return { x, y }
   }
 
-  // Predicted offsets
+  // Predicted offsets — declining a₀(z); the BTFR zero-point in log M_bar shifts by
+  // −log10(a₀(z)/a₀(0)) at fixed V (equivalently V is −¼·that in dex, ≈ −7% at z=3).
   const offsets = [
     { z: 0, E: 1.00, offset: 0.00 },
-    { z: 1, E: E_z(1), offset: -Math.log10(E_z(1)) },
-    { z: 2, E: E_z(2), offset: -Math.log10(E_z(2)) },
-    { z: 3, E: E_z(3), offset: -Math.log10(E_z(3)) },
+    { z: 1, E: a0_ratio(1), offset: -Math.log10(a0_ratio(1)) },
+    { z: 2, E: a0_ratio(2), offset: -Math.log10(a0_ratio(2)) },
+    { z: 3, E: a0_ratio(3), offset: -Math.log10(a0_ratio(3)) },
   ]
 
   return (
@@ -330,7 +336,7 @@ export default function BTFRSimulation() {
                 <thead>
                   <tr className="text-gray-400">
                     <th className="text-left py-1">z</th>
-                    <th className="text-right py-1">E(z)</th>
+                    <th className="text-right py-1">a₀(z)/a₀(0)</th>
                     <th className="text-right py-1">Δlog M</th>
                   </tr>
                 </thead>
@@ -345,16 +351,20 @@ export default function BTFRSimulation() {
                 </tbody>
               </table>
               <p className="text-xs text-gray-400 mt-2">
-                High-z galaxies appear <strong>less massive</strong> at fixed V in Zimmerman
+                Because a₀ <strong>declines</strong> with redshift, high-z discs sit slightly{' '}
+                <strong>below</strong> the local BTFR — lower V at fixed mass, about −0.033 dex (≈ −7%) in V by z=3.
               </p>
             </CollapsiblePanel>
 
             {/* Key insight */}
             <CollapsiblePanel title="Falsifiable Test" titleColor="text-cyan-400" borderColor="border-cyan-500/30">
               <p className="text-xs text-gray-300">
-                If BTFR shows <strong>no offset</strong> at z=2, Zimmerman is wrong.
+                The distinctive signature is a <strong>small declining</strong> offset, decided by clean
+                deep-MOND kinematics at z≈3 (ELT/JWST/ALMA).
                 <br /><br />
-                KMOS3D data at z~2 should be offset by ~0.47 dex from local BTFR.
+                If high-z discs instead lie <strong>above</strong> the local BTFR (the rival rising branch
+                a₀∝cH, ~+0.5 dex in V by z=3) or show no decline, the framework&rsquo;s distinctive content fails.
+                The direction is currently contested, not confirmed.
               </p>
             </CollapsiblePanel>
           </div>
@@ -366,7 +376,7 @@ export default function BTFRSimulation() {
             M_bar = V⁴ / (G × a₀)
           </div>
           <div className="text-sm text-gray-400 mt-2">
-            BTFR with slope=4 is exact in MOND. Zimmerman: a₀(z) = a₀(0) × E(z)
+            BTFR with slope=4 is exact in MOND. Framework: a₀(z) = a₀(0)·√(ρ_DE(z)/ρ_DE(0)), <strong>declining</strong> (a₀(z=3) ≈ 0.74 a₀(0)).
           </div>
         </div>
 

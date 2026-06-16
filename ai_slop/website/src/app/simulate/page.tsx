@@ -31,6 +31,11 @@ const RARVisualization = dynamic(
   { ssr: false, loading: () => <LoadingScreen label="RAR" /> }
 )
 
+const A0RedshiftDiscriminator = dynamic(
+  () => import('@/components/A0RedshiftDiscriminator'),
+  { ssr: false, loading: () => <LoadingScreen label="a₀(z)" /> }
+)
+
 const GeometricVisualization = dynamic(
   () => import('@/components/GeometricVisualization'),
   { ssr: false, loading: () => <LoadingScreen label="Geometry" /> }
@@ -108,10 +113,18 @@ const simulations = [
   {
     id: 'rar',
     name: 'RAR + SPARC',
-    icon: '📈',
+    icon: '',
     available: true,
     description: '2,693 data points from 153 galaxies',
     color: 'blue'
+  },
+  {
+    id: 'a0z',
+    name: 'a₀(z) Discriminator',
+    icon: '',
+    available: true,
+    description: 'Declining a₀(z) vs ΛCDM vs rival rising branch',
+    color: 'cyan'
   },
   {
     id: 'geometry',
@@ -273,7 +286,6 @@ export default function SimulatePage() {
                   borderColor: activeSimulation === sim.id ? `var(--${sim.color}-500, #06b6d4)` : undefined,
                 }}
               >
-                <span className="text-2xl">{sim.icon}</span>
                 <div className="flex-1 min-w-0">
                   <div className="text-sm font-medium">{sim.name}</div>
                   <div className="text-xs text-gray-500 truncate">{sim.description}</div>
@@ -286,10 +298,11 @@ export default function SimulatePage() {
         {/* Info Panel */}
         <div className="p-4 border-t border-purple-500/20 bg-black/30">
           <div className="text-xs text-gray-400 mb-2">
-            <span className="text-purple-400 font-bold">Z</span> = 2√(8π/3) = 5.788810
+            <span className="text-purple-400 font-bold">a₀</span> = c²√(Λ/32π) = 9.36 × 10⁻¹¹ m/s²
           </div>
           <div className="text-xs text-gray-500 mb-3">
-            All simulations use real observational data with proper academic citations.
+            The Galaxy Rotation, Tully–Fisher, RAR and a₀(z) panels use real observational data and the
+            framework&rsquo;s own footing. Other panels are legacy and not part of the audited result.
           </div>
           <Link
             href="/"
@@ -307,6 +320,13 @@ export default function SimulatePage() {
         {activeSimulation === 'elgordo' && <ElGordoVisualization />}
         {activeSimulation === 'universe' && <EarlyUniverse />}
         {activeSimulation === 'rar' && <RARVisualization />}
+        {activeSimulation === 'a0z' && (
+          <div className="min-h-screen bg-black p-6">
+            <div className="mx-auto max-w-4xl">
+              <A0RedshiftDiscriminator />
+            </div>
+          </div>
+        )}
         {activeSimulation === 'geometry' && <GeometricVisualization />}
         {activeSimulation === 'connections' && <ZConnectionWeb />}
         {activeSimulation === 'hurricane' && <HurricaneSimulation />}

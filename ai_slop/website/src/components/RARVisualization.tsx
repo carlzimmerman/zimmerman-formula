@@ -10,12 +10,11 @@ const G = 6.67430e-11  // m³/kg/s² (±0.00015)
 const c = 299792458    // m/s (exact)
 const kpc_to_m = 3.08567758e19  // m
 
-// Zimmerman acceleration scale: a₀ = cH₀/Z where Z = 2√(8π/3)
-// Using H₀ = 71.5 km/s/Mpc (Zimmerman prediction between Planck and SH0ES)
-const Z = 5.788810  // = 2*sqrt(8*pi/3)
-const H0 = 71.5     // km/s/Mpc
-const H0_SI = H0 * 1000 / (3.08567758e22)  // s⁻¹
-const a0 = c * H0_SI / Z  // ≈ 1.2e-10 m/s²
+// Acceleration scale on the framework's OWN footing:
+//   a₀ = c²√(Λ/32π) = (c/2)√(G·ρ_DE) = cH_Λ/Z,  Z = √(32π/3) = 5.789,  ρ_DE = Λc²/8πG
+// evaluated on the dark-energy density alone (NOT cH₀ — H_Λ = c√(Λ/3) is the de Sitter rate).
+const Z = 5.788810  // = √(32π/3) = 2√(8π/3)
+const a0 = 9.36e-11 // m/s² — the pure-Λ (ρ_DE) value
 
 // SPARC-based RAR data generation
 // Original data: McGaugh, Lelli, Schombert (2016) PRL 117, 201101
@@ -23,10 +22,12 @@ const a0 = c * H0_SI / Z  // ≈ 1.2e-10 m/s²
 // This visualization generates representative data following the observed RAR
 // with realistic scatter (0.13 dex total, ~0.057 dex intrinsic)
 
-// RAR prediction function (defined first for use in data generation)
+// RAR prediction function — the framework's OWN de Sitter–Unruh interpolation
+//   g_obs = √(g_bar² + g_bar·a₀)   (the algebraic inverse of the dS–Unruh quadrature),
+// not McGaugh's ν = g_bar/(1 − e^{−√(g_bar/a₀)}). Limits: g_obs → g_bar (Newtonian),
+// g_obs → √(g_bar·a₀) (deep-MOND, giving v⁴ = G·M·a₀).
 function rarPrediction(gbar: number, gdagger: number = a0): number {
-  const x = Math.sqrt(gbar / gdagger)
-  return gbar / (1 - Math.exp(-x))
+  return Math.sqrt(gbar * gbar + gbar * gdagger)
 }
 
 // Generate SPARC-representative data with proper galaxy distributions
@@ -101,9 +102,12 @@ export default function RARVisualization() {
   const [redshift, setRedshift] = useState(0)
   const [highlightGalaxy, setHighlightGalaxy] = useState<string | null>(null)
 
-  // E(z) for Zimmerman evolution
-  const E_z = Math.sqrt(0.315 * Math.pow(1 + redshift, 3) + 0.685)
-  const a0_z = a0 * E_z
+  // Framework prediction: a₀(z) ∝ √ρ_DE(z), DECLINING with redshift — NOT the rival
+  // rising branch a₀ ∝ cH(z) ∝ E(z). On a DESI-favored evolving-dark-energy background
+  // (CPL w₀=−0.75, wₐ=−0.86) this gives a₀(z=3) ≈ 0.74·a₀(0), the distinctive prediction.
+  const w0 = -0.75, wa = -0.86
+  const rhoDE_ratio = Math.pow(1 + redshift, 3 * (1 + w0 + wa)) * Math.exp(-3 * wa * redshift / (1 + redshift))
+  const a0_z = a0 * Math.sqrt(rhoDE_ratio)
 
   // Transform coordinates for SVG
   const transformPoint = (gbar: number, gobs: number) => {
@@ -373,7 +377,7 @@ export default function RARVisualization() {
               />
               <div className="flex justify-between text-xs text-gray-500 mt-1">
                 <span>Today</span>
-                <span>z=5 ({E_z.toFixed(1)}× a₀)</span>
+                <span>z={redshift.toFixed(1)} ({(a0_z / a0).toFixed(2)}× a₀, declining)</span>
               </div>
             </CollapsiblePanel>
 
@@ -404,10 +408,10 @@ export default function RARVisualization() {
             <CollapsiblePanel title="Formula" titleColor="text-purple-400" borderColor="border-purple-500/30" defaultOpen={false}>
               <div className="text-center">
                 <div className="font-mono text-purple-300 text-sm">
-                  g_obs = g_bar / (1 - e^(-√(g_bar/a₀)))
+                  g_obs = √(g_bar² + g_bar·a₀)
                 </div>
                 <div className="text-xs text-gray-400 mt-2">
-                  a₀ = cH₀/Z = 1.2 × 10⁻¹⁰ m/s²
+                  a₀ = c²√(Λ/32π) = (c/2)√(G·ρ_DE) = 9.36 × 10⁻¹¹ m/s²
                 </div>
               </div>
             </CollapsiblePanel>

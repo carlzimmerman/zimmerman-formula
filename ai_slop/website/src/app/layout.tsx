@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
 import { Analytics } from '@/components/Analytics'
+import RouteNotice from '@/components/RouteNotice'
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -13,34 +14,24 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL('https://abeautifullygeometricuniverse.web.app'),
   title: {
-    default: 'Zimmerman (2025) — MOND Acceleration Scale from Critical Density',
+    default: 'The MOND Acceleration Scale as a de Sitter Curvature Scale — a₀ = c²√(Λ/32π)',
     template: '%s | Zimmerman Framework'
   },
-  description: 'Deriving the MOND acceleration scale a₀ from cosmological critical density: a₀ = c√(Gρc)/2 = cH₀/Z where Z = 2√(8π/3). Framework predicts a₀(z) evolution, resolves Hubble tension (H₀ = 71.5), and explains JWST early galaxies. DOI: 10.5281/zenodo.19199167',
+  description: 'An emergent-gravity proposal in which the galactic acceleration scale is set by the cosmological constant: a₀ = c²√(Λ/32π) = (c/2)√(Gρ_DE) = cH_Λ/Z, Z = √(32π/3) = 5.789, giving a₀ = 9.36×10⁻¹¹ m/s². A theory of gravity and the dark sector — not a theory of everything. Falsifiable via Cassini and the declining prediction a₀(z=3) ≈ 0.74 a₀(0). DOI: 10.5281/zenodo.20721540',
   keywords: [
-    // Core physics
-    'Zimmerman constant', 'Z = 2√(8π/3)', '5.788810', 'fundamental constants',
-    'unified physics theory', 'geometric physics', 'dimensional analysis',
-    // Cosmology
-    'dark energy density', 'Omega Lambda', 'matter density', 'Omega matter',
-    'cosmological constant', 'Hubble tension', 'cosmic coincidence problem',
-    'ΛCDM alternative', 'dark energy origin', 'cosmological parameters',
-    // Galaxy dynamics
-    'Zimmerman acceleration', 'MOND acceleration scale', 'a0 evolution',
-    'galaxy rotation curves', 'Tully-Fisher relation', 'BTFR evolution',
-    'radial acceleration relation', 'modified Newtonian dynamics',
-    // Specific tests
-    'El Gordo cluster', 'ACT-CL J0102-4915', 'JWST early galaxies',
-    'high redshift galaxy dynamics', 'wide binary stars', 'GAIA data',
-    // Particle physics
-    'fine structure constant', 'alpha 137', '1/137 origin',
-    'proton electron mass ratio', 'muon electron mass ratio',
-    'strong coupling constant', 'Weinberg angle',
-    // Advanced concepts
-    'Einstein field equations 8π', 'gravitational coupling',
-    'spatial dimensions geometry', 'quantum gravity connection',
-    // DOI and verification
-    'Carl Zimmerman physics', 'DOI 10.5281/zenodo.19199167'
+    // Core result (gravity and dark sector)
+    'MOND acceleration scale', 'a0 = c^2 sqrt(Lambda/32pi)', 'de Sitter curvature scale',
+    'modified inertia', 'emergent gravity', 'cosmological constant', 'dark energy density',
+    // Galaxy dynamics (audited)
+    'radial acceleration relation', 'baryonic Tully-Fisher relation',
+    'galaxy rotation curves', 'a0 redshift evolution', 'de Sitter-Unruh effect',
+    // Tests
+    'Cassini test', 'modified inertia vs modified gravity', 'DESI dark energy',
+    'high redshift galaxy dynamics', 'external field effect',
+    // Foundations
+    'MacDowell-Mansouri gravity', 'SO(4,1) gauge gravity', 'AeST',
+    // Attribution
+    'Carl Zimmerman physics', 'DOI 10.5281/zenodo.20721540'
   ],
   authors: [{ name: 'Carl Zimmerman' }],
   creator: 'Carl Zimmerman',
@@ -50,8 +41,8 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    title: 'The Zimmerman Framework: One Constant, All Physics',
-    description: 'Z = 2√(8π/3) = 5.788810 derives 36 fundamental constants including dark energy (0.01% error), fine structure constant (0.004% error), and predicts MOND acceleration evolution testable by JWST.',
+    title: 'The MOND Acceleration Scale as a de Sitter Curvature Scale',
+    description: 'a₀ = c²√(Λ/32π) = 9.36×10⁻¹¹ m/s² — the galactic acceleration scale set by the cosmological constant, via de Sitter–Unruh modified inertia. Reproduces the radial acceleration and baryonic Tully–Fisher relations; predicts a declining a₀(z=3) ≈ 0.74 a₀(0). A theory of gravity and the dark sector, not a theory of everything.',
     url: 'https://abeautifullygeometricuniverse.web.app',
     siteName: 'Zimmerman Framework',
     locale: 'en_US',
@@ -61,14 +52,14 @@ export const metadata: Metadata = {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Zimmerman Framework: Z = 2√(8π/3) = 5.788810',
+        alt: 'a₀ = c²√(Λ/32π) — the MOND scale as a de Sitter curvature scale',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Zimmerman Framework: Z = 2√(8π/3)',
-    description: 'One geometric constant derives dark energy, fine structure constant, and predicts galaxy dynamics evolution with redshift. Testable by JWST.',
+    title: 'a₀ = c²√(Λ/32π): the MOND scale as a de Sitter curvature scale',
+    description: 'An emergent-gravity proposal tying the galactic acceleration scale to the cosmological constant via modified inertia. Falsifiable by Cassini and by a declining a₀(z). A theory of gravity and the dark sector.',
     creator: '@carlzimmerman',
     images: ['/og-image.png'],
   },
@@ -91,14 +82,14 @@ export const metadata: Metadata = {
   },
   category: 'science',
   other: {
-    'citation_title': 'The Zimmerman Framework: Deriving Fundamental Constants from Z = 2√(8π/3)',
-    'citation_author': 'Carl Zimmerman',
-    'citation_publication_date': '2024',
-    'citation_doi': '10.5281/zenodo.19199167',
-    'dc.title': 'Zimmerman Framework',
-    'dc.creator': 'Carl Zimmerman',
-    'dc.subject': 'theoretical physics; cosmology; fundamental constants',
-    'dc.description': 'Geometric derivation of fundamental physical constants from Z = 2√(8π/3)',
+    'citation_title': 'The MOND Acceleration Scale as a de Sitter Curvature Scale: Gauged SO(4,1) Gravity Reduces a₀ = c²√(Λ/32π) to a Single Free Number',
+    'citation_author': 'Carl P. Zimmerman',
+    'citation_publication_date': '2026',
+    'citation_doi': '10.5281/zenodo.20721540',
+    'dc.title': 'The MOND Acceleration Scale as a de Sitter Curvature Scale',
+    'dc.creator': 'Carl P. Zimmerman',
+    'dc.subject': 'modified gravity; modified inertia; cosmology; dark sector; MOND',
+    'dc.description': 'An emergent-gravity proposal in which the galactic acceleration scale a₀ = c²√(Λ/32π) is set by the cosmological constant via de Sitter–Unruh modified inertia.',
   },
 }
 
@@ -119,6 +110,7 @@ export default function RootLayout({
       </head>
       <body className="antialiased">
         <Analytics />
+        <RouteNotice />
         {children}
       </body>
     </html>
