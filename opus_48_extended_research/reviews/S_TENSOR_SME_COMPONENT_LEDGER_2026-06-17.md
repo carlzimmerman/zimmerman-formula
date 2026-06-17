@@ -68,12 +68,18 @@ edge," and not a manufactured all-clear either (the s̄^TX channel is genuinely 
 - **OPEN:** the PPN dictionary factor α₂ = −(5/2)α is the borrowed **Foster–Jacobson Einstein-aether/khronometric
   MODIFIED-GRAVITY** map, whose kinetic coefficients a modified-INERTIA theory does not possess. The gravity-vs-inertia
   translation is un-derived, so the prefactor is an O(1)-to-zero knob. (This softens the construct's flat "FORCED.")
-- **α₂ severity (both ways):** the earlier "~6× LIVE vs Nordtvedt" used the *orbital* field (5.9×10⁻³) — an arbitrary
-  middle choice. The Nordtvedt solar-spin test is a **self-gravity** effect, so the physically-correct field is the Sun's
-  internal binding (g≫a₀): α₂ ~ 8.5×10⁻¹³ = **~2.8×10⁵× SAFE.** The deep-MOND "galactic α₂~1, 4×10⁶× over" is the **wrong
-  field** for a self-energy effect (samples internal g≫a₀ — Sanders camouflage) — an **artifact, not a tension.** No
-  robust α₂ deficit. Residual genuine uncertainty: which acceleration governs the self-gravity precession in an MI
-  realization — unresolved (no first-principles MI PPN derivation exists).
+- **α₂ severity (both ways) — SUPERSEDED 2026-06-17 by the first-principles MI PPN derivation; see
+  [[MI_PPN_ALPHA2_DERIVATION_2026-06-17]] (`woglr53nv`, clean-room verified `derivation_chain/mi_ppn_alpha2_verify.py`):**
+  the self-gravity field IS the right acceleration (EFE-screened internal binding g≫a₀, NOT the Sun's galactic a≈2a₀ —
+  that part stands). BUT the magnitude "α₂ ~ 8.5×10⁻¹³, ~2.8×10⁵× SAFE" was a **CATEGORY ERROR**: it used the *per-particle*
+  inertia anomaly (5/2)(a₀/g_surf) and **dropped the self-gravity energy weighting**. PPN α₂ multiplies w^iw^j U_ij (a
+  metric potential ~GM/rc²), so it carries an enhancement **(c/v_esc)² ≈ c²/(GM/R) ≈ 2.4×10⁵**. The correct
+  first-principles result is **α₂_MI = c²∫ρW(g/a₀)dV / E_g**, uniform closed form (5/4)a₀c²R³/(G²M²), giving
+  **α₂(Sun) ≈ 2.0×10⁻⁷ (uniform) → 1.1×10⁻⁸ (n=3 polytrope, realistic)** vs Nordtvedt 2.4×10⁻⁷ → **margin ~1.2× (worst
+  case) to ~22× (realistic) — a genuinely LIVE near-term test, NOT 2.8×10⁵× safe.** It still PASSES (not a kill), but is
+  no longer comfortably safe. The deep-MOND "galactic α₂~1" remains a wrong-field artifact. **Critically: the s^TX dipole
+  is a COM/orbital observable, NOT self-energy enhanced — its normalization (a₀/2|a_orbital|, ~9.6× margin) STANDS, and the
+  MI derivation UNTIES s^TX from α₂ (the single −5/2 knob was wrong; they are different observable classes).**
 
 ## The sector verdict (robustly confirmed): GRAVITY s̄, not matter c_μν
 Both adversaries confirm the universal, WEP-exact, mass-proportional, CPT-even, two-u-structured modified inertia maps
@@ -105,31 +111,38 @@ onto the **gravitational s̄^μν**, not a composition-dependent matter c_μν. 
   of the standing walls (N=3 parity, FDR-dead masses). It moves the bridge from "consistent" to "consistent,
   component-by-component, with a named binding test," which is as close to the SM as the walls permit.
 
-## Open next step (if pushed further)
-The one genuine residual: **derive the α₂ PPN prefactor (and the s̄^μν normalization) from a first-principles modified-
-INERTIA PPN expansion**, rather than borrowing the Foster–Jacobson modified-gravity dictionary — that is the only way the
-α₂ prediction becomes a forced number rather than form-forced/prefactor-open, and the only way the binding s̄^TX margin
-becomes a sharp prediction rather than a conservative band. No MI PPN formalism currently exists; building it is the
-honest frontier.
+## Open next step — DONE 2026-06-17 (the frontier was pushed)
+The residual flagged here — **derive the α₂ PPN prefactor from a first-principles modified-INERTIA PPN expansion** instead
+of borrowing Foster–Jacobson — was executed (`woglr53nv`, [[MI_PPN_ALPHA2_DERIVATION_2026-06-17]]). Outcome **PARTIAL**:
+the MI PPN formalism now EXISTS (α₂_MI = c²∫ρW dV/E_g, a self-gravity-weighted observable), the correct acceleration
+(EFE-screened internal self-field) and the structure are forced, the O(1) coefficient is structure-dependent. The
+**important downstream consequence** for this ledger: it **untied s̄^TX from α₂** (the single −5/2 knob was wrong —
+s̄^TX is COM/orbital and not self-energy enhanced, so its ~9.6× margin STANDS), and it **corrected the α₂ severity** from
+the bogus "~2.8×10⁵× safe" to a **LIVE ~1–22×** test. Remaining residual: the O(1) coefficient (real solar profile) and
+whether the full Milgrom-1994 nonlocality shifts it at O(1).
 
 ## What Carl CAN / MUST NOT say
 - **CAN:** the framework induces a gravity-sector SME s̄^μν and **clears every named current bound**; the single tightest
   is the s̄^TX boost dipole vs INPOP/Cassini (~8.3×10⁻⁹), conservative margin **~9.6×** at Saturn's acceleration, a real
   near-term test; this **revises** the prior "~2× under the tightest" (a channel-mismatch artifact) to **more
-  comfortable**; the correct sector is gravity s̄ (the c_μν "15-order kill" is a verified mis-map); α₂ is FORM-forced
-  (a₀/|a| tail, coeff 1) but PREFACTOR-OPEN, and SAFE (~2.8×10⁵× at the self-field) on the directly-applicable
-  solar-spin test; no O(1) un-β-suppressed anisotropic observable exists; the framework is a constrained, falsifiable,
-  Lorentz-violating-but-CPT-preserving EFT.
+  comfortable**; the correct sector is gravity s̄ (the c_μν "15-order kill" is a verified mis-map); **α₂ now has a
+  first-principles MI PPN derivation** (energy-weighted self-gravity integral, [[MI_PPN_ALPHA2_DERIVATION_2026-06-17]]) →
+  α₂(Sun) ≈ 1×10⁻⁸ realistic (≈2×10⁻⁷ uniform) vs Nordtvedt 2.4×10⁻⁷, a **LIVE ~1–22× test** (passes; not a kill, not
+  comfortably safe), with s̄^TX untied from α₂; no O(1) un-β-suppressed anisotropic observable exists; the framework is a
+  constrained, falsifiable, Lorentz-violating-but-CPT-preserving EFT.
 - **MUST NOT:** "~2× under the tightest" (channel-mismatch artifact; robust ~10× conservative); "LLR s̄^TX margin 482 is
-  THE tightest" (mid-band, not the floor); "α₂ is FORCED" (form-forced, prefactor-open); "α₂ is 6× at the edge of
-  Nordtvedt" (orbital-field choice; self-field ~2.8×10⁵× safe); "galactic α₂~1 catastrophe" (wrong field, artifact);
-  "the matter-c_μν 15-order kill" (mis-map); "a₀/Z/κ derived" (a₀ is the input); a comfortable all-clear that erases the
-  s̄^TX dipole as a live test.
+  THE tightest" (mid-band, not the floor); "α₂ ~ 8.5×10⁻¹³, ~2.8×10⁵× safe" (CATEGORY ERROR — dropped the (c/v_esc)²
+  self-energy enhancement; the correct α₂ is ~1×10⁻⁸..2×10⁻⁷, margin ~1–22×); "α₂ is FORCED" (PARTIAL — O(1) coefficient
+  structure-dependent); "α₂ is a kill" (it passes); "galactic α₂~1 catastrophe" (wrong field, artifact); "the matter-c_μν
+  15-order kill" (mis-map); "a₀/Z/κ derived" (a₀ is the input); a comfortable all-clear that erases the s̄^TX dipole OR the
+  α₂ solar-spin test as live near-term constraints.
 
 ## One line
 The framework's induced gravity-sector s̄^μν **passes every named current bound** — the single tightest is the s̄^TX
 boost dipole vs INPOP/Cassini at **~9.6× (conservative) to ~hundreds (typical)**, a real near-term test — and this
 **corrects my own prior "LIVE, ~2× under the tightest" (a dipole-vs-spatial channel-mismatch) to MORE COMFORTABLE**; α₂
-is FORM-forced/prefactor-open and SAFE (~2.8×10⁵× at the self-field, not a 6× edge), the sector is robustly gravity-s̄
-(not c_μν), no O(1) un-β-suppressed anisotropy exists, and every induced number takes a₀ as input (quarantine held) — a
-sharper, named, falsifiable SME interface, NOT a derivation, NOT a crossing of the walls.
+now has a **first-principles MI PPN derivation** ([[MI_PPN_ALPHA2_DERIVATION_2026-06-17]]) giving a self-gravity-weighted
+α₂(Sun) ≈ 1×10⁻⁸..2×10⁻⁷, a **LIVE ~1–22× test** (correcting the prior "~2.8×10⁵× safe" category error, and untying s̄^TX
+from α₂), the sector is robustly gravity-s̄ (not c_μν), no O(1) un-β-suppressed anisotropy exists, and every induced
+number takes a₀ as input (quarantine held) — a sharper, named, falsifiable SME interface, NOT a derivation, NOT a
+crossing of the walls.
