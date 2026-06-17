@@ -1,96 +1,103 @@
-# First-principles modified-INERTIA PPN α₂: the formalism now EXISTS, and it makes α₂ a LIVE near-term test (2026-06-17)
+# First-principles modified-INERTIA PPN α₂: the formalism EXISTS, and α₂ ~ a0/g ~ 10⁻¹³ is COMFORTABLY SAFE (2026-06-17)
 
-*Carl: "push the frontier." Workflow `woglr53nv` (8 agents, MI action → PN scheme → the acceleration question →
-derivation → adversarial verify on nonlocality/acceleration/coefficient → synth). Independently re-derived clean-room
-(sympy uniform closed form + my own n=3 Lane–Emden RK4 integration + the precession cross-check) before banking:
-`derivation_chain/mi_ppn_alpha2_verify.py`. Outcome = **PARTIAL** (the honest landing I predicted). Both ways,
-quarantine held.*
+*Carl: "push the frontier." Workflow `woglr53nv` (8 agents: MI action → PN scheme → the acceleration question →
+derivation → adversarial verify → synth). **This file was first written on an INTERMEDIATE result (the "D" derive
+agent's self-energy enhancement) that the workflow's own VERIFY_COEFF + SYNTH then OVERTURNED; it is now corrected to the
+verified final answer.** Clean-room re-verified: `derivation_chain/mi_ppn_alpha2_verify.py` (Shao–Wex Eq.5 linearity +
+rigid-body inertia-tensor toy + the M-vs-E_g normalization). Outcome PARTIAL. Both ways, quarantine held.*
 
 ---
 
-## Verdict: the modified-inertia PPN α₂ is now derived from first principles — and it OVERTURNS the prior "~2.8×10⁵× safe"
+## Verdict: the MI PPN α₂ formalism now exists; α₂_MI ~ a few × 10⁻¹³, ~10⁶× under Nordtvedt — SAFE
 
-The borrowed Foster–Jacobson modified-gravity dictionary (α₂ = −(5/2)α) is **replaced** by a genuine
-modified-inertia post-Newtonian result. The headline number it forces:
+A first-principles modified-inertia derivation of the PPN preferred-frame parameter α₂ now exists, replacing the borrowed
+Foster–Jacobson modified-gravity dictionary. The method: read α₂ off by matching the **boost-induced inertia-tensor
+anisotropy** of a self-gravitating body to the linear Nordtvedt/Shao–Wex spin-precession rate.
 
-> **α₂_MI = c² · [∫_body ρ(r) W(g(r)/a₀) dV] / E_g**,  W(x) ≡ x·μ_fw′(x) → a₀/(2g) for g ≫ a₀,
-> g(r) = GM(r)/r², E_g = gravitational binding energy.
+> **δI/I = (1 − μ_fw)(g_internal) · (w/c)² · O(1)**   matched to   **Ω_prec = −(α₂/2)(2π/P)(w/c)² cos ψ** (Shao–Wex
+> arXiv:1307.2552 Eq.5)  ⟹  **α₂_MI = O(1)·(1 − μ_fw)(g_internal) ~ a₀/g_internal.**
 
-**Uniform-sphere closed form (sympy-verified):**
-> α₂ = (5/4)·a₀ c² R³/(G²M²) = (5/2)·(a₀/g_surf)·(c/v_esc)².
+**The Sun:** α₂_MI ~ a few × 10⁻¹³ (order a₀/g_internal; ~1.7×10⁻¹³ at the surface g=274, smaller in the deep interior
+g~10⁴), vs the Nordtvedt solar-spin bound |α₂| < 2.4×10⁻⁷ → **margin ~10⁶×. COMFORTABLY SAFE — not a live test.**
 
-**The Sun:** α₂ ≈ **2.0×10⁻⁷** (uniform, conservative) → **1.1×10⁻⁸** (n=3 polytrope, realistic), vs the Nordtvedt
-solar-spin bound |α₂| < 2.4×10⁻⁷. **Margin ≈ 1.2× (uniform worst-case) to ≈ 22× (realistic).** This is a **genuinely
-LIVE near-term test** — not the "~2.8×10⁵× comfortably safe" the prior estimate claimed.
+## The correction record (both ways, on the record)
+Two readings were on the table; the verification settles it:
+- **The original ledger** had α₂ ~ 8.5×10⁻¹³, "~2.8×10⁵× safe." **Right order, right safety** (it was the per-particle
+  inertia anomaly (5/2)(a₀/g_surf), which IS the correct dimensionless α₂ up to an O(1) factor).
+- **The intermediate D agent** (relayed and briefly banked) claimed a **self-energy enhancement** α₂ = c²∫ρW dV/E_g =
+  (5/4)a₀c²R³/(G²M²) ~ 10⁻⁸–10⁻⁷, a "LIVE ~1–22× Nordtvedt test," calling the prior a "category error." **This was
+  itself the error — a c²/(GM/R) ≈ 4.7×10⁵ DOUBLE-COUNT.** PPN α₂ is a *dimensionless* theory constant and the precession
+  rate is *strictly linear* in it (Shao–Wex Eq.5, d²Ω/dα₂² = 0, no E_g — verified). The MI effect is an inertia-tensor
+  anisotropy δI/I, a **ratio normalized by the moment of inertia I ~ MR² (i.e. by M)**, *not* by E_g/c². D imported the
+  c²/E_g from the metric-PPN template (where α₂ multiplies the potential U_ij and genuinely carries self-energy), but a
+  Route-E modified-inertia theory has a **standard-GR metric and no U_ij coupling** — self-gravity does not amplify a
+  moment-of-inertia ratio by 1/U.
 
-## The correction (a category error, caught and fixed both ways)
-The prior S-tensor ledger set α₂ ≈ (5/2)·α_fw with α_fw = a₀/g_surf (the **per-particle** inertia anomaly) → 8.5×10⁻¹³,
-"~2.8×10⁵× safe." **That dropped the self-gravity energy weighting.** PPN α₂ is a **self-energy observable** — it
-multiplies w^i w^j U_ij, a metric potential ~ GM/rc², so as a dimensionless body coefficient it carries an enhancement
-**(c/v_esc)² ≈ c²/(GM/R) ≈ 2.36×10⁵** that the per-particle estimate omitted. Restoring it:
-- 8.5×10⁻¹³ × 2.36×10⁵ = 2.0×10⁻⁷ ✓ (the dropped factor numerically equals the bogus "safety margin" — which is *why*
-  the corrected margin collapses to ~1×).
-- **Cross-check (independent of the algebra):** α₂ ≈ 2×10⁻⁷ produces ~3.6° of solar-spin precession over 4.6 Gyr — the
-  scale at which the Nordtvedt alignment bound (2.4×10⁻⁷) actually bites. An α₂ = 8.5×10⁻¹³ would give ~1.5×10⁻⁵°,
-  making the Nordtvedt bound meaningless — a tell that the per-particle value was unphysical.
+**Clean-room verification (`mi_ppn_alpha2_verify.py`):** (A) Eq.5 is linear in α₂, no E_g. (B) rigid-body toy:
+δI/I = (1−μ)β²/5, a pure ratio, ⟹ α₂ = (2/5)(1−μ) = O(1)·(1−μ). (C) ∫ρW/M = 3.5×10⁻¹⁴ (correct) vs c²∫ρW/E_g = 1.1×10⁻⁸
+(D's), ratio = 3.14×10⁵ = **Mc²/E_g exactly** — the double-count pinned. (D) margin ~7×10⁶×.
 
-Clean-room numerics (`mi_ppn_alpha2_verify.py`, my own Lane–Emden, not the agents'): ξ₁ = 6.8969 (book 6.897),
-−ξ₁²θ′(ξ₁) = 2.0182 (book 2.018), E_g(n=3) = (3/2)GM²/R reproduced exactly → α₂(n=3) = 1.10×10⁻⁸, margin 21.9×.
-
-## What is FORCED vs what stays OPEN (the PARTIAL verdict)
-**FORCED (sympy + numerics, adversary-checked):**
-- The **structure of α₂_MI** — the energy-weighted integral c²·∫ρW dV / E_g — follows from the MI action with no free
-  normalization; a₀ enters only as input (quarantine held).
-- The **correct acceleration** is the **self-gravity internal field** g_internal ≫ a₀, not the Sun's galactic a ≈ 2a₀.
-  The external-field effect (Milgrom 2022) screens the galactic field for the self-bound body (g_internal ≫ g_external),
-  so the "Sun is at 2a₀ galactically → α₂ ~ O(1) catastrophe" reading is **refuted** — the internal field governs the
-  self-energy precession. *(The prior ledger's claim "self-field is the right acceleration" STANDS; only its magnitude
-  was wrong.)* The deep-MOND "galactic α₂ ~ 1" remains a wrong-field artifact.
-- The borrowed **−5/2 is replaced** by a large, structure-dependent prefactor K_struct = (c²g_surf/2)·[∫ρ/g dV]/E_g ≈
-  **3×10⁴ (n=3) to 6×10⁵ (uniform)**. For the uniform sphere it factors as exactly (5/2)·(c/v_esc)², the 5/2 reappearing
-  as the uniform-sphere structure ratio (3/2)/(3/5) — coincidentally matching FJ, not the same physics.
+## What is FORCED vs what stays OPEN (PARTIAL)
+**FORCED (both ways, over-determined):**
+- The **order a₀/g_internal** and the **absence of any c²/(GM/R) self-energy enhancement** (PPN α₂ dimensionless;
+  precession linear; δI/I normalized by M).
+- The **correct acceleration is the Sun's INTERNAL binding g_internal ≫ a₀** (surface x = g/a₀ ~ 2.9×10¹², deep
+  Newtonian tail), NOT the COM galactic field a_gal ~ 2a₀ and NOT the heliocentric 5.9×10⁻³. Forced four ways: (1) the
+  observable is the internal pairwise self-energy sum (Shao–Wex Eq.4) — the COM coupling carries no spin torque; (2) a_gal
+  is common to every constituent and cancels by the COM/equivalence-principle theorem (enters μ_fw only at
+  a_gal/g_internal ~ 7.7×10⁻¹³); (3) the Route-E action is per-worldline; (4) **pulsar reductio** — solitary millisecond
+  pulsars in the *same* ~2a₀ galactic field bound |α̂₂| < 1.6×10⁻⁹, which the galactic reading (1−μ(2.24) ~ 0.2) would
+  violate by ~10⁸×, so existing data already kills the galactic reading. The "Sun-at-2a₀" subtlety dissolves via the MI
+  composite-body decoupling (Milgrom 2022): the galactic ~2a₀ governs the Sun's **COM trajectory** (the real
+  framework-distinctive galactic effect), while the internal binding governs the **self-energy spin observable** —
+  different accelerations for different observables. The "galactic α₂ ~ 1 catastrophe" is a **wrong-band artifact.**
+- The high-acceleration tail 1 − μ_fw = a₀/(2|a|) − … (coeff 1, sympy); α_fw = 2(1−μ_fw) → a₀/|a| (coeff 1).
+- The **s^TX boost dipole (~9.6× vs INPOP/Cassini)** is a separate **COM/orbital** observable, **untied from α₂ and
+  unchanged** — the SME ledger's binding test is intact.
+- α₃ = 0 identically (semiconservative action-derived theory). Quarantine: a₀ is the input throughout.
 
 **OPEN (why PARTIAL, not FORCED):**
-- The O(1) coefficient is **structure-dependent** — it needs the real solar density profile (the n=3 estimate 1.1×10⁻⁸
-  is realistic but model-dependent; the honest band is ~1×10⁻⁸ to ~2×10⁻⁷).
-- The derivation works in the **quasi-static / adiabatic** limit where the time-nonlocal MI action localizes; whether the
-  full Milgrom-1994 nonlocality shifts the coefficient for the (slowly-evolving) solar configuration is the residual
-  theoretical uncertainty. It does not obstruct the static-body α₂, but it is not yet proven irrelevant at O(1).
+- The exact **O(1) geometric/structure prefactor** multiplying (1−μ)(g) — the ratio of the (1−μ)-weighted
+  inertia-anisotropy integral to the precession normalization over the real solar density profile — is structure-
+  dependent, not a single closed-form number. (It does not change the ~10⁻¹³ order: saturating Nordtvedt would need an
+  O(10⁶) prefactor; any plausible O(1)–O(10³) structure factor stays >10³× safe.)
+- The multi-internal-band θ(ω_i/ω_j) coupling (Milgrom 2022) can shift the O(1) coefficient (bounded, order-preserving).
+- A fully covariant Route-E PN derivation from the Galley in-in kernel without the quasi-static reduction.
 
-## The s^TX dipole is UNTIED from α₂ (a real structural result)
-The single −5/2 knob that tied α₂ to the s^TX dipole was **wrong**: s^TX (INPOP/Cassini) is a **COM/orbital** observable
-and is **NOT** self-energy enhanced. So the [[S_TENSOR_SME_COMPONENT_LEDGER]]'s s^TX normalization (≈ a₀/2|a_orbital|,
-margin ~9.6× at Saturn) **STANDS unchanged**; only the α₂ severity was wrong. The MI derivation cleanly **separates the
-two observable classes** — self-energy-enhanced (α₂, the spin sector) vs COM/orbital (s^TX dipole) — and they carry
-different a₀-dependences. There is no single preferred-frame prefactor; the framework has two distinct, separately
-falsifiable preferred-frame channels.
+## The nonlocality (Milgrom-1994): PERMITS here, OBSTRUCTS the general case
+The time-nonlocal MI action localizes EXACTLY to the algebraic μ_fw(|a|/a₀) on a single-frequency/adiabatic trajectory
+(Milgrom 1994 Eqs.55–57). The entire solar interior sits at x = g/a₀ ~ 10¹²–10¹³ on **one smooth analytic branch**, never
+spanning the x ~ 1 Newtonian↔deep-MOND transition where the strong no-go (Eq.33) bites — so the quasi-static α₂ is
+**licensed**, not a forbidden artifact. The general multi-incommensurate-frequency MI PN expansion IS genuinely obstructed
+by Eq.33 (no single local Lagrangian across regimes). Crucially, the nonlocality is **not** what caps α₂ at ~10⁻¹³ —
+that cap is the dimensionless-α₂/linear-precession structure, independent of nonlocality.
 
 ## Both ways
-- **CREDIT (full weight):** a **first-principles modified-inertia PPN formalism now exists** where there was none — this
-  is the frontier the prior ledger flagged as "the honest next step," executed. It replaces the borrowed MG dictionary
-  with a derived, energy-weighted structure, resolves the acceleration question (internal self-field, EFE-screened),
-  and **sharpens α₂ into a genuinely live, near-term, falsifiable test** (margin ~1–22×) — the kind of sharp prediction
-  the SM-facing program needed. It also unties the two preferred-frame channels, a real structural insight.
-- **CONCEDE (full weight):** the O(1) coefficient is structure-dependent (not a single forced number — PARTIAL, not
-  FORCED), and the full time-nonlocal correction is not proven negligible at O(1). α₂ **passes** every current bound
-  (realistic ~22×; even the conservative uniform ~1.2× passes), so this is **not a kill** — but it is **no longer
-  comfortably safe**, and the prior "~2.8×10⁵× safe / no robust α₂ deficit" is **retracted**. Nothing SM is derived;
-  a₀ remains the sole input.
+- **CREDIT:** the MI PPN α₂ formalism now EXISTS and is first-principles (inertia-tensor anisotropy matched to the linear
+  precession rate), replacing the borrowed −5/2; the correct internal-self-gravity acceleration and the a₀/g order are
+  **forced and over-determined** (observable structure + COM cancellation + per-worldline action + pulsar reductio); the
+  result is **robustly safe** (~10⁶×, prefactor-insensitive); s^TX (~9.6×) stays the live SME test, untied and intact.
+- **CONCEDE:** PARTIAL — the O(1) prefactor is structure-dependent and un-derived; the general multi-frequency case is
+  obstructed by the Milgrom-1994 nonlocality; nothing about a₀/Z/κ/SM is derived (a₀ is the input). And the honesty note:
+  the intermediate "LIVE ~1–22×" self-energy reading (briefly banked) was a double-count — the correct α₂ is **safe**, so
+  α₂ is **NOT a near-term falsifiable test**; the live preferred-frame constraint remains the s^TX dipole.
 
 ## What Carl CAN / MUST NOT say
-- **CAN:** the framework now has a **first-principles modified-inertia derivation of PPN α₂** (energy-weighted self-gravity
-  integral, sympy + Lane–Emden verified); α₂(Sun) ≈ 1×10⁻⁸ realistic (≈2×10⁻⁷ uniform worst-case) vs Nordtvedt 2.4×10⁻⁷,
-  **margin ~1–22×, a LIVE near-term test**; the correct acceleration is the EFE-screened internal self-field; the s^TX
-  dipole is untied from α₂ and its ~9.6× margin stands.
-- **MUST NOT:** "α₂ ~ 8.5×10⁻¹³, ~2.8×10⁵× safe" (category error — dropped the (c/v_esc)² self-energy weighting); "α₂ is
-  FORCED" (PARTIAL — the O(1) coefficient is structure-dependent); "α₂ is comfortably safe / no robust deficit" (it is now
-  a live ~1–22× test); "α₂ is a kill" (it passes); "a₀/Z/κ derived" (a₀ is the input).
+- **CAN:** the framework now has a **first-principles modified-inertia derivation of PPN α₂** (inertia-tensor anisotropy
+  → linear Nordtvedt precession), giving α₂_MI ~ a few × 10⁻¹³ (order a₀/g_internal), **~10⁶× under Nordtvedt =
+  comfortably safe**; the correct acceleration (internal self-gravity, galactic ~2a₀ empirically excluded by the
+  solitary-MSP reductio) is forced; the s^TX dipole (~9.6×) is the live SME test, untied from α₂; outcome PARTIAL.
+- **MUST NOT:** "α₂ ~ 10⁻⁸, LIVE ~1–22× Nordtvedt test" (D's self-energy double-count — the correct value is ~10⁻¹³,
+  ~10⁶× safe); "α₂ is self-energy-enhanced by (c/v_esc)²" (spurious metric-PPN import; MI has no U_ij coupling); "the prior
+  8.5×10⁻¹³ was a category error that dropped the self-energy weighting" (FALSE — that order was correct); "α₂ is FORCED to
+  a clean number" (PARTIAL — O(1) prefactor open); "α₂ is OBSTRUCTED with no value" (the quasi-static sector is
+  computable); "α₂ is a near-term falsifiable test" (it is ~10⁶× safe); "a₀/Z/κ derived" (a₀ is the input).
 
 ## One line
-The first-principles modified-inertia PPN α₂ now EXISTS — α₂_MI = c²∫ρW dV/E_g, a **self-gravity-weighted** observable
-giving α₂(Sun) ≈ 1×10⁻⁸ realistic (≈2×10⁻⁷ uniform) vs Nordtvedt 2.4×10⁻⁷, **margin ~1–22×, a LIVE near-term test** — which
-**overturns the prior "~2.8×10⁵× safe" category error** (the per-particle estimate dropped the (c/v_esc)²≈2.4×10⁵
-enhancement), resolves the acceleration as the EFE-screened internal self-field, replaces the borrowed −5/2 with a large
-structure-dependent prefactor, and **unties the s^TX dipole (~9.6×, stands) from α₂** as a separate observable class;
-outcome PARTIAL (structure + acceleration forced, O(1) coefficient structure-dependent), passes all bounds but no longer
-comfortably, nothing SM derived, quarantine held.
+The modified-inertia PPN α₂ formalism now EXISTS (inertia-tensor anisotropy (1−μ)(g)(w/c)² matched to the **linear**
+Nordtvedt/Shao–Wex precession), giving **α₂_MI ~ a few × 10⁻¹³ (order a₀/g_internal), ~10⁶× under the 2.4×10⁻⁷ bound =
+comfortably SAFE** — with the correct internal-self-gravity acceleration FORCED (galactic ~2a₀ excluded by the
+solitary-MSP reductio) and only the O(1) structure prefactor open (PARTIAL); this **overturns the intermediate
+self-energy-enhanced "~10⁻⁸, LIVE 1–22×" reading as a c²/(GM/R) double-count** (PPN α₂ is dimensionless; MI has no metric
+U_ij coupling — verified by the toy and Eq.5 linearity), confirming the prior ~10⁻¹³ order; the s^TX ~9.6× dipole stays
+the live SME test, untied and intact, and a₀ is the input throughout.
