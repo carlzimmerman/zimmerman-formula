@@ -17,12 +17,12 @@ export default function Footer() {
           <div className="mb-8">
             <span className="text-gray-500">DOI: </span>
             <a
-              href="https://doi.org/10.5281/zenodo.19199167"
+              href="https://doi.org/10.5281/zenodo.20721540"
               target="_blank"
               rel="noopener noreferrer"
               className="text-quantum-purple hover:text-quantum-purple/80 transition-colors"
             >
-              10.5281/zenodo.19199167
+              10.5281/zenodo.20721540
             </a>
           </div>
 

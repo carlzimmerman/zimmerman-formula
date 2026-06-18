@@ -111,8 +111,8 @@ export default function Derivation() {
           <div className="flex items-center gap-4 text-sm text-gray-500 border-t border-gray-200 pt-4">
             <span>Carl Zimmerman</span>
             <span>·</span>
-            <a href="https://doi.org/10.5281/zenodo.19199167" className="text-blue-600 hover:underline">
-              DOI: 10.5281/zenodo.19199167
+            <a href="https://doi.org/10.5281/zenodo.20721540" className="text-blue-600 hover:underline">
+              DOI: 10.5281/zenodo.20721540
             </a>
             <span>·</span>
             <button

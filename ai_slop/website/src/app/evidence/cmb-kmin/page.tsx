@@ -308,7 +308,7 @@ export default function CMBKminPage() {
             </p>
             <p>
               [3] Z² Unified Framework, "Topological Origin of Fundamental Constants," v11.1.0,
-              2026. DOI: 10.5281/zenodo.19199167
+              2026. DOI: 10.5281/zenodo.20721540
             </p>
           </div>
         </section>

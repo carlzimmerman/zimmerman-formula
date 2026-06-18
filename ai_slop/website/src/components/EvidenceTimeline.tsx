@@ -194,20 +194,20 @@ const EVIDENCE: Evidence[] = [
   {
     year: 2026,
     title: 'Zimmerman Prediction: BTFR Evolution',
-    source: 'DOI: 10.5281/zenodo.19199167',
+    source: 'DOI: 10.5281/zenodo.20721540',
     description: 'Baryonic Tully-Fisher relation should show systematic offset at high redshift.',
     relevance: 'Δlog M = -0.47 dex at z=2 — testable with JWST/ELT spectroscopy',
     type: 'prediction',
-    doi: '10.5281/zenodo.19199167',
+    doi: '10.5281/zenodo.20721540',
   },
   {
     year: 2026,
     title: 'Zimmerman Prediction: RAR Evolution',
-    source: 'DOI: 10.5281/zenodo.19199167',
+    source: 'DOI: 10.5281/zenodo.20721540',
     description: 'The RAR transition scale g† should evolve with E(z).',
     relevance: 'At z=2, transition occurs at 3× higher acceleration — falsifiable',
     type: 'prediction',
-    doi: '10.5281/zenodo.19199167',
+    doi: '10.5281/zenodo.20721540',
   },
 ]
 

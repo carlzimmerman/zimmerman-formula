@@ -47,12 +47,12 @@ export default function Home() {
             <span>May 2026</span>
             <span className="text-gray-300">|</span>
             <a
-              href="https://zenodo.org/records/19199167"
+              href="https://zenodo.org/records/20721540"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-600 hover:underline"
             >
-              DOI: 10.5281/zenodo.19199167
+              DOI: 10.5281/zenodo.20721540
             </a>
           </div>
 
@@ -329,6 +329,46 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Published Papers */}
+        <section className="mb-12">
+          <h2 className="text-lg font-semibold text-gray-900 mb-4">Published Papers (2026)</h2>
+          <div className="space-y-3">
+            <a
+              href="https://doi.org/10.5281/zenodo.20721540"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block border border-gray-200 rounded-lg p-4 hover:border-gray-400 transition-colors"
+            >
+              <div className="font-medium text-gray-900">The MOND Acceleration Scale as a de Sitter Curvature Scale</div>
+              <div className="text-sm text-gray-600 mt-1">Gauged SO(4,1) gravity reduces a₀ = c²√(Λ/32π) to a single free number. The framework spine, both ways.</div>
+              <div className="text-xs text-blue-600 mt-1">DOI: 10.5281/zenodo.20721540</div>
+            </a>
+            <a
+              href="https://doi.org/10.5281/zenodo.20737162"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block border border-gray-200 rounded-lg p-4 hover:border-gray-400 transition-colors"
+            >
+              <div className="font-medium text-gray-900">Dark Energy Sets the Galaxy Acceleration Scale</div>
+              <div className="text-sm text-gray-600 mt-1">A parameter-free a₀(z) test ΛCDM cannot take: under DESI DR2&apos;s evolving dark energy, a₀(z) bumps +6% at z≈0.4 then declines to ~0.74 by z=3 — a falsifiable, hostage prediction.</div>
+              <div className="text-xs text-blue-600 mt-1">DOI: 10.5281/zenodo.20737162</div>
+            </a>
+            <a
+              href="https://doi.org/10.5281/zenodo.20738055"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block border border-gray-200 rounded-lg p-4 hover:border-gray-400 transition-colors"
+            >
+              <div className="font-medium text-gray-900">A Provably One-Parameter Theory of Gravity and the Dark Sector</div>
+              <div className="text-sm text-gray-600 mt-1">The coefficient κ=½ is the lone free number, provably unforceable by ghost-freedom, unitarity, and holography — and it is pure geometry, the single-degree-of-freedom limit of the Cohen–Kaplan–Nelson bound.</div>
+              <div className="text-xs text-blue-600 mt-1">DOI: 10.5281/zenodo.20738055</div>
+            </a>
+          </div>
+          <p className="text-xs text-gray-500 mt-3">
+            A falsifiable theory of gravity and the dark sector — not a proven replacement for dark matter, and not a theory of everything yet.
+          </p>
+        </section>
+
         {/* Downloads */}
         <section className="mb-12">
           <h2 className="text-lg font-semibold text-gray-900 mb-4">Downloads</h2>
@@ -360,7 +400,7 @@ export default function Home() {
           <h2 className="text-lg font-semibold text-gray-900 mb-4">External Resources</h2>
           <div className="flex flex-wrap gap-6 text-sm">
             <a
-              href="https://zenodo.org/records/19199167"
+              href="https://zenodo.org/records/20721540"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-600 hover:underline"
@@ -393,12 +433,12 @@ export default function Home() {
           </p>
           <p>
             <a
-              href="https://zenodo.org/records/19199167"
+              href="https://zenodo.org/records/20721540"
               className="text-blue-600 hover:underline"
               target="_blank"
               rel="noopener noreferrer"
             >
-              DOI: 10.5281/zenodo.19199167
+              DOI: 10.5281/zenodo.20721540
             </a>
           </p>
         </footer>
