@@ -60,6 +60,9 @@ def demath(span):
 
 def main():
     text = open(SRC).read()
+    bookdir = os.path.dirname(os.path.abspath(__file__))
+    # make figure image paths absolute so tectonic (run from a temp dir) can find them
+    text = text.replace('](figures/', '](' + bookdir + '/figures/')
     pat = re.compile(r'(```.*?```|`[^`\n]*`|\$\$.*?\$\$|\$[^$\n]*\$)', re.DOTALL)
     parts = pat.split(text)
     for i, seg in enumerate(parts):
@@ -72,8 +75,11 @@ def main():
     with tempfile.NamedTemporaryFile('w', suffix='.md', delete=False) as f:
         f.write(''.join(parts)); md = f.name
     tex = md.replace('.md', '.tex')
+    bookdir = os.path.dirname(os.path.abspath(__file__))
     subprocess.run(['pandoc', md, '-s', '-t', 'latex', '-V', 'documentclass=report',
                     '-V', 'geometry:margin=1in', '-V', 'fontsize=11pt',
+                    '--resource-path=' + bookdir,            # so figures/*.png resolve from book/
+                    '-V', 'graphics=true',
                     '--top-level-division=chapter', '--toc', '--toc-depth=1',
                     '-V', 'colorlinks=true', '-V', 'linkcolor=NavyBlue', '-o', tex], check=True)
     subprocess.run(['tectonic', tex, '--outdir', os.path.dirname(tex), '-Z', 'continue-on-errors'], check=True)
