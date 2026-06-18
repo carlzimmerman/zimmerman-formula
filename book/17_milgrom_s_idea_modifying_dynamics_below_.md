@@ -1,0 +1,186 @@
+# Chapter 17: Milgrom's Idea: Modifying Dynamics Below a₀
+
+> *What if the galaxies aren't hiding extra matter from us — what if, instead, they're showing us that the rule book changes when the pull gets faint enough? It's a daring thought. Let's see how far one number can carry it.*
+
+## A different question
+
+In the chapters behind us, we built up a puzzle and started down one of the two roads out of it. We weighed galaxies the way Newton taught us (Chapters 2 and 4), we watched their outskirts spin far too fast for the matter we can see (Vera Rubin's flat rotation curves, Chapter 4), and we met the two great answers physics has offered: a new *particle* nobody has caught (Chapter 6), or a new *law* (the fork of Chapter 5). This chapter is about the boldest version of the second road.
+
+It is the idea of a single physicist, working mostly alone, who in 1983 asked a question that sounds almost childish until you realize how carefully it has to be posed:
+
+**What if gravity — or inertia — simply works differently when accelerations get extraordinarily small?**
+
+Not "differently far away." Not "differently in galaxies." Those would be cheating; they'd be rules that know where they are, and nature's rules never know where they are. The proposal had to be cleaner than that. It had to be a rule that depends only on a *local* quantity — something you could measure right where you're standing, without knowing whether you're in a galaxy, a cluster, or the lab. Milgrom's choice for that local quantity was **acceleration**: how hard something is changing its motion, measured in meters per second, per second.
+
+His claim, stripped to its bones, was this. There is a special acceleration in nature — call it **a₀** (read "a-naught"), the **acceleration scale**. Above it, everything works exactly as Newton said, and we never would have noticed anything was wrong. Below it — in the gentle, almost-imperceptible tugs felt in the outer reaches of galaxies — the relationship between force and motion changes, and changes in a way that makes the extra matter unnecessary.
+
+That's the whole seed. The rest of this chapter is about how astonishingly small a₀ turns out to be, how one number does the work of a galaxy's worth of invisible matter, and — because this is a both-ways book — exactly where the idea is strong and exactly where it strains.
+
+## How small is small?
+
+Before any equations, let's get a feel for the number, because the feel is the whole point.
+
+The acceleration scale a₀ is about
+
+$$a_0 \approx 1.2 \times 10^{-10} \ \text{m/s}^2.$$
+
+That string of zeros is hard to hold in your head, so let's translate it into something human.
+
+Imagine a car speedometer. Now imagine you press the gas so gently that the needle takes the **entire age of the universe** — about fourteen billion years — to climb from zero to a normal highway speed. The acceleration you'd be applying is roughly a₀. It is, to a very good approximation, the smallest steady push that means anything at all in the cosmos.
+
+Here's another way in. On Earth's surface, gravity accelerates a dropped apple at about 9.8 m/s². The acceleration at the edge of a galaxy, where the stars are drifting along their slow enormous orbits, is something like a hundred billion times *gentler* than that. We have never built a laboratory that can hold a constant push that small for long enough to test what happens there. The deep space between the stars is the only laboratory low enough — and the galaxies are the experiment, already running, for billions of years.
+
+So Milgrom's proposal lives in a corner of nature we had simply never visited when Newton wrote down his laws. Newton tested his rules on falling apples, swinging pendulums, the Moon, the planets. Every one of those sits at accelerations *vastly* larger than a₀. Newton's law, in other words, was only ever checked in the regime where — if Milgrom is right — it happens to look exactly correct. The new behavior was hiding in a basement of gentleness we had no key to.
+
+> **A margin aside.** This is worth sitting with for a moment. When we say a law of physics is "well tested," we always mean *well tested in the conditions we could reach.* Newtonian gravity is confirmed to exquisite precision — in the Solar System, at accelerations enormously above a₀. That tells us nothing, by itself, about what happens a hundred billion times softer. Milgrom's wager is that the softness is exactly where the surprise lives. He might be wrong. But the wager is not unreasonable, and that distinction matters.
+
+## One number, and the rotation curves fall into place
+
+Now, why this number? Why 1.2 × 10⁻¹⁰ and not something else? Here is the honest answer, and it is the same honesty we'll demand of our own framework later in the book: **a₀ was read off the data.** Milgrom looked at the rotation curves of galaxies and asked what value of the scale would make them work, and this is the value that did. It is a *fit*, not a derivation. (Hold onto that thought. One of the central questions of this entire book — the question Part 5 is built around — is whether that number can be understood as something deeper than a fit. Milgrom himself, decades ago, noticed that a₀ is suspiciously close to certain cosmic quantities, and we will spend real time on that coincidence. But in 1983, and for the purposes of this chapter, it is simply a number that fits.)
+
+What's remarkable is how *much* one fitted number buys you.
+
+Recall the problem from Chapter 4. A star orbiting in the flat outer part of a galaxy moves at some speed v. For a circular orbit, Newton says the inward gravitational acceleration g must exactly supply the turning:
+
+$$g = \frac{v^2}{r},$$
+
+where r is the distance from the galaxy's center. If gravity came only from the visible matter (call that acceleration $g_N$, the **Newtonian** value, the "N" for Newton), then far from the bright central bulge $g_N$ should fall off like $1/r^2$ — and the orbital speed should *drop* as you go out, the way Neptune crawls along far more slowly than Mercury. Instead, the speed goes flat. The stars at the edge move just as fast as the stars halfway out. Something is propping up the curve.
+
+Milgrom's fix is to say that the *true* acceleration g a star feels is not equal to the Newtonian $g_N$ once $g_N$ sinks below a₀. In the deep, gentle regime, his rule becomes beautifully simple:
+
+$$g = \sqrt{g_N \, a_0} \qquad (\text{when } g_N \ll a_0).$$
+
+Look at what that does. The true acceleration is now the *geometric mean* of the Newtonian value and the fixed scale a₀ — it's boosted, and crucially it falls off more slowly. Out in the galaxy's skirts, the visible matter's pull goes as $g_N \propto M/r^2$ (M is the enclosed mass), so
+
+$$g = \sqrt{g_N \, a_0} = \sqrt{\frac{GM}{r^2} \cdot a_0} = \frac{\sqrt{GM a_0}}{r}.$$
+
+Set that equal to the orbital requirement $v^2/r$:
+
+$$\frac{v^2}{r} = \frac{\sqrt{GM a_0}}{r}.$$
+
+The r's cancel — both sides have one — and we are left with
+
+$$v^2 = \sqrt{GM a_0}, \qquad \text{so} \qquad v^4 = G M a_0.$$
+
+Read that last line slowly, because it is one of the most quietly stunning results in this part of the book. **The orbital speed in the outer galaxy does not depend on r at all.** It depends only on the total mass and a couple of constants. The rotation curve goes *flat* — automatically, for free, with no dark matter — the instant you accept that gravity follows $\sqrt{g_N a_0}$ in the gentle regime. The thing that took a whole invisible halo of particles to explain on the other road falls out of a single algebraic line on this one.
+
+And there's a bonus hiding in $v^4 = GMa_0$. It says the fourth power of the speed is proportional to the mass. Galaxies obey exactly such a relation — brighter, more massive galaxies spin faster, with $v^4 \propto M$ — and it is so tight and so famous it has its own name, the **baryonic Tully–Fisher relation**. We will give it its own chapter (Chapter 18), because it is one of the two great regularities that any theory of this stuff has to explain. For now, just notice: it isn't an extra assumption Milgrom had to add. It *came out*. One number in; flat curves and the Tully–Fisher relation both out.
+
+> **A margin aside.** When a single idea explains two things you didn't build it to explain, physicists sit up. That doesn't make the idea *true* — many beautiful ideas are wrong — but it is the kind of "more out than in" that earns a theory a serious hearing. MOND has earned its hearing. Whether it has earned more than that is the careful work of the chapters ahead.
+
+## Naming the idea: MOND
+
+The proposal has a name. Milgrom called it **MOND**, for **MO**dified **N**ewtonian **D**ynamics. The name is honest about its ambition and its limits: it modifies *Newtonian* dynamics — Newton's relationship between force, mass, and motion — in a specific regime, and it does so by *dynamics*, by changing the rule of motion itself rather than by adding new stuff to push on.
+
+It's worth pausing on the word *dynamics*, because it carries the deepest and most slippery question in the whole subject — one we'll return to again and again. When the rotation curve comes out flat, *what exactly changed?* There are two ways to read Milgrom's rule, and they are genuinely different physics:
+
+1. **Maybe gravity got stronger.** Perhaps in the gentle regime, a given lump of mass pulls *harder* than Newton's $GM/r^2$ — the force of gravity itself is modified. This is the **modified-gravity** reading.
+
+2. **Maybe inertia got weaker.** Perhaps gravity is exactly as Newton said, but the *resistance* of an object to being accelerated — its **inertia**, the stubbornness we met in Chapter 13 — *decreases* when the acceleration is very small. A weaker resistance means a given pull produces a bigger response, which looks, from the outside, exactly like a stronger pull. This is the **modified-inertia** reading.
+
+From a single rotation curve, you cannot tell these apart. A flat curve is a flat curve. But they are not the same theory, and the difference will matter enormously when we get to our own framework — because the de Sitter–Unruh proposal at the heart of this book is a **modified-inertia** idea (Chapter 21), and that choice, as we'll see, is exactly what lets it stay safe in the Solar System where modified-gravity versions get into trouble. So file the distinction away now. Milgrom's $g = \sqrt{g_N a_0}$ is a *symptom*. The disease — gravity or inertia — is a separate diagnosis.
+
+> **Deeper Dive: The interpolation function μ(a/a₀).**
+>
+> The single formula $g=\sqrt{g_N a_0}$ only holds in the *deep* limit. Milgrom's full prescription has to do two jobs at once: reproduce ordinary Newtonian physics where accelerations are large (or every planet and pendulum would be wrong), and bend toward the deep-MOND behavior where they are small. He stitched the two regimes together with a single dimensionless function, the **interpolation function** μ ("mu"). In its original modified-inertia phrasing, the law reads
+>
+> $$\mu\!\left(\frac{a}{a_0}\right)\, a \;=\; g_N,$$
+>
+> where $a=|\mathbf{a}|$ is the magnitude of the true acceleration and $g_N$ is the ordinary Newtonian gravitational field sourced by the visible mass. The function μ is required to have two limits, and *only* its limits are fixed by the data:
+>
+> $$\mu(x) \to 1 \quad \text{for } x \gg 1 \qquad (\text{Newtonian regime, } a\gg a_0),$$
+> $$\mu(x) \to x \quad \text{for } x \ll 1 \qquad (\text{deep-MOND regime, } a\ll a_0).$$
+>
+> Check the limits. When $a \gg a_0$, $\mu\to 1$ and the law collapses to $a=g_N$ — pure Newton, exactly as required so the Solar System is untouched. When $a\ll a_0$, $\mu\to a/a_0$ and the law becomes $(a/a_0)\,a = g_N$, i.e. $a^2 = g_N a_0$, i.e. $a=\sqrt{g_N a_0}$ — the deep-MOND formula we derived above.
+>
+> The shape of μ *between* the limits is not specified by the theory. It is an empirical free function — a real and honest weakness. Common choices include the "simple" form $\mu(x)=x/(1+x)$ and the "standard" form $\mu(x)=x/\sqrt{1+x^2}$, and astronomers pick whichever best fits a given data set. There is no first-principles reason for one over another. This freedom in the *interpolation* — not in a₀, which is a single fixed number, but in the *function that joins the regimes* — is something to keep in mind throughout Part 4 and Part 5. Our own framework will arrive at a *particular* interpolation from a physical argument rather than choosing one by hand, which is a genuine point in its favor; but it is not a theory of everything yet, as frustrating as it may be, and the cleanness of one regime should never be oversold as if it settled the whole function.
+
+> **Deeper Dive: Two formulations — modified gravity (AQUAL) versus modified inertia.**
+>
+> The interpolation law above, $\mu(a/a_0)\,\mathbf{a}=\mathbf{g}_N$, is written as a statement about *inertia*: μ multiplies the acceleration on the left, the response side. But notice it can be algebraically rearranged to look like a statement about a modified *gravitational field* instead. This ambiguity is exactly the gravity-versus-inertia fork from the main text, and it becomes sharp the moment you try to write down a *complete, conservative theory* rather than a one-line rule.
+>
+> The best-known modified-gravity completion is **AQUAL** — A QUAdratic Lagrangian theory, developed by Bekenstein and Milgrom in 1984. It modifies the equation that the gravitational potential Φ obeys. Where Newton's gravity is governed by the Poisson equation $\nabla^2\Phi = 4\pi G\rho$, AQUAL replaces it with a nonlinear version,
+>
+> $$\nabla\!\cdot\!\left[\mu\!\left(\frac{|\nabla\Phi|}{a_0}\right)\nabla\Phi\right] = 4\pi G \rho,$$
+>
+> where ρ is the visible-matter density. Here μ acts on the *field*, the gravity side. AQUAL is a genuine field theory: it conserves momentum, energy, and angular momentum, and it follows from an action principle (the "quadratic Lagrangian" of the name, in the deep limit). That respectability is its great virtue.
+>
+> A **modified-inertia** completion, by contrast, keeps Newton's gravitational field untouched and instead alters the particle's equation of motion — effectively making the inertial mass depend on the state of motion. Milgrom developed such formulations in 1994 and 1999, and they are subtler: a consistent modified-inertia theory generally cannot be a simple local force law, because the inertia of an object on a bound orbit turns out to depend on the *whole trajectory*, not just the instantaneous acceleration.
+>
+> **Why the two differ off circular orbits.** On a perfectly circular orbit the acceleration has constant magnitude, and AQUAL and modified inertia can be tuned to agree exactly — which is why rotation curves alone cannot distinguish them. But a circular orbit is a very special path. On an *elongated* or *eccentric* orbit, where the acceleration's magnitude rises and falls around the loop, the two prescriptions make different predictions for the motion, because "the acceleration right now" (what a local modified-gravity force responds to) and "the character of the orbit as a whole" (what a modified-inertia rule can depend on) are no longer the same thing. This is not a technicality: it is, in principle, an *observable* difference, and it is one of the few clean handles for telling the two readings of MOND apart. It will return, transformed, when we discuss the Solar-System safety of our own modified-inertia framework in Chapter 21 and the cluster tests in Chapter 29.
+
+## The framework's foreshadow: a sister interpolation
+
+There is one more relation worth meeting now, because it is the bridge from Milgrom's general idea to the specific shape our own framework will take. Among the many interpolations consistent with the two required limits, one particularly clean choice writes the *observed* acceleration in terms of the Newtonian one as
+
+$$g_{\text{obs}} = \sqrt{g_N^2 + g_N\, a_0}.$$
+
+Take a moment with the two terms under the square root. The first, $g_N^2$, dominates when $g_N$ is large — and then $g_{\text{obs}}\to\sqrt{g_N^2}=g_N$, pure Newton again, exactly as the Solar System demands. The second, $g_N a_0$, takes over when $g_N$ is small — and then $g_{\text{obs}}\to\sqrt{g_N a_0}$, the deep-MOND formula once more. So this single expression interpolates smoothly between the two worlds, with no separate μ to choose: the two regimes are already baked into the sum under the root.
+
+I want to flag this one for a reason that will only fully pay off in Part 5. When we build the de Sitter–Unruh modified-inertia framework — the idea that empty space in a universe with a cosmological constant carries a faint *temperature floor*, and that matter in near-free-fall feels that floor as a little extra inertia (Chapters 14, 15, and 21) — the interpolation it produces is *exactly of this form*, $g_{\text{obs}}=\sqrt{g_N^2+g_N a_0}$. The framework does not reach into a catalogue of μ-functions and pick the one that fits; the temperature-floor argument *hands* it this particular shape. That is a real and honest difference from generic MOND, and we will treat it carefully and both-ways when we get there.
+
+But let me be scrupulous right now, in this chapter, so the foreshadow doesn't curdle into hype. Choosing the interpolation from a physical argument is genuinely nicer than choosing it by hand. It does **not**, by itself, derive the *value* of a₀ — that value, in our framework, will be tied to the measured dark-energy density through a single geometric posit, and we will be painfully clear in Chapters 23 and 27 about what is forced and what is assumed. And it does nothing to rescue the deep problems that MOND-family ideas share — clusters and lensing above all (Chapters 19, 28, 29). A prettier interpolation is a real point on the scoreboard. It is not the game.
+
+> **Worked Example: How fast does the edge of a galaxy spin?**
+>
+> Let's put MOND to work on a concrete galaxy and see the flat rotation curve appear in real numbers. We'll take a galaxy whose total visible (baryonic) mass is about $M = 5\times 10^{10}$ solar masses — a respectable spiral, a bit smaller than the Milky Way. We want the orbital speed far out in its flat region, where the local Newtonian acceleration has sunk well below a₀ so the deep-MOND formula applies.
+>
+> **Step 1 — Gather the constants, in SI units.**
+> - Newton's constant: $G = 6.67\times 10^{-11}\ \text{m}^3\,\text{kg}^{-1}\,\text{s}^{-2}$.
+> - One solar mass: $M_\odot = 1.99\times 10^{30}\ \text{kg}$.
+> - The acceleration scale: $a_0 = 1.2\times 10^{-10}\ \text{m/s}^2$.
+>
+> **Step 2 — Convert the galaxy's mass to kilograms.**
+> $$M = 5\times 10^{10} \times 1.99\times 10^{30}\ \text{kg} = 9.95\times 10^{40}\ \text{kg}.$$
+>
+> **Step 3 — Use the deep-MOND flat-curve result.** We derived $v^4 = G M a_0$ in the main text. Plug in:
+> $$v^4 = (6.67\times 10^{-11})\,(9.95\times 10^{40})\,(1.2\times 10^{-10}).$$
+> Multiply the pieces. First $6.67\times 10^{-11}\times 9.95\times 10^{40} = 6.64\times 10^{30}$. Then times $1.2\times 10^{-10}$:
+> $$v^4 = 7.96\times 10^{20}\ \text{m}^4/\text{s}^4.$$
+>
+> **Step 4 — Take the fourth root.** The fourth root is the square root of the square root. $\sqrt{7.96\times 10^{20}} = 2.82\times 10^{10}$, and $\sqrt{2.82\times 10^{10}} = 1.68\times 10^{5}$. So
+> $$v \approx 1.68\times 10^{5}\ \text{m/s} \approx 168\ \text{km/s}.$$
+>
+> **Step 5 — Sanity check against the real sky.** A speed of roughly 170 km/s is exactly the ballpark of the flat rotation speeds we *measure* for spiral galaxies of this mass — the Milky Way's own flat speed is about 220 km/s, and it is a few times more massive, just as $v\propto M^{1/4}$ predicts. We never chose a radius. We never invoked a dark-matter halo. One mass, one universal a₀, and the observed speed dropped out. That is the seductive power of the idea — and, said honestly, also the reason we have to scrutinize it so hard before believing it, which is the work of the next two chapters.
+>
+> *(A note on what we did* not *do: we computed the speed in the* deep *regime, where $g_N\ll a_0$. For a real galaxy you'd check that the radius you care about actually sits in that regime, and in the in-between zone you'd use the full interpolation $g_{\text{obs}}=\sqrt{g_N^2+g_N a_0}$ rather than the clean deep formula. The clean formula is the right tool for the flat outskirts and for building intuition; it is not the whole story.)*
+
+## What the idea is, and what it is not
+
+Step back and look at what we have. Milgrom's proposal is, at its core, a single sentence: *below a universal acceleration a₀, the relationship between gravitational source and motion departs from Newton, in just the way needed to flatten rotation curves.* From that one sentence, with one fitted number, you get flat rotation curves and the baryonic Tully–Fisher relation, across an enormous range of galaxy sizes and types, with a success that — we will see in Chapter 18 — is frankly uncomfortable for the dark-matter picture to match galaxy by galaxy.
+
+That is the genuine strength, and I won't undersell it. A great deal of careful astronomy says that *something* about a₀ is real — that galaxies "know" about this particular acceleration scale in a way the simplest dark-matter halos don't obviously explain.
+
+But this is a both-ways book, so let me be equally plain about what the idea, in the form we've met it, is *not*.
+
+**It is not a complete theory.** What we've written down is a *rule* — a recipe for the acceleration — not a full physical theory with a clean foundation. AQUAL is one honest attempt to make it a real field theory; the modified-inertia versions are another; neither is the last word, and neither, as stated here, is relativistic. To talk about light bending, the expanding universe, or the cosmic microwave background — all of which live in Einstein's relativistic gravity (Chapters 7–11) — MOND needs a relativistic completion, and *that* is where its troubles deepen, as we'll see in Chapters 19, 28, and 29.
+
+**It does not explain its own central number.** a₀ is fitted, not derived. The whole motivation for the framework this book is really about begins with the observation that a₀'s fitted value sits maddeningly close to quantities drawn from cosmology — and asks whether that is a coincidence or a clue. That question is open. We will not pretend otherwise.
+
+**And it does not, by itself, cure the cluster and lensing problems.** Galaxies are MOND's home turf and it is magnificent there. Galaxy clusters keep a residual missing-mass discrepancy that MOND reduces but does not erase, and bending light in a Solar-System-safe way turns out to be deeply hard for the whole MOND family — a wall we will give an entire chapter (Chapter 28) because our own framework runs straight into it too and does not get a free pass.
+
+So: a daring, productive, genuinely puzzling idea, with one number that does an extraordinary amount of work — and real, unhealed wounds. That is the honest shape of it. The next two chapters sharpen both halves: Chapter 18 on the two great regularities that make MOND impossible to dismiss, and Chapter 19 on the problems that make it impossible, so far, to fully accept.
+
+## Summary
+
+- **Milgrom's 1983 proposal (MOND, MOdified Newtonian Dynamics)** is that Newton's dynamics change below a single universal **acceleration scale a₀** ≈ 1.2 × 10⁻¹⁰ m/s² — an acceleration so tiny it would take the age of the universe to bring a car to highway speed.
+- The rule depends only on the *local* acceleration, never on position — that is what makes it a candidate law of nature rather than a fudge that "knows where it is."
+- In the **deep-MOND limit** ($g_N \ll a_0$), the rule becomes $g=\sqrt{g_N a_0}$. This single line makes rotation curves go **flat** with no dark matter and *also* delivers the **baryonic Tully–Fisher relation** $v^4 = GMa_0$ for free.
+- The two regimes are stitched by an **interpolation function μ(a/a₀)**, fixed only in its limits ($\mu\to1$ for $a\gg a_0$, Newtonian; $\mu\to a/a_0$ for $a\ll a_0$, deep-MOND). The *shape* of μ between the limits is an empirical free function — an honest weakness.
+- MOND can be read two ways that agree on circular orbits but differ off them: **modified gravity** (e.g. the **AQUAL** field theory of Bekenstein–Milgrom 1984) versus **modified inertia** (Milgrom 1994, 1999). The distinction is central — our own framework will be a *modified-inertia* theory.
+- One clean interpolation, $g_{\text{obs}}=\sqrt{g_N^2+g_N a_0}$, anticipates the *exact* shape our de Sitter–Unruh framework will produce from a physical argument (Part 5) rather than choose by hand — a real but modest point in its favor.
+- **Both ways:** MOND's galactic successes are real and pressing; but it is not a complete relativistic theory, it does not derive a₀, and it does not by itself cure the cluster and lensing problems. It is a powerful, unfinished idea — not a theory of everything yet, as frustrating as it may be.
+
+## Questions
+
+1. **(Easy.)** In your own words, what is the acceleration scale a₀, and why does it make sense that we never noticed MOND-like behavior in everyday life or in the Solar System? Use the speedometer analogy to estimate, roughly, how long a 1 m/s² push (a brisk car launch) is compared to a₀.
+
+2. **(Easy–medium.)** Starting from the deep-MOND rule $g=\sqrt{g_N a_0}$ and the circular-orbit condition $g=v^2/r$, reproduce the derivation in the text to show that $v^4 = GMa_0$. Explain in words why the rotation curve comes out flat (independent of r).
+
+3. **(Medium.)** Take a dwarf galaxy with baryonic mass $M = 2\times 10^{8}\,M_\odot$. Using $v^4=GMa_0$ with $a_0=1.2\times10^{-10}\ \text{m/s}^2$, predict its flat rotation speed. Then redo it with the framework's value $a_0 = 9.36\times 10^{-11}\ \text{m/s}^2$ (which we will meet in Part 5). By what percentage does the predicted speed change, and why is the change so much smaller than the change in a₀ itself? *(Hint: $v\propto a_0^{1/4}$.)*
+
+4. **(Medium.)** Write down the two required limits of the interpolation function μ(x) and verify that the "simple" choice $\mu(x)=x/(1+x)$ satisfies both. Sketch μ(x) versus x. Why is the freedom to choose the *shape* of μ (as opposed to the single value of a₀) considered a genuine weakness of MOND as a fundamental theory?
+
+5. **(Medium–hard.)** Explain carefully why MOND's two readings — modified gravity (AQUAL) and modified inertia — make identical predictions for circular rotation curves but can differ for eccentric orbits. What kind of observation, in principle, could tell them apart? Why does this distinction matter for whether a MOND-like theory can stay safe in the high-acceleration Solar System?
+
+6. **(Research-level.)** AQUAL is a conservative, action-based modified-gravity field theory, yet this book's framework deliberately chooses the modified-*inertia* road instead. Drawing on what you know so far (and looking ahead to Chapters 21, 28, and 29), lay out the trade-offs: what does a modified-inertia formulation buy you (think Solar-System safety, the temperature-floor mechanism), what does it cost you (think the difficulty of writing a consistent off-circular-orbit theory, and the no-go theorem that keeps lensing phenomenological), and what observations might eventually decide between the two roads?
