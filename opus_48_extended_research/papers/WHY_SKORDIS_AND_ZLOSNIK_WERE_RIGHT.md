@@ -29,11 +29,11 @@ We honour a strict both-ways discipline throughout: a claimed deficit is verifie
 
 A test body of proper acceleration **a** immersed in the de Sitter background of a universe with cosmological constant Λ experiences a Deser–Levin effective temperature
 $$ T_{\rm eff} = \frac{\hbar}{2\pi c k_B}\sqrt{a^2 + (cH_\Lambda)^2}, \qquad cH_\Lambda = c^2\sqrt{\Lambda/3}, $$
-interpolating between the Unruh temperature (a ≫ cH_Λ) and the Gibbons–Hawking temperature (a ≪ cH_Λ). Reading inertia as the response to this vacuum (modified-inertia MOND), the transition between Newtonian and deep-MOND dynamics occurs where the two terms are comparable, i.e. at an acceleration of order cH_Λ. The geometric coefficient that converts cH_Λ into a₀ is
+interpolating between the Unruh temperature (a ≫ cH_Λ) and the Gibbons–Hawking temperature (a ≪ cH_Λ). Reading inertia as the response to this vacuum (modified-inertia MOND), the transition between Newtonian and deep-MOND dynamics occurs where the two terms are comparable, i.e. at an acceleration of order cH_Λ. The geometric coefficient that converts cH_Λ into a₀ is Z = cH_Λ/a₀ = √(32π/3). Its content is transparent once a₀ is written in density form: from ρ_DE = Λc²/(8πG) one has √(Gρ_DE) = c√(Λ/8π), so
 
-$$ Z = \sqrt{8\pi \times 3} \;/\;\sqrt{3}\cdot\ldots \;=\; \sqrt{32\pi/3}, $$
+$$ a_0 = \tfrac{c}{2}\sqrt{G\rho_{\rm DE}} = c^2\sqrt{\tfrac{\Lambda}{4\cdot 8\pi}} = c^2\sqrt{\tfrac{\Lambda}{32\pi}}, \qquad Z^2 = \frac{32\pi}{3} = \frac{4\cdot 8\pi}{3}, $$
 
-assembled from Einstein's 8π (the field-equation normalisation) and Friedmann's 3, under the square root — *pure spacetime geometry*. The density form a₀ = (c/2)√(Gρ_DE) follows from ρ_DE = Λc²/8πG. The **coefficient κ = ½ in a₀ = κc√(Gρ_DE) is a free input** — it is not forced by ghost-freedom, unitarity, or holography (each is κ-invariant), and we re-confirm below (§5, Door S) that no independent mechanism transmits it. This is the framework's defining equation and its single quarantined number; what follows treats it as *given* and asks whether AeST is the right home for it.
+so that **8π is Einstein's field-equation normalisation, 3 is the Friedmann factor (H_Λ² = Λc²/3), and the remaining 4 is the inverse-square of the coefficient κ = ½** in a₀ = κc√(Gρ_DE) — pure spacetime geometry up to that one free κ. The **coefficient κ = ½ in a₀ = κc√(Gρ_DE) is a free input** — it is not forced by ghost-freedom, unitarity, or holography (each is κ-invariant), and we re-confirm below (§5, Door S) that no independent mechanism transmits it. This is the framework's defining equation and its single quarantined number; what follows treats it as *given* and asks whether AeST is the right home for it.
 
 ## 3. The AeST embedding: the dark sector is the framework's own field
 
