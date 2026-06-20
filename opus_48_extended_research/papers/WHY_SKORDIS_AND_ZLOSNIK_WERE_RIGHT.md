@@ -3,7 +3,7 @@
 **C. P. Zimmerman**
 *Briar Creek Tech · Charlotte, NC · carlpzimmerman@gmail.com*
 
-**Draft — 2026-06-19.** Companion to the published framework (Zenodo [10.5281/zenodo.20721540](https://doi.org/10.5281/zenodo.20721540)) and the evolving-a₀(z) note (Zenodo [10.5281/zenodo.20737162](https://doi.org/10.5281/zenodo.20737162)). *Every quantitative claim below is reproduced by a committed Python script; the paths are listed in §9 and all 46 scripts exit 0.*
+**Draft — 2026-06-19.** Companion to the published framework (Zenodo [10.5281/zenodo.20721540](https://doi.org/10.5281/zenodo.20721540)) and the evolving-a₀(z) note (Zenodo [10.5281/zenodo.20737162](https://doi.org/10.5281/zenodo.20737162)). *Every quantitative claim below is reproduced by a committed Python script; the paths are listed in §9 and all 60 scripts exit 0.*
 
 ---
 
@@ -52,7 +52,7 @@ That a₀ ∝ √Λ is not an artefact of one mechanism: Blanchet & Seraille (20
 
 ## 4. Consistency: AeST's kinetic term is healthy
 
-The sharpest theoretical worry about a ghost-condensate dark sector is whether its wrong-sign-then-stabilised kinetic structure violates positivity/causality. The applicable bounds are the **boost-free** ones — Grall & Melville (2021, *Phys. Rev. D* **105**, L121301, arXiv:2102.05683) and Serra & Trombetta (2024, arXiv:2412.19745) — which rest on unitarity, causality and locality, *not* Lorentz invariance, and therefore bind a Lorentz-violating condensate. (The stronger Creminelli–Janssen–Senatore bounds require a conformal UV completion the condensate lacks and are *inapplicable* — they must not be cited as a kill.) Notably, Trombetta is at CEICO Prague, Skordis's own institute: the theorem that adjudicates the framework's positivity was written by the home cluster.
+The sharpest theoretical worry about a ghost-condensate dark sector is whether its wrong-sign-then-stabilised kinetic structure violates positivity/causality. The applicable bounds are the **boost-free** ones — Grall & Melville (2021, *Phys. Rev. D* **105**, L121301, arXiv:2102.05683) and Serra & Trombetta (2024, arXiv:2412.19745) — which rest on unitarity, causality and locality, *not* Lorentz invariance, and therefore bind a Lorentz-violating condensate. (The stronger Creminelli–Janssen–Senatore bounds require a conformal UV completion the condensate lacks and are *inapplicable* — they must not be cited as a kill.) Notably, Trombetta is at CEICO Prague, Skordis's own institute: the theorem that adjudicates the framework's positivity was written by the home cluster. We are careful about attribution: Skordis and Złośnik themselves established AeST's ghost-freedom and its linear stability window {0<K_B<2, μ²>0, λ_s>0} in 2020–21, and we credit that result in full; the boost-free positivity bounds applied below *postdate* AeST (2021, 2024), so what follows is an independent later confirmation of their already-stable action, not a substitute for it.
 
 We report two results, both ways.
 
@@ -83,7 +83,7 @@ The framework **closes no gap**: a₀'s value, the kinetic-term origin, and the 
 
 **Cluster cores — a shared, not a framework-specific, failure.** On the precise CLASH weak-lensing cluster-core residual (Famaey, Pizzuti & Saltas 2024, arXiv:2410.02612) the framework's modified-inertia phantom under-supplies the cored residual by a factor ≈4.4 (core-averaged 100–450 kpc), recovered identically by the eRASS1 X-ray core (ratio 1.03 between the two probes). Crucially, the framework's modified-*inertia* residual equals AeST's modified-*gravity* residual to machine precision (deep-MOND scale invariance pins M·G·a₀ = η·σ⁴ with η~1, shared); AeST itself undershoots cluster cores (Durakovic & Skordis 2023, arXiv:2312.00889). The same deficit appears in the new JWST strong-lensing cluster XLSSC 122 at z=1.98 (Finner et al. 2025), where the framework undershoots the concentrated M(<100 kpc)=6.5×10¹³ M⊙ core by ~6–20×. This is the 40-year MOND cluster-core problem, *shared across the relativistic-MOND family* and not closeable without an additional component; it is not a referee-proof kill given the post-XRISM equilibrium ambiguity, but we report it as an open deficit, not a manufactured win. Scripts: [`reviews/clash_cluster/framework_mi_residual.py`](../reviews/clash_cluster/framework_mi_residual.py), [`aest_mg_vs_mi_residual.py`](../reviews/clash_cluster/aest_mg_vs_mi_residual.py).
 
-**The kinetic-term origin is not derived.** Three independent attempts to *derive* the form of K(Q) from Λ all return NOT-FORCED: the de Sitter–Unruh vacuum-induction route (killed by the SO(4,1) symmetry of the de Sitter vacuum); the Mersini-Houghton phantom⇒time-crystal forcing theorem (vacuous here — the framework is never phantom, w ∈ (−1, ⅓); [`reviews/door_runs/D_mersini_forcing.py`](../reviews/door_runs/D_mersini_forcing.py)); and the most direct published "ghost condensate from Λ" mechanism, Oda (2025, arXiv:2509.23648), which turns out to be a *false cognate* — its "ghost" is a fermionic Faddeev–Popov gauge ghost generating only Einstein–Hilbert gravity, structurally excluding the bosonic scalar the framework's dark sector is, and leaving a₀ untouched since ∂a₀/∂G = 0 ([`reviews/oda_door/oda_gap1_mapping.py`](../reviews/oda_door/oda_gap1_mapping.py)). The kinetic term remains *postulated* — as it is in AeST.
+**The kinetic-term origin is not derived.** Three independent attempts to *derive* the form of K(Q) from Λ all return NOT-FORCED: the de Sitter–Unruh vacuum-induction route (killed by a sympy-proven theorem — the defining representation of so(4,1) is irreducible, so the de Sitter vacuum admits *no* invariant timelike vector and can induce no preferred frame; a static-patch observer or the condensate background evades it by breaking the symmetry with a *state*, recovering the frame as an SO(3)-singlet Goldstone but as a postulated VEV, never a derived stiffness — [`reviews/gap2_rep_door/so41_no_invariant_timelike_vector.py`](../reviews/gap2_rep_door/so41_no_invariant_timelike_vector.py)); the Mersini-Houghton phantom⇒time-crystal forcing theorem (vacuous here — the framework is never phantom, w ∈ (−1, ⅓); [`reviews/door_runs/D_mersini_forcing.py`](../reviews/door_runs/D_mersini_forcing.py)); and the most direct published "ghost condensate from Λ" mechanism, Oda (2025, arXiv:2509.23648), which turns out to be a *false cognate* — its "ghost" is a fermionic Faddeev–Popov gauge ghost generating only Einstein–Hilbert gravity, structurally excluding the bosonic scalar the framework's dark sector is, and leaving a₀ untouched since ∂a₀/∂G = 0 ([`reviews/oda_door/oda_gap1_mapping.py`](../reviews/oda_door/oda_gap1_mapping.py)). The kinetic term remains *postulated* — as it is in AeST.
 
 **The amount is free.** No de Sitter number pins Ω_dm/Ω_Λ = 0.388; the dust amplitude I₀ is a free shift-charge integration constant (dρ_dust/dΛ = 0 at the level of the FRW equations; [`reviews/door_runs/door_E_amount_pin.py`](../reviews/door_runs/door_E_amount_pin.py)), in agreement with the independent "Ghost Dark Matter" construction of Lim, Sawicki & Vikman (2010, arXiv:1001.4634).
 
@@ -96,7 +96,7 @@ The framework inherits AeST's z=0 record and adds one distinctive content — a 
 | Gaia DR4 wide binaries | the MOND premise at z=0 | **~Dec 2026** |
 | s^TX SME dipole | the preferred-frame (Lorentz-violation) prediction (~9.6× margin) | ~2028–2032 |
 | evolving-a₀ Tully–Fisher offset | the *distinctive* declining-a₀ (discs ~7% below the z=0 BTFR) | DESI DR3 + ELT/JWST, early-mid 2030s |
-| cluster non-adiabatic σ-spread | modified *inertia* specifically (MI ~6–13% vs MG exactly 0) | ~2027–28 |
+| cluster non-adiabatic σ-spread (plunging UDG/dSph, outer MOND zone) | modified *inertia* specifically: internal σ rises with infall phase ~6–13% (MG **exactly 0**, a machine-verified theorem; CDM tidal fakes ~2–8% but radially anti-correlated) | ELT resolved-σ, ~2032+ |
 
 If w(z) → −1 (no evolving dark energy), the distinctive a₀(z) content vanishes and the framework degenerates to constant-a₀ AeST. The cluster-core deficit is *not* a discriminator — it is shared with AeST and "explained" by ΛCDM with particle dark matter.
 
@@ -110,16 +110,17 @@ That standing is, in our reading, a vindication of Skordis and Złośnik. AeST i
 
 ## 9. Computational reproducibility
 
-All quantitative claims are reproduced by committed Python scripts under `opus_48_extended_research/reviews/`; **all 46 scripts exit 0** (verified 2026-06-19). The load-bearing files:
+All quantitative claims are reproduced by committed Python scripts under `opus_48_extended_research/reviews/`; **all 60 scripts exit 0** (verified 2026-06-19). The load-bearing files:
 
 - **Acceleration scale / value** — `ghost_condensate/gc_scale_check.py`, `ghost_condensate/dsunruh_drives_vev.py`
 - **Ghost-condensate mapping** — `ghost_condensate/map_aest_to_ghost.py`, `expand_PX_around_condensate.py`, `condensate_postulate_and_eos.py`, `seesaw_two_scales.py`, `amount_and_pathologies_calc.py`, `adversarial_gate_and_eos.py`
 - **Consequences (dispersion, S8, EFT window)** — `gc_consequences/pin_I0_thermal.py`, `pk_k4_signature.py`, `w_gradient_cmb_calc.py`, `w_gradient_cmb_scherrer.py`, `eft_validity_window_calc.py`
 - **Positivity (Door A) + pin** — `door_runs/doorA_positivity_gate.py`, `doorA_real_coefficients.py`, `doorA_real_coefficients_SKEPTIC.py`, `doorA_REAL_coefficients_RATIO_SCAN.py`, `doorA_REAL_coefficients_VERIFY.py`
-- **Origin (Door D, Oda)** — `door_runs/D_mersini_forcing.py`, `oda_door/oda_gap1_mapping.py`, `oda_door/oda_steelman_bothways.py`
+- **Origin (Door D, Oda, GAP-2 frame)** — `door_runs/D_mersini_forcing.py`, `oda_door/oda_gap1_mapping.py`, `oda_door/oda_steelman_bothways.py`, `gap2_rep_door/so41_no_invariant_timelike_vector.py` (the SO(4,1) no-invariant-timelike-vector theorem)
 - **Lensing (Door L)** — `door_runs/door_L_lensing_headtohead.py`, `door_L_lensing_headtohead_SKEPTIC.py`
 - **K(Q) family, stability, amount, coefficient, window** — `door_runs/doorB_quadratic_vs_dbi.py`, `C_lyapunov_stability.py`, `door_E_amount_pin.py`, `door_S_seraille_coefficient.py`, `doorF_aclm_window.py`
 - **Clusters** — `clash_cluster/clash_target_profile.py`, `framework_mi_residual.py`, `aest_mg_vs_mi_residual.py`, `robustness_bothways.py`
+- **Distinctive σ-spread prediction** — `sigma_predict/mi_amplitude_band.py`, `mg_zero_theorem.py`, `cdm_tidal_confound.py`, `verify_MG_zero_and_CDM_separation.py`, `observational_test_design.py`
 
 ## References
 
