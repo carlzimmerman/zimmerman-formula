@@ -1,9 +1,9 @@
 # Why Skordis and Złośnik Were Right: The MOND Acceleration Scale as a de Sitter–Unruh Manifestation of the Cosmological Constant
 
 **C. P. Zimmerman**
-*Briar Creek Tech · Charlotte, NC · carlpzimmerman@gmail.com*
+*Briar Creek Tech · Charlotte, NC · carl@briarcreektech.com*
 
-**Version 2026-06-20 · Zenodo [10.5281/zenodo.20772879](https://doi.org/10.5281/zenodo.20772879) (concept DOI, latest version).** Companion to the published framework (Zenodo [10.5281/zenodo.20721540](https://doi.org/10.5281/zenodo.20721540)) and the evolving-a₀(z) note (Zenodo [10.5281/zenodo.20737162](https://doi.org/10.5281/zenodo.20737162)). *Every quantitative claim below is reproduced by a committed Python script; the paths are listed in §9 and all 60 scripts exit 0.*
+**Version 2026-06-20 · Zenodo [10.5281/zenodo.20773004](https://doi.org/10.5281/zenodo.20773004) (concept DOI, latest version).** Companion to the published framework (Zenodo [10.5281/zenodo.20721540](https://doi.org/10.5281/zenodo.20721540)) and the evolving-a₀(z) note (Zenodo [10.5281/zenodo.20737162](https://doi.org/10.5281/zenodo.20737162)). *Every quantitative claim below is reproduced by a committed Python script; the paths are listed in §9 and all 60 scripts exit 0.*
 
 ---
 

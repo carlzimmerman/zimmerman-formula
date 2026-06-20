@@ -7,6 +7,7 @@ $$a_0 \;=\; c^2\sqrt{\frac{\Lambda}{32\pi}} \;=\; \frac{c}{2}\sqrt{G\rho_\Lambda
 [![Paper DOI](https://img.shields.io/badge/Paper-10.5281%2Fzenodo.20576485-blue)](https://doi.org/10.5281/zenodo.20576485)
 [![Falsification Map DOI](https://img.shields.io/badge/Falsification%20Map%20(June%202026)-10.5281%2Fzenodo.20670670-blueviolet)](https://doi.org/10.5281/zenodo.20670670)
 [![de Sitter Gauge DOI](https://img.shields.io/badge/de%20Sitter%20Gauge%20(June%2016%202026)-10.5281%2Fzenodo.20721540-blueviolet)](https://doi.org/10.5281/zenodo.20721540)
+[![Skordis-Zlosnik DOI](https://img.shields.io/badge/Why%20Skordis%20%26%20Zlosnik%20Were%20Right%20(June%2020%202026)-10.5281%2Fzenodo.20773004-blueviolet)](https://doi.org/10.5281/zenodo.20773004)
 [![Corpus DOI](https://img.shields.io/badge/Code%20%26%20Data-10.5281%2Fzenodo.20576494-blue)](https://doi.org/10.5281/zenodo.20576494)
 [![Paper PDF](https://img.shields.io/badge/PDF-read%20the%20paper-success)](real_research/papers/ZIMMERMAN_THEORY_OF_GRAVITY.pdf)
 [![License](https://img.shields.io/badge/code-AGPL--3.0-lightgrey)](LICENSE)
@@ -76,6 +77,38 @@ The verification culture is the point: adversarial audits of framework-favorable
 → Published: **[Zenodo 10.5281/zenodo.20721540](https://doi.org/10.5281/zenodo.20721540)** (CC-BY-4.0)
 → Certification scripts: [`opus_48_extended_research/reviews/derivation_chain/`](opus_48_extended_research/reviews/derivation_chain/)
 
+## 🆕 June 17, 2026 — two focused notes
+
+- **a₀(z), the parameter-free test.** *"Dark Energy Sets the Galaxy Acceleration Scale: A Parameter-Free a₀(z) Test ΛCDM Cannot Take."* Promoting a₀ across cosmic time gives a *parameter-free* shape prediction `a₀(z)/a₀(0) = √(ρ_DE(z)/ρ_DE(0))` — both the coefficient and the MOND interpolation cancel. Under DESI DR2's evolving dark energy it tracks a distinctive non-monotonic curve (+6% bump at z≈0.41, then 0.74·a₀ at z=3); the cleanest signature is the **sign** of the high-z baryonic Tully–Fisher offset. Hostage to DESI, non-diagnostic today, dissolves (not falsifies) if w→−1. → [Markdown](opus_48_extended_research/papers/A0Z_DESI_DARK_ENERGY_SCALE.md) · **[Zenodo 10.5281/zenodo.20737162](https://doi.org/10.5281/zenodo.20737162)**
+- **κ = ½ is unforceable.** *"A Provably One-Parameter Theory of Gravity and the Dark Sector: the de Sitter–MOND Coefficient κ = ½ Is Unforceable Geometry."* The one free number is proven *un-fixable* by ghost-freedom, unitarity, or holography (each is κ-invariant) — the framework is a **provably one-parameter** effective theory, not zero-parameter. → **[Zenodo 10.5281/zenodo.20738055](https://doi.org/10.5281/zenodo.20738055)**
+
+## 🆕 June 20, 2026 — the AeST-vindication paper
+
+**"Why Skordis and Złośnik Were Right: The MOND Acceleration Scale as a de Sitter–Unruh Manifestation of the Cosmological Constant"** — a **synthesis/position paper** (not a discovery paper) that places the framework precisely inside the relativistic-MOND literature. The a₀ = c²√(Λ/32π) scale is read as the Aether-Scalar-Tensor theory's (AeST; Skordis & Złośnik 2021) acceleration scale *tied to Λ*; the preferred frame is *named* by the de Sitter vacuum; the K(Q) ghost-condensate kinetic term is shown internally healthy. Strictly both-ways:
+
+- **The framework's postulate IS the published AeST action** — Blanchet–Skordis 2024 (arXiv:2404.06584) Eq. 7 is exactly K(Q)=μ²(Q−1)²; the a₀∝√Λ scaling is independently corroborated by a fundamental gauge theory (Blanchet–Seraille 2025).
+- **Positivity cleared** — the boost-free Grall–Melville (2021) and Serra–Trombetta (2024) bounds (the latter written at Skordis's own institute, CEICO Prague) are satisfied — but **by saturation**, transmitting no new constraint.
+- **Honest nulls, full weight** — the framework derives **no number** (κ, the kinetic-term origin, and the dark-sector amount are all free or postulated, *exactly as in AeST*); the cluster-core deficit is **shared identically** with AeST (CLASH + the new JWST cluster XLSSC 122); and three independent attempts to derive the kinetic term from Λ (de Sitter–Unruh induction, Mersini-Houghton forcing, Oda's GR-from-Λ mechanism) all return **NOT-FORCED**, with the SO(4,1) gate proven group-theoretically.
+- **60 reproducible scripts**, all exit 0.
+
+→ **[Read the PDF](opus_48_extended_research/papers/pdf/WHY_SKORDIS_AND_ZLOSNIK_WERE_RIGHT.pdf)** · [Markdown](opus_48_extended_research/papers/WHY_SKORDIS_AND_ZLOSNIK_WERE_RIGHT.md)
+→ Published: **[Zenodo 10.5281/zenodo.20773004](https://doi.org/10.5281/zenodo.20773004)** (concept DOI, CC-BY-4.0)
+
+## 🗓 Timeline
+
+| Date | Milestone | DOI / status |
+|---|---|---|
+| 2026-06 | **The Zimmerman Theory of Gravity** — the framework paper (a₀ = c²√(Λ/32π)) | [20576485](https://doi.org/10.5281/zenodo.20576485) |
+| 2026-06 | **Falsification map** — completed no-go results + the unique surviving object | [20670670](https://doi.org/10.5281/zenodo.20670670) |
+| 2026-06-16 | **de Sitter Gauge** — a₀ reduced to a single free number | [20721540](https://doi.org/10.5281/zenodo.20721540) |
+| 2026-06-17 | **a₀(z)** — the parameter-free DESI test | [20737162](https://doi.org/10.5281/zenodo.20737162) |
+| 2026-06-17 | **κ = ½ unforceable** — provably one-parameter | [20738055](https://doi.org/10.5281/zenodo.20738055) |
+| 2026-06-20 | **Why Skordis & Złośnik Were Right** — AeST vindication, the theory program closed | [20773004](https://doi.org/10.5281/zenodo.20773004) |
+| **~Dec 2026** | **Gaia DR4 wide binaries** — the first hard verdict on the MOND premise | *forthcoming* |
+| 2027–2032 | DESI DR3 w(z), the s^TX SME dipole, high-z BTFR offset, the ELT cluster σ-spread | *forthcoming* |
+
+**Standing (2026-06-20):** the theory-derivation program is **closed** — every wall (a₀'s value, the kinetic-term origin, the dark-sector amount, the preferred frame) is now tested and *proven* open, not merely unexplored. The framework is a complete, internally-consistent, AeST-embedded relativistic MOND whose foundation (a₀ from Λ via de Sitter–Unruh) makes AeST better-motivated without altering its predictions. The live frontier is now **empirical**, not theoretical — the data decides.
+
 ## Repository structure
 
 ```
@@ -122,6 +155,8 @@ bash real_research/papers/build_tex.sh                  # the theory paper
 > Zimmerman, C. P. (2026). *The Λ-Anchored Acceleration Scale a₀ = c²√(Λ/32π): A Completed Falsification Map, Exact No-Go Results, and the Specification of the Unique Surviving Object.* Zenodo. https://doi.org/10.5281/zenodo.20670670
 
 > Zimmerman, C. P. (2026). *The MOND Acceleration Scale as a de Sitter Curvature Scale: Gauged SO(4,1) Gravity Reduces a₀ = c²√(Λ/32π) to a Single Free Number.* Zenodo. https://doi.org/10.5281/zenodo.20721540
+
+> Zimmerman, C. P. (2026). *Why Skordis and Złośnik Were Right: The MOND Acceleration Scale as a de Sitter–Unruh Manifestation of the Cosmological Constant.* Zenodo. https://doi.org/10.5281/zenodo.20773004
 
 ## License
 
