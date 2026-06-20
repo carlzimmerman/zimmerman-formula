@@ -3,7 +3,7 @@
 **C. P. Zimmerman**
 *Briar Creek Tech · Charlotte, NC · carlpzimmerman@gmail.com*
 
-**Draft — 2026-06-19.** Companion to the published framework (Zenodo [10.5281/zenodo.20721540](https://doi.org/10.5281/zenodo.20721540)) and the evolving-a₀(z) note (Zenodo [10.5281/zenodo.20737162](https://doi.org/10.5281/zenodo.20737162)). *Every quantitative claim below is reproduced by a committed Python script; the paths are listed in §9 and all 60 scripts exit 0.*
+**Version 2026-06-20 · Zenodo [10.5281/zenodo.20772879](https://doi.org/10.5281/zenodo.20772879) (concept DOI, latest version).** Companion to the published framework (Zenodo [10.5281/zenodo.20721540](https://doi.org/10.5281/zenodo.20721540)) and the evolving-a₀(z) note (Zenodo [10.5281/zenodo.20737162](https://doi.org/10.5281/zenodo.20737162)). *Every quantitative claim below is reproduced by a committed Python script; the paths are listed in §9 and all 60 scripts exit 0.*
 
 ---
 
@@ -142,4 +142,4 @@ All quantitative claims are reproduced by committed Python scripts under `opus_4
 
 ---
 
-*Both-ways discipline and quarantine (a₀/Z/κ/I₀ never asserted derived) maintained throughout. This is a synthesis/position paper, not a discovery paper: it claims a re-reading of AeST's acceleration scale and a consistency demonstration, not a new derivation. Draft for review — not submitted to Zenodo.*
+*Both-ways discipline and quarantine (a₀/Z/κ/I₀ never asserted derived) maintained throughout. This is a synthesis/position paper, not a discovery paper: it claims a re-reading of AeST's acceleration scale and a consistency demonstration, not a new derivation.*
