@@ -25,8 +25,15 @@ verify, every limit sympy-checked, primaries read verbatim (Milgrom-1994 astro-p
   blocks DERIVING MOND from the dS vacuum (Route D INDUCED, refuted), but does NOT bar the postulated conservative MI kernel.
 - **A Cassini-safe weak-field LENSING MATCH (Route F Object B):** a Psi-only source with grad(dPsi)=2(g_obs-g_N) lenses
   light at exactly g_obs -> closes the pure-MI 230x (12.5-sigma) lensing deficit in MAGNITUDE, adds 0 to Phi (matter never
-  accelerated -> Cassini-invisible, slip->0 as g_N>>a0). **NEW FALSIFIABLE PREDICTION:** an observable Phi != Psi
-  gravitational slip, distinguishing the framework from AeST's no-slip.
+  accelerated -> Cassini-invisible, slip->0 as g_N>>a0). **CORRECTED (Door L, 2026-06-19,
+  `door_runs/door_L_lensing_headtohead.py`):** the resulting gamma = 2 sqrt(1+a0/g_N)-1 = 2 g_obs/g_N - 1 is
+  NOT a field-level Phi != Psi mismatch — it is the **EFFECTIVE-DM inferred slip** (the ratio of the real
+  phantom-mass lensing potential, grad->g_obs, to TWICE the baryon-only Newtonian potential, grad->g_N), which
+  the host Blanchet-Skordis (arXiv:2404.06584) produces TOO. At the FIELD level the framework AGREES with its
+  host: both have Phi=Psi (their Eq.3.10, forced by the same ij/Bianchi traceless-shear obstruction as the
+  banked covariant-lensing no-go) and lens as GR-of-the-phantom-mass; the null-geodesic deflection alpha(b) is
+  IDENTICAL (ratio 1.0000) at all impact parameters. So the slip is a **MOND-family-shared signature vs LCDM
+  (gamma=1), NOT a discriminator vs AeST/the host.**
 
 ### THE ONE REMAINING GAP (precisely named)
 - **No route supplies a COVARIANT, Cassini-safe LENSING/metric Lagrangian.** Route F's Psi-only match is a hand-tuned
@@ -52,7 +59,9 @@ safe lensing/metric partner that gives delta-Phi=0, grad(dPsi)=2(g_obs-g_N), c_T
   modified gravity, Cassini-safe by class); 3/4 limits sympy-verified; the Milgrom-1994 no-go is obeyed+explained
   (local forbidden, time-nonlocal licensed); branch-cut form factors are ghost-free where finite truncations are not; the
   anti-MOND no-go hits only the induced-from-vacuum derivation, not the postulated kernel; a weak-field lensing match
-  closes the 230x deficit and PREDICTS a Phi!=Psi slip (new, distinguishes from AeST).
+  closes the 230x deficit; its gamma=2 sqrt(1+a0/g_N)-1 is the EFFECTIVE-DM inferred slip — a MOND-family
+  signature vs LCDM, **NOT** a discriminator vs AeST (Door L 2026-06-19: framework agrees with the host, both
+  Phi=Psi / GR-of-phantom-mass, null-geodesic deflection ratio 1.0000).
 - **MUST NOT:** "the theory now has a complete covariant Lagrangian" (FALSE — the covariant lensing partner is unwritten);
   "the Bullet Cluster is resolved" (only the lensing magnitude is tuned-matched, not derived); "a0/Z/kappa derived"
   (quarantine held, kappa=1/2 free); "anti-MOND kills the MI field theory" (it kills only the induced-bath derivation).
@@ -61,12 +70,14 @@ safe lensing/metric partner that gives delta-Phi=0, grad(dPsi)=2(g_obs-g_N), c_T
 PARTIAL and a real advance: a genuine covariant modified-INERTIA MATTER action EXISTS (Route E doubled-field nonlocal
 in-in, phi_- -linear so it sources ZERO metric -> not hidden modified gravity, Cassini-safe by class, mu_fw gate intact,
 3/4 limits sympy-verified, obeying+explaining the Milgrom-1994 no-go), plus a transferable branch-cut ghost-killing result
-and a weak-field lensing match that closes the 230x deficit while PREDICTING a new Phi!=Psi slip — but the theory still
+and a weak-field lensing match that closes the 230x deficit (its gamma=2 sqrt(1+a0/g_N)-1 = the effective-DM
+inferred slip, MOND-family-shared vs LCDM, **NOT** a discriminator vs AeST — corrected by Door L 2026-06-19) — but the theory still
 lacks a COMPLETE Lagrangian by exactly one named piece: a covariant, Cassini-safe lensing/metric partner giving
 delta-Phi=0, grad(dPsi)=2(g_obs-g_N), c_T=c and ghost-freedom together (the c_T-vs-slip / Ezquiaga-Zumalacarregui tension),
 which is the next top step.
 
 *Both ways: the built covariant MI matter sector, the not-hidden-MG proof, the 3/4 limits, the ghost sub-result, the
-anti-MOND scoping, and the new slip prediction are credited at full weight; the unwritten covariant lensing Lagrangian,
+anti-MOND scoping are credited at full weight (the lensing gamma is the effective-DM inferred slip — a MOND-family
+signature vs LCDM, NOT a new discriminator vs AeST; Door L 2026-06-19 corrected the original over-claim); the unwritten covariant lensing Lagrangian,
 the c_T-vs-slip tension, the conditional ghost-freedom, the undetermined Bullet Cluster, and the uncured cluster-eta/CMB
 are conceded at full weight. No manufactured Lagrangian. Quarantine held.*
