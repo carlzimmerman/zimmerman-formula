@@ -3,7 +3,7 @@
 **C. P. Zimmerman**
 *Briar Creek Tech · Charlotte, NC · carl@briarcreektech.com*
 
-*Version 2026-06-20.*
+*Version 2026-06-20 · Zenodo [10.5281/zenodo.20779562](https://doi.org/10.5281/zenodo.20779562).*
 
 ---
 

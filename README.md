@@ -8,6 +8,7 @@ $$a_0 \;=\; c^2\sqrt{\frac{\Lambda}{32\pi}} \;=\; \frac{c}{2}\sqrt{G\rho_\Lambda
 [![Falsification Map DOI](https://img.shields.io/badge/Falsification%20Map%20(June%202026)-10.5281%2Fzenodo.20670670-blueviolet)](https://doi.org/10.5281/zenodo.20670670)
 [![de Sitter Gauge DOI](https://img.shields.io/badge/de%20Sitter%20Gauge%20(June%2016%202026)-10.5281%2Fzenodo.20721540-blueviolet)](https://doi.org/10.5281/zenodo.20721540)
 [![Skordis-Zlosnik DOI](https://img.shields.io/badge/Why%20Skordis%20%26%20Zlosnik%20Were%20Right%20(June%2020%202026)-10.5281%2Fzenodo.20773004-blueviolet)](https://doi.org/10.5281/zenodo.20773004)
+[![Cluster Density No-Go DOI](https://img.shields.io/badge/Galaxy--Cluster%20Density%20No--Go%20(June%2020%202026)-10.5281%2Fzenodo.20779562-blueviolet)](https://doi.org/10.5281/zenodo.20779562)
 [![Corpus DOI](https://img.shields.io/badge/Code%20%26%20Data-10.5281%2Fzenodo.20576494-blue)](https://doi.org/10.5281/zenodo.20576494)
 [![Paper PDF](https://img.shields.io/badge/PDF-read%20the%20paper-success)](real_research/papers/ZIMMERMAN_THEORY_OF_GRAVITY.pdf)
 [![License](https://img.shields.io/badge/code-AGPL--3.0-lightgrey)](LICENSE)
@@ -94,6 +95,19 @@ The verification culture is the point: adversarial audits of framework-favorable
 → **[Read the PDF](opus_48_extended_research/papers/pdf/WHY_SKORDIS_AND_ZLOSNIK_WERE_RIGHT.pdf)** · [Markdown](opus_48_extended_research/papers/WHY_SKORDIS_AND_ZLOSNIK_WERE_RIGHT.md)
 → Published: **[Zenodo 10.5281/zenodo.20773004](https://doi.org/10.5281/zenodo.20773004)** (concept DOI, CC-BY-4.0)
 
+## 🆕 June 20, 2026 — the galaxy-cluster paper: a density-ordering no-go
+
+**"The Galaxy-Cluster Residual in de Sitter–MOND: the Dark Sector Has the Mass, but a Density-Ordering Veto Forbids It from Being Galaxy-Safe and Cluster-Clumpy at Once"** — a **both-sided consistency analysis** of whether the framework's AeST ghost-condensate dark sector can supply the well-known factor-≈2 galaxy-cluster missing-mass residual with no new particle and without breaking galaxies. Strictly two-sided:
+
+- **The abundance is there.** The cold, w=0, Ω_dm-worth Q-mode arithmetically covers the cluster core to **1.46×** with zero mass tuning — the framework's own dark sector *has* the cluster mass.
+- **But a density-ordering no-go forbids deploying it galaxy-safely.** The CMB-required c_s²→0 makes the field clump wherever density is highest, and **galaxy disks are ≈3.7× denser than cluster cores**, so closing clusters injects +0.12–0.23 dex into the galaxy radial-acceleration relation (floor 0.11–0.14). The "no dark matter" reading is forfeited: the residual is the field doing a cold-dark-matter job, *relocated* onto the gravity mode.
+- **The scale-selection loophole is closed** — the ghost-condensate k⁴ Jeans term has coefficient **B = 0** in the published AeST action (Blanchet–Skordis 2024 §6.2, verbatim), and the one finite scale μ⁻¹ ≳ 22 Mpc sits above all clusters with the wrong topology.
+- **The deferred Durakovic–Skordis (2024) nonlinear |Φ| calculation, performed** — the +μ²Φ enhancement is real and large (~10⁵× the naive coupling, reaching 28–100% of the core) and galaxy- + Cassini-safe, but **descriptive, not predictive**: the Helmholtz oscillation phase sets the boost, so closure needs a per-cluster tune (the natural value gives a *deficit*) and the universal value breaks galaxies. The cluster sector stays irreducibly phenomenological; the one un-closed branch is a full 3D cosmological AeST N-body.
+- Neutrinos excluded (KATRIN 2024 + DESI DR2). Quarantine held; all claims reproducible (scripts exit 0).
+
+→ **[Read the PDF](opus_48_extended_research/papers/pdf/CLUSTER_RESIDUAL_DENSITY_NOGO.pdf)** · [Markdown](opus_48_extended_research/papers/CLUSTER_RESIDUAL_DENSITY_NOGO.md)
+→ Published: **[Zenodo 10.5281/zenodo.20779562](https://doi.org/10.5281/zenodo.20779562)** (CC-BY-4.0)
+
 ## 🗓 Timeline
 
 | Date | Milestone | DOI / status |
@@ -104,6 +118,7 @@ The verification culture is the point: adversarial audits of framework-favorable
 | 2026-06-17 | **a₀(z)** — the parameter-free DESI test | [20737162](https://doi.org/10.5281/zenodo.20737162) |
 | 2026-06-17 | **κ = ½ unforceable** — provably one-parameter | [20738055](https://doi.org/10.5281/zenodo.20738055) |
 | 2026-06-20 | **Why Skordis & Złośnik Were Right** — AeST vindication, the theory program closed | [20773004](https://doi.org/10.5281/zenodo.20773004) |
+| 2026-06-20 | **Galaxy-Cluster Density No-Go** — the dark sector has the cluster mass but can't be galaxy-safe and cluster-clumpy; the deferred AeST nonlinear \|Φ\| calc performed | [20779562](https://doi.org/10.5281/zenodo.20779562) |
 | **~Dec 2026** | **Gaia DR4 wide binaries** — the first hard verdict on the MOND premise | *forthcoming* |
 | 2027–2032 | DESI DR3 w(z), the s^TX SME dipole, high-z BTFR offset, the ELT cluster σ-spread | *forthcoming* |
 
@@ -157,6 +172,8 @@ bash real_research/papers/build_tex.sh                  # the theory paper
 > Zimmerman, C. P. (2026). *The MOND Acceleration Scale as a de Sitter Curvature Scale: Gauged SO(4,1) Gravity Reduces a₀ = c²√(Λ/32π) to a Single Free Number.* Zenodo. https://doi.org/10.5281/zenodo.20721540
 
 > Zimmerman, C. P. (2026). *Why Skordis and Złośnik Were Right: The MOND Acceleration Scale as a de Sitter–Unruh Manifestation of the Cosmological Constant.* Zenodo. https://doi.org/10.5281/zenodo.20773004
+
+> Zimmerman, C. P. (2026). *The Galaxy-Cluster Residual in de Sitter–MOND: the Dark Sector Has the Mass, but a Density-Ordering Veto Forbids It from Being Galaxy-Safe and Cluster-Clumpy at Once.* Zenodo. https://doi.org/10.5281/zenodo.20779562
 
 ## License
 
