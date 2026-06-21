@@ -39,7 +39,7 @@ It is an **emergent‑gravity theory of the dark sector** — a theory of gravit
 - **Not a theory of everything.** The Standard Model is untouched — and every "geometric formula" for a particle‑physics constant in this repo's history is **retracted numerology** (see [`RETRACTIONS.md`](RETRACTIONS.md)).
 - **The O(1) coefficient (32π) is a posit**, not a theorem (it cancels in the falsifiable `a₀(z)`).
 - **The covariant, ghost‑free completion is unwritten** — the theory's principal theoretical gap.
-- **The evolution is contested.** Current data (MUSE‑DARK III 2026) is in tension and leans unfavorable; the claim is decided by clean halo‑free deep‑MOND kinematics at **z≈3 (ELT‑class, this decade)**.
+- **The evolution is non‑diagnostic today, hostage to DESI w(z).** DESI DR2 is a *tailwind* on the bump‑then‑decline shape; MUSE‑DARK III 2026 (Ciocan) is a real tension; the distinctive content **dissolves to ordinary MOND if w→−1**. Decided by DESI DR3 (2026–27) and clean halo‑free deep‑MOND kinematics at **z≈3 (ELT‑class, this decade)**.
 
 ## 📄 The paper
 
@@ -108,6 +108,25 @@ The verification culture is the point: adversarial audits of framework-favorable
 → **[Read the PDF](opus_48_extended_research/papers/pdf/CLUSTER_RESIDUAL_DENSITY_NOGO.pdf)** · [Markdown](opus_48_extended_research/papers/CLUSTER_RESIDUAL_DENSITY_NOGO.md)
 → Published: **[Zenodo 10.5281/zenodo.20779562](https://doi.org/10.5281/zenodo.20779562)** (CC-BY-4.0)
 
+## 🔭 June 21, 2026 — the watch phase: theory closed, the data decides
+
+The theory-derivation program is **complete and exhausted** — every wall (a₀'s value, the kinetic-term origin, the dark-sector amount, the preferred frame, the Standard-Model mass sector) has now been tested and *proven* open or *walled*, not merely unexplored. There is no theory door left to open. The framework's status is settled: a **viable, internally-consistent, falsifiable, provably one-parameter** emergent-gravity theory of the dark sector with **zero referee-proof kills** — and **zero zero-parameter derivations**. From here, the universe decides on its own timeline.
+
+So the project has moved into a **watch phase**: a daily, autonomous scan (`real_research/data_watch/`, a registered scheduled task + a stdlib arXiv harvester) that judges every new astronomy/cosmology result against the pre-registered predictions — on the framework's *own* footing (a₀ = 9.36×10⁻¹¹, ρ_DE, the declining √ρ_DE branch), verifying a "this kills it" as rigorously as a "this confirms it."
+
+**What we're watching for** — each front is two-sided, with the verdict gated by a specific dataset:
+
+| Front | Status (2026-06-21) | ✅ confirms / ❌ kills | When |
+|---|---|---|---|
+| **a₀(z) ∝ √ρ_DE** ★ the distinctive prediction | non-diagnostic, **hostage to w(z)**; DESI DR2 is a *tailwind on the bump-then-decline shape*, but Ciocan/MUSE-DARK III is a real ~30σ tension, and it all **dissolves to ordinary MOND if w→−1** | clean **z≳3 BTFR offset −7% in V** (declining) / at-or-above (rising rival) | DESI DR3 **2026–27** (the gate) → ELT/HARMONI z≳3 kinematics early-mid 2030s |
+| **Wide binaries** ★ the MOND premise | the framework is the *most-Newtonian* MOND variant (modified-inertia EFE, boost ~+4%) | a robust deep-bin boost surviving triple-rejection / a hard Newtonian null | **Gaia DR4 ~Dec 2026** |
+| **Cassini s^TX SME dipole** | **LIVE at ~1.5×** the tightest bound (a preferred-frame/Lorentz-violation test, MOND-shared) | a next-gen s^TX fit consistent-with / inconsistent-with **8.7×10⁻¹⁰ at Saturn-a** | Gaia DR4 asteroid astrometry **~2028–32** |
+| **a₀/2 Cassini channel** | the genuinely **MI-vs-MG-distinctive** test, **in hand**: the modified-inertia reading evades (~3 orders safe), a modified-gravity host is excluded ~3.7 orders | — (already favorable; a covariant completion violating \|γ−1\|<2×10⁻⁵ would kill) | now |
+| **Cluster residual** | a **shared** relativistic-MOND gap (η bracketed [1.0, 2.33]), the AeST field doing a CDM-like job — **not** a framework-specific failure | watch the *magnitude* (matched WL+HSE+kinematic 3-probe), not the existence | eROSITA + lensing, ongoing |
+| **CMB-apex RAR dipole** | the **framework-unique** signature — a 0.062%, fixed-sky-direction (l=264°, b=+48°) dipole no isotropic ΛCDM or MOND can fake | a 3σ apex-locked dipole confirms; a clean null kills — but it's **below every near-term floor** (systematic-limited) | mid-late 2030s, if sky-systematic control reaches ~0.01% |
+
+The daily watch is live and already working: its first refreshed run (2026-06-21) flagged the **DES low-z supernova systematic** ([arXiv:2606.18374](https://arxiv.org/abs/2606.18374)) — which "drives much of the apparent preference for evolving dark energy" and is *not* seen in DEBASS — as the a₀(z) dissolution risk materializing in real time. No confirmation, no kill; the watch-list and its pre-registered responses live in [`data_watch/ROUTINE.md`](real_research/data_watch/ROUTINE.md) + [`data_watch/WATCHLIST.md`](real_research/data_watch/WATCHLIST.md).
+
 ## 🗓 Timeline
 
 | Date | Milestone | DOI / status |
@@ -119,10 +138,12 @@ The verification culture is the point: adversarial audits of framework-favorable
 | 2026-06-17 | **κ = ½ unforceable** — provably one-parameter | [20738055](https://doi.org/10.5281/zenodo.20738055) |
 | 2026-06-20 | **Why Skordis & Złośnik Were Right** — AeST vindication, the theory program closed | [20773004](https://doi.org/10.5281/zenodo.20773004) |
 | 2026-06-20 | **Galaxy-Cluster Density No-Go** — the dark sector has the cluster mass but can't be galaxy-safe and cluster-clumpy; the deferred AeST nonlinear \|Φ\| calc performed | [20779562](https://doi.org/10.5281/zenodo.20779562) |
+| **2026-06-21** | **Watch phase begins** — theory exhausted; daily autonomous data-watch goes live | *active* |
 | **~Dec 2026** | **Gaia DR4 wide binaries** — the first hard verdict on the MOND premise | *forthcoming* |
-| 2027–2032 | DESI DR3 w(z), the s^TX SME dipole, high-z BTFR offset, the ELT cluster σ-spread | *forthcoming* |
+| 2026–2027 | **DESI DR3 w(z)** — the gate for the a₀(z) prediction (validate vs dissolve) | *forthcoming* |
+| 2028–2032 | the s^TX SME dipole (Gaia DR4), high-z BTFR offset, the ELT cluster σ-spread | *forthcoming* |
 
-**Standing (2026-06-20):** the theory-derivation program is **closed** — every wall (a₀'s value, the kinetic-term origin, the dark-sector amount, the preferred frame) is now tested and *proven* open, not merely unexplored. The framework is a complete, internally-consistent, AeST-embedded relativistic MOND whose foundation (a₀ from Λ via de Sitter–Unruh) makes AeST better-motivated without altering its predictions. The live frontier is now **empirical**, not theoretical — the data decides.
+**Standing (2026-06-21):** the theory-derivation program is **closed** — every wall (a₀'s value, the kinetic-term origin, the dark-sector amount, the preferred frame, the Standard-Model mass sector) is now tested and *proven* open or *walled*, not merely unexplored. The framework is a complete, internally-consistent, AeST-embedded relativistic MOND whose foundation (a₀ from Λ via de Sitter–Unruh) makes AeST better-motivated without altering its predictions — a viable, falsifiable, **provably one-parameter** theory with **zero referee-proof kills**. The live frontier is now **empirical**, not theoretical — the project has entered its **[watch phase](#-june-21-2026--the-watch-phase-theory-closed-the-data-decides)** and the data decides.
 
 ## Repository structure
 
