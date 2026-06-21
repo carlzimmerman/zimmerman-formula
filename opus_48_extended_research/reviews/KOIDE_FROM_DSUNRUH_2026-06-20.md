@@ -75,3 +75,20 @@ Reproduced (PDG central values): charged leptons **0.6667** (only these hit 2/3)
 **Both ways, no manufactured result:** not a manufactured deficit (the framework genuinely lands in the right symmetry neighborhood and correctly diagnoses the IR/Sumino requirement — credit at full weight), and not a manufactured win (r=√2 stays entirely free; the dS-Unruh spine misses by ~10^36 with wrong coupling/shape/selectivity — conceded at full weight).
 
 Scripts (all reproduced this session): `/Users/carlzimmerman/new_physics/zimmerman-formula/opus_48_extended_research/reviews/koide_dsunruh/koide_dsunruh_derivation.py` (Route A), `route_b_geometry.py` + `route_b_equipartition_steelman.py` + `route_b_cross_fermion.py` (Route B), `route_C_thermal_forcing.py` + `route_C_steelman_thermal.py` (Route C). Banked memo: `/Users/carlzimmerman/new_physics/zimmerman-formula/opus_48_extended_research/reviews/KOIDE_IR_MECHANISM_2026-06-17.md`.
+
+---
+
+## RE-CONFIRMED INDEPENDENTLY 2026-06-21 (workflow `wjx8gedyb`, clean-room mpmath dps=50) — verdict UNCHANGED: RE-LABEL-DEAD.
+A fresh 5-agent run (prompted to hunt a genuine mechanism, strong prior it's a re-label) reproduced every load-bearing
+number and reached the identical four-leg kill, adding one sharpening on the "needs protecting" point:
+- **The radiative drift is ~178σ.** At pole masses Q_pole=0.666660511 (Q−2/3=−6.16e-6 = **−0.91σ**, the entire miss
+  τ-mass-limited). Running pole→MSbar (Sumino Eq.2) drifts Q **+0.181% at M_Z** (+0.179% @1 TeV, +0.158% @M_Planck) =
+  **~178× σ_Q** → fully resolvable; the pole is the unique closest-to-2/3 point. So Q=2/3 genuinely needs an IR/pole-class
+  protector (UV group-count structurally ruled out), confirming the diagnosis.
+- The four lethal legs reproduce: **L1 MAGNITUDE** δm/m_e ~ 3.7e-40 vs required 3α/8π = 8.7e-4 → **10^36.4 gap**; **L2
+  CHANNEL** dS couples to a classical worldline proper-|a|, absent from the off-shell loop generating γ_m; **L3 SHAPE**
+  dS is a 1/m common-mode floor, not QED's −ln(m_i²); **L4 SELECTIVITY** dS is flavor-blind (EP) → would force quark
+  Koide too, but Q_up=0.849, Q_down=0.731 ≠ 2/3. The single closing number stays **3.7e-40 / 8.7e-4 = 10^−36.4** (no O(1)
+  tuning rescues 36 orders). κ=½→1/√κ=√2 = two free numbers in unconnected sectors, fermion-blind; √(2/Z)=0.588 = wrong
+  number. **Verdict UNCHANGED: RE-LABEL-DEAD; the SM mass sector stays walled.** (This run re-verified an already-closed
+  result — no new ground; banked for the independent-reproduction record + the 178σ drift quantification.)
