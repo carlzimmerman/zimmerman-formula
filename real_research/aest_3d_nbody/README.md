@@ -42,8 +42,28 @@ analytic gate — which may settle #1 outright — and (b) a genuine, runnable p
 case where the gate leaves the door open. No manufactured cure; the gate decides.
 
 ## Files
-- `aest_field.py` — the AeST action, field equations, the mode-coupling matrix C (built by the workflow)
-- `phase_gate.py` — the decisive nonlinear-robustness analysis of v·(C v)=0
-- `collapse3d_prototype.py` — the reduced 3D prototype + phase diagnostic (if warranted)
-- `VALIDATION.md` — the 1D-no-go and deep-MOND validation gates
-- `VERDICT.md` — the both-ways result
+- `aest_field.py` — the AeST action, field equations, the linear mode-coupling matrix C (gate A: v·(C v)=0)
+- `phase_gate.py` — the nonlinear-robustness analysis of v·(C v)=0 (gate B)
+- `nonlinear_pump.py` — the steelman: the nonlinear resonant tensor channel ⟨P⟩=(3/8)A³h₀ω³sin(ψ−θ)
+- `resonant_channel.py` — runs that channel to ground: conservative parametric pump, no phase fixed point
+- `collapse3d_prototype.py` — the reduced 3D AeST field evolution + shear/tensor injection + phase-coherence diagnostic
+- `validate_prototype.py` — the validation gates + the diagnostic-is-alive controls (forced sync → 0; friction → −95%)
+- `VALIDATION.md`, `VALIDATION_PROTOTYPE.md` — the gate outputs
+- `VERDICT.md` — the both-ways result (DOOR-CLOSES, analytic gate + numerical confirmation)
+
+## How to run
+
+All scripts are stdlib + numpy/sympy, no external data. From this folder:
+
+```bash
+python3 aest_field.py          # gate A: prints the AeST mode-coupling matrix C and the 4 antisymmetry checks (all 0)
+python3 phase_gate.py          # gate B: nonlinear cross-vertices + the resonance/conservation analysis
+python3 resonant_channel.py    # runs the resonant tensor channel -> conservative pump, no phase pin
+python3 collapse3d_prototype.py# the 3D shear-injection run: prints phase circ-std (stays O(1) = no pin) + mode energy
+python3 validate_prototype.py  # the validation gates: 1D no-go, deep-MOND a0, energy conservation, + alive-diagnostic controls
+```
+
+Expected result: **no phase-pinning** — `collapse3d_prototype.py` reports phase circular-std staying O(1) (≈1.9 rad,
+not shrinking to 0) and the ω=μc mode energy pumped-not-bled; `validate_prototype.py` shows all gates pass AND that the
+diagnostic is alive (a forced synchronization drives circ-std to 0.000, a friction term bleeds −95% energy — neither
+happens in the real AeST run, because the physics doesn't pin).

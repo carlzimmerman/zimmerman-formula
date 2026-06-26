@@ -92,3 +92,73 @@ NO direction.**
   scripts' own prints. All four `.py` files execute without error; all assertions pass.
 - **Quarantine held:** a₀, Z, κ, I₀ are never derived here; this is a structural/dynamical
   closure of an open theory branch, not a derivation of the framework's numbers.
+
+## NUMERICAL CONFIRMATION (2026-06-26) — the prototype the analytic gate said wasn't required, built and run anyway
+
+The earlier "Honest limits" said no 3D prototype was built because the gate foreclosed
+the need. Carl/Gemini asked for it anyway, as a numerical backstop. It is now built
+(`collapse3d_prototype.py`), gated (`validate_prototype.py` → `VALIDATION_PROTOTYPE.md`),
+and **independently re-run + adversarially audited this session**.
+
+**VERDICT: (A) CONFIRMED.** The 3D shear-injection prototype numerically reproduces NO-PIN.
+The analytic gate is now numerically backstopped. Cluster door #1 is settled analytically
+**and** numerically, in the **NO** direction.
+
+### What the numerics show (reproducible: `python3 validate_prototype.py`)
+- **Headline adversarial trial** (N=28³, stiff ω=708 H₀, full non-radial 3D shear σ_ij +
+  O(1) tensor drive at cluster Ω≈3 H₀): scalar-phase **circ-std stays O(1), 1.865→1.977 rad**
+  (does NOT shrink toward 0), **IC-lock = 0.961** (phase tracks ICs ~1:1). The mode energy
+  is **pumped/oscillatory (+1.4e-2), not bled out** — confirming the no-friction theorem
+  (shear is a conservative parametric pump, not a dissipative drag).
+- **All three validation gates PASS:** (i) spherical/1D limit reproduces the no-go
+  (random-IC circ-std 1.98–2.05, IC-lock 0.977; uniform-IC breather stays 0.00–0.02);
+  (ii) a₀=9.36e-11 quarantined input, the stiff ω inherited (not tuned) — well-separated
+  from the few-H₀ cluster drive at both the naive 0.14 H₀ and banked 708 H₀ bands;
+  (iii) symplectic energy drift −2.2e-4, bounded/non-secular, no numerical friction.
+- **Diagnostic is provably ALIVE, two independent ways (not dead-rigged):**
+  (1) the adversarial control driving ON the 2:1 Mathieu parametric resonance (Ω_h=2ω=1416)
+  pumps the mode by **~16 orders** (ratio 1.22e16) and stays dark off-resonance — it
+  responds hard *only* when resonant, which is *why* the off-resonant few-H₀ cluster drive
+  can't pin a stiff ω=708 mode; (2) **forcing a real synchronization mechanism into the full
+  evolve+diagnose pipeline drives circ-std 1.70 → 0.0000** (re-verified this session) — a
+  genuine pin WOULD surface. A positive-control Rayleigh friction −γπ bled **−95%** of the
+  energy, so the pipeline shows dissipation if present. The AeST run does not pin because
+  the physics does not pin, not because the metric is floored.
+
+### Audit caveats — kept honest, do not overstate the numerics' reach
+The numerical backstop is **genuine but scoped**. Two limits, independently re-confirmed:
+- **The named non-radial shear contributes ~nothing to the phase diagnostic** (Δcirc-std
+  ~1e-10 shear-only vs no-drive; the vector moves ~3.6e-5 of its magnitude). The active
+  symmetry-breaker in the headline run is the **tensor h_ij parametric channel**, not the
+  σ_ij shear the writeup foregrounds. The perturbation is real (scalar perturbed at the
+  100% level) but it is the tensor pump.
+- **The nonlinear K(Q) cross-vertices g₂,g₃ are numerically dormant** in the headline run:
+  g₂=g₃=0 vs g₂=g₃=50 changes circ-std by ~2e-5 (they sit ~1e-5 below the stiff ω²φ term).
+  So the numerics rigorously confirm **only the LINEAR stiff-mode + off-resonant parametric
+  no-pin**, plus the sharp 2:1 resonance structure. **The genuine NONLINEAR no-pin still
+  rests on the analytic resonant_channel.py argument** (the symmetric cross vertex
+  ⟨P⟩=(3/8)A³h₀ω³sin(ψ−θ), resonance-gated + frictionless). The prototype confirms the
+  gate's *direction* and its *mechanism* (stiffness + no friction), not the full nonlinear
+  vertex algebra — that remains analytic. Audit verdict: **genuine-confirms-gate.**
+- The gate (i) target was reframed from the published 1D "circ-std ≈ 1.34" to an
+  **O(1) + IC-lock>0.8** criterion (3D uniform-random ceiling is ~2.7, not 1.34). The
+  no-go is reproduced in spirit (phase tracks ICs ~1:1, no organization to 0), not at the
+  specific 1.34 number.
+
+### Both-ways honesty (the premise correction)
+- **The prompt's "friction" premise was wrong, and we say so.** The framing imagined shear
+  as a dissipative friction that could lock the phase. It is not: the shift-symmetric AeST
+  action is **conservative**, so shear is a **parametric pump** — it can move amplitude
+  (and does, on resonance) but has **no phase fixed point**. Pinning would require
+  irreversible friction, which AeST has at no order. The numerics show exactly this:
+  energy pumps, phase precesses/librates, never relaxes-and-locks.
+- **No manufactured re-opening, no high-priesting.** The door does not re-open: the
+  numerics confirm the settled NO. Nor did we floor the diagnostic to force a NO — it is
+  alive (forced sync → 0). This is a clean backstop of a result that was already
+  analytically settled, with the honest caveat that the *nonlinear* leg stays analytic.
+- **Quarantine held:** a₀, Z, κ, I₀ remain INPUT, never derived. This confirms a
+  structural/dynamical NO-pin; it derives none of the framework's numbers.
+
+**Files:** `collapse3d_prototype.py` (the 3D field evolution + shear/tensor injection +
+phase diagnostic), `validate_prototype.py` (gates + adversarial resonance control),
+`VALIDATION_PROTOTYPE.md` (auto-generated live-number gate report).
