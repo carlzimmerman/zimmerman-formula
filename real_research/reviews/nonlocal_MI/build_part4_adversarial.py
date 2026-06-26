@@ -1,0 +1,121 @@
+#!/usr/bin/env python3
+"""
+PART 4 (adversarial, both-ways): the single load-bearing claim is that the Cassini split is a
+MECHANISM difference (MI vs MG), NOT a truncation. Stress it. Is there ANY reading where the
+coarse-grained worldline MI scalar lands in AeST's GRAVITY-side slot (and so AeST would BE the
+truncation, with Cassini inherited)? If yes -> the join is stronger (PARTIAL->closer to JOINED).
+If no -> the mechanism difference is robust and the verdict stands.
+"""
+import numpy as np
+
+print("="*80)
+print(" PART 4.  Adversarial: can coarse-grained MI EVER source the metric like AeST's scalar?")
+print("="*80)
+print("""
+The whole verdict turns on WHERE the coarse-grained |grad phi|^3 sits:
+  - In AeST it sits in the FIELD action S_phi[g,phi] and SOURCES the metric (delta S/delta g != 0):
+    phi gravitates, adds to the Newtonian potential everywhere -> Cassini Q2 (modified GRAVITY).
+  - In worldline MI it sits in the WORLDLINE action S_m[x; u] as a kinetic/inertia modification:
+    it changes how the BODY responds, delta S/delta x; it does NOT add a phi stress-energy to the
+    metric in the solar system (the body's a >> a0 so mu_fw -> 1) -> Cassini evaded (modified INERTIA).
+
+ADVERSARIAL Q: when we coarse-grain the congruence into a field phi(x), does phi acquire a
+stress-energy T^phi_{mu nu} = (2/sqrt-g) delta S_phi/delta g^{mu nu} that gravitates like AeST's?
+""")
+
+print("-"*80)
+print(" 4.1  The stress-energy test.  Does coarse-grained MI-phi gravitate?")
+print("-"*80)
+print("""
+The coarse-grained MI field phi enters the action through the MATTER worldlines' kinetic term
+(the inertia they carry), i.e. through S_m[x_p; g, u]. Its 'gradient' grad phi is the collective
+acceleration response. Two structurally distinct places it can end up:
+
+  (a) MODIFIED-INERTIA reading (faithful to pillar 1): phi is the coarse-grained collective
+      acceleration potential of the MATTER. Its action is part of S_m. Varying S_m wrt g gives a
+      matter stress-energy T^m that is ALREADY the standard matter T (the inertia modification is
+      in the |xd|^2 coefficient, mu_fw, which -> 1 wherever a >> a0 = the entire solar system).
+      => phi does NOT add an INDEPENDENT gravitating field in the solar system. Cassini evaded.
+      This is the honest coarse-graining of MI: the modification rides on the matter worldlines
+      and switches off with mu_fw at high a.
+
+  (b) MODIFIED-GRAVITY reading (what would MAKE it AeST): promote phi to an INDEPENDENT dynamical
+      field with its OWN action S_phi[g,phi] (a |grad phi|^3 field self-action) that gravitates
+      EVERYWHERE regardless of the local matter acceleration. THIS is AeST. But this promotion is
+      NOT a coarse-graining of the worldline MI -- it is a REPLACEMENT of the mechanism: the
+      |grad phi|^3 now sources the metric independently of mu_fw, so it does NOT switch off at
+      high a, so Cassini is NOT evaded. AeST IS reading (b).
+""")
+print("""
+  THE DECISIVE STRUCTURAL FACT (this is what kills 'AeST = the truncation'):
+  In reading (a) the deep-MOND |grad phi|^3 is GATED by mu_fw(a/a0): it is present only where
+  a <~ a0, and absent (switched off) where a >> a0. In reading (b)=AeST the |grad phi|^3 is
+  UNGATED: present everywhere, with a Mpc-scale screening (1/mu) that does NOT reach the solar
+  system. The GATE (mu_fw, the a/a0-dependent switch) is EXACTLY the modified-inertia content,
+  and it is EXACTLY what AeST does NOT have. So:
+    - the worldline MI's evasion is the GATE (mu_fw switches the effect off at high a);
+    - AeST's Cassini failure is the ABSENCE of the gate (the field self-action is ungated);
+    - and the gate is NOT a higher-gradient/non-equilibrium CORRECTION that a truncation drops --
+      it is the LEADING, defining feature of modified inertia. Dropping it is not a truncation;
+      it is changing the theory's class (MI -> MG).
+""")
+# Quantify the gate: where is |grad phi|^3 'on' (MI) vs always-on (AeST)?
+a0=9.36e-11
+def mu_fw(x): return (np.sqrt(1+4*x**2)-1)/(2*x)
+print("  The GATE mu_fw(a/a0) across scales (the MI switch AeST lacks):")
+for label,a in [("solar (Saturn)",6.5e-5),("galaxy outskirts",1e-10),("deep MOND",1e-12)]:
+    x=a/a0; g=mu_fw(x)
+    state = "OFF (Newtonian, Cassini-safe)" if g>0.99 else ("deep-MOND ON" if g<0.2 else "transition")
+    print(f"    {label:18s}: a/a0={x:9.2e}  mu_fw={g:8.4f}  -> {state}")
+print("""
+  => the gate spans mu_fw: ~1.0 (solar, OFF) to ~0.003 (deep MOND, ON). AeST has NO such gate on
+     its gravitating scalar -- that is precisely why it pays Cassini. The gate is the framework's
+     distinctive MI content and it is irreducibly absent from AeST. CONFIRMED both ways.
+""")
+
+print("-"*80)
+print(" 4.2  The both-ways CREDIT side: what IS genuinely joined?")
+print("-"*80)
+print("""
+Not manufacturing a failure either. The genuine, real structural overlaps (credit at full weight):
+  1. SAME deep-MOND IR law: both reduce to AQUAL |grad phi|^3=Y^{3/2} with the SAME 1/a0 (B.1, exact
+     flux match). The two pillars DO meet at the infrared fixed point.
+  2. SAME field content at the EFT level: a unit-timelike vector (u^mu = A^mu) + a shift-symmetric
+     scalar (phi). The coarse-grained MI naturally produces BOTH, with the right symmetries (B.2).
+     AeST's phenomenological aether IS, physically, the framework's dS-bath frame.
+  3. SAME structural truncation pattern: the reactive/leading-gradient part of the worldline kernel
+     IS local+passive (C.1); the active/nonlocal part is a genuine higher-structure remainder. AeST's
+     PASSIVE+LOCAL character is consistent with being a leading-EFT slot.
+  These are real and were NOT guaranteed a priori. The two pillars are CLOSELY RELATED EFTs sharing
+  IR law + field content. That is a PARTIAL join.
+
+What is NOT joined (the gap, equally honest):
+  4. The aether KINETIC sector (K_B F^2) is not produced by MI coarse-graining (B.3 GAP).
+  5. The MECHANISM differs at the defining level: AeST = modified GRAVITY (ungated gravitating
+     scalar); worldline MI = modified INERTIA (mu_fw-gated, switches off at high a). The truncation
+     of the worldline action does NOT yield AeST -- it yields an ANTI-MOND passive inertia (C.2),
+     not AeST's gravity-side MOND. To reach AeST you must REPLACE the gate with an ungated field
+     self-action = change the class.
+  6. Consequently the Cassini split is NOT 'truncation drops the evasion' -- it is two DIFFERENT
+     mechanisms (MI gated vs MG ungated) sharing one IR law. AeST is a SIBLING EFT, not the
+     coarse-grained truncation of the worldline MI.
+""")
+
+print("="*80)
+print(" PART 4 VERDICT (both ways)")
+print("="*80)
+print("""
+The conjecture 'AeST = the passive/local coarse-grained EFT of the dS-Unruh MI in-in worldline
+dynamics' is:  PARTIAL, leaning NOT-JOINED on the decisive (Cassini/mechanism) axis.
+  - JOINED would need: the truncation of the worldline action to BE AeST (field content + Y^{3/2}
+    + limits + the SAME mechanism). Field content (Y) and Y^{3/2}/a0 (Y) match; the MECHANISM (N)
+    and the aether kinetic sector (N) do not. The truncation gives anti-MOND passive inertia, not
+    AeST's gravity-side MOND.
+  - So: PARTIAL (real structural match: shared IR law, shared field content, consistent EFT-slot
+    pattern) with a HARD GAP (the gating mu_fw = the MI mechanism is not a droppable correction;
+    it is the defining content AeST lacks; and K_B is unproduced).
+  - The Cassini split is NOT resolved as 'the truncation dropping the evasion'. It is resolved as
+    'two sibling EFTs with the same IR law but different UV mechanism (gated MI vs ungated MG)'.
+    The worldline MI evades Cassini (gate, verified ~6 orders); AeST fails it (no gate); and
+    neither is the truncation of the other.
+""")

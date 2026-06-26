@@ -1,0 +1,120 @@
+================================================================================
+ STAGE C.  Active+nonlocal (worldline) -> passive+local (AeST) : the truncation
+================================================================================
+
+The crux the charge names: the worldline MI is ACTIVE + NONLOCAL-IN-TIME (Galley K, eq 5;
+the passivity no-go Theorem X2 forces an active/pumped kernel). AeST eq (5) is PASSIVE
+(a positive-definite ghost-free action, FDT-locked) + LOCAL (finite gradients, no memory
+integral). Q: is AeST the EQUILIBRIUM + LEADING-GRADIENT truncation of the in-in worldline
+action -- with the active/nonlocal content surviving as the higher-gradient/non-equilibrium
+corrections AeST drops?
+
+--------------------------------------------------------------------------------
+ C.1  The gradient (Markov) truncation of the memory kernel.  CONSTRUCTED (sympy).
+--------------------------------------------------------------------------------
+Memory kernel gradient (low-frequency) expansion:
+   gamma_hat(omega) = gamma_0 + gamma_1 (i omega) + gamma_2 (i omega)^2 + ...
+
+  Time-domain meaning:
+    gamma_0          -> a LOCAL potential/stiffness shift (no time-nonlocality)  [order-0 gradient]
+    gamma_1 (i omega)-> a LOCAL friction (first time derivative) -- the dissipative/active piece
+    gamma_2 (i om)^2 -> a LOCAL inertia renormalization (second derivative)      [order-2 gradient]
+    higher orders    -> genuine memory (nonlocal): the tail that does NOT collapse to a local term.
+
+  TRUNCATION = keep gamma_0, gamma_2 (the reactive, time-symmetric, LOCAL pieces) -> a LOCAL action.
+  DROP       = gamma_1 (the dissipative/active, time-antisymmetric piece) AND the higher memory tail.
+
+  Reactive (even, time-symmetric, LOCAL-action-derivable) part: gamma_0 + gamma_2(i om)^2 = gamma_0 - gamma_2*omega**2
+  Dissipative (odd, time-antisymmetric, ACTIVE) part:           gamma_1(i om)            = I*gamma_1*omega
+
+  KEY STRUCTURAL RESULT (CONSTRUCTED): the LEADING-GRADIENT + TIME-SYMMETRIC truncation of the
+  in-in worldline kernel keeps ONLY the reactive part gamma_0 + gamma_2 omega^2, which IS derivable
+  from a LOCAL, PASSIVE action (a renormalized local Lagrangian (m+gamma_2)|xd|^2/2 - ...).
+  The active piece (gamma_1, dissipation/energy exchange with the dS bath) and the memory tail are
+  EXACTLY the content this truncation DROPS.
+  => AeST (local, passive) sits in the reactive/equilibrium slot; the worldline action's
+     active+nonlocal content is the dropped remainder. The structural pattern the conjecture
+     predicts IS realized at the level of the kernel expansion. CREDIT (structure).
+
+--------------------------------------------------------------------------------
+ C.2  BUT: the no-go bite. Does the reactive truncation reproduce the MOND inversion?
+--------------------------------------------------------------------------------
+
+The both-ways wall (banked Theorem X2, re-stated and now made decisive for the JOIN):
+The MOND inertia inversion needs m_eff(0) < m_eff(inf) (inertia DROPS at low acceleration).
+In the gradient expansion that is a property of the REACTIVE part (gamma_0 vs gamma at high om).
+  - A PASSIVE local action (the truncation that keeps only reactive pieces) has, by Kramers-Kronig
+    + passivity, m_eff(0) >= m_eff(inf): the WRONG (anti-MOND/dielectric) ordering.
+  - So the reactive truncation that gives a LOCAL PASSIVE action does NOT, by itself, carry the
+    MOND inversion: the inversion lives in the ACTIVE (dropped) part.
+
+  Recomputed (passive J>=0 baths): reactive inertia ordering m_eff(0) vs m_eff(inf):
+    Ohmic     : m_eff(0)=  64.652  m_eff(inf)=  25.431  -> ANTI-MOND
+    sub-Ohmic : m_eff(0)=  12.035  m_eff(inf)=   2.098  -> ANTI-MOND
+    Debye     : m_eff(0)=   1.320  m_eff(inf)=   0.997  -> ANTI-MOND
+
+  => CONFIRMED: every PASSIVE reactive truncation is ANTI-MOND. The AeST-side (passive, local)
+     does carry MOND -- but NOT through an inertia inversion: AeST is modified GRAVITY (it puts
+     the |grad phi|^3 in the FIELD action sourcing the metric), NOT modified inertia. This is the
+     decisive asymmetry: the worldline route reaches MOND by an ACTIVE inertia inversion; AeST
+     reaches the SAME deep-MOND |grad phi|^3 by a PASSIVE field self-action. They share the IR
+     LAW but NOT the mechanism. The truncation that makes the kernel passive+local does NOT
+     'become AeST's MOND' -- it becomes anti-MOND; AeST's MOND comes from a DIFFERENT (gravity-side)
+     term that the inertia coarse-graining does not produce.
+
+================================================================================
+ STAGE D.  THE CASSINI RESOLUTION -- tested, both ways
+================================================================================
+
+The charge's proposed resolution: AeST (the truncation) FAILS Cassini Q2; the full in-in
+worldline MI EVADES it; so the Cassini split is the truncation dropping the evasion.
+Test the two halves:
+
+ (D-i)  Does the full in-in worldline MI genuinely EVADE Cassini?  -- YES, by CLASS (banked).
+        Cassini Q2 bounds modified GRAVITY (an anomalous quadrupole in the Sun's potential,
+        Park-Hees-Famaey 2026; Desmond bounds). MODIFIED INERTIA changes the body's RESPONSE,
+        not the field: at Saturn the relevant acceleration a_Saturn ~ 6.5e-5 m/s^2 >> a0, so
+        mu_fw(a/a0) -> 1 to O((a0/a)) ~ 1.4e-6 -- the inertia modification SWITCHES OFF in the
+        inner solar system. The framework corpus banks this as a ~5.5-order (Cassini) /
+        ~3.7-order (MI-vs-MG) auto-evasion. CONSTRUCTED check below.
+ (D-ii) Does AeST FAIL Cassini?  -- YES (banked CASSINI_QUADRUPOLE_CONSTRAINT.md):
+        AeST's scalar sources a real anomalous quadrupole Q2 ~ 3.2e-26 s^-2 at the framework a0
+        vs the ~5e-27 2-sigma ceiling, because AeST is modified GRAVITY (the |grad phi|^3 is in
+        the FIELD action, so phi adds to the Newtonian potential everywhere, including the inner
+        solar system where 1/mu ~ Mpc screening does not act).
+
+  D-i (MI evasion): at Saturn a/a0 = 6.944e+05;  1 - mu_fw = 7.200e-07
+     => the MI correction to inertia at Saturn is ~7.2e-07 (parts in 10^-6),
+     i.e. modified INERTIA is OFF in the inner solar system by ~6 orders.
+     The framework's deep-MOND clock simply does not tick at solar accelerations. EVASION REAL.
+
+  RESULT D (the Cassini resolution, ADJUDICATED both ways):
+  * The full in-in worldline MI DOES evade Cassini (D-i: the modified inertia switches off ~7
+    orders deep in the solar system; Cassini bounds modified gravity, a different class).  [TRUE]
+  * AeST DOES fail Cassini (D-ii: its scalar is a real gravity-side quadrupole, banked 3.2e-26). [TRUE]
+  * BUT the charge's framing -- 'AeST is the truncation that DROPS the evasion the worldline keeps'
+    -- is the part that does NOT hold as stated. The reason (decisive):
+      AeST does not fail Cassini because it 'dropped' a nonlocal/active term that would have
+      evaded. AeST fails Cassini because it implements MOND in a STRUCTURALLY DIFFERENT WAY
+      (modified GRAVITY: the |grad phi|^3 sources the metric/potential). The worldline MI evades
+      Cassini precisely by being modified INERTIA (no extra field in the potential). The Cassini
+      split is therefore NOT 'one theory minus a higher-gradient correction' -- it is TWO DIFFERENT
+      MECHANISMS that happen to share the deep-MOND IR law. Truncating the worldline action's
+      active/nonlocal part does NOT turn it into AeST's gravity-side scalar; it turns it into an
+      ANTI-MOND passive inertia (C.2). To GET AeST's passive MOND you must ADD a gravity-side
+      |grad phi|^3 field action that the inertia coarse-graining never produced.
+
+================================================================================
+ STAGE E.  Does the join FORCE anything (kappa=1/2, K_B, J, the AeST params)?
+================================================================================
+
+  kappa=1/2 (the free-fall half): the worldline kernel's overall normalization is the
+  friction/response strength (a free bath parameter); the gravitational 1/2 is spent on the
+  geodesic side. The coarse-graining adds NO new 1/2. => kappa NOT forced. (consistent with banked.)
+  K_B: the aether kinetic coefficient is the B.3 GAP -- not produced, hence not forced.
+  J, the F(Y,Q) free function: free on both sides; only the deep-MOND Y^{3/2}+a0 is pinned (B.1).
+  a0 = c^2 sqrt(Lambda/32pi): enters the Y^{3/2} via the deep-MOND limit (B.1) -- CARRIED, not
+       newly forced by the join (it was already the kernel's scale; the coarse-graining transmits it).
+  => The join FORCES nothing new. It TRANSMITS a0 into the Y^{3/2} slot (consistent), and leaves
+     K_B, J, kappa, and the full F(Y,Q) free -- exactly as both pillars already had them.
+

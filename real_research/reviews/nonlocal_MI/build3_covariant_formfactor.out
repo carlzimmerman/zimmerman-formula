@@ -1,0 +1,253 @@
+==================================================================================
+ BUILD 3 : COVARIANT NONLOCAL FORM-FACTOR worldline action for dS-Unruh MI
+==================================================================================
+
+SECTION 0 -- The target effective mass and the EXACT operator argument
+----------------------------------------------------------------------
+The dS-Unruh MI law is  m * mu_fw(|a|/a0) * a = F  with
+   mu_fw(x) = (sqrt(1+4x^2) - 1)/(2x),   x = |a|/a0.
+We want a covariant worldline KINETIC term whose EOM is exactly this. Write the
+acceleration-dependent effective mass  m_eff(a) = m * mu_fw(|a|/a0).  We must find
+the NONLOCAL FORM FACTOR f(.) and its operator argument so that the worldline
+kinetic term reproduces m_eff.
+
+mu_fw(x)        = (sqrt(4*x**2 + 1) - 1)/(2*x)
+mu_fw(x->oo)    = 1   (Newtonian, m_eff->m)
+mu_fw(x->0)     ~ x   (deep-MOND, m_eff-> m x = m|a|/a0)
+
+The operator argument, concretely on the worldline (CONSTRUCTED):
+  proper acceleration a^mu = D^2 X^mu/dtau^2 ; |a|^2 = a^mu a_mu (spacelike).
+  The covariant box on the worldline reduces to the proper-time wave operator
+  Box_wl = (1/sqrt(-g)) D_tau( sqrt(-g) D^tau ) -> d^2/dtau^2 on the affine worldline.
+  So 'Box/a0^2' on the worldline is (1/a0^2) d^2/dtau^2, and |a|^2/a0^2 = x^2 is built
+  from TWO of them acting on X.  We need a FORM FACTOR f(Box/a0^2) (an IR-nonlocal
+  function of this operator) whose induced kinetic coefficient is m*mu_fw.
+
+==================================================================================
+ SECTION 1 -- the covariant nonlocal worldline kinetic term S_kin[X; u]
+==================================================================================
+
+We build the manifestly covariant worldline action (mostly-plus signature, c=1 here,
+restored at the end):
+
+  S = - int dtau [ (m/2) g_{mu nu} dX^mu/dtau dX^nu/dtau
+                   + (1/2) (D a^mu/?)  ...  ]          <- naive local higher-deriv FAILS
+
+The naive local higher-derivative kinetic term  ~ (m/2 a0^2) a^mu a_mu  is EXACTLY the
+Costa-Franzmann-Pereira (1904.07321) route the covariance memo flags: Ostrogradsky-
+unstable, and Milgrom-94 forbids it being the WHOLE MOND law. So we DO NOT truncate.
+Instead we use a NONLOCAL FORM FACTOR f(Box_wl/a0^2) -- a full function of the operator,
+NOT a finite-derivative truncation -- which is exactly the worldline analog of the
+Deser-Woodard nonlocal-gravity distortion function f(Box^{-1}R) but acting on the
+worldline inertia. The form factor is chosen so that on a uniformly-accelerated
+worldline (constant |a|) the effective inertial coefficient is m*mu_fw(|a|/a0).
+
+THE ACTION (CONSTRUCTED):
+
+  S_kin[X] = - int dtau (m/2) [ Dtau X^mu  K(Box_wl/a0^2)  Dtau X_mu ]      (1.1)
+
+where Dtau X^mu = dX^mu/dtau (4-velocity, timelike, normalized u^mu u_mu = -1 on shell),
+Box_wl = (D/dtau)^2 the covariant proper-time wave operator (reduces to d^2/dtau^2),
+and K(z) is the NONLOCAL FORM FACTOR (a function of the dimensionless operator
+z = Box_wl/a0^2). The retarded/causal prescription for Box_wl^{-1} (Schwinger-Keldysh /
+in-in, Galley 1210.2745) makes it an initial-value functional; the TIME-SYMMETRIC part
+of K gives the conservative inertia (Milgrom 2208.07073 Eq.11: energy conserved).
+
+----------------------------------------------------------------------------------
+ 1a. CHECK: Box_wl u^mu = |a|^2 u^mu on uniformly-accelerated (hyperbolic) motion
+----------------------------------------------------------------------------------
+   u.u = -1 (=-1 timelike) ; |a|^2 = a.a = alpha**2
+   Box_wl u^mu = (d^2/dtau^2) u^mu = |a|^2 u^mu  EXACT?  True
+   => z = Box_wl/a0^2 -> |a|^2/a0^2 = x^2 is EXACT on the trajectory class where
+      mu_fw and Deser-Levin T_eff are defined. The form-factor argument is honest.
+THE FORM FACTOR (derived by matching the EOM coefficient to mu_fw):
+   K(z) = mu_fw(sqrt(z)),  z = |a|^2/a0^2 = (Box_wl/a0^2 eigenvalue):
+  _________    
+╲╱ 4⋅z + 1  - 1
+───────────────
+     2⋅√z      
+
+   i.e.  K(z) = ( sqrt(1 + 4 z) - 1 ) / ( 2 sqrt(z) ).
+   This is a NONLOCAL form factor: K(z) is NOT a polynomial in z (it has a branch cut /
+   sqrt), so f(Box_wl/a0^2) is an INFINITE-ORDER (genuinely nonlocal) operator, NOT a
+   finite-derivative truncation. That is exactly what Milgrom-94 demands (strongly
+   nonlocal) and what avoids the Ostrogradsky ghost of the local truncation.
+
+IR (deep-MOND) expansion of K(z) about z=0 -- infinitely many Box powers (=> nonlocal):
+      3/2      5/2      7/2    ⎛ 4⎞
+√z - z    + 2⋅z    - 5⋅z    + O⎝z ⎠
+
+   The leading 1/sqrt(z) term IS the nonlocal IR operator: 1/sqrt(z) = a0/|a| =
+   a0 * (Box_wl)^{-1/2}-ish -- an INVERSE fractional power of the wave operator, the
+   worldline analog of Deser-Woodard's Box^{-1}.  This is the IR-nonlocal (low-
+   acceleration) operator the task asked for. In the deep-MOND limit:
+     K -> 1/sqrt(z) = a0/|a|  => m_eff = m/sqrt(z)...
+
+RE-CHECK the limits of the form factor K(z):
+   K(z->0)  = 0   (deep-MOND: m_eff = m*K -> m*sqrt(z) = m|a|/a0)
+   K(z->oo) = 1   (Newtonian: m_eff -> m)
+
+   So in deep-MOND K(z) -> sqrt(z) = |a|/a0 (the operator (Box_wl/a0^2)^{1/2}), an IR
+   operator that VANISHES as |a|->0 -- the inertia is SUPPRESSED at low acceleration,
+   the defining MI feature. The form factor is K(z) = (sqrt(1+4z)-1)/(2 sqrt(z)).
+
+==================================================================================
+ SECTION 2 -- EOM of the form-factor action, and  m a mu_fw(a/a0) = F
+==================================================================================
+
+Vary (1.1). In the in-in / Galley sense (1210.2745 eq 11) the physical-limit EOM of a
+worldline kinetic term  S = -int dtau (m/2) u^mu K(Box_wl/a0^2) u_mu  coupled to an
+external force F^mu (from -int dtau X_mu F^mu, or a potential -int dtau m Phi) is
+
+   D/dtau [ m K(Box_wl/a0^2) u^mu ]  =  F^mu                                   (2.1)
+
+(the nonlocal generalization of the geodesic/Newton law: the operator K dresses the
+4-momentum p^mu = m K u^mu).  On a trajectory with slowly varying |a| (adiabatic /
+uniformly accelerated -- the regime where mu_fw is DEFINED, Milgrom's circular-orbit
+slice), Box_wl/a0^2 -> |a|^2/a0^2 = x^2 = z, K -> mu_fw(x), and (2.1) becomes the
+spatial MI law:
+
+   m mu_fw(|a|/a0) a^i = F^i                                                   (2.2)
+
+which is EXACTLY the dS-Unruh modified-inertia law.  VERIFY the two limits give the
+right force laws.
+
+EOM (2.2) LHS  m*mu_fw(a/a0)*a = m*(-a_0 + sqrt(4*a**2 + a_0**2))/2
+  Newtonian (a>>a0):  -> a*m   (= m a, recovers F=ma)
+  deep-MOND (a<<a0):  -> a**2*m/a_0   (= m a^2/a0)
+
+ v^4 = G M a0 (deep-MOND circular orbit):
+   set  m a^2/a0 = G M m/r^2  =>  a = sqrt(GMa0)/r ; v^2 = a*r = sqrt(G)*sqrt(M)*sqrt(a_0)
+   v^4 = G*M*a_0    v^4 - G M a0 = 0  => BTFR v^4=GMa0  VERIFIED
+
+ Framework interpolation consistency (MI law mu_fw(a/a0)*a = g_N):
+   invert  Y = mu_fw(X)*X  =>  X(Y) = a/a0 = sqrt(Y)*sqrt(Y + 1)
+   framework g_obs/a0 = sqrt(Y^2+Y); X(Y) - sqrt(Y^2+Y) = 0   (0 => EXACT framework interpolation)
+   1 + 4(g_obs/a0)^2 factors as: (a_0 + 2*g_N)**2/a_0**2 (perfect square) => mu_fw(g_obs/a0)*g_obs - g_N = 0 identically
+   numeric residual at (gN,a0)=(3,1): 0.0  at (0.01,1): 0.0
+==================================================================================
+ SECTION 3 -- the form-factor action is CONSERVATIVE (lossless): even kernel
+==================================================================================
+
+A nonlocal operator K(Box_wl/a0^2) is, in proper-time representation, a CONVOLUTION with
+a kernel kappa(tau-tau'):
+   [K(Box_wl/a0^2) u](tau) = int dtau' kappa(tau - tau') u(tau').
+A function of Box_wl = d^2/dtau^2 ALONE (no odd power of d/dtau) is an EVEN function of the
+operator -> its kernel is TIME-SYMMETRIC: kappa(tau-tau') = kappa(tau'-tau).
+Proof: K(z) depends only on z = Box_wl/a0^2 = -omega^2/a0^2 (even in omega). Its Fourier
+transform (the kernel) is therefore real and even in (tau-tau'). An EVEN kernel gives a
+conservative (potential-derivable, time-reversal-invariant) generalized force; only the
+ODD (antisymmetric) part dissipates (Galley 1210.2745: symmetric K = conservative,
+antisymmetric K = dissipative). VERIFY K(z) is a function of z = -omega^2 only (even).
+
+K(z(omega)) - K(z(-omega)) = 0   (0 => K is EVEN in omega => TIME-SYMMETRIC kernel => CONSERVATIVE)
+
+Vector conservativeness: the MI force F^i = m mu_fw(|a|/a0) a^i is a central function of
+the acceleration vector (F^i = h(|a|) a^i with h = m mu_fw/... ), hence CURL-FREE in
+a-space (any f(|a|)*a^i is a gradient: a^i f(|a|) = d/da^i [ Int |a| f(|a|) d|a| ]).
+This is the covariant statement of Milgrom 2208.07073 Eq.(11) 'total energy conserved'.
+
+curl_a (F_MI) = ( 0 , 0 , 0 )
+=> curl = 0  =>  F_MI is a gradient in a-space  =>  CONSERVATIVE / LOSSLESS.  VERIFIED
+
+Kinetic potential T_kin(|a|) with grad_a T_kin = F_MI (the conserved inertial energy):
+  ⎛       ____________                            ⎞
+  ⎜      ╱    2     2       ⎛               ⎛2⋅a⎞⎞⎟
+m⋅⎜2⋅a⋅╲╱  4⋅a  + a₀   + a₀⋅⎜-4⋅a + a₀⋅asinh⎜───⎟⎟⎟
+  ⎝                         ⎝               ⎝a₀ ⎠⎠⎠
+───────────────────────────────────────────────────
+                         8                         
+check grad: d T_kin/d|a| - m*mu_fw*|a| = 0
+==================================================================================
+ SECTION 4 -- what PREFERRED FRAME does Box_wl/a0^2 require? (the join seam)
+==================================================================================
+
+This is the load-bearing covariance question. The form factor K(Box_wl/a0^2) is written
+on the WORLDLINE, so naively it needs no external frame -- Box_wl = (D/dtau)^2 is built
+from the worldline's OWN proper time. BUT two facts force a preferred frame:
+
+(1) THE a0 FLOOR IS A FRAME OBJECT.  a0 = c H_Lambda / Z and the dS-Unruh T_eff =
+    (hbar/2pi c kB) sqrt(|a|^2 + (c H_Lambda)^2) has a FLOOR (c H_Lambda)^2 that is the dS
+    horizon temperature in the COMOVING (Hubble) rest frame. The 'acceleration' |a| in
+    mu_fw is the proper acceleration RELATIVE TO that dS rest frame's local inertial
+    standard. A free-falling star in a galaxy has proper acceleration ZERO (geodesic), so
+    a frame-BLIND worldline Box_wl gives NO MOND for geodesic matter (covariance memo
+    route (b), the 'frame problem', Milgrom astro-ph/9805346: 'a body must be able to read
+    in [the vacuum] its non-inertial motion'). The acceleration that enters MOND is the
+    NEWTONIAN-FRAME acceleration g_N -- first-derivative metric info that the equivalence
+    principle gauges to zero at a point. So Box_wl/a0^2 cannot be the bare proper-time
+    operator; it must be referred to a preferred timelike frame u^mu.
+
+(2) THE OPERATOR Box_wl ITSELF NEEDS A REST FRAME TO DEFINE 'TIME'.  A covariant nonlocal
+    f(Box/a0^2) on a field needs the FULL spacetime Box; restricted to a worldline it needs
+    a choice of which direction is 'time' for the convolution kernel. That choice is a unit
+    timelike vector u^mu (u^mu u_mu = -1): the convolution is along u^mu-proper-time, the
+    kernel kappa(u.(x-x')) is u-frame retarded. This is the SAME object on both sides:
+
+
+   * the dS-Unruh bath rest frame (the comoving/Hubble frame where T_eff -> dS floor at a=0)
+   * AeST's unit-timelike aether A^mu  (Skordis-Zlosnik 2007.00082 Eq.5: lambda(A^2+1),
+     A^mu A_mu = -1)
+   * DEW's nonlocal cosmic frame  u^mu = -g^{mu nu} d_nu chi / sqrt(-(d chi)^2),
+     chi = -Box^{-1} 1  (1405.0393) -- a frame built from the metric, NO propagating aether.
+
+IDENTIFICATION (the seam):  u^mu (form-factor frame) == A^mu (AeST aether) == DEW cosmic
+frame. ALL THREE are the dS-comoving preferred frame. The covariant nonlocal form factor
+NEEDS exactly the field AeST posits.  This is the shared-frame seam where a join could
+happen -- AND exactly where it can FAIL (next).
+
+----------------------------------------------------------------------------------
+ 4a. The u-referred acceleration is g_N, not the (vanishing) geodesic proper accel
+----------------------------------------------------------------------------------
+
+Define the u-RELATIVE acceleration  a^mu_rel = D u^mu/dtau projected orthogonal to the
+worldline AND measured against the u-frame's inertial standard. In the weak-field static
+frame where u^mu = (1,0,0,0)/sqrt(-g00) (the AeST aether aligned with the static Killing
+time), the u-relative acceleration of a test body held at rest is the NEWTONIAN g_N =
+grad Phi -- nonzero exactly where MOND is needed. A geodesic (freely-falling) body has
+proper accel 0 but NONZERO u-relative acceleration (it accelerates w.r.t. the static
+aether frame). So the form-factor argument must be
+   z = |a_rel|^2 / a0^2 = |g_N|^2/a0^2  (u-frame),  NOT (proper accel)^2/a0^2.
+
+u-frame: a_rel = grad Phi = Derivative(Phi(x), x)  (nonzero in a potential => MOND активируется)
+geodesic proper accel = 0 (EEP) => a frame-BLIND Box_wl would give NO MOND. The
+preferred frame u^mu is MANDATORY. CONSTRUCTED + CONSISTENT with covariance memo (b),(d).
+==================================================================================
+ SECTION 5 -- join seam (vs AeST) + kappa status (honest)
+==================================================================================
+
+THE SEAM (both ways, honest):
+  SHARED: the covariant nonlocal form factor and AeST BOTH require the SAME unit-timelike
+  preferred frame u^mu = A^mu (dS-comoving). Both reproduce v^4 = G M a0. The frame field
+  is the genuine structural overlap -- the join's necessary condition is MET.
+
+  WHERE IT STILL FAILS TO FUSE (the Milgrom-1994 MI no-go, banked): the form factor lives
+  in the MATTER (worldline kinetic) sector and is GATED by mu_fw(|a_rel|/a0) -- present
+  only where a_rel <~ a0, switched OFF where a_rel >> a0 (Cassini: a/a0 ~ 7e5 => 1-mu ~
+  7e-7, modified inertia OFF by ~6 orders). AeST's deep-MOND Y^{3/2} lives in the GRAVITY
+  sector, UNGATED, and fails Cassini. The form factor is the worldline (MI) sibling of
+  AeST, sharing the frame u^mu and the IR law, but the MI gate mu_fw is irreducibly absent
+  from AeST. So: SAME FRAME (join's necessary condition), DIFFERENT MECHANISM (gated MI vs
+  ungated MG) -- NOT a coarse-grained truncation of each other (consistent with the banked
+  JOIN_VERDICT: PARTIAL).
+
+  ADDITIONAL covariant subtlety THIS build surfaces: a frame field built as DEW's
+  u^mu = -d chi/sqrt(...) (NO propagating aether) is the LIGHTEST way to supply the frame
+  without AeST's Cassini-billed vector kinetic term -(K_B/2)F^2. The form factor + DEW
+  frame is a cleaner covariant home than the form factor + full AeST aether. But DEW is
+  modified GRAVITY (it MONDifies the metric photons see, for lensing); the form factor is
+  MI (it MONDifies inertia, evades Cassini). They are complementary, not identical.
+
+kappa (the lone free O(1) = 1/2):  The form factor K(z) = (sqrt(1+4z)-1)/(2 sqrt(z)) is
+FIXED by matching mu_fw, which is itself built from T_eff. The '4' inside the sqrt and the
+'1/2' normalization of mu_fw are the SAME content as kappa=1/2 (the free-fall half). The
+form-factor CONSTRUCTION does NOT force kappa: it CONSUMES mu_fw (hence consumes the kappa
+choice baked into mu_fw). a0 enters as the operator scale (transmitted, not derived).
+HONEST: kappa is FREE here, exactly as expected -- the covariant form-factor route does
+not newly force it (it only repackages the already-chosen mu_fw into operator language).
+
+==================================================================================
+ BUILD 3 STATUS: CONSTRUCTED (form factor + EOM + v^4 + conservative + frame),
+   PARTIAL on the join (shared frame u^mu=A^mu, but MI gate absent from AeST).
+   kappa FREE (consumed via mu_fw, not forced). a0 transmitted (operator scale).
+==================================================================================

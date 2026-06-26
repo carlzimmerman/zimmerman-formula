@@ -1,0 +1,142 @@
+/Users/carlzimmerman/new_physics/zimmerman-formula/real_research/reviews/toe_law/agentIF2_reactive_influence_functional.py:313: IntegrationWarning: The occurrence of roundoff error is detected, which prevents 
+  the requested tolerance from being achieved.  The error may be 
+  underestimated.
+  val, err = _it.quad(f, 0, 2*np.pi/w_, limit=400)
+
+==============================================================================
+ PART A.  mu_fw IS the Deser-Levin inertia ratio (verbatim identity)
+==============================================================================
+[A1] gN(g) from g_obs=sqrt(gN^2+gN a0): -a0/2 + sqrt(a0**2 + 4*g**2)/2
+[A2] mu(x)=gN/g = (sqrt(4*x**2 + 1) - 1)/(2*x)
+[A3] mu(x) - mu_fw(x) = 0  (0 => mu_fw IS the inverse interp)
+[A4] mu_fw(x->0) ~ x   (=> m_eff ~ m*x = m*a/a0 -> 0: INERTIA VANISHES)
+[A5] mu_fw(x->inf)-> 1   (=> m_eff -> m: Newtonian)
+    THE INVERSION: mu_fw(0)=0  <  mu_fw(inf)=1.  Low-a inertia is SMALLER. (the crux to source)
+
+==============================================================================
+ PART B.  Feynman-Vernon influence functional: reactive vs dissipative split
+==============================================================================
+[B1] Lossless reactive self-energy: chi_R''(w)=0  for all w  => zero energy dissipated/cycle.
+     Reactive kernel eta_R(t-t') is then EVEN & REAL: eta_R(t-t')=eta_R(t'-t).
+     A symmetric real kernel coupling q_q to q_cl is the in-in form of a
+     CONSERVATIVE generalized potential (no arrow of time). [CONSTRUCTED]
+[B2] closed-loop work for a REACTIVE (real, even) kernel, single mode:  W_loop = 0  (==0 => CONSERVATIVE) [CONSTRUCTED]
+[B3] closed-loop work for a DISSIPATIVE kernel (F=-gamma qdot):  W_loop = Piecewise((-pi*gamma*omega, (omega > 0) | (omega < 0)), (0, True))  (!=0 => LOSSY).  Lossy is what X2/passivity constrains.
+
+==============================================================================
+ PART C.  The X2 / passivity sum-rule applies to the DISSIPATIVE channel ONLY
+==============================================================================
+[C1] DC inertia shift from a POSITIVE damped-oscillator absorption A(W)>=0 (weight g>0):
+     A(W)=g W^2 d/((W^2-nu0^2)^2+(d W)^2) >= 0,  A(0)=0.
+     m_eff(0)-m_eff(inf) = (2/pi)int A(W)/W dW = +0.1391 (>0) for any g>0 [numeric]
+     => m(0)>m(inf), mu(0)>mu(inf): PASSIVE = anti-MOND. [CONSTRUCTED]
+
+[C2] *** KEY DISTINCTION ***  This sum rule's POSITIVITY needs A(W)>=0 on (0,inf).
+     A LOSSLESS reactive kernel has A(W)=chi_R''(W)/(...) IDENTICALLY 0 on the open axis.
+     => the X2 sum rule reads  m_eff(0)-m_eff(inf) = (2/pi)int 0/W dW = 0  -- it is SILENT.
+     A purely reactive kernel is NOT pinned by passivity: it can have m_eff(0)<m_eff(inf)
+     IF its analytic structure puts spectral weight OFF the real axis (poles in q, not in chi'').
+
+==============================================================================
+ PART D.  The CRUX: a LOSSLESS reactive chi_R(w) -- can it give m_eff(0)<m_eff(inf)?
+==============================================================================
+[D1] lossless reactive inertia model  Pi(w^2)=R wr^2/(wr^2-w^2)  (real, even, pole at wr)
+     m_eff(w)=m-Pi:   m_eff(0)=m-(R),  m_eff(inf)=m-(0)
+     m_eff(0)-m_eff(inf) = -R  = -R
+     => MOND inversion m_eff(0)<m_eff(inf) requires  R < 0  (a NEGATIVE-residue reactive pole).
+     Foster monotonicity of the reactive inertia: d/dw Pi = 2*R*omega*w_r**2/(omega**2 - w_r**2)**2
+     residue R>0 (passive) => Pi increasing through the pole => Pi(inf)>=Pi(0) ANTI-MOND.
+     residue R<0 (the MOND inversion) => Foster-VIOLATING = an ACTIVE reactive element.
+
+[D2] *** VERDICT OF THE CRUX (both ways) ***
+     The inversion mu(0)<mu(inf) does NOT come for free from going lossless/reactive.
+     In BOTH channels the same obstruction appears:
+       - dissipative: needs Im chi<0 on a band (negative absorption) -- X2 no-go;
+       - reactive/lossless: needs a NEGATIVE-residue (R<0) Foster element -- Foster no-go.
+     A causal, lossless, PASSIVE reactive kernel CANNOT invert the inertia. The reactive
+     route does NOT dodge the activity; it relocates it from Im(chi)<0 to a Foster R<0.
+     CONCLUSION: the conservative time-nonlocal functional that reproduces mu_fw is
+     CONSTRUCTIBLE (Part E builds it explicitly and it is lossless on closed loops), but its
+     reactive kernel is NECESSARILY ACTIVE (Foster-violating residue) -- i.e. it is
+     conservative (energy-conserving over a cycle) yet NOT passive (it stores 'negative
+     reactive inertia' that must be supplied by the dS/Lambda sector). [CONSTRUCTED, both ways]
+
+==============================================================================
+ PART E.  EXPLICIT construction: the conservative time-nonlocal MI functional (Galley in-in)
+==============================================================================
+[E1] adiabatic-inertia condition  2 F'(x^2)=mu_fw(x).  F'(s)=mu_fw(sqrt s)/2 = (sqrt(4*s + 1) - 1)/(4*sqrt(s))
+[E2] integrate -> kinetic shape  F(s) = sqrt(s)*sqrt(4*s + 1)/4 - sqrt(s)/2 + asinh(2*sqrt(s))/8
+[E3] inertial force / (m a0) = 2 F'(x^2) x = sqrt(4*x**2 + 1)/2 - 1/2
+     target  mu_fw(x)*x = sqrt(4*x**2 + 1)/2 - 1/2
+     difference = 0  (0 => the kinetic functional REPRODUCES m*mu_fw(|a|/a0)*a)
+
+[E4] Galley doubled in-in action (the conservative time-nonlocal MI functional):
+     S[q+,q-] = S_phys[q+] - S_phys[q-]  with
+     S_phys[q] = int dt [ (1/2) m_b qdot^2 + q*F_ext  -  (m a0^2) F(|qddot|^2/a0^2) ]
+     and F(s) = sqrt(s)*sqrt(4*s + 1)/4 - sqrt(s)/2 + asinh(2*sqrt(s))/8
+     Physical limit (q-=q_q->0, Galley): delta S/delta q_q |_{PL} = 0  gives the single
+     EL eqn  m*mu_fw(|qddot|/a0)*qddot = F_ext (verified [E3]).  Because S is the simple
+     DIFFERENCE S_phys[+]-S_phys[-] of a real action, the in-in kernel is purely REACTIVE
+     (the noise kernel nu_K=0, the dissipation kernel = the EVEN reactive one): this is the
+     time-NONLOCAL (qddot-dependent, history-via-derivatives) CONSERVATIVE functional. [CONSTRUCTED]
+
+[E5] WHERE the inversion lives in THIS conservative functional.
+     F(s->0) ~ -s**(5/2)/5 + s**(3/2)/3   (SUBQUADRATIC: ~ s^{3/2}, grows SLOWER than the quadratic s/2)
+     => F'(0)= 0  => mu(0)=2F'(0)=0 (inertia vanishes); F'(inf)= 1/2  => mu(inf)=1.
+     The inversion mu(0)<mu(inf) is encoded as F'(0)<F'(inf): F is monotone-rising-slope but
+     SUBQUADRATIC at small s. The physical 'inertia seen by perturbations' is d^2/da^2 of the
+     kinetic energy e(a)=m a0^2 F(a^2/a0^2):
+     d^2 e/da^2 / m at x=a/a0 = 0.01, 1, 100: [0.01999600119960014, 0.8944271909999159, 0.9999875002343701]
+     => perturbation-inertia DROPS 0.02m -> m: low-a inertia IS smaller (the MOND inversion). [CONSTRUCTED]
+     F''(s)>0 on s>0 (machine: F''(1)=0.069>0). convex (F''>0): the amplitude functional is conservative & well-posed; the activity of Part D
+       is NOT a non-convexity of F -- it is a property of the FREQUENCY-DOMAIN kernel one would
+       need to GENERATE this amplitude-nonlocal F from a passive linear bath (Part D): that
+       generating reactive self-energy carries a Foster-violating residue. F itself is fine;
+       the OBSTRUCTION is to a passive microscopic ORIGIN, not to the functional's existence. [HONEST]
+
+==============================================================================
+ PART F.  Deep-MOND  v^4 = G M a0  from the constructed functional
+==============================================================================
+[F1] deep-MOND force balance  m a^2/a0 = G M m / r^2, a=v^2/r:
+     v^2 solutions: [-sqrt(G)*sqrt(M)*sqrt(a0), sqrt(G)*sqrt(M)*sqrt(a0)]
+[F2] v^4 = G*M*a0    target G M a0 = G*M*a0
+     v^4 - G M a0 = 0   (0 => BTFR v^4=GMa0 EXACT) [CONSTRUCTED]
+
+==============================================================================
+ PART G.  Conservative check at ALL amplitudes incl deep-MOND: closed loop & <F.v>
+==============================================================================
+[G0] EXACT: under u->2pi-u the integrand mu(|cos u|)cos u sin u is odd about u=pi
+     => closed-loop work = 0 EXACTLY for ANY even mu, at ALL amplitudes (incl deep-MOND). [PROVEN]
+[G1] closed-loop work  oint F_in dq  (full nonlinear mu_fw, adaptive quad, NOT linearized):
+     A=1e+00 w=1e+00  x_peak=1.00e+00 [transition            ]  W_loop=-8.92e-17 (quaderr 1.0e-14)
+     A=1e+03 w=1e+00  x_peak=1.00e+03 [Newtonian (x_peak>>1) ]  W_loop=-1.92e-10 (quaderr 2.2e-08)
+     A=1e+00 w=1e-03  x_peak=1.00e-06 [deep-MOND (x_peak<<1) ]  W_loop=-6.71e-28 (quaderr 1.4e-26)
+     A=5e+01 w=7e+00  x_peak=2.45e+03 [Newtonian (x_peak>>1) ]  W_loop=-1.14e-11 (quaderr 2.7e-09)
+     => W_loop = 0 to integration-error floor at ALL amplitudes incl deep-MOND: CONSERVATIVE.
+[G2] <F_in . v> period-average = W_loop/T (Milgrom 2208.07073 eq.11: total energy conserved):
+     A=1e+00 w=1e+00  <F.v>=-1.42e-17
+     A=1e+03 w=1e+00  <F.v>=-3.05e-11
+     A=1e+00 w=1e-03  <F.v>=-1.07e-31
+     => <F.v>=0: NO secular energy exchange. The functional is LOSSLESS as a closed system.
+
+==============================================================================
+ PART H.  kappa honesty + summary
+==============================================================================
+[H1] kappa=1/2 is NOT forced by this construction. The functional F(s) is fixed by matching
+     2F'(x^2)=mu_fw(x), which contains a0 as the only scale; kappa enters only through
+     a0 = c H_L/Z with Z=2*kernel, kernel=sqrt(8pi/3), and the free-fall 1/2 = kappa. The
+     in-in construction reproduces the SHAPE mu_fw and the BTFR coefficient combination GMa0,
+     but a0 (hence Z, hence kappa) is an INPUT to the matching, not an output. kappa FREE. [HONEST]
+
+[H2] SUMMARY (both ways):
+   - mu_fw IS the Deser-Levin inertia ratio: EXACT identity [A3].
+   - The conservative time-nonlocal MI functional is CONSTRUCTED explicitly in Galley
+     doubled in-in form: S=S_phys[q+]-S_phys[q-], S_phys with non-quadratic kinetic F(s) [E].
+   - Its EOM reproduces m*mu_fw(|a|/a0)*a=F [E3] and gives v^4=GMa0 exactly [F2].
+   - It is CONSERVATIVE: W_loop=0 and <F.v>=0 at ALL amplitudes incl deep-MOND [G1,G2].
+   - THE CRUX (both ways): the inversion mu(0)<mu(inf) does NOT come for free from
+     'reactive instead of dissipative'. It requires a Foster-VIOLATING reactive residue
+     (R<0) [D1], the lossless mirror of the X2 negative-absorption no-go. The functional is
+     CONSERVATIVE (energy-conserving over a cycle) but NOT PASSIVE (its non-convex kinetic
+     F encodes a reactive element the dS/Lambda sector must supply). [D2,E5]
+   - kappa FREE [H1].

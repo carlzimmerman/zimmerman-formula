@@ -16,14 +16,17 @@ Usage:
   python arxiv_watch.py --json         # JSON for programmatic use
   python arxiv_watch.py --no-mark      # dry run: do not update seen.json
 """
-import argparse, json, os, sys, urllib.parse, urllib.request
+import argparse, json, os, sys, time, urllib.parse, urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta, timezone
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SEEN = os.path.join(HERE, "seen.json")
-API = "http://export.arxiv.org/api/query"
+API = "https://export.arxiv.org/api/query"  # https: arXiv 301-redirects http now
 CATS = ["astro-ph.GA", "astro-ph.CO", "gr-qc"]
+# arXiv rejects an over-complex query (all 28 terms OR'd at once) with HTTP 503,
+# so fetch() splits TERMS into chunks of this size and merges the results.
+CHUNK = 5
 
 # Watch terms — phrases bearing on the framework's pre-registered predictions (ROUTINE.md).
 TERMS = [
@@ -40,19 +43,42 @@ TERMS = [
 ATOM = "{http://www.w3.org/2005/Atom}"
 
 
-def build_query():
+def build_query(terms):
     cat = " OR ".join(f"cat:{c}" for c in CATS)
-    terms = " OR ".join(f'all:"{t}"' for t in TERMS)
-    return f"({cat}) AND ({terms})"
+    term_q = " OR ".join(f'all:"{t}"' for t in terms)
+    return f"({cat}) AND ({term_q})"
 
 
-def fetch(max_results):
-    params = {"search_query": build_query(), "sortBy": "submittedDate",
+def fetch_chunk(terms, max_results, retries=3):
+    params = {"search_query": build_query(terms), "sortBy": "submittedDate",
               "sortOrder": "descending", "start": 0, "max_results": max_results}
     url = API + "?" + urllib.parse.urlencode(params)
     req = urllib.request.Request(url, headers={"User-Agent": "zimmerman-data-watch/1.0"})
-    with urllib.request.urlopen(req, timeout=60) as r:
-        return r.read()
+    last = None
+    for attempt in range(retries):
+        try:
+            with urllib.request.urlopen(req, timeout=60) as r:
+                return r.read()
+        except Exception as ex:
+            last = ex
+            time.sleep(4 * (attempt + 1))
+    raise last
+
+
+def fetch(max_results):
+    """Fetch all watch terms in chunks (arXiv 503s on the full query) and merge,
+    deduping by arXiv id. Returns parsed entries (newest first)."""
+    by_id = {}
+    chunks = [TERMS[i:i + CHUNK] for i in range(0, len(TERMS), CHUNK)]
+    # Cap per-chunk results so the sum stays comparable to the old single-query budget.
+    per_chunk = min(max_results, 60)
+    for i, ch in enumerate(chunks):
+        for e in parse(fetch_chunk(ch, per_chunk)):
+            by_id[e["id"]] = e
+        if i + 1 < len(chunks):
+            time.sleep(3)  # be polite to the arXiv API between requests
+    entries = sorted(by_id.values(), key=lambda e: e["published"], reverse=True)
+    return entries
 
 
 def parse(xml_bytes):
@@ -88,7 +114,7 @@ def main():
             seen = set()
 
     try:
-        entries = parse(fetch(args.max))
+        entries = fetch(args.max)
     except Exception as ex:
         print(f"ERROR fetching/parsing arXiv: {ex}", file=sys.stderr)
         sys.exit(2)
