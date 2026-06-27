@@ -9,8 +9,11 @@ audit (`INTEGRITY_AUDIT.md`). Constants: Planck 2018 Λ, DESI DR2 w₀=−0.752,
 
 Almost everything *measured today* (the a₀ value, rotation curves, dwarfs, lensing, clusters, wide binaries) is
 **shared with ordinary MOND** — real and validated, but a test of the *value* of a₀, not of this framework. The
-**only distinctive content is the evolution** a₀(z) = a₀(0)·√(ρ_DE(z)/ρ_DE0), which constant-a₀ MOND fixes at 1. The
-three decisive predictions below are all evolution predictions, and all are **forward** (no z>2 kinematics exist yet).
+distinctive content is two-fold: **(i) the evolution** a₀(z) = a₀(0)·√(ρ_DE(z)/ρ_DE0), which constant-a₀ MOND fixes
+at 1 (the three decisive predictions below are all evolution predictions, and all are **forward** — no z>2 kinematics
+exist yet); and **(ii) the preferred frame** the de Sitter–Unruh origin requires, which forces a fixed-direction
+Solar-System Lorentz-violation dipole (s̄^TX) testable with **data already in hand** — the one near-term distinctive
+test (added 2026-06-27, below). Full crunch-ranking of every test: `reviews/crispiness_scorecard.py`.
 
 ## ★ The 3 decisive, distinctive, falsifiable predictions
 
@@ -29,6 +32,27 @@ magnitude (~0.001–0.025 dex over z~1–2.5) is below current per-galaxy scatte
 marginalizing over the DESI w₀/wₐ uncertainty imposes a floor σ(β)≈0.5–0.6 *independent of sample size*, capping
 single-redshift significance at ~1.6–2.0σ. **Clean 5σ needs multi-redshift BTFR (z=3 & z=5) *and* a ~2× tighter DESI
 prior** — the bottleneck above ~30 discs is DESI, not telescope time (`combined_fisher_ultra.py`).
+
+## ★ The crunchiest *in-hand* test (added 2026-06-27): the s̄^TX preferred-frame dipole
+
+Unlike the three forward predictions above, this one is testable with **data already taken** — the framework's sharpest
+near-term exposure (full ranking: `reviews/crispiness_scorecard.py`).
+
+| # | Prediction | Value | Tested against | Status |
+|---|---|---|---|---|
+| **4** | **s̄^TX boost-dipole** — the de Sitter–Unruh preferred frame (= CMB frame) is a gravity-sector SME background; the Solar System's boost (β=1.23×10⁻³ toward the CMB apex) forces a fixed-direction Lorentz-violation coefficient | **s̄^TX ≈ 8.7×10⁻¹⁰**, CPT-even, fixed dir (l,b)=(264°,48°); **~1.5× under** the Hees+2015 bound | INPOP/EPM + Cassini + BepiColombo (in hand); a dedicated dipole fit to σ≈4×10⁻¹⁰ decides | **in-hand, analysis-limited** · distinctive (MI preferred-frame) |
+
+**Honest scope:** the *direction and CPT-even character are robust* (forced by "preferred frame = CMB frame"); the
+*magnitude is framework-specific* (±O(1), from the a₀→s̄_μν ledger). Gravity-sector test only — **not** a theory of
+everything. Published note DOI 10.5281/zenodo.20978308; reproduces from `reviews/stx_target.py`.
+
+## A second in-hand consequence: the growing neutrino mass (the DESI Σmν anomaly)
+
+If the lightest neutrino is a swampland-tower state, the same evolving a₀(z)=√ρ_DE forces a **growing** neutrino mass,
+locked to a₀(z) with no free amplitude: m_ν(CMB)/m_ν(today) ≈ 0.54–0.72, so a constant-mass CMB+BAO fit under-counts →
+inferred **Σ_eff ≈ 0.032–0.042 eV** — right-signed and right-magnitude for the DESI "negative neutrino mass" anomaly.
+**Conditional** (ν=tower + α≈λ), **partly degenerate** with dynamical-DE, **dies if w→−1**; neutrino/dark-sector only.
+Published DOI 10.5281/zenodo.20977421; reproduces from `reviews/nu_mass_cmb_vs_today_offset.py`.
 
 ## The full set, by channel
 
@@ -51,6 +75,9 @@ prior** — the bottleneck above ~30 discs is DESI, not telescope time (`combine
 - **The high-z BTFR comes back flat-or-positive** when DESI says dynamical → direct falsification of the bridge.
 - **A direct dark-matter detection** → kills MOND and this framework together.
 - **The √ρ_total (rising) reading proves correct** → predicts the disfavored rising a₀.
+- **A confirmed gravitational-wave birefringence** (any LVK/LISA run) → kills the u^μ-referred picture: the framework's
+  CPT-even structure forces **exactly zero** GW birefringence (and c_T = 1 exactly, d=4 dispersion = 0). A clean
+  structural falsifier — sharpened 2026-06-27 (`reviews/gw_sme_door.py`).
 
 ## Honest non-predictions / open
 
