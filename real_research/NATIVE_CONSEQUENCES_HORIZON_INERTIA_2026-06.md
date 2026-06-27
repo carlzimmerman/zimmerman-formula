@@ -38,10 +38,10 @@ This is the bath's clock made observable. The mechanism:
 
 | dwarf | a_ext/a₀ @peri | y = ω_ext/ω_in | regime |
 |---|---|---|---|
-| Crater II | 0.46 | **2.6** | NON-ADIABATIC |
-| Antlia II | 0.35 | **2.5** | NON-ADIABATIC |
-| Bootes I | 0.40 | 0.57 | borderline |
-| Fornax (dense control) | 0.23 | **0.20** | adiabatic (stays cold-circular-like) |
+| Crater II | 0.57 | **3.28** | NON-ADIABATIC |
+| Antlia II | 0.33 | **2.55** | NON-ADIABATIC |
+| Bootes I | 0.33 | 0.21 | adiabatic |
+| Fornax (dense control) | 0.14 | **0.16** | adiabatic (stays cold-circular-like) |
 
 Amplitude on σ: σ ∝ (θ_eff)^¼ → radial-vs-circular ratio **1.19–1.28 (≈19–28% hotter)** for
 θ(0) = 2…e. The diffuse low-internal-frequency dwarfs Milgrom himself flagged ("in some dwarf

@@ -38,7 +38,7 @@ from M_V], r_half)**, N=24 usable MW dwarfs (Pace+2022 MW+LMC orbits), reproduce
 | variant | ρ | p (two-sided) | reading |
 |---|---|---|---|
 | **PRIMARY** partial ρ(σ,ecc \| r_peri, L, r_half) | **−0.196** | **0.395** (dof=19) | null, wrong-signed |
-| virial-deviation ρ(log σ, ecc \| √(L/r_half), r_peri) | −0.150 | 0.505 | null |
+| virial-deviation ρ(log σ, ecc \| √(L/r_half), r_peri) | −0.220 | 0.313 | null |
 | simple (uncontrolled) Spearman(σ, ecc) | −0.113 | 0.598 | null |
 | no-LMC eccentricity (both-ways) | −0.030 | 0.899 | even flatter |
 
