@@ -9,9 +9,14 @@
 > (real velocity anisotropy comes from the orbit distribution via the **Jeans equation**, not the local
 > boost). The SIGN is therefore ASSUMED, not forced. Physics prior: MI (anisotropic inertia) and MG
 > (anisotropic gravity) both distort dynamics via a *similar* external-field anisotropy ⇒ likely the
-> **same-sign** β ⇒ the lock probably **dissolves**. Settling it requires a real Jeans/N-body anisotropy
-> solve in BOTH theories. **Everything below claiming B4 is "the gold / genuinely-new / add-to-ledger" is
-> superseded by this note.** The honest net of this slate: no new *verified* falsifier; A4 (shared-w(z)
+> **same-sign** β ⇒ the lock probably **dissolves**. **NOW SETTLED by the real calculation**
+> (`reviews/b4_jeans_verification.py`, exit 0): for an identical energy DF in the EFE potential, **MG gives
+> β_field ≈ 0** (Monte-Carlo: isotropic velocities; the EFE appears as a *flattened density*, not a velocity
+> tilt) — so the premise "MG radial β>0" is **FALSE**. MI gives β≈−0.44 only under a generalized-equipartition
+> heuristic that modified inertia **cannot rigorously support** (acceleration-dependent inertia ⇒ no equilibrium
+> stat-mech), and any such tilt is **swamped** by formation infall anisotropy (β_cc≈+0.3, on the *wrong* axis)
+> and rides the interpolation knob. **B4 is BURIED — NOT added to the ledger. Everything below claiming B4 is
+> "the gold / genuinely-new / add-to-ledger" is superseded by this note.** The honest net of this slate: no new *verified* falsifier; A4 (shared-w(z)
 > cross-sector framing) is the one genuinely-new but conditional/DE-hostage item; the rest are honest
 > sharpenings of already-banked fronts (s^TX, a0(z), dwarf-σ, growing-ν).
 
