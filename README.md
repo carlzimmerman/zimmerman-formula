@@ -127,6 +127,21 @@ So the project has moved into a **watch phase**: a daily, autonomous scan (`real
 
 The daily watch is live and already working: its first refreshed run (2026-06-21) flagged the **DES low-z supernova systematic** ([arXiv:2606.18374](https://arxiv.org/abs/2606.18374)) — which "drives much of the apparent preference for evolving dark energy" and is *not* seen in DEBASS — as the a₀(z) dissolution risk materializing in real time. No confirmation, no kill; the watch-list and its pre-registered responses live in [`data_watch/ROUTINE.md`](real_research/data_watch/ROUTINE.md) + [`data_watch/WATCHLIST.md`](real_research/data_watch/WATCHLIST.md).
 
+## 🆕 June 27–28, 2026 — the dark-sector prediction notes
+
+With the theory program closed, late June sharpened the framework's two genuinely-distinctive **empirical** fronts — the **preferred-frame** test and the **neutrino/dark-sector** consequence — into three short, falsifiable, honestly-scoped notes (gravity/dark-sector only, **not** a theory of everything):
+
+- **A fixed-direction Solar-System Lorentz-violation target — the s̄^TX boost-dipole.** Because the theory has a preferred frame (the cosmic/CMB frame), it forces a *fixed-direction* gravity-sector SME coefficient **s̄^TX ≈ 8.7×10⁻¹⁰ at the CMB apex (l,b)=(264°,48°)**, ~1.5× under the current ephemeris bound — a timestamped prediction registered *before* the dedicated fit, decidable with data already in hand (INPOP / Cassini / BepiColombo). The crunchiest live test on the ledger.
+  → **[Zenodo 10.5281/zenodo.20978308](https://doi.org/10.5281/zenodo.20978308)** · [`reviews/stx_target.py`](real_research/reviews/stx_target.py)
+
+- **A growing neutrino mass from the evolving MOND scale.** The one place the framework's de Sitter vacuum (E_dS = ρ_DE^(1/4) ≈ 2.24 meV) meets a Standard-Model particle without a 30-order scale gap. *If* the lightest neutrino is a swampland-tower state, its mass is **locked to a₀(z)=√ρ_DE** with no free amplitude, freezing by recombination so the CMB imprints a ~25–45% lighter neutrino — a right-signed reading of the DESI "negative effective neutrino mass" anomaly. Conditional, **founded-not-derived**, **dies if w→−1**.
+  → **[Zenodo 10.5281/zenodo.20977421](https://doi.org/10.5281/zenodo.20977421)** · [`reviews/nu_mass_cmb_vs_today_offset.py`](real_research/reviews/nu_mass_cmb_vs_today_offset.py)
+
+- **The growth-tomography test of the lock** (companion) — the degeneracy-break. A *growing* mass suppresses structure growth only below the neutrino free-streaming scale → a **scale-dependent** step in P(k) that *generic* dynamical dark energy (scale-independent H(z)) cannot fake. A real CAMB calculation gives the step (~0.65% at the NO floor, ~1.4% at Σ=0.10 eV) and a Euclid detectability of **~1.4σ at the floor → ~3.9σ at Σ=0.10 eV** — the test's power is *hostage to the absolute neutrino mass*, which JUNO/KATRIN pin independently. Robust to the DESI DR1→DR2 update.
+  → **[Zenodo 10.5281/zenodo.20999876](https://doi.org/10.5281/zenodo.20999876)** · [`reviews/growing_nu_camb_fisher.py`](real_research/reviews/growing_nu_camb_fisher.py)
+
+A one-page **falsification scorecard** ([`reviews/crispiness_scorecard.py`](real_research/reviews/crispiness_scorecard.py)) ranks every live test by *distinctiveness × decidability × near-term*: s̄^TX is the crunchiest in-hand test; the relational σ-spread and dwarf-σ clock are the most modified-gravity-distinctive but underpowered; a₀(z) and the neutrino split are sharper but DESI-hostage. The same both-ways discipline was turned **inward**: a late-June posit-mining campaign **caught and killed five "manufactured wins"** with real calculations (including a velocity-anisotropy "MG-impossible" claim, buried by a CAMB/Jeans check) and corrected an over-stated sign claim in the dwarf prediction — kills recorded with the same weight as wins.
+
 ## 🗓 Timeline
 
 | Date | Milestone | DOI / status |
@@ -139,6 +154,9 @@ The daily watch is live and already working: its first refreshed run (2026-06-21
 | 2026-06-20 | **Why Skordis & Złośnik Were Right** — AeST vindication, the theory program closed | [20773004](https://doi.org/10.5281/zenodo.20773004) |
 | 2026-06-20 | **Galaxy-Cluster Density No-Go** — the dark sector has the cluster mass but can't be galaxy-safe and cluster-clumpy; the deferred AeST nonlinear \|Φ\| calc performed | [20779562](https://doi.org/10.5281/zenodo.20779562) |
 | **2026-06-21** | **Watch phase begins** — theory exhausted; daily autonomous data-watch goes live | *active* |
+| 2026-06-27 | **s̄^TX ephemeris target** — the fixed-direction preferred-frame Lorentz-violation prediction | [20978308](https://doi.org/10.5281/zenodo.20978308) |
+| 2026-06-27 | **Growing neutrino mass** — the evolving-a₀(z) reading of the DESI Σmν anomaly | [20977421](https://doi.org/10.5281/zenodo.20977421) |
+| 2026-06-28 | **Growth-tomography test** — the scale-dependent degeneracy-break (CAMB + Euclid forecast) | [20999876](https://doi.org/10.5281/zenodo.20999876) |
 | **~Dec 2026** | **Gaia DR4 wide binaries** — the first hard verdict on the MOND premise | *forthcoming* |
 | 2026–2027 | **DESI DR3 w(z)** — the gate for the a₀(z) prediction (validate vs dissolve) | *forthcoming* |
 | 2028–2032 | the s^TX SME dipole (Gaia DR4), high-z BTFR offset, the ELT cluster σ-spread | *forthcoming* |
