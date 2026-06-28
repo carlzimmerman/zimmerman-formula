@@ -17,7 +17,7 @@ sTX_bnd  = 1.3e-9                          # Hees+ 2015 ephemeris bound
 a0z_lo, a0z_hi = 0.61, 0.75               # a0(z=3)/a0(0), DESI w0wa propagation (a0z_desi_chains_propagation.py)
 Sig_eff_lo, Sig_eff_hi = 0.032, 0.042     # eV, growing-nu CMB-vs-today (nu_mass_cmb_vs_today_offset.py)
 dwarf_MI_lo, dwarf_MI_hi = 0.06, 0.13     # relational sigma-spread, MI (MG = exactly 0)
-cassini_margin_orders = 5.5                # framework PASSES |gamma-1|<2.3e-5 by ~5.5 orders (MI-vs-MG discriminator)
+cassini_margin_orders = 5.5                # framework PASSES |gamma-1|<2.3e-5 by ~5.5 orders -- but MOND-SHARED (trivial a>>a0 at the Sun), NOT distinctive; and the Q2 quadrupole is an INHERITED 3-15sigma tension (corrected 2026-06-28)
 
 ROWS = [
  # rank, name, the sharp number, distinctive?, data status, decision window, crunch, honest caveat
@@ -46,11 +46,15 @@ ROWS = [
    "MOST distinctive -- MG-IMPOSSIBLE","MW dwarf sigma + orbital history (Gaia DR4)",
    "underpowered now; maybe not this decade","DISTINCTIVE but SOGGY",
    "the sharpest MI-vs-MG signal that exists, but no statistical power in hand"),
- ("-- (already decided)","Cassini |gamma-1| < 2.3e-5",
-   f"framework PASSES by ~{cassini_margin_orders:.1f} orders (MI vs MG)",
-   "YES -- the in-hand MI-vs-MG discriminator","Cassini (DONE)",
-   "ALREADY decided -> PASS","A CRISPY SURVIVAL",
-   "not a future prediction; the framework is ALIVE on the one clean in-hand test"),
+ ("-- (CORRECTED 2026-06-28)","Cassini |gamma-1| (gamma-pass) vs the Q2 QUADRUPOLE",
+   f"gamma-pass ~{cassini_margin_orders:.1f} orders -- but MOND-SHARED (trivial: a>>a0 at the Sun), NOT distinctive",
+   "NO -- the gamma-pass is shared survival; the Q2 quadrupole is a 3-15sigma TENSION the framework INHERITS",
+   "Cassini (DONE) + Park et al. 2026 (2602.17884)",
+   "two-sided: gamma SHARED-pass; Q2 quadrupole = INHERITED tension (AeST=MG, Desmond-Hees-Famaey)",
+   "NOT a clean win",
+   "the framework's WRITTEN covariant realization (AeST) is modified GRAVITY -> inherits the 3-15sigma RAR-vs-Q2 "
+   "tension; MI-evasion needs the UNWRITTEN MI completion. The genuine MI-vs-MG test is s^TX (future). "
+   "See reviews/cassini_quadrupole_framework.py."),
 ]
 
 print("="*108)
@@ -71,8 +75,10 @@ print("""  THE HONEST READ (the crunch gradient):
    * Everything MORE decidable (a0(z), the nu-mass) is HOSTAGE (dies if w->-1) or DEGENERATE.
    * That trade -- distinctiveness vs power -- is the SIGNATURE of a one-parameter modified-inertia theory,
      not a flaw to fix by computation. The crunch will come from the EXPERIMENTS, not more theory.
-   * The framework is ALIVE and crispy: it PASSES the one clean in-hand discriminator (Cassini, ~5.5 orders),
-     and its sharpest live test (s^TX) sits 1.5x under the bound with the data already taken.
+   * The framework is ALIVE: it PASSES the Cassini gamma bound (~5.5 orders) -- but that pass is MOND-SHARED (trivial
+     at the Sun), NOT a distinctive discriminator; and the Cassini Q2 QUADRUPOLE is a 3-15sigma RAR-vs-Q2 TENSION its
+     AeST (modified-gravity) realization INHERITS (corrected 2026-06-28). Its sharpest live test (s^TX) sits 1.5x under
+     the bound with the data already taken -- and THAT, not Cassini, is the genuine in-hand-data MI-vs-MG channel.
   BOTTOM LINE: honest fried chicken, extra crispy = 's^TX = 8.7e-10 at the CMB apex; one dedicated INPOP fit
   detects it or kills this realization, with data in hand, by ~2028.' That is as crunchy as honest gets.""")
 print("="*108)
