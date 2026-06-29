@@ -9,6 +9,9 @@ $$a_0 \;=\; c^2\sqrt{\frac{\Lambda}{32\pi}} \;=\; \frac{c}{2}\sqrt{G\rho_\Lambda
 [![de Sitter Gauge DOI](https://img.shields.io/badge/de%20Sitter%20Gauge%20(June%2016%202026)-10.5281%2Fzenodo.20721540-blueviolet)](https://doi.org/10.5281/zenodo.20721540)
 [![Skordis-Zlosnik DOI](https://img.shields.io/badge/Why%20Skordis%20%26%20Zlosnik%20Were%20Right%20(June%2020%202026)-10.5281%2Fzenodo.20773004-blueviolet)](https://doi.org/10.5281/zenodo.20773004)
 [![Cluster Density No-Go DOI](https://img.shields.io/badge/Galaxy--Cluster%20Density%20No--Go%20(June%2020%202026)-10.5281%2Fzenodo.20779562-blueviolet)](https://doi.org/10.5281/zenodo.20779562)
+[![s̄^TX Target DOI](https://img.shields.io/badge/s%CC%84%5ETX%20Ephemeris%20Target%20(June%2027%202026)-10.5281%2Fzenodo.20978308-blueviolet)](https://doi.org/10.5281/zenodo.20978308)
+[![Growing-ν DOI](https://img.shields.io/badge/Growing%20Neutrino%20Mass%20(June%2027%202026)-10.5281%2Fzenodo.20977421-blueviolet)](https://doi.org/10.5281/zenodo.20977421)
+[![Scale Without Law DOI](https://img.shields.io/badge/Scale%20Without%20Law%20(June%2028%202026)-10.5281%2Fzenodo.21016309-blueviolet)](https://doi.org/10.5281/zenodo.21016309)
 [![Corpus DOI](https://img.shields.io/badge/Code%20%26%20Data-10.5281%2Fzenodo.20576494-blue)](https://doi.org/10.5281/zenodo.20576494)
 [![Paper PDF](https://img.shields.io/badge/PDF-read%20the%20paper-success)](real_research/papers/ZIMMERMAN_THEORY_OF_GRAVITY.pdf)
 [![License](https://img.shields.io/badge/code-AGPL--3.0-lightgrey)](LICENSE)
@@ -142,6 +145,16 @@ With the theory program closed, late June sharpened the framework's two genuinel
 
 A one-page **falsification scorecard** ([`reviews/crispiness_scorecard.py`](real_research/reviews/crispiness_scorecard.py)) ranks every live test by *distinctiveness × decidability × near-term*: s̄^TX is the crunchiest in-hand test; the relational σ-spread and dwarf-σ clock are the most modified-gravity-distinctive but underpowered; a₀(z) and the neutrino split are sharper but DESI-hostage. The same both-ways discipline was turned **inward**: a late-June posit-mining campaign **caught and killed five "manufactured wins"** with real calculations (including a velocity-anisotropy "MG-impossible" claim, buried by a CAMB/Jeans check) and corrected an over-stated sign claim in the dwarf prediction — kills recorded with the same weight as wins.
 
+## 🆕 June 28, 2026 — foundations: *Scale Without Law*
+
+The session's deepest theory result, written as an honest **obstruction map** rather than a derivation. Following Milgrom's 1999 *"modified dynamics as a vacuum effect,"* the **de Sitter–Unruh (Deser–Levin) temperature forces the MOND scale and reproduces the deep-MOND √-law and BTFR exactly — but not the law.** A rigorous, *adversarially-verified* attempt to derive the interpolation, the coefficient, and a covariant equation of motion **stalls at all three**, and each obstruction is made a theorem:
+- the framework's μ_fw and the bare dS–Unruh μ are the **same one-parameter family**, so the whole interpolation gap **collapses to one undetermined coefficient Z**;
+- a **number-field obstruction** — thermodynamics lives in ℚ(π), Z = √(32π/3) lives in ℚ(√π) — proves no horizon-entropy or temperature factor can ever *output* the coefficient;
+- a **strengthened sign theorem** (needs only ghost-freedom, not passivity) blocks a passive-bath covariant completion (Ostrogradsky/Cassini/sign-theorem trichotomy, no fourth route).
+
+The honest standing — *scale forced, law not* — is Milgrom's since 1999, now sharpened to a single provably-unforced number and a clean sign obstruction. Six backing scripts, all exit 0, on the framework's **own** objects (a₀ = cH_Λ/Z, μ_fw, the Deser–Levin temperature — no standard-MOND substitution). Not a derivation of MOND, not a theory of everything.
+  → **[Zenodo 10.5281/zenodo.21016309](https://doi.org/10.5281/zenodo.21016309)** · [`reviews/deser_levin_mond_derivation.py`](real_research/reviews/deser_levin_mond_derivation.py) · [`CLOSE_MI_GAPS_2026-06.md`](real_research/CLOSE_MI_GAPS_2026-06.md)
+
 ## 🗓 Timeline
 
 | Date | Milestone | DOI / status |
@@ -157,6 +170,7 @@ A one-page **falsification scorecard** ([`reviews/crispiness_scorecard.py`](real
 | 2026-06-27 | **s̄^TX ephemeris target** — the fixed-direction preferred-frame Lorentz-violation prediction | [20978308](https://doi.org/10.5281/zenodo.20978308) |
 | 2026-06-27 | **Growing neutrino mass** — the evolving-a₀(z) reading of the DESI Σmν anomaly | [20977421](https://doi.org/10.5281/zenodo.20977421) |
 | 2026-06-28 | **Growth-tomography test** — the scale-dependent degeneracy-break (CAMB + Euclid forecast) | [20999876](https://doi.org/10.5281/zenodo.20999876) |
+| 2026-06-28 | **Scale Without Law** — dS-Unruh forces the MOND scale + deep-MOND limit but not the law (3 obstructions, 1 unforced coefficient) | [21016309](https://doi.org/10.5281/zenodo.21016309) |
 | **~Dec 2026** | **Gaia DR4 wide binaries** — the first hard verdict on the MOND premise | *forthcoming* |
 | 2026–2027 | **DESI DR3 w(z)** — the gate for the a₀(z) prediction (validate vs dissolve) | *forthcoming* |
 | 2028–2032 | the s^TX SME dipole (Gaia DR4), high-z BTFR offset, the ELT cluster σ-spread | *forthcoming* |
