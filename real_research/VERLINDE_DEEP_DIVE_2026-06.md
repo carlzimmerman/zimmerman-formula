@@ -1,8 +1,8 @@
-# Verlinde 2016 vs the framework — the nearest-cousin deep dive (for Anto Lonappan)
+# Verlinde 2016 vs the framework — the nearest-cousin deep dive
 
-**C. Zimmerman, 2026-06-28.** *Anto Lonappan, after my a₀ email, pointed me at Verlinde's entropic /
-emergent gravity. He is right that it is the nearest cousin. This is the honest, both-ways standing:
-where Verlinde clears Lonappan's bar (he doesn't), where he has been falsified (clusters / lensing at
+**C. Zimmerman, 2026-06-28.** *Verlinde's entropic / emergent gravity is the standard nearest-cousin to
+this framework. This is the honest, both-ways standing: where Verlinde clears the interpolation bar (he
+doesn't), where he has been falsified (clusters / lensing at
 large radius), where he is genuinely ahead of me (published mechanism + a published covariant completion
 + a recent dwarf-spheroidal win over MOND), and the one place I am genuinely distinct (modified-inertia
 discriminators + the a₀(z) evolution, IF his static "DM-illusion" formula doesn't predict it). The honest
@@ -32,9 +32,9 @@ modifies the inertia side. That single split is the discriminator (Cassini; see 
 
 ---
 
-## A. Does Verlinde clear Lonappan's bar? (a controlled interpolation from a mechanism) — NO, and neither do I
+## A. Does Verlinde clear the interpolation bar? (a controlled interpolation from a mechanism) — NO, and neither do I
 
-**This is the headline for Lonappan.** The bar he pointed me to is: *derive a controlled
+**This is the headline result.** The bar he pointed me to is: *derive a controlled
 Newtonian → deep-MOND transition from a mechanism, not just match the scale and the deep-MOND limit.*
 
 **What Verlinde actually derives.** His central result (eq. 7.40) is an apparent-DM relation:
@@ -67,7 +67,7 @@ its interpolation (additive-in-quadrature dS-Unruh ν), it does not derive a con
 it**; every temperature-equality collapses to Z=1, and the extra factor of 2 (κ=½) is a free-fall /
 equipartition convention, not a forced second Bekenstein-Hawking ¼. `COEFFICIENT_DEFINITIVE_VERDICT.md`:
 Z = √(32π/3) is **structurally unfixable** by equilibrium horizon entropy (number-field no-go √(32π/3)∉ℚ(π);
-Ȳ=0 saddle-blindness; Gauss-law a₀-blindness). So on Lonappan's exact bar, **both are at "scale + deep-MOND
+Ȳ=0 saddle-blindness; Gauss-law a₀-blindness). So on 's exact bar, **both are at "scale + deep-MOND
 limit, not a controlled transition." Neither clears it.**
 
 **Verlinde is AHEAD here, on two structural counts:**
@@ -97,7 +97,7 @@ Contested by Yoon 2020 (arXiv:2003.03198) on the elasticity dictionary. No third
 mid-2026. So Verlinde's mechanism advantage is real but rests on contested postulates: if they fail there is
 no a_M and no 1/6 at all.
 
-**Net A:** a both-ways tie at Lonappan's bar — *neither* theory derives the controlled interpolation —
+**Net A:** a both-ways tie at the interpolation bar — *neither* theory derives the controlled interpolation —
 **with Verlinde slightly ahead** on having an explicit mechanism and a published (partial) covariant
 completion. The framework's only edge is downstream of the bar (§B).
 
@@ -135,7 +135,7 @@ be probed separately:
   MG predicts exactly zero (MG-impossible). Banked.
 These are real distinctions from Verlinde, *independent* of the interpolation bar.
 
-**3. a₀(z) — the one potential genuine over-Verlinde distinction (the reason I asked Lonappan about DESI):**
+**3. a₀(z) — the one potential genuine over-Verlinde distinction (the reason the a₀(z) test matters):**
 - Framework: **a₀(z) = √(ρ_DE(z)/ρ_DE0)** — a **declining** evolution under DESI w₀wₐ (~26% down by z=3),
   constant under ΛCDM. It tracks the dark-energy *density*, not H(z).
 - Verlinde: his face-value scale is a_M = cH(z)/6 → **rising** with H(z) — *opposite sign*. BUT — and this
@@ -187,26 +187,15 @@ particular front Verlinde may be ahead of *both* MOND and the framework.
 
 ---
 
-## C. Two-to-three honest sentences Carl can say to Lonappan
+## C. Honest one-line standing
 
-> Yes — Verlinde is the nearest cousin, and thank you for the pointer; we make the same de Sitter move, but
-> on opposite sides of F=ma: he modifies *gravity* with a₀ ≈ cH₀/6 sourced by displaced dark-energy entropy,
-> and I modify *inertia* with a₀ = cH_Λ/Z sourced by the de Sitter-Unruh horizon bath. **Neither of us has
-> cleared the bar you named** — we both recover the scale and the deep-MOND √-limit from a mechanism, but
-> neither derives the controlled Newtonian-to-deep-MOND interpolation; honestly, Verlinde is a step ahead
-> there, since Hossenfelder gave him a covariant Lagrangian that fixes the transition's one parameter, where
-> my coefficient is still a data-selected posit (I'm not claiming it's derived). **The one thing my
-> modified-inertia version adds that his static "dark-matter-illusion" doesn't is an evolving a₀(z) ∝
-> √ρ_DE(z) that *declines* — opposite-signed to his cH(z) — which is exactly why I asked about DESI: that
-> evolution, plus the Solar-System (Cassini) inertia signature, are the two places where the cousin and I
-> could actually be told apart, and I'd value your read on whether his apparent-DM formula predicts any
-> a₀(z) at all.**
+Nearest cousin; same de Sitter move on opposite sides of F=ma (Verlinde modifies gravity, a₀≈cH₀/6; the framework modifies inertia, a₀=cH_Λ/Z). Neither derives the controlled interpolation; Verlinde is a step ahead (covariant completion via Hossenfelder). The framework's one potential over-Verlinde distinction is the *declining* a₀(z)∝√ρ_DE (opposite-signed to his rising cH(z)) plus the Cassini modified-inertia signature — both contingent on dynamical dark energy (dies if w→−1).
 
 ---
 
 ## Bottom line (both-ways, no manufactured edge, no manufactured deficit, no "no doors")
 
-- **Lonappan's bar:** TIE — neither derives the controlled interpolation. **Verlinde slightly ahead**
+- **the interpolation bar:** TIE — neither derives the controlled interpolation. **Verlinde slightly ahead**
   (mechanism + covariant completion that fixes the transition parameter).
 - **Coefficient:** **Verlinde ahead** on "derived within his scheme" (1/6 dimension-forced, contested
   postulates) vs the framework's data-selected κ=½ posit. The framework's vs-cH₀ coefficient 0.143 is the
