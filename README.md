@@ -12,6 +12,8 @@ $$a_0 \;=\; c^2\sqrt{\frac{\Lambda}{32\pi}} \;=\; \frac{c}{2}\sqrt{G\rho_\Lambda
 [![s̄^TX Target DOI](https://img.shields.io/badge/s%CC%84%5ETX%20Ephemeris%20Target%20(June%2027%202026)-10.5281%2Fzenodo.20978308-blueviolet)](https://doi.org/10.5281/zenodo.20978308)
 [![Growing-ν DOI](https://img.shields.io/badge/Growing%20Neutrino%20Mass%20(June%2027%202026)-10.5281%2Fzenodo.20977421-blueviolet)](https://doi.org/10.5281/zenodo.20977421)
 [![Scale Without Law DOI](https://img.shields.io/badge/Scale%20Without%20Law%20(June%2028%202026)-10.5281%2Fzenodo.21016309-blueviolet)](https://doi.org/10.5281/zenodo.21016309)
+[![Cluster Anisotropy DOI](https://img.shields.io/badge/Cluster%20Anisotropy%20MI%20Test%20(July%201%202026)-10.5281%2Fzenodo.21104820-blueviolet)](https://doi.org/10.5281/zenodo.21104820)
+[![a0(z) Discriminant DOI](https://img.shields.io/badge/Non--Monotonic%20a0(z)%20(July%201%202026)-10.5281%2Fzenodo.21110936-blueviolet)](https://doi.org/10.5281/zenodo.21110936)
 [![Corpus DOI](https://img.shields.io/badge/Code%20%26%20Data-10.5281%2Fzenodo.20576494-blue)](https://doi.org/10.5281/zenodo.20576494)
 [![Paper PDF](https://img.shields.io/badge/PDF-read%20the%20paper-success)](real_research/papers/ZIMMERMAN_THEORY_OF_GRAVITY.pdf)
 [![License](https://img.shields.io/badge/code-AGPL--3.0-lightgrey)](LICENSE)
@@ -171,6 +173,8 @@ The honest standing — *scale forced, law not* — is Milgrom's since 1999, now
 | 2026-06-27 | **Growing neutrino mass** — the evolving-a₀(z) reading of the DESI Σmν anomaly | [20977421](https://doi.org/10.5281/zenodo.20977421) |
 | 2026-06-28 | **Growth-tomography test** — the scale-dependent degeneracy-break (CAMB + Euclid forecast) | [20999876](https://doi.org/10.5281/zenodo.20999876) |
 | 2026-06-28 | **Scale Without Law** — dS-Unruh forces the MOND scale + deep-MOND limit but not the law (3 obstructions, 1 unforced coefficient) | [21016309](https://doi.org/10.5281/zenodo.21016309) |
+| 2026-07-01 | **Cluster-anisotropy MI test** — η slides with orbital anisotropy in modified inertia, flat in MG/ΛCDM (an MG-impossible cluster discriminant; parent machinery Milgrom 2012/2014/2022; does *not* solve the cluster residual) | [21104820](https://doi.org/10.5281/zenodo.21104820) |
+| 2026-07-01 | **Non-monotonic a₀(z) discriminant** — the LPO-2008 relation a₀∝√ρ_DE on DESI evolving dark energy → the only bump-shaped a₀(z) in the field (+3–9% at z≈0.4, then decline); below current floors, long-horizon | [21110936](https://doi.org/10.5281/zenodo.21110936) |
 | **~Dec 2026** | **Gaia DR4 wide binaries** — the first hard verdict on the MOND premise | *forthcoming* |
 | 2026–2027 | **DESI DR3 w(z)** — the gate for the a₀(z) prediction (validate vs dissolve) | *forthcoming* |
 | 2028–2032 | the s^TX SME dipole (Gaia DR4), high-z BTFR offset, the ELT cluster σ-spread | *forthcoming* |
