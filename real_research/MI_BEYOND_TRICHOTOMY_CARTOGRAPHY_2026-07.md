@@ -1,6 +1,6 @@
 # Covariant MI Beyond the Trichotomy — CARTOGRAPHY (2026-07)
 
-**STATUS: cartography stage only — the gauntlet (explicit construction tests) and adversarial verification were interrupted (spend limit) and are PENDING. The results below are sympy-backed where stated but UNVERIFIED as a program; do not bank as theorems yet.**
+**STATUS: ADJUDICATED 2026-07-02 — see NESS_SIGNFLIP_VERDICT_2026-07.md. Survives: the sign premise is a STATE clause (+ a NEW free-field rigidity wall). Dies: "the dS horizon is the pump" (thermostat theorem, four legs). Saturation does NOT yield mu(a/a0).**
 
 ---
 
