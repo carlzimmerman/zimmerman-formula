@@ -238,6 +238,26 @@ Code: **AGPL‑3.0** ([`LICENSE`](LICENSE)). The paper text: **CC‑BY‑4.0**.
 
 ---
 
+## 🎯 Testable predictions — the scoreboard
+
+Every live prediction of the framework, on its **own footing** (a₀ = c²√(Λ/32π) = 9.36×10⁻¹¹ m/s², its own interpolation g_obs = √(g_bar² + g_bar·a₀)), with its **kill condition stated up front**. Verdicts are pre-committed; this table is updated as the data lands.
+
+| # | Prediction | Framework value | Kill condition | Data / instrument | Verdict window | Status |
+|---|---|---|---|---|---|---|
+| 1 | **s̄^TX preferred-frame dipole** (SME, CPT-even, fixed direction = CMB apex (l,b)=(264°,48°)) · [20978308](https://doi.org/10.5281/zenodo.20978308) | s̄^TX ≈ 8.7×10⁻¹⁰ (1.5× under the current bound) | dedicated ephemeris fit null at σ≈4×10⁻¹⁰ | INPOP/JPL planetary ranging — **data already in hand** | ~2026–2028 | ⏳ the crunchiest live test |
+| 2 | **GW birefringence = exactly 0; c_T = 1** (CPT-even theorem) | 0, exactly | **any** confirmed GW birefringence = instant kill | LIGO/Virgo/KAGRA, LISA | ongoing | ✅ alive; kill-switch armed |
+| 3 | **Wide-binary boost, MI-EFE band** | γ ≈ 1.05–1.10 (vs modified-gravity 1.137, Newton 1.00) | hard Newtonian null kills it (and all MOND); ≳15–20% boost favors MG over MI | **Gaia DR4** | ~Dec 2026+ | ⏳ first hard verdict |
+| 4 | **a₀(z) ∝ √ρ_DE (declining)** · [20737162](https://doi.org/10.5281/zenodo.20737162) | a₀(z=3)/a₀(0) ≈ 0.61–0.75 | DESI → w = −1 dissolves it (degenerates to constant-a₀ MOND) | DESI DR3 w(z) + high-z RAR/BTFR | 2027–2030s | ⚠️ DESI-hostage; in tension with MUSE-DARK III (rising, method-split) |
+| 5 | **Non-monotonic a₀(z) bump** — the only bump-shaped a₀(z) prediction in the field · [21110936](https://doi.org/10.5281/zenodo.21110936) | +3.6–8.9% peak at z ≈ 0.35–0.44 (the DESI phantom-crossing) | a monotonic a₀(z) measured through z≈0.4 at ≲2% precision | sub-2% TFR intercept at 0.3<z<0.6 | 2030s (below current floors) | ⏳ long-horizon discriminant |
+| 6 | **z≳3 BTFR offset sign** | discs ≈ −7% in V (−0.033 dex) **below** the z=0 BTFR | discs at/above the z=0 relation | JWST+ALMA, ELT/HARMONI | early–mid 2030s | ⏳ cleanest deep-MOND test |
+| 7 | **Growing neutrino mass** (conditional: ν = tower state locked to a₀(z)) · [20977421](https://doi.org/10.5281/zenodo.20977421) / [20999876](https://doi.org/10.5281/zenodo.20999876) | CMB-imprinted Σ_eff offset 0.032–0.042 eV (right-signed for the DESI negative-ν anomaly); scale-dependent P(k) step 0.65–1.4% | w → −1; or the absolute mass at the NO floor keeps it ≲1.4σ (hostage to JUNO/KATRIN) | CMB-S4, DESI DR3, Euclid growth | 2027–2030 | ⚠️ conditional, DESI-hostage |
+| 8 | **Cluster η(β) anisotropy slide** — MG-impossible · [21104820](https://doi.org/10.5281/zenodo.21104820) | η rises with radial anisotropy in modified inertia (2.15 → ~2.8–3.0 at β≈0.3–0.5); **exactly flat** in MG/ΛCDM | measured flat η(β) at the needed precision | eROSITA + cluster-member spectroscopy | late 2020s+ (underpowered now) | ⏳ distinctive discriminant |
+| 9 | **Cluster-member σ-spread** — MG-impossible | infall-phase σ excess 6–13%, peaking in the MOND-zone outskirts (MG = exactly 0; CDM tidal confound is radially *anti*-correlated) | null joint signature at N≈10³ members/bin | 4MOST/WEAVE/MUSE → ELT-era | 2028–2032+ | ⏳ distinctive, underpowered |
+
+**Honest context:** #1–2 are the sharpest in-hand tests; #4–7 are hostage to DESI's evolving-dark-energy signal surviving (a high-τ reading of the CMB would dissolve them — under active review); #8–9 are the modified-inertia-*distinctive* signatures no modified-gravity or dark-matter model can mimic, currently underpowered. The framework's known walls (the cluster residual η≈2 requires a matter component; the coefficient Z and the dark-sector amount are provably underivable) are documented in [Scale Without Law](https://doi.org/10.5281/zenodo.21016309) and the repo's no-go ledgers — kills and wins recorded with equal weight.
+
+---
+
 ## ⚠️ A note on the [`ai_slop/`](ai_slop/) folder — AI‑generated material from an earlier model (Claude Opus 4.5)
 
 This repository began as a single real observation (the MOND scale `a₀ ≈ cH₀`) and then, run largely **autonomously by an earlier model — Claude Opus 4.5 — sprawled into ~18,000 files** of AI‑generated material: a cascade of particle‑physics **numerology** (`m_p/m_e`, `α⁻¹ = 4Z²+3`, a `Z² → Standard Model` cascade), a 20.6 Gpc cosmic‑topology claim, galaxy‑chirality and quasar‑"ghost" detections, biotech/meteorology "Z‑resonances", an E₆ "theory of everything", and the autonomous agent swarms (HermesFlow / TruthFlow / OlympusFlow / …) that produced it all.
