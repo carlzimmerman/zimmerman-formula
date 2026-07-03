@@ -1,0 +1,112 @@
+sample N=171; gas-dom N=37; bulge (Vbul>0 anywhere) N=32; gas-dom WITH bulge N=0
+
+GATE V1 -- corrected-likelihood baseline reproduction (U_bul LOCKED = 1.4*U_disk)
+    [locked] 40/171 (1s)
+    [locked] 80/171 (2s)
+    [locked] 120/171 (2s)
+    [locked] 160/171 (3s)
+    [locked] done: 171 galaxies, 3s
+  BASELINE locked, full (N=171)                        a0_hat=1.372e-10 [1.34e-10,1.40e-10] f=0.060
+                                                       Dchi2(9.36e-11)=  269.66 (~16.4 sig)  Dchi2(1.13e-10)=  63.88 (~ 8.0 sig)
+  BASELINE locked, gas-dom (N=37)                      a0_hat=9.816e-11 [9.29e-11,1.04e-10] f=0.070
+                                                       Dchi2(9.36e-11)=    0.72 (~ 0.8 sig)  Dchi2(1.13e-10)=   5.86 (~ 2.4 sig)
+  boot BASELINE full                          med=1.376e-10 [16,84]=[1.25e-10,1.47e-10]  P(<=9.36e-11)=0.000 (z~3.5)  P(<=1.13e-10)=0.016 (z~2.0)
+GATE V1: PASS (banked corrected numbers reproduced: 1.37e-10 full / 9.8e-11 gas-dom / boot z~3.5)
+  top-5 pull-away galaxies (baseline): [('UGC06787', 77.3), ('IC4202', 68.7), ('NGC7814', 27.7), ('NGC2915', 27.0), ('NGC2841', 22.9)]
+  pre-registered bulge-heavy subset: ('UGC06787', 'IC4202', 'NGC7814'), Dchi2 contribs [77.3, 68.7, 27.7], sum=173.8 of full-sample 269.7
+
+building UNLOCKED U_bul cache (bulge galaxies only; no-bulge reuse locked arrays)...
+    [unlock-bulge] done: 32 galaxies, 19s
+
+GATE V2 -- mock injection (truth a0=9.36e-11, U_d=0.5, U_b=0.7) through UNLOCKED machinery
+    [mock-unlocked] 40/171 (2s)
+    [mock-unlocked] 80/171 (8s)
+    [mock-unlocked] 120/171 (17s)
+    [mock-unlocked] 160/171 (21s)
+    [mock-unlocked] done: 171 galaxies, 22s
+  MOCK unlocked (N=171), sigUb=0.10                    a0_hat=9.400e-11 [9.35e-11,9.37e-11] f=0.000
+                                                       Dchi2(9.36e-11)=    0.00 (~ 0.0 sig)  Dchi2(1.13e-10)= 156.75 (~12.5 sig)
+GATE V2: recovered 9.400e-11 vs truth 9.361e-11 (bias +0.4%), Dchi2(truth)=0.00; per-gal-f variant: 9.402e-11, Dchi2(truth)=0.00, tau_hat=0.01
+GATE V2: PASS (both knob machineries recover the injected framework value unbiased)
+
+====================================================================================================
+(1) KNOB 1 -- U_bul UNLOCKED: independent per-galaxy lognormal prior, joint with U_disk,D,i
+====================================================================================================
+--- locked (baseline) ---
+  full (N=171)                                         a0_hat=1.372e-10 [1.34e-10,1.40e-10] f=0.060
+                                                       Dchi2(9.36e-11)=  269.66 (~16.4 sig)  Dchi2(1.13e-10)=  63.88 (~ 8.0 sig)
+  top-3 bulge influencers ALONE                        a0_hat=3.000e-10 [2.94e-10,3.00e-10] f=0.135
+                                                       Dchi2(9.36e-11)=   84.18 (~ 9.2 sig)  Dchi2(1.13e-10)=  66.66 (~ 8.2 sig)
+  full MINUS top-3                                     a0_hat=1.208e-10 [1.18e-10,1.24e-10] f=0.050
+                                                       Dchi2(9.36e-11)=  148.25 (~12.2 sig)  Dchi2(1.13e-10)=   9.09 (~ 3.0 sig)
+  gas-dom (N=37)                                       a0_hat=9.816e-11 [9.29e-11,1.04e-10] f=0.070
+                                                       Dchi2(9.36e-11)=    0.72 (~ 0.8 sig)  Dchi2(1.13e-10)=   5.86 (~ 2.4 sig)
+--- UNLOCKED 0.10 dex ---
+  full (N=171)                                         a0_hat=1.181e-10 [1.16e-10,1.21e-10] f=0.050
+                                                       Dchi2(9.36e-11)=  116.32 (~10.8 sig)  Dchi2(1.13e-10)=   5.16 (~ 2.3 sig)
+  top-3 bulge influencers ALONE                        a0_hat=3.000e-10 [2.56e-10,3.00e-10] f=0.080
+                                                       Dchi2(9.36e-11)=   49.58 (~ 7.0 sig)  Dchi2(1.13e-10)=  36.40 (~ 6.0 sig)
+  full MINUS top-3                                     a0_hat=1.158e-10 [1.14e-10,1.18e-10] f=0.050
+                                                       Dchi2(9.36e-11)=   91.56 (~ 9.6 sig)  Dchi2(1.13e-10)=   1.52 (~ 1.2 sig)
+  gas-dom (N=37)                                       a0_hat=9.816e-11 [9.29e-11,1.04e-10] f=0.070
+                                                       Dchi2(9.36e-11)=    0.72 (~ 0.8 sig)  Dchi2(1.13e-10)=   5.86 (~ 2.4 sig)
+--- UNLOCKED 0.15 dex ---
+  full (N=171)                                         a0_hat=1.171e-10 [1.15e-10,1.20e-10] f=0.050
+                                                       Dchi2(9.36e-11)=  105.22 (~10.3 sig)  Dchi2(1.13e-10)=   3.28 (~ 1.8 sig)
+  top-3 bulge influencers ALONE                        a0_hat=3.000e-10 [2.45e-10,3.00e-10] f=0.080
+                                                       Dchi2(9.36e-11)=   45.59 (~ 6.8 sig)  Dchi2(1.13e-10)=  33.18 (~ 5.8 sig)
+  full MINUS top-3                                     a0_hat=1.152e-10 [1.13e-10,1.17e-10] f=0.050
+                                                       Dchi2(9.36e-11)=   83.16 (~ 9.1 sig)  Dchi2(1.13e-10)=   1.03 (~ 1.0 sig)
+  gas-dom (N=37)                                       a0_hat=9.816e-11 [9.29e-11,1.04e-10] f=0.070
+                                                       Dchi2(9.36e-11)=    0.72 (~ 0.8 sig)  Dchi2(1.13e-10)=   5.86 (~ 2.4 sig)
+  boot UNLOCKED 0.10 full                     med=1.188e-10 [16,84]=[1.13e-10,1.29e-10]  P(<=9.36e-11)=0.000 (z~4.2)  P(<=1.13e-10)=0.168 (z~1.0)
+  boot UNLOCKED 0.15 full                     med=1.178e-10 [16,84]=[1.12e-10,1.28e-10]  P(<=9.36e-11)=0.000 (z~4.0)  P(<=1.13e-10)=0.204 (z~0.8)
+  boot UNLOCKED 0.10 minus top-3              med=1.160e-10 [16,84]=[1.11e-10,1.27e-10]  P(<=9.36e-11)=0.000 (z~4.7)  P(<=1.13e-10)=0.268 (z~0.6)
+
+  U_bul posterior modes (unlocked 0.10; d,i marginalized), grid span 0.7x10^[-0.8,+0.8]:
+    IC4202     at a0_hat   : U_d=1.26  U_b=0.22
+    IC4202     at 9.36e-11 : U_d=1.26  U_b=0.22
+    NGC7814    at a0_hat   : U_d=1.26  U_b=0.56
+    NGC7814    at 9.36e-11 : U_d=1.58  U_b=0.56
+    UGC06787   at a0_hat   : U_d=0.56  U_b=0.31
+    UGC06787   at 9.36e-11 : U_d=0.63  U_b=0.28
+  bulge-galaxy U_b modes pinned at grid edge: 0/64 evaluations
+
+====================================================================================================
+(2) KNOB 2 -- sigma_int: GLOBAL profiled (banked) vs PER-GALAXY hierarchical half-normal(tau)
+====================================================================================================
+  locked + PER-GALAXY f (half-normal, tau profiled)    a0_hat=1.354e-10 [1.33e-10,1.38e-10] tau_hat=0.080
+                                                       Dchi2(9.36e-11)=  273.59 (~16.5 sig)  Dchi2(1.13e-10)=  57.15 (~ 7.6 sig)
+  UNLOCKED 0.10 + PER-GALAXY f (JOINT: both knobs)     a0_hat=1.275e-10 [1.25e-10,1.30e-10] tau_hat=0.080
+                                                       Dchi2(9.36e-11)=  164.22 (~12.8 sig)  Dchi2(1.13e-10)=  18.47 (~ 4.3 sig)
+  locked + per-galaxy f FREE-profiled (extreme)        a0_hat=1.354e-10 [1.33e-10,1.38e-10] f=0.000
+                                                       Dchi2(9.36e-11)=  274.12 (~16.6 sig)  Dchi2(1.13e-10)=  57.98 (~ 7.6 sig)
+  boot locked + per-gal f                     med=1.357e-10 [16,84]=[1.28e-10,1.46e-10]  P(<=9.36e-11)=0.000 (z~5.4)  P(<=1.13e-10)=0.008
+  boot JOINT both knobs                       med=1.273e-10 [16,84]=[1.16e-10,1.34e-10]  P(<=9.36e-11)=0.000 (z~2.9)  P(<=1.13e-10)=0.046
+
+====================================================================================================
+(3) GAS-DOMINATED cut under both knobs (expected insensitive)
+====================================================================================================
+  baseline: 9.816e-11 | unlocked 0.10: 9.816e-11 | unlocked 0.15: 9.816e-11
+  gas-dom, locked + per-galaxy f                       a0_hat=1.024e-10 [9.88e-11,1.06e-10] tau_hat=0.080
+                                                       Dchi2(9.36e-11)=    3.01 (~ 1.7 sig)  Dchi2(1.13e-10)=   7.85 (~ 2.8 sig)
+  gas-dom, JOINT both knobs                            a0_hat=1.024e-10 [9.88e-11,1.06e-10] tau_hat=0.080
+                                                       Dchi2(9.36e-11)=    3.01 (~ 1.7 sig)  Dchi2(1.13e-10)=   7.85 (~ 2.8 sig)
+
+--- grid convergence ---
+  LUB step x2:  a0_hat 1.181e-10 -> 1.183e-10; Dchi2(fw) 116.3 -> 115.8
+  LUD step x2:  a0_hat -> 1.180e-10; Dchi2(fw) -> 122.2
+    [dense-bulge] done: 32 galaxies, 51s
+  dense (d,i):  a0_hat -> 1.188e-10; Dchi2(fw) -> 115.1; Dchi2(fork) -> 5.5
+  convergence: OK
+
+====================================================================================================
+PRE-REGISTERED VERDICT
+====================================================================================================
+  knob1 U_bul 0.10: a0_hat=1.181e-10 Dchi2(fw)=116.3 boot-z~4.2; 0.15: 1.171e-10/105.2
+  knob2 per-gal f:  a0_hat=1.354e-10 Dchi2(fw)=273.6 boot-z~5.4; JOINT: 1.275e-10/164.2/z~2.9
+  minus-top-3 (unlocked): a0_hat=1.158e-10 Dchi2(fw)=91.6 boot-z~4.7
+  => MIXED: neither pre-registered branch cleanly met -- report numbers as stated.
+
+total runtime 98s
+EXIT 0 = all gates + convergence passed
