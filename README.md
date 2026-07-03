@@ -14,6 +14,12 @@ $$a_0 \;=\; c^2\sqrt{\frac{\Lambda}{32\pi}} \;=\; \frac{c}{2}\sqrt{G\rho_\Lambda
 [![Scale Without Law DOI](https://img.shields.io/badge/Scale%20Without%20Law%20(June%2028%202026)-10.5281%2Fzenodo.21016309-blueviolet)](https://doi.org/10.5281/zenodo.21016309)
 [![Cluster Anisotropy DOI](https://img.shields.io/badge/Cluster%20Anisotropy%20MI%20Test%20(July%201%202026)-10.5281%2Fzenodo.21104820-blueviolet)](https://doi.org/10.5281/zenodo.21104820)
 [![a0(z) Discriminant DOI](https://img.shields.io/badge/Non--Monotonic%20a0(z)%20(July%201%202026)-10.5281%2Fzenodo.21110936-blueviolet)](https://doi.org/10.5281/zenodo.21110936)
+[![s̄^TX Fixed-Direction DOI](https://img.shields.io/badge/s%CC%84%5ETX%20Fixed--Direction%20Fit%20(July%202%202026)-10.5281%2Fzenodo.21137568-blueviolet)](https://doi.org/10.5281/zenodo.21137568)
+[![Sign Premise DOI](https://img.shields.io/badge/Sign%20Premise%20%3D%20State%20Clause%20(July%202%202026)-10.5281%2Fzenodo.21139029-blueviolet)](https://doi.org/10.5281/zenodo.21139029)
+[![Which-a₀ DOI](https://img.shields.io/badge/Which%20a0%3F%20Population%20Split%20(July%202%202026)-10.5281%2Fzenodo.21140507-blueviolet)](https://doi.org/10.5281/zenodo.21140507)
+[![Fourth Horn DOI](https://img.shields.io/badge/Fourth%20Horn%20PT%2FPU%20Exclusion%20(July%202%202026)-10.5281%2Fzenodo.21148494-blueviolet)](https://doi.org/10.5281/zenodo.21148494)
+[![Five Theorems DOI](https://img.shields.io/badge/Five%20Theorems%20Kernel%20Closure%20(July%203%202026)-10.5281%2Fzenodo.21152331-blueviolet)](https://doi.org/10.5281/zenodo.21152331)
+[![Sixth Theorem DOI](https://img.shields.io/badge/Sixth%20Theorem%20Transient%20Closure%20(July%203%202026)-10.5281%2Fzenodo.21175723-blueviolet)](https://doi.org/10.5281/zenodo.21175723)
 [![Corpus DOI](https://img.shields.io/badge/Code%20%26%20Data-10.5281%2Fzenodo.20576494-blue)](https://doi.org/10.5281/zenodo.20576494)
 [![Paper PDF](https://img.shields.io/badge/PDF-read%20the%20paper-success)](real_research/papers/ZIMMERMAN_THEORY_OF_GRAVITY.pdf)
 [![License](https://img.shields.io/badge/code-AGPL--3.0-lightgrey)](LICENSE)
@@ -157,6 +163,23 @@ The session's deepest theory result, written as an honest **obstruction map** ra
 The honest standing — *scale forced, law not* — is Milgrom's since 1999, now sharpened to a single provably-unforced number and a clean sign obstruction. Six backing scripts, all exit 0, on the framework's **own** objects (a₀ = cH_Λ/Z, μ_fw, the Deser–Levin temperature — no standard-MOND substitution). Not a derivation of MOND, not a theory of everything.
   → **[Zenodo 10.5281/zenodo.21016309](https://doi.org/10.5281/zenodo.21016309)** · [`reviews/deser_levin_mond_derivation.py`](real_research/reviews/deser_levin_mond_derivation.py) · [`CLOSE_MI_GAPS_2026-06.md`](real_research/CLOSE_MI_GAPS_2026-06.md)
 
+## 🆕 July 2–3, 2026 — the impossibility chain completes: six theorems, and the empirical sharpeners
+
+Five short notes finish the covariant modified-inertia question from specification to closure, and two notes sharpen the live empirical fronts — every load-bearing number backed by a committed script (exit 0), every compute lane adversarially verified, footing forks printed:
+
+- **The s̄^TX fixed-direction test, made one-parameter** — the CMB-apex direction collapses the 8-coefficient SME ephemeris fit to a single amplitude (prediction A ≈ −8.7×10⁻¹⁰); a public-data provisional fit gives A = (−2.5±5.9)×10⁻¹⁰ — sign-matching, 1.4σ, awaiting a dedicated ephemeris run (recipe published; the fit is an afternoon in an INPOP/EPM pipeline).
+  → **[Zenodo 10.5281/zenodo.21137568](https://doi.org/10.5281/zenodo.21137568)**
+- **The Sign Premise Is a State Clause** (Theorem III sharpened) — the anti-MOND sign of environment-dressed inertia is set by the bath's *state* (KMS/passivity), not by ghost-freedom; free fields are state-blind; and the dS horizon is a **thermostat, not a pump** (four independent legs). Scale yes, sign no. Plain-English companion: [`explainers/what_on_earth_is_a_pumped_bath.md`](explainers/what_on_earth_is_a_pumped_bath.md).
+  → **[Zenodo 10.5281/zenodo.21139029](https://doi.org/10.5281/zenodo.21139029)**
+- **Which a₀? The population split** — no single a₀ fits all of SPARC on *any* interpolation (gas-dominated vs star-dominated split ×1.8); the Υ-free gas-dominated cut **centers on the canonical 9.36×10⁻¹¹**, and the footing forks map onto data populations. Includes a printed retraction of an earlier inclination-likelihood bug (the corrected fit *strengthened* the full-sample tension).
+  → **[Zenodo 10.5281/zenodo.21140507](https://doi.org/10.5281/zenodo.21140507)**
+- **The Fourth Horn** (Theorem IV) — the last unwalked local route (preferred-frame PT-quantized Pais–Uhlenbeck) closes constructively: no local L(x,v,a) has the exact algebraic MI law; the PU class obeys a *frequency* law μ_eff = 1−(Ω/w_eff)², never μ(a/a₀); softening ⟺ ghost sign; deep MOND fails by orbit non-existence at the exceptional point.
+  → **[Zenodo 10.5281/zenodo.21148494](https://doi.org/10.5281/zenodo.21148494)**
+- **The Kernel That Builds Its Own Laser** (Theorem V, the capstone) — the unique four-theorem-compliant kernel was **built** and passed causality, stability, Solar-System, energetics (25–470× headroom), and universality — then died on the gas clamp: the KK-locked inverted line is a super-threshold amplifier and the cold-ISM acoustic continuum spans every placement. The medium the theorems demand builds its own laser, and the galaxy is the cavity. 0/25 box alive.
+  → **[Zenodo 10.5281/zenodo.21152331](https://doi.org/10.5281/zenodo.21152331)**
+- **Scale Yes, Shape Yes, Sign No** (Theorem VI — the finite-time/non-stationary corner, answering the concurrent Luo arXiv:2602.14515) — free fields are state-blind at **all** times and under all non-stationary linear dynamics; structured-bath transient gain is real but budget-walled ~10 orders (one-shot preparation ~3×10¹¹ short); and finite-time dS-Unruh broadening reproduces this framework's interpolation ν(y)=√(1+1/y) **exactly** (a sympy identity — the shape is now convergently derived, no longer a choice) while its sign stays mapping-postulated and its scale is **floored at cH = Z·a₀**, with a velocity-dependent (c/v) window fingerprint SPARC already disfavors. The pentad is a hexad; the quantified residual door (unsettled-population transients, ~1.6% per 10 orbits) lands on the live σ-spread front.
+  → **[Zenodo 10.5281/zenodo.21175723](https://doi.org/10.5281/zenodo.21175723)** · [`NONSTATIONARY_DOOR_VERDICT_2026-07.md`](real_research/NONSTATIONARY_DOOR_VERDICT_2026-07.md)
+
 ## 🗓 Timeline
 
 | Date | Milestone | DOI / status |
@@ -175,6 +198,12 @@ The honest standing — *scale forced, law not* — is Milgrom's since 1999, now
 | 2026-06-28 | **Scale Without Law** — dS-Unruh forces the MOND scale + deep-MOND limit but not the law (3 obstructions, 1 unforced coefficient) | [21016309](https://doi.org/10.5281/zenodo.21016309) |
 | 2026-07-01 | **Cluster-anisotropy MI test** — η slides with orbital anisotropy in modified inertia, flat in MG/ΛCDM (an MG-impossible cluster discriminant; parent machinery Milgrom 2012/2014/2022; does *not* solve the cluster residual) | [21104820](https://doi.org/10.5281/zenodo.21104820) |
 | 2026-07-01 | **Non-monotonic a₀(z) discriminant** — the LPO-2008 relation a₀∝√ρ_DE on DESI evolving dark energy → the only bump-shaped a₀(z) in the field (+3–9% at z≈0.4, then decline); below current floors, long-horizon | [21110936](https://doi.org/10.5281/zenodo.21110936) |
+| 2026-07-02 | **s̄^TX fixed-direction fit** — the CMB-apex direction collapses the SME ephemeris fit to ONE parameter; public-data provisional A=(−2.5±5.9)×10⁻¹⁰ (sign-matching, 1.4σ); dedicated-fit recipe published | [21137568](https://doi.org/10.5281/zenodo.21137568) |
+| 2026-07-02 | **The Sign Premise Is a State Clause** (Thm III) — passive baths only add inertia; free fields state-blind; the dS horizon is a thermostat, not a pump — scale yes, sign no | [21139029](https://doi.org/10.5281/zenodo.21139029) |
+| 2026-07-02 | **Which a₀? The population split** — no single a₀ on any ν (gas/star ×1.8); the Υ-free gas-dominated cut centers on canonical 9.36×10⁻¹¹; a corrected-likelihood retraction printed | [21140507](https://doi.org/10.5281/zenodo.21140507) |
+| 2026-07-02 | **The Fourth Horn** (Thm IV) — PT/PU route closed: frequency law, never μ(a/a₀); softening ⟺ ghost sign; EP orbit non-existence | [21148494](https://doi.org/10.5281/zenodo.21148494) |
+| 2026-07-03 | **The Kernel That Builds Its Own Laser** (Thm V) — the forced kernel was BUILT, passed every prior gate, and died on the cold-ISM gas clamp; 0/25 box alive | [21152331](https://doi.org/10.5281/zenodo.21152331) |
+| 2026-07-03 | **Scale Yes, Shape Yes, Sign No** (Thm VI) — the finite-time/non-stationary corner closed (answers Luo arXiv:2602.14515): shape = the framework's ν exactly (convergent), sign positivity-locked, scale floored at cH = Z·a₀ with a c/v fingerprint SPARC disfavors; the pentad is a hexad | [21175723](https://doi.org/10.5281/zenodo.21175723) |
 | **~Dec 2026** | **Gaia DR4 wide binaries** — the first hard verdict on the MOND premise | *forthcoming* |
 | 2026–2027 | **DESI DR3 w(z)** — the gate for the a₀(z) prediction (validate vs dissolve) | *forthcoming* |
 | 2028–2032 | the s^TX SME dipole (Gaia DR4), high-z BTFR offset, the ELT cluster σ-spread | *forthcoming* |
