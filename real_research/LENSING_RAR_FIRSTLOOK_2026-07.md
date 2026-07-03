@@ -1,6 +1,6 @@
 # Lensing RAR First-Look — 2026-07
 
-**STATUS: computed + internally anchored (script exit 0, anchors reproduced, jackknifed); the independent adversarial-verification pass was interrupted (account spend limit) and is PENDING — treat load-bearing numbers as provisional until it runs.**
+**STATUS: ADVERSARIALLY VERIFIED 2026-07-02 (reviews/verify_lensing_independent.py, independent code path, exit 0) — every load-bearing number confirmed; verdict UPHELD (non-diagnostic on the fork). One refinement: the 0.1 dex mass-norm systematic is a correlated normalization — treated as a profiled nuisance it gives chi2/dof=1.11 (REL) with 9.36e-11 at 2.0 sigma from the free fit, consistent with the quoted +2.3 sigma; still non-diagnostic under the published M/L band + CGM window.**
 
 ---
 
