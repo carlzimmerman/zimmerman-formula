@@ -1,3 +1,5 @@
+**STATUS UPDATE 2026-07-03: GATE-G CLOSED NEGATIVE — the classification is resolved: FIFTH THEOREM (gas-clamp form). See GATE_G_VERDICT_2026-07.md. The inverted-line kernel is a KK-locked super-threshold amplifier at its own frequency; the cold-ISM acoustic continuum spans every placement in the surviving box (0/25 subregions alive): either the inversion clamps and erases the deep-MOND limit exactly where SPARC measures it, or the pump budget fails x>=350 (F falls with G). The WB gamma->1.28 prediction and the binary separation-gap observable are WITHDRAWN with this kernel. Scope: the inverted-line MI realization; the a0 reframing and live empirical fronts untouched.**
+
 # KERNEL CONSTRUCTION — ADVERSARIAL VERDICT (2026-07)
 
 **Verifier pass over the four-bureau gauntlet.** All 6 bureau scripts re-run exit 0; the three load-bearing numbers re-derived independently in `av_verify.py` (scratchpad, exit 0). No number was found asserted-not-computed. Framework objects only: a0 = cH_Λ/Z = 9.36e-11, μ_fw(x) = (√(1+4x²)−1)/(2x), Z = √(32π/3).
