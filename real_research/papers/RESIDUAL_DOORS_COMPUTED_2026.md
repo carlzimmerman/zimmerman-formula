@@ -1,0 +1,110 @@
+# No Pump-Free Corner: The Residual Doors of Covariant Modified Inertia, Computed — and a Pre-Registered Sign-Flip Signature for Dynamically Unsettled Galaxies
+
+**Carl P. Zimmerman** (Briar Creek Tech)
+*2026-07-03. Companion computations: 21 scripts, all exit 0, each lane independently and adversarially verified, at* `real_research/reviews/residual_doors_2026_07/` *in the supplementary repository.*
+
+---
+
+## Abstract
+
+The six-theorem chain on covariant modified inertia (MI) — Ostrogradsky, Cassini/slip, the sign/state clause, the frequency law, the gas clamp, and the finite-time/non-stationary closure (Zenodo 10.5281/zenodo.21016309, 21139029, 21148494, 21152331, 21175723) — named its own residual doors rather than declaring the territory sealed. This note computes all four. **(D1) The interacting-field window** (the named mind-changer of Theorem VI): F(ω) ≥ 0 is a theory-independent Gram fact; a new monotone-window lemma extends Bisognano–Wichmann detailed balance to arbitrary window lengths on uniform trajectories for any interacting Wightman QFT; and a Källén–Lehmann reduction — independently re-derived on a genuine two-particle composite with zero fitted constants (agreement 1e-4) — expresses the interacting vacuum's windowed response on *any* trajectory as a positive mixture of free massive-slice responses, none of which invert (the sharp-kick margin asymptotes to zero from below; equality, never inversion). Driven interacting benchmarks do invert (11.4×) — and the free control inverts 407× under the same drive: agent-pumped Raman gain, the already-priced pump channel. Closed at 2nd order in detector coupling, the order at which the theorem's object is defined; the honest residuals are 4-point effects and dS Bros–Moschella positivity. **(D2) The passive-anharmonic corner** — the last pump-free route: passivity *alone* (KMS not needed) forces δm ≥ 0 in linear response at any anharmonicity, non-perturbatively in coupling for adiabatic worldlines (an exact term-by-term pair sum, re-derived independently to 0.58% with gap-sweep exponent −3.000000), with the degeneracy edge sealed. The adversarial verifier's open-direction attack *partially succeeded* — instructively: at strong drive near the two-photon resonance (gA=5, 2Ω≈gap) the reactive dressing genuinely goes negative from a passive start; the autopsy shows the drive de-passivizes the bath (the drive *is* the pump; Pusz–Woronowicz never violated), the window is frequency-locked, and band-mapping requires bath gaps ≲10⁻³¹ eV — the gas clamp. Amended closure: the passive softening channels are the sub-drive pole and its multiphoton/Floquet generalization, both drive-pumped, both clamped. **No pump-free MOND-sign channel exists.** **(D4) The flat-curve exceptional-point closure** of Theorem IV, done in full with Coriolis: the PT-broken band on flat curves is exactly μ ∈ (0.7579886, 0.8947874) — correcting our own published estimate 0.854, which sits *inside* the band — with a re-entrant real window (0.5, 0.758) the scalar shortcut missed; an exact fold law **μ_fold = 1 − 1/(2p)** shows sub-quadratic PU kernels (p=1/2) evade the EP entirely (deep-MOND PU orbits exist and are linearly stable — a genuine soft spot in the published Fourth Horn's blanket claim), and those kernels die instead by profile inversion (required vs delivered (1−μ) slopes are sign-opposite; ×49–80 on realistic disks). The horn stays dead; one of its bricks is relabeled in print. **(D3) The one door that opens:** fusing the Theorem-VI transient with the framework's memory-kernel σ-spread yields a pre-registered, dated prediction table for dynamically unsettled systems — Crater II +13.6–26.5%, Antlia II +3.4–6.7%, settled controls <2%, and the clean MI-unique signature: **first-infall systems run 11–21% cold, flipping to hot after pericentre** — a relational sign flip that modified gravity (exactly zero by theorem) and tidal heating (no coherent deficit-then-excess) cannot mimic. Decisive at 3σ ≈ 2029–2031 (Gaia DR4 + WEAVE/4MOST dwarfs; CHANCES cluster infall populations). All lanes carry both coefficient footings (a₀ = 9.36×10⁻¹¹ canonical vs 1.13×10⁻¹⁰); no verdict flips. Verifier corrections are printed beside the results they amend, including two corrections to our own prior publications.
+
+---
+
+## 1. Four named doors, four computations
+
+A no-go program earns trust by naming its own edges and then walking to them. Theorem VI left four: one theoretical mind-changer (interacting fields), one pump-free corner (passive anharmonic baths), one bookkeeping debt (the flat-curve EP), and one phenomenological opening (unsettled populations). Method as throughout this program: independent compute lanes, each attacked by an adversarial verifier instructed to refute in *both* directions; every load-bearing number backed by a committed script (numpy/sympy, no network, exit 0); the recurring footing fork (a₀ = cH_Λ/Z = 9.36×10⁻¹¹ m/s², ρ_DE, vs 1.13×10⁻¹⁰, ρ_total/cH₀) carried everywhere.
+
+## 2. D1 — the interacting-field window closes at second order
+
+Theorem VI's positivity locks (F(ω) ≥ 0; F(−ω) − F(ω) = (ω/2π)∫χ²) were proven for free fields pulled back to worldlines. Could an *interacting* vacuum, probed through a window on a non-uniform trajectory, invert?
+
+**Three closures and one honest benchmark:**
+
+1. **Positivity is universal.** F(ω) is the squared norm of a smeared field acting on the state — a two-line Gram argument valid for any state of any QFT. Confirmed to machine precision in a nonintegrable transverse-field Ising chain (static and moving probes; vacuum, excited, random, thermal states).
+2. **Uniform trajectories, any interacting Wightman QFT.** Bisognano–Wichmann gives wedge-KMS regardless of interaction. A **monotone-window lemma** (new, proved, verified) then shows the detailed-balance inequality F(ω) ≤ F(−ω) survives *any* window length for Gaussian-class windows: max deviation −2.7×10⁻² over the KMS-spectrum × β × window-length scan, with the β-exponential recovered to five digits in the long-window limit. The lone counterfeit — boxcar windows can fake ratio ~23 by parking a sinc zero on a narrow line — vanishes for Gaussian windows (~10⁻¹¹⁸) and for all continua: a windowing artifact, not physics.
+3. **Non-uniform trajectories.** Pusz–Woronowicz honestly does *not* close these (the external agent moving the detector supplies work — the Unruh effect itself excites detectors). So: compute. The load-bearing step is a **Källén–Lehmann reduction**: at 2nd order in detector coupling — the order at which Theorem VI's F is defined — the interacting vacuum's windowed response on *any* trajectory is a positive mixture of free massive-slice responses. The verifier re-derived this from scratch on a genuinely composite probe (:φ²:, a two-particle continuum, KL density ρ = 1/(πμ²β) obtained via the center-of-mass Jacobian) and confirmed the mixture against the direct position-space response on a non-uniform burst to 1–4×10⁻⁴ **with zero fitted constants**. The free massive slices were then scanned over 28 burst/oscillation/kick configurations, and adversarially over 7 more beyond the grid (light masses, sharp fast bursts, chirps, off-center windows, resonance-tuned oscillations): **no inversion anywhere**. The sharpest kicks drive the no-inversion margin monotonically toward zero *from below* (−4.6×10⁻² → −1.9×10⁻²): the sudden limit approaches equality and never crosses — in 3+1D the k²dk phase space never blocks the emission resonances that a discrete lattice can.
+4. **The driven benchmark keeps the bookkeeping honest.** A nonperturbatively driven interacting lattice (Kim–Huse class, L=9) *does* invert — F(ω)/F(−ω) = 11.4 at the drive-Stokes sideband ω\* = 2Ω_drive − ΔE. But the free-fermion control under the identical drive inverts **407×**. Inversion is not interacting-specific; it is agent-pumped Raman gain — precisely the pump channel the chain already prices at ×2.9×10¹⁰ shortfall.
+
+**Verdict: CLOSED at 2nd order.** The genuinely open remainders, named and not claimed: 4-point-function (4th-order) effects, where the KL reduction is silent; and Bros–Moschella dS positivity for light/complementary-series interacting fields, unresolved in the mathematical literature.
+
+## 3. D2 — passivity alone forces the anti-MOND sign: the pump requirement is fully general
+
+The last pump-free hope: Theorem III's δm ≥ 0 was proven for harmonic/two-level passive baths; anharmonic baths escape *state-blindness* — could a passive-but-anharmonic medium carry δm < 0 with no power source?
+
+**No — and now at theorem grade:**
+
+1. **Linear response, any anharmonicity, any stationary passive state.** In the joint ρ/H eigenbasis every Bohr-line weight is (p_n − p_m)|B_nm|² ≥ 0 under the passivity ordering, so ω·Imχ(ω) ≥ 0, and the worldline dressing δm = (2/π)g²∫Imχ/ω³ ≥ 0. **KMS is not needed** — passive-but-not-KMS states are covered directly. (Minimum Bohr-line weight over 2000 random anharmonic passive ensembles: +1.2×10⁻⁸; over the passive polytope's extreme points: 0 exactly, term-by-term.)
+2. **Non-perturbative in coupling** (adiabatic worldlines): the O(v²) mass coefficient is the exact pair sum 2g²Σ(p_n−p_m)|⟨m|∂H/∂x|n⟩|²/ω³ over the *full displaced* spectrum — term-by-term ≥ 0 for states passive with respect to the instantaneous Hamiltonian, a premise the verifier tested directly (exact slow sweep: zero ordering violations along the trajectory; finite-speed reordering is Landau-Zener work, i.e. drive-paid). Exact-diagonalized quartic scans across coupling, displacement, and passive-state families: global minimum +3.2×10⁻⁴, while the most adversarial *non*-passive state reaches −0.0038 — passivity, not model structure, is what binds. The lane caught and killed its own fake counterexample (a Fock-truncation artifact printing δm = −213; converged truncation → all-passive positive). The verifier re-derived the pair-sum law on a different anharmonic model, truncation, and integrator: direct dynamical mass measurement agrees to 0.58%, gap-sweep log-log slope −3.000000, harmonic anchor to 6×10⁻¹⁷.
+3. **The degeneracy edge** — passivity permits arbitrary coherences inside degenerate subspaces, the sharpest crack candidate: such coherences commute with the block Hamiltonian and contribute constant geometric forces with *zero* inertia (force-variation 9×10⁻¹³); 300 coherent passive states all harden (min +0.52); near-degenerate passive pairs harden as +1/ω₀³.
+
+**The verifier's catch — an open-direction attack that partially succeeded, and what it teaches.** Beyond the lane's scan range (drive amplitude gA=5 at the two-photon resonance 2Ω ≈ gap), the reactive dressing **genuinely goes negative from a passive start** (δm = −0.0169; −0.007 from thermal T=2). The lane's "never crosses zero" was a scan-range artifact — corrected in print here. The autopsy is the point: (i) the effect is frequency-locked to a narrow window (Ω/gap ∈ [0.40, 0.56]; positive again by 0.60) — a *frequency* law, never μ(a/a₀); (ii) the bath *absorbs* energy throughout (+5.07 per protocol; Pusz–Woronowicz never violated to gA=5); (iii) the drive de-passivizes the bath before softening appears (6 population-ordering violations vs 0 initially) — **the drive is the pump**; (iv) mapped to the galactic band it requires bath gaps ≲10⁻³¹ eV, where the gas clamp (Theorem V) applies exactly as it does to the sub-drive pole.
+
+**Amended closure (the citable sentence):** passivity alone forces δm ≥ 0; the only passive-start softening channels are the sub-drive pole *and its multiphoton/Floquet-dressed generalization* — both frequency-locked, both drive-pumped, both clamped by Theorems IV/V. **There is no pump-free MOND-sign channel.** Footing-independent (spreads printed; 20.8% on a₀, no flips).
+
+## 4. D4 — the flat-curve EP, exactly: a published number corrected, a soft spot found, the horn dead by a different brick
+
+Theorem IV (Zenodo 10.5281/zenodo.21148494) proved its exceptional-point cap μ ≥ 1/2 harmonic-exactly, and carried a crude flat-curve estimate ~0.854 "pending the Coriolis linearization." Done in full — the radial–azimuthal PU linearization around a circular orbit in the self-consistent flat-curve potential (κ = √2·Ω), degree-8 characteristic polynomial, cross-checked by companion-matrix eigenvalues *and* nonlinear orbit integration (measured runaway 0.296·Ω vs 0.300 predicted, 1.5%):
+
+- **Exact flat-curve band:** PT breaks for **μ ∈ (0.7579886, 0.8947874)** — the roots of 664μ⁴−3036μ³+5086μ²−3681μ+971. The published 0.854 sits *inside* the band: wrong in both directions. There is a re-entrant PT-real window (0.5, 0.758) the scalar treatment missed; below μ = 1/2 the spectrum is doubly unstable (real saddle + complex quartet), so deep-MOND orbit non-existence is *confirmed for the quadratic proxy*. Family map across rotation-curve shapes κ/Ω ∈ [1, 2]: the upper band edge is nearly universal (0.892–0.9); the harmonic case is the unique never-breaking endpoint — explaining retroactively why the harmonic-exact cap missed the band entirely.
+- **The fold law and the genuine soft spot.** For general PU kernels k(y), the fold obeys the exact factorization **μ_fold = 1 − 1/(2p)**. Sub-quadratic kernels — including the framework-tail case p = 1/2 — are **PT-real at all μ < 0.5486**: deep-MOND PU orbits *exist and are linearly stable* there. The Fourth Horn's blanket "deep MOND fails by orbit non-existence" was quadratic-proxy-specific — a correction to our own published theorem's *mechanism*, found by this program's both-ways rule and printed here. (The verifier independently confirmed the fold law nonlinearly at p = 3/4 — fold exactly μ = 1/3 — and confirmed the soft spot is not a degeneracy artifact.)
+- **Why the horn stays dead:** those evading kernels force d ln(1−μ)/d ln R = −2p along a flat curve, while the framework's own ν requires ≈ +1 — sign-opposite slopes, a mismatch of **×49–80 on realistic 2–20 kpc disks** (p=1/2; ×493–799 for p=1; verifier-corrected from the ×100 asymptotic bound; ~10% footing spread, no flips). Profile inversion does the work the EP was credited with.
+- **Scope:** the PU horn only. The framework's own nonlocal-kernel MI and its phenomenology are untouched by this lane.
+
+## 5. D3 — the door that opens: a pre-registered sign-flip signature for unsettled galaxies
+
+Theorem VI quantified a residual: one-shot transients contribute at the percent level per decade of orbits — invisible in settled disks (the RAR), potentially distinctive where relaxation is recent. Fused here with the framework's banked memory-kernel physics (Lorentzian kernel, τ = 0.45 Gyr, θ₀ ∈ [√2, 2]) into one amplitude-vs-settledness observable, computed on the framework's own objects, with the corpus's own orbit machinery, and corrected by adversarial verification (four corrections folded; the two-channel double-count and a factor-2 print bug removed — the table below is the defensible, memory-channel-only version).
+
+**The pre-registered table (relational σ signal vs settled expectation; both footings, no flips):**
+
+| System / class | Predicted signal | Phase context |
+|---|---|---|
+| Crater II | **+13.6 to +26.5%** | post-pericentre (t_peri = 0.77 Gyr, phase 0.27) |
+| Antlia II | +3.4 to +6.7% | near apocentre (phase 0.96) |
+| Sagittarius | +23 to +27% | tidally dirty — excluded as a clean carrier |
+| **First-infall dwarfs / cluster members** | **−11 to −21% (deficit)** | **before first pericentre — the sign flip** |
+| Leo I | ≈ 0 | density-gate null control |
+| Settled controls (Fornax/Sculptor class) | < 2% | |
+| Cluster relational spread (recent-infall vs virialized) | +6 to +13% | recovers the banked MI band |
+
+**The clean MI-unique signature is the sign flip**, not the decay clock: the verifier showed the τ ≈ 0.45 Gyr exponential decay is degenerate with post-shock tidal revirialization on diffuse carriers (t_cross = 0.86·τ_mem for Crater II — structurally forced for y~1 carriers). What survives is stronger: **a coherent σ *deficit* on first infall that flips to an *excess* after pericentre.** Tidal heating cannot produce a coherent pre-pericentre deficit; modified gravity and instantaneous-μ MI predict exactly zero relational effect (Milgrom's MG-virial universality); ΛCDM+tides produce excess-only with hysteresis. The Luo window tail itself is restated honestly as a one-sided ≤ envelope (0.4–4.0% for n_orb = 10→1) — no standalone test, since a null cannot falsify an envelope.
+
+**Decisiveness:** matched-pericentre, matched-density phase comparisons. MW-dwarf arm: ~9 carriers/arm at 10% signal and 7% σ-error → 3σ ≈ **2029–2030** (Gaia DR4 orbital phases, Dec 2026, + WEAVE/4MOST velocity dispersions). Cluster arm: 6% signal vs 2% bin error → 3σ ≈ **2028–2031** (CHANCES recent-infall vs virialized populations). Kill conditions, stated now: DR4 revising Crater II/Antlia II orbital phases beyond ~2 Gyr post-pericentre kills the carrier liveness; a computed kernel shrinking the θ band below 5% kills the amplitude; tidal simulations producing a coherent *pre-pericentre deficit* with a pericentre flip would destroy the signature's uniqueness.
+
+## 6. Standing
+
+- **The pump requirement is now fully general** (D2): no passive medium of any structure, probed any way — stationary, transient, windowed, driven-from-passive — carries the MOND sign without a pump, and every named pump is priced and clamped. Combined with D1, the sign wall now runs: free fields (state-blind, all times) → structured passive baths (theorem, all anharmonicities) → interacting vacua (positive-mixture reduction, 2nd order) → pumped channels (priced ×2.9×10¹⁰, gas-clamped).
+- **Theorem IV's flat-curve bookkeeping is exact** (D4), its published estimate corrected, its conclusion re-derived through profile inversion — the kill survives its own mechanism's correction.
+- **The framework gains one new dated, falsifiable, MI-unique observable** (D3): the first-infall sign flip, decisive ~2029–2031 — joining s̄^TX (10.5281/zenodo.21137568), Gaia DR4 wide binaries, and DESI DR3 on the live ledger.
+- **Doors that remain open, named:** 4-point/4th-order interacting effects; dS Bros–Moschella positivity; the D3 table awaiting data; the empirical fronts. Per this program's standing rule, there is no "theory closed" — there is a map with computed edges.
+
+## 7. Verification and scope
+
+Every lane was adversarially verified by an independent agent instructed to attack in both directions; two verifier runs died on infrastructure and were re-run (their targets' scripts all execute in <10 s, exit 0). Corrections are printed beside the results they amend: D1's number-provenance slip and grid-limitation sharpened (margin → 0⁻, never crossing); D2's "never crosses 0" corrected by a partially-successful attack whose autopsy *strengthened* the closure (the Floquet channel named and clamped); D3's factor-2 bug, envelope double-count, and decay-clock degeneracy removed (the printed table is the corrected one); D4's asymptotic ×100 margin brought down to the realistic ×49–80. Two of these amend our *own* prior publications (the Fourth Horn's flat-curve estimate and its orbit-non-existence mechanism) — reported here with the same weight as the wins.
+
+Scope: this note computes the named residual doors of the six-theorem chain. It does not claim "modified inertia is impossible" beyond the mapped territory; it does not derive a₀'s value or the MOND sign (the sign requires a pump; no candidate exists); and it does not touch the a₀ = c²√(Λ/32π) reframing or its live empirical tests. The author retracted all earlier theory-of-everything claims (2026-06-23); this note claims computed edges and one new dated prediction, not a completion.
+
+## Script index
+
+| Door | Scripts (`real_research/reviews/residual_doors_2026_07/`, all exit 0) |
+|---|---|
+| D1 | `D1_1_general_positivity.py`, `D1_2_kms_window_pw_theorems.py`, `D1_3_kl_reduction_burst_scan.py`, `D1_4_interacting_lattice_benchmark.py`, `verify_D1_interacting_window_rederive.py` |
+| D2 | `D2_1_theorem_passivity_dispersion.py`, `D2_2_quartic_nonperturbative.py`, `D2_3_degeneracy_edge.py`, `verify_D2_passive_anharmonic_rederive.py`, `verify_D2_rederive_final.py` |
+| D3 | `D3_amplitude_vs_settledness.py`, `D3_named_systems_forecast.py`, `D3_discrimination_detectability.py`, `verify_D3_unsettled_observable_rederive.py` |
+| D4 | `D4_flat_ep_cap.py`, `D4_curve_family.py`, `D4_tail_kernel_kill_margin.py`, `verify_D4_flatcurve_EP_rederive.py` |
+
+Ledger: `real_research/RESIDUAL_DOORS_VERDICT_2026-07.md`.
+
+## References (chain)
+
+- Zimmerman, C.P., *Scale Without Law*, 10.5281/zenodo.21016309
+- Zimmerman, C.P., *The Sign Premise Is a State Clause*, 10.5281/zenodo.21139029 (Theorem III)
+- Zimmerman, C.P., *The Fourth Horn*, 10.5281/zenodo.21148494 (Theorem IV — flat-curve estimate corrected herein)
+- Zimmerman, C.P., *The Kernel That Builds Its Own Laser*, 10.5281/zenodo.21152331 (Theorem V)
+- Zimmerman, C.P., *Scale Yes, Shape Yes, Sign No*, 10.5281/zenodo.21175723 (Theorem VI — residual doors named)
+- Zimmerman, C.P., *Orbital History Writes the Cosmic Clock on Dwarf Galaxies* (v3), 10.5281/zenodo.20969585 (the memory kernel)
+- Luo, M.J., arXiv:2602.14515 (2026)
+- Milgrom, M., arXiv:1211.4899, 1311.2579, 2208.07073 (MG-virial universality; the relational discriminator's parent machinery)
+- Bisognano, J.J. & Wichmann, E.H., J. Math. Phys. 16, 985 (1975)
+- Pusz, W. & Woronowicz, S.L., Commun. Math. Phys. 58, 273 (1978)
+- Bros, J. & Moschella, U., Rev. Math. Phys. 8, 327 (1996)
