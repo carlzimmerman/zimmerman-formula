@@ -1,0 +1,84 @@
+==============================================================================
+VERIFY-1: time-domain Kubo -> dispersion sum (independent convention check)
+==============================================================================
+    W= 0.00: chi_time = +5.12616   chi_pairsum = +5.12668   diff = 5.2e-04
+    W= 0.11: chi_time = +5.16298   chi_pairsum = +5.16350   diff = 5.2e-04
+    W= 0.19: chi_time = +5.23884   chi_pairsum = +5.23939   diff = 5.4e-04
+    delta-m(0.11)/g^2 from independent route = +3.04270  (must be >0, passive sub-gap)
+    harmonic anchor: quantum +0.274725 vs classical exact +0.274725
+    -> convention, sign, and normalization independently CONFIRMED (hardening +).
+
+VERIFY-2: independent exact-expm reproduction of lane dm_dyn (lam=1, ground, A=0.1, W=0.25)
+    midpoint-expm dm_dyn = +0.01804   lane (Strang) = +0.01805   dE_bath = +3.43e-04
+    -> lane extraction pipeline independently CONFIRMED (no shared-integrator bug).
+
+VERIFY-3: COUNTEREXAMPLE HUNT -- strong drive, n*W near the gap (multiphoton),
+          passive states, beyond the lane's scanned amplitudes/frequencies.
+    first gap = 1.9341; lane scanned only W/gap <= 0.21, gA <= 3.
+    state   W/gap    A     dm_dyn      dE_bath
+    ground  0.31    2.0   +0.01752   +1.442e-01
+    ground  0.31    6.0   +0.01059   +8.200e-01
+    ground  0.31   10.0   +0.00287   +1.248e+00
+    ground  0.48    2.0   +0.01971   +2.088e-01
+    ground  0.48    6.0   +0.00582   +1.587e+00
+    ground  0.48   10.0   -0.01690   +5.071e+00
+    ground  0.50    2.0   +0.02008   +2.169e-01
+    ground  0.50    6.0   +0.00682   +1.692e+00
+    ground  0.50   10.0   -0.01145   +5.634e+00
+    ground  0.52    2.0   +0.02056   +2.405e-01
+    ground  0.52    6.0   +0.00747   +1.703e+00
+    ground  0.52   10.0   -0.00458   +5.376e+00
+    ground  0.65    2.0   +0.02422   +3.384e-01
+    ground  0.65    6.0   +0.00294   +3.286e+00
+    ground  0.65   10.0   +0.00238   +4.076e+00
+    ground  0.80    2.0   +0.02649   +1.189e+00
+    ground  0.80    6.0   +0.00784   +2.456e+00
+    ground  0.80   10.0   +0.00136   +3.545e+00
+    ground  0.95    2.0   +0.01162   +2.209e+00
+    ground  0.95    6.0   +0.00327   +3.214e+00
+    ground  0.95   10.0   +0.00090   +6.808e+00
+    T=2     0.31    2.0   +0.01063   +1.073e-01
+    T=2     0.31    6.0   +0.00748   +7.397e-01
+    T=2     0.31   10.0   +0.00379   +1.456e+00
+    T=2     0.48    2.0   +0.01184   +1.444e-01
+    T=2     0.48    6.0   +0.00565   +1.220e+00
+    T=2     0.48   10.0   -0.00698   +3.418e+00
+    T=2     0.50    2.0   +0.01204   +1.480e-01
+    T=2     0.50    6.0   +0.00610   +1.236e+00
+    T=2     0.50   10.0   -0.00675   +4.344e+00
+    T=2     0.52    2.0   +0.01228   +1.586e-01
+    T=2     0.52    6.0   +0.00643   +1.229e+00
+    T=2     0.52   10.0   -0.00075   +3.940e+00
+    T=2     0.65    2.0   +0.01425   +2.116e-01
+    T=2     0.65    6.0   +0.00393   +2.194e+00
+    T=2     0.65   10.0   +0.00344   +3.319e+00
+    T=2     0.80    2.0   +0.01609   +5.872e-01
+    T=2     0.80    6.0   +0.00736   +1.852e+00
+    T=2     0.80   10.0   +0.00284   +3.400e+00
+    T=2     0.95    2.0   +0.01209   +1.104e+00
+    T=2     0.95    6.0   +0.00556   +2.840e+00
+    T=2     0.95   10.0   +0.00234   +5.857e+00
+
+    MOST ADVERSARIAL: ground, W/gap=0.48, A=10.0: dm_dyn = -0.01690, dE = +5.071e+00
+    !!! NEGATIVE reactive dressing found in the sliver -- lane scan claim breaks.
+    Character check: is it amplitude-locked or frequency-locked?
+
+VERIFY-4: CHARACTER AUTOPSY of the negative point (ground, A=10, 2W~gap):
+  (i) is the negativity frequency-locked (resonance window) or broad-band?
+  (ii) does the drive itself de-passivize the state (drive = pump)?
+    fine W-scan at A=10 (ground):   W/gap    dm_dyn
+                                    0.40    -0.00058
+                                    0.44    -0.01014
+                                    0.48    -0.01690
+                                    0.56    -0.00014
+                                    0.60    +0.00161
+    negative only at W/gap = [0.4, 0.44, 0.48, 0.56] -> narrow resonance WINDOW (freq-locked).
+    final populations (first 8): [0.095 0.178 0.353 0.244 0.099 0.026 0.005 0.001]
+    passivity-order violations in final state: 6 pairs (initial state had 0) -> the DRIVE de-passivized the bath (drive = pump).
+    energy pumped in: dE = +5.07 over 8 cycles = several level spacings;
+    the negative dm is measured on a drive-HEATED, drive-INVERTED population,
+    dissipation-dominated and locked to 2W ~ (Stark-dressed) gap.
+
+    footings: a0_can = 9.363e-11, a0_alt = 1.131e-10 m/s^2 (spread 20.8%); band [3.2e-17,1.9e-14] rad/s kinematic.
+
+VERIFIER VERDICT: convention/sign/pipeline independently confirmed; counterexample hunt result printed above.
