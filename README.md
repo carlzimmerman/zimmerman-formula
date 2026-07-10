@@ -21,6 +21,7 @@ $$a_0 \;=\; c^2\sqrt{\frac{\Lambda}{32\pi}} \;=\; \frac{c}{2}\sqrt{G\rho_\Lambda
 [![Five Theorems DOI](https://img.shields.io/badge/Five%20Theorems%20Kernel%20Closure%20(July%203%202026)-10.5281%2Fzenodo.21152331-blueviolet)](https://doi.org/10.5281/zenodo.21152331)
 [![Sixth Theorem DOI](https://img.shields.io/badge/Sixth%20Theorem%20Transient%20Closure%20(July%203%202026)-10.5281%2Fzenodo.21175723-blueviolet)](https://doi.org/10.5281/zenodo.21175723)
 [![Residual Doors DOI](https://img.shields.io/badge/No%20Pump--Free%20Corner%20%2B%20Sign--Flip%20Prediction%20(v2%2C%20July%203%202026)-10.5281%2Fzenodo.21179351-blueviolet)](https://doi.org/10.5281/zenodo.21179351)
+[![y_c=Z/2 Cutoff DOI](https://img.shields.io/badge/Elastic--Medium%20Cutoff%20y_c%3DZ%2F2%20(July%2010%202026)-10.5281%2Fzenodo.21300855-blueviolet)](https://doi.org/10.5281/zenodo.21300855)
 [![MI Completion v13 DOI](https://img.shields.io/badge/Written%20MI%20Action%20%E2%80%94%20Covariant%20Completion%20(v13%2C%20July%209%202026)-10.5281%2Fzenodo.21297601-crimson)](https://doi.org/10.5281/zenodo.21297601)
 [![Corpus DOI](https://img.shields.io/badge/Code%20%26%20Data-10.5281%2Fzenodo.20576494-blue)](https://doi.org/10.5281/zenodo.20576494)
 [![Paper PDF](https://img.shields.io/badge/PDF-read%20the%20paper-success)](real_research/papers/ZIMMERMAN_THEORY_OF_GRAVITY.pdf)
