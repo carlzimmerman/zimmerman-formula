@@ -113,8 +113,13 @@ def solve_eN(etilde, beta0):
 def q_milgrom(etilde, beta0, vmax=60.0):
     """
     Milgrom (2009) QUMOND quadrupole factor q(etilde), eq (12) of Desmond+2024.
-    q = (3/2) Int_0^inf dv Int_{-1}^1 dxi (nu(Yarg)-1) * [eN(3xi-5xi^3)+v^2(1-3xi^2)] / sqrt(D),
+    q = (3/2) Int_0^inf dv Int_{-1}^1 dxi (nu(Yarg)-1) * [eN(3xi-5xi^3)+v^2(1-3xi^2)],
       D = eN^2 + v^4 + 2 eN v^2 xi,  Yarg = sqrt(D)  (the local |g_N|/a0 at the field point).
+    [CORRECTED 2026-07-10: an earlier version divided the integrand by sqrt(D); Milgrom 2009
+     (arXiv:0906.4817v2 eq 23) and Desmond+2024 (arXiv:2401.04796 eq 12) have sqrt(D) ONLY as
+     the nu argument, never as a denominator. The old form inflated Q2 by ~1.36x. Corrected
+     kernel validated against Desmond+2024's published anchors q(1)=0.094, q(1.5)=0.159,
+     q(2)=0.221 to 3 sig figs. Class verdict unchanged (~10-13 sigma tension).]
     """
     eN=solve_eN(etilde,beta0)
     def integrand(xi, v):
@@ -123,7 +128,7 @@ def q_milgrom(etilde, beta0, vmax=60.0):
         Yarg=np.sqrt(D)
         nu=nu_aest_one(Yarg,beta0)
         num=eN*(3*xi-5*xi**3)+v**2*(1-3*xi**2)
-        return (nu-1.0)*num/np.sqrt(D)
+        return (nu-1.0)*num
     # integrate xi in [-1,1], v in [0,vmax]
     val,_=integrate.dblquad(integrand, 0.0, vmax,
                             lambda v:-1.0, lambda v:1.0,
@@ -152,7 +157,7 @@ def boost_eta(a0, beta0, gext):
 # ----------------------------------------------------------------------------- validation
 def validate_q_against_simple():
     """Cross-check the q-integral on the standard 'simple' nu (beta0->large limit ~ simple),
-    where Desmond/Milgrom give known Q2 ~ few e-27 at etilde~2. Use nu_simple directly."""
+    where the corrected class value is ~2-4e-26 at etilde~2 (Desmond fiducial ~2.9e-26). Use nu_simple directly."""
     def nu_simple_one(y): return 0.5+np.sqrt(0.25+1.0/y)
     def solve_eN_s(et):
         return brentq(lambda eN: eN*nu_simple_one(eN)-et,1e-8,1e3)
@@ -161,7 +166,7 @@ def validate_q_against_simple():
         def ig(xi,v):
             D=eN**2+v**4+2*eN*v**2*xi
             Yarg=np.sqrt(D)
-            return (nu_simple_one(Yarg)-1)*(eN*(3*xi-5*xi**3)+v**2*(1-3*xi**2))/np.sqrt(D)
+            return (nu_simple_one(Yarg)-1)*(eN*(3*xi-5*xi**3)+v**2*(1-3*xi**2))
         val,_=integrate.dblquad(ig,0,vmax,lambda v:-1,lambda v:1,epsabs=1e-9,epsrel=1e-7)
         return 1.5*val
     out=[]
@@ -182,7 +187,7 @@ def main():
     # validate the Q2 integral on the standard simple nu
     print("="*100); print("VALIDATION  Milgrom q-integral on the standard 'simple' nu (known regime)"); print("="*100)
     for et,q,Q2 in validate_q_against_simple():
-        print(f"  etilde={et:.3f}:  q={q:.4f}   Q2={Q2:.3e} s^-2   (Desmond simple-IF: few e-27, in tension)")
+        print(f"  etilde={et:.3f}:  q={q:.4f}   Q2={Q2:.3e} s^-2   (class value ~2-4e-26; Desmond fiducial ~2.9e-26 -- in tension)")
     print("  [Desmond+2024 Tab1: simple/RAR-like IFs give Q2 ~ (3-6)e-27 at etilde~1.9 -> >1 sigma over Cassini]\n")
 
     # fit beta0
