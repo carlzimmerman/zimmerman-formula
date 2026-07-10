@@ -9,6 +9,15 @@ weighted point-level rms over all SPARC points). PRE-COMMITTED RULE (stated befo
   DEAD         if it exceeds reg-MOND's 0.122 dex (a Desmond-sized transition penalty)
   CONDITIONAL  in between (state the number; the transition bins carry the verdict)
 Pipeline verbatim from laneA_family_scan.py (validated: reproduces the banked 0.108 @ 0.70).
+
+LEDGER CORRECTION (2026-07-10, from the P6 fingerprint campaign's forensic audit): the printed
+window medians in this script carry NO uncertainties, and a "+0.034+/-0.014 dex at y~6" figure
+quoted downstream was a MIS-TRANSCRIPTION -- the +0.034 is med(y=2) of the pow p=8 yt=1.5 member
+(this script computes medians at ys=(0.1,0.5,1,2,6) but prints only 0.5/1/2), and the error bar
+was never computed by any banked script. The actual observed y~6 median boost under this locked-
+bulge protocol is -0.064+/-0.027 dex -- an M/L-treatment artifact per the free-Ub test (freeing
+the bulge M/L from Ub=1.4*Ud moves the high-y statistic by 0.037 dex), NOT a deficit of any model.
+Strike the +0.034 anchor wherever quoted.
 """
 import numpy as np, glob, os, sys
 kpc=3.086e19; A0C=9.36e-11; A0A=1.13e-10
