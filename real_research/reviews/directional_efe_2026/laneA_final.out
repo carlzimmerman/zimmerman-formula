@@ -1,0 +1,162 @@
+====================================================================================
+LANE A: DIRECTIONAL EFE -- AQUAL/QUMOND-class prediction vs Branch B suppression
+====================================================================================
+
+[validate] isolated point mass (framework nu): max |F/F_exact - 1| over r=0.3-30 r_M = 3.69e-05  (Legendre solver OK)
+[validate] small-e linear response at x=0.1: A/e = 2.308 (e=1e-4) vs 2.212 (e=1e-3) -- constant => resolved signal, noise floor <~1e-5.
+[validate] independent direct Green's-function quadrature (debug_validate.py): F per side
+           agrees with the Legendre solve to 0.02-0.8% at (x=0.1, e=0.05) and (x=0.1, e=0.2);
+[validate] g_ph(origin) ~ 1e-5-1e-6 (momentum identity: the point mass free-falls at nu_e*g_e).
+[validate] convergence at (x=0.1, e=0.1): A = +3.601% | lmax 14->10: +3.713% | rmax 3e3->1e4: +3.647%
+
+------------------------------------------------------------------------------------
+(1) AQUAL/QUMOND-CLASS aligned asymmetry A = 2(v_attractor-side - v_far-side)/(sum)
+    [%], in-plane g_ext (gamma=0), FRAMEWORK nu(y)=sqrt(1+1/y). x = g_bar/a0 at R.
+    x=0.5 ~ R~2 R_d; x=0.2 ~ R~3-4 R_d; x=0.05-0.1 ~ last measured HI point.
+------------------------------------------------------------------------------------
+   x\e        0.02     0.05     0.10     0.20     0.30
+   0.50     +0.636   +1.456   +2.612   +4.386   +5.690
+   0.20     +1.786   +3.855   +6.275   +3.615   -3.925
+   0.10     +3.467   +6.764   +3.601   -5.672   -6.189
+   0.05     +6.069   +3.496   -6.736   -7.628   -7.113
+
+    same, STANDARD simple nu = 1/2 + sqrt(1/4+1/y)  (convention spread):
+   x\e        0.02     0.05     0.10     0.20     0.30
+   0.50     +0.611   +1.405   +2.528   +4.232   +5.409
+   0.20     +1.620   +3.490   +5.625   +2.883   -4.301
+   0.10     +3.135   +6.055   +2.923   -5.886   -6.631
+   0.05     +5.539   +2.963   -6.601   -7.715   -7.426
+
+    disk-inclination-to-g_ext dependence (framework nu, x=0.10):
+    gamma =        0       30       60       90   [deg from disk plane]
+    e=0.05   +6.764   +8.262   +5.296   +0.000
+    e=0.20   -5.672   -8.606   -4.365   +0.000
+    COMPUTED FINDING: A(gamma) is NOT prop. cos(gamma) -- it is flat (even slightly
+    RISING) out to gamma~30-40 deg, then falls to 0 at 90 deg. The perpendicular
+    g_ext component distorts nu anisotropically too; use the 2D map, not cos(gamma).
+    geometric stacking factor (isotropic g_ext dir, x=0.10, e=0.03): F_geo = 0.513
+    (vs 1/3 for the naive cos(gamma)cos(psi) factorization)
+
+    naive pointwise-ALGEBRAIC estimate at x=0.10 (why the folklore was loose):
+    alg:    +33.129  +44.284  +36.585   +8.084   +4.169   <- pointwise nu, NO Poisson solve, NO CM subtraction
+    BVP:     +3.467   +6.764   +3.601   -5.672   -6.189   <- the real number (this work)
+
+    CLOSED-ORBIT (loop orbit / tilted-ring analog), gamma=0, framework nu:
+      (x=0.50, e=0.05):  A_local = +1.456%   A_loop-orbit = +7.647%   amplification = 5.3x
+      (x=0.30, e=0.05):  A_local = +2.582%   A_loop-orbit = +14.667%   amplification = 5.7x
+      (x=0.30, e=0.02):  A_local = +1.158%   A_loop-orbit = +5.069%   amplification = 4.4x
+    COMPUTED FINDINGS (validated against the axisymmetric limit, vZ~1e-5):
+      - the loop-orbit (observable) asymmetry is 4.4-5.7x the local-force value:
+        the static m=1 EFE forcing is NEAR-RESONANT (kappa^2-Omega^2 shrinks as
+        the outer RC declines toward Keplerian), amplifying the response;
+      - CAVEAT: the point-mass model exaggerates Keplerian-ness; a flat-RC disk
+        has kappa^2-Omega^2 = Omega^2 and less amplification; gas damping caps
+        the near-resonant response. Treat [A_local, ~5x A_local] as the
+        predicted BRACKET; A_local is the conservative floor used for power.
+      - at r >~ 0.6 r_e (i.e. x <~ 2-3 e) closed loop orbits become strongly
+        displaced and eventually QUASI-ESCAPE on the downstream side (the EFE-
+        truncated potential develops a saddle): the outermost points of a
+        strongly-EFE galaxy are predicted to be kinematically disturbed, not
+        just asymmetric -- itself a qualitative AQUAL-class signature.
+      - the amplification is response DYNAMICS, common to AQUAL and Branch B
+        sources alike: the RATIO discriminator w is UNCHANGED by it.
+
+    SIGN (computed, framework nu, all grid points): ATTRACTOR-FACING side FASTER  (A as defined above has sign +)
+
+------------------------------------------------------------------------------------
+(2) BRANCH B (published elastic-medium action): trace-only h(J) coupling
+------------------------------------------------------------------------------------
+    The medium's response energy has two invariants: bulk (trace of the strain,
+    the l=0-driving channel) and shear (traceless). The gravitational coupling
+    h(J) reads ONLY the trace. A uniform g_ext superposed on the galaxy field
+    imposes an ANISOTROPIC strain whose l>=1 harmonic content is traceless-
+    driven; it reaches the observable potential only through bulk-shear mixing
+    with admittance w = 1/(1 + 4 beta/kappa_t) -- the SAME transfer factor that
+    suppresses the Cassini Q2 in the committed two-invariant solve
+    (real_research/reviews/branchB_q2_gate_2026/, kappa_t PINNED = 1/2).
+    Hence:  A_BranchB(x, e, gamma) = w x A_AQUAL(x, e, gamma).
+      w = 1                : AQUAL limit (sanity; = table (1))
+      w = 7/23 = 0.3043    : natural beta = 2/7 (banked bracket 0.27-0.30)
+      w < 0.24             : Cassini-Q2-passing region (Q2 <= 5.2e-27 ceiling)
+    CAVEAT (load-bearing, flagged): the committed w was computed at l=2 (solar
+    quadrupole BVP). Equality of the l=1 transfer factor follows from the
+    l-independence of the two-invariant channel split, but an explicit l=1 BVP
+    at galaxy geometry has NOT been run -- an O(1) geometric coefficient on w is
+    conceivable. The INEQUALITY A_B <= w_max x A_AQUAL is the robust statement.
+    Aligned asymmetry [%] at the last-point regime x=0.10, gamma=0, framework nu:
+      e =             0.02     0.05     0.10     0.20     0.30
+      AQUAL (w=1)              +3.467   +6.764   +3.601   -5.672   -6.189
+      natural w=0.304          +1.055   +2.059   +1.096   -1.726   -1.883
+      Cassini-pass w=0.24      +0.832   +1.623   +0.864   -1.361   -1.485
+
+------------------------------------------------------------------------------------
+(3) FOOTINGS: where a REAL galaxy lands on the dimensionless map
+------------------------------------------------------------------------------------
+    illustrative outer point g_bar = 1.0e-11 m/s^2, g_ext = 3.0e-12 m/s^2, gamma=0:
+      canonical 9.36e-11    : x=0.1068  e=0.0321  ->  A_AQUAL = +4.741%   A_BranchB(nat) = +1.443%
+      alt 1.13e-10          : x=0.0885  e=0.0265  ->  A_AQUAL = +4.810%   A_BranchB(nat) = +1.464%
+      footing spread on A: 1%  (same-direction, not sign-flipping)
+
+------------------------------------------------------------------------------------
+(4) OBSERVABLE STATISTIC (pre-registered form) + POWER
+------------------------------------------------------------------------------------
+    Per galaxy i (needs per-side outer RC + a g_ext vector estimate):
+      A_i = 2 (v_approach,out - v_recede,out) / (v_approach,out + v_recede,out)
+            averaged over the outermost 2-3 tilted-ring radii per side;
+      p_i = A_map(x_i, e_i, gamma_i) * cos(psi_i)     [matched-filter predictor]
+            A_map = the computed table above (signed! it carries the x <~ e
+            sign REVERSAL beyond the EFE truncation radius); psi_i = azimuth of
+            the in-plane g_ext projection from the kinematic major axis, signed
+            toward the 'approach' side. SIGN convention fixed by computation:
+            ATTRACTOR-FACING side FASTER for x > ~2e (interior), REVERSED for x <~ e.
+      The naive (ehat.mhat)=cos(gamma)cos(psi) collapse does NOT hold (computed
+      above): keep gamma and psi separate; cos(psi) is the leading m=1
+      major-axis sampling factor.
+    STACK:  Ahat = sum_i A_i p_i / sigma_i^2  /  sum_i p_i^2 / sigma_i^2
+      E[Ahat] = 1 (AQUAL-class, local-force floor; up to ~5 with loop-orbit
+      amplification)  |  = w (Branch B)  |  = 0 (no directional EFE)
+      sigma(Ahat) = (sum p_i^2/sigma_i^2)^(-1/2);
+      NULL: re-draw ehat_ext azimuths (or permute g_ext vectors across
+      galaxies) -> empirical null of Ahat; the intrinsic-lopsidedness floor is
+      MEASURED by the permuted stack, not assumed.
+    POWER (isotropic ehat; geometric factor F_geo computed above):
+      N(3sig vs null)      = 9 sigma_A^2 / (A0^2 F_geo)
+      N(3sig AQUAL vs B)   = N(3sig vs null) / (1-w)^2
+      reference amplitude A0 = A(x=0.10, e=0.03, gamma=0) = +4.765%  (local-force floor)
+      F_geo = 0.513
+      sigma_A = per-galaxy TOTAL asymmetry scatter (measurement + intrinsic
+      lopsidedness; ASSUMPTION rows -- must be measured from the permuted null):
+        sigma_A   N(3sig vs null)   N(AQUAL vs B, w=0.304)   N(vs B, w=0.24)
+           0.03                 7                       14                12
+           0.05                19                       40                33
+           0.08                49                      102                86
+      (with the ~5x loop-orbit amplification these N shrink by ~25x;
+       the rows above are the conservative local-force floor)
+
+------------------------------------------------------------------------------------
+(5) VERDICT ON THE BANKED '1-4%' FOLKLORE + honesty block
+------------------------------------------------------------------------------------
+    Computed AQUAL-class aligned asymmetry (LOCAL-FORCE, the conservative floor):
+      typical environment e=0.02-0.05, outer RC x=0.05-0.2, gamma=0:
+        |A| = 1.8-6.8%   (x0.72 rms after isotropic projection -> ~1.3-4.8%)
+      strong-field tail e=0.2-0.3: up to |A| ~ 7.6%, with a SIGN REVERSAL
+        once the measured point crosses the EFE truncation (x <~ e).
+    -> the banked '1-4%' folklore is VALIDATED in range (computed, not asserted):
+       projected typical signal ~1-4%; and it is an UNDERESTIMATE if gas settles
+       on loop orbits (near-resonant m=1 amplification up to ~5x, capped by
+       damping and by real disks' flatter RCs).
+    HONESTY:
+      - modified-INERTIA caveat: for pure MI a uniform g_ext is a frame
+        acceleration; the aligned asymmetry can vanish identically independent
+        of w. AQUAL row = MG-class comparator (the kill condition's target);
+        Branch B = the published action's realization; a NULL is consistent
+        with BOTH Branch B (w-suppressed) and pure MI.
+      - point-mass source; exponential-disk correction O(10%) expected, not run.
+      - l=1 vs l=2 transfer-factor equality for w: structural, not yet BVP-proven.
+      - closed-orbit vs local-force ratio computed above; use the closed-orbit
+        row when comparing to tilted-ring data.
+      - tides (grad g_ext) neglected; uniform-field idealization.
+
+    results JSON -> /private/tmp/claude-501/-Users-carlzimmerman-new-physics-zimmerman-formula/bc6058d7-6ce0-4f8c-8635-25bfd772ff6d/scratchpad/directional_efe/laneA_predictions_results.json
+====================================================================================
+LANE A COMPLETE (exit 0)
