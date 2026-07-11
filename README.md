@@ -21,6 +21,7 @@ $$a_0 \;=\; c^2\sqrt{\frac{\Lambda}{32\pi}} \;=\; \frac{c}{2}\sqrt{G\rho_\Lambda
 [![Five Theorems DOI](https://img.shields.io/badge/Five%20Theorems%20Kernel%20Closure%20(July%203%202026)-10.5281%2Fzenodo.21152331-blueviolet)](https://doi.org/10.5281/zenodo.21152331)
 [![Sixth Theorem DOI](https://img.shields.io/badge/Sixth%20Theorem%20Transient%20Closure%20(July%203%202026)-10.5281%2Fzenodo.21175723-blueviolet)](https://doi.org/10.5281/zenodo.21175723)
 [![Residual Doors DOI](https://img.shields.io/badge/No%20Pump--Free%20Corner%20%2B%20Sign--Flip%20Prediction%20(v2%2C%20July%203%202026)-10.5281%2Fzenodo.21179351-blueviolet)](https://doi.org/10.5281/zenodo.21179351)
+[![Position Whitepaper DOI](https://img.shields.io/badge/POSITION%3A%20There%20Is%20No%20Dark%20Matter%20in%20Galaxies%20(July%2011%202026)-10.5281%2Fzenodo.21312985-black)](https://doi.org/10.5281/zenodo.21312985)
 [![Flagship DOI](https://img.shields.io/badge/FLAGSHIP%20dS--Unruh%20MI%20%2B%20Lensing%20Trilemma%20(July%2011%202026)-10.5281%2Fzenodo.21312654-red)](https://doi.org/10.5281/zenodo.21312654)
 [![Elastic-Medium Action DOI](https://img.shields.io/badge/Covariant%20Elastic--Medium%20Action%20(July%2010%202026)-10.5281%2Fzenodo.21301058-blueviolet)](https://doi.org/10.5281/zenodo.21301058)
 [![y_c=Z/2 Cutoff DOI](https://img.shields.io/badge/Elastic--Medium%20Cutoff%20y_c%3DZ%2F2%20(July%2010%202026)-10.5281%2Fzenodo.21300855-blueviolet)](https://doi.org/10.5281/zenodo.21300855)
