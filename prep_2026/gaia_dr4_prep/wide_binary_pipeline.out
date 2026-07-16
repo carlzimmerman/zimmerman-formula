@@ -1,0 +1,67 @@
+==============================================================================
+DOOR 4A -- GAIA DR4 WIDE-BINARY PIPELINE (prep, 2026-07-16)
+==============================================================================
+a0 canonical 9.360e-11 (y_extN=1.4647) | alt 1.130e-10 (y_extN=1.1513)
+targets: Newton 1.00 < MI 1.09 (banked; NOT 1.137) < MG 1.137 < MOND benchmark 1.33
+
+[FROZEN DR4 CUTS] (pre-registered 2026-07-16; PREREGISTRATION_DR4.md)
+  |b_gal|              > 15 deg                                         [Banik+2024 sec 2.1]
+  G mag                < 17 both components                             [Banik+2024 sec 2.1]
+  distance             < 250 pc (plx > 4 mas)                           [Banik+2024 sec 2.1]
+  parallax S/N         >= 40 both components                            [dist err <2.5% -> vt err <4%, subdominant to 5% mass]
+  plx consistency      |d1-d2| < min(4 sigma, 8 pc)                     [Banik+2024 sec 2.1]
+  proj. separation     2 < s < 30 kAU                                   [Banik+2024; r_M(1Msun)~7 kAU inside window]
+  RUWE                 < 1.4 both                                       [Lindegren+2021; Belokurov+2020 companion tracer]
+  ipd_frac_multi_peak  <= 2 both                                        [Banik+2024 sec 2.4.3 (resolved blends)]
+  extinction           A_V < 0.5                                        [Banik+2024 sec 2.4.1]
+  total mass           0.464 < M_tot < 4.31 Msun                        [Banik+2024 eq.6 cubic validity M_G in [0.6,11.1]]
+  RV screen            reject |dRV| > max(3 sigma_dRV, 3 v_c(s))        [Banik+2024 sec 2.4.5, DR4 RVs both comps]
+  NSS screen (NEW)     reject any DR4 non-single-star soln either comp  [DR4 66-mo epoch astrometry: direct inner-companion detector]
+  triple search        no co-moving 3rd source G<20 within 30 kAU       [Banik+2024 faint-companion search analog]
+  chance alignment     R_chance_align < 0.01                            [Chae 2023 sec 2.1; El-Badry+2021 statistic]
+  vtilde error         sigma(vt) <= 0.1 max(1, vt/2)                    [Banik+2024 eq.10 (bounds deep-bin noise inflation)]
+  vtilde cap           NONE at catalog level; estimator VTCAP=6.0 only  [symmetric data/model treatment (Banik vt<=5 NOT adopted for DR4)]
+  strictness ladder: RUWE 1.4->1.2 | R_chance 0.01->0.001 | sep 2-30 -> 3-20 kAU | RV-screened subsample only | NSS screen off (contamination probe)
+
+[model MC] building master population (DR4-level noise) ...
+  master MC pairs after selection: 1431972
+
+[GATE] synthetic DR4 catalogs, N_data=30000 (injection: boost at TRUE 3D y, canonical a0; recovery below)
+ inject gamma_inf = 1.00  (N=30000, deep y<0.3: 2819)
+  recover [a0 canonical]             gamma_inf = 0.9850 +- 0.0137  (chi2/bin=0.81, bins=8, kappa=1.0070)
+  recover [a0 alt footing]           gamma_inf = 0.9900 +- 0.0125  (chi2/bin=1.77, bins=8, kappa=1.0043)
+  GATE @1.00: |0.9850-1.00|=0.0150 < tol 0.0275 -> PASS
+ inject gamma_inf = 1.09  (N=30000, deep y<0.3: 2731)
+  recover [a0 canonical]             gamma_inf = 1.0950 +- 0.0137  (chi2/bin=0.82, bins=8, kappa=0.9991)
+  recover [a0 alt footing]           gamma_inf = 1.0925 +- 0.0150  (chi2/bin=1.24, bins=8, kappa=0.9994)
+  GATE @1.09: |1.0950-1.09|=0.0050 < tol 0.0275 -> PASS
+ inject gamma_inf = 1.33  (N=30000, deep y<0.3: 2804)
+  recover [a0 canonical]             gamma_inf = 1.3450 +- 0.0212  (chi2/bin=0.53, bins=7, kappa=0.9981)
+  recover [a0 alt footing]           gamma_inf = 1.3375 +- 0.0212  (chi2/bin=0.13, bins=8, kappa=1.0031)
+  GATE @1.33: |1.3450-1.33|=0.0150 < tol 0.0425 -> PASS
+
+[spread check] 8 independent catalogs @ gamma=1.09 (canonical fit)
+  realizations: mean=1.0881 rms=0.0191 (profile-sigma above should be comparable)
+
+[separation] sigma(gamma) = 0.0191 at N=30000 -> 3-sigma separation of 1.09 vs 1.00 needs N ~ 12,187 pairs (~1,109 deep y<0.3), under this population/selection.
+             separating MOND benchmark 1.33 from MI 1.09 at 3 sigma: N ~ 1,714.
+             separating MG 1.137 from MI 1.09 at 3 sigma: N ~ 44,689 (statistical only; the frozen sys allowance 0.02 makes MI-vs-MG UNDECIDED unless systematics beat ~0.01).
+
+[ecc bracket] recovery of 1.09 when the TRUE population is FLAT f(e)
+  flat-e truth vs thermal-e model    gamma_inf = 1.0750 +- 0.0125  (chi2/bin=0.36, bins=8, kappa=1.1213)  <- ecc systematic (kappa absorbs most)
+  ecc-mismatch shift on gamma: -0.0150 (FLAGGED systematic; Hwang+2022 superthermal at wide s)
+
+------------------------------------------------------------------------------
+DR3-ERA DRY RUN (El-Badry+2021 eDR3, Banik-like cuts) -- NOT the DR4 test
+------------------------------------------------------------------------------
+  pairs after cuts: 10624 (looser than Banik's 8,611: no chi2/nu, no faint-companion, no RV
+   screen -> contamination biases gamma HIGH; interpret as a
+   pipeline shakeout, not a verdict)
+  building DR3-noise model MC ...
+  El-Badry [a0 canonical]            gamma_inf = 1.2050 +- 0.0350  (chi2/bin=0.56, bins=7, kappa=1.0245)
+  El-Badry [a0 alt footing]          gamma_inf = 1.2025 +- 0.0337  (chi2/bin=1.05, bins=8, kappa=1.0271)
+  deep pairs (y<0.3, canonical): 802
+
+==============================================================================
+GATE VERDICT: PASS (recovered 1.00/1.09/1.33 within max(2sigma, 0.02))
+==============================================================================

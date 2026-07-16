@@ -1,0 +1,75 @@
+====================================================================================================
+ (0) DESI RELEASE STATUS -- live probe (the load-bearing recon fact)
+====================================================================================================
+   https://data.desi.lbl.gov/public/dr2/ -> HTTP 401   (401 = collaboration-only, NOT public)
+   https://data.desi.lbl.gov/public/dr1/ -> HTTP 200   (public since 2025-03-19)
+   => 'DESI DR2 public spectroscopy (2026)' is FALSE as of 2026-07-16: DR2 is NOT public.
+      The official releases page lists only EDR (2023) + DR1 (2025-03, 18.7M spectra).
+      The public-index HTML contains the dr2 entry COMMENTED OUT (release staged, not live).
+
+====================================================================================================
+ (A) PHASE-TAGGING SIDE -- member redshifts / cluster catalogs (all touched)
+====================================================================================================
+ledger entry 1: DESI DR1 VAC 'gfinder' (Yang-type halo-based groups; PUBLIC, touched)
+   files: DESIDR9.y1.v1_group.fits (5.6 GB), _galaxy.fits (8.4 GB), i*.fits (3.2 GB)
+   remote FITS headers read: N_groups = 99,599,634 ; N_gal-group links = 134,731,580
+   head parsed locally: 535,611 rows | RICH>=50: 7,274 | RICH>=100: 1,273 | logM max 15.47
+   -> >~1,273 clusters with >=100 (spec+photo-z) members, thousands with >=50. CAVEAT: RICH
+      mixes photo-z members (MAG_Z<21); spec-only membership is smaller. Redshift side only:
+      NO internal-sigma columns in this VAC. Per-member v_los precision ~10-30 km/s (Redrock).
+
+ledger entry 2: DESI DR1 VAC 'extragalactic-dwarfs' (PUBLIC, touched)
+   desi_dwarfs_y1_catalog.fits: N = 647,241 dwarfs (Mstar <~ 1e9 Msun), 0.001<z<0.5
+   columns verified: Z, MU_R, SHAPE_R, LOGM_CIGALE... (80 cols; head sample: ~4.5% MU_R>24 LSB-like)
+   -> the largest homogeneous spectroscopic DWARF sample ever (redshifts + structure), i.e. the
+      CARRIER-IDENTIFICATION + phase-tagging feed. NO internal sigma (below DESI resolution).
+ledger entry 3: HeCS (Rines+2013, VizieR J/ApJ/767/15; PUBLIC, downloaded)
+   clusters: 58 (z~0.1-0.3, X-ray selected) | redshift rows: 22,680
+   members per cluster: median 173, range 61-461 (column Nm)
+   per-member cz precision: median e_cz = 36 km/s -> superb for PPS tagging
+ledger entry 4: HeCS-SZ (Rines+2016, J/ApJ/819/63; PUBLIC, downloaded)
+   clusters: 123 (Planck SZ-selected, sigma_cl 300-1200 km/s) + 11,585 new redshifts (table2,
+   counted via TAP). Same character: member cz for phase space; no internal sigma.
+ledger entry 5: HeCS-omnibus (Sohn+2020, J/ApJ/891/129; PUBLIC, downloaded)
+   clusters: 227 (z<=0.29) | SUM(Nmem) = 52,415 spectroscopic members (median 180/cluster,
+   max 1209) | SUM(N200) = 22,091. BCG internal sigma (table3): 227 BCGs, e_sigma ~ 3-8 km/s --
+   but BCGs are the MOST adiabatic-dead objects in the sky (y~0.01): zero carrier value.
+   THE flagship phase-space compilation: caustic membership, R200, sigma_cl per cluster.
+ledger entry 6: GalWCat19 (Abdullah+2020, J/ApJS/246/2; SDSS-DR13-based; PUBLIC, downloaded)
+   clusters: 1800 (z<0.2) | member galaxies: 34,471 (~19/cluster median-ish)
+   member rows carry (RA,DE,z,ClID): phase-space side only.
+ledger entry 7: CAIRNS (Rines+2003, J/AJ/126/2152; PUBLIC, downloaded)
+   clusters: 9 nearby massive (A1656/Coma etc.) | galaxies: 19,796
+   the classic deep infall-region survey -> best per-cluster caustic profiles at low z.
+
+====================================================================================================
+ (B) CARRIER INTERNAL-sigma SIDE -- the wall (all touched)
+====================================================================================================
+ledger entry 8: Sohn+2017 (J/ApJS/229/20, A2029 field): 982 member rows, 924 with
+   internal sigma (SDSS/Hectospec): sigma range 21-945 km/s, median frac err 20%.
+   BUT: RELIABLE sigma only >~60 km/s (SDSS/Hectospec resolution; the handful of lower values carry
+   the largest errors) -> the usable set is dE/E class, y<~0.3, predicted MI spread ~0.1-0.7%
+   -> needs N~100,000 (estimator_power.py): the measurable members cannot carry the test.
+ledger entry 9: Gannon+2024 LIVING UDG SPECTROSCOPIC CATALOG (github gannonjs/Published_Data;
+   PUBLIC, downloaded): 38 UDGs total (30 cluster, 7 group, 1 field)
+   with stellar sigma: 24 (of which 23 in cluster/group) | with GC sigma: 11
+   stellar-sigma frac err: median 24%, range 6-46%
+   => THE ENTIRE 2026 carrier reservoir with internal sigma ~ 23 objects at ~24% errors,
+   NOT infall-tagged, heterogeneous instruments -- vs N~270-900 at <~10% needed (estimator_power.py).
+
+====================================================================================================
+ CENSUS VERDICT (every number above recomputed from touched data; exit 0)
+====================================================================================================
+   SIDE (A) phase tagging: SOLVED AND IMPROVING -- HeCS-omnibus 227 clusters/52k members,
+     GalWCat19 1,800/34k, HeCS 58/22.7k, CAIRNS 9/19.8k, DESI DR1 gfinder >10^3 rich clusters +
+     647k-dwarf VAC (all public, all touched). DESI DR2 would only add more of THIS side --
+     and DR2 is NOT public yet anyway (verified 401).
+   SIDE (B) carrier internal sigma: THE BINDING WALL, UNCHANGED BY DESI -- 23 cluster/group UDGs
+     with stellar sigma at ~16-46% errors is the WHOLE public reservoir; survey spectrographs sit
+     below the resolution floor (DESI/SDSS ~64, MUSE ~42 km/s inst. floor vs 8-20 km/s carriers).
+   NET: the discriminator stays UNDERPOWERED in 2026 by x15-60 in N (at ELT-class precision that
+     does not exist until ~2032) or x~100+ at today's precision. What DID change since the banked
+     verdict: the PHASE-TAGGING side is now free and enormous -- when carrier sigmas arrive
+     (ELT-HARMONI/MOSAIC), the PPS/caustic infrastructure to tag them is already public.
+
+ EXIT 0

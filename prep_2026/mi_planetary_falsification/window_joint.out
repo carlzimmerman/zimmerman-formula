@@ -1,0 +1,67 @@
+####################################################################################################
+# GATE = single-pole causal relaxator: verify Re/Im parts + the two response channels
+####################################################################################################
+   [PASS] 1-pole causal relaxator identity |G|^2 = Re G holds (Re & Im are a KK pair; the dissipative Im channel is FORCED by causality once Re is frequency dependent)
+   [PASS] [Mercury] gated drift closed form = 2 f_t/(omega r) (ratio 1.000000) and = a0 wc/g_N asymptote (ratio 1.0000)
+   [PASS] [Saturn] gated drift closed form = 2 f_t/(omega r) (ratio 1.000000) and = a0 wc/g_N asymptote (ratio 1.0000)
+
+####################################################################################################
+# FOOTING = canon   (a0 = 9.360e-11 m/s^2,  a0/2 = 4.680e-11)
+####################################################################################################
+ LOWER EDGE (galactic RAR-preservation):
+   deepest MOND orbit omega_gal = y a0/v = 2.995e-15 rad/s  (y=0.8, v=25 km/s)
+   Re G >= 0.9 there  ->  omega_c >= 3.00 x omega_gal = 8.986e-15 rad/s (tau <= 3.5 Myr)  [RAR-preservation]
+ UPPER EDGE (reactive perihelion, per planet):
+   Mercury 2.59e-08, Venus 1.34e-08, Earth 2.71e-09, Mars 5.79e-10, Jupiter 1.84e-09, Saturn 8.27e-11
+   binding: Saturn  omega_c <= 8.266e-11 rad/s   [Fienga & Minazzoli 2024 per-planet delta_g]
+ UPPER EDGE (secular drift d ln r/dt = a0 wc/g_N, per body):
+   Mercury Gdot/G 5.36e-13, Mars rdot proxy 1.90e-13, Saturn rdot proxy 3.51e-14, Moon tidal 3.80e-13, Moon Gdot/G 2.21e-14
+   binding: Moon Gdot/G [Biskupek21]  omega_c <= 2.210e-14 rad/s   (LLR 2-sigma Gdot/G = 2.42e-14/yr)
+
+ ==> JOINT WINDOW (canon): omega_c in [8.986e-15, 2.210e-14] rad/s
+     = tau in [1.43, 3.53] Myr   width x2.46   -> NON-EMPTY (survives)
+     lower edge <- galactic RAR-preservation ;  upper edge <- Moon Gdot/G [Biskupek21]
+   [PASS] [canon] joint window is NON-EMPTY (a single gated corner threads galaxies AND planets)
+     transition probe:  3 kAU wide binary omega=1.48e-12 -> gate keeps  0.0% of the MOND boost at the MAX corner
+     transition probe: 10 kAU wide binary omega=2.44e-13 -> gate keeps  0.8% of the MOND boost at the MAX corner
+     transition probe: 20 kAU wide binary omega=8.62e-14 -> gate keeps  6.2% of the MOND boost at the MAX corner
+
+####################################################################################################
+# FOOTING = alt   (a0 = 1.130e-10 m/s^2,  a0/2 = 5.650e-11)
+####################################################################################################
+ LOWER EDGE (galactic RAR-preservation):
+   deepest MOND orbit omega_gal = y a0/v = 3.616e-15 rad/s  (y=0.8, v=25 km/s)
+   Re G >= 0.9 there  ->  omega_c >= 3.00 x omega_gal = 1.085e-14 rad/s (tau <= 2.9 Myr)  [RAR-preservation]
+ UPPER EDGE (reactive perihelion, per planet):
+   Mercury 2.36e-08, Venus 1.22e-08, Earth 2.47e-09, Mars 5.27e-10, Jupiter 1.67e-09, Saturn 7.52e-11
+   binding: Saturn  omega_c <= 7.523e-11 rad/s   [Fienga & Minazzoli 2024 per-planet delta_g]
+ UPPER EDGE (secular drift d ln r/dt = a0 wc/g_N, per body):
+   Mercury Gdot/G 4.44e-13, Mars rdot proxy 1.57e-13, Saturn rdot proxy 2.91e-14, Moon tidal 3.15e-13, Moon Gdot/G 1.83e-14
+   binding: Moon Gdot/G [Biskupek21]  omega_c <= 1.831e-14 rad/s   (LLR 2-sigma Gdot/G = 2.42e-14/yr)
+
+ ==> JOINT WINDOW (alt): omega_c in [1.085e-14, 1.831e-14] rad/s
+     = tau in [1.73, 2.92] Myr   width x1.69   -> NON-EMPTY (survives)
+     lower edge <- galactic RAR-preservation ;  upper edge <- Moon Gdot/G [Biskupek21]
+   [PASS] [alt] joint window is NON-EMPTY (a single gated corner threads galaxies AND planets)
+     transition probe:  3 kAU wide binary omega=1.48e-12 -> gate keeps  0.0% of the MOND boost at the MAX corner
+     transition probe: 10 kAU wide binary omega=2.44e-13 -> gate keeps  0.6% of the MOND boost at the MAX corner
+     transition probe: 20 kAU wide binary omega=8.62e-14 -> gate keeps  4.3% of the MOND boost at the MAX corner
+
+####################################################################################################
+# IS THE SURVIVING CORNER FORCED (a 2nd physical scale) OR FREE (a 5th constant)?
+####################################################################################################
+ [canon] action-FORCED memory corner (CLOSURE_MAP.md item d) omega_c = a0/2c = 1.561e-19 rad/s (tau_mem = 2c/a0 = 203 Gyr)
+        joint window bottom = 8.986e-15 rad/s  ->  action corner is 10^4.8 BELOW it
+        at the action corner the galactic MOND boost retained Re G(om_gal) = 2.72e-09 (RAR-dead: it also gates OFF the rotation curves)
+   [PASS] [canon] the action's OWN forced corner does NOT land in the window (>=4 orders below) AND is RAR-dead -> the surviving corner is NOT supplied by the action: it is a FREE 5th constant
+ [alt] action-FORCED memory corner (CLOSURE_MAP.md item d) omega_c = a0/2c = 1.885e-19 rad/s (tau_mem = 2c/a0 = 168 Gyr)
+        joint window bottom = 1.085e-14 rad/s  ->  action corner is 10^4.8 BELOW it
+        at the action corner the galactic MOND boost retained Re G(om_gal) = 2.72e-09 (RAR-dead: it also gates OFF the rotation curves)
+   [PASS] [alt] the action's OWN forced corner does NOT land in the window (>=4 orders below) AND is RAR-dead -> the surviving corner is NOT supplied by the action: it is a FREE 5th constant
+
+====================================================================================================
+ VERDICT: NON-EMPTY window on BOTH footings -> the framework SURVIVES at the solar system,
+          but ONLY as a gated Reading C whose corner is a FREE add-on (a 5th constant): the
+          published action forces the corner to ~200 Gyr (RAR-dead), NOT into the Myr window.
+====================================================================================================
+ window_joint: ALL CHECKS PASS

@@ -1,0 +1,96 @@
+============================================================================================
+JOINT CONSISTENCY -- one global Upsilon must serve BOTH SPARC statistics (P1+P3),
+the photon band is independent (P2). Candidates: canonical / alt / conventional.
+============================================================================================
+
+  CANONICAL cH_L/Z: a0 = 9.355e-11
+    P1 kinematic band 7.76e-11..2.00e-10: INSIDE; co-moving Upsilon* = 0.80 (scatter penalty 0.09% at U*, window exists: True)
+    P3 BTFR band     8.69e-11..1.55e-10: INSIDE; exact-median z at the SAME U* = +0.19 sigma
+    P2 photon band   7.23e-11..3.28e-10: INSIDE (systematics envelope; stat-only z: +11.1s from the cold-baryon budget, +4.5s from the hot-CGM budget)
+    joint chi2 (P3 z^2 at the co-moving U*; P1,P2 interval-pass): 0.04
+
+  ALT cH0/Z: a0 = 1.131e-10
+    P1 kinematic band 7.76e-11..2.00e-10: INSIDE; co-moving Upsilon* = 0.66 (scatter penalty 0.39% at U*, window exists: True)
+    P3 BTFR band     8.69e-11..1.55e-10: INSIDE; exact-median z at the SAME U* = +0.01 sigma
+    P2 photon band   7.23e-11..3.28e-10: INSIDE (systematics envelope; stat-only z: +9.0s from the cold-baryon budget, +9.6s from the hot-CGM budget)
+    joint chi2 (P3 z^2 at the co-moving U*; P1,P2 interval-pass): 0.00
+
+  conventional 1.2e-10: a0 = 1.200e-10
+    P1 kinematic band 7.76e-11..2.00e-10: INSIDE; co-moving Upsilon* = 0.61 (scatter penalty 1.52% at U*, window exists: True)
+    P3 BTFR band     8.69e-11..1.55e-10: INSIDE; exact-median z at the SAME U* = +0.07 sigma
+    P2 photon band   7.23e-11..3.28e-10: INSIDE (systematics envelope; stat-only z: +8.2s from the cold-baryon budget, +11.4s from the hot-CGM budget)
+    joint chi2 (P3 z^2 at the co-moving U*; P1,P2 interval-pass): 0.01
+
+  SEPARATION (the honest statement):
+    Delta joint-chi2  canonical - alt          = +0.04
+    Delta joint-chi2  canonical - conventional = +0.03
+    All three candidates sit INSIDE all three bands; every |Delta chi2| < 1.
+    => The ledger's galaxy probes CANNOT separate 9.355e-11 / 1.131e-10 / 1.2e-10.
+       What distinguishes the anchored values is PROVENANCE (derived from Planck
+       Lambda before looking at any galaxy), not a tighter posterior. Stat-only
+       lensing 'rejects' EVERY candidate from one baryon budget or the other
+       (incl. conventional 1.2e-10) -- proof the P2 band edges are baryon-budget
+       systematics, not instrument noise.
+
+============================================================================================
+NULL TABLE (prediction vs bound vs margin; canonical/alt where a0 enters)
+============================================================================================
+  N1 ephemerides (Cassini Q2)
+     predict: MI l=2: 7.4e-34 / 1.1e-33 s^-2 (DC a0/2g absorbed into GM_sun)
+     bound:   Q2 2-sigma ceiling 5.2e-27 s^-2 (Park+ 2026 arXiv:2602.17884; DHF24 MNRAS 530,1781)
+     margin:  PASS 6.8 / 6.7 orders; MG-read of the SAME a0 = 3.3e-23 -> EXCLUDED 3.8 orders
+  N2 LLR (mm ranging)
+     predict: observable MI channel (a0/2g)^2 = 3.0e-16 / 4.4e-16 (DC absorbed into GM_earth)
+     bound:   fractional sensitivity 2.6e-12 (APOLLO; Murphy 2013 RPP 76, 076901)
+     margin:  PASS 3.9 / 3.8 orders
+  N3 MICROSCOPE WEP
+     predict: eta = 0 EXACTLY (universal inertia rescaling; no composition channel; footing-independent)
+     bound:   eta(Ti,Pt) = (-1.5 +/- 2.3)e-15 (Touboul+ 2022 PRL 129, 121102 final)
+     margin:  PASS: exact zero sits 0.65 sigma from the measurement at 1e-15 precision
+  N4 CPT / photon k_AF
+     predict: k_AF = 0 EXACTLY (SME bridge: horizon induces CPT-EVEN s_munu only)
+     bound:   abs(k_AF) < 1e-44 GeV (Kostelecky-Russell RMP 83,11, 2023 tables)
+     margin:  PASS by structure; CPT-ODD sibling scale hbar*H = 1.19e-42 / 1.44e-42 GeV sits 119x / 144x ABOVE the bound -> that variant is DEAD
+
+============================================================================================
+PARAMETER ECONOMY on the SAME data: framework (a0 CMB-fixed + 1 global Upsilon)
+vs LCDM NFW (2-3 free params PER galaxy). LCDM is EXPECTED to fit well.
+============================================================================================
+  common dataset: 3388 points across 175 galaxies (3 dropped where V_bar^2 <= 0)
+  framework [canon] a0 FIXED = 9.355e-11: best global Upsilon = 0.65, chi2 = 149286 (44.06/pt)
+  framework [  alt] a0 FIXED = 1.131e-10: best global Upsilon = 0.61, chi2 = 139225 (41.09/pt)
+  framework [per-galaxy U, canon a0]: chi2 = 67324 (19.87/pt)
+  LCDM NFW [U=0.5 fixed, 2 params/gal = 350]: chi2 = 17670 (5.22/pt)
+  LCDM NFW [U free/gal, 3 params/gal = 525]:  chi2 = 10356 (3.06/pt)
+
+  model                                                   k      chi2  chi2/N       AIC       BIC
+  framework, canon a0 (external) + 1 global U             1    149286   44.06    149288    149294
+  framework, alt a0 (external) + 1 global U               1    139225   41.09    139227    139233
+  framework, canon a0 + per-galaxy U                    175     67324   19.87     67674     68746
+  LCDM NFW, U=0.5 + (V200,c) per galaxy                 350     17670    5.22     18370     20515
+  LCDM NFW, (V200,c,U) per galaxy                       525     10356    3.06     11406     14623
+
+  median per-galaxy reduced chi2: framework(0 free/gal) 10.19 | NFW U=0.5 1.27 | NFW free-U 1.07
+  fraction of galaxies where the ZERO-per-object-freedom framework curve lands within
+  2x of the galaxy's own 3-parameter NFW chi2: 9%
+
+  HONEST READ (exactly as it must be stated): LCDM halo fits FIT WELL -- with 2-3
+  free parameters per galaxy they reach a lower total chi2, and on raw AIC/BIC per
+  -point fit quality they can win despite the parameter penalty. The economy contrast
+  is FREEDOM COUNT and PREDICTIVITY: the framework's number was fixed by the CMB
+  before any rotation curve was looked at (1 global convention parameter, ZERO per-
+  object parameters, and the SAME number must simultaneously survive P2/P3/N1-N4);
+  the halo alternative spends hundreds of per-object parameters and carries NO
+  cross-probe number to thread. AIC/BIC computed on one dataset cannot price that
+  cross-dataset rigidity -- that is what the crossing figure shows.
+  CHI2 CAVEAT (both directions): the framework row models NO per-galaxy nuisance at
+  all -- SPARC's own 10-30% distance and inclination uncertainties enter its chi2 as
+  unmodeled error, while per-galaxy halo parameters partially absorb them. The
+  like-for-like single-statistic comparison stays the committed RAR row: 0.108 dex
+  (framework, canonical a0, 1 global Upsilon) vs 0.122 (reg-MOND) on the same points.
+
+  [figure written: /Users/carlzimmerman/new_physics/prep_2026/concordance_ledger/concordance_crossing.png]
+  THREADING: both Planck footings sit inside all three positive bands.  [asserted]
+  [CONCORDANCE.md + concordance_summary.json written]
+
+CONCORDANCE COMBINE COMPLETE (exit 0).

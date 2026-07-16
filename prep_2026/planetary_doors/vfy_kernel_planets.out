@@ -1,0 +1,35 @@
+# V1  a0/2 landmine arithmetic + per-planet exclusion (independent)
+   canon: a0/2 = 4.681e-11 m/s^2 ; excl Mercury 1018x  Mars 33436x  Saturn 6687x
+   [PASS] canon: a0/2 = a0/2 (trivial) and Mars excl in [3e4,4.2e4]
+   [PASS] canon: every planet excludes a0/2 by >80x
+   alt: a0/2 = 5.650e-11 m/s^2 ; excl Mercury 1228x  Mars 40357x  Saturn 8071x
+   [PASS] alt: a0/2 = a0/2 (trivial) and Mars excl in [3e4,4.2e4]
+   [PASS] alt: every planet excludes a0/2 by >80x
+# V2  is the constant sunward a0/2 absorbable into a GM rescaling?  (the DC-absorption test)
+   canon: fractional GM shift A r^2/GM  Mercury 1.18e-09  Saturn 7.25e-07  spread 613x
+   [PASS] canon: required GM shift is r-DEPENDENT (spread = (r_max/r_min)^2, not 1) -> NOT GM-absorbable
+   alt: fractional GM shift A r^2/GM  Mercury 1.43e-09  Saturn 8.75e-07  spread 613x
+   [PASS] alt: required GM shift is r-DEPENDENT (spread = (r_max/r_min)^2, not 1) -> NOT GM-absorbable
+   perihelion precession: A=0 -> +3.76e-12,  A=1e-3 -> -1.09e-03,  A=2e-3 -> -2.18e-03 (code units)
+   [PASS] constant sunward A gives NONZERO secular perihelion precession (=> observable, not GM-absorbable)
+   [PASS] precession scales ~linearly in A (2e-3 ~ 2x the 1e-3 rate, <5%)
+# V3  cut boundary values: pure phase |K|=1, ReK=sqrt(1-1/4W^2), ImK=1/2W (independent sympy+numeric)
+   max deviation over W in [0.6, 6e5] from (|K|^2=1, Re=sqrt(1-1/4W^2), Im=1/2W): 2.22e-16
+   [PASS] pure-phase cut identities hold numerically to <1e-9
+# V4  secular-drift orbital-mechanics factor d ln r/dt = 2 omega (f_t/g_N) (independent ODE)
+   eps=1e-6: (measured-baseline)/pred = 0.9979
+   [PASS] orbital-mechanics factor recovered to <1% in linear regime
+   canon: a0/c = 3.123e-19/s = 9.855e-12/yr  vs MESSENGER Gdot/G 4e-14/yr -> x246
+   [PASS] canon: drift a0/c exceeds MESSENGER Gdot/G by >200x
+   alt: a0/c = 3.769e-19/s = 1.189e-11/yr  vs MESSENGER Gdot/G 4e-14/yr -> x297
+   [PASS] alt: drift a0/c exceeds MESSENGER Gdot/G by >200x
+# V5  first-moment (constitutive) closure REPRODUCES the a0/2 tail; bound orbit spectrum cannot
+   canon Saturn: y=6.90e+05  (nu-1)g_bar = 4.681e-11  vs a0/2 = 4.681e-11  ratio 1.0000
+   [PASS] canon: constitutive anomaly -> a0/2 to <0.1% (the tail IS reproduced by the first-moment closure)
+   alt Saturn: y=5.72e+05  (nu-1)g_bar = 5.650e-11  vs a0/2 = 5.650e-11  ratio 1.0000
+   [PASS] alt: constitutive anomaly -> a0/2 to <0.1% (the tail IS reproduced by the first-moment closure)
+   [PASS] circular u: Box_u eigenvalue on spatial part = -(gamma omega)^2 < 0 (no positive argument fed)
+   [PASS] circular u: Box_u u_time = 0 (DC sector; K(0)=0)
+==========================================================================================
+ VERIFY RESULT: ALL PASS
+==========================================================================================

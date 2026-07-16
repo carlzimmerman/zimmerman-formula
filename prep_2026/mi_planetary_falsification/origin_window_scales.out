@@ -1,0 +1,103 @@
+##################################################################################################
+# PART 1 -- THE JOINT ALLOWED omega_c WINDOW FROM THE ACTUAL PUBLISHED BOUNDS (both footings)
+##################################################################################################
+
+ [canonical] a0 = 9.360e-11 m/s^2
+   deepest MOND orbit: omega_gal = y a0/v = 2.995e-15 rad/s (y=0.8, v=25 km/s)
+   LOWER edge (RAR gate >=0.90): omega_c >= 3 omega_gal = 8.986e-15 rad/s
+   UPPER edge (LLR Gdot/G 2sig=2.42e-14/yr): omega_c <= 2.212e-14 rad/s
+     [LLR at Moon: d ln r/dt = (a0/g_N) omega_c ; g_N,moon=2.70e-03 m/s^2]
+   ...vs MESSENGER edge (Genova 2018, <4e-14/yr): omega_c <= 3.66e-14 rad/s  (LOOSER)
+   ...vs per-planet reactive edge (Saturn, Fienga-Minazzoli 2024): omega_c <= 8.27e-11 rad/s  (LOOSER by ~3.6 dex)
+   ===> WINDOW  omega_c in [8.99e-15, 2.21e-14] rad/s  =  tau in [1.43, 3.53] Myr  (width x2.46)
+   [PASS] [canonical] window NON-EMPTY (RAR-lower < LLR-upper)
+   [PASS] [canonical] LLR BINDS from above (LLR edge < MESSENGER edge < reactive edge)
+
+ [alt] a0 = 1.130e-10 m/s^2
+   deepest MOND orbit: omega_gal = y a0/v = 3.616e-15 rad/s (y=0.8, v=25 km/s)
+   LOWER edge (RAR gate >=0.90): omega_c >= 3 omega_gal = 1.085e-14 rad/s
+   UPPER edge (LLR Gdot/G 2sig=2.42e-14/yr): omega_c <= 1.832e-14 rad/s
+     [LLR at Moon: d ln r/dt = (a0/g_N) omega_c ; g_N,moon=2.70e-03 m/s^2]
+   ...vs MESSENGER edge (Genova 2018, <4e-14/yr): omega_c <= 3.03e-14 rad/s  (LOOSER)
+   ...vs per-planet reactive edge (Saturn, Fienga-Minazzoli 2024): omega_c <= 7.52e-11 rad/s  (LOOSER by ~3.6 dex)
+   ===> WINDOW  omega_c in [1.08e-14, 1.83e-14] rad/s  =  tau in [1.73, 2.92] Myr  (width x1.69)
+   [PASS] [alt] window NON-EMPTY (RAR-lower < LLR-upper)
+   [PASS] [alt] LLR BINDS from above (LLR edge < MESSENGER edge < reactive edge)
+
+   PART 1 RESULT: the joint window is NON-EMPTY on BOTH footings; the LLR secular-drift
+   ceiling (Biskupek & Mueller 2021) BINDS from above, ~3-4 dex tighter than the per-planet
+   reactive edge and tighter than MESSENGER. The framework SURVIVES the solar system IFF the
+   corner sits in this ~Myr sliver. PART 2 asks whether any theory scale PUTS it there.
+
+##################################################################################################
+# PART 2 -- IS THE ~Myr CORNER FORCED BY A PHYSICAL SCALE, OR FREE? (test each candidate)
+##################################################################################################
+
+ (a) dS-Unruh BATH re-thermalization / KMS Matsubara scale at T_dS = H_Lambda/2pi:
+     H_Lambda (=c sqrt(Lambda/3), Lambda=1.1e-52 m^-2) = 1.815e-18 rad/s
+     [canonical] action memory corner a0/2c = 1.561e-19 rad/s (tau_mem=2c/a0=203 Gyr)
+     [alt] action memory corner a0/2c = 1.885e-19 rad/s (tau_mem=2c/a0=168 Gyr)
+     [canonical] omega = 1.815e-18 rad/s  -> 3.7 dex BELOW
+     [alt] omega = 1.815e-18 rad/s  -> 3.8 dex BELOW
+     origin: FORCED (theory scale) ; H_Lambda is a genuine theory scale, but it is the HORIZON rate ~1e-18 rad/s; the dS bath has NO intrinsic ~Myr re-thermalization time -- its only response scale is kappa=H_Lambda, ~4 dex BELOW the window. A ~Myr bath time is not present in the theory.
+
+ (b) DENSITY / SCREENING scale  omega = sqrt(4 pi G rho)  (a plasma-like corner?):
+     rho_local  = 6.77e-21 kg/m^3 (0.1 Msun/pc^3)  -> sqrt(4 pi G rho) = 2.383e-15 rad/s
+     rho_cosmic = 2.70e-27 kg/m^3 (0.3 rho_crit)  -> sqrt(4 pi G rho) = 1.505e-18 rad/s
+     [canonical] omega = 2.383e-15 rad/s  -> 0.6 dex BELOW
+     [alt] omega = 2.383e-15 rad/s  -> 0.7 dex BELOW
+     origin: CHOSEN (not a theory constant) ; the local-stellar value 2.4e-15 is the CLOSEST candidate (a factor ~3.8 below the window bottom) but density is ENVIRONMENTAL, not a theory constant: it spans 2e-18..2e-15 rad/s (3+ dex) across environments, and planets share the LOCAL density with the local galactic orbit -- so a density-set corner cannot separate them. CHOSEN.
+
+ (c) LIGHT-CROSSING / RETARDATION scale  omega = c/r  (and the kernel's own c/a0):
+     c/r (Saturn orbit, r=1.43e+12 m) = 2.091e-04 rad/s
+     c/r (galactic 8.2 kpc, r=2.53e+20 m) = 1.185e-12 rad/s
+     [canonical] kernel retardation a0/c = 3.122e-19 rad/s (Compton length c/a0 = 0 Gyr-light)
+     [alt] kernel retardation a0/c = 3.769e-19 rad/s (Compton length c/a0 = 0 Gyr-light)
+     [canonical] omega = 3.122e-19 rad/s  -> 4.5 dex BELOW
+     [alt] omega = 3.769e-19 rad/s  -> 4.5 dex BELOW
+     origin: FORCED (theory scale) ; source light-crossing c/r is r-DEPENDENT (1e-12 at galaxies, 1e-4 at Saturn -- ABOVE the window and non-universal); the theory's OWN retardation a0/c is the HORIZON scale ~3e-19 rad/s (~4 dex below). No retardation scale in the theory lands at ~Myr.
+
+ (d) A SECOND SCALE IN THE HERGLOTZ MEASURE beyond a0?
+     measure cut boundary t = 0.25 (dimensionless, in units of a0^2) -> |a| = a0/2 = a0*0.500
+     sum rule INT dmu/|t| = 1 (v11) and ||K||<=1 fix NORMALIZATION only; no 2nd dimensionful scale.
+     [canonical] only measure frequency sqrt(1/4)*a0/c = a0/2c = 1.561e-19 rad/s
+     [alt] only measure frequency sqrt(1/4)*a0/c = a0/2c = 1.885e-19 rad/s
+     [canonical] omega = 1.561e-19 rad/s  -> 4.8 dex BELOW
+     [alt] omega = 1.885e-19 rad/s  -> 4.8 dex BELOW
+     origin: FORCED (theory scale) ; the Herglotz measure has NO second dimensionful scale: its only structure (branch point t=1/4) is dimensionless in a0^2 units; the sum rule/||K||<=1 fix normalization only. Every frequency it builds is a0/c-family (~1e-19 rad/s, ~4-5 dex below the window). Single-scale by construction.
+
+##################################################################################################
+# VERDICT
+##################################################################################################
+   candidate scale                     lands in window?   forced theory scale?
+     (a) dS bath / Matsubara            no                YES
+     (b) density / screening            no                no
+     (c) retardation c/r, c/a0          no                YES
+     (d) Herglotz 2nd scale             no                YES
+
+   [PASS] NO forced theory scale lands in the ~Myr window: (a) dS bath = horizon H_Lambda (~4 dex below); (c) retardation a0/c = horizon (~4 dex below) and c/r is r-dependent & above; (d) the Herglotz measure is single-scale a0 (no 2nd scale). The one near-miss (b) density is ENVIRONMENTAL, not a theory constant, and spans 3+ dex. => omega_c is NOT forced.
+   [PASS] => the surviving ~Myr corner is a FREE add-on: an honest 5th constant {s,a0,Z,eta} -> +omega_c. The published action forces the memory corner to a0/2c (~200 Gyr, RAR-dead), NOT into the window; the pullback leaves eta(beta) free; no dS-bath/density/retardation/measure scale supplies it.
+
+   HONEST FINDING (reported straight -- this is a CONDITIONAL survival, neither a manufactured kill
+   nor a manufactured save):
+     * PART 1: the joint window is NON-EMPTY on both footings. Lower edge = galactic RAR preservation;
+       upper edge = the LLR secular-drift ceiling (Biskupek & Mueller 2021), which BINDS ~3-4 dex
+       tighter than the per-planet reactive edge (Fienga-Minazzoli 2024) and tighter than MESSENGER
+       (Genova 2018). canon [9.0e-15, 2.2e-14] rad/s = tau 1.43-3.53 Myr; alt [1.1e-14, 1.8e-14] =
+       tau 1.73-2.92 Myr. So the framework SURVIVES the solar system as a gated Reading-C crossover.
+     * PART 2: the required ~Myr corner is NOT forced by any physical scale in the theory. Every
+       genuine theory scale (dS bath H_Lambda; kernel retardation a0/c; the single-scale Herglotz
+       measure) is the HORIZON scale ~1e-18..1e-19 rad/s -- ~4-5 dex BELOW the window. The one
+       near-miss is the local-density plasma-like scale sqrt(4 pi G rho_local) ~ 2e-15 rad/s (a factor
+       ~4 below the window bottom), but density is environmental, spans 3+ dex, and cannot separate
+       planets from the co-located galactic orbit -- CHOSEN, not forced.
+     * VERDICT: SURVIVES, CONDITIONALLY. omega_c is a FREE 5th constant. The framework passes the
+       solar system only by ADDING an honest postulate the published action does not supply (the
+       action's own corner, a0/2c ~ 200 Gyr, is RAR-dead). Not a falsification; not a clean win.
+   HONEST CEILING: at planetary accelerations (10^4-10^8 a0) GR and healthy MOND-family theories both
+   predict ~0; every number here discriminates among the framework's OWN readings, never vs LCDM.
+   Two-sided falsifiable: a confirmed Chae-type AQUAL-strength wide-binary boost kills the gated
+   survivor; a x3 INPOP/EPM secular refit either detects the drift or closes the window from above.
+==================================================================================================
+ ORIGIN: ALL CHECKS PASS
+==================================================================================================

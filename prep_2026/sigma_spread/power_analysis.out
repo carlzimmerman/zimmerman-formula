@@ -1,0 +1,152 @@
+======================================================================================================
+ (1) REAL CATALOG SPECS (recomputed from touched data; specs only -- estimator NOT fired on real data)
+======================================================================================================
+  Gannon+2024: 24 UDGs with stellar sigma (23 cluster/group = the 2026 reservoir);
+    fractional sigma errors: median 0.24, range 0.06-0.46 (resampled in the MC)
+    MEASURED astro floor: resid[ln sigma | ln M*, ln R_e] total 0.54 ln; measurement-subtracted
+    INTRINSIC s_FJ(meas) = 0.48 ln (0.21 dex) -- vs banked 0.15: the in-hand
+    heterogeneous population is x3.2 WORSE than the banked floor (24 objects, mixed
+    distances/instruments/environments; if MI is true part of this scatter IS signal -> conservative).
+  HeCS-omnibus: 227 clusters, median 180 members/cluster (sum 52415),
+    median sigma_cl 686 km/s -- caustic membership + R200 per cluster (the free side).
+  HeCS e_cz median 36 km/s vs sigma_cl 686 -> proxy k_r measurement noise 5% of sigma_cl:
+    NEGLIGIBLE -- proxy dilution D is projection-dominated (banked D~0.4; D~0.6 with caustic zones), not noise.
+  GalWCat19: 34471 members matched -> measured fraction in the 0.5-1.0 R200 shell = 0.40
+    (members confined to <R200 by construction; the shell keeps ~40% of a targeted sample).
+
+======================================================================================================
+ (2) NULL CALIBRATION -- MG truth (f=0): the estimator's z must be standard normal, FP(3sig) ~ 1.3e-3
+======================================================================================================
+  MG-truth MC (N=400, 20k trials): mean z = -0.008, sd = 1.002, P(z>=3) = 0.0012 (expect ~0.0013)
+  [OK] null calibrated: under ANY-MG truth the frozen estimator fires at 3 sigma with p~1.3e-3, as designed.
+  sqrt(N) scaling check: z(800)/z(200) = 1.98 (expect 2.00)
+  N_90 validation (fiducial f=10% can., ELT, s_FJ=0.15, D=0.4): N_90=2629 -> empirical power 0.91 (target 0.90)
+  banked-analytic consistency: MC median-z N_3sigma = 1291 vs analytic two-bin 903 -> x1.43.
+    EXPLAINED, BOTH WAYS: the analytic two-bin put the bins at the y-window ENDPOINTS (contrast = the
+    full relational spread f); real settled/plunger CLASS MEANS sit inside the window (y~0.08 / y~1.35),
+    so the usable contrast is ~85% of f -> N x~1.4. The MC is the honest number; the banked analytic
+    was ~x1.4 optimistic ON TOP of its x2-5 FJ-floor correction. Same estimator, no free parameters.
+
+======================================================================================================
+ (3) POWER GRID -- N_carriers to 3 sigma (median-z crossing | 90% power), frozen estimator
+======================================================================================================
+
+  --- y-distribution fork: two-class (banked-compatible) ---
+   CANONICAL f= 6.0% | A 2026 in-hand   (Gannon errs ~24%, s_FJ=meas 0.48, D=0.4) | N_3sig =  26,545 | N_90 =   54,069
+   CANONICAL f= 6.0% | B ELT sigma<=10%, banked FJ floor 0.15, D=0.4              | N_3sig =   3,369 | N_90 =    6,863
+   CANONICAL f= 6.0% | C ELT sigma<=10%, banked FJ floor 0.15, D=0.6 (DESI-tagged) | N_3sig =   1,454 | N_90 =    2,961
+   CANONICAL f= 6.0% | D ELT sigma<=10%, tight FJ 0.08, D=0.6 (best realistic)    | N_3sig =     756 | N_90 =    1,539
+   CANONICAL f= 6.0% | E ELT sigma<=10%, s_FJ stays at meas 0.48, D=0.6 (no FJ progress) | N_3sig =  11,637 | N_90 =   23,703
+   CANONICAL f=13.0% | A 2026 in-hand   (Gannon errs ~24%, s_FJ=meas 0.48, D=0.4) | N_3sig =   6,675 | N_90 =   13,597
+   CANONICAL f=13.0% | B ELT sigma<=10%, banked FJ floor 0.15, D=0.4              | N_3sig =     776 | N_90 =    1,580
+   CANONICAL f=13.0% | C ELT sigma<=10%, banked FJ floor 0.15, D=0.6 (DESI-tagged) | N_3sig =     343 | N_90 =      698
+   CANONICAL f=13.0% | D ELT sigma<=10%, tight FJ 0.08, D=0.6 (best realistic)    | N_3sig =     178 | N_90 =      363
+   CANONICAL f=13.0% | E ELT sigma<=10%, s_FJ stays at meas 0.48, D=0.6 (no FJ progress) | N_3sig =   2,342 | N_90 =    4,771
+   ALTERNATE f= 7.6% | A 2026 in-hand   (Gannon errs ~24%, s_FJ=meas 0.48, D=0.4) | N_3sig =  16,629 | N_90 =   33,871
+   ALTERNATE f= 7.6% | B ELT sigma<=10%, banked FJ floor 0.15, D=0.4              | N_3sig =   2,146 | N_90 =    4,372
+   ALTERNATE f= 7.6% | C ELT sigma<=10%, banked FJ floor 0.15, D=0.6 (DESI-tagged) | N_3sig =     963 | N_90 =    1,961
+   ALTERNATE f= 7.6% | D ELT sigma<=10%, tight FJ 0.08, D=0.6 (best realistic)    | N_3sig =     495 | N_90 =    1,008
+   ALTERNATE f= 7.6% | E ELT sigma<=10%, s_FJ stays at meas 0.48, D=0.6 (no FJ progress) | N_3sig =   7,088 | N_90 =   14,437
+   ALTERNATE f=14.4% | A 2026 in-hand   (Gannon errs ~24%, s_FJ=meas 0.48, D=0.4) | N_3sig =   4,998 | N_90 =   10,181
+   ALTERNATE f=14.4% | B ELT sigma<=10%, banked FJ floor 0.15, D=0.4              | N_3sig =     642 | N_90 =    1,307
+   ALTERNATE f=14.4% | C ELT sigma<=10%, banked FJ floor 0.15, D=0.6 (DESI-tagged) | N_3sig =     281 | N_90 =      572
+   ALTERNATE f=14.4% | D ELT sigma<=10%, tight FJ 0.08, D=0.6 (best realistic)    | N_3sig =     149 | N_90 =      304
+   ALTERNATE f=14.4% | E ELT sigma<=10%, s_FJ stays at meas 0.48, D=0.6 (no FJ progress) | N_3sig =   1,971 | N_90 =    4,014
+
+  --- y-distribution fork: continuum (conservative, honesty fork) ---
+   CANONICAL f= 6.0% | A 2026 in-hand   (Gannon errs ~24%, s_FJ=meas 0.48, D=0.4) | N_3sig =  82,647 | N_90 =  168,343
+   CANONICAL f= 6.0% | B ELT sigma<=10%, banked FJ floor 0.15, D=0.4              | N_3sig =   6,241 | N_90 =   12,713
+   CANONICAL f= 6.0% | C ELT sigma<=10%, banked FJ floor 0.15, D=0.6 (DESI-tagged) | N_3sig =   2,720 | N_90 =    5,541
+   CANONICAL f= 6.0% | D ELT sigma<=10%, tight FJ 0.08, D=0.6 (best realistic)    | N_3sig =   1,456 | N_90 =    2,966
+   CANONICAL f= 6.0% | E ELT sigma<=10%, s_FJ stays at meas 0.48, D=0.6 (no FJ progress) | N_3sig =  21,496 | N_90 =   43,785
+   CANONICAL f=13.0% | A 2026 in-hand   (Gannon errs ~24%, s_FJ=meas 0.48, D=0.4) | N_3sig =  12,274 | N_90 =   25,002
+   CANONICAL f=13.0% | B ELT sigma<=10%, banked FJ floor 0.15, D=0.4              | N_3sig =   1,430 | N_90 =    2,913
+   CANONICAL f=13.0% | C ELT sigma<=10%, banked FJ floor 0.15, D=0.6 (DESI-tagged) | N_3sig =     619 | N_90 =    1,261
+   CANONICAL f=13.0% | D ELT sigma<=10%, tight FJ 0.08, D=0.6 (best realistic)    | N_3sig =     326 | N_90 =      664
+   CANONICAL f=13.0% | E ELT sigma<=10%, s_FJ stays at meas 0.48, D=0.6 (no FJ progress) | N_3sig =   4,578 | N_90 =    9,324
+   ALTERNATE f= 7.6% | A 2026 in-hand   (Gannon errs ~24%, s_FJ=meas 0.48, D=0.4) | N_3sig =  37,933 | N_90 =   77,266
+   ALTERNATE f= 7.6% | B ELT sigma<=10%, banked FJ floor 0.15, D=0.4              | N_3sig =   4,229 | N_90 =    8,613
+   ALTERNATE f= 7.6% | C ELT sigma<=10%, banked FJ floor 0.15, D=0.6 (DESI-tagged) | N_3sig =   1,705 | N_90 =    3,473
+   ALTERNATE f= 7.6% | D ELT sigma<=10%, tight FJ 0.08, D=0.6 (best realistic)    | N_3sig =     936 | N_90 =    1,907
+   ALTERNATE f= 7.6% | E ELT sigma<=10%, s_FJ stays at meas 0.48, D=0.6 (no FJ progress) | N_3sig =  13,098 | N_90 =   26,680
+   ALTERNATE f=14.4% | A 2026 in-hand   (Gannon errs ~24%, s_FJ=meas 0.48, D=0.4) | N_3sig =   9,586 | N_90 =   19,525
+   ALTERNATE f=14.4% | B ELT sigma<=10%, banked FJ floor 0.15, D=0.4              | N_3sig =   1,158 | N_90 =    2,358
+   ALTERNATE f=14.4% | C ELT sigma<=10%, banked FJ floor 0.15, D=0.6 (DESI-tagged) | N_3sig =     509 | N_90 =    1,036
+   ALTERNATE f=14.4% | D ELT sigma<=10%, tight FJ 0.08, D=0.6 (best realistic)    | N_3sig =     270 | N_90 =      551
+   ALTERNATE f=14.4% | E ELT sigma<=10%, s_FJ stays at meas 0.48, D=0.6 (no FJ progress) | N_3sig =   3,819 | N_90 =    7,778
+
+======================================================================================================
+ (4) N_CLUSTERS CURVE -- carriers/cluster anchored to real programs; z vs number of clusters
+======================================================================================================
+  carriers/cluster: LEWIS-class campaign 30 targets x shell fraction 0.40 (measured, GalWCat19)
+    x cut retention 0.8 = 9.6 usable carriers/cluster;  2026 reality: 23 carriers TOTAL / ~10 hosts = 2.3.
+
+    N_cl | N_carriers | median z (scenario C, two-class, canonical) f=6% / f=13%
+       5 |         48 |  0.54 /  1.13
+      10 |         96 |  0.76 /  1.60
+      25 |        240 |  1.20 /  2.52
+      50 |        480 |  1.69 /  3.57
+     100 |        960 |  2.40 /  5.05
+     227 |      2,178 |  3.61 /  7.60  <- HeCS-omnibus reservoir (phase-tagged clusters that EXIST publicly)
+     500 |      4,798 |  5.36 / 11.29
+
+  3-sigma (median-z) cluster requirement, scenario C canonical: f=13% -> 35 clusters; f=6% -> 157 clusters.
+  => the CLUSTER reservoir is NOT the wall (227 phase-tagged clusters exist); the per-carrier
+     sigma precision tier (<=10%, i.e. ELT-HARMONI ~2032) and the campaign scale are.
+
+======================================================================================================
+ (5) 2026 IN-HAND CONFIGURATION -- the firewall check (23 carriers, real Gannon errors, untagged)
+======================================================================================================
+  CANONICAL f= 6.0%: median z = 0.09 (10-90%: -1.23..+1.42)  [banked-floor s_FJ=0.15 would give 0.14]  P(z>=3) = 0.004
+  CANONICAL f=13.0%: median z = 0.18 (10-90%: -1.16..+1.50)  [banked-floor s_FJ=0.15 would give 0.33]  P(z>=3) = 0.006
+  ALTERNATE f= 7.6%: median z = 0.10 (10-90%: -1.21..+1.43)  [banked-floor s_FJ=0.15 would give 0.17]  P(z>=3) = 0.006
+  ALTERNATE f=14.4%: median z = 0.20 (10-90%: -1.10..+1.53)  [banked-floor s_FJ=0.15 would give 0.38]  P(z>=3) = 0.006
+  [OK] even the BEST corner (alt footing f=14.4%, banked floor) gives median z = 0.36 < 1.
+  => ANY firing on the 23 in-hand carriers is EXPLORATORY/FIREWALLED: it can neither support nor
+     kill (pre-derived power 0.1-0.6 sigma; matches the banked 2026-06-26 pilot expectation).
+
+======================================================================================================
+ (6) THE dE/BRIGHT-MEMBER BACKDOOR (Sohn+2017 A2029 specs) -- verified dead in the same MC
+======================================================================================================
+  A2029 usable (sigma>=60 km/s): 665 members, median frac err 0.10; dE-class predicted f~0.7%
+  (adiabatic-dead, rederive sec 4) -> N_3sigma = 216,747 (median-z) vs 665 in the whole catalog:
+  shortfall x326. No backdoor around the firewall through survey-measurable members.
+
+======================================================================================================
+ (7) SUBSTRUCTURE STRESS TEST -- the one confound that can fake b>0 under TRUE MG (cut, don't shuffle)
+======================================================================================================
+  MG truth + 15% coherent infalling-group members (shared +0.12 ln-sigma formation offset, +1.0 proxy
+  offset), NO DS cut, N=900: median FAKE z = 2.36, P(fake z>=3) = 0.28
+  same with the E1d DS-cut applied (groups excised):        median z = +0.03, P(z>=3) = 0.0008
+  [OK] BOTH WAYS: without the substructure cut a 3-sigma 'MI detection' can be FAKED under true MG;
+       the frozen E1d cut restores the exact null. A detection without the DS cut proves nothing.
+
+======================================================================================================
+ (8) VERDICT (rule E9, frozen above)
+======================================================================================================
+  POWERED NOW?   NO dataset qualifies. The entire public carrier reservoir is 23 cluster/group
+    UDG sigmas (Gannon+2024) at ~24% errors, untagged: at TODAY'S errors + the MEASURED in-hand
+    astro floor (s_FJ=0.48), 3 sigma needs N ~ 6,675-26,545 (canonical band ends, two-class y)
+    -> gap x290-1,154. In-hand median z = 0.1-0.4: EXPLORATORY ONLY (firewalled).
+  POWERED IF (the specific combination, all elements named):
+    (i) internal-sigma errors <=10% on diffuse carriers  -> ELT-HARMONI-class IFU (~2032; NO 2026
+        instrument reaches the 8-20 km/s carriers: DESI/SDSS/MUSE floors 23-64 km/s, census (B));
+    (ii) FJ control held at the banked 0.15 floor (needs homogeneous distances/apertures -- the
+        in-hand heterogeneous floor is 0.48 and would inflate N x7.5); and
+    (iii) DESI-DR1-grade phase tagging (D=0.6; caustic infrastructure ALREADY public: HeCS-omnibus
+        227 clusters + GalWCat19 + gfinder >=10^3 rich clusters)
+    => N_3sigma = 343 (f=13%) to 1,454 (f=6%) carriers, i.e. 36-152 LEWIS-class cluster
+    campaigns (10 usable carriers each); best realistic corner (tight FJ 0.08): 178 carriers.
+    The cluster reservoir (227 phase-tagged) already covers the f>=10% half of the band at D=0.6;
+    the CONSERVATIVE continuum-y fork multiplies all N by ~x3 (grid above) -- pre-register BOTH.
+  STILL UNDERPOWERED (2026): YES -- the binding wall is carrier sigma precision, which no existing
+    or imminent public release (incl. the NOT-public DESI DR2, verified 401) touches. Exact gap:
+    23 in hand vs ~178-1,454 needed at a precision tier that first exists ~2032 (x8-63);
+    vs ~6,675-26,545 at today's tier (x290-1,154).
+  WHAT CLOSES IT: ELT-HARMONI first light (~2032) + a pre-registered target list built NOW for free
+    (cross-match the DESI DR1 647k-dwarf VAC LSB tail vs HeCS-omnibus/gfinder clusters; tag infall
+    phase from the public caustics; freeze THIS estimator). Both footings stay covered: the alt-a0
+    band ends need x0.7-0.8 the N of canonical (grid) -- the discriminator is not footing-hostage.
+
+ EXIT 0 = frozen-estimator MC calibrated (null exact, sqrt-N verified, banked analytic reproduced);
+          verdict: STILL UNDERPOWERED in 2026; POWERED-IF combination named and quantified.

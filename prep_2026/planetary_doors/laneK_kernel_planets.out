@@ -1,0 +1,273 @@
+####################################################################################################
+# S1  EXACT KINEMATICS: what spectral arguments can Box_u = (u.grad)^2 take on a trajectory?
+####################################################################################################
+
+ On the worldline itself, Box_u = d^2/dtau^2 (proper-time second derivative; the covariant
+ field statement (u.grad) along the streamline of a stationary flow reduces to the same).
+ The kernel is DEFINED (v4, operator_definition.py) by the Borel functional calculus of this
+ self-adjoint operator: K acts on each spectral component of its operand at that component's
+ eigenvalue. So the question 'what does K see on an orbit' is the question 'what is the
+ spectrum of the orbit's own u_mu(tau)'. Three exact sympy computations:
+
+   [PASS] circular orbit: Box_u u_spatial = -(gamma*omega)^2 u_spatial  (oscillatory eigenvalue, NEGATIVE)
+   [PASS] circular orbit: Box_u u_time = 0  (DC eigenvalue; K(0)=0 sector)
+   [PASS] circular orbit: u^mu Box_u u_mu = -|a|^2 exactly (a = gamma^2 omega v)
+   [PASS] Rindler: Box_u u_mu = +alpha^2 u_mu exactly (EXPONENTIAL eigenvalue, POSITIVE = the dS-Unruh slice)
+   [PASS] Rindler: u^mu Box_u u_mu = -alpha^2 (same scalar as circular -- the scalar cannot distinguish them)
+
+ => THE STRUCTURAL FACT (the whole landmine question in one line):
+    positive spectral arguments z = +(a/a0)^2 -- the arguments on which the framework's
+    published nu-recovery evaluates K (the 'constant-|a| reduction', kinetic_compute.py:187,
+    exact ONLY for hyperbolic/Rindler worldlines whose u has e^{+a tau} components) -- are
+    UNREACHABLE on any bounded orbit. A circular orbit's u_mu spans frequencies {0, +-gamma*omega}
+    ONLY: the Borel calculus evaluates K at z = 0 and z = -(c*omega_proper/a0)^2 <= 0, i.e. ON THE
+    CUT, never on the positive axis. Any (u.grad)^n insertion (EOM variation terms) generates
+    only harmonics {-(k omega)^2, k in Z} -- still <= 0. The a0/2 tail lives at z=+(a/a0)^2;
+    a bound orbit cannot feed the kernel that argument. This is kinematics, not tuning.
+
+####################################################################################################
+# S2  THE PUBLISHED HERGLOTZ MACHINERY, RE-VERIFIED + the master deviation identity
+####################################################################################################
+
+ sum rule INT dmu(t)/|t| = 1.0000000000   (v11: = K(oo)-K(0) = 1)
+   [PASS] v11 sum rule verified to <1e-8
+   [PASS] master identity 1-K(z) = INT dmu/(|t|+z) exact on z>0 (max err <1e-7)
+   -> on the positive axis the deviation is a Stieltjes transform of the POSITIVE measure:
+      1-K(x^2) ~ a0/(2a) at a>>a0  == THE LANDMINE TERM (delta g = a0/2), IF z=+(a/a0)^2 is fed.
+   [PASS] K(-W^2+i0) rationalizes to (sqrt(4W^2-1)+i)/(2W) EXACTLY (region-B cut, W>1/2)
+   [PASS] |K|^2 = ReK^2+ImK^2 = 1 EXACTLY on the whole region-B cut (W>1/2): pure phase response
+   [PASS] Re K = sqrt(1-1/(4W^2)) -> 1 - 1/(8W^2) + O(W^-4)  (reactive deviation)
+   [PASS] |Im K| = 1/(2W) = a0/(2 c omega)  (the phase/secular part; sign carried by s=-1, see S4)
+
+ So on the arguments a bound orbit can feed, the PUBLISHED kernel is a PURE PHASE:
+     K_cut(W) = exp(+/- i phi),  phi = arcsin(1/(2W)) = arcsin(a0/(2 c omega))
+     reactive deviation:  1 - Re K = 1/(8W^2) = (a0/(c omega))^2 / 8      [tiny at planets]
+     phase (secular):     |Im K|   = 1/(2W)   =  a0/(2 c omega)           [the NEW channel]
+ (mi_cauchy_wellposed_2026/refute_acausal_secular.py independently exhibits D/w = 1 + i/(2w).)
+
+####################################################################################################
+# S3  THE THREE CLOSURES OF THE SAME PUBLISHED ACTION, CONFRONTED PER PLANET (both footings)
+####################################################################################################
+
+ The published stack contains, verbatim, TWO inequivalent evaluations of K on orbits, and its
+ own off-circular SPEC (mi_offcircular_completion_SPEC.py) names a third as the open completion:
+  READING A (constitutive / 'constant-|a| reduction', kinetic_compute.py:187 'K(Box_u/a0^2) ->
+     scalar k = mu_fw(|a|/a0)'): K evaluated at z=+(a/a0)^2. Exact for Rindler worldlines (S1b).
+     This reading IS the published nu-recovery at galaxies ('reproduces nu to 3.35e-13').
+  READING B (spectral / Borel functional calculus, operator_definition.py): K evaluated at the
+     orbit's own spectrum (S1a): z=0 and z=-(c omega/a0)^2. This is what the v4 operator
+     DEFINITION prescribes on a circular orbit.
+  READING C (the SPEC's Stage-1 off-circular completion): K_ij(w) = m S(|a|/a0) L(w/omega_c) P_ij
+     -- acceleration-keyed amplitude S = 1-mu_fw (the RAR slice) x a frequency GATE L with a
+     FREE corner omega_c ('corner-location FREE', SPEC stage (i)). Lorentzian L = 1/(1+x^2)
+     ('FORM forced by dS 1/sinh^2 envelope', SPEC).
+
+
+ --- footing: canon rho_DE cH_L/Z  (a0 = 9.362e-11) ---
+      body omega[rad/s]  g_N[m/s^2]  W=c om/a0 |  A: dg=a0/2    excl. |  B react dg    margin | B drift m/yr
+   Mercury    8.267e-07   3.957e-02  2.647e+12 |    4.68e-11     1018x |    7.06e-28   6.5e+13 |         0.57
+     Venus    3.236e-07   1.133e-02  1.036e+12 |    4.68e-11      585x |    1.32e-27   6.1e+13 |         1.07
+     Earth    1.991e-07   5.930e-03  6.376e+11 |    4.68e-11     5380x |    1.82e-27   4.8e+12 |         1.47
+      Mars    1.059e-07   2.554e-03  3.390e+11 |    4.68e-11    33436x |    2.78e-27   5.0e+11 |         2.25
+   Jupiter    1.678e-08   2.189e-04  5.375e+10 |    4.68e-11       84x |    9.47e-27   5.9e+13 |         7.67
+    Saturn    6.759e-09   6.458e-05  2.164e+10 |    4.68e-11     6687x |    1.72e-26   4.1e+11 |        14.13
+ Moon(LLR)    2.662e-06   2.698e-03  8.523e+12 |    4.68e-11       -- |    4.64e-30        -- |      3.79 mm
+
+ --- footing: alt rho_tot cH0  (a0 = 1.130e-10) ---
+      body omega[rad/s]  g_N[m/s^2]  W=c om/a0 |  A: dg=a0/2    excl. |  B react dg    margin | B drift m/yr
+   Mercury    8.267e-07   3.957e-02  2.193e+12 |    5.65e-11     1228x |    1.03e-27   4.5e+13 |         0.69
+     Venus    3.236e-07   1.133e-02  8.586e+11 |    5.65e-11      706x |    1.92e-27   4.2e+13 |         1.29
+     Earth    1.991e-07   5.930e-03  5.282e+11 |    5.65e-11     6494x |    2.66e-27   3.3e+12 |         1.78
+      Mars    1.059e-07   2.554e-03  2.808e+11 |    5.65e-11    40357x |    4.05e-27   3.5e+11 |         2.71
+   Jupiter    1.678e-08   2.189e-04  4.453e+10 |    5.65e-11      101x |    1.38e-26   4.1e+13 |         9.26
+    Saturn    6.759e-09   6.458e-05  1.793e+10 |    5.65e-11     8071x |    2.51e-26   2.8e+11 |        17.05
+ Moon(LLR)    2.662e-06   2.698e-03  7.062e+12 |    5.65e-11       -- |    6.76e-30        -- |      4.57 mm
+
+ READING A -- the landmine, confirmed at full strength: a constant sunward a0/2 at every
+   planet, excluded 1008x (Mercury) ... 34,000x (Mars, canon) / 41,000x (alt). Blanchet-Novak
+   2011 (arXiv:1105.5815 p.8) already called this class 'ruled out'. If the constant-|a|
+   reduction is the circular-orbit law of the theory (it is stated as exactly that at
+   galaxies), Door C is DEAD at planets by 3.0-4.6 orders. No EFE rescue exists in MI.
+ READING B -- the landmine is KILLED BY KINEMATICS: reactive residuals 1.7e-28 (Mercury) ...
+   1.7e-25 (Saturn) m/s^2, i.e. 1.4e13x ... 4e10x BELOW the per-planet bounds (margin col).
+   Milgrom's 2009 folk-expectation ('without affecting the motions of planets') is realized,
+   with 10-13 orders to spare. BUT the SAME pure-phase response carries the secular drift
+   |adot|/a = a0/c (S4): 0.57 m/yr at Mercury, 2.25 m/yr at Mars, 14.2 m/yr at Saturn,
+   3.78 mm/yr at the Moon (canon; x1.21 alt) -- confronted below. AND reading B at galactic
+   orbits erases the RAR (S5). The kill of the landmine and the kill of the framework's own
+   galactic phenomenology are THE SAME THEOREM applied at two radii.
+
+####################################################################################################
+# S4  THE SECULAR DRIFT: derivation + numerical time-domain validation
+####################################################################################################
+
+ A pure-phase inertial response K = e^{i phi(omega)} rotates the acceleration by phi relative
+ to the force: the EOM K(D)a = g leaves a tangential imbalance f_t = tan(phi) g ~ phi g.
+ Gauss/energy secular rate for a quasi-circular orbit:  d(ln r)/dt = -2 omega Im K(omega)
+ (damping convention). With |Im K| = a0/(2 c omega):  |rdot|/r = a0/c -- UNIVERSAL, every
+ orbit, both footings' own a0. Equivalent to an effective |Gdot/G| = a0/c.
+ SIGN: KMS-passivity of the dS bath says damping (inspiral); the framework's s=-1 Machian
+ branch REMOVES inertia at DC and its lagged removal is anti-damping (outspiral) -- the sign
+ inherits the s=-1 postulate status (rb2 reached the same). The MAGNITUDE is sign-blind, and
+ so are the bounds below. Steps (1)-(2) of the chain are exact analytics; the orbital-mechanics
+ factor (3) is validated numerically below with a direct tangential drag + baseline subtraction:
+
+   tangential-drag test (eps=1e-06, integrator baseline +3.1e-12):
+     measured d ln r/dt = +1.9959e-06   predicted 2*eps*omega = +2.0000e-06   ratio 0.9979
+   [PASS] orbital-mechanics factor d ln r/dt = 2 omega*(f_t/g_N) validated in the time domain (<2%)
+   [PASS] drift sign tracks the tangential-force sign (=> the s=-1 postulate owns inspiral vs outspiral)
+
+ confrontation of the READING-B drift |rdot|/r = a0/c (sign-blind bounds):
+   canon rho_DE cH_L/Z: |rdot|/r = a0/c = 3.123e-19 /s = 9.855e-12 /yr
+      vs MESSENGER |Gdot/G| < 4e-14/yr (Genova+18)      -> EXCEEDED x   246
+      vs LLR Gdot/G 2sig 2.42e-14/yr (Biskupek+21)     -> EXCEEDED x   407
+      lunar drift 3.79 mm/yr vs LLR tidal budget +-0.08 mm/yr -> 47 sigma
+      Saturn 14.1 m/yr vs Cassini-era proxy ~2.3 m/yr -> x6;  Mars 2.25 m/yr vs proxy ~0.05 m/yr -> x45
+   alt rho_tot cH0: |rdot|/r = a0/c = 3.769e-19 /s = 1.189e-11 /yr
+      vs MESSENGER |Gdot/G| < 4e-14/yr (Genova+18)      -> EXCEEDED x   297
+      vs LLR Gdot/G 2sig 2.42e-14/yr (Biskupek+21)     -> EXCEEDED x   492
+      lunar drift 4.57 mm/yr vs LLR tidal budget +-0.08 mm/yr -> 57 sigma
+      Saturn 17.1 m/yr vs Cassini-era proxy ~2.3 m/yr -> x7;  Mars 2.71 m/yr vs proxy ~0.05 m/yr -> x54
+
+ => READING B is EXCLUDED in the DISSIPATIVE/PHASE channel: the universal drift a0/c ~ 1e-11/yr
+    exceeds the Gdot/G-class ephemeris sensitivity by ~2.4-2.7 ORDERS (and LLR sees ~47 sigma).
+    The t^2-growing longitude signal of a secular rdot is exactly the signal class the
+    published Gdot/G fits bound; it is not absorbable into initial conditions. NOTE the
+    honest scope: the Gdot/G numbers are fits of that signal class, not a dedicated refit of
+    this kernel; a factor-few, not orders. rb2's independent estimate (~0.4 m/yr Earth) is the
+    same physics with an O(pi) different orbit-average convention; ours is ODE-validated above.
+
+####################################################################################################
+# S5  THE GALACTIC SIDE OF THE FORK (the RAR the framework lives on), same theorem
+####################################################################################################
+
+ --- footing: canon rho_DE cH_L/Z ---
+                         system omega[rad/s]          W      1-ReK needed nu-1
+              MW @ Sun (y=2.29)    9.201e-16  2.946e+03   1.44e-08       0.199
+        SPARC disk edge (y=0.5)    3.901e-16  1.249e+03   8.01e-08       0.732
+   deep dwarf (y=0.3, v=25km/s)    1.123e-15  3.598e+03   9.66e-09       1.082
+
+ --- footing: alt rho_tot cH0 ---
+                         system omega[rad/s]          W      1-ReK needed nu-1
+              MW @ Sun (y=2.29)    1.111e-15  2.946e+03   1.44e-08       0.199
+        SPARC disk edge (y=0.5)    4.708e-16  1.249e+03   8.01e-08       0.732
+   deep dwarf (y=0.3, v=25km/s)    1.356e-15  3.598e+03   9.66e-09       1.082
+
+ => Under READING B every rotation-supported system is Newtonian to ~1e-7: the RAR
+    (0.108 dex, the framework's own flagship fit) is NOT reproduced by the honest spectral
+    evaluation of the published action. The published nu-recovery lives entirely on READING A.
+ => And NO pure-frequency kernel can substitute: on circular orbits omega = a/v = y a0/v, so at
+    FIXED y the kernel argument varies with v by log10(300/20) = 1.18 dex across SPARC. A
+    frequency-keyed nu_eff reproducing the mean MOND slope (nu ~ y^-1/2) would displace the
+    dwarf-vs-giant RAR branches by ~0.5*1.18 = 0.59 dex (canon slope) -- vs the observed
+    cross-galaxy coherence <~0.06 dex. Frequency-only closures are RAR-DEAD independently of
+    the planets. (This is the planetary-side face of PRIOR_ART open-lane #4.)
+
+   [PASS] fork stated: no single consistent reading of the published action passes BOTH the RAR and the planets
+####################################################################################################
+# S6  READING C (the SPEC's gated completion): the exact condition for a planetary pass
+####################################################################################################
+
+ K_eff(a, omega) = 1 - S(|a|/a0) * Lc(omega/omega_c),  S = 1 - mu_fw (the RAR-calibrated
+ amplitude; S -> a0/(2 g_N) deep-Newton -- the landmine amplitude), Lc a causal relaxator
+ gate with the SPEC's free corner omega_c. Requirements, computed:
+   (i)  REACTIVE (perihelion) pass:  (a0/2) * Re[1-Lc](omega_p) <= dg_bound(planet)
+        Lorentzian: Re residual = (omega_c/omega)^2   ->  omega_c <= omega_p * sqrt(2 dg_b/a0)
+   (ii) SECULAR (drift) pass:       |rdot|/r = a0 omega_c/g_N <= drift bound
+   (iii) RAR floor: the gate must stay OPEN (Lc >= 0.90) at the fastest orbits where the O(1)
+        MOND boost is measured -> omega_c >= 3 * omega_max(MOND sample).
+
+ --- footing: canon rho_DE cH_L/Z ---
+   (i)  reactive ceilings: Mercury 2.6e-08, Venus 1.3e-08, Earth 2.7e-09, Mars 5.8e-10, Jupiter 1.8e-09, Saturn 8.3e-11
+        binding: Saturn  omega_c <= 8.27e-11 rad/s
+   (ii) drift ceilings [rad/s]: Mercury(Gdot/G) 5.4e-13, Mars(rdot proxy) 1.9e-13, Saturn(rdot proxy) 3.5e-14, Moon(LLR) 3.8e-13, Moon(Gdot/G) 2.2e-14
+        binding: Moon(Gdot/G)  omega_c <= 2.21e-14 rad/s   (tau_mem >= 1.4 Myr)
+   (iii) RAR floor: omega_c >= 8.99e-15 rad/s  (gate>=0.90 at y~0.8, v~25 km/s dwarfs)
+   ==> WINDOW: omega_c in [9.0e-15, 2.2e-14] rad/s = [1.4, 3.5] Myr -> OPEN, width x2.5
+   [PASS] gated window computed (canon rho_DE cH_L/Z)
+        WB 3 kAU: omega = 1.5e-12, gate(max omega_c) = 0.000 -> MOND boost x0.00
+        WB 10 kAU: omega = 2.4e-13, gate(max omega_c) = 0.008 -> MOND boost x0.01
+        WB 20 kAU: omega = 8.6e-14, gate(max omega_c) = 0.062 -> MOND boost x0.06
+ --- footing: alt rho_tot cH0 ---
+   (i)  reactive ceilings: Mercury 2.4e-08, Venus 1.2e-08, Earth 2.5e-09, Mars 5.3e-10, Jupiter 1.7e-09, Saturn 7.5e-11
+        binding: Saturn  omega_c <= 7.52e-11 rad/s
+   (ii) drift ceilings [rad/s]: Mercury(Gdot/G) 4.4e-13, Mars(rdot proxy) 1.6e-13, Saturn(rdot proxy) 2.9e-14, Moon(LLR) 3.1e-13, Moon(Gdot/G) 1.8e-14
+        binding: Moon(Gdot/G)  omega_c <= 1.83e-14 rad/s   (tau_mem >= 1.7 Myr)
+   (iii) RAR floor: omega_c >= 1.08e-14 rad/s  (gate>=0.90 at y~0.8, v~25 km/s dwarfs)
+   ==> WINDOW: omega_c in [1.1e-14, 1.8e-14] rad/s = [1.7, 2.9] Myr -> OPEN, width x1.7
+   [PASS] gated window computed (alt rho_tot cH0)
+        WB 3 kAU: omega = 1.5e-12, gate(max omega_c) = 0.000 -> MOND boost x0.00
+        WB 10 kAU: omega = 2.4e-13, gate(max omega_c) = 0.006 -> MOND boost x0.01
+        WB 20 kAU: omega = 8.6e-14, gate(max omega_c) = 0.043 -> MOND boost x0.04
+
+ => READING C passes ALL planetary bounds IFF the corner sits in a ~Myr-scale sliver:
+    canon [1.0e-14, ~3.5e-14] rad/s (tau_mem ~ 0.9-3 Myr), factor <~3.5 wide; alt similar and
+    slightly tighter. This is a CONDITIONAL pass: nothing published pins omega_c (the SPEC
+    says so verbatim), and of the SPEC's three named corner candidates only the ~Myr 'd1-pole'
+    lands in the window -- omega_int (~0.4 Gyr) and H_Lambda (~17.5 Gyr) corners CLOSE the
+    MOND gate on galaxies themselves (they sit below the galactic band) and are RAR-dead.
+    FALSIFIABLE both ways: (1) the gate at the surviving corner kills >=84% of the MOND boost
+    in 3-20 kAU wide binaries -> a confirmed Chae-type AQUAL-strength WB boost KILLS gated
+    Door C; a Banik-type Newtonian WB result is what it PREDICTS. (2) The drift at the max
+    corner sits AT current Saturn/Mars secular sensitivity: a dedicated INPOP/EPM secular
+    refit improving x3 either detects it or closes the window.
+
+####################################################################################################
+# S7  Q2_MI, LLR BAND, CROSS-SUITE RECONCILIATION, LEDGER, VERDICT
+####################################################################################################
+
+ Q2 (the Cassini/ephemeris EFE quadrupole, Park+26 ceiling 5.2e-27 s^-2):
+   READING A (quasistatic MI, prior committed work cassini_mi_evasion_2026, re-derived scale):
+     true l=2 is second order in a_ext with deep-Newton nu-1 = a0/(2 a_int):
+     Q2_MI ~ 7.4e-34 s^-2 (canon) / ~1.1e-33 (alt, x(a0_alt/a0_can)^2) = 1.4e-7 x ceiling.
+   READINGS B/C only ADD suppression (the gate closes on Saturn's omega; the reactive
+     residual is monopole-like with k = a0^2/(8c^2) ~ 1.2e-38 s^-2, 11 orders under ceiling).
+   => Q2_MI <= 7.4e-34 (canon) / 1.1e-33 (alt) on EVERY reading that survives to be tested:
+      the MI door's Q2 is invisible to Cassini. [The MG door's own-nu Q2 = 2.5-3.3e-26 =
+      4.8-6.4x ceiling (+13/+17.5 sigma) stands, branchB_q2_gate_2026 -- the Door-A wall.]
+ LLR band:
+   READING A: the naive-tail direction-differential O(1-2 cm) synodic signal (banked) --
+     at residual level, independently disfavored.
+   READING B: reactive 4.6e-30 m/s^2 (invisible); the drift 3.78/4.57 mm/yr (canon/alt)
+     vs the +-0.08 mm/yr tidal budget = ~47/57 sigma -> LLR ALONE kills reading B.
+   READING C at the max corner: drift <=0.02 mm/yr, gate residual ~8e-27 m/s^2 -> invisible.
+ Cross-suite (prep_2026/mi_fingerprint, read post-hoc; derived independently here):
+   AGREE: the closure fork (their 'literal-frequency closure is dead (no MOND + secular
+     drift)'; their first-moment closure = our reading A); |K|=1 pure phase; the sum rule;
+     the s=-1 sign ownership of the drift direction; corner-not-in-published-action.
+   DISAGREE (O(1) only): rb2 quotes ~0.4 m/yr Earth drift vs our ODE-validated 1.47 m/yr
+     (orbit-averaging convention); does not change any verdict.
+ LEDGER -- FORCED vs FREE:
+   FORCED (kinematics + the published K, no knobs):
+     * bound orbits feed the kernel ONLY z<=0: the a0/2 landmine is NOT a prediction of the
+       published operator on planets -- it is an artifact of the constant-|a| reduction (A);
+     * on the operator reading the planetary reactive residual is g_N (a0/(c omega))^2/8 =
+       1e-28..1e-25 m/s^2: 10-13 ORDERS under the bounds -- and the SAME theorem erases the
+       RAR at galaxies (1-ReK <= 2e-6) and forces the pure-phase drift a0/c ~ 1e-11/yr,
+       excluded by ~2.4-2.7 orders (Gdot/G class) and ~47 sigma (LLR);
+     * no pure-frequency kernel can carry the RAR (the 0.59-dex dwarf/giant offset theorem).
+   FREE (the theory's own named freedom, NOT pinned by Herglotz + sum rule + ||K||<=1 +
+   causality -- we verified those constraints are corner-blind):
+     * the off-circular closure map (SPEC: omega_c 'corner-location FREE'; eta(beta) free);
+       the planetary data now PIN it two-sidedly to omega_c in [~1e-14, ~3.5e-14] rad/s.
+ VERDICT (the honest one, both directions at full strength):
+   * The landmine calculation is done: the published Herglotz kernel, evaluated by its own
+     operator definition, DOES suppress the a0/2 tail -- by 10-13 orders, kinematically
+     forced. Milgrom's folk-theorem holds for this kernel.
+   * But that evaluation simultaneously (a) fails to produce the framework's OWN galactic
+     phenomenology and (b) is excluded at ~250-500x in the previously-uncomputed
+     dissipative/phase channel (universal secular drift a0/c, sign s=-1-blind).
+   * The constitutive evaluation (the one the published galactic wins actually use) IS the
+     landmine and is excluded 1.0e3-4.1e4x.
+   * Door C therefore survives the solar system ONLY as READING C: acceleration-keyed
+     amplitude x frequency gate with the corner in the ~Myr sliver -- a falsifiable,
+     two-sided, currently-open CONDITIONAL pass, testable by (i) a dedicated ephemeris
+     secular refit (x3 sensitivity closes it), (ii) wide binaries (AQUAL-strength boost
+     kills it), (iii) any future pinning of omega_c by the dS-bath derivation.
+   * HONEST CEILING: none of this can prove the framework right vs LCDM -- at planetary
+     accelerations GR predicts zero anomaly and healthy MOND-family theories predict
+     near-zero; these numbers discriminate BETWEEN the doors only.
+
+====================================================================================================
+ LANE K RESULT: ALL CHECKS PASS
+====================================================================================================

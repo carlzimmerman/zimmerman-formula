@@ -1,0 +1,55 @@
+============================================================================
+WALLABY PUBLIC RELEASES -- what exists NOW (live CADC query)
+============================================================================
+
+  Releases (documented 2026-07-16):
+   - Pilot DR1 (2022-11-15): ~600 HI sources, 3 fields (Hydra, Norma, NGC 4636)
+       + WKAPP kinematic models for 109/592 detections (Deg+2022, PASA 39 e059,
+       arXiv:2211.07333).  Products per modelled source (Deg+22 Table 3):
+       _AvgMod.txt geometry+RC, _ModRotCurve/_ModSurfDens/_ModGeometry.fits,
+       _ProcData/_ModCube/_DiffCube/_FullRes*.fits cubelets, _DiagnosticPlot.png.
+       Rotation curves are AZIMUTHALLY-AVERAGED flat-disk ONLY -- WKAPP releases
+       NO per-side (approaching/receding) split.  Per-side must be re-derived
+       from the released velocity fields (this pipeline).
+   - Pilot DR2 (2024-09-23): ~1800 HI sources at 30'' (NGC 4808, NGC 5044, Vela
+       + re-releases), 80 galaxies at 12'' high-res, kinematic models for >120
+       detections (Murugeshan+2024, arXiv:2409.13130).
+   - Every catalogued source ships SoFiA products incl. the 2D moment-1
+       velocity field (_mom1.fits, barycentric Hz) -- small (20-400 KB) and
+       individually downloadable, anonymous:
+         https://ws.cadc-ccda.hia-iha.nrc-cnrc.gc.ca/raven/files/cadc:WALLABY/<file>
+       (also CASDA: https://data.csiro.au, and CANFAR TAP as queried here).
+   - 3KIDNAS (successor pipeline): ~400 models across PDR1+PDR2 announced
+       (WALLABY newsletter 21, 2025), upload to CADC/CASDA pending the release
+       paper -- NOT yet in the public CAOM2 census below.
+
+  Measured from the CADC archive (distinct J-name galaxies):
+    sources with a mom1 velocity field :  2426
+    galaxies with WKAPP geometry       :   238
+    PER-SIDE-CAPABLE NOW (both)        :   237
+
+  Capacity vs the banked directional-EFE requirement
+  (directional_efe_2026/confrontation.out, both a0 footings):
+    AQUAL-band floor (4%, laneB)               : N=  192  -> in hand 123.4%
+    N target, canonical a0=9.36e-11 (w=0.304)  : N= 1157  -> in hand 20.5%
+    N target, alt a0=1.13e-10 (w=0.304)        : N= 1424  -> in hand 16.6%
+    AQUAL-band ceiling (1%, laneB)             : N= 3057  -> in hand  7.8%
+
+  Honest statement:
+    - NOW: 237 per-side-capable galaxies with released geometries
+      (237/1157 = 20% of the canonical-footing target;
+      237/192 = 123% of the most favorable AQUAL-floor case).
+      The in-hand release CANNOT reach the 3-sigma AQUAL-vs-BranchB target on
+      either a0 footing; it CAN begin to probe the 4%-AQUAL floor if per-side
+      systematics stay below the 0.092 lopsidedness scatter.
+    - Un-modelled sources (2189 more mom1 fields) need a
+      geometry before per-side extraction; 3KIDNAS (~400 models) will raise
+      the capable count by ~163 when public.
+    - FULL SURVEY: ~210,000 detections; Deg+22's own projection = kinematic
+      models for ~40,000 galaxies (20% success) with a >10% floor (~21,000).
+      Even the floor exceeds every banked N target (1157/1424/3057) by >6x --
+      the scale-up path is real, but it is YEARS out, not months.
+    - The OTHER missing ingredient (g_ext DIRECTION, reconstructable from
+      2M++/MCXC/NSA per Chae+2021 sec. 3) is unaffected by WALLABY and still
+      must be built (banked: laneB_FEASIBILITY.md).
+

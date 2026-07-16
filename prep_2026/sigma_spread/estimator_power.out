@@ -1,0 +1,52 @@
+====================================================================================================
+ POWER: N_total (matched outer-shell, infall-tagged, undisrupted diffuse members) for 3 sigma vs MG=0
+====================================================================================================
+  Delta_obs = D(1-eps)*f, D=0.4, eps_int=0.1; noise = quadrature(e_meas, s_FJ)
+
+  scenario                                         |     floor f=6% |  fiducial f=10% |    kernel f=13%
+  ------------------------------------------------------------------------------------------------
+  2026 published UDG/dSph (LEWIS/KCWI, 20-40%)     |            8681 |            3125 |            1850
+  deep MUSE/KCWI campaign (~3 km/s on 15)          |            4823 |            1737 |            1028
+  ELT resolved-star (~1.5 km/s on 15)              |            2508 |             903 |             535
+  ELT + tight FJ control (s_FJ=0.08)               |            1266 |             456 |             270
+  measurement-only idealization (banked)           |             772 |             278 |             165
+
+  READ (both ways):
+   * The banked 'N~100-180 vs MG at ELT precision' is recovered ONLY in the measurement-only
+     idealization at the upper kernel band (f=13%: N~165; drop eps_int too -> N~134).
+     The fiducial f=10% idealization is N~278. Adding the honest Faber-Jackson intrinsic-
+     scatter floor s_FJ~0.15 raises the fiducial ELT requirement to N~903; the best realistic
+     corner (f=13%, tight FJ control) is N~270. So the banked N was OPTIMISTIC by ~x2-5:
+     the intrinsic M-sigma scatter, not instrument error, is the binding noise once ELT exists.
+   * Proxy dilution fork: D=0.3 -> N x 1.8; D=0.6 (DESI-era caustic+PPS tagging on
+     >200-member clusters) -> N x 0.45 relative to fiducial.
+====================================================================================================
+ THE 2026 WALL: who can MEASURE internal sigma of the carriers?
+====================================================================================================
+   DESI blue (R=2000)      : instrumental sigma floor ~  63.7 km/s  vs carriers at 8-20 km/s -> BELOW FLOOR (cannot measure)
+   DESI red/NIR (R=5500)   : instrumental sigma floor ~  23.1 km/s  vs carriers at 8-20 km/s -> BELOW FLOOR (cannot measure)
+   SDSS (R~2000)           : instrumental sigma floor ~  63.7 km/s  vs carriers at 8-20 km/s -> BELOW FLOOR (cannot measure)
+   MUSE (R~3000 @ 7000A)   : instrumental sigma floor ~  42.4 km/s  vs carriers at 8-20 km/s -> BELOW FLOOR (cannot measure)
+   ELT-HARMONI (R~18000)   : instrumental sigma floor ~   7.1 km/s  vs carriers at 8-20 km/s -> marginal/OK
+   => DESI (DR1 public; DR2 NOT public as of 2026-07-16, verified 401) measures member
+      REDSHIFTS (v_los to ~10-30 km/s -- excellent for PPS infall tagging) and internal sigma
+      ONLY for sigma >~ 60-100 km/s members. Those members are ADIABATIC-DEAD by the same MI
+      physics (y <~ 0.3, a_in >~ 0.5 a0): predicted spread ~0.1-0.7% (rederive script (4)).
+   dE route quantified: f~0.7%, best SDSS-quality errors -> N_3sigma ~ 102,041
+   vs ~959 members with sigma in Sohn+2017 A2029-class catalogs -> shortfall x106.
+   => The ensemble-sigma route through bright members is DEAD; no firewall bypass exists.
+====================================================================================================
+ 2026 AVAILABLE vs NEEDED (the honest gap)
+====================================================================================================
+   Carriers with ANY internal sigma today: 38 UDGs total (Gannon+2024 living catalog,
+   downloaded + counted in census_verify.py), of which ~24 are in cluster/group environments;
+   per-object errors 16-45%. LEWIS Hydra-I adds ~6-12 'constrained' as papers land.
+     NEEDED (3 sigma vs MG=0): ~270-903 infall-tagged, outer-shell, undisrupted carriers
+       with <~10% sigma errors  ->  GAP: x15-60 in N *at a precision tier that does not exist yet*.
+     With TODAY'S 20-40% errors the same test needs N~3125 -> gap x130.
+   VERDICT: STILL UNDERPOWERED in 2026 -- and the DESI DR1/DR2 wave does not change the binding
+   constraint (it upgrades the free side: membership + phase tagging for thousands of clusters).
+   Any firing on today's ~24 objects is EXPLORATORY/FIREWALLED (cannot support or kill).
+
+ EXIT 0 = estimator specified; power grid + gap quantified; banked 100-180 recovered as the
+ upper-band/no-interloper idealized corner (N~134); honest requirement N~270-900.

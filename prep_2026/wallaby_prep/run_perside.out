@@ -1,0 +1,174 @@
+WARNING: FITSFixedWarning: PC01_01 = 1.00000000000E+00 
+indices in parameterized keywords must not have leading zeroes. [astropy.wcs.wcs]
+WARNING: FITSFixedWarning: PC02_01 = 0.00000000000E+00 
+indices in parameterized keywords must not have leading zeroes. [astropy.wcs.wcs]
+WARNING: FITSFixedWarning: PC01_02 = 0.00000000000E+00 
+indices in parameterized keywords must not have leading zeroes. [astropy.wcs.wcs]
+WARNING: FITSFixedWarning: PC02_02 = 1.00000000000E+00 
+indices in parameterized keywords must not have leading zeroes. [astropy.wcs.wcs]
+WALLABY PER-SIDE ROTATION-CURVE EXTRACTOR  (Door 5 prep -- directional-EFE scale-up)
+=====================================================================================
+PURPOSE
+  The directional-EFE confrontation (banked: zimmerman-formula/real_research/reviews/
+  directional_efe_2026/confrontation.out) needs N ~ 1,157 galaxies with SIGNED
+  per-side rotation asymmetries (canonical a0=9.36e-11, max-clustering e_N,
+  AQUAL-vs-BranchB at w=0.304, 3 sigma; N ~ 192-3057 for the AQUAL-amplitude band
+  per laneB_FEASIBILITY.md).  WALLABY's WKAPP kinematic releases publish ONLY
+  azimuthally-averaged flat-disk rotation curves (Deg et al. 2022 PASA 39 e059,
+  Table 3: _ModRotCurve.fits carries a single VRot_model column -- no
+  approaching/receding split).  BUT every catalogued source ships a SoFiA
+  moment-1 velocity field (_mom1.fits, barycentric FREQUENCY in Hz) and every
+  modelled source ships its tilted-ring geometry (_AvgMod.txt).  This script
+  closes that gap: velocity field + geometry -> per-side outer rotation curves
+  -> signed asymmetry
+        A = 2 (v_app - v_rec) / (v_app + v_rec)
+  (A > 0 means the APPROACHING side rotates faster) with a pixel-bootstrap error.
+==============================================================================
+GATE: synthetic recovery of an injected ALIGNED per-side asymmetry
+==============================================================================
+
+  [6.0-beam, A_true=+2%]  n_real=30
+    <A_hat> = +0.01868   (true +0.02000; bias -0.00132 +/- 0.00237)
+    per-realization rms(A_hat) = 0.01298;  <sigma_boot> = 0.01519
+    pull rms = 0.88  (1.0 = calibrated errors)
+    sign recovered: True;  unbiased: True;  pulls calibrated: True
+    --> PASS
+
+  [3.5-beam (marginal), A_true=+2%]  n_real=30
+    <A_hat> = +0.01398   (true +0.02000; bias -0.00602 +/- 0.00394)
+    per-realization rms(A_hat) = 0.02155;  <sigma_boot> = 0.03012
+    pull rms = 0.75  (1.0 = calibrated errors)
+    sign recovered: True;  unbiased: True;  pulls calibrated: True
+    --> PASS
+
+  [6.0-beam NULL, A_true=0]  n_real=30
+    <A_hat> = +0.00175   (true +0.00000; bias +0.00175 +/- 0.00237)
+    per-realization rms(A_hat) = 0.01296;  <sigma_boot> = 0.01516
+    pull rms = 0.87  (1.0 = calibrated errors)
+    sign recovered: True;  unbiased: True;  pulls calibrated: True
+    --> PASS
+
+  GATE VERDICT: PASS -- 2% aligned asymmetry recovered, errors calibrated
+
+==============================================================================
+PILOT (real WALLABY data, labeled PILOT -- proof-of-life, N=3)
+==============================================================================
+
+  --- WALLABY J125548+041805 (NGC4808 field, 12'' high-res) ---
+    inc=73.2 deg  PA_g=310.6 deg  vsys=758.2 km/s
+    ring   R('')    v_app    v_rec    (WKAPP VRot)
+       1      8.5     63.6     10.4   (   63.5)
+       2     14.5     89.5     24.3   (   83.3)
+       3     20.5    101.4     40.5   (   93.0)
+       4     26.5    116.5     46.2   (  102.9)
+       5     32.5    125.3     62.6   (  108.1)
+       6     38.5    131.8     77.5   (  114.7)
+       7     44.5    135.3     92.6   (  117.1)
+       8     50.6    141.2     93.5   (  123.4)
+       9     56.6    142.1     88.7   (  124.3)
+      10     62.6    145.3     88.5   (  122.0)
+      11     68.6    152.6     88.6   (  125.5)
+      12     74.6    151.0     88.2   (  119.0)
+      13     80.6    149.2     91.2   (  127.1)
+      14     86.6    145.4     93.7   (  125.1)
+      15     92.6    148.4     90.2   (  124.7)
+      16     98.6    159.8     90.3   (  110.5)
+      17    104.6    160.4    100.1   (  124.4)
+      18    110.6    156.9    105.1   (  112.7)
+      19    116.6    154.0    117.0   (  128.1)
+      20    122.6    161.0    126.7   (  125.0)  <- outer
+      21    128.7    162.6    140.3   (  129.7)  <- outer
+      22    134.7    163.8    145.4   (  132.6)  <- outer
+      23    140.7    164.2    149.5   (  130.7)  <- outer
+      24    146.7    159.6    154.1   (  128.8)  <- outer
+      25    152.7    162.6    162.0   (  134.1)  <- outer
+      26    158.7    162.5    163.2   (  131.3)  <- outer
+      27    164.7    158.6    164.7   (  129.4)  <- outer
+      28    170.7    152.3    163.8   (  129.6)  <- outer
+      29    176.7    145.1    164.8   (  129.7)  <- outer
+      30    182.7    137.2    162.1   (  130.3)  <- outer
+      31    188.7    133.5    154.6   (  131.7)  <- outer
+      32    194.7    120.3    152.5   (  130.1)  <- outer
+      33    200.7    118.9    148.7   (  128.0)  <- outer
+      34    206.7    117.3    149.4   (  126.7)  <- outer
+      35    212.8    113.1    146.7   (  123.7)  <- outer
+      36    218.8    106.2    141.4   (  125.7)  <- outer
+      37    224.8    104.4    140.1   (  120.7)  <- outer
+      38    230.8    108.7    138.2   (  125.1)  <- outer
+      39    236.8    112.2    141.4   (  115.0)  <- outer
+    sanity: median (per-side mean)/(WKAPP VRot) = 1.047 over 39 rings
+    SIGNED PER-SIDE ASYMMETRY (outer rings):
+      A = 2(v_app-v_rec)/(v_app+v_rec) = -0.0850 +/- 0.0075  [PILOT]
+
+  --- WALLABY J165901-601241 (Norma field, 30'') ---
+    inc=42.1 deg  PA_g=248.5 deg  vsys=1140.9 km/s
+    ring   R('')    v_app    v_rec    (WKAPP VRot)
+       0      7.5     46.5     14.8   (   50.8)
+       1     22.6     81.8     46.8   (   84.6)
+       2     37.6     99.8     87.5   (  102.3)
+       3     52.7    108.4     97.5   (  113.3)
+       4     67.7    111.8     97.4   (  120.3)
+       5     82.8    113.5     94.1   (  119.7)
+       6     97.8    110.4     94.6   (  118.2)
+       7    112.9    114.6    102.3   (  120.5)
+       8    128.0    119.5    115.7   (  126.0)
+       9    143.0    118.0    129.3   (  133.3)
+      10    158.1    118.2    144.4   (  140.3)
+      11    173.1    123.8    152.8   (  145.3)
+      12    188.2    132.1    154.4   (  149.0)
+      13    203.2    138.6    152.3   (  150.9)
+      14    218.3    141.6    149.6   (  150.1)
+      15    233.3    142.8    145.7   (  147.8)
+      16    248.4    138.0    142.3   (  145.2)
+      17    263.5    128.3    139.1   (  143.4)
+      18    278.5    126.0    136.2   (  142.9)  <- outer
+      19    293.6    123.2    131.6   (  143.4)  <- outer
+      20    308.6    127.9    125.8   (  144.6)  <- outer
+      21    323.7    131.6    114.6   (  146.5)  <- outer
+      22    338.8    132.1    112.3   (  149.2)  <- outer
+      23    353.8    132.8    112.6   (  151.4)  <- outer
+      24    368.9    138.8    118.8   (  149.1)  <- outer
+      25    383.9    140.4    135.2   (  152.0)  <- outer
+      26    399.0    139.9    145.8   (  153.1)  <- outer
+      27    414.0    141.2    141.7   (  153.9)  <- outer
+      28    429.1    147.4    149.0   (  155.0)  <- outer
+      29    444.1    155.9    174.1   (  157.1)  <- outer
+      30    459.2    159.6    179.3   (  157.7)  <- outer
+      31    474.3    156.7    167.7   (  160.9)  <- outer
+      32    489.3    158.5    175.1   (  162.2)  <- outer
+      33    504.4    162.8    188.4   (  162.3)  <- outer
+      34    519.4    169.0    182.5   (  171.3)  <- outer
+    sanity: median (per-side mean)/(WKAPP VRot) = 0.928 over 35 rings
+    SIGNED PER-SIDE ASYMMETRY (outer rings):
+      A = 2(v_app-v_rec)/(v_app+v_rec) = -0.0192 +/- 0.0071  [PILOT]
+
+  --- WALLABY J100426-282638 (Hydra field, 30''; Deg+22 showcase) ---
+    inc=75.1 deg  PA_g=268.8 deg  vsys=1091.2 km/s
+    ring   R('')    v_app    v_rec    (WKAPP VRot)
+       1     22.6     50.7     32.7   (   58.6)
+       2     37.6     68.0     49.9   (   69.3)
+       3     52.6     78.8     63.2   (   78.7)
+       4     67.7     89.5     72.6   (   89.7)
+       5     82.8     96.9     78.5   (   90.2)
+       6     97.8    104.2     83.2   (   93.9)
+       7    112.9    109.3     90.5   (  103.1)  <- outer
+       8    127.9    118.2     91.3   (  106.1)  <- outer
+       9    143.0    119.7     98.1   (  105.3)  <- outer
+      10    158.0    127.7     99.6   (  102.9)  <- outer
+      11    173.1    127.9    101.6   (   96.4)  <- outer
+      12    188.1    128.5    102.6   (   93.4)  <- outer
+    sanity: median (per-side mean)/(WKAPP VRot) = 0.979 over 12 rings
+    SIGNED PER-SIDE ASYMMETRY (outer rings):
+      A = 2(v_app-v_rec)/(v_app+v_rec) = +0.2246 +/- 0.0119  [PILOT]
+
+==============================================================================
+SUMMARY
+==============================================================================
+  gate (synthetic 2% recovery): PASS
+  PILOT WALLABY J125548+041805 (NGC4808 field, 12''    A = -0.0850 +/- 0.0075
+  PILOT WALLABY J165901-601241 (Norma field, 30'')     A = -0.0192 +/- 0.0071
+  PILOT WALLABY J100426-282638 (Hydra field, 30''; D   A = +0.2246 +/- 0.0119
+  NOTE: PILOT values are proof-of-life only (N=3, no g_ext vector,
+        no warp/flat-disk systematics budget); they feed NO physics claim.
+
+  results written: /Users/carlzimmerman/new_physics/prep_2026/wallaby_prep/perside_results.json

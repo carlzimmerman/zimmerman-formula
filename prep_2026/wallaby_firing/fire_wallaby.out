@@ -1,0 +1,116 @@
+================================================================================================
+WALLABY FIRING: pre-registered directional-EFE aligned statistic, n=25 (QC-pass x usable of 237)
+FIREWALL: at the WALLABY scale (237 per-side-capable; 25 QC-pass x direction-usable actually fired here) the achieved sensitivity at AQUAL amplitude is ~0.2-0.5 sigma -- NEITHER pre-registered kill condition (3-sigma AQUAL-vs-BranchB separation, N~1157 canonical a0=9.36e-11 / N~1424 alt a0=1.13e-10) CAN TRIGGER on this sample. EXPLORATORY ONLY; the number is reported straight, whatever it is.
+SIGN TRAP: pre-registered A = 2(v_rec - v_appr)/(v_rec + v_appr), RECEDING side, psi from the RECEDING-side kinematic major axis; the extractor pilot printed the OPPOSITE ordering. A_prereg = -A_extractor asserted on all 237 rows AND hand-verified from a raw mom1 map on an independent code path (below).
+================================================================================================
+
+[hand verification, independent code path, firing-sample galaxy J094944-471059]
+  PA_model_g side mean v_los = 5425.0 km/s > VSys = 5360.5 > anti side = 5294.6  -> RECEDING side = PA side  PASS
+  independent per-side outer means: v_rec = 135.5, v_appr = 136.3 -> A_pre(indep) = -0.0059 vs pipeline -0.0070  -> sign match PASS
+  A_preregistered == -A_raw_extractor asserted on all 237 rows PASS   (Lane W1's separate hand check: J165901-601241)
+
+[sample] QC-pass (frozen cuts) AND cone68<30 AND outside the 2M++ ZoA mask: n = 25
+  per field: {'Hydra': 1, 'NGC4808': 3, 'NGC5044': 7, 'Norma': 8, 'Vela': 6}
+  noclu-vs-maxclu direction swing (median, sample): 2.4 deg -- brackets differ in amplitude, not direction; the shipped maxclu unit vector serves both
+  e_i = W2 own amplitudes x 10^0.1 (GATE-A offset to the Chae Table-3 scale APPLIED here; W2 shipped it reported-not-applied)
+  x_i: framework-exact inversion of g_obs=sqrt(gb^2+gb*a0) on the outermost-3 WKAPP rings (WALLABY has NO baryonic decomposition -- the frozen repo's WALLABY_rar_framework.py verdict is DATA_GATED; this is the only self-consistent x route). Honest x uncertainty ~0.3 dex; +-0.3 dex shift variants below.
+
+[noise] s_i^2 = sigma_boot,i^2 + sigma_intr^2
+  sigma_intr PRIMARY = 0.1871 = WHISP 70-galaxy rms in the MATCHING pre-registered A convention (the 0.092 number is the eps_kin convention = A/2; W1's 0.155-vs-0.092 comparison crossed conventions -- in the matching one the WALLABY scatter 0.155 sits BELOW the WHISP 0.187)
+  sigma_intr FITTED  = 0.1339 (excess over pixel bootstrap on this sample, IV-mean removed) -- variant
+
+[per-galaxy] primary config: canonical a0, maxclu bracket
+  galaxy          field         A_i  sig_b    psi    cos     G      x       e   r=x/e   Amap%    p_i%  stratum
+  J094944-471059  Vela       -0.007  0.010   76.8  0.228 0.792  0.040  0.0047     8.6  +1.428 +0.2580  OUTER
+  J100123-434533  Vela       +0.013  0.009 -173.8 -0.994 1.254  0.023  0.0059     3.9  +1.793 -2.2354  TRANSITION
+  J100239-452950  Vela       -0.072  0.010   11.2  0.981 1.218  0.084  0.0058    14.5  +1.193 +1.4260  OUTER
+  J100916-431959  Vela       +0.089  0.008  166.0 -0.970 1.258  0.019  0.0046     4.1  +1.389 -1.6954  TRANSITION
+  J101331-434904  Vela       +0.040  0.016 -162.3 -0.953 1.214  0.107  0.0048    22.4  +0.788 -0.9111  OUTER
+  J101655-485238  Vela       +0.152  0.005 -141.9 -0.787 1.238  0.078  0.0058    13.6  +1.259 -1.2259  OUTER
+  J103725-251916  Hydra      +0.280  0.006 -119.7 -0.495 0.750  0.117  0.0213     5.5  +3.216 -1.1950  OUTER
+  J124915+043926  NGC4808    +0.524  0.020  -84.5  0.096 0.622  0.004  0.0031     1.2  +0.931 +0.0557  TRANSITION
+  J130053-132655  NGC5044    +0.107  0.012    5.5  0.995 1.305  0.075  0.0089     8.4  +2.021 +2.6251  OUTER
+  J130056-135640  NGC5044    -0.199  0.027  -17.1  0.956 1.223  0.152  0.0137    11.1  +1.679 +1.9617  OUTER
+  J130059-143042  NGC5044    -0.014  0.010   42.4  0.738 1.016  0.208  0.0064    32.3  +0.559 +0.4194  OUTER
+  J130305+035925  NGC4808    +0.171  0.012   29.8  0.867 1.111  0.021  0.0031     6.6  +0.952 +0.9174  OUTER
+  J130315+074816  NGC4808    +0.107  0.010 -149.3 -0.860 1.115  0.280  0.0030    94.4  +0.202 -0.1938  OUTER
+  J130415-102023  NGC5044    +0.049  0.006 -179.2 -1.000 1.117  0.125  0.0032    38.5  +0.475 -0.5302  OUTER
+  J130947-101916  NGC5044    +0.094  0.010  -23.6  0.916 1.177  0.265  0.0063    42.1  +0.451 +0.4867  OUTER
+  J133314-160715  NGC5044    +0.138  0.015  126.4 -0.594 1.279  0.646  0.0022   297.1  +0.069 -0.0525  OUTER
+  J133802-175254  NGC5044    +0.023  0.011 -151.5 -0.879 1.121  0.145  0.0036    40.0  +0.465 -0.4578  OUTER
+  J163512-580438  Norma      +0.074  0.011   74.0  0.276 1.079  0.403  0.0027   146.7  +0.125 +0.0371  OUTER
+  J164052-602341  Norma      +0.128  0.016  -23.2  0.919 1.166  0.228  0.0178    12.8  +1.442 +1.5454  OUTER
+  J165804-605308  Norma      +0.132  0.027  165.4 -0.968 1.105  0.020  0.0027     7.4  +0.815 -0.8713  OUTER
+  J165901-601241  Norma      +0.019  0.007    8.0  0.990 1.226  0.057  0.0026    21.6  +0.735 +0.8918  OUTER
+  J170303-614604  Norma      +0.134  0.007   96.6 -0.115 1.198  0.102  0.0029    35.3  +0.495 -0.0682  OUTER
+  J170915-613637  Norma      +0.056  0.012  -37.0  0.798 1.143  0.031  0.0102     3.1  +3.092 +2.8230  TRANSITION
+  J171338-590621  Norma      +0.271  0.012 -124.2 -0.562 1.120  0.100  0.0041    24.5  +0.709 -0.4462  OUTER
+  J171804-575135  Norma      -0.017  0.005  -11.2  0.981 1.118  0.017  0.0032     5.3  +0.969 +1.0626  OUTER
+
+[THE STACK]  Ahat = sum(A p/s^2)/sum(p^2/s^2);  targets: AQUAL +1 | BranchB +0.304 (0.24 Cassini-max) | pure MI 0
+  config                                          n    Ahat   boot  sig_an      Z    pZ2    pZ1    pA2    pA1
+  ALL | canonical a0=9.36e-11 | maxclu           25   -1.70   2.12    2.98  -0.57  0.586  0.712  0.647  0.681
+  ALL | canonical a0=9.36e-11 | noclu            25  -14.50  17.67   24.71  -0.59  0.585  0.708  0.645  0.678
+  ALL | alt a0=1.13e-10 | maxclu                 25   -2.03   2.29    3.05  -0.67  0.562  0.714  0.620  0.686
+  ALL | alt a0=1.13e-10 | noclu                  25  -17.13  19.13   25.29  -0.68  0.565  0.717  0.628  0.684
+
+[variants] on the primary config (canonical a0, maxclu):
+  config                                          n    Ahat   boot  sig_an      Z    pZ2    pZ1    pA2    pA1
+  sigma_intr FITTED (0.134)                      25   -1.69   2.14    2.14  -0.79  0.581  0.707
+  robust cone68<20                               18   -1.07   2.08    3.68  -0.29  0.701  0.649
+  robust cone68<10                                8   -2.33   2.63    5.35  -0.44  0.382  0.812
+  zoa strictly clear                             19   -1.93   2.90    3.51  -0.55  0.643  0.684
+  x shifted +0.3 dex                             25   -1.64   2.58    3.97  -0.41  0.652  0.675
+  x shifted -0.3 dex                             25   -1.68   1.68    2.22  -0.76  0.518  0.736
+  gamma off (G=1)                                25   -2.45   2.63    3.50  -0.70  0.502  0.747
+  -- direction-blind mean-offset robustness (W1 diagnosed a vsys systematic: mean A = +0.092 on this sample; the isotropic permutation null already absorbs any direction-blind offset) --
+  A global-mean-subtracted                       25   -2.77   1.93    2.98  -0.93  0.233  0.874
+  A field-mean-subtracted                        25   -2.56   1.61    2.98  -0.86  0.072  0.965
+  A vsys-corrected (DIAGNOSTIC, 25/25)           25   +0.42   2.38    2.98  +0.14  0.882  0.454
+
+[leave-one-FIELD-out] primary config (fields = attractor-coherent blocks; a single-field driver = systematic, not signal)
+  drop Hydra      (n- 1): Ahat =   -0.88   Z = -0.29
+  drop NGC4808    (n- 3): Ahat =   -2.17   Z = -0.72
+  drop NGC5044    (n- 7): Ahat =   -2.02   Z = -0.57
+  drop Norma      (n- 8): Ahat =   -3.00   Z = -0.82
+  drop Vela       (n- 6): Ahat =   -0.60   Z = -0.17
+  leave-one-GALAXY-out range: -2.92 (drop J130053-132655) .. -0.80 (drop J130056-135640)
+
+[W3 x-stratified matched filter] frozen strata DEEP r<1 | TRANSITION 1<=r<5 | OUTER r>=5 (r = x/e; via the framework inversion x is WEAKLY footing-dependent here -- both run)
+  canonical a0=9.36e-11 | maxclu           counts {'DEEP': 0, 'TRANSITION': 4, 'OUTER': 21}
+    DEEP        n=0  EMPTY -- no number fabricated
+    TRANSITION  n= 4  Ahat=  +0.05 boot= 60.20 Z=+0.01 pZ2=0.992
+    OUTER       n=21  Ahat=  -2.87 boot=  3.29 Z=-0.74 pZ2=0.541
+  canonical a0=9.36e-11 | noclu            counts {'DEEP': 0, 'TRANSITION': 0, 'OUTER': 25}
+    DEEP        n=0  EMPTY -- no number fabricated
+    TRANSITION  n=0  EMPTY -- no number fabricated
+    OUTER       n=25  Ahat= -14.50 boot= 17.74 Z=-0.59 pZ2=0.596
+  alt a0=1.13e-10 | maxclu                 counts {'DEEP': 0, 'TRANSITION': 6, 'OUTER': 19}
+    DEEP        n=0  EMPTY -- no number fabricated
+    TRANSITION  n= 6  Ahat=  -2.90 boot=  3.79 Z=-0.57 pZ2=0.771
+    OUTER       n=19  Ahat=  -1.54 boot=  3.03 Z=-0.40 pZ2=0.590
+  alt a0=1.13e-10 | noclu                  counts {'DEEP': 0, 'TRANSITION': 0, 'OUTER': 25}
+    DEEP        n=0  EMPTY -- no number fabricated
+    TRANSITION  n=0  EMPTY -- no number fabricated
+    OUTER       n=25  Ahat= -17.13 boot= 19.32 Z=-0.68 pZ2=0.570
+
+[joint 2-parameter fit] A_i = alpha p_i(beta), frozen beta grid [0.25,4.0]x33; targets AQUAL(1,1) BranchB(0.304/0.24,1) pureMI(0,-)
+  canonical a0=9.36e-11 | maxclu           alpha_hat=  -0.70+-1.04 @ beta=3.67  beta-span dchi2=0.176  beta unconstrained (flat)
+  canonical a0=9.36e-11 | noclu            alpha_hat= -53.19+-90.64 @ beta=0.27  beta-span dchi2=0.000  beta unconstrained (flat)
+  alt a0=1.13e-10 | maxclu                 alpha_hat=  -0.69+-0.97 @ beta=4.00  beta-span dchi2=0.204  beta unconstrained (flat)
+  alt a0=1.13e-10 | noclu                  alpha_hat= -68.51+-101.16 @ beta=0.25  beta-span dchi2=0.000  beta unconstrained (flat)
+
+[achieved sensitivity, computed]
+  sd(Ahat) under the isotropic null (primary config) = 3.30; analytic = 2.98
+  -> an E[Ahat]=+1 AQUAL signal registers at ~0.30 sigma; AQUAL-vs-BranchB separation (1-0.304) at ~0.21 sigma.
+  THE KILL CONDITIONS CANNOT TRIGGER HERE: the pre-registered 3-sigma AQUAL-vs-BranchB test needs N~1157 (canonical) / N~1424 (alt) usable galaxies; this firing has n=25. No verdict on AQUAL vs Branch B vs pure MI is possible at this N; the value of this run is the pipeline at scale + the number on record.
+  [x-clamp flags, primary config] 8/25 below the banked map range (clamped UP to x=0.05; every clamped galaxy has r=x/e > 1, above the banked reversal crossing at r=0.72-0.97, so no sign-reversal risk), 1/25 above (clamped down to x=0.5).
+
+[comparison] n=16 exploratory (canonical|maxclu): Ahat = +2.95 +/- 1.05 (boot; analytic 3.13), p2 = 0.061
+  this firing (canonical|maxclu):            Ahat = -1.70 +/- 2.12 (boot; analytic 2.98), pZ2 = 0.586
+  difference -4.65 = -1.97 sigma (boot errors) / -1.08 sigma (analytic errors)
+  -> the n=16 +2.95 did NOT reproduce (central value flipped sign) but the two runs are only ~2.0 sigma (boot) / ~1.1 sigma (analytic) apart: neither hardened nor decisively evaporated; each run is individually consistent with AQUAL's +1, Branch B's +0.30, AND pure MI's exact 0 at this sensitivity.
+
+  results JSON -> fire_wallaby_results.json
+================================================================================================
+WALLABY FIRING COMPLETE (exit 0) -- exploratory number on record; kill conditions UNTOUCHED (cannot trigger at this N)

@@ -1,0 +1,116 @@
+####################################################################################################
+# [1] THE MEASURE, RE-DERIVED INDEPENDENTLY + THE v11 SUM RULE  INT dmu/|t| = 1
+####################################################################################################
+   [PASS] closed-form density == (1/pi) Im K(t+i0) on both cut regions (max err 1.1e-10)
+   region B (t<-1/4): INT dmu/|t| = 2/pi = 0.636620  (EXACT, sympy)
+   [PASS] region-B share = 2/pi exactly
+   region A (-1/4<t<0): INT dmu/|t| = 0.363380228   (target 1 - 2/pi = 0.363380228)
+   [PASS] total sum rule INT dmu/|t| = 1 to 1e-8 (v11 rule INDEPENDENTLY re-derived)
+
+ Physical content of the sum rule: INT dmu/|t| = K(inf) - K(0) = 1 is the statement that the
+ spectral weight interpolates the inertia from 0 (deep IR) to EXACTLY the Newtonian value (UV)
+ with unit total resolvent weight -- it pins the DC normalization of the frequency response and
+ (v11) forbids any spare weight that could feed an a0 tadpole.
+####################################################################################################
+# [2] THE FORCED FORM: K(-w^2+i0) = exp(i arcsin(1/2w)) EXACTLY on the physical branch
+####################################################################################################
+   [PASS] |K(-w^2+i0)|^2 = Re^2+Im^2 = 1 EXACTLY for w >= 1/2 (sympy)
+   [PASS] boundary values match Re=sqrt(1-1/4w^2), Im=1/2w at w = 0.6 ... 6e5
+   [PASS] phase law: sin(phi)=1/2w, cos(phi)=sqrt(1-1/4w^2) => phi = arcsin(1/2w) (consistency)
+
+ => On the whole oscillatory branch (w = omega c/a0 >= 1/2, i.e. every orbit with period shorter
+    than ~400 Gyr -- ALL bound orbits) the kernel acts on a real harmonic as a PURE PHASE:
+        K = e^{i phi(w)},  phi(w) = arcsin(a0/(2 c omega)).
+    No amplitude modification at any real orbital frequency. The MOND amplitude therefore CANNOT
+    come from the frequency channel (rb1[3]); it lives in the first-moment (amplitude) channel.
+    Below the gap (w < 1/2, super-horizon periods): |K| < 1, purely dissipative -- no bound orbits
+    live there. The memory time is tau_mem = 2c/a0 (the horizon scale, = 2Z/H_Lambda), NOT an
+    orbital scale: the action itself places the kernel corner at the horizon.
+####################################################################################################
+# [3] UNIQUENESS: Herglotz + RAR calibration on z>0 pins the WHOLE measure (no freedom)
+####################################################################################################
+
+ K is Nevanlinna/Herglotz (v4, re-verified in the repo scripts). A Nevanlinna function is analytic
+ on C+ and across every real interval free of measure; the RAR calibration fixes K on z>0 (the
+ first-moment argument a^2/a0^2 sweeps z in ~[1e-4, 1e8] across observed systems): K(z) =
+ mu_fw(sqrt z) there. By the identity theorem for analytic functions, agreement on a real interval
+ with an accumulation point inside the analyticity domain forces agreement EVERYWHERE, so the
+ Herglotz measure is UNIQUE. Consequence: the cut boundary values -- the entire frequency response,
+ phase law included -- are FORCED by (Herglotz class) + (the RAR). Numerical witness:
+   [PASS] measure reconstructs K on z>0 (RAR side) to <1e-7
+   [PASS] SAME measure reconstructs the cut boundary values (frequency side) to <1e-3 (PV + i pi rho)
+####################################################################################################
+# [4] THE NUMBERS: Delta nu between wide-binary and galactic omega at the SAME acceleration
+####################################################################################################
+   at a = a0 (w = c/v regardless of footing -- the split is FOOTING-INDEPENDENT):
+     wide binary      v=0.45 km/s:  w = 6.662e+05   phi = 7.505e-07 rad   1-cos(phi) = 2.817e-13
+     dwarf spheroidal v=10 km/s:  w = 2.998e+04   phi = 1.668e-05 rad   1-cos(phi) = 1.391e-10
+     galaxy outskirts v=150 km/s:  w = 1.999e+03   phi = 2.502e-04 rad   1-cos(phi) = 3.129e-08
+     cluster          v=1000 km/s:  w = 2.998e+02   phi = 1.668e-03 rad   1-cos(phi) = 1.391e-06
+
+   FORCED SPLIT wide-binary vs galactic at the same a=a0:
+     conservative (enters nu):    |Delta cos phi| = 3.129e-08
+     dissipative  (phase only):   |Delta phi|     = 2.494e-04 rad
+   [PASS] conservative wide-binary/galactic split = 3.1e-8 (+-20%)
+
+   mapped to Delta nu / nu through the circular balance (sensitivity J = Dln nu/Dln cos):
+     y = g_bar/a0 =  1.0:  nu_gal/nu_wb - 1 = +2.347e-08   (galactic boost LARGER)
+     y = g_bar/a0 =  0.1:  nu_gal/nu_wb - 1 = +1.707e-08   (galactic boost LARGER)
+   [PASS] Delta nu/nu (wb vs gal, same a=a0) is positive-for-galaxies and ~1.5-3.5e-8
+
+ => The kernel forces FREQUENCY UNIVERSALITY of the RAR: at the same g_bar, systems whose orbital
+    frequencies differ by 2.5-3 dex (wide binaries vs galaxy outskirts) share the same nu to
+    ~3 parts in 1e8 (conservative channel), with the galactic side infinitesimally MORE boosted.
+    A wide-binary anomaly that DIFFERS from the galactic RAR at the same g_bar by O(10%) (e.g. the
+    contested Chae-type gamma ~ 1.14+ claims) CANNOT be produced by this kernel's omega-dependence
+    -- in the framework such a difference must come from the EFE channel (the solar neighbourhood's
+    g_ext ~ 2.3 a0 external field), which is a separate, already-published lane. Falsifier: a
+    CONFIRMED frequency-split RAR at fixed g_bar (same g_bar, different omega, different nu beyond
+    ~1e-7) kills the published kernel outright -- no measure freedom exists to absorb it ([3]).
+####################################################################################################
+# [5] THE DISSIPATIVE CHANNEL: a universal secular rate a0/2c -- and who owns it
+####################################################################################################
+   [PASS] omega*sin(phi) = a0/2 (c=1): the rate is ORBIT-INDEPENDENT (exact)
+   [rho_DE canonical  ] tau = 2c/a0 = 6.406e+18 s = 203 Gyr (tau*H_Lambda = 11.6 = 2Z for canonical) ; per Hubble time: 6.8%
+   [rho_total alt     ] tau = 2c/a0 = 5.306e+18 s = 168 Gyr (tau*H_Lambda = 9.6 = 2Z for canonical) ; per Hubble time: 8.2%
+
+ OWNERSHIP: this rate belongs to the LITERAL frequency closure of the orbit's own motion, the
+ closure already dead on the RAR (rb1[3]). Under the published first-moment closure the orbital
+ DC dynamics are dressed by the REAL number K(a^2/a0^2) -- zero secular drift -- and the phase
+ acts only on perturbations about the orbit (epicycles, tides, waves), where it is a ~2.5e-4 rad
+ lag with the same universal decay/gain scale 2c/a0 ~ 200 Gyr for the PERTURBATION amplitude.
+ SIGN: the KMS-passive sign is damping (energy to the horizon bath); the framework's s=-1/Machian
+ reading can flip it to gain -- the sign inherits the s=-1 postulate status (postulated, not
+ derived; the 2026-07 positivity arc). Either sign, ~7%/Hubble on perturbations is far below any
+ current bound we know of -- but the planetary-ephemeris confrontation of the LITERAL closure
+ (~0.4 m/yr Earth-Sun drift) is a real kill-check for that closure and should be written up with
+ proper citations (Pitjeva/Fienga-type bounds) in the data lane.
+####################################################################################################
+# [6] HONESTY LEDGER: pinned vs free
+####################################################################################################
+
+ PINNED (derived from the published action + its v4/v11 spectral data, no knobs):
+   * the measure itself (unique: Herglotz + RAR calibration; [3]);
+   * the sum rule INT dmu/|t| = 1 (re-derived; = unit DC normalization);
+   * the FORM of the frequency response: pure phase, phi(omega) = arcsin(a0/(2 c omega)),
+     |K| = 1 exactly for all real orbital frequencies;
+   * the wide-binary/galactic conservative split at fixed a = a0: ~3.1e-8 (footing-independent),
+     galactic side more boosted; dissipative phase split ~2.5e-4 rad;
+   * the universal secular scale 2c/a0 = 203 Gyr (canonical) / 168 Gyr (alt).
+ FREE / OPEN (named, not tuned away):
+   * the CLOSURE MAP from the nonlocal operator to orbit dynamics beyond first moment (the papers'
+     own open item). The literal-frequency closure is dead (no MOND + secular drift), the
+     first-moment family survives; INSIDE that family circular orbits are degenerate (rb1[4]) and
+     only non-circular orbits split it (rb3).
+   * the theta(y) bath-kernel corner omega_c of the EXTERNAL-field channel (repo SPEC: FREE,
+     bounded) -- a different parametrization living in the reduction map, not in K's measure. If
+     one re-inserted a corner at the ORBITAL frequency by hand (Milgrom-1994 averaging postulate),
+     an O(1) frequency split would be possible -- but that corner is NOT in the published action,
+     whose memory time is the horizon scale 2c/a0.
+   * the s = -1 MOND sign (postulate; owns the dissipation sign too).
+ The sum rule does NOT pin the finite-omega response by itself -- uniqueness needs the Herglotz
+ class PLUS the RAR calibration ([3]); with both, everything above is forced.
+   [PASS] ledger stated (no unpinned number used in a prediction above)
+====================================================================================================
+ RB2 RESULT: ALL CHECKS PASS
+====================================================================================================

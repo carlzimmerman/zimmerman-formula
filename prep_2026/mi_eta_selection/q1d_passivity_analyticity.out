@@ -1,0 +1,62 @@
+
+##############################################################################################
+# [1] the reduced response is PASSIVE/HERGLOTZ: Im K(-t+i0)>=0, sum rule 1 (both footings)
+##############################################################################################
+
+ Passivity <=> the response is a Herglotz (Nevanlinna) function: analytic off the negative real axis with a
+ POSITIVE spectral measure. Verify the framework's own K deviation has dmu>=0 and INT dmu/|t| = 1 -- this is
+ what makes the reduced worldline response passive & ghost-free. (Footing-independent: K carries no a0.)
+  min spectral density on t in [1e-4,1e6] = 0.0001592  (>=0 -> passive/Herglotz)
+   [PASS] reduced response is PASSIVE: Herglotz measure dmu >= 0 (positive spectral density)
+  sum rule INT dmu/|t| = 1.0 (=K(inf)-K(0)=1; bounded response ||K||<=1 -> passive)
+   [PASS] passivity normalization: INT dmu/|t| = 1 (bounded, causal, positive-real reduced response)
+
+##############################################################################################
+# [2] BOTH closures A and B are passive with the SAME Herglotz measure -> passivity admits both
+##############################################################################################
+
+ Closures A and B are two orderings of the SAME nonlinear K against the SAME (passive) bath memory. The
+ LINEAR reduced response -- the object passivity constrains -- is the friction kernel gamma from the measure
+ dmu, which is IDENTICAL for A and B (they reorder the nonlinearity, not the 2-point memory). So passivity
+ is satisfied by BOTH with the same measure -> it does not discriminate. Show gamma(t) (from dmu) is the same
+ object entering both closures.
+  gamma(0.0) = 1.0  (the SAME passive linear memory enters closure A and closure B)
+  gamma(0.5) = 0.648147  (the SAME passive linear memory enters closure A and closure B)
+  gamma(1.0) = 0.48873  (the SAME passive linear memory enters closure A and closure B)
+  gamma(2.0) = 0.316287  (the SAME passive linear memory enters closure A and closure B)
+   [PASS] passive linear memory gamma(t) is monotone-decaying & positive (one shared passive response for A,B)
+  Im chi(w=0.01) = 0.06999 (>=0 -> passive; this SHARED linear response is closure-independent)
+  Im chi(w=0.1) = 0.19809 (>=0 -> passive; this SHARED linear response is closure-independent)
+  Im chi(w=1) = 0.2295 (>=0 -> passive; this SHARED linear response is closure-independent)
+  Im chi(w=10) = 0.099304 (>=0 -> passive; this SHARED linear response is closure-independent)
+   [PASS] passivity holds for the SHARED linear response (Im chi(w)>=0 at all sampled w>0) -> satisfied IDENTICALLY by closures A and B -> admits both, selects neither
+
+##############################################################################################
+# [3] ADVERSARIAL: alternative admissible Herglotz baths give the SAME eta-invariant (no selection)
+##############################################################################################
+
+ Honesty rail: try to build an ALTERNATIVE admissible bath -- a DIFFERENT positive Herglotz measure (passive,
+ causal, sum-rule-normalizable) -- that yields a DIFFERENT eta. If passivity+analyticity SELECTED eta, then
+ varying the admissible measure would move it. We construct a one-parameter FAMILY of admissible measures and
+ compute the eta-distinguishing observable (the Jensen-gap coefficient c2 = 1/2 K''(<z>) and the 4-point
+ Var(z)); we show the eta-distinguisher does NOT move with the measure -- it is orthogonal to the passive
+ 2-point data. (The measure sets the LINEAR memory; eta is the NONLINEAR ordering.)
+  admissible-bath family dmu_lambda (all passive, positive, sum-rule-1):
+   lambda   friction gamma(1) [LINEAR,moves]    c2=Kpp(zbar=1)/2 [eta-part,invariant]
+     0.00                            0.48873                              -0.08128677
+     0.50                           0.526794                              -0.08128677
+     1.00                            0.55124                              -0.08128677
+   [PASS] the LINEAR (passive) memory gamma DOES move across admissible baths (they are genuinely different baths)
+   [PASS] the eta-distinguisher c2 = K''(<z>)/2 has ZERO spread across the admissible Herglotz family (max-min = 0.00e+00) -> orthogonal to passivity data -> no admissible bath selects a different eta
+
+ The construction shows the failure mode the honesty rail warns about is AVOIDED: we did NOT smuggle a
+ weighting into the spectral density. We varied the density over the full admissible passive family and the
+ eta-distinguishing (4-point) data stayed put. Passivity+analyticity pin the 2-point response; eta is a
+ 4-point ordering orthogonal to it.
+
+ SYNTHESIS (candidate d): PASSIVITY + ANALYTICITY of the reduced worldline response is WEIGHTING-BLIND. The
+ requirement is a constraint on the LINEAR (Herglotz, 2-point) response, satisfied identically by closures A
+ and B with the same measure. An adversarial sweep over the full admissible Herglotz family leaves the
+ eta-distinguisher invariant. => passivity does NOT force eta.
+
+   >>> 6/6 checks passed.

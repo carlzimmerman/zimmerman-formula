@@ -1,0 +1,129 @@
+  Z = sqrt(32pi/3) = 5.78881
+  canonical: a0 = 9.360e-11 m/s^2, H_L = 1.8073e-18 1/s, 1/H_L = 17.53 Gyr
+  alt      : a0 = 1.130e-10 m/s^2, H_L = 2.1819e-18 1/s, 1/H_L = 14.52 Gyr
+  a0/c (Unruh freq at the MOND scale): canon 3.122e-19 1/s = H_L/Z, ratio to H_L = 0.1727
+
+##################################################################################################
+# STAGE A -- EXACT stationary anchor: uniformly-accelerated dS worldline, Wightman pole
+##################################################################################################
+  Z(tau,tau') = -H**2*r0**2*cosh(H*(tau - taup)/sqrt(-H**2*r0**2 + 1)) + H**2*r0**2 + cosh(H*(tau - taup)/sqrt(-H**2*r0**2 + 1))
+   [PASS] kappa_eff^2 = H^2+a^2 equals (H/s)^2 (static-patch surface gravity, squared identity)
+   [PASS] 1 - Z(Dtau) = -2 s^2 sinh^2(kappa_eff*Dtau/2)  [conformal-scalar Wightman denominator]
+  Wightman W(Dtau) ~ 1/(1-Z) = -1/[2 s^2 sinh^2(kappa_eff Dtau/2)]
+  => poles at Dtau = 2*pi*i*n / kappa_eff ; KMS temperature T = kappa_eff/2pi = sqrt(H^2+a^2)/2pi
+   [PASS] kappa_eff - H = sqrt(H^2+a^2)-H >= 0 for all a (pole never below the horizon scale)
+   [PASS] kappa_eff = H  iff  a = 0 (geodesic/comoving observer => pole exactly at horizon kappa=H_L)
+  [canon] at a=a0: kappa_eff/H_L = sqrt(1+1/Z^2) = 1.01481  (pole 1.48% ABOVE H_L)
+   [PASS] [canon] at a=a0 pole sits ABOVE H_L (not in the amplitude-MOND band)
+  [alt] at a=a0: kappa_eff/H_L = sqrt(1+1/Z^2) = 1.01481  (pole 1.48% ABOVE H_L)
+   [PASS] [alt] at a=a0 pole sits ABOVE H_L (not in the amplitude-MOND band)
+   [PASS] deep-MOND (a=1e-3 a0): pole -> H_L to <1e-6 (DC/first-moment thermal floor)
+
+##################################################################################################
+# STAGE B -- NON-uniform eccentric Kepler worldline: acceleration spectrum & pole location
+##################################################################################################
+  units GM=a_sma=1 => omega_orbit=1, orbital period=2pi. a(t)=1/r(t)^2, r=1-e cosE.
+   e     <a>_t      sqrt<a^2>   a_peri     a_apo      |a|_min/|a|_max
+  0.0     1.0000      1.0000      1.000     1.0000   1.0000
+   [PASS] e=0.0: a(t) strictly positive on the whole orbit (bound => a_min = a_apo > 0)
+  0.3     1.0483      1.1502      2.041     0.5917   0.2899
+   [PASS] e=0.3: a(t) strictly positive on the whole orbit (bound => a_min = a_apo > 0)
+  0.5     1.1547      1.5197      4.000     0.4444   0.1111
+   [PASS] e=0.5: a(t) strictly positive on the whole orbit (bound => a_min = a_apo > 0)
+  0.7     1.4003      2.5889     11.111     0.3460   0.0311
+   [PASS] e=0.7: a(t) strictly positive on the whole orbit (bound => a_min = a_apo > 0)
+  0.9     2.2942      9.4492    100.000     0.2770   0.0028
+   [PASS] e=0.9: a(t) strictly positive on the whole orbit (bound => a_min = a_apo > 0)
+
+##################################################################################################
+# STAGE B.2 -- FFT of a(t): all AC power at n*omega_orbit; DC at the mean
+##################################################################################################
+  e=0.3: harmonic amps |a_n| n=1..6: 1.000, 0.367, 0.140, 0.054, 0.021, 0.008   inter-harmonic leakage = 1.1e-16
+   [PASS] e=0.3: AC spectrum is a comb at n*omega_orbit (inter-harmonic leakage < 3%)
+   [PASS] e=0.3: lowest AC frequency = omega_orbit (no sub-omega_orbit content)
+  e=0.7: harmonic amps |a_n| n=1..6: 1.000, 0.775, 0.619, 0.501, 0.408, 0.335   inter-harmonic leakage = 5.3e-16
+   [PASS] e=0.7: AC spectrum is a comb at n*omega_orbit (inter-harmonic leakage < 3%)
+   [PASS] e=0.7: lowest AC frequency = omega_orbit (no sub-omega_orbit content)
+  e=0.9: harmonic amps |a_n| n=1..6: 1.000, 0.920, 0.862, 0.815, 0.775, 0.739   inter-harmonic leakage = 1.6e-15
+   [PASS] e=0.9: AC spectrum is a comb at n*omega_orbit (inter-harmonic leakage < 3%)
+   [PASS] e=0.9: lowest AC frequency = omega_orbit (no sub-omega_orbit content)
+
+##################################################################################################
+# STAGE B.3 -- physical: every bound orbit has omega_orbit >> H_L (AC sidebands above band)
+##################################################################################################
+  Milky-Way disk (R~8 kpc, T~230 Myr)        omega_orbit=8.656e-16/s  omega_orbit/H_L =    478.9 (canon)
+   [PASS] Milky-Way disk (R~8 kpc, T~230 Myr): omega_orbit/H_L >> 1 (AC sidebands above the amplitude-MOND band)
+  dSph (Fornax-like, T~0.5 Gyr)              omega_orbit=3.982e-16/s  omega_orbit/H_L =    220.3 (canon)
+   [PASS] dSph (Fornax-like, T~0.5 Gyr): omega_orbit/H_L >> 1 (AC sidebands above the amplitude-MOND band)
+  outer dSph / UDG (T~2 Gyr)                 omega_orbit=9.954e-17/s  omega_orbit/H_L =     55.1 (canon)
+   [PASS] outer dSph / UDG (T~2 Gyr): omega_orbit/H_L >> 1 (AC sidebands above the amplitude-MOND band)
+  cluster galaxy orbit (T~5 Gyr)             omega_orbit=3.982e-17/s  omega_orbit/H_L =     22.0 (canon)
+   [PASS] cluster galaxy orbit (T~5 Gyr): omega_orbit/H_L >> 1 (AC sidebands above the amplitude-MOND band)
+
+##################################################################################################
+# STAGE C -- anisotropic epicyclic / radial-plunge worldline (anisotropy beta)
+##################################################################################################
+  radial-plunge limit e->0.99 (near-radial): a(t) pericentre-spiked but bounded, comb spectrum
+   [PASS] e=0.95 (near-radial plunge): a_min = a_apo = 0.2630 > 0 (pole floor kappa_eff>=H_L holds)
+   [PASS] e=0.95: instantaneous kappa_eff(t) >= H_L on the ENTIRE orbit (incl. apocentre)
+  e=0.95: min kappa_eff/H_L = 1.01481 (apocentre) ... max = 2.628e+02 (pericentre)
+   [PASS] e=0.99 (near-radial plunge): a_min = a_apo = 0.2525 > 0 (pole floor kappa_eff>=H_L holds)
+   [PASS] e=0.99: instantaneous kappa_eff(t) >= H_L on the ENTIRE orbit (incl. apocentre)
+  e=0.99: min kappa_eff/H_L = 1.01481 (apocentre) ... max = 6.841e+03 (pericentre)
+
+##################################################################################################
+# STAGE D -- THE CRUX: pole >= H_L for EVERY reduction weighting => eta(beta) NOT pinned
+##################################################################################################
+  bath memory 1/H_L >> orbital period => bath keeps a MOMENT <a^k>_w of the orbit history.
+  test the pole for a family of weightings (moments k) at fixed eccentricity, deep-MOND scale:
+   e     k=1(<a>)    k=2(rms)    k=4         min a(apo)   ->  all give kappa_eff/H_L >= 1 ?
+  0.0   1.014811   1.014811   1.014811   1.014811
+   [PASS] e=0.0: ALL moment-weightings give kappa_eff/H_L >= 1 (pole never below horizon)
+  0.3   1.014811   1.017803   1.023914   1.004743
+   [PASS] e=0.3: ALL moment-weightings give kappa_eff/H_L >= 1 (pole never below horizon)
+  0.7   1.014811   1.049766   1.155110   1.000911
+   [PASS] e=0.7: ALL moment-weightings give kappa_eff/H_L >= 1 (pole never below horizon)
+  0.9   1.014811   1.227295   2.267090   1.000218
+   [PASS] e=0.9: ALL moment-weightings give kappa_eff/H_L >= 1 (pole never below horizon)
+  e=0.3: rms/mean acceleration ratio = 1.0972  (closure A uses a-instantaneous; closure B uses this rms -> the UN-PINNED lever)
+  e=0.7: rms/mean acceleration ratio = 1.8489  (closure A uses a-instantaneous; closure B uses this rms -> the UN-PINNED lever)
+  e=0.9: rms/mean acceleration ratio = 4.1188  (closure A uses a-instantaneous; closure B uses this rms -> the UN-PINNED lever)
+   [PASS] rms/mean ratio grows monotonically with e (the eta(beta) lever is real & e-dependent)
+
+##################################################################################################
+# STAGE E -- THE SIGN: actual pulled-back orbit amplitude (settle the Jensen question straight)
+##################################################################################################
+   [PASS] RAR g_obs(g_bar) is CONCAVE (d2/dg_bar2 < 0) across the transition -> Jensen sign is negative-leaning
+  Closure A (instantaneous a): g_obs = nu(a/a0) a pointwise -> orbit sits EXACTLY on the circular
+    RAR (rb3 [1], offset 0 to 1e-12). NO sign, NO Jensen gap.  [bracket endpoint 0]
+  Closure B: the kernel sees a MOMENT of the g_bar history; the SIGN of the offset then depends
+    on WHICH moment/weighting -- i.e. it is set by eta, which the pullback does NOT pin. We show
+    two admissible weightings give OPPOSITE signs => the pullback cannot settle the sign:
+  e=0.3: amplitude-weighted offset = +0.0562 dex   residence-weighted offset = -0.0399 dex   (OPPOSITE signs => sign is eta-dependent, unpinned)
+   [PASS] e=0.3: two admissible weightings give opposite-sign offsets (sign not pullback-fixed)
+  e=0.7: amplitude-weighted offset = +0.4017 dex   residence-weighted offset = -0.1859 dex   (OPPOSITE signs => sign is eta-dependent, unpinned)
+   [PASS] e=0.7: two admissible weightings give opposite-sign offsets (sign not pullback-fixed)
+  VERDICT ON THE SIGN: the pullback does NOT settle the overall sign -- it does not pin the
+    weighting (Stage D), and different admissible weightings give opposite signs (above). What IS
+    forced (rb3/CLOSURE_MAP: positivity + pericentre-dominated amplitude functional): the
+    ANISOTROPY DERIVATIVE d(offset)/d(radial-anisotropy) > 0 (radial runs hotter than tangential
+    at fixed weighting), which is MG-impossible. The overall sign at fixed anisotropy = A<->B bracket.
+
+##################################################################################################
+# STAGE F -- THE RESIDUAL, both footings: eta(beta) bounded, dSph offset bracket
+##################################################################################################
+  [canon] a0=9.360e-11: pole floor kappa_eff>=H_L=1.807e-18; eta(beta) bracket:
+          closure A endpoint: dSph offset = 0.000 dex (exact, on the RAR)
+          closure B endpoint: dSph isotropic-ensemble offset ~ -0.02..-0.05 dex (radial tail flips +); footing-stable ~10-15%
+  [alt] a0=1.130e-10: pole floor kappa_eff>=H_L=2.182e-18; eta(beta) bracket:
+          closure A endpoint: dSph offset = 0.000 dex (exact, on the RAR)
+          closure B endpoint: dSph isotropic-ensemble offset ~ -0.02..-0.05 dex (radial tail flips +); footing-stable ~10-15%
+   [PASS] both footings carried (distinct, positive H_L) & residual is ONE bounded function eta(beta)
+
+==================================================================================================
+ PULLBACK RESULT: ALL CHECKS PASS
+ VERDICT: the off-circular dS-Unruh Wightman pole stays AT/ABOVE kappa=H_L for every
+          eccentricity, every anisotropy, and every reduction weighting. FREEDOM STANDS.
+          The pullback does NOT pin eta(beta). Residual = ONE bounded sign-free-magnitude
+          function; anisotropy-derivative sign forced (MG-impossible); overall sign = A<->B bracket.
+==================================================================================================

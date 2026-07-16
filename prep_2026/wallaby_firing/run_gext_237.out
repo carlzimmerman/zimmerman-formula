@@ -1,0 +1,47 @@
+census: 237 per-side-capable J-names (mom1 AND AvgMod)
+TAP energy bounds: 3534 mom1 planes [cache (/Users/carlzimmerman/new_physics/prep_2026/wallaby_firing/tap_mom1_energy.csv)]
+
+---- runtime validation vs the 3 pilot AvgMod files ----
+  J100426-282638: |dpos(J-name vs kin center)| =  1.4" | dcz[reg] =   -4.9 km/s
+  J125548+041805: |dpos(J-name vs kin center)| = 20.2" | dcz[HR ] = -125.6 km/s | dcz[reg] =   -2.1 km/s
+  J165901-601241: |dpos(J-name vs kin center)| = 13.0" | dcz[reg] =  -34.7 km/s
+  => max |dpos| = 20.2" (<~5 kpc at these D; negligible at Mpc scale); max |dcz| non-High-Res = 34.7 km/s (vs 350 km/s peculiar-velocity floor); High-Res clipped by up to 125.6 km/s -> excluded from cz unless sole product.
+
+load_firing_names UNSIGNED_ONLY fix (direction_cones_mc.py, prep_2026, outside the frozen repo): old truthiness count 18 -> fixed 16 (dropped: NGC2841, NGC3198)
+cz/D resolved for 237/237 (0 High-Res-only)
+catalog: 54488 2M++ sources, 234 MCXC clusters
+central vectors done (4 s)
+
+---- SANITY GATE (GATE-B analog): per-field median angle u_maxclu -> named attractor ----
+  Hydra     n= 35  median angle =  13.4 deg  [3D sep<15 Mpc:  10.1 deg (n=28) | >=15 Mpc:  92.1 deg (n=7)]  -> Abell 1060 (Hydra)  | modal dominant contributor: RXCJ1036.6-2731 (29/35)
+  NGC 4636  n= 43  median angle =  23.9 deg  [3D sep<15 Mpc:  17.4 deg (n=20) | >=15 Mpc:  30.3 deg (n=23)]  -> Virgo  | modal dominant contributor: Virgo (17/43)
+  NGC 4808  n= 19  median angle =  24.9 deg  [3D sep<15 Mpc:   8.6 deg (n=8) | >=15 Mpc:  47.6 deg (n=11)]  -> Virgo  | modal dominant contributor: Virgo (7/19)
+  NGC 5044  n= 92  median angle =  35.1 deg  [3D sep<15 Mpc:  36.8 deg (n=45) | >=15 Mpc:  31.0 deg (n=47)]  -> NGC 5044 group  | modal dominant contributor: RXCJ1315.3-1623 (29/92)
+  Norma     n= 31  median angle =  42.3 deg  [3D sep<15 Mpc:   7.5 deg (n=13) | >=15 Mpc:  69.5 deg (n=18)]  -> Abell 3627 (Norma)  | modal dominant contributor: RXC J1614.3-6052 (21/31)
+  Vela      n= 17  median angle =   n/a deg  [3D sep<15 Mpc:   n/a deg (n=0) | >=15 Mpc:   n/a deg (n=0)]  -> Vela SC (behind ZoA, cz~18000; NOT in 2M++/MCXC reach)  | modal dominant contributor: RXCJ1036.6-2731 (9/17)
+  NOTE (computed above): sky-field membership != 3D neighborhood -- each field's wide-angle tail is foreground/background galaxies tens of Mpc from the named attractor, correctly pointing at their own local structure; the 3D-near subsets point at the named attractor.
+
+direction-cone MC: N=200, seed 20260716 (same perturbation model as direction_cones_mc.py)
+  realization 20/200 (48 s elapsed)
+  realization 40/200 (92 s elapsed)
+  realization 60/200 (136 s elapsed)
+  realization 80/200 (180 s elapsed)
+  realization 100/200 (224 s elapsed)
+  realization 120/200 (268 s elapsed)
+  realization 140/200 (313 s elapsed)
+  realization 160/200 (357 s elapsed)
+  realization 180/200 (401 s elapsed)
+  realization 200/200 (445 s elapsed)
+
+wrote /Users/carlzimmerman/new_physics/prep_2026/wallaby_firing/gext_wallaby_237.csv (237 rows)
+
+================ LANE W2 SUMMARY ================
+resolved galaxies: 237/237  (High-Res-only cz: 0)
+median log10 e_N (canonical a0=9.36e-11): noclu -3.32 | maxclu -2.38  [own scale; +0.100 dex to Chae scale NOT applied]
+median noclu-vs-maxclu direction swing: 2.1 deg
+cone68: median 25.3 deg | <10: 40 | <20: 98 | <30 deg: 141/237 | <45: 177
+ZoA: in-mask (|b|<5, UNUSABLE) 1 | edge (5-10) 25
+USABLE (cone68<30 AND not in ZoA mask): 140/237
+wrote /Users/carlzimmerman/new_physics/prep_2026/wallaby_firing/W2_VECTORS.md
+total runtime 445 s
+EXIT=0

@@ -1,0 +1,107 @@
+####################################################################################################
+# [1] CLOSURE A: spherical dispersion systems sit EXACTLY on the rotation RAR (offset 0)
+####################################################################################################
+
+ Under closure A the law is pointwise-algebraic: mu_fw(|a|/a0)|a| = g_N(r) fixes |a| = nu(y) g_N
+ at every position, for EVERY velocity -- orbit shape never enters. The Jeans equation then runs
+ with the same effective field g_eff(r) = nu(y) g_N as circular orbits use, i.e. the dynamics are
+ IDENTICAL to spherical MG-with-the-same-nu (QUMOND/AQUAL are also pointwise-algebraic in spherical
+ symmetry, rb1[5] control). Offset from the rotation RAR: EXACTLY ZERO (derived, not assumed).
+   [PASS] pointwise inversion holds to machine precision across 6 decades (max 2.8e-14)
+####################################################################################################
+# [2] CLOSURE B, SMALL-EPICYCLE ANALYTIC: the sign is FORCED NEGATIVE, coefficient derived
+####################################################################################################
+   <(1+eps cos)^(-2beta)> - 1 = C eps^2 with C = beta*(beta + 1/2)
+   [PASS] C = beta(2 beta + 1)/2 exactly (sympy)
+
+ Then mu_B = mu_fw(x0 sqrt(1+C eps^2)) and the star's acceleration g_B = g_N/mu_B, so at the
+ time-weighted radii   Delta ln g_obs = -(dln mu/dln x)|_{x0} * (C/2) eps^2  < 0  STRICTLY
+ for every eps > 0 (dln mu/dln x in (0,1], C > 0 for any declining field). Deep MOND
+ (dln mu/dln x -> 1, beta -> 1 for the flat-curve regime => C = 3/2):
+     Delta log10 g_obs = -(3/4) eps^2 / ln 10 = -0.326 eps^2 dex.
+ SCOPE: this negative sign is an EPICYCLIC statement (O(eps^2)); the Monte Carlo below shows it
+ holds through eps ~ 0.25-0.4 and REVERSES for plunging orbits (eps >~ 0.5), where the
+ pericentre kinetic pump wins. Circles: eps=0, offset 0 -- consistent with rb1 ring-exactness.
+   [PASS] deep-MOND epicyclic coefficient = -0.326 eps^2 dex
+####################################################################################################
+# [3] MONTE CARLO: isotropic Plummer tracer, closure-B fixed point per orbit, sigma^2 proxy
+####################################################################################################
+
+   --- DEEP (dSph-like), canonical-footing y:  y(b) = g_N(1)/a0 = 0.150 ---
+     circular control: offset = +0.00000 dex (must be ~0)
+     controlled orbits (launch v = lam * v_circ at r0=1):
+       lam=0.9: eps=(apo-peri)/(apo+peri)=0.075   offset = -0.0002 dex
+       lam=0.7: eps=(apo-peri)/(apo+peri)=0.235   offset = -0.0009 dex
+       lam=0.5: eps=(apo-peri)/(apo+peri)=0.413   offset = +0.0005 dex
+       lam=0.3: eps=(apo-peri)/(apo+peri)=0.617   offset = +0.0052 dex
+     epicyclic check (lam=0.9): MC -0.00023 vs analytic -0.00021 dex (beta_loc=0.28, x0=0.42)
+     ISOTROPIC ENSEMBLE (N=350): mean offset = -0.0239 dex, median = -0.0111, 16-84%: [-0.0505, +0.0000]
+     fraction of orbits with offset > +0.001 dex: 12.6%  (the radial tail)
+
+   --- DEEP, alt-footing relabel (y/1.207):  y(b) = g_N(1)/a0 = 0.124 ---
+     circular control: offset = +0.00000 dex (must be ~0)
+     controlled orbits (launch v = lam * v_circ at r0=1):
+       lam=0.9: eps=(apo-peri)/(apo+peri)=0.075   offset = -0.0002 dex
+       lam=0.7: eps=(apo-peri)/(apo+peri)=0.235   offset = -0.0009 dex
+       lam=0.5: eps=(apo-peri)/(apo+peri)=0.413   offset = +0.0005 dex
+       lam=0.3: eps=(apo-peri)/(apo+peri)=0.617   offset = +0.0054 dex
+     epicyclic check (lam=0.9): MC -0.00023 vs analytic -0.00021 dex (beta_loc=0.28, x0=0.37)
+     ISOTROPIC ENSEMBLE (N=350): mean offset = -0.0217 dex, median = -0.0079, 16-84%: [-0.0449, +0.0008]
+     fraction of orbits with offset > +0.001 dex: 15.7%  (the radial tail)
+
+   --- INTERMEDIATE (outskirt-like):  y(b) = g_N(1)/a0 = 0.999 ---
+     circular control: offset = +0.00000 dex (must be ~0)
+     controlled orbits (launch v = lam * v_circ at r0=1):
+       lam=0.9: eps=(apo-peri)/(apo+peri)=0.077   offset = -0.0001 dex
+       lam=0.7: eps=(apo-peri)/(apo+peri)=0.239   offset = -0.0005 dex
+       lam=0.5: eps=(apo-peri)/(apo+peri)=0.415   offset = +0.0003 dex
+       lam=0.3: eps=(apo-peri)/(apo+peri)=0.616   offset = +0.0029 dex
+     epicyclic check (lam=0.9): MC -0.00014 vs analytic -0.00014 dex (beta_loc=0.37, x0=1.41)
+     ISOTROPIC ENSEMBLE (N=350): mean offset = -0.0188 dex, median = -0.0073, 16-84%: [-0.0387, +0.0011]
+     fraction of orbits with offset > +0.001 dex: 16.3%  (the radial tail)
+   [PASS] [DEEP (dSph-like), canonical-footing y] circular control ~0
+   [PASS] [DEEP (dSph-like), canonical-footing y] epicyclic analytic matches MC (40%)
+   [PASS] [DEEP (dSph-like), canonical-footing y] epicyclic-regime orbits (lam=0.9,0.7) strictly NEGATIVE
+   [PASS] [DEEP (dSph-like), canonical-footing y] radial flip PRESENT (lam=0.3 positive: pericentre pump)
+   [PASS] [DEEP (dSph-like), canonical-footing y] isotropic ensemble net NEGATIVE (mean and median <= 0)
+   [PASS] [DEEP, alt-footing relabel (y/1.207)] circular control ~0
+   [PASS] [DEEP, alt-footing relabel (y/1.207)] epicyclic analytic matches MC (40%)
+   [PASS] [DEEP, alt-footing relabel (y/1.207)] epicyclic-regime orbits (lam=0.9,0.7) strictly NEGATIVE
+   [PASS] [DEEP, alt-footing relabel (y/1.207)] radial flip PRESENT (lam=0.3 positive: pericentre pump)
+   [PASS] [DEEP, alt-footing relabel (y/1.207)] isotropic ensemble net NEGATIVE (mean and median <= 0)
+   [PASS] [INTERMEDIATE (outskirt-like)] circular control ~0
+   [PASS] [INTERMEDIATE (outskirt-like)] epicyclic analytic matches MC (40%)
+   [PASS] [INTERMEDIATE (outskirt-like)] epicyclic-regime orbits (lam=0.9,0.7) strictly NEGATIVE
+   [PASS] [INTERMEDIATE (outskirt-like)] radial flip PRESENT (lam=0.3 positive: pericentre pump)
+   [PASS] [INTERMEDIATE (outskirt-like)] isotropic ensemble net NEGATIVE (mean and median <= 0)
+####################################################################################################
+# [4] CONFRONTATION NOTES (honest, no data fit here)
+####################################################################################################
+
+ * Direction + magnitude (closure B; closure A gives exactly 0): an ISOTROPIC dispersion-supported
+   system sits NET BELOW the rotation RAR -- ensemble mean ~ -0.02 dex, 16-84% bracket
+   [~-0.05, ~0.00] dex in the deep regime (footing-stable to ~10%) -- because the apocentre-
+   weighted majority of orbits has its dressing pulled up by the orbit-rms acceleration. But the
+   sign is NOT one-sided: plunging orbits (eps >~ 0.5) run HOTTER (pericentre kinetic pump,
+   positive offset up to ~ +0.005 dex per orbit at eps ~ 0.6 and growing with radial bias), the
+   same direction as the framework's published sigma-hysteresis door. The closure family
+   brackets the prediction: [0 (closure A) ... the closure-B pattern above].
+ * MG-with-the-same-nu: exactly 0 offset AND exactly zero dependence on the orbit-anisotropy for
+   an isolated spherical system (identical to closure A). So the DISCRIMINATOR is the
+   ANISOTROPY-CORRELATED offset: tangential/isotropic dispersion systems a few hundredths of a
+   dex BELOW the rotation RAR, radially-anisotropic ones pulled back toward/above it. MG-same-nu
+   predicts NO such correlation at all. This is the MI-computable signed pattern the task asked
+   for -- a differential, not a one-sided cut.
+ * CONFOUND: for satellites (classical dSphs of the MW) the EFE also pushes g_obs DOWN in both MI
+   and MG readings -- the channels are sign-degenerate there. The clean test set is isolated
+   quiescent dwarfs (e.g. isolated dSph/UDG samples with sigma measurements), stratified by
+   anisotropy where measurable.
+ * Prior art to confront in the data lane (fetch, do not trust memory): Lelli et al. 2017 (dSphs
+   on/below the RAR), Milgrom 2022 (arXiv:2208.07073, amplitude functionals for MI on eccentric
+   orbits), Chae 2022 / Petersen & Lelli 2020 (MI-vs-MG rotation-curve tests -- rb1[5] channel).
+ * Both footings: the footing only relabels y (depth); the deep-regime bracket is footing-stable
+   (table above: canonical vs alt shift the ensemble mean by ~10-15% of itself).
+   [PASS] notes stated
+====================================================================================================
+ RB3 RESULT: ALL CHECKS PASS
+====================================================================================================

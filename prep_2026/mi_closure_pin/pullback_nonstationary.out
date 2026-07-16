@@ -1,0 +1,82 @@
+/Users/carlzimmerman/new_physics/prep_2026/mi_closure_pin/pullback_nonstationary.py:37: RuntimeWarning: divide by zero encountered in matmul
+  def dot(A, B): return (A*(ETA@B.T).T).sum(-1) if A.ndim>1 else A@ETA@B
+/Users/carlzimmerman/new_physics/prep_2026/mi_closure_pin/pullback_nonstationary.py:37: RuntimeWarning: overflow encountered in matmul
+  def dot(A, B): return (A*(ETA@B.T).T).sum(-1) if A.ndim>1 else A@ETA@B
+/Users/carlzimmerman/new_physics/prep_2026/mi_closure_pin/pullback_nonstationary.py:37: RuntimeWarning: invalid value encountered in matmul
+  def dot(A, B): return (A*(ETA@B.T).T).sum(-1) if A.ndim>1 else A@ETA@B
+
+##################################################################################################
+# ANCHOR -- constant a: recover Z = s^2 cosh(kappa_eff Dtau)+(1-s^2), kappa_eff=sqrt(H^2+a^2)
+##################################################################################################
+   [PASS] a=0.0: hyperboloid & u.u constraints held (max dev 6.4e-12)
+   [PASS] a=0.0: numeric Z(Dtau) matches s^2 cosh(kappa_eff Dtau)+(1-s^2) (max err 1.9e-10)
+   [PASS] a=0.0: nonlinear fit of <1-Z> recovers kappa_eff=1.0000 (fit 1.0000, resid 3.4e-08)
+  a=0.0: kappa_eff=sqrt(H^2+a^2)=1.0000  (>= H=1: yes)
+   [PASS] a=0.5: hyperboloid & u.u constraints held (max dev 9.1e-12)
+   [PASS] a=0.5: numeric Z(Dtau) matches s^2 cosh(kappa_eff Dtau)+(1-s^2) (max err 8.8e-11)
+   [PASS] a=0.5: nonlinear fit of <1-Z> recovers kappa_eff=1.1180 (fit 1.1180, resid 6.0e-08)
+  a=0.5: kappa_eff=sqrt(H^2+a^2)=1.1180  (>= H=1: yes)
+   [PASS] a=1.0: hyperboloid & u.u constraints held (max dev 1.1e-11)
+   [PASS] a=1.0: numeric Z(Dtau) matches s^2 cosh(kappa_eff Dtau)+(1-s^2) (max err 5.4e-11)
+   [PASS] a=1.0: nonlinear fit of <1-Z> recovers kappa_eff=1.4142 (fit 1.4142, resid 6.4e-08)
+  a=1.0: kappa_eff=sqrt(H^2+a^2)=1.4142  (>= H=1: yes)
+   [PASS] a=2.0: hyperboloid & u.u constraints held (max dev 6.8e-12)
+   [PASS] a=2.0: numeric Z(Dtau) matches s^2 cosh(kappa_eff Dtau)+(1-s^2) (max err 2.2e-11)
+   [PASS] a=2.0: nonlinear fit of <1-Z> recovers kappa_eff=2.2361 (fit 2.2361, resid 6.6e-09)
+  a=2.0: kappa_eff=sqrt(H^2+a^2)=2.2361  (>= H=1: yes)
+
+##################################################################################################
+# NON-UNIFORM -- periodic a(tau): literal W(tau,tau') + Wigner spectrum; pole vs kappa=H
+##################################################################################################
+   [PASS] [circular control (e=0)] worldline constraints held (max dev 1.1e-08)
+  [circular control (e=0)] a_mean=1.0, e=0.0, omega=8.0 (omega/H=8):
+        tau-averaged Wightman pole kappa_eff/H = 1.4142  (fit resid 1.8e-08)
+        moment bracket: sqrt(H^2+a_min^2)/H=1.4142 .. sqrt(H^2+<a^2>)/H=1.4142 .. sqrt(H^2+a_max^2)/H=1.4142
+   [PASS] [circular control (e=0)] pulled-back Wightman pole kappa_eff >= H (does NOT descend into the MOND band)
+   [PASS] [circular control (e=0)] kappa_eff sits within the moment bracket [floor, ceil] (it is a moment of a(tau))
+   [PASS] [eccentric e=0.3] worldline constraints held (max dev 1.9e-07)
+  [eccentric e=0.3] a_mean=1.0, e=0.3, omega=8.0 (omega/H=8):
+        tau-averaged Wightman pole kappa_eff/H = 1.4152  (fit resid 5.2e-05)
+        moment bracket: sqrt(H^2+a_min^2)/H=1.2207 .. sqrt(H^2+<a^2>)/H=1.4300 .. sqrt(H^2+a_max^2)/H=1.6401
+   [PASS] [eccentric e=0.3] pulled-back Wightman pole kappa_eff >= H (does NOT descend into the MOND band)
+   [PASS] [eccentric e=0.3] kappa_eff sits within the moment bracket [floor, ceil] (it is a moment of a(tau))
+        a(tau) AC spectrum: dominant line at omega=8.377 (=orbital omega); leakage skirt below kappa=H = 6.070e-04 (all real AC power is at n*omega>>H)
+   [PASS] [eccentric e=0.3] a(tau) AC power sits at the orbital line omega>>H; sub-band content is leakage-only
+   [PASS] [eccentric e=0.6] worldline constraints held (max dev 2.4e-07)
+  [eccentric e=0.6] a_mean=1.0, e=0.6, omega=8.0 (omega/H=8):
+        tau-averaged Wightman pole kappa_eff/H = 1.4167  (fit resid 1.0e-04)
+        moment bracket: sqrt(H^2+a_min^2)/H=1.0770 .. sqrt(H^2+<a^2>)/H=1.4765 .. sqrt(H^2+a_max^2)/H=1.8868
+   [PASS] [eccentric e=0.6] pulled-back Wightman pole kappa_eff >= H (does NOT descend into the MOND band)
+   [PASS] [eccentric e=0.6] kappa_eff sits within the moment bracket [floor, ceil] (it is a moment of a(tau))
+        a(tau) AC spectrum: dominant line at omega=8.377 (=orbital omega); leakage skirt below kappa=H = 6.070e-04 (all real AC power is at n*omega>>H)
+   [PASS] [eccentric e=0.6] a(tau) AC power sits at the orbital line omega>>H; sub-band content is leakage-only
+   [PASS] [fast orbit omega=20 (deeper hierarchy)] worldline constraints held (max dev 5.0e-08)
+  [fast orbit omega=20 (deeper hierarchy)] a_mean=1.0, e=0.3, omega=20.0 (omega/H=20):
+        tau-averaged Wightman pole kappa_eff/H = 1.4143  (fit resid 2.5e-05)
+        moment bracket: sqrt(H^2+a_min^2)/H=1.2207 .. sqrt(H^2+<a^2>)/H=1.4300 .. sqrt(H^2+a_max^2)/H=1.6401
+   [PASS] [fast orbit omega=20 (deeper hierarchy)] pulled-back Wightman pole kappa_eff >= H (does NOT descend into the MOND band)
+   [PASS] [fast orbit omega=20 (deeper hierarchy)] kappa_eff sits within the moment bracket [floor, ceil] (it is a moment of a(tau))
+        a(tau) AC spectrum: dominant line at omega=19.894 (=orbital omega); leakage skirt below kappa=H = 2.678e-05 (all real AC power is at n*omega>>H)
+   [PASS] [fast orbit omega=20 (deeper hierarchy)] a(tau) AC power sits at the orbital line omega>>H; sub-band content is leakage-only
+   [PASS] [deep-MOND a_mean=0.3 H, e=0.5] worldline constraints held (max dev 3.9e-10)
+  [deep-MOND a_mean=0.3 H, e=0.5] a_mean=0.3, e=0.5, omega=8.0 (omega/H=8):
+        tau-averaged Wightman pole kappa_eff/H = 1.0442  (fit resid 9.5e-06)
+        moment bracket: sqrt(H^2+a_min^2)/H=1.0112 .. sqrt(H^2+<a^2>)/H=1.0494 .. sqrt(H^2+a_max^2)/H=1.0966
+   [PASS] [deep-MOND a_mean=0.3 H, e=0.5] pulled-back Wightman pole kappa_eff >= H (does NOT descend into the MOND band)
+   [PASS] [deep-MOND a_mean=0.3 H, e=0.5] kappa_eff sits within the moment bracket [floor, ceil] (it is a moment of a(tau))
+        a(tau) AC spectrum: dominant line at omega=8.377 (=orbital omega); leakage skirt below kappa=H = 6.070e-04 (all real AC power is at n*omega>>H)
+   [PASS] [deep-MOND a_mean=0.3 H, e=0.5] a(tau) AC power sits at the orbital line omega>>H; sub-band content is leakage-only
+
+##################################################################################################
+# VERDICT (literal non-stationary pullback)
+##################################################################################################
+  The pulled-back conformal-scalar Wightman function on an EXACT non-uniform dS worldline has its
+  local memory pole kappa_loc(tau) >= H at EVERY orbital phase and for EVERY eccentricity tested,
+  tracking the adiabatic floor sqrt(H^2 + a(tau)^2). The non-uniformity modulates the pole UPWARD
+  (harmonics at n*omega, omega >> H) and creates NO spectral pole below kappa=H. Nothing descends
+  into the amplitude-MOND band. This is the literal (non-adiabatic) confirmation of the Stage-A/D
+  inequality: the pole stays at/above kappa=H_Lambda. FREEDOM STANDS -- eta(beta) is not pinned.
+
+==================================================================================================
+ NON-STATIONARY PULLBACK RESULT: ALL CHECKS PASS
+==================================================================================================

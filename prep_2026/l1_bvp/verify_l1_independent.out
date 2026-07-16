@@ -1,0 +1,89 @@
+========================================================================================
+V1  BOX-SCHEME (independent discretization, direct sparse linear solve, NO guess)
+========================================================================================
+  pure-bulk (beta=0.001, l=2): median(J/Jt) = -0.9921  -> SGN=-1 (same one-global-sign structure as l1_bvp.py / committed magnitude-only P2 gate)
+  [PASS] V1a pure-bulk |J/Jt|=1 (<3%)  |median|=0.9921
+
+  l=2 reproduction (n=6), committed anchor w(2/7) = 7/23 = 0.30435:
+    beta=0.2857: w_box=0.30435  formula=0.30435  dev=+0.000%
+    beta=0.3300: w_box=0.27473  formula=0.27473  dev=+0.000%
+    beta=0.6000: w_box=0.17241  formula=0.17241  dev=+0.000%
+    beta=0.9500: w_box=0.11628  formula=0.11628  dev=+0.000%
+    beta=2.0000: w_box=0.05882  formula=0.05882  dev=+0.000%
+  [PASS] V1b box-scheme l=2 reproduces committed 0.3043 (<1%)  0.30435 vs 7/23=0.30435
+
+  l=1 (n=2) by box scheme; w by shell median AND by harmonic-projected LSQ fit:
+      beta   w_median      w_fit  harm_frac     resid   formula  l1_bvp.py
+    0.0500    0.71428    0.71429   8.13e-06   4.5e-05    0.7143     0.7143
+    0.1000    0.55555    0.55556   1.19e-05   4.5e-05    0.5556     0.5556
+    0.2000    0.38461    0.38462   1.77e-05   4.5e-05    0.3846     0.3846
+    0.2857    0.30434    0.30435   2.16e-05   4.5e-05    0.3043     0.3043
+    0.3333    0.27272    0.27273   2.36e-05   4.5e-05    0.2727     0.2727
+    0.4000    0.23809    0.23810   2.60e-05   4.5e-05    0.2381     0.2381
+    0.6000    0.17241    0.17241   3.22e-05   4.5e-05    0.1724     0.1724
+    0.9500    0.11627    0.11628   4.02e-05   4.5e-05    0.1163     0.1163
+    1.0000    0.11110    0.11111   4.11e-05   4.5e-05    0.1111     0.1111
+    2.0000    0.05882    0.05882   5.42e-05   4.5e-05    0.0588     0.0588
+  [PASS] V1c l=1 box-scheme w matches l1_bvp.py claims (<0.5% each)  
+  [PASS] V1d harmonic-projected LSQ w matches 1/(1+8b) (<0.5% each)  
+    (harm_frac = zero-mode-adjacent homogeneous contamination in the shell,
+     projected out explicitly -- the median and the projected fit must agree.)
+
+========================================================================================
+V2  ZERO-MODE ATTACKS (l=1 translation r^0 mode)
+========================================================================================
+  [PASS] V2-Z1 J invariant under added translation 10x response amplitude  dw/w = 7.30e-16
+
+  alternative outer BCs (each kills the r^0 translation differently):
+    outer_bc=clamped  : w_l1 = 0.30434
+    outer_bc=U0_Srt0  : w_l1 = 0.30435
+    outer_bc=Srr0_V0  : w_l1 = 0.30426
+  [PASS] V2-Z2 w_l1 agrees across 3 distinct translation-killing outer BCs (<1%)  spread 0.031%
+  [PASS] V2-Z3 outer anchor absorbs the l=1 net force (balance <2%)  |imbalance|/|F_forcing| = 6.41e-06
+
+========================================================================================
+V3  w(rho) AT THE ALIGNED-STATISTIC RADII (box scheme, rout=1e6 AU)
+========================================================================================
+   x=gbar/a0      rho    w_box  local law  l1_bvp.py
+        0.50     2.41   0.5128     0.5128     0.5130
+        0.30     3.11   0.5761     0.5761     0.5760
+        0.20     3.80   0.6247     0.6247     0.6250
+        0.10     5.38   0.7018     0.7018     0.7020
+        0.05     7.61   0.7689     0.7690     0.7690
+  [PASS] V3 w(x) profile matches l1_bvp.py + local law (<1% each)  
+
+========================================================================================
+V4  N-TARGET ARITHMETIC (N = N_null/(1-w)^2; N_null from frozen confrontation.out)
+========================================================================================
+    canon/maxclu : 560/(1-7/23)^2 =     1157   confrontation.out: 1157
+    canon/noclu  : 35390/(1-7/23)^2 =    73130   confrontation.out: 73129
+      alt/maxclu : 689/(1-7/23)^2 =     1424   confrontation.out: 1424
+      alt/noclu  : 43595/(1-7/23)^2 =    90085   confrontation.out: 90084
+  [PASS] V4a banked N reconstruction matches frozen confrontation.out (<2 abs)  
+
+    w*(x=0.107) by box scheme = 0.6947  (l1_bvp.py: 0.695)
+    canon/maxclu : corrected N =      6007   l1_bvp.py:     6,007   dev 0.01%
+    canon/noclu  : corrected N =    379641   l1_bvp.py:   379,641   dev 0.00%
+      alt/maxclu : corrected N =      7391   l1_bvp.py:     7,391   dev 0.00%
+      alt/noclu  : corrected N =    467659   l1_bvp.py:   467,659   dev 0.00%
+  [PASS] V4b corrected N-targets reproduced independently (<2% each)  
+  [PASS] V4c the x5.2 rescale factor  factor = 5.19
+  [PASS] V4d corrected aligned band ~0.5-3.1%  [0.51%, 3.08%]
+
+========================================================================================
+VERIFICATION SUMMARY
+========================================================================================
+  PASS  V1a pure-bulk |J/Jt|=1 (<3%)  |median|=0.9921
+  PASS  V1b box-scheme l=2 reproduces committed 0.3043 (<1%)  0.30435 vs 7/23=0.30435
+  PASS  V1c l=1 box-scheme w matches l1_bvp.py claims (<0.5% each)  
+  PASS  V1d harmonic-projected LSQ w matches 1/(1+8b) (<0.5% each)  
+  PASS  V2-Z1 J invariant under added translation 10x response amplitude  dw/w = 7.30e-16
+  PASS  V2-Z2 w_l1 agrees across 3 distinct translation-killing outer BCs (<1%)  spread 0.031%
+  PASS  V2-Z3 outer anchor absorbs the l=1 net force (balance <2%)  |imbalance|/|F_forcing| = 6.41e-06
+  PASS  V3 w(x) profile matches l1_bvp.py + local law (<1% each)  
+  PASS  V4a banked N reconstruction matches frozen confrontation.out (<2 abs)  
+  PASS  V4b corrected N-targets reproduced independently (<2% each)  
+  PASS  V4c the x5.2 rescale factor  factor = 5.19
+  PASS  V4d corrected aligned band ~0.5-3.1%  [0.51%, 3.08%]
+
+ALL INDEPENDENT CHECKS PASS. exit 0

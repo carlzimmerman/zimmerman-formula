@@ -1,0 +1,106 @@
+####################################################################################################
+# [1] RING-BY-RING EXACTNESS: the framework's reduced circular law <=> nu(y)=sqrt(1+1/y)
+####################################################################################################
+   [PASS] K(x^2) == mu_fw(x) exactly (kernel at first-moment argument = the inertia dressing)
+   [PASS] mu_fw(y*nu)*(y*nu) - y == 0 exactly  =>  g_obs = nu(y) g_bar EXACT at EVERY radius
+   numeric residual of the ring law over y in [1e-4,1e4]: max = 3.44e-13
+   [PASS] numeric ring residual < 1e-12 (machine zero: the law is ALGEBRAIC, no radial mixing)
+
+ => In the framework's reduced worldline law (its published dynamics), a circular orbit at radius R
+    obeys g_obs(R) = nu(g_bar(R)/a0) g_bar(R) EXACTLY, each ring independently: the law is algebraic
+    in the LOCAL acceleration, there is no field equation and hence no radius mixing. This realizes
+    Milgrom (1994) Ann.Phys. 229, 384's circular-orbit statement for THIS kernel. Contrast: AQUAL/
+    QUMOND with the SAME nu mix radii through the Poisson operator (quantified in [5]).
+####################################################################################################
+# [2] THE REDUCTION IS THE EXACT FIRST-MOMENT CLOSURE: u.Box_u u = -|a|^2 (ANY worldline)
+####################################################################################################
+   [PASS] u.(Box_u u) + a.a == d/dtau(u.a) identically (pure kinematics)
+
+ On shell u.a = 0 (unit norm), so   u_mu Box_u u^mu = -|a|^2   EXACTLY, for EVERY timelike
+ worldline (curved space too, via metric compatibility). Hence the first spectral moment of Box_u
+ in the u-contraction,  <Box_u>_u := (u.Box_u u)/(u.u) = +|a|^2,  is exact and orbit-shape-blind.
+ The published reduction K(Box_u/a0^2) -> K(|a|^2/a0^2) = mu_fw(|a|/a0) is therefore the exact
+ FIRST-MOMENT CLOSURE of the nonlocal operator -- derived at first-moment order, for ANY orbit,
+ not only circles. (This is the same geodesy-identity family the v11 loop paper uses.)
+####################################################################################################
+# [3] THE LITERAL SPECTRAL EVALUATION ON THE EXACT HELIX -- the size of the closure gap
+####################################################################################################
+   [PASS] helix is unit-timelike: u.u = -1 exactly
+   [PASS] helix |a|^2 = gamma^2 v^2 omega^2 (so a = gamma*v*omega)
+   [PASS] (t - Box_u/a0^2) f == u_spatial exactly (resolvent acts as 1/(t+omega^2/a0^2))
+   [PASS] K(0) = 0 (the DC/time part drops exactly)
+
+ EXACT:        u.K(Box_u/a0^2) u  =  gamma^2 v^2 * K(-(omega/a0)^2)        [c=1 units]
+ PRESCRIPTION: K -> K(a^2/a0^2):   u.K u -> -K(a^2/a0^2) = -mu_fw(a/a0)
+ These agree at resolvent/moment order n=1 (identity [2]) and DISAGREE beyond:
+   n=1:  exact u.Box^n u = omega**2*v**2/(v**2 - 1),   ratio exact/prescription = 1
+   n=2:  exact u.Box^n u = -omega**4*v**2/(v**2 - 1),   ratio exact/prescription = 1 - 1/v**2
+   n=3:  exact u.Box^n u = omega**6*v**2/(v**2 - 1),   ratio exact/prescription = (v**2 - 1)**2/v**4
+   [PASS] moment ratio at n=2 is -1/(gamma^2 v^2)  (moment expansion NOT controlled: ~ (c/v)^2 per order)
+
+   literal channel at a = a0 (w = omega*c/a0 = c/v on a circular orbit at a=a0):
+     galaxy outskirts v=150 km/s:  w=1.999e+03   K(-w^2+i0) = 0.999999969 + 2.502e-04 i   |K|=1.000000000
+       vs prescription K(a^2/a0^2)=K(1) = 0.618034  -> O(1) different: literal channel gives NO MOND
+     wide binary   v=0.5 km/s:  w=5.996e+05   K(-w^2+i0) = 1.000000000 + 8.339e-07 i   |K|=1.000000000
+       vs prescription K(a^2/a0^2)=K(1) = 0.618034  -> O(1) different: literal channel gives NO MOND
+   [PASS] literal channel |K(-w^2)| ~ 1 at galactic w (would predict Newtonian rings -- RAR kills it alone)
+
+ => The constant-|a| reduction (the published dynamics) and the literal frequency-domain evaluation
+    are DIFFERENT closures of the same nonlocal operator, differing at O(1). The literal closure is
+    DEAD twice over: (i) it gives |K|=1 at every real orbital frequency => NO MOND anywhere, i.e. it
+    fails the RAR outright; (ii) its imaginary part predicts a universal secular orbital-energy
+    drift at rate a0/2c (~7% per Hubble time, INCLUDING planets, ~0.4 m/yr in the Earth-Sun
+    distance -- the scale modern ephemerides bound at ~cm/yr; to be confronted with a real citation
+    before use as a kill). The surviving dynamics is the amplitude/first-moment channel -- which is
+    exactly the closure the papers publish, with the frequency channel demoted to phase/dissipation
+    on PERTURBATIONS around the orbit (rb2). This makes the papers' named open item ('off-circular
+    jerk/congruence-shear terms') quantitative: the closure gap is O(1) in the Lagrangian, and only
+    the first-moment family reproduces the RAR.
+####################################################################################################
+# [4] WHAT SURVIVES ON AN EXACT CIRCLE: closure-family invariance + the residual budget
+####################################################################################################
+   [PASS] on an exact circle every time-weighted average of |a(tau)|^2 equals a_c^2 (|a| constant)
+
+ => Ring-by-ring exactness is CLOSURE-INDEPENDENT across the whole first-moment family (any
+    time-weighting of |a|^2): on a circle |a| is constant, so all weightings coincide. The closure
+    fork only opens for NON-circular orbits (rb3).
+   residual budget on an exact circular orbit (relative shift of nu at that ring):
+     [rho_DE canonical cH_Lambda/Z] galaxy v=150 km/s     : SR-kinematic ~ 2.5e-07, phase (rb2) ~ 3.1e-08
+     [rho_DE canonical cH_Lambda/Z] wide binary v=0.5 km/s: SR-kinematic ~ 2.8e-12, phase (rb2) ~ 3.5e-13
+     [rho_total/cH0 alt           ] galaxy v=150 km/s     : SR-kinematic ~ 2.5e-07, phase (rb2) ~ 3.1e-08
+     [rho_total/cH0 alt           ] wide binary v=0.5 km/s: SR-kinematic ~ 2.8e-12, phase (rb2) ~ 3.5e-13
+   [PASS] total surviving ring residual <~ 3e-7 relative (both footings, both systems)
+####################################################################################################
+# [5] MG CONTRAST: QUMOND with the SAME nu on a Miyamoto-Nagai disk -- the radius mixing
+####################################################################################################
+
+ QUMOND field equation: lap Phi = div[ nu(|grad PhiN|/a0) grad PhiN ]  (Milgrom 2010), with the
+ FRAMEWORK's nu. Equivalent: Phi = PhiN + Phi_ph, lap Phi_ph = div[(nu-1) grad PhiN] = 4 pi G rho_ph.
+ In spherical symmetry rho_ph integrates to the algebraic law EXACTLY (control below). For a DISK,
+ the phantom source mixes radii: the in-plane force is NOT nu(y)*g_N ring-by-ring. Multipole solve:
+
+   SPHERICAL CONTROL (Plummer): max |(g_QUMOND/g_N)/nu - 1| = 1.34e-05
+   [PASS] spherical control returns the algebraic law to < 2e-3 (solver validated)
+
+   MN disk (A=1, B=0.2, a0=0.02 in G=M=A=1 units): ring-by-ring (g_QUMOND/g_N)/nu(y) - 1:
+     R =   0.50 A   y = g_N/a0 =    11.38   deviation =  -0.0105  ( -1.05 %)
+     R =   0.78 A   y = g_N/a0 =    13.30   deviation =  -0.0057  ( -0.57 %)
+     R =   1.21 A   y = g_N/a0 =    12.20   deviation =  -0.0015  ( -0.15 %)
+     R =   1.89 A   y = g_N/a0 =     8.41   deviation =  +0.0024  ( +0.24 %)
+     R =   2.95 A   y = g_N/a0 =     4.57   deviation =  +0.0074  ( +0.74 %)
+     R =   4.60 A   y = g_N/a0 =     2.14   deviation =  +0.0147  ( +1.47 %)
+     R =   7.16 A   y = g_N/a0 =     0.94   deviation =  +0.0217  ( +2.17 %)
+     R =  11.16 A   y = g_N/a0 =     0.39   deviation =  +0.0212  ( +2.12 %)
+   max |deviation| over 0.5-15 A = 2.28 %   (vs MI: 0 exactly, [1])
+   [PASS] MG-with-same-nu deviates from the algebraic ring law by > 5x the solver error on a disk
+
+ => The SAME nu produces ring-by-ring geometric corrections of order a few percent in QUMOND on a
+    disk (radius mixing through the field equation; AQUAL differs from QUMOND by further ~0.1-1%
+    shape terms -- not solved here), while the framework's MI predicts EXACTLY the algebraic law at
+    every ring. This is the in-hand SPARC discriminator lane (Petersen & Lelli 2020; Chae 2022 --
+    the confrontation with those papers' actual verdicts belongs to the data lane, not asserted
+    here). Both a0 footings: the dimensionless solve depends only on y=g_N/a0, so the footing
+    rescales WHERE on the disk the transition sits, not the size of the mixing.
+====================================================================================================
+ RB1 RESULT: ALL CHECKS PASS
+====================================================================================================

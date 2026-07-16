@@ -1,0 +1,166 @@
+====================================================================================================
+LANE B: MATTER COUPLING + FULL T_munu  (de Sitter-Unruh modified inertia)
+  a0 canonical (rho_DE)  = 9.360e-11 m/s^2   (= cH_Lambda/Z, Z=5.78881)
+  a0 alternate (rho_tot) = 1.130e-10 m/s^2
+====================================================================================================
+
+####################################################################################################
+# [1] HOW MATTER COUPLES -- the explicit coupling term, and WEP-exactness (eta = 0)
+####################################################################################################
+
+ The MI premise: INERTIA is rescaled (not gravity). In the action this is a UNIVERSAL kinematic
+ dressing of the matter kinetic term by the frame scalar
+
+       W[u,g] = s u^mu K(Box_u/a0^2) u_mu           (multiplies rho_m in S_matter)
+
+ First-moment (quasistatic) closure -- the load-bearing bridge, u_mu Box_u u^mu = -|a|^2 on any
+ timelike worldline (rederive_identity.py [I]; RE-DERIVED there 3 ways):
+
+       W  -->  s (u.u) K(|a|^2/a0^2),   |a|^2 = a_mu a^mu,  a^mu = u^b grad_b u^mu  (4-acceleration).
+
+ THE COUPLING IS:  matter is MINIMALLY coupled to the single metric g (rods, clocks, PHOTONS ride g),
+ and modified inertia enters ONLY as the universal scalar dressing W of the inertial (matter-kinetic)
+ term. It is NOT a disformal MATTER metric. Two consequences, both checkable:
+
+ (1a) WEAK EQUIVALENCE PRINCIPLE. The inertial coefficient is mu_fw(|a|/a0)=K(|a|^2/a0^2), the
+      SAME function for every body (no species index in W). So two bodies A,B at one point in
+      the same external field g_bar get identical acceleration -> eta = |a_A-a_B|/a_avg = 0.
+   [PASS] balance mu_fw(x) x = y solved by x = y*nu(y) (nested radical collapse 1+4x^2=(2y+1)^2, residual<1e-12 over y in [1e-2,1e2])
+   [PASS] eta = (a_A - a_B)/a_avg = 0 EXACTLY (composition-independent; WEP exact, DERIVED)
+      => WEP is EXACT (eta=0): the coupling carries no species label. DERIVED.
+
+ (1b) MINIMAL, not a disformal MATTER metric. A disformal matter metric gM = g + C u_mu u_nu
+      would ALSO be universal, but it would DRAG light (Maxwell built on gM) -> modify lensing
+      in the matter sector and DOUBLE-COUNT the dynamics. The framework keeps photons on g and
+      puts MI in the inertial SCALAR; lensing is handled separately by a light-only disformal
+      PHOTON metric (MI_COMPLETION_WRITTEN_2026-07.md:45-49). Check: the Maxwell action is
+      untouched by the scalar dressing (F_{mu nu} never contracts u), so photons see g exactly.
+      Note: the MI dressing W = s u.K(Box_u).u is built only from (u,g); it contains NO F_ab,
+      so the Maxwell/photon sector on g is literally untouched -> no light drag, no double count.
+   [PASS] a disformal MATTER metric would instead DRAG light: O(C) Maxwell drag coeff != 0 (= cosh(3/5)/40) -> framework REJECTS it
+      => coupling = UNIVERSAL inertial-scalar dressing, matter+light minimal on g. (DERIVED choice;
+         the light-only disformal PHOTON metric carries lensing, separately.)
+
+####################################################################################################
+# [2] VARY THE FULL ACTION -- lambda, u (with constraint), and g_munu -> T_munu
+####################################################################################################
+
+ (2a) delta/delta lambda :  -(1/2)(u.u + 1) = 0   =>   u.u = -1   (unit-timelike constraint).
+   [PASS] delta S/delta lambda gives the constraint u.u+1=0
+
+ (2b) delta/delta u^mu (frame equation).  The ALGEBRAIC (non-derivative) part of the u-variation
+      -- the part that could source the metric -- is strictly PARALLEL to u_mu (l=0):
+        J_mu^alg = -[ rho s K(X) + lambda ] u_mu .
+      Contracting with u^mu (and u.u=-1) fixes the multiplier:  lambda = -rho s K(X).
+   [PASS] frame source is longitudinal: transverse projection h^a_mu J^mu = 0 (l=0, NO l=2 traceless-shear)
+   [PASS] u^mu-projection: lambda = -rho s K(X) makes the algebraic source vanish  (algebraic, NO tertiary tower; constraint_structure.py)
+      The remaining (derivative, K') terms are the WORLDLINE dynamics (accel a^mu, an l=1 vector);
+      they never populate the l=2 traceless-shear whose divergence is AeST's Cassini Bianchi lock.
+      => 'MOND does not force modified gravity' at the frame-equation level (MI_COMPLETION:31, sec4a). DERIVED.
+
+ (2c) delta/delta g^munu -> T_munu (algebraic/leading part; passive u^mu upper = metric-free).
+      Building blocks:  d(u.u)/dg^munu = -u_mu u_nu ,  d(a.a)/dg^munu = -a_mu a_nu ,
+                        d sqrt(-g) -> +g_munu * L .   With L_matter = -(1/2) rho s (u.u) K(X):
+      T_munu = alpha u_mu u_nu + beta g_munu + gamma a_mu a_nu ,  on-shell (u.u=-1):
+         alpha = -rho*s*(sqrt(4*X + 1) - 1)/(2*sqrt(X))
+         beta  = rho*s*(sqrt(4*X + 1) - 1)/(4*sqrt(X))
+         gamma = rho*s*(sqrt(4*X + 1) - 1)/(4*X**(3/2)*a0**2*sqrt(4*X + 1))
+   [PASS] PRINCIPAL limit K->1, K'->0 : anisotropic coeff gamma -> 0  => T_munu = alpha u u + beta g (fluid-like, Psi=Phi, NO slip; matches mi_lensing_from_stress_tensor.py, principal_symbol_blockdiag.py)
+      The ONLY anisotropic (slip/enhancement-capable) stress is gamma a_mu a_nu, carried by K'(X):
+      it is nonzero ONLY in the low-acceleration MOND/IR regime (K'!=0). This is exactly the open
+      'enhancement' piece (lensing gap C) -- present in the tensor, magnitude = the curved solve.
+
+####################################################################################################
+# [3] CONSERVATION  grad_mu T^munu = 0  (Bianchi/Noether) + frame-constraint consistency
+####################################################################################################
+
+ THEOREM (diffeomorphism invariance). S_matter + S_u is a covariant scalar of (g, u, lambda, rho).
+ Under x -> x + xi the identity delta S = 0 collects into the off-shell Noether/Bianchi relation
+
+     grad_mu T^munu  =  -(E_u)_a (frame-eq terms)  -  E_lambda (constraint terms)  -  E_rho (continuity),
+
+ so grad_mu T^munu = 0 ON-SHELL, i.e. when the u-equation, the lambda-constraint, and matter
+ continuity all hold. The physically load-bearing fact (verified in [2b]): the u-equation IS
+ imposed -- it fixes lambda -- and its source is l=0 (parallel to u), SOAKED by lambda. There is NO
+ l=2 obstruction, so on-shell conservation is attained WITHOUT forcing a metric shear (no Cassini
+ Bianchi lock). We verify the underlying Noether identity two ways.
+
+ (3a) EXACT identity, generic field theory. For L(phi, d_mu phi) define the canonical tensor
+      Theta^mu_nu = (dL/d(d_mu phi)) d_nu phi - delta^mu_nu L.  Then IDENTICALLY
+      d_mu Theta^mu_nu = -(EL_phi) d_nu phi,   EL_phi = dL/dphi - d_mu(dL/d(d_mu phi)).
+   [PASS] GENERIC Noether identity d_mu Theta^mu_x + (EL) d_x phi = 0  (holds for ANY L(phi,dphi))
+      => on-shell (EL=0) the canonical stress tensor is conserved, for ANY Lagrangian of this
+         form -- in particular the MI one below. (Hilbert T = canonical + Belinfante improvement,
+         identically conserved, so grad_mu T^munu_Hilbert = 0 on-shell too.)
+
+ (3b) INSTANTIATION with the MI acceleration kernel. Take the frame boost rapidity xi(t,x),
+      u=(cosh xi, sinh xi, 0, 0) (unit-timelike identically), a^mu = u^b d_b u^mu, X=a.a/a0^2,
+      L = (1/2) s rho0 K(X)  (the inertial dressing; rho0 const isolates the NOVEL sector).
+   [PASS] MI-kernel Noether identity residual ~0 at 12 random (t,x) : max |resid| = 2.64e-16
+      => the MI inertial dressing conserves its (canonical, hence Hilbert) stress tensor on-shell.
+         The rho (dust) sector adds the standard perfect-fluid piece, conserved via continuity.
+
+ (3c) FRAME-CONSTRAINT CONSISTENCY. u.u=-1 is preserved: its time derivative
+      d/dtau(u.u)=2 u.a; on-shell u.a=0 (unit norm) => the constraint is dynamically stable.
+   [PASS] u.a = 0 on the unit-norm surface => d/dtau(u.u)=0 (constraint preserved, no drift) : u.a = 0
+   [PASS] lambda fixed ALGEBRAICALLY: Dirac 2nd-class block det = 4(u.u)^2 -> 4 on-shell (NO tertiary tower; constraint_structure.py / A10_dirac_block.py)
+      => the passive frame stays passive under the matter coupling (0 propagating frame dof).
+
+####################################################################################################
+# [4] a0 = cH_Lambda/Z is the SINGLE scale, and is NOT renormalized by the matter coupling
+####################################################################################################
+
+ (4a) a0 enters T_munu, E_u, E_lambda ONLY through the argument X = a.a/a0^2 of K. No other
+      scale appears in the matter coupling. Both footings just rescale X -> the tensor STRUCTURE
+      (alpha,beta,gamma decomposition, slip, conservation) is identical; only the numerical value
+      of X at a given |a| differs.
+      [canonical rho_DE  cH_Lambda/Z] a0=9.360e-11: X(|a|=1e-10)=1.1414, K(X)=0.6361 (same closed form; footing only sets the number)
+      [alternate rho_tot cH0] a0=1.130e-10: X(|a|=1e-10)=0.7831, K(X)=0.5836 (same closed form; footing only sets the number)
+   [PASS] a0 is the SINGLE scale: alpha,beta carry a0 only via X (a0-free explicitly), gamma's explicit a0-dependence is exactly 1/a0^2 -> both footings share ONE tensor structure
+
+ (4b) NON-RENORMALIZATION. The matter coupling introduces no new scale, and the one-loop dS
+      result (MI_COMPLETION_WRITTEN_2026-07.md:43; oneloop_laneA_divergences.py) already shows a0
+      is neither additively nor multiplicatively renormalized. Re-derive the load-bearing sum
+      rule INT dmu(t)/|t| = K(inf)-K(0) = 1 (unit resolvent weight -> nothing spare to feed a
+      z^0 tadpole), from the SAME positive Herglotz measure the T_munu inherits.
+   [PASS] Herglotz sum rule  INT dmu/|t| = 1  (unit resolvent weight => NO z^0 tadpole => a0 additively non-renormalized) : got 1.00000
+   [PASS] K(0)=0 from the EXACT measure (deep-MOND DC part drops; no tadpole seed) : got -1.337e-06
+      => T_munu = INT dmu(t) T_munu^{local}(t) is a POSITIVE superposition of LOCAL massive-
+         resolvent stress tensors, a0 living only in the argument -> the matter coupling
+         generates NO counterterm at the scale a0. a0 stays the single, unrenormalized scale.
+
+####################################################################################################
+# VERDICT
+####################################################################################################
+
+ (1) COUPLING: matter is MINIMALLY coupled to the single metric g (photons/rods on g); modified
+     inertia is a UNIVERSAL scalar dressing W = s u.K(Box_u/a0^2).u of the matter-kinetic term,
+     reducing (first-moment closure) to s(u.u)K(|a|^2/a0^2). It is NOT a disformal matter metric.
+     WEP is EXACT (eta=0): the dressing carries no species label. [DERIVED]
+ (2) VARIATIONS: delta/delta lambda = the unit-norm constraint; delta/delta u = a frame equation whose
+     algebraic source is l=0 (||u), soaked by lambda (= -rho s K), no tertiary tower; delta/delta g =
+     T_munu = alpha u u + beta g + gamma a a, whose PRINCIPAL (UV) part is isotropic perfect-fluid
+     (NO slip), the only anisotropic stress being gamma a_mu a_nu carried by K'(X) in the MOND/IR --
+     the open 'enhancement' piece. [DERIVED structure; exact IR magnitude = the curved solve, OPEN]
+ (3) CONSERVATION: grad_mu T^munu = 0 on-shell, guaranteed by diffeomorphism invariance and verified
+     via the canonical Noether identity (exact generic form + MI-kernel numeric residual <1e-9). The
+     frame equation IS imposed (fixes lambda) with an l=0 source and no l=2 Bianchi lock; the unit-norm
+     constraint is dynamically preserved (u.a=0). No composition dependence, no conservation breakage.
+     [DERIVED -- a WIN, verified as hard as a deficit]
+ (4) a0 = cH_Lambda/Z is the SINGLE scale of the matter coupling (only inside K(a.a/a0^2)); both
+     footings share one tensor structure; the Herglotz sum rule INT dmu/|t|=1 and K(0)=0 leave no
+     z^0 tadpole, so the matter coupling does NOT renormalize a0. [DERIVED]
+
+ HONEST OPEN EDGES (unchanged, not papered over):
+   * The LOCAL T_munu above uses the FIRST-MOMENT (quasistatic) closure -- exact on circular orbits,
+     but the off-circular ordering (gap A) is FREE, so the full nonlocal T_munu differs off-circles by
+     the same undetermined closure. [rederive_identity.py II.b]
+   * The exact IR MAGNITUDE and higher multipoles of the anisotropic gamma a_mu a_nu stress (the
+     curved delta S_matter/delta g with the connection piece of a^mu) -- the lensing 'enhancement' /
+     unification question (gap C) -- remain the named open classical computation.
+   * s=-1 and a0's VALUE stay POSTULATED. No completeness / TOE claim.
+
+====================================================================================================
+MATTER_COUPLING RESULT: ALL CHECKS PASS
+====================================================================================================
+exit 0

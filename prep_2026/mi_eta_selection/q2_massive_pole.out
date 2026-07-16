@@ -1,0 +1,82 @@
+
+##############################################################################################
+# [1] the accelerated-worldline embedding: Z(Delta_tau) and kappa_eff=sqrt(H^2+a^2) (sympy, EXACT)
+##############################################################################################
+
+ dS_4 = hyperboloid X.X = 1/H^2 in M^{1,4}. Static-patch worldline at fixed areal radius r0 (uniformly
+ accelerated, proper accel a = H^2 r0 / sqrt(1-H^2 r0^2)). The dS-invariant Z = H^2 X(tau).X(tau'):
+     Z(Delta_tau) = s^2 cosh(kappa Delta_tau) + (1-s^2),   s=sqrt(1-H^2 r0^2),  kappa = H/s.
+ This is PURE GEOMETRY (the field mass never enters). Derive kappa^2 = H^2 + a^2.
+  s = sqrt(1-H^2 r0^2),  kappa = H/s,  a = H^2 r0/sqrt(1-H^2 r0^2)
+  kappa^2 - (H^2 + a^2) = 0
+   [PASS] embedding gives kappa_eff^2 = H^2 + a^2 EXACTLY (geometric, mass-independent)
+  Z(Delta_tau) - 1 = H**2*r0**2 - (H**2*r0**2 - 1)*cosh(Deltatau*H/sqrt(-H**2*r0**2 + 1)) - 1  = s^2 (cosh(kappa Delta_tau) - 1)
+   [PASS] Z=1 <=> cosh(kappa Delta_tau)=1 (the coincidence/KMS-image condition is geometric)
+  cosh(kappa Delta_tau)=1  =>  kappa Delta_tau = 2 pi i n  =>  nearest pole Delta_tau = 2 pi i/kappa_eff
+   [PASS] nearest KMS pole at Delta_tau = 2pi i/kappa_eff (period 2pi i/kappa_eff -> T=kappa_eff/2pi)
+
+##############################################################################################
+# [2] the GENERAL-MASS dS 2-point function G(Z): singular ONLY at Z=1, mass-independent LEADING
+##############################################################################################
+
+ The de Sitter-invariant Wightman two-point function for a scalar of mass m in dS_4 is (Bunch-Davies):
+     G(Z) = (H^2/16 pi^2) Gamma(h_+) Gamma(h_-) 2F1(h_+, h_-; 2; (1+Z)/2),
+     h_pm = 3/2 +- nu,   nu = sqrt(9/4 - m^2/H^2).
+ (nu real & in (0,3/2): complementary series; nu = i mu imaginary: principal series, heavy m>3H/2;
+  nu=1/2 i.e. m^2=2H^2: the conformally-coupled/massless-conformal point used in the pullback.)
+ 2F1(a,b;c;x) has its branch point at x=1, i.e. (1+Z)/2 = 1 -> Z=1 (coincidence). With c-a-b = 2-h_+-h_- =
+ 2-3 = -1 < 0, near x->1:  2F1 ~ Gamma(c)Gamma(a+b-c)/(Gamma(a)Gamma(b)) (1-x)^{c-a-b} = ...(1-x)^{-1}.
+ Compute the LEADING coincidence coefficient of G and show the mass (h_pm) dependence CANCELS.
+  2F1 exponent c-a-b = -1  (=-1 -> simple pole in (1-x) -> in (Z-1))
+  leading G coefficient (of (1-(1+Z)/2)^-1) = H**2/(16*pi**2)
+  d(leading coeff)/d nu = 0  (=0 -> LEADING coincidence singularity is MASS-INDEPENDENT)
+   [PASS] massive dS 2-point has a SIMPLE pole at coincidence Z=1 (exponent c-a-b=-1, all masses)
+   [PASS] LEADING coincidence coefficient is MASS-INDEPENDENT (Hadamard universality): d/dnu = 0
+
+##############################################################################################
+# [3] the pole LOCATION in Delta_tau is 2pi i/kappa_eff for EVERY mass; only RESIDUES shift (mpmath)
+##############################################################################################
+
+ Numerically evaluate the full massive G(Z(Delta_tau)) along the imaginary Delta_tau axis for several masses
+ and confirm the nearest singularity sits at Delta_tau = 2pi i/kappa_eff (i.e. kappa_eff Delta_tau = 2pi i),
+ independent of mass; then show the SUBLEADING (mass-dependent) piece genuinely differs by comparing G at a
+ fixed off-coincidence Z for different masses.
+  worldline s=0.8 -> kappa_eff=1.25 (a/H=0.75); predicted pole at Im(Delta_tau)=2pi/kappa=5.02655
+
+  mass label                                    |G| just below pole  |G| just above pole blows up AT 2pi/kappa?
+  conformal nu=1/2 (m^2=2H^2)                                 4.459             1.003e+5                   True
+   [PASS] [conformal nu=1/2 (m^2=2H^2)] nearest singularity at Im(Delta_tau)=2pi/kappa_eff (pole LOCATION mass-independent)
+  light complementary nu=1.2                                  4.528             1.003e+5                   True
+   [PASS] [light complementary nu=1.2] nearest singularity at Im(Delta_tau)=2pi/kappa_eff (pole LOCATION mass-independent)
+  near-massless nu=1.49                                       5.782             1.003e+5                   True
+   [PASS] [near-massless nu=1.49] nearest singularity at Im(Delta_tau)=2pi/kappa_eff (pole LOCATION mass-independent)
+  heavy principal nu=i*1.5 (m^2=(9/4+2.25)H^2)                4.376             1.003e+5                   True
+   [PASS] [heavy principal nu=i*1.5 (m^2=(9/4+2.25)H^2)] nearest singularity at Im(Delta_tau)=2pi/kappa_eff (pole LOCATION mass-independent)
+
+  residue/subleading check: G at a fixed off-pole Z=0.5 differs across masses (mass shifts residues):
+     conformal nu=1/2 (m^2=2H^2)                  |G(Z=0.5)| = 0.0253303
+     light complementary nu=1.2                   |G(Z=0.5)| = 0.0566254
+     near-massless nu=1.49                        |G(Z=0.5)| = 1.28392
+     heavy principal nu=i*1.5 (m^2=(9/4+2.25)H^2) |G(Z=0.5)| = 0.0111221
+   [PASS] mass genuinely changes the 2-point function (residues/Matsubara weights differ; only LOCATION is fixed)
+
+##############################################################################################
+# [4] the KMS temperature T = kappa_eff/2pi is mass-independent, at a=a0 both footings
+##############################################################################################
+
+ The pole period 2pi i/kappa_eff sets the KMS temperature T_eff = kappa_eff/2pi = sqrt(H^2+a^2)/2pi, which the
+ massive analysis leaves untouched (it depends only on the geometric Z(Delta_tau), not on m). Report it at the
+ MOND transition a=a0 for both footings -- identical to the massless pullback value.
+  canonical rho_DE  : kappa_eff(a=a0)/H_L = 1.0148111 (=sqrt(1+1/Z^2)), T_eff=kappa_eff/2pi=2.919e-19  (mass-independent)
+   [PASS] [canonical rho_DE] KMS pole ratio at a=a0 = sqrt(1+1/Z^2) (mass-independent, matches massless pullback)
+  alt rho_tot/cH0   : kappa_eff(a=a0)/H_L = 1.0148111 (=sqrt(1+1/Z^2)), T_eff=kappa_eff/2pi=3.524e-19  (mass-independent)
+   [PASS] [alt rho_tot/cH0] KMS pole ratio at a=a0 = sqrt(1+1/Z^2) (mass-independent, matches massless pullback)
+
+ SYNTHESIS (Q2): the eta-free NULL does NOT rest on the massless-conformal choice. For a scalar of ANY mass
+ (complementary, principal, or the conformal point), the de Sitter Wightman function is singular only at the
+ geometric coincidence Z=1 and its KMS images; the accelerated-worldline embedding fixes Z(Delta_tau) and
+ hence the nearest pole at Delta_tau = 2pi i/kappa_eff, kappa_eff=sqrt(H^2+a^2) -- a MASS-INDEPENDENT LOCATION.
+ The mass shifts residues/Matsubara weights only. The Pythagorean pole (>= H_L for every acceleration) that
+ makes the pullback weighting-blind is robust to the field mass. Both footings; s=-1, a0 postulates.
+
+   >>> 12/12 checks passed.

@@ -1,0 +1,55 @@
+
+##############################################################################################
+# [1] FDT fixes the reactive/dissipative SPLIT uniquely at fixed T (Kramers-Kronig, sympy)
+##############################################################################################
+
+ The retarded susceptibility chi(w)=chi'(w)+i chi''(w) is analytic in the upper half plane (causality), so
+ chi' and chi'' are Kramers-Kronig partners -- the split is UNIQUE given either half. FDT ties the symmetric
+ (fluctuation) correlator to the dissipative half at temperature T:
+     S_sym(w) = coth(w/2T) chi''(w).
+ Verify (i) detailed balance S(w)/S(-w) = e^{w/T}, and (ii) the split is fixed (chi' determined by chi'' via KK).
+  S_sym(w) = coth(w/2T) chi''(w),  chi''(w)=w/4pi
+  detailed-balance ratio S_>(w)/S_<(w) = exp(omega/T)
+   [PASS] FDT detailed balance: S_>(w)/S_<(w) = e^{w/T} (KMS, fixes the split at fixed T)
+  chi' (reactive) is the Kramers-Kronig transform of chi'' -> the reactive/dissipative split is FIXED
+     (no free parameter in the split: given chi'', both chi' and S_sym are determined at fixed T).
+     chi''(-w)+chi''(w) = 0 (=0 -> chi'' odd, causal),  S_sym(-w)-S_sym(w) = 0 (=0 -> even)
+   [PASS] reactive/dissipative split is KK-locked: chi'' is odd (causal) and S_sym even (FDT-fixed) -> no free parameter/weighting hides in the 2-point split
+
+##############################################################################################
+# [2] but the SPLIT is a 2-POINT object; eta weights a 4-POINT (Jensen gap) -> orthogonal (sympy)
+##############################################################################################
+
+ FDT constrains the 2-point functions {S_sym, chi'', chi'} and their ratios. The closure weighting eta(beta)
+ lives in the NONLINEAR MOND observable's ordering: G(beta)=<K(z)>-K(<z>), z=a^2/a0^2, a CONNECTED 4-POINT
+ of the acceleration. There is NO FDT-type relation linking a 2-point split to a 4-point ordering for a
+ Gaussian KMS bath -- the higher Kubo/FDT hierarchy relations for a Gaussian bath close at 2nd order (all
+ connected n-point functions with n>2 vanish). Verify: the connected 4-point of a Gaussian bath is 0, so FDT
+ gives NO constraint that could fix Var(z)-weighting.
+  connected 4-point (4th cumulant) of the Gaussian KMS bath = 0
+   [PASS] Gaussian KMS bath: connected 4-point = 0 -> the FDT/Kubo hierarchy closes at 2nd order
+
+ => Because the 4th cumulant vanishes, there is NO fluctuation-dissipation relation of 4th order to constrain
+    Var(z). The 2nd-order FDT (the only nonvanishing one) fixes the 2-point split but says NOTHING about the
+    4-point ordering eta weights. The two are ORTHOGONAL data.
+
+##############################################################################################
+# [3] detailed balance holds IDENTICALLY for closures A and B -> cannot distinguish them
+##############################################################################################
+
+ Closures A and B are evaluated in the SAME KMS state at the SAME T_dS and share the SAME 2-point structure
+ (they differ only by the reordering of the nonlinearity). So the detailed-balance ratio e^{w/T} is identical
+ for both -> FDT assigns them the same 2-point data and cannot select. Numeric check of T_eff at a=a0 (both
+ footings): the KMS temperature the FDT uses is the Pythagorean kappa_eff/2pi -- closure-independent.
+  canonical rho_DE  : kappa_eff(a=a0)/H_L = 1.014811 (=sqrt(1+1/Z^2), footing-independent), T_eff = 2.919e-19 -- SAME for A and B
+   [PASS] [canonical rho_DE] KMS T_eff at a=a0 is closure-independent (Pythagorean pole) -> FDT common to A,B
+  alt rho_tot/cH0   : kappa_eff(a=a0)/H_L = 1.014811 (=sqrt(1+1/Z^2), footing-independent), T_eff = 3.524e-19 -- SAME for A and B
+   [PASS] [alt rho_tot/cH0] KMS T_eff at a=a0 is closure-independent (Pythagorean pole) -> FDT common to A,B
+
+ SYNTHESIS (candidate c): the FLUCTUATION-DISSIPATION THEOREM at T_dS is WEIGHTING-BLIND. FDT/detailed
+ balance fixes the reactive/dissipative SPLIT of the 2-point response uniquely (Kramers-Kronig-locked), but
+ that is 2-point data. eta(beta) weights the connected 4-point (Jensen gap), and the Gaussian KMS bath's
+ 4th cumulant vanishes -> there is no 4th-order FDT relation to constrain it. Detailed balance holds
+ identically for closures A and B. => FDT does NOT force eta.
+
+   >>> 5/5 checks passed.

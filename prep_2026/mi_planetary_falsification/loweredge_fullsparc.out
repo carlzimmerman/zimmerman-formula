@@ -1,0 +1,84 @@
+####################################################################################################
+# GATE reuse check: k = sqrt(GATE_KEEP/(1-GATE_KEEP)) with GATE_KEEP=0.90 -> lower edge = k*MAX(omega_gal)
+####################################################################################################
+   [PASS] k == 3 exactly (window_joint.py:111 constant reused)
+   [PASS] Re G(omega_gal, wc=k*omega_gal) == GATE_KEEP (the lower-edge condition is self-consistent)
+
+ LLR upper edge (window_joint.py:136-142 formula, recomputed): d ln r/dt = a0 wc/g_N <= 2.42e-14/yr
+   g_N(Moon) = 2.6976e-03 m/s^2  ->  omega_hi = (LLR2sig/yr) g_N/a0 =
+      canon: 2.210e-14 rad/s
+      alt: 1.831e-14 rad/s
+   [PASS] canon upper edge reproduces window_joint.py value 2.21e-14 (+-2%)
+   [PASS] alt   upper edge reproduces window_joint.py value 1.83e-14 (+-2%)
+
+ master table: 175 galaxies with (inc, Q, Vflat)
+
+####################################################################################################
+# SCAN: omega_gal = v_rot/r over ALL confirmed deep-MOND points (Q<=2, inc>=30, g_bar<a0)
+####################################################################################################
+ rotmod files found: 175
+
+====================================================================================================
+ FOOTING = canon  (a0=9.360e-11,  deep-MOND cut g_bar<a0)
+====================================================================================================
+   galaxies passing Q<=2 & inc>=30 with >=1 deep-MOND point: 151
+   points: total-usable 3166, deep-MOND (g_bar<a0) 2188
+   TOP 8 galaxies by max omega_gal (rad/s):
+      UGC05721       omega_gal_max = 5.941e-15   (tau = 5.3 Myr)
+      NGC2403        omega_gal_max = 4.962e-15   (tau = 6.4 Myr)
+      NGC6789        omega_gal_max = 4.505e-15   (tau = 7.0 Myr)
+      UGC12506       omega_gal_max = 4.229e-15   (tau = 7.5 Myr)
+      NGC5585        omega_gal_max = 4.033e-15   (tau = 7.9 Myr)
+      UGC08490       omega_gal_max = 3.698e-15   (tau = 8.6 Myr)
+      NGC0024        omega_gal_max = 3.139e-15   (tau = 10.1 Myr)
+      ESO116-G012    omega_gal_max = 2.709e-15   (tau = 11.7 Myr)
+
+   >>> BINDING MAX(omega_gal) = 5.941e-15 rad/s
+       set by galaxy UGC05721 at r=0.09 kpc, V_rot=16.5 km/s, g_bar=7.025e-11 (y=g_bar/a0=0.751)
+   HARDENED LOWER EDGE = 3 x MAX = 1.782e-14 rad/s   (tau = 1.78 Myr)
+   LLR UPPER EDGE (fixed)         = 2.210e-14 rad/s   (tau = 1.43 Myr)
+   ==> WINDOW SURVIVES: omega_c in [1.782e-14, 2.210e-14] rad/s  width x1.240
+   SENSITIVITY: footing CLOSES if MAX(omega_gal) > omega_hi/3 = 7.367e-15 rad/s.
+                current MAX = 5.941e-15 is x1.240 below that => headroom +24.0%  (any deep-MOND orbit faster than 7.367e-15 rad/s would FALSIFY this footing)
+   ROBUSTNESS (drop each galaxy's innermost radius): MAX->4.621e-15 (UGC05721, r=0.27 kpc, V=38.5) -> lower edge 1.386e-14 => window SURVIVES (width x1.594)
+
+====================================================================================================
+ FOOTING = alt  (a0=1.130e-10,  deep-MOND cut g_bar<a0)
+====================================================================================================
+   galaxies passing Q<=2 & inc>=30 with >=1 deep-MOND point: 151
+   points: total-usable 3166, deep-MOND (g_bar<a0) 2271
+   TOP 8 galaxies by max omega_gal (rad/s):
+      UGC05721       omega_gal_max = 5.941e-15   (tau = 5.3 Myr)
+      NGC2403        omega_gal_max = 4.962e-15   (tau = 6.4 Myr)
+      NGC6789        omega_gal_max = 4.505e-15   (tau = 7.0 Myr)
+      UGC12506       omega_gal_max = 4.229e-15   (tau = 7.5 Myr)
+      NGC5585        omega_gal_max = 4.033e-15   (tau = 7.9 Myr)
+      UGC08490       omega_gal_max = 3.698e-15   (tau = 8.6 Myr)
+      NGC0024        omega_gal_max = 3.139e-15   (tau = 10.1 Myr)
+      ESO116-G012    omega_gal_max = 2.709e-15   (tau = 11.7 Myr)
+
+   >>> BINDING MAX(omega_gal) = 5.941e-15 rad/s
+       set by galaxy UGC05721 at r=0.09 kpc, V_rot=16.5 km/s, g_bar=7.025e-11 (y=g_bar/a0=0.622)
+   HARDENED LOWER EDGE = 3 x MAX = 1.782e-14 rad/s   (tau = 1.78 Myr)
+   LLR UPPER EDGE (fixed)         = 1.831e-14 rad/s   (tau = 1.73 Myr)
+   ==> WINDOW SURVIVES: omega_c in [1.782e-14, 1.831e-14] rad/s  width x1.027
+   SENSITIVITY: footing CLOSES if MAX(omega_gal) > omega_hi/3 = 6.102e-15 rad/s.
+                current MAX = 5.941e-15 is x1.027 below that => headroom +2.7%  (any deep-MOND orbit faster than 6.102e-15 rad/s would FALSIFY this footing)
+   ROBUSTNESS (drop each galaxy's innermost radius): MAX->4.621e-15 (UGC05721, r=0.27 kpc, V=38.5) -> lower edge 1.386e-14 => window SURVIVES (width x1.321)
+
+####################################################################################################
+# COMPARISON to the old SINGLE-ORBIT lower edge (window_joint.py:110, v=25km/s y=0.8)
+####################################################################################################
+ [canon] old omega_gal(1 orbit) = 2.995e-15 -> old lower edge 8.986e-15
+        FULL-SPARC MAX omega_gal = 5.941e-15 -> hardened lower edge 1.782e-14  (x1.98 higher)
+ [alt] old omega_gal(1 orbit) = 3.616e-15 -> old lower edge 1.085e-14
+        FULL-SPARC MAX omega_gal = 5.941e-15 -> hardened lower edge 1.782e-14  (x1.64 higher)
+
+====================================================================================================
+ VERDICT: window SURVIVES the full-SPARC hardening on BOTH footings.
+   canon: [1.782e-14, 2.210e-14] rad/s (width x1.240); MAX set by UGC05721 (r=0.09 kpc, V=16.5 km/s)
+   alt: [1.782e-14, 1.831e-14] rad/s (width x1.027); MAX set by UGC05721 (r=0.09 kpc, V=16.5 km/s)
+   The framework's gated Reading C still passes the solar system -- but the window is NARROWER
+   than the single-orbit estimate; the corner remains a FREE 5th constant (not forced).
+====================================================================================================
+ loweredge_fullsparc: ALL CHECKS PASS

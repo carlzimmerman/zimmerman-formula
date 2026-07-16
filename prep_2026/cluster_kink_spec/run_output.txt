@@ -1,0 +1,91 @@
+==============================================================================
+REALISTIC CLUSTER KINK TARGET SPEC -- Branch-B throttle y_c = Z/2
+==============================================================================
+Z = sqrt(32pi/3)        = 5.788810
+y_c = Z/2               = 2.894405   (dimensionless, footing-free)
+g_bar at kink  (canon)  = 2.7092e-10 m/s^2   (a0 = 9.360e-11)
+g_bar at kink  (alt)    = 3.2707e-10 m/s^2   (a0 = 1.130e-10)
+rho_crit(z=0, H0=70)    = 9.2042e-27 kg/m^3
+
+------------------------------------------------------------------------------
+(0) UNIVERSAL (footing-independent) KINK AMPLITUDE, y-space
+------------------------------------------------------------------------------
+peak RAR deviation n=1 : 0.0170 dex at y = 6.13
+peak RAR deviation n=2 : 0.0260 dex at y = 5.24
+RAR slope dlog(g_obs)/dlog(g_bar) just BELOW y_c : 0.8715 (both laws)
+  just ABOVE y_c: uncut 0.8717 | throttled n=1 0.7341 | n=2 0.5968
+  => slope discontinuity at the kink: n=1 -0.1376, n=2 -0.2749
+
+------------------------------------------------------------------------------
+(1) r_kink AND r_peak ON REALISTIC BARYON PROFILES  (vs Gemini's mock)
+------------------------------------------------------------------------------
+Gemini optimistic mock (1e14 Msun baryons in 50 kpc Hernquist, a0=1.2e-10): r_kink = 150.3 kpc  [reproduces committed ~150 kpc]
+
+model                      r500 rkink_can rkink_alt  rpk_can  rk/Re  BCGfrac y(200kpc)   [kpc; BCGfrac = BCG share of M_bar at r_kink_can]
+M500=1.0e+14 fiducial       706       9.5       8.0      4.4   0.79   99.68%     0.073
+M500=5.0e+14 fiducial      1206      11.2       9.2      4.2   0.56   99.49%     0.166
+M500=1.5e+15 fiducial      1740      11.1       8.6      2.4   0.37   99.45%     0.238
+M500=1.0e+14 cool-core      706       9.7       8.1      4.4   0.81   97.04%     0.090
+M500=1.0e+14 2xBCG          706      16.1      14.1      9.0   1.34   99.46%     0.090
+M500=5.0e+14 cool-core     1206      11.6       9.4      4.2   0.58   96.06%     0.209
+M500=5.0e+14 2xBCG         1206      20.4      17.6     10.5   1.02   99.08%     0.197
+M500=1.5e+15 cool-core     1740      11.6       8.9      2.5   0.39   95.88%     0.301
+M500=1.5e+15 2xBCG         1740      22.7      19.1     10.3   0.76   98.89%     0.285
+
+NOTE: r_kink is where g_bar crosses y_c*a0.  The deviation (the part a
+survey must MEASURE) lives INSIDE r_kink, peaking at r_peak (y~5.8);
+outside r_kink the throttled and uncut laws agree EXACTLY (T=1).
+
+------------------------------------------------------------------------------
+(2) PROJECTED LENSING AMPLITUDE: fractional deficit in Sigma(R)
+    (throttled n=1 vs uncut, canonical footing, full Abel projection)
+------------------------------------------------------------------------------
+Observable = surface density Sigma(R) (convergence kappa up to Sigma_cr;
+what strong-lensing mass maps measure at these radii).  NOTE: the two
+models have IDENTICAL effective enclosed mass at r_kink and identical
+density outside it, so the throttle only REDISTRIBUTES effective mass
+interior to r_kink (deficit at small r, excess just inside r_kink,
+integrating to zero) -- Delta-Sigma at R > r_kink carries NO signal.
+
+M500=1.0e+14 fiducial    DEFICIT lobe +2.85% at R<~5.0 kpc (peak at  1.1 kpc) | EXCESS lobe -3.10% at  8.2 kpc (just inside r_kink=9.5) | @2*r_kink +0.000% (~0)
+M500=5.0e+14 fiducial    DEFICIT lobe +2.83% at R<~5.9 kpc (peak at  1.0 kpc) | EXCESS lobe -2.07% at  9.5 kpc (just inside r_kink=11.2) | @2*r_kink +0.000% (~0)
+M500=1.5e+15 fiducial    DEFICIT lobe +2.61% at R<~5.8 kpc (peak at  1.0 kpc) | EXCESS lobe -1.35% at  9.5 kpc (just inside r_kink=11.1) | @2*r_kink +0.000% (~0)
+
+The projected signature is BIPOLAR: a ~+3% Sigma deficit inside the
+zero-crossing, a ~-3% Sigma excess just inside r_kink, and exactly
+zero outside r_kink (mass redistribution, net zero).
+
+------------------------------------------------------------------------------
+(3) DETECTION REQUIREMENT  (per-bin precision for the kink at 3/5 sigma)
+------------------------------------------------------------------------------
+Signal template = fractional Sigma(R) deficit; bins of 0.10 dex in R
+covering 0.1*r_kink .. 1.5*r_kink.  S/N = sqrt(sum_i (f_i/p)^2) for
+per-bin fractional precision p on Sigma  =>  p_req(N sigma) = sqrt(sum f_i^2)/N.
+(This is the STATISTICAL floor only; g_bar must ALSO be known to better
+ than the signal at those radii, i.e. BCG M*/L to <~0.01 dex -- see (4).)
+
+M500=1.0e+14 fiducial    window   0.9-  11.9 kpc, 11 bins | sqrt(sum f^2) = 7.37% | p_req(3sig) = 2.46%/bin, p_req(5sig) = 1.47%/bin | N_cl(5%/bin,5sig) ~ 12
+M500=5.0e+14 fiducial    window   1.1-  14.1 kpc, 11 bins | sqrt(sum f^2) = 6.25% | p_req(3sig) = 2.08%/bin, p_req(5sig) = 1.25%/bin | N_cl(5%/bin,5sig) ~ 16
+M500=1.5e+15 fiducial    window   1.1-  14.0 kpc, 11 bins | sqrt(sum f^2) = 5.11% | p_req(3sig) = 1.70%/bin, p_req(5sig) = 1.02%/bin | N_cl(5%/bin,5sig) ~ 24
+
+------------------------------------------------------------------------------
+(4) HONEST VERDICT LINES  (computed, not asserted)
+------------------------------------------------------------------------------
+r_kink (canon) across fiducial masses : 9.5 - 11.1 kpc
+r_kink (alt)   across fiducial masses : 8.0 - 8.6 kpc
+max r_kink over ALL variants (incl. 2xBCG, cool-core): 22.7 kpc
+BCG share of g_bar at r_kink          : 96% - 100%
+weak-lensing usable floor (stacked surveys, miscentering/blending): ~100-200 kpc  => r_kink sits 18x+ BELOW it
+kink amplitude 0.017-0.026 dex vs banked systematics floor 0.06 dex: signal is 2.3-3.5x BELOW the floor
+BCG M*/L (IMF) systematic ~0.1 dex on g_bar at r<30 kpc: 5.9x the n=1 signal
+
+=> On realistic baryon profiles the y_c kink retreats from Gemini's
+   ~150 kpc into the BCG-dominated core (r_kink 8-23 kpc over all masses, variants and footings; 96%+ BCG-dominated).
+   Euclid-class weak lensing CANNOT reach it; only strong lensing +
+   BCG kinematics probe those radii, and there the stellar-M/L (IMF)
+   systematic (~0.1 dex) exceeds the full signal by ~4-6x.
+   The actionable Euclid statement is the NULL side: at every radius a
+   WL survey can measure (R >~ 100 kpc), the throttled law predicts
+   EXACT agreement with the uncut framework law (T=1, y < y_c).
+
+ALL GATES PASS (banked numbers re-verified; no detectability asserted).
