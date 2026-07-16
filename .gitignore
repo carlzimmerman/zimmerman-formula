@@ -109,3 +109,26 @@ ai_slop/**/*.fit
 real_research/data/twompp_density.npy
 real_research/data/kt2017_galaxies.tsv
 real_research/data/kt2017_groups.tsv
+
+# === 2026-07-16 hardening: large/regenerable data + junk (never in git) ===
+# JPL ephemerides (re-download: ssd.jpl.nasa.gov; used by gaia_stx_prototype)
+real_research/reviews/gaia_stx_prototype_2026/ephem/
+# WALLABY CADC moment maps (re-download via prep_2026/wallaby_firing/run_extraction_237.py)
+prep_2026/wallaby_firing/data/
+prep_2026/**/*.fits
+prep_2026/**/*.bin
+prep_2026/sigma_spread/data/
+prep_2026/mmu_scout/data/
+# stray ML/junk artifacts
+yolov8s-obb.pt
+gannon_test.csv
+ai_slop/LegomenaLLM/clean_2026/adapters/
+ai_slop/LegomenaLLM/clean_2026/fused_model/
+ai_slop/LegomenaLLM/clean_2026/corpus/
+# project_atomos: heavy result caches stay local; code/docs/verdicts are committed
+project_atomos/results/
+project_atomos/__pycache__/
+# exception: atomos brute-force scripts ARE the published negative-result program
+# (overrides the legacy *brute* secret-sauce rule for this directory only)
+!project_atomos/*brute*.py
+!project_atomos/**/*brute*
