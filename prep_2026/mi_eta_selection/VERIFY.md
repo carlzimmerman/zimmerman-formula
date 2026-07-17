@@ -83,7 +83,7 @@ independently tests this.
 Confirmed: the friction kernel `γ(t)=∫dμ(s)/s · e^{−√s|t|}` is built from `rho_measure` = the deviation
 `1−K`'s Herglotz density (sum rule 1.0), i.e. the framework's own bath spectral density — **not** a proxy.
 γ genuinely moves across the admissible family (§3), so it is a live object. The |a|-vs-history ambiguity is a
-real DOF: the Jensen gap is nonzero (K concave, K''(1)=−0.0813<0, computed) and Var(z)/⟨z⟩² grows monotonically
+real DOF: the Jensen gap is nonzero (K concave, K''(1)=−0.163<0 i.e. (1/2)K''(1)=−0.0813, computed) and Var(z)/⟨z⟩² grows monotonically
 with orbit shape (0 → 0.82 → 5.23 → 65.9 for e=0,0.3,0.6,0.9, computed) — not a numerical artifact.
 
 ## 5. General-mass check is genuine, not massless-in-disguise (audit item 4)

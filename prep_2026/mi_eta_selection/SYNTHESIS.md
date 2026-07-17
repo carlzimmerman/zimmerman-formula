@@ -31,7 +31,7 @@ the verdict. Reported straight as a NULL.
 
 **Where η lives.** The two closures differ by a nonlinear **Jensen gap**
 G(β) = ⟨K(z)⟩ − K(⟨z⟩), z = |a|²/a₀², leading term ½·K''(⟨z⟩)·Var(z). K is **concave**
-(K''(1) = −3/8 + 19√5/200 = −0.0813 < 0, computed q1b §2) and Var(z) is a **connected 4-point** of the
+(K''(1) = −3/8 + 19√5/200 = −0.163 < 0, so the Jensen-gap leading coefficient (1/2)K''(1) = −0.0813; computed q1b §2) and Var(z) is a **connected 4-point** of the
 acceleration history that grows monotonically with orbit shape (Var(z)/⟨z⟩² = 0.00 → 0.82 → 5.23 → 65.9 for
 e = 0, 0.3, 0.6, 0.9, computed). So η is a **real** degree of freedom — a nonlinear operator-ordering
 (|a|-vs-history) choice — not a phantom.
