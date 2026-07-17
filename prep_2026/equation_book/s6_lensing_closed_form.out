@@ -1,0 +1,57 @@
+==============================================================================
+E-S6-1  mass hyperbola + mass-line
+==============================================================================
+PASS M_eff(r) == M sqrt(1+(r/r_M)^2)  (EXACT)
+PASS mass hyperbola: M_eff^2 - M^2 == (a0/G) M r^2  (point mass)
+PASS mass-line (any spherical system): G(M_eff^2 - M_b^2) == a0 M_b r^2
+
+==============================================================================
+E-S6-2  phantom halo closed form
+==============================================================================
+PASS rho_ph(r) == sqrt(GMa0)/(4 pi G) / (r sqrt(r^2+r_M^2))  (EXACT)
+PASS inner cusp: rho_ph -> sqrt(GMa0)/(4 pi G r_M) * 1/r
+PASS outer: rho_ph -> sqrt(GMa0)/(4 pi G) * 1/r^2  (isothermal)
+
+==============================================================================
+E-S6-3  deflection closed form alpha(b) = (4GM/c^2 b) sqrt(1+u^2) E(m)
+==============================================================================
+PASS trig substitution: integrand -> sqrt(A^2-(A^2-b^2)sin^2 psi)/b^2 (exact)
+PASS angular integral == 2 A E(m), m=(A^2-b^2)/A^2
+   u=b/r_M= 0.03: direct=133.656876513  closed=133.656876513  rel=1.89e-31
+   u=b/r_M=  0.3: direct=15.175419077  closed=15.175419077  rel=2.08e-31
+   u=b/r_M=  1.0: direct=7.64039557806  closed=7.64039557806  rel=1.03e-31
+   u=b/r_M=  3.0: direct=6.45424090439  closed=6.45424090439  rel=1.22e-31
+   u=b/r_M= 30.0: direct=6.28493027299  closed=6.28493027299  rel=0.0
+PASS alpha(b) closed form == direct LOS integral (grid u=0.03..30, rel<1e-20)
+PASS Newtonian limit: b<<r_M -> alpha = 4GM/c^2 b  (factor -> E(1)=1)
+PASS deep limit: b>>r_M -> alpha = 2 pi sqrt(GMa0)/c^2  (factor/u -> pi/2)
+PASS approach law: alpha/alpha_inf = 1 + (1/4)(r_M/b)^2 + O(u^-4)
+
+==============================================================================
+E-S6-4  Sigma_ph(b) = sqrt(GMa0)/(2 pi G) K(m)/sqrt(b^2+r_M^2)
+==============================================================================
+   u= 0.03: direct=0.778582287756  closed=0.778582287756  rel=1.03e-29
+   u=  0.3: direct=0.406802767413  closed=0.406802767413  rel=1.21e-31
+   u=  1.0: direct=0.208656710419  closed=0.208656710419  rel=0.0
+   u=  3.0: direct=0.0811529026458  closed=0.0811529026458  rel=6.24e-29
+   u= 30.0: direct=0.00833101996416  closed=0.00833101996416  rel=1.85e-31
+PASS Sigma_ph closed form == direct LOS integral (grid, rel<1e-20)
+
+==============================================================================
+E-S6-5  closure: d/db[M sqrt(1+u^2) E(m)] == 2 pi b Sigma_ph(b)
+==============================================================================
+PASS dM_2D/db == 2 pi b Sigma_ph  (E- and K-forms are one system, EXACT)
+
+==============================================================================
+numbers, both footings (isolated point/compact lens; spherical-pinned)
+==============================================================================
+  [canonical] a0=9.362e-11
+     M=1e+10 Msun: r_M=   3.9 kpc  alpha_inf=0.161"  v_flat=106 km/s
+     M=1e+11 Msun: r_M=  12.2 kpc  alpha_inf=0.508"  v_flat=188 km/s
+     M=1e+12 Msun: r_M=  38.6 kpc  alpha_inf=1.608"  v_flat=334 km/s
+  [alt] a0=1.13e-10
+     M=1e+10 Msun: r_M=   3.5 kpc  alpha_inf=0.177"  v_flat=111 km/s
+     M=1e+11 Msun: r_M=  11.1 kpc  alpha_inf=0.558"  v_flat=197 km/s
+     M=1e+12 Msun: r_M=  35.1 kpc  alpha_inf=1.766"  v_flat=350 km/s
+
+ALL CHECKS PASS

@@ -1,0 +1,53 @@
+==============================================================================
+E-S7-1  kink location: g_kink = y_c a0 = cH_Lambda/2 = c^2 sqrt(Lambda/12)
+==============================================================================
+PASS y_c a0 == cH_Lambda/2  (Z cancels exactly)
+PASS g_kink == c^2 sqrt(Lambda/12)
+PASS inversion: Lambda == 12 g_kink^2/c^4
+PASS [canonical] g_kink = 2.71e-10 m/s^2 matches banked 2.709e-10
+PASS [alt] g_kink = 3.271e-10 m/s^2 matches banked 3.271e-10
+   Lambda from the kink (canonical): 1.0908e-52 m^-2 ; 1/H = 17.53 Gyr
+
+==============================================================================
+E-S7-2  throttle line: g (g_obs-g) (g_obs-g+Z a0) == (Z^2/4) a0^3  [y>y_c, n=1]
+==============================================================================
+PASS cubic invariant holds identically for all y (n=1, above kink)
+PASS the invariant is y-independent (a constant surface)
+
+==============================================================================
+E-S7-3  a0-line saturation above the kink
+==============================================================================
+PASS below kink: g_obs^2 - g_bar^2 == a0 g_bar (a0-line unchanged, T=1)
+PASS above kink (n=1): g_obs^2 - g_bar^2 -> (Z/2) a0^2 = a0 g_kink  (saturation)
+PASS general n: (g_obs-g_bar) g_bar^n -> y_c^n a0^(n+1) / 2
+
+==============================================================================
+E-S7-4  slope closed forms and the break invariant (pure-Z, footing-free)
+==============================================================================
+PASS below: slope == (2y+1)/(2(y+1))
+PASS at y_c^-: slope == (Z+1)/(Z+2)
+PASS at y_c^+ (n=1): slope == [1 - 1/(Z nu_c)]/nu_c,  nu_c = sqrt(1+2/Z)
+PASS numeric: slope(-) = 0.8716 (banked 0.872)
+PASS numeric: slope(+) n=1 = 0.7337 (banked 0.734)
+PASS numeric: slope(+) n=2 = 0.5958 (banked ~0.597, exact 0.5958)
+   break invariants (pure Z): Delta(n=1) = -0.1379, Delta(n=2) = -0.2758
+
+==============================================================================
+E-S7-5  peak-deviation landmark (footing-free equation in y alone)
+==============================================================================
+PASS n=1: peak at y* = 6.134 (banked ~6.1), peak = 0.017 dex (banked 0.017)
+      [canonical] peak at g_bar = 5.742e-10 m/s^2
+      [alt] peak at g_bar = 6.931e-10 m/s^2
+PASS n=2: peak at y* = 5.24 (banked ~5.2), peak = 0.026 dex (banked 0.026)
+      [canonical] peak at g_bar = 4.906e-10 m/s^2
+      [alt] peak at g_bar = 5.921e-10 m/s^2
+
+==============================================================================
+E-S7-6  Hernquist-BCG kink radius: r_kink = sqrt(2 G M / (c H_Lambda)) - a_H
+==============================================================================
+PASS closed form: r_kink == sqrt(GM/g_kink) - a_H
+PASS r_kink == sqrt(2 G M/(c H_Lambda)) - a_H
+PASS [canonical] r_kink(BCG-only) = 9.43 kpc vs TARGET_SPEC 9.5 (BCG+gas, tol 5%)
+PASS [alt] r_kink(BCG-only) = 7.99 kpc vs TARGET_SPEC 8.0 (BCG+gas, tol 5%)
+
+ALL CHECKS PASS

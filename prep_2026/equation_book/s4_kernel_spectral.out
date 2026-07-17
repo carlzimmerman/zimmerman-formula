@@ -1,0 +1,75 @@
+==============================================================================
+measure bookkeeping (u = sqrt|t| substitution) + v11 sum rule
+==============================================================================
+PASS dmu_A = (1-sqrt(1-4u^2))/pi du  (from rho_A, dt=2u du)
+PASS region-B share == 2/pi (exact)
+PASS v11 sum rule: INT dmu/|t| == 1 (region A gives 1-2/pi)
+
+==============================================================================
+E-S4-1  time-domain memory function Gamma(s)
+==============================================================================
+PASS retarded Green fn: G'' + Om^2 G == 0, G(0)=0, G'(0)=1
+PASS Laplace per-mode: L[sin(us)/u] == 1/(lam^2+u^2)
+PASS master identity INT dmu/(|t|+z) == 1-K(z) at z=0.1
+PASS master identity INT dmu/(|t|+z) == 1-K(z) at z=1.0
+PASS master identity INT dmu/(|t|+z) == 1-K(z) at z=100.0
+PASS Poisson rep: INT_0^1 sqrt(1-v^2)cos(bv)dv == pi J1(b)/(2b) at b=0.3
+PASS Poisson rep: INT_0^1 sqrt(1-v^2)cos(bv)dv == pi J1(b)/(2b) at b=2.0
+PASS Poisson rep: INT_0^1 sqrt(1-v^2)cos(bv)dv == pi J1(b)/(2b) at b=17.0
+PASS INT_0^inf J1(x)/x dx == 1
+PASS Gamma spectral == (1/2)INT_{s/2}^inf J1/x dx at s=0.5 (0.43766251)
+PASS Gamma spectral == (1/2)INT_{s/2}^inf J1/x dx at s=3.0 (0.1582435)
+PASS Gamma spectral == (1/2)INT_{s/2}^inf J1/x dx at s=10.0 (-0.021445528)
+PASS Gamma spectral == (1/2)INT_{s/2}^inf J1/x dx at s=40.0 (0.0042271514)
+PASS identity J1(x)/x == J0(x) - J1'(x)
+PASS INT_0^b J0 == Struve closed form at b=0.7
+PASS INT_0^b J0 == Struve closed form at b=5.0
+PASS INT_0^b J0 == Struve closed form at b=20.0
+PASS closed form (Bessel-Struve) == J1-integral form at s=0.5
+PASS closed form (Bessel-Struve) == J1-integral form at s=3.0
+PASS closed form (Bessel-Struve) == J1-integral form at s=10.0
+PASS closed form (Bessel-Struve) == J1-integral form at s=40.0
+PASS Gamma(0) == 1/tau_mem  (= a0/2c)
+PASS INT_0^inf Gamma ds == 1 (time-domain sum rule; got 1.0)
+PASS tail ~ -(1/tau)sqrt(2/pi) b^-3/2 sin(b-3pi/4): ratio 0.99997 -> 1
+
+==============================================================================
+E-S4-2 / E-S4-3  unitarity circle, phase-lag law, spectral dichotomy
+==============================================================================
+PASS boundary value K(-W^2+i0) == (sqrt(4W^2-1)+i)/(2W)  [derived by limit]
+PASS |K|^2 == 1 on the cut, W>1/2 (unitarity circle, exact)
+PASS Im K == 1/(2W) == a0/(2 c w)  => phase phi = arcsin(a0/2cw)
+PASS Re K == sqrt(1 - 1/(4W^2))  => 1-ReK = 1 - sqrt(1-sin^2 phi)
+PASS 2 w Im K == a0/c  (universal secular drift, = laneK)
+PASS below edge (W=1/3): Re K == 0 (purely dissipative)
+PASS below edge: Im K == (1-sqrt(1-4W^2))/(2W), |K|<1
+
+==============================================================================
+E-S4-4  inverse-moment family M_p = INT dmu/|t|^p, closed form
+==============================================================================
+PASS region B: M_p^B == 2^(2p-1)/(pi(2p-1))
+PASS Wallis: INT sin^(2-2p) == sqrt(pi)Gamma(3/2-p)/(2Gamma(2-p)) at p=3/4,1,5/4 (35 dgt)
+PASS Wallis numeric at generic p=0.63
+PASS M_p == 2^(2p-2) Gamma(3/2-p) / (sqrt(pi)(2p-1)Gamma(2-p))  [assembled]
+PASS M_1 == 1 recovers the v11 sum rule (from the closed form)
+PASS M_p closed form vs direct measure integral at p=0.6 (closed 1.951394761, numeric 1.951394761)
+PASS M_p closed form vs direct measure integral at p=0.75 (closed 1.078705202, numeric 1.078705202)
+PASS M_p closed form vs direct measure integral at p=1.25 (closed 1.573787465, numeric 1.573787465)
+PASS M_p closed form vs direct measure integral at p=1.4 (closed 3.486313696, numeric 3.486313696)
+PASS IBP identity (region A reduction) numeric at p=0.75
+
+==============================================================================
+E-S4-5  wide-binary phase-lag numbers (Reading-B-flagged), both footings
+==============================================================================
+  [canonical] a0 = 9.362e-11:  drift r-dot/r = a0/c = 9.855e-12 /yr (universal)
+     r=   3 kAU (M=1.5 Msun): W=4.753e+06  phi=1.052e-07 rad  1-ReK=5.551e-15  r-dot=4.42e+03 m/yr
+     r=  10 kAU (M=1.5 Msun): W=7.809e+05  phi=6.402e-07 rad  1-ReK=2.049e-13  r-dot=1.47e+04 m/yr
+     r=  20 kAU (M=1.5 Msun): W=2.761e+05  phi=1.811e-06 rad  1-ReK=1.640e-12  r-dot=2.95e+04 m/yr
+     dichotomy edge: w_edge=a0/2c=1.561e-19/s  (period 1275 Gyr)
+  [alt] a0 = 1.13e-10:  drift r-dot/r = a0/c = 1.190e-11 /yr (universal)
+     r=   3 kAU (M=1.5 Msun): W=3.938e+06  phi=1.270e-07 rad  1-ReK=8.105e-15  r-dot=5.34e+03 m/yr
+     r=  10 kAU (M=1.5 Msun): W=6.470e+05  phi=7.728e-07 rad  1-ReK=2.986e-13  r-dot=1.78e+04 m/yr
+     r=  20 kAU (M=1.5 Msun): W=2.288e+05  phi=2.186e-06 rad  1-ReK=2.389e-12  r-dot=3.56e+04 m/yr
+     dichotomy edge: w_edge=a0/2c=1.885e-19/s  (period 1056 Gyr)
+
+ALL CHECKS PASS
