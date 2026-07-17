@@ -9,7 +9,7 @@ QUESTION (exact):
      S = single-metric, c_gamma = c_GW (no disformal photon term; GW170817-safe)
      G = ghost-free                    (no Ostrogradsky / negative-norm mode)
      L = MOND-lensing                  (single-metric phantom source (nu-1)rho, slope g_lens ~ sqrt(a0 g_bar))
-  provably IMPOSSIBLE?  And which SUBSET of {D,S,G,L} is mutually exclusive?
+  obstructed (conditional on kernel passivity)?  And which SUBSET of {D,S,G,L} is the collision?
 
 WHAT THIS SCRIPT DOES (sympy-exact + a finite logical exhaustion):
   (1) The phantom is NONLOCAL in the baryons.  Point mass: M_ph(r)=(nu-1)M with y=GM/(a0 r^2);
@@ -24,8 +24,10 @@ WHAT THIS SCRIPT DOES (sympy-exact + a finite logical exhaustion):
       are a0-FREE.  Both footings (9.36e-11 / 1.13e-10) give the identical dimensionless verdict;
       a0 is footing-NON-diagnostic on the L side == the signature of a FREE parameter.
   (5) The banked A/B/C trilemma (LENSING_TRILEMMA_2026.md; EEP + one null cone exhaustion) plus the
-      new (nu-1)rho phantom spec => a finite truth table over {D,S,G,L}.  We show D&S&L is UNSAT and
-      read off the surviving corners == pure-MI(no L), C2/C3b(no D).  Maps C1/C2/C3 onto the wall.
+      new (nu-1)rho phantom spec => a finite truth table over {D,S,G,L}.  We show D&S&L is UNSAT as a
+      single-metric theory and that it is the UNIQUE MINIMAL unsatisfiable subset (each proper subset
+      is realized, incl. the {D,L} disformal two-cone witness that is GW170817-dead off S).  The table
+      is BOOKKEEPING over AX1-AX3; the theorem's content is the single implication D&S => ~L.
 
 Ground rules: exit-0, sympy, both a0 footings, NO 'proves/solved/complete-theory' language.
 Credit: Deffayet-Woodard 2011 (1106.4984); Skordis-Zlosnik AeST 2021; Milgrom (AQUAL, MOND-as-MI).
@@ -123,47 +125,69 @@ check("MOND relation form-invariant under (a0,g_bar)->lambda(a0,g_bar) => a0 set
 
 # ----------------------------------------------------------------------------
 print("\n[5] The finite logical exhaustion over {D,S,G,L} (A/B/C trilemma + phantom spec).")
-# Mechanism axioms (each a theorem established above / in the banked trilemma):
-#   AX1 (nonlocality, [1]+[3]):  L on a single metric requires a NONLOCAL (nu-1)rho carrier.
+# Mechanism axioms (each a lemma established above / in the banked trilemma):
+#   AX1 (nonlocality, [1]+[3]):  a MASS-CORRECT UNIVERSAL single-metric L requires a NONLOCAL
+#                                (nu-1)rho carrier -- a local term's phantom profile is fixed by the
+#                                local |a|(r) alone and is mass-blind (sqrt(M)), so it cannot carry
+#                                the source mass M that (nu-1)M needs for every body.
 #   AX2 (propagation):           a nonlocal carrier reproducing the elliptic phantom has a spatial-
 #                                kinetic term  => it PROPAGATES (a new dof) OR its shape is a free
 #                                function put in by hand.  Either way the acceleration scale is a
-#                                FREE Lagrangian coupling  =>  NOT (D).            [C2, C3b]
+#                                FREE Lagrangian coupling, i.e. NOT the horizon-floored argument of
+#                                the passive kernel  =>  NOT (D) BY DEFINITION of D.    [C2, C3b]
 #   AX3 (boundedness, [2]):      keeping D confines the modification to the passive frame's bounded
-#                                kernel ||K||<=1 (O(K) dressing, baryon-confined T_00=0 off supp rho)
+#                                kernel sup K = 1 (O(K) dressing, baryon-confined T_00=0 off supp rho)
 #                                =>  cannot source the O(nu) unbounded phantom  =>  NOT (L).  [C1,C3a]
-#   AX4 (one cone / EEP, horn B): dropping S (a disformal 2nd photon cone) is GW170817-dead (~7 orders)
-#                                =>  ~S is not a physical escape; S is mandatory.
-# Together AX2 & AX3 give the core incompatibility:  D  ->  ~L   (equivalently  L -> ~D),
-# INDEPENDENT of G.  Ghost-freedom is a SEPARATE cost, not the binding lever.
-def consistent(D, S, Gf, L):
-    # a full assignment is admissible iff it violates none of the mechanism axioms.
-    if L and D:            # AX2 & AX3 collide: cannot source the phantom while a0 stays frame-derived
-        return False
-    if L and (not S):      # AX4: correct lensing on a 2nd cone is GW170817-dead
+#
+# The single-metric hypothesis S is ESSENTIAL, not a backdrop:  under S the lensing deflection is set
+# by the ONE metric's stress tensor, so L forces the phantom to be REAL gravitating stress-energy
+# (AX1 then bites).  Off a single metric (~S, a disformal second cone g~ = g + B(box_u) u u with B in
+# the passive kernel) the phantom is PURE GEOMETRY -- no new stress, the nonlocality lemma is EVADED,
+# a0 stays inside K, and L is achieved with D kept.  That {D,L,~S} witness is logically fine but is
+# excluded OBSERVATIONALLY by GW170817 (a second photon cone).  Hence the LOGICAL collision is the
+# TRIPLE  D & S & L  (not the pair D & L), and S earns its place in the minimal unsatisfiable subset.
+def mechanism_sat(D, S, Gf, L):
+    # LOGICAL satisfiability as a field theory (mechanism axioms only; NO observational overlay).
+    # AX2 & AX3 collide ONLY on a single metric:  D & S & L is the single-metric phantom-as-stress
+    # collision.  Ghost-freedom G enters no axiom.
+    if L and D and S:
         return False
     return True
 
-corners = []
+def gw_excluded(D, S, Gf, L):
+    # OBSERVATIONAL overlay (NOT a logical axiom): a 2nd, disformal photon cone carrying L is
+    # GW170817-dead ( |c_gamma/c_GW - 1| <~ 1e-15 ), so ~S with L is observationally excluded.
+    return L and (not S)
+
+logical = []                                 # mechanism-satisfiable corners (theories that CAN be built)
 for D in (True, False):
     for S in (True, False):
         for Gf in (True, False):
             for L in (True, False):
-                if consistent(D, S, Gf, L):
-                    corners.append((D, S, Gf, L))
+                if mechanism_sat(D, S, Gf, L):
+                    logical.append((D, S, Gf, L))
+viable = [c for c in logical if not gw_excluded(*c)]   # + the GW observational overlay
 
 want = (True, True, True, True)              # {D & S & G & L} -- the completion we are testing
-check("the target corner D&S&G&L is UNSATISFIABLE (no admissible assignment)",
-      want not in corners, "=> the four constraints are jointly impossible")
-# which MINIMAL subset is the obstruction? test each pair/triple containing the collision:
-DSL_unsat = not any((D and S and L) for (D,S,Gf,L) in corners)
-DL_at_S   = not any((D and L and S) for (D,S,Gf,L) in corners)   # D&L impossible even with S fixed on
-check("MINIMAL mutually-exclusive subset is {D, S, L} (already UNSAT; G not needed as a lever)",
-      DSL_unsat, "D&S&L has no admissible corner")
-check("within mandatory S, the collision is the PAIR {D, L} (a0-derived XOR MOND-lensing)",
-      DL_at_S)
-# the surviving admissible corners with S=True (physical) and their identities:
-print("\n  Admissible corners at S=True (single-metric, GW-safe):")
+check("the target corner D&S&G&L is mechanism-UNSATISFIABLE (cannot be built as a field theory)",
+      want not in logical, "=> D, S, L are jointly impossible as a single-metric theory")
+# MINIMALITY: {D,S,L} is UNSAT, and each PROPER 2-subset has a mechanism-satisfiable witness:
+DSL_unsat = not any((D and S and L) for (D,S,Gf,L) in logical)
+w_DS = any((D and S and (not L)) for (D,S,Gf,L) in logical)          # {D,S} = pure MI (L off)
+w_SL = any(((not D) and S and L) for (D,S,Gf,L) in logical)          # {S,L} = C2/C3b (D off)
+w_DL = any((D and (not S) and L) for (D,S,Gf,L) in logical)          # {D,L} = disformal (S off)
+check("{D,S,L} is UNSATISFIABLE as a single-metric theory (no mechanism-admissible corner)",
+      DSL_unsat)
+check("each PROPER 2-subset is realized => {D,S,L} is the UNIQUE MINIMAL unsatisfiable subset",
+      w_DS and w_SL and w_DL,
+      "{D,S}=pure MI ; {S,L}=C2/C3b(a0 free) ; {D,L}=disformal two-cone (a0 derived)")
+# S is essential precisely because the {D,L} witness is GW-dead, not mechanism-dead:
+DL_witness_gwdead = all(gw_excluded(*c) for c in logical if (c[0] and (not c[1]) and c[3]))
+check("the {D,L} witness (disformal, a0 kept derived) is excluded ONLY observationally (GW170817)",
+      w_DL and DL_witness_gwdead,
+      "=> S is an ESSENTIAL member of the MUS: dropping S realizes {D,L} but is GW-dead")
+# report the observationally-viable single-metric corners and their identities:
+print("\n  Observationally-viable single-metric corners (S=True, not GW-excluded):")
 labels = {
   (True ,True ,True ,False): "pure MI / C3a  -- a0 DERIVED, ghost-free, but UNDER-LENSES (F<1/nu)",
   (True ,True ,False,False): "local ghostly frame term / C1 -- still FAILS L (mass-blind) even with a ghost",
@@ -171,16 +195,13 @@ labels = {
   (False,True ,False,True ): "DW-nonlocal w/ untamed ghost -- closes L, a0 free, ghost (contested)",
   (False,True ,True ,False): "GR / trivial -- a0 free, no MOND-lensing",
   (False,True ,False,False): "GR + ghost -- vacuous",
-  (True ,True ,True ,True ): "TARGET (a0-derived + single-metric + ghost-free + MOND-lensing)",
-  (True ,True ,False,True ): "a0-derived single-metric MOND-lensing w/ ghost",
 }
-for c in sorted([c for c in corners if c[1]], reverse=True):
-    tag = labels.get(c, "")
-    print(f"    D={int(c[0])} S={int(c[1])} G={int(c[2])} L={int(c[3])}   {tag}")
-# confirm neither target nor its ghost-relaxed sibling survive:
-check("both a0-derived single-metric MOND-lensing corners (G and ~G) are excluded",
-      (True,True,True,True) not in corners and (True,True,False,True) not in corners,
-      "=> relaxing ghost-freedom does NOT rescue D&S&L (C1 fails L by mass-blindness regardless)")
+for c in sorted([c for c in viable if c[1]], reverse=True):
+    print(f"    D={int(c[0])} S={int(c[1])} G={int(c[2])} L={int(c[3])}   {labels.get(c,'')}")
+# the a0-derived single-metric MOND-lensing corner is absent for BOTH G and ~G:
+check("neither a0-derived single-metric MOND-lensing corner survives (G and ~G) -- G is not the lever",
+      (True,True,True,True) not in logical and (True,True,False,True) not in logical,
+      "=> relaxing ghost-freedom does NOT rescue {D,S,L} (C1 fails L by mass-blindness regardless)")
 
 # ----------------------------------------------------------------------------
 print("\n[6] Consistency with the three computed candidates C1/C2/C3.")
@@ -209,18 +230,25 @@ SHARPENED NO-GO (both footings, a0-non-diagnostic on the L side):
   The nu^2 lensing wedge CANNOT be closed while keeping all four of
      {a0 DERIVED (cH_Lambda/Z),  single-metric c_gamma=c_GW,  ghost-free,  MOND-lensing sqrt(a0 g_bar)}.
 
-  Minimal mutually-exclusive subset:  {D, S, L}  (already unsatisfiable; ghost-freedom G is not the
-  lever).  Within the mandatory single-metric arena S (the disformal 2nd cone, horn B, is GW170817-
-  dead by ~7 orders), the binding collision is the PAIR
+  Conditional on the kernel-passivity premise, the central implication is
 
-        a0-DERIVED (passive 0-dof frame, bounded kernel ||K||<=1)   XOR   MOND-LENSING phantom (nu-1)rho.
+        D & S  ==>  ~L         (a0-derived AND single-metric  =>  no MOND-lensing phantom).
 
-  Mechanism:  the phantom (nu-1)rho is NONLOCAL in the baryons (point-mass halo M_ph/r -> sqrt(a0 M/G),
-  unbounded).  Sourcing it on the single metric forces a nonlocal carrier with a spatial-kinetic term,
-  i.e. a PROPAGATING dof whose acceleration scale is a FREE Lagrangian coupling -> a0 no longer
-  cH_Lambda/Z (=> ~D).  Conversely, keeping a0 derived confines the modification to the passive frame's
-  bounded kernel (O(K)<=1, baryon-confined), which supplies only 1/nu, short of the needed nu by the
-  factor nu^2-1 = 1/y that DIVERGES deep-MOND (=> ~L; a local F(y) is additionally mass-blind, sqrt(M)).
+  Equivalently {D, S, L} is the UNIQUE MINIMAL unsatisfiable subset of {D,S,G,L}: each proper subset
+  is realized -- {D,S}=pure MI ; {S,L}=Deffayet-Esposito-Farese-Woodard / AeST (a0 FREE) ;
+  {D,L}=the disformal two-cone construction (g~=g+B(box_u) u u, a0 kept derived), which is logically
+  fine but GW170817-dead ( |c_gamma/c_GW - 1| <~ 1e-15 ), i.e. violates S.  Ghost-freedom G enters no
+  step -- it is NOT the lever.  The relation is 'cannot coexist' (~(D&L) under S), NOT exclusive-or:
+  the GR corner has neither D nor L.
+
+  Mechanism:  under S, L forces the phantom to be REAL gravitating stress-energy.  The phantom
+  (nu-1)rho is NONLOCAL in the baryons (point-mass halo M_ph/r -> sqrt(a0 M/G), unbounded), so a
+  mass-correct universal source forces a nonlocal carrier with a spatial-kinetic term, i.e. a
+  PROPAGATING dof whose acceleration scale is a FREE Lagrangian coupling -> a0 no longer the argument
+  of the passive kernel (=> ~D by the definition of D).  Conversely, keeping a0 derived confines the
+  modification to the passive frame's bounded kernel (sup K = 1, baryon-confined), which supplies only
+  1/nu, short of the needed nu by the factor nu^2-1 = 1/y that DIVERGES deep-MOND (=> ~L; a local F(y)
+  is additionally mass-blind, sqrt(M)).
 
   Effect on the banked A/B/C trilemma:  the new (nu-1)rho-phantom-source spec exposes NO gap -- it
   CLOSES the trilemma tighter.  A phantom that gravitates on the shared cone is felt by geodesic matter
@@ -229,8 +257,8 @@ SHARPENED NO-GO (both footings, a0-non-diagnostic on the L side):
   horn C cannot escape (bounded O(K) => under-lenses).  The SOLVE.md slip leg is O(K), tension-signed
   -- the one trilemma loophole (anisotropic stress) is now computed shut, not merely bounded.
 
-  Verdict: NOT provably-closeable as modified INERTIA.  The theory can be completed for lensing only
-  as modified GRAVITY (C2/C3b: single-metric, ghost-free, MOND-lensing) at the price of a0 FREE --
+  Verdict: NOT closeable as modified INERTIA within the passive class.  The theory can be completed
+  for lensing only as modified GRAVITY (C2/C3b: single-metric, ghost-free, MOND-lensing) at a0 FREE --
   a partial, losing the vacuum-derived a0=cH_Lambda/Z.  No manufactured completion; no manufactured
   no-go.  Both a0 footings (9.36e-11 / 1.13e-10) carried; verdict footing-independent.
 """)
