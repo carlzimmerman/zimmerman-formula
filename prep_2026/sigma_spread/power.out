@@ -1,0 +1,125 @@
+========================================================================================================
+ (0) HONEST RE-DERIVED MAGNITUDE (mi_spread.py) -- the number this lane must detect
+========================================================================================================
+  fiducial (cored, real-kernel-matched) RMS sigma-spread : 0.20-0.35%
+  point-mass CEILING (sharpest cusp, hard upper bound)   : 0.70-1.00%
+  ellipticals/dE (y>>1, near-Newtonian internal)         : ~0.08% (dead)
+  Both footings shift f <~20% (a0 cancels at fixed y); N-to-3sig therefore shifts <~44% (N ~ 1/f^2).
+
+========================================================================================================
+ (1) ESTIMATOR: regression slope of ln(sigma_local) on the standardized per-star ORBIT tag x
+========================================================================================================
+  Each member i: LOS velocity v_i ~ N(0, sigma_i^2 + e_i^2), with
+      ln sigma_i = ln sigma_bar + f * x_i,   x standardized (mean 0, var 1) = its eccentricity/orbit tag.
+  EFFICIENT (score / MLE) test.  For v~N(0,sigma^2+e^2), the Fisher info for the slope f is
+  I_ff = 2 w^2 * sum x_i^2 = 2 N w^2 (w=sigma^2/(sigma^2+e^2): measurement error down-weights the
+  variance-information QUADRATICALLY).  Tag impurity attenuates by D = corr(measured proxy, true
+  eccentricity).  Detection z of the one-sided (sign-fixed) slope, at the Fisher floor:
+
+      z = f * w * D * sqrt(2 * N)          (best any estimator can do; MC-validated below via the score)
+
+  => N_3sigma = (3 / (f * w * D))^2 / 2.   No estimator can beat this Fisher floor for this observable.
+  validate: N= 3000 f=0.030 D=1.0 w=0.95 -> analytic z=2.208, score-MC median z=2.203
+  validate: N= 3000 f=0.030 D=0.5 w=0.95 -> analytic z=1.104, score-MC median z=1.080
+  validate: N= 8000 f=0.020 D=0.7 w=0.95 -> analytic z=1.682, score-MC median z=1.683
+  sqrt(N) scaling: z(4000)/z(1000) = 1.99 (expect 2.00)
+  null calibration (f=0, 20k trials): mean z = +0.000, sd = 1.006 (expect 0, 1)
+
+========================================================================================================
+ (2) CLASSICAL/DIFFUSE dSph SPECS -- N members, per-star LOS error, deep-MOND depth y
+========================================================================================================
+  system           N   sig  e_v     w      y | perfect-tag z (fid 0.28% | ceil 0.85%)
+  Fornax        2600  11.7  2.0  0.97   0.60 |  z_fid=0.20   z_ceil=0.60
+  Sculptor      1500   9.2  2.0  0.95   0.30 |  z_fid=0.15   z_ceil=0.44
+  Draco          700   9.1  2.0  0.95   0.25 |  z_fid=0.10   z_ceil=0.30
+  Carina         770   6.6  2.0  0.92   0.30 |  z_fid=0.10   z_ceil=0.31
+  Sextans        440   7.9  2.0  0.94   0.20 |  z_fid=0.08   z_ceil=0.24
+  Leo I          370   9.2  2.5  0.93   0.50 |  z_fid=0.07   z_ceil=0.22
+  Ursa Minor     400   9.5  2.0  0.96   0.25 |  z_fid=0.08   z_ceil=0.23
+  Crater II      150   2.7  2.0  0.65   0.08 |  z_fid=0.03   z_ceil=0.10
+  Antlia II      200   5.7  2.0  0.89   0.10 |  z_fid=0.05   z_ceil=0.15
+  -- per-star velocity error (~2 km/s bright RGB) is NOT the wall: w=0.85-0.96 (sigma>>e_v).
+  -- DEEPEST-MOND systems (Crater II, Antlia II: max f) have the FEWEST stars (150-200): the
+     amplitude and the count PULL OPPOSITE. Even a PERFECT orbit tag gives z<0.5 in every system.
+
+========================================================================================================
+ (3) ORBIT-TAG OBSTRUCTION -- can we tag per-star eccentricity? (this sets D, the binding wall)
+========================================================================================================
+  The estimator needs a per-star ORBIT tag x_i (eccentricity). Sources of x, and their real D:
+    (a) Gaia per-star internal PM Sculptor : signal  22.6 uas/yr vs DR3 per-star err ~500 uas/yr -> S/N 0.05 (per-star tangential velocity UNMEASURABLE)
+    (a) Gaia per-star internal PM Fornax   : signal  16.8 uas/yr vs DR3 per-star err ~500 uas/yr -> S/N 0.03 (per-star tangential velocity UNMEASURABLE)
+    (a) Gaia per-star internal PM Draco    : signal  25.3 uas/yr vs DR3 per-star err ~500 uas/yr -> S/N 0.05 (per-star tangential velocity UNMEASURABLE)
+        => Gaia gives the ~N-averaged BULK systemic PM only, NOT a per-star eccentricity tag. D_Gaia ~ 0.
+    (b) LOS-only DF inference: a single LOS velocity + position does NOT determine an orbit's
+        eccentricity (the DF is E,L-degenerate); statistical deprojection reaches D ~ 0.1-0.2 AT BEST,
+        and that IS the anisotropy-beta channel MG mimics (MG_ZERO.md Jeans) -> confound-limited, not clean.
+    (c) HST/JWST multi-epoch INTERNAL PM (Sculptor Massari+2018; Draco): reaches ~few km/s per-star 3D
+        for a FEW HUNDRED bright stars in 2-3 systems over ~10 yr -> a genuine per-star tag, D ~ 0.3-0.4,
+        but N ~ 300-500 and only where the effect is NOT deepest.  This is the only real per-star route.
+    (d) tag-FREE route (excess LOSVD kurtosis): the orbit-family variance enters the 4th moment as ~f^2
+        ~ 7.8e-06 -- utterly unmeasurable; and degenerate with beta/triaxiality/binaries. Hopeless.
+
+========================================================================================================
+ (4) N-to-3sigma GRID -- clean per-star LOS velocities needed, by tag quality D (w=0.95)
+========================================================================================================
+  (both footings folded into the f-band: f shifts <20% -> the four f columns bracket both a0.)
+  D (tag quality)              |   f=0.20%   f=0.35%   f=0.70%   f=1.00%
+  D=1.0  PERFECT tag (ceiling) |  1.25e+06  4.07e+05  1.02e+05  4.99e+04
+  D=0.35 HST/JWST 3D (best real) |  1.02e+07  3.32e+06  8.31e+05  4.07e+05
+  D=0.15 LOS-DF (confound-limited) |  5.54e+07  1.81e+07  4.52e+06  2.22e+06
+  perfect-tag floor: even D=1 needs ~4.7e4 (ceiling 1%) to ~1.2e6 (fiducial 0.2%) clean member velocities
+  in a SINGLE deep-MOND system, split by a per-star eccentricity tag.  Realistic D shrinks it x8-45.
+
+========================================================================================================
+ (5) STACKED classical+diffuse dSph ensemble -- the entire in-hand LOS reservoir
+========================================================================================================
+  total public dSph LOS members (Walker+2009 + DEIMOS/APOGEE/DESI era): ~7,130
+  fiducial-lo  f=0.20% : perfect-tag stacked z = 0.22 | realistic (D=0.35) z = 0.078
+  fiducial-hi  f=0.35% : perfect-tag stacked z = 0.39 | realistic (D=0.35) z = 0.136
+  ceiling-lo   f=0.70% : perfect-tag stacked z = 0.78 | realistic (D=0.35) z = 0.272
+  ceiling-hi   f=1.00% : perfect-tag stacked z = 1.11 | realistic (D=0.35) z = 0.389
+  => EVEN the perfect-tag stack of ALL ~7k dSph stars stays z<1.1
+     at the point-mass CEILING and z<0.5 at the fiducial magnitude.  With a REAL tag (D<=0.35): z<0.5.
+
+========================================================================================================
+ (6) ELLIPTICALS (IFU sigma+h4) and CLUSTERS (member galaxies) -- both weak for THIS observable
+========================================================================================================
+  ELLIPTICALS: MaNGA (~10^4 galaxies) / ATLAS3D (260) give binned sigma-profiles + h4, NOT per-star
+    velocities, and internally y>>1 (near-Newtonian) -> f~0.08%.  N-to-3sig at f=0.08%,
+    perfect tag: 7.8e+06 tracers -- and there is no per-star orbit tag in an IFU bin. DEAD.
+  CLUSTERS: Coma ~1000 caustic-member galaxies, e_cz~39 km/s, sigma_cl~1042 (w=1.00).
+    tau_mem/T_orb ~22 (LEAST adiabatic) but still deep-adiabatic -> same f-band. Perfect-tag z at f=0.35%:
+    0.16; N-to-3sig 3.7e+05 member galaxies.  BUT: the
+    star-orbit tag for a galaxy is its 3D cluster orbit -- unavailable (D~0.1-0.2 from projected phase space).
+    NOTE: the member-galaxy INTERNAL-dispersion-vs-infall-phase observable (banked f=6-13%, power_analysis.py)
+    is the DISTINCT, ~30x-larger EFE channel at cluster scale -- that is the powerable cluster route, not this one.
+
+========================================================================================================
+ (7) VERDICT
+========================================================================================================
+  MAGNITUDE (honest, re-derived): star-orbit sigma-spread f = 0.20-0.35% fiducial,
+    up to 0.70-1.00% point-mass ceiling; ~0.08% in ellipticals. Both footings <20%.
+  MG = EXACTLY 0 (airtight theorem, MG_ZERO.md) -- so a clean detection would be MG-impossible, IF detectable.
+
+  POWERED NOW?  NO. Two independent walls, either alone fatal:
+    (W1 COUNT)  the estimator's Fisher floor needs N ~ 6.9e+04 (ceiling 1.0%) to ~6.4e+05
+                (fiducial 0.20%) CLEAN per-star velocities in a SINGLE deep-MOND system, EVEN WITH a
+                perfect orbit tag. Biggest dSph = 2,600; the entire stacked dSph reservoir ~7,130
+                gives perfect-tag z<1.1 at the ceiling, <0.5 at fiducial. Gap x9e+01-1e+01.
+    (W2 TAG)    per-star eccentricity is NOT measurable where the count is: Gaia per-star internal PM S/N~0.05
+                at dSph distances (bulk PM only, D~0); LOS-only DF gives D<=0.2 and IS the beta-anisotropy channel
+                MG mimics; only HST/JWST 3D reaches D~0.3-0.4, for ~300-500 stars in 2-3 systems -> best real
+                single-system z ~ 0.05. Realistic-D N-to-3sig: 5.6e+05 (ceiling) to 5.2e+06 (fiducial).
+  EXISTING DATA THAT BITES?  NONE. Walker+2009 / Gaia DR3 / MaNGA / ATLAS3D / Coma all fall x10^2-10^6 short:
+    ellipticals dead (y>>1, no per-star tag), clusters give only the DISTINCT EFE channel (power_analysis.py).
+
+  UNDERPOWERED -- NEEDS: (i) ~10^4.5-10^5.5 CLEAN per-star LOS velocities in a single deep-MOND diffuse
+    dSph/UDG (only the point-mass ceiling corner ~1% is within ~1-2 orders of a plausible 30m-class campaign;
+    the fiducial 0.2-0.35% needs ~10^5.5-10^6 and is out of reach), AND (ii) a per-star 3D orbit/eccentricity
+    tag at dSph distances (post-Gaia astrometry + multi-epoch space PM; Gaia cannot do it per-star). BOTH are
+    required; today neither exists. This observable is a clean MG-impossible discriminator but is
+    STRUCTURALLY UNPOWERED at its honest magnitude -- not merely short of data, short of a per-star orbit tag.
+  Both footings: f shifts <20% -> all N shift <44%; the discriminator is NOT footing-hostage, it is magnitude-
+    and tag-hostage. No 'proves' for the framework value/sign; MG=0 is the only theorem-grade claim.
+
+ EXIT 0 = Fisher floor MC-validated (analytic z matches MC, sqrt-N verified); verdict UNDERPOWERED-NEEDS-X.

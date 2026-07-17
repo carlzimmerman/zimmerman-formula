@@ -1,85 +1,124 @@
-# LANE P — Power analysis: MI relational σ-spread vs the MG exact zero (2026-07-16)
+# POWER LANE — can the STAR-ORBIT-within-one-system σ-spread be detected? (2026-07-17)
 
-**Script:** `power_analysis.py` (+ `.out`, exit 0). Estimator + cuts FROZEN in the file header
-before any real-data read; the estimator is never fired on real σ-vs-infall data here (specs only).
-Companions: `rederive_mi_spread.py` (prediction re-derived from the framework's own premises),
-`estimator_power.py` (analytic), `census_verify.py` (catalog census), `RECON.md`.
+**Script:** `power.py` (+ `power.out`, exit 0, numpy, both footings). **Companions:** `mi_spread.py`
+/ `MI_SPREAD.md` (the honest re-derived magnitude), `mg_zero.py` / `MG_ZERO.md` (the MG=0 theorem).
 
-## What was Monte-Carlo'd
+> **Scope note — two DIFFERENT observables, do not conflate.** This lane is the *star-orbit-within-ONE-
+> pressure-supported-system* spread (individual stars on different-eccentricity orbits inside one dSph),
+> honest magnitude **0.2–1% in σ** (`mi_spread.py`, 2026-07-17). The earlier `power_analysis.py` /
+> `POWER_cluster_efe_channel.md` (2026-07-16) powers the **distinct** cluster-member **EFE subsystem-
+> boost** (a whole member galaxy's internal dispersion vs its infall phase, banked **6–13%**). Both are
+> MG-impossible; they are ~30× apart in amplitude and are measured differently. The cluster-EFE doc is
+> **preserved unchanged**; it is the powerable-nearer cluster route. THIS file is the star-orbit lane.
 
-The frozen estimator (pooled cluster-centered OLS slope of the FJ residual d_i = ln σ_i −
-⟨ln σ|M*,R_e⟩ on the standardized PPS infall proxy p_i, outer R500–R200 shell, DS-substructure cut,
-one-sided 3σ, MG-truth + shuffle null) on synthetic clusters built from the **real touched catalog
-specs**: Gannon+2024 carrier error distribution (median 24%, resampled row-by-row), HeCS-omnibus
-cluster structure (227 clusters, median 180 members, σ_cl 686 km/s), HeCS e_cz = 36 km/s (proxy
-measurement noise 5% of σ_cl → negligible; D is projection-limited), GalWCat19 measured outer-shell
-fraction 0.40, Sohn+2017 A2029 for the dE backdoor. Signal injected from the framework's own
-R(y) shape (ν(y)=√(1+1/y), μ_fw its exact inverse, fiducial Milgrom-2022 kernel), **both footings**:
-canonical a0=9.36e-11 at f = 6% and 13% (tasked band), alternate a0=1.13e-10 at f = 7.6% and 14.4%
-(banked alt band ends). MG runs: f ≡ 0 (the symbolic theorem, any a0/interpolation).
+de Sitter–Unruh **MODIFIED INERTIA** (Zimmerman). ν(y)=√(1+1/y), y=g_bar/a₀, a₀=cH_Λ/Z=9.36e-11;
+inertia = time-nonlocal functional of the body's own worldline through K(□_u/a₀²), τ_mem=2c/a₀=2Z/H_Λ
+(E10, exact). Milgrom 1983/1999 wellhead credit for the ν-kernel; distinctive content = the cH_Λ/Z
+coefficient + the MI completion. **a₀'s value and s=−1 remain postulates.**
 
-**Calibration (all asserted):** MG-truth null is exactly standard normal (20k trials: mean −0.008,
-sd 1.002, P(z≥3)=0.0012); √N scaling holds (1.98 vs 2.00); the 90%-power normal approximation
-verified empirically (0.91 at predicted N_90).
+---
 
-## Honest-floor findings (both ways, load-bearing)
+## The observable and the magnitude it must clear (re-derived, not assumed)
 
-1. **The astrophysical scatter floor was measured, not assumed:** residual of ln σ on (ln M*, ln R_e)
-   in the actual in-hand carrier catalog (Gannon+2024, 24 objects), measurement variance subtracted,
-   gives **s_FJ = 0.48 ln (0.21 dex) — ×3.2 the banked 0.15 floor**. Caveats both ways: 24
-   heterogeneous objects (assumed distances, mixed instruments/apertures/environments), and if MI is
-   true part of that scatter *is* signal — so using it as pure noise is conservative. Scenario grid
-   carries {0.48 measured, 0.15 banked, 0.08 tight-control}.
-2. **The banked analytic two-bin was ×1.43 optimistic** even at matched assumptions: it placed the
-   bins at the y-window endpoints; real settled/plunger class means sit inside the window (usable
-   contrast ~85% of f). MC fiducial N = 1,291 vs analytic 903. This stacks on the earlier ×2–5
-   FJ-floor correction to the original banked N~100–180.
-3. **y-distribution fork (new, pre-registered):** the settled-vs-plunger dichotomy (banked-compatible)
-   vs a uniform-y continuum (conservative) is a ×~2–3 fork in N. Both reported; truth in between.
+At radius r every star feels the **same** g_bar(r); a local μ(|a|) gives all the same |a| → no spread.
+MI's non-adiabatic Jensen gap makes an eccentric orbit's memory-averaged effective inertia differ from a
+circular one at the same energy → an intrinsic **LOS-dispersion spread across eccentricity families**,
+beyond anisotropy/projection/measurement. Sign **negative** (eccentric orbits run cooler). Because
+τ_mem = 203/168 Gyr ≫ every real T_orb (deep adiabatic, no resonance), the honest amplitude is:
 
-## The N-to-3σ grid (carriers; median-z crossing | 90% power; two-class y)
+| regime | RMS fractional σ-spread f | where |
+|---|---|---|
+| **fiducial** (cored / real-kernel-matched) | **0.20–0.35%** | classical dSph |
+| point-mass **ceiling** (sharpest cusp, hard bound) | 0.70–1.00% | idealized, not real cored dSph |
+| ellipticals/dE (y≫1, near-Newtonian internal) | ~0.08% | essentially dead |
 
-| Scenario | can f=6% | can f=13% | alt f=7.6% | alt f=14.4% |
+Both footings shift f **<20%** (a₀ cancels at fixed depth y) → all N-to-3σ shift **<44%** (N∝1/f²).
+**MG = exactly 0** (airtight theorem, `MG_ZERO.md`) — a clean detection *would* be MG-impossible, *if* detectable.
+
+## The estimator and its Fisher floor (the wall no estimator beats)
+
+Per star: v_i ~ N(0, σ_i²+e_i²), ln σ_i = ln σ̄ + f·x_i, x = standardized per-star **orbit tag**
+(eccentricity). The efficient (score/MLE) test has Fisher info I_ff = 2Nw² with **w = σ²/(σ²+e²)**
+(measurement error down-weights the *variance*-information **quadratically**), attenuated by
+**D = corr(measured proxy, true eccentricity)**:
+
+> **z = f · w · D · √(2N)**  →  **N₃σ = (3 / (f·w·D))² / 2**
+
+`power.py` validates this analytic floor against an efficient-score Monte-Carlo (analytic vs MC medians
+agree to ≤2%: 2.208/2.203, 1.104/1.080, 1.682/1.683), confirms √N scaling (1.99), and calibrates the
+null (f=0 → z mean +0.000, sd 1.006 over 20k trials).
+
+## What the real systems give (per-star LOS velocities, cited specs)
+
+| system | N (public) | σ [km/s] | e_v [km/s] | w | y | perfect-tag z (fid 0.28% \| ceil 0.85%) |
+|---|---|---|---|---|---|---|
+| Fornax | 2600 | 11.7 | 2.0 | 0.97 | 0.60 | 0.20 \| 0.60 |
+| Sculptor | 1500 | 9.2 | 2.0 | 0.95 | 0.30 | 0.15 \| 0.44 |
+| Draco | 700 | 9.1 | 2.0 | 0.95 | 0.25 | 0.10 \| 0.30 |
+| Crater II (diffuse, **deepest** y) | 150 | 2.7 | 2.0 | 0.65 | 0.08 | 0.03 \| 0.10 |
+| Antlia II (diffuse, deep y) | 200 | 5.7 | 2.0 | 0.89 | 0.10 | 0.05 \| 0.15 |
+| **stacked classical+diffuse** | **~7,130** | — | — | 0.93 | — | **0.22–0.39 \| 0.78–1.11** |
+
+Per-star velocity error (~2 km/s bright RGB, Walker+2009) is **not** the wall (w=0.65–0.97). The
+**amplitude and the count pull opposite**: the deepest-MOND systems (Crater II/Antlia II) that maximize f
+have the **fewest** stars. **Even a PERFECT orbit tag gives z<0.5 in every single system**, and the
+perfect-tag stack of the *entire* ~7k-star dSph reservoir reaches only z≈0.8–1.1 at the point-mass
+ceiling, z<0.4 at the fiducial magnitude.
+
+## The binding wall: there is no per-star orbit tag (D)
+
+The estimator needs a per-star eccentricity tag. Every source fails where the counts live:
+
+- **(a) Gaia per-star internal PM** — the internal-velocity PM signal is ~17–25 **µas/yr** at dSph
+  distances vs a DR3 per-star error ~500 µas/yr → **S/N ≈ 0.03–0.05**. Gaia delivers the N-averaged
+  **bulk systemic** PM only, **not** a per-star tag. **D_Gaia ≈ 0.**
+- **(b) LOS-only DF inference** — a single LOS velocity + position does not fix an orbit's eccentricity
+  (E,L-degenerate); statistical deprojection reaches **D ≲ 0.1–0.2** and *is* the β-anisotropy channel
+  that MG reproduces (`MG_ZERO.md` Jeans) → confound-limited, not clean.
+- **(c) HST/JWST multi-epoch internal PM** (Sculptor Massari+2018; Draco) — the **only** genuine per-star
+  3D route: ~few-km/s per-star tangential velocities for a **few hundred** bright stars in **2–3** systems,
+  **D≈0.3–0.4**, and only where the effect is *not* deepest. Best real single-system z ≈ **0.05**.
+- **(d) tag-free (excess LOSVD kurtosis)** — the orbit-family variance enters the 4th moment as ~f² ≈
+  8e-6, unmeasurable, and degenerate with β/triaxiality/binaries. **Hopeless.**
+
+## N-to-3σ grid (both footings folded into the f-band; w=0.95)
+
+| tag quality D | f=0.20% | f=0.35% | f=0.70% | f=1.00% |
 |---|---|---|---|---|
-| A 2026 in-hand (24% errs, s_FJ=0.48, D=0.4) | 26,545 \| 54,069 | 6,675 \| 13,597 | 16,629 \| 33,871 | 4,998 \| 10,181 |
-| B ELT ≤10%, s_FJ=0.15, D=0.4 | 3,369 \| 6,863 | 776 \| 1,580 | 2,146 \| 4,372 | 642 \| 1,307 |
-| C ELT ≤10%, s_FJ=0.15, D=0.6 (DESI-tagged) | 1,454 \| 2,961 | 343 \| 698 | 963 \| 1,961 | 281 \| 572 |
-| D ELT ≤10%, s_FJ=0.08, D=0.6 (best realistic) | 756 \| 1,539 | 178 \| 363 | 495 \| 1,008 | 149 \| 304 |
-| E ELT ≤10%, s_FJ stays 0.48, D=0.6 | 11,637 \| 23,703 | 2,342 \| 4,771 | 7,088 \| 14,437 | 1,971 \| 4,014 |
+| **1.0** perfect (Fisher ceiling) | 1.25e6 | 4.1e5 | 1.0e5 | 5.0e4 |
+| **0.35** HST/JWST 3D (best real) | 1.0e7 | 3.3e6 | 8.3e5 | 4.1e5 |
+| **0.15** LOS-DF (confound-limited) | 5.5e7 | 1.8e7 | 4.5e6 | 2.2e6 |
 
-Continuum-y fork: multiply by ~×1.8–3 (full grid in `.out`). Alt footing needs ×0.7–0.8 the N of
-canonical — **the discriminator is not footing-hostage**.
+## Other venues — both weak for THIS observable
 
-**N_clusters curve** (scenario C, canonical; 9.6 usable carriers per LEWIS-class 30-target campaign =
-30 × 0.40 measured shell fraction × 0.8 cut retention): 3σ at **35 clusters (f=13%) / 157 clusters
-(f=6%)**; the 227 public HeCS-omnibus phase-tagged clusters give z ≈ 3.6–7.6 across the band. The
-cluster reservoir is NOT the wall — carrier σ precision is.
+- **Ellipticals** (MaNGA ~10⁴, ATLAS3D 260): internally y≫1 → f~0.08%, and IFU gives **binned** σ+h4,
+  **no per-star tag**. N₃σ ~8e6 tracers. **Dead.**
+- **Clusters** (Coma ~1000 caustic members, e_cz~39 km/s, σ_cl~1042): τ_mem/T_orb~22 (least adiabatic)
+  but still deep-adiabatic → same f-band; perfect-tag z@0.35% ≈ 0.16, and the "orbit tag" for a member
+  galaxy (its 3D cluster orbit) is unavailable (D~0.1–0.2). The **powerable** cluster observable is the
+  *distinct* member-galaxy EFE channel (`POWER_cluster_efe_channel.md`), **not** this star-orbit one.
 
-## Guardrails verified as hard as the power claims
+---
 
-- **In-hand firewall (both footings):** 23 carriers, real errors → median z = 0.09–0.20 (best corner
-  0.36), P(z≥3) ≤ 0.006 ≈ the null rate. Any firing on in-hand data is exploratory; cannot support or kill.
-- **dE/bright-member backdoor (A2029 real specs):** 665 usable σ≥60 km/s members at 10% median error,
-  predicted f~0.7% → N_3σ = 216,747 → shortfall ×326. Dead; no bypass through survey-measurable members.
-- **Substructure stress test (protects MG from a false kill):** MG truth + 15% coherent infalling
-  groups, no DS cut, N=900 → median FAKE z = 2.36, P(fake 3σ) = 0.28; with the frozen DS cut → z = 0.03,
-  P = 0.0008. A detection without the substructure cut proves nothing.
+## VERDICT — **UNDERPOWERED, NEEDS: ~10⁴·⁵–10⁵·⁵ clean per-star velocities in one deep-MOND dSph + a per-star 3D orbit tag Gaia cannot provide**
 
-## VERDICT (frozen rule E9): **STILL UNDERPOWERED — with the exact gap**
+- **POWERED NOW? NO** — two independent walls, either alone fatal:
+  - **W1 (count):** the Fisher floor needs **N ~ 7e4 (ceiling 1%) to ~6e5 (fiducial 0.2%)** clean per-star
+    velocities in a *single* deep-MOND system even with a perfect tag; the biggest dSph has 2,600 and the
+    whole stacked reservoir ~7,130 (perfect-tag z<1.1 at ceiling, <0.4 fiducial). **Gap ×10–90.**
+  - **W2 (tag):** per-star eccentricity is unmeasurable where the counts are (Gaia per-star PM S/N~0.05;
+    LOS-DF D≲0.2 and MG-degenerate; only HST/JWST 3D reaches D~0.35 for ~300–500 stars in 2–3 systems →
+    best real single-system z~0.05). Realistic-D N₃σ: **5.6e5 (ceiling) to 5.2e6 (fiducial).**
+- **EXISTING DATA THAT BITES? NONE.** Walker+2009 / Gaia DR3 / MaNGA / ATLAS3D / Coma all fall ×10²–10⁶
+  short. Ellipticals dead (y≫1, no per-star tag); clusters give only the distinct EFE channel.
+- **WHAT POWERS IT (both required, neither exists today):** (i) **~10⁴·⁵–10⁵·⁵ clean per-star LOS
+  velocities** in a single diffuse deep-MOND dSph/UDG — only the **point-mass-ceiling ~1% corner** is
+  within ~1–2 orders of a plausible 30m-class (ELT/MSE/DESI-successor) campaign; the realistic fiducial
+  0.2–0.35% needs ~10⁵·⁵–10⁶ and is out of reach — **plus** (ii) a **per-star 3D orbit/eccentricity tag**
+  at dSph distances (multi-epoch space astrometry well beyond Gaia's per-star precision).
+- **Both footings:** f shifts <20% → all N shift <44%. The discriminator is **not footing-hostage**; it is
+  **magnitude- and tag-hostage**. This is a *clean* MG-impossible discriminator that is **structurally
+  underpowered at its honest magnitude** — short not merely of data but of a per-star orbit tag.
 
-- **POWERED NOW: no.** No public dataset qualifies. Gap at today's precision tier: 23 carriers in hand
-  vs ~6,700–26,500 needed (canonical band, measured floor) → **×290–1,150**.
-- **POWERED IF (specific, all named):** ELT-HARMONI-class σ errors ≤10% (first exists ~2032; every
-  2026 spectrograph sits above the 8–20 km/s carriers) **+** FJ control at the 0.15 floor (needs
-  homogeneous distances/apertures; the in-hand 0.48 floor alone inflates N ×7.5) **+** DESI/HeCS
-  caustic phase tagging at D=0.6 (already public and free) → **343–1,454 carriers = 36–152
-  LEWIS-class cluster campaigns** (best realistic corner 178; 90% power ~×2; continuum-y fork ~×2–3).
-- **STILL UNDERPOWERED (2026): yes** — gap **×8–63 at a precision tier that does not exist before
-  ~2032, ×290–1,150 today**. DESI DR2 is not public (verified 401) and would not touch the binding
-  wall anyway (it feeds the already-solved phase-tagging side).
-- **What to do now for free:** pre-register this estimator + cuts and build the ELT target list by
-  cross-matching the DESI DR1 647k-dwarf VAC LSB tail against HeCS-omnibus/gfinder clusters.
-
-Unchanged theorems: MG relational spread = exactly 0 (symbolic, any a0, any interpolation, both
-footings); sign (plungers hotter) and outward-rising radial profile are kernel-independent; the
-6–13% amplitude is kernel-hostage (cone 5–18%) as banked.
+No "proves" language for the framework value/sign; **MG=0 is the only theorem-grade claim** and is
+labelled as such. Both footings shown throughout (`power.py`, exit 0).

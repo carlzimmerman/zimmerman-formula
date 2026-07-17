@@ -1,0 +1,112 @@
+==============================================================================================
+ OBSERVABLE-DESIGN LANE:  isolating the MI orbit-history spread from anisotropy beta(r)
+==============================================================================================
+
+[A]  THE DEGENERACY IS REAL -- anisotropy alone moves sigma_LOS(R) and h4(R) a lot.
+     r-bin centres:  0.45  0.80  1.25  1.85
+  tangential (b=3.5): beta=[-1.16 -1.71 -2.66 -5.01] sigLOS=[0.321 0.405 0.471 0.517] h4=[+0.105 -0.090 -0.187 -0.240]
+  mild-tan   (b=2.0): beta=[-0.07 -0.31 -0.79 -2.05] sigLOS=[0.390 0.428 0.457 0.480] h4=[+0.068 -0.062 -0.148 -0.194]
+  near-iso   (b=1.0): beta=[+0.51 +0.40 +0.18 -0.39] sigLOS=[0.456 0.441 0.425 0.419] h4=[-0.005 -0.056 -0.089 -0.096]
+  radial     (b=0.5): beta=[+0.76 +0.72 +0.61 +0.34] sigLOS=[0.493 0.434 0.387 0.352] h4=[-0.051 -0.060 -0.038 +0.046]
+  READ: sweeping beta tangential->radial moves sigma_LOS by ~tens of % and flips h4's sign
+        -- the classic mass-anisotropy degeneracy.  'sigma-scatter at fixed R' is NOT an
+        MI-vs-MG diagnostic: an MI spread and a beta(r) wiggle both live in sigma_LOS/h4.
+
+[B]  REJECTED estimator: the naive per-star  d<ln v^2>/de|_(r,E) slope is CONFOUNDED.
+  tangential (b=3.5): MG naive slope = -0.4132   (should be 0 if clean -- it is NOT)
+  mild-tan   (b=2.0): MG naive slope = -0.4806   (should be 0 if clean -- it is NOT)
+  near-iso   (b=1.0): MG naive slope = -0.4964   (should be 0 if clean -- it is NOT)
+  radial     (b=0.5): MG naive slope = -0.4919   (should be 0 if clean -- it is NOT)
+  READ: MG gives a LARGE nonzero slope, from the distribution function's own E-e
+        correlation at fixed r (radial orbits reaching r carry different mean energy).
+        A per-star speed-vs-eccentricity slope therefore CANNOT isolate MI.  Rejected.
+
+[C]  ISOLATING statistic: ORBIT-FAMILY ENCLOSED-MASS CONSISTENCY (beta directly measured, 3D)
+     dlnM = <ln M(r)|radial-orbits - ln M(r)|circular-orbits>, each via spherical Jeans with
+     the subsample's OWN measured beta(r).  MG: one field -> identical M(r) for all families.
+     MI: eccentric tracers run cooler -> lower recovered M -> NEGATIVE dlnM.
+     (i) beta-IMMUNITY -- the MG baseline is stable across a HUGE anisotropy range:
+       parent tangential (b=3.5): dlnM(MG) = +0.0432   [subsample beta: radial~+0.6, circular~-9.1, Dbeta~9.7]
+       parent mild-tan   (b=2.0): dlnM(MG) = +0.0318   [subsample beta: radial~+0.7, circular~-7.5, Dbeta~8.2]
+       parent near-iso   (b=1.0): dlnM(MG) = +0.0429   [subsample beta: radial~+0.8, circular~-6.8, Dbeta~7.6]
+       parent radial     (b=0.5): dlnM(MG) = +0.0519   [subsample beta: radial~+0.9, circular~-6.3, Dbeta~7.2]
+       => despite Dbeta ~ 6-8 between the orbit-family subsamples AND across the whole parent
+          sweep, the MG mass split stays in a ~0.03-0.05 band (vs sigma_LOS moving tens of %,
+          vs the naive slope's ~0.5).  The mass-anisotropy degeneracy is BROKEN by the 3D
+          beta measurement; what remains is a small DF-dependent estimator zero-point.
+     (ii) MI response -- inject the cored Jensen gap, sweep amplitude (near-iso parent):
+       mi_amp=0.0:  dlnM = +0.0451   (differential from MG: +0.0000)
+       mi_amp=1.0:  dlnM = +0.0231   (differential from MG: -0.0219)
+       mi_amp=2.0:  dlnM = +0.0100   (differential from MG: -0.0350)
+       mi_amp=4.0:  dlnM = -0.0245   (differential from MG: -0.0696)
+       mi_amp=8.0:  dlnM = -0.0723   (differential from MG: -0.1174)
+       => dlnM responds monotonically NEGATIVELY to the Jensen amplitude (~ -0.02 at amp=1,
+          large-amplitude slope ~ -0.015/amp);
+          sign NEGATIVE = eccentric orbits cooler = the MI fingerprint.  beta is UNCHANGED by
+          the MI rescale (f(e) cancels in sigma_t/sigma_r) -> the signal is purely in the MASS
+          normalisation, orthogonal to the anisotropy nuisance.
+
+     ANISOTROPY<->MI SEPARATION, quantified (honest both ways):
+       * raw sigma_LOS(R): anisotropy moves it ~tens of % -> signal (~1%) buried. NOT usable.
+       * naive speed-vs-e slope: MG ~ -0.5, fully confounded. REJECTED.
+       * mass-consistency dlnM: anisotropy nuisance compressed to a ~0.02 DF-dependent
+         zero-point; realistic MI (amp=1) differential ~ -0.02.  So at the REALISTIC ~1%
+         amplitude the signal is COMPARABLE to the residual systematic -> isolation requires
+         a forward MG distribution-function model (Schwarzschild / made-to-measure) to nail
+         the zero-point, PLUS the deepest-MOND diffuse dSph to amplify the ~1% -> larger.
+         The statistic is the RIGHT one (beta-immune in structure); it is not free of a DF
+         systematic at 1%.  That is the honest separation.
+
+     SYMBOLIC BACKBONE (why MG gives one M(r) for all families, and MI does not):
+       MG speed at (r,E):   v^2 = 2(E-Phi(r))  ->  d(v^2)/dL = 0  (L=ecc label): every orbit family feels the SAME Phi -> SAME M(r).
+       MI rescale by f(e):  beta = 1 - f^2 sig_t^2/(2 f^2 sig_r^2) = (sigma_r2 - sigma_t2/2)/sigma_r2  -> f CANCELS: MI leaves beta UNCHANGED,
+       and shifts M ~ f^2 sig_r^2 -> a NEGATIVE mass split.  Signal in the magnitude sector,
+       orthogonal to the angular (beta) sector.  MG=0 is the theorem (mg_zero.py). QED.
+
+[D]  PROJECTION + POWER (consistent with POWER.md / GAP_STATEMENT.md)
+     * The whole construction needs 3D velocities: Gaia (+HST) proper motions + LOS give
+       (v_r, v_t) per star -> beta MEASURED (degeneracy broken) AND the eccentricity TAG e
+       (orbit integrated in the fitted Phi).  LOS-only cannot measure beta or tag e per star
+       -> falls back to raw h4(R), which section [A] shows is beta-degenerate.  So the test
+       REQUIRES per-star 3D velocities on a nearby dSph (Sculptor / Fornax / Draco / UDGs).
+     * The MI amplitude is sub-percent to ~1% in sigma (mi_spread), so dlnM ~ 0.02 sits at
+       the DF-systematic floor.  With today's per-star velocity errors (>~10-20%) and a
+       single-dSph sample (~1e3 stars) this is UNDERPOWERED -- a DIFFERENT route than the
+       cluster-member EFE route (POWER.md) but the SAME verdict.  Powered by: ELT/MICADO
+       per-star velocities (<~5%) on a deep, kinematically clean dSph WITH Gaia orbit tags,
+       maximised in the deepest-MOND diffuse systems where the Jensen gap is largest, AND a
+       forward MG DF model to calibrate the ~0.02 zero-point.
+
+==============================================================================================
+ FROZEN ESTIMATOR SPEC (the beta-immune MI mass-consistency discriminator)
+==============================================================================================
+  O1. Sample.  Member stars of ONE nearby, deep-MOND diffuse dSph with (a) LOS velocity,
+      (b) Gaia(+HST) proper motion -> full 3D (v_r, v_t), (c) projected radius.  Deepest-y
+      diffuse systems maximise the signal (mi_spread iii): Sculptor / Fornax / Draco; UDGs.
+  O2. Model + orbit tags.  Fit an anisotropic-Jeans / Schwarzschild / made-to-measure model
+      (free Phi, free beta(r)); from the fitted Phi assign each star (E, L) -> integrate ->
+      eccentricity e and pericenter r_p.  With 3D data beta(r) is MEASURED, not marginalised.
+  O3. STATISTIC.  dlnM = < ln M(r)|radial-tagged  -  ln M(r)|circular-tagged >, each recovered
+      by spherical Jeans with the subsample's OWN measured rho, sigma_r, beta.
+        - MG (any beta(r), any a0, both footings):  dlnM = 0  (one field; symbolic + section [C]).
+        - MI:  dlnM < 0, ~ few x 1e-2 (fiducial cored ~ -0.02 at amp=1), monotonic in Jensen amplitude.
+  O4. Anisotropy immunity.  beta(r) reweights the ANGULAR sector and is measured directly (3D);
+      MI rescales (sigma_r, sigma_t) by the SAME f(e) -> beta unchanged, signal only in the mass
+      normalisation -> dlnM is beta-orthogonal (section [C](i) shows dlnM(MG) stable across Dbeta~8;
+      symbolic: f cancels in beta).  This is why dlnM -- not sigma_LOS(R), not raw h4(R), not the
+      per-star speed slope (REJECTED, [B]) -- is the MG-impossible statistic.
+  O5. Zero-point + confounds.  Calibrate the ~0.02 DF-dependent zero-point on forward MG mocks
+      matched to the fitted DF.  Tidal heating / substructure correlate with r_p and grow toward
+      the core; the MI split grows OUTWARD into the low-g zone -> use the r_p / radial-trend split
+      (GAP_STATEMENT E6).  PM errors randomly inflate e -> bias dlnM toward 0 (conservative);
+      forward-model the e-error.
+  O6. Decision.  Support: dlnM significantly NEGATIVE at the cored magnitude WITH the outward radial
+      trend.  Kill: dlnM significantly POSITIVE (eccentric hotter) -> falsifies the Jensen sign.
+      A zero dlnM at adequate power kills THIS channel (not the framework).
+  O7. Both footings reported (dsig(e) is <20%-footing-invariant); a0 value + s=-1 remain postulates;
+      MG=0 is the only theorem.
+
+EXIT 0: observable designed.  Isolating statistic = orbit-family enclosed-mass consistency
+        dlnM (beta measured via 3D -> degeneracy broken; MI rescale cancels in beta, surfaces
+        in the mass normalisation).  MG=0 for any beta; naive per-star slope REJECTED as
+        confounded; realistic signal ~ DF-systematic floor -> underpowered, needs 3D + ELT + DF model.

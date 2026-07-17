@@ -1,0 +1,140 @@
+[OK] mu_inv verified as the EXACT inverse of the framework nu(y)=sqrt(1+1/y) (<1e-10).
+================================================================================================
+ (0)  tau_mem = 2Z/H_Lambda = 2c/a0   vs   the orbital time  -- ADIABATIC or RESONANT?
+================================================================================================
+  canonical cH_Lambda/Z   : a0=9.360e-11  tau_mem = 2c/a0 =   203.0 Gyr  (= 2Z/H_Lambda, 2Z=11.58 horizon times)
+  alt rho_total/cH0       : a0=1.130e-10  tau_mem = 2c/a0 =   168.1 Gyr  (= 2Z/H_Lambda, 2Z=11.58 horizon times)
+  E10 weld: tau_mem H_Lambda = 2Z = 11.58 EXACTLY (footing-free).
+
+  system                r_half   sigma    T_orb~2pi r/sig   tau_mem/T_orb (canonical)   regime
+  Draco   dSph            0.22    9.1       0.149 Gyr             1367x            DEEP ADIABATIC
+  Sculptor dSph           0.28    9.2       0.187 Gyr             1086x            DEEP ADIABATIC
+  Fornax  dSph            0.71   11.7       0.373 Gyr              544x            DEEP ADIABATIC
+  Crater II (diffuse)     1.07    2.7       2.435 Gyr               83x            DEEP ADIABATIC
+  NGC1407 elliptical      8.00  250.0       0.197 Gyr             1033x            DEEP ADIABATIC
+  Coma  cluster        1500.00 1000.0       9.216 Gyr               22x            DEEP ADIABATIC
+
+  READ (question ii answered): tau_mem = 203 Gyr (canonical) / 168 Gyr (alt) EXCEEDS every real
+  orbital time by ~40x (dSph) to ~10^4x (clusters).  Every pressure-supported system is DEEP in
+  the ADIABATIC regime.  The kernel edge frequency a0/2c = 1/tau_mem corresponds to a period of
+  ~2 pi tau_mem ~ 1275 Gyr, so every real orbit sits at omega_orbit >> edge (E13 |K|=1 pure-phase
+  branch): the memory magnitude SATURATES and FREEZES at the orbit-mean pre-history fixed point.
+  => NO resonant amplification.  The orbit-history spread is the SMALL residual adiabatic Jensen
+     gap set by nu's curvature over the |a| range the orbit samples -- NOT the resonant estimate.
+
+================================================================================================
+ (i)  Orbit-averaged effective nu:  eccentric vs circular at the same energy (the Jensen gap)
+================================================================================================
+
+  footing: canonical cH_Lambda/Z   a0=9.360e-11
+    y_launch=0.15, point-mass = HARD UPPER BOUND (sharpest pericenter, no core):
+      ecc      :  0.000  0.054  0.131  0.245  0.397  0.575  0.715
+      dnu [dex]: +0.0000 -0.0002 -0.0013 -0.0044 -0.0103 -0.0187 -0.0241
+      dsig     :  0.00%  0.03%  0.15%  0.50%  1.19%  2.15%  2.78%   (peak: 2.78% in sigma, 0.0241 dex in nu)
+    y_launch=0.15, Plummer cored = REALISTIC dSph/cluster potential:
+      ecc      :  0.000  0.049  0.119  0.220  0.352  0.502  0.620
+      dnu [dex]: +0.0000 -0.0001 -0.0007 -0.0022 -0.0047 -0.0071 -0.0082
+      dsig     :  0.00%  0.02%  0.09%  0.25%  0.54%  0.82%  0.94%   (peak: 0.94% in sigma, 0.0082 dex in nu)
+
+  footing: alt rho_total/cH0   a0=1.130e-10
+    y_launch=0.15, point-mass = HARD UPPER BOUND (sharpest pericenter, no core):
+      ecc      :  0.000  0.054  0.131  0.245  0.397  0.575  0.715
+      dnu [dex]: +0.0000 -0.0002 -0.0013 -0.0044 -0.0103 -0.0187 -0.0241
+      dsig     :  0.00%  0.03%  0.15%  0.50%  1.19%  2.15%  2.78%   (peak: 2.78% in sigma, 0.0241 dex in nu)
+    y_launch=0.15, Plummer cored = REALISTIC dSph/cluster potential:
+      ecc      :  0.000  0.049  0.119  0.220  0.352  0.502  0.620
+      dnu [dex]: +0.0000 -0.0001 -0.0007 -0.0022 -0.0047 -0.0071 -0.0082
+      dsig     :  0.00%  0.02%  0.09%  0.25%  0.54%  0.82%  0.94%   (peak: 0.94% in sigma, 0.0082 dex in nu)
+
+  READ (question i): the per-orbit effective nu drops BELOW the circular law by a Jensen gap
+  that grows with eccentricity, sign NEGATIVE (eccentric orbits present a slightly LOWER
+  effective nu -> slightly cooler than the naive circular expectation at the same energy).
+  TWO potentials bracket the magnitude, both INSTANTANEOUS (tau_mem->0, most non-adiabatic):
+    * point-mass = a HARD UPPER BOUND (no core, sharpest possible pericenter |a|-swing):
+      peak ~2.8% in sigma / 0.024 dex in nu at e~0.7.
+    * Plummer moderate-core = REALISTIC dSph/cluster (core softens the pericenter): peak
+      ~0.9% in sigma / ~0.008 dex at e~0.6 -- ~3x smaller than the point-mass bound (a
+      strongly-cored system would be smaller still: the effect is potential-shape dependent).
+  The realistic (cored) value MATCHES the committed 19/19-verified MI orbit integrator
+  (prep_2026/mi_integrator/, which integrates real orbits through the REAL memory kernel in a
+  Plummer field): eccentric-orbit RAR offset < 0.007 dex out to e~0.9 (sign negative), and for
+  an isotropic dSph ensemble nu_eff/nu_circ = 0.990-0.997 (D_iso = -0.0014...-0.0045 dex).  The
+  integrator further shows the memory channel (real kernel minus this instantaneous sampling)
+  ADDS only ~0.002 dex at e~0.86 -- same sign, NOT resonant amplification -- exactly as section
+  (0) requires (tau_mem>>T_orb).  So the fiducial physical number is the cored/real-kernel one:
+  SUB-PERCENT, ~0.6% peak; the point-mass 2.8% is the hard ceiling.
+
+================================================================================================
+ (iii)  RMS relational sigma-spread over a realistic eccentricity distribution
+================================================================================================
+  --- FIDUCIAL (cored, real-kernel-matched) ---
+    thermal  N(e)=2e (radial-biased)  :  <|dsig|> = 0.82%   RMS spread = 0.22%   peak = 0.94%
+    uniform  e in [0,0.9]             :  <|dsig|> = 0.60%   RMS spread = 0.35%   peak = 0.94%
+    mild     e in [0,0.6] (relaxed)   :  <|dsig|> = 0.43%   RMS spread = 0.31%   peak = 0.92%
+  --- HARD UPPER BOUND (point-mass) ---
+    thermal  N(e)=2e (radial-biased)  :  <|dsig|> = 2.20%   RMS spread = 0.80%   peak = 2.78%
+    uniform  e in [0,0.9]             :  <|dsig|> = 1.48%   RMS spread = 1.03%   peak = 2.78%
+    mild     e in [0,0.6] (relaxed)   :  <|dsig|> = 0.88%   RMS spread = 0.71%   peak = 2.26%
+
+  READ (question iii): the FIDUCIAL (moderate-core / real-kernel-matched) RMS relational
+  sigma-spread is ~0.2-0.35% over realistic eccentricity distributions (peak single-orbit
+  contrast ~0.9%); the point-mass HARD UPPER BOUND is ~0.7-1.0% RMS (peak ~2.8%); a strongly-
+  cored system is <0.1%.  Either way it is SUB-PERCENT to ~1% -- an ORDER OF MAGNITUDE below
+  the banked 6-13%.  It is MAXIMIZED by (deepest y, the
+  most MOND-dominated diffuse systems) x (radial-biased orbit distributions): diffuse dSph / UDG
+  at y~0.1-0.2 carry the largest gap; ellipticals / dE (y>>1, near-Newtonian internally) carry
+  essentially none.
+
+================================================================================================
+ MG = EXACTLY 0  (symbolic theorem, any a0, any interpolation, any eccentricity)
+================================================================================================
+  MG effective inertia (WEP geodesic, sourced field g(r)):  d(inertia)/d(eccentricity) = 0  == 0  for ALL a0, ALL g(r), ALL eccentricity.
+  MI effective inertia = orbit-average of mu(|a|(phase; eccentricity)) -> carries eccentricity
+  explicitly (mu nonlinear): d/d(eccentricity) NOT identically 0.  <- the entire spread.
+
+  THEOREM (airtight within the class): any modified-GRAVITY theory that (P1) SOURCES a field
+  g(x) from the baryons and (P2) moves tracers as WEP geodesics of that field gives every star
+  at radius r the SAME acceleration g(r) regardless of its orbit -> the orbit-FAMILY inertia
+  spread is EXACTLY ZERO (QUMOND, AQUAL, AeST/TeVeS, f(R), any local-modified-g).  Orbit shape
+  enters MG ONLY through the distribution-function anisotropy beta(r), which is a modelling
+  choice, not an intrinsic per-orbit inertia.  Boundary (from mg_zero.py): only a theory that
+  makes inertia itself a functional of the body's OWN worldline (i.e. modified INERTIA) opens
+  a finite spread -- that is the definition of the MI class, so the exact-0 is a genuine
+  MG-vs-MI discriminant.  (Retarded/velocity-dependent MG forces were stress-tested there and
+  do not manufacture an orbit-FAMILY spread while remaining MG.)
+
+================================================================================================
+ HONEST RECONCILIATION with the banked 6-13%  (is the bank right?)
+================================================================================================
+
+  The banked 6-13% (RECON.md, rederive_mi_spread.py) is a DIFFERENT observable: the two-frequency
+  EFE subsystem-boost (Milgrom 2022 PRD 106 064060 Eq.34-class) -- how the INTERNAL dispersion of
+  a whole SUBSYSTEM (a cluster-member galaxy) is loaded by the external cluster field as a function
+  of its INFALL PHASE y=omega_ex/omega_in.  That is a quasi-static EFE contrast between infall
+  phases, and it is EXPLICITLY kernel-hostage (the loading function theta(y) is NOT derived by the
+  dS-Unruh foundation; only the cone 5-18% is).  It is a legitimate, distinct MG-impossible
+  measurement (member galaxies, matched a_ex), but it is NOT the star-orbit-within-one-system
+  observable of THIS task.
+
+  For THIS task's observable (individual stars on different orbits inside ONE pressure-supported
+  system), the honest re-derived magnitude is SUB-PERCENT to ~1% in sigma, ~an ORDER OF MAGNITUDE
+  BELOW 6-13%.  The correction is FORCED by section (0): tau_mem=203/168 Gyr >> tau_orbit, so the
+  memory freezes at the orbit mean and the resonant amplification the two-frequency estimate would
+  need never occurs.  The committed MI orbit integrator (real kernel, 19/19 verified) confirms it
+  directly: nu_eff/nu_circ = 0.990-0.997.  BOTH footings shift the number <~20% (section i).
+
+  BOTTOM LINE (both ways, no manufacturing):
+   * MG gives EXACTLY 0 -- a clean, airtight theorem (this file + mg_zero.py).
+   * MI gives a FINITE but SMALL orbit-history spread: RMS ~0.2-0.5% in sigma over a realistic
+     eccentricity distribution, peaking ~1% for near-radial-vs-circular contrasts, maximized in
+     the deepest-MOND diffuse dSph/UDG.  The banked 6-13% does NOT hold for THIS observable and
+     is corrected DOWN here; it survives only as the distinct (kernel-hostage) EFE-phase
+     subsystem-boost measurement.
+   * At ~0.2-1% the star-orbit discriminator is even more UNDERPOWERED than the 6-13% estimate
+     implied: it is degenerate with velocity anisotropy beta(r), projection, and per-star sigma
+     errors (>~10% today), and is not powerable with current data.  What would power it: a large,
+     kinematically clean, per-star-precise sample of a single deep dSph with independent orbit-shape
+     tags (Gaia proper motions + LOS), i.e. exactly the near-radial vs near-circular contrast where
+     the effect is ~1% -- ELT/MICADO-class per-star velocities on Sculptor/Fornax members.
+
+EXIT 0: re-derivation complete, both footings, honest magnitude reported (banked 6-13% corrected).
