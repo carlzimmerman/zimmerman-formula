@@ -68,12 +68,33 @@ Smooth quadratures (both integrands are C^inf after substitution — machine-che
 spectral convergence in `mi_integrator.py` GATE K1):
 
     A:  s = sin^2(phi)/4,  weight (2/pi) cos(phi)/(1+cos(phi)) dphi,  phi in (0, pi/2);
-    B:  s = 1/(4 r^2),     weight (2/pi) dr,                          r   in (0, 1).
+    B:  s = 1/(4 r^2),     weight (2/pi) dr,                          r   in (0, 1].
 
-Region B is EXACTLY flat in r = 1/(2 sqrt(s)). Truncating region B at r_min
-(s_max = 1/(4 r_min^2)) drops tail mass (2/pi) r_min whose contribution to the dressing
-is bounded by (2/pi) r_min * Z/(Z+s_max) — quantified in the memory-truncation
-convergence gate.
+Region B is EXACTLY flat in r = 1/(2 sqrt(s)), and the substituted integrand
+4 r^2 z/(1 + 4 r^2 z) is C^inf on the closed interval including r = 0 (the s -> inf
+endpoint contributes z/(z+s) -> 0 smoothly). **No truncation loses mass anywhere.**
+Production form (the numbers below are GATE K1, machine-checked): split region B at
+s_tail = 4e4 (r_t = 1/400);
+
+  * r in [r_t, 1] resolved by Gauss–Legendre (spectral convergence);
+  * s > s_tail carried by the CLOSED FORM
+        T(z) = (2/pi) [ r_t − arctan(2 r_t sqrt z)/(2 sqrt z) ]
+    (elementary because the region-B density is exactly flat in r), so the deep-UV
+    boundary layer of the integrand at large z is EXACT, not quadratured.
+
+Result: uniform accuracy over 16 decades, z in [1e-4, 1e12]: rel. err 2e-7 at
+N=48/region, **8e-9 at N=64 (production), 1e-11 at 96**; sum rule
+SUM W_j + (2/pi) r_t = 1 to 1e-14. The tilted measures (density * s^alpha) have no
+elementary tail and are built untailed on the full interval — they are only used at
+y <= 100 where the untailed error is already ~1e-8. Nodes stiffer than the RK4 stability
+window (om_j h > 0.35), and the analytic tail always, are evaluated in their exact
+tracking limit Z_j = f (the adiabatic limit of the resolvent, closed by the monotone
+fixed point) — a stability guard, not an approximation of the DC physics. Honest caveat,
+documented: the discrete bank carries the kernel's DISSIPATIVE (AC) tail
+(Im K = 1/2W at signal frequency W) only up to W ~ sqrt(s_tail resolved band);
+under the published first-moment closure the orbital secular drift is exactly zero anyway
+(K real on the positive axis, KERNEL_THEORY Sec. 2), so this limits only future
+perturbation-response applications, not the orbit dynamics gated here.
 
 Physical frequency of node s:  omega_s = sqrt(s) * a0 / c  (the cut onset s = 1/4 is
 the published IR gap |omega| = a0/2c; memory time 2c/a0 ~ 203 Gyr canonical /
@@ -173,21 +194,21 @@ tracking limit Z_j = f(t); this makes mu depend on the instantaneous |a|, closed
 ## 5. Measure realizations (>= 3, spanning the published constraint class)
 
 All realizations are checked NUMERICALLY against every published constraint before
-use (GATE M0): positivity of weights, sum rule SUM w_j = 1 (to truncation, bounded),
-norm sup|K~| <= 1 on the physical spectrum, causal-retarded realization (all poles in
-the lower half plane for zeta > 0).
+use (GATE M0): positivity of weights, sum rule SUM w_j (+ analytic-tail mass) = 1
+exactly, norm sup|K~| <= 1 on the physical spectrum, causal-retarded realization (all
+poles in the lower half plane for zeta > 0).
 
 | Realization | Definition | Role |
 |---|---|---|
-| CANON | the published density (Sec. 2 quadrature, N per region) | the theory as published |
-| TILT+ / TILT- | canonical density * s^{+/-alpha}, renormalized to mass 1 | the RAR-alive neighborhood; alpha chosen so the quasistatic nu stays within a stated dex tolerance |
+| CANON | the published density (Sec. 2 quadrature, N = 64/region) | the theory as published |
+| TILT+ / TILT- | canonical density * s^{+/-0.025}, renormalized to mass 1 exactly | the RAR-alive neighborhood; alpha chosen so the quasistatic nu stays within the stated 0.03-dex tolerance |
 | POLE | single pole s0 = 1.236 (matched to mu_fw at y=1) | extremal/point-mass member |
 | FLAT-MID | flat-in-log s over [1e3, 1e7] (memory 3 Gyr .. 30 Myr) | broad/flat member, orbital-corner band |
 | FLAT-SHORT | flat-in-log s over [1e9, 1e13] (memory ~3 Myr .. 0.01 Myr) | near-ultralocal member |
 
 Pre-computed finding (machine-checked in GATE Q1, quoted in the gate table): the
 quasistatic circular law discriminates the class HARD — CANON reproduces
-nu = sqrt(1+1/y) to quadrature error (~1e-6); POLE deviates by 0.37 dex, FLAT-MID by
+nu = sqrt(1+1/y) to quadrature error (9e-10); POLE deviates by 0.37 dex, FLAT-MID by
 1.65 dex, FLAT-SHORT by 3.65 dex over y in [0.01, 100] (all RAR-DEAD: the SPARC RAR
 at 0.108 dex excludes them outright); TILT(alpha = +/-0.025) stays within ~0.02 dex
 (RAR-alive). This is the instrument-level reproduction of rb2 [3]'s uniqueness
@@ -214,10 +235,16 @@ conserves:
    = M g_ext. The functional P(t) := SUM_i m_i INT_0^t mu_i a_i dt' - M g_ext t
    vanishes identically along exact solutions. (GATE B3.)
 4. **Bare momentum is NOT conserved** — the physical MI signature: the barycenter
-   wanders because unequal dressings break the instantaneous third law
-   (m_1 a_1 + m_2 a_2 = (1/mu_1 - 1/mu_2) F_12 + ...). The integrator MEASURES the
-   CoM wander instead of hiding it; for bound pairs it is bounded and periodic at the
-   orbital frequency (reported, not gated as a failure).
+   wanders because unequal dressings break the instantaneous third law,
+   dP_bare/dt = G m1 m2/r^2 (nu(y_1) - nu(y_2)) rhat. The integrator MEASURES the
+   CoM wander and PINS it to that analytic defect integral (GATE B3b, < 1e-4 relative:
+   the wander is the theory's physics, not integrator error). Measured structure (GATE
+   B3c, 1.0+0.5 Msun at 5 kAU, near-circular launch): the per-orbit kick has a nonzero
+   mean along the slowly precessing apsis, so the drift is BALLISTIC on the run horizon
+   — growth exponent 1.01 over 4→64 periods (and out to 128 in the development runs),
+   V_com ~ 9.6 m/s ~ 1.75% of v_rel, constant. Reported straight as a falsifiable N-body
+   signature of scalar per-star MI dressing; the action's own conserved object remains
+   the dressed momentum (item 3, machine-exact).
 
 ## 7. Causality, startup, warm-up [CONSTRUCTED HERE, documented]
 
@@ -236,20 +263,39 @@ explicit, documented convention:
     documented; the difference between cold and adiabatic starts is the honest
     startup-systematic band, reported per application.
 
-## 8. What is measure-independent (the headline) vs banded
+## 8. What is measure-independent (the headline) vs banded — with the gate-run numbers
 
-* Measure-INDEPENDENT (forced by the sum rule + rb1 exactness, verified by gates):
-  circular orbits reproduce g_obs = nu(y) g_bar ring-by-ring for every admissible
-  realization of the published measure and every Mode-II corner; the Newtonian limit;
-  L conservation; the balance functionals.
-* BANDED (the honest freedom): everything off-circular — eccentric-orbit RAR offsets
-  (bracketed by closure A ... closure B exactly as in rb3), wide-binary gamma_v
-  (the per-star EFE dressing samples a time-varying |a_i| even on circular internal
-  orbits, so the closure fork ACTS there — quantified by the integrator), startup
-  transients/hysteresis.
-* RAR-DEAD members of the constraint class (POLE, FLAT-*) are reported in the gate
-  table and excluded from applications, with the exclusion NUMBER stated (their
-  quasistatic nu residual in dex).
+* Measure-INDEPENDENT (forced by the sum rule + rb1 exactness, verified END-TO-END by
+  the gates, both footings): circular orbits reproduce g_obs = nu(y) g_bar ring-by-ring
+  for every RAR-alive realization and every Mode-II corner (residual < 5e-9 = the RK4
+  floor, y = 0.01..100); the Newtonian limit (residual 0.00% of the nu-1 excess at
+  y = 1e3, 1e4); L conservation; the balance functionals; the bare-CoM defect identity.
+* BANDED (the honest freedom, measured): everything off-circular —
+  - eccentric-orbit RAR offset (lam = 0.7, eps = 0.24, deep regime): ultralocal 0;
+    every slow-memory member (H_Lambda, gap, CANON, own-law-referenced TILT+/-) in
+    [-0.00074, -0.00065] dex — the fork endpoints are closure A (0) and closure B (the
+    rb3 law, X1a: reproduced at small eps to 4%, gate 25%); the eccentricity channel is
+    measure-STABLE across the alive class once each member is referenced to its own
+    quasistatic law;
+  - wide-binary gamma_v (coplanar, s = 20 kAU, g_ext,obs = 1.9 a0): the closure fork
+    spans [1.092 (ultralocal = the banked per-star curve, reproduced at machine
+    precision as the instrument's force law) ... 1.139 (horizon memory) =
+    sqrt(nu(y_ext,N)) = the MG/AQUAL asymptote], alt footing [1.114 ... 1.169]. **The
+    kernel's own horizon-memory closure reproduces the MG wide-binary number**: DR4 WBs
+    discriminate closure members of this kernel, not MI-vs-MG per se (sharpens the
+    banked 'MI-vs-MG likely UNDECIDABLE in DR4');
+  - startup transients/hysteresis (adiabatic vs cold quoted per application, V4).
+* STRUCTURAL FINDING (new, honest, falsifiable): the Mode-II member with its memory
+  corner AT the orbital frequency is SECULARLY UNSTABLE — the lagged dressing is weaker
+  approaching pericenter and stronger leaving it, pumping orbital energy monotonically
+  (measured mean +7.5%/cycle in radius on the deep-regime test orbit, runaway to
+  escape; X1f). Slow/horizon-memory members show zero secular drift at the 1e-10 level.
+  Within the SPEC family, observed disk/orbit stability therefore disfavors
+  orbital-frequency-band corners; the surviving fork is [ultralocal ... slow/horizon
+  memory] — exactly the band quoted above. The pump sign inherits the s = -1 postulate
+  status (KMS-passive reading = damping would flip it only with the opposite sign).
+* RAR-DEAD members of the constraint class (POLE 0.37 dex, FLAT-MID 1.65, FLAT-SHORT
+  3.65) are reported in the gate table and excluded from applications.
 
 ## 9. Honesty ledger
 

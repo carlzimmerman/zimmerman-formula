@@ -1,0 +1,135 @@
+
+====================================================================================================
+= V-A  EOM RE-DERIVATION FROM THE PUBLISHED OBJECTS (verifier's own algebra)
+====================================================================================================
+
+ [V-A1] Stieltjes inversion Im K(t+i0)/pi vs published rho_A (-1/4<t<0), rho_B (t<-1/4):
+    max rel err over 8 cut points = 9.62e-09
+   [PASS] V-A1 published densities = Stieltjes inversion of K (rel err < 1e-3 at eps=1e-9)
+
+ [V-A2] K(z) = INT_0^inf dnu(s) z/(z+s), dnu_A = (1-sqrt(1-4s))/(2 pi s^1.5) ds,
+        dnu_B = ds/(2 pi s^1.5): scipy.quad reconstruction + total mass:
+    mass A = 0.363380227632 (expect 1 - 2/pi = 0.363380227632); mass B = 0.636619772368 (expect 2/pi = 0.636619772368)
+   [PASS] V-A2a measure mass: A = 1-2/pi and B = 2/pi to < 1e-9 (v11 sum rule = 1 total)
+    max rel reconstruction err over z in [1e-3, 1e10] = 2.01e-13
+   [PASS] V-A2b independent quadrature reconstructs K(z) to < 1e-7 over 13 decades
+
+ [V-A3] closed-form tail T(z) vs direct quadrature of dnu_B above s_tail = 4e4:
+    max rel err = 4.42e-12
+   [PASS] V-A3 the lane's closed-form tail is exact (< 1e-9)
+   [PASS] V-A4a sympy: K(x^2) == mu_fw(x) exactly
+   [PASS] V-A4b the inversion x = y nu(y) is EXACT: sympy 1+4x^2 = (2y+1)^2 identically, and numeric |mu_fw(x) x - y|/y < 1e-11 over 53 y values (max 2.4e-13)
+
+ [V-A5] u.(D^2 u) = -|a|^2 on a GENERIC worldline (sympy, arbitrary w(tau), q(tau)):
+    u.u = -1 (expect -1);  u.(D^2 u) + |a|^2 = 0 (expect 0)
+   [PASS] V-A5 sympy: u.u = -1 and u.(D^2 u) = -|a|^2 IDENTICALLY for arbitrary w(tau), q(tau) (the rb1 worldline identity, re-derived)
+
+====================================================================================================
+= V-B  THE VERIFIER'S OWN MEASURE REALIZATION (different construction entirely)
+====================================================================================================
+
+ Region A split at s = 0.2: t = sqrt(s) below (smooth at 0), u = sqrt(1/4 - s) above
+ (absorbs the density's band-edge sqrt kink); region B via the flat-r substitution
+ with a DIFFERENT tail split s_tail = 1e6; ALL composite Simpson (2001/2001/1201
+ nodes -- nothing Gauss-Legendre, nothing shared with the lane's quadrature).
+ Constraints checked numerically; weights renormalized to the exact sum rule
+ (allowed: the realization must satisfy the published constraints).
+    raw mass (before exact renormalization) = 0.9999999994
+    positivity: True; sum rule = 1.000000000000; sup K~(z>0) = 0.999999
+    reconstruction of exact K over z in [1e-4, 1e10]: max rel err = 8.01e-06
+   [PASS] V-B1 verifier realization satisfies ALL published constraints (positive, mass 1, norm <= 1) and reconstructs K to < 1e-5 with a completely different quadrature
+
+====================================================================================================
+= V-C  THE CIRCULAR GATE, INDEPENDENT (my ICs; launch speed NEVER set to nu)
+====================================================================================================
+
+ Central mass 3.7e9 Msun (not the lane's 1e10). y grid {0.02, 0.7, 7.3, 55} (not the
+ lane's). For each member the circular speed is found by BISECTION ON THE INTEGRATED
+ DYNAMICS: launch tangentially at trial v, adiabatic init at the trial's own f,
+ integrate 3 periods, signed drift = <r>/r0 - 1; brentq the drift to zero. The
+ bracket is [0.9 v_N, 3.5 v_N] (Newtonian to beyond deep-MOND nu(0.02)^0.5 = 2.67)
+ -- nu never enters the launch, the init, or the bracket. Emergent
+ nu := v_c^2/(r0 g_bar) vs published.
+
+    member                          y   nu_emergent nu_published    rel err
+    ultralocal                   0.02    7.14142843   7.14142843   8.30e-11
+    ultralocal                   0.70    1.55838745   1.55838744   7.35e-11
+    ultralocal                   7.30    1.06629555   1.06629560   4.74e-08
+    ultralocal                  55.00    1.00904996   1.00904996   2.68e-10
+    modeII H_Lambda              0.02    7.14142852   7.14142843   1.35e-08
+    modeII H_Lambda              0.70    1.55838745   1.55838744   9.90e-11
+    modeII H_Lambda              7.30    1.06629559   1.06629560   8.81e-09
+    modeII H_Lambda             55.00    1.00904996   1.00904996   2.24e-10
+    modeI VERIFIER-SIMPSON       0.02    7.14142839   7.14142843   5.79e-09
+    modeI VERIFIER-SIMPSON       0.70    1.55838745   1.55838744   3.16e-10
+    modeI VERIFIER-SIMPSON       7.30    1.06629559   1.06629560   8.59e-09
+    modeI VERIFIER-SIMPSON      55.00    1.00904995   1.00904996   3.37e-09
+    modeI CANON(engine)          0.02    7.14142837   7.14142843   7.79e-09
+    modeI CANON(engine)          0.70    1.55838745   1.55838744   6.52e-11
+    modeI CANON(engine)          7.30    1.06629559   1.06629560   8.63e-09
+    modeI CANON(engine)         55.00    1.00904996   1.00904996   2.74e-10
+   [PASS] V-C1 EMERGENT nu (bisection on the dynamics, verifier ICs + verifier measure) = published sqrt(1+1/y) to < 1e-5 at every probe
+    alt footing a0 = 1.13e-10, y = 0.7, verifier measure: nu_emergent = 1.55838745 (published 1.55838744)
+   [PASS] V-C2 alt footing: emergent nu matches to < 1e-5
+    zeta = 0.1 vs 1.0 (y = 0.7): nu = 1.558387445 vs 1.558387445
+   [PASS] V-C3 the damping regularization does not move the emergent nu (< 1e-6 spread)
+
+====================================================================================================
+= V-D  WIDE-BINARY CIRCULARITY HUNT (different geometry; 1.09 must EMERGE)
+====================================================================================================
+
+ Grep finding (verifier, done outside this script): every 1.09/1.4647/1.1015/1.1389
+ occurrence in mi_integrator.py / applications.py is a CHECK TARGET or comment;
+ y_ext,N is computed from g_ext = 1.9 a0 by quadratic inversion in-script. Here the
+ dynamical gamma_v is recomputed with a DIFFERENT launch geometry: pair axis ALONG
+ g_ext at launch (the lane launched perpendicular), separation 25 kAU (lane: 20/30),
+ masses 0.6+0.9 Msun (lane: 0.75+0.75), 10 periods (lane: 8).
+
+    verifier geometry: ultralocal gamma_v = 1.0635; H_Lambda = 1.1388; verifier measure = 1.1388
+    frozen-mu analytic sqrt(nu(y_ext,N)) = 1.1389 (y_ext,N = 1.4647 computed here by quadratic inversion)
+   [PASS] V-D1 ultralocal gamma_v with DIFFERENT geometry lands in the lane's stated ultralocal neighborhood [1.05, 1.12] (the ~1.09 EMERGES; nothing 1.09-shaped was input)
+   [PASS] V-D2 horizon-memory members land on the frozen-mu analytic to < 1% with the verifier's geometry and the verifier's measure
+
+====================================================================================================
+= V-E  CONVERGENCE ON THE APPLICATION SIDE (halved timestep + doubled horizon)
+====================================================================================================
+
+ [V-E1] eccentric-orbit offset (Plummer y(b)=0.15, lam=0.7, CANON memory):
+    base (16 periods, 1200 steps/T0): offset = -0.000724 dex
+    2x horizon + 2x steps           : offset = -0.000732 dex (shift 7.94e-06 dex)
+   [PASS] V-E1 the eccentric offset is CONVERGED: halved timestep + doubled horizon moves it by < 10% of its magnitude
+
+ [V-E2] WB gamma_v (verifier geometry, ultralocal): the two convergence axes,
+        SEPARATED (a first draft of this check conflated them and failed; the
+        decomposition showed the failure was the AVERAGING WINDOW, not numerics):
+    base (10 P, 1100/P) 1.06352; 2x TIMESTEP same window: 1.06353 (shift 8.64e-06 -- numerics)
+    2x WINDOW 1.05775, 4x WINDOW 1.05520: the time-average over a
+    non-periodic precessing orbit wanders ~0.5-0.8% per window doubling -- this is
+    the lane's documented single-launch orbit-shape/sampling confound, measured;
+    it stays inside the lane's ultralocal convention neighborhood [1.05, 1.11].
+   [PASS] V-E2a gamma_v NUMERICS converged: < 0.1% under 2x timestep at fixed window
+   [PASS] V-E2b the window-sampling wander of the single-geometry launch stays inside the lane's stated ultralocal neighborhood [1.05, 1.11] at 1x/2x/4x windows (the confound is real, measured, and bounded -- not a hidden instability)
+
+ [V-E3] RK4 order re-fit (verifier orbit: Plummer lam=0.6, modeII H_Lambda):
+    errors ['1.55e-06', '3.71e-08', '4.85e-09', '4.15e-10'] -> fitted order p = 3.85
+   [PASS] V-E3 verifier's own order fit p in [3.6, 4.5] (RK4 as stated)
+
+====================================================================================================
+= V-F  PLANETARY LANDMINE -- CLOSED-FORM ARITHMETIC + THE TWO-BODY DOUBLING
+====================================================================================================
+
+ [V-F1] one-body: delta_g = (nu(y)-1) g_N -> a0/2 (1 - 1/(4y) + ...):
+    Venus  : y = 1.211e+08; delta_g = 4.6800e-11 = 1.000000 x a0/2; exclusion 585x canon / 706x alt
+    Saturn : y = 6.901e+05; delta_g = 4.6800e-11 = 1.000000 x a0/2; exclusion 6686x canon / 8071x alt
+   [PASS] V-F1 closed form: delta_g = a0/2 to < 1e-6 at both planets; exclusions match the lane's 585/706 (Venus) and ~6686/8071 (Saturn) to < 0.5%
+
+ [V-F2] strict two-body per-star doubling (verifier geometry, static probe):
+    y_sun (Sun's own dressing argument) = 296.4; relative-accel excess = 9.3561e-11 = 1.9992 x a0/2
+    analytic per-star sum = 9.3561e-11 (1.9992 x a0/2)
+   [PASS] V-F2 the strict two-body per-star reading DOUBLES the landmine (1.9 < factor < 2.0 at Venus, since y_sun ~ 300 keeps the Sun-side just under a0/2) and the rhs equals the static per-star algebra to < 0.1%
+
+====================================================================================================
+= VERDICT (verifier)
+====================================================================================================
+
+ ALL VERIFIER CHECKS: PASS

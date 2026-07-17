@@ -1,0 +1,302 @@
+####################################################################################################
+# GATE 0 -- RE-RUNNING THE FULL ENGINE GATE SUITE (mi_integrator.py, 36 gates)
+####################################################################################################
+ engine exit code: 0; engine PASS flag: True
+ failed engine gates: <none>
+ full gate log captured to gate_rerun.log
+
+ [PASS] GATE 0: all engine gates pass -- application runs are authorized
+
+####################################################################################################
+# (a) ECCENTRIC GALACTIC ORBITS -- the RAR offset of non-circular orbits, e = 0..0.9
+####################################################################################################
+
+ Field: Plummer with y(b) = 0.15 (deep a0-regime, dSph/outer-disk-like; the engine's
+ X1 field) + a y(b) = 1.0 transition-regime spot check. Tangential launches at
+ lam*v_circ, lam = 1.0 .. 0.1 -> measured eccentricity eps = (r_max-r_min)/(r_max+r_min)
+ covering 0 .. ~0.9. Observable: the orbit's effective RAR point
+ (g_bar_eff, g_obs_eff) = (<g_N>, <|a|>) vs the circular law -- the quantitative
+ eccentric-orbit / dispersion-supported RAR offset. Decomposition:
+   SAMPLING channel = the ultralocal member's offset (pure convexity of nu(y) over
+     the orbit's g_N range; present in ANY quasistatic reading of the published law);
+   MEMORY channel = member offset minus ultralocal offset at the same launch (the
+     kernel's genuine off-circular freedom, engine X1's channel).
+
+ eps(lam) map (measured, CANON): {1.0: 0.0, 0.9: 0.075, 0.8: 0.154, 0.7: 0.236, 0.6: 0.323, 0.5: 0.415, 0.4: 0.512, 0.3: 0.617, 0.2: 0.731, 0.1: 0.857}
+
+ TOTAL RAR offset D_tot = log10(g_obs_eff / [nu_own(y_eff) g_bar_eff])  [dex],
+ per member (vs its OWN circular law), footing = canonical a0 = 9.36e-11:
+   lam   eps          ultralocal corner=H_Lambda      corner=gap           CANON           TILT+           TILT-
+   1.00  0.000         +0.00000        -0.00000        -0.00000        -0.00000              --              --
+   0.90  0.075         -0.00002        -0.00005        -0.00005        -0.00005        +0.00052        -0.00065
+   0.80  0.154         -0.00004        -0.00012        -0.00011        -0.00011              --              --
+   0.70  0.236         -0.00004        -0.00015        -0.00014        -0.00014        -0.00017        -0.00012
+   0.60  0.323         -0.00003        -0.00014        -0.00014        -0.00014              --              --
+   0.50  0.415         -0.00008        -0.00022        -0.00023        -0.00023        -0.00049        +0.00002
+   0.40  0.512         -0.00029        -0.00061        -0.00063        -0.00063              --              --
+   0.30  0.617         -0.00084        -0.00161        -0.00163        -0.00164        -0.00190        -0.00139
+   0.20  0.731         -0.00195        -0.00338        -0.00343        -0.00342              --              --
+   0.10  0.857         -0.00381        -0.00574        -0.00578        -0.00580        -0.00590        -0.00566
+
+ MEMORY channel (member D_tot - ultralocal D_tot at same launch) [dex]:
+   lam   eps          ultralocal corner=H_Lambda      corner=gap           CANON           TILT+           TILT-
+   1.00  0.000        +0.000000       -0.000000       -0.000000       -0.000000              --              --
+   0.90  0.075        +0.000000       -0.000035       -0.000029       -0.000029       +0.000536       -0.000633
+   0.80  0.154        +0.000000       -0.000086       -0.000072       -0.000071              --              --
+   0.70  0.236        +0.000000       -0.000109       -0.000099       -0.000098       -0.000130       -0.000085
+   0.60  0.323        +0.000000       -0.000106       -0.000105       -0.000103              --              --
+   0.50  0.415        +0.000000       -0.000140       -0.000152       -0.000153       -0.000413       +0.000098
+   0.40  0.512        +0.000000       -0.000313       -0.000339       -0.000340              --              --
+   0.30  0.617        +0.000000       -0.000761       -0.000784       -0.000798       -0.001056       -0.000549
+   0.20  0.731        +0.000000       -0.001438       -0.001482       -0.001474              --              --
+   0.10  0.857        +0.000000       -0.001935       -0.001977       -0.001992       -0.002090       -0.001849
+
+ convention spread on the MEMORY channel (CANON, lam=0.5): time-avg -0.000153 vs virial +0.001140 dex
+
+ alt footing (a0 = 1.13e-10), y(b) = 0.15, CANON + ultralocal:
+   ultralocal   lam=0.9: eps = 0.075, D_tot = -0.00002 dex
+   ultralocal   lam=0.5: eps = 0.413, D_tot = -0.00008 dex
+   ultralocal   lam=0.2: eps = 0.732, D_tot = -0.00195 dex
+   CANON        lam=0.9: eps = 0.075, D_tot = -0.00005 dex
+   CANON        lam=0.5: eps = 0.415, D_tot = -0.00023 dex
+   CANON        lam=0.2: eps = 0.731, D_tot = -0.00342 dex
+
+ transition regime y(b) = 1.0 (canonical), CANON + ultralocal:
+   ultralocal   lam=0.9: eps = 0.077, D_tot = -0.00001 dex
+   ultralocal   lam=0.5: eps = 0.415, D_tot = -0.00003 dex
+   ultralocal   lam=0.2: eps = 0.731, D_tot = -0.00073 dex
+   CANON        lam=0.9: eps = 0.077, D_tot = -0.00003 dex
+   CANON        lam=0.5: eps = 0.416, D_tot = -0.00012 dex
+   CANON        lam=0.2: eps = 0.730, D_tot = -0.00198 dex
+
+ app gates (a):
+   [PASS] AG-a1 circular limit: |D_tot(lam=1)| < 5e-6 dex for ultralocal AND CANON (the application observable reduces to the gated circular law)
+   measured window-sampling floor of D_tot: +-3.1e-05 dex (small-eps successive differences; the sampling channel is only RESOLVED for eps >~ 0.4)
+   [PASS] AG-a2 sampling channel: ultralocal offset <= 0 within the measured sampling floor at every eps, strictly decreasing where resolved (lam <= 0.5), and < -2e-3 dex at eps ~ 0.86 (concavity of nu -- the dispersion-RAR-offset direction)
+   epicyclic cross-check at lam=0.9: virial memory channel = -0.000216 dex, rb3 closure-B law = -0.000209 dex
+   [PASS] AG-a3 the small-eps CANON memory channel (virial convention) reproduces the banked rb3 closure-B epicyclic law: negative sign, magnitude within 35%
+   [PASS] AG-a4 memory channel is small everywhere: |memory| < 0.02 dex for every alive member at every eccentricity (the eccentric-orbit signal is dominated by sampling)
+   convergence spot (CANON lam=0.5, 2x steps, 20 periods): |dD_tot| = 3.34e-06 dex
+   [PASS] AG-a5 D_tot(CANON, lam=0.5) stable to < 2e-3 dex under 2x timestep + longer run
+   [PASS] AG-a6 alt footing: same sign and size of the offset at matched lam (the offset is footing-stable; footing enters only through y)
+
+####################################################################################################
+# (b) WIDE-BINARY ANALOG -- per-star MI-EFE, gamma_v vs separation + the banked cross-check
+####################################################################################################
+
+ Two 0.75-Msun stars in the banked external field g_ext,obs = 1.9 a0 (per-star
+ MI-EFE: each star's dressing argument is its OWN total frame acceleration
+ g_ext + g_N(companion), exactly the banked wide-binary prescription -- the
+ engine's X2b verifies the instrument's force law IS the banked algebraic curve
+ to 8.9e-16). Coplanar orbits (orbital plane contains g_ext), adiabatic init,
+ 8 periods; observable = time-averaged force boost gamma_v = sqrt(<|a_rel|/g_N(r)>).
+ CITED cross-check targets: banked prereg gamma_MI ~ 1.09 (band 1.05-1.10,
+ isotropic-average asymptote 1.1015); MG/AQUAL asymptote 1.1389.
+
+ gamma_v(force) vs separation [kAU], canonical footing:
+   member                     5        10        20        30
+   ultralocal      :     1.0762    1.0929    1.0923    1.0923
+   corner=H_Lambda :     1.0922    1.1339    1.1386    1.1389
+   corner=gap      :     1.0922    1.1339    1.1386    1.1389
+   CANON           :     1.0922    1.1339    1.1386    1.1389
+   TILT+           :     1.1017    1.1461    1.1511    1.1514
+   TILT-           :     1.0837    1.1228    1.1273    1.1275
+
+ orientation-average bookkeeping (canonical): coplanar algebraic at 30 kAU = 1.0814; coplanar asymptote = 1.0814; isotropic asymptote (the banked convention) = 1.1015
+ frozen-mu (horizon-memory) analytic sqrt(nu(y_ext,N)) = 1.1389  [= the MG/AQUAL asymptote value]
+
+ alt footing (a0 = 1.13e-10), 10 + 20 kAU, ultralocal + CANON:
+   ultralocal   at   10 kAU: gamma_v = 1.1107
+   ultralocal   at   20 kAU: gamma_v = 1.1139
+   CANON        at   10 kAU: gamma_v = 1.1628
+   CANON        at   20 kAU: gamma_v = 1.1687
+
+ THE CROSS-CHECK vs the banked 1.09 (reported straight):
+   * the ultralocal member (= the banked per-star prescription, closure A) gives
+     gamma_v = 1.0923 at 30 kAU -- INSIDE the banked 1.05-1.10 band. The static
+     coplanar orientation average of the SAME banked curve is 1.0814
+     (dynamical-vs-static difference 1.01% = orbit-shape
+     sampling: the anisotropic per-star force has no circular orbit, r/s wanders
+     0.6-2.1); the banked headline 1.1015 is the ISOTROPIC orientation average of
+     the same curve (1.1015 recomputed here). All three are convention
+     spreads of ONE curve, spanning ~1.081-1.102: the banked
+     1.09 is REPRODUCED. VERDICT: AGREEMENT.
+   * the horizon-memory members (CANON, corner=H_Lambda) give gamma_v = 1.1389
+     = sqrt(nu(y_ext,N)) = 1.1389 to 0.01% -- the MG/AQUAL
+     asymptote value. WB periods (~Myr) are frozen against the kernel's ~200-Gyr
+     horizon memory, so the per-star dressing locks to the orbit-averaged field.
+   * closure band over the alive class: gamma_v in [1.076, 1.151] (canonical);
+     alt footing shifts to [1.111, 1.169] at 10-20 kAU
+     (frozen analytic 1.1692).
+   => DR4 wide binaries discriminate CLOSURE MEMBERS of this kernel (ultralocal ~1.09
+     vs horizon-memory ~1.14 = the MG number), not MI-vs-MG per se -- sharpening the
+     banked 'MI-vs-MG likely UNDECIDABLE in DR4'. A measurement outside ~[1.05, 1.17]
+     cuts against the kernel on both footings at this g_ext.
+ app gates (b):
+   [PASS] AG-b1 the banked-prescription (ultralocal) member lands inside the banked 1.05-1.10 band at the largest separation
+   [PASS] AG-b2 the dynamical ultralocal gamma equals the banked curve's own coplanar orientation average to < 1.5% (the residual = orbit-shape sampling, quoted; convention pinned, no physics discrepancy)
+   [PASS] AG-b3 horizon-memory members land on sqrt(nu(y_ext,N)) to < 0.5% (both members), and the alt-footing CANON on its own frozen value to < 0.5%
+   convergence spot (ultralocal, 30 kAU, 2x steps): gamma_v = 1.09229 (vs 1.09229)
+   [PASS] AG-b4 gamma_v stable to < 0.2% under 2x timestep
+
+####################################################################################################
+# (c) PLANETARY ORBITS -- Venus-like and Saturn-like: the a0/2 landmine, measured
+####################################################################################################
+
+ Sun-mass central field; Venus-like (a = 0.723 AU, e = 0.0068) and Saturn-like
+ (a = 9.583 AU, e = 0.0565) orbits integrated through the FULL memory machinery.
+ Physics fact forced by the instrument's EOM family (the first-moment closure that
+ carries ALL the published galactic wins): on a bound planetary orbit the memory
+ signal f = |a|^2/a0^2 is constant up to O(e), so EVERY memory corner and EVERY
+ measure sees its quasistatic dressing -- the residual anomalous acceleration
+ delta_g = g_N (1/mu - 1) is a DIRECT, memory-independent prediction. The
+ planetary_doors laneK 'Reading C' escape (a gate at the ORBITAL frequency) is an
+ evaluation OUTSIDE this closure family and is NOT reachable by the instrument;
+ within the family the only measure freedom is the TILT tail exponent, computed
+ below analytically (the tilted UV tail needs a dense continuum quadrature; the
+ discrete tilt bank is only valid at z <= 1e4, engine note).
+ CITED bounds (BOUNDS.md 1.2, 1-sigma delta-g): Venus 8.0e-14, Saturn 7.0e-15 m/s^2.
+ CITED laneK cross-check: Reading A residual = a0/2, exclusions 585x / 6687x (canon).
+
+ [c1] dressing residual delta_g = <g_N (1/mu - 1)> per member per planet
+      (canonical footing; a0/2 = 4.6800e-11 m/s^2):
+   Venus: y = g_N/a0 ~ 1.23e+08
+     ultralocal                  : delta_g = 4.6800e-11 m/s^2 (= 1.0000 x a0/2; range [4.680e-11, 4.680e-11]; e = 0.0068)
+     corner=H_Lambda             : delta_g = 4.6799e-11 m/s^2 (= 1.0000 x a0/2; range [4.617e-11, 4.744e-11]; e = 0.0068)
+     corner=gap                  : delta_g = 4.6799e-11 m/s^2 (= 1.0000 x a0/2; range [4.617e-11, 4.744e-11]; e = 0.0068)
+     CANON                       : delta_g = 4.6800e-11 m/s^2 (= 1.0000 x a0/2; range [4.680e-11, 4.680e-11]; e = 0.0068)
+     corner=2Myr (laneK window)  : delta_g = 4.6799e-11 m/s^2 (= 1.0000 x a0/2; range [4.617e-11, 4.744e-11]; e = 0.0068)
+     (frozen-memory O(e^2) factor <g>/g_rms = 1.0000: corners hold mu at the orbit-mean f, tracking members follow g(t) pointwise)
+   Saturn: y = g_N/a0 ~ 7.70e+05
+     ultralocal                  : delta_g = 4.6800e-11 m/s^2 (= 1.0000 x a0/2; range [4.680e-11, 4.680e-11]; e = 0.0565)
+     corner=H_Lambda             : delta_g = 4.6657e-11 m/s^2 (= 0.9969 x a0/2; range [4.173e-11, 5.233e-11]; e = 0.0565)
+     corner=gap                  : delta_g = 4.6657e-11 m/s^2 (= 0.9969 x a0/2; range [4.173e-11, 5.233e-11]; e = 0.0565)
+     CANON                       : delta_g = 4.6800e-11 m/s^2 (= 1.0000 x a0/2; range [4.680e-11, 4.680e-11]; e = 0.0565)
+     corner=2Myr (laneK window)  : delta_g = 4.6657e-11 m/s^2 (= 0.9969 x a0/2; range [4.173e-11, 5.233e-11]; e = 0.0565)
+     (frozen-memory O(e^2) factor <g>/g_rms = 0.9968: corners hold mu at the orbit-mean f, tracking members follow g(t) pointwise)
+
+ [c2] trajectory-level check (dynamics, not dressing algebra): circular orbits must
+      sit on the FULL dressed law v^2/(r g_N) = nu(y); the residual vs that law must
+      vanish relative to the anomaly size nu-1 (else the a0/2 tail would not be in
+      the integrated dynamics at trajectory level):
+   Venus  : y = 1.228e+08, nu-1 = 4.072e-09, |traj residual vs full nu| = 5.55e-14 (= 0.00% of the anomaly; matched-y engine field)
+   Saturn : y = 7.703e+05, nu-1 = 6.491e-07, |traj residual vs full nu| = 4.74e-13 (= 0.00% of the anomaly; matched-y engine field)
+
+ [c3] TILT members at planetary accelerations (analytic continuum quadrature;
+      the discrete tilt bank is only valid at z <= ~1e4 -- engine note):
+   alpha=0 self-check at z = 4.0e+16: continuum 1-K = 2.499997e-09 vs exact 2.500000e-09 (rel err 1.2e-06)
+   Venus  : delta_g(TILT+) = 1.212e-10  delta_g(TILT-) = 1.810e-11 m/s^2 (= 2.59 / 0.39 x a0/2; ~ y^(2 alpha) scaling)
+   Saturn : delta_g(TILT+) = 9.404e-11  delta_g(TILT-) = 2.333e-11 m/s^2 (= 2.01 / 0.50 x a0/2; ~ y^(2 alpha) scaling)
+
+ [c4] STRICT two-body per-star MI-EFE (Sun + Saturn + galactic frame field):
+   measured radial residual <(-a_rel.rhat) - g_N> = 9.3546e-11 m/s^2
+   static per-star algebra on the same circle     = 9.3546e-11 m/s^2
+   = 1.999 x a0/2: the strict two-body per-star reading DOUBLES the
+   landmine -- the Sun's own dressing (its g_bar is dominated by the planet's pull,
+   y_sun ~ 200 >> 1, so its tail is ALSO a0/2, directed at the planet) adds coherently
+   in the relative coordinate. In the real multi-planet system the Sun's dressing
+   argument is dominated by Jupiter/inner planets, making the Sun-side a0/2 slowly
+   directional rather than Saturn-radial -- between a0/2 and a0; either way excluded.
+
+ [c5] alt footing (a0 = 1.13e-10) dressing residuals (CANON):
+   Venus  : delta_g = 5.6500e-11 m/s^2 (= 1.0000 x a0_alt/2)
+   Saturn : delta_g = 5.6500e-11 m/s^2 (= 1.0000 x a0_alt/2)
+
+ [c6] CONFRONTATION vs ephemeris bounds (cited, 1-sigma delta-g):
+   planet   member-band delta_g [m/s^2]        bound      exclusion (canon)  exclusion (alt)
+   Venus    [1.81e-11, 1.21e-10]        8.0e-14   CANON     585x (band floor 226x)       706x
+   Saturn   [2.33e-11, 9.40e-11]        7.0e-15   CANON    6686x (band floor 3333x)      8071x
+
+ app gates (c):
+   [PASS] AG-c1 the instrument's CANON residual equals the a0/2 landmine to < 0.5% at both planets (= planetary_doors laneK Reading A, cross-checked)
+   [PASS] AG-c2 EVERY memory corner (ultralocal, H_Lambda, gap, AND the laneK ~Myr window corner) leaves the a0/2 landmine to < 0.5% of its predicted value [a0/2 exactly for tracking members; a0/2 * <g>/g_rms (the O(e^2) freeze factor) for frozen corners]: within the instrument's closure family NO memory corner rescues the planets (laneK Reading C is outside this family)
+   [PASS] AG-c3 trajectory-level dynamics confirms the dressing: circular-orbit v^2/(r g_N) - 1 = nu - 1 to < 2% (Saturn) and < 60% (Venus, RK4-floor-limited, floor quoted)
+   [PASS] AG-c4 tilt continuum quadrature validated: alpha=0 reproduces exact 1-K at planetary z to < 1e-3 relative
+   [PASS] AG-c5 measure band at planets: every alive member (incl. analytic tilts, both footings) stays >= 100x ABOVE its ephemeris bound -- the exclusion is measure-independent across the alive class
+   [PASS] AG-c6 strict two-body per-star reading: measured radial residual equals the static per-star algebra to < 2% and sits between a0/2 and 1.2 a0
+   convergence spot (Saturn ultralocal, 2x steps): delta_g = 4.68000e-11 (vs 4.68000e-11)
+   [PASS] AG-c7 planetary residual stable to < 0.1% under 2x timestep
+
+####################################################################################################
+# (d) RADIAL / dSph-LIKE ORBITS -- the effective nu for dispersion-supported systems
+####################################################################################################
+
+ Same deep Plummer field (y(b) = 0.15). Isotropic-velocity ensemble: launches at
+ r = b with SPEED = the published circular speed and direction angles psi with
+ cos(psi) uniform on (0,1] (3D-isotropy weighting), from near-radial (cos psi =
+ 0.05) to near-circular (0.95); plus dedicated near-radial members. Observable:
+ the ensemble RAR point (<g_N>, <|a|>) -> the effective nu a dispersion-supported
+ (dSph-like) system presents vs the circular-orbit law.
+
+ per-orbit D_tot [dex] vs cos(psi) (canonical footing):
+   cospsi  eps          ultralocal corner=H_Lambda      corner=gap           CANON           TILT+           TILT-
+    0.05   0.962         -0.00355        -0.00568        -0.00571        -0.00572        -0.00461        -0.00682
+    0.20   0.854         -0.00198        -0.00432        -0.00437        -0.00436        -0.00330        -0.00551
+    0.35   0.751         -0.00113        -0.00340        -0.00344        -0.00345        -0.00236        -0.00457
+    0.50   0.647         -0.00078        -0.00309        -0.00315        -0.00316        -0.00211        -0.00424
+    0.65   0.535         -0.00065        -0.00300        -0.00306        -0.00306        -0.00203        -0.00413
+    0.80   0.401         -0.00050        -0.00244        -0.00249        -0.00251        -0.00148        -0.00357
+    0.95   0.200         -0.00017        -0.00083        -0.00086        -0.00087        +0.00017        -0.00195
+
+ ISOTROPIC-ENSEMBLE effective nu (uniform-in-cos(psi) mixture):
+   ultralocal      : <g_bar> = 1.263e-11, <g_obs> = 3.651e-11, nu_eff/nu_circ = 0.9968  (D_iso = -0.00139 dex)
+   corner=H_Lambda : <g_bar> = 1.256e-11, <g_obs> = 3.623e-11, nu_eff/nu_circ = 0.9923  (D_iso = -0.00337 dex)
+   corner=gap      : <g_bar> = 1.257e-11, <g_obs> = 3.624e-11, nu_eff/nu_circ = 0.9922  (D_iso = -0.00341 dex)
+   CANON           : <g_bar> = 1.257e-11, <g_obs> = 3.624e-11, nu_eff/nu_circ = 0.9922  (D_iso = -0.00342 dex)
+   TILT+           : <g_bar> = 1.264e-11, <g_obs> = 3.752e-11, nu_eff/nu_circ = 0.9946  (D_iso = -0.00236 dex)
+   TILT-           : <g_bar> = 1.249e-11, <g_obs> = 3.499e-11, nu_eff/nu_circ = 0.9897  (D_iso = -0.00452 dex)
+
+ alt footing spot (cos psi = 0.5): ultralocal D = -0.00078, CANON D = -0.00316 dex (canonical: -0.00078 / -0.00316)
+
+ app gates (d):
+   [PASS] AG-d1 dispersion-direction: the isotropic-ensemble D_iso < 0 for every member (dSph-like systems sit BELOW the circular RAR -- the convexity sign)
+   [PASS] AG-d2 the isotropic effective nu is measure-STABLE: full alive-class band width < 0.01 dex (the memory freedom does not move dispersion-supported systems)
+   [PASS] AG-d3 near-radial orbits (cos psi = 0.05): every member's offset within 0.02 dex of the ultralocal value (pointwise-nu sampling dominates even at eps ~ 0.9)
+   [PASS] AG-d4 alt footing: same sign and comparable size at matched launch
+
+####################################################################################################
+# FIGURES
+####################################################################################################
+ wrote fig_orbits.png, fig_ecc_offset.png, fig_wb_gamma.png, fig_planetary.png
+
+####################################################################################################
+# SUMMARY -- APPLICATION RUNS
+####################################################################################################
+
+ APPLICATION STATUS: ALL APP GATES PASS
+ (engine gates: ALL PASS, re-run this session; wall time 236 s)
+
+ MEASURE-INDEPENDENT (the headline -- identical across the RAR-alive class, every
+ memory corner, both footings):
+  (a) eccentric orbits sit ON the circular RAR to remarkable accuracy: the TOTAL offset
+      is 0 (circular) to -0.0058 dex at eps = 0.86 (CANON, deep field, canonical;
+      ultralocal -0.0038, band over the alive class < 0.007 dex everywhere).
+      Sign is NEGATIVE (below the RAR), growing with eccentricity; decomposition =
+      sampling (convexity of nu, resolved for eps >~ 0.4) + memory (< 0.002 dex).
+      The forced statement: orbit shape CANNOT move a system off this RAR by more
+      than ~0.006 dex out to eps ~ 0.9 -- and the small offset it does produce is
+      quantified above (the dispersion-supported offset, made quantitative).
+  (c) planetary orbits: EVERY alive member and EVERY memory corner (including the
+      laneK ~Myr-window corner) leaves the a0/2-scale anomalous acceleration --
+      delta_g in [1.8e-11, 1.2e-10] m/s^2 at Venus -- excluded by the
+      ephemeris bounds by >= 226x (Venus floor) and >= 3333x (Saturn floor).
+      Within the first-moment closure family that carries the published galactic wins,
+      the planetary confrontation is FORCED; the laneK Reading-C escape (orbital-
+      frequency gating) lies OUTSIDE this family. Cross-check: CANON = laneK Reading A
+      (a0/2) to < 0.5%.
+  (d) dispersion-supported (isotropic) systems present nu_eff/nu_circ = 0.992
+      (-0.0034 dex), measure-stable to < 0.01 dex.
+
+ BANDED (the honest closure/measure freedom):
+  (b) wide-binary gamma_v in [1.076, 1.151] (canonical; alt shifts by the a0
+      degeneracy): the ultralocal end gives 1.0923 at 30 kAU, REPRODUCING the banked
+      1.09 curve (static coplanar average 1.0814 of the same curve, residual
+      1.0% = orbit-shape sampling: AGREEMENT with
+      wb_dr4_prereg_framework_curve.py); the horizon-memory end equals the MG/AQUAL
+      value 1.139 -- DR4 discriminates closure members of this kernel, not MI-vs-MG.
+  (a) the eccentricity MEMORY channel: 0 (ultralocal) .. ~-0.001 dex (slow memory),
+      reproducing the banked rb3 epicyclic law at small eps.
+
+ This instrument makes these predictions FORCED and falsifiable. It does not prove
+ the framework, and the planetary result is a REAL, quantified solar-system wall for
+ the instrument's entire closure family, reported straight.
