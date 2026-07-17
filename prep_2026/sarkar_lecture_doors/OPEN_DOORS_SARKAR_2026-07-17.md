@@ -120,3 +120,32 @@ already adopted (MLE/EIV over naive WLS). Pure credibility bridge; no new physic
 
 NET of update 2: no sharp NEW computable door; DOOR 4 downgraded to shared-direction-only (honest null on
 amplitude); the bulk flow (DOOR 3, workflow wk272ppxm running) remains THE live confrontation.
+
+
+---
+
+## LIVE UPDATE 3 — slides ~19-21 (the significance + the PV-correction crux)
+
+Two quantitative anchors that sharpen EXPOSURE 1 and DOOR 3 (no new door):
+
+**Acceleration is only 3.7 sigma (Nielsen-Guffanti-Sarkar 2016 MLE; Rubin-Hayden 2016 rebuttal countered).**
+Their principled MLE best fit: Om=0.341, OL=0.569 (still accelerating) but the no-acceleration line
+(rho+3p=0, q0=0) sits within ~3 sigma; averaged over the sky "consistent with uniform expansion." R&H's
+12-extra-parameter redshift-dependent rescue is "not justified by the BIC"; with it, non-acceleration is
+rejected at **3.7 sigma -- below the 5 sigma discovery standard**, even with 740 SNe. => Lambda rests on
+a 3.7-sigma foundation, not a 5-sigma one. **This is EXPOSURE 1 with a number: if the 3.7 sigma softens,
+the canonical footing (a0=cH_Lambda/Z, needs a real de Sitter Lambda) weakens while the ALT footing
+(a0=cH0/Z, needs only H0) survives.** The stronger the framework's canonical footing is claimed, the more
+it is hostage to this 3.7 sigma -- argues for running the Lambda=0 survival analysis (ranked #1).
+
+**The PV corrections assume convergence to the CMB frame at 180/h Mpc "contrary to observations"
+(Colin et al. 2019, A&A 631:L13).** z_hel -> z_CMB conversion presumes the CMB dipole is pure kinematic
+motion wrt the cosmic rest frame AND that SNe peculiar velocities have converged out by 180/h Mpc -- the
+SAME convergence the bulk-flow data (Qin 2021, DOOR 3) deny. Colin UNDID the corrections to test isotropy.
+=> **DOOR 3's bulk-flow calculation is directly on the crux: if MI predicts non-convergence out to
+200+ Mpc, it undercuts the 180/h Mpc PV-correction assumption that props up the isotropic-acceleration
+reading.** The live workflow (wk272ppxm) speaks to exactly this.
+
+NET of update 3: no new door; the acceleration's 3.7-sigma fragility makes EXPOSURE 1 (Lambda=0 survival)
+the theory door these slides most motivate, and the 180/h Mpc convergence assumption ties DOOR 3 directly
+to Sarkar's PV-correction critique. The Lambda=0 survival analysis is ready to fire on Carl's word.
