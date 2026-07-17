@@ -1,0 +1,133 @@
+
+============================================================================================
+EXPLORATORY FIREWALL: no kill conditions exist for this observable; nothing here
+can support or kill the framework. First exploratory number; creates the baseline;
+pre-registers full-Jeans Stage 2. THE PROXY IS NOT beta. (FROZEN.md sec.3/5)
+============================================================================================
+
+merged resolved subsample: 48 galaxies (all cut_primary=1; frozen N target 48)
+controls held: log10 M*, log10 Re(kpc), z (frozen; + log10 sigma_e in bracket B).
+ENVIRONMENT control: OMITTED -- no public group catalog crossmatched at firing
+time (FROZEN.md sec.4 permits omission if stated; Stage 2 should add one, e.g.
+Tempel+ 2017 SDSS groups).
+
+pre-registered confounder check: corr(P2, log sigma_e) = -0.616 (a sigma-correlated proxy is the channel by which a sigma-dependent IMF can FAKE
+a slope; hence the mandatory bracket-B rerun below).
+
+--------------------------------------------------------------------------------------------
+PRIMARY PROXY P2 = dln sigma/dln R (0.5-1.5 Re).  Frozen sign map: MI forced
+prediction d(delta)/d(radial anisotropy)>0  <=>  d(delta)/dP2 < 0.   MG-with-
+same-nu: exactly 0.  (dex of offset per unit dln sigma/dln R)
+--------------------------------------------------------------------------------------------
+  P2 | canon | fixedIMF              N=48  slope=-0.6355 (68% [-0.9595,-0.5144]; 95% [-1.1406,-0.2002]) p_MG0=0.019 [zero-OUTSIDE]  partial-Spearman rho=-0.301 [-0.586,+0.030]  resid=0.181
+  P2 | canon | imfA_x1.55            N=48  slope=-0.6345 (68% [-0.9591,-0.5135]; 95% [-1.1423,-0.1778]) p_MG0=0.027 [zero-OUTSIDE]  partial-Spearman rho=-0.305 [-0.587,+0.029]  resid=0.181
+  P2 | canon | imfB_sigma-dep        N=48  slope=+0.0020 (68% [-0.0010,+0.0031]; 95% [-0.0107,+0.0056]) p_MG0=0.437 [ZERO-INSIDE]  partial-Spearman rho=+0.033 [-0.282,+0.368]  resid=0.001
+
+  P2 | alt   | fixedIMF              N=48  slope=-0.6358 (68% [-0.9510,-0.5134]; 95% [-1.1382,-0.1985]) p_MG0=0.022 [zero-OUTSIDE]  partial-Spearman rho=-0.301 [-0.587,+0.027]  resid=0.181
+  P2 | alt   | imfA_x1.55            N=48  slope=-0.6349 (68% [-0.9499,-0.5114]; 95% [-1.1392,-0.1894]) p_MG0=0.021 [zero-OUTSIDE]  partial-Spearman rho=-0.308 [-0.593,+0.020]  resid=0.181
+  P2 | alt   | imfB_sigma-dep        N=48  slope=+0.0024 (68% [-0.0011,+0.0035]; 95% [-0.0135,+0.0065]) p_MG0=0.430 [ZERO-INSIDE]  partial-Spearman rho=+0.031 [-0.277,+0.349]  resid=0.001
+
+--------------------------------------------------------------------------------------------
+SECONDARY PROXY P1 = sigma_maj/sigma_min (0.5-1.0 Re; sign recorded, mapping
+inclination/shape-degenerate by freeze; N limited by the >=8-spaxel wedge floor)
+--------------------------------------------------------------------------------------------
+  P1 | canon | fixedIMF              N=33  slope=-1.0855 (68% [-1.7449,-0.3042]; 95% [-2.6847,+0.5854]) p_MG0=0.198 [ZERO-INSIDE]  partial-Spearman rho=-0.242 [-0.568,+0.146]  resid=0.146
+  P1 | canon | imfB_sigma-dep        N=33  slope=-0.0012 (68% [-0.0445,+0.0041]; 95% [-0.1334,+0.0230]) p_MG0=0.868 [ZERO-INSIDE]  partial-Spearman rho=-0.199 [-0.518,+0.239]  resid=0.000
+
+  P1 | alt   | fixedIMF              N=33  slope=-1.0876 (68% [-1.7466,-0.2924]; 95% [-2.6986,+0.6198]) p_MG0=0.192 [ZERO-INSIDE]  partial-Spearman rho=-0.241 [-0.565,+0.156]  resid=0.150
+  P1 | alt   | imfB_sigma-dep        N=33  slope=-0.0014 (68% [-0.0507,+0.0045]; 95% [-0.1497,+0.0303]) p_MG0=0.843 [ZERO-INSIDE]  partial-Spearman rho=-0.219 [-0.533,+0.224]  resid=0.000
+
+--------------------------------------------------------------------------------------------
+DIAGNOSTIC DECOMPOSITION (labelled variants, NOT frozen cells): the bracket-B
+rerun differs from the baseline in TWO ways at once -- (1) the 0.30 dex/dex IMF
+mass correction and (2) the added log sigma_e control. But delta contains
++2 log sigma_e ALGEBRAICALLY (M_dyn = K_v sigma^2 Re/G), so at fixed M*,Re the
+dynamical 'hotter' signal AND a sigma-correlated IMF BOTH live in the same
+log sigma_e direction: the sigma_e control removes signal and confounder
+TOGETHER (structural degeneracy of the Stage-1 proxy design). Which piece kills
+the slope is decided below by separating them:
+--------------------------------------------------------------------------------------------
+  P2 | canon | imfB-corr ONLY (C3)   N=48  slope=-0.5454 (68% [-0.8152,-0.4407]; 95% [-0.9643,-0.1719]) p_MG0=0.022 [zero-OUTSIDE]  partial-Spearman rho=-0.312 [-0.589,+0.030]  resid=0.156  <- IMF correction alone, no sigma control
+  P2 | canon | fixedIMF + sig-ctrl (C4) N=48  slope=+0.0005 (68% [-0.0017,+0.0013]; 95% [-0.0111,+0.0033]) p_MG0=0.799 [ZERO-INSIDE]  partial-Spearman rho=+0.068 [-0.297,+0.389]  resid=0.001  <- sigma control alone, no IMF correction
+  read-off: the literature-scale (0.30 dex/dex) IMF correction alone moves the
+  fixed-IMF slope -0.6355 -> -0.5454 (14% removed); the log sigma_e CONTROL is what
+  drives the frozen bracket-B cell to ~0 (it also removes the signal channel).
+  A sigma-dependent IMF would need a slope of ~2.0 dex/dex in log sigma to
+  cancel the whole fixed-IMF slope through the mass term alone -- ~6-7x the
+  literature trend. BUT by the FROZEN standard (FROZEN.md sec.2: 'a slope that
+  dies under bracket B is reported as NOT robust'), the MI-like slope is NOT
+  ROBUST -- reported verbatim; the degeneracy statement above is the reason the
+  frozen standard is this conservative at Stage 1 (sigma_e is simultaneously the
+  dynamical thermometer and the IMF proxy; only Stage-2 Jeans beta, which is not
+  a monotone function of sigma_e, breaks the degeneracy).
+
+--------------------------------------------------------------------------------------------
+ROBUSTNESS (labelled variants; the frozen primary above is never replaced)
+--------------------------------------------------------------------------------------------
+(i) V/sigma cut: all resolved galaxies are PRIMARY (DAPall V/sig<0.4) by the
+    frozen subsample rule -> the 0.6 VARIANT is the identical sample here; the
+    catalog-level variant cannot be run because NO DAPall-level proxy was frozen
+    (FROZEN.md sec.3). Labelled variant: split on RESOLVED V/sigma instead.
+  P2 | canon | fixedIMF | resolved V/sig < 0.10 (colder half) N=24  slope=+0.3067 (68% [-0.3702,+1.0671]; 95% [-1.0707,+2.1276]) p_MG0=0.678 [ZERO-INSIDE]  partial-Spearman rho=+0.167 [-0.415,+0.581]  resid=0.177
+  P2 | canon | fixedIMF | resolved V/sig >= 0.10 (hotter half) N=24  slope=-0.6567 (68% [-0.9644,-0.4792]; 95% [-1.2754,-0.2160]) p_MG0=0.019 [zero-OUTSIDE]  partial-Spearman rho=-0.492 [-0.800,-0.015]  resid=0.215
+(ii) IMF-risk guard: drop the highest-sigma quartile (sigma_e >= 212 km/s):
+  P2 | canon | fixedIMF | sig_e<212 (drop top quartile) N=36  slope=-0.7031 (68% [-0.9136,-0.2565]; 95% [-1.1052,+0.4380]) p_MG0=0.172 [ZERO-INSIDE]  partial-Spearman rho=-0.165 [-0.543,+0.253]  resid=0.145
+(iii) resolved-subsample-only vs full-catalog-proxy: EMPTY BY FREEZE -- FROZEN.md
+     sec.3 froze NO DAPall-level anisotropy proxy (P1/P2 are MAPS-resolved only),
+     so there is no catalog-level regression to compare against. Stated, not run.
+
+--------------------------------------------------------------------------------------------
+ACCELERATION-REGIME BUDGET (computed, honesty-critical for reading the sign)
+--------------------------------------------------------------------------------------------
+  canon: y = g_bar/a0 median 7.9 (16-84% [5.8,10.9]); log10 nu median 0.0258 dex, 16-84% spread [0.0190,0.0345]
+  alt: y = g_bar/a0 median 6.6 (16-84% [4.8,9.0]); log10 nu median 0.0307 dex, 16-84% spread [0.0228,0.0410]
+  => the fixed-IMF trend amplitude |slope|*s_P2 = 0.173 dex vs the entire
+  MI lever arm (16-84% spread of log nu) = 0.015 dex: the observed trend is
+  ~11x larger than the MAXIMUM any genuine MI anisotropy effect could
+  be in this high-acceleration sample (these massive ETGs sit at y~5-11 where the
+  framework boost nu-1 is only ~2-10%). So even at face value the MI-like sign
+  CANNOT be read as MI support -- the amplitude is dominated by structural/
+  K_v/sigma-channel systematics, exactly what the firewall anticipated. Stage 2
+  must target LOW-y pressure-supported systems (dSphs, dwarf ETGs, cluster
+  outskirts) where the MI budget is O(0.02-0.05 dex) and beta is Jeans-measured.
+
+--------------------------------------------------------------------------------------------
+POWER STATEMENT for full-Jeans STAGE 2 (from the observed Stage-1 scatter)
+--------------------------------------------------------------------------------------------
+observed: post-control robust delta scatter s_e = 0.181 dex; P2 spread s_P2 = 0.272; P1 spread 0.051 (N=33).
+Stage 2 regresses delta on per-galaxy JAM/Jeans beta_r. Detectable-at-3sigma
+(with 80% power, z=3+0.84) sample size: N ~ ((3.84 * s_e) / (b * s_beta_eff))^2,
+s_beta_eff = attenuated beta spread s_beta*sqrt(s_beta^2/(s_beta^2+e_beta^2)).
+Expected MI slope scale (illustrative, from the rider-a bracket: the isotropic-
+ensemble offset bracket spans ~0.02-0.05 dex over the anisotropy range;
+mi_closure_pin/CONSEQUENCES.md sec.1 -- 'toy magnitudes illustrative'):
+ b [dex/unit beta] | s_beta=0.20 e_beta=0.05 | s_beta=0.20 e_beta=0.10 | s_beta=0.15 e_beta=0.10
+              0.02 | N ~   32213           | N ~   37897           | N ~   77853          
+              0.05 | N ~    5154           | N ~    6064           | N ~   12457          
+              0.10 | N ~    1289           | N ~    1516           | N ~    3114          
+MaNGA DR17 supplies ~382 primary slow rotators (2,407 quality parent); ATLAS3D-
+style JAM beta_z is published for ~260 ETGs. => Stage 2 at b~0.05 needs s_e
+driven DOWN (distances/M*: ~0.10-0.15 dex plausible with SBF/fundamental-plane
+distances + resolved M/L) and N~10^2-10^3: FEASIBLE only at the optimistic corner;
+at b~0.02 it needs N>~10^3 WITH s_e~0.1 -> requires stacking or a survey beyond
+current JAM samples. Honest bottom line printed from the numbers above.
+
+wrote /Users/carlzimmerman/new_physics/prep_2026/manga_anisotropy/fig_delta_vs_P2.png
+wrote /Users/carlzimmerman/new_physics/prep_2026/manga_anisotropy/fig_delta_vs_P1.png
+
+============================================================================================
+READ-OFF (computed above, nothing hard-coded): the frozen discriminator cell is
+P2|canon|fixedIMF and its bracket-B rerun. MI expects slope<0, MG expects 0.
+  P2_canon_fixedIMF           : slope -0.6355 [-1.1406,-0.2002] -> MI-like (<0)
+  P2_canon_imfB_sigma-dep     : slope +0.0020 [-0.0107,+0.0056] -> CONSISTENT WITH MG ZERO
+  P2_alt_fixedIMF             : slope -0.6358 [-1.1382,-0.1985] -> MI-like (<0)
+  P2_alt_imfB_sigma-dep       : slope +0.0024 [-0.0135,+0.0065] -> CONSISTENT WITH MG ZERO
+BY THE FROZEN STANDARD (FROZEN.md sec.2): the slope dies under bracket B ->
+the MI-like fixed-IMF slope is NOT ROBUST. The diagnostic decomposition shows
+the death comes from the log sigma_e CONTROL (which removes the dynamical
+signal channel together with the IMF confounder -- structural Stage-1
+degeneracy), not from the literature-scale IMF correction itself; both facts
+carried at equal prominence.
+FIREWALL REMINDER: exploratory; proxy is NOT beta; nothing here supports or
+kills the framework. Verdict language above is about THIS PROXY only.
+============================================================================================

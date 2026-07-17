@@ -1,0 +1,66 @@
+====================================================================================================
+[0] INDEPENDENT delta RECOMPUTATION from raw DAPall/drpall FITS (own code)
+  max |delta_mine - delta_catalog| over the 48 = 2.39e-06 dex  (csv rounding ~1e-5 expected); max |dlogsig| = 1.22e-06
+  independent cascade: matched 10782 dapdone 10735 qual 9027 targ 8771 nsa 8766 snr 3159 sig 2442  (lane: 10782/10735/9027/8771/8766/3159/2442)
+====================================================================================================
+[1] INDEPENDENT REGRESSION (sklearn Huber + own bootstrap seed 424242 + scipy ranks)
+  P2|canon|fixedIMF|C3   (lane: -0.6355 [-1.14,-0.20]) N=48 slope=-0.6317 [-1.1644,-0.2606] p0=0.015 zero-OUT prho=-0.301
+  P2|alt  |fixedIMF|C3   (lane: -0.6358)               N=48 slope=-0.6316 [-1.1817,-0.2561] p0=0.016 zero-OUT prho=-0.301
+  P2|canon|imfB|C4       (lane: +0.0020 zero-in)       N=48 slope=+0.0021 [-0.0073,+0.0053] p0=0.346 ZERO-IN prho=+0.033
+  P2|canon|fixedIMF|C3 OLS (estimator swap)            N=48 slope=-0.6883 [-1.0730,-0.0688] p0=0.039 zero-OUT prho=-0.301
+  P1|canon|fixedIMF|C3 N=33 (lane: -1.086 zero-in)     N=33 slope=-1.0649 [-2.7717,+0.6689] p0=0.195 ZERO-IN prho=-0.242
+====================================================================================================
+[2] STRICTEST SLOW-ROTATOR SUBSETS (rotation/inclination contamination probe)
+  DAPall (V/sig)_glob < 0.30: N=30
+     P2|canon|fixedIMF|C3, vsig_glob<0.3               N=30 slope=-0.4513 [-0.7915,+0.9706] p0=0.412 ZERO-IN prho=+0.024
+  DAPall (V/sig)_glob < 0.25: N=21
+     P2|canon|fixedIMF|C3, vsig_glob<0.25              N=21 slope=-0.5014 [-0.9260,+1.1940] p0=0.297 ZERO-IN prho=-0.222
+  DAPall (V/sig)_glob < 0.20: N=14
+     P2|canon|fixedIMF|C3, vsig_glob<0.2               N=14 slope=-0.4902 [-1.5793,+1.6695] p0=0.251 ZERO-IN prho=-0.285
+  resolved V/sig < 0.10: N=23
+     P2|canon|fixedIMF|C3, vsig_res<0.1                N=23 slope=+0.1556 [-1.2931,+2.0988] p0=0.874 ZERO-IN prho=+0.101
+  resolved V/sig < 0.08: N=16
+     P2|canon|fixedIMF|C3, vsig_res<0.08               N=16 slope=-0.8117 [-1.7313,+1.9280] p0=0.529 ZERO-IN prho=-0.228
+  P2|canon|fixedIMF|C3+b/a control (inclination guard) N=48 slope=-0.6800 [-1.2676,-0.3318] p0=0.010 zero-OUT prho=-0.378
+  corr(P2, b/a) = -0.319   corr(P2, vsig_res) = -0.766
+====================================================================================================
+[3] IMF-FAKE BRACKET (impose dlog(M*/L)/dlog sigma = gamma; the faked slope is the
+    change of the C3 fixed-IMF slope when the IMF trend is put IN; literature gamma:
+    Treu+2010 ~0.31; Cappellari+2012/13 ~0.3-0.4; Li+2017 MaNGA ~0.3; La Barbera+2013 up to ~0.5-0.6)
+  gamma=0.20: corrected-IMF slope -0.5711; FAKED by fixed-IMF assumption = -0.0606 (10% of the observed -0.6317)
+  gamma=0.30: corrected-IMF slope -0.5406; FAKED by fixed-IMF assumption = -0.0911 (14% of the observed -0.6317)
+  gamma=0.40: corrected-IMF slope -0.5101; FAKED by fixed-IMF assumption = -0.1216 (19% of the observed -0.6317)
+  gamma=0.60: corrected-IMF slope -0.4487; FAKED by fixed-IMF assumption = -0.1830 (29% of the observed -0.6317)
+  -> does the observed fixed-IMF slope exceed the literature-amplitude fake?
+====================================================================================================
+[4] STRUCTURAL AUDIT: delta is an EXACT function of (logsig, logRe, logM*) + log nu
+  OLS residual of delta_canon on (logM*,logRe,logsig,z): rms = 0.01415 dex
+  -> with logsig controlled, delta has ~NO free variation: the bracket-B cell is an
+     algebraic identity, its ~0 slope was determined BEFORE any data (manufactured-null
+     structure, though pre-registered).
+  Huber slope of (2 log sigma_e) on P2 | C3 = -0.6322 vs delta slope -0.6317
+  -> the 'MI-signed' fixed-IMF slope IS the sigma_e-P2 structural relation (nu adds ~0).
+  PLACEBO (manufactured-positive hunt): fake proxy = logsig-correlated pure noise,
+  matched to corr(P2,logsig)=-0.62; if it 'fires' like P2, the P2 slope has no
+  anisotropy-specific content:
+  400 placebo proxies: median slope -0.434 (16-84% [-0.557,-0.309]); 310/400 = 78% fire 'MI-like zero-OUT' at 95%
+====================================================================================================
+[5] SELECTION HONESTY: cut-scan within the 48 + jackknife influence
+    sigma_e >= 80 km/s (floor scan)                    N=45 slope=-0.6129 [-1.1431,-0.2679] p0=0.013 zero-OUT prho=-0.400
+    sigma_e >= 90 km/s (floor scan)                    N=40 slope=-0.5701 [-1.1139,-0.1051] p0=0.030 zero-OUT prho=-0.358
+    sigma_e >= 100 km/s (floor scan)                   N=40 slope=-0.5701 [-1.0913,-0.0971] p0=0.028 zero-OUT prho=-0.358
+    sigma_e >= 120 km/s (floor scan)                   N=35 slope=-0.5249 [-1.0141,-0.0073] p0=0.048 zero-OUT prho=-0.396
+    z < 0.06 (distance scan)                           N=43 slope=-0.8902 [-1.1972,-0.0184] p0=0.046 zero-OUT prho=-0.249
+    z < 0.04 (distance scan)                           N=33 slope=-0.3983 [-1.0633,+0.5933] p0=0.298 ZERO-IN prho=-0.129
+  jackknife slopes: min -0.977 max -0.577 (all same sign: True)
+====================================================================================================
+[6] P2 WINDOW SENSITIVITY (re-extracted from the 48 local MAPS files, own code)
+    P2 window 0.5-1.5 Re (N=48)                        N=48 slope=-0.6317 [-1.1882,-0.1934] p0=0.023 zero-OUT prho=-0.301
+    P2 window 0.5-1.0 Re (N=37)                        N=37 slope=-0.6398 [-1.3045,+0.3454] p0=0.173 ZERO-IN prho=-0.266
+    P2 window 0.75-1.5 Re (N=48)                       N=48 slope=-0.4319 [-1.0567,-0.1861] p0=0.017 zero-OUT prho=-0.292
+    P2 window 0.3-1.2 Re (N=48)                        N=48 slope=-1.3491 [-1.8065,-0.3504] p0=0.013 zero-OUT prho=-0.322
+====================================================================================================
+[7] MI AMPLITUDE BUDGET (independent)
+  y median 7.9; log nu median 0.0258; trend amplitude 0.172 dex vs log-nu 16-84 spread 0.015 dex -> ratio 11x; vs median log nu itself 6.7x
+====================================================================================================
+done (exit 0)
