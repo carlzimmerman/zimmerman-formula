@@ -1,0 +1,119 @@
+====================================================================================================
+ NET-SIGN LANE: cluster-member EFE sigma-spread, per infall zone, real kernel + real orbit
+====================================================================================================
+  Z=sqrt(32pi/3)=5.7888   a0_can=9.360e-11  a0_alt=1.130e-10   member age=13.8 Gyr
+  cluster M=1e+15 Msun, core 250 kpc; matched-field bin a_ex(now)=0.5 a0
+
+----------------------------------------------------------------------------------------------------
+ (1) MG-IMPOSSIBLE piece is the sole theorem: d(sigma_MG)/d(history) = 0 at fixed a_ex(now)
+----------------------------------------------------------------------------------------------------
+   sympy: d/d(history) sigma_MG == 0  (any a0, any interpolation) -- MG has no history label.
+   => the HISTORY spread at fixed a_ex(now) is MG-IMPOSSIBLE. This is the theorem-grade claim,
+      untouched by the sign question below. The instantaneous theta(y_cur) boost is PARTLY
+      SHARED (MG has an instantaneous EFE) -- that is the banked 6-13%, not the discriminant.
+
+----------------------------------------------------------------------------------------------------
+ (2) NET SIGN per infall zone, at MATCHED a_ex(now)=0.5 a0 -- felt spread via the REAL kernel
+----------------------------------------------------------------------------------------------------
+
+  FOOTING: canonical cH_Lambda/Z  (a0=9.360e-11)   [cells: dev-vs-sample-mean %, (felt/a0)]
+    memory corner           first-infall pre  recent post-peri  backsplash re-ap  ancient / settle
+    tau= 202.99Gyr E10 gap     +0.81 (f0.032)    -0.04 (f0.048)    -0.27 (f0.052)    -0.47 (f0.056)
+    tau=  17.53Gyr H_Lambda    +5.97 (f0.056)    -0.87 (f0.222)    -1.61 (f0.247)    -1.88 (f0.256)
+    tau=   0.45Gyr dwarf-v3    +3.15 (f0.410)    -4.54 (f1.003)    +2.66 (f0.433)    +1.41 (f0.500)
+    THEOREM anchor (dev vs MG=sigma(a_now)): ALL zones hotter (common offset unobservable);
+    e.g. E10 first-infall vs MG = +15.5%, ancient vs MG = +14.1% -> the SPREAD (diff) is the signal.
+
+  FOOTING: alt rho_total/cH0  (a0=1.130e-10)   [cells: dev-vs-sample-mean %, (felt/a0)]
+    memory corner           first-infall pre  recent post-peri  backsplash re-ap  ancient / settle
+    tau= 168.14Gyr E10 gap     +0.86 (f0.033)    +0.06 (f0.047)    -0.22 (f0.053)    -0.65 (f0.061)
+    tau=  14.52Gyr H_Lambda    +5.94 (f0.061)    -0.46 (f0.217)    -1.31 (f0.244)    -2.49 (f0.287)
+    tau=   0.45Gyr dwarf-v3    +3.52 (f0.397)    -4.89 (f1.061)    +3.16 (f0.414)    +1.50 (f0.500)
+    THEOREM anchor (dev vs MG=sigma(a_now)): ALL zones hotter (common offset unobservable);
+    e.g. E10 first-infall vs MG = +15.5%, ancient vs MG = +13.8% -> the SPREAD (diff) is the signal.
+
+----------------------------------------------------------------------------------------------------
+ (3) RESOLVING the raw-loading(+) vs memory(-) 'competition' -- a field-vs-y ARTIFACT
+----------------------------------------------------------------------------------------------------
+   FIELD-space (correct): first-infall felt=0.12 a0 < now=0.50 a0 -> sigma +10.7% (HOTTER, +). No competition: under-loaded = hotter.
+   y-SPACE bug (predict.py/D3): 'cold past'=low y_hist=0.1 -> theta=2 (MAXIMAL loading)
+      -> sigma -4.9% (spuriously COOLER, -). THIS is the false
+      'memory(-)' branch: isolation is a_ex->0 (zero loading), NOT low-y. Fixing it removes
+      the competition -- the net sign is unambiguously set by (a_ex_felt - a_ex_now).
+
+----------------------------------------------------------------------------------------------------
+ (4) E13 |K|=1 pure-phase caveat: does the SIGN survive if memory does not freeze amplitude?
+----------------------------------------------------------------------------------------------------
+   pure-delay (E10 gap 203Gyr): first-infall felt=0.030 vs ancient 0.380 a0 -> first-infall +13.0% -> SIGN POSITIVE (hotter)
+   pure-delay (dwarf-v3 0.45Gyr): first-infall felt=0.412 vs ancient 0.749 a0 -> first-infall +5.3% -> SIGN POSITIVE (hotter)
+   => the SIGN (under-loaded = hotter, first-infall +) is UNCHANGED under the pure-phase
+      branch; only the MAGNITUDE / transient-survival is timescale-hostage (E10 freezes it,
+      the 0.45 Gyr corner resolves a sharper transient). Sign is not a freeze artifact.
+
+----------------------------------------------------------------------------------------------------
+ (5) HISTORY-spread magnitude vs the 6-13% SHARED instantaneous boost
+----------------------------------------------------------------------------------------------------
+  canonical cH_Lambda/Z : SHARED theta(y_cur) boost =  9.5% (banked 6-13%) | MG-impossible HISTORY span: E10=1.3%, H_Lambda=7.9%, dwarf-v3=7.7%
+  alt rho_total/cH0     : SHARED theta(y_cur) boost =  9.5% (banked 6-13%) | MG-impossible HISTORY span: E10=1.5%, H_Lambda=8.4%, dwarf-v3=8.4%
+   READ: the SHARED boost (6-13%) is reproduced (partly MG, NOT the discriminant). The
+   MG-impossible HISTORY span is COMPARABLE to it for the short 0.45 Gyr corner but collapses
+   to a FEW-% (residence-limited) for the committed E10/H_Lambda horizon memory.
+
+----------------------------------------------------------------------------------------------------
+ ASSERTIONS
+----------------------------------------------------------------------------------------------------
+   [OK] first-infall pre-peri is the HOTTEST zone (max dev vs sample mean) for BOTH footings,
+        ALL memory corners -> the ROBUST, pre-registrable sign: first-infall = the hot tail.
+   [OK] first-infall > recent post-peri every corner: predict.py/D3's (post-peri EXCESS /
+        first-infall DEFICIT) ordering is INVERTED at the source.
+   [OK] first-infall is an EXCESS vs the MG/settled-twin anchor (felt<a_now): the banked
+        'first-infall DEFICIT' is backwards. (Short-memory post-peri IS a deficit vs MG --
+        the cool side is post-peri, not first-infall: still the inverse of predict.py/D3.)
+   [OK] E10 committed corner: observable spread < 3% (residence-limited, flip FROZEN); the
+        short 0.45 Gyr corner spread is >2x larger (resolvable) -> MAGNITUDE is timescale-hostage.
+
+====================================================================================================
+ VERDICT
+====================================================================================================
+  WHICH BANKED CALC WAS RIGHT ON SIGN:
+    * predict.py BASELINE ("under-loaded / plungers HOTTER") -- CORRECT (matches this kernel run).
+    * GAP_STATEMENT.md E4/E7 NEGATIVE ("plungers less boosted"; positive-sign KILL) -- a TEXT-LABEL
+      BUG: low theta = LESS external loading = LESS suppression = MORE boost. E7's kill-condition is
+      BACKWARDS and self-trips the framework's own correct prediction. DO NOT pre-register E7 as-is.
+    * predict.py/D3 pericentre SIGN-FLIP (first-infall DEFICIT / post-peri EXCESS) -- INVERTED here: it
+      encoded 'cold isolated past' as low-y (theta~2, MAXIMAL loading). In FIELD space first-infall
+      (rising field, felt<now) is the HOTTEST/EXCESS zone; recent post-peri (short memory retains the
+      just-passed pericentre loading) is the COOL/deficit side -- the exact inverse of predict.py/D3.
+
+  NET SIGN PER ZONE (field space, real kernel, s=-1 postulate). Two anchors, both reported:
+   THEOREM anchor (vs MG=sigma(a_now)): EVERY infalling member is UNDER-loaded (felt<a_now) -> hotter
+     than MG; but the ~14-15% common offset is UNOBSERVABLE (degenerate with the baryonic M/L). The
+     SPREAD is the signal. first-infall is the largest excess.
+   OBSERVABLE anchor (vs the sample mean = the FJ baseline an observer fits):
+     first-infall pre-peri : POSITIVE (HOTTEST zone) -- ROBUST across BOTH footings and ALL corners.
+     recent post-peri      : sign TIMESCALE-DEPENDENT -- deep COOL dip only at short memory (retains
+                             the pericentre); ~neutral/mildly cool at the committed E10 memory.
+     backsplash re-approach: mildly cool (long memory) / mildly hot (short memory, peri decayed).
+     ancient / settled     : COOL tail at long (E10/H_Lambda) memory; ~neutral at short memory.
+   The signal is essentially MONOTONE in accumulated loading (~ time-since-infall), NOT a sharp dated
+   pericentre flip. first-infall = hot tail is the one sign robust across every corner and both footings.
+
+  FRAMEWORK-FIRST TIMESCALE PIN: the committed memory is the E10 horizon memory tau=2c/a0=203/168 Gyr
+  (what the 19/19 integrator integrates; the STABLE corner -- the integrator found the orbital-band
+  0.45 Gyr corner SECULARLY UNSTABLE). tau >> crossing/residence => DEEP ADIABATIC: felt loading is a
+  ~200-Gyr average dominated by the near-zero pre-infall past => the observable per-zone spread is
+  RESIDENCE-limited (<~1-2%, both footings) and the sharp pericentre feature FREEZES OUT. predict.py's
+  0.45 Gyr is the ONLY thing making a resolvable (~7-8%) sub-orbit transient; E13's |K|=1 pure-phase
+  branch preserves the SIGN (under-loaded=hotter) but a bounded group-delay transient may survive
+  (magnitude-hostage, sign-safe).
+
+  OUTCOME (honest): (B) -- the sign is ROBUST ONLY in the first-infall pre-pericentre zone (POSITIVE /
+  HOTTER / largest excess); pin the pre-registration THERE (the correlation: sigma-excess DECREASES
+  with accumulated loading / time-since-infall). The full dated pericentre SIGN-FLIP CANNOT be
+  pre-registered as a clean prediction (timescale-hostage + was backwards in the banked calc). The
+  EXISTENCE of the fixed-field history spread IS pre-registrable (MG-impossible). MG = 0 at fixed true
+  field is the sole theorem-grade claim, regardless of the sign. Sign is CONDITIONAL on s=-1 (s=+1
+  flips it). MI-class-generic (MI-vs-MG), not this-framework-vs-Milgrom. No 'proves'.
+  Credit: Milgrom 1983 / 1999 PLA 253:273 / 2022 PRD 106 064060.
+
+EXIT 0: net-sign computed per zone via the real kernel + real infall orbit, both footings.

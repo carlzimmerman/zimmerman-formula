@@ -1,0 +1,104 @@
+====================================================================================================
+ CLUSTER-EFE sigma-SPREAD SIGN -- ROBUSTNESS / KILL-SWITCH LANE
+====================================================================================================
+  Z=5.7888  a0_can=9.362e-11  a0_alt=1.131e-10  tau_mem(E10)=2c/a0 = 203/168 Gyr; dwarf-v3 corner ~0.45 Gyr
+
+====================================================================================================
+ PART 1  MONOTONICITY + the E4/E7 SIGN-LABEL BUG + MG=0 theorem (symbolic)
+====================================================================================================
+  dB/dA < 0 for all A (symbolic+numeric): MORE external loading = LESS boost = COOLER.
+  => LESS-loaded (plunger sheds theta-loading / first-infall low felt field) = HOTTER.
+
+  E4/E7 own loop (theta decreasing), boost vs y: [1.123 1.153 1.241 1.379]
+    y=0.05 (settled) boost=1.123  ->  y=1.5 (plunger) boost=1.379
+    CODE says plunger-minus-settled boost sign = +1 (POSITIVE: PLUNGERS HOTTER)
+    E4/E7 TEXT says 'NEGATIVE / plungers less boosted' -> TEXT-LABEL BUG: it reads
+    'plunger has LOW theta' as 'LOW boost', but low theta = less loading = MORE boost.
+    => GAP E7 kill-condition ('positive sign falsifies') is BACKWARDS and self-trips
+       the framework's OWN correct baseline. predict.py's POSITIVE baseline was right.
+
+  MG THEOREM: d(sigma_MG)/d(history)=0 for arbitrary mu, any a0 -- fixed true field
+  gives identical boost for all members. MG-impossible spread confirmed (untouched).
+
+====================================================================================================
+ PART 2  REAL infall orbits: a_ex(t), memory-felt field, and the SIGN per zone
+====================================================================================================
+
+====================================================================================================
+ PART 3  THE SIGN SCAN  (zone x tau_mem x kernel-shape x depth x pre-field x footing)
+====================================================================================================
+
+  Sign-consistency per zone (fraction of the 162-pt tau/kernel/depth/pre-field grid).  '+'=hotter, '-'=cooler:
+  zone             | footing          | %pos(hot) %neg(cool) | |ex| med% | verdict
+  --------------------------------------------------------------------------------------------
+  first_infall     | CAN a0=9.36e-11  |      100%         0% |    15.54% | ROBUST +  (hotter)
+  first_infall     | ALT a0=1.13e-10  |      100%         0% |    16.64% | ROBUST +  (hotter)
+  post_peri        | CAN a0=9.36e-11  |       61%        39% |     8.34% | FRAGILE (sign flips)
+  post_peri        | ALT a0=1.13e-10  |       61%        39% |     8.41% | FRAGILE (sign flips)
+
+  WHY post-peri absolute sign flips -- excess vs tau_mem (post_peri, depth 0.3a0, a_pre=0, exp):
+    [CAN a0=9.36e-11] tau(Gyr)=[0.1, 0.3, 0.45, 1.0, 3.0, 10.0, 30.0, 100.0, 203.0]
+    [CAN a0=9.36e-11] excess%  =[-4.2, -6.2, -6.0, -4.5, 1.4, 16.7, 38.2, 57.3, 63.6]
+    [ALT a0=1.13e-10] tau(Gyr)=[0.1, 0.3, 0.45, 1.0, 3.0, 10.0, 30.0, 100.0, 203.0]
+    [ALT a0=1.13e-10] excess%  =[-4.4, -6.0, -5.7, -3.7, 3.3, 20.5, 42.0, 59.2, 64.6]
+    READ: short tau (~0.45 Gyr) -> COOLER (felt remembers the hot peri, felt>cur); long tau
+    (203 Gyr E10) -> felt dominated by the low pre-infall past (felt<cur) -> HOTTER. The
+    ABSOLUTE post-peri sign (vs an adiabatic reference) is timescale-hostage -- NOT a clean flip.
+
+  POPULATION-RELATIONAL observable  Delta = (first_infall - post_peri) at matched field a_ex=a0
+  [this is the pre-registrable MG-impossible quantity; MG gives Delta=0 identically]:
+    [CAN a0=9.36e-11] tau(Gyr)=[0.1, 0.3, 0.45, 1.0, 3.0, 10.0, 30.0, 100.0, 203.0]
+    [CAN a0=9.36e-11] Delta%(exp)=[6.8, 12.8, 15.1, 20.1, 27.5, 30.4, 21.8, 9.5, 4.9]
+    [CAN a0=9.36e-11] Delta>0 (first-infall HOTTER than post-peri) in 78% of tau x kernel grid; magnitude 0.6-30.4%
+    [ALT a0=1.13e-10] tau(Gyr)=[0.1, 0.3, 0.45, 1.0, 3.0, 10.0, 30.0, 100.0, 203.0]
+    [ALT a0=1.13e-10] Delta%(exp)=[7.3, 13.3, 15.6, 20.8, 27.7, 28.6, 19.1, 8.0, 4.2]
+    [ALT a0=1.13e-10] Delta>0 (first-infall HOTTER than post-peri) in 78% of tau x kernel grid; magnitude 0.3-28.6%
+    READ: Delta > 0 (first-infall hotter than post-peri at the same field) holds wherever the
+    signal is RESOLVABLE (short-to-moderate tau); at the deep-adiabatic E10 end (tau>=100 Gyr)
+    |Delta| freezes toward zero and its sign becomes ambiguous (both members lag equally ->
+    residence-limited), matching mi_spread.py's star-orbit freeze. So the ORDERING is robust
+    where it is measurable, and the absolute first-infall-HOTTER sign (100% of grid) is the
+    cleaner pre-registrable handle; the two agree. NOT the banked pre-peri-DEFICIT flip.
+
+====================================================================================================
+ PART 4  E7 SELF-TRIP CHECK + the CORRECTED kill condition
+====================================================================================================
+  GAP E7 kill-condition (verbatim): 'sign statistic significantly POSITIVE (plungers more
+  boosted) at >=3 sigma -- that FALSIFIES the theta-decreasing structure.'
+  But the framework's OWN correct prediction is POSITIVE in the first-infall zone
+  (100% of the grid). => E7 SELF-TRIPS: a real detection of the true signal would be
+  logged as a falsification.  E7's kill condition is INVERTED and MUST be replaced by:
+    CORRECTED KILL  = first-infall members significantly COOLER (excess<0) at >=3 sigma,
+                      OR the fixed-field spread consistent with ZERO at >=3 sigma power.
+    CORRECTED SUPPORT = first-infall HOTTER + spread in the 6-14% envelope + E6 radial rise.
+  (The E6 radial-profile + DS-substructure cuts are unaffected; only the SIGN polarity flips.)
+
+====================================================================================================
+ PART 5  PRE-REGISTRABILITY MAP + VERDICT (A robust / B one-zone / C fragile)
+====================================================================================================
+  population-relational spread |Delta| across the grid: 0.3%-30.4% (median 11.2%).
+    short-memory end (tau<=1 Gyr, dwarf-v3): ~6.7-23.7%  (RESOLVABLE)
+    deep-adiabatic end (tau>=100 Gyr, E10):  ~0.3-9.5%  (FROZEN/small)
+  => at the framework's COMMITTED E10 memory (203 Gyr) the RELATIONAL spread is small/frozen,
+     exactly the correction mi_spread.py already made for the star-orbit lane. The 6-13% band
+     is the INSTANTANEOUS theta(y_cur) boost (partly MG-SHARED, current-configuration); the
+     history spread RIDES ON TOP of it and is the MG-impossible piece, small at E10 tau.
+
+  OUTCOME = B: SIGN-ROBUST-ONE-ZONE (first-infall pre-peri robust; post-peri timescale-hostage)
+  ------------------------------------------------------------------------------------
+  PRE-REGISTRABLE ZONE = FIRST-INFALL PRE-PERICENTRE, sign = HOTTER (excess > 0):
+    * robust across tau_mem 0.1-203 Gyr, BOTH kernel shapes (exp + E13 pure-phase delay),
+      BOTH footings, member depth 0.1-1.0 a0, pre-infall field 0-0.3 a0.
+    * physical reason: pre-peri field is monotonically RISING, so the memory-felt field is
+      ALWAYS below the current field, for ANY causal kernel -> ALWAYS hotter. Sign-carrier
+      is the field-history slope, which is unambiguous pre-peri.
+  NOT PRE-REGISTRABLE (sign timescale-hostage, do NOT bank a flip):
+    * recent post-peri / backsplash: sign flips + at long tau (E10 deep-adiabatic) to - at
+      short tau (dwarf-v3). The banked pre-peri-DEFICIT/post-peri-EXCESS flip (predict.py +
+      D3 DOI 10.5281/zenodo.21179352) is BACKWARDS in polarity AND not timescale-robust.
+    * ancient/virialized: field ~ constant, phase-mixed -> excess ~0, sign undefined.
+  THEOREM-GRADE (unchanged): MG = 0 at fixed TRUE field. The EXISTENCE of the fixed-field
+  spread is MG-impossible and pre-registrable regardless of sign; the first-infall SIGN is
+  an ADDITIONAL pre-registrable handle (depends on the s=-1 postulate -- state it).
+
+EXIT 0: sign reconciled honestly; first-infall pre-peri sign-robust; E7 self-trip identified.
