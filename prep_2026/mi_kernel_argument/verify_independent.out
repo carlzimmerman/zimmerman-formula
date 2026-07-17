@@ -1,0 +1,95 @@
+##############################################################################################
+# 1.  FIRST-MOMENT IDENTITY  u.Box_u u = -|a|^2   (re-derived worldline-general)
+##############################################################################################
+   [PASS] flat: u.jerk + |a|^2 - d/dtau(u.a) == 0 (algebraic identity, any parametrisation)
+        on-shell u.u=-1 => u.a=0 => u.Box_u u = -|a|^2  (first moment = +|a|^2). CONFIRMED.
+##############################################################################################
+# 2.  COSMOLOGICAL element on FLRW: what |a|^2 does the FIRST MOMENT actually see?
+##############################################################################################
+   [PASS] FLRW comoving element is a GEODESIC: |a|^2 = 0 (first-moment argument = 0, deep MOND)
+   [PASS] peculiar 4-velocity normalised u.u=-1
+   [PASS] FLRW peculiar first-moment |a|^2 = H^2 * gamma^2 * V^2  (Hubble drag, order (H V)^2)
+        => the FIRST MOMENT for a cosmological element is the BARE Hubble-drag acceleration,
+           NOT floored at cH_Lambda. The floor is NOT in the first moment.  KEY POINT.
+     [canonical_rhoDE ] Hubble-drag H0*V = 6.80e-13 = 0.0073 a0   |   floor cH_Lam = 5.42e-10 = 5.789 a0
+   [PASS] [canonical_rhoDE] Hubble drag (0.007 a0) is ~796x BELOW the cH_Lam floor (first moment un-floored)
+     [alt_rhotot      ] Hubble-drag H0*V = 6.80e-13 = 0.0060 a0   |   floor cH_Lam = 6.54e-10 = 5.789 a0
+   [PASS] [alt_rhotot] Hubble drag (0.006 a0) is ~961x BELOW the cH_Lam floor (first moment un-floored)
+##############################################################################################
+# 3.  THE POLE (dS-Unruh) re-derived from the dS embedding -- is Z^2 genuine or smuggled?
+##############################################################################################
+   [PASS] dS static worldline: kappa_eff^2 = H^2 + a_proper^2 exactly (Pythagorean, from embedding)
+   [PASS] X_pole = Z^2 + (|a|/a0)^2  (the floor is exactly (cH_Lam/a0)^2 = Z^2 = 33.50)
+   [PASS] floor value Z^2 = 33.50 is footing-INDEPENDENT (Z geometric, cancels a0)
+     Provenance: the floor = cH_Lambda = Z*a0 is the SAME horizon scale that DEFINES a0
+     (a0 := cH_Lambda/Z). It is not a free parameter fitted to sigma8 -- BUT see sec.6 (#4).
+##############################################################################################
+# 4.  HARD CONSTRAINT: galactic deep-MOND RAR under BARE vs under the FLOOR
+##############################################################################################
+        y       nu_bare   nu_floored   boost_killed   (nu = 1/K(X))
+     footing canonical_rhoDE:
+         0.01    100.01      1.090      x91.74
+         0.03     33.36      1.090      x30.61
+         0.10     10.10      1.090      x 9.26
+         0.30      3.61      1.090      x 3.31
+         1.00      1.62      1.089      x 1.49
+   [PASS] [canonical_rhoDE] BARE reaches deep-MOND: nu(y=0.01) = 100.01 >~ 10 (RAR preserved)
+   [PASS] [canonical_rhoDE] FLOOR kills deep-MOND: nu_floored(y=0.01) = 1.090 ~ 1.08 (RAR broken)
+     footing alt_rhotot:
+         0.01    100.01      1.090      x91.74
+         0.03     33.36      1.090      x30.61
+         0.10     10.10      1.090      x 9.26
+         0.30      3.61      1.090      x 3.31
+         1.00      1.62      1.089      x 1.49
+   [PASS] [alt_rhotot] BARE reaches deep-MOND: nu(y=0.01) = 100.01 >~ 10 (RAR preserved)
+   [PASS] [alt_rhotot] FLOOR kills deep-MOND: nu_floored(y=0.01) = 1.090 ~ 1.08 (RAR broken)
+        VERDICT: a cH_Lam floor applied to galaxies BREAKS the RAR (10x boost -> 1.08).
+        The prescription is CONSISTENT only if the floor is NOT applied to bound orbits.
+        The galactic RAR (deep-MOND reached) survives ONLY under the BARE first moment.
+##############################################################################################
+# 5.  LOCAL-vs-COSMOLOGICAL SPLIT: is H genuinely EP-removable locally? (de Sitter tide)
+##############################################################################################
+     [canonical_rhoDE ] r=   10 kpc: tide/g_obs = (r/r_eq)^2 = 9.6e-06   (r_eq = 3.2 Mpc)
+     [canonical_rhoDE ] r=   50 kpc: tide/g_obs = (r/r_eq)^2 = 2.4e-04   (r_eq = 3.2 Mpc)
+     [canonical_rhoDE ] r=  100 kpc: tide/g_obs = (r/r_eq)^2 = 9.6e-04   (r_eq = 3.2 Mpc)
+   [PASS] [canonical_rhoDE] dS tide <= 0.3% of galaxy field out to 100 kpc (EP removes H locally, RAR untouched)
+   [PASS] [canonical_rhoDE] cosmic-tide radius r_eq = 3.2 Mpc >> galaxy (>~20x the 100 kpc HI edge)
+     [alt_rhotot      ] r=   10 kpc: tide/g_obs = (r/r_eq)^2 = 1.4e-05   (r_eq = 2.7 Mpc)
+     [alt_rhotot      ] r=   50 kpc: tide/g_obs = (r/r_eq)^2 = 3.5e-04   (r_eq = 2.7 Mpc)
+     [alt_rhotot      ] r=  100 kpc: tide/g_obs = (r/r_eq)^2 = 1.4e-03   (r_eq = 2.7 Mpc)
+   [PASS] [alt_rhotot] dS tide <= 0.3% of galaxy field out to 100 kpc (EP removes H locally, RAR untouched)
+   [PASS] [alt_rhotot] cosmic-tide radius r_eq = 2.7 Mpc >> galaxy (>~20x the 100 kpc HI edge)
+        => tide/g_obs = (r/r_eq)^2: ~1e-5 at 10 kpc, ~1e-3 at 100 kpc -- a few 0.1% at the very
+           outermost HI, NEGLIGIBLE vs the ~10x deep-MOND boost. The EP split is REAL, clean to
+           <~1e-3 at the galaxy edge (my independent check: NOT the 1e-4 a single y=0.1 sample
+           suggests -- the deepest edge is ~10x closer to the tide, still far from breaking).
+        BUT cosmologically the peculiar element's motion is referred to the cosmic frame
+           DIRECTLY (Hubble flow is the physical background, not gaugeable) -- see sec.6.
+##############################################################################################
+# 6.  #4 -- is the dS (constant-H) pole LEGITIMATELY applied to the FLRW growing mode?
+##############################################################################################
+        z     H(z)/H_Lambda    background        pole-transplant valid?
+        0.0       1.21         Lambda-dom (dS-like)  YES
+        0.5       1.60         matter-dom (NOT dS)   NO -- transplant fails
+        1.0       2.16         matter-dom (NOT dS)   NO -- transplant fails
+        2.0       3.66         matter-dom (NOT dS)   NO -- transplant fails
+        3.0       5.52         matter-dom (NOT dS)   NO -- transplant fails
+   [PASS] dS pole transplant is background-valid only at z<~0.7 (H(z)/H_Lam<1.5); FAILS in the matter era where most growth accrues
+        => #4 ANSWER: the dS-worldline pole is NOT cleanly transferable to the FLRW growing
+           mode across cosmic history. It is defensible near z=0 (Lambda-dominated, dS-like),
+           NOT at z>~0.7 (matter-dominated). A constant cH_Lam floor over-applied at all z
+           (FLOOR_const_allz) is thus NOT derived -- it borrows a late-time dS result for the
+           whole history. The rising c*H(z) floor tracks H(z) but then equals cH0*E(z), which
+           switches MI off (nu->1) at all z -> LCDM-degenerate. Neither is forced.
+##############################################################################################
+# 7.  MANUFACTURED-SAVE and MANUFACTURED-KILL hunt (both, equally)
+##############################################################################################
+   [PASS] the sigma8-curing floor value (nu(Z)=1.083) uses the SAME cH_Lam that EP removes locally (not an independent fitted number)
+   [PASS] [canonical_rhoDE] BARE cosmo nu = nu(0.0109) = 9.63 is the honest deep-MOND value (same closure as galaxies) -- overshoot is real, not manufactured
+   [PASS] [alt_rhotot] BARE cosmo nu = nu(0.0090) = 10.57 is the honest deep-MOND value (same closure as galaxies) -- overshoot is real, not manufactured
+        => Neither a manufactured save nor a manufactured kill. The BARE overshoot is the
+           faithful galactic-consistent reading (DEAD); the floor cure is physical locally
+           but its cosmological application is NOT forced (sec.6). Verdict stays BRACKETED.
+==============================================================================================
+ INDEPENDENT VERIFY: ALL CHECKS PASS
+==============================================================================================

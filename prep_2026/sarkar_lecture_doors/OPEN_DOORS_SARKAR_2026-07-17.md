@@ -328,3 +328,14 @@ specified footing; the kernel-argument FORK spans the whole verdict; NEEDS-RELAT
 ### SARKAR-LECTURE ARC COMPLETE: all fired doors resolved (bulk flow, quasar dipole, Lambda=0 survival,
 MI linear cosmology v1). Standing next: the covariant MI perturbation theory (decides the fork), the
 Tsagas-tilt-on-MI-flow calculation (DOOR 7 stage 2), the ladder-free H0 chain.
+
+
+---
+
+## VERDICT — the kernel-argument FORK-DECIDER (workflow wjcrfsp1t, verified UPHELD)
+
+**The horizon-floor cure is NOT derivable → MI cosmology is DEAD or LCDM-DEGENERATE under the derived prescription; the appealing middle was an artifact.** The floor VALUE (Z²=33.50, the dS-Unruh scale that defines a0) is real, but you cannot transplant the z≈0 de Sitter pole to the z>0.7 matter-dominated epochs where structure grows (H(z)/H_Λ=2.2-5.5, not dS). Derived readings: BARE first-moment σ8 8.5-9.9x (dead overshoot); constant floor frequency-gated σ8 4.84/5.56 (still dead, high-z runaway); rising cH(z) floor σ8 0.83 (viable but MI-off = LCDM-degenerate, no lift toward Qin). NO reading is viable-AND-distinctive.
+- ✅ GALACTIC RAR preserved + derived-solid (EP removes H locally) — no internal inconsistency, the galactic sector is safe.
+- ❌ DOOR 7 (MI-without-Λ deep bulk flow): NO shortcut — MI derives no natural explanation of Sarkar's flow; postulate-level.
+- The decisive open computation: the covariant MI FLRW perturbation theory (compute, not posit, whether the secular growing mode couples to the pole or the first moment). That single crux collapses the bracket.
+- SELF-CORRECTION: my earlier flag that the pullback pole makes the floor theoretically-preferred is REFUTED as a derivation — background-illegitimate at the growth epochs.
