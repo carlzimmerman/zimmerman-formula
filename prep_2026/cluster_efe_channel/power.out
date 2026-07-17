@@ -1,0 +1,128 @@
+====================================================================================================
+ (0) f(depth) FROM THE KERNEL -- the amplitude ladder (a0 cancels; footing remaps physical members)
+====================================================================================================
+   the deep-MOND CARRIERS carry the signal; the SURVEY-BRIGHT members are adiabatic-shallow:
+    a_in/a0 |  f (relational spread) | physical example (a_ex=a0 shell)
+       0.05 |                23.39% | UDG sigma~20 Re~3kpc (ELT-only)
+       0.15 |                19.68% | diffuse dSph sigma~22 Re~1.2
+       0.50 |                11.94% | MaNGA-reachable dE sigma~50 Re~2
+       1.00 |                 6.99% | SDSS-floor dE sigma~90 Re~2.5
+       3.00 |                 1.90% | SDSS mid-E sigma~150 Re~3
+      10.00 |                 0.27% | SDSS bright E sigma~230 Re~4
+   -> f DROPS ~50x from carrier (a_in~0.15a0) to bright E (a_in~10a0). The measurable-by-survey
+      members are the SHALLOW ones; the deep ones (large f) are faint/diffuse. That anti-
+      correlation is the whole power problem -- but N differs by ~100x too, so we must weigh both.
+
+====================================================================================================
+ (1) NULL CALIBRATION + continuum-y power constant (frozen estimator; MG truth f=0 -> standard normal)
+====================================================================================================
+   MG-truth null (N=400, 20k trials): mean z = -0.013, sd = 1.003, P(z>=3) = 0.0015
+   continuum-y N_3sigma = C*(noise/(f*D))^2 with C = 118  (two-class-y C~65 matches banked N=1291; continuum is the honest stacked-sample case)
+
+====================================================================================================
+ (2) STACKED SDSS SAMPLE -- VDF-weighted population MC (does N~1e5 compensate for tiny per-member f?)
+====================================================================================================
+   CANONICAL: sigma-complete VDF stack, <f>=3.30%, 24% of members sit at a_in<1.5a0 (diffuse tail).
+     STATISTICAL z at N=1e5 = 7.9  (>>3: the N DOES compensate statistically).
+     BUT the detected quantity is a slope of amplitude D*<f> ~ 1.2% in ln-sigma.
+   ALTERNATE: sigma-complete VDF stack, <f>=4.05%, 35% of members sit at a_in<1.5a0 (diffuse tail).
+     STATISTICAL z at N=1e5 = 9.6  (>>3: the N DOES compensate statistically).
+     BUT the detected quantity is a slope of amplitude D*<f> ~ 1.4% in ln-sigma.
+
+====================================================================================================
+ (3) THE SYSTEMATIC + CONFOUND FLOOR -- why the SDSS stack's z>>3 is a MIRAGE (honest, load-bearing)
+====================================================================================================
+   SDSS single-fiber sigma systematic floor (aperture+S/N+z bias): 1-5% in ln-sigma
+   IFU (MaNGA/SAMI) resolved-sigma systematic floor:               0.3-1.0% in ln-sigma
+   tidal/environmental confound C6 (same SIGN + phase-correlated): 2-8% (../sigma_spread/MG_ZERO.md; separable ONLY by radial profile, not amplitude)
+
+   COMPARE the signal slope D*f AGAINST these floors (the signal-to-systematic ratio, NOT stat S/N):
+   route                           D*f (signal)    sys floor  C6 confound  signal>floor?
+   SDSS stack (bright/mid E)              1.2% 1- 5%     2- 8%           MARGINAL
+   MaNGA/SAMI diffuse dE cut              4.4% 0- 1%     2- 8%             CLEARS
+   Coma/nearby deep diffuse               5.9% 0- 1%     2- 8%             CLEARS
+
+   READING (both ways): the SDSS stack is NOT statistics-limited -- it is SYSTEMATICS-limited.
+   Its ~1% signal slope sits INSIDE the SDSS sigma-systematic floor (1-5%) AND below the C6 tidal
+   confound (2-8%) which shares the signal's sign and phase-space correlation. Beating it needs
+   sub-0.5% sigma control + the radial-profile separator -- NOT more galaxies. By contrast the IFU
+   routes put a ~4% signal ABOVE their (resolved) systematic floor: for them N, not systematics, binds.
+
+====================================================================================================
+ (4) REAL-CONFIGURATION POWER TABLE -- z at the available N, and N_3sigma (continuum-y, frozen estimator)
+====================================================================================================
+
+  --- CANONICAL a0=9.36e-11 ---
+   configuration                                      a_in/a0      f  N_avail     N_3sig z_avail    exists
+   (a) SDSS stack ALL  redMaPPer/Yang x single-fiber     3.20   1.7%  100,000     54,670    4.06    EXISTS
+       SDSS cut -> diffuse floor dE (sigma 90-120)       1.25   5.6%    8,000     19,139    1.94    EXISTS
+   (b) MaNGA+SAMI IFU  diffuse cluster-member cut        0.43  13.0%      800      1,015    2.66    EXISTS
+       Coma single, deep dwarf spectroscopy              0.31  15.4%      350        658    2.19    EXISTS
+       Coma+Virgo+Fornax+A2029 nearby IFU stack          0.31  15.4%    1,000        658    3.70 buildable
+       ELT-HARMONI UDG carriers (banked, ~2032)          0.05  23.6%    1,000        192    6.85     ~2032
+
+  --- ALTERNATE a0=1.13e-10 ---
+   configuration                                      a_in/a0      f  N_avail     N_3sig z_avail    exists
+   (a) SDSS stack ALL  redMaPPer/Yang x single-fiber     2.65   2.3%  100,000     32,142    5.29    EXISTS
+       SDSS cut -> diffuse floor dE (sigma 90-120)       1.04   6.8%    8,000     13,171    2.34    EXISTS
+   (b) MaNGA+SAMI IFU  diffuse cluster-member cut        0.36  14.4%      800        832    2.94    EXISTS
+       Coma single, deep dwarf spectroscopy              0.25  16.7%      350        563    2.36    EXISTS
+       Coma+Virgo+Fornax+A2029 nearby IFU stack          0.25  16.7%    1,000        563    4.00 buildable
+       ELT-HARMONI UDG carriers (banked, ~2032)          0.04  23.9%    1,000        187    6.95     ~2032
+
+====================================================================================================
+ (5) HEAD-TO-HEAD: single rich cluster (Coma) vs stacked SDSS -- the tasked comparison
+====================================================================================================
+   (a) SINGLE RICH CLUSTER (Coma, ~1000+ members): only ~300-400 are diffuse enough (a_in<a0) to
+       carry f>7% AND have deep internal sigma. STATISTICAL z ~ 2.0-2.5 (below 3) -- one cluster
+       gives only ~10^2-10^3 usable carriers and limited infall-phase leverage. Best used as the
+       cleanest SINGLE-system testbed (well-mapped phase space; MUSE/Subaru dwarf sigma), stacked
+       with Virgo/Fornax/A2029 to reach z~4.
+   (b) STACKED SDSS (redMaPPer/Yang x single-fiber, N~1e5): STATISTICAL z >> 3 (section 2) BUT the
+       signal lives in a ~1% ln-sigma slope buried under the SDSS sigma-systematic + C6 confound
+       floors (section 3). N compensates STATISTICALLY and fails SYSTEMATICALLY. The single-fiber
+       sigma<90 km/s reliability wall (confirmed: instrumental 69 km/s, resolution ~90) ALSO bars
+       the diffuse high-f members from the stack in the first place.
+   => The two routes fail for OPPOSITE reasons: Coma (statistics/N), SDSS-stack (systematics).
+      Neither BITES NOW as a clean detection. The MaNGA/SAMI IFU diffuse cut is the ONLY 2026-
+      existing route whose ~4% signal clears its resolved-sigma systematic floor -- but at N~800
+      diffuse tagged members it is EXPLORATORY (z~2-3.5), a hint-grade reanalysis, not a kill.
+
+====================================================================================================
+ (6) VERDICT -- both footings, both ways
+====================================================================================================
+  MG=0 stays a THEOREM for the sourced-field WEP class (any a0, any interpolation, both footings,
+    off-adiabatic; ../sigma_spread/MG_ZERO.md). This lane tests only whether the MI SPREAD is
+    detectable on EXISTING survey data. MI-CLASS-GENERIC (MI-vs-MG), NOT framework-specific.
+
+  DOES A STACKED SDSS SAMPLE BITE NOW? NO -- but NOT for lack of galaxies.
+    * Statistically the N~1e5 stack is OVER-powered (z~8-10): ~25-35% of sigma-complete members sit
+      in the diffuse a_in<1.5a0 tail carrying <f>~3-4%, and N beats the small f.
+    * It FAILS on SYSTEMATICS: the detected quantity is a ~1% ln-sigma slope, buried under the SDSS
+      single-fiber sigma systematic (1-5%) and the same-signed, phase-correlated C6 tidal/environmental
+      confound (2-8%). The single-fiber sigma<90 km/s reliability wall also excludes the high-f diffuse
+      members from the stack. Verdict: SYSTEMATICS-LIMITED, not statistics-limited (a NEW failure mode
+      vs the banked carrier lane, which is statistics-limited).
+
+  DOES A SINGLE RICH CLUSTER (COMA) BITE NOW? NO -- statistics/N: ~300-400 diffuse deep-sigma members
+    give z~2-2.5. It is the cleanest single testbed; stacking nearby clusters (Coma+Virgo+Fornax+A2029)
+    with IFU/deep dwarf sigma reaches z~3.7 at N~1e3.
+
+  THE ONE 2026-EXISTING ROUTE THAT CAN GIVE AN EXPLORATORY HINT: the MaNGA/SAMI IFU DIFFUSE-MEMBER CUT.
+    IFU reaches sigma~20-50 km/s (real signal depth, f~10-14%) at RESOLVED errors ~5-10% whose
+    systematic floor (~0.3-1%) the ~4% signal CLEARS. The wall is N: only ~few hundred-1e3 diffuse
+    cluster members with IFU sigma + phase tags -> z~2.7 (EXPLORATORY, hint-grade, single-survey
+    systematics; can neither confirm nor kill). Both footings within ~10% (alt needs x0.8 the N).
+
+  OVERALL: STILL UNDERPOWERED for a clean detection on ALL existing data. The nearest BITE-NOW is a
+    MaNGA/SAMI + SAMI-cluster IFU diffuse-dE reanalysis at HeCS/GalWCat19/Rhee-2017 phase tags -> an
+    exploratory ~2-3.5 sigma probe. A clean detection needs EITHER (i) ELT-HARMONI diffuse-UDG carrier
+    sigma (~2032; banked carrier lane), OR (ii) a dedicated wide nearby-cluster IFU dwarf survey
+    (~10^3-10^4 diffuse members, resolved sigma, sub-percent systematics) -- the systematic control,
+    not the galaxy count, is what a stacked SDSS sample cannot buy.
+
+  Kernel-hostage caveat carried: 6-13% fiducial band (cone 4-15%); a0 value + sign s=-1 postulated;
+    existence + sign + MG=0 are the theorem-grade claims, amplitude a band. Both footings shown.
+
+ EXIT 0 = kernel f-ladder verified, null calibrated, continuum-C locked, SDSS-stack statistically
+          reachable but systematics-limited, MaNGA/SAMI the only exploratory 2026 bite. Both footings.

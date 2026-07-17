@@ -1,0 +1,122 @@
+==============================================================================================
+ VERIFY -- adversarial re-audit of the cluster-EFE infall-phase channel (both footings)
+==============================================================================================
+
+==============================================================================================
+ V1  CRUX: is the MG projection alias REALLY killed to ~0.01%, or only on sim-true-r?
+==============================================================================================
+  observable.py [C] bins on the SIMULATION's TRUE r to claim ~0.01%.  But the OBSERVABLE is
+  a_ext from the caustic profile evaluated at each galaxy's radius -- which is only R_proj.
+  Realistic Rhee tag: an orbit-class label of PURITY p that lets you correct the PER-ZONE
+  MEAN true-r (from N-body), leaving the WITHIN-zone true-r scatter uncorrected.
+
+  footing=canonical  MI band 6.2-11.8%
+    bin by SIM-TRUE r (observable.py's claim) :  0.093%   <- NOT an observable
+    bin by R_proj     (the actual observable) :  2.257%
+    Rhee tag purity p=0.5, per-zone mean-r calib :  2.146%   (18% of MI top, 35% of floor)
+    Rhee tag purity p=0.7, per-zone mean-r calib :  1.967%   (17% of MI top, 32% of floor)
+    Rhee tag purity p=0.9, per-zone mean-r calib :  1.323%   (11% of MI top, 21% of floor)
+  footing=alternate  MI band 7.5-14.1%
+    bin by SIM-TRUE r (observable.py's claim) :  0.111%   <- NOT an observable
+    bin by R_proj     (the actual observable) :  2.359%
+    Rhee tag purity p=0.5, per-zone mean-r calib :  2.260%   (16% of MI top, 30% of floor)
+    Rhee tag purity p=0.7, per-zone mean-r calib :  2.097%   (15% of MI top, 28% of floor)
+    Rhee tag purity p=0.9, per-zone mean-r calib :  1.414%   (10% of MI top, 19% of floor)
+  READING: the calibrated residual sits BETWEEN the ~0.09% sim-true-r floor and the ~2.2%
+  raw R_proj alias -- it is NOT the ~0.01% observable.py advertises.  The per-zone mean-r
+  calibration removes the MEAN offset; the residual is the within-zone true-r scatter, which
+  survives at the ~0.2-1% level and DEGRADES with lower purity.  The kill is REAL but PARTIAL
+  and PURITY-DEPENDENT -- a load-bearing mitigation, exactly as mg_efe_zero.py concluded, NOT
+  the ~0.01% clean kill the observable lane's sim-true-r binning implies.  Not fatal (residual
+  < MI floor at p>=0.7) but the honest MG floor is ~0.5-1%, not ~0.01%.
+
+==============================================================================================
+ V2  ANISOTROPIC (filamentary) infall -- extra MG mimic beyond the isotropic 2.2%?
+==============================================================================================
+  Real infall is along filaments: plungers enter along the cluster major axis.  If the LOS
+  is near that axis, plungers are seen at systematically SMALLER R_proj for their true r
+  (foreshortened) than isotropic -> the projection alias is AMPLIFIED and correlated with
+  orbit class.  Model: plungers projected with anisotropy beta_a (mu drawn toward +-1).
+
+  footing=canonical  MI top 11.8%:  isotropic(kap=0)  2.26%  ->  mild-filament(kap=2)  1.69%  ->  strong-filament(kap=6)  6.91%  (59% of MI top)
+  footing=alternate  MI top 14.1%:  isotropic(kap=0)  2.29%  ->  mild-filament(kap=2)  1.90%  ->  strong-filament(kap=6)  7.20%  (51% of MI top)
+  READING (honest, both ways): the alias is NON-MONOTONIC in alignment but STRONG-filament
+  (LOS-aligned) infall pushes the raw R_proj alias to ~7% -- ~55% of the MI band top, ~3x the
+  isotropic 2.2%.  So the banked isotropic 2.2% is a LOWER BOUND: anisotropic/filamentary
+  infall can drive the pre-mitigation MG mimic UP INTO the MI band.  The exact magnitude is
+  toy-dependent (a real number needs a TRIAXIAL potential + infall-axis model), but the
+  DIRECTION is clear and adverse.  This makes the class-aware calibration + selecting RELAXED
+  (non-filament-fed, DS-clean) clusters LOAD-BEARING, and it exposes a second unpropagated
+  error: the spherical caustic mass profile assumed in E2 is itself orientation-biased for
+  filament-fed clusters, so a_ext(R) carries an orientation-correlated error the banked lanes
+  never quantify.  NET: a real, potentially band-sized, UNDER-COUNTED mimic -- carry it.
+
+==============================================================================================
+ V3  SIGN: GAP E4/E7 say plungers NEGATIVE (less boosted); predict.py says plungers HOTTER
+==============================================================================================
+  (i) RAW adiabatic loading (no memory): high-y plunger vs low-y settled at same r
+      d(ln boost) = +6.67%  -> plunger is HOTTER (POSITIVE)
+      *** a POSITIVE raw sign would TRIP GAP E7's KILL condition ('plungers more boosted') ***
+  (ii) MEMORY-weighted: first-infall pre-peri -3.03% (deficit), post-peri +2.24% (excess)
+  RECONCILIATION: the two are NOT the same statistic.  GAP E4/E7's 'plunger' = the infalling
+  CLASS whose sigma is compared to settled; predict.py's 'HOTTER' baseline is the RAW y-loading
+  of a member at high CURRENT omega_ex.  The observable sign is the COMPETITION between raw
+  loading (positive) and memory-of-cold-past (negative), set by tau_M and the y_hist contrast.
+  => The SIGN is NOT theorem-grade: it rides on s=-1 AND on tau_M/y_hist, and the raw-loading
+     branch has the OPPOSITE sign to the memory branch.  If memory is weak (t>>tau_M, settled
+     population), the sign is POSITIVE and would fire GAP E7's KILL.  The banked docs assert
+     opposite baseline signs -- a real inconsistency the pre-registration must resolve BEFORE
+     firing (define the sign statistic on a FIXED phase zone, not the mixed 'infalling' class).
+
+==============================================================================================
+ V4  MANUFACTURED detection (MG false +) AND manufactured null (MI false -)
+==============================================================================================
+  (a) MG universe, bin-by-R_proj, 15% uncut mis-tagged interlopers -> phase-contrast 1.28%  (21% of the MI FLOOR)
+      => an analyst who SKIPS the calibration + DS/caustic cuts manufactures a fake signal
+         a LARGE fraction of the band.  The cuts are load-bearing, NOT optional (confirms
+         mg_efe_zero.py).  A 'detection' without them measures projection+interlopers.
+  (b) MI universe, but survey-BRIGHT E (sigma 150-230): max relational spread f = 1.86%  -> a NULL even though MI is true (adiabatic-dead carriers).
+      => the sigma-measurable members carry ~0 signal: a manufactured NULL.  A null on the
+         WRONG (bright) population kills nothing.  The measurable-vs-carrier anti-correlation
+         is the power wall (power.py), re-confirmed.
+
+==============================================================================================
+ V5  DATASET REALITY -- does the powered sample exist at that N/quality?
+==============================================================================================
+  SDSS single-fiber veldisp: instrumental floor 69 km/s, resolution ~90 km/s; sigma<~90-100
+  UNRELIABLE (Sohn+2017 ApJS 229:20; Zahid+2016).  The diffuse deep-MOND CARRIERS (sigma 15-50,
+  f~10-14%) are EXACTLY the ones excluded from SDSS -> the stack measures adiabatic-dead E.
+  MaNGA DR17 IFU reaches sigma~20 (Law+2021), but diffuse cluster members with reliable sigma
+  AND Rhee phase tags number ~few hundred (SAMI 8 clusters, Owers+2017), NOT ~1000 -- power.py's
+  N~800-1000 is OPTIMISTIC; ~300-500 is defensible -> z~2-3 EXPLORATORY, not a clean detection.
+  VERDICT on power: the SDSS-stack systematics-limit finding is SOUND and the honest bottom
+  line (no clean 2026 bite; MaNGA/SAMI hint-grade only) HOLDS; the only trim is N~800->~400.
+
+==============================================================================================
+ SYNTHESIS
+==============================================================================================
+  (1) MG=0 at FIXED TRUE field: GRANTED (symbolic, re-verified in banked lanes; any a0/interp).
+  (2) MG=0 IN OBSERVATION: the projection alias is ~2.2% isotropic but rises to ~7% (~55% of the MI
+      top) under strong LOS-aligned/filamentary infall (V2, an under-counted mimic), and is only
+      PARTIALLY removed by a REALISTIC purity-p zone calibration -- residual ~1.3-2% at p=0.5-0.9,
+      NOT the ~0.01% observable.py claims from (non-observable) sim-true-r binning (V1).  The
+      residual is BELOW the MI floor only at high purity AND for relaxed clusters; the honest MG
+      floor is ~1-2%, and caustic-deprojection quality + cluster selection are load-bearing.
+  (3) THE OBSERVABLE isolates the history spread ONLY IF the per-zone mean-r calibration + DS cut +
+      caustic membership are applied at adequate purity; skipping them manufactures a fake signal a
+      large fraction of the band (V4a).  The '<=0.3 dex a_ext binning' is binning on R_proj unless
+      the deprojection is done, and the deprojection is statistical/partial (GAP E2 says so).
+  (4) THE SIGN is NOT theorem-grade (V3): raw adiabatic loading (plungers HOTTER, positive) and the
+      memory branch (pre-peri DEFICIT, negative) have OPPOSITE signs; GAP E4/E7 and predict.py assert
+      opposite baselines.  The pre-registration must fix the sign statistic on a SINGLE phase zone or
+      it risks self-tripping its own KILL condition.  Sign rides on s=-1 + tau_M, both non-derived.
+  (5) MI-CLASS-GENERIC (MI-vs-MG), NOT framework-vs-Milgrom: HELD throughout.  Amplitude KERNEL-
+      HOSTAGE (6-13% fiducial, cone ~3-20%).  a0 value + s=-1 POSTULATES.  Both footings ~identical.
+  (6) POWER: SDSS systematics-limited (SOUND); no clean 2026 bite; MaNGA/SAMI exploratory at N~300-
+      500 (trim power.py's optimistic ~800-1000).  Underpowered TODAY -- prediction, not confrontation.
+  NET: the channel is a GENUINE MI-vs-MG discriminator in principle, but it is MITIGATION-HEAVY and
+  its three sharpest claims are softer than banked: MG-floor ~1-2% not ~0.01% (V1+V2), the SIGN is
+  postulate+kernel-contingent and internally inconsistent across docs (V3), and the clean-detection
+  dataset does NOT exist in 2026 (V5).  No 'proves'.  Honest null: UNDERPOWERED + MITIGATION-DEPENDENT.
+
+EXIT 0
