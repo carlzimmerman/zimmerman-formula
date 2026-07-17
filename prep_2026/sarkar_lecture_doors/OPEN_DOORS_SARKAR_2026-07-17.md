@@ -149,3 +149,37 @@ reading.** The live workflow (wk272ppxm) speaks to exactly this.
 NET of update 3: no new door; the acceleration's 3.7-sigma fragility makes EXPOSURE 1 (Lambda=0 survival)
 the theory door these slides most motivate, and the 180/h Mpc convergence assumption ties DOOR 3 directly
 to Sarkar's PV-correction critique. The Lambda=0 survival analysis is ready to fire on Carl's word.
+
+
+---
+
+## VERDICT — DOOR 3 (bulk flow) + DOOR 4 (quasar dipole), workflow wk272ppxm, adversarially verified
+
+**DOOR 3 = NEEDS-LINEAR-THEORY (direction right, amplitude overshoots 10x). NOT a MOND-win.**
+- The coherent peculiar-acceleration field on 30-180 Mpc is g_pec ~ a0/200 (~1-5e-13 m/s^2) = DEEP MOND,
+  so the literal MI boost nu(g_pec/a0) = 14-27 -> V_MI = 1700-3400 km/s, **OVERSHOOTING the Qin 2021 data
+  (CF4TF 380, W09 410, ...) by median ~10x (6-13x), both footings (alt marginally worse).**
+- **GOOD (the real point of contact): MI predicts the RIGHT SHAPE -- reduced convergence.** Because nu
+  RISES as the coherent field falls at large R, the MI fall factor V(30)/V(200)=1.64 vs LCDM 2.69 (data
+  ~1.3-1.5) -- MI naturally produces the non-convergence Sarkar's anomaly is about, in the right direction.
+- **THE HONEST CATCH (verifier's sharpest finding): no single MI prescription gets BOTH.** The coherent
+  reading matches the shape but overshoots amplitude 10x; the amplitude-matching 'environmental-a0' reading
+  (nu~1.2-1.7) reproduces the LCDM shape (const multiplier cancels) and does NOT explain non-convergence.
+  The environmental framing is MG-flavored and over-generous for bulk flows -- do not lean on it.
+- ROOT CAUSE: the framework's LINEAR COSMOLOGY (MI transfer function, MI growth f, self-consistent
+  field-level nu-weighting) is UNBUILT -- the naive V_LCDM x nu double-counts / mis-weights. The
+  first-principles number is unavailable until that door is built. Credit: Nusser 2002 + Llinares/Angus/Katz
+  (MOND-enhances-flows is NOT novel).
+- **HONEST LINE FOR SARKAR (do NOT overclaim):** "MI predicts qualitatively enhanced, LESS-convergent
+  large-scale flows -- the direction of your anomaly, because nu rises as the coherent peculiar field drops
+  below a0 at large R -- but the naive quasi-linear boost overshoots your bulk-flow amplitude by ~10x, and
+  the framework's MI linear cosmology isn't built yet to get the number right." NOT "MI explains the bulk flow."
+
+**DOOR 4 = NEGLIGIBLE (confirmed).** Framework apex dipole (1/2)beta_cmb = 6.2e-4 is ~14x below the Secrest
+excess ~8.7e-3; a0-independent, identical both footings. Shared apex DIRECTION is the only framework datum.
+
+**NEW MOTIVATED THEORY DOOR (elevated): build the MI LINEAR COSMOLOGY.** The 10x bulk-flow overshoot is a
+concrete symptom that the naive nu-boost mis-weights; the MI transfer function + growth + field-level
+nu-weighting is the missing piece that would turn the qualitative 'right-direction' result into a real number
+(and would also feed the CMB/sigma8/structure doors). This is now the most concretely-motivated theory door
+on the board, alongside EXPOSURE 1 (Lambda=0 survival).
