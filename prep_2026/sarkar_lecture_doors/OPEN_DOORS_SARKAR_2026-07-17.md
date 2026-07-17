@@ -297,3 +297,34 @@ POSTULATES a0. (d) The CKN seesaw route dies with Lambda too. => If Sarkar is ri
 to standard MOND with a vacuum-MOTIVATED but POSTULATED scale: graceful degradation of the VALUE, genuine
 loss of the DERIVATION. The distinctive edge is hostage to Lambda>0 — the same hostage as the a0(z)/DESI
 front. Files: prep_2026/lambda_zero_survival/.
+
+
+---
+
+## VERDICT — MI LINEAR COSMOLOGY v1 (workflow wfzhy49nd, verified UPHELD): STILL-OVERSHOOTS on the
+specified footing; the kernel-argument FORK spans the whole verdict; NEEDS-RELATIVISTIC to decide.
+
+- Self-consistent MI growth (nu_eff at the evolving rms peculiar acceleration, true fixed point, 1.9e-6
+  residual) REMOVES the naive double-count but replaces it with an ANALYTICALLY-FORCED runaway: nu ~
+  (g/a0)^-1/2 feedback => delta ~ a^2 attractor in the matter era => **sigma8 = 6.9/8.0 (8.5-9.9x Planck),
+  bulk flows 8-17x Qin** — the classic MOND-structure problem (Nusser 2002) reproduced inside the
+  framework's own kernel. NOT tamed. Both footings (~15% spread, alt worse).
+- **THE FORK (spans everything): what is the kernel argument for a cosmological mass element?** (i)
+  peculiar acceleration: 8.5-9.9x sigma8 = dead; (ii) element floor g>=a0: sigma8 2.2 = still dead; (iii)
+  **TOTAL-acceleration floor g >= cH_Lambda = Z a0: sigma8 = 1.02 (26% HIGH — a real tension at modern
+  precision, and note the observed sigma8 tension runs LOW, so the direction is not a win) with bulk flow
+  V(35)=439 vs 380+-25 (ABOVE LCDM, toward Qin) and V(100)=266 vs 410+-80 (1.8 sigma low)** — roughly
+  viable, but that variant nearly switches MI off on linear scales by construction.
+- **FLAGGED HYPOTHESIS (not derived): the field theory's own Wightman-pullback pole kappa_eff =
+  sqrt(H_Lambda^2 + (a/c)^2) >= H_Lambda independently suggests the kernel argument is FLOORED at the
+  horizon rate — i.e. variant (iii) may be the theoretically-preferred one, not an ad hoc rescue.** Deciding
+  this IS the covariant MI perturbation theory (frame-field perturbations, condensate coupling,
+  recombination re-check at nu(z=200)~1.17, relativistic transfer) — the named open computation.
+- NET for the Sarkar bridge: the MI-without-Lambda tilted-universe engine (DOOR 7) is NOT killed but is
+  hostage to the same fork: on floor (iii) MI gives modestly-enhanced flows (the right direction for Qin at
+  35 Mpc, low at 100), on the other footings it over-produces catastrophically. First-pass Newtonian/
+  quasi-linear on the AeST background; credits Nusser 2002 + Skordis-Zlosnik 2021.
+
+### SARKAR-LECTURE ARC COMPLETE: all fired doors resolved (bulk flow, quasar dipole, Lambda=0 survival,
+MI linear cosmology v1). Standing next: the covariant MI perturbation theory (decides the fork), the
+Tsagas-tilt-on-MI-flow calculation (DOOR 7 stage 2), the ladder-free H0 chain.
