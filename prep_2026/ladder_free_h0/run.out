@@ -1,0 +1,96 @@
+==========================================================================
+LADDER-FREE H0  --  E4 (pair a0) -> E8 (cosmo weld)  --  REAL SPARC
+==========================================================================
+loaded 131 SPARC galaxies (Q<=2, 30<=inc<=85, positive g_bar)
+  distance-method census: TRGB(fD2)=31 Cepheid(fD3)=3 UMa(fD4)=22 SN(fD5)=2 HubbleFlow(fD1)=73
+  Z = sqrt(32 pi/3) = 5.78881
+
+--------------------------------------------------------------------------
+STEP 1 -- E4 pair estimator a0_MEASURED (straddling y=1, Upsilon=0.50 fiducial)
+--------------------------------------------------------------------------
+  [ALL distances]
+    usable pairs = 9827  over 40 galaxies
+    a0_MEASURED (median) = 1.588e-10 m/s^2
+    pair-scatter 16-84 band : 8.132e-11 - 3.347e-10  (population/systematics)
+    bootstrap error on median: +/- 3.191e-11  (20% of central)
+  [TRGB/Cepheid-anchored subset (fD in {2,3})]
+    usable pairs = 1814  over 7 galaxies
+    a0_MEASURED (median) = 1.155e-10 m/s^2
+    pair-scatter 16-84 band : 8.098e-11 - 2.455e-10  (population/systematics)
+    bootstrap error on median: +/- 2.355e-11  (20% of central)
+  [any primary distance (fD in {2,3,4,5})]
+    usable pairs = 1922  over 13 galaxies
+    a0_MEASURED (median) = 1.160e-10 m/s^2
+    pair-scatter 16-84 band : 7.956e-11 - 2.463e-10  (population/systematics)
+    bootstrap error on median: +/- 2.177e-11  (19% of central)
+
+  D-CANCELLATION CHECK (E4 is distance-free BY CONSTRUCTION):
+    20%% distance error -> pair estimates shift < 1e-12 relative. EXACT. [OK]
+    => the TRGB/Cepheid split is a SYSTEMATICS cross-check, not a lever;
+       clean-distance subset SHOULD agree with the full sample (it does within
+       the large conditioning error).
+
+  STRADDLE-WINDOW ROBUSTNESS (scan the assumed a0_ref used for selection):
+    a0_ref=canonical 9.36e-11   -> median a0_MEASURED = 1.588e-10  (n=9827)
+    a0_ref=alt 1.13e-10         -> median a0_MEASURED = 1.735e-10  (n=9473)
+    a0_ref=McGaugh 1.20e-10     -> median a0_MEASURED = 1.757e-10  (n=9356)
+    => median moves within the conditioning band regardless of window choice;
+       the estimator is not pinned by the assumed a0.
+
+  UPSILON SENSITIVITY (the one nuisance that does NOT cancel in E4-straddle):
+    (0.50 = SPARC/McGaugh fiducial; 0.70 = the framework's own committed ML fit)
+    Upsilon_disk=0.30 -> a0_MEASURED median = 1.691e-10 (all) | 9.700e-11 (TRGB/Ceph)
+    Upsilon_disk=0.50 -> a0_MEASURED median = 1.588e-10 (all) | 1.155e-10 (TRGB/Ceph)
+    Upsilon_disk=0.70 -> a0_MEASURED median = 1.743e-10 (all) | 1.737e-10 (TRGB/Ceph)
+    Upsilon_disk=1.00 -> a0_MEASURED median = 2.014e-10 (all) | 2.214e-10 (TRGB/Ceph)
+    => across Upsilon 0.3-1.0 the central a0_MEASURED stays in ~1.0-2.2e-10,
+       CONSISTENTLY ABOVE canonical 9.36e-11 and near the alt/McGaugh footing;
+       canonical is only touched by the small TRGB/Ceph subset at low Upsilon=0.3.
+       The straddling-pair a0 does NOT reproduce 9.36e-11 at fiducial Upsilon.
+
+--------------------------------------------------------------------------
+STEP 2 -- E8 chain a0_MEASURED -> H0  (BOTH footings)
+--------------------------------------------------------------------------
+  Footing A (canonical):    H0 = Z a0 / (c sqrt(Omega_L)),  Omega_L=0.6847 (Planck)
+  Footing B (Pythagorean):  H0 = sqrt((Z a0/c)^2 + omega_m*(100)^2), omega_m=0.1430
+
+  [ALL distances | Footing A canonical]
+    a0_MEASURED = 1.588e-10 (+/- 20% boot) -> H0 = 114.3 km/s/Mpc (68% boot: 94.8 - 140.7)
+    pair-scatter band maps to H0 in [58.6, 241.0] km/s/Mpc
+
+  [ALL distances | Footing B Pythagorean]
+    a0_MEASURED = 1.588e-10 (+/- 20% boot) -> H0 = 101.9 km/s/Mpc (68% boot: 87.1 - 122.4)
+    pair-scatter band maps to H0 in [61.5, 203.0] km/s/Mpc
+
+  [TRGB/Cepheid subset | Footing A canonical]
+    a0_MEASURED = 1.155e-10 (+/- 20% boot) -> H0 = 83.2 km/s/Mpc (68% boot: 74.9 - 108.8)
+    pair-scatter band maps to H0 in [58.3, 176.8] km/s/Mpc
+
+  [TRGB/Cepheid subset | Footing B Pythagorean]
+    a0_MEASURED = 1.155e-10 (+/- 20% boot) -> H0 = 78.5 km/s/Mpc (68% boot: 72.6 - 97.6)
+    pair-scatter band maps to H0 in [61.3, 151.1] km/s/Mpc
+
+  CIRCULARITY EXPOSURE (NOT a measurement):
+    canonical a0=9.36e-11 is ITSELF Planck-anchored; feeding it to E8 gives
+      Footing A -> H0 = 67.4   Footing B -> H0 = 67.4  (input recovery of 67.4)
+    -> the ladder-free number is ONLY the a0_MEASURED -> H0 path above.
+
+--------------------------------------------------------------------------
+STEP 3 -- CONFRONT  Planck 67.4  vs  SH0ES 73.0
+--------------------------------------------------------------------------
+
+  [ALL distances]
+    Footing A canonical    H0 = 114.3  [pair band 58.6-241.0]  ->  spans BOTH camps
+    Footing B Pythagorean  H0 = 101.9  [pair band 61.5-203.0]  ->  spans BOTH camps
+
+  [TRGB/Cepheid subset]
+    Footing A canonical    H0 = 83.2  [pair band 58.3-176.8]  ->  spans BOTH camps
+    Footing B Pythagorean  H0 = 78.5  [pair band 61.3-151.1]  ->  spans BOTH camps
+
+==========================================================================
+HONEST BOTTOM LINE printed to RESULT.md. Error bar is dominated by the E4
+conditioning (few well-conditioned straddling pairs). No Hubble-tension
+resolution is claimed.
+==========================================================================
+
+ladder_free_h0 complete -- exit 0
