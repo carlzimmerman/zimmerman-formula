@@ -278,3 +278,22 @@ accelerations — which generically deepens large-scale flows and delays converg
 natural completion of the tilted-universe picture, or as trading one anomaly for another?"
 (Follow-up if he bites, honest: a naive MI boost overshoots the flow ~10x; the self-consistent linear
 cosmology is the open calculation, in progress.)
+
+
+---
+
+## VERDICT — EXPOSURE 1 (Lambda=0 survival), workflow w9cn5g87j, verified
+
+**SURVIVES-AS-POSTULATE, NOT AS-DERIVATION.** (a) The canonical a0=cH_Lambda/Z chain load-bears on a REAL
+de Sitter EVENT horizon + Gibbons-Hawking bath; as Lambda->0, a0_canon -> 0 = hard falsification of the
+canonical MECHANISM against the measured a0~1.2e-10 (not a graceful limit). Exposure is steep: a0_canon
+tracks sqrt(Omega_L) — 0.78x central at 0.685 (the known 22% gap), ~0.55x at 0.34, ->0. (b) The a0 VALUE
+survives via ALT cH0/Z = 1.13-1.18e-10 ~ measured, Lambda-independent. (c) THE CRUX, resolved honestly
+against a save: the Cai-Kim apparent-horizon temperature T=H/2pi is NOT a legitimate derivation basis in a
+decelerating universe — the apparent horizon is non-causal, there is no static patch/timelike Killing
+vector, a comoving detector is exactly thermal ONLY in de Sitter, and Hsu-2004/Li-2004 show the Hubble-
+horizon cutoff gives the wrong EOS (the fix NEEDS the future event horizon = Lambda>0). Using it anyway
+POSTULATES a0. (d) The CKN seesaw route dies with Lambda too. => If Sarkar is right, the framework reverts
+to standard MOND with a vacuum-MOTIVATED but POSTULATED scale: graceful degradation of the VALUE, genuine
+loss of the DERIVATION. The distinctive edge is hostage to Lambda>0 — the same hostage as the a0(z)/DESI
+front. Files: prep_2026/lambda_zero_survival/.
