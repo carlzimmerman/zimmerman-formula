@@ -239,3 +239,42 @@ EXPOSURE 1 (Lambda=0/deceleration) -- FIRING (w1a80yo09). DOOR 3 (bulk flow) -- 
 10x amplitude overshoot, needs linear cosmology. MI LINEAR COSMOLOGY -- FIRING (w43v8j5ju), the constructive fix.
 DOOR 4 (quasar dipole) -- NULL (14x too small, shared-direction only). DOOR 6 (SNe-free Lambda) -- the offer,
 canonical-footing-hostage. BRIDGE 2 (CMB frame = passive frame) + BRIDGE 5 (MLE/BHM method) -- talking points.
+
+
+---
+
+## POST-TALK REVIEW (Fable 5) — MISSED DOORS + THE ONE QUESTION
+
+**⭐ MISSED DOOR 7 — MI AS THE ENGINE OF THE TILTED UNIVERSE (the deepest structural link, missed on first pass).**
+Sarkar/Tsagas mechanism (slide 5): a tilted observer in a deep converging bulk flow measures apparent
+acceleration. ITS biggest unexplained ingredient: WHY is the flow so deep (LCDM under-predicts it, his own
+Qin slide). The framework generically DEEPENS + DE-CONVERGES large-scale flows (bulkflow_dipole lane: right
+direction+shape; the 10x amplitude overshoot vs Qin was logged as a failure — but from Sarkar-side it means
+MI naturally over-supplies exactly the anomalous flow his mechanism needs). => The self-consistent MI-WITHOUT-
+LAMBDA scenario: SNe dipole real = the flow; flow deep because inertia is modified; a0 carried by the ALT
+footing cH0/Z. Target observable: q_d=-8 with S~0.026 (decay scale ~100 Mpc ~ the flow coherence scale).
+NEEDS: the MI linear cosmology (running, wfzhy49nd) to get the self-consistent flow, THEN the Tsagas tilt
+formula applied to the MI flow -> predicted (q_m, q_d, S) vs Sah 2025. [N high / T real / the post-lecture flagship]
+
+**MISSED DOOR 8 — LADDER-FREE H0, SHARPENED:** every distance-ladder H0 inherits the flow corrections Sarkar
+just indicted; the E4 pair-estimator -> E8 chain gives H0 from galaxy dynamics with NO ladder and NO frame
+corrections — strictly more valuable post-talk. [queued, equation-book NEXT #2]
+
+**MISSED DOOR 9 — LSST DOUBLE FRONT:** the same survey decides Sarkar q_d (~6 sigma @ 5000 SNe) AND delivers
+the deep-MOND lensing RAR (banked forecasts). One clock, two programs. [data-watch]
+
+**SELF-AUDIT — SKY-COVERAGE TRAP:** the JLA anisotropic-footprint systematic (his slide 9) applies to OUR
+dipole tests; add an explicit sky-coverage-systematic check to the Gaia DR4 s^TX/apex pre-registration. [prereg hygiene]
+
+**REVIEW verdict on Sarkar chain:** strongest = PV corrections > signal + no observed CMB-frame convergence
+(genuine circularity); RMP-grade matter dipole. Weakest = deceleration rides entirely on the contested
+0.030 mag/Gyr age correction (Wiseman fight); flexible exponential dipole template; his own anisotropic sky
+coverage. Honest core that stands: acceleration not established at discovery level + anisotropic in the raw frame.
+
+**THE ONE QUESTION FOR SARKAR:**
+"Your mechanism replaces Lambda with an anomalously deep bulk flow — but what SOURCES the flow? Your own
+slide shows LCDM under-predicting it at every scale. Would you count a modification of dynamics at low
+accelerations — which generically deepens large-scale flows and delays convergence to the CMB frame — as a
+natural completion of the tilted-universe picture, or as trading one anomaly for another?"
+(Follow-up if he bites, honest: a naive MI boost overshoots the flow ~10x; the self-consistent linear
+cosmology is the open calculation, in progress.)
