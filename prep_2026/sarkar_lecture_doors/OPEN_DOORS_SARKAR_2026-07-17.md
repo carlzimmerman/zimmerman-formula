@@ -183,3 +183,59 @@ concrete symptom that the naive nu-boost mis-weights; the MI transfer function +
 nu-weighting is the missing piece that would turn the qualitative 'right-direction' result into a real number
 (and would also feed the CMB/sigma8/structure doors). This is now the most concretely-motivated theory door
 on the board, alongside EXPOSURE 1 (Lambda=0 survival).
+
+
+---
+
+## LIVE UPDATE 4 — slides ~22-24 (the dipole thesis at full force) -> fires EXPOSURE 1
+
+Sarkar closes the argument: cosmographic q0 = q_m + q_d n-hat F(z,S) has a DIPOLE q_d aligned with the
+CMB/bulk-flow hotspot (Colin+2019); q_m (monopole) down to 1.4 sigma; the ORIGINAL discovery SNe (60 High-z
+Team, 45 SCP) sat preferentially IN the bulk-flow direction (Mohayaee-Rameez-Sarkar 2021, EPJST 230:2067);
+and extracting isotropic q_0m needs a CASCADE of corrections (z-dependent x1/c, z_hel->z_CMB, PV) each pushing
+toward acceleration, while the anisotropic q_0d is robust (Colin rebuttal to Rubin-Heitlauf 2020, arXiv:1912.04257).
+Thesis stated: *cosmic acceleration is an artefact of our being in a deep bulk flow, NOT due to Lambda.*
+
+=> This is EXPOSURE 1 at maximum force. FIRING the Lambda=0 survival analysis (the #1-ranked door): does the
+framework survive if Lambda is not real? Verdict pending (workflow below).
+
+
+---
+
+## LIVE UPDATE 5 — slides ~25-28 (Pantheon+ 2025 capstone; Sah-Rameez-Sarkar-Tsagas EPJC 85:596)
+
+The latest+strongest version, reinforcing EXPOSURE 1 (no new computable door -- the Lambda=0 survival, running, is the response):
+- **The PV corrections to low-z SNe are LARGER than the ~0.15 mag acceleration signal** (Rameez 2025, Phil.Trans.A 383:20240032): Dmu_pv=(5/ln10)(v/zc); the correction exceeds the thing it corrects for = the sharpest single line of the talk.
+- **Pantheon+ 1701 SNe CONFIRM the anisotropic acceleration** aligned with the CMB dipole/bulk flow; q_d dipole robust; direction consistent with 2M++/CF4 bulk flow.
+- **The q_d anisotropy PERSISTS whether or not light-curve corrections are z-dependent** (C1 vs C2), across heliocentric/LG/CMB/CMB+PV frames; the monopole q_m is frame-dependent and error-bar-limited. Koksbang PRD 111:123516 (2025): CosmicFlows-4 modelling gives Q_O fluctuating ~4000% around q0=-0.55.
+=> Lambda's foundation is now Pantheon+-level shaky AND frame-dependent. The Lambda=0 survival analysis (workflow w1a80yo09, running) is the exact robustness test. NEXT constructive door FIRED: the MI LINEAR COSMOLOGY (below) -- the piece that turns the qualitative bulk-flow result into a self-consistent number and lets the framework engage the LSS/structure data quantitatively.
+
+
+---
+
+## LIVE UPDATE 6 — CONCLUSION slides (~29-33); talk complete
+
+Sarkar's closing, strongest form -> sharpens EXPOSURE 1 to its maximum (both running workflows are the response):
+- **PROGENITOR-AGE correction => the monopole q_m goes POSITIVE = DECELERATION** (Son+2025; Sah-Rameez-SS
+  MNRAS 549:stag844 2026: mu_SN = m_B - M + alpha x1 - beta c - Delta_m(z), Delta_m=Delta-age(z)x0.030 mag/Gyr;
+  the q0 DIPOLE is unaffected, the ISOTROPIC part becomes positive). Chung+2026 (arXiv:2605.21586) confirms the
+  age correction is robust vs Wiseman+2026's counter. => Sarkar's strongest claim is not merely Lambda~0 but
+  q_m>0 (DECELERATING), i.e. effectively Lambda<=0.
+- **CONCLUSION:** SNe acceleration is anisotropic (heliocentric, toward the CMB dipole = tilted-observer bulk-flow
+  signature); stays anisotropic even boosted to CMB/LG frames; isotropic acceleration recoverable ONLY after
+  correcting for correlated host bulk motion -- but those bulk-flow models show NO convergence to the CMB frame,
+  so are internally inconsistent; all SNe get corrected toward LCDM.
+- **LSST forecast (Sah 2024-26):** q0=q_m+q_d n-hat e^{-z/S}, |q_d|=8, q_m=-0.15, S=0.026 -> median significance to
+  reject q_d=0 reaches ~6 sigma at ~5000 SNe. LSST decides.
+
+⚠️ SHARPENS EXPOSURE 1: the Lambda=0 survival workflow (w1a80yo09) tests Lambda->0 (canonical a0->0); the
+age-corrected DECELERATION (q_m>0 => Lambda<=0) is HARDER -- canonical a0=c sqrt(Lambda/3)/Z is IMAGINARY for
+Lambda<0, a hard falsification of the canonical MECHANISM (the ALT footing cH0/Z survives as a VALUE regardless).
+The running verdict (canonical needs Lambda>0) already answers it; deceleration only makes the canonical exposure
+worse. No new door -- the two running workflows (Lambda=0 survival + MI linear cosmology) are the complete response.
+
+### FINAL LEDGER (talk complete): 6 doors/exposures + 2 bridges
+EXPOSURE 1 (Lambda=0/deceleration) -- FIRING (w1a80yo09). DOOR 3 (bulk flow) -- DONE: MI right-direction,
+10x amplitude overshoot, needs linear cosmology. MI LINEAR COSMOLOGY -- FIRING (w43v8j5ju), the constructive fix.
+DOOR 4 (quasar dipole) -- NULL (14x too small, shared-direction only). DOOR 6 (SNe-free Lambda) -- the offer,
+canonical-footing-hostage. BRIDGE 2 (CMB frame = passive frame) + BRIDGE 5 (MLE/BHM method) -- talking points.
