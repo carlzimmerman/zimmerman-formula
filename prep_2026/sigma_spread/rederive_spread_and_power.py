@@ -58,7 +58,8 @@ for fname, a0 in FOOTINGS:
 lo = min(v[0] for v in all_spreads.values())
 hi = max(v[1] for v in all_spreads.values())
 print(f"\n BOTH-FOOTING BAND: {lo*100:.1f}% - {hi*100:.1f}% sigma spread "
-      f"(corpus quotes 6-13%; MAGNITUDE theta-form UNVERIFIED, SIGN robust: plungers less boosted)")
+      f"(corpus quotes 6-13%; MAGNITUDE theta-form UNVERIFIED, SIGN CORRECTED 2026-07-17 w9xvb10ui: "
+      f"under-loaded/first-infall members MORE boosted = HOTTER; prior 'less boosted' was a low-theta<->low-boost label bug)")
 assert 0.04 < lo < 0.09 and 0.09 < hi < 0.16, "re-derivation left the banked 6-13% neighborhood"
 
 print("\n" + "=" * 96)

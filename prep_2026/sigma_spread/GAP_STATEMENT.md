@@ -23,8 +23,7 @@ responds only to the momentary a_ext — identical boost for all such members, f
 - **MI prediction:** relational sigma-spread across infall phase at matched a_ext.
 - **MG prediction: exactly zero.** No a0 retune manufactures a spread MG structurally lacks.
   MG-impossible signature; no field theory can fake it.
-- **Sign (theta-robust):** theta decreasing ⇒ deep plungers are LESS boosted than near-circular
-  members at the same radius. Always.
+- **Sign (CORRECTED 2026-07-17, workflow w9xvb10ui / commit dd12427b — the original was a text-label bug):** low theta = LESS external loading = LESS suppression = MORE boost. So an **under-loaded / first-infall pre-pericentre member is HOTTER** (more boosted) than a matched long-resident member at the same field. Net sign = sign(a_ext,felt − a_ext,now); on a rising-field approach felt < now ⇒ under-loaded ⇒ hotter, for ANY causal kernel. ROBUST only in the first-infall pre-pericentre zone (post-pericentre/backsplash are timescale-hostage; ancient ~zero). [The prior "deep plungers are LESS boosted / NEGATIVE" conflated low-theta with low-boost — inverted.]
 - **Magnitude (theta-form UNVERIFIED):** only theta(1)=1, decreasing, theta(0)~few are fixed.
 
 ## 2. Re-derived prediction (not taken on faith) — both footings
@@ -121,8 +120,7 @@ a_ext. The test lives strictly WITHIN bins.
 mock suite used for the DS cut calibration; p enters the likelihood, never a post-hoc excuse.
 
 **E4. Statistic.** Within each a_ext bin: (i) SIGN statistic — mean sigma residual (from the bin's
-carrier FJ relation) of plungers minus settled, prediction NEGATIVE (plungers less boosted),
-theta-robust; (ii) SPREAD statistic — excess variance of FJ residuals over eps_eff², prediction
+carrier FJ relation) of first-infall-pre-pericentre minus settled, **prediction POSITIVE (under-loaded/first-infall members MORE boosted = hotter)** [CORRECTED 2026-07-17, was "NEGATIVE (plungers less boosted)" — a text-label bug, workflow w9xvb10ui]; (ii) SPREAD statistic — excess variance of FJ residuals over eps_eff², prediction
 (s·p)² with s in the Section-2 band, MG prediction exactly 0 for both. Combine bins by inverse
 variance. Report both footings.
 
@@ -139,9 +137,9 @@ requires it increasing with R within 0.5–2 r200 and consistent with zero in th
 
 **E7. Decision rule (pre-registered).** Confirmatory firing permitted only when the pre-derived
 power at the in-hand (N, eps_meas, eps_FJ, p) reaches ≥3 sigma at s=0.09 (band midpoint). Kill
-condition: sign statistic significantly POSITIVE (plungers more boosted) at ≥3 sigma — that
-falsifies the theta-decreasing structure on its own terms. Support condition: negative sign AND
-spread in the 6.2–14.1% envelope AND E6 radial trend. A zero spread at ≥3 sigma power kills the
+condition: sign statistic significantly **NEGATIVE (first-infall members COOLER)** at ≥3 sigma — that
+falsifies the corrected under-loaded-is-hotter structure on its own terms. Support condition: **POSITIVE sign** AND
+spread in the 6.2–14.1% envelope AND E6 radial trend. [KILL POLARITY INVERTED 2026-07-17, workflow w9xvb10ui / commit dd12427b — the prior "POSITIVE falsifies / negative supports" was backwards and self-tripped the framework's own correct prediction.] A zero spread at ≥3 sigma power kills the
 non-adiabatic relational channel (not the framework; the ellipsoid-anisotropy SIGN observable is
 independent).
 
