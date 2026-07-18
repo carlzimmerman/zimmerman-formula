@@ -8,7 +8,7 @@ Usage: python zenodo_newversion_nogo.py <existing_record_id>
 import json, os, sys, urllib.request, urllib.error
 
 ENV   = "/Users/carlzimmerman/new_physics/.env"
-FILES = ["RESIDUAL_DOORS_COMPUTED_2026.pdf", "RESIDUAL_DOORS_COMPUTED_2026.md"]
+FILES = ["RESIDUAL_DOORS_COMPUTED_2026.pdf", "RESIDUAL_DOORS_COMPUTED_2026.md", "RESIDUAL_DOORS_ERRATUM_D3_2026-07-17.pdf", "RESIDUAL_DOORS_ERRATUM_D3_2026-07-17.md"]
 META  = "RESIDUAL_DOORS_COMPUTED_2026.zenodo.json"
 BASE  = "https://zenodo.org/api"
 
