@@ -1,0 +1,127 @@
+
+==============================================================================
+overlap_power.py  --  cluster-EFE sigma-spread MMU data-availability scout
+==============================================================================
+
+==============================================================================
+0.  CITED CATALOG INPUTS
+==============================================================================
+  MaNGA_DR17_total       =    10010   [Abdurro'uf+2022 arXiv:2112.02026 (10,010 unique gals)]
+  MaNGA_dwarf_le9p5      =      977   [Sanchez-Garcia+2026 arXiv:2605.19426 (logM*<=9.5)]
+  MaNGA_interm_9p5_10    =     1538   [Sanchez-Garcia+2026 (9.5<logM*<10)]
+  MaNGA_LSF_1sig_kms     =     70.0   [MaNGA instrumental LSF 1sigma ~70 km/s (Law+2021)]
+  MaNGA_DAP_floor_kms    =     20.0   [DAP robust to ~20 km/s ONLY at high SNR (Law+2021)]
+  MaNGA_sat_frac         =     0.33   [MaNGA group study 243 sat/721 class ~33% (arXiv:1910.05139)]
+  SAMI_cluster_gals      =      906   [Owers+2017 MNRAS 468:1824, 8 low-z clusters, IFU]
+  SAMI_M_floor_logM      =      9.5   [SAMI cluster M* floor logM*>~9.5 (Owers+2017)]
+  GalWCat19_clusters     =     1800   [Abdullah+2020 ApJS 246:2, z=0.01-0.20, caustic-ready]
+  DESI_BGS_density       =    854.0   [Hahn+2023 arXiv:2208.08512, 854 deg^-2 reliable z]
+  Rhee_zoneA_firstinf    =     0.33   [Rhee+2017: zone A ~1/3 of first-infallers (purity-limited)]
+  Rhee_zoneE_ancient     =     0.52   [Rhee+2017: ancient zone E ~52% pure]
+
+WHAT MMU SERVES (task-supplied inventory, cross-checked):
+  MMU-manga ships DRP LOGCUBEs + DAP MAPS HYB10-MILESHC-MASTARSSP, incl.
+  STELLAR_SIGMA / _IVAR / _SIGMACORR -> resolved sigma_e IS recoverable. GO on kinematics.
+  BUT: MMU serves MaNGA; MMU does NOT serve SAMI. So "PUBLIC MMU NOW" = MaNGA only.
+  Membership side (GalWCat19/HeCS/DESI-DR1-BGS) is ABUNDANT and public -> NOT the bottleneck.
+  Binding constraint = the DIFFUSE IFU sigma-carrier side (stellar-mass-limited).
+
+==============================================================================
+1.  DIFFUSE CARRIERS w/ usable sigma 20-70 km/s  (all environments)
+==============================================================================
+  dwarf  bin: 977 x 0.45 in-window x 0.55 reliable =  241.8
+  interm bin: 1538 x 0.12 in-window x 0.55 reliable =  101.5
+  => MaNGA diffuse carriers w/ usable sigma (ALL envs)  ~  343.3
+     (task inventory independently landed ~330 here; we get 343)
+
+==============================================================================
+2.  CLUSTER-MEMBER cut  (rich cluster, caustic a_ext profile available)
+==============================================================================
+  cluster-member frac = 0.33 sat x 0.45 rich x 0.8 present
+                      = 0.119
+  => MaNGA diffuse RICH-cluster members  ~   40.8
+
+==============================================================================
+3.  Rhee-ZONE taggable phase space + caustic a_ext coverage
+==============================================================================
+  taggable+caustic frac = 0.85 (membership side abundant; DESI-DR1-BGS deepens)
+  => MMU-MaNGA diffuse TAGGED cluster members (NOW) ~   34.7
+
+  INDEPENDENT INVENTORIES: MaNGA-agent ~40, Membership-agent ~77
+  chain here = 35.  Reconciled MMU-MaNGA-alone central ~ 51
+  => MMU-MaNGA ALONE band: ~40-77  (TENS)
+
+  SAMI cluster IFU (Owers+2017, 8 clusters, NOT in MMU) adds ~95-160 diffuse tagged
+  => MaNGA+SAMI PUBLIC STACK band: ~135-237
+
+  TARGET for firewalled ~2-3 sigma exploratory: 300-500
+
+==============================================================================
+4.  S/N of the CORRECTED relational sigma-spread  D(zone)
+==============================================================================
+  Observable: D(zone) = <ln[sigma_int/sigma_bary]>_zone - <>_ancient, at fixed
+  deprojected caustic-a_ext bin, sign statistic pinned to FIRST-INFALL pre-peri only.
+  CORRECTED magnitude at framework-committed E10 memory (tau_mem=203 Gyr):
+    relational  ~ 4.0 - 9.5 %   (USE THIS; supersedes old short-memory 6-13%)
+    absolute    ~ 0.3 - 1.5 %
+
+  scatter s_ln: opt 0.18, pes 0.28  |  purity: opt 0.65, pes 0.4  |  sys floor: opt 0.012, pes 0.030
+  signal D (ln): lo 0.0392 (4%), hi 0.0908 (9.5%)
+
+------------------------------------------------------------------------------
+  scenario                     N | z_OPT(9.5%)   z_MID z_PES(4%)
+------------------------------------------------------------------------------
+  MMU-MaNGA alone (lo)        40 |        0.91    0.40      0.15
+  MMU-MaNGA alone (hi)        77 |        1.24    0.54      0.20
+  MaNGA+SAMI stack (lo)      135 |        1.60    0.69      0.25
+  MaNGA+SAMI stack (hi)      237 |        2.05    0.87      0.31
+  TARGET N=300               300 |        2.25    0.94      0.33
+  TARGET N=500               500 |        2.72    1.11      0.38
+------------------------------------------------------------------------------
+
+  LIMITING-FACTOR diagnostic (central assumptions):
+    N=  55: se_stat=0.0696  sys=0.0200  se_tot=0.0724  sys-frac= 7.6%  eff_sig=0.0338  => STATISTICS-limited
+    N= 175: se_stat=0.0390  sys=0.0200  se_tot=0.0438  sys-frac=20.8%  eff_sig=0.0338  => STATISTICS-limited
+    N= 400: se_stat=0.0258  sys=0.0200  se_tot=0.0326  sys-frac=37.5%  eff_sig=0.0338  => STATISTICS-limited
+
+==============================================================================
+5.  VERDICT  (data go/no-go, NOT a physics claim)
+==============================================================================
+
+  OVERLAP COUNT (the binding number):
+    * MMU-MaNGA ALONE, NOW    : ~40-77 diffuse tagged cluster members  (TENS)
+    * MaNGA+SAMI public stack : ~135-237  (SAMI public but NOT in MMU)
+    * clean-exploratory target: 300-500
+
+  S/N at those N (opt / mid / pes):
+    * MMU-MaNGA alone (N~77)  : z ~ 1.2 / 0.5 / 0.2
+    * MaNGA+SAMI stack (N~237): z ~ 2.0 / 0.9 / 0.3
+    * target N=300            : z ~ 2.3 / 0.9 / 0.3
+
+  READING (honest both ways):
+    - MMU-MaNGA ALONE is a NO-GO: ~tens of carriers => z<~1.4 even optimistic,
+      dies on STATISTICS. MaNGA is stellar-mass-limited (M*>~5e8, LSF ~70 km/s)
+      so the sigma 20-70 deep-MOND carriers are exactly the under-represented,
+      correction-dominated tail -- the predicted failure mode, confirmed.
+    - The MaNGA+SAMI PUBLIC STACK (~135-237) becomes an UNDERPOWERED firewalled
+      exploratory: z ~ 1-2.5 depending ENTIRELY on zone-tag purity + sigma control,
+      still short of the 300-500 clean-exploratory bar. SAMI is public but is NOT
+      served by MMU, so this is NOT "from MMU data NOW".
+    - Reaching ~2-3 sigma needs BOTH the SAMI stack AND optimistic purity/scatter;
+      it is systematics-fragile (zone purity + tidal residual), not just N-limited.
+
+  VERDICT:  MARGINAL-NEEDS-STACK.
+    MMU-MaNGA alone = NO-GO (~tens). The test only reaches a firewalled,
+    underpowered ~2-2.5 sigma hint on the MaNGA+SAMI PUBLIC STACK (SAMI not in MMU),
+    and only under optimistic purity/systematics. What is NEEDED for a clean bite:
+    (i) ingest SAMI cluster IFU into the stack, and for >3-5 sigma either
+    (ii) a dedicated wide nearby-cluster dwarf-IFU survey (~1e3-1e4 diffuse members,
+    resolved sigma, sub-percent systematics) or (iii) ELT-HARMONI UDG carriers (~2032).
+    No existing PUBLIC dataset delivers a clean, mitigation-free detection.
+
+  Scope: MI-CLASS-GENERIC (MI vs MG=0), NOT this-framework-vs-Milgrom; does NOT test
+  a0's value or s=-1. Amplitude kernel-hostage. No "proves". Data-availability only.
+
+==============================================================================
+overlap_power.py complete -- exit 0
+==============================================================================
