@@ -7,8 +7,10 @@ a0(z)/a0(0) = sqrt of that (canonical rho_DE footing; Z posited, cancels in the 
 Framework benchmark: a0(z=3)/a0(0) ~ 0.60-0.75.  Constant-Lambda -> 1.0 (flat).
 DESI DR2 (2025) w0waCDM, BAO+CMB+SNe (arXiv:2503.14738 / 2504.15336); representative
 marginals + w0-wa corr ~ -0.87; LCDM excluded 2.8sigma(P+)/3.8(U3)/4.2(DESY5).
-NOTE: seeded RNG NOT available in this env -> use a deterministic Sobol-free fixed grid
-via numpy default; results are MC (rerun stable to ~0.005 at 200k draws).
+NOTE: RNG is SEEDED (default_rng(0)) for reproducibility; results are MC and rerun
+identically. (The spurious 'matmul' RuntimeWarnings some BLAS builds emit on the
+correlated draw are cosmetic -- the sampled means/covariance match the inputs -- and
+are silenced below.)
 """
 import numpy as np
 
@@ -16,8 +18,9 @@ from scipy.special import erfcinv
 def band(w0, sw0, wa, swa, rho, om, som, N=200000, label=""):
     # a0(z)/a0(0) depends only on (w0,wa); sample them correlated via 2x2 Cholesky
     L = np.linalg.cholesky(np.array([[sw0**2, rho*sw0*swa], [rho*sw0*swa, swa**2]]))
-    g = np.random.default_rng()
-    pair = np.array([w0, wa]) + g.standard_normal((N, 2)) @ L.T
+    g = np.random.default_rng(0)
+    with np.errstate(divide="ignore", over="ignore", invalid="ignore"):
+        pair = np.array([w0, wa]) + g.standard_normal((N, 2)) @ L.T
     W0, WA = pair[:, 0], pair[:, 1]
     def a0ratio(z):
         rd = (1+z)**(3*(1+W0+WA)) * np.exp(-3*WA*z/(1+z))

@@ -229,6 +229,28 @@ for N in (10, 20, 40):
     sper_need = sig_decl/3.0*np.sqrt(N)
     print(f"    with N={N:2d} clean z~2-3 rotators: per-object BTFR precision "
           f"<= {sper_need:.3f} dex reaches 3 sigma")
+
+# --- THE KEY FINDING: the M_bar systematic is COMMON-MODE, not independent.
+# a0 is 1:1 degenerate with M_bar (Delta log a0 = -Delta log M_bar at fixed V),
+# so alpha_CO / IMF / dust prescriptions applied IDENTICALLY to a sample do NOT
+# average down as 1/sqrt(N). Model the total mean error as
+#   sigma_mean^2 = sigma_obj^2 / N  +  sigma_cm^2   (correlated floor sigma_cm).
+# 3 sigma needs sigma_mean <= sig_decl/3. If sigma_cm alone exceeds that, NO N works.
+sig_need = sig_decl/3.0            # 0.0517 dex
+sper_indep = 0.25                  # realistic high-z independent per-object piece
+print("\n  --- COMMON-MODE M_bar FLOOR (the decisive lever is CALIBRATION, not N) ---")
+print(f"      sigma_mean^2 = ({sper_indep:.2f})^2/N + sigma_cm^2 ;  need sigma_mean <= {sig_need:.3f} dex")
+for scm in (0.00, 0.05, 0.08):
+    if scm >= sig_need:
+        print(f"      M_bar common-mode floor {scm:.2f} dex :  NEVER reaches 3 sigma at ANY N")
+    else:
+        Ncm = np.ceil(sper_indep**2 / (sig_need**2 - scm**2))
+        print(f"      M_bar common-mode floor {scm:.2f} dex :  N ~ {Ncm:.0f} for 3 sigma")
+print("      => decisive lever = drive the COMMON-MODE M_bar systematic below ~0.05 dex")
+print("         (alpha_CO/IMF/dust calibration), NOT raw rotator count. The a0-separable")
+print("         observable that breaks the M_bar degeneracy is the full RC / RAR transition,")
+print("         not the BTFR zero-point.\n")
+
 print("  Feasibility: JWST/ALMA already deliver ~tens of z~2-3 gas-traced rotators;")
 print("  ELT/HARMONI resolves individual OUTER (deep-MOND) rotation curves. A sample")
 print("  of ~20-40 CLEAN deep-MOND z~2-3 disks (Big-Wheel-like), M_bar to ~0.1 dex,")
