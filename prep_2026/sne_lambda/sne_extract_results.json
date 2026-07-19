@@ -1,0 +1,172 @@
+{
+ "constants": {
+  "c": 299792458.0,
+  "G": 6.6743e-11,
+  "MPC": 3.0856776e+22
+ },
+ "sne_input": {
+  "source": "Pantheon+ Brout+2022 ApJ 938:110, SNe-only flat-LCDM",
+  "Omega_m": 0.334,
+  "Omega_m_sd": 0.018,
+  "Omega_Lambda": 0.6659999999999999,
+  "Omega_Lambda_sd": 0.018,
+  "q0": -0.4989999999999999
+ },
+ "galaxy_input": {
+  "rho_DE_formula": "4 a0^2 / (G c^2)",
+  "a0_canonical": 9.354769736111044e-11,
+  "a0_alt": 1.1305322040279838e-10,
+  "a0_measured_GLS": 1.1814381247770623e-10,
+  "a0_measured_med": 9.725607106012755e-11,
+  "a0_measured_frac_err": 0.16104157873049524,
+  "sigma_ln_rho_measured": 0.3220831574609905
+ },
+ "cases": {
+  "Planck_67.4": {
+   "H0_kms_mpc": 67.4,
+   "rho_crit": 8.532855061375103e-27,
+   "rho_DE_SNe": 5.682881470875818e-27,
+   "rho_DE_SNe_sigma": 1.5359139110475186e-28,
+   "footings": {
+    "canonical_CIRCULAR": {
+     "rho_DE_framework": 5.835513334449544e-27,
+     "ratio": 1.026858181779076,
+     "n_sigma": 0.9806417697448928,
+     "note": "CIRCULAR: a0=cH_Lambda/Z defined from a cosmological (Planck) Lambda; this ratio only re-checks Planck-vs-SNe Lambda, NOT a framework test."
+    },
+    "alt": {
+     "rho_DE_framework": 8.5227301510874e-27,
+     "ratio": 1.4997198507069895,
+     "n_sigma": 14.995298005384313
+    },
+    "measured_GLS_GENUINE": {
+     "rho_DE_framework": 9.307538139572362e-27,
+     "rho_DE_framework_sigma": 2.9978012721820595e-27,
+     "ratio": 1.6378202127340744,
+     "n_sigma": 1.5264329320941763,
+     "note": "GENUINE cross-check: a0 from SPARC rotation-curve dynamics alone, no Lambda input. Sarkar-relevant independent corroboration test."
+    },
+    "measured_med": {
+     "rho_DE_framework": 6.3073408911999725e-27,
+     "ratio": 1.1098842943539198,
+     "n_sigma": 3.857463511095705
+    }
+   },
+   "closest_footing": "canonical"
+  },
+  "SH0ES_73.0": {
+   "H0_kms_mpc": 73.0,
+   "rho_crit": 1.000968235655591e-26,
+   "rho_DE_SNe": 6.666448449466235e-27,
+   "rho_DE_SNe_sigma": 1.8017428241800637e-28,
+   "footings": {
+    "canonical_CIRCULAR": {
+     "rho_DE_framework": 5.835513334449544e-27,
+     "ratio": 0.8753556528164226,
+     "n_sigma": -4.925625549284708,
+     "note": "CIRCULAR: a0=cH_Lambda/Z defined from a cosmological (Planck) Lambda; this ratio only re-checks Planck-vs-SNe Lambda, NOT a framework test."
+    },
+    "alt": {
+     "rho_DE_framework": 8.5227301510874e-27,
+     "ratio": 1.2784513696749267,
+     "n_sigma": 9.089030686354711
+    },
+    "measured_GLS_GENUINE": {
+     "rho_DE_framework": 9.307538139572362e-27,
+     "rho_DE_framework_sigma": 2.9978012721820595e-27,
+     "ratio": 1.396176421392352,
+     "n_sigma": 1.0325549188031895,
+     "note": "GENUINE cross-check: a0 from SPARC rotation-curve dynamics alone, no Lambda input. Sarkar-relevant independent corroboration test."
+    },
+    "measured_med": {
+     "rho_DE_framework": 6.3073408911999725e-27,
+     "ratio": 0.94613210302481,
+     "n_sigma": -2.0488038079338993
+    }
+   },
+   "closest_footing": "measured_med"
+  }
+ },
+ "galaxy_rho_DE": {
+  "canonical_CIRCULAR": 5.835513334449544e-27,
+  "alt": 8.5227301510874e-27,
+  "measured_GLS": 9.307538139572362e-27,
+  "measured_GLS_sigma": 2.9978012721820595e-27,
+  "measured_med": 6.3073408911999725e-27
+ },
+ "sne_diagram_prediction": {
+  "z_bins": [
+   0.01,
+   0.013769721827128014,
+   0.018960523919648566,
+   0.026108114007016757,
+   0.03595014673075653,
+   0.0495023520126953,
+   0.06816336170033846,
+   0.09385905294155722,
+   0.12924130499629244,
+   0.1779616818373957,
+   0.24504828547887986,
+   0.3374246725258827,
+   0.46462438782911697,
+   0.6397748574506583,
+   0.880952181908604,
+   1.2130466487882954,
+   1.6703314917144683,
+   2.3
+  ],
+  "sigma_mu_representative": 0.05,
+  "note": "chi2 uses representative binned errors, NOT the full Pantheon+ covariance; order-of-magnitude discriminator only.",
+  "by_H0": {
+   "Planck_67.4": {
+    "H0": 67.4,
+    "measured_GLS": {
+     "Omega_Lambda_pred": 1.0907882616808933,
+     "Omega_m_pred": -0.09078826168089327,
+     "max_abs_dmu_mag": null,
+     "chi2_vs_bestfit_LCDM": null,
+     "ndof": 18,
+     "unphysical": "Om_pred<0: galaxy Lambda exceeds closure at this H0"
+    },
+    "measured_med": {
+     "Omega_Lambda_pred": 0.7391829400397104,
+     "Omega_m_pred": 0.2608170599602896,
+     "max_abs_dmu_mag": 0.1451694500338192,
+     "chi2_vs_bestfit_LCDM": 26.74272952297394,
+     "ndof": 18
+    },
+    "canonical_CIRCULAR": {
+     "Omega_Lambda_pred": 0.6838875490648646,
+     "Omega_m_pred": 0.3161124509351354,
+     "max_abs_dmu_mag": 0.033076825987429004,
+     "chi2_vs_bestfit_LCDM": 1.4286563658362936,
+     "ndof": 18
+    }
+   },
+   "SH0ES_73.0": {
+    "H0": 73.0,
+    "measured_GLS": {
+     "Omega_Lambda_pred": 0.9298534966473063,
+     "Omega_m_pred": 0.07014650335269368,
+     "max_abs_dmu_mag": 0.7570334381390893,
+     "chi2_vs_bestfit_LCDM": 613.1206741145339,
+     "ndof": 18
+    },
+    "measured_med": {
+     "Omega_Lambda_pred": 0.6301239806145233,
+     "Omega_m_pred": 0.36987601938547665,
+     "max_abs_dmu_mag": 0.06245157220347153,
+     "chi2_vs_bestfit_LCDM": 5.215604703707669,
+     "ndof": 18
+    },
+    "canonical_CIRCULAR": {
+     "Omega_Lambda_pred": 0.5829868647757374,
+     "Omega_m_pred": 0.41701313522426264,
+     "max_abs_dmu_mag": 0.13773876964358323,
+     "chi2_vs_bestfit_LCDM": 25.841721104382795,
+     "ndof": 18
+    }
+   }
+  }
+ }
+}
