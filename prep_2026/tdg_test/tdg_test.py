@@ -58,3 +58,35 @@ print("  NET: contested->adverse on current data; escapable only via non-equilib
 print("  entry on the LOSS side of the ledger, awaiting equilibrium-robust kinematics (ELT/MUSE).")
 print("  a0 value + Z stay posited; the lower framework a0 does not rescue the over-prediction.")
 print("EXIT 0")
+
+# ============================================================================
+# CORRECTION (2026-07-20, Carl's "you sure?" check): FRAMEWORK-FIRST RE-READ.
+# The tension above tests INSTANTANEOUS MOND (MG/AQUAL + short-memory MI).
+# THIS framework commits to tau_mem = 2Z/H_Lambda = 203 Gyr (SHLEM/D3-erratum).
+# TDG age ~0.36 Gyr << tau_mem: the gas carries its PARENT-DISC inertia state.
+# Tidal tails pull from the progenitor's OUTER disc: y_hist ~ 0.5-2 (nu 1.2-1.7).
+# ============================================================================
+import numpy as np
+print("\n" + "="*78)
+print("CORRECTED, FRAMEWORK-FIRST: the 203-Gyr kernel prediction for 0.36-Gyr TDGs")
+print("="*78)
+def nu(y): return np.sqrt(1+1/y)
+for tag, yh in [("outer-disc history y~0.5", 0.5), ("y~1.0", 1.0), ("y~2.0", 2.0)]:
+    print(f"  {tag}: frozen nu_eff = {nu(yh):.2f} -> predicted Mdyn/Mbar ~ {nu(yh):.2f}")
+print(f"  vs instantaneous-MOND at y=0.03: nu = {nu(0.03):.1f} (the over-prediction above)")
+print(f"  OBSERVED Mdyn/Mbar: NGC5291 trio 1.2-1.5, NGC7252/VCC 0.9-1.0")
+print("""  READ (kernel-hostage, honest):
+  - The framework's OWN long-memory prediction is Mdyn/Mbar ~ 1.2-1.7 (frozen outer-disc
+    inertia), CONSISTENT with the observed 0.9-1.5 -- the 2-3 sigma tension above does NOT
+    apply to this framework; it applies to INSTANTANEOUS MOND (MG) and short-memory MI.
+  - COST (state it): with the long-memory reading the framework predicts the SAME
+    near-Newtonian TDGs as LCDM -> the sign-flip discriminator vs LCDM DISSOLVES here.
+  - GAIN (do not oversell): TDGs become a candidate HISTORY-DEPENDENCE discriminator --
+    instantaneous MOND is the one disfavored (~2-3 sigma) while long-memory MI and LCDM
+    both survive; BUT this is degenerate with Lelli's non-equilibrium escape (which also
+    rescues instantaneous MOND), and the nu_eff mapping is KERNEL-HOSTAGE (how the
+    203-Gyr average enters nu is not pinned by the committed formalism).
+  NET: framework PASSES on its own premises; the adverse verdict above is RETRACTED as a
+  framework claim and RE-SCOPED to instantaneous MOND; discriminating power vs LCDM lost,
+  candidate MI-vs-MOND lever gained (equilibrium-hostage). Both ways, no win manufactured.""")
+print("EXIT 0 (corrected)")
