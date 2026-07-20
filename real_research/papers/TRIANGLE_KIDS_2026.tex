@@ -1,0 +1,821 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+% ===== unicode + compile header for ZIMMERMAN_LAW_OF_GRAVITY =====
+% TO COMPILE ON OVERLEAF: upload this .tex + a figures/ folder containing
+%   fig1_rar.png  fig2_a0z.png  fig3_btfr.png
+% Compile with XeLaTeX (recommended) or pdfLaTeX. Download the PDF and publish
+% manually on Zenodo. (Not test-compiled locally; unicode is mapped below.)
+\usepackage{amssymb}
+\usepackage{newunicodechar}
+\providecommand{\textsubscript}[1]{\ensuremath{_{\mbox{\scriptsize #1}}}}
+\providecommand{\textonehalf}{\ensuremath{\frac12}}
+\newunicodechar{₀}{\ensuremath{_{0}}}
+\newunicodechar{₁}{\ensuremath{_{1}}}
+\newunicodechar{₃}{\ensuremath{_{3}}}
+\newunicodechar{₆}{\ensuremath{_{6}}}
+\newunicodechar{ₐ}{\ensuremath{_{a}}}
+\newunicodechar{¹}{\ensuremath{^{1}}}
+\newunicodechar{²}{\ensuremath{^{2}}}
+\newunicodechar{⁰}{\ensuremath{^{0}}}
+\newunicodechar{⁴}{\ensuremath{^{4}}}
+\newunicodechar{⁵}{\ensuremath{^{5}}}
+\newunicodechar{⁻}{\ensuremath{^{-}}}
+\newunicodechar{Λ}{\ensuremath{\Lambda}}
+\newunicodechar{ρ}{\ensuremath{\rho}}
+\newunicodechar{π}{\ensuremath{\pi}}
+\newunicodechar{σ}{\ensuremath{\sigma}}
+\newunicodechar{Υ}{\ensuremath{\Upsilon}}
+\newunicodechar{χ}{\ensuremath{\chi}}
+\newunicodechar{Ω}{\ensuremath{\Omega}}
+\newunicodechar{Δ}{\ensuremath{\Delta}}
+\newunicodechar{γ}{\ensuremath{\gamma}}
+\newunicodechar{α}{\ensuremath{\alpha}}
+\newunicodechar{µ}{\ensuremath{\mu}}
+\newunicodechar{√}{\ensuremath{\surd}}
+\newunicodechar{×}{\ensuremath{\times}}
+\newunicodechar{−}{\ensuremath{-}}
+\newunicodechar{·}{\ensuremath{\cdot}}
+\newunicodechar{∝}{\ensuremath{\propto}}
+\newunicodechar{≈}{\ensuremath{\approx}}
+\newunicodechar{≳}{\ensuremath{\gtrsim}}
+\newunicodechar{≥}{\ensuremath{\geq}}
+\newunicodechar{⇒}{\ensuremath{\Rightarrow}}
+\newunicodechar{→}{\ensuremath{\rightarrow}}
+\newunicodechar{↔}{\ensuremath{\leftrightarrow}}
+\newunicodechar{⟺}{\ensuremath{\Longleftrightarrow}}
+\newunicodechar{⋆}{\ensuremath{\star}}
+\newunicodechar{★}{\ensuremath{\star}}
+\newunicodechar{✓}{\ensuremath{\checkmark}}
+\newunicodechar{✗}{\ensuremath{\times}}
+\newunicodechar{◐}{\ensuremath{\circ}}
+\newunicodechar{½}{\ensuremath{\frac{1}{2}}}
+\newunicodechar{§}{\S{}}
+\newunicodechar{Ö}{\"{O}}
+\newunicodechar{Ü}{\"{U}}
+\newunicodechar{é}{\'{e}}
+\newunicodechar{³}{\ensuremath{^{3}}}
+\newunicodechar{ä}{\"{a}}
+\newunicodechar{Ȳ}{\ensuremath{\bar{Y}}}
+\newunicodechar{δ}{\ensuremath{\delta}}
+\newunicodechar{θ}{\ensuremath{\theta}}
+\newunicodechar{κ}{\ensuremath{\kappa}}
+\newunicodechar{λ}{\ensuremath{\lambda}}
+\newunicodechar{μ}{\ensuremath{\mu}}
+\newunicodechar{φ}{\ensuremath{\varphi}}
+\newunicodechar{–}{\textendash{}}
+\newunicodechar{—}{\textemdash{}}
+\newunicodechar{…}{\ldots{}}
+\newunicodechar{′}{'}
+\newunicodechar{⁶}{\ensuremath{^{6}}}
+\newunicodechar{⁷}{\ensuremath{^{7}}}
+\newunicodechar{₂}{\ensuremath{_{2}}}
+\newunicodechar{₄}{\ensuremath{_{4}}}
+\newunicodechar{ℏ}{\ensuremath{\hbar}}
+\newunicodechar{∇}{\ensuremath{\nabla}}
+\newunicodechar{≔}{\ensuremath{:=}}
+\newunicodechar{≤}{\ensuremath{\leq}}
+\newunicodechar{≲}{\ensuremath{\lesssim}}
+\newunicodechar{⊙}{\ensuremath{\odot}}
+\newunicodechar{Σ}{\ensuremath{\Sigma}}
+\newunicodechar{η}{\ensuremath{\eta}}
+\newunicodechar{ν}{\ensuremath{\nu}}
+\newunicodechar{″}{''}
+\newunicodechar{⇔}{\ensuremath{\Leftrightarrow}}
+\newunicodechar{±}{\ensuremath{\pm}}
+\newunicodechar{¼}{\ensuremath{\tfrac{1}{4}}}
+\newunicodechar{β}{\ensuremath{\beta}}
+\newunicodechar{∈}{\ensuremath{\in}}
+\newunicodechar{∞}{\ensuremath{\infty}}
+\newunicodechar{≠}{\ensuremath{\neq}}
+% --- v3 erratum build: additional symbol coverage ---
+\newunicodechar{ω}{\ensuremath{\omega}}
+\newunicodechar{τ}{\ensuremath{\tau}}
+\newunicodechar{∫}{\ensuremath{\int}}
+\newunicodechar{∂}{\ensuremath{\partial}}
+\newunicodechar{≫}{\ensuremath{\gg}}
+\newunicodechar{⟨}{\ensuremath{\langle}}
+\newunicodechar{⟩}{\ensuremath{\rangle}}
+\newunicodechar{⁸}{\ensuremath{^{8}}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{Three Roads to the Cosmological-Constant Acceleration Scale:
+Dynamics, Weak-Lensing Geometry, and Expansion --- and Why the Lensing
+Leg Is a Consistency, Not Yet a
+Free-Fit}\label{three-roads-to-the-cosmological-constant-acceleration-scale-dynamics-weak-lensing-geometry-and-expansion-and-why-the-lensing-leg-is-a-consistency-not-yet-a-free-fit}
+
+\textbf{Carl Zimmerman} \emph{Briar Creek Tech}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Abstract}\label{abstract}
+
+A single low-acceleration scale
+\(a_0 \sim 1\times10^{-10}\,\mathrm{m\,s^{-2}}\) organizes galaxy
+rotation curves (the mass-discrepancy--acceleration /
+radial-acceleration relation), and its numerical coincidence with
+\(c\sqrt{\Lambda}\) has been noted since Milgrom's original papers. In
+the de Sitter--Unruh modified-inertia framework used here, that
+coincidence is promoted to an identity, \(a_0 = cH_\Lambda / Z\) with
+\(H_\Lambda = c\sqrt{\Lambda/3}\) and \(Z=\sqrt{32\pi/3}=5.78881\)
+\emph{posited}, which inverts to \(\Lambda = 32\pi\, a_0^2/c^4\). This
+note asks whether \emph{three} observational channels with mutually
+\textbf{orthogonal systematics} independently land on the same scale and
+hence on the same \(\Lambda\): (i) \textbf{dynamics} --- the SPARC
+rotation-curve \(a_0\) (kinematic systematics: stellar \(M/L\),
+inclination, asymmetric drift); (ii) \textbf{geometry} --- the KiDS-1000
+weak-lensing radial-acceleration relation of Brouwer et al.~(2021),
+which reaches \(g_\mathrm{bar}\!\sim\!10^{-15}\,\mathrm{m\,s^{-2}}\), about
+five decades below \(a_0\) and three decades deeper than any rotation
+curve (shear-calibration and photo-\(z\) systematics); and (iii)
+\textbf{expansion} --- the \(a_0\) demanded by the Type Ia supernova
+Hubble diagram through the Friedmann dark-energy term (standardization
+systematics). The three central values span
+\(\approx(0.96\text{–}1.20)\times10^{-10}\,\mathrm{m\,s^{-2}}\) (a
+\$\sim\$22\% spread; \$\sim\$30\% including the low edge of the SNe
+range, \(0.92\times10^{-10}\)), all inside the SPARC systematics box
+\([0.84,1.36]\times10^{-10}\), and all invert to \(\Lambda\) within a
+factor \$\sim\$1.6 of the Planck value (KiDS
+\(a_0=1.20\times10^{-10}\Rightarrow\Lambda=1.79\times10^{-52}\,\mathrm{m^{-2}}=1.65\times\Lambda_\mathrm{Planck}\);
+Planck sits \(0.91\sigma\) from the lensing central value). \textbf{We
+state plainly that this is a consistency + method + forecast note, not a
+free-fit measurement.} The KiDS leg is a \emph{consistency}: Brouwer
+adopted \(a_0\) (from McGaugh 2016) and tested agreement; a genuine
+lensing-only free-fit is not yet possible from public data and, from the
+figure alone, is reading- and scatter-limited to a factor \$\sim\$2. A
+tabulated free-fit does not shortcut this: because
+\(a_0\propto g_\mathrm{obs}^2\) amplifies the per-point scatter, the
+statistical error alone is \$\sim\(13–43% (
+\)\sim\$43\% for the clean reliable sample), comparable to the
+\$\sim\$15--25\% systematic floor (the \(\ge6\sigma\) early/late-type
+split; the baryonic-mass/deprojection model), so a realistic
+clean-sample free-fit reaches only
+\$\sim\(45% — a modest upgrade on the figure, not a percent-level measurement. Finally, in *modified inertia* the lensing channel does not share the matter metric — it runs through a disformal photon sector — so lensing-
+\)a\_0 =\$ dynamical-\(a_0\) is a \emph{prediction of that completion},
+not automatic. The value of \(a_0\) and \(Z\) are posited, not derived.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{1. Introduction}\label{introduction}
+
+The radial-acceleration relation (RAR) states that the observed
+centripetal acceleration in a galaxy, \(g_\mathrm{obs}\), is a tight
+one-to-one function of the acceleration \(g_\mathrm{bar}\) implied by the
+baryons alone (Milgrom 1983; McGaugh, Lelli \& Schombert 2016; Lelli,
+McGaugh \& Schombert 2016). The relation carries a single scale
+\(a_0\simeq1.2\times10^{-10}\,\mathrm{m\,s^{-2}}\) separating the
+Newtonian regime \(g_\mathrm{bar}\gg a_0\) from the low-acceleration regime
+\(g_\mathrm{bar}\ll a_0\) where \(g_\mathrm{obs}\to\sqrt{a_0\,g_\mathrm{bar}}\).
+It has been noticed since Milgrom's earliest work that \(a_0\) is
+numerically of order \(cH_0\) and of order \(c\sqrt{\Lambda}\),
+i.e.~that the dynamical scale coincides with the cosmological-constant
+scale.
+
+The framework used here takes that coincidence literally. It is a
+\textbf{modified-inertia} theory in which the de Sitter--Unruh
+temperature of the cosmic horizon sets an inertial floor, giving
+
+\[
+a_0 \;=\; \frac{cH_\Lambda}{Z}, \qquad H_\Lambda \equiv c\sqrt{\tfrac{\Lambda}{3}}, \qquad Z=\sqrt{\tfrac{32\pi}{3}} = 5.78881 \ \ (\text{posited}),
+\]
+
+with the low-acceleration kernel
+
+\[
+g_\mathrm{obs} \;=\; \sqrt{g_\mathrm{bar}^2 + g_\mathrm{bar}\,a_0}\,,
+\]
+
+which is algebraically Milgrom's (1999, PLA \textbf{253}, 273)
+\(\nu\)-kernel \(\nu(y)=\sqrt{1+1/y}\); the framework's distinctive
+content is the coefficient \(cH_\Lambda/Z\) (Milgrom's coincidence used
+\(\sim 2cH_0\)) together with the modified-inertia completion.
+Eliminating \(H_\Lambda\) gives the inversion used throughout this note,
+
+\[
+\boxed{\;\Lambda \;=\; \frac{32\pi\,a_0^2}{c^4}\;}
+\]
+
+Because \(\Lambda\) scales as \(a_0^2\), a factor-\(f\) uncertainty on
+\(a_0\) becomes a factor-\(f^2\) uncertainty on \(\Lambda\); conversely
+a modest \$\sim\$30\% spread in \(a_0\) is a factor \$\sim\$1.6 in
+\(\Lambda\). We stress at the outset that neither \(Z\) nor the
+\emph{value} of \(a_0\) is derived here --- both are posited --- so what
+follows tests the \emph{universality of the scale and its inversion to
+\(\Lambda\)}, not the origin of the number.
+
+The idea of this paper is simple. If \(a_0\) is a genuine constant of
+nature tied to \(\Lambda\), then observables whose systematic errors are
+unrelated should agree on it. We assemble \textbf{three channels}:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Dynamics} --- rotation-curve kinematics (SPARC).
+\item
+  \textbf{Geometry} --- weak gravitational lensing (KiDS-1000).
+\item
+  \textbf{Expansion} --- the supernova Hubble diagram.
+\end{itemize}
+
+These three have essentially orthogonal error budgets. Agreement among
+them is a \emph{cross-check that \(\Lambda\)CDM does not automatically
+supply}, because in \(\Lambda\)CDM the galactic \(a_0\) is an emergent
+feature of feedback-regulated halo assembly with no a-priori link to the
+value of \(\Lambda\) in the Friedmann equation. \textbf{This is a
+consistency + method + forecast note.} We show the triangle closes at
+the \$\sim\$30\% / factor-1.6 level today, we explain honestly why the
+lensing leg is presently a \emph{consistency} rather than a free-fit,
+and we forecast what a proper tabulated free-fit would deliver. Every
+dimensional number below is reproduced by the committed script
+\texttt{kids\_rar\_lambda.py} (exit 0) and is quoted for both \(a_0\)
+footings.
+
+Two footings for \(a_0\) are carried throughout, as the framework
+requires: the \textbf{canonical} footing
+\(a_0 = cH_\Lambda/Z = 9.355\times10^{-11}\,\mathrm{m\,s^{-2}}\) (in
+which \(\Lambda\) equals the Planck value by construction), and the
+\textbf{alternative} footing \(a_0 = 1.1305\times10^{-10}\) (built from
+\(\rho_\mathrm{total}\) and \(cH_0\) rather than \(\rho_\mathrm{DE}\) and
+\(cH_\Lambda\)). The measured channels are quoted as measured and then
+inverted; the footings bracket where the theory \emph{expects} \(a_0\)
+to sit.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{2. The three channels and their orthogonal
+systematics}\label{the-three-channels-and-their-orthogonal-systematics}
+
+\subsubsection{\texorpdfstring{2.1 Dynamics --- the SPARC rotation-curve
+\(a_0\)}{2.1 Dynamics --- the SPARC rotation-curve a\_0}}\label{dynamics-the-sparc-rotation-curve-a_0}
+
+The sharpest single-number extraction of \(a_0\) from rotation curves in
+this program is the ``\(a_0\)-line'' estimator (Zimmerman, DOI
+10.5281/zenodo.21419735), which uses the identity
+
+\[
+g_\mathrm{obs}^2 - g_\mathrm{bar}^2 = a_0\,g_\mathrm{bar}
+\]
+
+(exact for the framework kernel) and reads \(a_0\) off the gas-dominated
+slope, where the stellar \(M/L\), distance, and inclination dependences
+largely cancel in the pairwise estimator. The result is
+
+\[
+a_0^\mathrm{dyn} = 1.181\times10^{-10}\,\mathrm{m\,s^{-2}}, \qquad \text{systematics box } [0.84,\,1.36]\times10^{-10}.
+\]
+
+The box is dominated by \emph{kinematic} systematics: the stellar
+mass-to-light ratio \(\Upsilon_*\), disk inclination, and
+asymmetric-drift / pressure-support corrections. This is the dynamics
+leg.
+
+\subsubsection{2.2 Geometry --- the KiDS-1000 weak-lensing
+RAR}\label{geometry-the-kids-1000-weak-lensing-rar}
+
+Brouwer et al.~(2021, A\&A \textbf{650}, A113; arXiv:2106.11677)
+constructed the RAR from \emph{weak gravitational lensing} around
+isolated galaxies in the KiDS-1000 survey, cross-matched with GAMA and
+with photometric (``KiDS-bright'') lens samples. Excess-surface-density
+profiles convert to \(g_\mathrm{obs}(R)\) out to \(\sim\)Mpc scales, so the
+lensing RAR spans
+
+\[
+10^{-15}\ \lesssim\ g_\mathrm{bar}\ \lesssim\ 5\times10^{-12}\ \mathrm{m\,s^{-2}},
+\]
+
+roughly \textbf{five decades below \(a_0\)} and about \textbf{three
+decades deeper than the deepest rotation curve}. In 15 logarithmic bins
+Brouwer show that the \emph{reliable} (spectroscopic GAMA) lensing RAR
+agrees with the MOND/modified-gravity prediction at the adopted
+\(g_\dagger = a_0 = (1.20\pm0.26)\times10^{-10}\) (McGaugh 2016). The
+systematics --- shear calibration, photometric-redshift errors, source
+blending, boost/contamination corrections --- are \emph{orthogonal} to
+the kinematic systematics of the dynamics leg. This is the geometry leg,
+and its numerical value used below is the Brouwer-adopted
+\(a_0=(1.20\pm0.26)\times10^{-10}\).
+
+\subsubsection{\texorpdfstring{2.3 Expansion --- the SNe-demanded
+\(a_0\)}{2.3 Expansion --- the SNe-demanded a\_0}}\label{expansion-the-sne-demanded-a_0}
+
+In the same framework the Friedmann dark-energy term carries \(a_0\)
+through \$Z\^{}2 a\_0\textsuperscript{2/c}2 = \$ (dark-energy density
+scale), so the Type Ia supernova Hubble diagram \emph{demands} an
+\(a_0\) once \(H_0\) is fixed. From the cross-scale \(a_0(z)\) analysis
+(Zimmerman, DOI 10.5281/zenodo.21440407; the \texttt{side\_by\_side}
+construction), the Pantheon+ diagram over the plausible range
+\(H_0 = 67.4\to73\,\mathrm{km\,s^{-1}\,Mpc^{-1}}\) demands
+
+\[
+a_0^\mathrm{exp}(z{=}0) = (9.17\text{–}9.93)\times10^{-11}\ \mathrm{m\,s^{-2}}\ =\ (0.92\text{–}0.99)\times10^{-10}.
+\]
+
+The dominant systematics here are supernova standardization, calibration
+of the distance ladder, and the choice of \(H_0\) --- again orthogonal
+to both other legs. This is the expansion leg.
+
+\subsubsection{\texorpdfstring{2.4 The triangle and the \(\Lambda\)
+inversions}{2.4 The triangle and the \textbackslash Lambda inversions}}\label{the-triangle-and-the-lambda-inversions}
+
+Collecting the three central values (in units of
+\(10^{-10}\,\mathrm{m\,s^{-2}}\)):
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Channel
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\(a_0\)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Systematics
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Dynamics (SPARC \(a_0\)-line) & \(1.18\), box \([0.84,1.36]\) &
+\(\Upsilon_*\), inclination, asymmetric drift \\
+Geometry (KiDS lensing) & \(1.20\pm0.26\) & shear calibration,
+photo-\(z\) \\
+Expansion (SNe-demanded) & \(0.92\)--\(0.99\) & SNe standardization,
+\(H_0\) \\
+\emph{framework canonical} & \(0.94\) & \(\Lambda=\Lambda_\mathrm{Planck}\)
+by construction \\
+\end{longtable}
+}
+
+The three measured central values span
+\(\approx(0.96\text{–}1.20)\times10^{-10}\) (a \$\sim\$22\% spread on
+centrals); including the low edge of the SNe range the full span is
+\(\approx(0.92\text{–}1.20)\times10^{-10}\), i.e.~\$\sim\$22--30\% wide.
+\textbf{All three lie inside the SPARC systematics box} \([0.84,1.36]\),
+and all invert to \(\Lambda\) within a factor \$\sim\$1.6 of the Planck
+value.
+
+Working the geometry leg explicitly through
+\(\Lambda = 32\pi a_0^2/c^4\):
+
+\[
+a_0^\mathrm{geo} = 1.20\times10^{-10} \Rightarrow \Lambda_\mathrm{lens} = 1.792\times10^{-52}\,\mathrm{m^{-2}}, \quad \text{range } [1.100,\,2.653]\times10^{-52},
+\]
+
+against \(\Lambda_\mathrm{Planck} = 1.089\times10^{-52}\,\mathrm{m^{-2}}\).
+The ratio is \(\Lambda_\mathrm{lens}/\Lambda_\mathrm{Planck} = 1.65\) (range
+\([1.01,2.44]\)), and the Planck value sits \(0.91\sigma\) from the
+lensing central value --- \textbf{consistent}, and on the same ``high
+side of the box'' as the SPARC dynamics leg. (This \(0.91\sigma\) is
+computed in \(\Lambda\)-space with a linearized half-width; the
+equivalent comparison in \(a_0\)-space --- Planck-equivalent
+\(a_0 = 9.354\times10^{-11}\) against \(1.20\pm0.26\) --- is
+\(1.02\sigma\). Both are well within \(2\sigma\); we quote both frames
+so the \(\Lambda\)-space number is not read as the whole story.) In the
+canonical footing \(a_0=9.355\times10^{-11}\) reproduces
+\(\Lambda_\mathrm{Planck}\) exactly by construction; in the alternative
+footing \(a_0=1.1305\times10^{-10}\) gives
+\(\Lambda=1.59\times10^{-52} = 1.46\times\Lambda_\mathrm{Planck}\). Three
+observables with orthogonal systematics agreeing on \(a_0\) to
+\$\sim\$30\% is not a precision match --- but it is a genuinely
+independent third leg on the statement ``the scale is universal at
+\(\sim\!\sqrt\Lambda\).''
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{3. The lensing leg in depth}\label{the-lensing-leg-in-depth}
+
+\subsubsection{3.1 What Brouwer measured, and the five-decade
+reach}\label{what-brouwer-measured-and-the-five-decade-reach}
+
+The lensing RAR is qualitatively different from the kinematic RAR in
+\emph{where it lives}. Rotation curves probe \(g_\mathrm{bar}\) from
+\(\sim\)few\(\times10^{-9}\) down to at best
+\(\sim10^{-12}\,\mathrm{m\,s^{-2}}\) in the most extended H,\{\sc i\}
+disks --- i.e.~barely one to two decades below \(a_0\). The KiDS lensing
+profiles, by stacking excess surface density out to Mpc radii, push
+\(g_\mathrm{bar}\) down to \(\sim10^{-15}\,\mathrm{m\,s^{-2}}\), roughly
+five decades below \(a_0\). This matters for the acceleration-scale
+program because the \emph{deep} regime is where the
+interpolation-function ambiguity disappears.
+
+\subsubsection{3.2 Interpolation-freeness of the deep-regime
+extraction}\label{interpolation-freeness-of-the-deep-regime-extraction}
+
+Every lensing bin sits deep in the low-acceleration regime
+(\(g_\mathrm{bar}\ll a_0\)), where all viable interpolation kernels
+collapse onto the same asymptote
+\(g_\mathrm{obs}\to\sqrt{a_0 g_\mathrm{bar}}\), so
+\(a_0 = g_\mathrm{obs}^2/g_\mathrm{bar}\) independent of kernel choice.
+Evaluated at \(g_\mathrm{bar}=10^{-15}\,\mathrm{m\,s^{-2}}\)
+(\(y\equiv g_\mathrm{bar}/a_0 = 8.3\times10^{-6}\)):
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Kernel
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\(g_\mathrm{obs}\) (m s\(^{-2}\))
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+framework \(\nu\)-kernel \(\sqrt{g_\mathrm{bar}^2+g_\mathrm{bar}a_0}\) &
+\(3.464116\times10^{-13}\) \\
+Brouwer ``third-family'' \(g_\mathrm{bar}/(1-e^{-\sqrt{y}})\) &
+\(3.469104\times10^{-13}\) \\
+pure deep-MOND \(\sqrt{a_0 g_\mathrm{bar}}\) &
+\(3.464102\times10^{-13}\) \\
+\end{longtable}
+}
+
+The maximum fractional spread across kernels is \(1.44\times10^{-3}\)
+--- about \textbf{0.14\%}. Five decades deep, the extraction
+\(a_0 = g_\mathrm{obs}^2/g_\mathrm{bar}\) is interpolation-free to well below
+any observational error, and it recovers \(1.200\times10^{-10}\)
+exactly. This is the geometry channel's structural edge over rotation
+curves, which live near \(y\sim1\) where the kernel choice is a real
+(\$\sim\$10--20\%) systematic. No baryonic effect can mimic \(a_0\) this
+far into the deep regime either --- the baryons are \(\sim\)five decades
+subdominant.
+
+\subsubsection{3.3 Why a figure free-fit is reading- and scatter-limited
+(honest
+scope)}\label{why-a-figure-free-fit-is-reading--and-scatter-limited-honest-scope}
+
+It is tempting to digitize Brouwer's Fig. 4 and free-fit \(a_0\)
+ourselves. We do \textbf{not} present such a number as a measurement,
+for concrete reasons. Fig. 4 is deep-MOND throughout, so the data lie
+along a slope-\(\tfrac12\) line and \(a_0 = g_\mathrm{obs}^2/g_\mathrm{bar}\);
+a small vertical reading error propagates as
+\(\log a_0 = 2\log g_\mathrm{obs} - \log g_\mathrm{bar}\),
+i.e.~\textbf{doubled}. Two further problems compound this:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{The KiDS-bright (photometric) sample is selection-biased
+  high.} That the photometric KiDS-bright lens sample carries a
+  photo-\(z\) selection bias is Brouwer's own caveat (their §-level
+  discussion of the bright-sample selection, arXiv:2106.11677); the
+  specific number is \emph{our} reading, not theirs. By-eye digitization
+  of that sample gives \(a_0\sim1\)--\(3\times10^{-10}\) (centered near
+  \(\sim2\times10^{-10}\)), which we attribute to that selection bias
+  plus \$\sim\$0.1-dex reading error --- an artifact, not a measurement.
+\item
+  \textbf{The reliable spectroscopic GAMA sample has large intrinsic
+  scatter.} It tracks MOND at \(a_0\sim1.2\times10^{-10}\), but with
+  \$\sim\$0.2--0.4 dex per point of intrinsic scatter, so even with
+  \emph{perfect} reading a figure free-fit constrains \(a_0\) only to a
+  \textbf{factor \$\sim\$2}.
+\end{itemize}
+
+This is precisely why Brouwer \textbf{fixed} \(a_0\) (adopting McGaugh's
+value) and tested \emph{consistency} rather than free-fitting it. Our
+KiDS leg inherits that status: it is a consistency check, not an
+independent free-fit, and we present it as such.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{4. The forecast: what a tabulated free-fit would
+deliver}\label{the-forecast-what-a-tabulated-free-fit-would-deliver}
+
+A genuine lensing-only free-fit needs the \textbf{per-point tabulated}
+\((g_\mathrm{bar}, g_\mathrm{obs}, \sigma)\) data, not the figure. That table
+is not cleanly public: there is no VizieR entry, and the KiDS data
+portal exposes only raw excess-surface-density profiles that require a
+full lensing-inversion pipeline to turn into
+\((g_\mathrm{bar}, g_\mathrm{obs})\) points. With the table in hand, consider
+the \emph{statistical} precision from a slope-\(\tfrac12\) intercept
+over \(N=15\) bins. In the deep regime
+\(\log g_\mathrm{obs} = \tfrac12(\log a_0 + \log g_\mathrm{bar})\), so the
+intercept has sensitivity
+\(\partial\log g_\mathrm{obs}/\partial\log a_0 = \tfrac12\) and
+\(a_0 = g_\mathrm{obs}^2/g_\mathrm{bar}\) \textbf{amplifies} the per-point
+error by a factor 2:
+
+\[
+\sigma_{\log a_0}^\mathrm{stat} \approx \frac{2\,\sigma_\mathrm{point}}{\sqrt{N}}\ \Rightarrow\
+\begin{cases}
+\text{KiDS-bright, } \sigma_\mathrm{point}=0.10\ \text{dex}: & 0.052\ \text{dex} \approx 13\%\\[4pt]
+\text{GAMA reliable, } \sigma_\mathrm{point}=0.30\ \text{dex}: & 0.155\ \text{dex} \approx 43\%
+\end{cases}
+\]
+
+So statistical alone is \$\sim\(13% for the (photo-
+\)z\$ biased-high) bright sample and \$\sim\$43\% for the reliable GAMA
+sample --- the factor \(a_0\propto g_\mathrm{obs}^2\) amplifies rather than
+suppresses the scatter, and the real fitter \texttt{fit\_kids\_rar.py}
+on synthetic \$\sim\$0.08-dex data confirms this order (tens of percent,
+not a few percent). Two systematics sit on top:
+
+\begin{itemize}
+\tightlist
+\item
+  the \(\ge6\sigma\) early/late-type RAR split (Section 5) means a
+  single universal \(a_0\) is a model choice, not a datum;
+\item
+  the baryonic-mass estimate and the deprojection / halo-model used to
+  turn stacked \(\Delta\Sigma\) into \(g_\mathrm{obs}\) carry their own
+  multiplicative uncertainty.
+\end{itemize}
+
+Taking the systematic floor at \$\sim\$15--25\% and adding in
+quadrature, statistical and systematic are \textbf{comparable ---
+neither dominates}. A realistic tabulated free-fit reaches \(a_0\) to
+\$\sim\$20--28\% for the biased bright sample and
+\$\sim\(45–50% for the *clean* late-type/reliable sample. The forecast is therefore honestly mixed: the tabulated data does upgrade the figure — chiefly by removing the reading error and enabling a clean late-type selection — but the gain over the figure's factor-
+\)\sim\(2 is **modest for the clean case** (\)\sim\$45\%), not the naive
+\$\sim\$20\%. It is worth doing when the per-point table becomes public,
+but it is not a fast route to a percent-level \(a_0\). \textbf{This
+paper books the method and the triangle now}; the free-fit is deferred
+to data availability.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{\texorpdfstring{5. The \(\ge6\sigma\) early/late-type
+split}{5. The \textbackslash ge6\textbackslash sigma early/late-type split}}\label{the-ge6sigma-earlylate-type-split}
+
+Brouwer find that early- and late-type galaxies follow RARs that differ
+by \(\ge6\sigma\) at fixed stellar mass \(M_*\): at a given \(M_*\) the
+early-types show \emph{excess} \(g_\mathrm{obs}\). Brouwer's own reading is
+that early-types carry additional unseen baryons --- circumgalactic gas
+with \(M_\mathrm{gas}\sim M_*\) --- so that the baryonic \(g_\mathrm{bar}\) is
+underestimated for them and the ``excess'' is a missing-baryon artifact
+rather than a violation of a universal \(a_0\).
+
+Either way, this is a \textbf{real systematic that must be carried, not
+footnoted}. If a single \(a_0\) is fit across both populations, the
+split biases and broadens the inferred value; if the excess is truly
+circumgalactic gas, then the \emph{clean} case for the
+acceleration-scale program is the \textbf{late-type disk sample}, where
+the baryon census is most complete and the deep-regime lensing points
+are least contaminated. Our recommended free-fit target (Section 4) is
+therefore the late-type / disk-selected reliable sample, and the
+\$\sim\$15--25\% systematic floor already reflects the cost of this
+split. We do not claim the split is resolved; we claim it is bounded and
+that the late-type case is the defensible one.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{6. The disformal wrinkle: the honest limit on
+independence}\label{the-disformal-wrinkle-the-honest-limit-on-independence}
+
+There is a framework-specific subtlety that sets the \emph{honest
+ceiling} on how ``independent'' the geometry leg can be. In ordinary
+single-metric modified gravity (e.g.~an AeST/relativistic-MOND
+realization), photons and matter share one metric, so a lensing RAR and
+a dynamical RAR test the \emph{same} function and lensing-\$a\_0 = \$
+dynamical-\(a_0\) is essentially trivial. In \textbf{modified inertia},
+this is not the case.
+
+Here the modification lives in the inertial sector --- the response of
+test bodies --- not in a single spacetime metric. Light does \emph{not}
+automatically feel the same effective geometry as slow matter. In this
+program the photon sector is a published \textbf{disformal} completion,
+
+\[
+\tilde g_{\mu\nu} = g_{\mu\nu} + B\,u_\mu u_\nu,
+\]
+
+with \(B\) fixed by the same kernel \(K(\Box_u)\) that controls the
+inertial response (the lensing no-go, DOI 10.5281/zenodo.21418816, and
+the disformal completion; the MI field-theory results, DOI
+10.5281/zenodo.21403470). Consequently, \textbf{lensing-\(a_0 =\)
+dynamical-\(a_0\) is a \emph{prediction} of that disformal construction,
+not an automatic consequence of the low-acceleration kernel.} This has
+two honest implications, in both directions:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Bonus test.} The KiDS agreement is a \emph{consistency test of
+  the disformal photon sector}: it is a non-trivial check that lensing
+  and dynamics share the same scale, which the modified-inertia
+  completion has to arrange and could in principle have failed. That is
+  a genuine feather in the completion's cap.
+\item
+  \textbf{Not an independent derivation.} Precisely because the equality
+  is engineered by the disformal sector, the KiDS leg is \textbf{not an
+  independent derivation of ``\(\Lambda\) sets \(a_0\).''} It is
+  consistent \emph{with} that statement \emph{given} the disformal
+  completion; it does not establish it from lensing alone. The geometry
+  leg is therefore ``independent'' in its \emph{systematics}
+  (shear/photo-\(z\) vs.~kinematics) but \emph{conditional} in its
+  \emph{theory} (it presumes the disformal sector).
+\end{enumerate}
+
+Stating this plainly is the point: the triangle is a strong consistency
+web, and the value of \(a_0\) together with \(Z\) remain
+\textbf{posited}, not derived. The three legs test the
+\emph{universality of the scale and its inversion to \(\Lambda\)}, not
+the origin of the number.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{7. Discussion}\label{discussion}
+
+\textbf{What the triangle buys.} Three channels --- kinematics, lensing
+geometry, expansion --- with orthogonal systematic budgets agree on
+\(a_0\) to \$\sim\$22--30\%, and all invert to \(\Lambda\) within a
+factor \$\sim\$1.6 of the Planck value, with Planck sitting
+\(0.91\sigma\) from the lensing central. Notably, the dynamics and
+geometry legs land on the \emph{same high side} of the box (\(1.18\) and
+\(1.20\)), while the expansion leg and the canonical footing land low
+(\(0.92\)--\(0.99\) and \(0.94\)). This is a self-consistent picture: a
+modest \$\sim\$20\% upward shift in the measured galactic/lensing
+\(a_0\) relative to the pure-\(\Lambda\) canonical value maps, through
+\(\Lambda\propto a_0^2\), to the factor-\$\sim\$1.6 excess in the
+inferred \(\Lambda\) --- the same ``high-side'' behavior in both the
+dynamics and the geometry legs, and comfortably within their
+systematics.
+
+\textbf{A link \(\Lambda\)CDM does not supply.} In \(\Lambda\)CDM the
+galactic \(a_0\) emerges from baryonic-feedback-regulated halo structure
+and has no built-in numerical tie to the Friedmann \(\Lambda\); the
+coincidence \(a_0\sim c\sqrt\Lambda\) is, within that model, a
+coincidence. The framework here makes the tie structural via
+\(\Lambda = 32\pi a_0^2/c^4\), and the triangle is the observational
+face of that tie. We claim this as a \emph{motivating consistency}, not
+as evidence that the framework is correct --- the value of \(a_0\) and
+\(Z\) are posited.
+
+\textbf{What sharpens it.} In order of leverage: (1) the tabulated KiDS
+per-point data, enabling a clean late-type free-fit --- a modest upgrade
+to \$\sim\$45\% given the scatter amplification, Section 4, chiefly
+valuable for removing reading error and enabling the late-type cut; (2)
+reduction of the SPARC box below \$\sim\$20\% via better \(\Upsilon_*\)
+and inclination control, which the pairwise \(a_0\)-line estimator is
+designed to exploit; (3) tightening the SNe/expansion leg through the
+\(H_0\) range, which currently drives most of the \(0.92\)--\(0.99\)
+spread; and (4) an internal test of the disformal sector that would
+convert the geometry leg from ``conditional on the completion'' toward
+``independent.'' Any one of these narrows the triangle. We flag honestly
+that the reach toward a \$\sim\$10\% cross-check would be carried almost
+entirely by the \textbf{SPARC-box (2) and SNe/expansion (3) legs}: with
+the lensing free-fit now capped at \$\sim\$45\% for the clean late-type
+sample (Section 4), the geometry leg no longer contributes to reaching
+\$\sim\(10% — its value is as a *systematics-orthogonal* and *deep-regime, interpolation-free* cross-check, not as a precision anchor. So "
+\)\sim\$10\%'' is aspirational for the dynamics+expansion pair, with
+lensing supplying independence rather than tightness.
+
+\textbf{Caveats restated.} The KiDS leg is a \emph{consistency}, not a
+free-fit (Brouwer adopted \(a_0\)); a figure free-fit is
+reading/scatter-limited to a factor \$\sim\$2; the \(\ge6\sigma\)
+early/late split strains a single universal \(a_0\) and confines the
+clean case to late-type disks; and the disformal wrinkle caps the
+geometry leg's independence. None of these is fatal, and none is hidden.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{8. Conclusion}\label{conclusion}
+
+Three observational roads to the low-acceleration scale ---
+rotation-curve \textbf{dynamics}, weak-lensing \textbf{geometry}, and
+the \textbf{expansion} history --- meet at
+\(a_0\approx(0.92\text{–}1.20)\times10^{-10}\,\mathrm{m\,s^{-2}}\), a
+\$\sim\$22--30\% spread that lies entirely inside the SPARC systematics
+box and inverts, through \(\Lambda = 32\pi a_0^2/c^4\), to a
+cosmological constant within a factor
+\$\sim\(1.6 of the Planck value (\)\Lambda\_\\mathrm{Planck\}\$ at
+\(0.91\sigma\) from the lensing central). Because the three legs'
+systematics are mutually orthogonal, their agreement is a non-trivial
+consistency web on the statement that the acceleration scale is
+universal and set by \(\sqrt\Lambda\).
+
+We have been deliberate about scope. This is a \textbf{consistency +
+method + forecast note, not a free-fit measurement.} The lensing leg is
+a \emph{consistency} --- Brouwer adopted \(a_0\) and tested agreement
+--- and a genuine lensing free-fit awaits per-point data (forecast:
+\$\sim\$45\% for the clean late-type sample, since the
+\(a_0\propto g_\mathrm{obs}^2\) scatter amplification leaves statistical
+and systematic errors comparable). The \(\ge6\sigma\) early/late-type
+split is a real strain that makes late-type disks the clean case. And in
+modified inertia the lensing--dynamics equality is a \emph{prediction of
+the disformal photon sector}, not automatic, so the geometry leg is
+independent in its systematics but conditional in its theory. The value
+of \(a_0\) and the constant \(Z=\sqrt{32\pi/3}\) are \textbf{posited,
+not derived}; the triangle tests universality and scale, not the origin
+of the number. What the note books is the method and the current state
+of the three-channel agreement, so that the sharpening steps --- chiefly
+the tabulated KiDS free-fit --- have a clear target.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{References}\label{references}
+
+\begin{itemize}
+\tightlist
+\item
+  Brouwer, M. M., et al.~2021, \emph{The weak lensing radial
+  acceleration relation: Constraining modified gravity and cold dark
+  matter theories with KiDS-1000}, A\&A \textbf{650}, A113
+  (arXiv:2106.11677).
+\item
+  Lelli, F., McGaugh, S. S., \& Schombert, J. M. 2016, \emph{SPARC: Mass
+  Models for 175 Disk Galaxies with Spitzer Photometry and Accurate
+  Rotation Curves}, AJ \textbf{152}, 157.
+\item
+  McGaugh, S. S., Lelli, F., \& Schombert, J. M. 2016, \emph{The Radial
+  Acceleration Relation in Rotationally Supported Galaxies}, PRL
+  \textbf{117}, 201101.
+\item
+  Milgrom, M. 1983, \emph{A modification of the Newtonian dynamics as a
+  possible alternative to the hidden mass hypothesis}, ApJ \textbf{270},
+  365.
+\item
+  Milgrom, M. 1999, \emph{The modified dynamics as a vacuum effect},
+  Physics Letters A \textbf{253}, 273 (the \(\nu\)-kernel wellhead).
+\item
+  Planck Collaboration 2020, \emph{Planck 2018 results. VI. Cosmological
+  parameters}, A\&A \textbf{641}, A6.
+\item
+  Zimmerman, C. 2026, \emph{The \(a_0\)-line: a slope estimator for the
+  cosmological acceleration scale from SPARC, and its inversion to
+  \(\Lambda\)}, Zenodo, DOI 10.5281/zenodo.21419735.
+\item
+  Zimmerman, C. 2026, \emph{Cross-scale \(a_0(z)\): the
+  supernova-demanded acceleration scale and its expansion-history
+  footing}, Zenodo, DOI 10.5281/zenodo.21440407.
+\item
+  Zimmerman, C. 2026, \emph{Modified-inertia field-theory results},
+  Zenodo, DOI 10.5281/zenodo.21403470.
+\item
+  Zimmerman, C. 2026, \emph{A lensing no-go and the disformal photon
+  completion}, Zenodo, DOI 10.5281/zenodo.21418816.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\emph{Reproducibility: every dimensional quantity in this note is
+emitted by the committed script \texttt{kids\_rar\_lambda.py} (exit 0).
+\(a_0\) is carried on both footings (canonical
+\(a_0=cH_\Lambda/Z=9.355\times10^{-11}\); alternative
+\(a_0=1.1305\times10^{-10}\)). No claim of derivation is made for
+\(a_0\) or \(Z\).}
+
+\end{document}
