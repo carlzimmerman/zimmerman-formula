@@ -90,3 +90,31 @@ print("""  READ (kernel-hostage, honest):
   framework claim and RE-SCOPED to instantaneous MOND; discriminating power vs LCDM lost,
   candidate MI-vs-MOND lever gained (equilibrium-hostage). Both ways, no win manufactured.""")
 print("EXIT 0 (corrected)")
+
+# ============================================================================
+# FRAMEWORK-FAITHFUL AVERAGING (2026-07-20, Carl's "use MY flavor" + physics panel):
+# The sigma-spread paper's OWN prescription averages the RESPONSE nu (a Jensen gap over
+# the convex nu), NOT the acceleration y. And the committed kernel (E12) is power-law /
+# NON-saturating (tau_mem=203 Gyr > Hubble time), so the recent low-y epoch carries the
+# RESIDENCE-TIME weight w ~ age/t_cosmic ~ 0.36/13.8 ~ 2.6% (NOT 0.36/203 ~ 0.18%).
+# ============================================================================
+print("\n" + "="*78)
+print("FRAMEWORK-FAITHFUL nu_eff: response-averaging (sigma-spread prescription), w~2.6%")
+print("="*78)
+w = 0.36/13.8   # residence-time weight of the recent deep-MOND epoch (non-saturating kernel)
+def nu_resp(yh): return (1-w)*nu(yh) + w*nu(0.03)   # <nu> = memory-average of the RESPONSE
+print(f"  recent-epoch weight w = 0.36/13.8 Gyr = {w:.3f}  (residence-time, non-saturating E12 kernel)")
+for yh in (2.0,1.0,0.5,0.3):
+    print(f"  y_hist={yh:.1f}: response-avg <nu> = {nu_resp(yh):.2f}   (vs y-avg nu(y_hist)={nu(yh):.2f})")
+print(f"  => FRAMEWORK-FAITHFUL band nu_eff ~ 1.3-1.9 (central ~1.5-1.8); the least-bound-gas")
+print(f"     prior favors LOW y_hist (0.3-0.7) -> HIGH nu_eff (1.7-1.9).")
+print(f"  OBSERVED Mdyn/Mbar: 0.9-1.5 -> the framework lands at the HIGH EDGE / MILDLY OVER,")
+print(f"  worst for the OLDER NGC 7252/VCC (0.9-1.0). NOT 'dead on 1.2-1.7' (that was the generic")
+print(f"  y-averaging shortcut). Consistent-at-the-edge, not a precise match. Kernel-hostage stands.")
+print(f"  DEFENSE of the freeze (closure_map, cite): the committed action carries ONE scale a0")
+print(f"  -> it REJECTS any orbital-time (dynamical) relaxation corner as a new scale absent from S,")
+print(f"  so the 203-Gyr memory is orbit-independent and the disc-era inertia does NOT relax on t_dyn.")
+print(f"  AGE-GRADIENT ⚠️: in-sample the OLDER NGC 7252 has LOWER Mdyn/Mbar (0.9-1.0) than younger")
+print(f"  NGC 5291 (1.2-1.5) -- OPPOSITE to a naive 'older->more relaxed->higher boost' expectation")
+print(f"  (within +/-0.6 errors + mass-confounded, but flagged: the forecast's sign is not yet supported).")
+print("EXIT 0 (framework-faithful)")
