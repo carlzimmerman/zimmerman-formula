@@ -76,6 +76,28 @@ print(f"  SNe-standardization) agree on the acceleration scale to ~30%. Not a pr
 print(f"  genuinely-independent third leg on 'the scale is universal at ~sqrt(Lambda)'.")
 
 print("\n" + "="*76)
+print("4. WHY THIS IS A CONSISTENCY, NOT A FREE-FIT (figure-digitization reality + forecast)")
+print("="*76)
+# In deep MOND (all Brouwer bins have g_bar << a0), log g_obs = 0.5(log g_bar + log a0),
+# so a0 = g_obs^2/g_bar and log a0 = 2 log g_obs - log g_bar. Reading Fig. 4 by eye:
+print("  Fig. 4 is deep-MOND throughout -> a slope-1/2 line -> a0 = g_obs^2/g_bar (interp-free).")
+print("  By-eye digitization of the two lensing samples:")
+print("   - KiDS-bright (black, tight bars): PHOTO-Z SELECTION-BIASED HIGH (Brouwer's own caveat)")
+print("     -> reads a0 ~ 1-3e-10 (an artifact of the bias + ~0.1-dex reading error), NOT a measurement.")
+print("   - GAMA (blue, spectroscopic, RELIABLE): tracks MOND (a0 ~ 1.2e-10) but ~0.2-0.4 dex/point")
+print("     intrinsic scatter -> a0 good only to a FACTOR ~2 even with perfect reading.")
+print("  => a free-fit from the FIGURE is reading- and scatter-limited; not a precision number.")
+print("     (This is exactly why Brouwer FIXED a0 and tested consistency rather than free-fitting.)")
+# forecast: what a tabulated per-point free-fit would deliver
+for tag, sig in [("KiDS-bright per-point ~0.10 dex", 0.10), ("GAMA reliable per-point ~0.30 dez".replace('dez','dex'), 0.30)]:
+    N=15; stat = sig/(2*np.sqrt(N))     # log a0 statistical error (slope-1/2 intercept, 2x from a0=g_obs^2/g_bar)
+    print(f"  FORECAST [{tag}]: 15 bins -> statistical log a0 ~ {stat:.3f} dex -> a0 to ~{100*(10**stat-1):.0f}% statistical")
+print("  BUT the real floor is SYSTEMATIC: the >=6-sigma early/late-type split + the baryonic-mass /")
+print("  deprojection model -> a realistic tabulated free-fit reaches a0 to ~15-25%, NOT the naive stat.")
+print("  So the tabulated data upgrades the figure's factor~2 to ~20% -- worth doing WHEN the per-point")
+print("  table is public (it is not: VizieR has no entry; the portal has only raw ESD profiles).")
+
+print("\n" + "="*76)
 print("VERDICT (both ways)")
 print("="*76)
 print("  WIN-SIDE: lensing geometry -- systematics orthogonal to kinematics, 5 decades below a0")
