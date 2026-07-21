@@ -74,7 +74,7 @@ ax.annotate('MUSE rise = the TENSION\n(real, contested)',xy=(1.2,2.2),xytext=(0.
 ax.annotate('RAW points: anchor bin sits at g_obs/a₀≈1.8,\nhigher bins at ≈3.1–3.3 → the ×1.8 composition\nshift manufactures most of the "rise"\n(a₀_inf = g_obs·h(f) exactly)',
             xy=(1.43,3.19),xytext=(1.6,5.6),fontsize=7.6,color='#7a6207',
             arrowprops=dict(arrowstyle='->',color='#b08c0a',lw=1.1))
-ax.annotate('CONTROLLED band: your curve\nsits ~1σ below its edge → WATCH',
+ax.annotate('CONTROLLED band = the data\'s real constraint;\nyour slope (−0.30) is ~1.5σ from its center\n→ WATCH (cannot distinguish flat/decline/rise)',
             xy=(1.55,((1+1.55)/(1+0.71))**0.05),xytext=(2.2,1.45),fontsize=7.8,color='#7a6207',
             arrowprops=dict(arrowstyle='->',color='#b08c0a',lw=1.1))
 ax.set_yscale('log'); ax.set_ylim(0.5,13); ax.set_xlim(0,4.5)
