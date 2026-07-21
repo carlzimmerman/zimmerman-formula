@@ -1,0 +1,791 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+% ===== unicode + compile header for ZIMMERMAN_LAW_OF_GRAVITY =====
+% TO COMPILE ON OVERLEAF: upload this .tex + a figures/ folder containing
+%   fig1_rar.png  fig2_a0z.png  fig3_btfr.png
+% Compile with XeLaTeX (recommended) or pdfLaTeX. Download the PDF and publish
+% manually on Zenodo. (Not test-compiled locally; unicode is mapped below.)
+\usepackage{amssymb}
+\usepackage{newunicodechar}
+\providecommand{\textsubscript}[1]{\ensuremath{_{\mbox{\scriptsize #1}}}}
+\providecommand{\textonehalf}{\ensuremath{\frac12}}
+\newunicodechar{₀}{\ensuremath{_{0}}}
+\newunicodechar{₁}{\ensuremath{_{1}}}
+\newunicodechar{₃}{\ensuremath{_{3}}}
+\newunicodechar{₆}{\ensuremath{_{6}}}
+\newunicodechar{ₐ}{\ensuremath{_{a}}}
+\newunicodechar{¹}{\ensuremath{^{1}}}
+\newunicodechar{²}{\ensuremath{^{2}}}
+\newunicodechar{⁰}{\ensuremath{^{0}}}
+\newunicodechar{⁴}{\ensuremath{^{4}}}
+\newunicodechar{⁵}{\ensuremath{^{5}}}
+\newunicodechar{⁻}{\ensuremath{^{-}}}
+\newunicodechar{Λ}{\ensuremath{\Lambda}}
+\newunicodechar{ρ}{\ensuremath{\rho}}
+\newunicodechar{π}{\ensuremath{\pi}}
+\newunicodechar{σ}{\ensuremath{\sigma}}
+\newunicodechar{Υ}{\ensuremath{\Upsilon}}
+\newunicodechar{χ}{\ensuremath{\chi}}
+\newunicodechar{Ω}{\ensuremath{\Omega}}
+\newunicodechar{Δ}{\ensuremath{\Delta}}
+\newunicodechar{γ}{\ensuremath{\gamma}}
+\newunicodechar{α}{\ensuremath{\alpha}}
+\newunicodechar{µ}{\ensuremath{\mu}}
+\newunicodechar{√}{\ensuremath{\surd}}
+\newunicodechar{×}{\ensuremath{\times}}
+\newunicodechar{−}{\ensuremath{-}}
+\newunicodechar{·}{\ensuremath{\cdot}}
+\newunicodechar{∝}{\ensuremath{\propto}}
+\newunicodechar{≈}{\ensuremath{\approx}}
+\newunicodechar{≳}{\ensuremath{\gtrsim}}
+\newunicodechar{≥}{\ensuremath{\geq}}
+\newunicodechar{⇒}{\ensuremath{\Rightarrow}}
+\newunicodechar{→}{\ensuremath{\rightarrow}}
+\newunicodechar{↔}{\ensuremath{\leftrightarrow}}
+\newunicodechar{⟺}{\ensuremath{\Longleftrightarrow}}
+\newunicodechar{⋆}{\ensuremath{\star}}
+\newunicodechar{★}{\ensuremath{\star}}
+\newunicodechar{✓}{\ensuremath{\checkmark}}
+\newunicodechar{✗}{\ensuremath{\times}}
+\newunicodechar{◐}{\ensuremath{\circ}}
+\newunicodechar{½}{\ensuremath{\frac{1}{2}}}
+\newunicodechar{§}{\S{}}
+\newunicodechar{Ö}{\"{O}}
+\newunicodechar{Ü}{\"{U}}
+\newunicodechar{é}{\'{e}}
+\newunicodechar{³}{\ensuremath{^{3}}}
+\newunicodechar{ä}{\"{a}}
+\newunicodechar{Ȳ}{\ensuremath{\bar{Y}}}
+\newunicodechar{δ}{\ensuremath{\delta}}
+\newunicodechar{θ}{\ensuremath{\theta}}
+\newunicodechar{κ}{\ensuremath{\kappa}}
+\newunicodechar{λ}{\ensuremath{\lambda}}
+\newunicodechar{μ}{\ensuremath{\mu}}
+\newunicodechar{φ}{\ensuremath{\varphi}}
+\newunicodechar{–}{\textendash{}}
+\newunicodechar{—}{\textemdash{}}
+\newunicodechar{…}{\ldots{}}
+\newunicodechar{′}{'}
+\newunicodechar{⁶}{\ensuremath{^{6}}}
+\newunicodechar{⁷}{\ensuremath{^{7}}}
+\newunicodechar{₂}{\ensuremath{_{2}}}
+\newunicodechar{₄}{\ensuremath{_{4}}}
+\newunicodechar{ℏ}{\ensuremath{\hbar}}
+\newunicodechar{∇}{\ensuremath{\nabla}}
+\newunicodechar{≔}{\ensuremath{:=}}
+\newunicodechar{≤}{\ensuremath{\leq}}
+\newunicodechar{≲}{\ensuremath{\lesssim}}
+\newunicodechar{⊙}{\ensuremath{\odot}}
+\newunicodechar{Σ}{\ensuremath{\Sigma}}
+\newunicodechar{η}{\ensuremath{\eta}}
+\newunicodechar{ν}{\ensuremath{\nu}}
+\newunicodechar{″}{''}
+\newunicodechar{⇔}{\ensuremath{\Leftrightarrow}}
+\newunicodechar{±}{\ensuremath{\pm}}
+\newunicodechar{¼}{\ensuremath{\tfrac{1}{4}}}
+\newunicodechar{β}{\ensuremath{\beta}}
+\newunicodechar{∈}{\ensuremath{\in}}
+\newunicodechar{∞}{\ensuremath{\infty}}
+\newunicodechar{≠}{\ensuremath{\neq}}
+% --- v3 erratum build: additional symbol coverage ---
+\newunicodechar{ω}{\ensuremath{\omega}}
+\newunicodechar{τ}{\ensuremath{\tau}}
+\newunicodechar{∫}{\ensuremath{\int}}
+\newunicodechar{∂}{\ensuremath{\partial}}
+\newunicodechar{≫}{\ensuremath{\gg}}
+\newunicodechar{⟨}{\ensuremath{\langle}}
+\newunicodechar{⟩}{\ensuremath{\rangle}}
+\newunicodechar{⁸}{\ensuremath{^{8}}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{\texorpdfstring{A Pre-Registered \(a_0(z)\) Gate for the
+Rubin/LSST Supernova Stream: Committing the Test Before the
+Data}{A Pre-Registered a\_0(z) Gate for the Rubin/LSST Supernova Stream: Committing the Test Before the Data}}\label{a-pre-registered-a_0z-gate-for-the-rubinlsst-supernova-stream-committing-the-test-before-the-data}
+
+\textbf{Carl P. Zimmerman} Briar Creek Tech --- carl@briarcreektech.com
+Frozen 2026-07-21
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Abstract}\label{abstract}
+
+\textbf{This is a pre-registration, not a result.} It commits --- in
+advance, timestamped, and SHA-256-hashed --- the complete analysis
+procedure by which one distinctive prediction of the de Sitter--Unruh
+\emph{modified-inertia} framework will be judged against the forthcoming
+Rubin Observatory / LSST supernova cosmology stream. The framework ties
+the galaxy acceleration scale \(a_0\) to the cosmological horizon and,
+under an adiabatic-horizon ansatz, predicts that \(a_0\) tracks the
+square root of the dark-energy density:
+\(a_0(z)/a_0(0)=\sqrt{\rho_\mathrm{DE}(z)/\rho_\mathrm{DE,0}}\). The
+observable is the ratio \(R\equiv a_0(z{=}3)/a_0(0)\), which is
+\emph{independent of the normalization} \(Z\) and of the absolute value
+of \(a_0\) --- both footings of the framework collapse onto the same
+\(R\). The distinctive claim is that \(R\) declines to
+\(\approx 0.60\)--\(0.75\) \textbf{if and only if} dark energy evolves;
+if \(w=-1\), then \(R=1\) and the framework degenerates to
+constant-\(a_0\) MOND. We freeze the estimator, the decision thresholds,
+and the data hierarchy \emph{before} any calibrated Rubin supernova
+cosmology exists --- LSST began operations on 2026-06-30, and the
+LSST-DESC calibrated Type-Ia sample is not expected before
+\textasciitilde2027. The credibility move is precisely that the test is
+written before the data can shape it. At the freeze the best available
+input (DESI DR2 2025) gives \(R=0.775\,[0.68,0.88]\), a \(2.0\sigma\)
+decline --- below the committed \(3\sigma\) bar, hence
+\textbf{UNDECIDED}. A committed forecast projects that Rubin sharpens
+this to \(\sim 3.3\sigma\) (supernovae alone) up to \(\sim 4.7\sigma\)
+(supernovae combined with CMB/BAO) if dark energy evolves at the
+DESI-central rate. We state explicitly the \emph{unsound path we
+refuse}: no do-it-yourself Hubble diagram from public broker light
+curves. Every number here comes from a committed, hash-locked script;
+the Zenodo DOI and timestamp are the public lock-in.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{1. Introduction}\label{introduction}
+
+\subsubsection{1.1 The prediction under
+test}\label{the-prediction-under-test}
+
+The de Sitter--Unruh modified-inertia framework is built on a
+horizon-derived acceleration scale \(a_0 = cH_\Lambda/Z\), with the
+canonical footing giving \(a_0 = 9.36\times10^{-11}\,{\rm m\,s^{-2}}\)
+and an alternate footing giving \(1.13\times10^{-10}\,{\rm m\,s^{-2}}\).
+The low-acceleration kernel it uses, \(\nu = \sqrt{1+1/y}\), is the
+identical functional form to Milgrom's 1999 interpolation (Milgrom 1983,
+1999); the framework's distinctive content is the \emph{coefficient} ---
+the tie of the scale to \(cH_\Lambda/Z\) rather than to a free constant
+--- together with a modified-inertia (rather than modified-gravity)
+completion.
+
+If the acceleration scale is sourced by the cosmological horizon, then
+when the horizon evolves, so should \(a_0\). Under the adiabatic-horizon
+ansatz the scale tracks the dark-energy density: \[
+a_0(z)/a_0(0) = \sqrt{\rho_\mathrm{DE}(z)/\rho_\mathrm{DE,0}}, \qquad
+\frac{\rho_\mathrm{DE}(z)}{\rho_\mathrm{DE,0}} = (1+z)^{3(1+w_0+w_a)}\, e^{-3 w_a z/(1+z)},
+\] where the second equality is the standard CPL
+(Chevallier--Polarski--Linder) parameterization of an evolving equation
+of state \(w(a)=w_0+w_a(1-a)\). The single scalar observable is \[
+R \equiv a_0(z{=}3)/a_0(0).
+\] That \(a_0\) should scale as \(\sqrt{\rho_\mathrm{DE}}\) is not original
+to this framework --- Limbach, Psaltis \& Özel (2008) noted the
+numerical coincidence \(a_0\sim c\sqrt{\rho_\mathrm{DE}}\) well before it.
+What the framework adds is the \emph{promotion} of that coincidence to a
+horizon-sourced dynamical law, which is why it makes a falsifiable
+redshift prediction rather than a static numerical match.
+
+\textbf{\(R\) is \(Z\)-independent.} Because \(R\) is a \emph{ratio} of
+\(a_0\) at two redshifts, the normalization \(Z\) and the absolute value
+of \(a_0\) cancel identically. Both \emph{value} footings --- canonical
+\(9.36\times10^{-11}\) and alternate \(1.13\times10^{-10}\) --- collapse
+onto the same \(R(w_0,w_a)\). This is what makes the gate a clean
+cosmology-side test: it depends on the dark-energy expansion history
+alone, not on any posited normalization internal to the framework. One
+clarification is owed here, because the framework's internal audit
+distinguishes two separate footing forks. The one that cancels is the
+\emph{value} fork (which absolute \(a_0\) today). A \emph{second},
+logically independent fork concerns the \emph{evolution law itself} ---
+the adiabatic-horizon \(a_0\propto\sqrt{\rho_\mathrm{DE}}\) (which declines
+under evolving DE) versus a rival \(a_0\propto cH(z)=cH_0E(z)\) (which
+\emph{rises} with \(z\)). \textbf{This pre-registration commits to the
+\(\sqrt{\rho_\mathrm{DE}}\) footing as the prediction under test.} The
+rival rising-\(cH E(z)\) footing is not adopted here; if the data
+instead showed a rise, that registers as Verdict C below. So ``both
+footings collapse to \(R\)'' is a statement about the value
+normalization only --- it is not a claim that the evolution law is
+unique.
+
+The distinctive claim is:
+
+\begin{quote}
+\(R\) declines to \(\approx 0.60\)--\(0.75\) \textbf{if and only if}
+dark energy evolves. If \(w=-1\) (a true cosmological constant), then
+\(R=1\) exactly and the framework reduces to ordinary constant-\(a_0\)
+MOND.
+\end{quote}
+
+\textbf{Two facts about the shape of \(a_0(z)\) must be stated up front,
+because the gate summarizes a whole curve by a single point.} First,
+under an evolving CPL history \(a_0(z)\) is \emph{not monotonic}: at the
+DESI-central rate it rises to a small \textbf{bump} --- \(R\) peaks at
+\(\approx1.036\) near \(z\approx0.35\) and only crosses back below unity
+at \(z\approx0.9\) --- and \emph{declines} only at higher redshift. This
+is the framework's own committed ``bump-then-decline'' behavior, which
+the estimator's \(\sqrt{\rho_\mathrm{DE}}\) form reproduces identically.
+Second, the gate is evaluated at a \textbf{frozen reference redshift
+\(z=3\)}, deliberately beyond the range the feeding supernovae actually
+cover (\(z\lesssim1.2\) for the LSST photometric sample).
+\(R=a_0(3)/a_0(0)\) is therefore a \emph{CPL extrapolation}: the
+headline decline is a lever-arm statement, not a directly measured
+\(z=3\) quantity. Operationally, the significance the gate reports is
+the significance with which the supernova-constrained \((w_0,w_a)\)
+posterior excludes the non-evolving point \((w_0,w_a)=(-1,0)\), read
+along the CPL curve at \(z=3\). Both facts are quantified and their
+consequences drawn out in §6.1.
+
+\subsubsection{1.2 Why pre-register now, before Rubin data
+exist}\label{why-pre-register-now-before-rubin-data-exist}
+
+The Vera C. Rubin Observatory began its Legacy Survey of Space and Time
+on 2026-06-30. No calibrated Rubin supernova cosmology sample yet
+exists; the LSST-DESC systematics-controlled Type-Ia sample is not
+expected before roughly 2027. This is exactly the window in which a
+pre-registration has value. Committing the estimator and the decision
+thresholds \emph{before} the data land removes any later freedom to tune
+the analysis to whatever the data happen to show --- the single largest
+source of after-the-fact ``detections'' in cosmology-adjacent model
+testing.
+
+This follows the same discipline as the author's Gaia-DR4
+pre-registration precedent (frozen wide-binary \(\gamma\) targets and
+cut tables, filed before DR4), now applied to Rubin. The move is
+deliberately modest: we are not announcing a finding, we are locking the
+referee-grade procedure so that when the data arrive there is nothing
+left to negotiate but the input \((w_0,w_a)\) posterior.
+
+\subsubsection{1.3 What this pre-registration does and does not
+settle}\label{what-this-pre-registration-does-and-does-not-settle}
+
+This gate settles the \textbf{cosmology-side} question --- \emph{does
+\(a_0\) evolve at all} --- which the framework \emph{inherits} from the
+dark-energy history \(w(z)\). It is important to state at the outset,
+and it is frozen into the protocol below, that a favorable verdict means
+the distinctive prediction \textbf{survives}, not that the framework is
+established. The independent, corroborating test is the
+\textbf{galaxy-side} measurement of \(a_0(z)\) from resolved
+rotation-curve dynamics across redshift (the cross-scale program, DOI
+10.5281/zenodo.21440407). The value of \(a_0\), the normalization \(Z\),
+and the adiabatic-horizon promotion of
+\(a_0(z)\propto\sqrt{\rho_\mathrm{DE}}\) are all \textbf{posited}, not
+derived. This scope statement is non-negotiable and appears again,
+verbatim, in the frozen estimator's docstring.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{2. The Frozen Estimator and Pre-Committed
+Thresholds}\label{the-frozen-estimator-and-pre-committed-thresholds}
+
+The decision procedure is committed in \texttt{a0z\_gate\_estimator.py}
+(SHA-256 in §8). \textbf{Input:} a calibrated \((w_0,w_a)\) posterior
+--- mean, marginal uncertainties, and correlation coefficient.
+\textbf{Method:} the estimator draws \(N=4\times10^5\) samples from the
+input's bivariate Gaussian (via Cholesky factorization of the
+covariance), maps each draw through the framework relation to
+\(R=a_0(3)/a_0(0)\), and reports the median with its \([16,84]\)
+percentile interval, the significance of a \emph{decline} (\(R<1\))
+against flat, and the significance of a \emph{rise} (\(R>1\)). It then
+applies the following pre-committed thresholds. \textbf{No threshold,
+band, or estimator may change after the freeze; only the input
+\((w_0,w_a)\) is updated.}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Verdict
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Pre-committed condition
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{A) GATE OPEN} --- distinctive prediction alive and supported &
+decline detected at \(\ge 3\sigma\) \textbf{and} \(R\in[0.55,0.85]\)
+(the \(\sqrt{\rho_\mathrm{DE}}\) band across both footings) → \(a_0\)
+evolves as required; warrants the independent galaxy-side
+confrontation \\
+\textbf{B) GATE DISSOLVED} --- safe core, \emph{not} a falsification &
+consistent with flat (\(R=1\) within \(2\sigma\)) → framework reduces to
+constant-\(a_0\) MOND; the distinctive prediction is inapplicable. If in
+addition \(R\le0.85\) is excluded at \(\ge3\sigma\), the distinctive
+decline is positively ruled out (still dissolution, not a kill of the
+MOND-scale core) \\
+\textbf{C) FRAMEWORK STRAINED} --- cosmology-side tension & \(R>1\) (a
+\emph{rise}) at \(\ge3\sigma\) → the scale rises with \(z\), which
+\(a_0\propto\sqrt{\rho_\mathrm{DE}}\) does not permit under evolving DE \\
+\textbf{UNDECIDED} & none of the above met (insufficient significance /
+out of band) \\
+\end{longtable}
+}
+
+The band \([0.55,0.85]\) for Verdict A is the range of
+\(R=a_0(3)/a_0(0)\) produced by the \(\sqrt{\rho_\mathrm{DE}}\) relation
+across the range of dark-energy histories currently plausible; it is
+fixed here and does not move. To be precise about what sets it --- and
+to forestall any charge of gerrymandering --- the band width comes from
+the spread of allowed \((w_0,w_a)\), \textbf{not} from the two value
+footings (those give an \emph{identical} \(R\) at fixed \((w_0,w_a)\),
+so they cannot widen a band). Holding \(w_a=-0.62\), the edges
+correspond to \(w_0\approx-0.79\) (\(R=0.85\), mild evolution) and
+\(w_0\approx-1.00\) (\(R=0.55\), strong evolution). Two honesty notes
+follow. (i) The band \([0.55,0.85]\) is deliberately \emph{wider} than
+the nominal distinctive claim \(R\approx0.60\)--\(0.75\) quoted in §1.1;
+the DESI-central value \(R=0.775\) in fact sits just \emph{above} the
+nominal \(0.75\) but inside the operational band. (ii) The upper edge
+\(R=0.85\) is close to flat, so a ``supported'' verdict at that edge is
+a weak decline; this is the intended cost of choosing a decision band
+broad enough not to be tuned to any single posterior. The asymmetry
+between Verdicts A, B, and C is intentional: a decline in-band supports
+the distinctive claim, flatness dissolves it into the safe MOND core,
+and a \emph{rise} would strain the framework because the committed
+\(\sqrt{\rho_\mathrm{DE}}\) footing produces no rising \(a_0\) under
+evolving dark energy. Note the deliberate gap: a decline so steep that
+\(R<0.55\) at \(\ge3\sigma\) (steeper than \(\sqrt{\rho_\mathrm{DE}}\)
+allows) returns \textbf{UNDECIDED}, not a verdict --- the frozen
+procedure has no ``over-decline strain'' branch mirroring Verdict C (see
+§6.1).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{3. Data Hierarchy and the Refused DIY-Hubble-Diagram
+Path}\label{data-hierarchy-and-the-refused-diy-hubble-diagram-path}
+
+The gate is fed by a strict, frozen hierarchy of inputs:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Primary:} the LSST-DESC \emph{calibrated} Type-Ia supernova
+  cosmology sample --- systematics-controlled zero-points,
+  photometric-redshift treatment, and a modeled selection function.
+  Expected \textasciitilde2027 and later. This is the only input that
+  can produce a \emph{supported} verdict.
+\item
+  \textbf{Interim:} published Rubin \(w_0w_a\) constraints as they
+  appear, including externally combined CMB/BAO fits. These update the
+  input posterior but carry the caveats of any early, pre-final
+  calibration.
+\item
+  \textbf{Readiness tracker only:} a running count of broker-classified
+  Type-Ia candidates from the \emph{public} alert stream
+  (\texttt{broker\_sn\_counter.py}). \textbf{This count never feeds the
+  verdict.} It tracks \emph{when} the gate will have enough statistical
+  weight to spring --- timing, not cosmology.
+\end{enumerate}
+
+\subsubsection{The path we refuse}\label{the-path-we-refuse}
+
+We do \textbf{not} build a do-it-yourself Hubble diagram from public
+broker light curves. The alerts are public and real-time, but they are
+discoveries, not calibrated distances. Without the DESC calibration
+layer --- zero-point stability, photometric-redshift systematics, and a
+modeled selection function --- any \(w(z)\) extracted from raw broker
+photometry is systematics-dominated, and a ``Rubin supports \(a_0(z)\)''
+claim built on it would be a manufactured result. Refusing that path is
+stated here as a virtue of the protocol, not an omission: the primary
+input is the calibrated sample, full stop. The readiness tracker exists
+precisely so that the temptation to jump early has a disciplined,
+cosmology-free outlet.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{4. Forecast: What Significance Rubin
+Reaches}\label{forecast-what-significance-rubin-reaches}
+
+The forecast basis is committed in \texttt{forecast\_rubin\_a0z.py}
+(SHA-256 in §8); it is explicitly a projection, not a measurement. It
+propagates representative \emph{projected} Rubin \(w_0\)--\(w_a\)
+covariances through the framework relation and asks at what significance
+Rubin distinguishes the framework's decline from flat (\(w=-1\)).
+Photometric supernova cosmology forecasts for LSST reach a Dark Energy
+Task Force figure of merit of order 150 (LSST alone) up to
+\textasciitilde500 (LSST combined with CMB/BAO), against
+\textasciitilde54 for the Dark Energy Survey and the
+\textasciitilde{}\(2.0\sigma\) decline currently delivered by DESI DR2.
+Taking the DESI-central evolving-DE history as the assumed truth
+(\(w_0=-0.838\), \(w_a=-0.62\)), the committed forecast gives:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Input scenario
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\(\sigma(w_0)\)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\(\sigma(w_a)\)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\(R=a_0(3)/a_0(0)\)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Decline significance
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+DESI DR2 now (baseline) & 0.055 & 0.22 & 0.775 {[}0.683, 0.878{]} &
+\(2.0\sigma\) \\
+Rubin SN alone (FoM \textasciitilde150) & 0.040 & 0.15 & 0.775 {[}0.717,
+0.837{]} & \(3.3\sigma\) \\
+Rubin SN + CMB/BAO (FoM \textasciitilde500) & 0.020 & 0.08 & 0.775
+{[}0.742, 0.809{]} & \(4.6\)--\(4.7\sigma\) \\
+\end{longtable}
+}
+
+The forecast also runs the \textbf{mirror test} --- if the universe is
+in fact flat (\(w=-1\), \(a_0\) truly constant), how tightly does Rubin
+pin \(R\) to unity and thereby exclude the framework's \(\approx0.74\)?
+Rubin-alone (FoM \textasciitilde150) gives \(R=1.00\pm0.078\), excluding
+\(0.74\) at \(3.3\sigma\); Rubin + CMB/BAO (FoM \textasciitilde500)
+gives \(R=1.00\pm0.043\), excluding it at \(6.0\sigma\).
+
+The honest forecast summary is deliberately unheroic: if dark energy
+evolves at the DESI-central rate, Rubin sharpens the \(a_0\)-decline
+detection from DESI-now \(\sim2.0\sigma\) to \(\sim3.3\sigma\)
+(supernovae alone) or \(\sim4.6\)--\(4.7\sigma\) (with CMB/BAO) ---
+crossing the committed \(3\sigma\) bar, approaching but not alone
+reaching \(5\sigma\) at the modest \(0.775\)-vs-\(1.0\) gap. If dark
+energy is flat, Rubin pins \(R=1\) and excludes the framework's \(0.74\)
+at \(\sim3.3\)--\(6.0\sigma\). Either way the gate is likely settled at
+the \(3\)--\(6\sigma\) level by roughly 2028--2030 --- a real upgrade on
+DESI-now, not a one-instrument slam dunk.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{5. State at the Freeze
+(2026-07-21)}\label{state-at-the-freeze-2026-07-21}
+
+Running the frozen estimator on the best current input reproduces the
+baseline verdict exactly:
+
+\begin{itemize}
+\item
+  \textbf{Cosmology input (DESI DR2 2025, arXiv:2503.14738):}
+  \(w_0=-0.838\pm0.055\), \(w_a=-0.62\pm0.22\), correlation \(-0.86\) →
+  \(R=0.775\,[0.683,0.878]\), a decline at \(2.0\sigma\). This is
+  \textbf{below the committed \(3\sigma\) threshold}, so the frozen
+  verdict at the freeze is \textbf{UNDECIDED} --- a \(2.0\sigma\) hint,
+  explicitly not a detection, explicitly not gate-open. Applying the
+  same procedure to the two forecast inputs returns \emph{GATE OPEN} at
+  \(3.3\sigma\) and \(4.7\sigma\) respectively, showing that the
+  projected Rubin precision is what moves the verdict off UNDECIDED ---
+  but those are projections, not data, and cannot produce a real
+  verdict.
+\item
+  \textbf{Broker readiness tracker (live, 2026-07-21):} the ALeRCE
+  light-curve classifier reports \textbf{36,836} Type-Ia-classified
+  objects (ZTF legacy plus early LSST). This is past the
+  \textasciitilde4,400 spectroscopic-quality threshold
+  (\textbf{REACHED}) and is \textbf{9.21\%} of the
+  \textasciitilde400,000 LSST photometric target. It is a
+  broker-classifier count --- unvetted, no redshifts, ZTF-and-early-LSST
+  mixed --- and by the frozen hard rule it \textbf{never feeds the
+  verdict}. It reports timing only.
+\end{itemize}
+
+The fallback brokers, should the ALeRCE endpoint be unavailable, are
+Fink, Lasair, ANTARES, and Pitt-Google; the tracker script is
+ready-to-run against any of them.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{6. Honest Scope, and the Kill / Dissolution
+Conditions}\label{honest-scope-and-the-kill-dissolution-conditions}
+
+The scope is frozen in and stated plainly:
+
+\begin{itemize}
+\tightlist
+\item
+  This settles the \textbf{cosmology-side gate} --- \emph{does \(a_0\)
+  evolve at all} --- which the framework inherits from \(w(z)\).
+  \textbf{GATE OPEN means the distinctive prediction survives, not that
+  the framework is established.} The corroborating test remains the
+  \emph{independent galaxy-side} \(a_0(z)\) measured from resolved
+  dynamics across redshift (cross-scale, DOI 10.5281/zenodo.21440407).
+  The cosmology-side gate and the galaxy-side test are logically
+  distinct; passing the former is necessary, not sufficient.
+\item
+  \(a_0\)'s value, the normalization \(Z\), and the adiabatic-horizon
+  promotion of \(a_0(z)\propto\sqrt{\rho_\mathrm{DE}}\) are
+  \textbf{posited}, not derived. The Milgrom-form kernel
+  \(\nu=\sqrt{1+1/y}\) is credited to Milgrom (1999); the framework's
+  distinctive content is the horizon coefficient and the
+  modified-inertia completion (MI Field Theory, DOI
+  10.5281/zenodo.21403470).
+\end{itemize}
+
+The pre-committed kill / dissolution conditions, signed 2026-07-21:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Distinctive prediction FALSIFIED} if the calibrated Rubin
+  posterior yields \textbf{Verdict C} --- \(a_0\) \emph{rises} with
+  \(z\) at \(\ge3\sigma\) --- which no viable footing of
+  \(a_0\propto\sqrt{\rho_\mathrm{DE}}\) permits under evolving dark energy.
+\item
+  \textbf{Distinctive prediction DISSOLVED} (Verdict B) if \(w\to-1\):
+  the framework becomes ordinary constant-\(a_0\) MOND. This is the
+  stated safe core --- dissolution, not a kill of the MOND-scale
+  reframing. The reframing survives as constant-\(a_0\) MOND even if the
+  redshift signature vanishes.
+\item
+  \textbf{Distinctive prediction SUPPORTED} (Verdict A) only if
+  \emph{both} the \(\ge3\sigma\) decline \emph{and} the \([0.55,0.85]\)
+  band are met --- and even then, ``supported'' means survives to face
+  the galaxy-side test, nothing more.
+\end{itemize}
+
+Because \(R\) is \(Z\)-independent, none of these outcomes depends on
+the internal normalization; they depend on the measured dark-energy
+history alone. This is the cleanest form the test can take, and also the
+sharpest constraint on what a favorable outcome is allowed to mean.
+
+\subsubsection{6.1 Known limitations baked into the frozen
+procedure}\label{known-limitations-baked-into-the-frozen-procedure}
+
+Because the estimator and thresholds are hashed and cannot be revised
+after the freeze, the following limitations are documented rather than
+fixed. They are stated here so that no future reading can present the
+gate as tighter than it is.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{The signal is a \(z=3\) extrapolation beyond the supernova
+  range, and the significance is \(z\)-dependent.} The LSST photometric
+  SN sample constrains \(w(z)\) mainly at \(z\lesssim1.2\); the gate is
+  read at \(z=3\). Propagating the \emph{same} DESI-DR2 posterior to
+  different reference redshifts gives a decline significance of
+  \(0.34\sigma\) at \(z=1\) (\(R=0.99\), effectively flat),
+  \(1.7\sigma\) at \(z=2\), \(2.0\sigma\) at \(z=3\), and \(2.4\sigma\)
+  at \(z=10\); for the tight SN+CMB/BAO forecast covariance it is
+  \(1.1\sigma\) at \(z=1\) but \(4.7\sigma\) at \(z\ge2\). The headline
+  numbers therefore depend on the frozen choice \(z=3\), which is a
+  lever arm, not a redshift at which calibrated SNe exist. What the gate
+  genuinely tests is whether the SN-constrained posterior excludes
+  \((w_0,w_a)=(-1,0)\); the \(z=3\) evaluation converts that into an
+  \(a_0\)-ratio but does not add independent \(z=3\) information. A
+  reader must not treat \(R(z{=}3)=0.775\) as a measured \(z=3\)
+  acceleration scale.
+\item
+  \textbf{The framework's own \(a_0(z)\) bumps \emph{up} at low
+  redshift, which is where the galaxy-side corroborating test lives.} At
+  the DESI-central history \(a_0(z)\) rises to \(R\approx1.036\) near
+  \(z\approx0.35\) and only falls below \(1\) beyond \(z\approx0.9\).
+  The independent galaxy-side \(a_0(z)\) program (resolved
+  rotation-curve dynamics, DOI 10.5281/zenodo.21440407) is accessible
+  only at low redshift --- squarely inside this \emph{bump}. So a
+  GATE-OPEN verdict on the \(z=3\) \emph{decline} does not translate
+  into a low-\(z\) decline for the galaxy-side to corroborate; at
+  \(z\lesssim0.5\) the framework predicts a slight \textbf{rise} (a few
+  percent), and at \(z\sim1\) essentially no change. Anyone carrying
+  ``the framework predicts \(a_0\) declines'' to galaxy-side observers
+  at accessible redshifts would have the sign wrong. The two halves of
+  the program probe opposite branches of the same non-monotonic curve,
+  and the amplitude available to the galaxy side (\(\sim\)few percent)
+  is far smaller than the \(z=3\) headline.
+\item
+  \textbf{Verdict C (``rise ⇒ strained'') is well-posed only at the
+  frozen \(z=3\).} Because \(a_0(z)\) genuinely rises for
+  \(z\lesssim0.9\), a measured rise is a contradiction of the
+  \(\sqrt{\rho_\mathrm{DE}}\) footing \emph{only} when read at high \(z\);
+  the frozen \(z=3\) evaluation is what makes the rule self-consistent.
+  This is a reason the reference redshift is fixed, but it also means
+  Verdict C should never be applied to a low-\(z\) input.
+\item
+  \textbf{Doc-vs-code items.} (a) The Verdict-B sub-clause described in
+  §2 and §6 --- ``if \(R\le0.85\) is additionally excluded at
+  \(\ge3\sigma\), the decline is positively ruled out'' --- is
+  \emph{narrative only}; the frozen \texttt{a0z\_gate\_estimator.py}
+  computes Verdict B purely as consistency with \(R=1\) within
+  \(2\sigma\) and does not evaluate that exclusion. (b) The over-decline
+  gap of §2 (\(R<0.55\) significant \(\to\) UNDECIDED) is a real
+  asymmetry with Verdict C. (c) The frozen estimator prints ``GATE
+  OPEN'' for the two \emph{forecast} covariances; those are fabricated
+  inputs shown for illustration and, by the data hierarchy of §3, can
+  never constitute a verdict --- only a calibrated posterior can.
+\item
+  \textbf{Significance is a Bayesian posterior tail, and the two frozen
+  scripts differ at the \(0.1\sigma\) level.} The reported
+  ``\(N\sigma\)'' is the posterior credibility that \(R<1\) (the
+  fraction of samples with \(R\ge1\) mapped to a Gaussian sigma), not a
+  frequentist likelihood-ratio detection. The estimator
+  (\(N=4\times10^5\)) and the forecast script (\(N=3\times10^5\)) return
+  \(4.7\sigma\) and \(4.6\sigma\) respectively for the identical
+  SN+CMB/BAO scenario --- a Monte-Carlo difference, reported here as the
+  range \(4.6\)--\(4.7\sigma\).
+\item
+  \textbf{DESI input provenance.} The baseline
+  \((w_0,w_a)=(-0.838,-0.62)\), \(\sigma=(0.055,0.22)\), \(\rho=-0.86\)
+  is the DESI DR2 + CMB + Pantheon+ combination (the mildest of the DESI
+  DR2 SN combinations; DESY5 and Union3 prefer stronger evolution and a
+  lower \(R\)). The verdict at the freeze is UNDECIDED under this input
+  and remains UNDECIDED under the stronger combinations, so the choice
+  does not change the frozen state --- but the input row is named
+  explicitly so the update path is unambiguous.
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{7. Conclusion}\label{conclusion}
+
+We have frozen, before the data exist, a referee-grade decision
+procedure for the one distinctive prediction the de Sitter--Unruh
+modified-inertia framework makes on the cosmological side: that the
+galaxy acceleration scale tracks \(\sqrt{\rho_\mathrm{DE}}\) and therefore
+\emph{declines} with redshift if and only if dark energy evolves. The
+observable \(R=a_0(3)/a_0(0)\) is normalization-independent; the
+estimator, the thresholds (\(3\sigma\) decline and the \([0.55,0.85]\)
+band for GATE OPEN), the data hierarchy, and the refusal of the
+DIY-Hubble-diagram path are all committed and hashed. At the freeze the
+test stands \textbf{UNDECIDED}: DESI DR2 gives a \(2.0\sigma\) hint,
+\(R=0.775\,[0.68,0.88]\), below the committed bar. The committed
+forecast projects Rubin to reach \(\sim3.3\)--\(4.7\sigma\) if dark
+energy evolves, or to exclude the decline at \(\sim3.3\)--\(6.0\sigma\)
+if it does not --- a decision at the \(3\)--\(6\sigma\) level expected
+by roughly 2028--2030 from the LSST-DESC calibrated sample. A favorable
+outcome would mean the distinctive prediction survives to face the
+independent galaxy-side \(a_0(z)\) test; it would not, on its own,
+establish the framework. The value of this document is entirely in its
+timing: it is filed before the calibrated data can shape it, and only
+the \((w_0,w_a)\) input will be updated when they arrive.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{8. Freeze Integrity}\label{freeze-integrity}
+
+The SHA-256 hashes of the frozen artifacts, recorded in
+\texttt{FREEZE\_HASHES.txt} and verified 2026-07-21:
+
+\begin{verbatim}
+852ca954431b9239415038dde9f2b2ad9f89fe6325ff7a8ba3e3ebe357366740  a0z_gate_estimator.py
+ba24927ddb3263c390646019b1dba1968c4aa3de5ed572bc5de57685afd2b77f  broker_sn_counter.py
+bd714c93edd3eadc6c84413dee331e86be7ebaca8f0a5f88c84ec1542f46df0f  PREREGISTRATION.md
+530e66beef425bb500d085051c3219669e6d6e31364eec9263ea036bca7a5697  forecast_rubin_a0z.py
+\end{verbatim}
+
+The Zenodo DOI and its deposit timestamp are the public lock-in of this
+pre-registration. No threshold, band, or estimator changes after this
+hash; only the calibrated \((w_0,w_a)\) input is updated when the
+LSST-DESC sample lands.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{References}\label{references}
+
+\begin{itemize}
+\tightlist
+\item
+  DESI Collaboration (2025). \emph{DESI DR2 Results II: Measurements of
+  Baryon Acoustic Oscillations and Cosmological Constraints.}
+  arXiv:2503.14738; Phys. Rev.~D 112, 083515. (The
+  \(w_0=-0.838,\,w_a=-0.62\) input used here is the DESI+CMB+Pantheon+
+  combination.)
+\item
+  Ivezić, Ž., et al.~(LSST/Rubin) (2019). \emph{LSST: From Science
+  Drivers to Reference Design and Anticipated Data Products.} ApJ 873,
+  111.
+\item
+  LSST Dark Energy Science Collaboration (LSST-DESC). Supernova
+  cosmology forecasts (photometric FoM \textasciitilde150; +CMB/BAO
+  \textasciitilde500).
+\item
+  Möller, A., et al.~\emph{Fink}; Smith, K. W., et al.~\emph{Lasair};
+  Matheson, T., et al.~\emph{ANTARES}; Förster, F., et al.~\emph{ALeRCE}
+  --- LSST/ZTF alert brokers.
+\item
+  Milgrom, M. (1983). \emph{A modification of the Newtonian dynamics as
+  a possible alternative to the hidden mass hypothesis.} ApJ 270, 365.
+\item
+  Milgrom, M. (1999). \emph{The modified dynamics as a vacuum effect.}
+  Phys. Lett. A 253, 273 --- the \(\nu=\sqrt{1+1/y}\) kernel.
+\item
+  Limbach, C., Psaltis, D., Özel, F. (2008). \emph{The Redshift
+  Evolution of the Tully--Fisher Relation as a Test of Modified
+  Gravity.} arXiv:0809.2790 --- considered \(a_0\) coupled to \(H_0\) or
+  to \(\rho_\mathrm{DE}\) (the \(a_0\sim c\sqrt{\rho_\mathrm{DE}}\)
+  coincidence predates this framework) and tested both couplings against
+  Tully--Fisher data to \(z\simeq1.2\). Their credit is for the
+  coincidence; the horizon-sourced dynamical promotion is what this
+  framework adds.
+\item
+  Zimmerman, C. P. \emph{Cross-scale \(a_0(z)\) program} (galaxy-side
+  corroborating test). DOI 10.5281/zenodo.21440407.
+\item
+  Zimmerman, C. P. \emph{Modified-Inertia Field Theory.} DOI
+  10.5281/zenodo.21403470.
+\item
+  Zimmerman, C. P. \emph{Gaia-DR4 pre-registration} (frozen-cuts
+  precedent).
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\emph{Author: Carl P. Zimmerman, Briar Creek Tech
+(carl@briarcreektech.com). This is a pre-registration filed before the
+calibrated Rubin supernova cosmology sample exists. It is a committed
+analysis protocol, not a result. Every quantitative figure herein is
+produced by a committed, hash-locked script that exits 0.}
+
+\end{document}
