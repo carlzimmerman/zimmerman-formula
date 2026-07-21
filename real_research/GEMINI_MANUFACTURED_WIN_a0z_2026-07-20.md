@@ -48,11 +48,16 @@ in step 2, then broke it in the low-z linearization to force the MUSE match.
 
 ## Honest standing vs the data
 The framework's canonical branch is **bump-then-decline**; MUSE-DARK III (reported rise,
-~doubling by z~1) and the independent NIRSpec MSA-3D inversion (this repo,
-`msa3d_a0z_confrontation.py` / `_robustness.py`: rising inferred a₀, slope +1.7…+2.1)
-both **lean AGAINST** it. That is a **TENSION**, not a kill (absolute a₀ is M/L-degenerate;
-the MSA-3D slope exceeds even √ρ_total → z-correlated systematics; dissolves if w→−1). The
-decisive clean test remains the z≳3 BTFR-offset sign — **not** a₀(z).
+~doubling by z~1) leans **AGAINST** it (real, contested — see memory). The NIRSpec MSA-3D
+inversion (this repo, `msa3d_a0z_confrontation.py` / `_robustness.py`) initially showed a
+rising slope +2.1, **but the 2026-07-20 audit downgraded it** — the exact factorization
+a₀_inf = g_obs·f(2−f)/(1−f) splits that slope into **+1.13 pure acceleration-selection**
+(higher-z sample galaxies sit at higher g_obs) **+1.00 from f_DM**, and controlling for
+g_obs the genuine trend is **+0.91 [+0.05, +1.63] — only ~1.1σ from flat**; the paper
+itself reports "no clear redshift trend" in f_DM (`msa3d_a0z_selection_decomposition.py`).
+MSA-3D is therefore **WEAK-TENSION/WATCH, not "hardens"**. Absolute a₀ stays
+M/L-degenerate; everything dissolves if w→−1. The decisive clean test remains the z≳3
+BTFR-offset sign — **not** a₀(z).
 
 ## Artifacts (committed, runnable)
 - `real_research/a0_value_and_cpl_evolution_check.py` — 9.36-vs-9.42 input check + exact-vs-linear.
