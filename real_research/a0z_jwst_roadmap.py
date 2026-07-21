@@ -59,21 +59,29 @@ ax.plot(z,Ez(z),color='#2ec27e',lw=2.2,ls=':',zorder=5,
 zm=np.linspace(0.5,1.44,40)
 ax.plot(zm,1+zm,color='#c064c7',lw=2.4,zorder=6,label='MUSE-DARK III (reported rise)')
 ax.errorbar(bz,bmN,yerr=beN,fmt='s',ms=9,mfc='white',color='#b08c0a',mec='#b08c0a',mew=1.6,
-            capsize=4,zorder=7,label='MSA-3D raw inversion (selection-confounded → WATCH)')
+            capsize=4,zorder=7,label='MSA-3D RAW inversion (candles = stats only; selection-confounded)')
+# the g_obs-CONTROLLED genuine trend band (audit): slope +0.91 [16-84%: +0.05,+1.63], anchored z=0.71
+zb=np.linspace(0.5,1.7,60); anch=1+0.71
+ax.fill_between(zb,((1+zb)/anch)**0.05,((1+zb)/anch)**1.63,color='#f5c211',alpha=0.28,zorder=3)
+ax.plot(zb,((1+zb)/anch)**0.91,color='#b08c0a',lw=1.6,ls='--',zorder=4,
+        label='MSA-3D after selection control (+0.91±0.8) — the honest constraint')
 
 ax.annotate('YOUR prediction:\nbump +3% (z≈0.3)\nthen DECLINE → 0.66 at z=3.5',
             xy=(3.0,canon(3.0,-0.83,-0.75)),xytext=(2.15,0.55),fontsize=8.6,color='#1a5fb4',
             arrowprops=dict(arrowstyle='->',color='#1a5fb4',lw=1.3))
 ax.annotate('MUSE rise = the TENSION\n(real, contested)',xy=(1.2,2.2),xytext=(0.28,4.9),
             fontsize=8.8,color='#8f4700',arrowprops=dict(arrowstyle='->',color='#8f4700',lw=1.2))
-ax.annotate('MSA-3D audit: rise is >half\nacceleration-selection;\ng_obs-controlled slope\n+0.91±0.8 (~1.1σ from flat)\n→ WATCH, not tension',
-            xy=(1.43,3.19),xytext=(1.62,5.4),fontsize=7.8,color='#7a6207',
+ax.annotate('RAW points: anchor bin sits at g_obs/a₀≈1.8,\nhigher bins at ≈3.1–3.3 → the ×1.8 composition\nshift manufactures most of the "rise"\n(a₀_inf = g_obs·h(f) exactly)',
+            xy=(1.43,3.19),xytext=(1.6,5.6),fontsize=7.6,color='#7a6207',
+            arrowprops=dict(arrowstyle='->',color='#b08c0a',lw=1.1))
+ax.annotate('CONTROLLED band: your curve\nsits ~1σ below its edge → WATCH',
+            xy=(1.55,((1+1.55)/(1+0.71))**0.05),xytext=(2.2,1.45),fontsize=7.8,color='#7a6207',
             arrowprops=dict(arrowstyle='->',color='#b08c0a',lw=1.1))
 ax.set_yscale('log'); ax.set_ylim(0.5,13); ax.set_xlim(0,4.5)
 ax.set_yticks([0.5,0.7,1,1.5,2,3,5,8]); ax.set_yticklabels(['0.5','0.7','1','1.5','2','3','5','8'])
 ax.set_xlabel('redshift  $z$',fontsize=12.5); ax.set_ylabel(r'$a_0(z)\,/\,a_0(0)$',fontsize=12.5)
 ax.set_title(r'$a_0(z)$: your prediction, the tension, and the open JWST windows',fontsize=13,weight='bold')
-ax.legend(fontsize=8.6,loc='lower left',framealpha=0.96,ncol=1)
+ax.legend(fontsize=8.2,ncol=2,loc='upper center',bbox_to_anchor=(0.5,-0.085),framealpha=0.96)
 ax.text(0.015,0.015,r'$a_0=c^2\sqrt{\Lambda/32\pi}=9.36\times10^{-11}$ m s$^{-2}$;  '
         r'$a_0(z)/a_0(0)=(1{+}z)^{\frac{3}{2}(1+w_0+w_a)}e^{-\frac{3}{2} w_a z/(1+z)}$',
         transform=ax.transAxes,fontsize=8,color='0.3')
