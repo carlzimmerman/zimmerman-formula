@@ -25,6 +25,7 @@ git clone https://github.com/carlzimmerman/zimmerman-formula
 python3 zimmerman-formula/a0kit/a0kit.py    # self-test
 ```
 ```python
+# run from inside the a0kit/ directory, or first: import sys; sys.path.append("path/to/a0kit")
 import a0kit
 a0 = a0kit.a0_from_lambda()                 # 9.35e-11 m/s^2
 a0kit.lambda_from_a0(a0)                     # -> Planck Lambda
@@ -43,7 +44,9 @@ because which cosmic density sets the scale is not settled by the framework.
 - Milgrom 1983 (ApJ 270, 365); Milgrom 1999 (Phys. Lett. A 253, 273) — the interpolation kernel.
 - Framework: Zimmerman, flagship 10.5281/zenodo.21312654; the a₀-line / Λ-from-rotation
   10.5281/zenodo.21419735; MI field-theory results 10.5281/zenodo.21403470.
-- **Code DOI (cite this for the software): 10.5281/zenodo.21478982** (version-locked 1.0.0 archive).
+- **Code DOI (cite this for the software): 10.5281/zenodo.21478981** (concept DOI, resolves to the latest version; v1.0.1 = 10.5281/zenodo.21479088).
 - If you use this code, please cite the code DOI and the framework papers above.
+
+Note: the two canonical entry points (`a0_from_lambda` vs `a0_from_hubble`) differ by ~0.76% at their defaults — that is the documented Planck-alone vs Planck+BAO input-chain fork, not a formula difference (see the `a0_from_hubble` docstring).
 
 License: AGPL-3.0 (per the parent repository).

@@ -37,7 +37,16 @@ def a0_from_lambda(Lam=LAMBDA_PLANCK):
 
 def a0_from_hubble(H0_kms_mpc, footing="canonical", Omega_L=0.6889):
     """a0 = c H_Lambda / Z.  footing='canonical' uses H_Lambda = H0*sqrt(Omega_L) (pure dark
-    energy); footing='alt' uses the total-density rate H0 (a0 = c H0 / Z)."""
+    energy); footing='alt' uses the total-density rate H0 (a0 = c H0 / Z).
+    Raises ValueError on any other footing string (the canonical-vs-alt fork is ~21% and
+    verdict-flipping, so a typo must never silently pick a footing).
+    NOTE (input-chain fork): with the defaults (H0=67.66, Omega_L=0.6889 -- the Planck+BAO
+    chain) the canonical route gives 9.425e-11, which differs by ~0.76% from
+    a0_from_lambda() (whose LAMBDA_PLANCK=1.089e-52 is the Planck-alone chain, 9.354e-11).
+    That spread is input-data provenance (the documented 9.42-vs-9.36 fork), not a formula
+    difference; pass Planck-alone values (H0=67.36, Omega_L=0.6847) to make the routes agree."""
+    if footing not in ("canonical", "alt"):
+        raise ValueError(f"footing must be 'canonical' or 'alt', got {footing!r}")
     H0 = H0_kms_mpc*1e3/MPC
     H = H0*np.sqrt(Omega_L) if footing=="canonical" else H0
     return C*H/Z
@@ -51,7 +60,7 @@ def rho_de_from_a0(a0):
     return 4*a0**2/(G*C**2)
 
 def nu(y):
-    """Framework interpolation nu(y)=sqrt(1+1/y), y=g_bar/a0 (Milgrom-1999 form)."""
+    """Framework interpolation nu(y)=sqrt(1+1/y), y=g_bar/a0 (Milgrom-1999 form). Domain y>0."""
     return np.sqrt(1+1/y)
 
 def g_obs(g_bar, a0=A0_CANONICAL):
@@ -59,7 +68,9 @@ def g_obs(g_bar, a0=A0_CANONICAL):
     return np.sqrt(g_bar**2 + g_bar*a0)
 
 def a0_line(g_obs_, g_bar):
-    """Invert the a0-line to read a0 off a single (g_obs, g_bar) point: a0=(g_obs^2-g_bar^2)/g_bar."""
+    """Invert the a0-line to read a0 off a single (g_obs, g_bar) point: a0=(g_obs^2-g_bar^2)/g_bar.
+    Domain g_bar>0. NOTE: a noisy point with g_obs<g_bar returns a NEGATIVE a0 by design --
+    per-point estimates are signed residuals meant to be averaged, not clipped."""
     return (g_obs_**2 - g_bar**2)/g_bar
 
 def rho_de_ratio(z, w0=-1.0, wa=0.0):
@@ -68,11 +79,13 @@ def rho_de_ratio(z, w0=-1.0, wa=0.0):
 
 def a0_of_z(z, w0=-1.0, wa=0.0, a0_0=A0_CANONICAL):
     """Framework redshift law: a0(z) = a0(0) sqrt(rho_DE(z)/rho_DE0).  (a0(z)/a0(0) is
-    Z-independent; posited adiabatic-horizon promotion of the a0~sqrt(rho_DE) relation.)"""
+    Z-independent; posited adiabatic-horizon promotion of the a0~sqrt(rho_DE) relation.)
+    Domain z>-1 (scalar inputs with z<-1 hit a negative-base fractional power)."""
     return a0_0*np.sqrt(rho_de_ratio(z, w0, wa))
 
 def btfr_vflat(M_bar_kg, a0=A0_CANONICAL):
-    """Deep-MOND baryonic Tully-Fisher flat velocity: V_flat = (a0 G M_bar)^(1/4)  [m/s]."""
+    """Deep-MOND baryonic Tully-Fisher flat velocity: V_flat = (a0 G M_bar)^(1/4)  [m/s].
+    Domain M_bar>=0."""
     return (a0*G*M_bar_kg)**0.25
 
 def footings():
