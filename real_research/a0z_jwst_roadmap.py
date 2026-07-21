@@ -42,7 +42,7 @@ fig,(ax,axr)=plt.subplots(1,2,figsize=(14.5,6.2),gridspec_kw={'width_ratios':[1.
 ax.axvspan(0.4,1.7,color='#f6d5d5',alpha=0.55,zorder=0)
 ax.axvspan(1.7,3.0,color='#d8ead8',alpha=0.6,zorder=0)
 ax.axvspan(3.0,4.5,color='#d3e0f2',alpha=0.7,zorder=0)
-ax.text(1.05,10.5,'REPORTED\nMUSE-DARK III + MSA-3D',ha='center',fontsize=8.2,color='#a11',weight='bold')
+ax.text(1.05,10.5,'REPORTED\nMUSE tension · MSA-3D watch',ha='center',fontsize=8.2,color='#a11',weight='bold')
 ax.text(2.35,10.5,'OPEN — JWST/NIRSpec + ALMA\n$a_0$ at cosmic noon',ha='center',fontsize=8.2,color='#276027',weight='bold')
 ax.text(3.75,10.5,'OPEN — JWST + ALMA\nz≳3 BTFR-sign (decisive)',ha='center',fontsize=8.2,color='#1a4a86',weight='bold')
 
@@ -58,14 +58,17 @@ ax.plot(z,Ez(z),color='#2ec27e',lw=2.2,ls=':',zorder=5,
 # ---- data ----
 zm=np.linspace(0.5,1.44,40)
 ax.plot(zm,1+zm,color='#c064c7',lw=2.4,zorder=6,label='MUSE-DARK III (reported rise)')
-ax.errorbar(bz,bmN,yerr=beN,fmt='s',ms=9,color='#f5c211',mec='k',mew=1.2,capsize=4,zorder=7,
-            label='MSA-3D inferred trend (this work)')
+ax.errorbar(bz,bmN,yerr=beN,fmt='s',ms=9,mfc='white',color='#b08c0a',mec='#b08c0a',mew=1.6,
+            capsize=4,zorder=7,label='MSA-3D raw inversion (selection-confounded → WATCH)')
 
 ax.annotate('YOUR prediction:\nbump +3% (z≈0.3)\nthen DECLINE → 0.66 at z=3.5',
             xy=(3.0,canon(3.0,-0.83,-0.75)),xytext=(2.15,0.55),fontsize=8.6,color='#1a5fb4',
             arrowprops=dict(arrowstyle='->',color='#1a5fb4',lw=1.3))
-ax.annotate('data rise = the TENSION\n(leans against canonical)',xy=(1.43,3.19),xytext=(0.35,4.6),
+ax.annotate('MUSE rise = the TENSION\n(real, contested)',xy=(1.2,2.2),xytext=(0.28,4.9),
             fontsize=8.8,color='#8f4700',arrowprops=dict(arrowstyle='->',color='#8f4700',lw=1.2))
+ax.annotate('MSA-3D audit: rise is >half\nacceleration-selection;\ng_obs-controlled slope\n+0.91±0.8 (~1.1σ from flat)\n→ WATCH, not tension',
+            xy=(1.43,3.19),xytext=(1.62,5.4),fontsize=7.8,color='#7a6207',
+            arrowprops=dict(arrowstyle='->',color='#b08c0a',lw=1.1))
 ax.set_yscale('log'); ax.set_ylim(0.5,13); ax.set_xlim(0,4.5)
 ax.set_yticks([0.5,0.7,1,1.5,2,3,5,8]); ax.set_yticklabels(['0.5','0.7','1','1.5','2','3','5','8'])
 ax.set_xlabel('redshift  $z$',fontsize=12.5); ax.set_ylabel(r'$a_0(z)\,/\,a_0(0)$',fontsize=12.5)
