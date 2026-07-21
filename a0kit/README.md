@@ -43,6 +43,7 @@ because which cosmic density sets the scale is not settled by the framework.
 - Milgrom 1983 (ApJ 270, 365); Milgrom 1999 (Phys. Lett. A 253, 273) — the interpolation kernel.
 - Framework: Zimmerman, flagship 10.5281/zenodo.21312654; the a₀-line / Λ-from-rotation
   10.5281/zenodo.21419735; MI field-theory results 10.5281/zenodo.21403470.
-- If you use this code, please cite the framework papers above and this repository.
+- **Code DOI (cite this for the software): 10.5281/zenodo.21478982** (version-locked 1.0.0 archive).
+- If you use this code, please cite the code DOI and the framework papers above.
 
 License: AGPL-3.0 (per the parent repository).
