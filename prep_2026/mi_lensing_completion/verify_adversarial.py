@@ -211,7 +211,8 @@ INDEPENDENT VERDICT (both footings, a0 non-diagnostic on the L side):
       mass-blind (~L). Every evasion I constructed lands on ~D or ~L. Both footings identical.
 
   So within single-metric (mandatory; the disformal 2nd cone is GW170817-dead), the pair
-  {a0-DERIVED} XOR {single-metric MOND-lensing phantom} is the exact wall. The theory can
+  {a0-DERIVED} and {single-metric MOND-lensing phantom} CANNOT COEXIST -- not(D and L)
+  under S (not exclusive-or: the pure-GR corner has neither). That is the exact wall. The theory can
   be completed for lensing ONLY as modified gravity (C2/C3b), forfeiting the vacuum-derived
   a0. Reported as a partial, per ground rules. No manufactured completion; no manufactured
   no-go.

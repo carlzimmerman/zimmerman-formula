@@ -1,0 +1,979 @@
+% JCAP submission — initial-submission preprint format.
+% NOTE: JCAP's official class is jcappub.sty (SISSA/IOP template); it is not
+% installed on this machine, so this manuscript is prepared in the article
+% class with JCAP-compatible structure (title/author/abstract/keywords,
+% numbered sections, numeric citations). JCAP accepts an initial PDF
+% submission in any single-column format; reformat to jcappub at the
+% revision stage if requested.
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{geometry}
+\geometry{margin=2.7cm}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\Mbar}{M_{\rm bar}}
+\newcommand{\rhoDE}{\rho_{\rm DE}}
+\newcommand{\azero}{a_0}
+\newcommand{\msms}{{\rm m\,s^{-2}}}
+
+\title{\bfseries A parameter-free, pre-registered test that the galaxy
+acceleration scale tracks the dark-energy density:\\
+$a_0(z)/a_0(0)=\sqrt{\rho_{\rm DE}(z)/\rho_{\rm DE,0}}$}
+
+\author{Carl P. Zimmerman\\[2pt]
+\normalsize Briar Creek Tech (independent researcher)\\
+\normalsize \href{mailto:carl@briarcreektech.com}{carl@briarcreektech.com}
+\;\textperiodcentered\;
+ORCID \href{https://orcid.org/0009-0008-3508-7982}{0009-0008-3508-7982}}
+\date{July 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent
+The galaxy acceleration scale $\azero\approx1.2\times10^{-10}\,\msms$ that sets
+the onset of the mass-discrepancy/MOND regime coincides numerically with
+$c\sqrt{\rho_\Lambda}$ --- a fact noted by Limbach, Psaltis \& \"Ozel (2008).
+In the de Sitter--Unruh modified-inertia framework this scale is sourced by the
+cosmological horizon, $\azero=cH_\Lambda/Z$; promoting it adiabatically as the
+horizon evolves ties the coupling, under the adiabatic-horizon ansatz (itself
+posited, not derived), to the dark-energy density and yields a parameter-free
+redshift law, $\azero(z)/\azero(0)=\sqrt{\rhoDE(z)/\rho_{\rm DE,0}}$. We study
+the ratio $R\equiv \azero(z)/\azero(0)$, which is independent of the
+framework's internal normalization $Z$ and of the present-day value of
+$\azero$ (both cancel), so that it depends only on the measured dark-energy
+equation of state $w(z)$. This makes the framework falsifiable: $R$ tracks
+$\sqrt{\rhoDE(z)}$; under the DESI-preferred ($w_0>-1$, $w_a<0$) histories it
+declines at high redshift, it reduces to $R=1$ exactly if $w=-1$ (constant-$\azero$
+MOND), and a measured rise registers as a strained verdict in the frozen
+protocol. We confront the prediction non-circularly across two scales --- a
+cosmology-side gate driven by DESI DR2 $w_0w_a$ constraints, which fixes the
+required sign and amplitude, and an independent galaxy-side measurement of
+$\azero(z)$ from the deep-MOND baryonic Tully--Fisher (BTFR) zero point. We
+state the limitations plainly: the cosmology gate inherits $w(z)$ and is a
+consistency condition rather than independent evidence; the reference ratio at
+$z=3$ is a CPL extrapolation beyond the supernova range; the predicted
+$\azero(z)$ is non-monotonic (a few-percent rise at $z\lesssim0.5$ before
+declining at high $z$), so the two scales probe opposite branches of the same
+curve; and the galaxy-side test is at present $\Mbar$-dominated and
+underpowered (neither passed nor failed). The central methodological finding
+redirects the observational strategy: in the BTFR estimator $\azero$ is
+$1{:}1$ degenerate with $\Mbar$, the dominant $\Mbar$ systematic
+(IMF, $\alpha_{\rm CO}$, dust) is \emph{common-mode} and does not average down
+with sample size --- with a $\gtrsim0.08$-dex correlated floor the BTFR test
+never reaches $3\sigma$ at any rotator count. The decisive lever is
+common-mode $\Mbar$ calibration to $\lesssim0.05$ dex (with $\sim$20--40 clean
+deep-MOND rotators), and the degeneracy-breaking observable is the
+rotation-curve/radial-acceleration-relation transition, not the BTFR zero
+point. At present DESI DR2 gives $R(z{=}3)=0.775\,[0.68,0.88]$, a $2.0\sigma$
+hint below our committed $3\sigma$ bar --- undecided. We therefore
+pre-register --- with a hashed, timestamped estimator, decision thresholds,
+and data hierarchy fixed before the data exist --- the test against the
+forthcoming Rubin/LSST calibrated supernova cosmology sample (expected
+$\gtrsim2027$), which forecasts project to settle the gate at the $3$--$6\sigma$
+level by $\sim$2028--2030. The value of $\azero$, the normalization $Z$, and
+the sign of the effect are posited, not derived; the kernel
+$\nu=\sqrt{1+1/y}$ is Milgrom's (1999) and the covariant MOND-scale
+realization is AeST (Skordis \& Zlosnik 2021). The contribution is a bounded,
+falsifiable, pre-registered program, not a detection.
+\end{abstract}
+
+\medskip
+\noindent\textbf{Keywords:} modified gravity, dark energy equation of state,
+supernova type Ia --- standard candles, redshift surveys, rotation curves of
+galaxies.
+
+\tableofcontents
+
+\section{Introduction}
+\label{sec:intro}
+
+\subsection{The coincidence, and what promoting it to a law buys}
+
+A spiral galaxy's mass discrepancy switches on below a universal acceleration
+$\azero\approx1.2\times10^{-10}\,\msms$ (Milgrom 1983 \cite{Milgrom1983}). To
+order unity this number equals the acceleration scale set by the dark energy
+accelerating the whole universe, $c\sqrt{\rho_\Lambda}$ --- a coincidence that
+is \emph{not} original to this work: Limbach, Psaltis \& \"Ozel (2008)
+\cite{LPO2008} identified it and tested candidate $\azero$--$H_0$ and
+$\azero$--$\rhoDE$ couplings against Tully--Fisher data to $z\simeq1.2$. If
+the coincidence is physical --- if $\azero$ is genuinely sourced by the dark
+sector --- then as the dark-energy density changes through cosmic history,
+$\azero$ must change with it, on a track fixed by the cosmology with nothing
+to tune. This paper states that track precisely, shows what current data do to
+it, and pre-registers the decision procedure by which forthcoming data will
+judge it.
+
+\subsection{The framework and the horizon scale}
+\label{sec:framework}
+
+Modified inertia (MI) proposes that the inertial response of a body weakens
+below a critical acceleration $\azero$, rather than the gravitational field
+being modified. In the de Sitter--Unruh realization, an accelerated observer
+in a universe with a cosmological horizon sees a floor in the vacuum's
+response set by the horizon temperature, and the transition scale is tied to
+the horizon:
+\begin{equation}
+\azero=\frac{cH_\Lambda}{Z}=\frac{c^2\sqrt{\Lambda/3}}{Z},
+\qquad Z=\sqrt{\tfrac{32\pi}{3}}=5.78881,
+\label{eq:a0}
+\end{equation}
+with $H_\Lambda\equiv c\sqrt{\Lambda/3}$ the de Sitter (pure dark-energy)
+Hubble rate. The Planck 2018 value $\Lambda=1.089\times10^{-52}\,{\rm m^{-2}}$
+gives the \textbf{canonical footing}
+$\azero^{\rm canon}=c^2\sqrt{\Lambda/32\pi}=9.355\times10^{-11}\,\msms$ (pure
+$\rhoDE$). A second \textbf{ALT footing} replaces the pure-$\Lambda$ density
+by the total present-day critical density,
+$\azero^{\rm ALT}=cH_0/Z=1.1305\times10^{-10}\,\msms$. The two differ by
+$20.9\%$; both are carried on every dimensional number below (they cancel
+identically in every ratio).
+
+\paragraph{Scope, stated once and binding throughout.} Nothing here derives
+the \emph{value} of $\azero$, the constant $Z$, or the \emph{sign} of the
+inertial correction: those are posited inputs. The low-acceleration
+interpolation used to read $\azero$ from rotation curves,
+$\nu(y)=\sqrt{1+1/y}$ with $y=g_{\rm bar}/\azero$, is the identical functional
+form to Milgrom's 1999 interpolation (\cite{Milgrom1999}, Eq.~9, in the
+original MOND context of \cite{Milgrom1983}); Milgrom's coefficient was
+$2cH_\Lambda$ rather than $cH_\Lambda/Z$. The covariant modified-\emph{gravity}
+realization of a MOND scale is AeST \cite{AeST}; this work adopts both and
+claims neither. The distinctive content claimed here is only the
+$cH_\Lambda/Z$ \emph{coefficient}, the modified-inertia reading, and the
+falsifiable $\azero(z)\propto\sqrt{\rhoDE(z)}$ law under test.
+
+\subsection{Related work by the author}
+\label{sec:related}
+
+This manuscript consolidates, into one peer-review-facing article, three of
+the author's Zenodo preprint/pre-registration deposits released for
+reproducibility and timestamping: the parameter-free $\azero(z)$ law and its
+DESI confrontation \cite{Zdesi}, the non-circular cross-scale test
+\cite{Zcross}, and the Rubin/LSST pre-registration \cite{Zprereg}. Two
+companion papers by the author treat logically distinct results and are cited,
+not consolidated: a field-theory paper (covariant modified-inertia
+construction and an obstruction theorem; Zenodo record \cite{Zmift}, PRD
+submission in preparation) and a galaxy-dynamics data paper (the SPARC
+$\azero$-line slope measurement and its $\Lambda$-inversion; Zenodo record
+\cite{Za0line}, MNRAS submission in preparation). On the footing fork the
+division of labor is explicit: \emph{the value-normalization fork (canonical
+$cH_\Lambda/Z$ vs $cH_0/Z$) is examined empirically in the companion SPARC
+measurement \cite{Za0line}; here only the evolution-law footing is under
+test.} Nothing in the present test depends on the covariant field-theory
+completion (Section~\ref{sec:limitations}).
+
+\section{The prediction}
+\label{sec:prediction}
+
+\subsection{The parameter-free replacement of the free-$w$ fit}
+
+The framework keeps General Relativity for the cosmological background and
+therefore has no native supernova formula: light-curve-to-distance
+standardization is unchanged, and the Friedmann equation is the standard one.
+Its single distinctive move is that the dark-energy term is not a free fit but
+the galaxy acceleration scale,
+\begin{equation}
+H^2(z)=\frac{8\pi G}{3}\,\rho_m(z)+\frac{Z^2\azero^2(z)}{c^2},
+\qquad \frac{Z^2\azero^2}{c^2}=H_\Lambda^2=\frac{\Lambda c^2}{3}\;\;(z=0),
+\end{equation}
+so that, inverting $Z^2\azero^2/c^2=\tfrac{8\pi G}{3}\rhoDE$ with
+$Z^2=32\pi/3$, the dark-energy mass density is
+$\rhoDE(z)=4\azero^2(z)/(Gc^2)$ and
+\begin{equation}
+\boxed{\;\azero(z)=\tfrac{c}{2}\sqrt{G\,\rhoDE(z)}
+=c^2\sqrt{\Lambda_{\rm eff}(z)/32\pi}
+\quad\Longrightarrow\quad
+R(z)\equiv\frac{\azero(z)}{\azero(0)}=\sqrt{\frac{\rhoDE(z)}{\rho_{\rm DE,0}}}\;}
+\label{eq:law}
+\end{equation}
+The SI form $\tfrac{c}{2}\sqrt{G\rhoDE}$ uses the dark-energy \emph{mass}
+density (kg\,m$^{-3}$); the equivalent geometric form uses
+$\Lambda_{\rm eff}\equiv8\pi G\rhoDE/c^2$ (m$^{-2}$). Both give
+$\azero^{\rm canon}=9.355\times10^{-11}\,\msms$ at $z=0$ on Planck
+$\rho_{\rm DE,0}$; the two conventions must not be mixed. The
+redshift-tracking ratio $R(z)$ is convention-independent.
+
+On the supernova side this adds \textbf{no free dark-energy parameter} ---
+against $\Lambda$CDM's $\Omega_\Lambda$ (and, in the evolving-DE extension,
+$w_0,w_a$). The framework does not, however, produce a parameter-free
+dark-energy history from nothing: it \emph{consumes} whatever $\rhoDE(z)$ the
+cosmic data prefer (itself the $w_0,w_a$ fit to distances) and requires that
+the \emph{same} function reproduce the galaxy-side $\azero(z)$. The content is
+therefore a cross-\emph{dataset} constraint, not a first-principles prediction
+of $w(z)$. At $z=0$ the framework is identical to $\Lambda$CDM by
+construction. It differs from $\Lambda$CDM only if $\azero(z)$ evolves.
+
+\subsection{$R$ is $Z$-independent, and the two distinct footing forks}
+\label{sec:forks}
+
+Because $R$ is a ratio of $\azero$ at two redshifts, the normalization $Z$ and
+the absolute value of $\azero$ cancel identically: both \emph{value} footings
+(canonical $9.36\times10^{-11}$ and ALT $1.13\times10^{-10}\,\msms$) collapse
+onto the same $R(w_0,w_a)$. $R$ depends on the dark-energy expansion history
+alone. One clarification is owed, because the framework's internal audit
+distinguishes two separate footing forks. The fork that cancels is the
+\emph{value} fork (which absolute $\azero$ today). A second, logically
+independent fork concerns the \emph{evolution law} itself: the
+adiabatic-horizon $\azero\propto\sqrt{\rhoDE(z)}$ (which declines at high $z$
+under evolving DE) versus a rival $\azero\propto cH(z)=cH_0E(z)$ (which
+\emph{rises} with $z$). \textbf{This work commits to the $\sqrt{\rhoDE}$
+footing as the prediction under test}, in advance: if the data instead showed
+a rise, that registers as Verdict~C (framework strained) in the frozen
+protocol of Section~\ref{sec:gate} --- it is not re-interpreted post hoc as
+the rival footing succeeding.
+
+\subsection{What the framework predicts, and what it inherits}
+\label{sec:tracks}
+
+For the CPL parameterization $w(a)=w_0+w_a(1-a)$,
+\begin{equation}
+\frac{\rhoDE(z)}{\rho_{\rm DE,0}}=(1+z)^{3(1+w_0+w_a)}
+\exp\!\left(\frac{-3w_a z}{1+z}\right).
+\label{eq:cpl}
+\end{equation}
+Two reference cosmic tracks bracket the question, with the rival
+evolution model shown for contrast:
+
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+track & $(w_0,\,w_a)$ & $\azero(3)/\azero(0)$ & $\azero(3.25)/\azero(0)$\\
+\midrule
+flat-$\Lambda$ ($w=-1$) & $(-1.00,\;0.00)$ & $1.000$ (flat) & $1.000$\\
+DESI-DR2 evolving & $(-0.75,\;-0.90)$ & $0.712$ (declining) & $0.685$\\
+\emph{(rival $cH(z)$ evolution model)} & $\azero\propto cH_0E(z)$ & $4.57$ (rising) & $4.99$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The framework's distinctive canonical-footing prediction is a \textbf{mild
+decline}, $\azero(3)/\azero(0)\approx0.60$--$0.75$, if the DESI-preferred
+evolving dark energy is real. If instead $w\to-1$, the framework reduces to
+$\Lambda$CDM at all $z$ and the distinctive signal vanishes, leaving only the
+$z=0$ tie. The third row is \emph{not} the ALT $z=0$ normalization but a
+distinct evolution model in which $\azero$ tracks the total-density Hubble
+rate and therefore rises steeply --- the opposite sign. The flat--DESI
+separation is only $0.147$ dex at $z=3$ ($0.164$ dex at $z=3.25$); that small
+gap is what the galaxy data must resolve.
+
+To be precise about the falsifiable content (and to avoid an overstated
+biconditional): $R$ tracks $\sqrt{\rhoDE(z)}$, whatever that history is.
+Under the DESI-preferred ($w_0>-1$, $w_a<0$) CPL histories $R$ declines at
+high redshift; it reduces to $R=1$ exactly if $w=-1$; and histories with
+$\rhoDE$ \emph{rising} toward high $z$ (e.g.\ a constant $w>-1$) would produce
+a rising $R$, which under the frozen protocol registers as Verdict~C
+(strained) when read at the frozen reference redshift
+(Section~\ref{sec:gate}).
+
+\paragraph{The adiabatic-horizon ansatz, stated as an ansatz.} The horizon
+relation \eqref{eq:a0} is derived for a \emph{static} de Sitter horizon
+(constant $\Lambda$). Promoting it to
+$\azero(z)=\tfrac{c}{2}\sqrt{G\rhoDE(z)}$ for an evolving equation of state is
+an \textbf{adiabatic / instantaneous-horizon ansatz} --- the assumption that
+the inertia scale tracks the instantaneous dark-energy density --- not a
+result derived from the de Sitter--Unruh construction, whose horizon is that
+of a constant-$\Lambda$ background. The $z$-tracking under test is therefore a
+test of this ansatz combined with the measured $w(z)$; a null would disfavour
+the ansatz, not the static-horizon relation it reduces to at $z=0$. Relative
+to \cite{LPO2008}, who treated $\azero\!-\!H_0$ and $\azero\!-\!\rhoDE$ as two
+candidate couplings, the framework's addition is to \emph{fix} the coupling to
+$\rhoDE$ via this ansatz (itself posited) --- so the choice between $H_0$ and
+$\rhoDE$ is made by the construction, not left free --- and to commit a hashed
+decision procedure against the Rubin era.
+
+\paragraph{Non-monotonicity.} Under an evolving CPL history $\azero(z)$ is
+\emph{not monotonic}: at the DESI-central rate
+($w_0=-0.838$, $w_a=-0.62$) it rises to a small bump --- $R$ peaks at
+$\approx1.036$ near $z\approx0.35$ --- and only crosses back below unity at
+$z\approx0.9$, declining at higher redshift. (On the DESI+CMB+DESY5 central
+history, $w_0=-0.752$, $w_a=-0.86$, the bump is $+6\%$ peaking at
+$z\approx0.41$, the phantom-divide crossing \cite{Zdesi}.) The consequences of
+summarizing this curve by a single high-$z$ point are drawn out in
+Section~\ref{sec:limitations}.
+
+\paragraph{The sharpest galaxy-side signature is a sign.} In the deep-MOND
+regime $V^4=GM_{\rm bar}\azero$, so $V\propto \azero^{1/4}$ and
+${\rm d}\log V=\tfrac18\,{\rm d}\log\rhoDE$. On the DESY5-central history
+($R(3)=0.737$) the framework predicts high-$z$ deep-MOND discs lying $0.033$
+dex ($-7.3\%$ in $V$) \emph{below} the local BTFR at $z=3$, where standard
+fixed-$\azero$ MOND sits on it and the rival rising model sits $+0.166$ dex
+above \cite{Zdesi}. The sign is more robust to amplitude systematics than the
+$\azero$ value itself.
+
+\section{The non-circular cross-scale strategy}
+\label{sec:noncircular}
+
+$\Lambda$CDM gives no reason for a galaxy's internal acceleration scale to
+track cosmic expansion; the framework forces exactly that link. Crucially, the
+equality of a galaxy $\azero$ and a cosmic $\Lambda$ at a \emph{single} epoch
+is a definition --- one can always convert one into the other, and reading
+agreement there is circular. The genuine, non-circular test is whether
+\textbf{two independently measured functions of redshift} --- $\azero$ from
+galaxy kinematics (parsec--kiloparsec scales) and $\rhoDE$ from cosmic
+distances (gigaparsec scales) --- track each other as $z$ varies. The
+framework \emph{inherits} the dark-energy history $w(z)$; its content is the
+tie between the two datasets, so any decline it exhibits is a consequence of
+the framework relation combined with the measured $w(z)$, not an independent
+statement about dark energy.
+
+\subsection{Definition versus test, and the $z=0$ anchor}
+\label{sec:z0tie}
+
+The $z=0$ equality $\azero(0)=(c/2)\sqrt{G\rho_{\rm DE,0}}$ is definitional: a
+$z=0$ match is a consistency knot, not an independent success. Its value is as
+the anchor the bridge extends from. The $\Lambda$-blind galaxy $\azero(0)$ is
+taken from the gas-dominated SPARC BTFR zero point measured without any
+cosmological-$\Lambda$ input (companion measurement \cite{Za0line}):
+$\azero(0)=1.181\times10^{-10}\,\msms\,(\pm16\%)$. Against the cosmic-side
+$(c/2)\sqrt{G\rho_{\rm DE,0}}$:
+
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+footing & cosmic $\azero(0)$ & $a_{0,{\rm SPARC}}/a_{0,{\rm cosmic}}$ & tension\\
+\midrule
+Planck ($\Omega_{\rm DE}=0.685$, $H_0=67.4$) & $9.36\times10^{-11}$ & $1.26$ & $1.44\sigma$\\
+SH0ES-$H_0$ ($\Omega_{\rm DE}=0.685$, $H_0=73.0$) & $1.01\times10^{-10}$ & $1.17$ & $0.95\sigma$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The tie holds at $\sim1\sigma$ on the canonical (Planck-$H_0$) footing and
+slightly better at the local $H_0$. This is by construction and carries no
+evidential weight beyond internal consistency; the non-circular content is
+entirely in the \emph{slope}.
+
+\subsection{Why a wrong background cannot manufacture the signal}
+
+Because the two datasets never share inputs, a wrong background assumption
+shifts both together and cannot manufacture a spurious co-evolution. The mild
+distance--cosmology dependence of the galaxy side is quantified:
+$\Mbar\propto D^2$, and the ratio $D({\rm DESI})/D({\rm flat})$ shifts $\Mbar$
+by $\le0.015$ dex at $z=1$ (smaller at higher $z$) --- roughly $10\times$
+below the signal and $15\times$ below the single-object error of
+Section~\ref{sec:bigwheel}. Testing whether $\azero$ tracks $\rhoDE$ is not
+the same as assuming the DE evolution.
+
+\section{The galaxy-side $a_0(z)$ from the high-$z$ BTFR}
+\label{sec:galaxy}
+
+\subsection{The estimator}
+
+On the galaxy side, $\azero(z)$ is read from the BTFR zero point at each
+redshift. In the deep-MOND regime $V^4=\azero\,G\Mbar$ is exact (the fitted
+slope is forced to $4$), so at fixed circular velocity
+\begin{equation}
+\frac{\azero(z)}{\azero(0)}=\frac{(V_z/V_0)^4}{M_{{\rm bar},z}/M_{{\rm bar},0}},
+\qquad\text{equivalently}\qquad
+\Delta\log \azero=-\,\Delta\log \Mbar\big|_{\text{fixed }V}.
+\label{eq:btfr}
+\end{equation}
+Reading $\azero(z)$ is the same operation as reading the BTFR zero point. The
+estimator is valid \emph{only} where the fitted slope is genuinely $4$, i.e.\
+for objects deep in the low-acceleration regime $g\ll \azero$.
+
+\subsection{The one high-$z$ datum: the Big Wheel at $z=3.25$, now transitional}
+\label{sec:bigwheel}
+
+The best available high-$z$ candidate is the ``Big Wheel'' (Wang et al.\ 2025
+\cite{Wang2025}; $z=3.2514$), a large low-acceleration disk. A Monte Carlo
+over the discovery-paper velocity and baryonic-mass systematics
+($V_{\rm rot}=280\pm31\,{\rm km\,s^{-1}}$ with asymmetric-drift correction;
+$M_\star=1.7\pm0.7\times10^{11}M_\odot$ dynamically capped;
+$M_{\rm gas}=1.8\pm0.9\times10^{11}M_\odot$, $\times1.36$ He) gave
+$a_{0,{\rm eff}}=1.54\,(+1.10/-0.61)\times10^{-10}\,\msms$, i.e.\ ratio
+$1.31\,(+0.93/-0.52)$ against the SPARC anchor ($1.65$ against canonical,
+$1.37$ against ALT --- both footings carried). On those masses the datum was
+consistent with a constant and with the DESI decline, and disfavored the
+rising $cH(z)$ evolution model ($\sim5\times$) at $\sim2\sigma$.
+
+\textbf{That discovery-mass state is superseded.} A dedicated 2026 ALMA
+dynamical model (Quadri et al.\ 2026 \cite{Quadri2026}; W.~Wang among the
+authors) finds a mildly rising rotation curve reaching
+$V_{\rm rot}\approx314\,{\rm km\,s^{-1}}$ at the outermost \emph{measured}
+radius $\approx16.5$ kpc, $M_{\rm gas}=10^{10.76}M_\odot$, and --- critically
+--- a stellar mass ambiguous by $0.37$ dex: the dynamical-model fiducial
+$M_\star=10^{11.00}M_\odot$ versus a higher SED/half-mass value
+$10^{11.37}M_\odot$ that the authors flag as in tension with the dynamics.
+Applying the framework's exact kernel
+$\azero=(g_{\rm obs}^2-g_{\rm bar}^2)/g_{\rm bar}$ at the measured 16.5-kpc
+point, the inferred $\azero$ swings from ratio $0.86$ (SED $M_\star$) to
+$3.25$ (dynamical $M_\star$) at central values --- Monte-Carlo medians
+$1.28\,[0.41,2.60]$ and $3.11\,[1.89,4.71]$ respectively, with $\sim28\%$ of
+the SED-$M_\star$ posterior unphysical ($g_{\rm bar}>g_{\rm obs}$). The object
+sits at $y=g_{\rm bar}/\azero\approx0.7$--$1.3$ --- \emph{transitional, not
+deep-MOND} --- so $\azero$ is hyper-sensitive to $\Mbar$, and the $0.37$-dex
+stellar-mass ambiguity alone spans a factor $\sim3.8$ in $\azero$ ($0.4$--$4.7$
+across full systematics). Three consequences, stated plainly:
+(i) the single Big Wheel $\azero$ remains $\Mbar$-hostage and cannot separate
+the framework's $\sim0.68$ decline at $z=3.25$ from a strong rise;
+(ii) the $\sim2\sigma$ exclusion of the rising model held \emph{only on the
+discovery masses} --- under the authors' fiducial dynamical mass the object
+itself sits at a $\sim3\times$ rise ($3.1\,[1.9,4.7]$), only $\sim1.2\sigma$
+from the $\sim5\times$ rising track, so the rise-exclusion too is
+$\Mbar$-hostage; and (iii) this is an honest downgrade of the one in-hand
+galaxy-side value, and it \emph{empirically confirms} the central finding of
+Section~\ref{sec:keyfinding} on the very object one would reach for: with new,
+dedicated dynamical data the single-object $\azero$ did not tighten, because
+$\Mbar$ calibration, not the object, is decisive. (Scripts:
+\texttt{galaxy\_a0z.py} for the discovery-mass Monte Carlo,
+\texttt{bigwheel\_update.py} for the v2 re-extraction; Appendix~\ref{app:scripts}.)
+
+\subsection{Why intermediate-$z$ is not a clean $a_0$ probe}
+\label{sec:intermediate}
+
+The many $z\sim0.5$--$2.3$ rotating disks (e.g.\ KMOS$^{3\rm D}$) do not help,
+for a physical reason: these massive rotators sit at $g\gtrsim \azero$,
+\emph{not} deep-MOND, so their fitted BTFR slopes are $3.0$--$3.85$, not $4$,
+and the zero point is degenerate with the slope, the pivot, and
+baryon/dark-matter-fraction evolution. The inferred ``$\azero$ evolution''
+flips sign with the analysis choice: \"Ubler et al.\ (2017)
+\cite{Ubler2017} (fixed local slope $3.75$) reads $\azero$ rising
+$\sim2$--$3\times$; Sharma et al.\ (2024) \cite{Sharma2024} (free slope
+$3.21$) the opposite sign; Di Teodoro et al.\ (2016) \cite{DiTeodoro2016} and
+Tiley et al.\ (2019) \cite{Tiley2019} read null. The scatter across analyses
+(a factor $\sim2$--$3$, in either direction) dwarfs the $0.70$-vs-$1.0$
+signal. These points are not valid $\azero$ readouts; where the $z\approx2.3$
+point enters the joint fit below it is placed at its fixed-slope value $1.86$
+(rising --- the \emph{wrong} sign for the framework decline), so it counts
+against, not for, the framework.
+
+\subsection{The $a_0$--$M_{\rm bar}$ degeneracy}
+
+Because $\Delta\log \azero=-\Delta\log \Mbar$ at fixed $V$, a mis-estimate of
+the baryonic mass propagates $1{:}1$ into $\azero$: the two are algebraically
+degenerate for this estimator. Rising molecular-gas fractions ($\sim10\%$ at
+$z=0$ to $\sim50\%$ at $z=2$), the CO-to-H$_2$ conversion $\alpha_{\rm CO}$,
+dust, and IMF evolution all move the BTFR zero point and are indistinguishable
+from an $\azero$ shift with the BTFR / point-mass method. This is the crux
+limitation developed in Section~\ref{sec:keyfinding}.
+
+\subsection{Does the galaxy data show the decline? No --- neither way}
+\label{sec:confront}
+
+Assembling the honest galaxy points (\texttt{confront.py},
+Appendix~\ref{app:scripts}):
+
+\begin{center}
+\begin{tabular}{lcccc}
+\toprule
+set & $\chi^2(\text{flat})$ & $\chi^2(\text{DESI-decl})$ & $\Delta\chi^2$ & lean\\
+\midrule
+all 4 points & $1.08$ & $3.05$ & $-1.97$ & flat, weak\\
+$z=0$ + Big Wheel (discovery masses; & $0.27$ & $1.55$ & $-1.28$ & flat, weak\\
+\quad transitional per Sec.~\ref{sec:bigwheel}) & & & &\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The second row is the sole formally meaningful statistic; the ``all 4 points''
+row is illustrative only, because the intermediate-$z$ points are declared
+invalid $\azero$ readouts (Section~\ref{sec:intermediate}) and cannot
+legitimately enter a likelihood. Both rows agree in direction: the data mildly
+prefer flat, $|\Delta\chi^2|\approx1.3$--$2.0$ --- not significant --- and
+what lean exists in the intermediate-$z$ points is toward \emph{rising}, the
+wrong sign for the framework decline. The distinctive $0.60$--$0.75$ decline
+is neither detected nor excluded. The separability statistic --- the maximum
+sigma at which the current errors could ever tell flat from the DESI decline
+--- is $S=0.73\sigma$ (Big Wheel alone), $0.73\sigma$ (clean pair), and
+$0.80\sigma$ (all four points): \textbf{underpowered, not passed, not
+failed}. Every galaxy point sits $\le1.2\sigma$ from both tracks.
+
+\section{The key finding: $M_{\rm bar}$ calibration, not rotator count, is decisive}
+\label{sec:keyfinding}
+
+The decisive question for any future test is how the significance scales. The
+naive forecast assumes independent per-object errors that beat down as
+$1/\sqrt{N}$: the target signal is $-\log_{10}(0.70)=0.155$ dex, requiring
+$\sigma_{\rm mean}=0.052$ dex for $3\sigma$, hence $N\approx4$ rotators at
+SPARC-like precision ($0.10$ dex) or $N\approx24$ at realistic high-$z$
+per-object precision ($0.25$ dex). \textbf{This is wrong}, because the
+dominant $\Mbar$ error --- $\alpha_{\rm CO}$, IMF, and dust prescriptions
+applied \emph{identically} to a sample --- is largely common-mode, and a
+common-mode error does not average down with $N$. With
+$\sigma_{\rm mean}^2=\sigma_{\rm ind}^2/N+\sigma_{\rm cm}^2$ and a correlated
+$\Mbar$ floor $\sigma_{\rm cm}$:
+
+\begin{center}
+\begin{tabular}{lc}
+\toprule
+$\Mbar$ common-mode floor & $N$ for $3\sigma$\\
+\midrule
+$0.00$ dex & $24$\\
+$0.05$ dex & $\sim377$\\
+$\ge0.08$ dex & \textbf{never reaches $3\sigma$ at any $N$}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Because realistic high-$z$ $\Mbar$ calibration floors are $\sim0.08$--$0.15$
+dex ($\alpha_{\rm CO}$ alone is a $0.1$--$0.2$ dex systematic), the test is
+decisive \textbf{only if the common-mode $\Mbar$ systematic can be driven
+below $\sim0.05$ dex} --- a calibration problem, not a counting problem. The
+2026 ALMA re-analysis of the Big Wheel (Section~\ref{sec:bigwheel})
+demonstrates this on real data: a $0.37$-dex stellar-mass ambiguity on a
+single dedicated-data object swings its $\azero$ by a factor $\sim3.8$ ---
+exactly the $\Mbar$-hostage behaviour this section predicts, and precisely why
+more objects at fixed $\Mbar$ calibration would not help. This is the paper's
+core methodological contribution: \textbf{the decisive observational lever is
+a uniformly calibrated $\Mbar$ ladder to $\lesssim0.05$ dex common-mode, not
+the number of rotators.} (Both footings enter identically --- the forecast is
+in ratios and dex, so the $20.9\%$ footing choice cancels.)
+
+\subsection{Forecast requirements, correctly stated}
+\label{sec:forecastreq}
+
+Reaching $3\sigma$ on the $0.60$--$0.75$ decline versus flat therefore
+requires \emph{both} (i) a common-mode $\Mbar$ calibration $\lesssim0.05$ dex
+\emph{and} (ii) a sample of $\sim20$--$40$ clean deep-MOND $z\sim2$--$3$
+rotators, Big-Wheel-like, with gas-traced outer rotation curves (JWST/ALMA) or
+individually resolved deep-MOND curves (ELT/HARMONI); the per-object precision
+required is $\le0.16$ dex ($N=10$), $\le0.23$ dex ($N=20$), $\le0.33$ dex
+($N=40$), all under the independence assumption that returns the argument to
+the common-mode floor above. Neither condition alone suffices: without the
+calibration floor, no rotator count reaches $3\sigma$. Clean deep-MOND disks
+like the Big Wheel are rare, so assembling $20$--$40$ is itself an
+observational stretch.
+
+\subsection{The $a_0$-separable observable}
+
+The deeper methodological escape is to stop using the BTFR zero point at all.
+Because $\azero$ and $\Mbar$ are $1{:}1$ degenerate in the BTFR, no amount of
+BTFR data isolates $\azero$ from baryonic-mass evolution. The
+\textbf{$\azero$-separable} observable is the \emph{shape} of the rotation
+curve --- the radial-acceleration-relation (RAR) transition --- which depends
+on $\azero$ at fixed $\Mbar$ and therefore breaks the degeneracy the zero
+point cannot. A high-$z$ RAR-transition measurement reads $\azero$ directly,
+without hostage to the gas-mass normalization. This is the observable to
+target: not more BTFR zero points, but resolved high-$z$ rotation-curve
+shapes.
+
+\section{The cosmology-side gate and the pre-registration}
+\label{sec:gate}
+
+\subsection{DESI DR2 propagated through the relation}
+\label{sec:desi}
+
+On the cosmic side there is no free dark-energy parameter to fit --- the
+framework consumes whatever $\rhoDE(z)$ the data prefer. Propagating the DESI
+DR2 \cite{DESI2025} $w_0w_a$CDM posterior (BAO + CMB + SNe; representative
+marginals with $w_0$--$w_a$ correlation $\approx-0.87$; $\Lambda$CDM excluded
+at $2.8\sigma$/Pantheon+, $4.2\sigma$/DESY5, $3.8\sigma$/Union3) through
+Eq.~\eqref{eq:law} (\texttt{desi\_posterior\_a0z.py},
+Appendix~\ref{app:scripts}):
+
+\begin{center}
+\begin{tabular}{lccccc}
+\toprule
+SNe combination & $\azero(3)/\azero(0)$ & $[16\%,84\%]$ & $P({\rm declines})$ & signif. & in $0.60$--$0.75$\\
+\midrule
+DESI+CMB+Pantheon+ & $0.775$ & $[0.683,\,0.878]$ & $97.9\%$ & $2.0\sigma$ & $38\%$\\
+DESI+CMB+DESY5 & $0.737$ & $[0.651,\,0.833]$ & $99.3\%$ & $2.5\sigma$ & $51\%$\\
+DESI+CMB+Union3 & $0.707$ & $[0.599,\,0.831]$ & $98.3\%$ & $2.1\sigma$ & $48\%$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Across the three combinations the median is $\azero(3)/\azero(0)\simeq0.74$
+with a $\sim2.2\sigma$ decline, and all three posteriors overlap the
+framework's $0.60$--$0.75$ band. This is a genuine, live cosmology-side hint:
+\emph{if} the DESI evolving-dark-energy signal is real, the induced
+$\azero(z)$ decline falls inside the framework band. It is not, however, an
+independent test --- it is a re-expression of the DESI $w(z)$ result through
+the framework relation, the same DESI information seen twice, and it cannot be
+added to the galaxy-side $\chi^2$ as if it were a second measurement. It
+dissolves entirely if the DESI signal regresses to $w=-1$.
+
+\subsection{The frozen estimator and pre-committed thresholds}
+\label{sec:frozen}
+
+The decision procedure was frozen, SHA-256-hashed, and Zenodo-timestamped on
+2026-07-21 \cite{Zprereg}, before any calibrated Rubin supernova cosmology
+exists (LSST began operations 2026-06-30; the LSST-DESC calibrated Type-Ia
+sample is not expected before $\sim$2027). The estimator
+(\texttt{a0z\_gate\_estimator.py}) draws $N=4\times10^5$ samples from the
+input $(w_0,w_a)$ bivariate Gaussian, maps each through Eq.~\eqref{eq:law} to
+$R=\azero(3)/\azero(0)$, and reports the median, $[16,84]$ interval, and the
+posterior credibility of a decline mapped to a Gaussian sigma. \textbf{No
+threshold, band, or estimator may change after the freeze; only the input
+$(w_0,w_a)$ is updated.}
+
+\begin{center}
+\begin{tabular}{p{4.2cm}p{9.3cm}}
+\toprule
+Verdict & Pre-committed condition\\
+\midrule
+\textbf{A) GATE OPEN} --- distinctive prediction alive and supported &
+decline at $\ge3\sigma$ \textbf{and} $R\in[0.55,0.85]$ $\to$ $\azero$ evolves
+as required; warrants the independent galaxy-side confrontation. GATE OPEN
+means ``survives to face the galaxy-side test,'' explicitly not
+``confirmed.''\\
+\textbf{B) GATE DISSOLVED} --- safe core, \emph{not} falsification &
+consistent with flat ($R=1$ within $2\sigma$) $\to$ framework reduces to
+constant-$\azero$ MOND; the distinctive prediction is inapplicable.\\
+\textbf{C) FRAMEWORK STRAINED} --- cosmology-side tension &
+$R>1$ (a rise) at $\ge3\sigma$ $\to$ the scale rises with $z$, which
+$\azero\propto\sqrt{\rhoDE}$ does not permit under evolving DE.\\
+\textbf{UNDECIDED} & none of the above met.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The band $[0.55,0.85]$ is fixed and hashed. Its width comes from the spread of
+currently-allowed dark-energy histories --- holding $w_a=-0.62$:
+$w_0\approx-0.79\to R=0.85$ (mild evolution), $w_0\approx-1.00\to R=0.55$
+(strong evolution) --- \emph{not} from the two value footings (which give an
+identical $R$ at fixed $(w_0,w_a)$ and cannot widen it). Two honesty notes:
+(i) the band is deliberately wider than the nominal distinctive claim
+$R\approx0.60$--$0.75$, and the DESI value $0.775$ sits just above the nominal
+$0.75$ though inside the operational band; (ii) the upper edge $0.85$ is close
+to flat, so ``supported'' at that edge is a weak decline --- the intended cost
+of a band broad enough not to be tuned to one posterior. A decline steeper
+than $R<0.55$ at $\ge3\sigma$ returns UNDECIDED, not a verdict --- the frozen
+procedure has no ``over-decline strain'' branch mirroring Verdict~C.
+
+\subsection{Data hierarchy and the refused DIY-Hubble-diagram path}
+
+The gate is fed by a strict, frozen hierarchy: (1) \textbf{primary} --- the
+LSST-DESC \emph{calibrated} Type-Ia sample ($\sim$2027+), the only input that
+can produce a supported verdict; (2) \textbf{interim} --- published Rubin
+$w_0w_a$ constraints as they appear; (3) \textbf{readiness tracker only} ---
+a running count of broker-classified Type-Ia candidates from the public alert
+stream (\texttt{broker\_sn\_counter.py}), which \emph{never} feeds the
+verdict. We explicitly refuse to build a do-it-yourself Hubble diagram from
+public broker light curves: without the DESC calibration layer (zero-point
+stability, photometric-redshift systematics, modeled selection function), any
+$w(z)$ extracted from raw broker photometry is systematics-dominated, and a
+``Rubin supports $\azero(z)$'' claim built on it would be a manufactured
+result.
+
+\subsection{State at the freeze (2026-07-21)}
+
+Running the frozen estimator on the best current input --- DESI DR2
+\cite{DESI2025}, $w_0=-0.838\pm0.055$, $w_a=-0.62\pm0.22$, correlation
+$-0.86$ (the DESI+CMB+Pantheon+ combination, the mildest; DESY5 and Union3
+prefer stronger evolution and the verdict is unchanged under them) --- gives
+$R=0.775\,[0.683,0.878]$, a decline at $2.0\sigma$: below the committed
+$3\sigma$ threshold, hence \textbf{UNDECIDED} --- a hint, explicitly not a
+detection, explicitly not gate-open. The broker readiness tracker stood at
+36,836 Type-Ia-classified objects at the freeze; by the frozen rule it feeds
+timing only, never the verdict.
+
+\section{Forecast against Rubin/LSST}
+\label{sec:forecast}
+
+The committed forecast (\texttt{forecast\_rubin\_a0z.py}) propagates
+representative projected Rubin $w_0$--$w_a$ covariances (photometric SN
+figure-of-merit $\sim$150 alone, $\sim$500 with CMB/BAO \cite{DESC,Ivezic2019})
+through Eq.~\eqref{eq:law}, taking the DESI-central evolving history as the
+assumed truth:
+
+\begin{center}
+\begin{tabular}{lcccc}
+\toprule
+Input scenario & $\sigma(w_0)$ & $\sigma(w_a)$ & $R=\azero(3)/\azero(0)$ & Decline signif.\\
+\midrule
+DESI DR2 now (baseline) & 0.055 & 0.22 & 0.775 [0.683, 0.878] & $2.0\sigma$\\
+Rubin SN alone (FoM $\sim$150) & 0.040 & 0.15 & 0.775 [0.717, 0.837] & $3.3\sigma$\\
+Rubin SN + CMB/BAO (FoM $\sim$500) & 0.020 & 0.08 & 0.775 [0.742, 0.809] & $4.6$--$4.7\sigma$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The \textbf{mirror test}: if the universe is in fact flat ($w=-1$, $\azero$
+truly constant), Rubin-alone pins $R=1.00\pm0.078$, excluding $0.74$ at
+$3.3\sigma$; Rubin + CMB/BAO gives $R=1.00\pm0.043$, excluding it at
+$6.0\sigma$. The honest summary is deliberately unheroic: if dark energy
+evolves at the DESI-central rate, Rubin sharpens the decline from
+$\sim2.0\sigma$ to $\sim3.3\sigma$ (SNe alone) or $\sim4.6$--$4.7\sigma$ (with
+CMB/BAO); if dark energy is flat, Rubin excludes the framework's $0.74$ at
+$\sim3.3$--$6.0\sigma$. Either way the gate is likely settled at the
+$3$--$6\sigma$ level by roughly 2028--2030 --- a real upgrade on DESI-now, not
+a one-instrument slam dunk. These are projections, not data, and cannot
+produce a real verdict.
+
+\section{Limitations}
+\label{sec:limitations}
+
+Because the estimator and thresholds are hashed and cannot be revised after
+the freeze, the following limitations are documented rather than fixed. They
+are stated here so that no reading can present the test as tighter than it is.
+
+\begin{enumerate}
+\item \textbf{The signal is a $z=3$ extrapolation beyond the supernova range,
+and the significance is $z$-dependent.} The LSST photometric SN sample
+constrains $w(z)$ mainly at $z\lesssim1.2$; the gate is read at $z=3$.
+Propagating the \emph{same} DESI-DR2 posterior to different reference
+redshifts gives a decline significance of $0.34\sigma$ at $z=1$ ($R=0.99$,
+effectively flat), $1.7\sigma$ at $z=2$, $2.0\sigma$ at $z=3$, and $2.4\sigma$
+at $z=10$; for the tight SN+CMB/BAO forecast covariance it is $1.1\sigma$ at
+$z=1$ but $4.7\sigma$ at $z\ge2$ (reproduced by
+\texttt{significance\_vs\_z.py}, Appendix~\ref{app:scripts}). What the gate
+genuinely tests is whether the SN-constrained posterior excludes
+$(w_0,w_a)=(-1,0)$; the $z=3$ evaluation converts that into an $\azero$-ratio
+but adds no independent $z=3$ information. $R(z{=}3)=0.775$ must \emph{not} be
+read as a measured $z=3$ acceleration scale.
+\item \textbf{The framework's own $\azero(z)$ bumps up at low redshift, which
+is where the galaxy-side test lives.} At the DESI-central history $R$ peaks at
+$\approx1.036$ near $z\approx0.35$ and only falls below $1$ beyond
+$z\approx0.9$. A GATE-OPEN verdict on the $z=3$ decline does not translate
+into a low-$z$ decline for the galaxy side to corroborate; at $z\lesssim0.5$
+the framework predicts a slight \emph{rise} (a few percent), at $z\sim1$
+essentially no change. Anyone carrying ``the framework predicts $\azero$
+declines'' to low-$z$ observers would have the sign wrong. The two lanes probe
+opposite branches of the same non-monotonic curve.
+\item \textbf{Verdict C is well-posed only at the frozen $z=3$.} Because
+$\azero(z)$ genuinely rises for $z\lesssim0.9$, a measured rise contradicts
+the $\sqrt{\rhoDE}$ footing only when read at high $z$; Verdict~C must never
+be applied to a low-$z$ input.
+\item \textbf{Doc-vs-code items in the frozen protocol.} (a) The Verdict-B
+sub-clause (``if $R\le0.85$ is additionally excluded at $\ge3\sigma$, the
+decline is positively ruled out'') is narrative only; the frozen script
+computes Verdict~B purely as consistency with $R=1$ within $2\sigma$. (b) The
+over-decline gap ($R<0.55$ significant $\to$ UNDECIDED) is a real asymmetry
+with Verdict~C. (c) The frozen estimator prints GATE OPEN for the two
+\emph{forecast} covariances; those are fabricated inputs shown for
+illustration and, by the data hierarchy, can never constitute a verdict.
+\item \textbf{Significance convention.} The reported ``$N\sigma$'' is a
+Bayesian posterior tail (the fraction of samples with $R\ge1$ mapped to a
+Gaussian sigma), not a frequentist likelihood-ratio detection; the estimator
+($N=4\times10^5$) and forecast script ($N=3\times10^5$) differ at the
+$0.1\sigma$ level ($4.7$ vs $4.6\sigma$), reported as the range.
+\item \textbf{$\Mbar$ dominance of the galaxy side.} The independent lane is
+currently underpowered ($S\simeq0.8\sigma$), $\Mbar$-hostage
+(Sections~\ref{sec:bigwheel}--\ref{sec:keyfinding}), and its intermediate-$z$
+literature is sign-contested.
+\item \textbf{The covariant completion is not in hand, and the test does not
+lean on it.} The observable $R$ requires only the scalar relation
+Eq.~\eqref{eq:law} and a $w(z)$ posterior --- it does not invoke a Lagrangian.
+A separate modified-inertia field-theory program exists \cite{Zmift} but this
+test is scoped so that nothing rests on it; the absence of a completed
+covariant modified-inertia theory is a limitation of the framework, disclosed,
+not of the test.
+\item \textbf{The adiabatic-horizon ansatz is posited}
+(Section~\ref{sec:tracks}), and the evolution-law fork
+(Section~\ref{sec:forks}) is resolved by pre-commitment, not by derivation.
+\end{enumerate}
+
+\section{Conclusion}
+
+We have set out, and pre-registered, a non-circular cross-scale test of de
+Sitter--Unruh modified inertia: the framework replaces $\Lambda$CDM's free
+dark-energy fit with the galaxy acceleration scale, forcing
+$\azero(z)/\azero(0)=\sqrt{\rhoDE(z)/\rho_{\rm DE,0}}$ --- a bridge between
+galaxy kinematics and cosmic distances that $\Lambda$CDM structurally lacks.
+The $z=0$ tie holds at $\sim1\sigma$ (the definitional anchor). The cosmology
+side is live but inherited: the DESI DR2 posterior propagated through the
+relation yields $\azero(3)/\azero(0)\simeq0.74$ at $\sim2.2\sigma$ --- below
+the committed $3\sigma$ bar, hence UNDECIDED --- and it dissolves if
+$w\to-1$. The galaxy side is underpowered: the distinctive $0.60$--$0.75$
+decline is neither detected nor excluded ($S\simeq0.8\sigma$); the one
+$z=3.25$ object is transitional and $\Mbar$-hostage across ratio $0.4$--$4.7$,
+and even its former $\sim2\sigma$ exclusion of the rising model held only on
+the discovery masses. The central finding is methodological and redirects the
+observational strategy: the dominant $\Mbar$ systematic is common-mode, so
+with a $\gtrsim0.08$-dex correlated floor the BTFR test never reaches
+$3\sigma$ at any rotator count; the decisive lever is $\Mbar$ calibration to
+$\lesssim0.05$ dex common-mode, and the $\azero$-separable observable is the
+rotation-curve/RAR transition, not the BTFR zero point. The estimator,
+thresholds, data hierarchy, and refusal of the DIY-Hubble path are hashed and
+timestamped before the deciding Rubin data exist; forecasts project a
+$3$--$6\sigma$ settlement by $\sim$2028--2030. The value of $\azero$, the
+normalization $Z$, and the sign of the effect are posited, not derived; both
+footings are carried throughout; and the contribution is a bounded,
+falsifiable, pre-registered program, not a detection.
+
+\section*{Data and code availability}
+
+Every load-bearing quantitative claim in this manuscript traces to a
+committed, runnable, exit-0 Python script (numpy/scipy) in the author's
+public repository, which is \emph{self-verifying}: re-running the committed
+scripts reproduces every number in the text and tables
+(Appendix~\ref{app:scripts} lists the inventory and the freeze hashes). The
+verification toolkit is released as \texttt{a0kit} (Zenodo software concept
+DOI \href{https://doi.org/10.5281/zenodo.21478981}{10.5281/zenodo.21478981};
+an ASCL submission is pending editor review). The consolidated source deposits are Zenodo DOIs
+10.5281/zenodo.20737162 (the $\azero(z)$ law and DESI confrontation
+\cite{Zdesi}), 10.5281/zenodo.21440407 (the cross-scale test \cite{Zcross}),
+and 10.5281/zenodo.21478568 (the Rubin/LSST pre-registration \cite{Zprereg});
+companions are 10.5281/zenodo.21403470 (field theory \cite{Zmift}) and
+10.5281/zenodo.21419735 (the SPARC $\azero$-line measurement \cite{Za0line}).
+
+\appendix
+
+\section{Freeze integrity and script inventory}
+\label{app:scripts}
+
+\subsection*{Freeze hashes}
+
+The SHA-256 hashes of the frozen artifacts, recorded in
+\texttt{FREEZE\_HASHES.txt} and verified 2026-07-21 \cite{Zprereg}:
+
+{\small
+\begin{verbatim}
+852ca954431b9239415038dde9f2b2ad9f89fe6325ff7a8ba3e3ebe357366740  a0z_gate_estimator.py
+ba24927ddb3263c390646019b1dba1968c4aa3de5ed572bc5de57685afd2b77f  broker_sn_counter.py
+bd714c93edd3eadc6c84413dee331e86be7ebaca8f0a5f88c84ec1542f46df0f  PREREGISTRATION.md
+530e66beef425bb500d085051c3219669e6d6e31364eec9263ea036bca7a5697  forecast_rubin_a0z.py
+\end{verbatim}
+}
+
+\noindent No threshold, band, or estimator changes after these hashes; only
+the calibrated $(w_0,w_a)$ input is updated when the LSST-DESC sample lands.
+The Zenodo deposit timestamp \cite{Zprereg} is the public lock-in.
+
+\subsection*{Script inventory}
+
+All numbers in this manuscript are reproduced by the following committed
+scripts (numpy/scipy only, exit 0, both footings carried):
+
+\begin{itemize}
+\item \texttt{a0z\_gate\_estimator.py} (frozen) --- the gate: verdict logic,
+thresholds, $R$ posterior; reproduces $R=0.775\,[0.683,0.878]$, $2.0\sigma$,
+UNDECIDED.
+\item \texttt{forecast\_rubin\_a0z.py} (frozen) --- the Rubin forecast table
+and the mirror test.
+\item \texttt{broker\_sn\_counter.py} (frozen) --- the readiness tracker
+(timing only; never feeds the verdict).
+\item \texttt{desi\_posterior\_a0z.py} --- the three-SNe-combination DESI
+propagation table of Section~\ref{sec:desi}.
+\item \texttt{galaxy\_a0z.py} --- the galaxy-side ladder: SPARC anchor,
+sign-contested intermediate-$z$ compilation, discovery-mass Big-Wheel Monte
+Carlo.
+\item \texttt{bigwheel\_update.py} --- the v2 ALMA-dynamical-model
+re-extraction of the Big Wheel $\azero$ (both stellar-mass scenarios; the
+$0.4$--$4.7$ ratio swing of Section~\ref{sec:bigwheel}).
+\item \texttt{confront.py} --- the joint $\chi^2$, separability $S$, $z=0$
+tie, and the common-mode-floor forecast table of
+Section~\ref{sec:keyfinding}.
+\item \texttt{significance\_vs\_z.py} (post-freeze traceability addendum;
+deliberately \emph{not} in the freeze hashes) --- the $z$-dependent decline
+significances of Section~\ref{sec:limitations}, item 1.
+\end{itemize}
+
+Supporting reconstructions from an independent lane confirm that Type Ia
+supernovae alone cannot measure $\azero(z{=}3)$: the dark-energy residual
+$E^2-\Omega_m(1+z)^3$ is a difference of large numbers, and the
+model-independent Gaussian-process reconstruction \cite{Seikel2012} is
+sign-pinned only to $z\approx0.40$ --- which is exactly why the two-dataset
+(galaxy $\times$ cosmic-distance) construction, and not SNe alone, is the
+test.
+
+\begin{thebibliography}{99}
+
+\bibitem{Milgrom1983} M.~Milgrom,
+\emph{A modification of the Newtonian dynamics as a possible alternative to
+the hidden mass hypothesis}, Astrophys.\ J.\ \textbf{270} (1983) 365.
+
+\bibitem{Milgrom1999} M.~Milgrom,
+\emph{The modified dynamics as a vacuum effect},
+Phys.\ Lett.\ A \textbf{253} (1999) 273 [astro-ph/9805346] ---
+the $\nu=\sqrt{1+1/y}$ kernel (Eq.~9).
+
+\bibitem{LPO2008} M.~Limbach, D.~Psaltis and F.~\"Ozel,
+\emph{The Redshift Evolution of the Tully--Fisher Relation as a Test of
+Modified Gravity}, arXiv:0809.2790 (2008) --- the $\azero\sim c\sqrt{\rhoDE}$
+coincidence and the $\azero$--$H_0$/$\azero$--$\rhoDE$ couplings tested
+against Tully--Fisher data to $z\simeq1.2$.
+
+\bibitem{AeST} C.~Skordis and T.~Zlosnik,
+\emph{New Relativistic Theory for Modified Newtonian Dynamics},
+Phys.\ Rev.\ Lett.\ \textbf{127} (2021) 161302.
+
+\bibitem{DESI2025} DESI Collaboration,
+\emph{DESI DR2 Results II: Measurements of Baryon Acoustic Oscillations and
+Cosmological Constraints}, arXiv:2503.14738; Phys.\ Rev.\ D \textbf{112}
+(2025) 083515.
+
+\bibitem{Brout2022} D.~Brout et al.,
+\emph{The Pantheon+ Analysis: Cosmological Constraints},
+Astrophys.\ J.\ \textbf{938} (2022) 110.
+
+\bibitem{Lelli2016} F.~Lelli, S.~S.~McGaugh and J.~M.~Schombert,
+\emph{SPARC: Mass Models for 175 Disk Galaxies with Spitzer Photometry and
+Accurate Rotation Curves}, Astron.\ J.\ \textbf{152} (2016) 157.
+
+\bibitem{McGaugh2005} S.~S.~McGaugh,
+\emph{The Baryonic Tully--Fisher Relation of Galaxies with Extended Rotation
+Curves and the Stellar Mass of Rotating Galaxies},
+Astrophys.\ J.\ \textbf{632} (2005) 859.
+
+\bibitem{McGaugh2012} S.~S.~McGaugh,
+\emph{The Baryonic Tully--Fisher Relation of Gas-rich Galaxies as a Test of
+$\Lambda$CDM and MOND}, Astron.\ J.\ \textbf{143} (2012) 40.
+
+\bibitem{DiTeodoro2016} E.~M.~Di Teodoro, F.~Fraternali and S.~H.~Miller,
+\emph{Flat rotation curves and low velocity dispersions in KMOS star-forming
+galaxies at $z\sim1$}, Astron.\ Astrophys.\ \textbf{594} (2016) A77.
+
+\bibitem{Ubler2017} H.~\"Ubler et al.,
+\emph{The Evolution of the Tully--Fisher Relation between $z\sim2.3$ and
+$z\sim0.9$ with KMOS$^{3\rm D}$}, Astrophys.\ J.\ \textbf{842} (2017) 121.
+
+\bibitem{Tiley2019} A.~L.~Tiley et al.,
+\emph{The shapes of the rotation curves of star-forming galaxies over the
+last $\approx$10 Gyr}, Mon.\ Not.\ Roy.\ Astron.\ Soc.\ \textbf{482} (2019)
+2166.
+
+\bibitem{Sharma2024} G.~Sharma, V.~Upadhyaya, P.~Salucci and S.~Desai,
+\emph{Tully--Fisher relation at $0.6\le z\le2.5$},
+Astron.\ Astrophys.\ \textbf{690} (2024) [arXiv:2406.08934] --- free bTFR
+slope $3.21\pm0.28$.
+
+\bibitem{Wang2025} W.~Wang et al.,
+\emph{A giant disk galaxy two billion years after the Big Bang (the ``Big
+Wheel'')}, Nature Astron.\ \textbf{9} (2025) 710 [arXiv:2409.17956].
+
+\bibitem{Quadri2026} G.~Quadri, S.~Cantalupo, C.~Bacchini et al.,
+\emph{The galaxy--halo connection and dynamical model of the Big Wheel giant
+disc at $z\simeq3.25$}, Astron.\ Astrophys.\ (2026), in press
+[arXiv:2605.04144].
+
+\bibitem{Seikel2012} M.~Seikel, C.~Clarkson and M.~Smith,
+\emph{Reconstruction of dark energy and expansion dynamics using Gaussian
+processes}, JCAP \textbf{06} (2012) 036.
+
+\bibitem{Ivezic2019} \v{Z}.~Ivezi\'c et al.\ (LSST/Rubin),
+\emph{LSST: From Science Drivers to Reference Design and Anticipated Data
+Products}, Astrophys.\ J.\ \textbf{873} (2019) 111.
+
+\bibitem{DESC} LSST Dark Energy Science Collaboration,
+supernova cosmology forecasts (photometric FoM $\sim$150; with CMB/BAO
+$\sim$500).
+
+\bibitem{Zdesi} C.~P.~Zimmerman,
+\emph{Dark Energy Sets the Galaxy Acceleration Scale: A Parameter-Free
+$\azero(z)$ Test $\Lambda$CDM Cannot Take}, Zenodo (2026),
+DOI \href{https://doi.org/10.5281/zenodo.20737162}{10.5281/zenodo.20737162}
+(author's preprint deposit; consolidated here).
+
+\bibitem{Zcross} C.~P.~Zimmerman,
+\emph{Does the Galaxy Acceleration Scale Track Cosmic Dark Energy? A
+Non-Circular Cross-Scale $\azero(z)$ Test}, Zenodo (2026), concept DOI
+\href{https://doi.org/10.5281/zenodo.21440407}{10.5281/zenodo.21440407}
+(author's preprint deposit, v2; consolidated here).
+
+\bibitem{Zprereg} C.~P.~Zimmerman,
+\emph{A Pre-Registered $\azero(z)$ Gate for the Rubin/LSST Supernova Stream:
+Committing the Test Before the Data}, Zenodo (2026),
+DOI \href{https://doi.org/10.5281/zenodo.21478568}{10.5281/zenodo.21478568}
+(author's pre-registration deposit; consolidated here).
+
+\bibitem{Zmift} C.~P.~Zimmerman,
+\emph{MI Field Theory Results 2026}, Zenodo (2026),
+DOI \href{https://doi.org/10.5281/zenodo.21403470}{10.5281/zenodo.21403470}
+(companion; cited, not consolidated).
+
+\bibitem{Za0line} C.~P.~Zimmerman,
+\emph{Reading the Cosmological Constant from Dwarf-Galaxy Rotation Curves:
+The $\azero$-Line}, Zenodo (2026),
+DOI \href{https://doi.org/10.5281/zenodo.21419735}{10.5281/zenodo.21419735}
+(companion; cited, not consolidated).
+
+\end{thebibliography}
+
+\end{document}

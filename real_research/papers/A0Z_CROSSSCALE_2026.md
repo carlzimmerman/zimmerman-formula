@@ -246,5 +246,3 @@ Quadri, G., Cantalupo, S., Bacchini, C., et al. 2026, *A&A* (in press), arXiv:26
 Zimmerman, C. 2026, *Reading the Cosmological Constant from Dwarf-Galaxy Rotation Curves: The $a_0$-Line* (self-cite), DOI 10.5281/zenodo.21419735.
 
 Zimmerman, C. 2026, *MI Field Theory Results 2026* (self-cite), DOI 10.5281/zenodo.21403470.
-</content>
-</invoke>

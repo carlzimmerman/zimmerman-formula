@@ -1,0 +1,462 @@
+% =====================================================================
+% PRD submission manuscript -- article-class preprint (format-free initial
+% submission; PRD does not require RevTeX at initial submission).
+% Consolidates Zenodo 10.5281/zenodo.21403470 (+erratum 21415677),
+% concept 10.5281/zenodo.21253644, 10.5281/zenodo.21418816, and
+% 10.5281/zenodo.20973740 (honest-scope framing).
+% Science content identical to the published Zenodo record; this file is
+% a reformat + calibration pass only.
+% Compile: tectonic manuscript.tex   (or pdflatex, twice, for refs)
+% =====================================================================
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\emergencystretch=2.5em
+
+\newcommand{\ms}{\mathrm{m\,s^{-2}}}
+\newcommand{\Boxu}{\Box_u}
+\newcommand{\gbar}{g_{\rm bar}}
+\newcommand{\gobs}{g_{\rm obs}}
+\newcommand{\glens}{g_{\rm lens}}
+\newcommand{\cgw}{c_{\rm GW}}
+\newcommand{\Mph}{M_{\rm ph}}
+
+\title{\bfseries A covariant, ghost-free modified-inertia completion of the horizon-tied acceleration scale $a_0=cH_\Lambda/Z$, and a passivity obstruction to single-metric MOND lensing}
+
+\author{Carl P.\ Zimmerman\\[2pt]
+\normalsize Briar Creek Tech (independent researcher)\\
+\normalsize \href{mailto:carl@briarcreektech.com}{carl@briarcreektech.com}\ \ $\cdot$\ \ ORCID \href{https://orcid.org/0009-0008-3508-7982}{0009-0008-3508-7982}}
+
+\date{July 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent
+The de Sitter--Unruh modified-inertia (MI) program reproduces galaxy dynamics through a passive vacuum-response kernel $K(\Boxu/a_0^2)$ that ties the MOND acceleration scale to the cosmological horizon, $a_0=cH_\Lambda/Z$ with $Z=\sqrt{32\pi/3}$. We present a single covariant action realizing this program --- Einstein--Hilbert gravity, a passive unit-timelike frame with zero propagating degrees of freedom, and a matter sector dressed by a bounded, causal, positive-measure (Herglotz--Nevanlinna) kernel --- and show that the coupled system is ghost-free and well posed, conditional on the passive-frame premise. The interpolating kernel $\nu=\sqrt{1+1/y}$ is Milgrom's (1999) and the $a_0\propto\sqrt{\rho_{\rm DE}}$ scaling is Limbach--Psaltis--\"Ozel's (2008); the distinctive content is the $cH_\Lambda/Z$ coefficient and the covariant passive-frame completion, with the value of $a_0$, the constant $Z$, and the sign $s=-1$ postulated, not derived. Within this theory we prove an obstruction: conditional on kernel passivity, a horizon-tied $a_0$ ($D$) and single-metric propagation with $c_\gamma=\cgw$ ($S$) forbid single-metric MOND weak lensing ($L$): $D\wedge S\Rightarrow\lnot L$, with $\{D,S,L\}$ the unique minimal unsatisfiable subset of $\{D,S,G,L\}$ and ghost-freedom $G$ entering no step. The mechanism is a passivity/amplification dichotomy: a passive kernel ($\sup K=1$) can only suppress a source to $\rho/\nu$, whereas the MOND-lensing phantom demands enhancement to $\nu\rho$. Completions reproducing lensing exist, but only as modified gravity with $a_0$ demoted to a free coupling. All results are reported on both cosmological footings ($9.36\times10^{-11}$ and $1.13\times10^{-10}\,\ms$); the obstruction is footing-independent, and every load-bearing claim traces to a committed, runnable script.
+\end{abstract}
+
+\medskip
+\noindent\textit{PhySH: modified gravity; alternatives to general relativity; gravitational lensing; dark matter.}
+
+\section{Introduction}\label{sec:intro}
+
+\subsection{The framework, and the credit}
+
+Modified inertia (MI) treats MOND phenomenology not as a modification of the gravitational field sourced by matter, but as a modification of the inertial response of matter to a field. Any honest statement of this program begins with the credit. Milgrom's original MOND is Ref.~\cite{milgrom1983}. In 1999 Milgrom observed \cite{milgrom1999} that a non-inertial observer in a de Sitter universe sees an Unruh temperature $T\propto\sqrt{a^2+c^2H_\Lambda^2}$, and that the excess of that temperature over the inertial-observer floor defines an acceleration function with exactly the MOND limits; his Eq.~(9) contains the interpolating modified-inertia kernel used here, machine-verified identical. The $a_0\propto\sqrt{\rho_{\rm DE}}$ scale coincidence likewise predates this work: it is Limbach, Psaltis \& \"Ozel \cite{lpo2008}. The framework's distinctive content is precisely (i) the coefficient --- $a_0=cH_\Lambda/Z$ with $Z=\sqrt{32\pi/3}=5.789$, a factor $2Z\approx11.58$ below Milgrom's $\hat a_0=2cH_\Lambda$ --- and (ii) the covariant modified-inertia completion built on a passive frame, which Milgrom's 1999 note explicitly left open (he declined to endorse the kernel for circular orbits absent a modified-inertia formulation).
+
+In the de Sitter--Unruh realization, a passive cosmic rest frame $u^\mu$ --- a unit-timelike vector carrying \textbf{zero} propagating degrees of freedom, fixed by a Lagrange constraint $(u\cdot u+1)=0$ --- mediates a vacuum response whose kernel acts on the frame d'Alembertian $\Boxu$. The worldline law that emerges is
+\begin{equation}
+\gobs=\nu(y)\,\gbar,\qquad \nu(y)=\sqrt{1+\tfrac1y},\qquad y\equiv\frac{\gbar}{a_0},
+\label{eq:law}
+\end{equation}
+reducing to the deep-MOND law $\gobs\to\sqrt{a_0\gbar}$ as $y\to0$ and to Newton as $y\to\infty$. This fits the SPARC rotation-curve sample \cite{lelli2016} at $0.108$ dex scatter ($\Upsilon=0.70$), competitive with regularized MOND (reproducible via the companion tool \texttt{a0kit} \cite{a0kit}).
+
+Throughout, \emph{footing} denotes the choice of cosmological input to $a_0=cH_\Lambda/Z$: the \textbf{canonical} pure-$\Lambda$ footing ($\rho_{\rm DE}$, $cH_\Lambda/Z$) gives $a_0=9.36\times10^{-11}\,\ms$, and the \textbf{alternate} footing ($\rho_{\rm total}$, $cH_0/Z$) gives $1.13\times10^{-10}\,\ms$. The two differ by 21\% and are not separated by any current measurement; both are carried on every $a_0$-valued number below. Signature $(-,+,+,+)$.
+
+\subsection{Honest scope of the claim}\label{sec:scope}
+
+We are precise about what is and is not derived. What the framework establishes is the \textbf{structural tie of the scale of $a_0$} to the passive kernel and the de Sitter horizon. The \textbf{numerical value} of $a_0$, the constant $Z=\sqrt{32\pi/3}$, and the \textbf{sign} $s=-1$ of the coupling are \textbf{postulates} --- the program is a one-parameter effective-field-theory \emph{reframing}, not a first-principles computation ($\kappa=1/2$ is provably unforceable from ghost-freedom, unitarity, and holography). The $\nu$-kernel law itself is Milgrom's \cite{milgrom1999}, and the $\sqrt{\rho_{\rm DE}}$ coincidence is Limbach--Psaltis--\"Ozel's \cite{lpo2008}. We credit both explicitly and do not re-assert any earlier, publicly retracted claims of a derived value of $a_0$, a Standard-Model bridge, or a final all-physics theory. The defensible position is the $a_0$ reframing, and nothing more. A condensed derived-versus-postulated ledger is given in Appendix~\ref{app:ledger}.
+
+\subsection{Related work by the author}\label{sec:related}
+
+This manuscript consolidates four of the author's Zenodo deposits, released as the timestamped preprint record for reproducibility: the MI field-theory results \cite{zft} (with erratum \cite{zftE}), the covariant-completion derivation \cite{zconcept}, the passivity/lensing obstruction \cite{znogoL}, and the adversarially reviewed honest-scope no-go paper \cite{zhonest}. This is the standard preprint disclosure, not duplicate publication; no deposit is the primary source of more than one journal submission. Two companion submissions treat the phenomenology and are \emph{not} consolidated here: the cosmological $a_0(z)$ pre-registered test (companion, JCAP submission; deposits \cite{zjcap1,zjcap2,zjcap3}) and the SPARC $a_0$-line slope measurement with the $\Lambda$ inversion (companion, MNRAS submission; deposit \cite{zmnras}). The present paper is confined to the field-theory construction and the obstruction theorem.
+
+One statement in Ref.~\cite{zhonest} is superseded by the present construction and must be flagged: its abstract asserts that no covariant modified-inertia completion exists in three exhaustive cases. That no-go rested on the Einstein-aether strong-coupling wall, which assumes a \emph{propagating} aether; it does not apply to the passive frame constructed here, which carries zero propagating modes (the correction is recorded in Ref.~\cite{zv3}). What is consolidated from Ref.~\cite{zhonest} is its honest-scope ledger and its reframing algebra, which remain valid.
+
+\subsection{The lensing question, and the statement of results}
+
+Galaxy dynamics is a worldline phenomenon; weak lensing is not. Lensing probes the deflection of null geodesics, fixed by the gravitating stress tensor that the field equations actually see. The measured weak-lensing radial-acceleration relation (RAR) of Brouwer et al.\ \cite{brouwer2021} (KiDS-1000 isolated galaxies) coincides with the \emph{dynamical} RAR: null geodesics feel an effective lensing mass enhanced to $\nu\rho$. As shown below, the assembled MI stress tensor sources the \emph{suppressed} density $\rho/\nu$; single-metric pure MI is excluded relative to the lensing-RAR $=$ dynamical-RAR equality at ${\sim}27\sigma$ (conservative rail, footing-independent). The gap between what is sourced and what the equality requires is a factor $\nu^2$.
+
+This paper contains two results, presented as one story. First (Secs.~\ref{sec:action}--\ref{sec:tmunu}), the \emph{positive} construction: a single covariant action realizing the MI program, with its degree-of-freedom count, kernel rigor, stress tensor, and ghost analysis, machine-verified. Second (Secs.~\ref{sec:completion}--\ref{sec:dichotomy}), the \emph{negative} structural result: conditional on kernel passivity, the completion question --- can the $\nu^2$ wedge be closed by adding structure while retaining everything that makes the program distinctive? --- is answered no. The obstruction theorem is
+\begin{quote}
+\emph{Assume kernel passivity. Then $D\wedge S\Rightarrow\lnot L$: no field theory extending the MI action keeps $a_0$ tied to the passive kernel ($D$), propagates photons and gravitons on one metric ($S$), and reproduces the single-metric MOND-lensing phantom $(\nu-1)\rho$ ($L$). Equivalently $\{D,S,L\}$ is the unique minimal unsatisfiable subset of $\{D,S,G,L\}$; ghost-freedom $G$ enters no step.}
+\end{quote}
+The physical crux is a passivity/amplification dichotomy (Sec.~\ref{sec:dichotomy}): the property that derives $a_0$'s scale (passivity, $\sup K=1$) is the very property that forbids the lensing enhancement ($\nu>1$, outside the passive cone). A completion \emph{does} exist --- but only as modified \emph{gravity}, at the cost of $a_0$ becoming a free coupling. We frame this as neither a triumph nor a funeral: it is an exact obstruction, conditional on passivity, that shows the $a_0$ reframing is load-bearing, and it redirects the search for an MI-versus-MG discriminant away from lensing.
+
+\section{The covariant action}\label{sec:action}
+
+\subsection{The single functional}
+
+One metric $g_{\mu\nu}$, one passive unit-timelike frame $u^\mu$ (the cosmic/dS-Unruh rest frame), one Lagrange multiplier $\lambda$, matter $\psi$, one kernel $K$, one scale $a_0$:
+\begin{equation}
+S[g,u,\lambda,\psi]=S_{EH}[g]+S_u[g,u,\lambda]+S_{\rm matter}[g,u,\psi;K],
+\end{equation}
+with
+\begin{align}
+S_{EH}&=\frac{c^4}{16\pi G}\int\sqrt{-g}\,R \qquad\text{(host gravity unmodified: 2 graviton dof)},\\
+S_u&=-\int\sqrt{-g}\,\frac{\lambda}{2}\,(u^\mu u_\mu+1) \qquad\text{(passive frame, no kinetic term: 0 dof)},\\
+S_{\rm matter}&=-\frac12\int\sqrt{-g}\,\rho_m\left[\,s\,u^\mu K(\Boxu/a_0^2)\,u_\mu\right] \qquad\text{(modified inertia, in the matter kinetic sector)},
+\end{align}
+where
+\begin{equation}
+K(z)=\frac{\sqrt{1+4z}-1}{2\sqrt z},\qquad \Boxu f=u^a\nabla_a(u^b\nabla_b f),\qquad s=-1\ (\text{postulate}).
+\end{equation}
+The multiplier is fixed algebraically on shell, $\lambda=-\rho_m sK$: no new field, no new free function, no new propagating degree of freedom.
+
+\textbf{Kernel rigor (derived).} $K$ is a Herglotz--Nevanlinna function with a \emph{unique} positive Borel measure: closed-form densities $\rho_A=(1-\sqrt{1-4|t|})/(2\pi\sqrt{|t|})$ on $-1/4<t<0$ and $\rho_B=1/(2\pi\sqrt{|t|})$ on $t<-1/4$, additive constant $a=0.65411$, $\|K\|\le1$, causal-retarded \cite{zv4,zv11}. The sum rule
+\begin{equation}
+\int\frac{d\mu(t)}{|t|}=K(\infty)-K(0)=1\qquad(\text{region-B share }2/\pi\text{ exact; total }=1\text{ to }10^{-8})
+\end{equation}
+with $K(0)=0$ means $a_0$ enters \emph{only} through the kernel argument and carries no counterterm at scale $a_0$. Passivity --- a positive spectral measure with unit total weight --- is what floors the response amplitude at the horizon scale $cH_\Lambda$; it is the source of the scale-tie, and it is the \textbf{single premise} of the obstruction result below (Sec.~\ref{sec:conditionality}).
+
+\subsection{The worldline law: first-moment reduction}\label{sec:firstmoment}
+
+The bridge from the nonlocal operator to phenomenology is the first-moment identity \cite{zconcept}
+\begin{equation}
+\boxed{\;u_\mu\,\Boxu\,u^\mu=-|a|^2\;}
+\end{equation}
+re-derived three independent ways (flat general worldline; general curved metric, symbolic, arbitrary $g_{ab}$ and full connection; static Schwarzschild observer in closed form). The only inputs are unit norm $u\cdot u=-1$ and metric compatibility $\nabla g=0$: no circularity, no geodesy, no spacetime symmetry. Hence $K(\Boxu/a_0^2)\to K(X)$ with $X=|a|^2/a_0^2$ and $a^\mu=u^b\nabla_b u^\mu$ --- the acceleration enters as a first-order \emph{field} gradient, not a worldline $\ddot x$, which is how the classic modified-inertia Ostrogradsky trap is evaded.
+
+On the rotation-curve shell the kernel argument collapses. With the on-shell condition $|a|=\gobs=\nu\gbar$ (so $X=y^2+y$), one has $1+4X=(2y+1)^2$, and the radical collapses:
+\begin{equation}
+K\big|_{\rm on\text{-}shell}=\frac{(2y+1)-1}{2\sqrt{y^2+y}}=\frac{1}{\nu(y)}\ \text{exactly},\qquad
+\left.\frac{2K'X}{K}\right|_{\rm on\text{-}shell}=\frac{1}{2y+1}\le1,
+\label{eq:onshell}
+\end{equation}
+giving the ring-exact law Eq.~(\ref{eq:law}) with ring residual ${\sim}10^{-13}$, both footings. The on-shell dressing is the \emph{suppression} $1/\nu\le1$, and the anisotropic slip factor $2K'X/K=1/(2y+1)$ is bounded and tension-signed. The static real-space dressing $K(X)$ is a bounded, increasing (Bernstein-type) function: $K(0^+)=0$ at the deep-MOND end and
+\begin{equation}
+\boxed{\ \sup_{X\ge0}K(X)=1\ }\qquad(\text{Newtonian saturation; }K\to0\text{ deep-MOND}),
+\label{eq:supK}
+\end{equation}
+saturated as $X\to\infty$. ($K(X)$ is not completely monotone --- completely monotone functions decrease; here $K$ increases and $K'$ is completely monotone, the Bernstein/Stieltjes dual. The Herglotz--Nevanlinna, $\|K\|\le1$, and sum-rule properties attach to the frequency-domain response kernel $K(\Boxu)$; the static $K(X)$ is the corresponding real-space dressing.) The single fact the obstruction uses downstream is the uniform bound (\ref{eq:supK}): the passive kernel can only ever \emph{suppress} a source to $\rho K\le\rho$.
+
+\section{Degrees of freedom and ghost-freedom}\label{sec:dof}
+
+The full coupled census (\texttt{wellposed.py}, 28/28 checks, exit 0, both footings):
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+property & verdict\\
+\midrule
+propagating content & 2 graviton $+$ standard matter; \textbf{frame $=0$}\\
+Ostrogradsky ghost & none: local action first order in every dynamical field;\\
+& nonlocal $K$ ghost-free by the Herglotz single healthy pole\\
+Hamiltonian bounded below & yes: $\mu=K\in(0,1]$\\
+hyperbolicity & block-diagonal principal symbol, real characteristics;\\
+& well-posed Cauchy problem (retarded history data)\\
+causality & retarded kernel; single global causal order\\
+$c_T$ & $=1$ exact (the graviton rides $g$)\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Three points deserve emphasis.
+
+\emph{The frame stays passive under the matter coupling.} The unit-norm second-class Dirac pair $\chi_1=u\cdot u+1$, $\chi_2=u\cdot\pi$ has bracket $\{\chi_1,\chi_2\}=2(u\cdot u)$, block determinant $4(u\cdot u)^2\to4$ on shell --- a \emph{kinematic} bracket, unchanged when the momentum carries an arbitrary matter contribution, with no tertiary constraint tower. The frame principal symbol $(u\cdot k)^2\to k_0^2$ is a transport ODE (double root at $k_0=0$ independent of spatial $k$, zero group velocity): the $K(a^2)$ dressing structurally cannot promote $u$ to a propagating aether. This machine-verified second-class Dirac closure is what keeps the frame at zero degrees of freedom even after the matter coupling.
+
+\emph{The nonlocal sector was checked for real --- with a precisely scoped residual.} An earlier machine check of the nonlocal sector was found to be tautological and was replaced by a genuine verification (\texttt{mi\_closure\_pin/ostro\_nonlocal\_verify.py}, 13/13, no hard-coded booleans): the exact Herglotz spectral representation gives an auxiliary tower with Ostrogradsky Hessian $\partial^2L/\partial\ddot\chi^2=0$, kinetic Hessian $2\,d\mu(t)>0$, and positive masses --- healthy massive scalars, not a ghost --- and the same machinery correctly \emph{flags} a textbook $\ddot q^2$ ghost and a negative-measure kernel (live negative controls), so the check is discriminating, not decorative. This auxiliary-tower Herglotz ghost check is machine-verified; what remains \emph{asserted, not verified}, is the fully coupled all-orders nonlocal Hamiltonian (and, for the disformal witness of Sec.~\ref{sec:theorem}, global $B<1$ off spherical symmetry). Both residuals are carried in the ledger (Appendix~\ref{app:ledger}).
+
+\emph{The honest hinge.} The 0-dof $+$ ghost-free verdict rests on the passive/hypersurface-orthogonal frame premise. A dynamical khronon $T$ would put $a\sim\partial^2T$ inside $K$ and reopen an Ostrogradsky concern. The premise is the framework's postulate, stated as such --- it is the load-bearing hinge of the construction, not a proven theorem. Crucially, the obstruction theorem below does not depend on ghost-freedom ($G$ enters no step), so these residuals do not affect the paper's central result.
+
+\section{The stress tensor}\label{sec:tmunu}
+
+\subsection{Assembly, WEP, conservation}
+
+Matter couples minimally to the single metric $g$; modified inertia is a universal inertial-scalar dressing $W=s\,u^\mu K(\Boxu/a_0^2)u_\mu$ of the matter kinetic term. The metric variation gives the closed-form matter stress tensor
+\begin{equation}
+\boxed{\;T_{\mu\nu}=\alpha\,u_\mu u_\nu+\beta\,g_{\mu\nu}+\gamma\,a_\mu a_\nu\;},\qquad
+\alpha=-\rho_m sK,\quad \beta=\tfrac12\rho_m sK,\quad \gamma=\frac{\rho_m s\,K'(X)}{a_0^2}.
+\end{equation}
+In the principal (UV) limit $K\to1$, $K'\to0$: the anisotropic term vanishes and $T_{\mu\nu}$ is an isotropic perfect fluid --- no gravitational slip ($\Psi=\Phi$), the AeST no-slip property recovered from modified \emph{inertia} with no dynamical aether. The only slip-capable stress is $\gamma\,a_\mu a_\nu$, nonzero only in the MOND/IR regime.
+
+\textbf{WEP is exact: $\eta=0$, derived.} $W$ is built only from $(u,g,\partial u)$ and carries no matter-species label; every body's inertial coefficient is the same function $K(X)$, and the balance inverts species-independently (machine check: $\eta<10^{-12}$ over $y\in[10^{-2},10^2]$; \texttt{matter\_coupling\_Tmunu.py}, 14/14, exit 0).
+
+\textbf{Conservation, verified two ways.} $\nabla_\mu T^{\mu\nu}=0$ on shell by diffeomorphism invariance: (i) the canonical Noether identity holds identically (symbolic, exact); (ii) instantiated with the actual MI acceleration kernel, the residual is $2.6\times10^{-16}$ at 12 random spacetime points. The unit-norm constraint is dynamically preserved ($u\cdot a=0$); the frame stays passive under the matter coupling.
+
+\subsection{The assembled tensor and the $\nu^2$ wedge}\label{sec:wedge}
+
+Assembling matter and frame legs in the only Newton-consistent bookkeeping (the composite frame $u=J^\mu/|J|$, for which $u\cdot u=-1$ identically, so the frame-constraint leg $S_u\equiv0$ and its stress $T^u\equiv0$; the $1/\nu$ dressing therefore comes entirely from the \emph{matter} leg $\rho K$, not from a frame leg) yields
+\begin{equation}
+\hat T_{\mu\nu}=\rho\,K(X)\,u_\mu u_\nu-2\,\frac{\rho\,K'(X)}{a_0^2}\,a_\mu a_\nu.
+\end{equation}
+On the RAR shell this sources $\rho_{\rm eff}=\rho K=\rho/\nu$ (a \emph{suppression}) plus an anisotropic radial tension $\Pi=-\rho_{\rm eff}/(2y+1)$ carrying the bounded, tension-signed slip factor --- it \emph{reduces} lensing rather than enhancing it. Linearizing Einstein on the single metric ($ds^2=-(1+2\Phi)dt^2+(1-2\Psi)d\vec x^2$),
+\begin{equation}
+\nabla^2\Psi=4\pi G\,\rho_{\rm eff},\qquad \Phi'-\Psi'=4\pi G\,r\,\Pi,\qquad \glens=\tfrac12(\Phi'+\Psi'),
+\end{equation}
+every source term is $O(K)\le1$. There is \textbf{no $O(\nu)$ structure anywhere} in the assembled tensor. The single metric therefore under-lenses:
+\begin{equation}
+F(y)\equiv\frac{\glens}{\nu(y)\,\gbar}<\frac{1}{\nu(y)}<1\quad\text{everywhere}.
+\end{equation}
+
+The \textbf{wedge} is the gap between what lensing needs and what MI sources. The observed lensing-RAR $=$ dynamical-RAR equality \cite{brouwer2021} needs effective mass $\nu\rho$ (enhanced \emph{up}), while MI supplies $\rho/\nu$ (suppressed \emph{down}):
+\begin{equation}
+\underbrace{\nu\rho}_{\text{needed}}\quad\text{vs}\quad\underbrace{\rho/\nu}_{\text{sourced}}
+\qquad\Longrightarrow\qquad \text{factor }\nu^2=1+\frac1y.
+\end{equation}
+The missing piece is the \textbf{phantom mass} $\Mph=(\nu-1)M_{\rm bar}$, exactly the density that QUMOND/AeST source gravitationally and MI does not. The completion problem is: \emph{can the phantom be sourced without giving up the derivation of $a_0$'s scale?}
+
+\section{The completion problem}\label{sec:completion}
+
+\subsection{The desiderata}\label{sec:desiderata}
+
+A satisfying MI completion of lensing would keep all of the following. We state each narrowly, so the theorem rests on definitions rather than on plausibility steps.
+\begin{itemize}
+\item \textbf{$D$ ($a_0$-derived).} $a_0$ enters the theory \emph{solely} as the horizon-floored argument of the passive kernel $K(\Boxu/a_0^2)$ --- \textbf{not} as an independent Lagrangian coupling. ($D$ is the \emph{scale-tie}; the value and sign remain postulates, Sec.~\ref{sec:scope}.)
+\item \textbf{$S$ (single-metric).} Photons and gravitons propagate on one metric, $c_\gamma=\cgw$.
+\item \textbf{$G$ (ghost-free).} No Ostrogradsky mode, no negative-norm state.
+\item \textbf{$L$ (MOND lensing).} The theory reproduces $\glens=\nu(y)\gbar\to\sqrt{a_0\gbar}$ ($F\to1$): null geodesics feel the phantom $(\nu-1)\rho$. \emph{We state $L$ without reference to the number of metrics} --- this is what makes $S$ a non-redundant, essential hypothesis (Sec.~\ref{sec:whyS}).
+\end{itemize}
+with two secondary constraints --- Cassini (Solar-System PPN safety, $\nu-1\sim1/(2y)\to0$ at $y\sim10^6$) and cosmology preservation (the growing mode $\nu_{\rm cosmo}\in[1,1.09]$, $\sigma_8$ $+2$--$3\%$, from the horizon-floored argument).
+
+\subsection{Two lemmas}\label{sec:lemmas}
+
+The theorem is carried by two universal lemmas; the candidate constructions of Sec.~\ref{sec:candidates} are existence witnesses for the surviving corners, not the argument itself.
+
+\textbf{Lemma 1 (nonlocality --- uses $S$).} Under $S$, the lensing deflection is set by the single metric's stress tensor, so $L$ requires the phantom $(\nu-1)\rho$ to be \textbf{real gravitating stress-energy}. For a point mass $M$ ($\gbar=GM/r^2$, $y=GM/(a_0r^2)$) the enclosed phantom that makes $\glens=\nu\gbar$ is $\Mph(r)=(\nu(y)-1)M$, and (sympy-exact)
+\begin{equation}
+\frac{\Mph(r)}{r}\;\xrightarrow{\ r\to\infty\ }\;\sqrt{\frac{a_0M}{G}}\neq0,
+\end{equation}
+an \textbf{unbounded halo} whose enclosed mass keeps growing where $\rho=0$. The precise content: a \emph{local} functional of $\rho$ and the passive frame produces a phantom whose radial profile is fixed by the local acceleration invariant $|a|(r)$ \textbf{alone}, so its amplitude cannot carry the source mass $M$ that $(\nu-1)M$ requires --- the same functional applied to two different masses gets the profile wrong for at least one (the mass-blindness that kills C1, Sec.~\ref{sec:c1}). Matching the \emph{mass-correct, universal} phantom for \textbf{all} sources therefore requires a nonlocal carrier --- a term whose variation yields the elliptic equation $\nabla\cdot[\cdots]=\rho$ (the inverse Laplacian of AQUAL/QUMOND). (A local term can produce \emph{a} nonzero off-source phantom; what it cannot produce is the mass-correct one for every body.)
+
+\textbf{Lemma 2 (boundedness --- uses passivity).} By $\sup K=1$, the passive kernel delivers only $O(K)\le1$ dressing. On the RAR shell it gives the $uu$ coefficient $K=1/\nu$ (suppression) and slip $2K'X/K=1/(2y+1)$ (bounded, tension). The phantom instead needs $uu$ coefficient $\nu-1/\nu=1/\sqrt{y(y+1)}$ (deep-MOND ${\sim}1/\sqrt y$, unbounded); the shortfall
+\begin{equation}
+\frac{\text{needed}}{\text{supplied}}=\frac{\nu-1/\nu}{1/\nu}=\nu^2-1=\frac1y
+\end{equation}
+\textbf{diverges} as $y\to0$. No normalized passive kernel reaches $\nu$ on the RAR shell (a direct counterexample search finds the passive cap $1.0$ against a deep-MOND target ${\approx}31.6$; the value the frame actually realizes, $1/\nu$, is the \emph{farthest} point from $\nu$).
+
+\textbf{Both footings:} the halo amplitude $\sqrt{a_0M/G}$ carries $a_0$, but the nonlocality (the nonzero limit) and the shortfall $1/y$ are footing-independent --- they hold for $9.36\times10^{-11}$ and $1.13\times10^{-10}$ identically.
+
+\section{Candidate mechanisms}\label{sec:candidates}
+
+We computed three explicit completions. Each is a genuine attempt to close the wedge; each is an existence witness landing on a different corner of the obstruction. All scripts exit 0 on both footings.
+
+\subsection{C1 --- nonminimal frame-curvature: keeps $D$, fails $L$ by mass-blindness}\label{sec:c1}
+
+Add a frame-kernel--curvature coupling with no new dimensionful constant,
+\begin{equation}
+\Delta S=\frac{c^4}{16\pi G}\int\sqrt{-g}\;F\!\big(K(\Boxu/a_0^2)\big)\,Q,\qquad Q\in\{R,\ u^\mu u^\nu R_{\mu\nu}\}.
+\end{equation}
+Because $a_0$ enters only through $X$ inside $K$ and the prefactor is the bare $c^4/16\pi G$, this is a clean $D$-side witness. Scalar--Ricci variation gives the standard scalar-tensor form; the new gravitating source is $-(g_{\mu\nu}\Box-\nabla_\mu\nabla_\nu)F(K)$, whose static $00$ projection is a Laplacian of a local scalar. By Gauss the enclosed phantom is a pure surface flux, $\Mph(r)=(c^2/G)\,\kappa\,r^2F'(r)$ --- nonzero off-source, so a local term \emph{does} source \emph{a} phantom. But imposing lensing closure $\Mph=(\nu-1)M_{\rm bar}$ on a point mass yields (sympy-exact)
+\begin{equation}
+F'(y)=-\frac{\nu(y)-1}{2\kappa\sqrt y}\,\frac{\sqrt{GMa_0}}{c^2}\;\propto\;\sqrt M.
+\end{equation}
+The required shape \textbf{carries the source mass}: $F'_{\rm req}(y;M_2)/F'_{\rm req}(y;M_1)=\sqrt{M_2/M_1}$, independent of $y$. A local $F(K)$ sees only $|a|$ --- it is blind to the source mass --- so no single universal $F$ sources the phantom for more than one object (Lemma~1). Fixing $F$ on a $6\times10^{10}M_\odot$ galaxy and applying it to a $10^{14}M_\odot$ cluster, the cluster receives phantom fraction $\sqrt{6\times10^{10}/10^{14}}\approx0.024$, i.e.\ ${\sim}2.4\%$ of the needed phantom --- under-lensed by a factor ${\approx}41$; the reverse tuning over-lenses by the same factor. The miss is footing-independent ($a_0$ cancels in the ratio). Separately, under honest metric variation $X=|a|^2/a_0^2$ is a function of first metric derivatives, so $\Box F(K)$ contains third metric derivatives ($\Phi''')$ --- a genuine Ostrogradsky ghost, unless one freezes $X$ and prescribes the scalar by hand (no longer MI). Crucially, \textbf{C1 fails $L$ by mass-blindness regardless of its ghost}, so it is a clean $D=1$ witness for the ``$G$ is not the lever'' step. Verdict: \textbf{fails lensing, $D$ kept}.
+
+\subsection{C2 --- nonlocal-in-matter (Deffayet--Esposito-Far\`ese--Woodard class): closes $L$, loses $D$}\label{sec:c2}
+
+Take a purely metric, single-metric, nonlocal-in-matter distortion of Einstein--Hilbert,
+\begin{equation}
+S=\frac{1}{16\pi G}\int\sqrt{-g}\,R\big[1+f(\Box^{-1}R)\big]+S_{\rm matter}[g,\psi],
+\end{equation}
+with $\Box^{-1}$ retarded and $f$ chosen so the weak-field limit is the QUMOND/AQUAL modified-Poisson equation. This is the nonlocal-metric MOND realization of Deffayet, Esposito-Far\`ese \& Woodard \cite{dew2011} (background: \cite{dw2009}).
+
+It works. The nonlocal term sources the phantom $\nu\rho$ on the single metric as a genuine scalar energy density with zero anisotropic stress; the no-slip theorem gives $\Phi=\Psi$, so $\glens=\nu\gbar$ with the deep slope $\to\sqrt{a_0\gbar}$ ($F\to1$, machine-checked). It is purely metric, so $c_\gamma=\cgw$ (GW170817-safe \cite{abbott2017}), and Cassini-safe by construction ($\nu-1=5\times10^{-7}$ at $y=10^6$).
+
+But $a_0$ is now \textbf{free}, and the load-bearing reason is structural, not merely a fit degeneracy: there is no passive frame, no kernel $K(\Boxu)$, no $Z=\sqrt{32\pi/3}$ --- the nonlocal operator acts on $R$ (matter curvature), not on a vacuum frame, so nothing ties $a_0$ to $cH_\Lambda$. It enters as an independent coupling inside $f$, i.e.\ $\lnot D$ by definition. (Corroborating but weaker: the MOND relation is form-invariant under $(a_0,\gbar)\to\lambda(a_0,\gbar)$, so both footings fit equally. This footing non-diagnosticity is a property of the RAR relation itself and is shared by $a_0$-derived pure MI --- the SPARC RAR is likewise convention-compatible and non-diagnostic of $9.36\times10^{-11}$ --- so it does not by itself mark C2 as MG; the structural absence of the kernel does.) One residual partial: $\Box^{-1}$ carries a horizon IR scale, so $a_0\sim cH_\Lambda$ is parametrically \emph{natural} --- but natural is not derived, and $Z$ is not sourced. Secondary costs: a localized would-be ghost (kinetic eigenvalues $\pm\tfrac12$) tamed only by the contested retarded prescription, and a separate cosmology fit of $f$. Verdict: \textbf{closes $L$, $a_0$ free ($=$MG)}.
+
+\subsection{C3 --- frame/scalar carrier: closes $L$, loses $D$, plus one new dof}\label{sec:c3}
+
+Ask whether the frame's dressed momentum can source curvature. Sub-candidate \textbf{C3a} (passive frame only, $a_0$ kept derived, 0 new dof): the matter leg's $uu$ coefficient is $O(K)=1/\nu$ and the frame-constraint leg vanishes identically ($u\cdot u=-1$), so the assembled source delivers the suppression $1/\nu$, short of the needed $\nu$ by $\nu^2-1=1/y$, diverging deep-MOND. \textbf{Fails lensing}, reproducing the stress-tensor result of Sec.~\ref{sec:wedge} exactly. Sub-candidate \textbf{C3b} (promote the carrier to a nonlocal scalar): the only local $h(X)$ reaching the deep phantom is $h\sim a_0/|a|$ --- the AQUAL term --- which makes the potential equation nonlinear and the phantom nonlocal (the same unbounded halo $\Mph/r\to\sqrt{a_0M/G}$). A spatial-kinetic carrier is then mandatory, so it \textbf{propagates}: one new scalar dof, its acceleration scale a free coupling. Lensing closes ($F\to1$), $c_\gamma=\cgw$ holds (the scalar sources via its own $T_{\mu\nu}$, no disformal photon coupling), ghost-freedom holds ($f'>0$), Cassini-safe --- but $a_0$ is \textbf{free} and cosmology is forfeited to the new scalar. Verdict: \textbf{closes $L$, $a_0$ free ($=$MG), $+1$ scalar dof}.
+
+\subsection{Scorecard}
+
+\begin{center}
+\footnotesize
+\begin{tabular}{lllllll}
+\toprule
+lane & $L$ (lensing) & $S$ ($c_\gamma=\cgw$) & $G$ (ghost) & Cassini & $a_0$ & verdict\\
+\midrule
+C1 & \textbf{FAIL} (mass-blind $\sqrt M$; & OK ($R$) / risk & \textbf{FAIL} (honest-var & OK & \textbf{kept-} & fails\\
+ & $2.4\%$ / $41\times$) & ($uuR_{\mu\nu}$) & Ostrogradsky $\Phi'''$) & & \textbf{derived} & lensing\\
+C2 & \textbf{PASS} ($F\to1$, $\sqrt{\ }$ slope) & \textbf{PASS} (purely metric) & cost ($\pm\tfrac12$; prescription- & PASS$^{*}$ & \textbf{FREE} & closes,\\
+ & & & dependent) & & & $a_0$ free\\
+C3a & \textbf{FAIL} (delivers $1/\nu$, & PASS & PASS (0 dof) & PASS & \textbf{kept-} & fails\\
+ & short $1/y$) & & & & \textbf{derived} & lensing\\
+C3b & \textbf{PASS} ($F\to1$, $\sqrt{\ }$ slope) & PASS (own $T_{\mu\nu}$) & PASS ($f'>0$) & PASS & \textbf{FREE} & closes,\\
+ & & & & & ($+1$ dof) & $a_0$ free\\
+\bottomrule
+\end{tabular}
+
+\smallskip
+{\footnotesize $^{*}$C2 inherits the AeST-class Solar-System $Q_2$-quadrupole caveat \cite{desmond2024,park2026}. C1's cosmology is plausible; C2 requires a separate fit; C3b forfeits cosmology to the new scalar.}
+\end{center}
+
+The pattern is exact: every lane that keeps $D$ (C1, C3a) fails $L$; every lane that achieves $L$ (C2, C3b) loses $D$. No lane holds both. C2's $G$ bit is prescription-dependent, but C2 lands on $\lnot D$ independent of its $G$ bit; C3b is the clean ghost-free $L$-side witness. These are witnesses; the rigor of the result lives in Lemmas 1--2, not in the enumeration.
+
+\section{The obstruction theorem}\label{sec:theorem}
+
+\subsection{Statement}
+
+\textbf{Theorem (conditional on kernel passivity).} \emph{Assume the passivity premise (Sec.~\ref{sec:action}). Then $D\wedge S\Rightarrow\lnot L$: no field theory extending the MI action keeps $a_0$ as the passive-kernel argument ($D$), propagates on one metric ($S$), and reproduces the MOND-lensing phantom $(\nu-1)\rho$ ($L$). Equivalently, $\{D,S,L\}$ is the \textbf{unique minimal unsatisfiable subset} of $\{D,S,G,L\}$: each proper subset is realized ---}
+\begin{itemize}
+\item \emph{$\{D,S\}$ $=$ pure MI (the present theory; $L$ off);}
+\item \emph{$\{S,L\}$ $=$ Deffayet--Esposito-Far\`ese--Woodard / AeST with $a_0$ a \textbf{free} coupling ($D$ off);}
+\item \emph{$\{D,L\}$ $=$ a disformal two-cone construction $\tilde g=g+B(\Boxu)\,u_\mu u_\nu$ with $B$ in the passive kernel, which keeps $a_0$ derived but carries a second photon cone excluded observationally by GW170817 ($S$ off).}
+\end{itemize}
+\emph{Ghost-freedom $G$ enters no step.}
+
+The connective is ``cannot coexist,'' $\lnot(D\wedge L)$ under $S$ --- \emph{not} exclusive-or: the pure-GR corner has neither $D$ nor $L$, which an XOR would misclassify. Earlier notes that wrote ``$D\oplus L$ / XOR'' are corrected here.
+
+\subsection{Why $S$ is essential (and the theorem non-redundant)}\label{sec:whyS}
+
+Because $L$ is stated metric-agnostically (Sec.~\ref{sec:desiderata}), $S$ is a genuine, independent hypothesis with a precise role: under $S$, lensing is fixed by the one metric's $T_{\mu\nu}$, so $L$ forces the phantom to be real gravitating stress-energy, and Lemma~1 then bites. Drop $S$ --- allow a disformal second cone $\tilde g=g+B\,uu$ --- and photons see a \emph{different} metric: the phantom becomes pure geometry with no new stress-energy, Lemma~1 is evaded, $a_0$ stays inside the passive kernel $B(\Boxu)$, and $L$ is achieved with $D$ kept. That $\{D,L,\lnot S\}$ construction is logically satisfiable as a field theory; it is killed only \emph{observationally}, by GW170817 \cite{abbott2017}: a disformal coupling large enough to carry the $O(\nu)$ lensing deflection splits the photon and graviton cones far above the bound $|c_\gamma/\cgw-1|\lesssim10^{-15}$ --- computed in full along the actual NGC~4993 sightline, the exclusion is ${\sim}6$--$7$ orders of magnitude, robust across both footings \cite{zftE,boran2018} --- while the GW-safe small-$B$ regime cannot source an $O(\nu)$ deflection: the same passivity/amplification wedge, now on the disformal axis. (A merely \emph{conformal} bimetric $\tilde g=A(\phi)g$ preserves the null cone but cannot bend light beyond its baryonic content at all --- the historical reason TeVeS \cite{bekenstein2004} needed a disformal/vector part.) This is exactly why $S$ belongs in the minimal unsatisfiable subset: the $\{D,L\}$ witness exists, and $S$ is what excludes it.
+
+\subsection{The mechanism as lemmas, and the enumeration as bookkeeping}
+
+The theorem's content is the single implication $D\wedge S\Rightarrow\lnot L$, carried by:
+\begin{itemize}
+\item \textbf{Lemma 1 (nonlocality, Sec.~\ref{sec:lemmas}, uses $S$):} a mass-correct universal single-metric $L$ requires a nonlocal $(\nu-1)\rho$ carrier.
+\item \textbf{Corollary (propagation $\Rightarrow\lnot D$):} a nonlocal carrier reproducing the elliptic phantom has a spatial-kinetic term, so it propagates (a new dof) or its shape is a free function put in by hand; either way its acceleration scale is an independent Lagrangian coupling, i.e.\ \textbf{not} the passive-kernel argument --- $\lnot D$ by the definition of $D$ (narrow-$D$ makes this step a near-tautology rather than a plausibility claim). [Witnesses: C2, C3b.]
+\item \textbf{Lemma 2 (boundedness, Sec.~\ref{sec:lemmas}, uses passivity):} keeping $D$ confines the modification to the passive kernel $\sup K=1$ ($O(K)$ dressing, $T_{00}=0$ off $\operatorname{supp}\rho$), which cannot source the $O(\nu)$ unbounded phantom --- $\lnot L$. [Witnesses: C1, C3a.]
+\end{itemize}
+A finite truth table over the 16 assignments of $\{D,S,G,L\}$ (script \texttt{nogo.py}, exit 0) then reads off that the target $D=S=L=1$ is absent, that $\{D,S,L\}$ is the unique minimal unsatisfiable subset, and that the $\{D,L\}$ witness survives the mechanism but is GW-excluded. \textbf{The table is bookkeeping}: it is modus ponens over Lemmas 1--2, and the entire physics content lives in those two lemmas over the examined term classes (frame-curvature, nonlocal-in-matter, frame carrier). It is \emph{not} an exhaustion over all possible Lagrangians, and the result's strength is exactly the strength of Lemmas 1--2 as physics statements over those classes. A referee who exhibits a term class outside the lemmas' reach would genuinely extend the boundary.
+
+The observationally viable single-metric corners:
+\begin{center}
+\begin{tabular}{ccccl}
+\toprule
+$D$ & $S$ & $G$ & $L$ & identity\\
+\midrule
+1 & 1 & 1 & 0 & \textbf{pure MI / C3a} --- $a_0$ derived, ghost-free, under-lenses (the present theory)\\
+1 & 1 & 0 & 0 & \textbf{C1} --- local ghostly frame term; still fails $L$ (mass-blind) even with a ghost\\
+0 & 1 & 1 & 1 & \textbf{C2, C3b} --- closes $L$, single-metric, ghost-free, but $a_0$ \textbf{free} ($=$MG)\\
+0 & 1 & 0 & 1 & nonlocal with untamed ghost --- closes $L$, $a_0$ free, ghost (contested)\\
+0 & 1 & 1 & 0 & GR / trivial\\
+0 & 1 & 0 & 0 & GR $+$ ghost (vacuous)\\
+\bottomrule
+\end{tabular}
+\end{center}
+The target $D=S=G=L=1$ is absent, and so is its ghost-relaxed sibling $D=S=1,G=0,L=1$: relaxing ghost-freedom does not rescue $\{D,S,L\}$, because C1 fails $L$ by mass-blindness regardless of its ghost. This is why $G$ is not the lever.
+
+\subsection{Footing independence}
+
+The wedge is $a_0$-free. The shortfall $\nu^2-1=1/y$ and the mass-blindness ratio $\sqrt{M_2/M_1}$ are dimensionless in $y=\gbar/a_0$, and $\nu$ is form-invariant under $(a_0,\gbar)\to\lambda(a_0,\gbar)$. Both footings ($9.36\times10^{-11}$ / $1.13\times10^{-10}\,\ms$) give the identical dimensionless verdict.
+
+\section{The passivity/amplification dichotomy}\label{sec:dichotomy}
+
+Here is the physical crux, the intended central idea of the paper.
+
+$a_0=cH_\Lambda/Z$ is scale-derivable \emph{only because} the MI modification is a passive, causal vacuum-response kernel with a normalized positive measure. Passivity floors the response amplitude at the horizon scale --- it is the source of the scale-tie. But passivity has a mathematical consequence: $\sup K=1$. A passive kernel can only \textbf{suppress}. On the RAR shell it delivers exactly $\rho/\nu$; deep-MOND $K\to0$, the source dressed all the way down.
+
+MOND lensing demands the opposite. The phantom $(\nu-1)\rho$ is an \textbf{enhancement} to $\nu\rho$, with $\nu>1$ --- strictly outside the passive cone whose supremum is 1. The needed $uu$ coefficient is $\nu-1/\nu=1/\sqrt{y(y+1)}$ (unbounded, deep ${\sim}1/\sqrt y$); the passive kernel supplies $1/\nu$; the shortfall $\nu^2-1=1/y$ diverges as $y\to0$. So the dichotomy is exact and structural, not a failed search:
+\begin{quote}
+\textbf{The very property that ties $a_0$'s scale to the vacuum --- passivity, $\sup K=1$ --- is the property that forbids the lensing phantom.} Enhancement requires an anti-dissipative (pumped) kernel, whose amplitude is a free coupling, so $a_0$ would no longer be $cH_\Lambda/Z$.
+\end{quote}
+The nonlocality lemma closes the loop from the other side: the mass-correct phantom of a point mass is an unbounded halo ($\Mph(r)/r\to\sqrt{a_0M/G}$), so sourcing it universally forces a nonlocal carrier with a spatial-kinetic term --- a propagating dof whose acceleration scale is a free coupling. Passivity forbids the enhancement; the halo's nonlocality forces propagation; propagation frees $a_0$. The two horns are the same wall seen from two sides.
+
+Two honest guards on this statement. First, boundedness ($\lnot L$) uses \emph{only} $\sup K=1$ --- it does not invoke the $a_0$ value at all. So ``$a_0$ scale-tied'' and ``$\lnot L$'' are not one claim chained back on itself; they are two consequences of the \textbf{one} passivity premise (a common-premise entailment, not a biconditional --- we do not claim, and do not need, the converse ``$a_0$-derived $\Rightarrow$ passive''). Second, this is sufficiency, not necessity: passivity $\Rightarrow$ ($a_0$ scale-tied $\wedge\ \lnot L$). Whether some non-passive kernel could also tie $a_0$'s scale --- breaking the lock --- is precisely the open pump door of Sec.~\ref{sec:conditionality}, so the lock itself is conditional on staying inside the passive class.
+
+\section{Scope, conditionality, and consequences}\label{sec:conditionality}
+
+We are explicit, both ways, about the strength of this result.
+
+\textbf{It is conditional.} The obstruction rests on the single premise of MI-kernel passivity: the response is bounded, causal, positive-measure (Herglotz--Nevanlinna), $\|K\|\le1$, with the sum rule $\int d\mu/|t|=1$, so its real-space dressing obeys $\sup K=1$. This premise is banked and frozen \cite{zv4,zv11} but it is a \emph{premise}, not a metatheorem. Were the kernel not passive, the argument would not run.
+
+\textbf{Within the passive class, $D$ and $\lnot L$ share one origin.} The same passivity premise is what ties $a_0$'s scale and what caps $K$ at 1; $\lnot L$ follows from the cap alone (Sec.~\ref{sec:dichotomy}). One cannot, inside the passive class, keep the scale-tie while discarding the boundedness that forbids $L$ --- they are two faces of the one hypothesis, which is what makes the obstruction a real dichotomy rather than a coincidence of two separate assumptions.
+
+\textbf{The one MI escape, and why it is currently shut.} The only way out that keeps $a_0$ tied to $cH_\Lambda$ with a derived amplitude is a causal \emph{enhancing} kernel ($\nu>1$) --- an anti-dissipative / pumped vacuum response. The banked sign walls \cite{zv4,zv11} find no such channel pump-free: passive, reactive, and 4-point/dS-positivity edges are all sign-blind or anti-MOND-locked, and the enhancement reopens only under a new forced pump mechanism that has not been exhibited. \textbf{We do not claim the theory is closed.} The door labeled ``forced pump'' remains open in principle; what the banked results establish is that it is not open by any pump-free route so far identified --- and, since a non-passive $a_0$-scale-tying kernel is exactly what would break the $D$/boundedness lock, that same door is the one place the lock could fail.
+
+\textbf{Consequences.}
+\emph{(i) A completion exists --- as modified gravity, at the cost of the $a_0$ scale-tie.} C2 and C3b constructively demonstrate a single-metric, GW170817-safe field theory reproducing MOND dynamics and MOND lensing with the correct deep slope --- real, honest content --- but it is modified gravity in the Deffayet--Esposito-Far\`ese--Woodard / AeST class \cite{dew2011,skordis2021}, forfeiting the vacuum-tied $a_0=cH_\Lambda/Z$, plus (C2) a separate cosmology fit and a contested would-be ghost, or (C3b) one new propagating scalar and a forfeited cosmology. The cost is precisely the program's single most distinctive claim.
+\emph{(ii) Lensing becomes a shared-MG observable.} Because the only completions that reproduce the lensing phantom are MG, weak lensing can no longer discriminate MI from MG --- both predict the same $F\to1$ relation. The clean modified-gravity-impossible discriminant that remains is the non-adiabatic relational velocity-dispersion spread (${\sim}6$--$13\%$ in MI from frame-history-dependent inertia; exactly zero in MG) --- currently underpowered; it is developed separately in Ref.~\cite{zsigma} and only pointed to here. Any MG completion also inherits the AeST-class Solar-System $Q_2$-quadrupole caveat \cite{desmond2024,park2026}, a shared-MG cost, honestly stated.
+\emph{(iii) The obstruction shows the $a_0$ reframing is load-bearing.} If $a_0=cH_\Lambda/Z$ were a cosmetic relabeling, one could keep it while adding any lensing structure. That it is incompatible --- within the passive class --- with single-metric MOND lensing shows it is a genuine, restrictive, physical commitment. Far from a funeral, this is evidence the reframing is doing work.
+
+\section{Conclusion}\label{sec:conclusion}
+
+We have presented a single covariant action for the de Sitter--Unruh modified-inertia program --- Einstein--Hilbert gravity, a passive unit-timelike frame with a machine-verified second-class Dirac closure keeping it at zero propagating degrees of freedom, and a matter sector dressed by a rigorously defined Herglotz--Nevanlinna kernel --- ghost-free and well posed conditional on the passive-frame premise, with the ring-exact reduction to Milgrom's interpolating law as a derivation from the first-moment identity $u\cdot\Boxu u=-|a|^2$ rather than an ansatz. Within this theory we have identified, and machine-verified on both footings, an obstruction --- conditional on kernel passivity: \textbf{a passive-kernel-tied $a_0$ and single-metric MOND weak lensing cannot coexist.} The central implication is $D\wedge S\Rightarrow\lnot L$; equivalently $\{D,S,L\}$ is the unique minimal unsatisfiable subset of $\{D,S,G,L\}$, with $\{D,S\}$ $=$ pure MI, $\{S,L\}$ $=$ Deffayet--Esposito-Far\`ese--Woodard / AeST ($a_0$ free), and $\{D,L\}$ $=$ a disformal two-cone construction ($a_0$ kept) killed observationally by GW170817. Ghost-freedom is not the lever. The mechanism is a passivity/amplification dichotomy reinforced by a nonlocality lemma; three explicit candidates witness the surviving corners. The result is conditional on kernel passivity --- but that premise is the very thing that ties $a_0$'s scale, so within the passive class the scale-tie and the obstruction are two faces of one hypothesis. We do not claim the theory is closed. The honest map: the MI program is complete for dynamics ($0.108$ dex on SPARC) and viable in cosmology, and its lensing sector completes only by crossing into modified gravity at the cost of the $a_0$ reframing. Lensing is now a shared observable; the clean discriminant is the relational $\sigma$-spread \cite{zsigma}. And the obstruction itself is the strongest evidence that the $a_0=cH_\Lambda/Z$ reframing is load-bearing physics rather than a relabeling.
+
+\section*{Data and code availability}
+
+The repository \url{https://github.com/carlzimmerman/zimmerman-formula} is self-verifying: every load-bearing numerical claim in this paper traces to a committed, runnable Python script (sympy/numpy) that exits 0 on both $a_0$ footings, with adversarial VERIFY documents in the source lanes and no hard-coded verdict booleans (grep-audited). The obstruction-theorem scripts live in \texttt{prep\_2026/mi\_lensing\_completion/} (Appendix~\ref{app:scripts}); the field-theory scripts in \texttt{prep\_2026/mi\_field\_theory/} and \texttt{mi\_closure\_pin/}. The companion tool \texttt{a0kit} reproduces the phenomenology and is archived at Zenodo, DOI \href{https://doi.org/10.5281/zenodo.21478981}{10.5281/zenodo.21478981} (ASCL submission pending editor review). The consolidated source deposits are Refs.~\cite{zft,zftE,zconcept,znogoL,zhonest}. SPARC data are read from the repository's frozen copies of the public Lelli et al.\ release \cite{lelli2016}; KiDS-1000 lensing from Brouwer et al.'s machine-readable release \cite{brouwer2021}.
+
+\appendix
+
+\section{Verification scripts}\label{app:scripts}
+
+All scripts are committed in \texttt{prep\_2026/mi\_lensing\_completion/} (theorem) and \texttt{prep\_2026/mi\_field\_theory/}, \texttt{mi\_closure\_pin/} (construction), run against a frozen read-only repository, and exit 0 on both footings. They use sympy for exact symbolic checks and numeric grids where a radical will not auto-collapse. No candidate passes all checks, so none is asserted as a full completion.
+
+\begin{itemize}
+\item \texttt{rederive\_identity.py}, \texttt{closure\_map.py} --- the first-moment identity $u\cdot\Boxu u=-|a|^2$ (three routes) and the ring-exact collapse to $\nu=\sqrt{1+1/y}$ (residual ${\sim}10^{-13}$).
+\item \texttt{matter\_coupling\_Tmunu.py} (14/14) --- the stress tensor $T=\alpha uu+\beta g+\gamma aa$, WEP $\eta<10^{-12}$, conservation residual $2.6\times10^{-16}$.
+\item \texttt{wellposed.py} (28/28) --- dof census, Dirac second-class closure (determinant $\to4$), hyperbolicity, causality.
+\item \texttt{mi\_closure\_pin/ostro\_nonlocal\_verify.py} (13/13) --- the genuine auxiliary-tower Herglotz ghost check with live negative controls.
+\item \texttt{c1\_frame\_curvature.py} (11/11) --- $\Mph(r)=(c^2/G)\kappa r^2F'(r)$; lensing closure forces $F'\propto\sqrt M$ (sympy-exact); the $\sqrt{M_2/M_1}$ mass-blindness; the cluster fraction $\approx0.024$ (${\sim}41\times$); the honest-variation Ostrogradsky term.
+\item \texttt{c2\_nonlocal.py} (18/0) --- the DEW term sources $\nu\rho$ with zero anisotropic stress, no-slip, $F\to1$ with the $\sqrt{a_0\gbar}$ slope; $c_\gamma=\cgw$; the $\pm\tfrac12$ would-be-ghost eigenvalues; form-invariance under $(a_0,\gbar)\to\lambda(\cdots)$.
+\item \texttt{c3\_carrier.py} --- C3a delivers the $1/\nu$ suppression (shortfall $1/y$); C3b's local $h\sim a_0/|a|$ gives the unbounded halo, forcing a propagating scalar with $a_0$ free.
+\item \texttt{nogo.py} --- the completeness check: the nonlocality limit; the boundedness shortfall and the tension-signed slip leg; the mass-blindness ratio; footing independence; and the finite truth table over $\{D,S,G,L\}$ showing $D\wedge S\Rightarrow\lnot L$ and that $\{D,S,L\}$ is the unique minimal unsatisfiable subset.
+\item \texttt{verify\_adversarial.py} --- an independent re-derivation (not reusing the candidate assertions) of the wedge $\nu^2$, the dichotomy, the mass-blindness $\sqrt M$, a direct passive-kernel counterexample search, and a check that C2's $F\to1$ is a genuine (not manufactured) closure that is nonetheless MG with $a_0$ free. Trap sweep both directions: no manufactured completion, no manufactured no-go. Verdict: upheld.
+\end{itemize}
+
+\section{The derived/postulated ledger (condensed)}\label{app:ledger}
+
+\begin{center}
+\small
+\begin{tabular}{lp{10.5cm}}
+\toprule
+status & item\\
+\midrule
+\textbf{Derived} & the Herglotz--Nevanlinna measure of $K$ (unique, closed-form densities, sum rule $=1$); the first-moment identity and the ring-exact reduction to $\nu=\sqrt{1+1/y}$; the stress tensor and its conservation; WEP $\eta=0$; the 0-dof Dirac closure of the frame; $c_T=1$; the two lemmas and the obstruction theorem (conditional on passivity); footing independence of the wedge.\\
+\midrule
+\textbf{Postulated} & the value of $a_0$ ($\kappa=1/2$ provably unforceable); $Z=\sqrt{32\pi/3}$; the sign $s=-1$; the passive/hypersurface-orthogonal frame premise (the load-bearing hinge); kernel passivity itself (the theorem's single premise).\\
+\midrule
+\textbf{Asserted, not verified} & the fully coupled all-orders nonlocal Hamiltonian; global $B<1$ off spherical symmetry for the disformal witness. (The auxiliary-tower Herglotz ghost check \emph{is} machine-verified, 13/13 with live negative controls.)\\
+\midrule
+\textbf{Open} & the ``forced pump'' door (a non-passive kernel that ties $a_0$'s scale); term classes outside the two lemmas' reach.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{thebibliography}{99}
+
+\bibitem{milgrom1983} M.\ Milgrom, ``A modification of the Newtonian dynamics as a possible alternative to the hidden mass hypothesis,'' Astrophys.\ J.\ \textbf{270}, 365 (1983).
+
+\bibitem{milgrom1999} M.\ Milgrom, ``The modified dynamics as a vacuum effect,'' Phys.\ Lett.\ A \textbf{253}, 273 (1999), arXiv:astro-ph/9805346. [The identical $\nu$-kernel modified-inertia law, Eq.~(9); his coefficient was $2cH_\Lambda$.]
+
+\bibitem{lpo2008} C.\ M.\ Limbach, D.\ Psaltis, and F.\ \"Ozel, ``The redshift evolution of the Tully--Fisher relation as a test of modified gravity,'' arXiv:0809.2790 (2008). [The prior $a_0\propto\sqrt{\rho_{\rm DE}}$ scale coincidence.]
+
+\bibitem{skordis2021} C.\ Skordis and T.\ Zlosnik, ``New relativistic theory for modified Newtonian dynamics,'' Phys.\ Rev.\ Lett.\ \textbf{127}, 161302 (2021), arXiv:2007.00082. [AeST; the single-metric MG comparison class.]
+
+\bibitem{dew2011} C.\ Deffayet, G.\ Esposito-Far\`ese, and R.\ P.\ Woodard, ``Nonlocal metric formulations of MOND with sufficient lensing,'' Phys.\ Rev.\ D \textbf{84}, 124054 (2011), arXiv:1106.4984.
+
+\bibitem{dw2009} C.\ Deffayet and R.\ P.\ Woodard, ``Reconstructing the distortion function for nonlocal cosmology,'' JCAP \textbf{08}, 023 (2009), arXiv:0904.0961.
+
+\bibitem{bekenstein2004} J.\ D.\ Bekenstein, ``Relativistic gravitation theory for the modified Newtonian dynamics paradigm,'' Phys.\ Rev.\ D \textbf{70}, 083509 (2004).
+
+\bibitem{abbott2017} B.\ P.\ Abbott et al.\ (LIGO Scientific, Virgo, Fermi-GBM, INTEGRAL), ``Gravitational waves and gamma-rays from a binary neutron star merger: GW170817 and GRB 170817A,'' Astrophys.\ J.\ Lett.\ \textbf{848}, L13 (2017), arXiv:1710.05834.
+
+\bibitem{boran2018} S.\ Boran, S.\ Desai, E.\ O.\ Kahya, and R.\ P.\ Woodard, ``GW170817 falsifies dark matter emulators,'' Phys.\ Rev.\ D \textbf{97}, 041501 (2018), arXiv:1710.06168.
+
+\bibitem{brouwer2021} M.\ M.\ Brouwer et al., ``The weak lensing radial acceleration relation: constraining modified gravity and cold dark matter theories with KiDS-1000,'' Astron.\ Astrophys.\ \textbf{650}, A113 (2021), arXiv:2106.11677.
+
+\bibitem{desmond2024} H.\ Desmond, A.\ Hees, and B.\ Famaey, ``On the tension between the radial acceleration relation and Solar System quadrupole in modified gravity MOND,'' Mon.\ Not.\ R.\ Astron.\ Soc.\ \textbf{530}, 1781 (2024).
+
+\bibitem{park2026} M.\ Park et al., ``Solar-System quadrupole constraints on modified gravity,'' arXiv:2602.17884 (2026).
+
+\bibitem{lelli2016} F.\ Lelli, S.\ S.\ McGaugh, and J.\ M.\ Schombert, ``SPARC: Mass models for 175 disk galaxies with Spitzer photometry and accurate rotation curves,'' Astron.\ J.\ \textbf{152}, 157 (2016), arXiv:1606.09251.
+
+\bibitem{zft} C.\ P.\ Zimmerman, ``A de Sitter--Unruh modified-inertia field theory, complete up to its constants,'' Zenodo (2026), DOI \href{https://doi.org/10.5281/zenodo.21403470}{10.5281/zenodo.21403470}.
+
+\bibitem{zftE} C.\ P.\ Zimmerman, erratum to Ref.~\cite{zft} (the GW170817 disformal-sector exclusion, computed in full), Zenodo (2026), DOI \href{https://doi.org/10.5281/zenodo.21415677}{10.5281/zenodo.21415677}.
+
+\bibitem{zconcept} C.\ P.\ Zimmerman, ``The covariant modified-inertia completion'' (concept record, versions v1--v11), Zenodo (2026), concept DOI \href{https://doi.org/10.5281/zenodo.21253644}{10.5281/zenodo.21253644}.
+
+\bibitem{znogoL} C.\ P.\ Zimmerman, ``A passivity obstruction: why a derived $a_0=cH_\Lambda/Z$ and single-metric weak lensing cannot coexist in de Sitter--Unruh modified inertia,'' Zenodo (2026), DOI \href{https://doi.org/10.5281/zenodo.21418816}{10.5281/zenodo.21418816}.
+
+\bibitem{zhonest} C.\ P.\ Zimmerman, ``The de Sitter--Unruh $a_0$ no-go'' (adversarially reviewed honest-scope paper), Zenodo (2026), DOI \href{https://doi.org/10.5281/zenodo.20973740}{10.5281/zenodo.20973740}. [Its item (iii) covariant-completion no-go is superseded here; see Sec.~\ref{sec:related}.]
+
+\bibitem{zv3} C.\ P.\ Zimmerman, ``The MI action, v3'' (correction: the Einstein-aether strong-coupling wall does not apply to the passive 0-dof frame), Zenodo (2026), DOI \href{https://doi.org/10.5281/zenodo.21263846}{10.5281/zenodo.21263846}.
+
+\bibitem{zv4} C.\ P.\ Zimmerman, ``The MI action, v4'' (Dirac closure; Herglotz kernel; nonlinear stability), Zenodo (2026), DOI \href{https://doi.org/10.5281/zenodo.21264727}{10.5281/zenodo.21264727}.
+
+\bibitem{zv11} C.\ P.\ Zimmerman, ``The MI action, v11'' (the one-loop dS edge at divergence level; $a_0$ unrenormalized; sum rule), Zenodo (2026), DOI \href{https://doi.org/10.5281/zenodo.21284144}{10.5281/zenodo.21284144}.
+
+\bibitem{zjcap1} C.\ P.\ Zimmerman, ``The parameter-free $a_0(z)$ test,'' Zenodo (2026), DOI \href{https://doi.org/10.5281/zenodo.20737162}{10.5281/zenodo.20737162}. [JCAP-side companion.]
+
+\bibitem{zjcap2} C.\ P.\ Zimmerman, ``The non-circular cross-scale $a_0(z)$ test,'' Zenodo (2026), concept DOI \href{https://doi.org/10.5281/zenodo.21440407}{10.5281/zenodo.21440407}. [JCAP-side companion.]
+
+\bibitem{zjcap3} C.\ P.\ Zimmerman, ``Rubin/LSST pre-registration of the $a_0(z)$ test,'' Zenodo (2026), DOI \href{https://doi.org/10.5281/zenodo.21478568}{10.5281/zenodo.21478568}. [JCAP-side companion.]
+
+\bibitem{zmnras} C.\ P.\ Zimmerman, ``The $a_0$-line: a gas-dominated SPARC slope measurement and the $\Lambda$ inversion,'' Zenodo (2026), DOI \href{https://doi.org/10.5281/zenodo.21419735}{10.5281/zenodo.21419735}. [MNRAS-side companion.]
+
+\bibitem{zsigma} C.\ P.\ Zimmerman, ``The relational velocity-dispersion spread as an MI-distinctive observable,'' Zenodo (2026), DOI \href{https://doi.org/10.5281/zenodo.21421896}{10.5281/zenodo.21421896}.
+
+\bibitem{a0kit} C.\ P.\ Zimmerman, \texttt{a0kit}: the $a_0$-line phenomenology toolkit (software), Zenodo (2026), concept DOI \href{https://doi.org/10.5281/zenodo.21478981}{10.5281/zenodo.21478981}. ASCL submission pending editor review.
+
+\end{thebibliography}
+
+\end{document}
