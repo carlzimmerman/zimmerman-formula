@@ -129,18 +129,21 @@ print("PART 4  The horizon-thermodynamics O(1) menu on cH -- and which one FITS 
 print("-" * 82)
 import math
 C = 2.99792458e8; MPC = 3.0857e22; H0 = 67.4e3 / MPC; A0_OBS = 1.2e-10; cH0 = C * H0
+OMDE = 0.685; HL = H0 * math.sqrt(OMDE); cHL = C * HL      # H_Lambda (canonical pure-Lambda footing)
 menu = [
-    ("T_U(a0)=T_GH temperature coincidence", 1.0,        "a0=cH        (Part 1; SURFACE match)"),
+    ("2cH_Lambda dS-Unruh temperature",       0.5,        "a0=2cH       (prior-doc reading; ~9-11x)"),
+    ("T_U(a0)=T_GH temperature coincidence",  1.0,        "a0=cH        (Part 1; SURFACE match)"),
     ("enclosed critical-mass surface gravity", 2.0,       "a0=cH/2      (g=(4pi/3)Grho R_H=cH/2)"),
     ("Gibbons-Hawking temperature (Milgrom)",  2*math.pi, "2pi a0=cH    (1110.2580; BEST FIT)"),
     ("Verlinde de Sitter VOLUME entropy",      6.0,       "a0~cH/6      (contested)"),
     ("FRAMEWORK  Z=2 sqrt(8pi/3)",             Zf,        "a0=(c/2)sqrt(Grho) (geometric, not O(1))"),
 ]
-print(f"   {'route':<40}{'Z':>8}{'a0[m/s^2]':>12}{'a0/obs':>9}")
+print(f"  BOTH FOOTINGS carried:  cH0 = {cH0:.3e} (H0/total),  cH_Lambda = {cHL:.3e} (canonical).")
+print(f"   {'route':<40}{'Z':>8}{'a0=cH0/Z':>11}{'/obs':>7}{'a0=cHL/Z':>11}{'/obs':>7}")
 for name, Zr, note in menu:
-    a0 = cH0 / Zr
-    print(f"   {name:<40}{Zr:>8.3f}{a0:>12.2e}{a0/A0_OBS:>8.2f}x")
-print("   => the SMALL clean horizon O(1)s {1, 2} overshoot a0 by 2.7-5.5x and are excluded.")
+    print(f"   {name:<40}{Zr:>8.3f}{cH0/Zr:>11.2e}{cH0/Zr/A0_OBS:>6.2f}x{cHL/Zr:>11.2e}{cHL/Zr/A0_OBS:>6.2f}x")
+print(f"   canonical framework a0 = cH_Lambda/Z = {cHL/Zf:.3e} m/s^2  (target 9.36e-11).")
+print("   => the SMALL clean horizon O(1)s {1/2, 1, 2} overshoot a0 by 2.3-11x and are excluded.")
 print("      The data-fitting cluster is the LARGE divisors {2pi=6.28, Verlinde 6, framework")
 print("      5.79}, all within ~13% of observed a0 and MUTUALLY within ~8% -- data cannot")
 print("      separate them.  The framework's 5.789 = geometric sqrt(32pi/3) is the SMALLEST of")
@@ -186,6 +189,57 @@ check("SAME ball volume gives DIFFERENT kappa per denominator: V_3/(8pi/3)=1/2, 
 print("  => the d=3 boundary angle FIXES THE SHAPE (8pi/3, sqrt(pi), the '3') but the")
 print("     NORMALIZATION '2' remains a CHOICE OF DENOMINATOR = kappa.  The wall is NOT evaded;")
 print("     it is re-expressed as 'which boundary volume ratio', still unforced.")
+
+# ---------------------------------------------------------------------------
+# PART 6 -- CLOSED-DOOR AUDIT: prove-by-moving kappa.  Does the boundary EVADE the 3 shut
+#           doors (kappa unforceable / CKN g_*=1 / number-field) or RE-HIT them?
+# ---------------------------------------------------------------------------
+print("\n" + "-" * 82)
+print("PART 6  CLOSED-DOOR AUDIT: kappa is INVISIBLE to the Unruh/GH/boundary count (prove-by-moving)")
+print("-" * 82)
+kap = sp.symbols('kappa', positive=True)
+# kappa-parametrize the density reading:  a0 = kappa c sqrt(G rho_DE),  rho_DE = 3H^2/(8 pi G)
+rho_DE_k = 3 * H**2 / (8 * PI * G)
+a0_k = kap * c * sp.sqrt(G * rho_DE_k)
+Z_k  = sp.simplify(c * H / a0_k)
+print(f"  a0(kappa) = kappa c sqrt(G rho_DE) ;  Z(kappa) = cH/a0 = {sp.nsimplify(Z_k)}")
+check("Z(kappa) = (1/kappa) sqrt(8pi/3): SHAPE fixed, NORMALIZATION = 1/kappa",
+      sp.simplify(Z_k - (1/kap)*sp.sqrt(sp.Rational(8, 3)*PI)) == 0)
+check("Z(kappa=1/2) = sqrt(32pi/3) = canonical Z",
+      sp.simplify(Z_k.subs(kap, sp.Rational(1, 2)) - sp.sqrt(sp.Rational(32, 3)*PI)) == 0)
+# What the Unruh/GH/boundary count SEES -- differentiate each w.r.t. kappa (all must be 0):
+T_GH_q   = hbar * H / (2 * PI * kB)          # Gibbons-Hawking temperature
+R_dS_q   = c / H                             # de Sitter horizon distance
+S_GH_q   = PI * (c / H)**2                   # GH entropy A/4 (Planck units)
+a_match  = sp.solve(sp.Eq(hbar * a / (2 * PI * c * kB), T_GH_q), a)[0]   # temp-match accel
+print("  Quantities the count SEES (d/dkappa must vanish -- the count is blind to kappa):")
+for nm, q in [("T_GH", T_GH_q), ("R_dS", R_dS_q), ("S_GH=A/4", S_GH_q), ("temp-match a*", a_match)]:
+    dq = sp.simplify(sp.diff(q, kap))
+    check(f"d/dkappa[{nm:12s}] = {dq}  (kappa-FREE)", dq == 0)
+check("temp-match acceleration a* = cH regardless of kappa (fixes only the SCALE, never Z)",
+      sp.simplify(a_match - c * H) == 0)
+check("a0 MOVES with kappa (da0/dkappa != 0): kappa is a DYNAMICAL inertia-response coupling",
+      sp.simplify(sp.diff(a0_k, kap)) != 0)
+check("Z MOVES with kappa (dZ/dkappa != 0)", sp.simplify(sp.diff(Z_k, kap)) != 0)
+print("  => MOVE kappa: T_GH, R_dS, S_GH, and the temp-match acceleration cH are ALL FROZEN, while")
+print("     a0 and Z MOVE.  The Unruh/GH/boundary count is a HOLOGRAPHIC count and is STRUCTURALLY")
+print("     BLIND to the outside fraction kappa.  Now the three-door audit:")
+print()
+print("  (a) kappa-wall (ghost-freedom+unitarity+holography):  RE-HIT, not evaded.  The boundary")
+print("      count is holographic; the prior 'holography reaches only the scale cH' barrier applies")
+print("      verbatim -- above, the temp match yields a*=cH (kappa-free) and every horizon invariant")
+print("      is d/dkappa=0.  Same wall, boundary clothes.")
+print("  (b) CKN g_*=1 limit:  RE-HIT, not evaded.  The boundary 'dof' ARE the GH entropy cells")
+print("      S=A/4 -- one per 4 Planck areas, carrying NO matter-species content = the g_*=1")
+print("      (no-matter) limit at which 0.5878=(3/8pi)^{1/4} lands.  An honest SM count g_*=106.75")
+print("      gives ~0.18-0.41.  The boundary supplies NO g_*!=1 to fix kappa; it RECONFIRMS g_*=1.")
+print("  (c) sqrt(pi) number-field:  HOSTED, not FORCING.  d=3 is the natural HOME of a lone")
+print("      sqrt(pi)=2 Gamma(3/2) and the SHAPE 8pi/3 IS boundary-derivable, but PART 5 showed the")
+print("      normalization is a free denominator (1/2 vs 1/3 vs 2/3).  Hosting sqrt(pi) != forcing")
+print("      the coefficient -- the same hosts!=forces distinction that killed the E8/J3(O) SM door.")
+print("  AUDIT VERDICT: the boundary angle EVADES NONE of the three doors; it RE-HITS each in")
+print("  geometric clothing -- a SHARPER REASON for the wall (SHAPE=geometry, boundary-derivable;")
+print("  NORMALIZATION=dynamics, fit to a0), not a route around it.")
 
 # ---------------------------------------------------------------------------
 # VERDICT + sub-factor ledger
