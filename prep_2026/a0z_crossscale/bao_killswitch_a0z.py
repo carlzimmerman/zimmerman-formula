@@ -285,25 +285,35 @@ print("   * z=3 (effect ~26%, BEYOND the direct-BAO reach -> CPL only): req ~8.7
 print("     DR2 the CPL razor (sig_pred ~9%) caps the ceiling ~2.8s; DR3->req 5.2%, DR5->req 7.1%. This is")
 print("     the ONLY node the 7.7% best campaign could reach -- and z=3 kinematics are the most data-starved.")
 
-# quantify the pure bottleneck split at z=3 (best-case galaxies) at each BAO precision
-print("\n  z=3 SEPARATION with the ~7.7% best-case galaxy campaign, at each BAO precision (both sides):")
-print(f"  {'precision':28} | {'sig_pred':>8} | {'quad sigma':>10} | {'sep vs flat':>11}")
+# bottleneck split -- WHERE the razor is free (direct-BAO z<2.3) vs where it CO-BINDS (z=3 extrap)
+print("\n  WHERE IS THE RAZOR FREE? variance-share of the quadrature (galaxy = 7.7% best campaign):")
+print(f"  {'node':36} | {'sig_pred':>8} | {'sig_gal':>8} | {'BAO var%':>8} | {'gal var%':>8} | {'sep':>6}")
+sg = GAL_BEST_CAMPAIGN/100
+def vshare(sp, sgg):
+    return 100*sp**2/(sp**2+sgg**2), 100*sgg**2/(sp**2+sgg**2)
+med2d = razor[(HEAD, "DR2  (now, ~3yr)", 2.0)][0]; eff2 = abs(med2d-1.0)
+bp, gp = vshare(DIRECT_RAZOR, sg)
+print(f"  {'z=2, DIRECT razor (z<2.3, BAO bin)':36} | {100*DIRECT_RAZOR:>7.2f}% | {100*sg:>7.2f}% | "
+      f"{bp:>7.0f}% | {gp:>7.0f}% | {eff2/math.hypot(DIRECT_RAZOR,sg):>5.2f}s")
+med5 = sp5 = None
 for flab, fac in FORECAST:
     med, sp = razor[(HEAD, flab, 3.0)]
-    eff = abs(med-1.0)
-    quad = math.hypot(sp, GAL_BEST_CAMPAIGN/100)
-    sep = eff/quad
-    print(f"  {flab:28} | {100*sp:>7.2f}% | {100*quad:>9.2f}% | {sep:>10.2f}s")
-print("  => Even the best galaxy campaign tops out ~2.3-2.9 sigma at z=3: BELOW a clean 3s. The BAO")
-print("     razor lifts the ceiling only marginally (DR2->DR5 sig_pred 9%->5%) because the GALAXY")
-print("     7.7% dominates the quadrature. The bottleneck is ~100% galaxy, ~0% BAO. THIS is the")
-print("     asymmetry: BAO's razor is essentially free; the galaxy measurement is the whole cost.")
-
+    eff = abs(med-1.0); bp, gp = vshare(sp, sg)
+    print(f"  {'z=3, CPL razor '+flab.split()[0]+' (z>2.3, extrap)':36} | {100*sp:>7.2f}% | {100*sg:>7.2f}% | "
+          f"{bp:>7.0f}% | {gp:>7.0f}% | {eff/math.hypot(sp,sg):>5.2f}s")
+    if flab.startswith("DR5"): med5, sp5 = med, sp
+print("  READING (the asymmetry, PRECISELY -- NOT 'razor free everywhere'):")
+print("   * z<~2.3 (BAO measures rho_DE DIRECTLY): razor ~1% is negligible vs the 7.7% galaxy floor")
+print("     -> the confrontation is ~98% GALAXY-limited, the razor IS essentially free. But the effect")
+print("     is small (<=14%) and req ~4.5% < 7.7% best -> galaxy-UNREACHABLE. This is the true asymmetry.")
+print("   * z=3 (BEYOND direct BAO -> CPL EXTRAPOLATION): the razor is NOT free -- at DR2 the extrapolated")
+print("     sig_pred (~9%) actually DOMINATES the error (~59% of variance), flipping to galaxy-dominated")
+print("     (~69%) only by DR5. At the one node with a big effect, BAO CO-BINDS until DR5, THEN galaxies.")
+print(f"   * NET: best galaxy campaign at z=3 tops out {eff/math.hypot(sp5,sg):.2f}s (DR5) -- still < a clean 3s.")
 # what galaxy precision WOULD give a clean 3s at z=3 with a razor-limited (DR5) prediction?
-med5, sp5 = razor[(HEAD, "DR5  (Stage-V + CMB-S4 class)", 3.0)]
 need = math.sqrt(max((abs(med5-1.0)/3.0)**2 - sp5**2, 0.0))
 print(f"  With a DR5 razor (sig_pred~{100*sp5:.1f}% at z=3), a clean 3s kill needs sigma_gal <= {100*need:.1f}%")
-print(f"  -- vs 7.7% best campaign / 11% SPARC-alone floor. Gap to close is ENTIRELY on the galaxy side.")
+print(f"  -- vs 7.7% best campaign / 11% SPARC-alone floor. The remaining gap is on the galaxy side.")
 
 # ================================================================================
 # S5 -- SYNTHESIS + FROZEN one-liner + honesty caveats + JSON
@@ -320,9 +330,11 @@ print("\n  BRANCH PLACEMENT (today): DESI DR2 is ALREADY BRANCH-LIVE (DESY5 4.2s
 print("  2.8s borderline). DR3/DR5 harden LIVE ~1.3-1.8x IF DE evolves, or collapse to DISSOLVE if it")
 print("  does not. The test's liveness is essentially settled and sharp; its outcome is not fundable")
 print("  with existing galaxy data.")
-print("\n  THE ASYMMETRY IN ONE NUMBER: prediction precision ~0.5-1.5% (BAO razor, z<~2) vs galaxy")
-print(f"  measurement floor ~{GAL_FLOOR_SPARC:.0f}% (SPARC-alone) / ~{GAL_BEST_CAMPAIGN:.1f}% (best campaign) => the razor is ~{GAL_BEST_CAMPAIGN/1.0:.0f}-{GAL_FLOOR_SPARC/1.0:.0f}x")
-print("  sharper than the measurement. The confrontation is ~100% galaxy-limited; BAO is not the wall.")
+print("\n  THE ASYMMETRY IN ONE NUMBER: at the DIRECT-BAO redshifts (z<~2.3) the prediction precision")
+print(f"  is ~0.5-1.5% (razor) vs a galaxy floor ~{GAL_FLOOR_SPARC:.0f}% (SPARC-alone) / ~{GAL_BEST_CAMPAIGN:.1f}% (best campaign) -- the razor")
+print(f"  is ~{GAL_BEST_CAMPAIGN/1.0:.0f}-{GAL_FLOOR_SPARC/1.0:.0f}x sharper, so there the confrontation is ~98% GALAXY-limited. The one CAVEAT: at")
+print("  z=3 (beyond direct-BAO reach) the CPL-EXTRAPOLATED razor co-binds and even dominates at DR2,")
+print("  clearing only by DR5. Net: galaxies are the wall wherever the test is reachable; BAO is not.")
 
 CAVEATS = [
  "BAO does NOT measure a0. r_drag is set pre-recombination at g>>a0 (standard ruler), so BAO "
@@ -331,12 +343,14 @@ CAVEATS = [
  "The razor is razor-sharp (~0.5-1.5%) where BAO actually measures (z<~2); it softens on CPL "
  "EXTRAPOLATION to z=3 (sigma_pred ~7-12% at DR2). DR3/DR5 tighten it ~1.3-1.8x -- MODEST, "
  "~1/sqrt(volume), NOT order-of-magnitude (DESI 3yr->5yr = sqrt(5/3)~1.29x; external SNe/CMB the rest).",
- "The test is ENTIRELY galaxy-limited. Required galaxy a0(z) precision for a 3-sigma kill: ~2% at "
- "the z~0.35 bump, ~4.5% at z~2, ~8-9% at z=3 -- vs a ~11% SPARC-alone floor / ~7.7% best dedicated "
- "campaign (Step A). Only z=3 is even marginally reachable, and z=3 galaxy kinematics are the worst.",
- "TWO ceilings, kept separate: (i) the COSMOLOGY/theory ceiling from sigma_pred (lifts with DR3/DR5), "
- "(ii) the GALAXY floor from sigma_gal (needs a dedicated high-z campaign). At z=3 the best galaxy "
- "campaign tops out ~2.3-2.9 sigma even with a DR5 razor -- below a clean 3s. The wall is the galaxy floor.",
+ "Where the test is reachable it is GALAXY-limited. Required galaxy a0(z) precision for a 3-sigma "
+ "kill: ~2% at the z~0.35 bump, ~4.5% at z~2 (direct-BAO regime), ~8-9% at z=3 -- vs a ~11% SPARC-"
+ "alone floor / ~7.7% best dedicated campaign (Step A). Only z=3 is even marginally reachable, and "
+ "z=3 galaxy kinematics are the most data-starved. z~2 has usable data but needs ~4.5% (< 7.7% best).",
+ "TWO ceilings, kept separate and NOT conflated: (i) at z<~2.3 BAO measures rho_DE directly so the "
+ "razor (~1%) is negligible -> ~98% galaxy-limited; (ii) at z=3 the CPL-EXTRAPOLATED sig_pred (~9% at "
+ "DR2) actually DOMINATES the error (~59% variance) and co-binds until DR5 lifts it. The best galaxy "
+ "campaign at z=3 still tops out ~2.3-2.9 sigma (DR2->DR5) -- below a clean 3s. Do NOT claim 'razor free everywhere'.",
  "BRANCH-DISSOLVE is a REAL unfalsifiability weakness: if BAO relaxes to w=-1 the predicted a0(z) is "
  "EXACTLY flat and indistinguishable from constant-a0 MOND. The z=3 decline already dies (<1s from flat) "
  "once |1+w0|<~0.08; the current 0.162 gives only ~2s. The channel's power is INHERITED, not proven.",
