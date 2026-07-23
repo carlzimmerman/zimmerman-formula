@@ -1,0 +1,128 @@
+tau_mem*H_Lambda = 2Z = 11.578  ->  tau_mem = 203 Gyr (can) / 168 Gyr (alt), footing-free
+per-galaxy ln-scatter s_ln = hypot(s_FJ, e_sig).  Systematic floor on the contrast (quadrature proj(+)tidal): opt 2.2%  fid 5.2%  pes 8.2%
+
+====================================================================================================
+ (1) SYSTEMATIC CEILING  z_max = S/floor  (the N->infinity limit; the floor never averages down)
+====================================================================================================
+   If z_max < 3 the reading CANNOT reach 3sigma at ANY N; if z_max < 5, no 5sigma at any N.
+   Signal at FACE VALUE (measured post-tagging contrast); purity lives in the projection floor.
+
+   reading      S(can) |  zmax@2.2%  zmax@5.2%  zmax@8.2%   floor menu
+   LOW-PASS       1.3% |       0.58       0.25       0.16   proj 1-2% (+) tidal 2-8%
+   PURE-DELAY    10.5% |       4.47       1.91       1.21   proj 1-2% (+) tidal 2-8%
+
+   LOW-PASS,   even best (F3-cleaned ~2.2%) floor:  z_max = 0.58  -> BELOW 1: undetectable at ANY N
+   PURE-DELAY, fiducial (~5.2%) floor:              z_max = 1.91  -> CANNOT reach 3sigma at any N
+   PURE-DELAY, F3-cleaned (~2.2%) floor:            z_max = 4.47  (band 3.44 @8% .. 5.47 @13%)
+
+====================================================================================================
+ (2) BREAK-EVEN FLOOR  floor_max = S/z_target  (max systematic that still ADMITS a detection)
+====================================================================================================
+   Stated floor menu: projection alone ~1-2%; tidal residual ~2-8%; quadrature ~2.2-8.3%.
+
+   reading      S(can) |  floor<= 3s  floor<= 5s   feasibility
+   LOW-PASS       1.3% |       0.43%       0.26%   3s IMPOSSIBLE: break-even below projection floor alone
+   PURE-DELAY    10.5% |       3.33%       2.00%   3s feasible iff F3 drives floor to ~2%
+
+====================================================================================================
+ (3) REQUIRED N  (per zone balanced | total Rhee-split);  'NO N' = ceiling fails, no count works
+====================================================================================================
+   fiducial per-galaxy s_ln = hypot(s_FJ 0.150, e_sig 0.050) = 0.158
+
+   reading      floor |    Nz(3s)    Nz(5s) |  Ntot(3s)  Ntot(5s)
+   LOW-PASS      2.2% |      NO N      NO N |      NO N      NO N
+   LOW-PASS      5.2% |      NO N      NO N |      NO N      NO N
+   LOW-PASS      8.2% |      NO N      NO N |      NO N      NO N
+   PURE-DELAY    2.2% |        82      NO N |       207      NO N
+   PURE-DELAY    5.2% |      NO N      NO N |      NO N      NO N
+   PURE-DELAY    8.2% |      NO N      NO N |      NO N      NO N
+
+   PURE-DELAY 3sigma @ F3-cleaned 2.2% floor: ~82 per zone  (~207 total tagged, Rhee split).
+   PURE-DELAY 5sigma needs best-case (S~13%, e_sig 3%, s_FJ 0.05dex, floor 2.2%): ~290 per zone.
+
+====================================================================================================
+ (4) REQUIRED-N vs PER-GALAXY sigma PRECISION  (pure-delay S=10.5%, floor 2.2%)
+====================================================================================================
+   Even PERFECT sigma (e_sig->0) cannot beat the intrinsic s_FJ; precision is a WEAK lever.
+
+   e_sig (IFU %)    s_ln    Nz(3s)    Nz(5s)
+             0%    0.150        74      NO N
+             3%    0.153        77      NO N
+             5%    0.158        82      NO N
+             8%    0.170        95      NO N
+            12%    0.192       121      NO N
+
+   e_sig 8% -> 0%: Nz(3s) moves 95 -> 74  (only x1.28).
+   BINDING levers: (i) the systematic floor (ceiling), (ii) carrier COUNT, (iii) intrinsic s_FJ.
+
+====================================================================================================
+ (5) ACHIEVED z ON REAL CARRIER SAMPLES  (Rhee split; fiducial s_ln; PER READING, no averaging)
+====================================================================================================
+   carrier pools (data_scout/overlap_power.py): MMU-MaNGA ~40-77 ; +SAMI stack ~135-237 ;
+   clean-exploratory target 300-500 ; dedicated wide dwarf-IFU / ELT ~10^3-10^4.
+
+   --- floor = F3-cleaned 2.2% ---
+   sample                    N |  z LOW-PASS(1.3%)  z PURE-DELAY(10.5%)
+   MMU-MaNGA                77 |              0.28                 2.16
+   MaNGA+SAMI stack        237 |              0.40                 3.11
+   clean target            400 |              0.45                 3.50
+   dedicated survey       2000 |              0.54                 4.21
+
+   --- floor = fiducial 5.2% ---
+   sample                    N |  z LOW-PASS(1.3%)  z PURE-DELAY(10.5%)
+   MMU-MaNGA                77 |              0.20                 1.51
+   MaNGA+SAMI stack        237 |              0.23                 1.75
+   clean target            400 |              0.23                 1.81
+   dedicated survey       2000 |              0.24                 1.89
+
+   RECONCILE w/ overlap_power.py: MaNGA+SAMI(237) pure-delay = 3.11 (face) .. 2.02 (if purity charged again) -> honest stack range ~2-3sigma, NOT a clean detection.
+
+====================================================================================================
+ (6) BOTH FOOTINGS -- signal footing-invariance at fixed dimensionless depth (a0 cancels)
+====================================================================================================
+   LOW-PASS   : S_can=1.3%  S_alt=1.5%  footing spread 15%  (tau_mem*H_Lambda=2Z footing-free)
+   PURE-DELAY : S_can=10.5%  S_alt=10.5%  footing spread 0%  (tau_mem*H_Lambda=2Z footing-free)
+
+====================================================================================================
+ (7) VERDICT -- per kernel reading, both ways, no averaging
+====================================================================================================
+
+  LOW-PASS reading (S ~ 1.3% canonical / 1.5% alt):  UNDETECTABLE AT ANY N.
+    The signal sits BELOW even the most optimistic combined confound floor (~2.2%; the projection
+    alias ALONE is ~1-2%).  Structural ceiling z_max = 0.58 < 1 at the best floor: no galaxy
+    count closes it.  A 3sigma detection would need the total floor beaten to <= 0.43% --
+    below the projection floor by itself.  On every real sample z_LP < 0.54.  This is a
+    genuine NO, not a shortfall of N.
+
+  PURE-DELAY reading (S ~ 8-13%, fiducial 10.5%):  CONDITIONALLY DETECTABLE, floor-hostage.
+    * At the FIDUCIAL ~5% floor (tidal residual not aggressively cleaned): ceiling z_max = 1.91
+      < 3 -> NO 3sigma at any N.  The tidal floor, not statistics, is the wall.
+    * ONLY if the F3 outward-rising radial-profile separator drives the combined floor to ~2.2%
+      does the ceiling clear 3sigma (z_max = 4.47).  Then 3sigma needs ~82 diffuse tagged
+      carriers PER ZONE (~207 total, Rhee split).
+    * 5sigma needs the TOP of the band (S~13%) + best precision + floor ~2.2%: ~290 per zone,
+      and collapses if the floor rises above ~2.5% or S sits mid-band.
+
+  BREAK-EVEN (the whole detection lives or dies on the confound floor):
+    floor must be <= S/3.  Low-pass: <= 0.43% (impossible, below projection).
+    Pure-delay: <= 3.33% for 3sigma, <= 2.00% for 5sigma.
+    The per-galaxy sigma precision (3-8% IFU) is a WEAK lever: intrinsic relational scatter
+    s_FJ~0.065 dex dominates, so tightening sigma 8%->0% cuts required N by <x1.6.  Buying
+    precision does NOT rescue the low-pass reading.
+
+  REAL-DATA MAP (best F3-cleaned 2.2% floor, pure-delay):
+    MMU-MaNGA (77): z~2.2   MaNGA+SAMI (237): z~3.1   target (400): z~3.5.
+    All public samples are UNDERPOWERED for a clean pure-delay detection, and DEAD for low-pass
+    at every sample.  A clean >=3sigma pure-delay probe needs BOTH (i) ~300-500 diffuse tagged
+    carriers from a dedicated wide nearby-cluster dwarf-IFU survey (or ELT/HARMONI, ~2032) AND
+    (ii) the tidal floor demonstrably beaten to ~2% by the F3 radial-profile separator on real data.
+
+  HONEST HEADLINE:  UNDERPOWERED, and MORE than a count problem.  The discriminating POWER is
+    theorem-grade vs the whole MG class; a DETECTION is possible only in the pure-delay (high)
+    kernel reading AND a specifically clean, low-tidal sample with F3 working.  In the committed
+    low-pass corner the signal is below the irreducible floor and no instrument detects it.
+    MI-class-generic; does NOT test a0's value or s=-1; both footings identical at fixed depth.
+
+====================================================================================================
+two_zone_power.py complete -- exit 0
+====================================================================================================

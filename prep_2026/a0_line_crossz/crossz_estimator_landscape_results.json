@@ -1,0 +1,203 @@
+{
+ "S1": {
+  "identity_z_invariant": true,
+  "params_framework": 0,
+  "params_const": 1,
+  "params_evolving": 2
+ },
+ "S2": {
+  "lev_v": "4*a0*(y+1)",
+  "lev_pressure": "2*a0*(y+1)*beta",
+  "lev_beam": "-4*a0*(y+1)",
+  "correlated_nonaveraging": true
+ },
+ "S3": {
+  "0.0": {
+   "y": 1.0,
+   "sigma_v": 0.05,
+   "f_corr": 0.3,
+   "per_pt": 0.4,
+   "floor": 0.12,
+   "N_gal_15": 9.67901234567901
+  },
+  "0.1": {
+   "y": 1.2,
+   "sigma_v": 0.1,
+   "f_corr": 0.4,
+   "per_pt": 0.8800000000000001,
+   "floor": 0.3520000000000001,
+   "N_gal_15": null
+  },
+  "0.5": {
+   "y": 2.5,
+   "sigma_v": 0.18,
+   "f_corr": 0.6,
+   "per_pt": 2.52,
+   "floor": 1.512,
+   "N_gal_15": null
+  },
+  "1.0": {
+   "y": 3.0,
+   "sigma_v": 0.22,
+   "f_corr": 0.65,
+   "per_pt": 3.52,
+   "floor": 2.2880000000000003,
+   "N_gal_15": null
+  },
+  "1.5": {
+   "y": 4.0,
+   "sigma_v": 0.28,
+   "f_corr": 0.7,
+   "per_pt": 5.6000000000000005,
+   "floor": 3.92,
+   "N_gal_15": null
+  },
+  "2.0": {
+   "y": 5.0,
+   "sigma_v": 0.33,
+   "f_corr": 0.72,
+   "per_pt": 7.92,
+   "floor": 5.7024,
+   "N_gal_15": null
+  }
+ },
+ "S4_inventory": [
+  {
+   "survey": "SPARC (z=0 anchor)",
+   "z_range": "0.0",
+   "N_resolved": 175,
+   "N_pass_cuts": 147,
+   "N_gasdom_resolved": "~30-50 gas-rich dwarfs (point-level Vgas^2>Ustar terms)",
+   "sigma_v_typ": "3-10%",
+   "resolved_gas_profile": true,
+   "role": "ANCHOR: the one clean resolved gas-dominated a0-line slope (a0_hat~1.1-1.4e-10)",
+   "cite": "Lelli+2016 AJ 152,157",
+   "note": "resolved HI + Spitzer 3.6um -> per-radius g_gas(R),g_star(R); THE regime the line needs"
+  },
+  {
+   "survey": "DYNAMO",
+   "z_range": "0.07-0.13",
+   "N_resolved": "~30-40 (IFU); ~12 AO/ALMA",
+   "N_gasdom_resolved": "~5-10 (gas-rich, some resolved molecular Fisher+2019)",
+   "sigma_v_typ": "5-15% (turbulent, sigma0~20-50)",
+   "resolved_gas_profile": "partial (a few, molecular)",
+   "role": "local high-z-ANALOG bridge just above SPARC; genuinely gas-rich (f_gas~0.2-0.5)",
+   "cite": "Green+2014 MNRAS 437,1070; Bekiaris+2016; Fisher+2019",
+   "note": "the ONLY place a resolved gas-dominated point above z=0 is even conceivable today -- but at z~0.1 the framework predicts only the +3% BUMP: unmeasurably small"
+  },
+  {
+   "survey": "MUSE/MAGPI",
+   "z_range": "0.25-0.42",
+   "N_resolved": "~60 primary (+satellites)",
+   "N_gasdom_resolved": "~0 (massive early/late types, baryon-dominated)",
+   "sigma_v_typ": "5-15%",
+   "resolved_gas_profile": false,
+   "role": "resolved stellar+ionized-gas kinematics; NOT gas-dominated",
+   "cite": "Foster+2021 PASA 38,e031",
+   "note": "no gas-dominated a0-line points; wrong mass regime"
+  },
+  {
+   "survey": "MUSE-DARK (lensed)",
+   "z_range": "0.56-1.37",
+   "N_resolved": 95,
+   "N_gasdom_resolved": "~30 reach g_bar~a0 (low-mass lensed) BUT no resolved gas Sigma(R)",
+   "sigma_v_typ": "10-20% (3D GalPaK, lensing)",
+   "resolved_gas_profile": false,
+   "role": "the ONLY sample into the a0 acceleration regime at z~1 -- but INTEGRATED TFR, not a resolved gas-dominated slope",
+   "cite": "Jeanneau+2026 A&A (MUSE-DARK II), arXiv:2603.28856",
+   "note": "M*=1e8.1-10.3, lensed to low acceleration; gas masses MODEL-mediated (Tacconi mol + NeutralUniverseMachine atomic, 0.8dex); bTFR ZP 0.00+/-0.27 already banked (highz_tfr_fork)"
+  },
+  {
+   "survey": "MSA-3D (JWST NIRSpec)",
+   "z_range": "0.5-1.7",
+   "N_resolved": "~40-50 (23 'golden')",
+   "N_gasdom_resolved": "~0 (a0(z) done via f_DM(Re) PROXY inversion, not gas decomposition)",
+   "sigma_v_typ": "10-20%",
+   "resolved_gas_profile": false,
+   "role": "only EXISTING high-z a0(z) -- but the DM-fraction inversion a0=g_obs*h(f_DM), NOT the gas-dominated a0-LINE slope; selection-confounded (>half the 'rise' is g_obs selection)",
+   "cite": "MSA-3D golden N=23; audit real_research/msa3d_a0z_selection_decomposition.py",
+   "note": "residual trend after g_obs control +0.91+/-0.8 ~1.1sigma from flat -> WEAK-TENSION/WATCH"
+  },
+  {
+   "survey": "KMOS3D",
+   "z_range": "0.6-2.7 (z~0.9 & z~2.3)",
+   "N_resolved": "739 (Ha); ~100 deep RC",
+   "N_gasdom_resolved": "~0 (massive HSB rotation-dominated; star-dominated at RC radius)",
+   "sigma_v_typ": "10-30% outer V (0.5\" seeing, beam-smearing corrected)",
+   "resolved_gas_profile": false,
+   "role": "flagship cosmic-noon RCs; log M*~9-11.5; the WRONG (high-y baryon-dominated) regime",
+   "cite": "Wisnioski+2015/2019; Ubler+2017; Genzel+2020; Nestor Shachar+2023 RC100",
+   "note": "mol f_gas~0.3-0.5 but concentrated; g_bar STAR-dominated at ~2.2R_d -> phi~1, the worst place for the a0-line (M/L lever ~ phi*a0*(2y+1) is maximal)"
+  },
+  {
+   "survey": "SINS / zC-SINF",
+   "z_range": "1.3-2.6 (z~2.2)",
+   "N_resolved": "~110 (~35 AO)",
+   "N_gasdom_resolved": "~0 (the declining-RC baryon-dominated flagships)",
+   "sigma_v_typ": "15-40% outer V (AO 0.2\" best)",
+   "resolved_gas_profile": false,
+   "role": "deepest cosmic-noon RCs (Genzel+2017 declining curves); highest y in the census",
+   "cite": "Forster Schreiber+2009/2018; Genzel+2011/2017",
+   "note": "these are literally the g_bar>>a0 declining-RC galaxies -- the OPPOSITE of gas-dominated"
+  },
+  {
+   "survey": "PHIBSS",
+   "z_range": "0.5-2.6",
+   "N_resolved": "~100+ CO (mostly UNRESOLVED kinematically)",
+   "N_gasdom_resolved": "0 (a gas-MASS survey, not resolved kinematics)",
+   "sigma_v_typ": "n/a (integrated M_mol)",
+   "resolved_gas_profile": false,
+   "role": "the gas-MASS CALIBRATION backbone (Tacconi scaling relations) other samples depend on",
+   "cite": "Tacconi+2013 ApJ 768,74; Tacconi+2018 ApJ 853,179",
+   "note": "supplies g_gas normalization with alpha_CO ~x2 uncertainty; FLOORS the high-z g_bar term but provides NO g_obs(R) and NO resolved Sigma_gas(R) -> cannot run the line itself"
+  },
+  {
+   "survey": "(context) KROSS / KGES",
+   "z_range": "0.9 / 1.5",
+   "N_resolved": "~500 / ~288",
+   "N_gasdom_resolved": "~0 (seeing-limited 0.7\", severe beam smearing; turbulent)",
+   "sigma_v_typ": "20-35% outer V",
+   "resolved_gas_profile": false,
+   "role": "largest z~1 & z~1.5 IFU samples but shallow/beam-smeared; drive the TFR-fork disputes",
+   "cite": "Stott+2016; Harrison+2017; Tiley+2021",
+   "note": "Tiley+19: degrading local SAMI to KROSS quality moves the LOCAL TFR by 0.5 mag -- method/selection artifacts >= any evolution; unusable for a clean a0-line slope"
+  }
+ ],
+ "S5_spread": {
+  "0.5": {
+   "framework": 1.022494628832934,
+   "rival": 1.3221667822177352,
+   "spread": 1.2930794401598416,
+   "dev_from_flat": 0.02249462883293396,
+   "N_gasdom_today": 0
+  },
+  "1.0": {
+   "framework": 0.9602726282399914,
+   "rival": 1.7902513789968157,
+   "spread": 1.8643157436217124,
+   "dev_from_flat": 0.03972737176000862,
+   "N_gasdom_today": 0
+  },
+  "1.5": {
+   "framework": 0.8849953070731108,
+   "rival": 2.3678840765544247,
+   "spread": 2.6755894157061446,
+   "dev_from_flat": 0.1150046929268892,
+   "N_gasdom_today": 0
+  },
+  "2.0": {
+   "framework": 0.8140018085784191,
+   "rival": 3.031501278244824,
+   "spread": 3.724194769958888,
+   "dev_from_flat": 0.18599819142158092,
+   "N_gasdom_today": 0
+  }
+ },
+ "verdict": [
+  "The identity g_obs^2-g_bar^2=a0*g_bar is redshift-invariant; running the a0-line as a per-bin through-origin slope a0_hat(z_k) is well-posed and turns the soft standalone a0(z) decline test into a 0-vs-1-vs-2 PARAMETER SHOWDOWN (framework 0, const-a0 MOND 1, evolving MOND 2). The 0-parameter claim is REAL: Planck Lambda fixes a0(0) AND the a0(z) shape with no galaxy-side knob.",
+  "The high-z systematics are a WALL, not a sample-size problem. Pressure support (asymmetric drift, beta~0.3-0.7, sigma0~30-90 km/s) and beam smearing enter g_obs with a 4a0(y+1)-class lever, are ~10-40% at cosmic noon, and are BIN-CORRELATED (shared sigma0/AD + PSF models -> they do NOT average down). At z>=1 the correlated floor (0.4-1.0 a0) EXCEEDS the z=0-level 0.15 target at ANY N.",
+  "The gas-dominated CUT itself is inapplicable above z~0.1-0.2: it needs a resolved gas surface-density profile Sigma_gas(R). Resolved HI dies by z~0.1-0.2; resolved CO/[CII] exists for only a few ALMA disks. No statistical resolved gas-dominated sample exists at cosmic noon.",
+  "The realistic in-hand inventory: z=0 SPARC (the anchor, sigma~15%); z~0.1 DYNAMO (~5-10 gas-rich, but the +3% bump is unmeasurable); z~0.5-1.3 MUSE-DARK 95 lensed (reaches g_bar~a0 but INTEGRATED TFR only, banked 0.00+/-0.27); z~0.6-1.7 MSA-3D 23 (only via the f_DM proxy inversion, selection-confounded WATCH). KMOS3D/SINS/zC-SINF/KGES are massive baryon-dominated (high-y, phi~1) -- the worst regime for the line. PHIBSS is a gas-MASS calibrator, not kinematics. N_gasdom(a0-line) ~ 0 at every z>=0.5.",
+  "HONEST OUTCOME: the zero-parameter cross-redshift structure is POWERFUL IN PRINCIPLE (model spread grows 1.3x@z0.5 -> ~2.4x@z2 -> ~10x@z4) but the resolved gas-dominated, pressure-corrected outer-RC data the CLEAN a0-line needs do not exist above z~0.2 today. It becomes decisive only with JWST NIRSpec-IFU + ALMA CO/[CII]-resolved gas profiles of LOW-acceleration (lensed/dwarf) disks at z~1-2. Sweet spot: z~2 (effect ~13-15%, spread ~2-3x), which is the most data-starved; z~1 sits near the crossover null; z=3 has the biggest signal but the least data. Both footings: the FOM is footing-independent, the z=0 amplitude is itself the footing discriminator, so the cross-z ladder helps separate footings only through its z=0 anchor. No 'theory closed'."
+ ]
+}
