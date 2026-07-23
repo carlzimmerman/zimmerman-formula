@@ -43,7 +43,7 @@ def rho_de_ratio(z, w0=W0, wa=WA):
     return (1 + z) ** (3 * (1 + w0 + wa)) * np.exp(-3 * wa * z / (1 + z))
 
 def a0_deSitter(z):   return np.sqrt(rho_de_ratio(z))              # (A) declining  [Carl]
-def a0_Hubble(z):     return np.sqrt(OM * (1 + np.asarray(z, float)) ** 3 + OL)  # (B) rising [McCulloch]
+def a0_Hubble(z):     return np.sqrt(OM * (1 + np.asarray(z, float)) ** 3 + OL * rho_de_ratio(z))  # (B) E(z) rising [McCulloch] -- CPL rho_DE, identical to the parent fork
 def a0_flat(z):       return np.ones_like(np.asarray(z, float))   # (C) pure-Lambda flat [Carl, w->-1]
 
 def loglog_slope(fn, zlo, zhi, n=400):
@@ -188,6 +188,10 @@ for tag, mu_err in [("NAIVE stat", mu_ll_stat), ("HONEST (Ciocan sys-inflated)",
     cD, cR, cF = abs(comb - sd_msa) / comb_err, abs(comb - sr_msa) / comb_err, abs(comb - 0) / comb_err
     print(f"    [{tag}] inverse-variance combined slope = {comb:+.2f} +/- {comb_err:.2f}"
           f"  -> {cD:.1f}s from declining | {cR:.1f}s from rising | {cF:.1f}s from flat")
+print("    CAVEAT (load-bearing): both direct probes are RAR-fits on SFGs, so they share the SAME")
+print("    LCDM-assembly apparent-a0 contamination -- combining does NOT beat it down. The declining-")
+print("    branch tension therefore spans a RANGE: ~0s if the apparent rise is FULLY assembly (Magneticum")
+print("    reproduces the whole slope) to ~5s if only HALF is. No clean fork read lives inside that range.")
 
 print("\n  (ii) the bTFR / RATIO arm is SPLIT and mostly degenerate:")
 clean_leans = [p for p in ratio_pts if p["clean"]]
@@ -212,9 +216,9 @@ print("""  DO THEY AGREE OR CONFLICT?  They CONFLICT, and the net is MIXED + WEA
    * BUT it FAILS the fork's CLEANLINESS requirement: it OVERSHOOTS even McCulloch (rises faster than
      E(z)) and is LCDM-assembly-degenerate (an LCDM sim with NO fundamental a0 reproduces ~half its
      slope). So it does not cleanly confirm McCulloch, and its honest fundamental-a0 tension is ~3-5s.
-   * The OTHER direct probe (MSA-3D, selection-corrected +0.91+/-0.79) is UNDERPOWERED: its central value
-     sits nearest the rising branch (~0.4s) yet is only ~1.1-1.5s from Carl's flat/declining side -> it
-     EXCLUDES nothing and does NOT corroborate Ciocan's strong rise.
+   * The OTHER direct probe (MSA-3D, selection-corrected +0.91+/-0.79) is UNDERPOWERED: its huge error
+     makes it consistent with EVERY branch -- declining (1.5s), flat (1.1s), rising (0.4s) AND Ciocan's
+     own slope (0.4s). It discriminates NOTHING: neither excludes Carl nor confirms the strong rise.
    * The cleanest LOW-ACCELERATION probe (Jeanneau/MUSE-DARK II bTFR, 0.00+/-0.27) is FLAT -> leans
      Carl's side, and is ~6s inconsistent with Ubler at the same z (the z~1 bTFR is itself unresolved).
    * McGaugh+24 + Milgrom17 favor constancy and BOUND steep rises (Milgrom would exclude the full
