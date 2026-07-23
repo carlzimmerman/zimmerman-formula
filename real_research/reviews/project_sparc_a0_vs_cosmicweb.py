@@ -5,7 +5,16 @@ THE MISSING FORK TEST: does per-galaxy a0 track the LARGE-SCALE COSMIC-WEB densi
 The framework a0 = (c/2) sqrt(G rho) has three forks for WHICH rho sets a0:
   (1) rho_Lambda  (cosmic, UNIFORM)            -> a0 is UNIVERSAL, the same everywhere.
   (2) rho_total / rho_crit (evolves with z)    -> a0(z), tested elsewhere (a0_*_fork.py).
-  (3) rho_LOCAL ambient matter density         -> a0 RISES with the local environment.
+  (3) rho_LOCAL ambient matter density         -> a0 RISES with the local environment (slope +0.5).
+
+NOTE (2026-07-23, sign-completeness): fork (3) here tests LOCAL-MATTER-DENSITY sourcing
+(a0 ~ sqrt(rho_local) -> HIGHER in overdensities, slope +0.5). The framework's OWN alt-footing
+is a DISTINCT local hypothesis with the OPPOSITE sign: a0 = cH_local/Z with H_local ENHANCED in
+voids (dH/H = -(1/3)f delta), so a0 is HIGHER in VOIDS (slope -0.18). That complementary fork
++ the D^-2 peculiar-velocity distance confound (clean = redshift-independent distances only) are
+in prep_2026/a0_line/cosmic_web_environment.py. Joint result: clean x 2M++ slope -0.083+-0.135
+EXCLUDES this +0.5 fork at 4.3 sigma but does NOT separate canonical(0) from alt(-0.18) -- the
+footing fork stays OPEN, underpowered (needs ~266 clean galaxies; SPARC has 52).
 
 Fork (3) has an INTERNAL-density version (does a0 track a galaxy's own central surface
 density?) and a LARGE-SCALE-ENVIRONMENT version (does a0 track the AMBIENT cosmic-web
