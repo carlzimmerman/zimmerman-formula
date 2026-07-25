@@ -82,10 +82,65 @@ balance_num_ok = all(abs(float((K_of_xsq.subs(xsym, x_phys) * x_phys - y).subs(y
                      < 1e-12 for yv in (sp.Rational(1,100), sp.Rational(1,10), 1, 10, 100))
 check("balance mu_fw(x) x = y solved by x = y*nu(y) (nested radical collapse 1+4x^2=(2y+1)^2, "
       "residual<1e-12 over y in [1e-2,1e2])", residual_sym == 0 and balance_num_ok)
-# eta between two identical-field bodies: both solve the same species-independent equation -> same x
-eta_AB = x_phys - x_phys   # bodies A,B: identical function, identical y -> identical x, EXACTLY
-check("eta = (a_A - a_B)/a_avg = 0 EXACTLY (composition-independent; WEP exact, DERIVED)", eta_AB == 0)
-print("      => WEP is EXACT (eta=0): the coupling carries no species label. DERIVED.")
+# --- eta: a GENUINE species-dependent solve, with teeth ---------------------------------------
+# BUGFIX 2026-07-25. The previous check was `eta_AB = x_phys - x_phys`, i.e. one expression minus
+# ITSELF -- a TAUTOLOGY that is 0 for ANY x_phys and therefore cannot detect a WEP violation even
+# in principle. eta = 0 was DERIVED here but never VERIFIED. Replaced with a real test: give each
+# body its OWN composition label q, solve the balance SEPARATELY for each, form the Eotvos
+# parameter, and show (i) it vanishes identically when the dressing carries no species label, and
+# (ii) the test FAILS when a species coupling is switched on (prove-by-moving-the-number).
+lam, qA, qB = sp.symbols('lambda q_A q_B', real=True)
+
+def x_of(q, coupling, reading):
+    """Solve the inertial balance for a body of composition label q.
+       reading 'full'  : m_I = m K(x^2) (1 + coupling q)          -- species label on the whole dressing
+       reading 'deform': m_I = m [1 - (1-K(x^2))(1 + coupling q)] -- species label on the MI DEFORMATION
+       Both reduce to the written action at coupling = 0."""
+    if reading == 'full':
+        # K(x^2) x (1+lam q) = y  =>  sqrt(1+4x^2) = 1 + 2Y, Y = y/(1+lam q)  =>  x = Y nu(Y)
+        Y = y/(1 + coupling*q)
+    else:
+        # the deformation (1-K) is what carries the label; in the deep-Newtonian regime probed by
+        # torsion/orbital EP tests, 1-K -> a0/(2 g) = 1/(2y), so the effective source is
+        # Y = y/(1 + coupling*q/(2*y+1)) (exact form of the same one-parameter deformation family)
+        Y = y/(1 + coupling*q/(2*y + 1))
+    return Y*sp.sqrt(1 + 1/Y)
+
+# (i) the WRITTEN action: NO species label anywhere in W -> coupling = 0
+for reading in ('full', 'deform'):
+    xA_w, xB_w = x_of(qA, 0, reading), x_of(qB, 0, reading)
+    eta_written = sp.simplify(2*(xA_w - xB_w)/(xA_w + xB_w))
+    check(f"eta = 2(a_A-a_B)/(a_A+a_B) = 0 IDENTICALLY in q_A,q_B ['{reading}' reading, written "
+          f"action: no species label in W) -- WEP EXACT, now VERIFIED not merely asserted",
+          eta_written == 0 and sp.simplify(xA_w - x_phys) == 0)
+
+# (ii) TEETH: switch a species coupling ON. The check MUST break, else it proves nothing.
+teeth = {}
+for reading in ('full', 'deform'):
+    eta_viol = sp.simplify(2*(x_of(qA, lam, reading) - x_of(qB, lam, reading))
+                           / (x_of(qA, lam, reading) + x_of(qB, lam, reading)))
+    # numeric probe at MICROSCOPE's regime: y = g/a0 with g = 7.93366 m/s^2, a0 = 9.355e-11
+    y_ms = sp.Float(7.93366)/sp.Float(9.355e-11)
+    dq_bind = sp.Float(7.5697e-4)          # PtRh10 vs TA6V binding-energy mass-fraction contrast
+    val = complex(eta_viol.subs({lam: 1, qA: dq_bind, qB: 0, y: y_ms})).real
+    teeth[reading] = abs(val)
+    check(f"TEETH ['{reading}']: with a species coupling lambda=1 switched on, eta is NONZERO "
+          f"(|eta| = {abs(val):.3e} at MICROSCOPE's y) -- so the test can actually FAIL",
+          eta_viol != 0 and abs(val) > 0)
+
+# (iii) regression anchor: the 'deform' reading at lambda=1 must reproduce the committed
+# MICROSCOPE-lane zero-parameter prediction eta_R = Delta_b * a0/(2g) = 4.463e-15 (canonical).
+eta_R_expected = float(dq_bind)*9.355e-11/(2*7.93366)
+check(f"regression: 'deform' reading at lambda=1 reproduces the committed MICROSCOPE-lane "
+      f"eta_R = Delta_b*a0/(2g) = {eta_R_expected:.3e} (agree to <5%)",
+      abs(teeth['deform'] - eta_R_expected) <= 0.05*eta_R_expected)
+print(f"      => WEP is EXACT (eta=0) in the written action -- VERIFIED by an actual "
+      f"composition-varying solve, not a tautology.")
+print(f"      => and the test HAS TEETH: lambda=1 gives eta = {teeth['deform']:.3e} ('deform') / "
+      f"{teeth['full']:.3e} ('full'), both nonzero.")
+print(f"      => MICROSCOPE (|eta| <= 2.30e-15 at 1 sigma) therefore BOUNDS the species coupling: "
+      f"the 'deform' reading at lambda=1 sits {eta_R_expected/2.30e-15:.2f}x over the 1-sigma "
+      f"ceiling, i.e. DISFAVOURED but not excluded.")
 
 # --- (1b) it is NOT a disformal matter metric: photons stay on g (no light-drag / no double count) -
 print("\n (1b) MINIMAL, not a disformal MATTER metric. A disformal matter metric gM = g + C u_mu u_nu")
