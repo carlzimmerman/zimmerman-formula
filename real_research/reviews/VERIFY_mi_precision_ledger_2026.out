@@ -1,0 +1,170 @@
+
+====================================================================================================
+V1.  MICROSCOPE LANE HEADLINE -- independent re-computation
+====================================================================================================
+
+  g_orb = 7.93366 m/s^2   T_orb = 5939 s   omega_orb = 1.0580e-03 rad/s
+  Re G(omega_orb, omega_c = 2.21e-14) = 4.3636e-22  ->  21.4 orders of gate suppression
+   [PASS] gate suppression at MICROSCOPE reproduces the lane's 4.364e-22 / 21.4 orders (<1%)
+   [PASS] omega_orb is the LEAST suppressive of the three EP modes the lane lists (so the headline suppression is the conservative one, NOT chosen to maximise the pass)
+
+  b(PtRh10) = 0.008585 , b(TA6V) = 0.009342 , Delta b = +7.5697e-04
+   [PASS] Delta b reproduces the lane's 7.5697e-4 to <0.5%
+
+  footing    1-K = a0/2g   eta_R = Db*(1-K)   /1sig  sigma vs meas    eta_AC gated  orders below
+  ------------------------------------------------------------------------------------------------
+  canon       5.8958e-12        +4.4629e-15   1.94x         2.17 sig       1.947e-36          21.1
+   [PASS] exact-kernel 1-K equals the asymptotic a0/(2g) to <1e-10 (so the lane's closed form is safe at y ~ 1e11)
+   [PASS] eta_R (Reading R, zero-parameter) reproduces the lane's +4.463e-15 to <1%
+   [PASS] significance vs the published eta reproduces the lane's 2.17 sigma to <2%
+   [PASS] Reading R is DISFAVOURED-not-excluded (1 sigma < sig < 3 sigma) -- neither a manufactured pass nor a manufactured deficit
+  alt         7.1216e-12        +5.3908e-15   2.34x         2.51 sig       2.352e-36          21.0
+
+  DC-channel ceilings on a composition coupling lambda (canon, 1 sigma):
+      binding          lambda <= 5.154e-01   (an O(1) coupling excluded by 1.9x = 0.29 orders)
+      charge/mass      lambda <= 6.839e-03   (an O(1) coupling excluded by 146.2x = 2.17 orders)
+      neutron excess   lambda <= 3.442e-03   (an O(1) coupling excluded by 290.5x = 2.46 orders)
+   [PASS] lambda ceilings reproduce the lane's 0.52 / 6.84e-3 / 3.44e-3 to <2%
+
+  common-mode DC bias a0/2 = 4.678e-11 (canon) / 5.650e-11 (alt) m/s^2
+      fractional = 5.896e-12 of g_orb ; GM_E is known to ~1e-9 fractional
+      -> absorbed into GM_E with 0.006 of its own uncertainty: DEGENERATE
+   [PASS] the common-mode a0/2 is smaller than the fractional GM_E uncertainty (~1e-9), i.e. the lane's GM-degeneracy claim is quantitatively right
+
+====================================================================================================
+V2.  THE OFF-CENTRING DIFFERENTIAL -- the MICROSCOPE lane's eta_geom is WRONG (conservatively)
+====================================================================================================
+
+  Two concentric test masses off-centred by 20 um sit at different |a|:  delta_g = 4.477e-11 m/s^2.
+  The lane computes   eta_geom = (a0/2g)(delta_g/g)   -- the differential of the DEFORMATION FRACTION.
+  But the observable is the ANOMALOUS differential acceleration, i.e. what survives after the modelled
+  Newtonian gradient delta_g is removed:
+        eta_true = [ a(g+dg) - a(g) - dg ] / g   with a(g) = sqrt(g^2 + a0 g)
+  and  da/dg = (2g+a0)/(2 sqrt(g^2+a0 g)) = 1 + (a0/g)^2/8 + O((a0/g)^3)  --  the O(a0/g) terms CANCEL,
+  because the MI excess a - g -> a0/2 is INDEPENDENT of g (that is the a0-line's own content).
+
+  footing    lane eta_geom   exact eta_true   closed form (dg/g)(a0/g)^2/8  lane / true
+  ----------------------------------------------------------------------------------------
+  canon          3.327e-23        9.808e-35                      9.808e-35     3.39e+11
+   [PASS] exact off-centring differential matches the closed form (dg/g)(a0/g)^2/8 to <1e-3 (so the O(a0/g) cancellation is real, not a rounding accident)
+   [PASS] the lane's eta_geom OVERSTATES the true off-centring differential by >1e10 -- an error in the CONSERVATIVE direction (it inflates a signal it then reports as harmless)
+   [PASS] both the lane's number and the true one are far below MICROSCOPE, so the VERDICT ('no constraint') is unaffected
+  alt            4.019e-23        1.431e-34                      1.431e-34     2.81e+11
+
+  CONSEQUENCE: the lane's "eta_geom = 3.33e-23, ~8 orders below the bound" should read
+  "~9.8e-35, ~20 orders below the bound".  The stated verdict (no constraint) is unchanged; the
+  error direction is anti-convenient, so this is a bookkeeping FAIL-MINOR, not a manufactured pass.
+
+
+====================================================================================================
+V3.  THE PULSAR LANE'S eta_leak -- factor 2 too large, and cross-lane inconsistent
+====================================================================================================
+
+  Pulsar lane Sec. 8 writes:  "the natural leak parameter is (fractional binding energy) x (the MI
+  fractional size a0/g)"  and evaluates  eta_leak = 8.541e-04 x a0/g.
+  But the MI fractional deformation IS  1 - K = a0/(2 g)  (the a0-line: g_obs - g_bar -> a0/2, so the
+  FRACTION is a0/2g).  Using a0/g double-counts by exactly 2.
+
+  footing    a0/g (lane)  a0/2g (correct)   eta_leak lane  eta_leak corrected   sig lane  sig corrected
+  ----------------------------------------------------------------------------------------------------
+  canon        1.179e-11        5.896e-12       1.007e-14           5.036e-15       4.4s           2.2s
+   [PASS] pulsar lane's eta_leak reproduced from its own inputs (1.01e-14)
+   [PASS] corrected eta_leak is exactly HALF of it
+   [PASS] the corrected number lands on the OTHER TWO lanes' answer (MICROSCOPE lane 4.46e-15, clocks lane 5.03e-15) -- so a0/2g is the cross-lane-consistent normalisation
+   [PASS] pulsar lane's '~4 sigma MARGINALLY EXCLUDED' becomes '~2 sigma, disfavoured not excluded' -- an overstated DEFICIT, which the calibration penalises like an overstated win
+  alt          1.424e-11        7.122e-12       1.217e-14           6.083e-15       5.3s           2.6s
+
+====================================================================================================
+V4.  THE CROSS-LANE READING SQUEEZE:  'Reading F required' vs 'Reading C2 excluded'
+====================================================================================================
+
+  MICROSCOPE lane, Sec. 6b + verdict:   ">> the MI dressing must multiply the FULL matter Lagrangian
+      (all internal binding energies included), not a rest-mass/dust proxy.  Reading F is required. <<"
+  Clocks lane, Sec. 3 + verdict:        Reading C2 = "rho_m is TOTAL mass-energy ... every transition
+      frequency carries the factor K(|a|)"  is EXCLUDED by 2.1 orders (Skytree) / 3.2 orders (Galileo).
+
+  Read literally, MICROSCOPE-lane Reading F ("EVERY form of internal energy ... is dressed by the same
+  K") IS clocks-lane Reading C2: if K multiplies the whole matter Lagrangian then every internal level
+  scales by K, and two clocks at different |a| differ by  dnu/nu = A(g_top) - A(g_bot),  A = a0/(2g).
+  So the two lanes' structural conclusions COLLIDE.  Sized here:
+
+  footing   A = a0/2g (gnd)   dnu/nu (450 m)   Skytree accuracy  over accuracy   orders
+  ----------------------------------------------------------------------------------------
+  canon          4.7730e-12       6.7425e-16         4.9068e-18         137.4x     2.14
+   [PASS] clocks lane's Skytree C2 anomaly reproduced (6.73e-16) and its 137x over accuracy
+   [PASS] so Reading-F-as-written is EXCLUDED by >2 orders on clocks, while Reading R is disfavoured at ~2 sigma on MICROSCOPE -- the lanes' two-way dichotomy has NO surviving member as stated
+  alt            5.7653e-12       8.1444e-16         4.9068e-18         166.0x     2.22
+
+  RESOLUTION (stated because neither lane states it):  the dichotomy F-vs-R is INCOMPLETE.  The two
+  questions are ORTHOGONAL --
+      (Q1) WHAT does the dressed coefficient denote?  rest mass only, or TOTAL mass-energy?
+           MICROSCOPE answers: total mass-energy (else eta = Delta b * a0/2g ~ 2 sigma tension).
+      (Q2) WHERE does the dressing act?  the centre-of-mass kinetic term only, or also internal dynamics?
+           Clocks answer: CoM only (else >=2.1 orders); the RAR answers the same way ~40 orders harder
+           (constituent-wise K kills MOND for all composite matter).
+  The joint survivor is "K dresses the CoM inertia, with coefficient = the body's TOTAL mass-energy" --
+  which is the clocks lane's C1 with a total-mass-energy coefficient, and it gives eta = 0 AND dnu = 0.
+  That reading exists and is the paper's own words ("rods, clocks ... ride g"), so the ledger's overall
+  CONSISTENT verdict survives; but "Reading F is required" is the WRONG label for it, and no single
+  lane checks Q1 and Q2 together.  This is the ledger's one genuine cross-lane gap.
+
+  the FULL 2x2 -- (Q1 = what is dressed) x (Q2 = where it acts) -- against BOTH bounds:
+
+  footing Q1 coefficient      Q2 locus                    eta  /1sig  /2sig      dnu/nu     /acc   @1sig   @2sig
+  -------------------------------------------------------------------------------------------------------
+  canon   total mass-energy   CoM only              0.000e+00  0.00x  0.00x   0.000e+00     0.0x    PASS    PASS
+  canon   total mass-energy   reaches internals     0.000e+00  0.00x  0.00x   6.743e-16   137.4x    fail    fail
+  canon   rest mass only      CoM only              4.463e-15  1.94x  0.64x   0.000e+00     0.0x    fail    PASS
+  canon   rest mass only      reaches internals     4.463e-15  1.94x  0.64x   6.743e-16   137.4x    fail    fail
+   [PASS] [canon] at the CONSERVATIVE 2-sigma MICROSCOPE ceiling exactly TWO cells survive, and BOTH have Q2 = 'CoM only' -> the clocks axis (Q2) is DECISIVELY fixed, the MICROSCOPE axis (Q1) is only disfavoured.  I do NOT claim Reading R excluded.
+   [PASS] [canon] at the paper's own 1-sigma ledger ceiling exactly ONE cell survives (total mass-energy x CoM only) -- so the joint constraint becomes fully discriminating only at 1 sigma, which is NOT a ceiling I will lean on
+   [PASS] [canon] the lane's 'Reading F' (= Q2 reaches internals) is in the column that is excluded at BOTH ceilings -> 'Reading F is required' is the wrong label for the survivor
+  alt     total mass-energy   CoM only              0.000e+00  0.00x  0.00x   0.000e+00     0.0x    PASS    PASS
+  alt     total mass-energy   reaches internals     0.000e+00  0.00x  0.00x   8.144e-16   166.0x    fail    fail
+  alt     rest mass only      CoM only              5.391e-15  2.34x  0.77x   0.000e+00     0.0x    fail    PASS
+  alt     rest mass only      reaches internals     5.391e-15  2.34x  0.77x   8.144e-16   166.0x    fail    fail
+   [PASS] [alt] at the CONSERVATIVE 2-sigma MICROSCOPE ceiling exactly TWO cells survive, and BOTH have Q2 = 'CoM only' -> the clocks axis (Q2) is DECISIVELY fixed, the MICROSCOPE axis (Q1) is only disfavoured.  I do NOT claim Reading R excluded.
+   [PASS] [alt] at the paper's own 1-sigma ledger ceiling exactly ONE cell survives (total mass-energy x CoM only) -- so the joint constraint becomes fully discriminating only at 1 sigma, which is NOT a ceiling I will lean on
+   [PASS] [alt] the lane's 'Reading F' (= Q2 reaches internals) is in the column that is excluded at BOTH ceilings -> 'Reading F is required' is the wrong label for the survivor
+
+====================================================================================================
+V5.  CROSS-LANE MICROSCOPE GATE-FREQUENCY SPREAD -- is the dedicated lane conservative?
+====================================================================================================
+
+  lane                              omega used [rad/s]    Re G @2.21e-14   orders
+  --------------------------------------------------------------------------------
+  MICROSCOPE lane (omega_orb)               1.0580e-03        4.3636e-22     21.4
+  clocks lane ('orbit+spin')                3.0108e-03        5.3879e-23     22.3
+  pulsar lane ladder row                    6.2830e-03        1.2372e-23     22.9
+
+  most permissive (i.e. the least self-serving) = MICROSCOPE lane (omega_orb)  at Re G = 4.364e-22
+   [PASS] the DEDICATED MICROSCOPE lane uses the LEAST suppressive frequency of the three -- so the ledger's MICROSCOPE row is not a frequency chosen to manufacture a pass
+   [PASS] but the three lanes disagree by >1 order in Re G on the SAME experiment -- a real cross-lane inconsistency (no verdict moves: all are >=21 orders of suppression)
+
+====================================================================================================
+SUMMARY OF THIS VERIFICATION
+====================================================================================================
+
+  V1  MICROSCOPE lane headline  CONFIRMED (gate 21.4 orders at the most permissive corner and the
+      least suppressive mode; eta_R = +4.46e-15 / +5.39e-15; 2.17 sigma; lambda ceilings 0.52 /
+      6.84e-3 / 3.44e-3; common-mode a0/2 GM-degenerate at 5.9e-12 << 1e-9).
+  V2  off-centring eta_geom     WRONG by ~3.4e11 (canon) / 2.8e11 (alt), CONSERVATIVE direction;
+      verdict unchanged (3.33e-23 -> 9.81e-35, i.e. ~8 -> ~20 orders below the bound).
+  V3  pulsar eta_leak           factor 2 too large (a0/g instead of a0/2g); "~4 sigma marginally
+      excluded" -> "~2 sigma disfavoured"; agrees with the other two lanes once corrected.
+  V4  Reading F vs Reading C2   the two lanes' structural conclusions collide as written.  The 2x2
+      shows the CLOCKS axis is decisively fixed (137x / 166x = 2.1-2.2 orders, gate-proof) while the
+      MICROSCOPE axis is only disfavoured (1.94x at 1 sigma, 0.64x at 2 sigma -> NOT excluded).
+      The joint survivor (CoM-only dressing of the TOTAL mass-energy) is named by neither lane.
+  V5  gate frequency            dedicated lane conservative; >1 order of cross-lane spread on the
+      same experiment.
+
+  Nothing here moves a ledger VERDICT.  The AC channel is genuinely gated off (21-22 orders, computed);
+  the DC channel is genuinely NOT excluded by MICROSCOPE (eta is differential, the DC dressing is
+  common mode, and the common mode is GM-degenerate) -- while the clocks lane's DC exclusion of the
+  internal-energy reading is gate-proof by Re G(0) = 1 and is the ledger's strongest DC line.
+  eta = 0 is STRUCTURAL, not "verified to 1e-12": there is no 1e-12 theory bar (audited at source).
+
+====================================================================================================
+VERIFY_mi_precision_ledger_2026.py: 26/26 checks passed.
+====================================================================================================
