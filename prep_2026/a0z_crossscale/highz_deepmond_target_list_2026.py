@@ -1,5 +1,24 @@
 #!/usr/bin/env python3
 """
+# =============================================================================
+# *** BLOCKER -- TARGET TABLE NOT USABLE AS-IS (adversary finding #7, 2026-07-25) ***
+# The TIER-3 rows CONTRADICT the primary source they cite while being tagged PUB
+# (published), and ONE CORRUPTED ROW SITS ON THE 2-OBJECT HEADLINE. The adversary's
+# verdict: "the physics of the design survives adversarial attack; its TARGET-TABLE
+# PROVENANCE does not. D-1's gas-side rows must be re-derived before the target list
+# can be used." Related: #8 flags citation attributions and secondary object data that
+# do not check out (one of them in the manufactured-desert direction, i.e. it made the
+# sample look WORSE than it is), and #12 flags the two committed scripts printing the
+# selection threshold in two different surface-density conventions.
+# DO NOT use this target list for an observing proposal until the gas-side rows are
+# re-derived directly from the primary sources. The STRUCTURAL findings below are
+# unaffected and stand: (a) ZERO of 19 in-window objects pass g_bar < 0.3 a0 on
+# published data; (b) g_bar/a0 is NOT computable a priori (only 1 of 19 has BOTH a gas
+# mass and an outer radius), so the deep-MOND cut CANNOT be an archival selection
+# criterion and must be an OUTCOME of a two-stage program; (c) the cut is
+# magnification-INVARIANT (d ln g_bar/d ln mu = 0 exactly) while a0 is exactly LINEAR
+# in mu (d ln a0/d ln mu = 1); (d) missing HI is SIGN-LOCKED toward the RISING branch.
+# =============================================================================
 highz_deepmond_target_list_2026.py -- D-1: REAL NAMED z~1.5-2.5 CANDIDATES FOR THE
 DEEP-MOND CUT g_bar < 0.3 a0.  TARGET IDENTIFICATION ONLY (no GO/NO-GO is rendered here).
 ==========================================================================================
