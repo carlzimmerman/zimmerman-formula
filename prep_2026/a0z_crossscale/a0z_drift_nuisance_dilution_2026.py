@@ -687,15 +687,242 @@ zs = np.array(zs)
 lnZ_dec_marg = float(np.log(np.mean(np.exp(zs - zs.max()))) + zs.max())
 lzD = dict(lzC); lzD["M-DEC"] = lnZ_dec_marg
 print(f"\n  DESI (w0,wa) POSTERIOR MARGINALIZED for M-DEC (240 correlated draws, Pantheon+ errors):")
-print(f"    ln Z(M-DEC) = {lnZ_dec_marg:.3f}  (vs {lzC['M-DEC']:.3f} at the central) -> "
+print(f"    ln Z(M-DEC) per-draw spread: min {zs.min():.3f}  median {np.median(zs):.3f}  max {zs.max():.3f} "
+      f"(range {zs.max()-zs.min():.3f} nats)")
+print(f"    ln Z(M-DEC) marginalized = {lnZ_dec_marg:.3f}  (vs {lzC['M-DEC']:.3f} at the central) -> "
       f"BF DEC vs FLAT = {fmt_bf(lzD['M-DEC']-lzD['M-FLAT'])[0]} for "
       f"{'M-DEC' if lzD['M-DEC']>lzD['M-FLAT'] else 'M-FLAT'}; "
       f"BF DEC vs RISE = {fmt_bf(lzD['M-DEC']-lzD['M-RISE'])[0]} for "
       f"{'M-DEC' if lzD['M-DEC']>lzD['M-RISE'] else 'M-RISE'}")
-print("    (M-DEC has no free galaxy-side parameter; this integrates its DESI-inherited cosmology prior.)")
+print("    M-DEC has no free galaxy-side parameter; this integrates its DESI-inherited cosmology prior.")
+print(f"    NOTE the range is only {zs.max()-zs.min():.2f} nats: the SHARED drift nuisance absorbs almost all of")
+print("    the (w0,wa) variation, because at z<~1.7 (where the weight is) M-DEC's ratio differs from 1 by")
+print("    only a few percent for ANY DESI-allowed (w0,wa). The galaxy data cannot see DESI's w0wa spread.")
+
+# ---- the CRITICAL exposure: how low must MUSE-DARK III's w drop before M-RISE wins? -------
+w_crit = None
+for wtry in np.linspace(1.0, 0.0, 101):
+    lzv = variant(reweight(per={"MUSE-DARK III": dict(w=float(wtry))}))
+    if lzv["M-RISE"] >= max(lzv["M-DEC"], lzv["M-FLAT"]):
+        w_crit = float(wtry); break
+print(f"\n  *** THE SINGLE LOAD-BEARING WEIGHT ***  sweeping ONLY MUSE-DARK III's exposure w:")
+for wtry in [1.00, 0.85, 0.70, 0.55, 0.40]:
+    lzv = variant(reweight(per={"MUSE-DARK III": dict(w=wtry)}))
+    print(f"     w(MUSE)={wtry:.2f} -> best {max(lzv,key=lzv.get):6}   "
+          f"BF DEC vs RISE {fmt_bf(lzv['M-DEC']-lzv['M-RISE'])[0]:>12} for "
+          f"{'M-DEC' if lzv['M-DEC']>lzv['M-RISE'] else 'M-RISE'}")
+print(f"     CRITICAL VALUE: M-RISE takes the lead once w(MUSE) < {w_crit:.2f}.")
 
 flips = [a for a in AUDIT if a["best"] != AUDIT[0]["best"]]
-print(f"\n  AUDIT SUMMARY: {len(AUDIT)} variants; best model = {AUDIT[0]['best']} in {len(AUDIT)-len(flips)}, "
-      f"changes in {len(flips)}: " + ", ".join(f"{a['label'].strip('* ')}->{a['best']}" for a in flips))
-print("  The ONE variant that flips the winner to M-RISE is p=0 (assert no drift). NOTHING in my exposure")
-print("  or dilution tables flips it: deleting BOTH tables (all w=0.5, all L=1) leaves the same ordering.")
+print(f"\n  AUDIT SUMMARY: {len(AUDIT)} variants; best = {AUDIT[0]['best']} in {len(AUDIT)-len(flips)}, "
+      f"changes in {len(flips)}:")
+for a in flips:
+    print(f"     {a['label'].strip('* '):46} -> {a['best']}")
+print("""
+  WHAT THE AUDIT ACTUALLY SHOWS (stated against my own interest, because it is the honest reading):
+   * The M-FLAT-over-M-RISE and M-DEC-over-M-RISE conclusions are ROBUST to every knob EXCEPT the
+     existence of the drift itself (p=0) and the exposure assigned to MUSE-DARK III.
+   * MY EXPOSURE TABLE IS LOAD-BEARING. Flattening all w to 0.5 flips the winner back to M-RISE
+     (4.0e4:1 over M-DEC). The verdict therefore RESTS on the claim that MUSE-DARK III -- a
+     non-lensed, flux-and-rotation-selected, direct-RAR fit with NO published selection
+     deconvolution -- carries MAXIMAL exposure (w=1.00). I argue that from its construction in S2,
+     and Magneticum was calibrated on exactly that construction, but it IS an assignment, not a
+     measurement. Anyone who thinks MUSE-DARK III's selection is half-deconvolved gets M-RISE back.
+   * MY DILUTION TABLE IS NOT load-bearing for the WINNER (deleting it keeps M-FLAT first) but it is
+     load-bearing for the STRENGTH: with no dilution the DEC-vs-RISE odds inflate ~30x, because the
+     undiluted Ubler/Amvrosiadis offsets then masquerade as real a0 information they do not carry.
+   * Dropping MUSE-DARK III entirely BARELY moves the answer (233:1 vs 139:1 DEC-over-RISE): the other
+     eight constraints already disfavour the Hubble-horizon rise on their own. That is the most
+     reassuring line in the table -- the anti-RISE result does not depend on the contested point.
+   * The two variants that promote M-DEC to first place (drop both direct-RAR points; keep only the 3
+     cleanest) do so by DELETING data, and they win by a nothing-margin (1.14-1.15:1). They are NOT
+     evidence for the decline and are not reported as such.""")
+
+# =======================================================================================
+# S6 -- WHAT NEW MEASUREMENT PUSHES THE DECISIVE BAYES FACTOR PAST 20:1?
+#   The DECISIVE pair is M-DEC vs M-FLAT: it is the one currently UNDECIDED (1.25:1) and it is the
+#   framework's own distinctive claim. (DEC vs RISE is already 139:1 and RISE vs FLAT 174:1.)
+#   A new point is specified as: CLEAN deep-MOND-selected (g_bar < 0.3 a0 -> the a0-line lever is
+#   near-full and the assembly degeneracies vanish), LENSED / drift-controlled -> exposure w_new=0.15,
+#   directly-estimated a0 -> "lr" currency, sigma in dex, N objects -> sigma/sqrt(N).
+#   Solved BOTH ways: data landing on M-DEC (confirm the decline) and on M-FLAT (exclude it).
+# =======================================================================================
+W_NEW, LN20 = 0.15, float(np.log(20.0))
+
+def bf_with_new(z, sig_dex, truth, pair=("M-DEC", "M-FLAT")):
+    d = dict(tag="NEW", cur="lr", z=z, zlo=z, zhi=z, w=W_NEW, L_M=1.0, N=1,
+             sig=sig_dex, obs=float(np.log10(MODELS[truth](z))) + W_NEW*P_CAL*np.log10(1+z))
+    lz = variant(DATA + [d])
+    return lz[pair[0]] - lz[pair[1]], lz
+
+def solve_sigma(z, truth, target=LN20, pair=("M-DEC", "M-FLAT")):
+    """smallest sigma_dex (i.e. LOOSEST precision) that reaches |lnBF| >= target for `truth`."""
+    want = +1 if truth == pair[0] else -1
+    lo, hi = 0.002, 1.5
+    if want*bf_with_new(z, lo, truth, pair)[0] < target: return None
+    for _ in range(70):
+        mid = np.sqrt(lo*hi)
+        if want*bf_with_new(z, mid, truth, pair)[0] >= target: lo = mid
+        else: hi = mid
+    return lo
+
+print("\n" + bar)
+print("S6 -- THE NEW MEASUREMENT THAT PUSHES THE DECISIVE BF (M-DEC vs M-FLAT) PAST 20:1")
+print(bar)
+print("  A CLEAN deep-MOND-selected a0(z): g_bar < 0.3 a0, lensed/drift-controlled (w_new=0.15),")
+print("  a0 read off the a0-line, added to the existing 9 constraints, everything else marginalized.")
+print(f"\n  {'z':>5} | {'DEC pred':>9} {'FLAT pred':>9} {'gap':>7} | {'sigma(a0) to CONFIRM':>21} "
+      f"{'sigma(a0) to EXCLUDE':>21} | {'req RC prec':>11}")
+print(f"  {'':>5} | {'ratio':>9} {'ratio':>9} {'dex':>7} | {'decline at 20:1':>21} {'decline at 20:1':>21} | {'(x2 rule)':>11}")
+print("  " + "-"*96)
+FORE = {}
+for z in [0.35, 1.0, 1.5, 2.0, 2.5, 3.0]:
+    rd, rf = float(R_DEC(z)), 1.0
+    gap = abs(np.log10(rd) - np.log10(rf))
+    s_conf = solve_sigma(z, "M-DEC"); s_excl = solve_sigma(z, "M-FLAT")
+    fc = f"{s_conf:.3f} dex ({100*(10**s_conf-1):.0f}%)" if s_conf else "unreachable"
+    fe = f"{s_excl:.3f} dex ({100*(10**s_excl-1):.0f}%)" if s_excl else "unreachable"
+    rc = f"{100*(10**(s_conf/2)-1):.1f}%" if s_conf else "--"
+    FORE[z] = dict(dec=rd, gap=gap, sigma_confirm=s_conf, sigma_exclude=s_excl)
+    print(f"  {z:>5.2f} | {rd:>9.3f} {rf:>9.3f} {gap:>7.3f} | {fc:>21} {fe:>21} | {rc:>11}")
+print("  " + "-"*96)
+zbest = min([z for z in FORE if FORE[z]["sigma_confirm"]], key=lambda z: -FORE[z]["sigma_confirm"])
+sb = FORE[zbest]["sigma_confirm"]
+print(f"  MOST FORGIVING REDSHIFT: z={zbest:.1f} -- needs sigma(a0) <= {sb:.3f} dex = {100*(10**sb-1):.0f}% on a0,")
+print(f"  i.e. ~{100*(10**(sb/2)-1):.0f}% on the underlying rotation curve (the committed deep-MOND 2x penalty:")
+print(f"  a0 = g_obs^2/g_bar doubles the log-scatter). Per-point deep-MOND a0 scatter is ~0.3 dex today, so")
+for z in [2.0, 3.0]:
+    s = FORE[z]["sigma_confirm"]
+    if s: print(f"    z={z:.0f}: N ~ (0.30/{s:.3f})^2 ~ {int(np.ceil((0.30/s)**2)):>4} clean deep-MOND objects "
+                f"(or {int(np.ceil((0.15/s)**2)):>3} with a FUTURE 0.15-dex-per-object cold-tracer+HI sample)")
+print("\n  'unreachable' is a REAL result, not a numerical failure: the drift nuisance imposes a NOISE FLOOR")
+print("  on any single point, sigma_floor(z) = w_new * sig_p * log10(1+z) dex, because a shift in p and a")
+print("  shift in the true ratio are partly degenerate. Even at w_new=0.15 (a lensed, drift-controlled")
+print("  sample) that floor is:")
+for z in [0.35, 1.0, 1.5, 2.0, 3.0]:
+    fl = W_NEW*SIG_P*np.log10(1+z)
+    gp = abs(np.log10(float(R_DEC(z))))
+    sc = FORE.get(z, {}).get("sigma_confirm")
+    print(f"     z={z:>4.2f}: drift floor {fl:.4f} dex | DEC-FLAT gap {gp:.4f} dex | gap/floor {gp/fl:>5.2f}"
+          f" -> solved sigma to confirm at 20:1 = " + (f"{sc:.3f} dex" if sc else "UNREACHABLE"))
+print("  A single point needs gap/floor >~ 2.5 to work ALONE; the solved column does slightly better than")
+print("  that because the other 9 constraints already pin p, partially breaking the p-vs-ratio degeneracy.")
+print("  => z~1 is untestable at ANY precision (the two models coincide there AND the floor is above the")
+print("     gap); z>=2 is where the gap clears the floor. Sharper than the usual 'z=1 sits on the null'.")
+print("  BOTH DIRECTIONS ARE REACHABLE at similar precision, so this is a genuine two-sided test, not a")
+print("  confirmation-only design. NOTE the asymmetry that matters: because the drift nuisance is POSITIVE-")
+print("  centred, a measurement landing BELOW 1 is much harder to explain away than one landing above it --")
+print("  the decline is the FALSIFIABLE direction here, and the rise is the degenerate one.")
+print("\n  WHAT WILL NOT WORK, quantified: another MUSE-DARK-III-class direct RAR fit on non-lensed")
+print("  intermediate-z SFGs. Its exposure would again be w~1.0, so it constrains R_model x A_drift^1.0")
+print("  and adds essentially NOTHING to the DEC-vs-FLAT split no matter how many sigma it reports --")
+print("  demonstrated above: MUSE-DARK III's 30-sigma detection moves DEC-vs-FLAT by a factor 1.09.")
+
+# =======================================================================================
+# S7 -- VERDICT, CAVEATS, JSON, SELF-CHECK
+# =======================================================================================
+print("\n" + bar); print("S7 -- VERDICT"); print(bar)
+print(f"""  THE COMBINED ODDS (9 real constraints, 3 zero-free-parameter models, one shared drift nuisance):
+
+    at FACE VALUE (p=0, no LCDM-degenerate drift, MUSE stat-only):
+        M-RISE  beats M-DEC  by {fmt_bf(pairs(lzA)['M-DEC vs M-RISE'])[0]}   and M-FLAT by {fmt_bf(pairs(lzA)['M-RISE vs M-FLAT'])[0]}
+    at the CALIBRATED DRIFT (p = p_cal = {P_CAL:.2f}, not marginalized):
+        M-FLAT  beats M-DEC  by {fmt_bf(pairs(lzB)['M-DEC vs M-FLAT'])[0]}   and M-RISE by {fmt_bf(pairs(lzB)['M-RISE vs M-FLAT'])[0]}
+    FULLY MARGINALIZED over the drift prior  ** the number to quote **:
+        M-FLAT  beats M-DEC  by only {fmt_bf(pairs(lzC)['M-DEC vs M-FLAT'])[0]}  (a statistical dead heat)
+        M-DEC   beats M-RISE by {fmt_bf(pairs(lzC)['M-DEC vs M-RISE'])[0]}
+        M-FLAT  beats M-RISE by {fmt_bf(pairs(lzC)['M-RISE vs M-FLAT'])[0]}
+
+  PLAINLY:
+   1. M-FLAT WINS -- but by a nothing-margin over M-DEC ({fmt_bf(pairs(lzC)['M-DEC vs M-FLAT'])[0]}, i.e. INDISTINGUISHABLE).
+      A FLAT win is NOT a falsification of the framework: FLAT is simultaneously standard-MOND AND the
+      framework's OWN w->-1 dissolution limit. But it IS a clean failure to DETECT the distinctive
+      decline. The framework's characteristic signature is not in this data at any odds worth naming.
+      The reason is structural, not statistical: M-DEC and M-FLAT differ by <=1.1% at z<1 and only
+      ~13-22% at z=2-3, and the compilation's statistical weight is at z<1.7. The data cannot see it.
+   2. M-RISE (McCulloch / Hubble horizon) is DISFAVOURED at {fmt_bf(pairs(lzC)['M-DEC vs M-RISE'])[0]} by M-DEC and {fmt_bf(pairs(lzC)['M-RISE vs M-FLAT'])[0]} by M-FLAT.
+      This is the strongest real conclusion in the file, and it SURVIVES dropping MUSE-DARK III
+      altogether ({fmt_bf(AUDIT[16]['lnB_DEC_RISE'])[0]}). The one thing that reverses it is asserting p=0.
+   3. THE VERDICT MOVES BY ~62 ORDERS OF MAGNITUDE between face value and marginalized. That movement
+      is the honest headline: this data set does not measure a0(z), it measures a0(z) CONVOLVED WITH a
+      LCDM selection drift of almost exactly the same amplitude, and the answer is set by which of the
+      two you assign the observed rise to. Both assignments are defensible; neither is a measurement.""")
+
+print("\n  LOAD-BEARING CAVEATS (each is a reason NOT to over-read the numbers above):")
+CAV = [
+ f"THE ANSWER IS PRIOR-SENSITIVE BY CONSTRUCTION. The drift prior puts "
+ f"{float(np.trapz(PRIOR*(PGRID>p_muse),PGRID)):.0%} of its mass above MUSE-DARK III's own measured slope "
+ f"(p_MUSE={p_muse:.2f} vs p_cal={P_CAL:.2f}), so the nuisance CAN absorb the whole rise. That follows from the "
+ "Magneticum calibration, not from tuning -- but it means 'M-FLAT/M-DEC win' is a statement about the "
+ "calibrated drift being real, not an independent detection.",
+ f"MY EXPOSURE TABLE IS LOAD-BEARING AND IS AN ASSIGNMENT, NOT A MEASUREMENT. Flattening all w_i to 0.5 "
+ f"returns M-RISE as the winner; M-RISE takes the lead once MUSE-DARK III's exposure drops below "
+ f"w={w_crit:.2f}. The verdict rests on w(MUSE-DARK III)=1.00, argued from its construction (non-lensed, "
+ "flux+rotation-selected, direct-RAR, no published selection deconvolution -- exactly what Magneticum mimics).",
+ "MUSE-DARK III's face-value rise is a REAL ~30-sigma measurement and is NOT dismissed. Its stat-only "
+ "significance against the declining branch is 17.2 sigma and is printed at full strength. What is argued "
+ "is attribution, not existence.",
+ "The dilution levers use LOG-MID g_bar/a0 values from the committed ledger; each sample spans a factor "
+ "of a few in y, and L=1/(1+2y) is convex, so a single y under-states the spread. Ciocan's y~1.3 is an "
+ "ESTIMATE (no published value) -- it does not enter its likelihood (slope currency, L=1) but it does "
+ "underpin the 2(1+y)=4.6x amplification argument for w=1.00.",
+ "THE BIG WHEEL IS NOT DEEP-MOND. The committed bigwheel_update.py puts it at y=0.68-1.27 (transitional), "
+ "so its lever is ~0.34 and its a0 is hyper-sensitive to a 0.37-dex M* ambiguity; the +/-0.22 dex used here "
+ "is OPTIMISTIC (the committed MC spans ~+/-0.40 dex). At +/-0.40 the DEC-vs-RISE odds fall from 139:1 to "
+ "5.5:1. The compilation's 'clean deep-MOND' label for it should be retired.",
+ "Two of the eleven constraints (McGaugh+24; Milgrom17/Sharma+24) are one-sided bounds with no quotable "
+ "central+sigma and are EXCLUDED from the likelihood. Both lean AGAINST M-RISE, so their exclusion is "
+ "conservative for M-RISE, i.e. it works against the conclusion actually reached.",
+ "The gas/M-L calibration drift is NOT modelled as a second nuisance -- it is sign-unknown and already "
+ "inside the quoted systematics-inclusive errors. Adding it as a positive-centred drift would double-count "
+ "in the direction that flatters M-DEC.",
+ "A single power law (1+z)^p is a crude drift shape. It is chosen because p IS the reported currency of "
+ "both direct probes; a shape with curvature could redistribute weight between z<1 and z>2.",
+ "The RATIO a0(z)/a0(0) is FOOTING-INDEPENDENT (sympy-proved in a0z_prediction_band_2026.py), so every "
+ f"number here holds identically on both footings (a0(0)={A0_CAN:.3e} canonical or {A0_ALT:.3e} alt). Only the "
+ "absolute a0(z) scale moves.",
+ "M-DEC's discriminating power is INHERITED from DESI's w0wa evolution being real. At w=-1 M-DEC IS M-FLAT "
+ "and the test is untestable-not-falsified. The (w0,wa) marginalization changes ln Z by <1.4 nats: the "
+ "galaxy data cannot resolve DESI's spread at all.",
+ "a0's VALUE and the HORIZON CHOICE are POSITS, not derived. nu=sqrt(1+1/y) is Milgrom 1999 (PLA 253:273 "
+ "Eq.9); the framework's distinctive content is the cH_Lambda/Z coefficient and the MI completion. "
+ "McCulloch (MiHsC) is credited for the Hubble-horizon reading tested as M-RISE. No TOE, no 'theory closed'.",
+]
+for i, c in enumerate(CAV, 1):
+    print(f"   {i:>2}. {c}")
+
+OUT = dict(
+  fiducial=dict(p_cal=P_CAL, p_mag=p_mag, p_msa3d_sel=p_msa3d_sel, sig_p=SIG_P, p_lo=P_LO, p_hi=P_HI,
+                p_muse=p_muse, f_sel=F_SEL, f_beam=F_BEAM, w_crit_muse=w_crit),
+  exposure_table=[dict(tag=d["tag"], z=d["z"], currency=d["cur"], s=d["s"], b=d["b"], w=d["w"]) for d in DATA],
+  dilution_table=[dict(tag=d["tag"], z=d["z"], y=d["y"], x=1.0/d["y"], L_mass=d["L_M"], L_rar=d["L_g"],
+                       L_used=d["L_used"], info_vs_jeanneau=(d["L_M"]/L_REF)**2, amp_2_1plusy=d["amp"])
+                  for d in DATA],
+  lnZ=dict(face_value=lzA, p_at_calibrated=lzB, marginalized=lzC, dec_w0wa_marginalized=lzD),
+  bayes_factors=dict(face_value=pairs(lzA), p_at_calibrated=pairs(lzB), marginalized=pairs(lzC)),
+  audit=[{k: v for k, v in a.items()} for a in AUDIT],
+  forecast={str(k): v for k, v in FORE.items()},
+)
+JPATH = os.path.join(HERE, "a0z_drift_nuisance_dilution_2026_results.json")
+with open(JPATH, "w") as f:
+    json.dump(OUT, f, indent=1, default=float)
+print(f"\n  wrote {JPATH}")
+
+# ---------------------------- SELF-CHECK (frozen invariants) ----------------------------
+assert abs(p_mag - np.log(3)/np.log(3.3)) < 1e-9, "p_mag must be the Magneticum x3-at-z2.3 calibration"
+assert P_CAL < p_msa3d_sel, "the fiducial drift MUST be the smaller of the two calibrations (anti-tuning)"
+assert P_HI <= 2.13 + 1e-9, "the prior cap must not exceed the largest RAW measured slope (+2.13)"
+assert abs(_d["Amvrosiadis z2.4"]["L_M"] - 1/(1+2*6.4)) < 1e-12, "dilution must be 1/(1+2y)"
+assert _d["Amvrosiadis z2.4"]["L_M"] < _d["Ubler z2.3"]["L_M"] < _d["Ubler z0.9"]["L_M"] \
+       < _d["MUSE-DARK II (Jeanneau)"]["L_M"], "dilution must order g>>a0 points BELOW the near-a0 point"
+assert _d["MUSE-DARK III"]["w"] == 1.0 and _d["MUSE-DARK II (Jeanneau)"]["w"] < 0.25, "exposure ordering"
+assert pairs(lzA)["M-DEC vs M-RISE"] < -50, "face value MUST show a huge M-RISE preference (not softened)"
+assert pairs(lzC)["M-DEC vs M-RISE"] > 0, "marginalized, M-DEC must beat M-RISE"
+assert pairs(lzC)["M-RISE vs M-FLAT"] < 0, "marginalized, M-FLAT must beat M-RISE"
+assert abs(pairs(lzC)["M-DEC vs M-FLAT"]) < 1.0, "DEC vs FLAT must be reported as a dead heat, not a win"
+_lz_chk = {m: lnZ_fast(m, f, DATA, PGRID, PRIOR) for m, f in MODELS.items()}
+assert all(abs(_lz_chk[m] - lzC[m]) < 1e-6 for m in MODELS), "vectorized lnZ must match the scalar version"
+print("\n  SELF-CHECK OK: drift fiducial = the SMALLER calibration; prior capped at the largest RAW measured")
+print("  slope; dilution = 1/(1+2y) validated against the committed ledger; face-value M-RISE preference")
+print("  preserved at FULL strength; marginalized DEC-vs-FLAT reported as a dead heat, not a win.")
+print("\nEXIT 0 (ran; a MODEL COMPARISON, not a verdict on the framework).")
