@@ -1,0 +1,1030 @@
+{
+ "catalogue": [
+  {
+   "ref": "McGaugh, Lelli & Schombert 2016, PRL 117:201101 (arXiv:1609.05917)",
+   "value": "g_dagger = 1.20 +- 0.02 (random) +- 0.24 (systematic) e-10 m/s^2",
+   "estimator": "ORTHOGONAL DISTANCE REGRESSION of g_obs = g_bar/(1-exp(-sqrt(g_bar/g_dagger))) to the UNBINNED 2693 points of 153 galaxies, 'considers errors on both variables'; the plotted axes are log(g_bar), log(g_obs), residuals and the entire scatter budget are in dex. Upsilon_disk FIXED at 0.50 (bulge 0.70); the +-0.24 systematic IS the 20% Upsilon normalisation, quoted SEPARATELY from the fit.",
+   "family": "RAR-form errors-on-both-axes fit  -> tested as odr_log / odr_lin",
+   "verbatim": "'The solid line is the fit of eq. 4 to the unbinned data using an orthogonal-distance-regression algorithm that considers errors on both variables.'"
+  },
+  {
+   "ref": "Lelli, McGaugh, Schombert & Pawlowski 2017, ApJ 836:152 (arXiv:1610.08981)",
+   "value": "g_dagger = (1.20 +- 0.02) e-10 (rnd) +- 0.24 e-10 (sys); with an acceleration floor added, g_dagger = (1.1 +- 0.1) e-10",
+   "estimator": "scipy.odr, errors in both variables, UNBINNED 2693 points. Mean error on g_obs 0.1 dex (velocity, inclination, distance); mean error on g_bar 0.08 dex (10% HI flux calibration + 25% scatter on Upsilon).",
+   "family": "same as MLS2016 -> tested as odr_log / odr_lin",
+   "verbatim": "'The data are fitted using the Python orthogonal distance regression algorithm (scipy.odr), considering errors in both variables. We do not fit the binned data, but the individual 2693 points.'"
+  },
+  {
+   "ref": "Li, Lelli, McGaugh & Schombert 2018, A&A 615:A3 (arXiv:1803.00022)",
+   "value": "NO independent global a0 published. g_dagger FIXED at 1.20e-10 in the primary fits; freeing it (flat prior 0..1e-9) leaves chi2 and the rms scatter essentially unchanged (0.054 vs 0.057 dex).",
+   "estimator": "PER-GALAXY MCMC (emcee), chi2 in LINEAR acceleration space, chi2_nu = sum_R [g_obs - g_tot]^2/sigma_gobs^2/(N-f) with sigma_gobs = 2 V_obs dV_obs / R; Gaussian priors on Upsilon_star (0.1 dex), distance and inclination.",
+   "family": "per-galaxy fit then combine -> tested as pergal_median / pergal_meanlog",
+   "verbatim": "'chi2_nu = sum_R [g_obs(R)-g_tot(R)]^2/sigma_gobs^2/(N-f)'; 'Adjusting the value of g_dagger improves neither the fits nor the rms scatter.'"
+  },
+  {
+   "ref": "Begeman, Broeils & Sanders 1991, MNRAS 249:523",
+   "value": "a0 = 1.21 +- 0.24 e-10 m/s^2",
+   "estimator": "per-galaxy rotation-curve chi2 fits of the MOND formula to 10 galaxies, then combined.",
+   "family": "per-galaxy fit then combine -> same family as Li+2018 (tested)",
+   "verbatim": "(standard literature quote; not re-fetched)"
+  }
+ ],
+ "samples": {
+  "gasdom": {
+   "N": 310,
+   "G": 49,
+   "y_min": 0.009400740100545117,
+   "y_max": 0.18549932262374988,
+   "sig_log_obs_med": 0.10444311652849542,
+   "sig_log_bar_med": 0.062294790991744856
+  },
+  "full": {
+   "N": 2696,
+   "G": 147,
+   "y_min": 0.009400740100545117,
+   "y_max": 97.90891011011097,
+   "sig_log_obs_med": 0.11207987855838522,
+   "sig_log_bar_med": 0.1030563704762269
+  }
+ },
+ "unit_tests": {
+  "gls_rel": 0.0,
+  "woodbury_rel": 3.552713678800501e-15,
+  "odr_proxy_max_rel_mock": 0.004513792044587905,
+  "odr_proxy_rel_real": 0.0064812562010982955
+ },
+ "V1_zero_noise": {
+  "worst_rel_exact": 0.0001549205556070632,
+  "worst_rel_binned_intrinsic": 0.0038473972098406195,
+  "tolerance_exact": 0.001,
+  "tolerance_binned": 0.01,
+  "residuals": {
+   "odr_log": {
+    "FW|canonical": -5.577876562856687e-07,
+    "FW|ALT": -3.962276390323538e-07,
+    "FW|published": -4.596119711486324e-07,
+    "MCG|canonical": -4.827122952466567e-07,
+    "MCG|ALT": -3.4746548216446627e-07,
+    "MCG|published": -4.04680968624227e-07
+   },
+   "odr_lin": {
+    "FW|canonical": -8.147059730179151e-07,
+    "FW|ALT": -5.923016643816226e-07,
+    "FW|published": -6.920677094734984e-07,
+    "MCG|canonical": -6.78118001529171e-07,
+    "MCG|ALT": -4.982435379830008e-07,
+    "MCG|published": -5.841246989435334e-07
+   },
+   "nls_log": {
+    "FW|canonical": -4.572559110238572e-07,
+    "FW|ALT": -3.2321761689324546e-07,
+    "FW|published": -3.7421690801675567e-07,
+    "MCG|canonical": -3.7893423976420593e-07,
+    "MCG|ALT": -2.695216954062829e-07,
+    "MCG|published": -3.127086912746435e-07
+   },
+   "like_log": {
+    "FW|canonical": -4.801233415285822e-07,
+    "FW|ALT": -3.1320099280751634e-07,
+    "FW|published": -3.5218042149232076e-07,
+    "MCG|canonical": -2.2212800554477496e-07,
+    "MCG|ALT": -1.2759484013802336e-07,
+    "MCG|published": -1.3564616552219633e-07
+   },
+   "pergal_median": {
+    "FW|canonical": -0.0001469752614812192,
+    "FW|ALT": -0.00010183379648742719,
+    "FW|published": -0.00014506623638077532,
+    "MCG|canonical": -0.00013273097634436404,
+    "MCG|ALT": -9.281823853291016e-05,
+    "MCG|published": -0.00013290334221749411
+   },
+   "pergal_meanlog": {
+    "FW|canonical": -0.0001549205556070632,
+    "FW|ALT": -0.00010722090564674325,
+    "FW|published": -0.00015266345578934803,
+    "MCG|canonical": -0.00013826018598650514,
+    "MCG|ALT": -9.629798069765716e-05,
+    "MCG|published": -0.00013762742751721735
+   },
+   "binned_meanlog": {
+    "FW|canonical": 0.0011820256149053243,
+    "FW|ALT": 0.0011259397547660477,
+    "FW|published": 0.001109374649765904,
+    "MCG|canonical": 0.0011178518629408885,
+    "MCG|ALT": 0.0010761187170955644,
+    "MCG|published": 0.0010636506596568562
+   },
+   "binned_meanlin": {
+    "FW|canonical": -0.0035124222680954498,
+    "FW|ALT": -0.0035476470017629103,
+    "FW|published": -0.0035579724421562764,
+    "MCG|canonical": -0.00382302431337167,
+    "MCG|ALT": -0.003841801255616062,
+    "MCG|published": -0.0038473972098406195
+   },
+   "gls_origin": {
+    "FW|canonical": -1.1102230246251565e-16,
+    "FW|ALT": -1.1102230246251565e-16,
+    "FW|published": 2.220446049250313e-16
+   },
+   "median_a0pt": {
+    "FW|canonical": 0.0,
+    "FW|ALT": 0.0,
+    "FW|published": 0.0
+   }
+  },
+  "note": "the binned pair's zero-noise offset is the within-bin curvature of the binned route itself (grid-refinement invariant); it is counted inside that family's bias."
+ },
+ "anchor_gasdominated": {
+  "reproduced": {
+   "canonical cH_L/Z": {
+    "gls_origin": 10.337184387349009,
+    "median_a0pt": -0.8429077421413522
+   },
+   "ALT cH0/Z": {
+    "gls_origin": 10.243508706284477,
+    "median_a0pt": -0.7917802832346998
+   },
+   "published g_dagger": {
+    "gls_origin": 10.226721684239259,
+    "median_a0pt": -0.7732525967097836
+   }
+  },
+  "max_abs_diff_pp": 2.3092638912203256e-14,
+  "committed": {
+   "canonical cH_L/Z": {
+    "gls_origin": 10.337184387348985,
+    "median_a0pt": -0.8429077421413522
+   },
+   "ALT cH0/Z": {
+    "gls_origin": 10.243508706284477,
+    "median_a0pt": -0.791780283234711
+   },
+   "published g_dagger": {
+    "gls_origin": 10.226721684239237,
+    "median_a0pt": -0.7732525967097725
+   }
+  }
+ },
+ "main_bias_table": {
+  "FW|gls_origin": {
+   "b": [
+    15.466038585441865,
+    15.009492256835255,
+    14.83611239432392
+   ],
+   "s": [
+    36.626470257875276,
+    35.420563336576265,
+    35.10069468570289
+   ],
+   "sigma_mc": [
+    1.8740211225394943,
+    1.8123199805397405,
+    1.7959536584793716
+   ],
+   "max_abs_b": 15.466038585441865,
+   "b_spread": 0.6299261911179457,
+   "boot_sd_b_pp": 2.3066215815144813,
+   "tier": "FAIL",
+   "G2": false,
+   "G3": true,
+   "n_sd": 6.70506107693971
+  },
+  "FW|median_a0pt": {
+   "b": [
+    -0.7700981715961452,
+    -0.8073894788644065,
+    -0.8274010174423307
+   ],
+   "s": [
+    43.63172900601836,
+    40.924691885263535,
+    40.06357812208298
+   ],
+   "sigma_mc": [
+    2.2324504980825006,
+    2.093942891204869,
+    2.049883352577533
+   ],
+   "max_abs_b": 0.8274010174423307,
+   "b_spread": 0.0573028458461855,
+   "boot_sd_b_pp": 2.7778109557858763,
+   "tier": "PASS",
+   "G2": true,
+   "G3": true,
+   "n_sd": 0.2978608086050438
+  },
+  "FW|odr_log": {
+   "b": [
+    -1.7219268665415788,
+    -1.5068419280268253,
+    -1.49033132828722
+   ],
+   "s": [
+    25.475077046999772,
+    25.004767158077513,
+    24.816285061778192
+   ],
+   "sigma_mc": [
+    1.3034516334298847,
+    1.279387871353603,
+    1.2697440419810606
+   ],
+   "max_abs_b": 1.7219268665415788,
+   "b_spread": 0.23159553825435886,
+   "boot_sd_b_pp": 1.4762106599417326,
+   "tier": "PASS",
+   "G2": true,
+   "G3": true,
+   "n_sd": 1.1664506382913837
+  },
+  "FW|odr_lin": {
+   "b": [
+    -6.918564831558028,
+    -6.704430475246303,
+    -6.661466024874474
+   ],
+   "s": [
+    23.976649214540373,
+    23.609013587636696,
+    23.495159311111074
+   ],
+   "sigma_mc": [
+    1.2267834372084319,
+    1.2079730816004575,
+    1.2021476412127206
+   ],
+   "max_abs_b": 6.918564831558028,
+   "b_spread": 0.2570988066835538,
+   "boot_sd_b_pp": 1.326634883027485,
+   "tier": "FAIL",
+   "G2": false,
+   "G3": true,
+   "n_sd": 5.215123558163433
+  },
+  "FW|nls_log": {
+   "b": [
+    -0.2690624070361469,
+    -0.308369365955119,
+    -0.319059549966072
+   ],
+   "s": [
+    30.68844156493522,
+    29.74908466023346,
+    29.462074610695566
+   ],
+   "sigma_mc": [
+    1.5701973819915624,
+    1.522134473700914,
+    1.5074493868927066
+   ],
+   "max_abs_b": 0.319059549966072,
+   "b_spread": 0.049997142929925076,
+   "boot_sd_b_pp": 1.9319705815900148,
+   "tier": "PASS",
+   "G2": true,
+   "G3": true,
+   "n_sd": 0.16514720928280674
+  },
+  "FW|like_log": {
+   "b": [
+    0.14080188225835677,
+    0.010982736947706684,
+    -0.014999458334130633
+   ],
+   "s": [
+    1.9963724797253557,
+    1.9385688838721271,
+    1.9351321150213097
+   ],
+   "sigma_mc": [
+    0.10214591166227484,
+    0.09918834685122416,
+    0.09901250196706328
+   ],
+   "max_abs_b": 0.14080188225835677,
+   "b_spread": 0.1558013405924874,
+   "boot_sd_b_pp": 0.09638915524952417,
+   "tier": "PASS",
+   "G2": true,
+   "G3": true,
+   "n_sd": 1.4607647706203115
+  },
+  "FW|pergal_median": {
+   "b": [
+    -4.566094007433685,
+    -4.486971440890897,
+    -4.392010215900277
+   ],
+   "s": [
+    29.22752748572285,
+    27.76391609777879,
+    27.496442502041585
+   ],
+   "sigma_mc": [
+    1.495448605399566,
+    1.420561818961095,
+    1.4068763296249955
+   ],
+   "max_abs_b": 4.566094007433685,
+   "b_spread": 0.17408379153340814,
+   "boot_sd_b_pp": 1.3364719547170518,
+   "tier": "MARGINAL",
+   "G2": false,
+   "G3": true,
+   "n_sd": 3.4165281144267525
+  },
+  "FW|pergal_meanlog": {
+   "b": [
+    -9.300111319729766,
+    -8.615176163456029,
+    -8.50052267020629
+   ],
+   "s": [
+    33.81309477279498,
+    32.36554762166462,
+    31.82284336352567
+   ],
+   "sigma_mc": [
+    1.7300726326207414,
+    1.6560077850394517,
+    1.628239910169614
+   ],
+   "max_abs_b": 9.300111319729766,
+   "b_spread": 0.799588649523475,
+   "boot_sd_b_pp": 1.7563642131287895,
+   "tier": "FAIL",
+   "G2": false,
+   "G3": true,
+   "n_sd": 5.29509269786506
+  },
+  "FW|binned_meanlog": {
+   "b": [
+    0.6143253760536593,
+    0.5664757699795242,
+    0.5986872902119744
+   ],
+   "s": [
+    28.55240289853363,
+    28.485705495930308,
+    28.476998748384098
+   ],
+   "sigma_mc": [
+    1.4609053439869728,
+    1.4574927208098793,
+    1.4570472334698397
+   ],
+   "max_abs_b": 0.6143253760536593,
+   "b_spread": 0.04784960607413513,
+   "boot_sd_b_pp": 1.355560623458371,
+   "tier": "PASS",
+   "G2": true,
+   "G3": true,
+   "n_sd": 0.4531891568865161
+  },
+  "FW|binned_meanlin": {
+   "b": [
+    6.733136467825385,
+    6.749781005569,
+    6.6499162938575385
+   ],
+   "s": [
+    31.13839844698448,
+    30.99985123132835,
+    30.8675314546184
+   ],
+   "sigma_mc": [
+    1.5932197670386448,
+    1.5861308936970269,
+    1.5793606519910073
+   ],
+   "max_abs_b": 6.749781005569,
+   "b_spread": 0.0998647117114615,
+   "boot_sd_b_pp": 1.6779708074757433,
+   "tier": "FAIL",
+   "G2": false,
+   "G3": true,
+   "n_sd": 4.022585479733726
+  },
+  "MCG|odr_log": {
+   "b": [
+    -1.7188239565381958,
+    -1.616496135598422,
+    -1.5709602055400396
+   ],
+   "s": [
+    28.590331771912275,
+    27.98554824521669,
+    27.802165260130746
+   ],
+   "sigma_mc": [
+    1.4628460035527255,
+    1.4319017958359648,
+    1.4225188663550246
+   ],
+   "max_abs_b": 1.7188239565381958,
+   "b_spread": 0.14786375099815618,
+   "boot_sd_b_pp": 1.7100455736522677,
+   "tier": "PASS",
+   "G2": true,
+   "G3": true,
+   "n_sd": 1.005133420431117
+  },
+  "MCG|odr_lin": {
+   "b": [
+    -7.062282570933687,
+    -6.883011130524686,
+    -6.849705590358579
+   ],
+   "s": [
+    26.99279676806495,
+    26.390788504424624,
+    26.235107843556982
+   ],
+   "sigma_mc": [
+    1.3811069137598078,
+    1.3503047044815955,
+    1.342339185424401
+   ],
+   "max_abs_b": 7.062282570933687,
+   "b_spread": 0.21257698057510765,
+   "boot_sd_b_pp": 1.6070617430494847,
+   "tier": "FAIL",
+   "G2": false,
+   "G3": true,
+   "n_sd": 4.394530951581631
+  },
+  "MCG|nls_log": {
+   "b": [
+    -0.2711881767938573,
+    -0.38343536276693735,
+    -0.41200353616530627
+   ],
+   "s": [
+    33.35373618076946,
+    32.40322565730929,
+    32.12917627140772
+   ],
+   "sigma_mc": [
+    1.7065692019539347,
+    1.6579356103023495,
+    1.6439136656764382
+   ],
+   "max_abs_b": 0.41200353616530627,
+   "b_spread": 0.14081535937144896,
+   "boot_sd_b_pp": 2.0888998881939833,
+   "tier": "PASS",
+   "G2": true,
+   "G3": true,
+   "n_sd": 0.19723469683437794
+  },
+  "MCG|like_log": {
+   "b": [
+    0.2864640299738763,
+    0.3239077622276376,
+    0.32918916128987785
+   ],
+   "s": [
+    2.301769898864625,
+    2.3012143069322253,
+    2.3055049941067884
+   ],
+   "sigma_mc": [
+    0.11777180217824615,
+    0.11774337489575075,
+    0.11796291115842437
+   ],
+   "max_abs_b": 0.32918916128987785,
+   "b_spread": 0.04272513131600153,
+   "boot_sd_b_pp": 0.11923436153966362,
+   "tier": "PASS",
+   "G2": true,
+   "G3": true,
+   "n_sd": 2.760858170741093
+  },
+  "MCG|pergal_median": {
+   "b": [
+    -4.87772948199372,
+    -4.709879739212686,
+    -4.676251143008081
+   ],
+   "s": [
+    30.394755559420755,
+    29.36478509747221,
+    29.038913163497824
+   ],
+   "sigma_mc": [
+    1.5551707148338112,
+    1.50247149517946,
+    1.4857980105872755
+   ],
+   "max_abs_b": 4.87772948199372,
+   "b_spread": 0.20147833898563938,
+   "boot_sd_b_pp": 1.3633638900183154,
+   "tier": "MARGINAL",
+   "G2": false,
+   "G3": true,
+   "n_sd": 3.577716497924991
+  },
+  "MCG|pergal_meanlog": {
+   "b": [
+    -7.692822435005797,
+    -7.271130997469477,
+    -7.137320206237074
+   ],
+   "s": [
+    32.28040554074672,
+    31.084593058017905,
+    30.717949454783415
+   ],
+   "sigma_mc": [
+    1.6516514259108293,
+    1.5904667735145657,
+    1.5717071755498206
+   ],
+   "max_abs_b": 7.692822435005797,
+   "b_spread": 0.5555022287687228,
+   "boot_sd_b_pp": 1.6778981730588285,
+   "tier": "FAIL",
+   "G2": false,
+   "G3": true,
+   "n_sd": 4.584796955217902
+  },
+  "MCG|binned_meanlog": {
+   "b": [
+    0.7756137016685205,
+    0.6775627050593425,
+    0.5747737045320056
+   ],
+   "s": [
+    32.47758731224195,
+    32.281824945398654,
+    32.19942557966679
+   ],
+   "sigma_mc": [
+    1.6617403807612459,
+    1.6517240508261004,
+    1.647508024799618
+   ],
+   "max_abs_b": 0.7756137016685205,
+   "b_spread": 0.2008399971365149,
+   "boot_sd_b_pp": 1.7124386179710553,
+   "tier": "PASS",
+   "G2": true,
+   "G3": true,
+   "n_sd": 0.45292934504565724
+  },
+  "MCG|binned_meanlin": {
+   "b": [
+    7.032116089804719,
+    6.94499930291026,
+    6.876649228948439
+   ],
+   "s": [
+    34.8494472326492,
+    34.799242052295156,
+    34.778592304052474
+   ],
+   "sigma_mc": [
+    1.783098392037047,
+    1.7805296059164637,
+    1.7794730458900825
+   ],
+   "max_abs_b": 7.032116089804719,
+   "b_spread": 0.15546686085627925,
+   "boot_sd_b_pp": 2.0353563934090015,
+   "tier": "FAIL",
+   "G2": false,
+   "G3": true,
+   "n_sd": 3.4549802248768264
+  }
+ },
+ "edge_diagnostics": {
+  "FW|canonical cH_L/Z": {
+   "_edge_frac": 0.0,
+   "_pergal_edge_frac": 0.04452380952380953
+  },
+  "FW|ALT cH0/Z": {
+   "_edge_frac": 0.0,
+   "_pergal_edge_frac": 0.03494331065759637
+  },
+  "FW|published g_dagger": {
+   "_edge_frac": 0.0,
+   "_pergal_edge_frac": 0.03229024943310658
+  },
+  "MCG|canonical cH_L/Z": {
+   "_edge_frac": 0.0,
+   "_pergal_edge_frac": 0.022630385487528343
+  },
+  "MCG|ALT cH0/Z": {
+   "_edge_frac": 0.0,
+   "_pergal_edge_frac": 0.016281179138321996
+  },
+  "MCG|published g_dagger": {
+   "_edge_frac": 0.0,
+   "_pergal_edge_frac": 0.01489795918367347
+  }
+ },
+ "family_descriptions": {
+  "gls_origin": "(a) a0-line through-origin GLS on per-point a0 -- the INCUMBENT",
+  "median_a0pt": "(a) a0-line median of per-point a0 -- the frozen-study PASS",
+  "odr_log": "(b) RAR-form errors-on-both-axes fit, LOG plane  = McGaugh+2016/Lelli+2017",
+  "odr_lin": "(b) RAR-form errors-on-both-axes fit, LINEAR space (the other reading)",
+  "nls_log": "(b) RAR-form weighted least squares, vertical residuals in log space",
+  "like_log": "(e) FULL likelihood, log space, errors CORRECTLY MODELLED (D,i per-galaxy correlated; Upsilon/gas-cal global; Woodbury)",
+  "pergal_median": "(c) per-galaxy chi2 fit (Li+2018 convention) then MEDIAN over galaxies",
+  "pergal_meanlog": "(c) per-galaxy chi2 fit then GEOMETRIC MEAN over galaxies",
+  "binned_meanlog": "(d) binned route, bin collapsed by MEAN OF LOG, then RAR-form fit",
+  "binned_meanlin": "(d) binned route, bin collapsed by LOG OF MEAN, then RAR-form fit"
+ },
+ "M_main": 600,
+ "ablation_pp": {
+  "FW|ALL noise on": {
+   "gls_origin": 12.927148699189651,
+   "median_a0pt": -3.4780294644502496,
+   "odr_log": -1.828350138914503,
+   "odr_lin": -7.102398649158525,
+   "nls_log": -0.490689467578842,
+   "like_log": -0.019962274023155313,
+   "pergal_median": -5.195759032490455,
+   "binned_meanlog": 0.2314124814764229,
+   "binned_meanlin": 5.70408463429628
+  },
+  "FW|distance OFF": {
+   "gls_origin": 2.3605540137104475,
+   "median_a0pt": -2.06508488423508,
+   "odr_log": -2.142779216080226,
+   "odr_lin": -3.9048935896038195,
+   "nls_log": -1.115176801551876,
+   "like_log": 0.11435197159950228,
+   "pergal_median": -5.729282835301641,
+   "binned_meanlog": -1.6029319304023182,
+   "binned_meanlin": 0.3411087640463162
+  },
+  "FW|velocity OFF": {
+   "gls_origin": 11.404469858582367,
+   "median_a0pt": -2.092183690432037,
+   "odr_log": -1.0954728668416513,
+   "odr_lin": -5.489665643599273,
+   "nls_log": 0.11881320590410027,
+   "like_log": 1.8876258201830476,
+   "pergal_median": -2.8850606907248166,
+   "binned_meanlog": 0.6852471748396871,
+   "binned_meanlin": 5.398659336499256
+  },
+  "FW|inclination OFF": {
+   "gls_origin": 9.812098578653682,
+   "median_a0pt": -5.523906090587616,
+   "odr_log": -3.5997377296450694,
+   "odr_lin": -8.206801090194983,
+   "nls_log": -2.2857860059086077,
+   "like_log": -0.24807037196397097,
+   "pergal_median": -7.162722349540007,
+   "binned_meanlog": -1.0340899228642342,
+   "binned_meanlin": 3.92659939443456
+  },
+  "FW|g_bar shape OFF": {
+   "gls_origin": 11.425249167584761,
+   "median_a0pt": -3.9390404035410387,
+   "odr_log": -1.9360877893269235,
+   "odr_lin": -7.162221484200115,
+   "nls_log": -1.032369804472999,
+   "like_log": -1.845237236251862,
+   "pergal_median": -5.424603954122709,
+   "binned_meanlog": -0.6705034139095845,
+   "binned_meanlin": 4.467668766693289
+  },
+  "FW|global Ups+gascal OFF": {
+   "gls_origin": 16.188345034451544,
+   "median_a0pt": -0.22455556700142765,
+   "odr_log": -0.29357274345434003,
+   "odr_lin": -5.432013972667804,
+   "nls_log": 0.5116262069332134,
+   "like_log": 0.19093838521135886,
+   "pergal_median": -3.3063473145477973,
+   "binned_meanlog": 1.424011537586023,
+   "binned_meanlin": 7.33755169457071
+  },
+  "FW|ONLY distance on": {
+   "gls_origin": 9.89577081959796,
+   "median_a0pt": -0.08525582621072836,
+   "odr_log": -0.5450335217986435,
+   "odr_lin": -4.4318528470203455,
+   "nls_log": -0.28868754776528727,
+   "like_log": -0.09616700292446323,
+   "pergal_median": -0.16738103536272364,
+   "binned_meanlog": 0.244272941745316,
+   "binned_meanlin": 4.297291882991705
+  },
+  "FW|ONLY velocity on": {
+   "gls_origin": 0.40052513512229826,
+   "median_a0pt": -0.00535687298092169,
+   "odr_log": -0.6527789297099185,
+   "odr_lin": -1.7646169177556903,
+   "nls_log": -0.31195001366357555,
+   "like_log": -1.830404325867352,
+   "pergal_median": -1.5309667115146808,
+   "binned_meanlog": -0.5703955288640206,
+   "binned_meanlin": 0.18156783405012256
+  },
+  "FW|ONLY g_bar shape on": {
+   "gls_origin": 1.5373885517407482,
+   "median_a0pt": 0.010101891727654078,
+   "odr_log": 0.2512176767292651,
+   "odr_lin": 0.09917853941376897,
+   "nls_log": 0.31914355419013773,
+   "like_log": 1.8604784423733145,
+   "pergal_median": -0.9665055965026648,
+   "binned_meanlog": 0.9650984962689124,
+   "binned_meanlin": 0.973290291198925
+  },
+  "FW|ONLY Ups+gascal on": {
+   "gls_origin": -1.8182272697998991,
+   "median_a0pt": -2.970104668209994,
+   "odr_log": -1.808500882927222,
+   "odr_lin": -1.8286449614566824,
+   "nls_log": -1.8532830819324109,
+   "like_log": -0.08360564472890131,
+   "pergal_median": -1.4690174878554951,
+   "binned_meanlog": -1.7269128907314468,
+   "binned_meanlin": -2.194673563656535
+  },
+  "MCG|ALL noise on": {
+   "odr_log": -1.7734151535727105,
+   "odr_lin": -7.150399470136715,
+   "nls_log": -0.7387610135448641,
+   "like_log": 0.19487235309827433,
+   "pergal_median": -5.185454362927655,
+   "binned_meanlog": -0.8267878869675505,
+   "binned_meanlin": 5.207036289491951
+  },
+  "MCG|distance OFF": {
+   "odr_log": -2.1896645319046892,
+   "odr_lin": -3.8607142854019227,
+   "nls_log": -1.264386430859965,
+   "like_log": 0.3391995224215183,
+   "pergal_median": -5.703313918887942,
+   "binned_meanlog": -1.728439529191872,
+   "binned_meanlin": 0.3446759750170836
+  },
+  "MCG|velocity OFF": {
+   "odr_log": -1.0097272006886704,
+   "odr_lin": -5.431075870806845,
+   "nls_log": -0.1405893428076399,
+   "like_log": 2.1337954080515864,
+   "pergal_median": -2.9589672481597717,
+   "binned_meanlog": -0.051320801337106925,
+   "binned_meanlin": 4.793876686958831
+  },
+  "MCG|inclination OFF": {
+   "odr_log": -3.3238077982633008,
+   "odr_lin": -8.027741225191109,
+   "nls_log": -2.4562337243381083,
+   "like_log": -0.1205601752276575,
+   "pergal_median": -7.078612684112717,
+   "binned_meanlog": -1.465933632309846,
+   "binned_meanlin": 3.7983697577948616
+  },
+  "MCG|g_bar shape OFF": {
+   "odr_log": -1.986098299838468,
+   "odr_lin": -7.215379970419855,
+   "nls_log": -1.2999563602338893,
+   "like_log": -2.1137859496824896,
+   "pergal_median": -5.611366813863716,
+   "binned_meanlog": -0.9505156882641086,
+   "binned_meanlin": 4.052368605571521
+  },
+  "MCG|global Ups+gascal OFF": {
+   "odr_log": 0.040173932486409214,
+   "odr_lin": -5.192040776802798,
+   "nls_log": 0.5121866752674897,
+   "like_log": 0.6433572507819285,
+   "pergal_median": -3.4696456786305174,
+   "binned_meanlog": 1.1338558473559468,
+   "binned_meanlin": 7.57782297876628
+  },
+  "MCG|ONLY distance on": {
+   "odr_log": -0.39900666403629437,
+   "odr_lin": -4.28576560430689,
+   "nls_log": -0.2856267106028043,
+   "like_log": -0.07882095765101571,
+   "pergal_median": -0.17301048597454516,
+   "binned_meanlog": 0.3705693400596566,
+   "binned_meanlin": 4.4692977154029645
+  },
+  "MCG|ONLY velocity on": {
+   "odr_log": -0.6066229114936594,
+   "odr_lin": -1.6344267017491587,
+   "nls_log": -0.2797413396936732,
+   "like_log": -1.8577578182225718,
+   "pergal_median": -1.481904687526514,
+   "binned_meanlog": -0.5320895717743745,
+   "binned_meanlin": 0.14847427444069083
+  },
+  "MCG|ONLY g_bar shape on": {
+   "odr_log": 0.2131572380963398,
+   "odr_lin": 0.07613330124540685,
+   "nls_log": 0.22070877198303585,
+   "like_log": 2.3201250086122283,
+   "pergal_median": -1.1073309483507154,
+   "binned_meanlog": 0.8790934766722325,
+   "binned_meanlin": 0.8900128956604192
+  },
+  "MCG|ONLY Ups+gascal on": {
+   "odr_log": -1.9056029459834312,
+   "odr_lin": -1.9110423789735376,
+   "nls_log": -1.7672452298987729,
+   "like_log": -0.3472875880589421,
+   "pergal_median": -1.5663519530250913,
+   "binned_meanlog": -2.0348116957148332,
+   "binned_meanlin": -2.521872382662682
+  }
+ },
+ "regime_scan_pp": {
+  "y < 0.2  (deep MOND)": {
+   "N": 1051,
+   "Ngal": 118,
+   "gls_origin": 12.85958243995282,
+   "median_a0pt": 0.60495004015233,
+   "odr_log": 0.42921855286772725,
+   "like_log": 12.412801753966418
+  },
+  "0.2 <= y < 1": {
+   "N": 768,
+   "Ngal": 90,
+   "gls_origin": 19.786834610993687,
+   "median_a0pt": 2.8648182265881506,
+   "odr_log": 1.5558924344715397,
+   "like_log": 9.196504792372506
+  },
+  "1 <= y < 10": {
+   "N": 735,
+   "Ngal": 60,
+   "gls_origin": 45.41002896687352,
+   "median_a0pt": 5.210901092671727,
+   "odr_log": 3.8139219574625294,
+   "like_log": 3.3603422139353967
+  },
+  "y >= 10  (Newtonian)": {
+   "N": 142,
+   "Ngal": 21,
+   "gls_origin": 217.0801254010465,
+   "median_a0pt": -24.613288649646748,
+   "odr_log": -91.7620575445255,
+   "like_log": 5.4873196191364215
+  },
+  "FULL RANGE": {
+   "N": 2696,
+   "Ngal": 147,
+   "gls_origin": 17.860488823418418,
+   "median_a0pt": 1.833330523250698,
+   "odr_log": 0.713898848822847,
+   "like_log": 0.13521071964441855
+  }
+ },
+ "form_conversion_noise_free": {
+  "canonical cH_L/Z": {
+   "g_dagger_over_a0": 0.7685103691287251,
+   "a0_over_g_dagger": 1.2797904585528173
+  },
+  "ALT cH0/Z": {
+   "g_dagger_over_a0": 0.7764176336804316,
+   "a0_over_g_dagger": 1.2678291024463944
+  },
+  "published g_dagger": {
+   "g_dagger_over_a0": 0.7789055549151217,
+   "a0_over_g_dagger": 1.2641315280773637
+  }
+ },
+ "real_data": {
+  "Ud=0.50": {
+   "MCG": {
+    "odr_log": 1.1092548580236709e-10,
+    "odr_lin": 1.0221000006001923e-10,
+    "nls_log": 1.1600260284902598e-10,
+    "like_log": 1.3762061116835885e-10,
+    "pergal_median": 9.54762740456313e-11,
+    "pergal_meanlog": 9.834440701206675e-11,
+    "binned_meanlog": 1.1987331321313683e-10,
+    "binned_meanlin": 1.3653331096042796e-10,
+    "scipy_odr_log": 1.1021117891559006e-10,
+    "rms_dex": 0.13286909356904864
+   },
+   "FW": {
+    "odr_log": 1.3936658023270074e-10,
+    "odr_lin": 1.2781417797240793e-10,
+    "nls_log": 1.487719527860905e-10,
+    "like_log": 1.7265984389021425e-10,
+    "pergal_median": 1.235107488533861e-10,
+    "pergal_meanlog": 1.2661728024829018e-10,
+    "binned_meanlog": 1.4939153386183187e-10,
+    "binned_meanlin": 1.6929177065389312e-10,
+    "gls_origin": 1.8914884086766099e-10,
+    "median_a0pt": 1.5288535220227113e-10,
+    "scipy_odr_log": 1.383881612225827e-10,
+    "rms_dex": 0.13500806559287884
+   }
+  },
+  "Ud=0.70": {
+   "MCG": {
+    "odr_log": 7.65973423804206e-11,
+    "odr_lin": 7.105845931758277e-11,
+    "nls_log": 7.580073078414131e-11,
+    "like_log": 1.3499263657019957e-10,
+    "pergal_median": 6.115376479518844e-11,
+    "pergal_meanlog": 6.031236575693973e-11,
+    "binned_meanlog": 8.04553669327068e-11,
+    "binned_meanlin": 9.189224683143649e-11,
+    "scipy_odr_log": 7.592671186111572e-11,
+    "rms_dex": 0.13974797235821176
+   },
+   "FW": {
+    "odr_log": 1.0028351520832944e-10,
+    "odr_lin": 9.282968548505343e-11,
+    "nls_log": 1.0144572444542414e-10,
+    "like_log": 1.6868792160943126e-10,
+    "pergal_median": 8.539301492433662e-11,
+    "pergal_meanlog": 7.726173693714808e-11,
+    "binned_meanlog": 1.032945730791675e-10,
+    "binned_meanlin": 1.1739532321381295e-10,
+    "gls_origin": 1.2788685621312867e-10,
+    "median_a0pt": 8.814622131632137e-11,
+    "scipy_odr_log": 9.936454067025473e-11,
+    "rms_dex": 0.13948796198742
+   }
+  }
+ },
+ "biased_families": [
+  "binned_meanlin",
+  "gls_origin",
+  "odr_lin",
+  "pergal_meanlog",
+  "pergal_median"
+ ],
+ "unbiased_families": [
+  "binned_meanlog",
+  "like_log",
+  "median_a0pt",
+  "nls_log",
+  "odr_log"
+ ],
+ "gof_chi2_per_dof_real": {
+  "Ud=0.50": {
+   "MCG|odr_log": 1.6283295314427504,
+   "MCG|odr_lin": 1.5637378986042025,
+   "MCG|nls_log": 3.3033818598831814,
+   "MCG|like_log": 2.4419816576321853,
+   "FW|odr_log": 1.7188717464809429,
+   "FW|odr_lin": 1.6759037194209523,
+   "FW|nls_log": 3.4336732353457387,
+   "FW|like_log": 2.529110085884392
+  },
+  "Ud=0.70": {
+   "MCG|odr_log": 1.6582214400894355,
+   "MCG|odr_lin": 1.4898367115891333,
+   "MCG|nls_log": 3.765347465144847,
+   "MCG|like_log": 2.3844970787326285,
+   "FW|odr_log": 1.662047180040158,
+   "FW|odr_lin": 1.5151767079316292,
+   "FW|nls_log": 3.7200751908611402,
+   "FW|like_log": 2.469574015699711
+  }
+ },
+ "unbiased_rar_family_real_spread_pct": 3.87015192095374,
+ "verdict": {
+  "transfers_to_published": "PARTIAL",
+  "published_family_bias_pp": [
+   -1.7188239565381958,
+   -1.616496135598422,
+   -1.5709602055400396
+  ],
+  "published_family_tier": "PASS",
+  "published_family_max_abs_b_pp": 1.7188239565381958,
+  "published_linear_reading_bias_pp": [
+   -7.062282570933687,
+   -6.883011130524686,
+   -6.849705590358579
+  ],
+  "published_linear_reading_tier": "FAIL",
+  "gls_origin_fullrange_pp": [
+   15.466038585441865,
+   15.009492256835255,
+   14.83611239432392
+  ],
+  "gls_origin_gasdominated_pp": [
+   10.337184387349009,
+   10.243508706284477,
+   10.226721684239259
+  ],
+  "median_a0pt_fullrange_pp": [
+   -0.7700981715961452,
+   -0.8073894788644065,
+   -0.8274010174423307
+  ],
+  "all_published_family_biases_are_negative": true,
+  "posited": "a0's VALUE remains POSITED in the framework. Measurement methodology only."
+ },
+ "content_sha256": "28682d16f79b162bbe7f30137ba22f070a14df086ef1df39ddcd1e057a9c2c94"
+}
