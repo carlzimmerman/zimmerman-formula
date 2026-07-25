@@ -1,0 +1,293 @@
+========================================================================================================
+D-2 ARCHIVE CHECK -- does a usable z~1.5-2.5 LENSED deep-MOND a0(z) sample exist TODAY?
+========================================================================================================
+  a0 = c H_Lambda / Z,  Z = 5.7888;  canonical a0(0) = 9.355e-11 m/s^2, alt = 1.130e-10.
+  Fork at z=2 (footing-INDEPENDENT ratio): DEC=0.874  RISE=3.005  -> 3.44x apart.
+  BAR-A (3 sigma mechanism call)      : sigma(a0)/a0 <= 37%
+  BAR-B (prior-robust 20:1 Bayes)     : sigma(a0)/a0 <= 10.9%
+  SELECTION the parents require       : g_bar < 0.3 a0  (deep-MOND, lever L -> 1)
+  ESTIMATOR PRE-REGISTERED: MEDIAN-LIKE only.  GLS is BANNED (biased high >= 10.3 pp).
+
+========================================================================================================
+1. INSTRUMENT GATES -- which archival spectroscopic MODES can even do z~2 kinematics
+========================================================================================================
+  Kinematics need a line inside the mode's band AND enough R.  Window z=1.5-2.5:
+    H-alpha  observed 1.64-2.30 um
+    [OII]    observed 0.93-1.30 um
+    Pa-beta  observed 3.21-4.49 um
+
+  mode                                R   sig_inst  centroid@S/N=10  Ha in band  KIN-CAPABLE  note
+       (sig_inst and centroid in km/s)
+  ----------------------------------------------------------------------------------------------------------------
+  NIRSpec PRISM (MSA)               100       1273            127.3        FULL           no  CANUCS/UNCOVER workhorse
+  NIRISS GR150 WFSS                 150        849             84.9     partial           no  CANUCS/GLASS grism
+  NIRCam WFSS (grism)              1600         80              8.0          NO           no  MAGNIF / ALT
+  NIRSpec medium gratings          1000        127             12.7        FULL          YES  M gratings
+  NIRSpec HIGH-RES gratings        2700         47              4.7        FULL          YES  TEMPLATES LBGs; IFU or MSA
+  VLT/KMOS YJ,H,K                  4000         32              3.2        FULL          YES  KLASS/KLEVER/KLENS (seeing-limited)
+  Keck OSIRIS + LGS-AO             3600         35              3.5        FULL          YES  Leethochawalit+16 / OLAS
+  VLT/MUSE                         2500         51              5.1          NO           no  MUSE-DARK (Jeanneau) -- z ceiling
+
+  HONEST READING (both directions):
+   * sigma_inst is the LINE-WIDTH floor; the VELOCITY CENTROID goes as ~sigma_inst/SNR,
+     so a moderate-R mode is NOT automatically disqualified.  R~1600 grism at SNR=10
+     gives ~8 km/s centroids -- usable in principle.
+   * BUT the published grism-kinematics demonstration (MAGNIF, arXiv:2310.09327) returned
+     v_rot = 58 (+53/-35) km/s, i.e. ~+91%/-60% -- because a slitless 2D spectrum
+     degenerately mixes morphology with velocity.  Grism kinematics is REAL but coarse.
+   * DECISIVE gate for the z=1.5-2.5 window: NIRCam WFSS (2.4-5.0 um) CANNOT see H-alpha
+     until z > 2.66; NIRISS WFSS and NIRSpec PRISM have R <= 150, i.e.
+     sigma_inst >= 850 km/s, so even at SNR=10 the centroid floor is ~85 km/s -- larger
+     than the ENTIRE rotation signal of a low-mass z~2 rotator.  MUSE cannot reach the
+     window at all: its red cutoff puts [OII] at z <= 1.49.
+   => at z=1.5-2.5 only NIRSpec R>=1000 (IFU or MSA slit-stepping) and ground-based
+      near-IR IFUs (KMOS seeing-limited, OSIRIS/ERIS AO) are kinematics-capable.
+
+========================================================================================================
+2. KINEMATICS SIDE OF THE ARCHIVE (z=1.5-2.5 relevance).  'nwin' = objects in window
+========================================================================================================
+  sample / program              N  nwin  lensed            logM*                  gas mass? deep-MOND RC?
+  ------------------------------------------------------------------------------------------------------
+  TEMPLATES ERS 1355            4     0    True       8.77-10.79 SPT0418 only ([CII], massive) no (2 LBGs bracket the window)
+  MSA-3D (Cycle 1)             30     3   False            ~9-11    no CO; SED/scaling only no (HSB, rotation-selected, NOT lensed)
+  CANUCS GTO 1208               0     0    True             7-11                         no no -- resolution gate fails
+  UNCOVER GO 2561               0     0    True             6-11                         no no -- resolution gate fails
+  GLASS-JWST ERS 1324           0     0    True             7-11                         no no -- resolution gate fails
+  MAGNIF GO 2883                0     0    True             7-10                         no no -- H-alpha out of band below z=2.66
+  ALT GO 3516                   0     0    True <8.5 for 1015 objects                         no no kinematics derived
+  Leethochawalit+2016          15    12    True         ~9.0-9.6                         NO no -- Ha extent ~ few kpc, not the outer disk
+  OLAS I (Hirtenstein+2019)    17    13    True          8.0-9.8                         NO no -- integrated sigma + gradients, no extended RCs
+  KLASS (Girard+2020)          44    15    True 8.1-11.0 (median 9.5)           SED-derived only no -- V/sigma median ~2.5
+  KLEVER (Curti+2020)          35    30    True          ~9-10.5                         NO no -- seeing-limited, metallicity-focused
+  ALMA-ALPAKA                  28     9   False  >10.4 (massive)   YES (that is the tracer) NO -- massive HSB, g_bar >> a0
+  Lelli+2023 cold disks         2     2   False ~11 (massive MS)                        YES NO -- massive; flat RC to 8 kpc, sigma_CO <~ 15 km/s
+  ------------------------------------------------------------------------------------------------------
+  LENSED objects with SOME resolved kinematics in 1.5<z<2.5 : ~70
+  ... of which a published RC reaches the deep-MOND regime  :  0
+
+  Provenance (every row REAL and citable):
+    TEMPLATES ERS 1355         NIRSpec IFU R~2700 (2 LBGs) / R~1000 (2 DSFGs)
+                               Rigby+2024 ApJ 976:78 doi:10.3847/1538-4357/ad7501 ; STScI ERS 1355
+                               mu = 52.7 / 95 / 6.6 / 29.5 ; M* = 5.95e8, 1.46e9, 6.1e10, 1.53e10. The two HIGH-R lensed LBGs sit at z=1.329 and z=2.925 -- they BRACKET 1.5<z<2.5 and land in neither.
+    MSA-3D (Cycle 1)           NIRSpec MSA slit-stepping -> IFS cubes
+                               Espejo Salcedo+2026 arXiv:2606.27853 (30 SFGs; 23 'golden')
+                               This is compilation point [1].  NOT lensed, so no magnification lever; only the z=1.68 tail enters the window.
+    CANUCS GTO 1208            NIRISS WFSS R~150 + NIRSpec MSA PRISM R~100
+                               STScI GO/GTO 1208 (Willott); CANUCS DR1 arXiv:2506.21685
+                               A370, MACS0416, MACS0417, MACS1149, MACS1423.  Medium-resolution MSA exists ONLY in the MACS1149 FLANKING field, i.e. not on the strongly lensed arcs. R<=150 => sigma_inst >= 850 km/s: NO kinematics.
+    UNCOVER GO 2561            NIRSpec MSA PRISM R~100 (~700 targets) + NIRCam
+                               UNCOVER treasury (Bezanson/Labbe); see e.g. arXiv:2409.11457
+                               Prism only: R~100.  Superb redshifts and masses, ZERO kinematic power.
+    GLASS-JWST ERS 1324        NIRISS WFSS R~150 + NIRSpec MSA + NIRCam
+                               Treu+2022 ApJ 935:110 ; GLASS-JWST ERS 1324
+                               Same gate as CANUCS.
+    MAGNIF GO 2883             NIRCam WFSS R~1600, medium bands, Frontier Fields
+                               Sun+ MAGNIF, arXiv:2503.03829 ; lensed z=8.34 disk arXiv:2310.09327
+                               Proves grism dynamical modelling works (v_rot=58 +53/-35 km/s) but the 2.4-5.0 um band cannot see H-alpha in the z=1.5-2.5 window.
+    ALT GO 3516                NIRCam grism R~1600 (A2744)
+                               Naidu, Matthee+ 'All the Little Things', arXiv:2410.01874
+                               THE lensed-DWARF CATALOG: 1015 sources less massive than the SMC. A target list, not a kinematic dataset.  Feeds D-1, not D-2.
+    Leethochawalit+2016        Keck OSIRIS + LGS-AO IFU (R~3600)
+                               Leethochawalit+2016 ApJ 820:84 (arXiv:1509.01279)
+                               CSWA11/15/19/20/28/31/128/139/159/165, Abell773, J0744, J1038, J1148, J1206. mu = 1.9-42.  ~45% show ordered rotation.  NO gas masses.
+    OLAS I (Hirtenstein+2019)  Keck OSIRIS + AO IFU
+                               Hirtenstein+2019 ApJ 880:54 doi:10.3847/1538-4357/ab113e
+                               mu = 1.52-20.2; integrated sigma ~34-105 km/s.  The paper does NOT present extended rotation curves.  NO gas masses.
+    KLASS (Girard+2020)        VLT/KMOS seeing-limited IFU (~0.6")
+                               Girard+2020 MNRAS 497:173 doi:10.1093/mnras/staa1907 (arXiv:2006.14633)
+                               6 clusters (A2744, MACS0416, MACS1149, MACS2129, RXJ1347, RXJ2248). CANDIDATE-TO-CHECK: the kinematic subsample appears to restrict to LOW magnification (mu <~ 5) to avoid shear/differential magnification -- i.e. the magnification lever is deliberately NOT used.
+    KLEVER (Curti+2020)        VLT/KMOS YJ+H+K (R~3400-4200), seeing-limited
+                               Curti+2020 MNRAS 492:821 doi:10.1093/mnras/stz3379 (arXiv:1910.13451)
+                               CLASH + Frontier Fields lensed arcs.  The largest z~2 LENSED resolved-spectroscopy sample in the archive; published products are metallicity maps/gradients, not deep-MOND rotation curves.
+    ALMA-ALPAKA                ALMA CO/[CI] high-res (3DBAROLO RCs)
+                               Rizzo+2023 A&A 679:A129 (ALMA-ALPAKA I)
+                               This is the shape of what EXISTS: excellent cold-gas RCs, wrong regime.
+    Lelli+2023 cold disks      ALMA CO multi-J, z~1.5-2.2
+                               Lelli+2023 A&A 672:A106 (arXiv:2302.00030)
+                               Key for D-3, not D-2: COLD tracers at cosmic noon really do reach sigma <~ 15 km/s, far below warm-ionized 45-60 km/s.
+
+========================================================================================================
+3. GAS SIDE OF THE ARCHIVE -- lensed, M*<~1e10.5, CO/[CII] at cosmic noon
+========================================================================================================
+  object                      z     mu         M*      M_gas  det?  resolved?  facility / line
+  ------------------------------------------------------------------------------------------------------
+  MACS0451-arc            2.013   49.0   2.50e+09   4.00e+09   YES         NO  IRAM PdBI CO(3-2) 4-5 sigma
+  A68-C0                  1.586   30.0   2.00e+10   2.60e+10   YES         NO  IRAM PdBI CO(2-1) 11 sigma
+  A68-HLS115              1.587   15.0   9.60e+09   2.40e+10   YES         NO  IRAM PdBI CO(2-1) 14 sigma
+  A68-h7                  2.150    3.0   8.70e+10   7.40e+10   YES         NO  IRAM 30m (single dish) CO(3-2) 3-4 sigma
+  SGAS J0033 (D-Z+24)     2.225   27.9   6.46e+09   4.00e+09   YES         NO  ALMA ACA (compact array) CO(3-2)
+  SGAS J0837 (D-Z+24)     2.385   22.1   1.82e+09   1.20e+09 LIMIT         NO  ALMA ACA CO(3-2) UPPER LIMIT
+  SGAS J1429 (D-Z+24)     1.905    8.6   3.80e+09   1.50e+09 LIMIT         NO  ALMA ACA CO(3-2) UPPER LIMIT
+  A2218-Mult              3.104   14.0        n/a   1.70e+10 LIMIT         NO  IRAM PdBI CO(3-2) UPPER LIMIT
+  ------------------------------------------------------------------------------------------------------
+  CO/[CII] DETECTIONS inside 1.5<z<2.5 on LENSED targets            : 5
+  ... with M* < 1e10 (the low-mass / deep-MOND-capable regime)     : 3  (MACS0451-arc, A68-HLS115, SGAS J0033 (D-Z+24))
+  ... SPATIALLY RESOLVED (needed for a gas velocity field)         : 0
+
+  BLIND-SURVEY CROSS-CHECK (the strongest single archive statement):
+    ALMA Lensing Cluster Survey (ALCS), 33 massive clusters, the LARGEST-AREA ALMA
+    cluster survey: the blind line search yields SEVEN line emitters total -- FOUR CO
+    emitters at z=0.8-1.1 (three of which are multiple images of the SAME galaxy) and
+    ONE [CII] at z=6.071.  => ZERO blind CO detections in 1.5<z<2.5.
+    Nagao+2026 ApJ 998:42 doi:10.3847/1538-4357/ae2472 (arXiv:2511.20748);
+    ALCS = ALMA 2018.1.00035.L (PI Kohno) + archival.
+
+  Provenance:
+    MACS0451-arc           Dessauges-Zavadsky+2015 A&A 577:A50 (arXiv:1408.0816), Tab.1/Tab.3
+                           alpha_CO=4.36 (Galactic). [CII] ALSO detected, ALMA 2011.0.00130.S (arXiv:1502.03842) -- COMPACT/unresolved. Ha KINEMATICS EXIST: Jones+2010 MNRAS 404:1247, ~60 pc source-plane res, dv_pp = 80 +/- 20 km/s.
+    A68-C0                 Dessauges-Zavadsky+2015 A&A 577:A50
+                           alpha_CO=4.36; UNRESOLVED.
+    A68-HLS115             Dessauges-Zavadsky+2015 A&A 577:A50
+                           alpha_CO=4.36; UNRESOLVED.
+    A68-h7                 Dessauges-Zavadsky+2015 A&A 577:A50
+                           massive; single-dish, no imaging.
+    SGAS J0033 (D-Z+24)    Dessauges-Zavadsky+2024 A&A (aa51892-24), Tab.1; ALMA 2018.1.01142.S, 2021.2.00092.S, 2022.1.00916.S
+                           the ONLY CO DETECTION in the whole 12-arc low-mass lensed sample that lands inside 1.5<z<2.5.  ACA => spatially UNRESOLVED by construction.
+    SGAS J0837 (D-Z+24)    Dessauges-Zavadsky+2024 A&A (aa51892-24), Tab.1
+                           non-detection.
+    SGAS J1429 (D-Z+24)    Dessauges-Zavadsky+2024 A&A (aa51892-24), Tab.1
+                           non-detection.
+    A2218-Mult             Dessauges-Zavadsky+2015 A&A 577:A50
+                           out of window (z=3.1).
+
+========================================================================================================
+4. THE CROSS-MATCH: lensed + z in [1.5,2.5] + resolved kinematics + a GAS MASS
+========================================================================================================
+  Objects satisfying ALL FOUR requirements simultaneously: N = 1
+    -> MACS0451-arc (z=2.013, mu=49, M*=2.50e+09, M_gas=4.00e+09)
+
+  Why the two sides do not overlap (stated precisely, not hand-waved):
+   * The KINEMATICS samples are drawn from CASSOWARY/CLASH/Frontier-Field ARC catalogs
+     selected on rest-UV/optical brightness (Leethochawalit, OLAS, KLASS, KLEVER).
+   * The GAS samples are drawn from Herschel-Lensing-Survey IR/submm detections and
+     SGAS arcs selected for CO feasibility (Dessauges-Zavadsky 2015/2024).
+   * Those two selections are nearly DISJOINT: IR-bright enough for CO at M*<1e10 and
+     UV-bright enough for AO Ha are different objects.  One historical exception exists
+     -- the MACS0451 arc -- because it is both extremely magnified (mu~49) and
+     IR-detected by Herschel.
+
+========================================================================================================
+5. THE N=1 CANDIDATE, TESTED AGAINST THE PARENTS' OWN SELECTION CUT
+========================================================================================================
+  MACS0451-arc: z=2.013, mu=49, M*=2.50e+09, M_gas=4.00e+09 -> M_bar=6.50e+09 Msun (f_gas=0.62)
+    R [kpc]   g_bar [m/s^2]   y=g_bar/a0   lever L V_fw [km/s]     regime
+  --------------------------------------------------------------------------------------------
+        1.0       9.062e-10        9.686     0.049      171.4     Newtonian-ish <- ARCHIVAL Ha extent
+        2.0       2.265e-10        2.422     0.171      128.9     Newtonian-ish <- ARCHIVAL Ha extent
+        3.0       1.007e-10        1.076     0.317      113.8     near-a0 <- ARCHIVAL Ha extent
+        4.0       5.664e-11        0.605     0.452      106.7     near-a0
+        5.0       3.625e-11        0.387     0.563      102.9     near-a0
+        6.0       2.517e-11        0.269     0.650      100.6     DEEP-MOND (passes cut)
+        8.0       1.416e-11        0.151     0.768       98.2     DEEP-MOND (passes cut)
+
+  Radius at which g_bar = 0.3 a0 (canonical footing): R = 5.68 kpc, where the framework predicts V = 101 km/s.
+  Same on the ALT footing (a0=1.130e-10): R = 5.17 kpc -- the FOOTING shifts the cut radius by only 9%, so this conclusion is footing-robust.
+  MEDIAN-LIKE readout (pre-registered; GLS banned).  Two DIFFERENT medians, kept apart
+  so the archive is not flattered by radii it never observed:
+     over the ARCHIVAL Ha radii (1-3 kpc) : median y = 2.42  -> lever L = 0.171
+     over the full tabulated grid (1-8 kpc): median y = 0.61  -> lever L = 0.452  (ASPIRATIONAL -- no tracer out there today)
+
+  VERDICT ON THE N=1 OBJECT (honest, both directions):
+   * GOOD: it is gas-DOMINATED (f_gas=0.62), low-mass, mu~49, and it
+     already has BOTH a published gas mass and published resolved Ha kinematics.
+   * BAD: the published Ha kinematics span only a few kpc, where y = 1-2.4 -- the
+     NEAR-a0/Newtonian regime, NOT the deep-MOND cut.  Reaching y<0.3 needs
+     tracer out to R ~ 5.7 kpc.  At the ARCHIVAL radii the lever is only L ~ 0.17, not ~1 --
+     i.e. this object is closer to the diluted Ubler/Amvrosiadis class than to the
+     deep-MOND class the parents require.
+   * WORSE: Jones+2010 report TWO Ha peaks ~2 kpc apart with DIFFERENT rotation
+     patterns -- i.e. a possible MERGER.  A merger cannot enter an a0 estimator.
+   * AND: the CO(3-2) is a 4-5 sigma UNRESOLVED detection whose flux is confined to the
+     southern part of the arc, so differential magnification is unmodelled -> the gas
+     mass carries an unquantified aperture/lensing systematic on top of alpha_CO.
+
+========================================================================================================
+6. THE ARCHIVE'S CEILING TODAY -- N=1 near-a0 object vs the two bars
+========================================================================================================
+  Framework sensitivities at the ARCHIVAL regime y = 2.42 (median-like, 1-3 kpc):
+    |d ln a0 / d ln V|     = 4(1+y) = 13.69   (deep-MOND limit 4.00)
+    |d ln a0 / d ln M_bar| = 1+2y   = 5.84   (deep-MOND limit 1.00)
+  ^ this IS the dilution penalty, seen from the error-propagation side: away from
+    deep-MOND the SAME velocity error buys a WORSE a0, exactly as lever L<1 says.
+
+  A single archival object, using ONLY the two errors the archive itself publishes:
+    velocity:  dv_pp = 80 +/- 20 km/s  -> sigma_ln V = 0.25  (inclination NOT included)
+    gas mass:  alpha_CO ~ 0.3 dex, propagated in LOG space through f_gas ->
+               sigma_ln M_bar = f_gas * 0.30 dex * ln10 = 0.62*0.691 = 0.425
+    sigma(a0)/a0 (one object, published errors only) = 423%   [V term 342%, mass term 248%]
+    N= 1 identical such objects (pure sqrt-N, NO coherent floor):    423%   vs BAR-A 37% [FAIL]  vs BAR-B 10.9% [FAIL]
+    N=15 identical such objects (pure sqrt-N, NO coherent floor):    109%   vs BAR-A 37% [FAIL]  vs BAR-B 10.9% [FAIL]
+    N=40 identical such objects (pure sqrt-N, NO coherent floor):     67%   vs BAR-A 37% [FAIL]  vs BAR-B 10.9% [FAIL]
+  *** But N=1 is all the archive has, and sqrt-N is unavailable. ***
+
+  COUNTERFACTUAL (rail against a manufactured NO-GO -- illustrative only; the real
+  error budget is D-3's job).  Take the SAME object and the SAME 0.3-dex gas-calibration
+  error, but (i) select it in the deep-MOND regime y=0.15 (coefficients collapse to
+  4 and 1) and (ii) buy a purpose-designed velocity error instead of inheriting 25%:
+      sigma_ln V  sigma(a0) per obj      N=15      N=40   bars A/B at N=40
+            0.25               128%       33%       20%   A:PASS  B:FAIL
+            0.10                72%       19%       11%   A:PASS  B:FAIL
+            0.05                60%       15%        9%   A:PASS  B:PASS
+  Reading: the deep-MOND SELECTION alone (y 2.42 -> 0.15) buys a factor
+  ~3.3 in sigma(a0) at FIXED data quality -- the framework-derived lever is a REAL gain and
+  it is why the archive's 423% is a statement about the ARCHIVE, not about feasibility.
+  Note also that in the deep-MOND limit the GAS-CALIBRATION term stops being amplified
+  (coefficient 1 instead of 5.8), so alpha_CO ceases to dominate.
+  NOTE: this is deliberately the OPTIMISTIC arithmetic -- it omits inclination,
+  beam smearing, pressure support and the merger flag.  Even so, one archival object
+  gives ~423%, i.e. it MISSES BAR-A (37%) by 11.4x and BAR-B by 38.8x.
+  The full coherent floor is D-3's computation, NOT this file's.
+
+========================================================================================================
+7. D-2 VERDICT
+========================================================================================================
+  NO USABLE ARCHIVAL SAMPLE EXISTS TODAY.  New observing time IS required.  The gap is
+  NOT "there is no data" -- it is a three-way MISMATCH, and each leg is separately verified:
+
+  (a) JWST KINEMATICS on lensed z~1.5-2.5 low-mass rotators: the big lensing-cluster programs
+      that DO cover these objects (CANUCS 1208, UNCOVER 2561, GLASS-JWST 1324) are PRISM
+      (R~100) or NIRISS-WFSS (R~150) -- sigma_inst >= 850 km/s, no kinematics at all.  The
+      kinematics-capable JWST modes have barely been pointed at lensed cosmic-noon SFGs:
+      TEMPLATES (ERS 1355) has NIRSpec-IFU R~2700 on exactly TWO lensed LBGs, at z=1.329 and
+      z=2.925 -- they BRACKET the z~2 window and land in neither.  MSA-3D's slit-stepping
+      (the technique that SHOULD be used) was run on 30 UNLENSED field SFGs at 0.5<z<1.7.
+      NIRCam-grism kinematics (MAGNIF, ALT) cannot see H-alpha below z=2.66 and, where
+      demonstrated, returns v_rot to only ~+91%/-60%.
+  (b) ALMA GAS MASSES for the same objects: the entire lensed low-mass cosmic-noon CO archive
+      is ~17 targets across Dessauges-Zavadsky+2015 (IRAM PdBI) and +2024 (ALMA ACA).  Inside
+      1.5<z<2.5 with M*<1e10 there is essentially ONE CO detection (SGAS J0033, z=2.225) plus
+      the MACS0451 arc; BOTH are spatially UNRESOLVED, and the +2024 sample is mostly UPPER
+      LIMITS.  The blind check is decisive: ALCS, 33 clusters, the largest-area ALMA cluster
+      survey, finds ZERO CO emitters in 1.5<z<2.5.
+  (c) THE OVERLAP: exactly ONE archival object has lensing + z in window + published resolved
+      kinematics + a published gas mass -- the MACS0451 arc (z=2.013, mu~49, M*=2.5e9,
+      M_gas=4.0e9).  It fails the parents' own selection: at the radii where the H-alpha
+      kinematics exist it sits at median y = g_bar/a0 = 2.4 (lever L = 0.17), it would
+      need tracer out to R ~ 5.7 kpc to satisfy g_bar<0.3a0, its CO is unresolved and
+      confined to one part of the arc (unmodelled differential magnification), and Jones+2010
+      flag it as a possible MERGER.  Using only its own published errors it yields
+      sigma(a0)/a0 ~ 423% -- short of BAR-A (37%) and far short of BAR-B (11%).
+
+  WHAT THE ARCHIVE *DOES* USEFULLY CONTAIN (do not undersell it -- this is real and it lowers
+  the cost of the new program a lot):
+   * A ready-made TARGET LIST: ALT (GO 3516) has 1630 spectroscopic sources behind A2744 with
+     1015 below the SMC in stellar mass, and CANUCS/UNCOVER supply prism redshifts + masses +
+     lens models on five more clusters.  Selection can be done from the archive for free.
+   * ~60-90 lensed z~1.2-2.5 objects with SOME resolved H-alpha kinematics (KLEVER 35,
+     KLASS 15-in-window, Leethochawalit 12, OLAS 13) -- enough to pre-select which arcs are
+     rotation-dominated BEFORE spending NIRSpec IFU time.
+   * The existence proofs that each half of the technique works: the Cosmic Snake / A521
+     (z~1.04) have ~100 pc RESOLVED ALMA CO plus ionized-gas kinematics, and ALPAKA/Lelli+2023
+     deliver flat cold-gas RCs with sigma_CO <~ 15 km/s at cosmic noon -- both at the WRONG
+     mass (10^10.5-10^11), which is exactly the "kinematics exist for massive HSB" diagnosis.
+
+  So the honest D-2 answer is the expected one: the measurement is NOT in the archive.  It is,
+  however, ARCHIVE-PREPARED -- targets, lens models, and rotation-dominance pre-screening are
+  already public; what must be bought is (i) NIRSpec-IFU or MSA slit-stepping R>=1000 H-alpha
+  on lensed M*<1e9.5 arcs at z~1.5-2.5, and (ii) RESOLVED ALMA CO (12-m array, not ACA) or
+  [CII] on the SAME arcs.  Both footings carried; the DEC/RISE ratio is footing-independent.
+  Estimator pre-registration stands: MEDIAN-LIKE, never GLS.  No 'theory closed'.
+
+  SELF-CHECK OK: fork 3.44x @ z=2; lever(0)=1, lever(6)=0.077; cross-match N=1;
+  NIRCam-WFSS Ha floor z>2.66; MUSE [OII] ceiling z<1.49; NIRISS sigma_inst=849 km/s;
+  N=1 archival sigma(a0)=423% > bar-A 37%; R(y=0.3)=5.7 kpc.  EXIT 0 (ran; an ARCHIVE audit, not a verdict on the theory).
