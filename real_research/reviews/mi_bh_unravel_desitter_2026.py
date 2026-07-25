@@ -228,6 +228,48 @@ print(f"""      HOW SURPRISED SHOULD ANYONE BE? Honest estimate, because this is
       So: NOTABLE, worth writing down, and NOT decisive. It is a structural coincidence at the
       ~{p_luck*100:.0f}%-by-chance level, not a derivation of Z, and it must never be quoted as one.
       Z remains POSTULATED -- the kappa-forcing door closed in June and this does not reopen it.""")
+
+# ---------------- S4b: the epoch-independence trap.  RETRACTED-BEFORE-CLAIMED, on purpose. --------
+# On first seeing S4 the obvious next thought is: "H cancels, so the coincidence holds at EVERY
+# redshift -- it is not a why-now accident, which makes it stronger."  The first half is true and the
+# second half is FALSE, and the demonstration is three lines.  Recording it here so the overclaim can
+# never be made downstream from this script.
+print("\n      S4b  THE EPOCH-INDEPENDENCE TRAP (true, but worth exactly nothing -- read before quoting S4)")
+print("      "+"-"*92)
+print("""      H really does cancel out of r_a0(M_Nariai)/L, so the ratio is the same pure number at any
+      epoch. That is NOT evidence. Once a0 is tied to H at all, the problem contains exactly ONE
+      scale (H, plus c and G), so EVERY dimensionless length ratio must come out H-free by dimensional
+      analysis, before any physics enters. Watch it cancel just as cleanly for coefficients that are
+      obvious nonsense:""")
+for lab, a0_fn in [("a0 = c H/Z   (framework)", lambda H_: C*H_/Z),
+                   ("a0 = 137 c H (absurd)   ", lambda H_: 137*C*H_),
+                   ("a0 = c H/Z^3 (absurd)   ", lambda H_: C*H_/Z**3)]:
+    vals = []
+    for H_ in (H_LAM, 0.5*H_LAM, 17.0*H_LAM):          # three wildly different epochs
+        L_, Mn_ = C/H_, C**3/(3*np.sqrt(3)*G*H_)
+        vals.append(np.sqrt(G*Mn_/a0_fn(H_))/L_)
+    print(f"        {lab}  r_a0/L at H, H/2, 17H = {vals[0]:.6f}, {vals[1]:.6f}, {vals[2]:.6f}"
+          f"   -> spread {max(vals)-min(vals):.1e}")
+print("""
+      All three are epoch-invariant to machine precision, including the absurd ones. So the honest
+      statement is: epoch-independence KILLS ONE REFEREE OBJECTION ('this is a coincidence of our
+      particular epoch') and adds ZERO support of its own. The 5.5% agreement stands exactly where it
+      stood.
+
+      AND A SHARPER CAVEAT, which cuts the claim's domain rather than its weight: M_Nariai and the SdS
+      cubic require a VACUUM Lambda-only spacetime. With matter present there is no static patch and no
+      Nariai bound at all, so 'the coincidence at redshift z' would be a statement about a hypothetical
+      pure-de Sitter universe whose rate equals H_DE(z), not about our universe at z -- and at z = 3 the
+      real expansion rate exceeds H_DE by ~7x, so even which H to feed in is ambiguous. The statement is
+      well-posed only today-and-later, where Lambda dominates. Which is exactly the regime where it is
+      dimensionally forced anyway.""")
+sp_max = 0.0
+for a0_fn in [lambda H_: C*H_/Z, lambda H_: 137*C*H_, lambda H_: C*H_/Z**3]:
+    v = [np.sqrt(G*(C**3/(3*np.sqrt(3)*G*H_))/a0_fn(H_))/(C/H_) for H_ in (H_LAM, 0.5*H_LAM, 17.0*H_LAM)]
+    sp_max = max(sp_max, max(v)-min(v))
+check(f"epoch-independence is DIMENSIONALLY FORCED -- absurd a0 coefficients are equally invariant "
+      f"(max spread {sp_max:.1e}), so it adds no evidential weight", sp_max < 1e-12)
+
 check(f"the coincidence is reported with its by-chance probability ({p_luck:.1%}), not as a "
       f"derivation of Z", 0.01 < p_luck < 0.30)
 
