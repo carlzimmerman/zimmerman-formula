@@ -1,0 +1,385 @@
+
+========================================================================================================
+1.  AUDIT ITEM (1): RE-DERIVE Box_u u^mu MYSELF.  Is the 'eigenvalue' relation real?
+========================================================================================================
+
+  Route 1 -- built from the SPATIAL orbit x^mu(tau) = (gamma tau, R0 cos(gamma Omega tau),
+  R0 sin(gamma Omega tau), 0), then u = dx/dtau (so the worldline, not the 4-velocity, is the input):
+      u.u                    = -1                     (unit norm, exact)
+      |a|^2                  = Omega**4*R_0**2/(Omega**2*R_0**2 - 1)**2
+      u_mu Box_u u^mu        = -Omega**4*R_0**2/(Omega**2*R_0**2 - 1)**2
+      u_mu Box_u u^mu + |a|^2 = 0   <== first-moment identity, INDEPENDENTLY reproduced
+
+  TEST OF THE LEAD, AS LITERALLY HANDED IN ("Box_u has EIGENVALUE -Omega^2 ON u_mu"):
+      Box_u u^mu    = Matrix([[0, Omega**3*R_0*sin(Omega*tau/sqrt(-Omega**2*R_0**2 + 1))/(-Omega**2*R_0**2 + 1)**(3/2), -Omega**3*R_0*cos(Omega*tau/sqrt(-Omega**2*R_0**2 + 1))/(-Omega**2*R_0**2 + 1)**(3/2), 0]])
+      u^mu          = Matrix([[1/sqrt(-Omega**2*R_0**2 + 1), -Omega*R_0*sin(Omega*tau/sqrt(-Omega**2*R_0**2 + 1))/sqrt(-Omega**2*R_0**2 + 1), Omega*R_0*cos(Omega*tau/sqrt(-Omega**2*R_0**2 + 1))/sqrt(-Omega**2*R_0**2 + 1), 0]])
+      time component of Box_u u^mu = 0 , of u^mu = 1/sqrt(-Omega**2*R_0**2 + 1) != 0
+      => Box_u u = lambda u has NO solution (it would need lambda = 0 from the time component and
+         lambda = -(gamma Omega)^2 from the spatial ones).  solve() on the time component gives [{lambda: 0}].
+      SO u IS NOT AN EIGENVECTOR OF Box_u.  The lead is FALSE as literally stated.
+
+  THE BLOCK FORM (what the audited script actually asserts) -- tested componentwise:
+      Box_u u^mu - ( -(gamma Omega)^2 ) u_AC^mu = Matrix([[0, 0, 0, 0]])   (must be all zeros)
+      u_DC.u_DC = 1/(Omega**2*R_0**2 - 1) ,  u_AC.u_AC = -Omega**2*R_0**2/(Omega**2*R_0**2 - 1) ,  u_DC.u_AC = 0
+      => Box_u is DIAGONAL on the orthogonal pair (u_DC, u_AC): eigenvalues {0, -(gamma Omega)^2},
+         both <= 0.  The normalized first moment <Box_u>_u = +|a|^2 is a RAYLEIGH QUOTIENT (positive
+         only because u.u = -1), NOT an eigenvalue -- it is not in the spectrum at all.
+
+  Route 2 -- CYLINDRICAL coordinates with the full connection (this is the frame/gauge test the audit
+  brief demands).  ds^2 = -dt^2 + dr^2 + r^2 dphi^2 + dz^2, u^mu = (gamma, 0, gamma Omega, 0):
+      EVERY component of u is CONSTANT in tau here, so componentwise d^2/dtau^2 gives Matrix([[0, 0, 0, 0]])
+      but the covariant Box_u u^mu = (D/dtau)^2 u^mu = Matrix([[0, 0, -Omega**3/(-Omega**2*R_0**2 + 1)**(3/2), 0]])   (Christoffel terms carry it)
+      Cartesian answer transformed into this basis:              Matrix([[0, 0, -Omega**3/(-Omega**2*R_0**2 + 1)**(3/2), 0]])
+      difference = Matrix([[0, 0, 0, 0]])  (must be zero: Box_u u is a VECTOR, chart-independent)
+
+  Route 3 -- BOOSTED frame (V = 3/5 along x).  A constant Lorentz map commutes with d/dtau, so the
+  zero-mode/AC split and the eigenvalues must be boost-INVARIANT.  Computed:
+      u'_DC . u'_DC = 1/(Omega**2*R_0**2 - 1)   (unboosted: 1/(Omega**2*R_0**2 - 1))
+      u'_AC . u'_AC = -Omega**2*R_0**2/(Omega**2*R_0**2 - 1)   (unboosted: -Omega**2*R_0**2/(Omega**2*R_0**2 - 1))
+      Box_u u' - (-(gamma Omega)^2) u'_AC = Matrix([[0, 0, 0, 0]])   (must be zero)
+      moment n = 1: [u Box_u^n u] / [(a^2)^n (u.u)] = 1
+      moment n = 2: [u Box_u^n u] / [(a^2)^n (u.u)] = 1 - 1/(Omega**2*R_0**2)
+      moment n = 3: [u Box_u^n u] / [(a^2)^n (u.u)] = (Omega**2*R_0**2 - 1)**2/(Omega**4*R_0**4)
+
+  >>> FINDING 1 [PASS] the eigenvalue claim, as the audited script states it, holds exactly.
+      Box_u is diagonal on the orthogonal pair (u_DC, u_AC) with eigenvalues {0, -(gamma Omega)^2}; reproduced 3 independent ways (Cartesian helix built from the spatial orbit; cylindrical with the full connection, same vector; boosted frame, invariant), plus the paper's own n>1 moment mismatch.
+
+  >>> FINDING 2 [FAIL-MINOR] the lead AS HANDED IN is false, and the split needs a PARALLEL-PROPAGATED frame.
+      u is NOT an eigenvector (the time component forces lambda = 0, the spatial ones -(gamma Omega)^2), so 'Box_u u_mu = -Omega^2 u_mu' is wrong; the audited script states the correct block form but never says the DC/AC split requires a parallel-propagated frame -- in cylindrical coordinates every component of u is constant and componentwise d^2/dtau^2 = 0 while Box_u u != 0. No number changes (flat Cartesian IS parallel-propagated, and the split is Lorentz-invariant, both verified above).
+
+========================================================================================================
+2.  AUDIT ITEM (2): THE BRANCH.  Which sheet is retarded, and can a branch error inflate arg K?
+========================================================================================================
+
+  THE CONVENTION IS NOT MINE TO CHOOSE -- it is fixed by the record (mi_omegac_drift_sign_energy_2026.py
+  Sec. 0, convention C1): g(t) = omega_c e^(-omega_c t) theta(t) paired with G(omega) = INT_0^inf g e^(-i
+  omega t) dt = 1/(1 + i omega/omega_c), i.e. PHASORS ~ e^(+i omega t), and Im G < 0 for omega > 0.
+  In that convention:
+      d/dtau -> +i omega  =>  Box_u -> -omega^2  =>  z = -(omega c/a0)^2  (real, ON the cut)
+      causal/retarded  =>  G analytic for Im omega < 0  =>  approach from BELOW, omega -> omega - i eps
+      z = -(omega - i eps)^2 (c/a0)^2 = -Y + i (2 omega eps c^2/a0^2)   =>   z = -Y + i0  for omega > 0
+  So the RETARDED SHEET IS THE UPPER SIDE of the cut.  That is the side the audited script used.
+
+    Y = 0.3          K(-Y+i0) = +0.408248+0.912871i   K(-Y-i0) = +0.408248-0.912871i   |K| = 1.000000000000/1.000000000000   |arg| = 1.150262e+00/1.150262e+00
+    Y = 1            K(-Y+i0) = +0.866025+0.500000i   K(-Y-i0) = +0.866025-0.500000i   |K| = 1.000000000000/1.000000000000   |arg| = 5.235988e-01/5.235988e-01
+    Y = 7.5          K(-Y+i0) = +0.983192+0.182574i   K(-Y-i0) = +0.983192-0.182574i   |K| = 1.000000000000/1.000000000000   |arg| = 1.836040e-01/1.836040e-01
+    Y = 1000         K(-Y+i0) = +0.999875+0.015811i   K(-Y-i0) = +0.999875-0.015811i   |K| = 1.000000000000/1.000000000000   |arg| = 1.581205e-02/1.581205e-02
+    Y = 3.625e+08    K(-Y+i0) = +1.000000+0.000026i   K(-Y-i0) = +1.000000-0.000026i   |K| = 1.000000000000/1.000000000000   |arg| = 2.626056e-05/2.626056e-05
+
+    symbolic: |K(-Y+i0)|^2 = 1 for every Y > 1/4;  sin(arg K) = Im K/|K| = 1/(2*sqrt(Y)) EXACTLY
+    Herglotz probe (150k UHP points, |z| in 1e-4..1e12): fraction with Im K >= 0 = 1.000000
+
+  >>> FINDING 3 [PASS] the branch is right, and NO branch error can inflate the rescue's magnitude.
+      The retarded sheet z = -Y + i0 follows from the record's own convention C1 (phasors e^(+i omega t) => analytic for Im omega < 0 => approach from below => Im z > 0). |K| = 1 and |arg K| are IDENTICAL on the two sides of the cut (only sign(Im K) flips), so the load-bearing magnitude sin(arg K) = 1/(2 sqrt Y) is branch-INDEPENDENT; Im K >= 0 over the UHP (1.0000) as Herglotz requires.
+
+  BUT THE SIGNS DISAGREE, AND THAT WAS NOT REPORTED.  On the SAME retarded sheet in the SAME convention:
+      Im G(omega>0) = -0.300003   (gate, at the binding galactic orbit and the window's lower edge)
+      Im K(-Y  +i0) = +2.626058e-05   (kernel, same frequency, canon footing)
+  Opposite sign => the gate LAGS where the kernel LEADS, so a tangential force built from the kernel's
+  phase runs OPPOSITE to the gate's.  The record's established PROGRADE / EXPANSION sign (for s = -1)
+  is a GATE result and does NOT carry over to the kernel channel; on the kernel channel the same
+  construction gives RETROGRADE / CONTRACTION.  Two consequences, both scoped:
+    * NO magnitude changes (|Im| is what enters every rate below), so no verdict moves.
+    * The kernel's sign is the one the record's OWN passivity criterion wants (Im chi = -S Im(resp) <= 0
+      for a passive bath): with G the record had to declare the MI bath ACTIVE/pumped; with K's own phase
+      that particular inequality is not violated.  NOT a resolution of the pump problem -- the amplitude
+      mapping S is a positive-axis object and is not supplied here.  Recorded, given no verdict weight.
+
+
+  >>> FINDING 4 [FAIL-MINOR] an unreported sign clash between the kernel's phase and the gate's.
+      In the record's own convention Im G < 0 but Im K(-Y+i0) > 0, so the kernel-channel tangential force is RETROGRADE where the gate's is PROGRADE; the audited script presents them as 'the same mechanism differing ONLY in the lag angle' (magnitude), and carries the record's PROGRADE/EXPANSION label across. Magnitudes and therefore all verdicts are unaffected.
+
+========================================================================================================
+3.  THE DIMENSIONAL MAP z = -(omega c/a0)^2 -- three independent pins + prove-by-moving
+========================================================================================================
+
+  PIN 1 (dimensions).  Box_u f = d^2 f/dtau^2.  With tau a LENGTH (c = 1) d/dtau ~ 1/L and a0 -> a0/c^2
+  ~ 1/L, so z = Box_u/a0^2 is dimensionless only as z = c^2 (d^2/dtau^2)/a0^2  =>  |z| = (omega c/a0)^2.
+  PIN 2 (the paper's own words).  Sec. 5.3: "the action's own forced memory corner is omega_c = a0/2c =
+  1.56e-19 rad/s (tau_mem = 2c/a0 = 203 Gyr canon / 168 Gyr alt)".  a0/2c IS the z = -1/4 branch point:
+      canon a0/2c = 1.5602e-19 rad/s (paper: 1.56e-19; committed script: 1.5602e-19)
+      alt   a0/2c = 1.8846e-19 rad/s ;  tau_mem = 2c/a0 = 203.1 / 168.1 Gyr
+      (paper's quoted tau_mem: 203 / 168 Gyr)
+  PIN 3 (new, Section 4): the kernel-channel galactic e-folding FLOOR comes out to exactly 2c/a0, i.e.
+  the paper's own tau_mem -- a third, independent arrival at the same c-factors.
+
+  PROVE-BY-MOVING (the audit brief's requirement that the load-bearing convention be moved):
+    canon  WITH c: Y = 3.6252e+08 (> 1/4, past the branch point) -> sin(arg K) = 2.6261e-05
+    canon  NO  c: Y = 4.0336e-09 (< 1/4, INSIDE the cut) -> K pure imaginary, arg K = 90.0 deg, sin(arg K) = 1.0000
+    alt    WITH c: Y = 2.4846e+08 (> 1/4, past the branch point) -> sin(arg K) = 3.1720e-05
+    alt    NO  c: Y = 2.7645e-09 (< 1/4, INSIDE the cut) -> K pure imaginary, arg K = 90.0 deg, sin(arg K) = 1.0000
+    => the c-factors are worth ~3.8e+04x in the tangential coefficient, and they are
+       the difference between "no galactic problem" and "total galactic destruction".  The map is
+       LOAD-BEARING FOR THE RESCUE, which is why it is pinned three independent ways above.
+       Frequency inventory vs the branch point a0/2c (canon) -- which physical orbits land inside the cut:
+      UGC05721 innermost (binding)     Omega = 5.941e-15  Y = 3.6252e+08  PAST the cut   period = 3.351e-02 Gyr
+      Milky Way at the Sun             Omega = 9.208e-16  Y = 8.7082e+06  PAST the cut   period = 2.162e-01 Gyr
+      wide binary, 20 kAU              Omega = 7.039e-14  Y = 5.0886e+10  PAST the cut   period = 2.828e-03 Gyr
+      Saturn                           Omega = 6.759e-09  Y = 4.6916e+20  PAST the cut   period = 2.946e-08 Gyr
+      cluster orbit ~ 1e-16            Omega = 1.000e-16  Y = 1.0270e+05  PAST the cut   period = 1.991e+00 Gyr
+      H_Lambda ~ 1.8e-18               Omega = 1.800e-18  Y = 3.3274e+01  PAST the cut   period = 1.106e+02 Gyr
+      branch point a0/2c itself        Omega = 1.560e-19  Y = 2.5000e-01  INSIDE the cut   period = 1.276e+03 Gyr
+
+  >>> FINDING 5 [PASS] the dimensional correction z = -(omega c/a0)^2 is correct and triple-pinned.
+      Dimensional analysis, the paper's own forced corner a0/2c = 1.5602e-19 rad/s (= the z = -1/4 branch point, quoted in Sec. 5.3 as 1.56e-19 with tau_mem = 2c/a0 = 203/168 Gyr), and the new e-fold floor of Section 4 all give the same c-factors. Moving them (the lead's c-less reading) puts every orbit INSIDE the cut and inflates sin(arg K) to 1.0 -- so the correction is load-bearing for the rescue and is independently anchored, not chosen.
+
+========================================================================================================
+4.  AUDIT ITEM (3)+(4): THE RESCUE.  Was 2.6e-5 cherry-picked at the gate's binding orbit?
+========================================================================================================
+
+  THE CHERRY-PICK RISK IS REAL AND MUST BE CLOSED.  sin(arg K) = a0/(2 c Omega) GROWS as Omega falls, so
+  the gate's binding orbit -- the FASTEST confirmed deep-MOND orbit, chosen precisely because it is worst
+  for the gate -- is the kernel's MOST FAVOURABLE orbit.  Evaluating the kernel there and reporting
+  "550 Gyr, margin 55x" would be exactly the kind of favourable-point selection this audit hunts.
+  So: derive the coefficient's orbit dependence in closed form instead of evaluating one orbit.
+
+      f_t   = A sin(arg K),   A = g_obs - g_bar,   sin(arg K) = a0/(2 c Omega)  (EXACT, |K| = 1)
+      flat-RC angular momentum L = V r,  dL/dt = r f_t  =>  d ln r/dt = f_t/V
+      Omega = V/r  =>  d ln r/dt = A a0 r/(2 c V^2) = (a0/2c) * A/g_obs        [g_obs = V^2/r]
+
+      ==>  t_e = (2c/a0) * g_obs/(g_obs - g_bar)  >=  2c/a0 = tau_mem ,  equality iff g_bar -> 0.
+
+  The V and r dependence CANCELS.  The kernel-channel e-folding time has a UNIVERSAL FLOOR equal to the
+  paper's own kernel memory time -- no orbit anywhere can do worse, so no orbit choice can be favourable.
+
+  footing    2c/a0 = floor       A_gal   g_obs/A   t_e binding  prior script  floor/10Gyr  Kepler 2x floor
+  --------------------------------------------------------------------------------------------------------
+  canon           203.1 Gyr  3.6188e-11    2.7090      550.2 Gyr      550.2 Gyr         20.3x            10.2x
+  alt             168.1 Gyr  4.1384e-11    2.3689      398.3 Gyr      398.3 Gyr         16.8x             8.4x
+    scan canon : 57,600 (V, r) orbits, V in [5, 320] km/s, r in [0.02, 120] kpc -> min t_e = 203.1 Gyr (all), 203.1 Gyr (deep-MOND cut g_bar < 0.3 a0);  floor = 203.1 Gyr
+    scan alt   : 57,600 (V, r) orbits, V in [5, 320] km/s, r in [0.02, 120] kpc -> min t_e = 168.1 Gyr (all), 168.1 Gyr (deep-MOND cut g_bar < 0.3 a0);  floor = 168.1 Gyr
+
+  >>> FINDING 6 [PASS] the rescue is NOT an artifact of the gate's binding orbit -- it is orbit-independent.
+      Exact closed form t_e = (2c/a0) g_obs/(g_obs - g_bar) >= 2c/a0 = 203 Gyr (canon) / 168 Gyr (alt): the V and r dependence cancels, so every circular orbit clears a 10 Gyr disk age by >= 20x / 17x (10x / 8x with the faster Keplerian 2 f_t/V form). Confirmed on a 57,600-orbit scan; the floor IS the paper's own tau_mem = 2c/a0. The committed 550.2/398.3 Gyr at the binding orbit reproduce to <1%.
+
+  WAS READING A's 0.300 ASSUMED?  No -- it is forced INSIDE the gate's own construction, and I reproduce
+  the algebra: sympy residual for |G|^2 = Re G is 0, hence Re G = 0.9
+  <=> |Im G| = sqrt(ReG - ReG^2) = 0.300000 exactly (committed value 0.3).  So the
+  0.300 is not an assumption ABOUT the action -- it is an identity OF THE GATE.  What is assumed is that
+  the gate IS the action's response on the direction-carrying channel.  That assumption is what the
+  audited script overturns, and it overturns it with the action's own kernel, not by fiat.  ITEM (4) CLEAR.
+
+  BUT IS 2.6e-5 A CLEAN ACTION NUMBER?  No, and this is the audit's sharpest reservation.  The literal
+  vector-channel evaluation of the dressing gives (verified: Box_u diagonal, K(0) = 0 exactly)
+        u^mu K(Box_u/a0^2) u_mu = (-gamma^2) K(0) + (gamma beta)^2 K(-Y) = (gamma beta)^2 K(-Y),
+        |...| = (v/c)^2 = 3.029e-09 (binding galactic orbit) / 1.030e-09 (Saturn)
+  -- NO MOND amplitude (a0 has collapsed into a phase) and NO Newtonian limit (it needs -1).  The MOND
+  amplitude A_gal exists only via the FIRST-MOMENT closure, which is a POSITIVE-axis object with no
+  frequency in it.  So "A_gal x sin(arg K)" mixes an amplitude from one axis with a phase from the other
+  -- structurally the SAME hybrid the script (correctly) condemns in the gate.  Consequence, stated as a
+  BRACKET rather than a point:
+      strict closure reading (Reading B):        tangential coefficient = 0 EXACTLY  (X is DC)
+      literal vector reading:                    no MOND amplitude at all, so no tangential MOND force
+      hybrid (amplitude closure x kernel phase): 2.626e-05 (canon) / 3.172e-05 (alt)
+      the gate's Reading A:                      0.300
+  Every ACTION-sourced reading lands in [0, 3.2e-05]; the gate's 0.300 is outside that
+  bracket by >= 9e+03x.  The audited conclusion (Reading A's coefficient is not the action's)
+  therefore does NOT depend on the hybrid being legitimate -- it holds a fortiori at the bracket's TOP.
+
+
+  >>> FINDING 7 [FAIL-MINOR] the 2.6e-5 is a hybrid, and the audited script calls it 'derived'.
+      It multiplies a POSITIVE-axis (closure) amplitude by a NEGATIVE-axis (frequency) phase -- the same cross-axis construction the script condemns in the gate; the literal vector channel gives (gamma beta)^2 K(-Y), i.e. no MOND amplitude at all, and the strict closure reading gives exactly ZERO tangential force. The script says the coefficient 'is not fitted -- it is arg K at the kernel's own argument' without flagging that the CONSTRUCTION is not derived. Verdict-neutral: all action-sourced readings lie in [0, 3.2e-5], so the refutation of 0.300 holds at the bracket's top.
+
+  LOOP CLOSURE (the audit brief's item 3, the one that decides whether this is a manufactured rescue).
+  If the gate is RETAINED -- and it must be, since removing it returns the ungated a0/2 tail -- then its
+  own |Im G| = 0.300 comes back with it.  Recomputing the galactic side WITH the gate, independently:
+
+  footing   coefficient         f_t   dlnr/dt [/Gyr]        e-fold  omega_c needed (10 Gyr)    LLR edge   over by   window
+  --------------------------------------------------------------------------------------------------------
+  canon/GATE   3.0000e-01   1.086e-11        2.076e+01       48.2 Myr               4.1122e-12  2.2113e-14      186x    EMPTY
+  canon/KERNEL   2.6261e-05   9.503e-16        1.818e-03      550.2 Gyr               4.1122e-12  2.2113e-14      186x    EMPTY
+  alt/GATE   3.0000e-01   1.242e-11        2.375e+01       42.1 Myr               4.7026e-12  1.8306e-14      257x    EMPTY
+  alt/KERNEL   3.1720e-05   1.313e-15        2.511e-03      398.3 Gyr               4.7026e-12  1.8306e-14      257x    EMPTY
+
+  ==> THE LOOP IS CLOSED, AND IT CLOSES AGAINST THE GATE FROM BOTH SIDES.  Reproduced independently:
+      gate RETAINED  -> galactic survival needs omega_c >= 4.112e-12 (canon) / 4.703e-12 (alt),
+                        i.e. 186x / 257x ABOVE the LLR edge (record: 186x / 257x)
+                        => the SINGLE-POLE window is EMPTY.  Reading A's conclusion stands ON THE GATE.
+      gate REMOVED   -> the kernel supplies |K| = 1, no amplitude suppression at any frequency, so the
+                        ungated sunward a0/2 tail returns in full (Section 6 below).
+  So the audited script did NOT drop the gate and declare victory: it re-inserted the gate's own
+  requirement and reported the window EMPTY.  NO MANUFACTURED RESCUE ON THIS AXIS.
+
+
+  >>> FINDING 8 [PASS] the gate loop was closed, not left open -- verified by independent recomputation.
+      With the gate retained, galactic survival needs omega_c >= 4.112e-12 (canon) / 4.703e-12 (alt) = 186x / 257x above the LLR upper edge, reproducing the record's 186x/257x to <2% -- single-pole window EMPTY. With the gate removed the a0/2 tail returns at full strength. The audited script reports both; neither jaw was suppressed.
+
+========================================================================================================
+5.  AUDIT ITEM (5): REDUNDANCY -- close it over the WHOLE channel family, not 3 hand-picked ones
+========================================================================================================
+
+  THE 3-CHANNEL TABLE IS NOT A CLOSURE -- the channels were picked by hand.  Close the family instead.
+  On the negative axis K(-Y+i0) is a single UNIT-MODULUS number, so EVERY K-only real response is some
+  function of arg K alone.  The one invariant that controls all of them is the distance to the identity:
+
+      |1 - K(-Y+i0)|^2 = 1 - 2 Re K + |K|^2 = 2 - sqrt(4*Y - 1)/sqrt(Y)   (using |K| = 1)
+      d/dY of that     = -1/(2*Y**(3/2)*sqrt(4*Y - 1))   -> NEGATIVE for all Y > 1/4 (sympy), so |1 - K| STRICTLY DECREASES
+      asymptotically   |1 - K| -> 1/(2 sqrt Y) = a0/(2 c omega)
+
+  ==> K APPROACHES THE IDENTITY AT HIGH FREQUENCY.  Whatever suppression K's frequency dependence can
+      supply is LARGEST in galaxies and SMALLEST at the planets -- the separation runs BACKWARDS.  No
+      monotone function of K's frequency response can do the gate's job, whichever one is chosen.
+
+  footing    |1-K| galactic   |1-K| Saturn   |1-K| Mars   gal/planet   needed direction
+  --------------------------------------------------------------------------------------------------------
+  canon          2.6261e-05     2.3084e-11   1.4739e-12    1.138e+06   planet >> galaxy
+  alt            3.1720e-05     2.7883e-11   1.7804e-12    1.138e+06   planet >> galaxy
+
+  footing channel              R(gal)  RAR>=0.90  worst planet   R(planet)   R needed   shortfall planets ok  REDUNDANT
+  --------------------------------------------------------------------------------------------------------
+  canon   R1 |K|           1.0000e+00        YES          Mars   1.000e+00  2.993e-05   3.341e+04         NO         NO
+  canon   R2 sin(argK)     2.6261e-05         NO        Saturn   2.308e-11  1.497e-04   1.542e-07        YES         NO
+  canon   R3 1-ReK         3.4481e-10         NO        Saturn   2.664e-22  1.497e-04   1.780e-18        YES         NO
+  canon   R4 |1-K|         2.6261e-05         NO        Saturn   2.308e-11  1.497e-04   1.542e-07        YES         NO
+  canon   R5 ReK           1.0000e+00        YES          Mars   1.000e+00  2.993e-05   3.341e+04         NO         NO
+  alt     R1 |K|           1.0000e+00        YES          Mars   1.000e+00  2.478e-05   4.036e+04         NO         NO
+  alt     R2 sin(argK)     3.1720e-05         NO        Saturn   2.788e-11  1.239e-04   2.251e-07        YES         NO
+  alt     R3 1-ReK         5.0309e-10         NO        Saturn   3.887e-22  1.239e-04   3.138e-18        YES         NO
+  alt     R4 |1-K|         3.1720e-05         NO        Saturn   2.788e-11  1.239e-04   2.251e-07        YES         NO
+  alt     R5 ReK           1.0000e+00        YES          Mars   1.000e+00  2.478e-05   4.036e+04         NO         NO
+
+  >>> FINDING 9 [PASS] omega_c is NOT redundant, and the closure is now family-wide, not 3 hand-picked channels.
+      |1 - K(-Y+i0)|^2 = 2 - 2 Re K is strictly DECREASING in Y (sympy derivative negative), so K approaches the identity at HIGH frequency: its deviation is 2.6e-5 (canon) / 3.2e-5 (alt) at the binding galactic orbit and ~2e-11 at Saturn -- the separation runs backwards by ~1.1e6. Five channels tested (the audited script's three plus |1-K| and Re K), both footings, four planets: none passes both halves. The redundancy answer is robust to the channel enumeration.
+
+========================================================================================================
+6.  AUDIT ITEM (6): THE DC-vs-DC POINT.  Was it faced?  Independent closed-form confirmation
+========================================================================================================
+
+  THE POINT: the galactic RAR and the sunward a0/2 tail are BOTH first-moment/positive-axis objects
+  whose argument X = (g/a0)^2 is an ACCELERATION.  On a circular orbit it is exactly constant; at a
+  planet it is exactly constant.  A gate G(omega) needs a frequency neither possesses.  Confirmed:
+      absolute anomaly  g (1 - K(X)) -> a0 * 1/2 = a0/2  EXACTLY (sympy limit), i.e. independent of
+      BOTH g and omega:  a0/2 = 4.6775e-11 (canon) / 5.6500e-11 (alt) m/s^2
+      fractional anomaly nu - 1 = 1/(2y) -> dies as 1/g, but no experiment bounds the fractional piece.
+
+  planet      y = g_N/a0        nu-1    absolute   dg bound  excl canon   excl alt       e  <1/|a|><|a|> exact  prior num
+  --------------------------------------------------------------------------------------------------------
+  Mercury     4.2303e+08  1.1819e-09  4.6775e-11    4.6e-14       1017x      1228x 0.20563            1.086647     1.0866
+  Earth       6.3388e+07  7.8880e-09  4.6775e-11    8.7e-15       5376x      6494x 0.01671            1.000559     1.0006
+  Mars        2.7304e+07  1.8312e-08  4.6775e-11    1.4e-15      33411x     40357x 0.09341            1.017537     1.0175
+  Saturn      6.9033e+05  7.2430e-07  4.6775e-11    7.0e-15       6682x      8071x 0.05648            1.006391     1.0064
+
+  THE ECCENTRIC DOOR, INDEPENDENTLY AND ANALYTICALLY SHUT.  The audited script closed it by numerical
+  Kepler sampling; here it is closed in CLOSED FORM, which is a stronger check of the same claim:
+      <1/|a|>_t <|a|>_t = <r^2>_t <1/r^2>_t / 1 = (1 + 3e^2/2)/sqrt(1 - e^2)  >=  1  for all e,
+  reproducing the committed 1.0866 / 1.0006 / 1.0175 / 1.0064 to 4 significant figures.  So gating the
+  ENTIRE AC content of the scalar channel leaves >= the full a0/2 tail:
+      worst planet after gating all AC content: 33997x over bound (canon) / 41065x (alt)
+      per-planet ungated exclusions: 1017x-33411x (canon) / 1228x-40357x (alt)
+  ==> ITEM (6) WAS FACED, NOT EVADED, and it survives an independent analytic closure.
+
+
+  >>> FINDING 10 [PASS] the DC-vs-DC objection was faced and it holds under an independent analytic check.
+      g(1 - K) -> a0/2 exactly (sympy), independent of acceleration AND frequency, so a purely frequency-dependent gate cannot separate the RAR from the tail. The eccentric escape is shut in CLOSED FORM: <1/|a|><|a|> = (1 + 3e^2/2)/sqrt(1-e^2) >= 1, matching the audited script's numerical 1.0866/1.0006/1.0175/1.0064 to 4 s.f.; worst planet after gating all AC content is still 33997x over bound (canon) / 41065x (alt).
+
+========================================================================================================
+7.  THE INTERMEDIATE (P6) RE-CHECKED -- does the double-pole window really open, and at what cost?
+========================================================================================================
+
+  Re-derived independently (the audited script's Sec. 4B).  Constraints, no gate FORM assumed, only a
+  causal response with modulus m and lag: radial retention = m cos(lag), tangential T = m sin(lag).
+      (G1) RAR:          radial retention(Omega_gal) >= 0.9
+      (G2) survival:     T(Omega_gal) <= V/(A_gal * 10 Gyr)
+      (P1) planets:      radial retention(Omega_p) <= dg_p/(a0/2), ALL FOUR, min taken
+      (L1) LLR:          T(Omega_Moon) <= LLR_allow * v_Moon / a0
+  footing        lo G1       lo G2       hi P1     bind       hi L1   window                     prior
+  canon      3.162e-14   8.224e-12   8.270e-11   Saturn   4.265e-09    x10.1     [8.224e-12,8.270e-11]
+  alt        3.162e-14   9.405e-12   7.525e-11   Saturn   4.005e-09     x8.0     [9.405e-12,7.525e-11]
+
+  ==> REPRODUCED to <2% on both footings, and the binding planet is indeed SATURN (slowest of the four,
+      least suppressed by a rolloff), computed rather than assumed.  The window is NON-EMPTY.
+      ITS STATUS, held exactly where the audited script put it: an AMENDMENT, not a reading of the
+      action -- the kernel's own rolloff on that channel is order ZERO (|K| = 1).  Naturalness moves the
+      WRONG way: corner/(a0/2c) = 5.3e+07-5.3e+08 vs 1.1e+05 for the single pole.
+      And it INVERTS the paper's own Sec. 5.4 wide-binary falsifier, so Gaia DR4 separates the two
+      overlays in opposite directions.  Retention at a 1 Msun binary, both overlays:
+          3 kAU  Omega = 1.212e-12   single pole (2.21e-14) Re G = 0.0003   double pole (8.27e-11) |Re W| = 0.9994
+         10 kAU  Omega = 1.991e-13   single pole (2.21e-14) Re G = 0.0122   double pole (8.27e-11) |Re W| = 1.0000
+         20 kAU  Omega = 7.039e-14   single pole (2.21e-14) Re G = 0.0898   double pole (8.27e-11) |Re W| = 1.0000
+
+  >>> FINDING 11 [PASS] the intermediate double-pole window is real, reproduced, and correctly priced.
+      Independently reproduced to <2%: omega_r in [8.224e-12, 8.270e-11] canon / [9.405e-12, 7.525e-11] alt, binding planet Saturn (computed over all four). It is an AMENDMENT (the kernel's rolloff on that channel is order zero, |K| = 1), it widens the naturalness gap to ~1e8 x a0/2c, and it inverts the paper's own wide-binary falsifier -- all of which the audited script states at full strength rather than burying.
+
+========================================================================================================
+8.  RESIDUAL PRESENTATION FLAG (not load-bearing), then the audit verdict
+========================================================================================================
+
+  The audited script's Sec. 8 notes that the multiplicative embedding K -> K*G puts a pole at
+  |a| = c omega_c, i.e. heliocentric r = 29.9-33.3 AU, and labels the column "nearest planet:
+  Neptune (30.07 AU)" for EVERY corner.  That is a coincidence with no content: c omega_c ~ 1e-5 m/s^2
+  for any corner in the committed band, and sqrt(GM/1e-5) happens to be tens of AU.  The section is
+  already labelled non-load-bearing and makes no ghost claim, so this is presentation, not physics --
+  but it reads as significance where there is none, and in a framework whose numerology history is on
+  the record it should be dropped or explicitly de-flagged.
+
+
+  >>> FINDING 12 [FAIL-MINOR] a numerological flourish in the non-load-bearing Sec. 8.
+      Reporting 'nearest planet Neptune (30.07 AU)' against the K*G pole radius 29.9-33.3 AU presents an accidental order-of-magnitude coincidence (c omega_c ~ 1e-5 m/s^2 for any corner in the band) as if it located something. The section is correctly flagged non-load-bearing and makes no ghost claim; the flourish should still be de-flagged.
+  CALIBRATION AUDIT of the audited script's own compliance:
+      both footings declared                        OK
+      asserts written to FAIL not to declare        OK
+      no 'theory closed'                            OK
+      no TOE claim                                  OK
+      gate scope stated                             OK
+      verdicts computed not hard-coded              OK
+
+  >>> FINDING 13 [PASS] calibration compliance of the audited script.
+      6/6 checks OK: both footings carried, verdict strings computed from the numbers, asserts phrased to fail rather than to declare, gate-only scope stated, no TOE/'theory closed' language.
+
+========================================================================================================
+9.  AUDIT VERDICT
+========================================================================================================
+
+  FINDINGS: 8 PASS, 4 FAIL-MINOR, 0 FAIL-BLOCKER.
+
+  (1) EIGENVALUE CLAIM -- HOLDS as the audited script states it (block-diagonal on (u_DC, u_AC),
+      eigenvalues {0, -(gamma Omega)^2}), verified three independent ways including a curvilinear route
+      with the full connection and a boosted frame.  The LEAD as literally handed in ("eigenvalue
+      -Omega^2 ON u_mu") is FALSE -- u is not an eigenvector -- and the split additionally requires a
+      PARALLEL-PROPAGATED frame, which the audited script does not say.  No number moves.
+  (2) BRANCH -- correct sheet, and no branch error could inflate the rescue: |K| = 1 and |arg K| are the
+      SAME on both sides of the cut; only sign(Im K) flips.  One unreported clash: in the record's own
+      convention Im G < 0 while Im K > 0, so the kernel's tangential force is RETROGRADE where the
+      gate's is PROGRADE.  Magnitudes, and therefore every verdict, unaffected.
+  (3) MANUFACTURED RESCUE -- NOT FOUND, and the one live vulnerability is now closed analytically.  The
+      kernel's coefficient GROWS as 1/Omega, so the gate's binding orbit is the kernel's most favourable
+      one; the exact closed form t_e = (2c/a0) g_obs/(g_obs - g_bar) >= 2c/a0 = 203 Gyr (canon) /
+      168 Gyr (alt) makes the result ORBIT-INDEPENDENT (20x / 17x margin vs 10 Gyr;
+      10x / 8x with the faster Keplerian form), confirmed on 57,600 orbits.  The loop WAS
+      closed: with the gate retained the single-pole window is EMPTY by 186x / 257x.
+      Reservation carried: the 2.6e-5 is a cross-axis HYBRID, so the honest object is the BRACKET
+      [0, 3.2e-05] for action-sourced tangential coefficients -- the gate's 0.300 sits
+      9e+03x outside it, so the refutation survives at the bracket's top.
+  (4) MANUFACTURED KILL -- NOT FOUND.  0.300 was not assumed about the action: it is an identity of the
+      gate (|G|^2 = Re G, sympy residual 0), and the lead was tested rather than dismissed.
+  (5) REDUNDANCY -- omega_c is NOT redundant, and the closure is now family-wide: |1 - K| is strictly
+      DECREASING in frequency, so K's frequency dependence suppresses galaxies MORE than planets, the
+      wrong way by ~1.1e6.  The extraordinary claim was not made, and could not have been.
+  (6) DC-vs-DC -- faced, and independently re-closed: g(1-K) -> a0/2 exactly (frequency- AND
+      acceleration-independent), and the eccentric escape dies in closed form,
+      <1/|a|><|a|> = (1 + 3e^2/2)/sqrt(1-e^2) >= 1 on all four planets.
+  (7) CALIBRATION -- both footings on every load-bearing number; verdict strings computed; asserts
+      phrased to fail; gate-only scope held; no TOE / "theory closed" language.  One numerological
+      flourish flagged in the explicitly non-load-bearing Sec. 8.
+
+  WHICH PRONG DOES THE ACTION IMPLY?  PRONG B, and the audit sustains it.  The load-bearing pieces are
+  IDENTITIES of the kernel, not modelling choices: |K(-omega^2+i0)| = 1 at every orbital frequency (so
+  the action supplies NO amplitude suppression anywhere), and g(1-K) = a0/2 exactly (so the tail is
+  frequency- and acceleration-independent).  Reading A's galactic catastrophe is a property of the GATE,
+  not of the action -- every action-sourced tangential coefficient is <= 3.2e-5 and the e-folding time
+  cannot fall below the kernel's own memory time 2c/a0.  The consequence is not a rescue: the ungated
+  sunward a0/2 tail stands, excluded 1017x-33411x per planet (canon) / 1228x-40357x (alt), and the
+  single-pole gate that was supposed to mitigate it is excluded from the other side as well.
+
+  WHAT REMAINS OPEN, stated so it is not read as closure: the EOM was never varied (the tangential
+  coefficient is a heuristic on both readings, which is why it is reported as a bracket); the double-pole
+  overlay's window is genuinely non-empty as an AMENDMENT and Gaia DR4 discriminates it against the
+  single pole in opposite directions; and the acceleration-scale separator was not attempted.  Nothing
+  here is a claim that the framework, or any door, is closed.
+
+  SCOPE, held: this bears on the GATE ONLY.  The MOND premise, a0 = c H_Lambda / Z, the galactic RAR and
+  the exact a0-line g_obs^2 - g_bar^2 = a0 g_bar are untouched by every number above -- none uses omega_c.
+
+========================================================================================================
+AUDIT_mi_kernel_axis_gate_2026.py: 13 findings (8 PASS / 4 FAIL-MINOR / 0 FAIL-BLOCKER); all independent checks passed (Box_u block form 3 routes incl. curvilinear + boost; branch magnitude shown branch-independent; e-fold floor 2c/a0 verified on 57,600 orbits; |1-K| monotonicity closes the channel family; Cauchy-Schwarz closed form matches the committed numerics to 4 s.f.; double-pole window reproduced to <2%).
+========================================================================================================
