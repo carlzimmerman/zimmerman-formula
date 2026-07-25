@@ -5,7 +5,7 @@
   "prereg_estimator_bias_config.json": "8cc0a9664c420a0c36f07a8a99372481cad2d4aca1fd6c552b2955f3a840d765",
   "prereg_freeze.py": "9caa44b9da9e7b76753fb53b7a6e5f342f3f5273eba8334846ab8df652f2d043"
  },
- "generated_utc": "2026-07-25T10:51:27Z",
+ "generated_utc": "2026-07-25T10:57:43Z",
  "scope": "MOCK BIAS MEASUREMENT ONLY. No new real-data estimator value is computed or reported in this script; the only real-data evaluation is the pre-registered vectorization assertion against the ALREADY-COMMITTED fire_common.gls incumbent.",
  "sample": {
   "N_points": 310,
@@ -134,6 +134,12 @@
     "ALT cH0/Z": 11.43253497072867,
     "standard-MOND g_dagger": 11.403994607592672
    },
+   "boot_sd_b_pp": [
+    0.3988665668613808,
+    0.39456300737567535,
+    0.3933121959751796
+   ],
+   "boot_sd_rms_pp": 0.39541560357020966,
    "G4": null
   },
   "median_a0pt": {
@@ -165,6 +171,12 @@
     "ALT cH0/Z": 0.23907980668271822,
     "standard-MOND g_dagger": 0.2424341934961438
    },
+   "boot_sd_b_pp": [
+    0.33855735679796845,
+    0.34118074286534794,
+    0.34103878814893895
+   ],
+   "boot_sd_rms_pp": 0.31030618610811894,
    "G4": true
   },
   "theilsen_pairwise": {
@@ -196,6 +208,12 @@
     "ALT cH0/Z": -6.258209181573415,
     "standard-MOND g_dagger": -6.216012569246388
    },
+   "boot_sd_b_pp": [
+    0.4178563474924525,
+    0.4166320071251962,
+    0.4138900382397623
+   ],
+   "boot_sd_rms_pp": 0.41489979724419496,
    "G4": null
   },
   "trimmed_mean_a0pt": {
@@ -227,6 +245,12 @@
     "ALT cH0/Z": 1.9015784767067112,
     "standard-MOND g_dagger": 1.901075668135177
    },
+   "boot_sd_b_pp": [
+    0.3993247504841635,
+    0.3938576239753098,
+    0.391945026110537
+   ],
+   "boot_sd_rms_pp": 0.3908128583518809,
    "G4": true
   },
   "ivw_median_a0pt": {
@@ -258,6 +282,12 @@
     "ALT cH0/Z": 0.3658594170867113,
     "standard-MOND g_dagger": 0.36460011460583974
    },
+   "boot_sd_b_pp": [
+    0.3644962738048481,
+    0.40292546634607707,
+    0.40168050703377617
+   ],
+   "boot_sd_rms_pp": 0.3376214843984869,
    "G4": true
   },
   "galaxy_median_then_median": {
@@ -289,6 +319,12 @@
     "ALT cH0/Z": 0.5429010110197474,
     "standard-MOND g_dagger": 0.5468870139551774
    },
+   "boot_sd_b_pp": [
+    0.3443866913805077,
+    0.34372397446401703,
+    0.3403450974661597
+   ],
+   "boot_sd_rms_pp": 0.26919327047995767,
    "G4": true
   },
   "galaxy_gls_then_median": {
@@ -320,6 +356,12 @@
     "ALT cH0/Z": 2.207499116241629,
     "standard-MOND g_dagger": 2.2002771373812235
    },
+   "boot_sd_b_pp": [
+    0.36033976859199895,
+    0.3591609703271623,
+    0.3589887420907148
+   ],
+   "boot_sd_rms_pp": 0.35845973163082634,
    "G4": true
   },
   "log_median_a0pt": {
@@ -351,6 +393,12 @@
     "ALT cH0/Z": 0.23902164407045845,
     "standard-MOND g_dagger": 0.24239377503343373
    },
+   "boot_sd_b_pp": [
+    0.3385640773214293,
+    0.3411846727316104,
+    0.3410465723645347
+   ],
+   "boot_sd_rms_pp": 0.3103199376357205,
    "G4": true
   },
   "gls_lowy": {
@@ -382,6 +430,12 @@
     "ALT cH0/Z": 11.43253497072867,
     "standard-MOND g_dagger": 11.403994607592672
    },
+   "boot_sd_b_pp": [
+    0.3988665668613808,
+    0.39456300737567535,
+    0.3933121959751796
+   ],
+   "boot_sd_rms_pp": 0.39541560357020966,
    "G4": null
   }
  },
@@ -416,8 +470,175 @@
   "mean_like_bias_mechanism": "multiplicative log-noise mean inflation E[A^2]E[1/Bf]>1, dominated by exp(2*sigma_lnD^2)=1.1331 on the 29 Hubble-flow galaxies; a0 ~ g_obs^2/g_bar carries lever 2 in D. Predicted from the frozen noise magnitudes by quadrature with NO Monte-Carlo input.",
   "gls_lowy_degenerate_with_gls_origin": true,
   "log_median_discarded_median": 0.0,
-  "M1_cancellation": "a priori weak on this subsample (y<=0.19): E is not a small difference of large numbers"
+  "M1_cancellation": "a priori weak on this subsample (y<=0.19): E is not a small difference of large numbers",
+  "ablation_pp": {
+   "ALL noise on": {
+    "gls_origin": 10.726009773879653,
+    "theilsen_pairwise": -7.429475032153654,
+    "median_a0pt": 0.11864815859203848,
+    "trimmed_mean_a0pt": 1.6812255775210172,
+    "galaxy_median_then_median": 0.37140764307812546
+   },
+   "distance OFF": {
+    "gls_origin": 2.8499101731235488,
+    "theilsen_pairwise": -6.220908749826137,
+    "median_a0pt": -0.17275393769876635,
+    "trimmed_mean_a0pt": 0.18179503067126124,
+    "galaxy_median_then_median": 0.016168108150504956
+   },
+   "velocity OFF": {
+    "gls_origin": 9.301916455512504,
+    "theilsen_pairwise": -6.472266026474516,
+    "median_a0pt": 0.32591708133387076,
+    "trimmed_mean_a0pt": 1.4614541973750672,
+    "galaxy_median_then_median": 0.16364921830114287
+   },
+   "inclination OFF": {
+    "gls_origin": 8.513712346975733,
+    "theilsen_pairwise": -7.858175043428095,
+    "median_a0pt": -1.2085345434169836,
+    "trimmed_mean_a0pt": 0.5495141448035978,
+    "galaxy_median_then_median": -1.0083880052110472
+   },
+   "g_bar shape OFF": {
+    "gls_origin": 10.057582032924994,
+    "theilsen_pairwise": -3.77132486594135,
+    "median_a0pt": -0.000552077647797411,
+    "trimmed_mean_a0pt": 1.1864175301233404,
+    "galaxy_median_then_median": 0.5216243290868894
+   },
+   "global Ups+gascal OFF": {
+    "gls_origin": 11.296768428643844,
+    "theilsen_pairwise": -5.63881804403824,
+    "median_a0pt": 0.8723976788512999,
+    "trimmed_mean_a0pt": 2.225597606146401,
+    "galaxy_median_then_median": 0.913487877927488
+   },
+   "ONLY distance on": {
+    "gls_origin": 7.0803351297258565,
+    "theilsen_pairwise": -0.7347788358430307,
+    "median_a0pt": -0.004005929607309167,
+    "trimmed_mean_a0pt": 0.6097607585566545,
+    "galaxy_median_then_median": -0.11841204190428112
+   },
+   "ONLY velocity on": {
+    "gls_origin": 0.5115914347980866,
+    "theilsen_pairwise": -0.11365933883216162,
+    "median_a0pt": -0.04723425331053521,
+    "trimmed_mean_a0pt": 0.18125663221586485,
+    "galaxy_median_then_median": -0.038602802190290664
+   },
+   "ONLY g_bar shape on": {
+    "gls_origin": 0.6553571638341804,
+    "theilsen_pairwise": -4.320570914361321,
+    "median_a0pt": 0.02760611313576966,
+    "trimmed_mean_a0pt": 0.14046103010412203,
+    "galaxy_median_then_median": -0.01350617412952948
+   },
+   "ONLY Ups+gascal on": {
+    "gls_origin": -0.589932893433387,
+    "theilsen_pairwise": -1.3678410912914885,
+    "median_a0pt": -0.609749024540962,
+    "trimmed_mean_a0pt": -0.6705873928654849,
+    "galaxy_median_then_median": -0.6197714615471583
+   }
+  },
+  "amplitude_scaling_pp": {
+   "1.0": {
+    "gls_origin": 10.726009773879653,
+    "theilsen_pairwise": -7.429475032153654,
+    "median_a0pt": 0.11864815859203848,
+    "trimmed_mean_a0pt": 1.6812255775210172,
+    "galaxy_median_then_median": 0.37140764307812546
+   },
+   "0.5": {
+    "gls_origin": 2.752688850547913,
+    "theilsen_pairwise": -2.0877150020216617,
+    "median_a0pt": 0.18202169026428905,
+    "trimmed_mean_a0pt": 0.3571156551258836,
+    "galaxy_median_then_median": 0.22905169023452743
+   },
+   "0.25": {
+    "gls_origin": 0.6816866933003762,
+    "theilsen_pairwise": -0.543051740816114,
+    "median_a0pt": 0.08785042238934615,
+    "trimmed_mean_a0pt": 0.1105607087165561,
+    "galaxy_median_then_median": 0.13507758059698727
+   }
+  },
+  "amplitude_scaling_ratios_gls": [
+   3.8965572777121826,
+   4.038055719146885
+  ],
+  "bootstrap": {
+   "n_resamples": 400,
+   "sd_b_pp": {
+    "gls_origin": [
+     0.3988665668613808,
+     0.39456300737567535,
+     0.3933121959751796
+    ],
+    "median_a0pt": [
+     0.33855735679796845,
+     0.34118074286534794,
+     0.34103878814893895
+    ],
+    "theilsen_pairwise": [
+     0.4178563474924525,
+     0.4166320071251962,
+     0.4138900382397623
+    ],
+    "trimmed_mean_a0pt": [
+     0.3993247504841635,
+     0.3938576239753098,
+     0.391945026110537
+    ],
+    "ivw_median_a0pt": [
+     0.3644962738048481,
+     0.40292546634607707,
+     0.40168050703377617
+    ],
+    "galaxy_median_then_median": [
+     0.3443866913805077,
+     0.34372397446401703,
+     0.3403450974661597
+    ],
+    "galaxy_gls_then_median": [
+     0.36033976859199895,
+     0.3591609703271623,
+     0.3589887420907148
+    ],
+    "log_median_a0pt": [
+     0.3385640773214293,
+     0.3411846727316104,
+     0.3410465723645347
+    ],
+    "gls_lowy": [
+     0.3988665668613808,
+     0.39456300737567535,
+     0.3933121959751796
+    ]
+   },
+   "sd_rms_pp": {
+    "gls_origin": 0.39541560357020966,
+    "median_a0pt": 0.31030618610811894,
+    "theilsen_pairwise": 0.41489979724419496,
+    "trimmed_mean_a0pt": 0.3908128583518809,
+    "ivw_median_a0pt": 0.3376214843984869,
+    "galaxy_median_then_median": 0.26919327047995767,
+    "galaxy_gls_then_median": 0.35845973163082634,
+    "log_median_a0pt": 0.3103199376357205,
+    "gls_lowy": 0.39541560357020966
+   }
+  }
  },
+ "caveats": [
+  "The two FAIL-tier biases are 20-30 bootstrap sd -- robust. The sub-percent biases of the six PASS-tier estimators are MC-noise-limited and are NOT resolved from one another; only the common statement |b| < ~1.5 pp is. The frozen primary-selection rule is applied exactly as written, but WHICH passing estimator it names is noise-limited. Stated as a caveat; the rule was NOT altered.",
+  "gls_lowy is degenerate with gls_origin on this subsample (max g_bar_true = 1.735e-11 << the frozen 1.0e-10 cut, so it never removes a point). The pre-registered high-g_bar diagnostic is VACUOUS here. Removing it is forbidden, so it is kept in the table and flagged.",
+  "The pre-registered mechanism hypothesis M1 (catastrophic cancellation at high g_bar) is NOT the operative mechanism: y <= 0.19 on this subsample. M2 (weight concentration) is also NOT operative: GLS effective N = 302 of 310. The operative mechanism is M3-like but sharper than 'skew': multiplicative log-noise inflates the MEAN of a0_pt by E[A^2]E[1/Bf] > 1 while leaving the MEDIAN alone; it is predicted in closed form and confirmed by ablation and by exact amplitude^2 scaling.",
+  "These mocks are generated FROM the framework's own nu, so they are circular with respect to it by construction and test ESTIMATORS only -- never the law."
+ ],
  "posited_clause": "Whichever estimator wins, a0's VALUE remains POSITED in the framework. This study resolves a MEASUREMENT ambiguity, not the theory's free coefficient. No 'theory closed', no TOE claim, both footings carried on every number.",
- "footing_statement": "Deliberately NOT evaluated in this script. Which footing any estimator's real-data value implies is a SEPARATE, later step, gated on this verdict file's hash (prereg S7)."
+ "footing_statement": "Deliberately NOT evaluated in this script. Which footing any estimator's real-data value implies is a SEPARATE, later step, gated on this verdict file's hash (prereg S7).",
+ "content_sha256": "f80adb8e750f9a6539819f6aae0e43d8a8ec14f8c0c1c399d57b80ed7f724b26"
 }
