@@ -24,11 +24,23 @@ A0_FRAME = 9.355e-11       # framework value a0 = (c/2) sqrt(G rho_Lambda) (foot
 CASSINI_BOUND = 0.02       # 2026 Cassini Q2 -> <=2% MOND boost at the solar position (95%)
 
 
-def nu_rar(y):     # McGaugh/RAR interpolation: g_obs = nu(g_N/a0) * g_N
+def nu_frame(y):   # *** THE FRAMEWORK'S OWN de Sitter-Unruh interpolation -- USE THIS ONE ***
+    # g_obs = sqrt(g_bar^2 + g_bar a0)  <=>  nu(y) = sqrt(1 + 1/y),  y = g_bar/a0.
+    # Equivalent to the exact excess identity g_obs^2 - g_bar^2 = a0 g_bar.
+    return np.sqrt(1.0 + 1.0 / y)
+
+
+# --- REFERENCE ONLY: McGaugh's fitting functions. NOT the framework's kernel. ------------------
+# RULE-1 FIX 2026-07-25 (flagged F1 by AUDIT_rule2_foreign_a0_bounds_2026.py): this script
+# previously reported the solar-position boost using ONLY these two McGaugh functions, giving
+# 28.2% / 32.8%, and those numbers propagated into BOUNDS.md sec 3 and the Door-A scoreboard row.
+# The framework's OWN nu gives 19.8% (canonical a0). The Q2 wall SURVIVES the correction -- only
+# the number moves -- but the framework must be judged on its own kernel, never McGaugh's.
+def nu_rar(y):     # McGaugh/RAR fitting function -- REFERENCE VALUE ONLY
     return 1.0 / (1.0 - np.exp(-np.sqrt(y)))
 
 
-def nu_simple(y):  # 'simple' nu
+def nu_simple(y):  # 'simple' nu -- REFERENCE VALUE ONLY
     return (1.0 + np.sqrt(1.0 + 4.0 / y)) / 2.0
 
 
@@ -40,25 +52,39 @@ def main():
     print("# Cassini solar-system quadrupole vs the framework's MOND boost at the solar position")
     print("#" * 92)
     print(f"\n  Milky Way external field at the Sun: g_ext = V^2/R = {g_ext:.3e} m/s^2  (V=233 km/s, R=8.2 kpc)\n")
-    print(f"  {'a0 [m/s^2]':<26}{'g_ext/a0':>9}{'boost nu-1 (RAR)':>18}{'boost (simple)':>16}   vs Cassini 2% bound")
-    print("  " + "-" * 86)
-    for a0, lab in [(A0_CANON, "canonical 1.20e-10"), (A0_FRAME, "framework 0.936e-10")]:
+    print(f"  {'a0 [m/s^2]':<26}{'g_ext/a0':>9}{'FRAMEWORK nu-1':>16}{'(McG RAR)':>11}{'(McG simple)':>13}"
+          f"   vs Cassini 2% bound")
+    print("  " + "-" * 92)
+    for a0, lab in [(A0_FRAME, "FRAMEWORK 0.936e-10"), (A0_CANON, "McGaugh fit 1.20e-10")]:
         y = g_ext / a0
-        bR, bS = nu_rar(y) - 1, nu_simple(y) - 1
-        verdict = "BOTH >> 2% -> in tension" if min(bR, bS) > CASSINI_BOUND else "ok"
-        print(f"  {lab:<26}{y:>9.2f}{bR:>17.1%}{bS:>16.1%}   {verdict}")
+        bF, bR, bS = nu_frame(y) - 1, nu_rar(y) - 1, nu_simple(y) - 1
+        verdict = "over the 2% bound -> tension" if bF > CASSINI_BOUND else "ok"
+        print(f"  {lab:<26}{y:>9.2f}{bF:>15.1%}{bR:>11.1%}{bS:>13.1%}   {verdict}")
+    yF = g_ext / A0_FRAME
+    print(f"\n  HEADLINE, on the framework's OWN kernel and OWN a0: boost = {nu_frame(yF)-1:.1%} "
+          f"(NOT the 28-33% the McGaugh fitting functions give).")
+    print(f"  Still {(nu_frame(yF)-1)/CASSINI_BOUND:.1f}x over the 2% Cassini allowance, so the wall stands "
+          f"-- but on the right number.")
     print(f"""
   READING (honest, and it goes against the framework's solar-system comfort):
   - The standard interpolating functions that fit the SPARC RAR give a ~28-40% MOND boost at the solar
     position, where the 2026 Cassini quadrupole allows <= 2%. That is the Desmond 8.7 sigma (2024) ->
     3-15 sigma (2026) RAR-vs-quadrupole tension, reproduced at order of magnitude here.
   - The framework's a0 is ~22% LOWER than canonical, pushing the Sun marginally deeper into the Newtonian
-    regime (g_ext/a0: 1.79 -> 2.29; boost 36% -> 28%). It helps a little. It does NOT clear a multi-sigma
+    regime (g_ext/a0: 1.79 -> 2.29; on the FRAMEWORK's own nu the boost is 19.8%, not the 28-33%
+    the McGaugh fits give -- see the RULE-1 FIX note above). It helps a little. It does NOT clear a multi-sigma
     tension.
-  - The framework is EXPOSED because its covariant/CMB-safe realization (AeST) has a QUMOND-like weak-field
-    limit -- it is modified GRAVITY, the class Desmond constrains. The "modified inertia evades it" escape
-    belongs to a DIFFERENT realization (Milgrom modified inertia), which the framework does not have a
-    covariant version of.
+  - The framework's MG limb is EXPOSED: its covariant/CMB-safe realization (AeST) has a QUMOND-like
+    weak-field limit -- modified GRAVITY, the class Desmond constrains.
+  - *** UPDATED 2026-07-25: the "modified inertia evades it" escape is NO LONGER unavailable. ***
+    The covariant MI action IS now written (MI_FIELD_THEORY_RESULTS_2026), and the multipole-grading
+    result (mi_q1_efe_order_count_2026.py, mi_quasistatic_efe_multipoles_2026.py) DERIVES that the
+    l=2 quadrupole enters only at eps^2, eps = theta g_ext/g_bar = 4.7e-6 at Saturn, so Q2(MI) is
+    ~6e6x UNDER the Park+2026 bound with NO gate applied. The 3-15 sigma tension therefore does NOT
+    transfer to the MI reading -- it stays on the MG/AeST limb. NOTE the honest scope: prior art is
+    thin here (Milgrom 2009 MNRAS 399:474 already asserted no inner-SS EFE for the Milgrom-1999
+    de Sitter-Unruh toy theory; what is new is the ORDER COUNTING and the both-directions correction
+    that the l=0 MONOPOLE is UNSUPPRESSED and needs the gate).
   - NOT a clean kill: AeST carries a free function K(Q) that can in principle screen the solar-system fifth
     force; whether the SAME K(Q) that fits the RAR also satisfies Cassini is the Desmond tension transplanted
     into AeST, and it is UNCOMPUTED. So: a real, shared, strengthening tension the framework inherits -- a
