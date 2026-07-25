@@ -1,0 +1,399 @@
+
+========================================================================================================
+1.  THE GATE, AND THE ONE PROPERTY THAT MAKES THIS LEDGER NON-TRIVIAL
+========================================================================================================
+
+  G(omega) = 1/(1 + i omega/omega_c);   Re G = 1/(1 + (omega/omega_c)^2)  = RETAINED MI amplitude.
+  omega_c in [1.78, 2.21]e-14 rad/s (canon) <-> a period of 9.01-11.18 Myr.
+  EVERY MICROSCOPE frequency is 10^10-10^12 times ABOVE that corner, so the AC channel is gated OFF
+  by ~20+ orders.  The whole informational value of this lane therefore sits in Fork C:
+   [PASS] sympy: the 1-pole identity |G|^2 = Re G holds (residual 0)
+   [PASS] Fork C: Re G(omega=0) = 1 for EVERY omega_c in the window (a low-pass gate cannot suppress a DC anomaly)
+
+========================================================================================================
+2.  (b) WHAT IS THE 'residual < 1e-12' A RESIDUAL OF?   [source audit, load-bearing]
+========================================================================================================
+
+  matter_coupling_Tmunu.py Sec.[1a] runs exactly TWO checks.  Reproduced here:
+
+   CHECK 1  "balance mu_fw(x) x = y solved by x = y nu(y) ... residual < 1e-12 over y in [1e-2,1e2]"
+            symbolic collapse 1 + 4x^2 - (2y+1)^2 = 0   (EXACT, zero)
+            float residuals of  K(x^2) x - y  at y = 1e-2 .. 1e2 :  max = 0.000e+00
+            -> the "< 1e-12" is a FLOAT TOLERANCE on an ALGEBRAIC INVERSION IDENTITY, and that
+               identity is separately proven EXACTLY (symbolic residual is literally 0).
+
+   CHECK 2  "eta = (a_A - a_B)/a_avg = 0 EXACTLY"   is coded as   eta_AB = x_phys - x_phys
+            i.e. one expression minus ITSELF.  Value = 0.  It is a TAUTOLOGY:
+            it cannot fail for any theory, kernel, or footing, so it verifies nothing about eta.
+
+  CONSEQUENCE, stated plainly (this is a documentation error, not a physics error):
+    * the paper's sentence "Machine check: eta < 1e-12" (Sec. 2.2) and MATTER_COUPLING.md line 37
+      MIS-ATTRIBUTE Check 1's float tolerance to eta.  1e-12 is NOT a bound on eta and NOT a
+      theoretical uncertainty -- it is double-precision noise on a different, exactly-proven identity.
+    * so MICROSCOPE does NOT "probe below the theory's own verified precision".  There is no 1e-12
+      theory error bar to be 1000x looser than 1e-15.  The comparison is not 1e-12 vs 1e-15 at all.
+    * BUT the eta = 0 claim currently has NO discriminating machine verification.  It sits in exactly
+      the category the paper says it audited ("two previously tautological checks ... were replaced");
+      this one survived the audit.  Sections 3-4 below supply a genuine one.
+
+   [PASS] CHECK 1 reproduced: symbolic residual 1+4x^2-(2y+1)^2 is EXACTLY 0
+   [PASS] CHECK 1 reproduced: float residual of the balance is at double-precision noise (max 0.0e+00 <= 1e-12), i.e. the 1e-12 is a TOLERANCE not an eta bound
+   [PASS] CHECK 2 reproduced: the shipped eta check is `x_phys - x_phys` == 0, a TAUTOLOGY (zero discriminating power)
+
+========================================================================================================
+3.  (a) STRUCTURE: the three places a composition label could enter S_matter, enumerated
+========================================================================================================
+
+  S_matter = -(1/2) \int sqrt(-g) rho_m [ s u^mu K(Box_u/a0^2) u_mu ]  ==  -(1/2) \int sqrt(-g) rho_m W[u,g]
+
+  The term is a PRODUCT of exactly two objects:
+      (i)  W[u,g] = s u.K(Box_u/a0^2).u  -- a functional of (u, g, partial u) ONLY.  No matter field
+           psi appears in it; expanding K = sum_n c_n (Box_u/a0^2)^n adds only more (u,g) structure at
+           every order n, so W is species-blind TO ALL ORDERS in the kernel, not just at leading order.
+      (ii) rho_m -- ONE composition-blind scalar, and the SAME rho_m that carries the passive
+           gravitational mass (it is the only matter density in the action; T_munu's alpha, beta,
+           gamma are all strictly proportional to it, paper Sec. 2.2).
+
+  Therefore in the test-body balance the factor rho_m appears on BOTH sides and cancels identically:
+        inertial side  rho_m mu_fw(x) x a0     =     gravitational side  rho_m g_bar
+  leaving  mu_fw(x) x = y  -- an equation with NO free parameter that a body could carry.
+  This is the structural content of "eta = 0".  It is exact, and it is exact for a reason that is
+  checkable rather than asserted: THERE IS NO THIRD OBJECT IN THE TERM.
+
+  Three (and only three) channels could break it.  Each is parametrised and computed below.
+
+   CH-1  AMPLITUDE channel.  the MI DEFORMATION carries a species factor:
+              1 - K  ->  (1 + lambda q_A)(1 - K)              [Newtonian limit stays universal]
+   CH-2  ARGUMENT channel.  the SCALE inside the kernel is species-dependent:
+              a0 -> a0 (1 + lambda q_A)   (equivalently X -> X/(1+lambda q_A)^2)
+   CH-3  RESOLUTION channel.  the kernel resolves the body's INTERNAL accelerations, i.e. it is
+         applied CONSTITUENT-WISE:  m_I = sum_i m_i K(|a_cm + a_i^int|/a0)   instead of to the
+         centre-of-mass worldline.  This is the only channel that is not a bolt-on: it is what a
+         modified-INERTIA theory does if |a| is read microscopically.  Section 4.3 computes it.
+
+   [PASS] CH-1 at lambda=0: the balance equation contains NO species symbol q (q not in free_symbols) -> the two species solve the IDENTICAL equation
+   [PASS] CH-1 negative control at lambda!=0: q DOES enter the balance (so the test above is discriminating, not vacuous)
+
+  MICROSCOPE regime:  g_orb = GM_E/(R_E+710km)^2 = 7.93366 m/s^2 ,  T_orb = 5939 s
+    footing canon  a0 = 9.3550e-11  ->  y = g_orb/a0 = 8.4807e+10 ,  MI deformation 1-K = a0/(2 g_orb) = 5.8958e-12
+    footing alt    a0 = 1.1300e-10  ->  y = g_orb/a0 = 7.0209e+10 ,  MI deformation 1-K = a0/(2 g_orb) = 7.1216e-12
+
+  CLOSED FORM (derived): at y >> 1 the balance gives  x = y + (1 + lambda q)/2 , hence
+      a = g_bar + a0/2 + lambda q a0/2   =>   eta = lambda * Delta_q * a0/(2 g_bar) .
+  Verified against the EXACT mp.findroot solve (dps=60), both channels:
+
+  channel footing   lambda   Delta q   eta closed-form   eta exact solve    rel diff
+  ----------------------------------------------------------------------------------
+  CH1     canon       1.00  1.00e-03        5.8958e-15        5.8958e-15    8.84e-12
+  CH1     canon       0.10  7.50e-04        4.4218e-16        4.4218e-16    8.84e-12
+  CH1     alt         1.00  1.00e-03        7.1216e-15        7.1216e-15    1.07e-11
+  CH1     alt         0.10  7.50e-04        5.3412e-16        5.3412e-16    1.07e-11
+  CH2     canon       1.00  1.00e-03        5.8958e-15        5.8958e-15    1.18e-11
+  CH2     canon       0.10  7.50e-04        4.4218e-16        4.4218e-16    1.18e-11
+  CH2     alt         1.00  1.00e-03        7.1216e-15        7.1216e-15    1.42e-11
+  CH2     alt         0.10  7.50e-04        5.3412e-16        5.3412e-16    1.42e-11
+   [PASS] closed form eta = lambda Delta_q a0/(2 g) matches the exact numerical solve to 1.4e-11 relative, for BOTH channels and BOTH footings
+   [PASS] CH-1 and CH-2 give the SAME leading eta (the amplitude and argument channels are degenerate at y >> 1)
+   [PASS] lambda = 0 gives eta identically 0 in the exact solve (not by construction: two independent root-finds subtracted)
+
+========================================================================================================
+4.  THE COMPOSITION HANDLES q, computed from nuclear data for the FLIGHT test masses
+========================================================================================================
+
+  handle q                        PtRh10 (inner)    TA6V (outer)     |Delta q|
+  ------------------------------------------------------------------------------
+  nuclear binding E / mc^2              0.008585        0.009342    7.5697e-04
+  charge per mass Z/M [1/u]             0.403573        0.460617    5.7044e-02
+  neutron excess (N-Z)/A                0.193065        0.079735    1.1333e-01
+  baryon number per mass A/M [1/u]          1.000256        1.001054    7.9797e-04
+   [PASS] nuclear binding fraction reproduces the textbook Ti-48 value 9.375e-3 to <1e-4
+   [PASS] Delta q (binding) is O(1e-3) and Delta q (neutron excess / charge) is O(0.1) -- the Pt/Ti pair was chosen for exactly this contrast
+
+========================================================================================================
+5.  (c) THE LEDGER LINES -- eta_gated (AC, real Re G) and eta_DC (no gate), both footings
+========================================================================================================
+
+  MICROSCOPE (Touboul+ 2022, PRL 129:121102), Ti/Pt pair:
+      eta = (-1.5 +- 2.3_stat +- 1.5_syst) e-15 ;  sigma_tot = 2.75e-15
+      ceilings used:  1 sigma (the paper's own ledger row) |eta| <= 2.30e-15
+                      2 sigma (conservative)               |eta| <= 6.99e-15
+
+  FRAMEWORK PREDICTION, written action as it stands:  eta = 0 EXACTLY (Sec. 3 above, structural).
+  Both channels below therefore report what MICROSCOPE bounds on the DEFORMATION coupling lambda,
+  i.e. how much composition-dependence the data still allows -- not a framework deficit.
+
+  [ADOPTED] frequency argument = the same rule the paper uses everywhere else (Cassini script
+  ADOPTED #1): the gate is evaluated at the frequency of the MEASURED signal.  For MICROSCOPE the
+  EP signal is the projection of the Earth-pointing acceleration on the measurement axis, at
+  f_EP = f_orb + f_spin.  A DC-in-inertial-space Earthward MI bias lands in EXACTLY that bin, which
+  is why Fork C is the live question here and not an academic one.
+
+  gate suppression Re G at the EP frequencies, at the window's MOST PERMISSIVE corner:
+  EP mode                    f_EP [Hz]    omega_EP   ReG @2.21e-14   ReG @1.78e-14   ReG @ a0/2c
+  ------------------------------------------------------------------------------------------------
+  inertial (f_orb)          1.6838e-04  1.0580e-03       4.364e-22       2.831e-22     2.175e-32
+  spin V2 (0.925 mHz)       9.2500e-04  5.8119e-03       1.446e-23       9.380e-24     7.207e-34
+  spin V3 (3.11 mHz)        3.1100e-03  1.9541e-02       1.279e-24       8.298e-25     6.375e-35
+
+  Most permissive suppression anywhere in the window and over all EP modes: Re G = 4.364e-22
+  -> the AC channel is gated off by 21.4 ORDERS.  Reported, not hand-waved.
+
+  THE TWO LEDGER LINES (lambda = 1, i.e. an O(1) composition coupling of the MI deformation):
+
+  handle                    footing        1-K   eta_DC (lam=1)   DC vs bound   eta_AC gated   AC vs bound  lambda_max(DC)
+  --------------------------------------------------------------------------------------------------------------------------
+  nuclear binding E / mc^2  canon    5.896e-12        4.463e-15     1.94e+00x      1.947e-36     8.47e-22x       5.154e-01
+  nuclear binding E / mc^2  alt      7.122e-12        5.391e-15     2.34e+00x      2.352e-36     1.02e-21x       4.267e-01
+  charge per mass Z/M [1/u] canon    5.896e-12        3.363e-13     1.46e+02x      1.468e-34     6.38e-20x       6.839e-03
+  charge per mass Z/M [1/u] alt      7.122e-12        4.062e-13     1.77e+02x      1.773e-34     7.71e-20x       5.662e-03
+  neutron excess (N-Z)/A    canon    5.896e-12        6.682e-13     2.91e+02x      2.916e-34     1.27e-19x       3.442e-03
+  neutron excess (N-Z)/A    alt      7.122e-12        8.071e-13     3.51e+02x      3.522e-34     1.53e-19x       2.850e-03
+
+  Reading the columns:  "vs bound" > 1 means EXCLUDED by that factor at 1 sigma; < 1 means allowed.
+  lambda_max(DC) = the largest composition coupling the DC channel may carry and still satisfy
+  MICROSCOPE at 1 sigma.  The written action has lambda = 0 identically (Sec. 3).
+
+
+========================================================================================================
+5b.  THE COMMON-MODE DC PIECE -- an extra a0/2 Earthward.  Why MICROSCOPE cannot see it.
+========================================================================================================
+    canon  DC bias = a0/2 = 4.678e-11 m/s^2 Earthward, COMMON to both masses = 5.896e-12 of g_orb
+           differential resolution of MICROSCOPE = eta_1sig * g = 1.825e-14 m/s^2 -> the common-mode piece is 2.56e+03x LARGER
+           but (a0/2)/g_orb is CONSTANT on a near-circular orbit -> exactly degenerate with GM_E; non-degenerate residual ~ 2e * (a0/2g) = 5.90e-14 (still common mode)
+    alt    DC bias = a0/2 = 5.650e-11 m/s^2 Earthward, COMMON to both masses = 7.122e-12 of g_orb
+           differential resolution of MICROSCOPE = eta_1sig * g = 1.825e-14 m/s^2 -> the common-mode piece is 3.10e+03x LARGER
+           but (a0/2)/g_orb is CONSTANT on a near-circular orbit -> exactly degenerate with GM_E; non-degenerate residual ~ 2e * (a0/2g) = 7.12e-14 (still common mode)
+
+  So the absolute/common-mode DC piece is invisible to MICROSCOPE for a STRUCTURAL reason, not an
+  instrumental one: a constant additive Earthward acceleration at fixed orbital radius is 100%
+  absorbable into GM_E, and MICROSCOPE measures a DIFFERENCE.  (Contrast the solar system, where the
+  paper's own Sec. 5.1 shows the same a0/2 tail is NOT GM-absorbable because the induced precession
+  scales as sqrt(a) across planets -- that is why the ephemerides bite and MICROSCOPE does not.)
+  MICROSCOPE's leverage on the DC channel is therefore entirely in its STRUCTURE sector (lambda).
+
+
+========================================================================================================
+5c.  FORK on the kernel argument (the MICROSCOPE analogue of the Cassini Fork A/B/C)
+========================================================================================================
+
+  FORK L [LOCAL, the paper's own reading -- "the body's OWN 4-acceleration"]
+      X set by the test mass's total kinematic acceleration g_orb = 7.9337 m/s^2
+      1 - K = 5.8958e-12 (canon) / 7.1216e-12 (alt)
+      The signal direction IS the Earth-pointing EP direction -> lands in the published f_EP bin.
+      This is the CLEAN reading and it owns the verdict.
+
+  FORK G [EFE / external-field, the reading that makes Cassini Q2 dangerous]
+      X set instead by the galactic external field g_ext = 2.146e-10 m/s^2 (y = 2.29)
+      1 - K = 1.6551e-01 (canon) / 1.9067e-01 (alt)  -- 2.8e+10x LARGER
+      lambda_max under Fork G (neutron-excess handle, 1 sigma):
+          canon 1.226e-13    alt 1.064e-13
+      i.e. an O(1) composition coupling would be excluded by
+          8.16e+12x  = 12.9 orders.
+  [ASSUMPTION, WEIGHT REDUCED]  Under Fork G the differential sits along a fixed INERTIAL direction,
+  hence at f_spin, not at f_EP = f_orb + f_spin.  The published eta is an f_EP amplitude, so the
+  Fork-G number is indicative of the scale, not a literal use of the published bound.  The verdict
+  below is quoted on FORK L only.  Recording Fork G because it is the same fork the Cassini lane has.
+
+
+========================================================================================================
+6.  CH-3 THE RESOLUTION CHANNEL -- if the kernel resolved INTERNAL accelerations
+========================================================================================================
+
+  If  m_I = sum_i m_i K(|a_i|/a0)  with |a_i| the CONSTITUENT accelerations, then the body's MI
+  deformation is  1 - K_body = (a0/2) <1/|a_i|>  instead of  a0/(2 g_bar).  Representative |a_i|:
+       nucleons in nuclei  ~ 3.83e+29 m/s^2   (8 MeV over 2 fm)
+       electrons in atoms  ~ 4.52e+22 m/s^2   (13.6 eV over a_Bohr)
+       lattice phonons     ~ 1.00e+15 m/s^2   (Debye omega^2 A)
+  Mass is carried by nucleons, so <1/|a_i|> ~ 1/3.8e+29:
+
+    canon  1-K_body(constituent-wise) = 1.222e-40   vs the 0.5 needed at a galaxy  ->  MOND suppressed by 4.09e+39x = 39.6 ORDERS
+           its composition-dependent part (Pt vs Ti internal accel differ by O(30%)): eta ~ 3.67e-41  vs MICROSCOPE 2.3e-15  ->  6.3e+25x BELOW
+    alt    1-K_body(constituent-wise) = 1.477e-40   vs the 0.5 needed at a galaxy  ->  MOND suppressed by 3.39e+39x = 39.5 ORDERS
+           its composition-dependent part (Pt vs Ti internal accel differ by O(30%)): eta ~ 4.43e-41  vs MICROSCOPE 2.3e-15  ->  5.2e+25x BELOW
+
+  TWO CONCLUSIONS, both load-bearing for (a):
+   1. The constituent-wise reading is RAR-FATAL: it destroys the framework's galactic phenomenology by
+      ~40 orders (every galaxy is made of atoms).  The framework is therefore FORCED to the
+      centre-of-mass reading -- which is exactly the species-blind one.  eta = 0 is CO-FORCED with the
+      RAR; it is not an extra assumption.  That is the strongest form of the structural argument, and
+      it is an internal-consistency argument the paper does not currently make.
+   2. Even if one granted CH-3, its composition-dependent eta is ~4e-41 -- 26 orders BELOW
+      MICROSCOPE.  So the one channel that would genuinely carry internal structure is unobservable
+      by WEP tests anyway: it dies on rotation curves, ~40 orders before MICROSCOPE gets a vote.
+
+   [PASS] CH-3 (constituent-wise kernel) is excluded by the RAR itself, by >30 orders
+   [PASS] CH-3's composition-dependent eta is >20 orders below MICROSCOPE
+
+========================================================================================================
+6b.  CH-4 THE rho_m READING -- full matter Lagrangian vs rest-mass proxy.  THE SHARP TEST.
+========================================================================================================
+
+  The action is written S_matter[g,u,psi;K] but IMPLEMENTED with a prescribed scalar rho_m.  The paper
+  itself flags that rho_m is a PROXY (Sec. 4: "the proxy-literal fork (rho_m = m^2 phi^2 taken at face
+  value)").  Once psi is resolved into real matter -- nucleons bound by the strong force, electrons
+  bound electromagnetically -- there are TWO inequivalent covariant readings of what the dressing W
+  multiplies, and they are NOT the same theory:
+
+    READING F [FULL]      W multiplies the WHOLE matter Lagrangian:
+                          S = -(1/2)\int sqrt(-g) L_matter[psi,g] W[u,g]
+                          Then EVERY form of internal energy -- rest mass, nuclear binding, EM
+                          binding, thermal -- is dressed by the same K.  eta = 0 EXACTLY.
+    READING R [REST-MASS] W multiplies only a rest-mass / dust term, leaving interaction energies
+                          undressed.  Then, with b = B/(mc^2) the binding-energy mass fraction,
+                              m_I/m = (1+b) K - b = K - b(1-K)   =>   1 - m_I/m = (1-K)(1+b)
+                          i.e. CH-1 with lambda = 1 EXACTLY and q = b.  eta != 0, and its size is
+                          set by the framework's own numbers with NO freedom.
+
+  Reading R is not a strawman: it is what you get if the dressing is attached to the mass term of the
+  matter action, which is the literal reading of "rho_m [ s u.K.u ]".  MICROSCOPE discriminates them.
+
+  footing   a0/2 [m/s^2]         1-K   eta_R predicted  / 1sig ceiling  / 2sig ceiling   tension vs measured
+  ----------------------------------------------------------------------------------------------------
+  canon        4.678e-11   5.896e-12        +4.463e-15           1.94x           0.64x                2.17 sig
+  alt          5.650e-11   7.122e-12        +5.391e-15           2.34x           0.77x                2.51 sig
+
+  b(PtRh10) = 0.008585 ,  b(TA6V) = 0.009342 ,  Delta b = +7.5697e-04  (TA6V is the MORE-bound alloy)
+  Cross-check: the independent "baryons per unit mass" handle gives Delta q = 7.9797e-04, agreeing
+  with the binding handle 7.5697e-04 to 5% -- as it must (A/M and 1 - B/M are the same physics).
+
+  SIGN FORK, stated because it changes the significance and I will not pick the flattering one:
+      as published  eta(Ti,Pt) = -1.5e-15 , prediction +4.46e-15  ->  2.17 sigma TENSION
+      sign flipped  prediction -4.46e-15                        ->  1.08 sigma (no tension)
+      magnitude only |eta_R| = 4.46e-15 is 1.9x the 1-sigma ceiling, 0.64x the 2-sigma ceiling.
+
+  VERDICT ON CH-4:  Reading R is DISFAVOURED at ~1.1-2.2 sigma (canon) / ~1.4-2.5 sigma (alt).
+  MARGINAL, NOT EXCLUDED.  But it is the ONLY place in this lane where MICROSCOPE reaches the
+  framework's own predicted magnitude with zero free parameters -- lambda is not fitted, it is 1 by
+  construction in Reading R.  So MICROSCOPE's real physics content here is a STRUCTURAL REQUIREMENT
+  on the action's unwritten detail:
+
+      >> the MI dressing must multiply the FULL matter Lagrangian (all internal binding energies
+         included), not a rest-mass/dust proxy.  Reading F is required; Reading R is disfavoured. <<
+
+  This is a DC-CHANNEL-ONLY constraint.  Under the gated AC channel it dies with everything else:
+  eta_R * Re G = 1.95e-36, i.e. 21 orders below the bound, no constraint.  So CH-4 is
+  ALSO an independent line on Fork C: a DC channel is admissible only in Reading F.
+
+   [PASS] Reading R's eta is a ZERO-PARAMETER prediction of order the MICROSCOPE bound (within a factor 10 of it), i.e. this test is genuinely at the framework's own scale
+   [PASS] Reading R is disfavoured but NOT excluded by many orders (0.5 sig < significance < 5 sig) -- reported as marginal, not as a kill
+   [PASS] under the gate, Reading R's eta is >15 orders below the bound (AC channel says nothing)
+
+========================================================================================================
+7.  THE ONLY NONZERO DC DIFFERENTIAL: test-mass off-centring (composition-INDEPENDENT)
+========================================================================================================
+    canon  off-centring 20 um -> delta g = 4.48e-11 m/s^2 -> eta_geom = (a0/2g)(dg/g) = 3.33e-23   (6.9e+07x BELOW the bound)
+    alt    off-centring 20 um -> delta g = 4.48e-11 m/s^2 -> eta_geom = (a0/2g)(dg/g) = 4.02e-23   (5.7e+07x BELOW the bound)
+
+  This is the one differential the DC channel produces with lambda = 0 exactly: the two masses sit at
+  slightly different |a|, and K is nonlinear.  It is real, it is composition-independent (so it is NOT
+  an Eotvos violation), and it is ~8 orders below MICROSCOPE.  No constraint.
+
+
+========================================================================================================
+8.  INVERSION -- the omega_c that MICROSCOPE would REQUIRE, vs the paper's window
+========================================================================================================
+
+  Same procedure as mi_cassini_q2_omegac_2026.py Sec.5: solve eta_ungated * Re G(omega_EP, omega_c)
+  = bound for omega_c.  Only meaningful if lambda != 0 (at lambda = 0 there is nothing to suppress and
+  MICROSCOPE places NO ceiling on omega_c at all).  Quoted at lambda = 1 as an upper-bounding exercise:
+
+  fork    handle                         eta_ung     ReG req   omega_c REQ [rad/s]    vs band top 2.21e-14   verdict
+  --------------------------------------------------------------------------------------------------------------------
+  L       nuclear binding E / mc^2     4.463e-15   5.154e-01             1.091e-03               4.94e+10x    INSIDE
+  L       neutron excess (N-Z)/A       6.682e-13   3.442e-03             6.218e-05               2.81e+09x    INSIDE
+  G       nuclear binding E / mc^2     1.253e-04   1.836e-11             4.533e-09               2.05e+05x    INSIDE
+  G       neutron excess (N-Z)/A       1.876e-02   1.226e-13             3.705e-10               1.68e+04x    INSIDE
+
+  RANKING of ceilings on omega_c (canon footing).  The first three are RECOMPUTED here from the same
+  inputs as mi_cassini_q2_omegac_2026.py Sec.2/5, not quoted:
+      LLR Gdot/G secular drift        omega_c <= 2.21e-14 rad/s   <-- BINDING (sets the band top)
+      Saturn reactive delta_g         omega_c <= 8.27e-11 rad/s   (3739x looser)
+      Cassini Q2 quadrupole (Fork A)  omega_c <= 2.26e-09 rad/s   (1e+05x looser)
+      MICROSCOPE WEP, Fork L, lam=1   omega_c <= 6.22e-05 rad/s   (3e+09x looser)  <-- LOOSEST
+      [MICROSCOPE WEP, Fork G, lam=1  omega_c <= 3.70e-10 rad/s -- would rank between Saturn and Q2,
+       but it is the reduced-weight fork (f_spin bin, not f_EP); recorded, not used.]
+  MICROSCOPE adds NO information about the gate corner in its clean (Fork L) reading.  At lambda = 0 --
+  the written action -- it places no ceiling on omega_c whatsoever.  Stated so the ledger is not read
+  as a hidden constraint.
+
+   [PASS] recomputed LLR ceiling reproduces the paper's band top 2.21e-14 to <2%
+   [PASS] recomputed Saturn-reactive and Cassini-Q2 ceilings reproduce mi_cassini_q2_omegac_2026.py (8.27e-11 and 2.26e-09) to <2%
+   [PASS] MICROSCOPE's Fork-L ceiling on omega_c is LOOSER than every other solar-system ceiling -> it is not a hidden constraint on the gate
+
+========================================================================================================
+9.  VERDICT -- MICROSCOPE / WEP line of the precision-consistency ledger
+========================================================================================================
+
+  (a) IS eta = 0 STRUCTURAL?   YES -- exact, and exact to ALL ORDERS in the kernel expansion.
+      Reason, from the action and not asserted: S_matter = -(1/2)\int sqrt(-g) rho_m W[u,g] is a
+      product of exactly two objects -- a functional W of (u,g,partial u) with no matter field in it,
+      and ONE composition-blind scalar rho_m which is also the passive gravitational mass.  rho_m
+      cancels between the two sides of the balance; every order of K = sum c_n (Box_u/a0^2)^n adds
+      only (u,g) structure.  There is no third object in the term for a species label to live in.
+      STRENGTHENED (new here): the ONE reading that would carry internal structure -- applying the
+      kernel constituent-wise -- is not merely small, it is RAR-FATAL, suppressing MOND by ~40 orders.
+      So the framework's own galactic phenomenology FORCES the centre-of-mass, species-blind reading:
+      eta = 0 is CO-FORCED with the RAR.
+      HONEST CAVEATS (the exactness is conditional on these, all of them framework postulates):
+        * the single passive u (one frame, hypersurface-orthogonal) and a single rho_m;
+        * a0 species- and environment-independent.  A density- or environment-dependent a0 (the
+          BIG-SPARC / rho_local fork already in the corpus) reopens CH-2 and MICROSCOPE then bites.
+        * AND THE ONE THAT IS NOT SAFE (Sec. 6b, CH-4): rho_m must denote the FULL matter Lagrangian,
+          not a rest-mass/dust proxy.  The action as WRITTEN does not say which.  If the dressing
+          leaves nuclear/EM binding energy undressed, eta is a ZERO-PARAMETER prediction
+          eta_R = Delta b * a0/(2 g) = +4.46e-15 (canon) / +5.39e-15 (alt), which is
+          1.9x / 2.3x the 1-sigma ceiling -> DISFAVOURED at ~1.1-2.2 sigma.
+          So eta = 0 is structural GIVEN Reading F, and MICROSCOPE is what forces Reading F.
+          That is this lane's one genuine constraint on the theory, and it is not a many-orders
+          exclusion -- it is a marginal ~2 sigma preference.  Stated as such.
+
+  (b) THE 1e-12 GAP:  the gap DOES NOT EXIST as stated, and the paper's sentence is wrong.
+      The "< 1e-12" is a double-precision FLOAT TOLERANCE on a DIFFERENT check -- the algebraic
+      inversion x = y nu(y) of mu_fw(x) x = y -- which is separately proven EXACTLY (symbolic residual
+      identically 0).  It is not a bound on eta and not a theoretical uncertainty, so MICROSCOPE does
+      NOT probe below the theory's own precision.  BUT the shipped eta check is
+      `eta_AB = x_phys - x_phys`, an expression minus itself: a TAUTOLOGY with zero discriminating
+      power.  The eta = 0 claim is therefore DERIVED-but-UNVERIFIED as of the current repo state.
+      Sections 3-4 here supply the genuine verification (independent two-species root-finds, a
+      lambda-injection negative control, and the closed form confirmed at dps=60).
+      REQUIRED EDIT: replace "Machine check: eta < 1e-12 over y in [1e-2,1e2]" with "eta = 0 by
+      species-blindness of W; the 1e-12 is the float tolerance of the balance-inversion check."
+
+  (c) THE TWO PREDICTIONS (canon / alt):
+      GATED (AC):  Re G(omega_EP) <= 4.36e-22 at the window's most permissive corner
+                   -> eta_AC <= 3.52e-34 even at lambda = 1 and the largest handle
+                   -> passes MICROSCOPE by 19 ORDERS.  NO CONSTRAINT, consistent-by-gating.
+                   (This is the honest expected result, reported with its suppression factor.)
+      DC (Fork C): eta_DC = 0 EXACTLY in the written action -> "pass at 0.65 sigma" is correct but
+                   is a statement about zero, not a test.  The real content is the ceiling on any
+                   composition coupling lambda of the MI deformation (1-K = a0/2g = 5.90e-12 at
+                   MICROSCOPE):
+                        lambda <= 0.52    (nuclear binding handle, Delta q = 7.57e-04)
+                        lambda <= 6.84e-03 (charge-per-mass handle,  Delta q = 0.057)
+                        lambda <= 3.44e-03 (neutron-excess handle,   Delta q = 0.113)
+                   So: an O(1) composition coupling in the DC channel is EXCLUDED by
+                   1.9x - 291x (i.e. 0.3 - 2.5 orders), handle-dependent.
+                   The physically forced instance of lambda = 1 is CH-4 (Reading R): eta_R =
+                   +4.46e-15 / +5.39e-15, disfavoured at ~1.1-2.2 sigma.  MARGINAL, NOT EXCLUDED.
+
+  DOES MICROSCOPE EXCLUDE THE DC CHANNEL?   NO -- and this is a NULL, not a pass manufactured for it.
+      Reason: eta is a DIFFERENTIAL observable and the DC MI dressing is exactly COMMON MODE.  The
+      common-mode piece itself (an extra a0/2 = 4.68e-11 m/s^2 Earthward, 5.9e-12 of g) is
+      3e+03x above MICROSCOPE's differential resolution but is 100% degenerate with GM_E on a
+      near-circular orbit, so it is invisible for a structural reason.  MICROSCOPE therefore cannot
+      decide Fork C.  What it DOES do is bound the DC channel's STRUCTURE sector at the 1e-3 - 0.5
+      level -- i.e. the DC channel survives MICROSCOPE only in its exactly-universal form, which is
+      precisely the form the written action delivers.  That is a real, if modest, independent line on
+      Fork C: it says a DC channel is admissible, but not a DC channel that resolves internal structure.
+
+  WHERE THE SHARP TEST IS, if one wants MICROSCOPE to bite on Fork C:  Fork G (the EFE reading that
+  makes Cassini Q2 dangerous) has 1-K = 1.66e-01, 3e+10x larger, and would exclude an O(1)
+  coupling by 13 orders -- but its signal sits at f_spin, not the published f_EP bin, so
+  that number is indicative only and is NOT the verdict.
+
+  SCOPE: dynamics sector (S_matter) only.  Nothing here bears on the GW170817-excluded disformal
+  photon sector.  No door is claimed closed; both a0 footings carried on every number.
+
+========================================================================================================
+mi_microscope_wep_2026.py: 20/20 checks passed.
+========================================================================================================
