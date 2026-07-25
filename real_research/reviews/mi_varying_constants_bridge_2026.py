@@ -144,15 +144,46 @@ for f_, a0v in A0.items():
           f"{-drift:.4e} /yr")
 llr_2sig = 2.42e-14
 worst_pred = max(a0v*OMEGA_C_LO/G_N_MOON*YR for a0v in A0.values())
+# ---- DE-CIRCULARIZED 2026-07-25 (same day) by the adversarial audit's synthesis stage. ------------
+# The first version of this block said "0.97x the LLR ceiling ... nearly saturated". That framing is
+# CIRCULAR IF READ OFF THE UPPER EDGE: omega_c's upper edge was itself SET by the LLR bound, so
+# a0*omega_hi/g_N reproduces the 2.42e-14 input by construction and 0.97 is just omega_lo/omega_hi.
+# The non-circular content is the LOWER edge, because omega_lo = 1.7824e-14 is RAR/SPARC-forced, not
+# LLR-forced. That makes the prediction a FLOOR, which is a far stronger and far more honest claim:
+# the framework cannot predict LESS drift than this without breaking the galaxy fits.
+LLR_CEN, LLR_SIG = -5.0e-15, 9.6e-15      # Biskupek, Mueller & Torre 2021, Gdot/G per yr
 print(f"""
-      LLR 2-sigma ceiling: {llr_2sig:.3e}/yr.  The framework's own prediction is
-      {worst_pred:.3e}/yr on the alt footing -- i.e. {worst_pred/llr_2sig:.2f}x the ceiling, sitting
-      right AT the observational limit rather than comfortably inside it. That is the genuine bridge:
-      dark energy -> a0 -> a gate-induced secular drift -> an apparent Gdot/G that LLR already
-      measures. It is a PREDICTION, and it is nearly saturated.""")
-check(f"the framework's apparent Gdot/G is within an order of magnitude of the LLR bound "
-      f"({worst_pred/llr_2sig:.2f}x), i.e. this connection is LIVE and testable now",
-      0.1 < worst_pred/llr_2sig < 10)
+      READ THIS AS A FLOOR, NOT AS A NEAR-MISS. omega_c's UPPER edge was set by the LLR bound itself,
+      so quoting "0.97x the LLR ceiling" off the upper edge would be circular -- it just returns the
+      input. The lower edge is different: omega_lo = {OMEGA_C_LO:.4e} rad/s is RAR/SPARC-forced. So the
+      framework cannot predict LESS apparent drift than the numbers above without breaking its own
+      galaxy fits. Against LLR = ({LLR_CEN:.1e} +/- {LLR_SIG:.1e})/yr (Biskupek, Mueller & Torre 2021):""")
+print(f"\n  {'footing':<10}{'|Gdot/G| floor [/yr]':>22}{'offset from LLR central':>26}"
+      f"{'sigma-bar tightening to exclude at 2sig':>42}")
+print("  "+"-"*96)
+for f_, a0v in A0.items():
+    pred = -a0v*OMEGA_C_LO/G_N_MOON*YR                       # negative: same sign as LLR central
+    dev  = abs(pred - LLR_CEN)
+    print(f"  {f_:<10}{abs(pred):>22.4e}{dev/LLR_SIG:>24.2f}s{LLR_SIG/(dev/2.0):>42.2f}x")
+dev_c = abs(-A0['canon']*OMEGA_C_LO/G_N_MOON*YR - LLR_CEN)
+dev_a = abs(-A0['alt']*OMEGA_C_LO/G_N_MOON*YR - LLR_CEN)
+print(f"""
+      So the honest statement is a TWO-SIDED, NEAR-TERM FALSIFIER, and note the sign: the framework's
+      s = -1 predicts the SAME SIGN as the LLR central value, so it is not merely inside the bound, it
+      is on the right side of it. It sits {dev_c/LLR_SIG:.2f} sigma (canon) / {dev_a/LLR_SIG:.2f} sigma (alt) from that central
+      value -- and a mere {LLR_SIG/(dev_c/2):.2f}x (canon) / {LLR_SIG/(dev_a/2):.2f}x (alt) tightening of the LLR error bar excludes
+      the ENTIRE committed omega_c window at 2 sigma. The alt footing is one 3% improvement from death.
+      That is the real bridge from dark energy to the laboratory, and it is nearly out of room --
+      which is why omega_c, not a0, is this framework's most exposed front.
+      CAVEAT, stated so nobody over-reads it: this is a marginal-bound proxy, not an EIH-style
+      ephemeris refit. The proper calculation propagates the drift through the LLR solution with the
+      other parameters free, and could soften it. That refit is the owed next step.""")
+check(f"the Gdot/G claim is stated as a SPARC-forced FLOOR (canon {dev_c/LLR_SIG:.2f}s, alt "
+      f"{dev_a/LLR_SIG:.2f}s from LLR central), not as a circular '0.97x the ceiling'",
+      1.0 < dev_c/LLR_SIG < 3.0 and 1.0 < dev_a/LLR_SIG < 3.0)
+check(f"a tightening of only {LLR_SIG/(dev_a/2):.2f}x (alt) / {LLR_SIG/(dev_c/2):.2f}x (canon) in the LLR "
+      f"error bar excludes the whole omega_c window at 2 sigma -- a real near-term falsifier",
+      LLR_SIG/(dev_a/2) < 1.5)
 
 # ============================================================ S5 verdict
 print("\nS5  VERDICT")

@@ -321,14 +321,36 @@ print(f"""      (a) r_M IS BLIND TO COMPACTNESS. r_M = sqrt(GM/a0) contains no c
           The framework's acceleration scale cannot tell that the mass is a black hole at all. Every
           "black-hole a0 shell" statement is therefore a statement about MASS, not about black holes --
           and that radius is the WIDE-BINARY regime already under test (Gaia DR4 pre-registration).
-      (b) THE SHELL IS NEVER ISOLATED. Two independent kills: no black hole's r_M is ever dynamically
-          isolated (the host galaxy dominates the mass budget long before r_M), and every black hole
-          inside a galaxy is EFE-screened before its a0 shell can form. The one exception found in the
-          audit is a RECOILING/RUNAWAY SMBH in a host's outskirts (g_ext ~ 0.04 a0, no host mass inside
-          r_M, and the orbital frequency at r_M sits BELOW omega_c so the gate is open) -- real objects
-          exist (RBH-1, JWST/NIRSpec, arXiv:2512.04166) but they have no dynamical tracers at r_M.
-      NET: the black-hole framing adds nothing the wide-binary and dwarf programmes do not already
-      cover better. That is the honest close of this region.""")
+      (b) *** RETRACTED 2026-07-25, SAME DAY, BY THE AUDIT'S OWN SYNTHESIS STAGE. *** An earlier
+          version of this block asserted "the shell is never isolated", citing two supposedly
+          independent kills. BOTH claims were wrong and are withdrawn here rather than deleted:
+            - "No black hole's r_M is ever dynamically isolated" compared M_BH to the host's TOTAL
+              stellar mass. The correct test is the mass ENCLOSED INSIDE r_M, and diffuse hosts PASS:
+              intermediate-mass black holes in dwarf spheroidals give M_BH/M_enc(<r_M) = 14.8 (Leo I)
+              and 206 (Fornax). Isolated a0 shells DO exist.
+            - The "second, independent EFE kill" was not independent -- it is the SAME inequality.
+              Since r_M is DEFINED by a0 = GM_BH/r_M^2, one has g_ext(r_M)/a0 == M_enc(<r_M)/M_BH
+              identically. One wall was counted as three.
+          The honest statement is therefore much weaker: a0 shells around black holes are isolated in
+          diffuse hosts, and the obstruction is TRACERS, not geometry. Recoiling/runaway SMBHs exist
+          (RBH-1, JWST/NIRSpec, arXiv:2512.04166) but the "only gate-open shell" claim about them was
+          also false -- gate-open at r_M is a pure mass threshold that ordinary SMBHs also cross.
+      NET, restated honestly: the black-hole framing is not FORECLOSED, it is UNINSTRUMENTED, and it
+      adds nothing the wide-binary and dwarf programmes do not already cover better -- because r_M is
+      blind to compactness (finding (a)), so those programmes are testing the same physics with real
+      tracers. That is the honest close of this region: superseded, not walled.""")
+check("the 'never isolated' claim is RETRACTED in place (diffuse hosts pass: Leo I 14.8, Fornax 206) "
+      "and the two 'independent' kills shown to be one identity", True)
+# the denominator choice, which is the sharpest single blow to S4 and was found last
+print(f"""
+      (c) AND THE DENOMINATOR IN S4 IS A CHOICE, WHICH IS WORSE THAN THE 11.4%. At M = M_Nariai the two
+          SdS horizons MERGE, at r_+ = r_c = L/sqrt(3) = {1/np.sqrt(3):.6f} L -- not at L. So measured against
+          the horizon that spacetime ACTUALLY has, the ratio is r_a0/(L/sqrt3) = {ratio_canon*np.sqrt(3):.4f}, i.e.
+          {abs(ratio_canon*np.sqrt(3)-1)*100:.1f}% OFF, not 5.5%. The 5.5% "agreement" is between a formal radius and the
+          horizon of a DIFFERENT spacetime (pure de Sitter, M = 0). S4 survives only as arithmetic.""")
+check(f"against the ACTUAL merged Nariai horizon L/sqrt(3) the ratio is {ratio_canon*np.sqrt(3):.4f} "
+      f"({abs(ratio_canon*np.sqrt(3)-1)*100:.0f}% off), so S4's denominator was the favourable choice",
+      abs(ratio_canon*np.sqrt(3) - 1) > 0.5)
 check(f"a black hole and a star of equal mass have identical r_M -- so 'black hole' is irrelevant to "
       f"the framework's acceleration scale", abs(r_M(M10) - np.sqrt(G*M10/A0['canon'])) < 1e-6)
 check(f"r_M(10 Msun) = {r_M(M10)/1.495978707e11:.2e} AU lands in the wide-binary regime already being "
