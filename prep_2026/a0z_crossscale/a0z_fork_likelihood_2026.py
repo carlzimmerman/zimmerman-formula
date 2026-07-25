@@ -350,12 +350,68 @@ def chi2_total(mname, p_drift, pts=None, **kw):
     return float(sum(point_chi2(P, mname, p_drift, **kw) for P in pts))
 
 
-def ln_evidence(mname, p_max, npts=4001, pts=None, **kw):
+# --- vectorized form of the SAME chi2 (regression-checked against point_chi2 below) -------
+_arr_cache = {}
+
+
+def build_arrays(mname, pts, w0=W0, wa=WA, use_stat_only=False, lever_off=False, drift_on=True):
+    """chi2(p) is quadratic in p: cache (meas, sig, base_pred, drift_coef) per model+dataset."""
+    key = (mname, tuple(P["tag"] for P in pts), w0, wa, use_stat_only, lever_off, drift_on,
+           tuple(round(float(P.get("val", 0.0)), 12) for P in pts),
+           tuple(round(float(P["sig_tot"]), 12) for P in pts),
+           tuple(round(float(P["zrep"]), 9) for P in pts),
+           tuple(round(float(P["w"]), 9) for P in pts))
+    if key in _arr_cache:
+        return _arr_cache[key]
+    gm, gs, gb, gd, bl, bs, bb, bd = [], [], [], [], [], [], [], []
+    for P in pts:
+        w = P["w"] if drift_on else 0.0
+        Lg = 1.0 if lever_off else P["L"]
+        if P["kind"] == "SLOPE":
+            gm.append(P["val"])
+            gs.append(P["sig_stat"] if use_stat_only else P["sig_tot"])
+            gb.append(model_slope(mname, P["zlo"], P["zhi"], w0, wa))
+            gd.append(w)                                    # drift adds p exactly to a log-log slope
+        elif P["kind"] == "RATIO":
+            z = P["zrep"]
+            gm.append(P["val"] / Lg)
+            gs.append((P["sig_stat"] if use_stat_only else P["sig_tot"]) / Lg)
+            gb.append(float(np.log10(MODELS[mname](z, w0, wa))))
+            gd.append(w * np.log10(1.0 + z))
+        elif P["kind"] == "BOUND":
+            z = P["zrep"]
+            bl.append(P["limit"])
+            bs.append(P["sig_tot"])
+            bb.append(float(np.log10(MODELS[mname](z, w0, wa))))
+            bd.append(w * np.log10(1.0 + z))
+        else:
+            raise ValueError(P["kind"])
+    A = tuple(np.asarray(x, float) for x in (gm, gs, gb, gd, bl, bs, bb, bd))
+    _arr_cache[key] = A
+    return A
+
+
+def chi2_vec(A, p):
+    """chi2 over an ARRAY of drift exponents p (identical algebra to point_chi2)."""
+    gm, gs, gb, gd, bl, bs, bb, bd = A
+    p = np.atleast_1d(np.asarray(p, float))
+    r = (gm[:, None] - gb[:, None] - gd[:, None] * p[None, :]) / gs[:, None]
+    c2 = (r ** 2).sum(0)
+    if bl.size:
+        e = np.maximum(0.0, bb[:, None] + bd[:, None] * p[None, :] - bl[:, None]) / bs[:, None]
+        c2 = c2 + (e ** 2).sum(0)
+    return c2
+
+
+def ln_evidence(mname, p_max, npts=2001, pts=None, **kw):
     """ln Z = ln( (1/p_max) INT_0^{p_max} dp exp(-chi2(p)/2) ).  p_max=0 -> face value."""
+    pts = POINTS if pts is None else pts
     if p_max <= 0.0:
-        return -0.5 * chi2_total(mname, 0.0, pts=pts, drift_on=False, **kw), 0.0, 0.0
+        kw0 = dict(kw); kw0["drift_on"] = False
+        return -0.5 * float(chi2_vec(build_arrays(mname, pts, **kw0), 0.0)[0]), 0.0, 0.0
+    A = build_arrays(mname, pts, **kw)
     pgrid = np.linspace(0.0, p_max, npts)
-    c2 = np.array([chi2_total(mname, p, pts=pts, **kw) for p in pgrid])
+    c2 = chi2_vec(A, pgrid)
     lw = -0.5 * c2
     m = lw.max()
     integ = TRAPZ(np.exp(lw - m), pgrid)
@@ -366,6 +422,15 @@ def ln_evidence(mname, p_max, npts=4001, pts=None, **kw):
     p_mean = float(TRAPZ(pgrid * post, pgrid))
     return float(lnZ), p_hat, p_mean
 
+
+# regression: the vectorized chi2 MUST reproduce the explicit per-point chi2 exactly
+for _m in MODEL_ORDER:
+    for _p in [0.0, 0.37, 0.92, 1.22]:
+        _a = float(chi2_vec(build_arrays(_m, POINTS), _p)[0])
+        _b = chi2_total(_m, _p)
+        assert abs(_a - _b) < 1e-9, f"chi2_vec != chi2_total for {_m} at p={_p}: {_a} vs {_b}"
+print("\n  chi2 regression: vectorized chi2 == explicit per-point chi2 for all 3 models at "
+      "p=0/0.37/0.92/1.22  OK")
 
 PAIRS = [("M-DEC", "M-RISE"), ("M-DEC", "M-FLAT"), ("M-RISE", "M-FLAT")]
 
@@ -610,14 +675,33 @@ TARGET = np.log(20.0)
 DEXGRID = np.concatenate([np.arange(0.0025, 0.2001, 0.0025), np.arange(0.205, 0.605, 0.005)])
 
 
+_fore_cache = {}
+
+
 def forecast_lnB(truth, z, sig_dex, w_new=0.15):
     """ln-evidence dict with ONE new Asimov point at (z, sig_dex) drawn at `truth`'s prediction."""
+    key = (truth, round(z, 6), round(sig_dex, 8), w_new)
+    if key in _fore_cache:
+        return _fore_cache[key]
     newP = dict(tag="[NEW]", kind="RATIO", zrep=z,
                 val=float(np.log10(MODELS[truth](z))), sig_stat=sig_dex, sig_tot=sig_dex,
                 L=1.0, w=w_new, cite="forecast", prov="forecast", wnote="forecast",
                 y_gbar=0.15)
     pts = POINTS + [newP]
-    return {m: ln_evidence(m, HEADLINE_PMAX, pts=pts)[0] for m in MODEL_ORDER}
+    # build the arrays directly (the [NEW] tag alone would collide across z/sigma in the cache)
+    out = {}
+    pgrid = np.linspace(0.0, HEADLINE_PMAX, 2001)
+    for m in MODEL_ORDER:
+        A = build_arrays(m, pts)
+        c2 = chi2_vec(A, pgrid)
+        lw = -0.5 * c2
+        mx = lw.max()
+        out[m] = float(mx + np.log(TRAPZ(np.exp(lw - mx), pgrid) / HEADLINE_PMAX))
+        _arr_cache.pop(tuple(k for k in _arr_cache if False), None)   # no-op guard
+    for k in [k for k in _arr_cache if "[NEW]" in k[1]]:
+        del _arr_cache[k]                     # forecast arrays are per-(z,sigma): never reuse
+    _fore_cache[key] = out
+    return out
 
 
 def loosest_sigma(ok):

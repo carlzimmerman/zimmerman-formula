@@ -658,3 +658,153 @@ print("  COHERENT FLOOR allows: 2.4:1 at a 0.19 dex floor, 90:1 at 0.08 dex (SKA
 print("  >150:1 once the floor reaches ~0.04 dex. Note that N barely matters (N=10 vs N=inf changes")
 print("  lnB by <30%): the program is FLOOR-limited, so SYSTEMATICS CONTROL, not sample size, is the")
 print("  deliverable. This is the quantitative version of the committed 'THEORY CEILING' caveat.")
+
+# =====================================================================================
+# 5. THE DECISIVE-MEASUREMENT SPEC  (the deliverable)
+# =====================================================================================
+print("\n" + bar); print("5. DECISIVE-MEASUREMENT SPEC -- what single new measurement pushes past 20:1 / 150:1"); print(bar)
+SPEC = []
+for z in (2.0, 2.5, 3.0, 3.25):
+    mDz, sDz = theory_dex("DEC", np.array([z])); mRz, sRz = theory_dex("RISE", np.array([z]))
+    D = float(mRz[0] - mDz[0]); sth = float(np.hypot(sDz[0], sRz[0]))
+    for tgt, tn in ((NSIG20, "20:1"), (NSIG150, "150:1")):
+        s_need = abs(D) / tgt
+        sdr = W_DM * DP * np.log10(1 + z)
+        rows = []
+        for lab in (BUDGET[1][0], BUDGET[3][0]):
+            spt, fl = FLOORS[lab]
+            N, _, _ = N_required(z, D, sth, spt, fl, tgt)
+            rows.append((lab, N))
+        SPEC.append((z, tn, abs(D), s_need, np.log(10) * s_need, rows))
+print("  *** DEC-vs-RISE (the horizon fork) -- deep-MOND-selected, g_bar<0.3 a0 ***")
+print(f"  {'z':>5} {'target':>7} {'Delta(dex)':>11} {'s_req(dex)':>11} {'f_req(a0)':>10} "
+      f"{'N (JWST+ALMA)':>15} {'N (SKA2/ngVLA HI)':>19}")
+for z, tn, D, sn, fr, rows in SPEC:
+    c = ["   --" if N is None else f"{N:>5d}" for _, N in rows]
+    print(f"  {z:>5.2f} {tn:>7} {D:>11.3f} {sn:>11.3f} {100*fr:>9.0f}% {c[0]:>15} {c[1]:>19}")
+print("\n  HEADLINE SPEC (DEC-vs-RISE, past 20:1 -> DECISIVE):")
+print("    z ~ 3, ONE (N=1) clean deep-MOND-selected rotator (g_bar < 0.3 a0) with sigma(a0) <= 0.31 dex")
+print("    (~70% fractional a0). JWST NIRSpec-IFU on a LENSED low-mass rotator + ALMA CO/[CII] cold-gas")
+print("    velocity field delivers ~0.21 dex/object -> N=1 clears 20:1, N=3 clears 150:1.")
+print("    At z~2 the same config needs N=5 (20:1); at z~1 it is FLOOR-BLOCKED today (needs SKA2-class).")
+print("  A Big-Wheel-class object is EXACTLY this measurement: the existing z=3.25 Big Wheel at")
+print("  +/-0.22 dex already yields lnB(DEC/RISE) ~ 6.4 analytic / ~7.5 exact-MC = 600-1800:1 ON ITS OWN")
+print("  -- and it is the ONE point in the whole compilation that penalizes M-RISE (chi2 ~ 8.9).")
+print("  So the DEC-vs-RISE fork is a 2-3-OBJECT PROBLEM, feasible NOW with JWST+ALMA, not a 2035 problem.")
+print("\n  *** DEC-vs-FLAT (the framework's decline vs constant-a0 MOND) -- the HARDER one ***")
+print("    Separation is MAXIMAL AT THE HIGHEST ACCESSIBLE z (monotonic above the z~1 crossover NULL;")
+print("    z~1 is untestable, the bump at z~0.35 is 7.3x weaker in dex than z=3 and needs ~1.4% a0).")
+print("    Required precision: sigma(a0) <= 0.024 dex (5.5%) at z=2, 0.045 dex (10.4%) at z=3,")
+print("    0.064 dex (14.8%) at z=4 -- for 20:1; ~30% tighter for 150:1.")
+print("    Binding constraint is the COHERENT floor, which does NOT average down: it must reach")
+print("    <= ~0.08 dex (SKA2/ngVLA direct HI, no alpha_CO) for 20:1 in a 5-bin program (B ~ 90:1),")
+print("    and ~0.04 dex (+ ELT-class velocity systematics, 4*sigma_coh(logV) is then the wall) for 150:1.")
+print("    Sample size is nearly IRRELEVANT (N=10 vs N=inf moves lnB <30%) -> the deliverable is")
+print("    SYSTEMATICS CONTROL, not object count. This is the ~2035+ SKA2/ngVLA-era measurement.")
+
+# =====================================================================================
+# 6. VERDICT  +  PRE-REGISTRATION
+# =====================================================================================
+print("\n" + bar); print("6. HONEST VERDICT"); print(bar)
+print("""  (A) DEC-vs-RISE is NOT DECIDED by existing data, and the reason is now a NUMBER, not an opinion.
+      log10 B(DEC/RISE) spans -8.0 (Magneticum-calibrated drift prior, Ciocan at full stat weight)
+      to +1.0 (drift prior ceiling raised 50%) to +0.5 (compilation's own systematics-inclusive
+      errors AND drift marginalized). The swing is driven ENTIRELY by the drift-prior CEILING,
+      because M-DEC requires p~1.41 (a 5.4x apparent rise at z=2.3 = 1.8x MORE than Magneticum
+      delivers) to accommodate Ciocan, and M-FLAT requires p~1.30 (4.7x = 1.6x more). M-RISE
+      needs only p~0.35 (1.5x = HALF of Magneticum), so it sits comfortably inside the prior.
+      => The single decisive unknown is the APPARENT-DRIFT AMPLITUDE, not the a0(z) data.
+      At FACE VALUE M-RISE wins by 10^51 -- but chi2/dof is 15-40 for ALL THREE models, i.e. NO
+      model fits the face-value data (Jeanneau and Ubler are 6 sigma apart at the SAME z), so the
+      face-value factor measures data inconsistency, not evidence. It is reported, not used.
+  (B) DEC-vs-FLAT: M-DEC is WEAKLY PREFERRED in the headline marginalized run, log10 B = +1.11
+      (13:1, 'substantial' on Jeffreys, NOT strong), spanning -0.6 to +2.8 across defensible
+      treatments. That preference is NOT a detection of the decline: it comes from M-DEC needing
+      slightly less drift than M-FLAT to fit Ciocan, plus M-DEC's low-z bump. FLAT remains fully
+      viable, and FLAT is simultaneously standard MOND AND the framework's own w->-1 limit --
+      so a FLAT win would NOT falsify the framework, but it WOULD be a failure to detect the
+      distinctive decline. Stated plainly, not spun.
+  (C) The ONLY point in the whole compilation that penalizes M-RISE is the single clean deep-MOND
+      object (Big Wheel z=3.25, chi2 ~ 8.9 against RISE). Everything else is either drift-degenerate
+      (Ciocan, MSA-3D), dilution-gutted (Ubler, Amvrosiadis: 14-59% of the deep-MOND a0 lever), or
+      internally inconsistent (Jeanneau vs Ubler). That is why ONE MORE Big-Wheel-class object is
+      worth more than any number of massive-SFG RAR fits.
+  (D) A genuine asymmetry worth stating: the LCDM apparent drift can only push a0 UP. A measured
+      DECLINE therefore cannot be faked by it -- the nuisance that destroys the rising evidence
+      HELPS the declining branch (MC lnB exceeds the drift-free value by ~1.3 at fixed precision).
+  (E) Both footings carried; the RATIO is footing-independent, so nothing here depends on
+      9.36e-11 vs 1.13e-10. a0's VALUE and the HORIZON CHOICE remain POSITS. If DESI DR3 relaxes
+      to w=-1, M-DEC collapses onto M-FLAT and the fork becomes UNTESTABLE (not falsified).
+      No TOE. No 'theory closed'. nu = Milgrom 1999 PLA 253:273 Eq.9; McCulloch credited for E(z).""")
+
+print("\n" + "#" * 102)
+print("# PRE-REGISTRATION -- a0(z) MODEL COMPARISON + DECISIVE MEASUREMENT -- FROZEN 2026-07-25")
+print("#" * 102)
+PRE = [
+ "HEADLINE ODDS (run M, drift ~ U(0, p_mag=0.920)): log10 B(DEC/RISE) = -7.99, log10 B(DEC/FLAT) = "
+ "+1.11, log10 B(RISE/FLAT) = +9.10. FACE VALUE (stat errors, p=0): -50.94 / +6.34 / +57.27 with "
+ "chi2/dof 15-40 for every model (NO model fits -> face-value factors are data-inconsistency, not "
+ "evidence). MOST CONSERVATIVE (systematics-inclusive AND drift marginalized): +0.49 / -0.45 / -0.94.",
+ "THE VERDICT-FLIPPING KNOB is the drift-prior CEILING, not the data: raise it from 1.0x to 1.5x the "
+ "Magneticum amplitude and log10 B(DEC/RISE) moves from -7.99 to +1.00. M-DEC needs p=1.41 (5.4x "
+ "apparent rise at z=2.3, 1.8x Magneticum); M-FLAT p=1.30 (1.6x); M-RISE only p=0.35 (0.5x).",
+ "DECISION THRESHOLD for DEC-vs-RISE: ONE clean deep-MOND-selected (g_bar<0.3 a0) rotator at z~3 with "
+ "sigma(a0) <= 0.31 dex (~70% fractional) clears 20:1; N=3 at that precision clears 150:1. JWST "
+ "NIRSpec-IFU (lensed low-mass) + ALMA CO/[CII] delivers ~0.21 dex/object -> FEASIBLE NOW.",
+ "DECISION THRESHOLD for DEC-vs-FLAT: sigma(a0) <= 0.024 dex (5.5%) at z=2 / 0.045 dex (10.4%) at z=3, "
+ "AND a COHERENT floor <= 0.08 dex for 20:1 (5-bin, B~90:1) or ~0.04 dex for 150:1. Requires SKA2/ngVLA "
+ "DIRECT HI gas masses (<0.05 dex, no alpha_CO) -> ~2035+. Sample size nearly irrelevant (floor-limited).",
+ "DEEP-MOND ERROR BUDGET (derived): sigma(log a0) = sqrt((4 sigma(log V))^2 + sigma(log M_bar)^2). It "
+ "reproduces the Big Wheel's quoted +/-0.22 dex and the committed ~0.30 dex coherent floor -- anchored, "
+ "not invented. Once HI removes alpha_CO, 4*sigma_coh(log V) (velocity systematics) is the binding wall.",
+ "ACCELERATION DILUTION (mandatory, framework's own nu): L(x)=1/(1+x), x=g_bar/a0. Applied levers: "
+ "Jeanneau 0.65, Ubler z0.9 0.59, Ubler z2.3 0.22, Amvrosiadis 0.14, Tiley 0.50, deep-MOND/RAR 1.00. "
+ "The 'rising' bTFR points therefore carry 14-59% of the deep-MOND a0 lever -- down-weighted BOTH ways.",
+ "MSA-3D uses the SELECTION-CORRECTED slope +0.91+/-0.79, NEVER the raw +2.13. Ciocan keeps its FULL "
+ "stat error 0.105 in the headline run (NOT systematics-inflated away); its face-value ~30s rise is "
+ "NOT taken as a fundamental-a0 result. Manufactured win == manufactured deficit, penalized equally.",
+ "M-FLAT is included and is fully viable. FLAT is simultaneously standard-MOND AND the framework's own "
+ "w->-1 dissolution limit: a FLAT win is NOT a framework falsification, but it IS a failure to detect "
+ "the distinctive decline. If DESI DR3 relaxes to w=-1, M-DEC collapses onto M-FLAT -> UNTESTABLE.",
+ "The 2 digitized qualitative bounds (Milgrom17 one-sided x4 limit; McGaugh+24 'no clear evolution') "
+ "are a SECONDARY arm: including them moves log10 B(DEC/RISE) from -7.99 to -5.18. They are "
+ "digitizations of prose, not published likelihoods -- reported with AND without.",
+ "The RATIO a0(z)/a0(0) is FOOTING-INDEPENDENT, so every number here holds on both a0(0)=9.355e-11 "
+ "(cH_Lambda/Z) and 1.131e-10 (cH0/Z). a0's VALUE and the HORIZON CHOICE are POSITS. nu=sqrt(1+1/y) is "
+ "Milgrom 1999 (PLA 253:273 Eq.9); McCulloch credited for the Hubble-horizon rising branch. No TOE.",
+]
+for i, c in enumerate(PRE, 1):
+    print(f"#  {i}. {c}")
+print("#" * 102)
+
+# =====================================================================================
+# SELF-CHECK (frozen invariants)
+# =====================================================================================
+W0s, WAs, _ = draw(HEAD, "zero", 0)
+r1, r2, r3 = [float(np.median(R_model("DEC", z, W0s, WAs))) for z in (0.35, 2.0, 3.0)]
+q1, q2, q3 = [float(np.median(R_model("RISE", z, W0s, WAs))) for z in (1.0, 2.0, 3.0)]
+assert 1.030 < r1 < 1.042, f"M-DEC bump @z0.35 = {r1:.4f} not ~1.036 (committed band)"
+assert 0.870 < r2 < 0.880, f"M-DEC @z2 = {r2:.4f} not ~0.874"
+assert 0.770 < r3 < 0.780, f"M-DEC @z3 = {r3:.4f} not ~0.775 (committed parent)"
+assert 1.78 < q1 < 1.80 and 2.99 < q2 < 3.03 and 4.52 < q3 < 4.56, "M-RISE must match E(z) fork"
+assert abs(float(np.median(R_model("DEC", 0.0, W0s, WAs))) - 1.0) < 1e-12, "z=0 normalization"
+assert np.allclose(R_model("FLAT", [0.5, 3.0], W0s, WAs), 1.0), "M-FLAT must be exactly 1"
+assert abs(P_MAG - 0.9202) < 1e-3 and abs(3.3 ** P_MAG - 3.0) < 1e-6, "Magneticum calibration"
+assert any(abs(d["obs"] - 0.91) < 1e-9 for d in DATA), "MSA-3D must use +0.91, not raw +2.13"
+assert all(d["obs"] < 2.0 for d in DATA if d["kind"] == "loglog_slope"), "raw +2.13 must NOT appear"
+assert abs([d for d in DATA if "Ciocan" in d["tag"]][0]["sig_stat"] - 0.105) < 1e-9, \
+    "Ciocan must keep its FULL stat error in the headline run (no systematics inflation)"
+assert lever(6.0) < lever(1.0) < lever(0.15) < 1.0, "dilution lever must decrease with g_bar/a0"
+assert REQP["DEC"] > P_MAG and REQP["FLAT"] > P_MAG > REQP["RISE"], \
+    "the diagnostic MUST show DEC/FLAT needing MORE drift than Magneticum and RISE less"
+lo, hi = min(EM["DEC"]["lnZ"] - EM["RISE"]["lnZ"], EM2["DEC"]["lnZ"] - EM2["RISE"]["lnZ"]), \
+         max(EM["DEC"]["lnZ"] - EM["RISE"]["lnZ"], EM2["DEC"]["lnZ"] - EM2["RISE"]["lnZ"])
+assert lo < 0 < hi, "the honest result IS the sign flip across systematic treatments; it must be present"
+d20, _ = mc_lnB([(3.0, float(theory_dex("DEC", np.array([3.0]))[0][0]))], 0.31, ("RISE",))
+assert d20["RISE"] > LN20, "the headline spec (z=3, 0.31 dex, N=1) must clear 20:1 by MC"
+print(f"\nSELF-CHECK OK: M-DEC {r1:.3f}@0.35 / {r2:.3f}@2 / {r3:.3f}@3 match the committed band;")
+print(f"  M-RISE {q1:.2f}/{q2:.2f}/{q3:.2f} match E(z); Magneticum p_mag={P_MAG:.4f} -> {3.3**P_MAG:.2f}x@z2.3;")
+print(f"  MSA-3D uses +0.91 (raw +2.13 absent); Ciocan keeps stat 0.105; drift required DEC {REQP['DEC']:.2f} >")
+print(f"  p_mag {P_MAG:.2f} > RISE {REQP['RISE']:.2f}; log10 B(DEC/RISE) SIGN-FLIPS across treatments")
+print(f"  ({lo/np.log(10):+.2f} to {hi/np.log(10):+.2f}); headline spec clears 20:1 by MC (lnB={d20['RISE']:.2f}).")
+print("EXIT 0 (ran; not a verdict).")

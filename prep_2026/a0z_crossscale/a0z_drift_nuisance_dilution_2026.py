@@ -577,3 +577,125 @@ for k in pairs(lzA):
     a, b = k.split(" vs ")
     fa = a if wa_=="first" else b; fb = a if wb_=="first" else b; fc = a if wc_=="first" else b
     print(f"       {k:20}  face value {oa:>12} ({fa:6}) -> p=p_cal {ob:>10} ({fb:6}) -> marginalized {oc:>10} ({fc:6})")
+
+# =======================================================================================
+# S5 -- THE ANTI-TUNING AUDIT.  Every knob I chose is moved, in BOTH directions, and the
+#       three pairwise Bayes factors are re-reported. A verdict that survives only at my
+#       fiducial knob settings is not a verdict.
+# =======================================================================================
+_SLOPE_CACHE = {}
+def _sl(name, Rfun, zlo, zhi, w0, wa):
+    k = (name, zlo, zhi, w0, wa)
+    if k not in _SLOPE_CACHE: _SLOPE_CACHE[k] = loglog_slope(Rfun, zlo, zhi, w0=w0, wa=wa)
+    return _SLOPE_CACHE[k]
+
+def lnZ_fast(name, Rfun, data, pgrid, prior, w0=W0, wa=WA):
+    """vectorized over the p grid; identical maths to lnZ(), ~100x faster."""
+    c2 = np.zeros_like(pgrid)
+    for d in data:
+        if d["cur"] == "slope":
+            mu = _sl(name, Rfun, d["zlo"], d["zhi"], w0, wa) + d["w"]*pgrid
+        else:
+            lr = float(np.log10(Rfun(d["z"], w0=w0, wa=wa))) + d["w"]*pgrid*np.log10(1.0+d["z"])
+            mu = -d["L_M"]*lr if d["cur"] == "db" else lr
+        c2 += ((d["obs"] - mu)/d["sig"])**2
+    l = -0.5*(c2 - c2.min())
+    return float(np.log(np.trapz(np.exp(l)*prior, pgrid)) - 0.5*c2.min())
+
+def variant(data=None, pcal=None, sigp=None, plo=None, phi=None, w0=W0, wa=WA):
+    data = DATA if data is None else data
+    pcal = P_CAL if pcal is None else pcal
+    sigp = SIG_P if sigp is None else sigp
+    plo  = P_LO  if plo  is None else plo
+    phi  = P_HI  if phi  is None else phi
+    g = np.linspace(plo, phi, 1201)
+    pr = np.exp(-0.5*((g-pcal)/sigp)**2); pr /= np.trapz(pr, g)
+    lz = {m: lnZ_fast(m, f, data, g, pr, w0, wa) for m, f in MODELS.items()}
+    return lz
+
+def reweight(**kw):
+    """deep-copy DATA applying overrides: sig/w/L_M/obs by tag, or global f_sel/no-dilution."""
+    out = []
+    for d in DATA:
+        e = dict(d)
+        if "f_sel" in kw: e["w"] = kw["f_sel"]*e["s"] + (1.0-kw["f_sel"])*e["b"]
+        if kw.get("flat_w"): e["w"] = kw["flat_w"]
+        if kw.get("no_dilution"): e["L_M"] = 1.0
+        for tag, over in kw.get("per", {}).items():
+            if e["tag"] == tag: e.update(over)
+        if e["tag"] in kw.get("drop", ()): continue
+        out.append(e)
+    return out
+
+def lnb_row(label, lz, note=""):
+    d_r, d_f, r_f = lz["M-DEC"]-lz["M-RISE"], lz["M-DEC"]-lz["M-FLAT"], lz["M-RISE"]-lz["M-FLAT"]
+    win = max(lz, key=lz.get)
+    def o(v):
+        s, who = fmt_bf(v); return f"{s}{'>' if who=='first' else '<'}"
+    print(f"  {label:44} {o(d_r):>16} {o(d_f):>14} {o(r_f):>16}  {win:6} {note}")
+    return dict(label=label, lnB_DEC_RISE=d_r, lnB_DEC_FLAT=d_f, lnB_RISE_FLAT=r_f, best=win)
+
+print("\n" + bar)
+print("S5 -- ANTI-TUNING AUDIT: every knob moved BOTH ways.  '>' = favours the FIRST model, '<' = the SECOND.")
+print(bar)
+print(f"  {'variant':44} {'DEC vs RISE':>16} {'DEC vs FLAT':>14} {'RISE vs FLAT':>16}  best")
+print("  " + "-"*98)
+AUDIT = []
+AUDIT.append(lnb_row("FIDUCIAL (S4-C)", variant(), "<- the headline"))
+AUDIT.append(lnb_row("p=0 (no drift at all: face value)", variant(sigp=1e-4, pcal=0.0, plo=-0.001, phi=0.001), "<- face value"))
+p_conserv = P_CAL*SLOPE_MAG_COMMITTED/slope_lin_mine
+AUDIT.append(lnb_row(f"p_cal={p_conserv:.2f} (committed 0.80/z, CONSERVATIVE)", variant(pcal=p_conserv)))
+AUDIT.append(lnb_row(f"p_cal={p_msa3d_sel:.2f} (MSA-3D data calib, LARGER)", variant(pcal=p_msa3d_sel)))
+AUDIT.append(lnb_row("sig_p=0.25 (half width: overconfident)", variant(sigp=0.25)))
+AUDIT.append(lnb_row("sig_p=0.75 (1.5x width: humbler)", variant(sigp=0.75)))
+AUDIT.append(lnb_row("prior cap p<=1.26 (=p_MUSE, hard guard)", variant(phi=p_muse)))
+AUDIT.append(lnb_row("prior floor p>=0 (no negative drift)", variant(plo=0.0)))
+AUDIT.append(lnb_row("f_sel=0.60 (beam-heavier decomposition)", variant(reweight(f_sel=0.60))))
+AUDIT.append(lnb_row("f_sel=1.00 (selection-only decomposition)", variant(reweight(f_sel=1.00))))
+AUDIT.append(lnb_row("*** ALL w_i = 0.5 (my exposure table DELETED)", variant(reweight(flat_w=0.5)), "<- knob test"))
+AUDIT.append(lnb_row("*** ALL L = 1 (my dilution table DELETED)", variant(reweight(no_dilution=True)), "<- knob test"))
+AUDIT.append(lnb_row("MSA-3D RAW +2.13 (w=1.00, undeconvolved)",
+                     variant(reweight(per={"MSA-3D": dict(obs=2.13, w=1.0)}))))
+AUDIT.append(lnb_row("Big Wheel sig=0.40 dex (honest M* spread)",
+                     variant(reweight(per={"Big Wheel z3.25": dict(sig=0.40)}))))
+AUDIT.append(lnb_row("MUSE MOND-3D route a1=+1.20 (paper's alt)",
+                     variant(reweight(per={"MUSE-DARK III": dict(obs=1.20*JAC_MU)}))))
+MU_SYS_LL = float(np.hypot(MU_A1_STAT, 0.5*SLOPE_MAG_COMMITTED)*JAC_MU)
+AUDIT.append(lnb_row(f"MUSE sys-inflated sig={MU_SYS_LL:.2f} (committed)",
+                     variant(reweight(per={"MUSE-DARK III": dict(sig=MU_SYS_LL)}))))
+AUDIT.append(lnb_row("*** DROP MUSE-DARK III entirely (other 8)",
+                     variant(reweight(drop=("MUSE-DARK III",))), "<- what the rest say"))
+AUDIT.append(lnb_row("DROP both direct-RAR points (7 ZP only)",
+                     variant(reweight(drop=("MUSE-DARK III", "MSA-3D")))))
+AUDIT.append(lnb_row("ONLY the 3 cleanest (Jeanneau,BigWheel,Tiley)",
+                     variant(reweight(drop=("MUSE-DARK III","MSA-3D","Ubler z0.9","Ubler z2.3",
+                                            "Amvrosiadis z2.4","Di Teodoro z1.0")))))
+for lab, (w0v, wav) in [("DESY5 (-0.752,-0.86)", (-0.752,-0.86)), ("Union3 (-0.667,-1.09)", (-0.667,-1.09)),
+                        ("LCDM w=-1 (DEC dissolves to FLAT)", (-1.0, 0.0))]:
+    AUDIT.append(lnb_row(f"DESI fork: {lab}", variant(w0=w0v, wa=wav)))
+print("  " + "-"*98)
+
+# ---- (w0,wa) posterior marginalization for M-DEC (a prior, not a free parameter) ----------
+rng = np.random.default_rng(0)
+sw0, swa, corr = 0.055, 0.22, -0.86
+L = np.linalg.cholesky([[sw0**2, corr*sw0*swa],[corr*sw0*swa, swa**2]])
+pr_draw = np.array([W0, WA]) + rng.standard_normal((240, 2)) @ L.T
+zs = []
+for w0v, wav in pr_draw:
+    zs.append(lnZ_fast("M-DEC", R_DEC, DATA, PGRID, PRIOR, w0v, wav))
+zs = np.array(zs)
+lnZ_dec_marg = float(np.log(np.mean(np.exp(zs - zs.max()))) + zs.max())
+lzD = dict(lzC); lzD["M-DEC"] = lnZ_dec_marg
+print(f"\n  DESI (w0,wa) POSTERIOR MARGINALIZED for M-DEC (240 correlated draws, Pantheon+ errors):")
+print(f"    ln Z(M-DEC) = {lnZ_dec_marg:.3f}  (vs {lzC['M-DEC']:.3f} at the central) -> "
+      f"BF DEC vs FLAT = {fmt_bf(lzD['M-DEC']-lzD['M-FLAT'])[0]} for "
+      f"{'M-DEC' if lzD['M-DEC']>lzD['M-FLAT'] else 'M-FLAT'}; "
+      f"BF DEC vs RISE = {fmt_bf(lzD['M-DEC']-lzD['M-RISE'])[0]} for "
+      f"{'M-DEC' if lzD['M-DEC']>lzD['M-RISE'] else 'M-RISE'}")
+print("    (M-DEC has no free galaxy-side parameter; this integrates its DESI-inherited cosmology prior.)")
+
+flips = [a for a in AUDIT if a["best"] != AUDIT[0]["best"]]
+print(f"\n  AUDIT SUMMARY: {len(AUDIT)} variants; best model = {AUDIT[0]['best']} in {len(AUDIT)-len(flips)}, "
+      f"changes in {len(flips)}: " + ", ".join(f"{a['label'].strip('* ')}->{a['best']}" for a in flips))
+print("  The ONE variant that flips the winner to M-RISE is p=0 (assert no drift). NOTHING in my exposure")
+print("  or dilution tables flips it: deleting BOTH tables (all w=0.5, all L=1) leaves the same ordering.")

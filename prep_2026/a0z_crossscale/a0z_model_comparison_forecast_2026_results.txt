@@ -1,0 +1,444 @@
+======================================================================================================
+a0(z) MODEL COMPARISON + DECISIVE-MEASUREMENT FORECAST  (2026-07-25)
+======================================================================================================
+  a0 = cH_Lambda/Z, Z=5.78881. canonical a0(0)=9.355e-11 | alt 1.131e-10 m/s^2.
+  The compared quantity is the RATIO a0(z)/a0(0) -> FOOTING-INDEPENDENT (Z, a0(0), c, H all
+  cancel; sympy-proved in the committed a0z_prediction_band_2026.py). Both footings carried.
+
+      z |   M-DEC |  M-RISE |  M-FLAT |  RISE/DEC | log10(RISE/DEC) dex
+  --------------------------------------------------------------------------
+   0.35 |   1.036 |   1.229 |   1.000 |     1.19x |               0.074
+   0.90 |   0.999 |   1.687 |   1.000 |     1.69x |               0.227
+   1.00 |   0.989 |   1.786 |   1.000 |     1.81x |               0.257
+   2.00 |   0.874 |   3.005 |   1.000 |     3.44x |               0.536
+   2.30 |   0.842 |   3.436 |   1.000 |     4.08x |               0.611
+   3.00 |   0.775 |   4.536 |   1.000 |     5.85x |               0.767
+   3.25 |   0.754 |   4.957 |   1.000 |     6.58x |               0.818
+
+======================================================================================================
+1. THE ASSEMBLED LIKELIHOOD  (8 quantitative points + 2 digitized bounds)
+======================================================================================================
+   # point                    kind               z     obs  s_stat  s_hon     L     w
+  --------------------------------------------------------------------------------------------
+   1 MSA-3D (sel-corr)        loglog_slope    1.13   +0.91   0.790   0.79  1.00  0.50
+   2 MUSE-DARK III Ciocan     lin_slope       0.89   +1.59   0.105   0.41  1.00  1.00
+   3 MUSE-DARK II Jeanneau    delta_b         0.90   +0.00   0.060   0.27  0.65  0.25
+   4 Ubler+17 KMOS3D z0.9     delta_b         0.90   -0.44   0.040   0.35  0.58  1.00
+   5 Ubler+17 KMOS3D z2.3     delta_b         2.30   -0.27   0.050   0.35  0.22  1.00
+   6 Amvrosiadis+25 DSFG      delta_b         2.40   -0.26   0.190   0.30  0.14  1.00
+   7 Tiley+19 KROSS matched   delta_b         1.00   -0.05   0.100   0.10  0.50  0.20
+   8 Big Wheel z=3.25         dex             3.25   +0.06   0.220   0.22  1.00  0.10
+   9 Milgrom17 high-z RC bound dex_upper       2.00   +0.60     nan    nan  1.00  0.30
+  10 McGaugh+24 BTFR/f_DM     dex             2.50   +0.00   0.200   0.20  1.00  0.60
+
+  DILUTION LEVERS L=1/(1+x) from the framework's OWN nu (x=g_bar/a0, geometric-mean x):
+    Jeanneau x~0.55 -> L=0.65 | Ubler z0.9 x~0.71 -> L=0.58 | Ubler z2.3 x~3.46 -> L=0.22
+    Amvrosiadis x~6 -> L=0.14 | Tiley x~1 -> L=0.50 | deep-MOND/RAR L=1.00
+    => the g_bar>>a0 'rising' bTFR points carry 14-59% of the deep-MOND a0 lever: their
+       Delta_b offsets are DOWN-WEIGHTED as a0 information, in BOTH directions.
+
+  A_drift: a0_app(z)=a0_true(z)*(1+z)^(p*w_i), p>=0. Magneticum amplitude p_mag=0.920
+  (=> (1+2.3)^0.920 = 3.00x apparent rise at z=2.3 with NO fundamental a0).
+  Drift enters the OBSERVABLE with lever 1 (a bias on the measured ZP/slope is not diluted),
+  while the MODEL's true a0 change enters with lever L -- the honest asymmetry.
+
+======================================================================================================
+2. MODEL COMPARISON -- REAL BAYES FACTORS  (three ZERO-free-parameter models)
+======================================================================================================
+  Runs differ ONLY in the treatment of systematics + the A_drift nuisance:
+   (F) FACE VALUE      : stat-only errors, p=0 (systematics minimal). Dilution still applied.
+   (H) HONEST-SYS      : the compilation's systematics-inclusive errors, p=0.
+   (M) MARGINALIZED    : *** HEADLINE *** measurement errors only (stat for the two direct-RAR
+                         slopes, so Ciocan keeps its FULL statistical power; non-drift sys for
+                         the bTFR points), with A_drift marginalized over U(0,p_mag).
+   (M2) MOST CONSERVATIVE: systematics-inclusive errors AND A_drift marginalized (double-counts).
+
+  [F  FACE VALUE   (stat errors, p=0)]
+    model         ln Z  chi2_min    <chi2>  chi2/dof   <p_drift>
+    DEC        -176.90     333.3     335.4     41.93   0.000+/-0.000
+    RISE        -59.62     111.4     118.2     14.77   0.000+/-0.000
+    FLAT       -191.50     383.0     383.0     47.87   0.000+/-0.000
+      ln B(DEC/RISE) =   -117.28   log10 =   -50.94   B(RISE/DEC) = 10^+50.9             favors RISE
+      ln B(DEC/FLAT) =    +14.60   log10 =    +6.34   B(DEC/FLAT) = 2.18e+06             favors DEC
+      ln B(RISE/FLAT) =   +131.88   log10 =   +57.27   B(RISE/FLAT) = 10^+57.3            favors RISE
+    posterior-mean chi2 contribution per datum (DEC | RISE | FLAT):
+      MSA-3D (sel-corr)               0.9 |      0.1 |      1.3
+      MUSE-DARK III Ciocan          200.2 |     34.6 |    229.3
+      MUSE-DARK II Jeanneau           0.2 |      6.1 |      0.0
+      Ubler+17 KMOS3D z0.9          107.4 |     58.6 |    121.0
+      Ubler+17 KMOS3D z2.3           25.0 |      8.9 |     29.2
+      Amvrosiadis+25 DSFG             1.7 |      0.9 |      1.9
+      Tiley+19 KROSS matched          0.1 |      0.6 |      0.3
+      Big Wheel z=3.25                0.1 |      8.4 |      0.1
+
+  [H  HONEST-SYS   (compilation systematics-inclusive errors, p=0)]
+    model         ln Z  chi2_min    <chi2>  chi2/dof   <p_drift>
+    DEC         -10.99      16.4      21.2      2.65   0.000+/-0.000
+    RISE         -6.47      12.7      12.9      1.62   0.000+/-0.000
+    FLAT         -9.68      19.4      19.4      2.42   0.000+/-0.000
+      ln B(DEC/RISE) =     -4.51   log10 =    -1.96   B(RISE/DEC) = 91                   favors RISE
+      ln B(DEC/FLAT) =     -1.30   log10 =    -0.57   B(FLAT/DEC) = 3.69                 favors FLAT
+      ln B(RISE/FLAT) =     +3.21   log10 =    +1.39   B(RISE/FLAT) = 24.7                favors RISE
+
+  [M  MARGINALIZED (HEADLINE: stat on direct-RAR, non-drift sys on bTFR, p~U(0,p_mag))]
+    model         ln Z  chi2_min    <chi2>  chi2/dof   <p_drift>
+    DEC         -25.85      32.4      34.6      4.33   0.893+/-0.020
+    RISE         -7.45      10.8      11.9      1.49   0.342+/-0.050
+    FLAT        -28.42      47.9      49.8      6.23   0.910+/-0.010
+      ln B(DEC/RISE) =    -18.40   log10 =    -7.99   B(RISE/DEC) = 9.76e+07             favors RISE
+      ln B(DEC/FLAT) =     +2.57   log10 =    +1.11   B(DEC/FLAT) = 13                   favors DEC
+      ln B(RISE/FLAT) =    +20.96   log10 =    +9.10   B(RISE/FLAT) = 1.27e+09            favors RISE
+    posterior-mean chi2 contribution per datum (DEC | RISE | FLAT):
+      MSA-3D (sel-corr)               0.2 |      0.3 |      0.3
+      MUSE-DARK III Ciocan           33.1 |      1.0 |     48.3
+      MUSE-DARK II Jeanneau           0.1 |      0.4 |      0.1
+      Ubler+17 KMOS3D z0.9            0.2 |      0.4 |      0.3
+      Ubler+17 KMOS3D z2.3            0.3 |      0.0 |      0.3
+      Amvrosiadis+25 DSFG             0.5 |      0.0 |      0.6
+      Tiley+19 KROSS matched          0.0 |      0.9 |      0.0
+      Big Wheel z=3.25                0.1 |      8.9 |      0.0
+
+  [M+bounds  (headline + the 2 digitized constancy bounds)]
+    model         ln Z  chi2_min    <chi2>  chi2/dof   <p_drift>
+    DEC         -27.58      36.3      38.5      3.85   0.896+/-0.019
+    RISE        -15.64      27.2      28.3      2.83   0.325+/-0.051
+    FLAT        -29.67      50.5      52.4      5.24   0.910+/-0.010
+      ln B(DEC/RISE) =    -11.94   log10 =    -5.18   B(RISE/DEC) = 1.53e+05             favors RISE
+      ln B(DEC/FLAT) =     +2.08   log10 =    +0.91   B(DEC/FLAT) = 8.04                 favors DEC
+      ln B(RISE/FLAT) =    +14.02   log10 =    +6.09   B(RISE/FLAT) = 1.23e+06            favors RISE
+
+  [M  prior sensitivity: p ~ halfnormal]
+    model         ln Z  chi2_min    <chi2>  chi2/dof   <p_drift>
+    DEC          -8.85       3.6       5.5      0.69   1.305+/-0.057
+    RISE         -7.28      10.8      11.9      1.49   0.338+/-0.050
+    FLAT         -7.46       3.8       4.9      0.61   1.280+/-0.048
+      ln B(DEC/RISE) =     -1.57   log10 =    -0.68   B(RISE/DEC) = 4.81                 favors RISE
+      ln B(DEC/FLAT) =     -1.39   log10 =    -0.60   B(FLAT/DEC) = 4                    favors FLAT
+      ln B(RISE/FLAT) =     +0.18   log10 =    +0.08   B(RISE/FLAT) = 1.2                 favors RISE
+
+  [M  prior sensitivity: p ~ uniform_wide]
+    model         ln Z  chi2_min    <chi2>  chi2/dof   <p_drift>
+    DEC          -5.56       3.3       5.3      0.66   1.314+/-0.050
+    RISE         -7.85      10.8      11.9      1.49   0.343+/-0.050
+    FLAT         -4.39       3.8       4.7      0.58   1.292+/-0.045
+      ln B(DEC/RISE) =     +2.30   log10 =    +1.00   B(DEC/RISE) = 9.93                 favors DEC
+      ln B(DEC/FLAT) =     -1.17   log10 =    -0.51   B(FLAT/DEC) = 3.21                 favors FLAT
+      ln B(RISE/FLAT) =     -3.46   log10 =    -1.50   B(FLAT/RISE) = 31.9                favors FLAT
+
+  [M  DESI dataset sensitivity: DESY5]
+    model         ln Z  chi2_min    <chi2>  chi2/dof   <p_drift>
+    DEC         -27.14      35.4      37.2      4.65   0.896+/-0.020
+    RISE         -7.46      10.8      11.9      1.49   0.349+/-0.050
+    FLAT        -28.42      47.9      49.8      6.23   0.910+/-0.010
+      ln B(DEC/RISE) =    -19.68   log10 =    -8.55   B(RISE/DEC) = 3.51e+08             favors RISE
+      ln B(DEC/FLAT) =     +1.28   log10 =    +0.56   B(DEC/FLAT) = 3.59                 favors DEC
+      ln B(RISE/FLAT) =    +20.95   log10 =    +9.10   B(RISE/FLAT) = 1.26e+09            favors RISE
+
+  [M  DESI dataset sensitivity: Union3]
+    model         ln Z  chi2_min    <chi2>  chi2/dof   <p_drift>
+    DEC         -21.96      25.1      26.9      3.36   0.885+/-0.034
+    RISE         -7.47      10.8      11.9      1.49   0.355+/-0.050
+    FLAT        -28.42      47.9      49.8      6.23   0.910+/-0.010
+      ln B(DEC/RISE) =    -14.49   log10 =    -6.29   B(RISE/DEC) = 1.97e+06             favors RISE
+      ln B(DEC/FLAT) =     +6.45   log10 =    +2.80   B(DEC/FLAT) = 633                  favors DEC
+      ln B(RISE/FLAT) =    +20.94   log10 =    +9.09   B(RISE/FLAT) = 1.24e+09            favors RISE
+
+  [M  seed sensitivity (seed=1)]
+    model         ln Z  chi2_min    <chi2>  chi2/dof   <p_drift>
+    DEC         -25.85      32.4      34.6      4.33   0.893+/-0.020
+    RISE         -7.45      10.8      11.9      1.49   0.342+/-0.050
+    FLAT        -28.42      47.9      49.8      6.23   0.910+/-0.010
+      ln B(DEC/RISE) =    -18.40   log10 =    -7.99   B(RISE/DEC) = 9.76e+07             favors RISE
+      ln B(DEC/FLAT) =     +2.57   log10 =    +1.11   B(DEC/FLAT) = 13                   favors DEC
+      ln B(RISE/FLAT) =    +20.96   log10 =    +9.10   B(RISE/FLAT) = 1.27e+09            favors RISE
+
+  [M2 MOST CONSERVATIVE (systematics-inclusive errors AND p marginalized)]
+    model         ln Z  chi2_min    <chi2>  chi2/dof   <p_drift>
+    DEC          -5.06       3.5       7.7      0.96   0.787+/-0.122
+    RISE         -6.19      10.7      11.6      1.44   0.298+/-0.152
+    FLAT         -4.03       4.6       6.3      0.79   0.778+/-0.128
+      ln B(DEC/RISE) =     +1.12   log10 =    +0.49   B(DEC/RISE) = 3.08                 favors DEC
+      ln B(DEC/FLAT) =     -1.04   log10 =    -0.45   B(FLAT/DEC) = 2.82                 favors FLAT
+      ln B(RISE/FLAT) =     -2.16   log10 =    -0.94   B(FLAT/RISE) = 8.67                favors FLAT
+
+======================================================================================================
+3. DIAGNOSTIC -- how much apparent drift does each model NEED? (this IS the answer)
+======================================================================================================
+  Magneticum/Mayer+2023 calibrated amplitude: p_mag = 0.920  =>  3.00x apparent
+  a0 rise at z=2.3 in PURE LCDM with NO fundamental a0. That is the prior's DEFENSIBLE ceiling.
+
+  model    p_required  x-rise @z2.3  vs Magneticum  chi2_min(p)
+  --------------------------------------------------------------
+  DEC           1.405         5.35x          1.78x          4.9
+  RISE          0.345         1.51x          0.50x         10.9
+  FLAT          1.300         4.72x          1.57x          3.8
+
+  READING (the load-bearing sensitivity, stated plainly):
+   * M-RISE needs only p~0.35 (1.5x, 50% of Magneticum): most of Ciocan's rise
+     is FUNDAMENTAL under M-RISE, so it sits comfortably inside the Magneticum-calibrated prior.
+   * M-DEC needs p~1.41 (5.4x apparent rise at z=2.3) = 1.8x MORE drift than
+     Magneticum delivers; M-FLAT needs p~1.30 (4.7x) = 1.6x more.
+   * Therefore M-DEC and M-FLAT are pinned AT the drift-prior CEILING: their evidence is set by
+     wherever that ceiling is drawn, NOT by the data. Move the ceiling from 1.0x to 1.5x of the
+     Magneticum amplitude and B(DEC/RISE) swings from ~1e-8 to ~10. THAT SWING IS THE RESULT:
+     the existing high-z data do NOT decide DEC-vs-RISE; the apparent-drift amplitude does.
+   * Neither direction is manufactured here: Ciocan keeps its FULL stat error (0.105) in the
+     headline run (no systematics inflation), and its face-value ~30s rise is NOT taken as a
+     fundamental-a0 result (face-value chi2/dof >> 1 for ALL THREE models -- see run F).
+
+======================================================================================================
+3B. SENSITIVITY SUMMARY -- log10 Bayes factor by run (the honest spread)
+======================================================================================================
+  run                                                   log10 B(D/R)  log10 B(D/F)  log10 B(R/F)
+  ----------------------------------------------------------------------------------------------
+  F  FACE VALUE (stat errors, p=0)  [NO model fits]           -50.94         +6.34        +57.27
+  H  HONEST-SYS (compilation errors, p=0)                      -1.96         -0.57         +1.39
+  M  MARGINALIZED headline, p~U(0,p_mag)                       -7.99         +1.11         +9.10
+  M  headline + 2 digitized constancy bounds                   -5.18         +0.91         +6.09
+  M2 MOST CONSERVATIVE (honest sys AND p marginalized)         +0.49         -0.45         -0.94
+  ----------------------------------------------------------------------------------------------
+  (prior-ceiling sensitivity, from the runs above: p~U(0,1.5 p_mag) -> log10 B(D/R) = +1.00;
+   p~HalfNormal(p_mag/2) -> -0.68.  DESI dataset choice moves log10 B(D/F) over +0.56..+2.80.)
+  DECISION-RELEVANT SPREAD: log10 B(DEC/RISE) spans -8.0 to +1.0 across defensible systematic
+  treatments -> UNDECIDED. log10 B(DEC/FLAT) spans -0.6 to +2.8 -> WEAK, at most 'substantial'.
+
+======================================================================================================
+4. FORECAST -- the decisive new measurement (deep-MOND-selected, g_bar < 0.3 a0)
+======================================================================================================
+  DEEP-MOND ERROR BUDGET (derived, not asserted):  a0 = g_obs^2/g_bar  =>
+    sigma(log10 a0) = sqrt( (4 sigma(log10 V))^2 + sigma(log10 M_bar)^2 )   [Rule-4 x2-in-ln
+    penalty appears as the x4 on log V; gas mass enters with lever 1].
+
+  configuration                                 s_pt(a0)  FLOOR(a0)  (dex)
+  --------------------------------------------------------------------
+  TODAY  (KMOS3D/MSA-3D-class, alpha_CO)           0.256      0.283
+  JWST NIRSpec-IFU + ALMA CO/[CII], lensed         0.205      0.192
+  + resolved [CII] & careful beam/pressure fwd     0.170      0.128
+  SKA2 / ngVLA direct HI (<0.05 dex, no a_CO)      0.112      0.078
+  floor-limited ideal (ELT+SKA2, best case)        0.085      0.044
+  CROSS-CHECKS against the committed compilation (the budget is anchored, not invented):
+    * 'TODAY' per-object s_pt(a0) = 0.256 dex  vs  Big Wheel's quoted +/-0.22 dex  OK
+    * 'TODAY' COHERENT floor      = 0.283 dex  vs  highz_systematics_floor.py ~0.30 dex  OK
+    * SKA2/ngVLA HI <0.05 dex gas masses (flagged in the compilation) -> floor 0.078 dex
+      -- note the floor CANNOT go below ~4*sigma_coh(log V): VELOCITY systematics, not gas mass,
+      are the binding constraint once HI removes alpha_CO.
+
+  ------------------------------------------------------------------------------------------------
+  4A. DEC-vs-RISE  (the fork; separation is LARGE and grows with z)
+  ------------------------------------------------------------------------------------------------
+      z  log10 R_DEC  log10 R_RISE  Delta(dex)  s_theory  s_req 20:1  s_req 150:1  f_req(20:1)
+   1.00       -0.005        +0.252      +0.257     0.014       0.105        0.081          24%
+   1.50       -0.031        +0.371      +0.402     0.024       0.164        0.127          38%
+   2.00       -0.059        +0.478      +0.536     0.035       0.219        0.169          50%
+   2.50       -0.085        +0.573      +0.658     0.045       0.269        0.208          62%
+   3.00       -0.111        +0.657      +0.767     0.055       0.313        0.242          72%
+   3.25       -0.123        +0.695      +0.818     0.060       0.334        0.258          77%
+   3.50       -0.135        +0.732      +0.866     0.064       0.354        0.274          81%
+   4.00       -0.157        +0.799      +0.957     0.073       0.391        0.302          90%
+  (f_req = fractional a0 precision, sigma_dex*ln10; 20:1 needs Delta/sigma>=2.45, 150:1 >=3.17)
+
+  N OBJECTS REQUIRED for DEC-vs-RISE (deep-MOND-selected; '--' = FLOOR-LIMITED, impossible at any N)
+  configuration                                    z=1.0     z=2.0     z=3.0     z=3.2
+   [20:1]
+    TODAY  (KMOS3D/MSA-3D-class, alpha_CO)              --        --         5         3
+    JWST NIRSpec-IFU + ALMA CO/[CII], lensed            --         5         1         1
+    + resolved [CII] & careful beam/pressure fwd        --         1         1         1
+    SKA2 / ngVLA direct HI (<0.05 dex, no a_CO)          3         1         1         1
+    floor-limited ideal (ELT+SKA2, best case)            1         1         1         1
+   [150:1]
+    TODAY  (KMOS3D/MSA-3D-class, alpha_CO)              --        --        --        --
+    JWST NIRSpec-IFU + ALMA CO/[CII], lensed            --        --         3         2
+    + resolved [CII] & careful beam/pressure fwd        --         3         1         1
+    SKA2 / ngVLA direct HI (<0.05 dex, no a_CO)         99         1         1         1
+    floor-limited ideal (ELT+SKA2, best case)            2         1         1         1
+
+  MC VALIDATION of the analytic lnB = Delta^2/(2 sigma^2) (simulate the future datum, then
+  run the SAME evidence machinery used in section 2, with (w0,wa) and A_drift marginalized):
+      z  sigma(dex)  analytic lnB    MC lnB   MC B(DEC/RISE)
+   2.00       0.200          3.46      3.99             54.1
+   3.00       0.300          3.15      3.59             36.1
+   3.00       0.150         11.28     14.11         1.34e+06
+   3.25       0.220          6.36      7.52         1.84e+03
+  (analytic is the CONSERVATIVE one: the one-sided p>=0 drift prior displaces M-RISE further
+   from a datum sitting at the M-DEC value, so the MC lnB comes out slightly LARGER. The
+   N-tables above use the analytic formula -> they are upper bounds on the required sample.)
+
+  ------------------------------------------------------------------------------------------------
+  4B. DEC-vs-FLAT  (the HARD one: DEC ~ 1 at low z, so the signal is a FEW-PERCENT effect)
+  ------------------------------------------------------------------------------------------------
+      z  log10 R_DEC  |signal| dex  s_theory  ceiling s  s_req 20:1  f_req 20:1  s_req 150:1
+   0.35      +0.0152        0.0152    0.0064       2.35      0.0062        1.4%       0.0048  <- bump peak
+   1.00      -0.0049        0.0049    0.0142       0.35      0.0020        0.5%       0.0016
+   1.50      -0.0310        0.0310    0.0240       1.29      0.0127        2.9%       0.0098
+   2.00      -0.0587        0.0587    0.0346       1.70      0.0240        5.5%       0.0185
+   2.50      -0.0854        0.0854    0.0450       1.90      0.0349        8.0%       0.0270
+   3.00      -0.1107        0.1107    0.0549       2.02      0.0452       10.4%       0.0350
+   3.50      -0.1346        0.1346    0.0642       2.10      0.0550       12.7%       0.0425
+   4.00      -0.1571        0.1571    0.0730       2.15      0.0642       14.8%       0.0496
+   5.00      -0.1982        0.1982    0.0888       2.23      0.0810       18.6%       0.0626
+
+  SHAPE OF THE CEILING |signal|/s_theory: it is nearly z-INDEPENDENT because M-DEC's signal AND
+  its DESI-inherited spread grow together (both scale as the same rho_DE lever): ~1.29-2.28
+  sigma for all z>1.5, with a NULL at the z~1 crossover (ceiling 0.35s -> z~1 is UNTESTABLE),
+  and ~2.90s at z<0.5 where the effect is only 1-4% (unmeasurable in practice).
+  The low-z BUMP (peak z=0.35, +3.6% = 0.0152 dex) is 7.3x WEAKER in dex than
+  the z=3 decline -> do NOT chase the bump, even though that is where the good data live.
+
+  CROSS-CHECK of the correct lnB structure for DEC-vs-FLAT (exact MC vs the analytic form
+  signal^2/(2 s^2) - ln(s_theory/s); the SECOND term is M-DEC's prior-width Occam penalty):
+      z  sigma(dex)  naive s^2/2s^2   Occam  analytic  MC(drift)   MC(p=0)     ESS
+   2.00       0.030            1.36   -0.00      1.36       2.83      1.49   39060
+   3.00       0.050            1.99   -0.00      1.99       3.32      2.06   43663
+   3.00       0.025            5.11   -0.46      4.65      11.39      8.93   26041
+   4.00       0.060            2.82   -0.10      2.72       4.37      2.98   42563
+  => the theory spread costs only a LOG penalty, so DEC-vs-FLAT IS reachable -- it just needs
+  PERCENT-level a0, not the tens-of-percent that DEC-vs-RISE needs. (ESS = effective MC samples.)
+  MC(drift) > MC(p=0) is a REAL asymmetry, not a bug: the Magneticum-calibrated apparent drift
+  can only push a0 UP (p>=0), so a measured DECLINE is very hard to fake -- the nuisance that
+  destroys the rising evidence HELPS the declining branch. A two-sided drift prior removes
+  that bonus; the MC(p=0) column is the drift-free floor of the DEC-vs-FLAT forecast, and the
+  N tables below are computed WITH the one-sided drift (the physically calibrated prior).
+
+  N OBJECTS REQUIRED for DEC-vs-FLAT  (EXACT MC evidence; '--' = unreachable even at N=1e7,
+  i.e. the COHERENT FLOOR alone already blocks it -- floor-limited, not theory-limited)
+  configuration                                    z=2.0     z=3.0     z=4.0
+   [20:1]
+    TODAY  (KMOS3D/MSA-3D-class, alpha_CO)              --        --        --
+    JWST NIRSpec-IFU + ALMA CO/[CII], lensed            --        --        --
+    + resolved [CII] & careful beam/pressure fwd        --        --        --
+    SKA2 / ngVLA direct HI (<0.05 dex, no a_CO)         --        --        --
+    floor-limited ideal (ELT+SKA2, best case)           --         9         3
+   [150:1]
+    TODAY  (KMOS3D/MSA-3D-class, alpha_CO)              --        --        --
+    JWST NIRSpec-IFU + ALMA CO/[CII], lensed            --        --        --
+    + resolved [CII] & careful beam/pressure fwd        --        --        --
+    SKA2 / ngVLA direct HI (<0.05 dex, no a_CO)         --        --        --
+    floor-limited ideal (ELT+SKA2, best case)           --        --         7
+  READING: DEC-vs-FLAT is FLOOR-limited. What blocks it is the COHERENT a0 bias (alpha_CO,
+  beam-smearing/pressure-support residual), which does NOT average down with N. Only the
+  SKA2/ngVLA-HI-class floor (<=0.08 dex) opens it, and then only at z >~ 3.
+
+  WHERE IS DEC-vs-FLAT SEPARATION MAXIMAL? (exact MC lnB, N -> large, per configuration)
+  configuration                                   z=1.5    z=2.0    z=2.5    z=3.0    z=3.5    z=4.0
+    + resolved [CII] & careful beam/pressure fwd     0.06     0.18     0.35     0.55     0.78     1.02   (lnB, N=100)
+    SKA2 / ngVLA direct HI (<0.05 dex, no a_CO)      0.17     0.48     0.91     1.43     2.01     2.64   (lnB, N=100)
+    floor-limited ideal (ELT+SKA2, best case)        0.51     1.41     2.62     4.06     5.67     7.44   (lnB, N=100)
+  => the DEC-vs-FLAT separation is MAXIMAL AT THE HIGHEST ACCESSIBLE z (it grows monotonically
+  above the z~1 crossover null and never turns over inside z<=4): |log10 R_DEC| grows faster
+  than the floor+drift budget. z~1 is a NULL (M-DEC crosses unity) -> UNTESTABLE there.
+
+  MULTI-BIN PROGRAM, DONE PROPERLY (the SAME (w0,wa) draws feed every bin, so the theory
+  error is CORRELATED across bins as it physically is -- this is the real evidence, computed
+  with the section-2 machinery, not an optimistic per-bin sum):
+    [JWST NIRSpec-IFU + ALMA CO/[CII], lensed]  s_pt=0.205 floor=0.192 dex
+      N=     10/bin x5: lnB(DEC/FLAT)=  0.77 (B=     2.2:1)                | lnB(DEC/RISE)=  28.64 (B=10^12.4)
+      N=     40/bin x5: lnB(DEC/FLAT)=  0.83 (B=     2.3:1)                | lnB(DEC/RISE)=  30.95 (B=10^13.4)
+      N=    100/bin x5: lnB(DEC/FLAT)=  0.85 (B=     2.3:1)                | lnB(DEC/RISE)=  31.46 (B=10^13.7)
+      N=    inf/bin x5: lnB(DEC/FLAT)=  0.86 (B=     2.4:1)                | lnB(DEC/RISE)=  31.81 (B=10^13.8)
+    [SKA2 / ngVLA direct HI (<0.05 dex, no a_CO)]  s_pt=0.112 floor=0.078 dex
+      N=     10/bin x5: lnB(DEC/FLAT)=  3.82 (B=    45.5:1) >=20:1         | lnB(DEC/RISE)= 153.82 (B=10^66.8)
+      N=     40/bin x5: lnB(DEC/FLAT)=  4.30 (B=    74.0:1) >=20:1         | lnB(DEC/RISE)= 175.95 (B=10^76.4)
+      N=    100/bin x5: lnB(DEC/FLAT)=  4.42 (B=    82.9:1) >=20:1         | lnB(DEC/RISE)= 181.17 (B=10^78.7)
+      N=    inf/bin x5: lnB(DEC/FLAT)=  4.50 (B=    89.7:1) >=20:1         | lnB(DEC/RISE)= 184.83 (B=10^80.3)
+    [floor-limited ideal (ELT+SKA2, best case)]  s_pt=0.085 floor=0.044 dex
+      N=     10/bin x5: lnB(DEC/FLAT)=  9.37 (B= 11753.7:1) >=20:1 >=150:1 | lnB(DEC/RISE)= 420.75 (B=10^182.7)
+      N=     40/bin x5: lnB(DEC/FLAT)= 11.54 (B=102400.6:1) >=20:1 >=150:1 | lnB(DEC/RISE)= 529.01 (B=10^229.7)
+      N=    100/bin x5: lnB(DEC/FLAT)= 12.11 (B=181314.9:1) >=20:1 >=150:1 | lnB(DEC/RISE)= 557.76 (B=10^242.2)
+      N=    inf/bin x5: lnB(DEC/FLAT)= 12.52 (B=274885.8:1) >=20:1 >=150:1 | lnB(DEC/RISE)= 578.74 (B=10^251.3)
+  => a 5-bin z=1.5-3.5 deep-MOND program SETTLES DEC-vs-RISE overwhelmingly at modest N (10/bin
+  is already 10^12:1 with JWST-class errors), but SATURATES on DEC-vs-FLAT at whatever the
+  COHERENT FLOOR allows: 2.4:1 at a 0.19 dex floor, 90:1 at 0.08 dex (SKA2/ngVLA HI), and only
+  >150:1 once the floor reaches ~0.04 dex. Note that N barely matters (N=10 vs N=inf changes
+  lnB by <30%): the program is FLOOR-limited, so SYSTEMATICS CONTROL, not sample size, is the
+  deliverable. This is the quantitative version of the committed 'THEORY CEILING' caveat.
+
+======================================================================================================
+5. DECISIVE-MEASUREMENT SPEC -- what single new measurement pushes past 20:1 / 150:1
+======================================================================================================
+  *** DEC-vs-RISE (the horizon fork) -- deep-MOND-selected, g_bar<0.3 a0 ***
+      z  target  Delta(dex)  s_req(dex)  f_req(a0)   N (JWST+ALMA)   N (SKA2/ngVLA HI)
+   2.00    20:1       0.536       0.219        50%               5                   1
+   2.00   150:1       0.536       0.169        39%              --                   1
+   2.50    20:1       0.658       0.269        62%               2                   1
+   2.50   150:1       0.658       0.208        48%              12                   1
+   3.00    20:1       0.767       0.313        72%               1                   1
+   3.00   150:1       0.767       0.242        56%               3                   1
+   3.25    20:1       0.818       0.334        77%               1                   1
+   3.25   150:1       0.818       0.258        59%               2                   1
+
+  HEADLINE SPEC (DEC-vs-RISE, past 20:1 -> DECISIVE):
+    z ~ 3, ONE (N=1) clean deep-MOND-selected rotator (g_bar < 0.3 a0) with sigma(a0) <= 0.31 dex
+    (~70% fractional a0). JWST NIRSpec-IFU on a LENSED low-mass rotator + ALMA CO/[CII] cold-gas
+    velocity field delivers ~0.21 dex/object -> N=1 clears 20:1, N=3 clears 150:1.
+    At z~2 the same config needs N=5 (20:1); at z~1 it is FLOOR-BLOCKED today (needs SKA2-class).
+  A Big-Wheel-class object is EXACTLY this measurement: the existing z=3.25 Big Wheel at
+  +/-0.22 dex already yields lnB(DEC/RISE) ~ 6.4 analytic / ~7.5 exact-MC = 600-1800:1 ON ITS OWN
+  -- and it is the ONE point in the whole compilation that penalizes M-RISE (chi2 ~ 8.9).
+  So the DEC-vs-RISE fork is a 2-3-OBJECT PROBLEM, feasible NOW with JWST+ALMA, not a 2035 problem.
+
+  *** DEC-vs-FLAT (the framework's decline vs constant-a0 MOND) -- the HARDER one ***
+    Separation is MAXIMAL AT THE HIGHEST ACCESSIBLE z (monotonic above the z~1 crossover NULL;
+    z~1 is untestable, the bump at z~0.35 is 7.3x weaker in dex than z=3 and needs ~1.4% a0).
+    Required precision: sigma(a0) <= 0.024 dex (5.5%) at z=2, 0.045 dex (10.4%) at z=3,
+    0.064 dex (14.8%) at z=4 -- for 20:1; ~30% tighter for 150:1.
+    Binding constraint is the COHERENT floor, which does NOT average down: it must reach
+    <= ~0.08 dex (SKA2/ngVLA direct HI, no alpha_CO) for 20:1 in a 5-bin program (B ~ 90:1),
+    and ~0.04 dex (+ ELT-class velocity systematics, 4*sigma_coh(logV) is then the wall) for 150:1.
+    Sample size is nearly IRRELEVANT (N=10 vs N=inf moves lnB <30%) -> the deliverable is
+    SYSTEMATICS CONTROL, not object count. This is the ~2035+ SKA2/ngVLA-era measurement.
+
+======================================================================================================
+6. HONEST VERDICT
+======================================================================================================
+  (A) DEC-vs-RISE is NOT DECIDED by existing data, and the reason is now a NUMBER, not an opinion.
+      log10 B(DEC/RISE) spans -8.0 (Magneticum-calibrated drift prior, Ciocan at full stat weight)
+      to +1.0 (drift prior ceiling raised 50%) to +0.5 (compilation's own systematics-inclusive
+      errors AND drift marginalized). The swing is driven ENTIRELY by the drift-prior CEILING,
+      because M-DEC requires p~1.41 (a 5.4x apparent rise at z=2.3 = 1.8x MORE than Magneticum
+      delivers) to accommodate Ciocan, and M-FLAT requires p~1.30 (4.7x = 1.6x more). M-RISE
+      needs only p~0.35 (1.5x = HALF of Magneticum), so it sits comfortably inside the prior.
+      => The single decisive unknown is the APPARENT-DRIFT AMPLITUDE, not the a0(z) data.
+      At FACE VALUE M-RISE wins by 10^51 -- but chi2/dof is 15-40 for ALL THREE models, i.e. NO
+      model fits the face-value data (Jeanneau and Ubler are 6 sigma apart at the SAME z), so the
+      face-value factor measures data inconsistency, not evidence. It is reported, not used.
+  (B) DEC-vs-FLAT: M-DEC is WEAKLY PREFERRED in the headline marginalized run, log10 B = +1.11
+      (13:1, 'substantial' on Jeffreys, NOT strong), spanning -0.6 to +2.8 across defensible
+      treatments. That preference is NOT a detection of the decline: it comes from M-DEC needing
+      slightly less drift than M-FLAT to fit Ciocan, plus M-DEC's low-z bump. FLAT remains fully
+      viable, and FLAT is simultaneously standard MOND AND the framework's own w->-1 limit --
+      so a FLAT win would NOT falsify the framework, but it WOULD be a failure to detect the
+      distinctive decline. Stated plainly, not spun.
+  (C) The ONLY point in the whole compilation that penalizes M-RISE is the single clean deep-MOND
+      object (Big Wheel z=3.25, chi2 ~ 8.9 against RISE). Everything else is either drift-degenerate
+      (Ciocan, MSA-3D), dilution-gutted (Ubler, Amvrosiadis: 14-59% of the deep-MOND a0 lever), or
+      internally inconsistent (Jeanneau vs Ubler). That is why ONE MORE Big-Wheel-class object is
+      worth more than any number of massive-SFG RAR fits.
+  (D) A genuine asymmetry worth stating: the LCDM apparent drift can only push a0 UP. A measured
+      DECLINE therefore cannot be faked by it -- the nuisance that destroys the rising evidence
+      HELPS the declining branch (MC lnB exceeds the drift-free value by ~1.3 at fixed precision).
+  (E) Both footings carried; the RATIO is footing-independent, so nothing here depends on
+      9.36e-11 vs 1.13e-10. a0's VALUE and the HORIZON CHOICE remain POSITS. If DESI DR3 relaxes
+      to w=-1, M-DEC collapses onto M-FLAT and the fork becomes UNTESTABLE (not falsified).
+      No TOE. No 'theory closed'. nu = Milgrom 1999 PLA 253:273 Eq.9; McCulloch credited for E(z).
+
+######################################################################################################
+# PRE-REGISTRATION -- a0(z) MODEL COMPARISON + DECISIVE MEASUREMENT -- FROZEN 2026-07-25
+######################################################################################################
+#  1. HEADLINE ODDS (run M, drift ~ U(0, p_mag=0.920)): log10 B(DEC/RISE) = -7.99, log10 B(DEC/FLAT) = +1.11, log10 B(RISE/FLAT) = +9.10. FACE VALUE (stat errors, p=0): -50.94 / +6.34 / +57.27 with chi2/dof 15-40 for every model (NO model fits -> face-value factors are data-inconsistency, not evidence). MOST CONSERVATIVE (systematics-inclusive AND drift marginalized): +0.49 / -0.45 / -0.94.
+#  2. THE VERDICT-FLIPPING KNOB is the drift-prior CEILING, not the data: raise it from 1.0x to 1.5x the Magneticum amplitude and log10 B(DEC/RISE) moves from -7.99 to +1.00. M-DEC needs p=1.41 (5.4x apparent rise at z=2.3, 1.8x Magneticum); M-FLAT p=1.30 (1.6x); M-RISE only p=0.35 (0.5x).
+#  3. DECISION THRESHOLD for DEC-vs-RISE: ONE clean deep-MOND-selected (g_bar<0.3 a0) rotator at z~3 with sigma(a0) <= 0.31 dex (~70% fractional) clears 20:1; N=3 at that precision clears 150:1. JWST NIRSpec-IFU (lensed low-mass) + ALMA CO/[CII] delivers ~0.21 dex/object -> FEASIBLE NOW.
+#  4. DECISION THRESHOLD for DEC-vs-FLAT: sigma(a0) <= 0.024 dex (5.5%) at z=2 / 0.045 dex (10.4%) at z=3, AND a COHERENT floor <= 0.08 dex for 20:1 (5-bin, B~90:1) or ~0.04 dex for 150:1. Requires SKA2/ngVLA DIRECT HI gas masses (<0.05 dex, no alpha_CO) -> ~2035+. Sample size nearly irrelevant (floor-limited).
+#  5. DEEP-MOND ERROR BUDGET (derived): sigma(log a0) = sqrt((4 sigma(log V))^2 + sigma(log M_bar)^2). It reproduces the Big Wheel's quoted +/-0.22 dex and the committed ~0.30 dex coherent floor -- anchored, not invented. Once HI removes alpha_CO, 4*sigma_coh(log V) (velocity systematics) is the binding wall.
+#  6. ACCELERATION DILUTION (mandatory, framework's own nu): L(x)=1/(1+x), x=g_bar/a0. Applied levers: Jeanneau 0.65, Ubler z0.9 0.59, Ubler z2.3 0.22, Amvrosiadis 0.14, Tiley 0.50, deep-MOND/RAR 1.00. The 'rising' bTFR points therefore carry 14-59% of the deep-MOND a0 lever -- down-weighted BOTH ways.
+#  7. MSA-3D uses the SELECTION-CORRECTED slope +0.91+/-0.79, NEVER the raw +2.13. Ciocan keeps its FULL stat error 0.105 in the headline run (NOT systematics-inflated away); its face-value ~30s rise is NOT taken as a fundamental-a0 result. Manufactured win == manufactured deficit, penalized equally.
+#  8. M-FLAT is included and is fully viable. FLAT is simultaneously standard-MOND AND the framework's own w->-1 dissolution limit: a FLAT win is NOT a framework falsification, but it IS a failure to detect the distinctive decline. If DESI DR3 relaxes to w=-1, M-DEC collapses onto M-FLAT -> UNTESTABLE.
+#  9. The 2 digitized qualitative bounds (Milgrom17 one-sided x4 limit; McGaugh+24 'no clear evolution') are a SECONDARY arm: including them moves log10 B(DEC/RISE) from -7.99 to -5.18. They are digitizations of prose, not published likelihoods -- reported with AND without.
+#  10. The RATIO a0(z)/a0(0) is FOOTING-INDEPENDENT, so every number here holds on both a0(0)=9.355e-11 (cH_Lambda/Z) and 1.131e-10 (cH0/Z). a0's VALUE and the HORIZON CHOICE are POSITS. nu=sqrt(1+1/y) is Milgrom 1999 (PLA 253:273 Eq.9); McCulloch credited for the Hubble-horizon rising branch. No TOE.
+######################################################################################################
+
+SELF-CHECK OK: M-DEC 1.036@0.35 / 0.874@2 / 0.775@3 match the committed band;
+  M-RISE 1.79/3.00/4.54 match E(z); Magneticum p_mag=0.9202 -> 3.00x@z2.3;
+  MSA-3D uses +0.91 (raw +2.13 absent); Ciocan keeps stat 0.105; drift required DEC 1.41 >
+  p_mag 0.92 > RISE 0.35; log10 B(DEC/RISE) SIGN-FLIPS across treatments
+  (-7.99 to +0.49); headline spec clears 20:1 by MC (lnB=3.36).
+EXIT 0 (ran; not a verdict).
