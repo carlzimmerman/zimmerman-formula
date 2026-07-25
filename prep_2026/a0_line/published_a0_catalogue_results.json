@@ -1,0 +1,455 @@
+{
+ "framing": {
+  "gdag": 1.2e-10,
+  "a0_canon": 9.354769736111044e-11,
+  "a0_alt": 1.1305322040279838e-10,
+  "ratio_gdag_over_canon": 1.2827680785853985,
+  "canon_below_gdag_pct": 22.043585532407974,
+  "gdag_above_canon_pct": 28.276807858539854,
+  "sigma_sys_published": 2.4e-11,
+  "canon_offset_in_sigma_sys": 1.1021792766203984,
+  "alt_offset_in_sigma_sys": 0.289449149883401
+ },
+ "footprints": {
+  "0.5": {
+   "tag": "published convention (Ud=0.50, Ub=0.70)",
+   "N": 2696,
+   "Ngal": 147,
+   "N_gasdom": 426,
+   "Ngal_gasdom": 62,
+   "y_at_gdag": [
+    0.006933919758817399,
+    0.2119892879225711,
+    54.51914267512445
+   ],
+   "y_gasdom_at_gdag": [
+    0.006933919758817399,
+    0.13405142420675914
+   ],
+   "y_at_canon": [
+    0.008894610926083525,
+    0.2719330915491234,
+    69.9354158954926
+   ],
+   "y_gasdom_at_1em10": [
+    0.00832070371058088,
+    0.16086170904811098
+   ]
+  },
+  "0.7": {
+   "tag": "this repo's a0-line baseline (Ud=0.70)",
+   "N": 2696,
+   "Ngal": 147,
+   "N_gasdom": 310,
+   "Ngal_gasdom": 49,
+   "y_at_gdag": [
+    0.007328479915802079,
+    0.2880162903017947,
+    76.32627576614023
+   ],
+   "y_gasdom_at_gdag": [
+    0.007328479915802079,
+    0.14460862077914616
+   ],
+   "y_at_canon": [
+    0.009400740100545117,
+    0.36945810331172757,
+    97.90891011011097
+   ],
+   "y_gasdom_at_1em10": [
+    0.008794175898962494,
+    0.1735303449349754
+   ]
+  },
+  "published_Q_inc_galaxy_count": 153,
+  "regime_contrast": {
+   "median_y_ratio_full_over_gasdom": 7.784222259911892,
+   "frac_full_points_in_gasdom_y_window": 0.375
+  }
+ },
+ "a0pt_structural_limit": [
+  {
+   "y_lo": 0.0,
+   "y_hi": 0.1,
+   "N": 795,
+   "pct_negative": 0.0,
+   "mean_over_median": 1.3006088962678721
+  },
+  {
+   "y_lo": 0.1,
+   "y_hi": 0.3,
+   "N": 577,
+   "pct_negative": 0.17331022530329288,
+   "mean_over_median": 1.246789863949024
+  },
+  {
+   "y_lo": 0.3,
+   "y_hi": 1.0,
+   "N": 567,
+   "pct_negative": 5.114638447971781,
+   "mean_over_median": 1.3709561182775796
+  },
+  {
+   "y_lo": 1.0,
+   "y_hi": 3.0,
+   "N": 385,
+   "pct_negative": 34.54545454545455,
+   "mean_over_median": 1.6279895860524036
+  },
+  {
+   "y_lo": 3.0,
+   "y_hi": 10.0,
+   "N": 270,
+   "pct_negative": 72.96296296296296,
+   "mean_over_median": 1.004541855420829
+  },
+  {
+   "y_lo": 10.0,
+   "y_hi": Infinity,
+   "N": 102,
+   "pct_negative": 81.37254901960785,
+   "mean_over_median": 0.9645803483446809
+  }
+ ],
+ "conversions": {
+  "ssm10_adopted": 9.981527692257834e-11,
+  "ssm10_mean_free": 1.0856531743202515e-10,
+  "ssm10_trim3": 6.967624850115047e-11,
+  "ssm10_mean_over_trim": 1.558139534883721,
+  "btfr_A47_chi080": 1.2822969574897647e-10,
+  "btfr_A47_chi1": 1.6028711968622058e-10,
+  "btfr_A41_chi080": 1.46995017078095e-10,
+  "btfr_A53_chi080": 1.1371312641890366e-10,
+  "btfr_chi_is_calibrated_on_a0_12": true
+ },
+ "catalogue": [
+  {
+   "id": "MLS16",
+   "ref": "McGaugh, Lelli & Schombert 2016, PRL 117, 201101",
+   "family": "F1_curvefit_ODR",
+   "statistic": "nonlinear orthogonal-distance regression (scipy.odr) of the ONE-parameter curve g_obs = g_bar/(1-exp(-sqrt(g_bar/g_dag))) to the INDIVIDUAL points (explicitly NOT binned); single global g_dag; errors on BOTH variables",
+   "mean_or_median": "MEAN-like in the residual it minimises, but that residual is in LOG10 space (independently verified: [CZ18] reproduce 1.20e-10 only when the first chi2 term is the logarithmic distance) -> therefore MEDIAN-LIKE in linear g. Published residual histogram: symmetric, Gaussian, sigma = 0.11 dex, rms 0.13 dex.",
+   "sample": "SPARC LTGs, Q<=2, inc>30 deg, dV/V<0.10: 2693 points, 153 galaxies; Upsilon_disk=0.5, Upsilon_bulge=0.7 M/L at 3.6um",
+   "y_range": "reproduced here: y = g_bar/g_dag from 0.0069 to 54.5, median 0.212 (3.90 decades)",
+   "error_space": "LOG (dex): 'The mean error on gobs is 0.1 dex' and 'The mean error on gbar is 0.08 dex' [L17]. IMPORTANTLY, their d(g_obs) (L17 eq. 2) ALREADY propagates dV_obs/V_obs, di/tan(i) AND dD/D in quadrature -- so unlike this repo's fire_common.sig2_model, family F1 does NOT omit sigma_lnD from its weights. Mechanism M-B of estimator_weight_diagnosis.py (Hubble-flow over-weighting from an omitted sigma_lnD) therefore does NOT transfer to F1. What DOES remain is that these per-galaxy coherent errors are treated as per-point independent.",
+   "quoted": "g_dag = 1.20 +- 0.02 (random) +- 0.24 (systematic) x 1e-10 m/s^2"
+  },
+  {
+   "id": "L17",
+   "ref": "Lelli, McGaugh, Schombert & Pawlowski 2017, ApJ 836, 152",
+   "family": "F1_curvefit_ODR",
+   "statistic": "same scipy.odr fit of the same one-parameter curve to the same 2693 LTG points; ALSO a variant (their eq. 14) with an added acceleration floor g_hat, fitted to LTGs+ETGs+dSphs",
+   "mean_or_median": "as MLS16 (log-space ODR -> median-like in linear g)",
+   "sample": "153 LTGs (2693 pts) + 25 ETGs (28 rotating + 80 X-ray pts) + 62->35 dSphs (1 pt each, after a tidal cut); total acceleration range ~1e-12 to 1e-9 m/s^2 (4 dex; ~6 dex with ultrafaints)",
+   "y_range": "LTG part identical to MLS16; the dSph extension pushes g_obs down to ~1e-12, i.e. far below the SPARC rotation-curve floor",
+   "error_space": "LOG (dex), errors on both variables",
+   "quoted": "LTG fit: g_dag = 1.20 +- 0.02 x 1e-10 (sys 0.24). ONE-LAW fit with the floor: g_dag = (1.1 +- 0.1) x 1e-10 and g_hat = (9.2 +- 0.2) x 1e-12 m/s^2"
+  },
+  {
+   "id": "CZ18",
+   "ref": "Chang & Zhou 2018, arXiv:1803.08344",
+   "family": "F1_curvefit_ODR",
+   "statistic": "the SAME ODR statistic, run BOTH ways: chi2 first term in LINEAR g_obs, and in log10 g_obs. Explicit reproduction test of MLS16.",
+   "mean_or_median": "both variants measured: the LOG variant is median-like, the LINEAR variant is mean-like in g",
+   "sample": "SPARC, n = 2693 points, 147 galaxies",
+   "y_range": "as MLS16",
+   "error_space": "LINEAR for their fiducial chi2; LOG for the MLS16-reproducing variant",
+   "quoted": "LINEAR-residual ODR: g_dag = (1.02 +- 0.02) x 1e-10 m/s^2. LOG-residual ODR: reproduces MLS16's 1.20e-10. => a MEASURED, PUBLISHED 15% estimator sensitivity INSIDE family F1, with the mean-like/linear variant reading LOWER, not higher."
+  },
+  {
+   "id": "Li18",
+   "ref": "Li, Lelli, McGaugh & Schombert 2018, A&A 615, A3",
+   "family": "F2_pergalaxy_then_combine",
+   "statistic": "per-galaxy MCMC fit of the RAR curve to each rotation curve; chi2 in LINEAR acceleration space, chi2 = sum_R (g_obs-g_tot)^2/sigma_gobs^2 with sigma_gobs = 2 V_obs dV_obs/R; Gaussian priors on Upsilon_star (0.5/0.7 with 0.1 dex), D and i (observational errors). Section 5 refits with g_dag FREE per galaxy, under a flat and a Gaussian prior.",
+   "mean_or_median": "the per-galaxy fit is MEAN-like in linear acceleration; NO combination statistic is applied -- the paper reports the DISTRIBUTION (their Fig. 7) and declines to quote a combined free-g_dag value",
+   "sample": "175 SPARC galaxies fitted (2694 points in the 153-galaxy RAR subsample); rms residual 0.057 dex (fixed g_dag), 0.054 dex (free g_dag)",
+   "y_range": "as MLS16 for the RAR subsample",
+   "error_space": "LINEAR on g_obs; Upsilon/D/i marginalised as nuisance parameters (log-normal prior on Upsilon)",
+   "quoted": "NO new a0. Fiducial fits FIX g_dag = 1.20e-10 (Gaussian prior 1.20 +- 0.02). Their result is a NULL: 'adjusting the value of g_dag improves neither the fits nor the rms scatter'; free-g_dag gains are absorbed by the Upsilon degeneracy. => Li+2018 must NOT be cited as an independent a0 determination."
+  },
+  {
+   "id": "D23",
+   "ref": "Desmond 2023, MNRAS 526, 3342",
+   "family": "F3_full_hierarchical_likelihood",
+   "statistic": "full joint Bayesian inference by Hamiltonian Monte Carlo (NUTS/numpyro). Likelihood is GAUSSIAN IN log10(g_obs) with sigma_tot^2 = dlog(g_obs)^2 + sigma_int^2 + (dlog g_pred/dlog g_bar)^2 dlog(g_bar)^2 (marginalised-likelihood form). Free parameters: a0, sigma_int, and 147x(e_N, D, i, L_3.6, Upsilon_disk, Upsilon_gas) + 31xUpsilon_bulge. Reports the POSTERIOR MEDIAN.",
+   "mean_or_median": "MEDIAN-like twice over: log-space residuals AND a posterior median",
+   "sample": "2696 points, 147 galaxies -- an EXACT match to this repo's reproduction",
+   "y_range": "reproduced here: 0.0069 .. 54.5 in g_bar/g_dag",
+   "error_space": "LOG throughout; and -- decisively for the transfer question -- D, i, L_3.6 and every Upsilon are SAMPLED, not folded into a fixed error bar. D23's stated motivation is precisely that the F1 error model is misspecified: 'in reality these are free parameters of the fit, contributing systematic rather than statistical error'.",
+   "quoted": "a0 = (1.19 +- 0.04 (stat) +- 0.09 (sys)) x 1e-10 m/s^2; sigma_int = 0.034 dex. Across models (Table 3): 1.070, 1.077, 1.19, 1.236, 1.307, 1.309 x 1e-10."
+  },
+  {
+   "id": "C22",
+   "ref": "Chae 2022, ApJ 941, 55",
+   "family": "F3_full_hierarchical_likelihood",
+   "statistic": "global Bayesian MCMC on the stacked sample; likelihood built on ORTHOGONAL residuals from the relation using the individual uncertainties of the LOGARITHMIC baryonic and observed accelerations; a0 fitted GLOBALLY (not per galaxy) jointly with the external-field strength",
+   "mean_or_median": "MEDIAN-like (log-space residuals, posterior summary)",
+   "sample": "3097 points, 152 SPARC galaxies; split into inner and outer rotation-curve parts",
+   "y_range": "full SPARC range; the inner/outer split is a y split in practice",
+   "error_space": "LOG on both accelerations",
+   "quoted": "OUTER parts: a0 = 1.199 (+0.023/-0.022) x 1e-10. INNER parts: a0 = 1.114 (+0.035/-0.034) x 1e-10. (The inner/outer difference is attributed to the EFE, not to a0; but it is a ~2 sigma a0 spread WITHIN one paper's own estimator.)"
+  },
+  {
+   "id": "SSM10",
+   "ref": "Swaters, Sanders & McGaugh 2010, ApJ 718, 380",
+   "family": "F2_pergalaxy_then_combine",
+   "statistic": "per-galaxy LEAST-SQUARES fit of the MOND rotation curve v_rot(r) (standard mu(x) = x/sqrt(1+x^2)) to the observed V(R), with a0 free per galaxy alongside Upsilon_disk; then the per-galaxy a0 values are COMBINED BY ARITHMETIC AVERAGING",
+   "mean_or_median": "MEAN-like on per-object a0 -- the ONLY published family that is structurally the same class as this repo's failing gls_origin, and in the SAME deep-MOND regime",
+   "sample": "27 dwarf and LSB galaxies (deep-MOND dominated, low surface brightness); fits in LINEAR velocity space",
+   "y_range": "dwarf/LSB rotation curves: predominantly y < 1 (their own framing: 'in most of these galaxies the accelerations fall below the threshold')",
+   "error_space": "LINEAR on V_obs (errors on velocity only); D and i explored as free parameters in separate fits, not marginalised",
+   "quoted": "average of the free-a0 fits: 3350 km^2/s^2/kpc = 1.086e-10 m/s^2. Excluding the three highest: 2150 km^2/s^2/kpc = 6.97e-11 m/s^2 (their '0.7e-8 cm/s^2'). Their conclusion: the sample favours a LOWER a0 than the adopted 1.0e-10."
+  },
+  {
+   "id": "BBS91",
+   "ref": "Begeman, Broeils & Sanders 1991, MNRAS 249, 523",
+   "family": "F2_pergalaxy_then_combine",
+   "statistic": "least-squares fits of the MOND rotation curve (standard mu) to 10 high-quality extended HI rotation curves, with a universal a0 and per-galaxy M/L; the origin of the canonical '1.2e-10'",
+   "mean_or_median": "MEAN-like (chi2 on velocities, linear space)",
+   "sample": "10 galaxies, high-quality extended rotation curves",
+   "y_range": "bright spirals: spans the transition region, y ~ 0.1 to a few",
+   "error_space": "LINEAR on V_obs",
+   "quoted": "a0 = 1.2 +- 0.27 x 1e-10 m/s^2 (1.21 x 1e-8 cm/s^2), 'standard' mu"
+  },
+  {
+   "id": "M11",
+   "ref": "McGaugh 2011/2012, AJ 143, 40 (BTFR normalisation route)",
+   "family": "F4_BTFR_normalisation",
+   "statistic": "fit of log M_b = 4 log V_f + log A to ONE point per galaxy with the slope FIXED at 4, minimising the ORTHOGONAL deviations in log space (weighted and unweighted both reported); then invert via A = chi/(a0 G)",
+   "mean_or_median": "MEDIAN-like in effect: log-space orthogonal residuals, and the paper reports the SKEW and KURTOSIS of those residuals as alpha3 = -0.01, alpha4 = 0.01 for the combined sample -- i.e. measured to be SYMMETRIC",
+   "sample": "34 gas-rich galaxies (Stark + Trachternach), M_gas > M_star so Upsilon-free; one asymptotic point per galaxy",
+   "y_range": "the asymptotic flat part only: a single deep-MOND point per galaxy",
+   "error_space": "LOG (log M_b vs log V_f), errors on both variables",
+   "quoted": "A = 47 +- 6 M_sun km^-4 s^4; with chi = 0.80, a0 = 1.3 +- 0.3 x 1e-10 m/s^2. CIRCULARITY FLAG: chi = 0.80 is calibrated from MOND rotation-curve fits that assumed a0 = 1.2e-10, so this route is NOT independent of F2. With chi = 1 the same A gives 1.61e-10."
+  },
+  {
+   "id": "Mi24",
+   "ref": "Mistele, McGaugh, Lelli, Schombert & Li 2024, JCAP 04, 020",
+   "family": "F5_not_a_determination",
+   "statistic": "weak-lensing extension of the RAR; the RAR fit function is ADOPTED, not fitted",
+   "mean_or_median": "n/a",
+   "sample": "stacked weak lensing around isolated SPARC-like LTGs/ETGs, reaching g_bar ~ 1e-15 to 1e-12 m/s^2",
+   "y_range": "y = g_bar/a0 down to ~1e-4 -- 4 decades BELOW the SPARC rotation-curve floor",
+   "error_space": "binned means with statistical + systematic bands",
+   "quoted": "NO determination: 'adopting a0 = 1.24e-10 m/s^2' from the literature and checking that the extrapolated curve matches. Must NOT be cited as an independent a0. It IS, however, the natural future home of a deep-MOND AMPLITUDE test, since there the framework's nu and McGaugh's nu coincide."
+  }
+ ],
+ "families": [
+  {
+   "id": "F1_curvefit_ODR",
+   "members": [
+    "MLS16",
+    "L17",
+    "CZ18"
+   ],
+   "what": "one global scale parameter from an orthogonal-distance regression of a one-parameter curve to ~2700 individual points over ~3.9 decades in y",
+   "risk": "LOW for Jensen/skew, MODERATE for error-model misspecification",
+   "reason": "The minimised residual is in LOG10 g_obs (verified by [CZ18]'s explicit reproduction: only the log form returns 1.20e-10), and the published residual histogram is symmetric and Gaussian at 0.11 dex. A least-squares centre of a log-symmetric distribution estimates the MEDIAN of the linear distribution, so the multiplicative-noise Jensen inflation that drives this repo's +10.34 pp is structurally absent. Two real residual risks remain, and BOTH must be measured: (1) [CZ18] show a 15% shift (1.20 -> 1.02e-10) from the linear-vs-log residual choice inside this very family -- with the mean-like variant reading LOWER, i.e. OPPOSITE in sign to this repo's deep-MOND result; (2) D/i/Upsilon are folded in as uncorrelated per-point Gaussians when they are in fact per-galaxy and global coherent offsets ([D23]'s stated criticism), which is an error-model bias channel unrelated to skew. NOTE what does NOT transfer: F1's d(g_obs) already contains dD/D and di/tan(i) (L17 eq. 2), so the omitted-sigma_lnD over-weighting that amplifies this repo's GLS bias by ~35% (mechanism M-B) is absent from F1 by construction.",
+   "implementable": "YES -- scipy.odr on the published curve, both linear and log residual forms, over the full-range mock"
+  },
+  {
+   "id": "F2_pergalaxy_then_combine",
+   "members": [
+    "BBS91",
+    "SSM10",
+    "Li18"
+   ],
+   "what": "fit each galaxy's rotation curve (or RAR) with a0 free per object, then combine the per-object a0 values",
+   "risk": "HIGH -- the only published family in the same structural class as the proven failure, and [SSM10] is in the same deep-MOND regime",
+   "reason": "[SSM10] combine by ARITHMETIC AVERAGING of per-galaxy a0. A per-object a0 inherits the multiplicative D/i/V error structure with a lever ~2(1+y), so its sampling distribution is right-skewed and E[a0] > median[a0] -- exactly the mechanism this repo isolated (log-mean inflation, dominated by exp(2 sigma_lnD^2)). [SSM10]'s own numbers show the empirical signature: mean 1.086e-10 vs 6.97e-11 after dropping 3 of 27 galaxies (a factor 1.56). NOTE THE DIRECTION HONESTLY: robustifying this family moves a0 DOWN, i.e. toward and PAST the framework's canonical 9.355e-11 -- so a confirmed bias here would NOT hand the framework a win, it would leave 1.2e-10 unsupported by THIS family while overshooting canonical. The estimator is also NOT identical to gls_origin: chi2 on VELOCITIES in linear space, a0 fitted jointly with Upsilon per galaxy under the standard mu. MUST BE MEASURED.",
+   "implementable": "YES -- per-galaxy nonlinear LSQ on V(R) with (a0, Upsilon) free, then mean / median / trimmed-mean combination, on full-range mocks"
+  },
+  {
+   "id": "F3_full_hierarchical_likelihood",
+   "members": [
+    "D23",
+    "C22"
+   ],
+   "what": "a single joint likelihood over all points with every galaxy nuisance parameter (D, i, L, Upsilon, EFE) sampled and marginalised; report the posterior median",
+   "risk": "LOWEST -- this family IS the Jensen-immune counterpart",
+   "reason": "Log-space Gaussian likelihood plus a posterior MEDIAN summary. A correctly modelled likelihood can be unbiased on skewed data, and this is the family designed for exactly that. It also repairs the F1 error-model misspecification by sampling D, i, L and Upsilon rather than fixing them. The decisive datum for the whole transfer question is that this family does NOT move the answer down: [D23] gets 1.19 +- 0.04 (stat) +- 0.09 (sys), [C22] 1.199 (outer). If the published value were an artefact of mean-like estimation on skewed data, THIS is where it would have collapsed, and it did not.",
+   "implementable": "YES but expensive -- a log-space hierarchical likelihood with per-galaxy latent (D, i, Upsilon); a profile-likelihood version is a cheap proxy"
+  },
+  {
+   "id": "F4_BTFR_normalisation",
+   "members": [
+    "M11"
+   ],
+   "what": "log-space fixed-slope line fit to one asymptotic point per galaxy, then invert A = chi/(a0 G)",
+   "risk": "LOW for Jensen; DISQUALIFYING for independence",
+   "reason": "Log-space orthogonal residuals with PUBLISHED skew -0.01 and kurtosis 0.01 -- measured to be symmetric, so no Jensen gap. But the geometry factor chi = 0.80 is calibrated from rotation-curve fits that ASSUMED a0 = 1.2e-10, so this route can neither challenge nor corroborate 1.2e-10 independently. Its own quoted uncertainty (+-0.3e-10, 23%) already brackets both footings.",
+   "implementable": "YES but low value -- the informative parameter is chi, not the estimator"
+  },
+  {
+   "id": "F5_not_a_determination",
+   "members": [
+    "Mi24"
+   ],
+   "what": "papers that ADOPT a published a0 and test consistency",
+   "risk": "n/a",
+   "reason": "No a0 is estimated, so no estimator bias can exist. Listed so that it is never miscounted as independent support for any value.",
+   "implementable": "n/a"
+  },
+  {
+   "id": "F6_a0line_perpoint_slope",
+   "members": [
+    "(none published)"
+   ],
+   "what": "through-origin slope / location statistic on per-point a0_pt = (g_obs^2-g_bar^2)/g_bar -- THIS REPO'S OWN family",
+   "risk": "PROVEN biased for its mean-like member on the gas-dominated subsample",
+   "reason": "gls_origin = +10.34 pp (26 bootstrap sd, injection-independent across 9.355e-11 / 1.1305e-10 / 1.2e-10); six median-like members pass at |b| < 1.5 pp. Mechanism: multiplicative log-noise inflates the MEAN of a0_pt by E[A^2]E[1/B] > 1 (dominated by exp(2 sigma_lnD^2) = 1.133 on the 29 Hubble-flow galaxies) while leaving the MEDIAN alone. NO PUBLISHED DETERMINATION USES THIS FAMILY, and S2 above shows it cannot even be DEFINED over the published full-range sample (a0_pt changes sign at y ~ 1).",
+   "implementable": "ALREADY IMPLEMENTED AND MEASURED (estimator_bias_mocks.py)"
+  }
+ ],
+ "ledger": [
+  {
+   "name": "SSM10 mean-excl-3 (F2, robustified)",
+   "a0": 6.967624850115047e-11,
+   "quoted": "6.97e-11",
+   "over_canon": 0.7448205617738295,
+   "over_alt": 0.6163136994496956,
+   "over_gdag": 0.5806354041762539
+  },
+  {
+   "name": "framework canonical cH_Lambda/Z",
+   "a0": 9.354769736111044e-11,
+   "quoted": "POSITED",
+   "over_canon": 1.0,
+   "over_alt": 0.8274660113865706,
+   "over_gdag": 0.7795641446759203
+  },
+  {
+   "name": "CZ18 linear-residual ODR (F1)",
+   "a0": 1.02e-10,
+   "quoted": "1.02e-10 +- 0.02",
+   "over_canon": 1.0903528667975888,
+   "over_alt": 0.9022299376929135,
+   "over_gdag": 0.85
+  },
+  {
+   "name": "D23 'scatter, no EFE' model (F3)",
+   "a0": 1.07e-10,
+   "quoted": "1.070 +0.032",
+   "over_canon": 1.1438015367386472,
+   "over_alt": 0.9464568954229584,
+   "over_gdag": 0.8916666666666667
+  },
+  {
+   "name": "SSM10 mean of free fits (F2)",
+   "a0": 1.0856531743202515e-10,
+   "quoted": "1.086e-10",
+   "over_canon": 1.1605343636941066,
+   "over_alt": 0.960302741003014,
+   "over_gdag": 0.9047109786002095
+  },
+  {
+   "name": "L17 one-law + floor (F1 variant)",
+   "a0": 1.1e-10,
+   "quoted": "1.1 +- 0.1",
+   "over_canon": 1.175870738703282,
+   "over_alt": 0.9729930700609851,
+   "over_gdag": 0.9166666666666666
+  },
+  {
+   "name": "C22 inner rotation curves (F3)",
+   "a0": 1.114e-10,
+   "quoted": "1.114 +0.035/-0.034",
+   "over_canon": 1.1908363662867782,
+   "over_alt": 0.9853766182253977,
+   "over_gdag": 0.9283333333333333
+  },
+  {
+   "name": "framework ALT cH0/Z",
+   "a0": 1.1305322040279838e-10,
+   "quoted": "POSITED",
+   "over_canon": 1.208508852616577,
+   "over_alt": 1.0,
+   "over_gdag": 0.9421101700233198
+  },
+  {
+   "name": "D23 fiducial combined (F3)",
+   "a0": 1.19e-10,
+   "quoted": "1.19 +-0.04 stat +-0.09 sys",
+   "over_canon": 1.272078344597187,
+   "over_alt": 1.052601593975066,
+   "over_gdag": 0.9916666666666667
+  },
+  {
+   "name": "C22 outer rotation curves (F3)",
+   "a0": 1.199e-10,
+   "quoted": "1.199 +0.023/-0.022",
+   "over_canon": 1.2816991051865774,
+   "over_alt": 1.0605624463664738,
+   "over_gdag": 0.9991666666666666
+  },
+  {
+   "name": "MLS16 / L17 published g_dagger (F1)",
+   "a0": 1.2e-10,
+   "quoted": "1.20 +-0.02 rnd +-0.24 sys",
+   "over_canon": 1.2827680785853985,
+   "over_alt": 1.0614469855210746,
+   "over_gdag": 1.0
+  },
+  {
+   "name": "BBS91 original (F2)",
+   "a0": 1.21e-10,
+   "quoted": "1.2 +- 0.27",
+   "over_canon": 1.2934578125736103,
+   "over_alt": 1.0702923770670836,
+   "over_gdag": 1.0083333333333333
+  },
+  {
+   "name": "D23 'scatter, max-clustering EFE' (F3)",
+   "a0": 1.236e-10,
+   "quoted": "1.236 +- 0.043",
+   "over_canon": 1.3212511209429605,
+   "over_alt": 1.093290395086707,
+   "over_gdag": 1.03
+  },
+  {
+   "name": "Mi24 adopted value (not a fit)",
+   "a0": 1.24e-10,
+   "quoted": "adopted",
+   "over_canon": 1.3255270145382454,
+   "over_alt": 1.0968285517051106,
+   "over_gdag": 1.0333333333333334
+  },
+  {
+   "name": "M11 BTFR with chi=0.80 (F4)",
+   "a0": 1.2822969574897647e-10,
+   "quoted": "1.3 +- 0.3",
+   "over_canon": 1.3707413369458734,
+   "over_alt": 1.1342418667252971,
+   "over_gdag": 1.0685807979081372
+  },
+  {
+   "name": "D23 'no scatter, max-clustering EFE' (F3)",
+   "a0": 1.309e-10,
+   "quoted": "1.309 +0.039",
+   "over_canon": 1.3992861790569058,
+   "over_alt": 1.1578617533725724,
+   "over_gdag": 1.0908333333333333
+  },
+  {
+   "name": "M11 BTFR with chi=1 (F4, uncorrected)",
+   "a0": 1.6028711968622058e-10,
+   "quoted": "1.61e-10",
+   "over_canon": 1.7134266711823416,
+   "over_alt": 1.4178023334066212,
+   "over_gdag": 1.3357259973851714
+  }
+ ],
+ "anchors": {
+  "gls_origin_real": 1.1814381247770623e-10,
+  "median_a0pt_real": 9.725607106012755e-11,
+  "mock_bias_gls_pp": 10.337184387348985,
+  "mock_bias_median_pp": -0.8429077421413522,
+  "verdict_content_sha256": "f80adb8e750f9a6539819f6aae0e43d8a8ec14f8c0c1c399d57b80ed7f724b26"
+ },
+ "meta": {
+  "script": "published_a0_catalogue.py",
+  "role": "catalogue the PUBLISHED a0 determinations by estimator family; reproduce their sample footprints and y-ranges from raw SPARC; flag a priori Jensen/skew risk WITH the mechanism. No published estimator is implemented and NO bias of any published number is claimed.",
+  "posited_clause": "a0's VALUE remains POSITED in the Zimmerman dS-Unruh modified-inertia framework (a0 = c H_Lambda/Z). This is a measurement-methodology catalogue, not a derivation. Both footings carried. No theory-closed claim.",
+  "wellhead_credit": "nu = sqrt(1+1/y) is Milgrom 1999 PLA 253:273 Eq. 9; the framework's distinctive content is the cH_Lambda/Z coefficient plus the modified-inertia completion."
+ }
+}
