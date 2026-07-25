@@ -737,3 +737,32 @@ json.dump(out, open(os.path.join(HERE, "wb_a0_amplitude_budget_results.json"), "
           indent=1, default=float)
 print(f"\n[wb_a0_amplitude_budget_results.json written]")
 print("EXIT 0: WB a0-amplitude sensitivity + error budget computed. Exit code is not a verdict.")
+
+print(__doc__ if False else '')  # (corrections block below is documentation)
+
+# =============================================================================
+# ADVERSARY CORRECTIONS (post-hoc, 4 FAIL-MINOR items; verdict UPHELD, no blockers)
+# -----------------------------------------------------------------------------
+# C1 [mis-attribution, narrative only -- the NUMBER 9.73 is confirmed correct]:
+#    the claim "two stacked desensitizations, (ii) the EFE saturation COMPRESSES a0"
+#    is WRONG about the mechanism. d ln y_extN/d ln a0 = -1.255 has |.|>1, so the
+#    y_newt step AMPLIFIES (helps) sensitivity; the desensitization comes from
+#    d ln gamma/d ln y_extN = -0.080 (the 1/4 power TIMES the (C/y)/(1+C/y)
+#    saturation factor), which is the small number. Net 9.73 unchanged.
+# C2 [manufactured DEFICIT caught -- correction in the framework's FAVOUR]:
+#    "the shape does NOT break the degeneracy at any realistic N" is OVERSTATED.
+#    Computing the exact boost curves over the frozen bins: MI(a0=9.36e-11) vs
+#    MG(asymptote-matched a0=6.921e-11) differ by chi2=6.26 = 2.50 sigma at N=30k,
+#    concentrated in the two highest-separation bins. The SHAPE does carry real
+#    information; it just does not rescue the a0-AMPLITUDE extraction.
+# C3 [optimism]: the "direction that does work" (WB measures the EFE prescription C)
+#    is quoted with STATISTICS-ONLY sigma (SIGFIT_30K scaled as sqrt(30000/N)),
+#    with NO systematic floor. So sigma(ln C)=21.6% and the 3-sigma N~70,300 are
+#    FLOORS, not achievable values; a systematic ceiling makes MI-vs-MG in DR4
+#    HARDER than quoted. The frozen "MI-vs-MG likely UNDECIDABLE in DR4" stands.
+# C4 [incomplete propagation]: S2 carries all 8 footing x convention x law rows
+#    (A_abs 5.648-10.589) but S4/S5 propagate only A_abs=8.829 (MI/canonical/primary).
+#    The minimum-amplification corner (ALT footing + MG reading) formally beats the
+#    floor, but is internally inconsistent (it uses the MG prescription to constrain
+#    a MODIFIED-INERTIA a0) and is therefore not claimed.
+# =============================================================================
