@@ -1,0 +1,314 @@
+====================================================================================================
+S0 -- ANCHORS: STEP A (committed) + the frozen DR4 pre-registration + banked MI curve
+====================================================================================================
+  STEP A dwarf a0-line : box now 16.10%   SPARC-alone floor 11.62%   with-2-external-priors 6.78%
+  3-sigma canon-vs-ALT requirement (the bar to beat) : 6.31%
+  frozen DR4: sigma_fit(N=30k) = 0.0191, sigma_sys = 0.020  -> sigma_tot = 0.0277
+  frozen DR3 dry run: gamma = 1.2050 +- 0.0350 (N=10,624) -- in the >1.20 CONTAMINATION-GUARD zone = evidence for NOTHING
+  banked MI/MG reproduced: y_extN = 1.4643, gamma_MI = 1.1015, gamma_MG = 1.1390  [regression anchor OK]
+  effective C in the committed gamma=(1+C/y)^(1/4) at y=y_extN:  C_MI = 0.6916   C_MG = 1.0000  (MG is C=1 to 0.0000)
+  => the MI-vs-MG prescription IS a multiplicative ambiguity in C of 30.8%  (this is S3's problem)
+
+====================================================================================================
+S1 -- FORWARD MAP gamma_v(a0): how an observed gamma would map to an a0 amplitude
+====================================================================================================
+  Physics: the WB deep asymptote is set by the EXTERNAL field ratio y_extN = g_extN/a0.
+  g_ext is FIXED BY THE GALAXY (measured), so a0 enters ONLY through that ratio --
+  this is the amplitude handle, and it is the ONLY one (S3 shows the shape adds none).
+
+    a0 [m/s^2]   y_extN  gamma_MI  gamma_MG |  y_extN(alt gext)     gMI     gMG
+     7.000e-11   2.0887    1.0736    1.1027 |            2.5104  1.0621  1.0874
+     8.000e-11   1.7780    1.0853    1.1180 |            2.1452  1.0718  1.1004
+     9.360e-11   1.4643    1.1015    1.1390 |            1.7757  1.0854  1.1182  <- canonical
+     1.000e-10   1.3470    1.1093    1.1489 |            1.6373  1.0919  1.1266
+     1.130e-10   1.1510    1.1254    1.1692 |            1.4057  1.1053  1.1438  <- ALT
+     1.200e-10   1.0638    1.1342    1.1802 |            1.3024  1.1126  1.1531  <- Milgrom
+     1.350e-10   0.9088    1.1533    1.2039 |            1.1184  1.1285  1.1731
+     1.600e-10   0.7186    1.1859    1.2436 |            0.8917  1.1558  1.2069
+  READ: over the ENTIRE contested a0 band 9.36e-11 -> 1.20e-10 (+28%), the MI asymptote
+  moves 1.1015 -> 1.1342 = 0.0327 in gamma. The frozen sigma_sys alone is 0.02.
+
+====================================================================================================
+S2 -- SENSITIVITY: the 1/4-POWER DESENSITIZATION, d ln a0 / d ln gamma  (analytic+numeric)
+====================================================================================================
+  Closed form.  gamma = (1 + C/yE)^(1/4),  yE = y_newt(g_ext/a0):
+    d ln gamma / d ln yE   = -(1/4) (C/yE) / (1 + C/yE)
+    d ln yE   / d ln y_obs = 2 y_obs^2 / (yE sqrt(1+4 y_obs^2)),   y_obs = g_ext/a0
+    d ln y_obs/ d ln a0    = -1
+  =>  A_log  == d ln a0 / d ln gamma  =  -1 / [ (dlngamma/dlnyE)(dlnyE/dlny_obs) ]
+      A_abs  == d ln a0 / d gamma     =  A_log / gamma        (per ABSOLUTE gamma unit)
+
+  footing     g_ext     law     gamma   y_extN    A_log  A_closed    A_abs   meaning
+  canonical   primary   MI     1.1015   1.4643    9.726     9.939    8.829   1% in gamma -> 9.7% in a0
+  canonical   primary   MG     1.1390   1.4643    7.857     7.857    6.898   1% in gamma -> 7.9% in a0
+  canonical   alt-conv  MI     1.0854   1.7757   11.493    11.734   10.589   1% in gamma -> 11.5% in a0
+  canonical   alt-conv  MG     1.1182   1.7757    9.103     9.103    8.141   1% in gamma -> 9.1% in a0
+  ALT         primary   MI     1.1254   1.1510    7.972     8.152    7.084   1% in gamma -> 8.0% in a0
+  ALT         primary   MG     1.1692   1.1510    6.604     6.604    5.648   1% in gamma -> 6.6% in a0
+  ALT         alt-conv  MI     1.1053   1.4057    9.396     9.603    8.501   1% in gamma -> 9.4% in a0
+  ALT         alt-conv  MG     1.1438   1.4057    7.623     7.623    6.665   1% in gamma -> 7.6% in a0
+  [MG rows: closed form == finite difference to 1e-6 (C = 1 identically -> the closed
+   form is exact). MI rows differ by 2.2% because the per-star MI
+   prescription's effective C drifts weakly with y_extN. The NUMERIC value is used
+   everywhere below; for MI it is the SMALLER (more GENEROUS to WB) of the two, so the
+   verdict is not helped by this choice.]
+
+  FRAMEWORK-FIRST NUMBER (MI, canonical, primary g_ext): A_log = 9.73, A_abs = 8.83 per unit gamma.
+    -> a 1% gamma error is a 9.7% a0 error;  sigma(a0)/a0 = 8.83 x sigma(gamma).
+  MG reading is MILDER (7.86) because C=1 > C_MI=0.692 puts the
+    asymptote further from 1; the framework's own MI reading is the WORSE case, and
+    working-rule 1 says the MI reading is the one that decides.
+  WHY: two stacked desensitizations. (i) the 1/4 power; (ii) the EFE saturation --
+    a0 enters only inside y_extN, and y_newt() COMPRESSES it (d ln yE/d ln a0 = -1.255, not -1).
+  CONTRAST -- the dwarf a0-line: a0 = (g_obs^2 - g_bar^2)/g_bar is a DIRECT amplitude,
+    d ln a0 / d ln g_obs = 2 g_obs^2/(g_obs^2-g_bar^2) -> 2 deep; d ln a0/d ln Upsilon
+    = -phi(2y+1) -> O(1). Amplification ~1-2, vs WB's ~10. THAT ratio (~5x) is the structural
+    reason WB's *smaller percentage* systematics do not buy a smaller a0 error.
+
+====================================================================================================
+S3 -- THE C-a0 DEGENERACY (the risk flagged in the brief): does WB constrain a0 or C*a0^p?
+====================================================================================================
+  Take logs of the committed law:  ln(gamma^4 - 1) = ln C - ln yE(a0).  Therefore
+     d ln(gamma^4-1) = d ln C + p d ln a0,     p == -d ln yE/d ln a0 = 1.2545
+  A SINGLE measured gamma therefore constrains EXACTLY ONE combination: C * a0^1.255 = const.
+  a0 is extractable ONLY if C is known a priori -- i.e. only if the EFE prescription is
+  FIXED. It is not: the MI-vs-MG choice is precisely a choice of C.
+
+  DEMONSTRATION -- feed the SAME observed gamma to both prescriptions:
+   observed gamma   a0 | MI reading   a0 | MG reading    ratio
+           1.0600         5.803e-11         4.153e-11    1.397
+           1.0900         8.398e-11         6.159e-11    1.363
+           1.1015         9.360e-11         6.921e-11    1.352
+           1.1200         1.087e-10         8.129e-11    1.337
+           1.1390         1.238e-10         9.360e-11    1.322
+           1.1600         1.402e-10         1.071e-10    1.309
+  => the prescription ambiguity ALONE moves the extracted a0 by 35.2%  (= 5.6x the 6.31% target),
+     with NO measurement error at all. And the framework's MI completion is UNWRITTEN
+     (banked: the per-star MI-EFE law is a PRESCRIPTION, not a theorem) -- so C is not
+     going to be pinned by theory before DR4.
+
+  RIGOROUS VERSION -- 2-parameter Fisher (ln a0, ln C) on the FROZEN DR4 binning/shape:
+    frozen shape gamma(y) = 1 + (Gamma(a0,C)-1) * yE(a0)/(yE(a0)+y),  Gamma=(1+C/yE)^(1/4)
+    bins = frozen log10(y) edges; y_b fixed by PHYSICAL g_N (a0-independent binning of
+    the sky data), pair counts ~ dN/dlog s from a Opik-like s^-1.5 separation law,
+    per-bin sigma calibrated so the 1-PARAMETER (Gamma-only) error reproduces 0.0191.
+    calibration: per-bin sigma = 1.845/sqrt(n_b) reproduces sigma(Gamma) = 0.0191 at N=30,000
+      log10 y  g_N [m/s^2]  s [kAU]     n_b  sigma_b
+        -0.95    1.050e-11    29.11    2574   0.0364
+        -0.65    2.095e-11    20.61    2735   0.0353
+        -0.35    4.181e-11    14.59    3250   0.0324
+        -0.05    8.342e-11    10.33    4080   0.0289
+         0.30    1.868e-10     6.90    6039   0.0237
+         0.75    5.264e-10     4.11   11322   0.0173
+
+    [MI, C=0.6916]  sigma(ln a0) with C FIXED (conditional) =  18.35%
+                     sigma(ln a0) with C FREE  (marginal)    = 365.32%   correlation rho = -0.9987
+                     flat direction:  d ln C / d ln a0 = -1.1785  vs the asymptote-only analytic -1.2545
+                     (the 6% offset IS the shape's degeneracy-breaking power -- and it is why the
+                      marginal error is 20x the conditional one, not infinite)
+                     REVERSED (the useful direction): a0 FIXED by the dwarf line ->  sigma(ln C) = 21.62%
+
+    [MG, C=1.0000]  sigma(ln a0) with C FIXED (conditional) =  14.07%
+                     sigma(ln a0) with C FREE  (marginal)    = 266.91%   correlation rho = -0.9986
+                     flat direction:  d ln C / d ln a0 = -1.1750  vs the asymptote-only analytic -1.2545
+                     (the 6% offset IS the shape's degeneracy-breaking power -- and it is why the
+                      marginal error is 19x the conditional one, not infinite)
+                     REVERSED (the useful direction): a0 FIXED by the dwarf line ->  sigma(ln C) = 16.53%
+
+  READING: with the prescription FREE the marginal sigma(ln a0) EXPLODES (rho = -0.9987, |rho|->1);
+  the 8-bin shape does NOT break the degeneracy at any realistic N. The reason is S3b.
+
+  S3b -- WHY THE SHAPE CANNOT BREAK IT: where is the transition, physically?
+    In the EFE-saturated regime the boost turns on where the INTERNAL Newtonian field
+    drops below the EXTERNAL one, g_N(s) ~ g_extN -- and g_extN = yE(a0)*a0 is almost
+    a0-INDEPENDENT because y_newt compresses the ratio. Numerically:
+             a0  g_extN = yE*a0  s_half [kAU]  s(g_N=a0) [kAU]
+      9.360e-11      1.3706e-10         8.057            9.750
+      1.000e-10      1.3470e-10         8.127            9.432
+      1.130e-10      1.3006e-10         8.271            8.873
+      1.200e-10      1.2765e-10         8.349            8.611
+    d ln s_half / d ln a0 = +0.1431  ->  a 1% shift in the measured transition
+    location would be a 7.0% a0 measurement -- but the transition location is
+    itself only measurable to tens of percent (the boost amplitude is ~0.1 and the
+    curve is a shallow single-decade rollover), so this channel is WEAKER than the
+    amplitude, not a rescue. And it is degenerate with g_ext, not just with C.
+  ==> CONFIRMED, as the frozen pre-registration already states (sec 1.1): 'DR4 gamma_v
+      constrains the nu+EFE prescription, NOT the value a0 = 9.36e-11.' This script
+      supplies the quantitative version of that frozen sentence.
+
+====================================================================================================
+S4 -- THE WB a0 ERROR BUDGET (built in gamma, mapped to a0 with A_abs, framework-MI)
+====================================================================================================
+  (a) CONTAMINATION (unresolved triples/hierarchicals) -- ONE-SIDED, biases gamma HIGH
+      committed lever from wb_threshold_audit: f_triple = 0.195 absorbs the
+      DR3 deep excess -> d gamma/d f_triple in [0.59, 1.05] (MI-truth / Newton-truth brackets)
+      DR3 residual f_triple ~ 0.195 (3 Banik screens not implementable at eDR3)
+      DR4 residual f_triple = (0.02, 0.04, 0.08) = **ASSUMED BAND** (NSS completeness for the
+        inner-companion period range that matters is not yet published)
+        DR3      gamma bias/uncertainty = 0.1600  ->  a0:  141.3%
+        DR4_lo   gamma bias/uncertainty = 0.0118  ->  a0:   10.4%
+        DR4_mid  gamma bias/uncertainty = 0.0328  ->  a0:   29.0%
+        DR4_hi   gamma bias/uncertainty = 0.0841  ->  a0:   74.3%
+      NOTE the SIGN: contamination pushes gamma UP, hence the extracted a0 UP, i.e.
+      TOWARD the 1.13-1.20e-10 cluster. An uncorrected WB 'measurement' would appear to
+      DISFAVOUR the canonical footing as a pure artifact. Flagged so it is never cited.
+
+  (b) PHOTOMETRIC STELLAR MASS -- CORRECTION OF THE PRIOR OVERSTATEMENT
+      WB masses are NOT systematic-free. They come from the Banik+2024 eq.6 cubic
+      M_G -> M (Pecaut-Mamajek/FLAME calibrated), per-pair error 5.5% (his sec 2.3.3).
+      Propagation: gamma is v_obs / sqrt(G M_tot / s), so gamma ~ M^(-1/2):
+         d ln gamma = -0.5 d ln M   ->   d gamma = -0.5 gamma d ln M
+      SPLIT (the load-bearing distinction, exactly as in STEP A):
+        * per-pair RANDOM 5.5%: AVERAGES DOWN -> 0.016% in gamma at N=30k. Negligible. TRUE 'tighter than Upsilon'.
+        * COHERENT ZERO-POINT of the M-L relation: (0.02, 0.035, 0.05) = **ASSUMED BAND** (2-5%).
+          Grounds (stated, not hidden): main-sequence M-L calibrations are good to a few
+          per cent, BUT the sample-average metallicity/age offset, the Gaia G-band
+          bandpass/extinction zero-point, and residual unresolved-faint-companion light
+          (which biases photometric M HIGH) are all coherent across the whole catalog.
+          This is genuinely TIGHTER than the galaxy Upsilon 0.10 dex (=23%) -- by ~6x --
+          and it STILL does not help, because of the amplification (see the a0 column).
+          coherent  2.0% mass -> gamma 0.0110 -> a0   9.7%
+          coherent  3.5% mass -> gamma 0.0193 -> a0  17.0%
+          coherent  5.0% mass -> gamma 0.0275 -> a0  24.3%
+      HONEST HEADLINE: galaxy Upsilon 23% x amplification ~1 = ~8% in a0 (STEP A's sysU
+      is 8.1%);  WB mass 3.5% x amplification 8.8 = 17.0% in a0. The 6x tighter
+      calibration is MORE than undone by the ~9x worse lever. 'No Upsilon at all' is FALSE.
+
+  (c) ECCENTRICITY PRIOR: gate-measured flat-vs-thermal shift = 0.0150 in gamma
+      (Hwang+2022 SUPERTHERMAL lies beyond thermal on the same axis, same magnitude,
+      opposite sign -> carried symmetric).  -> a0: 13.2%
+
+  (d) DEPROJECTION / ORBITAL-a PRIOR: the committed wb_mond_orbit_mc.py finding is that
+      a log-uniform 3D semi-major-axis prior leaks deep-regime apocentre boost into
+      high-acceleration sky bins -- Newton-pop returns 0.60-0.67 vtilde vs the validated
+      conditioned baseline 0.55 (a ~9-22% baseline error), i.e. sky-projected data do NOT
+      constrain the a-prior.  Carried as (0.01, 0.02, 0.035) in gamma = **ASSUMED BAND** anchored on
+      that committed result (the frozen pipeline's Kepler forward model fixes ONE prior).
+        0.010 in gamma -> a0   8.8%
+        0.020 in gamma -> a0  17.7%
+        0.035 in gamma -> a0  30.9%
+
+  (e) g_ext CALIBRATION -- a term with NO amplification, and that is the point:
+      a0 and g_ext enter ONLY as the ratio y_obs = g_ext/a0, so d ln a0 = d ln g_ext
+      EXACTLY (1:1).  Frozen convention spread 1.778 vs 2.078e-10 = 15.6% -> a0 15.6%.
+      (cross-check through gamma: gamma_MI 1.1015 -> 1.0854, Delta = -0.0161; x A_abs = 14.3% ~ 15.6% OK)
+      If instead the kinematic Vc^2/R0 is adopted with its own error (Vc 229+-2 km/s,
+      R0 8.178+-0.026 kpc -> ~2%), this term falls to ~2-3%. BOTH carried: 2-16%.
+
+  (f) STATISTICS (frozen pipeline scaling sigma_fit = 0.0191 sqrt(30000/N)):
+         N pairs  sigma_fit    -> a0
+           5,000     0.0468    41.3%
+          10,624     0.0321    28.3%
+          30,000     0.0191    16.9%
+          60,000     0.0135    11.9%
+         150,000     0.0085     7.5%
+         500,000     0.0047     4.1%
+
+====================================================================================================
+S5 -- ACHIEVABLE sigma(a0)/a0 FROM WIDE BINARIES, AND THE JOINT WITH STEP A
+====================================================================================================
+  mapping: sigma(ln a0) = quadrature[ A_abs*sigma(gamma) , sigma(ln g_ext) ,
+           prescription C ambiguity ]   with A_abs = 8.83 (MI) / 6.90 (MG)
+  prescription (MI-vs-MG) a0 ambiguity, computed in S3 = 35.2%
+
+  scenario                                             sig(gam)  a0 gam  a0 +gext  a0 +presc beats 6.31%?
+  DR3 today (contamination-limited)                      0.1668  147.3%    147.3%     151.4%           no
+  DR4 frozen sigma_tot (prereg, hypothesis-test use)     0.0277   24.4%     24.5%      42.9%           no
+  DR4 optimistic (a0-amplitude use)                      0.0308   27.2%     27.3%      44.6%           no
+  DR4 central (a0-amplitude use)                         0.0494   43.6%     43.7%      56.1%           no
+  DR4 conservative (a0-amplitude use)                    0.0982   86.7%     88.1%      94.9%           no
+  DR4 'perfect gamma' limit (sigma_gamma=0)              0.0000    0.0%      2.5%      35.3%           no
+
+  BEST-CASE WB sigma(a0)/a0 (full, incl. prescription) = 35.3%
+  BEST-CASE WB sigma(a0)/a0 counting ONLY the gamma budget (prescription+g_ext ASSUMED
+  AWAY, i.e. the most generous possible reading) = 24.4%
+
+  --- THE JOINT: does WB + dwarf beat the STEP-A floor? (orthogonality granted) ---
+  Orthogonality audit (the hypothesis's premise): dwarf terms {Upsilon, gas-cal,
+  estimator choice, distance, inclination} vs WB terms {triples, deprojection/a-prior,
+  eccentricity prior, photometric M-L zero-point, g_ext, EFE prescription C}.
+  These lists are DISJOINT -- the premise is GRANTED, not disputed. Quadrature applies.
+  combination                                                       joint sigma(a0)/a0  beats 6.31%?
+  SPARC-alone floor 11.62%  (+)  WB full best                                   11.04%            no
+  SPARC-alone floor 11.62%  (+)  WB gamma-only best                             10.50%            no
+  SPARC-alone floor 11.62%  (+)  WB frozen-prereg sigma_tot                     10.50%            no
+  with BOTH external priors 6.78%  (+)  WB full best                             6.66%            no
+  with BOTH external priors 6.78%  (+)  WB gamma-only best                       6.53%            no
+  with BOTH external priors 6.78%  (+)  WB frozen-prereg sigma_tot               6.53%            no
+
+  REQUIREMENT INVERSION -- for the JOINT to reach 6.31%:
+    against the SPARC-alone floor 11.62%, WB must deliver sigma(a0)/a0 <= 7.52%
+      = sigma(gamma) <= 0.0085  (vs the FROZEN sigma_sys allowance alone = 0.020)
+      = N >= 150,939 pairs on statistics alone, AND every systematic in S4 driven
+        below 0.0085 in gamma, AND the C-prescription pinned to better than 9.4% in C.
+    against the with-both-priors dwarf 6.78%, WB must deliver <= 17.35%.
+    Every one of these is beaten by the prescription ambiguity (35.2%) ALONE, before any data.
+
+  HOW CLOSE DOES WB GET IN ITS SINGLE MOST GENEROUS CORNER? (stated so the NO-GO is not
+  overstated: this is a shortfall factor, not an order of magnitude)
+    most generous corner = dwarf at its conditional 6.78% (both external
+    priors delivered) + WB with the prescription and g_ext ASSUMED AWAY entirely
+    (24.4%): WB is short by a factor 1.41x (needs <= 17.35%).
+    against the realistic SPARC-alone floor the shortfall factor is 3.2x (gamma-only) / 4.7x (full).
+
+  THE ONE JOINT DIRECTION THAT DOES WORK (and it is not an a0 measurement):
+    run the inference BACKWARDS -- fix a0 from the dwarf line and let WB measure the EFE
+    prescription C. Fisher, C conditional on a0: sigma(ln C) = 21.6% at N=30k.
+    MI-vs-MG separation, three ways (reported side by side, none hidden):
+      (i)   linearized in ln C: gap ln(C_MG/C_MI) = 0.369 / sigma(lnC) 0.216 = 1.71 sigma  -> 3 sigma at N ~ 92,827
+      (ii)  direct in gamma, COMPUTED asymptotes 1.1015 vs 1.1390: 1.96 sigma -> 3 sigma at N ~ 70,272
+      (iii) the frozen pipeline's own forecast, which uses the frozen POINT TARGET 1.09
+            (not the computed 1.1015): gap 0.047 -> 2.46 sigma -> N ~ 44,689
+    These differ by up to 2.1x. The spread is NOT noise: (iii)
+    uses a 25% larger gap than (ii), and (i) is the linearization of a finite 37% C ratio.
+    The like-for-like number is (ii), N ~ 70,272 for 3 sigma -- i.e. the frozen
+    pre-registration's 'MI-vs-MG likely UNDECIDABLE in DR4' stands, and if anything the
+    computed-asymptote gap makes it HARDER than the frozen forecast, not easier.
+    That is exactly the frozen pre-registration's own Door-4A test, and it is where WB's
+    real value sits. The dwarf line supplies a0; WB supplies C. Not the reverse.
+
+====================================================================================================
+VERDICT (honest, both directions -- a manufactured GO and a manufactured NO-GO are equal)
+====================================================================================================
+  1. THE SENSITIVITY IS THE KILLER, NOT THE SYSTEMATICS LIST. The 1/4 power PLUS EFE
+     saturation give d ln a0/d ln gamma = 9.73 (MI, the framework's own
+     reading; 7.86 for MG). Per absolute gamma unit, sigma(a0)/a0 = 8.83 sigma(gamma).
+     The dwarf a0-line's amplification is ~1-2. WB needs ~6x better fractional
+     precision than the dwarf line just to TIE it. It does not have it.
+  2. THE DEGENERACY BLOCKS THE AMPLITUDE EXTRACTION OUTRIGHT. A single gamma constrains
+     C * a0^1.255 only (exact, S3). With C free the Fisher marginal sigma(ln a0) is
+     365% (rho = -0.9987); with C fixed by prescription it is 18.3%.
+     Choosing MI vs MG alone slides the extracted a0 by 35.2% = 5.6x the target,
+     with zero measurement error -- and the MI completion that would pin C is UNWRITTEN.
+     The frozen pre-registration already forbids reporting DR4 gamma as an a0 measurement
+     (sec 1.1); this is the quantitative backing for that frozen sentence.
+  3. CONTAMINATION IS THE SECOND WALL, ONE-SIDED AND UPWARD. DR3's gamma = 1.205 is
+     absorbable by f_triple ~ 0.20 (committed audit); the DR3-today WB a0 error is
+     ~151%. WB CANNOT supply a usable a0 amplitude TODAY.
+     Its bias direction pushes a0 UP, toward the ALT/MOND cluster -- so a naive WB number
+     would look like evidence against the canonical footing purely as an artifact.
+  4. THE MASS-SYSTEMATIC OVERSTATEMENT IS CORRECTED. WB photometric masses are ~6x
+     tighter than galaxy Upsilon in PERCENT (3.5% coherent vs 23%), and that buys
+     NOTHING: 17.0% in a0 vs the dwarf line's 8.1% sysU. 'No Upsilon at all'
+     is false; the correct statement is 'a smaller mass error through a much worse lever'.
+  5. ORTHOGONALITY IS REAL BUT WORTHLESS HERE. The systematics lists ARE disjoint, so the
+     joint is a legitimate quadrature -- but 11.62% (+) 35% = 11.04%: the dwarf floor barely
+     moves. Even the most generous reading (prescription and g_ext assumed away, WB at
+     24.4%) gives 10.50% -- still above 6.31%.
+  6. ANSWER TO THE POSED QUESTION: **NO.** Gaia wide binaries cannot supply an
+     a0-AMPLITUDE constraint that helps the Step-A floor -- not today (~151%, contamination-
+     limited), and not with DR4 (45-95% across the assumed
+     contamination band, with a hard 35% floor from the prescription alone even at
+     sigma(gamma)=0). Shortfall factors: 3.2x against the SPARC-alone floor,
+     1.4x in the single most generous corner. The blocking reason is NOT the
+     orthogonality premise (which HOLDS) but (i) the ~9x desensitization of the 1/4-power
+     EFE-saturated map and (ii) the exact C-a0 degeneracy that only a WRITTEN MI
+     completion could break. Both are structural, not fixable with more pairs.
+  7. WHAT WB IS STILL GOOD FOR (unchanged, and not diminished): the frozen DR4 test of
+     the nu+EFE PRESCRIPTION -- Newton vs framework-MI 1.09 is forecast DECIDABLE at
+     N >~ 12,200. That is a test of the interpolation+EFE physics, not of a0's value.
+     No door is closed here; the a0-amplitude door in WB is simply not open, and the
+     dwarf a0-line's external-data path (TRGB + M/L + HI campaign) remains the live one.
+
+[wb_a0_amplitude_budget_results.json written]
+EXIT 0: WB a0-amplitude sensitivity + error budget computed. Exit code is not a verdict.
