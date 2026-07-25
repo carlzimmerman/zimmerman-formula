@@ -1,0 +1,327 @@
+
+========================================================================================================
+1.  GATE ALGEBRA: the retention multiplier k(S) is DERIVED, not adopted
+========================================================================================================
+
+  Re G(omega) = 1/(1 + (omega/omega_c)^2)         [the paper's single-pole causal Debye relaxator]
+  requirement Re G(omega_gal) >= S  <=>  omega_c >= k(S) * omega_gal
+  sympy solve:  omega/omega_c at Re G = S  is  x*(S) = sqrt(1 - S)/sqrt(S)
+                so  k(S) = 1/x*(S) = sqrt(S)/sqrt(1 - S) = sqrt(S/(1-S))
+  k(0.90) = 3.000000   <- the paper's factor 3, reproduced from the gate, not assumed
+
+   [PASS] k(S) satisfies the defining equation Re G(1/k) == S identically, and k(0.90) == 3 exactly
+   [PASS] self-consistency: Re G(omega_gal, omega_c = k*omega_gal) == S for S = 0.90, 0.95, 0.99
+   [PASS] inverse map S(k) = k^2/(1+k^2) round-trips k(S) for S in {0.90,0.93,0.95,0.99}
+
+========================================================================================================
+2.  LOWER EDGE = k(S) * MAX(omega_gal) over confirmed deep-MOND SPARC orbits  [INDEPENDENT REBUILD]
+========================================================================================================
+
+  [ADOPTED #1 -- the gate's frequency argument, inherited from the paper, NOT re-litigated here]
+  The gate is evaluated at the ORBITAL ANGULAR frequency of the body whose dynamics is measured:
+  omega_gal = V_rot/r for galactic gas, omega_p = 2pi/T_p for planets.  NOTE these are the SAME quantity
+  (for a circular orbit 2pi/T = V/r identically), so the two edges carry NO relative 2pi mismatch --
+  machine-checked below.  Whether the anomaly really rides this frequency is the single load-bearing
+  assumption of the whole window; it is forked in reviews/mi_cassini_q2_omegac_2026.py Sec. 6 and is
+  NOT re-opened here.  Everything in this script is conditional on it.
+
+  Selection (mine, matching the framework's own RAR pipeline): Q <= 2, inc >= 30 deg,
+  deep-MOND g_bar < a0 (footing-dependent cut), V_bar^2 = sign(Vgas)Vgas^2 + 0.7Vdisk^2 + 0.98Vbul^2.
+
+   [PASS] no 2pi mismatch between the two edges: V/r == 2pi/T for a circular orbit
+  rotmod files: 175   master-table galaxies: 175
+
+  footing           a0   gal  deep pts   MAX omega_gal                            set by
+  --------------------------------------------------------------------------------------------
+  canon     9.3550e-11   151      2188      5.9414e-15  UGC05721 r=0.09kpc V=16.5 y=0.75
+  alt       1.1305e-10   151      2271      5.9414e-15  UGC05721 r=0.09kpc V=16.5 y=0.62
+
+  Both footings are bound by the SAME orbit, so MAX(omega_gal) -- and therefore the whole LOWER edge --
+  is FOOTING-INDEPENDENT: it is set by galaxy kinematics, with no a0 anywhere in omega_gal = V/r.
+  (a0 enters only the deep-MOND SELECTION cut, and the binding point clears both cuts.)
+  MAX(omega_gal) = 5.9414e-15 rad/s   ->   LOWER EDGE = 3 x MAX = 1.7824e-14 rad/s
+
+   [PASS] regression: MAX(omega_gal) reproduces the committed 5.94e-15 within 1% (got 5.9414e-15)
+   [PASS] lower edge is footing-independent (identical MAX on canon and alt)
+   [PASS] regression: lower edge 3*MAX reproduces the committed 1.782e-14 within 1% (got 1.7824e-14)
+  ROBUSTNESS OF MAX(omega_gal) -- selection variations (all at S = 0.90, canon cut).
+  width columns use the Sec.4 upper edges 2.211e-14 / 1.831e-14 (regression-confirmed there):
+  variation                                   MAX omega_gal   lower edge  x base  W canon   W alt  binding gal
+  --------------------------------------------------------------------------------------------------------
+  baseline (Q<=2, inc>=30, y<1, Ud=0.70)         5.9414e-15   1.7824e-14  1.000x   1.240x  1.027x     UGC05721
+  M/L Ud=0.50 (Lelli+2016 fiducial)              5.9414e-15   1.7824e-14  1.000x   1.240x  1.027x     UGC05721
+  M/L Ud=1.00                                    4.5047e-15   1.3514e-14  0.758x   1.636x  1.355x      NGC6789
+  quality Q<=1 only                              5.9414e-15   1.7824e-14  1.000x   1.240x  1.027x     UGC05721
+  inclination >= 45 deg                          5.9414e-15   1.7824e-14  1.000x   1.240x  1.027x     UGC05721
+  deeper cut y < 0.5                             4.5047e-15   1.3514e-14  0.758x   1.636x  1.355x      NGC6789
+  deeper cut y < 0.3                             4.5047e-15   1.3514e-14  0.758x   1.636x  1.355x      NGC6789
+  drop innermost 1 pt/galaxy (beam guard)        4.6211e-15   1.3863e-14  0.778x   1.595x  1.321x     UGC05721
+  drop innermost 2 pts/galaxy                    3.4136e-15   1.0241e-14  0.575x   2.159x  1.788x     UGC05721
+
+  The binding MAX is driven by ONE innermost, beam-scale point (UGC05721 at r = 0.09 kpc, one SPARC
+  radial bin).  Dropping each galaxy's innermost radius moves MAX to 4.621e-15 (0.78x) --
+  a 22% swing on the single most load-bearing input of the lower edge.  Both directions are
+  defensible: beam smearing biases inner V_rot LOW (so the true omega_gal there could be HIGHER, pushing
+  the lower edge UP and squeezing harder), while the same smearing makes the point unreliable at all.
+  Reported both ways; the baseline (keep it) is the CONSERVATIVE-for-the-theory choice and is kept.
+
+  Percentile view (baseline canon deep-MOND sample, N = 2188), i.e. what the lower edge
+  becomes if the requirement is 'gate open at all but the fastest few' instead of literally every orbit:
+      100.0th pct omega_gal = 5.941e-15  ->  lower edge 1.782e-14  (1.000x baseline)
+       99.9th pct omega_gal = 4.599e-15  ->  lower edge 1.380e-14  (0.774x baseline)
+       99.5th pct omega_gal = 2.979e-15  ->  lower edge 8.936e-15  (0.501x baseline)
+       99.0th pct omega_gal = 2.585e-15  ->  lower edge 7.755e-15  (0.435x baseline)
+       95.0th pct omega_gal = 1.468e-15  ->  lower edge 4.404e-15  (0.247x baseline)
+
+========================================================================================================
+3.  RETENTION SENSITIVITY -- what Re G >= 0.95 or 0.99 does to the lower edge
+========================================================================================================
+
+  Re G >= S is a TOLERANCE CHOICE, not a measurement: it is how much galactic-RAR degradation at the
+  worst orbit the framework is willing to eat.  S = 0.90 means the gate is allowed to remove 10% of the
+  MI boost at UGC05721's innermost point.  The lower edge scales as k(S) = sqrt(S/(1-S)), which is STEEP
+  near 1: k(0.90) = 3, k(0.95) = 4.359, k(0.99) = 9.950.
+
+  retention S        k(S)    lower edge   vs canon upper 2.211e-14   vs alt upper 1.831e-14
+  --------------------------------------------------------------------------------------------
+  0.90             3.0000    1.7824e-14                     1.240x                   1.027x
+  0.95             4.3589    2.5898e-14                     0.854x                   0.707x
+  0.99             9.9499    5.9116e-14                     0.374x                   0.310x
+
+  INVERSION -- the CRITICAL retention at which the window closes (lower edge == upper edge):
+      canon:  k_crit = upper/MAX = 3.7214  ->  S_crit = 0.9327
+      alt:    k_crit = upper/MAX = 3.0818  ->  S_crit = 0.9047
+
+  So the canonical window exists only if the framework accepts >= 6.7% MI-boost loss at the
+  fastest confirmed deep-MOND orbit, and the alt window only if it accepts >= 9.5%.  Demanding
+  Re G >= 0.95 (a 5% RAR tolerance) closes BOTH footings; the alt footing closes at a retention demand
+  of just 0.905, i.e. 0.5 percentage points above the adopted 0.90.
+  With the beam guard (MAX -> 4.621e-15) the critical retentions relax to
+      canon S_crit = 0.9581   alt S_crit = 0.9401
+  -> the retention lever and the beam-guard lever are comparable in size and pull OPPOSITE ways.
+  HONEST READING: the 0.90 tolerance is defensible (10% at one orbit sits inside the framework's own
+  0.108 dex = 28% SPARC RAR scatter) but it is a CHOICE, and the window's width is a function of it.
+
+   [PASS] Re G >= 0.95 closes both footings (k(0.95)*MAX exceeds both upper edges)
+   [PASS] critical retentions are ordered and bracket the adopted 0.90 tightly (alt within 1 pp)
+
+========================================================================================================
+4.  UPPER EDGE = (LLR Gdot/G 2-sigma ceiling) x g_N(Moon)/a0   [INDEPENDENT REBUILD]
+========================================================================================================
+   [PASS] 1-pole KK identity |G|^2 = Re G (the dissipative channel is causally forced, not inserted)
+   [PASS] drift closed form d ln r/dt = a0 wc/g_N reproduces 2 f_t/(omega r) at the Moon (ratio 1.000000)
+   [PASS] the Moon's sidereal omega vs Keplerian sqrt(GM/r^3) differ by <2% (so using g_N = GM/r^2 in the upper edge, as the paper does, is a <2% choice: ratio 1.0048)
+
+  g_N(Moon) = GM_E/r^2 = 2.697559e-03 m/s^2
+  LLR Gdot/G = (-5.0 +- 9.6)e-15 /yr  [Biskupek, Mueller & Torre 2021,
+    Universe 7:34 / arXiv:2012.12032 Table 1 -- VERIFIED against the arXiv PDF on 2026-07-25]
+  [ADOPTED #2, the paper's convention]  one-sided ceiling on a secular EXPANSION = |cen| + 2 sigma
+    = 2.420e-14 /yr.  This is defensible HERE because the measured central value leans in the
+    expansion direction (Gdot/G < 0 <=> d ln a/dt = -Gdot/G > 0 for L^2 = GMa), i.e. the data mildly
+    lean WITH the MI drift at 0.52 sigma.  Sec. 6 forks the convention.
+  UPPER EDGE:  a0 omega_c/g_N <= ceiling  =>  omega_c <= (ceiling/yr) g_N(Moon)/a0
+
+  footing    a0 [task spelling]    upper edge   a0 [window_joint]    upper edge     paper
+  --------------------------------------------------------------------------------------------
+  canon              9.3550e-11    2.2113e-14          9.3600e-11    2.2101e-14  2.21e-14
+  alt                1.1305e-10    1.8298e-14          1.1300e-10    1.8306e-14  1.83e-14
+   [PASS] regression: canon upper edge reproduces the committed 2.211e-14 within 1% (got 2.2113e-14)
+   [PASS] regression: alt upper edge reproduces the committed 1.831e-14 within 1% (got 1.8298e-14)
+   [PASS] upper edge is FOOTING-DEPENDENT and scales exactly as 1/a0
+   [PASS] a0 spelling jitter (9.355 vs 9.36; 1.1305 vs 1.13) shifts the upper edge by < 0.1%
+
+  WHICH BODY BINDS?  All solar-system ceilings on omega_c, canon footing:
+      omega_c <= 2.211e-14   Moon Gdot/G [BMT21] <-- BINDING   (     1.0x the LLR edge)
+      omega_c <= 3.510e-14   Saturn ranging proxy [FM24]   (     1.6x the LLR edge)
+      omega_c <= 1.898e-13   Mars ranging proxy [FM24]   (     8.6x the LLR edge)
+      omega_c <= 3.803e-13   Moon tidal budget [LLR]   (    17.2x the LLR edge)
+      omega_c <= 5.362e-13   Mercury Gdot/G [Genova+18]   (    24.2x the LLR edge)
+      omega_c <= 8.269e-11   Saturn reactive delta_g [FM24]   (  3739.3x the LLR edge)
+      omega_c <= 5.791e-10   Mars reactive delta_g [FM24]   ( 26190.3x the LLR edge)
+      omega_c <= 1.837e-09   Jupiter reactive delta_g [FM24]   ( 83055.2x the LLR edge)
+      omega_c <= 2.715e-09   Earth reactive delta_g [FM24]   (122795.6x the LLR edge)
+      omega_c <= 1.338e-08   Venus reactive delta_g [FM24]   (605285.9x the LLR edge)
+      omega_c <= 2.592e-08   Mercury reactive delta_g [FM24]   (1172383.9x the LLR edge)
+   [PASS] LLR Gdot/G is the BINDING (smallest) solar-system ceiling on omega_c
+
+========================================================================================================
+5.  W-1 HEADLINE -- the window widths, both footings
+========================================================================================================
+
+  footing   lower (SPARC, theory-internal)   upper (LLR, data)     WIDTH    paper      room
+  --------------------------------------------------------------------------------------------
+  canon                         1.7824e-14          2.2113e-14    1.2406    1.241    +24.1%
+  alt                           1.7824e-14          1.8298e-14    1.0266    1.027     +2.7%
+   [PASS] regression: canon width reproduces 1.241 within 1% (got 1.2406)
+   [PASS] regression: alt width reproduces 1.027 within 1% (got 1.0266)
+
+  CONFIRMED, independently: canon x1.241 (+24.1%), alt x1.027 (+2.7%).
+  The alt footing's window IS only ~2.7% wide, and this is established from SPARC rotation curves
+  plus LLR Gdot/G ALONE -- no a0-line slope estimator anywhere in it.  So it is a genuinely INDEPENDENT
+  line of pressure on the footing question.
+  BUT IT IS NOT AN EXCLUSION, and the reason is quantitative, not rhetorical: the +2.7% margin is far
+  SMALLER than the swing from the choices that set the edges --
+      retention S 0.90 -> 0.95           : lower edge x1.45  (closes both footings)
+      beam guard (drop innermost point)  : lower edge x0.78  (opens alt to x1.32)
+      LLR 2-sigma convention fork (Sec.6): upper edge x0.79 to x1.40
+  The margin sits INSIDE the systematic noise floor of its own construction.  Correct verdict: the alt
+  footing is at the closure threshold, neither excluded nor safe.  What would close it decisively:
+  (i) a confirmed deep-MOND orbit with omega_gal > 6.099e-15 rad/s (only 2.7% above today's max),
+  or (ii) an LLR Gdot/G ceiling below 2.357e-14/yr (Sec. 7), or (iii) a resolved verdict on the
+  beam-scale innermost SPARC point that keeps it.  None of the three is in hand.
+
+
+========================================================================================================
+6.  CONVENTION FORK -- how much of the width is the 2-sigma convention, not the measurement?
+========================================================================================================
+
+  ceiling convention                         ceiling [/yr]   canon upper    width    alt upper    width
+  ------------------------------------------------------------------------------------------------------
+  |cen| + 2 sigma  [the paper's, ADOPTED]        2.420e-14     2.211e-14    1.241    1.830e-14    1.027
+  2 sigma only (central-agnostic)                1.920e-14     1.754e-14    0.984    1.452e-14    0.814
+  |cen| + 3 sigma (conservative)                 3.380e-14     3.088e-14    1.733    2.556e-14    1.434
+  |cen| + 1 sigma (aggressive)                   1.460e-14     1.334e-14    0.748    1.104e-14    0.619
+
+  READ THIS STRAIGHT, BOTH WAYS.  Under the paper's own convention both footings are open.  Under an
+  equally standard central-agnostic 2-sigma reading (ceiling = 2 sigma = 1.92e-14/yr) the canonical
+  window is EMPTY by 1.6% (x0.984) and the alt window EMPTY by 18.6% (x0.814).
+  Under |cen| + 3 sigma both are comfortably open.  The width therefore spans x0.62 to
+  x1.73 across defensible conventions -- a range LARGER than either quoted width.
+  Neither reading is forced by the data, and NEITHER is adopted as the verdict here.  What this does
+  establish: the window's non-emptiness currently rides on the LLR central value's 0.52 sigma lean in
+  the MI direction.  And that lean is not a stable feature -- the immediately preceding analysis
+  (Hofmann & Mueller 2018) had Gdot/G = (+7.1 +- 7.6)e-14/yr, i.e. the OPPOSITE sign.  The sign of the
+  central value has already flipped once between consecutive LLR analyses.
+
+   [PASS] the convention fork spans a wider factor than the canonical quoted width (width is convention-limited, not measurement-limited)
+
+========================================================================================================
+7.  W-2 CLOSURE FORECAST -- the factor F in Gdot/G that closes each footing, and roughly when
+========================================================================================================
+
+  Closure condition:  upper(ceiling/F) < lower  <=>  F > upper/lower  ==  the WINDOW WIDTH.
+  sympy: F_required / (upper/lower) = 1  (must be 1) -- the closure factor IS the width, exactly,
+  because the upper edge is strictly LINEAR in the Gdot/G ceiling and the lower edge does not move.
+  This is the quantitative form of the ASYMMETRY: the lower edge is theory-internal and non-negotiable
+  (relaxing it means gating off the rotation curves the framework exists to explain), so every
+  improvement in Gdot/G closes the window FROM ABOVE and nothing pushes back.
+
+   [PASS] closure factor F equals the window width identically (symbolic)
+  footing   F (whole-ceiling)   required ceiling [/yr]  F on sigma, cen held  required sigma
+  --------------------------------------------------------------------------------------------
+  canon                1.2406               1.9507e-14                1.3235      7.2534e-15
+  alt                  1.0266               2.3573e-14                1.0338      9.2864e-15
+
+  STATED AS ASKED:
+      a factor 1.241 tighter LLR Gdot/G ceiling KILLS the CANONICAL footing's window.
+      a factor 1.027 tighter LLR Gdot/G ceiling KILLS the ALT footing's window.
+      (equivalently, holding the central value at -5.0e-15: sigma tighter by x1.324 / x1.034)
+      A single factor 1.241 closes BOTH footings simultaneously.
+  For comparison, the paper's own falsifier (iv) says "a x3 ephemeris/LLR secular refit closes or detects
+  the window."  The rebuild says x3 is a 2.4x OVERSTATEMENT of what is needed: x1.24 suffices.
+  And if the central value regresses to zero as a null should, the ceiling falls to 2 sigma with NO
+  precision gain at all -- which already closes both footings (Sec. 6).
+
+  A SECOND, INDEPENDENT LEVER (flagged, not developed here -- it is W-3's remit).  The runner-up
+  ceiling in Sec. 4 is NOT far behind LLR: the Saturn ranging proxy (Cassini ~2.3 m/yr, Fienga &
+  Minazzoli 2024) gives omega_c <= 3.510e-14 (canon) / 2.904e-14 (alt) -- only x1.59 / x1.59
+  looser than the LLR edge.  Closing the window from that channel alone needs x1.97 (canon) /
+  x1.63 (alt).  So there are TWO independent channels within a factor ~2 of closure, not one,
+  and a metre-level INPOP/DE440-class secular refit is the obvious place the real bound already sits.
+  Whether a modern ephemeris ceiling already lies BELOW the LLR edge is exactly the W-3 question; this
+  script does not answer it and its widths would have to be recomputed if it does.
+
+   [PASS] the runner-up (Saturn ranging) ceiling is within a factor 2 of the LLR edge -- two independent channels are near closure, not one
+  HISTORICAL IMPROVEMENT RATE of the LLR Gdot/G uncertainty (published anchors):
+      2004  sigma = 9.00e-13 /yr   Williams, Turyshev & Boggs 2004 PRL 93:261101   Gdot/G = (+4 +- 9)e-13/yr
+      2010  sigma = 3.80e-13 /yr   Hofmann, Mueller & Biskupek 2010 A&A 522:L5    (-0.7 +- 3.8)e-13/yr
+      2018  sigma = 7.60e-14 /yr   Hofmann & Mueller 2018 CQG 35:035015           (+7.1 +- 7.6)e-14/yr  [VERIFIED]
+      2021  sigma = 9.60e-15 /yr   Biskupek, Mueller & Torre 2021 Universe 7:34   (-5.0 +- 9.6)e-15/yr  [VERIFIED]
+
+  interval        years  sigma factor  -> per decade
+  ----------------------------------------------------
+  2004-2010           6          2.37           4.2x
+  2010-2018           8          5.00           7.5x
+  2018-2021           3          7.92         988.9x
+  2004-2021 all      17         93.75          14.5x  <- overall
+
+  [ASSUMPTION, flagged]  These gains are DISCRETE (infrared normal points, remodelled lunar interior,
+  longer arcs), not a smooth accumulation, so extrapolating the decadal rate is a rough guide only.  The
+  conservative floor is the formal statistical law: a Gdot/G signature enters the range quadratically in
+  time, so for uniform sampling at fixed per-point noise sigma ~ T^(-5/2).  BMT21 used T = 50 yr
+  (April 1970 - April 2020, 27 485 NP).  BASELINE GROWTH ALONE therefore gives:
+
+  target                              F needed   baseline T [yr]   epoch (T^-5/2 floor)   epoch (hist. rate)
+  ----------------------------------------------------------------------------------------------------------
+  canon: whole ceiling scales            1.241             54.50                 2024.8               2021.8
+  canon: sigma only, cen held            1.324             55.93                 2026.2               2022.0
+  alt: whole ceiling scales              1.027             50.53                 2020.8               2021.1
+  alt: sigma only, cen held              1.034             50.67                 2021.0               2021.1
+
+  FORECAST, stated plainly (today = 2026.6):
+    * ALT footing: needs x1.034 on sigma -- i.e. essentially NOTHING.  Baseline growth alone
+      passed that threshold around 2021.  On the published record the alt window is already at or past
+      its closure point; it stands only on the |cen|+2sigma convention and the beam-scale SPARC point.
+    * CANONICAL footing: needs x1.324 on sigma (or x1.241 on the whole ceiling).  Under the
+      T^(-5/2) floor that arrives at total baseline T = 55.9 yr, epoch ~2026; at the historical
+      2004-2021 rate (14x/decade) it arrives ~2022.  Both are IN THE PAST OR NOW.
+    * CONCLUSION: the required improvement is smaller than the analysis-to-analysis scatter of LLR
+      Gdot/G itself.  The window is not "closing in a decade" -- it is AT the closure threshold now, and
+      the next published LLR Gdot/G analysis is a live two-sided test.  Honest symmetry: a next analysis
+      with an INFLATED sigma or a LARGER |central| REOPENS the window just as easily.  That is what a
+      free constant sandwiched between two independent measurements looks like -- precarious, not dead.
+
+   [PASS] the closure factor for BOTH footings is under x1.5 (i.e. inside one analysis-to-analysis step)
+   [PASS] the alt footing's required improvement is under 5% (already inside the historical noise)
+
+========================================================================================================
+8.  VERDICT  (W-1 + W-2)
+========================================================================================================
+
+  W-1  EDGES, REBUILT INDEPENDENTLY -- both confirmed, no correction needed:
+        LOWER  = k(0.90) x MAX(omega_gal) = 3 x 5.9414e-15 = 1.7824e-14 rad/s
+                 FOOTING-INDEPENDENT (galaxy kinematics only; a0 enters just the deep-MOND cut).
+                 THEORY-INTERNAL and NOT NEGOTIABLE: relaxing it gates off the rotation curves.
+        UPPER  = (|cen|+2sig LLR ceiling / yr) x g_N(Moon)/a0
+                 = 2.2113e-14 (canon) / 1.8298e-14 (alt) rad/s.  FOOTING-DEPENDENT, exactly 1/a0.
+        WIDTHS = x1.2406 (canon, +24.1%)  and  x1.0266 (alt, +2.7%).
+                 Paper's x1.24 / x1.027 CONFIRMED to <1%.
+        RETENTION SENSITIVITY: lower edge scales as sqrt(S/(1-S)).  S=0.95 -> 2.590e-14 and
+                 S=0.99 -> 5.912e-14: BOTH footings CLOSE at S=0.95.  Critical retentions
+                 S_crit = 0.9327 (canon) / 0.9047 (alt).  The alt window needs the tolerance
+                 to be no stricter than 0.905 -- 0.5 percentage points of slack.
+
+  IS THE ALT FOOTING NEARLY EXCLUDED BY SPARC + LLR ALONE, INDEPENDENTLY OF THE a0-LINE ESTIMATOR?
+        The pressure is REAL and INDEPENDENT: no slope estimator, no RAR fit, no M/L inference enters
+        the width -- SPARC orbital frequencies and LLR ranging alone give +2.7%.  As a second,
+        methodologically disjoint line on the footing question it is worth having.
+        It is NOT an exclusion.  Room remaining, precisely: the alt window closes if MAX(omega_gal)
+        exceeds 6.099e-15 rad/s (+2.7% over today's binding orbit), OR if the LLR ceiling
+        falls below 2.357e-14/yr (x1.027), OR if the retention demand rises above 0.905.
+        Against that, the beam guard on the single binding innermost SPARC point reopens alt to
+        x1.32, and the |cen|+3sigma convention reopens it to x1.43.  The +2.7% margin is
+        SMALLER than every one of those levers.  Verdict: AT THE THRESHOLD, NOT EXCLUDED.
+
+  W-2  CLOSURE FACTORS (exact identity: F_required == the window width):
+        a factor 1.241 tighter LLR Gdot/G ceiling KILLS the CANONICAL footing.
+        a factor 1.027 tighter LLR Gdot/G ceiling KILLS the ALT footing.
+        Required ceilings: 1.951e-14/yr (canon), 2.357e-14/yr (alt), vs today's 2.420e-14/yr.
+        On sigma with the central held: x1.324 / x1.034.
+        EPOCH: the T^(-5/2) baseline floor reaches x1.32 at total baseline 56 yr, epoch ~2026;
+        the historical 2004-2021 rate (14x/decade, slowest sub-interval 4.2x/decade) reaches it
+        ~2022.  Both epochs are ALREADY HERE.  The alt threshold was passed ~2021.
+
+  NOT COMFORTABLE, AND SAID SO: a x1.24 window on a free fifth constant, pinned between two independent
+  measurements, with all improvement pressure acting from above and a required closure factor of only
+  x1.24, is a precarious position.  The width is also convention-limited: the same LLR datum read at
+  2 sigma (central-agnostic) rather than |cen|+2 sigma gives EMPTY on both footings; read at |cen|+3 sigma
+  it gives x1.73 / x1.43.  No reading is adopted as the verdict; the spread IS the result.
+
+  SCOPE: this script rebuilds two edges and forecasts one closure.  It says nothing about whether the
+  gate's frequency prescription (omega = orbital angular frequency, [ADOPTED #1]) is right -- that fork
+  is the load-bearing open question and lives in reviews/mi_cassini_q2_omegac_2026.py Sec. 6.  Nothing
+  here is a claim about the framework beyond these numbers.  No door is declared closed.
+
+========================================================================================================
+mi_omegac_edges_closure_2026.py: ALL CHECKS PASS
+========================================================================================================
