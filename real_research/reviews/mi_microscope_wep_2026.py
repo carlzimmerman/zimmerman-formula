@@ -486,8 +486,28 @@ print(f"""
   construction in Reading R.  So MICROSCOPE's real physics content here is a STRUCTURAL REQUIREMENT
   on the action's unwritten detail:
 
-      >> the MI dressing must multiply the FULL matter Lagrangian (all internal binding energies
-         included), not a rest-mass/dust proxy.  Reading F is required; Reading R is disfavoured. <<
+      >> the MI dressing's coefficient must be the body's TOTAL MASS-ENERGY (all internal binding
+         energies included), not a rest-mass/dust proxy. <<
+
+  *** LABEL CORRECTED 2026-07-25 (cross-lane audit). The sentence above previously read "Reading F
+  is required", which is WRONG, and the F-vs-R dichotomy used here is INCOMPLETE. Reading F as
+  defined above bundles TWO INDEPENDENT questions, and the sibling clocks lane EXCLUDES one half of
+  the bundle by 2.1-3.2 orders (its Reading C2 = "every transition frequency carries the factor
+  K(|a|)"), so "F required" collides head-on with "C2 excluded". The resolution is that the two
+  questions must be separated:
+      (Q1) WHAT does the dressed coefficient DENOTE?   rest mass only  vs  TOTAL mass-energy
+      (Q2) WHERE does the dressing ACT?                CoM kinetic term only  vs  also internal dynamics
+  Evaluating the full 2x2 against BOTH bounds and BOTH footings (VERIFY_mi_precision_ledger_2026.py
+  V4): at the conservative 2-sigma MICROSCOPE ceiling exactly TWO cells survive and BOTH have
+  Q2 = CoM-only; at the 1-sigma ceiling exactly ONE survives. So the CLOCKS axis (Q2) is DECISIVELY
+  fixed and gate-proof, while the MICROSCOPE axis (Q1) is only DISFAVOURED for rest-mass
+  (eta_R = 4.463e-15 = 1.94x the 1-sigma ceiling but only 0.64x the 2-sigma ceiling -- NOT excluded).
+  THE UNIQUE JOINT SURVIVOR: "K dresses the CENTRE-OF-MASS inertia, with coefficient = the body's
+  TOTAL mass-energy." That is neither F-as-written nor R -- and it is what the paper's own Sec. 2.2
+  already says ("rods, clocks, and photons ride g"; rho_m is "the SAME rho_m that carries the passive
+  gravitational mass"). So no new posit is needed and the ledger's CONSISTENT verdict SURVIVES; what
+  was wrong was only this lane's label. Two of the highest-precision experiments in physics jointly
+  pin the matter coupling's structure -- a real result, not a repair. ***
 
   This is a DC-CHANNEL-ONLY constraint.  Under the gated AC channel it dies with everything else:
   eta_R * Re G = {ETA_R['canon']*REG_MAX:.2e}, i.e. {np.log10(ETA_1SIG/(ETA_R['canon']*REG_MAX)):.0f} orders below the bound, no constraint.  So CH-4 is
