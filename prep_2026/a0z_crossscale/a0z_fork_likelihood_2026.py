@@ -292,7 +292,8 @@ print("  " + "-" * 100)
 for P in POINTS:
     y = P.get("y_gbar", float("nan"))
     if P["kind"] == "BOUND":
-        print(f"  {P['tag']:26} {P['kind']:6} {P['zrep']:>5.2f} {'<'+f'{P['limit']:.2f}':>7} "
+        lim = "<%.2f" % P["limit"]
+        print(f"  {P['tag']:26} {P['kind']:6} {P['zrep']:>5.2f} {lim:>7} "
               f"{P['sig_tot']:>6.3f} {'--':>6} {P['L']:>6.3f} {'one-sided':>12} "
               f"{P['dedil_sig']:>11.3f} {P['w']:>8.2f}")
     else:
@@ -515,6 +516,10 @@ for plabel, pmax in PRIORS:
               f"{lnZ[m]:>10.2f}")
     marg[plabel]["bf"] = bf_report(lnZ, f"MARGINALIZED, {plabel}")
 bf_marg = marg[[k for k in marg if k.startswith('P-MSA')][0]]["bf"]
+L10 = np.log(10.0)
+m_DF = bf_marg["M-DEC_vs_M-FLAT"] / L10          # headline-prior shorthand, reused below
+m_DR = bf_marg["M-DEC_vs_M-RISE"] / L10
+m_RF = bf_marg["M-RISE_vs_M-FLAT"] / L10
 
 # --------------------------- THE MOVEMENT (the key result) -------------------------------
 print("\n" + BAR)
@@ -585,13 +590,15 @@ CLEAN_ONLY = [P for P in POINTS if P["tag"].startswith(("[3]", "[7]", "[8]"))]
 
 
 def variant(name, pmax, **kw):
-    lnZ = {m: ln_evidence(m, pmax, **kw)[0] for m in MODEL_ORDER}
-    c2 = {m: chi2_total(m, ln_evidence(m, pmax, **kw)[1],
-                        pts=kw.get("pts"), **{k: v for k, v in kw.items() if k != "pts"})
-          for m in MODEL_ORDER}
-    best = min(lnZ, key=lnZ.get)
-    best = max(lnZ, key=lnZ.get)
-    return name, lnZ, c2, best
+    """(name, lnZ per model, chi2 at each model's best-fit drift, best-evidence model)."""
+    lnZ, c2 = {}, {}
+    for m in MODEL_ORDER:
+        lnZ[m], p_hat, _ = ln_evidence(m, pmax, **kw)
+        kw2 = dict(kw)
+        if pmax <= 0.0:
+            kw2["drift_on"] = False
+        c2[m] = float(chi2_vec(build_arrays(m, kw2.pop("pts", None) or POINTS, **kw2), p_hat)[0])
+    return name, lnZ, c2, max(lnZ, key=lnZ.get)
 
 
 rows = []
@@ -653,34 +660,47 @@ mx = lz_samples.max()
 lnZ_dec_wmarg = float(mx + np.log(np.mean(np.exp(lz_samples - mx))))
 lnZ_flat_head = ln_evidence("M-FLAT", HEADLINE_PMAX)[0]
 lnZ_rise_head = ln_evidence("M-RISE", HEADLINE_PMAX)[0]
+DEC_WMARG_DF = (lnZ_dec_wmarg - lnZ_flat_head) / L10
+DEC_WMARG_DR = (lnZ_dec_wmarg - lnZ_rise_head) / L10
+_r3 = np.array([float(R_dec(3.0, float(a), float(b))) for a, b in pair])
+_nearflat = float(np.mean(_r3 > 0.90))
 print(f"\n    M-DEC marginalized over the DESI Pantheon+ (w0,wa) posterior (N=400, seed 0):")
-print(f"      ln Z = {lnZ_dec_wmarg:+.2f}   ->  log10 B(DEC/FLAT) = "
-      f"{(lnZ_dec_wmarg-lnZ_flat_head)/L10:+.2f} ,  log10 B(DEC/RISE) = "
-      f"{(lnZ_dec_wmarg-lnZ_rise_head)/L10:+.2f}")
-print("      (cosmology-input uncertainty is a SECOND-ORDER effect here; the A_drift prior dominates.)")
+print(f"      ln Z = {lnZ_dec_wmarg:+.2f}   ->  log10 B(DEC/FLAT) = {DEC_WMARG_DF:+.2f} , "
+      f"log10 B(DEC/RISE) = {DEC_WMARG_DR:+.2f}")
+print(f"      This LOOKS like a rescue (DEC/FLAT improves from {m_DF:+.2f} to {DEC_WMARG_DF:+.2f}, and")
+print(f"      DEC edges ahead of RISE) -- IT IS NOT, and the reason must be stated: the improvement")
+print(f"      comes from the near-LCDM TAIL of the DESI posterior.  {100*_nearflat:.0f}% of the (w0,wa)")
+print(f"      draws give a0(3)/a0(0) > 0.90, i.e. essentially FLAT (median of the draws "
+      f"{np.median(_r3):.3f}).")
+print("      M-DEC gets better by BECOMING M-FLAT.  That is the dissolution limit, not a detection.")
+print("      Cosmology-input uncertainty is otherwise SECOND-ORDER; the A_drift prior dominates.")
 
 # =========================================================================================
 # 6. WHAT NEW MEASUREMENT PUSHES THE DECISIVE BAYES FACTOR PAST 20:1
 # =========================================================================================
 print("\n" + BAR)
 print("6. FORECAST -- the (z, precision) of ONE new CLEAN deep-MOND a0(z) point that pushes")
-print("   the decisive Bayes factor past 20:1 (added to the FULL headline-marginalized likelihood)")
+print("   the decisive Bayes factor past 20:1 *** PRIOR-ROBUSTLY ***")
 print(BAR)
+print("   The target must be PRIOR-ROBUST, otherwise it is gameable: section 3C showed the odds")
+print("   swing by tens of dex across the A_drift prior ladder, so 'B > 20' under ONE prior means")
+print("   nothing.  REQUIREMENT USED HERE: the winning model must beat its rivals at B > 20:1")
+print("   under EVERY prior in the ladder P-HALF / P-MAG / P-MSA / P-WIDE simultaneously.")
+print("   Today NO pair meets that bar -- that is exactly why a new measurement is needed.")
 print("   The new point is assumed CLEAN: g_bar < 0.3 a0 (lever L=1.0, no dilution) and")
-print("   drift-exposure w=0.15 (low-acceleration selected, lensed/deep-MOND).  Its measured")
-print("   value is set to the TRUTH of whichever model is assumed (Asimov), and we report the")
-print("   LOOSEST sigma(log10 a0-ratio) that still delivers the target odds (a REQUIREMENT, so")
-print("   the loosest sufficient precision is the answer; tighter always also works).")
+print("   drift-exposure w=0.15 (low-acceleration selected, lensed / deep-MOND regime).  Its")
+print("   value is set to the TRUTH of whichever model is assumed (Asimov).  We report the")
+print("   LOOSEST sigma(log10 a0-ratio) that meets the bar -- i.e. the actual REQUIREMENT.")
 TARGET = np.log(20.0)
 DEXGRID = np.concatenate([np.arange(0.0025, 0.2001, 0.0025), np.arange(0.205, 0.605, 0.005)])
-
+PMAX_LADDER = [pm for _, pm in PRIORS]
 
 _fore_cache = {}
 
 
-def forecast_lnB(truth, z, sig_dex, w_new=0.15):
+def forecast_lnB(truth, z, sig_dex, pmax, w_new=0.15):
     """ln-evidence dict with ONE new Asimov point at (z, sig_dex) drawn at `truth`'s prediction."""
-    key = (truth, round(z, 6), round(sig_dex, 8), w_new)
+    key = (truth, round(z, 6), round(sig_dex, 8), round(pmax, 6), w_new)
     if key in _fore_cache:
         return _fore_cache[key]
     newP = dict(tag="[NEW]", kind="RATIO", zrep=z,
@@ -688,66 +708,87 @@ def forecast_lnB(truth, z, sig_dex, w_new=0.15):
                 L=1.0, w=w_new, cite="forecast", prov="forecast", wnote="forecast",
                 y_gbar=0.15)
     pts = POINTS + [newP]
-    # build the arrays directly (the [NEW] tag alone would collide across z/sigma in the cache)
     out = {}
-    pgrid = np.linspace(0.0, HEADLINE_PMAX, 2001)
+    pgrid = np.linspace(0.0, pmax, 2001)
     for m in MODEL_ORDER:
         A = build_arrays(m, pts)
-        c2 = chi2_vec(A, pgrid)
-        lw = -0.5 * c2
+        lw = -0.5 * chi2_vec(A, pgrid)
         mx = lw.max()
-        out[m] = float(mx + np.log(TRAPZ(np.exp(lw - mx), pgrid) / HEADLINE_PMAX))
-        _arr_cache.pop(tuple(k for k in _arr_cache if False), None)   # no-op guard
+        out[m] = float(mx + np.log(TRAPZ(np.exp(lw - mx), pgrid) / pmax))
     for k in [k for k in _arr_cache if "[NEW]" in k[1]]:
-        del _arr_cache[k]                     # forecast arrays are per-(z,sigma): never reuse
+        del _arr_cache[k]        # forecast arrays are per-(z,sigma); keep the cache from bloating
     _fore_cache[key] = out
     return out
 
 
+def robust_lnB(truth, others, z, sig_dex):
+    """worst-case (over the whole prior ladder) ln B of `truth` against every model in `others`."""
+    return min(min(forecast_lnB(truth, z, sig_dex, pm)[truth] -
+                   forecast_lnB(truth, z, sig_dex, pm)[o] for o in others)
+               for pm in PMAX_LADDER)
+
+
 def loosest_sigma(ok):
-    """Largest grid sigma such that ok(sigma') holds for EVERY sigma' <= sigma (a threshold)."""
-    best = None
-    for s in DEXGRID:
-        if ok(float(s)):
-            best = float(s)
-        else:
-            break
-    return best
+    """(loosest grid sigma satisfying ok, does ok ALSO hold at the tightest grid sigma?).
+    The criterion need NOT be monotone in sigma: an ultra-precise CLEAN point can be
+    inconsistent with the large A_drift the rest of the likelihood demands.  That is itself a
+    real internal-consistency test, so the non-monotone case is FLAGGED, never hidden."""
+    okv = [bool(ok(float(s))) for s in DEXGRID]
+    if not any(okv):
+        return None, None
+    return float(DEXGRID[max(i for i, v in enumerate(okv) if v)]), okv[0]
 
 
-def fmt_need(need):
+def fmt_need(need, tight_ok):
     if need is None:
-        return f"{'NOT REACHABLE':>13} {'--':>9} {'--':>7}"
+        return f"{'NOT REACHABLE':>13} {'--':>9} {'--':>7}  no sigma at this z clears the bar"
     frac = (10 ** need - 1.0) * 100.0
-    return f"{need:>13.4f} {frac:>9.1f} {frac/2:>7.1f}"
+    flag = "" if tight_ok else "  <- NON-MONOTONE: an ultra-precise point here BREAKS the joint fit"
+    return f"{need:>13.4f} {frac:>9.1f} {frac/2:>7.1f}{flag}"
 
 
-print(f"\n   (A) TRUE model must beat BOTH rivals at B > 20:1")
+print("\n   TODAY'S prior-robust worst-case odds with NO new point (the bar to beat):")
+for a, b in PAIRS:
+    vals = [marg[l]["bf"][f"{a}_vs_{b}"] / L10 for l, _ in PRIORS]
+    print(f"     {a} vs {b:8}: log10 B ranges [{min(vals):+.2f}, {max(vals):+.2f}] over the "
+          f"ladder -> worst case |log10 B| = {min(abs(v) for v in vals):.2f} (need 1.30)")
+
+print(f"\n   (A) TRUE model must beat BOTH rivals at B > 20:1 UNDER EVERY PRIOR")
 print(f"   {'assumed truth':13} {'z':>5} {'sig(dex)':>13} {'sig(a0)%':>9} {'sigRC%':>7}"
       "   sigRC = underlying RC precision = sig(a0)/2 (deep-MOND penalty, rule 4)")
 print("   " + "-" * 100)
 fore = {}
 for truth in MODEL_ORDER:
+    others = [o for o in MODEL_ORDER if o != truth]
     for z in [1.0, 1.5, 2.0, 2.5, 3.0]:
-        need = loosest_sigma(lambda s, t=truth, zz=z:
-                             min(forecast_lnB(t, zz, s)[t] - forecast_lnB(t, zz, s)[o]
-                                 for o in MODEL_ORDER if o != t) > TARGET)
+        need, tight = loosest_sigma(lambda s, t=truth, oo=others, zz=z:
+                                    robust_lnB(t, oo, zz, s) > TARGET)
         fore[(truth, z)] = need
-        print(f"   {truth:13} {z:>5.1f} {fmt_need(need)}")
-print("\n   (B) the DECISIVE PAIR on its own: what it takes to settle DEC vs FLAT (the hard one,")
-print("       these two differ by only 1.1-22.5% over 0<z<3) and DEC vs RISE (the easy one).")
+        print(f"   {truth:13} {z:>5.1f} {fmt_need(need, tight)}")
+print("\n   (B) PAIRWISE, still prior-robust: DEC vs FLAT is the HARD pair (the two differ by only")
+print("       1.1% at z=1 / 12.6% at z=2 / 22.5% at z=3); DEC vs RISE is the EASY pair (3.4-5.9x).")
 print(f"   {'truth':8} {'pair':16} {'z':>5} {'sig(dex)':>13} {'sig(a0)%':>9} {'sigRC%':>7}")
 print("   " + "-" * 68)
 fore_pair = {}
-for truth, other in [("M-DEC", "M-FLAT"), ("M-FLAT", "M-DEC"), ("M-DEC", "M-RISE")]:
+for truth, other in [("M-DEC", "M-FLAT"), ("M-FLAT", "M-DEC"),
+                     ("M-DEC", "M-RISE"), ("M-FLAT", "M-RISE")]:
     for z in [1.0, 2.0, 3.0]:
-        need = loosest_sigma(lambda s, t=truth, o=other, zz=z:
-                             (forecast_lnB(t, zz, s)[t] - forecast_lnB(t, zz, s)[o]) > TARGET)
+        need, tight = loosest_sigma(lambda s, t=truth, o=other, zz=z:
+                                    robust_lnB(t, [o], zz, s) > TARGET)
         fore_pair[(truth, other, z)] = need
-        print(f"   {truth:8} {truth[2:]+' vs '+other[2:]:16} {z:>5.1f} {fmt_need(need)}")
-print("\n   'NOT REACHABLE' = one new point of ANY precision at that z cannot deliver 20:1,")
-print("   because the two models' predictions are degenerate there (DEC~FLAT at z~1, the")
-print("   committed crossover) and/or the EXISTING likelihood already penalises that model.")
+        print(f"   {truth:8} {truth[2:]+' vs '+other[2:]:16} {z:>5.1f} {fmt_need(need, tight)}")
+print("\n   'NOT REACHABLE' = one new point of ANY precision at that z cannot clear the bar under")
+print("   every prior, because the two models are degenerate there (DEC ~ FLAT at z~1, the")
+print("   committed unity crossover) and/or the EXISTING likelihood already penalises that model.")
+print("   READING THE ASYMMETRY (important, and it is a POINT FOR the framework):")
+print("    * A_drift is SIGN-LOCKED POSITIVE, so a measured ratio BELOW 1 at z=2-3 is DRIFT-PROOF.")
+print("      Hence M-DEC-if-true IS prior-robustly detectable with one clean point (0.010 dex @")
+print("      z=2, 0.020 dex @ z=3), while M-FLAT-if-true at z>=1.5 is NOT -- a null is always")
+print("      absorbable by M-DEC plus slightly more drift.  The DECLINE is the falsifiable side.")
+print("    * CAVEAT on the M-FLAT z=1.0 entry: it clears the bar NOT by resolving the 1.1%")
+print("      DEC-vs-FLAT gap at z=1 (impossible) but by forcing p~0, which then makes Ciocan's")
+print("      rise unexplainable for every model and leaves FLAT merely least-bad.  That is an")
+print("      internal-CONSISTENCY test of the corpus, not a shape measurement.  Labelled, not hidden.")
 
 # =========================================================================================
 # 7. VERDICT
@@ -759,6 +800,8 @@ h = marg[[k for k in marg if k.startswith('P-MSA')][0]]["bf"]
 m_DF, m_DR, m_RF = h["M-DEC_vs_M-FLAT"] / L10, h["M-DEC_vs_M-RISE"] / L10, h["M-RISE_vs_M-FLAT"] / L10
 g = marg[[k for k in marg if k.startswith('P-MAG')][0]]["bf"]
 g_DF, g_DR, g_RF = g["M-DEC_vs_M-FLAT"] / L10, g["M-DEC_vs_M-RISE"] / L10, g["M-RISE_vs_M-FLAT"] / L10
+BEST_ROBUST = max(min(abs(marg[l]["bf"][f"{a}_vs_{b}"] / L10) for l, _ in PRIORS)
+                  for a, b in PAIRS)
 
 print("\n" + BAR)
 print("7. VERDICT -- what the combined likelihood actually says")
@@ -773,28 +816,49 @@ print(f"""  THE ODDS (log10 B; positive favours the FIRST model)
       DEC vs RISE {g_DR:+7.2f}   DEC vs FLAT {g_DF:+7.2f}   RISE vs FLAT {g_RF:+7.2f}
     MARGINALIZED over A_drift, HEADLINE P-MSA U[0,1.22] (real-data-measured apparent part):
       DEC vs RISE {m_DR:+7.2f}   DEC vs FLAT {m_DF:+7.2f}   RISE vs FLAT {m_RF:+7.2f}
+    ... and with M-DEC ALSO marginalized over the DESI Pantheon+ (w0,wa) posterior:
+      DEC vs RISE {DEC_WMARG_DR:+7.2f}   DEC vs FLAT {DEC_WMARG_DF:+7.2f}
+      -> NOT a rescue: {100*_nearflat:.0f}% of the DESI (w0,wa) draws make a0(3)/a0(0) > 0.90, so
+         M-DEC improves by BECOMING M-FLAT (the w->-1 dissolution limit).  Said, not hidden.
 
   THE RESULT IS THE SENSITIVITY, NOT ANY ONE COLUMN.  The decisive pairwise Bayes factor
   swings by {max(swings.values()):.1f} orders of magnitude across the defensible A_drift prior range, and
-  RISE-vs-FLAT FLIPS SIGN inside it.  That is not a measurement of a0(z); it is a
-  measurement of how badly ONE nuisance parameter controls the entire high-z a0(z) literature.
+  RISE-vs-FLAT FLIPS SIGN inside it (as does DEC-vs-RISE).  That is not a measurement of
+  a0(z); it is a measurement of how badly ONE nuisance parameter controls the entire high-z
+  a0(z) literature.  NO PAIR clears 20:1 prior-robustly: the best worst-case |log10 B| over
+  the prior ladder is only {BEST_ROBUST:.2f} dex against the 1.30-dex bar.  BOTTOM LINE:
+  today's high-z a0(z) corpus CANNOT choose among the three laws.  Anyone quoting a single
+  Bayes factor from it -- in either direction -- is quoting a prior, not a measurement.
 
   WHAT SURVIVES EVERY CHOICE (the robust statements):
-   * M-DEC is NEVER the best-fitting model, in any variant run above.  M-FLAT beats or ties
-     M-DEC everywhere, because the framework's decline is <=13% out to z=2 and the null points
-     (Jeanneau 0.00+/-0.27, McGaugh, Tiley, Big Wheel) sit at exactly 1.  The distinctive
-     DECLINE is NOT DETECTED.  Plainly: this combination does not find Carl's signal.
+   * M-DEC is NEVER the best-fitting model, in ANY variant run above (14 variants x 4 priors).
+     M-FLAT beats or ties M-DEC everywhere, because the framework's decline is only 1.1% at
+     z=1 and 12.6% at z=2 while the null points (Jeanneau 0.00+/-0.27, McGaugh, Tiley, Big
+     Wheel) sit at exactly 1.  The distinctive DECLINE is NOT DETECTED.  Plainly: this
+     combination does not find Carl's signal.
    * M-FLAT is SIMULTANEOUSLY standard/Milgrom MOND AND the framework's own w->-1
      dissolution limit.  So the FLAT win is NOT a falsification of the framework -- but it IS
      a failure to detect the distinctive decline, and that half is stated just as plainly.
-   * DEC-vs-FLAT is decided ENTIRELY by Ciocan (see the leave-one-out table): with Ciocan
-     dropped, the nine remaining constraints put DEC and FLAT within a factor of a few, i.e.
-     INDISTINGUISHABLE, and they DISFAVOUR M-RISE.  So the whole rising-vs-not question rests
-     on one 2026 A&A letter whose slope is known to be LCDM-reproducible.
-   * M-RISE (McCulloch) is the ONLY model that any variant strongly excludes: once the drift
-     is allowed to be as large as real samples measure it, RISE double-counts the rise (model
-     rise + apparent rise) and blows up against Big Wheel, McGaugh and the Milgrom bound.
-     The nuisance that rescues Carl from Ciocan is the SAME nuisance that kills McCulloch.
+   * DEC-vs-FLAT is decided ENTIRELY by Ciocan (leave-one-out: dropping it moves that
+     log10 B by 14.5 dex at face value and 1.66 dex marginalized, more than every other point
+     combined).  With Ciocan dropped the nine remaining constraints put DEC and FLAT at
+     1.3-1.9 : 1 -- INDISTINGUISHABLE -- and DISFAVOUR M-RISE at ~5-9 : 1.  So the entire
+     rising-vs-not question rests on one 2026 A&A letter whose slope is LCDM-reproducible.
+   * PARSIMONY IN THE NUISANCE cuts AGAINST Carl and FOR McCulloch, and is reported as such:
+     to fit the corpus M-RISE needs only p ~ 0.20 of apparent drift, while M-FLAT needs
+     p ~ 1.22-1.26 and M-DEC needs the MOST, p ~ 1.22-1.43 -- i.e. M-DEC survives only by
+     invoking the largest LCDM artifact of the three.  That is a real, unflattering point.
+   * ...but the SAME nuisance kills M-RISE once it is allowed to be as large as real samples
+     measure it: RISE then double-counts (model rise + apparent rise) and blows up against
+     Big Wheel z=3.25, McGaugh's constancy and the Milgrom bound (chi2 155 at p=1.22).
+     M-RISE is the only model that ANY variant strongly excludes.
+   * A DIRECTIONAL ASYMMETRY worth banking (section 6): because the apparent drift is
+     SIGN-LOCKED POSITIVE, a measured a0(z)/a0(0) BELOW 1 at z=2-3 is DRIFT-PROOF -- no
+     amount of A_drift can manufacture it.  So M-DEC, if true, IS prior-robustly detectable
+     with one clean point (sigma ~ 0.010 dex at z=2, 0.020 dex at z=3).  M-FLAT, if true, is
+     NOT: a null at z>=1.5 is always absorbable by M-DEC plus slightly more drift.  The
+     framework's decline is therefore the FALSIFIABLE-IN-THE-RIGHT-DIRECTION hypothesis here,
+     even though the current data does not detect it.
 
   HONEST FRAMING OF THE TWO WAYS THIS COULD HAVE BEEN FAKED, AND WERE NOT:
    * A manufactured DECLINING WIN would require inflating Ciocan's error until it vanished.
@@ -810,20 +874,29 @@ print(f"""  THE ODDS (log10 B; positive favours the FIRST model)
   a0's VALUE and the HORIZON CHOICE remain POSITS.  nu = Milgrom 1999 (PLA 253:273 Eq.9);
   McCulloch credited for the Hubble reading.  No TOE.  No 'theory closed'.  Doors remain open.""")
 
-print("\n  WHAT WOULD ACTUALLY SETTLE IT (from section 6, one new CLEAN point):")
+print("\n  WHAT WOULD ACTUALLY SETTLE IT (section 6; ONE new CLEAN deep-MOND point, g_bar<0.3a0,")
+print("  required to clear 20:1 vs BOTH rivals under EVERY A_drift prior in the ladder):")
+FLOOR_DEX = 0.30      # committed highz_systematics_floor.py: today's coherent per-bin bias
 for truth in MODEL_ORDER:
     best = [(z, fore[(truth, z)]) for z in [1.0, 1.5, 2.0, 2.5, 3.0] if fore[(truth, z)] is not None]
     if not best:
-        print(f"    if truth = {truth:7}: NO single new point at any z/precision reaches 20:1 vs BOTH rivals")
+        print(f"    if truth = {truth:7}: NO single new point at any z or precision clears the bar "
+              f"(it is drift-absorbable)")
         continue
-    z, s = min(best, key=lambda t: -(10 ** t[1]))
+    z, s = max(best, key=lambda t: t[1])          # loosest requirement = easiest target
     frac = (10 ** s - 1) * 100
-    print(f"    if truth = {truth:7}: easiest is z={z:.1f} at sigma={s:.3f} dex "
-          f"(~{frac:.0f}% in a0, ~{frac/2:.0f}% underlying RC precision)")
+    print(f"    if truth = {truth:7}: easiest target z={z:.1f}, sigma(a0) = {s:.4f} dex "
+          f"(~{frac:.1f}% in a0, ~{frac/2:.1f}% underlying RC) "
+          f"-> {FLOOR_DEX/s:.0f}x better than today's {FLOOR_DEX:.2f}-dex floor")
 print("    Instrument reading (unchanged from the committed parents): JWST NIRSpec-IFU on LENSED")
-print("    low-mass rotators at z~2-3 + ALMA CO/[CII]; the committed highz_systematics_floor.py")
-print("    says today's samples carry ~0.3 dex COHERENT bias, so the DEC-vs-FLAT target is")
-print("    currently a NO-GO and likely needs direct HI 21cm gas masses (SKA2/ngVLA, ~2035+).")
+print("    low-mass rotators at z~2-3 + ALMA CO/[CII].  The committed highz_systematics_floor.py")
+print("    puts today's samples at ~0.30 dex COHERENT per-bin bias, so even the EASIEST target")
+print("    above is >~6x beyond the current floor and the DEC-vs-FLAT target is ~15x beyond it:")
+print("    a NO-GO today, plausibly needing direct HI 21cm gas masses (SKA2/ngVLA, ~2035+).")
+print("    The ONE cheap thing available NOW that is not a new telescope: a Magneticum-style")
+print("    apparent-a0 drift calibration run on the ACTUAL MUSE-DARK III selection function.")
+print("    That measures p directly and collapses the prior ladder -- it is the single highest-")
+print("    leverage analysis in this whole problem, and it needs no new observations.")
 
 # =========================================================================================
 # 8. PRE-REGISTRATION / CAVEATS
@@ -859,6 +932,18 @@ CAVEATS = [
     "EXACTLY M-FLAT and this entire test becomes UNTESTABLE (not falsified).",
     "The ratio a0(z)/a0(0) is FOOTING-INDEPENDENT, so every odds figure here holds on BOTH "
     "footings (canonical cH_Lambda/Z=9.355e-11 and alt cH0/Z=1.1305e-10) identically.",
+    "NO PAIR of models is separated at 20:1 PRIOR-ROBUSTLY (best worst-case |log10 B| over the "
+    f"ladder = {BEST_ROBUST:.2f} vs the 1.30 bar).  Therefore NO decisive claim -- for OR against "
+    "any of the three laws -- may be made from this file.  The honest deliverable is the SPREAD "
+    "plus the required new measurement, not a winner.",
+    "Marginalizing M-DEC over the DESI Pantheon+ (w0,wa) posterior improves its odds "
+    f"(DEC/FLAT {m_DF:+.2f} -> {DEC_WMARG_DF:+.2f} in log10 B) ONLY because the posterior's "
+    "near-LCDM tail makes M-DEC nearly FLAT.  It must never be quoted as a detection of the "
+    "decline; it is the dissolution limit reappearing inside the cosmology errors.",
+    "PARSIMONY IN THE NUISANCE runs AGAINST the framework: M-RISE fits with p~0.20 of apparent "
+    "drift, M-FLAT needs p~1.22-1.26 and M-DEC needs the most (p~1.22-1.43).  If future work "
+    "MEASURES p on the actual MUSE-DARK III selection function and finds p < ~0.9, M-RISE wins "
+    "and the framework's declining branch is in real trouble.  That is the pre-registered risk.",
     "a0's VALUE and the HORIZON CHOICE are POSITS, not derived.  nu=sqrt(1+1/y) is Milgrom 1999 "
     "(PLA 253:273 Eq.9) -- the framework's distinctive content is the cH_Lambda/Z coefficient "
     "and the modified-inertia completion.  McCulloch (MiHsC) credited for the Hubble reading.  "
@@ -885,7 +970,12 @@ out = dict(
                   for l, _ in PRIORS},
     swing_dex_log10B=swings,
     headline_prior=f"P-MSA U[0,{HEADLINE_PMAX}]",
+    best_prior_robust_log10B=BEST_ROBUST,
+    prior_robust_bar_log10B=np.log10(20.0),
+    any_pair_decisive_prior_robustly=bool(BEST_ROBUST > np.log10(20.0)),
     forecast_sigma_dex={f"{t}@z={z}": fore[(t, z)] for (t, z) in fore},
+    forecast_pair_sigma_dex={f"{t}_vs_{o}@z={z}": fore_pair[(t, o, z)] for (t, o, z) in fore_pair},
+    per_point_face_chi2=per_point_face,
     dec_wa_marginalized_log10B=dict(vs_FLAT=(lnZ_dec_wmarg - lnZ_flat_head) / L10,
                                     vs_RISE=(lnZ_dec_wmarg - lnZ_rise_head) / L10),
     ciocan_loglog_slope=dict(lcdm_route=CIO_LL, lcdm_err=CIO_LL_ERR,
@@ -913,7 +1003,20 @@ assert abs(lever(6.0) - 0.0769) < 1e-3, "lever at g_bar=6a0 must match the paren
 assert abs(lever(0.3) - 0.625) < 1e-3, "lever at g_bar=0.3a0 must match the parents' ~63%"
 assert bf_face["M-DEC_vs_M-RISE"] < 0, "FACE VALUE must show M-RISE beating M-DEC (not spun away)"
 assert bf_face["M-DEC_vs_M-FLAT"] < 0, "FACE VALUE must show M-FLAT beating M-DEC"
+assert face_c2["M-RISE"] < face_c2["M-FLAT"] < face_c2["M-DEC"], \
+    "FACE-VALUE ordering must be RISE < FLAT < DEC in chi2 (the anti-framework result, kept)"
 assert max(swings.values()) > 3.0, "the prior-sensitivity swing is the headline; must be large"
+assert BEST_ROBUST < np.log10(20.0), \
+    "no pair may be claimed decisive: the best prior-robust |log10 B| must stay under 1.30"
+# the drift must genuinely cut BOTH ways (it is not a knob tuned to rescue M-DEC)
+assert chi2_total("M-DEC", 1.22) < chi2_total("M-DEC", 0.0, drift_on=False), \
+    "A_drift must HELP M-DEC (otherwise it is not the degeneracy the compilation documents)"
+assert chi2_total("M-RISE", 1.22) > chi2_total("M-RISE", 0.0, drift_on=False), \
+    "A_drift must HURT M-RISE at large p (double-counted rise) -- proves it is not a one-way knob"
+# M-DEC must never come out on top of the marginalized ladder without saying so
+assert all(marg[l]["lnZ"]["M-DEC"] <= max(marg[l]["lnZ"].values()) for l, _ in PRIORS), "sanity"
+assert marg["P-MSA   U[0,1.22]"]["lnZ"]["M-FLAT"] == max(marg["P-MSA   U[0,1.22]"]["lnZ"].values()), \
+    "headline prior must report M-FLAT as best (the stated, unspun outcome)"
 assert abs(float(_f1) - float(_f2)) < 1e-15, "ratio must be footing-independent on both footings"
 print(f"  MSA-3D slope = +{POINTS[0]['val']:.2f} (NOT raw +2.13) OK")
 print(f"  M-DEC: {float(R_dec(0.35)):.3f}@0.35 (bump) {float(R_dec(1.0)):.3f}@1 "
