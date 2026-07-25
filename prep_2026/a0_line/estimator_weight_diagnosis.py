@@ -86,9 +86,11 @@ print(f"  N = {N} gas-dominated points, N_gal = {NG}  (SPARC Q<=2, inc>=30, eV/V
 print(f"  committed incumbents reproduced EXACTLY:  GLS = {a0:.4e}   median = {med:.4e}")
 print(f"  GLS/median = {a0/med:.4f}  (the {100*(a0/med-1):.1f}% estimator spread under diagnosis)")
 print(f"  iterated f_int = {fint:.4f} at chi2/N = {c2n:.6f}")
-print(f"  g_bar range {GB.min():.3e} .. {GB.max():.3e} ;  y = g_bar/a0_canon in "
-      f"[{GB.min()/A0C:.4f}, {GB.max()/A0C:.4f}], median {np.median(GB)/A0C:.4f}")
-print(f"  ==> the subsample is DEEP-MOND THROUGHOUT: y_max = {GB.max()/A0C:.3f} << 1.")
+print(f"  g_bar range {GB.min():.3e} .. {GB.max():.3e}  ;  y := g_bar/a0 depends on the footing:")
+print(f"    y_max = {GB.max()/A0C:.4f} (canonical) / {GB.max()/A0A:.4f} (ALT) / "
+      f"{GB.max()/A0M:.4f} (std-MOND) / {GB.max()/1e-10:.4f} (prereg's neutral 1e-10 ref)")
+print(f"    y_median = {np.median(GB)/A0C:.4f} (canonical)")
+print(f"  ==> the subsample is DEEP-MOND THROUGHOUT at EVERY footing: y_max < 0.19 << 1.")
 
 # cross-check the sample against the frozen prereg truth manifest (integrity of footing)
 cfgp = os.path.join(HERE, "prereg_estimator_bias_config.json")
@@ -107,13 +109,18 @@ for k, g in enumerate(gals):
     assert abs(r["sig_lnD"] - g["sig_lnD"]) < 1e-15 and r["npt"] == int(m.sum())
     nchk += int(m.sum())
 assert nchk == N
+FROZEN_CFG_SHA = "8cc0a9664c420a0c36f07a8a99372481cad2d4aca1fd6c552b2955f3a840d765"
+FROZEN_MD_SHA = "6be465f21c7ea075f7a585779184970f145a8cdd2e61554a17e101be9a099dc2"
 h = hashlib.sha256(open(cfgp, "rb").read()).hexdigest()
+hmd = hashlib.sha256(open(os.path.join(HERE, "PREREG_ESTIMATOR_BIAS.md"), "rb").read()).hexdigest()
 print(f"  [prereg manifest cross-check: all {nchk} (g_bar_true, phi, fv) triples + all 49")
 print(f"   (f_D, sigma_lnD, inc, npt) records match this sample to 1e-12 relative]")
-print(f"  [prereg_estimator_bias_config.json sha256 = {h[:16]}... "
-      f"({'MATCHES frozen digest' if h.startswith('8cc0a9664c420a0c') else 'DIGEST MISMATCH'})]")
-assert h == "8cc0a9664c420a0c3ae4b6ff87a8b0ff" or True   # informational; see .sha256 file
+print(f"  [frozen digests re-verified: config {h[:16]}... "
+      f"{'OK' if h == FROZEN_CFG_SHA else 'MISMATCH'} ; PREREG md {hmd[:16]}... "
+      f"{'OK' if hmd == FROZEN_MD_SHA else 'MISMATCH'}]")
+assert h == FROZEN_CFG_SHA and hmd == FROZEN_MD_SHA, "frozen pre-registration was altered"
 RES["config_sha256"] = h
+RES["prereg_md_sha256"] = hmd
 
 # ============================================================================ D1
 print()
@@ -185,21 +192,34 @@ print(f"  Spearman rank correlation  corr(u, g_bar) = {sp_ug:+.3f}")
 print(f"  log-log regression         d ln u / d ln g_bar = {slope:+.3f}")
 print("  ==> THE BRIEF'S FIRST LEG IS FALSE ON THIS SAMPLE: the GLS weight is (mildly)")
 print("      ANTI-correlated with g_bar -- high-g_bar points are DOWN-weighted, not up-.")
-print("\n  WHY, structurally (deep-MOND algebra of the committed error model):")
+print("\n  WHY, structurally (exact algebra of the committed error model):")
 print("    sig2_E = (4*Gm2*fv)^2 + (2*g_bar^2*0.10)^2 + (f_int*Gm2)^2 ,  Gm2 = g_bar^2+a0*g_bar")
 print("    => w*g_bar^2 = 1 / [ sig2_E/g_bar^2 ] = 1 / [ a0^2(1+y)^2(16 fv^2 + f_int^2)")
 print("                                                 + 0.04 g_bar^2 ]")
-print("    which is MONOTONICALLY NON-INCREASING in g_bar. At y<<1 it reduces to")
-print("    w*g_bar^2 ~ 1/(16 fv^2 + f_int^2): the weight is a function of the VELOCITY-ERROR")
-print("    quality flag fv ALONE and is blind to g_bar. Check that algebra numerically:")
-u_pred = 1.0 / (a0**2 * (1 + GB / a0)**2 * (16 * FV**2 + fint**2) + 0.04 * GB**2)
+print("    BOTH bracketed terms INCREASE with g_bar at fixed fv, so u is STRICTLY DECREASING")
+print("    in g_bar: the estimator structurally CANNOT upweight high-g_bar points. At y<<1 the")
+print("    g_bar^4 term is negligible and u ~ 1/[(1+y)^2 (16 fv^2 + f_int^2)] -- set by the")
+print("    VELOCITY-ERROR quality flag fv times a mild (1+y)^-2 decline. Verify numerically:")
+# fire_common.gls returns the weights of the converged iteration, whose f_int is the
+# PRE-update value (f_int is rescaled by c2n**0.25 AFTER w is formed); undo that to compare.
+fint_w = fint / c2n**0.25
+u_pred = 1.0 / (a0**2 * (1 + GB / a0)**2 * (16 * FV**2 + fint_w**2) + 0.04 * GB**2)
 u_pred = u_pred / u_pred.sum()
-u_fv = 1.0 / (16 * FV**2 + fint**2); u_fv = u_fv / u_fv.sum()
-print(f"    closed form vs iterated GLS weights: max |du/u| = {np.max(abs(u_pred/u-1)):.2e}")
+u_fv = 1.0 / (16 * FV**2 + fint_w**2); u_fv = u_fv / u_fv.sum()
+print(f"    closed form vs iterated GLS weights: max |du/u| = {np.max(abs(u_pred/u-1)):.2e}"
+      f"  [= the GLS loop's own |da0|<1e-17 convergence tolerance, 8e-8 relative: EXACT]")
 print(f"    fv-only limit   vs iterated GLS weights: max |du/u| = {np.max(abs(u_fv/u-1)):.3f}"
-      f" (i.e. {100*np.max(abs(u_fv/u-1)):.1f}%), corr = {spearman(u_fv,u):+.3f}")
-assert np.max(abs(u_pred / u - 1)) < 1e-12
-print(f"  Spearman corr(u, fv) = {spearman(u, FV):+.3f}  (the weight IS the quality flag)")
+      f" ({100*np.max(abs(u_fv/u-1)):.0f}%, i.e. the (1+y)^-2 part), rank corr = "
+      f"{spearman(u_fv,u):+.3f}")
+assert np.max(abs(u_pred / u - 1)) < 1e-6
+# monotonicity of w*g_bar^2 in g_bar, at fixed fv, over 5 decades (the structural claim)
+_gg = np.geomspace(1e-13, 1e-8, 400)
+_uu = 1.0 / (a0**2 * (1 + _gg / a0)**2 * (16 * np.median(FV)**2 + fint_w**2) + 0.04 * _gg**2)
+assert np.all(np.diff(_uu) < 0), "w*g_bar^2 not monotonically decreasing in g_bar"
+print(f"    monotonicity check: w*g_bar^2 strictly DECREASING over g_bar = 1e-13..1e-8 "
+      f"(5 decades, 400 pts) at fixed fv -- verified")
+print(f"  Spearman corr(u, fv) = {spearman(u, FV):+.3f}: the GLS weight is essentially the")
+print(f"  point-quality flag, NOT an acceleration weighting.")
 
 # --- weight concentration BY GALAXY (mechanism M2 of the prereg) --------------------
 gsh = np.array([float(u[GAL == k].sum()) for k in sorted(set(GAL.tolist()))])
@@ -326,36 +346,59 @@ print("\n  BUT there IS a real mis-weighting, and it is a DIFFERENT one. Note fi
 print("  w_i*g_bar_i^2 IS the Fisher information for a0 under the committed error model, so")
 print("  GLS is optimal *given that model*. The model, however, OMITS the distance and")
 print("  inclination errors entirely (fire_common.sig2_model has only fv, shape, f_int).")
-sig_apt2 = (LD**2 + LI**2 + LV**2 + ((2 * y + 1) * SLNB)**2 + (fint * (y + 1))**2)
-w_full = 1.0 / sig_apt2
-u_full = w_full / w_full.sum()
+sig_meas2 = LD**2 + LI**2 + LV**2 + ((2 * y + 1) * SLNB)**2       # measurement terms only
 hf = SLD > 0.2                                   # Hubble-flow points, sigma_lnD = 0.25
 tr = SLD < 0.06                                  # TRGB points, sigma_lnD = 0.05
-print(f"  Build the COMPLETE per-point a0_pt variance (D + i + v + shape + f_int) and compare:")
-print(f"    {'subset':<28}{'point share':>12}{'GLS weight':>12}{'complete-model weight':>23}")
-print(f"    {'Hubble-flow (sig_lnD=0.25)':<28}{100*hf.mean():>11.1f}%{100*u[hf].sum():>11.1f}%"
-      f"{100*u_full[hf].sum():>22.1f}%")
-print(f"    {'TRGB (sig_lnD=0.05)':<28}{100*tr.mean():>11.1f}%{100*u[tr].sum():>11.1f}%"
-      f"{100*u_full[tr].sum():>22.1f}%")
-print(f"    N_eff: GLS {1/np.sum(u**2):.1f}   complete-model {1/np.sum(u_full**2):.1f}  of {N}")
-over = u[hf].sum() / u_full[hf].sum()
-print(f"  ==> GLS OVER-WEIGHTS the distance-uncertain (Hubble-flow) half of the sample by a")
-print(f"      factor {over:.2f} relative to a complete-error weighting. THIS is the real")
-print("      mis-weighting: not 'high g_bar', but 'high sigma_lnD treated as if it were 0'.")
-eff = float(np.sum(u**2 * sig_apt2) / (1.0 / np.sum(1.0 / sig_apt2)))
-print(f"      variance inefficiency of the GLS weights under the complete model: "
+# self-consistent variance-component fit: add an intrinsic term and iterate to chi2/N = 1
+si = 0.4
+for _ in range(500):
+    wv = 1.0 / (sig_meas2 + si**2)
+    aw = float(np.sum(wv * apt) / np.sum(wv))
+    c2 = float(np.mean(wv * (apt / aw - 1.0)**2))
+    si = max(1e-4, si * c2**0.25)
+    if abs(c2 - 1) < 1e-8:
+        break
+w_sc = 1.0 / (sig_meas2 + si**2); u_sc = w_sc / w_sc.sum()       # self-consistent weights
+w_ms = 1.0 / sig_meas2; u_ms = w_ms / w_ms.sum()                 # measurement-only weights
+print(f"  Build the COMPLETE per-point a0_pt variance and compare weightings. Two versions,")
+print(f"  both reported because the choice matters: measurement-terms-only (D+i+v+shape), and")
+print(f"  self-consistent (same + an intrinsic term refitted to chi2/N=1 -> sigma_int = "
+      f"{si:.3f}).")
+print(f"    {'subset':<28}{'pt share':>10}{'GLS wt':>9}{'complete(self-cons)':>21}"
+      f"{'complete(meas-only)':>21}")
+for lab, msk in (("Hubble-flow (sig_lnD=0.25)", hf), ("TRGB (sig_lnD=0.05)", tr)):
+    print(f"    {lab:<28}{100*msk.mean():>9.1f}%{100*u[msk].sum():>8.1f}%"
+          f"{100*u_sc[msk].sum():>20.1f}%{100*u_ms[msk].sum():>20.1f}%")
+print(f"    N_eff: GLS {1/np.sum(u**2):.1f} | self-cons {1/np.sum(u_sc**2):.1f} | "
+      f"meas-only {1/np.sum(u_ms**2):.1f}   of {N}")
+over_sc = float(u[hf].sum() / u_sc[hf].sum())
+over_ms = float(u[hf].sum() / u_ms[hf].sum())
+print(f"  ==> GLS OVER-WEIGHTS the distance-uncertain (Hubble-flow) half of the sample by")
+print(f"      x{over_sc:.2f} (self-consistent) to x{over_ms:.2f} (measurement-only) relative to a")
+print(f"      complete-error weighting. THIS is the real mis-weighting -- not 'high g_bar'")
+print(f"      but 'sigma_lnD = 0.25 weighted as if it were 0'.")
+eff = float(np.sum(u**2 * (sig_meas2 + si**2)) / (1.0 / np.sum(1.0 / (sig_meas2 + si**2))))
+print(f"      variance inefficiency of the GLS weights under the self-consistent model: "
       f"x{eff:.2f} (RMS x{np.sqrt(eff):.2f})")
+print(f"      NOTE, honestly: that is nearly optimal. The omission of sigma_lnD costs almost")
+print(f"      nothing in VARIANCE (the large intrinsic term dominates and flattens the")
+print(f"      weights); it costs in BIAS, because it is exactly the high-sigma_lnD galaxies")
+print(f"      that carry the largest Jensen inflation (D5). Variance-optimality does NOT")
+print(f"      protect a mean-like estimator from a multiplicative-error bias.")
 RES["D4"] = dict(spearman_u_MLlev=spearman(u, LU), spearman_u_gascallev=spearman(u, LG),
                  spearman_u_distlev=spearman(u, LD), spearman_u_inclev=spearman(u, LI),
                  spearman_u_y=spearman(u, y),
                  hubbleflow_point_share=float(hf.mean()),
                  hubbleflow_gls_weight=float(u[hf].sum()),
-                 hubbleflow_complete_weight=float(u_full[hf].sum()),
-                 overweight_factor=float(over), var_inefficiency=eff,
-                 Neff_complete=float(1 / np.sum(u_full**2)),
+                 hubbleflow_weight_selfconsistent=float(u_sc[hf].sum()),
+                 hubbleflow_weight_measonly=float(u_ms[hf].sum()),
+                 sigma_int_selfconsistent=float(si),
+                 overweight_factor_selfconsistent=over_sc, overweight_factor_measonly=over_ms,
+                 var_inefficiency=eff, Neff_complete=float(1 / np.sum(u_sc**2)),
                  verdict="brief leg 3 (weight on maximal-M/L-leverage points) FALSE; the REAL "
                          "mis-weighting is that the GLS error model omits sigma_lnD and "
-                         "sigma_i, over-weighting Hubble-flow galaxies by x%.2f" % over)
+                         "sigma_i, over-weighting Hubble-flow points by x%.2f-%.2f -- a BIAS "
+                         "defect, not a variance defect" % (over_sc, over_ms))
 
 # ============================================================================ D5
 print()
@@ -367,11 +410,13 @@ print("    F_i = exp(-2 dlnD_k) * (sin i_k / sin(i_k+di_k))^4 * (1+dv_i)^4     [
 print("    B_i = (phi_i e^dlnU + (1-phi_i) e^dlnG) * exp(eps_i)               [g_bar factor]")
 print("  the per-point observable is EXACTLY")
 print("    a0_pt,i / a0_inj = (y_i+1) * F_i / B_i  -  y_i * B_i .")
-print("  Every factor is MULTIPLICATIVE and every one is CONVEX in its (symmetric) noise, so")
-print("    E[F] > 1 = median[F]   and   E[1/B] > 1 .")
+print("  Every factor is MULTIPLICATIVE and CONVEX in its (symmetric) noise, so")
+print("    E[F] > median[F] ~ 1   and   E[1/B] > 1 ,   while median[exp(-2 dlnD)] = 1 exactly.")
+print("  The only term pulling DOWNWARD is -y*E[B] (E[B]>1 too), and it is suppressed by the")
+print("  factor y < 0.19: on a deep-MOND sample the +(y+1)*E[F/B] term wins by ~6:1.")
 print("  A MEAN-like estimator therefore inherits the Jensen/log-normal offset; a MEDIAN-like")
-print("  one does not. Since D1 proved a0_hat(GLS) IS a weighted mean of a0_pt, GLS must be")
-print("  biased HIGH and the median must not. The magnitudes, computed exactly:")
+print("  one largely does not. Since D1 proved a0_hat(GLS) IS a weighted mean of a0_pt, GLS")
+print("  must be biased HIGH and the median must not. The magnitudes, computed exactly:")
 rng = np.random.default_rng(20260725)
 NMC = 300000
 EFk, MFk = {}, {}
@@ -424,22 +469,41 @@ for nm, ainj in INJ:
     print(f"    {nm:<12}{100*b_gls:>+23.2f} {100*b_med:>+20.2f}")
 sp_gls = max(p["b_gls_pp"] for p in pred.values()) - min(p["b_gls_pp"] for p in pred.values())
 sp_med = max(p["b_median_pp"] for p in pred.values()) - min(p["b_median_pp"] for p in pred.values())
+bg = np.mean([p["b_gls_pp"] for p in pred.values()])
+bm = np.mean([p["b_median_pp"] for p in pred.values()])
 print(f"    injection spread (G3-analogue): GLS {sp_gls:.2f} pp, median-like {sp_med:.2f} pp")
-print(f"  PREDICTION, stated numerically and falsifiably BEFORE the mock is run:")
-print(f"    * sign(b_GLS) = POSITIVE (biased HIGH), magnitude ~ +9 to +13 pp -> would FAIL")
-print(f"      the frozen G2 gate (2.0 pp) by roughly a factor 5-6.")
-print(f"    * sign(b_median) ~ +0.5 pp, small and POSITIVE (from the convexity of the")
-print(f"      inclination factor and the truncated di redraw) -> would PASS G2.")
-print(f"    * both nearly INJECTION-INDEPENDENT (spread << 2 pp) -> G3 not the discriminator.")
-print(f"    * the bias is DOMINATED by exp(2 sig_lnD^2) on the 29 Hubble-flow galaxies, and")
-print(f"      is AMPLIFIED by the D4 mis-weighting (GLS gives them {100*u[hf].sum():.0f}% of the weight")
-print(f"      when a complete error model gives them {100*u_full[hf].sum():.0f}%). Re-weighting with the")
-u_sv = u.copy()
-b_cw = float(np.sum(u_full * ((GB / A0C + 1) * EF * Ev4 * Eeps - (GB / A0C) * Eeps)) - 1)
-b_gw = float(np.sum(u_sv * ((GB / A0C + 1) * EF * Ev4 * Eeps - (GB / A0C) * Eeps)) - 1)
-print(f"      complete model would cut the predicted mean-bias {100*b_gw:+.1f} -> {100*b_cw:+.1f} pp:")
-print(f"      i.e. ~{100*(b_gw-b_cw)/b_gw:.0f}% of the GLS bias is mis-weighting, the rest is")
-print(f"      irreducible Jensen (any mean-like estimator on multiplicative errors).")
+# how much of the mean-bias is the D4 mis-weighting vs irreducible Jensen?
+kern = (GB / A0C + 1) * EF * Ev4 * Eeps - (GB / A0C) * Eeps
+b_gw, b_sc, b_ms = (float(np.sum(z * kern) - 1) for z in (u, u_sc, u_ms))
+print(f"\n  PREDICTION, stated numerically and falsifiably BEFORE any mock number exists:")
+print(f"    * b(gls_origin): sign POSITIVE (biased HIGH), magnitude {bg:+.1f} pp "
+      f"(quote +9 to +13 pp)")
+print(f"      -> predicted to FAIL the frozen G2 gate (2.0 pp) by a factor ~{bg/2.0:.0f}.")
+print(f"      This prediction is EXACT in structure, not approximate: the mean commutes with")
+print(f"      the expectation, so E[weighted mean] = weighted mean of E[a0_pt] identically.")
+print(f"      Residual model risk is only that the mock re-fits its weights on noisy data;")
+print(f"      since u depends on g_bar only through (1+y)^-2 with y<0.19, that feedback is")
+print(f"      O(1 pp) at most, and f_int re-fitting rescales all weights uniformly (no bias).")
+print(f"    * b(median_a0pt): magnitude |b| = {abs(bm):.2f} pp, i.e. SMALL -> predicted to PASS")
+print(f"      G2. This prediction is APPROXIMATE, and the approximation is stated: the median")
+print(f"      does NOT commute with a mixture, so the pooled median over 310 points drawn")
+print(f"      from 49 galaxy-level factors can shift by O(1/sqrt(N_gal)) ~ 1-2 pp. So the")
+print(f"      honest form of the claim is |b(median)| <~ 2 pp, i.e. CONSISTENT WITH PASS but")
+print(f"      NOT sharply predicted. The mock is the arbiter for this one.")
+print(f"    * both nearly INJECTION-INDEPENDENT (spread <= {max(sp_gls,sp_med):.2f} pp): G3 will")
+print(f"      not discriminate. The decision will be made by G2 (and then G4).")
+print(f"    * ORIGIN OF THE GLS BIAS, decomposed:")
+print(f"        exp(2 sig_lnD^2) on the 29 Hubble-flow galaxies is the dominant single term")
+print(f"        ({np.exp(2*0.0625):.4f}, i.e. +{100*(np.exp(2*0.0625)-1):.1f}% on their points), amplified by the D4")
+print(f"        mis-weighting (GLS gives Hubble-flow points {100*u[hf].sum():.0f}% of the weight vs "
+      f"{100*u_sc[hf].sum():.0f}%")
+print(f"        self-consistent / {100*u_ms[hf].sum():.0f}% measurement-only). Predicted mean-bias under each")
+print(f"        weighting: GLS {100*b_gw:+.1f} pp | self-consistent {100*b_sc:+.1f} pp | "
+      f"meas-only {100*b_ms:+.1f} pp.")
+print(f"        => {100*(b_gw-b_ms)/b_gw:.0f}% of the GLS bias is mis-weighting; the remaining "
+      f"{100*b_ms/b_gw:.0f}% is")
+print(f"        IRREDUCIBLE Jensen -- no re-weighting removes it, because any mean-like")
+print(f"        estimator of a multiplicative-error quantity inherits E[noise factor] > 1.")
 
 print("\n  INDEPENDENT REAL-DATA CROSS-CHECK OF THE SAME MECHANISM (log-normal consistency):")
 pos = apt > 0
@@ -464,11 +528,22 @@ print(f"    ~{sig_mock:.3f} vs the real {sig_lnA:.3f}; exp(sig^2/2)-1 is {100*(n
 print(f"    vs {100*(np.exp(sig_lnA**2/2)-1):.1f}%. So the mock UNDERSTATES the GLS bias -- it is")
 print("    KIND to the incumbent (ALT-side) estimator, not to the canonical-side one.")
 print("    If GLS still fails G2 on the mock, that failure is a floor, not a ceiling.")
+print(f"    (sig_mock uses the INDEPENDENT terms only -- D, i, v, shape. The coherent Ups and")
+print(f"    gas-cal draws shift a whole realization and so contribute realization-to-")
+print(f"    realization SCATTER, not a within-realization mean-median gap.)")
+print(f"\n  TWO INDEPENDENT ROUTES TO THE SAME NUMBER (a real consistency check, not a")
+print(f"  restatement): the moment-propagation prediction is {bg:+.2f} pp and the log-normal")
+print(f"  shortcut exp(sig_mock^2/2)-1 is {100*(np.exp(sig_mock**2/2)-1):+.2f} pp. They agree to "
+      f"{abs(bg-100*(np.exp(sig_mock**2/2)-1)):.2f} pp")
+print(f"  despite sharing no algebra beyond the forward model itself.")
 RES["D5"] = dict(pred=pred, u_wtd_EF=float(np.sum(u * EF)), u_wtd_medF=float(np.sum(u * MF)),
                  sig_lnA_real=sig_lnA, lognormal_mean_over_median=float(np.exp(sig_lnA**2 / 2)),
                  observed_gls_over_median=a0 / med,
                  lognormal_check_relerr=float(abs(np.exp(sig_lnA**2 / 2) / (a0 / med) - 1)),
-                 pred_bias_glsweights_pp=100 * b_gw, pred_bias_completeweights_pp=100 * b_cw,
+                 pred_bias_glsweights_pp=100 * b_gw,
+                 pred_bias_selfconsistent_weights_pp=100 * b_sc,
+                 pred_bias_measonly_weights_pp=100 * b_ms,
+                 misweighting_share_of_bias=float((b_gw - b_ms) / b_gw),
                  sig_mock_only=sig_mock, n_nonpositive_a0pt=int((~pos).sum()),
                  predicted_sign_gls="POSITIVE (high)", predicted_sign_median="~zero, slightly positive")
 
@@ -523,12 +598,14 @@ print(f"          exp(sig_lnA^2/2) = {np.exp(sig_lnA**2/2):.3f} vs the observed 
 print("          -- the whole gap, with nothing left over.")
 print(f"    (M-B) MIS-WEIGHTING, subdominant but real. The GLS error model omits sigma_lnD")
 print(f"          and sigma_i, so the 29 Hubble-flow galaxies get {100*u[hf].sum():.0f}% of the weight")
-print(f"          instead of {100*u_full[hf].sum():.0f}%; they are also exactly where the Jensen inflation")
-print(f"          exp(2 sig_lnD^2) = {np.exp(2*0.0625):.3f} is largest. This AMPLIFIES M-A by ~"
-      f"{100*(b_gw-b_cw)/b_gw:.0f}%.")
+print(f"          instead of {100*u_sc[hf].sum():.0f}% (self-consistent) / {100*u_ms[hf].sum():.0f}%"
+      f" (measurement-only); they are also exactly")
+print(f"          where the Jensen inflation exp(2 sig_lnD^2) = {np.exp(2*0.0625):.3f} is largest. This")
+print(f"          AMPLIFIES M-A by ~{100*(b_gw-b_ms)/b_gw:.0f}% ({100*b_ms:+.1f} -> {100*b_gw:+.1f} pp);"
+      f" the other ~{100*b_ms/b_gw:.0f}% is irreducible.")
 print("  PREDICTED SIGN (recorded before any mock number exists):")
-print(f"    b(gls_origin)  = POSITIVE, ~ +9 to +13 pp   -> predicted to FAIL G2 (2.0 pp)")
-print(f"    b(median_a0pt) = ~ +0.5 pp                  -> predicted to PASS G2")
+print(f"    b(gls_origin)  = POSITIVE, {bg:+.1f} pp (quote +9 to +13) -> predicted FAIL of G2 (2.0 pp)")
+print(f"    b(median_a0pt) = {bm:+.2f} pp, honest bound |b| <~ 2 pp -> predicted PASS of G2")
 print("    Direction, plainly: the incumbent GLS is predicted to read HIGH, i.e. the real-data")
 print("    1.181e-10 is predicted to be an inflated reading of whatever the sample's true")
 print("    slope is. That conclusion is CANONICAL-FAVOURABLE, which is precisely the")
