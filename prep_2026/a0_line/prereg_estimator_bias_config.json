@@ -1,0 +1,1863 @@
+{
+ "blindness": {
+  "acknowledged_leak": "The two incumbent real-data values are already public in the committed Step-A artifacts: gls_origin = 1.181e-10 (~ALT footing 1.1305e-10) and median_a0pt = 9.726e-11 (~canonical 9.355e-11). They cannot be un-known. The leak is neutralized structurally, not by pretending otherwise: every gate uses only |bias| MAGNITUDES measured against injected truths, is symmetric in the sign of the bias, and is evaluated at all three injections including both candidate footings.",
+  "counterfactual_audit": "The results must print the FULL bias table (9 estimators x 3 injections) so an adversary can re-apply the frozen rule independently and confirm it would equally have selected an ALT-side estimator had the numbers come out the other way.",
+  "posited_clause": "Whichever estimator wins, a0's VALUE remains POSITED in the framework. This study resolves a MEASUREMENT ambiguity, not the theory's free coefficient. No 'theory closed', no TOE claim, both footings carried on every number.",
+  "rule": "The bias verdict (per-estimator tier, G2/G3/G4 flags, the primary estimator, and the eligible set) MUST be written to estimator_bias_verdict.json and hashed BEFORE any real-data estimator value beyond the two already-committed ones is computed or reported."
+ },
+ "decision_rule": {
+  "G1_null": "V1 zero-noise null must PASS (hard prerequisite for every estimator).",
+  "G2_bias_gate": "PASS iff |b(est, a0_inj)| < 2.0 percentage points at ALL THREE injected values.",
+  "G3_injection_independence": "PASS iff max_inj b(est) - min_inj b(est) < 2.0 percentage points. An estimator unbiased at only one injected value is DISQUALIFIED from primary status and must be reported as a red flag.",
+  "G4_efficiency": "Among estimators passing G1+G2+G3, PASS iff s(est) <= 1.30 * min(s) over that surviving set.",
+  "bias_metric": "b(est, a0_inj) = median over realizations of (a_hat / a0_inj) - 1, in percent",
+  "forbidden": [
+   "adding, removing or redefining an estimator after any bias number is seen",
+   "changing X=2.0/5.0 pp, Y=1.30, N_real, the seed, or the injected values",
+   "selecting among survivors using their real-data a0 values or the footing those imply",
+   "using the SIGN or DIRECTION of a measured bias in any gate",
+   "reporting a footing implication before the verdict JSON is written and hashed"
+  ],
+  "frozen_priority_order": [
+   "gls_origin",
+   "median_a0pt",
+   "theilsen_pairwise",
+   "trimmed_mean_a0pt",
+   "ivw_median_a0pt",
+   "galaxy_median_then_median",
+   "galaxy_gls_then_median",
+   "log_median_a0pt",
+   "gls_lowy"
+  ],
+  "outcome_map": {
+   "a_one_passes": "Exactly one estimator survives G2+G3 -> the estimator-choice variance term collapses to its bias bound; recompute the box and STATE which footing the surviving estimator's real-data value implies -- ONLY after the verdict file is written and hashed.",
+   "b_multiple_pass": "Several survive G2+G3. If sysEst_new/a0 > 5% the 22% spread is REAL DATA STRUCTURE: the ambiguity STANDS and the Step-A NO-GO HOLDS. If sysEst_new/a0 <= 2% the ambiguity is resolved to within the bias gate. Between 2% and 5%: PARTIAL shrink, report the new box, NO-GO status re-evaluated against the 6.31% target.",
+   "c_none_pass": "All estimators FAIL or are MARGINAL -> report that a third estimator is needed. Any new estimator requires an APPENDED amendment (PREREG_AMENDMENT_<n>.md, its own hash, a statement of what was already known) BEFORE its real-data value is computed.",
+   "d_all_fail_null": "V1 fails -> no verdict at all; fix the machinery and rerun."
+  },
+  "primary_selection": "Among G1+G2+G3+G4 survivors: smallest RMS bias over the three injections. If two are within 0.25 pp RMS, the smaller s(est) wins. If still within 2% relative in s, the FROZEN PRIORITY ORDER below decides.",
+  "priority_order_provenance": "Provenance-based, fixed now: the two INCUMBENT estimators already committed in fire_common.py first (in the order they appear there), then the new candidates in the order the task brief enumerated them. Note that this order puts the ALT-side incumbent (gls_origin) FIRST -- the tie-break cannot be a canonical-favouring choice.",
+  "residual_estimator_systematic": "On the real data, sysEst_new := (max - min)/2 over ALL G1+G2+G3 survivors (conservative: the wider set, not just the G4 set).",
+  "scatter_metric": "s(est, a0_inj) = 0.5*(P84 - P16) of a_hat/a0_inj, in percent; s(est) = arithmetic mean of s over the three injections",
+  "tiers": {
+   "FAIL": "max_inj |b| >= 5.0 pp",
+   "MARGINAL": "2.0 pp <= max_inj |b| < 5.0 pp",
+   "PASS": "max_inj |b| < 2.0 pp"
+  }
+ },
+ "estimators": [
+  {
+   "defn": "fire_common.gls(GB,GO,FV): iterated through-origin GLS with MODEL-based weights, a0_hat = sum(w E g)/sum(w g^2), w = 1/sig2_model, f_int iterated to chi2/N=1",
+   "id": "gls_origin",
+   "incumbent": true
+  },
+  {
+   "defn": "median over points of a0_pt_i = (g_obs^2-g_bar^2)/g_bar",
+   "id": "median_a0pt",
+   "incumbent": true
+  },
+  {
+   "defn": "Theil-Sen with FREE intercept: median over all point pairs (i<j) with g_j != g_i of (E_j-E_i)/(g_j-g_i); all 47,895 pairs used exactly (no subsampling at N=310). Intercept median(E - slope*g) reported as a diagnostic only. NOTE: the ORIGIN-anchored Theil-Sen is algebraically identical to median_a0pt, so the free-intercept form is the only non-degenerate Theil-Sen variant.",
+   "id": "theilsen_pairwise",
+   "incumbent": false
+  },
+  {
+   "defn": "symmetric 20%-trimmed mean of a0_pt (drop the lowest 20% and highest 20%)",
+   "id": "trimmed_mean_a0pt",
+   "incumbent": false
+  },
+  {
+   "defn": "weighted median of a0_pt with w_i = g_bar_i^2 / sig2_model_i, i.e. the SAME error model as the GLS (weights evaluated at the gls_origin-converged a0 and f_int: a two-stage estimator). Directly probes the 'GLS upweights high-g_bar' hypothesis while staying robust.",
+   "id": "ivw_median_a0pt",
+   "incumbent": false
+  },
+  {
+   "defn": "per-galaxy median of a0_pt, then the unweighted median over the 49 galaxy values",
+   "id": "galaxy_median_then_median",
+   "incumbent": false
+  },
+  {
+   "defn": "per-galaxy through-origin GLS a0_hat_k (same weights/iteration as gls_origin, run within galaxy k), then the unweighted median over the 49 values",
+   "id": "galaxy_gls_then_median",
+   "incumbent": false
+  },
+  {
+   "defn": "exp(median(ln a0_pt)) over points with a0_pt>0; the count of discarded non-positive points is REPORTED per realization (this estimator is the one candidate that cannot use them, which is itself a defect to be reported)",
+   "id": "log_median_a0pt",
+   "incumbent": false
+  },
+  {
+   "defn": "gls_origin restricted to points with g_bar < 1.0e-10 (y<1 at the footing-neutral reference scale 1.0e-10, fixed in advance, NOT tuned; it lies between the canonical and ALT candidates). Diagnostic estimator for the catastrophic-cancellation / high-g_bar-leverage hypothesis.",
+   "id": "gls_lowy",
+   "incumbent": false
+  }
+ ],
+ "forward_model": {
+  "deep_mond_amplification": "NOT an added ingredient: the ~4(y+1) lever on a0_pt is a DERIVED consequence of the forward model above and MUST be verified numerically (validation V2/V3), never injected by hand -- injecting it separately would double-count.",
+  "g_bar_obs": "g_bar_obs_i = g_bar_true_i * (phi_i*exp(dlnU) + (1-phi_i)*exp(dlnG)) * exp(eps_shape_i)",
+  "g_obs_obs": "g_obs_obs_i = g_obs_true_i * exp(-dlnD_k) * (sin(inc_k)/sin(inc_k+di_k))^2 * (1+dv_i)^2",
+  "no_clipping": "E_i = g_obs_obs^2 - g_bar_obs^2 and a0_pt_i = E_i/g_bar_obs_i are used AS IS. Negative E or negative a0_pt are NOT clipped, dropped, or floored -- doing so would itself bias the estimators under test.",
+  "no_reselection": "The gas-dominated point set is FIXED by the real data and is NOT re-cut on the mock observables: re-applying the gas cut to noisy mocks would inject a selection effect absent from the real pipeline.",
+  "order": [
+   "draw global dlnU, dlnG (once per realization)",
+   "draw per-galaxy dlnD_k, di_k",
+   "draw per-point eps_shape_i, dv_i",
+   "form g_bar_obs and g_obs_obs",
+   "hand (g_bar_obs, g_obs_obs, fv, gal_id) to every estimator"
+  ],
+  "rationale": "g_bar is EXACTLY distance-independent for gas AND stars (estimator_theory.py S2, sympy-verified); distance enters only through g_obs ~ 1/D. d ln g_obs = -dlnD - 2 dln sin i + 2 dv/v, matching the committed S3 sensitivities d a0_pt/dlnD = -2a0(y+1), d/dln sin i = -4a0(y+1), d/(dv/v) = +4a0(y+1).",
+  "terms": {
+   "Upsilon_offset": {
+    "dist": "Normal(0, 0.23)",
+    "scope": "GLOBAL, one draw per realization",
+    "source": "fire_common.SIG_LNU = 0.23 = 0.10 dex stellar M/L",
+    "symbol": "dlnU"
+   },
+   "distance": {
+    "dist": "Normal(0, sigma_lnD[fD])",
+    "scope": "PER GALAXY, independent",
+    "sigma_lnD": {
+     "1 Hubble-flow": 0.25,
+     "2 TRGB": 0.05,
+     "3 Cepheid": 0.05,
+     "4 UMa": 0.1,
+     "5 SNIa": 0.08
+    },
+    "source": "fire_common.SIG_LND",
+    "symbol": "dlnD"
+   },
+   "gascal_offset": {
+    "dist": "Normal(0, 0.10)",
+    "scope": "GLOBAL, one draw per realization",
+    "source": "fire_common.SIG_LNG = 0.10 gas-mass calibration",
+    "symbol": "dlnG"
+   },
+   "gbar_shape": {
+    "dist": "Normal(0, 0.10)",
+    "scope": "PER POINT, independent",
+    "source": "fire_common.SLNB = 0.10 per-point g_bar shape scatter",
+    "symbol": "eps_shape"
+   },
+   "inclination": {
+    "dist": "Normal(0, 3 deg)",
+    "guard": "redraw if inc_k+di_k outside (5 deg, 90 deg]",
+    "scope": "PER GALAXY, independent",
+    "source": "fire_common.SIG_INC = 3 deg",
+    "symbol": "di"
+   },
+   "velocity": {
+    "dist": "Normal(0, fv_i)",
+    "guard": "redraw if (1+dv_i) <= 0.05 (never triggers at fv<0.10; logged if it does)",
+    "note": "fv_i = eV_i/Vobs_i taken from the REAL data, per point",
+    "scope": "PER POINT, independent",
+    "symbol": "dv"
+   }
+  }
+ },
+ "frozen_utc_date": "2026-07-25",
+ "injection": {
+  "a0_injected": [
+   9.354769736111044e-11,
+   1.1305322040279838e-10,
+   1.2e-10
+  ],
+  "a0_injected_labels": [
+   "canonical cH_Lambda/Z",
+   "ALT cH0/Z",
+   "standard-MOND g_dagger"
+  ],
+  "identity": "g_obs_true = sqrt(g_bar_true^2 + a0_inj*g_bar_true)  (EXACT, no approximation)",
+  "note": "All three are injected so NEITHER footing is privileged. An estimator that is unbiased must be unbiased at ALL THREE."
+ },
+ "monte_carlo": {
+  "N_real": 2000,
+  "N_real_minimum_allowed": 1000,
+  "common_random_numbers": "ALL estimators see the SAME realizations, and the SAME noise draws are reused across the three injected a0 values (paired design), so estimator-to-estimator and injection-to-injection differences are not Monte-Carlo noise.",
+  "required_mc_precision": "sigma_MC on the median ratio, ~1.2533*s/sqrt(N_real), must be < 0.50 percentage points; it must be computed and reported. If N_real is reduced below 2000 for wall-clock reasons the reduction and the achieved sigma_MC must be recorded, and sigma_MC must remain < 0.70 pp.",
+  "seed": 20260725,
+  "stream": "numpy.random.default_rng(SeedSequence(20260725).spawn(N_real)[r]) per realization",
+  "vectorization_clause": "A vectorized reimplementation of fire_common.gls is permitted ONLY if it is asserted to agree with fire_common.gls to <1e-12 relative on (a) the real gas-dominated sample and (b) 20 mock realizations. The assertion must be in the results script."
+ },
+ "prereg_id": "a0_line_estimator_bias_v1",
+ "provenance": {
+  "anchor_values": "/Users/carlzimmerman/new_physics/prep_2026/concordance_ledger/anchor_values.json",
+  "committed_step_A": [
+   "estimator_theory.py",
+   "identity_uniqueness.py",
+   "per_galaxy_budget.py",
+   "reach_target.py",
+   "fire_common.py"
+  ],
+  "step_A_findings": {
+   "N_gal": 49,
+   "N_points": 310,
+   "Upsilon_share": 0.253,
+   "box_frac": 0.161,
+   "estimator_share_of_variance": 0.301,
+   "footing_gap": 1.951e-11,
+   "gascal_share": 0.206,
+   "gls_real": 1.181e-10,
+   "median_real": 9.726e-11,
+   "spread": 2.089e-11,
+   "target_1sigma_for_3sigma_separation": 0.0631
+  }
+ },
+ "purpose": "Measure the BIAS and SCATTER of candidate a0-line slope estimators on mocks with a KNOWN injected a0, to decide whether the committed 22% GLS-vs-median estimator spread is an estimator artifact or real data structure. This is a MEASUREMENT-statistics study only: a0's VALUE remains POSITED in the framework either way, and no mock can test the framework's nu.",
+ "sample": {
+  "N_gal": 49,
+  "N_points": 310,
+  "fD_census_galaxies": {
+   "1": 29,
+   "2": 18,
+   "4": 2
+  },
+  "galaxies": [
+   "D564-8",
+   "D631-7",
+   "DDO064",
+   "DDO154",
+   "DDO161",
+   "DDO168",
+   "DDO170",
+   "ESO444-G084",
+   "F565-V2",
+   "F571-V1",
+   "F583-1",
+   "IC2574",
+   "KK98-251",
+   "NGC0055",
+   "NGC0289",
+   "NGC1003",
+   "NGC2403",
+   "NGC2915",
+   "NGC3109",
+   "NGC3741",
+   "NGC5585",
+   "UGC00128",
+   "UGC00191",
+   "UGC00634",
+   "UGC00731",
+   "UGC00891",
+   "UGC01281",
+   "UGC04278",
+   "UGC04483",
+   "UGC04499",
+   "UGC05716",
+   "UGC05721",
+   "UGC05764",
+   "UGC05829",
+   "UGC05918",
+   "UGC06446",
+   "UGC06667",
+   "UGC06983",
+   "UGC07125",
+   "UGC07524",
+   "UGC08286",
+   "UGC08490",
+   "UGC08550",
+   "UGC08837",
+   "UGC10310",
+   "UGC11820",
+   "UGC12632",
+   "UGC12732",
+   "UGCA442"
+  ],
+  "gas_cut": "POINT level: Vgas^2 > Ud*Vdisk^2 + Ub*Vbul^2, Ud=0.70, Ub=1.4*Ud",
+  "manifest": [
+   {
+    "fD": 2,
+    "fv": [
+     0.07875,
+     0.08199999999999999
+    ],
+    "g_bar_true": [
+     1.2206854654130344e-12,
+     9.556255033331754e-13
+    ],
+    "inc_deg": 63.0,
+    "name": "D564-8",
+    "npt": 2,
+    "phi": [
+     0.48455682361104635,
+     0.45252346390345016
+    ],
+    "sig_lnD": 0.05
+   },
+   {
+    "fD": 2,
+    "fv": [
+     0.07184466019417476,
+     0.05244956772334294,
+     0.04664948453608248,
+     0.036941176470588234,
+     0.034868421052631576,
+     0.037500000000000006,
+     0.03687258687258687,
+     0.03996350364963504,
+     0.04823321554770318,
+     0.055993150684931506,
+     0.06752136752136753,
+     0.07053726169844021,
+     0.068760907504363
+    ],
+    "g_bar_true": [
+     1.2064833659209327e-11,
+     9.704615628364534e-12,
+     8.085365361477389e-12,
+     6.612500152232952e-12,
+     5.517515562623632e-12,
+     4.658267360423698e-12,
+     3.919091898377694e-12,
+     3.341073403904835e-12,
+     2.849789047243665e-12,
+     2.4503456843122114e-12,
+     2.1183410133405268e-12,
+     1.842984518707863e-12,
+     1.6099992504343805e-12
+    ],
+    "inc_deg": 59.00000000000001,
+    "name": "D631-7",
+    "npt": 13,
+    "phi": [
+     0.4770452107701422,
+     0.41225141088751244,
+     0.36707776434203165,
+     0.3292671753690176,
+     0.3050328643862198,
+     0.28476479568820406,
+     0.2706757333626137,
+     0.25872571514898596,
+     0.25112968050279133,
+     0.2457213191511767,
+     0.24231411154563498,
+     0.24068361840044203,
+     0.24058541526816352
+    ],
+    "sig_lnD": 0.05
+   },
+   {
+    "fD": 1,
+    "fv": [
+     0.09978401727861771,
+     0.09956896551724138,
+     0.09978401727861771
+    ],
+    "g_bar_true": [
+     1.0292049322923381e-11,
+     9.9886417743387e-12,
+     9.32892128946673e-12
+    ],
+    "inc_deg": 59.99999999999999,
+    "name": "DDO064",
+    "npt": 3,
+    "phi": [
+     0.4476450125794375,
+     0.39832842663648504,
+     0.377411907938862
+    ],
+    "sig_lnD": 0.25
+   },
+   {
+    "fD": 2,
+    "fv": [
+     0.03460207612456748,
+     0.02915451895043732,
+     0.026178010471204185,
+     0.023809523809523808,
+     0.02242152466367713,
+     0.021598272138228944,
+     0.02109704641350211,
+     0.02074688796680498,
+     0.02109704641350211,
+     0.028571428571428574
+    ],
+    "g_bar_true": [
+     5.157808381995762e-12,
+     4.452214727540452e-12,
+     3.814062229595341e-12,
+     3.5163723856078915e-12,
+     3.3606433818054233e-12,
+     2.9784525022121232e-12,
+     2.5017413222925746e-12,
+     2.0983261693388024e-12,
+     1.761050245978136e-12,
+     1.4892198887807665e-12
+    ],
+    "inc_deg": 64.0,
+    "name": "DDO154",
+    "npt": 10,
+    "phi": [
+     0.49837581323433605,
+     0.3444400384684564,
+     0.2495486171478768,
+     0.18287263175042356,
+     0.13667740589509192,
+     0.11641222840712531,
+     0.10853605298092696,
+     0.10389217476636395,
+     0.1017783398286814,
+     0.10083527139961149
+    ],
+    "sig_lnD": 0.05
+   },
+   {
+    "fD": 1,
+    "fv": [
+     0.08111702127659574,
+     0.09064039408866995,
+     0.07611241217798595,
+     0.06571428571428573,
+     0.04008179959100205,
+     0.02970873786407767,
+     0.03509433962264151,
+     0.02690909090909091,
+     0.017361111111111112,
+     0.019932998324958123,
+     0.020826446280991735,
+     0.021521035598705503,
+     0.021462639109697933,
+     0.03317460317460317,
+     0.03689922480620155,
+     0.016463414634146346,
+     0.047703703703703706,
+     0.035479041916167665,
+     0.014970059880239521,
+     0.015015015015015017,
+     0.014970059880239521,
+     0.015082956259426848,
+     0.019818456883509836
+    ],
+    "g_bar_true": [
+     1.1118446885327173e-11,
+     9.966588280690262e-12,
+     9.092683703070326e-12,
+     8.25993575294436e-12,
+     7.511814421789827e-12,
+     6.880727504755233e-12,
+     6.318914071277773e-12,
+     5.905803202733629e-12,
+     5.557168107602693e-12,
+     5.301010460459324e-12,
+     5.128634613976895e-12,
+     4.988850052773484e-12,
+     4.797407117839879e-12,
+     4.6427380551203814e-12,
+     4.4092407409950795e-12,
+     4.169374729231633e-12,
+     3.834940084833867e-12,
+     3.5065811079627847e-12,
+     3.1834279345566417e-12,
+     2.8896918670981814e-12,
+     2.626788745056379e-12,
+     2.405660268811897e-12,
+     2.1880016217837345e-12
+    ],
+    "inc_deg": 70.0,
+    "name": "DDO161",
+    "npt": 23,
+    "phi": [
+     0.4663255457065366,
+     0.4267781730260358,
+     0.4001428231373482,
+     0.3766249266999133,
+     0.3490277133950236,
+     0.3178613439379411,
+     0.288025568299808,
+     0.2661548184011906,
+     0.24457449936839581,
+     0.22261582117405207,
+     0.2011404667670357,
+     0.1817561948331791,
+     0.16703590400524002,
+     0.1539141659312611,
+     0.14515053644580314,
+     0.1382486496198833,
+     0.13631612800938578,
+     0.1356457844698467,
+     0.1363875776456663,
+     0.13766563403639348,
+     0.13953203168313616,
+     0.14042576361458647,
+     0.14322017700735004
+    ],
+    "sig_lnD": 0.25
+   },
+   {
+    "fD": 2,
+    "fv": [
+     0.05555555555555556,
+     0.051369863013698634,
+     0.03038674033149171,
+     0.025,
+     0.023032629558541264,
+     0.03213610586011342,
+     0.04014598540145986,
+     0.045454545454545456,
+     0.051923076923076926
+    ],
+    "g_bar_true": [
+     1.735303449349754e-11,
+     1.472522494503783e-11,
+     1.1599851834228229e-11,
+     1.0755698145312342e-11,
+     9.382860784349484e-12,
+     8.172138292130693e-12,
+     7.109578495523338e-12,
+     6.317582707187585e-12,
+     5.543040775943901e-12
+    ],
+    "inc_deg": 63.0,
+    "name": "DDO168",
+    "npt": 9,
+    "phi": [
+     0.2555185700843301,
+     0.2836544787016345,
+     0.3048912613244132,
+     0.2920773050997771,
+     0.28388432265040814,
+     0.27726659379173707,
+     0.2857184592183212,
+     0.2850060378838636,
+     0.2661928640170919
+    ],
+    "sig_lnD": 0.05
+   },
+   {
+    "fD": 1,
+    "fv": [
+     0.01904761904761905,
+     0.017985611510791366,
+     0.01877133105802048,
+     0.020338983050847456,
+     0.021666666666666667,
+     0.01607717041800643
+    ],
+    "g_bar_true": [
+     4.682896184723611e-12,
+     4.403826388376762e-12,
+     4.007838376699256e-12,
+     3.379322930484263e-12,
+     2.684035950424636e-12,
+     2.044120668501938e-12
+    ],
+    "inc_deg": 66.0,
+    "name": "DDO170",
+    "npt": 6,
+    "phi": [
+     0.39631804616858385,
+     0.29811556416183665,
+     0.2524131974250286,
+     0.2178538855651523,
+     0.2010377559222197,
+     0.2027851357879963
+    ],
+    "sig_lnD": 0.25
+   },
+   {
+    "fD": 2,
+    "fv": [
+     0.09686192468619247,
+     0.023863636363636365,
+     0.05362068965517241,
+     0.0213946117274168
+    ],
+    "g_bar_true": [
+     1.0515891133719358e-11,
+     8.82269467228708e-12,
+     7.112438858672878e-12,
+     3.5561580429582726e-12
+    ],
+    "inc_deg": 32.0,
+    "name": "ESO444-G084",
+    "npt": 4,
+    "phi": [
+     0.35353902579087887,
+     0.26507325647312907,
+     0.20731682168391985,
+     0.1870483597891819
+    ],
+    "sig_lnD": 0.05
+   },
+   {
+    "fD": 1,
+    "fv": [
+     0.09523809523809523,
+     0.06369426751592357,
+     0.07220216606498195
+    ],
+    "g_bar_true": [
+     3.884000265237052e-12,
+     3.893323948609007e-12,
+     3.6061206827977734e-12
+    ],
+    "inc_deg": 59.99999999999999,
+    "name": "F565-V2",
+    "npt": 3,
+    "phi": [
+     0.3868124577475977,
+     0.32539222029514486,
+     0.24944520173153956
+    ],
+    "sig_lnD": 0.25
+   },
+   {
+    "fD": 1,
+    "fv": [
+     0.07272727272727272,
+     0.0711743772241993,
+     0.07151370679380215
+    ],
+    "g_bar_true": [
+     5.286921676801696e-12,
+     4.283602537483953e-12,
+     3.1572627160494883e-12
+    ],
+    "inc_deg": 29.999999999999996,
+    "name": "F571-V1",
+    "npt": 3,
+    "phi": [
+     0.45119104408360833,
+     0.38408330169041743,
+     0.3735288191698006
+    ],
+    "sig_lnD": 0.25
+   },
+   {
+    "fD": 1,
+    "fv": [
+     0.07083825265643447,
+     0.06444188722669734
+    ],
+    "g_bar_true": [
+     4.232613668247961e-12,
+     3.700875022880385e-12
+    ],
+    "inc_deg": 63.0,
+    "name": "F583-1",
+    "npt": 2,
+    "phi": [
+     0.2541626713356087,
+     0.12509847503581664
+    ],
+    "sig_lnD": 0.25
+   },
+   {
+    "fD": 2,
+    "fv": [
+     0.08027923211169284,
+     0.09344262295081968,
+     0.0196969696969697,
+     0.05214723926380368,
+     0.0700447093889717
+    ],
+    "g_bar_true": [
+     3.829226218267667e-12,
+     3.4815103488726974e-12,
+     3.5030184633939363e-12,
+     3.630502435443023e-12,
+     3.5712019416421884e-12
+    ],
+    "inc_deg": 75.0,
+    "name": "IC2574",
+    "npt": 5,
+    "phi": [
+     0.49425273937780906,
+     0.46123100326617056,
+     0.4492830061460054,
+     0.42812266297590357,
+     0.3935263115772514
+    ],
+    "sig_lnD": 0.05
+   },
+   {
+    "fD": 1,
+    "fv": [
+     0.09174311926605504,
+     0.0819672131147541,
+     0.07326007326007326,
+     0.066006600660066,
+     0.06134969325153374,
+     0.060060060060060066,
+     0.057803468208092484,
+     0.05847953216374269
+    ],
+    "g_bar_true": [
+     5.6249468747540495e-12,
+     5.912322282218633e-12,
+     6.131497621059184e-12,
+     6.2341787247643295e-12,
+     6.182534938021333e-12,
+     5.680885811839614e-12,
+     5.154258463396244e-12,
+     4.261747558380455e-12
+    ],
+    "inc_deg": 59.00000000000001,
+    "name": "KK98-251",
+    "npt": 8,
+    "phi": [
+     0.29269745277896503,
+     0.27201415656819483,
+     0.25791557366734746,
+     0.2484619843321727,
+     0.23843898133879063,
+     0.24279854877929072,
+     0.264145061938035,
+     0.26360338558467433
+    ],
+    "sig_lnD": 0.25
+   },
+   {
+    "fD": 2,
+    "fv": [
+     0.03941605839416059,
+     0.013831258644536654,
+     0.032345013477088944,
+     0.032953105196451206,
+     0.027912621359223296,
+     0.05693950177935943,
+     0.08548009367681499,
+     0.053927315357561546,
+     0.04608294930875576,
+     0.0667447306791569,
+     0.08196721311475409
+    ],
+    "g_bar_true": [
+     1.5285728523541385e-11,
+     1.4298711787849792e-11,
+     1.3339730588691196e-11,
+     1.2493406982508318e-11,
+     1.1802928060191343e-11,
+     1.1195127852687427e-11,
+     1.0718252694665765e-11,
+     1.010566246589421e-11,
+     9.425289656570313e-12,
+     8.759698551922824e-12,
+     8.023230734330321e-12
+    ],
+    "inc_deg": 77.0,
+    "name": "NGC0055",
+    "npt": 11,
+    "phi": [
+     0.4833698004528391,
+     0.45687860457802587,
+     0.4367457463529396,
+     0.4250440538237435,
+     0.42459430981745516,
+     0.42768802909382675,
+     0.42578193652987795,
+     0.43056497726291787,
+     0.44145749684616076,
+     0.45632875595256206,
+     0.48018620074020507
+    ],
+    "sig_lnD": 0.05
+   },
+   {
+    "fD": 1,
+    "fv": [
+     0.06285714285714286,
+     0.06744186046511627,
+     0.075,
+     0.0340506329113924
+    ],
+    "g_bar_true": [
+     5.143179646674205e-12,
+     4.677556397431367e-12,
+     4.197662378044604e-12,
+     3.722092571665132e-12
+    ],
+    "inc_deg": 46.0,
+    "name": "NGC0289",
+    "npt": 4,
+    "phi": [
+     0.49621036395170826,
+     0.4882752615597088,
+     0.48747544438178614,
+     0.49764000828073923
+    ],
+    "sig_lnD": 0.25
+   },
+   {
+    "fD": 1,
+    "fv": [
+     0.01929824561403509,
+     0.015178571428571428,
+     0.01592920353982301,
+     0.01391304347826087
+    ],
+    "g_bar_true": [
+     1.9837561354792973e-12,
+     1.9667249398363894e-12,
+     2.092474442814072e-12,
+     2.239380148450619e-12
+    ],
+    "inc_deg": 67.0,
+    "name": "NGC1003",
+    "npt": 4,
+    "phi": [
+     0.4425822304345855,
+     0.4192033528878744,
+     0.37084420818489555,
+     0.32881795078622494
+    ],
+    "sig_lnD": 0.25
+   },
+   {
+    "fD": 2,
+    "fv": [
+     0.007462686567164179,
+     0.007518796992481203,
+     0.01753731343283582,
+     0.030820895522388057,
+     0.02875,
+     0.046911764705882354,
+     0.041176470588235294,
+     0.038814814814814816,
+     0.02328358208955224
+    ],
+    "g_bar_true": [
+     8.615793507461525e-12,
+     8.107857385549855e-12,
+     7.631349253084843e-12,
+     7.16001911681328e-12,
+     6.7343787140453845e-12,
+     6.325569039301419e-12,
+     5.1307388063570794e-12,
+     4.939080680801802e-12,
+     4.765456832659873e-12
+    ],
+    "inc_deg": 63.0,
+    "name": "NGC2403",
+    "npt": 9,
+    "phi": [
+     0.49966671438613347,
+     0.4963565040028489,
+     0.49503735604566496,
+     0.49617349005024763,
+     0.4961578836534033,
+     0.49795542263542386,
+     0.49468638790802727,
+     0.48796267351997435,
+     0.48202144248762513
+    ],
+    "sig_lnD": 0.05
+   },
+   {
+    "fD": 2,
+    "fv": [
+     0.07013801756587201,
+     0.08167741935483872,
+     0.0802252816020025,
+     0.09644171779141104,
+     0.0951338199513382,
+     0.08646341463414633,
+     0.06776859504132231,
+     0.06434378629500581,
+     0.06131301289566238,
+     0.07456647398843931
+    ],
+    "g_bar_true": [
+     2.6515726390471182e-12,
+     2.582682290749333e-12,
+     2.430091132576792e-12,
+     2.332716486620421e-12,
+     2.2573576287022385e-12,
+     2.180628736414435e-12,
+     2.127879073227119e-12,
+     2.051917529579851e-12,
+     1.9973555433127005e-12,
+     1.90765366443614e-12
+    ],
+    "inc_deg": 56.0,
+    "name": "NGC2915",
+    "npt": 10,
+    "phi": [
+     0.49090611660083233,
+     0.45799887637225467,
+     0.443207222996265,
+     0.42440307729102716,
+     0.40340701168905285,
+     0.3852762709564092,
+     0.36654006611599466,
+     0.35313198300068893,
+     0.3375923508434478,
+     0.32993149043991205
+    ],
+    "sig_lnD": 0.05
+   },
+   {
+    "fD": 2,
+    "fv": [
+     0.06375838926174496,
+     0.046647230320699715,
+     0.09162303664921466,
+     0.07092198581560284,
+     0.0930232558139535,
+     0.08113590263691683,
+     0.0691699604743083,
+     0.0660377358490566,
+     0.060329067641681895,
+     0.05615942028985507,
+     0.04521739130434783,
+     0.04060913705583756,
+     0.031045751633986925,
+     0.0303030303030303,
+     0.04503105590062111,
+     0.048048048048048055,
+     0.05128205128205128,
+     0.04833836858006042,
+     0.04457652303120357
+    ],
+    "g_bar_true": [
+     4.1263075142671666e-12,
+     4.440738125987334e-12,
+     4.600470979346947e-12,
+     4.276700121817244e-12,
+     4.0892052251937264e-12,
+     3.97024547156655e-12,
+     3.939665641072273e-12,
+     3.860943210737907e-12,
+     3.52282651849295e-12,
+     3.2169822506240423e-12,
+     3.1046013108339054e-12,
+     3.0238592260404785e-12,
+     2.9713872352583635e-12,
+     2.918213687897134e-12,
+     2.913272114540506e-12,
+     2.912073781320089e-12,
+     2.7906624809728563e-12,
+     2.6102515313356213e-12,
+     2.4530922211059617e-12
+    ],
+    "inc_deg": 70.0,
+    "name": "NGC3109",
+    "npt": 19,
+    "phi": [
+     0.48719887179657634,
+     0.4452355979398793,
+     0.4291765435024011,
+     0.38757602923911977,
+     0.36877422402474075,
+     0.37796477113179405,
+     0.3908794609109194,
+     0.38299618061563734,
+     0.3629970605247506,
+     0.3423514170489219,
+     0.32093517172367475,
+     0.31509073012234884,
+     0.3058195723758856,
+     0.2957016979251025,
+     0.27998504689838283,
+     0.2689021876152552,
+     0.266001793862902,
+     0.24278555105480032,
+     0.22834392369645992
+    ],
+    "sig_lnD": 0.05
+   },
+   {
+    "fD": 2,
+    "fv": [
+     0.08289962825278811,
+     0.08065693430656935,
+     0.07096774193548387,
+     0.06738461538461538,
+     0.06636363636363636,
+     0.06027397260273973,
+     0.05681233933161954,
+     0.05325301204819277,
+     0.05152224824355972,
+     0.049664429530201344,
+     0.04796573875802998,
+     0.046804123711340205,
+     0.0464,
+     0.047808764940239036,
+     0.051297405189620754,
+     0.06279069767441861
+    ],
+    "g_bar_true": [
+     3.3398413881545745e-12,
+     2.7766828809844315e-12,
+     2.360238075968514e-12,
+     2.052934350004707e-12,
+     1.92366671066491e-12,
+     1.852942826889799e-12,
+     1.8277339246940956e-12,
+     1.6912815320066381e-12,
+     1.5356759855915827e-12,
+     1.483899101802607e-12,
+     1.399966024111084e-12,
+     1.3145710809332722e-12,
+     1.1963959214540164e-12,
+     1.0848755531107809e-12,
+     9.736408126705423e-13,
+     8.794175898962495e-13
+    ],
+    "inc_deg": 70.0,
+    "name": "NGC3741",
+    "npt": 16,
+    "phi": [
+     0.4583771831089001,
+     0.39371116483556207,
+     0.3498282019078234,
+     0.3144191368638226,
+     0.2697145088228595,
+     0.22811896151827055,
+     0.19426265240114524,
+     0.15360072066196417,
+     0.12867246653627615,
+     0.10432477364772752,
+     0.08989706806599859,
+     0.07864803379915503,
+     0.07245502930560536,
+     0.0682174918374493,
+     0.06556656101164171,
+     0.06316141249860754
+    ],
+    "sig_lnD": 0.05
+   },
+   {
+    "fD": 1,
+    "fv": [
+     0.011001100110011,
+     0.030133928571428575,
+     0.030201342281879196
+    ],
+    "g_bar_true": [
+     6.919597324077167e-12,
+     6.2445854311149706e-12,
+     5.637556243079389e-12
+    ],
+    "inc_deg": 51.0,
+    "name": "NGC5585",
+    "npt": 3,
+    "phi": [
+     0.48689384004070924,
+     0.4594487132719944,
+     0.44667932402203137
+    ],
+    "sig_lnD": 0.25
+   },
+   {
+    "fD": 1,
+    "fv": [
+     0.007751937984496124,
+     0.007633587786259542,
+     0.007633587786259542,
+     0.007633587786259542,
+     0.009763779527559056,
+     0.01111111111111111,
+     0.012461538461538463,
+     0.015227272727272726,
+     0.01567164179104478,
+     0.02062015503875969,
+     0.03537878787878788,
+     0.0476
+    ],
+    "g_bar_true": [
+     4.143485952704992e-12,
+     3.930688739220869e-12,
+     3.5096466720679264e-12,
+     2.9676706855815892e-12,
+     2.624000863509789e-12,
+     2.381895557271158e-12,
+     2.133511989898005e-12,
+     1.8742657653518225e-12,
+     1.6558779984588345e-12,
+     1.45187766444096e-12,
+     1.2897699052041644e-12,
+     1.1617071698329354e-12
+    ],
+    "inc_deg": 57.00000000000001,
+    "name": "UGC00128",
+    "npt": 12,
+    "phi": [
+     0.4750068358484915,
+     0.422262623390164,
+     0.39898409545990915,
+     0.4015575040449081,
+     0.39004931049194036,
+     0.3699140911075077,
+     0.36060663302896706,
+     0.3617230477992209,
+     0.36304038322247534,
+     0.3697027265557106,
+     0.3745705044115402,
+     0.37435123134347337
+    ],
+    "sig_lnD": 0.25
+   },
+   {
+    "fD": 1,
+    "fv": [
+     0.012345679012345678,
+     0.0124031007751938
+    ],
+    "g_bar_true": [
+     8.935529318725718e-12,
+     6.01115677250083e-12
+    ],
+    "inc_deg": 45.0,
+    "name": "UGC00191",
+    "npt": 2,
+    "phi": [
+     0.46727786261102044,
+     0.3857674383810496
+    ],
+    "sig_lnD": 0.25
+   },
+   {
+    "fD": 1,
+    "fv": [
+     0.01668372569089048,
+     0.009259259259259259,
+     0.02158139534883721
+    ],
+    "g_bar_true": [
+     8.124668816164157e-12,
+     5.575438568884182e-12,
+     3.374531442231496e-12
+    ],
+    "inc_deg": 37.0,
+    "name": "UGC00634",
+    "npt": 3,
+    "phi": [
+     0.4963271701188664,
+     0.33617305953413734,
+     0.29852173557213063
+    ],
+    "sig_lnD": 0.25
+   },
+   {
+    "fD": 1,
+    "fv": [
+     0.060387323943661975,
+     0.049093904448105435,
+     0.03802163833075734,
+     0.034999999999999996,
+     0.035244755244755246,
+     0.03651226158038147,
+     0.03824324324324324,
+     0.04363143631436315,
+     0.046278755074424895
+    ],
+    "g_bar_true": [
+     2.9079276364171204e-12,
+     2.893307696937344e-12,
+     2.9058469477283937e-12,
+     3.5321742332198653e-12,
+     4.68621751988168e-12,
+     5.075198195559864e-12,
+     4.803132716292014e-12,
+     4.593493307839388e-12,
+     4.138687859882435e-12
+    ],
+    "inc_deg": 57.00000000000001,
+    "name": "UGC00731",
+    "npt": 9,
+    "phi": [
+     0.3999086146547459,
+     0.36030883082337056,
+     0.3184420331278559,
+     0.21143757443024042,
+     0.14506128072498953,
+     0.11873847627177694,
+     0.09695211064422106,
+     0.08565896082474071,
+     0.0827008986141731
+    ],
+    "sig_lnD": 0.25
+   },
+   {
+    "fD": 1,
+    "fv": [
+     0.03214695752009185,
+     0.018467220683287166,
+     0.01662510390689942,
+     0.01568627450980392
+    ],
+    "g_bar_true": [
+     6.641599039077731e-12,
+     5.663953146682795e-12,
+     3.862214741204921e-12,
+     2.7763893446582325e-12
+    ],
+    "inc_deg": 59.99999999999999,
+    "name": "UGC00891",
+    "npt": 4,
+    "phi": [
+     0.44135099394456384,
+     0.3221862043838718,
+     0.32682045868190873,
+     0.3021100962657254
+    ],
+    "sig_lnD": 0.25
+   },
+   {
+    "fD": 2,
+    "fv": [
+     0.07547169811320754,
+     0.07393715341959334,
+     0.07272727272727272,
+     0.0718132854578097,
+     0.07092198581560284,
+     0.070298769771529
+    ],
+    "g_bar_true": [
+     5.835176746279122e-12,
+     5.573845864786304e-12,
+     5.022932366104537e-12,
+     4.3839550872625194e-12,
+     4.3390256296079924e-12,
+     4.229508568291913e-12
+    ],
+    "inc_deg": 90.0,
+    "name": "UGC01281",
+    "npt": 6,
+    "phi": [
+     0.48697552682066586,
+     0.4372475100021361,
+     0.42345441352174173,
+     0.4204916106712248,
+     0.38022010589188787,
+     0.35721297233575655
+    ],
+    "sig_lnD": 0.05
+   },
+   {
+    "fD": 1,
+    "fv": [
+     0.08946784922394678,
+     0.04381161007667032,
+     0.09428879310344827
+    ],
+    "g_bar_true": [
+     1.12587960021711e-11,
+     1.1736755451924386e-11,
+     1.115712215658198e-11
+    ],
+    "inc_deg": 90.0,
+    "name": "UGC04278",
+    "npt": 3,
+    "phi": [
+     0.3860957056865343,
+     0.3542093016536523,
+     0.35175044230165364
+    ],
+    "sig_lnD": 0.25
+   },
+   {
+    "fD": 2,
+    "fv": [
+     0.06009615384615384,
+     0.07788461538461539,
+     0.07685589519650655,
+     0.09176954732510288,
+     0.050826446280991734
+    ],
+    "g_bar_true": [
+     8.747049917303874e-12,
+     7.606752048002253e-12,
+     6.4982294185610815e-12,
+     5.718587277410234e-12,
+     5.068956586461086e-12
+    ],
+    "inc_deg": 58.00000000000001,
+    "name": "UGC04483",
+    "npt": 5,
+    "phi": [
+     0.4281060323411379,
+     0.34053658333602277,
+     0.2794114416791924,
+     0.22926681727364173,
+     0.19280344635840702
+    ],
+    "sig_lnD": 0.05
+   },
+   {
+    "fD": 1,
+    "fv": [
+     0.03628922237380628,
+     0.03593539703903095
+    ],
+    "g_bar_true": [
+     7.852049484203453e-12,
+     7.168842185733655e-12
+    ],
+    "inc_deg": 50.0,
+    "name": "UGC04499",
+    "npt": 2,
+    "phi": [
+     0.4488318491598472,
+     0.4248611536430622
+    ],
+    "sig_lnD": 0.25
+   },
+   {
+    "fD": 1,
+    "fv": [
+     0.014662756598240468,
+     0.01492329149232915,
+     0.014557823129251702,
+     0.01367053998632946,
+     0.013793103448275862,
+     0.014657534246575343,
+     0.02797858099062918
+    ],
+    "g_bar_true": [
+     4.218859839404872e-12,
+     4.0915302377975126e-12,
+     3.9292283289761e-12,
+     3.652871162917262e-12,
+     3.2875392816266266e-12,
+     2.849393182700732e-12,
+     2.420011166329129e-12
+    ],
+    "inc_deg": 54.0,
+    "name": "UGC05716",
+    "npt": 7,
+    "phi": [
+     0.41065331662248555,
+     0.304297893016476,
+     0.23715717987275356,
+     0.19820917280110975,
+     0.17427518918812657,
+     0.16326837794325455,
+     0.16153364073498827
+    ],
+    "sig_lnD": 0.25
+   },
+   {
+    "fD": 1,
+    "fv": [
+     0.05843989769820972,
+     0.05851472471190782,
+     0.05843989769820972,
+     0.05836526181353768,
+     0.05814249363867685,
+     0.05792141951837769,
+     0.057484276729559754
+    ],
+    "g_bar_true": [
+     6.768934997819708e-12,
+     6.065317756822495e-12,
+     5.773802940095123e-12,
+     5.4753944716562184e-12,
+     4.935078813963034e-12,
+     4.457548163926094e-12,
+     4.06556101761269e-12
+    ],
+    "inc_deg": 61.0,
+    "name": "UGC05721",
+    "npt": 7,
+    "phi": [
+     0.4902442950445745,
+     0.4391250455382661,
+     0.37978948307513277,
+     0.334779432873674,
+     0.311891068794577,
+     0.2999844800675606,
+     0.2848733267864311
+    ],
+    "sig_lnD": 0.25
+   },
+   {
+    "fD": 1,
+    "fv": [
+     0.020682523267838676,
+     0.019762845849802372,
+     0.018501387604070305,
+     0.01792114695340502,
+     0.01833180568285976,
+     0.053,
+     0.05551102204408818
+    ],
+    "g_bar_true": [
+     5.644109591184251e-12,
+     6.249715628159626e-12,
+     6.454973581866942e-12,
+     6.282652464160941e-12,
+     5.806061777744501e-12,
+     4.953009836986008e-12,
+     4.2315597864825384e-12
+    ],
+    "inc_deg": 59.99999999999999,
+    "name": "UGC05764",
+    "npt": 7,
+    "phi": [
+     0.3501978874633206,
+     0.26199799555329456,
+     0.21158388991905402,
+     0.18442297962769422,
+     0.17448143051357695,
+     0.17372692131364711,
+     0.18477432904075156
+    ],
+    "sig_lnD": 0.25
+   },
+   {
+    "fD": 1,
+    "fv": [
+     0.09749518304431598,
+     0.08784722222222222,
+     0.08336079077429982,
+     0.07713414634146341,
+     0.07376093294460641
+    ],
+    "g_bar_true": [
+     5.536281512666935e-12,
+     6.459124373569324e-12,
+     7.323033083527467e-12,
+     7.353721327877255e-12,
+     6.956267759962897e-12
+    ],
+    "inc_deg": 34.0,
+    "name": "UGC05829",
+    "npt": 5,
+    "phi": [
+     0.4260838436656993,
+     0.31737821115094467,
+     0.2394955607080246,
+     0.20430196107558327,
+     0.19333523827705507
+    ],
+    "sig_lnD": 0.25
+   },
+   {
+    "fD": 1,
+    "fv": [
+     0.08831460674157304
+    ],
+    "g_bar_true": [
+     3.2415559057251075e-12
+    ],
+    "inc_deg": 46.0,
+    "name": "UGC05918",
+    "npt": 1,
+    "phi": [
+     0.4502801236609473
+    ],
+    "sig_lnD": 0.25
+   },
+   {
+    "fD": 1,
+    "fv": [
+     0.04472049689440994,
+     0.04428044280442805,
+     0.05602923264311815,
+     0.05555555555555555,
+     0.06478209658421673,
+     0.06524317912218268,
+     0.08413461538461538
+    ],
+    "g_bar_true": [
+     6.9665673931890695e-12,
+     6.934226077146189e-12,
+     6.866434248455278e-12,
+     6.854606598195707e-12,
+     6.281691577432381e-12,
+     5.136140580342886e-12,
+     4.772887769360588e-12
+    ],
+    "inc_deg": 51.0,
+    "name": "UGC06446",
+    "npt": 7,
+    "phi": [
+     0.45332382910901214,
+     0.3879802111027478,
+     0.33289302118841435,
+     0.28064539854349185,
+     0.25881650084829594,
+     0.27266704109950823,
+     0.2563574717172099
+    ],
+    "sig_lnD": 0.25
+   },
+   {
+    "fD": 4,
+    "fv": [
+     0.043290043290043295,
+     0.04398447606727038,
+     0.0483271375464684,
+     0.03571428571428571,
+     0.03529411764705882,
+     0.0396732788798133
+    ],
+    "g_bar_true": [
+     4.213181357321099e-12,
+     4.261776828507437e-12,
+     4.841147183003993e-12,
+     4.620621910044152e-12,
+     4.726443443287192e-12,
+     4.134509115296388e-12
+    ],
+    "inc_deg": 89.0,
+    "name": "UGC06667",
+    "npt": 6,
+    "phi": [
+     0.4331617048056721,
+     0.41598352668394334,
+     0.35842055858209293,
+     0.3666107477887799,
+     0.3537044728663296,
+     0.4025994826117364
+    ],
+    "sig_lnD": 0.1
+   },
+   {
+    "fD": 4,
+    "fv": [
+     0.07889908256880733,
+     0.09074074074074075,
+     0.09074074074074075
+    ],
+    "g_bar_true": [
+     7.685582124702701e-12,
+     6.960835490078755e-12,
+     6.219216102621782e-12
+    ],
+    "inc_deg": 49.0,
+    "name": "UGC06983",
+    "npt": 3,
+    "phi": [
+     0.469446307431605,
+     0.4399459166707696,
+     0.42112407633997734
+    ],
+    "sig_lnD": 0.1
+   },
+   {
+    "fD": 1,
+    "fv": [
+     0.03111455108359133,
+     0.032317073170731715,
+     0.040519877675840976,
+     0.046564885496183206,
+     0.049462365591397855,
+     0.053620955315870564
+    ],
+    "g_bar_true": [
+     4.8656094193144916e-12,
+     5.390881011913517e-12,
+     4.92213751708757e-12,
+     4.1692533994382036e-12,
+     3.851975477205039e-12,
+     2.890600326754229e-12
+    ],
+    "inc_deg": 90.0,
+    "name": "UGC07125",
+    "npt": 6,
+    "phi": [
+     0.49396757691488374,
+     0.3676216185371085,
+     0.32707986981514553,
+     0.29549830676689703,
+     0.2586023441434067,
+     0.2872915196663768
+    ],
+    "sig_lnD": 0.25
+   },
+   {
+    "fD": 2,
+    "fv": [
+     0.04221668742216688,
+     0.045073891625615765,
+     0.04738760631834751,
+     0.048926014319809065,
+     0.035189873417721514
+    ],
+    "g_bar_true": [
+     7.113740002878347e-12,
+     7.076980495951033e-12,
+     7.0313523492056724e-12,
+     6.9913942122607345e-12,
+     6.737040925652e-12
+    ],
+    "inc_deg": 46.0,
+    "name": "UGC07524",
+    "npt": 5,
+    "phi": [
+     0.49462187959279613,
+     0.4821975487630324,
+     0.4744796911224785,
+     0.4758587894574966,
+     0.46253909842016605
+    ],
+    "sig_lnD": 0.05
+   },
+   {
+    "fD": 2,
+    "fv": [
+     0.024191616766467066,
+     0.02386634844868735,
+     0.02372479240806643
+    ],
+    "g_bar_true": [
+     5.8940693713435945e-12,
+     5.249041376316855e-12,
+     4.912556509670593e-12
+    ],
+    "inc_deg": 90.0,
+    "name": "UGC08286",
+    "npt": 3,
+    "phi": [
+     0.4736740657143129,
+     0.46047403235467216,
+     0.4324629890283672
+    ],
+    "sig_lnD": 0.05
+   },
+   {
+    "fD": 2,
+    "fv": [
+     0.04606741573033708,
+     0.04606741573033708,
+     0.0462406015037594,
+     0.0462406015037594,
+     0.04641509433962264,
+     0.04641509433962264,
+     0.04682741116751269,
+     0.047368421052631574,
+     0.047797927461139894,
+     0.04755154639175258,
+     0.04817232375979113,
+     0.04755154639175258
+    ],
+    "g_bar_true": [
+     5.240152519455387e-12,
+     4.826738427306712e-12,
+     4.439263930019366e-12,
+     4.360208519981699e-12,
+     4.121797598058478e-12,
+     3.65506569235394e-12,
+     3.4793835837410895e-12,
+     3.33554840216011e-12,
+     3.070869400347666e-12,
+     2.8254700747006173e-12,
+     2.702583074716934e-12,
+     2.602023540658154e-12
+    ],
+    "inc_deg": 50.0,
+    "name": "UGC08490",
+    "npt": 12,
+    "phi": [
+     0.4908505414559846,
+     0.47581835505773307,
+     0.46625302508213423,
+     0.4307920688638051,
+     0.41497922788976216,
+     0.4278806076839034,
+     0.4130224486271705,
+     0.3964887169901875,
+     0.3991253681619923,
+     0.40254840395041963,
+     0.39456182641681486,
+     0.3787962451684152
+    ],
+    "sig_lnD": 0.05
+   },
+   {
+    "fD": 1,
+    "fv": [
+     0.038754325259515575,
+     0.034904013961605584,
+     0.034782608695652174
+    ],
+    "g_bar_true": [
+     4.048422796524168e-12,
+     4.24907240007714e-12,
+     3.96302726975035e-12
+    ],
+    "inc_deg": 90.0,
+    "name": "UGC08550",
+    "npt": 3,
+    "phi": [
+     0.3873381365908377,
+     0.29425109149319084,
+     0.25889860728595043
+    ],
+    "sig_lnD": 0.25
+   },
+   {
+    "fD": 2,
+    "fv": [
+     0.0625
+    ],
+    "g_bar_true": [
+     7.662163327916642e-12
+    ],
+    "inc_deg": 80.0,
+    "name": "UGC08837",
+    "npt": 1,
+    "phi": [
+     0.4695908790688351
+    ],
+    "sig_lnD": 0.05
+   },
+   {
+    "fD": 1,
+    "fv": [
+     0.06912568306010929
+    ],
+    "g_bar_true": [
+     7.681100883888915e-12
+    ],
+    "inc_deg": 34.0,
+    "name": "UGC10310",
+    "npt": 1,
+    "phi": [
+     0.4795262528367716
+    ],
+    "sig_lnD": 0.25
+   },
+   {
+    "fD": 1,
+    "fv": [
+     0.01778741865509761,
+     0.01299545159194282,
+     0.012307692307692308,
+     0.01551213735938425
+    ],
+    "g_bar_true": [
+     5.025940385581102e-12,
+     4.913694238515435e-12,
+     3.7180986688287485e-12,
+     2.978162714371792e-12
+    ],
+    "inc_deg": 45.0,
+    "name": "UGC11820",
+    "npt": 4,
+    "phi": [
+     0.33833618978519125,
+     0.2009777676353646,
+     0.16639079300329243,
+     0.1394789115889017
+    ],
+    "sig_lnD": 0.25
+   },
+   {
+    "fD": 1,
+    "fv": [
+     0.03968705547652916,
+     0.04103641456582633,
+     0.040983606557377046,
+     0.038493150684931504,
+     0.03816689466484269
+    ],
+    "g_bar_true": [
+     5.272643288854858e-12,
+     5.1033507056099e-12,
+     4.830716653718242e-12,
+     4.7158299518462785e-12,
+     4.519830141837482e-12
+    ],
+    "inc_deg": 46.0,
+    "name": "UGC12632",
+    "npt": 5,
+    "phi": [
+     0.4563459189592375,
+     0.3971483214464512,
+     0.3786469321041802,
+     0.3490586905478721,
+     0.3364053843341744
+    ],
+    "sig_lnD": 0.25
+   },
+   {
+    "fD": 1,
+    "fv": [
+     0.045054945054945054,
+     0.046309523809523814,
+     0.042873831775700935,
+     0.039021615472127416,
+     0.03700440528634361,
+     0.03329842931937173,
+     0.032448979591836735
+    ],
+    "g_bar_true": [
+     4.276723001804021e-12,
+     4.063520249525964e-12,
+     4.158373619684632e-12,
+     4.392787374015621e-12,
+     4.5796407743181226e-12,
+     4.741431059223011e-12,
+     4.727486175230609e-12
+    ],
+    "inc_deg": 39.0,
+    "name": "UGC12732",
+    "npt": 7,
+    "phi": [
+     0.48673186275769653,
+     0.41852961862309895,
+     0.34454069953902483,
+     0.2728728901238407,
+     0.22534623560037348,
+     0.18646723396348647,
+     0.161554631268659
+    ],
+    "sig_lnD": 0.25
+   },
+   {
+    "fD": 2,
+    "fv": [
+     0.06363636363636363,
+     0.042439024390243905,
+     0.03897959183673469,
+     0.03740875912408759,
+     0.055319148936170216,
+     0.048961937716262977,
+     0.017699115044247787
+    ],
+    "g_bar_true": [
+     6.525336794254706e-12,
+     7.919032405560768e-12,
+     6.8569713254428235e-12,
+     5.3970974970677145e-12,
+     3.924430663682384e-12,
+     2.6747235718143192e-12,
+     1.840583282789319e-12
+    ],
+    "inc_deg": 64.0,
+    "name": "UGCA442",
+    "npt": 7,
+    "phi": [
+     0.3194444926195858,
+     0.25111206578037587,
+     0.19741050386825962,
+     0.174954108172516,
+     0.18899089398662,
+     0.22435608334743573,
+     0.21960093747188889
+    ],
+    "sig_lnD": 0.05
+   }
+  ],
+  "sig_lnD_census_points": {
+   "0.05": 147,
+   "0.1": 9,
+   "0.25": 154
+  },
+  "source": "fire_common.load(Ud=0.70) -> per-galaxy 'gasdom' point mask",
+  "sparc_cuts": "Q<=2, inc>=30 deg, point cut eV/Vobs < 0.10 (Lelli+2017 standard)",
+  "y_max_at_1e10": 0.1735303449349754,
+  "y_median_at_1e10": 0.0444000102800335,
+  "y_min_at_1e10": 0.008794175898962494
+ },
+ "validation": {
+  "V1_zero_noise_null": {
+   "justification": "With zero noise E_i = a0_inj*g_bar_i EXACTLY, so every listed estimator is algebraically exact independent of its weights; float64 roundoff on sums of 310 terms is ~1e-14, so 1e-10 is a generous machine-level bound.",
+   "n_checks": 27,
+   "on_failure": "HARD HALT. The mock or that estimator is broken and must be fixed before any noisy realization is run. No bias number from a failed build may be used.",
+   "spec": "With dlnU=dlnG=eps_shape=dlnD=di=dv=0, EVERY estimator must return a0_inj at ALL THREE injected values: |a_hat/a0_inj - 1| < 1e-10.",
+   "tolerance_rel": 1e-10
+  },
+  "V2_linear_response": {
+   "on_failure": "HARD HALT: the forward model does not reproduce the committed sensitivities.",
+   "spec": "Enabling each noise term ALONE at small amplitude, the measured per-point d a0_pt/d(lever) must match the committed sympy coefficients (-2a0(y+1) for lnD, -4a0(y+1) for ln sin i, +4a0(y+1) for dv/v, -phi*a0(2y+1) for lnUpsilon, -(1-phi)a0(2y+1) for ln gascal) to < 1%."
+  },
+  "V3_deep_mond_amplification": {
+   "on_failure": "HARD HALT (same reason as V2).",
+   "spec": "With velocity noise only, median |Delta a0_pt|/a0 must equal 4(1+y)*fv within 5% -- the numerical confirmation that a0 errors go as ~2x the fractional g_obs error, NOT half of it."
+  }
+ }
+}
