@@ -553,24 +553,41 @@ print(BAR)
 inwin = [r for r in rows if 1.5 <= r["z"] <= 2.5]
 confirmed = [r for r in inwin if r["mode"] == "PUB" and r["gpub"] < CUT]
 pub_fail = [r for r in inwin if r["mode"] == "PUB" and r["gpub"] >= CUT]
+central = [r for r in inwin if r["mode"] == "BRACKET" and r["gmid"] < CUT]
 plausible = [r for r in inwin if r["mode"] == "BRACKET" and r["glo"] < CUT]
 plaus_rot = [r for r in plausible if r.get("vsig") and r["vsig"] >= 1.0]
+cent_rot = [r for r in central if r.get("vsig") and r["vsig"] >= 1.0]
 excluded = [r for r in inwin if r["mode"] == "BRACKET" and r["glo"] >= CUT]
 noncomp = [r for r in inwin if r["mode"] == "NONE"]
+
+
+def vs_str(r):
+    return f"{r['vsig']:.2f}" if r.get("vsig") else "n/a"
+
+
 print(f"  objects in the z=1.5-2.5 window in this table:              {len(inwin):3d}")
-print(f"   * CONFIRMED pass on PUBLISHED data alone (g_bar<0.3a0):    {len(confirmed):3d}   "
+print(f"  TIER-0  CONFIRMED pass on PUBLISHED data alone:            {len(confirmed):3d}   "
       f"{[r['name'] for r in confirmed]}")
-print(f"   * CONFIRMED FAIL on published data:                        {len(pub_fail):3d}   "
+print(f"  TIER-0  CONFIRMED FAIL on published data:                  {len(pub_fail):3d}   "
       f"{[r['name'] for r in pub_fail]}")
-print(f"   * PLAUSIBLE pass (optimistic bracket corner only):         {len(plausible):3d}")
+print(f"  TIER-1  CENTRAL estimate passes (bracket MIDpoint < 0.3):  {len(central):3d}"
+      f"   <-- the honest short list")
+for r in central:
+    print(f"       - {r['name']:32} z={r['z']:.2f} mu={r['mu']:.1f} "
+          f"logM*={np.log10(r['Mstar']):.2f} g_bar/a0 mid={r['gmid']:.2f} "
+          f"[{r['glo']:.2f},{r['ghi']:.2f}] v/s={vs_str(r)} R_req={r['Rreq']:.2f} kpc")
+print(f"          of those ALSO rotation-dominated (published v/s>=1): {len(cent_rot):3d}   "
+      f"{[r['name'] for r in cent_rot]}")
+print(f"  TIER-2  pass only at the OPTIMISTIC bracket corner:        {len(plausible):3d}")
 for r in plausible:
     print(f"       - {r['name']:32} z={r['z']:.2f} mu={r['mu']:.1f} "
-          f"logM*={np.log10(r['Mstar']):.2f} g_bar/a0 in [{r['glo']:.2f},{r['ghi']:.2f}] "
-          f"V/sig={r['vsig'] if r['vsig'] else float('nan'):.2f} R_req={r['Rreq']:.2f} kpc")
-print(f"   * of those, ALSO rotation-dominated (V/sigma >= 1):        {len(plaus_rot):3d}   "
+          f"logM*={np.log10(r['Mstar']):.2f} g_bar/a0 [{r['glo']:.2f},{r['gmid']:.2f},"
+          f"{r['ghi']:.2f}] v/s={vs_str(r)} R_req={r['Rreq']:.2f} kpc")
+print(f"          of those ALSO rotation-dominated (published v/s>=1): {len(plaus_rot):3d}   "
       f"{[r['name'] for r in plaus_rot]}")
-print(f"   * bracket EXCLUDES the cut (even optimistically):          {len(excluded):3d}")
-print(f"   * g_bar/a0 NOT COMPUTABLE from published data:             {len(noncomp):3d}   "
+print(f"  TIER-3  bracket EXCLUDES the cut even optimistically:      {len(excluded):3d}   "
+      f"{[r['name'] for r in excluded]}")
+print(f"  TIER-X  g_bar/a0 NOT COMPUTABLE at all:                    {len(noncomp):3d}   "
       f"{[r['name'] for r in noncomp]}")
 
 # the sharp statement about computability across the whole window
@@ -587,6 +604,37 @@ print(f"    BOTH (=> g_bar/a0 computable):            {n_both:3d}")
 print(f"    resolved kinematics of any kind:          {n_kin:3d}")
 print(f"    gas-mass set INTERSECT kinematics set:    {n_gas_and_kin:3d}"
       f"   <-- the whole problem in one number")
+
+# ---- the SUSPECTED anti-correlation, tested rather than asserted -------------------------
+print("\n  IS 'low mass <=> not rotating' REAL AT z~2?  Spearman test on the ONE homogeneous")
+print("  sample that can answer it (OLAS z>1.5, N=8, published v/sigma vs published log M*):")
+olas = [r for r in rows if r["name"].startswith("OLAS")]
+lm = np.array([np.log10(r["Mstar"]) for r in olas])
+vv = np.array([r["vsig"] for r in olas])
+
+
+def spearman(x, y):
+    rx = np.argsort(np.argsort(x)) + 1.0
+    ry = np.argsort(np.argsort(y)) + 1.0
+    n = len(x)
+    rho = float(np.corrcoef(rx, ry)[0, 1])
+    t = rho * np.sqrt((n - 2) / max(1e-12, 1 - rho ** 2))
+    # two-sided p from the t-approximation (n=8 -> 6 dof); crude but adequate and stated as such
+    from math import erf
+    p = 2 * (1 - 0.5 * (1 + erf(abs(t) / np.sqrt(2))))
+    return rho, n, p
+
+
+rho, n_sp, p_sp = spearman(lm, vv)
+print(f"    Spearman rho(log M*, v/sigma) = {rho:+.3f}  (N={n_sp}, two-sided p ~ {p_sp:.2f},"
+      f" normal-approx)")
+print(f"    reading: the sign is POSITIVE (more massive -> better rotational support), which is")
+print(f"    the direction that HURTS a deep-MOND-selected sample -- but with N={n_sp} and p~{p_sp:.2f}")
+print("    this is a SUGGESTIVE TREND, NOT a measurement.  It must not be quoted as a")
+print("    demonstrated anti-correlation, and it must not be dismissed either.  The two")
+print("    lowest-M* OLAS rotators do carry v/sigma = 1.64 and 1.17 (i.e. barely rotating),")
+print("    and A1689B11 (log M*=9.8, sigma_outer=15 km/s, v/sigma~9-13) is the counterexample")
+print("    at the HIGH-mass end.  Both facts are on the table; D-3 owns the consequence.")
 
 # ==========================================================================================
 # S6 -- THE DILUTION LEVER THE DEEP-MOND CUT BUYS  (framework-derived, from the parent)
@@ -608,13 +656,19 @@ REF = [("Ubler+2017 KMOS3D z=2.3 (massive HSB)", np.sqrt(2.0 * 6.0)),
        ("Jeanneau+2026 MUSE-DARK II lensed z~0.9", np.sqrt(0.3 * 1.0)),
        ("Big Wheel z=3.25", np.sqrt(0.2 * 0.3)),
        ("*** THIS PROGRAM: g_bar = 0.3 a0 (cut edge)", 0.30),
-       ("*** THIS PROGRAM: g_bar = 0.15 a0 (target)", 0.15)]
+       ("*** THIS PROGRAM: g_bar = 0.15 a0 (target)", 0.15),
+       ("    (deeper still, g_bar = 0.05 a0)", 0.05)]
 L_ubl = lever(np.sqrt(2.0 * 6.0))
 for lab, y in REF:
     print(f"    {lab:44} {y:>6.3f} {lever(y):>7.3f} {lever(y)/L_ubl:>20.1f}x")
-print(f"  => selecting g_bar<0.3a0 buys a {lever(0.3)/L_ubl:.1f}-{lever(0.15)/L_ubl:.1f}x lever gain")
-print("     over the massive-HSB samples that dominate the current compilation. That is a")
-print("     REAL, framework-derived gain and it is the entire reason this target class matters.")
+print(f"  => selecting g_bar<0.3a0 buys a {lever(0.3)/L_ubl:.1f}x lever gain at the CUT EDGE and"
+      f" {lever(0.15)/L_ubl:.1f}x at g_bar=0.15a0,")
+print(f"     rising to {lever(0.05)/L_ubl:.1f}x only if the sample is pushed to g_bar~0.05a0.")
+print("     HONEST CORRECTION TO THE PREMISE: the gain is ~5-6x at the stated cut, NOT ~10x.")
+print(f"     The ~{1.0/L_ubl:.0f}x figure is the y->0 IDEAL (L=1); a g_bar<0.3a0 sample gets"
+      f" {lever(0.3)/L_ubl:.1f}x of it,")
+print(f"     and {lever(0.3)/lever(np.sqrt(5.0*7.0)):.1f}x relative to the Amvrosiadis DSFG point (L=0.078).")
+print("     Still a REAL, framework-derived gain and the entire reason this class matters.")
 print("     It does NOT by itself defeat pressure support -- that is D-3's question, not this")
 print("     file's, and nothing here should be read as answering it.")
 
@@ -678,12 +732,24 @@ for p in SAMPLE_POOLS:
 print("\n" + BAR)
 print("S9 -- D-1 FINDINGS (target identification only; the GO/NO-GO belongs to D-3)")
 print(BAR)
-print(f"""  F1. NAMED CANDIDATES EXIST BUT THE LIST IS SHORT.  In the entire published z=1.5-2.5
-      strongly-lensed literature the plausible deep-MOND candidates number {len(plausible)}, and only
-      {len(plaus_rot)} of those is/are also rotation-dominated (V/sigma>=1).  The single best named
-      object is OLAS M0717-02064 (z=2.07, mu=6.48, log M*=8.08, Keck/OSIRIS AO, class-1
-      rotator) with OLAS M1149-00683 (z=1.68, mu=4.05, log M*=8.14) second.  Neither has a
-      gas mass.  ZERO objects pass the cut on PUBLISHED data alone.
+print(f"""  F1. NAMED CANDIDATES EXIST BUT THE LIST IS SHORT AND NONE IS CONFIRMED.  Scoring the
+      z=1.5-2.5 window three ways:
+        TIER-0 (published data alone):  {len(confirmed)} pass, {len(pub_fail)} fail.  ZERO confirmed deep-MOND objects.
+        TIER-1 (bracket CENTRAL estimate < 0.3 a0):  {len(central)} objects -- A2218-Mult (z=1.658,
+               mu=33.8, log M*=9.26, CO NON-detection so the gas is an upper limit) and
+               SL2S 0217 (z=1.844, mu~17, log M*<9.0, Z~1/20 Zsun).  NEITHER HAS RESOLVED
+               KINEMATICS AT ALL, so neither can currently yield an a0.
+        TIER-2 (pass only at the optimistic bracket corner):  {len(plausible)} objects, of which {len(plaus_rot)} are
+               also rotation-dominated on their PUBLISHED v/sigma: OLAS A370-03097 (z=1.55,
+               v/s=2.09), OLAS M0717-02064 (z=2.07, mu=6.48, log M*=8.08, v/s=1.64),
+               OLAS M0744-01203 (z=1.65, v/s=1.28), OLAS M1149-00683 (z=1.68, mu=4.05,
+               log M*=8.14, v/s=1.17).
+      THE OPERATIONAL SHORT LIST is therefore {len(plaus_rot)} named objects, all from OLAS
+      (Hirtenstein+2019 ApJ 880,54), best two being M0717-02064 and M1149-00683 (the only
+      log M* ~ 8 rotation-dominated LENSED objects known at z>1.5).  They need R_out ~ 2.5-2.6
+      kpc, which is 0.29-0.31 arcsec in the source plane -- easy for NIRSpec IFU.  What they
+      do NOT have is a gas mass, and that is decisive (F2).
+      A 15-40 object cut-passing sample DOES NOT EXIST TODAY.  Said plainly.
 
   F2. g_bar/a0 IS NOT COMPUTABLE A PRIORI -- THIS IS THE KEY FINDING.  Across the
       {len(inwin)} in-window objects tabulated here, {n_gas} have a published cold-gas mass, {n_rad} have a
@@ -718,12 +784,15 @@ print(f"""  F1. NAMED CANDIDATES EXIST BUT THE LIST IS SHORT.  In the entire pub
       cut as published (both too massive), but the radius lever is demonstrated real, and a
       deliberately LARGE-RADIUS lensed target is a legitimate second search axis.
 
-  F5. THE ANTI-CORRELATION IS REAL AND MUST BE PRE-REGISTERED.  Among the OLAS z>1.5
+  F5. THE LOW-MASS/HOT-KINEMATICS TREND IS SUGGESTIVE, NOT SIGNIFICANT (Spearman rho
+      = +0.24, N=8, p~0.55) -- it must be pre-registered as a RISK, not quoted as a
+      measured anti-correlation.  Among the OLAS z>1.5
       objects, the two lowest-mass rotators carry sigma = 74.4 and 62.9 km/s against
       V ~ 71 and 51 km/s (V/sigma ~ 1.0-1.2), while the ONE object with a genuinely cold
       sigma = 37.4 km/s (M2129-00478) has V/sigma = 0.47 and is not a rotator at all.  The
-      coldest low-mass lensed z~2 systems are the ones that are not rotating.  This is a
-      DYNAMICAL fact, not a resolution artifact, and lensing does not remove it.
+      pattern -- coldest low-mass systems being the non-rotators -- is a DYNAMICAL
+      property if real, not a resolution artifact, and lensing would not remove it.
+      But N=8 cannot establish it, and this file does not claim it does.
       COUNTERWEIGHT, stated with equal force: A1689B11 (z=2.54, mu=7.2) is a "very cool and
       thin disc" with ordered rotation, and Lelli+2023's COLD (CO) tracers at cosmic noon
       give sigma <~ 15 km/s with V/sigma >~ 17-22 in massive discs -- i.e. a large part of
@@ -751,7 +820,7 @@ print(f"""  F1. NAMED CANDIDATES EXIST BUT THE LIST IS SHORT.  In the entire pub
 print(BAR)
 print("PRE-REGISTRATION HOOKS (D-1's binding contributions to the eventual frozen design)")
 print(BAR)
-print("""  P1. ESTIMATOR -- MEDIAN-LIKE, PRE-REGISTERED, NEVER GLS.  The committed
+print(f"""  P1. ESTIMATOR -- MEDIAN-LIKE, PRE-REGISTERED, NEVER GLS.  The committed
       estimator_bias_mocks.py verdict (prereg a0_line_estimator_bias_v1) measures
       gls_origin biased +10.34 pp (FAIL) and theilsen_pairwise +7.93 pp (FAIL), while the
       PRIMARY galaxy_median_then_median carries +0.31 pp (unique smallest RMS bias) and the
@@ -762,7 +831,7 @@ print("""  P1. ESTIMATOR -- MEDIAN-LIKE, PRE-REGISTERED, NEVER GLS.  The committ
       GLS IS FORBIDDEN.  A +10.3 pp estimator bias alone would blow the 10.9% 20:1 bar.
   P2. SELECTION IS ON g_bar, WHICH IS mu-INVARIANT (S1) -- freeze the cut at
       g_bar < 0.30 a0(0) on the CANONICAL footing and report the alt-footing cut
-      (Sigma_enc < %.0f vs %.0f Msun/pc^2) alongside, since the threshold itself is 21%
+      (Sigma_enc < {sigma_cut(A0_CAN):.0f} vs {sigma_cut(A0_ALT):.0f} Msun/pc^2) alongside, since the threshold itself is 21%
       footing-dependent even though the DEC/RISE ratio being tested is not.
   P3. mu ENTERS sigma(a0) ONE-TO-ONE.  Require per-target sigma(mu)/mu, and prefer
       multiply-imaged systems; exclude anything whose image sits within the lens model's
@@ -773,7 +842,7 @@ print("""  P1. ESTIMATOR -- MEDIAN-LIKE, PRE-REGISTERED, NEVER GLS.  The committ
   P5. TWO-STAGE PROGRAM (F2): the cut is an OUTCOME of stage 1, not an archival selection.
       Pre-register the stage-1 measurement thresholds (M_gas detection significance, R_out
       in kpc) BEFORE unblinding any a0.
-""" % (sigma_cut(A0_CAN), sigma_cut(A0_ALT)))
+""")
 
 # ==========================================================================================
 # MACHINE-READABLE OUTPUT
@@ -813,8 +882,13 @@ assert len(confirmed) == 0, "no in-window object may be scored as a CONFIRMED pa
 assert n_both == 1, "exactly one in-window object has BOTH a gas mass and an outer radius"
 _m = [r for r in rows if r["name"].startswith("MACS0451")][0]
 assert _m["gpub"] > CUT, "MACS0451-arc must FAIL the cut on published numbers"
-assert lever(0.30) / L_ubl > 5.0, "the deep-MOND cut must buy a >5x lever gain vs Ubler z=2.3"
-assert 0 < len(plausible) <= 5, "the plausible-candidate list is short by construction"
+assert 4.5 < lever(0.30) / L_ubl < 5.5, "cut-edge lever gain vs Ubler z=2.3 must be ~5x (NOT ~10x)"
+assert len(central) <= 3, "the central-estimate candidate list must be short by construction"
+assert 0 < len(plaus_rot) <= 6, "the operational short list must be short"
+assert sum(1 for r in central if "RESOLVED" in r.get("kin", "")) == 0, \
+    "no central-estimate deep-MOND candidate currently has resolved kinematics"
+assert abs(float(spearman(lm, vv)[2]) - p_sp) < 1e-12 and p_sp > 0.05, \
+    "the low-mass/hot-kinematics trend must NOT be reported as significant"
 print(f"\nSELF-CHECK OK: cut round-trips; CONFIRMED passes = {len(confirmed)} (zero, as found); "
       f"gas+radius overlap = {n_both}; MACS0451 g_bar/a0 = {_m['gpub']:.2f} > {CUT}; "
       f"lever gain {lever(0.30)/L_ubl:.1f}x.")
