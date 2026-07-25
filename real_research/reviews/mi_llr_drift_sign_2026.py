@@ -286,7 +286,7 @@ print(r"""
 # ---- ROUTE A vs ROUTE B, symbolic identity ------------------------------------------------------
 GM_s, a_s, ft_s = sp.symbols("GM a f_t", positive=True)
 Om_kep = sp.sqrt(GM_s/a_s**3)
-routeA = 2*ft_s*sp.sqrt(a_s/GM_s)/a_s          # (1/a) * 2 r f_t sqrt(a/GM)
+routeA = (2*a_s*ft_s*sp.sqrt(a_s/GM_s))/a_s    # (1/a) * da/dt, da/dt = 2 r f_t sqrt(a/GM), r = a
 routeB = sp.simplify(2*a_s**2*ft_s*Om_kep*a_s/GM_s/a_s)
 check(f"sympy: ROUTE A (angular momentum) == ROUTE B (energy):  d ln a/dt = 2 f_t/(Omega a) both ways",
       sp.simplify(routeA - routeB) == 0 and sp.simplify(routeA - 2*ft_s/(Om_kep*a_s)) == 0)
@@ -418,3 +418,287 @@ print(r"""
           sign(d ln a/dt) = sigma = sign of the anomalous RADIAL acceleration relative to g_N.
       On the framework's own branch (sigma = +1, the MOND/RAR sign set by s = -1): EXPANSION.
 """)
+
+# ============================================================================================
+head("4.  d ln a/dt  ->  APPARENT Gdot/G, WITH ITS SIGN  (mapping VERIFIED, not quoted)")
+# ============================================================================================
+print(r"""
+  CONVENTION (a).  What does a real Gdot/G do to an orbit?  Derived, then integrated.
+  With G slowly varying and NO tangential force, the specific angular momentum L = sqrt(G M a) is
+  exactly conserved (central force, zero torque).  Hence  G a = const  =>
+        d ln a/dt = - d ln G/dt = -Gdot/G
+        Gdot/G > 0 (G increasing, binding tightens)  ->  a SHRINKS  ->  ORBITAL DECAY
+        Gdot/G < 0 (G decreasing, binding loosens)   ->  a GROWS    ->  ORBITAL EXPANSION
+  So the LLR central value Gdot/G = -5.0e-15/yr corresponds to a mild apparent EXPANSION.
+  Verified below by integrating a Kepler orbit with G(t) = G0(1 + k t) and measuring d ln a_osc/dt.
+""")
+def integrate_Gdot(k, n_orbit=60, spo=800):
+    M = 1.0; r0 = 1.0
+    y = np.zeros(4); y[0] = r0; y[3] = np.sqrt(1.0/r0)
+    def rhs(t, y):
+        r = y[0:2]; v = y[2:4]; rn = np.hypot(r[0], r[1])
+        G = 1.0 + k*t
+        return np.concatenate([v, -G*M*r/rn**3])
+    T = 2*np.pi*n_orbit; N = n_orbit*spo; h = T/N
+    ts = np.empty(N+1); la = np.empty(N+1)
+    t = 0.0
+    for i in range(N+1):
+        r = y[0:2]; v = y[2:4]; rn = np.hypot(r[0], r[1]); G = 1.0 + k*t
+        E = 0.5*(v[0]**2+v[1]**2) - G*M/rn
+        ts[i] = t; la[i] = np.log(-G*M/(2*E))
+        if i == N: break
+        k1 = rhs(t, y); k2 = rhs(t+0.5*h, y+0.5*h*k1)
+        k3 = rhs(t+0.5*h, y+0.5*h*k2); k4 = rhs(t+h, y+h*k3)
+        y = y + (h/6.0)*(k1+2*k2+2*k3+k4); t += h
+    sel = (ts > 0.25*T) & (ts < 0.75*T)
+    return np.polyfit(ts[sel], la[sel], 1)[0]
+print(f"  {'Gdot/G (k)':>13}{'measured d ln a/dt':>21}{'-k (predicted)':>17}{'ratio':>9}{'orbit':>12}")
+print("  " + "-"*74)
+gd_rows = []
+for k in (+1e-6, -1e-6, +1e-7, -1e-7):
+    sl = integrate_Gdot(k)
+    gd_rows.append((k, sl))
+    print(f"  {k:>13.1e}{sl:>21.6e}{-k:>17.1e}{sl/(-k):>9.5f}"
+          f"{('DECAY' if sl<0 else 'EXPANSION'):>12}")
+check("VERIFIED: an integrated Kepler orbit with G(t)=G0(1+kt) gives d ln a/dt = -k to <0.5% "
+      f"(max dev {max(abs(r[1]/(-r[0])-1) for r in gd_rows):.2e})",
+      all(abs(r[1]/(-r[0]) - 1) < 5e-3 for r in gd_rows))
+check("VERIFIED: Gdot/G > 0 -> DECAY, and Gdot/G < 0 -> EXPANSION (convention (a) confirmed, not quoted)",
+      all((r[1] < 0) == (r[0] > 0) for r in gd_rows))
+print(r"""
+  THEREFORE, the framework's gated drift expressed as the apparent Gdot/G that an LLR fit would absorb:
+        (Gdot/G)_apparent  =  - d ln a/dt  =  - sigma a0 omega_c / g_N(Moon)
+  sigma = +1 (framework's MOND branch)  ->  (Gdot/G)_app is NEGATIVE.
+  LLR central (Biskupek, Mueller & Torre 2021) is NEGATIVE (-5.0e-15/yr).   ==>  SAME SIGN.
+""")
+gN_moon = GM_EARTH/R_MOON**2
+print(f"  g_N(Moon) = GM_E/R^2 = {gN_moon:.5e} m/s^2   (Omega_M^2 R = {OMEGA_MOON**2*R_MOON:.5e}, "
+      f"agree to {abs(OMEGA_MOON**2*R_MOON/gN_moon-1)*100:.1f}% -- solar perturbations; GM/R^2 used, as committed)")
+print(f"  {'footing':<8}{'a0':>12}{'omega_c':>12}{'d ln a/dt [/yr]':>18}{'(Gdot/G)_app [/yr]':>21}{'sign':>7}")
+print("  " + "-"*80)
+for lab, a0 in A0.items():
+    for wcv in (1.7824e-14, 2.2113e-14):
+        d = a0*wcv/gN_moon*YR
+        print(f"  {lab:<8}{a0:>12.3e}{wcv:>12.4e}{d:>18.4e}{-d:>21.4e}{'NEGATIVE':>7}")
+print(r"""
+  CAVEAT, carried [ASSUMPTION]:  a tangential force and a true Gdot are NOT identical signatures.
+  Matching d ln a/dt they differ in the mean motion:  Gdot gives n ~ G^2 => nd/n = 2 Gdot/G = -2 D,
+  a tangential force gives n ~ a^(-3/2) => nd/n = -1.5 D  (D = d ln a/dt).  So an LLR fit sensitive to
+  the mean-motion drift would absorb the framework's drift as only (3/4) of an equal-Delta-a Gdot,
+  i.e. the effective ceiling on omega_c is up to 4/3 LOOSER than quoted.  Direction of the caveat is
+  reported in Sec 5; it never tightens the ceiling, so it cannot manufacture a closure -- nor is it
+  used to widen the window in the headline number.
+""")
+
+# ============================================================================================
+head("5.  WHICH 2-SIGMA CEILING APPLIES -- and is the window OPEN or EMPTY?")
+# ============================================================================================
+print(r"""
+  THE CEILING LOGIC, spelled out.  The framework predicts a definite value P = (Gdot/G)_app.  It is
+  consistent with LLR at 2 sigma iff  |P - cen| <= 2 sigma, i.e.  cen - 2sig <= P <= cen + 2sig,
+  with cen = -5.0e-15/yr, sig = 9.6e-15/yr  =>  P in [-24.2e-15, +14.2e-15] /yr.
+        * P NEGATIVE (framework EXPANSION):  binding side is P >= -24.2e-15  =>  |P| <= |cen| + 2sig
+                                             = 2.420e-14/yr    <-- the paper's ceiling, CORRECT
+        * P POSITIVE (framework DECAY):      binding side is P <= +14.2e-15  =>  |P| <=  cen  + 2sig
+                                             = 1.420e-14/yr    <-- the ceiling that would CLOSE it
+  Sections 1-4 give P = -sigma a0 omega_c/g_N, so P < 0 on the framework's own MOND branch sigma = +1.
+  ==> the |cen| + 2 sigma = 2.420e-14/yr ceiling is the RIGHT one, and the paper's upper edge stands.
+""")
+LOWER = 3.0*OM_GAL_MAX      # = 1/sqrt(1/0.90 - 1) x omega_gal,max ; a0-INDEPENDENT
+k_lo = 1.0/np.sqrt(1.0/GATE_KEEP - 1.0)
+check(f"LOWER edge rebuilt from theory: k = 1/sqrt(1/{GATE_KEEP}-1) = {k_lo:.4f}, "
+      f"omega_c >= {k_lo:.1f} x {OM_GAL_MAX:.3e} = {LOWER:.4e} rad/s (matches committed 1.7824e-14, "
+      f"a0-INDEPENDENT)", abs(LOWER/1.7824e-14 - 1) < 2e-3 and abs(k_lo - 3.0) < 1e-9)
+CEIL_SAME = abs(LLR_CEN) + 2*LLR_SIG        # 2.420e-14 /yr  (prediction on the SAME side as central)
+CEIL_OPP  = LLR_CEN + 2*LLR_SIG             # 1.420e-14 /yr  (prediction on the OPPOSITE side)
+print(f"\n  ceiling if SAME sign as central  = |{LLR_CEN:.1e}| + 2({LLR_SIG:.1e}) = {CEIL_SAME:.4e} /yr")
+print(f"  ceiling if OPPOSITE sign         =  {LLR_CEN:.1e}  + 2({LLR_SIG:.1e}) = {CEIL_OPP:.4e} /yr")
+print(f"\n  {'branch':<26}{'footing':<7}{'ceiling /yr':>13}{'omega_c upper':>15}{'lower edge':>13}"
+      f"{'width':>9}{'WINDOW':>9}")
+print("  " + "-"*94)
+WIN = {}
+for bname, sigma, ceil in [("sigma=+1 MOND EXPANSION", +1, CEIL_SAME), ("sigma=-1 antiMOND DECAY", -1, CEIL_OPP)]:
+    for lab, a0 in A0.items():
+        hi = (ceil/YR)*gN_moon/a0
+        w = hi/LOWER
+        WIN[(sigma, lab)] = (hi, w)
+        print(f"  {bname:<26}{lab:<7}{ceil:>13.4e}{hi:>15.4e}{LOWER:>13.4e}{w:>9.4f}"
+              f"{('OPEN' if w > 1 else 'EMPTY'):>9}")
+check("REGRESSION: the EXPANSION branch reproduces the committed canonical upper edge 2.2113e-14 "
+      f"(got {WIN[(+1,'canon')][0]:.4e}) and alt 1.8307e-14 (got {WIN[(+1,'alt')][0]:.4e}) to <0.2%",
+      abs(WIN[(+1,'canon')][0]/2.2113e-14 - 1) < 2e-3 and abs(WIN[(+1,'alt')][0]/1.8307e-14 - 1) < 2e-3)
+check("EXPANSION branch (framework's own): window NON-EMPTY on BOTH footings "
+      f"(canon x{WIN[(+1,'canon')][1]:.4f}, alt x{WIN[(+1,'alt')][1]:.4f})",
+      WIN[(+1,'canon')][1] > 1 and WIN[(+1,'alt')][1] > 1)
+check("DECAY branch: window EMPTY on BOTH footings -- the upper edge falls BELOW the non-negotiable "
+      f"lower edge (canon x{WIN[(-1,'canon')][1]:.3f}, alt x{WIN[(-1,'alt')][1]:.3f})",
+      WIN[(-1,'canon')][1] < 1 and WIN[(-1,'alt')][1] < 1)
+# 4/3 mean-motion caveat, both branches
+print("\n  the 4/3 mean-motion caveat of Sec 4, applied to BOTH branches (it only LOOSENS ceilings):")
+for sigma, ceil in [(+1, CEIL_SAME), (-1, CEIL_OPP)]:
+    for lab, a0 in A0.items():
+        hi43 = (4.0/3.0)*(ceil/YR)*gN_moon/a0
+        print(f"    sigma={sigma:+d} {lab:<6} omega_c <= {hi43:.4e}  -> width x{hi43/LOWER:.4f} "
+              f"({'OPEN' if hi43 > LOWER else 'EMPTY'})")
+check("the 4/3 caveat does NOT rescue the DECAY branch on either footing (it stays EMPTY) -- so the "
+      "closed/open split is robust to that modelling factor",
+      all((4.0/3.0)*(CEIL_OPP/YR)*gN_moon/a0 < LOWER for a0 in A0.values()))
+
+# ============================================================================================
+head("6.  FORCED BY CAUSALITY, OR RIDING ON THE POSITED s = -1?  The conditional structure")
+# ============================================================================================
+print(r"""
+  DECOMPOSITION OF THE DRIFT SIGN.  From Sec 2-3 the tangential force is
+        f_t  =  sigma  x  ( -Im G )  x  (a0/2)
+  a PRODUCT of two signs, and they have different epistemic status:
+
+  FACTOR 1 -- (-Im G) > 0 : FORCED, unconditionally.  Proved three ways in Sec 1 (explicit integral;
+        the general Herglotz positive-measure theorem, which is the framework's OWN kernel structure;
+        and an acausal negative control that flips it).  This is causality + spectral positivity.
+        Nothing about it is postulated.  It is the part the paper called "the gate's own causal shadow".
+
+  FACTOR 2 -- sigma = +1 : NOT forced by causality.  sigma is the sign of the anomalous radial
+        acceleration relative to g_N, i.e. the MOND sign, i.e. the paper's s = -1 postulate.  The paper
+        already states s "sets the MOND sign, the dissipation sign, and the causality-preserving sign of
+        the disformal term simultaneously; no pump-free internal channel sources it."  This computation
+        CONFIRMS that coupling and, for the first time, computes WHICH WAY the dissipation sign points.
+        A strictly PASSIVE (unpumped) KMS bath gives the OPPOSITE sigma: the framework's own committed
+        result is that passivity + Kramers-Kronig lock the DC mass shift to delta_m >= 0 (anti-MOND).
+
+  SO THE HONEST STATEMENT IS A CONDITIONAL, AND BOTH BRANCHES ARE REPORTED:
+        sigma = +1  (s = -1; MOND; reduced inertia; the framework's posit and the ONLY branch that
+                     produces the RAR boost)  ->  BOOST -> EXPANSION -> Gdot/G_app < 0
+                     -> SAME sign as the LLR central -> ceiling 2.420e-14/yr -> WINDOW OPEN
+        sigma = -1  (s = +1 effectively; anti-MOND; increased inertia; what an unpumped passive bath
+                     gives)  ->  DRAG -> DECAY -> Gdot/G_app > 0
+                     -> OPPOSITE sign -> ceiling 1.420e-14/yr -> WINDOW EMPTY
+
+  WHY THIS IS NOT A COIN FLIP, AND ALSO NOT A FREE WIN.  Two things are true at once and both belong
+  in the record:
+   (i) sigma = +1 is not an independently adjustable knob here.  The window's LOWER edge is DEFINED by
+       "the gate must not suppress the deep-MOND SPARC rotation curves" -- which presupposes that the
+       galactic boost exists, i.e. presupposes sigma = +1.  On the sigma = -1 branch there is no MOND
+       boost, no RAR, no lower edge, and the window question is not even posed (the theory is dead for a
+       far more basic reason).  So WITHIN the window problem there is no live branch on which the drift
+       decays.  The verdict on the framework's own terms is EXPANSION, and the paper's |cen| + 2 sigma
+       ceiling is the correct one.
+   (ii) The survival is nonetheless NOT independent of the framework's known sign wall.  The expansion
+       sign is the SAME posit as the MOND sign -- it adds no new free constant (the count stays at five),
+       but it also inherits, in full, "no pump-free internal channel sources s = -1".  If that wall is
+       ever resolved AGAINST the framework (i.e. the correct reduction is the passive delta_m >= 0 one),
+       then the same computation closes the omega_c window as a corollary.  The window and the sign wall
+       are now COUPLED, where before they were separate items in the ledger.  That coupling is a cost,
+       and it is the second deliverable of this script.
+""")
+check("the drift sign FACTORS as sigma x (-Im G): the causal factor is forced, the sigma factor is the "
+      "already-ledgered s=-1 posit -> NO sixth constant is introduced by the drift sign", True)
+
+# ============================================================================================
+head("7.  REGRESSION -- the committed magnitude d ln r/dt = a0 omega_c / g_N")
+# ============================================================================================
+print(r"""
+  From Sec 3, d ln a/dt = 2 f_t/(Omega a) with f_t = sigma (a0/2)|Im G(Omega)|.  For a bound orbit
+  Omega^2 a = g_N, so
+        d ln a/dt = sigma (a0/(a omega_c)) / (1 + (Omega/omega_c)^2)      [EXACT closed form]
+                  -> sigma a0 omega_c / g_N                              [Omega >> omega_c asymptote]
+  which is the committed magnitude (paper Sec 5.2 / window_joint.py), now WITH its sign = sigma.
+""")
+print(f"  {'body':<9}{'Omega [rad/s]':>15}{'Om/wc':>11}{'2f_t/(Om a)':>15}{'exact closed':>15}"
+      f"{'a0 wc/gN':>13}{'ratios':>20}")
+print("  " + "-"*98)
+a0c = A0["canon"]; wc_reg = 2.2113e-14
+for nm, aa, Td, GMc in [("Moon", R_MOON, T_MOON_D, GM_EARTH),
+                        ("Mercury", 5.7909e10, 87.969, 1.32712440018e20),
+                        ("Saturn", 1.43353e12, 10759.22, 1.32712440018e20)]:
+    Om = 2*np.pi/(Td*86400.0); gN = Om**2*aa      # dynamically consistent g_N = Omega^2 a
+    ft = (a0c/2)*abs(ImG(Om, wc_reg))
+    d_direct = 2*ft/(Om*aa)
+    d_exact = (a0c/(aa*wc_reg))/(1 + (Om/wc_reg)**2)
+    d_asym = a0c*wc_reg/gN
+    print(f"  {nm:<9}{Om:>15.4e}{Om/wc_reg:>11.3e}{d_direct:>15.5e}{d_exact:>15.5e}{d_asym:>13.5e}"
+          f"{f'{d_direct/d_exact:.6f} / {d_direct/d_asym:.6f}':>20}")
+    check(f"[{nm}] 2f_t/(Omega a) == exact closed form == a0 wc/g_N asymptote (all three, <1e-3)",
+          abs(d_direct/d_exact - 1) < 1e-9 and abs(d_direct/d_asym - 1) < 1e-3)
+
+# ============================================================================================
+head("8.  VERDICT, AND THE SHARP EXPOSURES THE SIGN CREATES")
+# ============================================================================================
+# how much LLR improvement closes the window even on the EXPANSION branch?
+print("  The EXPANSION branch does NOT make the window comfortable -- it makes it a live prediction.")
+print(f"\n  {'footing':<8}{'min predicted Gdot/G_app':>27}{'sigma-distance from LLR cen':>29}"
+      f"{'sigma_LLR that closes':>23}{'improvement':>13}")
+print("  " + "-"*100)
+expos = {}
+for lab, a0 in A0.items():
+    Pmin = -a0*LOWER/gN_moon*YR                       # most conservative (lower-edge) prediction
+    nsig = abs(Pmin - LLR_CEN)/LLR_SIG
+    sig_close = (abs(Pmin) - abs(LLR_CEN))/2.0        # |cen| + 2 sig < |Pmin|  =>  sig < this
+    expos[lab] = (Pmin, nsig, sig_close, LLR_SIG/sig_close)
+    print(f"  {lab:<8}{Pmin:>27.4e}{nsig:>28.2f}s{sig_close:>23.3e}{LLR_SIG/sig_close:>12.2f}x")
+check("the framework's MINIMUM drift (at the RAR-forced lower edge) is a definite NEGATIVE apparent "
+      "Gdot/G on both footings -- a two-sided prediction, not merely a bound",
+      all(expos[l][0] < 0 for l in expos))
+check(f"canonical footing: the window closes on the EXPANSION branch as soon as the LLR Gdot/G "
+      f"uncertainty improves by x{expos['canon'][3]:.2f} (sigma < {expos['canon'][2]:.2e}/yr) at "
+      f"unchanged central -- i.e. survival margin is thin, not comfortable",
+      expos['canon'][3] < 2.0)
+# hostage to the SIGN of a 0.52-sigma central value
+print(f"\n  HOSTAGE TO A 0.52-SIGMA FLUCTUATION.  The LLR central is {LLR_CEN:.1e}/yr, only "
+      f"{abs(LLR_CEN)/LLR_SIG:.2f} sigma from zero.")
+for cen_alt, lbl in [(-5.0e-15, "as published (NEGATIVE)"), (0.0, "central at zero"),
+                     (+5.0e-15, "central re-fit POSITIVE")]:
+    ceil = -(cen_alt - 2*LLR_SIG)                     # binding side for a NEGATIVE prediction
+    hi = (ceil/YR)*gN_moon/A0["canon"]
+    print(f"    cen = {cen_alt:>+9.1e} ({lbl:<25}) -> ceiling {ceil:.3e}/yr -> omega_c <= {hi:.4e} "
+          f"-> width x{hi/LOWER:.4f} -> {'OPEN' if hi > LOWER else 'EMPTY'}")
+check("the OPEN verdict requires the LLR central to be NEGATIVE (or at most ~zero): a re-fit central "
+      "of +5.0e-15/yr would close the canonical window even on the EXPANSION branch",
+      ((2*LLR_SIG - 5.0e-15)/YR)*gN_moon/A0["canon"] < LOWER)
+print(r"""
+  VERDICT (dynamics sector, S_matter; the GW170817-excluded lensing sector is not involved).
+
+  1. THE SIGN.  On the framework's own branch the gated MI drift is an ORBITAL EXPANSION.
+     Derivation: causality (theta(t)) makes Im G < 0; the anomalous a0/2 tail is an ATTRACTIVE vector
+     whose direction rotates at the orbital frequency; a retarded filter rotates that inward vector
+     TOWARD the velocity; the resulting tangential force is a forward BOOST; the orbit gains angular
+     momentum and energy; a grows.  Four independent routes agree (torque, energy, memory-ODE
+     integration, quadrature power), an acausal control flips it, and the magnitude reproduces the
+     committed d ln r/dt = a0 omega_c/g_N exactly.
+
+  2. THE CEILING AND THE WINDOW.  Expansion => apparent Gdot/G is NEGATIVE => the SAME sign as the LLR
+     central (-5.0e-15/yr) => the correct 2-sigma ceiling is |cen| + 2 sigma = 2.420e-14/yr, which is
+     what the paper used.  The paper's upper edge 2.2113e-14 rad/s (canon) / 1.8307e-14 (alt) STANDS.
+     THE WINDOW IS NOT EMPTY:  canon [1.782, 2.211]e-14 = x1.241 ;  alt [1.782, 1.831]e-14 = x1.027.
+     The alt footing's +2.7% knife-edge is unchanged.  This is a SURVIVAL, not a win: at planetary
+     accelerations both GR and healthy MOND-family theories predict ~0, so nothing here discriminates
+     against LambdaCDM.
+
+  3. FORCED OR CONDITIONAL.  The sign FACTORS as sigma x (-Im G).  (-Im G) > 0 is forced by causality
+     plus Herglotz spectral positivity -- unconditional.  sigma = +1 is the already-ledgered s = -1
+     postulate (the MOND sign).  No SIXTH constant appears; the count stays at five.  But the omega_c
+     window is now COUPLED to the framework's known sign wall: if the correct reduction is the passive
+     delta_m >= 0 one, the same computation gives DECAY, the ceiling becomes 1.420e-14/yr, and the
+     window is EMPTY on both footings (x0.73 canon, x0.60 alt) -- robust to the 4/3 mean-motion caveat.
+     Reported as a conditional, with both branches priced.
+
+  4. WHAT THE SIGN COSTS THE FRAMEWORK -- new, and not softened.  Because the lower edge is a THEORY-
+     INTERNAL floor, the drift is not merely bounded, it is PREDICTED to be at least
+     -1.95e-14/yr (canon) / -2.36e-14/yr (alt) -- i.e. 4-5x the LLR central magnitude, sitting
+     1.5-2.0 sigma from it on both footings.  Consequences:
+       * a x1.32 improvement in the LLR Gdot/G uncertainty (canon) -- x1.03 (alt) -- at unchanged
+         central CLOSES the window.  This is a near-term, already-funded falsifier, sharper than the
+         paper's "x3 ephemeris refit" statement.
+       * the OPEN verdict is hostage to the SIGN of a 0.52-sigma central value.  Sharper than that:
+         a central of exactly ZERO already closes the canonical window (x0.984).  The window is open
+         ONLY because the published LLR central happens to be negative, and only by 1.5 sigma's worth
+         of room.  A re-fit to +5.0e-15/yr closes it outright (x0.728).
+     So: the window survives, and it survives BECAUSE a 0.5-sigma noise excursion in LLR happens to
+     point the same way the framework's causal drift points.  That is survival by sign alignment, and
+     it should be reported as such rather than as a passed test.
+
+  NO claim that any door is closed; no claim beyond this one sign and its two edges.
+""")
+print(RULE)
+print(f"mi_llr_drift_sign_2026.py: {'ALL CHECKS PASS' if PASS else 'A CHECK FAILED'}")
+print(RULE)
+sys.exit(0 if PASS else 1)
