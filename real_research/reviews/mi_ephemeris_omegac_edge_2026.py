@@ -171,9 +171,20 @@ print(f"""    omega_c(Q2-required) = {wc_q2:.3e} rad/s ;  retained (a0/2)Re G at
 assert abs(dg_at_q2 / 7.0e-15 / 674.0 - 1) < 0.02, "674x regression failed"
 assert wc_react / rebuilt["canon"][1] > 3000, "reactive-channel ranking regression failed"
 
+# and the dissipative piece's INSTANTANEOUS amplitude is also below the per-planet |delta g| bounds:
+at_sat = A0["canon"] / 2 * (PAPER_WINDOW["canon"][1] / n_of(PLANETS["Saturn"][1]))
+print(f"""  One more amplitude check, so the route ahead is unambiguous: the DISSIPATIVE tangential
+  acceleration at the window top is a_t = (a0/2)(omega_c/omega) = {at_sat:.3e} m/s^2 at Saturn --
+  {7.0e-15/at_sat:.0f}x BELOW the 7.0e-15 Saturn |delta g| bound too.  So NO instantaneous-amplitude bound of any
+  kind reaches the window.  The ephemerides can only reach it through the SECULAR ACCUMULATION of that
+  tangential force over decades -- the drift channel.  That is the whole content of Secs. 3-5.
+""")
+assert at_sat < 7.0e-15, "dissipative amplitude check failed"
+
 # ---------------------------------------------------------------------------------------------------
 # 3. ROUTE 1 -- CURRENCY-MATCHED: the paper's OWN estimator rule, applied to the published EPM2019 bound
-# ---------------------------------------------------------------------------------------------------head("3.  ROUTE 1 (currency-matched, no new modelling): published drift bound -> omega_c ceiling")
+# ---------------------------------------------------------------------------------------------------
+head("3.  ROUTE 1 (currency-matched, no new modelling): published drift bound -> omega_c ceiling")
 print(f"""
   The paper's rule for LLR, verbatim: take a PUBLISHED bound on a universal fractional secular drift
   and read it as a bound on that body's own d ln a/dt, then omega_c <= D * g_N / a0.
@@ -364,8 +375,14 @@ print(f"""
   ranging -- plausible, since 20 m residuals over a 13-yr arc with a spacecraft-dependent media/clock
   model are not obviously as clean as 1.25 m Mars normal points -- the gain drops and the edge rises.
   At gain = 1 (no averaging whatsoever) the Saturn edge is {r2_single['Saturn']:.2e}, {r2_single['Saturn']/rebuilt['canon'][1]:.1f}x ABOVE the LLR edge and
-  the window is untouched.  The Saturn edge therefore spans [{sat_edge_2s['canon']:.2e}, {r2_single['Saturn']:.2e}] rad/s.  It is a
-  KNIFE-EDGE result, not a closure: the gain would only have to be x{sat_edge_3s['canon']/1.782e-14*GAIN if sat_edge_3s['canon']>1.782e-14 else GAIN*1.782e-14/sat_edge_3s['canon']:.1f} instead of x{GAIN:.1f} to reopen canon at 3 sigma.
+  the window is untouched.  The Saturn edge therefore spans [{sat_edge_2s['canon']:.2e}, {r2_single['Saturn']:.2e}] rad/s.
+
+  HOW PRECARIOUS, in one number.  At 3 sigma, canon, the Saturn edge equals the window's LOWER edge at
+  gain = x{GAIN*sat_edge_3s['canon']/1.782e-14:.2f} and equals the window's UPPER (LLR) edge at gain = x{GAIN*sat_edge_3s['canon']/rebuilt['canon'][1]:.2f}.  So the ENTIRE published
+  canonical window corresponds to this single calibration factor lying in {GAIN*sat_edge_3s['canon']/rebuilt['canon'][1]:.1f} < gain < {GAIN*sat_edge_3s['canon']/1.782e-14:.1f},
+  i.e. {100*(sat_edge_3s['canon']/1.782e-14-1):+.0f}% / {100*(sat_edge_3s['canon']/rebuilt['canon'][1]-1):+.0f}% around the calibrated x{GAIN:.2f}.  That is a KNIFE-EDGE, and it cuts BOTH ways:
+  a {100*(sat_edge_3s['canon']/1.782e-14-1):.0f}% better Saturn sensitivity than calibrated closes the canonical window outright; a {100*(1-sat_edge_3s['canon']/rebuilt['canon'][1]):.0f}%
+  worse one restores it in full.  Reporting only one side would manufacture a result; both are printed.
 """)
 
 # ---------------------------------------------------------------------------------------------------
@@ -399,15 +416,20 @@ print(f"  {'R2 Saturn 1-pt (floor)':<22}{'--':>7}{'canon':>8}{r2_single['Saturn'
       f"{lo/r2_single['Saturn']:>9.2f}x{verdict(r2_single['Saturn'], rebuilt['canon'][1]):>30}")
 n_closed = sum(1 for t in tab if t[5].startswith("CLOSED"))
 print(f"""
-  {n_closed} of {len(tab)} readings close the window; {len(tab)-n_closed} leave it open with LLR still binding.
-  The split is entirely along the R1a / R1b axis -- NOT along the footing axis and NOT along the
-  sigma-convention axis.  Both footings and both sigma conventions agree within each reading:
-      R1a closes the window on BOTH footings at BOTH 2 and 3 sigma (by x{lo/route1['Mars']['R1a3'][0]:.2f} to x{lo/route1['Mars']['R1a'][1]:.2f});
-      R1b leaves it open on BOTH footings at BOTH (LLR still binding by x{route1['Mars']['R1b'][0]/rebuilt['canon'][1]:.2f} to x{route1['Mars']['R1b3'][0]/rebuilt['canon'][1]:.2f}).
-  So the W-3 answer is NOT footing-dependent and NOT convention-dependent.  It is dependent on ONE
-  modelling question: does the existing fit's Mars-dominated sensitivity let an a^2 drift hide inside
-  the solar-mass-loss allowance?  In the fit AS PUBLISHED, yes.  With Saturn's orthogonal handle
-  included, no.
+  {n_closed} of {len(tab)} readings put the ephemeris edge BELOW the window's lower edge; {len(tab)-n_closed} leave the window as
+  published.  Read the pattern, not the tally:
+      * R1a (Mars, non-degenerate room)  closes on BOTH footings at BOTH sigma, by x{lo/route1['Mars']['R1a3'][0]:.2f} to x{lo/route1['Mars']['R1a'][1]:.2f}.
+      * R1b (Mars, mass-loss-degenerate) leaves it open on BOTH footings at BOTH, LLR still binding
+        by x{route1['Mars']['R1b'][0]/rebuilt['canon'][1]:.2f} to x{route1['Mars']['R1b3'][0]/rebuilt['canon'][1]:.2f}.  This is the honest reading of the fit AS PUBLISHED.
+      * R3 (Saturn, degeneracy-free) closes 3 of 4, and the one it does not close (canon, 3 sigma)
+        it squeezes from width x1.241 to x{sat_edge_3s['canon']/lo:.3f} -- i.e. from a 24% window to a {100*(sat_edge_3s['canon']/lo-1):.0f}% window.
+      * R2 Saturn 1-point is the deliberate pessimistic FLOOR and leaves everything intact.
+  NOT footing-dependent and NOT sigma-convention-dependent: within every reading both footings and both
+  conventions agree.  The alt footing is uniformly x{A0['alt']/A0['canon']:.3f} worse, as it must be (edge ~ 1/a0), and
+  is the first to go: it closes under R1a AND under R3 at both sigma levels.
+  The verdict hinges on exactly ONE thing: whether an a^2-profile drift can hide inside the
+  solar-mass-loss allowance.  In the Mars-dominated fit AS PUBLISHED, yes (R1b).  Once Cassini's Saturn
+  arc is used as the orthogonal handle, no (R3) -- and then the window is at best a few percent wide.
 
   WHAT IS ROBUST ACROSS EVERY READING (the solid deliverable):
     the DISSIPATIVE planetary channel puts the ephemeris ceiling at omega_c ~ (0.7-4)e-14 rad/s, i.e.
@@ -469,15 +491,27 @@ print(f"""
   [A7] Spans/RMS in EPM_SPAN and EPM_RMS are the published postfit residuals with [ADOPTED] metre-class
        spans; Earth is excluded from the ranging model on purpose (it is the observer, not a ranged
        target -- an earlier draft that included it produced a spurious 93% Earth weight).
+  [A8] LOAD-BEARING #3 (Sec. 4b): transferring the Mars-calibrated averaging gain x{GAIN:.2f} to Cassini's
+       Saturn arc.  If Cassini's 20 m normal points are more correlated than Mars's 1.25 m ones the gain
+       falls and the edge rises; Sec. 4b prints the full gain range that the published window
+       corresponds to ({GAIN*sat_edge_3s['canon']/rebuilt['canon'][1]:.1f} to {GAIN*sat_edge_3s['canon']/1.782e-14:.1f}) so the reader can see how little it takes to move the verdict.
+       The 4 per-planet |delta g| bounds of Fienga & Minazzoli 2024 were carried from the paper's own
+       Sec. 5.1 table and NOT independently re-verified from the source this session (the Living Reviews
+       PDF would not extract).  They affect only the RETIRED reactive channel, so nothing rests on them.
 
   THIS IS NOT: a falsification of the framework; a claim that the ephemerides have already excluded the
   gated crossover; or a statement about any sector other than the S_matter dissipative drift channel.
   THIS IS: an INDEPENDENT upper edge on omega_c -- different instrument (planetary ranging, not LLR),
   different bodies (Mars and Saturn, not the Moon), different published dataset (EPM2019) -- that lands
   within a factor of a few of the LLR edge on every reading, BELOW it on the physics-correct reading,
-  and below the non-negotiable lower edge on that same reading.  The honest standing: the window is
-  co-bounded from above by two independent instruments and is either already tighter than published or
-  already closed, pending one refit.  No door is claimed closed.
+  and below the non-negotiable lower edge on that same reading.
+
+  ONE-LINE STANDING:  the ephemeris edge is {rebuilt['canon'][1]/sat_edge_3s['canon']:.2f}x (Saturn, degeneracy-free, 3 sigma) to {rebuilt['canon'][1]/route1['Mars']['R1a'][0]:.2f}x
+  (Mars, non-degenerate, 2 sigma) TIGHTER than the LLR edge the paper quotes, so the upper edge of the
+  gate window is no longer owned by LLR; the canonical window narrows from x1.241 to x{sat_edge_3s['canon']/1.782e-14:.3f} at best and
+  closes at worst, and the ALT footing closes on every reading except the deliberately pessimistic
+  floor.  Whether "narrow" or "closed" is the truth is decided by one refit of existing data, not by
+  new observations.  No door is claimed closed, and the framework is not claimed falsified.
 """)
 print(RULE)
 print("mi_ephemeris_omegac_edge_2026.py: regressions passed (window rebuild <2%, 674x match, reactive "
