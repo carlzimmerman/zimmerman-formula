@@ -273,6 +273,67 @@ check(f"epoch-independence is DIMENSIONALLY FORCED -- absurd a0 coefficients are
 check(f"the coincidence is reported with its by-chance probability ({p_luck:.1%}), not as a "
       f"derivation of Z", 0.01 < p_luck < 0.30)
 
+# ---------- S4c: ADVERSARIAL AUDIT CORRECTIONS (2026-07-25). S4 was too kind to itself. ------------
+# A 9-lens / 3-skeptics-per-door adversarial audit of this script came back with four findings against
+# S1 and S4. All four are accepted; they are recorded here rather than quietly patched, because the
+# credit lines in particular must travel with the result.
+print("\n      S4c  ADVERSARIAL AUDIT: FOUR CORRECTIONS AGAINST S1 AND S4 (all accepted)")
+print("      "+"-"*92)
+d_sqrt, d_raw = abs(ratio_canon-1), abs(Z/(3*np.sqrt(3)) - 1)
+p_honest = np.log((1+d_raw)/(1-d_raw))/np.log(100.0)
+CENSUS_HIT = 0.0980            # 43 simple geometric constants in (2,15), 1806 ordered pairs
+print(f"""      (1) THE COINCIDENCE IS 11.4%, NOT 5.5%. Its entire content is Z vs 3 sqrt 3, i.e.
+          {Z:.4f} vs {3*np.sqrt(3):.4f}, which are {d_raw*100:.2f}% apart. Reporting it as the ratio of RADII takes a
+          square root, which cosmetically HALVES the discrepancy ({d_sqrt*100:.2f}%; ratio of fractional
+          deviations {d_raw/d_sqrt:.2f}). The radius framing is not wrong, but quoting 5.5% without the
+          11.4% flatters it. By-chance on the honest number: {p_honest:.1%}, not {p_luck:.1%}.
+      (2) THE BY-CHANCE PRIOR IS FRAGILE AND TOO SMALL. The 2-decade log-uniform prior is arbitrary:
+          p swings 0.80% (6 dex) to 9.65% (0.5 dex). An EMPIRICAL census beats a chosen prior -- 43
+          simple geometric constants built from pi and small integers in (2,15), all 1806 ordered
+          pairs, gives {CENSUS_HIT:.1%} of pairs agreeing within {d_sqrt*100:.2f}% and 19.7% within 10%. That is
+          {CENSUS_HIT/p_luck:.1f}x the quoted figure. Honest verdict: UNREMARKABLE, not 'notable'.
+      (3) S1 IS PRIOR ART, NOT NEW. The de Sitter-Unruh thermal framing is Milgrom 1999 PLA 253:273
+          (astro-ph/9805346) Eq (6) T(a) = (1/2pi) sqrt(a^2 + Lambda/3), with Eq (10)-(11) already
+          setting a0 from (Lambda/3)^(1/2). T_dS/T_U(a0) = cH_Lambda/a0 identically for ANY proposed
+          a0, so it is a definitional restatement of a0 := cH_Lambda/Z and carries zero information.
+          Milgrom's own coefficient gives 0.5 (Eq 9) or 1.0 (Eq 11); Milgrom 2015 gives 2pi.
+      (4) THE a0-LINE ITSELF IS MILGROM 1999 Eq (8)-(9). g_obs^2 - g_bar^2 = a0 g_bar -- treated in
+          this repo as the framework's signature identity -- is algebraically identical to his, with
+          a0hat = 2 c H_Lambda; the coefficient ratio is exactly 2Z = {2*Z:.4f}. The framework's
+          distinctive content is the COEFFICIENT cH_Lambda/Z plus the covariant MI completion. Nothing
+          else in the kernel is new, and the credit line must accompany every use of it.""")
+check(f"the raw coincidence ({d_raw*100:.2f}%) is reported alongside the square-rooted one "
+      f"({d_sqrt*100:.2f}%), so the sqrt cannot flatter it", abs(d_raw/d_sqrt - 2.06) < 0.05)
+check(f"the empirical census rate ({CENSUS_HIT:.1%}) is carried next to the chosen-prior estimate "
+      f"({p_luck:.1%}), and it is the larger", CENSUS_HIT > p_luck)
+check("Milgrom 1999 PLA 253:273 credited for BOTH the thermal framing (Eq 6,10-11) and the a0-line "
+      "(Eq 8-9); only the cH_Lambda/Z coefficient + MI completion claimed as distinctive", True)
+
+# ---------- the two kills that empty the black-hole angle entirely ------------------------------
+print("\n      S4d  THE TWO FINDINGS THAT EMPTY THE BLACK-HOLE ANGLE (accepted, and they are decisive)")
+print("      "+"-"*92)
+r_M = lambda M: np.sqrt(G*M/A0["canon"])
+PC = 3.0856775814913673e16
+M10, rs10 = 10*MSUN, 2*G*(10*MSUN)/C**2
+print(f"""      (a) r_M IS BLIND TO COMPACTNESS. r_M = sqrt(GM/a0) contains no c, no G/c^2, no horizon scale.
+          So a {10:.0f} Msun BLACK HOLE and a {10:.0f} Msun STAR have the IDENTICAL a0 shell:
+          r_M = {r_M(M10)/PC:.4f} pc = {r_M(M10)/1.495978707e11:.2e} AU, which is {r_M(M10)/rs10:.3e} x the Schwarzschild radius.
+          The framework's acceleration scale cannot tell that the mass is a black hole at all. Every
+          "black-hole a0 shell" statement is therefore a statement about MASS, not about black holes --
+          and that radius is the WIDE-BINARY regime already under test (Gaia DR4 pre-registration).
+      (b) THE SHELL IS NEVER ISOLATED. Two independent kills: no black hole's r_M is ever dynamically
+          isolated (the host galaxy dominates the mass budget long before r_M), and every black hole
+          inside a galaxy is EFE-screened before its a0 shell can form. The one exception found in the
+          audit is a RECOILING/RUNAWAY SMBH in a host's outskirts (g_ext ~ 0.04 a0, no host mass inside
+          r_M, and the orbital frequency at r_M sits BELOW omega_c so the gate is open) -- real objects
+          exist (RBH-1, JWST/NIRSpec, arXiv:2512.04166) but they have no dynamical tracers at r_M.
+      NET: the black-hole framing adds nothing the wide-binary and dwarf programmes do not already
+      cover better. That is the honest close of this region.""")
+check(f"a black hole and a star of equal mass have identical r_M -- so 'black hole' is irrelevant to "
+      f"the framework's acceleration scale", abs(r_M(M10) - np.sqrt(G*M10/A0['canon'])) < 1e-6)
+check(f"r_M(10 Msun) = {r_M(M10)/1.495978707e11:.2e} AU lands in the wide-binary regime already being "
+      f"tested, not in any black-hole-specific regime", 1e4 < r_M(M10)/1.495978707e11 < 1e5)
+
 # ============================================================ S5 the actual timescales
 print("\nS5  THE TIMESCALES -- when does unravelling start, and how long does it take?")
 print("-"*100)
@@ -281,25 +342,45 @@ M_cmb = HBAR*C**3/(8*np.pi*G*KB*T_CMB)
 print(f"      TODAY nothing astrophysical evaporates: the CMB at {T_CMB:.4f} K is hotter than T_BH for any")
 print(f"      M > {M_cmb:.3e} kg = {M_cmb/MSUN:.2e} Msun (about a Moon mass), so every real black hole is")
 print(f"      currently GAINING mass from the sky, not losing it.")
-# when does the CMB fall below the de Sitter floor?  T ~ 1/a, a ~ exp(H t) in the Lambda era
-t_floor = np.log(T_CMB/T_desitter())/H_LAM/YR
-print(f"      In the de Sitter era T_CMB ~ e^(-H_Lambda t), so it drops below the {T_desitter():.2e} K de Sitter")
-print(f"      floor after t = ln(T_CMB/T_dS)/H_Lambda = {t_floor:.3e} yr ({t_floor/1e12:.2f} trillion years).")
-print(f"      That is when net unravelling actually begins.\n")
-print(f"  {'object':<22}{'M [Msun]':>12}{'T_BH [K]':>14}{'t_evap [yr]':>15}{'t_evap / t_floor':>19}")
+# ---- CORRECTED 2026-07-25 (adversarial audit, prior-art/observability lenses). The first version of
+# this section computed ONE onset time -- when the CMB falls below the de Sitter floor T_dS -- and got
+# 1.2e12 yr. That is the LATEST CONCEIVABLE onset, not the onset. S2's own result is that T_+ > T_dS
+# for EVERY de Sitter-allowed hole, so the binding condition is the CMB falling below THE HOLE'S OWN
+# temperature, which is warmer than T_dS and therefore crossed EARLIER. For a stellar hole the error
+# was a factor of 3.48. The floor T_dS is the right answer only in the near-Nariai limit, where the
+# hole's temperature actually approaches it.
+t_floor = np.log(T_CMB/T_desitter())/H_LAM/YR          # the T_dS floor: an upper bound on onset
+def t_onset(M):
+    """Onset of NET evaporation: when the CMB drops below max(T_BH(M), T_dS). Lambda-era T ~ e^-Ht."""
+    return np.log(T_CMB/max(T_hawking(M), T_desitter()))/H_LAM/YR
+print(f"      In the de Sitter era T_CMB ~ e^(-H_Lambda t). The de Sitter floor T_dS = {T_desitter():.2e} K is")
+print(f"      reached at t = ln(T_CMB/T_dS)/H_Lambda = {t_floor:.3e} yr -- but that is an UPPER BOUND on the")
+print(f"      onset, not the onset: each hole starts losing once the CMB falls below ITS OWN temperature.\n")
+print(f"  {'object':<22}{'M [Msun]':>12}{'T_BH [K]':>13}{'t_onset [yr]':>15}{'vs T_dS floor':>15}"
+      f"{'t_evap [yr]':>14}")
 print("  "+"-"*96)
 for name, Msun in [("Moon-mass PBH", 4.5e22/MSUN), ("stellar BH", 10.0), ("Sgr A*", 4.3e6),
-                   ("M87*", 6.5e9), ("Nariai BH", M_NAR/MSUN)]:
+                   ("M87*", 6.5e9), ("0.9 M_Nariai", 0.9*M_NAR/MSUN)]:
     M = Msun*MSUN
-    print(f"  {name:<22}{Msun:>12.3e}{T_hawking(M):>14.3e}{t_evap(M):>15.3e}{t_evap(M)/t_floor:>19.3e}")
+    print(f"  {name:<22}{Msun:>12.3e}{T_hawking(M):>13.3e}{t_onset(M):>15.4e}"
+          f"{'/'+f'{t_floor/t_onset(M):.2f}':>15}{t_evap(M):>14.3e}")
+t_on_stel = t_onset(10*MSUN)
+print(f"""
+      So the honest onset is ~{t_on_stel/1e11:.1f}e11 yr for a stellar hole, not the {t_floor/1e12:.1f}e12 yr the first
+      version of this script printed -- it was late by a factor {t_floor/t_on_stel:.2f}. Only a hole within a
+      whisker of Nariai (where T_+ -> T_dS) waits for the floor itself.""")
 tau_mem = 2*C/A0["canon"]/YR
 print(f"""
       For scale, the framework's OWN longest timescale -- the memory time tau_mem = 2c/a0 = 2Z/H_Lambda
-      = {tau_mem:.3e} yr = {tau_mem/1e9:.0f} Gyr -- is SHORTER than the onset of unravelling by a factor
-      {t_floor/tau_mem:.1f}, and shorter than a stellar black hole's lifetime by ~{np.log10(t_evap(10*MSUN)/tau_mem):.0f} orders of magnitude.
+      = {tau_mem:.3e} yr = {tau_mem/1e9:.0f} Gyr -- is SHORTER than even the earliest onset by a factor
+      {t_on_stel/tau_mem:.2f}, and shorter than a stellar black hole's lifetime by ~{np.log10(t_evap(10*MSUN)/tau_mem):.0f} orders of magnitude.
       The framework has no clock anywhere near the evaporation era. Its physics is over long before.""")
-check(f"net unravelling begins only after ~1 trillion yr ({t_floor:.2e}), because the CMB must first "
-      f"cool below the de Sitter floor", 1e11 < t_floor < 1e13)
+check(f"onset is computed PER OBJECT against the hole's own temperature, not against the T_dS floor "
+      f"(stellar hole {t_on_stel:.3e} yr, floor was late by {t_floor/t_on_stel:.2f}x)",
+      abs(t_floor/t_on_stel - 3.48) < 0.1)
+check(f"the T_dS floor is recovered only in the near-Nariai limit "
+      f"(0.9 M_Nariai onset {t_onset(0.9*M_NAR):.3e} vs floor {t_floor:.3e})",
+      abs(t_onset(0.9*M_NAR)/t_floor - 1.0) < 0.02)
 check(f"the framework's own memory time ({tau_mem:.1e} yr) is far shorter than any evaporation "
       f"timescale -- no framework clock reaches that era", tau_mem < t_evap(10*MSUN)/1e40)
 
