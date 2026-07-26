@@ -19,17 +19,17 @@ Pittordis & Sutherland (2024) report a Newtonian null, and the two differ by Δ�
 same framework, when its committed low-pass response gate *G*(ω) = (1 + *i*ω/ω_c)⁻¹ with
 ω_c ∈ [1.782, 2.211] × 10⁻¹⁴ s⁻¹ is applied to the *orbital* frequency of the pair, makes a much
 sharper prediction along a *shape* axis that has never been examined. A binary's orbital frequency
-Ω = (GM/s³)^{1/2} exceeds ω_c throughout the analysed separation range, so the gate is shut and the
-framework predicts a Newtonian result at 2–30 kAU. Because Ω falls as *s*^{−3/2}, the gate does not
+Ω = (GM/s³)^(1/2) exceeds ω_c throughout the analysed separation range, so the gate is shut and the
+framework predicts a Newtonian result at 2–30 kAU. Because Ω falls as *s*^(−3/2), the gate does not
 open at a threshold but as **Re G → (ω_c²/GM)·s³**, giving
 **γ_v(s) − 1 ≃ ½[ν(y_ext) − 1](ω_c²/GM)s³** with the exponent equal to 3 by derivation rather than by
 fit and the amplitude fixed entirely by ω_c, the measured pair mass, and the measured Galactic external
 field. There are no free parameters and the exponent is not adjustable. Three distinct mass powers
 follow from the same closed form and are recovered numerically: the knee radius
-*r*_gate = (GM/ω_c²)^{1/3} ∝ *M*^{0.3333}, the external-field plateau radius
-*r*_efe = (GM/g_ext)^{1/2} ∝ *M*^{0.5000}, and the fixed-separation excess ∝ *M*^{−0.9935}. Every
+*r*_gate = (GM/ω_c²)^(1/3) ∝ *M*^(0.3333), the external-field plateau radius
+*r*_efe = (GM/g_ext)^(1/2) ∝ *M*^(0.5000), and the fixed-separation excess ∝ *M*^(−0.9935). Every
 published contaminant channel — chance alignment, unresolved tertiaries, close-binary contamination —
-carries a fixed velocity scale and therefore rises as *s*^{1/2}; exponent 0.5 against 3.0. The
+carries a fixed velocity scale and therefore rises as *s*^(1/2); exponent 0.5 against 3.0. The
 observational consequence is the point of this note: γ_v rises from 1.0125 at 30 kAU, the cut adopted
 by every published analysis, to 1.0932 at 200 kAU, within the reach of the public El-Badry, Rix &
 Heintz (2021) catalogue — a factor of 7 in excess, across a window excluded by a cut chosen to control
@@ -43,9 +43,9 @@ selects the gated branch computed here. The two branches lie 4.9–5.8σ apart i
 DR4 error model and the choice must be frozen before Gaia DR4. Feasibility is also unresolved:
 contamination grows with separation too, and whether signal-to-contamination *improves* beyond 50 kAU
 cannot be settled without the catalogue in hand. Finally, a confirmed *s*³ rise would establish a
-*frequency* scale ω_c, not the coefficient *Z* — *Z* = 5.7888 and the conventional 2π = 6.2832 differ
-by 7.87% and no arena examined here separates them — and it would constrain the weak-field force law,
-not the matter content. *a*₀'s value, *Z*, the response sign, and ω_c remain postulated.
+*frequency* scale ω_c, not the coefficient *Z*. The value *Z* = 5.7888 and the conventional
+2π = 6.2832 differ by 7.87%, and no arena examined here separates them. A confirmed rise would also constrain
+the weak-field force law, not the matter content. *a*₀'s value, *Z*, the response sign, and ω_c remain postulated.
 
 ---
 
@@ -53,7 +53,7 @@ not the matter content. *a*₀'s value, *Z*, the response sign, and ω_c remain 
 
 The kernel used throughout is the framework's own de Sitter–Unruh interpolation
 
-$$\nu(y)=\sqrt{1+1/y},\qquad y=g_{\rm bar}/a_0,\qquad g_{\rm obs}^2-g_{\rm bar}^2=a_0\,g_{\rm bar},$$
+$$\nu(y)=\sqrt{1+1/y},\qquad y=g_{\mathrm{bar}}/a_0,\qquad g_{\mathrm{obs}}^2-g_{\mathrm{bar}}^2=a_0\,g_{\mathrm{bar}},$$
 
 with the acceleration scale tied to the cosmological constant,
 
@@ -73,7 +73,7 @@ and no result here depends on the choice.
 
 The framework's modified-inertia realisation carries a low-pass response gate
 
-$$G(\omega)=\frac{1}{1+i\omega/\omega_c},\qquad \operatorname{Re}G=|G|^2=\frac{1}{1+(\omega/\omega_c)^2},$$
+$$G(\omega)=\frac{1}{1+i\omega/\omega_c},\qquad \mathrm{Re}\,G=|G|^2=\frac{1}{1+(\omega/\omega_c)^2},$$
 
 with ω_c ∈ [1.782, 2.211] × 10⁻¹⁴ s⁻¹ on the canonical footing. The lower edge is forced by the
 galactic rotation-curve fits; the upper edge by lunar laser ranging. **ω_c is anchored by no
@@ -82,10 +82,10 @@ every one of them 3.2–5.6 decades away — and it is the framework's most expo
 
 ## 2. Why the gate is shut in the analysed window
 
-A binary of total mass *M* at separation *s* presents an orbital frequency Ω = (GM/s³)^{1/2}. For
+A binary of total mass *M* at separation *s* presents an orbital frequency Ω = (GM/s³)^(1/2). For
 *M* = 1.5 M⊙ at *s* = 10 kAU,
 
-$$\Omega = 2.44\times10^{-13}\ {\rm s^{-1}} = 11.0\times\omega_c^{\rm(upper)},$$
+$$\Omega = 2.44\times10^{-13}\ \mathrm{s}^{-1} = 11.0\times\omega_c^{\mathrm{(upper)}},$$
 
 i.e. above the *entire* committed window. The gate is therefore shut, Re G = 0.005–0.008, and the
 predicted velocity boost collapses to γ_v = 1.0004–1.0006 — within 0.04σ of Newton in the framework's
@@ -93,10 +93,10 @@ own DR4 error model (σ_γ = 0.0191 at *N* = 30 000).
 
 Two radii govern the pair, and they run in opposite directions with separation:
 
-$$r_{\rm efe}=\sqrt{GM/g_{\rm ext}}\quad(\text{external field takes over}),\qquad
-r_{\rm gate}=(GM/\omega_c^2)^{1/3}\quad(\Omega=\omega_c).$$
+$$r_{\mathrm{efe}}=\sqrt{GM/g_{\mathrm{ext}}}\quad(\text{external field takes over}),\qquad
+r_{\mathrm{gate}}=(GM/\omega_c^2)^{1/3}\quad(\Omega=\omega_c).$$
 
-Since Ω ∝ *s*^{−3/2} while *g* ∝ *s*^{−2}, one has *r*_gate > *r*_efe generically. For 1.5 M⊙ with
+Since Ω ∝ *s*^(−3/2) while *g* ∝ *s*^(−2), one has *r*_gate > *r*_efe generically. For 1.5 M⊙ with
 *g*_ext = *V*²/*R* = 1.726 × 10⁻¹⁰ m s⁻² (*V* = 233 km s⁻¹, *R* = 8.2 kpc): *r*_efe = 7.18 kAU and
 *r*_gate = 49.5–57.3 kAU. **Between them the pair is already below *a*₀ but still gate-shut, and must
 look Newtonian.**
@@ -110,10 +110,10 @@ The gate makes wide binaries a *different regime*, not the same physics at small
 
 ## 3. The cubic law
 
-Deep in the gate-shut regime Ω ≫ ω_c, so Re G → (ω_c/Ω)², and substituting Ω = (GM/s³)^{1/2},
+Deep in the gate-shut regime Ω ≫ ω_c, so Re G → (ω_c/Ω)², and substituting Ω = (GM/s³)^(1/2),
 
-$$\boxed{\ \operatorname{Re}G \longrightarrow \frac{\omega_c^{2}}{GM}\,s^{3},\qquad
-\gamma_v(s)-1 \simeq \tfrac{1}{2}\big[\nu(y_{\rm ext})-1\big]\frac{\omega_c^{2}}{GM}\,s^{3}\ }$$
+$$\boxed{\ \mathrm{Re}\,G \longrightarrow \frac{\omega_c^{2}}{GM}\,s^{3},\qquad
+\gamma_v(s)-1 \simeq \tfrac{1}{2}\big[\nu(y_{\mathrm{ext}})-1\big]\frac{\omega_c^(2)}{GM}\,s^(3)\ }$$
 
 saturating at ½[ν(*y*_ext) − 1] once Ω < ω_c. The local logarithmic slope
 d ln(γ_v − 1)/d ln *s*, evaluated numerically, is **3.00** at 5 kAU and falls monotonically through the
@@ -127,19 +127,19 @@ Three mass powers follow from the same closed form, and are recovered numericall
 
 | quantity | measured | analytic |
 |---|---|---|
-| *r*_gate | *M*^{0.3333} | *M*^{1/3} |
-| *r*_efe | *M*^{0.5000} | *M*^{1/2} |
-| excess at fixed *s* = 10 kAU | *M*^{−0.9935} | *M*^{−1} |
+| *r*_gate | *M*^(0.3333) | *M*^(1/3) |
+| *r*_efe | *M*^(0.5000) | *M*^(1/2) |
+| excess at fixed *s* = 10 kAU | *M*^(−0.9935) | *M*^(−1) |
 
-The third is **asymptotic**, valid only where Re G ≪ 1. Measured at 30 kAU it is *M*^{−0.857}, not
-*M*^{−1}, because low-mass pairs are by then near their own knee (*r*_gate shrinks as *M*^{1/3}). Any
+The third is **asymptotic**, valid only where Re G ≪ 1. Measured at 30 kAU it is *M*^(−0.857), not
+*M*^(−1), because low-mass pairs are by then near their own knee (*r*_gate shrinks as *M*^(1/3)). Any
 fit must use the local slope rather than assume a global 1/*M*. We report both values rather than the
 favourable one.
 
 ## 4. The discriminant
 
 Every published contaminant channel carries a *fixed velocity scale* σ_v and therefore produces a
-scaled relative velocity rising as *s*^{1/2}: chance alignment (El-Badry, Rix & Heintz 2021, via
+scaled relative velocity rising as *s*^(1/2): chance alignment (El-Badry, Rix & Heintz 2021, via
 *R*_chance_align), unresolved tertiaries and hierarchical systems (Peñarrubia 2021; Tyler, Green &
 Goodwin 2023), and close-binary contamination. **Exponent 0.5 against 3.0** — a factor of six in
 logarithmic slope. Contamination and signal therefore have *different* separation dependences, which
@@ -170,15 +170,23 @@ central observational claim of this note.
 
 ## 6. What is not claimed
 
-- **The branch is unresolved, and this whole result is conditional on it.** *K*(□_u) is a *linear*
-  operator, while |a| = (a^μ a_μ)^{1/2} is not a linear functional of the trajectory — a linear kernel
-  cannot by itself sense the acceleration magnitude that ν(*y*) depends on. That obstruction points to
-  the gated (AC) branch, but settling it requires reading the published action's contraction structure,
-  which we have not done. On the ungated (DC) branch — where the kernel responds to |a|, constant on a
-  circular orbit — this entire note is void and γ_v ≈ 1.09 stands instead. The branches lie 4.9–5.8σ
-  apart in the framework's own DR4 error model. **The choice must be frozen before DR4 or the test is
-  post hoc.** The same fork governs the framework's apparent Ġ/G floor, since the lunar mean motion
-  exceeds ω_c by ≈ 1.5 × 10⁸.
+- **The branch is favoured but not closed, and this whole result is conditional on it.** *K*(□_u) is a
+  *linear* operator, while |a| = (a^μ a_μ)^(1/2) is not a linear functional of the trajectory — a linear
+  kernel cannot by itself sense the acceleration magnitude that ν(*y*) depends on. That obstruction
+  points to the gated (AC) branch. **The framework's own field-theory analysis points the same way:** in
+  the matter sector the kernel reduces to *K*(□_u) → *K*(−*q*₀²), *a function of the frequency q*₀
+  *alone*, which is precisely the AC reading used here. On the ungated (DC) branch — a kernel responding
+  to |a|, constant on a circular orbit — this entire note is void and γ_v ≈ 1.09 stands instead. The
+  branches lie 4.9–5.8σ apart in the framework's own DR4 error model. **The choice must be frozen
+  before DR4 or the test is post hoc.** The same fork governs the framework's apparent Ġ/G floor, since
+  the lunar mean motion exceeds ω_c by ≈ 1.5 × 10⁸.
+- **A deeper question sits underneath this one, and it is not addressed here.** If the kernel is a
+  function of frequency (or, in the eikonal limit of a field, of momentum) rather than of acceleration,
+  it is a separate and prior question whether the construction reproduces an acceleration-dependent
+  inertia law at all — i.e. whether ν(*y*) with *y* = *g*/*a*₀ is recovered, as opposed to a
+  momentum-dependent response. The framework's own notes raise this explicitly and do not settle it.
+  The present note assumes the MI law as given and asks only what the gate does to it in a wide binary;
+  it is not evidence on that prior question, and a reader should not take it as such.
 - **Feasibility beyond 50 kAU is unresolved and may be fatal to a DR3 test.** Contamination also grows
   with separation. Whether signal-to-contamination *improves* beyond 50 kAU is an empirical question
   that cannot be answered without the catalogue in hand. If it does not, this prediction waits for
@@ -198,7 +206,7 @@ central observational claim of this note.
 
 The prediction fails if, in a contamination-controlled sample beyond ≈ 50 kAU, the scaled relative
 velocity excess is (i) absent, (ii) present with a logarithmic slope inconsistent with 3 in the
-gate-shut regime, (iii) present but without the knee moving as *M*^{1/3}, or (iv) present with an
+gate-shut regime, (iii) present but without the knee moving as *M*^(1/3), or (iv) present with an
 amplitude inconsistent with ω_c² /*GM* on both footings and both window edges. Any of these kills the
 gated branch. A Newtonian result *inside* 30 kAU falsifies nothing, on either branch — which is
 precisely the defect in the current pre-registration that this note exists to correct.
@@ -215,7 +223,7 @@ footings and both ω_c edges carried throughout:
 
 Two assertions failed their own checks on first run and were corrected in place rather than patched:
 an overstated 200-vs-30 kAU excess ratio (claimed >10×, actually 7×) and an overstated global 1/*M*
-scaling (actually *M*^{−0.857} at 30 kAU, asymptotic only). Both corrections are recorded in the
+scaling (actually *M*^(−0.857) at 30 kAU, asymptotic only). Both corrections are recorded in the
 scripts and in the commit history.
 
 ---
