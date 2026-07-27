@@ -59,10 +59,71 @@ force-boost numbers must be square-rooted before comparison
 (e.g. Chae et al. 2026, arXiv:2601.21728: force gamma 1.600 (+0.171/−0.141)
 = velocity gamma_v ≈ 1.26). All targets below are gamma_v.
 
+> ### ⚠️ AMENDMENT 1 — 2026-07-27, ADDED IN THE OPEN BEFORE DR4. READ BEFORE SCORING.
+>
+> **The original table below had a scoring defect: it listed γ_v = 1.000 as the *Newtonian rival* only.
+> On the framework's own committed action, 1.000 in the 2–30 kAU window is ALSO the framework's
+> prediction.** As frozen, a Newtonian DR4 result would have been recorded as a kill of the framework
+> when it may be a confirmation — and could not have been claimed afterwards without being post-hoc.
+> This amendment fixes that, and it is entered *before* DR4 rather than after.
+>
+> **Why.** The framework carries a response gate `G(ω) = 1/(1 + iω/ω_c)` with
+> ω_c ∈ [1.782, 2.211]×10⁻¹⁴ rad/s. A wide binary's *orbital* frequency at 10 kAU is
+> Ω = 2.44×10⁻¹³ rad/s — **11× above the entire committed ω_c window** — so the gate is SHUT and the
+> boost is suppressed by Re G ≈ 0.005–0.008.
+> The question of whether the kernel senses the acceleration *magnitude* (constant on a circular orbit
+> → gate open → 1.09 stands) or the orbital *frequency* (→ gate shut → 1.000) is now **SETTLED from the
+> committed action**, not left open: `S_matter = −½∫√−g ρ_m [s uᵘ K(□_u/a₀²) u_μ]` with
+> `□_u f = uᵃ∇_a(uᵇ∇_b f)`, and on a circular orbit **□_u u_μ = −Ω² u_μ identically** (sympy residual
+> zero, `real_research/reviews/mi_dcac_branch_settled_2026.py`, 5/5). So K's argument is
+> z = −(Ωc/a₀)² — a frequency. The acceleration magnitude, though genuinely constant, never enters the
+> operator. **The gated (AC) branch is the framework's branch.**
+>
+> | amended hypothesis | γ_v target, 2–30 kAU | basis |
+> |---|---|---|
+> | Newtonian | 1.000 exactly | — |
+> | **framework-MI, GATED (the framework's prediction)** | **1.0004–1.0006**, i.e. <0.04σ from Newton | `mi_wb_gate_fork_2026.py` (11/11), all four footing × ω_c-edge combinations |
+> | framework-MI, ungated (superseded — retained for the record) | band 1.05–1.10, point 1.09 | the original row below |
+>
+> **So a Newtonian DR4 result in 2–30 kAU CONFIRMS the framework's gated branch and does NOT falsify
+> it.** Conversely, a detection of γ_v ≈ 1.09 in that window would falsify the gated branch and revive
+> the ungated one. Both outcomes are informative; neither is a free pass.
+>
+> **Where the framework IS falsifiable — the discriminating window moves outward.** The gate opens at
+> r_gate = (GM/ω_c²)^(1/3), which exceeds the MOND radius r_M = √(GM/a₀) for every mass (ratio
+> 4.54–7.76). Between them is a **dead zone**: sub-a₀ but gate-shut, hence Newtonian, running ~10 → ~50–60
+> kAU for 1.5 M☉. Beyond r_gate the boost switches on as
+> **γ_v − 1 ≃ ½[ν(y_ext) − 1](ω_c²/GM)s³** — exponent **exactly 3**, derived not fitted, amplitude fixed
+> by ω_c, the measured pair mass and the Galactic field, with **zero free parameters**
+> (`mi_wb_cubic_rise_2026.py`, 10/10). An n-pole gate would give s^(3n), so the measured log-slope
+> returns the pole count as n = p/3 (`mi_wb_exponent_pipeline_2026.py`, 6/6). Every published
+> contaminant channel rises as s^(1/2) instead. **FROZEN PREDICTION: p = 3.**
+>
+> **Pre-registered falsifiers of the gated branch**, any one of which kills it: (i) no excess beyond
+> ~50 kAU in a contamination-controlled sample; (ii) an excess whose log-slope is inconsistent with 3;
+> (iii) a knee that does not move as M^(1/3); (iv) an amplitude inconsistent with ω_c²/GM on both
+> footings and both window edges; (v) γ_v ≈ 1.09 detected *inside* 30 kAU.
+>
+> **Power, and the honest limitation.** The shape test needs ~2000 clean pairs per separation bin for
+> ~5σ separation of p = 3 from p = 0.5 (~400 gives only ~2.3σ). El-Badry, Rix & Heintz 2021 has, at
+> d < 200 pc, only 436/270/155/60/24/3 clean pairs across the 30→236 kAU bins — **364 total beyond 50
+> kAU**. So **this test cannot be run on DR3**; it requires DR4's astrometry and sample
+> (`mi_wb_dr3_feasibility_2026.py`, 5/5). That is precisely why this amendment is entered now.
+>
+> **Unchanged by this amendment:** the a₀-degeneracy flag below still holds in full — DR4 γ_v constrains
+> the ν+EFE+gate prescription, **not** the value a₀ = 9.36×10⁻¹¹, and no outcome may be reported as
+> measuring a₀ or Z. a₀'s value, Z, s = −1 and ω_c remain POSTULATED. ω_c in particular is anchored by
+> no independent argument and is the framework's most exposed quantity.
+>
+> **Still open, and newly sharpened:** on the frequency axis |K| = 1 exactly, so K contributes pure
+> phase there and the entire magnitude suppression rests on the separate gate. Giving the gate the same
+> frequency argument as K is now *consistent* rather than assumed — but the K/gate division of labour is
+> underived. This amendment does not close that.
+
 | hypothesis | frozen gamma_v target | source |
 |---|---|---|
 | Newtonian | 1.000 exactly | — |
-| **framework-MI** (per-star MI-EFE prescription) | **band 1.05–1.10, point target 1.09** (dynamical asymptote 1.1015, observable-diluted edge 1.0508) | banked `wb_dr4_prereg_framework_curve.py` (asserts 1.095 < asy < 1.105), rerun 2026-07-16, exit 0 |
+| **framework-MI** (per-star MI-EFE prescription) | **band 1.05–1.10, point target 1.09** (dynamical asymptote 1.1015, observable-diluted edge 1.0508) — ⚠️ **SUPERSEDED for 2–30 kAU by Amendment 1: this is the UNGATED number** | banked `wb_dr4_prereg_framework_curve.py` (asserts 1.095 < asy < 1.105), rerun 2026-07-16, exit 0 |
 | framework-as-MG (AQUAL-EFE point-field, framework nu) | 1.137 (computed 1.1389) | same banked script (asserts \|asy − 1.137\| < 0.005) |
 | conventional-MOND benchmark | 1.33 (dynamic-range injection only; Milgrom a0 + literature-scale EFE asymptote — NOT a framework number) | pipeline injection ladder |
 
