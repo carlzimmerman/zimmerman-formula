@@ -542,9 +542,65 @@ class PDGDataset:
                 out.append(t)
         return sorted(out, key=lambda x: -x.rel_precision)
 
-    def dimensionless(self) -> List[Target]:
-        """Targets with units == '' (ratios, couplings, sin^2, Q) — the anonymizable search pool."""
-        return [t for t in self._reg.values() if t.units == ""]
+    def dimensionless(self, include_holdout: bool = False) -> List[Target]:
+        """Targets with units == '' (ratios, couplings, sin^2, Q) — the anonymizable search pool.
+
+        HOLDOUT IS EXCLUDED BY DEFAULT (see HOLDOUT_KEYS below). Pass include_holdout=True only to
+        SCORE a survivor's prediction, never to search.
+        """
+        return [t for t in self._reg.values()
+                if t.units == "" and (include_holdout or t.key not in HOLDOUT_KEYS)]
+
+    # ---- held-back validation set (added 2026-07-27) ------------------------------------------
+    # WHY. GATE_POWER_ANALYSIS.py showed a single-target match is statistically empty beyond depth
+    # ~10-13, because the expression count 30^(D-4) outruns any fixed measurement precision. So
+    # essentially all of the gate's discriminating power lives in Gate C's cross-sector interlock.
+    # But an interlock that FITS every target it touches is still a fit: k targets used, k fitted,
+    # nothing predicted -- and a JACKPOT would then be UNFALSIFIABLE, hence unpublishable.
+    # The fix is out-of-sample prediction. Two targets are held back and MUST NOT be searched:
+    #   koide_Q_lep  -- TIGHT (rel ~1e-5), the charged-lepton Koide invariant
+    #   r_tau_mu     -- LOOSE (rel ~1e-4), m_tau/m_mu
+    # Both are flavour-sector, so a survivor fitted elsewhere must REACH them rather than be shown
+    # them. One tight and one loose on purpose: the tight one tests whether the relation is sharp,
+    # the loose one whether it is even in the right place.
+    # A survivor is a RESULT only if it predicts BOTH inside error without having used either.
+    #
+    # CAVEAT ON THE TIGHT ONE, recorded so it is not over-credited: koide_Q_lep is measured at
+    # 0.666660511 +/- 6.8e-6, and the exact value 2/3 sits only 0.91 sigma away. So a survivor that
+    # lands on 2/3 PASSES this holdout -- but 2/3 has been the known answer since Koide (1981), so
+    # hitting it is not a novel prediction, only a consistency check. r_tau_mu = 16.8170 +/- 0.0011 has
+    # no famous closed form, which makes it the STRONGER of the two tests despite being the looser.
+    # Read a JACKPOT accordingly: r_tau_mu is the one that carries information.
+    def holdout(self) -> List[Target]:
+        """The held-back validation targets. For SCORING a prediction only -- never for searching."""
+        return [self._reg[k] for k in HOLDOUT_KEYS if k in self._reg]
+
+    def is_holdout(self, key: str) -> bool:
+        return key in HOLDOUT_KEYS
+
+    def fittable(self, rel_thresh: float = 1e-2) -> List[Target]:
+        """Dimensionless targets a search MAY fit: precise enough, and not held back."""
+        return [t for t in self.precise_targets(rel_thresh=rel_thresh)
+                if t.units == "" and t.key not in HOLDOUT_KEYS]
+
+    def score_holdout(self, key: str, predicted: float) -> Tuple[float, float, bool]:
+        """Score a survivor's PREDICTION for a held-back target.
+
+        Returns (sigma_offset, rel_offset, passes_2sigma). The only legitimate use of the holdout:
+        `predicted` must come from an expression fixed on the OTHER targets.
+        """
+        t = self._reg[key]
+        # cast through float: this dataset carries mpmath values, and returning mpf breaks caller
+        # f-string formatting and JSON serialisation downstream.
+        val, sg = float(t.value), float(t.sigma)
+        pred = float(predicted)
+        sig = abs(pred - val)/sg if sg > 0 else float("inf")
+        return sig, abs(pred - val)/abs(val), bool(sig <= 2.0)
+
+
+# ---------------------------------------------------------------------------------------------
+# THE HELD-BACK VALIDATION SET. Do not add to a search pool. See PDGDataset.holdout() for why.
+HOLDOUT_KEYS: frozenset = frozenset({"koide_Q_lep", "r_tau_mu"})
 
 
 # module-level singleton + convenience function (mirrors hali_flow's load pattern)

@@ -1,0 +1,90 @@
+{
+ "started": "2026-07-25T13:50:16",
+ "stages": {
+  "S1_flow_equation": {
+   "algebraic_relation": "K^2 + K/sqrt(z) - 1 = 0",
+   "flow_variable": "u = 1/sqrt(z) = a0/g",
+   "K_of_u": "-u/2 + sqrt(u**2 + 4)/2",
+   "beta": "dK/dlnu = u**2/(2*sqrt(u**2 + 4)) - u/2",
+   "fd_max_rel_err": 2.2159662882437203e-07
+  },
+  "S2_anomalous_dimension": {
+   "gamma": "-u/sqrt(u**2 + 4)",
+   "gamma_UV": "0",
+   "gamma_IR": "-1",
+   "monotonic": true,
+   "u_at_gamma_half": 1.1547005383792515,
+   "crossover_g": {
+    "canon": 8.101667652403424e-11,
+    "alt": 9.79041718978308e-11
+   }
+  },
+  "S3_form_comparison": {
+   "beta_in_coupling": "(K**2*sqrt(4*K**2 + (K**2 - 1)**2) + (K**2 - 1)**2 - sqrt(4*K**2 + (K**2 - 1)**2))/(2*K*sqrt(K**4 + 2*K**2 + 1))",
+   "is_polynomial_in_K": false,
+   "degree_in_K": "None",
+   "one_loop_like": false,
+   "note": "MI gamma saturates at -1; RG one-loop runs to a Landau pole. Different global structure."
+  },
+  "S4_dictionary_gate": {
+   "forced": false,
+   "kernel_scale_eV": {
+    "canon": 1.0269726087476937e-34,
+    "alt": 1.2410395875887416e-34
+   },
+   "kernel_length_m": {
+    "canon": 1.921443460688012e+27,
+    "alt": 1.5900135846737155e+27
+   },
+   "orders_below_electron": 39.69686203981725,
+   "verdict": "BLOCKED: u is an acceleration ratio, mu an energy; the only bridge (a0/2c) lands ~24 orders below the electron. No SM inference is licensed."
+  },
+  "S5_spectral": {
+   "support_threshold": "z = -1/4 (omega = a0/2c)",
+   "shared_properties": [
+    "Herglotz positivity",
+    "threshold/mass-gap",
+    "sum-rule normalisation"
+   ],
+   "constrains_SM": false,
+   "note": "Shared general properties of ALL causal passive kernels. Not a correspondence."
+  },
+  "S6_numerology_gates": {
+   "candidates": {
+    "gamma_IR (saturation)": 1.0,
+    "|gamma| crossover u": 1.1547005383792515,
+    "branch point |z|": 0.25,
+    "sum rule": 1.0,
+    "K at u=1": 0.6180339887498949,
+    "gamma at u=1": 0.4472135954999579
+   },
+   "sm_targets_matched": 1,
+   "decoy_mean": 0.961,
+   "decoy_sd": 0.9452401811180056,
+   "decoy_sets": 2000,
+   "p_value": 0.6315,
+   "random_control_passed": true,
+   "gamma_IR_convention_dependent": true,
+   "bugfixes": [
+    "removed degenerate target 137.036/137 ~ 1 by construction",
+    "count TARGETS matched not COMBINATIONS",
+    "2000 decoy sets not 7 decoys"
+   ]
+  },
+  "S7_verdict": {
+   "sm_door": false,
+   "verdict": "NO SM DOOR. The dictionary gate FAILED (no forced map from the kernel's acceleration ratio to an energy scale), the spectral parallel is generic to all causal passive kernels, the random-target control shows SM constants are matched no more often than decoys, the FDR surplus is not positive, and the one special-looking number (gamma_IR = -1) is convention-dependent.",
+   "new_result": "exact flow dK/dlnu = u**2/(2*sqrt(u**2 + 4)) - u/2",
+   "gamma_range": "0 (UV/Newtonian) to -1 (IR/deep-MOND), monotonic, saturating",
+   "crossover_u": 1.1547005383792515,
+   "crossover_g": {
+    "canon": 8.101667652403424e-11,
+    "alt": 9.79041718978308e-11
+   },
+   "one_loop_like": false
+  }
+ },
+ "finished": "2026-07-25T13:50:16",
+ "checks_passed": 11,
+ "checks_total": 11
+}

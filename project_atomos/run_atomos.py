@@ -1031,7 +1031,12 @@ def select_targets(args, ds: pdg.PDGDataset) -> List:
     for k in ("koide_Q_lep", "r_mu_e", "r_p_e", "pmns_sin2_13", "ckm_lambda"):
         if k in ds and ds.target(k) not in out:
             out.append(ds.target(k))
-    return out
+    # ---- HOLDOUT GUARD (added 2026-07-27; same leak as exhaust_parallel.sm_target_keys) ---------
+    # The hard-coded loop above re-adds koide_Q_lep BY NAME, bypassing the dataset-level holdout.
+    # Filter applied last and unconditionally so no hard-coded addition can reopen it. An explicit
+    # --target koide_Q_lep still works (the early-return above), which is correct: naming a held-back
+    # target deliberately is a SCORING call, not a search, and PDGDataset.score_holdout() is for that.
+    return [t for t in out if t.key not in pdg.HOLDOUT_KEYS]
 
 
 def run(args):

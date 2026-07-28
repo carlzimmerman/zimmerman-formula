@@ -73,8 +73,19 @@ PIDFILE = RESULTS / "exhaust_pids.json"
 _EXTRA_FLAVOR_TARGETS = ["pmns_sin2_12", "pmns_sin2_23"]
 
 
-def sm_target_keys() -> List[str]:
-    """The 21 SM target keys for the flavor push, in a deterministic order."""
+def sm_target_keys(include_holdout: bool = False) -> List[str]:
+    """The SM target keys for the flavor push, in a deterministic order.
+
+    include_holdout=False (default) EXCLUDES the held-back validation targets -- correct for any
+    SEARCH, which must never fit them. include_holdout=True returns the FULL historical list and is
+    correct for exactly two things:
+      * the REPLAY GATE (--replay 6/7), which reproduces committed ground truth. A replay is a
+        MACHINERY check, not a search: it neither fits nor selects. Excluding the holdout there
+        silently BREAKS the project's main self-verification -- observed 2026-07-27, when the depth-6
+        replay went 259 -> 258 hits and reported FAIL purely because koide_Q_lep was no longer swept.
+      * RECORD RETENTION (_target_windows), because scoring a survivor's out-of-sample PREDICTION for
+        a held-back target requires that values near it were retained in the first place.
+    """
     import targets.pdg_constants as pdg
     ds = pdg.load()
     precise = ds.precise_targets(rel_thresh=1e-2)
@@ -88,7 +99,14 @@ def sm_target_keys() -> List[str]:
     for k in _EXTRA_FLAVOR_TARGETS:
         if k in ds and k not in out:
             out.append(k)
-    return out
+    # ---- HOLDOUT GUARD (added 2026-07-27, AFTER a leak was found right here) --------------------
+    # The hard-coded "always include" loops above BYPASSED the dataset-level holdout: koide_Q_lep was
+    # re-added BY NAME even though PDGDataset.dimensionless() had already excluded it, so the running
+    # deep-sample campaign was FITTING a target documented as held back. Dataset-level exclusion is
+    # necessary but NOT sufficient when callers name targets explicitly. The filter is therefore
+    # applied here LAST and unconditionally -- after every hard-coded addition -- so adding another
+    # name above cannot reopen the leak.
+    return out if include_holdout else [k for k in out if k not in pdg.HOLDOUT_KEYS]
 
 
 def split_round_robin(keys: List[str], n: int) -> List[List[str]]:
