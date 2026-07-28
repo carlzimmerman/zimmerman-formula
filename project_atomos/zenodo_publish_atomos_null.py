@@ -96,6 +96,24 @@ def main():
         sys.exit("upload never confirmed after 8 attempts -- Zenodo degraded, rerun later "
                  f"with: python {os.path.basename(__file__)} {dep_id}")
 
+    # 2b) refuse to publish a contaminated record. A 504 on an upload can still store
+    # the object, so diagnostic probes may have landed invisibly. Delete anything
+    # that is not the paper before this goes live.
+    st, d = req("GET", f"{BASE}/deposit/depositions/{dep_id}", tok, tries=6)
+    if st != 200:
+        sys.exit(f"cannot verify file list before publish [{st}] -- refusing to publish blind")
+    strays = [f for f in d.get("files", []) if f.get("filename") != fn]
+    for s in strays:
+        sid = s.get("id")
+        dst, _ = req("DELETE", f"{BASE}/deposit/depositions/{dep_id}/files/{sid}", tok, tries=4)
+        print(f"  removed stray file {s.get('filename')!r} [{dst}]")
+    if strays:
+        st, d = req("GET", f"{BASE}/deposit/depositions/{dep_id}", tok, tries=6)
+        names = [f.get("filename") for f in d.get("files", [])]
+        if st != 200 or names != [fn]:
+            sys.exit(f"stray files remain ({names}) -- refusing to publish")
+    print(f"file list clean: {[f.get('filename') for f in d.get('files', [])]}")
+
     # 3) attach metadata (idempotent -- safe to retry)
     st, md = req("PUT", f"{BASE}/deposit/depositions/{dep_id}", tok, data={"metadata": meta}, tries=6)
     if st not in (200, 201):
