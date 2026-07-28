@@ -89,8 +89,13 @@ def main():
         if landed():
             print(f"uploaded {fn} ({want} bytes) [PUT returned {st}]")
             break
+        # Zenodo reports a broken file-transfer backend as HTTP 400 with
+        # "The file upload transfer failed, please try again." -- a RETRYABLE
+        # server-side fault wearing a 4xx code. Log the message, not just the
+        # status, or this is indistinguishable from a malformed request.
+        msg = up.get("message") or up.get("_nonjson") or up.get("_exc") or ""
         wait = min(20 * attempt, 90)
-        print(f"  upload attempt {attempt} not confirmed (PUT {st}) -- retrying in {wait}s")
+        print(f"  upload attempt {attempt} not confirmed (PUT {st}: {msg[:80]}) -- retrying in {wait}s")
         time.sleep(wait)
     else:
         sys.exit("upload never confirmed after 8 attempts -- Zenodo degraded, rerun later "
