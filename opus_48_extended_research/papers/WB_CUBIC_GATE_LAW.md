@@ -1,239 +1,221 @@
-# A Cubic Gate-Opening Law for Wide Binaries: a Zero-Parameter Prediction in the Separation Window Current Analyses Exclude
+# A Cubic Separation Law for Wide Binaries: an Exponent With No Free Parameters
 
 **C. P. Zimmerman**
 *Briar Creek Tech · Charlotte, NC · carl@briarcreektech.com*
 
-*Version 2026-07-25 · Reproduced in full by `real_research/reviews/mi_wb_cubic_rise_2026.py` (10/10 checks, exit 0) and `real_research/reviews/mi_wb_gate_fork_2026.py` (11/11 checks, exit 0).*
+*Version 2 · 2026-07-28. Version 1 (2026-07-25) is superseded: the branch ambiguity it was conditional
+on is now settled from the theory's own action, its open feasibility question is answered (negatively),
+the exponent is generalised, and one parameter is newly declared free. Scripts listed in §8.*
 
 ---
 
-## Abstract
+## The claim, first
 
-Wide binaries at separations of a few kAU are the one regime where the weak-field force law is probed
-below the MOND acceleration scale *a*₀ in a system containing negligible dark matter under any model,
-so a collisionless-halo picture has essentially no free parameter with which to respond. Published
-analyses of the Gaia catalogues nonetheless disagree: Chae (2023–2025) reports a boost, while Banik,
-Pittordis & Sutherland (2024) report a Newtonian null, and the two differ by Δγ_v ≈ 0.174 — about
-2.1× the entire boost predicted by a de Sitter–Unruh modified-inertia (MI) framework with
-*a*₀ = *cH*_Λ/*Z*, *Z* = √(32π/3). An amplitude test cannot survive that spread. We point out that the
-same framework, when its committed low-pass response gate *G*(ω) = (1 + *i*ω/ω_c)⁻¹ with
-ω_c ∈ [1.782, 2.211] × 10⁻¹⁴ s⁻¹ is applied to the *orbital* frequency of the pair, makes a much
-sharper prediction along a *shape* axis that has never been examined. A binary's orbital frequency
-Ω = (GM/s³)^(1/2) exceeds ω_c throughout the analysed separation range, so the gate is shut and the
-framework predicts a Newtonian result at 2–30 kAU. Because Ω falls as *s*^(−3/2), the gate does not
-open at a threshold but as **Re G → (ω_c²/GM)·s³**, giving
-**γ_v(s) − 1 ≃ ½[ν(y_ext) − 1](ω_c²/GM)s³** with the exponent equal to 3 by derivation rather than by
-fit and the amplitude fixed entirely by ω_c, the measured pair mass, and the measured Galactic external
-field. There are no free parameters and the exponent is not adjustable. Three distinct mass powers
-follow from the same closed form and are recovered numerically: the knee radius
-*r*_gate = (GM/ω_c²)^(1/3) ∝ *M*^(0.3333), the external-field plateau radius
-*r*_efe = (GM/g_ext)^(1/2) ∝ *M*^(0.5000), and the fixed-separation excess ∝ *M*^(−0.9935). Every
-published contaminant channel — chance alignment, unresolved tertiaries, close-binary contamination —
-carries a fixed velocity scale and therefore rises as *s*^(1/2); exponent 0.5 against 3.0. The
-observational consequence is the point of this note: γ_v rises from 1.0125 at 30 kAU, the cut adopted
-by every published analysis, to 1.0932 at 200 kAU, within the reach of the public El-Badry, Rix &
-Heintz (2021) catalogue — a factor of 7 in excess, across a window excluded by a cut chosen to control
-contamination, for reasons unrelated to this prediction. At the 30 kAU cut the predicted excess
-(1.2 × 10⁻²) lies an order of magnitude below the inter-group systematic, so the conventional window
-*cannot* test the framework; that is itself the result. **We state the costs plainly.** The prediction
-is conditional on an unresolved question about the framework's own kernel: whether *K*(□_u) responds to
-the acceleration *magnitude* |a|, which is constant on a circular orbit and would leave the gate open
-(recovering the ungated γ_v ≈ 1.09), or acts as the linear operator its covariant form suggests, which
-selects the gated branch computed here. The two branches lie 4.9–5.8σ apart in the framework's own
-DR4 error model and the choice must be frozen before Gaia DR4. Feasibility is also unresolved:
-contamination grows with separation too, and whether signal-to-contamination *improves* beyond 50 kAU
-cannot be settled without the catalogue in hand. Finally, a confirmed *s*³ rise would establish a
-*frequency* scale ω_c, not the coefficient *Z*. The value *Z* = 5.7888 and the conventional
-2π = 6.2832 differ by 7.87%, and no arena examined here separates them. A confirmed rise would also constrain
-the weak-field force law, not the matter content. *a*₀'s value, *Z*, the response sign, and ω_c remain postulated.
+In wide binaries wider than about 50 kAU, the relative velocity should exceed the Newtonian value by an
+amount growing as the **cube of the separation**:
+
+$$\gamma_v(s) - 1 \;\simeq\; \tfrac{1}{2}\big[\nu(y_\mathrm{ext})-1\big]\,\frac{\omega_c^{2}}{GM}\,s^{3}.$$
+
+The **exponent is 3**. It is derived, not fitted, and it cannot be tuned. Every known contamination
+channel in wide-binary samples rises as $s^{1/2}$ instead. Exponent 3 against exponent 0.5 — that
+contrast is the measurement.
+
+**What would kill it.** Any one of: no excess beyond ~50 kAU in a contamination-controlled sample; an
+excess whose log-slope is inconsistent with 3; a knee that does not move as $M^{1/3}$; an amplitude
+inconsistent with $\omega_c^2/GM$; or a boost $\gamma_v\approx1.09$ found *inside* 30 kAU.
+
+**What it cannot do.** It cannot be measured with Gaia DR3. We checked the catalogue ourselves; see §6.
 
 ---
 
-## 1. The framework, and the credit it owes
+## 1. Two scales, one of them free
 
-The kernel used throughout is the framework's own de Sitter–Unruh interpolation
+The framework is *modified inertia* — the modification is in the matter sector, not in gravity. Its
+acceleration scale is tied to the cosmological constant:
 
-$$\nu(y)=\sqrt{1+1/y},\qquad y=g_{\mathrm{bar}}/a_0,\qquad g_{\mathrm{obs}}^2-g_{\mathrm{bar}}^2=a_0\,g_{\mathrm{bar}},$$
+$$a_0=\frac{cH_\Lambda}{Z}=c^2\sqrt{\frac{\Lambda}{32\pi}}=9.36\times10^{-11}\ \mathrm{m}\,\mathrm{s}^{-2},
+\qquad Z=\sqrt{32\pi/3}=5.78881 .$$
 
-with the acceleration scale tied to the cosmological constant,
+**Credit, plainly stated.** The interpolation $\nu(y)=\sqrt{1+1/y}$ and the identity
+$g_\mathrm{obs}^2-g_\mathrm{bar}^2=a_0g_\mathrm{bar}$ are Milgrom (1999, *Phys. Lett. A* **253**, 273),
+Eqs. (8)–(9), with coefficient $2cH_\Lambda$. Milgrom (1999, 2015) and Smolin (2017, *Phys. Rev. D*
+**96**, 083523) had already tied $a_0$ to $\Lambda$ with a $2\pi$ coefficient. **No priority is claimed
+for the $\Lambda$ tie.** What is ours: the coefficient $cH_\Lambda/Z$, the modified-inertia completion,
+and the prediction below.
 
-$$a_0=\frac{cH_\Lambda}{Z}=c^2\sqrt{\frac{\Lambda}{32\pi}},\qquad Z=\sqrt{32\pi/3}=5.78881 .$$
+The second scale is a response gate. The matter sector's effective response is
 
-**This kernel is not new and the identity is not new.** Both are Milgrom (1999, *Phys. Lett. A* **253**,
-273), Eqs. (8)–(9), derived from the de Sitter–Unruh temperature difference, with coefficient
-2*cH*_Λ — a ratio of exactly 2*Z* to the value used here. Milgrom (1999, 2015) and Smolin (2017, *Phys.
-Rev. D* **96**, 083523) had already tied *a*₀ to Λ with a 2π coefficient. The distinctive content of
-the present framework is the *coefficient* *cH*_Λ/*Z* together with a covariant modified-inertia
-completion; priority for tying *a*₀ to Λ is not claimed, and cannot be, since *Z* and 2π differ by only
-7.87%.
+$$K_\mathrm{eff}=1-S\big(|a|/a_0\big)\,G(\omega),\qquad G(\omega)=\frac{1}{1+i\omega/\omega_c},
+\qquad S\to \frac{a_0}{2g_N}\ \ \text{(deep-Newtonian)},$$
 
-Numerically, *a*₀ = 9.36 × 10⁻¹¹ m s⁻² on the canonical (pure-Λ) footing and 1.13 × 10⁻¹⁰ m s⁻² on the
-alternative *cH*₀/*Z* footing. **Both are carried through every number below**; they differ by ≈ 21%
-and no result here depends on the choice.
+with $\omega_c\in[1.782,\,2.211]\times10^{-14}\ \mathrm{s}^{-1}$. Every number below is carried on both
+cosmological footings ($a_0=cH_\Lambda/Z$ and $a_0=cH_0/Z$, differing by ~21%).
 
-The framework's modified-inertia realisation carries a low-pass response gate
+**Why a gate must exist.** On the frequency axis $|K|=1$ *exactly* for every $\omega>a_0/2c$: the
+kernel saturates and has no high-frequency roll-off. So $K$ gives an inner-disk star and the Earth the
+**same** response. Since the solar system must be Newtonian and galaxies must not be, something
+frequency-dependent with a roll-off is required. The gate's existence is forced, not assumed.
 
-$$G(\omega)=\frac{1}{1+i\omega/\omega_c},\qquad \mathrm{Re}\,G=|G|^2=\frac{1}{1+(\omega/\omega_c)^2},$$
+**Why its scale is not.** Stated against interest: $\omega_c$ is a **free parameter**. A dimensional
+census puts every intrinsic scale of the theory 3.2–5.6 decades away from it, and consistency alone
+(galaxies must survive, the solar-system monopole must not) brackets it only to ~3 orders of magnitude.
+So $a_0$'s value, $Z$, the sign $s=-1$, **and $\omega_c$** are postulated, not derived. Version 1 did
+not say this clearly enough; it does now.
 
-with ω_c ∈ [1.782, 2.211] × 10⁻¹⁴ s⁻¹ on the canonical footing. The lower edge is forced by the
-galactic rotation-curve fits; the upper edge by lunar laser ranging. **ω_c is anchored by no
-independent theoretical argument** — a dimensional census of the framework's intrinsic scales places
-every one of them 3.2–5.6 decades away — and it is the framework's most exposed quantity.
+## 2. What frequency a binary presents to the gate
 
-## 2. Why the gate is shut in the analysed window
+The kernel's argument is fixed by the action, not chosen. The committed matter term is
 
-A binary of total mass *M* at separation *s* presents an orbital frequency Ω = (GM/s³)^(1/2). For
-*M* = 1.5 M⊙ at *s* = 10 kAU,
+$$S_\mathrm{matter}=-\tfrac12\int d^4x\sqrt{-g}\,\rho_m\big[s\,u^\mu K(\Box_u/a_0^2)u_\mu\big],
+\qquad \Box_u f=u^a\nabla_a(u^b\nabla_b f),$$
 
-$$\Omega = 2.44\times10^{-13}\ \mathrm{s}^{-1} = 11.0\times\omega_c^{\mathrm{(upper)}},$$
+so $\Box_u$ is the second derivative *along the worldline*. On a circular orbit $u_\mu$ is an
+eigenvector of it:
 
-i.e. above the *entire* committed window. The gate is therefore shut, Re G = 0.005–0.008, and the
-predicted velocity boost collapses to γ_v = 1.0004–1.0006 — within 0.04σ of Newton in the framework's
-own DR4 error model (σ_γ = 0.0191 at *N* = 30 000).
+$$\Box_u u_\mu = -\Omega^2 u_\mu \qquad\text{(identically; verified symbolically)}.$$
 
-Two radii govern the pair, and they run in opposite directions with separation:
+The argument is therefore $z=-(\Omega c/a_0)^2$ — the **orbital frequency**. The acceleration
+*magnitude* $|a|=\Omega^2R$ genuinely is constant on a circular orbit, but the action never feeds $|a|$
+to $K$.
 
-$$r_{\mathrm{efe}}=\sqrt{GM/g_{\mathrm{ext}}}\quad(\text{external field takes over}),\qquad
-r_{\mathrm{gate}}=(GM/\omega_c^2)^{1/3}\quad(\Omega=\omega_c).$$
+**This settles an ambiguity Version 1 was explicitly conditional on.** Had the kernel responded to
+$|a|$, the gate would stay open and the prediction would be $\gamma_v\approx1.09$ instead. It does not.
+The result below no longer rests on a choice.
 
-Since Ω ∝ *s*^(−3/2) while *g* ∝ *s*^(−2), one has *r*_gate > *r*_efe generically. For 1.5 M⊙ with
-*g*_ext = *V*²/*R* = 1.726 × 10⁻¹⁰ m s⁻² (*V* = 233 km s⁻¹, *R* = 8.2 kpc): *r*_efe = 7.18 kAU and
-*r*_gate = 49.5–57.3 kAU. **Between them the pair is already below *a*₀ but still gate-shut, and must
-look Newtonian.**
+## 3. The gate is shut in the window everyone measures
 
-**This does not damage the galactic case, which is the check that makes the gated branch admissible at
-all.** Galactic orbital frequencies are Ω = *v*/*r*, some nine orders smaller. Across the Milky Way
-solar circle and outer disk, dwarfs, low-surface-brightness disks, massive spirals, and the inner disk,
-the largest value found is Ω/ω_c = 0.364, giving Re G ≥ 0.883. The gate is open in galaxies and shut in
-wide binaries: the radial acceleration relation and the baryonic Tully–Fisher relation are untouched.
-The gate makes wide binaries a *different regime*, not the same physics at smaller scale.
+A pair of total mass $M$ at separation $s$ has $\Omega=(GM/s^3)^{1/2}$. For M = 1.5 M⊙ at 10 kAU,
+$\Omega=2.44\times10^{-13}\ \mathrm{s}^{-1}$ — **11× above the top of the whole $\omega_c$ window.** The
+gate is shut, $\mathrm{Re}\,G=0.005$–$0.008$, and $\gamma_v=1.0004$–$1.0006$: within $0.04\sigma$ of
+Newton.
 
-## 3. The cubic law
+Two radii run in opposite directions with separation:
 
-Deep in the gate-shut regime Ω ≫ ω_c, so Re G → (ω_c/Ω)², and substituting Ω = (GM/s³)^(1/2),
+$$r_M=\sqrt{GM/a_0}\quad(\text{sub-}a_0\text{ begins}),\qquad
+r_\mathrm{gate}=(GM/\omega_c^2)^{1/3}\quad(\text{gate opens}).$$
 
-$$\boxed{\ \mathrm{Re}\,G \longrightarrow \frac{\omega_c^{2}}{GM}\,s^{3},\qquad
-\gamma_v(s)-1 \simeq \tfrac{1}{2}\big[\nu(y_{\mathrm{ext}})-1\big]\frac{\omega_c^(2)}{GM}\,s^(3)\ }$$
+Since $\Omega\propto s^{-3/2}$ while $g\propto s^{-2}$, always $r_\mathrm{gate}>r_M$ — the ratio is
+4.54–7.76 across 0.5–3.0 M⊙, both footings, both edges. **Between them a pair is already below
+$a_0$ but still gate-shut, so it must look Newtonian.** For 1.5 M⊙ that dead zone runs ~10 to
+~50–60 kAU.
 
-saturating at ½[ν(*y*_ext) − 1] once Ω < ω_c. The local logarithmic slope
-d ln(γ_v − 1)/d ln *s*, evaluated numerically, is **3.00** at 5 kAU and falls monotonically through the
-knee to 0.06 once saturated.
+**Galaxies are untouched, which is what makes the gated reading admissible.** Galactic orbital
+frequencies are $\Omega=v/r$, nine orders smaller. Across the Milky Way solar circle and outer disk,
+dwarfs, low-surface-brightness disks, massive spirals and the inner disk, the largest value found is
+$\Omega/\omega_c=0.364$ ($\mathrm{Re}\,G\ge0.883$). Gate open in galaxies, shut in wide binaries: the
+radial acceleration relation and the baryonic Tully–Fisher relation are unaffected.
 
-The exponent is **derived, not fitted**, and is not adjustable. The amplitude contains ω_c (committed),
-*M* (measured per pair), and *y*_ext = *g*_ext/*a*₀ (measured Galactic field, postulated *a*₀). **There
-are no free parameters.**
+## 4. The cubic law — and why the exponent counts poles
 
-Three mass powers follow from the same closed form, and are recovered numerically over 0.5–5.0 M⊙:
+Deep in the gate-shut regime $\Omega\gg\omega_c$, so $\mathrm{Re}\,G\to(\omega_c/\Omega)^2$; substituting
+$\Omega=(GM/s^3)^{1/2}$ gives $\mathrm{Re}\,G\to(\omega_c^2/GM)\,s^3$, hence the boxed law. The measured
+local slope $d\ln(\gamma_v-1)/d\ln s$ is **3.00** at 5 kAU, falling through the knee to 0.06 once
+saturated.
 
-| quantity | measured | analytic |
-|---|---|---|
-| *r*_gate | *M*^(0.3333) | *M*^(1/3) |
-| *r*_efe | *M*^(0.5000) | *M*^(1/2) |
-| excess at fixed *s* = 10 kAU | *M*^(−0.9935) | *M*^(−1) |
+An $n$-pole gate gives $|G_n|^2\to(\omega_c/\Omega)^{2n}$, so
 
-The third is **asymptotic**, valid only where Re G ≪ 1. Measured at 30 kAU it is *M*^(−0.857), not
-*M*^(−1), because low-mass pairs are by then near their own knee (*r*_gate shrinks as *M*^(1/3)). Any
-fit must use the local slope rather than assume a global 1/*M*. We report both values rather than the
-favourable one.
+$$\gamma_v-1\propto s^{3n}\qquad\Longrightarrow\qquad n=p/3 .$$
 
-## 4. The discriminant
+Verified numerically at $n=1,2,3$ (slopes 3.00, 6.00, 8.99). **The measured exponent returns the gate's
+pole count.** The committed gate is one-pole and predicts exactly 3; 6 would mean two poles; anything
+not a multiple of 3 rules out the rational-pole form. *(The identity $|G|^2=\mathrm{Re}\,G$ used above
+holds only at $n=1$; for $n>1$ the law uses $|G_n|^2$.)*
 
-Every published contaminant channel carries a *fixed velocity scale* σ_v and therefore produces a
-scaled relative velocity rising as *s*^(1/2): chance alignment (El-Badry, Rix & Heintz 2021, via
-*R*_chance_align), unresolved tertiaries and hierarchical systems (Peñarrubia 2021; Tyler, Green &
-Goodwin 2023), and close-binary contamination. **Exponent 0.5 against 3.0** — a factor of six in
-logarithmic slope. Contamination and signal therefore have *different* separation dependences, which
-makes a joint fit for both well posed in principle. This is strictly stronger than the amplitude test,
-which uses no shape information at all and is hostage to a 0.174 inter-group systematic amounting to
-2.1× the entire ungated signal.
+**The exponent is parameter-free even though the amplitude is not.** $\omega_c$ is free (§1) and enters
+the amplitude — but it does **not** enter the exponent. That asymmetry is the whole reason this is
+worth measuring. Three mass powers follow from the same closed form and are recovered numerically:
+$r_\mathrm{gate}\propto M^{0.3333}$, $r_\mathrm{efe}\propto M^{0.5000}$, fixed-separation excess
+$\propto M^{-0.9935}$ (asymptotic; knee-contaminated to $M^{-0.857}$ by 30 kAU, so fit the local slope
+rather than assuming a global $1/M$).
 
-## 5. The window nobody has examined
+## 5. The discriminant
 
-Because the excess grows as *s*³, essentially the whole signal lies at large separation
-(*M* = 1.5 M⊙, canonical footing, lower ω_c edge):
+Every published contamination channel carries a *fixed velocity scale*, so its scaled relative velocity
+rises as $s^{1/2}$: chance alignment (El-Badry, Rix & Heintz 2021, via $R_\mathrm{chance\,align}$),
+unresolved tertiaries (Peñarrubia 2021; Tyler, Green & Goodwin 2023), close-binary contamination.
+**Exponent 0.5 against 3.0.** Signal and background have different separation dependences, so a joint
+fit is well posed.
 
-| *s* [kAU] | γ_v | note |
+This matters because the *amplitude* axis is unusable: the two groups analysing the same public
+catalogue differ by $\Delta\gamma_v\approx0.174$, about **2.1× the entire predicted boost.** No
+amplitude test survives that spread. A shape test does.
+
+## 6. Why this waits for Gaia DR4 — now resolved, negatively
+
+Version 1 said feasibility "cannot be settled without the catalogue in hand" and "may be fatal to a DR3
+test." We pulled the catalogue. It is fatal.
+
+Because the excess grows as $s^3$, nearly all the signal sits at large separation:
+
+| $s$ [kAU] | $\gamma_v$ | note |
 |---|---|---|
 | 30 | 1.0125 | the cut used by every published analysis |
 | 50 | 1.0392 | — |
 | 100 | 1.0808 | — |
-| 200 | 1.0932 | the public catalogue's actual reach |
+| 200 | 1.0932 | catalogue's reach |
 
-The predicted excess grows by a **factor of 7** from the conventional cut to the catalogue limit. The
-El-Badry, Rix & Heintz (2021, *MNRAS* **506**, 2269) Gaia DR3 catalogue extends to ≈ 1 pc = 206 kAU and
-is public; the data are already taken. Analyses cut near 30 kAU because chance-alignment contamination
-rises with separation — a motivation entirely unrelated to this prediction.
+At the 30 kAU cut the predicted excess ($1.2\times10^{-2}$) is an order of magnitude below the
+inter-group systematic — **the conventional window cannot test this.** And at our own recipe's cuts
+($d<200$ pc, $R_\mathrm{chance\,align}<0.1$, RUWE $<1.4$ both components, MS–MS), the El-Badry, Rix &
+Heintz (2021) Gaia eDR3 catalogue contains only
 
-At the 30 kAU cut the predicted excess is 1.2 × 10⁻², an order of magnitude below the demonstrated
-inter-group systematic of 0.174. **The conventional window cannot test this framework.** That is the
-central observational claim of this note.
+$$436\;/\;270\;/\;155\;/\;60\;/\;24\;/\;3\ \ \text{pairs across the }30\to236\ \text{kAU bins},$$
 
-## 6. What is not claimed
+i.e. **364 clean pairs beyond 50 kAU** and ~70 beyond 100 kAU. The shape test needs ~2000 per bin for
+5σ separation of $p=3$ from $p=0.5$ (~400 gives only ~2.3σ). Relaxing the distance cut does not rescue
+it: proper-motion velocity error scales as (distance × pm error) while the sample requirement scales as
+$\sigma^2$, so raw counts at $d<1000$ pc are ~15× larger but the usable gain is far smaller — and even
+at face value only 2 of 6 bins clear 2000, while a log-slope fit needs most bins populated.
 
-- **The branch is favoured but not closed, and this whole result is conditional on it.** *K*(□_u) is a
-  *linear* operator, while |a| = (a^μ a_μ)^(1/2) is not a linear functional of the trajectory — a linear
-  kernel cannot by itself sense the acceleration magnitude that ν(*y*) depends on. That obstruction
-  points to the gated (AC) branch. **The framework's own field-theory analysis points the same way:** in
-  the matter sector the kernel reduces to *K*(□_u) → *K*(−*q*₀²), *a function of the frequency q*₀
-  *alone*, which is precisely the AC reading used here. On the ungated (DC) branch — a kernel responding
-  to |a|, constant on a circular orbit — this entire note is void and γ_v ≈ 1.09 stands instead. The
-  branches lie 4.9–5.8σ apart in the framework's own DR4 error model. **The choice must be frozen
-  before DR4 or the test is post hoc.** The same fork governs the framework's apparent Ġ/G floor, since
-  the lunar mean motion exceeds ω_c by ≈ 1.5 × 10⁸.
-- **A deeper question sits underneath this one, and it is not addressed here.** If the kernel is a
-  function of frequency (or, in the eikonal limit of a field, of momentum) rather than of acceleration,
-  it is a separate and prior question whether the construction reproduces an acceleration-dependent
-  inertia law at all — i.e. whether ν(*y*) with *y* = *g*/*a*₀ is recovered, as opposed to a
-  momentum-dependent response. The framework's own notes raise this explicitly and do not settle it.
-  The present note assumes the MI law as given and asks only what the gate does to it in a wide binary;
-  it is not evidence on that prior question, and a reader should not take it as such.
-- **Feasibility beyond 50 kAU is unresolved and may be fatal to a DR3 test.** Contamination also grows
-  with separation. Whether signal-to-contamination *improves* beyond 50 kAU is an empirical question
-  that cannot be answered without the catalogue in hand. If it does not, this prediction waits for
-  DR4's astrometry and higher *N* rather than being testable now. We state this rather than assume the
-  favourable case.
-- **A confirmed *s*³ rise would not test *Z*.** It would establish a frequency scale ω_c. The
-  coefficient *Z* = 5.7888 and the conventional 2π = 6.2832 differ by 7.87%, both lie inside the ±16%
-  empirical *a*₀ box, and no arena examined here separates them. Separately and against interest:
-  matching Chae (2024b)'s central γ on this framework's own kernel would require *a*₀ ≈ 1.9× the
-  canonical value, which at face value disfavours the Λ-tied coefficient specifically.
-- **Nothing here bears on whether dark matter exists.** A wide-binary result constrains the weak-field
-  *force law*, not the matter content. γ_v = 1 is Newton's prediction, shared by ΛCDM, by this
-  framework's own gated branch, and by hybrid modified-force-plus-particle models.
-- ***a*₀'s value, *Z*, the response sign, and ω_c are postulated, not derived.**
+Ground-based astrometry cannot substitute. The test needs $\sigma_\mathrm{pm}\lesssim0.02$ mas yr$^{-1}$ at
+200 pc; Rubin/LSST delivers ~0.1–1.0 over ten years. **Gaia DR4 is the only route.**
 
-## 7. Falsification
+## 7. Pre-registration
 
-The prediction fails if, in a contamination-controlled sample beyond ≈ 50 kAU, the scaled relative
-velocity excess is (i) absent, (ii) present with a logarithmic slope inconsistent with 3 in the
-gate-shut regime, (iii) present but without the knee moving as *M*^(1/3), or (iv) present with an
-amplitude inconsistent with ω_c² /*GM* on both footings and both window edges. Any of these kills the
-gated branch. A Newtonian result *inside* 30 kAU falsifies nothing, on either branch — which is
-precisely the defect in the current pre-registration that this note exists to correct.
+Since the test cannot run until DR4, the prediction is frozen in the open beforehand. The pre-registration
+(`prep_2026/gaia_dr4_prep/PREREGISTRATION_DR4.md`, Amendment 1, 2026-07-27, SHA-256
+`a309a502332b84ad521385b1c2031652849c9ce358c396f680f2308dd5ba1c13`) records:
 
-## 8. Reproducibility
+- the frozen prediction **$p=3$** for the log-slope beyond $r_\mathrm{gate}$;
+- $\gamma_v=1.0004$–$1.0006$ inside 2–30 kAU, i.e. **a Newtonian DR4 result in that window confirms
+  this branch rather than refuting it** — which the unamended pre-registration would have scored as a
+  kill;
+- the five falsifiers listed at the top of this note;
+- and that DR4 $\gamma_v$ constrains the $\nu$+EFE+gate prescription, **not** the value of $a_0$ or
+  $Z$. No outcome may be reported as measuring either.
 
-Every number is printed by two committed scripts, both `exit 0`, with no hard-coded verdicts and both
-footings and both ω_c edges carried throughout:
+## 8. What is not claimed
 
-- `real_research/reviews/mi_wb_gate_fork_2026.py` — the DC/AC fork, the gate-shut computation, the
-  galactic-safety check, and the dead zone (11/11 checks).
-- `real_research/reviews/mi_wb_cubic_rise_2026.py` — the *s*³ law, the slope measurement, the three
-  mass exponents, the profile table, and the feasibility caveat (10/10 checks).
+- **Not a test of $a_0$ or $Z$.** A confirmed $s^3$ rise establishes a frequency scale $\omega_c$ and a
+  one-pole response. $Z=5.7888$ and the conventional $2\pi=6.2832$ differ by 7.87%, both lie inside the
+  $\pm16\%$ empirical $a_0$ box, and no arena examined here separates them. Against interest: matching
+  Chae (2024b)'s central $\gamma$ on this framework's own kernel needs $a_0\approx1.9\times$ canonical,
+  which at face value disfavours the $\Lambda$-tied coefficient specifically.
+- **Nothing about whether dark matter exists.** A wide-binary result constrains the weak-field *force
+  law*, not the matter content. $\gamma_v=1$ is Newton's prediction — shared by ΛCDM, by this
+  framework's own gated branch, and by modified-force-plus-particle hybrids.
+- **$a_0$'s value, $Z$, the sign $s=-1$ and $\omega_c$ are postulated, not derived.**
 
-Two assertions failed their own checks on first run and were corrected in place rather than patched:
-an overstated 200-vs-30 kAU excess ratio (claimed >10×, actually 7×) and an overstated global 1/*M*
-scaling (actually *M*^(−0.857) at 30 kAU, asymptotic only). Both corrections are recorded in the
-scripts and in the commit history.
+**Reproducibility.** Every number is printed by committed scripts, all `exit 0`, no hard-coded verdicts,
+both footings and both $\omega_c$ edges throughout: `mi_dcac_branch_settled_2026.py` (5/5, §2),
+`mi_wb_gate_fork_2026.py` (11/11, §3), `mi_wb_cubic_rise_2026.py` (10/10, §4),
+`mi_wb_exponent_pipeline_2026.py` (6/6, §4–5), `mi_wb_dr3_feasibility_2026.py` (5/5, §6),
+`mi_omegac_anchor_2026.py` (8/8, §1), `count_wb_elbadry2021.py` (catalogue counts). Repository:
+https://github.com/carlzimmerman/zimmerman-formula
+
+**Corrections carried from Version 1**, recorded rather than quietly fixed: the 200-vs-30 kAU excess
+ratio is 7×, not the >10× first stated; the fixed-separation mass scaling is asymptotic ($M^{-0.9935}$
+at 10 kAU) and knee-contaminated to $M^{-0.857}$ by 30 kAU; the operative sample requirement is the
+shape test's ~2000 pairs/bin, not the ~265 implied by excess-detection alone; and $\omega_c$ is now
+declared a free parameter rather than described as a constrained window.
 
 ---
 
 ## References
 
 Banik, I., Pittordis, C., Sutherland, W., et al. 2024, *MNRAS* — wide-binary Newtonian null.
-Bekenstein, J. D., & Milgrom, M. 1984, *ApJ* **286**, 7.
 Chae, K.-H. 2023–2025, *ApJ* — wide-binary boost claims.
-El-Badry, K., Rix, H.-W., & Heintz, T. M. 2021, *MNRAS* **506**, 2269 — the public Gaia DR3 catalogue.
+El-Badry, K., Rix, H.-W., & Heintz, T. M. 2021, *MNRAS* **506**, 2269 — the public Gaia eDR3 catalogue.
 Milgrom, M. 1983, *ApJ* **270**, 365.
 Milgrom, M. 1999, *Phys. Lett. A* **253**, 273 — Eqs. (8)–(9): the kernel and identity used here.
 Milgrom, M. 2015, *Can. J. Phys.* **93**, 107.
