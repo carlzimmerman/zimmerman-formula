@@ -1,35 +1,55 @@
 #!/usr/bin/env python3
 r"""
-mi_gate_herglotz_admissibility_2026.py -- does K's Herglotz measure ADMIT the omega_c gate?
-==========================================================================================
-THE QUESTION, open since the DC/AC settlement and never asked before. The framework has TWO separate
-frequency-domain objects:
-  * the MI kernel K(z) = (sqrt(1+4z)-1)/(2 sqrt z), which the v11 work proves is Herglotz-Nevanlinna
-    with a UNIQUE POSITIVE measure on the cut z<0, spectral density rho(t) = (1/pi) Im K(t+i0):
-        region A  (-1/4 < t < 0):  Im K = (1 - sqrt(1-4|t|)) / (2 sqrt|t|)
-        region B  (      t < -1/4):  Im K = 1 / (2 sqrt|t|)
-    with endpoints K(0) = 0, K(inf) = 1 and the sum rule INT dmu/|t| = K(inf) - K(0) = 1.
-  * a SEPARATE one-pole Debye gate G(omega) = 1/(1 + i omega/omega_c), omega_c ~ 1.8e-14 rad/s, sitting
-    ~1.1e5 ABOVE K's branch frequency omega_b = a0/(2c) = 1.57e-19 rad/s. THE GATE ENTERS ADDITIVELY,
-    NOT MULTIPLICATIVELY ON K. The committed form (paper Sec 5.2, reproduced verbatim in
-    mi_cassini_q2_omegac_2026.py:91 and mi_llr_drift_sign_2026.py:162) is
-        K_eff = 1 - S(|a|/a0) G(omega),     S -> a0/(2 g_N) deep-Newton
-    so that |a| = g_N/K_eff = g_N[1 + (a0/(2 g_N)) G(omega) + ...]: the a0/2 tail passed through a
-    causal filter. Getting this wrong is the difference between a real result and a straw man -- see the
-    RETRACTION note in S2.
-Nobody has asked whether the measure and its sum rule ADMIT that pole. Since |K| = 1 on the whole
-frequency axis above omega_b (K is pure phase there, no roll-off), the gate carries ALL of the magnitude
-suppression in the theory -- so whether it is even allowed is load-bearing.
+mi_gate_herglotz_admissibility_2026.py
+======================================
+*** STATUS: THE CENTRAL QUESTION THIS SCRIPT ASKED IS MALFORMED. Read this header before anything
+below it. S1 stands. S2's retraction stands. S3's "theorem" is WITHDRAWN. ***
 
-THE KEY LEVER, and it applies to ANY Herglotz function, not just K. For f(z) = a + INT[1/(t-z) -
-t/(1+t^2)] dmu(t) with b = 0 and mu supported on t < 0:
-        f(0)  = a + INT [1/t - t/(1+t^2)] dmu
-        f(inf) = a -   INT [t/(1+t^2)] dmu
-    =>  f(inf) - f(0) = -INT dmu/t = INT dmu/|t|        (t<0 so -1/t = +1/|t|)
-So the sum rule is FORCED by the endpoints for every such function. S2 and S3 turn that into a theorem
-about the ADDITIVE gate the framework actually uses: it is ADMISSIBLE, its WEIGHT is fixed, and its
-POSITION omega_c is provably free.
-Both footings carried. No hard-coded verdicts.
+THE QUESTION I ASKED: does K's positive Herglotz measure, with its sum rule INT dmu/|t| = 1, admit the
+separate one-pole Debye gate G(omega) = 1/(1+i omega/omega_c)? I claimed three possible outcomes
+(forces omega_c ~ omega_b / forbids the one-pole form / permits it freely) and reported the third as a
+theorem. That report was wrong, and the reason is worth recording.
+
+WHY IT IS MALFORMED. K is Herglotz in z, and on the frequency axis z = -(omega c/a0)^2, i.e. z ~ -omega^2.
+The Debye gate is a function of omega, NOT of omega^2: G(-omega) != G(omega) (checked numerically -- e.g.
+G(1e-14) = 0.7605 - 0.4268i while G(-1e-14) = 0.7605 + 0.4268i). K's spectral measure therefore lives on
+the z (~ -omega^2) axis while the gate's pole lives in the omega plane. THE TWO OBJECTS DO NOT SHARE A
+SPECTRAL VARIABLE, so "does this measure admit that pole" does not have an answer as posed. Any answer I
+produced was an artifact of silently identifying two different representations.
+
+THREE SPECIFIC ERRORS IN MY OWN REPORT, found by auditing it after being asked "you sure?":
+ (1) INCONSISTENT RIGOR. For the product K*G -- the test I RETRACTED -- I scanned the whole complex upper
+     half plane. For K_eff = 1 - S*G -- the conclusion I KEPT -- I scanned only REAL omega. Redone in
+     C+: min Im K_eff = -1.24e-7 < 0. So K_eff is not Herglotz in omega either. The conclusion I kept
+     rested on a WEAKER check than the one I threw away.
+ (2) A TAUTOLOGY SOLD AS A FINDING. I "showed" that INT dmu_eff/|t| = S is invariant under rescaling
+     omega_c across eleven decades. But S = a0/(2 g_N) contains no omega_c by construction, so the
+     invariance is true by definition. The eleven-decade scan demonstrated nothing.
+ (3) A CATEGORY CONFLATION. Im K_eff < 0 for Re omega < 0 is not a pathology -- it is REQUIRED. A causal
+     response obeys chi(-omega*) = chi(omega)*, making Im chi ODD in real omega. "Herglotz in omega" is
+     simply the wrong property to demand of a response function. I demanded it, then read the expected
+     sign flip as either a proof or a problem depending on which object I was looking at.
+
+WHAT ACTUALLY SURVIVES, and it is much more mundane than what I claimed:
+ * S1 STANDS, independently verified: K's closed-form spectral density matches direct Im K(t+i0) to
+   1e-10, and the sum rule INT dmu/|t| = 0.36338 + 0.63662 = 1.00000000 = K(inf) - K(0). K's measure is
+   ABSOLUTELY CONTINUOUS -- no atoms. That much is real.
+ * S2's RETRACTION STANDS: the framework's gate is ADDITIVE (K_eff = 1 - S*G, paper Sec 5.2), not
+   multiplicative, so the K*G "forbidden" result was a straw man and is correctly withdrawn.
+ * THE GATE IS A LEGITIMATE CAUSAL DISSIPATIVE RESPONSE: Im K_eff = S(omega/omega_c)/(1+(omega/omega_c)^2)
+   > 0 for real omega > 0. Dissipation has the right sign. That is a real check and it passes.
+ * BUT THAT CONSTRAINS NOTHING ABOUT omega_c. Passivity is a SIGN condition; omega_c is a SCALE. A sign
+   condition cannot fix a scale, and sum rules fix spectral WEIGHTS rather than POSITIONS -- which is
+   generic to all Debye relaxators, not something special about this framework.
+ * SO omega_c REMAINS EXACTLY WHERE mi_omegac_anchor_2026.py LEFT IT: consistency brackets it to ~3
+   orders (galaxies must not be gated off; the solar-system monopole must be), the value is unforced,
+   and the nearest intrinsic scale is 3.2 dex away. NO UPGRADE TO A THEOREM. The earlier script's
+   verdict was already the correct one and this adds nothing to it.
+
+LESSON RECORDED: this calculation flipped three times in one sitting -- forbidden, then admissible-and-
+proven, then malformed. That pattern is the signal, not the answers. The analytic side moved faster than
+it was checked, and only the direct question "are you sure?" forced the audit that caught it.
+Both footings carried where numbers appear. No theory is closed.
 """
 import numpy as np
 import sympy as sp
@@ -45,7 +65,7 @@ A0 = {"canon": C*H0*np.sqrt(OL)/Z, "alt": C*H0/Z}
 OMC = {"lo": 1.782e-14, "hi": 2.211e-14}
 
 bar = "="*100
-print(bar); print("mi_gate_herglotz_admissibility -- does K's positive measure admit the omega_c pole?"); print(bar)
+print(bar); print("mi_gate_herglotz_admissibility -- *** QUESTION MALFORMED; see header. S3 WITHDRAWN ***"); print(bar)
 
 # =============================================== S1  reproduce the committed measure + sum rule
 print("\nS1  THE COMMITTED MEASURE AND SUM RULE, REPRODUCED INDEPENDENTLY")
