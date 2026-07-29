@@ -1,0 +1,154 @@
+
+====================================================================================================
+prove_gate_b_binds -- pushing explicit expressions through the REAL gate code
+====================================================================================================
+
+====================================================================================================
+PART 1. control: PUBLISHED forced pair {3, sqrt(8pi/3)}  (switch OFF)
+====================================================================================================
+  forced germ keys present: ['3', 'sqrt(8pi/3)']
+  the 0.5-valued germ here is 'flv_koide_cos2_angle', provenance=None
+  [OK  ] neither forced germ  {pi, 2, 4}                      Gate B=FAIL (expected FAIL)
+          formula   : ((((c / c) * pi) * 2) * 4)
+          value     : 25.1327412287183459077
+          forced    : []   free germ keys: ['2', '4', 'pi']   n_free=3
+          prefilter : _keep_completed=False  (must agree with Gate B)
+          tell      : not overdetermined: forced structure appears in only 0 independent place(s) (need >=2). A single appearance is a definition, not a kernel.
+  [OK  ] only 3               {3, pi, 2}                      Gate B=FAIL (expected FAIL)
+          formula   : ((((c / c) * 3) * pi) * 2)
+          value     : 18.84955592153875943078
+          forced    : ['Ngen_3']   free germ keys: ['2', 'pi']   n_free=2
+          prefilter : _keep_completed=False  (must agree with Gate B)
+          tell      : not overdetermined: forced structure appears in only 1 independent place(s) (need >=2). A single appearance is a definition, not a kernel.
+  [OK  ] only 3, one free     {3, pi}                         Gate B=FAIL (expected FAIL)
+          formula   : (((c / c) * 3) * pi)
+          value     : 9.424777960769379715388
+          forced    : ['Ngen_3']   free germ keys: ['pi']   n_free=1
+          prefilter : _keep_completed=False  (must agree with Gate B)
+          tell      : not overdetermined: forced structure appears in only 1 independent place(s) (need >=2). A single appearance is a definition, not a kernel.
+  [OK  ] only sqrt(8pi/3)     {sqrt(8pi/3), pi}               Gate B=FAIL (expected FAIL)
+          formula   : (((c / c) * sqrt(8pi/3)) * pi)
+          value     : 9.093041541794446265376
+          forced    : ['a0_kernel_8pi3']   free germ keys: ['pi']   n_free=1
+          prefilter : _keep_completed=False  (must agree with Gate B)
+          tell      : not overdetermined: forced structure appears in only 1 independent place(s) (need >=2). A single appearance is a definition, not a kernel.
+  [OK  ] published pair + 1 free {3, sqrt(8pi/3), pi}         Gate B=PASS (expected PASS)
+          formula   : ((((c / c) * 3) * sqrt(8pi/3)) * pi)
+          value     : 27.27912462538333879613
+          forced    : ['Ngen_3', 'a0_kernel_8pi3']   free germ keys: ['pi']   n_free=1
+          prefilter : _keep_completed=True  (must agree with Gate B)
+          tell      : PASS: kernel decomposes into 2 forced factor(s) [a0_kernel_8pi3, Ngen_3], overdetermined (2 independent forced appearances), exactly 1 free param (kap
+  [OK  ] published pair + 2 free {3, sqrt(8pi/3), pi, 2}      Gate B=FAIL (expected FAIL)
+          formula   : (((((c / c) * 3) * sqrt(8pi/3)) * pi) * 2)
+          value     : 54.55824925076667759225
+          forced    : ['Ngen_3', 'a0_kernel_8pi3']   free germ keys: ['2', 'pi']   n_free=2
+          prefilter : _keep_completed=False  (must agree with Gate B)
+          tell      : free-parameter count = 2 (need exactly 1, kappa-class). needs >=2 free numbers to land the target -> a fit, not a kernel.
+  [OK  ] 3 + the 1/2 germ + 1 free (kappa NOT registered)     Gate B=FAIL (expected FAIL)
+          formula   : ((((c / c) * 3) * 1/2) * pi)
+          value     : 4.712388980384689857694
+          forced    : ['Ngen_3']   free germ keys: ['flv_koide_cos2_angle', 'pi']   n_free=2
+          prefilter : _keep_completed=False  (must agree with Gate B)
+          tell      : not overdetermined: forced structure appears in only 1 independent place(s) (need >=2). A single appearance is a definition, not a kernel.
+
+====================================================================================================
+PART 2. the re-run pair {3, kappa}  (switch ON)
+====================================================================================================
+  forced germ keys present: ['3', 'kappa']
+  registry: kappa_half -> 0.5
+  [OK  ] 1. NEITHER forced germ  {pi, 2, 4}                   Gate B=FAIL (expected FAIL)
+          formula   : ((((c / c) * pi) * 2) * 4)
+          value     : 25.1327412287183459077
+          forced    : []   free germ keys: ['2', '4', 'pi']   n_free=3
+          prefilter : _keep_completed=False  (must agree with Gate B)
+          tell      : not overdetermined: forced structure appears in only 0 independent place(s) (need >=2). A single appearance is a definition, not a kernel.
+  [OK  ] 2. ONLY 3               {3, pi, 2}                   Gate B=FAIL (expected FAIL)
+          formula   : ((((c / c) * 3) * pi) * 2)
+          value     : 18.84955592153875943078
+          forced    : ['Ngen_3']   free germ keys: ['2', 'pi']   n_free=2
+          prefilter : _keep_completed=False  (must agree with Gate B)
+          tell      : not overdetermined: forced structure appears in only 1 independent place(s) (need >=2). A single appearance is a definition, not a kernel.
+  [OK  ] 2b. ONLY 3, one free    {3, pi}                      Gate B=FAIL (expected FAIL)
+          formula   : (((c / c) * 3) * pi)
+          value     : 9.424777960769379715388
+          forced    : ['Ngen_3']   free germ keys: ['pi']   n_free=1
+          prefilter : _keep_completed=False  (must agree with Gate B)
+          tell      : not overdetermined: forced structure appears in only 1 independent place(s) (need >=2). A single appearance is a definition, not a kernel.
+  [OK  ] 3. ONLY kappa           {kappa, pi, 2}               Gate B=FAIL (expected FAIL)
+          formula   : ((((c / c) * kappa) * pi) * 2)
+          value     : 3.141592653589793238463
+          forced    : ['kappa_half']   free germ keys: ['2', 'pi']   n_free=2
+          prefilter : _keep_completed=False  (must agree with Gate B)
+          tell      : not overdetermined: forced structure appears in only 1 independent place(s) (need >=2). A single appearance is a definition, not a kernel.
+  [OK  ] 3b. ONLY kappa, one free {kappa, pi}                 Gate B=FAIL (expected FAIL)
+          formula   : (((c / c) * kappa) * pi)
+          value     : 1.570796326794896619231
+          forced    : ['kappa_half']   free germ keys: ['pi']   n_free=1
+          prefilter : _keep_completed=False  (must agree with Gate B)
+          tell      : not overdetermined: forced structure appears in only 1 independent place(s) (need >=2). A single appearance is a definition, not a kernel.
+  [OK  ] 4. BOTH + exactly ONE free  {3, kappa, pi}           Gate B=PASS (expected PASS)
+          formula   : ((((c / c) * 3) * kappa) * pi)
+          value     : 4.712388980384689857694
+          forced    : ['Ngen_3', 'kappa_half']   free germ keys: ['pi']   n_free=1
+          prefilter : _keep_completed=True  (must agree with Gate B)
+          tell      : PASS: kernel decomposes into 2 forced factor(s) [Ngen_3, kappa_half], overdetermined (2 independent forced appearances), exactly 1 free param (kappa).
+  [OK  ] 4b. BOTH + TWO free     {3, kappa, pi, 2}            Gate B=FAIL (expected FAIL)
+          formula   : (((((c / c) * 3) * kappa) * pi) * 2)
+          value     : 9.424777960769379715388
+          forced    : ['Ngen_3', 'kappa_half']   free germ keys: ['2', 'pi']   n_free=2
+          prefilter : _keep_completed=False  (must agree with Gate B)
+          tell      : free-parameter count = 2 (need exactly 1, kappa-class). needs >=2 free numbers to land the target -> a fit, not a kernel.
+  [OK  ] 5. retired pair {3, sqrt(8pi/3), pi} (sqrt(8pi/3) now FREE) Gate B=FAIL (expected FAIL)
+          formula   : ((((c / c) * 3) * sqrt(8pi/3)) * pi)
+          value     : 27.27912462538333879613
+          forced    : ['Ngen_3']   free germ keys: ['pi', 'sqrt(8pi/3)']   n_free=2
+          prefilter : _keep_completed=False  (must agree with Gate B)
+          tell      : not overdetermined: forced structure appears in only 1 independent place(s) (need >=2). A single appearance is a definition, not a kernel.
+
+====================================================================================================
+PART 2b. THE IMPOSTOR TEST -- is kappa reachable as 2^(-1) for Gate-B credit?
+====================================================================================================
+  [OK  ] 6. {3, 2^(-1), pi}  == same value as case 4          Gate B=FAIL (expected FAIL)
+          formula   : ((((c / c) * 3) / 2) * pi)
+          value     : 4.712388980384689857694
+          forced    : ['Ngen_3']   free germ keys: ['2', 'pi']   n_free=2
+          prefilter : _keep_completed=False  (must agree with Gate B)
+          tell      : not overdetermined: forced structure appears in only 1 independent place(s) (need >=2). A single appearance is a definition, not a kernel.
+  [OK  ] the impostor has the IDENTICAL value: 4.712388980384689857693965 == 4.712388980384689857693965 (diff 0.0)
+          => same VALUE, opposite Gate-B verdict: the gate credits the germ KEY
+             (exhaust.gate_candidate_for loops over set(node.leaf_consts()) and calls
+             _germ_provenance on the germ's BASE value, never on germ^exponent),
+             so 2^(-1) stays a FREE parameter. GATE B STILL BINDS.
+  [OK  ] 6b. {3, kappa^(1/2), pi}                             Gate B=PASS (expected PASS)
+          formula   : ((((c / c) * 3) * (kappa)^1/2) * pi)
+          value     : 6.664324407237549370524
+          forced    : ['Ngen_3', 'kappa_half']   free germ keys: ['pi']   n_free=1
+          prefilter : _keep_completed=True  (must agree with Gate B)
+          tell      : PASS: kernel decomposes into 2 forced factor(s) [Ngen_3, kappa_half], overdetermined (2 independent forced appearances), exactly 1 free param (kappa).
+  [OK  ] 6c. {3, 2^(-1/2), pi}  == same value as 6b           Gate B=FAIL (expected FAIL)
+          formula   : ((((c / c) * 3) / (2)^1/2) * pi)
+          value     : 6.664324407237549370524
+          forced    : ['Ngen_3']   free germ keys: ['2', 'pi']   n_free=2
+          prefilter : _keep_completed=False  (must agree with Gate B)
+          tell      : not overdetermined: forced structure appears in only 1 independent place(s) (need >=2). A single appearance is a definition, not a kernel.
+  [OK  ] half-exponent impostor also value-identical (6.664324407237549370524 == 6.664324407237549370524)
+
+====================================================================================================
+PART 3. the switch is a genuinely different search (same expression, opposite verdict)
+====================================================================================================
+  expression {3, sqrt(8pi/3), pi}  : published mode Gate B = True | kappa mode = False
+  expression {3, 1/2, pi}          : published mode Gate B = False | kappa mode = True
+  [OK  ] the GR+FRW pair passes ONLY in published mode
+  [OK  ] the {3, kappa} pair passes ONLY in kappa mode
+
+====================================================================================================
+VERDICT
+====================================================================================================
+  GATE B BINDS UNDER THE NEW PAIR.
+  - an expression with NEITHER forced germ FAILS
+  - with ONLY 3 FAILS (1 forced provenance -> not overdetermined)
+  - with ONLY kappa FAILS (same reason)
+  - with BOTH + exactly one free germ PASSES
+  - the value-identical impostor 2^(-1) FAILS -> credit is by germ KEY, not by VALUE
+  So the {3, kappa} re-run is a REAL search, not a relabel of the published one.
+====================================================================================================

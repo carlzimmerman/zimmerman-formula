@@ -1,0 +1,112 @@
+
+========================================================================================================
+regression_published -- switch OFF must reproduce the committed depth-6 null EXACTLY
+========================================================================================================
+  committed source : grind.REPLAY_COMMITTED[6] (read, not retyped)
+  watchdog cap     : 6 GB (the depth-6-era cap, restored after grind's 40 GB import-time override)
+
+========================================================================================================
+guards
+========================================================================================================
+  [OK  ] bug#3 holdout guard: search list has 19 targets, HOLDOUT_KEYS=['koide_Q_lep', 'r_tau_mu'], leak=NONE
+  [OK  ] replay list (20 targets) DOES include the holdout ['koide_Q_lep'] -- required to reproduce 259
+  [OK  ] bug#1: field 'fdr_dead' does NOT exist on the hit record (the false-jackpot filter)
+  [OK  ] bug#1: field 'verdict' does NOT exist on the hit record either
+  [OK  ] bug#1: the REAL gate field on DN.HitN is 'status'; our dict record uses 'gate_status'
+
+========================================================================================================
+A. switch OFF (published pair) at depth 6
+========================================================================================================
+  [OK  ] alphabet 11 leaves / 25 germs (committed shape)
+  [OK  ] forced germ keys = ['3', 'sqrt(8pi/3)']
+  alphabet: 11 leaves, 25 germs
+  FORCED germ keys : ['3', 'sqrt(8pi/3)']
+  n_free germs     : 23
+  budget splits    : [(1, 4), (2, 3)]
+  build: raw=236,624 distinct=107,719 skeletons=86  (9.5s)
+  [sweep d6] a_e                hits=   0 CERT=0 RELAB=0 tightest=-
+  [sweep d6] alpha_em_inv_0     hits=   0 CERT=0 RELAB=0 tightest=-
+  [sweep d6] r_p_e              hits=   0 CERT=0 RELAB=0 tightest=-
+  [sweep d6] r_n_p              hits=   0 CERT=0 RELAB=0 tightest=-
+  [sweep d6] r_mu_e             hits=   0 CERT=0 RELAB=0 tightest=-
+  [sweep d6] a_mu               hits=   0 CERT=0 RELAB=0 tightest=-
+  [sweep d6] r_tau_e            hits=   0 CERT=0 RELAB=0 tightest=-
+  [sweep d6] alpha_em_inv_MZ    hits=   0 CERT=0 RELAB=0 tightest=-
+  [sweep d6] sin2_thetaW_MZ     hits=   0 CERT=0 RELAB=0 tightest=-
+  [sweep d6] koide_Q_up         hits=   2 CERT=0 RELAB=0 tightest=3.60e-04 ((((((Lam_QCD / v_EW) * 3) / sqrt(8pi/3)) * 32pi) * (32pi)
+  [sweep d6] higgs_lambda       hits=   2 CERT=0 RELAB=0 tightest=1.83e-05 ((((((c / c) * 3) * (sqrt(8pi/3))^1/2) / 2pi) / 2pi))
+  [sweep d6] ckm_lambda         hits=   8 CERT=0 RELAB=0 tightest=4.38e-04 ((((cbrt((v_EW / Lam_QCD)) / 3) * (sqrt(8pi/3))^1/2) / D2)
+  [sweep d6] koide_Q_down       hits=  10 CERT=0 RELAB=0 tightest=4.67e-04 ((((((v_EW / Lam_QCD) * (3)^1/2) / sqrt(8pi/3)) / 32pi) /)
+  [sweep d6] r_b_tau            hits=  11 CERT=0 RELAB=0 tightest=5.59e-04 ((((((c / c) * 3) / 3) / (sqrt(8pi/3))^1/2) * 4))
+  [sweep d6] r_t_b              hits=  14 CERT=0 RELAB=0 tightest=7.63e-04 ((((((c / c) / 3) * sqrt(8pi/3)) * (sqrt(8pi/3))^1/2) * 8)
+  [sweep d6] alpha_s_MZ         hits=  22 CERT=0 RELAB=0 tightest=6.36e-04 ((((((Lam_QCD / v_EW) / 3) * (sqrt(8pi/3))^1/2) * 16) * 1)
+  [sweep d6] koide_Q_lep        hits=   1 CERT=0 RELAB=0 tightest=9.23e-06 ((((((c / c) / 3) * sqrt(8pi/3)) / sqrt(8pi/3)) * 2))
+  [sweep d6] pmns_sin2_13       hits=  65 CERT=0 RELAB=0 tightest=5.41e-04 ((((((Lam_QCD / v_EW))^1/2 * (3)^1/2) / sqrt(8pi/3)) * (5)
+  [sweep d6] pmns_sin2_12       hits=  55 CERT=0 RELAB=0 tightest=3.07e-04 ((((cbrt((v_EW / Lam_QCD)) / (3)^1/2) / (sqrt(8pi/3))^1/2)
+  [sweep d6] pmns_sin2_23       hits=  69 CERT=0 RELAB=0 tightest=8.34e-04 ((((((Lam_QCD / v_EW))^1/2 * (3)^1/2) * sqrt(8pi/3)) * 4))
+
+  [OK  ] raw candidates                 computed=236624                             committed=236624                            
+  [OK  ] distinct values                computed=107719                             committed=107719                            
+  [OK  ] in-window hits                 computed=259                                committed=259                               
+  [OK  ] CERTIFIED                      computed=0                                  committed=0                                 
+  [OK  ] RE-LABELED                     computed=0                                  committed=0                                 
+  [OK  ] tightest target                computed=koide_Q_lep                        committed=koide_Q_lep                       
+  [OK  ] tightest rel_err               computed=9.232869166816987e-06 committed=9.232869166816987e-06
+  [OK  ] tightest formula               computed=(((((c / c) / 3) * sqrt(8pi/3)) /  committed=(((((c / c) / 3) * sqrt(8pi/3)) / 
+
+========================================================================================================
+B. switch ON ({3, kappa}) at depth 6 -- must DIFFER, or the re-run is pointless
+========================================================================================================
+  [OK  ] germ pool VALUE multiset identical (mpmath 30-dps keys, not float64 -- bug#4)
+  [OK  ] forced germ keys = ['3', 'kappa']
+  alphabet: 11 leaves, 25 germs
+  FORCED germ keys : ['3', 'kappa']
+  n_free germs     : 23
+  budget splits    : [(1, 4), (2, 3)]
+  build: raw=236,624 distinct=85,875 skeletons=86  (9.3s)
+  [sweep d6] a_e                hits=   0 CERT=0 RELAB=0 tightest=-
+  [sweep d6] alpha_em_inv_0     hits=   0 CERT=0 RELAB=0 tightest=-
+  [sweep d6] r_p_e              hits=   0 CERT=0 RELAB=0 tightest=-
+  [sweep d6] r_n_p              hits=   0 CERT=0 RELAB=0 tightest=-
+  [sweep d6] r_mu_e             hits=   0 CERT=0 RELAB=0 tightest=-
+  [sweep d6] a_mu               hits=   0 CERT=0 RELAB=0 tightest=-
+  [sweep d6] r_tau_e            hits=   0 CERT=0 RELAB=0 tightest=-
+  [sweep d6] alpha_em_inv_MZ    hits=   0 CERT=0 RELAB=0 tightest=-
+  [sweep d6] sin2_thetaW_MZ     hits=   0 CERT=0 RELAB=0 tightest=-
+  [sweep d6] koide_Q_up         hits=   3 CERT=0 RELAB=0 tightest=3.60e-04 ((((((Lam_QCD / v_EW) * 3) * (3)^1/2) / kappa) * 32pi))
+  [sweep d6] higgs_lambda       hits=   2 CERT=0 RELAB=0 tightest=1.40e-03 ((((((c / c) / (3)^1/2) * kappa) / h5) * (h5)^1/2))
+  [sweep d6] ckm_lambda         hits=   1 CERT=0 RELAB=0 tightest=3.07e-04 ((((((c / c) * 3) / 3) * (kappa)^1/2) / pi))
+  [sweep d6] koide_Q_down       hits=   8 CERT=0 RELAB=0 tightest=3.27e-04 ((((((v_EW / Lam_QCD))^1/2 / 3) * kappa) / 8))
+  [sweep d6] r_b_tau            hits=   7 CERT=0 RELAB=0 tightest=1.59e-03 ((((((c / c) * 3) * kappa) * kappa) * pi))
+  [sweep d6] r_t_b              hits=  13 CERT=0 RELAB=0 tightest=1.14e-03 ((((cbrt((v_EW / Lam_QCD)) * (3)^1/2) * (kappa)^1/2) * pi)
+  [sweep d6] alpha_s_MZ         hits=  11 CERT=0 RELAB=0 tightest=1.26e-03 ((((((c / c) / 3) / 3) * (kappa)^1/2) / 2/3))
+  [sweep d6] koide_Q_lep        hits=   9 CERT=0 RELAB=0 tightest=9.23e-06 ((((((c / c) * (3)^1/2) / kappa) * 1/3) * (1/3)^1/2))
+  [sweep d6] pmns_sin2_13       hits=  33 CERT=0 RELAB=0 tightest=1.72e-03 ((((cbrt((Lam_QCD / v_EW)) / 3) / (kappa)^1/2) / 2))
+  [sweep d6] pmns_sin2_12       hits=  59 CERT=0 RELAB=0 tightest=3.16e-04 ((((((Lam_QCD / v_EW))^1/2 * 3) / kappa) * (pi)^1/2))
+  [sweep d6] pmns_sin2_23       hits=  46 CERT=0 RELAB=0 tightest=8.34e-04 ((((((Lam_QCD / v_EW))^1/2 * (3)^1/2) / kappa) * Z))
+
+                                   published           kappa
+  raw_candidates                     236,624         236,624
+  distinct_by_value                  107,719          85,875
+  n_skeletons_total                       86              86
+  n_hits                                 259             192
+  n_certified                              0               0
+  n_relabeled                              0               0
+  tightest (published) : koide_Q_lep rel=9.233e-06  (((((c / c) / 3) * sqrt(8pi/3)) / sqrt(8pi/3)) * 2)
+  tightest (kappa)     : koide_Q_lep rel=9.233e-06  (((((c / c) * (3)^1/2) / kappa) * 1/3) * (1/3)^1/2)
+  [OK  ] raw count IDENTICAL (236,624) -- same n_free=23 and same budget splits, so the SHAPE of the space is unchanged; only WHICH germ is forced moved
+  [OK  ] distinct VALUE set DIFFERS: 85,875 vs 107,719 (delta -21,844) -- a genuinely different search, not a relabel
+  [OK  ] in-window hits: kappa=192 vs published=259
+
+========================================================================================================
+C. restoration after both contexts
+========================================================================================================
+  [OK  ] _forced_keys_present back to ['3', 'sqrt(8pi/3)']
+  [OK  ] germ pool restored
+  [OK  ] 'kappa_half' is NOT in the registry outside the context (published config intact)
+
+========================================================================================================
+VERDICT
+========================================================================================================
+  REGRESSION PASSES and the kappa switch is a real change
+========================================================================================================
