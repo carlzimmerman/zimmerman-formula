@@ -1,0 +1,117 @@
+
+==================================================================================================
+mi_three_classes_2026 -- exhausting the last three classes
+==================================================================================================
+  [OK  ] committed sum rule INT dmu/|t| = 1 (1.000000)
+  target: kappa = 1/2  <=>  Z = 5.788810;  a0 box admits kappa in [0.4310, 0.5952]
+
+==================================================================================================
+CLASS A -- different thermal WEIGHTINGS, one forced target (FDT: = 1/pi)
+==================================================================================================
+  x = hbar omega / k_B T_dS = 2 pi omega / H_Lambda = 2 pi u / Z
+  Condition for every member: weighted fraction of the unit sum rule = D = 1/pi
+  (D = 0.31830989, the dissipative weight, closed form, derived 2026-07-29)
+
+  weighting                                          Z      kappa    vs 1/2    in box   note
+  ------------------------------------------------------------------------------------------------
+  tanh(x/2)  symmetrized KMS                  8.911132   0.324808    -35.0%        no   
+  tanh(x)    variant                         17.822265   0.162404    -67.5%        no   
+  1-exp(-x)  absorption                      14.851263   0.194893    -61.0%        no   
+  exp(-x)    Boltzmann                        3.168205   0.913579    +82.7%        no   
+  x/(e^x-1)  Planck/Debye                           --         --        --        --   IR DIVERGENT -> not a valid condition
+  x/(e^x+1)  Fermi-like                             --         --        --        --   IR DIVERGENT -> not a valid condition
+/Users/carlzimmerman/new_physics/zimmerman-formula/reviews/mi_three_classes_2026.py:63: IntegrationWarning: The occurrence of roundoff error is detected, which prevents 
+  the requested tolerance from being achieved.  The error may be 
+  underestimated.
+  tot += quad(lambda u: f(u * u) * (1 - np.sqrt(max(1 - 4 * u * u, 0.0))) / np.pi,
+/Users/carlzimmerman/new_physics/zimmerman-formula/reviews/mi_three_classes_2026.py:63: IntegrationWarning: The maximum number of subdivisions (400) has been achieved.
+  If increasing the limit yields no improvement it is advised to analyze 
+  the integrand in order to determine the difficulties.  If the position of a 
+  local difficulty can be determined (singularity, discontinuity) one will 
+  probably gain from splitting up the interval and calling the integrator 
+  on the subranges.  Perhaps a special-purpose integrator should be used.
+  tot += quad(lambda u: f(u * u) * (1 - np.sqrt(max(1 - 4 * u * u, 0.0))) / np.pi,
+  coth(x/2)  FDT fluctuation                        --         --        --        --   no root (R spans [2.051,1688.320])
+  1/(e^x-1)  Bose occupation                        --         --        --        --   IR DIVERGENT -> not a valid condition
+
+==================================================================================================
+CLASS B -- different FUNCTIONALS: location statistics, ZERO target needed
+==================================================================================================
+  Statement: the de Sitter frequency IS the median / mean of the
+  inertia-generating spectral weight dmu/|t|. No target, no parameters.
+  At omega = H_Lambda the axis coordinate is u = Z, so each statistic's
+  location in u IS the predicted Z.
+
+  region A weight = 1 - 2/pi = 0.36338023 < 1/2, so the median lies in region B
+  median location  u_m = 0.6366197724
+  closed form: u_m = 2/pi = 0.6366197724
+  [OK  ] median of dmu/|t| sits at u = 2/pi EXACTLY
+  geometric mean   u_g = exp(INT ln(u) dmu/|t|) = 0.6795704570
+  arithmetic centroid INT u dmu/|t|: partial sums at u<10, 1e3, 1e5 = 1.0512, 2.5171, 3.9830
+    -> LOG DIVERGENT, not a valid statistic
+
+  functional                                         Z      kappa    vs 1/2    in box   note
+  ------------------------------------------------------------------------------------------------
+  B1 median = dS frequency (u=2/pi exact)     0.636620   4.546521   +809.3%        no   
+  B2 geometric mean = dS frequency            0.679570   4.259168   +751.8%        no   
+  B3 arithmetic centroid = dS frequency             --         --        --        --   LOG DIVERGENT
+
+==================================================================================================
+CLASS C -- dimensionful / entropic dS quantities: closed by inspection
+==================================================================================================
+  dS horizon radius r_H = c/H_L      = 2.7504e+26 m
+  Planck length      L_p             = 1.6162e-35 m
+  dS entropy         S = pi (r_H/L_p)^2 = 9.0978e+122
+  dS temperature     T_dS            = 1.3251e-30 K
+
+  Any condition of the form kappa = F(S_dS) or F(L_p/r_H) imports a number of
+  order 9e+122 or 6e-62. For kappa to come out O(1) that dependence must
+  cancel EXACTLY, which returns the condition to a pure-number statement about the
+  kernel -- and that family is already closed (local conditions scale-invariant,
+  aesthetic targets missed, forced-constant saturation NO-GO). If it does NOT
+  cancel, kappa is off by astronomical factors and is excluded by the a0 box at
+  once. Either branch closes the class.
+  Independently: the CKN degrees-of-freedom bridge was already closed -- 0.5878 =
+  (3/8pi)^(1/4) is the g*=1 geometric limit, with no microscopic fix available.
+  [OK  ] S_dS is astronomically large (9.10e+122), as the argument requires
+
+==================================================================================================
+LEDGER -- every member of every enumerated class
+==================================================================================================
+  member                                            kappa     vs 1/2   in a0 box
+  --------------------------------------------------------------------------------
+  A: tanh(x/2)  symmetrized KMS                  0.324808     -35.0%          no
+  A: tanh(x)    variant                          0.162404     -67.5%          no
+  A: 1-exp(-x)  absorption                       0.194893     -61.0%          no
+  A: exp(-x)    Boltzmann                        0.913579     +82.7%          no
+  B1 median                                      4.546521    +809.3%          no
+  B2 geometric mean                              4.259168    +751.8%          no
+  FRAMEWORK TARGET                               0.500000      +0.0%         YES
+
+  members giving kappa = 1/2 to within 1.0%: NONE
+  exhaustive cost of these classes: log2(6) = 2.58 bits, FIXED
+
+==================================================================================================
+VERDICT
+==================================================================================================
+  ALL THREE REMAINING CLASSES CLOSED.
+   * CLASS A: no standard thermal weighting, with the forced FDT target, gives
+     kappa = 1/2. Divergent members are flagged as invalid, not silently
+     dropped.
+   * CLASS B: the strongest candidates in the whole programme, because they
+     need NO target -- and the median of the inertia-generating measure sits
+     at u = 2/pi EXACTLY, a clean closed-form result. It is simply not Z.
+   * CLASS C: closed by inspection either way -- exact cancellation returns to
+     an already-closed pure-number condition; no cancellation puts kappa off
+     by ~1e60.
+
+  Taken with the earlier three closures, the spectral programme is now
+  EXHAUSTED at the level of forced O(1) conditions on the committed kernel.
+  kappa = 1/2 is not derivable from the kernel's spectral structure alone.
+  A derivation must come from OUTSIDE it -- new dynamics, not a new reading
+  of the measure. That is a substantive negative result about where to look,
+  and it is the honest end of this line.
+
+  kappa = 1/2 remains POSTULATED, NOT DERIVED. Nothing empirical moves; a0's
+  value was always postulated and every empirical front is untouched.
+==================================================================================================

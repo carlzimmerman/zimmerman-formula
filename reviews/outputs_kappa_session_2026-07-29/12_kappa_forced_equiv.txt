@@ -1,0 +1,58 @@
+
+================================================================================================
+kappa_forced_equivalence -- can forcing kappa change the reachable VALUE set?
+================================================================================================
+  germ pool size: 19
+    kappa    value = 0.5
+    2        value = 2.0
+    3        value = 3.0
+    kernel   value = 2.8944050182330706375
+    Z        value = 5.7888100364661412749
+    8pi      value = 25.132741228718345908
+
+================================================================================================
+S1. kappa is EXACTLY the germ 2 inverted
+================================================================================================
+  [OK  ] kappa germ = 1/2 exactly (0.5)
+  [OK  ] kappa == 1/2 == 2^(-1) exactly (diff 0.0)
+  The germ-decorate step is  node (MUL|DIV) germ^e,  e in {1, 1/2, -1, -1/2}.
+  So:  x MUL kappa^1   ==   x DIV 2^1   as a VALUE operation.
+  And: x MUL kappa^1/2 ==   x DIV 2^1/2 as a VALUE operation.
+  [OK  ] kappa^1.0 == 2^(-1.0) exactly
+  [OK  ] kappa^0.5 == 2^(-0.5) exactly
+
+================================================================================================
+S2. Enumerate the germ-factor MULTISETS reachable with each forced set
+================================================================================================
+  forced set A (published) = ('3', 'kernel')
+  forced set B (requested) = ('3', 'kappa')
+  free germ candidates: 18;  decorate steps: 3
+
+  distinct germ-factor values, forced A: 713
+  distinct germ-factor values, forced B: 559
+  reachable ONLY under A: 490
+  reachable ONLY under B: 336
+  shared: 223  (21.26% of the union)
+
+================================================================================================
+S3. The decisive question: does B add anything A could not reach?
+================================================================================================
+  YES -- 336 values are reachable only with kappa forced.
+  Sample:
+    0.7803901425343333445372287
+    0.2476151049416016279159887
+    0.5518191617571634823932857
+    17.32050807568877293527446
+    0.01148601865462066769815264
+    0.4774648292756860073066513
+    0.1750903198284251049311455
+    0.02652582384864922262814729
+  [OK  ] comparison completed (result reported either way)
+
+================================================================================================
+VERDICT
+================================================================================================
+  A RE-RUN IS WARRANTED. Forcing kappa opens values the published search could
+  not reach, so the null does not cover the framework's own number and the full
+  depth 3-10 sweep should be repeated with forced = {3, kappa}.
+================================================================================================

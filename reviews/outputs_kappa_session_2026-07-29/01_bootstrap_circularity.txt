@@ -1,0 +1,131 @@
+
+==============================================================================================
+mi_bootstrap_circularity_2026 -- can the kernel's own conditions fix a0's SCALE?
+==============================================================================================
+
+==============================================================================================
+S1. The coefficient, factored: isolate the one free number
+==============================================================================================
+  Z = sqrt(32pi/3) = 5.788810     Z^2 = 33.510322
+  32pi/3 = 4 * 8pi/3 :  33.510322 == 33.510322
+  [OK  ] 32pi/3 = 4 * (8pi) / 3 exactly -- 8pi from GR, /3 from Friedmann, 4 free
+
+  naive Unruh matching T_U(a)=T_dS gives a = c*H_Lambda, i.e. Z = 1
+  framework needs Z = 5.7888; the deficit to explain is exactly the factor 4
+
+==============================================================================================
+S2. The sum rule, verified, then RESCALED (the decisive test)
+==============================================================================================
+  K(z) = (sqrt(1+4z)-1)/(2 sqrt z)
+  K(0)   = 0
+  K(inf) = 1
+  [OK  ] K(0) = 0
+  [OK  ] K(inf) = 1
+  [OK  ] sum rule INT dmu/|t| = K(inf) - K(0) = 1  (reproduces the committed result)
+
+  under a0 -> lambda*a0  (z -> z/lambda^2):
+    K(0)   -> 0
+    K(inf) -> 1
+  [OK  ] sum rule is INVARIANT under a0 -> lambda*a0 for EVERY lambda > 0
+    => the sum rule is a statement about the SHAPE of K, not its scale.
+    => it carries ZERO information about the magnitude of a0.
+    => a bootstrap resting on the sum rule CANNOT fix Z. Route is CIRCULAR.
+
+==============================================================================================
+S3. Test EVERY committed kernel condition for scale-invariance
+==============================================================================================
+  A condition invariant under a0 -> lambda*a0 provably cannot fix a0.
+  A condition that BREAKS invariance is a live handle and is flagged.
+
+  [OK  ] branch point solves to z = -1/4
+  branch point: z = -1/4 ; after rescaling z = -lambda**2/4
+    the LOCATION MOVES in z, but z is dimensionless -- the physical branch
+    frequency omega_b = a0/2c moves WITH a0, so the condition 'there is a branch
+    point at z=-1/4' is satisfied for every a0. Invariant as a CONSTRAINT.
+
+  [INV ] K(0) = 0
+  [INV ] ||K|| <= 1 (sup K = 1)
+  [INV ] branch point at z = -1/4 (dimensionless)
+  [INV ] Herglotz positivity of dmu
+  [INV ] retarded analyticity (upper half plane)
+  [ -- ] KMS at T_dS -- tested separately in S4
+
+  5 invariant, 0 breaking invariance
+
+==============================================================================================
+S4. The KMS/dS matching condition: does a physical frequency pin a0?
+==============================================================================================
+  omega_b = a0/(2c) and a0 = c*H_Lambda/Z  =>  omega_b/H_Lambda = 1/(2Z)
+  framework value: 1/(2Z) = 0.086374
+
+  For KMS at T_dS to FIX this ratio it must relate two quantities that scale
+  DIFFERENTLY under a0 -> lambda*a0. Check the scaling of each ingredient:
+    K(z) itself                    invariant (function of z only)
+    omega_b = a0/2c                scales as lambda^1
+    H_Lambda (from Lambda)         scales as lambda^0 -- INDEPENDENT of a0
+    T_dS = hbar H_L/2pi k_B        scales as lambda^0
+    z on shell = -(omega c/a0)^2   scales as lambda^-2
+
+  So a0 and H_Lambda DO scale differently, i.e. the ratio omega_b/H_Lambda is
+  NOT automatically invariant -- a condition equating a kernel feature to a
+  dS quantity COULD fix it. The question is whether any COMMITTED condition
+  does so. Test: does any committed relation equate a kernel value at a
+  SPECIFIC z to a dS quantity, without a0 already inserted by hand?
+
+  Committed conditions are imposed at these points of the z-axis:
+    z = 0                  -> fixed points of z -> z/lambda^2 (0, inf) or defined IN z
+    z = infinity           -> fixed points of z -> z/lambda^2 (0, inf) or defined IN z
+    z = -1/4 (branch)      -> fixed points of z -> z/lambda^2 (0, inf) or defined IN z
+  [OK  ] every committed condition sits at z=0, z=inf, or a z-defined point -- all of which are preserved by z -> z/lambda^2
+
+  CONSEQUENCE: no committed condition evaluates K at a z corresponding to a
+  FIXED PHYSICAL frequency (such as omega = H_Lambda). That is precisely the
+  kind of condition that would break scale-invariance and fix a0 -- and the
+  corpus does not contain one.
+
+==============================================================================================
+S5. What a non-circular condition would have to look like (stated, not fitted)
+==============================================================================================
+  To fix a0 the axiom set needs ONE relation of the form
+      F( K(z*) ) = G( H_Lambda )     with z* a FIXED PHYSICAL frequency,
+  e.g. 'the kernel's spectral weight below omega = H_Lambda equals X'.
+  Then a0 appears on the left via z* = -(H_Lambda c/a0)^2 and NOT on the right,
+  so the equation determines a0. Concretely, the weight below H_Lambda is
+      z* = -(H_Lambda c / a0)^2   ->  with a0 = c H_L/Z,  z* = -Z^2
+      symbolically: z* = -Zs**2  (i.e. z* = -Zs^2)
+      framework: z* = -Z^2 = -33.5103 = -32pi/3
+
+  So the framework's Z is EXACTLY the statement 'the dS frequency sits at
+  z* = -32pi/3 on the kernel's dimensionless axis'. That is a RESTATEMENT of
+  the postulate, not a derivation -- but it localises what must be derived to a
+  single number on a single axis, which is the sharpest form of the open problem.
+
+  NOTE, against interest: |z*| = 32pi/3 = 33.51 is far from the branch point
+  |z| = 1/4, i.e. the dS frequency sits deep in the SATURATED region where
+  |K| = 1 exactly. No feature of K distinguishes z* = -33.51 from any other
+  deeply-saturated point, so no LOCAL property of K can single it out.
+  |z*| / |z_branch| = (32pi/3)/(1/4) = 134.04
+
+==============================================================================================
+VERDICT
+==============================================================================================
+  1. The sum rule INT dmu/|t| = 1 is EXACTLY scale-invariant (S2, symbolic).
+     It cannot fix Z. The bootstrap-on-the-sum-rule route is CIRCULAR.
+  2. Every other committed kernel condition -- K(0)=0, K(inf)=1, ||K||<=1,
+     Herglotz positivity, retarded analyticity, branch point at z=-1/4 -- is
+     also imposed at a scale-free point of the dimensionless axis, so none of
+     them fixes Z either (S3, S4).
+  3. a0 and H_Lambda DO scale differently, so a scale-breaking condition is
+     not forbidden -- the corpus simply contains none (S4).
+  4. The open problem is now localised exactly: Z^2 = 32pi/3 is equivalent to
+     the single statement that the dS frequency sits at z* = -32pi/3 on the
+     kernel's dimensionless axis. And z* lies deep in the |K|=1 saturated
+     region, 134x past the branch point, where K has NO local structure --
+     so no local property of K can ever single it out (S5).
+  => The bootstrap door is CLOSED for local kernel conditions. Any future
+     derivation must supply a GLOBAL/spectral condition tied to a fixed
+     physical frequency. Z remains POSTULATED, NOT DERIVED.
+
+  This is a NEGATIVE result and is reported as one. It does not weaken any
+  empirical claim: a0's VALUE was always postulated and still is.
+==============================================================================================

@@ -1,0 +1,103 @@
+
+================================================================================================
+mi_spectral_weight_swing_2026 -- does a GLOBAL spectral condition fix Z?
+================================================================================================
+
+================================================================================================
+S1. Reproduce the committed sum rule (convention check, before anything else)
+================================================================================================
+  INT dmu/|t| over the full measure = 1.000000   (committed value: 1)
+  [OK  ] committed sum rule INT dmu/|t| = 1 reproduced
+  NOTE: the measure has TWO regions. An earlier hand-derivation of mine used only
+  the cut beyond the branch point and would have normalised to 2/pi = 0.6366.
+  The region A weight on T in (0,1/4) is what makes the total exactly 1:
+    region A (T<1/4, below branch): 0.363380
+    region B (T>1/4, on the cut ): 0.636620
+  [OK  ] A + B = 1
+
+================================================================================================
+S2. Derive W_above(Z) ANALYTICALLY -- before looking at any candidate
+================================================================================================
+  W_above(Z) = INT_Z^inf du/(pi u^2) = 1/(pi*Z)
+  [OK  ] W_above(Z) = 1/(pi Z) exactly  (valid for Z > 1/2, i.e. z* beyond the branch point)
+    framework sqrt(32pi/3)   Z=5.788810  W_above: quad 0.05498710  analytic 0.05498710
+  [OK  ] quadrature matches analytic for framework sqrt(32pi/3)
+    conventional 2pi         Z=6.283185  W_above: quad 0.05066059  analytic 0.05066059
+  [OK  ] quadrature matches analytic for conventional 2pi
+
+  So the map is a clean BIJECTION: W_above = 1/(pi Z)  <=>  Z = 1/(pi W_above).
+  Fixing the spectral weight above the dS frequency therefore FIXES Z. The swing
+  is mathematically available -- the only question is whether any INDEPENDENT
+  principle supplies the value.
+
+  framework requires   W_above = 0.05498710
+  conventional 2pi requires W_above = 0.05066059
+
+================================================================================================
+S3. PRE-REGISTERED candidate list (fixed in source; NOT tuned to any target)
+================================================================================================
+  12 candidates pre-registered. Reporting ALL, with implied Z.
+
+  candidate W_above                    value   implied Z   vs sqrt(32pi/3)    vs 2pi
+  ------------------------------------------------------------------------------------
+  1/2      (equipartition)          0.500000    0.636620           -89.00%   -89.87%
+  1/4      (Bekenstein-Hawking)     0.250000    1.273240           -78.01%   -79.74%
+  1/e      (thermal e-fold)         0.367879    0.865256           -85.05%   -86.23%
+  1/pi                              0.318310    1.000000           -82.73%   -84.08%
+  1/(2pi)  (Unruh/Hawking)          0.159155    2.000000           -65.45%   -68.17%
+  1/(4pi)  (horizon area)           0.079577    4.000000           -30.90%   -36.34%
+  1/8                               0.125000    2.546479           -56.01%   -59.47%
+  1/12                              0.083333    3.819719           -34.02%   -39.21%
+  1/pi^2                            0.101321    3.141593           -45.73%   -50.00%
+  1/(2pi^2) (S^3 volume)            0.050661    6.283185            +8.54%    +0.00%
+  1/16                              0.062500    5.092958           -12.02%   -18.94%
+  3/(32pi)  (framework-shaped)      0.029842   10.666667           +84.26%   +69.77%
+
+  closest to the framework: 1/(2pi^2) (S^3 volume)  -> Z = 6.283185 (+8.54%)
+
+  at the pre-declared tolerance of 0.5%:
+    candidates landing on sqrt(32pi/3) = 5.788810 : NONE
+    candidates landing on 2pi          = 6.283185 : ['1/(2pi^2) (S^3 volume)']
+
+================================================================================================
+S4. Look-elsewhere accounting (the paper's own rule, applied to ourselves)
+================================================================================================
+  trials: 12 pre-registered candidates -> log2(12) = 3.58 bits of look-elsewhere
+  A match is informative only if the agreement supplies MORE bits than that.
+    framework sqrt(32pi/3)   no candidate matches -> nothing to price
+    conventional 2pi         via 1/(2pi^2) (S^3 volume): rel dev 0.000e+00 -> inf bits vs 3.58 -> INFORMATIVE
+
+================================================================================================
+S5. What the framework's own value would have to be, stated plainly
+================================================================================================
+  W_above(framework) = 1/(pi sqrt(32pi/3)) = 0.05498710
+  closed form: sqrt(6)/(8*pi**(3/2))  =  sqrt(6)/(8*pi**(3/2))
+  i.e. W_above = sqrt(3/(32 pi^3)) = 0.05498710
+  [OK  ] W_above(framework) = sqrt(3/(32 pi^3)) exactly
+
+  Judgement, stated against interest: sqrt(3/(32 pi^3)) is NOT a value that any
+  independent dS or holographic argument singles out. It carries a half-integer
+  power of pi^3, which is exactly the transcendental signature the number-field
+  obstruction already flagged. Reframing 32pi/3 as a spectral weight is EXACT and
+  it does localise the problem, but it does not make the number more forced.
+
+================================================================================================
+VERDICT
+================================================================================================
+  1. THE SWING IS REAL, as mathematics. W_above = 1/(pi Z) exactly, derived from
+     the committed Herglotz measure, verified against its quadrature to 1e-6. It
+     is a bijection, so a global spectral condition CAN fix Z -- unlike every
+     local condition, all of which were shown scale-invariant.
+  2. BUT NO PRE-REGISTERED CANDIDATE DELIVERS 32pi/3. The framework needs
+     W_above = sqrt(3/(32 pi^3)) = 0.054987, which is not a value any
+     independent argument picks out.
+  3. REPORTED AGAINST INTEREST: on this axis the CONVENTIONAL coefficient does
+     better. See S3 for whether any natural candidate lands on 2pi and S4 for
+     whether that survives look-elsewhere. If it does, the clean spectral
+     condition points at a0 = cH_Lambda/(2pi) -- Milgrom/Smolin -- NOT at
+     cH_Lambda/sqrt(32pi/3). That is a theoretical point against the framework's
+     specific coefficient, and it is recorded as one.
+  4. NOTHING EMPIRICAL MOVES. Z and 2pi differ by 7.87% and both sit inside the
+     +/-16% empirical a0 box; no arena in hand separates them. Z remains
+     POSTULATED, NOT DERIVED.
+================================================================================================

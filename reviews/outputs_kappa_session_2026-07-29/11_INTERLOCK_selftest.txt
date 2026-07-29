@@ -1,0 +1,68 @@
+============================================================================================
+SELFTEST -- planted positive and negative controls (MANDATORY before any null)
+============================================================================================
+  independent target set: 18 targets (holdout excluded, ['r_t_b'] dropped on correlation)
+
+  synthetic background chance ceiling (mean+3sd of max k): 13.5
+
+  POSITIVE CONTROL: planted one skeleton on k=18 independent targets
+
+     k  real #skel  chance mean  chance sd       z  chance<E*
+  ------------------------------------------------------------
+     2       1,911      1909.95       3.95     0.3         no
+     3       1,802      1800.38       5.80     0.3         no
+     4       1,651      1654.50       9.14    -0.4         no
+     5       1,477      1456.82      10.97     1.8         no
+     6       1,202      1191.28      12.67     0.8         no
+     7         857       850.48      13.52     0.5         no
+     8         483       486.90      12.97    -0.3         no
+     9         199       207.84      10.80    -0.8         no
+    10          60        61.62       6.21    -0.3         no
+    11          13        12.23       3.25     0.2         no
+    12           1         1.66       1.31    -0.5         no
+    13           1         0.17       0.45     1.9         no
+    14           1         0.01       0.07    14.1         no
+    15           1         0.00       0.00     nan        YES
+    16           1         0.00       0.00     nan        YES
+    17           1         0.00       0.00     nan        YES
+    18           1         0.00       0.00     nan        YES
+    19           0         0.00       0.00     nan        YES
+    20           0         0.00       0.00     nan        YES
+    21           0         0.00       0.00     nan        YES
+    22           0         0.00       0.00     nan        YES
+    23           0         0.00       0.00     nan        YES
+    24           0         0.00       0.00     nan        YES
+
+  observed max k = 18   chance max k = 11.94 +/- 0.60   p(chance >= observed) = 0.0000
+  family-wise E* = 3.472e-04  ->  a claim needs k >= 15
+  -> PASS: recovered
+
+  NEGATIVE CONTROL: planted one skeleton on k=10 (inside the chance band)
+
+     k  real #skel  chance mean  chance sd       z  chance<E*
+  ------------------------------------------------------------
+     2       1,928      1925.63       3.58     0.7         no
+     3       1,820      1827.90       5.70    -1.4         no
+     4       1,706      1695.04       8.20     1.3         no
+     5       1,500      1498.27      11.19     0.2         no
+     6       1,240      1227.82      12.96     0.9         no
+     7         884       882.75      13.15     0.1         no
+     8         523       513.77      12.76     0.7         no
+     9         214       223.99      10.78    -0.9         no
+    10          60        68.14       7.00    -1.2         no
+    11          10        13.71       3.45    -1.1         no
+    12           3         1.84       1.33     0.9         no
+    13           0         0.17       0.39    -0.4         no
+    14           0         0.01       0.07    -0.1         no
+    15           0         0.00       0.00     nan        YES
+    16           0         0.00       0.00     nan        YES
+    17           0         0.00       0.00     nan        YES
+    18           0         0.00       0.00     nan        YES
+
+  observed max k = 12   chance max k = 11.99 +/- 0.61   p(chance >= observed) = 0.8150
+  family-wise E* = 3.472e-04  ->  a claim needs k >= 15
+  -> PASS: correctly not flagged
+
+============================================================================================
+SELFTEST PASSED -- the search can recover a real interlock and rejects a fake one.
+============================================================================================

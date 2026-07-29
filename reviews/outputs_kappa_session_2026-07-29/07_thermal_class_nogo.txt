@@ -1,0 +1,80 @@
+
+==================================================================================================
+mi_thermal_class_nogo_2026 -- exhaust the thermal-saturation class
+==================================================================================================
+
+==================================================================================================
+S1. Verify every forced constant BEFORE using it as a target
+==================================================================================================
+  [OK  ] total sum rule = 1 (1.000000)
+  [OK  ] region B = 2/pi = 0.636620 (0.636620)
+  [OK  ] dissipative = 1/pi = 0.318310 (0.318310)
+  [OK  ] K(1) = (sqrt5-1)/2 = 0.618034
+  [OK  ] K = 1/2 at z = 4/9
+
+  8 forced constants, all verified above.
+
+==================================================================================================
+S2. THE INVERSE -- the sharpest single statement
+==================================================================================================
+  R(Z_framework) = R(5.788810) = 0.41628209
+  For ANY condition R(Z) = F to give kappa = 1/2, F must equal this number.
+
+  Is it in the forced set? Distance to each:
+    forced constant                          value    |F - R_fw|       rel
+    ------------------------------------------------------------------------
+    1            total sum rule         1.00000000    0.58371791  140.22%
+    2/pi         region B weight        0.63661977    0.22033768   52.93%
+    1-2/pi       region A weight        0.36338023    0.05290187   12.71%
+    1/pi         dissipative weight     0.31830989    0.09797221   23.54%
+    1/4          branch point |z|       0.25000000    0.16628209   39.94%
+    1/2          branch point in u      0.50000000    0.08371791   20.11%
+    4/9          z where K=1/2          0.44444444    0.02816235    6.77%
+    (sqrt5-1)/2  K(1)                   0.61803399    0.20175190   48.47%
+
+  nearest forced constant: 4/9 at 6.77% relative
+  at the pre-declared tolerance of 1e-04: NOT in the forced set
+
+==================================================================================================
+S3. FORWARD SWEEP -- every forced constant as the target, all reported
+==================================================================================================
+  target F                                     Z      kappa    vs 1/2  in a0 box
+  --------------------------------------------------------------------------------
+  1            total sum rule        unreachable         --        --         --
+  2/pi         region B weight          2.543726   1.137860   +127.6%         no
+  1-2/pi       region A weight          7.238696   0.399852    -20.0%         no
+  1/pi         dissipative weight       8.911132   0.324808    -35.0%         no
+  1/4          branch point |z|        12.781864   0.226446    -54.7%         no
+  1/2          branch point in u        4.185309   0.691563    +38.3%         no
+  4/9          z where K=1/2            5.173798   0.559435    +11.9%        YES
+  (sqrt5-1)/2  K(1)                     2.722046   1.063320   +112.7%         no
+  FRAMEWORK TARGET                      5.788810   0.500000     +0.0%        YES
+
+  forced constants giving kappa = 1/2 to within 1%: NONE
+
+==================================================================================================
+S4. Look-elsewhere for an EXHAUSTIVE sweep
+==================================================================================================
+  This sweep is exhaustive over the forced set, so its cost is fixed at
+  log2(8) = 3.00 bits and does NOT grow with further guessing --
+  that is the advantage of exhausting a class instead of sampling it.
+    no hits to price.
+
+==================================================================================================
+VERDICT
+==================================================================================================
+  NO-GO ON THE THERMAL-SATURATION CLASS. No constant that the kernel itself
+  forces, used as the saturation target, yields kappa = 1/2. Combined with S2 --
+  R(Z_framework) = 0.41628209 is not in the forced set -- the entire class of
+  conditions 'thermally active fraction = a forced kernel constant' is CLOSED.
+  This is a genuine negative and it is worth more than another near-miss: it
+  rules out a whole family at fixed cost rather than one guess at a time.
+
+  WHAT REMAINS OPEN. A forced condition could still live in a class this sweep
+  does not touch: a different WEIGHTING of the measure (not tanh), a different
+  functional (not a weight fraction), or a condition tying the kernel to a dS
+  quantity that is not a pure number. Those are separate classes and each
+  would need its own exhaustive treatment.
+
+  kappa = 1/2 remains POSTULATED, NOT DERIVED. Nothing empirical moves.
+==================================================================================================

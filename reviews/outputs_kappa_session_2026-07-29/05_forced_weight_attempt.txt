@@ -1,0 +1,72 @@
+
+================================================================================================
+mi_forced_weight_attempt_2026 -- can any FORCED principle give kappa = 1/2?
+================================================================================================
+  [OK  ] sum rule INT dmu/|t| = 1 (1.000000)
+  [OK  ] region B (dissipative, on-cut) weight = 2/pi = 0.636620 (got 0.636620)
+  [OK  ] target: kappa=1/2 <=> W_above = 0.05498710
+
+  TARGET (fixed before this script): kappa = 1/2, Z = 5.788810, W_above = 0.05498710
+  EMPIRICAL FILTER (independent of every principle): the +/-16% a0 box admits
+  kappa in [0.4310, 0.5952]. Anything outside is excluded by DATA.
+
+================================================================================================
+P1. FLUCTUATION-DISSIPATION: thermally active fraction = dissipative fraction
+================================================================================================
+  Condition (derived above, no free parameters):  R(Z) = 2/pi = 0.636620
+  R is monotone decreasing. R(1)=0.849348  R(3)=0.591194  R(10)=0.295108
+  SOLUTION: Z = 2.543726  ->  kappa = 1.137860  (W_above = 0.12513528)
+  vs kappa = 1/2: +127.57%
+
+================================================================================================
+P2. CROSSOVER MATCHING: branch point = thermal half-activation point
+================================================================================================
+  tanh(x) = 1/2 at x = artanh(1/2) = 0.54930614
+  condition: pi*omega/H_L = artanh(1/2) at omega = omega_b = a0/2c
+    => a0/(2c) = (H_L/pi) artanh(1/2)
+    => Z = cH_L/a0 = pi / (2 artanh(1/2))
+  SOLUTION: Z = 2.859601  ->  kappa = 1.012171  (W_above = 0.11131270)
+  vs kappa = 1/2: +102.43%
+
+================================================================================================
+P3. CAUSAL MEMORY BOUND (exclusion only)
+================================================================================================
+  tau_mem = 2Z/H_Lambda; framework gives 11.5776/H_Lambda (11.58 Hubble times)
+  bound tau_mem <= 1/H_Lambda requires Z <= 0.5, i.e. kappa >= 5.7888
+  framework Z = 5.7888 -> bound VIOLATED
+  READING, carefully: this does NOT falsify the framework. The kernel's memory is
+  a susceptibility tail, not a signal path, so a tail longer than the Hubble time
+  is not acausal by itself. But it does mean KERNEL_THEORY.md:45's description of
+  tau_mem as 'the horizon scale' is loose by a factor 11.6. Flagged.
+
+================================================================================================
+LEDGER: every principle stated, every result reported
+================================================================================================
+  principle                                  Z     kappa    vs 1/2  in a0 box?
+  ------------------------------------------------------------------------------
+  P1 fluctuation-dissipation          2.543726  1.137860   +127.6%          no
+  P2 crossover matching               2.859601  1.012171   +102.4%          no
+  framework (target)                  5.788810  0.500000     +0.0%         YES
+
+  spread of forced-principle predictions: kappa in [1.0122, 1.1379]
+  does the spread BRACKET kappa = 1/2? NO
+
+================================================================================================
+VERDICT -- stated whatever the outcome
+================================================================================================
+  Both principles were derived and written down before evaluation, and both are
+  reported. Neither was selected after the fact. Total forced-condition attempts
+  across this line of work is now 6 (4 previous + P1 + P2), i.e.
+  log2(6) = 2.58 bits of accumulated look-elsewhere.
+
+  What the numbers above do and do not license:
+   * If a principle lands ON kappa = 1/2 to several digits, that is worth its
+     precision minus 2.58 bits, and would be the lock.
+   * If the principles merely BRACKET kappa = 1/2 within a factor ~2, that is
+     weak support for the spectral axis being the right neighbourhood and NO
+     support at all for the specific value. It must not be reported as a win.
+   * Any principle landing outside the a0 box is falsified by data, which is
+     informative about the PRINCIPLE, not about the framework.
+
+  kappa = 1/2 remains POSTULATED unless a number above matches it tightly.
+================================================================================================

@@ -1,0 +1,91 @@
+
+================================================================================================
+mi_spectral_kms_bootstrap_2026
+================================================================================================
+  [OK  ] committed sum rule INT dmu/|t| = 1 reproduced (1.000000)
+
+================================================================================================
+A. Is my 'favours 2pi' claim robust, or an artifact of probing Z linearly?
+================================================================================================
+  The dS frequency sits at T* = |z*| = Z^2 on the axis. T is the axis's OWN
+  variable. Compare how clean each coefficient is in T*, not in 1/Z.
+
+  framework    T* = Z^2 = 32pi/3  = 33.510322   = 4*(8pi)/3, i.e. Einstein x Friedmann x kappa^-2
+  conventional T* = Z^2 = 4pi^2   = 39.478418   = (2pi)^2
+  [OK  ] framework T* = 32pi/3 exactly
+  [OK  ] conventional T* = 4pi^2 exactly
+
+  Both are closed-form expressions of comparable simplicity on the T-axis:
+    32pi/3 : one power of pi, rational coefficient 32/3
+    4pi^2  : two powers of pi, rational coefficient 4
+  Neither is 'uglier'. The asymmetry reported by the previous script appears only
+  after taking a SQUARE ROOT and an inverse, which manufactures a half-integer
+  power of pi for the framework and cancels one for 2pi:
+    W_above(framework) = 1/(pi Z) = sqrt(3/(32 pi^3))  <- half-integer power
+    W_above(2pi)       = 1/(pi Z) = 1/(2 pi^2)         <- integer powers
+
+  VERDICT ON MY OWN CLAIM: the 'favours 2pi' finding is substantially an
+  ARTIFACT of choosing a probe linear in Z. On the axis's own variable the two
+  coefficients are equally clean. I am DOWNGRADING that finding from a
+  'theoretical point against the framework' to 'probe-dependent, not decisive'.
+  The residual asymmetry that DOES survive: W_above is a fraction, and fractions
+  are the natural currency of a spectral condition, so a condition stated on the
+  fraction still lands on 2pi. Both statements are now on the record.
+
+================================================================================================
+B. The zero-parameter thermal bootstrap (nothing chosen from a list)
+================================================================================================
+  KMS/detailed balance fixes the thermal factor for a symmetrized response:
+      tanh(hbar omega / 2 k_B T_dS) = tanh(pi u / Z),   u = sqrt(T)
+  R(Z) = INT dmu(T)/|T| * tanh(pi sqrt(T)/Z)   -- the thermally ACTIVE fraction
+  of the unit sum rule. No parameters. R in (0,1), monotone decreasing in Z.
+
+           Z        R(Z)
+  ------------------------
+    0.500000    0.928345
+    1.000000    0.849348
+    2.000000    0.700758
+    3.000000    0.591194
+    4.000000    0.512196
+    5.000000    0.453200
+    5.788810    0.416282  <-- framework sqrt(32pi/3)
+    6.283185    0.396378  <-- conventional 2pi
+    8.000000    0.341183
+   12.000000    0.261048
+   20.000000    0.182109
+  [OK  ] R(Z) is strictly monotone decreasing -> R(Z)=const has a unique solution
+
+  Solve the one natural zero-parameter condition, half-saturation R(Z) = 1/2:
+    Z* = 4.185309
+    vs framework    sqrt(32pi/3) = 5.788810   (-27.70%)
+    vs conventional 2pi          = 6.283185   (-33.39%)
+
+    Z*^2 = 17.516816   (framework needs 32pi/3 = 33.510322, 2pi needs 4pi^2 = 39.478418)
+    Z*/pi = 1.332225   Z*^2/pi = 5.575776   3*Z*^2/(32) = 1.642201  (=pi if framework exact)
+
+    at the pre-declared 1.0% tolerance: framework miss, 2pi miss
+    look-elsewhere: ONE condition tested, zero candidates from a list,
+    so log2(trials) = 0 bits. Any hit here is worth its full precision;
+    any miss is a clean falsification of half-saturation.
+
+================================================================================================
+C. What each coefficient's thermally-active fraction actually is
+================================================================================================
+  framework sqrt(32pi/3)     R = 0.416282
+  conventional 2pi           R = 0.396378
+
+  If neither sits on a recognisable value, the thermal bootstrap does not
+  select either coefficient, and BOTH remain postulated. That is the likeliest
+  outcome and it is not a defeat -- it removes an axis from contention rather
+  than settling it.
+
+================================================================================================
+SUMMARY
+================================================================================================
+  A. My previous 'the spectral condition favours 2pi' finding is DOWNGRADED to
+     probe-dependent: on the axis's own variable T = Z^2 both coefficients are
+     equally clean (32pi/3 vs 4pi^2). The asymmetry was created by taking a
+     square root. Recorded both ways.
+  B. The thermal bootstrap is the first genuinely ZERO-PARAMETER test on this
+     axis -- no candidate list, no look-elsewhere. See the number above.
+================================================================================================

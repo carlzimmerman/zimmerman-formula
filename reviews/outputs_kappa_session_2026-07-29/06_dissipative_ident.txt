@@ -1,0 +1,97 @@
+
+================================================================================================
+mi_dissipative_identification_2026 -- correcting P1's premise
+================================================================================================
+
+================================================================================================
+S1. The unimodular phase, and why 'on-cut' != 'dissipative'
+================================================================================================
+  KERNEL_THEORY.md:40-45: on the oscillatory branch |K| = 1 exactly and
+      phi(omega) = arcsin(a0/2c omega),  dissipative part = sin phi = 1/(2u)
+    u = omega c/a0 =      0.5  ->  sin phi = 1.000000e+00
+    u = omega c/a0 =      1.0  ->  sin phi = 5.000000e-01
+    u = omega c/a0 =     10.0  ->  sin phi = 5.000000e-02
+    u = omega c/a0 =   1000.0  ->  sin phi = 5.000000e-04
+    u = omega c/a0 =   2000.0  ->  sin phi = 2.500000e-04
+  At galactic orbital frequencies (w ~ 2e3) the dissipative fraction of a mode is
+  ~2.5e-4: region B is REACTIVE, not dissipative. My P1 premise equated the two.
+
+================================================================================================
+S2. The correct dissipative weight, in closed form
+================================================================================================
+  D = INT_{1/2}^inf du/(pi u^2) * 1/(2u) = 1/pi
+    = 0.31830989
+  [OK  ] dissipative weight D = 1/pi EXACTLY
+  [OK  ] quadrature agrees (0.31830989)
+
+  So the bath-coupled fraction is 1/pi = 0.318310, NOT region B's 2/pi = 0.636620.
+  P1 over-counted the coupled weight by exactly a factor 2 (2.0000).
+
+================================================================================================
+S3. P1 RE-RUN with the corrected dissipative fraction
+================================================================================================
+  corrected condition:  R(Z) = D = 1/pi = 0.318310
+  bracket: R(4)=0.512196  R(8)=0.341183  R(16)=0.213714
+  SOLUTION: Z = 8.911132  ->  kappa = 0.324808
+    vs kappa = 1/2 : -35.04%
+    in the a0 box [0.4310,0.5952]? no
+
+  BEFORE the correction P1 gave kappa = 1.137860 (+127.6%).
+  AFTER  the correction P1 gives kappa = 0.324808 (-35.04%).
+  Did the correction move kappa ACROSS 1/2? YES
+
+================================================================================================
+S4. A KNOB found along the way -- explicitly REJECTED, recorded so it is not reused
+================================================================================================
+  If P2's kernel frequency were a0/c instead of a0/2c, one would get
+      Z = pi/artanh(1/2) = 5.719202  ->  kappa = 0.506085  (+1.22% from 1/2)
+  That is within ~1% of kappa = 1/2 and would look like a spectacular hit.
+  IT IS REJECTED. The branch point is at z = -1/4, and z = -(omega c/a0)^2, so
+      |z| = 1/4  =>  omega = a0/(2c)   -- FORCED, not a convention.
+  [OK  ] omega c/a0 = 1/2 at the branch point -- the factor 2 in a0/2c is forced
+  Dropping that 2 to improve the fit is exactly the epicycle move. Recorded as
+  a rejected knob, NOT as a result.
+
+  Also rejected, same reason: matching the kernel's HALF-RESPONSE point
+  (K = 1/2 at z = 4/9, i.e. |a|/a0 = 2/3) to a thermal half-activation. That
+  compares an ACCELERATION-slot value to a FREQUENCY-slot value -- a category
+  error, since z = a^2/a0^2 in the first-moment closure but z = -(omega c/a0)^2
+  on the frequency branch. Not a candidate.
+    (for the record, K = 1/2 at z = 4/9 = 0.444444)
+
+================================================================================================
+S5. Does the 'spectral side wants kappa = 1' pattern survive?
+================================================================================================
+  principle                                                kappa    vs 1/2   in box
+  ----------------------------------------------------------------------------------
+  P1 as published (on-cut = dissipative) -- WRONG PREMISE  1.137860   +127.6%       no
+  P1 corrected (sin phi taper)                          0.324808    -35.0%       no
+  P2 crossover matching                                 1.012171   +102.4%       no
+
+  live (non-retracted) spread: kappa in [0.3248, 1.0122]
+  brackets kappa = 1/2? YES
+
+  ANSWER TO THE QUESTION ASKED. The 'spectral side wants kappa ~ 1' pattern was
+  PARTLY AN ARTIFACT of my wrong dissipative identification: correcting it moves
+  P1 from 1.1379 to 0.3248, i.e. to the OTHER SIDE of 1/2. So it is not true
+  that the spectral axis systematically wants the 1/2 deleted. What IS true is
+  that the two surviving principles straddle 1/2 by factors of order 1.5-2 and
+  neither lands on it.
+
+  PER MY OWN PRE-COMMITMENT: bracketing is weak evidence that the AXIS is the
+  right neighbourhood and ZERO evidence for the VALUE. It is not a win and is not
+  reported as one. kappa = 1/2 remains POSTULATED.
+
+================================================================================================
+VERDICT
+================================================================================================
+  1. P1's premise was WRONG and is corrected: the bath couples to the dissipative
+     weight D = 1/pi = 0.318310 (closed form), not to region B's 2/pi. My error,
+     found by re-reading the framework's own unimodularity result.
+  2. Corrected P1 gives kappa = 0.324808, on the opposite side of 1/2 from the
+     published value, so the 'wants kappa = 1' reading is RETRACTED as stated.
+  3. One near-miss knob (kappa = 0.506 from dropping the forced 2 in a0/2c) and
+     one category error are explicitly REJECTED and recorded.
+  4. Look-elsewhere stays at 6 attempts (a correction is not a new trial).
+  5. Nothing empirical moves. kappa = 1/2 POSTULATED, NOT DERIVED.
+================================================================================================
