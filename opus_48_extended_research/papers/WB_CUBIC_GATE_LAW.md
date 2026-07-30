@@ -3,9 +3,14 @@
 **C. P. Zimmerman**
 *Briar Creek Tech · Charlotte, NC · carl@briarcreektech.com*
 
-*Version 2 · 2026-07-28. Version 1 (2026-07-25) is superseded: the branch ambiguity it was conditional
-on is now settled from the theory's own action, its open feasibility question is answered (negatively),
-the exponent is generalised, and one parameter is newly declared free. Scripts listed in §8.*
+*Version 3 · 2026-07-30. The $s^3$ prediction, its five falsifiers and the frozen pre-registration are
+UNCHANGED. v3 (i) reduces the coefficient to a single rational, $a_0=\kappa c\sqrt{G\rho_\Lambda}$ with
+$\kappa=1/2$ (§1); (ii) tightens the ECCENTRIC-ORBIT error budget from a factor of several to
+$\lesssim8\%$ using the action's own $\Box_u$, and records two exact identities (§2.1); (iii) adds an
+independent CMB check of the $a_0$ footing, crediting Gnedin (2008) for posing and first deciding that
+fork (§8); and (iv) reports six closed classes in the search for what fixes $\kappa$ — a negative
+result. Version 2 (2026-07-28) settled the branch ambiguity, generalised the exponent, and resolved
+feasibility negatively; Version 1 (2026-07-25) is superseded. Scripts listed in §8.*
 
 ---
 
@@ -35,6 +40,25 @@ acceleration scale is tied to the cosmological constant:
 
 $$a_0=\frac{cH_\Lambda}{Z}=c^2\sqrt{\frac{\Lambda}{32\pi}}=9.36\times10^{-11}\ \mathrm{m}\,\mathrm{s}^{-2},
 \qquad Z=\sqrt{32\pi/3}=5.78881 .$$
+
+**New in v3 — the coefficient is a single rational, and "$32\pi/3$" is an artifact.** Writing $32\pi$
+as $8\pi/\kappa^2$ and substituting $\Lambda=8\pi G\rho_\Lambda/c^2$, *every* $\pi$, the 32 and the 3
+all cancel:
+
+$$\boxed{\,a_0=\kappa\,c\sqrt{G\rho_\Lambda}\,},\qquad \kappa=\tfrac12 .$$
+
+So $32\pi/3$ is not a compound of three geometric factors — it is what one statement looks like after
+being routed through $\Lambda$ and Einstein's $8\pi$. The framework's entire dimensionless content is
+the single **rational** $\kappa=1/2$, and the honest form of the open problem is *why $\kappa=\tfrac12$*,
+not *why $32\pi/3$*. Two consequences worth recording. (i) The standing transcendence obstruction —
+"$Z$ carries a transcendental $\sqrt\pi$ while flavour data are algebraic" — is correct about $Z$, but
+that $\sqrt\pi$ belongs to **general relativity's** $8\pi$, not to this framework, whose own number is
+rational. (ii) $\kappa$ remains **postulated**: an exhaustive sweep of the kernel's own conditions
+(Herglotz sum rule, $K(0)=0$, $\lVert K\rVert\le1$, retarded analyticity, branch point, thermal
+saturation against every forced kernel constant, and the location statistics of the spectral measure)
+found **none** that fixes it, because each is imposed at a scale-free point of the dimensionless axis
+$z=\Box_u/a_0^2$ and is therefore invariant under $a_0\to\lambda a_0$. Six classes closed; the value
+is not derived.
 
 **Credit, plainly stated.** The interpolation $\nu(y)=\sqrt{1+1/y}$ and the identity
 $g_\mathrm{obs}^2-g_\mathrm{bar}^2=a_0g_\mathrm{bar}$ are Milgrom (1999, *Phys. Lett. A* **253**, 273),
@@ -81,6 +105,38 @@ to $K$.
 **This settles an ambiguity Version 1 was explicitly conditional on.** Had the kernel responded to
 $|a|$, the gate would stay open and the prediction would be $\gamma_v\approx1.09$ instead. It does not.
 The result below no longer rests on a choice.
+
+### 2.1 New in v3 — eccentric orbits, and how sharp the prediction actually is
+
+Real wide binaries are **not circular**, so §2's identity is the wrong tool for them on its own, and
+this is the honest soft spot of v1 and v2. Off circles the eigenvector relation fails and a *closure*
+must be chosen — a prescription for reducing $\Box_u u_\mu$ to the scalar argument of $K$. The repo's
+prior verdict on that closure was **free, bounded**. Two things are new here.
+
+**(a) The freedom is much smaller than "free" suggests — by two orders of magnitude.** The prior
+bracket was computed over time-weightings of $|a|^2$, which know nothing about $\Box_u$. Using the
+action's actual $\Box_u u$ instead collapses the spread. On radial infall onto $10^{12}M_\odot$ — the
+maximally non-circular case, i.e. a hard upper bound on eccentricity effects:
+
+| infall from | $|a|^2$-weighting family | action $\Box_u$ family | narrowing |
+|---|---|---|---|
+| 300 kpc | $\nu = 1.170,\,2.364,\,7.837$ — spread **570%** | $\nu = 1.0004,\,1.0062,\,1.0797$ — spread **7.9%** | **72×** |
+| 100 kpc | spread **172%** | spread **0.9%** | **189×** |
+
+So the off-circular ambiguity in $\nu$ is $\lesssim8\%$ in the worst case, not a factor of several. The
+$s^3$ prediction is correspondingly **sharp to that level for eccentric pairs**, which is what the
+Gaia DR4 shape test actually needs. This upgrades the prediction from quasi-linear to nearly sharp.
+
+**(b) Two exact identities, and an honest limit.** Symbolically, at matched local acceleration $a$ and
+radius $r$:
+
+$$\text{circular:}\quad \frac{\Box_u u}{u}=-\Omega^2=-\frac{a}{R},
+\qquad\qquad \text{radial infall:}\quad \frac{\Box_u u^r}{u^r}=\frac{2GM}{r^3}=+\frac{2a}{r}.$$
+
+A factor **2** and an **opposite sign**. Stated against interest: the action does **not** eliminate the
+freedom, because $\Box_u u$ is *not parallel* to $u$ off circles — the spatial and time components
+differ by 8 to 5 orders along the infall — so a projection must still be chosen. The action narrows;
+it does not close.
 
 ## 3. The gate is shut in the window everyone measures
 
@@ -194,13 +250,39 @@ Since the test cannot run until DR4, the prediction is frozen in the open before
 - **Nothing about whether dark matter exists.** A wide-binary result constrains the weak-field *force
   law*, not the matter content. $\gamma_v=1$ is Newton's prediction — shared by ΛCDM, by this
   framework's own gated branch, and by modified-force-plus-particle hybrids.
-- **$a_0$'s value, $Z$, the sign $s=-1$ and $\omega_c$ are postulated, not derived.**
+- **$a_0$'s value, $\kappa$ (equivalently $Z$), the sign $s=-1$ and $\omega_c$ are postulated, not
+  derived.** New in v3: six independent classes of condition on the kernel's own spectral structure
+  were swept for one that would fix $\kappa$, and all six are closed — every committed condition sits
+  at a scale-free point of $z=\Box_u/a_0^2$ and is invariant under $a_0\to\lambda a_0$.
+
+**New in v3 — the footing this paper carries is the one independently favoured, and credit for that
+question is not ours.** The paper runs both $a_0$ footings throughout. The fork itself — whether $a_0$
+couples to $cH(z)$ or to the dark-energy density $\sqrt{8\pi G\rho_\Lambda/3}$ — was posed and tested
+long before this work: **Gnedin (2008)**, *The Redshift Evolution of the Tully–Fisher Relation as a
+Test of Modified Gravity* (arXiv:0809.2790), states both options explicitly, tests them against
+high-$z$ Tully–Fisher data to $z=1.2$, and concludes that dark-energy coupling can be consistent while
+Hubble coupling requires unreasonable $w$ — *"this would appear to favor coupling to the dark energy
+density."* See also arXiv:0802.1526 on whether $G$ and $a_0$ vary with epoch.
+
+We add only an **independent check from a different epoch and different systematics**, which is worth
+recording because Gnedin explicitly flagged possible unaccounted systematics. Applying the two footings
+to the recombination plasma: since the acoustic acceleration is $a_\mathrm{ac}\sim c_sH$, a rising
+$a_0=cH(z)/Z$ makes $H$ **cancel**, leaving $y=Z/\sqrt{3(1+R)}\approx2.6$–$3.3$ at *every* epoch — so
+$\nu-1\approx15\%$ throughout the entire acoustic era, not as a late correction. Propagated through
+$c_s^2=c^2/[3(1+R)]$ over CAMB's exact background (our sound-horizon integral reproduces CAMB's own
+$r_\star=144.44$ Mpc to $0.00\%$), this shifts $\theta_\star$ by $\approx1.5\%$ against Planck's
+$0.03\%$ measurement — excluded. The constant, $\rho_\Lambda$-tied footing shifts $\theta_\star$ by
+$3\times10^{-7}$ and is consistent. **Same verdict as Gnedin (2008), from the CMB rather than from
+Tully–Fisher.** Stated as a limitation: this is a background-plus-recombination treatment, not a
+modification of the Boltzmann perturbation hierarchy, and a fully relativistic MOND theory (AeST;
+Skordis & Złośnik) already reproduces the CMB — so the rigorous form of this question belongs to that
+theory, not to an $a_0(z)$ scaling argument.
 
 **Reproducibility.** Every number is printed by committed scripts, all `exit 0`, no hard-coded verdicts,
 both footings and both $\omega_c$ edges throughout: `mi_dcac_branch_settled_2026.py` (5/5, §2),
 `mi_wb_gate_fork_2026.py` (11/11, §3), `mi_wb_cubic_rise_2026.py` (10/10, §4),
 `mi_wb_exponent_pipeline_2026.py` (6/6, §4–5), `mi_wb_dr3_feasibility_2026.py` (5/5, §6),
-`mi_omegac_anchor_2026.py` (8/8, §1), `count_wb_elbadry2021.py` (catalogue counts). Repository:
+`mi_omegac_anchor_2026.py` (8/8, §1), `count_wb_elbadry2021.py` (catalogue counts). New in v3: `mi_kappa_spectral_reduction_2026.py` (§1, the kappa reduction), `mi_offcircular_closure_collapse_2026.py` (§2.1, the closure narrowing and the two identities), `mi_three_classes_2026.py` + `mi_thermal_class_nogo_2026.py` + `mi_bootstrap_circularity_2026.py` (§8, the six closed classes), `mi_cmb_camb_run_2026.py` (§8, the CAMB footing check). Repository:
 https://github.com/carlzimmerman/zimmerman-formula
 
 **Corrections carried from Version 1**, recorded rather than quietly fixed: the 200-vs-30 kAU excess
@@ -211,12 +293,22 @@ declared a free parameter rather than described as a constrained window.
 
 ---
 
+**New in v3, and stated plainly:** nothing in this version changes the $s^3$ prediction, its five
+falsifiers, or the frozen pre-registration. v3 sharpens the *error budget* (§2.1: eccentric-orbit
+closure now $\lesssim8\%$ instead of a factor of several), simplifies the *coefficient* (§1: one
+rational $\kappa=1/2$), and adds an *independently-credited* footing check (§8). No new observable,
+no new claim, and one additional negative result — six closed classes in the search for what fixes
+$\kappa$.
+
+---
+
 ## References
 
 Banik, I., Pittordis, C., Sutherland, W., et al. 2024, *MNRAS* — wide-binary Newtonian null.
 Chae, K.-H. 2023–2025, *ApJ* — wide-binary boost claims.
 El-Badry, K., Rix, H.-W., & Heintz, T. M. 2021, *MNRAS* **506**, 2269 — the public Gaia eDR3 catalogue.
 Milgrom, M. 1983, *ApJ* **270**, 365.
+Gnedin, O. Y. 2008, arXiv:0809.2790 — the redshift evolution of the Tully–Fisher relation; poses and tests the $a_0\propto cH$ versus $a_0\propto\sqrt{\rho_\Lambda}$ fork.
 Milgrom, M. 1999, *Phys. Lett. A* **253**, 273 — Eqs. (8)–(9): the kernel and identity used here.
 Milgrom, M. 2015, *Can. J. Phys.* **93**, 107.
 Peñarrubia, J. 2021 — wide-binary contamination.
