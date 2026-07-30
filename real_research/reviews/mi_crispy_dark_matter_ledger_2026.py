@@ -266,3 +266,38 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
+# =====================================================================================================
+# AMENDMENT 1 -- 2026-07-30, appended after mi_phantom_artifact_2026.py and
+# mi_phantom_prior_art_and_exclusivity_2026.py. The code above is UNCHANGED and still runs; this records
+# two defects found later the same day, because a ledger that cannot audit itself is worthless.
+#
+# DEFECT 1 -- THE "PARAMETER-FREE" CLAIM IS CONDITIONAL, NOT ESTABLISHED.
+#   The ledger treats DESI's (w0, wa) as an INDEPENDENT measurement feeding a parameter-free a0(z). But
+#   those values were inferred by fitting SN and BAO distances with STANDARD inertia and standard growth
+#   -- the very thing this framework denies. The input is independent only if modified inertia does not
+#   affect the distance-redshift relation, and that is an ASSUMPTION nowhere established in the corpus.
+#   With c H0 / a0 = 7.00 (same order), it is not a safe assumption.
+#   SURVIVES: the two STRUCTURAL findings, which are shape statements and do not depend on it --
+#     (i) the DESI-dependent signal is small (~0.01 dex at z=1) and CHANGES SIGN near z~1;
+#     (ii) on the alt cH(z)/Z footing the absorption function is EXACTLY zero, so the test is empty there.
+#   DOES NOT SURVIVE unqualified: "parameter-free".
+#
+# DEFECT 2 -- THIS LEDGER IS MUTUALLY EXCLUSIVE WITH THE PHANTOM-ARTIFACT READING.
+#   This ledger presumes Lambda EVOLVES (so a0 evolves, so LCDM owes an absorption function A(z)).
+#   mi_phantom_artifact_2026.py proposes Lambda is CONSTANT and the apparent evolution is an artifact of
+#   standard-inertia fitting (so a0 is CONSTANT). Both cannot hold. They separate by 0.077 dex at z=2 and
+#   0.141 dex at z=3, so a ~0.05 dex high-z RAR normalisation measurement decides it -- the contradiction
+#   is an experiment, not just an embarrassment.
+#
+# STATUS CHANGE, therefore: this document is DEMOTED from a prediction to a CONDITIONAL --
+#   "IF Lambda evolves as DESI's CPL fits say, here is the absorption LCDM owes, and here is its
+#    parameter cost."
+#   It is NOT to be presented as the framework's position on dark energy. The framework's preferred
+#   reading should be the constant-Lambda one, which keeps a0 constant (independently preferred by the
+#   low-z RAR), removes Defect 1's circularity, and stops the framework riding a feature the field calls
+#   unphysical (Dodelson 2026-07-23 on the growing-rho_DE "red line").
+#
+# ALSO: the phantom-artifact IDEA itself is NOT NOVEL -- see
+# mi_phantom_prior_art_and_exclusivity_2026.py. Recommend against publishing it as such.
+# =====================================================================================================
