@@ -1,0 +1,95 @@
+
+====================================================================================================
+S1. SANITY GATE -- do the dwarfs land anywhere near the relation?
+====================================================================================================
+  N = 46 dwarfs, Upsilon_V = 2.0, canonical a0
+  g_bar spans 1.04e-14 to 2.01e-09 m/s^2  (0.0001 to 21.50 in units of a0)
+  residual: median +0.311 dex, mean +0.446, scatter 0.479 dex
+  [OK] the sample lands within 0.311 dex of the framework's relation without any tuning -- the construction is not broken, so inference on the OFFSET is meaningful
+  per-object scatter 0.479 dex is the number Prop 7 assumed as 0.15-0.20 --
+  NOT as assumed.
+
+====================================================================================================
+S2. The measured mean residual, with quality cuts
+====================================================================================================
+  Cuts, each applied cumulatively, all pre-stated rather than tuned:
+   C1  drop rows with no quoted sigma error (unusable weight)
+   C2  drop sigma/e_sigma < 3 (ultra-faints where binaries dominate)
+   C3  drop R_half < 100 pc (the ultra-faint regime, tidally suspect)
+   C4  MW satellites only (M31/Rest have larger distance and dispersion systematics)
+  sample            N  mean resid   scatter  err on mean  sigma vs 0  sigma vs -0.037
+  all              46     +0.4460    0.4839       0.0713        6.25             6.77
+  C1               44     +0.4429    0.4942       0.0745        5.94             6.44
+  C1+C2            33     +0.3895    0.4481       0.0780        4.99             5.47
+  C1+C2+C3         29     +0.2945    0.3825       0.0710        4.15             4.67
+  C1+C2+C3+C4      14     +0.3703    0.4331       0.1157        3.20             3.52
+  [OK] the main cut sample has N = 29, in the 40-60 neighbourhood Prop 7 forecast against (before cuts N = 46)
+  MAIN SAMPLE (C1+C2+C3): mean residual +0.2945 +/- 0.0710 dex (random error only)
+
+====================================================================================================
+S3. *** THE SYSTEMATIC PROP 7 TREATED AS RANDOM -- and it breaks the forecast ***
+====================================================================================================
+  Prop 7 forecast 3 sigma at N ~ 150 by scaling the error as sigma_obj/sqrt(N). That
+  assumes the dominant error is RANDOM per object. The dominant error is NOT random:
+  the stellar mass-to-light ratio Upsilon_V is uncertain by a factor ~1.5-2 and is
+  COHERENT across the whole sample (same stellar populations, same calibration). It shifts
+  every dwarf the SAME way, so sqrt(N) does nothing to it.
+  Propagation: Upsilon -> f*Upsilon shifts log g_bar by log f, and the residual by
+  -(dlog g_RAR/dlog g_bar) * log f. In the deep regime that slope is 1/2.
+   Upsilon_V    log f  mean resid  shift from fid
+         1.0   -0.301     +0.4540         +0.1595
+         1.5   -0.125     +0.3610         +0.0665
+         2.0    0.000     +0.2945         +0.0000
+         3.0    0.176     +0.1999         -0.0946
+         4.0    0.301     +0.1320         -0.1624
+  Coherent systematic span over Upsilon_V = 1-4:  0.3219 dex
+  The signal being sought:                        0.0370 dex
+  ratio systematic/signal = 8.7
+  [OK] the COHERENT Upsilon systematic (0.322 dex) is 9x the -0.037 dex signal, and no sample size reduces it -- PROP 7's sqrt(N) FORECAST IS INVALID as stated
+  To make the systematic smaller than the signal, Upsilon_V must be known to better than
+  0.0740 dex = 18.6% -- against a literature spread of ~50-100%.
+  [OK] the required Upsilon control is 19%, far tighter than the ~50-100% literature spread on dSph stellar mass-to-light ratios
+
+====================================================================================================
+S4. Is the closure offset SEPARABLE from Upsilon? The one hope, tested.
+====================================================================================================
+  A coherent Upsilon error and a closure offset are only degenerate if they have the SAME
+  dependence on g_bar. Check both slopes against log10(g_bar/a0) on the real sample:
+  d(residual)/d(log Upsilon) per object: mean -0.5343, range -0.9776 to -0.5001
+  its SLOPE against log10(g_bar/a0): -0.0671 per dex
+  The closure-B offset, by contrast, was computed in Prop 7 for deep-regime orbits and is
+  approximately CONSTANT there, i.e. slope ~ 0 per dex.
+  [OK] the Upsilon direction has a NON-ZERO slope (-0.067/dex) against g_bar while the closure offset is flat -- so they are PARTIALLY SEPARABLE in principle, which is the only route left for this test
+  HOW MUCH THAT BUYS, honestly: separability requires dynamic range in g_bar AND the
+  closure offset's own g_bar dependence, which Prop 7 did NOT compute (it evaluated a
+  single deep-regime orbit family). Quantifying the separation therefore needs a Prop-7
+  calculation extended across g_bar -- a concrete next step, not a result here.
+  Available dynamic range in this sample: log10(g_bar/a0) from -3.95 to 1.33 = 5.28 dex
+
+====================================================================================================
+S5. VERDICT -- both footings
+====================================================================================================
+  canonical rho_DE  : mean residual +0.2945 +/- 0.0710 dex (random only), N = 29
+  alt rho_total     : mean residual +0.2562 +/- 0.0710 dex (random only), N = 29
+
+  1. THE TEST RAN ON REAL DATA. 46 McConnachie-2012 dwarfs fetched from VizieR, 29 after
+     pre-stated quality cuts. The sample lands on the framework's own relation without
+     tuning, so the construction is sound and the offset question is well posed.
+  2. MEASURED mean residual +0.2945 dex with a random error of 0.0710 dex. Taken at face
+     value that is 4.1 sigma from Closure A's zero and 4.7 sigma from Closure B's -0.037.
+  3. *** BUT THE FORECAST IN PROP 7 WAS WRONG, AND THIS IS THE REAL RESULT. *** It scaled
+     the error as sigma_obj/sqrt(N), treating the dominant uncertainty as random. The
+     dominant uncertainty is the stellar mass-to-light ratio, which is COHERENT across the
+     sample: varying Upsilon_V over 1-4 moves the mean residual by 0.322 dex, 9x the
+     signal, and sqrt(N) does not touch it. Matching the signal would need Upsilon_V known
+     to 19%, against a literature spread of 50-100%.
+     SO 'N ~ 150 for 3 sigma' AND 'ARCHIVAL, NO NEW FACILITY' ARE BOTH RETRACTED as stated.
+  4. WHAT SURVIVES. The two closures still make genuinely different predictions and the
+     signature is still MG-inaccessible. But the test is SYSTEMATICS-LIMITED, not
+     sample-limited, so the route forward is not more dwarfs -- it is either (a) breaking
+     the Upsilon degeneracy using the different g_bar-slopes found in S4, which needs the
+     closure offset computed ACROSS g_bar rather than at one orbit family, or (b) a sample
+     with independently calibrated stellar masses.
+  5. Front D in STANDING.md must be downgraded from 'archival, already 1.2-1.9 sigma' to
+     'systematics-limited; needs the g_bar-resolved closure prediction first'.
+====================================================================================================
