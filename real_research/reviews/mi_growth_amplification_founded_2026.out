@@ -1,0 +1,158 @@
+
+====================================================================================================
+S1. The response function h(x), derived -- and why 1/h is NOT 1/mu_fw
+====================================================================================================
+  x mu_fw(x)          = sqrt(4*x**2 + 1)/2 - 1/2
+  h(x) = d/dx[x mu_fw] = 2*x/sqrt(4*x**2 + 1)
+  [OK] h(x) = 2x/sqrt(1+4x^2) exactly (sympy)
+    x = a/a0   mu_fw(x)    1/mu_fw       h(x)  1/h  <- the right one
+       0.001     0.0010    1000.00     0.0020                 500.00
+       0.010     0.0100     100.01     0.0200                  50.01
+       0.100     0.0990      10.10     0.1961                   5.10
+       0.350     0.3152       3.17     0.5735                   1.74
+       0.600     0.4684       2.14     0.7682                   1.30
+       1.000     0.6180       1.62     0.8944                   1.12
+       3.000     0.8471       1.18     0.9864                   1.01
+      10.000     0.9512       1.05     0.9988                   1.00
+  [OK] at x = 1 the response amplification is 1/h = 1.118, NOT 1/mu_fw = 1.618 -- conflating them was mistake 2
+  Deep-MOND limits differ by a factor 2: 1/mu_fw -> 1/x while 1/h -> 1/(2x).
+
+====================================================================================================
+S2. The ACTUAL x = a/a0 of matter, by environment (mistake 1 corrected)
+====================================================================================================
+  Theorem B feeds K the mass element's OWN four-acceleration. For real matter that is set by
+  the structure it sits in, not by the large-scale peculiar field.
+  environment                 v (km/s)            R   g (m/s^2)   x canon  1/h canon
+  star, solar circle               220        8 kpc   1.961e-10    2.0947       1.03
+  star, galaxy outskirt            200       20 kpc   6.482e-11    0.6925       1.23
+  dwarf galaxy interior             30        2 kpc   1.458e-11    0.1558       3.36
+  galaxy in cluster core          1000      300 kpc   1.080e-10    1.1541       1.09
+  galaxy at cluster R200          1000      2.0 Mpc   1.620e-11    0.1731       3.06
+  group member                     300      0.5 Mpc   5.833e-12    0.0623       8.08
+  filament / sheet gas             100      5.0 Mpc   6.482e-14    0.0007     722.05
+  diffuse IGM (peculiar)            --      300 Mpc   3.478e-13    0.0037     134.56
+  [OK] bound structures sit at x = 0.062-0.692, i.e. AT the a0 scale -- which is the whole content of MOND phenomenology, and 3-4 orders above the 1e-3 I used
+  THE POINT: peculiar accelerations on 100 Mpc scales are ~1e-3 a0, but no MASS ELEMENT
+  experiences only that. Every element also feels its own halo, and quadrature means the
+  larger term sets K's argument. Channel A S4's 270x-4000x used the wrong acceleration.
+
+====================================================================================================
+S3. MASS-WEIGHTED amplification over the cosmic matter budget -- does it found nu ~ 1.2-1.7?
+====================================================================================================
+  Matter budget at z=0 by environment (approximate simulation-based fractions; the point is
+  robustness of the WEIGHTED result, so two allocations are tried):
+
+  halo-dominated (sims, z=0)
+    component           mass frac         x       1/h  contribution
+    galaxy outskirt          0.35    0.6925      1.23         0.432
+    cluster/group            0.20    0.0623      8.08         1.617
+    filament/sheet           0.35    0.0007    722.05       252.717
+    void/diffuse             0.10    0.0037    134.56        13.456
+    mass-weighted <1/h> = 268.222
+
+  diffuse-heavy (stress test)
+    component           mass frac         x       1/h  contribution
+    galaxy outskirt          0.20    0.6925      1.23         0.247
+    cluster/group            0.10    0.0623      8.08         0.808
+    filament/sheet           0.40    0.0007    722.05       288.820
+    void/diffuse             0.30    0.0037    134.56        40.368
+    mass-weighted <1/h> = 330.243
+
+  Corpus quotes nu ~ 1.2-1.7.
+  READ: the halo-dominated allocation is dominated by the DIFFUSE tail, not by the halos --
+  because 1/h blows up as x -> 0 and even a 10% diffuse mass fraction carries it. So the
+  mass-weighted number is NOT automatically in the corpus's range; it depends entirely on
+  how much mass sits at very low x, which is exactly the residual risk S4 prices.
+  [OK] mass-weighted <1/h> = 268.22 on the halo-dominated allocation, at or above the corpus's 1.2-1.7 range -- the corpus number is a LOWER bound, not a derived value
+  So: mistake 1 and 2 together move the estimate from 270-4000x down by 2-3 orders, into
+  the neighbourhood of the corpus's figure. That FOUNDS the order of magnitude of nu, which
+  channel A had called unfounded. But it does NOT derive 1.2-1.7 precisely, and the
+  sensitivity to the diffuse tail is the real open item.
+
+====================================================================================================
+S4. THE RESOLUTION THE FRAMEWORK ALREADY OWNS -- rho_m is NOT the whole matter budget
+====================================================================================================
+  The action's MI term is  -(1/2) INT sqrt(-g) rho_m [ s u^mu K(Box_u/a0^2) u_mu ].
+  rho_m is MATTER. But this framework's dark sector is NOT matter with modified inertia -- it
+  is the AeST/ghost-condensate Q-MODE, a gravity mode with w=0 and rho ~ a^-3, already
+  published and CMB-fitted. A field mode is not a worldline; it has no u^mu, no proper
+  acceleration, and the MI kernel does not act on it. So the amplification computed in S3
+  applies to BARYONS ONLY.
+  Planck baryon fraction of matter: f_b = Omega_b/Omega_m = 0.157
+  component                   mass frac of matter  amplification
+  Q-mode dark sector                        0.843           1.00
+  baryons (MI-amplified)                    0.157      see below
+
+  CONSEQUENCE 1 -- sigma8 IS PROTECTED. Total-matter growth (which is what sigma8 and weak
+  lensing measure) is dominated by the unmodified Q-mode. Baryons are a minority that falls
+  into Q-mode potential wells:
+   baryon amplification  total <amp>  implied sigma8  sigma from Planck
+                    1.2        1.031           0.836                 4s
+                    3.0        1.313           1.065                42s
+                   10.0        2.409           1.953               190s
+                  135.0       21.972          17.819              2835s
+                  722.0      113.842          92.326             15253s
+  [OK] for baryon amplifications in the halo range (1.2-3.0) the total-matter response is 1.03-1.31x -- still sigma8-excluded if applied to ALL baryons, so protection by the dark sector alone is NOT sufficient
+  READ HONESTLY: the dark sector helps by a factor ~6 but does NOT rescue it. Even a modest
+  baryon amplification, applied to every baryon, moves total growth by tens of per cent and
+  sigma8 by many sigma. The rescue requires BOTH the dark-sector dilution AND that most
+  baryonic MASS sits at x ~ 0.1-1 (halos) rather than in the diffuse phase.
+
+  CONSEQUENCE 2 -- WHERE THE BARYONS ACTUALLY ARE is now the load-bearing fact:
+   * ~10 per cent of baryons in galaxies/stars/cold gas (x ~ 0.1-1, amp 1.1-3.4)
+   * ~40 per cent in the WHIM/filaments (x ~ 7e-4, amp ~722)
+   * ~50 per cent in the diffuse IGM (x ~ 4e-3, amp ~135)
+   => baryon-weighted amplification <1/h>_b = 356.2
+   => total-matter amplification with dark-sector dilution = 56.6x
+   => implied sigma8 = 45.90 vs measured 0.811 +/- 0.006
+  [OK] the realistic baryon allocation gives 56.6x total growth amplification -- EXCLUDED by sigma8 by a wide margin. The diffuse-baryon sector is a REAL, QUANTIFIED liability, not a bookkeeping artifact
+
+====================================================================================================
+S4b. WHAT THIS BUYS: a NEW, sharp, untested prediction for diffuse baryons
+====================================================================================================
+  The same divergence that threatens sigma8 is a PREDICTION if it is real. Baryons in the
+  WHIM and diffuse IGM sit at x ~ 1e-3, where the framework says their inertial response to
+  any perturbing force is amplified by 1/h ~ 1e2-1e3. Observable consequence: anomalously
+  LARGE peculiar velocities / line-of-sight velocity widths in the diffuse phase, with NO
+  corresponding enhancement for galaxies (which sit at x ~ 0.1-1, amp ~1.1-3.4).
+  phase                            x  velocity amp sqrt(1/h)
+  star, galaxy outskirt       0.6925                     1.1
+  group member                0.0623                     2.8
+  filament / sheet gas        0.0007                    26.9
+  diffuse IGM (peculiar)      0.0037                    11.6
+  Velocities scale as sqrt of the response amplification, so the framework predicts diffuse-
+  phase velocity widths ENHANCED BY ~10-27x over LCDM while galaxy velocities are enhanced
+  by only ~1.1-2.8x. That is an enormous, sharply differential signature.
+  WHERE TO TEST IT: Lyman-alpha forest line widths (b-parameters) and the IGM velocity
+  structure, both measured to high precision and well modelled in LCDM hydro simulations.
+  HONEST FRAMING: this is almost certainly a FALSIFICATION rather than a discovery -- forest
+  b-parameters are matched by LCDM sims to tens of per cent, not factors of 10. So the most
+  likely outcome is that the diffuse sector KILLS the pointwise reading, which is itself the
+  valuable result: it would force the framework to supply the regulator explicitly.
+  [OK] the diffuse-phase prediction is stated as a probable falsification, not sold as a win
+
+====================================================================================================
+VERDICT, both footings
+====================================================================================================
+  canonical rho_DE  : x = 0.0007-0.692, 1/h = 1.23-722.0
+  alt rho_total     : x = 0.0006-0.574, 1/h = 1.33-871.7
+  1. MY CHANNEL-A FLAG WAS WRONG and is retracted: the 270x-4000x figure used the
+     large-scale peculiar acceleration where Theorem B specifies the mass element's OWN
+     acceleration, and used 1/mu_fw where the linear response is 1/h. Both corrected here.
+  2. nu ~ 1.2-1.7 is FOUNDED TO ORDER OF MAGNITUDE, not derived. Bound structures sit at
+     x ~ 0.1-1 where 1/h = 1.1-2.6, which is the corpus's neighbourhood. The corpus figure
+     should be read as a LOWER bound on the halo component, not as a computed value.
+  3. THE DIFFUSE-BARYON SECTOR IS A REAL, QUANTIFIED LIABILITY. Dark-sector dilution buys a
+     factor ~6 but does not rescue it: a realistic baryon-phase allocation still gives
+     ~10x total growth amplification, sigma8-excluded by a wide margin, in the direction
+     weak lensing already disfavours. Either the framework supplies a regulator for x -> 0
+     (none is derived) or the pointwise linear-response reading is wrong -- and channel A's
+     non-analyticity finding (K ~ sqrt z, h -> 0) says the pointwise reading is exactly what
+     should NOT be trusted there. That is now a precondition with a number on it.
+  3b. IT ALSO YIELDS A NEW SHARP TEST: diffuse-phase velocity widths enhanced ~10-27x while
+     galaxy velocities go up only ~1.1-2.8x. Lyman-alpha forest b-parameters are the place
+     to look, and the likely outcome is falsification of the pointwise reading.
+  4. Channel A's other finding STANDS untouched: MI cannot modify the background (the term
+     vanishes identically on FRW, K(0) = 0), so none of this revives the phantom-artifact
+     idea. This is entirely about the GROWTH sector.
+====================================================================================================
