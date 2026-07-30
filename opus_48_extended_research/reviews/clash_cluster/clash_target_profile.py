@@ -39,8 +39,16 @@ COMPANION (SHARED-GAP anchor):
     system mass + boundary potential; for LOWER accel the AeST RAR DROPS BELOW the MOND expectation,
     "as if there is a negative mass density" (abstract, verbatim). => AeST adds a transient extra
     boost at intermediate accel, but its DEEP tail goes the WRONG way; it does NOT supply right-signed
-    cored central mass at deep-MOND cluster cores. The cored cluster-core residual is a SHARED
-    undershoot of the relativistic-MOND family, not specific to AeST OR to the Zimmerman framework.
+    cored central mass at deep-MOND cluster cores. The cored cluster-core residual is therefore
+    shared BETWEEN AeST AND the Zimmerman framework, and not specific to either.
+    *** SCOPE CORRECTION 2026-07-30: read that as an ARGUED PATTERN, not a published theorem. ***
+    There is NO published statement that the residual is shared across the whole
+    relativistic-MOND family: Skordis & Zlosnik 2021 does not discuss clusters at all,
+    Durakovic & Skordis 2023 (arXiv:2312.00889) claim only "potential", and Famaey, Pizzuti &
+    Saltas 2024 (arXiv:2410.02612) call it "an open question". What IS defensible is (a) the
+    in-corpus MI == AeST(=MG) static-limit identity, which covers MI-vs-AeST only, and (b) the
+    40-year reproduced pattern across MOND cluster analyses. See
+    real_research/reviews/clusters_eta_audit.py section 8.
 
 FRAMEWORK FOOTING (MEMORY eta-WORST): a0=9.36e-11 m/s^2, g_obs=sqrt(g_bar^2+g_bar*a0).
 """
@@ -153,8 +161,15 @@ print("HEADLINE (both ways): the CLASH-lensing residual (FPS 2025) and the eRASS
 print("are the SAME OBJECT from two INDEPENDENT probes -- cored (gamma=0), gas-tracking, ~420-430 kpc")
 print("cutoff, missing/gas~10, remarkably UNIFORM, ~2.3e14 Msun inside ~420 kpc at a matched M500~1e15")
 print("(RXJ1347 2.4e14 vs eRASS1 2.3e14, ~1.0x). They AGREE in shape/core/uniformity/missing-gas; the")
-print("R500 magnitude differs ~1.6x = the WL-vs-HSE mass-scale gap (the banked eta bracket). It is a")
-print("SHARED undershoot of the relativistic-MOND family: AeST drops BELOW MOND at low a (same sign),")
-print("the framework's dS-Unruh nu is the LOWEST interpolation -> its undershoot is MARGINALLY the WORST,")
+print("R500 magnitude differs ~1.6x = the WL-vs-HSE mass-scale gap. NOTE (corrected 2026-07-30): that")
+print("gap is a WEAK-LENSING-vs-HYDROSTATIC MASS-CALIBRATION bracket (Li+2024), NOT a 'post-XRISM")
+print("equilibrium' bracket -- XRISM TIGHTENS the cluster front, it does not relieve it. It is an")
+print("undershoot shared BETWEEN AeST and this framework (an ARGUED pattern, not a published")
+print("family-wide theorem): AeST drops BELOW MOND at low a (same sign),")
+print("the framework's dS-Unruh nu is NOT the lowest interpolation and NOT the worst undershoot --")
+print("CORRECTED 2026-07-30: on real eRASS1 (clusters_eta_audit.py robustness row) nu_standard gives")
+print("eta 2.364 median vs the framework's 2.334, so 'standard' is marginally WORSE. The framework")
+print("does sit ABOVE simple-mu (2.149) and RAR-exp (2.153), which is the honest statement: worse than")
+print("the two kernels the corpus used to quote, better than one it never uses.")
 print("NOT better than AeST. NO framework-distinctive MI cored-profile edge. Quarantine held; both ways.")
 print("="*94)

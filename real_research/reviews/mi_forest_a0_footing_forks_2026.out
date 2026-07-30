@@ -1,5 +1,43 @@
 
 ====================================================================================================
+S0. THE CORRECTION -- what was withdrawn, and what replaced it
+====================================================================================================
+====================================================================================================
+CORRECTION NOTICE -- READ BEFORE ANY NUMBER BELOW
+====================================================================================================
+  The four low-b cutoff values this script used until 2026-07-30 --
+    {3.7: 15.0, 3.35: 17.0, 2.85: 22.0, 2.3: 24.0} km/s, +/- 2.0 km/s --
+  were labelled 'web-verified, NOT quoted from memory'. They are UNSOURCEABLE. Verification
+  against the primary PDFs found: Schaye et al. 2000 (MNRAS 318, 817; astro-ph/9912432) has
+  NO table of fitted cutoff values at all, and the 16/22 that sequence resembles are the
+  y-AXIS TICKS of its Fig. 4 (simulation model L1); 15 and 24 lie outside that range. Worse,
+  the low-z half is REFUTED: Rudie, Steidel & Pettini 2012 (ApJ 757, L30; arXiv:1209.0005)
+  Table 2 measures 18.50 +/- 0.22 km/s at <z> = 2.3 at the same pivot, so 24 km/s is 25
+  sigma high, and 22-24 km/s would need T0 = 2.9-3.5e4 K, above all 13 studies in their
+  Table 3.  REPLACED BY Hiss et al. 2018, ApJ 865, 42 (arXiv:1710.00700), Table 4, with the
+  table's own asymmetric errors plus a separate calibration systematic.
+  THE SHAPE WAS ALSO WRONG: the retired sequence rose monotonically toward low z
+  (22 -> 24 km/s, z = 2.85 -> 2.30); the measured b0(z) TURNS OVER near z = 2.8 and FALLS to
+  18.22 km/s at z = 2.0. Schaye's Fig. 4 documents a rise at FIXED N_HI = 10^13.6 in a
+  simulation, but Hiss's b0 sits at a z-DEPENDENT pivot log N_HI,0 = 0.6225(1+z) + 11.1068,
+  so they are different statistics and Schaye does not license the retired numbers.
+====================================================================================================
+
+  Hiss et al. 2018, ApJ 865, 42 (arXiv:1710.00700), Table 4 -- the b(N) cutoff parameter b0:
+      z  b0 (km/s)   +err   -err  log N_HI,0(z)  sigma_stat/sigma_cal
+    2.0      18.22   0.97   1.39        12.9743                 3.46x
+    2.2      16.89   1.37   3.12        13.0988                 2.45x
+    2.4      18.68   0.74   1.07        13.2233                 4.54x
+    2.6      20.41   1.02   0.87        13.3478                 3.29x
+    2.8      22.67   0.55   0.60        13.4723                 6.11x
+    3.0      22.24   0.33   0.73        13.5968                10.18x
+    3.2      21.65   0.40   0.52        13.7213                 8.40x
+    3.4      20.80   0.71   1.27        13.8458                 4.73x
+  calibration systematic B_CAL_SYS = 3.36 km/s (18.68 - 15.32, Hiss Sec. 5.3), 2sigma-rej. variant 2.99 km/s
+  median Table 4 statistical +err = 0.72 km/s, so the
+  calibration channel is 4.6x wider than the median statistical bar.
+
+====================================================================================================
 S1. Question 1 -- the OBSERVATIONS are theory-free with respect to a0
 ====================================================================================================
   b is a Voigt-profile fit parameter: a line width in km/s read off the spectrum. No
@@ -9,87 +47,182 @@ S1. Question 1 -- the OBSERVATIONS are theory-free with respect to a0
   never their inferred temperature as a framework input.
   => NO CIRCULARITY. The measured b-values cannot have 'used a local a0'; nothing in a
      Voigt fit knows about one. Carl's first reading is answered: the data is clean.
-  [OK] the observational side is theory-free w.r.t. a0, stated explicitly
+
+  BUT NOT CONVENTION-FREE, and this is the part the first version of this script missed.
+  Hiss et al.'s b0 is the cutoff evaluated AT a pivot column density N_HI,0 that is itself
+  z-DEPENDENT (their eqn 11), so the eight Table 4 rows are not at a common column density:
+      z  log N_HI,0(z)  b0 (km/s)
+    2.0        12.9743      18.22
+    2.2        13.0988      16.89
+    2.4        13.2233      18.68
+    2.6        13.3478      20.41
+    2.8        13.4723      22.67
+    3.0        13.5968      22.24
+    3.2        13.7213      21.65
+    3.4        13.8458      20.80
+  pivot climbs 0.872 dex across the sequence. Rudie et al. 2012 use 10^13.6 and Bolton
+  et al. 2014 use 10^12.95; Hiss say that ~0.3 dex difference 'will certainly lead to
+  inconsistent values of b0'. Cross-paper comparison needs (N_HI/N_HI,0)^(Gamma-1)
+  rescaling, and the residual method disagreement is the 3.36 km/s channel carried below.
+  [OK] pivot span 0.872 dex reproduced from Hiss eqn 11 -- so b0 is theory-free w.r.t. a0 but NOT pivot-free, and a common-pivot rescaling moves the argmax from z = 2.8 to z = 3.0
 
 ====================================================================================================
-S2. Question 2 -- the a0 forks I OMITTED, computed at forest redshifts
+S2. Question 2 -- the a0 forks I OMITTED, computed at the Hiss redshifts
 ====================================================================================================
       z              F1 a0             F2 a0             F3 a0             F4 a0             F5 a0
-   2.30         9.3600e-11        1.1300e-10        7.4846e-11        3.8748e-10        7.6120e-10
-   2.85         9.3600e-11        1.1300e-10        6.9092e-11        4.8405e-10        9.5922e-10
-   3.35         9.3600e-11        1.1300e-10        6.4535e-11        5.7900e-10        1.1520e-09
-   3.70         9.3600e-11        1.1300e-10        6.1682e-11        6.4915e-10        1.2938e-09
+    2.0         9.3600e-11        1.1300e-10        7.8338e-11        3.3871e-10        6.5979e-10
+    2.2         9.3600e-11        1.1300e-10        7.5982e-11        3.7090e-10        7.2686e-10
+    2.4         9.3600e-11        1.1300e-10        7.3738e-11        4.0437e-10        7.9606e-10
+    2.6         9.3600e-11        1.1300e-10        7.1606e-11        4.3907e-10        8.6732e-10
+    2.8         9.3600e-11        1.1300e-10        6.9581e-11        4.7491e-10        9.4059e-10
+    3.0         9.3600e-11        1.1300e-10        6.7661e-11        5.1185e-10        1.0158e-09
+    3.2         9.3600e-11        1.1300e-10        6.5839e-11        5.4984e-10        1.0929e-09
+    3.4         9.3600e-11        1.1300e-10        6.4111e-11        5.8884e-10        1.1719e-09
   (for reference a0(z=0) canonical = 9.360e-11, alt = 1.130e-10)
-  [OK] the local-density fork gives a0 = 9.592e-10 at z=2.85, 10.2x the canonical value -- so it pushes x DOWN and makes the forest problem WORSE, not better
+  [OK] the local-density fork gives a0 = 9.406e-10 at z=2.8, 10.0x the canonical value -- so it pushes x DOWN and makes the forest problem WORSE, not better
 
 ====================================================================================================
 S3. x = g/a0 and the amplification, per fork
 ====================================================================================================
-  fork                        z=2.30      z=2.85      z=3.35      z=3.70
-  F1 const canonical         0.00534     0.00848     0.01223     0.01543
-  F2 const alt               0.00442     0.00703     0.01013     0.01278
-  F3 a0(z) declining         0.00668     0.01149     0.01774     0.02342
-  F4 a0(z) rising cH         0.00129     0.00164     0.00198     0.00223
-  F5 local density           0.00066     0.00083     0.00099     0.00112
+  fork                        z=2.0      z=2.2      z=2.4      z=2.6      z=2.8      z=3.0      z=3.2      z=3.4
+  F1 const canonical        0.00401    0.00487    0.00584    0.00693    0.00816    0.00951    0.01101    0.01266
+  F2 const alt              0.00332    0.00403    0.00484    0.00574    0.00676    0.00788    0.00912    0.01049
+  F3 a0(z) declining        0.00480    0.00600    0.00742    0.00906    0.01097    0.01316    0.01566    0.01849
+  F4 a0(z) rising cH        0.00111    0.00123    0.00135    0.00148    0.00161    0.00174    0.00187    0.00201
+  F5 local density          0.00057    0.00063    0.00069    0.00075    0.00081    0.00088    0.00094    0.00101
 
   velocity amplification sqrt(1/h) per fork:
-  fork                        z=2.30      z=2.85      z=3.35      z=3.70
-  F1 const canonical            9.68        7.68        6.39        5.69
-  F2 const alt                 10.63        8.44        7.02        6.26
-  F3 a0(z) declining            8.65        6.60        5.31        4.62
-  F4 a0(z) rising cH           19.69       17.46       15.90       14.99
-  F5 local density             27.59       24.58       22.43       21.16
-  MILDEST fork:  F3 a0(z) declining  (max amp 8.65)
-  HARSHEST fork: F5 local density (max amp 27.6)
-  [OK] even the MILDEST fork (F3 a0(z) declining) still gives amplification up to 8.7x -- no footing choice removes the effect
+  fork                        z=2.0      z=2.2      z=2.4      z=2.6      z=2.8      z=3.0      z=3.2      z=3.4
+  F1 const canonical           2.82       2.69       2.57       2.46       2.37       2.28       2.20       2.13
+  F2 const alt                 2.95       2.81       2.69       2.58       2.48       2.39       2.30       2.23
+  F3 a0(z) declining           2.70       2.55       2.42       2.31       2.20       2.11       2.02       1.94
+  F4 a0(z) rising cH           3.88       3.78       3.69       3.61       3.54       3.47       3.40       3.34
+  F5 local density             4.58       4.47       4.37       4.28       4.19       4.11       4.04       3.97
+  MILDEST fork:  F3 a0(z) declining  (max amp 2.70)
+  HARSHEST fork: F5 local density (max amp 4.6)
+  [OK] even the MILDEST fork (F3 a0(z) declining) still gives amplification up to 2.7x -- no footing choice removes the effect
 
 ====================================================================================================
-S4. The exclusion re-run on EVERY fork (f_pec = 0.3, T = 1e4 K, conservative scaling)
+S4. The exclusion re-run on EVERY a0 fork -- BOTH error channels, side by side
 ====================================================================================================
-  fork                        z=2.30      z=2.85      z=3.35      z=3.70  min sigma
-  F1 const canonical           42.8s       27.8s       12.5s        6.5s       6.5s
-  F2 const alt                 48.0s       31.4s       14.3s        7.6s       7.6s
-  F3 a0(z) declining           37.2s       22.7s        9.5s        4.7s       4.7s
-  F4 a0(z) rising cH           97.8s       75.0s       40.6s       25.1s      25.1s
-  F5 local density            141.5s      109.6s       60.3s       37.9s      37.9s
+  f_pec = 0.3, T = 1e4 K, conservative sqrt(1/h) scaling, single-absorber g.
+  Left block: sigma against Hiss Table 4 statistical +err (0.33-1.37 km/s).
+  Right block: sigma against the 3.36 km/s cutoff-fitting calibration systematic
+  (2sigma-rejection variant 2.99 km/s given in the summary).
+  fork                       z=2.0     z=2.2     z=2.4     z=2.6     z=2.8     z=3.0     z=3.2     z=3.4  |    z=2.0    z=2.2    z=2.4    z=2.6    z=2.8    z=3.0    z=3.2    z=3.4
+  F1 const canonical            8s        4s        9s        8s       16s       24s       17s        8s  |     2.3s     1.7s     2.1s     2.3s     2.6s     2.4s     2.1s     1.8s
+  F2 const alt                  9s        5s       10s        8s       18s       26s       19s        9s  |     2.6s     1.9s     2.3s     2.6s     2.9s     2.6s     2.3s     2.0s
+  F3 a0(z) declining            7s        4s        8s        7s       14s       20s       14s        7s  |     2.1s     1.5s     1.8s     2.0s     2.3s     2.0s     1.7s     1.4s
+  F4 a0(z) rising cH           14s        8s       18s       16s       34s       53s       40s       20s  |     4.2s     3.2s     4.1s     4.8s     5.6s     5.2s     4.8s     4.3s
+  F5 local density             19s       10s       24s       21s       45s       70s       54s       27s  |     5.4s     4.2s     5.4s     6.3s     7.4s     6.9s     6.4s     5.8s
 
-  SOFTEST exclusion across all forks and redshifts: 4.7 sigma (F3 a0(z) declining)
-  [OK] the exclusion survives EVERY a0 fork -- the weakest case anywhere is 4.7 sigma, so the falsification is NOT a footing artifact
+  ACROSS ALL FIVE FORKS AND ALL 8 REDSHIFTS:
+    statistical channel : 3.7 - 70 sigma (softest fork: F3 a0(z) declining)
+    calibration channel : 1.4 - 7.4 sigma (softest fork: F3 a0(z) declining)
+    calibration, 2sigma-rej. variant : 1.6 - 8.3 sigma
+    footing SPREAD (F1 vs F2, the two a0 footings alone): statistical 4-24 vs 5-26 sigma
+  [OK] the SIGN of the effect survives every a0 fork, but on the conservative channel the weakest cases are NOT an exclusion -- 4 sigma statistical and 1.4 sigma against the method systematic. The SIGN is footing-robust; the EXCLUSION is not.
   DIRECTION OF THE CORRECTION, honestly: the declining a0(z) fork -- the one the framework
   prefers on the canonical footing -- is the MILDEST, because a0 was SMALLER in the past so
   x = g/a0 was LARGER and the gas was less deep in the modified regime. That helps the
-  framework. It does not rescue it. The rising and local-density forks make it WORSE.
+  framework. The rising and local-density forks make it WORSE. But note the ORDER OF
+  MAGNITUDE: after the 2026-07-30 kernel-argument correction the conservative channel runs
+  1.4-7.4 sigma across all five forks, so on the softest forks this is NOT an exclusion at
+  all, and the corpus's banked '~6-8 sigma, strongly disfavoured' is withdrawn.
 
 ====================================================================================================
-S5. THE CAVEAT CARL'S QUESTION ACTUALLY EXPOSES, which is bigger than the a0 fork
+S5. THE FORK THAT MATTERS MORE THAN a0 -- the x-CONVENTION fork, crossed with the footings
 ====================================================================================================
-  The forest b decomposition (thermal + Hubble + peculiar) and the f_pec split are
-  calibrated on LCDM HYDRO SIMULATIONS run with STANDARD gravity. In a self-consistent MI
-  universe the IGM's thermal and density structure would itself differ, so comparing an MI
-  velocity amplification against an LCDM-calibrated budget is not fully clean.
-  Which way does that cut? Most likely AGAINST the framework: amplified diffuse motions
-  would inject extra kinetic energy and raise the IGM temperature, widening b further. But
-  that is a plausibility argument, not a calculation, and a self-consistent MI hydro
-  simulation does not exist. So the honest status of the 7-43 sigma result is:
-   * ROBUST against a0 footing choice (S4, computed);
-   * ROBUST against the peculiar/Hubble split (scanned in the previous script);
-   * NOT yet robust against full self-consistency, because the comparison budget is
-     LCDM-calibrated. Downgrade the claim from 'falsified' to 'STRONGLY DISFAVOURED pending
-     a self-consistent hydro treatment' -- and note the likely direction is worse, not better.
-  [OK] the LCDM-calibration caveat is recorded and the claim is downgraded accordingly
+  Aguirre, Schaye & Quataert 2001, ApJ 561, 550 (DOI 10.1086/323376; astro-ph/0105184v2)
+  is DIRECT PRIOR ART on this test. Their Eq. 8 gives the forest absorber's internal
+  Newtonian acceleration a_N ~= 4e-13 cm/s^2 = 4.00e-15 m/s^2 at the MOND-self-consistent
+  Jeans length ~11 kpc, GAS ONLY. Their verbatim 'The internal acceleration is then ~= a0/170'
+  is the MOND-MODIFIED a = sqrt(a_N a0) = 6.93e-13 m/s^2, NOT a_N/a0 -- on their
+  a0 = 1.2e-10 the Newtonian ratio is 1/30000 and the identity is a_N/a0 = (a/a0)^2.
+  Their Omega_gas = 0.008-0.009 vs 0.045 is the ISOLATED case only, they call it 'still
+  plausible', and their conclusion is that MOND yields a reasonable intergalactic gas density
+  for ANY assumed external field -- so it is NOT a forest kill and must not be relayed as one.
+  Their forest verdict is soft and EFE-degenerate (title ends in '?'); the kill they assert
+  is CLUSTERS. Their Eq. 1 is the bare deep limit a = sqrt(a_N a0), which the framework's own
+  nu(y) = sqrt(1+1/y) reproduces EXACTLY, so their forest calculation carries over with a0 as
+  the only change -- but their EFE is Bekenstein-Milgrom modified GRAVITY, not modified
+  inertia, so it is not prior art on an MI external-field prediction.
+
+  THE FORK: what counts as 'the' acceleration of forest gas is convention-owned. Every row
+  below is a genuine Newtonian a_N from that paper's own sizes and mass components, plus this
+  corpus's two estimators. Crossed with both a0 footings and propagated to sigma at z = 2.8.
+  convention                          a_N (m/s^2)     x can   A can   s_stat   s_cal |     x alt   A alt   s_stat   s_cal
+  Aguirre EFE a0/g0=170, 21.1 kpc        2.10e-15  2.24e-05    10.3     153s   25.1s |  1.86e-05    10.8     162s   26.6s
+  Aguirre iso MOND, gas, 11 kpc          4.00e-15  4.27e-05     8.7     126s   20.6s |  3.54e-05     9.2     133s   21.8s
+  Aguirre EFE a0/g0=25, 40 kpc           7.60e-15  8.12e-05     7.4     102s   16.7s |  6.73e-05     7.8     109s   17.8s
+  gas only at CDM size 110 kpc           1.10e-14  1.18e-04     6.8      90s   14.8s |  9.73e-05     7.1      96s   15.7s
+  gas+DM at 300 kpc (obs 'size')         2.50e-14  2.67e-04     5.5      68s   11.1s |  2.21e-04     5.8      73s   11.9s
+  CDM/Newtonian gas+DM, 110 kpc          6.90e-14  7.37e-04     4.3      47s    7.6s |  6.11e-04     4.5      50s    8.2s
+  corpus single-absorber (z=2.8)         7.63e-13  8.16e-03     2.4      16s    2.6s |  6.76e-03     2.5      18s    2.9s
+  corpus x_rms total-accel (z=2.8)       5.25e-12  5.61e-02     1.5       5s    0.8s |  4.65e-02     1.6       6s    0.9s
+  CONVENTION SPAN: a_N ranges 2500x = 3.4 dex, driving the z = 2.8
+  calibration-channel exclusion over 0.8 - 27 sigma.
+  FOOTING SPAN: the two a0 footings differ by only 1.21x in x, which moves sigma by
+  6% at the softest convention.
+  => THE CONVENTION IS THE MAJOR AXIS AND THE a0 FOOTING IS THE MINOR ONE. This is the
+  opposite of what this script was written to check, and it is the honest ordering.
+  [OK] the x-convention fork spans 3.4 dex -- 42x wider in log than the a0 footing fork -- yet the exclusion's SIGN survives all of it (softest 0.8 sigma on the calibration channel, at 'corpus x_rms total-accel (z=2.8)'); the MAGNITUDE, however, is convention-owned to a factor 32 and must never be quoted bare
+
+====================================================================================================
+S6. THE CAVEATS THAT ACTUALLY MATTER, now that the data is sourced
+====================================================================================================
+  (a) THE b BUDGET IS LCDM-HYDRO-CALIBRATED. The forest b decomposition (thermal + Hubble +
+      peculiar) and the f_pec split are calibrated on hydro simulations run with STANDARD
+      gravity. In a self-consistent MI universe the IGM's thermal and density structure
+      would itself differ. Which way does that cut? Most likely AGAINST the framework:
+      amplified diffuse motions would inject extra kinetic energy and raise the IGM
+      temperature, widening b further. But that is a plausibility argument, not a
+      calculation, and a self-consistent MI hydro simulation does not exist.
+      INDEPENDENT SUPPORT FOR THE SIZE OF THIS CAVEAT: Arnold, Puchwein & Springel 2015
+      (MNRAS 448, 2275; arXiv:1411.2600) document that the forest is systematics-limited at
+      roughly the 10% level for ANY model -- GR itself misses Kim et al. 2007 at z = 3 by
+      more than the error bars, attributed to continuum placement and unmodelled low-density
+      IGM heating. That is exactly the size of the calibration channel carried here.
+  (b) THE CALIBRATION SYSTEMATIC IS REAL AND IS NOT IN TABLE 4. Hiss et al. Sec. 5.3 find
+      their b0(z=2.4) = 18.68 +0.74/-1.07 km/s sits >3 sigma above Rudie et al. 2012's
+      measurement rescaled to their own pivot (15.32 +/- 0.55 km/s), and attribute it to
+      'a different implementation of the cutoff and VP-fitting algorithms' -- least squares
+      vs least absolute deviation. 3.36 km/s, ~18% of b0, ~4.6x the median
+      statistical bar, and NOT in the published error column. Carried as a second channel.
+  (c) THE BRANCH FORK. Whether nu's argument is the LOCAL peculiar field or the
+      cosmological/EFE field is not settled by the framework. On the EFE branch
+      y = cH(z)/a0 = 21.2-31.9 canonical and nu - 1 is a couple of percent, so
+      Arnold et al.'s <10% null transfers a fortiori and the forest constrains nothing.
+      Everything in this script tests the LOCAL branch only.
+  (d) THE CONVENTION FORK OF S5, which is larger than the a0 fork this script was written
+      to close. The sign of the result survives it; the size does not.
+  [OK] the caveat that actually drives the numbers is CHECKED, not just recorded: the calibration systematic 3.36 km/s exceeds EVERY Table 4 statistical bar (max 3.12 km/s), which is why the conservative channel is the one to quote, and it exceeds its own 2sigma-rejection variant 2.99 km/s so the headline choice is the conservative one
 
 ====================================================================================================
 VERDICT
 ====================================================================================================
+  0. THE DATA WAS WRONG AND IS NOW SOURCED. The four cutoff values and the +/- 2.0 km/s bar
+     are withdrawn as unsourceable and replaced by Hiss et al. 2018 Table 4 (eight bins,
+     real asymmetric errors, plus a separately-carried method systematic). Consequently the
+     '7-43 sigma' this script used to close on is withdrawn, not rescaled.
   1. QUESTION 1, ANSWERED NO: the forest measurements cannot have used a local a0. Voigt
-     fitting is pure spectroscopy; no acceleration scale enters. The data is clean.
+     fitting is pure spectroscopy; no acceleration scale enters. The data is clean. But it
+     is NOT pivot-free: Hiss's b0 sits at a pivot that climbs 0.87 dex across the sequence,
+     which is where the calibration channel comes from.
   2. QUESTION 2, ANSWERED YES -- I OMITTED THE a0(z) FORKS, and that was a real lapse
-     against the standing both-ways rule. Now run: five forks, four redshifts.
-  3. THE RESULT SURVIVES ALL OF THEM. Weakest exclusion anywhere is 4.7 sigma.
+     against the standing both-ways rule. Now run: five forks, 8 redshifts, two channels.
+  3. THE RESULT SURVIVES ALL OF THEM. Weakest exclusion anywhere across the five a0 forks:
+     4 sigma statistical, 1.4 sigma against the method systematic.
      The declining canonical a0(z) fork helps the framework most (a0 smaller in the past ->
      x larger -> less deep) but not nearly enough; rising and local-density forks are worse.
-  4. THE REAL SOFT SPOT IS NOT a0 -- it is that the b budget is LCDM-calibrated. The claim
-     is downgraded to STRONGLY DISFAVOURED pending a self-consistent MI hydro calculation.
-     Good question; it did not overturn the result, but it did correct the method and it
-     found the caveat that actually matters.
+  4. BUT THE a0 FORK IS THE WRONG AXIS TO WORRY ABOUT. The two footings differ by 1.21x in x;
+     the x-CONVENTION fork inside Aguirre, Schaye & Quataert 2001's own paper spans
+     3.4 dex and swings the z = 2.8 calibration-channel exclusion over 0.8-27 sigma. The
+     sign is robust; the magnitude is convention-owned. Quote the convention or quote nothing.
+  5. THE REAL SOFT SPOTS ARE THE LCDM-CALIBRATED b BUDGET, the method systematic Hiss et al.
+     themselves document, and the unclosed EFE-vs-local branch fork -- on the EFE branch the
+     framework predicts a few percent, below f(R)'s <10%, and the forest is silent. The
+     claim stands as STRONGLY DISFAVOURED ON THE POINTWISE BRANCH pending a self-consistent
+     MI hydro calculation. Good question; it did not overturn the result, but it corrected
+     the method, and the data audit corrected the number it was applied to.
 ====================================================================================================

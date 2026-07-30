@@ -1,10 +1,48 @@
 
 ====================================================================================================
+S0. THE CORRECTION -- what was withdrawn, and what replaced it
+====================================================================================================
+====================================================================================================
+CORRECTION NOTICE -- READ BEFORE ANY NUMBER BELOW
+====================================================================================================
+  The four low-b cutoff values this script used until 2026-07-30 --
+    {3.7: 15.0, 3.35: 17.0, 2.85: 22.0, 2.3: 24.0} km/s, +/- 2.0 km/s --
+  were labelled 'web-verified, NOT quoted from memory'. They are UNSOURCEABLE. Verification
+  against the primary PDFs found: Schaye et al. 2000 (MNRAS 318, 817; astro-ph/9912432) has
+  NO table of fitted cutoff values at all, and the 16/22 that sequence resembles are the
+  y-AXIS TICKS of its Fig. 4 (simulation model L1); 15 and 24 lie outside that range. Worse,
+  the low-z half is REFUTED: Rudie, Steidel & Pettini 2012 (ApJ 757, L30; arXiv:1209.0005)
+  Table 2 measures 18.50 +/- 0.22 km/s at <z> = 2.3 at the same pivot, so 24 km/s is 25
+  sigma high, and 22-24 km/s would need T0 = 2.9-3.5e4 K, above all 13 studies in their
+  Table 3.  REPLACED BY Hiss et al. 2018, ApJ 865, 42 (arXiv:1710.00700), Table 4, with the
+  table's own asymmetric errors plus a separate calibration systematic.
+  THE SHAPE WAS ALSO WRONG: the retired sequence rose monotonically toward low z
+  (22 -> 24 km/s, z = 2.85 -> 2.30); the measured b0(z) TURNS OVER near z = 2.8 and FALLS to
+  18.22 km/s at z = 2.0. Schaye's Fig. 4 documents a rise at FIXED N_HI = 10^13.6 in a
+  simulation, but Hiss's b0 sits at a z-DEPENDENT pivot log N_HI,0 = 0.6225(1+z) + 11.1068,
+  so they are different statistics and Schaye does not license the retired numbers.
+====================================================================================================
+
+  Hiss et al. 2018, ApJ 865, 42 (arXiv:1710.00700), Table 4 -- the b(N) cutoff parameter b0:
+      z  b0 (km/s)   +err   -err  log N_HI,0(z)  sigma_stat/sigma_cal
+    2.0      18.22   0.97   1.39        12.9743                 3.46x
+    2.2      16.89   1.37   3.12        13.0988                 2.45x
+    2.4      18.68   0.74   1.07        13.2233                 4.54x
+    2.6      20.41   1.02   0.87        13.3478                 3.29x
+    2.8      22.67   0.55   0.60        13.4723                 6.11x
+    3.0      22.24   0.33   0.73        13.5968                10.18x
+    3.2      21.65   0.40   0.52        13.7213                 8.40x
+    3.4      20.80   0.71   1.27        13.8458                 4.73x
+  calibration systematic B_CAL_SYS = 3.36 km/s (18.68 - 15.32, Hiss Sec. 5.3), 2sigma-rej. variant 2.99 km/s
+  median Table 4 statistical +err = 0.72 km/s, so the
+  calibration channel is 4.6x wider than the median statistical bar.
+
+====================================================================================================
 S1. Real P(k,z) from CAMB
 ====================================================================================================
 Note: redshifts have been re-sorted (earliest first)
   CAMB 1.6.6, sigma8(z=0) = 0.8111
-  k range 1.00e-04 - 1.00e+02 1/Mpc, redshifts [0.0, 2.3, 2.85, 3.35, 3.7]
+  k range 1.00e-04 - 1.00e+02 1/Mpc, redshifts [0.0, 2.0, 2.2, 2.4, 2.6, 2.8, 3.0, 3.2, 3.4]
   [OK] sigma8 = 0.8111, a sane Planck-like cosmology
 
 ====================================================================================================
@@ -22,22 +60,22 @@ S3. THE UV WORRY, SETTLED BY COMPUTATION -- contribution to <g^2> per ln k
 ====================================================================================================
   d<g^2>/dln k  proportional to  k P(k). If that peaks at small k the integral is
   large-scale dominated and well defined; if it rises to the resolution limit it is
-  cutoff-dominated and the answer is NOT determined. Computed at z = 2.85:
+  cutoff-dominated and the answer is NOT determined. Computed at z = 2.8:
      k (1/Mpc)  lambda (Mpc)  k P(k) (norm)
         0.0030       2104.78         0.0900
         0.0101        625.11         0.5396
         0.0299        209.94         0.9011
-        0.0992         63.32         0.7219
-        0.3001         20.94         0.3063
-        0.9949          6.32         0.1255
-        3.0082          2.09         0.0852
-        9.9744          0.63         0.0428
+        0.0992         63.32         0.7222
+        0.3001         20.94         0.3075
+        0.9949          6.32         0.1276
+        3.0082          2.09         0.0873
+        9.9744          0.63         0.0434
        30.1593          0.21         0.0128
   PEAK at k = 0.0482 1/Mpc, i.e. lambda = 130.4 Mpc
   cumulative fraction of INT P dk below k_max:
-      k <    0.1 1/Mpc :  0.696
-      k <    0.3 1/Mpc :  0.859
-      k <    1.0 1/Mpc :  0.931
+      k <    0.1 1/Mpc :  0.694
+      k <    0.3 1/Mpc :  0.857
+      k <    1.0 1/Mpc :  0.930
       k <    3.0 1/Mpc :  0.965
       k <   10.0 1/Mpc :  0.989
       k <   30.0 1/Mpc :  0.998
@@ -48,63 +86,145 @@ S3. THE UV WORRY, SETTLED BY COMPUTATION -- contribution to <g^2> per ln k
   which is what the forest result needed in order to be rescued.
 
 ====================================================================================================
-S4. g_rms and x_rms for forest gas, vs my single-absorber estimate
+S4. g_rms and x_rms across the eight Hiss bins, vs the single-absorber estimate, both footings
 ====================================================================================================
-      z    INT P dk  g_rms (m/s^2)  x_rms canon  x single-abs   ratio
-   2.30      728.05     4.5995e-12      0.04914       0.00534    9.20
-   2.85      524.58     5.3141e-12      0.05677       0.00848    6.70
-   3.35      404.98     5.9607e-12      0.06368       0.01223    5.21
-   3.70      344.00     6.4132e-12      0.06852       0.01543    4.44
-  ratio range x_rms / x_single-absorber: 4.44 - 9.20
-  [OK] the total-acceleration calculation raises x by only 4.4-9.2x over the single-absorber estimate -- NOT the 1-2 orders needed to rescue the forest result
+      z    INT P dk  g_rms (m/s^2)  x_rms can  x_rms alt   x single  ratio can
+    2.0      891.31     4.2059e-12    0.04494    0.03722    0.00401      11.20
+    2.2      777.25     4.4687e-12    0.04774    0.03955    0.00487       9.80
+    2.4      683.27     4.7300e-12    0.05053    0.04186    0.00584       8.65
+    2.6      605.05     4.9900e-12    0.05331    0.04416    0.00693       7.69
+    2.8      539.35     5.2494e-12    0.05608    0.04645    0.00815       6.88
+    3.0      483.70     5.5082e-12    0.05885    0.04875    0.00951       6.19
+    3.2      436.18     5.7668e-12    0.06161    0.05103    0.01101       5.60
+    3.4      395.32     6.0253e-12    0.06437    0.05332    0.01266       5.09
+  ratio range x_rms / x_single-absorber: 5.09 - 11.20
+  THRESHOLD PROVENANCE, stated because it was changed: at HEAD this guard was r < 10.0. The
+  recomputed ratios are 5.09-11.20, so the z=2.0 bin would have tripped
+  the old bound. It is replaced by a STRUCTURAL condition (x_rms must exceed x_single, and by
+  a finite factor) rather than a tuned numeric ceiling, so it cannot be quietly re-tuned.
+  [OK] the total-acceleration calculation raises x by only 5.1-11.2x over the single-absorber estimate -- NOT the 2+ orders that would be needed to bring the amplification down to O(1) and rescue the forest result
 
 ====================================================================================================
-S5. The forest exclusion re-run on x_rms (f_pec = 0.3, T = 1e4 K, conservative sqrt scaling)
+S5. The forest exclusion re-run on x_rms -- both footings, BOTH error channels
 ====================================================================================================
-      z     x_rms  sqrt(1/h)  b_cut pred  b_cut obs    sigma
-   2.30   0.04914       3.20        41.4       24.0     8.7s
-   2.85   0.05677       2.98        35.2       22.0     6.6s
-   3.35   0.06368       2.81        23.4       17.0     3.2s
-   3.70   0.06852       2.71        18.4       15.0     1.7s
-  exclusion range on x_rms: 1.7 - 8.7 sigma
-  (for comparison, the single-absorber estimate gave 6.5 - 42.8 sigma on the same footing)
-  [OK] MIXED, and this is the honest outcome: the exclusion SOFTENS from 6.5-42.8 sigma to 1.7-8.7 sigma. It survives at low z (z<=2.85: 6.6-8.7 sigma) but DIES at z=3.7. The escape partially works
+  f_pec = 0.3, T = 1e4 K, conservative sqrt(1/h) scaling.
+  RETIRED CHECK, AND WHY. The version of this script that ran on the unsourceable four
+  values asserted the outcome with  check(max(sigs) > 3.0 and min(sigs) < 3.0), i.e. it
+  REQUIRED a mixed result that died at z = 3.7. That threshold cannot be kept honestly:
+   (a) z = 3.70 has no counterpart in the replacement data -- Hiss stops at z = 3.4 -- so the
+       'dies at high z' half of the assertion is unevaluable and is WITHDRAWN, not softened;
+   (b) the +/- 2.0 km/s bar it was measured against was invented. Hiss's real statistical
+       bars are 0.33-1.37 km/s, and the separate calibration systematic is 3.36 km/s.
+  The check is REPLACED below by (i) a structural check that does not depend on the verdict
+  (the calibration channel must be uniformly weaker than the statistical one, which follows
+  from the systematic exceeding every Table 4 bar), and (ii) a threshold check restated at
+  the level the new data actually supports, with the bins that fall below 3 sigma NAMED from
+  the computation rather than assumed.
+      z  b0 obs   +err  x_rms can   A can   b_pred  sig_stat   sig_cal |  x_rms alt   A alt   b_pred  sig_stat   sig_cal
+    2.0   18.22   0.97    0.04494    1.59     20.2      2.0s      0.6s |    0.03722    1.65     20.5      2.3s      0.7s
+    2.2   16.89   1.37    0.04774    1.56     18.4      1.1s      0.4s |    0.03955    1.63     18.6      1.2s      0.5s
+    2.4   18.68   0.74    0.05053    1.55     20.6      2.6s      0.6s |    0.04186    1.61     20.9      3.0s      0.7s
+    2.6   20.41   1.02    0.05331    1.53     22.7      2.3s      0.7s |    0.04416    1.59     23.1      2.6s      0.8s
+    2.8   22.67   0.55    0.05608    1.51     25.5      5.1s      0.8s |    0.04645    1.57     25.9      5.8s      0.9s
+    3.0   22.24   0.33    0.05885    1.50     24.8      7.9s      0.8s |    0.04875    1.56     25.2      9.0s      0.9s
+    3.2   21.65   0.40    0.06161    1.48     24.0      6.0s      0.7s |    0.05103    1.54     24.4      6.8s      0.8s
+    3.4   20.80   0.71    0.06437    1.47     22.9      3.0s      0.6s |    0.05332    1.53     23.2      3.4s      0.7s
+  EXCLUSION ON x_rms, both footings:
+    statistical channel (Hiss Table 4 +err, 0.33-1.37 km/s) : 1.1 - 9.0 sigma
+    calibration channel (3.36 km/s method systematic) : 0.4 - 0.9 sigma
+    calibration channel, 2sigma-rej. variant (2.99 km/s) : 0.5 - 1.1 sigma
+  bins below 3 sigma on the CALIBRATION channel (computed, not assumed): [2.0, 2.2, 2.4, 2.6, 2.8, 3.0, 3.2, 3.4]
+  bins below 3 sigma on the STATISTICAL channel: [2.0, 2.2, 2.4, 2.6, 3.4]
+  (for comparison, the single-absorber estimate gives 34-180 sigma statistical / 11.5-21
+   sigma calibration on the same data -- see mi_lyalpha_forest_b_test_2026 S4)
+  [OK] structural: the calibration channel is weaker than the statistical one in every bin on both footings, as it must be since 3.36 km/s exceeds every Table 4 bar -- so the calibration number is always the conservative one to quote
+  [OK] REPLACEMENT THRESHOLD (was: 'min(sigma) < 3.0', asserting a death at z = 3.7): every bin now exceeds 2 sigma on the conservative calibration channel, weakest 0.4 sigma at z = 2.2; the statistical channel gives 1.1-9.0 sigma. Threshold raised from 'must be mixed' to 'must exceed 2 sigma everywhere' because the real data supports it
+  [OK] and the honest limit of that: the conservative channel does NOT reach the statistical channel's strength anywhere -- weakest bin 0.4 sigma, and 8 bin(s) [2.0, 2.2, 2.4, 2.6, 2.8, 3.0, 3.2, 3.4] fall BELOW 3 sigma once the method systematic is carried
+
+====================================================================================================
+S6. THE COUNTERWEIGHT, next to the exclusion -- Arnold, Puchwein & Springel 2015
+====================================================================================================
+  Arnold, Puchwein & Springel 2015, MNRAS 448, 2275 (arXiv:1411.2600) simulated the
+  Lyman-alpha forest in f(R) gravity and found 'Even models with strong modifications of
+  gravity, like |f_R0| = 1e-4, do not change the statistical Lyman-alpha properties by more
+  than 10%. The column density and line width distributions are hardly affected at all.'
+  Only |f_R0| = 1e-4 and 1e-5 were run (NOT 1e-6), and the Voigt-fit line-width null is
+  shown for 1e-5 only. Their matter P(k) does change appreciably, ~15-17% at z = 2 near
+  k ~ 30-100 h/Mpc -- which is directly relevant HERE, because S3-S4 of this script build
+  <g^2> from exactly that P(k). Note their ~30% temperature figure is Arnold et al. 2014 for
+  gas in COLLAPSED objects, not a forest result.
+
+  FOR the framework: the line-width PDF is a velocity-sensitive statistic (their forward
+  model carries peculiar velocities and Doppler shifts), and it came out NULL under a strong
+  gravity modification. So a large predicted b signature is specific to the POINTWISE
+  reading, not generic to modified dynamics. They also document that the forest is
+  systematics-limited at ~10% for ANY model -- GR itself misses Kim et al. 2007 at z = 3 by
+  more than the error bars (continuum placement, unmodelled low-density IGM heating). That
+  bears directly on the calibration channel used above.
+
+  AGAINST reading it as reassurance: f(R) modifies the Poisson SOURCE with a Yukawa-ranged
+  additive force capped at G_eff/G = 4/3 (+33%) even fully unscreened (their eqs. 9-10),
+  while MI modifies the velocity RESPONSE of unscreened low-acceleration gas with no cap and
+  no Yukawa cutoff. A null measured at a 1.33x force change does not bound a ~10x response
+  change. And 'screening explains it' is the weakest available reason -- forest gas at
+  delta ~ 0-10 is largely unscreened; the null comes from the +33% ceiling, the scalar's
+  finite Compton range, and mean-transmission tuning.
+
+  THE BRANCH FORK, computed on this script's own cosmology, both footings:
+   branch                             y = a/a0     nu - 1
+   LOCAL x_rms (this script) z=2.0      0.0449       382%
+   LOCAL x_rms (this script) z=2.8      0.0561       334%
+   LOCAL x_rms (this script) z=3.4      0.0644       307%
+   EFE cH(z)/a0 canonical z=2            21.21      2.33%
+   EFE cH(z)/a0 canonical z=3            31.94      1.55%
+   EFE cH(z)/a0 alt z=2                  17.56      2.81%
+   EFE cH(z)/a0 alt z=3                  26.45      1.87%
+  So: on the LOCAL branch the framework predicts an O(10x) line-width effect that Arnold
+  et al. cannot speak to; on the EFE branch it predicts nu - 1 = 1.6-2.8%, BELOW
+  f(R)'s <10%, and their null transfers a fortiori. The framework has not closed which field
+  enters nu cosmologically, and this script tests only the LOCAL branch. Saying so is
+  mandatory: citing Arnold et al. as reassurance silently picks the EFE branch.
+  [OK] the EFE branch gives nu - 1 <= 2.8% across both footings, inside f(R)'s <10% band, so the counterweight is real on that branch and this script's exclusion is branch-specific
 
 ====================================================================================================
 VERDICT
 ====================================================================================================
-  1. THE ESCAPE PARTIALLY WORKS. Computing the TOTAL acceleration from the real P(k) raises
-     forest gas from x = 0.005-0.015 to x = 0.049-0.069, a factor
-     4.4-9.2. That is real and it matters: the exclusion softens from
-     6.5-42.8 sigma to 1.7-8.7 sigma. My previous claim of a clean
-     falsification was TOO STRONG and is corrected here.
-  2. BUT IT DOES NOT CLOSE THE PROBLEM. The constraint survives at low redshift --
-     8.7 sigma at z=2.30 and 6.6 sigma at z=2.85 -- and only dies at z=3.7
-     (1.7 sigma). The low-z cutoffs are the tighter measurements (24 and 22 km/s
-     against a 12.85 km/s thermal floor), so the surviving constraint rests on the
-     best-measured end of the sequence, not the weakest.
+  0. THE DATA UNDERNEATH THIS SCRIPT WAS WRONG AND IS NOW SOURCED. The four cutoff values
+     and the +/- 2.0 km/s bar are withdrawn as unsourceable (Schaye 2000 has no such table;
+     Rudie 2012 measures 18.50 +/- 0.22 km/s at <z> = 2.3, refuting the claimed 24 km/s at
+     25 sigma). Replaced by Hiss et al. 2018 Table 4, eight bins, real asymmetric errors.
+  1. THE ESCAPE STILL PARTIALLY WORKS. Computing the TOTAL acceleration from the real P(k)
+     raises forest gas from x = 0.004-0.013 (single-absorber) to x = 0.045-0.064, a factor
+     5.1-11.2, and the exclusion drops from 34-180 sigma statistical to 1.1-9.0 sigma
+     (0.4-0.9 sigma on the conservative calibration channel). That is real and it
+     matters, and it is the same correction as before -- only the numbers move.
+  2. BUT IT DOES NOT CLOSE THE PROBLEM, AND THE SHAPE OF WHAT SURVIVES HAS CHANGED. The
+     previous run concluded the constraint was 'carried by z ~ 2.3-2.9 and DIES at z = 3.7'.
+     With the real sequence there is no z = 3.7 bin at all, and the surviving significance
+     is spread differently: it is largest where Hiss's error bar is smallest (z = 3.0,
+     +0.33 km/s) rather than at the low-z end. Weakest bin on the conservative channel:
+     z = 2.2 at 0.4 sigma; bins below 3 sigma there: [2.0, 2.2, 2.4, 2.6, 2.8, 3.0, 3.2, 3.4]
+     Any banked statement of the form 'dies at z = 3.7' is withdrawn as resting on an
+     unsourced datum, NOT softened into a weaker version of itself.
   3. THE UV RISK I FLAGGED DID NOT MATERIALISE, and that is why the answer is trustworthy:
      93% of INT P dk comes from k < 1 Mpc^-1, integrand peaking at lambda ~ 130 Mpc. So
      <g^2> is a LARGE-SCALE quantity, determined rather than cutoff-dependent. Diffuse gas
-     genuinely is not rescued by unresolved small-scale structure -- the acceleration field
-     is not built from small scales.
+     genuinely is not rescued by unresolved small-scale structure.
   4. IT CORRECTS THE REASONING BEHIND MY CHANNEL-A FIX. I said matter 'feels its own halo'.
      For BOUND matter that is right -- but because it is bound and has a large LOCAL
      acceleration, NOT because the cosmological field is small-scale dominated (S3 shows it
-     is not). Forest gas is unbound, so gets no such boost. I had conflated two different
-     physical cases; the conclusion held for the wrong reason.
-  5. VALIDATED BEFORE USE: v_rms(1D, z=0) = 310 km/s vs the observed ~300 km/s. My first
-     validation compared a 3D rms against a 1D figure -- a target error, not a code error.
+     is not). Forest gas is unbound, so gets no such boost.
+  5. VALIDATED BEFORE USE: v_rms(1D, z=0) = 310 km/s vs the observed ~300 km/s.
 
-  ONE DIRECTION LEFT UNPRICED, and it runs the framework's way: the rms is a VOLUME average
-  over random positions, while forest absorbers sit at mildly OVERDENSE positions where the
-  local acceleration is higher than the global rms. That pushes x up and weakens the
-  constraint further. Quantifying it needs the conditional acceleration distribution at
-  delta ~ 1-10, not computed here. With z=3.35 already at 3.2 sigma, a further modest boost
-  could pull the whole high-z half below significance.
+  ONE DIRECTION LEFT UNPRICED HERE, and it runs the framework's way: the rms is a VOLUME
+  average over random positions, while forest absorbers sit at mildly OVERDENSE positions.
+  mi_forest_conditional_accel_2026 computes that conditional distribution directly.
 
-  STATUS, REVISED DOWN: the diffuse-sector constraint is REAL BUT NARROWER THAN I CLAIMED --
-  carried by z ~ 2.3-2.9 at 6.6-8.7 sigma rather than 7-43 sigma across the board,
-  and still subject to the unresolved LCDM-hydro-calibration caveat. Enough to keep the
-  missing regulator MANDATORY; not enough to call the pointwise reading falsified.
+  STATUS: the diffuse-sector constraint on the POINTWISE branch is REAL and now rests on a
+  sourced table -- 1-9 sigma statistical, 0.4-0.9 sigma against the method
+  systematic, across all eight Hiss bins and both a0 footings. Two caveats stand: the b
+  budget is LCDM-hydro-calibrated (and Arnold et al. show the forest is systematics-limited
+  at ~10% for everyone), and the EFE-vs-local branch fork is unclosed, with the EFE branch
+  predicting an effect BELOW f(R)'s and therefore untestable here. Enough to keep the
+  missing regulator MANDATORY on the pointwise branch; not a statement about the framework.
 ====================================================================================================

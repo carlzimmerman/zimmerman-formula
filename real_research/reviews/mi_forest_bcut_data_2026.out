@@ -1,0 +1,51 @@
+====================================================================================================
+CORRECTION NOTICE -- READ BEFORE ANY NUMBER BELOW
+====================================================================================================
+  The four low-b cutoff values this script used until 2026-07-30 --
+    {3.7: 15.0, 3.35: 17.0, 2.85: 22.0, 2.3: 24.0} km/s, +/- 2.0 km/s --
+  were labelled 'web-verified, NOT quoted from memory'. They are UNSOURCEABLE. Verification
+  against the primary PDFs found: Schaye et al. 2000 (MNRAS 318, 817; astro-ph/9912432) has
+  NO table of fitted cutoff values at all, and the 16/22 that sequence resembles are the
+  y-AXIS TICKS of its Fig. 4 (simulation model L1); 15 and 24 lie outside that range. Worse,
+  the low-z half is REFUTED: Rudie, Steidel & Pettini 2012 (ApJ 757, L30; arXiv:1209.0005)
+  Table 2 measures 18.50 +/- 0.22 km/s at <z> = 2.3 at the same pivot, so 24 km/s is 25
+  sigma high, and 22-24 km/s would need T0 = 2.9-3.5e4 K, above all 13 studies in their
+  Table 3.  REPLACED BY Hiss et al. 2018, ApJ 865, 42 (arXiv:1710.00700), Table 4, with the
+  table's own asymmetric errors plus a separate calibration systematic.
+  THE SHAPE WAS ALSO WRONG: the retired sequence rose monotonically toward low z
+  (22 -> 24 km/s, z = 2.85 -> 2.30); the measured b0(z) TURNS OVER near z = 2.8 and FALLS to
+  18.22 km/s at z = 2.0. Schaye's Fig. 4 documents a rise at FIXED N_HI = 10^13.6 in a
+  simulation, but Hiss's b0 sits at a z-DEPENDENT pivot log N_HI,0 = 0.6225(1+z) + 11.1068,
+  so they are different statistics and Schaye does not license the retired numbers.
+====================================================================================================
+
+  Hiss et al. 2018, ApJ 865, 42 (arXiv:1710.00700), Table 4 -- the b(N) cutoff parameter b0:
+      z  b0 (km/s)   +err   -err  log N_HI,0(z)  sigma_stat/sigma_cal
+    2.0      18.22   0.97   1.39        12.9743                 3.46x
+    2.2      16.89   1.37   3.12        13.0988                 2.45x
+    2.4      18.68   0.74   1.07        13.2233                 4.54x
+    2.6      20.41   1.02   0.87        13.3478                 3.29x
+    2.8      22.67   0.55   0.60        13.4723                 6.11x
+    3.0      22.24   0.33   0.73        13.5968                10.18x
+    3.2      21.65   0.40   0.52        13.7213                 8.40x
+    3.4      20.80   0.71   1.27        13.8458                 4.73x
+  calibration systematic B_CAL_SYS = 3.36 km/s (18.68 - 15.32, Hiss Sec. 5.3), 2sigma-rej. variant 2.99 km/s
+  median Table 4 statistical +err = 0.72 km/s, so the
+  calibration channel is 4.6x wider than the median statistical bar.
+
+SELF-TESTS ON THE VERIFIED DATA
+  [OK] Table 4 transcribed with all 8 dz = 0.2 bins, z = 2.0 to 3.4
+  [OK] b0(z) peaks at z = 2.8 (b0 = 22.67 km/s) -- NON-MONOTONIC, and note the peak moves to z = 3.0 if all rows are rescaled to one common pivot (contrast 1.34x -> 1.21x)
+  [OK] the retired sequence's SHAPE is contradicted: it rose toward low z, but measured b0 FALLS from 22.67 km/s at z = 2.8 to 18.22 km/s at z = 2.0
+  [OK] secondary DIP at z = 2.2 present as tabulated (16.89 km/s) but only 1.0 sigma on its own +err and it carries the table's worst bar (+1.37/-3.12) -- reported, not leaned on
+  [OK] raw peak-to-trough contrast 1.342x (22.67/16.89), which the verified common-pivot rescaling reduces to ~1.21x
+  [OK] Hiss eqn 11 reproduces their quoted pivot at z = 2.4: log N_HI,0 = 13.2233 vs the paper's 10^13.22 cm^-2
+  [OK] calibration systematic 3.36 km/s (2sigma-rej. variant 2.99), i.e. 18% of b0 -- Hiss's own >3 sigma method disagreement with Rudie
+  [OK] the calibration channel (3.36 km/s) is wider than EVERY Table 4 statistical bar (max +err = 1.37 km/s), so it is always the WEAKER of the two significances -- which is why both must be printed side by side, never one alone
+  [OK] the >3 sigma is HISS (18.68) vs RESCALED RUDIE (15.32); 15.32 vs 17.56 is the SAME Rudie datum at two pivots and is NOT a disagreement
+  [OK] Hiss's pivot rescaling reproduced independently: 17.56 x 10^(0.156 x (13.2233 - 13.6)) = 15.34 vs their 15.32
+  [OK] none of the four retired values appears anywhere in the replacement data
+  [OK] KERNEL-ARGUMENT IDENTITY: mu_fw(sqrt(y^2+y)) * sqrt(y^2+y) = y to rtol 1e-12 over y = 1e-04..1e+03 -- confirming sqrt(y^2+y), the OBSERVED acceleration, is mu_fw's argument. If h is ever re-pointed at the Newtonian y this check FAILS.
+  [OK] and the deep-regime asymptote is the CORRECT one: 1/h -> 1/(2 sqrt(y)) (ratio 1.000001 to 1), NOT the 1/(2y) the retired argument gave -- which at y=1e-6 would differ by 32x
+  [OK] thermal floor b_th = 12.85 km/s at T = 1e4 K, 18.17 at 2e4 K (Rudie eqs. 4-6, proton mass)
+====================================================================================================

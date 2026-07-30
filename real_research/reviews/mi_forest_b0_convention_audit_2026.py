@@ -228,7 +228,13 @@ def main() -> int:
     print("     redshift lever removes one of the original test's four independent-looking checks.")
     print("   * The honest summary is that the significance must be requoted on BOTH error channels, and")
     print("     that the corpus's banked figure rested on numbers that do not exist.")
-    check(True, "the mixed direction is recorded, with the against-side and the for-side both named")
+    lo24 = [b for z, b in zip(zs, f136) if z <= 2.4]
+    check(min(lo24) < CORPUS_UNSOURCEABLE[2.30] and rng_fix < corpus_rng,
+          f"the two halves of the mixed verdict are both TRUE OF THE DATA, not merely asserted: the real "
+          f"fixed-column cutoff at z <= 2.4 is {min(lo24):.1f}-{max(lo24):.1f} km/s, BELOW the retired "
+          f"{CORPUS_UNSOURCEABLE[2.30]:.0f} km/s (less budget to hide an amplification in -> against), while "
+          f"the real z-variation {100*rng_fix:.0f}% is smaller than the assumed {100*corpus_rng:.0f}% "
+          f"(the redshift lever is largely absent -> for)")
     print("=" * 100)
     return 0 if ok else 1
 

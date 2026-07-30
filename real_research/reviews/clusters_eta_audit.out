@@ -1,0 +1,326 @@
+====================================================================================================
+CLUSTER eta(R500) AUDIT -- eRASS1 (Bulbul+2024), FRAMEWORK'S OWN KERNEL AS HEADLINE
+  canonical a0 = 9.3614e-11 m/s^2 (rho_DE, cH_Lambda/Z)
+  alt       a0 = 1.1311e-10 m/s^2 (rho_total, cH_0/Z)   footing spread = 1.2082x = 0.0822 dex
+====================================================================================================
+
+Clean sample (0<z<1, M500>0, Mgas>0, 0.01<fgas<0.30, fstar=0.20): N = 9830
+  z: median 0.298  (10-90%: 0.095 - 0.658)
+  canonical rho_DE  (cH_Lambda/Z)    g_bar/a0 median 0.0369  (96% at g_bar<0.1 a0 -> deep regime)
+  alt rho_total     (cH_0/Z)         g_bar/a0 median 0.0306  (98% at g_bar<0.1 a0 -> deep regime)
+
+----------------------------------------------------------------------------------------------------
+1. HEADLINE -- eta = M_dyn / M_pred at R500 on the FRAMEWORK's OWN kernel nu=sqrt(1+1/y)
+----------------------------------------------------------------------------------------------------
+  footing                                median  geomean          [q25,q75]
+  canonical rho_DE  (cH_Lambda/Z)         2.334    2.542   [2.16, 2.74]
+  alt rho_total     (cH_0/Z)              2.132    2.321   [1.97, 2.50]
+
+  ROBUSTNESS ROW -- RIVAL interpolation functions (NOT the framework's; shown only
+  to show the number is not an artefact of one kernel choice).  Canonical footing.
+  RIVAL nu                         median  geomean   ratio to framework kernel
+  simple (Famaey-Binney 05)         2.149    2.355   0.9211
+  standard                          2.364    2.567   1.0130
+  RAR-exp (McGaugh+16)              2.153    2.359   0.9226
+  The banked 2.149 headline was the 'simple' row above -- a FOREIGN kernel.
+  On the framework's own kernel eta is 8.6% LARGER.  Applying the repo's own rule
+  correctly makes the deficit WORSE, not better.
+
+----------------------------------------------------------------------------------------------------
+2. SIGNIFICANCE -- statistical vs SYSTEMATIC-FLOOR-LIMITED.  QUOTE THE FLOOR-LIMITED ONE.
+----------------------------------------------------------------------------------------------------
+  FRAMEWORK kernel, canonical a0  <-- THE HEADLINE
+     N = 9830   mean log10(eta) = +0.4052 dex   scatter = 0.1094 dex   SE = 0.00110 dex
+     formal STATISTICAL significance = 367 sigma   <-- DO NOT QUOTE THIS
+     floor-limited significance (absolute-scale systematic floor):
+        vs 0.10 dex floor : 4.05 sigma
+        vs 0.15 dex floor : 2.70 sigma
+        vs 0.20 dex floor : 2.03 sigma
+  FRAMEWORK kernel, alt a0
+     N = 9830   mean log10(eta) = +0.3656 dex   scatter = 0.1091 dex   SE = 0.00110 dex
+     formal STATISTICAL significance = 332 sigma   <-- DO NOT QUOTE THIS
+     floor-limited significance (absolute-scale systematic floor):
+        vs 0.10 dex floor : 3.66 sigma
+        vs 0.15 dex floor : 2.44 sigma
+        vs 0.20 dex floor : 1.83 sigma
+  RIVAL 'simple' kernel, canonical a0  (the banked, mislabelled block)
+     N = 9830   mean log10(eta) = +0.3721 dex   scatter = 0.1141 dex   SE = 0.00115 dex
+     formal STATISTICAL significance = 323 sigma   <-- DO NOT QUOTE THIS
+     floor-limited significance (absolute-scale systematic floor):
+        vs 0.10 dex floor : 3.72 sigma
+        vs 0.15 dex floor : 2.48 sigma
+        vs 0.20 dex floor : 1.86 sigma
+
+  WHY THE STATISTICAL NUMBER IS MEANINGLESS HERE: eta is an ABSOLUTE-SCALE ratio.
+  N=9830 shrinks the SE to 0.00110 dex, but every cluster shares the same absolute mass
+  calibration (M500 proxy zero-point, R500 definition, f_gas budget, HSE bias).  A common
+  offset does not average down with N.  The floor-limited figure is the one to quote:
+  +0.405 dex against a 0.10 / 0.15 / 0.20 dex floor -> 4.05 / 2.70 / 2.03 sigma.
+  Real, soft, and NOT a referee-proof kill at either end of the floor range.
+  (median per-cluster significance on each cluster's own M500 error: 3.72 sigma)
+
+----------------------------------------------------------------------------------------------------
+3. BARYON-BUDGET SWEEP -- stellar fraction fstar (= M_star/M_gas), FRAMEWORK kernel
+----------------------------------------------------------------------------------------------------
+  fstar       med canon   gm canon    med alt     gm alt
+  0.00            2.567      2.794      2.344      2.549
+  0.10            2.443      2.660      2.231      2.427
+  0.20            2.334      2.542      2.132      2.321
+  0.30            2.238      2.438      2.045      2.227
+  0.50            2.075      2.262      1.898      2.067
+  Even an implausibly generous fstar=0.50 does not reach eta=1 on either footing.
+
+----------------------------------------------------------------------------------------------------
+4. THE COST OF THE FRAMEWORK'S OWN LOWER a0 -- it makes eta WORSE than standard MOND
+----------------------------------------------------------------------------------------------------
+  Deep regime: g_obs -> sqrt(a0 g_bar), so at fixed g_obs the predicted mass scales as
+  sqrt(a0) and eta scales as sqrt(a0_rival / a0_framework).  Rival = 1.200e-10 (McGaugh+16).
+  canonical rho_DE  (cH_Lambda/Z)    sqrt(a0_rival/a0) = 1.1322  (+13.2% on eta)   measured geomean ratio = 1.1272
+  alt rho_total     (cH_0/Z)         sqrt(a0_rival/a0) = 1.0300  (+3.0% on eta)   measured geomean ratio = 1.0290
+  This is not a rounding detail: the framework's distinctive content IS the coefficient,
+  and here the coefficient costs it 13.2% (canonical) / 3.0% (alt).
+  Erasing eta by an a0 boost alone needs a0 x eta^2, on the canonical footing:
+    median  eta=2.334      -> a0 x 5.45 (= +0.736 dex), i.e. a0 ~ 5.10e-10 -- which the galaxy RAR excludes.
+    geomean eta=2.542      -> a0 x 6.46 (= +0.810 dex), i.e. a0 ~ 6.05e-10 -- which the galaxy RAR excludes.
+
+----------------------------------------------------------------------------------------------------
+5. THE a0-RATIO FRAMING -- sharper than eta, and convention-clean for the lensing entry
+----------------------------------------------------------------------------------------------------
+  ATTRIBUTION, CORRECTED: the cluster acceleration scale g_ddagger = (2.02 +/- 0.11)e-9
+  m/s^2 is Tian, Umetsu, Ko, Donahue & Chiu 2020, ApJ 896, 70 (arXiv:2001.08340), from 20
+  CLASH clusters, 100-600 kpc, slope fixed at 1/2.  It is NOT 'Tian & Ko 2016' (that is
+  MNRAS 462, 1092 on ELLIPTICAL galaxies, which adopts a0=1.21e-10 and makes no cluster
+  claim), and it is NOT 'Chae 2024'.  The words 'a seventeen times larger acceleration
+  scale' appear in Tian et al. 2024, A&A 684, A180 (arXiv:2402.12016) and are 2.02e-9 /
+  1.20e-10 = 16.83 -- a ratio to STANDARD MOND's a0, not to the framework's.
+  Note also the SYMBOL: Tian et al. reserve g_dagger for the GALAXY scale 1.20e-10 and
+  write the cluster scale g_ddagger.  Writing 'g_dagger = 2.02e-9' inverts their notation.
+
+  METHOD-AND-RADIUS LADDER (there is NO robust scalar '17x'):
+  probe                                     g [m/s^2] |  x canon      dex |    x alt      dex
+  lensing 100-600 kpc, 20 CLASH             2.020e-09 |    21.58    1.334 |    17.86    1.252
+  dynamics, member gals (29 HIFLUGCS) lo    8.000e-10 |     8.55    0.932 |     7.07    0.850
+  dynamics, member gals (29 HIFLUGCS) hi    2.200e-09 |    23.50    1.371 |    19.45    1.289
+  dynamics, 54 BCG stellar MVDR             1.700e-09 |    18.16    1.259 |    15.03    1.177
+  X-ray HSE pooled, 52 non-cool-core        9.500e-10 |    10.15    1.006 |     8.40    0.924
+  X-ray HSE at r_c                          1.900e-09 |    20.30    1.307 |    16.80    1.225
+  X-ray HSE at 2 r_c                        1.200e-09 |    12.82    1.108 |    10.61    1.026
+  X-ray HSE at 3 r_c                        3.900e-10 |     4.17    0.620 |     3.45    0.538
+  Coma MOND model (LOWER BOUND)             3.634e-10 |     3.88    0.589 |     3.21    0.507
+     lensing 100-600 kpc, 20 CLASH            Tian+2020 ApJ 896 70 (slope fixed 1/2; conv-clean)
+     dynamics, member gals (29 HIFLUGCS) lo   Tian+2021; own headline 'about ten times'
+     dynamics, member gals (29 HIFLUGCS) hi   Tian+2021; factor-2.8 internal band
+     dynamics, 54 BCG stellar MVDR            Tian+2024 A&A 684 A180 (+/-0.7e-9)
+     X-ray HSE pooled, 52 non-cool-core       Chan&DelPopolo 2020 (McGaugh-nu loaded)
+     X-ray HSE at r_c                         Chan&DelPopolo 2020 -- grows inward
+     X-ray HSE at 2 r_c                       Chan&DelPopolo 2020
+     X-ray HSE at 3 r_c                       Chan&DelPopolo 2020 -- outer bin
+     Coma MOND model (LOWER BOUND)            The&White 1988: >= 2 h50^1.5 -> abs 2e-10 h50^2, evaluated at THIS script's H0
+
+  SPREAD, canonical footing: 3.88x to 23.50x (0.589 to 1.371 dex) -- a factor 6.1 range
+  driven by METHOD and by RADIUS (the discrepancy GROWS inward, stated in Chan &
+  Del Popolo 2020).  Tian et al. 2020's own 'Note added in proof' says their result and
+  Chan & Del Popolo's 'are not in quantitative agreement'.  Carry the ladder, not a scalar.
+
+  THE ONE NUMBER THE FRAMEWORK MUST ANSWER FOR (top of the ladder, lensing):
+    canonical rho_DE  (cH_Lambda/Z)    g_ddagger/a0 = 21.58 (1.334 dex);  deep-limit g_obs shortfall = 4.65x (0.667 dex)
+    alt rho_total     (cH_0/Z)         g_ddagger/a0 = 17.86 (1.252 dex);  deep-limit g_obs shortfall = 4.23x (0.626 dex)
+    +/-0.11e-9 propagates to 21.58 +/- 1.18 (canonical) = 1.334 +/- 0.024 dex
+    WHY THIS IS CONVENTION-CLEAN: Tian's fit fixes the slope at 1/2, i.e. it fits
+    g_obs = sqrt(g_ddagger g_bar), whose deep asymptote is IDENTICAL for the framework's
+    nu and for every rival nu.  So unlike eta, this entry carries no kernel choice.
+    Against Desmond 2023's RAR universality budget (sigma_int = 0.034 dex -> +/-0.068 at
+    1 sigma): 19.6x over at 1 sigma, 6.5x over at 3 sigma.
+
+----------------------------------------------------------------------------------------------------
+6. XRISM DIRECTION CORRECTION -- XRISM TIGHTENS THIS FRONT, IT DOES NOT RELIEVE IT
+----------------------------------------------------------------------------------------------------
+  WITHDRAWN: the corpus's reading that XRISM licenses a large non-thermal component and
+  brackets eta down to ~1.0 ('post-XRISM equilibrium bracket eta in [1.0, 2.33]').  Every
+  primary source says the measured non-thermal pressure is SMALL.
+
+  REQUIREMENT (Kelleher & Lelli 2024, A&A 688 A78): hydrostatic bias 10-40% at r>1 Mpc
+  with MAXIMAL external field effect; 10-100% in their no-EFE branch; 50-60% beyond 2 Mpc.
+  BOTH BRANCHES ARE CARRIED BELOW. Reporting only the EFE branch would quote the
+  framework-FRIENDLIEST requirement and silently soften the comparison.
+  KL Sect. 5.4 place r>1 Mpc at ~R500, so R500/R200 are the radius-matched comparisons.
+
+  MEASURED f_nth [%]                         value   +1sig |      req/meas req/(meas+1s)
+  A2029 core (<180 kpc), XRISM kinematic       2.6     2.9 |  3.85-15.38   3.45-13.79
+  A2029 out to R2500=670 kpc, XRISM            2.0     2.5 |  5.00-20.00   4.00-16.00
+  Coma centre, XRISM line broadening           3.1     3.5 |  3.23-12.90   2.86-11.43
+  Coma <R500 incl. large-scale bulk           10.0    18.0 |  1.00- 4.00   0.56- 2.22
+  Perseus map, most regions                    2.8     5.0 |  3.64-14.55   2.00- 8.00
+  Perseus E/NE + inner/outermost bins         10.5    14.0 |  0.95- 3.81   0.71- 2.86
+  X-COP median at R500 (12 clusters)           5.9     8.8 |  1.69- 6.78   1.14- 4.55
+  X-COP median at R200                        10.5    14.8 |  0.95- 3.81   0.68- 2.70
+  X-COP population MEAN bound at R500         13.0    13.0 |  0.77- 3.08   0.77- 3.08
+  X-COP A2319 at R500 (single cluster)        43.6    47.1 |  0.23- 0.92   0.21- 0.85
+     A2029 core (<180 kpc), XRISM kinematic   ApJL 982 L5    CORE -- radius-MISmatched
+     A2029 out to R2500=670 kpc, XRISM        PASJ 77 S242   inside 1 Mpc -- MISmatched
+     Coma centre, XRISM line broadening       ApJL 985 L20   LOS small-scale only, no bulk
+     Coma <R500 incl. large-scale bulk        A&A 704 A35    RADIUS-MATCHED at R500
+     Perseus map, most regions                A&A 707 A109   0.5-5%; to ~0.7 R2500 only
+     Perseus E/NE + inner/outermost bins      A&A 707 A109   7-14%; non-AGN
+     X-COP median at R500 (12 clusters)       A&A 621 A40    RADIUS-MATCHED; NOT kinematic
+     X-COP median at R200                     A&A 621 A40    RADIUS-MATCHED at R200
+     X-COP population MEAN bound at R500      A&A 621 A40    Eckert's own upper bound
+     X-COP A2319 at R500 (single cluster)     A&A 621 A40    the scatter reaches it
+
+  HEADLINE, RADIUS-MATCHED (the only defensible comparison):
+    X-COP median R500        requirement exceeds measurement by 1.69x - 6.78x (1.14x - 4.55x at +1 sigma)
+    X-COP median R200        requirement exceeds measurement by 0.95x - 3.81x (0.68x - 2.70x at +1 sigma)
+    Coma <R500 incl. bulk    requirement exceeds measurement by 1.00x - 4.00x (0.56x - 2.22x at +1 sigma)
+    The naive core factor (3.8x - 15.4x against A2029's 2.6%) is RADIUS-MISMATCHED and
+    must NOT be the headline: every XRISM velocity measurement stops inside 1 Mpc,
+    exactly where KL themselves say the bias 'should play a minor role'.
+
+  AND THE SIGN, WHICH IS THE HARDER HALF.  Two distinct statements, both unfavourable:
+    (a) AT r>1 Mpc the requirement's SIGN is right (true mass ABOVE thermal-HSE mass) but
+        the magnitude is 1.7x-6.8x short of the radius-matched measurement.
+    (b) AT R500 AND INWARD the residual is a DEFICIT (MOND under-predicts).  Erasing
+        eta by a mass-bias route needs the thermal HSE to OVER-estimate the truth by
+        1 - 1/eta = 57.1% (median eta=2.334) to 60.7% (geomean eta=2.542); on the alt
+        footing 53.1% to 56.9%.  Non-thermal pressure does the OPPOSITE: M_true =
+        M_HSE/(1-f_nth) >= M_HSE for f_nth >= 0, so it RAISES eta.  The turbulence escape
+        at R500 is not merely too small -- it has the WRONG SIGN.  With the measured
+        f_nth = 5.9% at R500 the canonical eta moves from 2.542 to 2.701.
+    (b') *** CATEGORY CAVEAT, added 2026-07-30 after an adversarial check. *** The eta above is
+        built on eRASS1 M500, which is a WEAK-LENSING-CALIBRATED X-ray count-rate proxy, NOT a
+        thermal-HSE mass. So the M_true = M_HSE/(1-f_nth) argument does not apply to it
+        directly, and quoting it here as though it did overstates the case against the
+        turbulence escape. The relevant systematic for a WL-calibrated mass is the WL
+        CALIBRATION (Li+2024: WL runs ~110%% above hydrostatic AND kinematic, which agree with
+        each other) -- which is exactly the axis the corpus previously mislabelled as
+        'post-XRISM'. The f_nth arithmetic below is retained as a SIGN argument for genuinely
+        hydrostatic analyses (e.g. Kelleher & Lelli's), not as a correction to this eta.
+        [both footings: alt eta 2.321 -> 2.466]
+
+  LEGITIMATE SOFTENERS -- the tightening is real but NOT clean.  All five are sourced:
+    (i)   RADIUS.  A2029 stops at R2500 = 670 kpc; Perseus at ~0.7 R2500 ~ 570 kpc.  Neither
+          directly bounds a requirement stated at r > 1 Mpc.
+    (ii)  LINE-OF-SIGHT / FIELD OF VIEW.  The 2.6-3.1% figures are small-scale LOS
+          broadening and explicitly exclude bulk-velocity pressure (ApJL 985 L20 Sect 4.1).
+          Folding bulk motions in, Coma reaches P_NT/P_tot(<R500) = 10 (+8/-4)% (A&A 704 A35
+          Eq 16) -- which sits ON KL's lower bound, so at R200 the ranges OVERLAP and there
+          is no exclusion.
+    (iii) SCATTER.  X-COP's per-cluster range at R500 is 2.2% to 43.6%; the 5.9% is a
+          MEDIAN, and Eckert's own bound on the population MEAN is 13%, not 6%.  MOND
+          cluster fits are done cluster-by-cluster, so individual clusters DO reach it.
+    (iv)  MODEL DEPENDENCE OF THE ONE RADIUS-MATCHED NUMBER.  X-COP's alpha at R500 is not
+          kinematic: it is inferred from f_gas,HSE against a LambdaCDM-calibrated universal
+          gas fraction (Omega_b/Omega_m = 0.156, Planck; Y_b from The300).  Using it against
+          MOND is partly circular.  XRISM's numbers are model-independent but core-only --
+          the two virtues do not coexist in one dataset.
+    (v)   NOT AN IDENTITY.  KL's 'bias' is a mass/acceleration residual, not P_NT/P_tot.
+          The empirical (mass bias)/alpha ratio from Eckert Table 2 has median 1.10 at R500
+          and 0.86 at R200, so the factors above carry ~30% definitional slop.
+    NOT a valid softener: f_nth is algebraically IDENTICAL across all four XRISM/X-COP
+    papers (all credit Eckert+2019 Eq 10), so definitional mismatch cannot be invoked there.
+
+  ON THE FRAMEWORK'S OWN FOOTINGS the comparison gets slightly WORSE, not better: KL used
+  a0 = 1.2e-10, and in the deep limit the framework predicts less acceleration --
+    canonical rho_DE  (cH_Lambda/Z)    sqrt(a0/1.2e-10) = 0.8832 -> 11.7% LESS deep-MOND acceleration than KL
+    alt rho_total     (cH_0/Z)         sqrt(a0/1.2e-10) = 0.9709 -> 2.9% LESS deep-MOND acceleration than KL
+  which pushes the required bias UP.  Direction only -- this is not a refit, and the
+  framework's nu is not KL's, so no revised bias percentage is quoted from it.
+
+----------------------------------------------------------------------------------------------------
+7. THE KELLEHER & LELLI Eq. (5) MODIFIED-INERTIA CAVEAT -- verbatim, then where it lands
+----------------------------------------------------------------------------------------------------
+  VERBATIM (A&A 688 A78, Sect. 2.2, below Eq. 6):
+    "Equation (5) is strictly valid in MOND modified gravity theories for isolated,
+     spherically symmetric systems (Bekenstein & Milgrom 1984; Milgrom 2010, 2023).
+     Equation (5) is also valid in MOND modified inertia theories in the case of
+     isolated systems with purely circular orbits (Milgrom 1994), which is clearly not
+     the case for the random gas motions in the ICM.  In this work, therefore, we are
+     primarily testing MOND modified gravity theories, albeit we expect Eq. (5) to
+     provide the correct order of magnitude also in modified inertia theories (for
+     isolated systems)."
+  The corpus has quoted this truncated at 'random gas motions in the ICM', which reverses
+  its rhetorical force.  The final clause must always travel with it.
+
+  BOTH WAYS.
+  FOR the escape: Eq. (5) is a POINTWISE algebraic relation whose MI derivation (Milgrom
+  1994) assumes isolated systems on purely circular orbits.  MI kernels are temporally
+  nonlocal; ICM support is pressure/random-motion.  So the inversion g_obs -> g_bar that
+  DEFINES the deficit is not guaranteed pointwise under MI, and KL say themselves they are
+  'primarily testing MOND modified gravity theories'.  KL's exact numbers are therefore
+  order-of-magnitude MI constraints, not precision ones.  That much is correct.
+
+  AGAINST the escape -- and this is decisive on SIZE, in four steps:
+    1. KL's own stated expectation is order-of-magnitude validity under MI, and the residual
+       here IS an order-of-magnitude-level object (eta = 2.54, i.e. 154% missing), not a
+       percent-level one.
+    2. The corpus's own repeated finding is MI == AeST(=MG) to machine precision in STATIC
+       systems, and hydrostatic clusters ARE modelled as static.  The framework therefore
+       has no internal licence to predict a different static mass requirement.
+    3. The one genuinely MI-DISTINCTIVE non-adiabatic observable the corpus has computed --
+       the relational sigma-spread -- was REPRICED from its own closure to 1.45-2.21%
+       max-min (0.22-0.72% population RMS): see prep_2026/sigma_spread/GAP_STATEMENT.md,
+       Amendment 1.  Compare what would be needed:
+         needed to close eta = 2.542 : ~154%     available (derived): 1.45-2.21%
+         shortfall = 70x to 106x.  A 2% effect cannot close a ~154% residual.
+    4. DIRECTIONALLY the framework is worse off, not better: nu_fw(y) < nu_simple(y) at
+       EVERY y (checked below), and the framework's a0 is lower than KL's 1.2e-10 on both
+       footings.  Both effects INCREASE the required missing mass relative to KL's.
+  LANDING: the caveat is a warning about the validity of a POINTWISE relation, not a door
+  to Newtonian-baryons-only clusters under MI.  Do NOT write that the cluster constraint
+  'does not apply' to the framework.  The defensible weaker claim is the only one to make:
+  KL's numbers constrain MI to order of magnitude, and at that resolution the residual
+  survives at the same size or larger.
+
+----------------------------------------------------------------------------------------------------
+8. THE 'SHARED ACROSS THE RELATIVISTIC-MOND FAMILY' CLAIM -- PATTERN, NOT THEOREM
+----------------------------------------------------------------------------------------------------
+  There is NO published one-sentence statement that the cluster residual is shared across
+  the relativistic-MOND family.  Checked:
+    - Skordis & Zlosnik 2021 (the AeST paper) does not discuss clusters at all.
+    - Durakovic & Skordis 2023 (arXiv:2312.00889) claim only 'potential'.
+    - Famaey, Pizzuti & Saltas 2024 (arXiv:2410.02612) call it 'an open question'.
+  What IS defensible: (a) the in-corpus argument that MI == AeST(=MG) to machine precision
+  in static systems, which is sound for MI-vs-AeST specifically; and (b) that the residual
+  is a 40-year, repeatedly-reproduced PATTERN across MOND cluster analyses.
+  So: 'an argued pattern, shared with AeST by an in-corpus argument' is safe.
+  'Shared across the whole relativistic-MOND family' as a published THEOREM is not.
+
+----------------------------------------------------------------------------------------------------
+9. eta vs M500 (FRAMEWORK kernel, canonical a0, fstar=0.20)
+----------------------------------------------------------------------------------------------------
+  M500 bin [1e13 Msun]      N    eta_med
+     0.5 - 10.7          1966      2.335
+    10.7 - 16.7          1963      2.278
+    16.7 - 23.5          1967      2.318
+    23.5 - 34.4          1966      2.338
+    34.4 - 161.8         1968      2.376
+
+====================================================================================================
+INTERNAL CHECKS (structural identities only -- none encodes a verdict)
+====================================================================================================
+   [PASS] A: framework nu(y) < simple nu(y) for ALL y on 1e-6..1e6  -- min ratio 0.866025, max ratio 1.000000
+   [PASS] B: deep limit -- framework and simple nu agree, so a slope-1/2 fit is convention-clean  -- ratio at y=1e-8 is 0.99995001
+   [PASS] C: two independent routes to the canonical a0 agree (0.5 c sqrt(G rho_DE) vs c H_Lambda/Z)  -- 9.361388e-11 vs 9.361388e-11
+   [PASS] D: footing spread = alt/canon = 1/sqrt(OmL)  -- 1.208244 vs 1.208244
+   [PASS] E(0.10): floor-limited sigma equals mean/floor exactly
+   [PASS] E(0.15): floor-limited sigma equals mean/floor exactly
+   [PASS] E(0.20): floor-limited sigma equals mean/floor exactly
+   [PASS] F: statistical sigma equals mean/(sd/sqrt(N))  -- 367.15 sigma
+   [PASS] G: statistical sigma exceeds the floor-limited sigma by sqrt(N)*floor/sd  -- ratio 90.6
+   [PASS] H(canonical): measured eta ratio matches the deep-limit sqrt(a0) scaling to <5%  -- predicted 1.1322, measured 1.1272
+   [PASS] H(alt): measured eta ratio matches the deep-limit sqrt(a0) scaling to <5%  -- predicted 1.0300, measured 1.0290
+   [PASS] I: sample is in the deep regime where the sqrt(a0) scaling is the right asymptotic  -- 100.0% of clusters at g_bar/a0 < 0.3
+   [PASS] J: XRISM requirement/measurement factors reproduce from the published inputs  -- 1.6949 and 6.7797
+   [PASS] K: g_ddagger/a0 ladder arithmetic (Tian+2020 CLASH, canonical footing)  -- 21.578 x = 1.3340 dex
+   [PASS] L: the '17x' phrasing is the ratio to STANDARD MOND's a0, not to the framework's  -- 2.02e-9/1.20e-10 = 16.83, vs 21.58 against the canonical a0
+   [PASS] M: the mass-bias needed to erase eta has the OPPOSITE sign to non-thermal pressure  -- erasing needs HSE to over-estimate by 60.7%; f_nth=5.9% moves eta 2.542 -> 2.701
+   [PASS] N: the derived sigma-spread ceiling cannot close the residual  -- available 2.21%, needed 154% -> short by 70x
+
+====================================================================================================
+RESULT: all internal checks passed.
+THE ONE HONEST eta STATEMENT:
+  eta(R500) = 2.334 median / 2.542 geomean, eRASS1 (Bulbul+2024, N=9830, fstar=0.20),
+  on the FRAMEWORK's OWN kernel nu(y)=sqrt(1+1/y), canonical a0 = 9.361e-11.
+  Alt footing: 2.132 / 2.321.  Mean log10(eta) = +0.4052 dex, scatter 0.1094 dex.
+  SIGNIFICANCE TO QUOTE: 4.05 / 2.70 / 2.03 sigma against a 0.10 / 0.15 / 0.20 dex
+  absolute-scale systematic floor.  The 367 sigma statistical figure is NOT the number.
+====================================================================================================

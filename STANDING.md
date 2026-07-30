@@ -146,14 +146,55 @@ band, 0.0101 from the point target 1.09.
      construction supplies it.
    - Scripts: `real_research/reviews/mi_alpha1_solar_system_2026.py`,
      `real_research/reviews/mi_tail_exponent_rar_cost_2026.py` (both exit 0).
-1. **The diffuse-baryon sector needs a regulator, mandatorily.** Under a pointwise reading of the
-   closure, diffuse gas sits at $x=a/a_0\sim10^{-2}$ where the linear response $1/h$ is large;
-   Lyman-α forest $b$-parameters then disfavour it at **~6–8σ for $z\sim2.3$–2.9**. Robust against all
-   five $a_0$ footing forks, the peculiar/Hubble budget split, the full total-acceleration treatment
-   (CAMB $P(k)$; this softened it from 7–43σ), and density conditioning (null, +8%). **One escape
-   survives and it is real:** the $b$ budget is ΛCDM-hydro-calibrated, so a self-consistent
-   modified-inertia hydro simulation is required to finalise. Status: **strongly disfavoured**, not
-   falsified.
+1. **The diffuse-baryon sector — ⚠️ THE BANKED "~6–8σ, STRONGLY DISFAVOURED" IS WITHDRAWN (2026-07-30).
+   This correction runs FOR the framework and is reported at the same weight as the ones against it.**
+   Three independent defects, each found by adversarial verification and each inflating the constraint:
+   - **The observed cutoff values were unsourceable.** The sequence $b_{\rm cut}=$ 15/17/22/24 km/s at
+     $z=$ 3.70/3.35/2.85/2.30, introduced as "web-verified", matches no published table. Schaye+2000 has
+     no table of fitted cutoffs at all — "16" and "22" are that figure's **y-axis tick labels**, on a
+     *simulation* panel, with a Jeans/Hubble mechanism rather than a thermal one. The four *redshifts*
+     trace to Schaye's sample medians (3.72/3.37/2.84/2.29) at mismatched pivots. Replaced by Hiss+2018
+     (ApJ 865, 42) Table 4, eight bins with their own asymmetric errors.
+   - **The error bar was invented, and in the flattering-to-the-test direction.** $\pm2.0$ km/s was a
+     fiction. Hiss's statistical bars are 0.33–1.37 km/s — *tighter* — but the **calibration systematic
+     is 3.36 km/s**, from Hiss's own §5.3 Rudie comparison (their 18.68 vs Rudie rescaled to their pivot
+     15.32, ">3σ"), and is explicitly *not* in the Table 4 bars. Every significance must be quoted on
+     **both** channels; the calibration one is the defensible one.
+   - **★ The response kernel was evaluated at the wrong acceleration, in all four scripts and in the
+     original corpus versions.** $h(x)=d(x\mu_{\rm fw})/dx$ takes the **observed** $x=|a|/a_0$; the
+     scripts passed the **Newtonian** $y=g_{\rm bar}/a_0$. The framework's own closure gives
+     $x=\sqrt{y^2+y}$, and in the deep regime $\sqrt{y}\gg y$, so the true response is
+     $1/h\to1/(2\sqrt{y})$, **not** $1/(2y)$. Sympy-verified. At the corpus's own $x_{\rm rms}=0.0372$
+     the conservative amplification is **1.65×, not 3.67×** — an inflation of 1.9–5.6× depending on
+     estimator, propagating linearly into every σ. Restoring the wrong argument makes all three
+     runnable scripts fail 8 internal checks, so the old checks passed *only* because of the mismatch.
+   **The corrected numbers, both error channels, both footings:**
+
+   | estimator | statistical | **calibration (defensible)** |
+   |---|---|---|
+   | $x_{\rm rms}$, CAMB total acceleration (**best treatment**) | 1.1–9.0σ | **0.4–0.9σ** |
+   | after the density-conditioning lever | 1.0–8.5σ | **0.4–0.9σ** |
+   | single-absorber convention (the primary script's own) | 4.1–26σ | **1.7–3.0σ** |
+   | across all five $a_0$ forks (single-absorber $g$) | 3.7–70σ | **1.4–7.4σ** |
+
+   **On the best estimator and the defensible channel this is 0.4–0.9σ — not an exclusion.** All eight
+   Hiss bins fall below 3σ on the calibration channel, and five of eight fall below 3σ even
+   statistically. The magnitude is **convention-owned to a factor ~32** ($x$ for forest gas spans
+   $4\times10^{-5}$ to $6\times10^{-2}$ depending on absorber size and mass component — Aguirre, Schaye
+   & Quataert 2001, ApJ 561, 550, is direct prior art on this exact test and puts it at the deep end).
+   The *sign* of the effect is robust across every fork; the *exclusion* is not.
+   **Counterweight, both ways:** Arnold, Puchwein & Springel 2015 (MNRAS 448, 2275) find even strong
+   $f(R)$ leaves forest line widths "hardly affected at all" — but only $|f_{R0}|=10^{-4},10^{-5}$ were
+   run (**not** $10^{-6}$), the Voigt line-width null is established for $10^{-5}$ only, and $f(R)$ is
+   screened and modifies the Poisson source whereas MI amplifies the velocity response of unscreened
+   low-acceleration gas. It does **not** transfer as positive evidence either way.
+   **Status: a real but WEAK tension, 0.4–3σ on the defensible channel, convention-dominated.** Not
+   "strongly disfavoured". The regulator is still wanted — the σ-spread and the non-analyticity
+   arguments (§5.2, $K\sim\sqrt{z}$) stand on their own — but the forest is no longer the thing forcing
+   it. Scripts: `mi_forest_bcut_data_2026.py` (shared verified data + the kernel derivation),
+   `mi_forest_b0_convention_audit_2026.py`, `mi_lyalpha_forest_b_test_2026.py`,
+   `mi_forest_total_acceleration_2026.py`, `mi_forest_conditional_accel_2026.py`,
+   `mi_forest_a0_footing_forks_2026.py` — all exit 0, 41 checks, all structural (no encoded verdicts).
 2. **The closure-vs-action gap — RESOLVED, NEGATIVELY, 2026-07-30.** No longer "not established": the
    law is **not** the EL equation of any fixed-kernel action, across four families (§4). Theorem 1's
    **moment identity** stands and is exact; what does not exist is a variational derivation.

@@ -23,7 +23,12 @@ BOTH WAYS: credit the large MOND-boost re-reading (most of "dark" is not a parti
 REAL DATA / CITES:
   - Princeton budget: Burrows ASTRO 204 galaxy.cluster.pdf (gas ~11%, stars ~2%, ~87% dark).
   - Cosmic baryon fraction f_b = Omega_b/Omega_m = 0.156 (Planck 2018).
-  - Cluster RAR elevated scale: Tian+2020 ApJ 896 70 (g_dagger ~ 2e-9 ~ 17x galactic a0).
+  - Cluster RAR elevated scale: Tian, Umetsu, Ko, Donahue & Chiu 2020, ApJ 896 70,
+    arXiv:2001.08340: g_DDAGGER = (2.02 +/- 0.11)e-9 ~ 17x the GALACTIC a0 = 1.20e-10 (their
+    g_dagger).  NOMENCLATURE 2026-07-30: they reserve g_dagger for the galaxy scale, so
+    'g_dagger = 2e-9' inverts their notation.  Against the framework's a0 the factor is 21.6x
+    (canonical 9.36e-11) / 17.9x (alt 1.13e-10), and the published cluster scale is a
+    method-and-radius ladder ~4x-24x -- see real_research/reviews/clusters_eta_audit.py sec 5.
   - Banked framework cluster residual: eta(R500)~2.33 (framework dS-Unruh nu), core target
     M_res ~ 1.357e14 Msun on M500=1e15 (CLUSTER_STACK_AND_DECISIVE_TEST_2026-06-20).
   - No-particle stack: ~45% (gas-tracking, RX J1347 first-pass) to ~54-65% (galaxy-tracking),
@@ -95,7 +100,7 @@ print("   'DARK'   : %4.1f%%  = %.3e Msun   <-- the slide calls this a PARTICLE"
 # The slide's mass-discrepancy is a CORE/virial statement. The relevant g_bar is the
 # *baryonic* acceleration in the region where the discrepancy is measured. We compute it
 # self-consistently from the visible baryons enclosed within a characteristic radius, and
-# also report the standard cluster-core RAR scale (Tian+2020: g_dagger ~ 17x galactic a0,
+# also report the standard cluster-core RAR scale (Tian+2020: g_DDAGGER ~ 17x galactic a0,
 # i.e. clusters sit at g_bar ~ a few x a0, mildly-MOND not deep-MOND -- this is WHY the
 # cluster boost is only ~2-3x, the honest both-ways point).
 #
@@ -114,7 +119,8 @@ for R_kpc in [300.0, 500.0, 1300.0]:
           % (R_kpc, g_bar_core, g_bar_core/a0, B, B_can))
 
 # Use the banked CLUSTER-CORE acceleration scale directly: Tian+2020 measured the cluster RAR
-# turns at g_dagger ~ 2.02e-9 ~ 17x galactic a0, and clusters sit at g_bar ~ a few a0 in the core.
+# turns at g_ddagger ~ 2.02e-9 ~ 17x galactic a0 (21.6x the framework's), and clusters sit at
+# g_bar ~ a few a0 in the core.
 # We adopt the representative core g_bar from the 500 kpc aperture as the budget anchor.
 R_anchor = 500.0*kpc
 g_bar_anchor = G*(M_bar*Msun)/R_anchor**2

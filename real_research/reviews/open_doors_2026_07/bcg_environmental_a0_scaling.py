@@ -14,8 +14,15 @@ def main():
     
     a0_canonical = 1.2e-10 # standard galactic a0 in m/s^2 (approx)
     
-    # In massive Brightest Cluster Galaxies (BCGs), the effective a0 is found
-    # to be ~17x larger to account for the missing mass without dark matter.
+    # In massive Brightest Cluster Galaxies (BCGs) / clusters, the empirical acceleration
+    # scale g_ddagger = (2.02 +/- 0.11)e-9 m/s^2 is ~17x this galactic a0.
+    # ATTRIBUTION 2026-07-30: Tian, Umetsu, Ko, Donahue & Chiu 2020, ApJ 896, 70
+    # (arXiv:2001.08340), 20 CLASH clusters; the "seventeen times" phrasing is Tian et al.
+    # 2024, A&A 684, A180.  The 17x is the ratio to STANDARD MOND's 1.20e-10; against the
+    # FRAMEWORK's a0 it is 21.6x (canonical 9.36e-11) / 17.9x (alt 1.13e-10).  And the
+    # published cluster scale is a method-and-radius LADDER (~4x-24x), not a scalar --
+    # see real_research/reviews/clusters_eta_audit.py section 5.
+    # NOTE: the data points plotted below are MOCK (np.random), illustrative only.
     a0_bcg = 17.0 * a0_canonical
     
     # Generate an array of baryonic accelerations typical for a cluster core

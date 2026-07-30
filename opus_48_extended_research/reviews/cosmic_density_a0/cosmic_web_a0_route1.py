@@ -91,10 +91,18 @@ def delta_for_boost(b):
 #   (a) "close via a0" -- the residual ~2x gravity means g_obs needs ~x2; in deep-MOND
 #       g_obs = sqrt(g_bar a0_eff), so g_obs^2 ~ a0_eff -> closing a FACTOR-2 mass deficit
 #       in g_obs^2 needs a0_eff ~ x4? Let's be careful & honest below. First the headline:
-#   (b) the Tian/Chae cluster RAR scale g+ ~ 2.0e-9 = ~17x the field a0 (the EMPIRICAL
-#       cluster acceleration scale).
+#   (b) the CLUSTER RAR scale g_ddagger = (2.02 +/- 0.11)e-9 m/s^2 -- ATTRIBUTION CORRECTED
+#       2026-07-30: this is Tian, Umetsu, Ko, Donahue & Chiu 2020, ApJ 896, 70
+#       (arXiv:2001.08340), 20 CLASH clusters, 100-600 kpc, slope fixed at 1/2.  NOT "Chae".
+#       The "~17x" phrasing (Tian et al. 2024, A&A 684, A180) is 2.02e-9/1.20e-10 = 16.8, i.e.
+#       the ratio to STANDARD MOND's a0.  Against the FRAMEWORK's canonical a0 = 9.36e-11 it is
+#       21.6x (1.334 dex); 17.9x (1.252 dex) on the alt 1.13e-10 footing.  The published cluster
+#       scale is also a METHOD-AND-RADIUS LADDER (~4x to ~24x), not a scalar -- see
+#       real_research/reviews/clusters_eta_audit.py section 5.  Both boosts below are kept for
+#       continuity of this route's arithmetic.
 for label, Btarget in [("a0 boost x2", 2.0), ("a0 boost x3", 3.0), ("a0 boost x6 (Carl's close-target)", 6.0),
-                       ("cluster RAR g+/a0 ~17x (Chae/Tian)", 17.0)]:
+                       ("cluster g_ddagger/a0_MOND ~17x (Tian+2020)", 17.0),
+                       ("cluster g_ddagger/a0_framework ~21.6x (Tian+2020)", 21.6)]:
     dd = delta_for_boost(Btarget)
     print(f"  to get {label:38s}: need ambient overdensity delta = {dd:8.1f}x cosmic mean "
           f"(rho_amb = {dd*rho_m_mean:.2e} = {dd*rho_m_mean/rho_DE:.0f} rho_DE)")
@@ -219,15 +227,20 @@ print("-"*88)
 # sees the SAME enhanced a0.  The cluster-member RAR would be SHIFTED relative to the field
 # RAR by exactly the boost factor.  Confront with REAL data:
 field_a0   = 1.20e-10   # Lelli/McGaugh SPARC field RAR g_dagger
-chae_clu   = 2.0e-9     # Chae 2024 A&A: BCG+cluster RAR g_double_dagger
+chae_clu   = 2.02e-9    # ATTRIBUTION CORRECTED 2026-07-30: cluster RAR g_ddagger = (2.02+/-0.11)e-9
+#                         is Tian, Umetsu, Ko, Donahue & Chiu 2020, ApJ 896, 70 (arXiv:2001.08340),
+#                         20 CLASH clusters, 100-600 kpc, slope fixed 1/2 -- NOT 'Chae 2024'.
 chae_boost = chae_clu/field_a0
 print(f"  Field-galaxy RAR a0 (g_dagger, SPARC)          = {field_a0:.2e}")
-print(f"  BCG+cluster RAR a0 (g_ddagger, Chae 2024 A&A)  = {chae_clu:.2e}  -> {chae_boost:.1f}x field")
+print(f"  BCG+cluster RAR a0 (g_ddagger, Tian+2020 ApJ 896 70) = {chae_clu:.2e} -> {chae_boost:.1f}x field a0")
+print(f"     (vs the FRAMEWORK a0: 21.6x = 1.334 dex canonical 9.36e-11 / 17.9x = 1.252 dex alt 1.13e-10;")
+print(f"      and the published cluster scale is a method-and-radius LADDER ~4x-24x, not a scalar)")
 print(f"  Coma UDGs (Freundlich+2022, genuine deep cluster members): lie on the STANDARD field RAR,")
 print(f"     standard a0 ~ {field_a0:.2e}, EFE 'seriously deteriorates' the fit -> NO a0 enhancement.")
 print()
 print("  The decisive discriminant:")
-print("   - The Chae g_ddagger=17x is the CENTRAL-galaxy/CLUSTER-scale acceleration (= the residual")
+print("   - The Tian+2020 g_ddagger (17x standard-MOND a0 / 21.6x the framework a0) is the")
+print("     CENTRAL-galaxy/CLUSTER-scale acceleration (= the residual")
 print("     itself: the BCG sits in the unmodelled cluster potential). It is NOT an a0 that ordinary")
 print("     member galaxies carry.")
 print("   - Coma UDGs are member galaxies DEEPEST in the cluster overdensity. If the cosmic-web")
