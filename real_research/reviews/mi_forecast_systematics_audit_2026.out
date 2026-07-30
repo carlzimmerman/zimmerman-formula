@@ -1,0 +1,115 @@
+
+====================================================================================================
+S1. FRONT A -- the error model does the right thing structurally
+====================================================================================================
+  Frozen text: sigma_tot = sqrt(sigma_fit^2 + 0.02^2), sigma_fit scales as sqrt(30000/N).
+  So the systematic is held OUTSIDE the sqrt(N) and survives N -> infinity. This is exactly
+  what Prop 7 failed to do, and Front A gets it RIGHT. Credit where due.
+          N  sigma_fit  sigma_tot   floor?
+       5000     0.0465     0.0507         
+      12200     0.0298     0.0359         
+      21600     0.0224     0.0300         
+      30000     0.0190     0.0276         
+     100000     0.0104     0.0225         
+    1000000     0.0033     0.0203 -> 0.020
+  [OK] sigma_tot -> 0.02 as N -> infinity, i.e. the systematic does NOT average down. The structure is correct and Front A is NOT making Prop 7's mistake
+
+====================================================================================================
+S2. But the QUOTED sample size is statistical-only. Reproduce and check.
+====================================================================================================
+  Newton-vs-MI separation to detect: |1.09 - 1.00| = 0.090 in gamma_v
+  Using sigma_fit ALONE (statistical only): 3 sigma needs sigma_fit <= 0.0300,
+      N >= 30000 * (0.019/0.0300)^2 = 12033   <-- reproduces the quoted 12200
+  [OK] the frozen figure 12200 is reproduced to 1% by a STATISTICAL-ONLY calculation -- so it excludes sigma_sys, as its own label 'statistical' says
+  Using sigma_tot (systematic INCLUDED): need sigma_tot <= 0.0300, so
+      sigma_fit <= 0.0224  ->  N >= 21660
+  RATIO: the honest requirement is 1.78x the quoted figure.
+  [OK] including the frozen sigma_sys raises the Newton-vs-MI requirement from 12200 to 21660, a factor 1.78 -- the label 'statistical' is doing real work and is easy to miss next to the words 'expected DECIDABLE'
+  The saturation ceiling is what actually matters: z_max = 4.50 sigma for
+  Newton-vs-MI, and 2.35 sigma for MI-vs-MG, no matter how large N gets.
+  [OK] MI-vs-MG ceilings at 2.35 sigma even at infinite N -- which is exactly why the prereg pre-declares it 'likely UNDECIDABLE' and demands sigma_sys < 0.01. Handled correctly
+
+====================================================================================================
+S3. *** THE REAL FINDING: is sigma_sys = 0.02 CREDIBLE? ***
+====================================================================================================
+  The frozen allowance covers: eccentricity-model mismatch +/-0.015, a0-footing spread
+  <=0.005, residual shape/g_ext dependence. Note what is NOT itemised: UNDETECTED
+  COMPANIONS, which the prereg elsewhere calls the contamination axis and which pushes
+  gamma_v coherently UP for the whole sample.
+  Now compare against the published spread on this very quantity:
+      Chae 2026 (arXiv:2601.21728)         gamma_v = 1.260
+      Banik+24 Newtonian-consistent        gamma_v = 1.000
+      prereg DR3 dry run (guard zone)      gamma_v = 1.205
+  Literature spread on gamma_v: 0.260
+  Frozen sigma_sys:             0.020
+  ratio = 13.0
+  [OK] two careful groups differ by 0.26 in gamma_v on overlapping data while the frozen systematic allowance is 0.02 -- a factor 13. sigma_sys = 0.02 is NOT credible as an allowance for the dominant coherent term
+  WHAT THIS DOES AND DOES NOT MEAN. It does NOT mean the prereg is wrong to freeze a number:
+  freezing 0.02 before data is far better practice than fitting it afterwards. It means the
+  number is optimistic, and that the prereg's own contamination-guard machinery (the >1.20
+  guard zone, cut 12's NSS screen, the strictness ladder) is carrying more weight than
+  sigma_sys is. Those are qualitative guards; sigma_sys is the quantitative one, and it is
+  13x smaller than the field's own disagreement.
+  CONSEQUENCE FOR THE BANDS: at sigma_sys = 0.02 the 1.083-1.145 window reads as
+  'non-Newtonian at >=3 sigma AND MI-compatible'. If the true coherent systematic is even
+  0.06, that window is inside 1 sigma of Newton and decides nothing.
+      if sigma_sys were 0.05: Newton-vs-MI ceiling = 1.68 sigma at N=30k
+      if sigma_sys were 0.10: Newton-vs-MI ceiling = 0.88 sigma at N=30k
+      if sigma_sys were 0.26: Newton-vs-MI ceiling = 0.35 sigma at N=30k
+
+====================================================================================================
+S4. FRONT B -- s^TX. Does it make a sqrt(N) claim? No. Check what it does claim.
+====================================================================================================
+  Frozen Section 2.4 states the single Cassini-Saturn channel reaches sigma(s^TX) ~ 1.5e-7,
+  '~2 orders short of the prediction', detection significance ~0.006 sigma, and that the
+  decision 'lives in the multi-planet combined fit'. That is a sensitivity statement with NO
+  sqrt(N) extrapolation attached. Front B is CLEAN of Prop 7's error.
+  quantity                                  value
+  prediction, canonical                 8.680e-10
+  prediction, alt                       1.048e-09
+  published bound (Hees+ 2016)          1.300e-09
+  single-channel sensitivity            1.500e-07
+  margin (bound/prediction): 1.50x canonical, 1.24x alt
+  [OK] the frozen 1.50x / 1.24x margins reproduce exactly from the quoted numbers
+  THE AUDIT QUESTION FOR FRONT B is therefore different: not 'does the error average down'
+  but 'can the BOUND improve enough to decide, or is it systematics-floored?'
+  To reach a 3-sigma statement either way, the bound must tighten to 2.893e-10,
+  i.e. improve by 4.5x.
+  The single-channel route is 518x away from that, so it
+  cannot contribute -- exactly as Section 2.4 says.
+  [OK] a 4.5x bound improvement is needed to decide Front B, and the prereg makes no claim that it will happen -- the honest gap is that nobody has checked whether ephemeris SME bounds CAN improve 4.5x or are systematics-floored
+  WHY THAT MATTERS: ephemeris SME bounds come from a combined multi-planet secular fit with
+  strong correlations between coefficients and modelling systematics, so they do NOT scale as
+  sqrt(observations). A 4.5x improvement is a claim about ephemeris systematics, not about
+  data volume, and it is UNVERIFIED in this corpus either way.
+  Note also the margin is thin: at 1.50x, a mere 1.50x tightening puts the prediction AT the bound.
+
+====================================================================================================
+S5. VERDICT -- per front
+====================================================================================================
+  FRONT A (wide binary): STRUCTURE CORRECT, ALLOWANCE OPTIMISTIC.
+   * It does NOT make Prop 7's error: sigma_sys sits outside the sqrt(N) and survives
+     N -> infinity, ceilinging Newton-vs-MI at 4.5 sigma and MI-vs-MG at 2.3 sigma.
+   * The quoted 'N >~ 12200, expected DECIDABLE' is STATISTICAL-ONLY (reproduced here
+     to 1%); with sigma_sys included it is N >~ 21660.
+   * sigma_sys = 0.02 is 13x smaller than the published disagreement on the same
+     quantity, and does not itemise undetected companions -- the dominant coherent term.
+   * RECOMMENDED AMENDMENT (pre-data, in the open): state the saturation ceilings explicitly
+     next to the sample-size figures, and either raise sigma_sys or justify 0.02 against the
+     Chae/Banik disagreement. Raising it AFTER data would be unusable, so it must be now.
+
+  FRONT B (s^TX): CLEAN, and the honest gap is elsewhere.
+   * No sqrt(N) claim is made anywhere; Section 2.4 is an exemplary sensitivity statement.
+   * Deciding it needs a 4.5x bound improvement, which is a statement about
+     ephemeris systematics rather than data volume, and is UNVERIFIED.
+   * The 1.50x margin is thin enough that the front is close to the edge in
+     both directions: a modest tightening excludes the prediction; a stall leaves it
+     permanently undecided.
+   * RECOMMENDED: no amendment needed. Add one open item -- check whether the Hees-class
+     bound is photon-limited or systematics-floored, since that decides whether Front B is a
+     live front or a parked one.
+
+  NET: one of the two forecasts needed auditing and it was not the one I expected. Front B
+  was already honest. Front A is structurally sound but carries an allowance that the field's
+  own scatter contradicts by an order of magnitude.
+====================================================================================================
