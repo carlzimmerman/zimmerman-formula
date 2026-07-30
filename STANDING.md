@@ -99,7 +99,7 @@ band, 0.0101 from the point target 1.09.
 | Local-density $a_0$ ($a_0\propto\sqrt{G\rho_{\rm local}}$) | 10.5σ null on the framework's own SPARC environmental test, **plus** a structural trap: cluster cores are less dense than galaxy inners, so no density-monotone floor boosts clusters without boosting galaxies more |
 | Forcing $\kappa$ | provably unforceable (ghost-freedom + unitarity + holography); CKN bridge closed |
 | Standard-Model / particle numerology | number-field obstruction: $Z$ carries $\sqrt\pi$ (transcendental), all flavour data algebraic → structurally gauge-blind. Exceptional door hosts but does not force the SM |
-| Cluster no-particle theory programme | complete across both corpora. Residual is **real, shared across the whole relativistic-MOND family**, ~50–71% covered with no new particle. Not framework-specific, not a referee-proof kill |
+| Cluster no-particle theory programme | complete across both corpora. Residual is **real**, ~50–71% covered with no new particle. Shared with AeST by an in-corpus argument (MI $\equiv$ AeST to machine precision in static systems) — **"shared across the whole relativistic-MOND family" is that argument, not a published result**; see §5.4. Not framework-specific, not a referee-proof kill |
 | Collective / clumpy EFE | redistributes only; **−0.95%**, wrong sign. Deep-MOND sub-additivity + enclosed-mass theorem |
 | Bulk-flow 1.9× boost | all three routes closed: $\sigma_8$ (122σ), RSD $f\sigma_8$ (19σ), BAO/LSS shape |
 | SN-Ia host-step as an $a_0$ effect | null. Global SDSS-size ($N{=}449$) and local-SB ($N{=}450$) both give ~0 beyond mass. Location coincidence stays coincidental |
@@ -169,8 +169,41 @@ band, 0.0101 from the point target 1.09.
 3. **Cassini $Q_2$ quadrupole.** A **3–15σ** tension that the framework's AeST(=MG) realisation
    *inherits* (Desmond-Hees-Famaey 2024; Park+ 2026). The γ-pass is MOND-shared and trivial.
    **Cassini is not a favourable in-hand discriminator** — corrected 2026-06-28.
-4. **Clusters.** $\eta(R_{500})\sim1.6$–1.8 after the framework's own field. Real, soft, central,
-   **shared** across relativistic MOND. Not a kill.
+4. **Clusters — numbers corrected 2026-07-30, and the correction runs against the framework.** Real,
+   soft, central, not a kill; but three of the four figures previously carried here were wrong.
+   - **$\eta(R_{500})=2.334$ median / $2.542$ geomean** raw on eRASS1 (Bulbul+2024, $N=9830$,
+     $f_\star=0.20$) using the framework's **own** kernel $\nu=\sqrt{1+1/y}$. The old headline $2.149$
+     was the **simple-$\mu$** number — a mislabel, and judging the framework through a foreign $\nu$ is
+     against §8's own rule. So was the significance block: it read $+0.372$ dex and 3.7/2.5/1.9σ. On
+     the framework's own kernel it is **$+0.405$ dex and 4.05/2.70/2.03σ** against a 0.10/0.15/0.20 dex
+     absolute-scale floor. **Quote the floor-limited number; the 367σ statistical figure is
+     meaningless here.** Applying the repo's own rule correctly makes the deficit *worse*.
+   - **$\eta\sim1.6$–1.8 is a weak-lensing mass-calibration result, not an XRISM one** (Li+2024: WL
+     runs ~110% above hydrostatic *and* kinematic, which agree with each other).
+   - **XRISM TIGHTENS this front; it does not relieve it.** Measured non-thermal pressure is 2–13%
+     (A2029 2.6%, Coma ~3%, Perseus <5%, X-COP ~6% at $R_{500}$) against the ~44–57% a
+     hydrostatic-bias collapse would need — it **closes** the turbulence escape. $P_{\rm nth}$ *raises*
+     a thermal $\eta$ ($M_{\rm true}=M_{\rm HSE}/(1-f_{\rm nth})$) and cannot lower it. The retired
+     phrase "post-XRISM bracket $\eta\in[1.0,2.33]$" reads as relief and is backwards; the repo's own
+     `SKORDIS_CMB_CLUSTER_DEEPDIVE_LEDGER_2026-06-15.md` already had this right and the summary layers
+     drifted from it.
+   - **The cluster acceleration scale is $21.6\times$, not $17\times$.** Tian, Umetsu, Ko, Donahue &
+     Chiu 2020 (ApJ 896, 70; arXiv:2001.08340) give $g^\dagger=(2.02\pm0.11)\times10^{-9}$, i.e.
+     **$21.6\times=1.334$ dex** of the canonical $a_0$ ($17.9\times=1.252$ dex on the alt footing).
+     "$17\times$" is $2.02/1.20$ — the ratio to **standard MOND's** $a_0$ — so the corpus understated
+     its own gap by 28%. Method-dependent: $10.2\times$ (Chan & Del Popolo 2020, X-ray) to $21.6\times$
+     (CLASH lensing); carry the spread. Against Desmond 2023's RAR universality budget
+     ($\sigma_{\rm int}=0.034$ dex $\Rightarrow\pm0.068$ at 1σ) that is **19.6× over at 1σ, 6.5× at 3σ**.
+   - **The framework's own coefficient costs it here:** $\sqrt{1.20\times10^{-10}/9.36\times10^{-11}}
+     =1.132$, so $\eta$ is **13.2% worse** than standard MOND (alt footing: 3.1%). Erasing $\eta$ needs
+     $a_0\times\eta^2=\mathbf{\times5.45}$ (+0.736 dex).
+   - **"Shared across the whole relativistic-MOND family" is an argued pattern, not a published
+     theorem.** The in-corpus argument (MI $\equiv$ AeST to machine precision in static systems) is
+     sound for MI-vs-AeST. But Skordis & Zlosnik 2021 does not discuss clusters, Durakovic & Skordis
+     2023 claim only "potential", and Famaey/Pizzuti/Saltas 2024 call it "an open question". §4's
+     phrasing ("shared across the whole relativistic-MOND family") overstates this and should read
+     *argued in-corpus*.
+   - Script: `real_research/reviews/clusters_eta_audit.py`.
 5. **"No dark matter" is forfeited.** The framework *has* a dark sector — the AeST/ghost-condensate
    Q-mode, a gravity mode rather than a particle. Honest framing: MOND galaxies **plus** a
    no-particle CDM-like sector.
