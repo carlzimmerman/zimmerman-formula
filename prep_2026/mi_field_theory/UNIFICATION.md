@@ -18,6 +18,20 @@ Every load-bearing step is re-derived from the action in `unification.py` (17/17
 trusted from the banked `mi_disformal_*.py`. Both $a_0$ footings carried
 ($9.36\times10^{-11}$ canonical / $1.13\times10^{-10}$ alt).
 
+> **⚠️ SCOPE NOTE ADDED 2026-07-30 — what "re-derived from the action" does and does not cover here.**
+> The 17/17 checks derive the **photon-sector (disformal) coupling** from the action *given* the
+> dynamics law $\mu_{\rm fw}(|a|/a_0)\,a=g_{\rm bar}$. They do **not** derive that law. As of
+> 2026-07-30 the law is known **not** to be the Euler–Lagrange equation of any fixed-kernel action,
+> across four checked families (`mi_action_eom_vs_rar_2026.py`,
+> `mi_action_reformulation_nogo_2026.py`, `mi_family4_variational_nogo_2026.py`; Thms 3 and 8 of DOI
+> 10.5281/zenodo.21707845). The law is exact as a **first spectral moment** and is a successful fit,
+> but it is not variational. **Consequence for this document:** the lensing construction is
+> conditional on the law, not on the action alone, so "structurally forced" in §1 should be read as
+> *forced given the dynamics law*. Nothing in the 17 checks is retracted; only their scope is
+> clarified. Section 0's "inherits gap A (the free off-circular closure)" caveat already pointed this
+> way — the residual freedom is now identified precisely as the single time-weighting function $w$,
+> which Proposition 7 of the same DOI measures on archival dwarf spheroidals.
+
 ---
 
 ## 1. Why a second (photon-sector) coupling is structurally FORCED
