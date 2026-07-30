@@ -1,0 +1,119 @@
+
+====================================================================================================
+S1. On a circular worldline, u is an EXACT eigenvector of Box_u
+====================================================================================================
+  worldline  x = (gamma tau, R cos(Omega tau), R sin(Omega tau), 0)
+  u^mu    = [gamma, -Omega*R*sin(Omega*tau), Omega*R*cos(Omega*tau), 0]
+  Box_u u = [0, Omega**3*R*sin(Omega*tau), -Omega**3*R*cos(Omega*tau), 0]
+  Box_u u + Omega^2 u = [Omega**2*gamma, 0, 0, 0]
+  CORRECTION TO MY FIRST FRAMING: u is NOT a single eigenvector. The TIME component u^0 =
+  gamma is constant, so Box_u u^0 = 0 (eigenvalue 0), while the SPATIAL part satisfies
+  Box_u u^i = -Omega^2 u^i (eigenvalue -Omega^2). The residual above is exactly the time
+  component, Omega^2 gamma. So the operator has a TWO-EIGENVALUE decomposition on a circular
+  worldline -- which is precisely the structure KERNEL_THEORY.md records: 'time (eigenvalue
+  0, weight -gamma^2) and spatial (eigenvalue -omega^2, weight +gamma^2 v^2) parts'.
+  [OK] the SPATIAL part is an exact eigenvector with eigenvalue -Omega^2 and the TIME part is annihilated (eigenvalue 0) -- the two-eigenvalue split is exact
+  CONSEQUENCE. By spectral calculus the u-contraction is a WEIGHTED SUM over the two
+  eigenspaces, with the Lorentzian weights:
+      u^mu K(c^2 Box_u/a0^2) u_mu = (-gamma^2) K(0) + (gamma^2 v^2) K(-(c Omega/a0)^2)
+  and since K(0^+) = 0 the TIME term drops identically, leaving
+      u^mu K u_mu = gamma^2 v^2 K(-(c Omega/a0)^2) .
+  This matches the corpus's own exact resolvent result (KERNEL_THEORY.md: 'u.K(Box_u/a0^2)u
+  = gamma^2 v^2 K(-(omega c/a0)^2), exact; resolvent action verified symbolically'), so the
+  derivation below rests on a result the framework already owns -- I am not introducing a
+  new evaluation, only drawing the inference it forces.
+  (The c^2 is required for a dimensionless argument: [Box_u] = 1/time^2 and [a0^2] =
+   length^2/time^4, so c^2 Box_u/a0^2 is dimensionless.)
+
+====================================================================================================
+S2. That eigenvalue lies ON THE CUT, where K is UNIMODULAR -- no amplitude at all
+====================================================================================================
+  z = -(c Omega/a0)^2 = -w^2 with w = c Omega/a0 > 0. The branch point is at z = -1/4,
+  i.e. w = 1/2, so any w > 1/2 is on the cut. There:
+      K(-w^2 + i0) = (sqrt(4w^2-1) + i)/(2w),   |K|^2 = 1
+  [OK] |K| = 1 EXACTLY on the cut (sympy) -- the operator's action on a circular orbit is a PURE PHASE, carrying ZERO amplitude modification
+  Real orbits are deep on the cut. w = c Omega/a0 for circular motion (Omega = v/r):
+  system                    v (km/s)          r  Omega (1/s)    w canon      w alt
+  wide binary (10 kAU)          0.45     10 kAU    3.008e-13  9.634e+05  7.980e+05
+  dwarf spheroidal             10.00      2 kpc    1.620e-16  5.190e+02  4.299e+02
+  galaxy outskirt             150.00     20 kpc    2.431e-16  7.785e+02  6.448e+02
+  cluster member             1000.00      1 Mpc    3.241e-17  1.038e+02  8.598e+01
+  [OK] every real system has w >= 1.0e+02 >> 1/2, so all of them sit deep on the cut where |K| = 1 -- none is anywhere near the branch point
+
+====================================================================================================
+S3. The amplitude the RAR REQUIRES -- and the action does not supply
+====================================================================================================
+  The framework's law needs the operator to contribute the AMPLITUDE factor mu_fw:
+      a/a0   mu_fw (required)  |K| on the cut (supplied)    ratio
+      0.10             0.0990                     1.0000    10.10
+      0.30             0.2770                     1.0000     3.61
+      1.00             0.6180                     1.0000     1.62
+      3.00             0.8471                     1.0000     1.18
+     10.00             0.9512                     1.0000     1.05
+  [OK] at a = a0 the law requires mu_fw = 0.6180 while the action's operator supplies |K| = 1 -- a factor 1.62 discrepancy at the transition, and unbounded in the deep regime
+  In the deep regime mu_fw -> a/a0 -> 0, so the required amplitude goes to ZERO while the
+  supplied amplitude stays 1. The mismatch is not a small correction; it is the ENTIRE
+  MOND effect. The action's operator content on circular orbits is Newtonian.
+
+====================================================================================================
+S4. THE ONE ESCAPE -- variation generates dK/dOmega terms. Quantified, and it closes.
+====================================================================================================
+  Varying the worldline changes Omega, so the Euler-Lagrange procedure produces terms in
+  dK/dw as well as K itself. Could those carry the missing amplitude? On the cut,
+      Re K(-w^2) = sqrt(1 - 1/(4w^2))  =>  d Re K/dw = 1/(4 w^3) / sqrt(1 - 1/(4w^2)) ~ 1/(4w^3)
+  system                             w      dReK/dw    w dReK/dw
+  wide binary (10 kAU)       9.634e+05    2.796e-19    2.693e-13
+  dwarf spheroidal           5.190e+02    1.788e-09    9.281e-07
+  galaxy outskirt            7.785e+02    5.299e-10    4.125e-07
+  cluster member             1.038e+02    2.235e-07    2.320e-05
+  The dimensionless measure of how much a dK term can contribute relative to K itself is
+  w dK/dw, tabulated above.
+  [OK] the largest w dK/dw anywhere is 2.32e-05 (clusters; galaxies and wide binaries are far smaller), so variation-generated derivative terms are at most parts in 10^4-10^13 -- four to thirteen orders short of the O(1) amplitude needed. THE ESCAPE IS CLOSED
+
+====================================================================================================
+S5. THEOREM, and what it costs
+====================================================================================================
+  THEOREM. On circular orbits, the published action's modification is amplitude-free:
+  the u-contraction reduces EXACTLY to gamma^2 v^2 K(-(c Omega/a0)^2) because K(0) = 0 kills
+  the time eigenspace (S1), that argument lies on K's branch cut where |K| = 1 exactly (S2),
+  and variation-generated derivative terms are bounded by w dK/dw <= 2.3e-5 (S4). The framework's law requires an amplitude factor
+  mu_fw, equal to 0.618 at a = a0 and tending to zero in the deep regime (S3). Since K is
+  the ONLY modification the action contains, the law CANNOT be the action's equation of
+  motion on circular orbits.
+
+  => THE FIRST-MOMENT CLOSURE IS AN INDEPENDENT PRESCRIPTION, NOT A CONSEQUENCE OF THE
+     ACTION. It is exact as a MOMENT (Theorem 1), and it reproduces the RAR at 0.108 dex,
+     but it is not what varying the published action gives.
+
+  RELATION TO WHAT WAS ALREADY KNOWN. KERNEL_THEORY.md Finding C records that the literal
+  frequency-domain evaluation 'gives NO MOND at all' and is 'dead twice over'. That is the
+  same fact seen from the phenomenology side. What is added here is the direction of the
+  inference: because the literal evaluation IS what the action's operator supplies on
+  circular orbits, the failure is not a defect of an alternative closure one may discard --
+  it is a statement about the ACTION. Finding C reads as 'one closure among two fails';
+  this reads as 'the action does not imply the closure that works'.
+
+  WHAT THIS DOES NOT SAY:
+   * NOT that the phenomenology is wrong. The RAR fit at 0.108 dex, the a0-line, the BTFR
+     and the flat curves are measurements against a LAW and stand exactly as they are.
+   * NOT that the action is useless. It supplies the kernel's analytic structure, the
+     Herglotz measure, the constraint analysis and the lensing construction, and Theorem 3
+     shows a nonlocal form is REQUIRED. What it does not currently supply is the law.
+   * NOT that no action can work. It says THIS action, varied, does not give THIS law.
+
+  WHAT WOULD FIX IT, in decreasing order of plausibility:
+   1. A DIFFERENT OPERATOR ARGUMENT. The mismatch traces entirely to the eigenvalue being
+      NEGATIVE (-Omega^2, on the cut) while the closure needs a POSITIVE argument (+|a|^2).
+      An action built on an operator whose circular eigenvalue is +|a|^2 -- i.e. one that
+      contracts to the first moment BY CONSTRUCTION rather than by prescription -- would
+      close the gap. Theorem 1 says the u-contraction does exactly that, so the natural
+      candidate is an action written in terms of (u . Box_u u) rather than u^mu K(Box_u) u_mu.
+      That is a concrete, bounded reformulation and it is the obvious next attempt.
+   2. A non-quadratic-in-u action whose variation produces the moment structure directly.
+   3. Accepting the law as a phenomenological postulate and demoting the action to a
+      consistency framework. Honest, and much weaker than the current presentation.
+
+  BOTH FOOTINGS: the conclusion is footing-independent. w scales as 1/a0, so the alt footing
+  moves every w by only 1.207x and every system stays deep on the cut.
+  [OK] the theorem is stated with its scope, its relation to prior work, and a concrete reformulation to try next
+====================================================================================================
