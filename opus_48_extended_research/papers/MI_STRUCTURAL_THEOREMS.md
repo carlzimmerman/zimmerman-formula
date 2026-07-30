@@ -3,7 +3,16 @@
 **Carl P. Zimmerman**
 Briar Creek Tech, Charlotte, NC, USA · carl@briarcreektech.com
 
-**Version 2026-07-30 (v1)** · License CC-BY-4.0
+**Version 2026-07-30 (v2)** · License CC-BY-4.0
+
+> **v2 CORRECTION NOTICE — read before §9.** v1's Proposition 7 attached an observational forecast to
+> its two propositions: "~1.2–1.9σ on 40–60 Local Group dwarfs, 3σ at $N\sim150$, both routes
+> archival." **That forecast was wrong and is retracted here.** Running the test on the real
+> McConnachie (2012) catalogue shows it is **systematics-limited, not sample-limited**: the per-object
+> scatter is 0.38–0.48 dex rather than the assumed 0.15–0.20, and the dominant error — the stellar
+> mass-to-light ratio — is **coherent** across the sample, so $\sqrt N$ does not reduce it.
+> **Propositions 7.1 and 7.2 themselves are unchanged** (a theorem and a calculation); only the
+> forecast built on them fails. §9 is rewritten accordingly. No other section is affected.
 
 ---
 
@@ -37,7 +46,7 @@ customary linear ansatz $A=a_{\rm in}+a_{\rm ex}\theta$ is unavailable; the resu
 **(6)** The linear-response inertia is $h(x)=\mathrm{d}(x\mu_{\rm fw})/\mathrm{d}x=2x/\sqrt{1+4x^2}$,
 not $\mu_{\rm fw}$. **(7)** Dispersion-supported systems discriminate the residual closure freedom:
 the ultralocal member places them **exactly** on the rotation relation, an orbit-averaged member offsets
-them by $-0.037$ dex, and existing dwarf-spheroidal samples already reach $\sim\!1.9\sigma$.
+them by $-0.037$ dex, and on the real McConnachie (2012) catalogue the test proves **systematics-limited** rather than sample-limited (§9.1).
 
 Every result is machine-verified by committed scripts that exit non-zero on any failed internal check.
 
@@ -297,19 +306,42 @@ $-0.015$ dex ($k=2.2$), $-0.034$ ($k=3.7$), $-0.062$ ($k=8.3$), $-0.088$ ($k=20.
 over $k\sim2$–4 is $\mathbf{-0.037}$ **dex**.
 
 **This does not yet fix the weighting** — $-0.037$ dex hides inside a 0.15 dex detectability tolerance
-and below the framework's own 0.11 dex relation scatter, so the whole family survives. What it delivers
-is a parameter-free test on data already in hand:
+and below the framework's own 0.11 dex relation scatter, so the whole family survives.
 
-| per-object scatter (dex) | $N$ for 3$\sigma$ |
-|---|---|
-| 0.20 | 261 |
-| 0.15 | 147 |
-| 0.10 | 65 |
-| 0.07 | 32 |
+### 9.1 Confrontation with the real catalogue (**new in v2**)
 
-With the existing Local Group inventory ($\sim$40–60 dwarf spheroidals with usable kinematics at
-0.15–0.20 dex) the test already reaches 1.2--1.9$\sigma$. Three sigma requires $\sim$150 systems at
-0.15 dex, or $\sim$40 at 0.07 dex. **Both routes are archival** — no new facility.
+The test was run on **McConnachie (2012)**, AJ **144**, 4 (VizieR J/AJ/144/4/catalog): 46 of 102 rows
+carry a stellar velocity dispersion, a half-light radius and an absolute $V$ magnitude. Using the
+Wolf et al. (2010) estimator with $r_{1/2}=\tfrac43R_e$, $g_{\rm obs}=3\sigma^2/r_{1/2}$ and
+$g_{\rm bar}=G(\Upsilon_VL_V/2)/r_{1/2}^2$, residuals taken against this framework's own $\nu$:
+
+| quantity | v1 assumption | **real catalogue** |
+|---|---|---|
+| per-object scatter | 0.15–0.20 dex | **0.38–0.48 dex** |
+| dominant error | random per object | **coherent** (stellar $\Upsilon_V$) |
+| mean residual, $N=29$ after pre-stated cuts | — | $+0.2945\pm0.0710$ dex (random only) |
+
+**The forecast fails on both counts.** The scatter is 2–3× larger than assumed, and — decisively — the
+dominant uncertainty is not random. $\Upsilon_V$ is common to the whole sample, so it displaces every
+dwarf identically and $\sqrt N$ leaves it untouched. Varying $\Upsilon_V$ over 1–4 moves the mean
+residual from $+0.454$ to $+0.132$: a span of **0.322 dex, 8.7× the 0.037 dex signal**. Matching the
+signal would require $\Upsilon_V$ known to 0.074 dex ($19\%$), against a literature spread of
+50–100%.
+
+Consequently **"$N\sim150$ for 3σ" and "both routes are archival" are withdrawn.** The measurement is
+systematics-limited, and more dwarfs do not help.
+
+### 9.2 The route that survives
+
+A coherent $\Upsilon$ error and a closure offset are degenerate only if they share a $g_{\rm bar}$
+dependence. On the real sample they do not: $\partial(\text{residual})/\partial\log\Upsilon$ has a
+slope of $-0.067$ per dex against $\log_{10}(g_{\rm bar}/a_0)$, while the closure offset is
+approximately flat in the deep regime — over an available **5.28 dex** of dynamic range. So the two are
+**partially separable in principle.**
+
+Realising that requires the closure offset computed **across** $g_{\rm bar}$, whereas §9 above
+evaluates a single deep-regime orbit family. That is the concrete next step and it is not done here.
+The alternative is a sample with independently calibrated stellar masses.
 
 *Scope.* Planar orbits in an idealised logarithmic potential; three representative orbits rather than a
 self-consistent distribution function. Sign and order are robust; the precise dex value should be read
@@ -327,7 +359,7 @@ as order-of-magnitude, and a proper isotropic and anisotropic distribution funct
 | cosmological background | "unbuilt" | **structurally inert**, and non-analytic (Thm 4) |
 | external-field effect | Milgrom's postulated $\theta$ | **derived quadrature**; footing-free dipole (Thm 5) |
 | perturbative response | $1/\mu_{\rm fw}$ | $1/h$, differing by up to $2\times$ (Prop 6) |
-| off-circular weighting | free $O(1)$ choice | **testable now**, $\sim$1.9$\sigma$ archival (Prop 7) |
+| off-circular weighting | free $O(1)$ choice | **predictions sharpened** (Props 7.1, 7.2); the test is **systematics-limited**, needing $\Upsilon_V$ to 19% or the $g_{\rm bar}$-resolved offset (§9.1–9.2, **v2**) |
 
 Two remain untouched and postulated: the **value** of $\kappa=\tfrac12$, and the coefficient $Z$.
 
@@ -346,7 +378,8 @@ verdict is hard-coded.
 | `mi_channelA_friedmann_2026.py` | Thm 4 |
 | `mi_efe_derived_general_2026.py` | Thm 5, Cor 5.1 |
 | `mi_growth_amplification_founded_2026.py` | Prop 6 |
-| `mi_closure_fixed_by_rar_universality_2026.py` | Prop 7 |
+| `mi_closure_fixed_by_rar_universality_2026.py` | Props 7.1, 7.2 |
+| `mi_dsph_closure_test_real_data_2026.py` | §9.1–9.2, the real-catalogue confrontation (**v2**) |
 | `mi_kappa_spectral_reduction_2026.py` | the $\kappa$ reduction of §2 |
 
 ---

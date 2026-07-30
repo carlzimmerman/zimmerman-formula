@@ -1,7 +1,7 @@
 # STANDING
 
 **de Sitter–Unruh modified inertia — where the programme actually stands**
-Last updated **2026-07-30** (rev. 2). Maintained as the single entry point: what is claimed, what is earned,
+Last updated **2026-07-30** (rev. 3). Maintained as the single entry point: what is claimed, what is earned,
 what is postulated, what is live, and what is closed. If a statement anywhere in this repository
 conflicts with this file, this file is newer unless it says otherwise.
 
@@ -39,7 +39,7 @@ claims. They are not to be revived. The true position is the $a_0$ reframing abo
 | $\kappa$ reduction $a_0=\kappa c\sqrt{G\rho_\Lambda}$ | every $\pi$, the 32 and the 3 cancel |
 | Modified-inertia action, v1–v11 | published; constraint structure machine-verified, 0 frame dof |
 | Disformal lensing construction (v7–v10) | closed, Cassini-safe, Ostrogradsky-free |
-| Seven structural theorems | published 2026-07-30, **DOI 10.5281/zenodo.21707845** |
+| Seven structural theorems | published 2026-07-30, **v2 DOI 10.5281/zenodo.21708842** (concept 21707844); v2 retracts v1's Prop-7 observational forecast after a real-data confrontation |
 
 ## 2. Postulated — not derived, and not to be presented otherwise
 
@@ -66,7 +66,7 @@ claims. They are not to be revived. The true position is the $a_0$ reframing abo
 | **A** | **Wide-binary $\gamma_v$ / gate fork** | pre-reg frozen 2026-07-16, hash-stamped; **Amendment 1** (2026-07-27) fixed a scoring defect that would have scored a confirmation as a kill; **Amendment 2** (2026-07-30) discharges the EFE prescription flag and adds an orientation-resolved statistic | **Gaia DR4, ~Dec 2026** |
 | **B** | **$s^{TX}$ SME boost dipole** | prediction $8.68\times10^{-10}$ canonical / $1.048\times10^{-9}$ alt; bound $\sigma\sim1.3\times10^{-9}$ (Hees+ 2016) → margin **1.50× / 1.24×** | Gaia DR4 |
 | **C** | **Rotation-curve dipole from the derived EFE** | **new 2026-07-30.** 4.2–22.3% for $e\ll y$, attractor-faster, **footing-free**. Retires the banked "MI predicts exactly zero directional asymmetry" and flips the observable from MI-blind to **MI-favourable** | archival + DR4 |
-| **D** | **Dwarf-spheroidal closure discrimination** | **new 2026-07-30.** Ultralocal closure → dispersion-supported systems exactly on the rotation relation; orbit-averaged → $-0.037$ dex. Already **1.2–1.9σ** on 40–60 Local Group dwarfs; 3σ at $N\sim150$ (0.15 dex) or $N\sim40$ (0.07 dex) | **archival, no new facility** |
+| **D** | **Dwarf-spheroidal closure discrimination** | **new 2026-07-30, then DOWNGRADED the same day by real data.** Predictions stand: ultralocal closure → dispersion-supported systems *exactly* on the rotation relation (1.6e-15); orbit-averaged → $-0.037$ dex. But the McConnachie (2012) catalogue (46 dwarfs, 29 after cuts) shows the test is **systematics-limited, not sample-limited**: per-object scatter 0.38–0.48 dex (not 0.15–0.20), and the dominant $\Upsilon_V$ error is **coherent**, so $\sqrt N$ does not help. $\Upsilon_V$ span 1–4 moves the mean residual 0.322 dex = **8.7× the signal**; needs $\Upsilon_V$ to 19% vs a 50–100% literature spread. **"N~150, archival" RETRACTED.** One route survives: the $\Upsilon$ direction has slope $-0.067$/dex against $\log(g_{\rm bar}/a_0)$ while the closure offset is flat, so partially separable over 5.28 dex — needs the offset computed *across* $g_{\rm bar}$ | **blocked on theory, not data** |
 | **E** | **$a_0(z)$ evolution** | correct law is $(1+z)^{1.5(1+w_0+w_a)}e^{-1.5w_az/(1+z)}$ — **bump-then-decline**, not a rise. DESI-dependent signal only ~0.01 dex at $z=1$, sign-changing near $z\simeq1$, 0.11–0.20 dex by $z=3$ | **$z\gtrsim2$ test**; hostage to DESI |
 
 **⚠️ On front A, the standing instruction:** a frozen pre-registration must be amended **in the open,
@@ -140,6 +140,9 @@ band, 0.0101 from the point target 1.09.
 - **2026-07-30:** "pure MI predicts *exactly zero* directional asymmetry" — **wrong**. An artifact of
   the borrowed scalar-θ ansatz; quadrature has a vector cross term, so orientation survives.
 - **2026-07-30:** treating the sign $s$ as a parameter awaiting data — superseded by Cor 2.2.
+- **2026-07-30 (paper v2):** Proposition 7's observational forecast — "~1.2–1.9σ on 40–60 dwarfs, 3σ at
+  $N\sim150$, both routes archival." Retracted after running it on McConnachie (2012): the test is
+  systematics-limited by a **coherent** $\Upsilon_V$, so $\sqrt N$ does not apply. Props 7.1/7.2 stand.
 - **2026-07-30:** any phrasing that the law is **"derived from"** the action. Correct phrasing is
   "a law with an action-based motivation and an exact moment interpretation" (§2). Four action families
   checked and closed; the law is a fit that is exact as a first moment.
