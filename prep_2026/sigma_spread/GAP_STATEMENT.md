@@ -157,3 +157,93 @@ sigma data is exploratory, firewalled, and cannot support or kill.
 committed alongside as `rederive_spread_and_power.out`). Sources re-derived, not cited on faith:
 `real_research/reviews/member_MI_nonadiabatic_plunge.py`, `member_MI_genuine_dynamics.py`,
 `member_MI_adversarial_check.py`, `sigma_spread_survey_forecast.py` (zimmerman-formula, read-only).*
+
+---
+
+# AMENDMENT 1 — 2026-07-30: theta DERIVED from the framework's own closure; the band is repriced DOWN
+
+**Status of the text above: UNCHANGED and still frozen.** Nothing before this line has been edited.
+This amendment is appended in the open, before any real sigma data has been touched, and it moves the
+prediction AGAINST the framework's interest. Script: `real_research/reviews/mi_theta_efe_from_closure_2026.py`
+(exit 0, 13 internal checks, output committed alongside as `.out`).
+
+## What was closed
+
+Section 1 above flags the magnitude as **theta-form UNVERIFIED** — the 6.2–14.1% band comes from three
+POSTULATED theta forms. The framework's MI completion has a unique inertia kernel, so theta should be
+derivable rather than borrowed. It now is, and it does not agree with the postulated forms.
+
+1. **The kernel cannot supply theta.** On the oscillatory branch the kernel is EXACTLY unimodular
+   (sympy-exact): `K(-w^2+i0) = exp[i·arcsin(a0/2c·omega)]`, `|K| = 1` for all `w >= 1/2`. Every bound
+   orbit sits there (the branch point is at a period of ~1056–1275 Gyr, both footings). The largest
+   amplitude effect available in the frequency channel is **1.2e-5** — four to five orders below the
+   banked spread. theta's y-dependence cannot come from the kernel's frequency response.
+
+2. **Theorem B forces QUADRATURE, not linear addition.** `<Box_u>_u = +|a|^2` exactly, so the total
+   field enters as `|a_in + a_ex|^2 = a_in^2 + a_ex^2 + 2 a_in·a_ex`. There is no slot for a phase
+   function multiplying `a_ex`. The entire y-dependence is forced into the **cross term**.
+
+3. **The cross-term coherence, with no free input.** Since `omega_in = omega_ex/y`, the coherence
+   collapses to a single dimensionless number: `C(y) = sinc[P(1-y)/2y]`, `P = omega_ex·T_w`. The
+   framework supplies `T_w` itself — the kernel memory `tau_mem = 2c/a0` (203 / 168 Gyr) capped by the
+   age of the universe, so `T_w = t_age` on **both** footings and **P = 14.11 is footing-independent.**
+
+## The repriced numbers
+
+| convention | banked (postulated theta) | DERIVED (own closure) | suppression |
+|---|---|---|---|
+| max−min across phase (as the band above was quoted) | 6.2 – 14.1% | **1.45 – 2.21%** | 2.8 – 4.3× |
+| population RMS (**what estimator E4 actually measures**) | — | **0.22 – 0.72%** | 8.6 – 28× |
+
+Ranges span both footings and three averaging-window shapes. Carrier requirement at the ELT tier
+(eps_meas = eps_FJ = 0.10), from the same `N ~ s^-4` arithmetic as Section 3:
+
+| spread | N(3 sigma), ELT tier |
+|---|---|
+| banked low end 6.23% | ~3,700 |
+| derived, max−min 2.21% | ~2.3e5 |
+| derived, pop-RMS 0.72% | ~2.1e7 |
+
+**Consequence for Section 4 and the reopen conditions in Section 7: they are superseded.** They were
+priced against a spread the framework's own closure does not deliver. ~2e7 carriers at the 10% tier
+exceeds the entire 4MOST-CHANCES spectrum budget (~3e5, across all targets, before any LSB /
+resolved-sigma cut). The 2032 ELT window is **not** the real gate; the amplitude is.
+
+## Amendment to the estimator (E4) — a SHAPE correction, made before any data
+
+The derived coherence is **not** monotone in infall phase. It is small at low y, **peaks at y = 1**
+(where internal and orbital frequencies lock and the cross term stops averaging away), and falls again
+above it. The peak sits at y = 1 under all three window shapes tested; only its width is
+shape-dependent, and the width is **not** derived.
+
+E4's SIGN statistic contrasts two classes and expects a monotone trend. Integrating a peaked signal
+across a two-class split partially cancels it. **Amendment: add a y-RESOLVED statistic** — bin carriers
+by `omega_ex/omega_in` and test for a peak at 1, rather than a monotone low-vs-high contrast. This
+needs no new data, only a different binning of the same carriers, and it is strictly better matched to
+what the framework predicts. The frozen two-class statistic is retained alongside it, not replaced.
+
+## What is NOT claimed
+
+- **Not** that the channel is impossible in principle. MG still predicts exactly zero and the framework
+  still predicts nonzero, so the signature remains **MG-impossible in principle**. What is repriced is
+  its observability.
+- **Not** "unreachable at any tier." The requirement is large but finite. (An earlier draft of the
+  script asserted it exceeded the number of galaxies in the observable universe; that was wrong by many
+  orders and its own check caught it before it reached this file.)
+- **Not** a criticism of Milgrom's theta, which is itself a modified-inertia construction and the right
+  thing to have tried first. The finding is that THIS framework's completion makes a stricter choice,
+  and the corpus had been quoting Eq 34's consequences as its own.
+
+## Open items this amendment creates
+
+1. **Re-read Milgrom 2022 arXiv:2208.07073v3 Eq 34 against the primary source.** The LINEAR form is
+   taken from how this repo records it (Section 1 above and `rederive_spread_and_power.py`); the primary
+   source was not re-read. If Eq 34 is a vector/quadrature statement the structural gap narrows — but
+   items 1 and 3 above are internal to this framework's closure and stand on Theorem B alone.
+2. **The line shape is not derived.** Suppression ~1/Q for incommensurate frequencies and a peak at
+   commensurability are generic to any averaging window; the exact width is not. Deriving it needs the
+   Herglotz weight carried through the average rather than a boxcar/Lorentzian/Gaussian stand-in.
+3. **The one route back to the banked band:** a closure other than the first moment. Theorem B fixes
+   the first moment exactly, but `KERNEL_THEORY.md` Finding C records the off-circular TIME-WEIGHTING as
+   a free O(1) choice. A weighting that both reproduces the RAR and restores a linear `a_ex` channel
+   would restore 6–13%. None is known, and the RAR constraint is severe.

@@ -1,0 +1,210 @@
+
+====================================================================================================
+S1. The kernel's FREQUENCY channel cannot source theta -- unimodular on the live branch
+====================================================================================================
+  K(-w^2+i0) = (sqrt(4w^2-1) + i)/(2w)      [retarded branch]
+    Re K = sqrt(4w^2-1)/(2w) = sqrt(1 - 1/(4w^2)),   Im K = 1/(2w)
+    |K|^2 = (W^2+1)/(4w^2) with W^2 = 4w^2-1  ->  1   (sympy-exact)
+  [OK] the kernel is EXACTLY unimodular on the oscillatory branch
+  [OK] K = exp[i*arcsin(a0/2c omega)] -- a PURE PHASE LAG, zero amplitude modification
+  So an amplitude-channel theta(y) would need |K| to vary with frequency. It cannot.
+    canonical rho_DE cH_Lambda/Z  : branch point omega_b = a0/2c = 1.561e-19 1/s -> period  1275.4 Gyr
+    alt rho_total cH0             : branch point omega_b = a0/2c = 1.885e-19 1/s -> period  1056.5 Gyr
+  Every bound orbit therefore sits at w >> 1/2, deep inside the unimodular regime. The
+  only frequency-dependent amplitude effect is second order in the phase lag:
+  carrier                     omega (1/s)  w=omega c/a0   phi (rad)   1-cos phi
+  cluster member orbit          3.241e-17     1.038e+02   4.817e-03   1.160e-05
+  LSB dwarf internal            4.321e-16     1.384e+03   3.613e-04   6.526e-08
+  [OK] frequency channel bounds any theta y-dependence at <= 1.2e-05, ~4-5 orders below the banked 6-13% spread
+
+====================================================================================================
+S2. Theorem B forces QUADRATURE addition, not Milgrom's linear Eq-34 ansatz
+====================================================================================================
+  KERNEL_THEORY.md Theorem B (exact for any timelike worldline, curved space included):
+      u_mu Box_u u^mu = -|a|^2   =>   <Box_u>_u = +|a|^2   exactly
+  so the inertia argument is built from |a|^2, and the total field enters as
+      |a_in + a_ex|^2 = a_in^2 + a_ex^2 + 2 a_in.a_ex        (QUADRATURE + cross term)
+  Milgrom's EFE ansatz (arXiv:2208.07073v3 Eq 34) instead posits
+      A = a_in + a_ex * theta(omega_ex/omega_in)              (LINEAR in a_ex)
+  They differ even at theta == 1. Size of that structural gap at the frozen fiducial:
+    canonical rho_DE cH_Lambda/Z   linear x= 2.30 boost= 1.241 | quadrature x= 2.02 boost= 1.277 | sigma differs  +1.46%
+    alt rho_total cH0              linear x= 1.91 boost= 1.296 | quadrature x= 1.68 boost= 1.342 | sigma differs  +1.75%
+  [OK] quadrature gives a strictly SMALLER argument than linear addition
+  This is the load-bearing difference. The LINEAR form is what lets theta multiply a_ex
+  and swing the argument by ~3x across infall phase. Under quadrature nothing multiplies
+  a_ex at all, and the y-dependence is forced into the cross term -- computed next.
+
+====================================================================================================
+S3. The cross-term coherence, DERIVED with no free input
+====================================================================================================
+  a_in oscillates at omega_in, a_ex varies at omega_ex (the member's cluster orbit); their
+  dot product beats at omega_in -/+ omega_ex. Averaged over the closure window T_w the
+  difference beat carries the standard coherence factor
+      C(y) = sinc[ Q (1-y)/2 ],   Q = omega_in * T_w,   y = omega_ex/omega_in
+  T_w is supplied by the framework itself: the kernel memory tau_mem = 2c/a0, capped by
+  the age of the universe. AND Q NEEDS NO SEPARATE INPUT -- since omega_in = omega_ex/y,
+      Q(y) = (omega_ex * T_w) / y,   so C depends only on the DIMENSIONLESS  P = omega_ex*T_w
+      C(y) = sinc[ P (1-y) / (2y) ]      (P = cluster orbits per memory window, x 2pi)
+    canonical rho_DE cH_Lambda/Z   tau_mem=  203.0 Gyr, T_w= 13.80 Gyr (age-capped)  ->  P =  14.11
+    alt rho_total cH0              tau_mem=  168.1 Gyr, T_w= 13.80 Gyr (age-capped)  ->  P =  14.11
+  [OK] tau_mem exceeds the age of the universe on both footings, so T_w = t_age
+
+  Coherence across infall phase (canonical, P = 14.11):
+       y      Q(y)      C(y)
+    0.05     282.2    0.0064
+    0.10     141.1    0.0097
+    0.25      56.4    0.0347
+    0.50      28.2    0.0989
+    0.80      17.6    0.5564
+    1.00      14.1    1.0000
+    1.20      11.8    0.7850
+    1.50       9.4    0.3020
+  C is NOT the monotone-decreasing theta Milgrom posits: it is small at low y, PEAKS AT
+  y = 1, and falls again above it. The peak is where the internal and orbital frequencies
+  lock, so the cross term stops averaging away. That is a qualitatively different shape.
+  [OK] coherence peaks at y=1 rather than at y->0 (opposite of theta's shape)
+
+====================================================================================================
+S4. The y range real LSB cluster carriers actually span -- computed
+====================================================================================================
+  y = omega_ex/omega_in, omega_ex = v_cl/R_cl (orbit about cluster), omega_in = sigma_in/R_e.
+  Carriers per frozen spec E1: mu_0,r fainter than 24 mag/arcsec^2, R_e >= 1 kpc.
+  y spans 0.0117 to 1.5000 across that carrier x cluster grid
+  frozen spec assumes y in [0.05, 1.5]
+  [OK] real carriers DO span the spec's phase range (it reaches y~1.5 for the most diffuse carriers at small cluster radii, and extends BELOW the spec floor) -- the phase lever is real, so the spread question is settled by amplitude, not by range
+
+====================================================================================================
+S5. The sigma-spread re-derived under the framework's own closure, both footings
+====================================================================================================
+  (i) BANKED route -- Milgrom's LINEAR ansatz with the three postulated theta forms over
+      the spec's four y values, reproduced as the like-for-like baseline.
+      canonical rho_DE cH_Lambda/Z   spread   6.2% -  11.8%
+      alt rho_total cH0              spread   7.5% -  14.1%
+      both-footing band 6.2% - 14.1%   (GAP_STATEMENT: 6.2-14.1%)
+  [OK] the banked band reproduces from its own inputs
+
+  (ii) DERIVED route, max-min convention (same convention as the banked band above),
+       evaluated on the spec's y range so the comparison is not a range artifact.
+      canonical rho_DE cH_Lambda/Z   x in [1.9569,2.3000] -> spread 1.855%
+      alt rho_total cH0              x in [1.6209,1.9051] -> spread 2.213%
+
+  (iii) DERIVED route, POPULATION-RMS convention -- what the frozen estimator actually
+        measures (E4: excess VARIANCE of FJ residuals). Monte Carlo over the carrier
+        population; two priors on y, reported both ways, neither tuned.
+      log-uniform in y   canonical rho_DE cH_Lambda/Z   RMS spread = 0.4127%
+      log-uniform in y   alt rho_total cH0              RMS spread = 0.4936%
+      uniform in y       canonical rho_DE cH_Lambda/Z   RMS spread = 0.6052%
+      uniform in y       alt rho_total cH0              RMS spread = 0.7204%
+
+  DERIVED spread: 2.213% (max-min)   0.7204% (population RMS, worst prior)
+  BANKED  band  : 6.2% - 14.1%
+  Suppression factor vs banked low end: 2.8x (max-min), 9x (RMS)
+  [OK] derived max-min spread (2.21%) is below the banked band's low end (6.2%)
+  [OK] the population-RMS spread is smaller than max-min, as it must be -- the coherent enhancement lives near y=1, not across the whole population
+
+  (iv) ROBUSTNESS TO THE WINDOW SHAPE -- honesty check on my own modelling choice.
+       The sinc above comes from a BOXCAR average over T_w. That is MY choice, not the
+       framework's: the kernel's memory carries a Herglotz weight, and I capped it at
+       t_age by hand. So re-do it with an EXPONENTIAL memory (Lorentzian coherence,
+       C = 1/(1+(P(1-y)/y)^2)) and with a Gaussian window, and see what actually moves.
+       window                         max-min   pop-RMS  peak y
+       boxcar  -> sinc                 1.855%   0.4120%   1.000
+       exponential -> Lorentzian       1.446%   0.2206%   1.000
+       Gaussian -> Gaussian            1.449%   0.3234%   1.000
+  [OK] EVERY window shape gives a max-min spread (1.45-1.86%) below the banked low end (6.2%) -- the suppression is not a boxcar artifact
+  [OK] window choice moves the amplitude by only 1.28x, so the ORDER of the result is robust even though the exact shape is not derived
+       WHAT IS ROBUST: quadrature-vs-linear (Theorem B, exact); the cross term being the
+       only y-channel (algebraic); suppression ~1/Q for incommensurate frequencies and a
+       peak at commensurability (generic for ANY averaging window). WHAT IS NOT DERIVED:
+       the precise line shape, and hence the exact peak width. Quoted accordingly.
+
+====================================================================================================
+S6. Consequences -- carrier count, and the SHAPE the frozen estimator is not built for
+====================================================================================================
+  Estimator (frozen, GAP_STATEMENT S3): z ~ (s p)^2 / (eps_eff^2 sqrt(2/N))
+  => N(3sigma) = 2 (3 eps_eff^2 / (s p)^2)^2,  so N scales as s^-4.
+                spread s  eps_meas  eps_FJ    N(3 sigma)
+               banked hi 14.067%      0.25    0.15     2.563e+03
+               banked hi 14.067%      0.10    0.10     1.419e+02
+               banked lo  6.228%      0.25    0.15     6.670e+04
+               banked lo  6.228%      0.10    0.10     3.693e+03
+         DERIVED max-min  2.213%      0.25    0.15     4.184e+06
+         DERIVED max-min  2.213%      0.10    0.10     2.316e+05
+         DERIVED pop-RMS  0.720%      0.25    0.15     3.726e+08
+         DERIVED pop-RMS  0.720%      0.10    0.10     2.063e+07
+
+  At the ELT tier (eps_meas=eps_FJ=0.10) the carrier requirement inflates by
+    6.272e+01x on the max-min reading   -> N ~ 2.32e+05
+    5.586e+03x on the pop-RMS reading   -> N ~ 2.06e+07
+  against ~3693 carriers on the banked band. For scale, 4MOST-CHANCES
+  delivers ~300k spectra total across 150 clusters, and only a small LSB subset of those
+  would ever have resolved internal dispersions at the 10% tier.
+  [OK] on the estimator's own (RMS) convention the requirement exceeds the FULL CHANCES spectrum budget (~3e5) even before the LSB/resolved-sigma cut
+
+  SHAPE FINDING (independent of the amplitude, and arguably the more useful half).
+  The frozen E4 SIGN statistic contrasts first-infall against settled members and expects
+  a MONOTONE trend in infall phase. The derived coherence is NOT monotone: it peaks at
+  y = 1 and declines on both sides. A monotone two-class contrast integrates across that
+  peak and partially cancels. Quantified -- two-class difference vs the full range:
+    canonical rho_DE cH_Lambda/Z   two-class |diff| = 0.7717%  vs max-min 1.855%
+    alt rho_total cH0              two-class |diff| = 0.9203%  vs max-min 2.213%
+  So the pre-registered sign statistic is testing for a shape the framework's own closure
+  does not produce. A y-RESOLVED statistic (bin carriers by omega_ex/omega_in and look for
+  a peak at 1) is strictly better matched, and is free to adopt -- it needs no new data,
+  only a different binning of the same carriers.
+
+====================================================================================================
+VERDICT
+====================================================================================================
+  1. theta need not be borrowed, and the kernel cannot supply it: |K| = 1 exactly on the
+     oscillatory branch, so the frequency channel offers <= 1e-05 of amplitude change.
+  2. Theorem B forces the external field in through |a|^2 -- QUADRATURE. Milgrom's Eq 34
+     adds it linearly with a multiplying theta. Under this framework's own closure there
+     is no slot for a multiplying phase function at all.
+  3. The surviving y-dependence is the cross-term coherence C(y) = sinc[P(1-y)/2y] with
+     P = omega_ex*t_age ~ 14.1, and it needs NO free input.
+  4. Re-derived spread: 2.21% (max-min) / 0.720% (population RMS) against the
+     banked 6.2-14.1%. Suppression 3x to 9x.
+  5. Carrier requirement at the ELT tier: ~2.1e+07 rather than ~3693.
+     The GAP_STATEMENT reopen conditions (ELT ~2032, or an FJ floor <= 0.15) were priced
+     against a spread the framework's own closure does not deliver, so the 2032 window is
+     NOT the real gate. This narrows on THEORY grounds, before any data argument.
+  6. The frozen E4 sign statistic tests a monotone trend; the derived signal peaks at y=1.
+     Re-binning by omega_ex/omega_in is a free improvement to the pre-registration.
+
+  WHAT IS *NOT* CLAIMED. This does not say the channel is impossible in principle -- the
+  MG contrast is untouched (MG remains exactly zero, the framework remains nonzero, so the
+  signature is still MG-impossible in principle). Nor is it 'unreachable at any tier': the
+  requirement is large but finite. An earlier draft of this script asserted it exceeded the
+  number of galaxies in the observable universe; that was wrong by many orders and its own
+  check caught it. The defensible statement is narrower: at the derived amplitude the
+  observable is out of reach of every survey now on the books, including the ELT programme
+  the gap statement was written to justify.
+
+  WHAT WOULD OVERTURN THIS (falsifiable, not defended):
+   (a) A different closure. Theorem B fixes the first MOMENT exactly, but KERNEL_THEORY.md
+       Finding C records the off-circular TIME-WEIGHTING as a free O(1) choice. A weighting
+       that both reproduces the RAR and restores a LINEAR a_ex channel would bring the
+       banked band back. None is known, and the RAR constraint is severe.
+   (b) Carriers piled up near y = 1. The coherence peak is real; a population concentrated
+       there gets the full cross term. That is a checkable claim about cluster orbital
+       structure, not a free parameter -- and it is what the re-binned statistic tests.
+   (c) A much longer effective averaging window than t_age, which would raise P and
+       sharpen the peak; or a much shorter one, which would broaden it toward full
+       coherence. T_w = min(2c/a0, t_age) is the framework's own choice, not a knob.
+
+  PROVENANCE. Milgrom's theta is itself a modified-inertia construction and was the right
+  thing to try first; this is not a criticism of it. The finding is that THIS framework's
+  completion makes a stricter choice than Eq 34, and the corpus had been quoting Eq 34's
+  consequences as its own.
+
+  ONE CITATION CAVEAT, STATED RATHER THAN PAPERED OVER. The LINEAR form 'A = a_in +
+  a_ex*theta(y)' is taken from how this repo's own files record Milgrom 2022 Eq 34
+  (prep_2026/sigma_spread/rederive_spread_and_power.py and GAP_STATEMENT.md S1). The
+  primary source was NOT re-read while producing this script. If Eq 34 is in fact a vector
+  or quadrature statement, then S2's structural gap narrows or vanishes -- but the load-
+  bearing result does not depend on it: S1 (no amplitude in the frequency channel), S3
+  (the cross term is the only y-channel, suppressed ~1/Q and peaked at commensurability),
+  and S5 (the repriced spread) are all internal to THIS framework's closure and stand on
+  Theorem B alone. Verifying Eq 34 against the primary source is a cheap open item.
+====================================================================================================
