@@ -188,6 +188,30 @@ band, 0.0101 from the point target 1.09.
    run (**not** $10^{-6}$), the Voigt line-width null is established for $10^{-5}$ only, and $f(R)$ is
    screened and modifies the Poisson source whereas MI amplifies the velocity response of unscreened
    low-acceleration gas. It does **not** transfer as positive evidence either way.
+   **AND THE SAME ERROR WAS IN THE GROWTH/σ₈ CHAIN, where it was worth a factor 59.** The forest
+   scripts inherited $h$ from `mi_growth_amplification_founded_2026.py`, and that script is
+   *inconsistent* row by row: every bound-structure row enters by a **measured** $v^2/R$, which *is*
+   $|a|$ and was always right; but the **diffuse-IGM** row enters by a Newtonian
+   $(4\pi/3)G\rho_m\delta R$, and the **filament** row by an *assumed* $v=100$ km/s that disagrees with
+   the $g_{\rm bar}$ of its own matter by **162×**. The framework's law forbids this: given
+   $g_{\rm bar}$, $|a|$ is *determined*, so no row may supply both. Re-done under one convention —
+   measured $|a|$ where one exists, otherwise $g_{\rm bar}$ converted through $x=\sqrt{y^2+y}$:
+
+   | quantity | banked | consistent |
+   |---|---|---|
+   | diffuse IGM amplification | 135 | **8.25** |
+   | WHIM/filament amplification | 722 | **4.58** |
+   | baryon-weighted $\langle 1/h\rangle_b$ | ~357 | **6.08** |
+   | total-matter growth amplification | — | **1.80** canonical / 1.89 alt |
+   | required suppression vs the 1σ budget | ×10²–10³ | **×7–41** |
+
+   So the "×650–3500 suppression, impossible" framing is **withdrawn**. Against the defensible
+   growth budget (CMB-lensing+BAO $\sigma_8=0.829\pm0.009$ ⇒ ≤1.011 at 1σ, ≤1.033 at 3σ) it is still
+   **24.5× over at 3σ** — reduced by a factor ~59, **not closed**. Two things are untouched: the
+   **non-analyticity** objection ($K\sim\sqrt{z}$ at the FRW expansion point, $K'(0^+)$ divergent) needs
+   no amplification number at all, and every galaxy-scale result is unaffected because the RAR's
+   0.108 dex never depended on $h$. Script: `mi_growth_kernel_argument_audit_2026.py`, exit 0.
+
    **Status: a real but WEAK tension, 0.4–3σ on the defensible channel, convention-dominated.** Not
    "strongly disfavoured". The regulator is still wanted — the σ-spread and the non-analyticity
    arguments (§5.2, $K\sim\sqrt{z}$) stand on their own — but the forest is no longer the thing forcing

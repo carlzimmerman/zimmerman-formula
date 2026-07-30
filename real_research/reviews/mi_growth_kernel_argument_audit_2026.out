@@ -1,0 +1,121 @@
+
+====================================================================================================
+S1. The identity that fixes h's argument, and the size of the error
+====================================================================================================
+  mu_fw(sqrt(y^2+y)) * sqrt(y^2+y) simplifies to: y
+  [OK] mu_fw's argument is the OBSERVED acceleration sqrt(y^2+y): the round trip returns y exactly, so h(x) must be evaluated there and nowhere else
+
+   y = g_bar/a0  x = sqrt(y^2+y)  1/h AT y (wrong)  1/h AT x (right)  inflation
+       1.00e-06       1.0000e-03         500000.00            500.00    1000.0x
+       1.00e-04       1.0000e-02           5000.00             50.01     100.0x
+       1.00e-03       3.1639e-02            500.00             15.84      31.6x
+       3.70e-03       6.0940e-02            135.14              8.27      16.3x
+       1.00e-02       1.0050e-01             50.01              5.07       9.9x
+       1.00e-01       3.3166e-01              5.10              1.81       2.8x
+       1.00e+00       1.4142e+00              1.12              1.06       1.1x
+  [OK] the inflation GROWS as y falls (2.8x at y=0.1 to 1000x at y=1e-6) -- so it is worst exactly where the corpus's liability lives, in the diffuse phase
+  deep-regime asymptotics: 1/h AT y -> 1/(2y);  1/h AT x -> 1/(2 sqrt(y)).  Ratio -> 1/sqrt(y).
+
+====================================================================================================
+S2. Row-by-row audit of the growth table -- which convention did each row use?
+====================================================================================================
+  From mi_growth_amplification_founded_2026.py S2. 'measured v' rows are FINE; the
+  density-built row is the forest error; the assumed-v row is neither.
+  row                      how x was built                what that is      status            
+  star, solar circle       v^2/R, v=220 km/s MEASURED     OBSERVED |a|      correct           
+  star, galaxy outskirt    v^2/R, v=200 km/s MEASURED     OBSERVED |a|      correct           
+  dwarf galaxy interior    v^2/R, v=30 km/s MEASURED      OBSERVED |a|      correct           
+  galaxy in cluster core   v^2/R, v=1000 km/s MEASURED    OBSERVED |a|      correct           
+  galaxy at cluster R200   v^2/R, v=1000 km/s MEASURED    OBSERVED |a|      correct           
+  group member             v^2/R, v=300 km/s MEASURED     OBSERVED |a|      correct           
+  filament / sheet gas     v^2/R, v=100 km/s ASSUMED      neither           INCONSISTENT (S4) 
+  diffuse IGM (peculiar)   (4pi/3) G rho_m delta R        NEWTONIAN g_bar   WRONG ARG (S3)    
+  [OK] 2 of 8 rows are affected, and they are exactly the two DIFFUSE rows -- which between them carry 90 per cent of the baryons in the allocation the liability rests on
+
+====================================================================================================
+S3. The diffuse-IGM row recomputed correctly, and the sigma8 propagation
+====================================================================================================
+  g_bar (delta=0.05, R=300 Mpc) = 3.4781e-13 m/s^2   [this is g_bar, not |a|]
+  footing                      y           x   A=1/h AT y   A=1/h AT x   factor
+  canonical rho_DE    3.7159e-03  6.1071e-02       134.56         8.25    16.3x
+  alt rho_total       3.0780e-03  5.5565e-02       162.45         9.05    17.9x
+  [OK] the wrong-argument value reproduces the corpus's banked 'amp ~135' for the diffuse IGM (134.6) -- confirming the banked number IS 1/h at the Newtonian argument
+  [OK] corrected, the diffuse-IGM amplification is 8.25, i.e. 16x smaller than the banked 135
+
+  GROWTH BUDGET (defensible footing, CMB-lensing+BAO sigma8 = 0.829 +/- 0.009):
+    total-matter growth amplification must satisfy <= 1.0109 (1 sigma) / 1.0326 (3 sigma)
+    with Omega_b/Omega_m = 0.157, a baryon-only amplification A_b enters as 1 + f_b (A_b - 1)
+  footing             A_b banked  A_b corrected  suppression needed, banked   corrected
+  canonical rho_DE         134.6           8.25                       1931x      104.8x
+  alt rho_total            162.4           9.05                       2335x      116.5x
+  [OK] both the banked and corrected suppression factors are printed, both footings
+
+====================================================================================================
+S4. The filament row is inconsistent with its OWN matter -- computed both ways
+====================================================================================================
+  (a) as the script has it: v = 100 km/s ASSUMED over R = 5 Mpc
+      -> |a| = 6.482e-14 m/s^2
+  (b) from the filament's own overdensity, which is the quantity we actually know:
+        delta        g_bar   y (canon)  x = sqrt(y^2+y)   |a| (m/s^2)
+            5    5.797e-13  6.1932e-03       7.8940e-02     7.389e-12
+           10    1.159e-12  1.2386e-02       1.1198e-01     1.048e-11
+           30    3.478e-12  3.7159e-02       1.9632e-01     1.838e-11
+
+  The two disagree by 162x at delta = 10. The framework's law does not
+  permit both: given g_bar, |a| is DETERMINED. The assumed-velocity route understates the
+  acceleration of filament gas and therefore OVERSTATES its amplification.
+  route                                        x   A = 1/h
+  assumed v=100 km/s (banked)         6.9247e-04     722.0
+  from its own delta=10 (consistent)  1.1198e-01      4.58
+  [OK] the internally consistent filament amplification is 4.58, not the banked 722 -- a factor 158 overstatement, and the banked '~722' traces to this row
+
+====================================================================================================
+S5. The whole baryon budget under ONE consistent convention
+====================================================================================================
+  Rule applied: a row enters by a MEASURED |a| where one exists, otherwise by its g_bar
+  converted through x = sqrt(y^2+y). No row supplies both.
+  Baryon allocation as the corpus has it: 10% galaxies, 40% WHIM/filaments, 50% diffuse IGM.
+
+  footing            component                                frac           x    A=1/h   contrib
+  canonical rho_DE   galaxies (measured |a|)                  0.10  6.9247e-01     1.23     0.123
+  canonical rho_DE   WHIM/filaments (delta=10, R=5 Mpc)       0.40  1.1198e-01     4.58     1.830
+  canonical rho_DE   diffuse IGM (delta=0.05, R=300 Mpc)      0.50  6.1071e-02     8.25     4.124
+  canonical rho_DE   -> baryon-weighted <1/h>_b                                    6.08
+  canonical rho_DE   -> total-matter amplification                                1.797   (budget 1.011 / 1.033)
+  alt rho_total      galaxies (measured |a|)                  0.10  5.7359e-01     1.33     0.133
+  alt rho_total      WHIM/filaments (delta=10, R=5 Mpc)       0.40  1.0181e-01     5.01     2.005
+  alt rho_total      diffuse IGM (delta=0.05, R=300 Mpc)      0.50  5.5565e-02     9.05     4.527
+  alt rho_total      -> baryon-weighted <1/h>_b                                    6.66
+  alt rho_total      -> total-matter amplification                                1.889   (budget 1.011 / 1.033)
+
+  For comparison, the corpus's banked baryon-weighted figure was ~325 (0.10*3.4 + 0.40*722 + 0.50*135).
+  banked <1/h>_b = 356.6;  consistent <1/h>_b = 6.08;  factor 59 smaller
+  [OK] under one consistent convention the baryon-weighted amplification is 6.08, not ~357 -- a factor 59 reduction, entirely from evaluating h at the acceleration the framework's own law specifies
+
+====================================================================================================
+S6. WHAT THIS BUYS, AND WHAT IT DOES NOT
+====================================================================================================
+  IT BUYS, and this is a genuine reduction of a genuine liability:
+   * The diffuse-baryon growth liability drops from a required suppression of order 10^2-10^3
+     to order 10^0-10^1. Total-matter amplification 1.80 (canonical) / 1.89 (alt)
+     against a budget of 1.011 at 1 sigma and 1.033 at 3 sigma.
+   * The 'impossible' framing is withdrawn. A factor of a few is the kind of thing an EFE /
+     quadrature argument or a modest regulator can plausibly supply; a factor of 10^3 is not.
+   * Combined with the forest collapse (0.4-0.9 sigma on the defensible channel), the
+     diffuse-baryon sector is no longer the corpus's sharpest liability. That is now the
+     alpha=1 planetary anomaly, which is unaffected by any of this.
+  IT DOES NOT BUY:
+   * Closure. 1.80 still exceeds 1.033, so the sector is still in tension --
+     by a factor 24.5 at 3 sigma on the canonical footing.
+   * Any change to the NON-ANALYTICITY objection, which is independent and structural:
+     K(z) ~ sqrt(z) at z -> 0, so no Taylor expansion exists at the configuration cosmology
+     expands around, and K'(0+) diverges. That argument needs no amplification number at all
+     and is untouched by this correction.
+   * Any of the galaxy-scale results. Every bound-structure row used a measured |a| and was
+     always correct; the RAR's 0.108 dex never depended on h.
+  THE HONEST SUMMARY: a correction that runs FOR the framework, of the same kind and found by
+  the same method as the three that ran against it today. The regulator is still wanted. It is
+  no longer wanted at the 10^3 level, and the reason the old number was 10^3 is that h was
+  being asked about an acceleration the theory says matter does not have.
+  [OK] the liability is REDUCED but NOT CLOSED: 1.797 > 1.033 at 3 sigma, so this is a repricing, not a rescue
+====================================================================================================
