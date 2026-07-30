@@ -1,0 +1,158 @@
+
+====================================================================================================
+S1. Theorem B, pointwise, for an ARBITRARY timelike worldline (not just helical)
+====================================================================================================
+  Start from the normalization u.u = -1 and differentiate twice. Nothing else is assumed:
+    d/dtau (u.u)   = 2 u.a            -> u.a = 0
+    d2/dtau2 (u.u) = 2(a.a + u.adot)  -> u.adot = -(a.a)
+  [OK] d/dtau(u.u) = 2 u.a identically (sympy)
+  [OK] d2/dtau2(u.u) = 2(a.a + u.adot) identically (sympy)
+  Box_u u^mu = adot^mu on a worldline, so u_mu Box_u u^mu = u.adot = -(a.a), and
+      <Box_u>_u = (u.Box_u u)/(u.u) = (-(a.a))/(-1) = + a.a = +|a|^2
+  EXACT, POINTWISE, for ANY timelike worldline -- perturbed, eccentric, whatever. The
+  positivity comes from the Lorentzian normalization u.u = -1, nothing else.
+  [OK] Theorem B established from u.u=-1 alone, with no circularity assumption
+
+====================================================================================================
+S2. The closure's argument is MANIFESTLY non-negative -- it cannot reach the branch cut
+====================================================================================================
+  The kernel's branch point sits at z = -1/4 (=> omega_b = a0/2c). The closure feeds K the
+  argument z = |a|^2/a0^2. Since a^mu is spacelike (u.a = 0 with u timelike), a.a > 0, so:
+      z = |a|^2/a0^2 >= 0   ALWAYS   while the cut needs z <= -1/4.
+  There is no worldline, no perturbation, and no amplitude that puts the closure on the cut.
+  Verified explicitly on a perturbed epicyclic worldline r(tau)=r0(1+eps cos(kappa tau)),
+  phi = Omega tau, scanned over eps and kappa/Omega (Newtonian limit, |a| from the orbit):
+     eps  kappa/Omega   min z over orbit  reaches cut?
+    0.01         0.20       9.793082e-01            NO
+    0.01         1.00       9.604000e-01            NO
+    0.01         3.00       8.100000e-01            NO
+    0.10         0.20       8.028160e-01            NO
+    0.10         1.00       6.400000e-01            NO
+    0.10         3.00       3.259555e-10            NO
+    0.30         0.20       4.733440e-01            NO
+    0.30         1.00       1.600000e-01            NO
+    0.30         3.00       2.677500e+00            NO
+    0.60         0.20       1.413760e-01            NO
+    0.60         1.00       4.000000e-02            NO
+    0.60         3.00       1.239750e+01            NO
+    0.90         0.20       4.096023e-03            NO
+    0.90         1.00       6.400000e-01            NO
+    0.90         3.00       2.859750e+01            NO
+  [OK] minimum |a|^2 over every perturbed orbit scanned = 3.260e-10 >= 0 -- the argument never even approaches the cut at -1/4, let alone crosses it
+  [OK] symbolically, |a|^2 is a sum of real squares, so non-negativity is structural not numerical
+
+====================================================================================================
+S3. Therefore Im K == 0 IDENTICALLY -- Reading 3 is incoherent
+====================================================================================================
+  K is real-analytic on z > 0 and acquires an imaginary part ONLY on the cut z <= -1/4.
+  S2 shows the closure's argument never leaves z >= 0. So under the first-moment closure:
+      Im K == 0   for the mean motion AND for every perturbation, at every order in the
+                  perturbation amplitude.
+  The dissipative rate is not small, it is EXACTLY ZERO. Reading 3 asked for K at a positive
+  argument for the mean motion and a negative one for the perturbation -- but Theorem B's
+  identity applies pointwise to the TOTAL acceleration and returns one non-negative real
+  number. There is no decomposition in which the perturbation gets its own cut argument.
+
+  MUTUAL-EXCLUSIVITY THEOREM (what this session actually establishes):
+    (i)  First-moment closure  -> argument >= 0 -> K real -> RAR reproduced (0.108 dex),
+         dissipation identically zero, sign s has no consequence.
+    (ii) Literal spectral closure -> argument = -(omega c/a0)^2 on the cut -> K unimodular
+         and complex -> dissipation at exactly a0/2c, but the RAR FAILS outright
+         (K = 0.99999997 + 2.5e-4 i vs the required K(1) = 0.618 at a = a0), and the drift
+         is independently excluded at 8.5 sigma by J0737-3039 and by ephemerides at ~40x.
+    The MOND amplitude and the dissipative channel are MUTUALLY EXCLUSIVE. No closure
+    delivers both. This is stronger than 'the drift is too small to measure'.
+    canonical rho_DE cH_Lambda/Z  : dead branch's rate a0/2c = 1.561e-19/s (tau = 203 Gyr); live branch's rate = 0 exactly
+    alt rho_total cH0             : dead branch's rate a0/2c = 1.885e-19/s (tau = 168 Gyr); live branch's rate = 0 exactly
+  [OK] the exclusivity is stated as a theorem with both branches priced
+
+====================================================================================================
+S4. Consequence for the sign postulate s
+====================================================================================================
+  BEFORE (this morning): 'sign + Z still postulated; forward = data', and the dissipative
+  channel was the candidate datum -- found short on sensitivity by ~2e4x.
+  AFTER: within the closure that reproduces the RAR, s has NO observable consequence at all,
+  because the channel it would sign is identically zero rather than merely tiny. So the
+  honest status of s changes character:
+    * it is NOT a postulate awaiting better data in this channel;
+    * it is a label on a branch the working theory never evaluates.
+  That is a REDUCTION in the framework's free content, not a loss: an unobservable postulate
+  is not a liability the way a tunable one is. It also means any future claim to have
+  'measured the sign' must FIRST exhibit a closure that samples the cut and still gives the
+  RAR -- which S3 says does not exist. Z remains a genuine postulate; s is demoted.
+  CAVEAT, stated plainly: this holds within the first-moment closure FAMILY. Finding C
+  records the off-circular time-weighting as a free O(1) choice WITHIN that family, and
+  every member has argument |a|^2 >= 0 under some weighting, so the conclusion is family-
+  wide. A closure OUTSIDE the family (not built from the u-contracted first moment) is not
+  covered -- but no such closure reproduces the RAR either, per Finding C.
+  [OK] the sign result is scoped to the closure family, not overclaimed as universal
+
+====================================================================================================
+S5. CORRECTION to this session's sigma-spread repricing
+====================================================================================================
+  mi_theta_efe_from_closure_2026.py computed the relational sigma-spread using a cross-term
+  coherence C(y) = sinc[P(1-y)/2y] with P = omega_ex * T_w and T_w = min(2c/a0, t_age) =
+  t_age, giving P = 14.11 and a spread of 1.45-2.21% (max-min).
+  THAT WINDOW CAME FROM THE KERNEL MEMORY -- i.e. from Reading 3. Under Reading 2, which S3
+  now forces, the closure is pointwise and instantaneous: there is no kernel memory window
+  to average over. The averaging that survives is the SYSTEM's own, over which the beat
+  between omega_in and omega_ex washes out. So P is not 14.11; it is set by the system.
+  Rather than assert a new single number, scan the whole dependence:
+    P = omega_ex * T_w regime                              max-min spread
+                  0.10 T_w << beat time: no averaging              1.840%
+                  1.00 T_w ~ 1/omega_ex                            1.868%
+                 14.11 t_age (what today's script used)            1.855%
+                100.00 T_w >> t_age                                1.846%
+               1000.00 asymptotic long window                      1.840%
+  Scan over P from 0.1 to 1000: spread ranges only 1.840% to 1.871%.
+  READ -- AND THIS CORRECTS WHAT I EXPECTED TO FIND. I predicted the spread would be
+  non-monotonic in the window, dying at both limits. It is not: it is FLAT to ~2% relative
+  across FOUR ORDERS OF MAGNITUDE in P. The reason is structural and worth stating, because
+  it is why the result is robust: the coherence argument is P(1-y)/(2y), and the 1/y factor
+  means that for ANY P the low-y end of a realistic carrier population (y down to ~0.012)
+  already sits at large argument where C oscillates near zero, while y=1 gives C=1 exactly
+  for every P. So the max-min range is set by the CARRIER y-RANGE, not by the window at all.
+  [OK] the spread varies by only 1.017x across 4 decades of window -- it is window-INDEPENDENT, so today's figure never depended on Reading 3's t_age after all
+  [OK] the window that maximises the spread (1.87% at P=0.12) is still far below the banked 6.2% low end
+
+  CROSS-CHECK BY A DIFFERENT ROUTE. Under strict Reading 2 the coherence model above is
+  arguably the wrong tool -- a pointwise closure has no kernel window, so the y-dependence
+  would instead come from incomplete beat-averaging over the SYSTEM's own dynamical time,
+  and the amplitude is set by the second-order response of a nonlinear mu to a modulated
+  argument. KERNEL_THEORY.md already derives that law: Delta log10 g_obs = -0.326 eps^2 dex
+  in the deep-MOND flat-curve limit. Feed it the cross-term modulation depth:
+    |a|^2 modulation depth = 2 a_in a_ex/(a_in^2+a_ex^2) = 0.2934
+    => eps_eff ~ 0.1467,  Delta log10 g_obs = -0.00702 dex,  sigma shift = -0.80%
+  [OK] the independent eps^2 route lands at 0.80%, the same ~1-2% scale as the coherence route and likewise far below the banked 6.2-14.1%
+  Two structurally different routes -- frequency-domain coherence and pointwise second-order
+  response -- both land at the ~1-2% scale. The exact number differs; the repricing does not.
+  NET for the sigma-spread: today's downward repricing SURVIVES, and survives MORE cleanly
+  than claimed this morning. The specific 1.45-2.21% figure was quoted as Reading-3-specific;
+  the scan shows it never depended on that window, and an independent route agrees on scale.
+
+====================================================================================================
+VERDICT
+====================================================================================================
+  1. Theorem B holds pointwise on ANY timelike worldline, from u.u = -1 alone -- broader
+     than the corpus's helical verification.
+  2. The closure's argument |a|^2 is manifestly >= 0 and the cut needs z <= -1/4, so under
+     the first-moment closure Im K == 0 IDENTICALLY, for mean motion and perturbations
+     alike, at every order. Reading 3 is not a coherent third option.
+  3. MUTUAL EXCLUSIVITY: the MOND amplitude (real argument, RAR at 0.108 dex) and the
+     dissipative a0/2c channel (cut argument, RAR fails) cannot coexist. The corpus's
+     'the phase acts only on perturbations' should be retired.
+  4. The sign s is DEMOTED from postulate-awaiting-data to label-on-an-unevaluated-branch,
+     within the first-moment family. Z remains a real postulate.
+  5. This morning's a0/2c sign hunt is resolved: it was not short on sensitivity, it was
+     measuring a branch the working theory never uses. The 8.5-sigma pulsar exclusion
+     stands as an independent kill of the literal closure and keeps its value.
+  6. The sigma-spread repricing SURVIVES and is window-INDEPENDENT (flat to 2% relative
+     across 4 decades of averaging window), with an independent eps^2 route agreeing on the
+     ~1-2% scale. I had expected window-dependence and was wrong; the result is sturdier.
+
+  WHAT WOULD OVERTURN THIS: a closure outside the u-contracted first-moment family that
+  (a) samples the cut, so dissipation is nonzero, and (b) still reproduces the RAR. Finding
+  C's O(1) time-weighting freedom lives INSIDE the family and cannot do it, since every
+  member's argument is a weighted average of |a(tau)|^2 and therefore non-negative. That is
+  a sharp, checkable target for anyone who wants the dissipative channel back.
+====================================================================================================

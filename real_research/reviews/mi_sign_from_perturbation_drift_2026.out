@@ -1,0 +1,183 @@
+
+====================================================================================================
+S1. The universal rate, re-derived: omega * Im K = a0/2c EXACTLY, for every omega
+====================================================================================================
+  On the oscillatory branch K(-w^2+i0) = exp[i*arcsin(1/2w)], so Im K = sin phi = 1/(2w).
+  A mode of frequency omega therefore decays/grows at  omega * Im K:
+      rate = omega * 1/(2w)  with w = omega c/a0   ->   a0/(2*c)
+  [OK] the rate is INDEPENDENT of omega (sympy: d/dw = 0)
+  [OK] the rate equals a0/2c exactly
+  This is why the scale is universal: the kernel's Im part falls as 1/omega and exactly
+  cancels the omega in front. Every oscillatory mode in the universe shares one rate.
+
+====================================================================================================
+S2. THE LOAD-BEARING SPLIT -- orbit real, perturbations complex. Interrogated, not assumed.
+====================================================================================================
+  KERNEL_THEORY.md asserts: under the first-moment closure the ORBIT's secular drift is
+  exactly zero because K(a^2/a0^2) is real, while the phase still acts on PERTURBATIONS.
+  That split is what the whole door rests on, so state the three possible readings:
+
+  READING 1 -- 'literal frequency-domain closure for everything'. The orbit is itself an
+    oscillation at Omega, so it samples the cut too and drifts at a0/2c. KERNEL_THEORY.md
+    Finding C already declares this DEAD, twice over: it fails the RAR outright, AND it
+    predicts ~0.4 m/yr in the Earth-Sun distance against a ~cm/yr ephemeris bound.
+  READING 2 -- 'first moment for everything'. The operator is replaced by its u-contraction
+    moment |a|^2 for ALL motion, perturbations included. Then the response is real and
+    instantaneous everywhere, there is no phase anywhere, and the drift is exactly zero for
+    perturbations too. THE DOOR SHUTS -- no observable, sign stays postulated.
+  READING 3 -- 'first moment for the DC amplitude, frequency domain for the AC response'.
+    The orbit's zero-frequency/secular part is the first moment (real, no drift); a
+    perturbation at kappa is a genuinely nonzero-frequency probe and samples the cut. This
+    is the reading KERNEL_THEORY.md's sentence encodes, and the ONLY one with a live door.
+
+  HONEST STATUS OF READING 3. It is not derived anywhere in the corpus. It is the natural
+  linear-response split (DC susceptibility real, AC susceptibility complex, which is what
+  Kramers-Kronig gives for any causal kernel), and it is consistent -- but a DERIVATION
+  would need the closure applied to a two-timescale expansion, which does not exist yet.
+  So everything below is CONDITIONAL ON READING 3, and that condition is the door's real
+  cost. Under Reading 2 the door shuts immediately and the sign stays postulated.
+  [OK] the split is stated as a conditional assumption, not smuggled in as a result
+
+====================================================================================================
+S3. The universal rate in usable units, both footings
+====================================================================================================
+  canonical rho_DE cH_Lambda/Z   a0/2c = 1.5611e-19 1/s   tau =   203.0 Gyr   rate = 4.9263e-12 /yr
+  alt rho_total cH0              a0/2c = 1.8846e-19 1/s   tau =   168.1 Gyr   rate = 5.9473e-12 /yr
+  Footing spread on the rate: 1.207x -- unusually TIGHT for this corpus, because the
+  rate is linear in a0 with no other footing-sensitive input.
+  [OK] the two footings differ by only 1.21x, so a confrontation is not footing-hostage
+
+====================================================================================================
+S4. ORBITAL-ENERGY channel -- validate Peters, then price what Reading 1 already costs
+====================================================================================================
+  Validation gate: reproduce the MEASURED Pbdot from masses+Pb+e alone. If this fails, no
+  number below is trustworthy and the script exits nonzero.
+  pulsar         Pbdot Peters      Pbdot obs    ratio
+  B1913+16       -2.40360e-12   -2.42300e-12   0.9920
+  [OK] B1913+16: Peters reproduces the measured Pbdot to 0.8% -- implementation validated
+  J0737-3039     -1.24834e-12   -1.24792e-12   1.0003
+  [OK] J0737-3039: Peters reproduces the measured Pbdot to 0.0% -- implementation validated
+
+  Now the orbital channel. GR is confirmed at these fractional precisions, so any EXTRA
+  universal energy drift must hide inside the residual. Reported in SIGMA, not in vague
+  'room', so the strength of the statement is visible:
+  pulsar        GR conf.  |Pbdot/Pb| GR  1-sigma (1/yr)  a0/2c (1/yr)  -> sigma
+  B1913+16       1.6e-03     2.7180e-09      4.3488e-12    4.9263e-12      1.1s
+  J0737-3039     1.3e-04     4.4591e-09      5.7968e-13    4.9263e-12      8.5s
+  So the double pulsar excludes a universal a0/2c ENERGY drift at 8.5 sigma,
+  while B1913+16 alone reaches only 1.1 sigma -- the constraint is carried by
+  J0737-3039's 1.3e-4 Pbdot agreement, not by the Hulse-Taylor system.
+  [OK] the orbital channel excludes the rate at 8.5 sigma -- a SECOND, independent kill of Reading 1 / the literal closure, from pulsars rather than Solar-System ephemerides
+
+====================================================================================================
+S5. PERTURBATION channel (the live one under Reading 3) -- real observability, not a ratio
+====================================================================================================
+  CORRECTING MY OWN FIRST FRAMING. I first priced this as 'what fraction of GR's own edot
+  is the effect', which came out ~1e-3 and made the test look nearly in reach. That framing
+  is wrong: it silently assumes edot_GR is itself measured, and in these systems it is NOT
+  detected at all. The honest question is what the DATA can resolve.
+
+  The observable is a universal fractional drift edot/e = -/+ a0/2c. Over a timing baseline
+  T that produces a fractional eccentricity change (a0/2c)*T, to be compared against how
+  well e itself is known. Using published e precisions and a 20-yr baseline:
+  pulsar         sigma_e/e   resolvable rate  a0/2c (1/yr)   shortfall
+  B1913+16        1.62e-06        8.1020e-08    4.9263e-12    1.6e+04x
+  J0737-3039      1.03e-05        5.1266e-07    4.9263e-12    1.0e+05x
+  Also for reference, GR's own edot in these systems, which is NOT detected either:
+    B1913+16     edot_GR/e = 9.238e-10/yr   (a0/2c is 5.3e-03 of it)
+    J0737-3039   edot_GR/e = 4.577e-09/yr   (a0/2c is 1.1e-03 of it)
+  [OK] binary-pulsar eccentricity is short of the rate by ~2e+04x -- the pulsar perturbation channel does NOT reach it, and not marginally
+
+  THE ONE SUB-CHANNEL THAT IS NOT OBVIOUSLY SHUT: planetary ephemerides. Same universal
+  fractional rate, but a 2-century baseline and metre-level orbit knowledge. Required
+  sensitivity on an ANOMALOUS eccentricity drift, in the units the ephemeris literature uses:
+    Mercury  e = 0.205630  ->  need |de/dt|_anom < 4.93e-10 /century fractional  =  1.01e-10 in e per century
+    Mars     e = 0.093412  ->  need |de/dt|_anom < 4.93e-10 /century fractional  =  4.60e-11 in e per century
+  I am NOT asserting the published bound here, because I have not verified one in this
+  session, and inventing it would be worse than leaving the door ajar. What IS established
+  is the target number. Checking it against INPOP/EPM anomalous-secular bounds is a cheap,
+  bounded literature task, and it is the single thing that would decide this channel.
+  [OK] the ephemeris sub-channel is left explicitly OPEN with its target quantified, rather than closed on an unverified number
+
+====================================================================================================
+S6. LONG-BASELINE lever -- a fractional rate is best attacked over ~10 Gyr
+====================================================================================================
+  A rate of 1/(200 Gyr) is hopeless on a 20-yr baseline but not on a cosmological one.
+  Cumulative fractional change in a perturbation amplitude over cosmic time:
+    canonical rho_DE cH_Lambda/Z   over   1.0 Gyr:  +0.494% (gain branch) /  -0.491% (damping branch)
+    canonical rho_DE cH_Lambda/Z   over  10.0 Gyr:  +5.050% (gain branch) /  -4.807% (damping branch)
+    canonical rho_DE cH_Lambda/Z   over  13.8 Gyr:  +7.035% (gain branch) /  -6.572% (damping branch)
+  So over a Hubble time the effect is only ~6.6% in amplitude. The two sign
+  branches are separated by about twice that:
+    gain/damping amplitude ratio after 13.8 Gyr = 14.6%
+  [OK] the two sign branches differ by only 15% after a full Hubble time -- so even a perfect 10-Gyr-baseline population statistic needs better than ~5% control of ordinary heating/damping to separate them
+  Candidate 10-Gyr baselines and why each is hard:
+   * disk age-velocity-dispersion relation: ~7% signal against GMC/spiral/bar/merger heating
+     that is uncertain at the tens-of-per-cent level. Systematics-dominated.
+   * wide-binary eccentricity distribution over 10 Gyr: same ~7%, against an initial
+     distribution that is itself inferred. Also it is the SAME sample as the gate-fork
+     front, so a shared systematic would couple two supposedly independent tests.
+   * globular-cluster binary eccentricities: 10-Gyr baseline, but dynamical encounters
+     dominate the eccentricity evolution outright.
+  NOTE the asymmetry that makes this NOT a stability argument: a 7% growth over a Hubble
+  time is not catastrophic, so the GAIN branch is NOT excluded by 'the universe would have
+  shaken itself apart'. That was worth checking and it does not work.
+
+====================================================================================================
+S7. The gravitational-wave route -- closed by the corpus's OWN v11 theorem
+====================================================================================================
+  A universal amplitude drift on a propagating wave would be a modified GW luminosity
+  distance: h ~ exp(-rate * D/c), i.e. a percent-level effect at cosmological distance:
+    GW170817               D =     40 Mpc  ->  amplitude change  0.064%
+    1 Gpc dark siren       D =   1000 Mpc  ->  amplitude change  1.594%
+    5 Gpc, ET/LISA era     D =   5000 Mpc  ->  amplitude change  7.720%
+  That would be a genuinely fresh front -- the corpus has NO GW lane. But it is closed
+  from the inside: the v11 work (Zenodo 21284144) established that the TT x frame vertex
+  is EXACTLY ZERO and graviton-frame mixing is closed (R.uu = -H^2 P_perp exact, but the
+  commutators are algebraic; k0^2 -> H^2, never k_perp^2). The frame field does not couple
+  to transverse-traceless gravitons at the vertex, so this kernel does not damp GWs.
+  Recording it as CLOSED rather than quietly leaving it as a hope.
+  [OK] GW lane closed by v11's TT x frame vertex theorem, not left as an open hope
+
+====================================================================================================
+VERDICT -- is the sign closable by this channel?
+====================================================================================================
+  NO, not with data now on the books. Quantified:
+   * The rate is universal and sharp: a0/2c = 4.93e-12/yr, tau = 203 Gyr,
+     with only a 1.21x footing spread. That part of the door is real and is the
+     cleanest system-independent number the framework owns.
+   * ORBITAL channel: EXCLUDES the rate at 8.5 sigma (J0737-3039; B1913+16 alone
+     reaches only 1.1 sigma). But that channel is Reading 1, already dead on RAR
+     grounds, so this is a CONFIRMATION of a known kill from a new direction (pulsars, not
+     Solar-System ephemerides) -- not a new constraint on the live theory.
+   * PERTURBATION channel (the live one): binary-pulsar eccentricity is short by
+     ~2e+04x. Not marginal. My first pass priced this as a ratio to GR's own edot
+     (~1e-3) which made it look nearly in reach; that framing was wrong, because edot_GR is
+     itself undetected in these systems. Corrected above.
+   * LONG-BASELINE channel: signal is ~7% over a Hubble time and the two sign
+     branches differ by ~15%, against 10-Gyr heating systematics that are worse
+     than that. Not reachable either, and the wide-binary version would share a sample
+     with the gate-fork front.
+   * GW channel: closed by the framework's own v11 vertex theorem.
+
+  SO THE DOOR SHUTS -- but it shuts on SENSITIVITY, not on principle, and it leaves three
+  things behind that are worth more than a null usually is:
+   1. The sign postulate is now KNOWN to be unclosable by the dissipative channel at
+      current precision, with the required precision quantified rather than guessed. That
+      retires a route instead of leaving it as a vague hope, which is what 'forward = data'
+      had been resting on.
+   2. A SECOND, INDEPENDENT KILL of the literal frequency-domain closure, from binary
+      pulsars (8.5 sigma, carried by J0737-3039) rather than from Solar-System
+      ephemerides. Finding C's verdict no longer rests on one system.
+   3. READING 3 IS NOW EXPOSED AS AN UNDERIVED LOAD-BEARING ASSUMPTION. The corpus states
+      'the phase acts only on perturbations' as though settled; it is not. Under Reading 2
+      there is no perturbation drift at all. Deriving the DC/AC split from a two-timescale
+      treatment of the closure is a real, bounded, unstarted theory task -- and it also
+      controls the sigma-spread cross term repriced on 2026-07-30, so one calculation
+      settles two things.
+
+  WHAT WOULD REOPEN IT: any system with a >=1e-6 fractional measurement of an oscillation
+  amplitude over a >=decade baseline, where ordinary damping is modelled to that level.
+  Pulsar timing arrays and next-generation ephemerides are the places to look; neither is
+  there yet for a PERTURBATION amplitude as opposed to an orbital period.
+====================================================================================================
