@@ -116,6 +116,36 @@ band, 0.0101 from the point target 1.09.
 
 ## 5. Open liabilities — stated plainly
 
+0. **⚠️ THE SHARPEST ONE, AND IT IS NEW (2026-07-30): the exact law is excluded by the inner-planet
+   ephemerides.** The signature relation $g_{\rm obs}^2=g_{\rm bar}^2+a_0g_{\rm bar}$ has
+   $1-\mu\sim1/(2x)$ **identically** — the $\alpha=1$ class — so held to all accelerations it predicts a
+   **constant sunward anomaly $a_0/2=4.68\times10^{-11}\,$m/s²** that does *not* decay as $a/a_0$ grows.
+   This retires the corpus's own reasoning that "Cassini is safe because $a\gg a_0$ at the Sun"; that
+   argument works for $\alpha\ge2$, not for $\alpha=1$.
+   - **Bounds verified from primary sources, not quoted.** Sereno & Jetzer 2006 (astro-ph/0606197)
+     Table 1 (Pitjeva EPM2004) inverted through their own Eq (9) gives $\delta A_R\le3.66\times10^{-14}$
+     m/s² (Earth, 2σ) and $3.72\times10^{-14}$ (Mars). Bare $a_0/2$ is **1278× over**; the framework's
+     *own* derived EFE (Thm 5) suppresses it only to **119–189× over**. Milgrom 2009 (arXiv:0906.4817)
+     p.6 states the case verbatim: $\alpha=1$ "produces too strong effects on the planets"; Sereno &
+     Jetzer "roughly allow only $\alpha\gtrsim1.5$". Blanchet & Novak 2011 call the class ruled out.
+   - **The known escape does not reach.** Milgrom prefers Fienga+2009's global-refit method, which is
+     ~200× looser — but those are **outer-planet** limits (Uranus/Neptune/Pluto), orbits loose enough
+     to absorb a constant acceleration. It acts on *every* planet, its precession grows as $a^{1/2}$,
+     and meter-level Earth/Mars ranging cannot absorb it into $GM_\odot$ or the semimajor axes.
+   - **Galaxy data does not require $\alpha=1$** — verified on real SPARC, 175 galaxies: $\alpha=1$,
+     $\alpha=2$ and $\alpha=\infty$ fit within **0.0084 dex** of one another at fixed $a_0$, and within
+     0.019 dex in the highest bin at shared M/L, against Desmond 2023's $\sigma_{\rm int}=0.034$ dex.
+     Only 5.2% of SPARC points reach $g_{\rm bar}/a_0>10$; the sample tops out at 110, the Earth sits at
+     $\sim6\times10^7$. So the framework holds $\alpha=1$ **because its law forces it**, not because the
+     rotation curves ask for it.
+   - **Therefore the conflict is between exactness and the planets, and one of them must go.** The
+     honest default: the relation is an **infrared** statement, empirically supported for
+     $y\lesssim100$, where every galaxy datum lives — which costs nothing in SPARC but **withdraws the
+     claim that it is exact**. The corpus does make that claim; it must be narrowed. The alternative is
+     a frequency gate, which needs a fifth constant unless Milgrom 2022's frequency-*ratio*
+     construction supplies it.
+   - Scripts: `real_research/reviews/mi_alpha1_solar_system_2026.py`,
+     `real_research/reviews/mi_tail_exponent_rar_cost_2026.py` (both exit 0).
 1. **The diffuse-baryon sector needs a regulator, mandatorily.** Under a pointwise reading of the
    closure, diffuse gas sits at $x=a/a_0\sim10^{-2}$ where the linear response $1/h$ is large;
    Lyman-α forest $b$-parameters then disfavour it at **~6–8σ for $z\sim2.3$–2.9**. Robust against all

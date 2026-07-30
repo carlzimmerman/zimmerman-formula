@@ -46,8 +46,21 @@ FOOTINGS = [("canonical rho_DE", 9.36e-11), ("alt rho_total", 1.13e-10)]
 G_EXT = [("primary (McMillan-class)", 1.778e-10), ("alt (Vc^2/R0)", 2.078e-10)]
 PLANETS = [("Mercury", 0.3871, 0.2408), ("Venus", 0.7233, 0.6152), ("Earth", 1.0, 1.0),
            ("Mars", 1.5237, 1.8808), ("Jupiter", 5.2044, 11.862), ("Saturn", 9.5826, 29.457)]
-# UNVERIFIED in this session -- see S4. Representative INPOP/EPM-class allowances, arcsec/century.
+# UNVERIFIED representative allowances, kept only for the S2 illustration.
 BOUND_UNVERIFIED = {"Mercury": 4e-4, "Mars": 1e-4, "Saturn": 1e-4}
+# *** VERIFIED 2026-07-30 from PRIMARY SOURCES, extracted and re-derived, not quoted. ***
+# Sereno & Jetzer 2006 (astro-ph/0606197) Table 1 VERBATIM -- extra-perihelion precession from
+# Pitjeva (2005b) EPM2004, in arcsec/YEAR, as (value, 1-sigma-on-last-digits):
+SJ_TABLE1 = [("Mercury", -0.36e-4, 0.50e-4), ("Venus", 0.53e-2, 0.30e-2),
+             ("Earth",   -0.2e-5,  0.4e-5),  ("Mars",  0.1e-5,  0.5e-5)]
+# Their Eq (9) for a CONSTANT radial perturbation: <wdot_p> = sqrt(1-e^2)/(n a) * delta_A_R.
+# We invert it ourselves rather than quoting their delta_A_R column (which pdftotext loses).
+# Milgrom 2009 p.6 quotes only the OUTER-planet limits (Uranus 1e-12, Neptune 4e-12, Pluto 1e-11
+# m/s^2) and the Fienga+2009 global-refit relief (2e-10 Uranus, 8e-10 Neptune/Pluto). Both are
+# recorded, because the OUTER-vs-INNER distinction is the crux of the verdict.
+MILGROM_OUTER = {"Sereno-Jetzer, Uranus": 1e-12, "Sereno-Jetzer, Neptune": 4e-12,
+                 "Sereno-Jetzer, Pluto": 1e-11, "Fienga+2009 refit, Uranus": 2e-10,
+                 "Fienga+2009 refit, Neptune/Pluto": 8e-10}
 
 
 def mu_fw(x):
@@ -159,13 +172,68 @@ def main() -> int:
     print("     g_ext/a0 ~ 2 makes the host-frame subtraction comparable to a0/2. That is a genuine")
     print("     escape and it was worth computing -- but it is a coincidence of scales rather than a")
     print("     mechanism, it can overshoot into the wrong sign, and it does not clear the bounds.")
-    print("  4. WHAT IS NOT VERIFIED, and it is load-bearing: the ephemeris allowances used here")
-    print("     (~1e-4 to 4e-4 arcsec/century) are REPRESENTATIVE INPOP/EPM-class figures quoted from")
-    print("     memory, NOT fetched this session. The whole quantitative verdict scales with them. A")
-    print("     verified Pitjeva/Pitjev or INPOP supplementary-precession table is the required next")
-    print("     step before this is called a falsification. Given today's record on unverified inputs,")
-    print("     that check is mandatory, not optional.")
-    print("  5. STATUS: a SERIOUS, LIVE liability -- not yet a falsification, because of (4), and")
+    print("  4. *** THE BOUNDS ARE VERIFIED, AND THE LIABILITY IS WORSE THAN THE OUTER-PLANET")
+    print("     LITERATURE MAKES IT LOOK. *** Milgrom 2009 p.6 states the alpha=1 case verbatim:")
+    print("     'for alpha = 1 we get a constant anomalous acceleration pointing towards the sun")
+    print("     ga = -A a0 e. This could explain the Pioneer anomaly, but produces TOO STRONG EFFECTS")
+    print("     ON THE PLANETS'; and Sereno & Jetzer 2006 'roughly allow only alpha >~ 1.5'.")
+    print("     The framework's kernel is exactly alpha = 1, A = 1/2 (S1).")
+    print()
+    print("     Milgrom then quotes a methodological dispute -- Sereno-Jetzer treat fit residuals as")
+    print("     limits; Fienga+2009 refit with the anomaly included and get ~200x looser numbers, which")
+    print("     Milgrom calls 'the more sensible procedure'. BUT BOTH OF THOSE ARE OUTER-PLANET NUMBERS:")
+    a0c = FOOTINGS[0][1]
+    for nm, lim in MILGROM_OUTER.items():
+        v = a0c/2/lim
+        print(f"       {nm:<34s} {lim:8.1e} m/s^2   bare = {v:7.2f}x  ->  "
+              f"{'OVER' if v > 1 else 'passes'}")
+    print("     On the outer planets alone the verdict really is method-dependent.")
+    print()
+    print("     THE INNER PLANETS SETTLE IT. Deriving delta_A_R from Sereno-Jetzer's own Eq (9) and")
+    print("     their own Table 1 (Pitjeva EPM2004), rather than quoting anyone:")
+    print(f"       {'planet':<9s} {'dwdot 2sig (as/yr)':>18s} {'delta_A_R':>11s} {'bare':>9s} {'post-EFE':>10s}")
+    inner = {}
+    for nm, _val, sig in SJ_TABLE1:
+        a_au, ecc, P = {p[0]: (p[1], None, p[2]) for p in PLANETS}[nm][0], None, None
+        a_au, P = [(q[1], q[2]) for q in PLANETS if q[0] == nm][0]
+        ecc = {"Mercury": 0.2056, "Venus": 0.0068, "Earth": 0.0167, "Mars": 0.0934}[nm]
+        dw2 = 2*sig
+        dw_rad_s = dw2*(np.pi/180/3600)/3.155693e7
+        n = 2*np.pi/(P*3.155693e7)
+        dA = dw_rad_s*n*(a_au*AU)/np.sqrt(1-ecc**2)
+        inner[nm] = dA
+        print(f"       {nm:<9s} {dw2:18.2e} {dA:11.2e} {a0c/2/dA:8.0f}x {6.91e-12/dA:9.0f}x")
+    tight = min(inner.values())
+    print(f"     TIGHTEST: {tight:.2e} m/s^2 (Earth), ~{1e-12/tight:.0f}x tighter than the Uranus figure,")
+    print("     because Earth and Mars are the meter-level-ranged planets.")
+    print("     AND THE FIENGA ESCAPE DOES NOT REACH THEM. Fienga+2009 relieved Uranus, Neptune and")
+    print("     Pluto -- orbits loose enough to absorb a constant acceleration. A constant sunward a0/2")
+    print("     acts on EVERY planet and its precession grows as a^(1/2), so a simultaneous fit that")
+    print("     includes meter-level Earth and Mars ranging cannot absorb it into GM_sun or the")
+    print("     semimajor axes. Blanchet & Novak 2011 state the class is dead in exactly these terms:")
+    print("     the 1/y tail 'predicts a constant supplementary acceleration directed toward the Sun")
+    print("     ... ruled out because not seen from the motion of planets.'")
+    check(a0c/2/tight > 100,
+          f"bare a0/2 is {a0c/2/tight:.0f}x over the Earth 2-sigma limit and the EFE-suppressed residual "
+          f"is still {6.91e-12/tight:.0f}x over -- the liability SURVIVES verification on the inner planets")
+    print()
+    print("  4b. WHAT WOULD FIX IT, AND WHAT THAT COSTS. Any tail with alpha >= 2 passes trivially, and")
+    print("     the galaxy data does NOT require alpha = 1. Verified on the real SPARC sample in the")
+    print("     companion script mi_tail_exponent_rar_cost_2026.py: with a0 held fixed and each kernel")
+    print("     given its own M/L, alpha = 1, alpha = 2 and alpha = infinity fit 175 galaxies within")
+    print("     0.0084 dex of one another, and at SHARED M/L the highest-acceleration bin separates them")
+    print("     by at most 0.019 dex -- both far inside Desmond 2023's sigma_int = 0.034 dex. The reason")
+    print("     is structural: only 5.2% of SPARC points reach g_bar/a0 > 10 and the sample tops out at")
+    print("     110, while the Earth sits at ~6e7. The tail exponent is observationally free in galaxies")
+    print("     and pinned at 10^2-10^3 by the inner-planet ephemerides.")
+    print("     BUT sharpening it is not free HERE: alpha = 1 is not a modelling choice in this")
+    print("     framework, it is a THEOREM about its signature law. g_obs^2 = g_bar^2 + a0 g_bar has")
+    print("     1 - mu ~ 1/(2x) identically. You cannot sharpen the tail and keep the exact law. That")
+    print("     is the actual content of this liability: the exact algebraic relation and the planetary")
+    print("     ephemerides are in direct conflict, and only one of them can be kept.")
+    print("  5. STATUS: the SHARPEST liability in the corpus. On the inner-planet bound it is a")
+    print("     falsification OF THE EXACT LAW held to all accelerations, evaded only by giving up")
+    print("     exactness in the tail. Not a falsification of the MOND-regime phenomenology, and")
     print("     softened but not cleared by (3). It belongs in STANDING.md as an open liability at the")
     print("     top of the list, and it is more dangerous than the Q2 quadrupole tension already")
     print("     recorded, because it is a leading-order effect rather than a shape effect.")

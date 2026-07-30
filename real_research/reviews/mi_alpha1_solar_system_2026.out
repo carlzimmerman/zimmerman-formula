@@ -77,13 +77,58 @@ S4. VERDICT -- and what is and is not verified
      g_ext/a0 ~ 2 makes the host-frame subtraction comparable to a0/2. That is a genuine
      escape and it was worth computing -- but it is a coincidence of scales rather than a
      mechanism, it can overshoot into the wrong sign, and it does not clear the bounds.
-  4. WHAT IS NOT VERIFIED, and it is load-bearing: the ephemeris allowances used here
-     (~1e-4 to 4e-4 arcsec/century) are REPRESENTATIVE INPOP/EPM-class figures quoted from
-     memory, NOT fetched this session. The whole quantitative verdict scales with them. A
-     verified Pitjeva/Pitjev or INPOP supplementary-precession table is the required next
-     step before this is called a falsification. Given today's record on unverified inputs,
-     that check is mandatory, not optional.
-  5. STATUS: a SERIOUS, LIVE liability -- not yet a falsification, because of (4), and
+  4. *** THE BOUNDS ARE VERIFIED, AND THE LIABILITY IS WORSE THAN THE OUTER-PLANET
+     LITERATURE MAKES IT LOOK. *** Milgrom 2009 p.6 states the alpha=1 case verbatim:
+     'for alpha = 1 we get a constant anomalous acceleration pointing towards the sun
+     ga = -A a0 e. This could explain the Pioneer anomaly, but produces TOO STRONG EFFECTS
+     ON THE PLANETS'; and Sereno & Jetzer 2006 'roughly allow only alpha >~ 1.5'.
+     The framework's kernel is exactly alpha = 1, A = 1/2 (S1).
+
+     Milgrom then quotes a methodological dispute -- Sereno-Jetzer treat fit residuals as
+     limits; Fienga+2009 refit with the anomaly included and get ~200x looser numbers, which
+     Milgrom calls 'the more sensible procedure'. BUT BOTH OF THOSE ARE OUTER-PLANET NUMBERS:
+       Sereno-Jetzer, Uranus               1.0e-12 m/s^2   bare =   46.80x  ->  OVER
+       Sereno-Jetzer, Neptune              4.0e-12 m/s^2   bare =   11.70x  ->  OVER
+       Sereno-Jetzer, Pluto                1.0e-11 m/s^2   bare =    4.68x  ->  OVER
+       Fienga+2009 refit, Uranus           2.0e-10 m/s^2   bare =    0.23x  ->  passes
+       Fienga+2009 refit, Neptune/Pluto    8.0e-10 m/s^2   bare =    0.06x  ->  passes
+     On the outer planets alone the verdict really is method-dependent.
+
+     THE INNER PLANETS SETTLE IT. Deriving delta_A_R from Sereno-Jetzer's own Eq (9) and
+     their own Table 1 (Pitjeva EPM2004), rather than quoting anyone:
+       planet    dwdot 2sig (as/yr)   delta_A_R      bare   post-EFE
+       Mercury             1.00e-04    7.52e-13       62x         9x
+       Venus               6.00e-03    3.23e-11        1x         0x
+       Earth               8.00e-06    3.66e-14     1278x       189x
+       Mars                1.00e-05    3.72e-14     1257x       186x
+     TIGHTEST: 3.66e-14 m/s^2 (Earth), ~27x tighter than the Uranus figure,
+     because Earth and Mars are the meter-level-ranged planets.
+     AND THE FIENGA ESCAPE DOES NOT REACH THEM. Fienga+2009 relieved Uranus, Neptune and
+     Pluto -- orbits loose enough to absorb a constant acceleration. A constant sunward a0/2
+     acts on EVERY planet and its precession grows as a^(1/2), so a simultaneous fit that
+     includes meter-level Earth and Mars ranging cannot absorb it into GM_sun or the
+     semimajor axes. Blanchet & Novak 2011 state the class is dead in exactly these terms:
+     the 1/y tail 'predicts a constant supplementary acceleration directed toward the Sun
+     ... ruled out because not seen from the motion of planets.'
+  [OK] bare a0/2 is 1278x over the Earth 2-sigma limit and the EFE-suppressed residual is still 189x over -- the liability SURVIVES verification on the inner planets
+
+  4b. WHAT WOULD FIX IT, AND WHAT THAT COSTS. Any tail with alpha >= 2 passes trivially, and
+     the galaxy data does NOT require alpha = 1. Verified on the real SPARC sample in the
+     companion script mi_tail_exponent_rar_cost_2026.py: with a0 held fixed and each kernel
+     given its own M/L, alpha = 1, alpha = 2 and alpha = infinity fit 175 galaxies within
+     0.0084 dex of one another, and at SHARED M/L the highest-acceleration bin separates them
+     by at most 0.019 dex -- both far inside Desmond 2023's sigma_int = 0.034 dex. The reason
+     is structural: only 5.2% of SPARC points reach g_bar/a0 > 10 and the sample tops out at
+     110, while the Earth sits at ~6e7. The tail exponent is observationally free in galaxies
+     and pinned at 10^2-10^3 by the inner-planet ephemerides.
+     BUT sharpening it is not free HERE: alpha = 1 is not a modelling choice in this
+     framework, it is a THEOREM about its signature law. g_obs^2 = g_bar^2 + a0 g_bar has
+     1 - mu ~ 1/(2x) identically. You cannot sharpen the tail and keep the exact law. That
+     is the actual content of this liability: the exact algebraic relation and the planetary
+     ephemerides are in direct conflict, and only one of them can be kept.
+  5. STATUS: the SHARPEST liability in the corpus. On the inner-planet bound it is a
+     falsification OF THE EXACT LAW held to all accelerations, evaded only by giving up
+     exactness in the tail. Not a falsification of the MOND-regime phenomenology, and
      softened but not cleared by (3). It belongs in STANDING.md as an open liability at the
      top of the list, and it is more dangerous than the Q2 quadrupole tension already
      recorded, because it is a leading-order effect rather than a shape effect.

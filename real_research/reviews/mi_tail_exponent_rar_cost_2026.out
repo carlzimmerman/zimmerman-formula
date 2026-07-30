@@ -1,0 +1,157 @@
+  [OK] loaded 175 SPARC rotmod files
+
+====================================================================================================
+S0. How much of SPARC even samples the tail?
+====================================================================================================
+  points with g_bar/a0 > 1    :   997 /  3389 (29.42%)
+  points with g_bar/a0 > 3    :   497 /  3389 (14.67%)
+  points with g_bar/a0 > 10   :   177 /  3389 ( 5.22%)
+  points with g_bar/a0 > 30   :    47 /  3389 ( 1.39%)
+  points with g_bar/a0 > 100  :     1 /  3389 ( 0.03%)
+  max g_bar/a0 in the whole sample: 109.8
+  bulge-galaxy points: 1141 / 3389
+  [OK] only 5.2% of SPARC points reach y > 10 -- the high-acceleration tail where the planets live is BARELY SAMPLED by rotation curves, so a priori the RAR has little leverage on alpha
+  [OK] the sample tops out at y = 110, whereas Earth sits at y ~ 6e7 -- the ephemeris constraint is 5e+05x further out in acceleration than any SPARC point
+
+====================================================================================================
+S1. Per-kernel best fit, a0 FIXED, Upsilon free -- the fair comparison
+====================================================================================================
+
+  canonical rho_DE, a0 = 9.360e-11 m/s^2
+  kernel                        alpha  best Upsilon_d   rms (dex)  vs framework
+  framework  sqrt(1+1/y)            1           0.700      0.1083       +0.0000
+  simple     x/(1+x)                1           0.600      0.1009       -0.0074
+  standard   x/sqrt(1+x^2)          2           0.760      0.1116       +0.0033
+  exponential (McGaugh)           inf           0.620      0.0999       -0.0084
+
+  alt rho_total, a0 = 1.130e-10 m/s^2
+  kernel                        alpha  best Upsilon_d   rms (dex)  vs framework
+  framework  sqrt(1+1/y)            1           0.640      0.1037       +0.0000
+  simple     x/(1+x)                1           0.560      0.0995       -0.0041
+  standard   x/sqrt(1+x^2)          2           0.720      0.1057       +0.0020
+  exponential (McGaugh)           inf           0.560      0.0989       -0.0047
+
+  worst kernel-to-kernel difference across both footings: 0.0084 dex
+  Desmond 2023 marginalised RAR intrinsic scatter: 0.034 dex
+  [OK] the ENTIRE spread between alpha = 1, alpha = 2 and alpha = infinity is 0.0084 dex, which is 0.25x the intrinsic scatter -- SPARC does NOT discriminate the tail exponent
+
+====================================================================================================
+S2. Where the kernels differ -- binned in g_obs, which is Upsilon-FREE
+====================================================================================================
+  A FIRST ATTEMPT AT THIS BINNED IN g_bar AND THAT WAS WRONG, so it is worth stating why.
+  g_bar depends on Upsilon, and each kernel here carries its OWN best-fit Upsilon, so g_bar
+  bins hold DIFFERENT POINTS for different kernels and the comparison is confounded: the
+  apparent spread then mixes a genuine tail difference with a bin-membership difference. It
+  reported 0.064 dex in the top bin, which is 1.9x sigma_int and would have looked like real
+  leverage. Binning instead in g_obs = V_obs^2/R -- pure observation, no Upsilon -- fixes it:
+  every kernel is now scored on exactly the same points in every bin.
+  AND THE g_obs BINNING ALONE IS STILL NOT ENOUGH, which is the substantive finding of this
+  section. With each kernel at its OWN best Upsilon the top bin still separates by ~0.05 dex.
+  That is not tail leverage either: it is the Upsilon DEGENERACY, each kernel absorbing its
+  shape difference into a different Upsilon (0.62 to 0.76 here). Holding Upsilon SHARED
+  isolates pure kernel shape, and the top-bin spread then collapses and its ORDERING FLIPS
+  with Upsilon -- the signature of a degeneracy rather than a measurement. All three panels
+  are shown because only the third answers the question asked.
+
+  binned in g_bar, own Upsilon  (CONFOUNDED twice over)
+  bin (m/s^2)               framework       simple     standard  exponential   max-min      N
+  1e-12 - 1e-11         0.1081       0.1069       0.1076       0.1072    0.0012   1104
+  1e-11 - 3e-11         0.1147       0.1057       0.1157       0.1047    0.0111    741
+  3e-11 - 1e-10         0.0936       0.0913       0.1025       0.0903    0.0122    622
+  1e-10 - 3e-10         0.1067       0.1036       0.1036       0.1019    0.0049    481
+  3e-10 - 1e-09         0.1181       0.1005       0.1192       0.0991    0.0202    289
+  1e-09 - 1e-08         0.1447       0.1052       0.1655       0.1020    0.0635    143
+  worst-bin spread 0.0635 dex -- NOT usable, see the caveats above
+
+  binned in g_obs, own Upsilon  (still Upsilon-degenerate)
+  bin (m/s^2)               framework       simple     standard  exponential   max-min      N
+  1e-12 - 1e-11         0.4513       0.4672       0.4558       0.4704    0.0191    102
+  1e-11 - 3e-11         0.0916       0.1014       0.0933       0.1034    0.0118    818
+  3e-11 - 1e-10         0.1100       0.1030       0.1091       0.1016    0.0084   1283
+  1e-10 - 3e-10         0.1074       0.0990       0.1120       0.0973    0.0147    695
+  3e-10 - 1e-09         0.1116       0.0967       0.1197       0.0956    0.0241    368
+  1e-09 - 1e-08         0.1124       0.0797       0.1325       0.0790    0.0535    119
+  worst-bin spread 0.0535 dex -- NOT usable, see the caveats above
+
+  binned in g_obs, SHARED Upsilon = 0.50  (pure shape)
+  bin (m/s^2)               framework       simple     standard  exponential   max-min      N
+  1e-12 - 1e-11         0.4138       0.4464       0.4093       0.4457    0.0371    102
+  1e-11 - 3e-11         0.0827       0.0905       0.0824       0.0901    0.0080    818
+  3e-11 - 1e-10         0.1535       0.1178       0.1666       0.1188    0.0489   1283
+  1e-10 - 3e-10         0.1545       0.1135       0.1865       0.1170    0.0730    695
+  3e-10 - 1e-09         0.1371       0.1097       0.1688       0.1184    0.0592    368
+  1e-09 - 1e-08         0.0932       0.0847       0.1036       0.0950    0.0189    119
+  top-bin ranking best->worst: simple < framework < exponential < standard
+
+  binned in g_obs, SHARED Upsilon = 0.70  (pure shape)
+  bin (m/s^2)               framework       simple     standard  exponential   max-min      N
+  1e-12 - 1e-11         0.4513       0.4863       0.4460       0.4855    0.0404    102
+  1e-11 - 3e-11         0.0916       0.1151       0.0884       0.1143    0.0267    818
+  3e-11 - 1e-10         0.1100       0.1032       0.1175       0.1017    0.0158   1283
+  1e-10 - 3e-10         0.1074       0.1105       0.1192       0.1043    0.0149    695
+  3e-10 - 1e-09         0.1116       0.1193       0.1119       0.1090    0.0102    368
+  1e-09 - 1e-08         0.1124       0.1201       0.1050       0.1086    0.0150    119
+  top-bin ranking best->worst: standard < exponential < framework < simple
+
+  binned in g_obs, SHARED Upsilon = 0.90  (pure shape)
+  bin (m/s^2)               framework       simple     standard  exponential   max-min      N
+  1e-12 - 1e-11         0.4833       0.5204       0.4771       0.5194    0.0432    102
+  1e-11 - 3e-11         0.1126       0.1443       0.1072       0.1433    0.0371    818
+  3e-11 - 1e-10         0.1066       0.1298       0.1009       0.1261    0.0289   1283
+  1e-10 - 3e-10         0.1346       0.1635       0.1177       0.1524    0.0459    695
+  3e-10 - 1e-09         0.1751       0.1923       0.1593       0.1763    0.0329    368
+  1e-09 - 1e-08         0.2051       0.2127       0.1973       0.2003    0.0154    119
+  top-bin ranking best->worst: standard < exponential < framework < simple
+  [OK] at SHARED Upsilon the highest-acceleration bin separates the kernels by at most 0.0189 dex across Upsilon = 0.5-0.9 (< 0.034 dex) -- so there is no bin, including the one nearest the planets, where SPARC prefers a tail exponent
+
+  WHERE THE REAL DISCRIMINATING POWER SITS. At shared Upsilon the LARGEST spreads
+  (0.0730 dex, above sigma_int) are in the TRANSITION bins around a0, not in
+  the tail. That is the expected place for interpolations to differ, and it is also where each
+  kernel's own Upsilon is fitted to remove the difference -- which is why the global numbers in
+  S1 agree to 0.008 dex. The tail itself contributes essentially nothing either way.
+
+====================================================================================================
+S3. Bulge galaxies only -- the subsample the Cassini literature says carries the trade-off
+====================================================================================================
+  Desmond+2024 and Park+2026 both report their Q2 significance COLLAPSING when the
+  bulge-dominated galaxies are cut (8.7 -> 1.9 sigma and 15 -> 2.8 sigma respectively), so
+  if the RAR constrains the tail anywhere it should be here.
+  kernel                        rms bulge-only   rms no-bulge
+  framework  sqrt(1+1/y)                0.1061         0.1122
+  simple     x/(1+x)                    0.0957         0.1102
+  standard   x/sqrt(1+x^2)              0.1119         0.1109
+  exponential (McGaugh)                 0.0943         0.1097
+  bulge-only kernel spread: 0.0176 dex
+  [OK] the bulge subsample separates the kernels by 0.0176 dex, still inside sigma_int -- so the 'RAR wants a gradual transition' half of the standard trade-off is NOT supported by the scatter, at least at fixed a0
+
+====================================================================================================
+VERDICT
+====================================================================================================
+  Framework kernel on the canonical footing: 0.1083 dex, reproducing the committed 0.108
+  dex of rar_framework_a0_mlfit.py. Best of any kernel: exponential (McGaugh) at 0.0999 dex.
+
+  1. SPARC IS BLIND TO THE TAIL EXPONENT. Every kernel from alpha = 1 to alpha = infinity
+     fits within 0.0084 dex of every other, against an intrinsic scatter of 0.034
+     dex. This holds bin by bin and on the bulge subsample. The reason is structural and is
+     in S0: almost no SPARC point reaches even y = 10, and none reaches the y ~ 6e7 where the
+     Earth orbits. Rotation curves and planetary ephemerides are separated by ~6 orders of
+     magnitude in the variable that defines the tail.
+  2. SO THE alpha = 1 LIABILITY IS NOT PAID FOR BY GALAXY DATA. The framework is not holding
+     alpha = 1 because the rotation curves demand it. It holds alpha = 1 because its
+     signature law g_obs^2 = g_bar^2 + a0 g_bar forces it, exactly and at all accelerations.
+  3. THAT SHARPENS THE CONFLICT RATHER THAN RESOLVING IT. The available moves are:
+     (a) keep the exact law everywhere -> the constant a0/2 anomaly stands and the inner-planet
+         bound is exceeded by ~1.3e3 (bare) or ~1.9e2 (after the framework's own EFE);
+     (b) declare the law an INFRARED statement that is corrected above some acceleration ->
+         passes the planets, costs nothing in SPARC (this script), but the 'exact algebraic
+         relation' claim becomes an approximation with an undetermined cutoff, and the
+         cutoff is a new free parameter;
+     (c) find a modified-inertia mechanism in which the Solar System's high-frequency motion
+         is not in the regime the law describes -- the frequency-gate route, which needs a
+         fifth constant unless Milgrom 2022's frequency-RATIO construction can supply it.
+  4. (b) IS THE HONEST DEFAULT AND SHOULD BE STATED AS SUCH: the framework's exactness claim
+     is empirically supported only for y <~ 100, which is where every galaxy datum lives.
+     Nothing in the galaxy data is lost by saying so. What is lost is the claim that the
+     relation is exact, which is a claim the corpus does make.
+  [OK] verdict recorded with the three moves and the default named
+====================================================================================================
