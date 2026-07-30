@@ -1,0 +1,125 @@
+
+====================================================================================================
+S1. FAMILY 4a -- vary the acceleration-smeared action
+====================================================================================================
+  S = -INT dt m a0^2 Psi(M/a0^2),   M(t) = INT w(t-t') |xddot(t')|^2 dt'
+  delta M(t) = INT dt' w(t-t') 2 xddot(t').delta xddot(t'), so after swapping the order and
+  defining the SMEARED response  P(t') = INT dt Psi'(M(t)/a0^2) w(t-t'),
+      delta S = -2m INT dt' P(t') xddot(t').delta xddot(t')
+  and integrating by parts TWICE to free delta x:
+      EOM:   2 d^2/dt^2 [ P(t) xddot(t) ]  =  -grad Phi
+  That is FOURTH order in x. Condition (ii) already fails. But check (i) too -- the circular
+  reduction, where P is constant because |xddot| is constant:
+  2 d^2/dt^2[P0 xddot] = Matrix([[2*A*Omega**2*P_0*cos(Omega*t), 2*A*Omega**2*P_0*sin(Omega*t)]])  (i.e. 2 P0 A Omega^2 outward)
+  radial coefficient / (2 P0 A) = Omega**2
+  [OK] the circular reduction of 4a is 2 P0 A Omega^2 = g_bar -- it carries an explicit Omega^2
+  Now use the circular relation A = Omega^2 R to eliminate Omega:
+      2 P0 A * (A/R) = g_bar     =>     2 P0 A^2 / R = g_bar
+  The framework's law is  mu_fw(A/a0) A = g_bar. Equating:
+      2 P0 A / R = mu_fw(A/a0)
+  P0 = Psi'(A^2/a0^2) depends ONLY on A. The left side carries an explicit 1/R; the right
+  side has none. So the two agree only for one radius per acceleration -- i.e. for a single
+  potential, not as a law.
+  [OK] FAMILY 4a FAILS BOTH CONDITIONS: fourth-order EOM (ii), and a circular reduction with a spurious 1/R that the algebraic law does not have (i)
+  DIAGNOSIS. 4a has no ordinary kinetic term, so it has no Newtonian limit to begin with --
+  that missing piece is exactly what the stray Omega^2 is reporting. The nonlocality has to
+  live in the VELOCITY sector, not purely in the acceleration. That is sub-form 4b.
+
+====================================================================================================
+S2. FAMILY 4b -- Milgrom's nonlocal-MI class. Condition (ii) is MET; (i) is not.
+====================================================================================================
+  S = INT dt INT dt' Q(t-t') xdot(t).xdot(t')  -  INT dt m Phi(x)
+  delta S = 2 INT dt INT dt' Q(t-t') xdot(t').delta xdot(t) - INT dt m grad Phi . delta x
+  One integration by parts (only ONE, because the action is quadratic in VELOCITY):
+      EOM:   2 d/dt [ INT dt' Q(t-t') xdot(t') ]  =  -m grad Phi
+  => SECOND ORDER. Condition (ii) IS SATISFIED. This is why Milgrom's class is the right
+  place to look, and it is a genuine point in Family 4's favour.
+
+  Circular reduction: xdot rotates at Omega, so the convolution is diagonal --
+      INT dt' Q(t-t') xdot(t') = Qtilde(Omega) xdot(t),   Qtilde = Fourier transform of Q
+  hence  2 Qtilde(Omega) xddot = -m grad Phi, i.e.  2 Qtilde(Omega) A = g_bar.
+  Comparing with the law mu_fw(A/a0) A = g_bar requires
+      2 Qtilde(Omega) = mu_fw(A/a0) .
+  THE PROBLEM: Qtilde depends on FREQUENCY only; mu_fw depends on ACCELERATION. On a circular
+  orbit A = Omega^2 R, so at FIXED Omega the required mu_fw still varies with R. A fixed
+  kernel cannot supply two different values at the same frequency. Quantified:
+   Omega (1/s)   R (kpc)   A = Om^2 R      A/a0  required 2Qtilde
+      1.00e-16       2.0    6.171e-13    0.0066           0.00659
+      1.00e-16      10.0    3.086e-12    0.0330           0.03293
+      1.00e-16      40.0    1.234e-11    0.1319           0.12965
+      at this single Omega the required 2Qtilde spans 0.00659 to 0.12965  -- ratio 19.66x
+      3.00e-16       2.0    5.554e-12    0.0593           0.05913
+      3.00e-16      10.0    2.777e-11    0.2967           0.27437
+      3.00e-16      40.0    1.111e-10    1.1868           0.66382
+      at this single Omega the required 2Qtilde spans 0.05913 to 0.66382  -- ratio 11.23x
+  [OK] at FIXED Omega the required kernel value varies by up to 19.66x across radii, so no frequency-only Qtilde can reproduce the law -- CONDITION (i) FAILS for 4b
+  This is the SAME obstruction as Theorem 8, now seen from the variational side: a kernel
+  diagonal in frequency cannot deliver a response that depends on acceleration.
+
+====================================================================================================
+S3. THE GENERAL OBSTRUCTION -- stated as sharply as the computation supports
+====================================================================================================
+  Any action built from a FIXED (potential-independent) kernel is, by translation invariance
+  in time, DIAGONAL IN FREQUENCY. The framework's law is DIAGONAL IN ACCELERATION. On circular
+  orbits the two labels are related by A = Omega^2 R, so a single frequency corresponds to a
+  one-parameter family of accelerations as R varies -- and the law demands a different
+  response for each. Therefore:
+
+      NO ACTION WITH A FIXED KERNEL -- local or nonlocal, in velocity or in acceleration --
+      REPRODUCES mu_fw(|a|/a0) a = g_bar FOR ALL POTENTIALS.
+
+  The three earlier families were three ways of hitting this same wall; Family 4 makes the
+  wall visible because 4b satisfies every OTHER requirement and still fails.
+  [OK] the obstruction is stated with its scope: fixed-kernel actions, all potentials
+  FOOTING-INDEPENDENT: the argument is about the LABELS (frequency vs acceleration), not
+  about a0's value. Both footings give the same conclusion by inspection.
+
+====================================================================================================
+S4. CREDIT, and what status the law actually has
+====================================================================================================
+  MILGROM 1994 (Annals of Physics 229, 384) constructed nonlocal modified-inertia theories in
+  exactly class 4b and showed they can carry the correct MOND and Newtonian LIMITS while
+  preserving Galilean invariance. Nothing here contradicts that, and the credit is his.
+  What S2-S3 add is narrower and sharper: such theories deliver the LIMITS but not the exact
+  interpolating law, because the limits are asymptotic statements while mu_fw(|a|/a0) is a
+  pointwise algebraic relation, and the pointwise relation is what the RAR fits use.
+
+  SO THE HONEST STATUS OF THE FRAMEWORK'S LAW:
+   * It is a PHENOMENOLOGICAL INTERPOLATION, fitted and remarkably successful (0.108 dex on
+     SPARC, beating regular MOND's 0.122-0.140 on the framework's own footing).
+   * It is EXACT as a first spectral moment (Theorem 1) -- that result stands untouched.
+   * It is NOT the Euler-Lagrange equation of any fixed-kernel action, and now four families
+     have been checked rather than assumed.
+   * The correct claim is therefore 'a law with an action-based motivation and an exact
+     moment interpretation', NOT 'a law derived from an action'. Those are different and the
+     corpus should say the first.
+  [OK] the law's status is restated at the level the computation supports
+
+====================================================================================================
+S5. WHERE THE VARIATIONAL ROUTE ACTUALLY LEADS -- and it leads out of modified inertia
+====================================================================================================
+  S3's obstruction assumed the kernel is POTENTIAL-INDEPENDENT. The one way to evade it is a
+  kernel that KNOWS about the local field -- i.e. one sourced by the matter distribution.
+  But a field-sourced, potential-dependent response is precisely a modified-GRAVITY theory:
+  the extra structure lives in a field equation, not in the particle's inertia. AQUAL and
+  QUMOND are exactly that, and they DO have variational principles that reproduce
+  MOND-like laws.
+
+  So the conclusion is structural and worth stating plainly: MAKING THE FRAMEWORK'S LAW
+  VARIATIONAL PUSHES IT TOWARD MODIFIED GRAVITY. That is not a defect of the calculation --
+  it is why the corpus keeps finding MI == AeST(=MG) to machine precision in static systems,
+  and it is consistent with the published lensing construction being disformal (a metric
+  statement) rather than an inertia statement.
+
+  WHAT SURVIVES AS DISTINCTIVELY MODIFIED-INERTIA, after all four families:
+   * the EFE's quadrature-with-vector-cross-term structure and its footing-free RC dipole
+     (Theorem 5) -- MG's EFE has a different angular structure;
+   * the dispersion-supported closure discriminator (Proposition 7), which tests the
+     time-weighting w directly on archival dwarfs;
+  Both are inertia-sector statements that survive without needing the law to be variational.
+
+  HONEST BOTTOM LINE: Family 4 was the last of the four and it does not rescue the
+  derivation. The law is a fit with an exact moment interpretation. Saying so costs the
+  programme a claim it was not entitled to, and costs it nothing that was ever verified.
+  [OK] the conclusion is stated without softening, and what survives is listed explicitly
+====================================================================================================
