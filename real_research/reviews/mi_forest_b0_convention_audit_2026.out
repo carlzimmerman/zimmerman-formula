@@ -1,0 +1,125 @@
+
+====================================================================================================
+S1. What is actually published -- Hiss+2018 Table 4, and its SHAPE
+====================================================================================================
+  Hiss et al. 2018, ApJ 865, 42 (arXiv:1710.00700), Table 4. Cutoff parameter b0 in dz = 0.2
+  bins, with percentile-based asymmetric errors, plus the cutoff index Gamma and T0.
+      z          b0 (km/s)          Gamma   T0 (K)
+    2.0  18.22 +0.97/-1.39 1.14 +0.03/-0.03    13721
+    2.2  16.89 +1.37/-3.12 1.19 +0.07/-0.04    10927
+    2.4  18.68 +0.74/-1.07 1.17 +0.03/-0.03    13334
+    2.6  20.41 +1.02/-0.87 1.12 +0.02/-0.03    16281
+    2.8  22.67 +0.55/-0.60 1.10 +0.02/-0.02    20036
+    3.0  22.24 +0.33/-0.73 1.04 +0.04/-0.02    18371
+    3.2  21.65 +0.40/-0.52 1.13 +0.04/-0.04    16244
+    3.4  20.80 +0.71/-1.27 1.11 +0.05/-0.04    13439
+
+  peak at z = 2.8 (b0 = 22.67); endpoints b0(2.0) = 18.22, b0(3.4) = 20.80
+  successive differences: [-1.33  1.79  1.73  2.26 -0.43 -0.59 -0.85]
+  sign changes in the difference sequence: 2
+  [OK] b0(z) is NON-MONOTONIC with an interior peak at z = 2.8 -- so the corpus's monotonic 'cutoff RISES toward low z' prose was wrong about the SHAPE, not just the values
+
+  THE CORPUS'S SEQUENCE, side by side where the ranges overlap:
+       z  corpus (UNSOURCEABLE)   Hiss b0 nearest z  difference
+    2.30                   24.0       16.89 (z=2.2)       +7.11
+    2.85                   22.0       22.67 (z=2.8)       -0.67
+    3.35                   17.0       20.80 (z=3.4)       -3.80
+    3.70                   15.0   (outside 2.0-3.4)          --
+  [OK] 3 of the corpus's four points fall inside Hiss's measured range at all; the z = 3.70 point lies outside it entirely, so it was never checkable against this dataset
+  largest discrepancy on the overlapping points: 7.11 km/s
+
+====================================================================================================
+S2. *** TRAP 1: b0 IS DEFINED AT A REDSHIFT-DEPENDENT COLUMN DENSITY ***
+====================================================================================================
+  Hiss eq. (11), their own fit:  log10 N_HI,0(z) = 0.6225 (1+z) + 11.1068
+  z = 2.0 -> log N_HI,0 = 12.974;  z = 3.4 -> 13.846;  drift = 0.87 dex
+  Hiss eq. (1):  log b_th = log b0 + (Gamma - 1) log(N_HI/N_HI,0)
+  So the raw b0 column is NOT a fixed-column-density sequence. Comparing it across z mixes
+  the thermal evolution with the drift of its own reference column. Correcting:
+  [OK] the reference column drifts 0.87 dex across the measured range -- large enough that the raw b0(z) sequence cannot be read as a physical cutoff sequence
+
+  corrected to FIXED N_HI = 10^13.6 (Rudie's reference)
+      z    b0 raw  logN0(z)  Gamma   b fixed    shift
+    2.0     18.22    12.974   1.14     22.29   +22.3%
+    2.2     16.89    13.099   1.19     21.03   +24.5%
+    2.4     18.68    13.223   1.17     21.65   +15.9%
+    2.6     20.41    13.348   1.12     21.88    +7.2%
+    2.8     22.67    13.472   1.10     23.35    +3.0%
+    3.0     22.24    13.597   1.04     22.25    +0.0%
+    3.2     21.65    13.721   1.13     20.88    -3.6%
+    3.4     20.80    13.846   1.11     19.54    -6.0%
+  raw spread   16.89-22.67 km/s  (full range 29% of the mean)
+  fixed spread 19.54-23.35 km/s  (full range 18% of the mean)
+  peak still at z = 2.8
+
+  corrected to FIXED N_HI = 10^13.22 (Hiss at z=2.4)
+      z    b0 raw  logN0(z)  Gamma   b fixed    shift
+    2.0     18.22    12.974   1.14     19.72    +8.2%
+    2.2     16.89    13.099   1.19     17.81    +5.4%
+    2.4     18.68    13.223   1.17     18.66    -0.1%
+    2.6     20.41    13.348   1.12     19.70    -3.5%
+    2.8     22.67    13.472   1.10     21.39    -5.6%
+    3.0     22.24    13.597   1.04     21.48    -3.4%
+    3.2     21.65    13.721   1.13     18.63   -13.9%
+    3.4     20.80    13.846   1.11     17.75   -14.7%
+  raw spread   16.89-22.67 km/s  (full range 29% of the mean)
+  fixed spread 17.75-21.48 km/s  (full range 19% of the mean)
+  peak still at z = 3.0
+  [OK] at fixed column density the cutoff is FLATTER (18% full range) than the raw b0 column (29%) -- part of the apparent b0(z) evolution is the reference column moving, not the IGM
+
+  and for scale: the corpus's own sequence spanned 46% of its mean (15 -> 24 km/s).
+  [OK] the real fixed-column cutoff varies 18% across z = 2.0-3.4 against the corpus's assumed 46% -- so the REDSHIFT LEVER the original S4 leaned on (exclusion tracked across a strongly rising cutoff) is largely absent from the real data
+
+====================================================================================================
+S3. *** TRAP 2: THE CALIBRATION SYSTEMATIC DOMINATES THE STATISTICAL ERRORS ***
+====================================================================================================
+  Hiss sect. 5.3, on Rudie, Steidel & Pettini 2012 (ApJ 757, L30; arXiv:1209.0005), VERBATIM:
+    'If we evaluate their measurement b0R = b(N_HI,0 = 10^13.6 cm^-2) = 17.56 +/- 0.4 km/s
+     at the position of our N_HI,0(z = 2.4) = 10^13.22 cm^-2 while keeping their Gamma
+     fixed, this measurement becomes b0'R = 15.32 +/- 0.55 km/s. Our measurement p(b0, Gamma)
+     marginalized over Gamma (with b0 = 18.68 +0.74/-1.07 km/s) is more than 3 sigma higher
+     than this value, indicating tension between our measurements and Rudie et al. (2012a)
+     in terms of b0.'
+
+  convention shift alone (same data, different N_HI,0): 17.56 -> 15.32 = 2.24 km/s
+  residual disagreement at the SAME z and SAME N_HI,0:  18.68 - 15.32 = 3.36 km/s
+  Hiss's own mean statistical error across Table 4:      0.98 km/s
+  => the calibration systematic is 3.4x the mean statistical error
+  [OK] the b0 calibration systematic (3.36 km/s) exceeds the mean statistical error (0.98 km/s) by 3.4x -- so any exclusion quoted on statistical errors alone OVERSTATES its own significance, and both channels must be reported
+  NOTE the direction: the corpus's assumed B_CUT_ERR = 2.0 km/s happens to sit
+  BETWEEN the statistical error (0.98) and the calibration systematic (3.36),
+  so it was neither the right error bar nor a conservative one. It was simply undocumented.
+
+====================================================================================================
+S4. WHAT SURVIVES AS A USABLE OBSERVABLE, AND WHAT MUST STOP BEING CLAIMED
+====================================================================================================
+  STOP CLAIMING:
+   1. The four values 15/17/22/24 km/s at z = 3.70/3.35/2.85/2.30. UNSOURCEABLE. The commit
+      message 138d8ae4 asserting they were 'web-verified this session' was wrong, and the
+      z = 3.70 point lies outside the measured range of the dataset that would test it.
+   2. 'The cutoff RISES toward low z.' Hiss's b0(z) is non-monotonic with an interior peak at
+      z = 2.8, and at fixed column density the cutoff is nearly flat. Schaye et al. 2000
+      (MNRAS 318, 817) documents a rise toward low z at FIXED N_HI over a WIDER baseline
+      (z = 4 -> 2), which is not in conflict, but it does not license those four numbers.
+   3. A single symmetric B_CUT_ERR = 2.0 km/s. The real errors are asymmetric, vary by 10x
+      across the table, and are dominated by a calibration systematic several times larger.
+  KEEP, and it is still a real test:
+   * The cutoff is a genuine hard ceiling on any universal velocity amplification, because a
+     universal enhancement would leave NO narrow lines. That logic is untouched.
+   * The measured cutoff is 19.5-23.3 km/s at fixed column density, and
+     the thermal floor at T0 = 1.3-2.0e4 K accounts for most of it. The room for an amplified
+     peculiar-velocity component is small in absolute terms, which is why the test bites at
+     all.
+  NET DIRECTION OF THIS CORRECTION, stated plainly: MIXED, and it must not be reported as
+  either a clean strengthening or a rescue.
+   * AGAINST the framework: the real cutoff at z ~ 2.0-2.4 is 19.5-22.3 km/s at fixed column,
+     LOWER than the corpus's assumed 24 km/s at z = 2.30, so there is LESS non-thermal budget
+     to hide an amplification in, and the constraint extends across the whole 2.0-3.4 range
+     rather than dying at high z.
+   * FOR the framework: the calibration systematic is ~3.4 km/s rather than the assumed 2.0,
+     which widens the error bar the prediction is measured against; and the loss of the
+     redshift lever removes one of the original test's four independent-looking checks.
+   * The honest summary is that the significance must be requoted on BOTH error channels, and
+     that the corpus's banked figure rested on numbers that do not exist.
+  [OK] the mixed direction is recorded, with the against-side and the for-side both named
+====================================================================================================
