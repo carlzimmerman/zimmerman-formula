@@ -1,7 +1,7 @@
 # STANDING
 
 **de Sitter–Unruh modified inertia — where the programme actually stands**
-Last updated **2026-07-30** (rev. 3). Maintained as the single entry point: what is claimed, what is earned,
+Last updated **2026-07-30** (rev. 4). Maintained as the single entry point: what is claimed, what is earned,
 what is postulated, what is live, and what is closed. If a statement anywhere in this repository
 conflicts with this file, this file is newer unless it says otherwise.
 
@@ -18,9 +18,17 @@ $$a_0 \;=\; \kappa\,c\sqrt{G\rho_\Lambda}\;=\;\frac{cH_\Lambda}{Z},
 
 Realised as **modified inertia** with the framework's own interpolation $\nu(y)=\sqrt{1+1/y}$.
 
-**Credit, non-negotiable and to be repeated everywhere.** That kernel is *identical* to
-Milgrom (1999, *Phys. Lett. A* **253**, 273, Eq. 9). The distinctive content of this programme is the
-**coefficient** $cH_\Lambda/Z$ (Milgrom's was $2cH_\Lambda$) and the **modified-inertia completion**.
+**⚠️ CREDIT, CORRECTED 2026-07-30 (rev. 4) — the previous line understated it.** It is not merely the
+same *kernel*. **Milgrom (1999, *Phys. Lett. A* **253**, 273, Eqs. 6–9) derives this exact LAW from the
+de Sitter–Unruh balance AND fixes its coefficient at $a_0=2cH_\Lambda$.** Verified: his Eq. (9)
+$\hat\mu(x)=\sqrt{1+(2x)^{-2}}-(2x)^{-1}$ with Eq. (8) is *identically* $g_{\rm obs}^2=g_{\rm
+bar}^2+a_0g_{\rm bar}$ (sympy difference exactly 0). The same law was independently re-derived
+entropically by **Pikhitsa (2010, arXiv:1010.0318)** and **Klinkhamer & Kopp (2011, MPLA 26, 2783,
+arXiv:1104.2022)**, both also landing on $2cH_\Lambda$.
+**So the dS–Unruh argument does not leave the coefficient free — it PREDICTS one, and that prediction
+is $2Z=11.58\times$ the value in use.** The programme's actual contribution is therefore: a
+**re-normalisation of the coefficient to fit data** ($\kappa=\tfrac12$ in place of Milgrom's 2), plus
+the modified-inertia completion. Not a derivation of the law, and not a derivation of its scale.
 
 **Retracted, 2026-06-23, publicly, to ~40 physicists.** All theory-of-everything and Standard-Model
 claims. They are not to be revived. The true position is the $a_0$ reframing above and nothing wider.
@@ -50,12 +58,18 @@ claims. They are not to be revived. The true position is the $a_0$ reframing abo
 - **The sign $s$** — **demoted 2026-07-30.** No longer a parameter awaiting data: within the closure
   family that reproduces the relation, the channel it would sign is *identically zero*, so $s$ has no
   observable consequence (Thm 2, Cor 2.2). This is a reduction in free content, not a measurement.
-- **⚠️ THE LAW ITSELF — status corrected 2026-07-30.** $\mu_{\rm fw}(|a|/a_0)\,a=g_{\rm bar}$ is **not
-  the Euler–Lagrange equation of any fixed-kernel action**, established across **four** checked families
-  (§4). It *is* exact as a **first spectral moment** (Thm 1) and it *is* a genuinely successful fit
-  (0.108 dex). The claim the programme is entitled to is therefore **"a law with an action-based
-  motivation and an exact moment interpretation"** — *not* "a law derived from an action." Those are
-  different, and only the first is supported.
+- **⚠️ THE LAW ITSELF — status corrected twice on 2026-07-30; rev. 4 is the current reading.** The
+  law is **not** the Euler–Lagrange equation of the *published* action (Thm 8: on circular orbits that
+  action's operator sits on $K$'s branch cut where $|K|=1$, so it is amplitude-free). **But my earlier
+  "four-family no-go" OVER-REACHED and is withdrawn as stated:** the exact law *does* arise
+  variationally in a **nonlocal, NON-quadratic** class — there is a closed form
+  $f(u)=[2u\sqrt{4u^2+1}-4u+\mathrm{asinh}\,2u]/(8u^2)$ whose circular-orbit reduction
+  $\mu=(1/u)\,\mathrm{d}(u^2f)/\mathrm{d}u$ returns $\mu_{\rm fw}$ **exactly** (sympy-verified), with
+  the correct Newtonian ($f\to\tfrac12$) and deep-MOND ($f\to u/3$) limits. This is **Milgrom's own
+  virial result** (arXiv:astro-ph/0510117). **SCOPE, and it is the honest limit:** $f$ pins the
+  functional only on the two-parameter family of circles; infinitely many Galilei-invariant nonlocal
+  extensions share that slice and none is written down. Milgrom's own status line applies — *"we do not
+  have a MI theory for MOND at the level of satisfaction achieved for MG formulations."*
 
 ---
 

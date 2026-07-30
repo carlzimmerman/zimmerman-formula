@@ -1,0 +1,179 @@
+
+====================================================================================================
+S1. DIMENSIONAL THEOREM -- a QUADRATIC (linear-response) action cannot do MOND at all
+====================================================================================================
+  Family 4b is  S = INT INT dt dt' Q(t-t') xdot(t).xdot(t')  -  INT dt m Phi.
+  Its response is Qtilde(Omega), which must have dimensions of MASS. For Qtilde to depend
+  nontrivially on Omega it needs a DIMENSIONLESS argument built from Omega and the theory's
+  constants. The only new constant is a0, with dimensions L/T^2. From Omega (1/T) and a0
+  (L/T^2) alone NO dimensionless combination exists -- you need an extra length or velocity.
+
+  Check by brute force: solve Omega^p a0^q = dimensionless over the exponents.
+  solutions of (L-exponent=0, T-exponent=0): [{p: 0, q: 0}]
+  [OK] the ONLY dimensionless power of (Omega, a0) is the trivial one -- so any nonconstant Qtilde(Omega) smuggles in a NEW dimensioned constant that is not a0
+  CONSEQUENCE, stronger than the published statement: a quadratic-in-trajectory MI action
+  cannot be a MOND theory with a0 as its only new constant, whatever kernel is chosen.
+  So Family 4b was never a candidate, and 'frequency vs acceleration' is a symptom of this
+  units failure rather than an independent obstruction. The no-go's REACH is therefore:
+      it forbids actions QUADRATIC in the trajectory (linear response / fixed kernel),
+      and, via Families 1-3, LOCAL non-quadratic actions.
+  The cell NONLOCAL *and* NON-QUADRATIC was never tested. That is S2.
+
+====================================================================================================
+S2. THE UNTESTED CELL -- nonlocal, non-quadratic. Reduce to circular orbits and vary.
+====================================================================================================
+  General MI kinetic action (Milgrom's form): S_K = m S[a0, {r(t)}], a functional of the
+  WHOLE trajectory, with the force still Newtonian: S = S_K - INT dt m Phi_N(r).
+  Restrict to a circular orbit r(t) = R(cos Omega t, sin Omega t). The time-averaged
+  kinetic Lagrangian per unit mass has dimensions of velocity^2, and the ONLY dimensionless
+  variable available from (R, Omega, a0) is
+      u = Omega^2 R / a0 = A / a0     (the ACCELERATION in units of a0).
+  Note Omega^2 R = Omega V = V^2/R, so all three candidate arguments COINCIDE on a circle.
+  Hence the most general reduced form is
+      <L_K>/m = V^2 f(u) = Omega^2 R^2 f(u),      u = Omega^2 R / a0,
+  for ONE free function f. This is where the four-family sweep loses the general case: it
+  presumed the u-dependence had to come from a kernel evaluated at Omega. It does not --
+  dimensional closure FORCES the argument to be A/a0.
+
+  ADMISSIBLE VARIATION. delta r(t) = delta R * rhat(t) is a bounded variation of the
+  trajectory, so stationarity requires d<L>/dR = 0 at FIXED Omega. (Varying Omega at fixed
+  R is NOT admissible -- the phase drifts without bound.) Sanity-check on Newton first:
+  Newton: d/dR[ m Om^2 R^2/2 - m Phi(R) ] = Omega**2*R - Derivative(Phi(R), R) = 0
+  [OK] the fixed-Omega radial variation reproduces Newton's Omega^2 R = g_N exactly -- the variational procedure is validated before use
+
+  general: g_N = A*(A*Subs(Derivative(f(_xi_1), _xi_1), _xi_1, A/a_0) + 2*a_0*f(A/a_0))/a_0
+  so  g_N / A = A*Subs(Derivative(f(_xi_1), _xi_1), _xi_1, A/a_0)/a_0 + 2*f(A/a_0)
+  with A = a0 u :   mu(u) = u*Derivative(f(u), u) + 2*f(u)
+  [OK] the circular-orbit law is  A * mu(A/a0) = g_N  with  mu(u) = 2 f(u) + u f'(u) = (1/u) d/du[ u^2 f(u) ]  -- ALGEBRAIC IN THE ACCELERATION, exactly the law's form
+  This is the virial identity Milgrom reports (astro-ph/0510117): for circular orbits the
+  MI theory gives an exact algebraic mu(g/a0) g = g_N, with mu fixed by the action's values
+  on circles. It is NOT blocked by the frequency/acceleration argument.
+
+====================================================================================================
+S3. SOLVE THE INVERSE PROBLEM for the framework's mu_fw -- closed form + round trip
+====================================================================================================
+  mu_fw(u) = (sqrt(4*u**2 + 1) - 1)/(2*u)
+  (u^2 f)' = u mu(u)  =>  f(u) = u^-2 INT_0^u u' mu(u') du'
+  integrand u' mu_fw(u') = sqrt(4*u'**2 + 1)/2 - 1/2
+  f(u) = (2*u*sqrt(4*u**2 + 1) - 4*u + asinh(2*u))/(8*u**2)
+  round trip 2f + u f' = (sqrt(4*u**2 + 1) - 1)/(2*u)
+  [OK] ROUND TRIP EXACT: the constructed f reproduces mu_fw identically, so a nonlocal non-quadratic MI action with this circular-orbit sector yields the framework's law EXACTLY
+
+  f(u -> oo) = 1/2     (Newtonian: <L_K> -> (1/2) m V^2)
+  f(u)/u -> 1/3 as u->0  (deep MOND: <L_K> -> m V^2 u/3 = m A^2 R/(3 a0))
+  [OK] Newtonian limit f -> 1/2 recovered
+  [OK] deep-MOND limit f -> u/3 recovered
+
+  MILGROM-2009 SCALE INVARIANCE (arXiv:0810.4065) of the deep-MOND limit. Under
+  (t, r) -> (lam t, lam r):  R -> lam R, Omega -> Omega/lam, so A -> A/lam, V -> V.
+  <L_K>_dM = A**2*R*m/(3*a_0)  ->  A**2*R*m/(3*a_0*lambda)   (weight lam^-1)
+  [OK] the deep-MOND kinetic Lagrangian has scaling weight lam^-1, so INT dt L_K is invariant
+  And the force term: Phi_N ~ -GM/r -> Phi_N/lam, dt -> lam dt, so INT dt m Phi_N is also
+  invariant. BOTH terms carry weight lam^-1 -- the deep-MOND action is scale invariant,
+  i.e. the construction PASSES Milgrom's scale-invariance theorem rather than evading it.
+  [OK] both terms of the deep-MOND action carry the same scaling weight
+
+  SCOPE, stated honestly: what is exhibited is the CIRCULAR-ORBIT SECTOR of the functional.
+  f(u) fixes S[a0,{r}] only on the two-parameter family of circles; infinitely many Galilei-
+  invariant nonlocal extensions share that slice, and NONE of them is written down here.
+  That is exactly Milgrom's own status report: 'we do not have a MI theory for MOND at the
+  level of satisfaction achieved for MG formulations' (astro-ph/0510117).
+
+====================================================================================================
+S4. THE CENTRAL WORRY -- is a matter-SOURCED kernel still modified INERTIA?
+====================================================================================================
+  Two operational tests, both frame-independent:
+   T1 FRAME TEST. Does there exist a metric redefinition -- conformal or, most generally,
+      DISFORMAL gtil_ab = A(phi) g_ab + B(phi) u_a u_b (Bekenstein 1993, PRD 48, 3641) --
+      such that every test body follows a gtil-geodesic? If YES the theory is modified
+      GRAVITY in an inertia costume: the modification is universal and geometric.
+   T2 HISTORY TEST. Take two bodies at the same event with identical instantaneous
+      (x, xdot, xddot) but different PAST worldlines. Do they get different accelerations?
+      If YES the response is not a local field value, and no metric frame can encode it,
+      because geodesy is a local second-order condition. That is genuine modified inertia.
+
+  APPLY:
+   (i) THE FRAMEWORK'S OWN POINTWISE LAW mu_fw(|a|/a0) a = g_bar. Invert it:
+       solving mu_fw(g_obs/a0) g_obs = g_bar  gives  g_obs = sqrt(g_bar)*sqrt(a_0 + g_bar)
+  [OK] the law is IDENTICALLY g_obs = sqrt(g_bar^2 + a0 g_bar) = nu(g_bar/a0) g_bar with nu = sqrt(1+1/y): its argument can be traded for the MATTER-SOURCED field with no approximation
+       So the pointwise law FAILS T2 (no history dependence at all) and its content is a
+       local function of the Newtonian field. By this criterion the law AS WRITTEN is not
+       distinguishable from modified gravity -- independently of any action.
+   (ii) A LOCALLY SOURCED KERNEL K[rho](x): same instantaneous response for every body at
+       x, so it fails T2 and (in spherical symmetry) passes T1 as QUMOND. MODIFIED GRAVITY.
+   (iii) MILGROM'S NONLOCAL FUNCTIONAL: the response depends on the trajectory's whole
+       spectrum, so it PASSES T2. Genuine MI -- and its signature is precisely that the
+       EFE uses a TIME-AVERAGED external acceleration, mu(theta <a_ex>/a0) with theta > 1,
+       rather than mu(a_ex/a0) (Milgrom 2022, PRD 106, 064060).
+
+  VERDICT ON (b): sourcing the kernel from matter does evade the no-go, and it evades it by
+  FAILING T2 -- i.e. by ceasing to be modified inertia. The evasion and the identity are
+  the same move. Genuine MI survives only in the nonlocal, history-dependent cell (S2).
+
+====================================================================================================
+S5. PATHOLOGY CHECK -- does sourcing the kernel cure Ostrogradsky? Explicit Hessian.
+====================================================================================================
+  Family 2's local scalar-moment Lagrangian has acceleration Hessian with eigenvalues
+  {f'' (radial), f'/r, f'/r (transverse)} so det = f''(r) (f'(r)/r)^2. Reported indefinite,
+  det = -11/25 + 23 sqrt(5)/125 at r = |a|/a0 = 1. Reproduce the NUMBER, then ask whether a
+  positive matter-sourced prefactor F(phi(x)) > 0 can change the eigenvalue SIGNS.
+  reported det = -11/25 + 23*sqrt(5)/125 = -0.0285634921
+  [OK] the reported determinant is NEGATIVE, i.e. the Hessian is indefinite
+  H -> F H has eigenvalues [F*lambda_1, F*lambda_2, F*lambda_3] and det = F**3*lambda_1*lambda_2*lambda_3
+  [OK] det(F H) = F^3 det H with F > 0, so the sign of det -- and every eigenvalue sign -- is PRESERVED: a positive matter-sourced prefactor cannot cure the indefiniteness
+  The deeper point is independent of the sign. Ostrogradsky's instability follows from
+  NONDEGENERACY of the highest derivative alone (Woodard, arXiv:1506.02210): if
+  d^2L/d(xddot)^2 is invertible, the Hamiltonian is linear in one momentum and unbounded
+  below, whatever the Hessian's signature. Sourcing multiplies that Hessian by a function
+  of x; it cannot make it vanish identically without killing the acceleration dependence.
+  So the sourced-kernel evasion is ORTHOGONAL to the Ostrogradsky obstruction:
+      local + acceleration-dependent + nondegenerate  =>  4th order + Ostrogradsky ghost,
+      sourced or not. Escapes: exact degeneracy (Family 3, which fails the data) or genuine
+      nonlocality (no highest derivative -- back to S2).
+
+  A second, structural cost specific to this route: the auxiliary field must have a field
+  equation with a matter source to be 'sourced' at all. The corpus's defence of the aether
+  sector (v3, DOI 21263846) was that the frame field is PASSIVE with zero propagating
+  modes, which is what made the Einstein-aether strong-coupling objection inapplicable.
+  A matter-sourced kernel gives that field a source and therefore dynamics, reinstating the
+  very modes the passivity defence removed. The two defences are mutually exclusive.
+  [OK] the passive-frame defence and the sourced-kernel evasion cannot both be used
+
+====================================================================================================
+S6. QUMOND IDENTITY -- the sourced-kernel route, done properly, IS QUMOND
+====================================================================================================
+  QUMOND (Milgrom 2010, MNRAS 403, 886): lap Phi = div[ nu(|grad Phi_N|/a0) grad Phi_N ],
+  lap Phi_N = 4 pi G rho. It HAS an action, is second order, and conserves momentum.
+  In spherical symmetry it integrates to g = nu(g_N/a0) g_N exactly. With nu = sqrt(1+1/y):
+      g_N/a0    framework g_obs    QUMOND nu*g_N     rel diff
+   1.000e-03       2.961371e-12     2.961371e-12     1.36e-16
+   1.000e-01       3.104361e-11     3.104361e-11     0.00e+00
+   1.000e+00       1.323704e-10     1.323704e-10     0.00e+00
+   1.000e+01       9.816851e-10     9.816851e-10     0.00e+00
+   1.000e+03       9.364679e-08     9.364679e-08     0.00e+00
+      footing: canonical rho_DE  a0 = 9.360e-11
+   1.000e-03       3.575160e-12     3.575160e-12     1.13e-16
+   1.000e-01       3.747786e-11     3.747786e-11     0.00e+00
+   1.000e+00       1.598061e-10     1.598061e-10     0.00e+00
+   1.000e+01       1.185154e-09     1.185154e-09     0.00e+00
+   1.000e+03       1.130565e-07     1.130565e-07     0.00e+00
+      footing: alt rho_total  a0 = 1.130e-10
+  [OK] the framework's law and spherical QUMOND with nu = sqrt(1+1/y) agree to 1.4e-16 -- they are the SAME relation, on both footings
+  So the evasion named in the corpus is not merely 'modified-gravity-like': in spherical
+  symmetry it is an EXISTING, published, variational, ghost-free theory that already
+  reproduces the framework's law exactly. The route is occupied, not open.
+
+====================================================================================================
+SUMMARY OF WHAT THIS SCRIPT ESTABLISHES
+====================================================================================================
+  1. The no-go's general statement over-reaches: a quadratic-in-trajectory action fails on
+     DIMENSIONS before frequency-vs-acceleration is reached (S1), and the genuinely general
+     nonlocal non-quadratic case was never tested.
+  2. In that untested cell the exact algebraic law IS variational on circular orbits, with
+     f(u) constructed in closed form and round-trip verified (S2, S3). Credit: Milgrom's
+     virial result, astro-ph/0510117; class from Milgrom 1994, Ann. Phys. 229, 384.
+  3. The brief's named evasion (matter-sourced kernel) works by ceasing to be modified
+     inertia under an explicit history criterion, and lands on QUMOND (S4, S6).
+  4. Sourcing does not touch Ostrogradsky (S5), and it contradicts the passive-frame
+     defence of the aether sector.
+====================================================================================================
