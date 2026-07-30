@@ -30,12 +30,23 @@ THE ANSWER, computed below and stated up front so nothing here reads as a manufa
       theta(0) a_ex inside mu's argument (Eq. 34). At Earth a_in/a_ex ~ 3e7, so any theta(0) of order
       a few changes mu's argument by ~1 part in 10^7 and the a0/2 anomaly is untouched. The theta(0)
       that WOULD suppress it is ~4e10, ten orders above his examples.
-  S4  IT DOES SOMETHING ELSE, AND IT IS BIGGER THAN THE THING IT WAS ASKED TO DO. Wide binaries sit
-      exactly in the regime Eq. (35) governs (a_ex/a0 ~ 2, omega_ex << omega_in so theta -> theta(0)),
-      and the theta enhancement moves the framework's MI prediction DOWN toward Newton, by enough to
-      matter to a FROZEN pre-registered target.
-  S5  And it makes MI-vs-MG DECIDABLE in DR4, which the corpus had banked as likely undecidable.
+  S4  *** AND THIS FRAMEWORK CANNOT USE theta AT ALL -- corrected mid-script, before shipping. ***
+      A first pass of this script concluded that theta(0) pulls the framework's wide-binary prediction
+      below its FROZEN pre-registered target and that an amendment was owed. THAT WAS WRONG, and it
+      would have been a bad error: amending a frozen target on the basis of a construction the theory
+      provably cannot use damages the pre-registration discipline more than a wrong number does.
+      The corpus had already settled it, twice, with committed scripts:
+        (i) mi_theta_efe_from_closure_2026.py S1: the kernel is EXACTLY unimodular on the oscillatory
+            branch (sympy, |K| - 1 = 0), so it cannot source theta's y-dependence;
+        (ii) Theorem B (<Box_u>_u = +|a|^2 exactly) forces the argument to be |a_TOTAL|^2, i.e.
+             QUADRATURE with a vector cross term -- not Milgrom's LINEAR a_in + theta a_ex.
+      Amendment 2 to the DR4 pre-registration already states this: "no multiplying phase function
+      theta(omega_ex/omega_in) is available". It was right and stands.
+  S5  So the frozen MI target STANDS, and MI-vs-MG stays UNDECIDABLE for this framework. The
+      decidability that theta would buy belongs to Milgrom's general models, not to this one.
   S6  The RAR is untouched -- by his normalisation, not by luck. Checked structurally.
+  S7  What survives: theta separates THIS framework from the wider MI family, which is a real
+      distinction and a falsifiability virtue. Whether DR4 can see it is computed, not assumed.
 
 Exit non-zero on any failed internal check. No hard-coded verdicts.
 """
@@ -159,9 +170,9 @@ def main() -> int:
     print("  content is in frequency RATIOS has no purchase on a trajectory with effectively one")
     print("  frequency. The fifth constant omega_c was doing a job that ratios structurally cannot do.")
 
-    banner("S4. *** WHERE IT DOES PAY: WIDE BINARIES, AND IT MOVES A FROZEN TARGET ***")
-    print("  Wide binaries are exactly Eq. (35)'s regime: a_ex/a0 ~ 2, and omega_ex << omega_in (the")
-    print("  pair orbits far faster than the Galaxy), so theta -> theta(0), its MAXIMUM.")
+    banner("S4. *** THE REGIME WHERE theta WOULD PAY -- AND WHY THIS FRAMEWORK CANNOT COLLECT ***")
+    print("  Wide binaries ARE Eq. (35)'s regime: a_ex/a0 ~ 2, and omega_ex << omega_in (the pair orbits")
+    print("  far faster than the Galaxy), so theta -> theta(0), its maximum. What theta(0) WOULD give:")
     print(f"  {'a0 footing':<18s} {'g_ext':<26s} {'a_ex/a0':>8s}" +
           "".join(f"{('th=' + f'{t[1]:.2f}'):>10s}" for t in THETAS))
     grid = {}
@@ -171,54 +182,49 @@ def main() -> int:
             vals = [float(gamma_v_from_mu(t[1] * e)) for t in THETAS]
             grid[(flab, glab)] = vals
             print(f"  {flab:<18s} {glab:<26s} {e:8.3f}" + "".join(f"{v:10.4f}" for v in vals))
-    print(f"\n  FROZEN pre-registration targets: framework-MI point {FROZEN_MI_POINT}, "
-          f"band {FROZEN_MI_BAND[0]}-{FROZEN_MI_BAND[1]}; framework-as-MG {FROZEN_MG}")
-    print("  Where each theta(0) lands relative to the frozen MI band:")
-    for i, (nm, th) in enumerate(THETAS):
-        v = [grid[k][i] for k in grid]
-        lo, hi = min(v), max(v)
-        inb = FROZEN_MI_BAND[0] <= lo and hi <= FROZEN_MI_BAND[1]
-        below = hi < FROZEN_MI_BAND[0]
-        tag = "INSIDE the frozen band" if inb else ("BELOW the band" if below else "straddles the band")
-        print(f"    {nm:<28s} theta(0)={th:6.3f}  gamma_v {lo:.4f}-{hi:.4f}   {tag}")
-    v2 = [grid[k][1] for k in grid]
-    v3 = [grid[k][3] for k in grid]
-    check(max(v2) < FROZEN_MG - 0.02,
-          f"even Milgrom's SMALLEST example theta(0)=2 pulls gamma_v to {min(v2):.4f}-{max(v2):.4f}, "
-          f"well below the frozen MG value {FROZEN_MG} -- so the MI-vs-MG gap WIDENS rather than closing")
-    all_theta_ge2 = [grid[k][i] for k in grid for i in (1, 2, 3)]
-    check(min(v3) < FROZEN_MI_BAND[0] and max(all_theta_ge2) < FROZEN_MI_POINT,
-          f"TWO separate frozen-target problems, stated precisely rather than overstated: (a) at "
-          f"theta(0)={float(np.exp(1.1)):.2f} the prediction {min(v3):.4f}-{max(v3):.4f} STRADDLES the "
-          f"band's lower edge {FROZEN_MI_BAND[0]} -- some legitimate footing/g_ext combinations fall "
-          f"below it, not all; (b) more sharply, the frozen POINT target {FROZEN_MI_POINT} is above "
-          f"EVERY prediction for every theta(0) >= 2 (max {max(all_theta_ge2):.4f}), so the point target "
-          f"is not reproduced by Milgrom's MI construction at all. Both need an amendment in the open, "
-          f"before DR4")
+    all_ge2 = [grid[k][i2] for k in grid for i2 in (1, 2, 3)]
+    print(f"\n  Taken at face value that would sit at gamma_v {min(all_ge2):.4f}-{max(all_ge2):.4f}, i.e.")
+    print(f"  BELOW the frozen MI point target {FROZEN_MI_POINT} on every theta(0) >= 2, and partly below")
+    print(f"  the frozen band's lower edge {FROZEN_MI_BAND[0]}. A first pass of this script concluded an")
+    print("  amendment was therefore owed. THAT CONCLUSION IS WITHDRAWN. It does not apply, because:")
+    print()
+    print("  (i) THE KERNEL CANNOT SOURCE theta. mi_theta_efe_from_closure_2026.py S1 shows, sympy-exact,")
+    print("      that on the oscillatory branch |K| = 1 identically. theta's y-dependence would need |K|")
+    print("      to vary with frequency; it cannot. Every bound orbit sits deep inside that regime.")
+    print("  (ii) THEOREM B FORCES QUADRATURE, NOT LINEAR ADDITION. <Box_u>_u = +|a|^2 exactly on every")
+    print("      timelike worldline, so the closure's argument is |a_in + a_ex|^2 -- the external field")
+    print("      enters in quadrature WITH A VECTOR CROSS TERM. Milgrom's Eq. (34) is the linear")
+    print("      a_in + theta a_ex with a scalar multiplier. Different structures; the framework is")
+    print("      pinned to the first.")
+    print("  Both were already committed BEFORE this script ran, and Amendment 2 to the DR4")
+    print("  pre-registration already states it verbatim: 'no multiplying phase function")
+    print("  theta(omega_ex/omega_in) is available'. Amendment 2 was right.")
+    check(min(all_ge2) < FROZEN_MI_POINT,
+          f"the numbers themselves are not in dispute -- theta(0) >= 2 WOULD give gamma_v "
+          f"{min(all_ge2):.4f}-{max(all_ge2):.4f}, below the frozen point target {FROZEN_MI_POINT}. What is "
+          f"in dispute is whether this framework may use them, and it may not")
 
-    banner("S5. MI vs MG in DR4 -- the corpus banked this as likely UNDECIDABLE")
-    print(f"  Frozen DR4 error model: sigma(gamma_v) = {SIGMA_GAMMA_DR4} at N = 30,000 pairs.")
-    print("  MG is theta = 1 by construction (it uses mu(a_ex/a0)). MI is theta(0) > 1. Separation:")
-    print(f"  {'theta(0)':>9s} {'gamma_v MI':>11s} {'gamma_v MG':>11s} {'separation':>11s} "
-          f"{'sigma':>7s} {'decidable at 3 sigma?':>22s}")
+    banner("S5. So the frozen target STANDS, and MI-vs-MG stays undecidable HERE")
     mg_ref = float(gamma_v_from_mu(G_EXT[0][1] / FOOTINGS[0][1]))
+    print(f"  Frozen DR4 error model: sigma(gamma_v) = {SIGMA_GAMMA_DR4} at N = 30,000 pairs.")
+    print(f"  If theta were available, MG (theta=1, {mg_ref:.4f}) and MI would separate by:")
+    print(f"  {'theta(0)':>9s} {'gamma_v MI':>11s} {'separation':>11s} {'sigma':>7s}")
     dec = []
-    for nm, th in THETAS[1:]:
+    for _nm, th in THETAS[1:]:
         mi = float(gamma_v_from_mu(th * G_EXT[0][1] / FOOTINGS[0][1]))
         sep = mg_ref - mi
-        ns = sep / SIGMA_GAMMA_DR4
-        dec.append(ns)
-        print(f"  {th:9.3f} {mi:11.4f} {mg_ref:11.4f} {sep:11.4f} {ns:6.1f}s "
-              f"{('YES' if ns >= 3 else 'no'):>22s}")
-    check(min(dec) > 3.0,
-          f"across ALL of Milgrom's example theta forms the MI-MG separation is {min(dec):.1f}-"
-          f"{max(dec):.1f} sigma at the frozen DR4 error model -- so the MI-vs-MG discrimination the "
-          f"corpus banked as 'likely undecidable in DR4' becomes DECIDABLE if Milgrom's theta is real")
-    print("  CAVEAT, and it is the binding one: this decidability rests on theta(0) being O(1) LARGER")
-    print("  than 1 and on the wide-binary systematics being under control. The systematics are not:")
-    print("  Cookson+2026 show a 20 pc cut plus one Gaia flag swings the Bayes factor ~18,000x and")
-    print("  flips its sign, and the hidden-companion fraction differs 1.7-3.4x between camps. A 3-5")
-    print("  sigma THEORY separation does not survive a 0.15-wide systematic on gamma_v.")
+        dec.append(sep / SIGMA_GAMMA_DR4)
+        print(f"  {th:9.3f} {mi:11.4f} {sep:11.4f} {sep/SIGMA_GAMMA_DR4:6.1f}s")
+    print(f"  -> {min(dec):.1f}-{max(dec):.1f} sigma. That decidability is REAL, and it belongs to")
+    print("  Milgrom's general MI models. It is NOT available to this framework, whose derived EFE gives")
+    print("  the Amendment-2 orientation-averaged gamma_v = 1.0799 with NO theta freedom at all.")
+    print(f"  Framework (derived, Amendment 2) 1.0799 vs frozen MG {FROZEN_MG}: separation "
+          f"{FROZEN_MG-1.0799:.4f} = {(FROZEN_MG-1.0799)/SIGMA_GAMMA_DR4:.1f} sigma.")
+    check((FROZEN_MG - 1.0799) / SIGMA_GAMMA_DR4 < 3.0,
+          f"for THIS framework the MI-MG separation is only "
+          f"{(FROZEN_MG-1.0799)/SIGMA_GAMMA_DR4:.1f} sigma -- so section 1.5's forecast that MI-vs-MG is "
+          f"likely UNDECIDABLE in DR4 stands unamended, exactly as Amendment 2 (g) said. No frozen "
+          f"number moves as a result of this script")
 
     banner("S6. Does it cost anything on the RAR? No -- by his normalisation, and checked")
     print("  Milgrom fixes theta(1) = 1 precisely so that, verbatim, 'it is mu(a_ex/a0) that enters the")
@@ -239,6 +245,25 @@ def main() -> int:
           "for any theta(0), so the SPARC RAR fit (0.108 dex) is untouched -- this is not a tuning, it "
           "is what theta(1)=1 was chosen to guarantee")
 
+    banner("S7. WHAT ACTUALLY SURVIVES: theta separates this framework from the MI family")
+    print("  The interesting residue is a DISTINCTION, not a rescue. Milgrom's MI models carry a free")
+    print("  function theta with theta(0) of order a few; this framework's closure pins theta = 1 by two")
+    print("  independent theorems. So the two make DIFFERENT wide-binary predictions, and that is a")
+    print("  falsifiability virtue for the framework: fewer free functions, a more rigid prediction.")
+    print(f"  {'model':<44s} {'gamma_v':>18s}")
+    print(f"  {'this framework (derived, quadrature, no theta)':<44s} {'1.0799':>18s}")
+    for nm, th in THETAS[1:]:
+        v = [grid[k2][THETAS.index((nm, th))] for k2 in grid]
+        print(f"  {'Milgrom MI, ' + nm:<44s} {f'{min(v):.4f}-{max(v):.4f}':>18s}")
+    v2 = [grid[k2][1] for k2 in grid]
+    sep_fam = abs(1.0799 - float(np.mean(v2)))
+    print(f"\n  Separation from the theta(0)=2 case: {sep_fam:.4f} in gamma_v = "
+          f"{sep_fam/SIGMA_GAMMA_DR4:.1f} sigma at the frozen DR4 error model.")
+    check(sep_fam / SIGMA_GAMMA_DR4 < 3.0,
+          f"framework-vs-Milgrom-MI separates by only {sep_fam/SIGMA_GAMMA_DR4:.1f} sigma, so DR4 cannot "
+          f"distinguish them either -- the distinction is real in principle and NOT a near-term test. "
+          f"Reported as such rather than promoted to a front")
+
     banner("VERDICT")
     print("  1. THE DOOR DOES NOT DO WHAT IT WAS OPENED FOR. Milgrom's frequency-ratio construction")
     print("     does NOT close the alpha=1 planetary liability, and the failure is structural rather")
@@ -248,25 +273,30 @@ def main() -> int:
     print("     the a0/2 anomaly is a single-frequency effect and a ratio construction has no purchase")
     print("     on a one-frequency trajectory. So the fifth constant omega_c is NOT shown unnecessary --")
     print("     it was doing a job ratios structurally cannot do. That hypothesis is CLOSED.")
-    print("  2. BUT THE SAME CONSTRUCTION MOVES A FROZEN PRE-REGISTERED TARGET, which is a bigger")
-    print("     practical result than the one sought. In the wide-binary regime -- which is exactly the")
-    print("     regime Eq. (35) governs -- theta(0) of a few pulls the framework's MI prediction from")
-    print(f"     gamma_v ~ 1.14 down to {min(min(grid[k][1] for k in grid), min(grid[k][3] for k in grid)):.3f}-"
-          f"{max(max(grid[k][1] for k in grid), max(grid[k][3] for k in grid)):.3f}.")
-    print(f"     theta(0)=2 stays inside the frozen band {FROZEN_MI_BAND}; theta(0) >~ e falls BELOW it.")
-    print("     The frozen MI target 1.09 was computed with NO theta enhancement, i.e. implicitly")
-    print("     theta(0)=1 -- which is the MODIFIED-GRAVITY prescription, not the MI one. On Milgrom's")
-    print("     own MI construction the MI target should be lower. THIS NEEDS AN AMENDMENT FILED IN THE")
-    print("     OPEN BEFORE DR4 (~Dec 2026), per the standing rule.")
-    print("  3. AND IT SHARPENS THE DISCRIMINATOR RATHER THAN BLUNTING IT. MG uses mu(a_ex/a0), MI uses")
-    print(f"     mu(theta(0) a_ex/a0). The gap is {min(dec):.1f}-{max(dec):.1f} sigma at the frozen DR4 error")
-    print("     model, so MI-vs-MG becomes decidable where the corpus banked it as undecidable -- IF the")
-    print("     wide-binary systematics can be brought under a 0.02-level control they currently are not.")
-    print("  4. NET, and it is the honest shape of a swing that missed its target: the liability it was")
-    print("     aimed at is untouched and that route is now closed; a different, frozen, time-boxed")
-    print("     commitment turns out to be wrong in a computable direction. The alpha=1 conflict stands")
-    print("     exactly where it did -- exactness versus the planets, and only one survives.")
-    check(True, "verdict recorded: door closed for the planets, amendment triggered for wide binaries")
+    print("  2. AND THIS FRAMEWORK CANNOT USE IT EVEN WHERE IT WOULD HELP. In the wide-binary regime")
+    print("     theta(0) of a few WOULD pull gamma_v from ~1.14 to 1.04-1.08, below the frozen MI point")
+    print("     target 1.09. A first pass of this script concluded an amendment was owed on that basis.")
+    print("     THAT IS WITHDRAWN. Two committed results, both predating this script, forbid it: the")
+    print("     kernel is EXACTLY unimodular on the oscillatory branch so it cannot source theta's")
+    print("     y-dependence (sympy), and Theorem B forces the closure's argument to |a_total|^2 --")
+    print("     QUADRATURE with a vector cross term, not Milgrom's linear a_in + theta a_ex. Amendment 2")
+    print("     to the DR4 pre-registration already says exactly this and was right. NO FROZEN NUMBER")
+    print("     MOVES. Recording the near-miss because amending a frozen target on a basis the theory")
+    print("     cannot use would have been a worse error than any wrong number in this file.")
+    print("  3. SO MI-vs-MG STAYS UNDECIDABLE HERE. The 3.7-4.9 sigma separation theta would buy is real")
+    print("     but belongs to Milgrom's general MI models. This framework's derived EFE gives 1.0799")
+    print("     with no theta freedom, i.e. 3.0 sigma from the MG target -- section 1.5's forecast stands")
+    print("     unamended, as does Amendment 2 (g).")
+    print("  4. WHAT SURVIVES IS A DISTINCTION, NOT A RESCUE, and it cuts in the framework's favour on")
+    print("     falsifiability: Milgrom's MI carries a free theta, this framework pins theta = 1 by two")
+    print("     theorems. Fewer free functions, a more rigid wide-binary prediction. But the two")
+    print("     predictions separate by under 3 sigma at the frozen DR4 error model, so this is a real")
+    print("     distinction and NOT a near-term test. Not promoted to a front.")
+    print("  5. NET: the door is CLOSED, on three independent grounds -- it cannot reach the planets")
+    print("     (a_in/a_ex = 3.3e7), the kernel cannot supply theta, and Theorem B forbids the linear")
+    print("     combination it needs. omega_c is NOT shown unnecessary. alpha=1 stands exactly where it")
+    print("     did: exactness versus the planets, and only one survives.")
+    check(True, "verdict recorded: door CLOSED on three independent grounds; NO frozen number moves; the near-miss amendment is recorded as withdrawn")
     print("=" * 100)
     return 0 if ok else 1
 
