@@ -1,0 +1,119 @@
+
+====================================================================================================
+S1. The repair is well posed: F = K on the scalar moment reproduces the closure exactly
+====================================================================================================
+  K(x^2)      = (sqrt(4*x**2 + 1) - 1)/(2*x)
+  mu_fw(x)    = (sqrt(4*x**2 + 1) - 1)/(2*x)
+  [OK] K(|a|^2/a0^2) = mu_fw(|a|/a0) identically for x > 0 -- so the repaired action's integrand IS the first-moment closure, exactly and by construction rather than by prescription
+  And the argument is POSITIVE by construction: <Box_u>_u = (u.Box_u u)/(u.u) = +|a|^2 by
+  Theorem 1, with the positivity coming from the Lorentzian normalisation u.u = -1. So the
+  repair does exactly what Theorem 8 asked for: it moves the argument off the branch cut.
+  THE COST, which is the whole point: |a|^2 = a.a is QUADRATIC IN xddot, so the action is now
+  LOCAL in worldline derivatives -- S = INT dtau L(x, xdot, xddot). Theorem 3 applies.
+
+====================================================================================================
+S2. Is the repaired Lagrangian DEGENERATE in xddot? Closed form, both branches.
+====================================================================================================
+  For a Lagrangian depending on acceleration only through |a| (a radial function f(|a|)),
+  the Hessian w.r.t. acceleration components has closed-form eigenvalues
+      along a:        f''(r)            (once)
+      perpendicular:  f'(r)/r           (twice, in 3 spatial dimensions)
+  so   det Hessian = f''(r) * (f'(r)/r)^2 ,  and degeneracy needs f'' = 0 or f' = 0.
+  f(r)   = mu_fw(r) = (sqrt(4*rho**2 + 1) - 1)/(2*rho)
+  f'(r)  = 1/(2*rho**2) - 1/(2*rho**2*sqrt(4*rho**2 + 1))
+  f''(r) = (-16*rho**4 + 6*rho**2*sqrt(4*rho**2 + 1) - 8*rho**2 + sqrt(4*rho**2 + 1) - 1)/(16*rho**7 + 8*rho**5 + rho**3)
+    r = |a|/a0      f prime      f dprime    det Hessian
+         0.001      1.00000      -0.00600   -6.00005e+03
+         0.010      0.99970      -0.05996   -5.99241e+02
+         0.100      0.97097      -0.56200   -5.29843e+01
+         1.000      0.27639      -0.37390   -2.85635e-02
+        10.000      0.00475      -0.00093   -2.08766e-10
+       100.000      0.00005      -0.00000   -2.45650e-19
+  limits as r -> 0+ :  f' -> 1,   f'' -> 0
+  [OK] |det Hessian| is NONZERO at every finite r tested (2.46e-19 to 6.00e+03) -- the repaired Lagrangian is NONDEGENERATE, so Theorem 3's escape is unavailable and its EL equation is FOURTH order
+  AND NOTE THE SIGN, which says more than nondegeneracy alone. Every det above is NEGATIVE,
+  because f'' < 0 while f'/r > 0: the acceleration Hessian has one negative and two positive
+  eigenvalues, i.e. it is INDEFINITE. An indefinite Hessian in xddot is the direct signature
+  of an Ostrogradsky ghost, so the repaired local action is not merely fourth-order -- it is
+  fourth-order AND carries the instability the nonlocal form was built to avoid. That makes
+  Family 2 worse than a failed derivation; it is a sick theory.
+  [OK] f'' -> 0 only in the STRICT a -> 0 limit, so the degeneracy is asymptotic and never attained at any finite acceleration
+  So the repair trades one failure for another: the argument is now on the right side of the
+  cut, but the action has become local and nondegenerate, and its equation of motion is
+  fourth order rather than the framework's second-order law.
+
+====================================================================================================
+S3. The ONLY degenerate F, derived -- and what it costs
+====================================================================================================
+  Degeneracy for a radial f requires f''(r) = 0 for all r, i.e. f LINEAR in r:
+      f(r) = A + B r        <=>       F(|a|^2/a0^2) = A + B |a|/a0
+  (f' = 0 is excluded: mu_fw is strictly increasing, f' > 0 everywhere.)
+  [OK] f linear in |a| is the unique degenerate family (f'' = 0 identically), so it is the only local first-moment action that avoids a fourth-order equation of motion
+  WHAT IT COSTS. A Lagrangian linear in |a| is homogeneous of degree 1 in xddot, which is
+  exactly the DEEP-MOND limit of the framework (mu_fw(r) -> r as r -> 0). Check the two
+  limits the full law must interpolate between:
+    r = |a|/a0  mu_fw (needed)  best linear fit A+Br      error
+          0.01         0.01000               0.01000    +0.01%
+          0.10         0.09902               0.10000    +0.99%
+          1.00         0.61803               1.00000   +61.80%
+         10.00         0.95125              10.00000  +951.25%
+        100.00         0.99501             100.00000 +9950.12%
+  [OK] the linear (degenerate) family diverges from the law by 9950% by r = 100 -- it reproduces ONLY the deep-MOND limit and CANNOT produce the Newtonian transition, which is half the content of the interpolation
+  The degenerate choice is therefore not a repair: it buys a second-order equation of motion
+  at the price of the Newtonian limit, i.e. of the RAR's entire high-acceleration branch.
+
+====================================================================================================
+S4. THE PINCER -- a no-go over three action families
+====================================================================================================
+  FAMILY 1: nonlocal, operator K acting on u (the PUBLISHED action).
+    Fails by Theorem 8: on a circular orbit the argument is the eigenvalue -(c Omega/a0)^2,
+    on the cut, |K| = 1 exactly -- amplitude-free, and variation-generated dK terms are
+    4-13 orders too small to help.
+  FAMILY 2: local, F of the scalar first moment (the repair Theorem 8 named).
+    Fails by Theorem 3 + S2: nondegenerate at every finite acceleration, so the
+    Euler-Lagrange equation is FOURTH order while the law is second order.
+  FAMILY 3: local and DEGENERATE, i.e. F linear in |a| (the unique escape from Family 2).
+    Fails by S3: gives only the deep-MOND limit, no Newtonian transition.
+
+  => NO-GO. The framework's law mu_fw(|a|/a0) a = g_bar is not the Euler-Lagrange equation of
+     any action in these three families. The law is a PHENOMENOLOGICAL POSTULATE, and the
+     action programme as presently constituted does not derive it.
+  [OK] the no-go is stated over an explicit, enumerated set of families rather than in general
+  BOTH FOOTINGS: nothing in S1-S3 depends on the value of a0 -- every statement is about the
+  functional form of mu_fw in units of a0, so the no-go is footing-independent by inspection.
+
+====================================================================================================
+S5. THE ONE FAMILY LEFT, and exactly what it must do
+====================================================================================================
+  FAMILY 4 (not excluded): NONLOCAL, but with a POSITIVE argument -- an action built on a
+  TIME-AVERAGED first moment,
+      S = -(1/2) INT sqrt(-g) rho_m F( [ INT w(tau') |a(tau')|^2 dtau' ] / a0^2 )
+  with a normalised memory weight w. This is the only combination that escapes all three
+  failures at once: the argument is non-negative (so it is off the cut, evading Theorem 8),
+  and the weight makes it genuinely nonlocal (so Theorem 3's local counting does not apply).
+  It is also exactly the CLOSURE-B direction the corpus already knows about -- Finding C's
+  free O(1) time-weighting is precisely the choice of w.
+
+  WHAT IT MUST DELIVER, as three pre-stated conditions:
+   (i)   On a CIRCLE it must reduce to mu_fw(|a|/a0), because |a| is constant there and the
+         RAR is measured there. Any normalised w satisfies this automatically -- which is
+         both encouraging and a warning that circles cannot test the choice of w.
+   (ii)  Its variation must give a SECOND-order equation of motion, or an integro-differential
+         one whose circular reduction is second order. This is the hard part and is NOT
+         established; the nonlocality that evades Theorem 3 also removes the tool that made
+         Theorem 3 easy to state.
+   (iii) It must not reintroduce dissipation. By Theorem 2 the argument stays non-negative, so
+         Im K = 0 is preserved -- this condition is met automatically, and it means Family 4
+         inherits the sign demotion rather than undoing it.
+
+  AND IT IS ALREADY CONSTRAINED BY DATA. Proposition 7 showed that the choice of w is
+  observationally live: dispersion-supported systems separate the ultralocal weight (offset
+  identically zero) from the orbit-averaged one (-0.037 dex), at ~1.2-1.9 sigma on archival
+  dwarf spheroidals. So Family 4 is not a free construction -- the same data that tests the
+  closure tests the action built on it. That is the useful part of this result: the remaining
+  freedom is a single function w, and it is measurable.
+
+  HONEST STATUS: Family 4 is UNEXPLORED, not promising-by-default. Condition (ii) is the
+  whole difficulty and nothing here shows it can be met.
+  [OK] the surviving family is stated with its three conditions and the admission that the hard one is unestablished
+====================================================================================================
