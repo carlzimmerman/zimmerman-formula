@@ -1,5 +1,31 @@
 #!/usr/bin/env python3
-r"""mi_cmb_camb_run_2026.py -- the CMB acoustic-scale exclusion of the rising-a0 footing, done with
+r"""mi_cmb_camb_run_2026.py
+
+*** PRIOR-ART NOTICE, added 2026-07-30 after a literature check. NOT NOVEL. DO NOT PUBLISH. ***
+The a0-footing fork tested here -- a0 coupled to cH(z) versus a0 coupled to the dark-energy
+density -- is already in the literature, and already decided the same way:
+  * Gnedin & ... / "The Redshift Evolution of the Tully-Fisher Relation as a Test of Modified
+    Gravity", arXiv:0809.2790 (2008), states the fork explicitly (a0 ~ cH0 vs
+    a0 ~ sqrt(8 pi G rho_Lambda/3)) and tests BOTH branches against high-z Tully-Fisher data to
+    z = 1.2. Its conclusion: coupling to the DARK ENERGY DENSITY can be consistent with data,
+    while coupling to the HUBBLE PARAMETER requires unreasonable w -- "this would appear to
+    favor coupling to the dark energy density." Same verdict, eighteen years earlier.
+  * "Do Newton's G and Milgrom's a_0 vary with cosmological epoch?", arXiv:0802.1526.
+  * SIV-paradigm work on the z-dependence of a0, arXiv:2409.11425.
+ALSO: the treatment below is a TOY -- modified inertia is applied as a baryon-loading /
+sound-speed rescaling over CAMB's background, NOT by modifying the Boltzmann perturbation
+hierarchy. A proper relativistic MOND theory (AeST; Skordis & Zlosnik) already REPRODUCES the
+CMB, so the rigorous version of "does MOND break the CMB" is answered by the relativistic
+theory, not by an a0(z) scaling bolted onto LambdaCDM.
+WHAT REMAINS USEFUL: independent confirmation of a known conclusion from a DIFFERENT observable
+and epoch (CMB acoustic scale at z ~ 1090 vs Tully-Fisher at z <= 1.2), with different
+systematics -- the 2008 authors explicitly flagged possible unaccounted systematics in theirs.
+And the H-cancellation makes the WHY transparent: y = Z/sqrt(3(1+R)) ~ 3 at every epoch, so
+a0 ~ cH fails throughout the acoustic era rather than marginally.
+Keep as a repo sub-result. Cite arXiv:0809.2790 whenever this is mentioned.
+
+ORIGINAL HEADER FOLLOWS.
+mi_cmb_camb_run_2026.py -- the CMB acoustic-scale exclusion of the rising-a0 footing, done with
 a FULL BOLTZMANN CODE (CAMB), upgrading the tight-coupling estimate of mi_cmb_acoustic_shift_2026.
 
 WHAT CHANGES vs the hand estimate. The hand version used a sharp recombination at z=1090 and an
