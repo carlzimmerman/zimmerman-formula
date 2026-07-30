@@ -16,7 +16,14 @@ $$a_0 \;=\; \kappa\,c\sqrt{G\rho_\Lambda}\;=\;\frac{cH_\Lambda}{Z},
 \qquad \kappa=\tfrac12,\qquad Z=\sqrt{32\pi/3}=5.78881,
 \qquad a_0 = 9.36\times10^{-11}\ \mathrm{m\,s^{-2}} .$$
 
-Realised as **modified inertia** with the framework's own interpolation $\nu(y)=\sqrt{1+1/y}$.
+Realised as **modified inertia**. **⚠️ KERNEL CHANGED 2026-07-30: the interpolation is now $\alpha\ge2$**,
+$K=\sqrt{z/(1+z)}$ with $z=|a|^2/a_0^2$, replacing $\nu(y)=\sqrt{1+1/y}$ ($\alpha=1$). $a_0$ is
+**unaffected** — the new kernel satisfies every premise the $a_0$ derivation uses (Herglotz positivity,
+passivity $\sup K=1$, the unit sum rule) and its spectral measure $\rho(s)=(1/\pi)\sqrt{s/(1-s)}$ on
+$0<s<1$ is *simpler* than the old one. **What is withdrawn is the word "exact": the relation
+$g_{\rm obs}^2=g_{\rm bar}^2+a_0g_{\rm bar}$ is an $\alpha=1$ identity and is no longer claimed.**
+Reason: $\alpha=1$ costs 1279× the Earth ephemeris bound and 257× the disformal construction's own
+$B<1$ premise, and buys 0.0033 dex on SPARC. See §5.0 and `mi_alpha2_migration_2026.py`.
 
 **⚠️ CREDIT, CORRECTED 2026-07-30 (rev. 4) — the previous line understated it.** It is not merely the
 same *kernel*. **Milgrom (1999, *Phys. Lett. A* **253**, 273, Eqs. 6–9) derives this exact LAW from the
@@ -42,8 +49,8 @@ claims. They are not to be revived. The true position is the $a_0$ reframing abo
 
 | result | status |
 |---|---|
-| Radial-acceleration relation, SPARC, framework's own $\nu$ and $a_0$ | **0.108 dex** at $\Upsilon=0.70$ — beats regular MOND's 0.122–0.140 |
-| The $a_0$-line $g_{\rm obs}^2-g_{\rm bar}^2=a_0\,g_{\rm bar}$ | exact identity, verified |
+| Radial-acceleration relation, SPARC, framework's $a_0$ | **0.1116 dex** at $\alpha=2$ (0.1083 at the retired $\alpha=1$; the $+0.0033$ switch cost is $0.10\,\sigma_{\rm int}$) — still at or better than regular MOND's 0.122–0.140 |
+| ~~The $a_0$-line $g_{\rm obs}^2-g_{\rm bar}^2=a_0\,g_{\rm bar}$~~ | **WITHDRAWN 2026-07-30.** An exact identity *of the $\alpha=1$ kernel only*, which the framework no longer uses. Retained as history, not as an earned result |
 | $\kappa$ reduction $a_0=\kappa c\sqrt{G\rho_\Lambda}$ | every $\pi$, the 32 and the 3 cancel |
 | Modified-inertia action, v1–v11 | published; constraint structure machine-verified, 0 frame dof |
 | Disformal lensing construction (v7–v10) | closed, Cassini-safe, Ostrogradsky-free |

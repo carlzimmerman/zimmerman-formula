@@ -1,0 +1,153 @@
+
+====================================================================================================
+S1. THE CANONICAL alpha=2 KERNEL AND ITS SPECTRAL MEASURE -- the enabling result
+====================================================================================================
+  K_2(z) = sqrt(z/(1+z)),  nu = 1/K,  argument z = |a|^2/a0^2 (Theorem B).
+  Its cut is where z/(1+z) < 0, i.e. -1 < z < 0. Setting z = -s with 0 < s < 1 gives
+  K = i sqrt(s/(1-s)), so Stieltjes inversion yields
+      rho(s) = (1/pi) Im K = sqrt(s)*sqrt(1/(1 - s))/pi      on 0 < s < 1   [COMPACT SUPPORT]
+  and the Herglotz form must be K_2(z) = 1 - INT_0^1 rho(s) ds/(z+s), because the bare
+  resolvent integral vanishes at z -> oo while K_2(oo) = 1.
+
+  sum rule   INT rho/s ds = 1     (must equal K(oo) - K(0) = 1)
+  total mass INT rho ds   = 1/2     (finite)
+  [OK] the alpha=2 measure satisfies the SAME unit sum rule INT dmu/|t| = 1 that makes a0 additively unrenormalised -- so the property a0's derivation rests on is preserved exactly
+
+           z  K_2 closed form  from the measure    rel err
+      0.0001     0.0099995000      0.0099995000   4.16e-15
+        0.01     0.0995037190      0.0995037190   5.58e-16
+           1     0.7071067812      0.7071067812   0.00e+00
+         100     0.9950371902      0.9950371902   0.00e+00
+       1e+04     0.9999500037      0.9999500037   0.00e+00
+       1e+08     0.9999999950      0.9999999950   0.00e+00
+  [OK] the measure reproduces the closed form to 4.2e-15 over eight decades in z -- the representation is verified, not asserted
+  [OK] the measure is POSITIVE and the kernel PASSIVE (0 <= K <= 1) -- both premises of the a0 scale derivation hold
+
+  AND IT IS SIMPLER THAN THE PUBLISHED alpha=1 MEASURE, which is worth stating plainly:
+  property                     alpha=1 (published)          alpha=2 (the switch)  
+  spectral regions             2  (rho_A, rho_B)            1                     
+  support                      UNBOUNDED (t -> -inf)        COMPACT  [0,1]        
+  additive constant            a = 0.65411                  none                  
+  total mass                   DIVERGENT                    1/2                   
+  sum rule INT dmu/|t|         1                            1                     
+  branch point                 t = -1/4                     t = -1                
+  The UNBOUNDED support of the alpha=1 measure is what produced BOTH the exact law and the
+  1/(2x) planetary tail -- its divergent total mass is exactly the 1/x rather than 1/x^2
+  approach to the passivity bound. The switch removes the divergence and the tail together.
+
+====================================================================================================
+S2. TRIAGE -- what moves and what does not, computed
+====================================================================================================
+  Both kernels share the DEEP limit (K ~ sqrt z), so deep-regime results are invariant.
+  They differ in the TRANSITION and HIGH regimes. Checking each banked class:
+
+  (a) DEEP REGIME -- BTFR / cluster-scale y. nu ratio alpha2/alpha1:
+   y = g_bar/a0  nu alpha=1  nu alpha=2    ratio
+         0.0001    100.0050    100.0025   1.0000
+          0.001     31.6386     31.6307   0.9998
+           0.01     10.0499     10.0250   0.9975
+          0.037      5.2941      5.2471   0.9911
+            0.1      3.3166      3.2423   0.9776
+  [OK] in the deep regime the two kernels agree to 2.2% or better, so BTFR, the deep-MOND slope 1/2, and cluster eta (median y = 0.037) are NEAR-INVARIANT -- those banked numbers do not need re-deriving, only re-checking
+
+  (b) TRANSITION REGIME -- the RAR and the wide-binary EFE, y ~ 1-3:
+              y  nu alpha=1  nu alpha=2    ratio
+            0.5      1.7321      1.6005   0.9240
+              1      1.4142      1.2720   0.8995
+            1.9      1.2354      1.1072   0.8962
+              3      1.1547      1.0492   0.9087
+      committed SPARC fit: alpha=1 0.1083 dex, alpha=2 0.1116 dex, cost +0.0033 (0.10 sigma_int)
+
+  (c) HIGH REGIME -- the planets. This is the whole point of the switch:
+  footing             anomaly alpha=1   vs bound  anomaly alpha=2   vs bound
+  canonical rho_DE         4.6800e-11      1279x       1.3167e-18  3.60e-05x
+  alt rho_total            5.6500e-11      1544x       1.3167e-18  3.60e-05x
+  [OK] the switch takes the Earth anomaly from ABOVE the 2-sigma bound to BELOW it on both footings -- the liability the switch was adopted for is discharged
+
+  (d) THE EXACT LAW -- withdrawn, and this is the price:
+      alpha=1: g_obs^2 - g_bar^2 - a0 g_bar = 0  (identically zero)
+      alpha=2: g_bar = g_obs^2/sqrt(g_obs^2 + a0^2), a QUARTIC in g_obs -- no exact
+      algebraic relation of the banked form exists. The 'a0-line' identity is WITHDRAWN.
+  [OK] the exact relation is an alpha=1 identity and does not survive -- so every statement of it in the corpus is now a HISTORICAL claim, not a live one
+
+====================================================================================================
+S3. *** A FROZEN PRE-REGISTERED TARGET MOVES, AND THIS ONE LEGITIMATELY DOES ***
+====================================================================================================
+  The wide-binary gamma_v targets are kernel-dependent: gamma_v = 1/sqrt(mu(a_ex/a0)).
+  a0 footing         g_ext                       a_ex/a0  gamma_v a=1  gamma_v a=2
+  canonical rho_DE   primary (McMillan-class)      1.900       1.1390       1.0631
+  canonical rho_DE   alt (Vc^2/R0)                 2.220       1.1182       1.0473
+  alt rho_total      primary (McMillan-class)      1.573       1.1692       1.0885
+  alt rho_total      alt (Vc^2/R0)                 1.839       1.1438       1.0669
+
+  FROZEN targets: MI point 1.09 (band (1.05, 1.1)); as-MG 1.137
+  Under alpha=2 the as-MG value becomes 1.0473-1.0885, i.e. it moves by
+  +0.0706 in gamma_v = 3.7 sigma at the frozen DR4 error model.
+  [OK] the switch moves the frozen as-MG target from 1.137 to 1.0473-1.0885, i.e. by more than 1 sigma of the frozen error model -- AN AMENDMENT IS OWED, filed in the open before DR4 (~Dec 2026)
+  WHY THIS ONE IS LEGITIMATE AND THE theta-DRIVEN ONE EARLIER TODAY WAS NOT: this is a
+  THEORY CHANGE the owner has made, declared before data, with its cost computed. The theta
+  amendment rested on a construction the theory provably cannot use (unimodular kernel +
+  Theorem B quadrature) and was correctly withdrawn. A pre-registration may be amended for
+  the former and must not be for the latter.
+
+====================================================================================================
+S4. PUBLISHED-DOI EXPOSURE -- enumerated, NOT actionable here
+====================================================================================================
+  The exact law and/or nu = sqrt(1+1/y) appear as LIVE CLAIMS in work already published:
+    * MI_STRUCTURAL_THEOREMS.md -- DOI 10.5281/zenodo.21708842 (v2, published 2026-07-30)
+    * DESITTER_GAUGE_MOND_SCALE.md
+    * WB_CUBIC_GATE_LAW.md
+    * CRISPY_DARK_MATTER.md
+    * SUBMIT_PRD.md / SUBMIT_MNRAS.md (drafts, not yet submitted)
+  AND the covariant sector is measure-specific: the published Herglotz representation
+  (rho_A, rho_B, a = 0.65411, branch point -1/4) is the alpha=1 measure. S1 supplies the
+  alpha=2 replacement, but the 1-loop divergence results, Theorem VI's 'shape = EXACT
+  framework nu', and the positivity/KMS chain were all computed ON the old measure and
+  would need re-running against the new one.
+  THIS IS AN ERRATUM DECISION AND IT IS THE OWNER'S. I am not editing published records.
+  [OK] exposure enumerated rather than silently migrated
+
+====================================================================================================
+S5. WHAT A COMPLETE MIGRATION REQUIRES -- scoped, not hand-waved
+====================================================================================================
+  Blast radius measured by grep: 314 scripts reference the alpha=1 kernel or the exact law,
+  267 of them in real_research/, prep_2026/ and opus_48_extended_research/.
+  A blind substitution is NOT the migration, because those scripts' internal checks assert
+  their own printed values; flipping the kernel would make them fail, and 'fixing' the
+  thresholds to match would destroy the audit trail that makes the corpus self-verifying.
+  The order that actually works, in dependency order:
+   1. DONE HERE: the alpha=2 kernel + its verified spectral measure (S1). Nothing downstream
+      can migrate without this.
+   2. DONE HERE: triage (S2) -- deep-regime results are near-invariant and need only
+      re-checking; transition/high-regime results need genuine re-derivation.
+   3. OWED NOW, time-boxed: the DR4 pre-registration amendment (S3), before ~Dec 2026.
+   4. OWNER'S CALL: erratum scope for the published DOIs (S4).
+   5. THEN the script sweep, done as re-derivations with their numbers RECOMPUTED and their
+      old values retained as superseded -- not as a find-and-replace. Highest value first:
+      rar_framework_a0_mlfit, clusters_eta_audit, the wide-binary pre-reg chain, the forest
+      set (already kernel-argument-corrected today), the growth chain.
+   6. LAST: the covariant sector, which needs the loop results re-run on the new measure.
+  ESTIMATE, stated so it can be argued with: steps 3-4 are days; step 5 is the bulk; step 6
+  is a research project, not an edit.
+  [OK] migration scoped in dependency order with the unsafe shortcut named
+
+====================================================================================================
+VERDICT
+====================================================================================================
+  THE SWITCH IS APPLIED WHERE IT CAN BE APPLIED CORRECTLY TODAY:
+   * The alpha=2 kernel has a verified positive spectral measure with the SAME unit sum rule,
+     so a0 = cH_Lambda/Z survives the switch intact -- and the measure is strictly simpler
+     than the published one (single region, compact support, finite mass, no constant).
+   * The planetary liability is DISCHARGED on both footings.
+   * Deep-regime results (BTFR, cluster eta, the 1/2 slope) are near-invariant.
+   * The RAR costs +0.0033 dex, 0.10 sigma_int.
+   * The EXACT LAW is withdrawn. That is the price and it is the only one.
+  WHAT IS NOT DONE, AND MUST NOT BE PRETENDED DONE:
+   * 267 scripts still compute on the alpha=1 kernel. Their numbers are now labelled
+     alpha=1 results, not framework results, until re-derived.
+   * The DR4 pre-registration amendment is OWED and time-boxed.
+   * The published DOIs state a law the framework no longer holds. Erratum scope is the
+     owner's decision.
+   * The covariant/loop sector is still on the old measure.
+  [OK] verdict separates what was migrated from what was only scoped
+====================================================================================================

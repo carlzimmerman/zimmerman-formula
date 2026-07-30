@@ -198,6 +198,63 @@ Frozen flags carried with the targets:
 > **(g) This does NOT rescue MI-vs-MG.** The derived average sits +0.0571 from the frozen MG target
 > 1.137, still inside the pre-declared "MI-vs-MG is NOT decided in this zone" band. The §1.5 forecast
 > that MI-vs-MG is **likely undecidable in DR4** stands unamended.
+
+> ### ⚠️ AMENDMENT 3 — 2026-07-30, ADDED IN THE OPEN BEFORE DR4. READ BEFORE SCORING.
+>
+> **(a) WHAT CHANGED, AND IT IS A THEORY CHANGE, NOT A REINTERPRETATION.** The framework has adopted an
+> **α ≥ 2** interpolation, replacing ν(y) = √(1+1/y) (α = 1). Reason, computed in
+> `real_research/reviews/mi_disformal_tail_freedom_2026.py` and
+> `real_research/reviews/mi_alpha2_migration_2026.py`: the α = 1 tail forces a constant sunward
+> anomaly a₀/2 that is **1279× the Earth 2σ ephemeris bound** (Sereno & Jetzer 2006 Table 1 through
+> their Eq. 9) and drives the disformal lensing construction's own B < 1 premise past **257×** across
+> Mercury→Saturn — while buying **+0.0033 dex** on 175 SPARC galaxies (0.10 σ_int), which the data
+> cannot resolve. **Crucially, a₀'s derivation does not depend on α = 1:** the α = 2 kernel
+> K = √(z/(1+z)) satisfies every premise that derivation uses — Herglotz–Nevanlinna positivity,
+> passivity sup K = 1, the unit sum rule ∫dμ/|t| = K(∞) − K(0) = 1, the horizon floor — and its spectral
+> measure ρ(s) = (1/π)√(s/(1−s)) on 0 < s < 1 is *simpler* than the α = 1 measure (single region,
+> compact support, finite mass 1/2, no additive constant), verified against the closed form to 1e-14
+> over eight decades. So a₀ = cH_Λ/Z is unaffected. What is withdrawn is the word **exact**.
+>
+> **(b) THE FROZEN γ_v TARGETS MOVE. This is the amendment.** Re-deriving through Amendment 2's own
+> quadrature-EFE construction (machinery reproduced against Amendment 2's α = 1 numbers to 0.0008)
+> with the α = 2 kernel:
+>
+> | quantity | frozen (α = 1) | **amended (α = 2)** |
+> |---|---|---|
+> | framework-MI, orientation-averaged, primary g_ext / canonical a₀ | 1.0799 (point target 1.09, band 1.05–1.10) | **1.0246** |
+> | framework-MI, full range over both footings × both g_ext | — | **1.0182 – 1.0350** |
+> | framework-as-MG (scalar μ(a_ex/a₀)) | 1.137 | **1.0473 – 1.0885** |
+> | γ_v ∥ g_ext (primary/canonical) | 1.0112 | **0.9669 — sub-Newtonian** |
+> | γ_v ⊥ g_ext (primary/canonical) | 1.1115 | **1.0523** |
+>
+> The MI prediction now sits **below the frozen band's lower edge (1.05) on every footing/g_ext
+> combination**, and moves by 0.0553 = **2.9σ** at the frozen DR4 error model (σ(γ_v) = 0.0191,
+> N = 30,000). **The frozen band 1.05–1.10 and point target 1.09 are hereby superseded** by the range
+> in the table. Everything else in §1.3 — the estimator, the frozen cuts, the error model, the
+> strictness ladder, the NSS screen — is **unchanged**.
+>
+> **(c) THE PRE-DECLARED ANISOTROPY SIGN IS PRESERVED AND STRENGTHENED.** Amendment 2 (f) pre-declared
+> that **perpendicular pairs must show the larger boost**. Under α = 2 that still holds, and more
+> sharply: the parallel direction goes **sub-Newtonian** (γ_v ∥ = 0.962–0.972 on all four combinations)
+> while perpendicular stays above 1. So Amendment 2's falsifier is not weakened — a measured anisotropy
+> of the opposite sense at ≥3σ still kills the derived EFE independently of the aggregate γ_v.
+>
+> **(d) WHY THIS AMENDMENT IS LEGITIMATE AND ONE PROPOSED EARLIER THE SAME DAY WAS NOT.** Earlier on
+> 2026-07-30 a Milgrom-2022 θ(0)-driven amendment was drafted and then **withdrawn**: it rested on a
+> multiplying phase function θ(ω_ex/ω_in) that this framework provably cannot use (the kernel is exactly
+> unimodular on the oscillatory branch, and Theorem B forces quadrature rather than Milgrom's linear
+> a_in + θa_ex — as Amendment 2 (a) already stated). That was a change of *analysis* on an inapplicable
+> basis, and amending a frozen target for it would have been illegitimate. **This** amendment is a change
+> of *theory*, made by the owner, declared before data, with its cost computed and its losses stated. The
+> distinction is the whole point of pre-registration and is recorded here deliberately.
+>
+> **(e) WHAT THIS AMENDMENT DOES NOT DO.** It does not touch the a₀-degeneracy flag, which remains
+> binding: no DR4 outcome may be reported as measuring a₀ = 9.36e-11. It does not change §1.5's forecast
+> that MI-vs-MG is likely undecidable in DR4 — under α = 2 the MI (1.0246) and as-MG (1.0631, primary/
+> canonical) values separate by 0.0385 = 2.0σ, still inside the pre-declared undecidable zone. And it
+> does not migrate the 267 other corpus scripts still computing on the α = 1 kernel; their numbers are
+> α = 1 results until re-derived.
+
 >
 > **(h) Scope, stated so the added statistic is not oversold.** The eigenvalue calculation is
 > equal-mass and deep-regime, and the observable angle is a **projection**. Unequal mass ratios and
