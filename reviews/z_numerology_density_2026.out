@@ -1,0 +1,85 @@
+grammar: atoms 1..12 and pi; unary sqrt/x^2/x^3/1-over-x/cbrt; binary + - * /
+complexity budget (node count) <= 6
+distinct values generated in [1.0,40.0]: 109065
+
+(i) expressions within 1% of Z=5.788810: 596
+    c=4  5.787344  (-0.025%)  (pi+sqrt(7))
+    c=4  5.800000  (+0.193%)  (6-inv(5))
+    c=4  5.776020  (-0.221%)  (8-cbrt(11))
+    c=4  5.773503  (-0.264%)  (10/sqrt(3))
+    c=4  5.772454  (-0.283%)  (4+sqrt(pi))
+    c=4  5.768998  (-0.342%)  (4*cbrt(3))
+    c=4  5.763932  (-0.430%)  (8-sqrt(5))
+    c=4  5.817121  (+0.489%)  (4+cbrt(6))
+    c=4  5.760000  (-0.498%)  sq((12/5))
+    c=4  5.818182  (+0.507%)  (cube(4)/11)
+    c=4  5.750338  (-0.665%)  (11/cbrt(7))
+    c=4  5.750000  (-0.670%)  (6-inv(4))
+    c=4  5.828427  (+0.684%)  (3+sqrt(8))
+    c=4  5.832000  (+0.746%)  cube((9/5))
+    c=4  5.744563  (-0.764%)  sqrt((3*11))
+    c=4  5.833333  (+0.769%)  (6-inv(6))
+    c=4  5.740079  (-0.842%)  (7-cbrt(2))
+    c=4  5.837722  (+0.845%)  (9-sqrt(10))
+    c=4  5.738794  (-0.864%)  (3*cbrt(7))
+    c=4  5.845565  (+0.980%)  (8-cbrt(10))
+    c=4  5.732051  (-0.980%)  (4+sqrt(3))
+    c=5  5.789797  (+0.017%)  (7-cbrt(sqrt(pi)))
+    c=5  5.785398  (-0.059%)  (5+(pi/4))
+    c=5  5.784160  (-0.080%)  (8/cbrt(sqrt(7)))
+    c=5  5.784152  (-0.080%)  (7/cbrt(sqrt(pi)))
+    c=5  5.793701  (+0.084%)  (5+cbrt(inv(2)))
+    c=5  5.779715  (-0.157%)  (7-cbrt(cbrt(6)))
+    c=5  5.799063  (+0.177%)  (7-cbrt(sqrt(3)))
+    c=5  5.778279  (-0.182%)  (4+sqrt(sqrt(10)))
+    c=5  5.778011  (-0.187%)  sq((5/cbrt(9)))
+    c=5  5.777778  (-0.191%)  (5+(7/9))
+    c=5  5.803848  (+0.260%)  (11-cube(sqrt(3)))
+    c=5  5.804187  (+0.266%)  (7-cbrt(cbrt(5)))
+    c=5  5.771831  (-0.293%)  (8-(7/pi))
+    c=5  5.771780  (-0.294%)  (sq(pi)/cbrt(5))
+    c=5  5.808029  (+0.332%)  (sqrt(7)+sqrt(10))
+    c=5  5.808259  (+0.336%)  (pi+(8/3))
+    c=5  5.808786  (+0.345%)  cbrt(sq((2*7)))
+    c=5  5.810793  (+0.380%)  (7-sqrt(sqrt(2)))
+    c=5  5.766115  (-0.392%)  (sqrt(6)+sqrt(11))
+    ... and 556 more
+
+    hits within 1% by complexity budget:
+      c<=2:      0 hits   (pool 40 values in band)
+      c<=3:      0 hits   (pool 182 values in band)
+      c<=4:     21 hits   (pool 1827 values in band)
+      c<=5:     64 hits   (pool 12408 values in band)
+      c<=6:    596 hits   (pool 109065 values in band)
+
+(ii) COVERAGE of the grammar (c<=6) over log-uniform targets in [3,12]:
+     fraction of ARBITRARY targets matched within 1% : 100.00%
+       c<=2: coverage  19.12%  (15 values in [3,12])
+       c<=3: coverage  53.07%  (48 values in [3,12])
+       c<=4: coverage 100.00%  (961 values in [3,12])
+       c<=5: coverage 100.00%  (5500 values in [3,12])
+       c<=6: coverage 100.00%  (47582 values in [3,12])
+
+(iii) sub-family sqrt(a*pi/b) (Z's OWN form, Z^2 = 32pi/3 -> a/b = 10.666667):
+      a<=40, b<=12: 2 distinct reduced ratios a/b give sqrt(a pi/b) within 1% of Z
+          sqrt(21pi/2) = 5.743407  (-0.784%)
+          sqrt(32pi/3) = 5.788810  (+0.000%)   <-- Z
+      a<=100, b<=20: 13 distinct reduced ratios a/b give sqrt(a pi/b) within 1% of Z
+      a<=200, b<=40: 46 distinct reduced ratios a/b give sqrt(a pi/b) within 1% of Z
+
+      other one-line families hitting within 1% (a,b<=20):
+        a*pi/b          : 2 distinct reduced a/b
+        a/(b*pi)        : 0 distinct reduced a/b
+        sqrt(a/b)*pi    : 2 distinct reduced a/b
+        a*sqrt(pi)/b    : 1 distinct reduced a/b
+        (a*pi/b)^(1/3)  : 0 distinct reduced a/b
+        a*pi^2/b        : 2 distinct reduced a/b
+        a/b (rational)  : 0 distinct reduced a/b
+
+(iv) but 1% is not the honest tolerance. a0 is empirically pinned only to ~10-20%
+     (M/L + interpolation systematics), so Z is pinned only to the same relative width.
+     tol=  1.0% :     596 expressions match Z ; coverage of arbitrary targets = 100.00%
+     tol=  5.0% :    3224 expressions match Z ; coverage of arbitrary targets = 100.00%
+     tol= 10.0% :    6074 expressions match Z ; coverage of arbitrary targets = 100.00%
+     tol= 16.0% :    9912 expressions match Z ; coverage of arbitrary targets = 100.00%
+     tol= 20.0% :   12380 expressions match Z ; coverage of arbitrary targets = 100.00%

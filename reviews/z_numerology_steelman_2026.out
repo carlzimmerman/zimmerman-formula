@@ -1,0 +1,50 @@
+==========================================================================
+OBJ 1  sub-family sqrt(a*pi/b), a<=40 b<=12 : hits within 1% of a target
+       family size (distinct values, a<=40 b<=12): 300
+       hits within 1% of Z=5.788810                : 2
+       for RANDOM targets in [4,9]: mean hits 2.02, P(>=1 hit)=98.6%, P(>=2 hits)=59.0%
+       => Z's '2 hits' is the MODAL outcome for an arbitrary number. Not special.
+==========================================================================
+OBJ 2  grammar restricted to primitives that genuinely occur in GR/cosmology
+       distinct values built from GR primitives (depth<=4): 90520  (13685 in [4,9])
+       within 1% of Z: 299
+         5.783185 (-0.097%)  (2pi-1/2)
+         5.750000 (-0.670%)  (6-1/4)
+         5.756105 (-0.565%)  sqrt((8pi+8))
+         5.842323 (+0.924%)  sqrt((8pi+9))
+         5.788810 (+0.000%)  sqrt((4pi/3*8))
+         5.830952 (+0.728%)  sqrt((2+32))
+         5.772454 (-0.283%)  (sqrt(pi)+4)
+         5.732051 (-0.980%)  (sqrt(3)+4)
+         5.828427 (+0.684%)  (sqrt(8)+3)
+         5.759587 (-0.505%)  ((8pi/16)+4pi/3)
+         5.792527 (+0.064%)  ((8pi/9)+3)
+         5.759625 (-0.504%)  ((4pi/3+32)/2pi)
+       coverage of arbitrary targets in [4,9] within 1%: 100.0%
+       => even the 'respectable' GR-primitive prior saturates: Z is not picked out.
+==========================================================================
+EXACT DECOMPOSITION of Z  (sympy-checkable, no fitting)
+       Z  =  sqrt(8pi/3)/kappa  with kappa=1/2  ->  4*sqrt(6)*sqrt(pi)/3  = 5.788810
+       Z^2 = 32pi/3 = (1/kappa^2) * (8pi/3) = 4 * (8pi/3)          [exact: 32*pi/3]
+       and 8pi/3 = 2 * (4pi/3):   2 = the 1/2 v^2 kinetic factor in the
+       Newtonian Friedmann derivation (1/2 Rdot^2 = GM/R),
+       4pi/3 = volume of the unit 3-ball, because M = (4pi/3) R^3 rho.
+       So Z^2 = 8 * V_unit-3-ball with 8 = 4 (=1/kappa^2) * 2 (kinetic).
+       check 32pi/3 == 8*(4pi/3): True
+       INDEPENDENT occurrence: a Schwarzschild horizon of radius r_s=2m encloses
+       coordinate 3-volume (4pi/3)(2m)^3 = (32pi/3) m^3, hence the textbook mean
+       density rho_BH = 3c^6/(32 pi G^3 M^2).  Same integers, 8 = 2^3 from r_s=2m.
+       -> a DIFFERENT reason for the same 8; shared ancestor is 'ball volume', not a link.
+==========================================================================
+NUMERICAL LEDGER (Planck 2018: H0=67.4 km/s/Mpc, Omega_L=0.6847)
+       framework  cH_L / Z        (kappa=1/2)         = 9.3603e-11   (   +0.0% vs framework)
+       Milgrom99  2 cH_L          (forced by dS-Unruh) = 1.0837e-09   (+1057.8% vs framework)
+       folklore   cH_L / 2pi                          = 8.6238e-11   (   -7.9% vs framework)
+       folklore   cH0 / 2pi                           = 1.0422e-10   (  +11.3% vs framework)
+                  cH0 / 7        (an INTEGER)         = 9.3547e-11   (   -0.1% vs framework)
+                  cH_L / 6                            = 9.0309e-11   (   -3.5% vs framework)
+       empirical  standard-MOND a0 (RAR, McGaugh nu)  = 1.2000e-10   (  +28.2% vs framework)
+       Milgrom/framework ratio = 11.5776  = 2Z = 11.5776   (exactly 2Z)
+       decomposed: 4 (=2 / (1/2), the normalisation) x sqrt(8pi/3)=2.8944 (the scale swap cH -> c sqrt(G rho)) = 11.5776
+       Z / 2pi = 0.9213  -> Z is within 7.9% of 2pi,
+       i.e. INSIDE a0's own ~10-20% systematic error bar.
