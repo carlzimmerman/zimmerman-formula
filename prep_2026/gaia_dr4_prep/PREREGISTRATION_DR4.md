@@ -148,6 +148,79 @@ Frozen flags carried with the targets:
   spread between footings ≤ 0.005 in gamma — the footing is non-diagnostic
   here; canonical decides, alt is always reported.
 
+
+> ### ⚠️ AMENDMENT 2 — 2026-07-30, ADDED IN THE OPEN BEFORE DR4. READ BEFORE SCORING.
+>
+> **(a) What changed.** Section 1.1 carries a frozen flag on its own MI target: *"the per-star MI-EFE
+> law is a PRESCRIPTION, not a completion — the band 1.05–1.10 is a prescription+observable bracket,
+> not a theorem."* As of 2026-07-30 that is no longer true. The EFE is **derived** from Theorem B
+> (⟨□_u⟩_u = +|a|², exact on every timelike worldline): the closure's argument is the squared magnitude
+> of the **total** four-acceleration, so the external field enters in **quadrature with a vector cross
+> term** and no multiplying phase function θ(ω_ex/ω_in) is available. Published as Theorem 5 of
+> *Structural Theorems for de Sitter–Unruh Modified Inertia*, DOI 10.5281/zenodo.21707845.
+>
+> **(b) THE FROZEN TARGET SURVIVES — no number is being moved.** Re-deriving γ_v from the derived law
+> at the frozen g_ext values gives an orientation-averaged **γ_v = 1.0799**, which lies inside the
+> frozen band (1.05–1.10) and sits **0.0101** from the frozen point target 1.09. The full nonlinear
+> two-body solve agrees with the linear-response derivation to 0.0014 in γ_v. This amendment therefore
+> **adds** information rather than shifting a target after the fact, which is the only honest form a
+> pre-data amendment can take.
+>
+> **(c) One flag is discharged, one is NOT.** The *prescription flag* above is discharged: the law is
+> now a theorem within the first-moment closure family. The **a0-degeneracy flag is untouched** and
+> still binding — no DR4 outcome may be reported as measuring a₀ = 9.36e-11.
+>
+> **(d) NEW PHYSICS THE FROZEN PIPELINE AVERAGES AWAY: the EFE is ANISOTROPIC.** Because the cross term
+> is a vector, the response to the internal field is a **tensor**, with eigenvalues
+> γ²∥ = d(νg)/dg|_g_ext (separation along g_ext) and γ²⊥ = ν(g_ext) (perpendicular). At the frozen
+> primary g_ext = 1.778e-10 and canonical a₀:
+>
+> | orientation | derived γ_v |
+> |---|---|
+> | separation ∥ g_ext (toward/away from Galactic centre) | **1.0112** |
+> | separation ⊥ g_ext | **1.1115** |
+> | isotropic average (what the frozen scalar fit measures) | **1.0799** |
+>
+> The spread is **0.1004 in γ_v = 3.6× the frozen σ_tot = 0.028**, and it exceeds σ_tot on *every*
+> footing and g_ext convention (0.0888–0.1158, i.e. 3.2–4.1 σ_tot). The frozen §1.3 estimator fits a
+> single scalar γ_v and averages this away.
+>
+> **(e) ADDED STATISTIC (pre-registered here, before data).** Alongside — never substituted for — the
+> frozen scalar fit, run an **orientation-resolved** fit: bin pairs by the angle between the projected
+> relative-separation vector and the Galactic-centre direction, and fit γ_v per bin using the otherwise
+> unchanged frozen estimator, cuts, error model and strictness ladder.
+>
+> **(f) SIGN PRE-DECLARED, so the new statistic cannot be read post-hoc.** **Perpendicular pairs must
+> show the LARGER boost.** A measured anisotropy of the opposite sense at ≥3σ falsifies the derived EFE
+> **independently of the aggregate γ_v**, and must be reported as such. A null anisotropy at the
+> frozen allowances is *not* a kill, because (h) below shows the observable spread is diluted.
+>
+> **(g) This does NOT rescue MI-vs-MG.** The derived average sits +0.0571 from the frozen MG target
+> 1.137, still inside the pre-declared "MI-vs-MG is NOT decided in this zone" band. The §1.5 forecast
+> that MI-vs-MG is **likely undecidable in DR4** stands unamended.
+>
+> **(h) Scope, stated so the added statistic is not oversold.** The eigenvalue calculation is
+> equal-mass and deep-regime, and the observable angle is a **projection**. Unequal mass ratios and
+> projection both **dilute** the anisotropy, so 0.1004 is an **upper bound** on what DR4 can see, not a
+> forecast. The dilution factor is not computed here and must not be assumed to be unity at scoring.
+>
+> **(i) Prior art, credited.** An anisotropic effective gravity in an external field is a **known**
+> feature of MOND-type EFE treatments (Milgrom; Banik & Zhao and others have discussed it for wide
+> binaries). Novelty here is confined to (i) its **derivation** from this framework's action rather
+> than prescription, and (ii) the specific frozen numbers above.
+>
+> **(j) Related tightening, recorded for completeness.** The off-circular closure ambiguity — directly
+> relevant because wide binaries are eccentric — was narrowed from ~570% to **7.9%** on 2026-07-30
+> (`real_research/reviews/mi_offcircular_closure_collapse_2026.py`, published in DOI
+> 10.5281/zenodo.21702746). This removes a named liability on the WB prediction but changes no frozen
+> target. The residual weighting freedom within the first-moment family remains open, and is now
+> testable via dispersion-supported systems at ~1.2–1.9σ on archival data (Prop 7 of the same paper).
+>
+> **(k) Verification.** All numbers in this amendment are produced by
+> `prep_2026/gaia_dr4_prep/amendment2_derived_efe.py` (exit 0, 6 internal checks, output committed
+> alongside as `.out`). Nothing in Sections 1.1–1.6 above is edited; this block is additive.
+
+
 ### 1.2 Frozen DR4 cut list
 
 The DR4 catalog fed to the pipeline (`--catalog`, columns
