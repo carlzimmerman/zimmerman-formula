@@ -1,0 +1,93 @@
+
+=== 1. mu_fw IS Milgrom 1999 Eq. 9 ===
+  [PASS] mu_fw(x) - mu_hat(x) == 0 identically
+  [PASS] radicand a0^2+4 g_obs^2 is the perfect square (2 g_bar + a0)^2
+  [PASS] => mu_fw(g_obs/a0)*g_obs == g_bar identically
+  [PASS] numeric sweep (2000 pts, 8 decades): mu_fw*g_obs == g_bar   max rel. err 6.30e-13
+
+=== 2. WHAT COEFFICIENT DOES THE MECHANISM FORCE? ===
+  [PASS] 2pi*DeltaT == a*mu_hat(a/(2H_L))  => a0_hat = 2 c H_Lambda
+  [PASS] mechanism's law is g_obs = g_bar*sqrt(1 + 2H_L/g_bar)   i.e. framework form with a0 = 2 c H_Lambda
+    c H_Lambda            = 5.4197e-10 m/s^2
+    Z = sqrt(32pi/3)      = 5.78881
+    a0 framework (cH/Z)   = 9.3624e-11 m/s^2   (kappa=1/2)
+    a0 mechanism (2cH)    = 1.0839e-09 m/s^2
+    a0 observed (RAR)     = 1.2000e-10 m/s^2
+    mechanism / framework = 11.578   (= 2Z)
+    mechanism / observed  = 9.033
+  [PASS] a0_fw reproduces the canonical 9.36e-11   9.3624e-11
+  [PASS] mechanism/framework ratio == 2Z   11.5776
+  [PASS] mechanism OVERSHOOTS observed a0 by >5x   factor 9.0
+    a0 Luo 2026 (cH/2)    = 2.7099e-10 m/s^2  (x2.89 framework, x2.26 observed)
+  [PASS] Luo's scale also overshoots the framework's value   factor 2.89
+
+=== 3. HIGH-ACCELERATION ASYMPTOTIC CLASS (alpha, A) ===
+    1 - mu_fw(x) = (4*x - 1)/(8*x**2)  (x -> oo)
+  [PASS] 1-mu_fw ~ A x^-alpha with alpha == 1   A = 1/2
+  [PASS] A == 1/2
+  [PASS] alpha=1 => anomaly is CONSTANT in radius (exponent 2(alpha-1)=0)
+  [PASS] alpha=1 < Sereno-Jetzer 2006 requirement alpha >~ 1.5
+
+=== 4. PLANETARY PRECESSION FROM THE CONSTANT ANOMALY A*a0 ===
+    constant sunward anomaly A*a0 = 4.6812e-11 m/s^2 = 4.681e-09 cm/s^2
+    Mercury  a= 0.3871 AU   delta-varpi =    0.6365 arcsec/century
+    Earth    a= 1.0000 AU   delta-varpi =    1.0231 arcsec/century
+    Jupiter  a= 5.2044 AU   delta-varpi =    2.3339 arcsec/century
+    Saturn   a= 9.5826 AU   delta-varpi =    3.1670 arcsec/century
+  [PASS] precession scales as a^(1/2) across planets
+    Saturn bound (3sigma, Cassini) = 1.290e-03 arcsec/cy
+    VIOLATION FACTOR               = 2.455e+03
+  [PASS] constant a0/2 anomaly exceeds the Cassini-equivalent Saturn bound   by 2.46e+03x
+    Sereno-Jetzer Uranus   tolerance 1.0e-10 cm/s^2  ->  framework/Uranus = 46.8x
+    Sereno-Jetzer Neptune  tolerance 4.0e-10 cm/s^2  ->  framework/Neptune = 11.7x
+    Sereno-Jetzer Pluto    tolerance 1.0e-09 cm/s^2  ->  framework/Pluto = 4.7x
+  [PASS] framework's constant anomaly exceeds ALL Sereno-Jetzer tolerances
+    Fienga+2009 global-fit Uranus tolerance 2.0e-08 cm/s^2  ->  framework is 4.3x BELOW it
+  [PASS] verdict is METHODOLOGY-DEPENDENT (Fienga global fit tolerates it)   => report as strongly disfavoured + contested, not a clean kill
+
+=== 5. MILGROM 1994 Eq.57 INVERSION: the action DOES exist on circular orbits ===
+    lambda(x) = (x*sqrt(4*x**2 + 1)/2 - x + asinh(2*x)/4)/x**2
+  [PASS] lambda satisfies mu = lambda + (x/2) lambda'
+    lambda(x)/x -> 2/3 as x->0 (deep-MOND: S_k ~ a0^-1, required)
+    lambda(x)   -> 1 as x->oo (Newtonian: S_k -> v^2/2)
+  [PASS] Newtonian limit lambda->1
+  [PASS] deep-MOND limit lambda ~ (2/3)x, so S_k^c ~ a0^-1 as Milgrom requires
+    G(z) = mu_fw(1/sqrt(z)) = s**2/8 - s/2 + 1   [s = sqrt(z)]
+  [PASS] G has a NON-ZERO z^(1/2) coefficient (this IS alpha=1)   coeff = -1/2
+    forced coefficient of sqrt(z) in f:  beta = -1
+  [PASS] f(z) must carry a sqrt(z) branch point at z=0 (beta != 0)   => violates Milgrom 1994's regularity requirement below Eq.35
+  [PASS] no f analytic in z (even powers of s only) can match the s^1 term   leftover = 1/2
+
+=== 6. FRW BACKGROUND: EFFECT VANISHES IDENTICALLY ===
+    comoving 4-acceleration a^mu = [0, 0, 0, 0]
+  [PASS] comoving proper acceleration is identically zero for any a(t)
+  [PASS] => mu_fw(|a|/a0)=mu_fw(0)=0 limit is never probed on the background; the term vanishes
+
+    -- u_mu Box_u u^mu = -|a|^2 spot-check (flat, hyperbolic) --
+  [PASS] u.u = -1 on the hyperbolic worldline
+  [PASS] u_mu Box_u u^mu == -|a|^2   |a|^2 = a_p**2
+
+=== 7. PROVE BY MOVING THE NUMBER: does the MECHANISM's own a0 fit SPARC? ===
+  [PASS] SPARC rotmod files loaded   N=175 galaxies
+    a0 = 9.362e-11  [framework  cH/Z  ]  best Upsilon_disk = 0.70   scatter = 0.108 dex
+    a0 = 2.710e-10  [Luo 2026   cH/2  ]  best Upsilon_disk = 0.42   scatter = 0.119 dex
+    a0 = 1.084e-09  [mechanism  2cH   ]  best Upsilon_disk = 0.20   scatter = 0.223 dex
+  [PASS] framework a0 reproduces the banked ~0.108 dex   0.108 dex
+  [PASS] mechanism's own a0 = 2cH_Lambda fits WORSE than the framework's   0.223 vs 0.108 dex
+  [PASS] mechanism's a0 is driven to the Upsilon grid floor (unphysical M/L)   Upsilon_disk -> 0.20, below the 0.5-0.8 population-synthesis range
+
+=== 8. THE SIBLING CONSTRUCTION IN THE SAME PAPER (Milgrom 1999 Eqs. 10-11) ===
+  [PASS] a dT/da = a*mu_sib(a/H_L) with mu_sib = x/sqrt(1+x^2)
+    sibling: 1 - mu_sib ~ 1/2 x^-2   => alpha = 2
+  [PASS] sibling has alpha = 2 (vs framework's alpha = 1)
+  [PASS] sibling PASSES the Sereno-Jetzer alpha >~ 1.5 requirement
+  [PASS] the two constructions differ in a0 by exactly a factor 2
+    sibling a0 = c H_Lambda = 5.4197e-10 m/s^2  (x4.52 observed, x5.79 framework)
+  [PASS] sibling ALSO fails to deliver the observed coefficient   factor 4.52 too large
+    => SAME bath, SAME temperature, TWO different mu's and TWO different
+       a0's.  The thermal setup does NOT select the functional form;
+       the choice of thermodynamic functional does.
+
+======================================================================
+ALL CHECKS PASSED
+======================================================================

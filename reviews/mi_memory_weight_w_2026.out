@@ -1,0 +1,298 @@
+
+================================================================================================
+mi_memory_weight_w_2026 -- can physics fix the memory weight w?
+================================================================================================
+
+================================================================================================
+T1. WHAT PHYSICAL PROCESS SETS A MEMORY KERNEL? -- timescale ledger
+================================================================================================
+  TARGET  tau_mem = 2c/a0 = 203.0 Gyr (canonical a0=9.36e-11)
+                          = 168.1 Gyr (alternative a0=1.13e-10)
+  [OK  ] canonical 2c/a0 reproduces the quoted 203 Gyr (203.0)
+  [OK  ] alternative 2c/a0 reproduces the quoted 168 Gyr (168.1)
+
+  de Sitter Hubble time 1/H_Lambda = 17.53 Gyr  (H_L = 1.807e-18 1/s)
+
+  candidate process                                timescale   ratio to 2c/a0  dissip?
+  --------------------------------------------------------------------------------------------
+  dS horizon light-crossing r_H/c = 1/H_L           17.5 Gyr          0.08637       no
+      the ONE natural horizon time
+  dS quasinormal relaxation 1/(n H_L), n>=1         17.5 Gyr          0.08637      YES
+      tower goes DOWN from 1/H_L, never up
+  dS Gibbons-Hawking 1/T_dS = 2pi/H_L                110 Gyr           0.5427      YES
+      thermal correlation time
+  Unruh bath at a=a0: 1/T_U = 2pi c/a0               638 Gyr            3.142      YES
+      same a0 scale, coefficient 2pi
+  electron radiation reaction 2e^2/3mc^3          6.27e-24 s        9.782e-43      YES
+      Abraham-Lorentz-Dirac
+  GW radiation reaction (J0737 inspiral)           0.086 Gyr        0.0004237      YES
+      ~86 Myr, system-dependent
+  condensate/aether relaxation                            --               --      YES
+      set by the condensate scale M -- FREE, must be tuned to a0
+
+  READING -- the dimensional degeneracy that makes this ledger nearly vacuous:
+  a0 and c admit EXACTLY ONE timescale, c/a0 = 101.5 Gyr. So ANY
+  candidate whose scale is set by a0 lands within an O(1) factor of 2c/a0
+  AUTOMATICALLY, carrying ZERO evidential weight. Only a process predicting the
+  COEFFICIENT (exactly 2) to real precision would count. None below does:
+    dS horizon      : 2c/a0 = 11.58 x (1/H_L)   -- off by 11.6x
+    dS thermal      : 2c/a0 = 1.843 x (2pi/H_L)
+    Unruh at a0     : 2c/a0 = 0.3183 x (2pi c/a0) = (1/pi) x
+  Two of these sit within a factor ~2 of the target. That is what dimensional
+  degeneracy GUARANTEES, not evidence. Radiation reaction misses by ~40 orders.
+
+  A SECOND, STRONGER OBSTRUCTION -- the no-dissipation constraint:
+  Im K == 0 identically under the closure (argument |a|^2 >= 0, cut needs z <= -1/4),
+  and any secular drift is excluded at 8.5 sigma by PSR J0737-3039 timing. But every
+  bath-sourced memory kernel is DISSIPATIVE by the fluctuation-dissipation theorem:
+  a bath that supplies memory necessarily supplies Im chi != 0. Every 'YES' in the
+  dissip? column above is therefore excluded on ANALYTIC CHARACTER, independently of
+  its timescale. The only non-dissipative entry is the bare horizon light-crossing
+  time, which misses by 11.6x. => NO candidate on this list can source w.
+
+================================================================================================
+T2. IS THE BRANCH POINT A PHYSICAL MEMORY TIME, OR A PARAMETRISATION ARTEFACT?
+================================================================================================
+  The framework's law, written TWO equivalent ways (same physics, exactly):
+    (A) g_obs = g_bar * nu(y),  y = g_bar/a0,  nu = sqrt(1 + 1/y)
+    (B) g_bar = g_obs * mu(x),  x = g_obs/a0,  mu = (sqrt(4*x**2 + 1) - 1)/(2*x)
+  [OK  ] (A) is g_obs^2 = g_bar^2 + a0 g_bar  (residual 0)
+  [OK  ] (B) inverts (A) exactly (residual 0)
+  [OK  ] identity K(x^2) = mu_fw(x) as given
+
+  Nearest singularity of each form, in its own (acceleration/a0) variable:
+    (B) mu(x): 1+4x^2 = 0 -> x = [-I/2, I/2], |x| = 0.5
+    (A) nu(y): 1+1/y = 0 -> y = [-1], |y| = 1.0
+
+    tau from (B) = c/(a0 |x|) = 203.0 Gyr   <-- this is the quoted 2c/a0
+    tau from (A) = c/(a0 |y|) = 101.5 Gyr
+  [OK  ] (B) reproduces 203 Gyr (203.0)
+  [OK  ] (A) gives EXACTLY HALF of (B): ratio 0.500000
+
+  >>> The SAME LAW gives two different 'memory times', differing by exactly 2,
+      depending only on whether you parametrise by g_bar or by g_obs. A physical
+      relaxation time cannot depend on that bookkeeping choice.
+
+  Now across interpolation functions that all fit the RAR comparably well:
+  interpolation function                                |sing|   tau (Gyr)
+  --------------------------------------------------------------------------
+  framework / Milgrom 1999 mu=(sqrt(1+4x^2)-1)/2x          0.5         203   (branch)
+  standard      mu = x/sqrt(1+x^2)                           1         101   (branch at x=+-i)
+  simple        mu = x/(1+x)                                 1         101   (pole at x=-1)
+  McGaugh RAR   nu = 1/(1-exp(-sqrt(y)))                 39.48        2.57   (poles at y=-4 pi^2 k^2)
+
+  SPREAD across RAR-acceptable functions: factor 79.0 (2.6 - 203.0 Gyr)
+  The McGaugh RAR function additionally has a sqrt branch point AT y=0, which would
+  give an UNBOUNDED 'memory time'. So the answer is not merely different, it is
+  not even finite for a function that fits the same data.
+
+  DECISIVE, and internal to the framework: under the closure the operator argument
+  is |a|^2 >= 0. The branch point sits at |a|^2 = -a0^2/4, i.e. at an IMAGINARY
+  acceleration, on a part of the domain the dynamics PROVABLY never visits
+  (that is exactly why Im K == 0 identically). Reading a relaxation time off a
+  singularity the theory can never reach requires two further unmotivated steps:
+  accepting a negative squared argument, and converting acceleration -> frequency
+  via omega = a/c, which appears nowhere in the closure.
+
+  VERDICT (T2): tau_mem = 2c/a0 is a DIMENSIONAL RE-EXPRESSION OF THE ALGEBRAIC
+  NUMBER 1/4 in sqrt(1+4z) -- a property of the calibrated functional form, not a
+  physical memory timescale. It is parametrisation-dependent (factor 2), varies by
+  a factor 79 across equally good fits, and lives off the physical domain.
+
+================================================================================================
+T3. DEEP-MOND SPACETIME SCALE INVARIANCE -- does it fix w?
+================================================================================================
+  Milgrom 2009 (ApJ 698, 1630; arXiv:0810.4065): the deep-MOND limit is invariant
+  under (t, r) -> (lambda t, lambda r). From this symmetry follow asymptotically
+  flat rotation curves, the BTFR and Faber-Jackson. The framework's DML
+  g_obs = sqrt(a0 g_bar) has exactly this form, so it inherits the requirement.
+
+  DML of the framework: K(z) -> sqrt(z) as z -> 0, so the DML law is x_w a = a_N.
+  [OK  ] K(z)/sqrt(z) -> 1 as z->0 (got 1) => DML is x_w a = a_N
+
+  Under (t,r)->(lambda t, lambda r):  r_lam(t) = lambda r(t/lambda), so
+  a_lam(t) = a(t/lambda)/lambda  and  a_N -> a_N/lambda^2.
+  Invariance of x_w a = a_N therefore REQUIRES  x_w[r_lam](tau) = x_w[r](tau/lam)/lam.
+  Substituting s = lambda sigma in the convolution gives the functional equation
+        lambda w(lambda s) = w(s)      for all lambda > 0.
+
+  Numerical test on a NON-circular trajectory, lambda = 2.7, tau = 1.3:
+  weight w                             x_w[r_lam](tau)   x_w[r](tau/lam)/lam   invariant?
+  ------------------------------------------------------------------------------------------
+  ULTRALOCAL  w = delta(s)                  0.53752248            0.53752248          YES
+  ORBIT-AVERAGED (window = period)          0.45057500            0.45057500          YES
+  fixed-width exponential (tau_mem)         0.45243300            0.45042739           NO
+  homogeneous w ~ 1/s (unnormalisable)        0.48529075            0.47908956           NO
+  [OK  ] ULTRALOCAL is DML scale-invariant
+  [OK  ] ORBIT-AVERAGED is DML scale-invariant (window scales with orbit)
+  [OK  ] FIXED-WIDTH kernel BREAKS DML scale invariance (as the functional equation demands)
+
+  WHY the two named members both survive: delta satisfies lam*delta(lam s)=delta(s)
+  identically, and the orbit-average window is not an external constant -- its width
+  is the trajectory's own period, which rescales WITH the orbit. Both are scale-free.
+
+  >>> CONSEQUENCE FOR THE 203 Gyr READING. A weight with a FIXED width tau_mem
+      introduces a new dimensioned constant beyond a0 and breaks the very symmetry
+      that delivers flat rotation curves and the BTFR. Milgrom's own construction
+      (arXiv:2208.07073) avoids this by making his weight depend only on a RATIO of
+      frequencies -- 'Only ratios of frequencies enter, and a0 remains the only new
+      dimensioned constant.' The 203 Gyr kernel is exactly the forbidden kind.
+
+  SECOND, INDEPENDENT PROBLEM with taking 203 Gyr seriously: it exceeds EVERY
+  astrophysical dynamical time by orders of magnitude, so w would be effectively
+  flat over every observable orbit:
+    wide binary at 10 kAU        t_dyn ~ 1e+06 yr  ->  tau_mem / t_dyn = 2.03e+05 orbits
+    MW vertical oscillation      t_dyn ~ 8e+07 yr  ->  tau_mem / t_dyn = 2.54e+03 orbits
+    solar Galactic orbit         t_dyn ~ 2e+08 yr  ->  tau_mem / t_dyn = 923 orbits
+    dwarf satellite orbit        t_dyn ~ 2e+09 yr  ->  tau_mem / t_dyn = 81.2 orbits
+  i.e. the 203 Gyr reading does NOT leave the choice open -- it collapses the whole
+  family onto the ORBIT-AVERAGED member for every system we can observe, and makes
+  ULTRALOCAL unreachable. It is therefore not a neutral curiosity: it PREDICTS the
+  -0.037 dex dispersion-support offset rather than zero. Testable, and it is the
+  member that DML scale invariance penalises. The two readings cannot both be held.
+
+================================================================================================
+T4. OBSERVABLE LEVER -- how sharply does eccentricity separate the weightings?
+================================================================================================
+  [OK  ] INT (1+e cos)^2 dtheta = 2 pi (1 + e^2/2)  (got pi*(e**2 + 2))
+
+  EXACT result: for a Kepler orbit of semi-major axis A, with a_circ = GM/A^2,
+      sqrt(<|a|^2>_t) / a_circ = sqrt(e**2/2 + 1)/(1 - e**2)**(5/4)
+  [OK  ] reduces to 1 at e=0 (all weightings agree)
+
+       e   orbit-avg / a_circ      dex   ultralocal at apo   apo split (dex)
+  ----------------------------------------------------------------------------
+     0.0               1.0000    0.000              1.0000             0.000
+     0.2               1.0628    0.026              0.6944             0.185
+     0.4               1.2923    0.111              0.5102             0.404
+     0.6               1.8976    0.278              0.3906             0.686
+     0.8               4.1201    0.615              0.3086             1.125
+     0.9               9.4492    0.975              0.2770             1.533
+
+  Compare the framework's own dispersion-support test: 0.037 dex (= factor 1.089).
+  At e = 0.6 the orbit-averaged/ultralocal split at apocentre is 0.69 dex,
+  i.e. ~19x the lever of the circular-system test.
+
+  DWARF-SATELLITE EFE, RESOLVED BY ORBITAL PHASE. Milgrom (arXiv:2208.07073) makes
+  the same distinction explicitly: the EFE is set by a time-average <a_ex> under a
+  memory weight, versus the MOMENTARY a_ex under ultralocal weighting.
+
+    orbit spans r = 33 - 117 kpc; time-rms a_ex/a0 = 0.125
+    In the EFE-dominated regime internal dynamics are Newtonian with G_eff =
+    G/mu(a_ex/a0), so sigma^2 ~ 1/mu. Split as a function of CURRENT phase:
+
+  current phase               r (kpc)  a_ex/a0 (momentary)  sigma_oa/sigma_ul     dex
+  ------------------------------------------------------------------------------------
+  at pericentre                    33                0.420              0.581   0.236
+  mid-orbit                        60                0.231              0.748   0.126
+  at apocentre                    117                0.118              1.025   0.011
+
+  >>> IMPORTANT CORRECTION TO THE OBVIOUS OBSERVING STRATEGY. The split is NOT
+      largest for the famous EFE dwarfs. An eccentric orbit spends most of its time
+      near APOCENTRE, so the time-average is dominated by the apocentric field --
+      which means at apocentre the orbit-averaged and momentary values nearly
+      COINCIDE and the test has almost no power. Crater II and Antlia II are both
+      near apocentre (Pace+ 2022), so the flagship EFE successes are the WRONG
+      objects for this test. The discriminating power is concentrated in dwarfs
+      currently near PERICENTRE, where the momentary field greatly exceeds the
+      orbit average. That is a sharp, cheap selection rule for a DR4 sample.
+
+  RANKING by lever and by whether the dominant systematic is COHERENT (bad) or
+  RANDOM (good), and -- decisively -- whether it CORRELATES with the discriminant:
+
+    1. MW satellite dwarfs NEAR PERICENTRE, phase-resolved EFE
+       lever ~0.13-0.24 dex | systematic: random per object (small-N sigma, binaries)
+       orbits known per object from Gaia; M/L does NOT correlate with orbital phase, so the coherent systematic is orthogonal to the discriminant; select near pericentre (apocentric dwarfs have ~no power); BUT tidal disturbance ALSO correlates with pericentre -- that confound is the main threat and must be modelled
+
+    2. Eccentric wide binaries (2-30 kAU)
+       lever ~0.2-0.9 dex | systematic: COHERENT (undetected triples; unknown e-distribution)
+       largest raw lever, but e is unmeasurable per system at these separations, so the e-distribution prior is DEGENERATE with w itself; also sits in the omega_c gate dead zone
+
+    3. MW vertical dynamics, population-differential
+       lever ~0.05-0.2 dex | systematic: coherent MW potential -- but CANCELS between populations at fixed R
+       different populations share a_ex and differ in vertical frequency; Milgrom flags exactly this case; a genuinely differential test
+
+    4. Tidal streams (GD-1, Pal 5)
+       lever ~0.1-0.3 dex | systematic: COHERENT (MW baryonic potential + progenitor orbit)
+       precise geometry but the systematic is the model itself
+
+    5. Infalling cluster members
+       lever ~<0.1 dex | systematic: COHERENT (cluster mass modelling)
+       weakest; MOND clusters already carry an unresolved central residual
+
+================================================================================================
+T5. IS w REALLY THE ENTIRE REMAINING FREEDOM? -- the composite-body test
+================================================================================================
+  Milgrom flagged this in the ORIGINAL 1994 paper (Annals of Physics 229, 384;
+  astro-ph/9303012) and it is still open in 2022:
+    "We cannot yet offer an example of a theory that fully accounts for the correct
+     center-of-mass motion of composite objects: A composite body (e.g. a star),
+     with constituents whose internal motion is Newtonian should still undergo a
+     center-of-mass motion similar to that of a test particle, which may be well in
+     the MOND regime."
+  His fix needs FREQUENCY structure: high-frequency internal accelerations must be
+  SUPPRESSED in the low-frequency (galactic) inertia. In 2208.07073 that is the
+  weight theta(omega'/omega), which decays for omega' >> omega.
+
+  Now test the framework's family against it. THE OBSTRUCTION IS POSITIVITY.
+  Theorem 1 makes the argument exactly +|a|^2 (from u.u = -1), so for ANY normalised
+  w >= 0:   if |a(tau)| >= A on supp(w), then x_w >= A/a0.  A positive weight cannot
+  SUPPRESS a large internal acceleration -- averaging a positive quantity keeps it.
+
+  Star constituent: |a_int| = 2.93e+12 a0 (solar surface gravity), |a_gal| = 0.5 a0
+
+  weight w                                         x_w   mu_fw(x_w)    MOND?
+  ----------------------------------------------------------------------------
+  ULTRALOCAL delta (at generic phase)         1.53e+12     1.000000       NO
+  [OK  ] ULTRALOCAL delta (at generic phase) leaves the constituent NEWTONIAN (mu=1.000000)
+  ORBIT-AVERAGED over internal period         2.07e+12     1.000000       NO
+  [OK  ] ORBIT-AVERAGED over internal period leaves the constituent NEWTONIAN (mu=1.000000)
+  fixed-width kernel, any width               2.07e+12     1.000000       NO
+  [OK  ] fixed-width kernel, any width leaves the constituent NEWTONIAN (mu=1.000000)
+
+  Every member gives mu_fw ~ 1: the constituent is Newtonian, so the star's total
+  inertia is Newtonian, so its centre of mass feels NO MOND in the galaxy -- and
+  rotation curves, which are the framework's primary evidence, would be Newtonian.
+  This is not a property of a bad choice of w. It follows from |a|^2 >= 0, i.e. from
+  the SAME positivity (Theorem 1, u.u = -1) that gives Im K == 0. The framework's
+  positivity-locked first moment has no suppression mechanism at all.
+
+  THE FORK, both horns stated:
+   (i)  If the law applies to every timelike worldline (as Theorem 1 states), then NO
+        member of the w-family solves the composite-body problem. The freedom is in
+        the wrong place: fixing w would not complete the inertia sector.
+   (ii) If instead the law applies only to designated centre-of-mass worldlines, the
+        theory needs an extra rule saying WHICH worldlines are fundamental (star?
+        cloud? galaxy?). That rule is a new free choice, and a BIGGER one than w.
+  Either way the brief's premise -- that w is the entire remaining freedom -- does
+  not survive. Milgrom escapes only because his weight is a frequency RATIO acting
+  on |a_hat(omega)|, which a positive time-domain weight on |a|^2 cannot reproduce.
+
+================================================================================================
+SUMMARY -- stated whatever the outcome
+================================================================================================
+  1. (T1) No enumerated physical process sets 2c/a0. Worse, the comparison is
+     structurally uninformative: c/a0 is the ONLY time a0 and c can build, so any
+     a0-scale process matches to O(1) automatically. And every bath-sourced kernel
+     is dissipative, which the framework's own Im K == 0 (and the 8.5 sigma
+     J0737-3039 bound) forbids. The candidate class is empty on analytic character.
+  2. (T2) tau_mem = 2c/a0 is an ARTEFACT. It changes by exactly 2 under a pure
+     re-parametrisation of the SAME law (nu-form vs mu-form), and by a factor
+     79 across interpolation functions that fit the RAR comparably. The branch
+     point also sits at an imaginary acceleration the dynamics provably never
+     reaches. It should NOT be presented as a memory timescale.
+  3. (T3) DML spacetime scale invariance (Milgrom 2009) is a REAL constraint: it
+     forces lambda w(lambda s) = w(s). Ultralocal and orbit-averaged both pass;
+     every FIXED-width kernel fails, including a 203 Gyr one. So w is narrowed to
+     scale-free members, but NOT to a unique one.
+  4. (T4) Eccentric systems beat the circular-system test by ~6-20x in lever, but
+     ONLY near pericentre -- at apocentre the orbit average and the momentary value
+     nearly coincide, so the famous EFE dwarfs have almost no power. w must be fixed
+     by DATA, and the sharpest available are pericentric dwarf EFE measurements.
+  5. (T5) w is NOT the entire remaining freedom. Positivity (|a|^2 >= 0, the same
+     Theorem-1 positivity that gives Im K == 0) means NO member of the w-family
+     suppresses a star's internal accelerations, so none solves the composite-body
+     problem Milgrom named in 1994 and had not solved in 2022. Either the law fails
+     for composite bodies, or it needs an extra rule naming which worldlines are
+     fundamental -- a larger freedom than w itself.
+================================================================================================

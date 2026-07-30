@@ -1,0 +1,96 @@
+
+====================================================================================================
+S1. The asymptotic class -- the framework is alpha = 1
+====================================================================================================
+  interpolation                        lim x(1-mu)   lim x^2(1-mu)   alpha
+  framework  (sqrt(1+4x^2)-1)/(2x)             1/2              oo       1
+  'simple'   x/(1+x)                             1              oo       1
+  'standard' x/sqrt(1+x^2)                       0             1/2       2
+  [OK] the framework's mu has lim x(1-mu) = 1/2, i.e. alpha = 1 with A = 1/2 -- the SAME class as the 'simple' mu, NOT the alpha = 2 'standard' one
+
+====================================================================================================
+S2. The bare consequence: a CONSTANT anomaly, and the precession it implies
+====================================================================================================
+
+  canonical rho_DE: bare anomaly A = a0/2 = 4.6800e-11 m/s^2 (independent of g_bar)
+  planet      g_bar/a0  arcsec/century   vs allowance
+  Mercury    4.228e+08          0.6365     1591x over
+  Venus      1.211e+08          0.8698               
+  Earth      6.336e+07          1.0228               
+  Mars       2.729e+07          1.2625    12625x over
+  Jupiter    2.339e+06          2.3355               
+  Saturn     6.900e+05          3.1884    31884x over
+
+  alt rho_total: bare anomaly A = a0/2 = 5.6500e-11 m/s^2 (independent of g_bar)
+  planet      g_bar/a0  arcsec/century   vs allowance
+  Mercury    3.502e+08          0.7684     1921x over
+  Venus      1.003e+08          1.0501               
+  Earth      5.248e+07          1.2348               
+  Mars       2.260e+07          1.5242    15242x over
+  Jupiter    1.937e+06          2.8195               
+  Saturn     5.715e+05          3.8492    38492x over
+  [OK] the BARE alpha=1 anomaly gives 0.636 arcsec/century of extra Mercury precession, which is orders above any plausible ephemeris allowance -- so 'a >> a0 protects us' is FALSE for alpha = 1
+
+====================================================================================================
+S3. *** THE ESCAPE: the framework's OWN derived EFE partially cancels it ***
+====================================================================================================
+  Theorem 5's construction (mi_efe_derived_general_2026) is not optional here -- the Solar
+  System sits in the Galaxy's field, and the correct MI treatment is
+      mu(|a_tot|/a0) a_tot = g_in + g_ex ,   host CoM: mu(a_ex/a0) a_ex = g_ex ,
+      observable: a_in,obs = a_tot - a_ex .
+  The host subtraction removes part of the constant anomaly. Since g_ex/a0 ~ 2, the host's
+  own boost is NOT negligible: nu(g_ex/a0) is an O(1) factor, so the cancellation is real but
+  incomplete. Computed:
+  a0 footing         g_ext                      bare a0/2    residual  suppression
+  canonical rho_DE   primary (McMillan-class)   4.680e-11   4.930e-12         9.5x
+  canonical rho_DE   alt (Vc^2/R0)              4.680e-11   4.338e-12        10.8x
+  alt rho_total      primary (McMillan-class)   5.650e-11   6.914e-12         8.2x
+  alt rho_total      alt (Vc^2/R0)              5.650e-11   6.110e-12         9.2x
+  residual anomaly spans 4.34e-12 to 6.91e-12 m/s^2 across footings and g_ext choices
+  NOTE THE SIGN FLIP: for some combinations the host subtraction OVERSHOOTS, leaving a net
+  OUTWARD residual. So the cancellation is not a mechanism, it is a coincidence of scales,
+  and its size is set by how close g_ext/a0 happens to be to 2.
+  [OK] the EFE-corrected residual (4.3e-12 to 6.9e-12) is SMALLER than the bare a0/2 (4.7e-11) on every combination -- the escape is real
+
+  Precession with the EFE-corrected residual, worst-case combination:
+  planet     arcsec/century   vs allowance
+  Mercury            0.0940      235x over
+  Venus              0.1285               
+  Earth              0.1511               
+  Mars               0.1865     1865x over
+  Jupiter            0.3450               
+  Saturn             0.4711     4711x over
+  [OK] even after the EFE cancellation, 3 of 3 bounded planets remain over the representative allowance -- the escape SOFTENS the liability without removing it
+
+====================================================================================================
+S4. VERDICT -- and what is and is not verified
+====================================================================================================
+  1. THE CORPUS'S BANKED REASONING IS WRONG AND SHOULD BE CORRECTED. 'The Cassini gamma-pass
+     is MOND-shared and trivial because a >> a0 at the Sun' is valid for alpha >= 2. The
+     framework is alpha = 1, where the leading anomaly is CONSTANT, not suppressed. Being
+     deep in the Newtonian regime does not protect an alpha = 1 interpolation.
+  2. THIS IS NOT A NEW DISCOVERY. Milgrom 2009 (arXiv:0906.4817) already states alpha = 1
+     'produces too strong effects on the planets', citing Milgrom 1983; Sereno & Jetzer
+     (2006) require alpha >~ 1.5. The framework INHERITS a known liability of its kernel
+     choice -- and that kernel is Milgrom 1999 Eq (9), so the liability comes with it.
+  3. THE FRAMEWORK'S OWN EFE PARTIALLY RESCUES IT (S3), by a factor of a few, because
+     g_ext/a0 ~ 2 makes the host-frame subtraction comparable to a0/2. That is a genuine
+     escape and it was worth computing -- but it is a coincidence of scales rather than a
+     mechanism, it can overshoot into the wrong sign, and it does not clear the bounds.
+  4. WHAT IS NOT VERIFIED, and it is load-bearing: the ephemeris allowances used here
+     (~1e-4 to 4e-4 arcsec/century) are REPRESENTATIVE INPOP/EPM-class figures quoted from
+     memory, NOT fetched this session. The whole quantitative verdict scales with them. A
+     verified Pitjeva/Pitjev or INPOP supplementary-precession table is the required next
+     step before this is called a falsification. Given today's record on unverified inputs,
+     that check is mandatory, not optional.
+  5. STATUS: a SERIOUS, LIVE liability -- not yet a falsification, because of (4), and
+     softened but not cleared by (3). It belongs in STANDING.md as an open liability at the
+     top of the list, and it is more dangerous than the Q2 quadrupole tension already
+     recorded, because it is a leading-order effect rather than a shape effect.
+  6. THE ESCAPE THAT WOULD ACTUALLY WORK, stated for completeness: adopt an alpha >= 3/2
+     interpolation. But the framework's kernel is fixed by the dS-Unruh construction it
+     inherits from Milgrom 1999, and changing it forfeits that motivation. So this is a
+     genuine trilemma: keep the kernel and face the planets, change the kernel and lose the
+     derivation, or find a suppression mechanism nobody has.
+  [OK] the verdict states the unverified input as load-bearing rather than burying it
+====================================================================================================
