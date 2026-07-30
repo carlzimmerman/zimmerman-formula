@@ -1,0 +1,135 @@
+
+====================================================================================================
+S1. Where alpha=1 comes from: it is K's approach to the passivity bound
+====================================================================================================
+  The kernel argument is z = |a|^2/a0^2 (Theorem B: <Box_u>_u = +|a|^2 exactly), so x = sqrt(z).
+  nu = 1/K (MI_FIELD_THEORY.md:38). Deep MOND needs K ~ sqrt(z) at 0; Newton needs K(inf)=1.
+  kernel                     K(0)  K(inf)           origin               tail 1-K  alpha
+  framework  (sqrt(1+4z)-1)/(2sqrt z)      0       1 -z**(3/2) + sqrt(z) w*(w**3 - 16*w + 64)/128      1
+  standard   sqrt(z/(1+z))      0       1 -z**(3/2)/2 + sqrt(z)    w**2*(4 - 3*w**2)/8      2
+  [OK] the framework's kernel has alpha = 1 and the standard one alpha = 2, and BOTH have the deep-MOND sqrt(z) origin -- so the origin behaviour does not determine the tail
+  NOTE WHY the framework's two limits are locked together: both carry the SAME 1/(2 sqrt z)
+  prefactor, so in THAT functional form deep MOND and the alpha=1 tail are one structure.
+  The standard kernel breaks that link while keeping the origin -- which is the whole point.
+
+====================================================================================================
+S2. *** DOES a0's DERIVATION REQUIRE alpha=1? NO. *** Both kernels satisfy every premise
+====================================================================================================
+  a0's scale is derived from: (i) PASSIVITY, sup K = 1, a Herglotz-Nevanlinna positive
+  measure with ||K|| <= 1; (ii) the SUM RULE INT dmu(t)/|t| = K(inf) - K(0) = 1 (the unit
+  resolvent weight that makes a0 additively unrenormalised); (iii) the horizon floor.
+  Testing (i) and (ii) on both kernels, plus NEGATIVE CONTROLS that must fail:
+  kernel                              Im K >= 0 (UHP)   0 <= K <= 1   sum rule  admissible
+  framework                                       yes           yes   0.999999         YES
+  standard                                        yes           yes   0.999999         YES
+  CONTROL: negative measure                  NO (175)            NO  -0.999999          no
+  CONTROL: sup K = 2 (not passive)                yes            NO   1.999998          no
+  [OK] BOTH the framework's alpha=1 kernel and the standard alpha=2 kernel are admissible on every premise a0's derivation uses -- Herglotz positivity, passivity sup K = 1, and the unit sum rule. So the derivation does NOT single out alpha = 1
+  [OK] and the two negative controls are correctly REJECTED, so the test has teeth rather than passing everything
+
+====================================================================================================
+S3. What the tail exponent costs, on the three things that care
+====================================================================================================
+  (a) THE PLANETS. The anomaly is (nu-1) g_bar as g_bar/a0 -> large.
+  kernel                (nu-1)g_bar at Earth  vs Earth 2-sig limit
+  framework alpha=1               4.6800e-11               1278.7x
+  standard alpha=2                7.3869e-19                  0.0x
+  [OK] alpha=2 sits at 2.02e-05x the Earth bound (i.e. PASSES with room to spare) while alpha=1 is 1279x over -- the tail exponent is the entire difference
+
+  (b) THE GALAXY DATA. Committed SPARC fit quality at FIXED a0, per-kernel best M/L:
+      framework (alpha=1)      0.1083 dex
+      standard (alpha=2)       0.1116 dex
+      switching cost = +0.0033 dex against sigma_int = 0.034 dex (0.10 sigma_int)
+  [OK] switching to alpha=2 costs +0.0033 dex on 175 SPARC galaxies, which is 0.10 of the intrinsic scatter -- observationally free
+
+  (c) THE EXACT LAW. This is the ONLY thing that does not survive:
+      framework: g_obs^2 - g_bar^2 - a0 g_bar = 0  (EXACT, identically zero)
+      standard : g_obs^2 - g_bar^2 - a0 g_bar = 1 - x  (NOT zero)
+  [OK] the exact algebraic relation g_obs^2 = g_bar^2 + a0 g_bar holds identically for alpha=1 and fails for alpha=2 -- so the tail exponent and the exactness claim are the same choice
+
+====================================================================================================
+S4. *** THE DISFORMAL CONSTRUCTION: IT PENALISES alpha=1, IT DOES NOT RESCUE IT ***
+====================================================================================================
+  The lensing completion is disformal, g~ = g + B u u, with B fixed by the SAME kernel:
+      grad B = 4 (nu - 1) g_bar        (unification.py:104, B = 4(Phi - Phi_MOND))
+  and the construction requires B < 1 globally to be non-degenerate (BASELINE_ACTION P7,
+  'global B < 1 off spherical symmetry' is flagged asserted-not-verified).
+  A FIRST PASS OF THIS SECTION INTEGRATED B FROM INFINITY AND WAS ILL-POSED: in the deep-MOND
+  region 4(nu-1)g_bar -> 4 sqrt(a0 g_bar) ~ 1/r, so that integral is LOG-DIVERGENT and
+  boundary-dominated. The well-posed local statements are dB/dr and the VARIATION of B.
+
+  r               g_bar/a0   dB/dr alpha=1   dB/dr alpha=2
+  0.39 AU        4.228e+08      1.8720e-10      4.4276e-19
+  1 AU           6.336e+07      1.8720e-10      2.9548e-18
+  9.6 AU         6.900e+05      1.8720e-10      2.7132e-16
+  100 AU         6.336e+03      1.8719e-10      2.9548e-14
+  analytic limits: alpha=1 -> dB/dr = 2 a0 = 1.8720e-10 /m, a CONSTANT; alpha=2 -> 2 a0^2/g_bar -> 0
+
+  span                     Delta B alpha=1   Delta B alpha=2        ratio
+  Mercury -> Earth              1.7164e+01        1.3879e-07    1.24e+08x
+  Mercury -> Saturn             2.5752e+02        1.2964e-04    1.99e+06x
+  Earth -> Mars                 1.4666e+01        3.7388e-07    3.92e+07x
+  1 -> 100 AU                   2.7724e+03        1.4734e-01    1.88e+04x
+  [OK] across Mercury-Saturn the alpha=1 kernel varies B by 257.5, i.e. 258x over the construction's own B < 1 requirement, while alpha=2 varies it by 1.30e-04 -- 7.7e+03x inside it
+  BOTH FOOTINGS, on the decisive span:
+    canonical rho_DE   alpha=1 Delta B =    257.52   alpha=2 Delta B = 1.296e-04
+    alt rho_total      alpha=1 Delta B =    310.89   alpha=2 Delta B = 1.890e-04
+
+====================================================================================================
+S5. HONESTY: this is ONE failure in TWO sectors, not two independent failures
+====================================================================================================
+  dB/dr = 4 (nu - 1) g_bar, and (nu - 1) g_bar IS the anomalous acceleration g_obs - g_bar.
+  alpha=1: (nu-1) g_bar -> a0/2 = 4.6800e-11 m/s^2, the SAME constant sunward anomaly the
+  ephemerides bound. So dB/dr -> 4 x (a0/2) = 2 a0 = 1.8720e-10 EXACTLY.
+  [OK] 4 x (the ephemeris anomaly) = 1.8720e-10 equals dB/dr's asymptote 2a0 = 1.8720e-10 to 3.9e-09 -- so the disformal degeneracy and the planetary anomaly are the SAME number, and must NOT be reported as independent evidence
+  WHAT IT DOES ADD, which is real: the COST of keeping alpha=1. It is not only the
+  ephemerides -- it is also the disformal lensing construction, which STANDING section 1
+  lists as EARNED ('closed, Cassini-safe, Ostrogradsky-free'). On the alpha=1 kernel that
+  construction's own B < 1 premise fails by ~2 orders across the solar system.
+
+====================================================================================================
+S6. AND THE DISFORMAL rho_m VARIANT ITSELF -- scope, honestly
+====================================================================================================
+  P8 asks whether rho_m in the MI term should be the m^2 phi^2 loop proxy, the T_munu
+  density, or the DISFORMAL-frame density rho_m x (1-B)^(-1/2) (the Jacobian of
+  g~ = g + B uu is sqrt(-g~)/sqrt(-g) = sqrt(1-B), since u.u = -1). That is a question about
+  the LOOP sector and the finite parts. It is NOT computed here and STAYS OPEN.
+  But two things about it are now settled and both point the same way:
+   * It cannot supply the tail freedom, because that freedom ALREADY EXISTS in the choice of
+     Herglotz measure (S2). Nothing needs to be bought.
+   * Its own Jacobian sqrt(1-B) is only defined for B < 1, and S4 shows the alpha=1 kernel
+     drives Delta B to 258 across the solar system. So on the alpha=1 tail the disformal
+     rho_m variant is not merely unhelpful -- it is ill-defined in exactly the regime where
+     the liability lives. On alpha=2 it is well-defined there.
+  [OK] P8's status is left OPEN and labelled as such; only what was computed is claimed
+
+====================================================================================================
+VERDICT
+====================================================================================================
+  1. THE STRUCTURAL RESULT, and it is the one worth keeping: a0's DERIVATION DOES NOT DEPEND
+     ON alpha=1. Every premise that derivation uses -- Herglotz positivity, passivity
+     sup K = 1, the unit sum rule INT dmu/|t| = 1, the horizon floor -- is satisfied by the
+     alpha = 2 kernel sqrt(z/(1+z)) just as well, with the deep-MOND sqrt(z) origin intact.
+     Two negative controls confirm the test discriminates. So the a0 = cH_Lambda/Z reframing
+     -- the ONE claim that survived the June 2026 retraction -- is NOT at risk from the
+     planetary liability at all.
+  2. THE CONFLICT IS NARROWER THAN IT LOOKED. It is not a0-vs-planets. It is EXACTNESS-vs-
+     planets, and nothing else. The exact relation g_obs^2 = g_bar^2 + a0 g_bar holds
+     identically iff alpha = 1 (checked symbolically), and alpha = 1 is what the ephemerides
+     exclude by 1278x.
+  3. AND SWITCHING IS OBSERVATIONALLY FREE ON GALAXIES: +0.0033 dex over 175 SPARC
+     galaxies, 0.10 of the intrinsic scatter. The planets go from
+     1279x over to 2.0e-05x, i.e. passing.
+  4. THE DISFORMAL ROUTE IS NOT A RESCUE -- IT IS A SECOND BILL FOR THE SAME ITEM. B is fixed
+     by the same kernel, and on alpha=1 it varies by 258 across the solar system against
+     its own B < 1 requirement. That is the a0/2 anomaly again (4x it, exactly), so it is not
+     independent evidence -- but it does mean keeping alpha=1 also costs the disformal lensing
+     construction, which is currently banked as EARNED.
+  5. RECOMMENDATION, stated plainly because the calculation supports it: adopt alpha >= 2,
+     keep a0 = cH_Lambda/Z, and withdraw the word 'exact'. That costs one word and buys the
+     ephemerides AND the lensing construction. The alternative -- keeping exactness -- costs
+     both, and buys 0.003 dex on SPARC that the data cannot even resolve.
+  6. P8 (the loop-sector rho_m definition) STAYS OPEN. It was not computed here and nothing
+     above depends on it.
+  [OK] verdict recorded, with the recommendation and P8's open status both explicit
+====================================================================================================

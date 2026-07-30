@@ -145,8 +145,30 @@ band, 0.0101 from the point target 1.09.
      claim that it is exact**. The corpus does make that claim; it must be narrowed. The alternative is
      a frequency gate, which needs a fifth constant unless Milgrom 2022's frequency-*ratio*
      construction supplies it.
+   - **⚠️ THE CONFLICT IS NARROWER THAN THIS ENTRY FIRST STATED — settled 2026-07-30 by the disformal
+     swing.** It is **not** $a_0$-vs-planets. **$a_0$'s derivation does not depend on $\alpha=1$ at all.**
+     Every premise that derivation uses — Herglotz–Nevanlinna positivity, passivity $\sup K=1$, the unit
+     sum rule $\int\mathrm{d}\mu/|t|=K(\infty)-K(0)=1$, the horizon floor — is satisfied *equally* by the
+     $\alpha=2$ kernel $K=\sqrt{z/(1+z)}$, which also keeps the deep-MOND $\sqrt z$ origin. Verified with
+     two negative controls (a negative-measure and a $\sup K=2$ kernel) that are correctly rejected. So
+     **the $a_0=cH_\Lambda/Z$ reframing — the one claim that survived the June 2026 retraction — is not
+     at risk from this liability.** What is at risk is *exactness*, and only that: the relation
+     $g_{\rm obs}^2=g_{\rm bar}^2+a_0g_{\rm bar}$ holds identically **iff** $\alpha=1$ (symbolic).
+     Switching to $\alpha=2$ costs **+0.0033 dex** on 175 SPARC galaxies ($0.10\,\sigma_{\rm int}$) and
+     takes the planets from 1279× over to $2\times10^{-5}$× — i.e. passing.
+   - **And the disformal lensing construction sends a SECOND BILL for the same item.** $B$ is fixed by
+     the same kernel, $\nabla B=4(\nu-1)g_{\rm bar}$, and the construction needs $B<1$. On $\alpha=1$,
+     $(\nu-1)g_{\rm bar}\to a_0/2$ so $\mathrm{d}B/\mathrm{d}r\to2a_0$ is **constant** and $B$ varies by
+     **257 (canonical) / 311 (alt) across Mercury→Saturn** — ~2 orders over its own premise; on
+     $\alpha=2$ it varies by $1.3\times10^{-4}$. **This is not independent evidence** — $\mathrm{d}B/\mathrm{d}r$
+     is exactly 4× the ephemeris anomaly, verified to $4\times10^{-9}$ — but it means keeping $\alpha=1$
+     also costs the disformal construction, which §1 lists as **earned**.
+   - **Recommendation the calculation supports:** adopt $\alpha\ge2$, keep $a_0=cH_\Lambda/Z$, withdraw
+     the word *exact*. One word buys the ephemerides *and* the lensing construction. P8 (the loop-sector
+     $\rho_m$ definition) stays **open** and nothing above depends on it.
    - Scripts: `real_research/reviews/mi_alpha1_solar_system_2026.py`,
-     `real_research/reviews/mi_tail_exponent_rar_cost_2026.py` (both exit 0).
+     `real_research/reviews/mi_tail_exponent_rar_cost_2026.py`,
+     `real_research/reviews/mi_disformal_tail_freedom_2026.py` (all exit 0).
 1. **The diffuse-baryon sector — ⚠️ THE BANKED "~6–8σ, STRONGLY DISFAVOURED" IS WITHDRAWN (2026-07-30).
    This correction runs FOR the framework and is reported at the same weight as the ones against it.**
    Three independent defects, each found by adversarial verification and each inflating the constraint:
