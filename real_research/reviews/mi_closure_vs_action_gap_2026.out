@@ -1,0 +1,139 @@
+
+====================================================================================================
+S1. Moment identity vs Euler-Lagrange equation -- the distinction made precise
+====================================================================================================
+  Theorem B (verified pointwise for ANY timelike worldline in mi_dcac_split_settled_2026):
+      <Box_u>_u = (u . Box_u u)/(u . u) = +|a|^2      EXACT
+  This is an IDENTITY about a contraction of an operator evaluated ON a given worldline. It
+  says: if you already know the trajectory, the operator's u-contracted first moment is |a|^2.
+  An EULER-LAGRANGE equation is a different object: it SELECTS the trajectory by stationarity
+  of an action. Knowing a moment of an operator along a curve does not tell you the curve.
+
+  The corpus's own wording (KERNEL_THEORY.md) is: 'the published prescription
+  K(Box_u/a0^2) -> K(a^2/a0^2) = mu_fw(a/a0) is not an ansatz: it is the exact first spectral
+  moment of the nonlocal operator in the u-contraction.' That is TRUE and it is a real result.
+  It is also NOT the statement 'mu_fw(|a|/a0) a = -grad Phi is the equation of motion of the
+  MI action.' The second claim is what all the phenomenology assumes. They are not the same,
+  and this script tests whether the second one can hold at all.
+  [OK] the distinction is stated before any computation, not used as a conclusion
+
+====================================================================================================
+S2. Euler-Lagrange for L(x, xdot, xddot) is FOURTH order; the framework's law is SECOND
+====================================================================================================
+  Euler-Lagrange for a Lagrangian containing xddot:
+      dL/dx - d/dt(dL/dxdot) + d^2/dt^2(dL/dxddot) = 0
+  The last term differentiates dL/dxddot twice, and dL/dxddot already depends on xddot, so
+  the equation generically contains x'''' -- FOURTH order.
+  sympy: highest derivative of x appearing in the EL expression = order 4
+  [OK] the EL equation of a general L(x,xdot,xddot) is order 4 (>= 4)
+  The framework's law, by contrast:
+      mu_fw(|a|/a0) * a = -grad Phi      with a = xddot
+  contains NO derivative higher than xddot. It is an implicit SECOND-order equation (a
+  nonlinear algebraic relation for a, given grad Phi). Second order, not fourth.
+  So the framework's law is NOT the EL equation of any nondegenerate L(x,xdot,xddot).
+  [OK] the order mismatch is established symbolically, not asserted
+
+====================================================================================================
+S3. The degeneracy escape -- tested, not assumed
+====================================================================================================
+  A higher-derivative L evades both the 4th-order EL equation AND the Ostrogradsky ghost if
+  it is DEGENERATE in xddot: d^2 L / d xddot^2 = 0, i.e. L is at most LINEAR in xddot.
+  (Linear-in-xddot terms are total derivatives up to boundary terms and carry no new dof.)
+  So: is the framework's closure-localized dependence linear in xddot? Its argument is
+  |a|^2 = a.a, QUADRATIC in xddot, entering through the nonlinear mu_fw. Test the Hessian:
+    Hessian of mu_fw(|a|/a0) w.r.t. the acceleration components, at |a| = a0:
+⎡     7⋅√5                ⎤
+⎢-1 + ────    0       0   ⎥
+⎢      25                 ⎥
+⎢                         ⎥
+⎢           1   √5        ⎥
+⎢    0      ─ - ──    0   ⎥
+⎢           2   10        ⎥
+⎢                         ⎥
+⎢                   1   √5⎥
+⎢    0        0     ─ - ──⎥
+⎣                   2   10⎦
+    det(Hessian) at |a| = a0 = -11/25 + 23*sqrt(5)/125
+  [OK] the acceleration-dependence is NOT degenerate (Hessian is nonzero), so the linear-in-xddot escape is unavailable
+  CONSEQUENCE. The localized closure is quadratic-and-worse in xddot with a nonvanishing
+  Hessian. If it were promoted to a local Lagrangian, it would carry the standard
+  Ostrogradsky structure AND give a 4th-order EL equation that is NOT the framework's law.
+  So the framework CANNOT be a local higher-derivative action. It NEEDS the nonlocal form --
+  which is exactly what v4 built and proved things about. That part is consistent.
+  The problem is the other direction, and it is S5.
+
+====================================================================================================
+S4. Where the gap is INVISIBLE -- the circular orbit, i.e. everywhere it has been tested
+====================================================================================================
+  On an exact circular orbit |a| is constant, so every time-weighting of |a(tau)|^2
+  coincides (the corpus's own 'ring exactness is closure-independent'), and the moment
+  identity and any sensible EOM agree. The RAR, the a0-line, the BTFR, the flat-curve work
+  all live there. Quantify how much of the corpus's validation sits on circles:
+    * SPARC rotation curves          : circular by construction
+    * the a0-line g_obs^2-g_bar^2=a0 g_bar : circular by construction
+    * BTFR                            : circular by construction
+    * wide-binary gate law            : ECCENTRIC -- and this is exactly where the corpus
+      found a 570% -> 7.9% closure ambiguity that had to be narrowed by hand
+    * cluster member sigma-spread     : NON-circular, history-dependent -- and exactly where
+      today's repricing found the answer is closure-hostage
+  So the two places the corpus has pushed OFF circles are precisely the two places a closure
+  ambiguity showed up. That is a coherent pattern, not a coincidence, and it is evidence that
+  the closure IS doing real work rather than being a harmless rewriting.
+
+  Numeric illustration of the ambiguity that vanishes on circles. Take a fixed |grad Phi|
+  and compare two closure members (instantaneous vs orbit-averaged first moment) for an
+  epicyclic orbit of eccentricity eps:
+     eps  x_inst spread      x_avg    |mu_inst - mu_avg|/mu
+    0.00         0.0000     1.0000                1.796e-16
+    0.05         0.1000     1.0006                6.575e-04
+    0.20         0.4000     1.0100                1.048e-02
+    0.50         1.0000     1.0607                6.451e-02
+  [OK] at eps = 0 the two closure members agree to 1.8e-16 -- the ambiguity is EXACTLY zero on circles, confirming the gap is invisible in the circular tests
+
+====================================================================================================
+S5. What this threatens, what it does not, and the named open item
+====================================================================================================
+  DOES NOT THREATEN:
+   * The RAR fit, the a0-line, BTFR, flat curves. Those are circular-orbit statements where
+     the closure ambiguity is exactly zero (S4). They stand as measured.
+   * Theorem B. It is an exact identity and was re-proved pointwise for arbitrary worldlines.
+   * The need for a NONLOCAL action. S3 shows a local higher-derivative version cannot
+     reproduce the framework's own law, so v4's nonlocal construction is not optional -- it
+     is required. That is a point IN FAVOUR of the published action.
+
+  DOES THREATEN -- and this is the referee-grade gap:
+   * The structural guarantees and the phenomenology are proved about DIFFERENT OBJECTS.
+     v4's '0 frame dof' rests on a NO-WAVE-CONE symbol argument for the nonlocal Box_u;
+     v4's causal-retarded Herglotz definition, v11's sum rule, and the v7-v10 Ostrogradsky-
+     freedom are all statements about the NONLOCAL action. Every fit uses the LOCAL closure.
+     The bridge -- that the closure is the action's actual equation of motion rather than a
+     moment of it -- is NOT established anywhere in the corpus.
+   * Today's Im K == 0 result sharpens this into a tension: the closure never samples the
+     cut, so the closure-level theory has no memory at all, while the Herglotz apparatus
+     (positive measure on the cut, dissipative weight 1/pi, region B = 2/pi, the sum rule
+     INT dmu/|t| = 1) is machinery describing behaviour on a region the working theory never
+     visits. The measure is not WRONG; it is doing less work than advertised.
+   * The 'uniqueness' claim needs restating. KERNEL_THEORY.md argues the measure is unique
+     from (Herglotz class) + (RAR calibration) by the identity theorem. That argument is
+     fine AS ANALYTIC CONTINUATION. But the physical MOTIVATION for imposing the Herglotz
+     class is causality of a response with memory -- and the closure has no memory. So the
+     uniqueness is contingent on a class assumption the working closure does not itself
+     require. Worth saying out loud before a referee says it.
+
+  THE NAMED OPEN ITEM (bounded, concrete, and the highest-value theory task left):
+   Derive the equation of motion by VARYING the v4 nonlocal action, and compare it to
+   mu_fw(|a|/a0) a = -grad Phi:
+     (a) on a circular orbit -- expected to agree, and if it does not, the RAR derivation
+         itself is in trouble and we would want to know immediately;
+     (b) off circles -- where S4 shows the corpus has already met a 570%-scale ambiguity.
+   The SAME calculation settles Finding C's O(1) time-weighting freedom, the wide-binary
+   eccentric closure, and the sigma-spread window -- three open items with one derivation.
+   That is the best remaining ratio of payoff to effort in the theory lane.
+
+  HONEST STATUS OF THIS SCRIPT: it establishes an ORDER MISMATCH and a NON-DEGENERACY, both
+  symbolically, and it locates the gap. It does NOT vary the v4 action -- that needs the
+  action's explicit form and a functional-derivative treatment of K(Box_u), which is a
+  separate piece of work. So this is a well-posed problem statement backed by two theorems,
+  not a resolution. Reported as such.
+  [OK] the script's own limits are stated rather than glossed
+====================================================================================================
