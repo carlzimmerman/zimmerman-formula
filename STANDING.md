@@ -180,23 +180,84 @@ band, 0.0101 from the point target 1.09.
      meaningless here.** Applying the repo's own rule correctly makes the deficit *worse*.
    - **$\eta\sim1.6$–1.8 is a weak-lensing mass-calibration result, not an XRISM one** (Li+2024: WL
      runs ~110% above hydrostatic *and* kinematic, which agree with each other).
-   - **XRISM TIGHTENS this front; it does not relieve it.** Measured non-thermal pressure is 2–13%
-     (A2029 2.6%, Coma ~3%, Perseus <5%, X-COP ~6% at $R_{500}$) against the ~44–57% a
-     hydrostatic-bias collapse would need — it **closes** the turbulence escape. $P_{\rm nth}$ *raises*
-     a thermal $\eta$ ($M_{\rm true}=M_{\rm HSE}/(1-f_{\rm nth})$) and cannot lower it. The retired
-     phrase "post-XRISM bracket $\eta\in[1.0,2.33]$" reads as relief and is backwards; the repo's own
-     `SKORDIS_CMB_CLUSTER_DEEPDIVE_LEDGER_2026-06-15.md` already had this right and the summary layers
-     drifted from it.
-   - **The cluster acceleration scale is $21.6\times$, not $17\times$.** Tian, Umetsu, Ko, Donahue &
-     Chiu 2020 (ApJ 896, 70; arXiv:2001.08340) give $g^\dagger=(2.02\pm0.11)\times10^{-9}$, i.e.
-     **$21.6\times=1.334$ dex** of the canonical $a_0$ ($17.9\times=1.252$ dex on the alt footing).
-     "$17\times$" is $2.02/1.20$ — the ratio to **standard MOND's** $a_0$ — so the corpus understated
-     its own gap by 28%. Method-dependent: $10.2\times$ (Chan & Del Popolo 2020, X-ray) to $21.6\times$
-     (CLASH lensing); carry the spread. Against Desmond 2023's RAR universality budget
-     ($\sigma_{\rm int}=0.034$ dex $\Rightarrow\pm0.068$ at 1σ) that is **19.6× over at 1σ, 6.5× at 3σ**.
+   - **XRISM: the old framing is withdrawn, but the replacement is narrower than "XRISM tightens" —
+     I overstated this first and am correcting it.** What is solid: every primary XRISM measurement is
+     *small*, so the claim that XRISM licenses a large non-thermal component and thereby softens the
+     cluster problem is **withdrawn outright**. A2029 core $2.6\pm0.3\%$ (ApJL 982, L5) and $\le2\%$ at
+     all radii out to $R_{2500}=670$ kpc *decreasing outward* (PASJ 77, S242); Coma centre
+     $3.1\pm0.4\%$ (ApJL 985, L20 = arXiv:2504.20928 — **not** A&A 704, A35, which the corpus miscited);
+     Perseus $\sim$0.5–5% over most of the map (A&A 707, A109); X-COP "hydrostatic masses require
+     little correction", median $5.9^{+2.9}_{-3.3}\%$ at $R_{500}$ and $10.5^{+4.3}_{-5.5}\%$ at
+     $R_{200}$ (Eckert+2019, A&A 621, A40; 12 tabulated clusters despite its own abstract saying 13).
+     $P_{\rm nth}$ *raises* a thermal $\eta$ ($M_{\rm true}=M_{\rm HSE}/(1-f_{\rm nth})$) and cannot
+     lower it. **But it does not close the front either, and four things cut the other way:**
+     (i) radius-matched against Kelleher & Lelli's requirement the factors are only **1.7–6.8× at
+     $R_{500}$ and 0.95–3.8× at $R_{200}$ — i.e. the ranges *overlap* at $R_{200}$**; (ii) the XRISM
+     velocity measurements all stop *inside* 1 Mpc and so do not bound a requirement stated at
+     $r>1$ Mpc; (iii) individual clusters reach 15–44% at $R_{500}$ (A2319 $43.6\%$), and Eckert's own
+     mean-level bound is 13%; (iv) Coma's kinetic fraction inside $R_{500}$ rises to
+     $10^{+8}_{-4}\%$ once large-scale bulk motions are folded in (A&A 704, A35), and Perseus's
+     *outermost* regions are the high ones ($\gtrsim10\%$) — the direction the MOND comparison needs.
+     Correct phrasing: **"does not relieve, does not close."** The repo's own
+     `SKORDIS_CMB_CLUSTER_DEEPDIVE_LEDGER_2026-06-15.md` had the direction right and the summary layers
+     drifted from it; the retired bracket "post-XRISM $\eta\in[1.0,2.33]$" still reads as relief.
+   - **Kelleher & Lelli's requirement needs three qualifiers that the corpus dropped.** Their 10–40%
+     is (a) the **minimum**, obtained *with a maximal external field effect* — without EFE it is
+     10–100%; (b) stated at **$r>1$ Mpc, i.e. beyond $R_{500}$** (they fit to 1 Mpc precisely because
+     bias should be minor inside it); (c) a fractional **mass/acceleration** residual, not
+     $P_{\rm NT}/P_{\rm tot}$ — the two agree only to ~30% (median ratio 1.10 at $R_{500}$). They report
+     **no value at $R_{500}$ at all**, so the corpus's $\eta(R_{500})\sim1.0$–1.3 is *not* a
+     Kelleher–Lelli number and must not be cross-quoted against their $R_{\rm out}$ column. Their
+     $M_{\rm mm}/M_{\rm bar}$ at $R_{\rm out}$ is 0.38–1.10 (relaxed, EFE) and 3.99–5.43 (mergers) —
+     the figures 1.38–2.10 and 5.0–6.4 in circulation are exactly $1+M_{\rm mm}/M_{\rm bar}$, i.e.
+     total-to-baryonic, and were being compared against the wrong quantity.
+   - **The cluster acceleration scale, as a method-and-radius ladder rather than one number.** Tian,
+     Umetsu, Ko, Donahue & Chiu 2020 (ApJ 896, 70; arXiv:2001.08340) give
+     $g^{\ddagger}=(2.02\pm0.11)\times10^{-9}$ — note **$g^\ddagger$, double dagger**: they reserve
+     $g^\dagger$ for the *galaxy* value $1.20\times10^{-10}$, and writing $g^\dagger=2.02\times10^{-9}$
+     inverts their notation. Slope $0.51^{+0.04}_{-0.05}$, and the scatter on the slope-fixed fit that
+     actually yields $2.02\times10^{-9}$ is $14.5\%$ (the $14.7\%$ in circulation is the free-slope
+     fit); residual spread 0.11 dex. Verbatim: "there is no universal RAR that holds on all scales from
+     galaxies to clusters" — though the same paper also finds the CLASH RAR consistent with a ΛCDM
+     semi-analytic model, so that line is not an endorsement of modified inertia.
+
+     | method | scale (m s⁻²) | × canonical $a_0$ | dex |
+     |---|---|---|---|
+     | CLASH lensing, 100–600 kpc (Tian+2020) | $2.02\times10^{-9}$ | 21.6 | 1.334 |
+     | X-ray, at $r_c$ (Chan & Del Popolo 2020) | $1.9\times10^{-9}$ | 20.3 | 1.308 |
+     | X-ray, at $2r_c$ | $1.2\times10^{-9}$ | 12.8 | 1.108 |
+     | X-ray pooled, 52 non-cool-core | $9.5\times10^{-10}$ | 10.2 | 1.006 |
+     | member-galaxy dynamics, 29 HIFLUGCS (Tian+2021) | $(0.8$–$2.2)\times10^{-9}$ | 8.5–23.5 | 0.93–1.37 |
+     | X-ray, at $3r_c$ | $3.9\times10^{-10}$ | 4.2 | 0.620 |
+     | Coma, The & White 1988 (**lower bound** $2h_{50}^{1.5}$) | — | $\ge3.1$ at $H_0{=}67.4$ | $\ge0.49$ |
+
+     So the published factor spans roughly **3× to 24×**, it **grows toward cluster centres** (stated in
+     Chan & Del Popolo), and the pooled X-ray value is interpolation-loaded (their Eq. 1 is McGaugh's
+     e-folding $\nu$, so a framework-native refit would move it). **"$17\times$" is a real published
+     phrase** — Tian+2024 (A&A 684, A180; arXiv:2402.12016) abstract: "a seventeen times larger
+     acceleration scale by the gravitational lensing effect" — but the arithmetic behind it is
+     $2.02/1.20=16.8$, the ratio to **McGaugh's galaxy $a_0$**. Applied to *this* framework it must be
+     rescaled to **21.6× (1.334 dex) canonical / 17.9× (1.252 dex) alt**, so quoting 17× here
+     understated the framework's own gap by 28%. There is **no "Tian & Ko 2016" cluster paper** — that
+     is MNRAS 462, 1092 on elliptical galaxies, which adopts $a_0=1.21\times10^{-10}$ and makes no
+     cluster claim; do not cite it. Against Desmond 2023's RAR universality budget
+     ($\sigma_{\rm int}=0.034$ dex $\Rightarrow\pm0.068$ at 1σ), 1.334 dex is **19.6× over at 1σ,
+     6.5× at 3σ**.
    - **The framework's own coefficient costs it here:** $\sqrt{1.20\times10^{-10}/9.36\times10^{-11}}
      =1.132$, so $\eta$ is **13.2% worse** than standard MOND (alt footing: 3.1%). Erasing $\eta$ needs
      $a_0\times\eta^2=\mathbf{\times5.45}$ (+0.736 dex).
+   - **Does the cluster constraint transfer to a modified-inertia reading? It does — and the quote the
+     corpus would want to lean on is truncated.** Kelleher & Lelli §2.2, in full: "Equation (5) is also
+     valid in MOND modified inertia theories in the case of isolated systems with purely circular orbits
+     (Milgrom 1994), which is clearly not the case for the random gas motions in the ICM. **In this
+     work, therefore, we are primarily testing MOND modified gravity theories, albeit we expect Eq. (5)
+     to provide the correct order of magnitude also in modified inertia theories (for isolated
+     systems).**" The bolded clause is the half that gets dropped, and it reverses the rhetorical force.
+     So: their *exact numbers* are not MI predictions to better than order of magnitude — fair — but the
+     residual is itself an order-of-magnitude-level object, and the framework's own repriced
+     non-adiabatic σ-spread is only **1.45–2.21%** max−min
+     (`prep_2026/sigma_spread/GAP_STATEMENT.md` Amendment 1), which cannot close a ~100% residual.
+     **The escape does not work, and the corpus should say so explicitly instead of leaving it implicit.**
    - **"Shared across the whole relativistic-MOND family" is an argued pattern, not a published
      theorem.** The in-corpus argument (MI $\equiv$ AeST to machine precision in static systems) is
      sound for MI-vs-AeST. But Skordis & Zlosnik 2021 does not discuss clusters, Durakovic & Skordis
