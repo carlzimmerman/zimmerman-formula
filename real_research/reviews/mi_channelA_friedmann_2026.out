@@ -1,0 +1,125 @@
+
+====================================================================================================
+S1. Comoving observers in FRW have EXACTLY zero four-acceleration (sympy, general a(t))
+====================================================================================================
+  FRW metric diag(-1, a^2, a^2, a^2);  H = a'/a = Derivative(a(t), t)/a(t)
+  nonzero Christoffels (the ones that matter):
+    Gamma^0_ij = a a' delta_ij  ->  Gamma^0_11 = a(t)*Derivative(a(t), t)
+    Gamma^i_0j = H delta^i_j    ->  Gamma^1_01 = Derivative(a(t), t)/a(t)
+    Gamma^mu_00 = [0, 0, 0, 0]   <- ALL ZERO, the crux
+  [OK] comoving u is correctly normalised: u.u = -1
+  four-acceleration a^mu = [0, 0, 0, 0]
+  [OK] a^mu = 0 EXACTLY for comoving FRW, for arbitrary a(t) -- comoving matter is geodesic
+  [OK] |a|^2 = 0, so Theorem B's first moment <Box_u>_u = |a|^2 = 0
+
+====================================================================================================
+S2. Hence Box_u u = 0 identically: u sits in the KERNEL of the operator
+====================================================================================================
+  Box_u u^mu = u^a grad_a ( u^b grad_b u^mu ) = u^a grad_a ( a^mu ).
+  S1 gives a^mu = 0 as a VECTOR FIELD (not just at a point), so its covariant derivative
+  vanishes too and Box_u u^mu = 0 identically on the background.
+  By spectral calculus, if Box_u u = 0 then for any function K analytic off the spectrum
+      K(Box_u/a0^2) u_mu = K(0) u_mu .
+  This is not an approximation -- u is an exact zero mode of the operator on FRW.
+  [OK] Box_u u = 0 identically on FRW, so K(Box_u) u reduces to K(0) u
+
+====================================================================================================
+S3. *** K(0+) = 0 AND K IS NON-ANALYTIC AT 0 -- the MI term vanishes and cannot be expanded ***
+====================================================================================================
+  K(z) = (sqrt(4*z + 1) - 1)/(2*sqrt(z))
+  K(0+)      = 0
+  series at 0: K(z) = sqrt(z)*(1 - z)   <- leading term sqrt(z), NOT analytic
+  K'(0+)     = oo
+  [OK] K(0+) = 0 exactly -- vanishing inertia at zero acceleration (the deep-MOND limit)
+  [OK] K'(0+) diverges: K ~ sqrt(z), so K has a BRANCH POINT at the origin and no Taylor expansion exists around the cosmological background
+
+  CONSEQUENCE, and this is the answer to channel A:
+   * The MI matter term on the FRW background is
+         -(1/2) rho_m s u^mu K(Box_u/a0^2) u_mu  =  -(1/2) rho_m s K(0) (u.u) = 0 ,
+     because K(0) = 0. The term VANISHES IDENTICALLY on the background.
+   * And because K ~ sqrt(z) at the origin, there is no analytic expansion in which to
+     collect 'first-order corrections to the Friedmann equation'. The perturbative object
+     the calculation was supposed to produce DOES NOT EXIST.
+   * So MI contributes NO background modification and NO distance tilt. Channel A is not
+     unbuilt -- it is ILL-POSED AS I POSED IT.
+  numerical witness of sqrt behaviour:          z         K(z)   K(z)/sqrt(z)
+                                             1e-08    1.000e-04       1.000000
+                                             1e-06    1.000e-03       0.999999
+                                             1e-04    9.999e-03       0.999900
+                                             1e-02    9.902e-02       0.990195
+  [OK] K(z)/sqrt(z) -> 1 as z -> 0, confirming the square-root branch point numerically
+
+====================================================================================================
+S4. Where MI DOES live: peculiar accelerations of real structure, against a0
+====================================================================================================
+  Exact FRW is the one configuration with zero acceleration. Real matter is not comoving:
+  perturbations carry peculiar gravitational accelerations g ~ (4 pi/3) G rho_bar delta R.
+   scale R (Mpc)   delta    g (m/s^2)   g/a0 canon   g/a0 alt       regime
+             1.0    1.00    2.319e-14       0.0002     0.0002    deep MOND
+            10.0    0.50    1.159e-13       0.0012     0.0010    deep MOND
+            50.0    0.20    2.319e-13       0.0025     0.0021    deep MOND
+           100.0    0.10    2.319e-13       0.0025     0.0021    deep MOND
+           300.0    0.05    3.478e-13       0.0037     0.0031    deep MOND
+  [OK] large-scale perturbations sit at g/a0 = 2.48e-04 to 3.72e-03 -- not merely below a0 but 2-4 ORDERS below it, i.e. EXTREMELY deep in the modified regime
+  MI is therefore a PERTURBATION-sector effect: the background is exactly unmodified (S1-S3)
+  while perturbations are as deeply modified as anything in the theory. The corpus was right
+  to call the unbuilt piece the 'MI LINEAR cosmology' -- linear means PERTURBATIONS.
+
+  *** BUT THIS EXPOSES A SECOND, UNRESOLVED INCONSISTENCY IN THE FRAMEWORK'S OWN NUMBERS ***
+  If mu_fw were applied pointwise to these accelerations, inertia would be suppressed by
+  mu_fw(g/a0) ~ g/a0, so the growth-driving force per unit inertial mass would be AMPLIFIED
+  by 1/mu_fw ~ a0/g:
+     R (Mpc)       g/a0   naive 1/mu_fw
+         1.0   2.48e-04          4036.7
+        10.0   1.24e-03           807.3
+        50.0   2.48e-03           403.7
+       100.0   2.48e-03           403.7
+       300.0   3.72e-03           269.1
+  So a naive pointwise reading gives growth amplification up to ~4037x, against the
+  corpus's quoted flow boost of nu ~ 1.2-1.7 -- a discrepancy of 2-4 ORDERS OF MAGNITUDE.
+  Something must regulate it (the cosmological external-field effect is the obvious
+  candidate: every perturbation sits inside the whole universe's field), but that
+  regulation is NOT DERIVED anywhere in the corpus. Until it is, nu ~ 1.2-1.7 is an
+  estimate whose provenance does not survive this order-counting, and the flow-boost
+  numbers that fed channel C should be treated as unfounded rather than merely uncertain.
+  [OK] the naive pointwise amplification (4037x) exceeds the corpus's nu ~ 1.2-1.7 by orders of magnitude -- an unresolved gap, now on the record
+
+====================================================================================================
+S5. VERDICT on channel A, including a correction to my own framing
+====================================================================================================
+  SELF-CORRECTION FIRST. mi_phantom_artifact_2026.py posed channel A as 'MI modifies the
+  Friedmann equation'. That framing was WRONG, and wrong for a reason visible in the action
+  I had not read closely enough: the MI term is built from u^mu K(Box_u) u_mu, and comoving
+  FRW makes u an exact zero mode. MI cannot modify the homogeneous background at all. The
+  'right size, right regime' encouragement in that script (cH0/a0 = 7.00) was a coincidence
+  of scales, not evidence of a coupling -- and I should have checked the coupling first.
+
+  WHAT THIS SETTLES:
+   1. MI produces NO background distance tilt. Not small -- structurally zero, because
+      K(0) = 0 kills the term on any configuration with vanishing proper acceleration.
+   2. Therefore the phantom-artifact idea is dead AT THE ROOT, not merely unbuilt. There is
+      no mechanism by which modified inertia biases d_L(z) at background level, so it cannot
+      fake a phantom crossing however the fit is done.
+   3. The framework's expansion history comes from its FIELD CONTENT (the AeST/ghost-
+      condensate dark sector, already published and CMB-fitted), not from the inertia
+      modification. That is self-consistent and was the corpus's position all along.
+   4. cH0/a0 = 7.00 remains a real coincidence and is still the framework's central
+      motivation -- but it is NOT a coupling. Nothing in the action makes the expansion rate
+      an argument of K.
+
+  THE ONE GENUINELY NEW STRUCTURAL FINDING, which is worth more than the dead channel:
+   K has a SQUARE-ROOT BRANCH POINT at z = 0, and the cosmological background sits exactly
+   at z = 0. So the framework's action is NON-ANALYTIC at the configuration cosmology must
+   expand around. Any future MI linear-cosmology calculation must handle that -- a naive
+   'expand K to first order in perturbations' step is not available, because K'(0+) is
+   infinite. This is a concrete, quantified obstacle for the perturbation calculation the
+   corpus still wants, and it was not previously on the record.
+   It also explains, in hindsight, why the flow-boost estimate came out as a RANGE
+   (nu ~ 1.2-1.7) rather than a number: the expansion it would need does not exist.
+
+  REMAINING TALLY for the phantom-artifact idea: mechanism NOT NOVEL, channel B closed by
+  the corpus's own SN null, C closed by sign (needs a wall, we sit in a void), D/E/F/G
+  closed or negligible, and A now closed structurally. THE IDEA IS FULLY CLOSED.
+  Independently: BAO alone prefers evolving DE at 3.1 sigma with NO supernovae, which no
+  inertia-side story was ever going to touch.
+====================================================================================================
