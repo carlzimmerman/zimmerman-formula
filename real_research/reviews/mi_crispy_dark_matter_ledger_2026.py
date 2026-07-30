@@ -43,13 +43,25 @@ def banner(s): print("\n" + "=" * 100); print(s); print("=" * 100)
 OM = 0.315
 ZS = [0.0, 0.5, 1.0, 2.0, 3.0]
 
-# DESI DR2 (2025) w0waCDM combinations. PROVENANCE FLAG: quoted from memory of the DR2 release, NOT
-# re-fetched in this session. The conclusions are reported as a FUNCTION of (w0, wa) precisely so that
-# a correction to these central values rescales the answer instead of invalidating it.
+# DESI DR2 w0waCDM (CPL) combinations -- VERIFIED BY FETCH 2026-07-30, not quoted from memory.
+# Source: "Evidence for evolving dark energy from DESI DR2 BAO and Pantheon+, DES-Dovekie, and Union3",
+#   arXiv:2508.10514v7 Table 4 (also EPJC 10.1140/epjc/s10052-026-15806-w); BAO+CMB row from
+#   DESI DR2 results II, arXiv:2503.14738 / Phys.Rev.D 112 083515.
+# CORRECTION TO A PRIOR RUN OF THIS SCRIPT: it used w0=-0.752, wa=-0.86 labelled "BAO+CMB+SN". That is
+# the ORIGINAL DESI DR2 + DESY5 pair, SUPERSEDED by the DES-Dovekie recalibration to w0=-0.821,
+# wa=-0.73 (which also moved DES from 4.2 sigma down to 3.2 sigma). Fixed below.
+#
+# SIGNIFICANCE TREND (S. Nadathur, Moriond 2026, citing Popovic et al 2025 + Hoyt et al 2026), i.e. the
+# "before -> after recalibration" arrows: Pan+ 2.8 -> 3.2 sigma, DES 4.2 -> 3.4 sigma,
+# Union 3.8 -> 3.4 sigma. NET: the SN combinations are CONVERGING on ~3.2-3.4 sigma. The headline 4.2
+# sigma is gone. This is a mild softening of the very signal the framework's a0(z) prediction needs, and
+# it is recorded here rather than left out.
 DESI = [
-    ("LCDM (null)",              -1.000,  0.00),
-    ("DESI DR2 BAO+CMB+SN",      -0.752, -0.86),
-    ("DESI DR2 BAO+CMB",         -0.420, -1.75),
+    ("LCDM (null)",              -1.000,  0.00),   # reference, by construction
+    ("DR2+CMB+Pantheon+",        -0.858, -0.58),   # 2.8 -> 3.2 sigma
+    ("DR2+CMB+DES-Dovekie",      -0.821, -0.73),   # 4.2 -> 3.2/3.4 sigma (recalibrated)
+    ("DR2+CMB+Union3",           -0.662, -1.15),   # 3.8 -> 3.4 sigma
+    ("DR2+CMB (no SN)",          -0.420, -1.75),   # 3.1 sigma
 ]
 
 
@@ -81,9 +93,14 @@ def main() -> int:
     print(f"  {'combination':<24s} {'w0':>8s} {'wa':>8s} {'1+w0+wa':>9s}")
     for nm, w0, wa in DESI:
         print(f"  {nm:<24s} {w0:8.3f} {wa:8.2f} {1+w0+wa:9.3f}")
-    print("  PROVENANCE FLAG: these DR2 central values are quoted from memory, not re-fetched here.")
-    print("  Everything below is computed AS A FUNCTION of (w0, wa), so a correction to the central")
-    print("  values rescales the forecast rather than invalidating it. That is deliberate.")
+    print("  PROVENANCE: VERIFIED BY FETCH 2026-07-30 against arXiv:2508.10514v7 Table 4 and")
+    print("  arXiv:2503.14738. An earlier run of this script used w0=-0.752, wa=-0.86 for the DES row;")
+    print("  that is the SUPERSEDED pre-Dovekie value and has been corrected to -0.821, -0.73.")
+    print("  SIGNIFICANCE TREND, recorded because it runs mildly against the framework: the SN")
+    print("  combinations are CONVERGING on ~3.2-3.4 sigma (Pan+ 2.8->3.2, DES 4.2->3.4, Union")
+    print("  3.8->3.4; Nadathur Moriond 2026 after Popovic+2025 / Hoyt+2026). The 4.2 sigma headline")
+    print("  is gone. The framework's most distinctive cosmological prediction needs this signal to")
+    print("  SURVIVE, so a softening trend is a liability, not a detail.")
     check(abs(1 + DESI[0][1] + DESI[0][2]) < 1e-12, "the LCDM null row has 1+w0+wa = 0 as it must")
 
     banner("S2. The framework's parameter-free a0(z) -- both footings")
@@ -96,7 +113,7 @@ def main() -> int:
         print("    z            " + "".join(f"{z:9.1f}" for z in ZS))
         print("    a0/a0(0) can " + "".join(f"{v:9.3f}" for v in can))
         print("    a0/a0(0) alt " + "".join(f"{v:9.3f}" for v in alt))
-    can_desi = a0_ratio_canonical(ZS, *DESI[1][1:])
+    can_desi = a0_ratio_canonical(ZS, *DESI[2][1:])
     print("\n  Note the SHAPE on the canonical footing with DESI's numbers: a mild rise then a decline")
     print("  (the banked bump-then-decline law), NOT a monotone rise. A claim that the framework")
     print("  predicts a rising a0 is a Taylor-expansion artifact that drops wa.")
@@ -119,7 +136,7 @@ def main() -> int:
             absorb[(nm, fname)] = A
             print(f"  {nm:<24s} {fname:<10s}" + "".join(f"{np.log10(v):10.3f}" for v in A[1:]))
     print("  (values are log10 A, i.e. dex of compensation LCDM must apply; 0.000 = nothing to absorb)")
-    A_can = absorb[(DESI[1][0], "canonical")]
+    A_can = absorb[(DESI[2][0], "canonical")]
     check(abs(np.log10(A_can[2])) > 0.1,
           f"on the canonical footing with DESI's numbers, LCDM must absorb "
           f"{abs(np.log10(A_can[2])):.3f} dex at z=1 -- a real, signed, sizeable requirement")
@@ -142,7 +159,7 @@ def main() -> int:
         desi_signal[nm] = sig
         print(f"  {nm:<24s}" + "".join(f"{v:10.3f}" for v in sig[1:]))
     print("  (dex deviation of a0(z) from CONSTANT -- this, not the 0.25 dex above, is the DESI test)")
-    s_desi = desi_signal[DESI[1][0]]
+    s_desi = desi_signal[DESI[2][0]]
     print()
     print("  THREE CONSEQUENCES, all against the exciting version of the story:")
     print(f"   1. The signal is SMALL: {abs(s_desi[1]):.3f} dex at z=0.5 and {abs(s_desi[2]):.3f} dex at z=1,")
