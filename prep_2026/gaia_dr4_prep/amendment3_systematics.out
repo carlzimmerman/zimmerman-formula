@@ -1,0 +1,89 @@
+
+====================================================================================================
+S1. Saturation ceilings -- the numbers the frozen text does not state
+====================================================================================================
+  As N -> infinity, sigma_tot -> sigma_sym, so every separation has a CEILING in sigma that
+  no sample size can beat. These are the decision-relevant figures.
+  pair               |delta gamma|    ceil@0.01   ceil@0.02   ceil@0.05   ceil@0.10
+  Newton vs MI               0.090         9.00        4.50        1.80        0.90
+  MI vs MG                   0.047         4.70        2.35        0.94        0.47
+  Newton vs MG               0.137        13.70        6.85        2.74        1.37
+  MI vs MOND                 0.240        24.00       12.00        4.80        2.40
+  [OK] at the frozen sigma_sym = 0.02, Newton-vs-MI ceilings at 4.50 sigma (decidable) while MI-vs-MG ceilings at 2.35 sigma (not) -- consistent with the prereg's own pre-declaration
+  [OK] if the symmetric systematic were 0.10, even Newton-vs-MI would ceiling at 0.90 sigma -- so the credibility of sigma_sym is not a detail, it decides whether Front A is a test at all
+
+====================================================================================================
+S2. The statistical-only sample-size caveat, quantified
+====================================================================================================
+  Newton-vs-MI at 3 sigma, statistical only:      N >=   12033   (frozen text: 12200)
+  Newton-vs-MI at 3 sigma, sigma_sym included:    N >=   21660   (factor 1.80)
+  [OK] the frozen 12200 is reproduced to 1% by a statistical-only calculation, confirming what its own label says
+
+====================================================================================================
+S3. *** THE ONE-SIDED BUDGET -- why a blanket widening is the WRONG fix ***
+====================================================================================================
+  The prereg records: 'contamination only pushes gamma UP'. A one-sided error folded in
+  quadrature would (a) inflate the error on the NEWTON side, where the systematic cannot
+  reach, making a Newton verdict artificially weak, and (b) under-state it on the MI/MG side,
+  where it can, making an MI verdict artificially strong. Both are wrong, in opposite
+  directions. The correct treatment: gamma_true <= gamma_hat, so
+      Newton-side test (is gamma_hat consistent with 1.00 from ABOVE?):  use sigma_sym only
+      MI/MG-side test (is gamma_hat really as high as it looks?):        subtract delta_up
+   delta_up  gamma_hat needed for a 3-sigma MI claim               lands in
+       0.00                                    1.083     MI-compatible band
+       0.05                                    1.133     MI-compatible band
+       0.10                                    1.183           MG-side band
+  [OK] at delta_up = 0.10 an MI claim would require gamma_hat >= 1.183, which the prereg's own frozen bands assign to the MG-SIDE (1.145-1.20), not to the MI-compatible window. So an MI claim would need a measured value the bands read as MG -- a self-veto rather than a mis-claim. (My first assertion said this reached the >1.20 contamination-guard zone; it does not, it stops in the MG band. Corrected.)
+  AND THE ASYMMETRY IS A GIFT, not a cost: a Newton-side verdict is UNAFFECTED by delta_up,
+  so the most likely decisive outcome in DR4 is a KILL of the MI branch, not a confirmation.
+  Newton-side: gamma_hat <= 1.055 would put MI at >2 sigma
+  disfavoured regardless of how bad the contamination is.
+
+====================================================================================================
+S4. The declared fork on delta_up, with a pre-stated survival requirement
+====================================================================================================
+  delta_up cannot be known before the DR4 NSS screen is exercised, so it is declared as a
+  FORK -- the same discipline the corpus uses for the a0 footing -- not fitted afterwards:
+      delta_up = 0.00   the frozen-as-is reading (NSS screen assumed fully effective)
+      delta_up = 0.05   NSS screen credited with cutting the DR3-era disagreement ~5x
+      delta_up = 0.10   pessimistic; NSS screen credited with ~2.5x
+  VERIFIED LITERATURE INPUT (fetched, not remembered; force gamma -> gamma_v = sqrt):
+      Banik+24 (MNRAS 527, 4573)       gamma_force = 1.000  ->  gamma_v = 1.000
+      Chae 2023                        gamma_force = 1.430  ->  gamma_v = 1.196
+      Chae 2024a                       gamma_force = 1.490  ->  gamma_v = 1.221
+      Hernandez+2024b                  gamma_force = 1.500  ->  gamma_v = 1.225
+      Chae 2026 (arXiv:2601.21728)     gamma_force = 1.600  ->  gamma_v = 1.265
+      gamma_v spread = 0.265
+  AND THE DISAGREEMENT IS NOT SOFT -- it is MUTUALLY EXCLUSIVE HIGH-SIGNIFICANCE CLAIMS:
+      Banik+24 reports 19 SIGMA preference for Newtonian (gamma_force = 1)
+      Chae 2023 reports gamma_force = 1.43 +/- 0.06, which is 7 sigma FROM 1
+  Two groups, overlapping data, incompatible claims at >7 sigma each, differing on exactly
+  the systematic the prereg allots 0.02 to. That is a stronger case for Amendment 3 than the
+  'spread' framing I first used, and it was only visible after verifying the citation.
+  For scale, the unmitigated published disagreement is 0.26, so even the
+  pessimistic fork assumes the DR4 screen removes 62% of it.
+  SURVIVAL REQUIREMENT (pre-declared): a non-Newtonian verdict counts only if it holds at
+  ALL THREE delta_up values. A verdict that appears only at delta_up = 0 is to be reported as
+  'contamination-limited', never as support.
+  [OK] the pessimistic fork (0.10) still assumes the DR4 NSS screen removes 62% of the published disagreement -- stated so the assumption is visible rather than buried
+
+====================================================================================================
+S5. What Amendment 3 must carry
+====================================================================================================
+  1. The SATURATION CEILINGS of S1, printed next to the sample-size figures, because the
+     ceiling (4.50 sigma Newton-vs-MI, 2.35 MI-vs-MG at the frozen
+     sigma_sym) is the decision-relevant number and the sample size is not.
+  2. The note that 'N >~ 12200' is STATISTICAL-ONLY and becomes N >~ 21660 with
+     sigma_sym included. No frozen number is changed by saying so.
+  3. The ONE-SIDED split sigma_sym = 0.02 (unchanged) PLUS delta_up >= 0 for residual
+     contamination, with the asymmetric scoring rule of S3. This is an ADDITION, not a
+     revision: the frozen symmetric machinery is untouched and still runs.
+  4. The three-value FORK on delta_up and the survival requirement of S4.
+  5. The explicit statement that this amendment makes the framework HARDER to confirm and
+     EASIER to kill, which is why it must be filed pre-data. Filed after DR4 it would be
+     unusable.
+  6. The audit provenance: the amendment exists because the frozen sigma_sym = 0.02 is 13x
+     smaller than the 0.26 published disagreement on gamma_v and does not itemise
+     undetected companions.
+  [OK] the amendment's obligations are enumerated and each is backed by a computed number
+====================================================================================================
