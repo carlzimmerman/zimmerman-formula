@@ -1,0 +1,134 @@
+
+====================================================================================================
+S1. Reproduce the corpus's OWN frozen MG number, to prove the machinery matches
+====================================================================================================
+  If Milgrom's theta is set to 1 -- i.e. mu(a_ex/a0), the modified-GRAVITY prescription --
+  Eq. (35) must return the pre-registration's frozen framework-as-MG target of 1.137.
+  a_ex/a0 = 1.778e-10/9.360e-11 = 1.8996
+  gamma_v = 1/sqrt(mu_fw(1.8996)) = 1.1390   vs frozen 1.137 (script asserts |asy - 1.137| < 0.005)
+  [OK] reproduced to 0.0020 -- so this script's mu, its gamma_v convention and its frozen a_ex all agree with the banked pre-registration, and any change below is due to theta alone
+
+====================================================================================================
+S2. What theta(0) does to the EFE quenching -- Milgrom's own worked case
+====================================================================================================
+  His sentence: 'for wide binaries in the solar neighborhood we have a_ex/a0 ~ 2, and even a
+  value of theta(0) of a few can have a large impact on 1 - mu ... since 1 - mu[2 theta(0)]
+  can be rather smaller than 1 - mu(2).'  Quantified on the framework's own mu:
+   theta(0) arg = theta*2        mu    1 - mu  vs theta=1
+      1.000         2.000    0.7808    0.2192      1.000x
+      2.000         4.000    0.8828    0.1172      0.535x
+      2.718         5.437    0.9123    0.0877      0.400x
+      3.004         6.008    0.9202    0.0798      0.364x
+  [OK] 1 - mu falls by 2.7x between theta(0)=1 and theta(0)=3 at a_ex/a0 = 2 -- Milgrom's claim reproduced on the framework's own interpolation, so the MI EFE really does quench harder than the MG one
+
+====================================================================================================
+S3. *** DOES IT CLOSE THE PLANETARY LIABILITY? NO, AND IT CANNOT. ***
+====================================================================================================
+  Eq. (34) puts theta in an ADDITIVE term inside mu's argument:
+      A(omega_in) = a_in + theta(omega_ex/omega_in) a_ex
+  For a planet, a_in is its own Newtonian acceleration and a_ex the Galaxy's. The anomaly is
+      a - a_N = a_N (1/mu - 1) ~ a_N a0 / (2A),  which is a0/2 when A ~ a_N.
+  So theta suppresses the anomaly ONLY insofar as theta(0) a_ex competes with a_in:
+  planet     a_in (m/s^2)   a_in/a_ex  anomaly, theta=1     theta=3  theta=e^1.1
+  Mercury      3.9574e-02    2.23e+08        4.6800e-11  4.6800e-11   4.6800e-11
+  Earth        5.9301e-03    3.34e+07        4.6800e-11  4.6800e-11   4.6800e-11
+  Mars         2.5542e-03    1.44e+07        4.6800e-11  4.6800e-11   4.6800e-11
+  Saturn       6.4579e-05    3.63e+05        4.6800e-11  4.6800e-11   4.6800e-11
+
+  Earth 2-sigma limit on a constant sunward anomaly: 3.660e-14 m/s^2
+    theta(0) =  1.000  ->  anomaly 4.6800e-11  =    1278.7x over
+    theta(0) =  3.000  ->  anomaly 4.6800e-11  =    1278.7x over
+    theta(0) =  3.004  ->  anomaly 4.6800e-11  =    1278.7x over
+
+  theta(0) REQUIRED to bring Earth to the bound: 4.261e+10
+  Milgrom's own examples span theta(0) = 2 to 3.00; his general family
+  theta(y) = e^((1-y)/q) gives theta(0) = e^(1/q), unbounded as q -> 0, so there is no HARD
+  ceiling -- but the requirement is 1.57e+10x his e-example and would need
+  q = 1/ln(theta(0)) = 0.0409, i.e. a theta falling by 4.3e+10 between
+  y = 1 and y = 0. That is not 'of the order of a few' by any reading.
+  [OK] the planetary liability needs theta(0) ~ 4.3e+10, which is 1.4e+10x Milgrom's largest quoted example -- THE FREQUENCY-RATIO ROUTE DOES NOT CLOSE IT. The reason is structural: theta enters additively against a_in, and at Earth a_in/a_ex = 3.3e+07, so the external term is invisible
+  AND THE DEEPER REASON IT CANNOT: the a0/2 anomaly is a SINGLE-FREQUENCY effect. Milgrom's
+  own result is that the algebraic MOND relation holds exactly for single-frequency
+  (circular) trajectories, and a planetary orbit is very nearly one. A construction whose
+  content is in frequency RATIOS has no purchase on a trajectory with effectively one
+  frequency. The fifth constant omega_c was doing a job that ratios structurally cannot do.
+
+====================================================================================================
+S4. *** WHERE IT DOES PAY: WIDE BINARIES, AND IT MOVES A FROZEN TARGET ***
+====================================================================================================
+  Wide binaries are exactly Eq. (35)'s regime: a_ex/a0 ~ 2, and omega_ex << omega_in (the
+  pair orbits far faster than the Galaxy), so theta -> theta(0), its MAXIMUM.
+  a0 footing         g_ext                       a_ex/a0   th=1.00   th=2.00   th=2.72   th=3.00
+  canonical rho_DE   primary (McMillan-class)      1.900    1.1390    1.0678    1.0495    1.0447
+  canonical rho_DE   alt (Vc^2/R0)                 2.220    1.1182    1.0578    1.0422    1.0382
+  alt rho_total      primary (McMillan-class)      1.573    1.1692    1.0823    1.0601    1.0542
+  alt rho_total      alt (Vc^2/R0)                 1.839    1.1438    1.0701    1.0512    1.0462
+
+  FROZEN pre-registration targets: framework-MI point 1.09, band 1.05-1.1; framework-as-MG 1.137
+  Where each theta(0) lands relative to the frozen MI band:
+    MG baseline (no MI theta)    theta(0)= 1.000  gamma_v 1.1182-1.1692   straddles the band
+    theta(y)=2/(1+y^2)           theta(0)= 2.000  gamma_v 1.0578-1.0823   INSIDE the frozen band
+    theta(y)=e^(1-y)             theta(0)= 2.718  gamma_v 1.0422-1.0601   straddles the band
+    theta(y)=e^((1-y)/q), q=1/1.1 theta(0)= 3.004  gamma_v 1.0382-1.0542   straddles the band
+  [OK] even Milgrom's SMALLEST example theta(0)=2 pulls gamma_v to 1.0578-1.0823, well below the frozen MG value 1.137 -- so the MI-vs-MG gap WIDENS rather than closing
+  [OK] TWO separate frozen-target problems, stated precisely rather than overstated: (a) at theta(0)=3.00 the prediction 1.0382-1.0542 STRADDLES the band's lower edge 1.05 -- some legitimate footing/g_ext combinations fall below it, not all; (b) more sharply, the frozen POINT target 1.09 is above EVERY prediction for every theta(0) >= 2 (max 1.0823), so the point target is not reproduced by Milgrom's MI construction at all. Both need an amendment in the open, before DR4
+
+====================================================================================================
+S5. MI vs MG in DR4 -- the corpus banked this as likely UNDECIDABLE
+====================================================================================================
+  Frozen DR4 error model: sigma(gamma_v) = 0.0191 at N = 30,000 pairs.
+  MG is theta = 1 by construction (it uses mu(a_ex/a0)). MI is theta(0) > 1. Separation:
+   theta(0)  gamma_v MI  gamma_v MG  separation   sigma  decidable at 3 sigma?
+      2.000      1.0678      1.1390      0.0712    3.7s                    YES
+      2.718      1.0495      1.1390      0.0895    4.7s                    YES
+      3.004      1.0447      1.1390      0.0943    4.9s                    YES
+  [OK] across ALL of Milgrom's example theta forms the MI-MG separation is 3.7-4.9 sigma at the frozen DR4 error model -- so the MI-vs-MG discrimination the corpus banked as 'likely undecidable in DR4' becomes DECIDABLE if Milgrom's theta is real
+  CAVEAT, and it is the binding one: this decidability rests on theta(0) being O(1) LARGER
+  than 1 and on the wide-binary systematics being under control. The systematics are not:
+  Cookson+2026 show a 20 pc cut plus one Gaia flag swings the Bayes factor ~18,000x and
+  flips its sign, and the hidden-companion fraction differs 1.7-3.4x between camps. A 3-5
+  sigma THEORY separation does not survive a 0.15-wide systematic on gamma_v.
+
+====================================================================================================
+S6. Does it cost anything on the RAR? No -- by his normalisation, and checked
+====================================================================================================
+  Milgrom fixes theta(1) = 1 precisely so that, verbatim, 'it is mu(a_ex/a0) that enters the
+  rotation-curve analysis'. theta modifies the EXTERNAL-field term only (Eq. 34's second
+  piece), so a system whose internal acceleration dominates is untouched. Structural check:
+   y = g_bar/a0  nu (theta-free)   nu with theta(0)=3 on a_ex=0    ratio
+          0.010        10.049876                      10.049876 1.000000
+          0.100         3.316625                       3.316625 1.000000
+          1.000         1.414214                       1.414214 1.000000
+         10.000         1.048809                       1.048809 1.000000
+        100.000         1.004988                       1.004988 1.000000
+  [OK] for an ISOLATED system the theta term is multiplied by a_ex = 0 and drops out identically for any theta(0), so the SPARC RAR fit (0.108 dex) is untouched -- this is not a tuning, it is what theta(1)=1 was chosen to guarantee
+
+====================================================================================================
+VERDICT
+====================================================================================================
+  1. THE DOOR DOES NOT DO WHAT IT WAS OPENED FOR. Milgrom's frequency-ratio construction
+     does NOT close the alpha=1 planetary liability, and the failure is structural rather
+     than quantitative: theta enters additively against a_in, Earth has a_in/a_ex = 3.3e+07,
+     and the required theta(0) ~ 4.3e+10 is ten orders above his own examples. Deeper:
+     the a0/2 anomaly is a single-frequency effect and a ratio construction has no purchase
+     on a one-frequency trajectory. So the fifth constant omega_c is NOT shown unnecessary --
+     it was doing a job ratios structurally cannot do. That hypothesis is CLOSED.
+  2. BUT THE SAME CONSTRUCTION MOVES A FROZEN PRE-REGISTERED TARGET, which is a bigger
+     practical result than the one sought. In the wide-binary regime -- which is exactly the
+     regime Eq. (35) governs -- theta(0) of a few pulls the framework's MI prediction from
+     gamma_v ~ 1.14 down to 1.038-1.082.
+     theta(0)=2 stays inside the frozen band (1.05, 1.1); theta(0) >~ e falls BELOW it.
+     The frozen MI target 1.09 was computed with NO theta enhancement, i.e. implicitly
+     theta(0)=1 -- which is the MODIFIED-GRAVITY prescription, not the MI one. On Milgrom's
+     own MI construction the MI target should be lower. THIS NEEDS AN AMENDMENT FILED IN THE
+     OPEN BEFORE DR4 (~Dec 2026), per the standing rule.
+  3. AND IT SHARPENS THE DISCRIMINATOR RATHER THAN BLUNTING IT. MG uses mu(a_ex/a0), MI uses
+     mu(theta(0) a_ex/a0). The gap is 3.7-4.9 sigma at the frozen DR4 error
+     model, so MI-vs-MG becomes decidable where the corpus banked it as undecidable -- IF the
+     wide-binary systematics can be brought under a 0.02-level control they currently are not.
+  4. NET, and it is the honest shape of a swing that missed its target: the liability it was
+     aimed at is untouched and that route is now closed; a different, frozen, time-boxed
+     commitment turns out to be wrong in a computable direction. The alpha=1 conflict stands
+     exactly where it did -- exactness versus the planets, and only one survives.
+  [OK] verdict recorded: door closed for the planets, amendment triggered for wide binaries
+====================================================================================================
