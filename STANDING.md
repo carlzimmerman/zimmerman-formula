@@ -1,7 +1,7 @@
 # STANDING
 
 **de Sitter–Unruh modified inertia — where the programme actually stands**
-Last updated **2026-07-30**. Maintained as the single entry point: what is claimed, what is earned,
+Last updated **2026-07-30** (rev. 2). Maintained as the single entry point: what is claimed, what is earned,
 what is postulated, what is live, and what is closed. If a statement anywhere in this repository
 conflicts with this file, this file is newer unless it says otherwise.
 
@@ -50,6 +50,12 @@ claims. They are not to be revived. The true position is the $a_0$ reframing abo
 - **The sign $s$** — **demoted 2026-07-30.** No longer a parameter awaiting data: within the closure
   family that reproduces the relation, the channel it would sign is *identically zero*, so $s$ has no
   observable consequence (Thm 2, Cor 2.2). This is a reduction in free content, not a measurement.
+- **⚠️ THE LAW ITSELF — status corrected 2026-07-30.** $\mu_{\rm fw}(|a|/a_0)\,a=g_{\rm bar}$ is **not
+  the Euler–Lagrange equation of any fixed-kernel action**, established across **four** checked families
+  (§4). It *is* exact as a **first spectral moment** (Thm 1) and it *is* a genuinely successful fit
+  (0.108 dex). The claim the programme is entitled to is therefore **"a law with an action-based
+  motivation and an exact moment interpretation"** — *not* "a law derived from an action." Those are
+  different, and only the first is supported.
 
 ---
 
@@ -89,6 +95,7 @@ band, 0.0101 from the point target 1.09.
 | Dissipative / secular-drift channel | **identically zero** (Thm 2). Independently, the alternative closure's universal drift is excluded at **8.5σ** by PSR J0737−3039 |
 | Local $a_0$ from dark-matter dynamics | same as row 1 — already closed by Carl's own SPARC test |
 | `project_atomos` SM parameter search | null, published (DOI 10.5281/zenodo.21654272) after an audit withdrew two false claims |
+| **Deriving the law from an action — all four families** | **closed 2026-07-30.** (1) Nonlocal, $K$ as an operator on $u$ (the *published* action): on a circular orbit $K$ is evaluated at the eigenvalue $-(c\Omega/a_0)^2$, on the cut, $\|K\|=1$ exactly — amplitude-free, and variation-generated $\mathrm{d}K$ terms are 4–13 orders too small (Thm 8). (2) Local, $F$ of the scalar first moment: nondegenerate at every finite acceleration, so 4th-order EL equation — *and* the acceleration Hessian is **indefinite**, i.e. Ostrogradsky-unstable. (3) Local + degenerate ($F$ linear in $\|a\|$, the unique escape): deep-MOND branch only, diverges from the law by +9950% by $a/a_0=100$. (4) Nonlocal velocity-bilinear (Milgrom 1994's class): EL equation *is* second order — but $\tilde Q$ is diagonal in **frequency** while the law is diagonal in **acceleration**, and at fixed $\Omega$ the required kernel value spans **19.7×** across radii. **General obstruction:** a fixed potential-independent kernel is diagonal in frequency by time-translation invariance; the law is diagonal in acceleration; $A=\Omega^2R$ ties the labels, so no such action reproduces the law for all potentials |
 | Non-adiabatic relational σ-spread as a **near-term** discriminator | repriced **down 3–15×** on 2026-07-30 (1.45–2.21% max−min, 0.22–0.72% population RMS vs banked 6.2–14.1%). Still MG-impossible *in principle*; $N(3\sigma)$ at the ELT tier is ~2e5–2e7, past the whole CHANCES budget |
 
 ---
@@ -103,11 +110,18 @@ band, 0.0101 from the point target 1.09.
    survives and it is real:** the $b$ budget is ΛCDM-hydro-calibrated, so a self-consistent
    modified-inertia hydro simulation is required to finalise. Status: **strongly disfavoured**, not
    falsified.
-2. **The closure-vs-action gap.** Theorem 1 gives a **moment identity**; an Euler–Lagrange equation
-   *selects* the worldline. The corpus's structural guarantees are theorems about the **nonlocal**
-   action while every quantitative success uses the **local** closure. That they coincide is **not
-   established**. Invisible on circles (members agree to $1.8\times10^{-16}$), growing off them
-   (6.5% at $\epsilon=0.5$). Named open item: vary the v4 action.
+2. **The closure-vs-action gap — RESOLVED, NEGATIVELY, 2026-07-30.** No longer "not established": the
+   law is **not** the EL equation of any fixed-kernel action, across four families (§4). Theorem 1's
+   **moment identity** stands and is exact; what does not exist is a variational derivation.
+   **And the variational route leads out of modified inertia:** the only evasion of the general
+   obstruction is a kernel sourced by matter, i.e. potential-dependent — which is modified *gravity*,
+   with the structure in a field equation rather than in inertia. This is consistent with the corpus's
+   own repeated finding that MI $\equiv$ AeST($=$MG) to machine precision in static systems, and with
+   the published lensing construction being **disformal** (a metric statement) rather than an inertia
+   statement. What survives as *distinctively* modified-inertia, needing no variational law: the EFE's
+   quadrature $+$ vector-cross-term structure with its footing-free RC dipole (Thm 5), and the
+   dispersion-supported closure discriminator (Prop 7). The residual freedom is a single function $w$
+   (the time-weighting), and Prop 7 measures it on archival dwarfs.
 3. **Cassini $Q_2$ quadrupole.** A **3–15σ** tension that the framework's AeST(=MG) realisation
    *inherits* (Desmond-Hees-Famaey 2024; Park+ 2026). The γ-pass is MOND-shared and trivial.
    **Cassini is not a favourable in-hand discriminator** — corrected 2026-06-28.
@@ -126,6 +140,9 @@ band, 0.0101 from the point target 1.09.
 - **2026-07-30:** "pure MI predicts *exactly zero* directional asymmetry" — **wrong**. An artifact of
   the borrowed scalar-θ ansatz; quadrature has a vector cross term, so orientation survives.
 - **2026-07-30:** treating the sign $s$ as a parameter awaiting data — superseded by Cor 2.2.
+- **2026-07-30:** any phrasing that the law is **"derived from"** the action. Correct phrasing is
+  "a law with an action-based motivation and an exact moment interpretation" (§2). Four action families
+  checked and closed; the law is a fit that is exact as a first moment.
 - **2026-07-30:** "the phase acts only on perturbations (epicycles, tides, waves)" in
   `KERNEL_THEORY.md` — **incoherent**, retire it. Theorem B applies pointwise to the total
   acceleration and returns one non-negative real number.
