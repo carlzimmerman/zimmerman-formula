@@ -1,0 +1,110 @@
+
+====================================================================================================
+S1. Real P(k,z) from CAMB
+====================================================================================================
+Note: redshifts have been re-sorted (earliest first)
+  CAMB 1.6.6, sigma8(z=0) = 0.8111
+  k range 1.00e-04 - 1.00e+02 1/Mpc, redshifts [0.0, 2.3, 2.85, 3.35, 3.7]
+  [OK] sigma8 = 0.8111, a sane Planck-like cosmology
+
+====================================================================================================
+S2. VALIDATION -- v_rms(z=0) from the same integral, against the observed ~300 km/s
+====================================================================================================
+      linear: INT P dk =    4460.89 Mpc^2  ->  v_rms 3D =  536.7 km/s, 1D =  309.9 km/s
+   nonlinear: INT P dk =    6548.17 Mpc^2  ->  v_rms 3D =  650.3 km/s, 1D =  375.4 km/s
+  CORRECTION TO MY OWN VALIDATION TARGET: the integral gives the 3D rms; the familiar
+  ~300 km/s figure is the 1D (line-of-sight) value, so the like-for-like comparison is
+  v_1D = v_3D/sqrt(3). Comparing 3D to 1D was my error, not a code error.
+  [OK] linear v_rms(1D, z=0) = 310 km/s against the observed ~300 km/s -- INT P dk is validated against a known quantity
+
+====================================================================================================
+S3. THE UV WORRY, SETTLED BY COMPUTATION -- contribution to <g^2> per ln k
+====================================================================================================
+  d<g^2>/dln k  proportional to  k P(k). If that peaks at small k the integral is
+  large-scale dominated and well defined; if it rises to the resolution limit it is
+  cutoff-dominated and the answer is NOT determined. Computed at z = 2.85:
+     k (1/Mpc)  lambda (Mpc)  k P(k) (norm)
+        0.0030       2104.78         0.0900
+        0.0101        625.11         0.5396
+        0.0299        209.94         0.9011
+        0.0992         63.32         0.7219
+        0.3001         20.94         0.3063
+        0.9949          6.32         0.1255
+        3.0082          2.09         0.0852
+        9.9744          0.63         0.0428
+       30.1593          0.21         0.0128
+  PEAK at k = 0.0482 1/Mpc, i.e. lambda = 130.4 Mpc
+  cumulative fraction of INT P dk below k_max:
+      k <    0.1 1/Mpc :  0.696
+      k <    0.3 1/Mpc :  0.859
+      k <    1.0 1/Mpc :  0.931
+      k <    3.0 1/Mpc :  0.965
+      k <   10.0 1/Mpc :  0.989
+      k <   30.0 1/Mpc :  0.998
+      k <  100.0 1/Mpc :  1.000
+  [OK] 93% of the integral comes from k < 1/Mpc, so <g^2> is LARGE-SCALE dominated and NOT cutoff-sensitive -- the risk I flagged does not materialise
+  So the total acceleration is set by ~10-100 Mpc structure, not by unresolved small scales.
+  IMPORTANT CONSEQUENCE: it does NOT get a big boost from embedded small-scale structure,
+  which is what the forest result needed in order to be rescued.
+
+====================================================================================================
+S4. g_rms and x_rms for forest gas, vs my single-absorber estimate
+====================================================================================================
+      z    INT P dk  g_rms (m/s^2)  x_rms canon  x single-abs   ratio
+   2.30      728.05     4.5995e-12      0.04914       0.00534    9.20
+   2.85      524.58     5.3141e-12      0.05677       0.00848    6.70
+   3.35      404.98     5.9607e-12      0.06368       0.01223    5.21
+   3.70      344.00     6.4132e-12      0.06852       0.01543    4.44
+  ratio range x_rms / x_single-absorber: 4.44 - 9.20
+  [OK] the total-acceleration calculation raises x by only 4.4-9.2x over the single-absorber estimate -- NOT the 1-2 orders needed to rescue the forest result
+
+====================================================================================================
+S5. The forest exclusion re-run on x_rms (f_pec = 0.3, T = 1e4 K, conservative sqrt scaling)
+====================================================================================================
+      z     x_rms  sqrt(1/h)  b_cut pred  b_cut obs    sigma
+   2.30   0.04914       3.20        41.4       24.0     8.7s
+   2.85   0.05677       2.98        35.2       22.0     6.6s
+   3.35   0.06368       2.81        23.4       17.0     3.2s
+   3.70   0.06852       2.71        18.4       15.0     1.7s
+  exclusion range on x_rms: 1.7 - 8.7 sigma
+  (for comparison, the single-absorber estimate gave 6.5 - 42.8 sigma on the same footing)
+  [OK] MIXED, and this is the honest outcome: the exclusion SOFTENS from 6.5-42.8 sigma to 1.7-8.7 sigma. It survives at low z (z<=2.85: 6.6-8.7 sigma) but DIES at z=3.7. The escape partially works
+
+====================================================================================================
+VERDICT
+====================================================================================================
+  1. THE ESCAPE PARTIALLY WORKS. Computing the TOTAL acceleration from the real P(k) raises
+     forest gas from x = 0.005-0.015 to x = 0.049-0.069, a factor
+     4.4-9.2. That is real and it matters: the exclusion softens from
+     6.5-42.8 sigma to 1.7-8.7 sigma. My previous claim of a clean
+     falsification was TOO STRONG and is corrected here.
+  2. BUT IT DOES NOT CLOSE THE PROBLEM. The constraint survives at low redshift --
+     8.7 sigma at z=2.30 and 6.6 sigma at z=2.85 -- and only dies at z=3.7
+     (1.7 sigma). The low-z cutoffs are the tighter measurements (24 and 22 km/s
+     against a 12.85 km/s thermal floor), so the surviving constraint rests on the
+     best-measured end of the sequence, not the weakest.
+  3. THE UV RISK I FLAGGED DID NOT MATERIALISE, and that is why the answer is trustworthy:
+     93% of INT P dk comes from k < 1 Mpc^-1, integrand peaking at lambda ~ 130 Mpc. So
+     <g^2> is a LARGE-SCALE quantity, determined rather than cutoff-dependent. Diffuse gas
+     genuinely is not rescued by unresolved small-scale structure -- the acceleration field
+     is not built from small scales.
+  4. IT CORRECTS THE REASONING BEHIND MY CHANNEL-A FIX. I said matter 'feels its own halo'.
+     For BOUND matter that is right -- but because it is bound and has a large LOCAL
+     acceleration, NOT because the cosmological field is small-scale dominated (S3 shows it
+     is not). Forest gas is unbound, so gets no such boost. I had conflated two different
+     physical cases; the conclusion held for the wrong reason.
+  5. VALIDATED BEFORE USE: v_rms(1D, z=0) = 310 km/s vs the observed ~300 km/s. My first
+     validation compared a 3D rms against a 1D figure -- a target error, not a code error.
+
+  ONE DIRECTION LEFT UNPRICED, and it runs the framework's way: the rms is a VOLUME average
+  over random positions, while forest absorbers sit at mildly OVERDENSE positions where the
+  local acceleration is higher than the global rms. That pushes x up and weakens the
+  constraint further. Quantifying it needs the conditional acceleration distribution at
+  delta ~ 1-10, not computed here. With z=3.35 already at 3.2 sigma, a further modest boost
+  could pull the whole high-z half below significance.
+
+  STATUS, REVISED DOWN: the diffuse-sector constraint is REAL BUT NARROWER THAN I CLAIMED --
+  carried by z ~ 2.3-2.9 at 6.6-8.7 sigma rather than 7-43 sigma across the board,
+  and still subject to the unresolved LCDM-hydro-calibration caveat. Enough to keep the
+  missing regulator MANDATORY; not enough to call the pointwise reading falsified.
+====================================================================================================
