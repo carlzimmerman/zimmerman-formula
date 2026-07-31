@@ -1,0 +1,109 @@
+
+====================================================================================================
+S1. What K_2 supplies on a circular orbit -- REAL, not a phase, and still not mu
+====================================================================================================
+  beyond the cut (w > 1):  K_2(-w^2) = w*sqrt(1/(w**2 - 1))
+  large-w expansion      : 1 + 1/(2*w**2)
+  K_1 on its cut         : |K_1| = 1 EXACTLY, a pure phase (its branch point is w = 1/2)
+
+  system                     w = cOm/a0            K_2     K_2 - 1   |K_1|
+  wide binary (10 kAU)        9.635e+05   1.0000000000   5.387e-13     1.0
+  dwarf spheroidal            5.190e+02   1.0000018563   1.856e-06     1.0
+  galaxy outskirt             7.785e+02   1.0000008250   8.250e-07     1.0
+  cluster member              1.038e+02   1.0000464100   4.641e-05     1.0
+  [OK] every real system has w = 1.0e+02-9.6e+05, all BEYOND K_2's cut at w = 1, where K_2 is real and within 1e-4 of unity -- so the action still supplies amplitude ~1, not mu
+  what the RAR needs instead, at the same systems' x = a/a0:
+  system                      x = a/a0  mu_2(x) needed   K_2 supplied    ratio
+  wide binary (10 kAU)       1.446e+00        0.822513   1.0000000000     1.22
+  dwarf spheroidal           1.731e-02        0.017309   1.0000018563    57.77
+  galaxy outskirt            3.895e-01        0.362954   1.0000008250     2.76
+  cluster member             3.462e-01        0.327181   1.0000464100     3.06
+  [OK] in the deep regime mu_2 -> x -> 0 (mu_2(0.01) = 0.0100) while the action supplies ~1, so the mismatch is the ENTIRE MOND effect, not a correction
+
+====================================================================================================
+S2. *** THE REPLACEMENT OBSTRUCTION IS THE ARGUMENT, NOT THE FUNCTION ***
+====================================================================================================
+  w = c Omega/a0 = c*v/(R*a_0);   x = a/a0 = v**2/(R*a_0)
+  w/x = c/v   -- EXACTLY c/v, a pure kinematic factor with no kernel in it
+  [OK] the action's argument and the law's argument differ by exactly c/v on every circular orbit, identically in R and a0 -- so this is not a tuning question, it is a category mismatch
+
+  system                      x = a/a0        c/v    w = x c/v
+  wide binary (10 kAU)       1.446e+00   666205.5    9.635e+05
+  dwarf spheroidal           1.731e-02    29979.2    5.190e+02
+  galaxy outskirt            3.895e-01     1998.6    7.785e+02
+  cluster member             3.462e-01      299.8    1.038e+02
+
+  and the deep regime does NOT approach the cut: to get w ~ 1 you need x ~ v/c, i.e.
+  a ~ 1.5e-06 a0, with Omega = a0/c = 3.12e-19 rad/s --
+  a period of 638 Gyr. No bound system is anywhere near it.
+  [OK] even the smallest w over these systems is >> 1, and w grows as the acceleration FALLS in fixed-v systems, so the MOND regime is the regime furthest from the cut -- the obstruction is worst exactly where the framework needs the amplitude most
+
+====================================================================================================
+S3. A NEW PROBLEM FOR alpha=2: passivity fails beyond the cut
+====================================================================================================
+  K_2(z) = 1 - INT_0^1 rho(s) ds/(z+s) with rho compactly supported on (0,1). For z < -1
+  every (z+s) < 0, so the integral is NEGATIVE and K_2 > 1. K_1's measure reaches -infinity,
+  so it lies ON its cut instead and stays unimodular. Quantified:
+           w          K_2  excess over 1
+        1.01     7.123991      6.124e+00
+         1.1     2.400397      1.400e+00
+           2     1.154701      1.547e-01
+          10     1.005038      5.038e-03
+        1000     1.000001      5.000e-07
+       778.5     1.000001      8.250e-07
+       1e+06     1.000000      5.000e-13
+  [OK] passivity is violated for all w > 1, by order 7 near the cut edge and by ~1e-13 at orbital frequencies -- structurally real, numerically irrelevant where orbits live
+  DOES IT THREATEN THE a0 DERIVATION? No, and the reason belongs in the record rather than
+  being assumed: passivity is used on the PHYSICAL domain of the first-moment closure,
+  z = +|a|^2/a0^2 > 0, where 0 <= K_2 <= 1 was verified over sixteen decades. The violation
+  is on z < -1, the LITERAL spectral closure, which Theorem 2 already shows fails the RAR
+  outright. Passivity holds where it is used and fails where the theory makes no claim.
+  [OK] confirmed: on z > 0, the domain the a0 derivation actually uses, K_2 stays in [0,1]
+
+====================================================================================================
+S4. THE PINCER -- Theorems 3 and 8 now close on each other
+====================================================================================================
+  Theorem 3 (corrected today): NO local L(x, xdot, xddot) gives the law. The x'''' coefficient
+    IS the xddot-Hessian; an x''''-free vector law forces it to vanish identically; that means
+    linear in xddot; and that means an EL equation LINEAR in a, which the law is not.
+  Theorem 8 (this script): the NONLOCAL operator action does not supply the amplitude, because
+    spectral calculus evaluates K at the operator's EIGENVALUES (-omega^2) while the law needs
+    K at the MOMENT (+|a|^2), and on a circle those differ by c/v.
+
+  So the two options are pinched:
+    * an action in the SCALAR |a|^2 has the RIGHT argument -- but it is local, so Thm 3 kills it
+    * an action in the OPERATOR Box_u is nonlocal and allowed -- but its spectral argument is
+      the wrong object, so Thm 8 kills it
+  and the gap between them is exactly the inequality
+      K( <Box_u>_u )  !=  < K(Box_u) >_u ,
+  i.e. the closure SWAPS THE FUNCTION AND THE AVERAGE. Theorem 1 gives <Box_u>_u = +|a|^2
+  exactly, so the first-moment closure is the left-hand side; the action's variation gives the
+  right-hand side. They are not equal for any nonlinear K, and that single line is the whole
+  closure-vs-action gap.
+
+  WHAT A SOLUTION WOULD HAVE TO DO, stated precisely enough to work on: exhibit an action,
+  nonlocal in the worldline but whose variation produces K evaluated at the u-CONTRACTED
+  FIRST MOMENT rather than at the operator's spectrum. Milgrom's virial f(u) does exactly
+  this on the two-parameter family of circles (verified in the corpus), which is why the
+  four-family no-go had to be withdrawn -- so the object is not impossible, it is just not
+  yet written down off circles.
+  [OK] the pincer and the precise inequality are recorded, with the one known partial escape
+
+====================================================================================================
+VERDICT
+====================================================================================================
+  1. THEOREM 8 SURVIVES the kernel change, and is now STRONGER. Its old mechanism -- |K| = 1
+     on the cut -- was an alpha=1 accident and is gone. The replacement is kernel-independent:
+     w/x = c/v exactly, so the action's operator and the law disagree in their ARGUMENT.
+  2. THE alpha=2 KERNEL DOES NOT REOPEN IT. Its cut carries amplitude, but only for
+     omega < a0/c, i.e. periods above 600 Gyr. Every bound orbit sits beyond the cut where
+     K_2 -> 1. The door I flagged is structurally real and practically empty, and I am
+     reporting that rather than the headline.
+  3. ONE NEW COST TO alpha=2: passivity fails for z < -1. Harmless where orbits live, and
+     it does not touch the a0 derivation, which uses z > 0 only.
+  4. THE USEFUL RESULT is the pincer: local actions die by Theorem 3, operator actions die by
+     Theorem 8, and the gap between them is one inequality, K(<Box_u>) != <K(Box_u)>. That is
+     a much sharper statement of the wall than 'no variational home', and it names the object
+     a solution must produce.
+  [OK] verdict recorded: theorem strengthened, door closed, wall stated as one inequality
+====================================================================================================

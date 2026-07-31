@@ -65,7 +65,35 @@ claims. They are not to be revived. The true position is the $a_0$ reframing abo
 - **The sign $s$** — **demoted 2026-07-30.** No longer a parameter awaiting data: within the closure
   family that reproduces the relation, the channel it would sign is *identically zero*, so $s$ has no
   observable consequence (Thm 2, Cor 2.2). This is a reduction in free content, not a measurement.
-- **⚠️ THE LAW ITSELF — status corrected twice on 2026-07-30; rev. 4 is the current reading.** The
+- **⚠️ THE LAW ITSELF — status corrected THREE times on 2026-07-30. The current reading is the PINCER
+  below, which is sharper than anything the corpus had.** Two theorems now close on each other:
+  **Theorem 3** (proof CORRECTED 2026-07-30, and the statement got *wider*): no **local**
+  $L(x,\dot x,\ddot x)$ gives the law. The published proof was wrong — its "det $H=0$, *i.e.* $L$ linear
+  in $\ddot x$" is a false equivalence, and it tested $\mu$'s Hessian rather than $L$'s. The correct
+  argument: the $x^{(4)}$ coefficient **is** $\partial^2L/\partial\ddot x^2$, an $x^{(4)}$-free *vector*
+  law forces it to vanish **identically** (not merely to be singular), that means linear in $\ddot x$,
+  and that means an EL equation linear in $a$ — which the law is not. This excludes **all** local $L$,
+  degenerate or not, where the old proof excluded only non-degenerate ones.
+  **Theorem 8** (REDONE on the $\alpha=2$ kernel 2026-07-30; survives, mechanism replaced): the
+  **nonlocal operator** action does not supply the amplitude. Its old reason — $|K_1|=1$ on the cut —
+  was an $\alpha=1$ accident and is gone ($|K_2|=\sqrt{s/(1-s)}$ is *not* unimodular). The replacement
+  is **kernel-independent**: on a circular orbit the action's argument is $w=c\Omega/a_0$ while the law's
+  is $x=a/a_0$, and $w/x=c/v$ **exactly** — 300 to $7\times10^5$ for real systems. No choice of $K$
+  repairs a mismatch in its own *argument*, and the deep regime is the regime *furthest* from the cut.
+  **THE GAP IS ONE INEQUALITY:** $K(\langle\Box_u\rangle_u)\neq\langle K(\Box_u)\rangle_u$ — the closure
+  swaps the function and the average. Theorem 1 gives $\langle\Box_u\rangle_u=+|a|^2$ exactly, so the
+  first-moment closure is the left side and the action's variation is the right side. An action in the
+  **scalar** $|a|^2$ has the right argument but is local (Thm 3 kills it); an action in the **operator**
+  $\Box_u$ is nonlocal and allowed but has the wrong argument (Thm 8 kills it). **A solution must exhibit
+  an action, nonlocal in the worldline, whose variation produces $K$ at the u-contracted first moment
+  rather than at the operator's spectrum.** Milgrom's virial $f(u)$ does exactly that on circles — which
+  is why the four-family no-go was withdrawn — so the object is not impossible, only unwritten off
+  circles. Scripts: `mi_theorem3_corrected_proof_2026.py`, `mi_theorem8_redone_alpha2_2026.py`.
+  **⚠️ ALSO NEW: the $\alpha=2$ kernel violates passivity for $z<-1$** ($K_2=w/\sqrt{w^2-1}>1$),
+  by ~$10^{-13}$ at orbital frequencies and order 7 near the cut edge. It does **not** touch the $a_0$
+  derivation, which uses $z>0$ only, where $0\le K_2\le1$ over sixteen decades — but it is a real cost
+  of the switch and belongs in the ledger.
+- **⚠️ THE LAW ITSELF — the rev.-4 reading, retained below for the record.** The
   law is **not** the Euler–Lagrange equation of the *published* action (Thm 8: on circular orbits that
   action's operator sits on $K$'s branch cut where $|K|=1$, so it is amplitude-free). **But my earlier
   "four-family no-go" OVER-REACHED and is withdrawn as stated:** the exact law *does* arise
