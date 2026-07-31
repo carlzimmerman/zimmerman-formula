@@ -168,7 +168,43 @@ claims. They are not to be revived. The true position is the $a_0$ reframing abo
   **SURVIVING CORNERS, NOT CLOSED:** a gravitomagnetic vector drag at $R_{\rm drag}\sim10^2$ kpc, and a
   frame sourced by the framework's own **ghost-condensate/AeST dark sector** rather than baryons — the
   potential-flow no-go is closed only for **baryon-sourced** potential flow.
-  **⭐ THE NEXT COMPUTATION, NAMED PRECISELY: $u$ as the timelike eigenvector of the TOTAL stress tensor,
+- **⭐ THE DARK-SECTOR CORNER IS NOW CLOSED (2026-07-31, done by hand not by fan-out).**
+  `mi_darksector_frame_closes_2026.py`, 18 checks, exit 0, four mutation controls. The critic named
+  "$u$ as the timelike eigenvector of $T_{\rm bar}+T_Q$" as the next computation and framed the fork as
+  **solenoidality**. That framing is answerable but it is not the sharp instrument. The sharp fact is
+  **irrotationality**, and it follows from shift symmetry alone, with **no Q-mode profile needed** — which
+  matters, because $I_0\approx\Omega_{\rm dm}$ is recorded as *robustly free* and $P(X)$ as postulated, so
+  any profile-dependent argument would have been a free function wearing a result's clothes.
+  **R1 — the corner-closer.** A ghost condensate is a $P(X)$ scalar; its stress tensor is a perfect fluid
+  with $p=P$, $\rho=2XP'-P$ (signs pinned by a canonical-scalar control returning textbook
+  $\rho=\dot\phi^2/2+V$, with a sign-flip mutation that correctly fails), and rest frame
+  $u_\mu = \partial_\mu\phi/\sqrt{-X}$. **A gradient frame is hypersurface-orthogonal, so
+  $\omega_{\mu\nu}=0$ — verified zero on all 16 components for a fully generic $\phi(t,x,y,z)$, exactly,
+  at all orders**, with a rigidly-rotating congruence as mutation control (6 nonzero components). So the
+  dark sector can produce **nothing but potential flow** — precisely the class Route D's no-go already
+  closes. The no-go's restriction to "baryon-sourced" was never a real escape.
+  **R2.** At the condensate minimum $P'(X_0)=0$ the stress tensor is $T^\mu{}_\nu = P\,\delta^\mu{}_\nu$:
+  every vector is an eigenvector, so the frame is **undetermined**, not merely wrong ($w=-1$ exactly,
+  the Hawking–Ellis degenerate case). Escaping it forces $P'\neq0$, which lands back inside R1.
+  **R3 — the construction is internally inconsistent.** The two-fluid total-stress eigenvector was solved
+  exactly: $\beta_{\rm eff}\to0$ as either component dominates (mutation-controlled). Locally
+  $\rho_{\rm bar}/\rho_\Lambda = 7.2\times10^5$–$1.0\times10^6$ (both footings), so the eigenframe **is
+  the baryon rest frame = the local matter flow**, and it **inherits the disc's rotation**: for a flat
+  rotation curve $\omega_z = V_0/R \neq 0$ (only the physically irrelevant $v_c\propto1/R$ is vortex-free).
+  R1 forbids the scalar's frame from having any vorticity. **So the total eigenvector and the ghost
+  condensate's frame are different objects and the proposal conflates them.** Either way one leg bites.
+  **The quantitative leg is reported as INSUFFICIENT and is deliberately NOT counted as a kill:** the
+  local-comoving collapse gives $\lambda=0.159$ (stars, σ≈35) to $0.041$ (gas, σ≈9), costing
+  **1.79×–6.22×** of budget across tracer and dictionary exponent — which **straddles the 3× line**, so
+  per the rule above it needs a fit. R1–R3 are structural and budget-free; they carry it.
+  **⚠️ WHAT IS NOT CLOSED:** the **gravitomagnetic vector-drag** corner at $R_{\rm drag}\sim10^2$ kpc is
+  untouched — a vector (Lense–Thirring-like) source has vorticity **by construction** and so evades R1
+  entirely. It needs a fifth constant and nothing has excluded it. **The door is NARROWED, not shut**, and
+  the pincer is untouched (Thm 3 still forbids all local $L$; Thm 8's argument mismatch stands).
+  Prior art: Arkani-Hamed–Cheng–Luty–Mukohyama 2004 (ghost condensate); Frobenius; Hawking–Ellis. That
+  these three facts *jointly* close this framework's dark-sector corner is new to this corpus; **none of
+  the ingredients is.**
+  **SUPERSEDED BY THE ABOVE — kept for the record:** ~~the next computation, named precisely: $u$ as the timelike eigenvector of the TOTAL stress tensor,
   $T^{\mu\nu}_{\rm bar}+T^{\mu\nu}_Q$, including the dark sector.** Two independent passes point at it
   from opposite directions (Route D calls it "the least-closed corner in the whole analysis"; a route-D
   adversary found it "gives $\lambda\sim1$ and survives" while being local, algebraic, boost-fixing and
@@ -177,7 +213,7 @@ claims. They are not to be revived. The true position is the $a_0$ reframing abo
   redo $\nabla\!\cdot\!(\rho v)=0$ for the **dark sector's** flux (which need not be solenoidal if the
   Q-mode carries radial or vertical flux) → test against the m=1 cap ($\varepsilon\le0.08$) and the
   frame-spin cap → both footings. If the dark-sector flux *is* solenoidal, the no-go extends and the door
-  closes on the same identity.
+  closes on the same identity.~~
   **⚠️ CORRECTIONS TO WHAT I BANKED EARLIER THE SAME DAY, forced by the critic:** (a) the ZAMO uniqueness
   ansatz *assumes zero meridional velocity*; the meridional branch is **undetermined**, NOT "13.9× over
   budget" (that pricing was itself a manufactured deficit — 3.1095 dex is just $\log_{10}(c/v_{\rm orb})$,

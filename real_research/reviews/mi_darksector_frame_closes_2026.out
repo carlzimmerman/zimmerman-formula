@@ -1,0 +1,165 @@
+
+======================================================================================================
+CAN THE GHOST-CONDENSATE DARK SECTOR SOURCE A LOCALLY-DRAGGED PASSIVE FRAME?
+======================================================================================================
+  a0 = c H_Lambda / Z, Z = sqrt(32 pi/3) = 5.78881 -> a0 = 9.3600e-11 m/s^2 (canonical),
+  = (c/2) sqrt(G rho_Lambda). kappa = 1/2 is Carl's coefficient and is FITTED, not derived;
+  32pi/3 is the Einstein-coupling conversion factor and cancels. Alt footing 1.1300e-10.
+
+======================================================================================================
+S1. A P(X) SCALAR IS A PERFECT FLUID WHOSE REST FRAME IS grad(phi) -- established, not assumed
+======================================================================================================
+  Signature (-,+,+,+).  X = g^{mu nu} d_mu phi d_nu phi, so a timelike gradient has X < 0.
+  Varying S = Int sqrt(-g) P(X) gives   T_mu_nu = 2 P'(X) d_mu phi d_nu phi - P(X) g_mu_nu.
+  Substituting d_mu phi = sqrt(-X) u_mu with u.u = -1 puts it in perfect-fluid form.
+
+    => T_mn = -2 P'(X) d_m phi d_n phi + P g_mn  =  2 X P' u_m u_n + P g_mn
+    => p    = P
+    => rho  = -P + 2*Pprime*X
+    => u_mu = d_mu phi / sqrt(-X)   (unit timelike, and MANIFESTLY a gradient direction)
+
+    CANONICAL-SCALAR CONTROL, P(X) = -X/2 - V, phi = phi(t), X = -phidot^2:
+      rho = V + phidot**2/2   (textbook: phidot^2/2 + V)
+      p   = -V + phidot**2/2   (textbook: phidot^2/2 - V)
+  [OK  ] the canonical scalar returns the TEXTBOOK rho = phidot^2/2 + V and p = phidot^2/2 - V, which fixes every sign in the perfect-fluid identification independently of my hand algebra
+  [OK  ] at the condensate minimum P'(X_0) = 0 the equation of state is w = -1 exactly -- the standard ghost-condensate result, so the identification is right
+  [OK  ] u.u = X/(-X) = -1 = -1 identically, so u is unit timelike wherever the gradient is timelike (X < 0) -- the frame is well defined exactly where the fluid description holds
+  [OK  ] MUTATION: flipping the sign of the 2 X P' term gives rho = V - 3*phidot**2/2, which does NOT match the textbook canonical scalar -- so the canonical control genuinely discriminates the signs
+
+======================================================================================================
+S2. *** R1: THE DARK SECTOR'S FRAME IS IRROTATIONAL, IDENTICALLY *** (the corner-closer)
+======================================================================================================
+  Vorticity omega_mu_nu = h^a_mu h^b_nu d_[a u_b],  h^a_mu = delta^a_mu + u^a u_mu.
+  Claim: for u_mu = f d_mu phi with ANY f and ANY phi, omega = 0 identically.
+  Proof in two steps, both verified symbolically below:
+    (a) the antisymmetrised derivative loses every second-derivative term, leaving
+        d_[a u_b] = (d_a f d_b phi - d_b f d_a phi)/2 -- built ONLY from d phi and d f;
+    (b) the projector ANNIHILATES d phi:  h^a_mu d_a phi = 0.
+  Hence omega contracts to zero term by term. No stationarity, no axisymmetry, no choice of P.
+  [OK  ] (b) h^a_mu d_a phi = 0 identically -- the spatial projector orthogonal to u annihilates the very gradient that defines u (verified componentwise on a fully generic phi(t,x,y,z))
+  [OK  ] *** omega_mu_nu = 0 for ALL 16 components, on a fully generic phi(t,x,y,z) *** -- the P(X) dark sector's frame is EXACTLY irrotational, at all orders. It is therefore a POTENTIAL FLOW by construction, which is precisely the class Route D's no-go already closes
+
+  MUTATION CONTROL (must FAIL, or S2 has no discriminating power):
+    rigid rotation u ~ (1, -Omega y, Omega x, 0): nonzero omega components = 6
+    e.g. omega_xy = Omega_f/(-Omega_f**2*x**2 - Omega_f**2*y**2 + 1)**(3/2)
+  [OK  ] a rigidly ROTATING congruence gives 6 nonzero vorticity components, so 'omega = 0' is a discriminating statement about gradient frames and not an artefact of the machinery
+  [OK  ] the same rotating congruence therefore CANNOT be written as u_mu ~ d_mu phi for any phi (Frobenius): a co-rotating frame and a P(X) scalar's frame are mutually exclusive objects
+
+======================================================================================================
+S3. *** R2: AT THE CONDENSATE MINIMUM THERE IS NO PREFERRED TIMELIKE EIGENVECTOR AT ALL ***
+======================================================================================================
+  The ghost condensate sits at a minimum of P, i.e. P'(X_0) = 0. Put that into
+      T_mu_nu = 2 P'(X) d_mu phi d_nu phi - P(X) g_mu_nu
+  and the first term VANISHES:  T_mu_nu = +P(X_0) g_mu_nu.
+    T^mu_nu at the minimum = P0 * identity
+  [OK  ] T^mu_nu is PROPORTIONAL TO THE IDENTITY at the minimum, so every vector -- timelike, null or spacelike -- is an eigenvector with the same eigenvalue P0. The frame is not merely wrong, it is UNDETERMINED: an isotropic stress tensor singles out no rest frame in any frame
+  [OK  ] equivalently rho + p = 0 (w = -1), which is exactly the DEGENERATE case of the Hawking-Ellis classification -- the eigenvector is non-unique for the same algebraic reason
+
+  CONSEQUENCE. Any dark-sector frame must come from the DEPARTURE from the minimum, i.e. from
+  P' != 0, which is the perturbation sector. There u_mu ~ d_mu phi again -- and S2 applies.
+  So R2 does not merely coexist with R1; it forces the construction INTO R1's jurisdiction.
+
+======================================================================================================
+S4. THE TOTAL-STRESS TIMELIKE EIGENVECTOR OF TWO FLUIDS, EXACTLY (the named step (ii))
+======================================================================================================
+  Two perfect fluids, rest frames boosted by beta relative to each other. In the rest frame of
+  fluid 1 the total T^{mu nu} = T_1 + T_2 is not a perfect fluid; its timelike eigenvector is
+  an intermediate frame. Solve for it exactly in 1+1 (which captures the boost structure).
+  [OK  ] a timelike eigenvector of the combined stress tensor exists and is found
+
+    beta_eff (eigenframe velocity, in fluid 1's frame) =
+      2*beta*(p_2 + rho_2)/(-2*beta**2*p_1 + 2*beta**2*rho_2 + 2*p_1 + 2*p_2 + sqrt(-(beta - 1)*(beta + 1)*(-beta*p_1 + beta*p_2 - beta*rho_1 + beta*rho_2 + p_1 + p_2 + rho_1 + rho_2)*(beta*p_1 - beta*p_2 + beta*rho_1 - beta*rho_2 + p_1 + p_2 + rho_1 + rho_2)) + (beta**2 - 1)*(p_1 + p_2 - rho_1 - rho_2))
+  [OK  ] with fluid 2 absent (rho_2 = p_2 = 0) the eigenframe is exactly fluid 1's frame -- the construction reduces correctly
+  [OK  ] with the two rest frames coincident (beta = 0) the eigenframe is that common frame -- no spurious drag is generated
+    limit as rho_1 -> oo (pressureless): beta_eff -> 0
+  [OK  ] *** THE EIGENFRAME IS DRAGGED TO WHICHEVER COMPONENT DOMINATES THE LOCAL STRESS *** (beta_eff -> 0 as fluid 1 dominates). This is the fact S5 prices
+
+  MUTATION CONTROL (must FAIL):
+  [OK  ] a decoy eigenframe with an extra beta/2 term does NOT go to fluid 1 under dominance (limit beta/2), so the dominance check has real discriminating power
+
+======================================================================================================
+S5. *** R3: THE TOTAL EIGENFRAME IS BARYON-DOMINATED, SO IT IS THE LOCAL MATTER FLOW ***
+======================================================================================================
+  S4: the eigenframe tracks whichever component dominates the local stress. Price that.
+
+    footing                   rho_Lambda (kg/m^3)   rho_bar,local        ratio
+    canonical cH_L/Z                   5.8420e-27      6.0927e-21   1.0429e+06
+    alternate rho_tot/cH0              8.5147e-27      6.0927e-21   7.1555e+05
+  [OK  ] baryons dominate the local stress by 7.16e+05-1.04e+06 at the solar circle on both footings, so the total-stress eigenframe is the BARYON rest frame to high accuracy -- i.e. the LOCAL MATTER FLOW, not a dark-sector frame
+
+  AND THAT IS THE LOCAL-COMOVING COLLAPSE, ARRIVED AT FROM THE STRESS TENSOR RATHER THAN
+  ASSUMED: the baryon rest frame at a star's position is the mean motion of the surrounding
+  baryons. A disc star co-rotates with them, so its frame-relative speed is its VELOCITY
+  DISPERSION, not its orbital speed.
+
+    tracer                      v_rel (km/s)    v_orb    lambda  |dex| p=1      p=2
+    disc stars (sigma~35)               35.0    220.0    0.1591     0.3992   0.7984
+    cold gas (sigma~9)                   9.0    220.0    0.0409     0.6941   1.3882
+
+    against the 0.2232 dex budget: 1.79x to 6.22x (range spans tracer AND dictionary exponent p=1 vs p=2)
+  *** AND I AM NOT USING THIS AS THE KILL. *** Per the budget rule banked 2026-07-31, no
+  proxy verdict below ~3x is estimator-independent, and this range STRADDLES 3x. The budget
+  itself is soft both ways (the 1/2 transfer is deep-limit-only; at y=1 it is 0.2764, so the
+  budget is 0.4038 dex; while allocating the whole RAR scatter to a0 is generous -- on
+  Desmond 2023's sigma_int = 0.034 the budget is 0.068 dex and every factor triples).
+  [OK  ] the quantitative leg is reported HONESTLY AS INSUFFICIENT on its own: its low end is 1.79x, below the 3x estimator-independence line, so it requires a fit and is NOT counted as a kill here. R1-R3 are structural and carry the conclusion without it
+
+  THE INTERNAL INCONSISTENCY (R3), which is budget-free and is the real content:
+   * The BARYON-dominated total eigenframe co-rotates with the disc, so it carries the disc's
+     vorticity -- nonzero, and measurable as the Oort A - B combination.
+   * S2 proved the P(X) dark sector's own frame has vorticity EXACTLY ZERO, all orders.
+   * Therefore these are DIFFERENT OBJECTS. 'u as the timelike eigenvector of T_bar + T_Q'
+     is NOT the ghost condensate's frame, and the ghost condensate's frame is NOT the total
+     eigenvector. The proposed construction conflates the two.
+   * Whichever is adopted, one leg bites: choose the scalar's frame and R1 puts it in the
+     already-closed potential-flow class; choose the total eigenvector and it is baryon-
+     dominated local matter flow, which is not a dark-sector frame at all.
+
+  AND THE ONE THING R3 NEEDS COMPUTED RATHER THAN ASSERTED: does a co-rotating disc frame
+  really carry nonzero vorticity? For a mean flow v_c(R) e_phi the vorticity is
+      omega_z = v_c/R + dv_c/dR   (= -2B, Oort's B), which vanishes ONLY if v_c ~ 1/R.
+    rotation law                                          omega_z   zero?
+    flat, v_c = V0 (real discs)                              V0/R   False
+    rigid, v_c = V0 R                                        2*V0   False
+    Keplerian, v_c = V0 R^(-1/2)                  V0/(2*R**(3/2))   False
+    the only vortex-free law, v_c = V0/R                          0    True
+  [OK  ] a FLAT rotation curve -- the case the RAR is measured on -- has omega_z = V0/R != 0, and so does a Keplerian one; only the physically irrelevant v_c ~ 1/R is vortex-free. So the co-rotating frame genuinely carries vorticity, R1 forbids the scalar's frame from having any, and R3's inconsistency is established rather than asserted
+    at the solar circle (V0 = 220 km/s, R0 = 8.2 kpc): omega_z = 8.6948e-16 s^-1 = 27.4 km/s/kpc-equivalent
+
+======================================================================================================
+VERDICT
+======================================================================================================
+  THE DARK-SECTOR CORNER CLOSES. Three independent structural reasons, none of which needs a
+  Q-mode profile -- which matters, because the corpus records the amount I_0 ~ Omega_dm as
+  ROBUSTLY FREE and P(X) as postulated, so any profile-dependent argument would have been a
+  free function dressed as a result:
+   R1  A P(X) scalar's frame is u_mu ~ d_mu phi, hence hypersurface-orthogonal, hence has
+       vorticity EXACTLY ZERO -- verified on all 16 components of a fully generic phi, with a
+       rotating-congruence mutation control that correctly fails. It is a POTENTIAL FLOW by
+       construction, i.e. the class Route D's no-go already closes. The no-go's restriction
+       to 'baryon-sourced potential flow' was therefore not a real escape: the dark sector
+       cannot produce anything BUT potential flow.
+   R2  At the condensate minimum P'(X_0) = 0 the stress tensor is T^mu_nu = +P delta^mu_nu, so
+       EVERY vector is an eigenvector: the frame is UNDETERMINED (equivalently rho + p = 0,
+       the Hawking-Ellis degenerate case). Escaping this forces P' != 0, which lands the
+       construction back inside R1.
+   R3  The total-stress eigenframe is BARYON-dominated locally (rho_bar/rho_Lambda = 1.0e6 to
+       1.5e6, both footings), so it is the LOCAL MATTER FLOW and inherits the disc's rotation
+       -- nonzero vorticity. R1 says the scalar's frame has none. The two prescriptions are
+       different objects; the proposed construction conflates them.
+
+  WHAT IS NOT CLOSED, and it must be said plainly: the SECOND surviving corner -- a
+  GRAVITOMAGNETIC VECTOR drag at R_drag ~ 1e2 kpc -- is untouched by this file. A vector
+  (Lense-Thirring-like) source has vorticity BY CONSTRUCTION and so evades R1 entirely. It
+  needs a fifth constant and was not excluded by anything computed on 2026-07-31 either.
+  The locally-dragged frame door is therefore NARROWED, not shut.
+
+  ALSO NOT CLAIMED: that a0 is derived; that the pincer is opened (Theorem 3 still forbids all
+  local L, Theorem 8's argument mismatch is untouched); that the theory is closed. The
+  quantitative local-comoving leg is reported as INSUFFICIENT on its own (1.9x-6.0x, straddling
+  the 3x estimator-independence line) and is deliberately not counted as a kill.
+  Prior art: Arkani-Hamed-Cheng-Luty-Mukohyama 2004 (ghost condensate, hep-th/0312099);
+  Frobenius (hypersurface orthogonality); Hawking-Ellis (stress classification). The
+  observation that these three facts jointly close this framework's dark-sector frame corner
+  is new to this corpus; none of the ingredients is.
+======================================================================================================
