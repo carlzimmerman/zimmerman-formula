@@ -1,0 +1,158 @@
+
+======================================================================================================
+DOES THE TWO-LOOP a0 PROTECTION SURVIVE alpha=2? -- and a chronology audit of the corpus
+======================================================================================================
+  a0 = c H_Lambda/Z, Z = 5.78881 -> 9.3600e-11 m/s^2 canonical; alt 1.1300e-10.
+  kappa = 1/2 is Carl's and stays FITTED, not derived.
+
+======================================================================================================
+S1. (A) THE ADDITIVE CHANNEL -- closed to ALL ORDERS by a symmetry, and it is KERNEL-FREE
+======================================================================================================
+  Lane C: 'CLOSED TO ALL ORDERS by the EXACT shift symmetry T -> T + const ... u_mu is a
+  homogeneous-degree-0 functional of dT (partial_c u_mu = 0 identically, full nonlinear sqrt),
+  so Box_u, K, the integrand and the measure (Jacobian 1) all inherit it.'
+  Verify BOTH properties of u = dT/|dT| symbolically -- they are what the Ward identity rests on.
+  [OK  ] partial_c u_mu = 0 identically for all four components -- u is EXACTLY invariant under T -> T + const, with the full nonlinear square root, not to leading order
+  [OK  ] u is homogeneous of DEGREE 0 in dT (u(lam dT) - u(dT) = 0 for all components), so any functional of u alone inherits the shift symmetry -- including Box_u, K and the measure
+
+  *** NO PROPERTY OF K IS USED. *** The symmetry lives in the map T -> u, upstream of the
+  kernel entirely. So the ALL-ORDERS additive closure -- beta_a0^additive = 0 exactly -- holds
+  for alpha=2 verbatim, and would hold for any alpha. This is the strongest of the two-loop
+  legs and it is the one that needs no transfer argument at all.
+  [OK  ] MUTATION: a frame with an undifferentiated T inserted has partial_c u_0 = 1/sqrt(Derivative(T(t, x, y, z), t)**2 - Derivative(T(t, x, y, z), x)**2 - Derivative(T(t, x, y, z), y)**2 - Derivative(T(t, x, y, z), z)**2) != 0 and BREAKS the shift symmetry -- so the invariance above is a real property of the dT-only construction, not automatic
+
+======================================================================================================
+S2. THE EXPLICIT TWO-LOOP TADPOLES -- they vanish on K(0) = 0 ALONE, which alpha=2 satisfies
+======================================================================================================
+  Lane C: 'EXPLICIT TWO-LOOP TADPOLES (figure-8 + double-bubble): both multiply the frame
+  prefactor K(0)*(u.u) = 0 EXACTLY (zero external frame momentum -> resolvent hits K(0);
+  confirmed 0 both in the series AND by the full Herglotz measure integral).'
+  So the ONLY input is K(0) = 0. Verify it for alpha=2 BOTH ways, as Lane C did for alpha=1:
+
+    (i) closed form:      K_2(0) = 0
+  [OK  ] alpha=2 closed form gives K_2(0) = 0 exactly
+    (ii) FULL MEASURE:    K_2(0) = 1 - Int_0^1 rho_2/s ds = 1 - 1 = 0
+  [OK  ] and the full Herglotz measure integral gives K_2(0) = 0 EXACTLY -- both routes agree, exactly as Lane C required of alpha=1. The figure-8 and double-bubble tadpoles therefore vanish identically on alpha=2 as well
+  [OK  ] MUTATION: scaling the measure by 0.9 gives K(0) = 1/10 != 0, which would leave a z-independent frame vertex and RE-OPEN the tadpole channel -- so K(0) = 0 is the whole content of this leg and the check is not vacuous
+
+======================================================================================================
+S3. (B) THE MULTIPLICATIVE CHANNEL -- three legs, and each is kernel-free or an identity
+======================================================================================================
+  (b1) THE SUM RULE. Lane C protects Int dmu/|t| = K(inf) - K(0) = 1 and both endpoints
+       individually. Proven on 2026-07-31 to be an IDENTITY for any Herglotz kernel written
+       K(z) = K(inf) - Int rho ds/(z+s). Re-verify the endpoints for alpha=2 here:
+       K_2(1e-40) = 1.0e-20,  K_2(1e40) = 1.0
+  [OK  ] alpha=2: K(0) = 0 and K(inf) = 1 to better than 1e-15, so the sum rule = 1 and BOTH endpoints are protected individually, which is what Lane C required
+
+  (b2) NO WAVEFUNCTION RENORMALIZATION OF Box_u. Lane C's reason: '(u.grad)u = 0 is exact
+       geodesy and u is NON-DYNAMICAL (0 dof, no u-propagator to dress)'. Both are statements
+       about the OPERATOR and the CONSTRAINT STRUCTURE. Neither mentions K.
+       Verify the frame-leg symbol claim myself rather than taking it on trust: on dS with a
+       comoving background frame u = (1,0,0,0), u.grad = d/dtau, so
+         Box_u^1 frame-leg symbol = -k0**2   contains kperp? False
+         Box_u^2 frame-leg symbol = k0**4   contains kperp? False
+         Box_u^3 frame-leg symbol = -k0**6   contains kperp? False
+         Box_u^5 frame-leg symbol = -k0**10   contains kperp? False
+  [OK  ] Box_u^n has a frame-leg symbol built from k0 ALONE for every n -- spatially ultralocal, no kperp -- because a purely timelike background u makes u.grad = d/dtau. That is exactly the 'k0^{2n} TIME ONLY' result twoloop_graviton_TTloop.py proves to all n, and it involves no kernel and no measure
+
+  (b3) COUNTERTERMS POLYNOMIAL IN W. Lane C: the two-loop UV counterterms are O_W, O_WW --
+       'functions of the SCALAR W, not of Box_u -> they cannot re-enter K's argument'. For that
+       to hold W must be a well-defined BOUNDED functional, which is where |K| <= 1 enters.
+       On 2026-07-31 that requirement was shown to be exactly mu <= 1, via K(z) = mu(sqrt z):
+  [OK  ] K_2(x^2) = mu_2(x) identically (residual 0), so W's boundedness requirement IS mu <= 1 -- a defining property of any MOND interpolating function. Leg (b3) is secured by the phenomenology rather than by an assumption about the measure
+
+======================================================================================================
+S4. THE GRAVITON SECTOR -- Lane C's stated residual, CLOSED THE NEXT DAY, and kernel-free
+======================================================================================================
+  Lane C (2026-07-09) scope: 'GRAVITON loops (dynamical dof) are NOT computed here ... the
+  one-loop laneB TT-vertex-zero + k-independent-roots result argues against it but was
+  CAS-verified only to n=2 ... graviton sector OPEN.'
+  Two files dated 2026-07-10 -- ONE DAY LATER -- close it. Check the dates and the content:
+    2026-07-09  twoloop_laneC_a0.py
+    2026-07-10  twoloop_graviton_TTloop.py
+    2026-07-10  twoloop_graviton_kperp_rationing_alln.py
+  [OK  ] both graviton closures POSTDATE Lane C, so its 'graviton sector OPEN' residual was superseded -- Lane C could not have known, and this is a chronology fact, not a criticism of it
+  [OK  ] and NOTHING in the completion directory postdates the graviton closure by more than a day, so no later file reopened it
+
+  IS THE ALL-n ARGUMENT KERNEL-FREE? Count measure/kernel references in the rationing proof:
+    matches for Herglotz|dmu|rho_A|rho_B|sqrt(1+4z)|K(z) : 0  set()
+  [OK  ] ZERO references to the Herglotz measure, either spectral density, the alpha=1 kernel form, or K(z) anywhere in the all-n rationing proof -- it is a pure operator/combinatorial argument about momentum charges in the Box_u^n string, so it is KERNEL-FREE by inspection
+
+  WHAT alpha=2 NEEDS TO INHERIT IT: the all-n results are proved PER RESOLVENT ORDER ('at
+  EVERY resolvent order -> the rationing holds to all orders'). A Herglotz kernel is a POSITIVE
+  SUPERPOSITION of exactly those resolvents, so any property holding at every order is
+  inherited by the superposition. alpha=2's representation was DERIVED on 2026-07-31:
+  [OK  ] rho_2 > 0 at all 99 interior sample points, and it has compact support (0,1) -- so alpha=2 IS a positive superposition of the same local massive resolvents, and inherits the all-n graviton result verbatim
+
+======================================================================================================
+S5. BOTH FOOTINGS -- and the honest observation that nothing here depends on a0 at all
+======================================================================================================
+  Lane C section [4] asks whether anything flips between the two footings. For the transfer
+  argument the answer is stronger than 'no': a0 does not appear in ANY of the six legs.
+
+    leg                                  depends on a0?
+    (A) shift symmetry                   no -- symmetry
+    tadpoles ~ K(0)                        no -- K(0)=0
+    (b1) sum rule                        no -- identity
+    (b2) no Box_u wavefn renorm          no -- operator
+    (b3) counterterms poly in W             no -- mu<=1
+    graviton all-n rationing           no -- combinatorial
+    [canonical cH_L/Z] a0 = 9.3600e-11 m/s^2 -- enters only as the SCALE inside K(Box_u/a0^2)
+    [alternate rho_tot/cH0] a0 = 1.1300e-10 m/s^2 -- enters only as the SCALE inside K(Box_u/a0^2)
+  [OK  ] the two footings differ by 21%, and NONE of the six legs references a0's value -- a0 enters only as the scale inside K's argument, which is precisely why the protection statement is about K's ENDPOINTS and symmetries rather than about a0's magnitude
+
+======================================================================================================
+VERDICT
+======================================================================================================
+  THE TWO-LOOP a0 PROTECTION TRANSFERS TO alpha=2 COMPLETELY, and on better footing than the
+  one-loop transfer needed, because FOUR of the six legs never touch the kernel at all:
+
+   (A) ADDITIVE -- CLOSED TO ALL ORDERS, KERNEL-FREE. The exact shift symmetry T -> T + const
+       lives in the map T -> u = dT/|dT|, UPSTREAM of K. Verified symbolically with the full
+       nonlinear square root: partial_c u_mu = 0 for all four components, and u is homogeneous
+       of DEGREE 0 in dT. A mutation inserting an undifferentiated T correctly breaks it.
+       beta_a0^additive = 0 exactly, for any alpha.
+
+   TADPOLES (figure-8 + double-bubble) -- vanish on K(0) = 0 ALONE. Verified for alpha=2 BOTH
+       ways Lane C required: closed form, and the FULL Herglotz measure integral
+       1 - Int rho_2/s ds = 0 exactly. A 0.9x measure mutation re-opens the channel, so the
+       leg's whole content really is K(0) = 0.
+
+   (b1) SUM RULE -- an IDENTITY (K(inf) - K(0)), proven 2026-07-31; alpha=2's endpoints hold to
+       1e-15, so both are protected individually as Lane C demanded.
+   (b2) NO Box_u WAVEFUNCTION RENORMALIZATION -- KERNEL-FREE. Exact geodesy plus a
+       non-dynamical 0-dof frame. I verified the underlying symbol claim myself: a purely
+       timelike background frame makes u.grad = d/dtau, so Box_u^n is built from k0 ALONE for
+       every n, spatially ultralocal, no kperp.
+   (b3) COUNTERTERMS POLYNOMIAL IN W -- secured by mu <= 1 via K(z) = mu(sqrt z), i.e. by the
+       PHENOMENOLOGY rather than by any assumption about the measure.
+
+   GRAVITON -- KERNEL-FREE, and Lane C's residual on it is STALE. The all-n rationing proof
+       contains ZERO references to the Herglotz measure, either density, the alpha=1 kernel
+       form, or K(z) -- counted, not asserted. It is pure momentum-charge combinatorics on the
+       Box_u^n string, proved AT EVERY RESOLVENT ORDER, and a Herglotz kernel is a positive
+       superposition of exactly those resolvents. alpha=2's positive compact-support
+       representation was derived 2026-07-31, so it inherits the result verbatim.
+
+  *** CHRONOLOGY FINDING -- THE CORPUS IS UNDERSTATING ITS OWN POSITION. *** Lane C
+  (2026-07-09) wrote 'graviton sector OPEN ... CAS-verified only to n=2'. Both
+  twoloop_graviton_TTloop.py and twoloop_graviton_kperp_rationing_alln.py are dated
+  2026-07-10 -- ONE DAY LATER -- and the former explicitly 'upgrades ... CAS n=1..5 to ALL n'
+  by closed-form induction verified to n=20, with an F2-break control confirming sensitivity.
+  Nothing in the directory postdates them. So STANDING and MEMORY listing 'two loops' as an
+  OPEN item is stale: the correct statement is that two-loop a0 renormalization is CLOSED --
+  additive to ALL orders by symmetry, multiplicative at two loops, graviton p-free to all n.
+  Lane C could not have known; this is chronology, not a criticism of it.
+
+  WHAT REMAINS GENUINELY OPEN, taken from Lane C's own scope section and NOT softened: the
+  MULTIPLICATIVE channel is closed at TWO LOOPS, not to all orders -- it rests on the passive
+  0-dof frame and exact geodesy, which closes the KNOWN dressing routes but is 'NOT a
+  from-first-principles all-orders proof of measure rigidity the way the additive shift
+  symmetry is EXACT'. Also open: rho_m = m^2 phi^2 is a stated proxy; the T_uu / disformal
+  variant is not computed; the finite parts; the ephemeris de/dt bound. And nothing here
+  re-runs the two-loop divergence computation -- only the inputs it rests on.
+
+  a0 is NOT derived, kappa = 1/2 stays FITTED, s / a0 / Z remain INPUTS, the pincer is
+  untouched (Theorem 3 forbids all local L, Theorem 8's argument mismatch stands), and no door
+  is declared closed.
+======================================================================================================

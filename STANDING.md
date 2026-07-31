@@ -89,6 +89,45 @@ claims. They are not to be revived. The true position is the $a_0$ reframing abo
   rather than at the operator's spectrum.** Milgrom's virial $f(u)$ does exactly that on circles — which
   is why the four-family no-go was withdrawn — so the object is not impossible, only unwritten off
   circles. Scripts: `mi_theorem3_corrected_proof_2026.py`, `mi_theorem8_redone_alpha2_2026.py`.
+- **⭐⭐ THE TWO-LOOP $a_0$ PROTECTION ALSO TRANSFERS TO α=2 — and ⚠️ THE CORPUS HAS BEEN UNDERSTATING ITS
+  OWN POSITION (2026-07-31).** `mi_twoloop_alpha2_transfer_2026.py`, 14 checks, exit 0.
+  **What the α=1 two-loop result is** (`twoloop_laneC_a0.py`, 2026-07-09): $a_0$ enters *only* as the scale
+  in $K(\Box_u/a_0^2)$, so renormalizing it needs either **(A) additive** — a shift of K(0) off zero, i.e. a
+  generated frame potential — or **(B) multiplicative** — a reweighting of dμ moving the scale, i.e. a break
+  of the sum rule. Verdict there: **(A) closed to ALL ORDERS** by the exact shift symmetry $T\to T+c$ with a
+  Ward identity; **(B) closed at two loops** on three legs; plus explicit figure-8 and double-bubble tadpoles
+  that both vanish because they multiply **K(0)·(u·u) = 0**.
+  **⭐ FOUR OF THE SIX LEGS NEVER TOUCH THE KERNEL.** (A) the shift symmetry lives in the map
+  $T\to u=\partial T/|\partial T|$, **upstream of K** — verified symbolically with the full nonlinear root:
+  $\partial_c u_\mu = 0$ for all four components, and $u$ is homogeneous of **degree 0** in $\partial T$
+  (a mutation inserting an undifferentiated $T$ correctly breaks it). (b2) no $\Box_u$ wavefunction
+  renormalization — exact geodesy + a non-dynamical 0-dof frame; I verified the underlying symbol claim
+  myself: a purely timelike background frame makes $u\!\cdot\!\nabla = d/d\tau$, so $\Box_u^n$ is built from
+  $k_0$ **alone** for every $n$, spatially ultralocal, no $k_\perp$. The graviton leg likewise (below).
+  **THE KERNEL-DEPENDENT LEGS ARE ALL SECURED BY WORK DONE TODAY.** Tadpoles need **K(0)=0 only** —
+  verified for α=2 both ways Lane C required, closed form *and* the full measure integral
+  $1-\int\rho_2/s\,ds = 0$ exactly (a 0.9× measure mutation re-opens the channel, so that really is the
+  leg's whole content). (b1) the sum rule is an **identity**. (b3) counterterms polynomial in $W$ need $W$
+  bounded, which is **μ ≤ 1** via $K(z)=\mu(\sqrt z)$ — the phenomenology, not an assumption about the measure.
+  **⚠️⚠️ CHRONOLOGY FINDING: "two loops" SHOULD NOT BE ON THE OPEN LIST.** Lane C wrote "graviton sector
+  OPEN … CAS-verified only to n=2" on **Jul 9**. Both `twoloop_graviton_TTloop.py` and
+  `twoloop_graviton_kperp_rationing_alln.py` are dated **Jul 10 — one day later** — and the former
+  explicitly *"upgrades … CAS n=1..5 to ALL n"* by closed-form induction **verified to n=20**, with an
+  F2-break control confirming the test is sensitive; the latter proves the $k_\perp$ rationing as an
+  operator/combinatorial invariant to all $n$. **Nothing in the directory postdates them.** And that
+  argument is **kernel-free by count**: *zero* references to the Herglotz measure, either density, the α=1
+  kernel form, or K(z) anywhere in it. Since it is proved **at every resolvent order** and a Herglotz kernel
+  is a positive superposition of exactly those resolvents, α=2 inherits it verbatim (ρ₂ > 0 at all 99
+  sampled points, compact support). **Corrected statement: two-loop $a_0$ renormalization is CLOSED —
+  additive to all orders by symmetry, multiplicative at two loops, graviton p-free to all n.** Lane C could
+  not have known; this is chronology, not criticism.
+  **⚠️ WHAT GENUINELY REMAINS, taken from Lane C's own scope and NOT softened:** the **multiplicative
+  channel is closed at TWO LOOPS, not all orders** — it rests on the passive 0-dof frame and exact geodesy,
+  which closes the *known* dressing routes but is "**NOT** a from-first-principles all-orders proof of
+  measure rigidity the way the additive shift symmetry is EXACT." Also open: $\rho_m = m^2\phi^2$ is a stated
+  **proxy**; the $T_{uu}$/disformal variant is uncomputed; the finite parts; the ephemeris de/dt bound. And
+  nothing here re-runs the two-loop divergence computation — only the inputs it rests on. $s$, $a_0$, $Z$
+  remain **INPUTS**.
 - **⭐⭐ THE 1-LOOP dS EDGE TRANSFERS TO α=2 — and the mechanism protecting $a_0$ turns out to be an
   IDENTITY, not a feature of the retired measure (2026-07-31).** `mi_loop_edge_alpha2_measure_2026.py`,
   15 checks, 4 mutation controls, exit 0, mpmath 50 dps.
