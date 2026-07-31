@@ -262,10 +262,36 @@ claims. They are not to be revived. The true position is the $a_0$ reframing abo
   ⚠️ **STATUS: SQUEEZED, NOT SHUT, and the observational leg is soft.** The 3% figure is a *remembered
   order-of-magnitude* (Route D already flagged it as such), **not a fit** — so the 14× carries a
   factor-of-a-few uncertainty and **must not be quoted as a σ**. Two cheap computations finish it:
-  (a) the $f_r/f_t$ disc integral, (b) a real stellar+gas curve pair with asymmetric drift handled and
-  errors reported. Prior art: Will (PPN); Damour–Esposito-Farèse, Shao & Wex ($\alpha_1$);
-  Khoury–Weltman (chameleon); Hui–Nicolis–Stubbs (screening EP violation). Bounds and the 3% flagged as
-  from memory.
+  (a) the $f_r/f_t$ disc integral — **now DONE, see next entry**, (b) a real stellar+gas curve pair with
+  asymmetric drift handled and errors reported. Prior art: Will (PPN); Damour–Esposito-Farèse, Shao & Wex
+  ($\alpha_1$); Khoury–Weltman (chameleon); Hui–Nicolis–Stubbs (screening EP violation). Bounds and the
+  3% flagged as from memory.
+- **⭐⚠️ THE $f_r/f_t$ DISC INTEGRAL, COMPUTED (2026-07-31) — AND IT CAME OUT THE OPPOSITE WAY FROM MY
+  PREDICTION. IT FAVOURS THE ESCAPE.** `mi_frft_disc_integral_2026.py`, 7 checks, exit 0. **No $a_0$, no
+  footing, no RAR budget enters** — it is a pure geometric ratio, so the footing fork cannot move it.
+  **The derivation, whose point is the cancellation:** from
+  $V_{\rm drag}(x)=\frac{4G\kappa}{c^2}\!\int\!\frac{\rho v}{|x-x'|}$, translation gives
+  $f_t=\frac{4G\kappa}{c^2}J_0$ and rotation gives $f_r=\frac{4G\kappa}{c^2}\frac{|I_x|}{R}$, so
+  $$\boxed{f_r/f_t = I_x/(R\,J_0)}$$ with $\kappa$, $G$, $c^2$ **cancelling identically**. Shifting to
+  field-point-centred polars kills the kernel singularity *exactly* ($s\,ds\,d\psi \times 1/s$), giving
+  $f_r/f_t = 1 + \langle s\cos\psi\rangle/R$.
+  **THE NUMBERS: $f_r/f_t = 0.253$ at the Milky Way's solar radius** ($R/R_d=3.15$), running
+  **0.439 → 0.137** across $R/R_d = 1\!-\!5$. I predicted 0.6–0.8 and said ~1 would kill the escape,
+  ~0.5 keep it. **The real value is smaller than the escape even needs**: $\lambda = 1-f_r/f_t = 0.747$
+  at the MW, costing **0.063 dex ($p{=}1$, 0.28× budget)** and **0.127 dex ($p{=}2$, 0.57× budget)** —
+  **inside budget on both dictionaries**, and inside on $p{=}1$ at every radius (only $R/R_d=1$ sits
+  marginally outside on $p{=}2$).
+  **AND IT SURVIVES FOR A FORCED PHYSICAL REASON, not tuning:** the $1/|x-x'|$ kernel is dominated by the
+  **central** mass, which sits at displacement $-R$ from the field point and so has lever arm
+  $x'_x\approx0$ — contributing fully to $J_0$ (translation) and almost nothing to $I_x$ (rotation).
+  **Rotation drags the frame far less efficiently than translation does, geometrically.** That is exactly
+  the differential behaviour the escape requires. A non-rotating bulge makes it **easier** still
+  (monotone, S5). Controls: uniform sheet → **exactly 1** (to 1e-8); mass concentrated inside → **0**.
+  **CONSEQUENCE, against my own prior direction: the differential escape is NOT closed by geometry.** The
+  last dragged-frame corner now rests **entirely** on the other two legs — the measured magnitude bound
+  (shortfall ≥ 2.11×10⁵) and the screening squeeze (whose observational leg is the soft 3% figure). One
+  of the three legs I expected to help close this corner has turned out to push the other way.
+  **Still SQUEEZED BUT ALIVE.**
   **NET: the locally-dragged frame has no surviving local prescription.** Scalar → R1 (irrotational,
   potential flow). Vector → magnitude, 2×10⁵. Uniform-anything → the drag-invariance theorem. Non-local →
   Route A, already priced. **The pincer is untouched** (Thm 3 still forbids all local $L$; Thm 8's argument

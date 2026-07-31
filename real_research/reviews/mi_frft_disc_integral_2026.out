@@ -1,0 +1,123 @@
+
+======================================================================================================
+f_r/f_t FOR A REAL EXPONENTIAL DISC -- the deciding number for the differential-drag escape
+======================================================================================================
+  a0 = c H_Lambda/Z, Z = 5.78881 -> 9.3600e-11 m/s^2 (canonical); alt 1.1300e-10.
+  kappa = 1/2 is Carl's and stays FITTED. NOTHING here depends on a0 or on the footing:
+  f_r/f_t = I_x/(R J0) with kappa, G and c^2 cancelling identically, so the result is a pure
+  geometric ratio and the footing fork cannot move it.
+
+======================================================================================================
+S1. TWO ANALYTIC LIMIT CONTROLS -- the machinery must reproduce cases known in closed form
+======================================================================================================
+  (a) A UNIFORM SHEET (Sigma = const) has no radial gradient, so <s cos psi> = 0 by the psi
+      integral alone and f_r/f_t must be EXACTLY 1. If the code cannot get 1 here it is wrong.
+      computed f_r/f_t = 1.000000000000   (quadrature error estimate 7.0e-14)
+  [OK  ] uniform sheet returns f_r/f_t = 1.0000000000, i.e. 1 to better than 1e-8 -- the integration scheme and the field-point-centred change of variables are both correct
+
+  (b) MASS CONCENTRATED FAR INSIDE the field point must give f_r/f_t -> 0, because a compact
+      central source has x'_x ~ 0 and contributes to J0 but not to I_x.
+         R/R_d      f_r/f_t
+           1.0     0.439091
+           3.0     0.264729
+          10.0     0.032622
+          30.0     0.003356
+         100.0     0.000300
+  [OK  ] the ratio falls monotonically toward 0 as the field point moves outside the mass (reaching 0.0003 at R = 100 R_d) -- the limit is right and the estimator is not rigged
+
+======================================================================================================
+S3. THE DECISION THRESHOLD, DERIVED
+======================================================================================================
+  With full translational drag (f_t = 1) the m=1 contamination vanishes and
+      lambda = v_rel/v_orb = 1 - f_r/f_t.
+  The cost in the deep regime is |d log10 g_obs| = |p * log10(lambda)| dex, with the
+  dictionary exponent p = 1/2 (p=1 reading) or 1 (p=2 reading, the corpus's own witness
+  action). Inside the 0.2232 dex budget requires:
+      p=1: lambda > 0.3578  =>  f_r/f_t < 0.6422
+      p=2: lambda > 0.5981  =>  f_r/f_t < 0.4019
+  [OK  ] the p=1 threshold (0.6422) is looser than p=2 (0.4019), as it must be since p=2 doubles the sensitivity to lambda -- the thresholds are consistent
+
+======================================================================================================
+S4. *** THE NUMBER, FOR REAL DISCS ***
+======================================================================================================
+  Thin exponential disc Sigma ~ exp(-R/R_d). Milky Way: R_d ~ 2.6 kpc and R_0 = 8.2 kpc give
+  R/R_d = 3.15. SPARC discs span roughly R/R_d = 1-5 over their measured rotation curves.
+
+       R/R_d    f_r/f_t    lambda   dex p=1   dex p=2         inside budget?
+        1.00    0.43909   0.56091    0.1256    0.2511               p=1 only
+        2.00    0.35095   0.64905    0.0939    0.1877                   BOTH
+        3.00    0.26473   0.73527    0.0668    0.1336                   BOTH
+        3.15    0.25278   0.74722    0.0633    0.1266                   BOTH
+        4.00    0.19201   0.80799    0.0463    0.0926                   BOTH
+        5.00    0.13684   0.86316    0.0320    0.0639                   BOTH
+
+  MILKY WAY (R/R_d = 3.15):  f_r/f_t = 0.2528,  lambda = 0.7472,
+    cost 0.0633 dex (p=1) = 0.28x budget;  0.1266 dex (p=2) = 0.57x budget
+  [OK  ] f_r/f_t < 1 at every radius (0.4391 max) -- forced, because an exponential disc has more mass INTERIOR to the field point, so <s cos psi> < 0. Rotation therefore drags the frame LESS efficiently than translation does, for a purely geometric reason
+  [OK  ] f_r/f_t falls monotonically with R/R_d (0.4391 -> 0.1368) -- the further out the field point, the more the 1/|x-x'| kernel is dominated by the central mass whose lever arm x'_x is small. A structural trend, not a fitted one
+
+  BUDGET COMPARISON, REPORTED NOT ASSERTED: 6/6 radii inside the p=1
+  budget (threshold 0.6422); 5/6 inside p=2 (threshold 0.4019).
+  [OK  ] the tally is 6/6 (p=1) and 5/6 (p=2) and is printed above as computed -- this check deliberately asserts NO direction, because my prior expectation (f_r/f_t ~ 0.6-0.8, escape killed) was WRONG and an assertion either way would have encoded it
+
+======================================================================================================
+S5. SENSITIVITY: a NON-ROTATING bulge helps the escape -- how much?
+======================================================================================================
+  All matter translates with the galaxy, so a bulge adds to J0 (hence f_t). But a
+  dispersion-supported bulge does NOT rotate, so it does NOT add to I_x. That lowers
+  f_r/f_t and therefore HELPS the escape. Test how large a bulge would be needed.
+  Modelled as a compact central component of scale 0.2 R_d carrying mass fraction q.
+
+     bulge frac q    f_r/f_t    lambda   dex p=2   inside p=2 budget?
+             0.00    0.25278   0.74722    0.1266                 True
+             0.10    0.22969   0.77031    0.1133                 True
+             0.20    0.20614   0.79386    0.1003                 True
+             0.30    0.18214   0.81786    0.0873                 True
+             0.50    0.13270   0.86730    0.0618                 True
+             0.70    0.08124   0.91876    0.0368                 True
+  [OK  ] the ratio falls monotonically with bulge fraction (0.2528 -> 0.0812) -- forced, since a non-rotating bulge adds to J0 but not to I_x. So a bulge HELPS the escape, and that direction is reported rather than buried
+
+  Note the direction: MORE bulge means a SMALLER ratio, hence lambda closer to 1 and a
+  SMALLER cost. Bulges make the differential escape EASIER, not harder.
+
+======================================================================================================
+VERDICT
+======================================================================================================
+  *** f_r/f_t = 0.2528 at the Milky Way solar radius (R/R_d = 3.15), and 0.4391 (R/R_d=1) down to 0.1368 (R/R_d=5). ***
+
+  *** THE ANSWER CAME OUT THE OPPOSITE WAY FROM MY EXPECTATION, AND IT FAVOURS THE ESCAPE. ***
+  I predicted f_r/f_t ~ 0.6-0.8 and said ~1 would kill the differential escape while ~0.5
+  would keep it. The computed value is 0.14-0.44 -- SMALLER than the escape even needs. So:
+    lambda = 1 - f_r/f_t = 0.7472 at the Milky Way,
+    cost 0.0633 dex (p=1) = 0.28x budget;  0.1266 dex (p=2) = 0.57x budget.
+  INSIDE the budget on BOTH dictionaries at the Milky Way, and inside on p=1 at every radius
+  tested. Only the innermost point (R/R_d = 1) sits marginally outside on p=2.
+
+  AND IT SURVIVES FOR A CLEAN PHYSICAL REASON, not an accident of parameters. The 1/|x-x'|
+  kernel weights the WHOLE galaxy, and it is dominated by the central mass -- which sits at
+  displacement -R from the field point and therefore has lever arm x'_x ~ 0. So the central
+  mass contributes fully to J0 (translation) and almost nothing to I_x (rotation):
+  *** ROTATION DRAGS THE FRAME FAR LESS EFFICIENTLY THAN TRANSLATION DOES, GEOMETRICALLY. ***
+  That is exactly the differential behaviour the escape requires, and it is forced rather
+  than tuned. A non-rotating bulge makes it EASIER still (S5, monotone).
+
+  WHAT THIS MEANS FOR THE CORNER, stated plainly and against my own prior direction: the
+  differential-drag escape is NOT closed by the geometry. The last locally-dragged-frame
+  corner therefore stands or falls ENTIRELY on the two other legs, both of which are
+  unchanged by this file:
+    * the MEASURED magnitude bound -- solar-system frame-dragging, shortfall >= 2.11e5; and
+    * the SCREENING SQUEEZE -- potential-keyed screening structurally unavailable, and
+      density-keyed screening predicting a stars-vs-gas split at ~14x the recorded agreement
+      (that leg soft: the 3% is a remembered order-of-magnitude, not a fit).
+  So the corner is still SQUEEZED BUT ALIVE, and one of the three legs I expected to help
+  close it has turned out to push the other way.
+
+  WHAT IS SETTLED, and it is the debt I owed after naming this integral twice: f_r/f_t is NOT
+  a free parameter. It is a computed geometric ratio, 0.14-0.44 across real disc radii,
+  obtained with NO a0, NO footing choice and NO RAR budget -- two analytic limit controls
+  (uniform sheet -> exactly 1; mass concentrated inside -> 0) and a monotonicity control pass.
+
+  UNCHANGED: the pincer (Theorem 3 forbids all local L; Theorem 8's argument mismatch stands),
+  no action reproducing the closure off circles exists, a0 is not derived, kappa = 1/2 stays
+  FITTED, and no door is declared closed.
+======================================================================================================
