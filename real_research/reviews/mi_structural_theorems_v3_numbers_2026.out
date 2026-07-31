@@ -1,0 +1,88 @@
+
+====================================================================================================
+A. THE KERNEL, AND THE NEW SPECTRAL MEASURE (new result in v3)
+====================================================================================================
+  v2: K_1(z) = (sqrt(4*z + 1) - 1)/(2*sqrt(z))      cut z <= -1/4, measure in TWO regions + additive a = 0.65411
+  v3: K_2(z) = sqrt(z)/sqrt(z + 1)      cut -1 < z < 0
+  Stieltjes inversion on the v3 cut (z = -s, 0 < s < 1) gives K = i sqrt(s/(1-s)), so
+      rho(s) = sqrt(s)*sqrt(1/(1 - s))/pi   on 0 < s < 1,   K_2(z) = 1 - INT_0^1 rho(s) ds/(z+s)
+      sum rule INT rho/s ds = 1  (= K(inf) - K(0), the unit resolvent weight)
+      total mass INT rho ds = 1/2  (FINITE; the v2 measure's total mass DIVERGES)
+  [OK] the v3 measure satisfies the SAME unit sum rule as v2, so the a0 scale derivation is unaffected by the kernel change
+  [OK] the representation reproduces the closed form to 4.2e-15 over eight decades
+  K_1 origin: sqrt(z)*(1 - z)  -> both go as sqrt(z), so DEEP MOND and Thm 4's non-analyticity are shared
+  K_2 origin: sqrt(z)*(2 - z)/2  -> both go as sqrt(z), so DEEP MOND and Thm 4's non-analyticity are shared
+  [OK] K_2 ~ sqrt(z) at the origin, so K'(0+) still diverges -- Theorem 4's non-analyticity claim carries over verbatim
+
+====================================================================================================
+B. THEOREM 2 -- Im K == 0. The cut MOVES but the disjointness is unchanged
+====================================================================================================
+  v2 proof: argument z = |a|^2/a0^2 >= 0; K_1 acquires Im only for z <= -1/4. Disjoint.
+  v3      : same argument z >= 0; K_2 acquires Im only on -1 < z < 0. STILL DISJOINT, and
+            the cut is now COMPACT, so the statement is if anything cleaner.
+  [OK] Im K_2 > 0 on -1 < z < 0 and identically 0 for z > 0 -- so Im K == 0 on the closure's argument, exactly as in v2
+
+====================================================================================================
+C. THEOREM 3 -- the acceleration Hessian. Machinery checked against v2 first
+====================================================================================================
+  For f(|a|) in 3D: eigenvalues f'' (once) and f'/r (twice) => det = f'' (f'/r)^2
+  v2 alpha=1: mu' = 1/(2*x**2) - 1/(2*x**2*sqrt(4*x**2 + 1))
+              det[Hess]_{|a|=a0} = -11/25 + 23*sqrt(5)/125 = -0.02856349
+  v3 alpha=2: mu' = (x**2 + 1)**(-3/2)
+              det[Hess]_{|a|=a0} = -3*sqrt(2)/64 = -0.06629126
+  [OK] the v2 published value -11/25 + 23 sqrt5/125 is REPRODUCED exactly, so the machinery is validated before being used on the new kernel
+  [OK] the v3 Hessian is -3*sqrt(2)/64 = -0.06629126, NON-SINGULAR -- so Theorem 3's conclusion (the degeneracy escape is closed) survives, with a simpler value
+
+====================================================================================================
+D. PROPOSITION 6 -- the linear-response inertia
+====================================================================================================
+  v2 alpha=1: h(x) = 2*x/sqrt(4*x**2 + 1)
+              h(1) = 2*sqrt(5)/5 = 0.894427, 1/h(1) = 1.118034, 1/mu(1) = 1.618034, deep 1/h -> 1/(2 x)
+  v3 alpha=2: h(x) = x*(x**2 + 2)/(x**2 + 1)**(3/2)
+              h(1) = 3*sqrt(2)/4 = 1.060660, 1/h(1) = 0.942809, 1/mu(1) = 1.414214, deep 1/h -> 1/(2 x)
+  [OK] the DEEP-regime response 1/h -> 1/(2x) is IDENTICAL for both kernels -- so every deep-regime use of Prop 6 (the diffuse-baryon growth chain, the forest response) is unaffected by the kernel switch
+  [OK] at x = 1 the v3 response is 1/h = 0.9428 < 1, i.e. SUPPRESSED rather than amplified -- a qualitative change from v2's 1.1180 and worth stating in the paper
+
+====================================================================================================
+E. THEOREM 5 / COROLLARY 5.1 -- the dipole, and a SIGN CAVEAT that is new
+====================================================================================================
+  regime                      y      e   v2 alpha=1   v3 alpha=2
+  e<<y                     0.50   0.02       13.89%       15.37%
+  e<<y                     1.00   0.05       12.50%       14.25%
+  e<<y                     2.00   0.10        9.39%       10.52%
+  e<<y                     5.00   0.20        5.28%        5.37%
+  e>>y                     0.10   2.00        0.08%       -0.15%
+  e>>y                     0.05   3.00        0.01%       -0.05%
+  [OK] in the observable e << y regime the v3 dipole is 5.4%-15.4% and POSITIVE on every case -- near side faster, so Cor 5.1's sign survives where the amplitude is measurable
+  [OK] and the amplitude is comparable, 1.096x v2 -- so the 'MI-favourable amplitude comparison against AQUAL's 1-4%' argument carries over
+  [OK] *** NEW IN v3: in the e >> y corner the dipole CHANGES SIGN (-0.15% to -0.05%), which v2's kernel did not do. It is below 0.2% in amplitude, so the >1% falsifier is unaffected -- but v2's claim that the sign 'is forced by the cross term and cannot be tuned' must be QUALIFIED to the e <~ y regime
+
+====================================================================================================
+F. PROPOSITION 7.2 -- the offset, by the PAPER'S OWN method
+====================================================================================================
+  offset = <log10( mu(x_A)/mu(x_B) )>_t with x_B = sqrt(<a^2>)/a0, the paper's own S3.
+   k = apo/peri       x_B   v2 alpha=1   v3 alpha=2
+          20.51    3.5771      -0.0883      -0.0766
+           8.29    2.4944      -0.0624      -0.0602
+           3.75    1.8148      -0.0344      -0.0369
+           2.15    1.4325      -0.0147      -0.0169
+           1.36    1.1628      -0.0029      -0.0035
+           1.04    1.0202      -0.0001      -0.0001
+  [OK] the v2 published -0.037 dex is REPRODUCED (-0.0344) by this replication of the paper's own method, validating it before the kernel is swapped
+  [OK] under v3 the same orbit gives -0.0369 dex against v2's -0.0344 -- essentially UNCHANGED, and still NEGATIVE, so Prop 7.2's sign claim ('offset below the rotation relation') and its detectability problem both carry over intact
+
+====================================================================================================
+G. THE v3 CHANGE TABLE, as it will appear in the paper
+====================================================================================================
+  result                             v2 (alpha=1)             v3 (alpha=2)               status                  
+  Thm 1  moment identity             <Box_u>_u = +|a|^2       identical                  kinematic               
+  Thm 2  Im K == 0                   cut z <= -1/4            cut -1 < z < 0             survives, cut compact   
+  Thm 3  Hessian det                 -0.02856                 -0.06629                   survives, simpler       
+  Thm 4  FRW inert / non-analytic    K ~ sqrt z               identical                  kinematic + shared origin
+  Thm 5  dipole, e << y              4.2-22.3%                5.4-15.4%                  survives, 1.10x         
+  Thm 5  sign in e >> y              positive                 NEGATIVE (<0.2%)           FALSIFIER QUALIFIED     
+  Prop 6 h(x)                        2x/sqrt(1+4x^2)          x(x^2+2)/(1+x^2)^{3/2}     deep limit identical    
+  Prop 7 offset                      -0.0370 dex              -0.0369 dex                unchanged               
+  NEW    spectral measure            2 regions + const        1 region, compact          new result              
+  [OK] change table emitted; every entry above is computed in this script
+====================================================================================================

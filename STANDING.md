@@ -54,7 +54,7 @@ claims. They are not to be revived. The true position is the $a_0$ reframing abo
 | $\kappa$ reduction $a_0=\kappa c\sqrt{G\rho_\Lambda}$ | every $\pi$, the 32 and the 3 cancel |
 | Modified-inertia action, v1–v11 | published; constraint structure machine-verified, 0 frame dof |
 | Disformal lensing construction (v7–v10) | closed, Cassini-safe, Ostrogradsky-free |
-| Seven structural theorems | published 2026-07-30, **v2 DOI 10.5281/zenodo.21708842** (concept 21707844); v2 retracts v1's Prop-7 observational forecast after a real-data confrontation |
+| Seven structural theorems | **v4 DOI 10.5281/zenodo.21711577** (concept **21707844**, always latest), 2026-07-30. **v3 re-derived all seven under the $\alpha\ge2$ kernel and added the new spectral measure**; all survive, three with new numbers (Hessian $-3\sqrt2/64$; $h(x)=x(x^2+2)/(1+x^2)^{3/2}$; dipole 5.4–15.4%), one falsifier qualified (the dipole sign flips in the $e\gg y$ corner at sub-0.2%). **v4 is a file-set fix only** — v3 dropped `PROVENANCE.md` and the dSph CSV; no scientific content differs. v2 (21708842) states the retired $\alpha=1$ kernel and is superseded |
 
 ## 2. Postulated — not derived, and not to be presented otherwise
 
