@@ -142,7 +142,35 @@ claims. They are not to be revived. The true position is the $a_0$ reframing abo
   tadpole, which is the specific fact protecting $a_0$.
   **NET: nothing gets harder.** One dependency vanishes, one is unchanged, the window widens, the
   load-bearing moment is exact. **So the transfer holds without the proviso.**
-  **⚠️ THE ONE LIVE THREAD, and it is E3's justification rather than its statement:** the bounded-$W$
+  **✅ THE z<−1 THREAD IS NOW CLOSED — by a structural IDENTITY, not a bound check**
+  (`mi_boundedness_thread_closed_2026.py`, 17 checks, exit 0).
+  **The fragility was real and WORSE than I first said.** α=1 is bounded by unity *everywhere*: K₁ = **i
+  exactly** at its branch point z = −¼, and |K₁| = 1 *identically* on its cut beyond. α=2 **diverges** at
+  z = −1 like **(1+z)^(−1/2)** (unit coefficient), and |K₂(−s)| = √(s/(1−s)) **passes unity at s = ½** — so
+  boundedness fails on the **entire upper half of α=2's own measure support**, not merely at the far edge.
+  **⭐ BUT THE LOOP NEVER GOES THERE.** Lane A uses boundedness in exactly **one** place
+  (`oneloop_laneA_divergences.py` lines 316–322): the **Euclidean longitudinal symbol**
+  $F(\kappa)=K(\kappa^2)$ with $\kappa = k_0/a_0$ **real** — so the argument is $\kappa^2\ge0$, strictly the
+  positive axis. α=2 passes **all four** of Lane A's own criteria on F (monotone; bounded in [0,1);
+  F(0)=0; F ~ κ at small κ, the same nonanalytic $|k_0|/a_0$), with a mutation control (×1.5) confirming
+  they discriminate.
+  **⭐⭐ AND THE REASON IS AN IDENTITY: $K(z) = \mu(\sqrt z)$ for BOTH kernels** (sympy residual 0), hence
+  $F(\kappa)=\mu(\kappa)$ — **the resummed Euclidean loop symbol IS the interpolating function.** So Lane
+  A's requirement "F bounded in [0,1)" is *exactly* **μ ≤ 1**, a **defining property of any MOND
+  interpolating function** — not an assumption about the measure. **The boundedness input cannot fail for
+  any α.** Verified μ < 1 *strictly* over seventeen decades at 40 dps (1 − max μ = 5×10⁻¹⁷ > 0; float64
+  saturates to 1.0 by κ~10⁸, which is why mpmath is used).
+  **✅ AND THE ORIGINAL LANE A CHECKS OUT — nothing found wrong.** Four internal claims re-derived
+  independently: the $M_{-1/2}$ log slope is **1/(2π)**, agreeing to **2.9×10⁻⁴²** (its own tolerance was
+  3×10⁻³); its two-region density reproduces $M_{-1} = K(\infty)-K(0) = 1$; and its identification of the
+  √z nonanalyticity as a property of the **law** rather than the measure is correct, since both kernels
+  share it. The only thing it could not have known is that its kernel would later be retired.
+  **⚠️ WHAT IS STILL NOT CLOSED — the ON-SHELL side, and it must not be conflated with the loop.**
+  Lorentzian on-shell, $z = -w^2$ is negative and $z<-1$ whenever $\Omega > a_0/c$ — a period under
+  **~640 Gyr on both footings**, i.e. *every real system*. The passivity excess there is $1/(2w^2)$:
+  **5×10⁻⁵** (cluster members) to **5×10⁻¹³** (wide binaries). Real, nonzero, negligible, and **Theorem 8's
+  territory rather than the loop's.** The loop is safe; that blemish stays on the books.
+  ~~**⚠️ THE ONE LIVE THREAD, and it is E3's justification rather than its statement:** the bounded-$W$
   resummation rests on $|K|\le1$ — exactly the property α=2 violates for $z<-1$. The dS loop lives at
   $z>0$ where it holds over sixteen decades, so the calculation as performed is safe, but **any
   continuation past $z=-1$ must re-derive boundedness rather than inherit it.** That is the single place

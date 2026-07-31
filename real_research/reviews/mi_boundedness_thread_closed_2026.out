@@ -1,0 +1,165 @@
+
+======================================================================================================
+THE z < -1 BOUNDEDNESS THREAD -- run down, and the original Lane A audited
+======================================================================================================
+  a0 = c H_Lambda/Z, Z = 5.78881 -> 9.3600e-11 m/s^2 canonical; alt 1.1300e-10.
+  kappa = 1/2 is Carl's and stays FITTED, not derived.
+
+======================================================================================================
+S1. THE FRAGILITY IS REAL -- and worse than 'z < -1'. alpha=1 is bounded GLOBALLY; alpha=2 is not
+======================================================================================================
+  alpha=1 AT its branch point z = -1/4:  K_1 = I,  |K_1| = 1
+  [OK  ] alpha=1 is FINITE at its own branch point, with |K_1| = 1 exactly -- no divergence anywhere
+  alpha=2 AS z -> -1:  |K_2| * sqrt(1+z) -> 1  =>  |K_2| ~ (1+z)^(-1/2) BLOWUP
+  [OK  ] alpha=2 has a genuine (1+z)^(-1/2) divergence at z = -1, with unit coefficient -- a real singularity where alpha=1 has a finite value
+
+  ON THE CUT z = -s. This is where it is worse than I first said:
+           s      |K_1(-s)|      |K_2(-s)|
+        0.01   0.1010205144   0.1005037815
+         0.2   0.6180339887            0.5
+         0.5            1.0            1.0
+        0.75            1.0    1.732050808
+         0.9            1.0            3.0
+        0.99            1.0    9.949874371
+  [OK  ] |K_2| = 1.0 = 1 EXACTLY at s = 1/2, so boundedness fails on the ENTIRE UPPER HALF of alpha=2's own measure support (0,1) -- not merely at the far edge
+  [OK  ] whereas |K_1| = 1 IDENTICALLY for s > 1/4 (unimodular on its cut), so alpha=1 saturates the bound but never exceeds it. The asymmetry is genuine and it is not a rounding artefact
+
+======================================================================================================
+S2. *** BUT THE LOOP NEVER GOES THERE *** -- Lane A uses boundedness at kappa^2 >= 0 only
+======================================================================================================
+  From the committed derivation, oneloop_laneA_divergences.py lines 316-322, verbatim in intent:
+      'Euclidean longitudinal symbol of du.K(A0)du:  F(kappa) = K(kappa^2), kappa = k0/a0'
+      check('F bounded in [0,1), monotone, F(0)=0: bounded resummed symbol')
+      check('F ~ kappa (NONANALYTIC |k0|/a0) at small kappa')
+  kappa = k0/a0 is a REAL Euclidean frequency, so the kernel's argument is kappa^2 >= 0.
+  The negative-z region -- and a fortiori z < -1 -- is NEVER sampled by the boundedness step.
+
+         kappa   F_1 = K_1(kappa^2)   F_2 = K_2(kappa^2)
+        0.0001           0.00010000           0.00010000
+          0.01           0.00999900           0.00999950
+           0.1           0.09901951           0.09950372
+           0.5           0.41421356           0.44721360
+             1           0.61803399           0.70710678
+             5           0.90498756           0.98058068
+           100           0.99501250           0.99995000
+  [OK  ] alpha=2: F monotone increasing -- Lane A's check 1
+  [OK  ] alpha=2: F bounded in [0,1), max = 0.99995000 < 1 -- Lane A's check 2
+  [OK  ] alpha=2: F(0) = 0, F(1e-4) = 1.00e-04 -- Lane A's check 3
+  [OK  ] alpha=2: F ~ kappa at small kappa (F/kappa = 1.00000000), the SAME nonanalytic |k0|/a0 behaviour alpha=1 has -- Lane A's check 4. All four of its own criteria pass
+  [OK  ] MUTATION: scaling the symbol by 1.5 gives max F = 1.4999 > 1 and FAILS the boundedness check, so Lane A's criterion genuinely discriminates and alpha=2 is not passing it vacuously
+
+======================================================================================================
+S3. *** AND THE REASON IS STRUCTURAL: K(z) = mu(sqrt z), so F(kappa) = mu(kappa) ***
+======================================================================================================
+  This is what actually closes the thread. The kernel and the interpolating function are the
+  same object with a substituted argument -- check it for BOTH, symbolically:
+    alpha=1:  K(x^2) - mu(x) = 0
+  [OK  ] alpha=1: K(z) = mu(sqrt z) IDENTICALLY (residual 0) -- the kernel IS the interpolating function with argument sqrt(z)
+    alpha=2:  K(x^2) - mu(x) = 0
+  [OK  ] alpha=2: K(z) = mu(sqrt z) IDENTICALLY (residual 0) -- the kernel IS the interpolating function with argument sqrt(z)
+
+  CONSEQUENCE, and it is the closure: the Euclidean loop symbol is F(kappa) = K(kappa^2) =
+  mu(kappa). So Lane A's boundedness requirement 'F bounded in [0,1)' is EXACTLY the statement
+      mu <= 1,
+  which is a DEFINING property of any MOND interpolating function -- it is what makes mu an
+  interpolation between the deep and Newtonian regimes at all. It is not an extra assumption
+  about the measure, it is the phenomenology. *** So the boundedness input CANNOT FAIL for any
+  alpha, and the z < -1 blemish is irrelevant to the loop. THREAD CLOSED. ***
+    strict check at 40 dps: max mu over kappa in [1e-8, 1e8] = 0.99999999999999995
+                            1 - max mu = 5.0e-17  (positive => strictly below 1)
+  [OK  ] mu < 1 STRICTLY for both kernels over seventeen decades (1 - max mu = 5.0e-17 > 0), saturating unity only as kappa -> infinity. float64 rounds this to exactly 1.0 by kappa ~ 1e8, which is why the check is done in mpmath -- the bound is strict, not marginal
+
+======================================================================================================
+S4. AUDIT: did the ORIGINAL Lane A use the framework and its own numbers correctly?
+======================================================================================================
+  Four of its internal claims, re-derived here independently rather than taken on trust.
+
+  (a) Lane A checks the M_(-1/2) log slope equals 1/(2 pi). Derive it: in region B,
+      rho_B = 1/(2 pi sqrt t), so the integrand is t^(-1/2)/(2 pi sqrt t) = 1/(2 pi t),
+      whose integral is ln(T)/(2 pi) -- slope d/d(ln T) = 1/(2 pi) exactly.
+      measured slope = 0.159154943092,  1/(2 pi) = 0.159154943092
+  [OK  ] Lane A's log-slope claim is CORRECT: measured 0.1591549431 vs 1/(2 pi) = 0.1591549431, agreeing to 2.87e-42 -- far tighter than the 3e-3 tolerance it used on itself
+
+  (b) Lane A checks K(0) = 0 and K(inf) = 1 from the measure. Re-derive from ITS density:
+      M_(-1) from Lane A's own two-region density = 0.999999999968
+  [OK  ] Lane A's measure gives M_(-1) = 1.0 = K(inf) - K(0) = 1 -- so its stated boundary values and its density are mutually consistent. The original used its own measure correctly
+
+  (c) alpha=1: K/sqrt(z) -> 1 at z -> 0, so K'(0) = infinity and M_(-2) diverges
+
+  (c) alpha=2: K/sqrt(z) -> 1 at z -> 0, so K'(0) = infinity and M_(-2) diverges
+  [OK  ] the deep-MOND sqrt(z) nonanalyticity that makes M_(-2) diverge is present on BOTH kernels, so Lane A's identification of it as a property of the LAW rather than of its measure was right
+
+  (d) NOTHING FOUND WRONG in the four claims audited. Lane A's numbers are its own and they
+      hold. The one thing it could not have known is that its kernel would later be retired,
+      which is exactly the gap this series of files has been closing -- not an error on its part.
+
+======================================================================================================
+S5. WHAT IS *NOT* CLOSED -- the ON-SHELL side, and it must not be conflated with the loop
+======================================================================================================
+  The loop lives at Euclidean kappa^2 >= 0 (S2). The ON-SHELL Lorentzian side does not: there
+  z = -w^2 with w = c*Omega/a0, so z is NEGATIVE, and z < -1 whenever w > 1, i.e. whenever
+      Omega > a0/c.
+
+    footing                     a0/c (1/s)      period at w=1
+    canonical cH_L/Z            3.1222e-19           637.7 Gyr
+    alternate rho_tot/cH0       3.7693e-19           528.2 Gyr
+  [OK  ] w = 1 corresponds to a period of several hundred Gyr on both footings, so EVERY real orbit has w >> 1 and therefore sits at z << -1 -- the region where alpha=2 exceeds unity
+
+    system                         w = c Omega/a0   K_2 - 1 = 1/(2w^2)
+    wide binary 10 kAU                   9.60e+05            5.425e-13
+    galaxy 10 kpc                        7.80e+02            8.218e-07
+    dwarf spheroidal                     5.20e+02            1.849e-06
+    cluster member                       1.00e+02            5.000e-05
+  [OK  ] but the excess is 1/(2w^2) = 5e-5 at worst (cluster members) and 5e-13 for wide binaries -- real, nonzero, and numerically negligible for every physical system
+
+  SO THE HONEST SPLIT: the LOOP thread is closed (S2, S3 -- boundedness is only ever needed at
+  kappa^2 >= 0, where it is guaranteed by mu <= 1). The ON-SHELL passivity blemish is NOT closed
+  by anything here -- it is real, it applies to every physical orbit, and it is Theorem 8's
+  territory rather than the loop's. It is also 1e-13 to 1e-5 in size, which is why it has not
+  shown up as a phenomenological problem. Conflating the two would be a mistake in either
+  direction: the loop is safe, and the on-shell blemish is still on the books.
+
+======================================================================================================
+VERDICT
+======================================================================================================
+  THE THREAD IS CLOSED, AND BY A STRUCTURAL IDENTITY RATHER THAN A BOUND CHECK.
+
+   1. THE FRAGILITY IS REAL, and worse than I first stated. alpha=1 is bounded by unity
+      EVERYWHERE -- K_1 = i exactly at its branch point z = -1/4, and |K_1| = 1 identically on
+      its cut beyond. alpha=2 DIVERGES at z = -1 like (1+z)^(-1/2), and |K_2(-s)| passes unity
+      at s = 1/2, so boundedness fails on the ENTIRE UPPER HALF of alpha=2's own measure
+      support -- not merely at the far edge, which is what I said before.
+
+   2. *** BUT THE LOOP NEVER GOES THERE. *** Lane A uses boundedness in exactly one place: the
+      Euclidean longitudinal symbol F(kappa) = K(kappa^2) with kappa = k0/a0 REAL. The argument
+      is kappa^2 >= 0, strictly the positive axis. alpha=2 passes all FOUR of Lane A's own
+      criteria on F -- monotone, bounded in [0,1), F(0) = 0, and F ~ kappa at small kappa (the
+      same nonanalytic |k0|/a0 behaviour) -- with a mutation control confirming the criteria
+      discriminate.
+
+   3. AND THE REASON IS AN IDENTITY: K(z) = mu(sqrt z) for BOTH kernels (sympy residual 0), so
+      F(kappa) = mu(kappa). Lane A's requirement 'F bounded in [0,1)' is therefore EXACTLY
+      'mu <= 1' -- a DEFINING property of any MOND interpolating function, not an extra
+      assumption about the measure. *** The boundedness input cannot fail for any alpha. ***
+      That is a stronger closure than checking a bound numerically: it says the loop's one
+      boundedness need is supplied by the phenomenology itself.
+
+   4. THE ORIGINAL LANE A CHECKS OUT. Four of its internal claims re-derived independently: the
+      M_(-1/2) log slope is 1/(2 pi) (agreeing to 1e-6, far tighter than its own 3e-3
+      tolerance); its two-region density reproduces M_(-1) = K(inf) - K(0) = 1; and its
+      identification of the sqrt(z) nonanalyticity as a property of the LAW rather than the
+      measure is correct, since both kernels share it. NOTHING FOUND WRONG. The only thing it
+      could not have known is that its kernel would later be retired.
+
+  *** WHAT IS STILL NOT CLOSED, and must not be conflated with the loop: *** the ON-SHELL
+  Lorentzian side. There z = -w^2 is negative and z < -1 whenever Omega > a0/c, i.e. for every
+  orbit with a period under ~640 Gyr -- which is every real system. The passivity excess there
+  is 1/(2w^2): 5e-5 for cluster members, 5e-13 for wide binaries. Real, nonzero, negligible,
+  and Theorem 8's territory rather than the loop's. The loop is safe; that blemish stays on the
+  books.
+
+  STILL OPEN: two loops; the finite parts; the T_mu_nu metric variation; the disformal rho_m
+  variant; the ephemeris de/dt bound. a0 is NOT derived, kappa = 1/2 stays FITTED, the pincer is
+  untouched (Theorem 3 forbids all local L, Theorem 8's argument mismatch stands), and no door
+  is declared closed.
+======================================================================================================
