@@ -89,6 +89,49 @@ claims. They are not to be revived. The true position is the $a_0$ reframing abo
   rather than at the operator's spectrum.** Milgrom's virial $f(u)$ does exactly that on circles — which
   is why the four-family no-go was withdrawn — so the object is not impossible, only unwritten off
   circles. Scripts: `mi_theorem3_corrected_proof_2026.py`, `mi_theorem8_redone_alpha2_2026.py`.
+- **⭐ THE OFF-CIRCULAR ACTION, WRITTEN DOWN (2026-07-30) — the pincer is now *sharp*, with an explicit
+  witness on the local horn.** `mi_offcircular_action_2026.py` (44 checks, exit 0). The action is
+  $$S[x]=\int\!dt\;m\Big(|\dot x|^2\,f(|\ddot x|/a_0)-\phi(x)\Big),\qquad f(u)=u^{-2}\!\int_0^u\!v\,\mu(v)\,dv,$$
+  with $f_1=[2u\sqrt{4u^2+1}-4u+\operatorname{asinh}2u]/(8u^2)$ ($\alpha{=}1$) and **NEW,
+  $\alpha{=}2$: $f_2=[u\sqrt{1+u^2}-\operatorname{asinh}u]/(2u^2)$** — the corpus carried only $f_1$.
+  Its honest EL equation is fourth-order:
+  $\frac{d^2}{dt^2}\big[(|\dot x|^2/a_0)f'(u)\hat a\big]-2f(u)\ddot x-2\dot f\,\dot x=\nabla\phi$.
+  **WHAT IS GAINED.** A circular orbit solves that *full* equation **exactly**, and the equation it
+  satisfies is the framework's own closure $g_{\rm bar}=A\,\mu(A/a_0)$ — verified for **generic** $f$
+  (sympy residual 0, so kernel-independent), plus both explicit kernels, with two negative controls
+  failing as required. This **promotes** the corpus's earlier result, which varied only *inside* the
+  two-parameter circular family and therefore never established that the real EL equation holds.
+  $f''$ and $f'''$ are provably **absent** from the circular result — that is *why* circles are the
+  family that works. Newtonian limit exact ($f(\infty)=\tfrac12$).
+  **WHAT IT COSTS, and these are not footnotes.** (i) The acceleration-Hessian is not merely
+  non-degenerate but **indefinite** ($f''<0$ along $\hat a$, $f'/u>0$ transverse, verified at 50-digit
+  precision over 15 decades — a float64 scan reports thousands of *spurious* sign flips from an
+  $O(u^3)$ cancellation, checked and discarded). So Ostrogradsky applies and $\omega_{\rm extra}^2<0$:
+  the extra modes are **runaways**, e-folding in **0.57 s** at Earth and $5\times10^7$ yr at 30 kpc
+  ($|\omega|/\Omega_{\rm orb}=2.8$ — *not* parametrically separated anywhere). Not a fundamental action.
+  (ii) **Off circles it does not reproduce the closure.** A second exactly-solvable family (uniform
+  straight-line acceleration) gives a *different* interpolating function $\mu_{\rm lin}=2(f-uf')$:
+  deep-regime $u^3$ instead of $u^1$, i.e. **251× weaker at $u=0.1$ and 25 000× at $u=0.01$**.
+  Measured residual on exact closure-solving eccentric orbits (deep regime, both footings): 0 at $e=0$
+  to machine precision, then 0.033 at $e{=}0.01$, 0.33 at $e{=}0.1$, **2.7 at $e{=}0.6$** — order-unity,
+  not a correction. Validated by a scaling ladder: residual $\propto u^{-1.00}$ ($\alpha{=}1$) and
+  $u^{-1.84}$ ($\alpha{=}2$, predicted $-2$), so **the $\alpha=2$ switch cures the solar system off
+  circles too** — the Newtonian residual falls below double precision and is *reported as unresolved*,
+  not claimed as zero.
+  **READ:** every observation the closure has been tested against — SPARC rotation curves, BTFR, RAR —
+  is a **circular-orbit** measurement. Closure and action are the same theory there and different
+  theories elsewhere. Prior art: Milgrom 1994 (Ann. Phys. 229:384) for the class, 2022 PRD 106:064060
+  for single-frequency-only.
+- **⭐ AND IT NAMES A DOOR, WITH ITS LOCK.** $u=w\,(v/c)$ **exactly** — so what Theorem 8 found missing
+  is a **speed**, and the $|\dot x|^2$ prefactor is exactly how the local action supplies it. A speed is
+  not an invariant of a lone worldline, which is *why* the covariant operator route failed; but this
+  framework has a **passive preferred frame**, which does supply one. Target, now specific: a nonlocal
+  worldline action whose kernel argument is the frame-relative frequency rescaled by the frame-relative
+  speed. **The lock, computed not deferred:** a *cosmic*-frame speed is **excluded by the framework's own
+  RAR** — peculiar velocities span ~1.0 dex against a total $a_0$ budget of $2\times0.108=0.216$ dex
+  ($4.6\times$ over). The frame must be **locally dragged** so a star's frame-relative speed is its
+  orbital speed, not its galaxy's bulk motion. Whether the passive $u$ does that is **not settled and
+  not claimed**.
   **⚠️ ALSO NEW: the $\alpha=2$ kernel violates passivity for $z<-1$** ($K_2=w/\sqrt{w^2-1}>1$),
   by ~$10^{-13}$ at orbital frequencies and order 7 near the cut edge. It does **not** touch the $a_0$
   derivation, which uses $z>0$ only, where $0\le K_2\le1$ over sixteen decades — but it is a real cost

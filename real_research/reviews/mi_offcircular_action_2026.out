@@ -1,0 +1,407 @@
+
+======================================================================================================
+THE OFF-CIRCULAR ACTION FOR THE dS-UNRUH MODIFIED-INERTIA FRAMEWORK
+======================================================================================================
+  a0 = c H_Lambda / Z,  Z = sqrt(32 pi / 3) = 5.78881  ->  a0 = 9.3600e-11 m/s^2 (canonical)
+  equivalently a0 = (c/2) sqrt(G rho_Lambda): EXACTLY HALF the free-fall acceleration at
+  the dark-energy density. kappa = 1/2 is this framework's own coefficient and is not in
+  the prior literature; note also that 32pi/3 is the Einstein-coupling conversion factor
+  and CANCELS in that reduction, so the content is the ONE number kappa, which is FITTED,
+  not derived (the kappa-forcing door was closed 2026-06-17).
+  Alternate footing carried throughout: a0 = 1.1300e-10 m/s^2.
+
+======================================================================================================
+S1. f from mu by quadrature, the circular identity, and closed forms for BOTH kernels
+======================================================================================================
+  DEFINITION (this is the only input):   f(u) = u^-2 * Integral_0^u v mu(v) dv
+  so that  u^2 f(u) = Lambda(u) = Integral_0^u v mu(v) dv,  hence  Lambda'(u) = u mu(u).
+  The circular identity is then an IDENTITY of the quadrature, not an extra assumption:
+      (1/u) d/du [u^2 f(u)] = Lambda'(u)/u = mu(u).
+
+  alpha=1 (retired)
+    mu(u)  = (sqrt(4*u**2 + 1) - 1)/(2*u)
+    f(u)   = (2*u*sqrt(4*u**2 + 1) - 4*u + asinh(2*u))/(8*u**2)
+  [OK  ] alpha=1 (retired): (1/u) d/du[u^2 f] returns mu EXACTLY (sympy residual 0) -- the quadrature and the circular identity are the same statement
+    limits: f(u->oo) = 1/2 (want 1/2, i.e. exact Newtonian kinetic term);  f/u -> 1/3 as u->0 (want 1/3)
+  [OK  ] alpha=1 (retired): f interpolates 1/2 <-> u/3, so the action's Newtonian limit is EXACTLY (1/2) m |xdot|^2 with no residual correction
+
+  alpha=2 (in force)
+    mu(u)  = u/sqrt(u**2 + 1)
+    f(u)   = (u*sqrt(u**2 + 1) - asinh(u))/(2*u**2)
+  [OK  ] alpha=2 (in force): (1/u) d/du[u^2 f] returns mu EXACTLY (sympy residual 0) -- the quadrature and the circular identity are the same statement
+    limits: f(u->oo) = 1/2 (want 1/2, i.e. exact Newtonian kinetic term);  f/u -> 1/3 as u->0 (want 1/3)
+  [OK  ] alpha=2 (in force): f interpolates 1/2 <-> u/3, so the action's Newtonian limit is EXACTLY (1/2) m |xdot|^2 with no residual correction
+  [OK  ] alpha=1 f reproduces the corpus's committed closed form in mi_three_corrections_priorart_2026.py EXACTLY (independent re-derivation agrees)
+  [OK  ] *** NEW *** alpha=2 generating function in closed form: f_2(u) = [u sqrt(1+u^2) - asinh(u)] / (2 u^2)   (the corpus carried only f_1)
+
+======================================================================================================
+S2. *** THE OFF-CIRCULAR ACTION *** and its honest fourth-order Euler-Lagrange equation
+======================================================================================================
+  THE ACTION.  With f the generating function of S1 and phi the Newtonian potential of the
+  BARYONS ONLY (no dark matter anywhere in this framework):
+
+      S[x] = Integral dt  m ( |xdot|^2 f( |xddot| / a0 )  -  phi(x) )
+
+  This is local, Galilei-invariant, rotation-invariant, and reduces to the exact Newtonian
+  action (1/2) m |xdot|^2 - m phi in the limit a0 -> 0 because f(u->oo) = 1/2 (S1).
+  It is the UNRESTRICTED object the corpus never wrote: previous work varied only inside the
+  two-parameter circular family, which cannot establish that the real EL equation holds.
+
+  ITS EULER-LAGRANGE EQUATION.  L depends on xddot, so the equation is FOURTH order:
+
+      d^2/dt^2 [ (|xdot|^2 / a0) f'(u) ahat ]  -  2 f(u) xddot  -  2 (d/dt f(u)) xdot
+                                                                          = grad phi
+      with  u = |xddot| / a0,  ahat = xddot / |xddot|.
+
+  Every term is written out; nothing is dropped. The first term is the higher-derivative
+  one, the third vanishes iff u is constant along the trajectory.
+
+  RESULT, for GENERIC f (F0=f(u0), F1=f'(u0), F2=f''(u0), F3=f'''(u0) all kept free,
+  so nothing about the kernel is assumed):
+    solving EL = 0 on the circular path gives   g_bar = GM/R^2 = Omega**2*R*(2*F0*a0 + F1*Omega**2*R)/a0
+    the closure demands                          g_bar = A mu(A/a0) = Omega**2*R*(2*F0*a0 + F1*Omega**2*R)/a0
+  [OK  ] *** A CIRCULAR ORBIT SOLVES THE FULL FOURTH-ORDER EL EQUATION EXACTLY, and the equation it satisfies is precisely the framework's closure g_bar = A mu(A/a0) with mu = 2f + u f' *** (sympy residual 0). This PROMOTES the corpus's restricted-family variation to the real equation of motion, for ANY kernel
+  [OK  ] f'' and f''' are ABSENT from the circular result -- the higher derivatives of f, which are exactly what makes the equation fourth-order and carries the Ostrogradsky modes (S5), drop out identically on a circle. This is WHY circles are the family that works
+  [OK  ] the tangential projection of EL vanishes identically on the circle, so the solution is consistent (no secular torque; angular momentum conserved)
+  [OK  ] alpha=1: with the explicit kernel substituted, the circular EL solution is g_bar = A mu_1(A/a0) EXACTLY (residual 0)
+  [OK  ] alpha=2: with the explicit kernel substituted, the circular EL solution is g_bar = A mu_2(A/a0) EXACTLY (residual 0)
+
+  NEGATIVE CONTROLS (these MUST fail, or the check above is vacuous):
+  [OK  ] control 'f = mu/2 (the naive guess)' does NOT reproduce the closure (residual nonzero as required)
+  [OK  ] control 'f = Lambda/u^3 (right quadrature, wrong power)' does NOT reproduce the closure (residual nonzero as required)
+
+======================================================================================================
+S3. A SECOND exactly-solvable family: the interpolating function is TRAJECTORY-DEPENDENT
+======================================================================================================
+  Uniform straight-line acceleration: x(t) = (a t^2 / 2, 0), so u is constant and ahat is
+  constant, but |xdot|^2 = a^2 t^2 GROWS. Feeding this into the same EL equation:
+
+      d^2/dt^2[(a^2 t^2 / a0) f'(u)] - 2 f(u) a  =  dphi/dx
+      => force = -dphi/dx = 2 a [ f(u) - u f'(u) ]  ==  a mu_lin(u),
+         mu_lin(u) = 2[f(u) - u f'(u)]      versus circular   mu(u) = 2 f(u) + u f'(u).
+
+  CAVEAT, stated because it matters: this family is unbounded (v -> oo), so the v^2
+  prefactor grows without bound and the action is not finite over an infinite time. The EL
+  equation is still exact pointwise, which is all that is being read off here.
+
+  alpha=1
+    mu_lin(u)               = (2*u*sqrt(4*u**2 + 1) - 8*u + 3*asinh(2*u))/(4*u**2)
+    mu_lin -> 1 as u->oo   (Newtonian limit must be 1 for BOTH families)
+    deep-regime series: mu_lin = 4*u**3/5
+                        mu_circ= -u**3 + u
+  [OK  ] alpha=1: the straight-line family has the correct Newtonian limit mu_lin -> 1, so the trajectory-dependence is a DEEP-REGIME effect only
+    deep-regime leading power: mu_lin ~ u^3,  mu_circ ~ u^1
+  [OK  ] alpha=1: deep regime goes as u^3 on a straight line but u^1 on a circle -- the same action gives DIFFERENT interpolating functions on different trajectory shapes
+      at u=0.100:  mu_lin= 7.7779e-04  mu_circ= 9.9020e-02  ratio=     127.3x
+      at u=0.030:  mu_lin= 2.1545e-05  mu_circ= 2.9973e-02  ratio=    1391.2x
+      at u=0.010:  mu_lin= 7.9977e-07  mu_circ= 9.9990e-03  ratio=   12502.3x
+
+  alpha=2
+    mu_lin(u)               = u/sqrt(u**2 + 1) + 3/(u*sqrt(u**2 + 1)) - 3*asinh(u)/u**2
+    mu_lin -> 1 as u->oo   (Newtonian limit must be 1 for BOTH families)
+    deep-regime series: mu_lin = 2*u**3/5
+                        mu_circ= -u**3/2 + u
+  [OK  ] alpha=2: the straight-line family has the correct Newtonian limit mu_lin -> 1, so the trajectory-dependence is a DEEP-REGIME effect only
+    deep-regime leading power: mu_lin ~ u^3,  mu_circ ~ u^1
+  [OK  ] alpha=2: deep regime goes as u^3 on a straight line but u^1 on a circle -- the same action gives DIFFERENT interpolating functions on different trajectory shapes
+      at u=0.100:  mu_lin= 3.9576e-04  mu_circ= 9.9504e-02  ratio=     251.4x
+      at u=0.030:  mu_lin= 1.0790e-05  mu_circ= 2.9987e-02  ratio=    2779.2x
+      at u=0.010:  mu_lin= 3.9996e-07  mu_circ= 9.9995e-03  ratio=   25001.4x
+
+  READ: this is NOT a defect peculiar to this framework -- Milgrom (1994; 2022 PRD
+  106:064060) showed that modified-inertia theories generically have orbit-dependent
+  interpolating functions, and that the algebraic relation holds only for single-frequency
+  trajectories. This is that statement, made concrete for THIS action and THIS kernel.
+
+======================================================================================================
+S4. THE QUANTITATIVE OFF-CIRCULAR RESIDUAL -- how far apart are the closure and the action?
+======================================================================================================
+  METHOD, and it is exact rather than an integration: the framework's closure
+  xddot = -a(r) rhat with a(r) from mu(a/a0) a = g_bar is a genuine CENTRAL force, so its
+  orbits have exact energy and angular-momentum integrals. Pick a pericentre/apocentre pair
+  -> (E, L) -> the exact state (r, v_r, v_theta) at every radius, with NO ODE error. Then
+  build the action's fourth-order EL residual as a function of that state (all time
+  derivatives eliminated using the closure itself) and evaluate it around the orbit.
+  Reported as |EL residual| / |grad phi|: 0 means the action and the closure agree.
+
+------------------------------------------------------------------------------------------------------
+  KERNEL alpha = 1
+
+    galaxy   M=1e11 Msun, r~30 kpc  (DEEP regime)   [canonical cH_L/Z]   g_bar/a0 = 1.655e-01
+           e   r_peri/r_apo    max |EL|/|grad phi|  at r/r_apo
+        0.00         1.0000             2.0859e-15       1.000
+  [OK  ] alpha=1 galaxy [canonical cH_L/Z]: at e=0 the residual is 2.09e-15 ~ 0 -- the circular orbit solves the action exactly (independent numerical confirmation of the S2 symbolic result)
+        0.01         0.9802             2.9144e-02       0.990
+        0.05         0.9048             1.4631e-01       0.945
+        0.10         0.8182             2.9593e-01       0.886
+        0.20         0.6667             6.1356e-01       0.758
+        0.40         0.4286             1.3295e+00       0.543
+        0.60         0.2500             2.1518e+00       0.400
+  [OK  ] alpha=1 galaxy [canonical cH_L/Z]: the residual grows monotonically with eccentricity -- the disagreement is controlled by orbit shape, exactly as the S2/S3 structure predicts
+
+    galaxy   M=1e11 Msun, r~30 kpc  (DEEP regime)   [alternate rho_tot/cH0]   g_bar/a0 = 1.371e-01
+           e   r_peri/r_apo    max |EL|/|grad phi|  at r/r_apo
+        0.00         1.0000             2.2151e-30       1.000
+  [OK  ] alpha=1 galaxy [alternate rho_tot/cH0]: at e=0 the residual is 2.22e-30 ~ 0 -- the circular orbit solves the action exactly (independent numerical confirmation of the S2 symbolic result)
+        0.01         0.9802             3.0371e-02       0.990
+        0.05         0.9048             1.5254e-01       0.945
+        0.10         0.8182             3.0899e-01       0.882
+        0.20         0.6667             6.4395e-01       0.758
+        0.40         0.4286             1.4159e+00       0.543
+        0.60         0.2500             2.3044e+00       0.381
+  [OK  ] alpha=1 galaxy [alternate rho_tot/cH0]: the residual grows monotonically with eccentricity -- the disagreement is controlled by orbit shape, exactly as the S2/S3 structure predicts
+
+    Sun      M=1 Msun,   r~1 AU     (NEWTONIAN regime)   [canonical cH_L/Z]   g_bar/a0 = 6.337e+07
+           e   r_peri/r_apo    max |EL|/|grad phi|  at r/r_apo
+        0.00         1.0000             1.1302e-15       1.000
+  [OK  ] alpha=1 Sun [canonical cH_L/Z]: at e=0 the residual is 1.13e-15 ~ 0 -- the circular orbit solves the action exactly (independent numerical confirmation of the S2 symbolic result)
+        0.01         0.9802             1.5796e-10       0.991
+        0.05         0.9048             8.0879e-10       0.962
+        0.10         0.8182             1.7211e-09       0.936
+        0.20         0.6667             4.0669e-09       0.900
+        0.40         0.4286             1.1590e-08       0.843
+        0.60         0.2500             2.4236e-08       0.794
+  [OK  ] alpha=1 Sun [canonical cH_L/Z]: the residual grows monotonically with eccentricity -- the disagreement is controlled by orbit shape, exactly as the S2/S3 structure predicts
+
+    Sun      M=1 Msun,   r~1 AU     (NEWTONIAN regime)   [alternate rho_tot/cH0]   g_bar/a0 = 5.249e+07
+           e   r_peri/r_apo    max |EL|/|grad phi|  at r/r_apo
+        0.00         1.0000             6.3870e-16       1.000
+  [OK  ] alpha=1 Sun [alternate rho_tot/cH0]: at e=0 the residual is 6.39e-16 ~ 0 -- the circular orbit solves the action exactly (independent numerical confirmation of the S2 symbolic result)
+        0.01         0.9802             1.9070e-10       0.991
+        0.05         0.9048             9.7643e-10       0.962
+        0.10         0.8182             2.0779e-09       0.936
+        0.20         0.6667             4.9098e-09       0.900
+        0.40         0.4286             1.3992e-08       0.843
+        0.60         0.2500             2.9260e-08       0.794
+  [OK  ] alpha=1 Sun [alternate rho_tot/cH0]: the residual grows monotonically with eccentricity -- the disagreement is controlled by orbit shape, exactly as the S2/S3 structure predicts
+
+    SCALING LADDER (alpha=1), fixed e=0.20, sweeping u = a/a0 over decades.
+    PREDICTION from the kernels themselves: the off-circular residual must track the
+    deviation of mu from 1, which is O(1/u) for alpha=1 but O(1/u^2) for alpha=2. Fitting
+    the log-log slope therefore tests the code AND the kernel at once.
+      r =    1e+00 AU   u =  6.3372e+07   residual =  4.0669e-09
+      r =    1e+01 AU   u =  6.3372e+05   residual =  4.0669e-07
+      r =    1e+02 AU   u =  6.3377e+03   residual =  4.0685e-05
+      r =    1e+03 AU   u =  6.3870e+01   residual =  4.1644e-03
+      r =    1e+04 AU   u =  1.0175e+00   residual =  3.4110e-01
+      r =    1e+05 AU   u =  7.9858e-02   residual =  8.3167e-01
+      r =    1e+06 AU   u =  7.9609e-03   residual =  8.4350e-01
+      fitted log-log slope over the resolvable, large-u points = -1.002 (kernel predicts -1.0)
+  [OK  ] alpha=1: the off-circular residual scales as u^(-1.00), matching the kernel's own O(u^-1) approach to Newton. This validates the residual computation AND shows why the alpha=2 switch cures the solar system off circles too, not just on them
+
+------------------------------------------------------------------------------------------------------
+  KERNEL alpha = 2
+
+    galaxy   M=1e11 Msun, r~30 kpc  (DEEP regime)   [canonical cH_L/Z]   g_bar/a0 = 1.655e-01
+           e   r_peri/r_apo    max |EL|/|grad phi|  at r/r_apo
+        0.00         1.0000             1.2515e-15       1.000
+  [OK  ] alpha=2 galaxy [canonical cH_L/Z]: at e=0 the residual is 1.25e-15 ~ 0 -- the circular orbit solves the action exactly (independent numerical confirmation of the S2 symbolic result)
+        0.01         0.9802             3.2622e-02       0.990
+        0.05         0.9048             1.6398e-01       0.945
+        0.10         0.8182             3.3310e-01       0.882
+        0.20         0.6667             7.0059e-01       0.750
+        0.40         0.4286             1.5836e+00       0.529
+        0.60         0.2500             2.6839e+00       0.362
+  [OK  ] alpha=2 galaxy [canonical cH_L/Z]: the residual grows monotonically with eccentricity -- the disagreement is controlled by orbit shape, exactly as the S2/S3 structure predicts
+
+    galaxy   M=1e11 Msun, r~30 kpc  (DEEP regime)   [alternate rho_tot/cH0]   g_bar/a0 = 1.371e-01
+           e   r_peri/r_apo    max |EL|/|grad phi|  at r/r_apo
+        0.00         1.0000             1.3558e-15       1.000
+  [OK  ] alpha=2 galaxy [alternate rho_tot/cH0]: at e=0 the residual is 1.36e-15 ~ 0 -- the circular orbit solves the action exactly (independent numerical confirmation of the S2 symbolic result)
+        0.01         0.9802             3.3466e-02       0.990
+        0.05         0.9048             1.6829e-01       0.945
+        0.10         0.8182             3.4227e-01       0.882
+        0.20         0.6667             7.2317e-01       0.750
+        0.40         0.4286             1.6588e+00       0.514
+        0.60         0.2500             2.8308e+00       0.362
+  [OK  ] alpha=2 galaxy [alternate rho_tot/cH0]: the residual grows monotonically with eccentricity -- the disagreement is controlled by orbit shape, exactly as the S2/S3 structure predicts
+
+    Sun      M=1 Msun,   r~1 AU     (NEWTONIAN regime)   [canonical cH_L/Z]   g_bar/a0 = 6.337e+07
+           e   r_peri/r_apo    max |EL|/|grad phi|  at r/r_apo
+        0.00         1.0000             4.3191e-16       1.000
+  [OK  ] alpha=2 Sun [canonical cH_L/Z]: at e=0 the residual is 4.32e-16 ~ 0 -- the circular orbit solves the action exactly (independent numerical confirmation of the S2 symbolic result)
+        0.01         0.9802             3.2606e-15       0.992
+        0.05         0.9048             3.4652e-15       0.921
+        0.10         0.8182             3.1475e-15       0.909
+        0.20         0.6667             4.0317e-15       0.675
+        0.40         0.4286             9.9905e-15       0.814
+        0.60         0.2500             2.3193e-14       0.738
+      -> max residual 2.32e-14 is BELOW the 1e-12 double-precision floor: unresolved, so no shape claim is made here (see the scaling ladder)
+  [OK  ] alpha=2 Sun [canonical cH_L/Z]: off-circular residual is below double-precision resolution and is REPORTED as unresolved rather than claimed as zero or as growing
+
+    Sun      M=1 Msun,   r~1 AU     (NEWTONIAN regime)   [alternate rho_tot/cH0]   g_bar/a0 = 5.249e+07
+           e   r_peri/r_apo    max |EL|/|grad phi|  at r/r_apo
+        0.00         1.0000             2.9148e-16       1.000
+  [OK  ] alpha=2 Sun [alternate rho_tot/cH0]: at e=0 the residual is 2.91e-16 ~ 0 -- the circular orbit solves the action exactly (independent numerical confirmation of the S2 symbolic result)
+        0.01         0.9802             2.5260e-15       0.985
+        0.05         0.9048             3.4598e-15       0.912
+        0.10         0.8182             4.9443e-15       0.823
+        0.20         0.6667             7.0661e-15       0.708
+        0.40         0.4286             1.3054e-14       0.814
+        0.60         0.2500             4.1769e-14       0.381
+      -> max residual 4.18e-14 is BELOW the 1e-12 double-precision floor: unresolved, so no shape claim is made here (see the scaling ladder)
+  [OK  ] alpha=2 Sun [alternate rho_tot/cH0]: off-circular residual is below double-precision resolution and is REPORTED as unresolved rather than claimed as zero or as growing
+
+    SCALING LADDER (alpha=2), fixed e=0.20, sweeping u = a/a0 over decades.
+    PREDICTION from the kernels themselves: the off-circular residual must track the
+    deviation of mu from 1, which is O(1/u) for alpha=1 but O(1/u^2) for alpha=2. Fitting
+    the log-log slope therefore tests the code AND the kernel at once.
+      r =    1e+00 AU   u =  6.3372e+07   residual =  4.0317e-15
+      r =    1e+01 AU   u =  6.3372e+05   residual =  1.3736e-11
+      r =    1e+02 AU   u =  6.3372e+03   residual =  8.3214e-08
+      r =    1e+03 AU   u =  6.3380e+01   residual =  3.0127e-04
+      r =    1e+04 AU   u =  9.3036e-01   residual =  4.2443e-01
+      r =    1e+05 AU   u =  7.9733e-02   residual =  8.3759e-01
+      r =    1e+06 AU   u =  7.9608e-03   residual =  8.4356e-01
+      fitted log-log slope over the resolvable, large-u points = -1.835 (kernel predicts -2.0)
+  [OK  ] alpha=2: the off-circular residual scales as u^(-1.84), matching the kernel's own O(u^-2) approach to Newton. This validates the residual computation AND shows why the alpha=2 switch cures the solar system off circles too, not just on them
+
+  WHAT THIS MEANS, stated without spin. The framework's CLOSURE and the framework's
+  ACTION are the same theory on circular orbits and DIFFERENT theories off them. Every
+  observation the closure has ever been tested against -- SPARC rotation curves, the BTFR,
+  the RAR -- is a circular-orbit measurement, which is why the difference has never shown
+  up. It is not a small correction in the deep regime.
+
+======================================================================================================
+S5. Ostrogradsky: the local action is genuinely fourth-order, and where the extra modes sit
+======================================================================================================
+  The acceleration-Hessian of L = |xdot|^2 f(|xddot|/a0) is
+      d^2 L / d xddot_i d xddot_j = (|xdot|^2 / a0^2) [ f''(u) ahat_i ahat_j
+                                     + (f'(u)/u) (delta_ij - ahat_i ahat_j) ],
+  whose eigenvalues are (v^2/a0^2) f''(u) along ahat and (v^2/a0^2) f'(u)/u transverse.
+  Degeneracy -- the ONLY escape from Ostrogradsky's theorem -- needs f'' = 0 AND f' = 0,
+  i.e. f constant, i.e. exactly Newton. So for every nontrivial kernel the theory carries
+  two extra degrees of freedom per direction and an unbounded Hamiltonian.
+
+  alpha=1:  f''(u) = (-4*u**3 + 3*u**2*asinh(2*u) - u*sqrt(4*u**2 + 1)/2 - u + 3*asinh(2*u)/4)/(u**4*(4*u**2 + 1))
+    scanned u in [1e-6, 1e9] at 50-digit precision (601 points): sign changes in f'' = 0;  sign(f'') = - throughout,  f' > 0 everywhere = True
+    (a float64 scan of the same grid reports spurious flips from the O(u^3) cancellation -- checked and discarded, not used)
+  [OK  ] alpha=1: f'' never changes sign and f' > 0 over 15 decades, so BOTH eigenvalues of the acceleration-Hessian are nonzero everywhere -- the local action is irreducibly fourth-order and NO degenerate (Ostrogradsky-evading) branch exists
+  [OK  ] alpha=1: and the Hessian is INDEFINITE, not merely non-degenerate: f'' < 0 along ahat while f'/u > 0 transverse. The two directions carry opposite-sign kinetic terms, which is the ghost in explicit form
+
+    extra-mode SCALING ESTIMATE (a balance of the quartic term against the quadratic
+    one, NOT a linearised mode solve): omega_extra^2 ~ 2 f a0^2 / (v^2 f'').
+    Since f'' < 0 this is NEGATIVE => the extra modes are RUNAWAYS, and the number to
+    read is the e-folding time, quoted below against the orbital period.
+      system                           footing         u=a/a0   |w|/Om_orb    e-fold time
+      Earth   1 AU                     canonical    6.337e+07   7.9606e+03     6.31e+02 s
+      Earth   1 AU                     alternate    5.249e+07   7.2451e+03     6.93e+02 s
+      Mars    1.524 AU                 canonical    2.729e+07   5.2235e+03     1.81e+03 s
+      Mars    1.524 AU                 alternate    2.260e+07   4.7540e+03     1.99e+03 s
+      wide binary 10 kAU, 1 Msun       canonical    1.018e+00   1.8428e+00    6.81e+04 yr
+      wide binary 10 kAU, 1 Msun       alternate    8.947e-01   1.8572e+00    6.56e+04 yr
+      galaxy  1e11 Msun, 30 kpc        canonical    4.392e-01   2.3058e+00    6.52e+07 yr
+      galaxy  1e11 Msun, 30 kpc        alternate    3.948e-01   2.4450e+00    5.90e+07 yr
+  [OK  ] alpha=1: omega_extra^2 < 0 for every system and both footings, so the extra degrees of freedom are secular RUNAWAYS rather than fast oscillations -- and their e-folding times above are vastly shorter than the orbital periods they would destroy
+
+  alpha=2:  f''(u) = (-3*u**4*asinh(u) + 4*u**3*sqrt(u**2 + 1) - 6*u**2*asinh(u) + 3*u*sqrt(u**2 + 1) - 3*asinh(u))/(u**8 + 2*u**6 + u**4)
+    scanned u in [1e-6, 1e9] at 50-digit precision (601 points): sign changes in f'' = 0;  sign(f'') = - throughout,  f' > 0 everywhere = True
+    (a float64 scan of the same grid reports spurious flips from the O(u^3) cancellation -- checked and discarded, not used)
+  [OK  ] alpha=2: f'' never changes sign and f' > 0 over 15 decades, so BOTH eigenvalues of the acceleration-Hessian are nonzero everywhere -- the local action is irreducibly fourth-order and NO degenerate (Ostrogradsky-evading) branch exists
+  [OK  ] alpha=2: and the Hessian is INDEFINITE, not merely non-degenerate: f'' < 0 along ahat while f'/u > 0 transverse. The two directions carry opposite-sign kinetic terms, which is the ghost in explicit form
+
+    extra-mode SCALING ESTIMATE (a balance of the quartic term against the quadratic
+    one, NOT a linearised mode solve): omega_extra^2 ~ 2 f a0^2 / (v^2 f'').
+    Since f'' < 0 this is NEGATIVE => the extra modes are RUNAWAYS, and the number to
+    read is the e-folding time, quoted below against the orbital period.
+      system                           footing         u=a/a0   |w|/Om_orb    e-fold time
+      Earth   1 AU                     canonical    6.337e+07   8.7904e+06     5.71e-01 s
+      Earth   1 AU                     alternate    5.249e+07   7.3211e+06     6.86e-01 s
+      Mars    1.524 AU                 canonical    2.729e+07   3.8803e+06     2.43e+00 s
+      Mars    1.524 AU                 alternate    2.260e+07   3.2326e+06     2.92e+00 s
+      wide binary 10 kAU, 1 Msun       canonical    9.304e-01   1.8090e+00    7.26e+04 yr
+      wide binary 10 kAU, 1 Msun       alternate    8.249e-01   1.8851e+00    6.73e+04 yr
+      galaxy  1e11 Msun, 30 kpc        canonical    4.240e-01   2.8119e+00    5.44e+07 yr
+      galaxy  1e11 Msun, 30 kpc        alternate    3.832e-01   3.0465e+00    4.81e+07 yr
+  [OK  ] alpha=2: omega_extra^2 < 0 for every system and both footings, so the extra degrees of freedom are secular RUNAWAYS rather than fast oscillations -- and their e-folding times above are vastly shorter than the orbital periods they would destroy
+
+  CONSEQUENCE, and it is the honest one: the action of S2 cannot be FUNDAMENTAL. It is an
+  effective description whose validity is confined to the family on which the extra modes
+  are not excited -- and the exactly-circular family is precisely where they are not.
+  This is why the framework's covariant completion went NONLOCAL (K(Box_u), Herglotz-
+  Nevanlinna positive measure, DOIs 21263846 / 21264727 / 21284144) rather than staying
+  with a higher-derivative local Lagrangian.
+
+======================================================================================================
+S6. THE c/v BRIDGE -- what Theorem 8 found missing is a SPEED, and this framework has one
+======================================================================================================
+  Theorem 8 (redone on the alpha=2 kernel, mi_theorem8_redone_alpha2_2026.py) found a
+  kernel-INDEPENDENT obstruction: on a circular orbit the nonlocal operator action's
+  argument is w = c Omega / a0 while the closure's argument is x = a / a0, and
+      w / x = c / v      exactly.
+  No choice of kernel K repairs a mismatch in K's own ARGUMENT. That stands.
+  [OK  ] w/x = c/v = c/v identically in R, Omega and a0 (re-verified symbolically here, kernel-independent)
+
+  WHAT IS NEW HERE. The action of S2 has the argument RIGHT: u = |xddot|/a0 = x. And it
+  pays for that with a |xdot|^2 prefactor. Those two facts are the same fact:
+      u = x = w (v/c),
+  so the |xdot|^2 out front IS the missing c/v, supplied dimensionally rather than inside
+  the kernel's argument.
+  [OK  ] u = w (v/c) exactly (residual 0) -- the factor Theorem 8 identified as missing is a SPEED, and S2 exhibits an action that supplies it
+
+  THE DOOR. A speed is not an invariant of a worldline alone; it is defined only relative
+  to something. A generally-covariant functional of a single worldline therefore CANNOT
+  produce it -- which is exactly why the operator route failed. But this framework is not
+  generally covariant in that sense: it is built on a PASSIVE PREFERRED FRAME u (the
+  de Sitter-Unruh frame; frame passivity with zero propagating modes is what closed the
+  Einstein-aether strong-coupling objection in v3). A preferred frame supplies precisely
+  the missing object: a velocity of the particle RELATIVE TO THE FRAME.
+  So the target is now specific rather than vague: a nonlocal worldline action whose kernel
+  argument is the frame-relative frequency rescaled by the frame-relative SPEED.
+
+  AND THE DOOR'S OWN LIABILITY, computed here rather than deferred. If that speed were the
+  particle's motion relative to the COSMIC (CMB) frame, then a0_eff would inherit the
+  galaxy's peculiar velocity, and the RAR would not be universal. Quantify with the
+  framework's OWN numbers: deep-regime g_obs = sqrt(g_bar a0), so
+      d log10 g_obs = 0.5 d log10 a0_eff.
+  The framework's measured RAR scatter is 0.108 dex (its own fit, beating
+  reg-MOND's 0.122), so the TOTAL budget for a0_eff variation across SPARC is
+      0.216 dex = a factor 1.64, and that is the whole scatter, with
+  nothing left for distance, inclination or mass-to-light.
+  Peculiar velocities across a SPARC-like sample span ~100-1000 km/s = 1.00 dex.
+  [OK  ] a CMB-frame reading of the speed is EXCLUDED by the framework's own RAR: it would inject 1.00 dex of a0 variation against a total budget of 0.216 dex (4.6x over). The door therefore requires the LOCAL matter frame, not the cosmic frame -- a real constraint on the construction, not a free choice
+
+  So the door is open and it is NARROW: the frame must be dragged locally enough that a
+  star's frame-relative speed is its orbital speed and not the galaxy's bulk motion.
+  Whether the framework's passive u does that is NOT settled here and is not claimed.
+
+======================================================================================================
+VERDICT
+======================================================================================================
+  THE ACTION IS WRITTEN DOWN, and it is more than the corpus had:
+      S[x] = Integral dt  m ( |xdot|^2 f(|xddot|/a0) - phi(x) ),
+      f(u) = u^-2 Integral_0^u v mu(v) dv,
+      f_1(u) = [2u sqrt(4u^2+1) - 4u + asinh 2u] / (8 u^2)        (alpha=1, retired)
+      f_2(u) = [u sqrt(1+u^2) - asinh u] / (2 u^2)                (alpha=2, IN FORCE, NEW)
+
+  WHAT IT DELIVERS
+   * A circular orbit solves its REAL fourth-order EL equation exactly, and the equation
+     it satisfies is the framework's closure g_bar = A mu(A/a0) -- for GENERIC f, so the
+     result is kernel-independent. This promotes the corpus's restricted-family variation
+     to the actual equation of motion, which is a strictly stronger statement.
+   * The exact Newtonian limit, with no residual correction, because f(oo) = 1/2.
+   * f_2 in closed form: new, and the corpus needs it now that alpha=2 is the kernel.
+
+  WHAT IT COSTS -- and these are not footnotes
+   * It is FOURTH-ORDER with a non-degenerate acceleration-Hessian, so Ostrogradsky
+     applies: extra degrees of freedom, unbounded Hamiltonian. Not a fundamental action.
+   * OFF circles it does NOT reproduce the closure. S3 shows a second exactly-solvable
+     family with a DIFFERENT interpolating function (u^3 instead of u^1 in the deep
+     regime), and S4 measures the residual growing with eccentricity from exact zero.
+
+  SO THE PINCER IS SHARP, NOT MERELY TRUE. Theorem 3 (corrected) excludes every local
+  L(x, xdot, xddot) from reproducing the closure; Theorem 8 (redone, kernel-independent
+  via w/x = c/v) excludes the nonlocal operator action. This file supplies the explicit
+  witness that saturates the first horn: circles are EXACTLY the maximal family on which
+  a local action reproduces the law, and here is the action that attains it.
+
+  AND IT NAMES ONE DOOR, WITH ITS LOCK. u = w (v/c) exactly: the missing ingredient is a
+  SPEED, unavailable to a covariant worldline functional but available to a preferred-frame
+  theory, which this is. The lock: a cosmic-frame speed is excluded by the framework's own
+  0.108 dex RAR at ~4x, so the frame must be locally dragged. That is a construction
+  requirement, and it is NOT met by anything written down yet.
+
+  NOT CLAIMED: that a0 is derived (it is not -- kappa=1/2 is fitted); that the off-circular
+  law is settled; that the theory is closed. Milgrom 1994 / 2022 hold priority for the
+  class of actions and for the frequency-vs-acceleration obstruction.
+======================================================================================================
