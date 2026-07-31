@@ -21,12 +21,15 @@ Short Regular Article, ~3 pages.
 
 ## 2. Compile
 
+**Already compiled for you** -- `a0_half_dark_energy_rate.pdf` is in this folder (89 KB, REVTeX
+two-column APS style). Built with `tectonic`, which is installed on this machine:
+
 ```bash
-pdflatex a0_half_dark_energy_rate.tex && pdflatex a0_half_dark_energy_rate.tex
+tectonic -X compile a0_half_dark_energy_rate.tex
 ```
 
-REVTeX 4.2 ships with TeX Live and MacTeX. If `revtex4-2` is missing, install it or get it from
-`https://journals.aps.org/revtex`.
+That is the PDF to upload. If you edit the `.tex`, rerun that one command to rebuild.
+(No MacTeX/pdflatex on this machine; tectonic fetches what it needs on demand.)
 
 ---
 
@@ -35,7 +38,9 @@ REVTeX 4.2 ships with TeX Live and MacTeX. If `revtex4-2` is missing, install it
 **Portal:** `https://authors.aps.org/Submissions/`
 Create an account, choose **Physical Review D**, then **New Submission**.
 
-Upload the `.tex` source **and** the compiled PDF. APS wants source, not PDF only.
+**Upload the PDF ONLY.** The live portal states: *"Please refrain from uploading source files unless
+requested. Staff will request them when needed."* An earlier version of this README said to upload the
+`.tex` as well -- that was wrong and is corrected here. Keep the `.tex` ready for when staff ask.
 
 ---
 
