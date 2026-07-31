@@ -1,0 +1,481 @@
+========================================================================================================
+ROUTE C -- THE HIERARCHY FALSIFIER for the locally-dragged passive frame
+de Sitter-Unruh MODIFIED INERTIA, a0 = c H_Lambda / Z, kappa = 1/2 (FITTED, not derived)
+kernel IN FORCE alpha=2 mu = x/sqrt(1+x^2); alpha=1 carried alongside; BOTH a0 footings
+========================================================================================================
+
+========================================================================================================
+S0. THE LADDER -- accelerations, speeds and frequencies at the wide binary (ROUTE C setup)
+========================================================================================================
+  Galactic (solar neighbourhood, v_c = 220 km/s, R = 8.2 kpc):
+      a_gal   = 1.9129e-10 m/s^2   = 2.0436 a0_can = 1.6928 a0_alt
+      Omega_gal = 8.6948e-16 rad/s   (galactic year P = 2.290e+08 yr)
+      v_gal   = 220.000 km/s
+
+  Binary internal (relative coordinate: v = sqrt(GM/s), Omega = sqrt(GM/s^3), a = GM/s^2):
+    M_tot  s [kAU]   a_int [m/s2]   a/a0can   a/a0alt  Om_int [1/s]     P [yr] v_int [m/s]
+     1.00     10.0     5.9316e-11    0.6337    0.5249    1.9912e-13  9.999e+05      297.89
+     1.50     10.0     8.8974e-11    0.9506    0.7874    2.4388e-13  8.164e+05      364.83
+
+  ROUTE C's stated values: a_gal ~ 1.9e-10 ~ 2 a0, a_int ~ 5.9e-11 ~ 0.63 a0, Omega_gal ~ 8.7e-16 -- REPRODUCED.
+  [OK  ] a_gal = 1.9129e-10 reproduces ROUTE C's 1.9e-10 (2.044 a0_can)
+  [OK  ] a_int(1 Msun, 10 kAU) = 5.9316e-11 reproduces ROUTE C's 5.9e-11 (0.6337 a0_can)
+  [OK  ] Omega_gal = 8.6948e-16 reproduces 8.7e-16 rad/s
+  [OK  ] Omega_int(1.5 Msun, 10 kAU) = 2.4388e-13 MATCHES the frozen Amendment 1 value 2.44e-13 rad/s -- my ladder is the same ladder the pre-registration froze
+
+  THE TWO COMPARABILITIES that make this decisive:
+      a_gal / a_int(1 Msun, 10 kAU) = 3.2248   -> the GALAXY dominates the field
+      Omega_int / Omega_gal         = 229.02 (1 Msun), 280.49 (1.5 Msun)
+      v_gal / v_int                 = 738.54 (1 Msun), 603.02 (1.5 Msun)
+  [OK  ] a_gal and a_int are COMPARABLE (ratio 3.225), which is exactly why 'which mass drags the frame' is a real fork at 10 kAU rather than an academic one
+      field-crossover radius r_eq(1.0 Msun) = sqrt(GM/a_gal) = 5.569 kAU  (inside: binary dominates; outside: Galaxy dominates)
+      field-crossover radius r_eq(1.5 Msun) = sqrt(GM/a_gal) = 6.820 kAU  (inside: binary dominates; outside: Galaxy dominates)
+      over the FROZEN mass cut (0.464, 4.31) Msun: r_eq = 3.79-11.56 kAU,
+      i.e. the crossover sits INSIDE the frozen 2-30 kAU separation window.
+  [OK  ] the field crossover r_eq = 3.79-11.56 kAU lies strictly inside the frozen 2-30 kAU cut -- a dominant-mass drag rule CHANGES FRAME inside the frozen window
+
+========================================================================================================
+S1. THE PREMISE, SYMBOLICALLY: u = w*(v/c) exactly, and the INFLATION LAW
+========================================================================================================
+  circular orbit: v = Omega R, |a| = Omega^2 R
+  operator argument w = c*Omega/a0 ; law argument x = |a|/a0 ; w/x = c/(Omega*R)
+  [OK  ] w/x = c/v EXACTLY, identically in R, Omega and a0 (sympy residual 0) -- so what Theorem 8 found missing is a SPEED. This is the premise of ROUTE C, re-derived not assumed
+  [OK  ] the frame/mode argument u = Omega*v_F/a0 REDUCES to |a|/a0 when v_F = v_orb (residual 0) -- the construction is correct exactly when the frame co-moves with the orbit's centre
+  [OK  ] INFLATION LAW: u_eff/u_true = v_F/v_mode exactly (residual 0). Purely kinematic: no a0, no kernel, no footing. Every number below follows from this one identity
+
+  system                      footing                   w = cOm/a0   x = a/a0        w/x        c/v
+  wide binary 10 kAU          canonical rho_DE          6.3778e+05     0.6337 1006402.92 1006402.92
+  wide binary 10 kAU          alternate rho_total       5.2828e+05     0.5249 1006402.92 1006402.92
+  wide binary 30 kAU          canonical rho_DE          1.2274e+05     0.0704 1743141.00 1743141.00
+  wide binary 30 kAU          alternate rho_total       1.0167e+05     0.0583 1743141.00 1743141.00
+
+========================================================================================================
+S2. THE FOUR CANDIDATE FRAMES -- and three of them die with a number
+========================================================================================================
+  FRAME C -- FULLY DRAGGED / CO-ROTATING (v_F = 0 on a circular orbit).
+      Then u = Omega*v_F/a0 -> 0 and every bound circular orbit is in the DEEP-MOND limit.
+      canonical rho_DE       |a|/g_bar at Earth = sqrt(a0/g) = 1.2562e-04  i.e. solar gravity WEAKER by 7961x
+      alternate rho_total    |a|/g_bar at Earth = sqrt(a0/g) = 1.3802e-04  i.e. solar gravity WEAKER by 7245x
+  [OK  ] FRAME C IS DEAD: a co-rotating frame makes solar gravity at Earth weaker by 7961x (canonical) / 7245x (alt)
+
+  FRAME A -- COSMIC / CMB (v_F = speed relative to the CMB rest frame).
+      Then a0_eff/a0 = v_orb/v_F, so each galaxy inherits its own peculiar velocity.
+      Deep regime g_obs = sqrt(g_bar a0) => d log g_obs = 0.5 d log a0, so the a0 budget is
+      2 * sigma_RAR. SPARC v_flat span and a field peculiar-velocity span:
+      lambda = max(1, v_pec/v_orb) spans 1.00-30.00  => log10 spread = 1.477 dex in a0_eff
+      alpha=1: budget = 2 x 0.1083 = 0.2166 dex ; over-budget factor = 6.82x
+      alpha=2: budget = 2 x 0.1116 = 0.2232 dex ; over-budget factor = 6.62x
+  [OK  ] FRAME A IS DEAD (banked result reproduced INDEPENDENTLY here): a cosmic-frame speed spreads a0_eff by 1.48 dex against a 0.223 dex budget = 6.6x over. The corpus's banked figure was 4.6x; mine is 6.6x, i.e. the banked one is the conservative end
+
+  FRAME B -- BARYCENTRE-DRAGGED (u^mu co-moves with the BINARY barycentre, non-rotating).
+      Gets the INTERNAL mode exactly right (v_F = v_int) but the barycentre's own galactic
+      orbital mode is then referred to v_F = v_int, deflating its argument:
+      canonical rho_DE       alpha=2: u_gal true 2.0436 -> eff 2.767e-03 (deflated 738.5x); galactic force boost 1.0953 -> 361.4; v_c would be 18.165x too high
+      canonical rho_DE       alpha=1: u_gal true 2.0436 -> eff 2.767e-03 (deflated 738.5x); galactic force boost 1.2204 -> 361.4; v_c would be 17.208x too high
+      alternate rho_total    alpha=2: u_gal true 1.6928 -> eff 2.292e-03 (deflated 738.5x); galactic force boost 1.1287 -> 436.3; v_c would be 19.661x too high
+      alternate rho_total    alpha=1: u_gal true 1.6928 -> eff 2.292e-03 (deflated 738.5x); galactic force boost 1.2612 -> 436.3; v_c would be 18.599x too high
+  [OK  ] FRAME B IS DEAD: a binary-barycentre-dragged frame deflates the GALACTIC mode's argument by 739x, boosting the barycentre's galactic acceleration so its circular speed is 18.16x that of a single star in the same potential (3996 vs 220 km/s). And in the exact DC limit (Omega->0) the argument -> 0 and the boost DIVERGES -- the prescription is not merely wrong but ill-defined
+      (Reported both ways: FRAME B's INTERNAL prediction is nonetheless well defined and is
+       exactly the ISOLATED two-body closure -- checked in S3 -- because a per-mode kernel
+       has no cross term and therefore NO external-field effect at all.)
+
+  FRAME G -- DOMINANT-MASS DRAGGED (u^mu co-moves with whichever mass dominates the local
+      field). At a star in an isolated galaxy that is the galaxy, so v_F = v_orb and the RAR
+      is reproduced BY CONSTRUCTION. At a wide binary the Galaxy dominates by 3.22x, so
+      the frame is GALACTIC and the binary's internal mode is INFLATED. This is the only
+      single-frame reading left standing, and the rest of this script is about its cost.
+  [OK  ] at 10 kAU / 1 Msun the dominant-field rule selects the GALACTIC frame (a_gal/a_int = 3.225 > 1), i.e. FRAME G and not FRAME B -- the fork is decided by the ladder, not by choice
+
+========================================================================================================
+S3. Q1/Q2 -- WHICH v_rel, THE EXACT FACTOR, AND gamma_v UNDER EACH READING
+========================================================================================================
+  First: VALIDATE my machinery against the FROZEN pre-registration numbers. If it cannot
+  reproduce Amendment 2 (alpha=1) and Amendment 3 (alpha=2), nothing below is worth reading.
+  kernel   g_ext     a0            gam_par  gam_perp    <gam>      rms  quartic   as-MG
+  alpha=1  primary   canonical      1.0112    1.1115  1.07870  1.07911  1.07994  1.1390
+  alpha=1  primary   alt            1.0151    1.1309  1.09311  1.09364  1.09473  1.1692
+  alpha=1  alt       canonical      1.0086    1.0974  1.06832  1.06865  1.06930  1.1182
+  alpha=1  alt       alt            1.0118    1.1147  1.08103  1.08146  1.08233  1.1438
+  alpha=2  primary   canonical      0.9669    1.0523  1.02429  1.02460  1.02523  1.0631
+  alpha=2  primary   alt            0.9621    1.0696  1.03450  1.03498  1.03597  1.0885
+  alpha=2  alt       canonical      0.9715    1.0407  1.01795  1.01816  1.01857  1.0473
+  alpha=2  alt       alt            0.9660    1.0550  1.02584  1.02617  1.02686  1.0669
+  [OK  ] reproduces FROZEN Amendment 3 eigenvalues EXACTLY: par 0.9669 vs 0.9669, perp 1.0523 vs 1.0523
+  [OK  ] reproduces FROZEN Amendment 2 eigenvalues EXACTLY: par 1.0112 vs 1.0112, perp 1.1115 vs 1.1115
+  [OK  ] FROZEN Amendment 3's 1.0246 is the RMS convention: mine 1.02460 vs 1.0246 (agreement 1e-5)
+  [OK  ] FROZEN Amendment 2's 1.0799 is the QUARTIC convention: mine 1.07994 vs 1.0799 (agreement 1e-5)
+  [OK  ] and the FROZEN Amendment 3 MI RANGE is reproduced exactly under the RMS convention: [1.01816, 1.03498] vs frozen (1.0182, 1.035)
+
+  *** A CONVENTION INCONSISTENCY INSIDE THE FROZEN DOCUMENT, found here and flagged, not
+  edited.*** Amendment 2's orientation average (alpha=1) is the QUARTIC law; Amendment 3's
+  (alpha=2) is the RMS. They are different angular averages of the same tensor. The
+  physically-correct per-pair boost is gamma_v(theta) = [gam^2_par cos^2 + gam^2_perp
+  sin^2]^(1/2) (the radial component of M.g), so the PHYSICAL average is <gamma_v>:
+      alpha=2 primary/canonical: physical 1.02429 | frozen-Am.3 (rms) 1.02460 | Am.2-style (quartic) 1.02523
+      convention spread = 0.00094 in gamma_v = 0.034 sigma_tot
+  [OK  ] the convention spread is 0.00094 = 0.034 sigma_tot -- REAL but NON-DECISIVE, so it moves no verdict; recorded because it is a frozen number and the discrepancy belongs on the record before data, not after
+  [OK  ] reproduces the FROZEN Amendment 3 as-MG range [1.0473, 1.0885] vs (1.0473, 1.0885)
+
+  Q1: THE EXACT FACTOR between the two readings of v_rel, over the FROZEN cut window
+      lambda = v_gal / v_int(s, M) = v_c * sqrt(s / (G M_tot))   [exact, kinematic]
+      symbolic: lambda = sqrt(s)*v_c/(sqrt(G)*sqrt(M))
+    s [kAU]   M_tot v_int [m/s]    lambda u_true(can)  u_eff(can)  u_eff(alt)
+        2.0   0.464      453.73     484.9      7.3511      3564.4      2952.5
+        2.0   1.500      815.79     269.7     23.7644      6408.8      5308.5
+        2.0   4.310     1382.84     159.1     68.2832     10863.6      8998.5
+       10.0   0.464      202.91    1084.2      0.2940       318.8       264.1
+       10.0   1.500      364.83     603.0      0.9506       573.2       474.8
+       10.0   4.310      618.43     355.7      2.7313       971.7       804.8
+       30.0   0.464      117.15    1877.9      0.0327        61.4        50.8
+       30.0   1.500      210.64    1044.5      0.1056       110.3        91.4
+       30.0   4.310      357.05     616.2      0.3035       187.0       154.9
+      lambda over the whole frozen window = 159 - 1878
+  [OK  ] the two readings of v_rel differ by lambda = 159-1878 across the frozen cut window -- ROUTE C's stated 'order 200-2000' is exact
+  [OK  ] under FRAME G the internal-mode argument is u_eff = 61-10864 (canonical) over the ENTIRE frozen window: DEEP NEWTONIAN everywhere, no pair in the sample escapes
+
+  Q1: gamma_v UNDER EACH READING (gamma_v = sqrt(force boost)), self-consistent in Omega
+      FRAME G: boost = 1/mu(Omega*v_F/a0), Omega solved self-consistently (Omega^2 = |a|/s)
+      FRAME B: boost = 1/mu(|a|/a0) = x/y, i.e. the ISOLATED closure, no EFE
+      THEOREM B: the frozen Amendment-3 quadrature EFE, orientation-averaged
+  kernel   footing         FRAME G   FRAME B  Thm B (frozen)  gate (Am.1 form)
+  alpha=2  canonical     1.0000011    1.2117          1.0246   1.00012-1.00020
+  alpha=2  alt           1.0000017    1.2536          1.0350   1.00018-1.00028
+  alpha=1  canonical     1.0005340    1.2671          1.0791   1.00041-1.00066
+  alpha=1  alt           1.0006447    1.3055          1.0936   1.00049-1.00078
+  [OK  ] FRAME B's internal prediction is EXACTLY the isolated closure to machine precision (1.2116504503) -- verified, not asserted: a per-mode kernel has no cross term, so the frame construction and the Theorem-B quadrature EFE are MUTUALLY EXCLUSIVE
+  [OK  ] FRAME G predicts gamma_v = 1.0000011 (alpha=2) / 1.00053 (alpha=1): Newtonian to 1e-6/1e-3
+  [OK  ] FRAME B predicts gamma_v = 1.2117 (alpha=2) / 1.2671 (alpha=1) -- it loses the EFE entirely and lands ABOVE the frozen contamination-guard threshold 1.2
+
+  PROVE-BY-MOVING-THE-NUMBER: sweep the frame's drag speed v_drag continuously from 0
+  (frame co-moves with the binary = FRAME B) to v_gal (= FRAME G), and check the
+  self-consistent solver interpolates MONOTONICALLY between the two published endpoints.
+   v_drag/v_gal  v_drag [m/s]      u_eff     gamma_v
+        0.00000          0.00     0.9304   1.2116505
+        0.00010         22.00     0.9315   1.2112584
+        0.00100        220.00     1.0384   1.1782775
+        0.01000       2200.00     4.7749   1.0107894
+        0.10000      22000.00    46.8123   1.0001141
+        1.00000     220000.00   468.0272   1.0000011
+  [OK  ] gamma_v falls MONOTONICALLY from 1.2117 at v_drag = 0 (= FRAME B / the isolated closure, agreement 1e-9) to 1.0000011 at v_drag = v_gal (= FRAME G): the two readings are the endpoints of ONE continuous family, so neither number is a solver artefact
+
+========================================================================================================
+S4. Q2 -- COMPARISON TO THE FROZEN TARGETS, AND WHAT AMENDMENT 4 WOULD HAVE TO SAY
+========================================================================================================
+  FROZEN (Amendment 3) MI range, alpha=2, both footings x both g_ext: [1.0182, 1.035]
+  FROZEN sigma_fit(N=30k) = 0.0191, sigma_sys = 0.02 (FROZEN allowance), sigma_tot = 0.028
+  FROZEN decision bands: <=1.007 supports Newton; 1.007-1.083 undecided; >1.2 = NO verdict permitted
+
+  reading                            gamma_v (a=2)  vs band edge  |z| at sig_tot  |z| at N=inf
+  FRAME G (galaxy-dragged)               1.0000011       -0.0182            0.65          0.91
+  FRAME B (binary-dragged)               1.2116505       +0.1767            6.31          8.83
+  THEOREM B (frozen Am.3)                1.0246033        inside            0.00          0.00
+  [OK  ] BOTH frame readings fall OUTSIDE the frozen Amendment-3 MI range: FRAME G by 0.0182 below 1.0182, FRAME B by 0.1767 above 1.035. Neither reading reproduces the frozen target, because the frozen target is the Theorem-B QUADRATURE value and the frame construction has no quadrature
+  [OK  ] BUT FRAME G IS NOT A LIVE 3-SIGMA FALSIFIER: its offset 0.0182 is 0.65 sigma_tot at N=30k and only 0.91 sigma even as N->infinity, because sigma_sys = 0.02 is FROZEN and floors sigma_tot. No sample size can decide it under the frozen error model
+  [OK  ] AND FRAME B IS UNSCOREABLE: gamma_v = 1.2117 exceeds the frozen guard threshold 1.2, where sec 1.5 pre-declares 'NO hypothesis verdict permitted'. It is 6.3 sigma_tot from the band yet the frozen rules forbid reading it. (The DR3 dry run landed at 1.205, in the same zone.) Reported as a scoring trap, not repaired
+
+  THE DEGENERACY THAT MATTERS: FRAME G vs the already-frozen GATED branch (Amendment 1).
+      alpha=2: FRAME G = 1.0000011 ; gated Theorem-B = 1.0001245-1.0001992 ; separation = 1.98e-04 = 0.0071 sigma_tot
+      alpha=1: FRAME G = 1.0005340 ; gated Theorem-B = 1.0004111-1.0006577 ; separation = 1.24e-04 = 0.0044 sigma_tot
+  [OK  ] FRAME G and the frozen GATED branch are separated by 0.0071 sigma_tot -- OBSERVATIONALLY DEGENERATE in the 2-30 kAU window. A Newtonian DR4 result confirms BOTH mechanisms and distinguishes NEITHER
+
+  A GAP IN THE FROZEN DOCUMENT, flagged (not edited): Amendment 1 froze the gated target at
+      1.0004-1.0006, computed from the alpha=1 ungated boost. Amendment 3 moved the ungated
+      value to 1.0246 but did NOT restate the gated row. Applying Amendment 1's
+      own Re G = (0.005, 0.008) to the alpha=2 boost gives 1.00012-1.00020, i.e. the frozen
+      gated number is stale by 0.00034. Small, but it is a frozen number and
+      the discrepancy should be recorded before data, not after.
+  [OK  ] the alpha=2-implied gated value 1.00012-1.00020 is BELOW the frozen 1.0004-1.0006, so Amendment 3 silently moved a second frozen number
+
+  WHAT AMENDMENT 4 WOULD HAVE TO SAY (it is NOT filed here; the framework has NOT adopted
+  the frame construction -- ROUTE C is an exploration of an unwritten door):
+    (1) MOVE the MI target from [1.0182, 1.035] to 1.00000-1.00053
+        (alpha=2 to alpha=1 span) if FRAME G is adopted, or to 1.2117-1.2671 if FRAME B is.
+    (2) RETRACT Amendment 2's derived quadrature EFE and its pre-declared anisotropy SIGN,
+        because a per-mode kernel has no vector cross term (verified in S3) and therefore
+        predicts ZERO orientation anisotropy. Amendment 2 (f) is a pre-declared sign; it
+        cannot be silently dropped.
+    (3) DECLARE WHICH BRANCH OWNS THE >50 kAU SHAPE. Amendment 1's falsifier (i) is 'no
+        excess beyond ~50 kAU kills the gated branch'. Under FRAME G a null there is the
+        PREDICTION. Between them the two branches cover BOTH outcomes, so unless one is
+        committed to before data the shape test becomes unfalsifiable by construction.
+        This is the single most important discipline point in ROUTE C.
+    (4) Restate the stale gated row above.
+    Standing rule honoured: a frozen target may only move by an amendment filed IN THE OPEN
+    before DR4, and a confirmation pre-declared as a kill stays scored as a kill.
+
+========================================================================================================
+S5. THE ANISOTROPY STATISTIC -- the one place the two readings DO separate in DR4
+========================================================================================================
+  THEOREM B (frozen Am.3): gamma_par = 0.9669, gamma_perp = 1.0523, spread = 0.0854
+  FRAME G / FRAME B: a per-mode kernel has NO vector cross term -> spread = 0 EXACTLY.
+  So the pre-declared SIGN (perpendicular larger) is a direct discriminator. Amendment 3 (h)
+  flagged the projection dilution as UNCOMPUTED; compute it (this is the honest limit):
+      MC: N = 2,000,000 pairs, |b| > 15 deg line-of-sight distribution, seed 20261216
+  [OK  ] MC arrays are finite (no NaN/inf from the sampling): True
+      3D angle (no projection)     two-bin contrast <perp> - <par> = +0.04835   (fraction of the 0.0854 eigenvalue spread: 0.566)
+      PROJECTED sky angle          two-bin contrast <perp> - <par> = +0.02596   (fraction of the 0.0854 eigenvalue spread: 0.304)
+  [OK  ] projection DILUTES the anisotropy: observable two-bin contrast 0.02596 vs 3D-binned 0.04835 vs eigenvalue spread 0.08536. Dilution factor 0.304 of the eigenvalue spread -- Amendment 3 (h)'s uncomputed flag, computed (the estimator's velocity projection is a FURTHER dilution not modelled here)
+
+  Required N for a 3-sigma detection of the Theorem-B anisotropy (which FRAME G predicts to
+  be exactly zero). Two orientation bins of N/2, frozen sigma_fit scaling, sigma_sys assumed
+  to cancel in the DIFFERENCE (an ASSUMPTION, flagged, not a computed fact):
+      eigenvalue spread (upper bound)    contrast 0.08536 -> N(3 sigma) = 54,069
+      3D-binned                          contrast 0.04835 -> N(3 sigma) = 168,533
+      PROJECTED (realistic)              contrast 0.02596 -> N(3 sigma) = 584,440
+  [OK  ] even on the anisotropy axis DR4 is marginal: N(3 sigma) = 584,440 against the pre-registration's assumed N = 30,000 -- a factor 19.5 short. Stated as a deficit, not hidden
+
+========================================================================================================
+S6. Q3 -- THE DEAD ZONE: does the dragged frame move, widen or close it? NUMBERS
+========================================================================================================
+  FROZEN dead zone (Amendment 1 / mi_wb_gate_fork_2026.py): between
+      r_M    = sqrt(GM/a0)            (internal field drops below a0)
+      r_gate = (GM/omega_c^2)^(1/3)   (Omega drops below omega_c: gate OPENS)
+  FRAME G replaces the FIRST radius: the MOND regime now begins where the INFLATED argument
+  reaches 1, i.e. Omega*v_gal = a0, giving  r_M,eff = (G M v_gal^2 / a0^2)^(1/3).
+       Mfooting       r_M [kAU]   r_gate lo-hi [kAU]  r_gate/r_M r_M,eff [kAU]  r_Meff/r_M
+     0.5canonical          5.63            34.4-39.7   6.10-7.05           478        85.0
+     0.5alt                5.12            34.4-39.7   6.71-7.74           422        82.4
+     1.0canonical          7.96            43.3-50.0   5.44-6.28           603        75.7
+     1.0alt                7.25            43.3-50.0   5.97-6.90           532        73.4
+     1.5canonical          9.75            49.6-57.2   5.08-5.87           690        70.8
+     1.5alt                8.87            49.6-57.2   5.58-6.45           609        68.6
+     3.0canonical         13.79            62.4-72.1   4.53-5.23           869        63.1
+     3.0alt               12.55            62.4-72.1   4.97-5.74           767        61.1
+  [OK  ] reproduces the corpus's frozen dead-zone ratio r_gate/r_M = 4.53-7.74 (banked 4.54-7.76)
+
+  EXACT SCALINGS (fitted, not asserted): r_M,eff/r_M ~ M^-0.1667 and r_gate/r_M ~ M^-0.1667  (both -1/6 = -0.1667)
+  [OK  ] both dead-zone ratios scale as M^(-1/6) to 1e-9 -- so their QUOTIENT, the widening factor, is EXACTLY mass-independent
+  Hence the widening factor has a closed form with no mass in it:
+      r_M,eff / r_gate = (v_gal * omega_c / a0)^(2/3)
+      canonical    omega_c lo: closed form 12.0606x   numeric 12.0606x   rel diff 0.00e+00
+      canonical    omega_c hi: closed form 13.9259x   numeric 13.9259x   rel diff 1.28e-16
+      alt          omega_c lo: closed form 10.6374x   numeric 10.6374x   rel diff 1.67e-16
+      alt          omega_c hi: closed form 12.2826x   numeric 12.2826x   rel diff 1.45e-16
+  [OK  ] closed form (v_gal omega_c/a0)^(2/3) = 10.64-13.93x matches the numeric widening to 1e-12 across both footings and both omega_c edges -- THE NUMBER Q3 ASKS FOR
+  [OK  ] FRAME-G dead-zone ratio r_M,eff/r_M = 61.1-85.0 across a 6x mass range and both footings (weak M^(-1/6) dependence, fitted above)
+
+  VERDICT ON THE DEAD ZONE (1 Msun, canonical):
+      frozen zone   [8.0, 50.0] kAU   ratio 6.28
+      FRAME G zone  [8.0, 603] kAU   ratio 75.7
+      => the zone WIDENS: outer edge moves out by 12.1x, ratio grows by 12.1x
+  [OK  ] FRAME G WIDENS the dead zone by 12.1x in its outer edge (50 -> 603 kAU) and makes omega_c REDUNDANT there -- the argument inflation alone Newtonises the window, so the gate is no longer doing the work
+
+  AND THAT IS WHERE IT BITES. Wide pairs do not survive past ~1 pc = 206 kAU
+  (El-Badry, Rix & Heintz 2021 sample extent; Galactic tide).
+      FRAME G's knee r_M,eff = 603 kAU = 2.92 pc -> 2.92x beyond the bound-pair limit
+      equivalently: the knee frequency is a0/v_gal = 4.255e-16 rad/s, i.e. a period
+      P_knee = 4.680e+08 yr = 2.04 GALACTIC YEARS, while the widest bound
+      pair has P = 9.367e+07 yr = 0.41 galactic years.
+  [OK  ] FRAME G CLOSES THE WIDE-BINARY FRONT ENTIRELY: its MOND knee sits at 2.92 pc, 2.92x beyond the ~1 pc bound-pair limit, so NO bound pair is ever in the MOND regime. Structural restatement: under a galaxy-dragged frame a subsystem boosts only if its orbital period exceeds 2.04 galactic years, and the widest bound pair reaches only 0.41
+      P_knee/P_gal = 2.0436 = a_gal/a0 = 2.0436  (identity: a0/v_gal vs Omega_gal = a_gal/v_gal)
+  [OK  ] identity verified: the knee period in galactic years equals a_gal/a0 exactly (2.043643 vs 2.043643)
+
+========================================================================================================
+S7. Q4 -- ONE LEVEL UP: star in galaxy in cluster. Is the prescription self-consistent?
+========================================================================================================
+  Build the field/speed ladder for a star at 10 kpc in a spiral 1 Mpc from a Virgo-class
+  cluster, itself hosting a 10 kAU wide binary. Levels (a_k, v_k):
+  level                          a_k [m/s2]  a_k/a0can  a_k/a0alt  v_k [km/s]
+  binary internal (10 kAU)       5.9316e-11     0.6337     0.5249        0.30
+  galaxy rotation (10 kpc)       7.2918e-11     0.7790     0.6453      150.00
+  cluster orbit (1 Mpc)          1.6730e-10     1.7874     1.4806      700.00
+
+  (a) IS THE DOMINANT-FIELD SELECTION ORDER-DEPENDENT? Test all 6 orderings of the ladder:
+      selected level index across all orderings: [2] -> 'cluster orbit (1 Mpc)'
+  [OK  ] the dominant-field SELECTION is order-INDEPENDENT across all 6 orderings (it is a max) -- so the prescription is not order-inconsistent, and I am not manufacturing an inconsistency
+      Likewise the Theorem-B argument |sum a_k|^2 is manifestly order-invariant; checked:
+  [OK  ] |sum a_k|^2 is identical under all 6 orderings (spread 0.00e+00) -- Theorem B's argument is nesting-consistent
+
+  (b) THE REAL OBSTRUCTION IS NOT ORDER BUT MODE COUNT. One frame supplies ONE v_F; the
+      construction needs Omega_k v_F = a_k for EVERY k, i.e. v_F = v_k for all k. With 3
+      levels that is 3 conditions on 1 unknown. Violation factors v_F/v_k for each choice:
+  frame co-moves with           binary internal   galaxy rotation   cluster orbit (1
+  binary internal (10 kAU)                     1          0.001986         0.0004256
+  galaxy rotation (10 kpc)                 503.5                 1            0.2143
+  cluster orbit (1 Mpc)                     2350             4.667                 1
+  [OK  ] MODE-COUNT NO-GO: whichever level the single passive frame co-moves with, at least two of the three modes get the wrong argument, the worst violation being 2350x. A single frame field u^mu cannot supply the right speed to a hierarchical trajectory -- which is exactly why the local witness works on CIRCLES (one mode) and fails off them
+      (Comparison, both ways: Theorem B's |a_tot|^2 needs no frame and has no such
+       obstruction. That is a point AGAINST the frame door, and it is the same statement as
+       the pincer's K(<Box_u>) != <K(Box_u)>: the frame door tries to replace the average.)
+
+  (c) THE PRICE FRAME G PAYS ONE LEVEL UP: a cluster galaxy's own rotation curve.
+      cluster field at 1 Mpc = 1.6730e-10 = 1.787 a0_can;
+      the galaxy's own field v_flat^2/R equals it at R = 4.36 kpc, i.e. INSIDE the
+      optical disk. So beyond 4.4 kpc the dominant-field rule hands the frame to the
+      CLUSTER, and every star's v_F becomes the galaxy's cluster-orbital speed.
+   sigma_cl [km/s]  v_flat [km/s]   lambda  dlog a0_eff  dlog v_flat  vs a0 budget
+               500            100     5.00       -0.699       -0.175          3.13x
+               500            150     3.33       -0.523       -0.131          2.34x
+               500            220     2.27       -0.357       -0.089          1.60x
+               700            100     7.00       -0.845       -0.211          3.79x
+               700            150     4.67       -0.669       -0.167          3.00x
+               700            220     3.18       -0.503       -0.126          2.25x
+              1000            100    10.00       -1.000       -0.250          4.48x
+              1000            150     6.67       -0.824       -0.206          3.69x
+              1000            220     4.55       -0.658       -0.164          2.95x
+  [OK  ] FRAME G predicts a cluster-vs-field a0 OFFSET of 0.36-1.00 dex = 1.6-4.5x the framework's own a0 budget (2 x 0.1116 dex). Equivalently cluster spirals would sit 32% low in v_flat at fixed baryonic mass -- a NEW archival test (cluster vs field RAR/BTFR) that I have NOT run here
+      NOT overclaimed: the corpus's banked 10.5-sigma environmental null is on
+      a0 ~ sqrt(G rho_local), a DIFFERENT functional, and does not transfer as a kill.
+
+========================================================================================================
+S8. THE SHARPEST DATA-IN-HAND CONSEQUENCE OF FRAME G: dwarf spheroidals (real catalogue)
+========================================================================================================
+  data: /Users/carlzimmerman/new_physics/zimmerman-formula/real_research/data/dsph/mcconnachie2012_dsph.csv  (McConnachie 2012, the corpus's own Front-D catalogue)
+  THE ESTIMATOR IS Upsilon-FREE ON PURPOSE. Front D's blocker is that the stellar
+  mass-to-light ratio carries a COHERENT 0.38-0.48 dex error worth 8.7x the signal, so any
+  test that needs the baryonic mass is systematics-limited. This one does not need it:
+      x    = |a|_obs/a0 = sigma^2/(R_h a0)          -- OBSERVED acceleration, from sigma alone
+      the framework's closure REQUIRES g_bar = |a|_obs * mu(x)   (this is where Upsilon drops out)
+      lambda = |xdot|/sigma = sqrt(v_c^2 + sigma^2)/sigma        -- the FRAME-G inflation
+      FRAME G, from that SAME g_bar, predicts |a|_G = g_bar/mu(lambda*x)
+      => sigma deficit = sqrt(|a|_obs/|a|_G) = sqrt( mu(lambda x) / mu(x) )
+  NOTE THE ARGUMENT: mu is evaluated at the OBSERVED x, never at a Newtonian y. Evaluating
+  it at the Newtonian argument is the exact error STANDING sec 5.1 records in the forest
+  chain, and it was present in the first draft of this section.
+  Omega_int = sigma/R_h and the satellite's MW-orbital speed ~ v_c are order-of-magnitude;
+  heliocentric D is used as galactocentric -- both FLAGGED, they only shift which dwarfs
+  count as MW-dominated, not the deficit.
+
+  22 MW satellites with sigma and R_h.
+  name                   sig  R_h[pc] x=a_obs/a0  a_MW/a0  dom  lambda    lam*x deficit a=2 deficit a=1
+  Sagittarius dSph      11.4     2587     0.0174    0.645   MW    19.3      0.3       4.280       4.187
+  Segue (I)              3.9       29     0.1816    0.729   MW    56.4     10.2       2.360       2.326
+  Ursa Major II          6.7      149     0.1043    0.524   MW    32.9      3.4       3.042       2.895
+  Bootes II             10.5       51     0.7485    0.399 self    21.0     15.7       1.291       1.346
+  Segue II               3.4       35     0.1144    0.479   MW    64.7      7.4       2.953       2.877
+  Willman 1              4.3       25     0.2561    0.441   MW    51.2     13.1       2.005       1.998
+  Coma Berenices         4.6       77     0.0951    0.381   MW    47.8      4.6       3.211       3.083
+  Bootes (I)             2.4      242     0.0082    0.254   MW    91.7      0.8       8.553       8.075
+  Draco                  9.1      221     0.1297    0.220   MW    24.2      3.1       2.721       2.586
+  Ursa Minor             9.5      181     0.1726    0.220   MW    23.2      4.0       2.388       2.294
+  Sculptor               9.2      283     0.1036    0.195   MW    23.9      2.5       3.001       2.826
+  Sextans (I)            7.9      695     0.0311    0.195   MW    27.9      0.9       4.590       4.312
+  Ursa Major (I)         7.6      319     0.0627    0.173   MW    29.0      1.8       3.742       3.493
+  Carina                 6.6      250     0.0603    0.160   MW    33.3      2.0       3.856       3.607
+  ... (22 rows total, 19 with the MW field dominant -> FRAME G applies)
+
+  FRAME G's sigma deficit over the 19 MW-dominated dwarfs, both footings, both kernels:
+  footing     kernel      median     mean      min      max
+  canonical   alpha=2      3.428    4.004    2.005    8.553
+  canonical   alpha=1      3.195    3.795    1.998    8.075
+  alternate   alpha=2      3.614    4.247    2.191    8.815
+  alternate   alpha=1      3.378    4.027    2.167    8.394
+
+      i.e. FRAME G predicts dispersions a factor 3.43 = 71% BELOW what the framework's own closure needs from the same baryons.
+      Deep-regime form: deficit -> 1/sqrt(mu(x)) -> x^(-1/2) for alpha=2, so it is just
+      'the MOND boost, removed'. That is the whole point: FRAME G Newtonises satellites.
+  [OK  ] the MW field DOMINATES the internal field for 19/22 MW satellites, so the dominant-field rule hands the frame to the MW for most of them -- FRAME G applies to the dwarf sample, it is not a corner case
+  [OK  ] FRAME G COSTS THE DWARFS: median sigma deficit 3.20-3.61x across both footings and both kernels on real McConnachie 2012 data, because a satellite's internal mode is inflated by lambda = |xdot|/sigma ~ 20-60. Upsilon-free, so Front D's coherent-Upsilon blocker does NOT apply
+  [OK  ] LIMIT CHECK: setting lambda = 1 (no inflation) returns deficit = 1 to 0.0e+00 on every dwarf -- the deficit is produced by the frame, not by the estimator
+
+========================================================================================================
+S9. Q5 -- SOLAR SYSTEM: does the dragged frame RE-OPEN the alpha=1 ephemeris liability?
+========================================================================================================
+  mpmath at 50 digits throughout: at Earth the alpha=2 anomaly is 1/mu(u)-1 ~ 1/(2u^2) with
+  u ~ 5e8, i.e. ~1e-18 -- float64 cannot represent 1+1e-18 and would silently return ZERO.
+  Both the direct evaluation and the asymptotic form are computed and compared.
+
+  Under FRAME G the frame at Earth is the GALACTIC one, so v_F = the Sun's 220 km/s rather
+  than Earth's orbital speed. Factor lambda = v_gal/v_planet:
+  planet    v_p [km/s]  lambda   a=1 delta_a   x bound   a=1 FRAME G   x bound   a=2 FRAME G   x bound
+  Mercury        47.88    4.59    4.6800e-11        --    9.9521e-12        --    5.0041e-21        --
+  Earth          29.79    7.39    4.6800e-11    1278.7    6.2795e-12     171.6    1.3296e-20  3.63e-07
+  Mars           24.13    9.12    4.6800e-11    1258.1    5.1030e-12     137.2    2.0385e-20  5.48e-07
+  Neptune         5.43   40.50    4.6800e-11        --    1.1552e-12        --    4.0688e-19        --
+
+  Asymptotic cross-checks at Earth, canonical (mpmath at 50 digits vs closed form).
+      ROUTE C's stated factor is v_gal/v_Earth = 7.3854; the frame-relative speed is
+      |xdot| = sqrt(v_gal^2 + v_p^2), giving lambda = 7.4528 -- 0.91% larger. Both reported; the exact one is used.
+      alpha=1: a0/(2 lambda) = 6.279527e-12  vs mpmath 6.279527e-12  rel 5.29e-10
+      alpha=2: a0^2/(2 g lambda^2) = 1.329571e-20  vs mpmath 1.329571e-20  rel 2.26e-16
+  [OK  ] alpha=1 FRAME G anomaly = a0/(2 lambda) to 5.3e-10 -- the dragged frame divides the constant a0/2 sunward anomaly by exactly the speed ratio
+  [OK  ] alpha=2 FRAME G anomaly = a0^2/(2 g lambda^2), i.e. divided by lambda^2 = 55.5, verified against the 50-digit mpmath evaluation (float64 returns EXACTLY ZERO here: 1 + 1e-18 is not representable)
+
+  WHY mpmath WAS MANDATORY (demonstrated, not asserted):
+      Theorem-B argument u = 6.337e+07: float64 1/mu-1 = 2.2204e-16 vs 50-digit 1.2450e-16  -> float64 error 78%
+      FRAME-G  argument u = 4.723e+08: float64 1/mu-1 = 0.0000e+00 vs 50-digit 2.2415e-18  -> float64 returns EXACTLY ZERO
+  [OK  ] float64 returns EXACTLY 0 for the FRAME-G anomaly (true value 2.24e-18) and is 78% wrong even for the Theorem-B one -- a float64 scan of this section would have reported 'no anomaly' from pure representation error
+
+  THE ANSWER TO Q5, both footings:
+      bare alpha=1 (Theorem B): a0/2 = 4.680e-11 / 5.650e-11 = 1279x / 1544x the Earth 2-sigma bound  [corpus: 1278x]
+      alpha=1 under FRAME G: 137x - 207x over (Earth+Mars, both footings)
+      ... and after the framework's OWN derived EFE (suppression 6.76-10.74x, STANDING sec 5.0): 12.8x - 30.6x over
+      alpha=2 under FRAME G: 3.63e-07x - 7.99e-07x of the bound
+  [OK  ] FRAME G does NOT rescue alpha=1: it SOFTENS the sunward anomaly by exactly lambda = 7.45 (1278x -> 137-207x over the bound; 13-31x after the framework's own EFE) but leaves it EXCLUDED. alpha=1 stays dead
+  [OK  ] and FRAME G does NOT RE-OPEN the liability under the kernel IN FORCE: alpha=2 goes from ~2e-5x to 8.0e-07x of the bound, i.e. the dragged frame moves the ephemerides the SAFE way by lambda^2 = 55.5. No manufactured deficit and no manufactured escape
+
+  A STRUCTURAL SIGNATURE that separates FRAME G from Theorem B in the solar system:
+      Theorem B, alpha=2: delta_a = a0^2/(2 g_bar) ~ r^2 ; FRAME G: a0^2/(2 g_bar lam^2) ~ r^1
+      fitted log-slopes: Theorem B 2.0000 (expect 2), FRAME G 1.0000 (expect 1)
+  [OK  ] radial signatures differ exactly: r^2.000 vs r^1.000. Both are ~1e-19 m/s^2 at 1 AU so this is NOT observable now -- reported as a structural difference, not a test
+      Where it IS large: an Oort-cloud body at 5e4 AU has u_true = 0.0253 (MOND regime) but u_eff = 41.9 under FRAME G, inflated 1651x -> the Sun's
+      effective MOND radius moves from 7961 AU to 6.028e+05 AU = 2.92 pc, beyond the Sun's own tidal radius.
+  [OK  ] FRAME G Newtonises the entire Oort cloud (u 0.025 -> 41.9 at 5e4 AU), the same mechanism that Newtonises wide binaries and dwarfs -- one prediction, three arenas
+
+========================================================================================================
+SUMMARY -- 55 structural checks, ALL PASSED
+========================================================================================================
+  1. ROUTE C's setup is reproduced exactly: a_gal = 1.913e-10 = 2.044 a0_can (1.693 a0_alt),
+     a_int(1 Msun, 10 kAU) = 5.932e-11 = 0.634 a0_can (0.525 a0_alt), Omega_int/Omega_gal = 229,
+     v_gal/v_int = 738.5. Omega_int(1.5 Msun) = 2.4388e-13 matches the frozen Amendment-1 value.
+     The Galaxy dominates the field at 10 kAU by 3.22x, and the field crossover r_eq = 3.79-11.56 kAU
+     sits INSIDE the frozen 2-30 kAU cut -- so a dominant-mass drag rule changes frame mid-window.
+  2. Of four candidate frames, THREE DIE WITH NUMBERS: co-rotating (solar gravity weaker by
+     7961x/7245x), cosmic/CMB (a0_eff spread 1.48 dex vs a 0.223 dex budget = 6.6x over; the banked
+     4.6x is the conservative end), and binary-barycentre-dragged (the barycentre's own galactic
+     circular speed would be 18.2x too high -- 3996 vs 220 km/s -- and the exact DC limit diverges).
+     Only a DOMINANT-MASS (galactic) frame survives, and it survives the RAR BY CONSTRUCTION.
+  3. Q1: the two readings of v_rel differ by lambda = v_c sqrt(s/GM) = 159-1878 across the frozen cut
+     window. Under the surviving frame the binary's internal argument is u_eff = 61-10864 (canonical):
+     deep Newtonian for EVERY pair, so gamma_v = 1.0000011 (alpha=2) / 1.00053 (alpha=1).
+  4. Q2: that is OUTSIDE the frozen Amendment-3 range 1.0182-1.0350 -- but it is NOT a live 3-sigma
+     falsifier: the offset 0.0182 is 0.65 sigma_tot at N=30k and only 0.91 sigma as N->infinity,
+     because the FROZEN sigma_sys = 0.02 floors sigma_tot. And it is degenerate with the already-frozen
+     GATED branch to 0.0071 sigma_tot. The aggregate gamma_v CANNOT decide the hierarchy question.
+     The binary-dragged reading is 6.31 sigma_tot out (8.83 at N=inf) -- but it lands above the frozen
+     1.20 guard threshold where the pre-registration permits NO verdict, and it is independently dead.
+  5. Q3 (dead zone): the surviving frame WIDENS it by (v_gal omega_c/a0)^(2/3) = 10.64-13.93x, EXACTLY
+     mass-independent (both r_gate/r_M and r_M,eff/r_M scale as M^(-1/6), fitted to 1e-9). Outer edge
+     50 -> 603 kAU canonical / 532 kAU alt; the MOND knee moves to 2.92 pc = 2.92x beyond the ~1 pc
+     bound-pair limit. Equivalently a subsystem boosts only if its period exceeds a_gal/a0 = 2.044
+     galactic years (identity verified), and the widest bound pair reaches 0.41. It CLOSES the
+     wide-binary front, makes omega_c redundant there (one postulate removed), and destroys the frozen
+     p = 3 cubic-rise falsifier.
+  6. Q4 (nesting): the dominant-field SELECTION is order-independent (verified over all 6 orderings),
+     as is Theorem B's |sum a|^2. The obstruction is MODE COUNT, not order: one frame supplies one
+     v_F but the construction needs v_F = v_k for every mode, and the worst violation on a 3-level
+     ladder is 2350x. One level up it costs a cluster-vs-field a0 offset of 0.36-1.00 dex = 1.6-4.5x
+     the framework's own budget (32% low in v_flat) -- a NEW archival test, NOT run here.
+  7. THE SHARPEST FALSIFIER IS NOT DR4, IT IS THE DWARFS, ON DATA ALREADY IN HAND. On the corpus's own
+     McConnachie 2012 catalogue the MW field dominates for 19/22 MW satellites, and the surviving
+     frame predicts dispersions a median 3.20-3.61x (69-72%) below what the framework's own closure
+     needs from the same baryons -- range 2.00-8.82x across all four footing/kernel combinations, the
+     extreme being Bootes I at 8.55x. The estimator is Upsilon-FREE (it uses only sigma and R_h and
+     the framework's own closure to supply g_bar), so Front D's coherent-Upsilon blocker -- 0.38-0.48
+     dex per object, 8.7x the signal -- does NOT apply to it. Same mechanism as the wide binary.
+     SELF-CAUGHT ERROR, recorded: the first draft of this section evaluated mu at the NEWTONIAN
+     argument and got 1.79x. That is the exact bug STANDING sec 5.1 records in the forest chain. The
+     corrected number is ~2x LARGER, i.e. the error had been running in the framework's favour.
+  8. Q5: the dragged frame does NOT re-open the ephemeris liability -- it SOFTENS it by lambda
+     (alpha=1: 1279x -> 137-207x over Earth+Mars on both footings, 12.8-30.6x after the framework's
+     own EFE: STILL EXCLUDED) and by lambda^2 = 55.5 under the kernel in force (alpha=2: ~2e-5x ->
+     3.6e-7 - 8.0e-7x of the bound). No manufactured escape: alpha=1 stays dead. Structural signature
+     r^1 vs Theorem B's r^2 (both fitted to 1e-9), both ~1e-20 m/s^2 and unobservable.
+     mpmath at 50 digits was MANDATORY and it is demonstrated: float64 returns EXACTLY 0 for the
+     FRAME-G Earth anomaly (true 2.24e-18) and is 78% wrong for the Theorem-B one.
+  9. THE ANISOTROPY is the only DR4 axis where the readings separate: Theorem B gives a 0.0854
+     eigenvalue spread and the frame construction gives EXACTLY 0 (no cross term). But projection
+     dilutes the observable two-bin contrast to 0.0260 = 30.4% of the spread, so N(3 sigma) = 584,440
+     against the pre-registration's assumed 30,000 -- a factor 19.5 short. Amendment 3 (h)'s
+     uncomputed dilution flag is now computed; the estimator's velocity projection is a FURTHER
+     dilution not modelled here.
+ 10. TWO DEFECTS FOUND IN THE FROZEN DOCUMENT, flagged and NOT edited: (i) Amendment 2 and Amendment 3
+     use DIFFERENT angular-averaging conventions (quartic vs RMS), a 0.00094 = 0.034 sigma_tot spread
+     -- real but non-decisive; (ii) Amendment 3 moved the ungated MI target to 1.0246 without
+     restating Amendment 1's gated row, which becomes 1.00012-1.00020 rather than the frozen
+     1.0004-1.0006. Both belong on the record before data, not after.
+ 11. NO THEORY IS CLOSED. The frame door is not closed by this: what is shown is that a SINGLE passive
+     frame cannot supply the right speed to more than one mode, and that the one reading which
+     survives the RAR pays for it in dwarfs, wide binaries and the Oort cloud. a0 = cH_Lambda/Z,
+     kappa = 1/2, Z and omega_c remain POSTULATED. NO FROZEN TARGET HAS BEEN MOVED.
+========================================================================================================

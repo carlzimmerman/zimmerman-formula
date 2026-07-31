@@ -1,0 +1,445 @@
+
+========================================================================================================
+ROUTE B -- THE MEMORY-TIME ROUTE, TESTED. tau_mem = v_rel/a0 ?
+========================================================================================================
+  a0 = c H_Lambda / Z, Z = sqrt(32pi/3) = 5.78881  ->  a0 = 9.3600e-11 m/s^2 (canonical,
+  pure-Lambda footing) = (c/2) sqrt(G rho_Lambda), i.e. EXACTLY HALF the free-fall
+  acceleration at the dark-energy density. kappa = 1/2 is this framework's own coefficient
+  and is not in the prior literature (Milgrom 1999 / Pikhitsa 2010 / Klinkhamer-Kopp 2011
+  all give 2 c H_Lambda = 11.58x larger; Milgrom 2020 gives c H_Lambda/2pi). CAVEAT: 32pi/3
+  is the Einstein-coupling conversion factor and CANCELS in that reduction -- the content
+  is the ONE number kappa, which is FITTED, not derived.
+  Alternate footing carried on every dimensional number: a0 = 1.1300e-10 m/s^2.
+  c/a0 = 101.5 Gyr canonical, 84.1 Gyr alternate -- the
+  frame-independent memory time Route B is trying to replace.
+
+========================================================================================================
+S1. ITEM 1 -- the identity Omega tau_mem = a/a0, and the exact repair of Theorem 8's c/v
+========================================================================================================
+  tau_mem = v/a0 ;  Omega tau_mem = Omega*v/a_0 ;  a/a0 = Omega*v/a_0
+  [OK  ] Omega tau_mem - a/a0 = 0 identically in v, Omega and a0 on a circular orbit (sympy exact)
+  [OK  ] and identically in R: v**2/(R*a_0) = v**2/(R*a_0) (no residual)
+  [OK  ] Theorem 8 re-verified here: w/x = c/v exactly, kernel-free
+  [OK  ] tau_mem = (v/c)(c/a0): Route B is EXACTLY the substitution c -> v_rel in the memory time, so it repairs Theorem 8's argument mismatch by construction on circles
+
+  Numerically, both footings, four real systems (self-consistent: v from the CLOSURE):
+  system                     footing       u = a/a0   Om*tau_mem   rel.diff  c/v (Thm 8 gap)
+  wide binary 10 kAU         canonical   9.3036e-01   9.3036e-01    0.0e+00         830605.0
+  wide binary 10 kAU         alternate   8.2491e-01   8.2491e-01    0.0e+00         802816.8
+  dwarf spheroidal 2 kpc     canonical   1.9477e-01   1.9477e-01    0.0e+00           8937.7
+  dwarf spheroidal 2 kpc     alternate   1.7699e-01   1.7699e-01    1.6e-16           8533.4
+  galaxy outskirt 30 kpc     canonical   4.2398e-01   4.2398e-01    1.3e-16           1564.1
+  galaxy outskirt 30 kpc     alternate   3.8315e-01   3.8315e-01    2.9e-16           1497.5
+  cluster member 1 Mpc       canonical   4.0057e-01   4.0057e-01    2.8e-16            278.7
+  cluster member 1 Mpc       alternate   3.6225e-01   3.6225e-01    3.1e-16            266.7
+  [OK  ] the identity holds numerically to 3.1e-16 on self-consistent circular orbits across 9 decades of u and both footings -- so on circles Route B delivers exactly the argument Theorem 8 found missing, and the factor it removes is c/v = 4e2..1e6 here
+
+  READ: S1 is KINEMATICS, not a derivation. It says WHAT the frame must supply, not that
+  an action supplies it. S6 tests whether the gap Theorem 8 actually names is closed.
+
+========================================================================================================
+S2. ITEM 5 -- is tau_mem = v/a0 FORCED? Enumerate every dimensionally-allowed monomial
+========================================================================================================
+  tau = c^p v^q a0^s r^t Omega^m,  require Omega tau = a/a0 on circles identically:
+    solution: [{p: 0, q: 1 - m, s: -1, t: m}]
+  [OK  ] the identity forces p = 0 (c EXCLUDED), s = -1, q = 1-m, t = m -- a ONE-PARAMETER family tau_m = (v/a0)(r Omega/v)^m, with m free
+  [OK  ] and [L]^0 [T]^1 -- the length/time dimensions come out right AUTOMATICALLY for every m, so dimensional analysis alone constrains NOTHING here; the circular identity is what does the work, and it still leaves a free function
+
+  spot-check members of the family. tau_m is written with Omega UNSUBSTITUTED so the
+  (r Omega/v)^m factor stays visible; the circular relation Omega = v/r is imposed only to
+  evaluate the identity, where that factor becomes exactly 1:
+    m = -2: tau_m = v**3/(Omega**2*a_0*r**2)   ->   Omega tau_m |_circ = v**2/(a_0*r)  = a/a0
+  [OK  ] m = -2: a genuinely DIFFERENT memory time reproduces a/a0 on circles exactly -- the members are inequivalent functionals that agree on the only constrained slice
+    m = -1: tau_m = v**2/(Omega*a_0*r)   ->   Omega tau_m |_circ = v**2/(a_0*r)  = a/a0
+  [OK  ] m = -1: a genuinely DIFFERENT memory time reproduces a/a0 on circles exactly -- the members are inequivalent functionals that agree on the only constrained slice
+    m = +0: tau_m = v/a_0   ->   Omega tau_m |_circ = v**2/(a_0*r)  = a/a0
+  [OK  ] m = +0: a genuinely DIFFERENT memory time reproduces a/a0 on circles exactly -- the members are inequivalent functionals that agree on the only constrained slice
+    m = +1: tau_m = Omega*r/a_0   ->   Omega tau_m |_circ = v**2/(a_0*r)  = a/a0
+  [OK  ] m = +1: a genuinely DIFFERENT memory time reproduces a/a0 on circles exactly -- the members are inequivalent functionals that agree on the only constrained slice
+    m = +2: tau_m = Omega**2*r**2/(a_0*v)   ->   Omega tau_m |_circ = v**2/(a_0*r)  = a/a0
+  [OK  ] m = +2: a genuinely DIFFERENT memory time reproduces a/a0 on circles exactly -- the members are inequivalent functionals that agree on the only constrained slice
+
+  THE SPREAD OFF CIRCLES, on exact closure-solving orbits. There r Omega/v = v_t/v, so
+  the family separates as (v_t/v)^m. Omega_E = v_t/r is used for every member, so this
+  isolates the tau-freedom alone. Evaluated at the orbital phase where v_t/v is smallest:
+        e  min v_t/v    arg m=-2    arg m=-1     arg m=0     arg m=1     arg m=2  max/min  mu spread
+     0.00    1.00000     0.42398     0.42398     0.42398     0.42398     0.42398     1.00      1.000
+     0.10    0.99042     0.42778     0.42368     0.41962     0.41560     0.41162     1.04      1.033
+     0.20    0.96175     0.43620     0.41952     0.40347     0.38804     0.37319     1.17      1.144
+     0.40    0.84819     0.48740     0.41341     0.35065     0.29742     0.25227     1.93      1.791
+     0.60    0.66304     0.60101     0.39849     0.26422     0.17519     0.11615     5.17      4.465
+  [OK  ] the one-parameter tau-family is EXACTLY degenerate on circles (argument spread 1.000000000) and separates by 5x in the kernel argument and 4.46x in mu itself by e = 0.6. 'The circular slice cannot see the freedom' is therefore not a rhetorical point: it is a factor 4.46 in the predicted g_bar at fixed acceleration, from a choice nothing in the route fixes
+
+  CONCLUSION OF ITEM 5, stated flatly. tau_mem = v/a0 is NOT forced. What IS forced, and
+  this is a real result, is that c CANNOT APPEAR: any tau containing c fails the circular
+  identity identically in v. That is the formal version of 'the frame must be locally
+  dragged'. But the surviving family is (v/a0) x [any dimensionless function equal to 1 on
+  circles], which is infinite-dimensional -- monomials alone already give a one-parameter
+  family. Off circles the route therefore PINS NOTHING. This is the same corner-blindness
+  the corpus already records for omega_c (MI_OFFCIRCULAR_COMPLETION_2026.md, C1): the only
+  constrained slice is the circular one, and it cannot see the freedom.
+
+========================================================================================================
+S3. ITEM 2 -- tau_mem = v/a0 for real systems vs the corpus's [1 Myr .. 17.5 Gyr] window
+========================================================================================================
+  window provenance: MI_OFFCIRCULAR_COMPLETION_2026.md verdict table -- omega_c FREE but
+  bounded in [1/kappa = 17.5 Gyr (raw dS correlator) .. 1 Myr (d1 above-band pole)].
+  NOTE ON PROVENANCE, because it changes how hard a 'falsification' here bites: those two
+  endpoints are the two BATH-NATIVE candidate scales, and the corpus's own language at
+  both ends is 'door ~dies' -- i.e. the OBSERVABLE (dwarf sigma-hysteresis) magnitude goes
+  to zero there, not that the theory becomes inconsistent. So landing outside is a real
+  problem for the DOOR, and only a weak problem for CONSISTENCY. Both are reported.
+
+  case                                  v_rel      tau [canonical]  in window?     tau [alternate]  in window?
+  Milky-Way-like disk star             220.0k           74.482 Myr         YES           61.695 Myr         YES
+  dwarf-spheroidal star                 10.0k            3.386 Myr         YES            2.804 Myr         YES
+  galaxy-cluster member               1000.0k          338.555 Myr         YES          280.432 Myr         YES
+  wide binary internal, 10 kAU           0.5k            0.169 Myr          NO            0.140 Myr          NO
+  Earth (heliocentric orbital)          29.8k           10.089 Myr         YES            8.357 Myr         YES
+
+  span of tau_mem demanded across these five cases: 3.30 dex (v_rel from 0.5 to 1000 km/s)
+  corpus window width: 4.24 dex
+
+  input-independence of the wide-binary row: the estimate above used 0.5 km/s, but the
+  CLOSURE's own self-consistent circular speed at 10 kAU around 1 Msun is 0.361 km/s,
+  giving tau_mem = 0.122 Myr canonical / 0.101 Myr alternate -- further BELOW the floor,
+  so the conclusion does not depend on the 0.5 km/s estimate.
+  [OK  ] self-consistent wide-binary tau_mem = 0.122 Myr is 8.2x below the 1 Myr floor, vs 5.9x for the 0.5 km/s estimate -- the finding is robust to the input speed and is conservative as stated
+  [OK  ] THE WIDE BINARY FALLS OUTSIDE, below the floor, on BOTH footings: 0.169 Myr canonical (5.9x below the 1 Myr floor) and 0.140 Myr alternate (7.1x below). Under the LITERAL reading of the corpus bound this FALSIFIES the prescription; under the provenance-corrected reading it says the wide-binary memory door is dead, not the theory
+  [OK  ] the dwarf-spheroidal case clears the floor by only 3.4x (3.39 Myr) -- it is marginal, not comfortable
+  [OK  ] the other four cases (MW star, dSph star, cluster member, Earth) all land INSIDE the window on both footings, spanning 2.8 Myr - 339 Myr, comfortably inside the door-relevant 0.4 Gyr scale the corpus singles out
+  [OK  ] BUT NOTE THE CATEGORY CHANGE, and it is the honest headline of item 2: the corpus's omega_c is a UNIVERSAL CONSTANT awaiting a pin; Route B makes it a STATE FUNCTION spanning 3.30 dex. The route therefore does not 'pin omega_c' -- it ELIMINATES omega_c as a constant and replaces it with a rule. That is only a reduction in free content if the rule is itself forced, which S2 shows it is not off circles
+
+========================================================================================================
+S4. THE FRAME'S DRAG LEVEL -- three locks. (a) is re-verified; (b) and (c) are new.
+========================================================================================================
+  (a) COSMIC (CMB) FRAME -- re-verified from the framework's own RAR.
+      deep regime g_obs = sqrt(g_bar a0)  =>  d log10 g_obs = 0.5 d log10 a0_eff
+      framework's own RAR scatter 0.108 dex  =>  TOTAL a0 budget 0.216 dex (factor 1.64), with nothing left over for distance, inclination or M/L
+  [OK  ] d log g_obs / d log a0 = 1/2 in the deep regime -- so the 2x in the budget is derived, not assumed (and it is the same for alpha=1 and alpha=2, both of which give g_obs -> sqrt(g_bar a0))
+  [OK  ] CMB-frame speed EXCLUDED: peculiar velocities 100-1000 km/s = 1.00 dex of injected a0 variation vs a 0.216 dex budget = 4.6x over
+
+  (b) LOCAL-MATTER DRAG (frame co-moving with the surrounding matter) -- NEW, and it is a
+      squeeze from the OTHER side. If the passive u is dragged by the LOCAL matter, then a
+      disk star's speed relative to u is not its circular speed but its RANDOM velocity,
+      because the local matter co-rotates. Then a0_eff = a0 (v_circ/v_rel) is too LARGE by
+      v_circ/sigma, and it varies with stellar population.
+      population                     v_circ    sigma  v_circ/sigma  dex in a0_eff  x budget
+      thin-disk young                  220k      20k         11.00          1.041      4.82
+      thin-disk old                    220k      35k          6.29          0.798      3.70
+      thick disk                       200k      55k          3.64          0.561      2.60
+      dSph (pressure-supported)         12k      10k          1.20          0.079      0.37
+  [OK  ] local-matter drag mis-scales a0 for every disk population by 3.6-11.0x (0.56-1.04 dex), i.e. 2.6-4.8x the whole a0 budget -- a frame dragged by the local matter is EXCLUDED
+  [OK  ] and it is not even a constant offset that could be absorbed into kappa: the population spread alone is 0.48 dex = 2.2x the budget, so it would show up as RAR scatter within a single galaxy
+      => the frame must be at rest w.r.t. the ORBIT'S CENTRE (the bound system's
+         barycentre), not w.r.t. the local matter and not w.r.t. the cosmos. Route B is
+         squeezed to exactly one prescription, and it is a NONLOCAL, MEMBERSHIP-DEPENDENT
+         one: 'the barycentre of whichever bound system this particle orbits'.
+
+  (c) HIERARCHY -- the sharpest lock, and it is a NO-GO for a LOCAL frame field u(x).
+      A local u assigns ONE frame per spacetime point. Take two stars at the SAME point:
+      one bound to a satellite dwarf, one to the host disk. The barycentre prescription
+      needs u at rest w.r.t. the DWARF for the first and w.r.t. the HOST for the second.
+      A single-valued local field cannot do both. Quantify the cost of choosing the host:
+      satellite v_orb (dwarf-internal)    host-frame v   factor  a0_eff dex  sigma_pred/sigma_obs
+                                  12 km/s          100k      8.3      -0.921                 0.589
+                                  12 km/s          150k     12.5      -1.097                 0.532
+                                  12 km/s          200k     16.7      -1.222                 0.495
+                                  12 km/s          300k     25.0      -1.398                 0.447
+  [OK  ] deep-regime isothermal relation sigma^4 = (4/81) G M a0 (Milgrom) gives d log sigma / d log a0 = 1/4, verified symbolically -- so a factor F error in a0_eff moves a dwarf's predicted dispersion by F^(1/4)
+  [OK  ] choosing the HOST barycentre makes satellite dwarfs 8-25x too Newtonian in a0_eff, so their predicted dispersions drop from 10.0 to 5.9-4.5 km/s -- 4.6-6.1sigma against a ~0.9 km/s measurement error. Satellite dwarfs DO sit on the relation, so a host-dragged local frame is excluded by data that already exists
+  [OK  ] and the contradiction is unavoidable for a single-valued local u: the two co-located stars need frames differing by 25x in speed. Escaping it requires a frame that is PARTICLE-dependent (i.e. not a field at all), which is not a field theory, or a genuinely nonlocal membership rule, which the framework's passive u does not have
+
+========================================================================================================
+S5. ITEM 3 -- OFF CIRCLES. Four candidate frequencies, exact orbits, and the pathology.
+========================================================================================================
+  METHOD (same exact turning-point construction as mi_offcircular_action_2026.py S4): the
+  closure is a central force, so pericentre/apocentre give exact (E, L) and hence exact
+  states with NO ODE error. On each state, evaluate Route B's law
+      g_bar =?= |a| mu( Omega_cand tau_mem ),      tau_mem = |v|/a0
+  against the closure's own g_bar = |a| mu(|a|/a0). Residual = |mu(u) - mu(arg)|/mu(u),
+  i.e. the FRACTIONAL error Route B makes in the Newtonian source at fixed acceleration.
+  [OK  ] |a x adot|/|a|^2 = v_t/r exactly, so the 'rotation rate of the acceleration DIRECTION' is the true angular rate -- candidate E, not a fifth option
+
+--------------------------------------------------------------------------------------------------------
+  KERNEL alpha = 2  (in force)
+
+    galaxy, M=1e11 Msun, r=30 kpc (DEEP)  [canonical cH_L/Z]  g_bar/a0 = 1.655e-01
+          e       A: a_perp/v          B: |a|/v          E: v_t/r     G: |adot|/|a|
+       0.00        0.0000e+00        0.0000e+00        1.4221e-16        1.4221e-16
+       0.01        8.1269e-05        1.4352e-16        1.6279e-02        1.6279e-02
+       0.05        2.0329e-03        1.4875e-16        8.1686e-02        8.1685e-02
+       0.10        8.1456e-03        1.5530e-16        1.6308e-01        1.6307e-01
+       0.20        3.2806e-02        2.3648e-16        3.1985e-01        3.1984e-01
+       0.40        1.3438e-01        2.4236e-16        5.9111e-01        5.9110e-01
+       0.60        3.1119e-01        2.8369e-16        7.9505e-01        7.9502e-01
+  [OK  ] alpha=2 galaxy [canonical]: candidate B's residual is 2.8e-16 at EVERY eccentricity -- identically zero. That is not a success, it is the TAUTOLOGY: Omega_B tau_mem = (|a|/v)(v/a0) = |a|/a0, the speed cancels, so B is the closure rewritten and the frame does no work
+  [OK  ] alpha=2 galaxy [canonical] A: a_perp/v: residual is 0.0e+00 (zero) at e=0, rises monotonically, and reaches 0.311 = 31.1% at e=0.6 -- an order-unity error in g_bar in the DEEP regime, not a correction
+  [OK  ] alpha=2 galaxy [canonical] E: v_t/r: residual is 1.4e-16 (zero) at e=0, rises monotonically, and reaches 0.795 = 79.5% at e=0.6 -- an order-unity error in g_bar in the DEEP regime, not a correction
+  [OK  ] alpha=2 galaxy [canonical] G: |adot|/|a|: residual is 1.4e-16 (zero) at e=0, rises monotonically, and reaches 0.795 = 79.5% at e=0.6 -- an order-unity error in g_bar in the DEEP regime, not a correction
+
+    galaxy, M=1e11 Msun, r=30 kpc (DEEP)  [alternate rho_tot/cH0]  g_bar/a0 = 1.371e-01
+          e       A: a_perp/v          B: |a|/v          E: v_t/r     G: |adot|/|a|
+       0.00        0.0000e+00        1.5515e-16        1.5515e-16        1.5515e-16
+       0.01        8.4218e-05        1.5660e-16        1.6847e-02        1.6847e-02
+       0.05        2.1064e-03        1.6239e-16        8.4120e-02        8.4120e-02
+       0.10        8.4372e-03        1.6965e-16        1.6707e-01        1.6707e-01
+       0.20        3.3930e-02        1.8412e-16        3.2518e-01        3.2518e-01
+       0.40        1.3829e-01        2.4436e-16        5.9594e-01        5.9593e-01
+       0.60        3.1825e-01        3.6848e-16        7.9863e-01        7.9860e-01
+  [OK  ] alpha=2 galaxy [alternate]: candidate B's residual is 3.7e-16 at EVERY eccentricity -- identically zero. That is not a success, it is the TAUTOLOGY: Omega_B tau_mem = (|a|/v)(v/a0) = |a|/a0, the speed cancels, so B is the closure rewritten and the frame does no work
+  [OK  ] alpha=2 galaxy [alternate] A: a_perp/v: residual is 0.0e+00 (zero) at e=0, rises monotonically, and reaches 0.318 = 31.8% at e=0.6 -- an order-unity error in g_bar in the DEEP regime, not a correction
+  [OK  ] alpha=2 galaxy [alternate] E: v_t/r: residual is 1.6e-16 (zero) at e=0, rises monotonically, and reaches 0.799 = 79.9% at e=0.6 -- an order-unity error in g_bar in the DEEP regime, not a correction
+  [OK  ] alpha=2 galaxy [alternate] G: |adot|/|a|: residual is 1.6e-16 (zero) at e=0, rises monotonically, and reaches 0.799 = 79.9% at e=0.6 -- an order-unity error in g_bar in the DEEP regime, not a correction
+
+    Sun, M=1 Msun, r=1 AU (NEWTONIAN)  [canonical cH_L/Z]  g_bar/a0 = 6.337e+07
+          e       A: a_perp/v          B: |a|/v          E: v_t/r     G: |adot|/|a|
+       0.00        0.0000e+00        0.0000e+00        0.0000e+00        0.0000e+00
+       0.01        0.0000e+00        0.0000e+00        0.0000e+00        0.0000e+00
+       0.05        2.2204e-16        2.2204e-16        2.2204e-16        2.2204e-16
+       0.10        2.2204e-16        2.2204e-16        2.2204e-16        2.2204e-16
+       0.20        2.2204e-16        2.2204e-16        3.3307e-16        3.3307e-16
+       0.40        2.2204e-16        2.2204e-16        8.8818e-16        8.8818e-16
+       0.60        3.3307e-16        2.2204e-16        4.3299e-15        4.3299e-15
+  [OK  ] alpha=2 Sun [canonical]: candidate B's residual is 2.2e-16 at EVERY eccentricity -- identically zero. That is not a success, it is the TAUTOLOGY: Omega_B tau_mem = (|a|/v)(v/a0) = |a|/a0, the speed cancels, so B is the closure rewritten and the frame does no work
+      -> A: a_perp/v: max residual 3.3e-16 below the 1e-11 double-precision floor for this regime (1-mu(u) = 1.11e-16): UNRESOLVED, no claim made
+      -> E: v_t/r: max residual 4.3e-15 below the 1e-11 double-precision floor for this regime (1-mu(u) = 1.11e-16): UNRESOLVED, no claim made
+      -> G: |adot|/|a|: max residual 4.3e-15 below the 1e-11 double-precision floor for this regime (1-mu(u) = 1.11e-16): UNRESOLVED, no claim made
+
+    Sun, M=1 Msun, r=1 AU (NEWTONIAN)  [alternate rho_tot/cH0]  g_bar/a0 = 5.249e+07
+          e       A: a_perp/v          B: |a|/v          E: v_t/r     G: |adot|/|a|
+       0.00        0.0000e+00        0.0000e+00        0.0000e+00        0.0000e+00
+       0.01        2.2204e-16        2.2204e-16        2.2204e-16        2.2204e-16
+       0.05        2.2204e-16        2.2204e-16        2.2204e-16        2.2204e-16
+       0.10        2.2204e-16        2.2204e-16        2.2204e-16        2.2204e-16
+       0.20        2.2204e-16        2.2204e-16        2.2204e-16        2.2204e-16
+       0.40        2.2204e-16        2.2204e-16        1.3323e-15        1.3323e-15
+       0.60        3.3307e-16        2.2204e-16        6.2172e-15        6.2172e-15
+  [OK  ] alpha=2 Sun [alternate]: candidate B's residual is 2.2e-16 at EVERY eccentricity -- identically zero. That is not a success, it is the TAUTOLOGY: Omega_B tau_mem = (|a|/v)(v/a0) = |a|/a0, the speed cancels, so B is the closure rewritten and the frame does no work
+      -> A: a_perp/v: max residual 3.3e-16 below the 1e-11 double-precision floor for this regime (1-mu(u) = 1.11e-16): UNRESOLVED, no claim made
+      -> E: v_t/r: max residual 6.2e-15 below the 1e-11 double-precision floor for this regime (1-mu(u) = 1.11e-16): UNRESOLVED, no claim made
+      -> G: |adot|/|a|: max residual 6.2e-15 below the 1e-11 double-precision floor for this regime (1-mu(u) = 1.11e-16): UNRESOLVED, no claim made
+
+--------------------------------------------------------------------------------------------------------
+  KERNEL alpha = 1  (retired)
+
+    galaxy, M=1e11 Msun, r=30 kpc (DEEP)  [canonical cH_L/Z]  g_bar/a0 = 1.655e-01
+          e       A: a_perp/v          B: |a|/v          E: v_t/r     G: |adot|/|a|
+       0.00        0.0000e+00        0.0000e+00        1.4731e-16        0.0000e+00
+       0.01        6.9799e-05        5.9418e-16        1.4040e-02        1.4040e-02
+       0.05        1.7466e-03        6.1459e-16        7.1603e-02        7.1602e-02
+       0.10        7.0076e-03        6.3978e-16        1.4567e-01        1.4567e-01
+       0.20        2.8361e-02        9.3185e-16        2.9495e-01        2.9495e-01
+       0.40        1.1841e-01        1.1818e-15        5.6792e-01        5.6790e-01
+       0.60        2.8270e-01        1.2256e-15        7.8002e-01        7.7999e-01
+  [OK  ] alpha=1 galaxy [canonical]: candidate B's residual is 1.2e-15 at EVERY eccentricity -- identically zero. That is not a success, it is the TAUTOLOGY: Omega_B tau_mem = (|a|/v)(v/a0) = |a|/a0, the speed cancels, so B is the closure rewritten and the frame does no work
+  [OK  ] alpha=1 galaxy [canonical] A: a_perp/v: residual is 0.0e+00 (zero) at e=0, rises monotonically, and reaches 0.283 = 28.3% at e=0.6 -- an order-unity error in g_bar in the DEEP regime, not a correction
+  [OK  ] alpha=1 galaxy [canonical] E: v_t/r: residual is 1.5e-16 (zero) at e=0, rises monotonically, and reaches 0.780 = 78.0% at e=0.6 -- an order-unity error in g_bar in the DEEP regime, not a correction
+  [OK  ] alpha=1 galaxy [canonical] G: |adot|/|a|: residual is 0.0e+00 (zero) at e=0, rises monotonically, and reaches 0.780 = 78.0% at e=0.6 -- an order-unity error in g_bar in the DEEP regime, not a correction
+
+    galaxy, M=1e11 Msun, r=30 kpc (DEEP)  [alternate rho_tot/cH0]  g_bar/a0 = 1.371e-01
+          e       A: a_perp/v          B: |a|/v          E: v_t/r     G: |adot|/|a|
+       0.00        1.5987e-16        1.5987e-16        0.0000e+00        1.5987e-16
+       0.01        7.3753e-05        8.0415e-16        1.4812e-02        1.4812e-02
+       0.05        1.8453e-03        8.3289e-16        7.5083e-02        7.5082e-02
+       0.10        7.4000e-03        8.6919e-16        1.5170e-01        1.5170e-01
+       0.20        2.9893e-02        9.4140e-16        3.0366e-01        3.0366e-01
+       0.40        1.2396e-01        1.5193e-15        5.7624e-01        5.7622e-01
+       0.60        2.9294e-01        1.8243e-15        7.8573e-01        7.8570e-01
+  [OK  ] alpha=1 galaxy [alternate]: candidate B's residual is 1.8e-15 at EVERY eccentricity -- identically zero. That is not a success, it is the TAUTOLOGY: Omega_B tau_mem = (|a|/v)(v/a0) = |a|/a0, the speed cancels, so B is the closure rewritten and the frame does no work
+  [OK  ] alpha=1 galaxy [alternate] A: a_perp/v: residual is 1.6e-16 (zero) at e=0, rises monotonically, and reaches 0.293 = 29.3% at e=0.6 -- an order-unity error in g_bar in the DEEP regime, not a correction
+  [OK  ] alpha=1 galaxy [alternate] E: v_t/r: residual is 0.0e+00 (zero) at e=0, rises monotonically, and reaches 0.786 = 78.6% at e=0.6 -- an order-unity error in g_bar in the DEEP regime, not a correction
+  [OK  ] alpha=1 galaxy [alternate] G: |adot|/|a|: residual is 1.6e-16 (zero) at e=0, rises monotonically, and reaches 0.786 = 78.6% at e=0.6 -- an order-unity error in g_bar in the DEEP regime, not a correction
+
+    Sun, M=1 Msun, r=1 AU (NEWTONIAN)  [canonical cH_L/Z]  g_bar/a0 = 6.337e+07
+          e       A: a_perp/v          B: |a|/v          E: v_t/r     G: |adot|/|a|
+       0.00        0.0000e+00        0.0000e+00        0.0000e+00        0.0000e+00
+       0.01        3.9457e-13        1.1102e-16        8.1291e-11        8.1291e-11
+       0.05        9.9055e-12        2.2204e-16        4.5778e-10        4.5777e-10
+       0.10        4.0141e-11        2.2204e-16        1.0607e-09        1.0606e-09
+       0.20        1.6902e-10        2.2204e-16        2.8400e-09        2.8398e-09
+       0.40        8.2438e-10        2.2204e-16        1.0308e-08        1.0306e-08
+       0.60        2.5932e-09        2.2204e-16        3.0291e-08        3.0282e-08
+  [OK  ] alpha=1 Sun [canonical]: candidate B's residual is 2.2e-16 at EVERY eccentricity -- identically zero. That is not a success, it is the TAUTOLOGY: Omega_B tau_mem = (|a|/v)(v/a0) = |a|/a0, the speed cancels, so B is the closure rewritten and the frame does no work
+  [OK  ] alpha=1 Sun [canonical] A: a_perp/v: residual is 0.0e+00 at e=0, rises monotonically to 2.593e-09 at e=0.6, and that is 0.33x the kernel's own 1-mu(u) = 7.89e-09 -- so in the NEWTONIAN regime Route B's off-circular error is suppressed exactly as the kernel demands and is invisible in the solar system. This is a validation of the residual computation, and it is reported as a PASS for Route B, not a failure
+  [OK  ] alpha=1 Sun [canonical] E: v_t/r: residual is 0.0e+00 at e=0, rises monotonically to 3.029e-08 at e=0.6, and that is 3.84x the kernel's own 1-mu(u) = 7.89e-09 -- so in the NEWTONIAN regime Route B's off-circular error is suppressed exactly as the kernel demands and is invisible in the solar system. This is a validation of the residual computation, and it is reported as a PASS for Route B, not a failure
+  [OK  ] alpha=1 Sun [canonical] G: |adot|/|a|: residual is 0.0e+00 at e=0, rises monotonically to 3.028e-08 at e=0.6, and that is 3.84x the kernel's own 1-mu(u) = 7.89e-09 -- so in the NEWTONIAN regime Route B's off-circular error is suppressed exactly as the kernel demands and is invisible in the solar system. This is a validation of the residual computation, and it is reported as a PASS for Route B, not a failure
+
+    Sun, M=1 Msun, r=1 AU (NEWTONIAN)  [alternate rho_tot/cH0]  g_bar/a0 = 5.249e+07
+          e       A: a_perp/v          B: |a|/v          E: v_t/r     G: |adot|/|a|
+       0.00        1.1102e-16        0.0000e+00        1.1102e-16        1.1102e-16
+       0.01        4.7629e-13        2.2204e-16        9.8140e-11        9.8140e-11
+       0.05        1.1959e-11        2.2204e-16        5.5266e-10        5.5265e-10
+       0.10        4.8461e-11        2.2204e-16        1.2805e-09        1.2804e-09
+       0.20        2.0406e-10        2.2204e-16        3.4287e-09        3.4284e-09
+       0.40        9.9525e-10        2.2204e-16        1.2444e-08        1.2442e-08
+       0.60        3.1306e-09        2.2204e-16        3.6570e-08        3.6558e-08
+  [OK  ] alpha=1 Sun [alternate]: candidate B's residual is 2.2e-16 at EVERY eccentricity -- identically zero. That is not a success, it is the TAUTOLOGY: Omega_B tau_mem = (|a|/v)(v/a0) = |a|/a0, the speed cancels, so B is the closure rewritten and the frame does no work
+  [OK  ] alpha=1 Sun [alternate] A: a_perp/v: residual is 1.1e-16 at e=0, rises monotonically to 3.131e-09 at e=0.6, and that is 0.33x the kernel's own 1-mu(u) = 9.53e-09 -- so in the NEWTONIAN regime Route B's off-circular error is suppressed exactly as the kernel demands and is invisible in the solar system. This is a validation of the residual computation, and it is reported as a PASS for Route B, not a failure
+  [OK  ] alpha=1 Sun [alternate] E: v_t/r: residual is 1.1e-16 at e=0, rises monotonically to 3.657e-08 at e=0.6, and that is 3.84x the kernel's own 1-mu(u) = 9.53e-09 -- so in the NEWTONIAN regime Route B's off-circular error is suppressed exactly as the kernel demands and is invisible in the solar system. This is a validation of the residual computation, and it is reported as a PASS for Route B, not a failure
+  [OK  ] alpha=1 Sun [alternate] G: |adot|/|a|: residual is 1.1e-16 at e=0, rises monotonically to 3.656e-08 at e=0.6, and that is 3.84x the kernel's own 1-mu(u) = 9.53e-09 -- so in the NEWTONIAN regime Route B's off-circular error is suppressed exactly as the kernel demands and is invisible in the solar system. This is a validation of the residual computation, and it is reported as a PASS for Route B, not a failure
+
+--------------------------------------------------------------------------------------------------------
+  THE RADIAL PATHOLOGY, quantified. Purely radial motion has v_t = 0.
+    candidate A: Omega tau = A v_t/(v a0) -> 0 ;  candidate E: v_t v/(r a0) -> 0.
+    Then Route B's law reads g_bar = |a| mu(0) = 0 for any FINITE |a|, so for g_bar > 0
+    there is NO finite solution: the required acceleration DIVERGES. Exhibited by taking
+    v_t -> 0 at fixed r and solving g_bar = A mu(A v_t/(v a0)) for A.
+         v_t/v   A_required/a0 (alpha=2)   A_closure/a0      ratio
+       1.0e+00                4.2398e-01         0.4240  1.000e+00
+       3.0e-01                7.5202e-01         0.4240  1.774e+00
+       1.0e-01                1.2918e+00         0.4240  3.047e+00
+       3.0e-02                2.3517e+00         0.4240  5.547e+00
+       1.0e-02                4.0698e+00         0.4240  9.599e+00
+       1.0e-03                1.2865e+01         0.4240  3.034e+01
+       1.0e-04                4.0682e+01         0.4240  9.595e+01
+  [OK  ] candidates A and E are FATAL on radial motion: as v_t/v falls 1 -> 1e-4 the required acceleration grows by 96x and diverges as (v_t/v)^(-1/2) in the deep regime -- a radial faller would need unbounded acceleration to feel the same g_bar. This is a genuine singularity of the prescription, not a small-parameter artefact
+
+    candidate G = |adot|/|a| CURES it: for radial infall adot is parallel to a and
+    |adot|/|a| = |A'| v_r/A != 0. But it gets the WRONG argument, and by a factor that
+    grows without bound. Deep regime A = sqrt(GM a0)/r so |A'|/A = 1/r, and energy
+    conservation from rest at r0 gives v_r^2 = 2 A r ln(r0/r), hence
+        Omega_G tau_mem = v_r^2/(r a0) = 2 (A/a0) ln(r0/r) = 2 u ln(r0/r).
+  [OK  ] symbolically: Omega_G tau_mem = log((r_0/r)**(2*sqrt(GM)/(sqrt(a_0)*r))) = 2 u ln(r0/r) exactly on deep-regime radial infall -- so G is off by the factor 2 ln(r0/r), which is 1 only at r0/r = e^(1/2) = 1.65 and grows logarithmically without bound as the faller starts further out
+          r0/r   2 ln(r0/r)  <- the factor by which G mis-states the argument
+          1.65        1.002
+          3.00        2.197
+         10.00        4.605
+        100.00        9.210
+       1000.00       13.816
+  [OK  ] the factor runs 1.00 -> 13.8 over r0/r = 1.65 -> 1e3, i.e. G is exact at one radius ratio and wrong by an order of magnitude for a faller from 1000x out. Not fatal, but not the law either -- and it costs a THIRD time derivative (jerk) in the action
+
+  ITEM 3 VERDICT, both ways. Of the four candidates: B is a tautology (v cancels, the
+  frame does nothing, and the resulting law is a LOCAL function of |xddot| -- which is
+  exactly what corrected Theorem 3 excludes from having any local action). A and E are
+  FATAL on radial motion (divergent required acceleration). G is the only non-tautological
+  candidate that survives radial motion, and it is wrong there by 2 ln(r0/r), unbounded,
+  while also failing off circles for bound orbits. NONE survives.
+
+========================================================================================================
+S6. ITEM 4 -- ghost-freedom / positivity, and the inequality Route B must close
+========================================================================================================
+  (i) WHAT THE HERGLOTZ-NEVANLINNA ARGUMENT ACTUALLY BUYS, and where it stops.
+      The corpus's positivity result is about a FIXED kernel K(z) = 1 - INT rho(s)ds/(z+s)
+      with rho >= 0: that makes K a Herglotz-Nevanlinna function, gives ||K|| <= 1 on the
+      physical domain z > 0, and makes the LINEAR response causal-retarded and passive.
+      Every one of those statements is a statement about a linear, state-INDEPENDENT map.
+      Route B makes the corner omega_c = a0/v_rel depend on the particle's own speed, so
+      the response is a NONLINEAR functional of the trajectory. Concretely: a one-parameter
+      family {K_{omega_c}} can be Herglotz member-by-member while the composite map
+      x(t) -> F[x](t) is neither linear nor passive, because passivity is a statement about
+      the map, not about the members. NOTHING in the corpus's positivity chain survives
+      the substitution automatically. That is a precise statement of what is NOT
+      established; it is not a claim that positivity fails.
+
+  (ii) THE CONCRETE TEST: the function-vs-average inequality, which is the gap Theorem 8
+       actually names -- K(<Box_u>_u) != <K(Box_u)>_u -- and it is UNTOUCHED by rescaling
+       the argument. Route B changes WHAT the argument is; the inequality is about
+       commuting K past an average. Sign it with concavity.
+       K_2(z) = sqrt(z/(1+z)) ;  K_2''(z) = (-z - 1/4)/(z**(3/2)*sqrt(z + 1)*(z**2 + 2*z + 1))
+       K_2''(z) * 4 z^(3/2) (1+z)^(5/2) = -4*z - 1   (the prefactor is > 0 on z>0)
+  [OK  ] K_2'' = -(4z+1)/[4 z^(3/2)(1+z)^(5/2)] < 0 for all z > 0: the alpha=2 kernel is STRICTLY CONCAVE on its physical domain, so by Jensen K_2(<z>) >= <K_2(z)> with equality iff z is deterministic -- i.e. iff the trajectory is SINGLE-FREQUENCY. This is Milgrom 2022 PRD 106:064060's single-frequency restriction, re-derived as a convexity statement
+  [OK  ] numerically confirmed over 16 decades: max K_2'' = -1.000e-24 < 0
+  [OK  ] the retired alpha=1 kernel is concave too (max K_1'' = -3.750e-21), so the Jensen direction is KERNEL-INDEPENDENT across both kernels the corpus has used
+
+       Now the SIZE of the gap on real orbits: z = (|a|/a0)^2, averaged over the orbit
+       with residence-time weights from the exact turning-point states.
+
+       alpha=2 [canonical cH_L/Z]  galaxy 1e11 Msun at 30 kpc
+           e          <z>      K(<z>)      <K(z)>         gap   gap/K(<z>)
+        0.00      0.17976    0.390346    0.390346  0.0000e+00   0.0000e+00
+        0.05      0.18016    0.390715    0.390363  3.5257e-04   9.0237e-04
+        0.10      0.18138    0.391832    0.390410  1.4221e-03   3.6295e-03
+        0.20      0.18651    0.396471    0.390584  5.8873e-03   1.4849e-02
+        0.40      0.21214    0.418344    0.390920  2.7424e-02   6.5553e-02
+        0.60      0.29074    0.474604    0.389208  8.5396e-02   1.7993e-01
+  [OK  ] alpha=2: the Jensen gap is 0.0e+00 (exactly zero) on the circle, is POSITIVE at every e>0 as concavity requires, rises monotonically, and reaches 17.99% at e=0.6. Route B does not shrink this by one part: the gap is set by the SPREAD of the argument over the orbit, and tau_mem = v/a0 changes the argument's value, not its dispersion
+
+       alpha=1 [canonical cH_L/Z]  galaxy 1e11 Msun at 30 kpc
+           e          <z>      K(<z>)      <K(z)>         gap   gap/K(<z>)
+        0.00      0.19289    0.376827    0.376827  0.0000e+00   0.0000e+00
+        0.05      0.19339    0.377196    0.376808  3.8804e-04   1.0288e-03
+        0.10      0.19492    0.378312    0.376748  1.5644e-03   4.1352e-03
+        0.20      0.20138    0.382945    0.376484  6.4609e-03   1.6872e-02
+        0.40      0.23415    0.404656    0.374993  2.9662e-02   7.3303e-02
+        0.60      0.33596    0.458025    0.370435  8.7590e-02   1.9123e-01
+  [OK  ] alpha=1: the Jensen gap is 0.0e+00 (exactly zero) on the circle, is POSITIVE at every e>0 as concavity requires, rises monotonically, and reaches 19.12% at e=0.6. Route B does not shrink this by one part: the gap is set by the SPREAD of the argument over the orbit, and tau_mem = v/a0 changes the argument's value, not its dispersion
+
+  (iii) THE OSTROGRADSKY COST IS INHERITED, NOT AVOIDED. The only candidate that gives the
+        closure off circles is B, whose argument is |xddot|/a0 -- literally the argument of
+        the local witness action S = INT dt m(|xdot|^2 f(|xddot|/a0) - phi). So B is not a
+        new theory; it is that action with a new interpretation, and it inherits the
+        indefinite acceleration-Hessian. Re-verified here at 50 digits (mpmath), because
+        this is a difference of large terms and a float64 scan reports thousands of
+        SPURIOUS sign flips from an O(u^3) cancellation.
+                 u          f2(u)       f2 prime      f2 second  f2p/u (transv.)  indefinite?
+           1.0e-04     0.00003333   3.333333e-01  -6.000000e-05     3.333333e+03          YES
+           1.0e-02     0.00333323   3.333033e-01  -5.998929e-03     3.333033e+01          YES
+           1.0e-01     0.03323387   3.303599e-01  -5.894298e-02     3.303599e+00          YES
+           1.0e+00     0.26641999   1.742668e-01  -1.692470e-01     1.742668e-01          YES
+           1.0e+01     0.48750267   2.003186e-03  -5.024372e-04     2.003186e-04          YES
+           1.0e+02     0.49976008   4.298392e-06  -1.189533e-07     4.298392e-08          YES
+           1.0e+04     0.49999995   8.903488e-12  -2.571046e-15     8.903488e-16          YES
+           1.0e+06     0.50000000   1.350866e-17  -3.952597e-23     1.350866e-23          YES
+  [OK  ] at 50-digit precision the alpha=2 generating function has f'' < 0 (longitudinal) and f'/u > 0 (transverse) at every u over 10 decades: the acceleration-Hessian is INDEFINITE, so omega_extra^2 < 0 and the extra modes are runaways. Candidate B inherits this in full (0.57 s e-folding at Earth, 5e7 yr at 30 kpc, |omega|/Omega_orb = 2.8 per the corpus)
+  [OK  ] Newtonian limit intact for both kernels, f(inf) = 1/2 (f2 = 0.500000000, f1 = 0.499999995) -- the control that says the generating functions are the right objects
+
+  ITEM 4 VERDICT. ESTABLISHED: (1) the corpus's Herglotz/passivity chain does not transfer
+  to a state-dependent corner, and the reason is structural (linearity is used, not
+  incidental); (2) both kernels are strictly concave on z > 0, so the function-vs-average
+  gap is POSITIVE-DEFINITE off circles and vanishes only for single-frequency trajectories;
+  (3) the gap on an e=0.6 galaxy orbit is order 1-10%, and Route B does not reduce it;
+  (4) the one candidate that reproduces the closure lands back on the local witness action
+  and its runaway modes. NOT ESTABLISHED, and not claimed: whether some nonlinear-passivity
+  notion (e.g. a state-dependent KMS/fluctuation-dissipation condition) could rescue
+  positivity. That is a real open question and this script does not settle it.
+
+========================================================================================================
+S7. ONE FALSIFIABLE CONSEQUENCE, and it lands on the FROZEN pre-registration
+========================================================================================================
+  Route B's drag level is not a philosophical choice -- it changes the wide-binary
+  prediction by orders of magnitude, which is Front A (Gaia DR4, ~Dec 2026).
+       sep   u = a/a0      v_int  v_gal/v_int  arg (barycentre)  arg (galactoc.)   mu_bary    mu_gal
+        2k    15.8744     666.8m/s          330           15.8744           5237.9   0.99802  1.000000
+        5k     2.7028     435.0m/s          506            2.7028           1366.9   0.93787  1.000000
+       10k     0.9304     360.9m/s          610            0.9304            567.1   0.68115  0.999998
+       20k     0.4141     340.5m/s          646            0.4141            267.5   0.38259  0.999993
+       30k     0.2701     336.8m/s          653            0.2701            176.4   0.26073  0.999984
+  [OK  ] in the 10-30 kAU band the two drag levels are DIFFERENT THEORIES: galactocentric gives mu = 0.999984-0.999998 (pure Newton, gamma -> 1) while barycentre-dragged gives mu = 0.2607-0.6812 (a 74% boost). The argument jumps by v_gal/v_int = 610-653x. So Route B REPRODUCES the corpus's wide-binary DC-vs-AC gate fork under a new name -- it does not resolve it. The frozen DR4 target gamma = 1.0246 (MI) belongs to the barycentre-dragged branch only; the galactocentric branch predicts gamma = 1
+  [OK  ] and the fork is SEPARATION-DEPENDENT, which is why it is testable rather than a redefinition: at 2 kAU both branches are Newtonian (mu ratio 1.0020), so the two drag levels only separate where u < 1
+  NOTE ON PROCESS: PREREGISTRATION_DR4.md is FROZEN and hash-stamped. Nothing here changes
+  a frozen target; this is a statement about which BRANCH the frozen target belongs to, and
+  if Route B were ever adopted it would need an amendment filed IN THE OPEN before DR4.
+
+========================================================================================================
+VERDICT
+========================================================================================================
+  Route B is PARTIAL, and the partition is sharp.
+  WHAT WORKS, exactly and on both footings: on a circular orbit tau_mem = v_rel/a0 delivers
+    Omega tau_mem = a/a0 identically, which is precisely the argument Theorem 8 found
+    missing, and the enumeration shows c CANNOT appear in tau_mem -- so 'the frame must be
+    locally dragged' is FORCED, not chosen. That is a genuine, if narrow, gain.
+  WHAT DOES NOT WORK.
+    * It pins nothing. The circular identity leaves a one-parameter monomial family and an
+      infinite-dimensional function family; omega_c is not measured, it is replaced by a
+      rule that is itself free off circles.
+    * The drag level is triple-locked into an impossible corner: cosmic frame excluded by
+      1.00 dex vs a 0.216 dex budget; local-matter drag excluded by 3.6-11x mis-scaling
+      of a0 per disk population; and the barycentre prescription that survives both is
+      NOT expressible as a local field, because two co-located stars in nested systems
+      need frames differing by 8-25x in speed.
+    * Off circles no candidate frequency survives: B is a tautology that lands back inside
+      corrected Theorem 3, A and E diverge on radial motion, G is unboundedly wrong there.
+    * The gap Theorem 8 names is K(<Box_u>) != <K(Box_u)>, and that is a function-vs-average
+      statement. Both kernels are strictly concave, so the gap is positive-definite off
+      circles by Jensen and is untouched by any rescaling of the argument. Route B repairs
+      the argument and leaves the inequality exactly where it was.
+  NOVELTY, assessed not asserted: the identity Omega (v/a0) = a/a0 is elementary kinematics;
+  inertia-relative-to-matter is Mach (Sciama 1953 for the standard citation); orbit-dependent
+  interpolating functions in modified inertia are Milgrom 1994 Ann.Phys. 229:384; and the
+  single-frequency restriction is Milgrom 2022 PRD 106:064060. What is not in that prior art,
+  as far as this script can tell, is the THREE-WAY DRAG LOCK of S4 and the Jensen signing of
+  S6 -- both of which are NEGATIVE results about this framework, not new physics.
+  NO DOOR IS DECLARED CLOSED. The unsettled piece is named in S6: whether a state-dependent
+  passivity/KMS condition exists at all.
+========================================================================================================

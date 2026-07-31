@@ -122,6 +122,77 @@ claims. They are not to be revived. The true position is the $a_0$ reframing abo
   is a **circular-orbit** measurement. Closure and action are the same theory there and different
   theories elsewhere. Prior art: Milgrom 1994 (Ann. Phys. 229:384) for the class, 2022 PRD 106:064060
   for single-frequency-only.
+- **⚠️ THE LOCALLY-DRAGGED FRAME — SWUNG HARD 2026-07-31 AND LARGELY CLOSED. The door named below is
+  narrower than it looked, and the reason is partly that my own framing of it was wrong.** Four
+  independent routes, 48 adversarial verifiers (three lenses per surviving claim), **39/44 verdicts
+  REFUTED**. All four routes returned PARTIAL. Scripts, all exit 0: `mi_machian_frame_routeA_2026.py`
+  (64 checks), `route_b_memory_time_2026.py` (64), `mi_hierarchy_falsifier_routeC_2026.py` (55),
+  `mi_route_d_dragged_frame_nogo_2026.py` (43).
+  **THE FRAMING ERROR, corrected.** "The missing factor is a speed, and the preferred frame supplies
+  one" **overstates it**: the framework *already* contains the object that supplies $c/v$. Theorem 1's
+  u-contracted first moment gives $z=x^2=(|a|/a_0)^2$ directly — **no** frame speed, **no** drag
+  prescription, **no** new dof. So $\tau_{\rm mem}=v_{\rm rel}/a_0$ is exact (2.55e-51 at 50 dps,
+  independently reproduced) but is a **definition restated, not a mechanism**. It **does NOT pin
+  $\omega_c$** — it trades one bounded constant for a free function plus a drag prescription, and an
+  unfixed exponent alone moves $g_{\rm bar}$ by **4.46×** at $e{=}0.6$. Any claim that this pins
+  $\omega_c$ would be false.
+  **THE ONE CONSTRUCTION RESULT (real, and it kills my axisymmetry worry).** Hypersurface-orthogonality
+  plus azimuthal periodicity makes the potential-stationary frame the **unique ZAMO**, with residual
+  rotation costing **4.8e-7 dex** of $a_0$ against a 0.2232 dex budget. ⚠️ Holds only *within* the
+  stationary axisymmetric congruence ansatz $u\sim(1,0,\Omega(R,z),0)$ — not a general proof.
+  **WHAT IT COSTS, and this is what closes it.** (i) **Carina kills it on data already in hand**:
+  predicted $\sigma\to$ **1.74 km/s** against **6.6 ± 1.2** measured = **4.05σ low**, and *p*-independent
+  (a monotone-weight lemma pins $f\ge\tfrac12$ for all $p>0$); the framework's baseline predicts 4.77 km/s
+  and fits. (ii) **Front B dissolves**: $s^{TX}$ goes 8.68e-10 (margin 1.50×) → **1.82e-17**, margin
+  7.1e7× — one of the two live gravity fronts becomes unobservable. And Route B's frame **flips the
+  frozen $s^{TX}$ sign** ($n_X$: −0.971 → +0.4941; the galactic-rotation apex is 131.5° from the Planck
+  CMB apex). (iii) **It does not open the pincer**: Thm 3 still forbids all local $L$; Thm 8's mismatch
+  is repaired *only on circles*, failing by 0.78–3.13× at $e{=}0.6$. (iv) RAR universality is **not** fully
+  restored — worst corner injects 0.227–0.383 dex vs the 0.2232 budget (**1.72× over**, 2 of 9 cells
+  fail); it converts a uniform 5× failure into a corner-dependent one.
+  **ROUTE D's AIRTIGHT LEG:** exact co-motion requires $-\kappa_d\rho(x)=3$ **pointwise**, impossible for
+  one global coupling on a varying profile. Solar-system ranging caps frame vorticity at **1/25** of the
+  Milky Way's measured Oort vorticity (killing co-moving drag); the only construction meeting that cap
+  for free is a potential flow leaving **84% of 135 real SPARC galaxies at >90% the cosmic frame**.
+  ⚠️ Self-demoted: that bound derives from the *local witness action*, which is Ostrogradsky-unstable
+  (above). **And I was wrong about which obstruction would close it** — I bet on passivity; passivity
+  **survived** ($c_1=c_4$ gives zero propagating modes with spatial gradients intact). 2 of 6
+  obstructions died. **A gravitomagnetic vector-drag corner at ~1e2 kpc is NOT closed**, nor is a frame
+  sourced by the framework's own ghost-condensate Q-mode rather than baryons.
+  **NOT closed, NOT a derivation of $a_0$, and $\kappa=\tfrac12$ still fitted.** Prior art: Mach;
+  Sciama 1953; Milgrom 1994 already requires a definition of absolute acceleration for modified inertia.
+  The Machian idea is **not** novel here.
+- **⚠️⚠️ TWO DEFECTS FOUND INSIDE THE FROZEN DR4 PRE-REGISTRATION — AMENDMENT 4 FILED IN THE OPEN
+  2026-07-31.** `mi_prereg_gext_argument_audit_2026.py`, 16 structural checks, exit 0; freeze manifest
+  re-verified, all 5 pipeline hashes **unchanged**.
+  **(1) The amendments feed ν the OBSERVED external field, not the Newtonian one.** ν takes
+  $y=g_{\rm bar}/a_0$ *by construction* (sympy residual 0). Amendments 2 and 3 evaluate ν and
+  $d(\nu g)/dg$ at $g_{\rm ext,obs}/a_0=1.8996$. Demonstrated, not asserted: the observed argument
+  reproduces the frozen table to **3.3e-5** (A3) and **7.9e-4** (A2), the Newtonian argument misses by
+  **1.1e-2** and **2.8e-2** — a **330× discrimination**, with a negative control (a deliberately wrong
+  argument misses by 8.6e-2). **§1.1 already publishes the right quantity, `y_extN`, and §3's gate shape
+  uses it — the amendments bypassed it.** ⚠️ **Same bug class as the forest chain (§5.1).**
+  **(2) `y_extN` = 1.4647/1.1513 are the α=1 inversions** (confirmed to 4.3e-4/3.2e-4) and are **stale**
+  under the α=2 kernel in force, where they are **1.6809/1.3280**.
+  **CORRECTED (Amendment 4):** orientation-averaged γ_v 1.0246 → **1.0310**; full range 1.0182–1.0350 →
+  **1.0218–1.0472**; γ∥ 0.9669 → **0.9636**; γ⊥ 1.0523 → **1.0631**.
+  **BOTH Amendment 3 conclusions SURVIVE** (computed): still below the frozen band edge 1.05 on **4/4**
+  combinations, and γ∥ still sub-Newtonian on **4/4** (0.9592–0.9688). Shift is 88×–716× the 4.1e-5
+  reproduction tolerance — real, but too small to flip any pre-registered PASS/FAIL.
+  **⭐ THE ERROR RAN AGAINST THE FRAMEWORK:** on every footing and both kernels the as-frozen numbers are
+  **more Newtonian** than the corrected ones (|γ−1| = 0.0246 vs 0.0310), i.e. it made the wide-binary
+  anomaly look *less* detectable. It manufactured a **deficit**, not a win.
+  **⚠️ STILL OWED:** Amendment 3's **framework-as-MG row (1.0473–1.0885)** plausibly carries the same
+  argument error and is **not** corrected; the **§2 s^TX Door-4B** numbers were not examined at all.
+  Neither may be assumed sound.
+- **⚠️ THE DR4 WIDE-BINARY AGGREGATE IS STRUCTURALLY DEAD as a hierarchy discriminator** — frozen
+  $\sigma_{\rm sys}=0.02$ caps the γ_v separation at **0.91σ at INFINITE N**, not a sample-size problem.
+  The better near-term handle is a **3.20–3.61× median dwarf-spheroidal dispersion deficit on archival
+  data**, but this is a **LEAD, NOT A RESULT**: it uses $|a|=\sigma^2/R_h$ with no virial coefficient and
+  $v_c=220$ km/s for every satellite (real orbits span ~50–350 km/s), and §5.4 already records dSph
+  $\Upsilon_V$ systematics as coherent and dominant (0.322 dex = 8.7× the signal on the related test).
+  Route C also found and fixed the **same Newtonian-vs-observed bug in its own first draft**, which had
+  been understating this deficit by ~2×.
 - **⭐ AND IT NAMES A DOOR, WITH ITS LOCK.** $u=w\,(v/c)$ **exactly** — so what Theorem 8 found missing
   is a **speed**, and the $|\dot x|^2$ prefactor is exactly how the local action supplies it. A speed is
   not an invariant of a lone worldline, which is *why* the covariant operator route failed; but this

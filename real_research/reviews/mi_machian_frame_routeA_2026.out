@@ -1,0 +1,403 @@
+mi_machian_frame_routeA_2026.py -- ROUTE A: the POTENTIAL-STATIONARY (Machian) passive frame.
+
+THE PROPOSAL UNDER TEST (Carl's, 2026-07-31; it is NOT assumed correct here):
+    u^mu is the local timelike direction along which the LOCAL BARYONIC GRAVITATIONAL FIELD is
+    stationary: L_u Phi = 0 (equivalently L_u g = 0 in the stationary case).
+Motive: Theorem 8's obstruction is that the nonlocal action's kernel argument is w = c*Omega/a0 while
+the law's is x = |a|/a0, and w/x = c/v EXACTLY. The missing factor is a SPEED. A lone worldline has no
+speed; a PASSIVE PREFERRED FRAME supplies one. The already-computed LOCK: if that speed were relative
+to the COSMIC (CMB) frame, a0_eff would inherit each galaxy's peculiar velocity -- ~1.0 dex against a
+total a0 budget of 2*sigma_RAR. So the frame must be LOCALLY DRAGGED. Route A asks whether the
+potential-stationary prescription is (1) well defined, (2) non-collapsing, (3) a0-preserving,
+(4) consistent with the observed non-rotation of the local inertial frame, (5) RAR-restoring, and
+(6) compatible with equivalence-principle / conservation bounds.
+
+THE MASTER FORMULA used throughout, derived and symbolically checked in S0:
+    a0_eff / a0  =  v_orb / v_rel          (circular orbits, exact)
+where v_orb = |a|/Omega is the orbital speed and v_rel is the body's speed relative to u.
+So the whole route reduces to: WHAT IS v_rel?
+
+KERNEL IN FORCE: alpha = 2, mu_2(x) = x/sqrt(1+x^2). Closure g_bar = A*mu(A/a0) inverts in closed form
+    A^2 = (g_bar^2/2)*(1 + sqrt(1 + 4 a0^2/g_bar^2)).
+BOTH FOOTINGS carried on every dimensional number: a0 = 9.36e-11 (canonical rho_DE) and 1.13e-10 (alt).
+
+PRIOR ART, stated so nothing is claimed as new that is not: Mach; Sciama 1953 (inertia relative to
+matter); Milgrom 1994 Ann.Phys. 229:384 (modified inertia NEEDS a definition of absolute acceleration --
+he says so explicitly, and orbit-dependent interpolating functions follow); Milgrom astro-ph/0510117
+(virial); Milgrom 2022 PRD 106:064060 (Fourier-space MI, algebraic only at single frequency).
+The Machian IDEA is ancient. What is assessed here is the SPECIFIC prescription and its consequences.
+
+Exit non-zero on any failed internal check. No hard-coded verdicts; every check is an identity, a limit,
+a sign, a monotonicity or a scaling. mpmath at 50 dps wherever a difference of nearly-equal numbers is
+load-bearing (flagged inline).
+
+
+========================================================================================================
+S0. THE MASTER FORMULA a0_eff/a0 = v_orb/v_rel -- derived symbolically, not assumed
+========================================================================================================
+  [OK  ] Theorem 8 reproduced symbolically: w/x = c/v exactly, identically in Omega, v and a0
+  [OK  ] the c cancels: w_A = Omega*v_rel/a0 (no c left)
+  [OK  ] if v_rel = v_orb the repair is EXACT on circles -- Theorem 8's c/v gap closes identically
+  [OK  ] a0_eff = a0 * v_orb/v_rel exactly (sympy: a_0*v/v_rel)
+  [OK  ] v_rel -> 0 (a co-moving/velocity-dragged frame) DIVERGES a0_eff -- catastrophic, not small
+  [OK  ] v_rel -> infinity kills a0_eff -> 0, i.e. restores Newton -- the other failure mode
+  [OK  ] the alpha=2 closure is g_bar = A**2/sqrt(A**2 + a_0**2), which squares EXACTLY to the biquadratic A^4 - g^2 A^2 - g^2 a0^2 = 0
+  [OK  ] the closed form A^2 = (g^2/2)(1+sqrt(1+4a0^2/g^2)) solves that biquadratic EXACTLY
+  [OK  ] and it is the RIGHT branch: max relative residual of the closure over g_bar spanning 20 decades = 2.67e-51 at 50 dps
+  [OK  ] negative control: the retired alpha=1 inversion does NOT solve the alpha=2 closure
+
+========================================================================================================
+S1. WELL-DEFINEDNESS: does the potential-stationary u exist, and is it unique?
+========================================================================================================
+
+  S1a. The rigid-rotation degeneracy Carl flagged -- CONFIRMED, exactly as stated.
+  [OK  ] L_u Phi = 0 holds IDENTICALLY for ARBITRARY Omega_f on any static axisymmetric Phi: the potential-stationarity condition alone leaves a 1-parameter rigid-rotation degeneracy
+  [OK  ] negative control: with an m=2 bar, Omega_f = 0 still works but generic Omega_f does NOT -- so the degeneracy is a property of axisymmetry, not of the definition
+
+  S1b. Pointwise degeneracy count for a GENERIC time-dependent Phi (the worse obstruction).
+  [OK  ] L_u Phi = 0 is 1 equation on 3 components of the frame velocity => solution space is 2-dimensional at EVERY point (nullspace dim = 2 in 200/200 random draws). The scalar condition ALONE is far more degenerate than the axisymmetric Omega_f: any frame velocity tangent to the local equipotential works
+
+  S1c. Does IRROTATIONALITY / hypersurface-orthogonality kill Omega_f? (flat space first)
+  [OK  ] curl of the rigid frame field = 2*Omega_f zhat exactly -- vanishes IFF Omega_f = 0
+  [OK  ] Frobenius 3-form component T_[t R phi] = -2*Omega_f*R -- exactly -2 R Omega_f
+  [OK  ] so in flat space HSO forces Omega_f = 0 UNIQUELY -- and HSO is the SAME condition the framework already needs to kill vector modes and keep u PASSIVE (not an extra assumption)
+
+  S1d. With a ROTATING source (g_tphi != 0) the answer changes: the HSO solution is the ZAMO.
+  [OK  ] general stationary-axisymmetric Frobenius: T_[t R phi] = A d_R B - B d_R A = A^2 d_R(B/A), so HSO <=> B/A = const == -k
+  [OK  ] the k=0 branch is the ZAMO: Omega = -g_tphi/g_phiphi = -g_tphi(R, z)/g_phiphi(R, z)
+  [OK  ] a 1-parameter family of HSO congruences DOES exist, Omega(k) = (-k*g_tt(R, z) - g_tphi(R, z))/(k*g_tphi(R, z) + g_phiphi(R, z)); k=0 recovers the ZAMO
+  [OK  ] but the k-leaves are t = k*phi + const, and phi -> phi + 2pi shifts t by 2*pi*k: the time function is MULTIVALUED unless k = 0. AZIMUTHAL PERIODICITY therefore fixes k = 0 and the frame is UNIQUE = the ZAMO. This is the load-bearing uniqueness argument
+      SCOPE, stated so it is not overread: this uniqueness is WITHIN the stationary
+      axisymmetric congruence ansatz u^mu ~ (1, 0, Omega(R,z), 0). S1b already showed the
+      bare scalar condition is 2-parameter degenerate pointwise, so uniqueness is bought by
+      the ansatz + HSO + periodicity together, NOT by potential-stationarity alone.
+  [OK  ] weak-field equatorial g_tphi = -2GJ/(c^2 R), g_phiphi = R^2 => Omega_ZAMO = 1.33486e-10*J/(R**3*c**2) = the standard Lense-Thirring dragging rate (quantified in S4)
+
+  S1e. QUANTIFIED: what the residual freedom would do to the RAR if it were NOT removed.
+   Omega_f / Omega_orb  v_rel/v_orb    a0_eff/a0  |dlog a0| dex
+                     0            1            1              0
+                 1e-06     0.999999            1    4.34295e-07
+                 0.001        0.999        1.001    0.000434512
+                   0.1          0.9      1.11111      0.0457575
+                   0.5          0.5            2        0.30103
+                   0.9          0.1           10              1
+                  0.99         0.01          100              2
+  [OK  ] if Omega_f were free the induced a0 spread is UNBOUNDED (diverges at Omega_f = Omega_orb). It exceeds the 0.2232 dex budget for Omega_f/Omega > 0.402 -- NOT already at 0.1, where it is only 0.0458 dex (an earlier draft of this line overstated it and is corrected here). Since Omega_f is a FREE FUNCTION with no reason to sit below 0.402, the degeneracy WOULD be fatal; removing it is not cosmetic
+
+========================================================================================================
+S2. THE COLLAPSE TEST: potential-stationary vs velocity-dragged, at the Sun
+========================================================================================================
+  Definition (1) POTENTIAL-stationary: u = ZAMO of the Galaxy's own field (S1) -> the frame
+      does NOT co-rotate, so a disc star's frame-relative speed is its FULL orbital speed.
+  Definition (2) VELOCITY-dragged: u = local mean matter 4-velocity (the LSR / the gas flow).
+
+  case                                v_rel [km/s]    a0_eff/a0 |dlog a0| dex  g_obs ratio
+  (1) potential-stationary (ZAMO)          233.000            1             0            1
+  (2) dragged: Sun vs LSR                   18.044        12.91         1.111        3.593
+  (2) dragged: cold HI (sigma=8)             8.000        29.12         1.464        5.397
+  (2) dragged: ideal circular gas            0.000          inf           inf          inf
+  [OK  ] v_rel ratio between the two definitions at the Sun = 12.91x (stars, Schoenrich LSR) -- the two prescriptions are NOT small perturbations of each other
+  [OK  ] and 29.1x for cold HI (sigma = 8 km/s), the tracer the outer RAR is measured on
+  [OK  ] BOTH exceed the a0 budget 0.2232 dex (1.111 and 1.464 dex) => definition (2) is excluded by the framework's own RAR
+
+  The collapse is a DIVERGENCE, not a suppression -- solve the closure at a0_eff:
+  footing                    g_bar       A(a0)    A(29 a0)  v_c boost
+  canonical rho_DE      1.9727e-10  2.1514e-10  7.4673e-10     1.8630
+  [OK  ] [canonical rho_DE] a velocity-dragged frame INFLATES the required acceleration by 3.47x at the solar radius (rotation speed up 1.86x) -- the sign of the failure is divergence: a0_eff -> inf as v_rel -> 0
+  alt rho_total         1.9046e-10  2.1514e-10  8.0326e-10     1.9323
+  [OK  ] [alt rho_total] a velocity-dragged frame INFLATES the required acceleration by 3.73x at the solar radius (rotation speed up 1.93x) -- the sign of the failure is divergence: a0_eff -> inf as v_rel -> 0
+
+  INDEPENDENT empirical kill of definition (2), no MOND input at all:
+      a frame co-rotating with the local matter would rotate at Omega_gal = 9.2333e-16 rad/s = 6.010 mas/yr
+  [OK  ] Omega_gal = 6.010 mas/yr. The local inertial frame is observed NOT to rotate at anything like this level (quasar-vs-dynamical frame ties are at or below the mas/yr level; ORDER-OF-MAGNITUDE literature statement, NOT verified here from a primary source). Definition (2) is therefore excluded twice over
+
+========================================================================================================
+S3. IS a0 = c H_Lambda / Z PRESERVED when u is boosted relative to comoving?
+========================================================================================================
+  Carl's expectation was O(v^2/c^2) ~ 1e-6 and harmless. The answer is BETTER than that:
+  for a GEODESIC observer the shift is EXACTLY zero, by dS invariance. Both shown.
+
+  S3a. The boost is an ISOMETRY of dS (embedding-space check, symbolic).
+  [OK  ] L^T eta L = eta exactly => the boost is in SO(4,1) = the dS isometry group, so it maps the hyperboloid X.X = 1/H^2 to itself and maps geodesics to geodesics
+  [OK  ] the Gibbons-Hawking temperature T = H/2pi depends on H alone, and H is the invariant radius of the hyperboloid; Bunch-Davies is dS-invariant => EVERY geodesic observer sees the SAME T. a0 = c H_Lambda/Z is therefore boost-invariant EXACTLY, not to O(v^2/c^2)
+
+  S3b. A constant-comoving-momentum (i.e. boosted) worldline in dS is GEODESIC: proper
+       acceleration identically zero, so the dS-Unruh T = sqrt(H^2 + a_prop^2/c^2)/2pi is
+       unshifted. Checked by explicit 4-acceleration, 1+1 dS (a = e^{Ht}).
+  [OK  ] 4-acceleration of the boosted (constant-p) dS worldline is EXACTLY zero in both components => it is a geodesic => T = H/2pi with no correction of any order in beta
+  [OK  ] control: comoving (p=0) is the p->0 limit of the same family, also geodesic (consistency)
+
+  S3c. The PESSIMISTIC alternative -- treat the boost as a naive Doppler shift of a fixed
+       bath (i.e. pretend dS invariance fails completely). mpmath 50 dps because gamma-1 is
+       a difference of nearly-equal numbers.
+  v_drag [km/s]        beta       gamma-1   dex(gamma)  dipole beta dex   vs budget
+          100.0  3.3356e-04    5.5633e-08   2.4161e-08       1.4484e-04      1541.0x
+          300.0  1.0007e-03    5.0069e-07   2.1745e-07       4.3438e-04       513.8x
+          620.0  2.0681e-03    2.1385e-06   9.2875e-07       8.9724e-04       248.8x
+         1000.0  3.3356e-03    5.5633e-06   2.4161e-06       1.4462e-03       154.3x
+  [OK  ] even the maximally pessimistic DIPOLE estimate (linear in beta, v = 1000 km/s) gives 1.446e-03 dex, 154x inside the 0.2232 dex budget. So item 3 is safe on BOTH readings: exactly zero if dS invariance is used, and still negligible if it is thrown away
+
+  Both footings, absolute size of the pessimistic shift in a0:
+      canonical rho_DE     a0 = 9.3600e-11  ->  delta a0 (dipole, 620 km/s) = 1.9357e-13 m/s^2
+      alt rho_total        a0 = 1.1300e-10  ->  delta a0 (dipole, 620 km/s) = 2.3370e-13 m/s^2
+  [OK  ] absolute pessimistic shift < 1e-12 m/s^2 on both footings -- five orders below the cluster-scale discrepancies the corpus already carries
+
+========================================================================================================
+S4. LENSE-THIRRING SANITY: how fast does the Machian (ZAMO) frame actually rotate?
+========================================================================================================
+  R0 = 8.178 kpc, v0 = 233.0 km/s -> Omega_gal = 9.23333e-16 rad/s = 6.010 mas/yr, g_obs = 2.15137e-10 m/s^2
+
+  Omega_ZAMO = 2GJ/(c^2 R^3) with J = k M_bar R v  =>  Omega_ZAMO/Omega_gal = 2k G M_bar/(c^2 R)
+  and G M_bar = g_bar R^2 by definition, so the ratio = 2 k g_bar R / c^2 -- NO mass needed.
+
+  footing                    g_bar     k   Om_LT/Om_gal  Om_LT [mas/yr]  |dlog a0| dex
+  canonical rho_DE      1.9727e-10  0.50    5.53894e-07      3.3290e-06     2.4055e-07
+  canonical rho_DE      1.9727e-10  1.00    1.10779e-06      6.6580e-06     4.8111e-07
+  alt rho_total         1.9046e-10  0.50    5.34767e-07      3.2140e-06     2.3225e-07
+  alt rho_total         1.9046e-10  1.00    1.06953e-06      6.4281e-06     4.6449e-07
+
+      as-if-DM variant (use g_obs, i.e. the full dynamical mass): Om_LT/Om_gal = 6.0405e-07
+  [OK  ] Omega_ZAMO/Omega_gal = O(v^2/c^2) ~ 5-6e-7 on every variant; induced a0 error 4.811e-07 dex, 4.64e+05x inside budget. The Machian frame is NON-ROTATING to a part in ~1.7e6 -- CONFIRMED, and consistent with the observed non-co-rotation
+  [OK  ] the as-if-DM variant is the same order (6.040e-07) -- the conclusion is not sensitive to whether the source mass is baryonic or dynamical
+  [OK  ] structural: Om_LT/Om_gal = 2k v^2/c^2 exactly in the Newtonian limit -- it is a post-Newtonian quantity and cannot be anything but tiny for a v = 233 km/s system
+
+  RADIAL PROFILE of the residual (item 5's core): the ZAMO gives v_rel = v_orb - Om_LT R,
+  so the a0 error is Om_LT/Omega = 2k g_bar R/c^2. With g_bar ~ 1/R^2 outside the disc this
+  FALLS outward -- i.e. it is smallest exactly where the deep-MOND RAR data live.
+    R [kpc]       g_bar     Om_LT/Om  |dlog a0| dex
+      2.000  3.2984e-09  2.26487e-06     9.8362e-07
+      8.178  1.9727e-10  5.53894e-07     2.4055e-07
+     15.000  5.8638e-11  3.01983e-07     1.3115e-07
+     30.000  1.4660e-11  1.50992e-07     6.5575e-08
+  [OK  ] strictly DECREASING outward (2.265e-06 at 2 kpc -> 1.510e-07 at 30 kpc), and the largest value anywhere is 2.265e-06 => the ZAMO residual can never touch the RAR at any radius. v_rel = v_orb to a part in ~4.42e+05
+
+========================================================================================================
+S5. DOES ROUTE A RESTORE RAR UNIVERSALITY? -- and what residual does it inject?
+========================================================================================================
+
+  S5a. The COSMIC-frame liability, re-derived from the master formula (population spread).
+      peculiar-speed 5-95 span            : 179 - 839 km/s
+      log10(a0_eff/a0) 5-95 span          : -1.223 .. -0.109 dex (width 1.114 dex)
+      RMS |dlog a0|                       : 0.756 dex
+  [OK  ] cosmic frame: induced a0 spread width 1.114 dex vs budget 0.2232 dex = 4.99x OVER. Reproduces the banked lock (~1.0 dex vs 0.216, 4.6x) on the alpha=2 numbers and from an explicit distribution rather than an assertion
+
+  S5b. A SHARPER kill of the cosmic frame that the corpus did NOT have: the INTRA-GALAXY
+       DIPOLE. v_rel varies around the orbit, so a0_eff does, so the rotation curve is
+       asymmetric between the approaching and receding sides. v_c ~ a0_eff^{1/4} (deep).
+    v_orb   V_pec  a0_eff ratio  v_c asymmetry
+      100     100           inf           inf%
+      100     300             2          18.9%
+      100     620         1.385           8.5%
+      150     100             5          49.5%
+      150     300             3          31.6%
+      150     620         1.638          13.1%
+      220     100         2.667          27.8%
+      220     300           6.5          59.7%
+      220     620           2.1          20.4%
+      threshold provenance: 5% is used as a generous upper bound on TYPICAL observed
+      approaching/receding rotation-curve asymmetry in disc galaxies (a few per cent).
+  [OK  ] every cell gives a >8% approaching/receding rotation-curve asymmetry (median 28%), against observed RC asymmetries of a few per cent. This is a sharper and more local kill of a cosmic-frame speed than the population scatter argument, and it is INTERNAL: v_rel is not even constant on a circle, so the cosmic-frame version has no circular solution at all
+
+  S5c. Route A's own residual: a galaxy is NOT perfectly isolated. The frame must
+       interpolate between the galaxy's field and the external one, and the external field
+       is at rest in a frame moving at -V_pec. Field-weighted regularisation, weight ~ g^p.
+       p IS NOT DERIVED -- it must come from the (unwritten) nonlocal action. Spread shown.
+  g_ext/g_int    p  v_frame [km/s]   mean dex  dipole dex   RC asym
+        0.030  0.5           44.29     0.0198      0.1322     16.4%
+        0.030  1.0            8.74     0.0007      0.0253      3.0%
+        0.030  2.0            0.27     0.0000      0.0008      0.1%
+        0.100  0.5           72.08     0.0570      0.2274     29.9%
+        0.100  1.0           27.27     0.0073      0.0799      9.6%
+        0.100  2.0            2.97     0.0001      0.0086      1.0%
+        0.300  0.5          106.17     0.1509      0.3834     55.5%
+        0.300  1.0           69.23     0.0520      0.2168     28.4%
+        0.300  2.0           24.77     0.0060      0.0724      8.7%
+  [OK  ] the SOFT end of the prescription range (0.0008 dex) sits 286x inside the 0.2232 dex budget: Route A CAN remove the peculiar-velocity liability
+  [OK  ] but the HARD end (0.3834 dex) is 1.72x OVER the budget. 7/9 of the (g_ext/g_int, p) cells fit; the failures are all at p = 1/2 with g_ext/g_int >= 0.1. So the removal is PRESCRIPTION-HOSTAGE over a factor 491 in dex and is NOT automatic: Route A converts a uniformly 5x-over-budget liability into one that fits for p >~ 1 and still fails for p = 1/2 in group environments. The exponent p is NOT supplied by the theory -- it must come from the unwritten action
+
+      => falsifiable side-prediction: RAR residuals should correlate with BOTH g_ext AND
+         the host's own peculiar velocity, with an accompanying RC dipole aligned with
+         V_pec (not with g_ext -- that is Front C's dipole). Two distinguishable directions.
+
+  S5d. A NEW BOUND ON omega_c falls out (the corpus had omega_c FREE in [1/17.5Gyr, 1/1Myr]).
+       The kernel is nonlocal with memory tau = 1/omega_c; over that window the external
+       field changes the frame's velocity by dv ~ g_ext * tau, so dv/v_orb must fit budget.
+  footing                    g_ext      tau_max   omega_c,min   vs banked slow edge
+  canonical rho_DE      2.8080e-12       1.137G    2.7863e-17                 15.4x
+  canonical rho_DE      9.3600e-12       0.341G    9.2876e-17                 51.3x
+  alt rho_total         3.3900e-12       0.942G    3.3638e-17                 18.6x
+  alt rho_total         1.1300e-11       0.283G    1.1213e-16                 61.9x
+  [OK  ] the RAR budget caps the memory time at tau < 1.14 Gyr (canonical, g_ext = 0.03 a0), i.e. omega_c > 1/1.14 Gyr -- which TIGHTENS the banked slow edge (1/17.5 Gyr) by 15.4x. New, and it runs FOR the framework: it removes the 'raw dS correlator' candidate that the completion doc listed as door-killing
+  [OK  ] and it does NOT reach the fast edge (1 Myr), so omega_c stays FREE-but-BOUNDED in a range narrowed at one end only -- no pin is claimed
+
+      HONESTY GUARD on that bound: dv = g_ext*tau cannot grow without limit -- the galaxy is
+      on an ORBIT in its group, so dv saturates at the group velocity (~300 km/s). Without
+      this cap the bound would be overstated. Re-check the banked slow edge WITH the cap:
+      tau = 17.5 Gyr -> dv = 1551 km/s uncapped, 300 km/s capped -> 0.4771 dex = 2.14x budget
+  [OK  ] the 17.5 Gyr candidate is STILL excluded (2.14x over) even with the cap, and the bound's own location tau = 1.14 Gyr sits BELOW saturation (dv = 101 < 300 km/s), so the number is not an artefact of the linear-accumulation assumption
+
+      RANGE of the bound over g_ext = 0.03-0.10 a0: tau < 0.34-1.14 Gyr. The door-relevant Milgrom-1994 postulate value 1/om_int = 0.4 Gyr
+      lies INSIDE that range. So the RAR budget PERMITS the postulated scale and EXCLUDES
+      the bath-native 17.5 Gyr one. That is a narrowing, NOT a derivation of omega_c.
+  [OK  ] stated as a bracket, not a pin: 0.34 < 0.40 < 1.14 Gyr
+
+  S5e. What Route A does NOT fix: the OFF-CIRCULAR closure. The repair needs |a| = Omega*v;
+       on a Kepler ellipse that fails, and by how much is computable.
+  [OK  ] |a|/(Omega |v|) = 1 EXACTLY at e = 0 (both ends) -- circles are why the repair is exact there
+      e  |a|/(Om v) peri        apo   peri/apo
+   0.00           1.0000     1.0000     1.0000
+   0.01           1.0102     0.9901     1.0202
+   0.10           1.1167     0.9137     1.2222
+   0.30           1.4975     0.8064     1.8571
+   0.60           3.1250     0.7812     4.0000
+   0.90          22.9416     1.2075    19.0000
+  [OK  ] at e = 0.6 the pericentre mismatch is 3.125x -- the same order as the banked off-circular residual 2.7 at e = 0.6 (mi_offcircular_action_2026). Route A supplies the SPEED that Theorem 8 found missing on CIRCLES; it does not supply the off-circular time-weighting, which stays free. Reported as a limit of the route, not swept up
+
+========================================================================================================
+S6. EQUIVALENCE PRINCIPLE, MOMENTUM CONSERVATION, and what existing bounds actually reach
+========================================================================================================
+
+  S6a. WEP (composition independence): a0_eff = a0 v_orb/v_rel is purely KINEMATIC.
+  [OK  ] d a0_eff/d(mass) = d a0_eff/d(composition) = 0 identically => WEP / universality of free fall is preserved EXACTLY. Route A cannot be attacked by Eotvos-type experiments
+
+  S6b. NEWTON'S THIRD LAW in an EXTERNAL frame -- I expected a violation and did not find one.
+       Setup: unequal-mass pair whose frame-relative speed is dominated by the COM motion
+       v_f, so each body's OWN orbital speed v_i = (m_j/M) v_orb sets its a0_eff.
+  [OK  ] the DIMENSIONLESS closure argument a0_eff,i/g_bar,i is IDENTICAL for the two bodies (both equal kappa r^2/G) -- because a0_eff,i ~ m_j and g_bar,i ~ m_j, the same factor
+  [OK  ] therefore m_1 A_1 - m_2 A_2 = 0 EXACTLY, for ARBITRARY closure function F: momentum is conserved in the two-body case even with the frame set by an external field. This is a structural cancellation, not a numerical accident -- and it removes a liability I expected
+  [OK  ] negative control: a body-independent a0_eff (the ordinary MI prescription) does NOT satisfy the same identity, so the check has real content and is not a tautology
+       CAVEAT, stated: this is the TWO-body result. Three-body and internally structured
+       cases are NOT tested here and no claim is made about them.
+
+  S6c. Do the TIGHT momentum-conservation / preferred-frame bounds reach the effect?
+       Every one of them lives at a >> a0, where the alpha=2 closure gives A - g_bar =
+       a0^2/(2 g_bar), i.e. suppression (a0/g)^2. mpmath: these are tiny differences.
+  system                        g_bar [m/s^2]        g/a0       (A-g)/g
+  PSR B1913+16 (rel. accel)        9.8726e+01  1.0548e+12    4.4942e-25
+  Earth-Moon (LLR)                 2.6975e-03  2.8819e+07    6.0201e-16
+  Earth-Sun (ephemeris)            5.9316e-03  6.3372e+07    1.2450e-16
+  Saturn-Sun (Cassini)             6.4631e-05  6.9050e+05    1.0487e-12
+  solar-radius Galaxy              1.9726e-10  2.1075e+00    9.0556e-02
+  [OK  ] at PSR B1913+16 the fractional MI correction is 4.494e-25 -- 1e-24-ish. The pulsar alpha_3 (~4e-20) and zeta_2 (~4e-5) momentum-conservation bounds therefore do NOT reach the effect by ~4-20 orders. Honest reading: Route A's conservation structure is UNCONSTRAINED by existing bounds, not VALIDATED by them
+  [OK  ] monotonicity: the suppression is strictly worse at higher acceleration, so the ORDERING of which systems can test this is fixed by the closure, not chosen
+
+  S6d. THE BILL. A locally dragged frame changes the preferred-frame VELOCITY that the
+       framework's own SME prediction (Front B) is built on. stx_target.py says verbatim:
+       'Preferred frame = the cosmic (CMB) rest frame', with v = 369.82 km/s.
+       But at 1 AU the LOCAL baryonic field is the SUN's: 5.932e-03 vs the Galaxy's 1.973e-10 = 3.01e+07x.
+       The Sun's field dominates out to r_cross = sqrt(GM_sun/g_gal) = 5.48 kAU.
+       cosmic frame (banked)            v =  3.6982e+05 m/s -> s^TX =  8.680e-10, margin =  1.498e+00x   [Front B as frozen]
+       Galactic ZAMO (frame = Galaxy)   v =  2.3300e+05 m/s -> s^TX =  5.469e-10, margin =  2.377e+00x   [upper edge of Route A]
+       field-weighted p = 1             v =  7.7486e-03 m/s -> s^TX =  1.819e-17, margin =  7.148e+07x   [Route A's own prescription]
+       field-weighted p = 2             v =  2.5769e-10 m/s -> s^TX =  6.048e-25, margin =  2.149e+15x   [steeper weighting]
+  [OK  ] upper edge (frame = Galactic ZAMO): s^TX -> 5.469e-10, margin 2.38x rather than the frozen 1.50x -- Front B survives but weakens
+  [OK  ] Route A's OWN prescription (p = 1) puts the local frame at v = 7.75e-03 m/s, so s^TX = 1.819e-17 and the margin becomes 7.15e+07x -- 4.77e+07x below the frozen prediction. FRONT B DOES NOT LITERALLY GO TO ZERO, it goes UNOBSERVABLE: no detection and no falsifier. Reported as the honest number rather than 'zero'. This is a real cost, on a live front, not a footnote
+  [OK  ] monotone in the weighting exponent, so the ORDERING of the cost is prescription-independent even though its size is not: every locally-dragged variant weakens Front B
+
+========================================================================================================
+S7. THE CONSEQUENCE ROUTE A CANNOT AVOID: wide binaries, and the FROZEN pre-registration
+========================================================================================================
+  Route A's frame at separation r is set by whichever baryonic field dominates: the binary's
+  own, or the Galaxy's. Crossover r_cross = sqrt(GM/g_ext); MOND radius r_M = sqrt(GM/a0).
+  footing                g_ext(R0)  r_cross [kAU]   r_M [kAU]  r_cross/r_M
+  canonical rho_DE      1.9727e-10          6.716       9.750       0.6888
+  [OK  ] [canonical rho_DE] r_cross/r_M = sqrt(a0/g_ext) = 0.6888 EXACTLY -- mass-INDEPENDENT
+  alt rho_total         1.9046e-10          6.835       8.873       0.7703
+  [OK  ] [alt rho_total] r_cross/r_M = sqrt(a0/g_ext) = 0.7703 EXACTLY -- mass-INDEPENDENT
+  [OK  ] at the solar radius g_ext > a0 on both footings, so r_cross < r_M (0.689-0.770): the frame has ALREADY flipped to the Galaxy's before the binary is deep enough to show any boost => Route A predicts NEWTONIAN wide binaries at EVERY separation in the solar neighbourhood, for ANY mass
+  [OK  ] and this is NOT the previously flagged gate 'dead zone' (r_gate/r_M = 4.54-7.76): 0.689-0.770 vs 4.54-7.76. Independent structure, not a re-labelling of the omega_c gate -- no coincidence is being manufactured
+
+  Quantify: gamma_v across the pre-registered 2-30 kAU window, field-weighted p = 1 frame.
+   r [kAU]       g_bin  v_orb [km/s]   v_frame   a0_eff/a0    gamma_v
+         2  2.2244e-09        0.8158     18.98  4.2940e-02   1.000001
+         5  3.5590e-10        0.5160     83.09  6.2092e-03   1.000001
+         7  1.8158e-10        0.4361    121.33  3.5941e-03   1.000001
+        10  8.8974e-11        0.3648    160.58  2.2720e-03   1.000001
+        20  2.2244e-11        0.2580    209.39  1.2320e-03   1.000007
+        30  9.8860e-12        0.2106    221.88  9.4932e-04   1.000020
+  [OK  ] max gamma_v over 2-30 kAU = 1.000020 -- Newtonian to <0.1%. This lands on the SAME BRANCH as the frozen Amendment 1 (gated target 1.0004-1.0006), by a DIFFERENT mechanism (frame flip, not the omega_c gate), so no pre-registered PASS/FAIL outcome changes
+  [OK  ] strictly, Route A's number (1.000020) is ~30x CLOSER to Newton than Amendment 1's 1.0004-1.0006. It is a different number for the same frozen window and belongs on the record as such; it does not flip any outcome, and per the standing instruction any target change must be filed in the open BEFORE DR4
+
+  AND A NEW, TESTABLE, GALACTOCENTRIC PREDICTION (this is the distinctive part).
+  The flip needs g_ext > a0; where g_ext(R) < a0, r_cross > r_M and the boost SWITCHES ON.
+  footing                R(g_bar = a0) [kpc]    vs Gaia WB sample (d<200pc)
+  canonical rho_DE                     11.87            inside -> Newtonian
+  alt rho_total                        10.62            inside -> Newtonian
+  [OK  ] switch-on radius R = 10.62-11.87 kpc (point-mass extrapolation of the measured solar-radius g_bar -- CRUDE, flagged). The whole DR3/DR4 clean wide-binary sample sits at d < 200 pc i.e. R = 8.0-8.4 kpc, INSIDE it, so the frozen Newtonian expectation is untouched; but Route A predicts gamma_v should RISE with Galactocentric radius beyond ~11 kpc, which is a new and MI-distinctive observable
+
+========================================================================================================
+VERDICT (numbers below are the values computed above, injected, not retyped)
+========================================================================================================
+  ROUTE A = PARTIAL, and the partition is sharp.
+
+  WHAT WORKS:
+    1. UNIQUENESS -- YES, and by the condition the framework already needs. Potential-stationarity
+       ALONE is 2-parameter degenerate pointwise and 1-parameter degenerate (Omega_f) on an
+       axisymmetric galaxy. Hypersurface-orthogonality reduces the rigid family to B/A = -k, and
+       AZIMUTHAL PERIODICITY forces k = 0, so u is the ZAMO, UNIQUELY. HSO is not an extra
+       assumption: it is the same condition that kills vector modes and keeps u PASSIVE.
+       Residual rotation Omega_ZAMO/Omega_gal ~ 5.5e-7 = O(v^2/c^2), which costs 4.811e-07 dex of a0,
+       i.e. 4.64e+05x inside the 0.2232 dex budget -- and it FALLS outward, so it
+       is smallest exactly where the deep-regime RAR data live.
+    2. NO COLLAPSE -- the killer Carl flagged does not fire. Potential-stationary gives
+       v_rel = v_orb; the velocity-dragged alternative gives v_rel smaller by 12.9x (stars)
+       to 29.1x (cold HI) and exactly 0 for ideal circular gas, i.e. a0_eff DIVERGES.
+       Independently excluded by the observed non-rotation of the local inertial frame
+       (a co-rotating frame would turn at 6.01 mas/yr).
+    3. a0 IS PRESERVED EXACTLY -- better than Carl's O(v^2/c^2) expectation. The boost is in
+       SO(4,1), Bunch-Davies is dS-invariant, and the boosted worldline is GEODESIC (4-acceleration
+       identically 0), so T = H/2pi is unshifted at ALL orders in beta. Throwing dS invariance away
+       entirely still gives only 1.446e-03 dex, 154x inside budget, both footings.
+    4. MOMENTUM / THIRD LAW -- EXACT cancellation in the two-body case for ARBITRARY closure
+       function, because a0_eff,i ~ m_j matches g_bar,i ~ m_j. I expected a violation and there is
+       none. Three-body untested; no claim made. WEP exact (a0_eff is purely kinematic).
+    5. A NEW BOUND ON omega_c: the RAR budget caps the kernel memory time at
+       tau < 1.14 Gyr, i.e. omega_c > 1/1.14 Gyr -- tightening the banked
+       FREE-but-BOUNDED slow edge (1/17.5 Gyr) by 15.4x. This runs FOR the
+       framework: it removes the raw-dS-correlator candidate the completion doc listed as
+       door-killing. It does not reach the fast edge, so omega_c stays FREE(bounded).
+
+  WHAT IT COSTS, AND THESE ARE NOT FOOTNOTES:
+    A. THE DEFINITION IS INCOMPLETE FOR HIERARCHIES. No rigid potential-stationary frame exists when
+       a subsystem moves through a larger one (each source is static only in its own frame). A
+       field-weighted regularisation (weight ~ g^p) is REQUIRED and the theory does not supply p.
+    B. RAR UNIVERSALITY IS RESTORED ONLY CONDITIONALLY. Residual spans 0.0008-0.3834 dex
+       against the 0.2232 dex budget -- 286x inside at p = 2, but
+       1.72x OVER at p = 1/2 in group environments. Better than the cosmic frame's
+       uniform ~5x over, NOT exact, and hostage to p.
+    C. FRONT B (s^TX) IS THE BILL. stx_target.py's premise is verbatim 'Preferred frame = the cosmic
+       (CMB) rest frame', v = 369.82 km/s. Under Route A the Sun's own field dominates out to
+       5.48 kAU, so on Route A's own p = 1 weighting the local boost is only
+       7.75e-03 m/s and s^TX falls to 1.82e-17: not literally zero, but UNOBSERVABLE (margin
+       7.1e+07x) -- no detection and no falsifier, so one of two live gravity fronts
+       effectively DISSOLVES. Its most favourable variant (frame = Galactic ZAMO) still gives
+       s^TX = 5.47e-10, margin 2.38x rather than the frozen 1.50x. Every locally-dragged
+       variant weakens it; only the size is prescription-dependent.
+    D. IT REPAIRS THEOREM 8 ON CIRCLES ONLY. |a| = Omega v holds exactly at e = 0 and fails by
+       0.78-3.13x at e = 0.6 -- the same order as the banked off-circular residual 2.7. The
+       off-circular time-weighting stays free, so the pincer is not opened, only narrowed.
+    E. WIDE BINARIES GO NEWTONIAN at every separation in the solar neighbourhood
+       (max gamma_v = 1.000020 over 2-30 kAU), because r_cross/r_M = sqrt(a0/g_ext) < 1 there.
+       Same BRANCH as frozen Amendment 1 (1.0004-1.0006) by a DIFFERENT mechanism, and
+       ~30x closer to Newton -- a different number for a frozen window,
+       which belongs on the record and must be filed in the open before DR4 if it is adopted.
+       It flips no pre-registered PASS/FAIL outcome.
+
+  ONE NEW TESTABLE PREDICTION falls out: the flip needs g_ext > a0, so beyond
+  R = 10.6-11.9 kpc (both footings) the wide-binary boost switches ON. The clean Gaia
+  sample is at d < 200 pc (R = 8.0-8.4 kpc), inside it -- so nothing frozen is contradicted, and
+  gamma_v rising with Galactocentric radius is a fresh, MI-distinctive observable.
+
+  NOVELTY, ASSESSED NOT ASSERTED: the Machian idea is Mach and Sciama 1953, and Milgrom 1994
+  (Ann.Phys. 229:384) states explicitly that modified inertia needs a definition of absolute
+  acceleration -- none of that is new here, and it must not be claimed as such. What I did not find
+  in that prior art: (i) identifying the MI frame with the HSO+periodicity-UNIQUE ZAMO of the local
+  BARYONIC field, (ii) the mass-independent flip criterion r_cross/r_M = sqrt(a0/g_ext) with its
+  Galactocentric switch-on radius, (iii) the RAR-budget bound on the kernel memory time. These are
+  consequences computed here, not established physics. THE FRAME PRESCRIPTION ITSELF REMAINS A
+  POSTULATE, and Route A does not derive a0, does not close the off-circular gap, and does not turn
+  the closure into the Euler-Lagrange equation of an action.
+
+========================================================================================================
+64 checks run; result = ALL PASS
+========================================================================================================

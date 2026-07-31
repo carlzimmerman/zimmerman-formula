@@ -278,6 +278,68 @@ Frozen flags carried with the targets:
 > alongside as `.out`). Nothing in Sections 1.1–1.6 above is edited; this block is additive.
 
 
+> ### ⚠️ AMENDMENT 4 — 2026-07-31, ADDED IN THE OPEN BEFORE DR4. READ BEFORE SCORING.
+>
+> **This is an ARITHMETIC CORRECTION to Amendments 2 and 3, not a change of theory.** It was found by
+> adversarial audit of this document, and it runs *against* the framework. Verified by
+> `real_research/reviews/mi_prereg_gext_argument_audit_2026.py` (exit 0, 16 structural checks, output
+> committed alongside as `.out`).
+>
+> **(a) WHAT THE FROZEN ANALYSIS RETURNED FIRST.** Amendment 2 (α = 1): γ_v ∥ = 1.0112, γ_v ⊥ = 1.1115,
+> orientation-averaged 1.0799. Amendment 3 (α = 2): γ_v ∥ = 0.9669, γ_v ⊥ = 1.0523, orientation-averaged
+> 1.0246, full range 1.0182–1.0350.
+>
+> **(b) THE DEFECT.** The framework's interpolation is defined with the **Newtonian** argument,
+> a = ν(y)·g_bar with y = g_bar/a₀. Both amendments instead evaluate ν and d(νg)/dg at
+> **g_ext,obs / a₀ = 1.8996** — the *observed* ratio. This is demonstrated, not asserted: feeding the
+> observed ratio reproduces the frozen table to **3.3e-5** (Amendment 3) and **7.9e-4** (Amendment 2),
+> while the closure-inverted Newtonian argument misses it by **1.1e-2** and **2.8e-2** — a 330×
+> discrimination. §1.1 of this document *already publishes the correct quantity* (`y_extN`), and §3's
+> gate shape uses it; the amendments bypassed it. **This is the same bug class STANDING §5.1 records
+> from the Lyman-α forest chain**, where a response kernel evaluated at the Newtonian instead of the
+> observed argument inflated every significance by 1.9–5.6×.
+>
+> **(c) A SECOND, INDEPENDENT DEFECT.** §1.1's `canonical y_extN = 1.4647; alt y_extN = 1.1513` are the
+> **α = 1** closure inversions of g_ext,obs (confirmed to 4.3e-4 / 3.2e-4). Under the **α = 2** kernel in
+> force since 2026-07-30 the inversions are **1.6809** and **1.3280**. Those published `y_extN` values
+> are therefore **stale** with respect to Amendment 3's own kernel, independently of (b).
+>
+> **(d) THE CORRECTED TARGETS. These supersede the Amendment 3 table.**
+>
+> | quantity | Amendment 3 (as frozen) | **Amendment 4 (corrected)** |
+> |---|---|---|
+> | framework-MI, orientation-averaged, primary g_ext / canonical a₀ | 1.0246 | **1.0310** |
+> | framework-MI, full range over both footings × both g_ext | 1.0182 – 1.0350 | **1.0218 – 1.0472** |
+> | γ_v ∥ g_ext (primary/canonical) | 0.9669 | **0.9636 — still sub-Newtonian** |
+> | γ_v ⊥ g_ext (primary/canonical) | 1.0523 | **1.0631** |
+> | `y_extN` fed to ν (canonical / alt), α = 2 | 1.4647 / 1.1513 (α = 1 values) | **1.6809 / 1.3280** |
+>
+> **(e) BOTH OF AMENDMENT 3's CONCLUSIONS SURVIVE — computed, not hoped.** (i) The MI prediction still
+> sits **below the frozen band's lower edge 1.05 on all 4/4** footing × g_ext combinations (corrected
+> range 1.0218–1.0472). (ii) γ_v ∥ stays **sub-Newtonian on all 4/4** (0.9592–0.9688), so Amendment 2 (f)
+> and Amendment 3 (c)'s pre-declared anisotropy sign is intact. The correction moves the
+> orientation-averaged γ_v by 3.6e-3 to 2.9e-2 — **88× to 716×** the 4.1e-5 accuracy at which the frozen
+> table reproduces, so the defect is real; but far too small to flip any pre-registered PASS/FAIL.
+>
+> **(f) THE ERROR RAN AGAINST THE FRAMEWORK, and that is recorded deliberately.** On every footing and
+> both kernels the as-frozen numbers are **more Newtonian** than the corrected ones (|γ−1| = 0.0246 vs
+> 0.0310 at α = 2 primary/canonical). The defect was making this framework's wide-binary prediction look
+> *closer* to Newton — i.e. *less* detectable — than its own kernel implies. It manufactured a deficit,
+> not a win.
+>
+> **(g) SCOPE — what is NOT corrected here, so this block is not read as complete.** Only the
+> framework-MI eigenvalues are recomputed. Amendment 3's **framework-as-MG row (1.0473–1.0885)** uses a
+> scalar μ(a_ex/a₀) prescription that plausibly carries the *same* argument error and is **not corrected**;
+> the **§2 s^TX Door-4B** numbers were not examined at all. Neither may be assumed sound because the MI
+> row has been fixed. Both are owed a separate audit.
+>
+> **(h) WHAT THIS AMENDMENT DOES NOT DO.** It does not touch the a₀-degeneracy flag: no DR4 outcome may
+> be reported as measuring a₀ = 9.36e-11. It does not change the estimator, the frozen cuts, the error
+> model, the strictness ladder, or the NSS screen. It does not change κ = 1/2, which remains **fitted,
+> not derived**. And it does not alter the standing rule that a confirmation of a frozen prediction is
+> scored as a **kill** where the pre-registration says so.
+
+
 ### 1.2 Frozen DR4 cut list
 
 The DR4 catalog fed to the pipeline (`--catalog`, columns
