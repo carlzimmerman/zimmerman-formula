@@ -389,6 +389,42 @@ claims. They are not to be revived. The true position is the $a_0$ reframing abo
   $\gamma_v-1 = 1.018\times10^{-6}$ (canonical) / $1.483\times10^{-6}$ (alternate), anchored to the
   analytic $1/(4y^2)$ asymptote at 50 dps — **17 883× below the frozen lower edge 1.0182**. The frozen
   Amendment-3 target belongs to the **undragged** reading. Reported, not amended.
+- **🚨🚨 THE α≥2 SWITCH DESTROYS THE s^TX FRONT — the most consequential finding of 2026-07-31, and an
+  AMENDMENT IS OWED (Carl's to file, NOT filed).** `mi_stx_alpha2_collapse_2026.py`, 10 checks, exit 0,
+  author-verified from scratch because **every adversarial verifier and the critic died on a spend limit** —
+  nothing here rests on an unrefuted subagent claim.
+  **THE DEFECT.** §2 of the frozen pre-registration builds the s^TX amplitude from
+  $A = a_0/(2|g_{\rm orb}|)$ — the deep-Newtonian tail of the **RETIRED α=1** closure. Symbolically:
+  α=1 gives $x-y\to\tfrac12$ (a **constant** offset $a_0/2$, so $A_1 = a_0/2g$), while α=2 gives
+  $x-y\to 1/(2y)$ (a **decaying** offset $a_0^2/2g$, so $A_2 = a_0^2/2g^2$). Hence
+  $$A_2/A_1 = a_0/g = 1.45\times10^{-6}\ \text{at Saturn.}$$
+  **THE NUMBERS.** $|s^{TX}|$ falls **8.68e-10 → 1.258e-15** (canonical) and **1.048e-9 → 1.834e-15**
+  (alt). The pre-registered margin goes from a **live 1.50× / 1.24×** to **1.03×10⁶× / 7.09×10⁵×**.
+  Reproducing the frozen 1.50×/1.24× exactly confirms the normalisation is the document's own, not mine.
+  **THE SIGN IS UNCHANGED** — the collapse factor $a_0/g$ is positive, so the pre-declared NEGATIVE sign
+  survives. Only the amplitude dies.
+  **⚠️ THIS IS DIFFERENT IN KIND FROM AMENDMENT 4, AND WORSE.** Amendment 4 moved numbers without flipping
+  any pre-registered outcome. **This flips one: a test declared LIVE and FALSIFIABLE becomes untestable.**
+  So the α≥2 switch — which cured the 1278× ephemeris liability for 0.0033 dex on SPARC — **also destroys
+  the s^TX front as a falsifier. That cost was not priced when the switch was made.** Combined with the
+  separate finding that a locally-dragged frame flips the s^TX sign, the s^TX front is now
+  **doubly compromised**, and the α=2 one binds because α=2 is *in force*.
+  **AMENDMENT 5 IS OWED AND HAS NOT BEEN FILED.** The numbers and wording are in the script's verdict;
+  filing is Carl's. Nothing frozen was edited — all five manifest hashes re-verified unchanged.
+  ⚠️ Note what this is **not**: the Newtonian-vs-observed *argument* bug is **NOT** in §2 (inserting it
+  moves the amplitude by O(10⁻⁷) relative). This is a **retired-kernel** defect, a different and larger
+  problem.
+- **✅ THE as-MG ROW IS CLEAN — debt discharged, no correction owed.** Amendment 4 flagged Amendment 3's
+  framework-as-MG row (γ_v = 1.0473–1.0885) as possibly carrying the argument error and said it "may not be
+  assumed sound." **It is sound**, by a two-line identity: μ and ν are exact **reciprocals** across the
+  closure ($\nu(y)\mu(x) = 1$ identically, verified both kernels), so a prescription written as
+  $\mu(a_{\rm ex}/a_0)$ **legitimately takes the OBSERVED argument** — it is not ν fed the wrong one.
+  Mutation control confirms argument choice *does* matter for ν, just not for μ. Reported with the same
+  emphasis a bug would have received.
+- **⚠️ THREE OF THE FIVE OPEN DOORS WERE NOT ATTEMPTED**, because of a spend limit rather than a judgement:
+  the **dSph likelihood** with Υ profiled per object, the **stars-vs-gas curve pair** that would firm the
+  screening leg's soft ~3%, and the **m=2 bar signature** with Ω_p and ε primary-sourced. **None should be
+  assumed to point either way.**
 - **⚠️ FRONT B IS PRESCRIPTION-HOSTAGE (adjudicated, worse than either route claimed).** Readings of
   $s^{TX}$ under a dragged frame span **~15 orders** (2.87e-10 down to 6.0e-25) against the 1.3e-9 bound.
   The frozen $s^{TX}=8.68\times10^{-10}$ (margin 1.50×, **sign NEGATIVE locked**) is **not recoverable from
