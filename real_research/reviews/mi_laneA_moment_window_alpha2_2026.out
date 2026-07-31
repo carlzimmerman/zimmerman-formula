@@ -1,0 +1,127 @@
+
+======================================================================================================
+DISCHARGING THE PROVISO: did Lane A use more than K(0)=0, K(inf)=1, rho>=0, finite moments?
+======================================================================================================
+  a0 = c H_Lambda/Z, Z = 5.78881 -> 9.3600e-11 m/s^2 canonical; alt 1.1300e-10.
+  ANSWER, up front: YES, three further facts (E1 the moment window, E2 a log divergence, E3 a
+  divergent K'(0)). So the previous file's proviso was correctly flagged and could NOT have been
+  waved away. Each is now checked separately.
+
+======================================================================================================
+S1. (E1) THE MOMENT WINDOW -- derived from each measure's endpoint powers, not quoted
+======================================================================================================
+  A moment M_p = Int |t|^p rho d|t| converges at an endpoint iff the integrand's power > -1.
+
+  alpha=1:
+    small |t|: rho_A -> sqrt|t|/pi  (since 1-sqrt(1-4t) -> 2t), integrand ~ |t|^(p+1/2)
+               => converges iff p + 1/2 > -1  =>  p > -3/2
+    large |t|: rho_B = 1/(2 pi sqrt|t|),      integrand ~ |t|^(p-1/2)
+               => converges iff p - 1/2 < -1  =>  p < -1/2      <-- THE TAIL BINDS
+    WINDOW: -3/2 < p < -1/2   (matches Lane A docstring item [1] exactly)
+
+  alpha=2:
+    small s: rho_2 -> sqrt(s)/pi,  integrand ~ s^(p+1/2)  => p > -3/2   (same lower limit)
+    s -> 1:  rho_2 -> 1/(pi sqrt(1-s)), integrable, and s^p is finite there
+               => NO UPPER RESTRICTION -- the support is COMPACT, there is no tail
+    WINDOW: p > -3/2, unbounded above
+  [OK  ] alpha=1's rho_A behaves as sqrt|t|/pi at the origin (limit rho_A/sqrt t = 1/pi), giving the lower endpoint power p+1/2 and hence p > -3/2
+  [OK  ] alpha=2's rho_2 has the SAME sqrt(s)/pi behaviour at the origin (1/pi), so the lower limit p > -3/2 is IDENTICAL for both measures -- the two windows differ only at the upper end
+    check: rho_2 * sqrt(1-s) -> 1/pi as s -> 1  (finite => integrable edge, no p condition)
+  [OK  ] and at s -> 1, rho_2 sqrt(1-s) -> 1/pi, an integrable inverse-square-root edge that imposes NO condition on p. So alpha=2's window STRICTLY CONTAINS alpha=1's
+
+======================================================================================================
+S2. M_{-1} = 1 -- the ONE moment the a0 protection rests on, and it survives exactly
+======================================================================================================
+  Lane A: 'M_{-1} = 1 EXACT (sum rule = K(inf)-K(0): the superposition has exactly UNIT
+  resolvent weight -> nothing left over to feed a tadpole)'. p = -1 sits INSIDE both windows.
+
+    alpha=1:  M_(-1) = 0.99999999968149   (numeric, cutoff |t| = 1e18)
+    alpha=2:  M_(-1) = 1 = 1.00000000000000   (CLOSED FORM)
+  [OK  ] alpha=1 reproduces M_(-1) = 1 to 3.19e-10 -- confirming I am reading its measure correctly before drawing any conclusion about alpha=2
+  [OK  ] *** alpha=2 gives M_(-1) = 1 EXACTLY, in closed form. The unit resolvent weight -- the thing that leaves nothing over to feed a tadpole and so protects a0 -- is intact ***
+
+======================================================================================================
+S3. (E2) THE M_{-1/2} LOG DIVERGENCE -- present on alpha=1, ABSENT on alpha=2
+======================================================================================================
+  Lane A: 'M_{-1/2} log-divergent (UV measure tail = the a0^1 term of K, resummed by |K|<=1)'.
+  Demonstrate the divergence directly by pushing the cutoff, rather than asserting it:
+      cutoff |t|       alpha=1 M_(-1/2)      increment
+             1e4        1.7841810839426              -
+             1e6        2.5171166828221      0.7329356
+             1e8        3.2500522817015      0.7329356
+            1e10        3.9829878805809      0.7329356
+            1e12        4.7159234794604      0.7329356
+  [OK  ] the increments per two decades are equal to 2.3e-41 and nonzero (0.732936) -- the signature of a LOGARITHMIC divergence, exactly as Lane A states. So E2 is a real dependency of the alpha=1 argument, not a stylistic remark
+
+    alpha=2:  M_(-1/2) = 2/pi = 0.636619772368   FINITE, closed form
+  [OK  ] *** on alpha=2 the same moment is FINITE and equals 2/pi = 0.6366197724. The log divergence that alpha=1 had to resum via |K| <= 1 DOES NOT EXIST on the kernel in force ***
+  READ: this is the one place where the two derivations genuinely differ, and it differs in the
+  EASY direction -- a resummation step becomes unnecessary rather than failing. The alpha=1
+  derivation cannot be quoted verbatim (that step has nothing to act on), but removing a step
+  that handled a divergence which is no longer present cannot weaken the conclusion.
+
+======================================================================================================
+S4. (E3) M_{-2} = K'(0) = infinity -- PERSISTS on alpha=2, so the same resummation is needed
+======================================================================================================
+  Lane A: 'M_{-2} = K'(0) = infinity (deep-MOND sqrt(z) nonanalyticity: the polynomial delta-u
+  expansion FAILS at exactly-dS; the bounded functional W resums it)'.
+  This one must NOT be assumed to vanish along with E2. Check the small-z behaviour of BOTH:
+    alpha=1:  K(z)/sqrt(z) -> 1 as z->0,   K'(0) = oo
+    alpha=2:  K(z)/sqrt(z) -> 1 as z->0,   K'(0) = oo
+  [OK  ] BOTH kernels go as sqrt(z) at small z with the same unit coefficient -- the deep-MOND nonanalyticity is a property of the LAW, not of either measure
+  [OK  ] so K'(0) = infinity on alpha=2 as well: M_(-2) diverges identically, the polynomial delta-u expansion FAILS at exactly-dS on the new kernel too, and the SAME bounded-W resummation is still required. E3 transfers unchanged -- nothing is gained and nothing is lost
+  [OK  ] and directly from the measure: M_(-2) on alpha=2 needs Beta(-1/2, 1/2), which diverges (p = -2 is OUTSIDE the p > -3/2 window) -- consistent with K'(0) = infinity
+
+  *** AND THIS IS WHERE THE ONE LIVE THREAD IS. *** E3's resolution is 'the bounded functional
+  W resums it', and boundedness means |K| <= 1. On alpha=2 that holds for z > 0 but FAILS for
+  z < -1, where K_2 = sqrt(z/(1+z)) exceeds unity. The dS loop lives at z > 0, so the
+  resummation is safe as computed -- but E3 is the step whose justification is exactly the
+  property alpha=2 violates off the Euclidean domain. Anything that continues the W-resummation
+  past z = -1 must re-derive its boundedness rather than inherit it.
+
+======================================================================================================
+VERDICT
+======================================================================================================
+  THE PROVISO IS DISCHARGED -- not because four inputs sufficed, but because the three extra
+  ones were found and checked individually. Reading the committed Lane A derivation was the
+  step that mattered; without it the previous file's conclusion would have been unsupported.
+
+   (E1) THE MOMENT WINDOW WIDENS, and alpha=2's STRICTLY CONTAINS alpha=1's.
+        alpha=1: -3/2 < p < -1/2, both endpoints binding -- the upper limit comes entirely from
+        the region-B tail rho_B = 1/(2 pi sqrt|t|) on unbounded support.
+        alpha=2: p > -3/2 with NO upper bound, because the support is compact (0,1).
+        The lower limit is IDENTICAL (both densities go as sqrt/pi at the origin, verified
+        symbolically), so the windows differ only at the top, and only in alpha=2's favour.
+
+   (E2) THE LOG DIVERGENCE DISAPPEARS. M_(-1/2) is log-divergent on alpha=1 -- demonstrated by
+        equal per-decade increments under a pushed cutoff, not asserted -- and is FINITE = 2/pi
+        on alpha=2. The step that resummed it via |K| <= 1 has nothing to act on. So the alpha=1
+        derivation cannot be quoted verbatim; but deleting a step that handled a divergence
+        which no longer exists cannot weaken the conclusion.
+
+   (E3) THE OTHER DIVERGENCE PERSISTS IDENTICALLY. M_(-2) = K'(0) = infinity on BOTH kernels,
+        because both go as sqrt(z) at small z with the same unit coefficient -- the deep-MOND
+        nonanalyticity belongs to the LAW, not to either measure. The polynomial delta-u
+        expansion still fails at exactly-dS and the same bounded-W resummation is still needed.
+        Nothing gained, nothing lost.
+
+   AND M_(-1) = 1 EXACTLY on alpha=2, in closed form -- the unit resolvent weight that leaves
+   nothing over to feed a tadpole, which is the specific fact protecting a0. That is the moment
+   the result actually rests on and it is the one that survives cleanly.
+
+  NET: NOTHING GETS HARDER. One dependency vanishes (E2), one is unchanged (E3), the window
+  widens (E1), and the load-bearing moment is exact. The 1-loop conclusion -- a0 unrenormalized,
+  linear vertex zero, KL positivity, KMS -- transfers to the alpha=2 kernel, and now WITHOUT the
+  earlier proviso.
+
+  *** THE ONE LIVE THREAD, and it is E3's justification rather than its statement: *** the
+  bounded-W resummation rests on |K| <= 1, and alpha=2 violates that for z < -1 (K_2(-1.01) =
+  10.05) where alpha=1 does not. The dS loop lives at z > 0 where boundedness holds over sixteen
+  decades, so the calculation as performed is safe -- but any continuation past z = -1 must
+  re-derive boundedness instead of inheriting it. That is the single place the alpha=2 loop edge
+  is genuinely more fragile than alpha=1's, and it is narrow and named.
+
+  STILL OPEN, untouched here: two loops; the finite parts; the T_mu_nu metric variation; the
+  disformal rho_m variant; the ephemeris de/dt bound. a0 is NOT derived, kappa = 1/2 stays
+  FITTED, the pincer is untouched, and no door is declared closed.
+======================================================================================================

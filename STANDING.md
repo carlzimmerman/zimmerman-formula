@@ -122,9 +122,33 @@ claims. They are not to be revived. The true position is the $a_0$ reframing abo
   domain is $z>0$, where $0\le K_2\le1$ over sixteen decades — so the result stands, but this is a
   **condition on the contour, not a theorem**; any calculation continuing past $z=-1$ must re-examine
   positivity rather than inherit it.
-  **⚠️ SCOPE, load-bearing: the full divergence computation was NOT re-run.** What is established is that
-  every structural input the α=1 argument used holds on α=2. The conclusion transfers **provided the
-  published proof used only those inputs**; a step reaching into the detailed shape of the α=1 measure would
+  **✅ THE PROVISO IS NOW DISCHARGED (`mi_laneA_moment_window_alpha2_2026.py`, 10 checks, exit 0) — and the
+  answer was NO, four inputs did NOT suffice.** Reading the committed derivation
+  (`mi_formal_completion_2026/oneloop_laneA_divergences.py`, docstring item [1]) Lane A depends on **three
+  further facts**, each now checked separately:
+  **(E1) a moment window** $M_p=\int|t|^p d\mu$ convergent **iff $-3/2<p<-1/2$**. α=1's upper limit comes
+  entirely from its region-B tail $\rho_B = 1/(2\pi\sqrt{|t|})$ on **unbounded** support. α=2's window is
+  $p>-3/2$ with **no upper bound** (compact support), and the lower limit is *identical* — both densities go
+  as $\sqrt{\cdot}/\pi$ at the origin (verified symbolically). **α=2's window strictly contains α=1's.**
+  **(E2) $M_{-1/2}$ log-divergent**, "resummed by $|K|\le1$" — demonstrated here by equal per-decade
+  increments (0.7329, spread 2×10⁻⁴¹) under a pushed cutoff, so it is a real dependency. On α=2 it is
+  **finite = 2/π**. That resummation step has nothing to act on; the α=1 derivation cannot be quoted
+  verbatim, but deleting a step that handled a now-absent divergence cannot weaken the conclusion.
+  **(E3) $M_{-2}=K'(0)=\infty$** — the deep-MOND $\sqrt z$ nonanalyticity. **This PERSISTS identically**:
+  both kernels go as $\sqrt z$ at small $z$ with the same unit coefficient, so the nonanalyticity belongs to
+  the **law**, not either measure. Same bounded-$W$ resummation still required. Nothing gained or lost.
+  **And $M_{-1}=1$ EXACTLY on α=2 in closed form** (α=1 reproduced numerically to 3.2×10⁻¹⁰ first, to
+  confirm I was reading its measure correctly) — the unit resolvent weight that leaves nothing to feed a
+  tadpole, which is the specific fact protecting $a_0$.
+  **NET: nothing gets harder.** One dependency vanishes, one is unchanged, the window widens, the
+  load-bearing moment is exact. **So the transfer holds without the proviso.**
+  **⚠️ THE ONE LIVE THREAD, and it is E3's justification rather than its statement:** the bounded-$W$
+  resummation rests on $|K|\le1$ — exactly the property α=2 violates for $z<-1$. The dS loop lives at
+  $z>0$ where it holds over sixteen decades, so the calculation as performed is safe, but **any
+  continuation past $z=-1$ must re-derive boundedness rather than inherit it.** That is the single place
+  the α=2 loop edge is genuinely more fragile than α=1's.
+  **⚠️ Still NOT re-run: the full divergence computation itself** — only the measure inputs it rests on.
+  ~~The conclusion transfers provided the published proof used only those inputs; a step reaching into the detailed shape of the α=1 measure would
   need redoing. **Still open and named:** two loops, finite parts, the $T_{\mu\nu}$ metric variation, the
   disformal $\rho_m$ variant, the ephemeris de/dt bound. Prior art: Herglotz/Nevanlinna/Pick,
   Källén–Lehmann, KMS — none claimed as new.
