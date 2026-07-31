@@ -73,8 +73,18 @@ $$
 Every $\pi$, the $32$ and the $3$ cancel. Numerically $a_0=9.36\times10^{-11}\,\mathrm{m\,s^{-2}}$ on
 the pure-$\Lambda$ footing.
 
-**Credit where it is due.** The interpolating kernel used by this framework,
-$\nu(y)=\sqrt{1+1/y}$, is identical to Milgrom (1999, *Phys. Lett. A* **253**, 273, Eq. 9). The
+**⚠️ KERNEL CHANGED 2026-07-30, with no consequence for this paper.** The framework has adopted
+$\mu(x)=x/\sqrt{1+x^2}$ ($\alpha=2$, Milgrom 1983) in place of $\nu(y)=\sqrt{1+1/y}$ ($\alpha=1$),
+because the $\alpha=1$ tail implies a constant sunward anomaly $a_0/2$ that is 1279× the Earth 2σ
+ephemeris bound. **Nothing computed in this paper depends on the tail exponent** — every number here is
+a deep-regime or background-cosmology quantity, and the two kernels agree to 2.2% or better for
+$g_{\rm bar}/a_0\lesssim0.1$ while sharing the deep limit exactly. The credit line is updated below;
+no result is revised.
+
+**Credit where it is due.** The interpolating kernel used by this framework is $\mu(x)=x/\sqrt{1+x^2}$,
+the "standard" function of Milgrom (1983, *ApJ* **270**, 365); versions before 2026-07-30 used
+$\nu(y)=\sqrt{1+1/y}$, identical to Milgrom (1999, *Phys. Lett. A* **253**, 273, Eq. 9). Neither is
+original here. The
 framework's distinctive content is the **coefficient** $cH_\Lambda/Z$ (Milgrom's was $2cH_\Lambda$)
 and the modified-inertia completion. The *value* of $\kappa$ is not derived; ghost-freedom, unitarity
 and holography have each been shown insufficient to force it. This is a one-parameter effective
@@ -346,7 +356,9 @@ fails. No verdict is hard-coded.
 - DES Collaboration, SN reanalysis with updated Type Ia calibration, *MNRAS* **548**, stag632.
 - S. Nadathur, Moriond 2026 (significance update); Popovic et al. 2025; Hoyt et al. 2026.
 - S. Dodelson, *Evolving Dark Energy*, Modern Cosmology, 2026-07-23.
-- M. Milgrom, *Phys. Lett. A* **253**, 273 (1999) — the $\nu(y)=\sqrt{1+1/y}$ kernel.
+- M. Milgrom, *Astrophys. J.* **270**, 365 (1983) — the "standard" kernel $\mu(x)=x/\sqrt{1+x^2}$ used
+  from 2026-07-30.
+- M. Milgrom, *Phys. Lett. A* **253**, 273 (1999) — the $\nu(y)=\sqrt{1+1/y}$ kernel used before that.
 - O. Gnedin, arXiv:0809.2790 — Tully–Fisher evolution as a modified-gravity test.
 - Effective phantom prior art: arXiv:0909.0351; arXiv:1204.0369; *MNRAS* **437**, 3331;
   arXiv:2605.27301; arXiv:2605.26259.

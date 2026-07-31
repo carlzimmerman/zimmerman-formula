@@ -27,7 +27,8 @@ contrast is the measurement.
 
 **What would kill it.** Any one of: no excess beyond ~50 kAU in a contamination-controlled sample; an
 excess whose log-slope is inconsistent with 3; a knee that does not move as $M^{1/3}$; an amplitude
-inconsistent with $\omega_c^2/GM$; or a boost $\gamma_v\approx1.09$ found *inside* 30 kAU.
+inconsistent with $\omega_c^2/GM$; or a boost $\gamma_v\approx1.02$ found *inside* 30 kAU (**renumbered
+2026-07-30 from 1.09 under the retired $\alpha=1$ kernel; see the notice in §2**).
 
 **What it cannot do.** It cannot be measured with Gaia DR3. We checked the catalogue ourselves; see §6.
 
@@ -59,6 +60,18 @@ saturation against every forced kernel constant, and the location statistics of 
 found **none** that fixes it, because each is imposed at a scale-free point of the dimensionless axis
 $z=\Box_u/a_0^2$ and is therefore invariant under $a_0\to\lambda a_0$. Six classes closed; the value
 is not derived.
+
+**⚠️ KERNEL CHANGED 2026-07-30.** This paper was written with $\nu(y)=\sqrt{1+1/y}$ ($\alpha=1$). The
+framework has since adopted $\mu(x)=x/\sqrt{1+x^2}$ ($\alpha=2$, Milgrom 1983), because the $\alpha=1$
+tail implies a constant sunward anomaly $a_0/2$ that is **1279× the Earth 2σ ephemeris bound**. Two
+consequences for this paper, both stated rather than absorbed: **(i)** the identity
+$g_\mathrm{obs}^2-g_\mathrm{bar}^2=a_0g_\mathrm{bar}$ below is an $\alpha=1$ identity and no longer
+holds — it is retained as attribution, not as a live relation; **(ii)** the ungated boost quoted
+throughout as $\gamma_v\approx1.09$ becomes $\approx\mathbf{1.02}$ (orientation-averaged 1.0246, range
+1.0182–1.0350 over both $a_0$ footings and both frozen $g_{\rm ext}$ values), per Amendment 3 to
+`PREREGISTRATION_DR4.md`, filed in the open before DR4. **The paper's central result is unaffected**:
+the cubic gate law, its $s^{1/2}$-versus-$s^3$ contrast and the $M^{1/3}$ knee are properties of the
+gate, not of the tail exponent, and the gated prediction remains $\gamma_v\to1.000$.
 
 **Credit, plainly stated.** The interpolation $\nu(y)=\sqrt{1+1/y}$ and the identity
 $g_\mathrm{obs}^2-g_\mathrm{bar}^2=a_0g_\mathrm{bar}$ are Milgrom (1999, *Phys. Lett. A* **253**, 273),
@@ -103,7 +116,8 @@ The argument is therefore $z=-(\Omega c/a_0)^2$ — the **orbital frequency**. T
 to $K$.
 
 **This settles an ambiguity Version 1 was explicitly conditional on.** Had the kernel responded to
-$|a|$, the gate would stay open and the prediction would be $\gamma_v\approx1.09$ instead. It does not.
+$|a|$, the gate would stay open and the prediction would be $\gamma_v\approx1.02$ instead (1.09 under the
+retired $\alpha=1$ kernel). It does not.
 The result below no longer rests on a choice.
 
 ### 2.1 New in v3 — eccentric orbits, and how sharp the prediction actually is
