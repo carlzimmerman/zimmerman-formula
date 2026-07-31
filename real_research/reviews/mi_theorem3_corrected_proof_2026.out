@@ -1,0 +1,94 @@
+
+====================================================================================================
+S1. The coefficient of x'''' in the EL equation IS the xddot-Hessian
+====================================================================================================
+  coefficient of x'''' : Derivative(L(x(t), Derivative(x(t), t), Derivative(x(t), (t, 2))), (Derivative(x(t), (t, 2)), 2))
+  d^2 L / d(xddot)^2   : Derivative(L(x(t), Derivative(x(t), t), Derivative(x(t), (t, 2))), (Derivative(x(t), (t, 2)), 2))
+  [OK] the x'''' coefficient is IDENTICALLY the xddot-Hessian -- so the Hessian is not an auxiliary condition to be checked, it IS the higher-derivative obstruction
+
+====================================================================================================
+S2. Singular-but-nonzero does NOT help: it leaves x'''' in the non-null directions
+====================================================================================================
+  Lagrangian                               det H  H == 0? H . x'' survives in
+  L = a1^2  (singular, nonzero)                0    False components [0]
+  L = (a1+a2)^2  (rank 1)                      0    False components [0, 1]
+  L = a1^2 + a2^2  (rank 2)                    0    False components [0, 1]
+  L = A(x,xdot)*a1  (linear => H == 0)         0     True none -- fully x''-free
+  [OK] every singular-BUT-NONZERO case still carries x'''' in at least one component, and only the identically-zero Hessian is fully x''''-free -- so the degenerate class the published proof skipped does NOT open a route to a 3-vector second-order law
+
+====================================================================================================
+S3. H == 0 => L linear in xddot => the EL equation is LINEAR in xddot
+====================================================================================================
+  H == 0  <=>  L = A(x,xdot) xddot + B(x,xdot).  The first term integrates by parts to
+  -(dA/dt) xdot, which contains xddot only through -A_xdot xddot xdot, i.e. still linearly;
+  iterating removes xddot entirely, leaving a reduced Ltilde(x,xdot) with
+      EL:  M(x,xdot) xddot + N(x,xdot) = 0,     M = d^2 Ltilde/dxdot^2 .
+  Demonstrated on a concrete Ltilde with velocity-dependent mass:
+      M(x,xdot) = d^2 Ltilde/dxdot^2 = v**2*Derivative(m(v), (v, 2))/2 + 2*v*Derivative(m(v), v) + m(v)
+  [OK] M carries NO dependence on the acceleration -- so the EL equation is strictly of the form (a-independent coefficient) x (acceleration) = force
+
+====================================================================================================
+S4. The law is NONLINEAR in a for BOTH kernels. Contradiction.
+====================================================================================================
+  kernel               mu(|a|/a0)*a                       d^2/da^2                        linear?
+  alpha=1 (retired)    -a_0/2 + sqrt(4*A**2 + a_0**2)/2   2*a_0**2/(4*A**2 + a_0**2)**      False
+  alpha=2 (current)    A**2/sqrt(A**2 + a_0**2)           a_0**2*(-A**2 + 2*a_0**2)/(s      False
+  [OK] neither kernel's law is linear in a, so no M(x,xdot)a = F can equal it -- Theorem 3's CONCLUSION stands, by an argument that never mentions mu's Hessian
+
+====================================================================================================
+S5. Auxiliary fields do not rescue it -- two explicit attempts
+====================================================================================================
+  ATTEMPT 1: couple an auxiliary q to xddot,  L = q.xddot - V(q) - Phi(x).
+    EL[q] : xddot = V'(q)          -> q = (V')^{-1}(a), ALGEBRAIC, good
+    EL[x] : d^2/dt^2 (q) = grad Phi -> qddot = grad Phi
+    substituting the first into the second gives d^2/dt^2[(V')^{-1}(xddot)] = grad Phi,
+    which is FOURTH order in x. The auxiliary field re-imports exactly what it removed.
+  ATTEMPT 2: couple it to xdot instead, L = q.xdot - V(q) - Phi(x).
+    EL[q] : xdot = V'(q)  ;  EL[x] : qdot = -grad Phi
+    differentiating the first and substituting: xddot = V''(q) qdot = -V''(q) grad Phi,
+    i.e. an ALGEBRAIC a-to-g relation -- but with the coefficient depending on VELOCITY,
+    not on |a|. That is a velocity-dependent mass, not MOND.
+  The pattern in both: an algebraic coefficient can be made to depend on x or xdot, never
+  on |a| itself, because |a|-dependence is what makes the relation implicit.
+  [OK] both auxiliary constructions recorded with the precise reason each fails
+
+====================================================================================================
+S6. WHERE THE LOCAL VARIATIONAL DOOR ACTUALLY IS -- and it leads out of modified inertia
+====================================================================================================
+  The obstruction is not 'MOND is non-variational'. It is that MOND's nonlinearity is being
+  asked to sit in a PARTICLE's SECOND derivative. Put the same nonlinearity in a FIELD's
+  FIRST derivative and it is perfectly variational. AQUAL (Bekenstein & Milgrom 1984):
+      L_AQUAL = -(1/8 pi G) a_0^2 F(|grad Phi|^2/a_0^2) - rho Phi
+      delta/delta Phi  =>  div[ mu(|grad Phi|/a_0) grad Phi ] = 4 pi G rho,   mu = F'
+  First derivatives of Phi only, so no Ostrogradsky, no degeneracy needed, fully local.
+      and mu is recovered as F'(y) = Derivative(F(y), y) -- one free function, no constraint
+  [OK] the local variational route exists and is AQUAL-class: the nonlinearity lives in grad Phi (first order, field) instead of xddot (second order, particle)
+  THE COST, and it is already published in this corpus: that route is modified GRAVITY, and
+  the passivity obstruction (DOI 10.5281/zenodo.21418816) shows a horizon-tied a_0 and
+  single-metric MOND lensing are mutually exclusive -- the completions that DO reproduce
+  lensing exist 'only as modified gravity with a_0 demoted to a free coupling'. So the door
+  is real, it is local, it is variational, and walking through it costs the derived a_0,
+  which is the one claim the programme kept after the June 2026 retraction.
+
+====================================================================================================
+VERDICT
+====================================================================================================
+  1. THE SINGULAR-HESSIAN DOOR IS CLOSED. The degenerate-but-nonzero class does not deliver
+     a 3-vector second-order law, because x'''' survives in the non-null directions (S2).
+  2. THEOREM 3's CONCLUSION IS RIGHT AND ITS PUBLISHED PROOF IS NOT. The proof's 'det H = 0,
+     i.e. L linear in xddot' is a false equivalence, and it then tests mu's Hessian rather
+     than L's. Neither step is needed: the x'''' coefficient IS L's xddot-Hessian, an
+     x''''-free vector law forces it to vanish identically, that means linear in xddot, and
+     linear in xddot means an EL equation linear in a -- which the law is not. Four lines.
+  3. THIS IS A STRICTLY STRONGER THEOREM THAN THE PUBLISHED ONE. The old proof only excluded
+     non-degenerate L (and even that via the wrong object); the corrected proof excludes
+     ALL local L(x,xdot,xddot), degenerate or not. The prohibition got wider, not narrower.
+  4. AND IT SAYS WHERE TO GO. The nonlinearity is variational in a field's first derivative
+     (AQUAL, local, ghost-free) and not in a particle's second. The framework's own published
+     obstruction then prices that route: it demotes a_0 to a free coupling. So 'a local field
+     theory from the acceleration scale' and 'a derived acceleration scale' are, on current
+     results, the two things you cannot have together.
+  5. ACTION OWED: the proof of Theorem 3 in the paper should be REPLACED, not patched. The
+     statement stands; the argument printed under it does not.
+  [OK] verdict recorded: door closed, theorem strengthened, published proof owed a replacement
+====================================================================================================
