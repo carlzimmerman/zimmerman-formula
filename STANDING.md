@@ -197,10 +197,51 @@ claims. They are not to be revived. The true position is the $a_0$ reframing abo
   local-comoving collapse gives $\lambda=0.159$ (stars, σ≈35) to $0.041$ (gas, σ≈9), costing
   **1.79×–6.22×** of budget across tracer and dictionary exponent — which **straddles the 3× line**, so
   per the rule above it needs a fit. R1–R3 are structural and budget-free; they carry it.
-  **⚠️ WHAT IS NOT CLOSED:** the **gravitomagnetic vector-drag** corner at $R_{\rm drag}\sim10^2$ kpc is
-  untouched — a vector (Lense–Thirring-like) source has vorticity **by construction** and so evades R1
-  entirely. It needs a fifth constant and nothing has excluded it. **The door is NARROWED, not shut**, and
-  the pincer is untouched (Thm 3 still forbids all local $L$; Thm 8's argument mismatch stands).
+  **⚠️ WHAT R1 DOES NOT REACH:** the **gravitomagnetic vector-drag** corner — a vector (Lense–Thirring-like)
+  source has vorticity **by construction** and so evades R1 entirely. Priced separately, next entry.
+- **⭐ THE VECTOR-DRAG CORNER CLOSES TOO (2026-07-31) — and on a MEASUREMENT, not a budget.**
+  `mi_vector_drag_corner_2026.py`, 11 checks, exit 0, three mutation controls. **Nothing in it depends on
+  $a_0$**, which is worth saying: the result is footing-free, budget-free and dictionary-free, so none of
+  today's estimator caveats can move it.
+  **MAGNITUDE.** GR gravitomagnetism drags a frame by $f = 4\Phi/c^2 = 4v_c^2/c^2$: **1.78×10⁻⁸ to
+  4.01×10⁻⁶** across real galaxies (MW 2.15×10⁻⁶; SPARC median 6.05×10⁻⁷). The door needs $f\sim1$, so a
+  universal boost $K = 1/f \sim 2.5\times10^5$ to $5.6\times10^7$. (Using $\Phi\sim v_c^2$ *understates*
+  the potential depth, so $f$ is deliberately conservative-**high** for the hypothesis.)
+  **THE KILL.** That boost is universal, so solar-system frame-dragging bounds it: **Gravity Probe B**
+  (−37.2±7.2 vs GR −39.2 mas/yr) allows $|K-1|\le0.18$; **LARES/LAGEOS** ~2%. **Shortfall ≥ 2.1×10⁵** at
+  the least favourable corner. Measured, not proxied.
+  **THE "ONLY AT 10² kpc" ESCAPE FAILS STRUCTURALLY:** Yukawa suppression is $e^{-r/R}\to1$ for $r\ll R$,
+  so a 100 kpc-range force acts at **full strength at 1 AU** (suppression 5×10⁻¹¹). *Long range means
+  strong at short distance, not weak.* Mutation control: a 1000 km range does suppress (10⁻⁶), so the
+  test discriminates.
+  **⭐ AND AN EXACT THEOREM WORTH KEEPING ON ITS OWN — normalisation-free.** If the frame is any scalar
+  multiple of the **local** matter velocity, $u=f\,v_{\rm local}$, then $v_{\rm rel}$ is homogeneous of
+  degree 1 in $(1-f)$, so **every** dimensionless statistic built from the frame-relative speed around an
+  orbit is **exactly drag-invariant** — verified for generic orbital phases, $f$ absent from the ratio
+  entirely. So **no amount of uniform drag, at any coupling strength, removes the m=1 contamination the
+  32.2× exclusion rests on.** Mutation control (a): the **non-local** centre-of-mass frame $u=V_{\rm bulk}$
+  gives $\varepsilon=0$ exactly — so the statistic *is* movable, and the theorem is about **locality**.
+  That is why every surviving prescription is non-local, and non-local lands back on Route A (Carina
+  4.05σ + the Tr N = 1 leak).
+  **⚠️ AND WHAT I AM NOT CLAIMING, against my own verdict:** the theorem covers **uniform** drag only.
+  Mutation control (b): **differential** drag ($f_t\neq f_r$) reaches $\varepsilon=0$ with
+  $\lambda=|1-f_r|=O(1)$ — at $f_t=1,f_r\approx0.5$ that is $\lambda=0.5$, costing ~0.15 dex at $p{=}1$,
+  **inside** the 0.2232 dex budget. **That escape is real and S4 does not close it**; only the magnitude
+  bound does. **THE SURVIVING ESCAPE, named: screening + differential drag** — a chameleon/Vainshtein-like
+  suppression in the solar system released at galactic radii, *plus* a mechanism dragging translation
+  differently from rotation. Three new ingredients (screening scale, vector coupling, differential
+  mechanism) to rescue one frame, in a framework whose appeal is **one** fitted number. Steep, unpaid,
+  and **open**.
+  **⭐ THE ONE COMPUTATION THAT WOULD CLOSE IT OUTRIGHT, named and NOT done:** derive the PPN
+  **$\alpha_1$** induced by a drag fraction $f$. $\alpha_1$ is bounded near $10^{-4}$ (LLR) to $10^{-5}$
+  (pulsars) and constrains exactly motion relative to a preferred frame — and **pulsar bounds are
+  galactic**, so screening the solar system would not evade them. Deliberately NOT used above, so the
+  measured kill rests on the weaker, safer instrument. One afternoon.
+  **NET: the locally-dragged frame has no surviving local prescription.** Scalar → R1 (irrotational,
+  potential flow). Vector → magnitude, 2×10⁵. Uniform-anything → the drag-invariance theorem. Non-local →
+  Route A, already priced. **The pincer is untouched** (Thm 3 still forbids all local $L$; Thm 8's argument
+  mismatch stands), and screening+differential drag is the one door left ajar. Prior art: Lense–Thirring
+  1918; Everitt+ 2011 PRL 106:221101; Ciufolini+ (LARES) — bound values from memory, flagged.
   Prior art: Arkani-Hamed–Cheng–Luty–Mukohyama 2004 (ghost condensate); Frobenius; Hawking–Ellis. That
   these three facts *jointly* close this framework's dark-sector corner is new to this corpus; **none of
   the ingredients is.**
