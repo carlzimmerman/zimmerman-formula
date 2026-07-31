@@ -327,11 +327,37 @@ Frozen flags carried with the targets:
 > *closer* to Newton — i.e. *less* detectable — than its own kernel implies. It manufactured a deficit,
 > not a win.
 >
-> **(g) SCOPE — what is NOT corrected here, so this block is not read as complete.** Only the
+> **(g) THE UPPER EDGE IS BREACHED, AND THE SURVIVING MARGIN IS THIN.** Independently reproduced by
+> `real_research/reviews/mi_dragged_frame_consolidation_2026.py` (100 checks, 6 mutation controls all
+> killed, exit 0), which identifies the convention rather than assuming it: mutating to the *consistent*
+> convention returns 1.030988. Two consequences beyond (d)–(e):
+> - The worst corner goes 1.0350 → **1.047199**, **breaching Amendment 3's own frozen upper edge by
+>   0.0122 = 0.639 σ_fit.** That range endpoint is superseded by the (d) table.
+> - Amendment 3's decisive conclusion ("MI below 1.05 on every combination") survives, but its **worst
+>   margin is cut 5.36×: 0.786 σ_fit → 0.147 σ_fit.** It is now a *thin* pass, not a comfortable one, and
+>   must be reported that way at scoring.
+>
+> **(h) TWO FURTHER DEFECTS, found in the same audit and NOT corrected here — reported so they are on the
+> record before DR4.** (i) **Amendment 1's gated row is stale under α = 2**: it carries 1.0004–1.0006,
+> where the α = 2 kernel implies **1.00012–1.00020**. (ii) **Amendments 2 and 3 use mismatched
+> orientation-averaging conventions** — no single fixed convention reproduces both frozen averages, missing
+> one of them by 6.4e-4 to 1.2e-3 (the frozen document itself declares 0.0008). (iii) Two sub-1e-3
+> provenance wrinkles: §1.1's `y_extN = 1.4647` comes from rounding g_ext/a₀ to exactly 1.9, and its
+> `alt y_extN = 1.1513` implies a₀_alt = 1.1298e-10 rather than the mandated 1.13e-10. None of (i)–(iii)
+> moves a verdict; all three are owed a correction.
+>
+> **(i) SCOPE — what is NOT corrected here, so this block is not read as complete.** Only the
 > framework-MI eigenvalues are recomputed. Amendment 3's **framework-as-MG row (1.0473–1.0885)** uses a
 > scalar μ(a_ex/a₀) prescription that plausibly carries the *same* argument error and is **not corrected**;
 > the **§2 s^TX Door-4B** numbers were not examined at all. Neither may be assumed sound because the MI
 > row has been fixed. Both are owed a separate audit.
+>
+> **(j) A FALSIFIABILITY TRAP IS FLAGGED BUT NOT RESOLVED, and resolving it is the owner's call.** The
+> **gate branch** (knee 43–72 kAU, slope p = 3) and the **frame branch** (knee 532–603 kAU, beyond any
+> bound pair) between them cover **both outcomes** of the frozen >50 kAU shape test, and both predict
+> Newton in 2–30 kAU at γ_v − 1 ≈ 1.0–1.5e-6 — 17 883× below the frozen lower edge 1.0182. **A test that
+> cannot fail is not a test.** One branch must be committed to in the open before DR4 lands, or the shape
+> test struck. This amendment does **not** make that choice.
 >
 > **(h) WHAT THIS AMENDMENT DOES NOT DO.** It does not touch the a₀-degeneracy flag: no DR4 outcome may
 > be reported as measuring a₀ = 9.36e-11. It does not change the estimator, the frozen cuts, the error

@@ -1,0 +1,325 @@
+
+======================================================================================
+BLOCK 0 - PROVENANCE.  Every corpus number below is PARSED FROM THE REPO FILE.
+======================================================================================
+  [PASS] sigma_RAR(alpha=2)=0.1116 dex literal present in STANDING.md
+  [PASS] sigma_RAR(alpha=1)=0.1083 literal present in STANDING.md
+  [PASS] the banked budget '2x0.108 = 0.216 dex' literal present in STANDING.md
+  [PASS] the banked '4.6x over' cosmic-frame lock present
+  [PASS] frozen literal present in PREREGISTRATION_DR4.md: '1.778e-10'
+  [PASS] frozen literal present in PREREGISTRATION_DR4.md: '2.078e-10'
+  [PASS] frozen literal present in PREREGISTRATION_DR4.md: '1.4647'
+  [PASS] frozen literal present in PREREGISTRATION_DR4.md: '1.1513'
+  [PASS] frozen literal present in PREREGISTRATION_DR4.md: '0.9669'
+  [PASS] frozen literal present in PREREGISTRATION_DR4.md: '1.0523'
+  [PASS] frozen literal present in PREREGISTRATION_DR4.md: '1.0246'
+  [PASS] frozen literal present in PREREGISTRATION_DR4.md: '1.0182 – 1.0350'
+  [PASS] frozen literal present in PREREGISTRATION_DR4.md: '1.0112'
+  [PASS] frozen literal present in PREREGISTRATION_DR4.md: '1.1115'
+  [PASS] frozen literal present in PREREGISTRATION_DR4.md: '1.0799'
+  [PASS] frozen literal present in PREREGISTRATION_DR4.md: 'sigma_sys = 0.02'
+  [PASS] frozen literal present in PREREGISTRATION_DR4.md: '0.0191'
+  a0 footings: canonical 9.3600e-11  alternate 1.1300e-10  (ratio 0.828319)
+  frozen error model: sigma_fit=0.0191 sigma_sys=0.02 -> sigma_tot=0.0277
+
+======================================================================================
+BLOCK 1 - KERNELS AND CLOSURE, both alpha, verified as ROOTS not as formulae.
+======================================================================================
+  [PASS] alpha=2: y(x) = x^2/sqrt(1+x^2)
+  [PASS] alpha=1: y(x) = (sqrt(1+4x^2)-1)/2
+  [PASS] alpha=1 closure is exactly x^2 = y^2 + y  (i.e. g_obs^2 = g_bar^2 + a0 g_bar, WITHDRAWN kernel)
+  [PASS] alpha=2 inverse x(y) is the positive root of x^4 - y^2 x^2 - y^2 = 0
+  [PASS] alpha=2 response h(x)=dy/dx = x(x^2+2)/(1+x^2)^{3/2}  (matches STANDING sec.1 table)
+  [PASS] that h(x) literal is in STANDING.md
+  [PASS] alpha=1 response h(x) = 2x/sqrt(1+4x^2)
+  [PASS] alpha=2: x_of_y and y_of_x are mutual inverses over 17 decades   worst rel resid 2.67e-51 at 50 dps
+  [PASS] alpha=1: x_of_y and y_of_x are mutual inverses over 17 decades   worst rel resid 8.29e-44 at 50 dps
+
+======================================================================================
+BLOCK 2 - L1(a) THE TRANSFER.  d log g_obs / d log a0 is 1/2 only in the DEEP limit.
+======================================================================================
+   y = g_bar/a0      transfer(alpha=2)   transfer(alpha=1)     budget on log a0 (a=2)
+   1e-06              0.49999975        0.4999995          0.2232 dex
+   1e-04                0.499975          0.49995         0.22321 dex
+   1e-02              0.49750003        0.4950495         0.22432 dex
+   1e-01              0.47503119       0.45454545         0.23493 dex
+   1e+00               0.2763932             0.25         0.40377 dex
+   1e+01            0.0097096622      0.045454545          11.494 dex
+   1e+02             9.997001e-5      0.004950495          1116.3 dex
+   1e+04            9.9999997e-9        4.9995e-5        1.116e+7 dex
+  [PASS] transfer <= 1/2 EVERYWHERE (alpha=2) - so 2*sigma_RAR is the TIGHTEST possible budget on log a0
+  [PASS] same for alpha=1
+  [PASS] deep limit transfer -> 1/2 exactly
+  [PASS] Newtonian limit transfer -> 0 (a0 becomes unobservable)
+  [PASS] transfer strictly DECREASING in y (monotone)
+  [PASS] transfer is a function of y ALONE -> footing-blind AT MATCHED y
+   AT MATCHED g_bar the footings differ: at g_bar=1.9727e-10, transfer = 0.13731 (can) vs 0.1712 (alt)
+  [PASS] alternate footing has LARGER transfer at fixed g_bar (a0 larger -> less Newtonian)
+
+   BUDGET BAND on log10 a0, alpha=2: TIGHTEST 0.2232 dex (deep limit, y->0);
+   at y=1 it is already 0.4038 dex, at y=10 11.49 dex.
+   PROVENANCE of 0.2232: sigma_RAR=0.1116 dex (STANDING sec.1) / transfer=1/2 (derived above).
+   The budget hands the ENTIRE observed scatter to a0 with nothing reserved for distance,
+   inclination or M/L -> GENEROUS TO THE HYPOTHESIS.  On Desmond 2023 sigma_int=0.034 the
+   budget is 0.068 dex and every 'N x over' factor TRIPLES.  Both directions are live.
+
+======================================================================================
+BLOCK 3 - L1(b) THE DICTIONARY EXPONENT.  a0_eff = a0/lambda^p : p=1 or p=2?
+======================================================================================
+  [PASS] READING 1 is an identity for an UNSPECIFIED mu:  A mu(lam A/a0) == A mu(A/(a0/lam))  =>  a0_eff = a0/lam
+   y        p=1 reading: dlogA/dloglam     p=2 reading: dlogA/dloglam      ratio
+   1e-06            -0.49999975           -1.0000005         2.0
+   1e-03               -0.49975              -1.0005       2.002
+   1e-01            -0.47503119           -1.0499376     2.21025
+   1e+00             -0.2763932           -1.4472136     5.23607
+   1e+01          -0.0097096622           -1.9805807      203.98
+   1e+03            -9.99997e-7            -1.999998      2.0e+6
+  [PASS] READING 2 is at least as sensitive as READING 1 at EVERY y (never less constraining)
+  [PASS] deep limit, p=1: d log g_obs/d log lam = -1/2  (route D's published dictionary)
+  [PASS] deep limit, p=2: d log g_obs/d log lam = -1  -> the SAME frame error is worth 2x the dex
+  [PASS] Newtonian limit, p=2: -> -2 (NOT suppressed) - categorically different from p=1's -> 0
+  [PASS] Newtonian limit, p=1: -> 0 (a0 unobservable) - this is why p=1 gives the solar system a free pass
+
+   ADJUDICATION: budget on log10(lambda) is 0.2232 dex under p=1 and 0.1116 dex under p=2.
+   EVERY 'N x over budget' number in the four-route digest assumes p=1.  Under the corpus's
+   own witness action the exponent is 2 and every factor DOUBLES.  Nobody reconciled this:
+   route D's own adversary showed substituting lam -> lam^2 left an entire route's output
+   BYTE-FOR-BYTE UNCHANGED, i.e. that route never tested its own dictionary.
+
+======================================================================================
+BLOCK 4 - THE PINCER PREMISE.  w/x = c/v on a circular orbit, and the gamma caveat.
+======================================================================================
+  [PASS] w/x = c/v EXACTLY (sympy, identically in Omega, R and a0)
+  [PASS] the ratio is a0-BLIND -> footing-free, and kernel-blind
+   MW disc star         c/v =    1286.66   gamma-1 =    3.02e-7 (50 dps)
+   dSph star            c/v =    29979.2   gamma-1 =  5.563e-10 (50 dps)
+   cluster member       c/v =    299.792   gamma-1 =   5.563e-6 (50 dps)
+   Earth                c/v =    10066.9   gamma-1 =   4.934e-9 (50 dps)
+   wide binary 10 kAU   c/v = 1.00635e+6   gamma-1 =  4.937e-13 (50 dps)
+  [PASS] the gamma correction to 'exactly' is < 1e-6 at 233 km/s - negligible in SIZE, but 'exactly' is convention-scoped
+
+======================================================================================
+BLOCK 5 - JENSEN SIGN.  Both kernels strictly concave on z>0 -> the gap is signed.
+======================================================================================
+  [PASS] K_2''(z) = -(4z+1)/[4 z^{3/2}(1+z)^{5/2}] EXACTLY  (route B's first guess -(3z+1) was wrong)
+  [PASS] K_2'' < 0 over 17 decades -> strict concavity -> K(<z>) >= <K(z)> by Jensen   max -1.000e-24
+  [PASS] the alpha=1 SHAPE nu=sqrt(1+1/z) is CONVEX in z - so the sign of the Jensen gap is NOT kernel-free in the variable z; route B's 'kernel-independent direction' holds for its own K-parameterisation only
+
+======================================================================================
+BLOCK 6 - THE MASS-INDEPENDENT FRAME-FLIP RADIUS.  r_eq/r_M = sqrt(a0/g_ext) < 1.
+======================================================================================
+  [PASS] r_eq/r_M = sqrt(a0/g_ext) - EXACT
+  [PASS] and MASS-INDEPENDENT (d/dM = 0 identically)
+   footing     g_ext used            r_eq/r_M     r_eq(1 Msun) [kAU]
+   can         primary                0.725558     5.77517
+   can         alt                    0.671143     5.34205
+   can         g_bar(R0) route-A      0.688823     5.48277
+   alt         primary                0.797211     5.77517
+   alt         alt                    0.737423     5.34205
+   alt         g_bar(R0) route-A      0.756848     5.48277
+  [PASS] r_eq/r_M < 1 on BOTH footings and ALL THREE g_ext conventions -> under a dominant-field drag rule the companion-dragged region always lies INSIDE the MOND radius, so no deep-MOND window ever opens for a solar-neighbourhood pair
+   Route A quoted 0.6888/0.7703; route C quoted 0.6962/0.7649.  Both are this identity at
+   slightly different g_bar(R0) - CROSS-ROUTE AGREEMENT, not a contradiction.
+   NOT the previously flagged omega_c gate dead zone (4.54-7.76): different structure entirely.
+
+======================================================================================
+BLOCK 7 - L2 THE MILKY WAY BAR.  Rigid reading vs O(eps) circulating reading.
+======================================================================================
+   (v_c,R0)        Om_p    Om_p/Om_orb   R_CR[kpc]  RIGID a0_eff dex   x budget(a=2,p=1)
+   (229.0,8.178)   30.0      1.0714      7.633           1.1466       5.14
+   (229.0,8.178)   33.0      1.1785      6.939           0.7484       3.35
+   (229.0,8.178)   37.0      1.3213      6.189           0.4930       2.21
+   (229.0,8.178)   39.0      1.3928      5.872           0.4059       1.82
+   (229.0,8.178)   41.0      1.4642      5.585           0.3333       1.49
+   (229.0,8.178)   45.0      1.6070      5.089           0.2168       0.97
+   (233.0,8.178)   30.0      1.0530      7.767           1.2760       5.72
+   (233.0,8.178)   33.0      1.1583      7.061           0.8006       3.59
+   (233.0,8.178)   37.0      1.2987      6.297           0.5248       2.35
+   (233.0,8.178)   39.0      1.3688      5.974           0.4332       1.94
+   (233.0,8.178)   41.0      1.4390      5.683           0.3575       1.60
+   (233.0,8.178)   45.0      1.5794      5.178           0.2370       1.06
+   (220.0,8.000)   30.0      1.0909      7.333           1.0414       4.67
+   (220.0,8.000)   33.0      1.2000      6.667           0.6990       3.13
+   (220.0,8.000)   37.0      1.3455      5.946           0.4616       2.07
+   (220.0,8.000)   39.0      1.4182      5.641           0.3786       1.70
+   (220.0,8.000)   41.0      1.4909      5.366           0.3090       1.38
+   (220.0,8.000)   45.0      1.6364      4.889           0.1963       0.88
+  [PASS] corotation R_CR = v_c/Omega_p sits INSIDE the solar circle for the ENTIRE published Omega_p range -> the rigid reading puts a divergence of a0_eff inside the well-measured MW disc
+  [PASS] the RIGID reading breaks the alpha=2 budget at the CENTRAL literature (v_c=233, R0=8.178, Omega_p=39) combination: 0.4332 dex = 1.94x - reproduces the adversarial passes' 0.4332 dex / 1.94x independently
+  [PASS] BUT the rigid reading's own range STRADDLES the budget - it does NOT break it for every (v_c,R0,Omega_p) combination.  Fastest-bar corner 0.1963 dex = 0.88x is INSIDE.  The adversaries' '1.9-5.7x over, no cherry-picking' understates the range's low end: the honest span is 0.88x-5.14x.
+   RIGID reading spread: 0.1963 - 1.2760 dex = 0.88x - 5.72x budget (p=1); DOUBLE under p=2.
+  [PASS] peak-to-peak modulation log10((1+q)/(1-q)) vanishes at q=0 and is monotone in q
+
+   eps     q(m=2, Om_p/Om=1.369)   peak-to-peak a0_eff [dex]   x budget   vs sigma_RAR in g_obs
+   0.05      0.1369                 0.1197       0.54       0.54
+   0.10      0.2738                 0.2440       1.09       1.09
+   0.20      0.5476                 0.5341       2.39       2.39
+   0.30      0.8214                 1.0085       4.52       4.52
+  [PASS] circulating-frame cost monotone in bar amplitude
+  [PASS] the O(eps) circulating reading is STRICTLY CHEAPER than the rigid reading -> the adversaries' 1.9-5.7x bar kill is an artefact of imposing RIGIDITY
+  [PASS] but at eps=0.10 it already spends >half the budget -> route A's 'the killer does not fire' is also wrong; the honest verdict is AT the budget, i.e. UNDECIDED at ~1x
+   ADJUDICATION: route A (killer does not fire, 0 dex) and its five adversaries (1.9-5.7x over)
+   are BOTH overstated.  The rigid frame is not forced; the O(eps) frame costs 0.12-0.24 dex at
+   eps=0.05-0.10, i.e. 0.5-1.1x budget (p=1) or 1.1-2.2x (p=2).  It is a LIVE, TESTABLE
+   prediction, not a kill: an m=2 BAR-PHASE-LOCKED RAR residual of ~0.06-0.12 dex in g_obs,
+   present in barred discs and absent in unbarred ones.  Nobody ran that test.
+
+======================================================================================
+BLOCK 8 - L3 THE FROZEN PRE-REGISTRATION's gamma_v, BOTH argument conventions.
+======================================================================================
+   -- alpha=2 (KERNEL IN FORCE), frozen convention, primary g_ext, canonical a0 --
+      x_ext=2.1033333  y_ext=1.8995726  gamma_par=0.966904  gamma_perp=1.05227
+  [PASS] reproduces FROZEN gamma_par = 0.9669   got 0.966904
+  [PASS] reproduces FROZEN gamma_perp = 1.0523   got 1.05227
+      3-axis rms 1.024603 | 3-axis quartic 1.026134 | sphere-average 1.024291
+  [PASS] the 3-AXIS RMS reproduces Amendment 3's frozen orientation average 1.0246   got 1.024603 (resid 3.33e-6)
+  [PASS] the three averaging conventions span < 0.003 in gamma_v -> the convention choice moves no verdict   spread 0.00184
+      frozen-convention range over 2 footings x 2 g_ext: 1.01816 - 1.03498
+  [PASS] reproduces the FROZEN Amendment-3 MI range 1.0182 - 1.035
+  [PASS] and identifies the corners: lower edge = canonical a0 x alt g_ext, upper = alt a0 x primary g_ext
+
+   -- the CONSISTENT convention (sec 1.1's own y_extN definition), alpha=2 --
+      can  primary : x_ext=1.89957 y_extN=1.68088  gamma_v=1.030988   shift   0.006384
+      can  alt     : x_ext=2.22009 y_extN=2.02422  gamma_v=1.021763   shift   0.003606
+      alt  primary : x_ext=1.57345 y_extN=1.32795  gamma_v=1.047199   shift    0.01222
+      alt  alt     : x_ext=1.83894 y_extN=1.61552  gamma_v=1.033339   shift   0.007164
+  [PASS] the correction has a DEFINITE SIGN: nu is decreasing, so feeding the OBSERVED field as the NEWTONIAN argument UNDER-states the MI boost.  The frozen numbers are biased TOWARD NEWTON.
+      worst corner (alt a0 x primary g_ext): 1.047199 vs frozen upper edge 1.035
+  [PASS] corrected, the worst corner BREACHES the frozen Amendment-3 upper edge   by 0.0122 = 0.639 sigma_fit
+      Amendment 3's decisive inequality (MI below the superseded band edge 1.05) SURVIVES on
+      every corner - worst margin collapses from 0.01502 to 0.00280 in gamma_v
+      = 0.786 -> 0.147 sigma_fit (5.36x margin loss).
+  [PASS] so the amendment's DIRECTION is convention-robust; only its MARGIN is lost
+
+   -- alpha=1 (RETIRED), for the record: does sec 1.1's y_extN match the frozen amendments? --
+      can: alpha=1 inverse of g_ext,obs = 1.46427  vs frozen sec-1.1 y_extN = 1.4647
+  [PASS] sec 1.1's frozen y_extN (1.4647) IS the alpha=1 Newtonian inverse of g_ext,obs   resid 0.000425
+      alt: alpha=1 inverse of g_ext,obs = 1.15098  vs frozen sec-1.1 y_extN = 1.1513
+  [PASS] sec 1.1's frozen y_extN (1.1513) IS the alpha=1 Newtonian inverse of g_ext,obs   resid 0.000316
+  [PASS] and it is pinned exactly: y_extN=1.4647 is the alpha=1 inverse of x_ext = 1.9000 EXACTLY (the doc's own rounding of g_ext/a0 = 1.899573), which identifies the convention beyond doubt   y(1.9)=1.464688
+  [PASS] Amendment 2's frozen eigenvalues 1.0112/1.1115 also come from the FROZEN (obs-as-Newtonian) convention -> the defect is in BOTH amendments, not a typo
+      Amendment 2's orientation average 1.0799: best of 3 conventions misses by 0.000792
+  [PASS] within the frozen document's OWN declared reproduction tolerance   prereg sec: 'reproduced against Amendment 2's alpha=1 numbers to 0.0008'
+  [PASS] that 0.0008 tolerance is literally in the frozen file (so route C's '<1e-4' was too strong)
+   *** THIS IS THE SHARPEST ACTIONABLE ITEM IN THE WHOLE AGGREGATE, AND IT IS NOT ABOUT THE
+   *** DRAG DOOR AT ALL.  It is the SAME bug class STANDING sec.5.1 records as having
+   *** MANUFACTURED A DEFICIT in the Ly-alpha b_cut chain (kernel evaluated at the Newtonian
+   *** argument instead of the observed one), now found inside a FROZEN, HASH-STAMPED document.
+
+======================================================================================
+BLOCK 9 - THE COUPLING-FREE POTENTIAL-FLOW NO-GO.  Tr N = 1 EXACTLY.
+======================================================================================
+  [PASS] Tr(d_i d_j chi) = Laplacian(chi) identically
+  [PASS] so with Laplacian(chi)=rho the drag tensor f_ij = -kappa_d d_i d_j chi has Tr f = -kappa_d rho
+  [PASS] EXACT co-motion (f_ij = delta_ij) requires kappa_d = -3/rho(x) POINTWISE -> one global coupling cannot do it for any varying density.  AIRTIGHT, and this part of route D survives all its refutations.
+   shape (a,b,c)         N_a       N_b       N_c      Tr N       1-3N_a    1-3N_c
+   (1, 1, 1)            0.33333   0.33333   0.33333         1.0       0.0       0.0
+   (1, 1, 0.5)           0.2364    0.2364    0.5272         1.0    0.2908   -0.5816
+   (1, 1, 0.2)          0.12476   0.12476   0.75048         1.0   0.62573   -1.2515
+   (1, 1, 0.05)        0.036909  0.036909   0.92618         1.0   0.88927   -1.7785
+   (1, 0.6, 0.2)        0.10359   0.20902   0.68739         1.0   0.68923   -1.0622
+  [PASS] Tr N = 1 EXACTLY for every ellipsoid (proved: Int_0^inf P^{-1/2} Sum 1/(s+a_i^2) ds = 2/(abc))
+  [PASS] at hz/Rd = 0.2 the disc's drag is 6x anisotropic (N_c >> N_a) -> a potential-flow drag CANNOT be isotropic for a disc; the in-plane leak factor 1-3N_a and the axial 1-3N_c have OPPOSITE SIGNS, so no coupling and no density model can remove the contamination
+  [PASS] independently reproduces the route-D adversary's 1-3N_c = -1.251 / 1-3N_a = +0.626   1-3N_a=0.62573 1-3N_c=-1.2515
+   => the CONCLUSION of route D part (b) survives triply, but its stated MECHANISM ('drag
+      fraction proportional to LOCAL DENSITY, so it re-enters the a0(rho_local) door already
+      nulled at 10.5 sigma') is WRONG: the trace is only 1/3 of the tensor, the anisotropy is
+      the whole effect, and the object produced is an orientation-dependent tidal quadrupole,
+      which that null does not cover.  Its 18-25x headline is a tuning artefact.
+
+======================================================================================
+BLOCK 10 - THE COSMIC-FRAME LOCK, CORRECTLY INSTRUMENTED (m=1, FIRST order).
+======================================================================================
+  [PASS] <lambda>_phi = 1 + eps^2/4 + O(eps^4) EXACTLY -> the POPULATION-OFFSET channel is SECOND order
+  [PASS] while the m=1 modulation is FIRST order (coefficient sin phi) -> the intra-galaxy asymmetry is the sharper instrument by 1/eps
+  [PASS] d log v_c / d log a0 -> 1/4 in the deep regime (derived from the alpha=2 closure)
+  [PASS] and -> 0 in the Newtonian regime
+   observed RC asymmetry A     implied cap on eps = V_pec/v_orb  (A = eps/2, first order)
+       1.0%                          eps <= 0.0200
+       2.0%                          eps <= 0.0400
+       4.0%                          eps <= 0.0800
+   PROVENANCE of the 1-4% asymmetry scale: the corpus's own directional-EFE work quotes a 1-4%
+   aligned RC asymmetry as the detectability scale (project_directional_efe_test).  NOT re-fitted here.
+   REAL SPARC (real_research/data/sparc_master_clean.csv): N=175 rows, 135 with Vflat>0, 129 with Q<=2; median Vflat = 116.6 km/s, range 33.6-332.0
+  [PASS] the SPARC master table has the expected 175 rows (hard parse assertion)
+
+   V_pec [km/s]   eps(median)   frac(eps>1) : NO CIRCULAR SOLUTION EXISTS   x over the eps cap
+     100.0          0.858        38.0%                              10.7
+     300.0          2.573        98.4%                              32.2
+     600.0          5.146       100.0%                              64.3
+    1000.0          8.576       100.0%                             107.2
+  [PASS] at a typical V_pec = 300 km/s, MORE THAN HALF of Q<=2 SPARC galaxies have eps>1, i.e. the cosmic frame's v_rel VANISHES once per orbit and a0_eff DIVERGES - there is no circular solution at all.  This is offset-immune, budget-free and footing-free.
+  [PASS] and the m=1 channel excludes the cosmic frame by >10x even at the most generous 4% asymmetry   32.2x
+
+   the BANKED statistic: peculiar-velocity span 1.000 dex / budget 0.217 = 4.62x  (STANDING sec.2 says 4.6x - reproduced)
+  [PASS] reproduces the banked 4.6x cosmic-frame lock exactly
+   BUT: that is a max-minus-min SPAN against an RMS budget, and a UNIFORM a0 offset is absorbed
+   by refitting kappa (which is FITTED).  The m=1 channel is first-order, intra-galaxy, and
+   immune to both objections.  RETIRE 4.6x as the lock; KEEP the conclusion, on the m=1 ground.
+
+======================================================================================
+BLOCK 11 - THE dSph CHANNEL: the sharpest DATA-side falsifier, never run as a fit.
+======================================================================================
+  [PASS] d log sigma / d log a0 = 1/4 EXACTLY (Milgrom deep-regime isothermal sigma^4 = (4/81) G M a0)
+   lambda = v_host/v_internal      sigma deficit lambda^{1/4}    dex in sigma
+        1.0                              1.0000              0.0000
+        8.3                              1.6973              0.2298
+       19.0                              2.0878              0.3197
+       25.0                              2.2361              0.3495
+       33.0                              2.3968              0.3796
+       92.0                              3.0970              0.4909
+  [PASS] NEGATIVE CONTROL: lambda=1 gives deficit exactly 1
+  [PASS] deficit monotone in lambda
+  [PASS] PROVENANCE: the 0.322 dex coherent Upsilon_V systematic is quoted from STANDING.md sec.5 front D, not from memory
+  [PASS] and the real McConnachie-2012 dSph catalogue is COMMITTED in the repo -> the fit named below is runnable today on data in hand
+   the corpus's OWN coherent Upsilon_V systematic is 0.322 dex in mass = 0.0805 dex in sigma
+   the drag deficit is 0.2298-0.4909 dex in sigma = 2.9x-6.1x that systematic
+  [PASS] so unlike Front D, the dSph drag test is NOT systematics-limited: the signal exceeds the coherent Upsilon floor by 2.9x-7.0x.  It is the sharpest data-side falsifier of the dragged frame, and NO ROUTE RAN IT AS A FIT - all three used sigma ~ a0^{1/4} scaling estimates.
+   Routes B (0.447-0.589 = 1.70-2.24x), C (median 3.43x) and the Carina counter (6.6 -> 1.74 km/s,
+   3.79x) AGREE in direction and span 1.7-3.8x.  That is a cross-route agreement, not a conflict:
+   they differ only in the assumed lambda.  All three are scaling estimates.
+
+======================================================================================
+BLOCK 12 - WIDE BINARIES UNDER THE DRAG: cross-route agreement, 50 dps, both footings.
+======================================================================================
+   10 kAU, 1 Msun: g_bar = 5.93008e-11 m/s^2, Newtonian v_int = 297.847 m/s, v_gal = 2.33e+5 m/s
+   footing   a0_eff = a0*v_int/v_gal      y = g_bar/a0_eff     gamma_v = sqrt(x/y)      gamma_v - 1
+   can         1.1965e-13            495.6188         1.00000101775     1.018e-6
+  [PASS] [can] gamma_v-1 matches the analytic asymptote 1/(4y^2) (anchors the 50-dps value to an identity, not to trust)
+   alt        1.44449e-13            410.5303         1.00000148336     1.483e-6
+  [PASS] [alt] gamma_v-1 matches the analytic asymptote 1/(4y^2) (anchors the 50-dps value to an identity, not to trust)
+  [PASS] gamma_v - 1 < 1e-4 on BOTH footings
+  [PASS] the dragged frame lands 4 orders BELOW the frozen Amendment-3 lower edge 1.0182   gamma_v-1 = 1.018e-6 vs frozen 0.0182
+   ratio (frozen boost)/(dragged boost) = 17882.5x
+   CROSS-ROUTE AGREEMENT: routes A (1.000020, field-weighted p=1), C (1.0000011), D (1.000001-
+   1.000002) and route B's own adversary (1.0000006) all land in 1e-6..2e-5.  The dragged frame
+   predicts NEWTON in the frozen 2-30 kAU window, on every route and both footings.  The frozen
+   Amendment-3 target belongs to the UNDRAGGED reading.  REPORTED, NOT AMENDED.
+
+======================================================================================
+MUTATION CONTROLS - each must FAIL, or the suite above has no discriminating power.
+======================================================================================
+  [PASS] MUTATION h(x): (x^2+2) -> (x^2+3) still reproduces gamma_par: killed-by-mutation (good)   gives 0.899429 vs frozen 0.9669
+  [PASS] MUTATION the CONSISTENT convention also reproduces 1.0246: killed-by-mutation (good)   gives 1.030988 - so the frozen doc's convention is IDENTIFIED, not assumed
+  [PASS] MUTATION flattening Vflat still gives a nontrivial eps>1 fraction: killed-by-mutation (good)   collapses to a single value -> BLOCK 10's fraction is driven by the real Vflat range
+  [PASS] MUTATION lambda=1 gives a nonzero sigma deficit: killed-by-mutation (good)   exactly 1 -> estimator is not rigged
+  [PASS] MUTATION a0 x10 keeps r_eq/r_M < 1: killed-by-mutation (good)   gives 2.2944 > 1 -> the conclusion is sensitive to a0's actual value, not an artefact
+  [PASS] MUTATION the two dictionary readings are numerically indistinguishable: killed-by-mutation (good)   they differ by exactly 2x in the deep limit -> BLOCK 3 has power
+
+======================================================================================
+NOTES / SCOPE LIMITS CARRIED (not failures - honesty ledger)
+======================================================================================
+  (1) Jensen gap sign is parameterisation-dependent: concave for K_2(z)=sqrt(z/(1+z)), convex for nu(y)=sqrt(1+1/y).  Route B's 'direction is kernel-independent' needs the variable named.
+  (2) Omega_p = 30-45 km/s/kpc and the bar amplitude eps=0.05-0.30 are literature-order values quoted from memory in this run, NOT re-fetched from a primary source.  Carried as ranges.
+  (3) q = m*eps*Omega_p/Omega is IMPORTED from a route-A adversarial pass (O(eps) transport equation).  Only its CONSEQUENCE (the a0_eff modulation below) is derived in this file.
+  (4) Two sub-1e-3 provenance wrinkles in the frozen doc, reported not fixed: sec 1.1's y_extN=1.4647 comes from rounding g_ext/a0 to exactly 1.9; and its alt y_extN=1.1513 implies a0_alt = 1.1298e-10 rather than the mandated 1.13e-10.  Neither moves a verdict.
+  (+) NOTHING here derives a0 = cH_Lambda/Z.  kappa = 1/2 remains FITTED; the kappa-forcing door
+      stays closed (2026-06-17).  32pi/3 is the Einstein-coupling conversion factor and CANCELS.
+  (+) No action is written down anywhere in the four routes.  Theorem 3 (no local L) and
+      Theorem 8 (wrong ARGUMENT, kernel-independent) both stand exactly as they did.
+  (+) No git operation, no Zenodo, no repo file modified, no frozen document altered.
+
+======================================================================================
+RESULT
+======================================================================================
+ALL CHECKS PASSED (exit 0).  Six mutation controls all killed as required.

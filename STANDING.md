@@ -150,18 +150,67 @@ claims. They are not to be revived. The true position is the $a_0$ reframing abo
   is repaired *only on circles*, failing by 0.78–3.13× at $e{=}0.6$. (iv) RAR universality is **not** fully
   restored — worst corner injects 0.227–0.383 dex vs the 0.2232 budget (**1.72× over**, 2 of 9 cells
   fail); it converts a uniform 5× failure into a corner-dependent one.
-  **ROUTE D's AIRTIGHT LEG:** exact co-motion requires $-\kappa_d\rho(x)=3$ **pointwise**, impossible for
-  one global coupling on a varying profile. Solar-system ranging caps frame vorticity at **1/25** of the
-  Milky Way's measured Oort vorticity (killing co-moving drag); the only construction meeting that cap
-  for free is a potential flow leaving **84% of 135 real SPARC galaxies at >90% the cosmic frame**.
-  ⚠️ Self-demoted: that bound derives from the *local witness action*, which is Ostrogradsky-unstable
-  (above). **And I was wrong about which obstruction would close it** — I bet on passivity; passivity
-  **survived** ($c_1=c_4$ gives zero propagating modes with spatial gradients intact). 2 of 6
-  obstructions died. **A gravitomagnetic vector-drag corner at ~1e2 kpc is NOT closed**, nor is a frame
-  sourced by the framework's own ghost-condensate Q-mode rather than baryons.
-  **NOT closed, NOT a derivation of $a_0$, and $\kappa=\tfrac12$ still fitted.** Prior art: Mach;
-  Sciama 1953; Milgrom 1994 already requires a definition of absolute acceleration for modified inertia.
-  The Machian idea is **not** novel here.
+  **ROUTE D's SURVIVING LEG — ⚠️ GROUND REPLACED by the completeness critic
+  (`mi_dragged_frame_consolidation_2026.py`, 100 checks, 6 mutation controls all killed, exit 0).**
+  Exact co-motion requires $-\kappa_d\rho(x)=3$ **pointwise**, impossible for one global coupling on a
+  varying profile — that stands. **But the vorticity leg I banked is DEGENERATE and must not be cited:**
+  a uniform curl $u$ is an *exact coordinate rotation* of every Newtonian solution, so Earth ranging and
+  LLR are **blind** to it; the "1/25 of the Milky Way's Oort vorticity" cap rests on two provably
+  degenerate observables. The one non-degenerate instrument — solar-system dynamical frame spin against
+  the quasar frame, needing better than **~6.2 μas/yr** — was named and **never evaluated**. Route D's
+  18–25× is also withdrawn (tuning artefact, 0.82 dex per 1% coupling change).
+  **THE COUPLING-FREE REPLACEMENT:** $\operatorname{Tr}N = 1$ **exactly for every ellipsoid** (proved:
+  $\int_0^\infty P^{-1/2}\sum(s+a_i^2)^{-1}ds = 2/abc$), giving leak factors $1-3N_a = +0.626$ in-plane
+  and $1-3N_c = -1.251$ axial at $h_z/R_d=0.2$ — O(1), **opposite signs**, and no coupling or density
+  model removes it. **And I was wrong about which obstruction would close it** — I bet on passivity;
+  passivity **survived** (the aether Hessian $2(c_1-c_4)\delta_{ij}$ vanishes on a codimension-1 surface
+  with spatial gradients intact). 2 of 6 obstructions died; the Lorentz/SME leg produced no bound.
+  **SURVIVING CORNERS, NOT CLOSED:** a gravitomagnetic vector drag at $R_{\rm drag}\sim10^2$ kpc, and a
+  frame sourced by the framework's own **ghost-condensate/AeST dark sector** rather than baryons — the
+  potential-flow no-go is closed only for **baryon-sourced** potential flow.
+  **⭐ THE NEXT COMPUTATION, NAMED PRECISELY: $u$ as the timelike eigenvector of the TOTAL stress tensor,
+  $T^{\mu\nu}_{\rm bar}+T^{\mu\nu}_Q$, including the dark sector.** Two independent passes point at it
+  from opposite directions (Route D calls it "the least-closed corner in the whole analysis"; a route-D
+  adversary found it "gives $\lambda\sim1$ and survives" while being local, algebraic, boost-fixing and
+  manifestly passive). Steps: take the published Q-mode disc profile → solve for the timelike eigenvector
+  → evaluate $\lambda=v_{\rm rel}/v_{\rm orb}$ at the solar circle and across SPARC deep-regime points →
+  redo $\nabla\!\cdot\!(\rho v)=0$ for the **dark sector's** flux (which need not be solenoidal if the
+  Q-mode carries radial or vertical flux) → test against the m=1 cap ($\varepsilon\le0.08$) and the
+  frame-spin cap → both footings. If the dark-sector flux *is* solenoidal, the no-go extends and the door
+  closes on the same identity.
+  **⚠️ CORRECTIONS TO WHAT I BANKED EARLIER THE SAME DAY, forced by the critic:** (a) the ZAMO uniqueness
+  ansatz *assumes zero meridional velocity*; the meridional branch is **undetermined**, NOT "13.9× over
+  budget" (that pricing was itself a manufactured deficit — 3.1095 dex is just $\log_{10}(c/v_{\rm orb})$,
+  i.e. "nothing bounds $w$ except $|w|<c$"). Born rigidity fixes it only by going **global**
+  (Herglotz–Noether), reinstating ~0.90 dex of the cosmic-frame liability. HSO is a premise; the frame
+  **identification** is a *new* postulate. (b) Route A's "$a_0$ preserved EXACTLY under the drag boost"
+  was a **tautology** (`sp.diff(H/2π, β)==0` passes for five β-free decoys including the literal `42`);
+  the conclusion survives on other grounds (worst channel 6.2e-3 dex, ~18× inside $\sigma_{\rm RAR}$) but
+  "exactly / at all orders" must go, and the exactness is **canonical-footing-only** (on $\rho_{\rm total}$
+  the shift is $O(\beta^2)$ with coefficient exactly 1/3). (c) The disc-star question is **UNDECIDED at
+  ~1× budget**, not settled: the rigid reading gives 0.4332 dex (1.94×) with corotation at 5.97 kpc, but
+  the full published range **straddles** (0.1963–1.2760 dex = 0.88×–5.72×), and rigidity is *not forced* —
+  the O(ε) circulating frame is strictly cheaper (0.1197 dex at ε=0.05). Route A's "the killer does not
+  fire" and the adversaries' "the bar forces $\Omega_f=\Omega_p$" are **both overstated**.
+  **⚠️ PROCESS SIGNAL, worth keeping: 41/48 verdicts refuted (85%), and the pattern was uniform — the
+  SCRIPTS were honest and caveated, the FORWARDED HEADLINES were not.** Treat any route headline as
+  unverified until re-read against its own script output. Five manufactured wins and five manufactured
+  deficits were identified across the four routes.
+  **NOT closed, NOT open — UNDECIDED. No action exists anywhere; the prescription is free *and*
+  load-bearing** ($p$ spans 491× in RAR residual, ~15 orders in $s^{TX}$, 4.6 orders in $\gamma_v-1$).
+  Not a derivation of $a_0$; $\kappa=\tfrac12$ still fitted. Prior art: Mach, with **Sciama 1953 MNRAS
+  113, 34** the standard citation — note Sciama's $1/r$ weighting is a *different* prescription that
+  yields no crossover anywhere and lands back on the excluded cosmic frame; **Milgrom 1994 Ann. Phys.
+  229:384** already states that modified inertia requires a definition of absolute acceleration and that
+  orbit-dependent interpolating functions follow. ZAMO / Frobenius / Lense–Thirring / Herglotz–Noether are
+  textbook. **Nothing in the four routes is a novelty claim.**
+- **⭐ THE ONE GENUINELY NEW, NEAR-TERM TESTABLE PREDICTION TO COME OUT OF THIS — and it is runnable on
+  data in hand.** If the frame is dragged by a *barred* disc, $a_{0,\rm eff}$ acquires an **m=2,
+  bar-phase-locked modulation of 0.1197 dex (ε=0.05) to 0.2440 dex (ε=0.10)** → **0.06–0.12 dex in
+  $g_{\rm obs}$**, i.e. comparable to the **entire** observed RAR scatter of 0.1116 dex — **present in
+  barred discs and absent in unbarred ones**. Testable today on SPARC + Hubble type; nobody in the corpus
+  has looked. ⚠️ $\Omega_p = 30\text{–}45$ km/s/kpc and $\varepsilon=0.05\text{–}0.30$ are literature-order
+  values quoted from memory in that run, **not** re-fetched from a primary source — source them first.
 - **⚠️⚠️ TWO DEFECTS FOUND INSIDE THE FROZEN DR4 PRE-REGISTRATION — AMENDMENT 4 FILED IN THE OPEN
   2026-07-31.** `mi_prereg_gext_argument_audit_2026.py`, 16 structural checks, exit 0; freeze manifest
   re-verified, all 5 pipeline hashes **unchanged**.
@@ -187,22 +236,66 @@ claims. They are not to be revived. The true position is the $a_0$ reframing abo
   Neither may be assumed sound.
 - **⚠️ THE DR4 WIDE-BINARY AGGREGATE IS STRUCTURALLY DEAD as a hierarchy discriminator** — frozen
   $\sigma_{\rm sys}=0.02$ caps the γ_v separation at **0.91σ at INFINITE N**, not a sample-size problem.
-  The better near-term handle is a **3.20–3.61× median dwarf-spheroidal dispersion deficit on archival
-  data**, but this is a **LEAD, NOT A RESULT**: it uses $|a|=\sigma^2/R_h$ with no virial coefficient and
-  $v_c=220$ km/s for every satellite (real orbits span ~50–350 km/s), and §5.4 already records dSph
-  $\Upsilon_V$ systematics as coherent and dominant (0.322 dex = 8.7× the signal on the related test).
-  Route C also found and fixed the **same Newtonian-vs-observed bug in its own first draft**, which had
-  been understating this deficit by ~2×.
+  The better near-term handle is a **dwarf-spheroidal dispersion deficit on archival data**, and
+  ⚠️ **my earlier "systematics-limited" reading of it was WRONG** — corrected by the completeness critic:
+  because $\sigma\propto a_0^{1/4}$, the coherent $\Upsilon_V$ systematic enters $\sigma$ as
+  $0.322/4 = 0.0805$ dex, against a deficit of **0.2298–0.4909 dex = 2.9×–6.1×**. So this test is
+  **NOT systematics-limited**, unlike the wide-binary front. The scatter across routes (B 1.70–2.24×,
+  C 3.43×, Carina 3.79×) is **not** disagreement — it is the same $\lambda^{1/4}$ law at different
+  $\lambda$ (tabulated 8.3→1.697 … 92→3.097). ⚠️ Still a **LEAD, not a result**: every route used the
+  $\sigma\propto a_0^{1/4}$ *scaling*, and **nobody ran a likelihood with $\Upsilon$ profiled per object**
+  — the data (`real_research/data/dsph/mcconnachie2012_dsph.csv`) is committed and the fit is one
+  afternoon. That is the **sharpest data-side falsifier of the dragged frame**. Route C also found and
+  fixed the **same Newtonian-vs-observed bug in its own first draft**, which had been understating the
+  deficit by ~2×.
+- **⚠️⚠️ A FALSIFIABILITY TRAP IN THE FROZEN PRE-REGISTRATION — must be resolved BEFORE DR4, and it is
+  Carl's call.** The **gate branch** (knee 43–72 kAU, slope $p=3$) and the **frame branch** (knee
+  532–603 kAU, beyond any bound pair) between them **cover both outcomes** of the frozen >50 kAU shape
+  test — and *both* predict Newton in the 2–30 kAU window at $\gamma_v-1 \approx 1.0$–$1.5\times10^{-6}$.
+  A test that cannot fail is not a test. **Commit to one branch in the open before data lands, or strike
+  the shape test.** Related, and independently verified 4/4 across routes: the dragged reading gives
+  $\gamma_v-1 = 1.018\times10^{-6}$ (canonical) / $1.483\times10^{-6}$ (alternate), anchored to the
+  analytic $1/(4y^2)$ asymptote at 50 dps — **17 883× below the frozen lower edge 1.0182**. The frozen
+  Amendment-3 target belongs to the **undragged** reading. Reported, not amended.
+- **⚠️ FRONT B IS PRESCRIPTION-HOSTAGE (adjudicated, worse than either route claimed).** Readings of
+  $s^{TX}$ under a dragged frame span **~15 orders** (2.87e-10 down to 6.0e-25) against the 1.3e-9 bound.
+  The frozen $s^{TX}=8.68\times10^{-10}$ (margin 1.50×, **sign NEGATIVE locked**) is **not recoverable from
+  any dragged reading**: the largest surviving reading has the **wrong sign** (galactic-rotation apex
+  131.5° from the CMB apex) and the rest are unobservable. Front B is a prediction of the **cosmic-frame**
+  premise that this door's own lock excludes — so Front B and a locally-dragged frame are **mutually
+  exclusive**, and that is a structural statement, not a numerical one.
 - **⭐ AND IT NAMES A DOOR, WITH ITS LOCK.** $u=w\,(v/c)$ **exactly** — so what Theorem 8 found missing
   is a **speed**, and the $|\dot x|^2$ prefactor is exactly how the local action supplies it. A speed is
   not an invariant of a lone worldline, which is *why* the covariant operator route failed; but this
   framework has a **passive preferred frame**, which does supply one. Target, now specific: a nonlocal
   worldline action whose kernel argument is the frame-relative frequency rescaled by the frame-relative
-  speed. **The lock, computed not deferred:** a *cosmic*-frame speed is **excluded by the framework's own
-  RAR** — peculiar velocities span ~1.0 dex against a total $a_0$ budget of $2\times0.108=0.216$ dex
-  ($4.6\times$ over). The frame must be **locally dragged** so a star's frame-relative speed is its
-  orbital speed, not its galaxy's bulk motion. Whether the passive $u$ does that is **not settled and
-  not claimed**.
+  speed. **The lock — ⚠️ ARGUMENT REPLACED 2026-07-31, conclusion kept.** The original lock ("peculiar
+  velocities span ~1.0 dex against a $2\times0.108=0.216$ dex budget, $4.6\times$ over") is **RETIRED as
+  an argument**: it is a max−minus−min **span** measured against an **RMS** budget, on a channel where a
+  *uniform* offset is absorbed by refitting $\kappa$ — which is **fitted**. It reproduces exactly
+  (1.000 dex / 0.2166 = 4.62×) and it is still the wrong instrument.
+  **THE REPLACEMENT IS STRONGER AND FOOTING-FREE.** $\langle\lambda\rangle_\varphi = 1+\varepsilon^2/4$
+  *exactly* (sympy), so the population-offset channel is **second order** while the **m=1
+  rotation-curve asymmetry is first order**. On the committed SPARC table (175 rows, 129 at Q≤2, median
+  $V_{\rm flat}=116.6$ km/s), at $V_{\rm pec}=300$ km/s: $\varepsilon = 2.573$ and **98.4% of galaxies
+  have $\varepsilon>1$** — $v_{\rm rel}$ vanishes once per orbit and $a_{0,\rm eff}$ **diverges**, so no
+  circular solution exists at all. Against a 4% asymmetry cap ($\varepsilon\le0.08$) that is
+  **32.2×**: footing-free, budget-free, offset-immune. So the cosmic frame is excluded, but *cite this*,
+  not the 4.6×. The frame must be **locally dragged**; whether the passive $u$ does that is **not settled
+  and not claimed** (see the dragged-frame entry above — the answer as of 2026-07-31 is *undecided*).
+- **⚠️ METHODOLOGICAL RULE, BANKED 2026-07-31 — it retroactively softens many corpus verdicts,
+  including several of my own.** The 0.2232 dex "$a_0$ budget" is simultaneously the **tightest possible
+  transfer** ($d\log g_{\rm obs}/d\log a_0 = \tfrac12$ only in the *deep* limit; at $y=1$ it is 0.2764,
+  so the budget there is **0.4038 dex**) and the **most generous scatter allocation** (handing the whole
+  observed scatter to $a_0$; on Desmond 2023 $\sigma_{\rm int}=0.034$ the budget is **0.068 dex** and
+  every factor triples). It is soft in **both** directions. Compounding this, the **dictionary exponent
+  is unresolved**: $p=1$ gives $d\log g_{\rm obs}/d\log\lambda = -\tfrac12$ deep, while $p=2$ — the
+  corpus's **own committed witness action**, where the frame speed enters as a $|\dot x-u|^2$ prefactor —
+  gives $-1$. Every "$N\times$ over budget" number in the corpus assumes $p=1$, so each carries a real
+  factor-2 ambiguity. **THE RULE: no verdict below ~3× over budget is estimator-independent. Below 3×,
+  fit — do not quote the proxy.** Demonstrated: the one adversarial pass that actually **refit** SPARC
+  with frame speed and $\Upsilon$ profiled out got **0.1261 dex vs the 0.1117 baseline = 1.13×**, where
+  the proxy had said **7.2×**.
   **⚠️ ALSO NEW: the $\alpha=2$ kernel violates passivity for $z<-1$** ($K_2=w/\sqrt{w^2-1}>1$),
   by ~$10^{-13}$ at orbital frequencies and order 7 near the cut edge. It does **not** touch the $a_0$
   derivation, which uses $z>0$ only, where $0\le K_2\le1$ over sixteen decades — but it is a real cost
