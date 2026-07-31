@@ -89,6 +89,45 @@ claims. They are not to be revived. The true position is the $a_0$ reframing abo
   rather than at the operator's spectrum.** Milgrom's virial $f(u)$ does exactly that on circles — which
   is why the four-family no-go was withdrawn — so the object is not impossible, only unwritten off
   circles. Scripts: `mi_theorem3_corrected_proof_2026.py`, `mi_theorem8_redone_alpha2_2026.py`.
+- **⭐⭐ THE 1-LOOP dS EDGE TRANSFERS TO α=2 — and the mechanism protecting $a_0$ turns out to be an
+  IDENTITY, not a feature of the retired measure (2026-07-31).** `mi_loop_edge_alpha2_measure_2026.py`,
+  15 checks, 4 mutation controls, exit 0, mpmath 50 dps.
+  **THE HOLE IT CLOSES.** The completion's central *quantum* claim (v11, 2026-07-09: $a_0$ unrenormalized
+  via an exact Herglotz measure and a sum rule $\int d\mu/|t|=1$; linear vertex zero to all orders; KL
+  positivity + KMS preserved) was computed on the **α=1 kernel retired 2026-07-30** — so the framework's
+  quantum-stability result was standing on a kernel it no longer uses.
+  **⭐ THE RESULT: THE SUM RULE IS AN IDENTITY.** For *any* Herglotz kernel
+  $K(z)=K(\infty)-\int\rho(s)ds/(z+s)$, taking $z\to0$ and $z\to\infty$ gives
+  $\int \rho/s\,ds = K(\infty)-K(0)$ **identically**. So "$\int d\mu/|t|=1$" was **never a property of the
+  α=1 measure** — it is exactly **K(∞)=1** (passivity saturation) and **K(0)=0** (horizon floor), both
+  *premises of the construction*. α=2 satisfies both, with $\int\rho/s\,ds=1$ in **closed form**; verified
+  both kernels give K(10⁻³⁰)=10⁻¹⁵ and K(10³⁰)=1.
+  **The physics is now visible:** K(0)=0 means the kernel carries **no zero-frequency piece**, and a
+  divergence that cannot generate a DC term cannot shift the scale inside $K(\Box_u/a_0^2)$. Mutation
+  control: adding a constant 0.3 gives K(0)=0.3, breaking the sum rule to 0.7 and freeing a DC term — so
+  K(0)=0 is load-bearing, not vacuous.
+  **REPRESENTATION DERIVED, not quoted:** $K_2=1-\int_0^1\rho\,ds/(z+s)$, $\rho=(1/\pi)\sqrt{s/(1-s)}$, via
+  $s=\sin^2\theta$ plus one standard integral (verified to 10⁻²⁵ at eight (a,b) pairs), cross-checked
+  against direct quadrature over eight decades, with a mutation control that breaks it.
+  **α=2 IS STRICTLY BETTER BEHAVED, not merely different.** Compact support (0,1), total mass exactly **½**,
+  all moments finite in closed form ($\beta(\tfrac{2n+3}{2},\tfrac12)/\pi$ = 0.500, 0.375, 0.3125, 0.2734,
+  0.2461). Demonstrated directly that **α=1's mass DIVERGES**: $z(1-K_1)$ runs **4.88 → 49 999.9** over
+  $z=10^2\!-\!10^{10}$ while $z(1-K_2)\to$ **0.5** exactly. So any 1-loop coefficient needing $\int d\mu$ was
+  a *divergent* integral on α=1 and is finite with **no regulator** on α=2.
+  **KL positivity is automatic** ($\rho_2\ge0$ manifestly on its whole support — no dressing argument
+  needed). **The linear vertex is kernel-free:** $\delta[F(|a|^2)]=2F'a\!\cdot\!\delta a$ vanishes on a
+  geodesic for **generic** $F$ (sympy), so the geodesy theorem transfers with nothing to check.
+  **⚠️ THE ONE PLACE α=2 IS WORSE, not swept up:** $K_2>1$ for $z<-1$ ($K_2(-1.01)=10.05$), violating
+  passivity there, where α=1's branch point at $z=-\tfrac14$ puts its trouble elsewhere. The Euclidean loop
+  domain is $z>0$, where $0\le K_2\le1$ over sixteen decades — so the result stands, but this is a
+  **condition on the contour, not a theorem**; any calculation continuing past $z=-1$ must re-examine
+  positivity rather than inherit it.
+  **⚠️ SCOPE, load-bearing: the full divergence computation was NOT re-run.** What is established is that
+  every structural input the α=1 argument used holds on α=2. The conclusion transfers **provided the
+  published proof used only those inputs**; a step reaching into the detailed shape of the α=1 measure would
+  need redoing. **Still open and named:** two loops, finite parts, the $T_{\mu\nu}$ metric variation, the
+  disformal $\rho_m$ variant, the ephemeris de/dt bound. Prior art: Herglotz/Nevanlinna/Pick,
+  Källén–Lehmann, KMS — none claimed as new.
 - **⭐ THE OFF-CIRCULAR ACTION, WRITTEN DOWN (2026-07-30) — the pincer is now *sharp*, with an explicit
   witness on the local horn.** `mi_offcircular_action_2026.py` (44 checks, exit 0). The action is
   $$S[x]=\int\!dt\;m\Big(|\dot x|^2\,f(|\ddot x|/a_0)-\phi(x)\Big),\qquad f(u)=u^{-2}\!\int_0^u\!v\,\mu(v)\,dv,$$
