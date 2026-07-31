@@ -232,11 +232,40 @@ claims. They are not to be revived. The true position is the $a_0$ reframing abo
   differently from rotation. Three new ingredients (screening scale, vector coupling, differential
   mechanism) to rescue one frame, in a framework whose appeal is **one** fitted number. Steep, unpaid,
   and **open**.
-  **⭐ THE ONE COMPUTATION THAT WOULD CLOSE IT OUTRIGHT, named and NOT done:** derive the PPN
-  **$\alpha_1$** induced by a drag fraction $f$. $\alpha_1$ is bounded near $10^{-4}$ (LLR) to $10^{-5}$
-  (pulsars) and constrains exactly motion relative to a preferred frame — and **pulsar bounds are
-  galactic**, so screening the solar system would not evade them. Deliberately NOT used above, so the
-  measured kill rests on the weaker, safer instrument. One afternoon.
+  **⚠️ THE $\alpha_1$ COMPUTATION I NAMED AS DECISIVE IS WITHDRAWN — it is the WRONG INSTRUMENT.**
+  `mi_alpha1_and_screening_squeeze_2026.py`, 12 checks, exit 0. Preferred-frame observables scale as
+  $\alpha_1(1-f)w$ where $w$ is the velocity **relative to the frame**, so **dragging SUPPRESSES them**
+  and they vanish identically at $f=1$ ($d/df = -\alpha_1 w < 0$, monotone). Dragging to the Galactic COM
+  even **relaxes** the bounds by **2.82×** ($w$: 620 → 220 km/s). $\alpha_1$ still constrains the
+  framework's preferred frame *in general* — a separate, live question — but it is **silent on whether
+  that frame is dragged**. My reasoning ("pulsar bounds are galactic, so screening won't evade them") had
+  the sign backwards.
+  **AND A SECOND CORRECTION, also against my prior position: the differential escape is less contrived
+  than I implied.** $f_t$ and $f_r$ share one coupling and one $U/c^2$, so **their ratio is pure geometry**
+  — $\kappa$ and $U/c^2$ cancel identically. That cuts both ways: a **rigid** drag gives $f_r/f_t=1$
+  exactly, which the drag-invariance theorem already kills, so the escape needs a **non-rigid** kernel
+  (a $1/|x-x'|$ kernel is one). **The deciding number is a specific disc integral, named and NOT
+  computed:** evaluate $\omega_{\rm drag}/\Omega$ and $v_{\rm drag}/V$ at the solar radius for an
+  exponential disc from the vector Poisson integral and report $f_r/f_t$. ~1 kills the escape; ~0.5 keeps it.
+  **⭐ WHAT REPLACES $\alpha_1$: THE SCREENING SQUEEZE — and it squeezes from both sides.**
+  *Potential-keyed screening FAILS structurally:* the Sun's own $\Phi/c^2 = 2.12\times10^{-6}$ **exceeds**
+  the Galaxy's $5.39\times10^{-7}$ at the solar circle — same order (3.94×) and the **wrong ordering**.
+  Bridging the $2.11\times10^5$ shortfall across that contrast needs $S\sim\Phi^{8.9}$. Not available.
+  (Mutation control: given a $10^{23}$ contrast the required slope falls to 0.36, so the obstruction is
+  the *smallness of the potential contrast*, not the size of the suppression demanded.)
+  *Density-keyed screening HAS the range* (Sun/disc $=2.3\times10^{23}$) **but pays for it**: the same
+  contrast exists between **stars and diffuse gas inside one galaxy** ($8.4\times10^{23}$), so any
+  monotonic screening steep enough to hide the Sun also screens **stars** while leaving **gas**
+  unscreened — the standard screening-induced EP violation (Hui–Nicolis–Stubbs). That predicts a
+  stars-vs-gas rotation-curve split of **~41%** ($p{=}1$) against an agreement this corpus records at
+  ~3%: **~14× tension.**
+  ⚠️ **STATUS: SQUEEZED, NOT SHUT, and the observational leg is soft.** The 3% figure is a *remembered
+  order-of-magnitude* (Route D already flagged it as such), **not a fit** — so the 14× carries a
+  factor-of-a-few uncertainty and **must not be quoted as a σ**. Two cheap computations finish it:
+  (a) the $f_r/f_t$ disc integral, (b) a real stellar+gas curve pair with asymmetric drift handled and
+  errors reported. Prior art: Will (PPN); Damour–Esposito-Farèse, Shao & Wex ($\alpha_1$);
+  Khoury–Weltman (chameleon); Hui–Nicolis–Stubbs (screening EP violation). Bounds and the 3% flagged as
+  from memory.
   **NET: the locally-dragged frame has no surviving local prescription.** Scalar → R1 (irrotational,
   potential flow). Vector → magnitude, 2×10⁵. Uniform-anything → the drag-invariance theorem. Non-local →
   Route A, already priced. **The pincer is untouched** (Thm 3 still forbids all local $L$; Thm 8's argument

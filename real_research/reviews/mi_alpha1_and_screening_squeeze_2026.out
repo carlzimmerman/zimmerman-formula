@@ -1,0 +1,143 @@
+
+======================================================================================================
+alpha_1 RETRACTED, AND THE SCREENING ESCAPE SQUEEZED IN ITS PLACE
+======================================================================================================
+  a0 = c H_Lambda/Z, Z = 5.78881 -> 9.3600e-11 m/s^2 canonical; alt 1.1300e-10.
+  kappa = 1/2 is Carl's and stays FITTED. Nothing below derives a0.
+
+======================================================================================================
+S1. *** RETRACTION: alpha_1 DOES NOT CLOSE THE CORNER -- dragging SUPPRESSES it ***
+======================================================================================================
+  Preferred-frame observables (orbital polarisation, anomalous precession) scale as
+      observable ~ alpha_1 * w,     w = system velocity RELATIVE TO THE PREFERRED FRAME.
+  A frame dragged toward the local matter by fraction f leaves the system moving at (1-f)w
+  relative to it. So the OBSERVABLE scales as alpha_1 (1-f) w: dragging SUPPRESSES it.
+  [OK  ] at full drag (f = 1) the preferred-frame observable is 0 identically -- a fully dragged frame produces NO alpha_1 signal at all, so alpha_1 bounds cannot exclude it. My named computation was the WRONG INSTRUMENT and the claim is withdrawn
+  [OK  ] d(observable)/df = -alpha_1*w < 0: the effect decreases MONOTONICALLY with drag, so more dragging always means weaker alpha_1 signals -- the opposite of what I asserted
+
+  AND QUANTIFY THE RELAXATION, since it runs in the framework's favour:
+  With an UNDRAGGED (cosmic) frame a Galactic pulsar moves at w = |V_pec + v_orb|; with a
+  frame dragged to the Galaxy's centre-of-mass it moves at only its ORBITAL speed.
+    frame                                w (km/s)   alpha_1 bound relaxes by
+    cosmic (undragged)                      620.0                       1.00x
+    Galactic COM (dragged)                  220.0                       2.82x
+  [OK  ] dragging to the Galactic COM frame reduces w from 620 to 220 km/s, RELAXING the alpha_1 bounds by 2.82x. So alpha_1 is not merely silent on the dragged frame -- it is marginally FRIENDLIER to it than to the cosmic frame
+
+  For the record, the bounds themselves (FLAGGED from memory): |alpha_1| < 1e-04
+  (lunar laser ranging), < 1e-05 (binary pulsars, Shao & Wex-type analyses).
+  They constrain the framework's preferred frame in general -- which is a separate, live
+  question -- but they do NOT bear on whether that frame is locally dragged.
+
+======================================================================================================
+S2. THE DIFFERENTIAL ESCAPE: f_r/f_t IS FIXED BY GEOMETRY, NOT FREE -- and that cuts both ways
+======================================================================================================
+  Both drags come from ONE vector Green's function with ONE coupling:
+      V_drag(x) = (4 G kappa / c^2) Integral rho(x') v(x') / |x - x'| d^3x'
+  * a uniformly TRANSLATING source (v = V) gives V_drag = 4 kappa (U/c^2) V, so f_t = 4 kappa U/c^2
+  * a ROTATING source gives a frame rotation omega_drag = (1/2) curl V_drag, and dimensional
+    analysis forces omega_drag = (geometry) * kappa (U/c^2) Omega, so f_r = (geometry) kappa U/c^2
+  Both carry the SAME kappa and the SAME U/c^2. Therefore f_r/f_t is a PURE NUMBER set by the
+  source geometry -- it cannot be dialled independently of f_t.
+  [OK  ] f_r/f_t = g_r/g_t -- the coupling kappa and the depth U/c^2 CANCEL identically, so boosting the coupling to reach f_t = 1 boosts f_r by exactly the same factor. The ratio is geometry
+
+  WHY THAT CUTS AGAINST THE ESCAPE. The escape needs f_t = 1 with f_r bounded away from 1
+  (f_r ~ 0.5 gives epsilon = 0 and lambda = 0.5, inside budget). But consider the RIGID case,
+  V_drag(x) = f * v_local(x) pointwise -- translation and rotation dragged alike:
+  [OK  ] if the drag is RIGID the geometry coefficients coincide, f_r/f_t = 1, and we are back in the UNIFORM-drag case -- which the drag-invariance theorem of mi_vector_drag_corner_2026.py already kills exactly (epsilon is f-independent). So the escape REQUIRES a non-rigid kernel
+  A 1/|x-x'| kernel IS non-local, so f_t and f_r are set by DIFFERENT moments of the source
+  and the ratio genuinely can differ from 1. Whether it differs ENOUGH, for a real disc, is a
+  specific integral. *** I HAVE NOT COMPUTED IT AND I AM NOT GUESSING IT. *** Naming it:
+      compute omega_drag/Omega and v_drag/V at the solar radius for an exponential disc
+      (plus bulge) from the vector Poisson integral, and report f_r/f_t.
+  If that number is ~1 the differential escape dies on the invariance theorem alone; if it is
+  ~0.5 the escape survives S2 and stands or falls on the screening squeeze below.
+  [OK  ] MUTATION: setting g_r = g_t/2 returns f_r/f_t = 1/2 exactly, so the ratio is a real degree of freedom of the GEOMETRY and the question above is well posed rather than rhetorical
+
+======================================================================================================
+S3. *** THE SCREENING SQUEEZE, LEG 1: potential-keyed screening CANNOT bridge the gap ***
+======================================================================================================
+  Screening must suppress the coupling by >= 2.11e+05 between the solar system and a
+  galactic disc (that is the measured shortfall from mi_vector_drag_corner_2026.py).
+  Try keying it to POTENTIAL DEPTH Phi/c^2, the standard chameleon thin-shell variable:
+
+    environment                                   Phi/c^2
+    the Sun (own surface potential)            2.1230e-06
+    the Galaxy at the solar circle             5.3852e-07
+    contrast = 3.942   <-- SAME ORDER, and the SUN IS DEEPER
+  [OK  ] the Sun's own potential EXCEEDS the Galaxy's at the solar circle by 3.94x, so a screening function monotonic in Phi would screen the GALAXY LESS than the Sun only by that factor -- and the ORDERING is wrong for the purpose, since deeper potential means MORE screening and the Sun is the deeper one
+
+  To bridge 2.11e+05 across a contrast of only 3.942, a monotonic screening
+  function S(Phi) must have logarithmic slope d ln S / d ln Phi = 8.94, i.e. S ~ Phi^8.9.
+  [OK  ] that requires S ~ Phi^8.9 -- an eighth-to-ninth power screening law. Chameleon and symmetron thin-shell suppressions are not remotely that steep in the relevant regime, so POTENTIAL-KEYED screening cannot deliver the required separation
+  [OK  ] MUTATION: given a contrast of 1e23 the required slope drops to 0.231 -- gentle and unremarkable. So the S3 obstruction is specifically about the SMALLNESS of the potential contrast, not an artefact of demanding a large suppression
+
+======================================================================================================
+S4. *** LEG 2: density-keyed screening HAS the range -- and pays for it in stars-vs-gas ***
+======================================================================================================
+    environment                                rho (kg/m^3)
+    the Sun (mean density)                       1.4101e+03
+    local disc, stars+gas                        6.0927e-21
+    molecular cloud (n~1e4 cm^-3)                1.6736e-17
+    diffuse HI (n~1 cm^-3)                       1.6736e-21
+
+    Sun / disc          = 2.314e+23   <-- the contrast screening would exploit
+    star / diffuse HI   = 8.426e+23   <-- the SAME contrast, INSIDE one galaxy
+  [OK  ] density-keyed screening HAS the dynamic range: Sun/disc = 2.31e+23 comfortably exceeds the 2.11e+05 needed. So unlike S3 this leg is not blocked on range -- it is a viable mechanism, and I am not going to pretend otherwise
+  [OK  ] *** BUT the star/gas contrast INSIDE a galaxy is 8.43e+23, i.e. AS LARGE as the Sun/disc contrast the mechanism relies on. A monotonic screening steep enough to screen the Sun therefore also screens STARS while leaving DIFFUSE GAS unscreened ***
+
+  THE CONSEQUENCE. In screened theories an unscreened tracer feels the full fifth force
+  while a screened one does not -- the standard screening-induced equivalence-principle
+  violation (Hui-Nicolis-Stubbs). Stars and gas at the SAME radius would then sit on
+  different rotation curves. Size the split:
+      p=1: |d log g_obs| = 0.1505 dex  =  41.4% in velocity-squared terms
+      p=2: |d log g_obs| = 0.3010 dex  =  100.0% in velocity-squared terms
+
+    predicted split at p=1: 41.4%   vs observed stars-vs-gas agreement
+    quoted in this corpus at ~3% after asymmetric-drift correction
+    => tension factor ~14x
+  [OK  ] the density-keyed screening escape predicts a stars-vs-gas split ~14x larger than the agreement the corpus records -- so it is SQUEEZED, though see the caveat
+
+  *** CAVEAT, AND IT IS LOAD-BEARING: the 3% figure is quoted from this corpus's own note
+  (Route D already flagged it as 'a remembered few per cent', an order-of-magnitude statement
+  and NOT a fit). No stellar/gas rotation-curve pair was re-fitted here. So S4 is a SQUEEZE
+  with a factor-of-a-few uncertainty, NOT a kill, and must not be quoted as a sigma. The
+  computation that would make it one: fit a real stellar + gas curve pair with asymmetric
+  drift handled, and report the split with errors. ***
+
+======================================================================================================
+VERDICT
+======================================================================================================
+  TWO CORRECTIONS TO MY OWN PRIOR POSITION, both against it:
+   1. *** alpha_1 DOES NOT CLOSE THE VECTOR-DRAG CORNER. RETRACTED. *** Preferred-frame
+      observables scale as alpha_1 (1-f) w, so dragging SUPPRESSES them and vanishes them
+      identically at f = 1. Dragging to the Galactic COM even RELAXES the bounds by 2.82x
+      (w: 620 -> 220 km/s). I named this as 'the one computation that would close it
+      outright' and that was wrong. alpha_1 still constrains the framework's preferred frame
+      in general -- a separate and live question -- but is silent on whether it is dragged.
+   2. The differential escape is LESS contrived than I implied: f_t and f_r share one coupling
+      and one U/c^2, so their ratio is pure geometry. But that also constrains it -- a RIGID
+      drag gives f_r/f_t = 1 exactly, which the invariance theorem already kills. The escape
+      needs a non-rigid kernel, and the deciding disc integral is NAMED AND UNCOMPUTED.
+
+  WHAT REPLACES alpha_1, and it squeezes the escape from both sides:
+   * POTENTIAL-KEYED screening FAILS structurally. The Sun's own Phi/c^2 = 2.12e-6 EXCEEDS the
+     Galaxy's 5.39e-7 at the solar circle -- same order (3.94x) and the wrong ordering.
+     Bridging the 2.11e5 shortfall across that contrast needs S ~ Phi^8.9. Not available.
+   * DENSITY-KEYED screening HAS the range (Sun/disc = 2.3e23) but pays for it: the SAME
+     contrast exists between stars and diffuse gas INSIDE one galaxy (8.4e23), so a monotonic
+     screening that hides the Sun also screens STARS while leaving GAS unscreened. That
+     predicts a stars-vs-gas rotation-curve split of ~41% (p=1) against an agreement this
+     corpus records at ~3%: a tension of ~14x.
+
+  HONEST STATUS OF THE CORNER: SQUEEZED, NOT SHUT. The S4 leg rests on a '3%' figure that is
+  a remembered order-of-magnitude, not a fit -- Route D already flagged it as such -- so it
+  carries a factor-of-a-few uncertainty and must NOT be quoted as a sigma. Two computations
+  would finish the job, both cheap and both named: (a) the f_r/f_t disc integral, and (b) a
+  real stellar+gas rotation-curve pair with asymmetric drift handled and errors reported.
+
+  UNCHANGED: the pincer (Thm 3 forbids all local L; Thm 8's argument mismatch stands); no
+  action reproducing the closure off circles exists; a0 is not derived and kappa = 1/2 stays
+  fitted. Prior art: Will (PPN); Damour-Esposito-Farese and Shao & Wex (pulsar alpha_1);
+  Khoury-Weltman (chameleon); Hui-Nicolis-Stubbs (screening EP violation). Bound values and
+  the 3% agreement are FLAGGED as from memory, not re-fetched.
+======================================================================================================
