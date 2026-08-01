@@ -1,0 +1,174 @@
+
+################################################################################################
+# [0] THE HERGLOTZ MEASURE: verify reconstruction, fix the additive constant a
+################################################################################################
+ additive Herglotz constant a = 0.65411134   (z-independence spread = 2.38e-11)
+   [PASS] constant a is z-independent (spread < 1e-6) -> representation is exact
+ reconstruction max |K_rep - K_exact| over z=0.3..25 : 2.39e-11
+   [PASS] measure reconstructs K off the cut to <1e-6
+
+################################################################################################
+# [1] MOMENTS OF THE MEASURE: which are finite, which divergent, and the physics
+################################################################################################
+ density near t->0-:   rho = sqrt(tau)/pi + tau**(3/2)/pi + O(tau**2)   ~ sqrt|t|/pi
+ density tail t->-inf: rho = 1/(2 pi sqrt|t|)
+ => M_p = INT |t|^p dmu converges  IFF  -3/2 < p < -1/2   (endpoint powers p+1/2 and p-1/2)
+/Users/carlzimmerman/new_physics/zimmerman-formula/real_research/reviews/mi_formal_completion_2026/oneloop_laneA_divergences.py:90: IntegrationWarning: The occurrence of roundoff error is detected, which prevents 
+  the requested tolerance from being achieved.  The error may be 
+  underestimated.
+  IA,_ = integrate.quad(gy, np.log(max(TMIN, 1e-14)), np.log(0.25), limit=1200)
+
+ FINITE moments:
+   M_-1   = INT dmu/|t|      = 1.000000   <-- SUM RULE: must equal K(inf)-K(0) = 1 EXACTLY
+                                (proof: INT_0^inf K'(z) dz = INT dmu INT_0^inf dz/(t-z)^2 = INT dmu/|t|)
+   M_-3/4 = INT dmu/|t|^3/4  = 1.078705
+   M_-5/4 = INT dmu/|t|^5/4  = 1.573385
+   N      = INT dmu/(1+t^2)  = 0.229504   (Nevanlinna norm; banked value 0.2295)
+   [PASS] sum rule M_-1 = 1 (unit total resolvent weight: nothing spare to feed a z^0 tadpole)
+   [PASS] Nevanlinna norm reproduces the banked 0.2295
+
+ z^0 (tadpole) check with the REAL measure, not the series:
+   K(0)  = a + INT[1/t - t/(1+t^2)]dmu = +6.36e-08  (must be 0: NO tadpole)
+   K(inf)= a - INT[t/(1+t^2)]dmu       = 0.999997  (must be 1: Newtonian norm)
+   [PASS] EXACT-measure tadpole test: K(0)=0 after full measure integration (no reintroduced z^0)
+   [PASS] EXACT-measure Newtonian normalization K(inf)=1
+
+ DIVERGENT moments (demonstrated, with their physical meaning):
+   M_-1/2(Lambda): ['1.0512', '1.4177', '1.7842', '2.1506']  slope d/dlnLambda = 0.15915 (predict 1/(2pi) = 0.15915)
+   [PASS] M_-1/2 log-divergent with slope exactly 1/(2pi) (the UV measure tail = the a0^1 term of K; harmless: |K|<=1 resums it, it is NOT a new divergence)
+   M_-2(eps->0) = K'(0): ['63.7', '201.3', '636.6', '2013.2']  ~ eps^(-0.500)  (predict -1/2: K ~ sqrt z)
+   [PASS] M_-2 = K'(0) diverges as eps^-1/2 at the IR end of the cut (deep-MOND sqrt-z nonanalyticity: the POLYNOMIAL delta-u expansion fails at exactly-dS; W itself stays bounded)
+   M_0 (total mass) diverges ~ sqrt(Lambda)/pi: only the SUBTRACTED kernel is integrable --
+   the -t/(1+t^2) subtraction is load-bearing, and it is part of the framework's own definition.
+
+################################################################################################
+# [2] SEELEY-DEWITT ASSEMBLY: the complete one-loop divergence list (matter loop)
+################################################################################################
+
+ P = -Box + m^2(1 + s W(x))  (Euclidean Laplace-type; W = u.K(Box_u/a0^2)u is a LOCAL
+ multiplication operator on phi -- the nonlocality lives in the background functional).
+ Gilkey, P = -(Box + E):  E = -m^2(1 + sW),  Omega_{munu} = 0 (no gauge connection).
+   a1 = E + R/6
+   a2 = (1/2)E^2 + (1/6)R E + (1/6)Box E + (1/72)R^2 - (1/180)Ric^2 + (1/180)Riem^2 + (1/30)Box R
+ 4D log-divergent effective action:  Gamma_div = -(1/(16 pi^2 eps)) INT sqrt(g) a2  (eps = 4-d;
+ overall sign/normalization is convention -- the OPERATOR CONTENT and relative coefficients are not).
+ a1 (frame part)                = R/6 - W*m**2*s - m**2
+ a2 (frame part, BoxE dropped as total derivative; pure-gravity R^2 invariants standard) =
+   -R*W*m**2*s/6 - R*m**2/6 + W**2*m**4*s**2/2 + W*m**4*s + m**4/2
+
+ COUNTERTERM LIST (coefficient of 1/(16 pi^2 eps), per real scalar dof):
+   O_vac  = -R*m**2/6 + m**4/2          : standard vacuum terms (no frame content)
+   O_W    = [-R*m**2*s/6 + m**4*s] * W       : *** GENERATED *** -- SAME FORM as the tree coupling
+            (tree: -(1/2) rho_m s W). Absorbed by rho_m -> rho_m + delta_rho_vac with
+            delta_rho_vac = m^4/(16 pi^2) * (2/eps)-scale: the matter VACUUM energy
+            couples through the SAME MI form factor. a0 and K(.) are untouched.
+   O_WW   = [m**4*s**2/2] * W^2   : *** GENERATED, NEW OPERATOR *** (K-squared structure).
+            On dS it starts at O(delta-u^4) (W itself is quadratic there, see [3]).
+   O_RW   = [-1/6] * m^2 R W : *** GENERATED, NEW curvature x frame OPERATOR ***.
+            On dS R = 12 H^2 -> coefficient -2 s m^2 H^2 (tiny; numbers in [5]).
+   O_BoxW = -(s m^2/6) Box W : TOTAL DERIVATIVE -> no bulk counterterm.
+   NO a0-DEPENDENT COUNTERTERM: divergences are POLYNOMIAL in E, i.e. in W; a0 only
+   appears INSIDE W's argument, never renormalized ([1]: exact-measure K(0)=0, M_-1=1).
+   NO (grad_perp u)^2: proven on dS in [3] below.
+   [PASS] a2 is quadratic in W: divergences polynomial in the vertex, a0 only inside W
+   [PASS] W-linear coefficient = s*m^4 - s*m^2*R/6 (O_W flat piece + O_RW curvature piece)
+   [PASS] O_WW coefficient = s^2 m^4/2 (new K^2 operator, coefficient computed not assumed)
+
+################################################################################################
+# [3] EXPLICIT dS: delta-u expansion of W from Christoffels (no ansatz)
+################################################################################################
+
+ Flat-slicing dS: ds^2 = -dtau^2 + e^{2H tau} dx^2, u = d/dtau (comoving, geodesic).
+ Herglotz handle: K(A)u_mu = a u_mu + INT dmu(t) [ (t-A)^{-1} - t/(1+t^2) ] u_mu,
+ A = Box_u/a0^2. On the background A u_mu = 0 => K(A)u_mu = K(0) u_mu = 0 => W_dS = 0.
+ Fluctuations u -> u + du with (u+du)^2 = -1. Each resolvent is a function of (u.grad)
+ ONLY, so the ONLY derivative that can ever act on du inside W is LONGITUDINAL --
+ unless a (du.grad) from delta(Box_u) dumps a spatial derivative on another du.
+ We now compute every quadratic-order structure explicitly and scan for d(du)/dx^i.
+   [PASS] background: (u.grad)u = 0 (geodesic) and grad u = H h (pure expansion) -- derived
+   u . [delta(Box_u) u]              = 0
+   u . (u.grad)^2 [delta(Box_u) u]   = 0
+   [PASS] LINEAR delta-u vertex on dS vanishes IDENTICALLY at every resolvent order (u.X = u.(u.grad)^{2k}X = 0)
+
+   quadratic-order structures and their transverse-derivative content:
+     du.K(A0)du n=1                      : transverse d(psi)/dx present? False
+     du.K(A0)du n=2                      : transverse d(psi)/dx present? False
+     X.X                                 : transverse d(psi)/dx present? False
+     X.(u.grad)^2 X                      : transverse d(psi)/dx present? False
+     u.d2A u (= -H^2 a^2 psi^2 type)     : transverse d(psi)/dx present? False
+     du.X                                : transverse d(psi)/dx present? False
+     du.(u.grad)^2 X                     : transverse d(psi)/dx present? False
+   u.(du.grad)^2 u  = H**2*(-psi1(tau, x1, x2, x3)**2 - psi2(tau, x1, x2, x3)**2 - psi3(tau, x1, x2, x3)**2)*exp(2*H*tau)   (pure H^2 MASS term, no derivatives)
+   [PASS] NO transverse derivative of du in ANY quadratic-order divergence structure -> the (grad_perp u)^2 aether kinetic counterterm is NOT generated on dS
+   [PASS] delta2A sandwich = algebraic -H^2 a^2 psi^2 (curvature-suppressed mass, computed not assumed)
+
+   CONCLUSION [3]: on dS the divergent delta-u content of W (hence of O_W, O_WW, O_RW) is
+     * quadratic-leading (linear vertex identically zero),
+     * built ONLY from (u.grad)^{k} du and H^2 du^2 -- LONGITUDINAL, no wave cone,
+     * i.e. proportional to the framework's OWN quadratic form (tree structure preserved):
+       at O(du^2) one loop RENORMALIZES the coefficient of the existing form and creates
+       NO new kinetic structure. The frame stays NON-DYNAMICAL at one loop (matter loop).
+
+################################################################################################
+# [4] THE RESUMMED QUADRATIC SYMBOL (why M_-2 = inf is a nonanalyticity, not a divergence)
+################################################################################################
+ Euclidean longitudinal symbol of du.K(A0)du:  F(kappa) = K(kappa^2), kappa = k0/a0.
+   kappa : 0.0001  0.01  0.1  0.5  1  5  100
+   F     : 0.00010  0.01000  0.09902  0.41421  0.61803  0.90499  0.99501
+   [PASS] F bounded in [0,1), monotone, F(0)=0: bounded resummed symbol (no runaway counterterm)
+   [PASS] F ~ kappa (NONANALYTIC |k0|/a0) at small kappa: the divergent M_-2 moment is the sqrt-branch of the framework's own K, resummed and finite
+   Taylor-with-IR-cutoff eps=0.01: K ~ 0.0158   vs exact K(0.05^2) = 0.0499
+   Taylor-with-IR-cutoff eps=0.0001: K ~ 0.1591   vs exact K(0.05^2) = 0.0499
+   Taylor-with-IR-cutoff eps=1e-06: K ~ 1.5915   vs exact K(0.05^2) = 0.0499
+   -> the Taylor coefficient runs away as the cutoff is removed while the exact symbol
+      stays finite: expand-then-integrate is ILLEGAL at dS; integrate-then-expand (the
+      Herglotz superposition of resolvents) is the correct, finite order of operations.
+
+################################################################################################
+# [5] NUMBERS ON BOTH FOOTINGS (does anything flip?)
+################################################################################################
+ footing                         a0[m/s^2]    H[1/s]  w_gap=a0/2c[1/s]  w_gap/H=1/(2Z)  O_RW/O_W=2H^2/m^2
+ canonical rho_DE  a0=cH_L/Z     9.360e-11 1.808e-18         1.561e-19          0.0863          3.242e-84
+ alt rho_tot       a0=cH0/Z      1.130e-10 2.184e-18         1.885e-19          0.0863          4.731e-84
+
+ * the STRUCTURE (counterterm list, vanishing linear vertex, longitudinal-only quadratic
+   form, no a0 running, sum rules M_-1=1 / K(0)=0) is a0-INDEPENDENT: a0 only rescales z.
+ * dimensionful scales shift by x1.207; the dimensionless corner
+   w_gap/H = 1/(2Z) is IDENTICAL on both footings (Z = cH/a0 = 5.791).
+ * the curvature-induced O_RW is ~3e-84 of O_W for proton-mass matter on BOTH footings.
+   [PASS] NOTHING FLIPS between footings (identical structure; scales shift by 1.207; w_gap/H = 1/(2Z) invariant)
+
+################################################################################################
+# VERDICT (honest)
+################################################################################################
+
+ (a) DOES a0 RUN?  NO -- and now at the exact-measure level, not just the naive series:
+     * divergences are POLYNOMIAL in W (Seeley-DeWitt a2 is quadratic in E); a0 enters
+       only inside W's argument and is never renormalized;
+     * the superposition does NOT reintroduce a tadpole: K(0) = a + INT[1/t - t/(1+t^2)]dmu
+       = 0 to 1e-5 with the real measure, and the sum rule INT dmu/|t| = K(inf)-K(0) = 1
+       says the resolvent weight is EXACTLY the Newtonian normalization -- no excess.
+     * moment ledger: finite window -3/2<p<-1/2 (M_-1=1, M_-3/4, M_-5/4 finite);
+       M_-1/2 log-div = UV measure tail = the a0^1 term of K (resummed by |K|<=1);
+       M_-2 = K'(0) = inf = the deep-MOND sqrt-z branch (nonanalyticity, NOT a divergence).
+ (b) DERIVATIVES OF u IN THE DIVERGENCES?  YES -- but ONLY LONGITUDINAL, and only inside
+     the framework's own K-form: the generated counterterms are
+       O_W  = s m^4 W                      (SAME form as the tree coupling: the matter
+                                            vacuum energy m^4/(16pi^2 eps) joins rho_m
+                                            in the MI coupling -- a REAL generated term,
+                                            reported, absorbable without touching a0/K)
+       O_WW = (s^2 m^4/2) W^2              (NEW operator; O(du^4) on dS; longitudinal)
+       O_RW = -(s/6) m^2 R W               (NEW curvature x frame operator; = -2 s m^2 H^2 W
+                                            on dS; ~1e-83 of O_W for proton-mass matter)
+     and the EXPLICIT dS expansion shows every du-derivative in them is (u.grad)du --
+     the transverse (grad_perp u)^2 aether kinetic term is NOT generated (no transverse
+     momentum ever enters a resolvent; the one (du.grad)(du.grad) sandwich collapses to
+     an algebraic -H^2 du^2). The 0-dof, no-wave-cone property survives one loop.
+ SCOPE (what this does NOT close): graviton loops and graviton-frame mixing; the
+ T_uu-coupled rho_m variant (disformal effective-metric heat kernel -- structurally the
+ same conclusion is expected since g_hat = g + sW u u and W_dS = 0, but NOT computed);
+ two loops; finite parts; overall sign convention of the vacuum piece. s, a0, Z remain
+ INPUTS. This is 'one-loop matter-sector divergences on dS: computed', not 'theory closed'.
+================================================================================================
+ LANE A RESULT: ALL CHECKS PASS
+================================================================================================

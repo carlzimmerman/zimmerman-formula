@@ -1,0 +1,72 @@
+
+==============================================================================================
+ PART 1: ALL-n operator-symbol induction that Box_u^n gives the frame leg NO p_perp
+==============================================================================================
+   F2 backbone: each u.grad on the frame leg contributes (k0 + DELTA), DELTA=0 under F2.
+   The graviton q enters via Gamma(h_TT) -> raises graviton-leg power (loop momentum q),
+   NEVER converts to an explicit FRAME momentum p (p is external, set by the du_perp legs).
+   n= 1: frame symbol = (k0)^2  -> has explicit p? False  | p^2 seed = 0
+   [PASS] ALL-n symbol n=1: frame leg symbol is k0^2 (TIME only), NO explicit p^2 spatial seed
+   n= 2: frame symbol = (k0)^4  -> has explicit p? False  | p^2 seed = 0
+   [PASS] ALL-n symbol n=2: frame leg symbol is k0^4 (TIME only), NO explicit p^2 spatial seed
+   n= 3: frame symbol = (k0)^6  -> has explicit p? False  | p^2 seed = 0
+   [PASS] ALL-n symbol n=3: frame leg symbol is k0^6 (TIME only), NO explicit p^2 spatial seed
+   n= 4: frame symbol = (k0)^8  -> has explicit p? False  | p^2 seed = 0
+   [PASS] ALL-n symbol n=4: frame leg symbol is k0^8 (TIME only), NO explicit p^2 spatial seed
+   n= 5: frame symbol = (k0)^10  -> has explicit p? False  | p^2 seed = 0
+   [PASS] ALL-n symbol n=5: frame leg symbol is k0^10 (TIME only), NO explicit p^2 spatial seed
+   n= 6: frame symbol = (k0)^12  -> has explicit p? False  | p^2 seed = 0
+   [PASS] ALL-n symbol n=6: frame leg symbol is k0^12 (TIME only), NO explicit p^2 spatial seed
+   n=10: frame symbol = (k0)^20  -> has explicit p? False  | p^2 seed = 0
+   [PASS] ALL-n symbol n=10: frame leg symbol is k0^20 (TIME only), NO explicit p^2 spatial seed
+   n=20: frame symbol = (k0)^40  -> has explicit p? False  | p^2 seed = 0
+   [PASS] ALL-n symbol n=20: frame leg symbol is k0^40 (TIME only), NO explicit p^2 spatial seed
+
+   INDUCTION (closed form): S_n(frame) = k0^{2n} for ALL n.  Base n=0: S_0=1 (identity).
+   Step: S_{n+1} = (u.grad)^2 S_n; under F2 u.grad|_frame = i k0 (time only) => S_{n+1}=k0^2 S_n.
+   => by induction S_n = k0^{2n} for every n>=0.  A p^2 SPATIAL factor requires a transverse
+      derivative (DELTA!=0), which F2 forbids.  Hence the seagull frame KINETIC is p-FREE
+      to ALL n.  (The graviton q lives in the loop factors, integrated -> a MASS/time
+      coefficient on |du_perp|^2, never a p^2 cone.)
+   [PASS] ALL-n CLOSED FORM: S_n = k0^{2n} has NO p-dependence for symbolic n (d/dp S_n = 0 identically)
+
+==============================================================================================
+ PART 1 control: BREAK F2 (DELTA=lam*p) -> explicit p^2 spatial seed switches ON at every n>=1
+==============================================================================================
+   n=1: F2-broken frame symbol has p^2 coeff = lambda**2  (SPATIAL seed ON, as it must be)
+   [PASS] CONTROL n=1: breaking F2 turns ON an explicit p^2 spatial seed (symbol extraction sensitive)
+   n=2: F2-broken frame symbol has p^2 coeff = 6*k0**2*lambda**2  (SPATIAL seed ON, as it must be)
+   [PASS] CONTROL n=2: breaking F2 turns ON an explicit p^2 spatial seed (symbol extraction sensitive)
+   n=3: F2-broken frame symbol has p^2 coeff = 15*k0**4*lambda**2  (SPATIAL seed ON, as it must be)
+   [PASS] CONTROL n=3: breaking F2 turns ON an explicit p^2 spatial seed (symbol extraction sensitive)
+
+==============================================================================================
+ PART 2: causal-KL TT loop <h_TT h_TT> as sum-of-squares rho(mu^2)>=0 (exact dS BD + gap + Pi)
+==============================================================================================
+   rho(mu): min=1.550e-02 max=1.687e+05  all >= 0? True
+   support threshold: min sampled mu = 0.7000  (2-graviton threshold ~ q_perp=0.7)
+   [PASS] seagull TT loop rho(mu^2) is a manifest SUM OF SQUARES over 2-graviton phase space -> >=0 POINTWISE (causal object; NOT the naive equal-time FT)
+   [PASS] rho supported at/above 2-graviton threshold mu>=q_perp (proper spectral support)
+   Sigma_R below cut: 1.5330e+04 ... 9.7018e+05  monotone (Herglotz)? True
+   [PASS] Sigma_R(z) Herglotz below cut (monotone, sign fixed by rho>=0) -> induced du_perp self-energy is a HEALTHY (positive) mass/kinetic, not a ghost
+   frame-channel tree kernel (p-FREE mass, no spatial cone) = 9H^2/4 = 2.2500
+   g_crit (below-threshold pole) = 2.3192e-06;  physical g=kappa^2 H^2 ~1e-123 << g_crit.
+   [PASS] dressed du_perp inverse D(z)=M_2ndclass - g Sigma_R(z) is p-FREE (NO q_perp^2 cone injected); loop returns a mass/time self-energy only -> BENIGN
+
+==============================================================================================
+ VERDICT (sib3_setup_2: all-n symbol proof + causal-KL TT loop)
+==============================================================================================
+
+  Delivered for the Methods lanes:
+   PART 1 (ALL-n symbol proof): under F2 the frame-leg symbol of Box_u^n is k0^{2n} (TIME only)
+     for EVERY n -- proven by closed-form induction, verified n up to 20, and confirmed sensitive
+     by the F2-break control (DELTA=lam*p switches a p^2 spatial seed ON). The graviton q_perp
+     rides the LOOP legs (integrated), never becomes an explicit external FRAME p -> the seagull
+     du_perp KINETIC is p-FREE to all n. This upgrades sib3_setup_1's CAS n=1..5 to ALL n.
+   PART 2 (causal-KL TT loop): <h_TT h_TT> as a sum-of-squares rho(mu^2)>=0 over the exact dS
+     2-graviton phase space (BD modes + -9H^2/4 gap + TT projector Pi), Sigma_R(z) Herglotz,
+     dressed du_perp inverse. Because the vertex is p-FREE, the loop dresses only the du_perp
+     MASS/2nd-class kernel (9H^2/4 scale), injecting NO q_perp^2 spatial cone -> BENIGN.
+  APIs: build_rho_seagull(qperp,Vseagull), Sigma_disp(z), dressed_inverse(z,g,Ktree), frame_symbol(n).
+
+PASS=16 FAIL=0
