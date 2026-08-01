@@ -1,5 +1,26 @@
 #!/usr/bin/env python3
 r"""
+### VERDICT WITHDRAWN 2026-07-31 -- DO NOT CITE THIS FILE'S CONCLUSION. #########################
+#   Superseded by  real_research/reviews/mi_dcac_branch_verdict_withdrawn_2026.py  (26/26), which
+#   builds on mi_action_eom_vs_rar_2026.py (Jul 30). Three defects, in increasing seriousness:
+#     1. S1's "u_mu is an EIGENVECTOR of Box_u with eigenvalue -Omega^2" is FALSE as stated. It is
+#        verified below on a TWO-COMPONENT SPATIAL vector; the time leg is never formed. On the
+#        actual 4-velocity Box_u annihilates u^0 (eigenvalue 0) while the spatial legs give
+#        -(gamma Omega)^2, so u_mu is not an eigenvector. (= FINDING 2 of AUDIT_mi_kernel_axis_gate.)
+#     2. S2 pulls K out of the contraction using that false eigenvector, giving -K(z) where the
+#        correct block value is +gamma^2 v^2 K(z): wrong SIGN, and wrong by (v/c)^2 = a factor
+#        6.75e11 at the very wide-binary scale this file was written to decide.
+#     3. Decisively, the STRATEGY fails. The action's literal reading is AMPLITUDE-FREE (|K| -> 1 on
+#        the cut for both kernels and both footings) against a law needing mu_fw = 0.618 at a0, so it
+#        is the reading under which the framework has NO rotation curves at all. A wide-binary
+#        prediction cannot be settled by the reading that deletes the galaxy phenomenology.
+#   AND THE VERDICT INVERTS: a low-pass gate passes DC with unit gain, so the framework's branch is
+#   the DC one and its wide-binary prediction is the UNGATED boost (~1.05-1.10 alpha=1, ~1.02
+#   alpha=2), not gamma_v = 1.000. PREREGISTRATION_DR4.md Amendment 1 cites this file by name and
+#   registers 1.0004-1.0006 on its basis; Amendment 6 is owed and is Carl's to file.
+#   Theorem B and the exact block form both STAND and are compatible -- see S3 there.
+################################################################################################
+
 mi_dcac_branch_settled_2026.py -- SETTLING the DC/AC branch from the framework's own written action
 ==================================================================================================
 THE QUESTION (open since 2026-07-25, and the whole s^3 paper is conditional on it). The framework's
