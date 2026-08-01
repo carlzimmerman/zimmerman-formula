@@ -37,6 +37,9 @@ FILES = [
     "reviews/mi_thermal_class_nogo_2026.py",
     "reviews/mi_three_classes_2026.py",
     "real_research/reviews/mi_cmb_camb_run_2026.py",
+    # new in v6 -- the branch withdrawal and the alpha=1-exclusive class audit that section 2 now cites
+    "real_research/reviews/mi_dcac_branch_verdict_withdrawn_2026.py",
+    "real_research/reviews/mi_alpha1_exclusive_class_audit_2026.py",
 ]
 
 

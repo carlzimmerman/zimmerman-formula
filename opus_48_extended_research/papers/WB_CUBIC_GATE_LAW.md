@@ -3,6 +3,21 @@
 **C. P. Zimmerman**
 *Briar Creek Tech · Charlotte, NC · carl@briarcreektech.com*
 
+*Version 6 · 2026-08-01. (Zenodo v4 and v5 were republications — a reproducibility-file restoration and the α≥2 kernel notice — that left the paper text at its Version 3 state, so this is the first text revision since 2026-07-30. Numbering follows the Zenodo record.) **This version DEMOTES the paper's result from a prediction to a CONDITIONAL
+one, and corrects two false statements in §2.** (i) The eigenvector identity
+"$\Box_u u_\mu=-\Omega^2u_\mu$" asserted by v2–v3 is **false as stated** — it was verified on a
+two-component *spatial* vector; $\Box_u$ acts block-diagonally, annihilating the time leg and returning
+$-(\gamma\Omega)^2$ on the spatial legs, so $u_\mu$ is not an eigenvector. (ii) The argument for why a
+gate must exist relied on "$|K|=1$ *exactly*", which is a property of the **retired $\alpha=1$** kernel;
+the conclusion survives on $\alpha=2$ but the exactness does not. (iii) **The branch selection §2 made is
+WITHDRAWN**: the frequency ("AC") reading is the one under which the action's modification is
+amplitude-free and the framework has no rotation curves, so the phenomenology runs on the first-moment
+closure, whose argument is $+|a|^2$ — and a low-pass passes DC at unit gain, so $\gamma_v$ reverts to the
+ungated $\approx1.02$. That is **this paper's own falsifier #5, reached from the framework's own side.**
+The $s^3$ law is therefore retained as a **conditional** result — valid on the AC branch, which this
+author's own analysis no longer supports — not as the framework's prediction. Nothing measured changes.
+Scripts: `mi_dcac_branch_verdict_withdrawn_2026.py`, `mi_alpha1_exclusive_class_audit_2026.py`.*
+
 *Version 3 · 2026-07-30. The $s^3$ prediction, its five falsifiers and the frozen pre-registration are
 UNCHANGED. v3 (i) reduces the coefficient to a single rational, $a_0=\kappa c\sqrt{G\rho_\Lambda}$ with
 $\kappa=1/2$ (§1); (ii) tightens the ECCENTRIC-ORBIT error budget from a factor of several to
@@ -14,21 +29,33 @@ feasibility negatively; Version 1 (2026-07-25) is superseded. Scripts listed in 
 
 ---
 
-## The claim, first
+## The claim, first — and what it is now conditional on
 
-In wide binaries wider than about 50 kAU, the relative velocity should exceed the Newtonian value by an
-amount growing as the **cube of the separation**:
+**⚠️ Read this before the equation.** What follows is a **conditional** result, not this framework's
+prediction. It holds *if* the kernel responds to the orbital **frequency** (the "AC" branch). Versions
+2–3 claimed the action settles that question in favour of AC; **v6 withdraws that claim** (§2), because
+the AC reading is the one in which the action's modification is amplitude-free and the framework has no
+rotation curves. On the branch the framework's phenomenology actually uses, the gate never suppresses
+anything and $\gamma_v\approx1.02$ *inside* 30 kAU — **which is falsifier #5 below, reached from the
+framework's own side rather than from data.** The derivation is kept on the record because it is correct
+*given* its branch, and because the exponent-3 signature remains the sharp test if that branch is ever
+revived. It should not be cited as "the framework predicts $s^3$".
+
+On the AC branch, in wide binaries wider than about 50 kAU, the relative velocity should exceed the
+Newtonian value by an amount growing as the **cube of the separation**:
 
 $$\gamma_v(s) - 1 \;\simeq\; \tfrac{1}{2}\big[\nu(y_\mathrm{ext})-1\big]\,\frac{\omega_c^{2}}{GM}\,s^{3}.$$
 
-The **exponent is 3**. It is derived, not fitted, and it cannot be tuned. Every known contamination
-channel in wide-binary samples rises as $s^{1/2}$ instead. Exponent 3 against exponent 0.5 — that
-contrast is the measurement.
+The **exponent is 3**. Given the branch it is derived, not fitted, and it cannot be tuned. Every known
+contamination channel in wide-binary samples rises as $s^{1/2}$ instead. Exponent 3 against exponent
+0.5 — that contrast is what the measurement would be.
 
 **What would kill it.** Any one of: no excess beyond ~50 kAU in a contamination-controlled sample; an
 excess whose log-slope is inconsistent with 3; a knee that does not move as $M^{1/3}$; an amplitude
 inconsistent with $\omega_c^2/GM$; or a boost $\gamma_v\approx1.02$ found *inside* 30 kAU (**renumbered
-2026-07-30 from 1.09 under the retired $\alpha=1$ kernel; see the notice in §2**).
+2026-07-30 from 1.09 under the retired $\alpha=1$ kernel; see the notice in §2**). **As of v6 the last
+of these is no longer only a data risk — the framework's own DC branch predicts it**, so on that branch
+this law is already falsified without any new observation.
 
 **What it cannot do.** It cannot be measured with Gaia DR3. We checked the catalogue ourselves; see §6.
 
@@ -69,9 +96,13 @@ $g_\mathrm{obs}^2-g_\mathrm{bar}^2=a_0g_\mathrm{bar}$ below is an $\alpha=1$ ide
 holds — it is retained as attribution, not as a live relation; **(ii)** the ungated boost quoted
 throughout as $\gamma_v\approx1.09$ becomes $\approx\mathbf{1.02}$ (orientation-averaged 1.0246, range
 1.0182–1.0350 over both $a_0$ footings and both frozen $g_{\rm ext}$ values), per Amendment 3 to
-`PREREGISTRATION_DR4.md`, filed in the open before DR4. **The paper's central result is unaffected**:
-the cubic gate law, its $s^{1/2}$-versus-$s^3$ contrast and the $M^{1/3}$ knee are properties of the
-gate, not of the tail exponent, and the gated prediction remains $\gamma_v\to1.000$.
+`PREREGISTRATION_DR4.md`, filed in the open before DR4. The cubic gate law, its
+$s^{1/2}$-versus-$s^3$ contrast and the $M^{1/3}$ knee are properties of the **gate**, not of the tail
+exponent, so they are untouched by the *kernel* change specifically. **⚠️ v6: this paragraph's original
+closing claim — "the paper's central result is unaffected ... the gated prediction remains
+$\gamma_v\to1.000$" — is RETRACTED.** It is unaffected by the $\alpha=1\to\alpha=2$ switch, but not by
+the separate withdrawal of the AC branch in §2, on which the gated value $\gamma_v\to1.000$ entirely
+depends. On the framework's own DC branch there is no gate suppression and $\gamma_v\approx1.02$.
 
 **Credit, plainly stated.** The interpolation $\nu(y)=\sqrt{1+1/y}$ and the identity
 $g_\mathrm{obs}^2-g_\mathrm{bar}^2=a_0g_\mathrm{bar}$ are Milgrom (1999, *Phys. Lett. A* **253**, 273),
@@ -88,10 +119,30 @@ $$K_\mathrm{eff}=1-S\big(|a|/a_0\big)\,G(\omega),\qquad G(\omega)=\frac{1}{1+i\o
 with $\omega_c\in[1.782,\,2.211]\times10^{-14}\ \mathrm{s}^{-1}$. Every number below is carried on both
 cosmological footings ($a_0=cH_\Lambda/Z$ and $a_0=cH_0/Z$, differing by ~21%).
 
-**Why a gate must exist.** On the frequency axis $|K|=1$ *exactly* for every $\omega>a_0/2c$: the
-kernel saturates and has no high-frequency roll-off. So $K$ gives an inner-disk star and the Earth the
-**same** response. Since the solar system must be Newtonian and galaxies must not be, something
-frequency-dependent with a roll-off is required. The gate's existence is forced, not assumed.
+**Why a gate must exist — on the AC branch.** On the frequency axis the kernel saturates and has no
+high-frequency roll-off, so $K$ gives an inner-disk star and the Earth the **same** response. Since the
+solar system must be Newtonian and galaxies must not be, something frequency-dependent with a roll-off
+is required. On that branch the gate's existence is forced, not assumed.
+
+> **⚠️ v6 — and this is why the gate is an AC-branch object specifically.** The argument above needs a
+> reading in which $K$ cannot already tell the Earth from an inner-disk star. That is true on the
+> *frequency* axis, where both saturate. It is **false** on the branch the framework's phenomenology
+> actually uses: there $K$'s argument is the acceleration magnitude $|a|^2/a_0^2$, and the Earth
+> ($|a|/a_0\sim10^{7}$, so $\mu\to1$, Newtonian) is separated from a galactic orbit ($|a|/a_0\sim1$)
+> **by the argument itself** — which is ordinary MOND logic and needs no gate. So $\omega_c$ is not a
+> forced ingredient of the framework; it is a repair required only by the AC reading, and the AC
+> reading is the one withdrawn in §2. Read together with §1's "$\omega_c$ is a free parameter", the
+> honest position is that the gate is **neither forced nor anchored**.
+
+> **Corrected in v6 — the word *exactly* was $\alpha=1$-specific.** Versions 1–3 argued this from
+> "$|K|=1$ *exactly* for every $\omega>a_0/2c$". That is a property of the **retired $\alpha=1$**
+> kernel, which is unimodular on the whole of its cut $z\le-\tfrac14$. The $\alpha=2$ kernel now in
+> force is *not*: with $w=\omega c/a_0$ it gives $|K_2|=(1-w^{-2})^{-1/2}$, which equals $\sqrt2$ at
+> $w=\sqrt2$ — well inside "every $\omega>a_0/2c$" — and is within 1% of unity only for $w>7.1$.
+> **The conclusion is unaffected.** The two systems the argument compares sit at $w=1.7\times10^{4}$
+> (inner-disk star) and $6.3\times10^{11}$ (Earth) on both footings, where $|K_2|$ departs from 1 by at
+> most $1.7\times10^{-9}$: the responses really are the same, and a roll-off really is required. Only
+> the claim of *exactness* changes. `mi_alpha1_exclusive_class_audit_2026.py` (25/25).
 
 **Why its scale is not.** Stated against interest: $\omega_c$ is a **free parameter**. A dimensional
 census puts every intrinsic scale of the theory 3.2–5.6 decades away from it, and consistency alone
@@ -106,19 +157,46 @@ The kernel's argument is fixed by the action, not chosen. The committed matter t
 $$S_\mathrm{matter}=-\tfrac12\int d^4x\sqrt{-g}\,\rho_m\big[s\,u^\mu K(\Box_u/a_0^2)u_\mu\big],
 \qquad \Box_u f=u^a\nabla_a(u^b\nabla_b f),$$
 
-so $\Box_u$ is the second derivative *along the worldline*. On a circular orbit $u_\mu$ is an
-eigenvector of it:
+so $\Box_u$ is the second derivative *along the worldline*. On a circular orbit it acts
+**block-diagonally** on $u_\mu$: it annihilates the time leg and returns $-(\gamma\Omega)^2$ on the
+spatial legs,
 
-$$\Box_u u_\mu = -\Omega^2 u_\mu \qquad\text{(identically; verified symbolically)}.$$
+$$\Box_u u^0 = 0,\qquad \Box_u u^i = -(\gamma\Omega)^2\,u^i \qquad\text{(exactly).}$$
 
-The argument is therefore $z=-(\Omega c/a_0)^2$ — the **orbital frequency**. The acceleration
-*magnitude* $|a|=\Omega^2R$ genuinely is constant on a circular orbit, but the action never feeds $|a|$
-to $K$.
+Because $K(0)=0$ the time eigenspace drops out, and the contraction reduces to
+$u^\mu K(\Box_u/a_0^2)u_\mu = \gamma^2v^2\,K\!\big(-(\gamma\Omega c/a_0)^2\big)$. The argument is
+therefore $z=-(\gamma\Omega c/a_0)^2$ — the **orbital frequency**. The acceleration *magnitude*
+$|a|=\gamma^2\Omega^2R$ genuinely is constant on a circular orbit, but this contraction does not feed
+$|a|$ to $K$.
 
-**This settles an ambiguity Version 1 was explicitly conditional on.** Had the kernel responded to
-$|a|$, the gate would stay open and the prediction would be $\gamma_v\approx1.02$ instead (1.09 under the
-retired $\alpha=1$ kernel). It does not.
-The result below no longer rests on a choice.
+> **⚠️ CORRECTED AND PARTLY WITHDRAWN IN v6 — READ BEFORE USING §3.** Versions 2 and 3 asserted that
+> "$u_\mu$ is an eigenvector" with "$\Box_u u_\mu=-\Omega^2u_\mu$ identically". **That is false as
+> stated**: it was verified on a two-component *spatial* vector, with the time leg never formed. On the
+> actual 4-velocity the two eigenvalues differ ($0$ and $-(\gamma\Omega)^2$), so $u_\mu$ is not an
+> eigenvector, and pulling $K$ out of the contraction as $K(z)(u\!\cdot\!u)=-K(z)$ is invalid — the
+> correct block value $+\gamma^2v^2K(z)$ differs in sign and by $(v/c)^2$.
+>
+> **More seriously, the branch selection this section made is WITHDRAWN.** Choosing the frequency
+> ("AC") reading by reading $\Box_u$ off the action selects the one reading under which the action's
+> modification is *amplitude-free* — $|K|\to1$ at every real system, on both kernels and both footings,
+> against a law requiring $\mu_{\rm fw}(1)=0.618$ — i.e. the reading in which the framework has **no
+> rotation curves at all**. The framework's phenomenology runs instead on the first-moment closure,
+> whose argument is $+|a|^2\ge0$ (Theorem B). A one-pole low-pass passes DC at **unit gain whatever
+> $\omega_c$ is**, and $|a|$ is exactly constant on a circle, so the $\mathrm{Re}\,G=0.005$–$0.008$
+> suppression used in §3 **does not apply** on that branch and $\gamma_v$ reverts to the ungated
+> $\approx1.02$ ($\alpha=2$).
+>
+> **Consequence, stated against interest: that is this paper's own falsifier #5** ("a boost
+> $\gamma_v\approx1.02$ found inside 30 kAU"), reached from the framework's own side rather than from
+> data. The $s^3$ law of §4 is therefore **conditional on the AC branch**, and the AC branch is no
+> longer the one this author's own analysis supports. §§3–5 must be read as conditional, not as the
+> framework's prediction. The sentence "The result below no longer rests on a choice" is retracted: it
+> does rest on a choice, and the choice now appears to go the other way.
+>
+> Sources: `mi_dcac_branch_verdict_withdrawn_2026.py` (29/29), `mi_action_eom_vs_rar_2026.py`,
+> `mi_dcac_split_settled_2026.py`. What is *not* affected: Theorem B itself, the exact block form above,
+> and every measurement — the SPARC fit, the $a_0$-line and the flat curves are measurements against a
+> law, independent of which object the action contracts.
 
 ### 2.1 New in v3 — eccentric orbits, and how sharp the prediction actually is
 
@@ -152,7 +230,9 @@ freedom, because $\Box_u u$ is *not parallel* to $u$ off circles — the spatial
 differ by 8 to 5 orders along the infall — so a projection must still be chosen. The action narrows;
 it does not close.
 
-## 3. The gate is shut in the window everyone measures
+## 3. The gate is shut in the window everyone measures — on the AC branch only
+
+*Everything in this section is conditional on the AC branch withdrawn in §2. On the DC branch the gate's gain at zero frequency is exactly 1, whatever $\omega_c$ is, so none of the suppression below applies and $\gamma_v$ takes its ungated value $\approx1.02$.*
 
 A pair of total mass $M$ at separation $s$ has $\Omega=(GM/s^3)^{1/2}$. For M = 1.5 M⊙ at 10 kAU,
 $\Omega=2.44\times10^{-13}\ \mathrm{s}^{-1}$ — **11× above the top of the whole $\omega_c$ window.** The
@@ -175,7 +255,7 @@ dwarfs, low-surface-brightness disks, massive spirals and the inner disk, the la
 $\Omega/\omega_c=0.364$ ($\mathrm{Re}\,G\ge0.883$). Gate open in galaxies, shut in wide binaries: the
 radial acceleration relation and the baryonic Tully–Fisher relation are unaffected.
 
-## 4. The cubic law — and why the exponent counts poles
+## 4. The cubic law (conditional on the AC branch) — and why the exponent counts poles
 
 Deep in the gate-shut regime $\Omega\gg\omega_c$, so $\mathrm{Re}\,G\to(\omega_c/\Omega)^2$; substituting
 $\Omega=(GM/s^3)^{1/2}$ gives $\mathrm{Re}\,G\to(\omega_c^2/GM)\,s^3$, hence the boxed law. The measured
@@ -198,7 +278,7 @@ $r_\mathrm{gate}\propto M^{0.3333}$, $r_\mathrm{efe}\propto M^{0.5000}$, fixed-s
 $\propto M^{-0.9935}$ (asymptotic; knee-contaminated to $M^{-0.857}$ by 30 kAU, so fit the local slope
 rather than assuming a global $1/M$).
 
-## 5. The discriminant
+## 5. The discriminant (conditional on the AC branch)
 
 Every published contamination channel carries a *fixed velocity scale*, so its scaled relative velocity
 rises as $s^{1/2}$: chance alignment (El-Badry, Rix & Heintz 2021, via $R_\mathrm{chance\,align}$),
@@ -247,9 +327,16 @@ Since the test cannot run until DR4, the prediction is frozen in the open before
 `a309a502332b84ad521385b1c2031652849c9ce358c396f680f2308dd5ba1c13`) records:
 
 - the frozen prediction **$p=3$** for the log-slope beyond $r_\mathrm{gate}$;
-- $\gamma_v=1.0004$–$1.0006$ inside 2–30 kAU, i.e. **a Newtonian DR4 result in that window confirms
-  this branch rather than refuting it** — which the unamended pre-registration would have scored as a
-  kill;
+- $\gamma_v=1.0004$–$1.0006$ inside 2–30 kAU, i.e. a Newtonian DR4 result in that window confirms
+  this branch rather than refuting it — which the unamended pre-registration would have scored as a
+  kill. **⚠️ v6: the basis for this row is WITHDRAWN (§2).** It rests on the AC branch, and on the
+  framework's own DC branch the registered value is instead the ungated $\gamma_v\approx1.02$. An
+  **Amendment 6 is owed** to the frozen document and is the author's to file before DR4; until it is
+  filed, this row should be read as the AC-branch entry only, not as the framework's prediction. Note
+  also that withdrawing the AC branch removes only **one** of the frozen document's two routes to a
+  Newtonian reading — the locally-dragged *frame* branch reaches $\gamma_v-1\approx1\times10^{-6}$
+  independently, with no gate — so the pre-registration's falsifiability trap is **narrowed, not
+  resolved**;
 - the five falsifiers listed at the top of this note;
 - and that DR4 $\gamma_v$ constrains the $\nu$+EFE+gate prescription, **not** the value of $a_0$ or
   $Z$. No outcome may be reported as measuring either.
@@ -293,7 +380,7 @@ Skordis & Złośnik) already reproduces the CMB — so the rigorous form of this
 theory, not to an $a_0(z)$ scaling argument.
 
 **Reproducibility.** Every number is printed by committed scripts, all `exit 0`, no hard-coded verdicts,
-both footings and both $\omega_c$ edges throughout: `mi_dcac_branch_settled_2026.py` (5/5, §2),
+both footings and both $\omega_c$ edges throughout: `mi_dcac_branch_settled_2026.py` (5/5, §2 — **VERDICT WITHDRAWN 2026-07-31; superseded by `mi_dcac_branch_verdict_withdrawn_2026.py`, 29/29, and not to be cited for its conclusion**),
 `mi_wb_gate_fork_2026.py` (11/11, §3), `mi_wb_cubic_rise_2026.py` (10/10, §4),
 `mi_wb_exponent_pipeline_2026.py` (6/6, §4–5), `mi_wb_dr3_feasibility_2026.py` (5/5, §6),
 `mi_omegac_anchor_2026.py` (8/8, §1), `count_wb_elbadry2021.py` (catalogue counts). New in v3: `mi_kappa_spectral_reduction_2026.py` (§1, the kappa reduction), `mi_offcircular_closure_collapse_2026.py` (§2.1, the closure narrowing and the two identities), `mi_three_classes_2026.py` + `mi_thermal_class_nogo_2026.py` + `mi_bootstrap_circularity_2026.py` (§8, the six closed classes), `mi_cmb_camb_run_2026.py` (§8, the CAMB footing check). Repository:
