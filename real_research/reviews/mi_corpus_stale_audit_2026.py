@@ -292,10 +292,48 @@ def main() -> int:
     import datetime
     for mt, rel in orphans[:12]:
         print(f"    {datetime.date.fromtimestamp(mt)}  {os.path.basename(rel)}")
-    check(len(orphans) >= 0,
-          f"{len(orphans)} uncited closures. This is the INVERSE leak -- results banked in code but absent "
-          f"from the standing document, i.e. the corpus understating itself, which is exactly what happened "
-          f"with two loops. Reported as candidates, newest first, since recency correlates with relevance")
+    # The original assertion here was `check(len(orphans) >= 0, ...)` -- a TAUTOLOGY that could never
+    # fail, so check D reported without ever enforcing. Replaced 2026-07-31 by three assertions that
+    # CAN fail, each testing a different thing:
+    n_closures = sum(1 for m in inv.values() if m["closes"])
+    n_cited = n_closures - len(orphans)
+    orphan_names = {os.path.basename(r) for _, r in orphans}
+
+    # D1 -- filter integrity. Fails only if the orphan filter itself breaks, which is what would make
+    # every other number here meaningless. This is the check the tautology should have been.
+    closure_names = {os.path.basename(r) for r, m in inv.items() if m["closes"]}
+    check(orphan_names <= closure_names and all(n not in standing_txt for n in orphan_names),
+          f"D1 filter integrity: all {len(orphan_names)} orphan names are a subset of the "
+          f"{len(closure_names)} closure names AND none appears in STANDING -- so the count below is "
+          f"measuring what it claims to")
+
+    # D2 -- has STANDING stopped tracking closures altogether?
+    cov = n_cited / max(1, n_closures)
+    print(f"\n  coverage: {n_cited}/{n_closures} closures are named in STANDING = {100*cov:.1f}%")
+    check(n_cited > 0,
+          f"D2 STANDING still cites {n_cited} of {n_closures} closures ({100*cov:.1f}%). Zero would mean "
+          f"the standing document had stopped tracking the corpus entirely")
+
+    # D3 -- the actionable one: is CURRENT work being propagated? Old uncited scripts are a backlog;
+    # uncited work from the last fortnight is an active leak, and that is the failure worth catching.
+    import time
+    recent = [(mt, rel) for mt, rel in orphans if (time.time() - mt) < 14 * 86400]
+    recent_closures = sum(1 for m in inv.values()
+                          if m["closes"] and (time.time() - m["mtime"]) < 14 * 86400)
+    rec_cited = recent_closures - len(recent)
+    print(f"  last 14 days: {rec_cited}/{recent_closures} recent closures are named in STANDING")
+    check(recent_closures == 0 or rec_cited > 0,
+          f"D3 of {recent_closures} closures asserted in the last 14 days, {rec_cited} are cited in "
+          f"STANDING. Zero recent citations = current work is not being propagated at all, which is the "
+          f"leak that produced the two-loop understatement and the wide-binary branch defect")
+
+    print(f"""
+  {len(orphans)} uncited closures total. This is the INVERSE leak -- results banked in code but absent
+  from the standing document, i.e. the corpus understating itself, which is exactly what happened with
+  two loops. RANKING: this list is NOT ordered by importance here. mtime is a weak proxy; see
+  mi_orphan_closure_triage_2026.py, which ranks the same set by exposure to PUBLISHED and FROZEN
+  artefacts that never name the script -- the signal that made the 2026-07-31 wide-binary find
+  consequential. Every row remains a CANDIDATE REQUIRING A READ, and a low rank is not a clean bill.""")
 
     banner("VERDICT")
     if CONTROL_OK:
