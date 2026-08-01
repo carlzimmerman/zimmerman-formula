@@ -28,7 +28,7 @@ increasing order of seriousness; the third is the one that withdraws the verdict
       and this script verifies it equals a.a EXACTLY in sympy. So the two readings are different
       objects, not rival claims -- which is precisely why the branch cannot be settled by algebra.
   S4  THE DEFECT THAT WITHDRAWS THE VERDICT. mi_action_eom_vs_rar_2026.py (Jul 30, one day later)
-      showed that the action's literal reading is AMPLITUDE-FREE: z sits on K's cut where |K| -> 1,
+      showed that the action's literal reading is AMPLITUDE-FREE: |K| -> 1 at every real system,
       against a law that needs mu_fw = 0.618 at a0. Checked here for BOTH kernels, so it does not
       lean on the retired alpha=1. Therefore the "read Box_u off the action" strategy selects the
       one reading under which the framework has NO rotation curves at all (KERNEL_THEORY.md
@@ -229,7 +229,11 @@ check(sp.simplify(ratio_obj - gam * Om * R) == 0,
 banner("S4  THE DEFECT THAT WITHDRAWS THE VERDICT: the action's reading is amplitude-free")
 
 print("  If K's argument is the FREQUENCY z = -(c Omega/a0)^2, every real system sits far down the")
-print("  negative axis, i.e. deep on K's branch cut. Check what |K| does there, for BOTH kernels:\n")
+print("  negative axis. Check what |K| does there, for BOTH kernels. NOTE the precise statement, since")
+print("  the two kernels differ: alpha=1's cut is the whole ray z <= -1/4, so real systems sit ON it and")
+print("  K_1 is complex there; alpha=2's cut is the COMPACT interval -1 < z < 0, so real systems sit PAST")
+print("  it and K_2 is REAL there. |K| -> 1 either way, which is the load-bearing fact -- but 'lies on the")
+print("  cut' is an alpha=1-only description and is not used here.\n")
 print(f"  {'footing':<26}{'a0 [m/s^2]':>13}  {'system':<22}{'z':>14}{'|K_a1|':>11}{'|K_a2|':>11}")
 print("  " + "-" * 100)
 mods: list[float] = []
@@ -249,7 +253,7 @@ check(all(abs(m - 1.0) < 1e-3 for m in mods),
       "modification carries NO acceleration dependence: it is AMPLITUDE-FREE, not merely small")
 
 print("\n  Against that, the amplitude the framework's LAW requires (its own mu, not McGaugh's nu):")
-print(f"  {'x = g_obs/a0':>14}{'mu_fw(x)':>12}   {'|K| on the cut':>16}   {'mismatch':>10}")
+print(f"  {'x = g_obs/a0':>14}{'mu_fw(x)':>12}   {'|K| at real systems':>21}   {'mismatch':>10}")
 print("  " + "-" * 62)
 for xv in (10.0, 3.0, 1.0, 0.3, 0.1):
     m = mu_fw(xv)
