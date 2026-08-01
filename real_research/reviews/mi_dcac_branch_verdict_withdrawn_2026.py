@@ -34,7 +34,15 @@ increasing order of seriousness; the third is the one that withdraws the verdict
       one reading under which the framework has NO rotation curves at all (KERNEL_THEORY.md
       Finding C: "gives NO MOND at all", "dead twice over"). A wide-binary prediction cannot be
       settled by the reading that deletes the galaxy phenomenology.
-  S5  What actually changes, what does not, and the correction notice owed.
+  S5  THE CONSEQUENCE NOBODY PROPAGATED. The gate is a SEPARATE postulate with omega_c provably
+      unforced, and the Jul 30 closure never mentions it. A one-pole low-pass passes DC at UNIT gain
+      whatever omega_c is, and |a| is constant on a circle -- so the verdict INVERTS and the
+      framework's branch is DC, gamma_v ~ 1.05-1.10 (alpha=1) / ~1.02 (alpha=2).
+  S6  DOES THAT RESTORE FALSIFIABILITY? Only partly, and this section corrects an earlier draft of
+      this script that claimed it did. The frozen document's trap has a SECOND branch -- the
+      locally-DRAGGED frame, gamma_v - 1 ~ 1e-6, no gate involved. Withdrawing the gate NARROWS the
+      trap from two branches to one ajar door (screening + differential drag), it does not resolve it.
+  S7  What actually changes, what does not, and the correction notice owed.
 
 NOTE ON THE AUDIT TOOL. check E paired these two files on shared tokens ['dcac','settled'] alone,
 and their headline questions genuinely differ (branch selection vs Im K). The pairing was still
@@ -315,7 +323,56 @@ print("""
      (Theorem B, S3), |a|^2 is constant on a circle (verified above), and a low-pass gate passes DC.""")
 
 
-banner("S6  WHAT CHANGES, WHAT DOES NOT")
+banner("S6  DOES THIS RESTORE FALSIFIABILITY?  ONLY PARTLY -- there is a SECOND route to Newton")
+
+print("""  The claim "Newtonian in 2-30 kAU is once again a KILL" does NOT follow from S5 alone, and checking
+  it against STANDING.md's own record shows why. The frozen pre-registration carries a FALSIFIABILITY
+  TRAP with TWO branches that between them cover both outcomes (STANDING.md:513-521):
+    * the GATE branch    -- withdrawn here (S1-S5), gamma_v - 1 ~ 4e-4 to 6e-4
+    * the FRAME branch   -- the locally-DRAGGED reading, gamma_v - 1 = 1.018e-6 (canon) / 1.483e-6
+                            (alt), verified 4/4 across routes against the 1/(4y^2) asymptote at 50 dps
+  The frame branch involves NO gate. So withdrawing the gate removes ONE of two routes to a Newtonian
+  prediction, not both.\n""")
+
+GAMMA_M1 = {
+    "DC / ungated (this script's conclusion)": (0.05, 0.10),
+    "frozen Amendment-3 undragged lower edge": (0.0182, 0.0182),
+    "GATE branch (withdrawn here)": (4.0e-4, 6.0e-4),
+    "FRAME branch / dragged (NOT touched here)": (1.018e-6, 1.483e-6),
+}
+print(f"  {'branch':<44}{'gamma_v - 1':>26}")
+print("  " + "-" * 72)
+for k, (lo, hi) in GAMMA_M1.items():
+    print(f"  {k:<44}{(f'{lo:.4e}' if lo == hi else f'{lo:.3e} - {hi:.3e}'):>26}")
+
+frame_hi = GAMMA_M1["FRAME branch / dragged (NOT touched here)"][1]
+dc_lo = GAMMA_M1["DC / ungated (this script's conclusion)"][0]
+check(frame_hi < dc_lo / 1e3,
+      f"the FRAME branch ({frame_hi:.3e}) is >1000x below the DC prediction ({dc_lo:.3e}), so it too "
+      f"reads as Newtonian in 2-30 kAU -- it is an INDEPENDENT route to the same observational outcome")
+frame_lo = GAMMA_M1["FRAME branch / dragged (NOT touched here)"][0]
+edge = GAMMA_M1["frozen Amendment-3 undragged lower edge"][0]
+check(abs(edge / frame_lo - 17883.0) / 17883.0 < 0.01,
+      f"the CANONICAL dragged reading sits {edge/frame_lo:.0f}x below the frozen undragged lower edge "
+      f"{edge}, reproducing STANDING.md's recorded 17883x to better than 1%")
+check(edge / frame_hi > 1e4,
+      f"and the ALT dragged reading sits {edge/frame_hi:.0f}x below it, so the conclusion is "
+      f"footing-independent")
+
+print("""
+  WHAT IS AND IS NOT LEFT OF THE FRAME BRANCH. STANDING.md:425 records the net position: "the
+  locally-dragged frame has NO SURVIVING LOCAL PRESCRIPTION" -- scalar killed by irrotationality,
+  vector by the measured GP-B/LARES magnitude shortfall (>= 2.11e5), uniform-anything by the
+  drag-invariance theorem, non-local by the Carina mismatch -- "and screening + differential drag is
+  the one door left ajar."
+
+  => SO THE HONEST STATEMENT IS: withdrawing the gate branch NARROWS the trap from two branches to one
+     narrow one. It does NOT resolve it. A Newtonian DR4 result could still be claimed through the
+     screening + differential-drag residue unless that door is closed too. Falsifiability is
+     SUBSTANTIALLY IMPROVED, not restored, and the pre-registration's trap remains Carl's to resolve
+     by committing to one branch in the open before the data lands.""")
+
+banner("S7  WHAT CHANGES, WHAT DOES NOT")
 
 print("""  VERDICT ON mi_dcac_branch_settled_2026.py: SUPERSEDED. Its verdict line -- "THE AC BRANCH.
   This is not an interpretation or a preference" -- must be WITHDRAWN, on three grounds:
@@ -335,12 +392,16 @@ print("""  VERDICT ON mi_dcac_branch_settled_2026.py: SUPERSEDED. Its verdict li
      on a choice." The first is false as stated (S1); the second is the overclaim (S3, S4). And the
      FROZEN pre-registration's Amendment 1 cites the Jul 27 script by name as having SETTLED the
      branch "from the committed action".
-   * FALSIFIABILITY IS RESTORED, WHICH CUTS BOTH WAYS. Amendment 1's stated purpose was to stop a
-     Newtonian DR4 result being scored as a kill, by making 1.000 the framework's own prediction too.
-     With its basis withdrawn, that hedge goes: a Newtonian result in 2-30 kAU is once again a KILL of
-     the framework's wide-binary prediction, and gamma_v ~ 1.02-1.09 is once again a real risk taken
-     in advance. That is worse for the framework's comfort and better for its science, and it is the
-     honest reading. It must not be re-hedged after DR4 lands.
+   * FALSIFIABILITY IS SUBSTANTIALLY IMPROVED, NOT RESTORED (S6 -- and this corrects the first draft
+     of this script, which claimed "restored"). Amendment 1's purpose was to stop a Newtonian DR4
+     result being scored as a kill, by making 1.000 the framework's own prediction too. Withdrawing
+     its basis removes the GATE route to that hedge. But the FRAME (locally-dragged) branch reaches
+     the same observational place independently, at gamma_v - 1 = 1.018e-6 / 1.483e-6, with no gate
+     involved -- so the frozen document's falsifiability trap is NARROWED from two branches to one,
+     not resolved. What is left of the frame branch is a single ajar door, screening + differential
+     drag (STANDING.md:425: the dragged frame has "no surviving local prescription"). Closing that
+     door is what would make gamma_v ~ 1.02-1.09 a genuine risk taken in advance. Until then, do not
+     claim the wide-binary front is falsifiable on the strength of this withdrawal alone.
    * AMENDMENT 6 IS OWED TO THE FROZEN DOCUMENT, and it is Carl's to file, not mine -- as is the
      already-owed Amendment 5 (the s^TX alpha=1-tail collapse). Filing it before DR4 is what keeps
      the inversion from being post-hoc. This is the second frozen-prereg row in two days found to
