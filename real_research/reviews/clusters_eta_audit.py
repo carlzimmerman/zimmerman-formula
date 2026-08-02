@@ -130,7 +130,11 @@ def eta_stats(gobs, gbar, a0, nu):
     return np.median(e), 10**np.mean(np.log10(e)), np.percentile(e, [25, 75])
 
 
-def sig_block(gobs, gbar, a0, nu, floors=(0.10, 0.15, 0.20)):
+# 0.30 dex added 2026-08-02: this corpus's OWN systematic floor (cluster_rar_throttle_2026/lane2_data.py,
+# SYS_FLOOR_DEX = (0.1, 0.3)) runs to 0.30 dex, but this ladder stopped at 0.20 -- one rung short, and the
+# missing rung is the one where the cluster offset is NOT a tension. Truncating a systematic range at its
+# tight end manufactures a deficit exactly as using a scatter for an error does.
+def sig_block(gobs, gbar, a0, nu, floors=(0.10, 0.15, 0.20, 0.30)):
     le = np.log10(eta_arr(gobs, gbar, a0, nu))
     N = le.size
     mean_log, sd_log = float(np.mean(le)), float(np.std(le))
@@ -215,8 +219,12 @@ def main():
     print("  N=%d shrinks the SE to %.5f dex, but every cluster shares the same absolute mass" % (sig_fw["N"], sig_fw["se"]))
     print("  calibration (M500 proxy zero-point, R500 definition, f_gas budget, HSE bias).  A common")
     print("  offset does not average down with N.  The floor-limited figure is the one to quote:")
-    print("  %+.3f dex against a 0.10 / 0.15 / 0.20 dex floor -> %.2f / %.2f / %.2f sigma."
-          % (sig_fw["mean"], sig_fw["floor"][0.10], sig_fw["floor"][0.15], sig_fw["floor"][0.20]))
+    print("  %+.3f dex against a 0.10 / 0.15 / 0.20 / 0.30 dex floor -> %.2f / %.2f / %.2f / %.2f sigma."
+          % (sig_fw["mean"], sig_fw["floor"][0.10], sig_fw["floor"][0.15], sig_fw["floor"][0.20],
+             sig_fw["floor"][0.30]))
+    print("  At the TOP of this corpus's own floor range (0.30 dex) the cluster offset is %.2f sigma -- i.e."
+          % sig_fw["floor"][0.30])
+    print("  NOT a tension. The honest headline is the RANGE, never the 0.10-dex end alone.")
     print("  Real, soft, and NOT a referee-proof kill at either end of the floor range.")
     sig_each = np.log10(eta_arr(base["gobs"], base["gbar"], A0_CANON, nu_framework)) / (base["eM"] / np.log(10))
     print("  (median per-cluster significance on each cluster's own M500 error: %.2f sigma)"
