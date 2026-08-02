@@ -1,9 +1,15 @@
 # The de Sitter–Unruh mechanism forces an interpolation function and an acceleration scale together
 
-### Why keeping the kernel and rejecting the coefficient is not free — and what the α = 1 → α = 2 switch quietly cost
+### The shape is forced unconditionally, the coefficient is locked to one ambient scale — and the α = 1 → α = 2 switch left the derived family altogether
+
+*Revised 2 August 2026 (same day). §4 of the first draft claimed the kernel and the coefficient are an
+"inseparable package." **That was too strong and is corrected in §4a below:** the kernel shape is independent
+of the ambient acceleration, so the framework keeps its derived kernel at any $a_0$. The 11.58× gap is
+unchanged in size; what changes is where it lives.*
 
 **C. P. Zimmerman**, Briar Creek Tech
-Draft, 2 August 2026. Companion script: `reviews/mi_dsunruh_kernel_package_2026.py` (7/7 checks, exit 0).
+Draft, 2 August 2026. Companion scripts: `reviews/mi_dsunruh_kernel_package_2026.py` (7/7) and
+`reviews/mi_dsunruh_freedom_audit_2026.py` (7/7), both exit 0.
 
 ---
 
@@ -18,13 +24,23 @@ $$\mu_{\rm dS}(u) \;=\; \frac{\sqrt{1+u^2}-1}{u}, \qquad u = a/a_{\rm dS}.$$
 We record two facts and one consequence. **First**, $\mu_{\rm dS}$ is *identically* the interpolation
 function of the law $g_{\rm obs}^2 = g_{\rm bar}^2 + g_{\rm bar}a_0$ — the α = 1 kernel — once one sets
 $a_0 = 2a_{\rm dS}$. The symbolic residual is exactly zero. **Second**, that same substitution is not
-optional: the deep-regime slope of $\mu_{\rm dS}$ is $u/2$, which *forces* $a_0 = 2cH_\Lambda$. Neither fact
-is new — both are Milgrom's (1999) — but their **conjunction** has not been stated, and it is the point of
-this note: the mechanism delivers a kernel and a coefficient as one inseparable package.
+optional: the deep-regime slope of $\mu_{\rm dS}$ is $u/2$, which *forces* $a_0 = 2A$ for whatever ambient acceleration $A$ enters the temperature. Neither
+fact is new — both are Milgrom's (1999) — but their **conjunction** has not been stated, and it sharpens the
+problem considerably.
 
-The consequence is a cost we had not priced. Our framework adopts the kernel and rejects the coefficient,
-using $Z = 2\sqrt{8\pi/3} = 5.78881$ against the mechanism's $Z = 1/2$ — a factor $4\sqrt{8\pi/3} = 11.58$.
-That much was already on the record. What was not: the α = 1 → α = 2 kernel switch, made in July 2026 for
+**Crucially, the shape does not depend on $A$.** Written in units of $a_0 = 2A$, $\mu$ is
+$(\sqrt{1+4x^2}-1)/2x$ for *every* ambient scale, with $A$ absent from the expression. And among power-law
+responses $f(T) = T^n$, deep-MOND linearity forces $n = 1$ **uniquely** ($n=2$ gives a constant $\mu$ — no
+MOND regime at all; $n \geq 3$ diverges as $a \to 0$). So the mechanism fixes the *shape* unconditionally and
+the *relation* $a_0 = 2A$, but **not $A$ itself.** Milgrom supplies $A$ from the de Sitter horizon; that is a
+physical choice, not an algebraic necessity.
+
+**So the framework's $\kappa = 1/2$ is exactly one statement:** the ambient acceleration a bound system
+samples is $A = \tfrac14 c\sqrt{G\rho_\Lambda} = cH_\Lambda/11.58$, not the horizon scale $cH_\Lambda$. The
+kernel then comes along free. That is a well-posed physics question rather than a bare postulate — which is
+progress in clarity, though not yet in physics: nothing here supplies the argument for that $A$.
+
+The consequence we had not priced: the α = 1 → α = 2 kernel switch, made in July 2026 for
 solar-system reasons, **forfeits the derivation of the kernel as well**, because $\mu_2(x) = x/\sqrt{1+x^2}$
 is not $\mu_{\rm dS}$ (they differ by 14.4% at $x = 1$). Under α = 2 the framework holds neither half of the
 package. We also withdraw a claim made three days ago that de Sitter thermality *derives*
@@ -35,14 +51,23 @@ above is the correct reading.
 
 ## 1. What is claimed, and what is not
 
-**Claimed.** (i) The de Sitter–Unruh construction yields the α = 1 interpolation function exactly, with
-$a_0 = 2cH_\Lambda$ forced by the same algebra. (ii) Therefore the kernel and the coefficient are one
-package, and adopting the first while rejecting the second requires a reason we do not have. (iii) The
-α = 1 → α = 2 switch forfeits (i), which is a cost absent from our own accounting of that switch.
+**Claimed.** (i) The de Sitter–Unruh construction yields the α = 1 interpolation function exactly, and does
+so for *every* ambient acceleration $A$ — so the framework's kernel is derived unconditionally (§4a).
+(ii) The same algebra locks $a_0 = 2A$, and no power-law response law can move that lock (§4b) — so the
+framework's $\kappa = 1/2$ reduces to the single claim $A = \tfrac14 c\sqrt{G\rho_\Lambda}$, which is
+11.58× below the horizon scale Milgrom uses. (iii) The α = 1 → α = 2 switch puts the kernel now in force
+*outside* the derived family entirely, which is a cost absent from our own accounting of that switch.
+
+**Corrected from the first draft, same day.** We claimed the kernel and coefficient are an "inseparable
+package" and that the framework cannot hold both. §4a shows it can: the shape is $A$-independent. The 11.58×
+gap does not shrink, but it is one unexplained ambient scale rather than a conflict between two claims.
 
 **Not claimed.** We do not claim to derive $a_0$. We do not claim novelty for the construction, for
 $\mu_{\rm dS}$, or for $a_0 = 2cH_\Lambda$ — all three are Milgrom's. We claim novelty only for the
-conjunction and for the α = 2 cost. And nothing here improves any fit.
+$A$-independence of the shape, the $n=1$ uniqueness, the reduction of $\kappa = 1/2$ to a statement about
+$A$, and the α = 2 cost. And nothing here improves any fit. **Restating a postulate as a different postulate
+is progress in clarity only**; it becomes physics if and only if someone derives $A$ from bound-system
+kinematics.
 
 ---
 
@@ -91,16 +116,40 @@ Sitter–Unruh argument is where that kernel *comes from*.
 
 ---
 
-## 4. The coefficient is not a separate choice
+## 4. The coefficient is locked to the ambient scale — but the ambient scale is not locked
 
 The substitution $a_0 = 2a_{\rm dS}$ in §3 was not a convenience. The deep-regime limit of $\mu_{\rm dS}$ is
 $u/2$; matching that to $\mu_1 \to x$ requires $u = 2x$, hence
 
-$$\boxed{\,a_0 = 2a_{\rm dS} = 2cH_\Lambda\,}$$
+$$\boxed{\,a_0 = 2A\,}$$
 
-with nothing left to adjust. **The kernel and the coefficient are the same statement.** One cannot take the
-functional form as derived and treat the scale as free; the algebra that delivers the first delivers the
-second.
+for whatever ambient acceleration $A$ appears in $\sqrt{a^2+A^2}$. And that $1/2$ in the deep slope is the
+Taylor coefficient of the square root, so **no reshaping of the response can move it** — see §4b.
+
+### 4a. The correction: the shape is $A$-independent
+
+Write $\mu$ in units of $a_0 = 2A$, i.e. $a = 2Ax$:
+
+$$\mu = \frac{\sqrt{4A^2x^2 + A^2} - A}{2Ax} = \frac{\sqrt{1+4x^2}-1}{2x},$$
+
+and $A$ has **cancelled entirely**. The α = 1 shape is what the mechanism gives for *every* ambient scale.
+Our first draft's claim that the kernel and coefficient are "inseparable," and that the framework "cannot
+hold the kernel derivation and the coefficient at the same time," was therefore wrong. **It can.** What it
+owes is not a different kernel but an argument for $A = \tfrac14 c\sqrt{G\rho_\Lambda}$ — one unexplained
+ambient scale, with the kernel supplied free.
+
+### 4b. Why the response law cannot help either
+
+Generalise "inertia tracks the excess temperature" to "inertia tracks the excess in $f(T) = T^n$," normalised
+by the flat-space Unruh value at the same acceleration. With $T/T_0 = \sqrt{1+v^2}$ and $T_U/T_0 = v$:
+
+$$\mu_n(v) = \frac{(1+v^2)^{n/2}-1}{v^n} \;\longrightarrow\; \frac{n}{2}\,v^{\,2-n} \quad (v \to 0).$$
+
+Deep-MOND linearity requires $2-n = 1$, so **$n = 1$ uniquely**. At $n=2$ the ratio tends to a constant —
+Newtonian everywhere, no MOND regime. At $n \geq 3$ it diverges as $a\to0$. Two further variants fail the
+same way: $\sqrt{T^2-T_0^2}/T_U \equiv 1$ identically (pure Newton), and a logarithmic response gives
+$v^2/\log v$, which is not linear and yields neither flat rotation curves nor the baryonic Tully–Fisher
+relation. **The coefficient cannot be bought by changing the response law; only a different $A$ moves it.**
 
 ---
 
@@ -141,6 +190,12 @@ derivation of the kernel**. The honest ledger:
 
 Neither kernel is free, and under the kernel now in force the framework has **neither** the derivation nor a
 viable solar system. That trade is now explicit; it was not before.
+
+**And §4a/§4b make this worse, not better.** Since the α = 1 shape is forced for *every* ambient scale and
+*every* viable response law, $\mu_2$ does not sit at some other point inside the derived family — it lies
+**outside the family altogether.** So the solar-system liability cannot be repaired by rescaling or reshaping
+within the mechanism. Any fix — screening, a frequency gate, or the exponential tail — must come from outside
+it, and pays the kernel derivation as its price.
 
 ---
 
@@ -191,11 +246,18 @@ So: **theory naturalness points away from $\kappa = 1/2$; the data point toward 
 
 ## 9. What would resolve it
 
-A reason to keep $\mu_1$ while replacing $a_0 = 2a_{\rm dS}$ — that is, a modification of the step from (1) to
-$\mu$ that changes the deep-regime slope from $u/2$ to $u/(4\sqrt{8\pi/3})$ without changing the functional
-form. We know of none, and §4 suggests there is none, since the slope and the form are the same limit of the
-same expression. Failing that, the framework's coefficient remains what our own coefficient paper already
-calls it: **fitted, not derived** — and after §6, fitted alongside a kernel that is also no longer derived.
+One thing, now stated exactly: **a derivation of the ambient acceleration $A$ that a bound system samples,
+giving $A = \tfrac14 c\sqrt{G\rho_\Lambda}$ rather than $cH_\Lambda$.** Per §4b the response law cannot
+supply it and per §4a the kernel does not constrain it, so this is the entire remaining question — and it is
+the *only* one. Physically it asks whether a star on a bound galactic orbit samples the horizon's surface
+gravity or something 11.58× smaller.
+
+Two prior no-go results apply to it unchanged and should temper expectations: ingredients that are rational
+multiples of integer powers of $\pi$ can force $Z^2$ but never $Z = 2\sqrt{8\pi/3}$; and being at once
+quadratic in $Z$, $\hbar$-free, and carrying the Bekenstein–Hawking $1/4$ is impossible. Failing such a
+derivation, the coefficient remains what our own coefficient paper calls it: **fitted, not derived** — but
+now demonstrably fitted *alongside a kernel that is derived*, which is a better position than §6 alone
+suggests, and a worse one than §4a alone suggests.
 
 ---
 
@@ -221,11 +283,13 @@ is `real_research/reviews/mi_alpha2_sun_reflex_2026.py`; the two no-go results o
 
 ---
 
-*One-paragraph summary for the impatient. The de Sitter horizon's temperature formula, applied to inertia,
+*One-paragraph summary for the impatient (revised). The de Sitter horizon's temperature formula, applied to inertia,
 hands you a MOND interpolation function and an acceleration scale in the same breath. The function it hands
-you is exactly the one our framework used until last month. The scale it hands you is 11.58× ours. We had
-already conceded the scale; what we had not noticed is that the concession costs more than we thought,
-because the function came attached — and that when we changed the function in July to survive the solar
-system, we gave up the attachment too. On top of that, a derivation we announced three days ago was wrong by
-4π and is withdrawn here. The framework's mechanism remains the right kind of story; its two numbers are both
-now fitted rather than derived, and the SPARC data still prefer them.*
+you is exactly the one our framework used until last month — and, it turns out, it hands you that same
+function whatever ambient acceleration you feed it. So the kernel is ours for free. What the mechanism will
+not give us is the scale: it says $a_0 = 2A$, and no choice of response law changes that. Our $\kappa = 1/2$
+therefore says one specific thing — that a star on a bound orbit samples an ambient acceleration 11.58×
+smaller than the horizon's. That is a real question someone could answer, which is better than a bare
+postulate, though it is not yet an answer. Two things cut the other way: the kernel we actually switched to in
+July, to survive the solar system, is outside this family altogether; and a derivation we announced three days
+ago was wrong by 4π and is withdrawn here.*
