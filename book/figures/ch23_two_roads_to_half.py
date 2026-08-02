@@ -10,11 +10,17 @@ C_FW="#7c3aed"; C_NEWTON="#64748b"; C_MOND="#0891b2"; C_DATA="#dc2626"  # framew
 # the number of particle species g_*. All values computed from stated formulas.
 fig, ax = plt.subplots(figsize=(7.6,4.5))
 
-# CKN coefficient vs g_*: the energy-bound family scales as ~ g_*^(-1/4),
-# normalized so the single-dof (g_*=1) geometric limit lands at exactly 1/2.
+# CKN coefficient vs g_*: the energy-bound family scales as ~ g_*^(-1/4).
+# CORRECTED 2026-08-02: this was hard-coded to 0.5 with the comment "normalized so the single-dof
+# (g_*=1) geometric limit lands at exactly 1/2". That normalization was FALSE and load-bearing --
+# the g_*=1 CKN energy coefficient is (3/8pi)^(1/4) = 0.5877875, which this chapter prints itself,
+# so substituting 1/2 was a 17.56% change that manufactured the figure's punchline. As coded the SM
+# point sat at 0.1555, BELOW this figure's own annotated 0.18-0.41 band; corrected it is 0.1829,
+# on the band edge. See real_research/reviews/mi_efe_escape_and_ch23_withdrawn_2026.py (E3a).
+CKN1 = (3.0 / (8.0 * np.pi))**0.25   # = 0.5877875, the g_*=1 geometric limit. NOT 1/2.
 g = np.logspace(0, 2.2, 400)
-ckn_energy  = 0.5 * g**(-0.25)   # energy-bound bookkeeping, g_*=1 -> 1/2
-ckn_entropy = 0.5 * g**(-1.0/3)  # entropy-bound bookkeeping (steeper)
+ckn_energy  = CKN1 * g**(-0.25)   # energy-bound bookkeeping, g_*=1 -> (3/8pi)^(1/4)
+ckn_entropy = CKN1 * g**(-1.0/3)  # entropy-bound bookkeeping (steeper)
 ax.plot(g, ckn_energy, color="#0891b2", lw=2.2,
         label=r"CKN coefficient $\sim g_*^{-1/4}$ (energy bookkeeping)")
 ax.plot(g, ckn_entropy, color="#0891b2", lw=1.6, ls="-.",
@@ -23,10 +29,14 @@ ax.plot(g, ckn_entropy, color="#0891b2", lw=1.6, ls="-.",
 # The framework's kappa = 1/2 : a constant, particle-content-independent
 ax.axhline(0.5, color=C_FW, lw=2.4, label=r"framework $\kappa=\frac{1}{2}$  (pure geometry, $g_*$-independent)")
 
-# g_*=1 single-dof limit: the two roads meet at exactly 1/2
-ax.plot([1],[0.5], marker="*", ms=20, color=C_FW, zorder=6)
-ax.annotate("single-dof limit  "+r"$g_*\!\to\!1$"+":"+"\n"+r"CKN coefficient $=\frac{1}{2}$",
-            xy=(1,0.5), xytext=(1.25,0.30), fontsize=9.2, color=C_FW,
+# g_*=1 single-dof limit. CORRECTED 2026-08-02: the CKN coefficient there is (3/8pi)^(1/4) = 0.5878,
+# NOT 1/2, and the two "roads" are NOT independent -- sqrt(2/Z) = sqrt(2*kappa)*(3/8pi)^(1/4)
+# identically, so the framework's slot equals this geometric limit IFF kappa = 1/2. The agreement is
+# the INPUT, not a coincidence: d ln(slot)/d ln(kappa) = 1/2, so kappa does not cancel.
+ax.plot([1],[CKN1], marker="*", ms=20, color=C_FW, zorder=6)
+ax.annotate("single-dof limit  "+r"$g_*\!\to\!1$"+":"+"\n"+r"CKN coefficient $=(3/8\pi)^{1/4}=0.588$"
+            +"\n"+r"(NOT $\frac{1}{2}$; matching it *requires* $\kappa=\frac{1}{2}$)",
+            xy=(1,CKN1), xytext=(1.25,0.28), fontsize=8.6, color=C_FW,
             arrowprops=dict(arrowstyle="-|>",color=C_FW,lw=1.4))
 
 # Full Standard Model g_*=106.75 -> 0.18-0.41 band (misses 1/2)

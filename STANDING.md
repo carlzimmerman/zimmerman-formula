@@ -618,7 +618,7 @@ claims. They are not to be revived. The true position is the $a_0$ reframing abo
 | # | front | state | clock |
 |---|---|---|---|
 | **A** | **Wide-binary $\gamma_v$ / gate fork** | pre-reg frozen 2026-07-16, hash-stamped; **Amendment 1** (2026-07-27) fixed a scoring defect that would have scored a confirmation as a kill; **Amendment 2** (2026-07-30) discharges the EFE prescription flag and adds an orientation-resolved statistic | **Gaia DR4, ~Dec 2026** |
-| **B** | **$s^{TX}$ SME boost dipole** | prediction $8.68\times10^{-10}$ canonical / $1.048\times10^{-9}$ alt; bound $\sigma\sim1.3\times10^{-9}$ (Hees+ 2016) → margin **1.50× / 1.24×** | Gaia DR4 |
+| **B** | ~~$s^{TX}$ SME boost dipole~~ **NOT LIVE (α=2)** | prediction collapses $8.68\times10^{-10}\to1.26\times10^{-15}$ canonical / $1.048\times10^{-9}\to1.83\times10^{-15}$ alt; margin **1.03×10⁶× / 7.09×10⁵×**; Amendment 5 voids the bands | — |
 | **C** | **Rotation-curve dipole from the derived EFE** | **new 2026-07-30.** 4.2–22.3% for $e\ll y$, attractor-faster, **footing-free**. Retires the banked "MI predicts exactly zero directional asymmetry" and flips the observable from MI-blind to **MI-favourable** | archival + DR4 |
 | **D** | **Dwarf-spheroidal closure discrimination** | **new 2026-07-30, then DOWNGRADED the same day by real data.** Predictions stand: ultralocal closure → dispersion-supported systems *exactly* on the rotation relation (1.6e-15); orbit-averaged → $-0.037$ dex. But the McConnachie (2012) catalogue (46 dwarfs, 29 after cuts) shows the test is **systematics-limited, not sample-limited**: per-object scatter 0.38–0.48 dex (not 0.15–0.20), and the dominant $\Upsilon_V$ error is **coherent**, so $\sqrt N$ does not help. $\Upsilon_V$ span 1–4 moves the mean residual 0.322 dex = **8.7× the signal**; needs $\Upsilon_V$ to 19% vs a 50–100% literature spread. **"N~150, archival" RETRACTED.** One route survives: the $\Upsilon$ direction has slope $-0.067$/dex against $\log(g_{\rm bar}/a_0)$ while the closure offset is flat, so partially separable over 5.28 dex — needs the offset computed *across* $g_{\rm bar}$ | **blocked on theory, not data** |
 | **E** | **$a_0(z)$ evolution** | correct law is $(1+z)^{1.5(1+w_0+w_a)}e^{-1.5w_az/(1+z)}$ — **bump-then-decline**, not a rise. DESI-dependent signal only ~0.01 dex at $z=1$, sign-changing near $z\simeq1$, 0.11–0.20 dex by $z=3$ | **$z\gtrsim2$ test**; hostage to DESI |
@@ -628,7 +628,10 @@ before data**. Both amendments to date were filed pre-DR4 and hash-stamped. Amen
 frozen target** — the derived orientation average $\gamma_v=1.0799$ landed inside the frozen 1.05–1.10
 band, 0.0101 from the point target 1.09.
 
-**⚠️ Do not cite "~9.6× margin" for $s^{TX}$.** Superseded 2026-06-21. Live figure is 1.50× / 1.24×.
+**⚠️ $s^{TX}$ IS NOT A LIVE FRONT — do not cite ~9.6×, and do not cite 1.50× / 1.24× either.**
+Superseded twice: the ~9.6× on 2026-06-21, then the 1.50×/1.24× by the **α=2 kernel now in force**, under
+which the prediction collapses by $a_0/g$ at Saturn to a margin of **1.03×10⁶× / 7.09×10⁵×**.
+`PREREGISTRATION_DR4.md` Amendment 5 voids §2's DETECT/KILL/WRONG-SIGN bands. Sign unchanged (negative).
 
 ---
 
@@ -665,8 +668,15 @@ band, 0.0101 from the point target 1.09.
    argument works for $\alpha\ge2$, not for $\alpha=1$.
    - **Bounds verified from primary sources, not quoted.** Sereno & Jetzer 2006 (astro-ph/0606197)
      Table 1 (Pitjeva EPM2004) inverted through their own Eq (9) gives $\delta A_R\le3.66\times10^{-14}$
-     m/s² (Earth, 2σ) and $3.72\times10^{-14}$ (Mars). Bare $a_0/2$ is **1278× over**; the framework's
-     *own* derived EFE (Thm 5) suppresses it only to **119–189× over**. Milgrom 2009 (arXiv:0906.4817)
+     m/s² (Earth, 2σ) and $3.72\times10^{-14}$ (Mars). Bare $a_0/2$ is **1278× over**, and ⚠️**CORRECTED 2026-08-02: there is NO EFE
+     suppression of it.** The earlier "the framework's *own* derived EFE (Thm 5) suppresses it only to
+     119–189× over" is **WITHDRAWN**: that construction scalar-added $g_{\rm ext}$ to the sunward internal
+     field, i.e. pointed the Galactic field permanently at the Sun, and reported the orbit's phase
+     *minimum*. Done as vectors, $\langle g_{\rm ext}\cdot\hat r\rangle=0$ over an orbit, so the
+     orbit-averaged sunward anomaly is $1.000\times a_0/2$ on all four footing × $g_{\rm ext}$ corners:
+     **post-EFE = bare = 1279× (canonical) / 1544× (alt)**. The fixed-direction term produces a forced
+     eccentricity instead — exactly the piece an ephemeris fit absorbs. See
+     `mi_efe_escape_and_ch23_withdrawn_2026.py` (8/8). Milgrom 2009 (arXiv:0906.4817)
      p.6 states the case verbatim: $\alpha=1$ "produces too strong effects on the planets"; Sereno &
      Jetzer "roughly allow only $\alpha\gtrsim1.5$". Blanchet & Novak 2011 call the class ruled out.
    - **The known escape does not reach.** Milgrom prefers Fienga+2009's global-refit method, which is
@@ -921,7 +931,7 @@ band, 0.0101 from the point target 1.09.
   `KERNEL_THEORY.md` — **incoherent**, retire it. Theorem B applies pointwise to the total
   acceleration and returns one non-negative real number.
 - **2026-07-28:** the σ-spread band 6.2–14.1% — repriced down; `GAP_STATEMENT.md` Amendment 1.
-- **Standing:** $s^{TX}$ margin is 1.50×/1.24×, **not** ~9.6×. $\alpha_2^{\rm MI}\sim10^{-13}$
+- **Standing:** $s^{TX}$ is **NOT LIVE** under α=2 — margin **1.03×10⁶× / 7.09×10⁵×**, not 1.50×/1.24× and not ~9.6×. $\alpha_2^{\rm MI}\sim10^{-13}$
   (~$10^6\times$ safe), **not** $10^{-8}$ and not live.
 - **Assistant-side errors corrected the same day, recorded so they are not re-inherited:** a wide-binary
   Zenodo release that stripped 9 reproducibility files (fixed as v4); a growth-amplification figure
