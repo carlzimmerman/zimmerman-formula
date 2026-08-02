@@ -695,7 +695,12 @@ band, 0.0101 from the point target 1.09.
      at risk from this liability.** What is at risk is *exactness*, and only that: the relation
      $g_{\rm obs}^2=g_{\rm bar}^2+a_0g_{\rm bar}$ holds identically **iff** $\alpha=1$ (symbolic).
      Switching to $\alpha=2$ costs **+0.0033 dex** on 175 SPARC galaxies ($0.10\,\sigma_{\rm int}$) and
-     takes the planets from 1279× over to $2\times10^{-5}$× — i.e. passing.
+     reduces the **Sun-carried** ephemeris liability from ~1278× to **6.2–8.5× over the Mars ranging
+     budget (canonical; 9.0–12.4× alt)** — 3.35 orders of relief, **NOT a pass**. ⚠️CORRECTED 2026-08-02:
+     the earlier "to $2\times10^{-5}$× — i.e. passing" evaluated the $1/g$ tail at the *planets*; the
+     binding body is the **Sun** (reflex $g\approx2.1\times10^{-7}$, 2233× $a_0$), as the corpus's own
+     published LM fit already showed (`agentE_solar_reflex.py`; WHITEPAPER_TOE_MAP sec. 4.3.2, "12.7 m,
+     ×8.5, Mars-carried"). See `mi_alpha2_sun_reflex_2026.py` (7/7).
    - **And the disformal lensing construction sends a SECOND BILL for the same item.** $B$ is fixed by
      the same kernel, $\nabla B=4(\nu-1)g_{\rm bar}$, and the construction needs $B<1$. On $\alpha=1$,
      $(\nu-1)g_{\rm bar}\to a_0/2$ so $\mathrm{d}B/\mathrm{d}r\to2a_0$ is **constant** and $B$ varies by
