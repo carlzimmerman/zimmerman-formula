@@ -365,6 +365,114 @@ Frozen flags carried with the targets:
 > not derived**. And it does not alter the standing rule that a confirmation of a frozen prediction is
 > scored as a **kill** where the pre-registration says so.
 
+> ### 🚨 AMENDMENT 5 — 2026-08-02, ADDED IN THE OPEN BEFORE DR4. READ BEFORE SCORING.
+>
+> **§2's s^TX AMPLITUDE IS BUILT ON THE RETIRED α = 1 KERNEL AND COLLAPSES BY SIX ORDERS OF MAGNITUDE.
+> A TEST THIS DOCUMENT DECLARED LIVE AND FALSIFIABLE IS NOT.** This is the amendment with the largest
+> consequence of any filed so far, and it is filed against interest.
+>
+> **THE DEFECT.** §2 builds the boost dipole from `S → a₀/(2|g_orb|)`, the deep-Newtonian tail of the
+> **α = 1** closure. Symbolically the two kernels differ in FORM, not in coefficient: α = 1 gives
+> x − y → ½, a **constant** offset a₀/2, so A₁ = a₀/2g; α = 2 gives x − y → 1/(2y), a **decaying**
+> offset, so A₂ = a₀²/2g². Hence
+>
+> $$A_2/A_1 \;=\; a_0/g \;=\; 1.45\times10^{-6}\ \text{ at Saturn.}$$
+>
+> The α ≥ 2 kernel has been in force since 2026-07-30 (Amendment 3), because the α = 1 tail implies a
+> constant sunward anomaly a₀/2 at **1279× the Earth 2σ ephemeris bound**. So the kernel that §2's
+> amplitude assumes is the one this document already retired.
+>
+> **THE NUMBERS.** |s^TX| falls **8.68e-10 → 1.258e-15** (canonical) and **1.048e-9 → 1.834e-15** (alt).
+> The pre-registered margin goes from a live **1.50× / 1.24×** to **1.03e6× / 7.09e5×**. Reproducing the
+> frozen 1.50×/1.24× exactly confirms the normalisation is this document's own, not the auditor's.
+>
+> **THE SIGN IS UNCHANGED.** The collapse factor a₀/g is positive, so the pre-declared **NEGATIVE** sign
+> survives intact. Only the amplitude dies. No post-hoc sign freedom is created or claimed.
+>
+> **WHAT THIS COSTS, STATED PLAINLY.** Amendment 4 moved numbers without flipping any pre-registered
+> outcome. **This one flips an outcome: a test declared LIVE and FALSIFIABLE becomes untestable.** The
+> α ≥ 2 switch cured the 1278× ephemeris liability for 0.0033 dex on SPARC — and it also destroyed the
+> s^TX front as a falsifier. **That cost was not priced when the switch was made.** Combined with the
+> separate finding that a locally-dragged frame flips the s^TX sign, the s^TX front is **doubly
+> compromised**, and the α = 2 one binds because α = 2 is in force.
+>
+> **SCORING CONSEQUENCE.** §2's DETECT / KILL / WRONG-SIGN-KILL bands are **VOID under α = 2**. No DR4
+> s^TX result may be scored against them. The front reverts to NO-VERDICT by construction, not by data.
+> The **direction** lock (Planck apex, component ratios 0.208:−0.971:−0.120) and the **negative sign**
+> lock are unaffected and remain frozen.
+>
+> **WHAT IS NOT CHANGED.** Not the wide-binary sections. Not the estimator, cuts, error model, strictness
+> ladder or NSS screen. Not the a₀-degeneracy flag: no DR4 outcome may be reported as measuring
+> a₀ = 9.36e-11. Not κ = ½, which remains **fitted, not derived**.
+>
+> Source: `real_research/reviews/mi_stx_alpha2_collapse_2026.py` (10 checks, exit 0, both footings).
+> Author-verified from scratch: every adversarial verifier and the critic died on a spend limit, so
+> nothing here rests on an unrefuted subagent claim.
+
+> ### 🚨 AMENDMENT 6 — 2026-08-02, ADDED IN THE OPEN BEFORE DR4. READ BEFORE SCORING.
+>
+> **AMENDMENT 1's BASIS IS WITHDRAWN, AND THE WIDE-BINARY BRANCH INVERTS. The registered γ_v target of
+> 1.0004–1.0006 is not the framework's prediction; the UNGATED value is.** Filed against interest,
+> because it removes a hedge this document created for the framework's benefit.
+>
+> **WHAT AMENDMENT 1 DID.** It cited `mi_dcac_branch_settled_2026.py` by name as having SETTLED the
+> DC/AC branch "from the committed action", on the strength of "□_u u_μ = −Ω² u_μ identically (sympy
+> residual zero)", and on that basis registered **γ_v = 1.0004–1.0006, <0.04σ from Newton**, declaring
+> that "a Newtonian DR4 result in 2–30 kAU CONFIRMS the framework's gated branch and does NOT falsify it."
+>
+> **WHY THAT BASIS FAILS — three defects, increasing in seriousness.**
+> **(i)** The eigenvector identity is **FALSE AS STATED.** It was verified on a two-component *spatial*
+> vector; the time leg was never formed. On the actual 4-velocity □_u annihilates u⁰ (eigenvalue **0**)
+> while the spatial legs give **−(γΩ)²**, so u_μ is **not** an eigenvector. A mutation control reproduces
+> the false PASS by deleting the time leg, isolating the defect exactly.
+> **(ii)** Pulling K out of the contraction as K(z)(u·u) = −K(z) requires a genuine eigenvector. The
+> correct block value is **+γ²v²K(z)** — opposite SIGN and suppressed by (v/c)², a factor **6.75e11** at
+> the wide-binary scale this was written to decide.
+> **(iii) DECISIVELY, THE STRATEGY FAILS.** Selecting the branch by reading □_u off the action selects the
+> reading in which the action's modification is **amplitude-free** — |K| → 1 at every real system, on both
+> kernels and both footings, against a law requiring μ_fw(1) = 0.618. That is the reading in which the
+> framework has **no rotation curves at all**. A wide-binary prediction cannot be settled by the reading
+> that deletes the galaxy phenomenology.
+>
+> **AND IT INVERTS, without needing ω_c at all.** A one-pole low-pass **passes DC with unit gain**
+> whatever ω_c is, and |a| is **exactly constant** on a circular orbit (the Jul 27 script verified that
+> itself). So Amendment 1's Re G = 0.005–0.008 suppression **does not apply** on the branch the
+> framework's phenomenology actually uses, and γ_v reverts to the **UNGATED** value.
+>
+> | amended hypothesis | γ_v target, 2–30 kAU |
+> |---|---|
+> | Newtonian | 1.000 exactly |
+> | **framework-MI, UNGATED (the framework's prediction under α = 2)** | **≈ 1.02** |
+> | framework-MI, ungated under the retired α = 1 | band 1.05–1.10, point 1.09 |
+> | framework-MI, GATED (Amendment 1 — **basis withdrawn**) | 1.0004–1.0006 |
+>
+> **SCORING CONSEQUENCE, AND IT CUTS AGAINST THE FRAMEWORK.** Amendment 1 existed to stop a Newtonian DR4
+> result being scored as a kill. **That hedge is withdrawn.** A Newtonian result in 2–30 kAU is once again
+> evidence AGAINST the framework's wide-binary prediction, and γ_v ≈ 1.02 is a real risk taken in advance.
+> **This must not be re-hedged after DR4 lands.**
+>
+> **ONE THING IT DOES NOT DO, stated so this is not read as more than it is.** Withdrawing the gate branch
+> removes only **ONE** of this document's two routes to a Newtonian reading. The **locally-dragged FRAME**
+> branch reaches γ_v − 1 ≈ 1.0–1.5 × 10⁻⁶ independently, with **no gate involved** (17 878× below the
+> frozen undragged lower edge 0.0182). What remains of that branch is a single ajar door —
+> **screening + differential drag**. So the falsifiability trap is **NARROWED from two branches to one,
+> NOT resolved**, and committing to one branch in the open remains owed.
+>
+> **ALSO WITHDRAWN.** The **DEAD ZONE** prediction (r_gate/r_M = 4.54–7.76, the ~10→50–60 kAU window for
+> 1.5 M☉) was AC-conditional and goes with the branch. And ω_c is not a forced ingredient of the
+> framework: on the magnitude branch K's own argument already separates the Earth (|a|/a₀ ~ 10⁷) from a
+> galactic orbit (~1), which is ordinary MOND logic needing no gate. Read with §1's "ω_c is a free
+> parameter", the gate is **neither forced nor anchored**.
+>
+> **WHAT IS NOT CHANGED.** Not §2 (see Amendment 5). Not the estimator, frozen cuts, error model,
+> strictness ladder or NSS screen. Not the 16-row cut table. Not the a₀-degeneracy flag. Not κ = ½,
+> **fitted, not derived**. And no measurement moves: the SPARC RAR at 0.108 dex, the a₀-line and the flat
+> curves are measurements against a LAW and are untouched.
+>
+> Sources: `real_research/reviews/mi_dcac_branch_verdict_withdrawn_2026.py` (29 checks, exit 0, both
+> footings, mutation control isolating the defect), building on `mi_action_eom_vs_rar_2026.py` and
+> `mi_dcac_split_settled_2026.py`. The superseded file carries a WITHDRAWN notice at its head.
+
 
 ### 1.2 Frozen DR4 cut list
 

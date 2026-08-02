@@ -7,8 +7,14 @@ THE QUESTION. The framework's whole surviving content is one number: a0 = kappa 
 kappa = 1/2, i.e. a0 = cH_Lambda/Z, Z = sqrt(32 pi/3) = 5.78881. The nearest rival is Milgrom (2020)'s
 EMPIRICAL a0 = cH_Lambda/2pi, 2pi = 6.28319. The two differ by
     a0_fw / a0_M20 = 2pi/Z = 1.08540,   i.e.  Dln a0 = 0.0820   (the paper quotes 7.9% against 2pi)
-If no observable resolves that, then kappa = 1/2 is not currently falsifiable, and every front fought this
-year has been about something else.
+If no observable resolves that, then kappa = 1/2 is not currently falsifiable.
+
+*** THE FIRST VERSION OF THIS SURVEY ANSWERED "NOTHING CAN SEE IT". THAT IS WITHDRAWN -- see S4. *** It
+graded the SPARC RAR with the relation's 0.108 dex per-point SCATTER as though that were the error on a0.
+MLS16's own random error is 1.7%. With Upsilon freed per galaxy the RAR resolves the gap at Z_disc = 1.5
+(mi_a0_profile_likelihood_sparc_2026.py) and it prefers kappa = 1/2 over 1/2pi. Nine of ten fronts still
+fail, and the a0(z) front is still EXACTLY kappa-blind, so most of the survey stands -- but the headline
+was wrong, and wrong in the dismissive direction.
 
 METHOD. For each observable O, compute the LOGARITHMIC SENSITIVITY
     S = d ln O / d ln a0
@@ -91,7 +97,9 @@ for y in (0.01, 0.1, 1.0, 10.0, 100.0):
     print(f"      {y:>10.2f}{g_obs_of(gb, A0)/A0:>11.4f}{S:>9.4f}{S*DLN_A0/math.log(10):>14.5f}")
 check(abs(S_rar[0.01] - 0.5) < 0.02 and S_rar[100.0] < 0.02,
       f"S1a the RAR sensitivity runs from {S_rar[0.01]:.3f} (deep MOND, the analytic 1/2) to "
-      f"{S_rar[100.0]:.4f} (Newtonian, blind) -- so ONLY the deepest points carry a0 information")
+      f"{S_rar[100.0]:.4f} (Newtonian, blind) -- at FIXED g_bar the deep points carry the most. Note this is "
+      f"NOT the same as where the a0 CONSTRAINT lives: with Upsilon free, the constraint comes from the "
+      f"Upsilon-free gas and from the transition SHAPE, and deep points constrain a0 well (see P1a')")
 
 a0s, gb, Ms, Gs = sp.symbols("a_0 g_bar M G", positive=True)
 
@@ -132,8 +140,8 @@ banner("S2  THE SURVEY -- every front, with its achieved precision")
 FRONTS = [
     # name,                              S,     sig_obs, resid, source of sigma / of residual,     flag
     ("a0-LINE gas-dominated slope",      1.00,  0.16,   0.0,   "+-16% estimator-owned; IS a0",     "sourced"),
-    ("SPARC RAR, deep points (y~0.01)",  0.50,  0.28,   0.0,   "0.108 dex scatter = 28%",          "sourced"),
-    ("SPARC RAR, Upsilon-limited",       0.50,  0.20,   0.0,   "M/L syst, a0-Upsilon degenerate",  "FLAGGED"),
+    ("SPARC RAR, Upsilon per galaxy",    1.00,  0.0544, 0.0,   "PROFILE LIKELIHOOD, this corpus",   "sourced"),
+    ("SPARC RAR as published (MLS16)",   1.00,  0.0167, 0.20,  "1.20+-0.02 rnd +-0.24 SYSTEMATIC",  "sourced"),
     ("BTFR normalisation",               0.25,  0.128,  0.0,   "4x2% v + 10% M in quadrature",     "derived"),
     ("dSph sigma_los (deep MOND)",       0.25,  0.07,   0.0,   "~7% on dispersions",               "FLAGGED"),
     ("MW local vertical force Sigma_dyn", 0.227, 0.059, 0.19,  "BovyRix 68+-4; 19% baryon swing",  "sourced"),
@@ -158,18 +166,26 @@ print("\n  * = precision figure is an order-of-magnitude estimate, NOT from a pr
 print("      those two rows. They are included so the survey is not silently incomplete.")
 
 best = max(res.items(), key=lambda kv: kv[1])
-check(all(z < 1.0 for z in res.values()),
-      f"S2 *** NO FRONT IN THE CORPUS RESOLVES THE kappa GAP. *** The best is '{best[0]}' at "
-      f"Z_disc = {best[1]:.2f}, i.e. it would need its precision improved by {1/best[1]:.1f}x")
+passing = {k: v for k, v in res.items() if v >= 1.0}
+check(len(passing) == 1 and "Upsilon per galaxy" in best[0],
+      f"S2 *** EXACTLY ONE FRONT RESOLVES THE kappa GAP, AND IT IS NOT THE ONE THIS SURVEY FIRST REPORTED. *** "
+      f"'{best[0]}' at Z_disc = {best[1]:.2f}. See the CORRECTION block below: the first version of this table "
+      f"graded the RAR with its 0.108 dex per-point SCATTER, which is the width of the relation, not the error "
+      f"on its parameter. Every other front still fails")
+check(res["SPARC RAR as published (MLS16)"] < 1.0 < res["SPARC RAR, Upsilon per galaxy"],
+      f"S2a and the two RAR rows locate the blocker EXACTLY: as published the RAR fails "
+      f"({res['SPARC RAR as published (MLS16)']:.2f}) purely on its 20% stellar M/L SYSTEMATIC, since its "
+      f"RANDOM error is 1.7%; free Upsilon per galaxy and the same data passes "
+      f"({res['SPARC RAR, Upsilon per galaxy']:.2f}). The wall was never the data -- it was one nuisance parameter")
 
 # The residual column is not decoration: without it the table gets the ANSWER WRONG.
 best_naive = max(res_naive.items(), key=lambda kv: kv[1])
-check(best_naive[0] != best[0] and best[0].startswith("a0-LINE"),
+check(best_naive[0] != best[0],
       f"S2b *** THE RESIDUAL COLUMN CHANGES THE ANSWER. *** On measurement error alone the winner is "
       f"'{best_naive[0]}' at {best_naive[1]:.2f} -- but that front's own prediction misses by 17.7%, "
       f"21x the shift it would have to see, so its 1.3% error bar overstates its power by "
       f"{res_naive[best_naive[0]]/res[best_naive[0]]:.0f}x. With residuals in, the winner is '{best[0]}' "
-      f"({best[1]:.2f}), the S=1 estimator, for the reason S1b gives")
+      f"({best[1]:.2f})")
 # POSITIVE CONTROL: the table must be able to say YES. Feed it a front that genuinely resolves the gap.
 ctl_S, ctl_sig = 1.00, 0.05
 ctl_z = ctl_S * DLN_A0 / ctl_sig
@@ -253,11 +269,11 @@ for k, v in sorted(clean.items(), key=lambda kv: -kv[1]):
     print(f"      + {k:<36} Z_disc {v:.3f}")
 
 best_clean = max(clean.items(), key=lambda kv: kv[1])
-check(best_clean[0] == best[0] and all(v < 1.0 for v in clean.values()),
+check(best_clean[0] == best[0],
       f"S2e *** THE VERDICT DOES NOT DEPEND ON ANY LambdaCDM INPUT. *** Delete both halo-fitted rows and the "
-      f"winner is still '{best_clean[0]}' at Z_disc = {best_clean[1]:.2f}, still short of 1. The a0-LINE is "
-      f"100% framework-internal: g_bar from photometry + HI, g_obs from rotation velocities, no halo, no "
-      f"assumed a0, no fitted M/L")
+      f"winner is still '{best_clean[0]}' at Z_disc = {best_clean[1]:.2f}. It is 100% framework-internal: "
+      f"g_bar from photometry + HI, g_obs from rotation velocities, no halo anywhere, no assumed a0, and "
+      f"Upsilon not taken from a stellar-population model but FREED per galaxy")
 check(max(res[k] for k in LCDM_ROWS) < best_clean[1],
       f"S2e-b and the dropped rows were already the two WEAKEST retained-or-not "
       f"({max(res[k] for k in LCDM_ROWS):.3f} vs {best_clean[1]:.3f}), so the framework never depended on "
@@ -292,36 +308,42 @@ print("""
      cluster residual, the Cassini gamma-pass, and the BTFR slope (as opposed to its normalisation).""")
 
 
-banner("S4  VERDICT, AND THE ONE ROUTE")
+banner("S4  VERDICT -- CORRECTED. The first version of this survey closed a door that is open.")
 
-print(f"""  *** kappa = 1/2 IS NOT CURRENTLY A FALSIFIABLE CLAIM. *** Ten fronts, none resolving the
-  {100*DLN_A0:.1f}% gap to Milgrom (2020)'s empirical 1/2pi. The closest is the a0-line slope at
-  Z_disc = {res['a0-LINE gas-dominated slope']:.2f}, needing a {1/res['a0-LINE gas-dominated slope']:.1f}x precision improvement; everything else is
-  0.3-sigma or worse, and the two fronts with the strongest leverage (S = 2) are the two whose signals are
-  4-6 orders below detectability.
+print(f"""  *** CORRECTION, filed against my own conclusion. *** The first version of this survey reported
+  "kappa = 1/2 IS NOT CURRENTLY A FALSIFIABLE CLAIM", with the SPARC RAR graded at Z_disc = 0.15 on its
+  0.108 dex per-point scatter. THAT IS WITHDRAWN. Using the scatter of a relation as the error on its
+  parameter is wrong by roughly sqrt(N), and N is 3380 here. McGaugh, Lelli & Schombert (2016) report
+  g_dagger = 1.20 +- 0.02 (RANDOM) +- 0.24 (SYSTEMATIC): the random error is 1.7%, FIVE TIMES SMALLER than
+  the {{100*DLN_A0:.1f}}% gap. The blocker was never statistics. It was one nuisance parameter.
 
-  THE ONE ROUTE, and it is narrow but real: the a0-LINE. It is the only estimator in the corpus with
-  S = 1 -- it reads a0 off a SLOPE, so a0 error enters one-for-one rather than being diluted by a 1/4 or
-  1/2 power. Getting from +-16% to better than {100*DLN_A0:.1f}% needs roughly a factor 2. That is a
-  DATA-QUALITY problem (distances and a larger gas-dominated sample), not a theory problem, and it is the
-  only place where the framework's distinctive claim can be made to touch an observation.
+  WHAT THE CORRECTED TABLE SAYS:
+   * As PUBLISHED, the RAR fails ({{res['SPARC RAR as published (MLS16)']:.2f}}) -- entirely on the 20% stellar M/L systematic.
+   * With Upsilon freed PER GALAXY, the SAME data passes ({{res['SPARC RAR, Upsilon per galaxy']:.2f}}), because the systematic is a global
+     normalisation and 175 per-galaxy nuisance parameters absorb it. Computed in
+     mi_a0_profile_likelihood_sparc_2026.py: sigma(a0) = 1.24% points-independent, 5.44% galaxy-clustered.
+   * Every other front still fails, and S3's structural blindnesses still stand -- a0(z) remains EXACTLY
+     kappa-blind, which is the single most important negative result here.
 
-  WHAT THIS MEANS, stated plainly and against interest:
-   * Everything fought over this year -- wide binaries, the vertical force, clusters, the ephemeris, s^TX,
-     the action programme -- was NEVER capable of testing kappa. Those fronts test the KERNEL, the
-     REALIZATION (MI vs MG), or the rho_Lambda TIE. None of them tests the number.
-   * The a0(z) front, which is the most interesting scientifically, is EXACTLY blind to kappa (S3). It is
-     a test of the tie, and it should be described that way and not as support for the coefficient.
-   * So the honest status of a0 = (1/2) c sqrt(G rho_Lambda) is: a compact, correct, prior-art-conceding
-     RE-EXPRESSION of the measured scale, whose distinctive coefficient is currently indistinguishable
-     from the nearest published rival. That is publishable as what it is. It is not yet a test.
+  AND THE TEST, ONCE RUN, SEPARATES THE FRAMEWORK FROM ITS RIVAL:
+     kappa = 1/2 (framework)    Dchi2 = 63.9
+     kappa = 1/2pi (Milgrom 20) Dchi2 = 154.3      -> 2.2 sigma clustered, favouring kappa = 1/2
+  THE OTHER EDGE, stated because omitting it would be manufacturing a win: BOTH sit low of the free best
+  fit a0 = 1.077e-10 = 1.15x canonical, and the ALTERNATIVE footing (rho_tot/cH0, 1.13e-10) fits BETTER
+  than the canonical one (Dchi2 7.0 vs 63.9). So this front favours kappa = 1/2 over 1/2pi AND pulls a0
+  above the canonical footing at the same time. Both halves are the result.
 
-  CAVEATS ON THIS SURVEY ITSELF:
-   * Two precision figures are order-of-magnitude estimates and are marked; they are the two weakest rows
-     either way, so they do not change the verdict.
-   * Sensitivities are single-observable and local. A JOINT fit over several fronts could beat any one of
-     them; that is the obvious next question and this survey does not answer it.
-   * A front absent from this table is a front I did not think of, not a front with zero sensitivity.""")
+  SO THE HONEST STANDING OF kappa = 1/2 IS NOT "unfalsifiable" AND NOT "confirmed":
+   * It IS discriminable from its nearest published rival, with data already on disk, at ~2 sigma, and the
+     discrimination goes the framework's way.
+   * The estimate is FORECAST-GRADE, not a measurement: no distance or inclination error treatment, and it
+     uses the kernel's shape as part of the lever while assuming that shape.
+   * The corpus's other nine fronts remain incapable of the test, and describing any of them as support for
+     the COEFFICIENT (as opposed to the kernel, the realization, or the rho_Lambda tie) would be wrong.
+
+  WHAT CHANGED MY MIND, for the record: nothing new was measured. The data was on disk the whole time. I
+  had graded the framework's flagship front by its scatter, which is the standard way a healthy front gets
+  written off, and it took being asked to check for exactly that to catch it.""")
 
 banner("RESULT")
 n = sum(1 for x, _ in ok if x)
@@ -332,4 +354,5 @@ if n != len(ok):
         if not x:
             print(f"    - {m}")
     sys.exit(1)
-print("  Exit 0: ten fronts surveyed, none resolves the kappa gap, one route identified.")
+print("  Exit 0: ten fronts surveyed; ONE resolves the kappa gap (RAR with Upsilon free per galaxy) after the")
+print("  S4 correction withdrew this survey's own first headline.")
