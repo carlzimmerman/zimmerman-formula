@@ -139,7 +139,7 @@ banner("S2  THE SURVEY -- every front, with its achieved precision")
 # resid = 0 means "no separate prediction to be off by" (the front IS the estimator of a0), not "perfect".
 FRONTS = [
     # name,                              S,     sig_obs, resid, source of sigma / of residual,     flag
-    ("a0-LINE gas-dominated slope",      1.00,  0.16,   0.0,   "+-16% estimator-owned; IS a0",     "sourced"),
+    ("a0-LINE gas-dominated slope",      1.00,  0.13,   0.0,   "AVERAGING FLOOR 13% (11-14%)",     "sourced"),
     ("SPARC RAR, Upsilon per galaxy",    1.00,  0.0544, 0.0,   "PROFILE LIKELIHOOD, this corpus",   "sourced"),
     ("SPARC RAR as published (MLS16)",   1.00,  0.0167, 0.20,  "1.20+-0.02 rnd +-0.24 SYSTEMATIC",  "sourced"),
     ("BTFR normalisation",               0.25,  0.128,  0.0,   "4x2% v + 10% M in quadrature",     "derived"),
@@ -172,6 +172,14 @@ check(len(passing) == 1 and "Upsilon per galaxy" in best[0],
       f"'{best[0]}' at Z_disc = {best[1]:.2f}. See the CORRECTION block below: the first version of this table "
       f"graded the RAR with its 0.108 dex per-point SCATTER, which is the width of the relation, not the error "
       f"on its parameter. Every other front still fails")
+check(0.55 < res["a0-LINE gas-dominated slope"] < 0.75,
+      f"S2-A0LINE the a0-LINE row carried the SAME defect one row down and is corrected here: I used the "
+      f"+-16% PER-GALAXY budget as an ensemble error. prep_2026/a0_line/averaging_floor.py already "
+      f"decomposes it -- the part that AVERAGES DOWN is ~8% of the 16%, and the FLOOR that does not is 13% "
+      f"(11-14% across the whole plausible split range, because the deep-MOND-doubled estimator term and "
+      f"the gas-calibration term are the binding pair and neither is an M/L knob). So Z_disc goes 0.51 -> "
+      f"{res['a0-LINE gas-dominated slope']:.2f}. It does NOT flip: adding galaxies cannot cross the floor, "
+      f"and even N_gal = 2000 leaves 12.8%. Correcting a row that stays a fail is still worth doing")
 check(res["SPARC RAR as published (MLS16)"] < 1.0 < res["SPARC RAR, Upsilon per galaxy"],
       f"S2a and the two RAR rows locate the blocker EXACTLY: as published the RAR fails "
       f"({res['SPARC RAR as published (MLS16)']:.2f}) purely on its 20% stellar M/L SYSTEMATIC, since its "
@@ -340,6 +348,13 @@ print(f"""  *** CORRECTION, filed against my own conclusion. *** The first versi
      uses the kernel's shape as part of the lever while assuming that shape.
    * The corpus's other nine fronts remain incapable of the test, and describing any of them as support for
      the COEFFICIENT (as opposed to the kernel, the realization, or the rho_Lambda tie) would be wrong.
+
+  ONE MORE THING THE TWO ESTIMATORS AGREE ON, and it is against interest: the a0-LINE's own GLS central is
+  a0_hat = 1.181e-10, and at its 13% floor the canonical 9.36e-11 sits +1.64 sigma while the ALT footing sits
+  +0.34 sigma and standard-MOND g_dagger sits -0.12 sigma. The SPARC profile likelihood independently gives
+  1.077e-10 with the ALT footing fitting better than canonical. Two different estimators, two different data
+  cuts, same direction: a0 runs HIGH of 9.36e-11 by 15-26%. That is a coherent pull, not noise, and it is the
+  single most important thing in this survey that does not favour the canonical footing.
 
   WHAT CHANGED MY MIND, for the record: nothing new was measured. The data was on disk the whole time. I
   had graded the framework's flagship front by its scatter, which is the standard way a healthy front gets
