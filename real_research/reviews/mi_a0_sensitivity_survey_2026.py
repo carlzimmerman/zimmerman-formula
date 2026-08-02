@@ -147,7 +147,7 @@ FRONTS = [
     ("MW local vertical force Sigma_dyn", 0.227, 0.059, 0.19,  "BovyRix 68+-4; 19% baryon swing",  "sourced"),
     ("MW v_c(R0)",                       0.105, 0.0129, 0.177, "McM 233.1+-3.0; -41.2 km/s miss",  "sourced"),
     ("wide-binary gamma_v - 1",          0.90,  1.00,   0.0,   "signal ~0.02 vs sigma_sys 0.02",   "derived"),
-    ("ephemeris anomaly (alpha=2)",      2.00,  2.8e4,  0.0,   "signal 3.6e-5 of the 2-sig bound", "sourced"),
+    ("ephemeris anomaly (alpha=2)",      2.00,  2.8e4,  0.0,   "PLANET-tail row; see note below",  "FLAGGED"),
     ("s^TX SME dipole (alpha=2)",        2.00,  1.03e6, 0.0,   "margin 1.03e6x, Amendment 5",      "sourced"),
 ]
 print(f"  {'front':<35}{'S':>6}{'shift':>8}{'sig_obs':>9}{'resid':>8}{'sig_eff':>9}{'Z_disc':>8}{'needs':>9}"

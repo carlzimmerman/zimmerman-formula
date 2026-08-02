@@ -66,8 +66,9 @@ RUNGS = {
         "light bending": False, "GW speed = c": False,
         "why": "NOT a theory. SOLAR SYSTEM is kernel-dependent and marked fail because the form the corpus "
                "called EXACT is alpha=1, which forces a constant a0/2 sunward anomaly at 1278x the "
-               "Earth/Mars 2-sigma bound (119-189x after this framework's own EFE); alpha=2 passes easily at "
-               "3.6e-5 of the bound. Nonzero circulation in a disc => spurious work per meridional circuit "
+               "Earth/Mars 2-sigma bound (119-189x after this framework's own EFE); alpha=2 shrinks it but does NOT discharge it: the "
+               "binding body is the SUN (reflex a = 2236 a0), whose tail a0^2/(2a_sun) ~ 2.1e-14 is ~6-15x "
+               "over the corpus's own FM24/EPM Mars budget. Nonzero circulation in a disc => spurious work per meridional circuit "
                "(mi_law_is_nonvariational_2026.py; prior art Famaey & McGaugh 2012). Fits galaxies because "
                "it IS the fit. Says nothing about photons or tensor modes.",
     },
