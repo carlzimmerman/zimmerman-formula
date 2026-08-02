@@ -109,6 +109,16 @@ Phys. Rev. D **106**, 064060, writes modified inertia in Fourier space and state
 relation $g\,\mu(g/a_0) = g_N$ holds only for single-frequency (circular) trajectories. Both results were
 independently re-derived in the course of the present programme and are **not** claimed here.
 
+**And the PROVENANCE argument itself is Milgrom's, in the same 1994 paper.** Section II ("The possible
+provenance of the modified dynamics") proposes that the modified dynamics is *an effective theory
+resulting from the elimination of degrees of freedom pertaining to the universe at large*, with the
+near-equality $a_0 \sim cH_0$ as **"a trace of that connection."** That is the conceptual core of the
+present note's motivation, stated in 1994 — earlier, and more mechanistic, than the Milgrom (1999, 2015)
+and Smolin (2017) papers already conceded above for the $a_0$–$\Lambda$ tie. **No priority is claimed for
+tying $a_0$ to cosmology in any form, nor for the interpolation, nor for the de Sitter–Unruh route to the
+scale.** What is claimed is confined to the rational coefficient $\kappa = \tfrac12$, which Milgrom (1994)
+neither contains nor predicts.
+
 ---
 
 ## 4. Numerical evaluation
