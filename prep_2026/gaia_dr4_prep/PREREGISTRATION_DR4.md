@@ -409,6 +409,67 @@ Frozen flags carried with the targets:
 > Author-verified from scratch: every adversarial verifier and the critic died on a spend limit, so
 > nothing here rests on an unrefuted subagent claim.
 
+> ### 🚨 AMENDMENT 7 — 2026-08-02, ADDED IN THE OPEN BEFORE DR4. READ BEFORE SCORING.
+>
+> **AMENDMENT 6 REGISTERED A TARGET THIS DOCUMENT HAD ALREADY SUPERSEDED, AND THE 3σ REQUIREMENT IT INVOKES
+> IS UNREACHABLE AT ANY SAMPLE SIZE.** Two defects, both internal to this document. Filed with one half
+> helping the framework (its predicted signal is 55% larger than registered) and the other half hurting it
+> (that larger signal still cannot reach 3σ).
+>
+> **(a) THE SUPERSEDED TARGET.** Amendment 4(d) (2026-07-31) states verbatim *"These supersede the Amendment
+> 3 table"* and gives the in-force ungated α=2 target as **γ_v = 1.0310, full range 1.0218–1.0472**.
+> Amendment 6 (2026-08-02) then registered the row *"framework-MI, UNGATED (the framework's prediction under
+> α = 2) … ≈ 1.02"* — which is Amendment 3's 1.0246 rounded, the value 4(d) had retired. **Amendment 6
+> reached back past the amendment that corrected it.** The registered 1.02 lies *below the entire in-force
+> range*; in the observable (γ_v − 1) it is **55% low at the point value and 136% low at the worst frozen
+> corner**.
+>
+> Why 4(d) is the one in force, verified rather than asserted: the framework's law is a = ν(y)·g_bar with the
+> **Newtonian** argument y = g_bar/a₀, and under α=2 the closure inversion of y_extN = 1.6809 returns
+> g_obs/a₀ = **1.8996 to 1.3e-5** — so the frozen 1.8996 is the kernel's *output*, and Amendments 2–3 fed ν
+> its own output and double-boosted. Independent cross-check on the same inversion: the cubic law's amplitude
+> prefactor ½[ν(y_extN) − 1] = **0.0651** under α=2.
+>
+> **(b) CORRECTED REGISTRATION.**
+>
+> | amended hypothesis | γ_v target, 2–30 kAU |
+> |---|---|
+> | Newtonian | 1.000 exactly |
+> | **framework-MI, UNGATED under α = 2 — IN FORCE (Amendment 4(d))** | **1.0310, range 1.0218–1.0472** |
+> | ~~framework-MI, UNGATED "≈ 1.02"~~ (Amendment 6 — **superseded value, corrected here**) | — |
+> | framework-MI, ungated under the retired α = 1 | band 1.05–1.10, point 1.09 |
+> | framework-MI, GATED (Amendment 1 — basis withdrawn) | 1.0004–1.0006 |
+>
+> **(c) THE 3σ REQUIREMENT IS UNREACHABLE — this is the part that cuts against the framework.** The frozen
+> error model is σ_tot = √(σ_fit² + 0.02²) with σ_sys = 0.02 **irreducible**. At the in-force signal
+> γ_v − 1 = 0.0310, Newton-vs-MI gives **z = 1.12 σ_tot at N = 30,000** and ceilings at **z = 1.55 as
+> N → ∞** (1.09–2.36 across the four frozen footing × g_ext corners). **Not one corner reaches 3σ at any
+> sample size.** Amendment 6's *"γ_v ≈ 1.02 is a real risk taken in advance"* therefore is not implementable
+> in this document's scoring machinery as written: declaring the risk does not create the power to resolve it.
+>
+> **(d) §1.5's "expected DECIDABLE" IS WITHDRAWN AS STALE.** Its *"3 sigma needs N ≳ 12,200 — expected
+> DECIDABLE"* is **α=1, statistical-only** arithmetic that no amendment revisited. Redone statistical-only at
+> the in-force signal it is **N ~ 102,500** (a factor 8.4); with σ_sys included it is unreachable at any N.
+>
+> **(e) THE LABEL TRAP — a scorer must not report a single label.** A measured γ̂ = 1.000 sits **1.12 σ_tot**
+> from the in-force MI target, so under this document's own |z| < 2 rule it would score as *"CONSISTENT WITH
+> framework-MI"* — the **opposite** label from the "evidence AGAINST" Amendment 6 intends. **Required: report
+> the raw γ̂ with σ_fit, and both distances (to 1.000 and to 1.0310), never a single verdict word.**
+>
+> **(f) WHAT STANDS.** Amendment 6's withdrawal of the Amendment 1 hedge **stands**: a Newtonian 2–30 kAU
+> result remains evidence *against* the framework's wide-binary prediction and **must not be re-hedged after
+> DR4 lands** — subject to (c), which bounds how strong that evidence can be. Also unchanged: §2 per
+> Amendment 5, the estimator, the 16-row cut table, the error model itself, the strictness ladder, the NSS
+> screen, the a₀-degeneracy flag, and **κ = ½ fitted, not derived**. No measurement moves.
+>
+> **(g) ONE CORRECTION TO AMENDMENT 6's OWN SCOPE.** Amendment 6 reported the falsifiability trap as narrowed
+> from 2 routes to 1. It is **still 2**: the registered 1.0004–1.0006 was computed from the hybrid
+> S(|a|/a₀)×L(ω/ω_c) form — this corpus's own committed completion shape — not from the amplitude-free
+> reading Amendment 6 refutes, so the hybrid gate branch survives alongside the locally-dragged frame branch.
+>
+> **SOURCE:** `real_research/reviews/mi_amendment7_wb_target_conflict_2026.py` (7 checks, exit 0, both
+> footings, no `check(True)`).
+>
 > ### 🚨 AMENDMENT 6 — 2026-08-02, ADDED IN THE OPEN BEFORE DR4. READ BEFORE SCORING.
 >
 > **AMENDMENT 1's BASIS IS WITHDRAWN, AND THE WIDE-BINARY BRANCH INVERTS. The registered γ_v target of
