@@ -290,6 +290,36 @@ for nm, nuf in PSET:
     print(f"  {nm:<30}{sg:>9.4f}{c_half:>12.1f}{c_2pi:>13.1f}{d:>+10.1f}{K[nm][1]:>8.2f}"
           f"{('kappa=1/2' if d > 0 else 'kappa=1/2pi'):>13}")
 
+# the PREFERRED a0 per shape, so the note's table is fully backed and its quoted spread is computed from the
+# same per-kernel-calibrated numbers as the Dchi2 column rather than from a different table.
+FACS = np.round(np.arange(0.85, 1.301, 0.025), 4)
+print(f"\n  the PREFERRED a0 per shape (profile scan, per-kernel sig_int), and the resulting spread:")
+print(f"  {'shape':<30}{'a0_best / a0_canon':>20}")
+print("  " + "-" * 52)
+BEST = {}
+for nm, nuf in PSET:
+    sg, _, _ = calib(nuf)
+    vals = [(fac, chi2_at(A0_CANON * fac, nuf, sg)[0]) for fac in FACS]
+    i = int(np.argmin([v[1] for v in vals]))
+    bf = vals[i][0]
+    if 0 < i < len(vals) - 1:
+        y1, y2, y3 = vals[i-1][1], vals[i][1], vals[i+1][1]
+        den = y1 - 2*y2 + y3
+        if den > 0:
+            bf = vals[i][0] - 0.5*(vals[i+1][0]-vals[i-1][0])*(y3-y1)/(2*den)
+    BEST[nm] = bf
+    print(f"  {nm:<30}{bf:>20.4f}")
+spread_a0 = max(BEST.values()) - min(BEST.values())
+print(f"  -> spread across the five shapes = {100*spread_a0:.1f}% of a0")
+check(spread_a0 > abs(A0_M20/A0_CANON - 1.0),
+      f"P3c *** THE SHAPE SYSTEMATIC ON a0 EXCEEDS THE THING IT WOULD BE USED TO MEASURE. *** The preferred a0 "
+      f"spans {100*spread_a0:.1f}% across the five shapes ("
+      + ", ".join(f"{k.split(' (')[0].split('  <--')[0]} {v:.3f}" for k, v in BEST.items()) +
+      f"), against the {100*abs(A0_M20/A0_CANON-1):.2f}% gap between kappa = 1/2 and kappa = 1/2pi. So no "
+      f"rotation-curve determination of a0 can fix kappa until the transition shape is itself pinned down "
+      f"better than this -- which is the publishable negative result, and it is computed from the SAME "
+      f"per-kernel calibration as the Dchi2 column so the two are internally consistent")
+
 d_a2, s_a2k = K["alpha=2 (superseded)"]
 d_a1, _ = K["alpha=1 (retired)"]
 d_dp, _ = K["deep limit (shape-FREE)"]

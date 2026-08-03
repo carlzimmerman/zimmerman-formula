@@ -1,0 +1,272 @@
+
+======================================================================================================================
+  L0  FAITHFULNESS -- the generalised baryon model must CONTAIN the anchor's, and the closed-form priors must reproduce the anchor's quadratures
+======================================================================================================================
+  [OK] L0a the 3- and 4-parameter density model REDUCES EXACTLY to the anchor's two-parameter one: at f_thin = f_thick = f_M and f_zd = 1 all five components (thin, thick, bulge, HI, H2) agree with mi_aqual_mond_refit_2026.densities() to a worst-case relative 0.0e+00 over R = 0.3-30 kpc and |z| = 0-3 kpc, at three (f_M, f_R) pairs including the published clearing cell (1.90, 0.78). So the extended families provably CONTAIN the baseline and nothing is bought by re-writing the model
+  [OK] L0b the CLOSED-FORM priors match the anchor's quadratures to 0.0028 sigma in M_* and 0.0000 sigma in Sigma_* across the extended family (the residual is the anchor's 60 kpc / 20 kpc integration cut-off, not a modelling difference). This is what makes the search affordable: the three STAR-COUNT priors are kernel- and footing-INDEPENDENT and cost no AQUAL solve, so only cells that already respect them are ever solved. Every REPORTED number still uses the anchor's own mass_of()/sigma_of()
+
+======================================================================================================================
+  L1  THE PUBLISHED K_z SET, ITS CONSISTENCY, AND THE 2-PARAMETER BASELINE
+======================================================================================================================
+  Kuijken & Gilmore 1991                   71.0 +- 6
+  Holmberg & Flynn 2004                    74.0 +- 6
+  Zhang+2013 (1.0->1.1 kpc)                68.7 +- 6
+  Bovy & Rix 2013                          68.0 +- 4
+
+  weighted mean 69.85 +- 2.62;  chi2 = 0.766 on 3 dof = 0.255 per dof
+  the anchor's central value is 73.9; the HIGHEST published central is 74.0 (Holmberg & Flynn 2004)
+  [OK] L1a the four determinations are MUTUALLY CONSISTENT at chi2/dof = 0.255, weighted mean 69.85 +- 2.62 -- so there is NO licence to widen sigma(K_z), and none is taken anywhere below. And the anchor's central 73.9 is Holmberg & Flynn's 74 to 0.1, i.e. the HIGHEST of the four, which is precisely why the FLOOR and not the box is the quantity that decides this front
+
+  admissible cells (3 star-count priors inside 2 sigma): 2p 233, 3p 338, 4p 476
+
+  L1b  FIRST reproduce the committed baseline on its OWN search box, UNRESTRICTED in the priors
+  kernel     footing  this script  published    diff   binding constraint
+  ------------------------------------------------------------------------------------------
+  RouteA       canon        1.502      1.502  -0.000   Sig_dyn at +1.50 (f_M = 1.900, f_R = 0.780)
+  RouteA         alt        1.838      1.838  +0.000   Sig_dyn at +1.84 (f_M = 1.600, f_R = 0.810)
+  alpha=2      canon        3.423      3.423  -0.000   M_* at +3.42 (f_M = 2.250, f_R = 0.795)
+  alpha=2        alt        3.068      3.068  +0.000   M_* at +3.07 (f_M = 2.100, f_R = 0.810)
+  simple       canon        2.304      2.304  +0.000   Sig_* at -2.30 (f_M = 2.000, f_R = 0.750)
+  [OK] L1b the committed BASELINE reproduces to 0.0004 sigma on ALL FIVE published cells -- Route A 1.502 / 1.838 against 1.502 / 1.838, alpha=2 3.423 / 3.068 against 3.423 / 3.068, simple mu 2.304 against 2.304. Same solver, same five constraints, same consistent extractor, same search box -- so everything below is measured against a baseline this script re-derived independently rather than relayed. TWO features of it matter for everything after: the binding constraint at the alpha=2 and simple-mu optima is a PRIOR sitting outside 2 sigma (M_* at +3.42 and Sigma_* at -2.30), not the vertical force; and that box is itself a DOMAIN restriction (f_M 1.60-2.20, f_R 0.72-0.84), so it is not a global minimax either
+
+  WHAT THE SEARCH DOMAIN DOES, and it has to be stated before any number below is read. The rest of this
+  script searches only cells whose three STAR-COUNT priors are already inside 2 sigma, because that is what
+  makes a 3- and 4-parameter scan affordable. That restriction is EXACT for the clearance verdict -- a cell
+  with all five constraints inside 2 sigma necessarily has its priors inside 2 sigma, so no clearing cell can
+  be hidden by it -- but it INFLATES any reported value above 2 sigma, because the unrestricted optimum can
+  sit at a cell where a prior itself is the binding constraint. alpha=2 is exactly such a case: its
+  unrestricted minimax 3.423 binds on the M_* PRIOR, which the restriction forbids.
+  So the tables below report BOTH: a prior-restricted minimax (exact clearance verdict, upper bound on the
+  value) and an unrestricted local minimax seeded from the nested optimum.
+
+  2p prior-restricted MINIMAX, Route A, footing canon: worst = 1.489 sigma
+    f_M = 1.8969  f_R = 0.7800   (z_d = 300 pc)
+    v_c -1.20  Sig_dyn +1.49  M_* +1.28  R_d -1.25  Sig_* -1.48   | worst 1.489  [snapped 2.448]
+    v_c = 229.5 km/s   Sigma_dyn = 82.83 (snapped 88.59)   M_* = 6.157e+10   R_d = 1.95 kpc   Sigma_* = 32.1
+  2p FLOOR on Sigma_dyn, footing canon: 75.61 Msun/pc^2
+    f_M = 0.8000  f_R = 0.9712   (z_d = 300 pc)
+    v_c -11.82  Sig_dyn +0.29  M_* -1.92  R_d -0.33  Sig_* -1.99   | worst 11.817  [snapped 11.817]
+    v_c = 197.6 km/s   Sigma_dyn = 75.61 (snapped 79.99)   M_* = 4.334e+10   R_d = 2.43 kpc   Sigma_* = 30.0
+
+  2p prior-restricted MINIMAX, Route A, footing alt: worst = 1.788 sigma
+    f_M = 1.6906  f_R = 0.7950   (z_d = 300 pc)
+    v_c -1.27  Sig_dyn +1.79  M_* +0.59  R_d -1.18  Sig_* -1.78   | worst 1.788  [snapped 2.734]
+    v_c = 229.3 km/s   Sigma_dyn = 84.63 (snapped 90.30)   M_* = 5.767e+10   R_d = 1.99 kpc   Sigma_* = 30.9
+  2p FLOOR on Sigma_dyn, footing alt: 79.88 Msun/pc^2
+    f_M = 0.8000  f_R = 0.9712   (z_d = 300 pc)
+    v_c -10.02  Sig_dyn +1.00  M_* -1.92  R_d -0.33  Sig_* -1.99   | worst 10.015  [snapped 10.015]
+    v_c = 203.1 km/s   Sigma_dyn = 79.88 (snapped 84.44)   M_* = 4.334e+10   R_d = 2.43 kpc   Sigma_* = 30.0
+  [OK] L1c A CORRECTION TO THE NUMBER THIS LANE WAS HANDED, and it goes IN THE FRAMEWORK'S FAVOUR: the 2-parameter Sigma_dyn floor is 75.61 canonical / 79.88 alt, NOT 78.5 / 82.7. The handed-down pair is 2.89 / 2.82 Msun/pc^2 HIGH. The reason is locatable rather than mysterious: on a fine grid (f_M step 0.05 over 0.35-2.80, f_R step 0.015 over 0.63-1.455, plus a half-step pattern refinement) the minimising cell sits at f_M = 0.80, f_R = 0.971 -- a LIGHT, SPREAD disc with M_* and Sigma_* both pinned near -1.9 sigma, nowhere near the box optimum at (1.90, 0.78) -- so any search that does not reach down to f_M ~ 0.8 at f_R ~ 0.97, or that steps too coarsely in f_M, necessarily reports a higher floor. The conclusion the floor was quoted to support is UNCHANGED: 75.61 is still above the highest published central (74, Holmberg & Flynn) and far above Bovy & Rix's 68
+
+  NOTE what the floor cell costs elsewhere: at (0.80, 0.971) the rotation curve is v_c = 197.6 km/s, -11.8 sigma. The floor is a statement about the VERTICAL constraint alone, as specified -- so the floor 'at a viable rotation curve' is reported alongside it.
+  2p floor SUBJECT ALSO to |sigma(v_c)| <= 2, footing canon: 81.16 Msun/pc^2
+  2p floor SUBJECT ALSO to |sigma(v_c)| <= 2, footing alt: 83.55 Msun/pc^2
+
+======================================================================================================================
+  L2  (A) THE 3-PARAMETER FLOOR -- thin disc mass, thick disc mass, COMMON scale length
+======================================================================================================================
+  the thick disc carries its mass at z_d = 900 pc, so it can feed v_c while loading the |z| < 1.1 kpc
+  column less than the thin disc does. If the over-delivery is a baryon-model artefact, this is where
+  it should break.
+
+  3p FLOOR, footing canon: 73.68 Msun/pc^2   (2p was 75.61)
+    f_thin = 0.4000  f_thick = 3.1609  f_R = 0.9100   (z_d = 300 pc)
+    v_c -10.55  Sig_dyn -0.04  M_* -1.11  R_d -0.62  Sig_* -1.99   | worst 10.554  [snapped 10.554]
+    v_c = 201.4 km/s   Sigma_dyn = 73.68 (snapped 77.82)   M_* = 4.798e+10   R_d = 2.27 kpc   Sigma_* = 30.0
+  3p FLOOR, footing alt: 77.76 Msun/pc^2   (2p was 79.88)
+    f_thin = 0.4000  f_thick = 3.1609  f_R = 0.9100   (z_d = 300 pc)
+    v_c -8.75  Sig_dyn +0.64  M_* -1.11  R_d -0.62  Sig_* -1.99   | worst 8.748  [snapped 8.748]
+    v_c = 206.9 km/s   Sigma_dyn = 77.76 (snapped 82.09)   M_* = 4.798e+10   R_d = 2.27 kpc   Sigma_* = 30.0
+  [OK] L2a the 3-parameter family provably NESTS the 2-parameter one (L0a) and its floor is therefore no higher: 73.68 vs 75.61 canonical, 77.76 vs 79.88 alt. This tests the SEARCH, not the physics -- if the 3-parameter scan had come out above the 2-parameter one it would mean the optimiser had missed the diagonal and every floor below would be unusable
+  [OK] L2b THE THIRD PARAMETER BUYS 1.94 Msun/pc^2 canonical (75.61 -> 73.68) and 2.12 alt (79.88 -> 77.76) -- enough to take the CANONICAL floor just below the highest published central of 74 (73.68, i.e. 0.32 inside it) but NOT the alt footing (77.76), and neither footing comes near Bovy & Rix's 68: +1.42 / +2.44 sigma on their own +-4. The thick disc does not rescue it, and the reason is arithmetic: at z_d = 900 pc the thick disc still puts 71% of its column INSIDE |z| < 1.1 kpc, so 'mass at height' is only a 29% escape per unit mass moved. The winning cell also pins Sigma_* at its -2 sigma edge and misses v_c by 11 sigma
+
+======================================================================================================================
+  L3  (A) THE 4-PARAMETER FLOOR -- adding the thin-disc SCALE HEIGHT z_d
+======================================================================================================================
+  z_d is close to a pure knob on the binding constraint: the total stellar mass is INDEPENDENT of it,
+  while the fraction of the thin disc inside |z| < 1.1 kpc is 1 - exp(-1.1/z_d) -- 97.4% at the published 300 pc,
+  70.5% at 900 pc. The family the lane specifies carries NO prior on z_d, which is exactly what has
+  to be priced. Both directions are scanned (z_d = 210-900 pc).
+
+  4p FLOOR, footing canon: 71.92 Msun/pc^2   (3p 73.68, 2p 75.61)   z_d wanted = 924 pc = +12.5 sigma vs 300 +- 50
+    f_thin = 0.4000  f_thick = 3.0000  f_R = 0.9500  f_zd = 3.0812   (z_d = 924 pc)
+    v_c -10.67  Sig_dyn -0.33  M_* -0.76  R_d -0.43  Sig_* -2.00   | worst 10.672  [snapped 10.672]
+    v_c = 201.1 km/s   Sigma_dyn = 71.92 (snapped 75.76)   M_* = 4.997e+10   R_d = 2.37 kpc   Sigma_* = 30.0
+  4p FLOOR, footing alt: 75.90 Msun/pc^2   (3p 77.76, 2p 79.88)   z_d wanted = 924 pc = +12.5 sigma vs 300 +- 50
+    f_thin = 0.4000  f_thick = 3.0000  f_R = 0.9500  f_zd = 3.0812   (z_d = 924 pc)
+    v_c -8.87  Sig_dyn +0.33  M_* -0.76  R_d -0.43  Sig_* -2.00   | worst 8.872  [snapped 8.872]
+    v_c = 206.5 km/s   Sigma_dyn = 75.90 (snapped 79.90)   M_* = 4.997e+10   R_d = 2.37 kpc   Sigma_* = 30.0
+  4p floor with z_d held inside 2 sigma of 300 +- 50 pc, footing canon: 73.62 (z_d = 309 pc)
+  4p floor with z_d held inside 2 sigma of 300 +- 50 pc, footing alt: 77.71 (z_d = 309 pc)
+  [OK] L3a the 4-parameter family nests the 3-parameter one and the floor is monotone: 71.92 <= 73.68 <= 75.61 canonical, 75.90 <= 77.76 <= 79.88 alt. And restricting z_d to within 2 sigma of the published 300 +- 50 pc RAISES it back to 73.62 / 77.71 -- which is the honest price tag on the fourth parameter: essentially all of what it buys, it buys with a scale height the star counts exclude
+  [OK] L3b *** THE FOURTH PARAMETER: the floor reaches 71.92 canonical / 75.90 alt. So the CANONICAL floor does come inside the published range (<= 74) at 3 and 4 parameters, the ALT footing never does, and NEITHER reaches Bovy & Rix's 68 -- the number that decides this front -- at any parameter count (+0.98 / +1.97 sigma on their +-4). And the canonical reduction from 73.68 to 71.92 is bought at z_d = 924 pc, +12 sigma from the published 300 +- 50 pc (Bland-Hawthorn & Gerhard 2016) -- a thin disc as thick as the THICK disc. Held to a defensible z_d the 4-parameter floor is 73.62 / 77.71, i.e. it collapses back onto the 3-parameter value. *** So on this lane's question: extra baryon freedom moves the floor by 2.0-3.7 Msun/pc^2, enough to matter against 74 on one footing and not enough to matter against 68 on either. The over-delivery relative to Bovy & Rix is NOT a baryon-model artefact ***
+
+======================================================================================================================
+  L4  (B) *** THE CONTROL -- THE SAME EXTENDED FAMILY, THE SAME SEARCH, THE SAME ERROR BARS, UNDER alpha=2 AND UNDER THE LITERATURE'S SIMPLE mu ***
+======================================================================================================================
+  if the extra parameters let a SUPERSEDED or a FOREIGN kernel clear too, then the extension has
+  destroyed the kernel discrimination and it is FREEDOM, not physics. This is the most important
+  number in the script. 'res' = prior-restricted (exact clearance verdict); 'unr' = unrestricted
+  local minimax seeded from the nested optimum of the previous family.
+
+  kernel      foot    2p res    2p unr    3p res    3p unr    4p res    4p unr     clears 2sig
+  --------------------------------------------------------------------------------------------------------
+  RouteA     canon     1.489     1.489     1.486     1.486     1.423     1.423     2pY 3pY 4pY
+  RouteA       alt     1.788     1.788     1.568     1.568     1.495     1.495     2pY 3pY 4pY
+  alpha=2    canon     6.377     3.350     6.216     3.350     6.216     3.204     2pn 3pn 4pn
+  alpha=2      alt     5.073     2.955     4.915     2.954     4.915     2.816     2pn 3pn 4pn
+  simple     canon     2.018     2.004     1.876     1.876     1.554     1.554     2pn 3pY 4pY
+
+  RouteA/canon CLEARS at 3p: worst 1.486
+    f_thin = 1.8969  f_thick = 1.8891  f_R = 0.7800   (z_d = 300 pc)
+    v_c -1.22  Sig_dyn +1.48  M_* +1.27  R_d -1.25  Sig_* -1.49   | worst 1.486  [snapped 2.441]
+    v_c = 229.4 km/s   Sigma_dyn = 82.80 (snapped 88.54)   M_* = 6.152e+10   R_d = 1.95 kpc   Sigma_* = 32.1
+
+  RouteA/canon CLEARS at 4p: worst 1.423
+    f_thin = 1.9000  f_thick = 1.8000  f_R = 0.7900  f_zd = 1.3562   (z_d = 407 pc)
+    v_c -1.17  Sig_dyn +1.42  M_* +1.42  R_d -1.20  Sig_* -1.42   | worst 1.423  [snapped 2.366]
+    v_c = 229.6 km/s   Sigma_dyn = 82.44 (snapped 88.09)   M_* = 6.237e+10   R_d = 1.97 kpc   Sigma_* = 32.3
+
+  RouteA/alt CLEARS at 3p: worst 1.568
+    f_thin = 1.0000  f_thick = 4.3688  f_R = 0.7900   (z_d = 300 pc)
+    v_c -1.57  Sig_dyn +1.57  M_* +0.90  R_d -1.20  Sig_* -1.57   | worst 1.568  [snapped 2.457]
+    v_c = 228.4 km/s   Sigma_dyn = 83.31 (snapped 88.64)   M_* = 5.942e+10   R_d = 1.97 kpc   Sigma_* = 31.7
+
+  RouteA/alt CLEARS at 4p: worst 1.495
+    f_thin = 1.0000  f_thick = 4.8000  f_R = 0.7900  f_zd = 1.8062   (z_d = 542 pc)
+    v_c -0.75  Sig_dyn +1.49  M_* +1.39  R_d -1.20  Sig_* -1.49   | worst 1.495  [snapped 2.367]
+    v_c = 230.9 km/s   Sigma_dyn = 82.87 (snapped 88.10)   M_* = 6.225e+10   R_d = 1.97 kpc   Sigma_* = 32.0
+
+  simple/canon CLEARS at 3p: worst 1.876
+    f_thin = 1.0000  f_thick = 4.0703  f_R = 0.7900   (z_d = 300 pc)
+    v_c -0.82  Sig_dyn +1.87  M_* +0.56  R_d -1.20  Sig_* -1.88   | worst 1.876  [snapped 2.785]
+    v_c = 230.6 km/s   Sigma_dyn = 85.14 (snapped 90.61)   M_* = 5.747e+10   R_d = 1.97 kpc   Sigma_* = 30.5
+
+  simple/canon CLEARS at 4p: worst 1.554
+    f_thin = 1.6000  f_thick = 0.0000  f_R = 0.9500  f_zd = 3.0125   (z_d = 904 pc)
+    v_c -1.40  Sig_dyn +1.55  M_* +0.94  R_d -0.43  Sig_* -1.55   | worst 1.554  [snapped 2.377]
+    v_c = 228.9 km/s   Sigma_dyn = 83.22 (snapped 88.16)   M_* = 5.968e+10   R_d = 2.37 kpc   Sigma_* = 31.8
+  [OK] L4a *** THE DECIDING CONTROL, AND IT SPLITS. *** (i) alpha=2 does NOT clear at any parameter count on either footing: prior-restricted 5.073 (2p) -> 4.915 (3p/4p best), unrestricted 2.955 -> 2.816, all far above 2. So the extra parameters do NOT hand the box to the kernel this corpus retired, and against THAT comparator the extension is physics rather than freedom. (ii) But the literature's SIMPLE mu, which fails at two parameters (2.018 -- and note that the committed script's published 2.304 for it is limited to that script's search BOX; on the domain-wide prior-restricted scan simple mu is already at 2.018 with two parameters), CLEARS as soon as a third is added: 2.018 -> 1.876 -> 1.554. *** So the box test keeps its power against alpha=2 and LOSES it against the literature kernel: at three or more baryon parameters, 'Route A clears and the comparator does not' is true only of alpha=2, and Route A's clearance no longer distinguishes it from standard simple-mu MOND. *** The check asserts both halves -- that the extension HELPS alpha=2 (it must, the families nest) and that it does not help it enough to clear
+  [OK] L4b and the ORDERING of the kernels is preserved at every parameter count: Route A's best worst-constraint stays below alpha=2's at 2, 3 and 4 parameters (1.489/5.073, 1.486/4.915, 1.423/4.915). The extension does not INVERT the comparison; what L4a settles is only whether the test still SEPARATES them
+  [OK] L4c the restricted minimax is MONOTONE in the parameter count for all five kernel x footing combinations, as nesting requires -- the 4-parameter scan is seeded with every 3-parameter optimum and the 3-parameter scan with every 2-parameter one, so a non-monotone entry would be a visible search failure rather than a result. (An unseeded first pass of this script DID produce one, alpha=2 reading 6.418 at 4p against 6.216 at 3p, purely because the coarser 4-parameter grid missed the 3-parameter optimum; the seeding is what removes it)
+
+======================================================================================================================
+  L5  (C) DOES ANYTHING CLEAR AT BOVY & RIX'S 68 +- 4 -- the same paper, stars and potential fit that supplies the Sigma_* = 38 +- 4 prior already in use?
+======================================================================================================================
+  kernel      foot     2p worst     3p worst     4p worst     clears 2sig
+  ----------------------------------------------------------------------------------------
+  RouteA     canon        3.120        2.932        1.979     2pn 3pn 4pY
+  RouteA       alt        3.811        3.342        2.678     2pn 3pn 4pn
+  alpha=2    canon        6.377        6.216        6.216     2pn 3pn 4pn
+  alpha=2      alt        5.073        4.915        4.915     2pn 3pn 4pn
+  simple     canon        4.299        3.756        3.417     2pn 3pn 4pn
+
+  at K_z = 68 +- 4, RouteA/canon CLEARS at 4p: worst 1.979 = 99% of the 2-sigma allowance
+    f_thin = 1.3000  f_thick = 4.2000  f_R = 0.7900  f_zd = 3.0625   (z_d = 919 pc)
+    v_c -1.84  Sig_dyn +1.98  M_* +1.86  R_d -1.20  Sig_* -1.98   | worst 1.979  [snapped 3.173]
+    v_c = 227.6 km/s   Sigma_dyn = 75.92 (snapped 80.69)   M_* = 6.491e+10   R_d = 1.97 kpc   Sigma_* = 30.1
+  [OK] L5a AT BOVY & RIX'S 68 +- 4, the hardest and most defensible target: NOTHING clears at two or three baryon parameters under any kernel (best 2.932), and no CONTROL clears at any parameter count (alpha=2 >= 4.91, simple mu >= 3.42). Route A clears in exactly ONE cell of the matrix -- FOUR parameters, CANONICAL footing only, at 1.979 sigma, i.e. 99% of the allowance -- while the alt footing stays out at 2.678. Read that with L6a: a 4-parameter fit to five constraints has one effective degree of freedom left and BIC rejects it, so a marginal one-cell clearance there is not a result about the kernel. The corpus's clearance at 73.9 +- 6 therefore does depend on taking the HIGHEST published K_z central, and extra baryon parameters do not remove that dependence
+
+======================================================================================================================
+  L6  (D) THE PRICE -- five constraints cannot support many parameters
+======================================================================================================================
+  chi2 minimised UNRESTRICTED in the priors (chi2 already penalises them quadratically), by pattern
+  search seeded from the prior-restricted grid optimum and from the previous family's optimum.
+
+  family    k   foot     chi2  chi2/dof  d(chi2) per added param      AIC      BIC   parameters at the chi2 minimum
+  ----------------------------------------------------------------------------------------------------------------------------
+  2p        2  canon     8.58      2.86                             12.58    11.80   f_M = 1.881, f_R = 0.791
+  2p        2    alt     8.85      2.95                             12.85    12.07   f_M = 1.728, f_R = 0.800
+  3p        3  canon     8.55      4.27                    0.029    14.55    13.38   f_thin = 2.050, f_thick = 1.278, f_R = 0.790
+  3p        3    alt     8.46      4.23                    0.385    14.46    13.29   f_thin = 1.000, f_thick = 4.698, f_R = 0.790
+  4p        4  canon     8.45      8.45                    0.095    16.45    14.89   f_thin = 2.200, f_thick = 0.537, f_R = 0.790, f_zd = 0.450
+  4p        4    alt     7.40      7.40                    1.064    15.40    13.84   f_thin = 1.881, f_thick = 0.334, f_R = 0.876, f_zd = 2.425
+
+  4p chi2-min canon: f_thin = 2.2000  f_thick = 0.5375  f_R = 0.7900  f_zd = 0.4500   (z_d = 135 pc)
+  4p chi2-min canon: v_c -0.63  Sig_dyn +1.96  M_* +1.12  R_d -1.20  Sig_* -1.23   | worst 1.961  [snapped 2.975]
+  4p chi2-min canon: v_c = 231.2 km/s   Sigma_dyn = 85.66 (snapped 91.75)   M_* = 6.067e+10   R_d = 1.97 kpc   Sigma_* = 33.1
+  4p chi2-min alt: f_thin = 1.8813  f_thick = 0.3344  f_R = 0.8756  f_zd = 2.4250   (z_d = 728 pc)
+  4p chi2-min alt: v_c -0.59  Sig_dyn +1.67  M_* +1.41  R_d -0.79  Sig_* -1.29   | worst 1.666  [snapped 2.550]
+  4p chi2-min alt: v_c = 231.3 km/s   Sigma_dyn = 83.90 (snapped 89.20)   M_* = 6.231e+10   R_d = 2.19 kpc   Sigma_* = 32.8
+
+  BOUND SATURATION, reported rather than hidden: at footing(s) ['canon'] the chi2 minimum sits ON the f_zd bound (0.45-3.60, i.e. z_d = 135-1080 pc), so its chi2 is an UPPER bound. It cannot change the verdict: AIC would need the two extra parameters to buy 4.0 of chi2 and BIC 3.2, against the 1.45 actually bought, and the saturating bound is already at a z_d the star counts exclude on the thin side.
+  [OK] L6a THE PARAMETERS ARE NOT PAID FOR. On five constraints, going 2 -> 3 -> 4 parameters moves chi2 from 8.58 to 8.55 to 8.45 canonical and 8.85 to 8.46 to 7.40 alt -- at most 1.45 of chi2 for TWO extra parameters, against a 2-per-parameter AIC toll and a 1.61-per-parameter BIC toll. Both criteria therefore PREFER the 2-parameter model at both footings (BIC 11.80 -> 13.38 -> 14.89; AIC 12.58 -> 14.55 -> 16.45). At 4 parameters there is ONE effective degree of freedom left, so *** a minimax 'box clearance' bought with a fourth parameter on five constraints is close to meaningless -- and that is the correct description of the one cell in L5 that clears at Bovy & Rix's 68 ***
+
+======================================================================================================================
+  L7  THE EXTRACTOR AND THE RESOLUTION SYSTEMATIC, both quoted rather than argued about
+======================================================================================================================
+  reported optimum        Sig_dyn interp   snapped    bias  worst interp  worst snap
+  --------------------------------------------------------------------------------------
+  2p floor canon                   75.61     79.99   +0.73        11.817      11.817
+  3p floor canon                   73.68     77.82   +0.69        10.554      10.554
+  4p floor canon                   71.92     75.76   +0.64        10.672      10.672
+  2p minimax canon                 82.83     88.59   +0.96         1.489       2.448
+  3p minimax canon                 82.80     88.54   +0.96         1.486       2.441
+  4p minimax canon                 82.44     88.09   +0.94         1.423       2.366
+  4p B&R cell canon *              75.92     80.69   +0.80         1.977       1.977
+  4p minimax a2 canon              69.29     74.53   +0.87         6.216       6.216
+  * the 'worst' columns are always evaluated at K_z = 73.9 +- 6, including for the B&R cell, so the rows are comparable;
+    at 68 +- 4 that cell reads 1.979 interpolated and 3.173 snapped (L5).
+  [OK] L7a the anchor's MIXED measurement (Sigma_dyn snapped to the nearest R cell, v_c interpolated) is biased ONE-SIDED UPWARD on the binding constraint at every optimum reported here: +0.64 to +0.96 sigma, mean +0.82. Every number in this script uses the CONSISTENT extractor (both interpolated), which is the correct one and the same one the committed box-clearance script uses -- so this is a debt already paid, not relief available on top of it. It is tabulated so that no cell can clear on an extractor difference without that being visible
+
+  RESOLUTION growth = 1.085, n = 110: 4p floor Sigma_dyn = 71.918; at the 4p minimax cell sigma(Sigma_dyn) = +1.4231, worst = 1.4231
+  RESOLUTION growth = 1.065, n = 140: 4p floor Sigma_dyn = 71.669; at the 4p minimax cell sigma(Sigma_dyn) = +1.3544, worst = 1.4229
+  RESOLUTION growth = 1.050, n = 175: 4p floor Sigma_dyn = 71.553; at the 4p minimax cell sigma(Sigma_dyn) = +1.3271, worst = 1.4229
+  [OK] L7b the resolution systematic, measured on quantities that ACTUALLY depend on the mesh: over growth 1.085 -> 1.050 (genuine refinement -- in this solver n only EXTENDS the outer domain) the 4-parameter floor moves 0.365 Msun/pc^2 and sigma(Sigma_dyn) at the 4-parameter minimax cell moves 0.0960. *** Note carefully why the minimax VALUE itself barely moves: at that cell the binding constraint is Sig_dyn, which is computed from the AQUAL solve -- so quoting the minimax's mesh stability as a solver convergence test would measure nothing, which is the trap a sibling script fell into. The number that travels with the floor is 0.365, and the 3.9 Msun/pc^2 gap to Bovy & Rix is 11x it
+
+======================================================================================================================
+  SUMMARY -- the floor against the published determinations
+======================================================================================================================
+  family   params  floor canon  floor alt   vs 74 (highest pub)   vs 68 +- 4 (Bovy & Rix)
+  ----------------------------------------------------------------------------------------------------
+  2p            2        75.61      79.88      +1.61 /  +5.88        +1.90 / +2.97 sigma
+  3p            3        73.68      77.76      -0.32 /  +3.76        +1.42 / +2.44 sigma
+  4p            4        71.92      75.90      -2.08 /  +1.90        +0.98 / +1.97 sigma
+
+  4p floor with z_d inside 2 sigma of 300 +- 50 pc: 73.62 canonical / 77.71 alt
+  2p floor subject ALSO to |sigma(v_c)| <= 2:        81.16 canonical / 83.55 alt
+  handed to this lane: 78.5 / 82.7  -- CORRECTED to 75.61 / 79.88 (L1c)
+
+======================================================================================================================
+  SCOPE -- what this establishes and what it does not
+======================================================================================================================
+  ESTABLISHED:
+   * the 2-parameter Sigma_dyn floor is 75.61 canonical / 79.88 alt on a
+     fine grid, NOT the 78.5 / 82.7 this lane was handed (L1c). The correction goes in the framework's favour
+     and does not change the conclusion drawn from it.
+   * a third parameter (thin/thick disc masses split) buys 1.94 Msun/pc^2 canonical and takes the CANONICAL
+     floor to 73.68, just inside the highest published central of 74; the ALT footing
+     stays outside at 77.76 (L2b).
+   * a fourth parameter (thin-disc scale height) reaches 71.92 / 75.90,
+     and does it by demanding z_d = 924 pc against a published 300 +- 50. Held to a defensible z_d it is
+     73.62 / 77.71, i.e. back on the 3-parameter value (L3a, L3b).
+   * NEITHER footing, at ANY parameter count, brings the floor to Bovy & Rix's 68; and at their 68 +- 4 the
+     ONLY clearing cell in the whole matrix is Route A, canonical, FOUR parameters, at
+     1.979 sigma -- which L6a prices as close to meaningless (L5a).
+   * the control (L4a) SPLITS: alpha=2 does not clear at any parameter count (5.073 -> 4.915
+     restricted, 2.955 -> 2.816 unrestricted), so
+     against THAT comparator the extension is not mere freedom; but the literature's simple mu goes from
+     failing at two parameters (2.018) to CLEARING at three (1.876) and four (1.554), so the
+     box test loses its power to separate Route A from standard simple-mu MOND.
+   * AIC and BIC both prefer the 2-parameter model at both footings (L6a).
+
+  NOT ESTABLISHED, and not to be claimed:
+   * this does not measure a0. a0 was an INPUT throughout, both footings, never fitted.
+   * the floor is a statement about the VERTICAL constraint alone; at the floor cell the rotation curve is
+     badly missed (-11.8 sigma at the 2-parameter floor), which is why the floor at
+     |sigma(v_c)| <= 2 is reported alongside it (81.16 / 83.55).
+   * "the over-delivery is a property of the KERNEL" is the reading these numbers support inside THIS baryon
+     family. A genuinely different baryon model -- a different gas budget, a radially varying scale height, a
+     bar/bulge revision, a warp, or R0 and v_c(R0) themselves -- is not tested here and is not closed by this.
+   * the prior-restricted searches are EXACT for a clearance verdict and are UPPER bounds on any value above
+     2 sigma; the unrestricted columns are LOCAL pattern searches from a nested seed, not global minima.
+   * this is the AQUAL / modified-GRAVITY realisation. The framework's own commitment is modified INERTIA,
+     which is a DIFFERENT theory outside spherical symmetry.
+   * no error bar was widened anywhere, and the vertical constraint has no licence to widen
+     (chi2/dof = 0.255 across the four published determinations).
+
+======================================================================================================================
+  RESULT
+======================================================================================================================
+  16/16 checks held.   7037 AQUAL solves this run, 1172 s wall.
+  Exit 0: floor 75.61 -> 73.68 -> 71.92 canonical (/79.88 -> 77.76 -> 75.90 alt) across 2/3/4 baryon parameters; alpha=2 never clears; simple mu starts clearing at three; Bovy & Rix's 68 is reached by nothing.

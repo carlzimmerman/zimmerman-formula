@@ -1,0 +1,426 @@
+
+======================================================================================================================
+  K  THE ONE IDENTITY, AND WHY ROUTE A IS THE KERNEL ON WHICH THIS CLASS OF TEST IS SHARPEST
+======================================================================================================================
+  Everything in this file reduces to two logarithmic slopes of the SAME kernel:
+      L_mu(x) = dln mu / dln x   (>= 0, mu increasing)          the AQUAL / MG slope
+      L_nu(y) = dln nu / dln y   (<= 0, nu decreasing)          the MI slope
+  and they are not independent. From y = mu(x) x, dln y / dln x = 1 + L_mu; from nu = x / y,
+      dln nu / dln y = dln x / dln y - 1 = 1/(1 + L_mu) - 1   ==>   (1 + L_mu)(1 + L_nu) = 1  EXACTLY.
+  So ONE number decides every deep-external-field comparison below. That is why the MG and MI answers come
+  out as sqrt(1+L_mu) and 1/(1+L_mu): reciprocal-flavoured, and on OPPOSITE SIDES OF 1.
+
+  sympy, generic mu(x):   L_mu = x*Derivative(m(x), x)/m(x),   L_nu = -x*Derivative(m(x), x)/(x*Derivative(m(x), x) + m(x))
+  (1 + L_mu)(1 + L_nu) - 1 = 0
+  [OK] K1 the identity (1+L_mu)(1+L_nu) = 1 holds for an ARBITRARY kernel mu(x), proved symbolically with sympy on an undetermined function (residual 0). Every MG-vs-MI number below is therefore a statement about the single slope L_mu, and no kernel can decouple them
+  [OK] K2 and it holds in the ACTUAL Route A numerics over eleven decades to 1.4e-10, with L_nu taken from a finite difference of nu() and L_mu from the module's analytic dmu_dx -- two independent routes through the kernel module, so a bug in either would break this
+
+  L_mu at the Milky Way's external field -- the lever arm of every row below.
+  kernel                  footing    g_ext conv             x_ext   y_extN       nu     L_mu
+  ----------------------------------------------------------------------------------------------------
+  Route A (exp)           canonical  primary g_ext,obs     1.8993  1.28903  1.47342  0.36752
+  Route A (exp)           canonical  alt Vc^2/R0           2.2198  1.59095  1.39524  0.33203
+  Route A (exp)           alt        primary g_ext,obs     1.5735  0.99240  1.58549  0.41170
+  Route A (exp)           alt        alt Vc^2/R0           1.8389  1.23320  1.49119  0.37501
+  alpha=2 (superseded)    canonical  primary g_ext,obs     1.8993  1.68058  1.13014  0.21705
+  alpha=2 (superseded)    canonical  alt Vc^2/R0           2.2198  2.02386  1.09679  0.16871
+  alpha=2 (superseded)    alt        primary g_ext,obs     1.5735  1.32795  1.18487  0.28771
+  alpha=2 (superseded)    alt        alt Vc^2/R0           1.8389  1.61552  1.13829  0.22822
+  alpha=1 (retired)       canonical  primary g_ext,obs     1.8993  1.46400  1.29733  0.25458
+  alpha=1 (retired)       canonical  alt Vc^2/R0           2.2198  1.77537  1.25030  0.21974
+  alpha=1 (retired)       alt        primary g_ext,obs     1.5735  1.15098  1.36705  0.30285
+  alpha=1 (retired)       alt        alt Vc^2/R0           1.8389  1.40570  1.30820  0.26237
+  simple (control)        canonical  primary g_ext,obs     1.8993  1.24420  1.52651  0.34491
+  simple (control)        canonical  alt Vc^2/R0           2.2198  1.53034  1.45050  0.31058
+  simple (control)        alt        primary g_ext,obs     1.5735  0.96203  1.63555  0.38858
+  simple (control)        alt        alt Vc^2/R0           1.8389  1.19118  1.54379  0.35224
+  [OK] K3 *** ROUTE A HAS THE LARGEST L_mu OF ALL FOUR KERNELS AT THE MILKY WAY'S EXTERNAL FIELD *** (0.3675 against 0.2170-0.3449 for alpha=2 / alpha=1 / simple). Route A approaches Newton exponentially at LARGE x but its transition is BROADER near x ~ 2, and x ~ 2 is exactly where the solar neighbourhood sits. So the kernel switch that cost the EFE-dipole amplitude 9% and cost the kappa measurement 2.4 -> 0.7 sigma is the kernel switch that MAXIMISES this class of MI-vs-MG test. That is the one place Route A helps, and it is why this lane is worth running now
+  [OK] K3b and it is not a corner effect: over both a0 footings x both frozen g_ext conventions Route A's L_mu spans 0.3320-0.4117, every corner above every other kernel's canonical value
+
+======================================================================================================================
+  W  OBSERVABLE A -- WIDE-BINARY ORIENTATION ANISOTROPY: MI AND MG PREDICT OPPOSITE SIGNS
+======================================================================================================================
+  SETUP. A binary sits in a dominant uniform external field g_ex (locally: toward the Galactic centre).
+  Ask how the internal two-body force depends on the angle between the SEPARATION VECTOR and g_ex.
+
+  MI -- the framework's own algebraic map a = nu(|g_N|/a0) g_N applied to each star's TOTAL Newtonian
+  field, linearised in the internal field (this is exactly the object Amendment 4(d) uses):
+      a_in,obs = nu_ex [ g_in + L_nu (ghat.g_in) ghat ]
+      force par / force perp = 1 + L_nu = 1/(1 + L_mu)  <  1        WEAKER along g_ex
+
+  AQUAL -- linearise div[mu(|grad Phi|/a0) grad Phi] = 4 pi G rho about the uniform external solution:
+      mu_ex [ lap(phi) + L_mu d2phi/dz2 ] = 4 pi G rho,   zhat || g_ex
+  which the substitution zeta = z/sqrt(1+L_mu) turns into an ordinary Poisson equation, giving for a point
+  mass the SQUASHED potential
+      phi = -G M / [ mu_ex sqrt(1+L_mu) sqrt(R^2 + z^2/(1+L_mu)) ]
+      force par / force perp = sqrt(1 + L_mu)  >  1                 STRONGER along g_ex
+  (Milgrom 1986 ApJ 302:617's solution; re-derived and re-verified here, not claimed as new.)
+
+  MI eigenvalues, canonical a0 / primary g_ext:  y_extN = 1.28903, nu = 1.47342, gamma_par = 1.0380, gamma_perp = 1.2138, gamma_v = 1.15820
+  [OK] W1 the MI side reproduces mi_route_a_wb_gamma_v_2026's committed numbers exactly -- y_extN 1.28903 vs 1.28903, gamma_par 1.0380 vs 1.038, gamma_perp 1.2138 vs 1.2138, gamma_v 1.15820 vs 1.1582. So the MG side computed below is bolted to the SAME closure, the same g_ext convention and the same kernel, and the comparison is not two different conventions passing in the night
+
+  sympy residual of  lap(phi) + L d2phi/dz2  on the squashed potential (r > 0):  0
+  [OK] W2 the squashed potential satisfies the AQUAL deep-EFE equation IDENTICALLY away from the source (sympy residual 0), for symbolic L -- so the anisotropy factor sqrt(1+L_mu) is the exact solution's, not a small-L expansion. A wrong squashing exponent would leave a nonzero residual here
+  flux of [grad phi + L (dphi/dz) zhat] over a sphere, A = 1:  14.695258700  vs  4 pi sqrt(1+L) = 14.695258700
+  [OK] W3 an INDEPENDENT check of the amplitude: the conserved flux of the anisotropic operator over a sphere equals 4 pi A sqrt(1+L_mu) to 7.0e-12, which fixes A = GM/(mu_ex sqrt(1+L_mu)) without reusing the coordinate rescaling that produced it. Shape (W2) plus normalisation (W3) plus Poisson uniqueness pins the solution
+
+  QUMOND road, done independently: lap(Phi) = div[nu(|grad Phi_N|/a0) grad Phi_N] linearises to
+      lap(Phi) = nu_ex [ 4 pi G rho + L_nu d2phi_N/dz2 ],   L_nu = dln nu/dln y at y_extN.
+  *** AND HERE IS THE TERM IT IS EASY TO DROP, WHICH IS THE WHOLE POINT OF THIS SUBSECTION. ***
+  d2/dz2 (1/r) is NOT just 2 P_2(cos th)/r^3. As a distribution
+      d_i d_j (1/r) = (3 n_i n_j - delta_ij)/r^3  -  (4 pi/3) delta_ij delta^3(r),
+  because the trace must give lap(1/r) = -4 pi delta^3 and the three second derivatives share it equally.
+  So d2phi_N/dz2 carries a MONOPOLE point source of exactly one third of the Newtonian one, and the
+  external field therefore RENORMALISES the effective mass:
+      lap(Phi) = 4 pi G M nu_ex (1 + L_nu/3) delta^3  -  2 nu_ex L_nu G M P_2 / r^3.
+  Dropping the delta term leaves the monopole boost at nu_ex and the answer wrong by L_nu/3 ~ 9%.
+
+  [OK] W4 the QUMOND deep-EFE l = 2 amplitude is C = nu_ex L_nu G M / 3, verified symbolically (residual 0, and a mutated C = L/2 leaves L*(3*sin(theta)**2 - 2)/(2*r**3) so the check is not vacuous)
+  MEASURED delta coefficient of d2/dz2(1/r) by the divergence theorem, at three radii: -1.333333 pi, -1.333333 pi, -1.333333 pi  (target -4/3 pi)
+  angular average of the regular part P_2: -2.06e-11
+  candidate delta share                   monopole boost   gamma_v
+  1/3 (correct, trace-shared)                    1.34143   1.15820
+  1 (as if d2/dz2 were the Laplacian)            1.07744   1.03800
+  0 (delta term DROPPED)                         1.47342   1.21385
+  [OK] W4b THE DELTA COEFFICIENT IS MEASURED, NOT ASSERTED: the divergence theorem applied on spheres of three different radii returns -4 pi/3 to 6.2e-11, radius-independently, while the regular part 2 P_2/r^3 has zero angular average (-2.1e-11) -- so the ENTIRE volume integral is the delta, and its share of the Laplacian's -4 pi is exactly 1/3. The table above shows why that matters: the three candidate shares 1/3, 1 and 0 give gamma_v = 1.1582, 1.0380 and 1.2138 -- three plainly distinguishable answers, and the measurement picks the first
+  [OK] W4c *** AND THIS DISQUALIFIES THE COMPARATOR THE CORPUS HAS BEEN USING AS ITS 'MG' ROW -- it is the '0 (delta term DROPPED)' row of the table above, to the digit. *** mi_route_a_wb_gamma_v_2026 V4 defines that row as the asymptote <nu(y_tot)> -> nu(y_extN), giving gamma_v = sqrt(nu) = 1.2138. A proper QUMOND deep-EFE solve gives 1.15820 -- lower by 0.0556, precisely the omitted delta term. The banked row is not arithmetically wrong; it is a HEURISTIC MG ('apply nu to the total field') that corresponds to neither field theory. By-product worth one line: QUMOND's PARALLEL boost comes out exactly nu_ex (1.47342), and so does AQUAL's, so the two MG realisations agree along the field axis and differ only across it
+
+  sympy, generic response tensor T_ij = nu_ex(delta_ij + L_nu zhat_i zhat_j):
+      radial boost at direction nhat  = nu_ex*(L_nu*cos(theta)**2 + 1)
+      solid-angle average             = nu_ex*(L_nu + 3)/3
+      trace/3                         = nu_ex*(L_nu + 3)/3
+  [OK] W4d *** AND THE REASON THAT MATTERS: THE QUMOND MONOPOLE IS IDENTICALLY THE MI ORIENTATION AVERAGE. *** Proved symbolically, by carrying out the solid-angle integral of the MI response tensor's radial boost and finding it equals trace/3 = nu_ex(1 + L_nu/3) -- exactly the combination W4b just measured as QUMOND's delta-function source strength. Both objects ARE the trace of the same response tensor, so in the deep-EFE limit the orientation-averaged two-body force of modified inertia and of QUMOND is THE SAME NUMBER, 1.341427. No sample size can separate them on that statistic
+
+  kernel                footing    gext                 MI par/perp   QUMOND   AQUAL  MI v-ratio  AQUAL v
+  --------------------------------------------------------------------------------------------------------
+  Route A (exp)         canonical  primary g_ext,obs        0.73125  1.15524 1.16941     0.85513  1.08139
+  Route A (exp)         canonical  alt Vc^2/R0              0.75074  1.14238 1.15413     0.86645  1.07431
+  Route A (exp)         alt        primary g_ext,obs        0.70837  1.17071 1.18815     0.84165  1.09002
+  Route A (exp)         alt        alt Vc^2/R0              0.72727  1.15790 1.17261     0.85280  1.08287
+  alpha=2 (superseded)  canonical  primary g_ext,obs        0.82166  1.09790 1.10320     0.90646  1.05033
+  alpha=2 (superseded)  canonical  alt Vc^2/R0              0.85564  1.07779 1.08107     0.92501  1.03974
+  alpha=2 (superseded)  alt        primary g_ext,obs        0.77657  1.12576 1.13477     0.88123  1.06526
+  alpha=2 (superseded)  alt        alt Vc^2/R0              0.81418  1.10242 1.10825     0.90232  1.05274
+  alpha=1 (retired)     canonical  primary g_ext,obs        0.79708  1.11292 1.12008     0.89279  1.05834
+  alpha=1 (retired)     canonical  alt Vc^2/R0              0.81984  1.09900 1.10442     0.90545  1.05091
+  alpha=1 (retired)     alt        primary g_ext,obs        0.76755  1.13151 1.14142     0.87610  1.06837
+  alpha=1 (retired)     alt        alt Vc^2/R0              0.79216  1.11597 1.12355     0.89003  1.05998
+  simple (control)      canonical  primary g_ext,obs        0.74354  1.14709 1.15970     0.86229  1.07690
+  simple (control)      canonical  alt Vc^2/R0              0.76302  1.13442 1.14481     0.87351  1.06996
+  simple (control)      alt        primary g_ext,obs        0.72016  1.16268 1.17838     0.84862  1.08553
+  simple (control)      alt        alt Vc^2/R0              0.73951  1.14975 1.16286     0.85995  1.07836
+
+  symbolic, for ANY monotone kernel (L = L_mu > 0):  MI = 1/(L + 1),  QUMOND = 2*(L + 1)/(L + 2),  AQUAL = sqrt(1+L)
+      1 - MI      = L/(L + 1)          > 0
+      QUMOND - 1  = L/(L + 2)          > 0
+      AQUAL^2 - QUMOND^2 = L**2*(L + 1)/(L + 2)**2   > 0
+  [OK] W5 *** THE SIGN OPPOSITION IS A THEOREM, NOT A ROUTE A ACCIDENT. *** Symbolically, for any monotone kernel: 1 - MI = L/(1+L) > 0, QUMOND - 1 = L/(2+L) > 0 and AQUAL^2 - QUMOND^2 = L^2(1+L)/(2+L)^2 > 0, so MI < 1 < QUMOND < AQUAL strictly whenever L_mu > 0. Corroborated on all 16 numeric cells (4 kernels x 2 a0 footings x 2 frozen g_ext conventions). A measured SIGN therefore discriminates with no kernel commitment, no a0 footing choice and no mass model at all
+  [OK] W5b and Route A gives the WIDEST separation of the four kernels in the velocity ratio: 0.8551 (MI) vs 1.0814 (AQUAL), a gap of 0.2263, against 0.1439-0.2146 for the others -- K3's L_mu ordering carried into the observable
+
+  ORIENTATION-AVERAGED gamma_v at N = 30,000 (frozen sigma_tot = 0.02766):
+      MI (algebraic map; the committed target)          1.15820
+      QUMOND monopole, proper deep-EFE solve            1.15820   -> |MI - QUMOND| = 0.00000 = 0.00 sigma_tot
+      AQUAL monopole, exact in L (both NEW here)        1.15090   -> |MI - AQUAL|  = 0.00730 = 0.26 sigma_tot
+      the banked 'framework-as-MG' comparator sqrt(nu)  1.21380   -> the 2.01 sigma_tot that mi_route_a_wb_gamma_v_2026 V4d recorded as the MI-vs-MG separation
+  [OK] W6 *** REPORTED AGAINST INTEREST, AND IT IS THE SECOND MOST IMPORTANT RESULT IN THIS FILE: THE ORIENTATION-AVERAGED WIDE-BINARY STATISTIC DOES NOT SEPARATE MI FROM MG AT ALL. *** Against QUMOND it is EXACTLY degenerate (0.000 sigma_tot, W4d's identity); against AQUAL, whose monopole is exact-in-L here, it is 0.26 sigma_tot. The committed 2.01 sigma_tot 'physical MI-vs-MG separation' is a separation from the heuristic sqrt(nu(y_extN)) comparator, which W4c shows is neither field theory. So section 1.5's 'MI vs MG likely UNDECIDABLE' does not merely STAND -- on the orientation-averaged statistic it is stronger than the document claims, and the 2.01 sigma should not be carried forward as MI-vs-MG. Everything the front has on this axis lives in the ORIENTATION DEPENDENCE below
+
+  EXACT (unlinearised) MI map, M = 1.5 Msun equal masses, canonical a0 / primary g_ext:
+   s [kAU]   g_in/a0  g_in/g_extN  par boost  perp boost  par/perp  asymptote
+         2   23.7601      18.4325    1.03301     1.03256   1.00044    0.73125
+         5    3.8016       2.9492    1.30464     1.28156   1.01801    0.73125
+        10    0.9504       0.7373    1.08451     1.44867   0.74862    0.73125
+        15    0.4224       0.3277    1.07876     1.46820   0.73475    0.73125
+        20    0.2376       0.1843    1.07785     1.47175   0.73236    0.73125
+        30    0.1056       0.0819    1.07752     1.47309   0.73147    0.73125
+        50    0.0380       0.0295    1.07745     1.47338   0.73128    0.73125
+  [OK] W7 *** THE TEST CARRIES ITS OWN NULL CONTROL. *** The exact map reaches the deep-EFE asymptote 0.73125 to 0.03% by 30 kAU, but at 2 kAU the anisotropy is GONE (1.00044) and at 5 kAU it is weakly the OTHER way (1.01801) because the internal field dominates and both theories are Newtonian there. So the 1-5 kAU population of the SAME survey is a zero-signal calibration sample for every orientation systematic (tidal alignment, extinction, scan-angle) -- the single most valuable observational property of this observable, and it is why its systematics do not have to be trusted a priori
+
+  PROJECTION DILUTION (only the SKY-PROJECTED separation and the sky-projected g_ext direction are observable):
+  model      B(true cos^2)  B(projected)       D
+  MI              -0.17374      -0.07735  0.4452
+  AQUAL            0.08853       0.03952  0.4464
+  QUMOND           0.08492       0.03770  0.4440
+  [OK] W8 the dilution is PURELY GEOMETRIC: D = 0.4440-0.4464 across three physically different models (spread 0.0024), so it can be applied as a single factor 0.445 and it does not smuggle a model choice into the forecast. The sign is untouched by projection -- it is an attenuation, never an inversion
+
+  FORECAST. Var(cos^2 psi_proj) = 0.12510; the frozen error model sigma_fit = 0.0191 at N = 30,000 implies a per-pair scatter sigma_1 = 3.308.
+  Optimal (continuous cos^2 psi) fit of the modulation amplitude B:  sigma_B = sigma_1 / sqrt(N Var(cos^2 psi_proj)).
+  comparison             |dB|    N=30k   N=100k   N=300k   N(3 sig)
+  MI vs AQUAL         0.11687     2.16     3.95     6.84     57,652
+  MI vs QUMOND        0.11505     2.13     3.89     6.74     59,489
+  [OK] W9 at the pre-registered N = 30,000 the ORIENTATION-RESOLVED statistic separates MI from AQUAL at 2.16 sigma and from QUMOND at 2.13 sigma, against 0.26 and 0.000 sigma for the orientation-AVERAGED statistic on the SAME pairs with the SAME error model -- a factor 8 against AQUAL and an infinite factor against QUMOND, which the averaged statistic cannot separate at any N (W4d). 3 sigma needs N ~ 57,652 pairs. This is the whole recommendation of the lane: the orientation dependence is where the wide-binary front's MI-vs-MG content actually is, and the frozen pipeline already has the ingredients
+  AND THE SYSTEMATIC BUDGET, which is the reason this is not just the isotropic test again: an ISOTROPIC systematic contributes NOTHING to B (it has no cos^2 psi projection), so the frozen sigma_sys = 0.02 does not enter. What does enter is any ORIENTATION-CORRELATED systematic. Requiring 3 sigma caps it at |dB|/3 = 0.0390 in B; W7's 1-5 kAU null sample measures exactly that quantity in situ.
+      orientation-correlated sigma_sys(B) = 0.000  ->  N(3 sigma) = 57,652
+      orientation-correlated sigma_sys(B) = 0.005  ->  N(3 sigma) = 58,618
+      orientation-correlated sigma_sys(B) = 0.010  ->  N(3 sigma) = 61,719
+      orientation-correlated sigma_sys(B) = 0.020  ->  N(3 sigma) = 78,288
+
+======================================================================================================================
+  D  OBSERVABLE B -- THE ALIGNED EFE ROTATION-CURVE DIPOLE: a factor 9-25, and the in-hand data already lean AGAINST MI
+======================================================================================================================
+  laneA_predictions.py is EXEC'd, not re-implemented: solve_qumond (the MG/QUMOND-class l-mode BVP)
+  and asym_algebraic (the pointwise algebraic map) are the anchor's own definitions, in the anchor's
+  own (x, e, gamma) parametrisation, so the two sides are measured with one ruler.
+  [OK] D1 the anchor reproduces BOTH committed reference amplitudes A(x=0.10, e=0.03): alpha=1 4.7652% vs the committed 4.7652%, Route A 4.3170% vs the committed 4.317%. The solver is the committed one and the kernel swap is the only change
+
+  MG (QUMOND-class BVP) vs MI (algebraic map), Route A kernel in BOTH, gamma = 0:
+       x       e    e/x    A_MG %    A_MI %  A_MI/A_MG              sign
+    0.05   0.010   0.20    3.2956   31.9219       9.69              SAME
+    0.05   0.030   0.60    7.0360   45.0401       6.40              SAME
+    0.05   0.050   1.00    2.9474   36.4770      12.38              SAME
+    0.05   0.100   2.00   -6.7161    9.6978      -1.44  *** OPPOSITE ***
+    0.05   0.200   4.00   -7.9149    4.0337      -0.51  *** OPPOSITE ***
+    0.05   0.300   6.00   -7.6715    2.3983      -0.31  *** OPPOSITE ***
+    0.10   0.010   0.10    1.7429   23.0609      13.23              SAME
+    0.10   0.030   0.30    4.3170   35.1258       8.14              SAME
+    0.10   0.050   0.50    6.0815   40.9214       6.73              SAME
+    0.10   0.100   1.00    2.9040   33.9594      11.69              SAME
+    0.10   0.200   2.00   -6.0663    8.5057      -1.40  *** OPPOSITE ***
+    0.10   0.300   3.00   -6.8785    4.9082      -0.71  *** OPPOSITE ***
+    0.20   0.010   0.05    0.8732   16.0343      18.36              SAME
+    0.20   0.030   0.15    2.3247   25.3988      10.93              SAME
+    0.20   0.050   0.25    3.5266   30.7149       8.71              SAME
+    0.20   0.100   0.50    5.6817   37.9023       6.67              SAME
+    0.20   0.200   1.00    2.8741   30.6905      10.68              SAME
+    0.20   0.300   1.50   -4.4793   10.9662      -2.45  *** OPPOSITE ***
+  [OK] D2 the two theories have OPPOSITE-SIGNED dipoles on 6 of 18 map cells -- every cell with e >~ 2x, where the QUMOND field solve has passed through its committed x <~ e reversal (e_0 = 0.105 at x = 0.10) while the algebraic map's own reversal is out at e* = 6.63 a0. Two sign reversals separated by a factor ~60 in e is a fork, not an amplitude comparison -- but see D5
+
+  THE PRE-REGISTERED MATCHED FILTER, Ahat = sum(A_i p_i/s^2)/sum(p_i^2/s^2), with p_i the FROZEN
+  alpha=1 predictors of FIRST_FIRING.md. Under a hypothesis H, E[Ahat] = the p_i^2-weighted mean of
+  A_H(x_i,e_i)/A_alpha1(x_i,e_i). Both a0 footings: the alt footing rescales every x_i and e_i by
+  a0_canon/a0_alt = 0.8284.
+  footing      E[Ahat] MI  E[Ahat] AQUAL/QUMOND       R range  z(MI) analytic  z(MG) analytic
+  canonical        10.265                 0.919      9.3-25.3            2.34           -0.65
+  alt              10.310                 0.922      9.3-25.3            2.35           -0.65
+  [OK] D3 the framework's own modified-inertia law predicts E[Ahat] = 10.27 (canonical) / 10.31 (alt) in the frozen statistic, against 0.919 for the QUMOND-class field solve on the same kernel and the same cells. Footing-robust to 0.4%: the map is written in dimensionless (x, e) so the footing only moves where the galaxies sit on it
+
+  RECONSTRUCTION CHECK before any of that is used: with equal per-galaxy sigma the published table's
+  own A_i and p_i give Ahat = 2.9526 and analytic sd = 0.187/sqrt(sum p_i^2) = 3.1265.
+  [OK] D3b the firing is RECONSTRUCTED from its own published table: Ahat 2.9526 vs the committed 2.95 and analytic sd 3.1265 vs the committed 3.13. So the E[Ahat] values above are normalised in exactly the statistic that produced +2.95, the 16 rows were transcribed correctly, and the confrontation below is not comparing two different estimators
+
+  AND THE CONFRONTATION WITH THE NUMBER ALREADY ON RECORD (FIRST_FIRING.md, n = 16, exploratory):
+      measured Ahat = +2.95, analytic sd 3.13 (70-galaxy WHISP ensemble rms -- the
+      CONSERVATIVE error), bootstrap sd 1.05 (the 16 happen to be less lopsided)
+      analytic / ensemble (used for the verdict)   z(MI) = +2.34   z(MG) = -0.65
+      bootstrap on the 16 (aggressive)             z(MI) = +6.97   z(MG) = -1.93
+  [OK] D4 *** THE UNCOMFORTABLE RESULT, AND IT IS THE MOST IMPORTANT NUMBER IN THIS FILE. *** On the CONSERVATIVE ensemble error bar the in-hand 16-galaxy firing sits 2.34 sigma BELOW the framework's own modified-inertia prediction and 0.65 sigma from the QUMOND-class MG prediction. On the sample's own bootstrap it is 7.0 sigma below MI. The measured +2.95 was banked as '3x the AQUAL floor, inside the 1-5x loop-orbit bracket' -- read against MI it is a factor 3.5 SHORT. This is exploratory (n = 16, the corpus's own framing) and I did not re-run the pipeline; it is a flagged lead, not a kill. But it is a lead pointing the wrong way for the framework's literal law, and it is cheap to settle
+
+  REQUIRED N, two independent ways because the answer is small enough to be suspicious:
+   (i)  scaling the committed N(3 sigma) = 1385 (AQUAL-vs-BranchB, separation E[Ahat] x (1 - 0.27)) by the 13.94x wider MI-vs-MG separation  ->  7.1 galaxies
+   (ii) directly from the n = 16 firing's own analytic sd 3.13: the MI-MG gap is 2.99 sigma at n = 16, so 3 sigma needs 16.1
+  The conservative one, 16 galaxies, is carried into the ranking.
+  [OK] D5 on separation-over-uncertainty this observable is not merely the best in the table, it is ALREADY OVER-POWERED: the two estimates agree to a factor 2.3 and both are tiny -- 7 and 16 galaxies against the 237 in the in-hand per-side WALLABY crossmatch and the 16 already fired. NOTE the honest cost of that: an observable this powerful is also an observable that can be LOST quickly, and D4 says the first 16 point the wrong way
+
+  AND A BUDGET ARGUMENT THAT NEEDS NO ALIGNMENT STATISTIC AT ALL. The MI law's per-galaxy predicted
+  dipole on these 16 lines of sight has rms 0.1710 and reaches 0.3200 at its
+  largest, against a MEASURED rms of 0.0765 on the same 16 and the 70-galaxy WHISP
+  lopsidedness rms 0.187 -- and that 0.187 is the TOTAL, including intrinsic m = 1
+  asymmetry, warps, interactions and noise, of which an EFE dipole can only be one part.
+  [OK] D6 so the MI amplitude is in tension with the lopsidedness BUDGET, independently of any alignment: its predicted aligned dipole alone has rms 0.171 = 2.2x the total measured rms of these 16 galaxies and 91% of the entire 70-galaxy lopsidedness rms. The MG prediction, rms 0.0150, sits comfortably inside it. This is a second, independent and cruder route to the same direction as D4, and being cruder it is harder to escape: it uses no g_ext directions and no permutation null
+
+======================================================================================================================
+  R  OBSERVABLES C AND D -- the non-spherical disc rotation curve, and the vertical/radial ratio
+======================================================================================================================
+  The SAME Miyamoto-Nagai + Hernquist baryons, the SAME a0 (an INPUT), two theories:
+    MG  : the full Bekenstein-Milgrom solve, v_c^2 = R |dPhi/dR| at z = 0
+    MI  : the pointwise algebraic map, v_c^2 = R nu(g_N/a0) g_N with the SAME analytic g_N
+  (each column below = g_MG / g_MI at that radius; < 1 means the field solve is WEAKER than the map)
+   R [kpc]   g_N/a0    RouteA canonical          RouteA alt   alpha=2 canonical         alpha=2 alt
+      1.92    4.922              0.9639              0.9585              0.9906              0.9870
+      3.07    3.603              0.9685              0.9646              0.9883              0.9844
+      5.04    2.189              0.9784              0.9765              0.9874              0.9842
+      8.00    1.124              0.9886              0.9878              0.9904              0.9888
+     11.69    0.586              0.9956              0.9952              0.9955              0.9948
+     20.32    0.208              1.0020              1.0019              1.0016              1.0014
+     29.18    0.103              1.0042              1.0041              1.0038              1.0037
+
+  kernel                footing      min g_MG/g_MI      max  peak-to-trough   in dex
+  Route A (exp)         canonical           0.9641   1.0042          0.0400   0.0177
+  Route A (exp)         alt                 0.9589   1.0041          0.0452   0.0200
+  alpha=2 (superseded)  canonical           0.9873   1.0038          0.0165   0.0072
+  alpha=2 (superseded)  alt                 0.9838   1.0037          0.0199   0.0087
+  [OK] R1 Route A WIDENS the disc AQUAL-vs-algebraic discrepancy by a factor 2.43: peak-to-trough over 2-30 kpc grows from 0.0165 (alpha=2) to 0.0400 in g, i.e. from 0.0072 to 0.0177 dex. The sign is fixed: MG is WEAKER than the algebraic map in the inner disc and marginally STRONGER outside ~17 kpc, so the difference is a radial RAMP, not an offset
+  grid systematic: the same span on the coarse mesh (n = 120, growth 1.08) is 0.0416 vs 0.0400 fine -- 3.8%
+  [OK] R2 and the span is mesh-stable to 4% between two genuinely different meshes (growth 1.06 vs 1.08 -- in this solver growth, NOT n, is what refines), so the doubling in R1 is physics and not discretisation. It is not a small systematic either, and it is carried into the ranking
+
+  OBSERVABLE D -- vertical/radial. The ALGEBRAIC MI law has nu_vert = nu_rad IDENTICALLY (one scalar multiplies the whole vector g_N), so MI predicts EXACTLY 1 under every kernel.
+  kernel                footing       nu_rad  nu_vert    ratio   MG-MI splitting
+  Route A (exp)         canonical     1.5125   1.5492   1.0243             2.43%
+  Route A (exp)         alt           1.5957   1.6364   1.0255             2.55%
+  alpha=2 (superseded)  canonical     1.2212   1.2510   1.0243             2.43%
+  alpha=2 (superseded)  alt           1.2834   1.3178   1.0268             2.68%
+  [OK] R3 the alpha=2 arm reproduces the committed comparator 1.0243 vs 1.024, so the Route A value 1.0243 is like-for-like. The MG-vs-MI splitting on this observable is 2.43 pp, against a Bovy & Rix Sigma_dyn error bar of 4/68 = 5.9% and a Holmberg & Flynn 6/74 = 8.1% -- i.e. 0.30-0.41 sigma. NON-DIAGNOSTIC, confirming the banked verdict for a reason the banked verdict did not state: MI's prediction here is exactly 1
+
+======================================================================================================================
+  T  OBSERVABLE E -- the isolated deep-MOND two-body coefficient: a factor 3.3 in C, 1.35 in velocity
+======================================================================================================================
+  In the deep limit the algebraic map gives a_rel = sqrt(G a0)(sqrt(m1)+sqrt(m2))/r, hence
+  V^4 = G M a0 (sqrt(mu1)+sqrt(mu2))^2 -- which is Milgrom arXiv:2503.07106 Eq (31), his beta = 3/2
+  'pure MI' coefficient, reached here from the framework's own kernel and not borrowed.
+   q = m2/m1      C_MI   C_AQUAL  C_MI/C_AQ   V ratio
+       1e-06   1.00200   0.99867     1.0033   1.00083
+       0.001   1.06318   0.95973     1.1078   1.02592
+        0.01   1.19802   0.88453     1.3544   1.07879
+         0.1   1.57496   0.72846     2.1620   1.21259
+         0.3   1.84265   0.64883     2.8400   1.29816
+         0.5   1.94281   0.62356     3.1157   1.32858
+           1   2.00000   0.61004     3.2785   1.34561
+  [OK] T1 THE CONTROL BOTH SIDES MUST PASS: in the test-particle limit q -> 0 both coefficients go to 1 (C_MI = 1.00200, C_AQUAL = 0.99867), i.e. both reduce to the BTFR V^4 = G M a0. The two theories are indistinguishable for a test particle and separate only when both masses matter -- which is the whole content of 'modified inertia is about the inertia of each body'
+  [OK] T2 and the closed form is not asserted: evaluating the Route A map directly at a separation deep in the MOND regime reproduces C_MI over q = 0.1-1 and BOTH footings to 0.40% (the residual is the kernel's own subleading term, nu = y^-1/2 + 1/2 + ...). Independently confirms Eq (31)
+  [OK] T3 for an equal-mass pair the coefficients differ by 3.28 in C and 1.346 in velocity, and in OPPOSITE DIRECTIONS relative to the test-particle baseline C = 1: MI is FASTER (C = 2.00), AQUAL SLOWER (C = 0.61). A 35% velocity difference is enormous -- but it is a strictly ISOLATED deep-MOND statement, and the Milky Way disc has g_ext ~ 1.9 a0 everywhere, so no Galactic wide binary is in this regime. Its address is isolated galaxy PAIRS, where a stellar-mass error of 0.15 dex already costs 9% in V and eats a third of the signal
+
+======================================================================================================================
+  X  OBSERVABLE F -- NEWTON'S THIRD LAW: exactly satisfied by BM/AQUAL, violated by the algebraic map
+======================================================================================================================
+  BM/AQUAL: mi_route_a_field_theory_2026 PROVED the Route A free function strictly convex, from which the
+  theory inherits Newton's third law and standard centre-of-mass motion. The violation is EXACTLY ZERO.
+
+  The algebraic map: apply a = nu(|g_N|/a0) g_N to each body of an isolated pair. The Newtonian parts of
+  m1 a1 and m2 a2 cancel identically (m1 g1 = m2 g2 = G m1 m2/d^2), so what survives is
+      a_cm = [G m1 m2 / (d^2 (m1+m2))] | (nu(y1) - 1) - (nu(y2) - 1) |
+  written through nu - 1 because Route A's anomaly is e^-sqrt(y) and the naive subtraction nu(y) - 1
+  rounds to exactly 0.0 past y ~ 1300 in float64. It vanishes only for m1 = m2.
+
+  system                        sep [m]    kernel   a_cm/a0 canon   a_cm/a0 alt  dv per Gyr [m/s]
+  1.0 + 0.5 Msun binary       1.496e+15   Route A      1.0589e-01    9.6998e-02         3.128e+05
+  1.0 + 0.5 Msun binary       1.496e+15   alpha=2      9.5945e-02    8.9663e-02         2.834e+05
+  1.0 + 0.5 Msun binary       1.496e+15   alpha=1      9.1463e-02    8.5521e-02         2.702e+05
+  1.0 + 0.5 Msun binary       4.488e+15   Route A      3.6483e-02    3.3230e-02         1.078e+05
+  1.0 + 0.5 Msun binary       4.488e+15   alpha=2      3.6170e-02    3.2995e-02         1.069e+05
+  1.0 + 0.5 Msun binary       4.488e+15   alpha=1      3.5757e-02    3.2678e-02         1.056e+05
+  galaxy pair 1e11 + 1e10     3.086e+21   Route A      2.3979e-02    2.1827e-02         7.084e+04
+  galaxy pair 1e11 + 1e10     3.086e+21   alpha=2      2.3960e-02    2.1813e-02         7.078e+04
+  galaxy pair 1e11 + 1e10     3.086e+21   alpha=1      2.3933e-02    2.1792e-02         7.070e+04
+  Sun + Jupiter               7.779e+11   Route A      6.3840e-18    3.7025e-16         1.886e-11
+  Sun + Jupiter               7.779e+11   alpha=2      2.2322e-04    2.6945e-04         6.594e+02
+  Sun + Jupiter               7.779e+11   alpha=1      4.9899e-01    4.9898e-01         1.474e+06
+  [OK] X1 the algebraic map's third-law violation is a LOW-ACCELERATION pathology and Route A is exactly the kernel that confines it there: 0.106 a0 for a 1+0.5 Msun pair at 10 kAU and 0.0240 a0 for an unequal galaxy pair, but 6.38e-18 a0 for Sun + Jupiter, where alpha=1 gave 0.499 a0 -- the retired a0/2 ephemeris liability, recovered here from a completely different direction as a third-law violation
+
+  IS IT OBSERVABLE? For a circular orbit the self-force lies along the rotating separation vector,
+  so the centre of mass CIRCULATES rather than runs away: amplitude a_cm/Omega^2 = 0.0560 x the separation, at the orbital period (~Myr).
+  [OK] X2 so the separation between the two theories on this row is FORMALLY INFINITE (zero versus 0.106 a0) and OBSERVATIONALLY EMPTY: the predicted signature is a 5.6%-of-separation centre-of-mass epicycle on a megayear timescale, which nothing measures. It does not enter the ranking as an observable. What it does is set the price of every MI row above -- see H
+
+======================================================================================================================
+  S  (a) + (b) THE SCAN, RANKED BY SEPARATION OVER REALISTIC MEASUREMENT UNCERTAINTY
+======================================================================================================================
+  observable                              MI                        MG (AQUAL/QUMOND)     separation                        uncertainty                         sep/sig
+  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  EFE aligned RC dipole (matched filter)  E[Ahat] 10.3              0.92                  x13.9, + sign flip e>2x           7-16 galaxies; 237 in hand          11-17
+  wide-binary ORIENTATION anisotropy      0.8551                    1.0814                OPPOSITE SIGN, 0.226 in v         57,652 pairs for 3 sig              2.16
+  isolated deep-MOND 2-body coefficient   C = 2.00                  C = 0.61              x3.28 in C, x1.35 in V            0.15 dex M_* -> 9% in V             ~3.8
+  disc RC shape, field solve vs the map   ratio = 1 by construction 0.964-1.004           0.018 dex radial ramp             0.005 dex ensemble; M/L absorbs most~1-3
+  vertical/radial ratio at R0             1.0000 EXACTLY            1.0243                2.43 pp                           Sigma_dyn 5.9-8.1%                  0.30-0.41
+  wide-binary ORIENTATION-AVERAGED gamma_v1.1582                    1.1509 AQ / 1.1582 QM 0.0073 AQ, 0.00000 QM             sigma_tot 0.0277 at N=30k           0.26 / 0.000
+  Newton's third law / CoM self-accel     0.106 a0                  0 EXACTLY (convexity) formally infinite                 no channel (6%-of-sep epicycle)     n/a
+
+  (b) THE SINGLE BEST ONE, BY THE METRIC ASKED FOR: the ALIGNED EFE ROTATION-CURVE DIPOLE. It is
+  the only row already over-powered with data in hand (7-16 galaxies needed, 237 crossmatched,
+  16 fired), and it separates MI from MG by a factor 14 in the pre-registered statistic
+  plus a sign flip over part of the map. THE RUNNER-UP IS THE MORE TRUSTWORTHY TEST and I would
+  spend the effort there: the wide-binary orientation anisotropy is a SIGN fork rather than an
+  amplitude comparison, needs no mass, no M/L and no eccentricity distribution, is unaffected by
+  any isotropic systematic, and carries its own in-survey null control at 1-5 kAU (W7).
+
+  AND THE TWO ROWS THAT MOVED AGAINST THE FRAMEWORK, stated as plainly as the two that helped:
+   * the pre-registered orientation-AVERAGED wide-binary gamma_v does not separate MI from MG at all:
+     0.000 sigma_tot against QUMOND (an exact degeneracy, W4d) and
+     0.26 sigma_tot against AQUAL. The committed 2.01 sigma was a separation from
+     the heuristic sqrt(nu(y_extN)) comparator, which is neither field theory (W4c).
+   * the in-hand n = 16 dipole firing sits 2.3 sigma (conservative) below the framework's
+     own MI prediction and 0.6 sigma from MG's.
+
+======================================================================================================================
+  S2  (c) WHAT THE BEST ONE WOULD TAKE
+======================================================================================================================
+  FOR THE DIPOLE (rank 1). Nothing new needs building; three things need doing.
+   1. N. 16 galaxies with (i) a signed per-side rotation-curve asymmetry, (ii) an outer g_bar/a0,
+      (iii) a reconstructed g_ext DIRECTION. In hand: 237 (prep_2026/wallaby_prep per-side crossmatch) and
+      the 16 already fired. WALLABY DR2 and Apertif/WSRT-class HI surveys take that to 10^3.
+   2. The MI predictor. The frozen pipeline's A_map is the QUMOND BVP map. An MI arm needs only
+      asym_algebraic on the same (x_i, e_i) -- computed here for 16 galaxies in D3; extending it is minutes.
+   3. THE OWED PIECE, and it can only move the verdict against the framework: the AQUAL loop-orbit
+      amplification is 4.4-5.7x (committed). The algebraic map's loop-orbit response is NOT computed
+      anywhere. If it is comparable, E[Ahat]_MI rises from 10.3 to ~51
+      and the tension with the in-hand +2.95 grows from 2.3 to ~15 sigma.
+      If MI's response is instead SUPPRESSED, the tension shrinks. That integration is the single highest-
+      value calculation this lane identifies, and I am flagging it precisely because I cannot predict which
+      way it goes.
+
+  FOR THE ANISOTROPY (rank 2, the one to bet on).
+   1. N ~ 57,652 clean pairs at 3 sigma with the frozen per-pair scatter, rising to
+      ~78,288 if an orientation-correlated systematic of 0.02 in B survives.
+      El-Badry's Gaia DR3 wide-binary catalogue already holds ~1.3e6 candidates; the frozen 2-30 kAU clean
+      cut is 3e4. DR4's longer astrometric baseline shrinks the per-pair velocity error, so N and sigma_1
+      both improve. This is a DR4 measurement, not a next-decade one.
+   2. PRECISION. The statistic is the amplitude B of a cos^2(psi) modulation, psi = angle between the
+      sky-projected separation vector and the sky-projected Galactic-centre direction. Needed:
+      sigma(B) < 0.0390. Projection costs a flat factor D = 0.445 (W8) and a full
+      3D forward model recovers part of it.
+   3. WHICH SURVEY. Gaia DR4 alone. The g_ext direction is the Galactic centre -- no external attractor
+      reconstruction, no crossmatch, no distance ladder.
+   4. THE SYSTEMATIC THAT MATTERS, named: Galactic tides shape wide-binary orientations and eccentricities,
+      so the population's own orientation distribution is the confounder. W7 is the answer -- the 1-5 kAU
+      pairs of the same catalogue have zero predicted signal in BOTH theories and measure that confounder
+      directly.
+
+======================================================================================================================
+  H  (d) THE ASYMMETRY IN RIGOUR -- is the MI prediction genuine, or under-determined?
+======================================================================================================================
+  Stated for the winner and the runner-up, without softening.
+
+  THE MG SIDE IS PINNED. Route A's Bekenstein-Milgrom free function is derived in closed parametric form
+  and PROVED strictly convex, ghost-free, strictly elliptic, subluminal and positive-phantom-density
+  (mi_route_a_field_theory_2026, 11/11). From convexity it inherits existence, uniqueness, Newton's third
+  law, standard centre-of-mass motion and a virial theorem. The deep-EFE anisotropy sqrt(1+L_mu) is the
+  EXACT solution of the linearised field equation, verified here three independent ways (W2 sympy residual,
+  W3 flux normalisation, W4 the QUMOND road agreeing in sign). Nothing about it is adjustable.
+
+  THE MI SIDE IS NOT PINNED, in three specific ways.
+   1. NO ACTION IN A DISC. Three no-goes (2026-08-01) close the action programme for this form class: the
+      law is not variational in a disc, the u-contraction is (v/c)^2-suppressed for generic K, and that
+      prefactor IS the worldline's Frenet torsion. Milgrom 2022 PRD 106:064060 builds MI at the level of
+      the equations of motion with the explicit footnote that such theories "are not necessarily governed
+      by an action" -- so the framework is entitled to that footing, but the footing carries no
+      conservation theorems with it.
+   2. IT VIOLATES NEWTON'S THIRD LAW, quantitatively: 0.106 a0 for a 1+0.5 Msun pair at
+      10 kAU (X1). A law with no conserved linear momentum is not a closed dynamical theory, and both
+      winners' MI numbers are computed FROM that law.
+   3. IT IS NOT THE ONLY MI REALISATION, and the alternatives disagree with it MAXIMALLY. Milgrom
+      arXiv:2503.07106's linear/time-nonlocal MI has EXACT centre-of-mass decoupling (Eq 19-20), hence
+      ZERO external-field effect: its wide-binary anisotropy is 1.0000 and its dipole is 0, and its
+      two-body coefficient is C = 1 for ANY mass ratio (Eq 29) against the algebraic map's
+      C = 2.00. So "MI" as a class spans par/perp in {1.000, 0.731}, dipole in {0, E[Ahat] 10.3}
+      and C in {1, 2.00}.
+
+  SO, FOR THE WINNER AND RUNNER-UP, PRECISELY:
+   * the MI prediction is GENUINE as a prediction of THE FRAMEWORK'S OWN LITERAL ALGEBRAIC LAW. It is
+     forced: no free function, no free parameter, footing-independent in the dimensionless ratio, and its
+     SIGN cannot be tuned by the kernel (W5 proves it for any monotone mu). On that reading both tests are
+     one-sided KILLS of the framework's law, and the dipole's already point that way (D4).
+   * the MI prediction is UNDER-DETERMINED as a prediction of MODIFIED INERTIA AS A CLASS, because a
+     legitimate MI realisation predicts the opposite extreme (zero). A null result therefore does NOT kill
+     MI; it kills the algebraic reading and is simultaneously evidence against AQUAL/QUMOND.
+   * the theory that is harder to pin down is NOT winning here. Every MI number in this file came out
+     LARGER than its MG counterpart -- x14 on the dipole, x3.3 on the two-body coefficient -- and
+     "larger" is what a measurement bites first. The under-determination is what makes a NULL uninformative
+     about MI, not what makes a DETECTION favour it.
+
+  THE THREE-WAY FORK, which is a cleaner falsification structure than most fronts in this corpus:
+     par/perp > 1  ->  AQUAL/QUMOND-class MG; the framework's algebraic law is dead, kernel-independently.
+     par/perp < 1  ->  a positive signature NO MG realisation in this class produces. A genuine MI win.
+     par/perp = 1  ->  Milgrom's linear MI, or Newton. Evidence against the framework's law AND against
+                       AQUAL/QUMOND at once.
+
+  WHAT THIS FILE DOES NOT DO, so no one reads more into it than it earned:
+   * no AQUAL solve at FINITE internal-to-external field ratio; the anisotropy comparison is a deep-EFE
+     asymptotic statement and W7 shows it needs s >~ 15-20 kAU on the MI side. The MG side's approach to
+     that asymptote is UNCOMPUTED.
+   * the loop-orbit amplification of the MI dipole is UNCOMPUTED (S2 item 3) and could move D4's tension
+     either way by a factor ~5.
+   * the disc row is ONE baryon model (Miyamoto-Nagai + Hernquist) with a mesh systematic of
+     4% on the very quantity being ranked.
+   * the anisotropy forecast reuses the frozen sigma_fit as a per-pair scatter and scales it; that is an
+     ensemble noise used as an ensemble noise, but it is a scaling, not a re-derived error model.
+   * no door is closed by anything above, and nothing here bears on the RAR, the BTFR or the a0 line.
+
+  32/32 checks held.
+  Exit 0.
