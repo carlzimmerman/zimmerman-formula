@@ -250,9 +250,26 @@ print(f"  R_d,thin  = {o['rdt']/KPC:7.2f} kpc    prior   2.6 +- 0.52  -> {(o['rd
 print(f"  Sigma_*   = {o['sigstar']:7.1f}          prior    38 +- 4     -> {(o['sigstar']-SIGSTAR_P)/SIGSTAR_E:+.1f} sigma")
 ndof = 5 - 2
 print(f"\n  chi2 = {c:.1f} on {ndof} effective degrees of freedom (5 constraints, 2 free parameters)")
-check(True,
-      f"F2 recorded: best joint fit reaches v_c {(o['vc']-VC)/VC_E:+.1f} sigma and Sigma_dyn "
-      f"{(o['sd']-KZ)/KZ_E:+.1f} sigma, at a prior cost of chi2_prior = {cp:.1f}")
+# TAUTOLOGY FIXED 2026-08-03: this was check(True, ...), which RECORDED rather than tested. The corpus's
+# actual claim about this cell is a PATTERN -- the vertical force is fit well while the rotation curve is
+# missed -- so assert that pattern, which can fail.
+s_vc, s_sd = abs((o["vc"] - VC) / VC_E), abs((o["sd"] - KZ) / KZ_E)
+# The first version of this replacement asserted the corpus's quoted PATTERN -- vertical force nailed, only v_c
+# missed -- at the best-chi2 cell, and it FAILED. That failure is a real finding, so it is recorded as one here:
+# the pattern holds at the hand-picked (1.30, 0.90) cell the corpus quotes but INVERTS at the chi2 minimum.
+o_q = observables(1.30, 0.90, a0c, mu_a2)
+q_vc, q_sd = abs((o_q["vc"] - VC) / VC_E), abs((o_q["sd"] - KZ) / KZ_E)
+check(q_sd < q_vc and s_sd > s_vc,
+      f"F2 the quoted pattern is a property of ONE CELL, not of the fit -- now PROVED rather than recorded (this "
+      f"was check(True) until 2026-08-03). To be clear about what is and is not new here: the corpus already "
+      f"distinguishes these two cells and calls the chi2 minimum the 'v_c-bought' one, so the inversion is not a "
+      f"discovery; what was missing was any check that could fail if it stopped being true. At the cell the "
+      f"corpus quotes as prior-respecting, (f_M, f_R) = (1.30, 0.90), the pattern holds: the "
+      f"vertical force sits at {q_sd:.1f} sigma against the rotation curve's {q_vc:.1f} sigma, so 'nails K_z, "
+      f"misses only v_c' is fair THERE. At the actual chi2 MINIMUM of the same scan it INVERTS: the vertical "
+      f"force is missed by {s_sd:.1f} sigma and the rotation curve by only {s_vc:.1f} sigma (chi2_prior = "
+      f"{cp:.1f}). Both halves are asserted, so this fails if either the quoted cell stops showing the pattern "
+      f"or the minimum starts showing it")
 worst_prior = max(abs((o["mstar"] - MSTAR_P) / MSTAR_E), abs((o["rdt"] - RDTHIN_P) / RDTHIN_E),
                   abs((o["sigstar"] - SIGSTAR_P) / SIGSTAR_E))
 check(worst_prior > 0,
@@ -270,7 +287,14 @@ print(f"  ignoring the priors entirely, the largest v_c reachable in this family
 print(f"    at M_* = {free['mstar']:.2e} ({(free['mstar']-MSTAR_P)/MSTAR_E:+.0f} sigma on the mass prior) "
       f"and Sigma_* = {free['sigstar']:.0f} ({(free['sigstar']-SIGSTAR_P)/SIGSTAR_E:+.0f} sigma)")
 print(f"    and Sigma_dyn would be {free['sd']:.0f} ({(free['sd']-KZ)/KZ_E:+.0f} sigma vs 73.9)")
-check(abs((free["vc"] - VC) / VC_E) < abs((o["vc"] - VC) / VC_E) or True,
+# TAUTOLOGY FIXED 2026-08-03: the trailing "or True" made this unfalsifiable. The substantive claim is that
+# abandoning the priors buys v_c AND that it is bought by breaking the priors -- both halves now tested.
+worst_free = max(abs((free["mstar"] - MSTAR_P) / MSTAR_E), abs((free["rdt"] - RDTHIN_P) / RDTHIN_E),
+                 abs((free["sigstar"] - SIGSTAR_P) / SIGSTAR_E))
+# and the first clause here was MY mis-specification, corrected: abandoning the priors does not bring v_c
+# CLOSER to the target, it OVERSHOOTS it (383 km/s against 233.1). The substantive claim is that the family CAN
+# reach the target once unconstrained, and pays for it in the priors. Both halves tested.
+check(free["vc"] > VC and worst_free > worst_prior,
       f"F3 even with the priors abandoned the family reaches {free['vc']/1e3:.0f} km/s, and it does so only "
       f"by driving M_* to {(free['mstar']-MSTAR_P)/MSTAR_E:+.0f} sigma and Sigma_dyn to "
       f"{(free['sd']-KZ)/KZ_E:+.0f} sigma -- i.e. buying the rotation curve by breaking the vertical force "
@@ -294,8 +318,14 @@ print(f"\n  {'kernel':<28}{'chi2':>8}{'v_c sigma':>11}{'Sig_dyn sigma':>15}")
 print("  " + "-" * 62)
 print(f"  {'framework alpha=2':<28}{c:>8.1f}{(o['vc']-VC)/VC_E:>+11.1f}{(o['sd']-KZ)/KZ_E:>+15.1f}")
 print(f"  {'literature simple':<28}{cc:>8.1f}{(os_['vc']-VC)/VC_E:>+11.1f}{(os_['sd']-KZ)/KZ_E:>+15.1f}")
-check(True, f"F4 recorded: with the baryons refit under each kernel, chi2 = {c:.1f} (alpha=2) versus "
-            f"{cc:.1f} (simple)")
+# TAUTOLOGY FIXED 2026-08-03: this was check(True, ...). The comparison's actual content is AGAINST INTEREST
+# -- the literature's simple mu fits the Galaxy BETTER than the framework's alpha=2 kernel -- so assert that.
+# If the framework's kernel ever wins here, this check FAILS and the finding must be re-examined, which is
+# exactly the behaviour a check should have.
+check(cc < c,
+      f"F4 KERNEL CONTROL, and it goes AGAINST the framework: with the baryons refit under each kernel the "
+      f"literature's simple mu reaches chi2 = {cc:.1f} against the framework alpha=2 kernel's {c:.1f}, a margin "
+      f"of {c-cc:.1f}. This is asserted, not recorded -- it fails if the framework's kernel wins")
 
 banner("F5  THE SHAPE TEST -- Eilers+2019's rotation-curve SLOPE, which is MOND's home turf")
 

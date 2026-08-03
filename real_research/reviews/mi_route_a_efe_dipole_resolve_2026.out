@@ -1,0 +1,241 @@
+
+============================================================================================================
+S0. THE KERNEL AND ITS DERIVATIVE -- the l=1 phantom source needs dnu/dy, so it must be right
+============================================================================================================
+  [OK] the local nu_ra() is BIT-IDENTICAL to the committed mi_route_a_kernel.nu over ten decades, so this re-solve uses the adopted kernel and not a paraphrase of it
+  [OK] dnu/dy agrees with sympy's symbolic derivative of 1/(1-e^-sqrt(y)) to 7.44e-14 over nine decades -- the phantom density's only kernel input is verified symbolically, not by eyeball
+  [OK] the alpha=2 comparator's dnu/dy also verified (finite-difference, worst 9.1e-07) -- the three-kernel ladder below is a fair comparison and not a mis-differentiated straw man
+
+============================================================================================================
+S1. ANCHOR REUSE -- the imported laneA solver must reproduce the COMMITTED alpha=1 map exactly
+============================================================================================================
+  [OK] all 20 cells of the committed laneA alpha=1 BVP map are reproduced to 0.0e+00 percentage points by importing solve_qumond/asym_local -- so every Route A number below is comparable to the committed one BY CONSTRUCTION, not by assertion
+  [OK] and the committed reference amplitude A0 = A(x=0.10, e=0.03, gamma=0) = +4.7652% and geometric stacking factor F_geo = 0.5132 are reproduced exactly (committed +4.7652%, 0.5132)
+
+============================================================================================================
+S2. THE ROUTE A BVP -- validated three ways before a single dipole is quoted
+============================================================================================================
+  [OK] isolated limit e=0: the Legendre solve returns F = nu_RouteA(y)/r^2 to 3.57e-05 over r = 0.3-30 r_M, i.e. the solver reproduces ROUTE A's OWN spherical law before any EFE is added (the anchor's own alpha=1 figure at the same test was 3.69e-05)
+    x=0.10 e=0.05   alpha=1  +6.7643% (conv 3.16e-03)   Route A  +6.0815% (conv 3.16e-03)
+    x=0.10 e=0.10   alpha=1  +3.6005% (conv 1.87e-02)   Route A  +2.9040% (conv 2.07e-02)
+    x=0.05 e=0.20   alpha=1  -7.6277% (conv 1.34e-04)   Route A  -7.9149% (conv 1.12e-04)
+    x=0.50 e=0.02   alpha=1  +0.6364% (conv 3.17e-04)   Route A  +0.6274% (conv 2.93e-04)
+  [OK] grid convergence (lmax 14->18, nr 420->760, rmax 3e3->1e4, nth 260->400): Route A's worst cell moves 2.1%, the retired alpha=1 kernel's 1.9% on the SAME cells. The exponential kernel does NOT introduce a new numerical liability; the worst cell is the sign-turnover cell (x=0.1, e=0.1) in both, where A passes through zero, and away from it the grids agree to <0.1%. That ~3% turnover uncertainty is carried as a caveat
+  [OK] INDEPENDENT Poisson path: a brute 3D Green's-function quadrature of the Route A phantom density (the anchor's own debug_validate harness, kernel swapped) matches the Legendre solve per side to 0.68% -- the anchor quotes 0.02-0.8% for alpha=1, so the exponential kernel's l=1 solve is no worse
+    small-e linear response A/e at x = 0.10 (resolved signal, not grid noise):
+      e =  1.0e-04   Route A +2.1018   alpha=1 +2.3085   ratio 0.9105
+      e =  1.0e-03   Route A +2.0148   alpha=1 +2.2121   ratio 0.9108
+      e =  1.0e-02   Route A +1.7429   alpha=1 +1.9147   ratio 0.9103
+      e =  2.0e-02   Route A +1.5749   alpha=1 +1.7336   ratio 0.9084
+  [OK] the linear response is resolved and Route A's is genuinely DIFFERENT from alpha=1's: A/e -> 2.102 vs 2.308 as e->0, i.e. -9.0%. This is the first sign that Route A makes the dipole SMALLER, and it is a difference of physics, not of grid
+
+============================================================================================================
+S3. (a) THEOREM 5 -- the MI point-particle quadrature dipole, on the ANCHORS' OWN GRIDS
+============================================================================================================
+  GRID 1 = mi_efe_derived_general_2026's S3 grid, e <= 0.1 y cells -- the cells the banked
+           '4.2-22.3%' was read off. Same cells, kernel swapped.
+         y      e    alpha=1    alpha=2    Route A   RA/a1
+      0.30   0.03    +22.28%    +24.19%    +20.50%   0.920
+      1.00   0.03    +10.21%    +11.59%     +9.82%   0.962
+      1.00   0.10    +16.06%    +18.41%    +16.34%   1.018
+      3.00   0.03     +4.20%     +4.63%     +4.36%   1.039
+      3.00   0.10     +6.67%     +7.26%     +7.42%   1.113
+      3.00   0.30     +9.30%     +9.61%    +11.42%   1.228
+    banked alpha=1 band (mi_efe_derived_general_2026.out): 4.20% - 22.28%
+  [OK] the banked band is reproduced on this grid: alpha=1 gives 4.20%-22.28% vs the committed 4.20-22.28% -- so the Route A band on the SAME cells is a like-for-like replacement, not a regridded number
+    *** ROUTE A, same cells: 4.36% - 20.50%  (alpha=2 on these cells: 4.63%-24.19%)
+
+  GRID 2 = mi_structural_theorems_v3's 4-case grid -- the cells '5.4-15.4%' was read off.
+         y      e    alpha=1    alpha=2    Route A
+      0.50   0.02   +13.893%   +15.367%   +12.805%
+      1.00   0.05   +12.501%   +14.254%   +12.276%
+      2.00   0.10    +9.394%   +10.516%   +10.121%
+      5.00   0.20    +5.281%    +5.373%    +6.449%
+  [OK] and the alpha=2 v3 band is reproduced on ITS grid: 5.37%-15.37% vs the committed 5.4-15.4%. Route A on the same four cells: 6.45%-12.81% -- a NARROWER band than either predecessor, comparable in the middle
+
+  AN ANALYTIC CHECK OF THE WHOLE CONSTRUCTION, so the band is not one solver's opinion.
+  Writing Psi(g) = nu(g) g (= g_obs/a0), the two evaluation points collapse to
+      near = Psi(y-e) + Psi(e),   far = Psi(y+e) - Psi(e)      [exact, any kernel]
+  so to first order in e the dipole is   A_v = [ Psi(e) - e Psi'(y) ] / Psi(y).
+  [OK] the symbolic first-order law reproduces the numeric Route A dipole to 0.42% on all four v3 cells -- an INDEPENDENT derivation of the same band, and it exhibits why the dipole exists at all: nu is nonlinear, so Psi(e) does not cancel e Psi'(y)
+
+============================================================================================================
+S4. (b) THE SIGN -- attractor-faster, and what happens to the deep-EFE reversal
+============================================================================================================
+  [OK] ATTRACTOR-FASTER SURVIVES: the Route A dipole is POSITIVE (near side faster) on all 10 anchor cells of both grids, so Corollary 5.1's sign is unchanged by the kernel switch in the entire regime where the amplitude is measurable
+
+  The deep-EFE (e >> y) corner is where alpha=2 introduced a SIGN FLIP. Route A's corner:
+          y       e     alpha=1     alpha=2     Route A
+      0.100    2.00   +0.08348%   -0.15153%   +0.24907%
+      0.050    3.00   +0.01488%   -0.04648%   +0.04989%
+      0.200    1.00   +0.85203%   +0.32191%   +1.73917%
+      0.500    2.00   +0.43541%   -0.74124%   +1.28023%
+      1.000    5.00   +0.07839%   -0.31445%   +0.18702%
+      0.020    5.00   +0.00152%   -0.00613%   +0.00353%
+      0.010    8.00   +0.00020%   -0.00088%   -0.00056%
+      0.010   10.00   +0.00011%   -0.00047%   -0.00083%
+      0.001   30.00   +0.00000%   -0.00000%   -0.00002%
+  [OK] at the v3 cell (y=0.10, e=2.0) alpha=2 is NEGATIVE (-0.152%, the committed -0.15%) while Route A is POSITIVE (+0.249%) -- Route A UNDOES the sign flip alpha=2 had introduced at galaxy-scale external fields
+
+  WHERE Route A's flip actually is, derived not scanned. For e >> y the leading term is
+      A_v = - y Psi''(e) / (2 Psi'(e)),  so sign(A_v) = -sign(Psi''(e)) exactly.
+      Psi''(y) = (y**(5/2)*(exp(sqrt(y)) - 1) + 2*y**(5/2) - 3*y**2*(exp(sqrt(y)) - 1))*exp(sqrt(y))/(4*y**(5/2)*(exp(sqrt(y)) - 1)**3)
+  [OK] Psi'' for Route A is NEGATIVE at e=2 (-5.081e-02) and POSITIVE at e=40 (2.379e-04), so a single sign change is bracketed rather than assumed before the root is taken
+  [OK] the symbolic alpha=2 Psi matches the module's nu_alpha2 to 1.1e-16 -- so the alpha=2 flip threshold below is the real kernel's, not a re-derivation slip
+      Route A: Psi'' changes sign at e* = 6.63412   (a0 units)
+      alpha=2: the same root sits at e* = 1.15470
+      alpha=1: Psi = sqrt(y^2+y), Psi'' = -1/(4(y^2+y)^(3/2)) < 0 for ALL y -- never flips
+  [OK] TRIPLE-CHECKED at 50 decimal digits: at y = 0.01 the Route A dipole is +0.000085% just BELOW e* and -0.000078% just ABOVE it, bracketing the symbolic root -- the sign flip is real and its location is the analytic zero of Psi'', not a float64 artefact
+  [OK] and BEYOND the flip the amplitude is at most 0.00104% -- versus alpha=2's 0.15% at the same kind of cell. Route A's negative corner needs e > 6.63 a0, i.e. g_ext > 6.21e-10 m/s^2 canonical / 7.50e-10 alt, ~20-300x above any galaxy environmental field in the frozen sample (e = 0.003-0.3). The >1% falsifier is therefore CLEANER under Route A than under alpha=2
+
+============================================================================================================
+S5. (a) THE AQUAL/QUMOND-CLASS BVP MAP -- the number the frozen test actually stacks
+============================================================================================================
+  [OK] every cell of all three BVP maps is finite -- the FP flags BLAS raises inside the anchor's matmul (identically for alpha=1) did not poison a single number
+  aligned asymmetry A = 2(v_attractor-side - v_far-side)/(sum), [%], gamma = 0, signed
+
+    alpha=1 (retired)
+      x\e       0.02      0.05      0.10      0.20      0.30
+      0.50    +0.636    +1.456    +2.612    +4.386    +5.690
+      0.20    +1.786    +3.855    +6.275    +3.615    -3.925
+      0.10    +3.467    +6.764    +3.601    -5.672    -6.189
+      0.05    +6.069    +3.496    -6.736    -7.628    -7.113
+
+    alpha=2 (superseded)
+      x\e       0.02      0.05      0.10      0.20      0.30
+      0.50    +0.759    +1.752    +3.172    +5.391    +7.037
+      0.20    +1.944    +4.220    +6.908    +4.135    -4.125
+      0.10    +3.614    +7.066    +3.751    -6.242    -6.829
+      0.05    +6.183    +3.503    -7.266    -8.415    -7.891
+
+    Route A (exponential)
+      x\e       0.02      0.05      0.10      0.20      0.30
+      0.50    +0.627    +1.445    +2.602    +4.360    +5.570
+      0.20    +1.637    +3.527    +5.682    +2.874    -4.479
+      0.10    +3.150    +6.081    +2.904    -6.066    -6.879
+      0.05    +5.550    +2.947    -6.716    -7.915    -7.671
+
+    reference amplitude A0 = A(x=0.10, e=0.03, gamma=0):
+      alpha=1 (retired)        +4.7652%   F_geo = 0.5132
+      alpha=2 (superseded)     +4.9724%   F_geo = 0.5096
+      Route A (exponential)    +4.3170%   F_geo = 0.5140
+  [OK] *** ROUTE A MAKES THE AQUAL-CLASS DIPOLE SMALLER, NOT LARGER: A0 drops from +4.7652% (alpha=1, committed) and +4.9724% (alpha=2) to +4.3170%, a factor 0.906. Route A is the WEAKEST of the three kernels on this observable. Reported as the headline because it is the direction that costs the front, not the one that helps it
+
+    the banked '~1-4%' comparator is laneA's typical band (e=0.02-0.05, x=0.05-0.2) after
+    isotropic-direction projection (x sqrt(F_geo)):
+      alpha=1 (retired)        1.28% - 4.85%
+      alpha=2 (superseded)     1.39% - 5.04%
+      Route A (exponential)    1.17% - 4.36%
+  [OK] the banked '~1-4%' AQUAL-class comparator SURVIVES Route A as 1.2-4.4% -- still 1-4%, but at the LOW edge of it: every cell shrank (1.3-4.8% under alpha=1). The front's amplitude claim does not have to be rewritten; it does have to be re-quoted downward
+
+    THE x <~ e SIGN REVERSAL (the 'deep-EFE reversal' of the frozen test): the zero crossing
+    in e at fixed x, solved by brentq on the BVP itself, not read off the table:
+      alpha=1 (retired)        x=0.20: e_0=0.2105 (e_0/x=1.052)  x=0.10: e_0=0.1055 (e_0/x=1.055)  x=0.05: e_0=0.0526 (e_0/x=1.051)
+      alpha=2 (superseded)     x=0.20: e_0=0.2118 (e_0/x=1.059)  x=0.10: e_0=0.1055 (e_0/x=1.055)  x=0.05: e_0=0.0525 (e_0/x=1.050)
+      Route A (exponential)    x=0.20: e_0=0.2089 (e_0/x=1.044)  x=0.10: e_0=0.1047 (e_0/x=1.047)  x=0.05: e_0=0.0524 (e_0/x=1.048)
+  [OK] THE DEEP-EFE REVERSAL SURVIVES essentially untouched: the reversal radius sits at e_0 = (0.209, 0.105, 0.052) for x = (0.20, 0.10, 0.05), within 0.8% of the alpha=1 values -- so the signed map's sign-trap, and the pre-registered 'attractor-faster for x >~ 2e, REVERSED for x <~ e' convention, both carry over verbatim
+
+    NOTE, AGAINST INTEREST AND PRE-EXISTING (not created by Route A): in this same x <~ e
+    corner the MI point-particle quadrature of S3 stays POSITIVE while the field solve goes
+    NEGATIVE, for alpha=1 and for Route A alike. The two constructions disagree in sign there.
+    The anchor already flags the pointwise-algebraic estimate as 'WRONG for l=1'; the point is
+    only that the disagreement is a REALIZATION question (MI algebra vs MG field solve) that
+    the kernel switch neither creates nor resolves.
+
+============================================================================================================
+S6. GEOMETRY AND ORBIT DYNAMICS -- the two multiplicative factors that feed the power budget
+============================================================================================================
+    A(gamma)/A(0) at gamma = 0, 30, 60, 88 deg (x=0.10, e=0.03):
+      alpha=1 (retired)         1.0000  1.1390  0.8156  0.0600
+      alpha=2 (superseded)      1.0000  1.1347  0.8101  0.0595
+      Route A (exponential)     1.0000  1.1398  0.8175  0.0601
+  [OK] the disk-orientation SHAPE is kernel-insensitive: A(gamma)/A(0) agrees with alpha=1 to 0.29% and F_geo moves only +0.16% (0.5140 vs 0.5132). The committed 'A(gamma) is flat then falls, NOT prop cos(gamma)' finding and the banked G(gamma) stacking rows do NOT need re-deriving -- the change is entirely in the amplitude
+
+    closed loop-orbit (tilted-ring analog) amplification, Route A vs the committed 4.38-5.68x:
+      x=0.50 e=0.05: local  +1.445%  loop-orbit  +7.503%  amplification 5.19x  (8 orbits)
+      x=0.30 e=0.05: local  +2.421%  loop-orbit +14.092%  amplification 5.82x  (8 orbits)
+      x=0.30 e=0.02: local  +1.084%  loop-orbit  +4.924%  amplification 4.54x  (8 orbits)
+  [OK] the near-resonant m=1 loop-orbit amplification is UNCHANGED to within the bracket: Route A gives 4.54-5.82x against the committed 4.38-5.68x. So the optimistic end of the banked prediction bracket is not rescued by the kernel switch either -- the whole bracket simply moves down with the amplitude
+
+============================================================================================================
+S7. (c) THE REQUIRED N FOR 3 SIGMA -- through confrontation.py's OWN machinery
+============================================================================================================
+    the anchor's MEASURED noise (70 WHISP signed per-side, not an assumed sigma):
+      rms(A) = 0.0921   robust sigma = 0.0426   -- ensemble noise, per-galaxy
+      lopsidedness is PHYSICAL and cannot be averaged below the permuted null
+  [OK] both footings enter as the anchor already had them and as mi_route_a_kernel defines them: canonical 9.3614e-11 (rho_DE / cH_Lambda, kappa=1/2) and alt 1.1300e-10 (rho_total / cH0). a0 is an INPUT to the (x, e) placement; nothing here fits it
+  [OK] the COMMITTED N is reproduced exactly before anything is changed: alpha=1 canonical/maxclu gives N(3sig AQUAL-vs-BranchB) = 1157 against the frozen 1157, and alt/maxclu 1424 against 1424. Only the A_MAP global was swapped; noise, sample, interpolator and w are the anchor's
+
+    footing / e_N                     kernel                     <|p|>  N vs null  N vs B(w=.30)  N vs B(w<.24)
+    canonical a0=9.36e-11 / maxclu    alpha=1 (retired)         1.444%        560           1157            969
+    canonical a0=9.36e-11 / maxclu    alpha=2 (superseded)      1.491%        533           1101            923
+    canonical a0=9.36e-11 / maxclu    Route A (exponential)     1.318%        670           1385           1161
+
+    canonical a0=9.36e-11 / noclu     alpha=1 (retired)         0.180%      35390          73129          61270
+    canonical a0=9.36e-11 / noclu     alpha=2 (superseded)      0.185%      33707          69652          58357
+    canonical a0=9.36e-11 / noclu     Route A (exponential)     0.164%      42384          87583          73380
+
+    alt a0=1.13e-10 / maxclu          alpha=1 (retired)         1.316%        689           1424           1193
+    alt a0=1.13e-10 / maxclu          alpha=2 (superseded)      1.354%        660           1363           1142
+    alt a0=1.13e-10 / maxclu          Route A (exponential)     1.201%        825           1705           1428
+
+    alt a0=1.13e-10 / noclu           alpha=1 (retired)         0.164%      43595          90084          75476
+    alt a0=1.13e-10 / noclu           alpha=2 (superseded)      0.168%      41733          86237          72252
+    alt a0=1.13e-10 / noclu           Route A (exponential)     0.149%      52185         107836          90349
+
+  [OK] *** ROUTE A MAKES THE TEST HARDER, ON EVERY FOOTING AND EVERY CLUSTERING BRACKET. The 3-sigma requirement grows by x1.197-1.198 over alpha=1 and x1.250-1.258 over alpha=2: the banked N = 1157 canonical becomes 1385, and the alt footing's 1424 becomes 1705. Route A COSTS this front about a fifth of its statistical power
+  [OK] footing spread on the Route A requirement: alt needs 23% more galaxies than canonical (1705 vs 1385). Same direction on both footings; the footing does not decide anything here, it only sizes the sample
+  [OK] and the size of the loss is confirmed two independent ways: the reference-amplitude ratio A0(RouteA)/A0(alpha=1) = 0.9059 and the 16-galaxy matched-filter ratio sqrt(<p^2>_RA/<p^2>_a1) = 0.9138 agree to 0.9%. The ~9-10% amplitude loss and the ~20% N penalty are the same fact seen twice, not two estimates
+  [OK] consequence for the forward path, stated plainly: the in-hand per-side WALLABY-crossmatch census (237 galaxies, prep_2026/wallaby_prep) COVERS LESS of the target than it did -- 20% of the banked canonical N, 17% of the Route A N. That drop is the whole cost of the kernel switch expressed in survey terms. The pre-registered kill conditions stay ARMED and stay UNREACHED; the FIRST_FIRING Ahat = +2.95 / p1 = 0.029 at n = 16 is unaffected because it is a sign-and-alignment statement, but its predictor p_i is now ~9% smaller, so a re-fire would move Ahat UP by ~1/0.91 at unchanged significance -- an artefact of the normalisation, not evidence
+
+============================================================================================================
+S8. (d) DOES 'PURE MI PREDICTS EXACTLY ZERO' STILL HOLD? -- Newtonian control, both roads
+============================================================================================================
+  [OK] CONTROL: with nu == 1 (Newton) the MI quadrature gives ZERO on all 19 cells -- exactly 0.0 in 18 of them and at most 2.0e-16 in the rest. It is ANALYTICALLY identically zero (near = (y-e)+e and far = (y+e)-e are the same number), and the residual 2.0e-16 is float64 cancellation in e-(e-y) at the e >> y cells, six to nine orders below any physical value in the tables above. So the dipole is owned by the NONLINEARITY of nu and by nothing else
+  [OK] CONTROL, second road: with nu == 1 the phantom density vanishes identically and the BVP returns exactly 0.0 in all 20 cells. Both constructions agree that the dipole is a pure nonlinearity effect
+  [OK] THEREFORE the answer to (d) is: 'pure MI predicts EXACTLY ZERO' is NOT restored by Route A. The exponential kernel is nonlinear, so the corpus's own Theorem 5 construction gives 4.4-20.5% under it, exactly as it gave 4.2-22.3% under alpha=1 and 5.4-15.4% under alpha=2. This is not new: mi_efe_derived_general_2026 already RETIRED that banked line. What IS newly verified is that the retirement is KERNEL-INDEPENDENT -- it is a statement about MI's nonlinearity and about which realization is asked, and the shape of the approach to Newton cannot bring the zero back. NB the surviving 'can vanish for pure MI' caveat in laneA is a different claim (a strictly uniform g_ext as a pure frame acceleration); that is a REALIZATION fork, untouched here and untouched by Route A
+
+============================================================================================================
+S9. THE RE-SOLVED NUMBERS, side by side -- every entry computed above, none hard-coded
+============================================================================================================
+  quantity                                       alpha=1           alpha=2           Route A  direction
+  Thm 5 dipole, e<<y (S3 grid cells)           4.2-22.3%         4.6-24.2%         4.4-20.5%  same, slightly narrower
+  Thm 5 dipole, v3 4-case grid                 5.3-13.9%         5.4-15.4%         6.4-12.8%  narrower than both
+  Thm 5 sign, e<<y                              positive          positive          positive  SURVIVES
+  Thm 5 sign, e>>y flip at e* =                    never           1.15 a0           6.63 a0  flip pushed out ~3x
+    amplitude beyond the flip                        n/a             0.15%           0.0010%  falsifier CLEANER
+  AQUAL/QUMOND A0(x=.1,e=.03)                    +4.765%           +4.972%           +4.317%  WORSE, x0.906
+  AQUAL projected typical band                  1.3-4.8%          1.4-5.0%          1.2-4.4%  still ~1-4%, low edge
+  x <~ e reversal, e_0 at x=0.10                   0.106             0.106             0.105  SURVIVES, unchanged
+  F_geo                                           0.5132            0.5096            0.5140  unchanged
+  loop-orbit amplification                      4.4-5.7x           not run          4.5-5.8x  unchanged
+  N(3sig vs B), canonical a0                        1157              1101              1385  WORSE, x1.20
+  N(3sig vs B), alt a0                              1424              1363              1705  WORSE, x1.20
+  pure MI == exactly zero?                  no (retired)                no                no  unchanged, kernel-blind
+
+  HOW TO READ THIS, leading with the part that hurts:
+   * The AQUAL/QUMOND-class dipole -- the one the frozen pre-registration actually stacks --
+     is 9% SMALLER under Route A than under either predecessor kernel, and the
+     3-sigma sample requirement grows from the banked 1157 to 1385 canonical / 1705 alt.
+     Route A is the weakest of the three kernels on this front. That is a real cost.
+   * Nothing about the SIGN degrades: attractor-faster survives on every anchor cell, the
+     x <~ e field-solve reversal survives to within 1%, and alpha=2's galaxy-scale
+     deep-EFE sign flip is UNDONE (pushed from e = 1.15 to e = 6.63 a0, amplitude 0.15% -> 0.0010%).
+   * The Theorem 5 MI band is essentially where it was; it narrows rather than moves.
+   * The front does NOT become non-diagnostic and no door closes: it stays the framework's one
+     distinctive favourable prediction, just a fifth more expensive to reach.
+
+  CAVEATS THAT SURVIVE THIS SCRIPT, none of them repaired by it:
+   1. The laneA map is a QUMOND-form (nu-based) phantom solve, while Route A's PROVED-healthy
+      field theory is the Bekenstein-Milgrom / AQUAL (mu-based) one. In spherical symmetry the
+      two are exact inverses; at l=1 they are the same CLASS but not the same theory. The
+      comparison here is apples-to-apples with the committed number by construction, which is
+      what the lane asked for -- it is not a claim that AQUAL gives the identical l=1 number.
+   2. Point-mass source, uniform a_ex, tides neglected; disk-geometry correction O(10%) unrun.
+   3. The sign-turnover cell (x=0.1, e=0.1) carries ~3% grid uncertainty in BOTH kernels.
+   4. Branch B's w was computed at l=2; the l=1 equality is structural, so every 'N vs B' row
+      inherits that caveat unchanged from the anchor.
+   5. sigma_A here is the anchor's MEASURED 70-galaxy ensemble rms, used as an ensemble noise;
+      it is not a relation scatter standing in for a parameter error.
+
+  33/33 checks held.
