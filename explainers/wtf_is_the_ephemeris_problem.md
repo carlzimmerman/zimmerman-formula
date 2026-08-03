@@ -106,7 +106,9 @@ Worth knowing: an AI agent claimed this construction *did* cure the problem. It 
 
 Three routes. Two work, one doesn't, and the prices are known.
 
-**Route A — make the switch-off faster. This is the cheapest and it works.** Instead of a leftover that shrinks like 1/g (a power law), use one that shrinks *exponentially* — like e^(−√(g/a₀)). At the Sun that suppresses it by **7×10¹⁶**. Every bound clears by many orders of magnitude, and it's already the template your own whitepaper adopted.
+**Route A — make the switch-off faster. This is the cheapest and it works.** Instead of a leftover that shrinks like 1/g (a power law), use one that shrinks *exponentially* — like e^(−√(g/a₀)). At the Sun that suppresses it by **3.3×10¹³** (canonical footing; 7.0×10¹¹ on the alternative one). Every bound clears by twelve orders of magnitude, and it's already the template your own whitepaper adopted.
+
+*(An earlier draft of this explainer said 7×10¹⁶ here. That number was an estimate made before the suppression was computed at the binding body; the computed value is 3.3×10¹³. The conclusion is unchanged — twelve orders of clearance instead of fifteen.)*
 
 The price used to look steep: you'd give up the de Sitter–Unruh *derivation* of the law's shape. But two results from today cut that price, and this is the genuinely new part:
 
@@ -114,6 +116,10 @@ The price used to look steep: you'd give up the de Sitter–Unruh *derivation* o
 - The de Sitter–Unruh derivation only works for **straight-line** acceleration. On an orbit the worldline is a helix, and rotating detectors aren't thermal. So the shape you'd be "giving up" was never derived for orbits in the first place.
 
 **You'd be trading a postulate for a postulate, and getting a working solar system.**
+
+**This was executed on 2026-08-02, and the bill came in higher than that.** Route A does everything advertised — the Sun's anomaly is suppressed by 3.3×10¹³, the Mars budget clears by twelve orders, and the discharge holds *at the level of the action* and not merely in the force law (the Lagrangian departs from Newton by 2.7×10⁻²² fractionally at the Sun). SPARC scatter even improves slightly, by 0.0024 dex. And the kernel turns out to have a genuine **field theory**: its Bekenstein–Milgrom free function can be derived in closed form rather than posited, and proved convex, elliptic, ghost-free, subluminal, with positive phantom density everywhere and an exact baryonic Tully–Fisher relation.
+
+But it costs something real. On the exponential kernel, SPARC's preferred a₀ moves *down* to 0.938× the canonical value, where α=2 pulls it *up* to 1.192×. The κ=½ lean flips sign: from +2.39σ favouring κ=½ under α=2 to 0.66σ favouring Milgrom's 1/2π under the exponential. Two honesties are owed in both directions here. The lean was always shape-dependent, and no shape reaches 3σ, so SPARC never *resolved* κ. But it isn't a pure shape artefact either — the **shape-free** deep-limit estimator also leans κ=½, at 1.55σ. Three of four shapes lean the framework's way; Route A's own kernel is the one that doesn't.
 
 **Route B — make a₀ depend on orbital frequency.** a₀ effectively shrinks for fast orbits. Planets orbit ~10¹⁵ times faster than a galaxy rotates, so the effect vanishes there. Works, and the velocity-dependent construction gives it a natural home rather than bolting it on. Price: a fifth constant in the theory.
 
@@ -141,4 +147,6 @@ $$\delta a \;\simeq\; \frac{a_0^2}{2g}$$
 
 The leftover acceleration your theory predicts, in terms of the local Newtonian gravity g. It's small when g is big. The Sun's g is tiny — about 2,200 a₀ — so its leftover is 30,000 times Earth's, and that's the whole problem in one line.
 
-Route A replaces the 1/g with e^(−√(g/a₀)), and 7×10¹⁶ is the size of the improvement.
+Route A replaces the 1/g with e^(−√(g/a₀)), and 3.3×10¹³ is the size of the improvement at the Sun.
+
+And in the field theory the same statement reads: the free function's derivative is **1 − e^(−√(g/a₀))**, exactly, at every acceleration. The departure from Newton is exponentially small in √(g/a₀) — not in g, and not as a power law. That is the whole of Route A in one line.
