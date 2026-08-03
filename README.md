@@ -60,7 +60,7 @@ footing. This number is untouched by everything below.
 Seven machine-verified results; five are prohibitions that *remove* free content.
 **Paper: [MI_STRUCTURAL_THEOREMS.md](opus_48_extended_research/papers/MI_STRUCTURAL_THEOREMS.md) · DOI [10.5281/zenodo.21708842](https://doi.org/10.5281/zenodo.21708842)** (v2)
 - **Thm 1** first moment, worldline-general — [`mi_dcac_split_settled_2026.py`](real_research/reviews/mi_dcac_split_settled_2026.py)
-- **Thm 2** $\operatorname{Im}K\equiv0$ ⇒ MOND amplitude and dissipation **mutually exclusive**; the sign postulate is **demoted** to unobservable
+- **Thm 2** $\mathrm{Im}\,K\equiv0$ ⇒ MOND amplitude and dissipation **mutually exclusive**; the sign postulate is **demoted** to unobservable
 - **Thm 3** no *local* higher-derivative action reproduces the law ⇒ nonlocality is **required** — [`mi_closure_vs_action_gap_2026.py`](real_research/reviews/mi_closure_vs_action_gap_2026.py)
 - **Thm 4** MI **cannot** modify the FRW background — [`mi_channelA_friedmann_2026.py`](real_research/reviews/mi_channelA_friedmann_2026.py)
 - **Thm 5** the EFE is quadrature with a **vector** cross term ⇒ a **footing-free** rotation-curve dipole, 4.2–22.3%, attractor-faster — [`mi_efe_derived_general_2026.py`](real_research/reviews/mi_efe_derived_general_2026.py). *This is the one prediction that is both distinctive and MI-favourable.*

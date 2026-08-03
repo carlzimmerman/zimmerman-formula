@@ -222,8 +222,8 @@ claims. They are not to be revived. The true position is the $a_0$ reframing abo
 - **⭐ THE OFF-CIRCULAR ACTION, WRITTEN DOWN (2026-07-30) — the pincer is now *sharp*, with an explicit
   witness on the local horn.** `mi_offcircular_action_2026.py` (44 checks, exit 0). The action is
   $$S[x]=\int\!dt\;m\Big(|\dot x|^2\,f(|\ddot x|/a_0)-\phi(x)\Big),\qquad f(u)=u^{-2}\!\int_0^u\!v\,\mu(v)\,dv,$$
-  with $f_1=[2u\sqrt{4u^2+1}-4u+\operatorname{asinh}2u]/(8u^2)$ ($\alpha{=}1$) and **NEW,
-  $\alpha{=}2$: $f_2=[u\sqrt{1+u^2}-\operatorname{asinh}u]/(2u^2)$** — the corpus carried only $f_1$.
+  with $f_1=[2u\sqrt{4u^2+1}-4u+\mathrm{asinh}\,2u]/(8u^2)$ ($\alpha{=}1$) and **NEW,
+  $\alpha{=}2$: $f_2=[u\sqrt{1+u^2}-\mathrm{asinh}\,u]/(2u^2)$** — the corpus carried only $f_1$.
   Its honest EL equation is fourth-order:
   $\frac{d^2}{dt^2}\big[(|\dot x|^2/a_0)f'(u)\hat a\big]-2f(u)\ddot x-2\dot f\,\dot x=\nabla\phi$.
   **WHAT IS GAINED.** A circular orbit solves that *full* equation **exactly**, and the equation it
@@ -289,7 +289,7 @@ claims. They are not to be revived. The true position is the $a_0$ reframing abo
   degenerate observables. The one non-degenerate instrument — solar-system dynamical frame spin against
   the quasar frame, needing better than **~6.2 μas/yr** — was named and **never evaluated**. Route D's
   18–25× is also withdrawn (tuning artefact, 0.82 dex per 1% coupling change).
-  **THE COUPLING-FREE REPLACEMENT:** $\operatorname{Tr}N = 1$ **exactly for every ellipsoid** (proved:
+  **THE COUPLING-FREE REPLACEMENT:** $\mathrm{Tr}\,N = 1$ **exactly for every ellipsoid** (proved:
   $\int_0^\infty P^{-1/2}\sum(s+a_i^2)^{-1}ds = 2/abc$), giving leak factors $1-3N_a = +0.626$ in-plane
   and $1-3N_c = -1.251$ axial at $h_z/R_d=0.2$ — O(1), **opposite signs**, and no coupling or density
   model removes it. **And I was wrong about which obstruction would close it** — I bet on passivity;

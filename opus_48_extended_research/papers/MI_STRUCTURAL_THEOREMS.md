@@ -30,7 +30,7 @@ Briar Creek Tech, Charlotte, NC, USA · carl@briarcreektech.com
 > | result | v2 ($\alpha=1$) | **v3 ($\alpha=2$)** | status |
 > |---|---|---|---|
 > | Thm 1 moment identity | $\langle\Box_u\rangle_u=+|a|^2$ | identical | kinematic — unchanged |
-> | Thm 2 $\operatorname{Im}K\equiv0$ | cut $z\le-\tfrac14$ | cut $-1<z<0$ | survives; cut now **compact** |
+> | Thm 2 $\mathrm{Im}\,K\equiv0$ | cut $z\le-\tfrac14$ | cut $-1<z<0$ | survives; cut now **compact** |
 > | Thm 3 Hessian det | $-0.02856$ | $\mathbf{-3\sqrt2/64=-0.06629}$ | survives, simpler |
 > | Thm 4 FRW inert / non-analytic | $K\sim\sqrt z$ | identical | kinematic + shared origin |
 > | Thm 5 dipole, $e\ll y$ | 4.2–22.3% | **5.4–15.4%** | survives, $1.10\times$ |
@@ -67,7 +67,7 @@ The kernel is $\alpha=2$; **v3 changed it from $\alpha=1$, and §0's notice stat
 **(1)** The first-moment identity $u_\mu\Box_u u^\mu=-|a|^2$ holds **pointwise on every timelike
 worldline**, following from $u\!\cdot\!u=-1$ alone — not merely on the circular and helical cases
 previously verified. **(2)** The closure's argument is therefore $|a|^2\ge 0$, while $K$'s branch cut
-requires $z\le-\tfrac14$; hence $\operatorname{Im}K\equiv 0$ **identically**, for the mean motion and
+requires $z\le-\tfrac14$; hence $\mathrm{Im}\,K\equiv 0$ **identically**, for the mean motion and
 for every perturbation at every order. The MOND amplitude and any dissipative channel are therefore
 **mutually exclusive**, and the sign postulate $s$ is demoted from a parameter awaiting data to a label
 on a branch the working theory never evaluates. **(3)** The law $\mu(|a|/a_0)\,a=g_{\rm bar}$
@@ -184,7 +184,7 @@ trajectories alike. Everything below uses this generality.
 
 ## 4. Theorem 2 — non-negativity, and the mutual-exclusivity of MOND and dissipation
 
-> **Theorem 2.** Under the first-moment closure, $\operatorname{Im}K\equiv0$ identically — for the mean
+> **Theorem 2.** Under the first-moment closure, $\mathrm{Im}\,K\equiv0$ identically — for the mean
 > motion and for every perturbation, at every order in perturbation amplitude.
 
 *Proof.* $a^\mu$ is spacelike ($u\!\cdot\!a=0$ with $u$ timelike), so $a\!\cdot\!a>0$ and by Theorem 1
@@ -197,7 +197,7 @@ two regions are disjoint either way. $\square$
 Verified additionally on explicitly perturbed epicyclic worldlines scanned over amplitude
 $\epsilon\in[0.01,0.9]$ and frequency ratio $\kappa/\Omega\in[0.2,3]$: the minimum of $|a|^2$ over every
 orbit is non-negative, and the argument never enters the cut. Verified numerically for $K_2$:
-$\operatorname{Im}K_2>0$ throughout $-1<z<0$ and identically zero for $z>0$.
+$\mathrm{Im}\,K_2>0$ throughout $-1<z<0$ and identically zero for $z>0$.
 
 > **Corollary 2.1 (mutual exclusivity).** The MOND amplitude and any dissipative channel cannot coexist.
 >

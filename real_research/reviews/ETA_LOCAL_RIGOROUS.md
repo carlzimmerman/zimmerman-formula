@@ -27,7 +27,7 @@ D_N** on RP². This much in `research/OP1_LOCAL_ETA_DERIVATION.md` §2–3 is co
 The Brüning–Seeley apex term is a *signed* zeta-regularized sum over the link eigenvalues
 {λ} of D_N, schematically
 
-$$\eta_{\text{apex}} \;=\; \tfrac{1}{2}\,\operatorname{FP}_{s\to 0}\sum_{\lambda}\operatorname{sign}(\lambda)\,|\lambda|^{-s}\,(\text{radial Bessel weight}),$$
+$$\eta_{\text{apex}} \;=\; \tfrac{1}{2}\,\mathrm{FP}_{s\to 0}\sum_{\lambda}\mathrm{sign}\,(\lambda)\,|\lambda|^{-s}\,(\text{radial Bessel weight}),$$
 
 with genuine contributions only from link modes inside the critical window |λ| < 1 (outside
 it the radial operator is limit-point / essentially self-adjoint — no defect, no extension
@@ -58,7 +58,7 @@ $$\tfrac12\!\int \!d^3p\,|p|^{-s}\quad\text{(regularized)},$$
 is the zeta-function **mode count**, not the eta function. A regularized mode count over a
 ball is, by Weyl's law, proportional to the **volume of the ball**:
 
-$$\underbrace{\int d\Omega}_{4\pi}\;\times\;\underbrace{\int_0^1 r^2\,dr}_{1/3}\;=\;\frac{4\pi}{3}\;=\;\operatorname{vol}(B^3).$$
+$$\underbrace{\int d\Omega}_{4\pi}\;\times\;\underbrace{\int_0^1 r^2\,dr}_{1/3}\;=\;\frac{4\pi}{3}\;=\;\mathrm{vol}\,(B^3).$$
 
 That is the entire origin of 4π/3. The four "verification methods" in
 `eta_invariant_T3Z2.py:245–275` — direct volume, solid-angle×radial, the Γ-function ball
