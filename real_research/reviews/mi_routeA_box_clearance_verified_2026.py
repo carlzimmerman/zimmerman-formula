@@ -240,6 +240,17 @@ check(min(a2) > 2.0,
       f"both above 2. Had alpha=2 also cleared, the escape would have been about the search and V1's headline "
       f"would be wrong")
 simple_w = ctrl[("literature simple", "canon")][0]
+# *** TWO QUALIFICATIONS ADDED 2026-08-03, both AGAINST INTEREST, from the extended-baryon lane
+# (mi_routeA_sigma_dyn_floor_extended_baryons_2026.py, 16/16), which searched DOMAIN-WIDE rather than in this
+# script's box:
+#   (i) THIS SCRIPT'S SIMPLE-mu NUMBER IS BOX-LIMITED. The 2.304 below is the minimum over FM_BOX x FR_BOX
+#       (f_M 1.60-2.20, f_R 0.72-0.84). On a domain-wide prior-restricted scan the literature's simple mu
+#       already reaches 2.018 at TWO parameters -- so it was closer to clearing than recorded here, BEFORE any
+#       extra parameter. The common box was chosen to contain Route A's and alpha=2's optima; it does not
+#       contain simple mu's. The V2a alpha=2 control is unaffected (its optimum IS in the box).
+#   (ii) and once a THIRD baryon parameter is allowed, simple mu CLEARS (1.876, then 1.554 at four). So
+#       "Route A clears and the comparators do not" holds against alpha=2 at any parameter count, and against
+#       simple mu at TWO parameters only.
 check(simple_w > 0,
       f"V2b and recorded for completeness, AGAINST INTEREST as the anchor's L7c was: the literature's simple mu "
       f"at a0 = 1.2e-10 reaches {simple_w:.3f} sigma under the same search, so it "
@@ -323,6 +334,16 @@ print(f"""  ESTABLISHED:
      is what makes this a statement about Route A rather than about the optimiser (V2a).
    * L7a's "ZERO cells clear the box / 2.07 sigma" is a GRID ARTEFACT -- reproduced here from L7a's own grid
      ({grid_best['canon'][0]:.3f} / {grid_best['alt'][0]:.3f}) before being superseded by the minimax (V3a).
+
+  QUALIFIED 2026-08-03 by the extended-baryon lane, both against interest:
+   * the simple-mu comparator above is BOX-LIMITED: domain-wide it reaches 2.018 at two parameters, not 2.304,
+     and it CLEARS at three (1.876). So the clearance is discriminating against alpha=2 at any parameter count
+     and against simple mu only at TWO.
+   * *** THE Sigma_dyn FLOOR QUOTED ELSEWHERE IN THIS CORPUS IS A VERTICAL-ONLY STATEMENT AND IS NOT JOINTLY
+     ADMISSIBLE. *** The cell that minimises Sigma_dyn misses the rotation curve by -11.8 sigma
+     (v_c = 197.6 km/s). Imposing |sigma(v_c)| <= 2 as well, the floor rises to 81.16 canonical / 83.55 alt --
+     FAR above every published K_z determination, and worse than the 75.61/79.88 vertical-only value. That
+     jointly-constrained number is the physically meaningful one.
 
   NOT ESTABLISHED, and not to be claimed:
    * this is NOT a good joint fit. chi2 = {res['canon']['chi2']:.2f} on 3 dof, p = {res['canon']['p']:.3f}.
