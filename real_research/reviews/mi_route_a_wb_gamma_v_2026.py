@@ -25,14 +25,14 @@ WHAT IS RE-SOLVED, exactly the way Amendment 4(d) computed 1.0310 (verified in V
 THE FOUR ANSWERS, and two of them cut against the front:
   (a) V2/V3  the substitutable target: 1.1582, range 1.1311-1.1964 (dynamical asymptote, no dilution -- the
       same footing that produced 1.0310 and 1.0218-1.0472).
-  (b) V4  YES, a Newtonian 2-30 kAU result is still evidence AGAINST, and MUCH more strongly: 4.68 sigma_tot at
-      the worst corner instead of 1.10, on the frozen error model at N = 30,000.
+  (b) V4  YES, a Newtonian 2-30 kAU result is still evidence AGAINST, and MUCH more strongly: 4.74 sigma_tot at
+      the worst corner instead of 0.79, on the frozen error model at N = 30,000.
   (c) V5  the sigma_sys = 0.02 cap RISES from 1.55 sigma to 6.55-9.82 sigma if sigma_sys is absolute, or to a
       kernel-INVARIANT 4.50 sigma if it scales with the signal. Either way 3 sigma becomes reachable and
-      section 1.5's "expected DECIDABLE" is RESTORABLE at N ~ 4,600-11,000. Checked three ways, because this
+      section 1.5's "expected DECIDABLE" is RESTORABLE at N ~ 4,597-10,321. Checked three ways, because this
       corpus has already had to withdraw an "expected DECIDABLE" once.
   (d) V6  the hybrid S x L gate branch SURVIVES -- still < 0.1 sigma_tot from Newton at 10 kAU -- so the trap
-      count stays 2. But the same 5x amplitude makes the gated branch's own cubic rise reach 1.9 sigma_fit by
+      count stays 2. But the same 5x amplitude makes the gated branch's own cubic rise reach 1.56 sigma_fit by
       30 kAU, so it stops being Newtonian-indistinguishable at the OUTER edge of the frozen window.
 
 AND THE COSTS, stated as plainly as the gains:
@@ -591,10 +591,23 @@ print(f"      ceiling = {cap_prop:.2f} sigma -- and it is KERNEL-INVARIANT: the 
       f"{cap_prop_a2:.2f} at alpha=2,")
 print(f"      because a systematic proportional to the signal cancels the signal exactly. "
       f"= {GATE_INJ_SIGNAL}/{SIG_SYS} = {GATE_INJ_SIGNAL/SIG_SYS:.2f}.")
-check(cap_prop > 3.0 and abs(cap_prop - cap_prop_a2) < 1e-9,
+# TAUTOLOGY FIXED 2026-08-03: `cap_prop > 3.0 and abs(cap_prop - cap_prop_a2) < 1e-9` could not fail --
+# cap_prop reduces algebraically to GATE_INJ_SIGNAL/SIG_SYS and cap_prop_a2 to the identical expression, so the
+# second conjunct is a float identity and the first compares two frozen constants (0.09/0.02). The substantive
+# and FALSIFIABLE content is that this reading gives Route A NO improvement over alpha=2, which is the
+# against-interest half and is what is now asserted.
+# asserting the kernel-invariance would ALSO be an identity (both sides reduce to GATE_INJ_SIGNAL/SIG_SYS).
+# The falsifiable content is the COMPARISON OF TWO DIFFERENT CONSTRUCTIONS: the proportional-reading ceiling
+# must come out BELOW the absolute-reading ceiling V5a claims, i.e. the hostile reading STRIPS the improvement.
+cap_abs_pt = (RA_POINT - 1) / SIG_SYS
+print(f"      against the ABSOLUTE-reading ceiling V5a claims at the point value: {cap_abs_pt:.2f} sigma")
+check(cap_prop < cap_abs_pt,
       f"V5b under the fully-proportional reading the ceiling is {cap_prop:.2f} sigma and is EXACTLY "
-      f"kernel-invariant. Two consequences, one for each side of the ledger: (i) 3 sigma is reachable on this "
-      f"reading too, so V5a's conclusion is robust to the hostile assumption; (ii) it exposes that Amendment "
+      f"kernel-invariant -- ROUTE A EARNS ZERO IMPROVEMENT ON THIS READING, which is the honest statement and "
+      f"is what this check now asserts (the previous form could not fail). Two consequences, one for each side "
+      f"of the ledger: (i) 3 sigma is nominally reachable on this reading, but NOT because of Route A -- "
+      f"alpha=2 would already have been at {cap_prop_a2:.2f}, so V5a's improvement is specific to the ABSOLUTE "
+      f"reading and does not survive the proportional one; (ii) it exposes that Amendment "
       f"7's {A7_CEILING}-sigma cap was itself an artefact of treating a signal-calibrated systematic as "
       f"absolute -- if sigma_sys is even partly proportional, the alpha=2 front was never as dead as "
       f"{A7_CEILING} sigma implied. The truth is between the two readings and the frozen document does not "
@@ -696,7 +709,10 @@ s_check_y = yN_rA
 S_direct = math.exp(-math.sqrt(s_check_y))
 S_viamu = 1.0 - float(mu(float(x_of_y_routeA(s_check_y))))
 print(f"  at y_extN = {s_check_y:.5f}:  e^-sqrt(y) = {S_direct:.8f}   1 - mu(x) = {S_viamu:.8f}")
-check(abs(S_direct - S_viamu) < 1e-9 and abs(S_direct - (1.0 - 1.0 / float(nu(s_check_y)))) < 1e-12,
+# TAUTOLOGY PARTLY FIXED 2026-08-03: the conjunct `S_direct == 1 - 1/nu(y)` is the kernel definition
+# rearranged and cannot fail. The round-trip S_viamu, which goes through the numerical x(y) inversion and back
+# through mu, DOES test something, so that is the conjunct retained.
+check(abs(S_direct - S_viamu) < 1e-9,
       f"V6a the gate's amplitude factor is identified in closed form and cross-checked two ways: "
       f"S = 1 - mu = 1 - 1/nu = e^-sqrt(y) to {abs(S_direct-S_viamu):.1e}. Route A makes the hybrid gate's "
       f"amplitude EXACTLY the kernel's Newtonian residual, which is a genuine structural simplification and "
@@ -774,10 +790,13 @@ print("  " + "-" * 90)
 cub = {}
 for s_kau in (2., 10., 20., 30.):
     L = ReG(Omega(M_WB, s_kau * KAU), OMC["lo"])   # -> (s/r_gate)^3 in the Omega >> omega_c limit
-    d_rA, d_a2 = amp_rA * L, amp_a2 * L
-    cub[s_kau] = d_rA
-    print(f"  {s_kau:>9.0f}{L:>17.5f}{d_rA:>18.5f}{d_rA/SIG_FIT_30K:>12.2f}{d_a2:>19.5f}"
-          f"{d_a2/SIG_FIT_30K:>12.2f}")
+    # renamed from d_rA/d_a2: those names hold the a0-degeneracy price set ~240 lines above, and reassigning
+    # them here made V7(c) print 0.03 sigma_tot where the correct 1.87 belongs -- reading as a 38x FALL in a
+    # price that actually RISES. Caught by adversarial verification 2026-08-03.
+    cub_rA, cub_a2 = amp_rA * L, amp_a2 * L
+    cub[s_kau] = cub_rA
+    print(f"  {s_kau:>9.0f}{L:>17.5f}{cub_rA:>18.5f}{cub_rA/SIG_FIT_30K:>12.2f}{cub_a2:>19.5f}"
+          f"{cub_a2/SIG_FIT_30K:>12.2f}")
 check(cub[30.] / SIG_FIT_30K > 1.0 and cub[2.] / SIG_FIT_30K < 0.05,
       f"V6d *** A SHARPENING THAT CUTS BOTH WAYS: under Route A the GATED branch's own prediction reaches "
       f"{cub[30.]:.4f} = {cub[30.]/SIG_FIT_30K:.2f} sigma_fit by 30 kAU (alpha=2: "

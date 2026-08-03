@@ -701,6 +701,128 @@ rms 0.0191. Eccentricity bracket: flat-e truth under thermal-e model shifts
 gamma by −0.0150 (flagged systematic, §1.5). DR3 dry run: §1.6 numbers,
 802 deep pairs (y < 0.3, canonical).
 
+
+> ### 🚨 AMENDMENT 8 — 2026-08-03, ADDED IN THE OPEN BEFORE DR4. READ BEFORE SCORING.
+>
+> **THE FRAMEWORK HAS CHANGED ITS KERNEL, AND THE WIDE-BINARY TARGET MOVES BY A FACTOR 5.10 IN THE
+> OBSERVABLE.** The two ranges do not overlap, so this is an amendment-grade move and not a rounding drift.
+> Filed with the halves separated: the target move and the enforceability gain HELP the framework; three
+> withdrawals, two new declared risks and one refused headline HURT it.
+>
+> **(a) WHY THE KERNEL CHANGED.** The framework's power-law kernels fail the solar system. α=1 forces a
+> constant a₀/2 sunward anomaly at 1279× the Earth/Mars bound with no external-field relief; α=2 softens it to
+> a 1/g tail, which therefore binds at the *lowest*-acceleration body — the Sun, whose Jupiter-driven reflex
+> sits at only ≈2233 a₀ — leaving 8.5× (canonical) / 12.4× (alt) the Mars ranging budget after a full
+> Levenberg–Marquardt ephemeris fit. **"Route A" replaces the power-law approach to Newton with an exponential
+> one:** ν(y) = 1/(1 − e^−√y), y = g_bar/a₀. At the Sun that suppresses the anomaly by 3.3×10¹³ and the
+> departure is exponentially small *in the action* (fractional 2.7×10⁻²² at the Sun). The kernel has a
+> Bekenstein–Milgrom field theory whose free function is derived in closed parametric form and proved convex,
+> elliptic, ghost-free, subluminal, with positive phantom density and an exact BTFR.
+>
+> **(b) THE NEW IN-FORCE TARGET.** γ_v = **1.1582**, full range **1.1311–1.1964** on the radial-average
+> convention; **1.1339–1.2007** on the magnitude-average convention. Both are carried, because §1.1's frozen
+> headline 1.1015 was produced by the *magnitude* convention and the two must not be silently interchanged.
+> This supersedes Amendment 4(d)'s and Amendment 7's γ_v = 1.0310 (range 1.0218–1.0472). In the observable,
+> (γ_v − 1) goes 0.0310 → 0.1582. **Route A's entire range sits above the whole α=2 range.**
+>
+> **(c) THE GAIN IS REAL, NOT AN ARTEFACT — VERIFIED RATHER THAN ASSUMED.** The obvious worry is that an
+> exponential kernel is simply closer to Newtonian and the front has lost diagnostic power. It is the
+> opposite. At the wide-binary external field x_ext = 1.89929 the closure inversions give ν(y_extN) =
+> **1.47342 (Route A)** against 1.13014 (α=2), 1.29733 (α=1) and 1.52651 (Milgrom "simple"). Route A is
+> *farther* from Newtonian at wide-binary accelerations than either retired kernel, sitting just inside
+> "simple". Its Newtonian collapse happens at *large* y — ν−1 = 3.7×10⁻⁴⁴ at y = 10⁴ against α=2's
+> 5.0×10⁻⁹ — which is the ephemeris regime, not this one.
+>
+> **(d) STANDS AND STRENGTHENS: a Newtonian 2–30 kAU result remains evidence AGAINST, and now enforceably
+> so.** A measured γ̂ = 1.000 sits **4.74–7.10 σ_tot** from the Route A target at the frozen N = 30,000, above
+> 3 even at the worst corner, where α=2 gave only 0.79. Amendment 6's un-hedged rule — a Newtonian result is
+> evidence against and must not be re-hedged after DR4 — therefore becomes *enforceable* rather than merely
+> declared. This number is untouched by (g) below: under a Newtonian truth the estimator's shape bias is
+> identically zero, because γ_inf = 1 fits exactly.
+>
+> **(e) WITHDRAWN — Amendment 4(e)(ii).** Its claim that *"γ_v∥ stays sub-Newtonian on all 4/4
+> (0.9592–0.9688)"* is **Route-A-false**: γ_∥ is **super-Newtonian on 4/4 corners (1.0235–1.0598)**. That
+> claim was α=2-specific and is withdrawn rather than quietly re-scoped. It does **not** touch (f): the
+> *sign* of the anisotropy is unaffected.
+>
+> **(f) UNCHANGED AND STRONGER: the pre-registered anisotropy falsifier.** Perpendicular pairs still show the
+> larger boost on 4/4 corners (worst margin 0.1577), so Amendment 2(f)/3(c)'s falsifier — an opposite-sense
+> anisotropy at >3σ — is intact and is in fact *stronger* under Route A (spread 0.1758 against α=2's 0.0994).
+>
+> **(g) REFUSED AS A HEADLINE: "3σ reachable / §1.5's expected DECIDABLE restorable".** This is registered as
+> **CONDITIONAL, pending the frozen Monte Carlo**, not as a result. On the frozen document's *literal
+> absolute* error model the infinite-N ceiling rises from Amendment 7's 1.55σ to **6.55–9.82σ** and 3σ needs
+> N ≈ 4,597–10,321, below the assumed 30,000. But two readings break it. (i) Folding this front's own newly
+> identified shape systematic (+0.0373) into σ_sys in quadrature drops the ceiling to **3.10–4.64σ** and
+> pushes the worst-corner N to **93,122 — above the frozen N = 30,000**. (ii) Under a *fully proportional*
+> σ_sys reading the ceiling is 4.50σ and is **exactly kernel-invariant: Route A earns zero improvement**,
+> because a systematic calibrated at an injected excess cancels the signal exactly. Amendment 7's 1.55σ cap
+> was itself an artefact of treating a signal-calibrated systematic as absolute. **§1.5 is therefore NOT
+> restored by this amendment.**
+>
+> **(h) NEW DECLARED RISK — the nuisance-κ window FAILS under Route A.** Under Route A truth the pipeline's
+> nuisance κ lands at **1.0575–1.0959, outside the frozen pre-declared window κ ∈ [0.95, 1.05]**, whose
+> declared consequence is *"systematic-limited, no verdict — that outcome is reported, not repaired."* The
+> mechanism is σ-independent: the anchor bins are built on the premise that the boost is ≈1 for all γ on the
+> grid, but Route A's true boost at the anchor centres is 1.1006 (y = 5.62) and 1.0058 (y = 39.8). α=2 passes
+> both σ treatments, α=1 fails one, **Route A fails both.** This is registered now, in advance, as a live
+> route to a no-verdict outcome.
+>
+> **(i) NEW DECLARED RISK — the contamination guard is ALREADY breached on one corner.** On the *magnitude*
+> convention — the one §1.1's headline used — the alt-footing / primary-g_ext corner predicts **1.20069, i.e.
+> 0.00069 ABOVE** the frozen >1.20 no-verdict edge, not 0.0036 below it as the radial convention alone
+> suggests. On that corner **a genuine framework detection is pre-declared UNSCOREABLE.** Quoting the margin
+> on one orientation convention only would have truncated this cost at its convenient end.
+>
+> **(j) CORRECTED IN THE SOURCE AND NOT CARRIED FORWARD.** A claimed *new, Route-A-caused* estimator
+> systematic is **withdrawn**: substituting Route A's own y_E into the frozen shape gives bias +0.0405, which
+> is *larger* than the frozen α=1 y_E's +0.0373 — so the α=1 hard-coding slightly *helps* — and the sign
+> reverses under the pipeline's actual fitting routine (−0.0416 flat, −0.0891 count-weighted; negative in all
+> six treatments across all three kernels). The relative bias is **identical across kernels (23% / 24% /
+> 23%)**, so it is a pre-existing functional-form defect of the rational shape y_E/(y_E+y), which cannot
+> represent a curve flat to y ≈ 1 then falling exponentially. It is neither new nor Route-A-caused. **A
+> one-sided systematic registered in the wrong direction is worse than none registered**, which is why it is
+> withdrawn rather than filed.
+>
+> **(k) SCORING — Amendment 7(e) REAFFIRMED, and it already covers the collision.** The framework's own Route
+> A prediction 1.1582 falls in the bin pre-declared *"MG-side; MI disfavored per z"*, and the frozen MG target
+> 1.137 now lies **inside** Route A's framework-MI range, only 0.77 σ_tot from the point value. A scorer
+> executing the frozen table on a measurement at the framework's own prediction could therefore record the
+> framework as disfavored, and cannot distinguish the framework's prediction from the row this document
+> forbids presenting as the framework's. Amendment 7(e)'s requirement already forbids the single-label reading
+> the collision depends on and is **reaffirmed without weakening**: report the raw γ̂ with σ_fit and BOTH
+> distances — to 1.000 and to 1.1582 — never a single verdict word.
+>
+> **(l) THE TRAP STAYS AT 2 ROUTES, and the fork becomes more decidable.** The hybrid gate S×L branch survives
+> Route A, so there remain two independent routes to a Newtonian reading, not one. Route A makes the gate's
+> amplitude *exactly* the kernel's Newtonian residual, S = 1 − μ = e^−√y — a structural simplification
+> available in neither power-law kernel. At 10 kAU the gated prediction is 1.00064–1.00117, observationally
+> Newtonian, under both gating conventions. But the two branches are now **8.2–10.2 σ_fit apart against 1.6 at
+> α=2**, so whichever branch DR4 picks, it picks it harder. **New sharpening, cutting both ways:** the gated
+> branch is no longer flat-Newtonian across the frozen window — it predicts an internal rise reaching
+> 1.56 σ_fit by 30 kAU while staying 0.001 σ_fit at 2 kAU, making the gated branch falsifiable *within* the
+> frozen window.
+>
+> **(m) THE a₀-DEGENERACY FLAG SURVIVES AND MUST NOT BE LOOSENED — and its price rises.** In relative terms
+> the sensitivity is nearly kernel-invariant (a 28% a₀ change moves (γ_v − 1) by 33% under Route A against 32%
+> at α=1), but in absolute measurable terms it grows from **1.15 to 1.87 σ_tot**. A DR4 measurement is
+> therefore *more* a₀-sensitive than before. This is still not permission to report a DR4 result as measuring
+> a₀ = 9.36e-11.
+>
+> **UNCHANGED.** §2 remains void per Amendment 5. The estimator, the 16-row cut table, the error model itself,
+> the strictness ladder, the NSS screen and the frozen N = 30,000 are untouched. κ = ½ remains **fitted, not
+> derived** — and note that the SPARC κ-discrimination this corpus reported at 2.2σ does *not* survive the
+> kernel change on Route A's own kernel (it flips to 0.66σ the other way), though three of four transition
+> shapes including the shape-free deep limit still lean κ = ½, none at 3σ. No measurement moves.
+>
+> Source: `real_research/reviews/mi_route_a_wb_gamma_v_2026.py` (26 checks, exit 0, both footings) on the
+> single kernel definition in `real_research/reviews/mi_route_a_kernel.py` (6 checks, exit 0). Adversarially
+> verified from scratch by an independent re-derivation (brentq closure inversion, scipy.quad, Richardson
+> extrapolation, a₀ re-derived from H₀ and Ω_Λ), which reproduced every corner to five decimals and forced
+> items (g), (h), (i) and (j) of this amendment. Two tautological check conjuncts, one variable-reassignment
+> bug that printed a falling a₀ price where a rising one belongs, and four stale docstring numbers were fixed
+> in the source on 2026-08-03 before this amendment was filed.
+
 ---
 
 ## SECTION 2 — s^TX SME boost-dipole template (Door 4B, Front A)
