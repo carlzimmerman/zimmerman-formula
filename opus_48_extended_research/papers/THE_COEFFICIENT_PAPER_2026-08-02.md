@@ -241,7 +241,27 @@ self-gravity of $\rho_\Lambda$ at $R_H$ is exactly $\tfrac12 cH_\Lambda$, becaus
    solution moreover has no MOND branch at all: with Gauss's law, $E_g/a_N\to1$ exactly in the weak field.
 
 So: **the shape, the mechanism, and $2cH_\Lambda$ are prior art; the rational coefficient $\kappa=\tfrac12$,
-its measurement in §4, and the two theorems in §5–6 are the contribution.** Also cited for the record:
+its measurement in §4, and the two theorems in §5–6 are the contribution.**
+
+**And two facts about the action question, since it is the standing objection to modified inertia.** First,
+the phenomenology used here has a published home: **Milgrom (2022)** constructs modified-inertia models at the
+level of the equations of motion, $I = \mu[\mathcal{A}(\omega)/a_0]$, stating explicitly that such theories
+"are not necessarily governed by an action"; its sole admissibility requirement is that $x\mu(x)$ be
+monotonic, which both kernels here satisfy. Second, **Milgrom's (1994) analyticity condition on the nonlocal
+kinetic function excludes every interpolating function in use** — his own 1983 "standard" $\mu$, the "simple"
+$\mu$, $y^2/(1+y^2)$, and McGaugh's $1-e^{-y}$ — because an analytic $f$ forces $\mu-1 = O((a_0/a)^4)$ while
+every $\mu$ fitted to data has an $O((a_0/a)^1)$ or $O((a_0/a)^2)$ tail. That is a statement about the
+narrowness of his class (34), not about any particular kernel. Inverting his eq. (60) for the kernels used here
+gives, in closed form (new; previously available only by quadrature),
+
+$$f_1(x) = \tfrac12\sqrt{x+4}-\sqrt{x}+\tfrac{x}{4}\,\mathrm{asinh}\tfrac{2}{\sqrt x},
+\qquad f_2(x) = \sqrt{1+x}-x\,\mathrm{asinh}\tfrac{1}{\sqrt x},$$
+
+both satisfying $\mu = f - xf'$ identically. We attach the caveat that $f_1$ is the same function as a local
+Lagrangian excluded on Ostrogradsky grounds, so admissibility on circular orbits carries no information about
+ghost-freedom. And that class cannot constrain $\kappa$: $(f,a_o)\to(f(c\,\cdot),a_o/\sqrt c)$ is the same
+action with a different $a_o$, so the cost of spanning the $2Z = 11.58$ gap between the two published values of
+the same constant is exactly zero — as Milgrom notes, the constant "may be absorbed into $a_o$." Also cited for the record:
 **Milgrom (1994)** Ann. Phys. **229**, 384 (the nonlocality theorem, and the exactness of the algebraic
 relation for circular orbits); **Milgrom (2022)** PRD **106**, 064060 (modified inertia in Fourier space);
 **Bekenstein (2004)** PRD **70**, 083509 and **Bekenstein & Milgrom (1984)** ApJ **286**, 7; **Shariati &

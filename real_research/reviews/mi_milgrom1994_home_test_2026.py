@@ -103,7 +103,17 @@ vs = [f_phys(x) for x in xs]
 check(all(v > 0 for v in vs) and all(vs[i] > vs[i + 1] for i in range(len(vs) - 1)),
       "T1c POSITIVE and MONOTONE DECREASING over 16 decades -- no branch cut, no sign flip, no pathology")
 print("""
-  => *** THE FRAMEWORK'S alpha=2 KERNEL IS ADMISSIBLE IN MILGROM 1994. *** The required kinetic function
+  => *** SCOPE NARROWED 2026-08-02: ADMISSIBLE ON FOUR OF MILGROM'S FIVE STATED CONDITIONS. *** This script
+     tested f(0)=1, the 2/3 deep-MOND normalisation, positivity and monotonicity -- all of which reproduce --
+     but NOT the analyticity condition stated in the same paragraph as f(0)=1 ("f(z) has to be non-singular at
+     z=0 in the complex plane"). The inverted f FAILS it: logarithmically for alpha=2, by a sqrt branch point
+     for alpha=1. *** BUT THIS IS NOT A FRAMEWORK-SPECIFIC DEFECT: the same condition excludes EVERY
+     interpolating function in use -- Milgrom's own 1983 'standard' mu, the 'simple' mu, y^2/(1+y^2), and
+     McGaugh's 1-exp(-y) -- because an analytic f forces mu-1 = O((a0/a)^4) and every mu in use has an
+     O((a0/a)^1) or O((a0/a)^2) tail. It is a statement about the narrowness of class (34). *** See
+     reviews/mi_eq34_inversion_banked_2026.py (7/7), which also supplies the CLOSED FORMS this script obtained
+     only by quadrature: f_1(x) = sqrt(x+4)/2 - sqrt(x) + (x/4) asinh(2/sqrt(x)),
+     f_2(x) = sqrt(1+x) - x asinh(1/sqrt(x)). The required kinetic function
      is f(x) = x INT_x^inf dt/(t^2 sqrt(1+t)), and it satisfies every condition the construction imposes.""")
 
 
