@@ -1,7 +1,7 @@
 # STANDING
 
 **de Sitter–Unruh modified inertia — where the programme actually stands**
-Last updated **2026-07-30** (rev. 4). Maintained as the single entry point: what is claimed, what is earned,
+Last updated **2026-08-03** (rev. 5). Maintained as the single entry point: what is claimed, what is earned,
 what is postulated, what is live, and what is closed. If a statement anywhere in this repository
 conflicts with this file, this file is newer unless it says otherwise.
 
@@ -24,6 +24,102 @@ $0<s<1$ is *simpler* than the old one. **What is withdrawn is the word "exact": 
 $g_{\rm obs}^2=g_{\rm bar}^2+a_0g_{\rm bar}$ is an $\alpha=1$ identity and is no longer claimed.**
 Reason: $\alpha=1$ costs 1279× the Earth ephemeris bound and 257× the disformal construction's own
 $B<1$ premise, and buys 0.0033 dex on SPARC. See §5.0 and `mi_alpha2_migration_2026.py`.
+
+**⚠️⚠️ THE KERNEL CHANGED AGAIN, 2026-08-02 — "ROUTE A". READ THIS BEFORE ANY $\alpha=2$ STATEMENT BELOW.**
+Everything downstream of §0 in this file was written for $\alpha=2$ and is left in place as the record of what
+was established under that kernel. Where this block and the body conflict, **this block is newer.** The
+interpolation is now **exponential**:
+
+$$\nu(y)=\frac{1}{1-e^{-\sqrt{y}}},\qquad y=\frac{g_{\rm bar}}{a_0}
+\qquad\Longleftrightarrow\qquad \mu=1-e^{-u},\quad x=\frac{u^2}{\mu},\quad u=\sqrt{y}.$$
+
+Single importable definition: [`mi_route_a_kernel.py`](real_research/reviews/mi_route_a_kernel.py) (6/6). The two
+forms are exact inverses **in spherical symmetry only** — outside it they differ, which is why every disc number
+had to be re-solved rather than rescaled.
+
+**WHY.** $\alpha=2$ did not survive the solar system either. Its $1/g$ residual tail therefore binds at the
+*lowest*-acceleration body — the **Sun**, whose Jupiter-driven reflex sits at only $\approx2233\,a_0$ against
+Earth's $6.3\times10^7\,a_0$ — leaving **8.5× (canonical) / 12.4× (alt)** the Mars ranging budget after a full
+Levenberg–Marquardt ephemeris fit. Route A suppresses the Sun's anomaly by $3.3\times10^{13}$, and the departure
+from Newton is exponentially small **in the action** (fractional $2.7\times10^{-22}$ at the Sun). **The
+ephemeris liability — the sharpest open item in this corpus for a month — is discharged.**
+[`mi_route_a_exponential_kernel_2026.py`](real_research/reviews/mi_route_a_exponential_kernel_2026.py) (9/9).
+
+**WHAT ROUTE A GAINED — a field theory whose free function is DERIVED, not posited.**
+[`mi_route_a_field_theory_2026.py`](real_research/reviews/mi_route_a_field_theory_2026.py) (11/11).
+$S=-\int d^3x\,[(a_0^2/8\pi G)\mathcal F(X)+\rho\phi]$ with $\mathcal F'=\mu=1-e^{-\sqrt{g_{\rm bar}/a_0}}$
+*exactly*; $\mathcal F\to\frac23X^{3/2}$ deep and $\mathcal F\to X-C_0+4e^{-s}(s^3+3s^2+6s+6)$, $s=X^{1/4}$,
+Newtonian. **Proved:** strictly convex, ghost-free, strictly elliptic, **subluminal**, positive phantom density,
+and — via convexity — existence, uniqueness, Newton's third law, standard centre-of-mass motion, a virial
+theorem and an exact BTFR with coefficient 1. **⚠️ This is a modified-GRAVITY (Bekenstein–Milgrom) realisation.
+The 2026-08-01 no-goes on the MI *action* stand: what has a healthy variational home is the KERNEL, not MI.**
+
+**⚠️ WHAT ROUTE A COST, and it is the thing the corpus most wanted to keep.** The SPARC $\kappa$ discrimination
+does **not** survive on Route A's own kernel. Computed like-for-like, four shapes, identical conventions
+([`mi_routeA_a0_estimator_invariance_2026.py`](real_research/reviews/mi_routeA_a0_estimator_invariance_2026.py),
+7/7):
+
+| transition shape | preferred $a_0$ | $\Delta\chi^2$ | $\sigma$ | favours |
+|---|---|---|---|---|
+| $\alpha=2$ (superseded) | 1.192× | +110.6 | 2.39 | $\kappa=\tfrac12$ |
+| $\alpha=1$ (retired) | 1.154× | +90.4 | 2.16 | $\kappa=\tfrac12$ |
+| **deep limit (shape-FREE)** | 1.059× | +46.3 | **1.55** | $\kappa=\tfrac12$ |
+| **exponential (Route A)** | 0.938× | −8.4 | 0.66 | $\kappa=1/2\pi$ |
+
+**Two corrections owed, in opposite directions.** (i) The banked "2.2σ favours $\kappa=\tfrac12$" was a
+**one-shape** result — and the shape was $\alpha=1$, because the anchor script's `g_pred` is literally
+$\sqrt{g_{\rm bar}^2+g_{\rm bar}a_0}$. **The corpus's headline profile-likelihood $a_0$ has always been an
+$\alpha=1$ number.** (ii) But it is *not* a pure shape artefact either: the **shape-free** deep-limit estimator
+also leans $\kappa=\tfrac12$, at 1.55σ, and 3 of 4 shapes lean that way. **No shape reaches 3σ. The honest
+verdict is that SPARC does not RESOLVE $\kappa$ — it does not refute it either.**
+
+**⚠️ AND AN OWED CORRECTION INDEPENDENT OF ROUTE A: the $a_0$-line IS the $\alpha=1$ identity.**
+$g_{\rm obs}^2-g_{\rm bar}^2=a_0g_{\rm bar}$ written as a straight line *is* the retired kernel, so it is not
+shape-free but shape-**assuming**. Fitted to data generated at a known $a_0$ it returns $a_0$ exactly on
+$\alpha=1$ data (bias $+0.0000\%$) but is biased **$+10.3\%$ on Route A data and $-83.6\%$ on $\alpha=2$ data**.
+Since $\alpha=1$ is retired, **the "sharpest single-number $a_0$ constraint" carries an unquoted shape
+systematic comparable to or larger than the 7.87% $\kappa=\tfrac12$ vs $1/2\pi$ gap it is used to probe.** The
+shape systematic across four kernels on the full SPARC RAR is **26.3%**; it collapses with depth as the shared
+deep-MOND limit requires, but $\sigma(a_0)_{\rm stat}$ grows about as fast, so the best total error over the
+depths tried is 8.49% and **no depth resolves the $\kappa$ gap at better than 2σ**.
+
+**THE SEVEN KERNEL-DEPENDENT FRONTS, ALL RE-SOLVED UNDER ROUTE A** (each adversarially verified; commit
+`d7733f9f`):
+
+| front | $\alpha=2$ | Route A | |
+|---|---|---|---|
+| wide-binary $\gamma_v$ | 1.0310 | **1.1582** | 5.10× signal; **Amendment 8 filed** |
+| cluster $\eta(R_{500})$ | 2.364 | **2.153** | $+0.373$ dex; 3.73σ at the tight floor |
+| Milky Way joint $\chi^2$ | 56.9 | **$+15.6$ better** | box clears; see below |
+| EFE dipole $N(3\sigma)$ | 1101 | 1385 | **worse** by 25% |
+| cluster $\sigma$-spread | — | mixed | inner edge 1.99× worse, outer 1.70× better |
+| $s^{TX}$ SME margin | $1.03\times10^6$ | $10^{354}$ | **dead, not safe — retire as a test** |
+| $\nu_{\rm vert}/\nu_{\rm rad}$ | 1.024 | 1.0243 | **non-diagnostic** |
+
+**⚠️ THE MILKY WAY: A COMMITTED CONCLUSION IS WITHDRAWN.** `mi_aqual_route_a_refit_2026.py` L7a reported "ZERO
+cells clear the 2σ box, best worst-constraint 2.07σ". **That was a GRID ARTEFACT** of its 0.15 step in $f_M$.
+Three independent implementations now agree the box **clears** on the anchor's own *unmodified* error bars with
+only the original **two** parameters
+([`mi_routeA_box_clearance_verified_2026.py`](real_research/reviews/mi_routeA_box_clearance_verified_2026.py),
+8/8): Route A **1.502σ** canonical at $(f_M,f_R)=(1.90,0.78)$ and 1.838σ alt, while **$\alpha=2$ does NOT clear
+(3.423 / 3.068)** under the identical search — which is what makes it a statement about Route A rather than
+about the optimiser. **Quoted with its ceiling:** "all five inside 2σ" is a *minimax* criterion, not a good fit
+— $\chi^2=8.98$ on 3 effective dof, $p=0.030$. **And with its width-independent cost:** Route A's *floor* on
+$\Sigma_{\rm dyn}(|z|<1.1\,\mathrm{kpc})$ over all prior-respecting cells is **78.5 / 82.7**, above the highest
+published determination (74), so the kernel over-delivers the local vertical force everywhere; nothing clears at
+Bovy & Rix's own $68\pm4$ — the same paper, stars and fit that supply the $\Sigma_*=38\pm4$ prior the model uses.
+
+**HOUSEKEEPING DONE 2026-08-02/03: seven live tautologies removed**, three of them from the committed AQUAL
+anchor `mi_aqual_mond_refit_2026.py` (two `check(True)` and one trailing `or True`), replaced by checks that can
+fail — including one that now asserts the **against-interest** result that the literature's simple $\mu$ fits
+the Galaxy better than $\alpha=2$ ($\chi^2$ 21.9 vs 56.9). Also fixed: a "mesh convergence" test that measured
+nothing (in that solver $n$ extends the outer domain rather than refining; resolution is set by `growth`), and a
+self-validation that declared a field-equation identity verified exactly where its true residual is 28–37%.
+
+**UNCHANGED BY ROUTE A.** $a_0$'s meaning and value as an **input**, the deep-MOND limit, the BTFR, and
+$a_0=\tfrac12c\sqrt{G\rho_\Lambda}$ as a **postulate** — $\nu\sqrt{y}\to1$ is common to every kernel considered.
+$\kappa=\tfrac12$ remains **FITTED, NOT DERIVED**. Both footings remain live, and the alt footing at 1.207×
+now sits *inside* the shape spread, so the footing fork and the shape systematic are comparable in size.
 
 **⚠️ CREDIT, CORRECTED 2026-07-30 (rev. 4) — the previous line understated it.** It is not merely the
 same *kernel*. **Milgrom (1999, *Phys. Lett. A* **253**, 273, Eqs. 6–9) derives this exact LAW from the
