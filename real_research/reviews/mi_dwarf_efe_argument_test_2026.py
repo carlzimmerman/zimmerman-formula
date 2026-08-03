@@ -216,13 +216,20 @@ for r, rr in sorted(zip(keep, ratios), key=lambda t: float(t[0]["d"]["dist_kpc"]
 print(f"\n  regression ln(MI/MG) = a + b ln(D):   b = {sl:+.4f} +- {se:.4f}   ({abs(sl/se):.1f} sigma)")
 print(f"  span of MI/MG across the sample: {ratios.min():.3f} -> {ratios.max():.3f} "
       f"= {100*(ratios.max()/ratios.min()-1):.1f}%")
-check(abs(sl / se) > 2.0 and ratios.max() / ratios.min() > 1.02,
-      f"V4a *** THE DIFFERENCE IS A TREND, NOT AN OFFSET, AND THAT IS WHAT MAKES IT TESTABLE. *** ln(MI/MG) "
-      f"scales as D^{sl:+.3f} +- {se:.3f}, i.e. {abs(sl/se):.1f} sigma away from distance-independent, and the "
-      f"ratio spans {ratios.min():.3f} to {ratios.max():.3f} ({100*(ratios.max()/ratios.min()-1):.1f}%) across "
-      f"the sample. A per-dwarf stellar mass-to-light ratio can absorb an overall normalisation but CANNOT "
-      f"produce a systematic trend with galactocentric distance, because Upsilon is not a function of where a "
-      f"satellite sits. So this trend is the diagnostic content and the offset is not")
+check(ratios.max() / ratios.min() > 1.02 and sl > 0,
+      f"V4a THE DIFFERENCE IS A TREND, NOT AN OFFSET -- stated DESCRIPTIVELY, because it is not a detection. "
+      f"ln(MI/MG) is well described by D^{sl:+.3f} and the ratio spans {ratios.min():.3f} to {ratios.max():.3f} "
+      f"({100*(ratios.max()/ratios.min()-1):.1f}%) across 35-258 kpc. A per-dwarf Upsilon can absorb an overall "
+      f"normalisation but cannot produce a systematic trend with galactocentric distance, so the trend is the "
+      f"diagnostic content and the offset is not. *** WITHDRAWN 2026-08-03 by mi_dwarf_efe_maths_audit_2026.py "
+      f"(M4a): an earlier version of this check reported the OLS standard error on the slope as "
+      f"'{abs(sl/se):.1f} sigma away from distance-independent'. That is NOT a detection significance. MI/MG is "
+      f"computed entirely from (M_V, r_half, D) through the kernel -- NO measurement enters it -- so the residual "
+      f"scatter about a power law is systematic spread from the dwarfs' differing internal fields, not noise. "
+      f"The audit shows the quoted 'sigma' grows 3.4 -> 10.6 on synthetic data of identical slope and spread as "
+      f"N goes 21 -> 200, i.e. it is a sample-size artefact. This is the corpus's own "
+      f"scatter-as-parameter-error defect, THIRD occurrence. Whether the trend is DETECTABLE depends on the "
+      f"observed sigma errors, which V5 handles and which say it is not ***")
 
 
 banner("V5  WHICH PRESCRIPTION DOES THE DATA PREFER? -- Upsilon FREE, so only the trend can matter")
@@ -348,9 +355,10 @@ print(f"""  WHAT WAS ESTABLISHED:
      degrades exactly in the regime this lane lives in. Every number below inherits that.
    * MI predicts HIGHER than MG for all {len(keep)} tide-screened satellites, ratio {ratios.min():.3f}-{ratios.max():.3f}
      (V3a) -- a uniform sign, so a property of the prescription rather than of one object.
-   * *** THE DIFFERENCE IS A TREND WITH DISTANCE, D^{sl:+.3f} +- {se:.3f} ({abs(sl/se):.1f} sigma from flat),
-     spanning {100*(ratios.max()/ratios.min()-1):.1f}% across the sample (V4a). *** That is genuinely new and it
-     is the right shape for a test, because Upsilon can absorb an offset and cannot absorb a trend.
+   * the difference is a TREND with distance, well described by D^{sl:+.3f} and spanning
+     {100*(ratios.max()/ratios.min()-1):.1f}% across the sample (V4a) -- the right SHAPE for a test, since
+     Upsilon can absorb an offset and not a trend. *** But NOT a detection: the slope's OLS standard error is
+     not a significance, because MI/MG contains no measurement (withdrawn per the maths audit, M4a). ***
 
   WHAT IT DOES NOT ESTABLISH, and this is the larger half:
    * NEITHER PRESCRIPTION FITS. Reduced chi2 is {FIT[('canon','MI')][0]/(len(keep)-1):.1f} (MI) and
