@@ -248,10 +248,15 @@ sig_flip = math.sqrt(abs(ch_2pi - ch_half) / DEFL)
 check(ch_2pi < ch_half,
       f"R4a *** ROUTE A COSTS THE FRAMEWORK ITS ONE MEASURED RESULT, AND THIS IS THE FINDING OF THE RUN. *** On "
       f"the exponential kernel Dchi2 = {ch_2pi-ch_half:+.1f}, i.e. Milgrom 2020's kappa = 1/2pi is now "
-      f"FAVOURED over kappa = 1/2 by {sig_flip:.2f} sigma -- where the in-force alpha=2 kernel gave +90.4 and "
-      f"2.2 sigma the OTHER way. The discrimination does not survive the kernel change; it flips sign and "
-      f"dissolves into a wash that leans against the framework. Neither result is significant on its own "
-      f"({sig_flip:.2f} sigma), but the 2.2 sigma headline CANNOT be quoted under Route A")
+      f"FAVOURED over kappa = 1/2 by {sig_flip:.2f} sigma. The discrimination does not survive the kernel "
+      f"change on THIS kernel; it flips sign and leans against the framework, though at only {sig_flip:.2f} "
+      f"sigma. *** COMPARATOR CORRECTED 2026-08-02 by mi_routeA_a0_estimator_invariance_2026.py (7/7), which "
+      f"computes all four shapes like-for-like instead of quoting from memory as this line originally did: the "
+      f"+90.4 / 2.16 sigma figure is the ALPHA=1 kernel (the anchor script's own g_pred), NOT alpha=2. Computed, "
+      f"alpha=2 gives +110.6 / 2.39 sigma. And the fuller picture is more favourable than 'the 2.2 sigma was a "
+      f"shape artefact': THREE of four shapes lean kappa = 1/2, including the SHAPE-FREE deep limit at 1.55 "
+      f"sigma. The exponential is the one shape that leans the other way. No shape reaches 3 sigma, so the "
+      f"honest verdict is that SPARC does not RESOLVE kappa -- not that it refutes it ***")
 
 # where does the exponential kernel actually want a0? That is the diagnostic.
 print(f"\n  WHERE THE EXPONENTIAL KERNEL WANTS a0 -- the diagnostic for the flip:")
@@ -284,7 +289,10 @@ check(a0_best < A0_CANON,
       f"{a0_best*1e10:.4f}e-10 = {a0_best/A0_CANON:.3f}x canonical (grid argmin refined parabolically; the "
       f"earlier coarse 6-point grid reported 1.000x and that was a GRID ARTEFACT -- 0.921x was never sampled). "
       f"The exponential shape pulls the preferred a0 DOWN, toward Milgrom 2020's {A0_M20*1e10:.4f}e-10 "
-      f"({A0_M20/A0_CANON:.3f}x), where the in-force alpha=2 kernel on the same data pulled it UP to 1.077x. "
+      f"({A0_M20/A0_CANON:.3f}x), where alpha=2 on the same data pulls it UP to 1.192x (COMPUTED in "
+      f"mi_routeA_a0_estimator_invariance_2026.py; the 1.077x this line originally quoted was taken from memory "
+      f"and is close to what the BARE DEEP LIMIT prefers, 1.059x -- so the real alpha=2-to-exponential shift is "
+      f"27%, LARGER than the 15% first reported). "
       f"*** So the a0 a fit prefers is NOT shape-independent: the kernel choice and the coefficient measurement "
       f"are COUPLED, and the coefficient paper must carry that caveat ***")
 
@@ -341,12 +349,14 @@ print(f"""
              prediction, the sigma-spread amplitude and the cluster eta all sit on the kernel and must be
              recomputed before any of them is quoted under Route A.
    COST 5:   *** THE BIG ONE, AND IT WAS NOT ANTICIPATED: the kappa = 1/2 measurement DOES NOT SURVIVE. ***
-             The alpha=2 kernel gave Dchi2 = +90.4 (2.2 sigma) FOR kappa = 1/2 over Milgrom 2020's 1/2pi. On
-             the exponential kernel the same profile likelihood on the same 175 galaxies gives
-             {ch_2pi-ch_half:+.1f} ({sig_flip:.2f} sigma) the OTHER way, because the preferred a0 moves from
-             1.077x canonical DOWN to {a0_best/A0_CANON:.3f}x (R4b). Route A therefore costs the framework its
-             one measured, kappa-discriminating result -- and it teaches something independently: that result
-             was SHAPE-DEPENDENT all along.
+             Computed like-for-like across four shapes (mi_routeA_a0_estimator_invariance_2026.py, 7/7):
+             alpha=2 +110.6 (2.39 sigma) FOR kappa = 1/2, alpha=1 +90.4 (2.16 sigma) FOR, the SHAPE-FREE deep
+             limit +46.3 (1.55 sigma) FOR, and the exponential {ch_2pi-ch_half:+.1f} ({sig_flip:.2f} sigma)
+             AGAINST -- because the preferred a0 moves from 1.192x canonical DOWN to {a0_best/A0_CANON:.3f}x
+             (R4b). So Route A costs the framework the kappa-discriminating LEAN on its own kernel. Two
+             honesties owed in both directions: the result was SHAPE-DEPENDENT all along (no shape reaches
+             3 sigma, so SPARC never resolved kappa), AND it is not a pure shape artefact either, since the
+             shape-free deep-limit estimator leans kappa = 1/2 at 1.55 sigma.
    UNCHANGED: a0's meaning and VALUE as an input (R1a), the deep-MOND limit, the BTFR and the a0-line -- every
              deep-regime statement, because nu -> 1/sqrt(y) is common to all three kernels.
    NOT CLAIMED: the exponential shape is a POSTULATE. Route A trades one postulate for another and buys a
