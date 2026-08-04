@@ -4,15 +4,28 @@
 
 *2026-08-03. DOI [10.5281/zenodo.21782600](https://doi.org/10.5281/zenodo.21782600). All numerical claims are reproduced by public self-checking scripts, included in the record; see §6.*
 
-> **v2 (2026-08-03), correction of scope.** A self-audit (`mi_orbital_q_selfaudit_2026.py`, included) found that
-> v1's statement that the mechanism "cannot be made to yield a smaller" coefficient over-reached its class. The
-> $q = 2$ result is derived for inertia functionals of the **local de Sitter–Unruh temperature**; within that
-> class the audit *strengthens* it from an assumption to a theorem (the Newtonian and deep-MOND limits jointly
-> force the functional to be linear in $T$, and the $2\pi$ cancels in $q$, so $q = 2$ is not an artefact of the
-> Unruh normalisation). But functionals of the **full response** $\mathcal{F}(E)$ — where the gap-dependence of
-> $T_{\rm eff}$ is forced for every $\Omega \neq 0$, as §3 itself shows — were never computed, and are not closed
-> by this paper. The scoped claim replaces the unscoped one throughout. The audit's arithmetic runs against the
-> framework's own coefficient and is recorded here for that reason: see the note at the end of §3.
+> **v2 (2026-08-03), two corrections, both narrowing a closure claim.** Adversarial self-audit of v1 produced
+> two successive retractions on the day of release, both in the same direction — I had claimed a door was shut
+> when it was not. They are recorded together because the first was superseded before it reached the record.
+>
+> **(a) The unscoped no-go is withdrawn.** v1 said the mechanism "cannot be made to yield a smaller"
+> coefficient. That is a claim about *all* inertia functionals, but only functionals of the local de
+> Sitter–Unruh **temperature** were examined; functionals of the full response $\mathcal{F}(E)$, where §3's own
+> KMS result forces $T_{\rm eff}$ to be gap-dependent for every $\Omega \neq 0$, were never computed
+> (`mi_orbital_q_selfaudit_2026.py`).
+>
+> **(b) The "rigidity theorem" that briefly replaced it is *also* withdrawn.** The audit in (a) asserted that
+> within the temperature class the Newtonian and deep-MOND limits *jointly force* $q = 2$. They do not. The
+> Newtonian limit forces $f$ to be asymptotically linear; the deep limit reads $f'$ **at the floor**; nothing
+> connects two different points on $f$. The five candidates tested were all scale-free, for which the two
+> slopes coincide — five examples, not a theorem. The correct statement is the closed form derived in §3.3,
+> $q = 2c_1'/f'(T_{\rm GH})$, together with an explicit admissible $f$ delivering $q = 1/Z$ exactly
+> (`mi_crossover_master_formula_2026.py`, 14/14).
+>
+> **What survives unchanged:** the orbital invariance of $q$ (§3.1–3.2), the value $q = 2$ for Milgrom's own
+> $f = T$, and the entire 30.6% shape systematic of §4. **What is now open:** one door, not two — see §3.3. The
+> coefficient $\kappa = \tfrac12$ remains **fitted, not derived**, and §3.3 records the arithmetic that runs
+> against it.
 
 ---
 
@@ -35,9 +48,16 @@ worldline on the hyperboloid; and the full-response orbital correction is an $a$
 (verified to $10^{-16}$ over five decades in $a/H$) which cancels identically in the crossover ratio. The
 mechanism therefore returns Milgrom's coefficient: the gap to
 $q = \sqrt{3/32\pi}\,\cdot 2 = 0.173$ (i.e. $a_0 = \tfrac12 c\sqrt{G\rho_\Lambda}$) is a factor $11.6$, not a
-near miss. Within the class of inertia functionals of the local temperature this is a **theorem** — the
-Newtonian and deep-MOND limits jointly force linearity in $T$, and $q$ is blind to the $2\pi$ — but it is a
-class restriction: response-based functionals with a gap-dependent $T_{\rm eff}$ remain uncomputed.
+near miss. But $q = 2$ is **not** forced: for a general inertia functional $I = f(T) - f(T_{\rm GH})$ we derive
+the closed form $q = 2c_1'/f'(T_{\rm GH})$, where $c_1' = \lim_{T\to\infty}f(T)/T$, so the temperature class is a
+one-parameter family in $r \equiv f'(T_{\rm GH})/c_1'$ with $q = 2/r$. Milgrom's $f = T$ is the $r = 1$ member;
+Milgrom (2020)'s coefficient requires $r = 4\pi$ **exactly**, and $\kappa = \tfrac12$ requires
+$r = 2Z = 8\sqrt{6\pi}/3 = 11.5776$, for which we give an explicit smooth, monotone, asymptotically linear $f$.
+The mechanism therefore **does not** fix the coefficient. What it fixes is the *question*: since the $a_0$-line
+$g_{\rm obs}^2 = g_{\rm bar}^2 + a_0 g_{\rm bar}$ is identically Milgrom's balance with the floor at $a_0/2$, the
+two apparent freedoms are one factor $2Z$, and the open question is whether the de Sitter floor is $cH_\Lambda$,
+fixed by the horizon, or $\tfrac14 c\sqrt{G\rho_\Lambda}$ — a *bare* $\sqrt{G\rho}$ carrying no Friedmann
+$8\pi/3$. Since $r$ is itself unfixed, this is a reparametrisation and **not** a derivation of $\kappa$.
 
 **Second**, we show that rotation-curve determinations of $a_0$ are limited not by data quality but by
 **definition**. Profiling the SPARC sample (Lelli, McGaugh & Schombert 2016) with the mass-to-light ratio free
@@ -142,27 +162,54 @@ the orbital correction is $a$-independent and cancels. We note the irony that th
 correctly identifies Milgrom's derivation as scope-limited, turns out to be **harmless for the coefficient** —
 it matters for whether the law admits an action, not for $q$.
 
-**Rigidity within the temperature class, and its boundary (v2).** Write inertia as
-$I = f(T) - f(T_{\rm GH})$ for an arbitrary $f$, with $T = \sqrt{a^2+H^2}/2\pi$. MOND requires $I \to c_1 a$ for
-$a \gg H$ *and* $I \to c_2 a^2$ for $a \ll H$. The first limit, where $T \to a/2\pi$, forces $f$ to be
-asymptotically linear; the second then has no remaining freedom. Of $f = T, T^2, T^4, \sqrt T, \log T$ only
-$f = T$ satisfies both ($T^2$ and $T^4$ give the correct deep power $a^2$ but Newtonian powers $a^2$ and $a^4$;
-$\sqrt T$ and $\log T$ fail the deep limit). Both $c_1$ and $c_2$ carry the same $1/2\pi$, which therefore
-divides out of $q = c_1/c_2$: the "2" in $q = 2$ is the binomial $\tfrac12$ of $\sqrt{1+x}$ inverted, a feature
-of the quadrature $a_5^2 = a^2 + H^2$, not of the Unruh convention. So within this class $q = 2$ is forced.
+### 3.3 The crossover is a one-parameter family, not a fixed number (v2)
 
-What is *not* closed: functionals of the full response $\mathcal{F}(E)$ rather than of $T$, functionals of the
-correlator $W(s)$ directly, and the non-quadratic couplings already on the framework's open list. §3's own KMS
-result — strict thermality fails for every $\Omega \neq 0$ — means $T_{\rm eff}(E)$ *must* be gap-dependent on
-orbits, and that $E$-dependence is genuine unexplored freedom. **Against interest, however, the arithmetic of
-where that freedom could land does not favour $\kappa = \tfrac12$.** A non-cancelling $4\pi$ from a horizon-area
-or solid-angle normalisation gives $q = 2/4\pi = 0.15915$, which is *exactly* Milgrom (2020)'s $1/2\pi$; a plain
-$\pi$ gives $0.637$. Reaching $q = 1/Z = 0.173$ requires dividing $2$ by $2Z = 4\sqrt{8\pi/3} = 11.578$ — note
-$2Z$, not $Z$ — a factor carrying $\sqrt\pi\cdot\sqrt{32/3}$, which is not the normalisation of any detector
-response we can identify. The one point in the other direction, stated for completeness: $1/Z = 0.173$ exceeds
-$1/2\pi = 0.159$ by 8.54%, so of the two published candidates this framework's is the *closer* of the two to the
-mechanism's $q = 2$ (11.6$\times$ against 12.6$\times$). That is not evidence; it is the direction of the
-residual.
+Let inertia be $I = f(T) - f(T_{\rm GH})$ for arbitrary $f$, with $T = \sqrt{a^2+H^2}/2\pi$. Since
+$T - T_{\rm GH} = a^2/4\pi H$ exactly, the deep coefficient is $c_2 = f'(T_{\rm GH})/4\pi H$; and since
+$T \to a/2\pi$, the Newtonian coefficient is $c_1 = c_1'/2\pi$ with $c_1' \equiv \lim_{T\to\infty} f(T)/T$.
+Hence
+
+$$\boxed{\;q \;=\; \frac{c_1}{c_2} \;=\; \frac{2\,c_1'}{f'(T_{\rm GH})}\;}$$
+
+and $q$ is invariant under $f \mapsto \alpha f + b$, so $f$ enters *only* through
+$r \equiv f'(T_{\rm GH})/c_1'$, with $q = 2/r$. **The two limits fix the family, not the member.** They force
+$f$ to be asymptotically linear — which constrains $f$ at $T \to \infty$ — while $q$ reads $f'$ at the
+Gibbons–Hawking floor. Those are different points on $f$, and that single observation is why the
+rigidity claim of v2(a) fails: its five test functions ($T, T^2, T^4, \sqrt T, \log T$) are all scale-free, and
+for a scale-free $f$ the two slopes necessarily coincide.
+
+| | $q$ | required $r = 2/q$ |
+|---|---|---|
+| Milgrom (1999), $f = T$ | $2$ | $1$ |
+| Milgrom (2020) | $1/2\pi = 0.15915494$ | $4\pi = 12.566371$ (**exact**) |
+| this framework, $\kappa = \tfrac12$ | $1/Z = 0.17274707$ | $2Z = 8\sqrt{6\pi}/3 = 11.577620$ |
+
+An explicit member with $r = 2Z$: $f(T) = T + \lambda\beta T_{\rm GH}\!\left(1 - e^{-(T-T_{\rm GH})/\beta T_{\rm GH}}\right)$
+with $\lambda = 2Z-1$. It is smooth and strictly increasing, asymptotically linear with slope exactly $1$, has
+$f'(T_{\rm GH}) = 2Z$, and delivers $q = \sqrt6/8\sqrt\pi = 1/Z$ symbolically — independently of $\beta$, so one
+parameter sets the coefficient and the remainder is free interpolation shape.
+
+**One freedom, not two.** The $a_0$-line $g_{\rm obs}^2 = g_{\rm bar}^2 + a_0 g_{\rm bar}$ is *identically*
+$g_{\rm bar} = \sqrt{g_{\rm obs}^2 + (a_0/2)^2} - a_0/2$, i.e. Milgrom's five-acceleration balance with the floor
+at $a_0/2$. So "a nonlinear $f$ at the Gibbons–Hawking floor" and "a linear $f$ at a rescaled floor" are the same
+factor $2Z$ read two ways. The needed floor is $a_0/2 = \tfrac14 c\sqrt{G\rho_\Lambda}$: a **bare**
+$\sqrt{G\rho}$, where $cH_\Lambda = c\sqrt{8\pi G\rho_\Lambda/3}$ carries the Friedmann $8\pi/3$. A bare
+$\sqrt{G\rho}$ is a local gravitational response to the vacuum density; $\sqrt{8\pi G\rho/3}$ is the global
+expansion rate. That is a statable physical distinction — and it is not a derivation of either.
+
+**Against interest.** Four points, none of which we can dispose of. (i) $r$ is a **free** dimensionless number;
+nothing here derives $r = 2Z$, and trading $\kappa$ for $r$ is a reparametrisation. (ii) Milgrom (2020)'s
+requirement $r = 4\pi$ is *exact*, and a horizon-area or solid-angle normalisation is precisely what supplies
+$4\pi$; $2Z$ carries $\sqrt\pi$ and we can name no mechanism for it — **on mechanism the arrow points at his
+coefficient, not ours.** (iii) Deser & Levin's construction *fixes* the floor at $cH_\Lambda$ from the horizon;
+nothing above defeats that argument, only the much weaker claim that the two MOND limits defeat it.
+(iv) Whether an $r = 2Z$ kernel survives the solar-system ephemeris bound and the 30.6% shape range of §4 is
+**untested** and could close the door independently. The one point the other way, for completeness: $2Z < 4\pi$
+and $1/Z > 1/2\pi$, so of the two live proposals this framework's is the smaller departure from $r = 1$. That is
+the direction of the residual, not evidence for it.
+
+**Still uncomputed.** Functionals of the full response $\mathcal{F}(E)$ rather than of $T$, functionals of the
+correlator $W(s)$ directly, and the non-quadratic couplings already on this programme's open list.
 
 **Prior art.** The circular-worldline response in de Sitter is partial prior art: **Hari K. & Kothawala
 (*PRD* 109, 104073, 2024; arXiv:2307.16413)** treat stationary trajectories with uniform acceleration and
@@ -255,11 +302,11 @@ tension is real and unresolved.
 ## 5. Conclusions
 
 1. The de Sitter–Unruh balance is **orbital-invariant** and returns $q = 2$ exactly, for two independent reasons
-   both traceable to $A^2h^2 - R^2w^2 = 1$. The coefficient $a_0 = \tfrac12 c\sqrt{G\rho_\Lambda}$ is a factor
-   11.6 away and is **not derivable from any inertia functional of the local de Sitter–Unruh temperature**, a
-   class within which $q = 2$ is forced by the two limits jointly (v2). Response-based functionals with a
-   gap-dependent $T_{\rm eff}$ are not closed by this paper; the natural non-cancelling factors available to them
-   land on Milgrom (2020)'s $1/2\pi$, not on $1/Z$.
+   both traceable to $A^2h^2 - R^2w^2 = 1$. But the balance does **not** fix the coefficient: $q = 2/r$ with
+   $r = f'(T_{\rm GH})/c_1'$ free, and $\kappa = \tfrac12$ is reachable at $r = 2Z$ by an explicit admissible
+   functional. Since $r$ is unfixed this is a reparametrisation, not a derivation, and the sharp question becomes
+   whether the de Sitter floor is $cH_\Lambda$ or $\tfrac14 c\sqrt{G\rho_\Lambda}$. On mechanism the available
+   normalisations favour Milgrom (2020)'s $r = 4\pi$, which is exact, over $2Z$, which carries $\sqrt\pi$.
 2. Rotation-curve determinations of $a_0$ carry a **30.6%** shape systematic, which is a units conversion about a
    *deep* anchor ($\nu \approx 3.97$), already diluted $5.5\times$ by the sample's $y$-coverage, and reducible only
    by measuring the interpolation shape — for which the required leverage is finite ($\sim5\times$ the effective
@@ -275,8 +322,8 @@ All numerical claims are reproduced by public scripts carrying self-checking ass
 failure: `mi_orbital_unruh_gems_2026.py` (38/38), `mi_orbital_unruh_conformal_2026.py` (31/31),
 `mi_orbital_unruh_q_2026.py` (6/6), `mi_routeA_a0_estimator_invariance_2026.py` (7/7),
 `mi_p4_kernel_pricing_2026.py` (15/15), `mi_shape_systematic_mechanism_2026.py` (6/6),
-`mi_routeA_admissibility_audit_2026.py` (31/31), and for v2's scope correction
-`mi_orbital_q_selfaudit_2026.py` (4/4). Repository:
+`mi_routeA_admissibility_audit_2026.py` (31/31), and for v2's two corrections
+`mi_orbital_q_selfaudit_2026.py` (4/4) and `mi_crossover_master_formula_2026.py` (14/14). Repository:
 `https://github.com/carlzimmerman/zimmerman-formula`, commit `eafebf5b`. This Zenodo record is the archival
 copy; the scripts it contains are the ones cited above, unmodified. SPARC data: Lelli, McGaugh & Schombert
 (2016), *AJ* 152, 157.

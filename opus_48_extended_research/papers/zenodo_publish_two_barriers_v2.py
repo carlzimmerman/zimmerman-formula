@@ -1,20 +1,27 @@
 #!/usr/bin/env python3
 r"""zenodo_publish_two_barriers_v2.py -- NEW VERSION of DOI 10.5281/zenodo.21782600.
 
-v2 corrects the SCOPE of one sentence in v1. v1 said the de Sitter-Unruh mechanism "returns Milgrom's coefficient
-and cannot be made to yield a smaller one". That is true for inertia functionals of the local dS-Unruh
-TEMPERATURE -- where a self-audit upgrades it from an assumption to a theorem -- but v1's response lane (the
-functional of F(E) with a gap-dependent T_eff) was never computed, and the unscoped sentence claimed it was. v2
-states the scoped claim, adds the rigidity theorem, and records the arithmetic of the remaining freedom, which
-runs AGAINST this framework's own coefficient.
+v2 carries TWO corrections, both narrowing a closure claim, both made on the day of v1's release. They ship as
+one version because the first was superseded before it ever reached the record.
+
+  (a) v1's unscoped no-go is WITHDRAWN. "Cannot be made to yield a smaller one" is a claim about ALL inertia
+      functionals, but only functionals of the local dS-Unruh TEMPERATURE were examined.
+  (b) The "rigidity theorem" that briefly replaced (a) is ALSO WITHDRAWN. It claimed the two MOND limits jointly
+      force q = 2. They do not: the Newtonian limit constrains f as T -> infinity, the deep limit reads
+      f'(T_GH), and nothing connects two different points on f. The correct statement is the closed form
+      q = 2 c1p/f'(T_GH), so q = 2/r with r free -- and an explicit admissible f reaches q = 1/Z exactly.
 
 Reuses every guard from the v1 publisher (LOCAL-PRESENCE, NO-PLACEHOLDER, NO-EMAIL, SCRIPTS-PASS, NAME-EXACT,
 METADATA-SANITY) by importing them, then adds two:
 
-  V2-DIFF      the paper on disk must actually differ from v1 in the ways claimed -- it must carry the v2 banner
-               AND must no longer carry v1's unscoped sentence. Refuses to mint a version that changes nothing.
+  V2-DIFF      refuses to mint a version that changes nothing, and -- because correction (b) had to be applied in
+               THREE places -- checks each withdrawn claim is absent from the paper AND from every archived
+               script, not merely from the abstract. A withdrawal that survives in a companion script is not a
+               withdrawal.
   FILES-RESET  a Zenodo newversion draft inherits v1's files; every inherited file is DELETED before upload, so
                NAME-EXACT is a real check on this version's contents rather than on a union with v1's.
+
+  --dry-run    runs every guard above and stops before the first network call.
 
 The token is read from .env and never printed.
 """
@@ -28,24 +35,42 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import zenodo_publish_two_barriers as v1  # noqa: E402  (config + guards, single source of truth)
 
 RECORD_ID = 21782600                       # the v1 record this versions
-BANNER = "**v2 (2026-08-03), correction of scope.**"
-V1_SENTENCE = "cannot be made to yield a smaller one"
 
 META = copy.deepcopy(v1.META)
 META["metadata"]["version"] = "v2"
 META["metadata"]["description"] += (
-    "<p><strong>v2 (2026-08-03), correction of scope.</strong> A self-audit "
-    "(mi_orbital_q_selfaudit_2026.py, included) found that v1's statement that the mechanism &quot;cannot be "
-    "made to yield a smaller&quot; coefficient over-reached its class. Within the class of inertia functionals "
-    "of the local de Sitter-Unruh temperature the audit STRENGTHENS the result -- the Newtonian and deep-MOND "
-    "limits jointly force the functional to be linear in T, and the 2 pi cancels in q, so q = 2 is not an "
-    "artefact of the Unruh normalisation -- but functionals of the full response F(E), with the gap-dependent "
-    "T_eff that this paper's own KMS result forces for every non-zero orbital frequency, were never computed "
-    "and are not closed. v2 states the scoped claim. Against this framework's own interest, v2 also records "
-    "where the remaining freedom would land: a non-cancelling 4 pi gives q = 0.15915, which is exactly Milgrom "
-    "(2020)'s 1/2pi, while reaching q = 1/Z = 0.17275 requires dividing 2 by 2Z = 11.578 -- a factor carrying "
-    "sqrt(pi), not the normalisation of any identifiable detector response. Neither the 30.6% shape systematic "
-    "nor the orbital invariance of q is affected.</p>")
+    "<p><strong>v2 (2026-08-03): two corrections, both narrowing a closure claim.</strong> Adversarial "
+    "self-audit of v1 produced two successive retractions on the day of release, both in the same direction -- "
+    "a door was claimed shut that was not. (a) v1 said the mechanism &quot;cannot be made to yield a "
+    "smaller&quot; coefficient; that is a claim about ALL inertia functionals, but only functionals of the local "
+    "de Sitter-Unruh TEMPERATURE were examined, and functionals of the full response F(E) -- where the paper's "
+    "own KMS result forces T_eff to be gap-dependent for every nonzero orbital frequency -- were never computed "
+    "(mi_orbital_q_selfaudit_2026.py). (b) The rigidity theorem that briefly replaced it is ALSO withdrawn: the "
+    "Newtonian limit forces f to be asymptotically linear, but the deep limit reads f-prime AT THE FLOOR, and "
+    "nothing connects two different points on f; the five functions tested were all scale-free, for which the "
+    "two slopes coincide. The correct statement, derived in the new section 3.3, is the closed form "
+    "q = 2 c1prime / f-prime(T_GH), so the temperature class is a ONE-PARAMETER family in "
+    "r = f-prime(T_GH)/c1prime with q = 2/r. Milgrom (1999)'s f = T is the r = 1 member; Milgrom (2020)'s "
+    "coefficient requires r = 4 pi EXACTLY; kappa = 1/2 requires r = 2Z = 8 sqrt(6 pi)/3 = 11.577620, and an "
+    "explicit smooth, strictly increasing, asymptotically linear f delivering q = 1/Z exactly is given "
+    "(mi_crossover_master_formula_2026.py, 14/14). The mechanism therefore does NOT fix the coefficient. It "
+    "fixes the question: since the a0-line is identically Milgrom's balance with the floor at a0/2, the two "
+    "apparent freedoms are one factor 2Z, and what is open is whether the de Sitter floor is c H_Lambda, fixed "
+    "by the horizon, or (1/4) c sqrt(G rho_Lambda) -- a BARE sqrt(G rho) carrying no Friedmann 8pi/3. "
+    "AGAINST THIS FRAMEWORK'S INTEREST: r is itself unfixed, so this is a reparametrisation and NOT a "
+    "derivation of kappa; Milgrom (2020)'s r = 4 pi is exact and a horizon-area or solid-angle normalisation "
+    "supplies 4 pi, while 2Z carries sqrt(pi) and no mechanism is named for it, so on mechanism the arrow "
+    "points at his coefficient; Deser and Levin's construction fixes the floor at c H_Lambda from the horizon "
+    "and nothing here defeats that; and whether an r = 2Z kernel survives the solar-system ephemeris bound and "
+    "the 30.6% shape range is untested. What survives unchanged: the orbital invariance of q, the value q = 2 "
+    "for Milgrom's own f = T, and the entire 30.6% shape systematic. kappa = 1/2 remains FITTED, NOT "
+    "DERIVED.</p>")
+
+BANNERS = ["**v2 (2026-08-03), two corrections, both narrowing a closure claim.**",
+           "### 3.3 The crossover is a one-parameter family, not a fixed number (v2)"]
+GONE = ["cannot be made to yield a smaller one",          # v1's unscoped no-go
+        "THE TWO LIMITS TOGETHER FORCE f LINEAR"]         # v2(a)'s withdrawn theorem
+NEEDED = ["mi_orbital_q_selfaudit_2026.py", "mi_crossover_master_formula_2026.py"]
 
 
 def main():
@@ -53,14 +78,19 @@ def main():
 
     # ---- V2-DIFF: refuse to mint a version that changes nothing ----------------------
     paper = open(os.path.join(v1.REPO, v1.PAPER), encoding="utf-8").read()
-    if BANNER not in paper:
-        sys.exit("ERROR V2-DIFF: the paper carries no v2 banner -- refusing to mint a version")
-    if V1_SENTENCE in paper:
-        sys.exit(f"ERROR V2-DIFF: v1's unscoped sentence {V1_SENTENCE!r} is still present -- "
-                 "the correction was not applied")
-    if "mi_orbital_q_selfaudit_2026.py" not in paper:
-        sys.exit("ERROR V2-DIFF: the audit script is not cited in the paper -- refusing")
-    print(f"V2-DIFF ok: banner present, v1 sentence removed, audit cited")
+    corpus = paper + "".join(open(os.path.join(v1.REPO, f), encoding="utf-8").read() for f in v1.SCRIPTS)
+    for b in BANNERS:
+        if b not in paper:
+            sys.exit(f"ERROR V2-DIFF: the paper is missing {b!r} -- refusing to mint a version")
+    for g in GONE:
+        if g in corpus:
+            sys.exit(f"ERROR V2-DIFF: withdrawn claim {g!r} still asserted somewhere in the record -- "
+                     "the correction was not applied everywhere")
+    for nd in NEEDED:
+        if nd not in paper:
+            sys.exit(f"ERROR V2-DIFF: {nd} is not cited in the paper -- refusing")
+    print(f"V2-DIFF ok: {len(BANNERS)} banners present, {len(GONE)} withdrawn claims absent from paper AND all "
+          f"{len(v1.SCRIPTS)} scripts, {len(NEEDED)} corrections cited")
 
     # ---- every v1 guard, unchanged ----------------------------------------------------
     missing = [f for f in v1.FILES if not os.path.exists(os.path.join(v1.REPO, f))]

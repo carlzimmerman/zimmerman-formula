@@ -8,10 +8,20 @@ ANALYTIC balance I(a) = T(a) - T_GH. The response lane that was supposed to comp
 on an output limit and was never replaced. So the question is fair: is q = 2 a result, or an assumption wearing
 one?
 
+*** WITHDRAWAL, SAME DAY. N2 below originally concluded that the two MOND limits JOINTLY FORCE f linear and
+therefore force q = 2 -- a rigidity theorem. THAT CONCLUSION IS WITHDRAWN and is refuted in
+mi_crossover_master_formula_2026.py (14/14). The Newtonian limit constrains f as T -> infinity; the deep limit
+reads f' AT T_GH; nothing connects two different points on f. The five candidates below are all SCALE-FREE, so
+for them the asymptotic and local slopes coincide -- which is why they alone looked decisive. The correct
+statement is  q = 2 c1p / f'(T_GH),  i.e. q = 2/r with r = f'(T_GH)/c1p FREE, and an explicit asymptotically
+linear f with r = 2Z delivers q = 1/Z exactly. N2's CHECK is retained because the tabulated FACT is true and
+useful -- of these five, only f = T gives MOND; only its INTERPRETATION as a closure was wrong. ***
+
 This script separates the two and reports both ways.
 
   N1  does the 2 pi cancel? -- i.e. is q blind to the Unruh normalisation, or did a factor get lost
-  N2  *** THE RIGIDITY THEOREM: what class of inertia functionals can give MOND at all? ***
+  N2  which of five NATURAL functionals can give MOND at all  (*** the "rigidity theorem" this check once
+      claimed is WITHDRAWN -- see the banner below and mi_crossover_master_formula_2026.py ***)
   N3  what freedom actually remains, and what q each remaining option would need to deliver
   N4  the honest scope of the published claim, and the correction owed
 
@@ -65,7 +75,7 @@ check(sp.simplify(q_lin - 2 * H) == 0,
       f"convention ***")
 
 
-banner("N2  *** THE RIGIDITY THEOREM -- what functionals can give MOND at all? ***")
+banner("N2  FIVE NATURAL FUNCTIONALS  (the rigidity reading of this check is WITHDRAWN -- see below)")
 
 print("""  Suppose inertia is any function of the LOCAL temperature, I = f(T) - f(T_GH), with T = sqrt(a^2+H^2)/2pi.
   MOND requires BOTH limits:
@@ -94,12 +104,15 @@ for nm, I in CANDS:
         survivors.append((nm, qv))
     print(f"  {nm:<46}{str(dp):>12}{str(npow):>12}{('YES' if good else 'no'):>8}{str(qv):>10}")
 check(len(survivors) == 1 and sp.simplify(survivors[0][1] - 2 * H) == 0,
-      f"N2a *** THE TWO LIMITS TOGETHER FORCE f LINEAR, AND THEREFORE FORCE q = 2. *** Of the five candidates "
+      f"N2a of these five candidates ONLY f = T gives MOND at all, and it gives q = 2. Of the five candidates "
       f"only f(T) = T survives: T^2 and T^4 give the right DEEP power but a WRONG Newtonian power (a^2 and a^4 "
       f"instead of a), sqrt(T) and log(T) fail the deep limit. And the survivor is unique because requiring "
-      f"I ~ a at large a, where T ~ a/2pi, forces f to be asymptotically linear -- after which the deep limit "
-      f"has no remaining freedom. *** So within the class 'inertia is a function of the local temperature', "
-      f"q = 2 is a THEOREM, not a choice, and the no-go is stronger than the paper claimed rather than weaker ***")
+      f"I ~ a at large a, where T ~ a/2pi, forces f to be asymptotically LINEAR. *** BUT THE INFERENCE FROM "
+      f"THERE TO 'q = 2 IS FORCED' IS WITHDRAWN: asymptotic linearity constrains f at T -> infinity while q "
+      f"reads f' AT T_GH, and nothing connects two different points on f. All five candidates here are "
+      f"SCALE-FREE, so for them the two slopes coincide -- five examples, not a theorem. The correct result is "
+      f"q = 2 c1p/f'(T_GH) = 2/r with r free; see mi_crossover_master_formula_2026.py, which exhibits an "
+      f"asymptotically linear f with r = 2Z giving q = 1/Z exactly ***")
 
 
 banner("N3  WHAT FREEDOM ACTUALLY REMAINS -- and what it would have to deliver")
@@ -134,8 +147,8 @@ print("""
    (b) functionals of the correlator W(s) directly, not through any temperature.
    (c) non-quadratic-in-u couplings, rho_m/T_munu couplings, and the b-projector -- all already in the corpus's
        own open list from 2026-08-01.
-  None of these is closed by the published paper, and N2a does not close them either: N2a closes only the class
-  'a function of the local temperature'.""")
+  None of these is closed by the published paper, and N2a does not close them either -- N2a closes NOTHING: its
+  rigidity reading is WITHDRAWN, and the temperature class itself is open, since q = 2/r with r free.""")
 
 
 banner("N4  THE HONEST SCOPE, AND THE CORRECTION OWED")
@@ -144,15 +157,16 @@ print("""  WHAT THE PUBLISHED RESULT ACTUALLY ESTABLISHES, in two parts that mus
    1. q IS ORBITAL-INVARIANT. Solid, and independent of any functional choice: sup eps = gamma^2v^2/(1+gamma^2v^2)
       is a-independent to 1e-16 over five decades, so the orbital correction is a uniform rescaling that cancels
       in the crossover ratio. Nothing about the inertia postulate enters this.
-   2. q = 2 FOR TEMPERATURE-BASED FUNCTIONALS. Now upgraded by N2a from an assumption to a theorem WITHIN that
-      class -- the two limits force f linear -- but it is still a class restriction.
+   2. q = 2 FOR MILGROM'S OWN f = T, and for the four other scale-free functionals tested in N2 (which fail
+      MOND outright). This is NOT a closure of the temperature class: q = 2/r with r = f'(T_GH)/c1p free, so the
+      class contains members delivering ANY q, including q = 1/Z. See mi_crossover_master_formula_2026.py.
 
   THE PAPER'S SENTENCE "the mechanism therefore returns Milgrom's coefficient and cannot be made to yield a
   smaller one" IS OVERSTATED. It is true for temperature-based functionals and it is NOT established for
   response-based ones, which were never computed. The correct claim is:
-      "within the class of inertia functionals depending on the local de Sitter-Unruh temperature, q = 2 is
-       forced by the Newtonian and deep-MOND limits jointly, and is orbital-invariant; response-based
-       functionals with a gap-dependent effective temperature remain uncomputed."
+      "q is orbital-invariant, and Milgrom's f = T gives q = 2; but the crossover is q = 2 c1p/f'(T_GH), a
+       one-parameter family, so the mechanism does not fix the coefficient. Reaching kappa = 1/2 requires
+       r = 2Z, which is not derived; response-based functionals remain uncomputed."
   A v2 of the record is owed with that scoping, and the ARITHMETIC of N3a should travel with it: the natural
   remaining factors point at Milgrom 2020's coefficient, not at kappa = 1/2.""")
 check(abs(2.0 / (2 * Z_FW) - Q_NEED) < 1e-15 and Q_NEED > Q_M2020,
@@ -171,5 +185,8 @@ if n != len(ok):
         if not c:
             print(f"    - {m}")
     sys.exit(1)
-print("  Exit 0: the no-go SURVIVES audit and is stronger than published within its class (N2a: the two limits")
-print("  force q = 2), but the published sentence over-reaches its class. A v2 scoping is owed.")
+print("  Exit 0. N1 SURVIVES: the 2 pi cancels, so q = 2 is not an artefact of a dropped Unruh normalisation.")
+print("  N2's rigidity reading is WITHDRAWN (see mi_crossover_master_formula_2026.py, 14/14): q = 2/r with")
+print("  r = f'(T_GH)/c1p FREE, so the temperature class does NOT close and reaches q = 1/Z at r = 2Z. N3's")
+print("  arithmetic stands and runs against the framework: r = 4 pi is EXACT for Milgrom 2020 and has a")
+print("  mechanism; 2Z carries sqrt(pi) and has none. kappa = 1/2 remains FITTED, NOT DERIVED.")

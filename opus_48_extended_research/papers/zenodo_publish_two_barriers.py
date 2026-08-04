@@ -40,14 +40,16 @@ SCRIPTS = [
     "real_research/reviews/mi_p4_kernel_pricing_2026.py",
     "real_research/reviews/mi_shape_systematic_mechanism_2026.py",
     "real_research/reviews/mi_routeA_admissibility_audit_2026.py",
-    "real_research/reviews/mi_orbital_q_selfaudit_2026.py",   # v2: the scope correction
+    "real_research/reviews/mi_orbital_q_selfaudit_2026.py",   # v2(a): the scope correction
+    "real_research/reviews/mi_crossover_master_formula_2026.py",  # v2(b): refutes v2(a)'s theorem
     "real_research/reviews/mi_route_a_kernel.py",          # the kernel module the others import
 ]
 FILES = [PAPER] + SCRIPTS
 # the two cheap ones are re-run live; the slow ones are trusted from their committed state
 RERUN = ["real_research/reviews/mi_route_a_kernel.py",
          "real_research/reviews/mi_orbital_unruh_q_2026.py",
-         "real_research/reviews/mi_orbital_q_selfaudit_2026.py"]
+         "real_research/reviews/mi_orbital_q_selfaudit_2026.py",
+         "real_research/reviews/mi_crossover_master_formula_2026.py"]
 
 PLACEHOLDERS = ("to be inserted", "TO BE INSERTED", "TBD", "INSERT_", "YOUR_EMAIL", "XXX")
 EMAIL_RE = re.compile(rb"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}")
