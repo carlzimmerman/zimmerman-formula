@@ -115,9 +115,13 @@ check(sp.simplify(2 / (1 / (2 * sp.pi)) - 4 * sp.pi) == 0,
       f"and is the reason the check is here")
 r_fw = sp.simplify(2 * Z)
 check(sp.simplify(r_fw - 8 * sp.sqrt(6 * sp.pi) / 3) == 0,
-      f"C2b this framework requires r = 2Z = 8 sqrt(6 pi)/3 = {float(r_fw):.6f}. It carries sqrt(pi), which no "
-      f"detector-response normalisation supplies, and it is NOT 4 pi -- the two differ by "
-      f"{100*(1-float(r_fw)/float(4*sp.pi)):.3f}%, the same 7.87% that separates the two coefficients themselves")
+      f"C2b this framework requires r = 2Z = 8 sqrt(6 pi)/3 = {float(r_fw):.6f}, which is NOT 4 pi -- the two "
+      f"differ by {100*(1-float(r_fw)/float(4*sp.pi)):.3f}%, the same 7.87% that separates the two coefficients "
+      f"themselves. NOTE, correcting an earlier version of this very check: 2Z = 4 sqrt(8 pi/3) and 8 pi/3 is the "
+      f"FRIEDMANN factor, so 2Z is '4 over the square root of the Friedmann factor' and its sqrt(pi) is "
+      f"Friedmann's. The objection 'it carries sqrt(pi) that no normalisation supplies' is WITHDRAWN as a bad "
+      f"objection -- see mi_2Z_is_the_friedmann_root_2026.py (8/8). What survives is Deser-Levin's: the horizon "
+      f"FIXES the floor at H, so H is mechanism-given and sqrt(G rho) is a substitution")
 check(abs(float(2 * Z) - 11.577620) < 1e-6 and abs(float(1 / Z) - 0.17274707) < 1e-8,
       f"C2c the numbers are 2Z = {float(2*Z):.6f} and 1/Z = {float(1/Z):.8f}. Recorded to 8 figures because an "
       f"earlier table in this corpus wrote Z where 2Z was meant, in the framework-favouring direction, by a "

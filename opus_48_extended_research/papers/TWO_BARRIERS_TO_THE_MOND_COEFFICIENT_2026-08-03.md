@@ -200,8 +200,12 @@ expansion rate. That is a statable physical distinction — and it is not a deri
 **Against interest.** Four points, none of which we can dispose of. (i) $r$ is a **free** dimensionless number;
 nothing here derives $r = 2Z$, and trading $\kappa$ for $r$ is a reparametrisation. (ii) Milgrom (2020)'s
 requirement $r = 4\pi$ is *exact*, and a horizon-area or solid-angle normalisation is precisely what supplies
-$4\pi$; $2Z$ carries $\sqrt\pi$ and we can name no mechanism for it — **on mechanism the arrow points at his
-coefficient, not ours.** (iii) Deser & Levin's construction *fixes* the floor at $cH_\Lambda$ from the horizon;
+$4\pi$. We note explicitly that the converse objection does **not** hold: $2Z = 4\sqrt{8\pi/3}$, and $8\pi/3$ is
+the *Friedmann* factor, so $2Z$ is "4 over the square root of the Friedmann factor" and its $\sqrt\pi$ is
+Friedmann's — an arithmetic-naturalness argument against $2Z$ would be spurious, and each proposal is one round
+factor on one natural rate. Roundness does not adjudicate either way. (iii) Deser & Levin's construction *fixes*
+the floor at $cH_\Lambda$ from the horizon — so $H$ is the **mechanism-given** rate and $\sqrt{G\rho_\Lambda}$ is
+a substitution for it, which is the substantive objection and the one we cannot dispose of;
 nothing above defeats that argument, only the much weaker claim that the two MOND limits defeat it.
 (iv) Whether an $r = 2Z$ kernel survives the solar-system ephemeris bound and the 30.6% shape range of §4 is
 **untested** and could close the door independently. The one point the other way, for completeness: $2Z < 4\pi$
