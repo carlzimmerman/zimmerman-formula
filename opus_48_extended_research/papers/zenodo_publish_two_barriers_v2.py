@@ -97,6 +97,10 @@ def main():
             sys.exit("ERROR: e-mail in the creator block -- refusing")
     print(f"METADATA-SANITY ok: {m['creators'][0]['name']} / {m['creators'][0]['affiliation']}, v2, preprint")
 
+    if "--dry-run" in sys.argv:
+        print("\nDRY RUN: every local guard passed. Stopping before the first network call; nothing published.")
+        return
+
     # ---- newversion draft ------------------------------------------------------------
     st, nv = v1.req("POST", f"{v1.BASE}/deposit/depositions/{RECORD_ID}/actions/newversion", tok)
     if st not in (200, 201):
