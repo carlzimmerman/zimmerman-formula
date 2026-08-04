@@ -212,8 +212,25 @@ nothing above defeats that argument, only the much weaker claim that the two MON
 and $1/Z > 1/2\pi$, so of the two live proposals this framework's is the smaller departure from $r = 1$. That is
 the direction of the residual, not evidence for it.
 
-**Still uncomputed.** Functionals of the full response $\mathcal{F}(E)$ rather than of $T$, functionals of the
-correlator $W(s)$ directly, and the non-quadratic couplings already on this programme's open list.
+**The response lane, computed (v2).** The freedom flagged by correction (a) — functionals of the full response
+$\mathcal{F}(E)$, whose $T_{\rm eff}$ is gap-dependent for every $\Omega \neq 0$ — is now evaluated
+(`mi_circular_dS_response_2026.py`, 8/8). Splitting off the flat double pole gives the exact identity
+$\mathcal{F}(-E) - \mathcal{F}(E) = E/2\pi$ for any stationary worldline, hence
+$T_{\rm eff}(E) = E/\log[1 + E/2\pi\mathcal{F}(E)]$, computed by quadrature of
+$\int_0^\infty\! ds\,\cos(Es)[1/D(s) - 1/s^2]$ with $D(s) = 4A^2\sinh^2(hs/2) - 4R^2\sin^2(ws/2)$; note
+$D(s) \geq s^2$ identically, so there is no real-axis pole. Two validations: the $R \to 0$ limit returns
+$T_{\rm GH} = H/2\pi$ to $6\times10^{-15}$, and at $w = 0$ the response is *exactly* thermal at Deser–Levin's
+$\sqrt{a^2+H^2}/2\pi$ to $10^{-15}$–$10^{-17}$ across three radii — so the temperature Milgrom's balance assumes
+is here **derived from a computed detector response** rather than posited. Rotation does break KMS, but
+quadratically in $v/c$: the gap-spread of $T_{\rm eff}$ is $0.166$ at $v/c = 0.5$ and falls monotonically to
+$8.6\times10^{-7}$ at $v/c = 10^{-3}$, with spread$/(v/c)^2$ constant to within a factor $1.34$. At galactic
+speeds the available freedom therefore falls short of the required $r - 1 = 2Z - 1 = 10.58$ by
+$1.2\times10^{7}$. **The response lane is a null for the coefficient** — it returns $q = 2$ to six figures, which
+cuts against $\kappa = \tfrac12$, and it confirms *one door, not two*: a response functional retains only the same
+$r$-freedom a temperature functional has and adds none.
+
+**Still uncomputed.** Functionals of the correlator $W(s)$ directly, and the non-quadratic couplings already on
+this programme's open list.
 
 **Prior art.** The circular-worldline response in de Sitter is partial prior art: **Hari K. & Kothawala
 (*PRD* 109, 104073, 2024; arXiv:2307.16413)** treat stationary trajectories with uniform acceleration and

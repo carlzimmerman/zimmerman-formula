@@ -43,6 +43,7 @@ SCRIPTS = [
     "real_research/reviews/mi_orbital_q_selfaudit_2026.py",   # v2(a): the scope correction
     "real_research/reviews/mi_crossover_master_formula_2026.py",  # v2(b): refutes v2(a)'s theorem
     "real_research/reviews/mi_2Z_is_the_friedmann_root_2026.py",  # v2(b): withdraws a bad objection
+    "real_research/reviews/mi_circular_dS_response_2026.py",   # v2: the response lane, computed
     "real_research/reviews/mi_route_a_kernel.py",          # the kernel module the others import
 ]
 FILES = [PAPER] + SCRIPTS
