@@ -2,7 +2,7 @@
 
 **Carl P. Zimmerman** — Briar Creek Tech
 
-*Draft, 2026-08-03. All numerical claims are reproduced by public self-checking scripts; see §6.*
+*2026-08-03. DOI [10.5281/zenodo.21782600](https://doi.org/10.5281/zenodo.21782600). All numerical claims are reproduced by public self-checking scripts, included in the record; see §6.*
 
 ---
 
@@ -239,5 +239,6 @@ failure: `mi_orbital_unruh_gems_2026.py` (38/38), `mi_orbital_unruh_conformal_20
 `mi_orbital_unruh_q_2026.py` (6/6), `mi_routeA_a0_estimator_invariance_2026.py` (7/7),
 `mi_p4_kernel_pricing_2026.py` (15/15), `mi_shape_systematic_mechanism_2026.py` (6/6),
 `mi_routeA_admissibility_audit_2026.py` (31/31). Repository:
-`https://github.com/carlzimmerman/zimmerman-formula`. Archive DOI: *(to be inserted.)* SPARC data: Lelli,
-McGaugh & Schombert (2016), *AJ* 152, 157.
+`https://github.com/carlzimmerman/zimmerman-formula`, commit `eafebf5b`. This Zenodo record is the archival
+copy; the scripts it contains are the ones cited above, unmodified. SPARC data: Lelli, McGaugh & Schombert
+(2016), *AJ* 152, 157.
