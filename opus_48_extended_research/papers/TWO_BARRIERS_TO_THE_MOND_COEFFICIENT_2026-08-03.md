@@ -4,6 +4,16 @@
 
 *2026-08-03. DOI [10.5281/zenodo.21782600](https://doi.org/10.5281/zenodo.21782600). All numerical claims are reproduced by public self-checking scripts, included in the record; see §6.*
 
+> **v2 (2026-08-03), correction of scope.** A self-audit (`mi_orbital_q_selfaudit_2026.py`, included) found that
+> v1's statement that the mechanism "cannot be made to yield a smaller" coefficient over-reached its class. The
+> $q = 2$ result is derived for inertia functionals of the **local de Sitter–Unruh temperature**; within that
+> class the audit *strengthens* it from an assumption to a theorem (the Newtonian and deep-MOND limits jointly
+> force the functional to be linear in $T$, and the $2\pi$ cancels in $q$, so $q = 2$ is not an artefact of the
+> Unruh normalisation). But functionals of the **full response** $\mathcal{F}(E)$ — where the gap-dependence of
+> $T_{\rm eff}$ is forced for every $\Omega \neq 0$, as §3 itself shows — were never computed, and are not closed
+> by this paper. The scoped claim replaces the unscoped one throughout. The audit's arithmetic runs against the
+> framework's own coefficient and is recorded here for that reason: see the note at the end of §3.
+
 ---
 
 ## Abstract
@@ -23,9 +33,11 @@ We find $q = 2$ **exactly** on orbits, for two independent reasons both forced b
 $A^2h^2 - R^2w^2 = 1$: the short-time correlator depends only on $a_5^2 = a^2 + H^2$, which holds for *any*
 worldline on the hyperboloid; and the full-response orbital correction is an $a$-**independent** rescaling
 (verified to $10^{-16}$ over five decades in $a/H$) which cancels identically in the crossover ratio. The
-mechanism therefore returns Milgrom's coefficient and cannot be made to yield a smaller one: the gap to
+mechanism therefore returns Milgrom's coefficient: the gap to
 $q = \sqrt{3/32\pi}\,\cdot 2 = 0.173$ (i.e. $a_0 = \tfrac12 c\sqrt{G\rho_\Lambda}$) is a factor $11.6$, not a
-near miss.
+near miss. Within the class of inertia functionals of the local temperature this is a **theorem** — the
+Newtonian and deep-MOND limits jointly force linearity in $T$, and $q$ is blind to the $2\pi$ — but it is a
+class restriction: response-based functionals with a gap-dependent $T_{\rm eff}$ remain uncomputed.
 
 **Second**, we show that rotation-curve determinations of $a_0$ are limited not by data quality but by
 **definition**. Profiling the SPARC sample (Lelli, McGaugh & Schombert 2016) with the mass-to-light ratio free
@@ -125,10 +137,32 @@ $a_5^2 = a^2+H^2$, exact for any worldline.
 
 **Consequence.** The mechanism returns $q = 2$ — a factor $11.6$ from the $q = 1/Z = 0.173$ required by
 $a_0 = \tfrac12 c\sqrt{G\rho_\Lambda}$, and $12.6$ from Milgrom (2020)'s $1/2\pi$. This is not a near miss that
-better numerics could close, and the closure is uniform: no choice of energy gap, inertia functional, or orbital
-speed can move it. We note the irony that the torsion obstruction, which correctly identifies Milgrom's
-derivation as scope-limited, turns out to be **harmless for the coefficient** — it matters for whether the law
-admits an action, not for $q$.
+better numerics could close, and no choice of **orbital speed** can move it — that part is unconditional, since
+the orbital correction is $a$-independent and cancels. We note the irony that the torsion obstruction, which
+correctly identifies Milgrom's derivation as scope-limited, turns out to be **harmless for the coefficient** —
+it matters for whether the law admits an action, not for $q$.
+
+**Rigidity within the temperature class, and its boundary (v2).** Write inertia as
+$I = f(T) - f(T_{\rm GH})$ for an arbitrary $f$, with $T = \sqrt{a^2+H^2}/2\pi$. MOND requires $I \to c_1 a$ for
+$a \gg H$ *and* $I \to c_2 a^2$ for $a \ll H$. The first limit, where $T \to a/2\pi$, forces $f$ to be
+asymptotically linear; the second then has no remaining freedom. Of $f = T, T^2, T^4, \sqrt T, \log T$ only
+$f = T$ satisfies both ($T^2$ and $T^4$ give the correct deep power $a^2$ but Newtonian powers $a^2$ and $a^4$;
+$\sqrt T$ and $\log T$ fail the deep limit). Both $c_1$ and $c_2$ carry the same $1/2\pi$, which therefore
+divides out of $q = c_1/c_2$: the "2" in $q = 2$ is the binomial $\tfrac12$ of $\sqrt{1+x}$ inverted, a feature
+of the quadrature $a_5^2 = a^2 + H^2$, not of the Unruh convention. So within this class $q = 2$ is forced.
+
+What is *not* closed: functionals of the full response $\mathcal{F}(E)$ rather than of $T$, functionals of the
+correlator $W(s)$ directly, and the non-quadratic couplings already on the framework's open list. §3's own KMS
+result — strict thermality fails for every $\Omega \neq 0$ — means $T_{\rm eff}(E)$ *must* be gap-dependent on
+orbits, and that $E$-dependence is genuine unexplored freedom. **Against interest, however, the arithmetic of
+where that freedom could land does not favour $\kappa = \tfrac12$.** A non-cancelling $4\pi$ from a horizon-area
+or solid-angle normalisation gives $q = 2/4\pi = 0.15915$, which is *exactly* Milgrom (2020)'s $1/2\pi$; a plain
+$\pi$ gives $0.637$. Reaching $q = 1/Z = 0.173$ requires dividing $2$ by $2Z = 4\sqrt{8\pi/3} = 11.578$ — note
+$2Z$, not $Z$ — a factor carrying $\sqrt\pi\cdot\sqrt{32/3}$, which is not the normalisation of any detector
+response we can identify. The one point in the other direction, stated for completeness: $1/Z = 0.173$ exceeds
+$1/2\pi = 0.159$ by 8.54%, so of the two published candidates this framework's is the *closer* of the two to the
+mechanism's $q = 2$ (11.6$\times$ against 12.6$\times$). That is not evidence; it is the direction of the
+residual.
 
 **Prior art.** The circular-worldline response in de Sitter is partial prior art: **Hari K. & Kothawala
 (*PRD* 109, 104073, 2024; arXiv:2307.16413)** treat stationary trajectories with uniform acceleration and
@@ -222,7 +256,10 @@ tension is real and unresolved.
 
 1. The de Sitter–Unruh balance is **orbital-invariant** and returns $q = 2$ exactly, for two independent reasons
    both traceable to $A^2h^2 - R^2w^2 = 1$. The coefficient $a_0 = \tfrac12 c\sqrt{G\rho_\Lambda}$ is a factor
-   11.6 away and is **not derivable from this mechanism**.
+   11.6 away and is **not derivable from any inertia functional of the local de Sitter–Unruh temperature**, a
+   class within which $q = 2$ is forced by the two limits jointly (v2). Response-based functionals with a
+   gap-dependent $T_{\rm eff}$ are not closed by this paper; the natural non-cancelling factors available to them
+   land on Milgrom (2020)'s $1/2\pi$, not on $1/Z$.
 2. Rotation-curve determinations of $a_0$ carry a **30.6%** shape systematic, which is a units conversion about a
    *deep* anchor ($\nu \approx 3.97$), already diluted $5.5\times$ by the sample's $y$-coverage, and reducible only
    by measuring the interpolation shape — for which the required leverage is finite ($\sim5\times$ the effective
@@ -238,7 +275,8 @@ All numerical claims are reproduced by public scripts carrying self-checking ass
 failure: `mi_orbital_unruh_gems_2026.py` (38/38), `mi_orbital_unruh_conformal_2026.py` (31/31),
 `mi_orbital_unruh_q_2026.py` (6/6), `mi_routeA_a0_estimator_invariance_2026.py` (7/7),
 `mi_p4_kernel_pricing_2026.py` (15/15), `mi_shape_systematic_mechanism_2026.py` (6/6),
-`mi_routeA_admissibility_audit_2026.py` (31/31). Repository:
+`mi_routeA_admissibility_audit_2026.py` (31/31), and for v2's scope correction
+`mi_orbital_q_selfaudit_2026.py` (4/4). Repository:
 `https://github.com/carlzimmerman/zimmerman-formula`, commit `eafebf5b`. This Zenodo record is the archival
 copy; the scripts it contains are the ones cited above, unmodified. SPARC data: Lelli, McGaugh & Schombert
 (2016), *AJ* 152, 157.
