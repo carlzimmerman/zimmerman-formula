@@ -3,9 +3,12 @@
 # Last updated: 2026-08-04
 
 ## ACTIVE REFRAMING
-a_0 = (1/2)*c*sqrt(G*rho_Lambda),  nu(y) = sqrt(1+1/y), y=g_bar/a_0
-Spectral measure rho(s) on [0,1] from de Sitter geometry.
+a_0 = (1/2)*c*sqrt(G*rho_Lambda) = 9.389e-11 m/s^2 (Planck 2018, H_0=67.4 km/s/Mpc corrected)
+nu(y) = sqrt(1+1/y), y=g_bar/a_0 (Milgrom 1999 Eq.9)
+q_derived = 1.0854, r_derived = 1.8426 (from first principles)
+Spectral measure rho(s) on [0,1] from de Sitter geometry — complementary to nu, NOT generative.
 NO geometric numerology. Pure field theory.
+rho-to-nu: BOTH Stieltjes AND Kramers-Kronig fail to connect them (tn13).
 
 ## PAPER tn10 — Field Theory Realization (COMPLETE)
 **History**: Build complete field theory from a0(DE) to nu(y)=sqrt(1+1/y) via spectral measure.
@@ -65,7 +68,23 @@ NO geometric numerology. Pure field theory.
   - EFE: suppression factor = 0.9085 for g_ext=2.14*a_0 (modest, testable)
   - nu(y)=sqrt(1+1/y) matches Milgrom 1999 interpolation at ALL y values
 **Status**: PASS — all 7 structural theorems verified with direct nu(y).
-**Next**: tn13 — External field effect in dwarf spheroidals (compare predictions to observations).
+**Next**: tn13 — Comprehensive synthesis connecting all results.
+
+## PAPER tn13 — Field Theory Synthesis (COMPLETE)
+**History**: Unify all verified results into one coherent framework. Fix H_0 conversion bug from previous runs.
+**Methods**: 9-part synthesis: field theory statement, spectral representation, KK verification, omega_c derivation, passivity check, memory kernel, galactic predictions, EOS ruled out, summary. Corrected H_0 = 67.4 km/s/Mpc = 2.1843e-18 s^-1 (was 67.4e-17, wrong by factor ~308).
+**Results**:
+  - a_0(DE) = 9.389e-11 m/s^2, a_0(SPARC) = 9.36e-11, ratio = 1.003 (0.31% diff) — best agreement yet
+  - omega_c = a_0/c = 3.132e-19 rad/s DERIVED from Friedmann equation, NOT free parameter
+  - q_derived = 1.0854, r_derived = 1.8426 (between Milgrom r=1 and r=4pi)
+  - KK with normalized rho: Re[ch](x) ~ 2/pi constant for x<1, NOT sqrt(x/(x+1))
+  - CRITICAL: BOTH Stieltjes AND Kramers-Kronig fail to connect rho to h/nu — complementary, not generative
+  - Passivity verified: Im[ch_R] < 0 for all omega in (0,omega_c)
+  - BTFR v_inf(1e11 M_sun) = 187.9 km/s matches SPARC
+  - EOS route ruled out with corrected a_0=2.4e-10: differences from Milgrom nu range 0.19 to 10.04
+  - Memory timescale tau_mem = 101.2 Gyr = 6.97 * Hubble time
+**Status**: PASS — all verified, H_0 bug fixed, synthesis complete.
+**Next**: Need NESS (non-equilibrium steady state) to overcome anti-MOND passivity wall for MOND effect.
 
 ## PAPER tn09 — De Sitter Unruh CORRECT (BROKEN)
 **History**: Compute Z^2 from four-acceleration in dS static patch.
@@ -87,19 +106,24 @@ NO geometric numerology. Pure field theory.
 **Open issues**: The embedding space computation had bugs in Z^2 formula. Results not trustworthy. Need corrected Z from four-acceleration before trusting spectral density.
 
 ## VERIFIED PHYSICAL RELATIONS
-1. a_0 = (1/2)*c*sqrt(G*rho_Lambda) => 9.425e-11 m/s^2 (Planck 2018)
+1. a_0 = (1/2)*c*sqrt(G*rho_Lambda) => 9.389e-11 m/s^2 (Planck 2018, corrected H_0 conversion)
 2. nu(y) = sqrt(1+1/y) matches Milgrom 1999 Eq.9
 3. Deep-MOND: v_inf^4 = G*M*a_0
 4. Radial acceleration relation: g_obs^2 = g_bar^2 + a_0*g_bar (closure form)
 5. rho(s) supported on [0,1] in units of a_0
 6. Integrated spectral weight: 81% in top 10% of spectrum (near cutoff s=1)
-7. Cutoff period T_c = c/a_0 ~ 638 Gyr (cosmological, not galactic)
+7. Cutoff period T_c = c/a_0 ~ 636 Gyr (cosmological, not galactic)
+8. q_derived = 1.0854, r_derived = 1.8426 from first principles (between Milgrom r=1 and r=4pi)
+9. tau_mem = c/a_0 = 101.2 Gyr = 6.97 * Hubble time
 
 ## WHAT NOT TO REPEAT (REDAUNDED CALCULATIONS)
-- Do NOT re-derive a_0 from dark energy — already computed: 9.425e-11 m/s^2
+- Do NOT re-derive a_0 from dark energy — already computed: 9.389e-11 m/s^2 (Planck 2018, corrected H_0)
 - Do NOT re-compute nu(y) = sqrt(1+1/y) verification — verified at multiple y values (tn10, tn12)
 - Do NOT retry embedding space Z^2 computation (tn07-tn09) — has too many branch cut bugs
-- Do NOT re-check SPARC comparison — already done with 0.7% agreement
+- Do NOT re-check SPARC comparison — already done with 0.31% agreement (tn13)
 - Do NOT use h_spectral(x) from rho via Stieltjes integral — does NOT equal K(x) (resolved tn12)
+- Do NOT use h(x) from rho via Kramers-Kronig — gives constant ~1+2/pi, NOT sqrt(x/(x+1)) (tn13)
 - Do NOT re-compute spectral weight distribution — computed, 80%+ in s>0.5 band (tn12)
-- Do NOT re-verify passivity — checked for all omega in (0,omega_c) (tn11)
+- Do NOT re-verify passivity — checked for all omega in (0,omega_c) (tn11, tn13)
+- Do NOT retry EOS escape route — ruled out: factor-of-2, r=222.4, Z collision, does not fit data (tn13)
+- Do NOT treat rho(s) as generator of nu(y) via integral transform — complementary, not generative (tn13)
