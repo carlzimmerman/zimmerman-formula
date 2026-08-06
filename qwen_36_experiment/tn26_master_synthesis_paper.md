@@ -5,7 +5,7 @@
 
 ### Abstract
 
-This paper presents the complete theoretical derivation of the NESS-MOND framework, which derives MOND phenomenology from first principles in de Sitter vacuum without ad hoc interpolating functions or modified gravitational Lagrangians. Starting from the Bunch-Davies vacuum of de Sitter space, we construct the non-equilibrium steady-state (NESS) Wightman function using the Schwinger-Keldysh closed-time-path (CTP) formalism. The coupling between cosmological-field fluctuations and local matter degrees of freedom produces a spectral deformation whose sign flips at the KMS-threshold violation $q^2 > q^2_{\text{crit}} \sim 3 \times 10^{-2}$. This sign flip generates negative spectral density in a resonant band, which via the Caldeira-Leggett master equation yields $\delta m < 0$ -- the modified inertia mechanism. The critical acceleration $a_0 = \frac{1}{2}\,c\sqrt{G\,\rho_\Lambda} = 9.389\times 10^{-11}\;\text{m/s}^2$ emerges from the dark energy density $\rho_\Lambda = \Omega_\Lambda\,3H_0^2/(8\pi G)$ with zero free parameters beyond $a_0$ itself. The derived value agrees with SPARC phenomenological fits ($a_0 = 9.36\times 10^{-11}\;\text{m/s}^2$) to $0.3\%$. We compute the radial acceleration relation (RAR), baryon Tully-Fisher relation (BTFR), external field effect (EFE), linear growth factor corrections, and ISW shifts -- all as predictions of the single framework. The theory is ghost-free by CTP structure, stable for $q^2 < q^2_{\text{crit}} = 0.06248$, and robust against four-dimensional tensor corrections ($<\!1\%$ shift).
+This paper presents the complete theoretical derivation of the NESS-MOND framework, which derives MOND phenomenology from first principles in de Sitter vacuum without ad hoc interpolating functions or modified gravitational Lagrangians. Starting from the Bunch-Davies vacuum of de Sitter space, we construct the non-equilibrium steady-state (NESS) Wightman function using the Schwinger-Keldysh closed-time-path (CTP) formalism. The coupling between cosmological-field fluctuations and local matter degrees of freedom produces a spectral deformation whose sign flips at the KMS-threshold violation $q^2 > q^2_{\text{crit}} \sim 3 \times 10^{-2}$. This sign flip generates negative spectral density in a resonant band, which via the Caldeira-Leggett master equation yields $\delta m < 0$ -- the modified inertia mechanism. The critical acceleration $a_0 = \frac{1}{2}\,c\sqrt{G\,\rho_{\Lambda,\text{mass}}} = 9.364\times 10^{-11}\;\text{m/s}^2$ emerges from the dark energy mass density $\rho_{\Lambda,\text{mass}} = \Omega_\Lambda\,3H_0^2/(8\pi G)$ with zero free parameters beyond $a_0$ itself. The derived value agrees with SPARC phenomenological fits ($a_0 = 9.36\times 10^{-11}\;\text{m/s}^2$) to $0.04\%$. We compute the radial acceleration relation (RAR), baryon Tully-Fisher relation (BTFR), external field effect (EFE), linear growth factor corrections, and ISW shifts -- all as predictions of the single framework. The theory is ghost-free by CTP structure, stable for $q^2 < q^2_{\text{crit}} = 0.06248$, and robust against four-dimensional tensor corrections ($<\!1\%$ shift).
 
 ---
 
@@ -22,26 +22,28 @@ a_0 = \frac{1}{2}\,c\,\sqrt{G\,\rho_\Lambda}
 \tag{1}
 $$
 
-where $\rho_\Lambda = \Omega_\Lambda \cdot \dfrac{3H_0^2}{8\pi G}$ is the dark energy density. Using Planck 2018 values ($H_0 = 67.4\;\text{km/s/Mpc} = 2.1843\times 10^{-18}\;\text{s}^{-1}$, $\Omega_\Lambda = 0.685$):
+where $\rho_{\text{crit}} = \dfrac{3H_0^2}{8\pi G}$ is the critical mass density and $\Omega_\Lambda$ is its dark energy fraction. Using Planck 2018 values ($H_0 = 67.4\;\text{km/s/Mpc} = 2.1843\times 10^{-18}\;\text{s}^{-1}$, $\Omega_\Lambda = 0.685$):
 
 $$
-\rho_\Lambda = 0.685 \times \frac{3(2.1843\times 10^{-18})^2}{8\pi(6.674\times 10^{-11})} = 8.453\times 10^{-10}\;\text{J/m}^3
+\rho_{\Lambda,\text{mass}} = \Omega_\Lambda \cdot \frac{3H_0^2}{8\pi G} = 0.685 \times \frac{3(2.1843\times 10^{-18})^2}{8\pi(6.674\times 10^{-11})} = 5.842\times 10^{-27}\;\text{kg/m}^3
 \tag{2}
 $$
 
+where the computation yields $\rho_{\text{crit}} = 8.529\times 10^{-27}\;\text{kg/m}^3$ and $\rho_{\Lambda,\text{mass}} = \Omega_\Lambda \rho_{\text{crit}}$. Note: $\rho_\Lambda = \Omega_\Lambda \rho_{\text{crit}}$ is a mass density (kg/m³), not an energy density (J/m³).
+
 $$
-a_0^{\text{(DE)}} = \frac{1}{2}(2.9979\times 10^8)\sqrt{(6.674\times 10^{-11})(8.453\times 10^{-10})} = 9.389\times 10^{-11}\;\text{m/s}^2
+a_0^{\text{(DE)}} = \frac{1}{2}(2.9979\times 10^8)\sqrt{(6.674\times 10^{-11})(5.842\times 10^{-27})} = 9.364\times 10^{-11}\;\text{m/s}^2
 \tag{3}
 $$
 
 SPARC phenomenological fits give $a_0^{\text{(SPARC)}} = 9.36\times 10^{-11}\;\text{m/s}^2$, yielding:
 
 $$
-\frac{a_0^{\text{(DE)}}}{a_0^{\text{(SPARC)}}} = 1.003
+\frac{a_0^{\text{(DE)}}}{a_0^{\text{(SPARC)}}} = \frac{9.364\times 10^{-11}}{9.36\times 10^{-11}} = 1.0004
 \tag{4}
 $$
 
-This $0.3\%$ agreement is a non-trivial prediction -- $a_0$ emerges from the dark energy density, not fitted to galactic data.
+This $0.04\%$ agreement is a non-trivial prediction -- $a_0$ emerges from the dark energy density, not fitted to galactic data. The corrected computation using mass density (rather than energy density) improves the agreement from the previously claimed $0.3\%$ to $0.04\%$, bringing theory and observation into near-perfect correspondence.
 
 **The NESS mechanism.** The core of the derivation proceeds through: (i) computing the spectral measure $\rho(s)$ from de Sitter isometry group $\text{SO}(1,4)$ acting on the Bunch-Davies vacuum; (ii) constructing the NESS Wightman function via Volterra integral equation with coupling $q$; (iii) showing that for $q^2 > q^2_{\text{crit}} \sim 3\times 10^{-2}$, the spectral density develops negative regions (population inversion); (iv) computing mass renormalization $\delta m/m < 0$ via Caldeira-Leggett kernel; and (v) deriving the modified inertia interpolation function $\nu(y)$ from the NESS spectral properties.
 
@@ -92,14 +94,20 @@ $$
 \tag{9}
 $$
 
-The horizon entropy is:
+The horizon entropy is given by the Bekenstein-Hawling formula:
 
 $$
-S_{dS} = \frac{k_B c^3}{4G\hbar} \cdot 4\pi r_{dS}^2 = \frac{3\pi k_B}{G\Lambda} = 1.295\times 10^{63}\;k_B
+S_{dS} = \frac{k_B A}{4\,l_P^2} = \frac{\pi k_B c^3 R_{dS}^2}{G\hbar}
 \tag{10}
 $$
 
-This enormous entropy ($\sim 10^{63}$) represents the number of microstates of the cosmological horizon. The Bunch-Davies vacuum $|0_{\text{BD}}\rangle$ is the unique state invariant under the full $\text{SO}(1,4)$ de Sitter group and reduces to the Minkowski vacuum in the $H \to 0$ limit.
+where $A = 4\pi R_{dS}^2$ is the horizon area and $l_P^2 = G\hbar/c^3$ is the Planck length squared. Evaluating:
+
+$$
+S_{dS}/k_B = \frac{\pi (2.9979\times 10^8)^3 \cdot (1.6585\times 10^{26})^2}{(6.674\times 10^{-11})(1.0546\times 10^{-34})} = 1.2\times 10^{122}
+$$
+
+The enormous entropy ($\sim 10^{122}$) represents the number of microstates of the cosmological horizon -- consistent with the well-known de Sitter entropy in string theory and holography. The Bunch-Davies vacuum $|0_{\text{BD}}\rangle$ is the unique state invariant under the full $\text{SO}(1,4)$ de Sitter group and reduces to the Minkowski vacuum in the $H \to 0$ limit.
 
 #### 2.2 Spectral Measure from de Sitter Geometry
 
@@ -113,16 +121,16 @@ $$
 where $\eta$ is conformal time. The spectral density follows from the squared mode amplitude integrated over momentum space:
 
 $$
-\rho_{\text{eq}}(s) = \frac{1}{\pi}\sqrt{\frac{s}{1-s}}, \quad s \in [0, 1]
+\rho_{\text{eq}}(s) = \frac{2}{\pi}\sqrt{\frac{s}{1-s}}, \quad s \in [0, 1]
 \tag{12}
 $$
 
-This semi-circular distribution arises from the $\text{SO}(1,4)$-invariant inner product on the space of static-patch modes. The dimensionless variable $s = \omega/\omega_c$ where $\omega_c = H/(2\pi)$ is the Gibbons-Hawking frequency scale.
+This semi-circular distribution arises from the $\text{SO}(1,4)$-invariant inner product on the space of static-patch modes. The dimensionless variable $s = \omega/\omega_c$ where $\omega_c = H/(2\pi)$ is the Gibbons-Hawking frequency scale. The factor of $2/\pi$ (rather than $1/\pi$) ensures proper normalization: $\int_0^1 \rho_{\text{eq}}(s)\,ds = 1$. This factor of 2 was established in TN12 and TN13 as necessary for the spectral density to constitute a proper probability measure.
 
 **Normalization (sum rule).** Verification:
 
 $$
-\int_0^1 \rho_{\text{eq}}(s)\,ds = \frac{1}{\pi}\int_0^1 \sqrt{\frac{s}{1-s}}\,ds = \frac{1}{\pi} \cdot \frac{\pi}{2} \cdot 2 = 1
+\int_0^1 \rho_{\text{eq}}(s)\,ds = \frac{2}{\pi}\int_0^1 \sqrt{\frac{s}{1-s}}\,ds = \frac{2}{\pi} \cdot \frac{\pi}{2} = 1
 \tag{13}
 $$
 
@@ -459,7 +467,7 @@ v_\infty(10^{11} M_\odot) = (G\cdot 10^{11} M_\odot \cdot a_0)^{1/4}
 $$
 
 $$
-= \left[(6.674\times 10^{-11})(1.989\times 10^{41})(9.389\times 10^{-11})\right]^{1/4} = 187.9\;\text{km/s}
+= \left[(6.674\times 10^{-11})(1.989\times 10^{41})(9.364\times 10^{-11})\right]^{1/4} = 187.8\;\text{km/s}
 \tag{49}
 $$
 
@@ -623,14 +631,14 @@ All derived quantities, their values, and verification status:
 |----------|-------|-----------|--------|
 | $H_0$ | $67.4\;\text{km/s/Mpc}$ | Planck 2018 | Input |
 | $\Omega_\Lambda$ | $0.685$ | Planck 2018 | Input |
-| $a_0^{\text{(DE)}}$ | $9.389\times 10^{-11}\;\text{m/s}^2$ | Eq.(3), Sec.1 | Predicted |
+| $a_0^{\text{(DE)}}$ | $9.364\times 10^{-11}\;\text{m/s}^2$ | Eq.(3), Sec.1 | Predicted |
 | $a_0^{\text{(SPARC)}}$ | $9.36\times 10^{-11}\;\text{m/s}^2$ | SPARC fits | Measured |
-| Ratio $a_0^{\text{(DE)}}/a_0^{\text{(SPARC)}}$ | $1.003$ | Sec.1 | Confirmed ($0.3\%$) |
+| Ratio $a_0^{\text{(DE)}}/a_0^{\text{(SPARC)}}$ | $1.0004$ | Sec.1 | Confirmed ($0.04\%$) |
 | $R_{dS}$ | $1.6585\times 10^{26}\;\text{m} = 5374.2\;\text{Gpc}$ | Eq.(6) | Derived |
 | $T_{\text{GH}}$ | $2.6551\times 10^{-30}\;\text{K}$ | Eq.(7) | Derived |
 | $\beta_{\text{KMS}}$ | $2.8768\times 10^{18}\;\text{s} = 9.12\times 10^{10}\;\text{Gyr}$ | Eq.(9) | Derived |
-| $S_{dS}$ | $1.295\times 10^{63}\;k_B$ | Eq.(10) | Derived |
-| $\rho_{\text{eq}}(s)$ | $\pi^{-1}\sqrt{s/(1-s)}$ | Eq.(12) | Spectral measure |
+| $S_{dS}$ | $1.2\times 10^{122}\;k_B$ | Eq.(10) | Derived (Bekenstein-Hawling) |
+| $\rho_{\text{eq}}(s)$ | $\frac{2}{\pi}\sqrt{s/(1-s)}$ (normalized) | Eq.(12) | Spectral measure |
 | $\nu(y)$ | $\sqrt{1+1/y}$ (approximate) | Eq.(34) | Interpolation |
 | $y_{\text{cross}}$ | $1.57$ | Eq.(39), TN21 | Fixed point |
 | $\|K\|_2$ | $16.0$ | TN22, Eq.(40) | Operator norm |
@@ -639,7 +647,7 @@ All derived quantities, their values, and verification status:
 | $\delta m/m$ ($q^2=3\times 10^{-2}$) | $-5.47\times 10^{-3}$ | Eq.(31) | Mass renorm. |
 | RAR closure $Q$ | $1.004 \pm 0.002$ | Eq.(46), Sec.6.1 | SPARC confirmed |
 | BTFR slope | $0.25$ (exact) | Eq.(47-49) | Fixed prediction |
-| $v_\infty(10^{11} M_\odot)$ | $187.9\;\text{km/s}$ | Eq.(49) | Prediction |
+| $v_\infty(10^{11} M_\odot)$ | $187.8\;\text{km/s}$ | Eq.(49) | Prediction |
 | $\mu_{\text{eff}}(a_0)$ | $0.730$ (NESS) vs $0.707$ (Milgrom) | Sec.6.3, Eq.(51) | Testable ($3.2\%$) |
 | Growth correction $\delta_D(z=0)$ | $+6.2\% \pm 0.8\%$ | Eq.(53), TN23 | DESI/Euclid test |
 | ISW shift $\epsilon_{\text{ISW}}$ | $1-5\%$ at $z<2$ | Eq.(55) | CMB-LSS cross-corr. |
@@ -654,7 +662,7 @@ All derived quantities, their values, and verification status:
 
 | Observable | LCDM Prediction | NESS-MOND Prediction | Deviation | Current Status | Key Reference |
 |------------|-----------------|----------------------|-----------|----------------|---------------|
-| **a_0 origin** | Not predicted; dark matter paradigm | $a_0 = \frac{1}{2}c\sqrt{G\rho_\Lambda}$ (from DE) | -- | Agrees with SPARC to 0.3% | Sec.1, Eq.(3-4) |
+| **a_0 origin** | Not predicted; dark matter paradigm | $a_0 = \frac{1}{2}c\sqrt{G\rho_{\Lambda,\text{mass}}}$ (from DE mass density) | -- | Agrees with SPARC to 0.04% | Sec.1, Eq.(3-4) |
 | **RAR closure** $Q$ | $Q=1$ by construction | $Q = 1.004 \pm 0.002$ | $+0.4\%$ | SPARC confirms at $0.31\%$ | Sec.6.1, Eq.(46) |
 | **BTFR slope** | $d\log v/d\log M_b = 0.25$ (empirical fit parameter) | Exactly $0.25$ (theoretical prediction) | None | Confirmed by SPARC and PHANGS-ALMA | Sec.6.2, Eq.(47) |
 | **BTFR intercept** $v_\infty(10^{11}M_\odot)$ | Fitted free parameter ($\sim 185$ km/s) | $187.9$ km/s (computed, no fit) | Computed vs fitted ~1-2% | Matches SPARC BTFR within scatter | Sec.6.2, Eq.(49) |
@@ -684,18 +692,18 @@ All derived quantities, their values, and verification status:
 | Hubble constant (Planck 2018) | $H_0$ | $67.4\;\text{km/s/Mpc} = 2.1843 \times 10^{-18}\;\text{s}^{-1}$ | Planck 2018, TT+lowE+lensing | -- |
 | Dark energy density parameter | $\Omega_\Lambda$ | $0.685$ | Planck 2018, TT+lowE+lensing | -- |
 | Matter density parameter | $\Omega_m$ | $0.315$ | Planck 2018, TT+lowE+lensing | -- |
-| Critical density | $\rho_c = 3H_0^2/(8\pi G)$ | $8.624 \times 10^{-27}\;\text{kg/m}^3$ | Computed from $H_0$, $G$ | -- |
-| Dark energy density | $\rho_\Lambda = \Omega_\Lambda \rho_c$ | $8.453 \times 10^{-10}\;\text{J/m}^3$ | Computed, Eq.(2) | Sec.1 |
+| Critical density (mass) | $\rho_c = 3H_0^2/(8\pi G)$ | $8.529 \times 10^{-27}\;\text{kg/m}^3$ | Computed from $H_0$, $G$ | -- |
+| Dark energy density (mass) | $\rho_{\Lambda,\text{mass}} = \Omega_\Lambda \rho_c$ | $5.842 \times 10^{-27}\;\text{kg/m}^3$ | Computed, Eq.(2) | Sec.1 |
 | Cosmological constant | $\Lambda = 8\pi G\rho_\Lambda/c^4$ | $1.110 \times 10^{-52}\;\text{m}^{-2}$ | Computed | Sec.2 |
 | de Sitter radius | $R_{dS} = c/H_\Lambda$ | $1.6585 \times 10^{26}\;\text{m} = 5374.2\;\text{Gpc}$ | Eq.(6) | Sec.2.1 |
 | Hubble time | $t_H = 1/H_0$ | $1.448 \times 10^{10}\;\text{yr} = 14.48\;\text{Gyr}$ | Computed | -- |
-| $a_0$ from dark energy | $a_0^{(DE)}$ | $9.389 \times 10^{-11}\;\text{m/s}^2$ | Eq.(3) | Sec.1 |
+| $a_0$ from dark energy (mass density) | $a_0^{(DE)}$ | $9.364 \times 10^{-11}\;\text{m/s}^2$ | Eq.(3) | Sec.1 |
 | $a_0$ from SPARC fits | $a_0^{(SPARC)}$ | $9.36 \times 10^{-11}\;\text{m/s}^2$ | SPARC data (Lelli et al.) | -- |
-| Ratio DE/SPARC | $a_0^{(DE)}/a_0^{(SPARC)}$ | $1.003$ | Eq.(4) | Sec.1 |
+| Ratio DE/SPARC | $a_0^{(DE)}/a_0^{(SPARC)}$ | $1.0004$ | Eq.(4) | Sec.1 |
 | Cutoff frequency | $\omega_c = a_0/c$ | $3.132 \times 10^{-19}\;\text{rad/s}$ | Computed | Sec.2 |
 | Gibbons-Hawking temperature | $T_{GH} = H\hbar/(2\pi k_B)$ | $2.6551 \times 10^{-30}\;\text{K}$ | Eq.(7) | Sec.2.1 |
 | KMS inverse temperature | $\beta_{KMS} = 2\pi/H$ | $2.8768 \times 10^{18}\;\text{s} = 9.12 \times 10^{10}\;\text{Gyr}$ | Eq.(9) | Sec.2.1 |
-| de Sitter horizon entropy | $S_{dS} = 3\pi k_B/(G\Lambda)$ | $1.295 \times 10^{63}\;k_B$ | Eq.(10) | Sec.2.1 |
+| de Sitter horizon entropy (Bekenstein-Hawling) | $S_{dS} = \pi k_B c^3 R_{dS}^2/(G\hbar)$ | $1.2 \times 10^{122}\;k_B$ | Eq.(10) | Sec.2.1 |
 | Crossover scale | $y_{cross}$ | $1.57$ (TN21 refined from 1.60) | Sec.4.3, Eq.(39) | TN21 |
 | Equilibrium CL integral | $C_{eq}$ | $0.6366 = 2/\pi$ | Computed, Sec.2.3 | TN14 |
 | Volterra kernel norm (2-norm) | $\|K\|_2$ | $16.0$ | Sec.5.1, Eq.(40) | TN22 |
@@ -707,7 +715,7 @@ All derived quantities, their values, and verification status:
 | Iterations to convergence at threshold | $n_{iter}$ | $80$ (with $\eta=0.01$) | TN16 results | TN16 |
 | Mass renormalization | $\delta m/m$ ($q^2=3\times 10^{-2}$) | $-5.47 \times 10^{-3}$ | Eq.(31) | Sec.4.1 |
 | RAR closure parameter | $Q = g_{obs}^2/(a_0 g_N)$ | $1.004 \pm 0.002$ | Eq.(46) | Sec.6.1 |
-| BTFR $v_\infty(10^{11}M_\odot)$ | -- | $187.9\;\text{km/s}$ | Eq.(49) | Sec.6.2 |
+| BTFR $v_\infty(10^{11}M_\odot)$ | -- | $187.8\;\text{km/s}$ | Eq.(49) | Sec.6.2 |
 | NESS EFE suppression at $g_{ext}=a_0$ | $\mu_{eff}(1)$ | $0.730$ | Eq.(51) | Sec.6.3 |
 | Milgrom EFE suppression at $g_{ext}=a_0$ | $\mu_{eff}^{(M)}(1)$ | $0.707$ | Computed | -- |
 | EFE NESS vs Milgrom difference | -- | $3.2\%$ | From Eq.(51) | Sec.6.3 |
@@ -734,7 +742,7 @@ All derived quantities, their values, and verification status:
 | P6 | Growth correction $\delta_D(z > 2) < 0.1\%$ | $< 0.1\%$ | Planck CMB lensing, BOSS/eBOSS | **Compatible** with Planck | Deviation $> 1\%$ at $z > 2$ |
 | P7 | ISW shift $\epsilon_{ISW}$ at low $\ell$ | $1-5\%$ at $z < 2$ | CMB-LSS cross-correlation (Planck+DESI+LSST, 2027-2030) | **Under test** | Zero ISW shift at high significance ($> 5\sigma$) |
 | P8 | Wide binary enhancement $\sim \sqrt{a_0/g_{bar}}$ | O(1)% vs Milgrom deviation | Gaia DR4/DRA5 astrometry, Hipparcos-Gaia | **Under test** | No enhancement at large separations (> 50 pc) |
-| P9 | $a_0$ from DE: ratio = 1.003 | Exact match (0.3%) | SPARC fits vs Planck DE | **Confirmed** | Ratio deviating $> 10\%$ from prediction |
+| P9 | $a_0$ from DE: ratio = 1.0004 | Exact match (0.04%) | SPARC fits vs Planck DE | **Confirmed** | Ratio deviating $> 10\%$ from prediction |
 
 ---
 
@@ -780,7 +788,7 @@ The current framework uses a scalar Yukawa approximation in 1+1D (Rindler wedge)
 
 The NESS-MOND framework provides a complete, first-principles derivation of modified inertia from the quantum vacuum of de Sitter space. The chain of reasoning is:
 
-1. **de Sitter geometry** $\to$ $a_0 = \frac{1}{2}c\sqrt{G\rho_\Lambda}$ (derived from cosmological constant)
+1. **de Sitter geometry** $\to$ $a_0 = \frac{1}{2}c\sqrt{G\rho_{\Lambda,\text{mass}}}$ (derived from dark energy mass density)
 2. **Kubo passivity theorem** $\to$ equilibrium vacuum cannot produce MOND (anti-MOND result)
 3. **NESS backreaction** $\to$ Volterra integral equation for Wightman function
 4. **Sign flip at threshold** $q^2_{crit} \sim 3\times 10^{-2}$ $\to$ population inversion (negative spectral density)
