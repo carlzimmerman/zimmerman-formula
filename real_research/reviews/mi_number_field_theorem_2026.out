@@ -1,0 +1,150 @@
+
+==============================================================================
+SECTION 0 -- the helper itself: positive and negative controls
+==============================================================================
+[OK]   pi_weight control: w(pi) = 1  | got 1
+[OK]   pi_weight control: w(7/3) = 0
+[OK]   pi_weight control: w(sqrt(pi)) = 1/2
+[OK]   pi_weight control: w(1/(4 pi)^(3/2)) = -3/2
+[OK]   pi_weight NEGATIVE control: w(1 + sqrt(pi)) undefined  | got None
+
+==============================================================================
+SECTION 1 -- the framework constants, exactly
+==============================================================================
+[OK]   Z^2 = 32 pi / 3 exactly
+[OK]   Z = 5.78881003647 (10 dp)  | Z = 5.7888100364661
+[OK]   1/Z = 0.1727470747 (10 dp)  | 1/Z = 0.1727470747357
+[OK]   pi = 3 Z^2 / 32  ->  pi in Q(Z), so Z algebraic would force pi algebraic
+[OK]   a_0/(c H_Lam) = kappa sqrt(3/(8 pi)) from rho_Lam, H_Lam definitions  | sympy: sqrt(6)*kappa/(4*sqrt(pi))
+[OK]   kappa sqrt(3/(8 pi)) = 2 kappa / Z  (so a_0 = c H_Lam / Z at kappa = 1/2)
+[OK]   canonical a_0 = 9.36e-11 m/s^2 (within 1%)  | a_0 = 9.36238e-11
+[OK]   ALT/canonical footing ratio = 1/sqrt(Om_Lam) = 1.2082  | ALT a_0 = 1.1312e-10 ; ratio = 1.20824
+
+==============================================================================
+SECTION 2 -- THEOREM 1: every framework constant lies in Q_bar(s), s=sqrt(pi)
+==============================================================================
+[OK]   pi = s^2 with s = sqrt(pi)
+[OK]   Z = 2 sqrt(8/3) * s   (algebraic coefficient times s)
+[OK]   a_0/(c H_Lam) = kappa sqrt(3/8) / s   (algebraic coefficient over s)
+[OK]   PRECISION HAZARD exhibited: at tol=1e-45 with maxcoeff=1e8 (n=7) PSLQ returns a SPURIOUS relation, refuted at 400 digits (residual ~1e-46, nowhere near 0)  | spurious [-32536800, -13983812, 9798136, 20694188, -24314302, -5522841, 7994981] ; |residual| = 1.728e-44
+[OK]   PSLQ finds NO integer relation among 1, s, ..., s^6  (s = sqrt(pi)) in the SAFE regime tol=1e-260 << 1e-72 = spurious floor  | pslq -> None
+[OK]   PSLQ positive control (same tol/maxcoeff): finds phi^2 = phi + 1, so a null result above is a real null and not a dead search  | pslq -> [1, 1, -1]
+[OK]   THEOREM 1 in action: the only PSLQ relation among {2/3, sqrt2, 1, s, s^2, s^3} is Z-FREE -- every sqrt(pi) coefficient and the sqrt2 coefficient vanish, leaving the degenerate 3*(2/3) - 2*1 = 0  | pslq -> [3, 0, -2, 0, 0, 0]
+[OK]   PSLQ finds NO relation among {sqrt2, 1, s, s^2, s^3, s^4}  | pslq -> None
+
+==============================================================================
+SECTION 3 -- THEOREM 2: pi-weight, and the one-rational-number channel
+==============================================================================
+       w(pi                                    ) = 1       expect 1       parity EVEN
+       w(Z = 2 sqrt(8 pi/3)                    ) = 1/2     expect 1/2     parity ODD
+       w(1/Z                                   ) = -1/2    expect -1/2    parity ODD
+       w(a_0/(c H_Lam) = 2 kappa/Z, kappa=1/2  ) = -1/2    expect -1/2    parity ODD
+       w(Milgrom 1/(2 pi)                      ) = -1      expect -1      parity EVEN
+       w(kappa = 1/2 (algebraic knob)          ) = 0       expect 0       parity EVEN
+       w(8 pi / 3                              ) = 1       expect 1       parity EVEN
+[OK]   pi-weights of the whole a_0 box are as claimed (Z: +1/2, coefficient: -1/2, Milgrom: -1, algebraic: 0)
+[OK]   PARITY: framework coefficient is ODD, Milgrom's and every algebraic number are EVEN
+[OK]   COROLLARY 2a: w(Z^m kappa^n) = m/2 (spot-verified symbolically) and vanishes iff m = 0  ==>  weight-zero subgroup of <Z,kappa> is exactly <kappa>  | violations: []
+       CONSEQUENCE: the only algebraic number a finite multiplicative bridge
+       can ever transmit from this framework to the SM is kappa itself -- and
+       kappa = 1/2 is FITTED, NOT DERIVED.  A bridge in this class cannot
+       derive the knob; at best it relabels it.
+
+==============================================================================
+SECTION 4 -- THEOREM 3: the two natural coefficients are arithmetically disjoint
+==============================================================================
+[OK]   kappa needed for Milgrom's a_0 = c H_Lam/(2 pi) is Z/(4 pi) = sqrt(2/(3 pi))
+[OK]   w(kappa_Milgrom) = -1/2  ==>  kappa_M is NOT algebraic (Theorem 2), so the 2 pi form requires a TRANSCENDENTAL knob  | kappa_M = 0.460658865962
+[OK]   gap Z vs 2 pi reproduces the corpus's 8.20% (mean-relative) to 0.05 pts  | mean-relative gap = 8.1904% ; a_0 ratio 2pi/Z = 1.085402 (i.e. +8.54% in a_0)
+[OK]   the two coefficients sit in DIFFERENT weight classes (-1/2 vs -1), so their ratio is not algebraic and no rational kappa closes the gap
+       TENSION, on the record and against interest: THEORY favours 2 pi (EVEN,
+       Milgrom's own coefficient) while DATA favours kappa = 1/2 (~2.2 sigma,
+       QUOTED from project_kappa_discriminability, not re-derived here).  If the
+       2 pi reading is right, the framework's knob is transcendental and the
+       'one rational parameter' economy claim is lost.
+
+==============================================================================
+SECTION 5 -- ESCAPE E1/E5: where a half-integer weight could come from
+==============================================================================
+       vol(S^0) = 2                                w = 0       integer
+       vol(S^1) = 2*pi                             w = 1       integer
+       vol(S^2) = 4*pi                             w = 1       integer
+       vol(S^3) = 2*pi**2                          w = 2       integer
+       vol(S^4) = 8*pi**2/3                        w = 2       integer
+       vol(S^5) = pi**3                            w = 3       integer
+       vol(S^6) = 16*pi**3/15                      w = 3       integer
+       vol(S^7) = pi**4/3                          w = 4       integer
+       vol(S^8) = 32*pi**4/105                     w = 4       integer
+       vol(S^9) = pi**5/12                         w = 5       integer
+       vol(S^10) = 64*pi**5/945                    w = 5       integer
+       vol(S^11) = pi**6/60                        w = 6       integer
+       even-d loop measure (4pi)^(-d/2), d=2       w = -1      integer
+       even-d loop measure (4pi)^(-d/2), d=4       w = -2      integer
+       even-d loop measure (4pi)^(-d/2), d=6       w = -3      integer
+       even-d loop measure (4pi)^(-d/2), d=8       w = -4      integer
+[OK]   E1 mapped: every vol(S^(n-1)) (n<=12) and every EVEN-d loop measure has INTEGER pi-weight -- Gamma(n/2) supplies the compensating sqrt(pi)
+       Gamma(1/2) = sqrt(pi)                       w = 1/2     HALF <- door
+       odd-d measure (4pi)^(-3/2)                  w = -3/2    HALF <- door
+       odd-d measure (4pi)^(-5/2)                  w = -5/2    HALF <- door
+       single Gaussian int_R exp(-x^2)             w = 1/2     HALF <- door
+[OK]   E1's address is specific: half-integer weight comes from an un-squared Gamma(1/2) / single Gaussian / ODD-dimensional measure -- and from nothing else in this list
+       So E5 (a second transcendental T) collapses into E1: Theorem 1's
+       injectivity re-runs in Q_bar(s,T) unless w(T) is in 1/2 + Z.
+
+==============================================================================
+SECTION 6 -- ESCAPE E3: infinite processes DEFEAT the theorem (scope correction)
+==============================================================================
+[OK]   E3 is REAL: Wallis partial products are exactly RATIONAL at every order  | e.g. N=10 -> 68719476736/44801898141
+[OK]   E3 is REAL: those rationals converge to pi/2, error strictly decreasing, |W_2000 - pi/2| < 1e-3  | errors: N=10:3.69e-02, N=100:3.90e-03, N=1000:3.92e-04, N=2000:1.96e-04
+[OK]   E3 is REAL: no partial product EQUALS pi/2 (rational vs transcendental)
+       ==> a mode sum, infinite product or functional determinant CAN produce
+       pi, and with an odd-dimensional measure a HALF power of it, out of
+       algebraic input.  The corpus phrase 'structurally gauge-blind' must be
+       read as 'no finite algebraic identity', not 'no derivation'.
+
+==============================================================================
+SECTION 7 -- ESCAPE E2: the Koide residual, made into a falsifiable target
+==============================================================================
+[OK]   Koide Q reproduced from PDG masses, Q ~ 2/3 but NOT exactly 2/3  | Q = 0.666660511477 ; delta = Q - 2/3 = -6.155e-6
+[OK]   E2 target recorded: a weight(-1/2) correction delta = c/Z needs an algebraic coefficient c of size < 1e-3 (i.e. NOT O(1)) -- the escape must PREDICT this number, not merely allow it  | c = delta * Z = -3.563e-5
+       Honest reading: the residual is far too small to be an O(1) sqrt(pi)
+       effect, so E2 is open but requires a tuned, PREDICTED coefficient.
+       tau mass dominates the uncertainty; do not over-read the digits.
+
+==============================================================================
+SECTION 8 -- ESCAPE E4: exact identities exist, and they are provably empty
+==============================================================================
+[OK]   E4: an exact algebraic identity in the box does exist -- 3 Z^2/(32 pi) = 1
+[OK]   E4: and (a_0/(c H_Lam)) * Z / 2 = kappa = 1/2 exactly -- Z cancels, the surviving content is the FITTED knob and nothing else
+[OK]   E4 is empty by Theorem 1's corollary: both identities are independent of the value of pi (they hold with pi -> any symbol)
+       This is the precise, proved meaning of 'gauge-blind': exact bridges are
+       available, but every one of them is Z-free after cancellation.
+
+==============================================================================
+SECTION 9 -- what this does NOT prove (guard against over-reading)
+==============================================================================
+  1. NOT a derivation of Z, Lambda, a_0 or kappa.  kappa = 1/2 stays FITTED.
+  2. NOT a statement about nature.  (H3) is an assumption about MODELS that assert
+     exact algebraic flavour values.  If flavour values are transcendental, silence.
+  3. NOT applicable to a_0 versus a mass: a_0 carries the measured Lambda, an
+     empirical real of unknown arithmetic type.  Only the DIMENSIONLESS coefficient
+     is constrained.
+  4. NOT a ban on derivations: Escape E3 (limits / mode sums / determinants) is wide
+     open and demonstrated real in Section 6.
+  5. NOT independent evidence for the framework.  Symmetrically, it means flavour
+     data can never REFUTE the framework either -- the SM front is not a test.
+  6. The 2.2 sigma kappa=1/2-over-1/2pi preference is QUOTED from the corpus, not
+     re-derived here; the arithmetic disjointness in Section 4 is what is new.
+
+==============================================================================
+RESULT
+==============================================================================
+
+HEADLINE: the number-field obstruction is now a THEOREM for finite Q_bar-rational relations --
+  every exact algebraic bridge between the framework's dimensionless coefficient and
+  algebraic flavour data is forced to be Z-FREE (a relabelling), because sqrt(pi) gives
+  the coefficient HALF-INTEGER pi-weight while every SM-side object it could meet has
+  INTEGER weight.  The only arithmetic door left is a half-weight object (un-squared
+  Gamma(1/2) / odd-dimensional measure / sqrt of a determinant), or an infinite process.
+
+38/38 checks held.
