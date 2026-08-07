@@ -1,0 +1,359 @@
+mi_trajectory_in_kernel_2026.py -- LANE D: FEED THE TRAJECTORY IN, AND READ OFF r.
+
+THE DEFECT BEING FIXED.  The qwen NESS programme (qwen_36_experiment/tn14-tn26) solves a Volterra equation
+    G_NESS(tau) = G_BD(tau) + q^2 (K * G_NESS)(tau)
+with a kernel K(tau) = |G_R(tau)|^2 = exp(-2 eta tau) * [1/(1-exp(-H beta))]^2 whose only "thermal" content is a
+CONSTANT evaluated at the Gibbons-Hawking temperature.  Signature: (tau_grid, q_sq, eta).  No trajectory, no
+proper acceleration, no y.  So delta_m is a NUMBER, nu is a CONSTANT, and MOND cannot come out for any q.
+tn15 line 194 already computes the correct Deser-Levin effective temperature
+    T_eff(a) = sqrt(T_GH^2 + (a/2pi)^2) = sqrt(a^2+H^2)/(2 pi)                       [ = the master formula's T ]
+and tn15 defines source_spectrum(omega, accel) = 1/(exp(omega/T_eff)-1); its last use is a print loop (line 207).
+
+THE FIX.  Put the trajectory in through exactly that function.  The kernel becomes
+    K_a(tau) = exp(-2 eta tau) * Re G_th(tau; T_eff(a)),
+    Re G_th(tau;T) = Int_0^inf dnu rho_0(nu) [1 + 2 source_spectrum(nu, a)] cos(nu tau)                    [ K1 ]
+i.e. qwen's acceleration-BLIND constant Bose factor is replaced by the acceleration-RESOLVED one at the
+Deser-Levin temperature.  rho_0 is the STATE-INDEPENDENT worldline spectral density (established result 3):
+    rho_0(omega) = (omega/pi^2) * sinh(omega(pi-delta))/sinh(pi omega)  ->  omega/pi^2  as delta -> 0,
+delta being the iepsilon time regulator already present in qwen's G_BD (they use 1e-8, which no grid can resolve;
+we use it as a physical detector bandwidth Omega = 1/delta).
+
+EXACT RESOLVENT, NO PICARD.  With the causal convention K_a(0) = 0 (tn15/tn16's own GR_sq[0] = 0) the
+discretised Volterra operator is UNIT LOWER TRIANGULAR: det = 1 for every coupling, so there is no critical
+coupling, no bifurcation, and no iteration is needed.  tn16/tn17's "sign-flip threshold" and their
+under-relaxed-Picard convergence warnings are chasing a bifurcation that cannot exist.  Because K_a is REAL, the
+imaginary part of the Wightman function satisfies its own closed Volterra equation,
+    Im G_a = Im G_BD + q^2 K_a * Im G_a   =>   phihat_a(omega) = phihat_BD(omega)/(1 - q^2 Khat_a(omega))  [ R1 ]
+and rho_a(omega) = -(2/pi) Im phihat_a(omega).  [R1] IS the exact resolvent; we verify it against the
+unit-lower-triangular forward substitution and show Picard truncation is unnecessary.
+
+WHAT IS READ OFF.  With I(a) = delta_m(a) - delta_m(0) = f(T_eff(a)) - f(T_GH), the committed master formula
+(mi_crossover_master_formula_2026.py, 14/14) gives c1 = lim_{a->inf} I/a, c2 = lim_{a->0} I/a^2,
+    q = a_0/(c H_Lambda) = c1/c2 = 2 c1p/f'(T_GH),   r = 2/q,   kappa = q Z/2 = Z/r.
+r = 1 -> q = 2 (Milgrom 1999); r = 4 pi -> Milgrom 2020; r = 2Z = 11.577620 -> kappa = 1/2.
+Admissibility (mi_r_admissibility_bound_2026.py, 6/6): max admissible r over 7 shapes x 220 scales = 9.016763.
+
+*** kappa = 1/2 IS FITTED, NOT DERIVED.  Nothing below derives it and nothing below is allowed to imply it. ***
+
+CREDIT.  nu = sqrt(1+1/y) and the dS-Unruh temperature balance are Milgrom 1999 PLA 253:273 eqs 6-9, who fixes
+a_0_hat = 2 c H_Lambda (r = 1); his eqs 10-11 give a second coefficient (r = 2) and Milgrom 2008
+arXiv:0801.3133 sec 7.3.1 observes that the mismatch "would just point to a different effective mu(x)" -- the
+r-freedom is HIS.  Temperature sqrt(a^2+Lambda/3)/2pi: Narnhofer, Peter & Thirring 1996 IJMPB 10:1507.
+Five-acceleration reading: Deser & Levin 1997 CQG 14:L163.  a_lambda = c^2 sqrt(Lambda/3): Milgrom 1994
+Ann.Phys. 229:384.  rho(omega) state-independence: Raval, Hu & Anglin 1996 PRD 53:7003.
+qwen_36_experiment/ is READ-ONLY here; nothing in it is modified.
+
+Exit 0 = every check held.  No check(True): every condition below has an input that makes it print FAIL.
+
+
+================================================================================================================
+  SETUP -- units, the two footings, and the detector frequency omega_0
+================================================================================================================
+  Z = 2 sqrt(8 pi/3) = 5.788810   2Z = 11.577620   1/Z = 0.17274707
+  c H_Lambda = 5.4194e-10 m/s^2      c H_0 = 6.5477e-10 m/s^2
+  a_0 canonical = 9.3614e-11          a_0 ALT = 1.1300e-10
+  omega_c/H_Lambda (canonical footing) = 0.17273868   [1/Z = 0.17274707]
+  omega_c/H_0      (ALT       footing) = 0.17257918
+  omega_0 is footing-INVARIANT by construction: a_0 and cH both carry 1/sqrt(Omega_Lambda).
+  [OK] S1 omega_0 = omega_c/H is the SAME in both footings to 0.092% (0.172739 vs 0.172579): a_0 and cH both scale as 1/sqrt(Omega_Lambda) = 1.2082, so the ratio q = a_0/(cH) -- and therefore r and kappa -- is EXACTLY footing-invariant. The canonical-vs-ALT fork cannot decide this lane in either direction
+  [OK] S2 the canonical omega_0 = 0.17273868 equals 1/Z = 0.17274707 to 8.40e-06, which is just q_canonical restated -- a bookkeeping identity, NOT evidence for kappa = 1/2
+  [OK] S3 the two quoted a_0 values are mutually consistent with 1/sqrt(Omega_Lambda): 1.13104e-10 vs the quoted 1.13000e-10
+
+  primitives built.  T_GH = 0.15915494   T_eff(1) = 0.22507908   T_eff(1e3) = 159.1550
+
+================================================================================================================
+  A  THE PRIMITIVES ARE THE RIGHT OBJECTS -- four independent cross-checks
+================================================================================================================
+       tau      Im G_BD (sinh)    Im G_BD (spectral)         rel
+     0.020   -2.4095405491e+01     -2.4095405503e+01    4.62e-10
+     0.050   -2.0264234618e+01     -2.0264234611e+01    3.12e-10
+     0.130   -3.4997696996e+00     -3.4997697009e+00    3.50e-10
+     0.400   -1.5346393207e-01     -1.5346393140e-01    4.32e-09
+     1.000   -1.0042604916e-02     -1.0042605552e-02    6.33e-08
+     2.500   -5.8129364692e-04     -5.8129338475e-04    4.51e-07
+     6.000   -1.2677268804e-05     -1.2677382587e-05    8.98e-06
+  [OK] A1 Im G_BD(tau) from the closed-form sinh equals -Int rho_0(nu) sin(nu tau) dnu to 8.98e-06 over tau in [0.02,6]. The imaginary part carries NO occupation factor: this is Raval-Hu-Anglin state-independence made numerical, and it is why the acceleration can only enter through the KERNEL
+
+     omega     rho_0 closed form    rho_0 (tau quad)         rel
+      0.10        0.009965716067      0.009965716173    1.06e-08
+      0.30        0.029780562280      0.029780562598    1.07e-08
+      1.00        0.096360726755      0.096360727804    1.09e-08
+      3.00        0.261623852229      0.261623854019    6.84e-09
+     10.00        0.614544043575      0.614544047138    5.80e-09
+     30.00        0.678234357976      0.678234353969    5.91e-09
+  [OK] A2 the closed form rho_0 = (w/pi^2) sinh(w(pi-delta))/sinh(pi w) agrees with the independent tau quadrature -(2/pi)Int sin(w tau) Im G_BD dtau to 1.09e-08. This fixes the NORMALISATION -- qwen's G_BD prefactor H^2/4pi^2 is exactly the one for which rho -> omega/pi^2
+  delta = 1e-02:  max |pi^2 rho_0(w)/w - 1| over w in [0.01,10] = 9.516e-02
+  delta = 1e-04:  max |pi^2 rho_0(w)/w - 1| over w in [0.01,10] = 9.995e-04
+  delta = 1e-06:  max |pi^2 rho_0(w)/w - 1| over w in [0.01,10] = 1.000e-05
+  [OK] A3 rho_0(w) -> w/pi^2 as delta -> 0 (1.00e-05 at delta=1e-6) and NOT at finite delta (9.52e-02 at delta=1e-2): the regulator is a real UV bandwidth Omega = 1/delta, not a cosmetic
+
+  A4: KERNEL SPECTRAL CONTENT.  W_a(nu) = rho_0(nu) [1 + 2 source_spectrum(nu,a)];  its cosine
+      transform should be Re G_th(tau; T_eff(a)) up to the O(delta T_eff) regulator artefact.
+      Control column = the same integral with qwen's acceleration-BLIND factor frozen at T_GH
+      (tn15 line 258 / tn16 line 112).  delta T_eff is printed so the artefact is visible.
+      a/H  d*Teff   tau     Re G_th (sinh)       W_a w/ tn15 S       rel    BLIND kernel       rel
+     0.00  0.0080  0.08  -4.9802290423e+00   -4.9804976481e+00  5.39e-05 -4.98049765e+00  5.39e-05
+     0.00  0.0080  0.30  -1.0277486698e+00   -1.0280150502e+00  2.59e-04 -1.02801505e+00  2.59e-04
+     0.50  0.0089  0.08  -4.9781191112e+00   -4.9784397286e+00  6.44e-05 -4.98049765e+00  4.78e-04
+     0.50  0.0089  0.30  -1.0256584830e+00   -1.0259760486e+00  3.10e-04 -1.02801505e+00  2.30e-03
+     2.00  0.0178  0.08  -4.9464949308e+00   -4.9479079360e+00  2.86e-04 -4.98049765e+00  6.87e-03
+     2.00  0.0178  0.30  -9.9484762472e-01   -9.9620053216e-01  1.36e-03 -1.02801505e+00  3.33e-02
+     8.00  0.0642  0.08  -4.4470213707e+00   -4.4971491964e+00  1.13e-02 -4.98049765e+00  1.20e-01
+     8.00  0.0642  0.30  -6.1645176505e-01   -6.4054141268e-01  3.91e-02 -1.02801505e+00  6.68e-01
+  [OK] A4 *** THE TRAJECTORY IS IN THE KERNEL *** the spectral content built from tn15's OWN source_spectrum(nu, accel) at the Deser-Levin T_eff reproduces Re G_th(tau;T_eff(a)) to 1.36e-03 over a/H <= 2 (where delta T_eff <= 0.018), while the SAME integral with qwen's acceleration-BLIND constant Bose factor is off by 3.33e-02 -- 25x worse. So [K1] is precisely their kernel with the one-line fix their own code already contained but never used, and the fix is NOT cosmetic. The a/H = 8 row shows the O(delta T_eff) regulator artefact growing exactly as advertised, which is why delta is scanned in E4 rather than trusted
+
+  A4b  max_nu |rho_0 - rho_T|/rho_0 at T = T_eff(8) = 1.2831, nu in [1e-3,100]:
+    delta = 0.050000:  1.14217e-01
+    delta = 0.012500:  2.82121e-02
+    delta = 0.003125:  7.03195e-03
+  [OK] A4b the fixed-bandwidth rho_0 and the T-tied rho_T differ by O(delta) EXACTLY: quartering delta shrinks the gap by 4.049x then 4.012x (both -> 4). So 'which regulated density' is a regulator ambiguity of size O(delta T_eff), not a physical choice; the FIXED bandwidth is the physical one because a detector's bandwidth cannot track the acceleration of the particle carrying it
+  [OK] A4c the T-tied regulator additionally goes NEGATIVE for T > 1/(2 delta) = 10.0 and stays positive below -- a second, independent reason to fix the bandwidth. With the fixed bandwidth the only requirement is 1/delta >> 2 T_eff(a_max) = 318.3
+
+         a/H      T_eff-T_GH naive     algebraic rewrite      a^2/(4 pi H)
+       1e-08  0.00000000000000e+00  7.95774715459477e-18    7.95774715e-18
+       1e-04  7.95774696138452e-10  7.95774713470040e-10    7.95774715e-10
+       1e-02  7.95754822083272e-06  7.95754822086246e-06    7.95774715e-06
+       1e+00  6.59241359473812e-02  6.59241359473812e-02    7.95774715e-02
+       1e+03  1.58995867726255e+02  1.58995867726255e+02    7.95774715e+04
+  [OK] A5 the deep expansion T_eff-T_GH = a^2/(4 pi H) (master formula check C1a) is reproduced by the algebraic rewrite to 0.00e+00 at a = 1e-8, where the NAIVE difference sqrt(1+a^2)-1 has already collapsed to 0.0e+00 -- float64 hazard #2, live
+
+================================================================================================================
+  B  THE EXACT RESOLVENT -- built in omega, verified against a unit-lower-triangular Volterra solve
+================================================================================================================
+  production settings: delta = 2.0e-03 (bandwidth Omega = 500 H, vs 2 T_eff(1e3) = 318.3),  eta = 0.1,  420 log-spaced omega in [1.0e-03, 600],  1680 nu abscissae per omega
+
+      omega   Re phihat (PV quad)  Re phihat (tau quad)       rel   Im phihat (closed)   Im (tau quad)       rel
+     0.0497   -5.066443687975e+01   -5.066036024026e+01  8.05e-05  -7.902286791618e-03 -7.90228679e-03  1.27e-10
+     0.1714   -5.066439776168e+01   -5.066032109784e+01  8.05e-05  -2.726163894148e-02 -2.72616389e-02  1.27e-10
+     0.5046   -5.066408153852e+01   -5.066000467039e+01  8.05e-05  -8.021387454698e-02 -8.02138746e-02  1.27e-10
+     1.9765   -5.065974656386e+01   -5.065566633680e+01  8.05e-05  -3.133242049591e-01 -3.13324205e-01  1.28e-10
+     7.9922   -5.060550392467e+01   -5.060136802991e+01  8.17e-05  -1.251824978176e+00 -1.25182498e+00  1.23e-10
+    40.3620   -4.969415625578e+01   -4.968863047991e+01  1.11e-04  -5.925632946131e+00 -5.92563295e+00  4.00e-11
+  [OK] B1 both parts of phihat_BD agree between the subtracted-PV nu quadrature and an independent tau quadrature of the closed-form Im G_BD: Re to 1.11e-04, Im to 1.28e-10. This validates the whole omega-domain construction, including the P Int dnu/(nu^2-w^2) = 0 subtraction
+  dtau = 4e-03 (N =   5001):  max|q^2 Khat| = 0.4751, dressing max|rho_a/rho_0-1| = 9.834e-01,  max|rho_tau/rho_omega - 1| = 6.585e-10
+  dtau = 1e-03 (N =  20001):  max|q^2 Khat| = 0.5023, dressing max|rho_a/rho_0-1| = 1.097e+00,  max|rho_tau/rho_omega - 1| = 8.502e-10
+  [OK] B2 the tau-domain unit-lower-triangular forward substitution and the algebraic resolvent [R1] give the same rho_a(omega) to 8.50e-10 at a coupling that dresses rho by 109.7% -- so the agreement is a real test of the resolvent, not two routes both returning rho_0. Two independent routes, one exact sweep each
+  operator L from the kernel array: max|upper triangle| = 0.000e+00, max|diagonal| = 0.000e+00
+  q^2 =    1e-06:  |log det| = 0.000e+00 (LU),  0.000e+00 (product of diagonals)
+  q^2 =    1e-03:  |log det| = 0.000e+00 (LU),  0.000e+00 (product of diagonals)
+  q^2 =    1e+00:  |log det| = 0.000e+00 (LU),  0.000e+00 (product of diagonals)
+  q^2 =    1e+01:  |log det| = 0.000e+00 (LU),  0.000e+00 (product of diagonals)
+  [OK] B3 the discretised operator built from the kernel array is STRICTLY lower triangular (upper triangle and diagonal both exactly zero), so I - q^2 dtau L has unit diagonal and det = 1 for EVERY coupling by the triangular-determinant theorem -- confirmed numerically to 0.0e+00 up to q^2 = 10, and NOT 1 (log det = -33.8492) once the tau = 0 diagonal term K(0) = 40.6 is put back. Under tn16's own K(0) = 0 convention there is therefore no critical coupling and no bifurcation: tn16's 'sign-flip threshold q^2 ~ 3e-2' and tn17's under-relaxed Picard were hunting a pole a unit-triangular operator cannot have
+  forward substitution vs dense LU solve: max relative difference = 1.987e-16
+  [OK] B3b one forward sweep reproduces the dense LU solve of the same system to 2.0e-16: the sweep IS the exact resolvent, so nothing in this lane is an iteration or a truncation
+  Picard iteration   1: max |phi_Picard - phi_exact| / max|phi_exact| = 1.512e-01
+  Picard iteration   5: max |phi_Picard - phi_exact| / max|phi_exact| = 5.959e-03
+  Picard iteration  20: max |phi_Picard - phi_exact| / max|phi_exact| = 5.521e-08
+  Picard iteration  80: max |phi_Picard - phi_exact| / max|phi_exact| = 9.937e-17
+  [OK] B4 Picard does eventually reach the same answer (9.9e-17 after 80 sweeps) but is never needed -- one triangular sweep is already exact, while Picard iteration 1 is still off by 1.5e-01 and iteration 5 by 6.0e-03. A Volterra-Neumann series ALWAYS converges, so tn17's 'WARNING: No convergence in 200 iters' reports its own under-relaxation factor 0.15, not the physics
+
+  B5 at q^2 = 1.6456e-02 (max|q^2 Khat| = 0.500):
+     closed resolvent vs the explicitly summed Neumann series: 2.465e-14
+     closed resolvent vs its FIRST-ORDER truncation 1 + q^2 Khat: 1.007e+03
+  [OK] B5 Machinery's rho_a uses the full resummation 1/(1-q^2 Khat): it reproduces the explicitly summed Neumann series to 2.5e-14 and differs from the first-order truncation 1 + q^2 Khat by 100705.4% at a coupling that dresses rho appreciably. The production sweep is then run at q^2 = 1e-8, where the two agree to machine precision by design -- which is the point of E4, not a hidden approximation
+
+================================================================================================================
+  C  THE EXTRACTOR -- anchored on the two cases whose answer is independently known
+================================================================================================================
+  anchor 1, f = T (Milgrom 1999):  c1 = 0.1591549431 [1/2pi = 0.1591549431], c2 = 0.0795774715 [1/4pi = 0.0795774715], q = 1.9999999998
+  [OK] C1 the extractor returns q = 2.00000000 on f = T, i.e. Milgrom 1999's q = 2, with c1 = 1/2pi and c2 = 1/4pi to 1e-7. Anchored on the one case whose answer is independently known
+  anchor 2, the r = 2Z counterexample:  q = 0.17274707  [target 1/Z = 0.17274707], r = 11.577620 [target 2Z = 11.577620]
+  [OK] C2 the extractor returns q = 0.17274707 = 100.00% of 1/Z on the asymptotically-linear exponential whose slope at the floor is 2Z -- mi_crossover_master_formula_2026.py's own counterexample. So the extractor can see r = 2Z when r = 2Z is really there; if the trajectory kernel does not give 2Z below, that is the kernel's answer and not the extractor's blindness
+  [OK] C3 the extractor DISCRIMINATES: it returns 2.000000 on the linear f and 0.1727 on the r = 2Z f, a factor 11.58 apart. It is not returning a constant
+
+================================================================================================================
+  D  THE SWEEP -- delta_m(a) with the trajectory in, a/H from 1e-3 to 1e3
+================================================================================================================
+  q^2 = 1e-08, max|q^2 Khat_0| = 3.038e-07;  delta_m(a=0) = 0.466686;  omega_0 = 0.172739 (canonical footing)
+
+         a/H     T_eff   delta_m(a)-delta_m(0)         I/a^2           I/a  d log I/d log a  1st moment I_1
+   1.000e-03    0.1592          8.48484616e-15  8.484846e-09  8.484846e-12           2.0000    5.720551e-15
+   3.162e-03    0.1592          8.48482735e-14  8.484827e-09  2.683138e-11           2.0000    5.720542e-14
+   1.000e-02    0.1592          8.48463925e-13  8.484639e-09  8.484639e-11           1.9999    5.720454e-13
+   3.162e-02    0.1592          8.48275902e-12  8.482759e-09  2.682484e-10           1.9995    5.719574e-12
+   1.000e-01    0.1599          8.46403362e-11  8.464034e-09  8.464034e-10           1.9948    5.710801e-11
+   3.162e-01    0.1669          8.28409404e-10  8.284094e-09  2.619661e-09           1.9512    5.626276e-10
+   1.000e+00    0.2251          6.97600985e-09  6.976010e-09  6.976010e-09           1.6766    4.997573e-09
+   3.162e+00    0.5279          3.48478221e-08  3.484782e-09  1.101985e-08           1.1109    3.123546e-08
+   1.000e+01    1.5995          9.69543621e-08  9.695436e-10  9.695436e-09           0.7152    1.342802e-07
+   3.162e+01    5.0354          1.94591735e-07  1.945917e-10  6.153531e-09           0.5230    4.791162e-07
+   1.000e+02   15.9163          3.37285090e-07  3.372851e-11  3.372851e-09           0.4522    1.586371e-06
+   3.162e+02   50.3295          5.73142771e-07  5.731428e-12  1.812437e-09           0.4908    5.102200e-06
+   1.000e+03  159.1550          1.08789888e-06  1.087899e-12  1.087899e-09           0.6160    1.619783e-05
+
+  CL second moment : c1 = 7.310946e-10  c2 = 8.484848e-09   q = 0.086165   r = 23.21135
+  first moment     : c1 = 1.624270e-08  c2 = 5.720552e-09   q = 2.839359   r = 0.70438
+  raw-endpoint vs Richardson drift:  c1 0.4880 (2nd) / 0.0028 (1st);   c2 2.46e-07 (2nd) / 1.71e-07 (1st)
+  [OK] D1 the DEEP side is exact: c2 extracted from lim I/a^2 equals f'(T_GH)/(4 pi) computed from the ANALYTIC temperature derivative (2/pi)Int dT[2S] .../(w^2+w0^2) to 4.4e-16 (2nd moment) and 0.0e+00 (1st). Two routes, one with a finite difference and one without, so the a -> 0 end of the master formula is under control
+  [OK] D2 the deep exponent is d log I/d log a = 2.00000 at a/H = 1e-3, i.e. I ~ a^2 exactly: the kernel reproduces the deep-MOND side of Milgrom's balance without being asked to
+  [OK] D3 *** THE NEWTONIAN SIDE FAILS *** c2 is converged (raw endpoint differs from the extrapolation by 2.5e-07) but c1 is NOT (drift 0.488, five orders of magnitude worse). I/a is still falling at a/H = 1e3: 1.0879e-09 against 3.3729e-09 at a/H = 100. There is no I ~ a asymptote, so lim I/a is not a nonzero number and q = c1/c2 is not defined
+
+  Khat_a via the full occupation vs Khat_0 + (cancellation-free difference): max relative gap = 4.448e-14
+  [OK] D5 the two routes to Khat_a -- the full Bose factor 1+2 source_spectrum(nu,a), and Khat_0 plus the cancellation-free difference 2[S(nu,a)-S(nu,0)] -- agree to 4.4e-14 across six decades of a/H, and the difference itself spans 2.84e+09 between a/H = 1e-3 and 1e3. So the acceleration really is in the kernel, and delta_2S's expm1 rewrite is exact rather than merely stable
+  qwen's literal blind kernel: max|I(a)| = 0.000e+00 over a/H in [1e-3,1e3]; trajectory kernel: 8.485e-15 to 1.088e-06
+  [OK] D4 with qwen's kernel exp(-2 eta tau) C^2, C = 1/(1-exp(-H beta)), I(a) is IDENTICALLY zero -- not small, exactly zero -- because there is no a in the expression, while the trajectory-carrying kernel gives I(a) spanning 1.28e+08 over the same range. That is the structural defect of tn14-tn26 in one line: with solver signature (tau_grid, q_sq, eta), delta_m is a NUMBER, nu is a CONSTANT, and no MOND can emerge for ANY coupling. The informative half of this check is the second clause
+
+================================================================================================================
+  E  THE T^3 TEST, THE IR, AND THE ROBUSTNESS SCANS
+================================================================================================================
+  regression window: 14 points, T_eff in [0.53, 21.2]  (UV-safe: T_eff <= 0.05/delta = 25)
+             p_W = +1.8085 +/- 0.0126
+         p_omega = +0.1954 +/- 0.0069
+     p_delta_2nd = +0.6253 +/- 0.0262
+     p_delta_1st = +1.1253 +/- 0.0160
+  [OK] E1 *** THE T^3 TEST FIRES *** the gain-band weight (amplitude x width) scales as T^1.8085 +/- 0.0126, which is below 3 by 95 fit sigma. On the lane's criterion that is a clean no-go: this mechanism cannot produce an acceleration scale at all
+  [OK] E1b AGAINST THE TEST ITSELF, and this must be said: the band does NOT track T (p_omega = 0.1954 +/- 0.0069, not 1), so the T^3 form is not applicable verbatim -- it is the p_omega = 1 special case. The heuristic identity p_delta = p_W - 2 p_omega gives 1.418 against the measured 0.625, i.e. it FAILS, because the L1 band sits near omega ~ 1e2 while the delta_m weight sits near omega ~ 1. The operative criterion is p_delta = 1, not p_W = 3
+  [OK] E1c and the operative criterion fires the same way: p_delta = 0.6253 +/- 0.0262 for the Caldeira-Leggett delta_m, which is 14 sigma from the 1 that a finite nonzero c1p requires
+
+  wider window (delta = 2e-4, 21 points, T_eff in [0.53, 159.2]):
+             p_W = +1.8369 +/- 0.0083
+         p_omega = +0.1659 +/- 0.0056
+     p_delta_2nd = +0.4901 +/- 0.0216
+     p_delta_1st = +1.0725 +/- 0.0106
+  [OK] E1e the verdict is regulator-stable: on a window ten times wider in T_eff (up to 159) the exponents are p_W = 1.8369, p_delta(2nd) = 0.4901, p_delta(1st) = 1.0725. p_W stays far below 3, the CL moment stays far below 1, and the first moment stays at 1. Widening the window pushes p_delta(2nd) DOWN (0.625 -> 0.490), i.e. towards zero, not towards 1
+  [OK] E1d *** THE ESCAPE DOOR *** the FIRST moment (2/pi)Int Delta rho/omega domega scales as T^1.1253 +/- 0.0160, i.e. LINEARLY. So the no-go is specific to the 1/omega^2 Caldeira-Leggett mass-shift moment: an inertia functional built on the first moment DOES carry an acceleration scale. This door is quantified in F, and it does not go where the framework needs it to
+
+  E2  regulator scan.  If c1 were a real limit, r would be delta-independent.
+    delta=2e-3 (Omega =    500 H):  r(CL 2nd moment) =    23.2114    r(1st moment) = 0.704384
+    delta=2e-4 (Omega =   5000 H):  r(CL 2nd moment) =    58.0882    r(1st moment) = 0.705342
+  [OK] E2 the CL-moment r moves by a factor 2.50 (23.21 -> 58.09) when the UV bandwidth is raised ten-fold, i.e. it GROWS without bound and is a pure regulator artefact -- confirming c1 -> 0, r -> infinity, q -> 0 and a_0 = 0. The first-moment r meanwhile is stable to 0.136% (0.704384 vs 0.705342), so that one IS a number
+
+  E3  IR watch, both footings.  Item 5 records delta_m ~ 1/omega_min exactly (10.000x per decade) in the
+      UNCORRECTED code.  Exponent of I(a=100) and of delta_m(0) against 1/omega_0:
+      w0        :   1.00e-04   3.16e-04   1.00e-03   3.16e-03   1.00e-02   3.16e-02   1.00e-01   3.16e-01   1.00e+00
+      I(100)    :  9.504e-06  8.525e-06  7.542e-06  6.559e-06  5.576e-06  4.594e-06  3.614e-06  2.650e-06  1.746e-06
+      dlog/dlog :      0.094      0.106      0.121      0.141      0.168      0.208      0.270      0.362
+      dm(0) exp :      0.061      0.066      0.071      0.077      0.085      0.094      0.105      0.120
+      omega_0 canonical 0.172739: r(CL) =   58.0882, r(1st) = 0.705342
+      omega_0 ALT       0.172579: r(CL) =   58.1128, r(1st) = 0.705342
+  [OK] E3 the corrected kernel does NOT reproduce the 1/omega_min divergence: the exponent of I against 1/omega_0 peaks at 0.362 and that of delta_m(0) at 0.120, both far from the 1.0 that 10x-per-decade requires -- the dependence is logarithmic. Item 5's exact 1/omega_min was an artefact of the uncorrected kernel, whose rho(omega -> 0) tended to a nonzero constant. Reported in both footings: r(CL) = 58.0882 canonical vs 58.1128 ALT, a 0.04% spread, because omega_0 is footing-invariant (check S1)
+
+  E4  coupling scan.  r is q-independent only while the resolvent is perturbative.
+    q^2 =   1e-08: max|q^2 Khat_0| = 3.038e-07,  r(1st) =      0.70438,  kappa =    8.2183,  c1 drift = 0.0028
+    q^2 =   1e-06: max|q^2 Khat_0| = 3.038e-05,  r(1st) =      0.70434,  kappa =    8.2188,  c1 drift = 0.0028
+    q^2 =   1e-02: max|q^2 Khat_0| = 3.038e-01,  r(1st) =      0.31740,  kappa =   18.2382,  c1 drift = 0.0788
+    q^2 =   1e+00: max|q^2 Khat_0| = 3.038e+01,  r(1st) =     -2.46213,  kappa =   -2.3511,  c1 drift = 62.2541
+  [OK] E4 r is coupling-independent across q^2 = 1e-8 to 1e-6 (0.70438 vs 0.70434, 0.0062%) -- as the master formula's invariance under f -> alpha f demands, since both c1p and f'(T_GH) are O(q^2) -- and it BREAKS once the resolvent stops being perturbative: r = 0.3174 at q^2 = 1e-2 (a 55% move) and r = -2.4621 -- SIGN-FLIPPED -- at q^2 = 1. So r exists only in the perturbative window; the exact resolvent destroys it at strong coupling, which is a second, independent limit on how much this mechanism can be asked to deliver
+
+  E5  4x grid refinement (omega and nu):
+    r(1st):  0.7043843 (420 omega)  ->  0.7040762 (1680 omega),  shift 0.04375%
+  [OK] E5 quadrupling the omega grid moves r(1st) by 0.0438%, so the quoted digits are grid-converged and not an unsampled-extremum artefact (float64 hazard #4)
+
+================================================================================================================
+  F  READING OFF r -- and what it says about the coefficient
+================================================================================================================
+  Caldeira-Leggett delta_m = (2/pi) Int rho/(w^2+w0^2) dw   [the moment tn14-tn26 use]
+    c1 = lim I/a is NOT a limit: r = 23.21 at Omega = 500 H, 58.09 at 5000 H, growing as the regulator is removed
+    => c1p = 0, r = infinity, q = 0, a_0 = 0.  NO ACCELERATION SCALE.
+
+  first moment (2/pi) Int rho/w dw   [the escape door]
+    r = 0.704384 / 0.705342 / 0.704076  (Omega = 500, 5000, and the 4x-refined grid)
+    r = 0.70460 +/- 0.00127   =>   q = 2.83849   =>   kappa = q Z/2 = 8.2157
+
+  proposal                                           r           q     kappa   r/r_this
+  -------------------------------------------------------------------------------------
+  THIS KERNEL, first moment                   0.704601    2.838486    8.2157      1.000
+  Milgrom 1999 (a_0 = 2 c H_Lambda)           1.000000    2.000000    5.7888      1.419
+  Milgrom 1999 eqs 10-11                      2.000000    1.000000    2.8944      2.838
+  Milgrom 2020 (kappa = 1/2pi)               12.566371    0.159155    0.4607     17.835
+  THIS FRAMEWORK (kappa = 1/2)               11.577620    0.172747    0.5000     16.431
+  admissibility bound (max)                   9.016763    0.221809    0.6420     12.797
+
+  implied a_0, both footings:  canonical q c H_Lambda = 1.5383e-09 m/s^2 (16.43x the fitted 9.3614e-11)
+                               ALT       q c H_0       = 1.8586e-09 m/s^2 (16.45x the fitted 1.1300e-10)
+  kappa is footing-invariant: 8.2157 either way, i.e. 16.43x the fitted 1/2
+  [OK] F1 the bridge q = 2 kappa/Z is verified against the quoted constants: a_0/(cH) = 0.1727387 (canonical) and 0.1725792 (ALT) against 2(1/2)/Z = 1/Z = 0.1727471. So kappa = q Z/2 is the correct translation and the same in both footings
+  [OK] F2 *** AGAINST INTEREST *** the r this mechanism actually delivers, 0.70460, sits 0.350 in log from Milgrom 1999's r = 1 and 2.799 from the 2Z = 11.5776 that kappa = 1/2 requires -- i.e. 16.4x away from this framework's value and 1.42x from Milgrom's. Feeding the trajectory in lands in MILGROM'S neighbourhood, not the framework's. Nothing here derives kappa = 1/2; the mechanism disfavours it by 16.4x
+  [OK] F3 r = 0.70460 is inside the admissibility bound r <= 9.016763 (mi_r_admissibility_bound_2026.py) -- so the mu it implies is <= 1 and monotone -- but it is also BELOW 1, meaning q = 2.8385 > 2 and the implied a_0 = 1.538e-09 m/s^2 is LARGER than Milgrom 1999's 2 c H_Lambda = 1.084e-09. The mechanism overshoots the horizon scale, it does not divide it by Z
+  [OK] F4 the two verdicts have opposite robustness signatures, which is how we know which is real: r(1st moment) = 0.70460 varies by 0.180% across a ten-fold change of UV bandwidth and a 4x grid refinement, while r(CL moment) moves 150% under the same change. One is a number; the other is the regulator
+
+================================================================================================================
+  SUMMARY
+================================================================================================================
+  1. THE DEFECT IS REAL AND IS ONE LINE.  With qwen's acceleration-blind kernel I(a) = 0 identically over six
+     decades of a/H (D4): delta_m cannot depend on acceleration, nu is a constant, no MOND for any coupling.
+     tn15 already computed the Deser-Levin T_eff (line 194) and defined source_spectrum(omega, accel); the fix
+     is to use them in the kernel, and A4 shows that this reproduces Re G_th(tau;T_eff(a)) to 1.4e-03 while
+     the blind factor is off by 3.3e-02.
+
+  2. NO PICARD, NO THRESHOLD.  Under tn16's own K(0) = 0 convention the Volterra operator is strictly lower
+     triangular, det = 1 for every coupling (B3), one forward sweep equals the dense LU solve to 2e-16 (B3b),
+     and the algebraic resolvent phihat_BD/(1-q^2 Khat) agrees with it to 1e-9 at a coupling that dresses rho
+     by 110% (B2).  tn16's 'sign-flip threshold q^2 ~ 3e-2' and tn17's non-convergence warnings are artefacts
+     of the method, not features of the physics: a unit-triangular operator has no pole.
+
+  3. THE DEEP SIDE COMES OUT RIGHT, FOR FREE.  I ~ a^2 to 5 decimal places at a/H = 1e-3 (D2), and c2 from the
+     numerical limit equals f'(T_GH)/(4 pi) from the analytic temperature derivative to
+     4.4e-16 (D1).
+
+  4. THE NEWTONIAN SIDE DOES NOT.  I(a) never reaches an I ~ a regime: the local exponent crosses 1 near
+     a/H ~ 3 and keeps falling, to 0.49 by a/H ~ 100, and the fitted p_delta drops from 0.63 to
+     0.49 when the UV bandwidth is raised ten-fold (E1c, E1e).  So c1 = lim I/a = 0,
+     r -> infinity, q -> 0, a_0 = 0.  The T^3 test fires independently: the gain-band weight scales as
+     T^1.81 +/- 0.01, 95 fit sigma below 3 (E1).
+
+  5. AGAINST THE T^3 TEST ITSELF.  The band does not track T (p_omega = 0.20, not 1), so 'exponent below 3'
+     is not the correct form of the criterion here; the operative one is p_delta = 1.  Both fire, but they are
+     not the same statement and the heuristic identity between them fails by a factor 2 (E1b).
+
+  6. THE ONE OPEN DOOR, AND IT LEADS AWAY FROM kappa = 1/2.  The first moment Int rho/omega domega scales
+     exactly as T (p = 1.13 at Omega = 500 H, 1.07 at 5000 H), needs no IR regulator, and
+     yields a genuine regulator-stable r = 0.70460 +/- 0.00127 => q = 2.8385 => kappa = 8.2157.
+     That is 16.4x the fitted kappa = 1/2 and a factor 16.4 from r = 2Z; it sits nearest Milgrom
+     1999's r = 1 (1.42x away).  The implied a_0 is 1.538e-09 m/s^2 (canonical) or 1.859e-09
+     (ALT), i.e. LARGER than the horizon rate rather than 1/Z of it.
+
+  7. WHAT DID NOT REPRODUCE.  Item 5's 'delta_m ~ 1/omega_min exactly, 10.000x per decade' does NOT survive the
+     corrected kernel: the dependence on the detector frequency is logarithmic, exponent <= 0.36 (E3).  That
+     divergence belonged to the uncorrected kernel.
+
+  8. FOOTINGS.  omega_0 = omega_c/H and q = a_0/(cH) are EXACTLY footing-invariant, because a_0 and cH both
+     carry 1/sqrt(Omega_Lambda) = 1.2082.  r differs by 0.04% between canonical and ALT (E3).  This lane cannot
+     be decided by the rho_DE/cH_Lambda vs rho_total/cH_0 fork in either direction.
+
+  kappa = 1/2 REMAINS FITTED, NOT DERIVED.  This lane does not derive it and does not support it: the only
+  reading of the trajectory-carrying kernel that produces an acceleration scale at all produces one 16x
+  too large, in Milgrom's neighbourhood rather than this framework's.
+
+================================================================================================================
+  CHECKS
+================================================================================================================
+   1. [OK] S1
+   2. [OK] S2
+   3. [OK] S3
+   4. [OK] A1
+   5. [OK] A2
+   6. [OK] A3
+   7. [OK] A4
+   8. [OK] A4b
+   9. [OK] A4c
+  10. [OK] A5
+  11. [OK] B1
+  12. [OK] B2
+  13. [OK] B3
+  14. [OK] B3b
+  15. [OK] B4
+  16. [OK] B5
+  17. [OK] C1
+  18. [OK] C2
+  19. [OK] C3
+  20. [OK] D1
+  21. [OK] D2
+  22. [OK] D3
+  23. [OK] D5
+  24. [OK] D4
+  25. [OK] E1
+  26. [OK] E1b
+  27. [OK] E1c
+  28. [OK] E1e
+  29. [OK] E1d
+  30. [OK] E2
+  31. [OK] E3
+  32. [OK] E4
+  33. [OK] E5
+  34. [OK] F1
+  35. [OK] F2
+  36. [OK] F3
+  37. [OK] F4
+
+37/37 checks held.
