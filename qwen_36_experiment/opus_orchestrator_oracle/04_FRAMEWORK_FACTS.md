@@ -94,3 +94,43 @@ Script: `real_research/reviews/mi_crossover_master_formula_2026.py` (14/14).
 - that `S(Ω) = 0` on an interval forces `K ∝ δ` (refuted by `K = b·J₀(bs)`),
 - that 1/C landing inside 3.8e5–3.8e7 cross-validates two routes (same kinematic (c/v)² twice),
 - that 2Z "carries √π that no normalisation supplies" (its √π *is* the Friedmann 8π/3's).
+
+
+---
+
+## 2026-08-07 SWEEP — nine theorems added, four claims withdrawn. Do not contradict without re-running.
+
+**WITHDRAWN (mine, same-day):** the r ≤ 9.0168 admissibility ceiling and its exclusion of κ=½ and 4π. The
+exact single-scale *menu* ceiling is **r = 9** (closed form 4(2−δ)²/(2+7δ−4δ²)→8); 9.016763 carried a 0.19%
+quadrature bias. `mi_r_admissibility_bound_2026.py` carries a WITHDRAWN-IN-PART banner.
+
+| new theorem | statement | script |
+|---|---|---|
+| **sup r = +∞** | four independent routes (explicit ψ, LP with slope −0.5003, cascade, closed-form member). Admissibility derives **nothing** — it admits all r∈[0,∞) | `mi_psi_search_r2Z_2026.py` 27/27, `mi_extremal_kernel_lp_2026.py` 17/17 |
+| **CTP variational prize** | the retarded MI EOM **IS** variational in-in; in-out leaks advanced terms at exactly half weight. The 2026-08-01 "not variational" no-go is dissolved for the CTP class | `mi_ctp_variational_2026.py` 50/50 |
+| **a₀ = 0 at Gaussian order** | the dS *dissipation* kernel is state-independent; all of T sits in the *noise* kernel, which CTP keeps out of the mean EOM | same |
+| **cubic drift: structure yes, coefficient+magnitude no** | the tadpole DOES inject T(a) with exact MOND asymptotics, but prices r = ⟨x²/sinh²x⟩ **< 1** strictly ⇒ q > 2, floor ≥11.6× above κ=½; and suppression is uniquely ħH/(mc²) = **1.27e-42** per proton | `mi_cubic_noise_drift_2026.py` 37/37, `mi_drift_magnitude_audit_2026.py` 27/27 |
+| **RAR shape is EXACTLY blind to the coefficient** | ν=√(1+1/y) at *every* r; 67× in a₀ ⇒ 1.9e-16 dex vs SPARC's 0.034. Sharpens Milgrom 2008 §7.3.1 beyond what he stated | `mi_r_one_parameter_nogo_paper_2026.py` 41/41 |
+| **Δ = a₀/2 identically** | every member carries a constant residual; μ≤1 **is** Δ≥0. Ephemeris bounds the class: 1279×/1544×; no r does both jobs. **The falsifiable consequence is solar-system, never galactic** | same |
+| **KMS is inherited** | a linear τ-convolution dressing with any real kernel keeping G a correlator provably preserves KMS ⇒ NESS-by-resummation dead | `mi_kms_dressing_and_superohmic_2026.py` 18/18 |
+| **super-ohmic is sign-definite** | δm > 0 for s = 1,2,3,4, every cutoff, both footings (0/60 non-positive) | same |
+| **composite operator is one-signed** | ρ_φ² = ω³/24π³ + (2/π²)Nω with **N ≥ 0 forced by state positivity**; BD is the MINIMUM, squeezing DEEPENS the wall | `mi_composite_operator_2026.py` 25/25 |
+| **inversion unreachable** | F(−E)−F(E) = E/2π ⇒ every Boltzmann factor x(E) < 1 ⇒ no N-level chain inverts at any v/c | `mi_two_level_inversion_2026.py` 21/21 |
+| **not the Ward identity** | broken boosts allow a family; acceleration-dependent inertia cannot arise at that order in a homogeneous background | `mi_goldstone_ward_2026.py` 25/25 |
+| **CPT-even-only (kernel class)** | any functional of a·a/a₀² induces only even-in-u SME coefficients ⇒ a_μ, b_μ, k_AF vanish. Both natural CPT-odd scales are already excluded by 144× and 21× | `mi_sme_bridge_alpha2_2026.py` 35/35 |
+| **number field ℤ/2 grading** | √π gives the coefficient half-integer π-weight; all SM-side objects integer ⇒ only *fitted* κ can cross a **finite** bridge. NOT "no bridge" — infinite/limit constructions can make √π | `mi_number_field_theorem_2026.py` 38/38 |
+| **disformal dies empirically** | cone ratio D/A = 1+BX/A gauge-independent; photon decay γ→e⁺e⁻ excludes the split by 7.5e5–7.5e11×. **B = 0 conformal sub-branch still open** | `mi_disformal_completion_2026.py` 48/48 |
+| **geometric lock priced dead** | 109 distinct values contain Milgrom's r = 1 and 4π **exactly**, not ¼. Best hit p = **0.480** (1 observed vs 1.117 expected). No candidate makes an independent prediction | `mi_geometric_lock_price_2026.py` 32/32 |
+
+**Also established:** MG/AeST is **11.3–13.0σ** over Cassini Q2 while pure MI evades by 4e7 — a genuine
+internal discriminator favouring MI, but MI pays with the ℓ=0 constant a₀/2. c_T = c **exactly** by structure.
+The joint over-determination is **CONTINUUM** (+2 dof reproduced), and the banked 2.2σ κ-preference **dissolves
+when profiled over kernels** — quote it only with its α=1 kernel condition. The ephemeris **demands α ≥ 1.260**;
+α = 1 (the "exact law") is excluded at 378σ post-EFE. "S8 neutral-by-theorem" is **refuted as a theorem**.
+New fit-free bound: SPARC orbital frequencies + LLR ⇒ **a₀ ≤ 1.1606e-10**.
+
+**Liabilities WITHDRAWN in the framework's favour:** the disformal "second bill" was a c² units slip (ΔB =
+2.87e-15, not 257); and my own exclusion of κ=½.
+
+**THE SURVIVING CORNER:** tree-level (loops are dead by 42 orders) and π-free (A_hor = 3c²/2Gρ_Λ carries no π).
+κ = ½ is **undetermined** — neither derived nor excluded.

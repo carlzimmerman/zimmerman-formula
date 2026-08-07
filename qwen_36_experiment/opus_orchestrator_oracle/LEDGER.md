@@ -45,3 +45,11 @@ doubt it, but do not re-derive it from scratch.
 # ENTRIES
 
 <!-- append below this line, newest last -->
+
+## 2026-08-07 — overnight sweep, ~500 checks, all re-run before commit   STATUS: see 04_FRAMEWORK_FACTS.md
+Nine theorems added, four claims withdrawn (including two of mine). Full table in FRAMEWORK_FACTS §2026-08-07.
+DO NOT REDO: admissibility bounds on r (sup = +∞, four routes); the CTP Gaussian order (a₀ = 0 exactly); the
+cubic tadpole (structure yes, coefficient r < 1 and magnitude 1.27e-42 — both dead); composite operators,
+squeezed states, two-level/N-level inversion, super-ohmic equilibrium, linear-dressing KMS, the Ward identity,
+the geometric lock (priced p = 0.480), the disformal completion (photon decay).
+NEXT: the TASKS/ queue. M-tasks are the uncovered open items; W-tasks are unrelated.
