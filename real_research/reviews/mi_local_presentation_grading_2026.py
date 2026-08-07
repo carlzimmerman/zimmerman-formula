@@ -113,6 +113,27 @@ from mpmath import mp
 
 mp.dps = 60
 
+# =================================================================================================
+# AMENDMENT 2026-08-07 (see `mi_index_multiplicity_half_2026.py`, 31/31) -- TWO HEADLINES DEFLATED
+# -------------------------------------------------------------------------------------------------
+# (1) This file's headline "the open problem collapses from a transcendental to a rational" is NOT
+#     special to the framework.  The pi-weights below are computed on the LINEAR object a_0.  On the
+#     framework's own QUADRATIC law (g_obs^2 = g_bar^2 + a_0 g_bar), the natural invariant is a_0^2,
+#     and squaring doubles the weight: a_0^2/(c^4 Lambda) = 1/(32 pi) has INTEGER weight -- as do
+#     ALL FOUR coefficients (framework 1/(32 pi), Milgrom 1999 4/3 and 1/3, Milgrom 2020
+#     1/(12 pi^2)).  The half-integer obstruction is an ARTEFACT OF THE LINEAR PRESENTATION.
+#     AGAINST INTEREST: Milgrom 1999's quadratic invariant is a PURE rational needing no pi from the
+#     source at all, i.e. CHEAPER than the framework's.
+# (2) PART D's physical motivation -- "modified inertia couples to T_munu, so the matter side
+#     (rho_Lambda) is primitive, so kappa is rational" -- is WITHDRAWN.  The framework's own
+#     canonical form a_0 = c^2 sqrt(Lambda/32 pi) is G-FREE and pure-curvature (G cancels between
+#     sqrt(G) and rho_Lambda's 1/G), so writing a_0 via rho_Lambda is bookkeeping, not a physical
+#     selection.  The arithmetic in Parts A-C stands; the story in Part D does not.
+# WHAT STANDS: Z = sqrt(32 pi/3), Z^2 = 4 x (8 pi/3), a_0 t_Lambda = c/2, the exact parity swap, the
+# retrodiction that horizon-side routes give Milgrom's coefficient, and every negative control.
+# kappa = 1/2 remains FITTED, NOT DERIVED.
+# =================================================================================================
+
 FAIL, NCHK = [], [0]
 
 
