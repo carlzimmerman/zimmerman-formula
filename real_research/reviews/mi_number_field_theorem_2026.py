@@ -1,6 +1,26 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 r"""
+AMENDMENT 2026-08-07 (see `mi_number_field_local_presentation_2026.py`, 29/29)
+-----------------------------------------------------------------------------
+THEOREM 3's against-interest reading below -- "the existence of a clean EVEN-weight competitor at
+8% is the strongest number-theoretic argument that the framework's sqrt(pi) is an artefact of its
+own construction" -- is PRESENTATION-DEPENDENT and is WITHDRAWN AS STATED.
+
+The pi-weights are computed against c H_Lambda.  Computed instead against the LOCAL scale
+c sqrt(G rho_Lambda), the parities SWAP: the framework's coefficient is kappa = 1/2, weight 0
+(ALGEBRAIC), while Milgrom 2020's is sqrt(2/3 pi), weight -1/2 (transcendental) -- as this file's
+own check w(kappa_Milgrom) = -1/2 already records.  So neither coefficient is intrinsically the
+"clean" one; the parity is a property of which scale you divide by.
+
+WHAT SURVIVES UNCHANGED: Theorem 1, Theorem 2, Corollary 2a, Corollary 2b as arithmetic statements
+about the HORIZON presentation; the rigidity of the 8% gap (the two coefficients sit in different
+weight classes in BOTH presentations, so no rational re-choice of kappa closes it); and escapes
+E1-E5.  The mirror-image PRO-framework argument is equally void: the pi-arithmetic favours NEITHER
+coefficient.  kappa = 1/2 remains FITTED, NOT DERIVED.
+"""
+
+r"""
 LANE G4 -- THE NUMBER-FIELD OBSTRUCTION, PROMOTED FROM COMPUTATION TO THEOREM
 ============================================================================
 
