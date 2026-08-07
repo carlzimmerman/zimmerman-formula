@@ -77,6 +77,36 @@ from mpmath import mp
 
 mp.dps = 50
 
+# =================================================================================================
+# AMENDMENT 2026-08-07 (see `mi_aest_entropy_discriminator_2026.py`, 23/23) -- THIS FILE'S
+# "PAYOFF KEPT" IS WITHDRAWN.  THE WHOLE TEST CLASS IS VOID, NOT MERELY VACUOUS IN MI.
+# -------------------------------------------------------------------------------------------------
+# Part E below keeps one payoff: that the entropy-normalisation test, though vacuous in MI (f' == 1),
+# is LIVE in the MG/AeST realisation and yields an MI-vs-MG discriminator.  Pushing the AeST side
+# kills it, for two independent reasons either of which suffices:
+#   (a) AeST has NO curvature coupling.  Everything beyond R/(16 pi G-tilde) is built from the unit
+#       vector A^mu, the scalar phi and their FIRST derivatives, so nothing contributes to
+#       dL/dR_abcd and S_Wald(AeST) = A/(4 G-tilde) with f' == 1 EXACTLY.  The premise "MG/AeST has
+#       f' != 1" is false at the root.
+#   (b) THEOREM: every Lambda-tied coefficient is G-FREE -- the framework's a_0 = c^2 sqrt(L/32 pi)
+#       AND both of Milgrom's -- so each is invariant under G -> G/(1-xi) for ALL xi, hence blind to
+#       every redefinition of the gravitational coupling and therefore to every entropy-
+#       normalisation rescaling, in EVERY realisation.  Control: the corpus's dead rho_local route
+#       IS G-dependent and WOULD track (reproducing the banked 1076x), so the blindness is specific
+#       to the Lambda-tied form and the theorem is not vacuous.
+# STRENGTH: not a small-effect result.  Had a_0 tracked G_N/G-tilde it would have moved >5% at
+# xi = 0.1 -- measurable.  The effect is structurally absent, not tiny.
+# WHAT REPLACES IT: an ECONOMY discriminator on different grounds.  In AeST the MOND scale is a free
+# function's normalisation, independent of Lambda, so a_0 = c^2 sqrt(Lambda/32 pi) is a PREDICTION in
+# the MI realisation and an extra POSTULATE in MG/AeST.  Same direction as the banked Cassini-Q2
+# result.  COST, against interest: MI is now load-bearing for BOTH the observational evasion AND the
+# coefficient's status as a prediction, so the coefficient claim cannot be rescued by retreating to a
+# covariant MG completion if MI's own problems bite.
+# Everything else in this file stands: Wald by explicit contraction, S = f' A/(4G), the EH anchor,
+# Gauss-Bonnet being topological and the wrong probe, and the f(R) = R - 2L_b + beta R^2 lever.
+# kappa = 1/2 remains FITTED, NOT DERIVED.
+# =================================================================================================
+
 FAIL, NCHK = [], [0]
 
 
