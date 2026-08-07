@@ -1,0 +1,476 @@
+
+============================================================================================================
+  P0  THE LEDGER -- how many free quantities, how many INDEPENDENT constraints
+============================================================================================================
+  FREE QUANTITY                                   kind                            status
+  --------------------------------------------------------------------------------------------------------
+  p1 kappa  (equivalently a0's normalisation)     continuous                      FITTED to rotation curves
+  p2 omega_c  (the memory cutoff, a 5th constant) continuous                      window [1.78,2.21]e-14
+  p3 the interpolation SHAPE index                discrete, 5 admissible kernels  30.6% syst on a0
+  p4 I_0, the ghost-condensate AMOUNT ~ Omega_dm  continuous                      robustly FREE
+  p5 the EFE prescription factor                  continuous                      calibrated on Crater II
+  d1 the FOOTING: rho_DE/cH_Lambda vs rho_tot/cH_0discrete binary                 spread 1.2082x
+
+  CONSTRAINT                                      kind          binds                     verdict
+  --------------------------------------------------------------------------------------------------------
+  c1 F1  SPARC RAR profile likelihood on a0       two-sided     p1                        binds
+  c2 F2a constant sunward anomaly, Earth 2-sigma  one-sided     p3 (and p1 weakly)        binds
+  c3 F2b secular drift floor -> omega_c upper edgeone-sided     p1 x p2                   binds
+  c4 SPARC Re G >= 0.90 -> omega_c lower edge     one-sided     p2                        binds
+  c5 F4  cluster eta(R500) on eRASS1              two-sided     p1, p3                    binds
+  c6 F5  a0(z) shape                              two-sided     (w0,wa) -- NOT p1..p5     adds its own parameter
+  c7 F3  wide-binary gamma_v                      two-sided     p3                        NO DATA -- 0 constraints
+  c8 Crater II EFE calibration                    two-sided     p5                        consumed by p5 (a FIT)
+
+  BINDING constraints            = 5   (c1,c2,c3,c4,c5)
+  parameters they act on         = 4   (p1 kappa/a0, p2 omega_c, p3 shape, d1 footing), of which d1 is a binary
+  net over-determination          = 5 - 3 continuous/discrete-shape = +2
+  p4 (I_0) is touched by NO constraint  -> irreducibly free
+  p5 (EFE) has exactly ONE constraint   -> exactly determined = a FIT, zero over-determination
+  [OK] P0a the (a0, omega_c, shape) subspace IS over-determined: 5 binding constraints on 3 quantities = +2 net, which is EXACTLY the '+2 degrees of freedom' the 2026-06-15 joint analysis found viable. So the question 'can the +2 be driven to 0' is well posed and P8 answers it
+  [OK] P0b three fronts/constraints do NOT bind and saying so is half the answer: F3 has no data (P7), F5 is kappa-blind and brings its own (w0,wa) so it is net-zero for this count (P6), and the EFE factor is fixed by a single calibration, i.e. fitted not over-determined
+  named by NO constraint at all            : ['p4', 'd1']
+  named ONLY by a non-binding constraint   : ['p5']
+  [OK] P0c ledger consistency, computed by scanning the 'binds' column rather than asserted: p4 (I_0) and d1 (the footing) are named by NO constraint row, and p5 (EFE) only by the non-binding Crater II calibration. d1 is a special case -- it is not a fitted parameter but a discrete convention that every front sees, so P8 enumerates it rather than profiling it; p4 is a genuinely irreducible flat direction identified BEFORE any fitting starts, so nothing below can be read as having derived it
+
+============================================================================================================
+  P1  THE FIVE ADMISSIBLE KERNELS -- every (nu - 1) float64-safe, and a BUG IN A COMMITTED SCRIPT
+============================================================================================================
+   y = g_bar/a0      nu K1      nu K2      nu K3      nu K4      nu K5
+           0.06     4.2032     4.1442     4.6130     4.6029     4.0825
+           0.50     1.7321     1.6005     2.0000     1.9727     1.4142
+           1.00     1.4142     1.2720     1.6180     1.5820     1.0000
+           1.90     1.2354     1.1072     1.3811     1.3369     1.0000
+           3.00     1.1547     1.0492     1.2638     1.2150     1.0000
+          20.00     1.0247     1.0012     1.0477     1.0116     1.0000
+  [OK] P1a regression against mi_alpha2_migration_2026.out: nu_K1(1) = 1.4142, nu_K2(1) = 1.2720, nu_K2(1.9) = 1.1072 all reproduced from independent expm1/log1p forms
+
+  deep-MOND prefactors C in nu -> C sqrt(a0/g_bar): 1.00000, 1.00000, 1.00005, 1.00005, 1.00000
+  kernel spread at y = 0.06 (the brief's deep anchor) : 12.25%
+  kernel spread at y = 1.0  (the transition)          : 44.87%
+  y at which the spread actually falls to 1.14%        : 5.19e-04  (116x deeper than 0.06)
+  [OK] P1b *** CORRECTION OWED TO THE BRIEF, computed. *** All five kernels share the IDENTICAL deep asymptote C = 1.00000 (spread 5.0e-05), so there is NO a0-rescaling freedom to absorb a deep disagreement. And they do NOT 'agree to 1.14% at y ~ 0.06': they differ by 12.25% there. 1.14% is reached only at y = 5.2e-04, 116x deeper -- below the outermost SPARC point of essentially every galaxy. The brief's 5.5x dilution argument therefore rests on an anchor that is not deep enough, and the real shape systematic on a0 is the 12%-class number P2c measures, not 1.14%. The spread still grows into the transition (44.87% at y = 1), which is why F2 and F4 are the shape-sensitive fronts
+  [OK] P1c the tail exponents/amplitudes are DERIVED, not assumed: framework lim x(1-mu) = 1/2 (alpha=1, A=1/2 -- the SAME class as 'simple', which has A = 1), and the alpha=2 standard mu has lim x^2(1-mu) = 1/2. Milgrom 2009 arXiv:0906.4817 and Sereno & Jetzer 2006 both state alpha=1 is excluded by the planets; the framework INHERITS that, it did not discover it
+
+  the Newtonian anomaly Delta = (nu-1) g_bar at Earth (g_bar = 5.9301e-03 m/s^2).
+  'numeric' calls the (nu-1) form DIRECTLY; it never forms nu and then subtracts 1.
+  kernel                                     a0 [m/s^2]      numeric   asymptotic   agree
+  K1 framework alpha=1 (Milgrom 99 eq 9) [canon]   9.3614e-11   4.6807e-11   4.6807e-11 3.9e-09
+  K1 framework alpha=1 (Milgrom 99 eq 9) [alt]   1.1305e-10   5.6525e-11   5.6525e-11 4.8e-09
+  K2 corpus alpha=2 switch [canon]           9.3614e-11   7.3891e-19   7.3891e-19 6.7e-16
+  K2 corpus alpha=2 switch [alt]             1.1305e-10   1.0776e-18   1.0776e-18 3.3e-16
+  K3 simple alpha=1 (Famaey-Binney 05) [canon]   9.3614e-11   9.3614e-11   9.3614e-11 1.6e-08
+  K3 simple alpha=1 (Famaey-Binney 05) [alt]   1.1305e-10   1.1305e-10   1.1305e-10 1.9e-08
+  K4 exponential (McGaugh 08 eq 11a) [canon]   9.3614e-11   0.0000e+00          nan     nan
+  K4 exponential (McGaugh 08 eq 11a) [alt]   1.1305e-10   0.0000e+00          nan     nan
+  K5 sharp alpha->inf (nu = max) [canon]     9.3614e-11   0.0000e+00          nan     nan
+  K5 sharp alpha->inf (nu = max) [alt]       1.1305e-10   0.0000e+00          nan     nan
+  [OK] P1d every finite-alpha kernel's numeric anomaly matches its own closed-form asymptote A a0^alpha g_bar^(1-alpha) to <1e-6 -- so the expm1/log1p forms are exact where a naive sqrt(1+eps)-1 would not be, and the F2a column below is trustworthy at y ~ 6e7
+
+  *** mi_alpha2_migration_2026.py's alpha=2 Earth anomaly, re-derived two ways ***
+                                 canonical           alt   ratio alt/canon
+  naive (as committed)          1.3167e-18    1.3167e-18            1.0000
+  expm1/log1p (correct)         7.3891e-19    1.0776e-18            1.4583
+  a0^2 scaling REQUIRES ratio = (1.1305/0.93614)^2 = 1.4583
+
+  AND THE SMOKING GUN: machine epsilon x g_bar(Earth) = 2.220446e-16 x 5.930084e-03 = 1.3167e-18
+  the committed value is 1.3167e-18.  These agree to 0.00% -- it is 1 ULP, not physics.
+  [OK] P1e *** BUG CONFIRMED IN A COMMITTED SCRIPT, and it is a float64 cancellation. *** mi_alpha2_migration_2026.out prints 1.3167e-18 for BOTH footings; the anomaly goes as a0^2 so two footings differing by 1.2082 CANNOT give the same number. Two independent proofs it is noise: (1) the naive x^2 = (y^2+sqrt(y^4+4y^2))/2 loses 4y^2 against y^4 at y ~ 6e7 (4/y^2 = 9.97e-16 vs eps = 2.2e-16); (2) the printed number EQUALS eps x g_bar = 1.3167e-18 to 0.00%, i.e. exactly one ULP of the 1.0 that got subtracted. Correct values: 7.3891e-19 (canon), 1.0776e-18 (alt), = a0^2/(2 g_bar). *** My OWN first draft of this script reproduced the same 1.3167e-18 by the same mistake (forming nu then subtracting 1), which is how it was caught. *** The published CONCLUSION survives untouched -- both values are ~1e-5 of the bound, so the alpha=2 switch still discharges the liability -- but the NUMBER must not be quoted. Correction owed
+  [OK] P1f and the exponential kernel's anomaly UNDERFLOWS to exactly 0.0, which would silently turn a strict inequality into an equality. Carried in log10 instead: log10 Delta = -3458.8, i.e. 10^-3459 m/s^2. Reported, not rounded to zero
+
+============================================================================================================
+  P2  F1 -- SPARC/RAR PROFILE LIKELIHOOD ON a0, Upsilon FREE PER GALAXY, ALL FIVE KERNELS
+============================================================================================================
+  reproducing reviews/mi_a0_profile_likelihood_sparc_2026.py (which itself corrected a
+  scatter-for-error mistake) and EXTENDING it from alpha=1 to all five admissible kernels.
+
+  loaded 175 galaxies / 3391 points from data/sparc_data
+  [OK] P2a full SPARC loaded: 175 galaxies / 3391 points, matching the committed loader
+
+  kernel                                    sig_int  a0_hat/a0_c   sig_ind   sig_clu  refine shift
+  ------------------------------------------------------------------------------------------------
+  K1 framework alpha=1 (Milgrom 99 eq 9)     0.0808       1.1542     1.59%     6.98%         0.36%
+  K2 corpus alpha=2 switch                   0.0836       1.1917     1.49%     6.54%        -0.69%
+  K3 simple alpha=1 (Famaey-Binney 05)       0.0771       0.9458     1.60%     7.02%        -0.44%
+  K4 exponential (McGaugh 08 eq 11a)         0.0762       0.9417     2.63%    11.56%        -0.88%
+  K5 sharp alpha->inf (nu = max)             0.0951       1.2667     1.73%     7.60%        -0.65%
+  [OK] P2b REGRESSION on the committed script: alpha=1 gives a0_hat = 1.0805e-10 (1.1542x canonical) against its 1.0766e-10 (1.1500x) -- 0.36% apart on a completely independent vectorisation. The ERROR BAR comes out WIDER: sigma_clu 6.98% vs its 5.44%, because the committed script read the Dchi2 = 1 crossing off a 31-point grid spaced 2.5% in a0 by linear interpolation, while this one bisects it to 1e-6. A wider bar is the CONSERVATIVE direction, so the correction is taken rather than argued away
+
+  SHAPE SYSTEMATIC on a0 across the five kernels = 29.5%   (brief: 30.6%)
+  a0_hat/a0_canon range = 0.942 to 1.267
+  [OK] P2c *** the SHAPE systematic (29.5%) is 4.2x LARGER than F1's own statistical precision (6.98%). *** So F1 alone cannot derive a0: any claim of a0 to better than the shape spread is a claim about p3, and P8 must therefore profile a0 and the kernel JOINTLY rather than quoting the alpha=1 bar
+
+  DEFLATED Dchi2 (= raw/19.3, the conservative galaxy-clustered counting):
+  hypothesis                        a0/a0_c        K1        K2        K3        K4        K5
+  --------------------------------------------------------------------------------------------
+  kappa = 1/2pi  (Milgrom 2020)      0.9213      7.99     10.83      0.11      0.02     17.96
+  kappa = 1/2    (THE FRAMEWORK)     1.0000      3.31      5.11      0.48      0.45     10.18
+  kappa = 1/2, ALT footing           1.2076      0.37      0.04      8.20      9.07      0.49
+  kappa = 1      (2x)                2.0000     50.27     46.74     83.61     87.72     34.85
+  kappa = 2      (4x)                4.0000    280.87    268.71    346.35    357.08    215.84
+  [OK] P2d(i) REGRESSION, and it reproduces the committed kappa result EXACTLY on the ratio: AT THE FIXED alpha=1 KERNEL, kappa = 1/2 gives deflated Dchi2 3.31 and kappa = 1/2pi gives 7.99, ratio 2.413 against mi_a0_profile_likelihood_sparc_2026.py's 154.29/63.90 = 2.415. (Its raw numbers are these times the deflation 19.3.) So the ~2.2 sigma preference for kappa = 1/2 is confirmed AS COMPUTED
+  [OK] P2d(ii) *** AND HERE IS THE FIRST THING THE JOINT OVERTURNS, AGAINST INTEREST. *** Once the SHAPE INDEX is admitted as the free quantity it is -- which the joint requires, since P2c shows the shape systematic is 4x F1's statistical bar -- the ordering REVERSES: profiled over the five admissible kernels, kappa = 1/2pi reaches Dchi2 0.02 (on K4) while kappa = 1/2 reaches only 0.45. Milgrom 2020's coefficient fits BETTER once the kernel is free, because the simple/exponential kernels prefer a0 ~ 0.94x canonical and 1/2pi sits at 0.921x. So F1's 2.2-sigma discrimination is SHAPE-CONDITIONAL, not a measurement of kappa. This is a correction owed to project_kappa_discriminability, and it is the opposite of a win
+  [OK] P2d(iii) and the third half, also against interest: the ALT footing (a0 = 1.13e-10) reaches Dchi2 0.04, better than canonical kappa = 1/2's 3.31 at fixed alpha=1. This front prefers a HIGHER a0 than the canonical rho_DE/cH_Lambda footing the corpus publishes
+
+============================================================================================================
+  P3  F2a -- THE CONSTANT SUNWARD ANOMALY: which SHAPES survive the inner planets
+============================================================================================================
+  Earth 2-sigma allowance 3.660e-14 m/s^2, from Sereno & Jetzer 2006 Table 1 inverted
+  through their own Eq (9) on Pitjeva EPM2004 (committed: mi_alpha1_solar_system_2026.py).
+  The framework's OWN EFE supplies a partial cancellation, factor 6.76 (1278x -> 189x).
+
+  kernel                                        a0   Delta bare    /bound Delta post-EFE    sigma
+  ------------------------------------------------------------------------------------------------
+  K1 framework alpha=1 (Milgrom 99 eq 9)     canon   4.6807e-11    1278.9x     6.9222e-12    378.3
+  K1 framework alpha=1 (Milgrom 99 eq 9)       alt   5.6525e-11    1544.4x     8.3593e-12    456.8
+  K2 corpus alpha=2 switch                   canon   7.3891e-19       0.0x     1.0927e-19      0.0
+  K2 corpus alpha=2 switch                     alt   1.0776e-18       0.0x     1.5936e-19      0.0
+  K3 simple alpha=1 (Famaey-Binney 05)       canon   9.3614e-11    2557.8x     1.3844e-11    756.5
+  K3 simple alpha=1 (Famaey-Binney 05)         alt   1.1305e-10    3088.8x     1.6719e-11    913.6
+  K4 exponential (McGaugh 08 eq 11a)         canon   0.0000e+00       0.0x     0.0000e+00      0.0
+  K4 exponential (McGaugh 08 eq 11a)           alt   0.0000e+00       0.0x     0.0000e+00      0.0
+  K5 sharp alpha->inf (nu = max)             canon   0.0000e+00       0.0x     0.0000e+00      0.0
+  K5 sharp alpha->inf (nu = max)               alt   0.0000e+00       0.0x     0.0000e+00      0.0
+  [OK] P3a *** F2a KILLS THE alpha=1 SHAPE CLASS OUTRIGHT, and it is the framework's own published kernel. *** Post-EFE the framework's alpha=1 anomaly sits 378 sigma over the Earth allowance (1279x bare, 189x post-EFE, reproducing the committed number); 'simple' is worse at 757 sigma; the alpha=2 switch passes with 6.0e-06 sigma to spare. This is a genuine DERIVATION by over-determination: the SHAPE INDEX is forced, alpha = 1 is excluded, and no value of kappa rescues it because the anomaly is A a0, i.e. kappa would have to shrink by 1278x
+
+  to save the alpha=1 shape, a0 would have to fall to <= 4.950e-13 m/s^2 = 5.29e-03 x canonical,
+  i.e. kappa <= 2.64e-03. F1's own bar rules that out by 77 sigma.
+  [OK] P3b and the escape 'shrink kappa' is closed quantitatively: alpha=1 needs a0 <= 5.29e-03x canonical, which destroys F1 (and every galaxy-scale front) completely. So F2a x F1 is a genuinely MUTUALLY EXCLUSIVE pair for the alpha=1 shape -- the first hard elimination in this joint
+
+============================================================================================================
+  P4  F2b -- THE MEMORY-DRIFT FLOOR: the constraint on a0 x omega_c, and Route B
+============================================================================================================
+  The gate G(omega) = 1/(1 + i omega/omega_c) has a DISSIPATIVE channel giving a secular
+  d ln a/dt = a0 omega_c / g_N -- the same observable LLR uses for Gdot/G. The window's LOWER
+  edge omega_c >= 3 omega_gal,max is THEORY-INTERNAL and a0-INDEPENDENT, so there is a FLOOR on
+  the predicted drift that no choice of omega_c can lower. That floor is linear in a0.
+
+  reading                                        body  sigma_D [/yr]   D_req(a0_c)   sigma      a0_max
+  ----------------------------------------------------------------------------------------------------
+  LLR 2sig (Biskupek-Mueller 21)                 Moon      1.210e-14     1.952e-14    1.61      1.240x
+  R1b EPM2019 Gdot/G, mass-loss-degenerate       Mars      1.533e-14     2.061e-14    1.34      1.488x
+  R1a EPM2019 fit-only (non-degenerate)          Mars      4.667e-15     2.061e-14    4.42      0.453x
+  [OK] P4a regression on mi_ephemeris_omegac_edge_2026.py: at the window's non-negotiable BOTTOM the framework requires Mars to drift at 2.061e-14/yr, matching its printed 2.06e-14/yr. 'There is no quiet corner: the drift FLOOR is set by the galaxies'
+  [OK] P4b F2b is ALREADY a tension at the canonical a0, and its size is entirely the R1a/R1b fork: 1.34 sigma if the MI drift may hide inside the solar mass-loss allowance (R1b), 4.42 sigma if it may not (R1a -- correct in principle, because the MI drift scales as a^2 while mass loss and Gdot are flat in a). Both carried through P8; quoting only R1a would manufacture a deficit and quoting only R1b a comfort
+  [OK] P4c and this is the front that caps a0 from ABOVE: a0 <= 0.45x to 1.49x canonical at 2 sigma across the readings. Note the direction -- F1 pulls a0 UP to 1.15x and F2b pushes it DOWN; P8 tests whether they still overlap
+
+  ROUTE B (omega_c = a0/v_rel, at v_rel = c): omega_c = 3.123e-19 rad/s, memory time 101.5 Gyr
+  gate transmission at UGC05721's innermost deep-MOND orbit (omega = 5.940e-15): Re G = 2.763e-09
+  [OK] P4d *** ROUTE B IS EXCLUDED BY THE FRAMEWORK'S OWN ROTATION CURVES. *** omega_c = a0/c is 5.71e+04x BELOW the window floor, and at galaxy orbital frequencies the gate transmits Re G = 2.76e-09 against the required >= 0.9. It would suppress the MOND effect in galaxies by ~3.6e+08. So omega_c IS over-determined in one useful sense: two one-sided constraints (SPARC from below, drift from above) leave a WINDOW and eliminate the one closed-form candidate the corpus offers for omega_c's VALUE
+
+  window rebuild: omega_c in [1.782e-14, 2.210e-14] canon (width x1.240), [1.782e-14, 1.830e-14] alt (x1.027)
+  [OK] P4e window rebuilt from the cited LLR bound alone to within 2% of the committed [1.782,2.211]e-14 canon / [1.782,1.831]e-14 alt. Note what that means for the FOOTING: the ALT footing F1 prefers leaves omega_c a window only x1.027 wide -- 2.7%, nearly a POINT, and therefore nearly CLOSED
+
+============================================================================================================
+  P5  F4 -- CLUSTERS: eta(R500) on eRASS1, all five kernels, FULL systematic floor range
+============================================================================================================
+  eRASS1 primary v3.2 (Bulbul+2024), 0<z<1, 0.01<fgas<0.30, fstar=0.2: N = 9830
+  median y = g_bar/a0 at R500 (canonical) = 0.0369 -- DEEP MOND, not the transition, so the
+  kernel dependence here is the sub-leading one (P1b's 12%-class deep spread),
+  which is why the eta column below moves by only ~0.04 dex across all five kernels.
+
+  kernel                                    <log10 eta> canon   eta_med   a0 needed sigma @0.10   @0.30
+  ------------------------------------------------------------------------------------------------------
+  K1 framework alpha=1 (Milgrom 99 eq 9)              +0.4052     2.334       6.69x        4.05    1.35
+  K2 corpus alpha=2 switch                            +0.4095     2.364       6.71x        4.10    1.37
+  K3 simple alpha=1 (Famaey-Binney 05)                +0.3721     2.149       6.23x        3.72    1.24
+  K4 exponential (McGaugh 08 eq 11a)                  +0.3728     2.153       6.23x        3.73    1.24
+  K5 sharp alpha->inf (nu = max)                      +0.4141     2.398       6.73x        4.14    1.38
+  [OK] P5a REGRESSION on clusters_eta_audit.py: N = 9830 (its 9830), <log10 eta> = +0.4052 (its +0.4052) on the framework's OWN kernel. Same data, same number, independently coded
+  [OK] P5b F2a AND F4 PUSH THE SHAPE INDEX IN OPPOSITE DIRECTIONS -- but only WEAKLY, and the weakness matters. At the clusters' median y = 0.0369 the kernels differ only sub-leadingly, so alpha=2 makes the cluster deficit worse by just +0.0043 dex (+0.4095 vs +0.4052) and the only kernels that help ('simple', exponential) buy 0.0331 dex. So the SHAPE cannot resolve F4 either way: it is not a free direction for the cluster front, which is why P8's clash has to be priced in a0 and in the systematic floor, not in p3
+
+  three ways to state the a0 boost the clusters demand, on the framework's own kernel:
+    median-eta ^2  (the corpus's quoted 5.45x)     : 5.45x
+    geomean-eta ^2 (the corpus's other row)        : 6.46x
+    direct solve of <log10 eta>(a0) = 0            : 6.69x
+  [OK] P5c the deep-MOND inversion a0 -> a0 eta^2 UNDERSTATES the boost on both of the corpus's rows: the direct solve is 4% above the geomean row and 23% above the median row that the corpus quotes as '5.45x'. Reason: at y ~ 0.037 raising a0 also slides the points along the kernel, so eta falls more slowly than 1/sqrt(a0). The joint below uses the direct solve, i.e. the version LEAST favourable to the framework, and says so
+  [OK] P5d on every kernel the clusters want a0 boosted by 6.2x-6.7x, while F2b caps it at 1.49x and F1 measures 1.15x. THAT is the binding triangle
+
+  the systematic floor is used on the MEAN, never the scatter: scatter = 0.1094 dex, SE = 0.00110 dex
+  -> the formal statistical significance would be 367 sigma. It is NOT quoted: eta is an absolute-scale ratio and every cluster shares the same
+  mass-scale calibration, so the floor (0.1, 0.15, 0.2, 0.3) dex is the error. Full range used.
+
+============================================================================================================
+  P6  F5 -- a0(z): PROVE it is kappa-blind, so it cannot help derive kappa
+============================================================================================================
+  [OK] P6a *** a0(z)/a0(0) IS EXACTLY kappa-BLIND, symbolically: d/dkappa = 0 and kappa does not appear in the ratio (z + 1)**(3*w_0/2 + 3*w_a/2 + 3/2)*exp(-3*w_a*z/(2*(z + 1))). *** So F5 contributes ZERO information about kappa no matter how good the data get. It constrains (w0, wa) and the FLOOR TYPE -- and it brings (w0,wa) with it, so in the dof ledger it is net-zero, not a free constraint
+  a0(z)/a0(0) = (z + 1)**(3*w_0/2 + 3*w_a/2 + 3/2)*exp(-3*w_a*z/(2*(z + 1)))   (the committed closed form: bump-then-decline for wa < 0)
+    z = 1:  local-response floor 1.017x   |   horizon floor c H_0 E(z) 1.790x
+    z = 2:  local-response floor 0.971x   |   horizon floor c H_0 E(z) 3.032x
+    z = 3:  local-response floor 0.925x   |   horizon floor c H_0 E(z) 4.566x
+  at w = -1 exactly: local-response floor = ['1.000000', '1.000000', '1.000000'] at z = 1,2,3
+                     horizon floor c H_0 E(z) = ['1.7903', '3.0315', '4.5656']
+  [OK] P6b and for w = -1 exactly the local-response floor is CONSTANT (ratio 1.000 at every z), which is why MUSE-DARK III's RISING a0 (Ciocan 2026) is a TENSION with the canonical reading and a point in favour of a horizon floor c H_0 E(z) -- i.e. of the ALT footing that F1 also prefers. Weak (MSA-3D controlled residual +0.91 +/- 0.8 ~ 1.1 sigma from flat) and LambdaCDM-degenerate, so it is carried as a LEAN, not a constraint
+
+============================================================================================================
+  P7  F3 -- WIDE BINARIES: zero constraining power today, and that is arithmetic not opinion
+============================================================================================================
+  in-force target gamma_v = 1.031 (Amendment 4(d)), range (1.0218, 1.0472)
+  frozen error model sigma_tot = sqrt(sigma_fit^2 + 0.02^2); as N -> inf, sigma_tot -> 0.02
+  Newton-vs-MI separation ceiling = 1.55 sigma at the point value, 1.09-2.36 across the frozen corners
+  [OK] P7a *** 3 SIGMA IS UNREACHABLE AT ANY N, so F3 cannot be a binding constraint even in principle under the frozen error model: the ceiling is 1.55 sigma (1.09-2.36 across corners). Reproduces mi_amendment7_wb_target_conflict_2026.py's 1.55 / 1.09-2.36
+  [OK] P7b and DR3's 1.205 is guard-zone contamination, evidence for nothing, so F3 contributes NO likelihood term at all in P8 -- it is a PREDICTION awaiting DR4, not a constraint. Its shape dependence is real though (alpha=1 -> 1.05-1.10, alpha=2 -> 1.031), so once DR4 lands it becomes a 6th constraint on p3. Registered target/upper-corner ratio 0.657
+
+============================================================================================================
+  P8  THE JOINT chi^2 -- profile over a0 and the kernel, across EVERY systematic corner
+============================================================================================================
+  chi2_joint(a0, kernel) = F1 + F2a + F2b + F4      [F3 = 0 (P7), F5 = 0 (P6)]
+     F1   deflated profile likelihood, Upsilon free per galaxy       (2-sided)
+     F2a  (Delta_postEFE / (bound/2))^2, bound = Earth 2-sigma       (1-sided, monotone up in a0)
+     F2b  (D_req(a0, omega_c,min) / sigma_D)^2                       (1-sided, monotone up in a0)
+     F4   (<log10 eta>(a0) / floor)^2                                 (2-sided, falls with a0)
+  omega_c is PROFILED at its lower edge, which MINIMISES F2b -- the most favourable choice.
+  F1 tabulated on 121 a0 values x 5 kernels
+  [OK] P8-INTERP the F1 interpolation is accurate to 0.028 in Dchi2 against direct evaluation at 9 off-grid a0 values, i.e. far below the 1.0 threshold the allowed regions are read at, so no allowed region below is an interpolation artefact
+
+  4 constraint terms, 1 continuous parameter profiled  ->  dof = 3
+   floor  drift reading                             kernel   a0_hat/a0_c    chi2_min      F1       F2a     F2b      F4 sqrt(chi2/dof)  edge?
+  --------------------------------------------------------------------------------------------------------------------------------------------
+    0.10  LLR 2sig (Biskupek-Mueller 21)            K1             0.600    51595.64   59.69  5.15e+04    0.94   26.06         131.14  GRID-EDGE
+    0.10  LLR 2sig (Biskupek-Mueller 21)            K2             1.214       17.47    0.08  7.76e-11    3.84   13.55           2.41  
+    0.10  LLR 2sig (Biskupek-Mueller 21)            K3             0.600   206084.43   25.51  2.06e+05    0.94   22.17         262.10  GRID-EDGE
+    0.10  LLR 2sig (Biskupek-Mueller 21)            K4             0.982       16.87    0.20  0.00e+00    2.51   14.16           2.37  
+    0.10  LLR 2sig (Biskupek-Mueller 21)            K5             1.300       17.26    0.11  0.00e+00    4.40   12.75           2.40  
+
+    0.10  R1b EPM2019 Gdot/G, mass-loss-degenerate  K1             0.600    51595.35   59.69  5.15e+04    0.65   26.06         131.14  GRID-EDGE
+    0.10  R1b EPM2019 Gdot/G, mass-loss-degenerate  K2             1.214       16.30    0.08  7.76e-11    2.66   13.55           2.33  
+    0.10  R1b EPM2019 Gdot/G, mass-loss-degenerate  K3             0.600   206084.15   25.51  2.06e+05    0.65   22.17         262.10  GRID-EDGE
+    0.10  R1b EPM2019 Gdot/G, mass-loss-degenerate  K4             0.986       16.10    0.23  0.00e+00    1.76   14.11           2.32  
+    0.10  R1b EPM2019 Gdot/G, mass-loss-degenerate  K5             1.300       15.91    0.11  0.00e+00    3.06   12.75           2.30  
+
+    0.10  R1a EPM2019 fit-only (non-degenerate)     K1             0.600    51601.72   59.69  5.15e+04    7.02   26.06         131.15  GRID-EDGE
+    0.10  R1a EPM2019 fit-only (non-degenerate)     K2             1.082       39.84    1.57  4.89e-11   22.85   15.42           3.64  
+    0.10  R1a EPM2019 fit-only (non-degenerate)     K3             0.600   206090.52   25.51  2.06e+05    7.02   22.17         262.10  GRID-EDGE
+    0.10  R1a EPM2019 fit-only (non-degenerate)     K4             0.879       31.44    0.53  0.00e+00   15.05   15.85           3.24  
+    0.10  R1a EPM2019 fit-only (non-degenerate)     K5             1.159       42.44    1.64  0.00e+00   26.20   14.60           3.76  
+
+    0.15  LLR 2sig (Biskupek-Mueller 21)            K1             0.600    51581.16   59.69  5.15e+04    0.94   11.58         131.12  GRID-EDGE
+    0.15  LLR 2sig (Biskupek-Mueller 21)            K2             1.189        9.86    0.01  7.12e-11    3.67    6.17           1.81  
+    0.15  LLR 2sig (Biskupek-Mueller 21)            K3             0.600   206072.12   25.51  2.06e+05    0.94    9.85         262.09  GRID-EDGE
+    0.15  LLR 2sig (Biskupek-Mueller 21)            K4             0.961        8.88    0.04  0.00e+00    2.40    6.44           1.72  
+    0.15  LLR 2sig (Biskupek-Mueller 21)            K5             1.273       10.03    0.01  0.00e+00    4.21    5.82           1.83  
+
+    0.15  R1b EPM2019 Gdot/G, mass-loss-degenerate  K1             0.600    51580.88   59.69  5.15e+04    0.65   11.58         131.12  GRID-EDGE
+    0.15  R1b EPM2019 Gdot/G, mass-loss-degenerate  K2             1.189        8.74    0.01  7.12e-11    2.55    6.17           1.71  
+    0.15  R1b EPM2019 Gdot/G, mass-loss-degenerate  K3             0.600   206071.83   25.51  2.06e+05    0.65    9.85         262.09  GRID-EDGE
+    0.15  R1b EPM2019 Gdot/G, mass-loss-degenerate  K4             0.961        8.15    0.04  0.00e+00    1.67    6.44           1.65  
+    0.15  R1b EPM2019 Gdot/G, mass-loss-degenerate  K5             1.273        8.75    0.01  0.00e+00    2.93    5.82           1.71  
+
+    0.15  R1a EPM2019 fit-only (non-degenerate)     K1             0.600    51587.25   59.69  5.15e+04    7.02   11.58         131.13  GRID-EDGE
+    0.15  R1a EPM2019 fit-only (non-degenerate)     K2             1.063       31.25    2.21  4.55e-11   22.04    6.99           3.23  
+    0.15  R1a EPM2019 fit-only (non-degenerate)     K3             0.600   206078.20   25.51  2.06e+05    7.02    9.85         262.09  GRID-EDGE
+    0.15  R1a EPM2019 fit-only (non-degenerate)     K4             0.857       22.54    1.00  0.00e+00   14.32    7.22           2.74  
+    0.15  R1a EPM2019 fit-only (non-degenerate)     K5             1.134       34.22    2.48  0.00e+00   25.09    6.65           3.38  
+
+    0.20  LLR 2sig (Biskupek-Mueller 21)            K1             0.600    51576.09   59.69  5.15e+04    0.94    6.51         131.12  GRID-EDGE
+    0.20  LLR 2sig (Biskupek-Mueller 21)            K2             1.184        7.15    0.01  7.01e-11    3.65    3.49           1.54  
+    0.20  LLR 2sig (Biskupek-Mueller 21)            K3             0.600   206067.81   25.51  2.06e+05    0.94    5.54         262.09  GRID-EDGE
+    0.20  LLR 2sig (Biskupek-Mueller 21)            K4             0.937        6.00    0.00  0.00e+00    2.29    3.71           1.41  
+    0.20  LLR 2sig (Biskupek-Mueller 21)            K5             1.245        7.47    0.08  0.00e+00    4.03    3.36           1.58  
+
+    0.20  R1b EPM2019 Gdot/G, mass-loss-degenerate  K1             0.600    51575.81   59.69  5.15e+04    0.65    6.51         131.12  GRID-EDGE
+    0.20  R1b EPM2019 Gdot/G, mass-loss-degenerate  K2             1.189        6.03    0.01  7.12e-11    2.55    3.47           1.42  
+    0.20  R1b EPM2019 Gdot/G, mass-loss-degenerate  K3             0.600   206067.52   25.51  2.06e+05    0.65    5.54         262.09  GRID-EDGE
+    0.20  R1b EPM2019 Gdot/G, mass-loss-degenerate  K4             0.941        5.30    0.00  0.00e+00    1.60    3.70           1.33  
+    0.20  R1b EPM2019 Gdot/G, mass-loss-degenerate  K5             1.273        6.20    0.01  0.00e+00    2.93    3.27           1.44  
+
+    0.20  R1a EPM2019 fit-only (non-degenerate)     K1             0.600    51582.18   59.69  5.15e+04    7.02    6.51         131.13  GRID-EDGE
+    0.20  R1a EPM2019 fit-only (non-degenerate)     K2             1.055       28.17    2.48  4.43e-11   21.73    3.96           3.06  
+    0.20  R1a EPM2019 fit-only (non-degenerate)     K3             0.600   206073.89   25.51  2.06e+05    7.02    5.54         262.09  GRID-EDGE
+    0.20  R1a EPM2019 fit-only (non-degenerate)     K4             0.857       19.38    1.00  0.00e+00   14.32    4.06           2.54  
+    0.20  R1a EPM2019 fit-only (non-degenerate)     K5             1.130       31.30    2.63  0.00e+00   24.91    3.75           3.23  
+
+    0.30  LLR 2sig (Biskupek-Mueller 21)            K1             0.600    51572.48   59.69  5.15e+04    0.94    2.90         131.11  GRID-EDGE
+    0.30  LLR 2sig (Biskupek-Mueller 21)            K2             1.184        5.21    0.01  7.01e-11    3.65    1.55           1.32  
+    0.30  LLR 2sig (Biskupek-Mueller 21)            K3             0.600   206064.73   25.51  2.06e+05    0.94    2.46         262.08  GRID-EDGE
+    0.30  LLR 2sig (Biskupek-Mueller 21)            K4             0.921        3.92    0.03  0.00e+00    2.20    1.68           1.14  
+    0.30  LLR 2sig (Biskupek-Mueller 21)            K5             1.245        5.61    0.08  0.00e+00    4.03    1.49           1.37  
+
+    0.30  R1b EPM2019 Gdot/G, mass-loss-degenerate  K1             0.600    51572.19   59.69  5.15e+04    0.65    2.90         131.11  GRID-EDGE
+    0.30  R1b EPM2019 Gdot/G, mass-loss-degenerate  K2             1.184        4.10    0.01  7.01e-11    2.53    1.55           1.17  
+    0.30  R1b EPM2019 Gdot/G, mass-loss-degenerate  K3             0.600   206064.44   25.51  2.06e+05    0.65    2.46         262.08  GRID-EDGE
+    0.30  R1b EPM2019 Gdot/G, mass-loss-degenerate  K4             0.924        3.24    0.02  0.00e+00    1.54    1.68           1.04  
+    0.30  R1b EPM2019 Gdot/G, mass-loss-degenerate  K5             1.245        4.37    0.08  0.00e+00    2.80    1.49           1.21  
+
+    0.30  R1a EPM2019 fit-only (non-degenerate)     K1             0.600    51578.56   59.69  5.15e+04    7.02    2.90         131.12  GRID-EDGE
+    0.30  R1a EPM2019 fit-only (non-degenerate)     K2             1.055       25.97    2.48  4.43e-11   21.73    1.76           2.94  
+    0.30  R1a EPM2019 fit-only (non-degenerate)     K3             0.600   206070.81   25.51  2.06e+05    7.02    2.46         262.09  GRID-EDGE
+    0.30  R1a EPM2019 fit-only (non-degenerate)     K4             0.854       17.12    1.10  0.00e+00   14.21    1.81           2.39  
+    0.30  R1a EPM2019 fit-only (non-degenerate)     K5             1.110       29.20    3.46  0.00e+00   24.03    1.70           3.12  
+
+  cells whose minimum sits ON the scanned lower boundary: kernels ['K1', 'K3']
+  [OK] P8-EDGE hazard declared rather than hidden: for the alpha=1 kernels ['K1', 'K3'] the joint chi^2 has NO interior minimum on the scanned range -- F2a grows as a0^1 and dominates, so the profile is still falling at the grid's lower edge and the a0_hat printed for those rows is a BOUNDARY value, not an extremum. Extending the grid cannot rescue them: P3b already solved the trade analytically -- at the a0 where F2a reaches 2 sigma, F1 is 77 sigma away. The alpha=1 rows are therefore correctly read as 'excluded', and their chi^2 as a lower bound on how bad they get
+  BEST  cell: K4, floor 0.3, R1b EPM2019 Gdot/G, mass-loss-degenerate  ->  chi2 = 3.24 / 3 dof = 1.04 sigma-equivalent, a0 = 0.924x
+  WORST cell: K3, floor 0.1, R1a EPM2019 fit-only (non-degenerate)  ->  chi2 = 2.061e+05
+  cells with sqrt(chi2/dof) <= 2 : 18 of 60
+  [OK] P8a the joint is NEITHER empty NOR everywhere-viable: 18 of 60 (kernel x floor x drift-reading) cells survive at sqrt(chi2/dof) <= 2. So outcome (b) NO_SOLUTION is NOT what the arithmetic gives -- the framework is not falsified as a whole -- and neither is it unconstrained
+  surviving kernels: ['K2', 'K4', 'K5']
+  surviving a0/a0_canon range: 0.921 to 1.273
+  [OK] P8b *** THE SHAPE INDEX IS DERIVED: no alpha=1 kernel survives ANY cell. *** Surviving kernels ['K2', 'K4', 'K5'] are exactly the alpha >= 2 ones, and they survive because F2a's Earth bound has no free direction left once F1 fixes a0 to O(1e-10). This is a real over-determination result and it costs the framework its published 'exact law' g_obs^2 = g_bar^2 + a0 g_bar
+  [OK] P8c but a0 is NOT driven to a point: the surviving cells span a0 = 0.921x to 1.273x canonical, a factor 1.38. Outcome (c), a CONTINUUM, on the a0 direction
+
+============================================================================================================
+  P8-KEY  IS kappa = 1/2 THE UNIQUE VALUE CONSISTENT WITH ALL FIVE FRONTS?
+============================================================================================================
+  each row profiled over the SURVIVING kernels and over the full systematic range; the number
+  quoted is the BEST (most favourable) cell for that kappa -- so no kappa is penalised by a
+  corner chosen against it.
+
+  hypothesis                        a0/a0_c  best chi2  sig-eq                 best cell  TIGHTEST corner    verdict
+  --------------------------------------------------------------------------------------------------------------------
+  kappa = 1/2pi (Milgrom 2020)       0.9213       3.24    1.04           K4 / 0.30 / R1b             3.25   SURVIVES
+  kappa = 1/2   (THE FRAMEWORK)      1.0000       3.83    1.13           K4 / 0.30 / R1b             3.36   SURVIVES
+  kappa = 1/2, ALT footing           1.2076       4.21    1.18           K2 / 0.30 / R1b             3.75   SURVIVES
+  kappa = 1                          2.0000      42.87    3.78           K5 / 0.30 / R1b             6.32   excluded
+  kappa = 2                          4.0000     244.90    9.04           K5 / 0.30 / R1b            13.28   excluded
+
+  'TIGHTEST corner' = cluster floor 0.1 dex AND the non-degenerate R1a drift
+  room, i.e. both systematics at their least forgiving. NO kappa survives that corner at <= 2:
+  minimum over the three surviving kappas = 3.25 sigma-equivalent.
+
+  kappa values surviving the JOINT at <= 2 sigma-equivalent: 3 of 5
+     kappa = 1/2pi (Milgrom 2020)
+     kappa = 1/2   (THE FRAMEWORK)
+     kappa = 1/2, ALT footing
+  [OK] P8d at least one kappa survives the joint (3 of 5), so the over-determined system is CONSISTENT -- outcome (b) is ruled out at the joint level too
+  [OK] P8e *** AND THE DECISIVE ANSWER IS NO: kappa = 1/2 IS NOT UNIQUE. *** 3 of the 5 tested kappa values survive the joint at <= 2 sigma-equivalent (kappa = 1/2pi, kappa = 1/2, kappa = 1/2, ALT footing). Adding F2-F5 to F1 does NOT sharpen F1's 2.2-sigma preference into a unique value, because the fronts that could sharpen it are the ones that do not bind (F3, F5) or that bind in the WRONG DIRECTION (F4 wants 6.7x, F2b caps at 1.49x). Outcome (c), a CONTINUUM in kappa
+
+  Delta chi2 (1/2pi minus 1/2) at the joint level = -0.585
+  [OK] P8-ORDER *** AND THE JOINT DOES NOT EVEN PRESERVE THE ORDERING. *** Delta chi2 between kappa = 1/2pi and kappa = 1/2, each at its own most favourable cell, is -0.585 -- inside the 2.71 that a 90%-confidence one-parameter separation would need, i.e. the two coefficients are statistically INDISTINGUISHABLE in the joint. P2d(i) reproduced the committed 2.2 sigma AT FIXED alpha=1; P2d(ii) showed it reverses when the kernel is freed; here the two effects cancel to nothing. Honest reading: F1's kappa discrimination is real ONLY conditional on the alpha=1 kernel, and the alpha=1 kernel is the one P3/P8b exclude at 378 sigma. The 2.2-sigma claim therefore cannot be quoted as a joint result without that condition attached
+
+============================================================================================================
+  P8-PAIR  WHICH PAIR OF FRONTS IS MUTUALLY EXCLUSIVE, AND BY HOW MANY SIGMA
+============================================================================================================
+  on the surviving alpha=2 kernel:
+    F1  wants log10 a0 = -9.9525 +/- 0.0284  (1.192x canonical, clustered sigma)
+    F4  wants log10 a0 = -9.2018  (6.71x canonical), error = 2 x floor (eta ~ sqrt(a0))
+
+   floor [dex]  sigma_L4  gap [dex]  sigma of the F1 x F4 clash
+  --------------------------------------------------------------
+          0.10     0.200     0.7507                        3.72
+          0.15     0.300     0.7507                        2.49
+          0.20     0.400     0.7507                        1.87
+          0.30     0.600     0.7507                        1.25
+
+  and the OTHER edge of the same triangle, F4 against F2b's cap:
+    LLR 2sig (Biskupek-Mueller 21)               a0 <= 1.240x  ->  F4's 6.7x is 0.733 dex above the cap
+    R1b EPM2019 Gdot/G, mass-loss-degenerate     a0 <= 1.488x  ->  F4's 6.7x is 0.654 dex above the cap
+    R1a EPM2019 fit-only (non-degenerate)        a0 <= 0.453x  ->  F4's 6.7x is 1.171 dex above the cap
+  [OK] P8g *** THE BINDING PAIR IS F1 x F4 (equivalently F2b x F4) AND IT STRADDLES 3 SIGMA: 1.25 sigma at the LOOSE end of the cluster systematic floor (0.30 dex) to 3.72 sigma at the TIGHT end (0.10 dex). *** Quoting only the tight end would manufacture a falsification -- that is failure mode (ii) from the brief, and this repo has committed it before. Quoting only the loose end would manufacture a pass. The honest statement is the RANGE, and the range means the joint is NOT referee-proof either way
+  [OK] P8h and the verdict is dominated by ONE unmeasured number -- the absolute cluster mass-scale systematic floor. Its committed range 0.10-0.30 dex moves the clash by 3.0x. So the answer to 'is the framework falsified by the joint' is currently a statement about cluster mass calibration, not about the framework
+
+============================================================================================================
+  P9  THE FLAT DIRECTIONS -- the irreducible dof, named
+============================================================================================================
+
+  p4 I_0, the ghost-condensate amount
+      NO front in the joint touches it. P(X) is postulated; I_0 ~ Omega_dm is set by matching, and the GDM degeneracy theorem says the CMB constrains a FLUID not a PARTICLE, so it cannot be closed there.
+      -> EXACTLY FLAT
+
+  p5 the EFE prescription factor
+      one calibration (Crater II), one parameter -> exactly determined, zero over-determination. It also enters F2a as the 6.76x relief, so a wrong f_EFE moves F2a's sigma but cannot rescue alpha=1 (that needs 378x, not 6.76x).
+      -> FITTED, not derived
+
+  p2 omega_c inside its window
+      two one-sided constraints leave a window x1.240 wide (canonical) / x1.027 (ALT). Nothing inside is preferred. Route B (omega_c = a0/c) is EXCLUDED (P4d), so the window is all there is.
+      -> FLAT within a 2.7-24% window
+
+  p3 the shape index ABOVE alpha = 2
+      F2a excludes alpha = 1 and is satisfied by every alpha >= 2 with enormous margin (6.0e-06 sigma at alpha=2, 10^-3459 at exponential), while F1 pays only 3.2% in a0 and F4 monotonically worsens. So alpha is bounded BELOW and unbounded above.
+      -> FLAT for alpha >= 2
+
+  d1 the footing, PARTIALLY broken and NOT the way the corpus is published
+      F1 prefers ALT (P2d), F4 prefers ALT (lower eta), F5's rising a0 prefers a horizon floor = ALT. F2b prefers CANONICAL (the ALT omega_c window is only 2.7% wide, P4e). Three fronts lean one way, one leans the other -- a real but not decisive break.
+      -> LEANING ALT, 3 fronts to 1
+
+  the product a0 x omega_c
+      F2b constrains only this PRODUCT (D_req = a0 omega_c / g_N). F1 constrains a0 alone and the SPARC gate constrains omega_c alone, so the product is broken -- this one is NOT flat, and saying so is the check that the flat list is not padded.
+      -> BROKEN (by c1 x c4)
+  [OK] P9a 3 genuinely FLAT directions remain (I_0; omega_c within its window; alpha above 2), 1 is FITTED-not-over-determined (the EFE factor), and 1 candidate flat direction -- the product a0 x omega_c -- is demonstrably BROKEN by c1 x c4. So the flat list is not padded: a candidate was tested and removed
+
+  flatness measured, not asserted:
+    a0 direction   : surviving span 1.382x           (a point would be 1.000)
+    omega_c        : window width   1.240x           (a point would be 1.000)
+    alpha above 2  : |chi2(K4) - chi2(K5)| = 1.13 at the loosest cell (1 would be a 1-sigma preference)
+  [OK] P9b *** THEREFORE THE +2 dof CANNOT BE DRIVEN TO 0, and each flat direction is MEASURED flat: a0 spans 1.382x, omega_c's window is 1.240x wide, and two different alpha >= 2 kernels differ by only 1.13 in chi^2 -- less than a 1-sigma preference, so nothing selects among them. *** The 2026-06-15 analysis found the framework viable at +2 dof; the joint here confirms the count is +2 on the (a0, omega_c, shape) subspace and shows that 3 directions have NO front pointing at them. 'Zero free parameters' is not reachable with the five fronts as they stand -- the honest claim is ONE fitted coefficient (kappa) plus a derived-by-elimination shape class plus two unconstrained constants (I_0, omega_c-within-window)
+
+============================================================================================================
+  P10  VERDICT
+============================================================================================================
+
+  OUTCOME: (c) CONTINUUM -- degenerate. Not (a), not (b).
+
+  WHAT THE OVER-DETERMINATION DID BUY, and it is not nothing:
+   1. THE SHAPE INDEX IS DERIVED BY ELIMINATION. alpha = 1 -- which is the framework's OWN published
+      kernel, nu = sqrt(1+1/y), Milgrom 1999 eq 9 -- is excluded at 378 sigma by the Earth
+      perihelion bound even AFTER the framework's own EFE relief, and no kappa rescues it (it would
+      need kappa <= 2.6e-03, which destroys F1). Two constraints, one parameter,
+      one survivor class: alpha >= 2. That is over-determination working as advertised. It costs the
+      corpus the exact law g_obs^2 = g_bar^2 + a0 g_bar, which is an alpha = 1 identity.
+   2. ROUTE B FOR omega_c IS EXCLUDED. omega_c = a0/c transmits Re G = 2.8e-09 at galaxy orbital
+      frequencies against the required >= 0.9: it would gate off the rotation curves the
+      framework exists to explain. So the one closed-form candidate for the fifth constant is dead and
+      omega_c reverts to a fitted window.
+   3. kappa = 1 AND kappa = 2 ARE EXCLUDED by the joint (3.78 and
+      9.04 sigma-equivalent at their OWN most favourable corners), so the
+      over-determination does bound kappa -- to a factor ~1.4 window, not to a point.
+
+  WHAT IT DID NOT BUY:
+   4. kappa IS NOT UNIQUE. 3 of 5 tested values survive at <= 2 sigma-equivalent:
+      1/2pi, 1/2, and 1/2-on-the-ALT-footing all fit. The reason is structural, not statistical: of
+      the five fronts, F3 has no data (ceiling 1.55 sigma at ANY N), F5 is EXACTLY kappa-blind
+      (proved symbolically in P6a), F2a is kappa-blind once alpha >= 2, and F4 pulls a0 the OPPOSITE
+      way from F1 and F2b. Five fronts on paper, two in force on a0, and those two disagree.
+   5. WORSE FOR THE HEADLINE CLAIM: the joint does NOT preserve F1's 2.2-sigma preference for
+      kappa = 1/2 over Milgrom 2020's 1/2pi. Delta chi2 = -0.59, i.e. indistinguishable, and
+      at fixed shape the preference actually REVERSES on the simple/exponential kernels (P2d(ii)). The
+      2.2-sigma result is real but CONDITIONAL on the alpha=1 kernel -- the very kernel item 1 kills.
+      That conjunction is the sharpest thing in this analysis and it is against interest.
+   6. THREE FLAT DIRECTIONS REMAIN and one parameter is fitted-not-derived (P9): I_0 (no front),
+      omega_c within its window, alpha above 2, and the EFE factor. The +2 dof of 2026-06-15 is
+      CONFIRMED as +2 and cannot be driven to 0 by these fronts.
+
+  THE BINDING PAIR, priced honestly: F1 x F4 (equivalently F2b x F4) clashes at
+  1.25 sigma to 3.72 sigma as the cluster absolute-mass-scale
+  systematic floor runs across its OWN committed range 0.30 -> 0.10 dex. It straddles 3 sigma. So:
+  NOT falsified, but the single number that decides whether this framework is falsified as a whole is
+  the cluster mass-calibration floor, and it is not a number about the framework at all.
+
+  AND THE OTHER END OF THE SAME RANGE, stated with equal weight: at the TIGHTEST corner -- cluster
+  floor 0.10 dex AND the non-degenerate R1a drift room -- NO kappa survives. The best any of the three
+  surviving coefficients manages there is 3.25
+  sigma-equivalent. So the joint's verdict spans "comfortable" to "excluded" across two systematics
+  that are not measurements of the framework. Both ends are the result; neither alone is.
+
+  AGAINST INTEREST, five items:
+   * the joint's best cell still has sqrt(chi2/dof) = 1.04; there is no corner where all four
+     terms are simultaneously comfortable.
+   * the best-fitting kernel in the joint is K4
+     (K4 exponential (McGaugh 08 eq 11a)), i.e. NOT the
+     framework's own kernel and not even its adopted alpha=2 replacement -- McGaugh's exponential form
+     fits the joint best. The framework's distinctive kernel loses on its own joint.
+   * three of the four constraints that DO bind prefer the ALT footing (a0 = 1.13e-10) over the
+     canonical rho_DE/cH_Lambda footing the corpus publishes; the fourth (F2b) prefers canonical
+     because the ALT omega_c window is only 2.7% wide, i.e. nearly closed.
+   * F2b is already a 1.34-4.42 sigma tension AT the canonical a0, before any of this,
+     and it worsens linearly in a0 -- so F1's pull toward 1.15x makes F2b worse, not better.
+   * the elimination of alpha = 1 is the strongest result here and it goes AGAINST the corpus's
+     published kernel and its 'exact law'.
+
+  MANDATORY CREDIT restated: nu = sqrt(1+1/y) and the dS-Unruh balance are Milgrom 1999 PLA 253:273
+  eqs 6-9 (his eqs 10-11 give a second coefficient; Milgrom 2008 sec 7.3.1 calls the mismatch 'not
+  necessarily meaningful'); a_lambda = c^2 sqrt(Lambda/3) is Milgrom 1994 Ann.Phys. 229:384;
+  temperature Narnhofer, Peter & Thirring 1996 IJMPB 10:1507; five-acceleration Deser & Levin 1997
+  CQG 14:L163; exponential kernel McGaugh 2008 ApJ 683:137 eq 11a. kappa = 1/2 is FITTED, NOT DERIVED,
+  and this joint analysis does not change that.
+
+  NO DOOR IS CLOSED. The framework is not falsified. Nor is any parameter derived except the shape
+  class, and that one was derived by killing the published kernel.
+
+
+============================================================================================================
+  RESULT
+============================================================================================================
+  42/42 checks held.
+  Exit 0: the joint over-determination ran; outcome (c) CONTINUUM, reported as the mathematics
+  gave it, with the F1 x F4 clash priced across its full systematic range.

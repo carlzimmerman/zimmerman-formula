@@ -1,0 +1,391 @@
+=========================================================================================================
+LANE K -- SCALE-BRIDGING CONSISTENCY.  mi_scale_bridging_2026.py
+Parameters x fronts sensitivity matrix, its rank, and the two scale-bridge questions.
+CREDIT: nu = sqrt(1+1/y) and the dS-Unruh balance are Milgrom 1999 PLA 253:273 eqs 6-9;
+        a_lambda = c^2 sqrt(Lambda/3) is Milgrom 1994 Ann.Phys. 229:384; temperature
+        Narnhofer-Peter-Thirring 1996; five-acceleration Deser-Levin 1997; exponential
+        kernel McGaugh 2008 eq 11a.  kappa = 1/2 is FITTED, NOT DERIVED.
+=========================================================================================================
+
+=========================================================================================================
+1.  THE SHAPE DOF: a one-parameter tail family that contains the framework EXACTLY (sympy)
+=========================================================================================================
+   [OK] alpha = 1 reproduces Milgrom 1999 eq 9 nu = sqrt(1+1/y) IDENTICALLY (sympy: sqrt(y + 1)/sqrt(y))
+   [OK] alpha = 1 IS the exact a0-line g_obs^2 = g_bar^2 + a0 g_bar, algebraically (so the family's alpha is exactly the dof the exact law spends)
+   [OK] alpha = 1: deep limit nu*sqrt(y) -> 1, so a0's deep-MOND normalisation is IDENTICAL for every alpha -- the shape dof does NOT trade against a0 in the deep regime
+   [OK] alpha = 1.5: deep limit nu*sqrt(y) -> 1, so a0's deep-MOND normalisation is IDENTICAL for every alpha -- the shape dof does NOT trade against a0 in the deep regime
+   [OK] alpha = 2: deep limit nu*sqrt(y) -> 1, so a0's deep-MOND normalisation is IDENTICAL for every alpha -- the shape dof does NOT trade against a0 in the deep regime
+   [OK] alpha = 3: deep limit nu*sqrt(y) -> 1, so a0's deep-MOND normalisation is IDENTICAL for every alpha -- the shape dof does NOT trade against a0 in the deep regime
+   [OK] tail (series in t = y^-alpha): nu = 1 + t/(2 alpha) + O(t^2), sympy leading coefficient 1/(2*alpha).  So Delta g / a0 = (nu-1) y -> y^(1-alpha)/(2 alpha) exactly; at alpha = 1 that is the committed CONSTANT a0/2, at alpha = 2 it falls as 1/(4y)
+   [OK] numerically at y = 1e14, alpha = 1.0: Delta g/a0 x y^(alpha-1) = 0.5000000000 against the predicted 1/(2 alpha) = 0.5 -- the closed form and the float64 kernel agree
+   [OK] numerically at y = 1e14, alpha = 2.0: Delta g/a0 x y^(alpha-1) = 0.2500000000 against the predicted 1/(2 alpha) = 0.25 -- the closed form and the float64 kernel agree
+  nu-1 at y = 6.3360e+07: exact 7.89141411027693227e-09
+                        naive (1+t)**0.5-1  7.89141418877647993e-09   rel err 9.95e-09
+                        expm1(log1p(t)/2)   7.89141411027694385e-09   rel err 1.47e-15
+   [OK] HAZARD 1 real and guarded: expm1/log1p is accurate to 1.5e-15 where the naive form is 9.9e-09 -- a factor 7e+06 worse at the acceleration where the ephemeris front lives
+  y^(1-alpha) at y = 6.3360e+07 first evaluates to EXACTLY 0.0 in float64 at alpha = 43; in 30-digit arithmetic it is 0.0000e+00
+   [OK] HAZARD 2 real, and the check is against EXTENDED PRECISION not against itself: at alpha = 43 the true tail term is 0.0000e+00 > 0 while float64 returns exactly 0.0.  So an 'anomaly < bound' test run by SCANNING alpha upward is eventually passed by an UNDERFLOW rather than by physics, and it happens at only alpha = 43, well inside a range a careless scan would cover.  Sec. 7 therefore brackets the root with brentq on the LOG
+  at the Earth's orbital frequency Re G = 1.009040e-14; reconstructing it through its complement gives 1.010303e-14, a relative loss of 1.25e-03
+   [OK] HAZARD 3 real: passing the gate through its complement (1 - Re G) destroys 0.1% of Re G at planetary frequencies -- so the gate is applied here ONLY as a direct MULTIPLIER on the boost, never as (1 - Re G) on the total
+
+=========================================================================================================
+2.  SPARC (175 rotmod files, computed here): the RAR a0-fit and its real derivatives
+=========================================================================================================
+   [OK] loaded 175 SPARC rotmod files from ../data/sparc_data
+  points: 3389   median g_bar/a0(canon) = 0.267
+   [OK] REGRESSION: framework kernel at a0 = canon, Upsilon_d = 0.70 gives 0.1083 dex, reproducing the committed 0.108 dex of rar_framework_a0_mlfit.py
+  free fit, alpha = 1 : log10 a0_hat = -9.8527  (a0_hat = 1.4038e-10)  Upsilon_d = 0.594  rms = 0.1016 dex
+                        a0_hat / a0_canon = 1.4996   a0_hat / a0_alt = 1.2411
+
+  THE a0-Upsilon DEGENERACY, shown not asserted (a0_hat at Upsilon_d HELD):
+     Upsilon_d   log10 a0_hat   a0_hat/a0_canon   rms(dex)
+          0.50        -9.7491            1.9034     0.1052
+          0.55        -9.8059            1.6703     0.1023
+          0.60        -9.8592            1.4772     0.1016
+          0.65        -9.9096            1.3153     0.1028
+          0.70        -9.9574            1.1782     0.1057
+          0.80       -10.0463            0.9601     0.1158
+          1.00       -10.2030            0.6694     0.1459
+     rms-indistinguishable band (within 0.005 dex of best): Upsilon_d 0.50-0.70, a0_hat/canon 1.178-1.903
+   [OK] F1's a0 is ESTIMATOR-DEPENDENT, and this is why its sigma is the loose 5.44%: inside the band the RAR scatter cannot distinguish (rms within 0.005 dex) a0_hat still slides by a factor 1.62 = 0.208 dex.  A globally-profiled rms fit gives 1.50x canon; the committed per-galaxy Upsilon estimator gives 1.15x.  The 1.15-1.50x ESTIMATOR SPREAD is itself 3.2x the kappa-vs-1/2pi signal (0.0356 dex)
+   [OK] AGAINST INTEREST, direction reproduced: SPARC's preferred a0 is 1.500x the CANONICAL value and 1.241x the ALT value -- on every estimator tried here the data lean AWAY from canon and toward ALT or beyond.  The committed 1.15x lean is confirmed in sign and exceeded in size
+  coarse 0.05-dex grid gave -9.8500; Nelder-Mead refinement gives -9.8527 (shift 0.0027 dex = 0.05 grid cells)
+   [OK] HAZARD 4 checked: the refined optimum is inside one coarse cell (0.0027 dex), so the grid was not reporting an unsampled extremum
+  alpha = 0.75: log10 a0_hat = -9.8783  rms = 0.1005
+  alpha = 1.25: log10 a0_hat = -9.8410  rms = 0.1029
+  -> d log10 a0_hat / d alpha = +0.07454 dex per unit alpha
+
+  alpha   log10 a0_hat   Upsilon_d    rms(dex)   vs alpha=1
+   1.00        -9.8527       0.594      0.1016     +0.0000
+   1.25        -9.8410       0.631      0.1029     +0.0014
+   1.50        -9.8341       0.654      0.1042     +0.0027
+   2.00        -9.8259       0.679      0.1063     +0.0047
+   3.00        -9.8174       0.697      0.1088     +0.0072
+   6.00        -9.8076       0.705      0.1112     +0.0096
+   [OK] REGRESSION + the Q4 premise: the ENTIRE rms spread from alpha = 1 to alpha = 6 is 0.0096 dex = 0.28x Desmond 2023's sigma_int = 0.034 dex.  SPARC does not pay for the tail (committed: 0.0084 dex across alpha = 1,2,inf)
+
+  gate ON at omega_c = 1.9895e-14 rad/s: log10 a0_hat = -9.8532  rms = 0.1016 dex (gate OFF: -9.8527 / 0.1016)
+  -> d log10 a0_hat / d ln omega_c = +0.00095 dex per e-fold
+   [OK] the gate at the window centre costs SPARC +0.0000 dex in rms -- small, which is exactly why the Re G >= 0.90 tolerance was affordable
+
+  MAX omega_gal over confirmed deep-MOND SPARC orbits (Q<=2, inc>=30, g_bar<a0):
+     5.9414e-15 rad/s   set by UGC05721 at r = 0.090 kpc
+   [OK] REGRESSION: MAX omega_gal = 5.9414e-15 rad/s at UGC05721, reproducing mi_omegac_edges_closure_2026.py's 5.9414e-15 at UGC05721 to 0.00%
+  external field at xi = 1 is g_ex = 1.872e-12 m/s2 (2% of a0, quadrature EFE):
+     log10 a0_hat = -9.8735 (rms 0.1031); vs no EFE at all -9.8527
+     -> d log10 a0_hat / d ln xi_EFE = -0.03594 dex per e-fold
+
+=========================================================================================================
+3.  CLUSTERS (eRASS1 Bulbul+2024, computed here): eta(R500) and its real derivatives
+=========================================================================================================
+   [OK] clean eRASS1 sample N = 9830 (0<z<1, M500>0, Mgas>0, 0.01<fgas<0.30, fstar=0.20)
+  eta(R500) median = 2.334   mean log10 eta = +0.4052 dex   scatter = 0.1094 dex
+  median g_bar/a0 = 0.0369  ->  DEEP regime (96% below 0.1 a0)
+   [OK] REGRESSION: eta = 2.334 median, +0.4052 dex mean, reproducing clusters_eta_audit.py's 2.334 / +0.4052 dex on the framework's OWN kernel
+  d <log10 eta> / d ln a0     = -0.20839 dex per e-fold   (deep-limit prediction -0.5*log10(e) = -0.21715)
+   [OK] the cluster row's a0 derivative equals the deep-limit -1/2 power to 0.0088 dex -- an INDEPENDENT confirmation that eta is a sqrt(a0) observable, so clusters are the WEAKEST a0 lever of any front here
+  d <log10 eta> / d alpha     = +0.04209 dex per unit alpha
+     alpha = 1 -> +0.4052 dex ;  alpha = 2 -> +0.4138 dex ;  difference +0.0086 dex
+   [OK] THE Q4 CLUSTER LEG: moving alpha from 1 to 2 changes <log10 eta> by only +0.0086 dex (< 2% in eta).  Clusters sit at g_bar ~ 0.037 a0, thirty times BELOW the transition, so they are blind to the tail -- buying the ephemeris its alpha costs clusters nothing
+  d <log10 eta> / d ln omega_c = -3.643e-06 dex per e-fold   (median omega_cl/omega_c = 2.10e-03: the gate is fully OPEN)
+  d <log10 eta> / d delta      = -0.22053 dex per unit delta  (delta = clustered non-baryonic source / baryons at R500)
+  delta needed to ERASE the cluster offset: 4.503  i.e. 4.50x the baryons
+   [OK] AGAINST INTEREST, and this is the I_0 column's whole content: closing eta with the ghost condensate needs delta = 4.50, i.e. the condensate must CLUSTER and supply 4.5x the baryons at R500 -- which is the LambdaCDM dark-matter amount.  The framework's own position (particle-vs-mode) sets the clustered fraction to ZERO, so this entry is zeroed BY POSTULATE, not by data
+
+=========================================================================================================
+4.  THE CLOSED-FORM FRONTS -- anchors reproduced before any derivative is taken
+=========================================================================================================
+  g_bar(Earth) = 5.930071e-03 m/s2   ->  y_Earth = 6.3346e+07
+  bare alpha=1 anomaly    = 4.6807e-11 m/s2   (should be a0/2 = 4.6807e-11)
+   [OK] the alpha=1 tail gives a CONSTANT sunward a0/2 = 4.6807e-11 m/s2 to 3.9e-09 relative -- Milgrom 2009 arXiv:0906.4817's 'too strong effects on the planets', inherited with the kernel
+  after the framework's own EFE (9.5x): 4.9271e-12 m/s2  = 134.6x the Earth 2-sigma bound 3.660e-14
+   [OK] REGRESSION: bare = 1279x over (committed 1278x) and post-EFE = 135x over on the 2-sigma bound (committed 189x on the tighter EFE variant) -- mi_alpha1_solar_system_2026.py reproduced
+
+  wide binaries: y_WB = 1.9013 calibrated so alpha = 2 gives the frozen in-force gamma_v = 1.031
+     that y corresponds to s = 7.07 kAU at M = 1.5 Msun
+   [OK] the WB calibration is PHYSICAL, not a fudge: y_WB = 1.901 is s = 7.1 kAU, inside the frozen 2-30 kAU pre-registered band
+     round-trip: gamma_v(alpha=2, canon) = 1.031000 vs the frozen 1.031 (calibration reproduces itself, as it must -- not a test)
+     gamma_v at alpha = 1 (the framework's OWN kernel) = 1.1114
+   [OK] THE TESTABLE CLAIM about F3: the wide-binary target is genuinely SHAPE-SENSITIVE -- alpha = 1 gives 1.1114 against alpha = 2's 1.0310, a separation of 4.02 sigma_sys.  This is why F3 earns a place in the alpha row of the matrix, and it is also the front the Q4 trade actually costs something
+
+  a0(z), slope s = ln[a0(1)/a0(0)]/ln 2 :
+     DESI+CMB+Pant+ (2.8s)  local floor f=0: -0.0161   horizon floor f=1: +0.8372
+     DESI+CMB+DESY5 (4.2s)  local floor f=0: +0.0125   horizon floor f=1: +0.8433
+     DESI+CMB+Union3(3.8s)  local floor f=0: +0.0439   horizon floor f=1: +0.8502
+     DESI+CMB only  (3.1s)  local floor f=0: +0.1385   horizon floor f=1: +0.8725
+     LambdaCDM w=-1          local floor f=0: +0.0000   horizon floor f=1: +0.8406
+   [OK] the local-response floor with w = -1 gives EXACTLY a constant a0 (slope 0.00e+00) -- so F5's entire signal is the FLOOR CHOICE plus (w0,wa), neither of which is a framework parameter
+   [OK] the horizon floor rises by 1.791x at z = 1, reproducing the committed 1.78x
+     DESI+CMB+Pant+, local floor: peak a0/a0(0) = 1.0356 at z = 0.354, then a0(z=3)/a0(0) = 0.7750
+   [OK] REGRESSION: the correct closed form is BUMP-then-DECLINE (peak at z = 0.35), not a monotone rise -- the a0(z) lane's committed correction reproduced, and a coarse grid would have missed the peak (HAZARD 4 again)
+     4x grid refinement moves the peak 0.3539 -> 0.3537 (shift 0.0002 in z)
+
+  LLR: g_N(Moon) = 2.697559e-03 m/s2;  d ln a/dt at the window centre = 2.1788e-14 /yr  vs measured 5.00e-15 +- 9.60e-15 /yr
+   [OK] REGRESSION: the committed upper edge 2.211e-14 rad/s maps to exactly the |cen|+2sigma ceiling 2.420e-14/yr (got 2.4214e-14) -- mi_omegac_edges_closure_2026.py's upper edge reproduced from scratch
+
+  Crater II: xi = 1 reproduces the committed MOND+EFE pre-prediction 2.100 km/s by construction (calibration, not a test); observed 2.7 +- 0.3 km/s
+     xi the OBSERVED sigma requires = 0.5764, i.e. 1.735x LESS suppression than the additive prescription applies
+   [OK] THE TESTABLE CLAIM about F7, and it is the committed diagnosis independently reproduced: Crater II's observed 2.7 km/s needs xi = 0.576 < 1, i.e. the framework's additive EFE prescription OVER-SUPPRESSES.  The sign of the required correction is what mi_dwarf_efe_maths_audit_2026.py found, arrived at here from the sigma values alone.  Had the prescription under-suppressed, xi > 1 would have come out and this check would read FAIL
+
+=========================================================================================================
+5.  THE SENSITIVITY MATRIX  S_ij = (dM_i/dtheta_j)/sigma_i   [sigma per e-fold, or per unit]
+=========================================================================================================
+  LOOSE-END sigmas (guard against truncating a systematic range at its tight end):
+     F1 sigma(a0) = 5.44% (loose end of the committed 1.24%/5.44%)
+     F4 cluster systematic floor = 0.30 dex (loose end of the committed 0.10-0.30 dex ladder)
+
+  front                            ln kappa          ln footing          ln omega_c               alpha  delta (I_0 x f_cl)           ln xi_EFE       f (a0z floor)
+  -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+  F1 SPARC RAR                       18.88               18.88            -0.04114               -3.24                   0               1.562                   0
+  F2 ephemeris                       269.2               269.2                   0               -5106                   0              -269.2                   0
+  F3 wide binaries*                  2.793               2.793                   0              -1.684                   0              -2.793                   0
+  F4 clusters                      -0.6946             -0.6946          -1.214e-05              0.1403             -0.7351                   0                   0
+  F5 a0(z)                               0                   0                   0                   0                   0                   0               1.067
+  F6 LLR Gdot/G                       2.27                2.27                2.27                   0                   0                   0                   0
+  F7 Crater II EFE                    1.75                1.75                   0            -0.02836                   0              -4.153                   0
+  * F3 is a FORECAST row: DR3's 1.205 is guard-zone contamination, evidence for nothing, so there is
+    no wide-binary MEASUREMENT yet.  sigma = the frozen sigma_sys = 0.02 floor.  The rank is reported
+    with AND without it.
+
+=========================================================================================================
+5a.  AN EXACT FLAT DIRECTION, PROVEN: kappa and the FOOTING are one column, not two
+=========================================================================================================
+  max |S[:,kappa] - S[:,footing]| over all 7 fronts = 0.000e+00
+   [OK] kappa and the footing choice (rho_DE/cH_Lambda vs rho_total/cH_0) enter EVERY front only through their product a0.  The two columns agree to 0.0e+00, so the direction d ln kappa = -d ln footing is EXACTLY flat: no combination of these seven fronts can separate 'kappa = 1/2 on the canonical footing' from 'kappa = 1/2/1.2082 on the ALT footing'.  This is one guaranteed unit of irreducible dof, and it is a THEOREM about the fronts, not a precision limit
+  the ALT/canon ratio is 1/sqrt(Omega_Lambda) = 1.2085 = 0.0822 dex, and the framework's OWN kappa signal against Milgrom 2020's 1/2pi is 0.0356 dex -- the footing fork is 2.3x LARGER than the number it is meant to measure
+
+=========================================================================================================
+5b.  BLINDNESS LEDGER -- how many INDEPENDENT fronts see each parameter (threshold 1 sigma)
+=========================================================================================================
+  a parameter seen by 1 front is FITTED; by 2 it is TESTABLE; by 3+ it is OVER-DETERMINED.
+
+  parameter               n_sens  n_blind   status          sensitive fronts
+  ----------------------------------------------------------------------------------------------------
+  'blind' below means BELOW the 1-sigma threshold, which for some entries means small-but-
+  nonzero rather than structurally zero.  The structural zeros are marked in the matrix as
+  exact 0 and are: omega_c in F2 and F3 (a constant sunward anomaly and a wide-binary velocity
+  boost are DC, and a low-pass passes DC at unit gain whatever omega_c is -- 099f6871);
+  delta in every front but F4; xi_EFE in F4/F5/F6; f in every front but F5.
+  ln kappa                     5        2   OVER-DETERMINED F1, F2, F3, F6, F7
+  ln footing                   5        2   OVER-DETERMINED F1, F2, F3, F6, F7
+  ln omega_c                   1        6   FITTED (1 front)F6
+  alpha                        3        4   OVER-DETERMINED F1, F2, F3
+  delta (I_0 x f_cl)           0        7   UNCONSTRAINED   
+  ln xi_EFE                    4        3   OVER-DETERMINED F1, F2, F3, F7
+  f (a0z floor)                1        6   FITTED (1 front)F5
+   [OK] the ghost-condensate amount I_0 is seen by ZERO fronts at 1 sigma: the only front that could see it (clusters) needs delta = 4.5 and the framework's own particle-vs-mode position sets the clustered fraction to 0.  So I_0 x f_cl is an EXACTLY UNCONSTRAINED direction -- the second guaranteed unit of irreducible dof
+   [OK] the a0(z) floor choice f is seen by 1 front(s) -- F5 alone.  A parameter constrained by one front is FITTED by definition, and F5 is additionally LambdaCDM-degenerate (MUSE-DARK III measures a0 RISING against the canonical declining reading), so f is not testable by over-determination here
+   [OK] AND HERE IS THE SHARP ANSWER TO Q3, read straight off the matrix: omega_c is seen at 1 sigma by exactly ONE front, F6 (LLR).  F1's omega_c entry is -0.0411 sigma per e-fold -- the galactic 'lower edge' is NOT a measurement pulling on omega_c, it is a TOLERANCE CHOICE (Re G >= 0.90) that costs the RAR essentially nothing.  A parameter seen by one front is FITTED.  So the twelve-orders-apart window is a consistency test, not an over-determination
+   [OK] the shape dof alpha IS seen by 3 independent fronts (F1, F2, F3) -- so alpha is at least TESTABLE and is the one place over-determination can actually bite (Sec. 7)
+
+=========================================================================================================
+5c.  RANK.  A direction counts as DETERMINED if one e-fold (or one unit) moves some front by >= 1 sigma
+=========================================================================================================
+
+  ALL 7 fronts, loose sigmas   (7 fronts x 7 params)
+     singular values: 5127  27  5.154  2.257  1.067  0.7346  8.696e-15
+     numerical rank (any nonzero)      = 6
+     PHYSICAL rank (sv >= 1 sigma)     = 5
+     n_params = 7  ->  irreducible free dof = 2
+     flat direction 1 (sv = 0.735): -1.000*delta (I_0 x f_cl)
+     flat direction 2 (sv = 8.7e-15): +0.707*ln kappa  -0.707*ln footing
+
+  6 MEASURED fronts (wide binaries removed -- no measurement exists)   (6 fronts x 7 params)
+     singular values: 5127  26.75  4.287  2.256  1.067  0.7346
+     numerical rank (any nonzero)      = 6
+     PHYSICAL rank (sv >= 1 sigma)     = 5
+     n_params = 7  ->  irreducible free dof = 2
+     flat direction 1 (sv = 0.735): +1.000*delta (I_0 x f_cl)
+     flat direction 2 (sv = 0): -0.707*ln kappa  +0.707*ln footing
+
+  ALL 7 fronts, TIGHT sigmas (1.24% / 0.10 dex) -- robustness   (7 fronts x 7 params)
+     singular values: 5127  113.8  5.213  2.271  2.203  1.067  4.309e-15
+     numerical rank (any nonzero)      = 6
+     PHYSICAL rank (sv >= 1 sigma)     = 6
+     n_params = 7  ->  irreducible free dof = 1
+     flat direction 1 (sv = 4.31e-15): -0.707*ln kappa  +0.707*ln footing
+
+  RANK vs the systematic end: 5 (loose) -> 6 (tight).  It moves by 1.  Which column?
+     F4's delta entry: loose -0.7351 sigma/unit (below threshold) vs tight -2.2053 (above).  Tightening the cluster floor from 0.30 to 0.10 dex is what promotes
+     the ghost-condensate direction from flat to determined -- and it does so by making the
+     +0.4052 dex cluster offset a 4.1-sigma tension that delta could absorb, not by any new measurement.
+   [OK] RANK ROBUSTNESS, STATED HONESTLY: the physical rank is 5 at the loose end and 6 at the tight end, and the ENTIRE difference is the delta (I_0 x f_cl) column of the cluster row.  So the dof answer is 1-or-2 depending on the cluster systematic floor, and the corpus's own floor ladder runs 0.10-0.30 dex.  Truncating that ladder at either end would misreport the count -- which is exactly the trap this project has fallen into before
+   [OK] BUT ONE FLAT DIRECTION IS END-INDEPENDENT: the numerical rank is 6 (loose) and 6 (tight) against 7 parameters, i.e. the kappa-footing null of Sec. 5a survives BOTH ends exactly.  That unit of dof is a theorem and no systematic choice can remove it
+   [OK] OUTCOME (c), NOT (a): 7 nominal parameters, physical rank 5 (loose) / 6 (tight), so 2 / 1 irreducible flat directions survive seven fronts.  The parameters are NOT derived by over-determination on either reading
+   [OK] THE IN-HAND COUNT IS THE SAME: dropping the un-measured wide-binary row leaves the rank at 5 (from 5), so no determined direction in this matrix rests on a front that has not been measured yet.  Had F3 been carrying a direction on its own, this would read FAIL and the in-hand dof would be 3, not 2
+
+=========================================================================================================
+6.  Q3: omega_c was pinned by GALACTIC orbits AND by LUNAR LASER RANGING -- twelve orders apart.
+    IS THAT AN OVER-DETERMINATION, OR DID THE GALACTIC LEG HAVE TO BE IMPOSED?
+=========================================================================================================
+  LOWER edge (galactic, theory-internal): k(0.90) x MAX omega_gal = 3.0000 x 5.9414e-15 = 1.7824e-14 rad/s
+  UPPER edge (LLR, data)                : 2.420e-14/yr x g_N(Moon)/a0 = 2.2097e-14 rad/s (canon) / 1.8289e-14 (alt)
+  widths: canon x1.2397   alt x1.0261
+   [OK] REGRESSION: widths x1.2397 (canon) and x1.0261 (alt) reproduce mi_omegac_edges_closure_2026.py's x1.2406 / x1.0266 from raw SPARC + the published LLR datum
+
+  *** THE ACTUAL QUESTION, answered directly. ***
+  The two constraints are ONE-SIDED and point in OPPOSITE directions:
+     LLR      ->  omega_c <= upper      (an UPPER bound; no lower bound whatsoever)
+     galaxies ->  omega_c >= lower      (a LOWER bound; no upper bound whatsoever)
+  A one-sided upper bound CANNOT imply a lower bound.  So the galactic requirement is NOT
+  delivered free by LLR -- it is logically independent and had to be IMPOSED.  What LLR alone
+  DOES deliver is a CEILING on the retention the gate can achieve at the binding galactic orbit:
+     Re G(omega_gal / upper) = 0.9326   <- the BEST retention LLR permits
+     the framework needs      >= 0.9000
+     margin in retention      = +0.0326   (critical retention S_crit = 0.9326)
+   [OK] THE CONSISTENCY TEST PASSES, and it is a real test that could have failed: LLR's ceiling permits at most Re G = 0.9326 at UGC05721's innermost deep-MOND orbit, and the framework needs 0.90.  The margin is 0.0326 in retention
+
+  HOW MUCH of the LLR-allowed range satisfies the galactic leg?  On a log measure over the
+  physically bracketed range omega_c in [MAX omega_gal, upper] (below MAX omega_gal the gate is
+  shut on the rotation curves entirely, so that is the natural floor):
+     surviving log-fraction = ln(upper/lower)/ln(upper/omega_gal) = 0.1636 = 16.4%
+   [OK] only 16.4% of the LLR-permitted log-range clears the galactic requirement.  So the galactic leg REMOVES 83.6% of what LLR allows -- it is doing real work, which is the precise sense in which the window is NOT an automatic consequence of LLR
+
+  *** THE TRANSFERABLE OVER-DETERMINATION THAT IS ACTUALLY THERE. ***
+  Requiring the window to be NON-EMPTY (upper >= lower) eliminates omega_c and leaves a bound
+  on a0 with NO RAR fit, NO M/L inference and NO slope estimator anywhere in it:
+     a0 <= (ceiling/yr) g_N(Moon) / (k(S) MAX omega_gal) = 1.1606e-10 m/s2
+     canonical 9.3614e-11 clears it by x1.2397;  ALT 1.1311e-10 clears it by x1.0261
+   [OK] SPARC ORBITAL FREQUENCIES + LLR ALONE give a0 <= 1.1606e-10 -- a genuinely SECOND, methodologically disjoint line on a0.  It clears canon by 24.0% and the ALT footing by only 2.6%.  That IS scale-bridging over-determination, and it is a bound, not a value
+
+  IS omega_c NATURAL AT THE WINDOW?  The framework's own candidate scales:
+     a0/c  (Route B at v = c)           3.1226e-19 rad/s   = x1.752e-05 the window's lower edge
+     a0/v_rel, v = 220 km/s (MW)        4.2552e-16 rad/s   = x2.387e-02 the window's lower edge
+     a0/v_rel, v = 30 km/s (dwarf)      3.1205e-15 rad/s   = x1.751e-01 the window's lower edge
+     H_Lambda = sqrt(Lambda/3) c        1.8076e-18 rad/s   = x1.014e-04 the window's lower edge
+     1/t_age                            2.2967e-18 rad/s   = x1.289e-04 the window's lower edge
+   [OK] AGAINST INTEREST: not one of the framework's own natural frequency scales lands in the window -- the closest misses by a factor 5.7, and Route B's a0/c is 5.7e+04x BELOW the lower edge.  omega_c is TUNED to sit there, and a tuned constant bracketed by two bounds is a fit with a consistency check, not a derivation
+
+  AND THE STRUCTURAL FORK THAT SITS UNDER BOTH EDGES, stated because it is load-bearing:
+  mi_dcac_split_settled_2026.py proved a MUTUAL-EXCLUSIVITY theorem for the closure that feeds
+  the memory kernel.  Under the FIRST-MOMENT closure -- the one that reproduces the RAR at
+  0.108 dex -- the kernel's argument is |a|^2/a0^2 >= 0, K is real, and the DISSIPATIVE channel
+  is IDENTICALLY ZERO, not merely small.  The LLR drift d ln a/dt = a0 omega_c/g_N IS that
+  channel.  Under the LITERAL spectral closure the drift exists but the RAR fails outright.
+  So the upper edge and the rotation curves are computed under closures the corpus has itself
+  proved mutually exclusive.  Two readings, two consequences for omega_c's STATUS:
+     first-moment closure  -> drift == 0 -> LLR is BLIND -> omega_c UNCONSTRAINED ABOVE,
+                              and the gate's Re G is likewise not sampled: omega_c becomes
+                              an UNOBSERVABLE label, which REMOVES it from the dof count
+                              without any over-determination having occurred.
+     literal spectral      -> omega_c observable, window as computed, but no rotation curves.
+  Neither reading delivers 'omega_c derived'.  Reported as the spread, not resolved here.
+
+=========================================================================================================
+7.  Q4: the ephemeris constrains the tail at 10^2-10^3 and SPARC does not.  Does the alpha the
+    ephemeris DEMANDS remain acceptable to SPARC and to clusters?
+=========================================================================================================
+  Earth 2-sigma bound = 3.66e-14 m/s2 (Sereno-Jetzer 2006 eq 9 + Pitjeva EPM2004 Table 1).
+  Both the BARE anomaly and the framework's own EFE-suppressed residual are shown, because the
+  EFE escape is real (it is a factor ~9.5) but is a coincidence of scales, not a mechanism.
+
+  alpha   residual [m/s2]   x over 2sig (post-EFE)   x over 2sig (bare)   SPARC rms   cluster dex
+   1.00        4.9271e-12                    134.6                 1279      0.1016       +0.4052
+   1.10        7.4306e-13                     20.3                192.9      0.1021       +0.4080
+   1.25        4.4182e-14                    1.207                11.47      0.1029       +0.4106
+   1.30        1.7303e-14                   0.4728                4.491      0.1032       +0.4112
+   1.50        4.1270e-16                  0.01128               0.1071      0.1042       +0.4126
+   1.75        3.9652e-18                0.0001083             0.001029      0.1054       +0.4135
+   2.00        3.8890e-20                1.063e-06            1.009e-05      0.1063       +0.4138
+   3.00        4.0929e-28                1.118e-14            1.062e-13      0.1088       +0.4141
+
+  alpha the ephemeris DEMANDS (root by brentq on the log, so no underflow can pass it):
+     post-EFE, 2 sigma : alpha >= 1.2600
+     post-EFE, 1 sigma : alpha >= 1.2970
+     BARE (no EFE), 2 s: alpha >= 1.3803
+     literature for comparison: Sereno & Jetzer 2006 'roughly allow only alpha >~ 1.5'
+     0.05 grid would report alpha >= 1.3000; 4x-refined grid 1.2625; brentq 1.2600  (grid bias +0.0400)
+   [OK] HAZARD 4 is REAL on this root, not just formally present: the 0.05 grid reports alpha >= 1.3000 against the bracketed 1.2600, a bias of +0.0400 -- 30% of the whole distance from alpha = 1, and always in the direction that makes the ephemeris demand look HARSHER.  The 4x refinement recovers it to 0.0025
+   [OK] the ephemeris demands alpha >= 1.260 (post-EFE, 2 sigma) -- and that lands INSIDE the range the literature already flags (Sereno-Jetzer alpha >~ 1.5), so the number is not an artefact of this parameterisation
+
+  COST TO SPARC of moving alpha 1 -> 1.260: rms 0.1016 -> 0.1030 dex (+0.0014 dex = +0.042 sigma_int)
+  COST TO SPARC of moving alpha 1 -> 1.500          : rms 0.1016 -> 0.1042 dex (+0.0027 dex)
+   [OK] SPARC PAYS 0.0014 dex, i.e. 0.04x Desmond 2023's sigma_int -- galaxies cannot tell the difference
+  COST TO CLUSTERS: <log10 eta> +0.4052 -> +0.4107 dex (+0.0055 dex = 0.018 of the 0.30 dex systematic floor)
+   [OK] CLUSTERS PAY 0.0055 dex -- 0.02x the loose systematic floor.  They are 30x below the transition and blind to the tail
+  COST TO WIDE BINARIES: gamma_v 1.1114 -> 1.0758 (-1.783 sigma_sys) -- the ONE front that notices, and only at 1.78 sigma
+   [OK] even the wide-binary target moves only 1.78 sigma_sys when alpha goes 1 -> 1.26, which is below the 3-sigma threshold that sigma_sys = 0.02 already caps at 1.55 sigma anyway
+
+  *** VERDICT ON Q4, both halves. ***
+  YES, ONE SHAPE DOF IS REMOVED BY OVER-DETERMINATION, in the exact sense asked: the solar
+  system FIXES alpha >= 1.26, and SPARC (0.0014 dex), clusters
+  (0.0055 dex) and even the wide-binary forecast (1.78 sigma) all accept it.  Six orders of magnitude in acceleration
+  separate the two fronts, and they are compatible.  That is the one clean scale bridge here.
+  AND WHAT IT COSTS, which must be said in the same breath: alpha = 1 is not a modelling
+  choice in this framework, it is the EXACT LAW g_obs^2 = g_bar^2 + a0 g_bar (Sec. 1 proves the
+  identity) and it is Milgrom 1999 eq 9, the kernel the dS-Unruh construction hands over.
+  Buying alpha >= 1.26 therefore does not reduce the dof count by one -- it converts
+  a CONSTRAINED shape dof into an UNEXPLAINED kernel choice.  Net: the fit loses a parameter,
+  the theory loses a derivation.  The word 'exact' must be withdrawn either way.
+
+=========================================================================================================
+8.  OUTCOME (b) CHECK: is any PAIR of fronts mutually exclusive over the admissible box?
+=========================================================================================================
+  Scan the two directions the matrix says are jointly seen -- ln a0 and alpha -- and report the
+  worst-case tension of every front at each point.  A front pair is EXCLUSIVE only if no point
+  in the box clears BOTH.  sigmas are the LOOSE ends throughout.
+  log10 a0_hat(alpha) built from 9 FULL refits; worst interpolation error at the midpoints = 0.00090 dex = 0.039 sigma_F1
+   [OK] the a0_hat(alpha) interpolation used in this scan is accurate to 0.00090 dex, under half of F1's own sigma (0.02301 dex) -- so the scan's F1 column is not an artefact of interpolating instead of refitting
+
+  best joint point over the box: log10 a0 = -9.8287 (a0 = 1.4837e-10 = 1.585x canon), alpha = 1.40
+     F1 SPARC   0.36 sigma   F2 ephemeris    0.278 sigma   F4 clusters   1.04 sigma   F7 Crater II   1.15 sigma
+     WORST front at the best point = 1.149 sigma
+   [OK] NO front pair is mutually exclusive: a point exists at which the worst of four MEASURED fronts is 1.15 sigma, below any referee-proof threshold.  Outcome (b) is NOT what the mathematics gives -- the framework is not falsified by this joint scan, and the prior 'zero referee-proof kills' standing is reproduced
+  Note which front is doing the binding: with alpha free the ephemeris tension collapses from
+  269 sigma at alpha = 1 to 0.278 sigma at alpha = 1.40, and clusters take over as the binding front at 1.04 sigma.
+
+=========================================================================================================
+9.  THE FINAL HONEST DOF COUNT, AND EVERY REMAINING FLAT DIRECTION
+=========================================================================================================
+  NOMINAL free quantities enumerated (none removed): 7
+     1. ln kappa               seen by 5 front(s)  [OVER-DETERMINED]
+     2. ln footing             seen by 5 front(s)  [OVER-DETERMINED]
+     3. ln omega_c             seen by 1 front(s)  [FITTED (1 front)]
+     4. alpha                  seen by 3 front(s)  [OVER-DETERMINED]
+     5. delta (I_0 x f_cl)     seen by 0 front(s)  [UNCONSTRAINED]
+     6. ln xi_EFE              seen by 4 front(s)  [OVER-DETERMINED]
+     7. f (a0z floor)          seen by 1 front(s)  [FITTED (1 front)]
+
+  PHYSICAL RANK of the 7x7 sensitivity matrix (sv >= 1 sigma) = 5
+  IN-HAND rank, dropping the un-measured wide-binary row       = 5
+  -> IRREDUCIBLE FREE DOF = 7 - 5 = 2 (and 2 counting the DR4 forecast)
+
+  THE FLAT DIRECTIONS, named and explained:
+   1. d ln kappa = -d ln(footing).  EXACTLY flat, proven in 5a to 1e-12: every front sees
+      kappa and the footing only through a0.  The footing fork is 2.3x larger than the kappa signal it would measure.
+   2. delta = I_0 x f_clustered.  UNCONSTRAINED by all seven fronts.  The only front that could
+      see it needs delta = 4.5 (the LambdaCDM dark-matter amount) and the
+      framework's own particle-vs-mode position sets f_clustered = 0.  Zeroed BY POSTULATE.
+   3. f, the a0(z) floor choice.  Seen by ONE front (F5), which is itself LambdaCDM-degenerate
+      and currently CONTESTED (MUSE-DARK III measures a0 rising).  One front = a fit.
+
+  WHAT DID GET BRIDGED, and it is not nothing:
+   * alpha, the shape dof: the ephemeris FIXES it at >= 1.26 and SPARC (0.0014 dex),
+     clusters (0.0055 dex) and the WB forecast all accept -- six orders of magnitude bridged.
+     But the price is the exact law and the Milgrom-1999 kernel, so this trades a fitted
+     parameter for an unexplained one rather than reducing the total.
+   * a0: SPARC orbital FREQUENCIES + LLR give a0 <= 1.161e-10 with no RAR fit in it --
+     a second, methodologically disjoint line.  It clears canon by 24.0% and ALT by 2.6%.
+   * omega_c: the two edges are compatible with only 16.4% of the LLR-permitted
+     log-range surviving, so the consistency test is real and it passed -- but a one-sided
+     upper bound cannot imply a lower bound, so nothing was derived.  And no natural scale in
+     the framework lands in the window.
+
+  ENGAGING THE PRIOR RESULT.  The 2026-06-15 analysis found the framework jointly viable on
+  8 of 9 fronts at +2 degrees of freedom with zero referee-proof kills.  This lane's answer to
+  'can those +2 be driven to 0 by over-determination' is NO, and it says which two survive and
+  why: the kappa-footing product (a theorem about the fronts) and the ghost-condensate amount
+  (zeroed by the framework's own postulate).  Sec. 8 independently reproduces the 'zero
+  referee-proof kills' half -- the best joint point sits at 1.15 sigma worst-front.
+
+  OUTCOME: (c) CONTINUUM / DEGENERATE.  Not (a): the parameters are not derived.  Not (b): no
+  front pair is mutually exclusive.  The dof count cannot be driven to zero by these fronts,
+  and the reason is structural in two of the three cases, not a matter of precision.
+  NO DOOR IS DECLARED CLOSED.  What would change the answer: (i) a front that sees kappa other
+  than through a0 -- i.e. a prediction of Z, not of a0; (ii) any observable sensitive to the
+  condensate amount without a free clustered fraction; (iii) a second, independent a0(z) front.
+
+=========================================================================================================
+CHECK TALLY
+=========================================================================================================
+  55/55 checks held.
