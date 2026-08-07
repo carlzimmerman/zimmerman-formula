@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
-r"""mi_geometric_lock_entropy_2026.py -- LANE L: can Bekenstein-Hawking's 1/4 be the framework's 1/4?
+r"""
+*** STALE CITATION, corrected 2026-08-07: any use below of r_max = 9.0168 as EXCLUDING r = 2Z is withdrawn.
+mi_psi_search_r2Z_2026.py (27/27) proves sup r = +INFINITY once psi carries a second scale, with explicit
+admissible psi at r = 2Z; the exact single-scale MENU ceiling is r = 9 and 9.0168 was 0.186% high. Neither
+this file's verdict depends on it -- removing a no-go cannot manufacture a construction. The correct
+surviving statement is 9 < 2Z < 4 pi, so BOTH live coefficients need a second scale tuned to a_0: neither
+excluded, neither preferred. ***
+mi_geometric_lock_entropy_2026.py -- LANE L: can Bekenstein-Hawking's 1/4 be the framework's 1/4?
 
 THE TARGET, exactly. The framework needs the de Sitter inertia FLOOR to be
     k = a_0/2 = (1/4) c sqrt(G rho_Lambda) = (c/4)/t_dyn,     t_dyn = 1/sqrt(G rho_Lambda) = 1.6011e18 s

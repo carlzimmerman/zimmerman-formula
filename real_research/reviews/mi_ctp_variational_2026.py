@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-r"""mi_ctp_variational_2026.py -- THE RETARDED EQUATION OF MOTION *IS* VARIATIONAL, IN THE IN-IN (CTP) ACTION.
+r"""
+*** WITHDRAWN CITATION, added 2026-08-07: any reference below to the r <= 9.016763 admissibility ceiling
+(this file's E9 / F3) cites a bound that mi_psi_search_r2Z_2026.py (27/27) has since WITHDRAWN. sup r =
++INFINITY by explicit construction; the exact single-scale MENU ceiling is r = 9 (closed form
+4(2-d)^2/(2+7d-4d^2)), and 9.016763 was 0.186% high. Nothing else in this file depends on it. ***
+mi_ctp_variational_2026.py -- THE RETARDED EQUATION OF MOTION *IS* VARIATIONAL, IN THE IN-IN (CTP) ACTION.
 And the same construction produces a NEW obstruction to the coefficient. Both results below.
 
 WHAT THIS COLLECTS. The framework's standing structural complaint against itself is that a RETARDED kernel is
