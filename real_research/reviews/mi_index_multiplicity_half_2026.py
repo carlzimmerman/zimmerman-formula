@@ -101,6 +101,31 @@ from mpmath import mp
 
 mp.dps = 60
 
+# =================================================================================================
+# AMENDMENT 2026-08-07 (see `mi_wald_entropy_normalisation_2026.py`, 26/26) -- THE OWED WALD
+# CALCULATION IS DONE, AND THE CONJECTURE LOSES ON ITS OWN TEST.
+# -------------------------------------------------------------------------------------------------
+# This file records as OWED: "if the 4 is the entropy normalisation, a_0 must shift with a
+# Wald/Gauss-Bonnet correction at fixed Lambda, no new parameter."  That calculation is now done:
+#   * Wald's formula, by explicit contraction, gives S = f'(R_0) A/(4G); Einstein-Hilbert (f'=1)
+#     returns exactly A/(4G), so the target 1/4 IS reproduced from the formula.
+#   * "GAUSS-BONNET" WAS THE WRONG PROBE and that half of the owed item was misconceived: in 4D GB
+#     is topological, Delta S = 4 pi alpha/G is radius-INDEPENDENT, and the area-law coefficient is
+#     untouched (lim S/A = 1/4G exactly).  GB can never rescale the 1/4.
+#   * f(R) = R - 2 Lambda_b + beta R^2 IS the clean lever: the dS trace condition gives
+#     R_0 = 4 Lambda_b exactly (R^2 does not move the dS point) while f' = 1 + 8 beta Lambda_b is
+#     free -- fixed observed Lambda, adjustable entropy normalisation.
+#   * VERDICT: the framework's canonical a_0 = c^2 sqrt(Lambda/32 pi) is beta-BLIND, while the
+#     conjecture requires a_0 -> f'^p a_0 and CANNOT FIX p in {0, 1/2, 1}, because the assembly's
+#     two factors of 8 pi are not distinguished.  A hypothesis that cannot fix its own exponent
+#     makes no prediction.  AND in the MI realisation f' == 1 identically, so the fork never opens:
+#     the over-determination is VACUOUS where the framework actually lives.
+# DOWNGRADE: "the 1/4 is Bekenstein-Hawking's 1/4" is now a named conjecture whose only proposed
+# test is vacuous in the framework's own realisation.  Do NOT cite it as support for kappa = 1/2.
+# PAYOFF KEPT: a new internal MI-vs-MG discriminator -- MI says a_0 is entropy-normalisation-blind,
+# MG/AeST says it tracks f'.  Structural only; magnitude ~1e-50, never measurable.
+# =================================================================================================
+
 FAIL, NCHK = [], [0]
 
 
