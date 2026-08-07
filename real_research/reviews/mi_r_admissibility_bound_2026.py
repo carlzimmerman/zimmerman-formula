@@ -1,6 +1,17 @@
 #!/usr/bin/env python3
 r"""mi_r_admissibility_bound_2026.py -- does ADMISSIBILITY bound the crossover ratio r, and if so, where?
 
+*** WITHDRAWN IN PART, 2026-08-07, one day after commit -- by mi_psi_search_r2Z_2026.py (27/27). ***
+The interpretive claims of checks B2 and C1 ("neither live coefficient is reachable", "admissibility EXCLUDES
+both proposals") are WITHDRAWN. The seven-shape ceiling of 9.0168 was a MENU ARTEFACT: the true single-scale
+ceiling is exactly 9, and a psi carrying a SECOND scale escapes it entirely -- sup r = +INFINITY, with explicit
+admissible psi exhibited at r = 2Z, 4 pi, 100, 1e4 and 1e6, strict margins, 4x-refinement-stable, mpmath 50-dps
+cross-checked. So r = 2Z (kappa = 1/2) and r = 4 pi are BOTH admissible. The flip side is equally final: a
+constraint that admits every r in [0, infinity) derives NOTHING -- the admissibility route to deriving ANY
+coefficient is closed by theorem, and the price of reaching r > 9 is a second scale tuned to a_0. The seven-shape
+COMPUTATION below remains correct as a computation about that menu, and this file's own scope caveat ("seven
+shapes is not a proof; a single admissible psi reaching 2Z overturns this") is exactly what happened.
+
 THE QUESTION. mi_crossover_master_formula_2026.py (14/14) established that for any inertia functional of the
 local de Sitter-Unruh temperature, I(a) = f(T(a)) - f(T_GH) with T = sqrt(a^2+H^2)/2pi, the MOND crossover is
     q = a_0/(c H_Lambda) = 2 c1p / f'(T_GH) = 2/r,    r = f'(T_GH)/c1p,   c1p = lim_{T->inf} f(T)/T
