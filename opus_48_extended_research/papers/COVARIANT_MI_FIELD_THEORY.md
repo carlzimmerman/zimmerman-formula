@@ -3,7 +3,7 @@
 **Carl P. Zimmerman**
 Briar Creek Tech
 
-*Version 1 (2026-08-08).*
+*Version 2 (2026-08-08). Changes from v1 are listed in §10.*
 
 ---
 
@@ -26,7 +26,8 @@ Three things are true of this action that were not true of the worldline constru
 2. **It is generally covariant.** The preferred frame is the normalised gradient of a scalar, so the
    Lorentz violation is spontaneous rather than stipulated (§3).
 3. **Its propagating content is 2 + 1 + 0 = 3 modes, and all three are healthy** in an explicit
-   nonempty window (§4).
+   nonempty window (§4), **with a strong-coupling scale that clears every scale the theory is
+   applied at by dozens of orders** (§5).
 
 And the acceleration scale is no longer the first moment of a postulated kernel:
 
@@ -39,9 +40,10 @@ coupling in every local field theory is.
 
 **The honest caption, which must travel with the box.** $a_{0}$'s *value* is still not derived, and
 the covariantisation *added* two free parameters ($\lambda,\eta$) rather than removing any. The
-theory is complete in the sense that a local, covariant, ghost-free action exists and yields MOND;
-it is not complete in the sense of predicting its own constants. And it says nothing whatever about
-particle physics — see §8.
+theory is complete in the sense that a local, covariant, ghost-free action exists, has a
+strong-coupling scale far above every regime it is applied in, and yields MOND; it is not complete in
+the sense of predicting its own constants. And it says nothing whatever about
+particle physics — see §9.
 
 ---
 
@@ -61,7 +63,7 @@ whose first moment satisfies $M_{1}=\tfrac{2}{3}c/a_{0}$. Three things were owed
   dismissible as an artefact of choosing $n$.
 
 This paper discharges all three. Each section's claims are produced by a committed script that
-exits non-zero on any internal failure and carries negative controls that must trip (§9).
+exits non-zero on any internal failure and carries negative controls that must trip (§10).
 
 ---
 
@@ -260,7 +262,88 @@ qualitative pressure is used, and the $10^{-7}$ figures are standard solar-syste
 
 ---
 
-## 5. Step 3: MOND from the joint field equations
+## 5. The strong-coupling scale
+
+Section 4 leaves one danger: preferred-frame PPN pushes $(\lambda-1)$ and $\eta$ small, and a
+kinetic term proportional to a small number is exactly when self-interactions turn on early. That
+was the sharpest open risk in v1 of this paper, and it is now computed.
+
+**Why the danger is real, stated precisely.** Restore the khronon fluctuation, $T=t+\pi$. Then
+
+$$\ln N=-\dot\pi+\tfrac12\dot\pi^{2}+\tfrac12(\partial\pi)^{2}+O(\pi^{3}),
+\qquad a_{i}=-\partial_{i}\dot\pi+O(\pi^{2}),
+\qquad K_{ij}=-\partial_{i}\partial_{j}\pi+O(\pi^{2}),$$
+
+and **at $\lambda=\xi=1$, $\eta=0$ the khronon action vanishes identically** — the $K$ sector gives
+$K\!\cdot\!K-K^{2}=k^{4}\pi^{2}-k^{4}\pi^{2}=0$, so $\pi$ is pure gauge in general relativity, as it
+must be. A prespecified $\lambda=3/2$ decoy does *not* cancel, so this detects the GR limit rather
+than an artefact of the substitution. Everything that survives is therefore proportional to the
+small parameters:
+
+$$S_{2}\sim M_{\rm Pl}^{2}\Big[-\delta\,(\partial^{2}\pi)^{2}+\eta\,(\partial_{i}\dot\pi)^{2}\Big],
+\qquad \delta=\lambda-1 .$$
+
+**And an independent cross-check falls out.** That action's dispersion is
+$\eta\,\omega^{2}k^{2}=\delta\,k^{4}$, i.e.
+
+$$c_{s}^{2}=\frac{\delta}{\eta}=\frac{\lambda-1}{\eta}$$
+
+which is **exactly** the PPN-corner limit of §4 — obtained there from the unitary-gauge $\zeta$ with
+the ADM constraints eliminated, and here from the Stückelberg $\pi$ in flat space. Two independent
+gauges and variables, one answer; a prespecified decoy $\delta/(2\eta)$ is rejected.
+
+**The static nonlinearity of the $\eta$ sector vanishes.** Canonical normalisation from the $\eta$
+term is $\pi_{c}=\sqrt{\eta}\,M_{\rm Pl}k\,\pi$, and the leading self-interaction is
+
+$$-2\dot\pi(\partial_{i}\dot\pi)^{2}-2\,\partial_{i}\dot\pi\,\partial_{j}\pi\,\partial_{i}\partial_{j}\pi$$
+
+— **every term carries a time derivative, so the whole cubic part vanishes for static
+configurations.** There is no static Vainshtein-type screening radius from this sector; the
+nonlinearity needs time dependence to switch on. A decoy cubic $(\partial_{x}\pi)^{3}$ does not
+vanish statically, so this is a property of the actual terms. Derivative counting on the same terms
+gives cubic/quadratic $=c_{s}E/(\sqrt{\eta}M_{\rm Pl})$, hence
+
+$$\boxed{\;\Lambda_{\rm sc}\sim\frac{\sqrt{\eta}\;M_{\rm Pl}}{c_{s}}\;\approx\;7.7\times10^{14}\ {\rm GeV}\quad(\eta=10^{-7})\;}$$
+
+So the PPN-preferred corner does lower the cutoff, but only as $\eta^{1/2}$, and from the Planck
+mass.
+
+**The comparison that settles it, built to be robust to the power.** The theory is applied at
+absurdly low energies. Scanning $\Lambda_{\rm sc}=\eta^{p}M_{\rm Pl}$ over $p=\tfrac12,1,2,3,4$ —
+deliberately allowing powers far worse than the one derived:
+
+| scale where the theory is applied | energy | $\Lambda_{\rm sc}/E$ at $p=\tfrac12$ | at $p=4$ |
+|---|---|---|---|
+| Milky Way orbital frequency | $5.7\times10^{-31}$ eV | $1.4\times10^{54}$ | $4.3\times10^{29}$ |
+| Milky Way inverse size (8.2 kpc) | $7.8\times10^{-28}$ eV | $9.9\times10^{50}$ | $3.1\times10^{26}$ |
+| solar system, $1/{\rm AU}$ | $1.3\times10^{-18}$ eV | $5.8\times10^{41}$ | $1.9\times10^{17}$ |
+| laboratory, $1/{\rm m}$ | $2.0\times10^{-7}$ eV | $3.9\times10^{30}$ | $1.2\times10^{6}$ |
+
+**$\Lambda_{\rm sc}$ exceeds every scale at which the theory is applied, for every power tested** —
+26 orders of galactic margin even at the pessimistic $p=4$, and 50 at the derived $p=\tfrac12$. So
+the strong-coupling scale bears on whether this is a UV-complete *quantum* theory, which it never
+claimed to be, and **not** on the phenomenology.
+
+**Against interest, and this corrects a claim of my own.** A first draft of the accompanying script
+asserted that the cutoff clears every scale *including* the LHC ($1.4\times10^{13}$ eV). **That is
+false: at $p\ge3$ the cutoff falls below collider energies**, so the khronon effective theory would
+not cover the LHC at those powers. It is harmless only because the matter–khronon coupling there is
+$|B|\sim a_{0}^{2}/8g^{2}=1.1\times10^{-23}$, and the *derived* power $p=\tfrac12$ clears the LHC by
+10 orders — but the claim needed correcting rather than softening. Two further caveats: **only the
+scaling is computed, not the coefficient** (§5's table is built to be insensitive to it, but a
+factor of 100 in the prefactor is excluded by nothing here); and **the $\delta$-sector's static
+nonlinearity is not analysed** — the $\eta$ sector's static cubic dies, but the
+$(\partial^{2}\pi)^{2}$ sector's cubics need not, and a Vainshtein radius from *that* sector is
+uncomputed. That is now the honest residual. The analysis is flat-space throughout.
+
+**A note on which theory this is.** The notorious $\lambda\to1$ strong coupling belongs to
+*projectable* Hořava gravity. The non-projectable "healthy extension" carrying the $a_{i}a^{i}$ term
+is the known repair [5] — and §3 landed on it **by theorem** rather than by choice, since the
+vorticity of a gradient-built $n$ vanishes identically.
+
+---
+
+## 6. Step 3: MOND from the joint field equations
 
 **The metric sector stays Newtonian — and the constraint that made the khronon healthy is what
 guarantees it.** Modified inertia *presupposes* an unmodified gravitational field: its entire content
@@ -314,7 +397,7 @@ So the offset is a mass-to-light question, not an $a_{0}$ question: **neither a 
 
 ---
 
-## 6. A fork the covariantisation exposes
+## 7. A fork the covariantisation exposes
 
 This is the genuinely new physical content, and it is a consequence of Theorem 3. The covariant
 theory possesses **two** acceleration scalars: the particle's own $|a|$, and the khronon's
@@ -336,7 +419,7 @@ exposed here and **not resolved here**.
 
 ---
 
-## 7. Limitations
+## 8. Limitations
 
 - **Single-stream: a formulation preference, not a restriction on the physics.** A first draft of
   this paper called this the sharpest gap. That was wrong, and the correction is recorded rather than
@@ -344,13 +427,16 @@ exposed here and **not resolved here**.
   $\ddot\chi+2m\dot\chi+m^{2}\chi=g|a|/c$ is an ODE in the particle's own proper time: $\chi$ is a
   **per-worldline internal variable**, like a spin or an internal clock, and two stars crossing at a
   point simply carry different $\chi$. Multi-stream is then a non-issue. And the metric sector never
-  sees $\chi$ at all, because $m_{\rm grav}=m$ is $\mu$-independent (§5) — the first $\chi$-dependent
+  sees $\chi$ at all, because $m_{\rm grav}=m$ is $\mu$-independent (§6) — the first $\chi$-dependent
   source term is the kinetic $m\mu v^{2}/2$, suppressed by $(v/c)^{2}=5.4\times10^{-7}$ at galactic
   speeds. So the single-stream restriction binds only a *continuum rewriting of $\chi$ undertaken for
   its own sake*: it does not restrict test-particle dynamics, which is what rotation curves are, and
   it does not touch the field equations.
-- **The strong-coupling scale** in the small-$(\lambda-1,\eta)$ corner is not computed. With the
-  single-stream worry withdrawn above, **this is now the sharpest gap in the construction** (§4).
+- **The strong-coupling scale** is now computed (§5) and does not threaten the phenomenology. What
+  remains from it is narrower and is **the sharpest gap in the construction**: only the *scaling* is
+  derived, not the coefficient, and **the $\delta$-sector's static nonlinearity is not analysed** —
+  the $\eta$ sector's static cubic vanishes, but the $(\partial^{2}\pi)^{2}$ sector's need not, so a
+  Vainshtein-type radius from that sector is unknown.
 - **Nothing new is derived.** $a_{0}$ is the coupling ratio of §2 and $\mu$'s shape is the $\alpha=2$
   interpolation that solar-system ephemerides force [1]. Steps 1–3 establish *consistency and
   locality*, not predictive content.
@@ -363,13 +449,14 @@ exposed here and **not resolved here**.
 
 1. **Whether $\Theta$ should be sourced by $|a|$ at all** — §6's fork is a genuine ambiguity of the
    covariant theory, not a detail.
-2. **The strong-coupling scale**, since the PPN-safe corner is the dangerous one.
+2. **The $\delta$-sector's static nonlinearity** (§5) — the one piece of the strong-coupling
+   question left open.
 3. **The two new parameters** $\lambda,\eta$ — whether a theory that gained parameters to become
    covariant has really gained ground.
 
 ---
 
-## 8. What is not claimed
+## 9. What is not claimed
 
 - **$a_{0}$'s value is not derived**, and $\kappa=\tfrac12$ in $a_{0}=\kappa c\sqrt{G\rho_{\Lambda}}$
   remains **fitted**. The companion no-go [2] shows *why* a free-field correlator cannot supply it.
@@ -384,7 +471,7 @@ exposed here and **not resolved here**.
 
 ---
 
-## 9. Reproducibility
+## 10. Reproducibility, and changes in v2
 
 Every quantitative claim above is produced by a committed script that exits non-zero if any internal
 consistency check fails, and each carries negative controls that must trip. All four are included:
@@ -392,7 +479,26 @@ consistency check fails, and each carries negative controls that must trip. All 
 - `mi_kernel_localisation_2026.py` — §2, 27/27 checks.
 - `mi_khronon_covariantisation_2026.py` — §3, 26/26 checks.
 - `mi_khronon_spin0_health_2026.py` — §4, 30/30 checks.
-- `mi_step3_joint_field_equations_2026.py` — §§5–7, 32/32 checks.
+- `mi_khronon_strong_coupling_scale_2026.py` — §5, 24/24 checks. **New in v2.**
+- `mi_step3_joint_field_equations_2026.py` — §§6–8, 32/32 checks.
+
+### Changes in v2
+
+1. **New §5: the strong-coupling scale**, which was v1's sharpest named risk. It is computed and
+   **does not threaten the phenomenology**: $\Lambda_{\rm sc}\sim\sqrt{\eta}M_{\rm Pl}/c_{s}$, and
+   the conclusion survives a scan over powers $\eta^{p}$, $p=\tfrac12\ldots4$.
+2. **A cross-check gained, not assumed:** the Stückelberg $\pi$ formulation reproduces
+   $c_{s}^{2}=(\lambda-1)/\eta$, which §4 obtained from unitary-gauge $\zeta$ — two gauges, one
+   answer.
+3. **The $\eta$-sector static nonlinearity is shown to vanish**, so there is no static
+   Vainshtein-type screening from it.
+4. **A claim of the author's own is corrected rather than softened:** a first draft asserted the
+   cutoff clears *every* scale including the LHC. It does not — at $p\ge3$ it falls below collider
+   energies. Stated in §5.
+5. The limitations list is updated: the strong-coupling item is discharged and replaced by the
+   narrower and now-sharpest gap, **the $\delta$-sector's static nonlinearity**.
+6. Nothing else changes. Every equation, result and caveat of v1 stands, including that $a_{0}$'s
+   value is not derived and that no claim is made about particle physics.
 
 Both $a_{0}$ footings (canonical $\rho_{\rm DE}$ with $cH_{\Lambda}$; ALT $\times1.2048$) are carried
 on every dimensionful number.
@@ -403,8 +509,10 @@ work, specified and reviewed every load-bearing calculation, and takes full resp
 for any errors. No AI system satisfies the criteria for authorship and none is listed as an author.
 Several intermediate claims produced during the work were found to be incorrect and were withdrawn
 before this deposit — among them a past-directed sign for $n_{\mu}$, an assumed rather than derived
-reparametrisation invariance, an asserted BTFR band that was replaced by the computed value, and the
-overstated single-stream limitation withdrawn in §7.
+reparametrisation invariance, an asserted BTFR band that was replaced by the computed value, the
+overstated single-stream limitation withdrawn in §8, an assertion that the strong-coupling scale
+clears collider energies at every power (corrected in §5), and a cubic-order counter that returned
+zero terms and thereby made a check pass vacuously (found and replaced).
 
 ---
 
