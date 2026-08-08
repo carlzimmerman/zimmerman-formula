@@ -30,7 +30,7 @@ RR = "real_research/reviews"
 BASE = "https://zenodo.org/api"
 
 STEM = "COVARIANT_MI_FIELD_THEORY"
-RID = 21855003   # v2; v1 21854915 (concept 21854914)
+RID = 21855217   # v3; v2 21855003, v1 21854915 (concept 21854914)
 META_PATH = f"{PAP}/{STEM}.zenodo.json"
 
 FILES = [

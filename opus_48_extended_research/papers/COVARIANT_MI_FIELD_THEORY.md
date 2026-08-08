@@ -3,7 +3,7 @@
 **Carl P. Zimmerman**
 Briar Creek Tech
 
-*Version 3 (2026-08-08). Changes from earlier versions are listed in §10.*
+*Version 4 (2026-08-08). Changes from earlier versions are listed in §10.*
 
 ---
 
@@ -438,7 +438,9 @@ galaxy's **gravitating** mass is its **baryonic** mass. Energy-momentum conserva
 time-nonlocal modified-inertia theory is cited [9], not proved here.
 
 **The chain closes.** With the Newtonian metric established independently, the worldline equation
-$d(m\mu v)/dt=-m\nabla\Phi$ gives
+$d(m\mu v)/dt=-m\nabla\Phi$ gives (the accompanying script demonstrates the limits on the $\alpha=2$
+form for definiteness; the in-force exponential kernel of §9 has the same two limits, so the
+conclusion is unchanged — see [13])
 
 $$\mu(g_{\rm obs}/a_{0})\,g_{\rm obs}=g_{\rm bar}
 \;\;\Longrightarrow\;\;
@@ -511,9 +513,15 @@ exposed here and **not resolved here**.
 - **Strong field and near-horizon behaviour is the one regime where the analysis genuinely fails.**
   $|\partial\pi|\to1$ invalidates §5.2's expansion, and **universal horizons** in Lorentz-violating
   gravity [12] are not addressed. This is now the sharpest structural gap.
-- **Nothing new is derived.** $a_{0}$ is the coupling ratio of §2 and $\mu$'s shape is the $\alpha=2$
-  interpolation that solar-system ephemerides force [1]. Steps 1–3 establish *consistency and
-  locality*, not predictive content.
+- **Nothing new is derived.** $a_{0}$ is the coupling ratio of §2, and $\mu$'s shape is an *input*:
+  the framework's in-force kernel is the exponential one, $\nu=1/(1-e^{-\sqrt{y}})$, adopted because
+  **both** power-law kernels fail solar-system ephemerides — $\alpha=1$ by $1279\times$ the
+  Earth/Mars bound and $\alpha=2$ by $8.5$–$12.4\times$ the Mars ranging budget, the latter because
+  its $1/g$ tail binds at the *Sun* via the Jupiter reflex rather than at a planet [13]. **Steps 1–3
+  are insensitive to that choice**: the localisation concerns the *memory* kernel $K(s)$ and not
+  $\mu(Y)$, so $a_{0}=\tfrac23 c\,m^{2}/g$ carries no reference to $\mu$'s shape; and §6 used only
+  the two limits $\nu\to1/\sqrt{y}$ (deep) and $\nu\to1$ (Newtonian), which the exponential kernel
+  satisfies. Steps 1–3 establish *consistency and locality*, not predictive content.
 - **The full bilocal cannot be localised** by the auxiliary-field route (§2).
 - Strong fields, black-hole universal horizons, and nonlinear stability: not addressed. The analysis
   of §4 is flat-space, quadratic order, scalar sector.
@@ -556,6 +564,20 @@ consistency check fails, and each carries negative controls that must trip. All 
 - `mi_khronon_strong_coupling_scale_2026.py` — §5.1, 24/24 checks. **New in v2.**
 - `mi_khronon_delta_sector_static_2026.py` — §5.2, 22/22 checks. **New in v3.**
 - `mi_step3_joint_field_equations_2026.py` — §§6–8, 32/32 checks.
+
+### Changes in v4
+
+1. **A factual correction, found by auditing this paper against the author's own frozen
+   pre-registration and made rather than left standing.** v1–v3 stated that $\mu$'s shape is "the
+   $\alpha=2$ interpolation that solar-system ephemerides force." **That is false**: $\alpha=2$
+   misses the Mars ranging budget by $8.5$–$12.4\times$, because its $1/g$ tail binds at the Sun via
+   the Jupiter reflex rather than at a planet, and the framework's in-force kernel is the
+   exponential $\nu=1/(1-e^{-\sqrt{y}})$ [13]. §9 now says so.
+2. **Nothing structural moves.** The localisation concerns the *memory* kernel $K(s)$, not $\mu(Y)$,
+   so $a_{0}=\tfrac23c\,m^{2}/g$ is untouched; and §6 used only the deep and Newtonian limits, which
+   the exponential kernel satisfies. §6 now names the kernel used in the demonstration and records
+   that the substitution is harmless.
+3. No other change. $a_{0}$'s value is still not derived and no claim is made about particle physics.
 
 ### Changes in v3
 
@@ -642,3 +664,8 @@ moment is the pole of the Riemann zeta function*, Zenodo, concept DOI 10.5281/ze
 
 [12] D. Blas and S. Sibiryakov, *Horava gravity versus thermodynamics: the black hole case*, Phys.
 Rev. D **84**, 124043 (2011).
+
+[13] Amendment 8 to the author's frozen Gaia DR4 pre-registration (2026-08-03), which retires both
+power-law kernels on solar-system grounds and adopts $\nu=1/(1-e^{-\sqrt{y}})$; see also the
+companion Bekenstein–Milgrom field theory for that kernel, whose ellipticity, convexity,
+ghost-freedom and subluminality are proved for the same interpolation.
