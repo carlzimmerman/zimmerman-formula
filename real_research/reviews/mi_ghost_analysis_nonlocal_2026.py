@@ -91,6 +91,29 @@ nu = sqrt(1+1/y) IS MILGROM 1999 PLA 253:273 eq 9; MILGROM 1994 Ann.Phys. 229:38
 Exits non-zero on any failed check.  Negative controls must trip.
 """
 
+# =================================================================================================
+# ⚠️ WITHDRAWN IN PART, 2026-08-08 -- see `mi_ghost_rotframe_verdict_2026.py` (14/14).
+# -------------------------------------------------------------------------------------------------
+# THIS SCRIPT'S HEADLINE CONCLUSION -- a real runaway at p = sqrt(2) Omega, the theory dead -- IS
+# WITHDRAWN.  It dropped three terms, all of the SAME order O(Omega) as the claimed effect:
+#   * the Coriolis terms inside da_t = etaddot + 2 Omega xidot - Omega^2 eta (ahat_0 = -rhat ROTATES,
+#     so "longitudinal" and "transverse" are time-dependent directions);
+#   * the potential's eta^2 term, which cancels the rotating-frame Omega^2 eta^2 -- omitting THAT
+#     alone makes even KEPLER look unstable (control A3 there);
+#   * the mixing term mu' v M1 dv_t da_r.
+# THE TELL I SHOULD HAVE CAUGHT: sqrt(2) Omega IS the epicyclic frequency of a flat rotation curve.
+# Recovering the standard stable oscillation frequency out of an "instability" calculation is the
+# signature of the error.
+# WHAT THE FULL CO-ROTATING CALCULATION GIVES: the dominant extra poles are PURELY IMAGINARY at
+# |p| ~ 2.45 Omega (oscillatory, Lee-Wick), and the residual growing mode is Re(p) = 9.8e-5 Omega in
+# deepest MOND, falling to zero by Y = 1 -- FOUR ORDERS weaker, e-folding in ~1600 orbits = 363 Gyr
+# for the Milky Way, 26x the age of the universe.  Genuine, and cosmologically irrelevant.
+# WHAT STANDS HERE: |a| is not differentiable at a = 0 (no quadratic action around uniform motion);
+# the longitudinal higher-derivative term IS kernel-suppressed with its pole at the nonlocality
+# scale; the transverse term IS local and unsuppressed, so its pole sits at O(Omega) not at the
+# cutoff; and the escape enumeration.  Only the CHARACTER and SIZE of that pole were wrong.
+# =================================================================================================
+
 import sys
 import sympy as sp
 from mpmath import mp
