@@ -30,7 +30,7 @@ RR = "real_research/reviews"
 BASE = "https://zenodo.org/api"
 
 STEM = "COVARIANT_MI_FIELD_THEORY"
-RID = 21854915   # v1 (concept 21854914)
+RID = 21855003   # v2; v1 21854915 (concept 21854914)
 META_PATH = f"{PAP}/{STEM}.zenodo.json"
 
 FILES = [
@@ -39,6 +39,7 @@ FILES = [
     f"{RR}/mi_kernel_localisation_2026.py",
     f"{RR}/mi_khronon_covariantisation_2026.py",
     f"{RR}/mi_khronon_spin0_health_2026.py",
+    f"{RR}/mi_khronon_delta_sector_static_2026.py",
     f"{RR}/mi_khronon_strong_coupling_scale_2026.py",
     f"{RR}/mi_step3_joint_field_equations_2026.py",
 ]

@@ -3,7 +3,7 @@
 **Carl P. Zimmerman**
 Briar Creek Tech
 
-*Version 2 (2026-08-08). Changes from v1 are listed in §10.*
+*Version 3 (2026-08-08). Changes from earlier versions are listed in §10.*
 
 ---
 
@@ -27,7 +27,7 @@ Three things are true of this action that were not true of the worldline constru
    Lorentz violation is spontaneous rather than stipulated (§3).
 3. **Its propagating content is 2 + 1 + 0 = 3 modes, and all three are healthy** in an explicit
    nonempty window (§4), **with a strong-coupling scale that clears every scale the theory is
-   applied at by dozens of orders** (§5).
+   applied at by dozens of orders, and no Vainshtein-type screening anywhere** (§5).
 
 And the acceleration scale is no longer the first moment of a postulated kernel:
 
@@ -262,7 +262,9 @@ qualitative pressure is used, and the $10^{-7}$ figures are standard solar-syste
 
 ---
 
-## 5. The strong-coupling scale
+## 5. Strong coupling and the static nonlinearity
+
+### 5.1 The strong-coupling scale
 
 Section 4 leaves one danger: preferred-frame PPN pushes $(\lambda-1)$ and $\eta$ small, and a
 kinetic term proportional to a small number is exactly when self-interactions turn on early. That
@@ -340,6 +342,75 @@ uncomputed. That is now the honest residual. The analysis is flat-space througho
 *projectable* Hořava gravity. The non-projectable "healthy extension" carrying the $a_{i}a^{i}$ term
 is the known repair [5] — and §3 landed on it **by theorem** rather than by choice, since the
 vorticity of a gradient-built $n$ vanishes identically.
+
+---
+
+### 5.2 The static nonlinearity of both sectors
+
+§5.1 established that the $\eta$ sector's cubic self-interaction vanishes for static
+configurations, and flagged the $\delta$ sector — the $-\delta K^{2}$ term — as unanalysed. That was
+v2's sharpest remaining gap. It closes by a parity theorem.
+
+**Theorem 4 ($K$ is odd in $\pi$, to all orders).** *For a static khronon $T=t+\pi(\mathbf{x})$, the
+unit normal is $n^{\mu}=(1/w,\,-\partial_{i}\pi/w)$ with $w=\sqrt{1-(\partial\pi)^{2}}$. Under
+$\pi\to-\pi$ the normalisation $w$ is invariant — it depends on $(\partial\pi)^{2}$ — while
+$\partial_{i}\pi$ flips. Hence $K[-\pi]=-K[\pi]$ exactly.*
+
+Verified on the full three-dimensional closed form with **no series truncation**. In one dimension
+the divergence has an exact closed form that makes the parity manifest:
+
+$$K=-\frac{\pi''}{\left(1-\pi'^{2}\right)^{3/2}}$$
+
+— odd numerator, even bracket. Its expansion has **zero even orders** (checked through fifth):
+$-\pi''$, then $-\tfrac32\pi''\pi'^{2}$, then quintic. And the general three-dimensional cubic
+$-\tfrac12\partial^{2}\pi(\partial\pi)^{2}-\partial_{i}\pi\,\partial_{j}\pi\,\partial_{i}\partial_{j}\pi$
+reduces in one dimension to exactly $-\tfrac32\pi''\pi'^{2}$, so the 3-D formula is *validated
+against* the exact 1-D result rather than asserted. Inserting a genuine even piece into $n^{i}$ by
+hand gives $K$ a nonzero quadratic term, so the theorem is a measurement and not an algebraic
+accident.
+
+**Corollary. $K^{2}$ is even, so the $\delta$ sector has no static cubic; its leading static
+self-interaction is quartic**, with
+
+$$\frac{\text{quartic}}{\text{quadratic}}=3\pi'^{2}\qquad\text{(one dimension)}$$
+
+i.e. of *order* $(\partial\pi)^{2}$ with an $O(1)$ coefficient. (A first draft of the accompanying
+script wrote "exactly $(\partial\pi)^{2}$"; the coefficient is 3, and the script records the
+correction.)
+
+**And on the aligned static foliation it vanishes outright.** For a static, shift-free metric the
+constant-$t$ surfaces have $K_{ij}=\tfrac{1}{2N}(\dot h_{ij}-D_{i}N_{j}-D_{j}N_{i})=0$ identically,
+so both $K\!\cdot\!K$ and $K^{2}$ vanish at *every* order — only $\eta\,a_{i}a^{i}$ survives. And
+$\delta(K^{2})/\delta T=2K\,\delta K$ vanishes with $K$, which makes that foliation a **solution** of
+the $K$ sector rather than an imposed ansatz. A time-dependent metric gives $K_{ij}\neq0$, so this is
+a property of staticity and not of the formula.
+
+**The nonlinearity, priced.** $|\partial\pi|$ is the tilt of the khronon foliation relative to the
+local frame, i.e. $\sim v/c$:
+
+| setting | $v$ | $(\partial\pi)^{2}$ |
+|---|---|---|
+| solar system vs the CMB frame | 369.8 km/s | $1.5\times10^{-6}$ |
+| galactic rotation | 220 km/s | $5.4\times10^{-7}$ |
+| cluster velocities | 1000 km/s | $1.1\times10^{-5}$ |
+| a relativistic probe | $0.1c$ | $1.0\times10^{-2}$ |
+
+**So there is no Vainshtein-type screening radius: the nonlinearity never reaches $O(1)$.** It would
+require $|\partial\pi|\to1$ — a foliation boosted at near-light speed relative to the local frame —
+which happens near a black-hole horizon and nowhere else.
+
+**Combining the two sectors.** The $\eta$ cubic dies by carrying a time derivative; the $\delta$ cubic
+dies by parity in $\pi$. Two different mechanisms, so **the leading static self-interaction of the
+whole khronon sector is quartic** — worth a factor of 811 over a surviving cubic
+($1.5\times10^{-6}$ instead of $1.2\times10^{-3}$). The result is not cosmetic.
+
+**What remains, and it is narrower than what it replaces.** (i) **The full $T$ field equation around
+a real source is not solved.** The aligned foliation is shown consistent with the $K$ sector and the
+nonlinearity is priced *given* $|\partial\pi|\sim v/c$, but $\pi(r)$ is not obtained, so a larger
+$|\partial\pi|$ than the kinematic estimate is not excluded. (ii) **$|\partial\pi|\to1$ near a
+black-hole horizon is exactly where this analysis fails**; universal horizons in Lorentz-violating
+gravity [12] are a real known issue and are not addressed. (iii) The $\eta$ sector's quartic is not
+computed either — only that its cubic vanishes.
 
 ---
 
@@ -432,11 +503,14 @@ exposed here and **not resolved here**.
   speeds. So the single-stream restriction binds only a *continuum rewriting of $\chi$ undertaken for
   its own sake*: it does not restrict test-particle dynamics, which is what rotation curves are, and
   it does not touch the field equations.
-- **The strong-coupling scale** is now computed (§5) and does not threaten the phenomenology. What
-  remains from it is narrower and is **the sharpest gap in the construction**: only the *scaling* is
-  derived, not the coefficient, and **the $\delta$-sector's static nonlinearity is not analysed** —
-  the $\eta$ sector's static cubic vanishes, but the $(\partial^{2}\pi)^{2}$ sector's need not, so a
-  Vainshtein-type radius from that sector is unknown.
+- **Strong coupling and the static nonlinearity are now both computed** (§5) and neither threatens
+  the phenomenology. Three narrower residuals remain in their place: only the *scaling* of
+  $\Lambda_{\rm sc}$ is derived and not its coefficient; **the full $T$ field equation around a real
+  source is not solved**, so a larger $|\partial\pi|$ than the kinematic $v/c$ estimate is not
+  excluded; and the $\eta$ sector's quartic is uncomputed.
+- **Strong field and near-horizon behaviour is the one regime where the analysis genuinely fails.**
+  $|\partial\pi|\to1$ invalidates §5.2's expansion, and **universal horizons** in Lorentz-violating
+  gravity [12] are not addressed. This is now the sharpest structural gap.
 - **Nothing new is derived.** $a_{0}$ is the coupling ratio of §2 and $\mu$'s shape is the $\alpha=2$
   interpolation that solar-system ephemerides force [1]. Steps 1–3 establish *consistency and
   locality*, not predictive content.
@@ -449,8 +523,8 @@ exposed here and **not resolved here**.
 
 1. **Whether $\Theta$ should be sourced by $|a|$ at all** — §6's fork is a genuine ambiguity of the
    covariant theory, not a detail.
-2. **The $\delta$-sector's static nonlinearity** (§5) — the one piece of the strong-coupling
-   question left open.
+2. **The near-horizon regime** — $|\partial\pi|\to1$ breaks §5.2, and universal horizons are
+   unaddressed.
 3. **The two new parameters** $\lambda,\eta$ — whether a theory that gained parameters to become
    covariant has really gained ground.
 
@@ -471,7 +545,7 @@ exposed here and **not resolved here**.
 
 ---
 
-## 10. Reproducibility, and changes in v2
+## 10. Reproducibility, and version history
 
 Every quantitative claim above is produced by a committed script that exits non-zero if any internal
 consistency check fails, and each carries negative controls that must trip. All four are included:
@@ -479,8 +553,27 @@ consistency check fails, and each carries negative controls that must trip. All 
 - `mi_kernel_localisation_2026.py` — §2, 27/27 checks.
 - `mi_khronon_covariantisation_2026.py` — §3, 26/26 checks.
 - `mi_khronon_spin0_health_2026.py` — §4, 30/30 checks.
-- `mi_khronon_strong_coupling_scale_2026.py` — §5, 24/24 checks. **New in v2.**
+- `mi_khronon_strong_coupling_scale_2026.py` — §5.1, 24/24 checks. **New in v2.**
+- `mi_khronon_delta_sector_static_2026.py` — §5.2, 22/22 checks. **New in v3.**
 - `mi_step3_joint_field_equations_2026.py` — §§6–8, 32/32 checks.
+
+### Changes in v3
+
+1. **New §5.2: the static nonlinearity of both sectors**, which was v2's sharpest named gap. It
+   closes by a **parity theorem** — $K$ is odd in $\pi$ to all orders, so $K^{2}$ is even and the
+   $\delta$ sector has **no static cubic**. Its leading static self-interaction is quartic.
+2. On the aligned static foliation the $K$ sector vanishes at every order, and it is a *solution*
+   rather than an ansatz, since $\delta(K^{2})/\delta T\propto K$.
+3. The nonlinearity is priced at $(\partial\pi)^{2}\sim(v/c)^{2}\le1.1\times10^{-5}$ everywhere the
+   theory is applied: **no Vainshtein-type screening radius exists.**
+4. Combining with §5.1, **the leading static self-interaction of the whole khronon sector is
+   quartic** — the two cubics vanish for two different reasons.
+5. **A claim of the author's own is corrected:** a draft wrote the quartic/quadratic ratio as
+   "exactly $(\partial\pi)^{2}$"; the coefficient is 3.
+6. The limitations list is updated again: the $\delta$-sector item is discharged, and the **near-horizon
+   regime with universal horizons** becomes the sharpest structural gap.
+7. Nothing else changes. $a_{0}$'s value is still not derived and no claim is made about particle
+   physics.
 
 ### Changes in v2
 
@@ -511,8 +604,9 @@ Several intermediate claims produced during the work were found to be incorrect 
 before this deposit — among them a past-directed sign for $n_{\mu}$, an assumed rather than derived
 reparametrisation invariance, an asserted BTFR band that was replaced by the computed value, the
 overstated single-stream limitation withdrawn in §8, an assertion that the strong-coupling scale
-clears collider energies at every power (corrected in §5), and a cubic-order counter that returned
-zero terms and thereby made a check pass vacuously (found and replaced).
+clears collider energies at every power (corrected in §5.1), a cubic-order counter that returned zero
+terms and thereby made a check pass vacuously (found and replaced), and a quartic/quadratic ratio
+written as exact when its coefficient is 3 (corrected in §5.2).
 
 ---
 
@@ -545,3 +639,6 @@ moment is the pole of the Riemann zeta function*, Zenodo, concept DOI 10.5281/ze
 [10] S. S. McGaugh, Astron. J. **143**, 40 (2012).
 
 [11] M. Milgrom, *The modified dynamics as a vacuum effect*, Phys. Lett. A **253**, 273 (1999).
+
+[12] D. Blas and S. Sibiryakov, *Horava gravity versus thermodynamics: the black hole case*, Phys.
+Rev. D **84**, 124043 (2011).
