@@ -3,6 +3,8 @@
 **Carl P. Zimmerman**
 Briar Creek Tech
 
+*Version 2 (2026-08-07). Changes from v1 are listed in §10.*
+
 ---
 
 ## Abstract
@@ -28,11 +30,15 @@ instability, and Lorentz-invariant up to the preferred frame that MI already pre
 
 We identify and repair its worst defect. In a single-factor worldline action the same function
 multiplies the rest energy and the inertia, so μ → 0 in the deep limit forces the rest energy to
-vanish. We prove this is structural — every ∫dτ W(Θ) term locks the two at a ratio independent of W
-— and repair it with a two-function form built on the preferred-frame four-velocity, in two variants
-with explicitly different costs. Both give rest energy exactly mc² and inertia exactly mμ. Both
-predict that the associated preferred-frame coupling scales as g⁻², so the Lorentz violation is
-largest in the lowest-acceleration environments and ~10⁻²³ in a terrestrial laboratory.
+vanish. We prove this is structural — every ∫dτ W(Θ) term locks the two at a ratio independent of W —
+and repair it with a two-function form built on the preferred-frame four-velocity n that MI already
+presupposes. The correct covariant object is √((u·n)²), and with it the repaired action has rest
+energy exactly mc², inertia exactly mμ, energy E = mc²[1 + μ(γ−1)] bounded below at every speed, and
+CPT-even structure. A linear-in-(u·n) writing agrees with it on every particle worldline but continues
+differently to antiparticles, where it gives rest energy mc²(2μ−1) — negative for g < 0.52 a₀, i.e.
+throughout the outer-galaxy regime — and is therefore excluded. The surviving preferred-frame coupling
+scales as g⁻², so the Lorentz violation is largest in the lowest-acceleration environments and
+~10⁻²³ in a terrestrial laboratory.
 
 We are explicit about what is not achieved: the acceleration scale is not derived. The kernel's first
 moment must satisfy M₁ = c/a₀, and in the short-memory limit only that moment survives — verified
@@ -194,47 +200,62 @@ The repair requires a second structure that is not of the form ∫dτ × (scalar
 one: inertia in MI is defined relative to a preferred frame — the cosmological / de Sitter rest frame
 — with unit timelike four-velocity n, n·n = −c², so u·n = −γc². Two independent structures follow.
 
-**Form I (quadratic in u·n, CPT-even).**
+Three candidate second structures exist; only one survives, and the selection is forced rather than
+a matter of taste.
+
+**Form I (quadratic in u·n).**
 
 > **(11)**  S = −mc² ∫dτ A(Θ) + (m/c²) ∫dτ B(Θ) (u·n)²
 
 gives rest energy mc²(A − B) and inertial mass m(A + B) — two independent combinations. Imposing
-unmodified rest energy and MI inertia,
-
-> **(12)**  A = (1 + μ)/2,   B = (μ − 1)/2
-
-so the rest energy is exactly mc² for every Θ while the inertia is exactly mμ(Θ). B → 0 as μ → 1: the
-added structure switches itself off in the Newtonian limit. The exact energy is
-E = mc²[Aγ + B(2v²/c² − 1)γ³], which becomes negative above
-
-> **(13)**  v_crit² = 2c²/(3 − μ)
-
-i.e. 0.8165 c in the deep limit, rising to c as μ → 1, so the instability exists only in the MOND
-regime. The fastest systems to which MOND is applied (clusters, ~10³ km s⁻¹) lie a factor 240 below
-this threshold. It is a relativistic/UV defect, quantified, not a galactic one.
+unmodified rest energy and MI inertia gives A = (1+μ)/2, B = (μ−1)/2, so the rest energy is exactly
+mc² for every Θ and the inertia is exactly mμ(Θ), with B → 0 as μ → 1: the added structure switches
+itself off in the Newtonian limit. It is CPT-even, because (u·n)² is even. Its cost is that the exact
+energy E = mc²[Aγ + B(2v²/c² − 1)γ³] becomes negative above v_crit² = 2c²/(3 − μ), i.e. 0.8165 c in
+the deep limit.
 
 **Form II (linear in u·n).**
 
-> **(14)**  S = −mc² ∫dτ μ(Θ) − ∫dτ (u·n)[μ(Θ) − 1]
+> **(12)**  S = −mc² ∫dτ μ(Θ) − ∫dτ (u·n)[μ(Θ) − 1]
 
 also gives rest energy exactly mc² and inertia exactly mμ, with exact energy
 
-> **(15)**  E = mc²[1 + μ(γ − 1)]
+> **(13)**  E = mc²[1 + μ(γ − 1)]
 
-which is monotone in γ and bounded below by mc² at every speed: no instability anywhere. Its cost is
-different: a term linear in u contracted with a background vector is an SME a^μ-type structure, hence
-**CPT-odd**. A full Standard-Model-Extension analysis of (14) is owed and is not attempted here; §7
-records its magnitude so that (14) cannot be quoted as clean. (Consistency note: Theorem 1 implies an
-odd-degree-in-u scalar requires an external vector, which is exactly what (14) uses.)
+monotone in γ and bounded below by mc² at every speed — no instability anywhere. But a term linear in
+u contracted with a background vector is an SME a^μ structure, hence CPT-odd, and the consequence is
+not merely aesthetic. On the antiparticle branch the second term reverses sign, giving rest energy
 
----
+> **(14)**  Ē = mc²(2μ − 1)
+
+which is **negative** for μ < ½. For the α = 2 kernel μ₂ = ½ at Y = 2/√15 = 0.5164, i.e. at
+g = 0.5164 a₀ = 4.83 × 10⁻¹¹ m s⁻². **So the CPT-odd writing predicts negative-rest-energy antimatter
+throughout the outer-galaxy regime the theory exists to describe.** It is excluded by a structural
+catastrophe, not by any numerical bound.
+
+**Form III (the even root) — and it supersedes both.** For a future-directed timelike worldline
+u·n = −γc² < 0, so (u·n) = −|u·n| identically, and (12) is *the same action as*
+
+> **(15)**  S = −mc² ∫dτ μ(Θ) − m ∫dτ √((u·n)²) [1 − μ(Θ)]
+
+on every particle trajectory. The two writings differ only in the continuation to past-directed
+worldlines. Since √((u·n)²) is manifestly even under u → −u, (15) is **CPT-even**, and therefore:
+
+- rest energy exactly mc² and inertia exactly mμ(Θ), as in both other forms;
+- energy (13), monotone and bounded below by mc² at **every** speed — so Form I's 0.8165 c instability
+  is not merely displaced but absent;
+- antiparticles carry the same rest energy and the same inertia, so (14) does not arise;
+- the preferred-frame structure is c^{μν}-type (CPT-even) rather than a^μ-type.
+
+**The CPT-oddness of Form II was therefore an artefact of the writing, not a property of the theory,
+and Form I's instability was an unnecessary price.** (15) is adopted for the remainder of this paper.
 
 ## 7. A prediction: g⁻² preferred-frame coupling
 
 For the α = 2 kernel, μ₂ = 1 − a₀²/4g² + O(g⁻⁴), so the strength of the preferred-frame term in
-either form is
+(15) is
 
-> **(16)**  |B| = (1 − μ)/2 ≃ a₀²/(8g²)
+> **(16)**  (1 − μ)/2 ≃ a₀²/(8g²)
 
 Evaluated with a₀ = 9.36 × 10⁻¹¹ m s⁻²: 1.1 × 10⁻²³ in a terrestrial laboratory (g = 9.81),
 3.1 × 10⁻¹⁷ at Earth's orbital acceleration, 2.6 × 10⁻¹³ at Saturn's, and of order unity only in the
@@ -258,11 +279,21 @@ number has been traded for one number. This is the same reparametrisation alread
 temperature-functional class, in which the crossover is a₀/(cH_Λ) = 2/r with r a free ratio of two
 slopes of the generating function.
 
-Additionally, the short-memory condition x = λΩ ≪ 1 must hold wherever the acceleration-dependent
-relation is applied. The tightest such system is Mercury: x ≤ 0.1 forces **λ ≤ 1.2 × 10⁵ s ≈ 1.4 days**
-and hence a kernel weight N = (c/a₀)/λ ≥ 2.6 × 10¹³. A galaxy-scale λ is excluded outright: at
-λ = 35 Myr, Earth falls in the long-memory branch with Θ = 0.37, a tens-of-percent inertia shift. So λ
-is a new constant of the construction with a hard upper bound, not a free dial.
+Additionally the kernel memory time λ is a new constant of the construction, and it is bounded. Short
+memory must hold wherever the *acceleration* dependence does physical work — that is, where MOND is
+tested. Requiring x = λΩ ≤ 0.1 across the galactic range gives only λ ≤ 0.98 Myr. In the solar system
+the theory need merely be Newtonian, which the long-memory branch can be: there Θ → 4v/(πa₀λ), and the
+residual anomaly is
+
+> **(17)**  Δ = g(1 − μ) ≃ g/(4Θ²) = g π² a₀² λ² / (64 v²)
+
+Imposing Δ ≤ 3.66 × 10⁻¹⁴ planet by planet, the tightest is **Mercury**, giving
+
+> **(18)**  λ ≤ 1.24 × 10⁹ s ≈ **39 years**,   hence N = (c/a₀)/λ ≥ 2.6 × 10⁹
+
+At that λ the Milky Way sits at x = 1.1 × 10⁻⁶, deep in short memory, so Θ = |a|/a₀ holds exactly
+where the radial acceleration relation is measured. A galaxy-scale λ remains excluded outright: at
+λ = 35 Myr, Earth falls in the long-memory branch with Θ = 0.37, a tens-of-percent inertia shift.
 
 **Therefore: the coefficient relating a₀ to Λ is fitted, not derived.** On the pure-Λ footing the
 relation a₀ = ½c√(Gρ_Λ) = c²√(Λ/32π) is an input to this construction, and the rational ½ has no
@@ -282,8 +313,9 @@ Open:
 
 1. **Non-circular orbits.** The reduction of §5 holds |a| constant. General orbits require the full
    in-in treatment and are not solved here.
-2. **The SME analysis of Form II.** Its CPT-odd structure must be confronted with matter-sector
-   bounds. Form I avoids the issue at the price of (13).
+2. **The SME phenomenology of (15).** The surviving structure is CPT-even of size (1−μ)/2 ≈ 10⁻²³ in
+   a terrestrial laboratory, comfortably below matter-sector c^{μν} bounds, but a full confrontation
+   binned by local g (the g⁻² signature of §7) has not been carried out.
 3. **Quantisation.** The |s| in (4) means the action admits no local derivative expansion, so there is
    no effective-field-theory power counting and no controlled quantum completion by that route. This is
    the flip side of the feature: |a| is precisely the non-analytic object MOND requires.
@@ -302,8 +334,24 @@ failed check and includes negative controls that must trip:
 | `mi_rapidity_kernel_solved_2026.py` | 35/35 | closed form (8); the EOM (9); F in closed form (10); λ bound |
 | `mi_two_function_restmass_fix_2026.py` | 35/35 | Theorem 2; Forms I and II; (12)–(16) |
 | `mi_ephemeris_and_action_pincer_2026.py` | 38/38 | the α-family anomaly Δ; the α ≥ 1.4 bound |
+| `mi_form3_cpt_even_and_lambda_bound_2026.py` | 28/28 | Form III (15); the antimatter kill (14); the λ bound (17)–(18) |
 | `mi_ctp_variational_2026.py` | 50/50 | the in-in variational property of the retarded class |
 | `mi_crossover_master_formula_2026.py` | 14/14 | the a₀/(cH_Λ) = 2/r reparametrisation |
+
+## 10. Changes in version 2
+
+1. **§6 rewritten.** v1 presented two repairs and left the CPT-odd one owing an SME analysis. That
+   framing was wrong. The correct covariant object is √((u·n)²); with it the repair is CPT-even *and*
+   bounded below (Form III, eq. 15), so Form I's 0.8165 c instability was an unnecessary price and
+   Form II's CPT problem was an artefact of the writing. The owed SME analysis is discharged by the
+   antimatter argument (eq. 14), which excludes the odd branch outright.
+2. **§8 bound corrected, against the paper's own conservatism.** v1 stated λ ≤ 1.4 days and
+   N ≥ 2.6 × 10¹³, derived by demanding short memory at Mercury. That requirement was too strong: the
+   solar system need only be Newtonian, not acceleration-resolved. The correct bound from the
+   ephemeris anomaly is λ ≤ 39 years and N ≥ 2.6 × 10⁹ — weaker by a factor 1.0 × 10⁴.
+3. Script table extended; §9 item 2 restated.
+4. Unchanged: a₀ is not derived, non-circular orbits are unsolved, there is no local derivative
+   expansion, and the coefficient of a₀ remains fitted.
 
 ## References
 
