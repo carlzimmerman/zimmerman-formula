@@ -6,7 +6,13 @@ PREP ONLY. No new theory claims. Confrontation target: Gaia DR4 (Dec 2026).
 
 FRAMEWORK TARGET (banked, judged on its OWN terms -- de Sitter-Unruh MODIFIED
 INERTIA, nu(y)=sqrt(1+1/y), a0 = cH_Lambda/Z):
-    Newton 1.00 < framework-MI ~1.09 < framework-MG 1.137 < MOND benchmark 1.33
+    Newton 1.00 < framework-MG 1.137 < framework-MI 1.1582 < MOND benchmark 1.33
+  *** NOTE THE ORDERING INVERSION. *** Under Amendment 8's Route A kernel the
+  framework-MI target (1.1582) now EXCEEDS the frozen framework-as-MG target
+  (1.137), which sits INSIDE the MI range 1.1311-1.1964 (0.77 sigma_tot from the
+  point value). MI-vs-MG therefore CANNOT be scored by proximity, and Amendment
+  7(e)'s reporting rule is load-bearing rather than stylistic: report raw
+  gamma_hat with sigma_fit and BOTH distances, never a single verdict word.
   gamma = deep-regime velocity-boost asymptote gamma_v = v_rms/v_rms(Newton).
   BANKED CORRECTION HONORED: the framework-MI number is ~1.09 (the per-star MI-EFE
   dynamical asymptote, upper edge 1.10, banked in
@@ -85,9 +91,29 @@ A0_CAN = 9.36e-11        # canonical: rho_DE / cH_Lambda footing (banked)
 A0_ALT = 1.13e-10        # alt footing: rho_total / cH0 (banked fork)
 GEXT_PHYS = 1.9*A0_CAN   # 1.778e-10 m/s^2 physical (banked solar-neighborhood)
 
-GAMMA_MI  = 1.09         # framework-MI banked target (NOT 1.137)
-GAMMA_MG  = 1.137        # framework-as-MG (AQUAL-EFE, framework nu; banked)
+# ----------------------------------------------------------------------
+# TARGETS -- RETARGETED TO AMENDMENT 8 (2026-08-03), "Route A".
+# The chain moved this constant four times and this file had not followed it:
+#     frozen 1.09 -> Amdt 3 1.0246 -> Amdt 4(d)/7 1.0310 -> Amdt 8 1.1582
+# Amendment 8 adopted the EXPONENTIAL kernel nu = 1/(1 - e^-sqrt(y)) because BOTH
+# power-law kernels fail the solar system (alpha=1 by 1279x the Earth/Mars bound;
+# alpha=2 by 8.5-12.4x the Mars ranging budget, its 1/g tail binding at the SUN via
+# the Jupiter reflex ~2233 a0, not at a planet).
+# Audited by real_research/reviews/mi_dr4_readiness_audit_2026.py (28 checks, exit 0).
+# NOTHING FROZEN IS TOUCHED BY THIS EDIT: the cut table, estimator, error model,
+# NSS screen, bin edges, kappa anchor and N = 30,000 are all unchanged.
+# ----------------------------------------------------------------------
+GAMMA_MI  = 1.1582       # IN FORCE, Amdt 8: orientation-averaged, radial convention
+GAMMA_MI_RANGE_RAD = (1.1311, 1.1964)   # Amdt 8, radial convention
+GAMMA_MI_RANGE_MAG = (1.1339, 1.2007)   # Amdt 8, MAGNITUDE convention (sec 1.1's headline)
+GAMMA_MG  = 1.137        # framework-as-MG (AQUAL-EFE, framework nu; banked/frozen)
 GAMMA_MOND= 1.33         # conventional-MOND benchmark injection (not framework)
+
+# Amendment 8 declared risks, implemented below rather than left in the document:
+KAPPA_WINDOW    = (0.95, 1.05)   # frozen; outside => "systematic-limited, no verdict"
+NOVERDICT_EDGE  = 1.20           # frozen; a MAGNITUDE-convention result above this is
+                                 # PRE-DECLARED UNSCOREABLE (Amdt 8 risk (d): the
+                                 # alt-footing/primary corner is 1.20069, 0.00069 above)
 
 # ----------------------------------------------------------------------
 # FROZEN DR4 CUT LIST (pre-registered 2026-07-16; see PREREGISTRATION_DR4.md
@@ -288,11 +314,50 @@ def fit_gamma(med_d, sig_d, mod, grid):
 
 GRID = np.arange(0.90, 1.5001, 0.0025)
 
+def report_7e(g, sg, kap, label):
+    """AMENDMENT 7(e)/8 SCORING, implemented rather than left in the document.
+
+    The rule: report the RAW gamma_hat with sigma_fit and BOTH distances -- to
+    Newton (1.000) and to the in-force framework-MI target -- and NEVER a single
+    verdict word. It is load-bearing here because Amendment 8's own prediction
+    1.1582 falls in the frozen table's bin pre-declared "MG-side; MI disfavored",
+    and the frozen MG target 1.137 lies INSIDE the MI range, so any
+    proximity-based label would misreport the framework's own prediction.
+
+    Also emits Amendment 8's two declared risks:
+      (c) kappa outside the frozen window => "systematic-limited, no verdict";
+      (d) a MAGNITUDE-convention result above 1.20 => PRE-DECLARED UNSCOREABLE.
+    """
+    d_newt = (g - 1.0) / sg if sg > 0 else float("nan")
+    d_mi = (g - GAMMA_MI) / sg if sg > 0 else float("nan")
+    print(f"    [7(e)] raw gamma_hat = {g:.4f}, sigma_fit = {sg:.4f}; "
+          f"distance to Newton 1.000 = {d_newt:+.2f} sigma_fit; "
+          f"to framework-MI {GAMMA_MI:.4f} = {d_mi:+.2f} sigma_fit")
+    print(f"    [7(e)] MI ranges carried: radial {GAMMA_MI_RANGE_RAD}, "
+          f"magnitude {GAMMA_MI_RANGE_MAG}.  No verdict word is emitted by design.")
+    flags = []
+    if not (KAPPA_WINDOW[0] <= kap <= KAPPA_WINDOW[1]):
+        flags.append(f"SYSTEMATIC-LIMITED, NO VERDICT -- nuisance kappa = {kap:.4f} is "
+                     f"OUTSIDE the frozen window {KAPPA_WINDOW} (Amdt 8 risk (c); its "
+                     f"declared consequence is 'reported, not repaired')")
+    if g > NOVERDICT_EDGE:
+        flags.append(f"PRE-DECLARED UNSCOREABLE on the MAGNITUDE convention -- "
+                     f"gamma_hat = {g:.4f} exceeds the {NOVERDICT_EDGE} no-verdict edge "
+                     f"(Amdt 8 risk (d))")
+    for f_ in flags:
+        print(f"    [7(e)] *** {f_} ***")
+    if not flags:
+        print(f"    [7(e)] no declared risk tripped (kappa = {kap:.4f} inside "
+              f"{KAPPA_WINDOW}; gamma_hat below the {NOVERDICT_EDGE} edge)")
+    return d_newt, d_mi, flags
+
+
 def run_fit(data_logy, data_vt, mod, rng, label, kap_note=""):
     med_d, sig_d, cnt = bin_medians(data_logy, data_vt, boot=200, rng=rng)
     g, sg, chi2, nb, kap = fit_gamma(med_d, sig_d, mod, GRID)
     print(f"  {label:34s} gamma_inf = {g:.4f} +- {sg:.4f}  "
           f"(chi2/bin={chi2/max(nb-2,1):.2f}, bins={nb}, kappa={kap:.4f}){kap_note}")
+    report_7e(g, sg, kap, label)
     return g, sg, med_d, sig_d, cnt
 
 # ----------------------------------------------------------------------
@@ -481,8 +546,12 @@ def main():
         print(f"  deep pairs (y<0.3, canonical): {ndeep3}")
 
     print("\n" + "="*78)
-    print(f"GATE VERDICT: {'PASS' if gate_ok else 'FAIL'} "
-          f"(recovered 1.00/1.09/1.33 within max(2sigma, 0.02))")
+    print(f"PIPELINE SELF-TEST: {'PASS' if gate_ok else 'FAIL'} "
+          f"(injected/recovered 1.00/{GAMMA_MI:.4f}/{GAMMA_MOND} within "
+          f"max(2sigma, 0.02))")
+    print("  This is a SELF-TEST of the estimator, NOT a scientific verdict on any")
+    print("  measurement.  Per Amendment 7(e) no verdict word is emitted for data:")
+    print("  see the [7(e)] lines above for raw gamma_hat, sigma_fit and both distances.")
     print("="*78)
     sys.exit(0 if gate_ok else 1)
 

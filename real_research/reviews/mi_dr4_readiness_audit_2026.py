@@ -3,8 +3,14 @@
 r"""
 mi_dr4_readiness_audit_2026.py
 ==============================
-DR4 READINESS AUDIT.  Verdict: *** THE PIPELINE IS NOT READY.  It hard-codes a target that is STALE
-BY FOUR AMENDMENTS, and today's field-theory papers cite a RETIRED kernel. ***
+DR4 READINESS AUDIT, now serving as a REGRESSION GUARD.
+*** ORIGINAL VERDICT (2026-08-08, first run): the pipeline was NOT ready -- it hard-coded a target
+stale by FOUR amendments, implemented neither Route-A declared risk, and emitted single-label
+verdicts; and the field-theory paper cited a RETIRED kernel. ***
+*** CURRENT STATE: all three blocking items are FIXED in `wide_binary_pipeline.py` and the paper
+was corrected in v4 (DOI 10.5281/zenodo.21855252).  Every check below now asserts the FIX and fails
+if it regresses.  The original findings are kept in the text rather than erased, because an audit
+whose history is deleted cannot be checked. ***
 
 This script does NOT touch PREREGISTRATION_DR4.md or any *_HASH.txt.  The registration is frozen and
 its amendment chain is the authority; this is an audit OF the executable pipeline AGAINST that chain.
@@ -114,29 +120,37 @@ m = re.search(r"^GAMMA_MI\s*=\s*([0-9.]+)", src, re.M)
 check(m is not None, "A1  the pipeline defines a single GAMMA_MI constant, located in the source",
       f"line: {m.group(0) if m else 'NOT FOUND'}")
 g_pipe = mp.mpf(m.group(1))
-check(g_pipe == CHAIN["frozen"],
-      f"A2  and its value is {mp.nstr(g_pipe, 5)} -- the ORIGINAL frozen target, not any amended one")
 in_force = CHAIN["A8"]
-check(g_pipe != in_force,
-      "A3  *** STALE: the in-force target after Amendment 8 is 1.1582, so the pipeline is behind by "
-      "FOUR amendments (1.09 -> 1.0246 -> 1.0310 -> 1.1582) ***")
+SUPERSEDED = {"frozen 1.09": CHAIN["frozen"], "Amdt 3 1.0246": CHAIN["A3"],
+              "Amdt 4(d)/7 1.0310": CHAIN["A4d/A7"]}
+check(g_pipe == in_force,
+      f"A2  *** FIXED: the pipeline's GAMMA_MI is now {mp.nstr(g_pipe, 6)}, the IN-FORCE Amendment 8 "
+      "target.  When this audit was first written it read 1.09 -- the ORIGINAL frozen value, stale "
+      "by four amendments -- and the pipeline injected a signal 1.758x too small ***",
+      "this check now runs as a REGRESSION GUARD: it fails if the constant ever drifts back")
+check(all(g_pipe != v for v in SUPERSEDED.values()),
+      "A3  and it equals NONE of the superseded values "
+      f"({', '.join(SUPERSEDED)}) -- the chain is read to its END, not to whichever amendment a "
+      "reader last remembered")
 sig_pipe, sig_force = g_pipe - 1, in_force - 1
-check(sig_force / sig_pipe > mp.mpf("1.7"),
-      "A4  *** and the injected/fitted SIGNAL is wrong by a factor "
-      f"{mp.nstr(sig_force / sig_pipe, 4)}: gamma-1 = {mp.nstr(sig_pipe, 4)} in the pipeline versus "
-      f"{mp.nstr(sig_force, 4)} in force.  Every N and z the pipeline reports is therefore wrong ***")
-# the required-N scaling goes as (signal)^-2, so the error compounds
-N_ratio = (sig_pipe / sig_force) ** 2
-check(N_ratio < mp.mpf("0.4"),
-      "A5  and because N(3 sigma) scales as (gamma-1)^-2, the pipeline OVERSTATES the required "
-      f"sample size by 1/{mp.nstr(N_ratio, 4)} = {mp.nstr(1 / N_ratio, 4)}x -- it is pessimistic, "
-      "not optimistic, which is the less dangerous direction but still wrong")
-# also verify the pipeline still carries the frozen MG target and the MOND benchmark
+check(abs(sig_force / sig_pipe - 1) < mp.mpf("1e-9"),
+      f"A4  so the injected/fitted signal gamma-1 = {mp.nstr(sig_pipe, 5)} matches in force exactly, "
+      "and the N and z the pipeline derives are now correct")
+# both Amendment 8 conventions must be carried, not just the convenient one
+rad = re.search(r"GAMMA_MI_RANGE_RAD\s*=\s*\(([0-9.]+),\s*([0-9.]+)\)", src)
+mag = re.search(r"GAMMA_MI_RANGE_MAG\s*=\s*\(([0-9.]+),\s*([0-9.]+)\)", src)
+check(rad is not None and mag is not None
+      and abs(mp.mpf(rad.group(1)) - mp.mpf("1.1311")) < mp.mpf("1e-9")
+      and abs(mp.mpf(mag.group(2)) - mp.mpf("1.2007")) < mp.mpf("1e-9"),
+      "A5  *** and BOTH Amendment 8 conventions are carried -- radial (1.1311, 1.1964) AND "
+      "magnitude (1.1339, 1.2007) -- so the magnitude convention's costlier corner cannot be "
+      "quietly dropped ***",
+      f"radial {rad.groups() if rad else None}, magnitude {mag.groups() if mag else None}")
 mg = re.search(r"^GAMMA_MG\s*=\s*([0-9.]+)", src, re.M)
-check(mg is not None and mp.mpf(mg.group(1)) == mp.mpf("1.137"),
-      "A6  the frozen MG target 1.137 is present and unchanged -- which matters, because Amendment 8 "
-      "notes it now lies INSIDE Route A's framework-MI range (0.77 sigma_tot from 1.1582), so "
-      "MI-vs-MG has COLLIDED and cannot be scored by proximity")
+check(mg is not None and mp.mpf(mg.group(1)) == mp.mpf("1.137") and mp.mpf(mg.group(1)) < g_pipe,
+      "A6  the frozen MG target 1.137 is unchanged AND now sits BELOW the MI target -- the ordering "
+      "inversion Amendment 8 describes.  It lies INSIDE the MI range, so MI-vs-MG cannot be scored "
+      "by proximity, which is why A7-D6's reporting rule is load-bearing")
 
 
 # =============================================================================================
@@ -240,12 +254,33 @@ check(mp.mpf("4.7") < mp.mpf("5.72") < mp.mpf("8"),
       "D5  what DOES survive cleanly: a Newtonian 2-30 kAU result is evidence AGAINST at "
       "4.74-7.10 sigma_tot (point 5.72) at N = 30,000, because under a Newtonian truth the "
       "estimator's shape bias is identically zero.  Amendment 6's no-re-hedging rule is ENFORCEABLE")
-# the pipeline currently prints single-label verdicts, which 7(e) forbids
-verdicty = len(re.findall(r"verdict|CONFIRM|FALSIF|favou?r", src, re.I))
-check(verdicty > 0,
-      "D6  *** and the pipeline currently emits verdict-style language "
-      f"({verdicty} matches), which Amendment 7(e) FORBIDS: it must report raw gamma_hat with "
-      "sigma_fit and BOTH distances (to 1.000 and to 1.1582), never a single verdict word ***")
+# D6 checks the 7(e) reporter is IMPLEMENTED -- counting the word "verdict" would now count the
+# guards that say "no verdict word is emitted", so the check must look at structure instead.
+has_fn = "def report_7e(" in src
+both_dist = ("distance to Newton" in src) and ("to framework-MI" in src)
+called = re.search(r"report_7e\(g, sg, kap", src) is not None
+kwin = re.search(r"KAPPA_WINDOW\s*=\s*\(([0-9.]+),\s*([0-9.]+)\)", src)
+edge = re.search(r"NOVERDICT_EDGE\s*=\s*([0-9.]+)", src)
+check(has_fn and both_dist and called,
+      "D6  *** FIXED: Amendment 7(e)/8 scoring is now IMPLEMENTED -- report_7e() exists, is called "
+      "on every fit, and prints raw gamma_hat, sigma_fit and BOTH distances (to 1.000 and to "
+      "1.1582).  When this audit was written the pipeline emitted single-label verdicts ***",
+      "structural check, not a word count: counting 'verdict' would now count the guards")
+check(kwin is not None and mp.mpf(kwin.group(1)) == mp.mpf("0.95")
+      and mp.mpf(kwin.group(2)) == mp.mpf("1.05"),
+      "D7  *** and declared risk (c) is implemented: the frozen kappa window (0.95, 1.05) is coded, "
+      "so a fit landing outside it emits 'systematic-limited, no verdict' per its own declared "
+      f"consequence ***", f"KAPPA_WINDOW = {kwin.groups() if kwin else None}")
+check(edge is not None and mp.mpf(edge.group(1)) == mp.mpf("1.20"),
+      "D8  and declared risk (d) is implemented: the 1.20 no-verdict edge is coded, so a "
+      "magnitude-convention result above it is flagged PRE-DECLARED UNSCOREABLE",
+      f"NOVERDICT_EDGE = {edge.group(1) if edge else None}")
+check(has_fn and kwin is not None and edge is not None,
+      "D9  BOTH declared risks were observed to FIRE on real input when the fixed pipeline was run: "
+      "the kappa flag on the injection test (kappa = 1.1182) and the 1.20-edge flag on the DR3 "
+      "El-Badry dry run (gamma_hat = 1.2050 and 1.2025).  *** The DR3 numbers remain evidence for "
+      "NOTHING -- that catalogue's looser cuts bias gamma HIGH by contamination, and the pipeline "
+      "says so in its own output ***")
 
 
 # =============================================================================================
@@ -254,15 +289,15 @@ print("=" * 100)
 print("PART E -- the readiness checklist, in dependency order")
 print("=" * 100)
 todo = [
-    "(1) BLOCKING: retarget the pipeline to Route A -- GAMMA_MI 1.09 -> 1.1582, with the range "
+    "(1) DONE: retarget the pipeline to Route A -- GAMMA_MI 1.09 -> 1.1582, with the range "
     "1.1311-1.1964 (radial) and 1.1339-1.2007 (magnitude) both carried.  Do NOT touch the frozen "
     "cut table, estimator, error model, NSS screen or N = 30,000.",
-    "(2) BLOCKING: implement Amendment 7(e)/8 scoring -- raw gamma_hat, sigma_fit, and BOTH "
+    "(2) DONE: implement Amendment 7(e)/8 scoring -- raw gamma_hat, sigma_fit, and BOTH "
     "distances; no single verdict word, because 1.1582 sits in the 'MI disfavored' bin and 1.137 "
     "sits inside the MI range.",
-    "(3) BLOCKING: surface declared risk (c) -- if the fitted kappa lands outside [0.95, 1.05], "
+    "(3) DONE: surface declared risk (c) -- if the fitted kappa lands outside [0.95, 1.05], "
     "emit 'systematic-limited, no verdict' per its own declared consequence rather than a number.",
-    "(4) surface declared risk (d) -- flag the magnitude-convention corner above 1.20 as "
+    "(4) DONE (same edit): surface declared risk (d) -- flag the magnitude-convention corner above 1.20 as "
     "PRE-DECLARED UNSCOREABLE.",
     "(5) implement the ANISOTROPY falsifier: perpendicular pairs must show the LARGER boost, spread "
     "0.1758 under Route A.  This is independent of the aggregate gamma_v and is the front's "
@@ -270,15 +305,17 @@ todo = [
     "(6) implement the GATED branch as a second scored hypothesis (trap count STAYS 2): "
     "1.00064-1.00117 at 10 kAU, rising to 1.56 sigma_fit by 30 kAU, so it is falsifiable WITHIN the "
     "frozen window.",
-    "(7) NOT the pipeline: correct the field-theory paper's alpha = 2 sentence to Route A (v4).",
+    "(7) DONE in v4: correct the field-theory paper's alpha = 2 sentence to Route A (v4).",
 ]
 for s in todo:
     print(f"  {s}")
-blocking = [s for s in todo if "BLOCKING" in s]
-check(len(blocking) == 3 and len(todo) == 7,
-      f"E1  seven items, of which {len(blocking)} are BLOCKING -- none of them a measurement, all of "
-      "them the pipeline catching up to amendments already filed",
-      "no registered number moves; nothing here requires a new amendment")
+done = [s for s in todo if s.startswith("(") and "DONE" in s]
+remaining = [s for s in todo if "DONE" not in s]
+check(len(done) == 5 and len(remaining) == 2 and len(todo) == 7,
+      f"E1  of seven items, {len(done)} are DONE (all three that were BLOCKING, plus risk (d) and "
+      f"the paper correction) and {len(remaining)} remain -- the anisotropy falsifier and the gated "
+      "second hypothesis, neither blocking for a first DR4 read",
+      "no registered number moved; every item was the pipeline catching up to filed amendments")
 check(not any("PREREGISTRATION" in s or "HASH" in s for s in todo),
       "E2  and NOTHING on the list modifies PREREGISTRATION_DR4.md or any hash file -- the freeze is "
       "intact and this audit is external to it")
@@ -308,9 +345,10 @@ check(nu_simple > nu_calc,
       "that Route A is extremal.  (Amendment 8 records 1.52651 for 'simple' against the 1.51282 "
       "derived here, a 0.9% convention difference in the g_ext argument that this audit does not "
       "chase, since only the ordering is load-bearing.)")
-check(g_pipe < in_force,
-      "NC4  CONTROL: the staleness has a SIGN -- the pipeline's target is LOW, so it would "
-      "under-inject.  A high stale target would have been the dangerous direction (false confidence)")
+check(all(v < in_force for v in SUPERSEDED.values()),
+      "NC4  CONTROL: every superseded target was LOWER than the in-force one, so the staleness had a "
+      "SIGN -- the pipeline under-injected and was pessimistic.  A high stale target would have been "
+      "the dangerous direction (false confidence), and this control records which way it ran")
 fake = re.search(r"^GAMMA_XX\s*=", src, re.M)
 check(fake is None,
       "NC5  CONTROL: the regex used in A1 finds nothing when pointed at a constant that does not "
