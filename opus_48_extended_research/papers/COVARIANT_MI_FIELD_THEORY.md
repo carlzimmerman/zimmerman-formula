@@ -3,7 +3,7 @@
 **Carl P. Zimmerman**
 Briar Creek Tech
 
-*Version 4 (2026-08-08). Changes from earlier versions are listed in §10.*
+*Version 5 (2026-08-08). Changes from earlier versions are listed in §11.*
 
 ---
 
@@ -43,7 +43,7 @@ the covariantisation *added* two free parameters ($\lambda,\eta$) rather than re
 theory is complete in the sense that a local, covariant, ghost-free action exists, has a
 strong-coupling scale far above every regime it is applied in, and yields MOND; it is not complete in
 the sense of predicting its own constants. And it says nothing whatever about
-particle physics — see §9.
+particle physics — see §10.
 
 ---
 
@@ -63,7 +63,7 @@ whose first moment satisfies $M_{1}=\tfrac{2}{3}c/a_{0}$. Three things were owed
   dismissible as an artefact of choosing $n$.
 
 This paper discharges all three. Each section's claims are produced by a committed script that
-exits non-zero on any internal failure and carries negative controls that must trip (§10).
+exits non-zero on any internal failure and carries negative controls that must trip (§11).
 
 ---
 
@@ -439,7 +439,7 @@ time-nonlocal modified-inertia theory is cited [9], not proved here.
 
 **The chain closes.** With the Newtonian metric established independently, the worldline equation
 $d(m\mu v)/dt=-m\nabla\Phi$ gives (the accompanying script demonstrates the limits on the $\alpha=2$
-form for definiteness; the in-force exponential kernel of §9 has the same two limits, so the
+form for definiteness; the in-force exponential kernel of §10 has the same two limits, so the
 conclusion is unchanged — see [13])
 
 $$\mu(g_{\rm obs}/a_{0})\,g_{\rm obs}=g_{\rm bar}
@@ -492,7 +492,85 @@ exposed here and **not resolved here**.
 
 ---
 
-## 8. Limitations
+## 8. Confrontation: the pre-registered wide-binary test
+
+A field theory that cannot be killed is not worth much. This section states the live observational
+test, its registered numbers and — the part usually omitted — **its power**, computed before the
+data.
+
+**What this construction does and does not supply.** It must be said plainly first: **the
+wide-binary prediction is not derived from steps 1–3.** It follows from the external-field effect
+applied to the framework's interpolation kernel, both of which predate this paper. What §§2–6 supply
+is the *theory behind* the number — a local, covariant, ghost-free action in which that number is
+the prediction of something rather than of a rule. The number itself does not move.
+
+**The registered prediction.** The observable is $\gamma_{v}$, the ratio of the measured
+velocity-scale to the Newtonian one for wide binaries in the 2–30 kAU window:
+
+$$\gamma_{v}=1.1582,\qquad
+\text{range }1.1311\text{–}1.1964\ (\text{radial}),\quad 1.1339\text{–}1.2007\ (\text{magnitude})$$
+
+on the exponential kernel of §10, over both $a_{0}$ footings and both external-field conventions. This
+is the author's frozen, hash-stamped pre-registration as amended [13]; nothing in this paper alters
+it.
+
+**The one decisive statement, at the registered sample size $N=30{,}000$.** A **Newtonian** result
+across 2–30 kAU is evidence against the framework at **4.74–7.10 $\sigma_{\rm tot}$**. That figure is
+clean for a specific reason: under a Newtonian truth the estimator's shape bias is identically zero,
+so it survives every systematic the registration declares. **It is the number the theory should be
+judged on, and no re-hedging is permitted after the fact.**
+
+**Three things that limit the test, all registered in advance.**
+
+1. **The scoring bins collide with the prediction.** $1.1582$ falls in the interval the frozen
+   decision table pre-declared "MG-side; MI disfavored", and the frozen modified-gravity target
+   $1.137$ lies *inside* the MI range, $0.77\,\sigma_{\rm tot}$ from the point value. A scorer
+   executing the table on a measurement **at the framework's own prediction** would record the
+   framework as disfavored. The registration's remedy is binding and is implemented: report the raw
+   $\hat\gamma$ with $\sigma_{\rm fit}$ and **both** distances — to $1.000$ and to $1.1582$ — and
+   never a single verdict word.
+2. **A nuisance parameter sits outside its frozen window.** The estimator's calibration nuisance
+   lands at $1.0575$–$1.0959$ against a registered window of $[0.95,1.05]$, whose pre-declared
+   consequence is *"systematic-limited, no verdict — reported, not repaired."* The exponential kernel
+   fails this on both variance treatments where the retired $\alpha=2$ kernel passed both. This is a
+   cost of the kernel change, and it is not repaired here.
+3. **One corner is pre-declared unscoreable.** On the magnitude convention the alternative-footing
+   corner is $1.20069$, which is $0.00069$ **above** the $>1.20$ no-verdict edge. A genuine detection
+   there cannot be scored. Quoting only the radial convention would hide this at its convenient end.
+
+**Two further checks, both underpowered, and that is stated rather than discovered afterwards.**
+
+- **The anisotropy falsifier**, whose sign was pre-declared: perpendicular pairs must show the larger
+  boost, and the opposite sense at $\ge3\sigma$ falsifies the derived external-field effect
+  *independently* of the aggregate. The 3-D eigenvalue spread is $0.176$–$0.199$ — strengthened by the
+  kernel change. **But only the sky-projected angle is observable.** Averaging
+  $\gamma(\psi)=\gamma_{\perp}+(\gamma_{\parallel}-\gamma_{\perp})\cos^{2}\psi$ over isotropic 3-D
+  orientations gives a projection dilution of $D=0.2367$ by Monte Carlo over the registered
+  $|b|>15^{\circ}$ sky, against the in-plane closed form $4/(3\pi)=0.4244$. So the **observable** split
+  is $0.042$–$0.047$, reaching only $1.00$–$1.13\,\sigma$ at $N=30{,}000$ and requiring
+  $N\sim2.1$–$2.7\times10^{5}$ for $3\sigma$ — **seven to nine times the registered sample.**
+- **The gated branch**, which must be scored alongside the ungated one. In the aggregate it is
+  $0.03$–$0.06\,\sigma$ from Newton and would need $N\sim8.6\times10^{7}$ to separate: **an
+  aggregate-only scorer would report "Newtonian" for a universe in which the gated branch is true.**
+  Its only handle is an internal rise across the window, $0.001\,\sigma$ at 2 kAU to $1.56\,\sigma$ at
+  30 kAU — falsifiable in *shape*, but $1.56$ is not $3$. A watch item. What the two *branches*
+  separate by is large: the ungated signal is $135\times$ the gated amplitude.
+
+**And the fork of §7 has its own test.** The choice of what sources $\Theta$ — the particle's $|a|$
+(pure modified inertia) or the khronon's $|a[n]|=g_{\rm bar}$ — is decided by a *directional*
+external-field measurement, in which **pure modified inertia predicts exactly zero** aligned
+asymmetry while an external-field-driven $\Theta$ does not. That is a separate front from the
+aggregate $\gamma_{v}$ and it is not settled here.
+
+**Summary of the confrontation.** One number with teeth (4.74–7.10 $\sigma$ against a Newtonian
+result), three with context, one unscoreable corner, and one nuisance outside its window. That is a
+weaker test than the registration originally expected — §1.5 of it anticipated a decidable outcome —
+and the honest position is that DR4 can *disfavor* this framework decisively and can *support* it only
+weakly.
+
+---
+
+## 9. Limitations
 
 - **Single-stream: a formulation preference, not a restriction on the physics.** A first draft of
   this paper called this the sharpest gap. That was wrong, and the correction is recorded rather than
@@ -538,7 +616,7 @@ exposed here and **not resolved here**.
 
 ---
 
-## 9. What is not claimed
+## 10. What is not claimed
 
 - **$a_{0}$'s value is not derived**, and $\kappa=\tfrac12$ in $a_{0}=\kappa c\sqrt{G\rho_{\Lambda}}$
   remains **fitted**. The companion no-go [2] shows *why* a free-field correlator cannot supply it.
@@ -553,7 +631,7 @@ exposed here and **not resolved here**.
 
 ---
 
-## 10. Reproducibility, and version history
+## 11. Reproducibility, and version history
 
 Every quantitative claim above is produced by a committed script that exits non-zero if any internal
 consistency check fails, and each carries negative controls that must trip. All four are included:
@@ -563,7 +641,26 @@ consistency check fails, and each carries negative controls that must trip. All 
 - `mi_khronon_spin0_health_2026.py` — §4, 30/30 checks.
 - `mi_khronon_strong_coupling_scale_2026.py` — §5.1, 24/24 checks. **New in v2.**
 - `mi_khronon_delta_sector_static_2026.py` — §5.2, 22/22 checks. **New in v3.**
-- `mi_step3_joint_field_equations_2026.py` — §§6–8, 32/32 checks.
+- `mi_step3_joint_field_equations_2026.py` — §§6–9, 32/32 checks.
+- `mi_dr4_readiness_audit_2026.py` — §8, 31/31 checks. **New in v5.**
+- `mi_dr4_anisotropy_and_gated_2026.py` — §8, 20/20 checks. **New in v5.**
+
+### Changes in v5
+
+1. **New §8: the confrontation.** The paper now states the live pre-registered wide-binary test, its
+   registered numbers, and — the part usually omitted — **its power, computed before the data**.
+2. **Said first and plainly: the wide-binary prediction is NOT derived from steps 1–3.** It follows
+   from the external-field effect applied to the framework's kernel, both of which predate this
+   paper. §§2–6 supply the theory *behind* the number; the number does not move.
+3. **The honest headline is that the test is asymmetric:** one decisive number (a Newtonian result is
+   evidence against at 4.74–7.10 $\sigma_{\rm tot}$), against a scoring-bin collision, a nuisance
+   parameter outside its frozen window, an unscoreable corner, and two further checks that are
+   underpowered at the registered $N$ (anisotropy 1.00–1.13 $\sigma$ needing 7–9× the sample; the
+   gated branch 0.03–0.06 $\sigma$ in the aggregate). **DR4 can disfavor this framework decisively
+   and can support it only weakly**, and §8 says so.
+4. Two verification scripts added (31/31, 20/20). Sections 8–10 renumbered to 9–11.
+5. Nothing else changes. $a_{0}$'s value is still not derived and no claim is made about particle
+   physics.
 
 ### Changes in v4
 
