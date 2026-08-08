@@ -3,7 +3,7 @@
 **Carl P. Zimmerman**
 Briar Creek Tech
 
-*Version 5 (2026-08-08). Changes from earlier versions are listed in §11.*
+*Version 6 (2026-08-08). Changes from earlier versions are listed in §11.*
 
 ---
 
@@ -234,7 +234,7 @@ is a retarded memory-average of |a| with weight K(s)s and lag s/2, collapsing to
 slowly over λ. This is where the in-in prescription earns its place: varying a kernel that joins τ to
 τ−s places a factor evaluated at τ′ + s/2 — the *future* — in the coefficient of δu(τ′), so a retarded
 kernel in the action would otherwise give a time-symmetric equation of motion. The advanced terms enter
-only at O(λΩ), which is ≤ 4 × 10⁻⁶ galactically at λ ≤ 39 yr (§8), so (9) is causal at the accuracy
+only at O(λΩ), which is ≤ 3.2 × 10⁻³ galactically at λ ≤ 3.2 × 10⁴ yr (§8), so (9) is causal at the accuracy
 that matters and the in-in machinery is needed only for those corrections.
 
 **The circular reduction, corrected.** On a circular orbit â = −r̂ *rotates*, so d²â/dt² = Ω²r̂ ≠ 0 and
@@ -378,17 +378,41 @@ Additionally the kernel memory time λ is a new constant of the construction, an
 memory must hold wherever the *acceleration* dependence does physical work — that is, where MOND is
 tested. Requiring x = λΩ ≤ 0.1 across the galactic range gives only λ ≤ 0.98 Myr. In the solar system
 the theory need merely be Newtonian, which the long-memory branch can be: there Θ → 4v/(πa₀λ), and the
-residual anomaly is
+residual anomaly must be computed with the α = 2 cancellation of §5 in force. **That cancellation
+carries over to the long-memory branch**, because μ_eff = μ + (Θ/2)dμ/dΘ is the *same functional of Θ*
+whether Θ tracks |a| (short memory) or v (long memory) — the chain rule cancels the proportionality
+constant. So the residual is the next order, 1 − μ_eff = 1/(32Θ⁴), and with Θ = (8/3)v/(πa₀λ),
 
-> **(22)**  Δ = g(1 − μ) ≃ g/(4Θ²) = g π² a₀² λ² / (64 v²)
+> **(22)**  Δ = g/(32Θ⁴) = g (3π a₀ λ)⁴ / (32 · 8⁴ v⁴)
 
-Imposing Δ ≤ 3.66 × 10⁻¹⁴ planet by planet, the tightest is **Mercury**, giving
+which scales as **λ⁴**, not λ². Imposing Δ ≤ 3.66 × 10⁻¹⁴ planet by planet, the tightest is still
+**Mercury**, giving
 
-> **(23)**  λ ≤ 1.24 × 10⁹ s ≈ **39 years**,   hence N = (c/a₀)/λ ≥ 2.6 × 10⁹
+> **(23)**  λ ≤ 1.00 × 10¹² s ≈ **3.2 × 10⁴ years**,   hence N = M₁/λ ≥ 2.1 × 10⁶
 
-At that λ the Milky Way sits at x = 1.1 × 10⁻⁶, deep in short memory, so Θ = |a|/a₀ holds exactly
-where the radial acceleration relation is measured. A galaxy-scale λ remains excluded outright: at
-λ = 35 Myr, Earth falls in the long-memory branch with Θ = 0.37, a tens-of-percent inertia shift.
+At that λ the Milky Way sits at x = 8.9 × 10⁻⁴ and the inner disc at 3.2 × 10⁻³, still comfortably
+short memory, so Θ = |a|/a₀ holds where the radial acceleration relation is measured. A galaxy-scale λ
+remains excluded outright: at λ = 35 Myr, Earth falls in the long-memory branch with Θ = 0.37, a
+tens-of-percent inertia shift.
+
+**The coefficient problem in its tightest form.** Since only M₁ enters, the whole of κ = ½ is one
+statement about one object, and it is an equivalence rather than a fit:
+
+$$\boxed{\;\kappa=\tfrac12 \iff M_{1}=\tfrac43\,\big(G\rho_{\Lambda}\big)^{-1/2}=\tfrac43\,t_{\Lambda}\;}$$
+
+proved in both directions (forward by substitution; reverse by solving for κ, unique root ½), with no
+approximation and no dependence on kernel shape. t_Λ = 50.74 Gyr is the vacuum's own free-fall time,
+so the statement reads: *the worldline's memory has first moment four thirds of the vacuum free-fall
+time.* Note also that the **form** M₁ ∝ t_Λ is forced rather than chosen — the worldline sector supplies
+no time at all (no G, no ħ), so any scale must enter through the coupling to the vacuum, and t_Λ is the
+only local π-free time that coupling provides. What is *not* forced is the dimensionless coefficient.
+
+**This is not a derivation of κ = ½.** An equivalence derives neither side. Every candidate
+determination of M₁ has been tried and closed: the de Sitter horizon time gives M₁ = 1/H_Λ, hence
+a₀ = (2/3)cH_Λ — too large by exactly 2Z/3 = 3.859, a BTFR intercept displaced +0.147 dex against
+~0.03 dex scatter; the vacuum free-fall time at unit weight gives the moment exactly but requires
+λ = t_Λ, excluded by (23) by six orders; and a single round-trip echo supplies the factor 2 but needs a
+lag of 50.7 Gyr, 3.7 times the age of the universe. **κ = ½ is fitted.**
 
 **Therefore: the coefficient relating a₀ to Λ is fitted, not derived.** On the pure-Λ footing the
 relation a₀ = ½c√(Gρ_Λ) = c²√(Λ/32π) is an input to this construction, and the rational ½ has no
@@ -407,7 +431,9 @@ The memory force in (9) makes the equation of motion fourth order in x. Ostrogra
 enters Θ **linearly**, so the smearing collapses to the constant first moment (∫dτ∫ds K(s)s f(τ−s/2)
 = M₁∫dτ f) and leaves a genuinely **local** δẍ_⊥² term with no frequency suppression. The longitudinal
 piece, entering through μ″ and hence squared, is suppressed as |K̃(ω)|² = M₁²/(1+ω²λ²/4)² and puts its
-pole at the nonlocality scale ω ≈ 2/λ, but the transverse pole sits at O(Ω). Its character must
+pole at the nonlocality scale ω ≈ 2/λ — which at the corrected bound of §8 is 2.2 × 10³ times the
+galactic orbital frequency rather than the 1.8 × 10⁶ implied by the earlier λ, still safely above the
+band but with a smaller margin — while the transverse pole sits at O(Ω). Its character must
 therefore be computed, not asserted.
 
 **It must be computed in the co-rotating frame.** Since â₀ = −r̂ *rotates*, the longitudinal and
@@ -487,6 +513,7 @@ failed check and includes negative controls that must trip:
 | `mi_rapidity_kernel_solved_2026.py` | 35/35 | closed form (8); the EOM (9); F in closed form (10); λ bound |
 | `mi_two_function_restmass_fix_2026.py` | 35/35 | Theorem 2; Forms I and II; (12)–(16) |
 | `mi_ephemeris_and_action_pincer_2026.py` | 38/38 | the α-family anomaly Δ; the α ≥ 1.4 bound |
+| `mi_N_count_and_kappa_iff_2026.py` | 16/16 | §8: the corrected λ and N (22)–(23); the κ equivalence |
 | `mi_one_line_action_2026.py` | 17/17 | the opening display: identity with (20), both limits, the fitted moment |
 | `mi_ghost_rotframe_verdict_2026.py` | 14/14 | §9: the co-rotating stability analysis (24)–(25) |
 | `mi_noncircular_ctp_eom_2026.py` | 27/27 | general orbits (10)–(13); the memory force (9); the α = 2 cancellation (15) |
@@ -494,7 +521,25 @@ failed check and includes negative controls that must trip:
 | `mi_ctp_variational_2026.py` | 50/50 | the in-in variational property of the retarded class |
 | `mi_crossover_master_formula_2026.py` | 14/14 | the a₀/(cH_Λ) = 2/r reparametrisation |
 
-## 11. Changes in versions 2, 3, 4 and 5
+## 11. Changes in versions 2 to 6
+
+### Version 6
+
+1. **§8's bound on λ was 808× too strong, and N with it.** v3–v5 imposed the long-memory residual
+   anomaly as Δ ≃ g/(4Θ²), which ignores the α = 2 cancellation established in §5. That cancellation
+   *does* carry over to the long-memory branch, because μ_eff = μ + (Θ/2)dμ/dΘ is the same functional
+   of Θ whether Θ tracks |a| or v. With the correct residual 1/(32Θ⁴) the anomaly scales as λ⁴ and the
+   bound becomes **λ ≤ 3.2 × 10⁴ yr, N ≥ 2.1 × 10⁶** in place of 39 yr and 2.6 × 10⁹. Nothing else
+   breaks: the galactic regime is still short-memory (λΩ ~ 10⁻³), though §9's Lee–Wick margin falls
+   from 1.8 × 10⁶ to 2.2 × 10³.
+2. **The coefficient problem is now stated as an equivalence**, κ = ½ ⟺ M₁ = (4/3)t_Λ, proved both
+   ways and shape-independent, together with the observation that the *form* M₁ ∝ t_Λ is forced (the
+   worldline sector contains no G and no ħ, so it supplies no time) while the coefficient is not.
+3. §8 now lists the three closed candidate determinations of M₁ explicitly, so a reader can see what
+   has been ruled out rather than being told the number is fitted without evidence.
+4. Unchanged: a₀ is not derived, there is no local derivative expansion, κ = ½ remains fitted.
+
+### Versions 2, 3, 4 and 5
 
 ### Version 5
 

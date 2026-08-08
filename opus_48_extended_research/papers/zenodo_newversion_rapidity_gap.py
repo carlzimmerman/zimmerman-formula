@@ -30,12 +30,15 @@ RR = "real_research/reviews"
 BASE = "https://zenodo.org/api"
 
 STEM = "RAPIDITY_GAP_MI_ACTION"
-RID = 21850850   # v4; v3 21849839, v2 21845888, v1 21845412
+RID = 21850895   # v5; v4 21850850, v3 21849839, v2 21845888, v1 21845412
 META_PATH = f"{PAP}/{STEM}.zenodo.json"
 
 FILES = [
     f"{PAP}/pdf/{STEM}.pdf",
     f"{PAP}/{STEM}.md",
+    f"{RR}/mi_N_count_and_kappa_iff_2026.py",
+    f"{RR}/mi_a0_from_one_line_2026.py",
+    f"{RR}/mi_local_source_for_K_2026.py",
     f"{RR}/mi_one_line_action_2026.py",
     f"{RR}/mi_ghost_rotframe_verdict_2026.py",
     f"{RR}/mi_ghost_analysis_nonlocal_2026.py",
