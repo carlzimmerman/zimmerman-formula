@@ -3,7 +3,40 @@
 **Carl P. Zimmerman**
 Briar Creek Tech
 
-*Version 4 (2026-08-08). Changes from earlier versions are listed in §11.*
+*Version 5 (2026-08-08). Changes from earlier versions are listed in §11.*
+
+---
+
+## The theory in one line
+
+$$\boxed{\;S \;=\; -mc^{2}\int\Big[\,\mu(\Theta)\,d\tau \;+\; \big(1-\mu(\Theta)\big)\,dt\,\Big]\;,\qquad \Theta(\tau)\;=\;\int_{0}^{\infty}\!ds\;K(s)\;\cosh^{-1}\!\Big(\!-\tfrac{u(\tau)\cdot u(\tau-s)}{c^{2}}\Big)\;}$$
+
+with $d\tau$ the proper time and $dt$ the preferred-frame (cosmological) time. That is the whole
+construction, and its two limits are the two most natural scalars a worldline possesses:
+
+- $\mu \to 1$ (Newtonian): $S = -mc^{2}\int d\tau$ — the ordinary free relativistic particle.
+- $\mu \to 0$ (deep MOND): $S = -mc^{2}\int dt$ — the Lagrangian becomes exactly velocity-independent,
+  so the inertia vanishes identically while the rest energy stays $mc^{2}$. That is modified inertia in
+  three symbols.
+
+So the action **interpolates between proper time and cosmological time**, and the interpolation
+variable is the *accumulated rapidity gap along the worldline's own past*: $\cosh^{-1}(-u\!\cdot\!u'/c^{2})$
+is the hyperbolic angle between the four-velocities at two proper times, and $K(s)$ says how far back
+the particle remembers. Four facts about the line, each established below:
+
+1. Writing the second term with $dt$ rather than $\gamma\,d\tau$ *is* the even root $\sqrt{(u\!\cdot\!n)^{2}}$,
+   and that is what makes the action **CPT-even** (§6).
+2. The $\cosh^{-1}$ is forced, not chosen: no polynomial in $u$ can produce MOND (Theorem 1, §2), and
+   the rapidity gap is the unique non-analytic escape (§3).
+3. The kernel's **first moment is the only surviving parameter**, $M_{1} = \tfrac{2}{3}c/a_{0}$ (§5, §8).
+4. It is causal, variational in the in-in sense, Ostrogradsky-free, and perturbatively stable in the
+   MOND regime (§9).
+
+**And the honest caption, which must travel with the line:** that first moment is *fitted* to $a_{0}$,
+not derived, and $\mu$'s shape is the $\alpha = 2$ interpolation, chosen because solar-system
+ephemerides force $\alpha \geq 1.4$. The line buys the structure. It does not buy the coefficient.
+
+---
 
 ---
 
@@ -454,13 +487,28 @@ failed check and includes negative controls that must trip:
 | `mi_rapidity_kernel_solved_2026.py` | 35/35 | closed form (8); the EOM (9); F in closed form (10); λ bound |
 | `mi_two_function_restmass_fix_2026.py` | 35/35 | Theorem 2; Forms I and II; (12)–(16) |
 | `mi_ephemeris_and_action_pincer_2026.py` | 38/38 | the α-family anomaly Δ; the α ≥ 1.4 bound |
+| `mi_one_line_action_2026.py` | 17/17 | the opening display: identity with (20), both limits, the fitted moment |
 | `mi_ghost_rotframe_verdict_2026.py` | 14/14 | §9: the co-rotating stability analysis (24)–(25) |
 | `mi_noncircular_ctp_eom_2026.py` | 27/27 | general orbits (10)–(13); the memory force (9); the α = 2 cancellation (15) |
 | `mi_form3_cpt_even_and_lambda_bound_2026.py` | 28/28 | Form III (15); the antimatter kill (14); the λ bound (17)–(18) |
 | `mi_ctp_variational_2026.py` | 50/50 | the in-in variational property of the retarded class |
 | `mi_crossover_master_formula_2026.py` | 14/14 | the a₀/(cH_Λ) = 2/r reparametrisation |
 
-## 11. Changes in versions 2, 3 and 4
+## 11. Changes in versions 2, 3, 4 and 5
+
+### Version 5
+
+1. **The construction is now stated in one line as the opening display**, in the form
+   $S = -mc^{2}\int[\mu\,d\tau + (1-\mu)\,dt]$. This is not a new result — it is algebraically
+   identical to eq. (20), verified in `mi_one_line_action_2026.py` (17/17) — but it was buried in §6,
+   which badly undersold it. In this writing the two limits are transparent: $\mu \to 1$ gives the free
+   particle $-mc^{2}\int d\tau$, and $\mu \to 0$ gives $-mc^{2}\int dt$, a Lagrangian that is exactly
+   velocity-independent, so the inertia vanishes identically while the rest energy is untouched.
+2. A control in that script confirms the assignment is load-bearing: exchanging which factor carries
+   $d\tau$ and which carries $dt$ preserves the rest energy but yields inertia $m(1-\mu)$ — the wrong
+   way round.
+3. No physics changes in v5. The equations, results, open problems and caveats of v4 stand verbatim,
+   including that $a_{0}$ is not derived and $\kappa = 1/2$ remains fitted.
 
 ### Version 4
 
