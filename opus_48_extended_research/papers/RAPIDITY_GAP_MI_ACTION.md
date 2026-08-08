@@ -3,7 +3,7 @@
 **Carl P. Zimmerman**
 Briar Creek Tech
 
-*Version 2 (2026-08-07). Changes from v1 are listed in §10.*
+*Version 3 (2026-08-07). Changes from v1 and v2 are listed in §10.*
 
 ---
 
@@ -39,6 +39,14 @@ differently to antiparticles, where it gives rest energy mc²(2μ−1) — negat
 throughout the outer-galaxy regime — and is therefore excluded. The surviving preferred-frame coupling
 scales as g⁻², so the Lorentz violation is largest in the lowest-acceleration environments and
 ~10⁻²³ in a terrestrial laboratory.
+
+General orbits are then solved. For an arbitrary worldline θ(τ, τ−s) = (s/c)|a(τ − s/2)| + O(s³) — the
+rapidity gap across an interval is s/c times the acceleration magnitude at the *midpoint* — so Θ is a
+retarded memory-average of |a| with lag s/2. The equation of motion acquires a **memory force**,
+d/dt[mμv] = −m∇Φ + (m/2a₀)d²/dt²[μ′v²â], which does **not** vanish on circular orbits: the correct
+balance is g_bar = g_obs[μ + (Y/2)μ′]. MOND survives this as a pure renormalisation a₀ → (2/3)a₀, and
+any target interpolation remains exactly reachable. The memory force also cancels the leading Newtonian
+anomaly identically at α = 2, suppressing the solar-system residual by a further factor 8Y² = 3 × 10¹⁶.
 
 We are explicit about what is not achieved: the acceleration scale is not derived. The kernel's first
 moment must satisfy M₁ = c/a₀, and in the short-memory limit only that moment survives — verified
@@ -160,12 +168,43 @@ different:
 ## 5. The equation of motion
 
 Non-relativistically (7) expands to L ≃ −mc²[1+F] + ½m[1+F]v² − mΦ, so the inertial mass is
-m_eff = m[1 + F(Θ)]. For a circular orbit |a| is constant, so the acceleration dependence contributes
-no additional radial force, and the radial balance m_eff g_obs = m g_bar gives
+m_eff = m[1 + F(Θ)] with μ ≡ 1 + F and ν ≡ 1/μ. Because Θ depends on the acceleration, the variation
+produces a second term. At leading order in λΩ the variation of Θ is *local*, δΘ = (M₁/c) â·δa with
+â = a/|a|, and one integration by parts on the first term and two on the second give
 
-> **(9)**  g_bar = [1 + F(g_obs/a₀)] · g_obs ,   μ ≡ 1 + F,   ν ≡ 1/μ
+> **(9)**  d/dt[ m μ(Θ) v ] = −m∇Φ + (m/2a₀) d²/dt²[ μ′(Θ) v² â ]
 
-which is Milgrom's modified-inertia relation exactly.
+The second term is the **memory force**. It is fourth order in x — generic for a nonlocal action, and
+*not* an Ostrogradsky instability, since that theorem requires a local higher-derivative Lagrangian
+(§9 item 3).
+
+**General orbits.** For an arbitrary worldline, u·u = −c² forces u·a = 0, u·ȧ = −|a|² and u·ä = −3a·ȧ,
+whence cosh θ − 1 = s²|a|²/2c² − s³(a·ȧ)/2c² + O(s⁴) and therefore
+
+> **(10)**  θ(τ, τ−s) = (s/c) |a(τ − s/2)| + O(s³)
+
+The rapidity gap across an interval s is s/c times the acceleration magnitude at the **midpoint**, so
+
+> **(11)**  Θ(τ) = (1/c) ∫₀^∞ ds K(s) s |a(τ − s/2)|
+
+is a retarded memory-average of |a| with weight K(s)s and lag s/2, collapsing to |a|/a₀ when |a| varies
+slowly over λ. This is where the in-in prescription earns its place: varying a kernel that joins τ to
+τ−s places a factor evaluated at τ′ + s/2 — the *future* — in the coefficient of δu(τ′), so a retarded
+kernel in the action would otherwise give a time-symmetric equation of motion. The advanced terms enter
+only at O(λΩ), which is ≤ 4 × 10⁻⁶ galactically at λ ≤ 39 yr (§8), so (9) is causal at the accuracy
+that matters and the in-in machinery is needed only for those corrections.
+
+**The circular reduction, corrected.** On a circular orbit â = −r̂ *rotates*, so d²â/dt² = Ω²r̂ ≠ 0 and
+the memory force is outward with magnitude (m/2a₀)μ′g_obs². The balance is therefore
+
+> **(12)**  g_bar = g_obs [ μ(Y) + (Y/2) μ′(Y) ] ≡ g_obs μ_eff(Y),   Y = g_obs/a₀
+
+*not* g_bar = μ g_obs. In the deep limit μ → Y gives μ_eff → (3/2)Y, i.e. g_obs² = (2/3)a₀g_bar: **MOND
+survives as a pure renormalisation a₀ → (2/3)a₀**, so the required kernel moment becomes M₁ = (2/3)c/a₀.
+The Newtonian limit μ_eff → 1 is preserved. And any target interpolation μ_t remains reachable exactly,
+since μ + (Y/2)μ′ = μ_t is a first-order linear ODE with solution
+
+> **(13)**  μ(Y) = (2/Y²) ∫₀^Y Y′ μ_t(Y′) dY′
 
 The long-memory branch is excluded **structurally**, not by data. A kinetic function of speed alone,
 L = m f(v) − mΦ, gives circular-orbit balance g_bar = g_obs f′(v)/v; matching the deep limit
@@ -178,12 +217,24 @@ Newtonian-limit anomaly is Δ = a₀^α g_bar^(1−α)/(2α). At α = 1 this is 
 exceeds the bound by ~10³; the bound requires α ≥ 1.38 before, and ≥ 1.25 after, the external-field
 effect. Taking α = 2 and inverting g_obs⁴ = g_bar⁴ + a₀²g_bar², with Y ≡ g_obs/a₀:
 
-> **(10)**  μ₂(Y) = √( (−1 + √(1 + 4Y⁴)) / 2 ) / Y,   F(Y) = μ₂(Y) − 1
+> **(14)**  μ₂(Y) = √( (−1 + √(1 + 4Y⁴)) / 2 ) / Y,   F(Y) = μ₂(Y) − 1
 
 This is monotone, tends to 1 as Y → ∞ (Newtonian recovery, F → 0) and to Y as Y → 0 (deep MOND,
-m_eff → m|a|/a₀). At α = 2 the anomaly is Δ = a₀²/4g_bar = 3.7 × 10⁻¹⁹ m s⁻² at Earth, below the bound
-by five orders. The reproduction of ν₂ is exact by construction, so (10) is a **consistency** result —
-a solution F exists — not a prediction of the shape.
+m_eff → m|a|/a₀). The reproduction of ν₂ is exact by construction, so (14) is a **consistency**
+result — a solution F exists — not a prediction of the shape.
+
+**And the memory force cancels the Newtonian anomaly at α = 2.** For the α-family 1 − μ = Y^(−α)/2α,
+the memory term of (12) contributes +Y^(−α)/4, so
+
+> **(15)**  1 − μ_eff = Y^(−α) (2 − α) / (4α)
+
+which **vanishes identically at α = 2**. For the exact α = 2 kernel (14) the residual is 1/(32Y⁴)
+rather than 1/(4Y²), so the solar-system anomaly is suppressed by a further 8Y² = 3.2 × 10¹⁶ at Earth,
+falling to 1.2 × 10⁻³⁵ m s⁻² — twenty-one orders under the bound. Two facts cut the other way and
+belong here: the α = 1 floor **survives** as Δ = a₀/4 rather than a₀/2, so the exact a₀-line is still
+excluded (by 640× rather than 1279×) and α_min softens only from 1.380 to 1.322; and for α > 2 the
+residual in (15) changes **sign**, giving net repulsion, which is a further structural constraint on
+the exponent.
 
 ---
 
@@ -205,7 +256,7 @@ a matter of taste.
 
 **Form I (quadratic in u·n).**
 
-> **(11)**  S = −mc² ∫dτ A(Θ) + (m/c²) ∫dτ B(Θ) (u·n)²
+> **(16)**  S = −mc² ∫dτ A(Θ) + (m/c²) ∫dτ B(Θ) (u·n)²
 
 gives rest energy mc²(A − B) and inertial mass m(A + B) — two independent combinations. Imposing
 unmodified rest energy and MI inertia gives A = (1+μ)/2, B = (μ−1)/2, so the rest energy is exactly
@@ -216,17 +267,17 @@ the deep limit.
 
 **Form II (linear in u·n).**
 
-> **(12)**  S = −mc² ∫dτ μ(Θ) − ∫dτ (u·n)[μ(Θ) − 1]
+> **(17)**  S = −mc² ∫dτ μ(Θ) − ∫dτ (u·n)[μ(Θ) − 1]
 
 also gives rest energy exactly mc² and inertia exactly mμ, with exact energy
 
-> **(13)**  E = mc²[1 + μ(γ − 1)]
+> **(18)**  E = mc²[1 + μ(γ − 1)]
 
 monotone in γ and bounded below by mc² at every speed — no instability anywhere. But a term linear in
 u contracted with a background vector is an SME a^μ structure, hence CPT-odd, and the consequence is
 not merely aesthetic. On the antiparticle branch the second term reverses sign, giving rest energy
 
-> **(14)**  Ē = mc²(2μ − 1)
+> **(19)**  Ē = mc²(2μ − 1)
 
 which is **negative** for μ < ½. For the α = 2 kernel μ₂ = ½ at Y = 2/√15 = 0.5164, i.e. at
 g = 0.5164 a₀ = 4.83 × 10⁻¹¹ m s⁻². **So the CPT-odd writing predicts negative-rest-energy antimatter
@@ -234,28 +285,28 @@ throughout the outer-galaxy regime the theory exists to describe.** It is exclud
 catastrophe, not by any numerical bound.
 
 **Form III (the even root) — and it supersedes both.** For a future-directed timelike worldline
-u·n = −γc² < 0, so (u·n) = −|u·n| identically, and (12) is *the same action as*
+u·n = −γc² < 0, so (u·n) = −|u·n| identically, and (17) is *the same action as*
 
-> **(15)**  S = −mc² ∫dτ μ(Θ) − m ∫dτ √((u·n)²) [1 − μ(Θ)]
+> **(20)**  S = −mc² ∫dτ μ(Θ) − m ∫dτ √((u·n)²) [1 − μ(Θ)]
 
 on every particle trajectory. The two writings differ only in the continuation to past-directed
-worldlines. Since √((u·n)²) is manifestly even under u → −u, (15) is **CPT-even**, and therefore:
+worldlines. Since √((u·n)²) is manifestly even under u → −u, (20) is **CPT-even**, and therefore:
 
 - rest energy exactly mc² and inertia exactly mμ(Θ), as in both other forms;
-- energy (13), monotone and bounded below by mc² at **every** speed — so Form I's 0.8165 c instability
+- energy (18), monotone and bounded below by mc² at **every** speed — so Form I's 0.8165 c instability
   is not merely displaced but absent;
-- antiparticles carry the same rest energy and the same inertia, so (14) does not arise;
+- antiparticles carry the same rest energy and the same inertia, so (19) does not arise;
 - the preferred-frame structure is c^{μν}-type (CPT-even) rather than a^μ-type.
 
 **The CPT-oddness of Form II was therefore an artefact of the writing, not a property of the theory,
-and Form I's instability was an unnecessary price.** (15) is adopted for the remainder of this paper.
+and Form I's instability was an unnecessary price.** (20) is adopted for the remainder of this paper.
 
 ## 7. A prediction: g⁻² preferred-frame coupling
 
 For the α = 2 kernel, μ₂ = 1 − a₀²/4g² + O(g⁻⁴), so the strength of the preferred-frame term in
-(15) is
+(20) is
 
-> **(16)**  (1 − μ)/2 ≃ a₀²/(8g²)
+> **(21)**  (1 − μ)/2 ≃ a₀²/(8g²)
 
 Evaluated with a₀ = 9.36 × 10⁻¹¹ m s⁻²: 1.1 × 10⁻²³ in a terrestrial laboratory (g = 9.81),
 3.1 × 10⁻¹⁷ at Earth's orbital acceleration, 2.6 × 10⁻¹³ at Saturn's, and of order unity only in the
@@ -270,8 +321,9 @@ test it directly. It is not confronted with data here.
 
 ## 8. What is not derived
 
-The kernel's first moment must satisfy M₁ = c/a₀. Numerically this is M₁ = 3.20 × 10¹⁸ s ≈ 101 Gyr,
-which on the pure-Λ footing equals Z/H_Λ with Z = 2√(8π/3), because a₀ = cH_Λ/Z on that footing.
+The kernel's first moment must satisfy M₁ = (2/3)c/a₀ once the memory force of (12) is included —
+numerically 2.13 × 10¹⁸ s ≈ 68 Gyr. (Before that correction it was c/a₀ = 3.20 × 10¹⁸ s ≈ 101 Gyr,
+which on the pure-Λ footing is Z/H_Λ with Z = 2√(8π/3), because a₀ = cH_Λ/Z there.)
 
 In the short-memory limit **only** M₁ survives: three different kernel shapes (exponential, gamma-2,
 box) normalised to the same first moment give the same Θ to eight digits. The shape is invisible; one
@@ -285,11 +337,11 @@ tested. Requiring x = λΩ ≤ 0.1 across the galactic range gives only λ ≤ 0
 the theory need merely be Newtonian, which the long-memory branch can be: there Θ → 4v/(πa₀λ), and the
 residual anomaly is
 
-> **(17)**  Δ = g(1 − μ) ≃ g/(4Θ²) = g π² a₀² λ² / (64 v²)
+> **(22)**  Δ = g(1 − μ) ≃ g/(4Θ²) = g π² a₀² λ² / (64 v²)
 
 Imposing Δ ≤ 3.66 × 10⁻¹⁴ planet by planet, the tightest is **Mercury**, giving
 
-> **(18)**  λ ≤ 1.24 × 10⁹ s ≈ **39 years**,   hence N = (c/a₀)/λ ≥ 2.6 × 10⁹
+> **(23)**  λ ≤ 1.24 × 10⁹ s ≈ **39 years**,   hence N = (c/a₀)/λ ≥ 2.6 × 10⁹
 
 At that λ the Milky Way sits at x = 1.1 × 10⁻⁶, deep in short memory, so Θ = |a|/a₀ holds exactly
 where the radial acceleration relation is measured. A galaxy-scale λ remains excluded outright: at
@@ -307,19 +359,23 @@ Established: a parity theorem excluding all polynomial-in-u worldline self-inter
 the text numbering above is the rest-energy theorem; the parity result is Theorem 1); the rapidity gap
 as the unique escape class; a closed-form reduction of a causal one-scale kernel; the MI equation of
 motion; the α = 2 interpolation in closed form; a structural exclusion of the speed-dependent branch;
-and the two-function repair of the rest-energy defect with both costs priced.
+the two-function repair of the rest-energy defect; the general-orbit equation of motion with its
+memory force; and the α = 2 cancellation of the Newtonian anomaly.
 
 Open:
 
-1. **Non-circular orbits.** The reduction of §5 holds |a| constant. General orbits require the full
-   in-in treatment and are not solved here.
-2. **The SME phenomenology of (15).** The surviving structure is CPT-even of size (1−μ)/2 ≈ 10⁻²³ in
+1. **A ghost analysis of the nonlocal theory.** The equation of motion (9) is fourth order in x.
+   Ostrogradsky's theorem does not apply, because it requires a *local* higher-derivative Lagrangian
+   and (7) is first-order-nonlocal; but that is an argument for why the theorem is silent, not a proof
+   that the nonlocal theory is ghost-free. That proof is not attempted here and is the sharpest
+   remaining structural gap.
+2. **The SME phenomenology of (20).** The surviving structure is CPT-even of size (1−μ)/2 ≈ 10⁻²³ in
    a terrestrial laboratory, comfortably below matter-sector c^{μν} bounds, but a full confrontation
    binned by local g (the g⁻² signature of §7) has not been carried out.
 3. **Quantisation.** The |s| in (4) means the action admits no local derivative expansion, so there is
    no effective-field-theory power counting and no controlled quantum completion by that route. This is
    the flip side of the feature: |a| is precisely the non-analytic object MOND requires.
-4. **The coefficient.** M₁ = c/a₀ remains an input.
+4. **The coefficient.** M₁ = (2/3)c/a₀ remains an input.
 
 ---
 
@@ -334,15 +390,35 @@ failed check and includes negative controls that must trip:
 | `mi_rapidity_kernel_solved_2026.py` | 35/35 | closed form (8); the EOM (9); F in closed form (10); λ bound |
 | `mi_two_function_restmass_fix_2026.py` | 35/35 | Theorem 2; Forms I and II; (12)–(16) |
 | `mi_ephemeris_and_action_pincer_2026.py` | 38/38 | the α-family anomaly Δ; the α ≥ 1.4 bound |
+| `mi_noncircular_ctp_eom_2026.py` | 27/27 | general orbits (10)–(13); the memory force (9); the α = 2 cancellation (15) |
 | `mi_form3_cpt_even_and_lambda_bound_2026.py` | 28/28 | Form III (15); the antimatter kill (14); the λ bound (17)–(18) |
 | `mi_ctp_variational_2026.py` | 50/50 | the in-in variational property of the retarded class |
 | `mi_crossover_master_formula_2026.py` | 14/14 | the a₀/(cH_Λ) = 2/r reparametrisation |
 
-## 10. Changes in version 2
+## 10. Changes in versions 2 and 3
+
+### Version 3
+
+1. **§5 corrected — this is the substantive change.** v1 and v2 both asserted that on a circular orbit
+   |a| is constant and so "the acceleration dependence contributes no additional radial force."
+   **That was wrong.** â = a/|a| rotates, d²â/dt² = Ω²r̂ ≠ 0, and the memory force is outward. The
+   correct balance is (12), g_bar = g_obs[μ + (Y/2)μ′]. MOND survives as a renormalisation
+   a₀ → (2/3)a₀, so M₁ = (2/3)c/a₀, and any target interpolation is still exactly reachable via (13).
+2. **General orbits solved** (10)–(11): θ(τ,τ−s) = (s/c)|a(τ−s/2)|, so Θ is a retarded memory-average
+   of |a| with lag s/2. The in-in prescription's role is now quantified: the advanced terms enter at
+   O(λΩ) ≤ 4 × 10⁻⁶ galactically, so (9) is causal at the accuracy that matters.
+3. **New result** (15): the memory force cancels the leading Newtonian anomaly identically at α = 2,
+   suppressing the solar-system residual by 8Y² = 3.2 × 10¹⁶ to 1.2 × 10⁻³⁵ m s⁻². Against interest:
+   the α = 1 floor survives as a₀/4 (still excluded, 640×), α_min softens only to 1.322, and above
+   α = 2 the residual flips sign.
+4. §9 item 1 replaced: non-circular orbits are no longer open; a ghost analysis of the nonlocal
+   theory is, and is now the sharpest remaining structural gap.
+
+### Version 2
 
 1. **§6 rewritten.** v1 presented two repairs and left the CPT-odd one owing an SME analysis. That
    framing was wrong. The correct covariant object is √((u·n)²); with it the repair is CPT-even *and*
-   bounded below (Form III, eq. 15), so Form I's 0.8165 c instability was an unnecessary price and
+   bounded below (Form III, eq. 20), so Form I's 0.8165 c instability was an unnecessary price and
    Form II's CPT problem was an artefact of the writing. The owed SME analysis is discharged by the
    antimatter argument (eq. 14), which excludes the odd branch outright.
 2. **§8 bound corrected, against the paper's own conservatism.** v1 stated λ ≤ 1.4 days and
@@ -350,8 +426,8 @@ failed check and includes negative controls that must trip:
    solar system need only be Newtonian, not acceleration-resolved. The correct bound from the
    ephemeris anomaly is λ ≤ 39 years and N ≥ 2.6 × 10⁹ — weaker by a factor 1.0 × 10⁴.
 3. Script table extended; §9 item 2 restated.
-4. Unchanged: a₀ is not derived, non-circular orbits are unsolved, there is no local derivative
-   expansion, and the coefficient of a₀ remains fitted.
+4. Unchanged: a₀ is not derived, there is no local derivative expansion, and the coefficient of a₀
+   remains fitted.
 
 ## References
 
