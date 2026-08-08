@@ -3,7 +3,7 @@
 **Carl P. Zimmerman**
 Briar Creek Tech
 
-*Version 3 (2026-08-07). Changes from v1 and v2 are listed in §10.*
+*Version 4 (2026-08-08). Changes from earlier versions are listed in §11.*
 
 ---
 
@@ -47,6 +47,16 @@ d/dt[mμv] = −m∇Φ + (m/2a₀)d²/dt²[μ′v²â], which does **not** vanis
 balance is g_bar = g_obs[μ + (Y/2)μ′]. MOND survives this as a pure renormalisation a₀ → (2/3)a₀, and
 any target interpolation remains exactly reachable. The memory force also cancels the leading Newtonian
 anomaly identically at α = 2, suppressing the solar-system residual by a further factor 8Y² = 3 × 10¹⁶.
+
+Finally we settle the perturbative stability of the resulting fourth-order dynamics. The linearised
+problem must be posed in the co-rotating frame, because the Coriolis and tidal terms are of the same
+order as the higher-derivative corrections; a decoupled treatment yields a spurious runaway at exactly
+the epicyclic frequency. Done correctly, the extra poles introduced by the memory force are **purely
+imaginary** at |p| ≈ 2.45 Ω, and the residual growing mode has Re(p) = 9.8 × 10⁻⁵ Ω in the deepest
+MOND regime, falling to zero at the transition — an e-folding time of ~1600 orbits, some 26 times the
+age of the universe. The theory is therefore perturbatively stable where MOND operates, though the
+oscillatory pole is an untested prediction and a classically-stable Lee–Wick pole remains a ghost in
+the quantum theory.
 
 We are explicit about what is not achieved: the acceleration scale is not derived. The kernel's first
 moment must satisfy M₁ = c/a₀, and in the short-memory limit only that moment survives — verified
@@ -176,7 +186,7 @@ produces a second term. At leading order in λΩ the variation of Θ is *local*,
 
 The second term is the **memory force**. It is fourth order in x — generic for a nonlocal action, and
 *not* an Ostrogradsky instability, since that theorem requires a local higher-derivative Lagrangian
-(§9 item 3).
+(§10 item 3).
 
 **General orbits.** For an arbitrary worldline, u·u = −c² forces u·a = 0, u·ȧ = −|a|² and u·ä = −3a·ȧ,
 whence cosh θ − 1 = s²|a|²/2c² − s³(a·ȧ)/2c² + O(s⁴) and therefore
@@ -353,22 +363,76 @@ derivation here. The author has previously and publicly retracted broader claims
 
 ---
 
-## 9. Summary and open problems
+## 9. Perturbative stability of the fourth-order dynamics
+
+The memory force in (9) makes the equation of motion fourth order in x. Ostrogradsky's theorem is
+*not* automatically silent here: although (7) is first-order-nonlocal, the second-order expansion of
+|a| about an accelerated background,
+
+> **(24)**  |a| = A₀ + â₀·δa + δa_⊥²/(2A₀) + O(δ³)
+
+enters Θ **linearly**, so the smearing collapses to the constant first moment (∫dτ∫ds K(s)s f(τ−s/2)
+= M₁∫dτ f) and leaves a genuinely **local** δẍ_⊥² term with no frequency suppression. The longitudinal
+piece, entering through μ″ and hence squared, is suppressed as |K̃(ω)|² = M₁²/(1+ω²λ²/4)² and puts its
+pole at the nonlocality scale ω ≈ 2/λ, but the transverse pole sits at O(Ω). Its character must
+therefore be computed, not asserted.
+
+**It must be computed in the co-rotating frame.** Since â₀ = −r̂ *rotates*, the longitudinal and
+transverse directions are time-dependent, and the Coriolis and tidal terms are O(Ω) — the same order
+as the effect. Writing the perturbations as ξ (radial) and η (tangential), with
+
+> **(25)**  δa_r = ξ̈ − 2Ωη̇ − Ω²ξ,   δa_t = η̈ + 2Ωξ̇ − Ω²η
+
+and retaining the potential's η² term (Φ(√((R+ξ)²+η²)) contributes −(Φ′/R)η²/2, which cancels the
+rotating-frame +μΩ²η²/2 when the background balance holds), the quadratic Lagrangian is a coupled
+two-variable fourth-order system whose characteristic polynomial has degree eight.
+
+Two checks validate the machinery: it returns the Kepler epicyclic frequency Ω and the
+Newtonian flat-curve value √2 Ω, both as **purely imaginary** roots. Omitting the η² cancellation
+alone makes even Kepler appear unstable, which is one way to manufacture a false instability; a
+decoupled treatment of the transverse sector is another, and it produces a spurious runaway at exactly
+√2 Ω — the flat-curve epicyclic frequency, which is the signature of the error.
+
+Scanning Y = g_obs/a₀ from 0.05 to 10 with the consistent background balance g_bar = μ_eff g_obs:
+
+- the extra poles introduced by the memory force are **purely imaginary** at |p| ≈ 2.45 Ω —
+  oscillatory, of Lee–Wick type, not exponential;
+- a genuine growing mode survives at **Re(p) = 9.8 × 10⁻⁵ Ω** in the deepest MOND regime, falling
+  monotonically to zero by Y = 1. Its e-folding time is ~1600 orbits, i.e. 363 Gyr for the Milky Way,
+  about 26 times the age of the universe. (This is not a numerical artefact: the value is unchanged
+  from 60 to 600 working digits, which rules out root-finder noise on the degenerate zero root.)
+- for Y > 1 a large real root appears, but it tracks p = √(μ/B) — the breakdown scale of the very
+  truncation that generated it, diverging as the MOND correction switches off. By the standard
+  criterion for nonlocal theories that is a spurious pole rather than a physical instability; settling
+  it definitively requires the resummed kernel and is not done here.
+
+**So the theory is perturbatively stable in the regime where MOND operates**, with the caveat that
+this is established at quadratic order, non-relativistically, on a circular background, with the
+longitudinal term switched off, and for the α = 2 kernel. It is *not* a proof of ghost-freedom: the
+oscillatory pole at 2.45 Ω is a real prediction that has not been confronted with data, and a
+classically-stable Lee–Wick pole is still a ghost in the quantum theory.
+
+---
+
+## 10. Summary and open problems
 
 Established: a parity theorem excluding all polynomial-in-u worldline self-interactions (Theorem 2 in
 the text numbering above is the rest-energy theorem; the parity result is Theorem 1); the rapidity gap
 as the unique escape class; a closed-form reduction of a causal one-scale kernel; the MI equation of
 motion; the α = 2 interpolation in closed form; a structural exclusion of the speed-dependent branch;
 the two-function repair of the rest-energy defect; the general-orbit equation of motion with its
-memory force; and the α = 2 cancellation of the Newtonian anomaly.
+memory force; the α = 2 cancellation of the Newtonian anomaly; and classical perturbative stability
+in the MOND regime.
 
 Open:
 
-1. **A ghost analysis of the nonlocal theory.** The equation of motion (9) is fourth order in x.
-   Ostrogradsky's theorem does not apply, because it requires a *local* higher-derivative Lagrangian
-   and (7) is first-order-nonlocal; but that is an argument for why the theorem is silent, not a proof
-   that the nonlocal theory is ghost-free. That proof is not attempted here and is the sharpest
-   remaining structural gap.
+1. **Quantisation of the Lee–Wick pole.** §9 establishes classical perturbative stability, but the
+   extra pole at |p| ≈ 2.45 Ω is a Lee–Wick pole: harmless classically, a ghost in the quantum theory.
+   Its quantum status, and the fate of the Y > 1 root under the resummed kernel, are open. This is now
+   the sharpest remaining structural gap.
+1b. **The 2.45 Ω oscillatory mode versus data.** It is a genuine prediction of the construction — an
+   extra oscillatory response at ~2.45 times the local orbital frequency — and it has not been
+   confronted with any observation.
 2. **The SME phenomenology of (20).** The surviving structure is CPT-even of size (1−μ)/2 ≈ 10⁻²³ in
    a terrestrial laboratory, comfortably below matter-sector c^{μν} bounds, but a full confrontation
    binned by local g (the g⁻² signature of §7) has not been carried out.
@@ -390,12 +454,31 @@ failed check and includes negative controls that must trip:
 | `mi_rapidity_kernel_solved_2026.py` | 35/35 | closed form (8); the EOM (9); F in closed form (10); λ bound |
 | `mi_two_function_restmass_fix_2026.py` | 35/35 | Theorem 2; Forms I and II; (12)–(16) |
 | `mi_ephemeris_and_action_pincer_2026.py` | 38/38 | the α-family anomaly Δ; the α ≥ 1.4 bound |
+| `mi_ghost_rotframe_verdict_2026.py` | 14/14 | §9: the co-rotating stability analysis (24)–(25) |
 | `mi_noncircular_ctp_eom_2026.py` | 27/27 | general orbits (10)–(13); the memory force (9); the α = 2 cancellation (15) |
 | `mi_form3_cpt_even_and_lambda_bound_2026.py` | 28/28 | Form III (15); the antimatter kill (14); the λ bound (17)–(18) |
 | `mi_ctp_variational_2026.py` | 50/50 | the in-in variational property of the retarded class |
 | `mi_crossover_master_formula_2026.py` | 14/14 | the a₀/(cH_Λ) = 2/r reparametrisation |
 
-## 10. Changes in versions 2 and 3
+## 11. Changes in versions 2, 3 and 4
+
+### Version 4
+
+1. **New §9: perturbative stability, and it required correcting a calculation of my own.** A first
+   attempt treated the transverse sector in isolation and reported a real runaway at p = √2 Ω,
+   concluding the construction was dead. That was wrong. √2 Ω is *exactly* the epicyclic frequency of
+   a flat rotation curve, and recovering the standard stable oscillation frequency out of an
+   instability calculation was the signature of the error: the Coriolis terms, the potential's η²
+   term, and the longitudinal–transverse mixing are all O(Ω), the same order as the effect, and all
+   three had been dropped — as had the memory-force correction to the background balance.
+2. **Result:** with all of them retained, the extra poles are purely imaginary at |p| ≈ 2.45 Ω and the
+   residual growing mode is Re(p) = 9.8 × 10⁻⁵ Ω, e-folding in ~1600 orbits (26× the age of the
+   universe). Verified not to be root-finder noise by holding fixed from 60 to 600 working digits.
+   The Y > 1 real root tracks the truncation scale √(μ/B) and is spurious by the standard criterion.
+3. §10 item 1 is discharged and replaced: the open problem is now the *quantum* status of the
+   Lee–Wick pole, plus the untested 2.45 Ω oscillatory prediction (new item 1b).
+4. Unchanged: a₀ is not derived, there is no local derivative expansion, and the coefficient remains
+   fitted.
 
 ### Version 3
 
@@ -411,7 +494,7 @@ failed check and includes negative controls that must trip:
    suppressing the solar-system residual by 8Y² = 3.2 × 10¹⁶ to 1.2 × 10⁻³⁵ m s⁻². Against interest:
    the α = 1 floor survives as a₀/4 (still excluded, 640×), α_min softens only to 1.322, and above
    α = 2 the residual flips sign.
-4. §9 item 1 replaced: non-circular orbits are no longer open; a ghost analysis of the nonlocal
+4. §10 item 1 replaced: non-circular orbits are no longer open; a ghost analysis of the nonlocal
    theory is, and is now the sharpest remaining structural gap.
 
 ### Version 2
@@ -425,7 +508,7 @@ failed check and includes negative controls that must trip:
    N ≥ 2.6 × 10¹³, derived by demanding short memory at Mercury. That requirement was too strong: the
    solar system need only be Newtonian, not acceleration-resolved. The correct bound from the
    ephemeris anomaly is λ ≤ 39 years and N ≥ 2.6 × 10⁹ — weaker by a factor 1.0 × 10⁴.
-3. Script table extended; §9 item 2 restated.
+3. Script table extended; §10 item 2 restated.
 4. Unchanged: a₀ is not derived, there is no local derivative expansion, and the coefficient of a₀
    remains fitted.
 
