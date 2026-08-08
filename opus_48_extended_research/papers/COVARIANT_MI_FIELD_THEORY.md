@@ -3,7 +3,7 @@
 **Carl P. Zimmerman**
 Briar Creek Tech
 
-*Version 5 (2026-08-08). Changes from earlier versions are listed in §11.*
+*Version 6 (2026-08-08). Changes from earlier versions are listed in §12.*
 
 ---
 
@@ -42,8 +42,14 @@ coupling in every local field theory is.
 the covariantisation *added* two free parameters ($\lambda,\eta$) rather than removing any. The
 theory is complete in the sense that a local, covariant, ghost-free action exists, has a
 strong-coupling scale far above every regime it is applied in, and yields MOND; it is not complete in
-the sense of predicting its own constants. And it says nothing whatever about
-particle physics — see §10.
+the sense of predicting its own constants. It says nothing whatever about particle physics (§11).
+
+**And one thing more, added in v6, and it is the most serious limitation in this paper.** Taken as a
+*fundamental* theory the construction predicts that gravitational lensing traces the **baryonic** mass
+alone — the metric is unmodified and photons have no rest mass to modify — which is excluded by the
+observed agreement between lensing and dynamical masses at $\sim21\sigma$ (§8). **So what is
+established below is a complete and healthy field theory of the *test-particle sector*. Its standing
+as the fundamental theory is not established, and §8 states what would have to replace it.**
 
 ---
 
@@ -63,7 +69,7 @@ whose first moment satisfies $M_{1}=\tfrac{2}{3}c/a_{0}$. Three things were owed
   dismissible as an artefact of choosing $n$.
 
 This paper discharges all three. Each section's claims are produced by a committed script that
-exits non-zero on any internal failure and carries negative controls that must trip (§11).
+exits non-zero on any internal failure and carries negative controls that must trip (§12).
 
 ---
 
@@ -439,7 +445,7 @@ time-nonlocal modified-inertia theory is cited [9], not proved here.
 
 **The chain closes.** With the Newtonian metric established independently, the worldline equation
 $d(m\mu v)/dt=-m\nabla\Phi$ gives (the accompanying script demonstrates the limits on the $\alpha=2$
-form for definiteness; the in-force exponential kernel of §10 has the same two limits, so the
+form for definiteness; the in-force exponential kernel of §11 has the same two limits, so the
 conclusion is unchanged — see [13])
 
 $$\mu(g_{\rm obs}/a_{0})\,g_{\rm obs}=g_{\rm bar}
@@ -492,7 +498,85 @@ exposed here and **not resolved here**.
 
 ---
 
-## 8. Confrontation: the pre-registered wide-binary test
+## 8. The lensing axis: what the construction cannot do
+
+This is the sharpest negative result in the programme. It is a *theory* result — it follows from the
+construction's own premise, not from any observer's calibration — and it appears before the
+confrontation section because it changes what is being confronted.
+
+**The argument, in four steps.**
+
+1. **The metric is unmodified and sourced by baryons.** Not an assumption imposed to manufacture a
+   problem: it is the premise §6 *verifies* to $10^{-7}$. Modified inertia *needs*
+   $\nabla^{2}\Phi=4\pi G\rho_{\rm bar}$, because its whole content is a modified response to a
+   Newtonian field.
+2. **Photons have no rest mass to modify.** The worldline action is exactly proportional to $m$ — it
+   vanishes identically at $m=0$ — so light follows null geodesics of the baryonic metric.
+3. Hence $M_{\rm lens}=M_{\rm bar}$, while a Newtonian reading of the anomalous *dynamics* gives
+   $M_{\rm dyn}=M_{\rm bar}/f_{\rm bar}$:
+
+$$\frac{M_{\rm dyn}}{M_{\rm lens}}=\frac{1}{f_{\rm bar}}=6.4\qquad\text{(clusters)}$$
+
+4. **Observed: $1.0$–$1.3$.** Lensing and X-ray/dynamical masses agree at the 10–30% level. On a
+   deliberately generous 25% systematic the prediction is excluded at $\mathbf{21\sigma}$, and still
+   at $4.2\sigma$ if that systematic is inflated **fivefold**. Modified gravity predicts exactly $1$,
+   so the data do not merely disfavour this reading — they land on the alternative. It is a **ratio**,
+   so much of the mass calibration cancels, and the lensing side assumes no equilibrium.
+
+**And the enhancement cannot sit in both places.** The tempting repair is to modify the metric as
+well, so light sees the enhanced field. It fails arithmetically:
+
+| | equation of motion | result |
+|---|---|---|
+| modified gravity only | $a=\nu g_{\rm bar}$ | correct |
+| modified inertia only | $\mu a=g_{\rm bar}$ | $a=\nu g_{\rm bar}$, correct |
+| **both** | $\mu a=\nu g_{\rm bar}$ | $a=\nu^{2}g_{\rm bar}$ — **wrong by one factor of $\nu$** |
+
+The enhancement lives in the metric **or** in the inertia, never both. Modified inertia and modified
+gravity are *algebraically identical* for massive test particles — precisely why this framework could
+stay ambiguous about which it was — and **lensing is the observation that separates them. It selects
+the metric.**
+
+**Every escape was computed, and one closes less cleanly than a first draft claimed.** The memory
+field $\chi$ cannot supply the missing lensing mass: it is a costate with no propagating mode, and the
+$\mu$-independent part of the matter stress-energy is proportional to $m$, i.e. still baryonic. A
+photon coupling cannot be bolted on: $|B|=(1-\mu)/2$ also enters multiplied by $m$ and vanishes at
+$m=0$, so giving light its own effective metric *is* the disformal/TeVeS construction — modified
+gravity again, not a fifth option. A non-baryonic component works, but must be 84% of the cluster
+mass, at which point it lenses *and* supplies the dynamics and MOND is not needed in clusters at all:
+a replacement, not a rescue. **And the khronon is *not* intrinsically negligible** — that was the
+overstated claim. At $\eta=1$ its effective density would be $159\times$ the cluster gas, and
+$\eta\approx0.034$ would exactly supply the missing mass. **That escape is closed entirely by the
+preferred-frame PPN bound, a factor $3.4\times10^{5}$, and by nothing else.** If that bound moved, the
+escape reopens.
+
+**What it costs.** The lensing-viable arm of this framework is a modified-*gravity* realisation of the
+same kernel, the AeST/TeVeS class [12,14]. **Then §§2–6 is not the fundamental theory: at best it is an
+effective description of test-particle dynamics inside a modified-gravity theory.** A demotion, stated
+as one.
+
+It also exposes an inconsistency predating this paper. Using modified gravity for lensing and modified
+inertia for dynamics is not two descriptions of one theory — by the table above they are two
+*theories*, and the pair is inconsistent. **A consistency problem inside the framework, not a new
+observational tension.**
+
+**And three predictions are at stake, including the one §9 rests on.** The external-field anisotropy
+(pure modified inertia predicts *exactly zero*), the $g^{-2}$ Lorentz-violation scaling, and **the
+wide-binary $\gamma_{v}$ target of the pre-registered test** are all modified-inertia signatures. If
+modified inertia is only an effective limit, these are predictions *of the limit* and must be
+**re-derived** in the modified-gravity theory rather than inherited. §9 should be read with that
+caveat attached.
+
+**What may be salvageable, not shown here.** In AeST/TeVeS-type theories the test-particle sector can
+carry an effective acceleration-dependent inertia, so the rapidity-gap construction may be recoverable
+as the **point-particle limit** of the modified-gravity theory rather than a rival to it. That would
+preserve the parity theorem (§5), the localisation (§6.1) and $a_{0}=\tfrac23c\,m^{2}/g$, while giving
+up the claim that inertia rather than gravity is what is modified. **Not demonstrated. It is the next
+calculation.**
+
+---
+
+## 9. Confrontation: the pre-registered wide-binary test
 
 A field theory that cannot be killed is not worth much. This section states the live observational
 test, its registered numbers and — the part usually omitted — **its power**, computed before the
@@ -510,7 +594,7 @@ velocity-scale to the Newtonian one for wide binaries in the 2–30 kAU window:
 $$\gamma_{v}=1.1582,\qquad
 \text{range }1.1311\text{–}1.1964\ (\text{radial}),\quad 1.1339\text{–}1.2007\ (\text{magnitude})$$
 
-on the exponential kernel of §10, over both $a_{0}$ footings and both external-field conventions. This
+on the exponential kernel of §11, over both $a_{0}$ footings and both external-field conventions. This
 is the author's frozen, hash-stamped pre-registration as amended [13]; nothing in this paper alters
 it.
 
@@ -570,7 +654,7 @@ weakly.
 
 ---
 
-## 9. Limitations
+## 10. Limitations
 
 - **Single-stream: a formulation preference, not a restriction on the physics.** A first draft of
   this paper called this the sharpest gap. That was wrong, and the correction is recorded rather than
@@ -583,6 +667,11 @@ weakly.
   speeds. So the single-stream restriction binds only a *continuum rewriting of $\chi$ undertaken for
   its own sake*: it does not restrict test-particle dynamics, which is what rotation curves are, and
   it does not touch the field equations.
+- **The construction's standing as a fundamental theory is not established** (§8). Taken literally it
+  predicts baryonic lensing, excluded at $\sim21\sigma$; the lensing-viable arm is a
+  modified-*gravity* realisation, which makes §§2–6 an effective description of the test-particle
+  sector. **This is the most serious limitation in the paper**, and it puts the three
+  modified-inertia-specific predictions — including §9's wide-binary target — in need of re-derivation.
 - **Strong coupling and the static nonlinearity are now both computed** (§5) and neither threatens
   the phenomenology. Three narrower residuals remain in their place: only the *scaling* of
   $\Lambda_{\rm sc}$ is derived and not its coefficient; **the full $T$ field equation around a real
@@ -611,12 +700,12 @@ weakly.
    covariant theory, not a detail.
 2. **The near-horizon regime** — $|\partial\pi|\to1$ breaks §5.2, and universal horizons are
    unaddressed.
-3. **The two new parameters** $\lambda,\eta$ — whether a theory that gained parameters to become
+4. **The two new parameters** $\lambda,\eta$ — whether a theory that gained parameters to become
    covariant has really gained ground.
 
 ---
 
-## 10. What is not claimed
+## 11. What is not claimed
 
 - **$a_{0}$'s value is not derived**, and $\kappa=\tfrac12$ in $a_{0}=\kappa c\sqrt{G\rho_{\Lambda}}$
   remains **fitted**. The companion no-go [2] shows *why* a free-field correlator cannot supply it.
@@ -631,7 +720,7 @@ weakly.
 
 ---
 
-## 11. Reproducibility, and version history
+## 12. Reproducibility, and version history
 
 Every quantitative claim above is produced by a committed script that exits non-zero if any internal
 consistency check fails, and each carries negative controls that must trip. All four are included:
@@ -642,8 +731,31 @@ consistency check fails, and each carries negative controls that must trip. All 
 - `mi_khronon_strong_coupling_scale_2026.py` — §5.1, 24/24 checks. **New in v2.**
 - `mi_khronon_delta_sector_static_2026.py` — §5.2, 22/22 checks. **New in v3.**
 - `mi_step3_joint_field_equations_2026.py` — §§6–9, 32/32 checks.
-- `mi_dr4_readiness_audit_2026.py` — §8, 31/31 checks. **New in v5.**
-- `mi_dr4_anisotropy_and_gated_2026.py` — §8, 20/20 checks. **New in v5.**
+- `mi_dr4_readiness_audit_2026.py` — §9, 31/31 checks. **New in v5.**
+- `mi_dr4_anisotropy_and_gated_2026.py` — §9, 20/20 checks. **New in v5.**
+- `mi_lensing_axis_2026.py` — §8, 24/24 checks. **New in v6.**
+- `mi_cluster_measurement_audit_2026.py` — §8 context, 27/27 checks. **New in v6.**
+
+### Changes in v6
+
+1. **New §8, and it is the most serious limitation this paper carries.** Taken as a *fundamental*
+   theory the construction predicts $M_{\rm lens}=M_{\rm bar}$, hence
+   $M_{\rm dyn}/M_{\rm lens}=1/f_{\rm bar}=6.4$ in clusters, against an observed $1.0$–$1.3$:
+   **excluded at $21\sigma$**, and still at $4.2\sigma$ on a fivefold-inflated systematic.
+2. **And the enhancement cannot sit in both the metric and the inertia** — doing both gives
+   $a=\nu^{2}g_{\rm bar}$, wrong by one factor of $\nu$. Modified inertia and modified gravity are
+   algebraically identical for massive test particles, and **lensing is what separates them.**
+3. **Consequence, stated as a demotion:** §§2–6 is at best an effective description of the
+   test-particle sector inside a modified-gravity theory, and the three modified-inertia-specific
+   predictions — including §9's wide-binary target — must be **re-derived** rather than inherited.
+   The abstract-level caption now says so.
+4. **A claim of the author's own is corrected:** the khronon was said to be intrinsically negligible.
+   It is not — $\eta\approx0.034$ would supply the missing lensing mass, and only the
+   preferred-frame PPN bound (a factor $3.4\times10^{5}$) closes that escape.
+5. The limitations list is reordered with §8 first, and "what a referee should attack" now opens with
+   it. Two scripts added (24/24, 27/27).
+6. Nothing in §§2–7 is retracted. Every equation and every check stands; what changes is the claimed
+   *status* of the construction.
 
 ### Changes in v5
 
@@ -761,6 +873,10 @@ moment is the pole of the Riemann zeta function*, Zenodo, concept DOI 10.5281/ze
 
 [12] D. Blas and S. Sibiryakov, *Horava gravity versus thermodynamics: the black hole case*, Phys.
 Rev. D **84**, 124043 (2011).
+
+[14] J. Bekenstein, *Relativistic gravitation theory for the modified Newtonian dynamics paradigm*,
+Phys. Rev. D **70**, 083509 (2004); C. Skordis and T. Złośnik, Phys. Rev. Lett. **127**, 161302
+(2021); M. Milgrom, Phys. Rev. D **80**, 123536 (2009).
 
 [13] Amendment 8 to the author's frozen Gaia DR4 pre-registration (2026-08-03), which retires both
 power-law kernels on solar-system grounds and adopts $\nu=1/(1-e^{-\sqrt{y}})$; see also the

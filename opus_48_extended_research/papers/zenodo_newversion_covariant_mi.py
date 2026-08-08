@@ -30,7 +30,7 @@ RR = "real_research/reviews"
 BASE = "https://zenodo.org/api"
 
 STEM = "COVARIANT_MI_FIELD_THEORY"
-RID = 21855252   # v4; v3 21855217, v2 21855003, v1 21854915 (concept 21854914)
+RID = 21855374   # v5; v4 21855252, v3 21855217, v2 21855003, v1 21854915 (concept 21854914)
 META_PATH = f"{PAP}/{STEM}.zenodo.json"
 
 FILES = [
@@ -44,6 +44,8 @@ FILES = [
     f"{RR}/mi_step3_joint_field_equations_2026.py",
     f"{RR}/mi_dr4_readiness_audit_2026.py",
     f"{RR}/mi_dr4_anisotropy_and_gated_2026.py",
+    f"{RR}/mi_lensing_axis_2026.py",
+    f"{RR}/mi_cluster_measurement_audit_2026.py",
 ]
 
 EMAIL_RE = re.compile(r"[\w.+-]+@[\w-]+\.[\w.]{2,}")
