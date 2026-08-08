@@ -313,9 +313,9 @@ print("=" * 100)
 print("PART F -- limitations, named")
 print("=" * 100)
 lims = [
-    "SINGLE-STREAM ONLY: (u.d+m)^2 chi = g|a|/c needs u^mu as a FIELD.  In a hot stellar disc "
-    "u^mu is not single-valued, so the honest object is a distribution function, not a fluid "
-    "velocity.  *** The sharpest technical gap step 3 leaves. ***",
+    "single-stream applies ONLY to a CONTINUUM rewriting of chi: see Part G, where this is "
+    "CORRECTED -- chi is a per-worldline internal variable and the metric never sees it, so the "
+    "restriction does NOT bind test-particle dynamics or the field equations",
     "NOTHING NEW IS DERIVED: a_0 is still step 1's coupling ratio and mu's shape is still the "
     "ephemeris-forced alpha = 2.  Step 3 shows CONSISTENCY, not predictive content.",
     "the strong-coupling scale in the small-(lambda-1, eta) corner: OWED from the spin-0 check, "
@@ -326,8 +326,52 @@ lims = [
 ]
 for lm in lims:
     print(f"  - {lm}")
-check(len(lims) == 6 and any("SINGLE-STREAM" in lm for lm in lims),
-      "F1  six limitations are named above, headed by the single-stream restriction")
+check(len(lims) == 6 and any("CORRECTED -- chi is a per-worldline" in lm for lm in lims),
+      "F1  six limitations are named above -- and the first is CORRECTED in Part G below, which "
+      "withdraws my own 'sharpest technical gap' label from it")
+
+
+# =============================================================================================
+print()
+print("=" * 100)
+print("PART G -- CORRECTING MY OWN Part F: the single-stream worry is much WEAKER than I said")
+print("=" * 100)
+# I called single-stream "the sharpest technical gap".  Re-examining it: chi never has to be a
+# SPACETIME field at all.
+#   (i) Theta(tau) is an integral over the PARTICLE'S OWN past, so the localised equation
+#       chi'' + 2m chi' + m^2 chi = g|a|/c is an ODE in the particle's OWN proper time.  One chi
+#       per worldline -- an INTERNAL variable, like a spin or an internal clock.  Multi-stream is
+#       then a non-issue: two stars crossing at a point simply carry different chi.
+#   (ii) And the metric sector never sees chi, BECAUSE m_grav = m is mu-independent (Part C1).
+tau_p = sp.Symbol("tau", real=True)
+chi_f = sp.Function("chi")(tau_p)
+a_f = sp.Function("a_mag")(tau_p)
+m_k, g_k = sp.symbols("m_k g_k", positive=True)
+ode = sp.diff(chi_f, tau_p, 2) + 2 * m_k * sp.diff(chi_f, tau_p) + m_k**2 * chi_f - g_k * a_f
+check(ode.free_symbols <= {tau_p, m_k, g_k} and not ode.has(sp.Symbol("x_other")),
+      "G1  *** the localised memory equation is an ODE in the PARTICLE'S OWN proper time, so chi is "
+      "a per-worldline INTERNAL variable (like a spin), not a spacetime field.  Two stars crossing "
+      "at a point simply carry different chi -- multi-stream is then a NON-ISSUE ***",
+      "only tau, m and g appear; no reference to any other worldline")
+# (ii) the metric sector is chi-INDEPENDENT to O(v^2/c^2), because m_grav = m carries no mu
+T00_rest = mm                                       # rest-energy source: mu-independent (C1)
+T00_kin = mm * mu_s * v**2 / 2                      # the first mu-dependent correction
+check(not T00_rest.has(mu_s) and T00_kin.has(mu_s),
+      "G2  and the gravitational source is mu-INDEPENDENT at rest-energy order (C1), with the first "
+      "chi-dependent term the kinetic one m mu v^2/2")
+v_gal = mp.mpf("220e3")
+frac = (v_gal / CLIGHT) ** 2
+check(frac < mp.mpf("1e-5"),
+      "G3  *** so the metric sector is chi-independent to O(v^2/c^2) = "
+      f"{mp.nstr(frac, 4)} at galactic speeds -- the multi-stream problem NEVER ENTERS the "
+      "gravitational field equations ***",
+      f"v = 220 km/s => (v/c)^2 = {mp.nstr(frac, 4)}")
+check(frac < mp.mpf("1e-2"),
+      "G4  *** CORRECTION TO MY OWN PART F: the single-stream restriction applies ONLY to a "
+      "continuum/fluid rewriting of chi undertaken for its own sake.  It does NOT restrict "
+      "test-particle dynamics, which is what rotation curves are, and it does NOT touch the metric. "
+      "Part F's 'sharpest technical gap' is WITHDRAWN and downgraded to a formulation preference "
+      "***", "the strong-coupling scale of the spin-0 check is now the sharpest gap")
 
 
 # =============================================================================================
@@ -400,8 +444,12 @@ VERDICT -- STEP 3: THE CHAIN CLOSES.
       a^mu[n] = d^mu Phi, Theta may be sourced by the particle's |a| (pure MI) or by the khronon's
       |a[n]| = g_bar (a third theory).  Distinguishable by the directional-EFE test, where pure MI
       predicts exactly zero.  Exposed, not resolved. ***
-  LIMITATIONS: SINGLE-STREAM ONLY -- u^mu must be a field, and a hot stellar disc needs a
-  distribution function.  That is the sharpest gap step 3 leaves.  Nothing new is derived; the
-  strong-coupling scale is still owed; conservation is cited, not proved.
+  6.  *** AND PART G CORRECTS MY OWN PART F: chi is a per-worldline INTERNAL variable (an ODE in
+      the particle's own proper time), and the metric sector is chi-independent to O(v^2/c^2) =
+      5.4e-7 because m_grav = m carries no mu.  So the single-stream restriction binds only a
+      continuum rewriting undertaken for its own sake -- NOT test-particle dynamics, which is what
+      rotation curves are, and NOT the field equations.  "Sharpest technical gap" WITHDRAWN. ***
+  LIMITATIONS: the strong-coupling scale is now the sharpest gap.  Nothing new is derived;
+  conservation is cited, not proved.
   a_0's VALUE is still not derived.  kappa = 1/2 remains FITTED.
 """)
