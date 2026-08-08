@@ -364,7 +364,10 @@ def run_fit(data_logy, data_vt, mod, rng, label, kap_note=""):
 # Generic catalog ingestion (the DR4 entry point)
 # ----------------------------------------------------------------------
 def ingest_csv(path):
-    """CSV columns: sep_kAU, v_perp_kms, M1_msun, M2_msun, d_pc."""
+    """CSV columns: sep_kAU, v_perp_kms, M1_msun, M2_msun, d_pc.
+    OPTIONAL, for the anisotropy falsifier: l_gal, b_gal (degrees) and pa_deg, the
+    separation's position angle east of north.  If absent the anisotropy check declines
+    to run and says so -- it must never silently skip."""
     import csv
     rows = list(csv.DictReader(open(path)))
     s  = np.array([float(r['sep_kAU'])   for r in rows])*KAU
@@ -372,7 +375,95 @@ def ingest_csv(path):
     Mt = np.array([float(r['M1_msun'])+float(r['M2_msun']) for r in rows])
     gN = G*Mt*MSUN/s**2
     vt = vp/np.sqrt(G*Mt*MSUN/s)
-    return gN, vt
+    extra = {}
+    for col in ('l_gal', 'b_gal', 'pa_deg'):
+        if rows and col in rows[0]:
+            extra[col] = np.array([float(r[col]) for r in rows])
+    return gN, vt, extra
+
+
+# ----------------------------------------------------------------------
+# CHECKLIST ITEM 5 -- THE ANISOTROPY FALSIFIER (Amendment 2's pre-declared SIGN,
+# strengthened by Amendment 8's Route A).  Perpendicular pairs must show the LARGER
+# boost; the OPPOSITE sense at >= 3 sigma falsifies the derived external-field effect
+# independently of the aggregate gamma_v.
+#   Route A eigenvalues:  canonical gamma_par 1.03800 / gamma_perp 1.21385 (spread 0.17585)
+#                         alt       gamma_par 1.05977 / gamma_perp 1.25916 (spread 0.19939)
+# POWER, computed in real_research/reviews/mi_dr4_anisotropy_and_gated_2026.py (20/20):
+# only the SKY-PROJECTED angle is observable, and the projection dilution over the frozen
+# |b| > 15 deg sky is D = 0.2367 (in-plane closed form 4/(3 pi) = 0.4244), so the
+# OBSERVABLE split is 0.042-0.047 and reaches only 1.00-1.13 sigma at N = 30,000.
+# *** 3 sigma needs N ~ 2.1-2.7e5, SEVEN TO NINE TIMES the frozen sample. ***  Reported as
+# a directional check with its N attached, never as a test this sample settles.
+# ----------------------------------------------------------------------
+ANISO_EIG = {"canonical": (1.03800, 1.21385), "alt": (1.05977, 1.25916)}
+ANISO_DILUTION = 0.2367
+
+def anisotropy_split(gN, vt, extra, mod, rng, a0, label):
+    """Split by the projected angle between the separation and the Galactic-centre
+    direction, fit gamma in each half, and report the difference against the
+    pre-declared sign.  Declines loudly if the needed columns are absent."""
+    need = ('l_gal', 'b_gal', 'pa_deg')
+    if not all(c in extra for c in need):
+        print(f"  [aniso] {label}: DECLINED -- needs columns {need}; "
+              f"present: {sorted(extra) or 'none'}.  Not skipped silently.")
+        return None
+    l, b, pa = np.radians(extra['l_gal']), np.radians(extra['b_gal']), np.radians(extra['pa_deg'])
+    # position angle of the projected Galactic-centre direction at (l, b):
+    # the GC lies at l=0,b=0; its projection onto the sky at the star's position has
+    # PA_gc = atan2(-sin(l) cos(b_gc)=... ) -- for |b|>15 deg the dominant term is the
+    # gradient of Galactic longitude, so use the standard great-circle bearing to (0,0).
+    pa_gc = np.arctan2(np.sin(-l), np.cos(b)*np.tan(0.0) - np.sin(b)*np.cos(-l))
+    dphi = np.abs(np.arctan2(np.sin(pa - pa_gc), np.cos(pa - pa_gc)))
+    dphi = np.minimum(dphi, np.pi - dphi)            # fold to [0, pi/2]
+    par = dphi < np.pi/4
+    out = {}
+    for nm, sel in (("proj-PARALLEL", par), ("proj-PERPENDICULAR", ~par)):
+        if sel.sum() < 200:
+            print(f"  [aniso] {label}: {nm} half has only {sel.sum()} pairs (<200); not fitted")
+            continue
+        g, sg, *_ = run_fit(np.log10(gN[sel]/a0), vt[sel], mod, rng, f"{label} {nm}")
+        out[nm] = (g, sg)
+    if len(out) == 2:
+        (gp, sp_), (gq, sq) = out["proj-PARALLEL"], out["proj-PERPENDICULAR"]
+        d, sd = gq - gp, np.hypot(sp_, sq)
+        z = d/sd if sd > 0 else float('nan')
+        print(f"  [aniso] {label}: gamma_perp - gamma_par = {d:+.4f} +- {sd:.4f} "
+              f"({z:+.2f} sigma).  PRE-DECLARED SIGN: POSITIVE (perpendicular larger).")
+        print(f"  [aniso] expected observable split {ANISO_DILUTION*ANISO_EIG['canonical'][1]-ANISO_DILUTION*ANISO_EIG['canonical'][0]:+.4f} "
+              f"(3-D spread x dilution {ANISO_DILUTION}); 3 sigma needs N ~ 2.1-2.7e5, so at the "
+              f"frozen N this is a DIRECTIONAL check, not decisive.")
+        if z <= -3:
+            print("  [aniso] *** WRONG SENSE AT >= 3 SIGMA: this FALSIFIES the derived "
+                  "external-field effect independently of the aggregate gamma_v (Amendment 2) ***")
+    return out
+
+
+# ----------------------------------------------------------------------
+# CHECKLIST ITEM 6 -- THE GATED BRANCH AS A SECOND SCORED HYPOTHESIS.  Trap count STAYS 2,
+# so both branches are scored.  Amendment 8: gamma_gated = 1.00064-1.00117 at 10 kAU, with
+# Route A making the amplitude EXACTLY the kernel's Newtonian residual S = 1 - mu =
+# e^-sqrt(y); NOT flat across the window -- 0.001 sigma_fit at 2 kAU rising to 1.56
+# sigma_fit by 30 kAU, so falsifiable WITHIN the window by its SHAPE.
+# *** AGAINST INTEREST, computed: in the AGGREGATE the gated branch is 0.03-0.06 sigma from
+# Newton at the frozen N and would need N ~ 8.6e7 to separate.  An aggregate-only scorer
+# would report "Newtonian" for a universe in which the gated branch is TRUE. ***
+# ----------------------------------------------------------------------
+GAMMA_GATED_10KAU = (1.00064, 1.00117)
+GATED_RISE_SIGMA  = (0.001, 1.56)        # at 2 kAU and at 30 kAU (Amendment 8)
+
+def score_gated(g, sg, label):
+    """Report the gated branch alongside the ungated one, with its own power."""
+    lo, hi = GAMMA_GATED_10KAU
+    d_lo, d_hi = (g - lo)/sg, (g - hi)/sg
+    print(f"  [gated] {label}: distance to the GATED branch "
+          f"({lo:.5f}-{hi:.5f} at 10 kAU) = {d_hi:+.2f} to {d_lo:+.2f} sigma_fit")
+    print(f"  [gated] its aggregate separation from Newton is only "
+          f"{(hi-1)/sg:.3f} sigma at this precision (needs N ~ 8.6e7), so the AGGREGATE "
+          f"cannot distinguish gated from Newtonian -- the handle is the INTERNAL RISE, "
+          f"{GATED_RISE_SIGMA[0]} sigma_fit at 2 kAU to {GATED_RISE_SIGMA[1]} at 30 kAU.")
+    print(f"  [gated] 1.56 sigma is not 3: registered as a WATCH item, not a decisive test.")
+    return d_lo, d_hi
 
 # ----------------------------------------------------------------------
 # DR3-era dry run: El-Badry+2021 catalog, Banik-like cuts (transcribed from
@@ -521,10 +612,12 @@ def main():
 
     # -------- optional real-catalog runs --------
     if args.catalog:
-        gN, vt = ingest_csv(args.catalog)
+        gN, vt, extra = ingest_csv(args.catalog)
         print(f"\n[catalog] {args.catalog}: N={len(vt)}")
-        run_fit(np.log10(gN/A0_CAN), vt, mod_can, rng, "catalog [a0 canonical]")
-        run_fit(np.log10(gN/A0_ALT), vt, mod_alt, rng, "catalog [a0 alt footing]")
+        for fnm, a0v, modv in (("canonical", A0_CAN, mod_can), ("alt footing", A0_ALT, mod_alt)):
+            gc, sgc, *_ = run_fit(np.log10(gN/a0v), vt, modv, rng, f"catalog [a0 {fnm}]")
+            score_gated(gc, sgc, f"catalog [a0 {fnm}]")          # checklist item 6
+            anisotropy_split(gN, vt, extra, modv, rng, a0v, f"catalog [a0 {fnm}]")  # item 5
 
     if args.dry_run:
         print("\n" + "-"*78)
