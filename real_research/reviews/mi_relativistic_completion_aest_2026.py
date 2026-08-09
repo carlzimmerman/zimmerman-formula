@@ -8,13 +8,20 @@ Zlosnik 2021 PRL 127:161302 -- because it is the only relativistic MOND-class th
 the CMB and the matter power spectrum.  The framework's Route A kernel EMBEDS in it: the required
 asymptotics, convexity and bijection are all verified here from the framework's own parametric pair. ***
 
-And completing the theory produces a NEW, SHARP, FALSIFIABLE NUMBER that neither arm had:
+*** PART F IS WITHDRAWN.  READ THIS BEFORE READING PART F. ***
+Part F below computes that the CMB, cluster and galaxy requirements on how much the AeST scalar
+clusters are all met by a single Jeans scale lambda_J = 2.55-2.76 Mpc, and calls the resulting
+k ~ 3.5 h/Mpc suppression a falsifiable PREDICTION.  *** THAT IS WRONG, AND IT IS WITHDRAWN BY
+`mi_aest_jeans_nonlinear_verdict_2026.py` (23/23). ***  AeST's dust sector is a ghost condensate whose
+k^4 Jeans length at the natural scale M = rho_Lambda^(1/4) is 2.8e-11 Mpc -- ELEVEN ORDERS too small.
+Delivering 2.7 Mpc needs M twenty-two orders below the natural scale.  So Part F computes what the
+completion NEEDS; it does NOT show that AeST supplies it, and via k^4 it provably does not.
+Worse: with the Jeans length microscopic the scalar clusters like CDM and MOND double-counts,
+overshooting every regime by 2.06-4.42x.  This corpus had already banked that verdict in
+`mi_cosmo_perturbations_2026.py` and I failed to check it before publishing the more favourable claim.
+*** EVERYTHING ELSE IN THIS SCRIPT (Parts A-E, G, H) STANDS. ***
 
-*** THE COMPLETION IS OVER-DETERMINED IN THREE PLACES AT ONCE, AND IT IS SATISFIABLE BY ONE NEW SCALE.
-The CMB needs the scalar to be FULL dust (Omega ~ Omega_dm).  Clusters need that dust to cluster to
-only 11-26% of CDM's level at R500.  Galaxies need it to cluster to ~0% or the RAR breaks.  A single
-Jeans/coherence scale lambda_J = 2.6-2.8 Mpc satisfies ALL THREE.  Five clusters spanning a 5x mass
-range pin it to 8%.  That is a PREDICTION: matter-power suppression at k ~ 2.3/Mpc ~ 3.5 h/Mpc. ***
+Read Part F as: "here is what the completion REQUIRES", never as "here is what it predicts":
 
 --------------------------------------------------------------------------------------------------
 WHAT THE COMPLETION FIXES (Parts B, C, D)
@@ -303,8 +310,15 @@ check(expo["dust w=0"] == -3 and expo["Lambda w=-1"] == 0 and expo["radiation w=
 # =============================================================================================
 print()
 print("=" * 100)
-print("PART F -- *** THE NEW RESULT: a three-way over-determination, satisfiable by ONE scale ***")
+print("PART F -- *** WITHDRAWN AS A PREDICTION.  What the completion REQUIRES, not what it delivers ***")
 print("=" * 100)
+print("""
+  *** WITHDRAWAL NOTICE.  Everything computed in this Part is arithmetically correct and it is the
+  right question, but its conclusion was overstated: it shows that ONE Jeans scale would satisfy all
+  three requirements, and I originally called that a prediction of the completion.  It is not.
+  `mi_aest_jeans_nonlinear_verdict_2026.py` derives AeST's actual k^4 Jeans length -- 2.8e-11 Mpc at
+  the natural condensate scale, eleven orders too small, and twenty-two orders of tuning away from
+  what this Part needs.  Read every number below as a REQUIREMENT ON the completion. ***""")
 
 print("""
   Three independent requirements on how much the AeST scalar CLUSTERS, at three different scales:
@@ -339,9 +353,10 @@ LAM_LO, LAM_HI = min(lams), max(lams)
 LAM = sum(lams) / len(lams)
 spread = LAM_HI / LAM_LO
 check(spread < mp.mpf("1.15"),
-      f"F1  *** ONE scale fits all five clusters: lambda_J = {sig(LAM_LO,3)}-{sig(LAM_HI,3)} Mpc, "
-      f"spread {float(spread):.2f}x across a 5x mass range ***",
-      "the three-way over-determination is SATISFIABLE")
+      f"F1  ONE scale would fit all five clusters: lambda_J = {sig(LAM_LO,3)}-{sig(LAM_HI,3)} Mpc, "
+      f"spread {float(spread):.2f}x across a 5x mass range",
+      "*** this is what the completion REQUIRES. AeST does NOT deliver it -- see "
+      "mi_aest_jeans_nonlinear_verdict_2026.py ***")
 
 # F2 -- and check the OTHER two scales against that single lambda_J.  This is the real test:
 #       lambda_J was fitted to clusters only, so the CMB and galaxy ends are PREDICTIONS.
@@ -352,18 +367,18 @@ def xi_of_R(R_mpc, lam_mpc):
 xi_cmb = xi_of_R(mp.mpf("10"), LAM)
 xi_gal = xi_of_R(mp.mpf("0.02"), LAM)
 check(xi_cmb > mp.mpf("0.9") and xi_gal < mp.mpf("0.001"),
-      "F2  *** and the two ENDS, which were NOT fitted, both come out right: "
+      "F2  and the two ENDS, which were NOT fitted, are consistent with the same requirement: "
       f"xi(10 Mpc) = {float(xi_cmb)*100:.0f}% (CMB needs ~100%) and xi(20 kpc) = "
       f"{float(xi_gal)*100:.3f}% (RAR needs ~0%) ***",
-      "clusters set the scale; the CMB and galaxy limits are then PREDICTIONS, and they hold")
+      "clusters set the scale and the two ends are consistent -- but this is INTERNAL consistency of "
+      "the REQUIREMENT, not evidence the theory delivers it")
 
 # F3 -- the observable consequence.  Turn lambda_J into a wavenumber.
 k_supp = 2 * mp.pi / LAM
 check(mp.mpf("1") < k_supp / H_LITTLE < mp.mpf("10"),
-      f"F3  *** FALSIFIABLE PREDICTION: matter-power suppression at k ~ {sig(k_supp,3)}/Mpc "
-      f"= {sig(k_supp/H_LITTLE,3)} h/Mpc ***",
-      "squarely in the range probed by Lyman-alpha forest and cosmic shear -- testable with data "
-      "already in hand")
+      f"F3  the REQUIRED suppression sits at k ~ {sig(k_supp,3)}/Mpc = {sig(k_supp/H_LITTLE,3)} h/Mpc",
+      "*** NOT a prediction -- WITHDRAWN. AeST's k^4 mechanism cannot put the Jeans scale here "
+      "without 22 orders of tuning, and the Lyman-alpha fuzzy-DM floor closes the escape ***")
 
 # NEGATIVE CONTROL 1: is the tight spread in F1 PHYSICAL or an algebraic artifact of sampling along
 # the M ~ R^3 relation?  Break the relation deliberately and see if lambda_J moves.
@@ -569,11 +584,12 @@ print(f"""
   4.  *** THE g^-2 LORENTZ-VIOLATION PREDICTION IS RESTORED. ***  Pure Bekenstein-Milgrom had no
       preferred frame and lost it; AeST's unit-timelike aether brings it back.
 
-  5.  *** NEW RESULT -- THE THREE-WAY OVER-DETERMINATION IS SATISFIABLE BY ONE SCALE.  The CMB needs
-      full dust, clusters need 11-26% clustering, galaxies need ~0%.  One Jeans scale
-      lambda_J = {sig(LAM_LO,3)}-{sig(LAM_HI,3)} Mpc does all three -- five clusters over a 5x mass range pin it to
-      {float(spread):.2f}x, and the CMB and galaxy ends were NOT fitted yet come out at {float(xi_cmb)*100:.0f}% and {float(xi_gal)*100:.3f}%.
-      FALSIFIABLE PREDICTION: matter-power suppression at k ~ {sig(k_supp/H_LITTLE,3)} h/Mpc. ***
+  5.  *** WITHDRAWN AS A PREDICTION.  The three-way over-determination (CMB full dust / clusters
+      11-26% / galaxies ~0%) IS met by one Jeans scale lambda_J = {sig(LAM_LO,3)}-{sig(LAM_HI,3)} Mpc, five clusters
+      pinning it to {float(spread):.2f}x -- but that is what the completion REQUIRES, not what it delivers.
+      AeST's k^4 ghost-condensate Jeans length is 2.8e-11 Mpc at the natural scale: ELEVEN ORDERS
+      too small, and 22 orders of tuning from what is needed.  See
+      mi_aest_jeans_nonlinear_verdict_2026.py (23/23).  The k ~ {sig(k_supp/H_LITTLE,3)} h/Mpc "prediction" is GONE. ***
       Controls: breaking M~R^3 moves lambda_J {float(off_spread):.1f}x, so the tightness is physical; and the
       value is stable to the suppression form only within {float(form_spread):.2f}x, so treat it as order-of-magnitude.
       *** AND ONE CONTROL FIRED AGAINST INTEREST: lambda_J = {sig(all_lo,3)}-{sig(all_hi,3)} Mpc for EVERY viable MOND
