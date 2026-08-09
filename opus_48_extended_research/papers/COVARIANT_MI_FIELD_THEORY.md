@@ -3,7 +3,7 @@
 **Carl P. Zimmerman**
 Briar Creek Tech
 
-*Version 6 (2026-08-08). Changes from earlier versions are listed in §12.*
+*Version 7 (2026-08-09). Changes from earlier versions are listed in §12.*
 
 ---
 
@@ -735,6 +735,50 @@ consistency check fails, and each carries negative controls that must trip. All 
 - `mi_dr4_anisotropy_and_gated_2026.py` — §9, 20/20 checks. **New in v5.**
 - `mi_lensing_axis_2026.py` — §8, 24/24 checks. **New in v6.**
 - `mi_cluster_measurement_audit_2026.py` — §8 context, 27/27 checks. **New in v6.**
+- `mi_relativistic_completion_aest_2026.py` — §13.1, 28/28 checks. **New in v7.**
+- `mi_dbi_khronon_2026.py` — §13.2, 28/28 checks. **New in v7.**
+- `mi_dbi_cmb_class_run_2026.py` — §13.2, real CAMB+CLASS, 11/11 checks. **New in v7.**
+- `mi_virialisation_verdict_2026.py` — §13.3, 21/21 checks. **New in v7.**
+- `mi_shift_charge_ic_route_2026.py` — §13.4, 13/13 checks. **New in v7.**
+- `mi_lyalpha_ic_route_confrontation_2026.py` — §13.4, 11/11 checks. **New in v7.**
+- `mi_deser_levin_interpolation_2026.py` — §13.5, 24/24 checks. **New in v7.**
+- `mi_graviton_bath_ctp_2026.py` — §13.5, 15/15 checks. **New in v7.**
+- `mi_eps_tot_mode_counting_verdict_2026.py` — §13.5, 13/13 checks. **New in v7.**
+- `mi_distance_free_gbar_estimator_sparc_2026.py` — §13.5, 14/14 checks, run on raw SPARC. **New in v7.**
+- `mi_bulge_ml_cannot_be_pinned_2026.py` — §13.5, 10/10 checks. **New in v7.**
+- `mi_third_category_search_2026.py` — §13 context, 39/39 checks. **New in v7.**
+- `mi_condensate_vacuum_energy_a0_2026.py` — §13.5, 17/17 checks. **New in v7.**
+
+### Changes in v7
+
+1. **New §13, the largest addition since v1.** The v6 demotion was taken seriously: the
+   modified-gravity arm was completed as **AeST**, this paper's kernel was shown to embed in it, and
+   **§8's $21.2\sigma$ lensing exclusion becomes $0.601\sigma$** with $\gamma_{\rm PPN}=1$.
+2. **A published no-go is dissolved, with a theorem explaining why.** A bounded (DBI-type) $K(Q)$
+   reverses Blanchet & Skordis 2024's $455\times$ conflict, and for any power law $K\sim u^n$ the
+   early-time $w\to1/(n-1)$, so **only boundedness reaches $w=0$**. Verified with a real CAMB+CLASS run.
+3. **The interpolation function is derived exactly — and it is Milgrom 1999 eq. 9**, from the
+   Deser–Levin construction. The paper now states that without hedging. **The same derivation forces
+   $a_0=2cH_\Lambda$, excluded by SPARC at $15.6\sigma$, so the de Sitter–Unruh heuristic must not be
+   cited as support for $\kappa=\tfrac12$.**
+4. ***$\kappa$ is now reported as a MEASURED number, $0.551\pm0.043$***, via a distance-free estimator
+   verified exactly immune on 175 raw SPARC galaxies (0.00 ppm across a 10% distance error). It is
+   consistent with $\tfrac12$ ($1.20\sigma$) **and** with $1/\sqrt3$ ($0.61\sigma$). The claim
+   "$\kappa=\tfrac12$ exactly, unexplained" is replaced throughout.
+5. **Four claims of the author's own are withdrawn**: the "68% of ΛCDM dark matter in clusters" figure;
+   an $R^2$-lever cluster mechanism that satisfies *neither* published $\mu^2$ bound; "$\Lambda_D=O(1)$
+   is natural" (at $\Lambda_D=1$ the khronon peaks *at* recombination and CLASS gives a 325% TT
+   deviation); and a graviton-bath normalisation that landed on $\kappa=\tfrac12$ exactly but is
+   structurally wrong ($h_{00}=0$ in TT gauge). **A bug in the author's cluster audit is also recorded**:
+   its quoted $R_{500}$ field is the cluster *core* field.
+6. **Clusters are sourced from a primordial shift charge**, which resolves Mistele, McGaugh &
+   Hossenfelder 2023's $2500\times$ objection, and **Lyman-$\alpha$ becomes a test of the
+   external-field-versus-pointwise fork** rather than a constraint on the framework.
+7. **Amendment 9 to the frozen Gaia DR4 pre-registration was filed**, moving the target to
+   $\gamma_v=1.2139$ as *provisional* and re-deriving the $>1.20$ no-verdict edge to $>1.26$ from its
+   own definition, with the cost filed as a new declared risk.
+8. Thirteen scripts added. Nothing in §§2–7 is retracted; §8's demotion stands and is now *resolved*
+   by the completion rather than merely acknowledged.
 
 ### Changes in v6
 
@@ -840,6 +884,180 @@ terms and thereby made a check pass vacuously (found and replaced), and a quarti
 written as exact when its coefficient is 3 (corrected in §5.2).
 
 ---
+
+## 13. The completion, and the coefficient (new in v7)
+
+Version 6 demoted §§2–6 to an effective description of the test-particle sector inside a
+modified-gravity theory. This section reports what happened when that demotion was taken seriously and
+the modified-gravity arm was completed, tested, and pushed until it broke. **Two results are positive
+and structural; four are withdrawals of the author's own earlier claims; and the coefficient is now a
+*measured* number rather than an unexplained one.**
+
+### 13.1 The relativistic completion is AeST, and this kernel embeds in it
+
+Of TeVeS, BIMOND, Aether-Scalar-Tensor and pure Bekenstein–Milgrom, exactly one reproduces the CMB, so
+the choice is forced rather than preferred: **AeST** (Skordis & Złośnik 2021, PRL **127** 161302). The
+free function factorises, and this framework supplies its $Y$-sector:
+
+$$\mathcal{F}(Y,Q) \;=\; \frac{a_0^2}{8\pi G}\,\mathcal{F}_Y\!\left(\frac{Y}{a_0^2}\right) \;+\; K(Q).$$
+
+From this paper's own parametric pair $\mu = 1-e^{-u},\; x = u^2/\mu$: the deep-MOND requirement
+$\mu\to x$ holds exactly, $\mu\to1$ Newtonian, $x(u)$ is a bijection ($h(0)=0$, $h'=e^{-u}(1+u)>0$),
+the free function is **convex**, and the Newtonian residual is $e^{-\sqrt{y}} = 3.6\times10^{-3457}$ at
+Earth's orbit. **And lensing clears quantitatively**, which is what §8 said was owed: $\Phi=\Psi$ gives
+$\gamma_{\rm PPN}=1$ and $M_{\rm dyn}/M_{\rm lens}=1$ exactly, turning §8's $21.2\sigma$ into
+$0.601\sigma$. The $g^{-2}$ Lorentz-violation prediction, lost in pure Bekenstein–Milgrom, is
+**restored** by the aether.
+
+### 13.2 A bounded $K(Q)$ dissolves a published no-go, and a theorem says why
+
+Blanchet & Skordis 2024 (JCAP **11** 040, §4.3.1) rule out the quadratic $K(Q)=\mu^2(Q-1)^2$ — the form
+this completion would naturally use — because cosmology forces $\mu^{-1}\lesssim0.22$ kpc while MOND
+needs $\gtrsim100$ kpc: a $455\times$ conflict with **disjoint** intervals. Replacing it with a
+**bounded (DBI-type)** function,
+
+$$K(Q) \;=\; -M^4 + \mu^{2}\Lambda_D^{2}\left[1-\sqrt{1-u^{2}/\Lambda_D^{2}}\,\right], \qquad u \equiv Q-Q_0,$$
+
+reverses the constraint rather than relaxing it. $K'$ diverges as $u\to\Lambda_D$ so the shift current
+can grow as $a^{-3}$ at all early times, while $K$ itself **saturates** — bounded pressure with
+diverging density gives $w\to0$, so the khronon is **dust** at early times instead of stiff. Cosmology
+then becomes a *lower* bound on $\mu^{-1}$, pointing the same way as MOND. At $\mu^{-1}=100$ kpc the
+quadratic gives $w(a=3\times10^{-5})=0.9997$, failing by $61\times$; the bounded form gives
+$7.3\times10^{-5}$, a $226\times$ margin, ghost-free ($K''>0$) and subluminal throughout.
+
+**Theorem.** For any power law $K\sim u^{n}$ the early-time equation of state is $w\to1/(n-1)$:
+quadratic $1$, quartic $1/3$, sextic $1/5$ — all fail. **No finite power reaches $w=0$; only
+boundedness does.** That is precisely why the published polynomial escape needs $K_3\sim10^{5}$, which
+its own authors call unnaturally large, while the bounded form needs no large number at all.
+
+**A real CMB run, not a consistency argument.** With CAMB and CLASS: at $\Lambda_D\le10^{-2}$ the
+khronon's sound speed at recombination is $c_s^2=2.9\times10^{-8}$ and the TT spectrum is
+indistinguishable from CDM (0.069%, with $P(k=0.2)$ to 1.7%). **This corrected an error of the
+author's**: $\Lambda_D=O(1)$ was called natural, but there the khronon's $w$ and $c_s^2$ peak at 0.207
+and 0.250 *at* recombination ($z\approx1749$) and CLASS returns a 325% TT deviation. The CMB forces
+$\Lambda_D\lesssim10^{-2}$. Transience is load-bearing: holding $c_s^2$ at its peak for all time
+destroys $P(k=0.2)$, so **the acoustic peaks are verified and the post-recombination growth history is
+not.**
+
+### 13.3 Dark matter in this completion: no particle, and none in galaxies
+
+AeST fits the CMB *because* its scalar is dust, so **a dark component exists at the full
+$\Omega_{\rm dm}$** — removing it moves $H_3/H_1$ by 54%, and no refit of $A_s,n_s,H_0,\omega_b,\tau$
+absorbs that. What does *not* exist is a dark-matter **particle**: the component is the $Q$-sector of
+the same scalar whose offset supplies $\Lambda$ ($w=-1$ exactly at the minimum) and whose $Y$-sector
+supplies MOND. One function, three jobs.
+
+And it is **absent where rotation curves are measured**. AeST's quasi-static equation carries a
+Helmholtz term, so $\rho_c=-\mu^2\Phi/4\pi G$ tracks the *potential*, not the baryon density: for a
+flat rotation curve $\rho_c$ is asymptotically flat and $M_c\sim r^3$ — centrally **evacuated**, the
+opposite of NFW. Hence $\xi\propto R^2$ and the galaxy-to-cluster ratio is parameter-free,
+$\xi(10\,{\rm kpc})/\xi(R_{500})=5.1\times10^{-5}$. Clusters can carry the required $\xi=0.11$–$0.26$
+while galaxies carry $\xi\sim10^{-5}$, an RAR cost of $6\times10^{-5}$ dex against a 0.034 dex intrinsic
+scatter. **The defensible statement is "no dark-matter particle, and none in galaxies" — not "no dark
+matter."**
+
+Two corrections belong here. First, **a cluster figure of the author's is withdrawn**: "the kernel
+removes only ~32% of cluster dark matter, leaving 68%" combined $1/f_{\rm bar}$ with a banked
+$\eta_{\rm req}=2.334$ additively, which is incoherent. Computed directly and self-consistently — the
+back-reaction that added mass raises $y$ and *lowers* $\nu$ — the kernel removes **74–89%**, leaving
+11–26%. Second, **a bug in the author's own cluster audit**: its $g=2.02\times10^{-9}\,$m s$^{-2}$ is
+the field at $\approx0.19$ Mpc, the cluster *core*, not $R_{500}$; at true $R_{500}$ clusters sit at
+0.33–0.58 $a_0$, near or below $a_0$, so that audit's quasi-Newtonian premise is wrong.
+
+### 13.4 Clusters from a primordial shift charge, and it resolves a published objection
+
+The dust amount $I_0$ is the conserved Noether charge of the shift symmetry $\varphi\to\varphi+c$, hence
+an *integration constant* fixed by an initial condition. If the amount is an IC then so is its spatial
+distribution, and a conserved charge is carried rather than created — so clusters can be
+khronon-rich for the same reason they are baryon-rich. This removes the cluster job from $\mu$, and
+that single change **resolves the objection in Mistele, McGaugh & Hossenfelder 2023** (A&A **676** A100),
+whose Table 1 needs $\mu^2\gtrsim1$ Mpc$^{-2}$ for clusters but $\lesssim0.001$ for galaxy weak lensing
+— disjoint, up to $2500\times$. With clusters sourced primordially only the weak-lensing bound survives,
+and $\mu^2=5.2\times10^{-8}$ satisfies it by $1.9\times10^{4}$.
+
+**It also kills a mechanism proposed one day earlier by the author**: the $R^2$ lever's required
+$\mu^{-1}=3.13$ Mpc gives $\mu^2=0.102$, which *violates* the weak-lensing bound by $102\times$ and
+falls $9.8\times$ short of the cluster bound — it satisfies **neither**.
+
+**Lyman-$\alpha$ does not exclude the IC route**, and the naive objection fails structurally: the forest
+observable is the MOND-enhanced total $\nu(y)(M_b+M_k)$, not the khronon's transfer function. On the
+pointwise branch the compensation is the right size — at $z=3$, $R_c\approx1$ Mpc, $\delta\approx20$ the
+forest sits at $\nu=4.08$ against a required 4.00, a 1.8% match from independent inputs. On the
+external-field branch the forest is Newtonian ($\nu=1.004$) and the route is excluded at $4\times$. **So
+Lyman-$\alpha$ now tests that fork**, separating the branches by $30\times$ the forest's 10% systematic
+floor. The $(R_c,\delta)$ spread is $5.2\times$, so this is an order-of-magnitude pass, not a clearance.
+
+### 13.5 The coefficient: what is derived, what is not, and what is measured
+
+**The interpolation function is derived, exactly.** From the Deser–Levin temperature of an accelerated
+observer in de Sitter, $T\propto\sqrt{a^2+(cH)^2}$, plus inertia responding to the **excess** over the
+ambient bath, plus a Newtonian-limit normalisation that is forced rather than chosen:
+
+$$\mu(a)=\frac{\sqrt{a^{2}+(cH)^{2}}-cH}{a} \;\;\Longrightarrow\;\; g_{\rm obs}=\sqrt{g_{\rm bar}^{2}+a_0 g_{\rm bar}}, \qquad \nu=\sqrt{1+1/y}.$$
+
+Nothing fitted. **This is Milgrom 1999** (Phys. Lett. A **253** 273, eq. 9), from exactly this
+construction; the interpolation is not this framework's contribution, and this paper now says so
+without hedging.
+
+**And the same derivation forces $a_0=2cH_\Lambda=1.083\times10^{-9}$, which SPARC excludes at
+$15.6\sigma$** (deep-MOND $g\propto\sqrt{a_0}$, so $11.6\times$ is a 0.53 dex offset against 0.034 dex).
+The construction is **rigid**: the power is forced to $n=1$ by the two MOND limits, the baseline to the
+ambient de Sitter temperature, and the normalisation to unity by the Newtonian limit. No variant yields
+$cH/Z$. **Therefore the de Sitter–Unruh heuristic must not be cited as support for $\kappa=\tfrac12$: it
+motivates the form and gets the scale wrong by an order of magnitude.** The apparent "exactly $2Z$"
+discrepancy is a **tautology** — $(2cH)/(cH/Z)=2Z$ identically for any $Z$, and Milgrom's rival $2\pi$
+gives $4\pi$ by the same algebra.
+
+**Mechanism routes for $\kappa$ itself.** Every route that ties $a_0$ to $\Lambda$ using only
+$\Lambda,G,c$ produces the same algebra with a convention-dependent residue, i.e. a **relabelling**:
+$a_0=m_{\rm cond}/(4\sqrt{\pi})$ is algebraically identical to $\tfrac12\sqrt{G\rho_\Lambda}$ and to
+$Z=2\sqrt{8\pi/3}$. A graviton-bath calculation does give the right **form** — the de Sitter horizon
+entropy cancels the Planck suppression exactly, $S_{\rm dS}GH^2=\pi$ identically, leaving
+$\kappa^{2}=8\pi\epsilon_{\rm tot}$ with $\epsilon_{\rm tot}$ a pure number — but **not the number**:
+five defensible readings span $\kappa=0.013$–$2.047$, and the one landing on $\tfrac12$ exactly is
+**structurally wrong**, because $X=h_{\mu\nu}u^\mu u^\nu = h_{00}$ vanishes in TT gauge for a static
+worldline and is $(v/c)^2$-suppressed *and velocity-dependent* otherwise, which breaks universality.
+
+**So $\kappa$ is reported here as a measured quantity.** Using a **distance-free** estimator — $g_{\rm
+bar}=GM/R^{2}\propto F/\theta^{2}$ is exactly invariant under $D\to D(1+\delta)$ while
+$g_{\rm obs}\propto1/D$ is not, so profiling over a free vertical offset removes the distance-scale
+systematic entirely (verified on 175 SPARC galaxies: 0.00 ppm across a 10% distance error, against
+28.9% for the standard fit) — the stat-plus-distance budget falls $6.83\%\to1.84\%$, and
+
+$$\boxed{\;\kappa \;=\; 0.551 \pm 0.043\;}$$
+
+$1.20\sigma$ from $\tfrac12$ and $0.61\sigma$ from $1/\sqrt3$: **consistent with both.** The residual
+error is mass-to-light dominated, and that is structural rather than technological. The bulge M/L can
+neither be measured (the free four-parameter fit runs away to $a_0=4.2\times$ canonical) nor eliminated:
+cutting to the 143 bulgeless galaxies makes $\Upsilon_{\rm bul}$ irrelevant and returns
+$\kappa=0.4996$, but that is a **choice of $\Upsilon_{\rm disk}=0.5$** — at the value this framework's
+own RAR fit prefers, $\Upsilon_{\rm disk}=0.70$, the same estimator gives $\kappa=1.108$. Only 2.4% of
+bulgeless points lie above the knee, and below it $a_0$ and the offset are exactly degenerate. Refusing
+the (model-dependent) bulge/disc decomposition makes it worse still, $5.73\times$ versus $1.09\times$.
+
+**The honest form of the central claim is therefore $a_0=\kappa c\sqrt{G\rho_\Lambda}$ with $\kappa$
+measured $=0.551\pm0.043$, consistent with $\tfrac12$ — not "$\kappa=\tfrac12$ exactly, unexplained."**
+The observational floor is $\approx3.9\%$ on $a_0$ (helium, HI self-absorption, CO-dark H$_2$),
+independent of sample size, distances or stellar populations, so this line caps at
+$\kappa\pm0.020$ — enough to separate $\tfrac12$ from $1/\sqrt3$ at $\approx4\sigma$, never enough to
+establish a rational.
+
+### 13.6 The assembled action, and the registration
+
+The full action with the factorised $\mathcal{F}(Y,Q)$, a fourteen-row verified table each backed by a
+named committed script, an honest parameter count (**four dark-sector numbers against ΛCDM's two** —
+not fewer, but $\Lambda$, dark matter and MOND from *one* function) and an eight-item not-claimed list
+is written out separately in `THE_COMPLETION.md`, deposited alongside.
+
+**Amendment 9 to the frozen Gaia DR4 pre-registration was filed on 2026-08-09**, moving the operative
+arm from modified inertia to modified gravity and the wide-binary target from $\gamma_v=1.1582$ to
+$\gamma_v=\sqrt{\nu(y_{\rm extN})}=1.2139$ (canonical) / $1.2592$ (alt), **registered as provisional**
+pending the full nonlinear AQUAL-EFE solve. The $>1.20$ no-verdict edge was **re-derived from its own
+stated definition** — "above every EFE-saturated target", which the new target falsified — to $>1.26$,
+with the cost filed as a new declared risk: the band 1.20–1.26 becomes scoreable, and the DR3 dry run's
+1.205 sits in it, excluded on §1.6's own grounds and not on the edge. All eight prior hash files were
+left unmodified; the new digest is recorded in `AMENDMENT9_HASH.txt`.
+
 
 ## References
 

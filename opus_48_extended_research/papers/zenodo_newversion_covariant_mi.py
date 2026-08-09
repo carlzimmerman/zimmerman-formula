@@ -30,7 +30,7 @@ RR = "real_research/reviews"
 BASE = "https://zenodo.org/api"
 
 STEM = "COVARIANT_MI_FIELD_THEORY"
-RID = 21855374   # v5; v4 21855252, v3 21855217, v2 21855003, v1 21854915 (concept 21854914)
+RID = 21863384   # v7; v6 21855681, v5 21855374, v4 21855252, v3 21855217, v2 21855003, v1 21854915 (concept 21854914)
 META_PATH = f"{PAP}/{STEM}.zenodo.json"
 
 FILES = [
@@ -46,6 +46,20 @@ FILES = [
     f"{RR}/mi_dr4_anisotropy_and_gated_2026.py",
     f"{RR}/mi_lensing_axis_2026.py",
     f"{RR}/mi_cluster_measurement_audit_2026.py",
+    f"{PAP}/THE_COMPLETION.md",
+    f"{RR}/mi_third_category_search_2026.py",
+    f"{RR}/mi_relativistic_completion_aest_2026.py",
+    f"{RR}/mi_dbi_khronon_2026.py",
+    f"{RR}/mi_dbi_cmb_class_run_2026.py",
+    f"{RR}/mi_virialisation_verdict_2026.py",
+    f"{RR}/mi_shift_charge_ic_route_2026.py",
+    f"{RR}/mi_lyalpha_ic_route_confrontation_2026.py",
+    f"{RR}/mi_condensate_vacuum_energy_a0_2026.py",
+    f"{RR}/mi_deser_levin_interpolation_2026.py",
+    f"{RR}/mi_graviton_bath_ctp_2026.py",
+    f"{RR}/mi_eps_tot_mode_counting_verdict_2026.py",
+    f"{RR}/mi_distance_free_gbar_estimator_sparc_2026.py",
+    f"{RR}/mi_bulge_ml_cannot_be_pinned_2026.py",
 ]
 
 EMAIL_RE = re.compile(r"[\w.+-]+@[\w-]+\.[\w.]{2,}")

@@ -271,8 +271,13 @@ check(kwin is not None and mp.mpf(kwin.group(1)) == mp.mpf("0.95")
       "D7  *** and declared risk (c) is implemented: the frozen kappa window (0.95, 1.05) is coded, "
       "so a fit landing outside it emits 'systematic-limited, no verdict' per its own declared "
       f"consequence ***", f"KAPPA_WINDOW = {kwin.groups() if kwin else None}")
-check(edge is not None and mp.mpf(edge.group(1)) == mp.mpf("1.20"),
-      "D8  and declared risk (d) is implemented: the 1.20 no-verdict edge is coded, so a "
+# AMENDMENT 9 (2026-08-09) RE-DERIVED the no-verdict edge from its own stated definition ("above
+# every EFE-saturated target"), which the MG target 1.2592 falsified.  The edge is now 1.26 and the
+# pipeline carries that; this guard is updated to match, and it accepts ONLY the amended value so a
+# silent revert to 1.20 would trip it.
+check(edge is not None and mp.mpf(edge.group(1)) == mp.mpf("1.26"),
+      "D8  and declared risk (d) is implemented at AMENDMENT 9's RE-DERIVED edge: the 1.26 no-verdict "
+      "edge is coded (was 1.20 before Amdt 9 moved the arm to MG), so a "
       "magnitude-convention result above it is flagged PRE-DECLARED UNSCOREABLE",
       f"NOVERDICT_EDGE = {edge.group(1) if edge else None}")
 check(has_fn and kwin is not None and edge is not None,
