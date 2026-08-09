@@ -1,3 +1,22 @@
+# ✅ AMENDMENT 9 — **FILED 2026-08-09**
+
+**This draft is superseded. Amendment 9 was FILED on 2026-08-09 on Carl's explicit instruction.**
+The registration body now carries the amendment block; `AMENDMENT9_HASH.txt` records
+sha256 = e4cbef5b849d817205f35dcb415010abd28b5493837718fd521d56ffd7189ec8.
+All eight prior hash files were left unmodified.
+
+**Both blocking issues were resolved rather than waived:**
+1. The >1.20 no-verdict edge was **re-derived from its own stated definition** ("above every
+   EFE-saturated target"), which had become factually false once the MG target reached 1.2592.
+   New edge 1.26, by the same construction that set the original. The cost — 1.20–1.26 becomes
+   scoreable, and the DR3 dry run's 1.205 sits there — is filed as a NEW DECLARED RISK.
+2. The target is registered **PROVISIONAL**, not at parity, because it is the point-field
+   isotropic asymptote and the full nonlinear AQUAL-EFE solve is still owed.
+
+Kept below for the audit trail: the draft as it stood before filing.
+
+---
+
 # AMENDMENT 9 — DRAFT, **NOT FILED**
 
 **Status: prepared but NOT applied. PREREGISTRATION_DR4.md is untouched and its hash still matches

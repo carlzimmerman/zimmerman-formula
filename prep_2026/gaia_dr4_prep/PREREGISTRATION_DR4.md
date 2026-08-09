@@ -823,6 +823,80 @@ gamma by −0.0150 (flagged systematic, §1.5). DR3 dry run: §1.6 numbers,
 > bug that printed a falling a₀ price where a rising one belongs, and four stale docstring numbers were fixed
 > in the source on 2026-08-03 before this amendment was filed.
 
+> ### 🚨 AMENDMENT 9 — 2026-08-09, ADDED IN THE OPEN BEFORE DR4. READ BEFORE SCORING.
+>
+> **THE FRAMEWORK'S OPERATIVE ARM CHANGES FROM MODIFIED INERTIA TO MODIFIED GRAVITY, AND THE
+> WIDE-BINARY TARGET MOVES WITH IT.** The ranges do not overlap, so this is amendment-grade. Filed with
+> the halves separated, and with the one scoring defect it creates repaired in the open rather than
+> left for a scorer to discover.
+>
+> **(a) WHY THE ARM CHANGED — a 21σ exclusion, not a preference.** Modified inertia requires the metric
+> to stay baryon-sourced, and photons have no rest mass to modify. It therefore predicts
+> M_dyn/M_lens = 1/f_bar ≈ 6.44 in clusters against an observed 1.0–1.3: **≈21.2σ**, and 4.2σ even on a
+> fivefold-inflated systematic. All three rescue routes are closed: the enhancement cannot sit in both
+> the metric and the inertia (doing both gives a = ν²g_bar); the Randers–Finsler null cone degenerates
+> at μ = ½ with Euclidean signature below, unavoidably for any interpolation reaching deep MOND; and
+> Bekenstein–Milgrom's point-particle limit is memoryless. **MI-as-fundamental is closed. This is a
+> NARROWING, not a refutation — a₀ = κc√(Gρ_Λ) is arm-independent and survives intact.**
+>
+> **(b) SUPERSEDED / AMENDED TO.** Amendment 8's in-force γ_v = 1.1582 (range 1.1311–1.1964 radial /
+> 1.1339–1.2007 magnitude) is the **modified-inertia** value and is superseded. The modified-gravity
+> arm predicts, for an AQUAL-type external-field effect where the boost is isotropic and no orientation
+> average is needed, **γ_v = √ν(y_extN) = 1.2139 (canonical footing) / 1.2592 (alt footing)**.
+> **REGISTERED AS PROVISIONAL.** The superseded number came from a full nonlinear per-star EFE solve
+> validated against an independent linear-response tensor calculation to 2.9×10⁻⁵; this replacement is
+> the **point-field isotropic asymptote only**, and it reproduces the corpus's independently recorded
+> perpendicular eigenvalue to 10⁻⁴ but is NOT the same grade of calculation. **A full nonlinear
+> AQUAL-EFE solve is OWED, and until it exists this target carries provisional status.** Filing it at
+> parity with the number it replaces would overstate it.
+>
+> **(c) THE >1.20 NO-VERDICT EDGE IS RE-DERIVED FROM ITS OWN DEFINITION, NOT MOVED FOR CONVENIENCE.**
+> As frozen, that row reads "above every EFE-saturated target, approaching the no-EFE benchmark". Both
+> clauses are constructive, and the first is now **factually false**: the MG EFE-saturated target
+> reaches 1.2592. The edge was originally placed essentially AT the top of the then-current
+> EFE-saturated range (1.20 against a top target of 1.20069, with the 0.00069 overshoot filed as
+> Amendment 8 declared risk (d)). **Applying that same construction to the current range moves the edge
+> to 1.26**, just above 1.2592, leaving 1.26–1.33 as the contamination-guard zone bounded above by the
+> unchanged no-EFE / full-MOND benchmark 1.33. Rows below 1.145 are untouched; the row "1.145 – 1.20"
+> reads "1.145 – 1.26" and ">1.20" reads ">1.26".
+> **NEW DECLARED RISK, and it is the cost of this repair: the band 1.20–1.26 becomes SCOREABLE where it
+> was previously unscoreable, and the DR3 dry run's 1.205 sits inside it.** That dry run remains
+> excluded on its own independent grounds — §1.6's looser cuts and absent triple screens — and NOT on
+> the strength of the edge; a scorer must not read this move as retroactively converting it into
+> evidence. Had the edge been left at 1.20 the framework's own prediction would have been pre-declared
+> unscoreable, which is the same class of defect Amendment 1 fixed, Amendment 7 re-found and Amendment
+> 8 called the most important thing to repair. This is its fourth occurrence and it is repaired here.
+>
+> **(d) FOR the framework.** (i) The new range is **disjoint** from the superseded one and the
+> separation is 2.68σ at the frozen N, so **DR4 can now distinguish the two arms** — which the MI-only
+> reading could not do. (ii) The directional external-field test flips from kill-switch to **expected
+> signal**: pure MI predicted *exactly zero* aligned rotation-curve asymmetry, AQUAL-class theories
+> predict 1–4% with a definite sign, and the corpus's first firing of that test gave Â = +2.95 at
+> p = 0.029 **with the AQUAL-class sign**. A measurement that was evidence against the superseded arm
+> is evidence for the new one, and it required no new data. (iii) Amendment 8's enforceability gain
+> survives: a Newtonian 2–30 kAU result remains evidence against, and more strongly.
+>
+> **(e) AGAINST the framework.** (a) The provenance mismatch of (b) — provisional, not parity.
+> (b) The scoring repair of (c) carries a real cost, declared there. (c) **The Cassini quadrupole
+> tension (3–15σ RAR-versus-Q₂) is INHERITED by the modified-gravity arm and was NOT carried by
+> modified inertia.** (d) **a₀ = (2/3)c·m²/g and the ζ-pole no-go do NOT transfer** — a
+> Bekenstein–Milgrom theory has no memory kernel and no first moment; two headline results of the MI
+> programme are gone. (e) The g⁻² Lorentz-violation prediction is **gone in pure Bekenstein–Milgrom**,
+> which has no preferred frame; it survives only under an AeST-type completion, so which completion is
+> adopted decides whether the framework keeps that prediction. (f) **Clusters are unchanged**: the
+> residual is a kernel property and the cosmic-baryon-budget wall stands.
+>
+> **(f) UNCHANGED.** The estimator; the 16-row frozen cut table; the error model; the strictness
+> ladder; the NSS screen; the frozen N = 30,000; both a₀ footings; §2 void per Amendment 5; **Amendment
+> 7(e)'s reporting rule — raw γ̂ with σ_fit and both distances, never a single verdict word — REAFFIRMED
+> WITHOUT WEAKENING**; the κ-window declared risk from Amendment 8(c); the a₀-degeneracy flag; and
+> **κ = ½ FITTED, NOT DERIVED**. No measurement moves. Decision-table rows below 1.145 are untouched.
+>
+> **SOURCES.** `real_research/reviews/mi_lensing_axis_2026.py` (24 checks, exit 0);
+> `mi_finsler_null_cone_2026.py` (23, exit 0); `mi_point_particle_limit_2026.py` (19, exit 0);
+> `mi_mg_arm_standing_2026.py` (18, exit 0). The arm switch was forced by the lensing script, which was
+> written to test the MI arm and killed it.
+
 ---
 
 ## SECTION 2 — s^TX SME boost-dipole template (Door 4B, Front A)

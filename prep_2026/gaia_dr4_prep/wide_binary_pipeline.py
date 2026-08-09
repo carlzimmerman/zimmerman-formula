@@ -94,7 +94,10 @@ GEXT_PHYS = 1.9*A0_CAN   # 1.778e-10 m/s^2 physical (banked solar-neighborhood)
 # ----------------------------------------------------------------------
 # TARGETS -- RETARGETED TO AMENDMENT 8 (2026-08-03), "Route A".
 # The chain moved this constant four times and this file had not followed it:
-#     frozen 1.09 -> Amdt 3 1.0246 -> Amdt 4(d)/7 1.0310 -> Amdt 8 1.1582
+#     frozen 1.09 -> Amdt 3 1.0246 -> Amdt 4(d)/7 1.0310 -> Amdt 8 1.1582 -> Amdt 9 1.2139
+#     Amdt 9 (2026-08-09) switched the ARM: modified INERTIA is excluded at 21.2 sigma by lensing,
+#     so the in-force target is now the modified-GRAVITY value. REGISTERED AS PROVISIONAL -- it is
+#     the point-field isotropic asymptote, NOT the full nonlinear AQUAL-EFE solve, which is OWED.
 # Amendment 8 adopted the EXPONENTIAL kernel nu = 1/(1 - e^-sqrt(y)) because BOTH
 # power-law kernels fail the solar system (alpha=1 by 1279x the Earth/Mars bound;
 # alpha=2 by 8.5-12.4x the Mars ranging budget, its 1/g tail binding at the SUN via
@@ -103,15 +106,26 @@ GEXT_PHYS = 1.9*A0_CAN   # 1.778e-10 m/s^2 physical (banked solar-neighborhood)
 # NOTHING FROZEN IS TOUCHED BY THIS EDIT: the cut table, estimator, error model,
 # NSS screen, bin edges, kappa anchor and N = 30,000 are all unchanged.
 # ----------------------------------------------------------------------
-GAMMA_MI  = 1.1582       # IN FORCE, Amdt 8: orientation-averaged, radial convention
+GAMMA_TARGET = 1.2139    # *** IN FORCE, Amdt 9: modified-GRAVITY arm, canonical footing.
+                         #     PROVISIONAL (point-field isotropic asymptote). ***
+GAMMA_TARGET_ALT = 1.2592  # Amdt 9, alt footing
+GAMMA_MI  = 1.1582       # SUPERSEDED by Amdt 9 (was Amdt 8 in-force). Kept for the disjointness
+                         #     check and the 2.68-sigma arm separation; NOT the target.
 GAMMA_MI_RANGE_RAD = (1.1311, 1.1964)   # Amdt 8, radial convention
 GAMMA_MI_RANGE_MAG = (1.1339, 1.2007)   # Amdt 8, MAGNITUDE convention (sec 1.1's headline)
-GAMMA_MG  = 1.137        # framework-as-MG (AQUAL-EFE, framework nu; banked/frozen)
+GAMMA_MG  = 1.137        # STALE per Amdt 4(i); superseded by GAMMA_TARGET above
 GAMMA_MOND= 1.33         # conventional-MOND benchmark injection (not framework)
 
 # Amendment 8 declared risks, implemented below rather than left in the document:
 KAPPA_WINDOW    = (0.95, 1.05)   # frozen; outside => "systematic-limited, no verdict"
-NOVERDICT_EDGE  = 1.20           # frozen; a MAGNITUDE-convention result above this is
+NOVERDICT_EDGE  = 1.26           # *** Amdt 9: RE-DERIVED from the row's own definition
+                                 # ('above every EFE-saturated target') because the MG target
+                                 # reaches 1.2592, making the old 1.20 premise FALSE. Same
+                                 # construction as the original (edge just above the top target).
+                                 # DECLARED RISK: 1.20-1.26 is now SCOREABLE, and the DR3 dry
+                                 # run's 1.205 sits there -- excluded on sec 1.6's own grounds
+                                 # (looser cuts, no triple screens), NOT on the edge.
+# (superseded note) frozen; a MAGNITUDE-convention result above this is
                                  # PRE-DECLARED UNSCOREABLE (Amdt 8 risk (d): the
                                  # alt-footing/primary corner is 1.20069, 0.00069 above)
 
