@@ -338,3 +338,8 @@ head("SUMMARY")
 np_, nf = sum(1 for _,c,_ in CHECKS if c), sum(1 for _,c,_ in CHECKS if not c)
 for n,c,d in CHECKS: print(f"   [{'PASS' if c else 'FAIL'}] {n}")
 print(f"\n   {np_}/{np_+nf} checks passed")
+
+# --- exit-on-failure, added on review: the corpus convention is that a script with a failing
+#     check must exit NON-ZERO, or the check is decoration.  This was missing as committed.
+import sys as _sys
+_sys.exit(1 if nf else 0)
