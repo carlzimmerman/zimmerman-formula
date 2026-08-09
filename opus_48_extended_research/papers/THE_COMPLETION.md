@@ -3,8 +3,14 @@
 **A relativistic field theory carrying a₀ = κc√(Gρ_Λ)**
 
 Zimmerman, Carl P. — Briar Creek Tech
-Assembled 2026-08-09. Every numbered property below is backed by a committed, runnable script that
-exits non-zero on failure. Scripts named at each line.
+Assembled 2026-08-09; **v2 same day**. Every numbered property below is backed by a committed, runnable
+script that exits non-zero on failure. Scripts named at each line.
+**v2 changes:** row 13's shift-charge cluster route is **withdrawn** (killed by the 1-Mpc
+confrontation: smooth accretion restores ξ→1 for any cold IC) and replaced by the **a₀-bump
+environment response**, which passed a five-environment matrix AND its perturbation health check;
+the health check carved two hard constraints (Λ_D ≤ 8.4×10⁻⁷; amplitude ≤ 2.7× fiducial). The
+coefficient row now reads as **measured**: κ = 0.551 ± 0.043, ±0.063 if the H₀ tension is carried as a
+systematic (κ ∝ a₀/H₀).
 
 ---
 
@@ -30,8 +36,16 @@ in the choice of the free function 𝓕, which **factorises**:
 
 $$
 \boxed{\;\mathcal{F}(Y,Q) \;=\; \underbrace{\frac{a_0^2}{8\pi G}\,\mathcal{F}_Y\!\left(\frac{Y}{a_0^2}\right)}_{\text{MOND}}
-\;+\;\underbrace{K(Q)}_{\text{dark energy + dark matter}}\;}
+\;+\;\underbrace{K(Q)}_{\text{dark energy + dark matter}}\;+\;\underbrace{A\,B\!\left(\tfrac{Y}{a_0^2}\right)(Q-Q_0)^2}_{a_0\text{-bump response (v2)}}\;}
 $$
+
+$$B(y)=\frac{y}{(1+y)^2}$$
+
+The third term (v2) is a **position-dependent Helmholtz mass** $\mu^2_{\rm eff}=A\,B(g^2/a_0^2)$
+**peaked at the framework's own $a_0$** — the location costs nothing ($Y/a_0^2$ is already the
+Y-sector's normalisation); one new calibrated amplitude $A\approx1.7$ Mpc$^{-2}$. *The dark sector's
+response is resonant at the MOND transition, and clusters are the cosmic objects that live at $a_0$*
+($R_{500}$ at $0.33$–$0.58\,a_0$).
 
 ### 1.1 The Y-sector — MOND
 
@@ -88,8 +102,10 @@ Parameters: **M** (vacuum scale, M⁴ = ρ_Λ), **μ** (Helmholtz mass), **Λ_D*
 | 10 | **BTFR** | exact, from convexity | `mi_route_a_field_theory_2026.py` |
 | 11 | **g⁻² Lorentz violation** | **restored** by the aether (pure Bekenstein–Milgrom had lost it) | `mi_relativistic_completion_aest_2026.py` |
 | 12 | **a₀ tied to Λ** | a₀ = m_cond/(4√π) with m_cond = M²/(√2 M_Pl), M⁴ = ρ_Λ — agrees to **0.076%** | `mi_condensate_vacuum_energy_a0_2026.py` |
-| 13 | **Clusters** | primordial shift-charge overdensity; dissolves the 1403× fork **and** Mistele–McGaugh–Hossenfelder's 2500× tension (μ² = 5.2×10⁻⁸ satisfies their weak-lensing bound by 1.9×10⁴) | `mi_shift_charge_ic_route_2026.py` |
+| 13 | **Clusters** (v2) | ~~shift-charge IC route~~ **withdrawn**: killed by the 1-Mpc confrontation — cluster R500 and galaxy-outskirt lensing share a scale with disjoint requirements, correlated Gaussian ICs cannot select environments, and **smooth accretion restores ξ→1 for any cold IC**. Replaced by the **a₀-bump response** (row 15) | `mi_ic_route_1mpc_confrontation_2026.py` (9/9) |
 | 14 | **Directional EFE signal** | pure MI predicted *exactly zero*; AQUAL-class predicts 1–4% signed; first firing gave Â = +2.95, p = 0.029, **with the AQUAL sign** | `mi_dr4_anisotropy_and_gated_2026.py` |
+| 15 | **a₀-bump environment response** | passes all five environments: cluster (calibration, μ²_eff = 0.23 Mpc⁻²), galaxy interior 0.034% of M_b (RAR cost 4×10⁻⁴ dex), galaxy 1 Mpc 1.2% vs the 5.9% strict bound, linear cosmos 0.6% of mean matter, solar 10⁻¹⁹. Vanishes on FRW (Y=0) and is second-order in perturbations ⇒ linear CMB/P(k) untouched by construction. Evades both prior kills (a response has no charge to advect; couples to environment directly) | `mi_a0_bump_response_2026.py` (10/10) |
+| 16 | **…and its health check** | **no ghosts ever** (kinetic contribution 2AB ≥ 0, = 0 on FRW), no Ostrogradsky sector; FRW gradient health **excludes the old Λ_D = 10⁻² and forces Λ_D ≤ 8.4×10⁻⁷** (window stays 3.7 orders); halo gradient health **caps A ≤ 2.7× fiducial, excluding the demanding end of Mistele's cluster band** — a two-sided falsifiable pinch; free signature: cluster anisotropic stress at O(0.6) | `mi_a0_bump_health_2026.py` (11/11) |
 
 ---
 
@@ -97,11 +113,11 @@ Parameters: **M** (vacuum scale, M⁴ = ρ_Λ), **μ** (Helmholtz mass), **Λ_D*
 
 | | ΛCDM | this completion |
 |---|---|---|
-| dark sector | Ω_c, Ω_Λ | M (= ρ_Λ^{1/4}), I₀, μ, Λ_D |
+| dark sector | Ω_c, Ω_Λ | M (= ρ_Λ^{1/4}), I₀, μ, Λ_D, **A (v2)** |
 | MOND scale | — | a₀ — **not independent**, = m_cond/(4√π) via item 12 |
-| bounds | — | Λ_D: 1.9×10⁻¹⁰ ≪ Λ_D ≲ 10⁻² (~7.7 orders, CMB-bounded); μ⁻¹ = 4392 Mpc (forced by item 12); I₀ ≈ Ω_dm (an IC) |
+| bounds | — | Λ_D: 1.9×10⁻¹⁰ ≪ Λ_D ≤ 8.4×10⁻⁷ (**health-bounded, v2**; 3.7 orders); A ≈ 1.7 Mpc⁻² calibrated on clusters, **health cap A ≤ 4.5** (row 16); μ⁻¹ = 4392 Mpc (item 12); I₀ ≈ Ω_dm (an IC) |
 
-So: **four dark-sector numbers against ΛCDM's two**, with a₀ derived from one of them rather than
+So: **five dark-sector numbers against ΛCDM's two** (v2 adds A), with a₀ derived from one of them rather than
 added. Not fewer parameters. What it buys is that Λ, dark matter and MOND come from **one function**
 instead of three unrelated sectors.
 
@@ -121,6 +137,12 @@ instead of three unrelated sectors.
    Q-sector of the same scalar that supplies Λ and MOND, and by item 13 it is absent where rotation
    curves are measured. **The defensible slogan is "no dark matter particle, and none in galaxies" —
    never "no dark matter."**
+2b. **The coefficient is MEASURED, not derived: κ = 0.551 ± 0.043** (distance-free SPARC estimator),
+   and **± 0.063 if the H₀ tension is carried as a systematic**, since κ ∝ a₀/H₀ at full strength.
+   ½, 1/√3, √(3/8) and 0.40 all sit inside 2σ. (v2 correction: v1's ±0.043 omitted the ρ_Λ term.)
+2c. **The a₀-bump response is a CANDIDATE, not a result**: it has passed the environment matrix and
+   its isolated-term health check; the full AeST perturbation matrix (aether mixings, K_B terms) and a
+   real cluster model remain owed, and the health-vs-Mistele amplitude pinch could still kill it.
 3. **The post-recombination growth history is NOT verified.** Item 9 covers the acoustic peaks only.
    Holding c_s² at its peak value for all time *destroys* P(k=0.2), so the pass depends essentially on
    the bump being transient (it peaks at z ≈ 189). **A patched CLASS fluid carrying c_s²(a) is
