@@ -56,10 +56,21 @@ WHAT IT WOULD COST, COMPUTED, NOT WAVED AT (Parts D, E)
 --------------------------------------------------------------------------------------------------
   * The RAR's intrinsic scatter is a QUANTITATIVE bound on category III, and it is tight but not
     fatal: the medium's own dynamics may not make a_0 vary by more than ~16% galaxy-to-galaxy.
-  * *** AND THE CLUSTER NUMBER IS BRUTAL AND IT IS AGAINST INTEREST: at R500 the framework's kernel
-    removes only about a THIRD of the dark matter.  A category-III medium still has to supply ~68% of
-    what LCDM's dark matter supplies.  "MOND solves clusters" is not what this corpus's own numbers
-    say. ***
+  * CLUSTERS, computed directly from the framework's own kernel rather than inherited: the kernel
+    removes *** 74-89% *** of the cluster dark matter at R500, leaving a real component to supply
+    only 11-26% of what LCDM's does.  Nonzero, so the no-dark-matter claim still goes -- but this is
+    the ordinary MOND cluster residual, not a catastrophe.
+
+*** CORRECTION NOTICE.  The first commit of this script published "~68%" for that last number.  IT IS
+WITHDRAWN.  It came from combining 1/f_bar with the corpus's banked eta_req = 2.334 additively, which
+is incoherent (eta_req implies a kernel boost of 2.759, i.e. y = 0.203, while the same audit asserts
+y = 21.6).  Part E now computes it directly and self-consistently, including the back-reaction that
+adding mass RAISES y and LOWERS nu.  The correction runs IN THE FRAMEWORK'S FAVOUR. ***
+
+*** AND IT SURFACED A BUG IN THE COMMITTED CLUSTER AUDIT: that audit's g = 2.02e-9 m/s^2 ~ 21.6 a_0
+is not the field at R500, it is the field at ~0.19 Mpc -- the cluster CORE.  At true R500 (~1.3 Mpc)
+clusters sit at g ~ 0.3-0.6 a_0, i.e. NEAR OR BELOW a_0.  The audit's "quasi-Newtonian" premise, and
+the choice of Newtonian mass scaling it justified, are both wrong. ***
 """
 
 import sys
@@ -358,47 +369,105 @@ print("=" * 100)
 print("PART E -- CLUSTERS: what category III would actually have to supply.  AGAINST INTEREST.")
 print("=" * 100)
 
-kernel_supplies = INV_FBAR / ETA_REQ         # in units of M_bar
-medium_needs = INV_FBAR - kernel_supplies
-lcdm_dark = INV_FBAR - 1
-frac_of_lcdm = medium_needs / lcdm_dark
-frac_of_total = medium_needs / INV_FBAR
+print("""
+  *** CORRECTION, ISSUED AGAINST MY OWN PRIOR COMMIT.  The first version of this Part combined
+  1/f_bar = 6.4387 with the corpus's eta_req = 2.334 ADDITIVELY and concluded that a medium must
+  supply ~68% of what LCDM's dark matter supplies.  THAT NUMBER IS WITHDRAWN.  It is incoherent:
+  eta_req = 2.334 implies the kernel supplies a boost of 2.759, which requires y = 0.203, whereas
+  the committed cluster audit simultaneously asserts clusters sit at y = 21.6.  Both cannot hold.
+  This Part now computes the requirement DIRECTLY from the framework's own kernel, self-consistently,
+  and the corrected answer is MUCH BETTER for the framework than the number I published. ***
+""")
 
-print(f"\n  lensing mass at R500                          {sig(INV_FBAR, 5)} M_bar")
-print(f"  the framework's kernel supplies               {sig(kernel_supplies, 5)} M_bar")
-print(f"  so a medium must supply                       {sig(medium_needs, 5)} M_bar")
-print(f"  LCDM's dark matter supplies                   {sig(lcdm_dark, 5)} M_bar")
-print(f"  medium / LCDM dark matter                     {float(frac_of_lcdm)*100:.1f}%")
-print(f"  medium / total lensing mass                   {float(frac_of_total)*100:.1f}%")
+LCDM_DARK = INV_FBAR - 1
+G_N = mp.mpf("6.674e-11")
+MSUN = mp.mpf("1.989e30")
+MPC = mp.mpf("3.0857e22")
 
-check(medium_needs > 0,
-      "E1  the cluster deficit is a REAL shortfall on the framework's own kernel, not a framing choice",
-      f"kernel short by {sig(medium_needs, 4)} M_bar at R500")
 
-check(frac_of_lcdm > mp.mpf("0.5"),
-      "E2  *** AND IT IS BRUTAL: the kernel removes only ~"
-      f"{(1-float(frac_of_lcdm))*100:.0f}% of the dark matter.  A category-III medium still supplies "
-      f"~{float(frac_of_lcdm)*100:.0f}% of what LCDM does ***",
-      "\"MOND solves clusters\" is NOT what this corpus's own numbers say")
+def nu_routeA(y):
+    """The framework's in-force Route A kernel (Amendment 8)."""
+    return 1 / (1 - mp.e ** (-mp.sqrt(y)))
 
-# E3 -- state the trade explicitly.  Category III buys clusters by CONCEDING a real dark component.
-check(frac_of_total > mp.mpf("0.5"),
-      "E3  the trade, stated: category III closes clusters by conceding a real clustering component",
-      f"which is {float(frac_of_total)*100:.0f}% of cluster lensing mass -- the no-dark-matter claim goes")
 
-# NEGATIVE CONTROL: if the kernel were adequate in clusters (eta -> 1) the medium requirement must
-# vanish.  If it does not, the arithmetic above is wrong.
-medium_at_eta1 = INV_FBAR - INV_FBAR / mp.mpf(1)
-check(abs(medium_at_eta1) < mp.mpf("1e-30"),
-      "NC-E  CONTROL: at eta = 1 the medium requirement vanishes identically -- arithmetic is sound",
-      f"residual = {sig(medium_at_eta1, 3)}")
+# E1 -- FIRST, a bug in the committed audit.  It states clusters sit at g ~ 2.02e-9 m/s^2 ~ 21.6 a_0
+#       at R500.  Compute the radius at which a real cluster actually has that field.
+G_AUDIT = mp.mpf("2.02e-9")
+M_REF = mp.mpf("5e14") * MSUN
+r_at_audit_g = mp.sqrt(G_N * M_REF / G_AUDIT) / MPC
+check(r_at_audit_g < mp.mpf("0.4"),
+      "E1  *** BUG FOUND IN THE COMMITTED CLUSTER AUDIT: its g = 2.02e-9 m/s^2 is the field at "
+      f"{sig(r_at_audit_g, 3)} Mpc, i.e. the CORE, not R500 (~1.3 Mpc) ***",
+      "off by ~50x in g. At true R500 clusters are at g ~ 0.3-0.6 a_0 -- NEAR/BELOW a_0, and the "
+      "audit's 'quasi-Newtonian' premise is wrong")
 
-# NC-E2: and the total must reconcile with the cosmic budget.  LCDM's own ratio is a cross-check.
+# E2 -- now the direct, self-consistent requirement.  Let the extra real component cluster to a
+#       fraction xi of CDM's level.  Then the total real mass is (1 + xi * LCDM_DARK) M_bar, and
+#       the framework must reproduce the observed discrepancy:
+#             (1 + xi*LCDM_DARK) * nu( y_bar * (1 + xi*LCDM_DARK) ) = 1/f_bar
+#       Note the BACK-REACTION: adding mass raises y, which LOWERS nu.  An earlier version of this
+#       calculation ignored that and got the answer wrong in the framework's favour.
+CLUSTERS = [("A", 3e14, 1.10), ("B", 5e14, 1.30), ("C", 1e15, 1.60),
+            ("D", 7e14, 1.40), ("E", 2e14, 0.95)]
+print("   M500[Msun]  R500[Mpc]   g_tot/a0   y_bar     nu(y_bar)   xi_clust")
+xis = []
+for _lbl, M5, R5 in CLUSTERS:
+    M = mp.mpf(M5) * MSUN
+    R = mp.mpf(R5) * MPC
+    g_tot = G_N * M / R ** 2
+    y_bar = g_tot * F_BAR / A0_CANON
+    xi = mp.findroot(
+        lambda x: (1 + x * LCDM_DARK) * nu_routeA(y_bar * (1 + x * LCDM_DARK)) - INV_FBAR,
+        mp.mpf("0.2"))
+    xis.append(xi)
+    print(f"   {M5:9.1e}  {R5:7.2f}   {sig(g_tot/A0_CANON,4):>8s}  {sig(y_bar,4):>8s}  "
+          f"{sig(nu_routeA(y_bar),5):>8s}    {float(xi)*100:5.1f}%")
+
+XI_LO, XI_HI = min(xis), max(xis)
+check(XI_HI < mp.mpf("0.35"),
+      f"E2  *** CORRECTED: the kernel removes {(1-float(XI_HI))*100:.0f}-{(1-float(XI_LO))*100:.0f}% of the cluster dark matter.  A real "
+      f"component need supply only {float(XI_LO)*100:.0f}-{float(XI_HI)*100:.0f}% of what LCDM's does ***",
+      "this is the WELL-KNOWN MOND cluster residual (order-unity extra mass), and it REPLACES the "
+      "~68% I wrongly published -- the correction runs IN THE FRAMEWORK'S FAVOUR")
+
+# E3 -- but it is still not zero, and that is the standing cost.  Say so.
+check(XI_LO > mp.mpf("0.05"),
+      "E3  the residual is REAL and nonzero: clusters still require a real clustering component",
+      f"at least {float(XI_LO)*100:.0f}% of LCDM's dark matter. The no-dark-matter claim still goes.")
+
+# NEGATIVE CONTROL: the root must be genuinely bracketed -- baryons alone UNDERSHOOT and full-CDM
+# clustering OVERSHOOTS.  If either fails, the solve is meaningless.
+M5b, R5b = mp.mpf("5e14") * MSUN, mp.mpf("1.30") * MPC
+y_b = (G_N * M5b / R5b ** 2) * F_BAR / A0_CANON
+at_zero = 1 * nu_routeA(y_b)
+at_one = (1 + LCDM_DARK) * nu_routeA(y_b * (1 + LCDM_DARK))
+check(at_zero < INV_FBAR < at_one,
+      "NC-E  CONTROL: the root is bracketed -- baryons alone UNDERSHOOT, full-CDM clustering OVERSHOOTS",
+      f"xi=0 gives {sig(at_zero,4)}, xi=1 gives {sig(at_one,4)}, target {sig(INV_FBAR,4)}")
+
+# NC-E2: plug the solution back in.  It must reproduce 1/f_bar, or findroot lied.
+xi_b = mp.findroot(lambda x: (1 + x * LCDM_DARK) * nu_routeA(y_b * (1 + x * LCDM_DARK)) - INV_FBAR,
+                   mp.mpf("0.2"))
+recon = (1 + xi_b * LCDM_DARK) * nu_routeA(y_b * (1 + xi_b * LCDM_DARK))
+check(abs(recon - INV_FBAR) < mp.mpf("1e-20"),
+      "NC-E2 CONTROL: the solution reproduces 1/f_bar on back-substitution",
+      f"residual = {sig(abs(recon - INV_FBAR), 3)}")
+
+# NC-E3: and the budget must reconcile with Planck independently.
 OM_C, OM_B = mp.mpf("0.265"), mp.mpf("0.0493")
 lcdm_ratio_indep = 1 + OM_C / OM_B
 check(abs(lcdm_ratio_indep - INV_FBAR) / INV_FBAR < mp.mpf("0.03"),
-      "NC-E2 CONTROL: 1/f_bar agrees with an INDEPENDENT Planck Omega_c/Omega_b computation to 3%",
+      "NC-E3 CONTROL: 1/f_bar agrees with an INDEPENDENT Planck Omega_c/Omega_b computation to 3%",
       f"1/f_bar = {sig(INV_FBAR,5)} vs 1 + Om_c/Om_b = {sig(lcdm_ratio_indep,5)}")
+
+# E4 -- and flag, WITHOUT resolving, that this now disagrees with the corpus's banked eta_req.
+nu_needed_for_eta = INV_FBAR / ETA_REQ
+y_needed = mp.findroot(lambda y: nu_routeA(y) - nu_needed_for_eta, mp.mpf("0.2"))
+check(not (y_b * mp.mpf("0.5") < y_needed < y_b * mp.mpf("2.0")),
+      "E4  UNRESOLVED: the banked eta_req = 2.334 needs y = "
+      f"{sig(y_needed,4)}, but R500 sits at y = {sig(y_bar,4)}",
+      "flagged, NOT smoothed. The banked eta may refer to a different radius/sample. "
+      "This Part does not use it.")
 
 
 # =============================================================================================
@@ -540,7 +609,7 @@ print("=" * 100)
 NOT_CLAIMED = [
     "NOT a derivation of kappa = 1/2.  Part B forces the FORM c sqrt(G rho); xi stays free.",
     "NOT a field theory for category III.  No action is written here.  Categories are not theories.",
-    "NOT a resolution of clusters.  Part E shows the medium must supply ~68% of LCDM's dark mass.",
+    "NOT a resolution of clusters.  Part E leaves a real 11-26%-of-LCDM component required at R500.",
     "NOT a claim that category III beats category II.  Part D's RAR bound FAVOURS II.",
     "NOT a new category in the literature -- Part H.  New to THIS corpus only.",
     "NOT a rescue of the g^-2 Lorentz-violation prediction, which needs a preferred frame.",
@@ -580,11 +649,15 @@ print(f"""
       coincidence: it is the medium's own density.  Combined with (2) that is the strongest
       structural argument for the central claim in this corpus.
 
-  5.  *** AGAINST INTEREST, TWICE.  (a) The RAR's 0.034 dex intrinsic scatter bounds any medium
-      own-dynamics variation in a_0 to {float(sig_delta_max)*100:.1f}% -- which FAVOURS plain Bekenstein-Milgrom over
-      the new category.  (b) At R500 the framework's kernel removes only ~{(1-float(frac_of_lcdm))*100:.0f}% of the dark matter;
-      a medium must still supply ~{float(frac_of_lcdm)*100:.0f}% of what LCDM's dark matter supplies.  This corpus's own
-      numbers do not say "MOND solves clusters". ***
+  5.  AGAINST INTEREST: the RAR's 0.034 dex intrinsic scatter bounds any medium own-dynamics
+      variation in a_0 to {float(sig_delta_max)*100:.1f}% -- which FAVOURS plain Bekenstein-Milgrom over the new category.
+
+  5b. *** CORRECTION IN THE FRAMEWORK'S FAVOUR, against my own prior commit.  Computed directly from
+      the kernel, the R500 requirement is that a real component supply {float(XI_LO)*100:.0f}-{float(XI_HI)*100:.0f}% of what LCDM's dark
+      matter supplies -- the kernel removes {(1-float(XI_HI))*100:.0f}-{(1-float(XI_LO))*100:.0f}%.  The "~68%" published in the first commit of
+      this script is WITHDRAWN as incoherent.  And the committed cluster audit's g = 2.02e-9 m/s^2 is
+      the CORE field, not R500's: clusters sit at 0.3-0.6 a_0, near or below a_0. ***
+      Still nonzero, so the no-dark-matter claim still goes.
 
   6.  Four sub-ideas checked and KILLED: relaxation-as-Cassini-evasion (the galactic field is DC);
       numerical transfer of the 39 yr kernel bound; metric-and-inertia hybrids (give nu^2);
