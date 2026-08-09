@@ -5,7 +5,7 @@
 **Carl P. Zimmerman**
 Briar Creek Tech
 
-*Version 1 (2026-08-09).*
+*Version 2 (2026-08-09). v1 omitted the cosmological-parameter term; see §7.1.*
 
 ---
 
@@ -43,8 +43,9 @@ SPARC. **DR4 tests which arm the framework is in; it does not measure the coeffi
 The case for building the route is **independence, not superiority.** Its floor terms — the
 mass–luminosity zero point and Gaia systematics — share nothing with SPARC's. Two independent $\approx4\%$
 measurements combine to $2.79\%$ in $a_0$, i.e. $\sigma(\kappa)=0.014$, separating $\tfrac12$ from
-$1/\sqrt3$ at $\mathbf{5.5\sigma}$. **Neither route reaches $5\sigma$ alone** ($3.97\sigma$ and
-$3.87\sigma$). That is the entire argument.
+$1/\sqrt3$ at $5.24\sigma$ **if the $H_0$ tension resolves** — but only $1.74\sigma$ if it is carried as a
+systematic, because $\kappa\propto a_0/H_0$ and the $8.43\%$ tension exceeds every other term in the
+budget. **$\kappa$ is hostage to $H_0$** (§7.1, added in v2 after v1 omitted the $\rho_\Lambda$ term).
 
 Every number is produced by `mi_wb_gext_kappa_route_2026.py` (15/15 checks, exits non-zero on failure,
 negative controls included).
@@ -225,8 +226,37 @@ $\sigma(\kappa)=0.014$. Against the gap $|\tfrac12-1/\sqrt3|=0.0774$:
 | wide binary alone | $3.87\sigma$ |
 | **combined** | $\mathbf{5.54\sigma}$ |
 
-**Neither route reaches $5\sigma$ alone. Together they do.** That is the entire case for building this
-one — not that it is better, but that it is *independent*.
+**Neither route reaches $5\sigma$ alone. Together they do** — *conditionally*, and §7.1 is the
+condition.
+
+### 7.1 The term v1 omitted, and it is the largest in the budget
+
+$\kappa = a_0/(c\sqrt{G\rho_\Lambda})$ with $\rho_\Lambda = \Omega_\Lambda\,3H_0^2/8\pi G$, so
+
+$$\kappa \propto \frac{a_0}{H_0\sqrt{\Omega_\Lambda}} \qquad\Longrightarrow\qquad
+d\ln\kappa = d\ln a_0 - d\ln H_0 - \tfrac12 d\ln\Omega_\Lambda .$$
+
+**$H_0$ enters at full strength, 1:1.** Version 1 of this paper treated $\rho_\Lambda$ as exact and
+omitted this entirely. Adopting Planck ($H_0 = 67.36\pm0.54$, $\Omega_\Lambda=0.6847\pm0.0073$) the
+cosmological term is $0.96\%$ — small. **But the $H_0$ tension is $8.43\%$**, and that is larger than
+the SPARC floor ($3.9\%$), larger than this route's target ($4\%$), and larger than their combination
+($2.79\%$). It is irreducible by any amount of galaxy data.
+
+The **sign** depends on whether $a_0$'s own distance scale is tied to the same ladder. Since
+$a_0\propto D^{-2}$ and $D\propto1/H_0$, a distance-*tied* $a_0$ gives $\kappa\propto H_0$
+($0.500\to0.542$), while a distance-*free* $a_0$ gives $\kappa\propto1/H_0$ ($0.500\to0.461$). The
+magnitude is $\approx8\%$ either way — and note the honest cost of the distance-free estimator: by
+decoupling $a_0$ from the ladder it **exposes** the full $H_0$ dependence rather than hiding it.
+
+| scenario | $\sigma(\kappa)$ | $\tfrac12$ vs $1/\sqrt3$ |
+|---|---|---|
+| cosmology omitted (v1) | 0.0140 | $5.54\sigma$ |
+| adopting Planck | 0.0148 | $5.24\sigma$ |
+| **$H_0$ tension carried as a systematic** | **0.0444** | **$1.74\sigma$** |
+
+**So the headline is conditional. $\kappa$ is hostage to the $H_0$ tension: resolving $H_0$ is a
+prerequisite for measuring $\kappa$ at $5\sigma$, and no amount of galaxy data substitutes for it.**
+That is this paper's real conclusion, and v1 did not contain it.
 
 Both footings are carried, as the framework's standing rule requires: the route measures $a_0$, and
 which $\kappa$ that implies depends on the footing ($\kappa_{\rm canonical}=0.500$,
@@ -238,6 +268,8 @@ $\kappa_{\rm alt}=0.603$ against the canonical denominator).
 
 1. **Not** *"no mass-to-light ratio anywhere in the chain"* — retracted in §2.1.
    $\gamma_v\propto M_{\rm tot}^{-1/2}$ exactly.
+2. **Not an unconditional $5.5\sigma$.** v1 omitted the $\rho_\Lambda$ term (§7.1): $5.24\sigma$
+   adopting Planck, but $1.74\sigma$ if the $H_0$ tension is carried as a systematic.
 2. **Not a measurement.** No wide-binary data is analysed here. This is an error budget and a
    requirement sheet.
 3. **Not achievable with DR4.** The statistical term alone needs $11.5\times$ the frozen $N$, and the

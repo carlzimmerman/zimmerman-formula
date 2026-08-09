@@ -289,12 +289,65 @@ check(abs(A0 / den - mp.mpf("0.5")) < mp.mpf("0.002"),
 # =============================================================================================
 print()
 print("=" * 100)
+print("PART F2 -- *** THE TERM I OMITTED, AND IT IS THE BIGGEST ONE: rho_Lambda ***")
+print("=" * 100)
+
+# kappa = a_0/(c sqrt(G rho_Lambda)) and rho_Lambda = Omega_L 3H0^2/(8 pi G), so
+#     kappa ~ a_0/(H0 sqrt(Omega_L))   =>   d ln kappa = d ln a_0 - d ln H0 - 0.5 d ln Omega_L
+# H0 enters at FULL strength.  The first version of this script treated rho_Lambda as exact.
+H_P, eH_P = mp.mpf("67.36"), mp.mpf("0.54")
+H_S = mp.mpf("73.04")
+OL, eOL = mp.mpf("0.6847"), mp.mpf("0.0073")
+cosmo_stat = mp.sqrt((eH_P / H_P) ** 2 + (eOL / OL / 2) ** 2)
+tension = H_S / H_P - 1
+
+check(eH_P / H_P < cosmo_stat < 2 * eH_P / H_P,
+      f"F2a  *** kappa ~ a_0/(H0 sqrt(Omega_L)), so H0 enters at FULL strength (1:1). Adopting Planck "
+      f"the cosmological term is {float(cosmo_stat)*100:.2f}% -- I had omitted it ENTIRELY ***",
+      "d ln kappa = d ln a_0 - d ln H0 - 0.5 d ln Omega_L")
+
+check(tension > SPARC_FLOOR and tension > WB_FLOOR and tension > comb,
+      f"F2b  *** AND THE H0 TENSION IS {float(tension)*100:.2f}% -- LARGER than the SPARC floor "
+      f"({float(SPARC_FLOOR)*100:.1f}%), the wide-binary target ({float(WB_FLOOR)*100:.0f}%) AND their "
+      f"combination ({float(comb)*100:.2f}%) ***",
+      "and it is irreducible by any amount of galaxy data")
+
+# The SIGN depends on whether a_0's own distance scale is tied to the same ladder.
+k0 = mp.mpf("0.5")
+r = H_S / H_P
+check(abs(k0 * r - mp.mpf("0.5422")) < mp.mpf("1e-3") and abs(k0 / r - mp.mpf("0.4611")) < mp.mpf("1e-3"),
+      f"F2c  the SIGN depends on the distance coupling: a_0 ~ D^-2 and D ~ 1/H0, so a distance-TIED "
+      f"a_0 gives kappa ~ H0 ({sig(k0*r,4)}) while a distance-FREE a_0 gives kappa ~ 1/H0 ({sig(k0/r,4)})",
+      "the magnitude is ~8% either way -- and the distance-free estimator EXPOSES the full dependence "
+      "rather than hiding it, which is an honest cost of that estimator")
+
+print()
+print("   scenario                                 sigma(kappa)   1/2 vs 1/sqrt(3)")
+scen = {}
+for lbl, frac in [("cosmology OMITTED (this script v1)", comb),
+                  ("adopting Planck", mp.sqrt(comb ** 2 + cosmo_stat ** 2)),
+                  ("H0 tension carried as a systematic", mp.sqrt(comb ** 2 + tension ** 2))]:
+    sk = KAPPA * frac
+    scen[lbl] = GAP / sk
+    print(f"   {lbl:40s} {float(sk):.4f}        {float(GAP/sk):.2f} sigma")
+
+check(scen["adopting Planck"] > 5 and scen["H0 tension carried as a systematic"] < 2,
+      "F2d  *** SO THE HEADLINE IS CONDITIONAL: 5.24 sigma IF the H0 tension resolves, but only "
+      "1.74 sigma if it is carried as a systematic ***",
+      "kappa is HOSTAGE TO THE H0 TENSION, and resolving H0 is a PREREQUISITE for kappa at 5 sigma")
+
+
+# =============================================================================================
+print()
+print("=" * 100)
 print("PART G -- WHAT IS AND IS NOT CLAIMED")
 print("=" * 100)
 
 NOT_CLAIMED = [
     "*** NOT 'no mass-to-light ratio anywhere in the chain' -- RETRACTED in Part A. gamma_v ~ "
     "1/sqrt(M_tot) exactly. ***",
+    "*** NOT an unconditional 5.5 sigma. Part F2 adds the rho_Lambda term this script first OMITTED: "
+    "5.24 sigma adopting Planck, but 1.74 sigma if the H0 tension is carried as a systematic. ***",
     "NOT a measurement: no wide-binary data is analysed here. This is an error budget and a "
     "requirement sheet.",
     "NOT achievable with DR4: the statistical term alone needs ~11x the frozen N.",
@@ -306,7 +359,7 @@ NOT_CLAIMED = [
 print("\n  NOT CLAIMED:")
 for n in NOT_CLAIMED:
     print(f"    - {n}")
-check(len(NOT_CLAIMED) == 6, "G1  six explicit non-claims", "")
+check(len(NOT_CLAIMED) == 7, "G1  seven explicit non-claims", "")
 
 
 print()
