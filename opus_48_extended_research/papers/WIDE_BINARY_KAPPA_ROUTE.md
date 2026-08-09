@@ -5,7 +5,16 @@
 **Carl P. Zimmerman**
 Briar Creek Tech
 
-*Version 2 (2026-08-09). v1 omitted the cosmological-parameter term; see §7.1.*
+*Version 3 (2026-08-09). v1 omitted the cosmological-parameter term (§7.1). **v2's central sensitivity
+was WRONG**: it used $\gamma=\sqrt{\nu(g_{\rm obs}/a_0)}$, which matches no consistent inference chain.
+The registration's own convention — $x=\nu(y_N)y_N$, reproducing Amendment 8's registered
+$(x_{\rm ext},\nu,\gamma_v)$ to five decimals — gives the chain sensitivity
+$d\ln\gamma/d\ln a_0=-L/2(1+L)=0.184$, i.e. **amplification $5.44\times$, not $8.66\times$.**
+Corrected consequences: DR4-as-frozen reaches $\sigma(a_0)/a_0=12.6\%$ — **better than SPARC's 16.2%**,
+overturning §5's verdict; the §6 requirement sheet loosens to $N\ge136{,}000$ (was 344,000), mass zero
+point $\le1.47\%$, systematic gap $2.3\times$ (was 3.7). Verified with deep-MOND/Newtonian limit
+controls in `mi_session_audit_2026.py`. The §3–§6 body below retains v2's numbers as the conservative
+naive-formula bounds; read them against this notice.*
 
 ---
 

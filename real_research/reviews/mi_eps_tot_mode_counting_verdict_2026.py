@@ -244,10 +244,19 @@ gv = lambda a0: mp.sqrt(nu(g_ext / a0))
 e = mp.mpf("1e-6")
 dlog = (mp.log(gv(A0 * (1 + e))) - mp.log(gv(A0 * (1 - e)))) / (2 * e)
 sig_dr4 = (mp.mpf("0.028") / gv(A0)) / abs(dlog)
-check(sig_dr4 > mp.mpf("0.162"),
-      f"C3  and Gaia DR4 is WORSE, not better: d ln gamma_v/d ln a_0 = {sig(dlog,4)} is weak, giving "
-      f"sigma(a_0)/a_0 = {sig(sig_dr4*100,3)}% against the BTFR's 16.2%",
-      "gamma_v is a poor a_0 probe -- DR4 tests the ARM, not the coefficient")
+# C3 -- CORRECTED BY THE SESSION AUDIT (mi_session_audit_2026.py): the naive gamma = sqrt(nu(g_obs/a_0))
+#       sensitivity used here matches NO consistent inference chain.  The registration's own convention
+#       (x = nu(y_N) y_N, verified to 5 decimals against Amendment 8's registered pair) gives the chain
+#       sensitivity -L/(2(1+L)) = 0.1838, amplification 5.44x, and DR4-as-frozen reaches 12.6% on a_0
+#       -- BETTER than the BTFR's 16.2%, not worse.  Both retained:
+Ly = -(mp.sqrt(mp.mpf("1.28903")) * mp.e ** (-mp.sqrt(mp.mpf("1.28903")))) / (
+    2 * (1 - mp.e ** (-mp.sqrt(mp.mpf("1.28903")))))
+sens_chain = -Ly / (2 * (1 + Ly))
+dr4_chain = (mp.mpf("0.028") / mp.mpf("1.2139")) / sens_chain
+check(dr4_chain < mp.mpf("0.162") < sig_dr4,
+      f"C3  CORRECTED: DR4 gives sigma(a_0)/a_0 = {sig(dr4_chain*100,4)}% on the registration's own chain "
+      f"convention (naive formula wrongly said {sig(sig_dr4*100,3)}%) -- BETTER than the BTFR's 16.2%",
+      "still far from 4%; the qualitative point stands: DR4's real power is the ARM test")
 
 # NEGATIVE CONTROL: the floor must be insensitive to N, or "brute force cannot fix it" is wrong.
 def btfr_stat(N):

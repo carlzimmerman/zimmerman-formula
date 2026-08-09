@@ -1,6 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 r"""
+*** CORRECTION BANNER (2026-08-09, session audit): D1/D2 below claimed "Lam = O(1) is natural and lies
+in the window".  THE CLASS RUN FALSIFIED THAT (mi_dbi_cmb_class_run_2026.py): at Lam = 1 the khronon's
+w and c_s^2 peak at 0.207/0.250 AT recombination (z ~ 1749) and CLASS returns a 325% TT deviation.
+The CMB forces Lam <~ 1e-2; the window is u_0 << Lam <~ 1e-2 (~7.7 orders).  D1/D2's checks below are
+retained for the audit trail but their labels are SUPERSEDED by this banner. ***
+
 mi_dbi_khronon_2026.py
 ======================
 A DBI-TYPE K(Q) FOR THE KHRONON.  Verdict: *** IT WORKS, AND IT WORKS BY FLIPPING THE SIGN OF THE
