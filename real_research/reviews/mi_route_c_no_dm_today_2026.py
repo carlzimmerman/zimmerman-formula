@@ -121,7 +121,7 @@ check(om_lam_extra_z1 > 1.0,
       f"{OM_DM_FID*101**3:.3e}. To keep Omega_extra <= 0.685 needs z_d <= "
       f"{(0.685/OM_DM_FID)**(1/3.)-1:.3f} -- i.e. conversion must be happening NOW, and then it is not\n"
       "         a conversion, it is a relabelling of Lambda. Channel closed on arithmetic.")
-check(True,
+info(
       "B1b  the w = 0 channel changes NOTHING in the background by construction",
       "Omega_X(0) = Omega_dm exactly for any z_d. This is the ONLY background-safe channel, and it is\n"
       "         the Kunz (2007) dark degeneracy: the dust's ENERGY must stay, only its CLUSTERING can go.\n"
@@ -610,7 +610,7 @@ check(reach[1] >= mu2_mist[0] and reach[1] < mu2_mist[1],
       f"max reachable {reach[1]:.2f} Mpc^-2 vs demand {mu2_mist[0]:.1f}-{mu2_mist[1]:.1f}: it clears the low end by "
       f"{reach[1]/mu2_mist[0]:.2f}x and falls\n         short of the high end by {mu2_mist[1]/reach[1]:.1f}x. "
       "Consistent with the banked 'Mistele 34x EXCLUDED under all candidates'.")
-check(True,
+info(
       "B6b  VERDICT on clusters: the bump does NOT need dark matter today -- and CANNOT substitute",
       "for it cosmologically. It is engineered to be invisible to the linear CMB and P(k) (its P3e),\n"
       "         which is exactly the sector B4 needs filled. So item 3 is orthogonal to Route C: it neither\n"
@@ -630,7 +630,7 @@ print("    sqrt(G rho_Lambda) is anchored).")
 # ================================================================== B7
 head("B7 -- BBN, N_eff, FIRAS: where can the energy go?  Includes a CORRECTION to our own block 7.")
 print("  BBN happens at z ~ 4e8 (T ~ 0.1-1 MeV). A conversion at z_d < 1090 is 5-6 decades LATER.")
-check(True,
+info(
       "B7a  BBN is BLIND to post-recombination conversion -- no constraint at all",
       "z_d < 1090 vs z_BBN ~ 4e8: light-element yields are set and frozen long before. Any claim that\n"
       "         BBN constrains this is simply wrong. BBN's only role here is B2c: it pins omega_b\n"
@@ -647,11 +647,11 @@ for zd in (1000., 100., 10.):
     dneff_correct = ex / (0.2271 * OG_H2 / H_FID**2)
     print(f"    z_d={zd:7.0f}:  Omega_dr,0 = {ex:.3e}   'dNeff' as coded = {dneff_theirs:7.1f}   "
           f"correctly normalised = {dneff_correct:7.1f}")
-check(True,
+info(
       "B7b  the N_eff NORMALISATION in our block 7 is low by ~1.8x",
       f"one extra massless species is 0.2271*Omega_gamma, so dN_eff = Omega_extra/(0.2271 Omega_gamma)\n"
       f"         = 7.45 * Omega_extra/Omega_r, not 4.046 * Omega_extra/Omega_r. Sign and order unaffected.")
-check(True,
+info(
       "B7c  more importantly, 'Delta N_eff' is the WRONG OBSERVABLE for z_d < z_star",
       "N_eff is a constraint on the radiation density AT AND BEFORE recombination. Radiation created\n"
       "         at z_d = 100 is absent at z = 1090, so the CMB damping tail and BBN do NOT see it as N_eff.\n"
