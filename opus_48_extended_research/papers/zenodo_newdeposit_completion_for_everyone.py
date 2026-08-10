@@ -173,3 +173,5 @@ def main():
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
+# PUBLISHED 2026-08-09: version DOI 10.5281/zenodo.21865866, concept 10.5281/zenodo.21865865, 2 files.

@@ -30,8 +30,8 @@ RR = "real_research/reviews"
 BASE = "https://zenodo.org/api"
 
 STEM = "THE_COMPLETION"
-RID = 21865827   # v3 record (PUBLISHED 2026-08-09, DOI 10.5281/zenodo.21865827, 19 files);
-                 # v2 was 21865154, v1 21863522 (concept 21863521). Bump after each publish.
+RID = 21865864   # v4 record (PUBLISHED 2026-08-09, DOI 10.5281/zenodo.21865864, 19 files);
+                 # v3 21865827, v2 21865154, v1 21863522 (concept 21863521). Bump after each publish.
 META_PATH = f"{PAP}/{STEM}.zenodo.json"
 
 FILES = [
