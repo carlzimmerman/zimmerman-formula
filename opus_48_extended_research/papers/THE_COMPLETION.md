@@ -177,9 +177,11 @@ instead of three unrelated sectors.
    Holding c_s² at its peak value for all time *destroys* P(k=0.2), so the pass depends essentially on
    the bump being transient (it peaks at z ≈ 189). **A patched CLASS fluid carrying c_s²(a) is
    required, not optional.**
-4. **Item 13's initial condition is not confronted with Lyman-α.** It needs a khronon transfer
-   function falling to T ≈ 0.33 at k ≈ 4.5 Mpc⁻¹, which in a ΛCDM-style analysis would be excluded.
-   Whether the MOND Y-sector's compensation rescues it is **uncomputed, and is the largest single owed
+4. **(v4 rewording — the original referred to withdrawn row 13.)** The dust component's
+   small-scale initial conditions are **not confronted with Lyman-α.** The withdrawn IC route
+   needed a khronon transfer function T ≈ 0.33 at k ≈ 4.5 Mpc⁻¹ (ΛCDM-excluded); the surviving
+   picture (standard cold dust + the bump response) should be Ly-α-safe by construction, but that
+   is **asserted, not computed — the confrontation remains owed
    item in the programme.**
 5. **Cassini Q₂ is inherited** (3–15σ) and is not relieved by anything here.
 6. **PPN preferred-frame parameters** α₁, α₂ for this 𝓕 have not been computed against lunar-laser and
@@ -197,7 +199,7 @@ instead of three unrelated sectors.
 |---|---|---|
 | wide-binary boost | γ_v = √ν(y_extN) | **Gaia DR4**, pre-registered and hash-stamped |
 | directional EFE asymmetry | 1–4%, signed | already firing at p = 0.029 with the right sign |
-| cluster-to-cluster **scatter** in the residual | σ(ξ)/ξ ≈ 0.02–0.60 | existing cluster samples — **separates item 13 from the R² lever, which predicts zero** |
+| cluster-to-cluster **scatter** in the residual | σ(ξ)/ξ ≈ 0.02–0.60 | existing cluster samples — **(v4) separates the a₀-bump response (scatter tracks each cluster's distance from the resonance, rows 15–17) from any fixed-scale mechanism, which predicts uniformity** (the two prior candidates are withdrawn) |
 | cluster mass **profile** misfit | ρ_c flat, M_c ~ r³, can go negative | fit clusters with the khronon profile instead of NFW |
 | g⁻² Lorentz violation | computable s_μν | SME sector bounds |
 | accelerated structure formation | earlier massive objects | JWST high-z massive galaxies (McGaugh et al. 2024) |
@@ -213,7 +215,8 @@ Mukohyama 2004 JHEP 0405:074; nonlinear: +Wiseman 2007 JHEP 0701:036. K(Q) = μ�
 condensate identification: Verwayen, Skordis & Złośnik 2024; **Blanchet & Skordis 2024 JCAP
 11(2024)040** — including §4.3.1, the no-go this work dissolves. Quasi-static AeST: Durakovic &
 Skordis 2024 JCAP 04:040; Verwayen, Skordis & Boehm 2024 MNRAS 531:272. **Mistele, McGaugh &
-Hossenfelder 2023 A&A 676:A100** — the weak-lensing challenge item 13 resolves. GDM bound: Kopp,
+Hossenfelder 2023 A&A 676:A100** — the weak-lensing bounds that killed this program's first two
+cluster mechanisms and now two-sidedly bound the third (rows 15–17). GDM bound: Kopp,
 Skordis, Thomas & Ilić 2018 PRL 120:221102. Ly-α floor: Rogers & Peiris 2021 PRL 126:071302. RAR
 scatter: Desmond 2023. Accelerated structure formation: McGaugh, Schombert, Lelli & Franck 2024.
 

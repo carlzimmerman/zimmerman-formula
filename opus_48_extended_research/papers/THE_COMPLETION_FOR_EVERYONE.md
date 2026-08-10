@@ -48,10 +48,12 @@ passed every safety and consistency test run on it so far — with two flags sti
 named tests still owed (Sections 11 and 15). It reproduces galaxies, the bending of light, the
 detailed pattern of the universe's oldest light, and the solar system, and it contains a live —
 explicitly unconfirmed — candidate mechanism for galaxy clusters, the one place this kind of theory
-has always struggled. It does this with five dark-sector numbers where the standard picture uses
-two, so it is not a simpler theory; its claim is different: that dark energy, the dark matter
-phenomenon, and the galaxy-scale anomaly are **three faces of one field** rather than three separate
-mysteries. And it makes predictions sharp enough to kill it.
+has always struggled — and one sharp open problem: whether the field's own cosmic dust stays out of
+galaxy interiors, where the rotation-curve data leave no room for it (Section 9). It does this with
+five dark-sector numbers where the standard picture uses two, so it is not a simpler theory; its
+claim is different: that dark energy, the dark matter phenomenon, and the galaxy-scale anomaly are
+**three faces of one field** rather than three separate mysteries. And it makes predictions sharp
+enough to kill it.
 
 That is the story. The rest of this document earns it.
 
@@ -129,7 +131,7 @@ An equivalent way to write the same statement: a₀ = c·H_Λ / Z, where H_Λ is
 universe is heading toward as dark energy takes over completely, and Z = 2√(8π/3) ≈ 5.79. Both forms
 are the same claim wearing different clothes. Numerically, the canonical value used throughout this
 program is a₀ = 9.36 × 10⁻¹¹ m/s². (Readers comparing with the MOND literature will see a₀ quoted
-there as about 1.2 × 10⁻¹⁰ — a fitted value roughly 25% higher. The two sit well within the spread
+there as about 1.2 × 10⁻¹⁰ — a fitted value roughly 28% higher. The two sit well within the spread
 of published a₀ measurements, and which one the data actually prefer is one of the measurement
 questions this program works on; Section 13 returns to it.)
 
@@ -286,14 +288,17 @@ registration in Section 13) — has three properties worth stating in words:
 
 That test is the radial acceleration relation of Section 2: thousands of measured points from the
 SPARC sample of 175 galaxies, each point a direct comparison of observed gravity against
-visible-matter gravity. Fit with the framework's own interpolation and its dark-energy-anchored a₀,
-the scatter of the data around the predicted curve is **0.108 dex** — dex is the astronomers' unit
-of "factors of ten," and 0.108 dex means the typical point sits within about 28% of the curve, over
-data spanning factors of thousands. For calibration: the same data fit with the conventional MOND
-curve used in the literature gives 0.122 dex. **The dark-energy-anchored version fits slightly
-better than the standard one.** It is worth pausing on that: anchoring a₀ to an independently
-measured cosmological quantity *removes* a free parameter, and the fit does not degrade — it
-improves.
+visible-matter gravity. Fit with the dark-energy-anchored a₀, the scatter of the data around the
+predicted curve is **0.108 dex** — dex is the astronomers' unit of "factors of ten," and 0.108 dex
+means the typical point sits within about 28% of the curve, over data spanning factors of
+thousands — at a stellar mass-to-light ratio of 0.70, comfortably inside the range stellar
+population models allow. (Two fine-print notes, for the reader who checks: that fit uses the
+framework's original transition curve, whose difference from the completion's kernel is smaller
+everywhere than the scatter itself; and the RAR *alone* cannot pick between the anchored a₀ and
+the traditional fitted value — the mass-to-light ratio can absorb the difference. The honest
+statement is not "anchoring fits better" but "anchoring costs nothing": tying a₀ to an
+independently measured cosmological number, instead of fitting it to the very galaxies being
+explained, gives an equally good account of the data.)
 
 One more galaxy-scale number, because later sections lean on it: the theory's third term (the
 cluster mechanism of Section 10) also technically operates inside galaxies, so one must check it
@@ -378,10 +383,10 @@ CLASS — one of the two standard precision codes every working cosmologist uses
 microwave background — with the capped K in place. Result: the acoustic peak pattern of the CMB
 agrees with the standard model's to **0.069%**, far inside measurement error, and the matter
 distribution at the representative measured scale to 1.7%. On the universe's oldest light, this
-theory and ΛCDM are indistinguishable. Two disclosed caveats accompany that pass, and Section 15
-states them (they concern the *later* growth history, verified only in part, and a parameter window
-tightened by the health checks of Section 11 — tightened, notably, by this program's own hand
-against its own earlier choice).
+theory and ΛCDM are indistinguishable. Two disclosed caveats accompany that pass, and Sections 11
+and 15 state them (they concern the *later* growth history, verified only in part, and a parameter
+window tightened by the health checks of Section 11 — tightened, notably, by this program's own
+hand against its own earlier choice).
 
 ---
 
@@ -667,8 +672,9 @@ both ways; the program's assessment of its own standing here is "contested, bein
 prediction is on record.
 
 **Five: two smaller flags on the record.** The aether sector implies a specific, computable pattern
-of tiny Lorentz-violation effects in precision laboratory experiments (the g−2 family of tests) —
-registered as a prediction target. And a modified-gravity universe forms massive structures
+of tiny Lorentz-violation effects in precision laboratory experiments (the g−2 family of tests) — a
+computable prediction, not yet registered; a related Lorentz-violation channel (Gaia asteroid
+astrometry) is among the hash-stamped gates. And a modified-gravity universe forms massive structures
 *earlier* than ΛCDM expects — a long-standing MOND expectation that the James Webb Space
 Telescope's surprisingly mature early galaxies currently favor, noted with the caution that early
 JWST results are still being digested by everyone.
@@ -707,8 +713,10 @@ week's work log recorded in the technical corpus includes roughly a dozen near-m
 where an exciting wrong number nearly got reported — caught by the standing rule that every
 important quantity be computed a second, independent way.
 
-**The competition is credited by name.** The base framework is Skordis and Złośnik's. The transition
-function is Milgrom's. The data are the SPARC team's. The sharpest published objections — the ones
+**The competition is credited by name.** The base framework is Skordis and Złośnik's. The
+transition curves are borrowed too: the shape this program derived from de Sitter space is
+Milgrom's 1999 formula, and the completion kernel's functional form is the empirical fitting
+function of McGaugh, Lelli and Schombert (2016). The data are the SPARC team's. The sharpest published objections — the ones
 this program spent weeks answering — are Blanchet and Skordis's no-go and the Mistele–McGaugh–
 Hossenfelder lensing bounds, and both are cited as the serious challenges they are. The claim
 defended as original is narrow and stated in the technical paper's final section: the dark-energy
@@ -796,8 +804,8 @@ As of 2026-08-09, the theory described here is, to this program's knowledge, the
 the literature that simultaneously: anchors MOND's acceleration scale to the measured dark-energy
 density; embeds it in a relativistic field theory that passes gravitational lensing with exact
 equality of dynamical and lensing mass; reproduces the CMB acoustic peaks in a real Boltzmann-code
-run; recovers the solar system with exponential overkill; fits the radial acceleration relation
-slightly better than standard MOND with one fewer free scale; carries a stability-vetted candidate
+run; recovers the solar system with exponential overkill; fits the radial acceleration relation as
+well as fitted-a₀ MOND while taking its scale from cosmology instead; carries a stability-vetted candidate
 for clusters resonant at its own threshold; and holds a certificate that its additions cannot
 introduce ghosts, with gravitational waves at exactly light speed.
 
