@@ -3,7 +3,7 @@
 **A relativistic field theory carrying a₀ = κc√(Gρ_Λ)**
 
 Zimmerman, Carl P. — Briar Creek Tech
-Assembled 2026-08-09; **v2 same day**. Every numbered property below is backed by a committed, runnable
+Assembled 2026-08-09; **v2 same day; v3 same day**. Every numbered property below is backed by a committed, runnable
 script that exits non-zero on failure. Scripts named at each line.
 **v2 changes:** row 13's shift-charge cluster route is **withdrawn** (killed by the 1-Mpc
 confrontation: smooth accretion restores ξ→1 for any cold IC) and replaced by the **a₀-bump
@@ -11,6 +11,14 @@ environment response**, which passed a five-environment matrix AND its perturbat
 the health check carved two hard constraints (Λ_D ≤ 8.4×10⁻⁷; amplitude ≤ 2.7× fiducial). The
 coefficient row now reads as **measured**: κ = 0.551 ± 0.043, ±0.063 if the H₀ tension is carried as a
 systematic (κ ∝ a₀/H₀).
+**v3 changes:** (i) the **full AeST perturbation matrix** for the bump term is now DONE and added as
+row 17 — c_T = 1 exact, no-ghost as a theorem, quasi-static closure derived, amplitude cap softened
+to a band; non-claim 2c is updated accordingly. (ii) **Non-claim 2 is corrected**: v2's "by item 13
+it is absent where rotation curves are measured" was a dangling pointer — row 13 was withdrawn *in
+the same version* — so the galaxy-interior status of the Q-sector dust is **REOPENED** and now
+stated as its own open problem (non-claim 2d). v2 carried this internal inconsistency for several
+hours; the correction runs against the framework's interest and is flagged rather than hidden.
+(iii) §3's amplitude cap now states its units (4.5 Mpc⁻² = 2.7× the fiducial 1.65 Mpc⁻²).
 
 ---
 
@@ -106,6 +114,7 @@ Parameters: **M** (vacuum scale, M⁴ = ρ_Λ), **μ** (Helmholtz mass), **Λ_D*
 | 14 | **Directional EFE signal** | pure MI predicted *exactly zero*; AQUAL-class predicts 1–4% signed; first firing gave Â = +2.95, p = 0.029, **with the AQUAL sign** | `mi_dr4_anisotropy_and_gated_2026.py` |
 | 15 | **a₀-bump environment response** | passes all five environments: cluster (calibration, μ²_eff = 0.23 Mpc⁻²), galaxy interior 0.034% of M_b (RAR cost 4×10⁻⁴ dex), galaxy 1 Mpc 1.2% vs the 5.9% strict bound, linear cosmos 0.6% of mean matter, solar 10⁻¹⁹. Vanishes on FRW (Y=0) and is second-order in perturbations ⇒ linear CMB/P(k) untouched by construction. Evades both prior kills (a response has no charge to advect; couples to environment directly) | `mi_a0_bump_response_2026.py` (10/10) |
 | 16 | **…and its health check** | **no ghosts ever** (kinetic contribution 2AB ≥ 0, = 0 on FRW), no Ostrogradsky sector; FRW gradient health **excludes the old Λ_D = 10⁻² and forces Λ_D ≤ 8.4×10⁻⁷** (window stays 3.7 orders); halo gradient health **caps A ≤ 2.7× fiducial, excluding the demanding end of Mistele's cluster band** — a two-sided falsifiable pinch; free signature: cluster anisotropic stress at O(0.6) | `mi_a0_bump_health_2026.py` (11/11) |
+| 17 | **…and the FULL perturbation matrix (v3)** | with all aether mixings: **c_T = 1 exact** (the new terms are algebraic in the metric — GW170817 safe by construction); **no-ghost is a THEOREM** (the bump's kinetic addition is rank-1 PSD in the χχ entry ⟹ Weyl monotonicity: it cannot lower any eigenvalue of AeST's healthy kinetic matrix; closed-form 2×2 + 200 random 4×4); unit-norm gives δA⁰ = −ΦA⁰ ⟹ δQ = χ̇ − Q₀Φ — the quasi-static phenomenology of row 15 is **derived, not assumed**; gradient block exact: ΔG = 2λ[[q, 2y^{3/2}B″],[2y^{3/2}B″, yq]], q = (3y²−8y+1)/(1+y)⁴; integrating out the aether softens the amplitude cap to **A_max = (2.7–7.4)× fiducial** — Mistele's 34× end stays excluded > 7×, its 4× edge is now **marginal**, residual range pinned by one coefficient (base_a) of the SZ2021 supplemental (a literature lookup); FRW bound Λ_D ≤ 8.4×10⁻⁷ survives (Φ-mixing Poisson-suppressed, 3×10⁻⁴); **open flags**: λ-suppressed tachyon-type vector mass for y > 1 interiors (WATCH); SZ2021's known k < μ unboundedness sits at the Hubble scale (within 15%) at μ⁻¹ = 4392 Mpc — relocated, not resolved | `mi_aest_full_matrix_bump_2026.py` (11/11) |
 
 ---
 
@@ -115,7 +124,7 @@ Parameters: **M** (vacuum scale, M⁴ = ρ_Λ), **μ** (Helmholtz mass), **Λ_D*
 |---|---|---|
 | dark sector | Ω_c, Ω_Λ | M (= ρ_Λ^{1/4}), I₀, μ, Λ_D, **A (v2)** |
 | MOND scale | — | a₀ — **not independent**, = m_cond/(4√π) via item 12 |
-| bounds | — | Λ_D: 1.9×10⁻¹⁰ ≪ Λ_D ≤ 8.4×10⁻⁷ (**health-bounded, v2**; 3.7 orders); A ≈ 1.7 Mpc⁻² calibrated on clusters, **health cap A ≤ 4.5** (row 16); μ⁻¹ = 4392 Mpc (item 12); I₀ ≈ Ω_dm (an IC) |
+| bounds | — | Λ_D: 1.9×10⁻¹⁰ ≪ Λ_D ≤ 8.4×10⁻⁷ (**health-bounded, v2**; 3.7 orders); A ≈ 1.7 Mpc⁻² calibrated on clusters, **health cap A ≤ 4.5 Mpc⁻² = 2.7× fiducial** (row 16; full matrix widens the cap to (2.7–7.4)× pending base_a — row 17); μ⁻¹ = 4392 Mpc (item 12); I₀ ≈ Ω_dm (an IC) |
 
 So: **five dark-sector numbers against ΛCDM's two** (v2 adds A), with a₀ derived from one of them rather than
 added. Not fewer parameters. What it buys is that Λ, dark matter and MOND come from **one function**
@@ -134,15 +143,30 @@ instead of three unrelated sectors.
    theory rather than a definition.
 2. **Dark matter EXISTS**, at the full Ω_dm. Removing the pressureless component moves H₃/H₁ by 54%
    and no refit absorbs it (Δχ² > 400). What does **not** exist is a dark-matter *particle*: it is the
-   Q-sector of the same scalar that supplies Λ and MOND, and by item 13 it is absent where rotation
-   curves are measured. **The defensible slogan is "no dark matter particle, and none in galaxies" —
-   never "no dark matter."**
+   Q-sector of the same scalar that supplies Λ and MOND. **(v3 correction:** v2 continued "and by
+   item 13 it is absent where rotation curves are measured" — a dangling pointer, since v2 itself
+   withdrew row 13. See 2d. **The defensible slogan shrinks to "no dark-matter particle" — never
+   "no dark matter", and "none in galaxies" is now an open problem, not a result.)**
+2d. **(v3) WHERE THE DUST SETTLES IS THE SHARPEST OPEN PROBLEM.** The 1-Mpc confrontation's own
+   smooth-accretion theorem (row 13's killer) implies the Q-sector dust falls into *every* collapsing
+   basin, galaxies included. Two branches are then live: **(favorable)** the settled condensate
+   relaxes to the Helmholtz-preferred profile — ρ_c tracking the potential, flat, centrally
+   evacuated (`mi_virialisation_verdict_2026.py`: ξ ∝ R², galaxy-interior cost ~6×10⁻⁵ dex) — and
+   galaxies are safe by orders of magnitude; **(fatal)** the dust retains CDM-like central
+   concentration and the completion overshoots its own best data by the banked 2.06–4.42×. Which
+   branch obtains is a **nonlinear dynamics question — relaxation of the condensate toward the
+   static profile within a Hubble time — that no group has ever computed for AeST.** It is scheduled
+   as this program's next calculation (N-body-class, staged from spherical symmetry up). Until it is
+   done, galaxy-interior cleanliness is an *assumption the theory needs*, not a result it owns.
 2b. **The coefficient is MEASURED, not derived: κ = 0.551 ± 0.043** (distance-free SPARC estimator),
    and **± 0.063 if the H₀ tension is carried as a systematic**, since κ ∝ a₀/H₀ at full strength.
    ½, 1/√3, √(3/8) and 0.40 all sit inside 2σ. (v2 correction: v1's ±0.043 omitted the ρ_Λ term.)
-2c. **The a₀-bump response is a CANDIDATE, not a result**: it has passed the environment matrix and
-   its isolated-term health check; the full AeST perturbation matrix (aether mixings, K_B terms) and a
-   real cluster model remain owed, and the health-vs-Mistele amplitude pinch could still kill it.
+2c. **The a₀-bump response is a CANDIDATE, not a result**: it has passed the environment matrix,
+   its isolated-term health check, and (v3) the **full AeST perturbation matrix with aether mixings
+   (row 17)**. Still owed: a **real cluster-model fit** (the amplitude is calibrated on a single
+   summary number — nobody, this program included, has fit real cluster mass profiles), the
+   **base_a literature lookup** that pins the cap band, and a dedicated vector-sector analysis.
+   The health-vs-Mistele amplitude pinch could still kill it.
 3. **The post-recombination growth history is NOT verified.** Item 9 covers the acoustic peaks only.
    Holding c_s² at its peak value for all time *destroys* P(k=0.2), so the pass depends essentially on
    the bump being transient (it peaks at z ≈ 189). **A patched CLASS fluid carrying c_s²(a) is

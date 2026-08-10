@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Publish a NEW VERSION of THE_COMPLETION record (concept 21863521).
+"""Create a NEW Zenodo deposit for THE_COMPLETION_FOR_EVERYONE (plain-language companion) and publish it.
 
 Carries the guards the version-publishers earned the hard way, adapted for a first deposit:
 
   * LOCAL-PRESENCE  every file in the intended set must exist on disk before anything is created.
-  * SCRIPTS-GREEN   every included .py must exit 0 when run, so no failing script ships as evidence.
+  * SCRIPTS-GREEN   every included .py must exit 0 when run (none included here; guard kept live).
   * NAME-EXACT      after upload, the server's file names must match the intended set exactly.
   * METADATA-SANE   title, version, creators and license must be present and non-empty.
   * NO-PII          the markdown and metadata are scanned for e-mail addresses and phone numbers;
@@ -12,7 +12,7 @@ Carries the guards the version-publishers earned the hard way, adapted for a fir
   * DRY-RUN default -- pass --publish to actually create and publish.
 
 Reads ZENODO_ACCESS_TOKEN from /Users/carlzimmerman/new_physics/.env -- never printed.
-Usage: python zenodo_newdeposit_rapidity_gap.py [--dry-run | --publish]
+Usage: python zenodo_newdeposit_completion_for_everyone.py [--dry-run | --publish]
 """
 import json
 import os
@@ -26,34 +26,14 @@ import urllib.request
 ENV = "/Users/carlzimmerman/new_physics/.env"
 REPO = "/Users/carlzimmerman/new_physics/zimmerman-formula"
 PAP = "opus_48_extended_research/papers"
-RR = "real_research/reviews"
 BASE = "https://zenodo.org/api"
 
-STEM = "THE_COMPLETION"
-RID = 21865154   # v2 record; v1 was 21863522 (concept 21863521). Bump after each publish.
+STEM = "THE_COMPLETION_FOR_EVERYONE"
 META_PATH = f"{PAP}/{STEM}.zenodo.json"
 
 FILES = [
     f"{PAP}/{STEM}.md",
     f"{PAP}/pdf/{STEM}.pdf",
-    f"{RR}/mi_relativistic_completion_aest_2026.py",
-    f"{RR}/mi_dbi_khronon_2026.py",
-    f"{RR}/mi_dbi_cmb_class_run_2026.py",
-    f"{RR}/mi_virialisation_verdict_2026.py",
-    f"{RR}/mi_shift_charge_ic_route_2026.py",
-    f"{RR}/mi_lyalpha_ic_route_confrontation_2026.py",
-    f"{RR}/mi_third_category_search_2026.py",
-    f"{RR}/mi_condensate_vacuum_energy_a0_2026.py",
-    f"{RR}/mi_deser_levin_interpolation_2026.py",
-    f"{RR}/mi_lensing_axis_2026.py",
-    f"{RR}/mi_route_a_field_theory_2026.py",
-    f"{RR}/mi_ic_route_1mpc_confrontation_2026.py",
-    f"{RR}/mi_a0_bump_response_2026.py",
-    f"{RR}/mi_a0_bump_health_2026.py",
-    # v3 additions: the full perturbation matrix + the peer-review-format paper
-    f"{RR}/mi_aest_full_matrix_bump_2026.py",
-    f"{PAP}/THE_COMPLETION_PAPER.tex",
-    f"{PAP}/pdf/THE_COMPLETION_PAPER.pdf",
 ]
 
 EMAIL_RE = re.compile(r"[\w.+-]+@[\w-]+\.[\w.]{2,}")
@@ -114,10 +94,7 @@ def guards():
         sys.exit("ERROR: an e-mail address appears in creators -- refusing")
     print(f"[guard] METADATA-SANE ok: {meta['title'][:60]!r} v{meta['version']}")
 
-    md_files = [f for f in FILES if f.endswith(".md")]
-    assert md_files, "no markdown in FILES -- the NO-PII scan needs one"
-    blob = open(os.path.join(REPO, META_PATH)).read() + "".join(
-        open(os.path.join(REPO, f), encoding="utf-8").read() for f in md_files)
+    blob = open(os.path.join(REPO, META_PATH)).read() + open(os.path.join(REPO, FILES[0])).read()
     hits = EMAIL_RE.findall(blob) + PHONE_RE.findall(blob)
     if hits:
         sys.exit(f"ERROR: NO-PII guard tripped, {len(hits)} match(es): {sorted(set(hits))[:5]}")
@@ -139,7 +116,7 @@ def guards():
 def main():
     mode = sys.argv[1] if len(sys.argv) > 1 else "--dry-run"
     if mode not in ("--dry-run", "--publish"):
-        sys.exit("usage: python zenodo_newdeposit_rapidity_gap.py [--dry-run | --publish]")
+        sys.exit("usage: python zenodo_newdeposit_completion_for_everyone.py [--dry-run | --publish]")
 
     meta = guards()
     if mode == "--dry-run":
@@ -151,27 +128,11 @@ def main():
         return 0
 
     tok = token()
-    st, r = req("POST", f"{BASE}/deposit/depositions/{RID}/actions/newversion", tok)
+    st, d = req("POST", f"{BASE}/deposit/depositions", tok, data={})
     if st not in (200, 201):
-        sys.exit(f"newversion failed [{st}]: {r}")
-    draft_url = r["links"].get("latest_draft") or r["links"].get("draft")
-    st, d = req("GET", draft_url, tok)
-    if st != 200:
-        sys.exit(f"draft fetch failed [{st}]: {d}")
+        sys.exit(f"create failed [{st}]: {d}")
     did, bucket = d["id"], d["links"]["bucket"]
-    prev = str((d.get("metadata") or {}).get("version", ""))
-    print(f"[pub] draft {did} from record {RID} (prev version {prev!r})")
-
-    inherited = sorted(f.get("filename") for f in d.get("files", []))
-    want_names = sorted(os.path.basename(f) for f in FILES)
-    dropped = [n for n in inherited if n not in want_names]
-    if dropped:
-        sys.exit(f"ERROR: SUPERSET guard -- would DROP {dropped}")
-    print(f"[pub] SUPERSET ok: all {len(inherited)} inherited files present in the new {len(FILES)}")
-    for f in d.get("files", []):
-        req("DELETE", f"{BASE}/deposit/depositions/{did}/files/{f.get('id')}", tok)
-    if str(meta.get("version", "")) == prev:
-        sys.exit(f"ERROR: version {prev!r} unchanged -- refusing")
+    print(f"[pub] created draft {did}")
 
     for rel in FILES:
         p = os.path.join(REPO, rel)

@@ -1,0 +1,520 @@
+\documentclass[aps,prd,twocolumn,10pt,nofootinbib,superscriptaddress]{revtex4-2}
+\usepackage{amsmath,amssymb,graphicx}
+\usepackage{booktabs}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\newcommand{\aeff}{a_0}
+\newcommand{\FF}{\mathcal{F}}
+\newcommand{\Msun}{M_\odot}
+
+\begin{document}
+
+\title{A relativistic completion for the dark-energy--anchored acceleration scale
+$a_0=\kappa c\sqrt{G\rho_\Lambda}$:\\
+aether--scalar--tensor theory with an offset-DBI khronon and an $a_0$-resonant environment response}
+
+\author{Carl P.\ Zimmerman}
+\affiliation{Briar Creek Tech}
+\date{2026-08-09}
+
+\begin{abstract}
+We assemble and stress-test a relativistic field theory carrying the acceleration scale
+$a_0=\kappa c\sqrt{G\rho_\Lambda}=9.36\times10^{-11}\,\mathrm{m\,s^{-2}}$, where $\rho_\Lambda$ is the
+measured dark-energy density and $\kappa$ is a pure number that we treat as \emph{measured}, not
+derived: a distance-free estimator built on the SPARC sample gives $\kappa=0.551\pm0.043$
+($\pm0.063$ if the $H_0$ tension is carried as a systematic), consistent with $\tfrac12$ but not
+singling it out. The host is aether--scalar--tensor (AeST) theory [Skordis \& Z\l o\'snik, PRL
+\textbf{127}, 161302 (2021)], the only relativistic MOND-class theory known to reproduce the CMB;
+the content of this work is the free function, which factorises into three terms with distinct jobs.
+(i) A MOND kernel normalised by $a_0$, convex and bijective, with deep-MOND and Newtonian limits
+exact and a Newtonian residual of order $e^{-\sqrt{g/a_0}}$ ($\sim10^{-3457}$ at Earth's orbit).
+Because AeST has no gravitational slip ($\Phi=\Psi$, $\gamma_{\rm PPN}=1$), dynamical and lensing
+masses agree identically, converting the $21.2\sigma$ lensing exclusion that kills modified-inertia
+realisations into a $0.6\sigma$ pass. (ii) An offset Dirac--Born--Infeld (DBI) function of the
+khronon's temporal invariant, whose minimum supplies $w=-1$ exactly (dark energy), whose quadratic
+deviations supply a pressureless cosmological component, and whose boundedness we show is
+\emph{necessary}: for any power-law $K\sim u^n$ the early-time equation of state limits to
+$w=1/(n-1)$, so only a bounded $K$ reaches dust. This reverses the sign of the published $455\times$
+tension between cosmological and galactic requirements on the Helmholtz mass [Blanchet \& Skordis,
+JCAP 11 (2024) 040], turning cosmology into a lower bound aligned with MOND ($226\times$ margin).
+A Boltzmann-code (CLASS) confrontation leaves TT unchanged to $0.069\%$ and $P(k=0.2\,h/\mathrm{Mpc})$
+to $1.7\%$. (iii) An environment response $A\,B(Y/a_0^2)(Q-Q_0)^2$ with $B(y)=y/(1+y)^2$: a
+position-dependent Helmholtz mass peaked at the theory's own $a_0$, motivated by the observation that
+cluster interiors are the unique deep-potential environments sitting at the MOND transition
+($R_{500}$ at $0.33$--$0.58\,a_0$). The term passes a five-environment matrix (clusters by
+calibration; galaxy interiors at $3.4\times10^{-4}$ of the baryonic mass; galaxy outskirts at 1 Mpc
+at $1.2\%$ against a $5.9\%$ weak-lensing bound; the linear cosmos at $0.6\%$ of mean matter; the
+solar system at $10^{-19}$), vanishes identically on FRW, and enters linear cosmology at second
+order. A full perturbation analysis including all aether mixings yields: a no-ghost \emph{theorem}
+(the term's kinetic contribution is rank-one positive semi-definite, so by Weyl monotonicity it
+cannot lower any eigenvalue of the healthy AeST kinetic matrix); $c_T=1$ exactly; a derived
+quasi-static closure ($\delta A^0=-\Phi A^0$); and two-sided amplitude bounds that leave the
+mechanism falsifiable from both directions. The theory uses five dark-sector parameters against
+$\Lambda$CDM's two; what is bought is that dark energy, the cosmological dark-matter phenomenology,
+and MOND arise from one function. We list eight explicit non-claims, led by ``$\kappa=\tfrac12$ is
+not derived'' and including the sharpest open problem: whether the dust component stays out of
+galaxy interiors, as the data demand, awaits a nonlinear relaxation calculation never performed for
+this theory class. Six falsifiable predictions follow, led by a hash-stamped, pre-registered Gaia
+DR4 wide-binary target. Every quantitative claim is reproducible from named, committed scripts that exit
+non-zero on failure.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+\label{sec:intro}
+
+Two facts anchor this paper. First, galactic dynamics exhibits a characteristic acceleration: below
+$g\sim10^{-10}\,\mathrm{m\,s^{-2}}$ rotation curves flatten, and the observed centripetal
+acceleration follows the baryonic prediction through a universal interpolation --- the radial
+acceleration relation (RAR) \cite{McGaugh2016,Lelli2016} --- with remarkably small scatter. Milgrom
+identified the regularity in 1983 and codified it as MOND \cite{Milgrom1983}. Second, the measured
+value of that scale is numerically close to accelerations constructible from the cosmological
+constant, as Milgrom also observed. The present program takes the second fact literally and asks
+what follows if
+\begin{equation}
+a_0 \;=\; \kappa\, c\sqrt{G\rho_\Lambda} \;=\; \frac{cH_\Lambda}{Z} \;=\;
+c^2\sqrt{\frac{\Lambda}{32\pi}} \;=\; 9.3619\times10^{-11}\,\mathrm{m\,s^{-2}},
+\label{eq:a0}
+\end{equation}
+with $\kappa=\tfrac12$, $Z=2\sqrt{8\pi/3}$, and $H_\Lambda$ the asymptotic de~Sitter expansion rate,
+is a statement about gravity rather than a coincidence. The three forms in Eq.~(\ref{eq:a0}) are
+algebraically identical; $\kappa$ and $Z$ are conventions on one number.
+
+A one-line relation is not a theory. It cannot bend light, form structure, or be checked for
+internal consistency. This paper assembles the relativistic field theory that carries
+Eq.~(\ref{eq:a0}) --- ``the completion'' --- and reports the outcome of an extended internal
+adversarial program: uniqueness and no-go theorems, environment matrices, stability analyses, a
+Boltzmann-code confrontation, and the public withdrawal of three failed cluster mechanisms that
+preceded the surviving one. Throughout, results that could have killed the theory are given the same
+prominence as results that support it, and every quantitative claim is backed by a named script in
+the public repository \cite{repo} that recomputes it from scratch and exits non-zero on failure
+(Appendix~\ref{app:repro}).
+
+Three disclosures frame everything that follows. (1) The host theory, aether--scalar--tensor (AeST),
+is Skordis and Z\l o\'snik's \cite{SZ2021}; our content is the free function and the theorems about
+it. (2) An earlier arm of this program realised Eq.~(\ref{eq:a0}) through modified inertia; it is
+\emph{excluded} at $21.2\sigma$ by the equality of dynamical and lensing masses and was withdrawn.
+The present modified-gravity realisation is the surviving arm. (3) $\kappa$ is measured, not
+derived; Sec.~\ref{sec:coefficient} quantifies exactly how well, and Sec.~\ref{sec:notclaimed}
+lists what is not claimed.
+
+\section{The scale: form, interpolation, coefficient}
+\label{sec:coefficient}
+
+\subsection{The form is forced}
+
+If $a_0$ is built from $(G,c,\rho)$ alone, dimensional analysis admits exactly one combination,
+$a_0=\xi c\sqrt{G\rho}$: the exponent matrix is nonsingular (determinant 2), so the form is unique,
+and the theorem has content because admitting $\hbar$ destroys the uniqueness. The choice
+$\rho=\rho_\Lambda$ is the physical hypothesis; the form then follows.
+
+\subsection{The interpolation is derivable --- and its coefficient is excluded}
+
+A de~Sitter--Unruh construction sharpens the stakes. Using the Deser--Levin temperature of an
+accelerated observer in de~Sitter space \cite{DeserLevin} and Milgrom's 1999 vacuum-heuristic
+\cite{Milgrom1999}, the MOND interpolation is \emph{fully derived}, with no fitted element:
+$\nu(y)=\sqrt{1+1/y}$, which is precisely Milgrom's Eq.~(9) of Ref.~\cite{Milgrom1999}. The same
+construction, however, is rigid at every step --- the power is forced by the two MOND limits, the
+baseline by the ambient Gibbons--Hawking temperature, the normalisation by the Newtonian limit ---
+and it forces $a_0=2cH_\Lambda$, which the SPARC data exclude at $15.6\sigma$. The construction that
+derives the \emph{function} cannot supply the \emph{coefficient}; the heuristic must never be cited
+as support for $\kappa=\tfrac12$. Hence the coefficient must be measured.
+
+\subsection{The coefficient, measured}
+
+Two routes. The baryonic Tully--Fisher intercept on SPARC gives $\hat\kappa=0.465\pm0.076$, with a
+hard $9.47\%$ mass-budget floor (stellar and gas calibrations trade against each other at fixed
+$f_\star+f_{\rm gas}=1$). A sharper, distance-free estimator exploits the fact that
+$g_{\rm bar}\propto F/\theta^2$ (flux over angular size squared) carries no distance dependence
+while $g_{\rm obs}\propto1/D$ does; built on the $g_{\rm bar}$ axis of the RAR it gives
+\begin{equation}
+\kappa \;=\; 0.551\pm0.043 \quad (\pm0.063~\text{under the } H_0~\text{tension}),
+\end{equation}
+since $\kappa\propto a_0/H_0$ at full strength. Four simple candidates
+($\tfrac12$, $1/\sqrt3$, $\sqrt{3/8}$, $0.40$) sit inside $2\sigma$: the data are consistent with
+$\tfrac12$ and do not single it out. The binding systematics are the absolute 21-cm flux scale and
+CO-dark molecular gas, not stellar populations; an irreducible $\sim3.9\%$ floor on $a_0$ caps the
+$\tfrac12$-vs-$1/\sqrt3$ discrimination near $4\sigma$ for any SPARC-class analysis.
+
+\section{The action}
+\label{sec:action}
+
+We adopt the AeST action of Ref.~\cite{SZ2021}: gravity is Einstein--Hilbert; matter couples to the
+metric only; the dark sector is a unit-timelike vector $A^\mu$ ($A^\mu A_\mu=-1$) and a scalar
+$\varphi$ entering through the two invariants
+\begin{equation}
+Q \equiv A^\mu\nabla_\mu\varphi, \qquad
+Y \equiv (g^{\mu\nu}+A^\mu A^\nu)\nabla_\mu\varphi\,\nabla_\nu\varphi .
+\end{equation}
+The content of this work is the free function, which factorises:
+\begin{equation}
+\boxed{\;\FF(Y,Q) \;=\; \frac{a_0^2}{8\pi G}\,\FF_Y\!\Big(\frac{Y}{a_0^2}\Big)
+\;+\; K(Q) \;+\; A\,B\!\Big(\frac{Y}{a_0^2}\Big)(Q-Q_0)^2\;}
+\label{eq:F}
+\end{equation}
+with $B(y)=y/(1+y)^2$. The three terms are treated in Secs.~\ref{sec:galaxies},
+\ref{sec:cosmology}, and \ref{sec:clusters} respectively.
+
+\emph{The Y-sector.} $\FF_Y$ is fixed by the kernel $\nu(y)=1/(1-e^{-\sqrt y})$,
+$y=g_{\rm bar}/a_0$, equivalently the closed parametric pair
+\begin{equation}
+\mu(u)=1-e^{-u},\qquad x(u)=\frac{u^2}{\mu(u)},\qquad u=\sqrt y,\; x=\frac{g_{\rm obs}}{a_0},
+\label{eq:kernel}
+\end{equation}
+normalised by Eq.~(\ref{eq:a0}).
+
+\emph{The Q-sector.} An offset-DBI function,
+\begin{equation}
+K(Q) = -M^4 + \mu^2\Lambda_D^2\Big[1-\sqrt{1-\tfrac{u^2}{\Lambda_D^2}}\Big],
+\quad u\equiv Q-Q_0,\;|u|<\Lambda_D,
+\label{eq:K}
+\end{equation}
+with $M^4=\rho_\Lambda$ the vacuum scale, $\mu$ the Helmholtz mass, $\Lambda_D$ the field-space
+cap, and the conserved shift charge $I_0$ setting the dust abundance.
+
+\emph{The environment response.} The third term is a position-dependent Helmholtz mass
+$\mu^2_{\rm eff}=A\,B(g^2/a_0^2)$ peaked at the theory's own $a_0$; the peak location costs nothing
+($Y/a_0^2$ is already the Y-sector's normalisation), and the single new calibrated amplitude is
+$A\approx1.7\,\mathrm{Mpc}^{-2}$.
+
+\section{Galactic phenomenology}
+\label{sec:galaxies}
+
+The kernel~(\ref{eq:kernel}) embeds exactly: the deep-MOND limit $\mu\to x$ and the Newtonian limit
+$\mu\to1$ are exact, $x(u)$ is a bijection ($h'=e^{-u}(1+u)>0$), and the resulting free function is
+convex, from which the baryonic Tully--Fisher relation follows exactly. The Newtonian residual is
+$e^{-\sqrt y}$: at Earth's orbit, $3.6\times10^{-3457}$ --- planetary ephemerides are untouched at
+any conceivable precision. On the RAR, the framework's own interpolation with the anchored $a_0$ of
+Eq.~(\ref{eq:a0}) fits SPARC at $0.108$ dex scatter (best-fit $\Upsilon_\star=0.70$), against
+$0.122$ dex for the conventional literature interpolation with fitted $a_0$: anchoring the scale to
+an external cosmological measurement removes a parameter without degrading the fit.
+
+The environment response also operates inside galaxies and must not spoil this: it contributes
+$3.4\times10^{-4}$ of the baryonic mass in galaxy interiors, shifting the RAR by
+$4\times10^{-4}$ dex --- two orders below the observed scatter (Sec.~\ref{sec:clusters}). A separate
+internal requirement --- that the Q-sector dust of Sec.~\ref{sec:cosmology} not accumulate in galaxy
+interiors --- is open, and is stated as such in Sec.~\ref{sec:notclaimed}, non-claim 2.
+
+\section{Lensing}
+\label{sec:lensing}
+
+AeST has no gravitational slip: the weak-field potentials obey $\Phi=\Psi$, so
+$\gamma_{\rm PPN}=1$ and $M_{\rm dyn}/M_{\rm lens}=1$ identically, for any source. This is the
+structural fact that separates the modified-gravity realisation of Eq.~(\ref{eq:a0}) from the
+modified-inertia realisation: the latter predicts $M_{\rm dyn}/M_{\rm lens}=1/f_{\rm bar}\simeq6.4$
+and is excluded at $21.2\sigma$; the former passes at $0.601\sigma$. The dark field genuinely
+sources curvature where it accumulates, so light cannot distinguish this theory from a dark-matter
+universe at the level of the deflection law.
+
+\section{Cosmology: the offset-DBI sector}
+\label{sec:cosmology}
+
+\subsection{Three regimes of one function}
+
+At the condensate minimum $u=0$: $\rho=-K=M^4$, $p=K=-M^4$, hence $w=-1$ \emph{exactly} --- dark
+energy is the resting value of the khronon's energy function, proved rather than assumed. For
+$0<|u|\ll\Lambda_D$: $K\to\mu^2u^2/2$ and the excitation dilutes as $a^{-3}$ with vanishing
+pressure --- the cosmological dust. As $|u|\to\Lambda_D$: $K$ is bounded and $K'\to\infty$, and the
+early-time equation of state returns to $w\to0$.
+
+\subsection{Boundedness is necessary: a no-go for power laws}
+
+For any power-law $K\sim u^n$ the early-time equation of state limits to
+\begin{equation}
+w \;\longrightarrow\; \frac{1}{\,n-1\,},
+\end{equation}
+so the quadratic gives a stiff $w\to1$ phase, the quartic $w\to\tfrac13$, the sextic $w\to\tfrac15$:
+every polynomial fails big-bang nucleosynthesis and CMB constraints in the same calculable way.
+Only a bounded $K$ reaches $w\to0$. This theorem re-frames the published $455\times$ conflict
+between the cosmological and galactic requirements on $\mu^{-1}$ \cite{BlanchetSkordis2024}, derived
+there for the quadratic form: with the DBI form the early stiff phase is absent and the sign of the
+cosmological requirement \emph{reverses} --- cosmology becomes a lower bound on $\mu^{-1}$, aligned
+with the MOND-side requirement, with a $226\times$ margin. The no-go is not evaded but dissolved:
+its premise (the quadratic) is the one choice the theorem forbids. The DBI sector is ghost-free
+($K''=\mu^2(1-s^2)^{-3/2}>0$ on the whole range) and subluminal
+($c_s^2\le0.385\,\Lambda_D$). The cost is disclosed: an EFT boundary at saturation
+($K''/\mu^2\sim3\times10^{11}$ at the cap), where the description is effective only.
+
+\subsection{Boltzmann-code confrontation}
+
+A real CLASS run with the DBI sector mapped to a generalised-dark-matter fluid gives, at
+$\Lambda_D\le10^{-2}$ (natural units of Ref.~\cite{SZ2021}): $c_s^2(z_{\rm rec})=2.9\times10^{-8}$,
+TT spectrum unchanged to $0.069\%$, and $P(k=0.2\,h/\mathrm{Mpc})$ to $1.71\%$ --- indistinguishable
+from CDM on the primary CMB. Two caveats are part of the result. First, the pass depends on the
+sound-speed bump being transient (it peaks at $z\approx189$); a patched fluid carrying the full
+$c_s^2(a)$ history through structure growth is required and owed. Second, the stability analysis of
+Sec.~\ref{sec:health} subsequently forced $\Lambda_D\le8.4\times10^{-7}$, \emph{excluding the
+fiducial value used in the CLASS run}; since the run's agreement only improves with smaller
+$\Lambda_D$ (the sound speed falls), the pass survives, but the window
+$1.9\times10^{-10}\ll\Lambda_D\le8.4\times10^{-7}$ (3.7 decades) is now health-bounded from above.
+
+\subsection{What the CMB requires, exactly}
+
+The CMB requires a component that gravitates, is pressureless, and dilutes as $a^{-3}$, at the full
+$\Omega_{\rm dm}$: deleting it moves the third-to-first acoustic peak ratio by $54\%$ and no refit
+absorbs it ($\Delta\chi^2>400$). It does not require a particle: by the generalised-dark-matter
+degeneracy \cite{Kopp2018}, a fluid excitation and a particle species are indistinguishable at
+$0\sigma$ in the linear CMB. This theory supplies the component as the khronon's shift-charge
+excitation. The defensible statement --- and the only one this paper makes --- is: \emph{no
+dark-matter particle; the cosmological pressureless job is done by the same field that supplies
+$\Lambda$ and MOND.} The flat claim ``there is no dark matter'' is not available to this theory or
+to any theory that matches the CMB. Nor, at present, is ``none in galaxies'': the galaxy data are
+fit by baryons plus the kernel alone, so the theory \emph{needs} its dust component to stay out of
+galaxy interiors, and whether it does is an open nonlinear problem (Sec.~\ref{sec:notclaimed},
+non-claim 2).
+
+\section{Clusters: the $a_0$-resonant environment response}
+\label{sec:clusters}
+
+\subsection{Why the obvious routes fail}
+
+MOND under-predicts cluster masses; any completion must supply the residual without disturbing
+galaxies that share the relevant scales. Three mechanisms were built and killed within this
+program, and the kills shape the survivor:
+
+\emph{(a) The $R^2$ lever} (residual density tracking the potential, ratio fixed by system size)
+requires $\mu^{-1}=3.13$ Mpc, violating both galaxy-outskirt weak-lensing bounds of
+Ref.~\cite{Mistele2023}. Withdrawn.
+
+\emph{(b) The primordial shift-charge route} (clusters khronon-rich because their Lagrangian
+patches were over-dense) fails three independent ways, the third decisive: (i) cluster $R_{500}$
+and galaxy-outskirt lensing sample wavenumbers only $1.4\times$ apart ($k\simeq4.5$ vs
+$6.3\,\mathrm{Mpc}^{-1}$) with disjoint abundance requirements; (ii) for correlated Gaussian
+initial conditions $\mathbb{E}[\delta_{\rm kh}|\delta_m]$ is linear in $\delta_m$, so no such
+statistic can select environments; (iii) \emph{smooth accretion}: any suppression mechanism removes
+fluctuations, not the mean, and a collapsing region captures all cold content in its basin
+(the khronon obeys the identical shell equation by the equivalence principle), so
+$\xi(\mathrm{halo})\to1$ for \emph{any} cold transfer function. Withdrawn, and the prior version of
+this paper's cluster section with it.
+
+\emph{(c) The potential response} $\rho_c\propto\Phi^n$: cosmological potentials are scale-free
+($\Phi_{\rm rms}\sim10^{-5}$ everywhere, only $2.2\times$ below cluster centres), so any $n$ steep
+enough to select clusters floods the linear cosmos at $\sim20\times$ the mean matter density.
+Closed.
+
+The lesson: neither scale nor depth alone selects clusters. What does is the pair (depth,
+$g\sim a_0$): cluster interiors at $R_{500}$ sit at $0.33$--$0.58\,a_0$ --- \emph{clusters are the
+cosmic objects that live at the MOND transition}.
+
+\subsection{The term, and the environment matrix}
+
+The third term of Eq.~(\ref{eq:F}) implements exactly that selection: a Helmholtz mass
+$\mu^2_{\rm eff}=A\,B(g^2/a_0^2)$ with $B(y)=y/(1+y)^2$ peaked at $g=a_0$, falling on both sides.
+Calibrating $A\approx1.7\,\mathrm{Mpc}^{-2}$ on the cluster residual
+($\mu^2_{\rm eff}=0.23\,\mathrm{Mpc}^{-2}$), the term then passes the four non-calibration
+environments: galaxy interiors, $3.4\times10^{-4}$ of $M_b$ ($B$ near peak but the potential
+shallow); galaxy outskirts at 1 Mpc, $1.2\%$ of the baryonic mass against the $5.9\%$ strict bound
+from Ref.~\cite{Mistele2023} stacking; the linear cosmos, $0.6\%$ of mean matter; the solar system,
+$10^{-19}$. On FRW, $Y=0$ and the term vanishes identically; it enters perturbations at second
+order, so the linear CMB and $P(k)$ of Sec.~\ref{sec:cosmology} are untouched by construction. It
+evades kill (b) because a response has no charge to advect, and kill (c) because it does not couple
+to depth alone. Against interest: cluster modelling in Ref.~\cite{Mistele2023}'s own framework
+prefers amplitudes $4$--$34\times$ our chain calibration; the health bounds below cut into exactly
+that band, making the tension a two-sided test rather than a tuning freedom.
+
+\subsection{Stability, and the full perturbation matrix}
+\label{sec:health}
+
+\emph{No ghosts, as a theorem.} The term's contribution to the kinetic matrix is
+$2AB(y)\ge0$ in the $\chi\chi$ entry alone --- a rank-one positive semi-definite addition. By Weyl's
+monotonicity theorem, adding a PSD matrix cannot lower any eigenvalue; AeST's kinetic matrix is
+healthy in its stable region; therefore the completed theory is ghost-free wherever AeST is,
+\emph{for all field values and all environments}. Verified in closed form on the $2\times2$
+subsystem and numerically on random healthy $4\times4$ matrices. There is no Ostrogradsky sector
+(no higher derivatives are introduced).
+
+\emph{Tensor speed.} The new terms are algebraic in the metric perturbation: $c_T=1$ exactly, and
+GW170817 \cite{GW170817} is satisfied by construction, not by tuning.
+
+\emph{Quasi-static closure.} The unit-norm constraint gives $\delta A^0=-\Phi A^0$, hence
+$\delta Q=\dot\chi-Q_0\Phi$; the full matrix regenerates the quasi-static phenomenology assumed in
+the environment matrix. The gradient block including all scalar--aether mixings is, exactly,
+\begin{equation}
+\Delta G \;=\; 2\lambda
+\begin{pmatrix} q & 2y^{3/2}B'' \\ 2y^{3/2}B'' & \,y\,q \end{pmatrix},
+\qquad
+q=\frac{3y^2-8y+1}{(1+y)^4},
+\end{equation}
+with $\lambda$ the dimensionless bump amplitude in the Y-sector's gradient normalisation (exact
+assembly in the scripts). $q<0$ precisely on $0.13<y<2.5$ --- the cluster band --- which is what
+turns stability into a cap on $A$.
+
+\emph{The bounds.} On FRW, gradient health forces $\Lambda_D\le8.4\times10^{-7}$, overruling this
+program's own earlier fiducial $10^{-2}$; the $\Phi$-mixing correction is Poisson-suppressed
+($3\times10^{-4}$) and does not reopen it. In halos, the isolated-term analysis caps
+$A\le2.7\,A_{\rm fid}$; integrating out the aether softens this to
+$A_{\rm max}=(2.7\text{--}7.4)\,A_{\rm fid}$, the residual range pinned by one coefficient of the
+quasi-static expansion of Ref.~\cite{SZ2021}'s supplemental material (a literature lookup). Either
+way, the demanding ($34\times$) end of the Ref.~\cite{Mistele2023} band is excluded by
+$>7\times$ and the $4\times$ edge is marginal: the amplitude is pinched between an observational
+floor and a stability ceiling. The fiducial calibration sits inside but near the edge
+($1+2\lambda q=+0.63$ at the cluster minimum). Two flags remain open and are so labelled: a
+$\lambda$-suppressed tachyon-type vector mass in $y>1$ interiors (watch item), and the known
+$k<\mu$ formal unboundedness of AeST \cite{SZ2021}, which at this theory's $\mu^{-1}=4392$ Mpc
+migrates to the Hubble scale (within $15\%$) --- relocated, not resolved.
+
+\emph{Free signature.} The response carries anisotropic stress of order $0.6$ in clusters: a
+specific lensing-vs-hydrostatic mass discrepancy, testable on existing samples
+(Sec.~\ref{sec:predictions}).
+
+\emph{Status.} The mechanism is a \emph{candidate}: it has survived this program's environment
+matrix, health check, and full perturbation analysis, and no external scrutiny. A real cluster-model
+fit is owed.
+
+\section{Parameter count, honestly}
+\label{sec:parameters}
+
+$\Lambda$CDM's dark sector: $\Omega_c,\Omega_\Lambda$. This completion: $M$ ($=\rho_\Lambda^{1/4}$),
+$I_0$, $\mu$, $\Lambda_D$, $A$ --- \emph{five numbers against two}, with $a_0$ not independent:
+$a_0=m_{\rm cond}/(4\sqrt\pi)$, $m_{\rm cond}=M^2/(\sqrt2 M_{\rm Pl})$, holds to $0.076\%$ --- but
+see non-claim (1) below for why this is a relabelling rather than a derivation. What the extra
+parameters buy is structural: $\Lambda$, the cosmological dust, and MOND from one function instead
+of three unrelated sectors, plus kill-tests $\Lambda$CDM does not offer.
+
+\section{What is not claimed}
+\label{sec:notclaimed}
+
+\begin{enumerate}
+\item \textbf{$\kappa=\tfrac12$ is not derived.} $a_0=m_{\rm cond}/(4\sqrt\pi)$ is algebraically
+identical to $a_0=\tfrac12 c\sqrt{G\rho_\Lambda}$ and to $Z=2\sqrt{8\pi/3}$; the residue is
+convention-dependent (reduced vs non-reduced Planck mass), and a derived number cannot depend on
+bookkeeping. The best current framing is a graviton-bath calculation in which the de~Sitter horizon
+entropy cancels the Planck suppression exactly ($S_{\rm dS}\,GH^2=\pi$ identically), leaving
+$\kappa^2=8\pi\,\epsilon_{\rm tot}$ with $\epsilon_{\rm tot}$ a pure number from horizon-mode
+counting --- well-posed and open. Five defensible normalisations span $\kappa=0.013$--$2.047$; the
+one landing exactly on $\tfrac12$ is structurally invalid ($h_{\mu\nu}u^\mu u^\nu$ vanishes in TT
+gauge for a static worldline) and is not cited.
+\item \textbf{``No dark matter'' is not claimed --- and ``none in galaxies'' is an open problem,
+not a result.} The pressureless component exists at full $\Omega_{\rm dm}$
+(Sec.~\ref{sec:cosmology}D); what does not exist is a particle. Whether the dust stays out of galaxy
+interiors is genuinely open: the smooth-accretion theorem that killed cluster route (b) implies it
+falls into every collapsing basin, galaxies included. The favorable branch --- relaxation to the
+Helmholtz-preferred, centrally-evacuated static profile ($\rho_c$ tracking the potential,
+$\xi\propto R^2$, galaxy-interior cost $\sim6\times10^{-5}$ dex) --- and the fatal branch ---
+CDM-like concentration, overshooting the RAR by the banked $2.06$--$4.42\times$ --- are both
+computable; the deciding quantity is the condensate's relaxation time toward the static profile
+within a Hubble time, a nonlinear calculation never performed for AeST by any group. It is this
+program's next scheduled computation. Until then, galaxy-interior cleanliness is an assumption the
+theory needs, not a result it owns.
+\item \textbf{The cluster mechanism is a candidate}, pinched and falsifiable, not a result.
+\item \textbf{The post-recombination growth history is partially verified.} The acoustic-peak pass
+is real; a patched $c_s^2(a)$ fluid through structure growth is owed, as is a Lyman-$\alpha$
+confrontation of the dust component's small-scale initial conditions.
+\item \textbf{Cassini $Q_2$ is inherited} ($3$--$15\sigma$ class tension) and not relieved here.
+\item \textbf{PPN $\alpha_1,\alpha_2$} for this free function are not yet computed against
+lunar-laser-ranging and binary-pulsar bounds.
+\item \textbf{The wide-binary target is the point-field asymptote}; the full nonlinear AQUAL-EFE
+solve is owed before Gaia DR4.
+\item \textbf{This is not a theory of everything}; nothing here touches the Standard Model. The
+2026-06-23 retraction of earlier overclaims stands.
+\end{enumerate}
+
+\section{Falsifiable predictions}
+\label{sec:predictions}
+
+\begin{enumerate}
+\item \emph{Wide binaries (Gaia DR4).} Registered, hash-stamped target
+$\gamma_v=\sqrt{\nu(y_{\rm ext,N})}=1.2139$ (canonical footing; $1.2592$ alternative), against the
+withdrawn modified-inertia arm's $1.1582$ --- separated at $2.68\sigma$ by the frozen pipeline's own
+error budget. The pre-registration and nine hash-stamped amendments are committed \cite{repo};
+DR4-as-frozen measures $a_0$ to $12.6\%$.
+\item \emph{Directional external-field asymmetry.} AQUAL-class prediction $1$--$4\%$, signed; pure
+modified inertia predicted exactly zero. A first firing on existing data gives $\hat A=+2.95$,
+$p=0.029$, with the predicted sign --- suggestive, not decisive.
+\item \emph{Cluster anisotropic stress.} Order-$0.6$ lensing-vs-hydrostatic mass discrepancy with a
+specific profile --- the bump's free signature.
+\item \emph{Cluster-to-cluster scatter} in the residual, $\sigma(\xi)/\xi\approx0.02$--$0.60$,
+distinguishing the environment response from mechanisms predicting zero scatter, on existing data.
+\item \emph{$a_0(z)$.} If $a_0\propto\sqrt{\rho_{\rm de}(z)}$, then
+$a_0(z)/a_0(0)=(1+z)^{\frac32(1+w_0+w_a)}e^{-\frac32 w_a z/(1+z)}$ --- a bump-then-decline under
+DESI-class $(w_0,w_a)$, distinct from constancy and from $cH(z)$ scaling.
+\item \emph{No particle, ever.} Any confirmed direct detection of a dark-matter particle falsifies
+the theory outright.
+\end{enumerate}
+
+\section{Conclusion}
+
+The relation $a_0=\kappa c\sqrt{G\rho_\Lambda}$ now has a relativistic carrier: AeST with the
+factorised free function of Eq.~(\ref{eq:F}). Within it, lensing, the primary CMB, the RAR, the
+BTFR, and the solar system are quantitatively passed; dark energy is the condensate minimum rather
+than an input; the published quadratic-sector no-go is dissolved by a boundedness theorem; and the
+long-standing cluster problem has, for the first time in this program, a candidate mechanism that
+survived its own execution squad --- resonant, falsifiably, at the theory's own acceleration scale.
+The theory is more expensive than $\Lambda$CDM in parameters and more constrained in structure; its
+distinctive wager is that one measured coincidence is a law. The wager is now fully specified,
+stability-certified, and scheduled for execution or vindication by data that exist or are imminent.
+
+\appendix
+
+\section{Reproducibility}
+\label{app:repro}
+
+Every quantitative claim above is recomputed by a committed script in Ref.~\cite{repo}
+(\texttt{real\_research/reviews/}), each of which exits non-zero on failure and carries negative
+controls. Key mappings: lensing and the AeST embedding,
+\texttt{mi\_relativistic\_completion\_aest\_2026.py}; the DBI sector, its theorem and health,
+\texttt{mi\_dbi\_khronon\_2026.py}; the CLASS run, \texttt{mi\_dbi\_cmb\_class\_run\_2026.py}; the
+CMB dust requirement, \texttt{mi\_cmb\_no\_dust\_existence\_2026.py}; the condensate--$a_0$
+relation, \texttt{mi\_condensate\_vacuum\_energy\_a0\_2026.py}; the Deser--Levin derivation and its
+$15.6\sigma$ scissors, \texttt{mi\_deser\_levin\_interpolation\_2026.py}; the coefficient
+measurement, \texttt{mi\_distance\_free\_gbar\_estimator\_sparc\_2026.py} and
+\texttt{mi\_kappa\_error\_budget\_unlock\_2026.py}; the cluster-route kills,
+\texttt{mi\_ic\_route\_1mpc\_confrontation\_2026.py}; the environment response, its health, and the
+full perturbation matrix, \texttt{mi\_a0\_bump\_response\_2026.py},
+\texttt{mi\_a0\_bump\_health\_2026.py}, \texttt{mi\_aest\_full\_matrix\_bump\_2026.py}; the
+graviton-bath framing of $\kappa$, \texttt{mi\_graviton\_bath\_ctp\_2026.py}; kernel embedding and
+BTFR, \texttt{mi\_route\_a\_field\_theory\_2026.py}.
+
+\begin{thebibliography}{99}
+
+\bibitem{Milgrom1983} M.~Milgrom, Astrophys.\ J.\ \textbf{270}, 365 (1983).
+
+\bibitem{Milgrom1999} M.~Milgrom, Phys.\ Lett.\ A \textbf{253}, 273 (1999).
+
+\bibitem{BekensteinMilgrom1984} J.~Bekenstein and M.~Milgrom, Astrophys.\ J.\ \textbf{286}, 7 (1984).
+
+\bibitem{Bekenstein2004} J.~D.~Bekenstein, Phys.\ Rev.\ D \textbf{70}, 083509 (2004).
+
+\bibitem{SZ2021} C.~Skordis and T.~Z\l o\'snik, Phys.\ Rev.\ Lett.\ \textbf{127}, 161302 (2021).
+
+\bibitem{McGaugh2016} S.~S.~McGaugh, F.~Lelli, and J.~M.~Schombert, Phys.\ Rev.\ Lett.\
+\textbf{117}, 201101 (2016).
+
+\bibitem{Lelli2016} F.~Lelli, S.~S.~McGaugh, and J.~M.~Schombert, Astron.\ J.\ \textbf{152}, 157
+(2016).
+
+\bibitem{DeserLevin} S.~Deser and O.~Levin, Class.\ Quantum Grav.\ \textbf{14}, L163 (1997).
+
+\bibitem{ArkaniHamed2004} N.~Arkani-Hamed, H.-C.~Cheng, M.~A.~Luty, and S.~Mukohyama, JHEP
+\textbf{0405}, 074 (2004).
+
+\bibitem{BlanchetSkordis2024} L.~Blanchet and C.~Skordis, JCAP \textbf{11} (2024) 040.
+
+\bibitem{Verwayen2024} P.~Verwayen, C.~Skordis, and C.~Boehm, Mon.\ Not.\ R.\ Astron.\ Soc.\
+\textbf{531}, 272 (2024).
+
+\bibitem{Durakovic2024} A.~Durakovic and C.~Skordis, JCAP \textbf{04} (2024) 040.
+
+\bibitem{Mistele2023} T.~Mistele, S.~McGaugh, and S.~Hossenfelder, Astron.\ Astrophys.\
+\textbf{676}, A100 (2023).
+
+\bibitem{Kopp2018} M.~Kopp, C.~Skordis, D.~B.~Thomas, and S.~Ili\'c, Phys.\ Rev.\ Lett.\
+\textbf{120}, 221102 (2018).
+
+\bibitem{GW170817} B.~P.~Abbott \emph{et al.}, Astrophys.\ J.\ Lett.\ \textbf{848}, L13 (2017).
+
+\bibitem{RogersPeiris2021} K.~K.~Rogers and H.~V.~Peiris, Phys.\ Rev.\ Lett.\ \textbf{126}, 071302
+(2021).
+
+\bibitem{McGaugh2024} S.~S.~McGaugh, J.~M.~Schombert, F.~Lelli, and J.~Franck, Astrophys.\ J.\
+(2024), accelerated structure formation and JWST high-$z$ massive galaxies.
+
+\bibitem{repo} C.~P.~Zimmerman, the public research repository,
+\url{https://github.com/carlzimmerman/zimmerman-formula}; technical companion: \emph{The
+Completion}, DOI \href{https://doi.org/10.5281/zenodo.21863521}{10.5281/zenodo.21863521};
+plain-language companion, same repository.
+
+\end{thebibliography}
+
+\end{document}
