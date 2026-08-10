@@ -183,9 +183,27 @@ instead of three unrelated sectors.
    **new falsification on existing data**: support is v_c-dependent, splitting at
    v_c = c√(0.385 Λ_D,max) = 170 km/s — below it the interior is clean, above it spirals sit 0.72
    dex off the RAR — so the fluid branch predicts a break inside the SPARC range that **is not
-   observed**. Remaining door: stage 3 (wave/field dynamics at the caustic, outside the fluid
-   description), which must keep interiors clean at v_c > 170 km/s *without lowering A*. 2d remains
-   OPEN; its fluid-description branch is now falsified rather than merely disfavoured.)**
+   observed**. **Stage 3 has now run the last named door
+   (`nbody_2026/stage3_wave_and_cap_endpoint_2026.py`, 15/15) and BOTH candidate stopping mechanisms
+   fail.** (α) *Wave pressure:* AeST's gradient sector is the ghost-condensate k⁴ term, whose
+   soliton scale at halo density is **0.18 AU** — eight orders below the RAR region — and it
+   *shrinks* as the dust compresses (λ ∝ ρ^(−1/4)); a 1 kpc wave core would need M = 1.8×10⁻²¹ eV,
+   below the Lyman-α fuzzy-DM floor. Control: the same estimator returns 3.5 kpc for genuine fuzzy
+   dark matter, so the method finds cores when the physics supplies one. (β) *The DBI cap:* an
+   earlier draft of this very calculation claimed the cap bounds the density and gives a finite
+   ~250 pc core — **withdrawn**: μ²u²/2 is the *pressure*. Exactly, ρ_exc = Q₀μ²u is **linear** in u
+   (which is why the dust identification of §1.2 works at all), and at saturation
+   ρ ∝ (1−s²)^(−1/2) **diverges** while p stays bounded at μ²Λ_D², so w → 0 there means
+   *pressureless*, not supported. **⇒ the endpoint is a black hole carrying the captured dust share,
+   falsified at 5.8×10⁵× against Sgr A*'s 4.3×10⁶ M☉ — a mass measured from individual stellar
+   orbits, with no mass model, kernel or cosmology in the comparison** (the inner rotation curve
+   agrees independently, 1.1×10³× in enclosed mass at 250 pc). The honest residue is one statement
+   of ignorance: approaching saturation the EFT exceeds its own validity (K″/μ² ~ 3×10¹¹), so the
+   theory declines to predict its own endpoint — and whatever replaced it would have to overturn a
+   5.8×10⁵× conflict with a directly measured mass. **Remaining escapes are all theory-side:
+   prevent capture (the smooth-accretion theorem closes the cold-IC versions), or change the
+   Q-sector so galactic charge is suppressed. Non-claim 2d is now, within the theory as written,
+   FALSIFIED rather than open.**)**
 2b. **The coefficient is MEASURED, not derived: κ = 0.551 ± 0.043** (distance-free SPARC estimator),
    and **± 0.063 if the H₀ tension is carried as a systematic**, since κ ∝ a₀/H₀ at full strength.
    ½, 1/√3, √(3/8) and 0.40 all sit inside 2σ. (v2 correction: v1's ±0.043 omitted the ρ_Λ term.)
