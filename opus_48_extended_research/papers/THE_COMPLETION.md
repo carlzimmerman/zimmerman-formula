@@ -3,8 +3,20 @@
 **A relativistic field theory carrying a₀ = κc√(Gρ_Λ)**
 
 Zimmerman, Carl P. — Briar Creek Tech
-Assembled 2026-08-09; **v2 same day; v3 same day**. Every numbered property below is backed by a committed, runnable
+Assembled 2026-08-09; **v2, v3, v4, v5 same day**. Every numbered property below is backed by a committed, runnable
 script that exits non-zero on failure. Scripts named at each line.
+**v5 changes — the largest revision, and it runs against the programme's interest.** A six-stage
+sequence (`nbody_2026/`, every stage committed and green) settles the galaxy-interior question that
+v3 reopened as non-claim 2d, and **settles it adversely: the Q-sector cannot also be absent from
+galaxies, and the repair space of local, energy-preserving modifications is provably empty.** Three
+results carry it: (i) *the dust mass IS the conserved shift charge* (ρ = Q₀n with ρ/n = Q₀ regardless
+of any added Y-dependent Q-mass), so it cannot be suppressed locally — which retro-explains three
+withdrawn mechanisms; (ii) *unlocking the charge does not unlock the energy* (∇_μT^μν = 0 holds
+regardless, and transport out of a galaxy takes 690 Gyr); (iii) **⭐ dynamics responds to ρ + 3p but
+lensing responds to ρ + p, and no equation of state kills both** — so the same no-slip identity that
+underwrites row 1 forbids hiding the dust. Also corrected here: v3/v4's claim that the DBI cap bounds
+the dust *density* (it bounds the pressure; ρ_exc is linear in u and diverges at saturation), and
+v4's spliced amplitude band. **Rows 1–12 and 15–17 are untouched.**
 **v2 changes:** row 13's shift-charge cluster route is **withdrawn** (killed by the 1-Mpc
 confrontation: smooth accretion restores ξ→1 for any cold IC) and replaced by the **a₀-bump
 environment response**, which passed a five-environment matrix AND its perturbation health check;
@@ -86,7 +98,7 @@ Three jobs from one function:
 | piece | limit | what it is |
 |---|---|---|
 | the **offset** −M⁴ | u = 0, K′ = 0 | ρ = −K = M⁴, p = K = −M⁴ ⟹ **w = −1 exactly**: dark energy |
-| the **deviations** | u ≪ Λ_D | K → μ²u²/2 ⟹ w → 0: **dust**, i.e. the dark matter |
+| the **deviations** | u ≪ Λ_D | K → μ²u²/2 is the **pressure**, while ρ_exc = Q₀μ²u is **linear** in u ⟹ w = u/2Q₀ → 0: **dust**, i.e. the dark matter. *(v5: the linearity is why the dust mass equals the conserved charge — see non-claim 2d.)* |
 | the **saturation** | u → Λ_D | K bounded, K′ → ∞ ⟹ w → 0 again: kills the early stiff phase |
 
 Parameters: **M** (vacuum scale, M⁴ = ρ_Λ), **μ** (Helmholtz mass), **Λ_D** (DBI field-space scale),
@@ -146,76 +158,62 @@ instead of three unrelated sectors.
    Q-sector of the same scalar that supplies Λ and MOND. **(v3 correction:** v2 continued "and by
    item 13 it is absent where rotation curves are measured" — a dangling pointer, since v2 itself
    withdrew row 13. See 2d. **The defensible slogan shrinks to "no dark-matter particle" — never
-   "no dark matter", and "none in galaxies" is now an open problem, not a result.)**
-2d. **(v3) WHERE THE DUST SETTLES IS THE SHARPEST OPEN PROBLEM.** The 1-Mpc confrontation's own
-   smooth-accretion theorem (row 13's killer) implies the Q-sector dust falls into *every* collapsing
-   basin, galaxies included. Two branches are then live: **(favorable)** the settled condensate
-   relaxes to the Helmholtz-preferred profile — ρ_c tracking the potential, flat, centrally
-   evacuated (`mi_virialisation_verdict_2026.py`: ξ ∝ R², galaxy-interior cost ~6×10⁻⁵ dex) — and
-   galaxies are safe by orders of magnitude; **(fatal)** the dust retains CDM-like central
-   concentration and the completion overshoots its own best data by the banked 2.06–4.42×. Which
-   branch obtains is a **nonlinear dynamics question — relaxation of the condensate toward the
-   static profile within a Hubble time — that no group has ever computed for AeST.** It is scheduled
-   as this program's next calculation (N-body-class, staged from spherical symmetry up). Until it is
-   done, galaxy-interior cleanliness is an *assumption the theory needs*, not a result it owns.
-   **(Same-day postscripts, stages 1 AND 2.** Stage 1 (`nbody_2026/stage1_condensate_relaxation_
-   2026.py`, 11/11) found a sound-crossing bound Λ_D ≳ 1.2×10⁻⁹. **Stage 2
-   (`nbody_2026/stage2_spherical_collapse_2026.py`, 10/10) WITHDRAWS stage 1's favorable branch —
-   crossing ability is necessary, not sufficient — and finds the fatal branch is the DEFAULT at
-   every Λ_D in the health window, within the fluid description:** the bounded DBI pressure cannot
-   support galactic dust (even the optimal c_s² = 0.385Λ_D at the ceiling falls 1.38× short of the
-   halo virial parameter), the Helmholtz profile's capacity at μ⁻¹ = 4392 Mpc is ~10⁻⁷ of the
-   captured charge, and the basin's dust free-falls to a sub-kpc caustic within a Hubble time —
-   overshooting the 10-kpc RAR point by ~0.72 dex. **Stage 2b
-   (`nbody_2026/stage2b_base_a_attribution_and_A_conflict_2026.py`, 15/15) then corrected TWO of
-   stage 2's own claims, in opposite directions.** (i) *A hope withdrawn:* stage 2 said base_a
-   could move the FRW ceiling and so carried "mortal weight" for the galaxy problem — **false**;
-   the ceiling is √(CLASS_DMG·μ²/(2A·L₀²·pk)), in which base_a does not appear, and its only
-   possible channel was already bounded at 3.2×10⁻⁴ by row 17's F1. base_a's real and only load is
-   the **cluster** pinch (the Mistele 34× end stays excluded for any base_a ∈ [0.5, 4]; the 4× edge
-   is marginal for base_a ≲ 1). (ii) *A deficit withdrawn:* stage 2's "supported ⇒ possibly
-   survivable" was **right**, and stage 2b's attempt to tighten it rested on a circular estimator
-   (caught by its own negative control); the honest figure is 0.052 dex at 1 Mpc, inside the ~0.1
-   dex outskirt tolerance. **What replaces the lost door is tighter than it was:** the ceiling
-   scales as A^(−1/2), so galactic dust support needs A ≤ 0.87 Mpc⁻² while clusters calibrate
-   A = 1.65 and Ref. Mistele's modelling wants 6.6–56 — **one parameter, two jobs, opposite
-   directions; the bump's success on clusters monotonically deepens its galaxy failure.** And a
-   **new falsification on existing data**: support is v_c-dependent, splitting at
-   v_c = c√(0.385 Λ_D,max) = 170 km/s — below it the interior is clean, above it spirals sit 0.72
-   dex off the RAR — so the fluid branch predicts a break inside the SPARC range that **is not
-   observed**. **Stage 3 has now run the last named door
-   (`nbody_2026/stage3_wave_and_cap_endpoint_2026.py`, 15/15) and BOTH candidate stopping mechanisms
-   fail.** (α) *Wave pressure:* AeST's gradient sector is the ghost-condensate k⁴ term, whose
-   soliton scale at halo density is **0.18 AU** — eight orders below the RAR region — and it
-   *shrinks* as the dust compresses (λ ∝ ρ^(−1/4)); a 1 kpc wave core would need M = 1.8×10⁻²¹ eV,
-   below the Lyman-α fuzzy-DM floor. Control: the same estimator returns 3.5 kpc for genuine fuzzy
-   dark matter, so the method finds cores when the physics supplies one. (β) *The DBI cap:* an
-   earlier draft of this very calculation claimed the cap bounds the density and gives a finite
-   ~250 pc core — **withdrawn**: μ²u²/2 is the *pressure*. Exactly, ρ_exc = Q₀μ²u is **linear** in u
-   (which is why the dust identification of §1.2 works at all), and at saturation
-   ρ ∝ (1−s²)^(−1/2) **diverges** while p stays bounded at μ²Λ_D², so w → 0 there means
-   *pressureless*, not supported. **⇒ the endpoint is a black hole carrying the captured dust share,
-   falsified at 5.8×10⁵× against Sgr A*'s 4.3×10⁶ M☉ — a mass measured from individual stellar
-   orbits, with no mass model, kernel or cosmology in the comparison** (the inner rotation curve
-   agrees independently, 1.1×10³× in enclosed mass at 250 pc). The honest residue is one statement
-   of ignorance: approaching saturation the EFT exceeds its own validity (K″/μ² ~ 3×10¹¹), so the
-   theory declines to predict its own endpoint — and whatever replaced it would have to overturn a
-   5.8×10⁵× conflict with a directly measured mass. **Remaining escapes are all theory-side:
-   prevent capture (the smooth-accretion theorem closes the cold-IC versions), or change the
-   Q-sector so galactic charge is suppressed. Non-claim 2d is now, within the theory as written,
-   FALSIFIED rather than open.**)**
-2b. **The coefficient is MEASURED, not derived: κ = 0.551 ± 0.043** (distance-free SPARC estimator),
-   and **± 0.063 if the H₀ tension is carried as a systematic**, since κ ∝ a₀/H₀ at full strength.
-   ½, 1/√3, √(3/8) and 0.40 all sit inside 2σ. (v2 correction: v1's ±0.043 omitted the ρ_Λ term.)
-2c. **The a₀-bump response is a CANDIDATE, not a result**: it has passed the environment matrix,
-   its isolated-term health check, and (v3) the **full AeST perturbation matrix with aether mixings
-   (row 17)**. Still owed: a **real cluster-model fit** (the amplitude is calibrated on a single
-   summary number — nobody, this program included, has fit real cluster mass profiles), the
-   **base_a identification** — the *lookup* is done (row 17: K_B is a never-measured free
-   parameter bounded to 0 < K_B < 2), but which K_B-combination the mixing entry equals is a short
-   derivation still owed; it decides only the 4× edge, the 34× exclusion being robust — and a
-   dedicated vector-sector analysis.
-   The health-vs-Mistele amplitude pinch could still kill it.
+   "no dark matter"; and (v5) **"none in galaxies" is WITHDRAWN as a claim of this theory**, not
+   merely open — see 2d.)**
+2d. **(v5) THE Q-SECTOR CANNOT ALSO BE ABSENT FROM GALAXIES — FALSIFIED WITHIN THE THEORY AS
+   WRITTEN, AND THE REPAIR SPACE IS NOW PROVABLY EMPTY.** This is the largest change since v1 and it
+   runs against the programme's interest. v2 asserted "none in galaxies" via a pointer to withdrawn
+   row 13; a six-stage sequence (`nbody_2026/`, all scripts committed, 20/20 + 15/15 + 12/12 + 15/15
+   + 15/15 + 11/11) then settled the question the pointer had concealed.
+
+   **The physics.** The 1-Mpc smooth-accretion theorem implies the Q-sector dust falls into *every*
+   collapsing basin, galaxies included. What happens next was the open problem, and it closed in
+   four steps:
+   - **Nothing stops the collapse.** Wave (k⁴ ghost-condensate) pressure gives a soliton scale of
+     **0.18 AU** at halo density — eight orders below the RAR region — and it *shrinks* as ρ grows
+     (λ ∝ ρ^−¼); a 1 kpc wave core would need M below the Lyman-α fuzzy-DM floor. The dust *is* an
+     n = 1 polytrope (p = Kρ², c_s² = 2Kρ rising) with a genuine **mass-independent 105 pc**
+     equilibrium — but that lies **14.4× past DBI saturation**, where c_s → 0 and the stiffening
+     switches off. Endpoint: a black hole of the captured share, **falsified 5.8×10⁵× against
+     Sgr A\*** (4.3×10⁶ M☉ from individual stellar orbits — no mass model, kernel or cosmology in
+     the comparison). *(v5 corrects v3/v4 here: an earlier draft claimed the DBI cap bounds the
+     density and yields a ~250 pc core. μ²u²/2 is the **pressure**; exactly, ρ_exc = Q₀μ²u is
+     **linear** in u and diverges at saturation. Withdrawn.)*
+   - **THEOREM: the dust mass IS the conserved shift charge.** ρ = Q₀·n with n the shift-charge
+     density, and **ρ/n = Q₀ independently of any Y-dependent Q-mass, of any shape or amplitude.**
+     So no such term can change how much dust a galaxy carries — *a conserved charge cannot be
+     suppressed locally, only moved (gravity moves it inward) or not conserved.* This single
+     statement retro-explains three withdrawn mechanisms: the shift-charge IC route, the Φⁿ
+     response, and an acceleration-gated suppressor built and killed in stage 4–5 (its eight gates
+     all tested the field amplitude u; the observable is n, and at fixed charge the suppressor makes
+     a region a *cheaper* place to store charge — it attracts what it was built to expel).
+   - **Breaking the shift symmetry gets furthest, and fails.** A *global* potential is incompatible
+     as an identity (dV/dt = V′φ̇ must vanish for w = −1, while the condensate needs φ̇ = Q₀ ≠ 0);
+     quantitatively the leak rates lock at Γ_n/Γ_V = ρ_Λ/ρ_dust = 2.60, so clearing a galaxy in
+     1 Gyr drifts ρ_Λ by 47× and protecting ρ_Λ forces a 180 Gyr charge lifetime. A **Y-gated**
+     breaking, 𝓕 ⊃ −W(Y/a₀²)V(φ) with W(0) = 0, *defeats* that — on FRW the symmetry is **exact**,
+     so cosmology is untouched identically. But **unlocking the charge does not unlock the energy**:
+     ∇_μT^μν = 0 holds regardless, and transporting the energy out of a galaxy takes **690 Gyr** at
+     the sector's own sound speed. Charge decay alone changes nothing about the gravitating mass.
+   - **⭐ AND LENSING CLOSES IT BY A THEOREM.** Transforming the equation of state almost works: the
+     dynamical source ρ + 3p vanishes at exactly **f = 1/3**, and the field-strength gate makes that
+     a *stable fixed point* rather than a tuning. But **dynamics responds to ρ + 3p while lensing
+     responds to ρ + p** — at f = 1/3 the lensing source is still (2/3)ρ, giving M_lens/M_dyn ≈ 29
+     against an observed 1.0–1.3. Generally, ρ + 3p = 0 requires w = −1/3 and ρ + p = 0 requires
+     w = −1: **incompatible. No equation of state renders a given energy density invisible to both
+     orbits and light; the only such configuration is ρ = 0**, which the transport bound forbids
+     reaching. *The no-slip identity Φ = Ψ that makes this theory's modified-gravity arm work — the
+     property that killed its modified-inertia arm at 21σ and underwrites item 1 — is the same
+     property that forbids hiding the dust.*
+
+   **Status, stated without spin.** The galaxy-interior problem is not a missing mechanism: it is a
+   conservation law (energy, via general covariance), plus a transport bound, plus lensing. **The
+   repair space of local, energy-preserving modifications is provably empty.** The defensible slogan
+   is therefore **"no dark-matter particle"** and nothing more; **"none in galaxies" is withdrawn as
+   a claim of this theory.** What remains open is a structural change — the Q-sector not acquiring
+   the galactic energy in the first place — against which the smooth-accretion theorem stands for
+   any cold initial condition. Items 1–12 and 15–17 are untouched by all of this.
+
 3. **The post-recombination growth history is NOT verified.** Item 9 covers the acoustic peaks only.
    Holding c_s² at its peak value for all time *destroys* P(k=0.2), so the pass depends essentially on
    the bump being transient (it peaks at z ≈ 189). **A patched CLASS fluid carrying c_s²(a) is

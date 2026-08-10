@@ -27,10 +27,11 @@ ENV = "/Users/carlzimmerman/new_physics/.env"
 REPO = "/Users/carlzimmerman/new_physics/zimmerman-formula"
 PAP = "opus_48_extended_research/papers"
 RR = "real_research/reviews"
+NB = "nbody_2026"
 BASE = "https://zenodo.org/api"
 
 STEM = "THE_COMPLETION"
-RID = 21865864   # v4 record (PUBLISHED 2026-08-09, DOI 10.5281/zenodo.21865864, 19 files);
+RID = 21873560   # v5 record (PUBLISHED 2026-08-09, DOI 10.5281/zenodo.21873560, 28 files); v4 21865864;
                  # v3 21865827, v2 21865154, v1 21863522 (concept 21863521). Bump after each publish.
 META_PATH = f"{PAP}/{STEM}.zenodo.json"
 
@@ -55,6 +56,16 @@ FILES = [
     f"{RR}/mi_aest_full_matrix_bump_2026.py",
     f"{PAP}/THE_COMPLETION_PAPER.tex",
     f"{PAP}/pdf/THE_COMPLETION_PAPER.pdf",
+    # v5 additions: the six-stage galaxy-interior sequence that settles non-claim 2d adversely
+    f"{NB}/README.md",
+    f"{NB}/stage1_condensate_relaxation_2026.py",
+    f"{NB}/stage2_spherical_collapse_2026.py",
+    f"{NB}/stage2b_base_a_attribution_and_A_conflict_2026.py",
+    f"{NB}/stage3_wave_and_cap_endpoint_2026.py",
+    f"{NB}/stage4_charge_suppression_2026.py",
+    f"{NB}/stage5_selfconsistent_solve_2026.py",
+    f"{NB}/stage6_break_shift_symmetry_2026.py",
+    f"{NB}/base_a_lookup_and_robustness_2026.py",
 ]
 
 EMAIL_RE = re.compile(r"[\w.+-]+@[\w-]+\.[\w.]{2,}")
