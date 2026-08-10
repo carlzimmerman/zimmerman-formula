@@ -6,7 +6,9 @@ $$a_0 \;=\; \kappa\,c\sqrt{G\rho_\Lambda}\;=\;\frac{cH_\Lambda}{Z},
 \qquad \kappa=\tfrac12,\qquad Z=\sqrt{32\pi/3}=5.78881,
 \qquad a_0 = 9.36\times10^{-11}\ \mathrm{m\,s^{-2}}$$
 
-Realised as **modified inertia** with the interpolation $\nu(y)=\sqrt{1+1/y}$.
+Operative arm since 2026-08-08: **modified gravity** (the modified-inertia arm is closed — excluded
+21σ by lensing), with the Route A kernel $\nu(y)=1/(1-e^{-\sqrt y})$ (form: McGaugh–Lelli–Schombert
+2016, credited). Full relativistic realisation: §3 below.
 
 > ### ⚠️ Read this first
 >
@@ -65,12 +67,44 @@ Seven machine-verified results; five are prohibitions that *remove* free content
 - **Thm 4** MI **cannot** modify the FRW background — [`mi_channelA_friedmann_2026.py`](real_research/reviews/mi_channelA_friedmann_2026.py)
 - **Thm 5** the EFE is quadrature with a **vector** cross term ⇒ a **footing-free** rotation-curve dipole, 4.2–22.3%, attractor-faster — [`mi_efe_derived_general_2026.py`](real_research/reviews/mi_efe_derived_general_2026.py). *This is the one prediction that is both distinctive and MI-favourable.*
 
-### 3 · The field theory — status and honest limits
+### 3 · The field theory — THE COMPLETION (v7)
+
+The coefficient — value **and now redshift dependence** — sits inside a complete relativistic action.
+The scaffold is **Aether-Scalar-Tensor** (Skordis & Złośnik 2021, PRL **127** 161302 — theirs, credited);
+the content is the free function:
+
+$$S=\int d^4x\sqrt{-g}\left\{\frac{R-2\Lambda_{\rm bare}}{16\pi G}+\mathcal{L}^{\rm AeST}_{\rm aether}[A,g]+\frac{\mathcal{A}(Q)}{8\pi G}\,\mathcal{F}_Y\!\left(\frac{Y}{\mathcal{A}(Q)}\right)+K(Q)+A_{\rm b}\,\frac{Y/\mathcal{A}(Q)}{\left(1+Y/\mathcal{A}(Q)\right)^{2}}\,(Q-Q_0)^2\right\}+S_{\rm m}[g,\psi]$$
+
+$$K(Q)=-M^4\sqrt{1-\frac{\mu^2\,(Q-Q_0)^2}{M^4}},\qquad\boxed{\;\mathcal{A}(Q)\equiv a_0^2(Q)=\kappa^2\,G\,\big(-K(Q)\big)\;}$$
+
+with $Q\equiv A^\mu\nabla_\mu\varphi$, $Y\equiv(g^{\mu\nu}+A^\mu A^\nu)\nabla_\mu\varphi\nabla_\nu\varphi$,
+$A^\mu A_\mu=-1$; $\mathcal{F}_Y$ = the Route A kernel in AQUAL form ($\mu(u)=1-e^{-u}$; form:
+MLS 2016); the last term is the a₀-bump cluster response.
+
+- **The MOND scale is the dark sector's pressure** ($p=K$ is an identity). Today $-K=\rho_\Lambda$:
+  $a_0=\kappa c\sqrt{G\rho_\Lambda}=9.36\times10^{-11}$ m s⁻², κ = ½ **fitted, not derived**.
+- **(v7) a₀(z) is derived, not imposed**: $a_0^2(z)/a_0^2(0)=\sqrt{1+\nu_0^2}/\sqrt{1+\nu_0^2(1+z)^6}$ —
+  constant to <1% for z ≤ 5, MOND **off at recombination as an output**, with **w = −1 exact preserved**
+  (the vacuum never rolls; the *total* pressure evolves).
+- The single square root **is** the v7 relation μ²Λ_D² = M⁴ (a pure DBI — the Lagrangian is the brane
+  volume element). **Selected** by the CMB off-switch, not derived.
+- Verified (all script-backed): CLASS CMB pass · lensing 21.2σ → 0.6σ, γ_PPN = 1 · c_T = 1 exact ·
+  no-ghost **theorem**, transferring to the v7 mixing · RAR 0.108 dex · BTFR · solar system ·
+  weak-lensing RAR 40 kpc–2.2 Mpc with no dark component, χ²/dof ≈ 1–2.
+- Honest limits: **dark matter exists at full Ω_dm** — the only slogan is "no dark-matter *particle*";
+  β = 1 selected; CLASS re-run with the derived law owed; DESI's evolving-w preference is unreachable
+  (w ≥ −1 always) and remains a standing tension against w = −1 exact.
+
+**Paper: [THE_COMPLETION.md](opus_48_extended_research/papers/THE_COMPLETION.md) · v7 DOI [10.5281/zenodo.21877698](https://doi.org/10.5281/zenodo.21877698)** (concept [21863521](https://doi.org/10.5281/zenodo.21863521)) · plain-language companion DOI [10.5281/zenodo.21865866](https://doi.org/10.5281/zenodo.21865866) · evidence: `nbody_2026/` stages 1–18, every stage green.
+
+<details><summary>MI-era status (superseded 2026-08-08, kept for the record)</summary>
+
 [`prep_2026/mi_field_theory/`](prep_2026/mi_field_theory/) · [`mi_fingerprint/`](prep_2026/mi_fingerprint/) · [`mi_kernel_argument/`](prep_2026/mi_kernel_argument/) · [`kernel_fingerprint/`](prep_2026/kernel_fingerprint/)
-**Status:** the law is *not* the Euler–Lagrange equation of the published action (Thm 8). It **is**
+The MI law is *not* the Euler–Lagrange equation of the published action (Thm 8). It **is**
 variational in a nonlocal **non-quadratic** class — Milgrom's own virial result (astro-ph/0510117) —
 but only on the circular slice, and that class is not uniquely determined.
 See [`mi_three_corrections_priorart_2026.py`](real_research/reviews/mi_three_corrections_priorart_2026.py).
+</details>
 
 ### 4 · Wide binaries — the sharpest live front
 [`prep_2026/gaia_dr4_prep/`](prep_2026/gaia_dr4_prep/) — **frozen, hash-stamped pre-registration** with amendments, all filed *before* data · paper DOI [10.5281/zenodo.21702746](https://doi.org/10.5281/zenodo.21702746)

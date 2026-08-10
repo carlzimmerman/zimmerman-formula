@@ -3,7 +3,27 @@
 **A relativistic field theory carrying a₀ = κc√(Gρ_Λ)**
 
 Zimmerman, Carl P. — Briar Creek Tech
-Assembled 2026-08-09; **v2, v3, v4, v5 same day; v6 2026-08-10**.
+Assembled 2026-08-09; **v2, v3, v4, v5 same day; v6 2026-08-10; v7 2026-08-10 (late)**.
+**v7 changes — the largest POSITIVE structural change of the programme: a₀(z) is DERIVED from the
+action.** Until v7 the redshift scaling of a₀ was imposed on the theory as a phenomenological law
+dressed in DESI's CPL parameters — a dressing that was **never self-consistent** with this paper's own
+w = −1 exact (§1.2), and is here withdrawn and replaced. The derivation (new §1.3, rows 18–19):
+promote the constant a₀² to **a₀²(Q) = κ²c²G(−K(Q))/c² — the MOND scale is the dark sector's
+PRESSURE** (p = K is an identity in this sector). Zero new parameters; ONE new relation
+**μ²Λ_D² = M⁴** ("the Lagrangian vanishes at the DBI wall"), which *removes* a free parameter
+(§3: 5 → 4). Today −K = ρ_Λ: the committed coefficient to the digit. Into the past the trace
+excitation's positive pressure climbs the DBI wall and cancels the vacuum's negative pressure: MOND
+switches off at recombination **as an output**, with w = −1 still exact — the vacuum never rolls; the
+*total pressure* evolves. An adversarial external pass (Gemini) proved the density promotion
+(a₀² ∝ ρ_Q) yields a₀ = const or the wrong sign; that theorem is what forces the pressure route, and
+is credited in row 18. The full perturbation matrix with the new 𝓕_YQ mixing is DONE (row 19): the
+cosmological matrix is untouched *exactly*, the no-ghost theorem **transfers** kernel-independently,
+c_T = 1 survives. Also in v7: the forest-sector correction — stage 15's claim that the Hooper et al.
+generic-shape likelihood is public was WRONG (announced, never released; all probes 404); the
+sector's forest suppression is instead **self-computed** by a lognormal mock (0.20% at the binding
+bin, nuisance-dominated, `stage16`). Still owed after v7: the CLASS re-run with the derived law, the
+MUSE/MSA-3D re-exam against the bumpless shape, and a *derivation* of β = 1 (it is **selected**, not
+derived — non-claim 2e).
 **v6 changes — an ERRATUM against v5, filed against my own argument.** v5's non-claim 2d rested one of
 its three steps on a **category error**: it bounded the *export* of the dust's energy from a galaxy by
 the khronon's own polytropic sound speed (≈690 Gyr). ∇_μT^μν = 0 bounds the **total energy**, not the
@@ -122,7 +142,44 @@ Three jobs from one function:
 | the **saturation** | u → Λ_D | K bounded, K′ → ∞ ⟹ w → 0 again: kills the early stiff phase |
 
 Parameters: **M** (vacuum scale, M⁴ = ρ_Λ), **μ** (Helmholtz mass), **Λ_D** (DBI field-space scale),
-**I₀** (the conserved shift charge = the dust amount).
+**I₀** (the conserved shift charge = the dust amount). **(v7: Λ_D is no longer free — μ²Λ_D² = M⁴,
+§1.3.)**
+
+### 1.3 a₀(z) — derived, not imposed (v7)
+
+The constant a₀² in §1.1 is promoted to a scalar of the Q-sector:
+
+$$
+\boxed{\;a_0^2(Q) \;=\; \frac{\kappa^2 c^2\,G\,\big(-K(Q)\big)}{c^2}\;,\qquad\text{i.e.}\qquad
+a_0 = \kappa c\sqrt{\frac{G\,(-p_Q)}{c^2}}\;}
+$$
+
+**The MOND scale is the dark sector's pressure** — and since p = K identically (§1.2), this is the
+unique algebraic scalar of Q that (i) equals ρ_Λ today (u → 0: −K = M⁴, reproducing §1.1's
+normalisation to the digit) and (ii) *declines* into the past. The competing candidate, a₀² ∝ ρ_Q,
+is **excluded by one bit**: the density grows with excitation, so a₀ would rise toward recombination
+— MOND ON at the CMB (the adversarial theorem credited in row 18 proved that route also gives
+a₀ = const on the pure-vacuum branch; either way it is dead). The pressure route additionally has
+charge-suppressed backreaction: da₀²/dQ ∝ −K′ = −n, versus the density route's QK″, unsuppressed.
+
+With **β ≡ μ²Λ_D²/M⁴ = 1** — the Lagrangian vanishes exactly at the DBI wall — the background law is
+closed-form (n ∝ a⁻³ exactly; ν ≡ n/(μ²Λ_D)):
+
+$$
+\frac{a_0^2(z)}{a_0^2(0)} = \frac{\sqrt{1+\nu_0^2}}{\sqrt{1+\nu_0^2(1+z)^6}}
+$$
+
+constant to <1% through every MOND test (z ≤ 5), transition at z_t = ν₀^(−1/3) − 1 ∈ [17, 35], off at
+recombination (0.002–0.006). **w = −1 stays exact throughout** — the vacuum never rolls; the *trace*
+excitation (Ω ≤ 4.4×10⁻⁷, the stage-3 black-hole ceiling) climbs the wall and its pressure reaches M⁴
+regardless of its amount, because the wall height is a property of the potential, not the charge. The
+window ν₀ ∈ [2.1×10⁻⁵, 1.8×10⁻⁴] is cut from *below* by the CMB off-switch and from *above* by the
+RAR — and the RAR ceiling exists only because the captured charge **drains** (stages 2–3): had it
+formed a halo, the local a₀ would fall to 0.55 of nominal at the g = a₀ radius, RAR-fatal. **The
+adverse drain result of non-claim 2d is load-bearing for this derivation.** The old CPL-dressed law
+(bump at z ≈ 0.5) is withdrawn; the derived law has no bump. Scripts:
+`nbody_2026/stage17_a0z_from_the_action_2026.py` (17/17),
+`nbody_2026/stage18_perturbation_matrix_with_mixing_2026.py` (10/10).
 
 ---
 
@@ -147,6 +204,8 @@ Parameters: **M** (vacuum scale, M⁴ = ρ_Λ), **μ** (Helmholtz mass), **Λ_D*
 | 15 | **a₀-bump environment response** | passes all five environments: cluster (calibration, μ²_eff = 0.23 Mpc⁻²), galaxy interior 0.034% of M_b (RAR cost 4×10⁻⁴ dex), galaxy 1 Mpc 1.2% vs the 5.9% strict bound, linear cosmos 0.6% of mean matter, solar 10⁻¹⁹. Vanishes on FRW (Y=0) and is second-order in perturbations ⇒ linear CMB/P(k) untouched by construction. Evades both prior kills (a response has no charge to advect; couples to environment directly) | `mi_a0_bump_response_2026.py` (10/10) |
 | 16 | **…and its health check** | **no ghosts ever** (kinetic contribution 2AB ≥ 0, = 0 on FRW), no Ostrogradsky sector; FRW gradient health **excludes the old Λ_D = 10⁻² and forces Λ_D ≤ 8.4×10⁻⁷** (window stays 3.7 orders); halo gradient health **caps A ≤ 2.7× fiducial, excluding the demanding end of Mistele's cluster band** — a two-sided falsifiable pinch; free signature: cluster anisotropic stress at O(0.6) | `mi_a0_bump_health_2026.py` (11/11) |
 | 17 | **…and the FULL perturbation matrix (v3)** | with all aether mixings: **c_T = 1 exact** (the new terms are algebraic in the metric — GW170817 safe by construction); **no-ghost is a THEOREM** (the bump's kinetic addition is rank-1 PSD in the χχ entry ⟹ Weyl monotonicity: it cannot lower any eigenvalue of AeST's healthy kinetic matrix; closed-form 2×2 + 200 random 4×4); unit-norm gives δA⁰ = −ΦA⁰ ⟹ δQ = χ̇ − Q₀Φ — the quasi-static phenomenology of row 15 is **derived, not assumed**; gradient block exact: ΔG = 2λ[[q, 2y^{3/2}B″],[2y^{3/2}B″, yq]], q = (3y²−8y+1)/(1+y)⁴; integrating out the aether softens the amplitude cap: at base_a = 1 the band is **A_max ∈ [2.72, 4.46]× fiducial = [4.49, 7.36] Mpc⁻²** (**v4 correction:** the earlier "(2.7–7.4)× fiducial" spliced fiducial units with Mpc⁻², making the band look 1.66× wider at the top than it is — `base_a_lookup_and_robustness_2026.py`, 12/12). **The base_a lookup is now DONE and it converts the caveat rather than closing it:** base_a is built from AeST's single aether constant K_B, which has *never been measured* — every value in print is a fiducial (0.1 dominant; the PRL's own 0.3 model is captioned MOND-incompatible), the only quantitative bound is the paper's own stability window 0 < K_B < 2, and GW170817 constrains it not at all (in Einstein-aether language K_B = c₁ = −c₃ with c₂ = c₄ = 0, so the tensor-speed combination c₁+c₃ vanishes identically for every K_B — consistent with this row's independent c_T = 1 result). The quasi-static *phenomenology* is K_B-blind — G̃ = (1−K_B/2)Ĝ absorbs it, turning SZ2021 Eq. (6) into Bekenstein–Milgrom, and K_B appears **zero times** in the dedicated quasi-static paper (arXiv:2304.05134, 1.4 MB verified) while surviving in the cosmological equations (their Eq. 11) — but the mixing ratio is an internal matrix entry taken *before* that diagonalisation, so which combination it equals (2−K_B, K_B, or 1) is **a short derivation still owed, not a lookup**. Two further primary-source facts sharpen this: **there is no SZ supplemental material at all** (verified against the published LaTeX source — the deferral named a document that does not exist), and **the PRL's own quasi-static limit sets Aⁱ = 0 by ansatz**, so under the parent paper's own treatment there is no aether mode to integrate out and the mixing vanishes (the follow-ups, which let Aⁱ = ∂ⁱα live, are the setting in which the mixing term exists at all). Robustness computed over all four candidates: **Mistele's 34× end is excluded under every one** (margins 9.4×, 1.7×, 7.6×, 12.5×; only base_a ≤ 0.056 could admit it), while **the 4× edge flips** — excluded under 2−K_B *and* under the PRL's own no-mode ansatz, marginal under K_B and 1, so the marginality this paper asserts is the *less* well-supported half of the fork; FRW bound Λ_D ≤ 8.4×10⁻⁷ survives (Φ-mixing Poisson-suppressed, 3×10⁻⁴); **open flags**: λ-suppressed tachyon-type vector mass for y > 1 interiors (WATCH); SZ2021's known k < μ unboundedness sits at the Hubble scale (within 15%) at μ⁻¹ = 4392 Mpc — relocated, not resolved | `mi_aest_full_matrix_bump_2026.py` (11/11) |
+| 18 | **a₀(z) DERIVED from the action (v7)** | a₀²(Q) = κ²c²G(−K(Q))/c² — the MOND scale is the dark sector's **pressure**. Zero new parameters; one relation β = μ²Λ_D²/M⁴ = 1 (**selected** by the CMB off-switch, not derived — non-claim 2e). Today's coefficient reproduced to the digit; **w = −1 stays exact** (the vacuum never rolls; the total pressure evolves). Density promotion **excluded by one bit** (a₀ would rise into the past); the exclusion theorem for the naive route is due to an adversarial external pass (Gemini, 2026-08-10) and is credited as such. Closed-form law: a₀²(z)/a₀²(0) = √(1+ν₀²)/√(1+ν₀²(1+z)⁶); constant to <1% for z ≤ 5; transition z_t ∈ [17, 35]; off at recombination (0.002–0.006). Window ν₀ ∈ [2.1×10⁻⁵, 1.8×10⁻⁴], cut by the CMB from below and the RAR-via-drain from above — **non-claim 2d's adverse result is load-bearing here**. The CPL-dressed law (never self-consistent with w = −1 exact) is withdrawn | `stage17_a0z_from_the_action_2026.py` (17/17) |
+| 19 | **…and ITS full perturbation matrix (v7)** | the promotion's 𝓕_YQ ≠ 0 mixing analysed: **the cosmological matrix is untouched EXACTLY** (h⁰⁰ = g⁰⁰ + A⁰A⁰ = 0 to all orders once unit-norm fixes A⁰ ⟹ δY⁽¹⁾ = 0 identically; every new entry carries a positive power of y, and y = 0 on FRW — the CLASS pass, k⁴-Jeans structure and GDM degeneracy theorem inherit without recomputation); **the no-ghost theorem TRANSFERS kernel-independently** (both kinetic additions land in the same χχ slot as row 17's: 𝒜″(F−yF′) ≥ 0 because ghost-freedom of the base meets concavity of the kernel, and (𝒜′²/𝒜)y²F″ is a perfect square with 𝒜 ∝ −K = M⁴/√(1+ν²) > 0 always — a₀² can never cross zero; Weyl monotonicity does the rest); the mixing never reaches the kinetic matrix (δY has no time derivative), its drift dispersion is real at every k, and its gradient/force corrections are trace-bounded at 1.3×10⁻⁴/1.7×10⁻⁴ of committed entries; c_T = 1 survives (still algebraic in the metric); vector WATCH inherited unchanged. Residual: WKB/committed-structure level, not a from-scratch covariant SVT decomposition | `stage18_perturbation_matrix_with_mixing_2026.py` (10/10) |
 
 ---
 
@@ -154,13 +213,14 @@ Parameters: **M** (vacuum scale, M⁴ = ρ_Λ), **μ** (Helmholtz mass), **Λ_D*
 
 | | ΛCDM | this completion |
 |---|---|---|
-| dark sector | Ω_c, Ω_Λ | M (= ρ_Λ^{1/4}), I₀, μ, Λ_D, **A (v2)** |
-| MOND scale | — | a₀ — **not independent**, = m_cond/(4√π) via item 12 |
-| bounds | — | Λ_D: 1.9×10⁻¹⁰ ≪ Λ_D ≤ 8.4×10⁻⁷ (**health-bounded, v2**; 3.7 orders); A ≈ 1.7 Mpc⁻² calibrated on clusters, **health cap A ≤ 4.5 Mpc⁻² = 2.7× fiducial** (row 16; the full matrix widens it to [2.72, 4.46]× fiducial = [4.49, 7.36] Mpc⁻² at base_a = 1 — row 17, where the base_a fork and its robustness are stated); μ⁻¹ = 4392 Mpc (item 12); I₀ ≈ Ω_dm (an IC) |
+| dark sector | Ω_c, Ω_Λ | M (= ρ_Λ^{1/4}), I₀, μ, ~~Λ_D~~ **(v7: Λ_D = M²/μ, no longer free)**, **A (v2)** |
+| MOND scale | — | a₀ — **not independent**, = m_cond/(4√π) via item 12; **(v7) and its z-dependence is now derived too (§1.3)** |
+| bounds | — | Λ_D: 1.9×10⁻¹⁰ ≪ Λ_D ≤ 8.4×10⁻⁷ (**health-bounded, v2**; 3.7 orders) — **(v7) now fixed at M²/μ by β = 1, which must land inside this window: a consistency check inherited rather than retired**; A ≈ 1.7 Mpc⁻² calibrated on clusters, **health cap A ≤ 4.5 Mpc⁻² = 2.7× fiducial** (row 16; the full matrix widens it to [2.72, 4.46]× fiducial = [4.49, 7.36] Mpc⁻² at base_a = 1 — row 17, where the base_a fork and its robustness are stated); μ⁻¹ = 4392 Mpc (item 12); I₀ ≈ Ω_dm (an IC); **(v7) the khronon's own trace charge ν₀ ∈ [2.1×10⁻⁵, 1.8×10⁻⁴] (§1.3)** |
 
-So: **five dark-sector numbers against ΛCDM's two** (v2 adds A), with a₀ derived from one of them rather than
-added. Not fewer parameters. What it buys is that Λ, dark matter and MOND come from **one function**
-instead of three unrelated sectors.
+So: **(v7) four dark-sector numbers against ΛCDM's two** (v2 added A; v7 removes Λ_D via β = 1), with
+a₀ — value *and* redshift dependence — derived from them rather than added. Still not fewer parameters
+than ΛCDM. What it buys is that Λ, dark matter, MOND, *and now the evolution of the MOND scale* come
+from **one function** instead of unrelated sectors.
 
 ---
 
@@ -240,6 +300,20 @@ instead of three unrelated sectors.
    the galactic energy in the first place — against which the smooth-accretion theorem stands for
    any cold initial condition. Items 1–12 and 15–17 are untouched by all of this.
 
+2e. **(v7) THE a₀(z) DERIVATION'S OWN CAVEATS, stated before anyone quotes row 18 as finished.**
+   (i) **β = 1 is SELECTED, not derived.** The relation μ²Λ_D² = M⁴ ("the Lagrangian vanishes at the
+   DBI wall") is chosen because the CMB off-switch requires the floor (1−β) ≤ 3.6×10⁻⁵; nothing in
+   this paper derives it. A brane-tension/boundary argument would make it structural; until then it
+   is one exact tuning carried openly — though it *removes* a parameter rather than adding one.
+   (ii) **The DESI tension is not resolved and cannot be resolved by this sector**: the non-dust
+   remainder's w(z) ≥ −1 always, so DESI's preferred phantom past (w₀ + wₐ = −1.61) is unreachable.
+   If DESI's evolving-w detection stands, it remains evidence against w = −1 exact. What v7 fixes is
+   only that the a₀(z) law no longer *depends* on borrowing DESI's numbers.
+   (iii) **Owed**: the CLASS re-run with the derived law (row 19 proves the perturbation equations
+   are identical and only the background a₀(z) changes — expected to pass, but expected is not
+   verified); the MUSE/MSA-3D re-examination (both were graded against the withdrawn CPL shape, whose
+   z ≈ 0.5 bump is gone); a referee-grade covariant SVT decomposition behind row 19's WKB analysis.
+
 3. **The post-recombination growth history is NOT verified.** Item 9 covers the acoustic peaks only.
    Holding c_s² at its peak value for all time *destroys* P(k=0.2), so the pass depends essentially on
    the bump being transient (it peaks at z ≈ 189). **A patched CLASS fluid carrying c_s²(a) is
@@ -270,6 +344,7 @@ instead of three unrelated sectors.
 | cluster mass **profile** misfit | ρ_c flat, M_c ~ r³, can go negative | fit clusters with the khronon profile instead of NFW |
 | g⁻² Lorentz violation | computable s_μν | SME sector bounds |
 | accelerated structure formation | earlier massive objects | JWST high-z massive galaxies (McGaugh et al. 2024) |
+| **a₀(z) shape (v7)** | **constant to <1% for z ≤ 5, transition z_t ∈ [17, 35], NO bump at z ≈ 0.5** | any measurement of a₀ evolving below z ≈ 5 falsifies the derived law (the withdrawn CPL dressing predicted +6% at z = 0.5 — the two are now distinguishable); MUSE-type high-z kinematics, high-z RAR |
 
 ---
 

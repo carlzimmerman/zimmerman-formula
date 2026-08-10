@@ -73,6 +73,18 @@ FILES = [
     f"{NB}/routeA_dust_to_dark_radiation_2026.py",
     f"{NB}/routeB_dust_to_dark_energy_2026.py",
     f"{RR}/mi_route_c_no_dm_today_2026.py",
+    # v7 additions: a0(z) derived from the action + its perturbation matrix + the forest mock,
+    # plus the two-field/forest sequence (stages 10-15) that v7's sections now cite directly
+    f"{NB}/stage7_the_claim_2026.py",
+    f"{NB}/stage10_two_field_construction_2026.py",
+    f"{NB}/stage11_30_200kpc_confrontation_2026.py",
+    f"{NB}/stage12_lensing_stack_fit_2026.py",
+    f"{NB}/stage13_gamma_zero_sector_2026.py",
+    f"{NB}/stage14_forest_bound_done_right_2026.py",
+    f"{NB}/stage15_forest_likelihood_mapping_2026.py",
+    f"{NB}/stage16_lognormal_forest_mock_2026.py",
+    f"{NB}/stage17_a0z_from_the_action_2026.py",
+    f"{NB}/stage18_perturbation_matrix_with_mixing_2026.py",
 ]
 
 EMAIL_RE = re.compile(r"[\w.+-]+@[\w-]+\.[\w.]{2,}")
