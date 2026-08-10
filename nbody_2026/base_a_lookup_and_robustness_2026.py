@@ -54,16 +54,38 @@ LAYER 3 -- *** WHAT THE LOOKUP DID NOT SETTLE, STATED PLAINLY ***
 --------------------------------------------------------------------------------------------------
 My mixing ratio is NOT a phenomenological observable -- it is an internal entry of the gradient
 matrix, computed before the diagonalisation of Layer 2 is performed.  So Layer 2 does NOT hand me
-base_a = 1, and Layer 1 does not hand me a number either.  Three K_B-combinations are candidates
-for "the aether's algebraic gradient entry", and I have NOT derived which:
+base_a = 1, and Layer 1 does not hand me a number either.  FOUR candidates exist for "the
+aether's algebraic gradient entry" (the fourth is fact (b) below), and I have NOT derived which:
 
       (i) base_a = 2 - K_B      (the mixing/Y normalisation)      -> 1.90 at the K_B = 0.1 fiducial
      (ii) base_a = K_B          (the aether's own F^2 entry)      -> 0.10 at the fiducial
     (iii) base_a = 1            (fully absorbed into Ghat)        -> 1
+     (iv) base_a -> inf         (PRL ansatz A^i = 0: NO aether mode)  -> mixing vanishes
 
 Settling it is a SHORT DERIVATION on Eq. (5)'s aether sector -- a calculation, not a lookup -- and
 it is now well-posed because there is exactly ONE parameter to track.  What this script does
-instead of guessing: compute the cap under all three, and report which conclusions are ROBUST.
+instead of guessing: compute the cap under all candidates, and report which conclusions are ROBUST.
+
+--------------------------------------------------------------------------------------------------
+TWO FURTHER PRIMARY-SOURCE FACTS (added after the full literature sweep returned)
+--------------------------------------------------------------------------------------------------
+ (a) *** THERE IS NO SKORDIS-ZLOSNIK SUPPLEMENTAL MATERIAL.  Verified against the published paper's
+     LaTeX source: no \appendix, no supplement block, no mention anywhere -- 3 journal pages plus
+     references, with technical detail deferred to "in preparation" citations.  So the full matrix's
+     own deferral -- "base_a from the SZ supplemental, a literature lookup" -- named a document THAT
+     DOES NOT EXIST.  The deferral was never satisfiable as written. ***
+
+ (b) *** AND THE PRL'S QUASI-STATIC LIMIT HAS NO AETHER PERTURBATION AT ALL.  Verbatim, it
+     "assume[s] that A^mu aligns with the time direction so that A^0 = 1-Psi and A^i = 0" -- an
+     ANSATZ, not a derived algebraic solution.  Under that ansatz there is no aether direction to
+     integrate out, so the mixing correction is ZERO and the isolated-term cap stands unmodified.
+     The follow-ups (Durakovic & Skordis 2312.00889; Verwayen et al. 2304.05134) do let the spatial
+     aether live as A^i = grad^i alpha, which is the setting in which my mixing term exists at all.
+     So "no aether mode" is itself a fourth candidate, and it is the PARENT PAPER'S OWN choice. ***
+
+ Also recorded: K_B = 2 is DOUBLY excluded -- it is the open endpoint of 0 < K_B < 2, and it is
+ degenerate (every (2-K_B) vanishes, killing the J^mu grad_mu phi mixing that produces the
+ modification of gravity at all, and sending Gtilde = (1 - K_B/2)Ghat to zero).
 """
 
 import sys
@@ -160,37 +182,41 @@ check(KB_IN_FRW,
 # =============================================================================================
 print()
 print("=" * 100)
-print("PART C -- LAYER 3: which K_B-combination base_a IS remains UNDERIVED. Scan all three.")
+print("PART C -- LAYER 3: which combination base_a IS remains UNDERIVED. Scan all four.")
 print("=" * 100)
 
 CANDS = {
-    "(i)  2 - K_B  [mixing/Y normalisation]": 2 - KB_STAR,
-    "(ii) K_B      [aether's own F^2 entry]": KB_STAR,
-    "(iii) 1       [fully absorbed into Ghat]": mp.mpf("1"),
+    "(i)   2 - K_B  [mixing/Y normalisation]": 2 - KB_STAR,
+    "(ii)  K_B      [aether's own F^2 entry]": KB_STAR,
+    "(iii) 1        [fully absorbed into Ghat]": mp.mpf("1"),
+    "(iv)  inf      [PRL ansatz: A^i = 0, NO mode]": mp.inf,
 }
 mist_lo, mist_hi = MIST_LO_X * A_FID, MIST_HI_X * A_FID
 print(f"\n   At the community fiducial K_B = {sig(KB_STAR,2)}.  Mistele demand: "
       f"{sig(mist_lo,3)}-{sig(mist_hi,3)} Mpc^-2\n")
-print("   candidate                                  base_a    A_max (Mpc^-2)   4x edge     34x end")
+print("   candidate                                       base_a    A_max (Mpc^-2)   4x edge     34x end")
 res = {}
 for name, ba in CANDS.items():
-    amax = A_MAX_ISO * (1 + MIX / ba)
+    amax = A_MAX_ISO * (1 + MIX / ba)          # ba = inf -> the isolated-term cap, unmodified
     v4 = "MARGINAL" if amax >= mist_lo else "EXCLUDED"
     v34 = "EXCLUDED" if amax < mist_hi else "ALLOWED"
     res[name] = (ba, amax, v4, v34)
-    print(f"   {name:<42s} {sig(ba,3):>6s}    {sig(amax,4):>8s}       {v4:<10s}  {v34}")
+    ba_s = "inf" if ba == mp.inf else sig(ba, 3)
+    print(f"   {name:<47s} {ba_s:>6s}    {sig(amax,4):>8s}       {v4:<10s}  {v34}")
 
 check(all(r[3] == "EXCLUDED" for r in res.values()),
-      "C1  *** ROBUST: Mistele's 34x end is EXCLUDED under ALL THREE candidate identifications -- "
-      "that half of the cluster pinch does not depend on the underived combination ***",
+      "C1  *** ROBUST: Mistele's 34x end is EXCLUDED under ALL FOUR candidates, including the "
+      "parent paper's own A^i = 0 ansatz -- that half of the cluster pinch does not depend on the "
+      "underived combination ***",
       "margins " + ", ".join(sig(mist_hi / r[1], 3) + "x" for r in res.values()))
 
 v4s = set(r[2] for r in res.values())
 check(len(v4s) > 1,
-      "C2  *** NOT ROBUST: the 4x EDGE flips with the identification -- EXCLUDED under (i), "
-      "MARGINAL under (ii) and (iii).  So the caveat is CONVERTED, not retired: what is owed is a "
-      "short derivation on Eq. (5)'s aether sector, not a lookup ***",
-      "the honest published statement must carry this fork until the derivation is done")
+      "C2  *** NOT ROBUST: the 4x EDGE flips -- EXCLUDED under (i) 2-K_B and under (iv) the PRL's "
+      "OWN no-aether-mode ansatz; MARGINAL under (ii) K_B and (iii) 1.  So the caveat is "
+      "CONVERTED, not retired: a short derivation on Eq. (5)'s aether sector is owed, not a lookup ***",
+      "note the two EXCLUDED cases include the parent paper's own treatment, so the marginality "
+      "the published text asserts is the LESS well-supported half of the fork")
 
 # NC-C: the scan must be able to return a uniform verdict, or C2's "flips" is not informative.
 uni = set()
@@ -208,7 +234,7 @@ check(ba_crit < KB_STAR,
       f"C3  and the robustness of C1 has a floor: only base_a <= {sig(ba_crit,3)} would admit the "
       f"34x end -- BELOW the community fiducial K_B = {sig(KB_STAR,2)}, so candidate (ii) survives "
       "C1 with room to spare",
-      f"at base_a = K_B = {sig(KB_STAR,2)} the cap is {sig(res['(ii) K_B      [aether’s own F^2 entry]'][1] if '(ii) K_B      [aether’s own F^2 entry]' in res else A_MAX_ISO*(1+MIX/KB_STAR),4)} Mpc^-2")
+      f"at base_a = K_B = {sig(KB_STAR,2)} the cap is {sig(A_MAX_ISO*(1+MIX/KB_STAR),4)} Mpc^-2")
 
 
 # =============================================================================================
