@@ -301,10 +301,18 @@ from **one function** instead of unrelated sectors.
    any cold initial condition. Items 1–12 and 15–17 are untouched by all of this.
 
 2e. **(v7) THE a₀(z) DERIVATION'S OWN CAVEATS, stated before anyone quotes row 18 as finished.**
-   (i) **β = 1 is SELECTED, not derived.** The relation μ²Λ_D² = M⁴ ("the Lagrangian vanishes at the
-   DBI wall") is chosen because the CMB off-switch requires the floor (1−β) ≤ 3.6×10⁻⁵; nothing in
-   this paper derives it. A brane-tension/boundary argument would make it structural; until then it
-   is one exact tuning carried openly — though it *removes* a parameter rather than adding one.
+   (i) **β = 1 is BOUNDARY-PINNED** *(upgraded 2026-08-10 from "selected" by
+   `nbody_2026/stage20_beta_equals_one_derivation_2026.py`, 8/8)*. Three results: **β ≤ 1 is a
+   THEOREM** — an additive constant in K is Λ_bare in disguise (a redundancy the promotion breaks),
+   and any β > 1 makes a₀² cross zero at finite redshift, where the kernel goes complex for any
+   spatial khronon gradient (β = 1.01 dies before recombination; β−1 = 10⁻⁸ by z ~ 10⁴);
+   **β = 1 ⟺ K is a PURE brane action** (the offset-DBI decomposes exactly into tension × volume
+   element + constant; the constant-free form's zero at the wall is canonical — a null brane has
+   zero action); and the CMB pins **1−β ≤ 3.6×10⁻⁵** from below. The defensible sentence: *"β ≤ 1
+   is derived; the boundary is canonical under the brane reading; the CMB pins the theory to within
+   3.6×10⁻⁵ of it."* Anyone quoting "β = 1 is derived" is overquoting. Named escapes, kept open:
+   β = 1−ε is consistent with a falsifiable high-z MOND floor √ε·a₀ (a detection would *measure*
+   1−β); and the β ≤ 1 theorem needs the charge history to extend to arbitrarily early times.
    (ii) **The DESI tension is not resolved and cannot be resolved by this sector**: the non-dust
    remainder's w(z) ≥ −1 always, so DESI's preferred phantom past (w₀ + wₐ = −1.61) is unreachable.
    If DESI's evolving-w detection stands, it remains evidence against w = −1 exact. What v7 fixes is
@@ -319,7 +327,7 @@ from **one function** instead of unrelated sectors.
    (stock CLASS, trace bracketed as cold matter — exact at high z, conservative at low z).
    **Still owed**: the MUSE/MSA-3D re-examination (both were graded against the withdrawn CPL shape,
    whose z ≈ 0.5 bump is gone); a referee-grade covariant SVT decomposition behind row 19's WKB
-   analysis; the β = 1 derivation.
+   analysis. *(The β = 1 derivation moved to (i): boundary-pinned, 2026-08-10.)*
 
 3. **The post-recombination growth history is NOT verified.** Item 9 covers the acoustic peaks only.
    Holding c_s² at its peak value for all time *destroys* P(k=0.2), so the pass depends essentially on
