@@ -31,7 +31,7 @@ NB = "nbody_2026"
 BASE = "https://zenodo.org/api"
 
 STEM = "THE_COMPLETION"
-RID = 21874520   # v6 record (PUBLISHED 2026-08-10, DOI 10.5281/zenodo.21874520, 34 files); v5 21873560;
+RID = 21879302   # v8 record (PUBLISHED 2026-08-10, DOI 10.5281/zenodo.21879302, 67 files); v7 21877698; v6 21874520;
                  # v3 21865827, v2 21865154, v1 21863522 (concept 21863521). Bump after each publish.
 META_PATH = f"{PAP}/{STEM}.zenodo.json"
 
@@ -85,6 +85,30 @@ FILES = [
     f"{NB}/stage16_lognormal_forest_mock_2026.py",
     f"{NB}/stage17_a0z_from_the_action_2026.py",
     f"{NB}/stage18_perturbation_matrix_with_mixing_2026.py",
+    # v8 additions: the four closures of non-claim 2e + the SVT suite
+    f"{NB}/stage19_class_rerun_derived_law_2026.py",
+    f"{NB}/stage20_beta_equals_one_derivation_2026.py",
+    f"{NB}/stage21_muse_msa_reexam_derived_law_2026.py",
+    f"{NB}/stage22_covariant_svt_decomposition_2026.py",
+    f"{NB}/svt_2026/tensor_sector_v7.py",
+    f"{NB}/svt_2026/aether_cross_check.py",
+    f"{NB}/svt_2026/adversarial_verify.py",
+    f"{NB}/svt_2026/omitted_terms_check.py",
+    f"{NB}/svt_2026/vector_sector_v7.py",
+    f"{NB}/svt_2026/vector_explore.py",
+    f"{NB}/svt_2026/adversarial_vector_independent.py",
+    f"{NB}/svt_2026/adversarial_vector_omitted_aest_terms.py",
+    f"{NB}/svt_2026/svt_scalar_all.py",
+    f"{NB}/svt_2026/svt_scalar_master.py",
+    f"{NB}/svt_2026/svt_scalar_reduce.py",
+    f"{NB}/svt_2026/svt_scalar_physical.py",
+    f"{NB}/svt_2026/svt_scalar_modes.py",
+    f"{NB}/svt_2026/svt_scalar_quasistatic_2026.py",
+    f"{NB}/svt_2026/adversarial_full_sqrtg_2026.py",
+    f"{NB}/svt_2026/adversarial_identities_numerics_2026.py",
+    f"{NB}/svt_2026/verifier_indep_scalar.py",
+    f"{NB}/svt_2026/verifier_indep_reduce.py",
+    f"{NB}/svt_2026/verifier_followup.py",
 ]
 
 EMAIL_RE = re.compile(r"[\w.+-]+@[\w-]+\.[\w.]{2,}")
