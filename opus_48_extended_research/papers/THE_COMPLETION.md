@@ -166,12 +166,26 @@ instead of three unrelated sectors.
    support galactic dust (even the optimal c_s² = 0.385Λ_D at the ceiling falls 1.38× short of the
    halo virial parameter), the Helmholtz profile's capacity at μ⁻¹ = 4392 Mpc is ~10⁻⁷ of the
    captured charge, and the basin's dust free-falls to a sub-kpc caustic within a Hubble time —
-   overshooting the 10-kpc RAR point by ~0.72 dex. **The near-miss, against interest in both
-   directions: self-support needs Λ_D ≈ 1.2×10⁻⁶, only 1.38× above the FRW-health ceiling — the
-   base_a literature lookup now carries mortal weight.** Remaining doors: stage 3 (wave/field
-   dynamics at the caustic, outside the fluid description — now decisive), base_a moving the
-   ceiling, or a theory-side Q-sector change (the smooth-accretion theorem closes its obvious
-   versions). 2d remains OPEN; its default branch is fatal-pending-stage-3.)**
+   overshooting the 10-kpc RAR point by ~0.72 dex. **Stage 2b
+   (`nbody_2026/stage2b_base_a_attribution_and_A_conflict_2026.py`, 15/15) then corrected TWO of
+   stage 2's own claims, in opposite directions.** (i) *A hope withdrawn:* stage 2 said base_a
+   could move the FRW ceiling and so carried "mortal weight" for the galaxy problem — **false**;
+   the ceiling is √(CLASS_DMG·μ²/(2A·L₀²·pk)), in which base_a does not appear, and its only
+   possible channel was already bounded at 3.2×10⁻⁴ by row 17's F1. base_a's real and only load is
+   the **cluster** pinch (the Mistele 34× end stays excluded for any base_a ∈ [0.5, 4]; the 4× edge
+   is marginal for base_a ≲ 1). (ii) *A deficit withdrawn:* stage 2's "supported ⇒ possibly
+   survivable" was **right**, and stage 2b's attempt to tighten it rested on a circular estimator
+   (caught by its own negative control); the honest figure is 0.052 dex at 1 Mpc, inside the ~0.1
+   dex outskirt tolerance. **What replaces the lost door is tighter than it was:** the ceiling
+   scales as A^(−1/2), so galactic dust support needs A ≤ 0.87 Mpc⁻² while clusters calibrate
+   A = 1.65 and Ref. Mistele's modelling wants 6.6–56 — **one parameter, two jobs, opposite
+   directions; the bump's success on clusters monotonically deepens its galaxy failure.** And a
+   **new falsification on existing data**: support is v_c-dependent, splitting at
+   v_c = c√(0.385 Λ_D,max) = 170 km/s — below it the interior is clean, above it spirals sit 0.72
+   dex off the RAR — so the fluid branch predicts a break inside the SPARC range that **is not
+   observed**. Remaining door: stage 3 (wave/field dynamics at the caustic, outside the fluid
+   description), which must keep interiors clean at v_c > 170 km/s *without lowering A*. 2d remains
+   OPEN; its fluid-description branch is now falsified rather than merely disfavoured.)**
 2b. **The coefficient is MEASURED, not derived: κ = 0.551 ± 0.043** (distance-free SPARC estimator),
    and **± 0.063 if the H₀ tension is carried as a systematic**, since κ ∝ a₀/H₀ at full strength.
    ½, 1/√3, √(3/8) and 0.40 all sit inside 2σ. (v2 correction: v1's ±0.043 omitted the ρ_Λ term.)
