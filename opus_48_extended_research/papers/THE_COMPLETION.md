@@ -309,10 +309,17 @@ from **one function** instead of unrelated sectors.
    remainder's w(z) ≥ −1 always, so DESI's preferred phantom past (w₀ + wₐ = −1.61) is unreachable.
    If DESI's evolving-w detection stands, it remains evidence against w = −1 exact. What v7 fixes is
    only that the a₀(z) law no longer *depends* on borrowing DESI's numbers.
-   (iii) **Owed**: the CLASS re-run with the derived law (row 19 proves the perturbation equations
-   are identical and only the background a₀(z) changes — expected to pass, but expected is not
-   verified); the MUSE/MSA-3D re-examination (both were graded against the withdrawn CPL shape, whose
-   z ≈ 0.5 bump is gone); a referee-grade covariant SVT decomposition behind row 19's WKB analysis.
+   (iii) ~~The CLASS re-run with the derived law~~ — **CLOSED 2026-08-10 by
+   `nbody_2026/stage19_class_rerun_derived_law_2026.py` (8/8)**: the exact β = 1 background is
+   ρ_nd = M⁴√(1+ν²), p_nd = −M⁴/√(1+ν²) (ρp = −M⁸ an exact invariant) — vs ΛCDM one cold a⁻³ trace
+   (today-density ρ_Λν₀ ≤ 1.2×10⁻⁴ρ_crit) and an a⁻⁶ transient < 3.2×10⁻⁸; θ\* moves 0.18× Planck
+   precision; real CLASS runs give Δχ² = 1.3 against cosmic variance over 4998 TT+EE multipoles
+   (0.01σ — an ideal experiment could not distinguish them); the MOND-off input of the committed
+   pass is now an output, a₀(z\*) = 0.002–0.006 of today. Same rigor level as the committed pass
+   (stock CLASS, trace bracketed as cold matter — exact at high z, conservative at low z).
+   **Still owed**: the MUSE/MSA-3D re-examination (both were graded against the withdrawn CPL shape,
+   whose z ≈ 0.5 bump is gone); a referee-grade covariant SVT decomposition behind row 19's WKB
+   analysis; the β = 1 derivation.
 
 3. **The post-recombination growth history is NOT verified.** Item 9 covers the acoustic peaks only.
    Holding c_s² at its peak value for all time *destroys* P(k=0.2), so the pass depends essentially on
