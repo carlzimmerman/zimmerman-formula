@@ -19,9 +19,9 @@ for it).
 
 | stage | script | question it settles | status |
 |---|---|---|---|
-| 1 | `stage1_condensate_relaxation_2026.py` | The branch discriminant: can the condensate reach its static profile within a Hubble time? t_relax(R) vs t_H across the health-allowed Λ_D window, both a₀ footings, galaxy vs cluster basins | **first target** |
-| 2 | `stage2_spherical_collapse_2026.py` | Shell-by-shell Lagrangian collapse of baryons + dust under the Route A kernel: how much dust a galaxy-scale basin actually captures and where it sits at z=0 | pending stage 1 |
-| 3 | `stage3_pm3d/` | The full thing: 3D particle-mesh with a nonlinear multigrid AQUAL solver + the condensate fluid, galaxy-formation-scale box | pending stage 2 |
+| 1 | `stage1_condensate_relaxation_2026.py` | Sound-crossing discriminant: CAN the condensate rearrange within t_H? (11/11) | **done — its favorable branch is WITHDRAWN by stage 2** (crossing is necessary, not sufficient; the Λ_D ≥ 1.2e-9 pinch dies) |
+| 2 | `stage2_spherical_collapse_2026.py` | The energetics + shells: what FORCE holds the evacuated profile, and where does the captured dust actually go? (10/10) | **done — FATAL branch is the default at every Λ_D, within the fluid description**: bounded DBI pressure can't support galactic dust (near-miss: needs Λ_D ≈ 1.2e-6, 1.38× above the FRW ceiling ⇒ base_a now mortal); Helmholtz capacity ~1e-7 of the charge; basin free-falls to a sub-kpc caustic; RAR overshoot ~0.72 dex at 10 kpc |
+| 3 | `stage3_pm3d/` | The wave/field dynamics at and around the caustic — outside the fluid description, where scalar interference can flatten cores. 3D PM with nonlinear multigrid AQUAL solver | **now DECISIVE, not optional** — the last in-framework door |
 
 ## Ground rules (the program's standing ones)
 
