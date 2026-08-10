@@ -325,9 +325,21 @@ from **one function** instead of unrelated sectors.
    (0.01σ — an ideal experiment could not distinguish them); the MOND-off input of the committed
    pass is now an output, a₀(z\*) = 0.002–0.006 of today. Same rigor level as the committed pass
    (stock CLASS, trace bracketed as cold matter — exact at high z, conservative at low z).
-   **Still owed**: the MUSE/MSA-3D re-examination (both were graded against the withdrawn CPL shape,
-   whose z ≈ 0.5 bump is gone); a referee-grade covariant SVT decomposition behind row 19's WKB
-   analysis. *(The β = 1 derivation moved to (i): boundary-pinned, 2026-08-10.)*
+   ~~The MUSE/MSA-3D re-examination~~ — **CLOSED 2026-08-10 by
+   `nbody_2026/stage21_muse_msa_reexam_derived_law_2026.py` (7/7)**: the MUSE tension *persists*
+   (15.1σ raw, ~2–3σ after the shared ΛCDM assembly drift) but re-grades from
+   framework-distinctive-WORST (the withdrawn declining branch: wrong sign, 16.3σ) to
+   **shared-with-all-constant-a₀-MOND**; in the committed joint fork likelihood the framework's
+   branch relabels M-DEC → M-FLAT (the branch needing exactly the drift MSA-3D measures, p = 1.22,
+   and its near-unfalsifiability critique inverts into the sharp null below); MSA-3D re-grades
+   WEAK-TENSION/WATCH → CONSISTENT (1.15σ from flat). **Forfeited, priced**: the z ≈ 0.4 bump
+   defense; the 3.1–4.2σ DESI cosmology tailwind (and with it the w → −1 hostage — dissolution is
+   now the *prediction*); the z ≈ 2–3 declining discriminator. **New exposure**: full-strength MOND
+   through cosmic dawn (a₀(10) = 0.99–1.00 vs the old 0.36) — Nusser-type over-production unpriced,
+   z_t ∈ [17, 35] in the 21-cm window; the early-structure front needs its own confrontation.
+   **Still owed**: a referee-grade covariant SVT decomposition behind row 19's WKB analysis; the
+   cosmic-dawn confrontation just opened. *(The β = 1 derivation moved to (i): boundary-pinned,
+   2026-08-10.)*
 
 3. **The post-recombination growth history is NOT verified.** Item 9 covers the acoustic peaks only.
    Holding c_s² at its peak value for all time *destroys* P(k=0.2), so the pass depends essentially on
