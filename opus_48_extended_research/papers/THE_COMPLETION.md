@@ -158,6 +158,12 @@ instead of three unrelated sectors.
    static profile within a Hubble time — that no group has ever computed for AeST.** It is scheduled
    as this program's next calculation (N-body-class, staged from spherical symmetry up). Until it is
    done, galaxy-interior cleanliness is an *assumption the theory needs*, not a result it owns.
+   **(Same-day postscript: stage 1 of that calculation — the sound-crossing discriminant,
+   `nbody_2026/stage1_condensate_relaxation_2026.py`, 11/11 — NARROWS the problem to a bound: the
+   DBI sound speed relaxes 10–30 kpc interiors within a Hubble time iff Λ_D ≳ 1.2×10⁻⁹, freezing
+   them below it ⇒ combined with the FRW ceiling, 1.2×10⁻⁹ ≲ Λ_D ≤ 8.4×10⁻⁷, a 2.9-decade
+   two-sided pinch; outskirts stay frozen at ~Mpc radii either way. Stages 2–3 must still confirm
+   frozen⇒fatal and the self-consistent profile — 2d remains open, now narrower.)**
 2b. **The coefficient is MEASURED, not derived: κ = 0.551 ± 0.043** (distance-free SPARC estimator),
    and **± 0.063 if the H₀ tension is carried as a systematic**, since κ ∝ a₀/H₀ at full strength.
    ½, 1/√3, √(3/8) and 0.40 all sit inside 2σ. (v2 correction: v1's ±0.043 omitted the ρ_Λ term.)
