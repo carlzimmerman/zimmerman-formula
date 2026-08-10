@@ -31,7 +31,7 @@ NB = "nbody_2026"
 BASE = "https://zenodo.org/api"
 
 STEM = "THE_COMPLETION"
-RID = 21873560   # v5 record (PUBLISHED 2026-08-09, DOI 10.5281/zenodo.21873560, 28 files); v4 21865864;
+RID = 21874520   # v6 record (PUBLISHED 2026-08-10, DOI 10.5281/zenodo.21874520, 34 files); v5 21873560;
                  # v3 21865827, v2 21865154, v1 21863522 (concept 21863521). Bump after each publish.
 META_PATH = f"{PAP}/{STEM}.zenodo.json"
 
@@ -66,6 +66,13 @@ FILES = [
     f"{NB}/stage5_selfconsistent_solve_2026.py",
     f"{NB}/stage6_break_shift_symmetry_2026.py",
     f"{NB}/base_a_lookup_and_robustness_2026.py",
+    # v6 additions: the four-route sweep and the audit that corrected stage 6
+    f"{NB}/stage8_a0z_reopens_it_2026.py",
+    f"{NB}/stage9_construct_the_function_2026.py",
+    f"{NB}/stage6_audit_transport_channels_2026.py",
+    f"{NB}/routeA_dust_to_dark_radiation_2026.py",
+    f"{NB}/routeB_dust_to_dark_energy_2026.py",
+    f"{RR}/mi_route_c_no_dm_today_2026.py",
 ]
 
 EMAIL_RE = re.compile(r"[\w.+-]+@[\w-]+\.[\w.]{2,}")

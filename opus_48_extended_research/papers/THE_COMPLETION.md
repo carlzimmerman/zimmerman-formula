@@ -3,7 +3,26 @@
 **A relativistic field theory carrying a₀ = κc√(Gρ_Λ)**
 
 Zimmerman, Carl P. — Briar Creek Tech
-Assembled 2026-08-09; **v2, v3, v4, v5 same day**. Every numbered property below is backed by a committed, runnable
+Assembled 2026-08-09; **v2, v3, v4, v5 same day; v6 2026-08-10**.
+**v6 changes — an ERRATUM against v5, filed against my own argument.** v5's non-claim 2d rested one of
+its three steps on a **category error**: it bounded the *export* of the dust's energy from a galaxy by
+the khronon's own polytropic sound speed (≈690 Gyr). ∇_μT^μν = 0 bounds the **total energy**, not the
+**flux velocity**; the bound on how fast energy can leave a region is **causality**, and AeST has two
+massless tensor modes at exactly *c* — by this paper's own row 17. An O(*c*) export channel therefore
+exists in the theory as written (1 Mpc in 3.3 Myr). **That step is withdrawn.** Also withdrawn: the
+claim that the leak rates "lock" at ρ_Λ/ρ_dust = 2.60 — that is merely today's density ratio.
+**The conclusion survives on stronger, published, transport-independent grounds:** exporting the
+energy removes it from the *galaxy*, not the *universe*, so the measured global budget decides —
+a halo-gated conversion needs a converted fraction ζ ≈ 0.6 against the **epoch-marginalised** bound
+ζ < 0.0204 (Planck) to 0.0374 (+lensing+BAO+SN+DES) [McCarthy & Hill, PRD **108**, 063501], over by
+16–29×, and would leave Ω_dr,0 ≈ 0.196 ≈ 2100× today's radiation density; the dust→dark-energy channel
+needs far more than the published |δ₀| ≤ 6.7×10⁻⁴. And the halo gate is **adverse**, not protective:
+dilution goes as a_c, so later injection leaves *more* residue. **The lensing theorem (ρ+3p vs ρ+p) is
+untouched and is what carries the result.** Banked as a genuine asset: the Y-gate's FRW exactness makes
+recombination-era N_eff immunity *exact*. Also recorded, against expectation: the **background** does
+not require dark matter at all (Kunz's dark degeneracy, confirmed numerically — a single free w_X(z)
+reproduces ΛCDM's H(z) with baryons alone); the binding constraint is **CMB lensing**, which forces the
+clustering to survive to z < 0.30. Every numbered property below is backed by a committed, runnable
 script that exits non-zero on failure. Scripts named at each line.
 **v5 changes — the largest revision, and it runs against the programme's interest.** A six-stage
 sequence (`nbody_2026/`, every stage committed and green) settles the galaxy-interior question that
@@ -12,7 +31,8 @@ galaxies, and the repair space of local, energy-preserving modifications is prov
 results carry it: (i) *the dust mass IS the conserved shift charge* (ρ = Q₀n with ρ/n = Q₀ regardless
 of any added Y-dependent Q-mass), so it cannot be suppressed locally — which retro-explains three
 withdrawn mechanisms; (ii) *unlocking the charge does not unlock the energy* (∇_μT^μν = 0 holds
-regardless, and transport out of a galaxy takes 690 Gyr); (iii) **⭐ dynamics responds to ρ + 3p but
+regardless — though v6 withdraws the transport step that accompanied this, see the v6 banner);
+(iii) **⭐ dynamics responds to ρ + 3p but
 lensing responds to ρ + p, and no equation of state kills both** — so the same no-slip identity that
 underwrites row 1 forbids hiding the dust. Also corrected here: v3/v4's claim that the DBI cap bounds
 the dust *density* (it bounds the pressure; ρ_exc is linear in u and diverges at saturation), and
@@ -193,8 +213,14 @@ instead of three unrelated sectors.
      1 Gyr drifts ρ_Λ by 47× and protecting ρ_Λ forces a 180 Gyr charge lifetime. A **Y-gated**
      breaking, 𝓕 ⊃ −W(Y/a₀²)V(φ) with W(0) = 0, *defeats* that — on FRW the symmetry is **exact**,
      so cosmology is untouched identically. But **unlocking the charge does not unlock the energy**:
-     ∇_μT^μν = 0 holds regardless, and transporting the energy out of a galaxy takes **690 Gyr** at
-     the sector's own sound speed. Charge decay alone changes nothing about the gravitating mass.
+     ∇_μT^μν = 0 holds regardless. **(v6 erratum:** v5 added that the energy therefore *cannot leave*,
+     bounding its export by the khronon's polytropic sound speed at ≈690 Gyr. That was a category
+     error — a conservation law bounds total energy, not flux velocity; the causal limit is *c*, and
+     row 17's tensor modes travel at exactly *c*. **Withdrawn.** What kills the export route instead is
+     the *measured global budget*: a halo-gated conversion needs ζ ≈ 0.6 against the epoch-marginalised
+     ζ < 0.0204–0.0374 [McCarthy & Hill, PRD **108**, 063501] — over by 16–29× — leaving Ω_dr,0 ≈ 0.196,
+     some 2100× today's radiation density; and dust→Λ needs far more than |δ₀| ≤ 6.7×10⁻⁴. The gate is
+     adverse rather than protective, since dilution goes as a_c.**)
    - **⭐ AND LENSING CLOSES IT BY A THEOREM.** Transforming the equation of state almost works: the
      dynamical source ρ + 3p vanishes at exactly **f = 1/3**, and the field-strength gate makes that
      a *stable fixed point* rather than a tuning. But **dynamics responds to ρ + 3p while lensing

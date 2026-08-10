@@ -61,6 +61,12 @@ def check(cond, label, detail=""):
         FAIL.append(label)
     return ok
 
+def info(label, detail=""):
+    """A STATEMENT, not a test -- printed so it can never be miscounted as a passing check."""
+    print(f"  [info] {label}" + (f"   {detail}" if detail else ""))
+    return True
+
+
 def head(t):
     print("\n" + "=" * 100)
     print(t)
