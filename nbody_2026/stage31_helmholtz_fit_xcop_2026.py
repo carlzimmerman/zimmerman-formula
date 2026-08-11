@@ -251,13 +251,24 @@ check(True,
       f"{'INSIDE the predicted window' if inside else f'OUTSIDE by {n_sig:.1f} sigma'}",
       "reported whichever way it lands -- this is the test the stage exists for")
 
-check(inside or n_sig < 5.0,
-      f"C2  {'*** THE TWO INDEPENDENT ROUTES AGREE ON THE SAME PHYSICAL SCALE: the amplitude analysis '
-      f'(stage 27, from base_a = K_B) and the radial profiles (stage 31, from 12 real clusters) both '
-      f'land at lambda ~ 0.5-1 Mpc. That is a genuine cross-check, not a fit. ***' if inside else
-      f'the fitted scale sits {n_sig:.1f} sigma outside the predicted window -- close enough to be a '
-      f'tension rather than a refutation, and Part D localises it'}",
-      "an order-of-magnitude disagreement here would have killed the Helmholtz reading outright")
+win_dex = np.log10(LAM_PRED[1] / LAM_PRED[0])
+cov_dex = np.log10(2.14 / 0.030)                 # the sample's own median radial coverage
+frac_by_chance = win_dex / cov_dex
+check(inside,
+      f"C2  the fitted lambda falls inside the predicted window -- but PRICE THE COINCIDENCE BEFORE "
+      f"CALLING IT A CROSS-CHECK: the window is {win_dex:.2f} dex wide against a "
+      f"{cov_dex:.2f} dex radial coverage, so a decay scale drawn at random from what these data can "
+      f"even measure lands inside it {100*frac_by_chance:.0f}% of the time",
+      "*** so this is SUGGESTIVE, roughly a 1-in-6 coincidence, NOT the independent confirmation an "
+      "earlier draft of this file called it -- and a fit to data spanning 0.03-2.14 Mpc can only "
+      "return a scale of order a Mpc in the first place ***")
+
+check(chi2 / dof > 5.0,
+      f"C3  AND THE DEEPER POINT AGAINST OVERREADING IT: lambda comes from a model REJECTED at "
+      f"chi2/dof = {chi2/dof:.0f} (B3).  A parameter of a rejected model is a summary statistic of the "
+      f"residual's decay, not a measurement of a physical Helmholtz mass",
+      "the honest sentence is 'the residual decays on ~0.8 Mpc, which is the order the bump's "
+      "mu_eff would give' -- not 'the Helmholtz mass is measured to be 1.6 Mpc^-2'")
 
 # =================================================================================================
 print()
@@ -361,10 +372,13 @@ print(f"""
          lambda = {lam_f:.3f} +- {el:.3f} Mpc      (mu^2_eff = {1/lam_f**2:.3f} Mpc^-2)
      with chi2/dof = {chi2/dof:.2f}, beating the no-scale constant ({c2_const/dof_c:.2f}).
 
-  2. *** AND THE SCALE MATCHES A PREDICTION MADE FROM COMPLETELY DIFFERENT PHYSICS: stage 27 derived
-     base_a = K_B from the committed SVT reduction and got mu^2_eff = {MU2_PRED[0]}-{MU2_PRED[1]} Mpc^-2, i.e.
-     lambda = {LAM_PRED[0]:.2f}-{LAM_PRED[1]:.2f} Mpc.  The radial fit returns {lam_f:.3f} Mpc.  Two independent routes,
-     one scale. ***
+  2. The fitted scale lands inside the window stage 27 predicted from amplitude physics
+     ({LAM_PRED[0]:.2f}-{LAM_PRED[1]:.2f} Mpc vs fitted {lam_f:.3f} Mpc) -- but that window is {win_dex:.2f} dex wide against
+     {cov_dex:.2f} dex of radial coverage, so it is a ~1-in-{1/frac_by_chance:.0f} coincidence, SUGGESTIVE and no more.
+     An earlier draft of this file called it "a genuine cross-check, not a fit"; that was
+     overclaiming and is withdrawn here.  Worse for the reading: lambda is a parameter of a model
+     REJECTED at chi2/dof = {chi2/dof:.0f}, so it is a summary statistic of how the residual decays, not a
+     measurement of a Helmholtz mass.
 
   3. AGAINST IT, and I had this backwards on first pass: per cluster the AMPLITUDE is the more
      universal quantity ({100*sc_al:.0f}% scatter) and the LENGTH varies MORE ({100*sc_lam:.0f}%).  A single fixed
