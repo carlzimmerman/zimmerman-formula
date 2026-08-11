@@ -31,7 +31,8 @@ NB = "nbody_2026"
 BASE = "https://zenodo.org/api"
 
 STEM = "THE_COMPLETION"
-RID = 21879302   # v8 record (PUBLISHED 2026-08-10, DOI 10.5281/zenodo.21879302, 67 files); v7 21877698; v6 21874520;
+RID = 21895046   # v9 record (PUBLISHED 2026-08-11, DOI 10.5281/zenodo.21895046, 71 files); v8 21879302;
+                 # v7 21877698; v6 21874520;
                  # v3 21865827, v2 21865154, v1 21863522 (concept 21863521). Bump after each publish.
 META_PATH = f"{PAP}/{STEM}.zenodo.json"
 
@@ -109,6 +110,11 @@ FILES = [
     f"{NB}/svt_2026/verifier_indep_scalar.py",
     f"{NB}/svt_2026/verifier_indep_reduce.py",
     f"{NB}/svt_2026/verifier_followup.py",
+    # v9 additions: the Sec 5 withdrawal + the two predictions that replace it
+    f"{NB}/stage23_s8_confrontation_2026.py",
+    f"{NB}/stage24_cosmic_dawn_confrontation_2026.py",
+    f"{NB}/stage25_cosmic_dawn_own_terms_2026.py",
+    f"{NB}/stage26_collapse_acceleration_own_terms_2026.py",
 ]
 
 EMAIL_RE = re.compile(r"[\w.+-]+@[\w-]+\.[\w.]{2,}")

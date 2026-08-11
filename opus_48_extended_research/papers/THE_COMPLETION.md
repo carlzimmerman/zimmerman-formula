@@ -3,7 +3,28 @@
 **A relativistic field theory carrying a₀ = κc√(Gρ_Λ)**
 
 Zimmerman, Carl P. — Briar Creek Tech
-Assembled 2026-08-09; **v2, v3, v4, v5 same day; v6 2026-08-10; v7 2026-08-10 (late)**.
+Assembled 2026-08-09; **v2, v3, v4, v5 same day; v6 2026-08-10; v7 2026-08-10 (late); v8 2026-08-10 (night, stages 19–22); v9 2026-08-11**.
+**v9 changes — one prediction RE-DERIVED (its mechanism was misattributed), two new predictions added, and an S8 null.** §5's "accelerated structure formation / earlier massive objects" row is
+**RESTORED and re-derived**. A draft of this version withdrew it, arguing that abundance is set by
+linear growth and that rows 19–20 make linear growth ΛCDM's. That reasoning was **wrong in
+substance**: collapse *timing* is nonlinear, the a₀-line governs accelerations at every scale, and the
+δY⁽¹⁾ = 0 theorem says nothing about nonlinear collapse. The two facts coexist — **ΛCDM halo
+abundance AND accelerated collapse timing.** The draft compounded the error by pricing the nonlinear
+boost at δ ≈ 200 (the *end* of collapse, ≲1.5×) instead of at turnaround (**2.3–5.1×**), which is what
+sets the timing. Computed from the a₀-line alone: **collapse is 1.34–1.96× faster than Newtonian**, so
+objects ΛCDM forms at z = 10 appear at z ≈ 14–16 — and because a₀(z) declines, the speedup declines
+with it (2.03× at z = 6 → 1.14× at z = 25), a shape no constant-a₀ MOND predicts. The double-counting
+fork (the boost acts on total enclosed mass) is named as the live uncertainty, making 1.96× an upper
+bound. ALSO ADDED, from the framework's *own* two equations with zero free parameters: the
+**early-rotator BTFR zero point** v(z)/v(0) = [a₀(z)/a₀(0)]^{1/4} — flat to 0.009% below z = 5, then a
+signed velocity deficit reaching 7.8% at z = 20, testable once it clears the 3.5% floor at z ≈ 17 —
+and the framework's **own** MOND threshold Σ† = a₀/(πG) = 214 M☉/pc² (twice the value usually quoted,
+which belongs to a different interpolation), which *shrinks* toward high z. Also recorded: the χ
+sector's Jeans cutoff does **not** alleviate S8 — short by ~35× at the σ8 scale, and the σ8 window is
+already closed at the cutoff (`stage23`); and the *reason* the dark sector is needed is now quantified
+— at the σ8 scale today a linear perturbation sits at y ≈ 10⁻³, deep MOND, where the kernel would
+multiply gravity ~29×, so **"dark matter exists at full Ω_dm" is structurally required, not a
+concession** (`stage24`).
 **v7 changes — the largest POSITIVE structural change of the programme: a₀(z) is DERIVED from the
 action.** Until v7 the redshift scaling of a₀ was imposed on the theory as a phenomenological law
 dressed in DESI's CPL parameters — a dressing that was **never self-consistent** with this paper's own
@@ -389,7 +410,9 @@ from **one function** instead of unrelated sectors.
 | cluster-to-cluster **scatter** in the residual | σ(ξ)/ξ ≈ 0.02–0.60 | existing cluster samples — **(v4) separates the a₀-bump response (scatter tracks each cluster's distance from the resonance, rows 15–17) from any fixed-scale mechanism, which predicts uniformity** (the two prior candidates are withdrawn) |
 | cluster mass **profile** misfit | ρ_c flat, M_c ~ r³, can go negative | fit clusters with the khronon profile instead of NFW |
 | g⁻² Lorentz violation | computable s_μν | SME sector bounds |
-| accelerated structure formation | earlier massive objects | JWST high-z massive galaxies (McGaugh et al. 2024) |
+| **accelerated structure formation — RESTORED (v9)** | **collapse is 1.34–1.96× faster than Newtonian, from the a₀-line alone, zero free parameters** ⇒ objects ΛCDM forms at z = 10 appear at **z ≈ 14–16**. *(v9 erratum: an earlier v9 draft WITHDREW this row on two wrong grounds, both mine. (a) "It is a linear-growth claim, and rows 19–20 make linear growth ΛCDM's" — a misattribution: collapse TIMING is **nonlinear**, the a₀-line governs accelerations at every scale, and the δY⁽¹⁾ = 0 theorem is silent about nonlinear collapse. Both statements hold at once: **ΛCDM halo abundance, accelerated collapse timing.** (b) "The nonlinear boost is only ≲1.5×" — that was the boost at δ ≈ 200, the **end** of collapse. At **turnaround**, which is what sets the timing, it is **2.3–5.1×**, i.e. 1.6–1.8× larger in every case. Evaluating a rate-limiting quantity at its minimum is the manufactured-deficit failure this paper's own working rule forbids.)* | resolved high-z galaxy assembly. **And a₀(z) gives it a shape no constant-a₀ MOND has**: the speedup *declines* with redshift — 2.03× at z = 6, 1.66× at z = 10, 1.41× at z = 15, 1.14× at z = 25 — so accelerated formation **switches off** toward the highest z. JWST high-z massive/mature galaxies (McGaugh et al. 2024) test the amplitude; the *decline* is the framework-distinctive part. **Live uncertainty, named:** the boost acts on the **total** enclosed mass, dark sector included, which is this framework's known double-counting exposure (non-claim 2d) — so 1.34–1.96× is an **upper** bound, and the honest range runs down toward ~1 if the dust dominates the collapse (`stage26_collapse_acceleration_own_terms_2026.py`, 4/4) |
+| **early-rotator BTFR zero point (v9)** — *the prediction that replaces it* | **v(z)/v(0) = [a₀(z)/a₀(0)]^{1/4} at fixed M_b, zero parameters.** v⁴ = G M_b a₀ is a THEOREM of §1.1's own a₀-line (its low-g_bar limit is g_obs = √(a₀g_bar) exactly, r drops out, d ln v/d ln a₀ = 1/4 exactly). With §1.3's derived a₀(z): rotators lie on **today's** BTFR to **0.009% out to z = 5**, then fall below it by **0.34% (z = 10), 2.6% (z = 15), 7.8% (z = 20), 18.9% (z = 30)** — signed, high-z rotators are *slower* at fixed baryonic mass. Footing-independent (the z = 0 anchor cancels in the ratio) | resolved high-z rotation curves with baryonic masses. **Two-sided:** below z = 5 the prediction is *exactly* today's BTFR, so any robust zero-point offset falsifies the derived law; the deficit first clears the committed 0.06 dex high-z systematic floor (= 3.5% in velocity, since v⁴ ~ M) at **z ≈ 17**, where it becomes a curve to trace. ALMA [CII]/JWST reach z ~ 4–7 today, so this is a **pre-registered forecast for the 2030s, not present-day support** (`stage25_cosmic_dawn_own_terms_2026.py`, 8/8) |
+| **MOND-regime threshold and its evolution (v9)** | **Σ† = a₀/(πG) = 214 M☉/pc²**, derived from the a₀-line's own transition condition g_bar = a₀ — *twice* the a₀/(2πG) usually quoted, which belongs to a different interpolation and must not be applied to this framework. And Σ†(z) ∝ a₀(z), so **the MOND regime SHRINKS toward high z: early systems are MORE Newtonian than today's at equal surface density** | any high-z system with measured surface density and kinematics. Note the consequence for the JWST objects that motivated the withdrawn row: compact high-z galaxies (~10³ M☉/pc²) sit ~5× *above* Σ†, i.e. in the Newtonian regime where a₀'s value does not enter — **they cannot test a₀(z) in either direction** |
 | **a₀(z) shape (v7)** | **constant to <1% for z ≤ 5, transition z_t ∈ [17, 35], NO bump at z ≈ 0.5** | any measurement of a₀ evolving below z ≈ 5 falsifies the derived law (the withdrawn CPL dressing predicted +6% at z = 0.5 — the two are now distinguishable); MUSE-type high-z kinematics, high-z RAR |
 
 ---

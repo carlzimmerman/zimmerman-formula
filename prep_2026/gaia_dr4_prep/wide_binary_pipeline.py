@@ -331,24 +331,34 @@ GRID = np.arange(0.90, 1.5001, 0.0025)
 def report_7e(g, sg, kap, label):
     """AMENDMENT 7(e)/8 SCORING, implemented rather than left in the document.
 
-    The rule: report the RAW gamma_hat with sigma_fit and BOTH distances -- to
-    Newton (1.000) and to the in-force framework-MI target -- and NEVER a single
-    verdict word. It is load-bearing here because Amendment 8's own prediction
-    1.1582 falls in the frozen table's bin pre-declared "MG-side; MI disfavored",
-    and the frozen MG target 1.137 lies INSIDE the MI range, so any
-    proximity-based label would misreport the framework's own prediction.
+    The rule: report the RAW gamma_hat with sigma_fit and the distances -- to
+    Newton (1.000) and to the IN-FORCE target -- and NEVER a single verdict word.
 
-    Also emits Amendment 8's two declared risks:
+    REWIRED 2026-08-11 (no registered number moved): before this, every distance,
+    injection and separation in this file was computed against GAMMA_MI = 1.1582
+    (Amendment 8) even though Amendment 9's GAMMA_TARGET = 1.2139 was already
+    defined at the top of the file -- i.e. the in-force target was DEAD CODE and
+    the file merely looked updated.  The operative arm has been modified GRAVITY
+    since 2026-08-08 (the MI arm is closed, excluded 21.2 sigma by lensing), so
+    the primary comparison is the MG target on both footings.  The superseded MI
+    number and its ranges are still printed, as the historical/disjointness
+    record only.
+
+    Also emits the declared risks:
       (c) kappa outside the frozen window => "systematic-limited, no verdict";
-      (d) a MAGNITUDE-convention result above 1.20 => PRE-DECLARED UNSCOREABLE.
+      (d) a result above the no-verdict edge => PRE-DECLARED UNSCOREABLE.
     """
     d_newt = (g - 1.0) / sg if sg > 0 else float("nan")
+    d_tgt = (g - GAMMA_TARGET) / sg if sg > 0 else float("nan")
+    d_alt = (g - GAMMA_TARGET_ALT) / sg if sg > 0 else float("nan")
     d_mi = (g - GAMMA_MI) / sg if sg > 0 else float("nan")
     print(f"    [7(e)] raw gamma_hat = {g:.4f}, sigma_fit = {sg:.4f}; "
-          f"distance to Newton 1.000 = {d_newt:+.2f} sigma_fit; "
-          f"to framework-MI {GAMMA_MI:.4f} = {d_mi:+.2f} sigma_fit")
-    print(f"    [7(e)] MI ranges carried: radial {GAMMA_MI_RANGE_RAD}, "
-          f"magnitude {GAMMA_MI_RANGE_MAG}.  No verdict word is emitted by design.")
+          f"distance to Newton 1.000 = {d_newt:+.2f} sigma_fit")
+    print(f"    [7(e)] IN FORCE (Amdt 9, MG arm): to canonical {GAMMA_TARGET:.4f} = "
+          f"{d_tgt:+.2f} sigma_fit; to alt {GAMMA_TARGET_ALT:.4f} = {d_alt:+.2f} sigma_fit")
+    print(f"    [7(e)] superseded record only: MI {GAMMA_MI:.4f} = {d_mi:+.2f} sigma_fit; "
+          f"MI ranges radial {GAMMA_MI_RANGE_RAD}, magnitude {GAMMA_MI_RANGE_MAG}.  "
+          f"No verdict word is emitted by design.")
     flags = []
     if not (KAPPA_WINDOW[0] <= kap <= KAPPA_WINDOW[1]):
         flags.append(f"SYSTEMATIC-LIMITED, NO VERDICT -- nuisance kappa = {kap:.4f} is "
@@ -543,8 +553,13 @@ def main():
     print("="*78)
     print(f"a0 canonical {A0_CAN:.3e} (y_extN={y_extN(A0_CAN):.4f}) | "
           f"alt {A0_ALT:.3e} (y_extN={y_extN(A0_ALT):.4f})")
-    print(f"targets: Newton 1.00 < MI {GAMMA_MI} (banked; NOT 1.137) < "
-          f"MG {GAMMA_MG} < MOND benchmark {GAMMA_MOND}")
+    print(f"targets IN FORCE (Amdt 9, modified-GRAVITY arm): canonical {GAMMA_TARGET} / "
+          f"alt {GAMMA_TARGET_ALT};  no-verdict edge {NOVERDICT_EDGE}")
+    print(f"  ladder: Newton 1.00 < [superseded MI {GAMMA_MI}] < canonical {GAMMA_TARGET} "
+          f"< alt {GAMMA_TARGET_ALT} < edge {NOVERDICT_EDGE} < MOND benchmark {GAMMA_MOND}")
+    print(f"  NOTE: alt footing {GAMMA_TARGET_ALT} sits only "
+          f"{NOVERDICT_EDGE - GAMMA_TARGET_ALT:.4f} below the no-verdict edge -- "
+          f"declared risk, exercised in the GATE below")
     print("\n[FROZEN DR4 CUTS] (pre-registered 2026-07-16; PREREGISTRATION_DR4.md)")
     for cut, val, why in FROZEN_DR4_CUTS:
         print(f"  {cut:20s} {val:48s} [{why}]")
@@ -562,7 +577,7 @@ def main():
     print(f"\n[GATE] synthetic DR4 catalogs, N_data={args.n_data} "
           f"(injection: boost at TRUE 3D y, canonical a0; recovery below)")
     gate_ok, results = True, {}
-    for ginj in (1.00, GAMMA_MI, GAMMA_MOND):
+    for ginj in (1.00, GAMMA_TARGET, GAMMA_TARGET_ALT, GAMMA_MOND):
         pop_d = make_population(int(args.n_data*2.7), rng, dr4=True)
         keep = rng.permutation(len(pop_d['s_obs']))[:args.n_data]
         pop_d = {k: v[keep] for k, v in pop_d.items()}
@@ -580,14 +595,15 @@ def main():
         print(f"  GATE @{ginj:.2f}: |{g_c:.4f}-{ginj:.2f}|={abs(g_c-ginj):.4f} "
               f"< tol {tol:.4f} -> {'PASS' if ok else 'FAIL'}")
 
-    # spread check: independent realizations at the MI target
-    print("\n[spread check] 8 independent catalogs @ gamma=1.09 (canonical fit)")
+    # spread check: independent realizations at the IN-FORCE target
+    print(f"\n[spread check] 8 independent catalogs @ gamma={GAMMA_TARGET} "
+          f"(in-force canonical; canonical fit)")
     gs = []
     for _ in range(8):
         pop_d = make_population(int(args.n_data*2.7), rng, dr4=True)
         keep = rng.permutation(len(pop_d['s_obs']))[:args.n_data]
         pop_d = {k: v[keep] for k, v in pop_d.items()}
-        vt_d = vtilde_of(pop_d, GAMMA_MI, A0_CAN)
+        vt_d = vtilde_of(pop_d, GAMMA_TARGET, A0_CAN)
         med_d, sig_d, _ = bin_medians(np.log10(pop_d['g_proj']/A0_CAN), vt_d,
                                       boot=200, rng=rng)
         g, sg, *_ = fit_gamma(med_d, sig_d, mod_can, GRID)
@@ -596,32 +612,41 @@ def main():
     print(f"  realizations: mean={gs.mean():.4f} rms={gs.std(ddof=1):.4f} "
           f"(profile-sigma above should be comparable)")
 
-    # -------- sample size for 3-sigma separation 1.09 vs 1.00 --------
-    s09 = results[GAMMA_MI][1]
-    sig_eff = max(s09, gs.std(ddof=1))         # conservative of the two
-    N3 = args.n_data * (3*sig_eff/(GAMMA_MI-1.00))**2
-    fdeep = results[GAMMA_MI][4]/args.n_data
+    # -------- sample size for 3-sigma separations, against the IN-FORCE target --------
+    s_tgt = results[GAMMA_TARGET][1]
+    sig_eff = max(s_tgt, gs.std(ddof=1))         # conservative of the two
+    N3 = args.n_data * (3*sig_eff/(GAMMA_TARGET-1.00))**2
+    fdeep = results[GAMMA_TARGET][4]/args.n_data
     print(f"\n[separation] sigma(gamma) = {sig_eff:.4f} at N={args.n_data} "
-          f"-> 3-sigma separation of 1.09 vs 1.00 needs N ~ {N3:,.0f} pairs "
-          f"(~{N3*fdeep:,.0f} deep y<0.3), under this population/selection.")
-    N3_mond = args.n_data * (3*sig_eff/(GAMMA_MOND-GAMMA_MI))**2
-    print(f"             separating MOND benchmark 1.33 from MI 1.09 at 3 sigma: "
-          f"N ~ {N3_mond:,.0f}.")
-    N3_mg = args.n_data * (3*sig_eff/(GAMMA_MG-GAMMA_MI))**2
-    print(f"             separating MG {GAMMA_MG} from MI {GAMMA_MI} at 3 sigma: "
-          f"N ~ {N3_mg:,.0f} (statistical only; the frozen sys allowance 0.02 "
-          f"makes MI-vs-MG UNDECIDED unless systematics beat ~0.01).")
+          f"-> 3-sigma separation of the IN-FORCE {GAMMA_TARGET} vs Newton 1.00 needs "
+          f"N ~ {N3:,.0f} pairs (~{N3*fdeep:,.0f} deep y<0.3), under this "
+          f"population/selection.")
+    N3_mond = args.n_data * (3*sig_eff/(GAMMA_MOND-GAMMA_TARGET))**2
+    print(f"             separating MOND benchmark {GAMMA_MOND} from the target "
+          f"{GAMMA_TARGET} at 3 sigma: N ~ {N3_mond:,.0f}.")
+    N3_foot = args.n_data * (3*sig_eff/(GAMMA_TARGET_ALT-GAMMA_TARGET))**2
+    print(f"             *** THE FOOTING FORK: separating alt {GAMMA_TARGET_ALT} from "
+          f"canonical {GAMMA_TARGET} at 3 sigma needs N ~ {N3_foot:,.0f} pairs "
+          f"(statistical only; the frozen sys allowance 0.02 is "
+          f"{0.02/(GAMMA_TARGET_ALT-GAMMA_TARGET):.1f}x the {GAMMA_TARGET_ALT-GAMMA_TARGET:.4f} "
+          f"separation, so the footing fork stays UNDECIDED unless systematics beat "
+          f"~{(GAMMA_TARGET_ALT-GAMMA_TARGET)/3:.3f}). ***")
+    N3_mi = args.n_data * (3*sig_eff/(GAMMA_TARGET-GAMMA_MI))**2
+    print(f"             (historical: separating the in-force target from the superseded "
+          f"MI {GAMMA_MI} would need N ~ {N3_mi:,.0f} -- the MI arm is closed by lensing, "
+          f"not by wide binaries.)")
 
     # -------- eccentricity-bracket systematic --------
-    print("\n[ecc bracket] recovery of 1.09 when the TRUE population is FLAT f(e)")
+    print(f"\n[ecc bracket] recovery of the in-force {GAMMA_TARGET} when the TRUE "
+          f"population is FLAT f(e)")
     pop_f = make_population(int(args.n_data*2.7), rng, dr4=True, ecc='flat')
     keep = rng.permutation(len(pop_f['s_obs']))[:args.n_data]
     pop_f = {k: v[keep] for k, v in pop_f.items()}
-    vt_f = vtilde_of(pop_f, GAMMA_MI, A0_CAN)
+    vt_f = vtilde_of(pop_f, GAMMA_TARGET, A0_CAN)
     gf, sf, *_ = run_fit(np.log10(pop_f['g_proj']/A0_CAN), vt_f, mod_can, rng,
                          "flat-e truth vs thermal-e model",
                          "  <- ecc systematic (kappa absorbs most)")
-    print(f"  ecc-mismatch shift on gamma: {gf-GAMMA_MI:+.4f} "
+    print(f"  ecc-mismatch shift on gamma: {gf-GAMMA_TARGET:+.4f} "
           f"(FLAGGED systematic; Hwang+2022 superthermal at wide s)")
 
     # -------- optional real-catalog runs --------
@@ -654,7 +679,7 @@ def main():
 
     print("\n" + "="*78)
     print(f"PIPELINE SELF-TEST: {'PASS' if gate_ok else 'FAIL'} "
-          f"(injected/recovered 1.00/{GAMMA_MI:.4f}/{GAMMA_MOND} within "
+          f"(injected/recovered 1.00/{GAMMA_TARGET:.4f}/{GAMMA_TARGET_ALT:.4f}/{GAMMA_MOND} within "
           f"max(2sigma, 0.02))")
     print("  This is a SELF-TEST of the estimator, NOT a scientific verdict on any")
     print("  measurement.  Per Amendment 7(e) no verdict word is emitted for data:")
