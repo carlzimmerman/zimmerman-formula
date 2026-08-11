@@ -139,6 +139,15 @@ same way that MOND inertia does. An actual inertia-from-vacuum mechanism is stil
   lean the OPPOSITE way from Chae 2022 (algebraic/MI-like preferred, weakly). Same paper carries the
   3-15σ RAR-vs-Cassini-Q2 tension for AQUAL/QUMOND (MG); the framework's AeST(=MG) realization
   inherits it, an MI realization is the standard escape route (see memory: cassini standing).
+- **Banik & Zhao 2022 review (arXiv:2110.06936, Symmetry 14, 1331) — PRIOR ART for the MI-arm
+  closure, added 2026-08-10 after Banik himself pointed to it.** §2.5 ("Modified inertia") argues any
+  MI theory "must be strongly non-local, preventing test particle motion from being describable in
+  terms of a potential," and concludes "a clear preference for the modified gravity interpretation
+  of MOND"; §2.6 notes "the enhancement to gravity implied by the lensing data is similar to that
+  implied by non-relativistic tracers" — the same lensing-follows-dynamics physics that this
+  programme's own KiDS weak-lensing confrontation later used to exclude its MI arm at 21.2σ
+  (2026-08-08). Their review reached the MG-over-MI verdict on general grounds before this
+  programme's quantitative kill; credit where due.
 - Famaey & Durakovic 2025 on the MI-vs-MG endgame (verbatim): "modified gravity MOND needs a new
   scale in addition to acceleration ... to pass Solar System constraints, or that MOND rather results
   from a more radical modification of inertia"; and on wide binaries: "the jury is still out on

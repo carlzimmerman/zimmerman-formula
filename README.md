@@ -8,7 +8,10 @@ $$a_0 \;=\; \kappa\,c\sqrt{G\rho_\Lambda}\;=\;\frac{cH_\Lambda}{Z},
 
 Operative arm since 2026-08-08: **modified gravity** (the modified-inertia arm is closed — excluded
 21σ by lensing), with the Route A kernel $\nu(y)=1/(1-e^{-\sqrt y})$ (form: McGaugh–Lelli–Schombert
-2016, credited). Full relativistic realisation: §3 below.
+2016, credited). Prior art on the arm verdict: Banik & Zhao's review
+([arXiv:2110.06936](https://arxiv.org/abs/2110.06936), §2.5–2.6) argued the modified-gravity
+preference — including lensing tracking dynamics — before this programme's quantitative kill.
+Full relativistic realisation: §3 below.
 
 > ### ⚠️ Read this first
 >
