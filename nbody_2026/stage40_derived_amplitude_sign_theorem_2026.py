@@ -1,6 +1,42 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 r"""
+==================================================================================================
+*** PROVISIONAL RETRACTION FILED 2026-08-12 -- THE SIGN THEOREM BELOW IS PROBABLY WRONG. ***
+==================================================================================================
+Carl objected that I had been "forcing K" and not fully using his framework when applying it.  He is
+right, and here is the specific error:
+
+This stage's argument runs  w = -1 EXACT => Q K' = 0 => K' = 0 => u = 0 => Acal'(0) = 0,  so the leading
+correction is O(delta Q^2) with Acal''(0) < 0, hence Delta mu > 0 always and the route is closed by SIGN.
+
+BUT CARL'S OWN a_0(z) LAW REQUIRES nu_0 != 0.  With nu = mu_p u/M^2 the background TODAY sits at
+        u_0 = nu_0 Lambda_D  !=  0,        nu_0 in [2.14e-5, 1.77e-4]
+and if u_0 were 0 then nu_0 = 0 and there would be NO a_0(z) evolution at all -- the law would be empty.
+So the background sits NEAR the DBI maximum, not AT it, and:
+  1. K'(u_0) != 0, so Acal'(u_0) != 0, so THE FIRST-ORDER (Phi^1) AMPLITUDE IS NOT ZERO.  To leading
+     order Acal'/Acal = -sign(u_0) nu_0/Lambda_D.
+  2. THE SIGN IS THEREFORE NOT FIXED.  Acal depends on u^2, so a_0(z) constrains |u_0| ONLY and says
+     nothing about sign(u_0).  The first-order term is LINEAR in delta Q, so sign(Delta mu) flips with
+     sign(u_0 * delta Q).  *** MY ARGUMENT CONFLATED Acal''(0) < 0 WITH THE SIGN OF Acal'(u_0 != 0). ***
+  3. And "w = -1 EXACT" is then itself only w = -1 + O(nu_0^2).  I used the exact statement to kill a
+     term that the evolving statement revives.
+
+SO THE PROMOTED-a_0 ROUTE IS PROBABLY NOT FORBIDDEN.  It is probably ALLOWED, with the favourable sign
+AVAILABLE, and the real obstruction is MAGNITUDE -- my order estimate for the first-order coefficient is
+w_1 ~ nu_0 (Q_0/Lambda_D) Phi_ref = 1.4e-11 (nu_0 floor) to 1.2e-10 (ceiling) against a required ~0.5,
+though a separate route gave 3.7e-5 and that 6-order discrepancy is UNRESOLVED.
+
+A 20-agent adversarially-verified audit is running on exactly this.  Until it returns, treat as RETRACTED:
+  - the SIGN THEOREM (this stage's F3/F8 and stage 41's D1);
+  - "the promoted MOND term cannot supply extra cluster gravity at ANY order in delta Q";
+  - the magnitude bound w_2 <= 2.2021e-13, which assumed the second-order term is leading AND paired the
+    nu_0 window FLOOR with the Omega_kd CEILING (a pairing already flagged as possibly inconsistent).
+STILL STANDING, because they are independent of the background point: the identity
+F_YQ = -(1/8piG) F''(y) y (Acal'/Acal); the forced shape T(y) = y F''(y); and that clusters need a SECOND
+variable at 37-73 sigma (stage 30).
+==================================================================================================
+
 stage40_derived_amplitude_sign_theorem_2026.py
 ==============================================
 THE AMPLITUDE, DERIVED -- and it comes out with the WRONG SIGN, for a reason that is one of the
