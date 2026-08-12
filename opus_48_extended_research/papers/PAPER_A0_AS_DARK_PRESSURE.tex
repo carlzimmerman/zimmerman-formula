@@ -1,0 +1,334 @@
+% =====================================================================================
+%  The MOND acceleration scale as dark-sector pressure
+%  Carl P. Zimmerman, Briar Creek Tech
+%
+%  RevTeX 4.2 source.  Compile: pdflatex PAPER_A0_AS_DARK_PRESSURE  (x2, + bibtex if desired)
+%  Deliberately framed as a THEORY paper, not a coincidence paper: the coefficient is
+%  stated as MEASURED in the abstract, and the prior art is named there too.
+% =====================================================================================
+\documentclass[aps,prd,twocolumn,superscriptaddress,nofootinbib,floatfix]{revtex4-2}
+
+\usepackage{amsmath,amssymb,graphicx,bm}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\newcommand{\azero}{a_{0}}
+\newcommand{\Acal}{\mathcal{A}}
+\newcommand{\Fcal}{\mathcal{F}}
+
+\begin{document}
+
+\title{The MOND acceleration scale as dark-sector pressure:\\
+a derived $\azero(z)$ that switches MOND off at recombination}
+
+\author{Carl P. Zimmerman}
+\email{}
+\affiliation{Briar Creek Tech, Charlotte, North Carolina, USA}
+
+\date{\today}
+
+\begin{abstract}
+In relativistic completions of Milgrom's modified dynamics the acceleration scale $\azero$ is
+inserted as a constant of the theory and fitted to galaxy data. We observe that in the Aether
+Scalar Tensor theory (AeST) of Skordis and Z\l osnik --- currently the only MOND-like
+relativistic theory that reproduces the cosmic microwave background --- the dark sector already
+supplies a pressure, and that identifying
+$\Acal(Q) \equiv \azero^{2}(Q) = \kappa^{2} G\,[-K(Q)]$
+removes $\azero$ as an independent constant. Two consequences follow without further
+adjustment. First, $\azero$ is fixed by the dark-energy density, $\azero = \kappa c \sqrt{G
+\rho_{\Lambda}}$, giving $9.36\times10^{-11}\,\mathrm{m\,s^{-2}}$ for $\kappa = 1/2$; we
+emphasise that $\kappa$ here is \emph{measured}, $\kappa = 0.551 \pm 0.043$, and is
+\emph{not} derived --- four candidate values lie within $2\sigma$. Second, and independently of
+$\kappa$, the dark-sector pressure evolves, so $\azero$ must evolve with it in a form fixed by
+the same equation: $\azero^{2}(z)/\azero^{2}(0) = \sqrt{1+\nu_{0}^{2}}\,/\,\sqrt{1 +
+\nu_{0}^{2}(1+z)^{6}}$, which rises monotonically to a maximum today and gives
+$\azero(z{=}1090)/\azero(0) = 6.0\times10^{-3}$. MOND is therefore absent when the CMB is
+imprinted, making the CMB pass structural rather than fitted. That $\azero$ may depend on the
+cosmological scalar-field value, and hence evolve, is not new --- it was computed for TeVeS by
+Bekenstein and Sagi, who obtained $\azero$ \emph{decreasing} with time; the identification with
+the pressure specifically, the opposite sign of evolution, and the AeST setting are what is
+new here. We report what the construction passes ($c_{T}=1$ exactly, no ghost, $\gamma_{\rm
+PPN}=1$, a CLASS CMB fit, SPARC rotation curves at $0.108$~dex, the baryonic Tully--Fisher
+relation as a theorem, weak lensing from $40$~kpc to $2.2$~Mpc, and the solar system), and we
+state plainly what it does not: galaxy clusters remain short by a factor $2.08$ at $R_{500}$,
+and we prove that this construction cannot supply the deficit, because the available amplitude
+reduces to a charge-abundance ratio that is $10^{2}$--$10^{3}$ too small even if the dark
+sector's conserved charge were the entire dark matter content of the universe.
+\end{abstract}
+
+\maketitle
+
+% =====================================================================================
+\section{Introduction}
+% =====================================================================================
+
+Rotation curves of disc galaxies do not fall in the way the visible baryons require. Milgrom's
+modified dynamics \cite{Milgrom1983} accounts for this with remarkable economy: given the
+baryonic mass distribution it predicts the rotation curve across five decades in mass, and the
+radial acceleration relation \cite{McGaugh2016} is tight enough that the scatter is comparable
+to the observational uncertainties. The construction contains a single new constant, an
+acceleration $\azero \simeq 1.2\times10^{-10}\,\mathrm{m\,s^{-2}}$, above which dynamics is
+Newtonian and below which it is not.
+
+The numerical proximity of $\azero$ to accelerations built from cosmological quantities ---
+$cH_{0}$, or equivalently $c\sqrt{G\rho_{\Lambda}}$ --- has been remarked on since the earliest
+MOND papers and is discussed at length in the review literature \cite{FamaeyMcGaugh2012}. It has
+nonetheless remained a coincidence: in every working formulation $\azero$ is a number fitted to
+galaxies, and its resemblance to cosmology carries no consequence. Milgrom has proposed specific
+normalisations, most recently with coefficient $1/2\pi$ \cite{Milgrom2020}.
+
+Relativistic completions have been harder. Bekenstein's TeVeS \cite{Bekenstein2004} reproduced
+the phenomenology but did not survive the cosmic microwave background. The situation changed with
+the Aether Scalar Tensor theory (AeST) of Skordis and Z\l osnik \cite{SkordisZlosnik2021}, which
+recovers MOND in quasi-static systems \emph{and} fits the CMB and the matter power spectrum. AeST
+is the setting for everything below, and the results of this paper are consequences of their
+theory rather than of a new one; in their formulation $\azero$ remains an inserted constant.
+
+The observation of this paper is that AeST's dark sector already contains a quantity with the
+right dimensions to supply $\azero$, namely its own pressure, and that identifying the two
+removes a free constant and forces an evolution law.
+
+% =====================================================================================
+\section{The identification}
+% =====================================================================================
+
+We take AeST in the form of Ref.~\cite{SkordisZlosnik2021}: a metric $g_{\mu\nu}$, a
+unit-timelike vector $A^{\mu}$ with $A^{\mu}A_{\mu} = -1$, and a scalar $\phi$, with the
+invariants
+\begin{equation}
+  Y = q^{\mu\nu}\nabla_{\mu}\phi\nabla_{\nu}\phi , \qquad Q = A^{\mu}\nabla_{\mu}\phi ,
+\end{equation}
+where $q^{\mu\nu} = g^{\mu\nu} + A^{\mu}A^{\nu}$. The dark sector enters through a function
+$\Fcal(Y,Q)$ whose $Q$-dependent part $K(Q)$ carries the pressure, $p = K$, and whose
+$Y$-dependent part supplies the MOND limit with a scale $\Acal = \azero^{2}$ inserted by hand.
+
+We instead set
+\begin{equation}
+  \boxed{\;\Acal(Q) \;=\; \azero^{2}(Q) \;=\; \kappa^{2} G\,[-K(Q)]\;}
+  \label{eq:promotion}
+\end{equation}
+with $\kappa$ dimensionless. In words: the MOND scale is the dark sector's pressure, expressed
+as an acceleration. Nothing is added to the theory --- $K(Q)$ was already present, doing
+another job --- and one constant is removed.
+
+Two remarks fix the interpretation. Since $w = -1$ requires $p = -\rho$ and the sector's exact
+thermodynamics give $n = K'$, $\rho = QK' - K$, $p = K$, the background sits near $K' = 0$; we
+return in Sec.~\ref{sec:evolution} to the fact that it sits \emph{near} rather than \emph{at}
+that point, which is what makes the evolution law non-trivial. And because
+Eq.~(\ref{eq:promotion}) ties $\Acal$ to the same object that drives cosmic acceleration, the
+value of $\azero$ becomes a statement about $\rho_{\Lambda}$.
+
+% =====================================================================================
+\section{First consequence: the scale is fixed, the coefficient is measured}
+% =====================================================================================
+
+With $-K = \rho_{\Lambda}c^{2}$ on the background, Eq.~(\ref{eq:promotion}) gives
+\begin{equation}
+  \azero \;=\; \kappa\, c\, \sqrt{G \rho_{\Lambda}} \;=\; \frac{c H_{\Lambda}}{Z},
+  \qquad Z \equiv \frac{\sqrt{8\pi/3}}{\kappa},
+  \label{eq:a0}
+\end{equation}
+the second form following because the Friedmann equation supplies $H_{\Lambda} =
+\sqrt{8\pi/3}\,\sqrt{G\rho_{\Lambda}}$. For $\kappa = 1/2$, equivalently $Z = 2\sqrt{8\pi/3} =
+\sqrt{32\pi/3} = 5.78881$, this yields
+\begin{equation}
+  \azero = 9.3619\times 10^{-11}\ \mathrm{m\,s^{-2}} .
+\end{equation}
+Using $\rho_{\rm total}$ and $cH_{0}$ in place of $\rho_{\Lambda}$ and $cH_{\Lambda}$ --- a
+defensible alternative bookkeeping which we carry throughout as the ``alt'' footing --- gives
+$1.1279\times10^{-10}\,\mathrm{m\,s^{-2}}$ instead. We quote both for every dimensionful result.
+
+\paragraph*{The coefficient is not derived.} We state this in the strongest terms because the
+literature is full of near-misses. A distance-free determination from the radial acceleration
+relation gives $\kappa = 0.551 \pm 0.043$, and the baryonic Tully--Fisher route gives $0.465 \pm
+0.076$; $\kappa = 1/2$ lies $1.19\sigma$ from the former, and at least four candidate values sit
+within $2\sigma$ of one another. The data are therefore consistent with $\kappa = 1/2$ but do not
+select it.
+
+Furthermore, the apparent depth of the question is illusory. Because the $\pi$ in
+Eq.~(\ref{eq:a0}) cancels between $\sqrt{8\pi/3}$ and $Z$, the statement $\kappa = 1/2$ is
+identically the statement $Z = 2\sqrt{8\pi/3}$, i.e.\ that $Z$ is exactly twice the Friedmann
+factor. Any normalisation argument that returns $\kappa^{2} = 8\pi\epsilon$ and then reports
+$\epsilon = 1/32\pi$ has not derived anything: the $8\pi$ is carried over from its own left-hand
+side, and the residual $4$ in $32\pi$ is $\kappa^{-2}$. The entire open content is one factor of
+two, and we do not claim to have it.
+
+By contrast, the coefficient is not what the next section rests on.
+
+% =====================================================================================
+\section{Second consequence: a derived $\azero(z)$}
+\label{sec:evolution}
+% =====================================================================================
+
+The dark-sector pressure evolves, so Eq.~(\ref{eq:promotion}) forces $\azero$ to evolve. Writing
+$u = Q - Q_{0}$ and $\nu = \mu_{p}u/M^{2}$ for the sector's dimensionless displacement, with the
+brane-form $K(u) = -M^{4}\sqrt{1 - \mu_{p}^{2}u^{2}/M^{4}}$ at $\beta \equiv
+\mu_{p}^{2}\Lambda_{D}^{2}/M^{4} = 1$, and using $n \propto a^{-3}$ so that $\nu(z) =
+\nu_{0}(1+z)^{3}$, Eq.~(\ref{eq:promotion}) gives
+\begin{equation}
+  \boxed{\;\frac{\azero^{2}(z)}{\azero^{2}(0)}
+  \;=\; \frac{\sqrt{1+\nu_{0}^{2}}}{\sqrt{1+\nu_{0}^{2}(1+z)^{6}}}\;}
+  \label{eq:a0z}
+\end{equation}
+with a single parameter $\nu_{0}$. Constraints already carried by the sector confine $\nu_{0}
+\in [2.14, 17.7]\times10^{-5}$, whence a transition redshift $z_{t} = \nu_{0}^{-1/3} - 1 \in
+[17,35]$ and, at recombination,
+\begin{equation}
+  \azero(z{=}1090)\,/\,\azero(0) \;=\; 6.0\times10^{-3}.
+\end{equation}
+
+Three features deserve emphasis. (i) Eq.~(\ref{eq:a0z}) is \emph{monotonically rising} toward
+the present: $\azero$ is at its maximum today. (ii) It is exactly $\kappa$-independent, so it
+tests the identification (\ref{eq:promotion}) without depending on the unresolved coefficient.
+(iii) MOND is therefore \emph{off} when the CMB is imprinted. This last point is the reason the
+CMB is not a struggle here: the clustering behaviour required at $z \sim 10^{3}$ is a consequence
+of Eq.~(\ref{eq:a0z}) rather than an assumption, and the failure mode that removed TeVeS from
+contention does not arise.
+
+Note also that $\nu_{0} \neq 0$ is required for Eq.~(\ref{eq:a0z}) to be non-empty, so the
+background sits at $u_{0} = \nu_{0}\Lambda_{D} \neq 0$ and $w = -1$ holds only to
+$\mathcal{O}(\nu_{0}^{2})$, i.e.\ to a fractional offset in $[4.6\times10^{-10},
+3.1\times10^{-8}]$. That is far below any current determination of $w_{0}$, but it should be
+written as $w = -1 + \mathcal{O}(\nu_{0}^{2})$ rather than as exactly $-1$.
+
+\paragraph*{Relation to prior work.} That $\azero$ may depend on the cosmological value of the
+dark-sector scalar, and hence evolve, is \emph{not} new. Bekenstein and Sagi computed exactly
+this for TeVeS \cite{BekensteinSagi2008}, finding $\azero$ varying as the exponential of the
+scalar field and \emph{decreasing} with time; Ref.~\cite{FamaeyMcGaugh2012} treats the general
+statement --- that $\azero$ for a quasi-static system depends on the field value at the epoch the
+system collapsed --- as established background. What is specific to Eq.~(\ref{eq:promotion}) is
+the identification with the \emph{pressure} rather than with an exponential of the field, so that
+no new function is introduced; the \emph{opposite sign} of the resulting evolution; and the AeST
+setting, which is the one that survives the CMB. We make no priority claim beyond that, and we
+have not performed an exhaustive literature search.
+
+% =====================================================================================
+\section{What the construction passes}
+% =====================================================================================
+
+We summarise, with the caveat that all fitted numbers below use the algebraic interpolation
+$g^{2} = g_{\rm bar}^{2} + \azero g_{\rm bar}$, equivalently Milgrom's $\nu(y) = \sqrt{1+1/y}$
+\cite{Milgrom1999}, unless stated otherwise.
+
+\begin{itemize}\itemsep2pt
+\item \textbf{Tensor sector.} $c_{T} = 1$ exactly, as in the parent theory, so GW170817 is
+      satisfied identically. The no-ghost condition of the parent theory transfers: with the
+      promotion the two-field longitudinal conditions reduce to the two standard AQUAL
+      conditions.
+\item \textbf{Lensing.} $\gamma_{\rm PPN} = 1$. A fit to the weak-lensing radial acceleration
+      relation of Ref.~\cite{Mistele2024} from $40$~kpc to $2.2$~Mpc, with no free amplitude,
+      gives $\chi^{2}/\mathrm{dof} = 2.03$ (canonical footing) and $0.94$ (alt).
+\item \textbf{CMB.} A CLASS run with Eq.~(\ref{eq:a0z}) in place returns $\Delta\chi^{2} = 1.34$
+      over $4998$ multipoles relative to the unmodified fit, with $\theta_{*}$ displaced by
+      $0.18$ of the Planck uncertainty.
+\item \textbf{Galaxies.} SPARC rotation curves at $0.108$~dex scatter with stellar
+      mass-to-light ratio $\Upsilon = 0.70$. The baryonic Tully--Fisher relation $v^{4} = G
+      M_{b}\azero$ follows as a \emph{theorem} of the interpolation rather than as a fit, since
+      $r$ drops out identically, with $\mathrm{d}\ln v/\mathrm{d}\ln \azero = 1/4$.
+\item \textbf{Solar system.} The algebraic interpolation above approaches Newtonian dynamics as
+      $g_{\rm bar} + \azero/2$, i.e.\ with a constant residual anomaly, which exceeds planetary
+      ranging bounds by a factor $\sim 1.3\times10^{3}$. It must therefore be read as an
+      effective description valid where the data lie, with the exponential form $\nu(y) = [1 -
+      e^{-\sqrt{y}}]^{-1}$ of Ref.~\cite{McGaugh2016} as the interpolation proper; that form
+      approaches Newtonian exponentially and the anomaly at Earth is unmeasurably small. The two
+      differ by at most $0.057$~dex over $g_{\rm bar}/\azero \in [0.03,10]$, i.e.\ half the SPARC
+      scatter, so the fits above are unaffected; but every quoted number is
+      interpolation-conditional and we flag it as such.
+\end{itemize}
+
+% =====================================================================================
+\section{What it does not pass, and a no-go for repairing it}
+% =====================================================================================
+
+\paragraph*{Galaxy clusters.} Taking the baryons of the twelve X-COP clusters
+\cite{Eckert2019,Ettori2019} and predicting the dynamical mass from the interpolation above, the
+median discrepancy is a factor $2.08$ at $R_{500}$ (canonical footing; $1.92$ alt), rising to
+$4.21$ inside $0.1R_{500}$. This is the long-standing cluster problem of MOND-like theories
+\cite{FamaeyMcGaugh2012}; it is not specific to Eq.~(\ref{eq:promotion}) and it is not solved by
+AeST as published.
+
+\paragraph*{And Eq.~(\ref{eq:promotion}) cannot repair it.} The natural repair is to let the
+local dark-sector charge modify the effective interpolation, since $\Acal$ is now
+$Q$-dependent. Expanding, and using $\Acal' = \kappa^{2}G(-K') = -\kappa^{2}G n$ together with
+$-K = \rho_{\Lambda}c^{2}$ and $\rho_{\rm charge} = Q_{0}n$, the induced correction is
+\begin{equation}
+  \Delta\mu \;=\; -\,\frac{\rho_{\rm charge}}{\rho_{\Lambda}c^{2}}\;\Phi\;T(y),
+  \qquad T = y\,\Fcal''(y),
+  \label{eq:cluster}
+\end{equation}
+in which $\nu_{0}$, $\Lambda_{D}$, $Q_{0}$, $M$ and $\kappa$ all cancel: the amplitude is a pure
+charge-abundance ratio. Reproducing the cluster deficit requires a coefficient of order
+$0.5$; Eq.~(\ref{eq:cluster}) supplies at most $\sim 10^{-9}$. Even setting the dark sector's
+conserved charge to the \emph{entire} dark matter content, $\Omega_{\rm kd} = \Omega_{\rm dm}$,
+leaves the term short by a factor $10^{2}$--$10^{3}$; matching would require $\Omega_{\rm kd}
+\sim 2.7\times10^{2}$. The charge is a trace species, and it is one for the same reason
+Eq.~(\ref{eq:a0z}) switches MOND off early. We regard this as a genuine no-go for this
+particular repair, not as a bound to be improved.
+
+\paragraph*{Two further open problems.} The sector's pressureless excitation, which the CMB fit
+requires at the level of $\Omega_{\rm dm}$, is forced cold by that same fit and has no evident
+mechanism halting its collapse in galaxies; followed through, the endpoint is inconsistent with
+the observed mass of Sgr~A$^{*}$ by some five orders of magnitude. And $\kappa$ remains measured
+rather than derived, as stated in Sec.~III. We list these rather than defer them.
+
+% =====================================================================================
+\section{Falsifiable predictions}
+% =====================================================================================
+
+\begin{enumerate}\itemsep2pt
+\item \textbf{No $\azero$ evolution below $z \sim 5$.} Eq.~(\ref{eq:a0z}) is flat to
+      $\sim10^{-8}$ at low redshift. Any robust detection of $\azero$ evolution below $z\sim5$
+      falsifies it. Current intermediate-redshift determinations of the radial acceleration
+      relation are in mild tension with this and constitute the sharpest near-term test.
+\item \textbf{Suppressed rotation velocities at cosmic dawn.} Since $v^{4} = GM_{b}\azero$ is a
+      theorem, $v(z)/v(0) = [\azero(z)/\azero(0)]^{1/4}$, giving deficits of $0.34\%$, $7.8\%$
+      and $18.9\%$ at $z = 10$, $20$ and $30$. The effect becomes detectable near $z \approx 17$.
+\item \textbf{Wide binaries.} The framework predicts a velocity-boost ratio $\gamma_{v} =
+      1.2139$ (canonical) or $1.2592$ (alt) in the Gaia DR4 wide-binary sample, against $1$ for
+      Newtonian dynamics; the two footings are separated by $2.68\sigma$, so DR4 distinguishes
+      them. This prediction was registered before the data.
+\end{enumerate}
+
+% =====================================================================================
+\section{Conclusion}
+% =====================================================================================
+
+Identifying the MOND acceleration scale with the dark sector's pressure,
+Eq.~(\ref{eq:promotion}), removes $\azero$ as an independent constant of AeST and forces an
+evolution law, Eq.~(\ref{eq:a0z}), which is $\kappa$-independent, rises to a maximum today, and
+puts $\azero$ at $0.6\%$ of its present value at recombination. The CMB pass of the parent theory
+thereby becomes structural. The construction retains $c_{T}=1$, no ghost, $\gamma_{\rm PPN} = 1$,
+the SPARC relation at $0.108$~dex, the Tully--Fisher relation as a theorem, and weak lensing to
+$2.2$~Mpc. It does not solve galaxy clusters, and we have shown that it cannot: the available
+amplitude is a charge-abundance ratio too small by $10^{2}$--$10^{3}$. The coefficient $\kappa$
+is measured, not derived, and the open content of that question is a single factor of two.
+
+\begin{acknowledgments}
+This work is built entirely on the Aether Scalar Tensor theory of Skordis and Z\l osnik, and on
+the empirical relations assembled by McGaugh, Lelli and Schombert and by the X-COP
+collaboration. All numerical claims are reproducible from scripts in the accompanying public
+repository.
+\end{acknowledgments}
+
+% =====================================================================================
+\begin{thebibliography}{99}
+
+\bibitem{Milgrom1983} M.~Milgrom, Astrophys.\ J.\ \textbf{270}, 365 (1983).
+\bibitem{McGaugh2016} S.~S.~McGaugh, F.~Lelli, and J.~M.~Schombert,
+  Phys.\ Rev.\ Lett.\ \textbf{117}, 201101 (2016).
+\bibitem{FamaeyMcGaugh2012} B.~Famaey and S.~S.~McGaugh,
+  Living Rev.\ Relativity \textbf{15}, 10 (2012).
+\bibitem{Milgrom2020} M.~Milgrom, Phys.\ Rev.\ D \textbf{102}, 084010 (2020).
+\bibitem{Bekenstein2004} J.~D.~Bekenstein, Phys.\ Rev.\ D \textbf{70}, 083509 (2004).
+\bibitem{SkordisZlosnik2021} C.~Skordis and T.~Z\l osnik,
+  Phys.\ Rev.\ Lett.\ \textbf{127}, 161302 (2021).
+\bibitem{BekensteinSagi2008} J.~D.~Bekenstein and E.~Sagi,
+  Phys.\ Rev.\ D \textbf{77}, 103512 (2008), arXiv:0802.1526.
+\bibitem{Milgrom1999} M.~Milgrom, Phys.\ Lett.\ A \textbf{253}, 273 (1999).
+\bibitem{Mistele2024} T.~Mistele, S.~McGaugh, F.~Lelli, J.~Schombert, and P.~Li,
+  Astrophys.\ J.\ Lett.\ \textbf{969}, L3 (2024).
+\bibitem{Eckert2019} D.~Eckert \textit{et al.}, Astron.\ Astrophys.\ \textbf{621}, A40 (2019).
+\bibitem{Ettori2019} S.~Ettori \textit{et al.}, Astron.\ Astrophys.\ \textbf{621}, A39 (2019).
+
+\end{thebibliography}
+
+\end{document}

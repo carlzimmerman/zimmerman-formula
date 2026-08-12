@@ -1,0 +1,606 @@
+<title>The Gravity Ledger — every theory, every coefficient route, every scaling law, and every kill</title>
+<style>
+  :root {
+    --paper: #FBFAF7; --paper-2: #F3F1EB; --paper-3: #E7E4DB;
+    --ink: #191A2E; --ink-2: #3B3F5C; --ink-3: #6E7391;
+    --rule: #D6D2C7;
+    --accent: #A96518; --accent-bg: #F6EBDB;
+    --pass: #2C6349; --pass-bg: #E3EEE7;
+    --fail: #8E3B3B; --fail-bg: #F4E4E2;
+    --gone: #5F5074; --gone-bg: #ECE7F1;
+    --watch: #7A5A12; --watch-bg: #F5EFDC;
+    --na: #85899E;
+    --shadow: 0 1px 2px rgba(25,26,46,.06), 0 8px 24px -12px rgba(25,26,46,.14);
+    --serif: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, Roboto, sans-serif;
+    --mono: "SF Mono", "Cascadia Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #101227; --paper-2: #171A33; --paper-3: #1F2340;
+      --ink: #EDEBE4; --ink-2: #C3C2D4; --ink-3: #9195B0;
+      --rule: #2C3052;
+      --accent: #E7A94E; --accent-bg: #33260F;
+      --pass: #6FBE95; --pass-bg: #16301F;
+      --fail: #E08C86; --fail-bg: #33191A;
+      --gone: #B49FD0; --gone-bg: #241E33;
+      --watch: #D9BA6A; --watch-bg: #2E2711;
+      --na: #7B7F99;
+      --shadow: 0 1px 2px rgba(0,0,0,.4), 0 10px 30px -14px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #101227; --paper-2: #171A33; --paper-3: #1F2340;
+    --ink: #EDEBE4; --ink-2: #C3C2D4; --ink-3: #9195B0;
+    --rule: #2C3052;
+    --accent: #E7A94E; --accent-bg: #33260F;
+    --pass: #6FBE95; --pass-bg: #16301F;
+    --fail: #E08C86; --fail-bg: #33191A;
+    --gone: #B49FD0; --gone-bg: #241E33;
+    --watch: #D9BA6A; --watch-bg: #2E2711;
+    --na: #7B7F99;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 10px 30px -14px rgba(0,0,0,.6);
+  }
+  :root[data-theme="light"] {
+    --paper: #FBFAF7; --paper-2: #F3F1EB; --paper-3: #E7E4DB;
+    --ink: #191A2E; --ink-2: #3B3F5C; --ink-3: #6E7391;
+    --rule: #D6D2C7;
+    --accent: #A96518; --accent-bg: #F6EBDB;
+    --pass: #2C6349; --pass-bg: #E3EEE7;
+    --fail: #8E3B3B; --fail-bg: #F4E4E2;
+    --gone: #5F5074; --gone-bg: #ECE7F1;
+    --watch: #7A5A12; --watch-bg: #F5EFDC;
+    --na: #85899E;
+    --shadow: 0 1px 2px rgba(25,26,46,.06), 0 8px 24px -12px rgba(25,26,46,.14);
+  }
+
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font-family:var(--sans);
+         font-size:15px; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:1240px; margin:0 auto; padding:56px 28px 96px; }
+
+  header { border-bottom:2px solid var(--ink); padding-bottom:22px; }
+  .kicker { font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3);
+            font-weight:600; margin-bottom:14px; }
+  h1 { font-family:var(--serif); font-weight:400; font-size:clamp(30px,4.6vw,46px); line-height:1.12;
+       margin:0 0 16px; text-wrap:balance; letter-spacing:-.01em; }
+  .standfirst { font-family:var(--serif); font-size:18px; line-height:1.55; color:var(--ink-2);
+                max-width:64ch; margin:0; }
+  .metaline { display:flex; flex-wrap:wrap; gap:8px 20px; margin-top:20px; font-size:12px;
+              color:var(--ink-3); font-family:var(--mono); }
+
+  nav.toc { margin-top:26px; padding:16px 20px; background:var(--paper-2); border:1px solid var(--rule);
+            border-radius:3px; }
+  nav.toc ol { margin:0; padding-left:20px; columns:2; column-gap:34px; font-size:13px; }
+  nav.toc li { margin-bottom:5px; break-inside:avoid; }
+  nav.toc a { color:var(--ink-2); text-decoration:none; border-bottom:1px solid var(--rule); }
+  nav.toc a:hover, nav.toc a:focus { color:var(--accent); border-bottom-color:var(--accent); }
+  @media (max-width:640px) { nav.toc ol { columns:1; } }
+
+  section { margin-top:58px; scroll-margin-top:20px; }
+  .eyebrow { font-size:10.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--accent);
+             font-weight:700; margin-bottom:8px; }
+  h2 { font-family:var(--serif); font-weight:400; font-size:clamp(22px,2.7vw,30px); margin:0 0 10px;
+       line-height:1.2; letter-spacing:-.005em; }
+  h3 { font-family:var(--sans); font-size:13px; letter-spacing:.06em; text-transform:uppercase;
+       color:var(--ink-2); font-weight:700; margin:30px 0 12px; }
+  .lede { color:var(--ink-2); max-width:70ch; margin:0 0 22px; }
+
+  .scroll { overflow-x:auto; border:1px solid var(--rule); border-radius:3px; background:var(--paper-2);
+            box-shadow:var(--shadow); }
+  table { border-collapse:collapse; width:100%; font-size:13px; }
+  th,td { text-align:left; padding:10px 13px; border-bottom:1px solid var(--rule); vertical-align:top; }
+  thead th { background:var(--paper-3); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
+             color:var(--ink-2); font-weight:700; white-space:nowrap; }
+  tbody tr:last-child td { border-bottom:none; }
+  tbody tr.mine { background:var(--accent-bg); }
+  .theory { font-weight:600; }
+  .who { display:block; font-size:11px; color:var(--ink-3); font-weight:400; margin-top:2px; }
+  td.num { font-variant-numeric:tabular-nums; font-family:var(--mono); font-size:12px; white-space:nowrap; }
+
+  .eq { font-family:var(--serif); font-size:14.5px; }
+  .eq i { font-style:italic; }
+  .eqblock { font-family:var(--serif); font-size:17px; padding:14px 18px; background:var(--paper-2);
+             border:1px solid var(--rule); border-radius:3px; overflow-x:auto; margin:0; }
+  sub,sup { font-size:.7em; }
+
+  .pill { display:inline-block; font-size:10px; letter-spacing:.07em; text-transform:uppercase;
+          font-weight:700; padding:3px 7px; border-radius:2px; white-space:nowrap; }
+  .p-pass{background:var(--pass-bg);color:var(--pass)}
+  .p-fail{background:var(--fail-bg);color:var(--fail)}
+  .p-gone{background:var(--gone-bg);color:var(--gone)}
+  .p-watch{background:var(--watch-bg);color:var(--watch)}
+  .p-na{background:var(--paper-3);color:var(--na)}
+  .p-mine{background:var(--accent-bg);color:var(--accent);border:1px solid var(--accent)}
+  .flag-dm{background:var(--fail);color:#fff;font-weight:800}
+  .flag-fluid{background:var(--watch-bg);color:var(--watch);border:1px solid var(--watch)}
+  .flag-none{background:var(--pass-bg);color:var(--pass)}
+
+  .note { background:var(--paper-2); border:1px solid var(--rule); border-radius:3px; padding:17px 20px;
+          margin-top:20px; font-size:14px; color:var(--ink-2); }
+  .note strong { color:var(--ink); }
+  .note.warn { background:var(--fail-bg); border-color:color-mix(in srgb,var(--fail) 30%,transparent); }
+  .note.amber { background:var(--accent-bg); border-color:color-mix(in srgb,var(--accent) 34%,transparent); }
+  .note.good { background:var(--pass-bg); border-color:color-mix(in srgb,var(--pass) 30%,transparent); }
+
+  ul.tight { margin:0; padding-left:20px; }
+  ul.tight li { margin-bottom:7px; }
+  ul.tight li:last-child { margin-bottom:0; }
+
+  footer { margin-top:72px; padding-top:22px; border-top:1px solid var(--rule); font-size:12.5px;
+           color:var(--ink-3); }
+  footer a { color:var(--accent); }
+  @media (max-width:640px){ .wrap{padding:36px 16px 64px} }
+</style>
+
+<div class="wrap">
+
+<header>
+  <div class="kicker">Reference chart · assembled 12 August 2026 · zimmerman-formula</div>
+  <h1>The Gravity Ledger</h1>
+  <p class="standfirst">Every major attempt to explain flat rotation curves, written as equations, side by side — then every route tried for the coefficient, every version of the scaling law, every observational confrontation, and every kill. Rows tinted <span style="color:var(--accent);font-weight:600">amber</span> are yours; everything else is credited.</p>
+  <div class="metaline">
+    <span>a₀ canonical = 9.3619 × 10⁻¹¹ m/s²</span>
+    <span>alt footing = 1.1279 × 10⁻¹⁰</span>
+    <span>κ = 0.551 ± 0.043</span>
+    <span>ν₀ ∈ [2.14, 17.7] × 10⁻⁵</span>
+  </div>
+
+  <nav class="toc" aria-label="Contents">
+    <ol>
+      <li><a href="#matrix">The master matrix — 11 theories</a></li>
+      <li><a href="#zoo">The interpolation zoo</a></li>
+      <li><a href="#coeff">Where a₀ comes from</a></li>
+      <li><a href="#kappa">Ten routes tried for κ — and every kill</a></li>
+      <li><a href="#scaling">The scaling mechanism, version by version</a></li>
+      <li><a href="#confront">a₀(z) against real data — 7 confrontations</a></li>
+      <li><a href="#variations">Your variations and their status</a></li>
+      <li><a href="#clusters">The cluster campaign — 8 mechanisms</a></li>
+      <li><a href="#scorecard">Front-by-front scorecard</a></li>
+      <li><a href="#retract">The retraction ledger</a></li>
+      <li><a href="#through">The through-line</a></li>
+    </ol>
+  </nav>
+</header>
+
+<!-- ============================== 1 ============================== -->
+<section id="matrix">
+  <div class="eyebrow">The master matrix</div>
+  <h2>Eleven theories, nine questions</h2>
+  <p class="lede">The columns are the questions that actually separate these theories. Note the pattern in the two rightmost data columns: <em>everybody</em> fails clusters, and only two rows pass the CMB.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Theory</th><th>Core equation</th><th>What's modified</th><th>a₀ status</th>
+      <th>a₀ evolves?</th><th>Needs dark matter?</th><th>CMB</th><th>Clusters</th><th><i>c</i><sub>T</sub></th><th>Dark params</th></tr></thead>
+    <tbody>
+      <tr><td class="theory">Newton<span class="who">1687</span></td>
+        <td class="eq">∇²<i>Φ</i> = 4π<i>Gρ</i></td><td>nothing</td>
+        <td><span class="pill p-na">n/a</span></td><td><span class="pill p-na">n/a</span></td>
+        <td><span class="pill flag-none">none — and fails</span></td>
+        <td><span class="pill p-fail">no</span></td><td><span class="pill p-fail">no</span></td><td class="num">—</td><td class="num">0</td></tr>
+      <tr><td class="theory">GR + ΛCDM<span class="who">Einstein 1915 · +CDM</span></td>
+        <td class="eq"><i>G</i><sub>μν</sub> + Λ<i>g</i><sub>μν</sub> = 8π<i>G T</i><sub>μν</sub></td>
+        <td>matter content — add a cold particle</td>
+        <td><span class="pill p-na">no a₀</span></td><td><span class="pill p-na">n/a</span></td>
+        <td><span class="pill flag-dm">🔴 CDM PARTICLE</span></td>
+        <td><span class="pill p-pass">pass</span></td><td><span class="pill p-pass">pass</span></td><td class="num">= 1</td><td class="num">2</td></tr>
+      <tr><td class="theory">MOND<span class="who">Milgrom 1983</span></td>
+        <td class="eq"><i>μ</i>(<i>g</i>/a₀) <i>g</i> = <i>g</i><sub>N</sub></td><td>the force law, by hand</td>
+        <td><span class="pill p-fail">fitted</span></td><td>no</td>
+        <td><span class="pill flag-none">none</span></td>
+        <td><span class="pill p-na">non-rel.</span></td><td><span class="pill p-fail">≈2× short</span></td><td class="num">—</td><td class="num">1 + ν(y)</td></tr>
+      <tr><td class="theory">AQUAL<span class="who">Bekenstein &amp; Milgrom 1984</span></td>
+        <td class="eq">∇·[<i>μ</i>(|∇<i>Φ</i>|/a₀) ∇<i>Φ</i>] = 4π<i>Gρ</i></td><td>gravity, from a Lagrangian</td>
+        <td><span class="pill p-fail">fitted</span></td><td>no</td>
+        <td><span class="pill flag-none">none</span></td>
+        <td><span class="pill p-na">non-rel.</span></td><td><span class="pill p-fail">≈2× short</span></td><td class="num">—</td><td class="num">1 + μ(x)</td></tr>
+      <tr><td class="theory">QUMOND<span class="who">Milgrom 2010</span></td>
+        <td class="eq">∇²<i>Φ</i> = ∇·[<i>ν</i>(|∇<i>Φ</i><sub>N</sub>|/a₀) ∇<i>Φ</i><sub>N</sub>]</td><td>gravity; linear in the source</td>
+        <td><span class="pill p-fail">fitted</span></td><td>no</td>
+        <td><span class="pill flag-none">none</span></td>
+        <td><span class="pill p-na">non-rel.</span></td><td><span class="pill p-fail">≈2× short</span></td><td class="num">—</td><td class="num">1 + ν(y)</td></tr>
+      <tr class="mine"><td class="theory">Modified inertia<span class="who">Zimmerman arm, 2025–26</span></td>
+        <td class="eq"><i>m</i>(<i>a</i>) <i>a</i> = <i>F</i> — inertia, not <i>g</i></td><td>inertia</td>
+        <td><span class="pill p-fail">fitted</span></td><td>no</td>
+        <td><span class="pill flag-none">none</span></td>
+        <td><span class="pill p-na">—</span></td><td><span class="pill p-gone">excl. 21σ</span></td><td class="num">—</td><td class="num">—</td></tr>
+      <tr><td class="theory">TeVeS<span class="who">Bekenstein 2004</span></td>
+        <td class="eq">tensor + vector + scalar; disformal <i>g̃</i><sub>μν</sub></td><td>gravity, relativistically</td>
+        <td><span class="pill p-fail">fitted</span></td><td><span class="pill p-watch">yes — <i>e</i><sup>φ</sup>, falling</span></td>
+        <td><span class="pill flag-none">none</span></td>
+        <td><span class="pill p-fail">fails</span></td><td><span class="pill p-fail">fails</span></td><td class="num">≠ 1</td><td class="num">2 + 2 fns</td></tr>
+      <tr><td class="theory">BIMOND<span class="who">Milgrom 2009</span></td>
+        <td class="eq">two metrics <i>g</i><sub>μν</sub>, <i>ĝ</i><sub>μν</sub> + interaction</td><td>gravity; twin metrics</td>
+        <td><span class="pill p-fail">fitted</span></td><td>no</td>
+        <td><span class="pill flag-none">none</span></td>
+        <td><span class="pill p-fail">unclear</span></td><td><span class="pill p-fail">fails</span></td><td class="num">= 1</td><td class="num">1 + fn</td></tr>
+      <tr><td class="theory">Emergent gravity<span class="who">Verlinde 2016</span></td>
+        <td class="eq">entropic; a₀ ~ <i>cH</i>/6 from dS entropy</td><td>gravity is not fundamental</td>
+        <td><span class="pill p-pass">from <i>cH</i></span></td><td>implicitly</td>
+        <td><span class="pill flag-none">none</span></td>
+        <td><span class="pill p-fail">undeveloped</span></td><td><span class="pill p-fail">partial</span></td><td class="num">—</td><td class="num">0</td></tr>
+      <tr><td class="theory">AeST<span class="who">Skordis &amp; Złośnik 2021</span></td>
+        <td class="eq">ℒ = <i>ℱ</i>(<i>Y</i>,<i>Q</i>) + aether; <i>A</i><sup>μ</sup><i>A</i><sub>μ</sub> = −1</td><td>gravity + a dark sector</td>
+        <td><span class="pill p-fail">by hand</span></td><td>no</td>
+        <td><span class="pill flag-fluid">🔶 Ω<sub>dm</sub> as a FLUID</span></td>
+        <td><span class="pill p-pass">pass</span></td><td><span class="pill p-fail">≈2× short</span></td><td class="num">= 1</td><td class="num">5</td></tr>
+      <tr class="mine"><td class="theory">AeST + pressure promotion<span class="who">Zimmerman v9, built on AeST</span></td>
+        <td class="eq"><i>𝒜</i>(<i>Q</i>) = a₀²(<i>Q</i>) = <i>κ</i>²<i>G</i>(−<i>K</i>(<i>Q</i>))</td>
+        <td>a₀ becomes the dark sector's pressure</td>
+        <td><span class="pill p-pass">fixed by <i>ρ</i><sub>Λ</sub></span></td>
+        <td><span class="pill p-mine">yes — derived, rising</span></td>
+        <td><span class="pill flag-fluid">🔶 Ω<sub>dm</sub> as a FLUID</span></td>
+        <td><span class="pill p-pass">pass</span></td><td><span class="pill p-fail">≈2× short</span></td><td class="num">= 1 exact</td><td class="num">4</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="note warn"><strong>Read the clusters column first.</strong> Eleven rows, one pass — and the pass is ΛCDM, which buys it with a dark matter particle. Clusters are not your problem; they are the forty-year-old open wound of the entire MOND programme, unsolved by Milgrom, by Bekenstein, and by Skordis &amp; Złośnik's own theory.</div>
+
+  <div class="note warn"><strong>🔴 THE DARK-MATTER COLUMN, AND WHY YOUR OWN ROW IS FLAGGED TOO.</strong>
+  <p style="margin:12px 0 0">Only ΛCDM postulates a <strong>cold dark matter particle</strong> — a new species of matter to be found in a detector. That is the red flag, and it is the thing your framework does away with.</p>
+  <p style="margin:12px 0 0"><strong>But your framework is not dark-matter-free, and this is your own recorded position.</strong> AeST's CMB pass — which your version inherits and depends on — requires a <em>pressureless component amounting to the full Ω<sub>dm</sub> ≈ 0.265</em>. In your version that component is an excitation of the shift-symmetric condensate: dust, not a particle. It is <em>not</em> a new species, it needs no detector, and it is not searchable at the LHC. But it gravitates, it clusters, and cosmologically it is doing the job CDM does.</p>
+  <p style="margin:12px 0 0">And the GDM degeneracy theorem in your own corpus makes this sharp: <strong>the CMB constrains a FLUID, not a PARTICLE — at 0σ either way.</strong> The CMB cannot tell your dust from cold dark matter. That is why the defensible slogan is <strong>"no dark-matter particle"</strong> and never "no dark matter", and why "no dark matter in galaxies" sits on the do-not-cite list as open problem 2d.</p>
+  <p style="margin:12px 0 0">Saying "dark matter is non-existent" would be the June 2026 overclaim in a new costume. Saying <strong>"there is no dark-matter particle — the dark sector is a field, and the same field that gives exact w = −1 supplies the clustering component"</strong> is stronger, survives a referee, and is what the equations actually support.</p></div>
+</section>
+
+<!-- ============================== 2 ============================== -->
+<section id="zoo">
+  <div class="eyebrow">Provenance</div>
+  <h2>The interpolation zoo</h2>
+  <p class="lede">Every MOND-class theory needs a function switching between Newtonian and modified behaviour. This is the part most often mistaken for original work — including by me on your behalf.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Name</th><th>Form</th><th>Whose</th><th>In your framework?</th></tr></thead>
+    <tbody>
+      <tr><td class="theory">Simple</td><td class="eq"><i>μ</i>(<i>x</i>) = <i>x</i>/(1+<i>x</i>)</td>
+        <td>Famaey &amp; Binney 2005</td><td>no</td></tr>
+      <tr><td class="theory">Standard</td><td class="eq"><i>μ</i>(<i>x</i>) = <i>x</i>/√(1+<i>x</i>²)</td>
+        <td>Milgrom 1983</td><td>no</td></tr>
+      <tr class="mine"><td class="theory">The a₀-line</td>
+        <td class="eq"><i>g</i>² = <i>g</i><sub>bar</sub>² + a₀<i>g</i><sub>bar</sub> &nbsp;⟺&nbsp; <i>ν</i>(<i>y</i>) = √(1+1/<i>y</i>)</td>
+        <td><strong>Milgrom 1999, eq. 9</strong> — not yours</td><td><span class="pill p-mine">operative</span></td></tr>
+      <tr class="mine"><td class="theory">Same, exact AQUAL form</td>
+        <td class="eq"><i>μ</i><sub>M</sub>(<i>x</i>) = [√(1+4<i>x</i>²) − 1]/(2<i>x</i>)</td>
+        <td>the same object, rewritten</td><td><span class="pill p-mine">used in all fits</span></td></tr>
+      <tr class="mine"><td class="theory">Route A kernel</td>
+        <td class="eq"><i>ν</i>(<i>y</i>) = 1/(1 − <i>e</i><sup>−√<i>y</i></sup>)</td>
+        <td><strong>McGaugh, Lelli &amp; Schombert 2016</strong> — empirical</td>
+        <td><span class="pill p-mine">in force, Amdts 8–9</span></td></tr>
+      <tr class="mine"><td class="theory">Completion kernel <i>ν</i> = 1/(1−<i>e</i><sup>−√y</sup>)</td>
+        <td class="eq">adopted after both power-law kernels failed the solar system</td>
+        <td>form is MLS 2016; the <em>reason</em> for adopting it is yours</td>
+        <td><span class="pill p-mine">α=1 fails 1279×; α=2 fails 8.5–12.4×</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="note good"><strong>What is structurally yours out of this section:</strong> because the a₀-line is algebraically <em>r</em>-independent, the baryonic Tully–Fisher relation <span class="eq"><i>v</i>⁴ = <i>G M</i><sub>b</sub> a₀</span> falls out as a <strong>theorem</strong> rather than a fit, with <span class="eq">d ln <i>v</i> / d ln a₀ = ¼</span>. That holds regardless of who first wrote the interpolation, and it is what makes the a₀(z) predictions in §6 sharp.</div>
+</section>
+
+<!-- ============================== 3 ============================== -->
+<section id="coeff">
+  <div class="eyebrow">The coefficient</div>
+  <h2>Where a₀ is supposed to come from</h2>
+  <p class="lede">The coincidence a₀ ≈ <i>cH</i>₀ has been noticed since the 1980s. These are the competing ways of turning it into a number, and how each scores against the galaxy data.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Proposal</th><th>Coefficient</th><th>a₀ (m/s²)</th><th>Δχ² on the RAR</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td class="eq">a₀ = <i>cH</i>₀/2π</td><td class="num">1/2π = 0.159</td><td class="num">≈ 1.1 × 10⁻¹⁰</td>
+        <td class="num">—</td><td>Milgrom, longstanding</td></tr>
+      <tr><td class="eq">a₀ = (<i>c</i>/2π)√(Λ/3)</td><td class="num">1/2π</td><td class="num">≈ 1.0 × 10⁻¹⁰</td>
+        <td class="num">154.3</td><td>Milgrom 2020</td></tr>
+      <tr><td class="eq">a₀ ~ <i>cH</i>/6 (entropic)</td><td class="num">1/6</td><td class="num">≈ 1.1 × 10⁻¹⁰</td>
+        <td class="num">—</td><td>Verlinde 2016</td></tr>
+      <tr class="mine"><td class="eq">a₀ = <i>κc</i>√(<i>Gρ</i><sub>Λ</sub>) = <i>cH</i><sub>Λ</sub>/<i>Z</i></td>
+        <td class="num">κ = ½ ⟺ <i>Z</i> = √(32π/3) = 5.78881</td>
+        <td class="num">9.3619 × 10⁻¹¹</td><td class="num">63.9</td>
+        <td><span class="pill p-mine">canonical footing</span></td></tr>
+      <tr class="mine"><td class="eq">same, κ measured (distance-free)</td><td class="num">0.551 ± 0.043</td>
+        <td class="num">≈ 1.03 × 10⁻¹⁰</td><td class="num">best fit ≈ 1.15× canonical</td>
+        <td><span class="pill p-fail">κ measured, NOT derived</span></td></tr>
+      <tr class="mine"><td class="eq">same, κ from the BTFR</td><td class="num">0.465 ± 0.076</td>
+        <td class="num">≈ 8.7 × 10⁻¹¹</td><td class="num">—</td>
+        <td>consistent with ½ and with 0.551</td></tr>
+      <tr class="mine"><td class="eq">alt footing — <i>ρ</i><sub>total</sub>, <i>cH</i>₀</td><td class="num">—</td>
+        <td class="num">1.1279 × 10⁻¹⁰</td><td class="num">often lower</td>
+        <td><span class="pill p-mine">frequently fits better</span></td></tr>
+      <tr class="mine"><td class="eq">the a₀-line's own gas-dominated slope</td><td class="num">model-free</td>
+        <td class="num">0.84 – 1.36 × 10⁻¹⁰ (±16%)</td><td class="num">—</td>
+        <td>sharpest single-number a₀; no footing lean</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="note warn"><strong>The honest reading of that Δχ² column.</strong> 63.9 versus 154.3 favours your coefficient over Milgrom 2020's at roughly <strong>2.2σ</strong> — real, not decisive. And κ is <em>measured, not derived</em>: four candidate values sit within 2σ and the data do not single out any one. The uniqueness result that <em>does</em> hold: <span class="eq">a₀ = <i>ξc</i>√(<i>Gρ</i>)</span> is the unique dimensional form of its class (determinant 2), and <span class="eq">κ = ½ ⟺ <i>Z</i></span> identically — but neither fixes the number.</div>
+</section>
+
+<!-- ============================== 4 ============================== -->
+<section id="kappa">
+  <div class="eyebrow">Derivation attempts</div>
+  <h2>Ten routes tried for κ, and how each one died</h2>
+  <p class="lede">This is the longest single campaign in the corpus and none of it worked. Collected here because the failures are informative and because the near-misses are dangerous to cite.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Route</th><th>The idea</th><th>What killed it</th><th>Verdict</th></tr></thead>
+    <tbody>
+      <tr class="mine"><td class="theory">de Sitter–Unruh<span class="who">via Deser–Levin</span></td>
+        <td class="eq"><i>ν</i> = √(1+1/<i>y</i>) derived from dS temperature</td>
+        <td>the derivation <em>works</em> but forces a₀ = 2<i>cH</i><sub>Λ</sub></td>
+        <td><span class="pill p-gone">excluded 15.6σ</span></td></tr>
+      <tr class="mine"><td class="theory">Crossover master formula<span class="who">graviton-bath CTP</span></td>
+        <td class="eq"><i>κ</i>² = 8π<i>ε</i><sub>tot</sub> exactly; <i>S</i><sub>dS</sub>·<i>GH</i>² = π cancels Planck suppression</td>
+        <td>only moves the question to "why <i>ε</i><sub>tot</sub> = 1/32π"</td>
+        <td><span class="pill p-watch">near-miss — do NOT cite as derived</span></td></tr>
+      <tr class="mine"><td class="theory"><i>ε</i><sub>tot</sub> = 1/32π</td>
+        <td>fix the vacuum-energy normalisation from first principles</td>
+        <td>TT-gauge kill; five plausible variants span <strong>161.6×</strong></td>
+        <td><span class="pill p-gone">unforceable</span></td></tr>
+      <tr class="mine"><td class="theory">The "2<i>Z</i> ratio"</td>
+        <td>a relation between <i>Z</i> and the factor 2</td>
+        <td>it is a tautology</td>
+        <td><span class="pill p-gone">search closed</span></td></tr>
+      <tr class="mine"><td class="theory">π-content argument</td>
+        <td>track transcendental factors to pin κ</td>
+        <td>κ is <strong>π-free</strong>; √π constrains <i>Z</i>, not κ</td>
+        <td><span class="pill p-gone">no leverage</span></td></tr>
+      <tr class="mine"><td class="theory">Category / uniqueness search</td>
+        <td>enumerate all dimensional forms a₀ could take</td>
+        <td>a₀ = <i>ξc</i>√(<i>Gρ</i>) is unique (det 2), but ξ stays free; 3 categories survive lensing</td>
+        <td><span class="pill p-watch">1-bit test, spent</span></td></tr>
+      <tr class="mine"><td class="theory">Covariant MI action, v1→v11</td>
+        <td>derive the scale from a worldline action</td>
+        <td>three no-goes: not variational in a disc; (<i>v</i>/<i>c</i>)²-suppressed; <strong>the prefactor is the Frenet torsion</strong> — works for linear acceleration, fails for orbits</td>
+        <td><span class="pill p-gone">form class closed</span></td></tr>
+      <tr class="mine"><td class="theory">Rapidity-gap MI</td>
+        <td>MI as fundamental, from a rapidity gap</td>
+        <td>lensing excludes pure MI at 21σ; all three rescues closed</td>
+        <td><span class="pill p-gone">MI-as-fundamental closed</span></td></tr>
+      <tr class="mine"><td class="theory">E8 / J₃(𝕆) embedding</td>
+        <td>host the constants in an exceptional structure</td>
+        <td>it <em>hosts</em> but does not <em>force</em> anything</td>
+        <td><span class="pill p-gone">no prediction</span></td></tr>
+      <tr class="mine"><td class="theory">SM bridge — number-field route</td>
+        <td>same germs generate Standard Model constants</td>
+        <td><strong>number-field obstruction:</strong> <i>Z</i> carries √π (transcendental), flavour data is algebraic ⇒ structurally gauge-blind</td>
+        <td><span class="pill p-gone">retracted publicly, Jun 2026</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="note warn"><strong>The two most dangerous items on this page.</strong> (1) The dS-Unruh route <em>succeeds</em> at deriving your interpolation function and then forces a₀ = 2<i>cH</i><sub>Λ</sub>, which is excluded at 15.6σ — so it must never be cited as support for κ = ½. (2) <span class="eq"><i>κ</i>² = 8π<i>ε</i><sub>tot</sub></span> is exact and looks like a derivation; it is a restatement. "Why ½" has become "why 1/32π", and that is open.</div>
+</section>
+
+<!-- ============================== 5 ============================== -->
+<section id="scaling">
+  <div class="eyebrow">The scaling mechanism</div>
+  <h2>Three versions of a₀(z), only one of which survived</h2>
+  <p class="lede">The evolution law went through a full reversal. Version 1 was a dressing on observed dark-energy parameters; version 2 is derived from the action. They predict opposite things, and the corpus once carried the wrong one.</p>
+
+  <h3>Version 1 — the CPL dressing (withdrawn)</h3>
+  <p class="eqblock">a₀(<i>z</i>)/a₀(0) = (1+<i>z</i>)<sup>1.5(1+<i>w</i>₀+<i>w</i><sub>a</sub>)</sup> · exp(−1.5 <i>w</i><sub>a</sub> <i>z</i>/(1+<i>z</i>))</p>
+  <div class="note warn" style="margin-top:14px"><strong>Shape:</strong> a bump near <i>z</i> ≈ 0.5, then decline. <strong>Killed because:</strong> that dressing was never self-consistent with <i>w</i> = −1, which the theory's own thermodynamics forces (<i>p</i> = <i>K</i>). The DESI-CPL bump is <span class="pill p-gone">gone</span>. Its withdrawal is what made version 2 necessary.</div>
+
+  <h3>Version 2 — derived from the action (in force)</h3>
+  <p class="eqblock">a₀²(<i>z</i>)/a₀²(0) = √(1+<i>ν</i>₀²) ⁄ √(1 + <i>ν</i>₀²(1+<i>z</i>)⁶) ,&nbsp;&nbsp; <i>ν</i>(<i>z</i>) = <i>ν</i>₀(1+<i>z</i>)³</p>
+  <div class="scroll" style="margin-top:16px">
+  <table>
+    <thead><tr><th>Quantity</th><th>Value</th><th>Where it comes from</th></tr></thead>
+    <tbody>
+      <tr class="mine"><td>the promotion that generates it</td><td class="eq"><i>𝒜</i>(<i>Q</i>) = <i>κ</i>²<i>G</i>(−<i>K</i>(<i>Q</i>))</td><td>the MOND scale <em>is</em> the dark pressure</td></tr>
+      <tr class="mine"><td>window on <i>ν</i>₀</td><td class="num">2.14 × 10⁻⁵ – 1.77 × 10⁻⁴</td><td>squeezed from both ends by committed constraints</td></tr>
+      <tr class="mine"><td>transition redshift <i>z</i><sub>t</sub></td><td class="num"><i>ν</i>₀<sup>−1/3</sup> − 1 ∈ [17, 35]</td><td>follows from the window</td></tr>
+      <tr class="mine"><td>a₀ at recombination</td><td class="num">0.0060 × a₀(0)</td><td><strong>MOND is OFF at <i>z</i> = 1090</strong></td></tr>
+      <tr class="mine"><td>shape</td><td class="num">monotone rise to a maximum <em>today</em></td><td>opposite sign to Bekenstein–Sagi 2008</td></tr>
+      <tr class="mine"><td>β</td><td class="num"><i>μ</i><sub>p</sub>²Λ<sub>D</sub>²/<i>M</i>⁴ = 1</td><td>β ≤ 1 is a theorem; β = 1 ⟺ pure brane action</td></tr>
+      <tr class="mine"><td>κ-dependence</td><td class="num">exactly zero</td><td>a₀(z) is <strong>κ-blind</strong> — it cannot test the coefficient</td></tr>
+      <tr class="mine"><td><i>w</i> today</td><td class="num">−1 + <i>O</i>(<i>ν</i>₀²) = −1 + [4.6×10⁻¹⁰, 3.1×10⁻⁸]</td><td>exact only to <i>O</i>(ν₀²) — a wording fix, not a physics loss</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Version 0 — the prior art you must credit</h3>
+  <div class="note"><strong>Bekenstein &amp; Sagi 2008</strong> (arXiv:0802.1526) computed a₀'s dependence on the coeval cosmological scalar-field value in TeVeS, finding a₀ ∝ <i>e</i><sup>φ</sup> — <strong>decreasing with time</strong>. <strong>Famaey &amp; McGaugh's 2012 Living Review</strong> treats "a₀ depends on the field value at the epoch a system collapsed" as established background. So the <em>family</em> is 18 years old. What is specific to you: the identification with <em>pressure</em> rather than an exponential of the field (no new function introduced), the <em>opposite direction</em> of evolution, and doing it in AeST rather than TeVeS.</div>
+</section>
+
+<!-- ============================== 6 ============================== -->
+<section id="confront">
+  <div class="eyebrow">Confrontations</div>
+  <h2>a₀(z) against real data — seven tests</h2>
+  <p class="lede">A scaling law is only worth having if it can be shot at. These are the shots taken so far, including the two that hurt.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Test</th><th>What the law predicts</th><th>What the data say</th><th>Verdict</th></tr></thead>
+    <tbody>
+      <tr class="mine"><td class="theory">MUSE-DARK III<span class="who">RAR at intermediate <i>z</i></span></td>
+        <td>a₀ essentially flat below <i>z</i> ≈ 5</td>
+        <td>measures a₀ <strong>rising</strong> with <i>z</i></td>
+        <td><span class="pill p-watch">shared-not-distinctive · sharp null</span></td></tr>
+      <tr class="mine"><td class="theory">MSA-3D</td><td>no detectable evolution at low <i>z</i></td>
+        <td>mild tension</td><td><span class="pill p-watch">weak tension / watch</span></td></tr>
+      <tr class="mine"><td class="theory">Cosmic dawn, BTFR route</td>
+        <td class="eq"><i>v</i>(<i>z</i>)/<i>v</i>(0) = [a₀(<i>z</i>)/a₀(0)]<sup>¼</sup></td>
+        <td>deficits 0.34% (<i>z</i>=10) · 7.8% (20) · 18.9% (30)</td>
+        <td><span class="pill p-pass">detectable at <i>z</i> ≈ 17</span></td></tr>
+      <tr class="mine"><td class="theory">Collapse timing</td>
+        <td>collapse 1.34–1.96× faster than Newtonian; speedup <em>declines</em> with <i>z</i> (2.03× at <i>z</i>=6 → 1.14× at 25)</td>
+        <td>a shape no constant-a₀ MOND has</td>
+        <td><span class="pill p-pass">distinctive signature</span></td></tr>
+      <tr class="mine"><td class="theory">Lyman-α forest, <i>b</i>-cutoff</td>
+        <td class="eq"><i>λ</i><sub>J</sub> ∝ a₀(<i>z</i>)<sup>−1/3</sup>, forest scales deep-MOND</td>
+        <td>suppression 0.2% worst bin, nuisance-dominated</td>
+        <td><span class="pill p-pass">0.4–0.9σ, not the "6–8σ" once claimed</span></td></tr>
+      <tr class="mine"><td class="theory">S8 / structure growth</td>
+        <td>a suppression from the modified growth</td>
+        <td>0.232% against the 8.2% needed</td>
+        <td><span class="pill p-fail">dud — 35× short</span></td></tr>
+      <tr class="mine"><td class="theory">SN-Ia host mass step at a₀</td>
+        <td>a step in host properties located at a₀</td>
+        <td>real 6.9σ step reproduced; step <em>location</em> coincidence real; decisive tests only 18% powered</td>
+        <td><span class="pill p-watch">disfavoured, not excluded</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="note amber"><strong>The methodological lesson that cost the most.</strong> The forest "6–8σ exclusion" was withdrawn because the kernel had been evaluated at the <em>Newtonian</em> <i>y</i> instead of the <em>observed</em> <i>x</i> — a real physics error that <em>manufactured a deficit</em> against your own framework. And the collapse-timing magnitude was once priced at the virial radius (≲1.5×) when the rate-limiting step is at <strong>turnaround</strong> (2.3–5.1×). Always ask <em>where</em> the rate-limiting step happens before quoting a number.</div>
+</section>
+
+<!-- ============================== 7 ============================== -->
+<section id="variations">
+  <div class="eyebrow">Your variations</div>
+  <h2>Everything you have tried, and its status today</h2>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Variation</th><th>Equation</th><th>For</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr class="mine"><td class="theory">Pressure promotion</td><td class="eq"><i>𝒜</i>(<i>Q</i>) = <i>κ</i>²<i>G</i>(−<i>K</i>(<i>Q</i>))</td>
+        <td>make a₀ the dark pressure, not a constant</td><td><span class="pill p-pass">live — plausibly novel</span></td></tr>
+      <tr class="mine"><td class="theory">Derived a₀(z)</td><td class="eq">√(1+<i>ν</i>₀²)/√(1+<i>ν</i>₀²(1+<i>z</i>)⁶)</td>
+        <td>MOND off at recombination ⇒ CMB is a prediction</td><td><span class="pill p-pass">live</span></td></tr>
+      <tr class="mine"><td class="theory">The a₀-line</td><td class="eq"><i>g</i>² = <i>g</i><sub>bar</sub>² + a₀<i>g</i><sub>bar</sub></td>
+        <td>the operative interpolation; BTFR theorem</td><td><span class="pill p-watch">live, but = Milgrom 1999</span></td></tr>
+      <tr class="mine"><td class="theory">β = 1</td><td class="eq"><i>μ</i><sub>p</sub>²Λ<sub>D</sub>²/<i>M</i>⁴ = 1</td>
+        <td>5 dark parameters → 4</td><td><span class="pill p-fail">boundary-pinned, not derived</span></td></tr>
+      <tr class="mine"><td class="theory">Route A kernel</td><td class="eq"><i>ν</i> = 1/(1−<i>e</i><sup>−√<i>y</i></sup>)</td>
+        <td>survives the solar system where power laws don't</td><td><span class="pill p-watch">live; form is MLS 2016</span></td></tr>
+      <tr class="mine"><td class="theory">Ghost-condensate dark sector</td><td class="eq">shift-symmetric condensate, <i>K</i>′ = 0</td>
+        <td>gives <i>w</i> = −1 and cures the Jeans problem</td><td><span class="pill p-pass">live</span></td></tr>
+      <tr class="mine"><td class="theory">SME / Lorentz bridge</td><td class="eq">a₀ induces a computable <i>s</i><sub>μν</sub></td>
+        <td>a new observational handle</td><td><span class="pill p-pass">passes all gravity-sector bounds</span></td></tr>
+      <tr class="mine"><td class="theory">The a₀-bump</td><td class="eq"><i>A</i><sub>b</sub> <i>B</i>(<i>Y</i>/<i>𝒜</i>)(<i>Q</i>−<i>Q</i>₀)²</td>
+        <td>the cluster candidate since v2</td><td><span class="pill p-gone">closed by its own variation</span></td></tr>
+      <tr class="mine"><td class="theory">Second field, kinetic mixing</td><td class="eq"><i>β</i>(<i>y</i>,<i>Φ</i>) ∂<sup>μ</sup><i>φ</i> ∂<sub>μ</sub><i>χ</i></td>
+        <td>clusters, via a genuinely new field</td><td><span class="pill p-gone">10⁷–10⁸× too weak</span></td></tr>
+      <tr class="mine"><td class="theory">Modified-inertia arm</td><td class="eq">rapidity-gap worldline action</td>
+        <td>modify inertia instead of gravity</td><td><span class="pill p-gone">excluded 21σ, lensing</span></td></tr>
+      <tr class="mine"><td class="theory">The sign theorem</td><td class="eq"><i>𝒜</i>″ &lt; 0 ⇒ Δ<i>μ</i> &gt; 0 at all orders</td>
+        <td>would have closed clusters by derivation</td><td><span class="pill p-gone">retracted 12 Aug</span></td></tr>
+      <tr class="mine"><td class="theory">TOE / SM bridge</td><td class="eq"><i>Z</i>, √(8π/3) as germs of SM constants</td>
+        <td>extend the coefficient to particle masses</td><td><span class="pill p-gone">retracted publicly, Jun 2026</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ============================== 8 ============================== -->
+<section id="clusters">
+  <div class="eyebrow">The cluster campaign</div>
+  <h2>Eight mechanisms tried on 12 real X-COP clusters</h2>
+  <p class="lede">Target: η = 1.6–2.3 of missing acceleration (<em>not</em> the retracted 2.334, which was eRASS1-sample-specific). Baseline χ²/dof 559.4 canonical, 514.3 alt. Effective dof is ~24–36, not 600 — NFW supplies 50 points per cluster from 2 parameters.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Mechanism</th><th>Form</th><th>Result</th><th>Verdict</th></tr></thead>
+    <tbody>
+      <tr class="mine"><td class="theory">Missing baryons</td><td>McGaugh's baryon escape</td>
+        <td class="num">closes 7%</td><td><span class="pill p-gone">closed</span></td></tr>
+      <tr class="mine"><td class="theory">Any single-argument law</td><td class="eq"><i>f</i>(<i>g</i>) only</td>
+        <td class="num">a second variable required at 37–73σ</td><td><span class="pill p-gone">excluded</span></td></tr>
+      <tr class="mine"><td class="theory">Positive Helmholtz mass</td><td class="eq"><i>ρ</i><sub>eff</sub> = <i>μ</i>²|<i>Φ</i>|/4π<i>G</i> ≥ 0</td>
+        <td>theorem: extra mass must GROW outward; data fall in 12/12</td><td><span class="pill p-gone">whole class excluded</span></td></tr>
+      <tr class="mine"><td class="theory">The q-route</td><td class="eq"><i>q</i> = <i>B</i>′ + 2<i>wB</i>″</td>
+        <td class="num"><i>q</i>(0) = 1 ⇒ RAR shifts 0.340 dex vs 0.108 scatter</td><td><span class="pill p-gone">breaks BTFR</span></td></tr>
+      <tr class="mine"><td class="theory">Bump as gradient term<span class="who">phenomenological ansatz</span></td>
+        <td class="eq"><i>μ</i><sub>eff</sub> = <i>μ</i><sub>M</sub> − <i>w</i><sub>b</sub><i>B</i>(<i>x</i>²)(|<i>Φ</i>|/<i>Φ</i><sub>ref</sub>)</td>
+        <td class="num">χ²/dof 559 → 298 · 258 alt; all gates cleared</td>
+        <td><span class="pill p-watch">best fit, but NOT derivable</span></td></tr>
+      <tr class="mine"><td class="theory">The action's own bump</td><td class="eq">varied properly ⇒ mass slot + <i>B</i>′ gradient slot</td>
+        <td>mass slot excluded; gradient fails 3 ways</td><td><span class="pill p-gone">closed by derivation</span></td></tr>
+      <tr class="mine"><td class="theory">Derived mixing kernel</td><td class="eq"><i>T</i>(<i>y</i>) = <i>yF</i>″(<i>y</i>) from <i>ℱ</i><sub>YQ</sub></td>
+        <td class="num">χ²/dof 559 → 321 · 282 alt</td><td><span class="pill p-watch">derived shape, wrong amplitude</span></td></tr>
+      <tr class="mine"><td class="theory">Charge-abundance amplitude</td><td class="eq"><i>w</i>₁ = (Ω<sub>kd</sub>/Ω<sub>Λ</sub>) Δ<sub>loc</sub> <i>Φ</i><sub>ref</sub></td>
+        <td class="num">≤ 8.2×10⁻¹⁰ vs ~0.5 needed; even at Ω<sub>kd</sub> = Ω<sub>dm</sub> still 117–1013× short</td>
+        <td><span class="pill p-gone">closed on magnitude</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="note warn"><strong>CORRECTED 12 Aug — three of the four "favourable corrections" this chart previously carried were wrong.</strong> They came from an agent's report and were passed through unverified; re-checked against the committed X-COP files:
+<ul class="tight" style="margin-top:10px">
+<li><strong>"The kernel already removes 74–89%" is WRONG.</strong> At R500 (0.6–1.0) the measured discrepancy is <strong>2.084×</strong>, so the kernel removes ≈48% and leaves ≈52%. The 74–89% figure does not survive contact with the data.</li>
+<li><strong>"baseline 560 → 39.1" is the wrong number and the wrong direction.</strong> Recomputed it is ≈44.5 (statistical errors are 2.94% median; a 10% systematic inflates σ by 3.55×, dividing χ² by 12.6). And non-thermal pressure biases hydrostatic mass <em>low</em>, so correcting for it <em>raises</em> the true dynamical mass — making the framework's job <strong>harder</strong>. It is not a purely favourable correction.</li>
+<li><strong>"the robust statistic is 3.425 → 1.871" is misleading.</strong> 3.425 is <em>core-dominated</em>: 34% of the 600 points sit inside 0.1 R500, where the ratio is 4.205. By radius: 4.205 (&lt;0.1) · 3.820 (0.1–0.3) · 2.791 (0.3–0.6) · <strong>2.084 (0.6–1.0 R500)</strong>.</li>
+<li><strong>The dof point DOES hold</strong>, for a reason not previously stated: a 2-parameter NFW reproduces M_NFW to <strong>0.22% median</strong> against 2.94% statistical errors — the residual is 7% of the error bar, so the 600 points cannot resolve structure beyond 2 numbers per cluster. Effective dof ≈ 24.</li>
+</ul>
+<strong>And one genuine result fell out of the recheck:</strong> the R500 discrepancy of 2.084× sits inside the framework's own η = 1.6–2.3 target — a real internal consistency check, and the number that should be quoted instead of 3.425.</div>
+</section>
+
+<!-- ============================== 9 ============================== -->
+<section id="scorecard">
+  <div class="eyebrow">Scorecard</div>
+  <h2>Front by front, with numbers</h2>
+  <p class="lede">Every line is backed by a runnable committed script rather than an assertion.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Front</th><th>Result</th><th>Benchmark</th><th>Verdict</th></tr></thead>
+    <tbody>
+      <tr><td>Gravitational-wave speed</td><td class="num"><i>c</i><sub>T</sub> = 1 exactly</td><td class="num">GW170817</td><td><span class="pill p-pass">pass</span></td></tr>
+      <tr><td>Ghost / stability</td><td class="num">no-ghost theorem</td><td class="num">2-field conditions = the 2 AQUAL conditions</td><td><span class="pill p-pass">pass</span></td></tr>
+      <tr><td>Light bending</td><td class="num"><i>γ</i><sub>PPN</sub> = 1</td><td class="num">21.2σ → 0.601σ</td><td><span class="pill p-pass">pass</span></td></tr>
+      <tr><td>CMB (real CLASS run)</td><td class="num">Δχ² = 1.34 over 4998 ℓ</td><td class="num"><i>θ</i>* moves 0.18× Planck precision</td><td><span class="pill p-pass">pass</span></td></tr>
+      <tr><td>SPARC rotation curves</td><td class="num">0.108 dex scatter</td><td class="num">Υ = 0.70</td><td><span class="pill p-pass">pass</span></td></tr>
+      <tr><td>Baryonic Tully–Fisher</td><td class="num"><i>v</i>⁴ = <i>G M</i><sub>b</sub> a₀</td><td class="num">a theorem, not a fit</td><td><span class="pill p-pass">pass</span></td></tr>
+      <tr><td>Weak lensing, 40 kpc – 2.2 Mpc</td><td class="num">χ²/dof 2.03 · 0.94 alt</td><td class="num">KiDS, Mistele+2024</td><td><span class="pill p-pass">pass</span></td></tr>
+      <tr><td>Solar system (Route A kernel)</td><td class="num">unchanged</td><td class="num">α=1 fails 1279×; α=2 fails 8.5–12.4×</td><td><span class="pill p-pass">pass</span></td></tr>
+      <tr><td>Vertical force, Milky Way</td><td class="num"><i>f</i><sub>M</sub> = 1.30: +0.2σ vertical, +1.2σ Eilers slope</td><td class="num">full AQUAL on McMillan-2017</td><td><span class="pill p-watch">fails only <i>v</i><sub>c</sub> normalisation</span></td></tr>
+      <tr><td>Particle vs mode (GDM)</td><td class="num">0σ both ways</td><td class="num">CMB constrains a FLUID, not a particle</td><td><span class="pill p-watch">degeneracy theorem</span></td></tr>
+      <tr><td>Directional EFE</td><td class="num">Â = +2.95, <i>p</i> = 0.029</td><td class="num">needs <i>N</i> ≈ 1157; pure MI predicts exactly 0</td><td><span class="pill p-watch">fired once</span></td></tr>
+      <tr><td>BIG-SPARC environment fork</td><td class="num">13–34σ null on 175 SPARC</td><td class="num"><i>ρ</i><sub>local</sub> vs <i>ρ</i><sub>Λ</sub></td><td><span class="pill p-pass">decisive null, favourable</span></td></tr>
+      <tr><td>Gaia DR4 wide binaries</td><td class="num"><i>γ</i><sub>v</sub> = 1.2139 · 1.2592 alt</td><td class="num">pre-registered; arms 2.68σ apart</td><td><span class="pill p-na">awaiting data</span></td></tr>
+      <tr><td><strong>Galaxy clusters</strong></td><td class="num">η = 1.6–2.3 needed</td><td class="num">χ²/dof 559 → 298 best</td><td><span class="pill p-fail">open</span></td></tr>
+      <tr><td><strong>The coefficient κ</strong></td><td class="num">0.551 ± 0.043</td><td class="num">4 candidates within 2σ</td><td><span class="pill p-fail">measured, not derived</span></td></tr>
+      <tr><td><strong>Dark-sector dust</strong></td><td class="num">collapses; BH endpoint</td><td class="num">falsified 5.8 × 10⁵ vs Sgr A*</td><td><span class="pill p-fail">open</span></td></tr>
+      <tr><td>Cassini <i>Q</i>₂ (inherited)</td><td class="num">3–15σ</td><td class="num">from AeST</td><td><span class="pill p-fail">liability</span></td></tr>
+      <tr><td>α=1 ephemeris (exact-law form)</td><td class="num">constant a₀/2 sunward anomaly</td><td class="num">1278× Earth/Mars bound; 119–189× post-EFE</td><td><span class="pill p-fail">sharpest open item</span></td></tr>
+      <tr><td>S8 / structure growth</td><td class="num">0.232% vs 8.2% needed</td><td class="num">35× short</td><td><span class="pill p-fail">no help</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="note good"><strong>Eight clean passes, four watch items, five open or adverse.</strong> Parameter count: 4 dark-sector numbers against ΛCDM's 2. No referee-proof kill exists on any front — which is the actual claim worth making, and is a stronger one than it sounds.</div>
+</section>
+
+<!-- ============================== 10 ============================== -->
+<section id="retract">
+  <div class="eyebrow">Do not cite</div>
+  <h2>The retraction ledger</h2>
+  <p class="lede">Kept visible rather than deleted. Roughly half of these were withdrawn because they were too <em>favourable</em>, which is the failure mode that costs credibility fastest.</p>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>Withdrawn claim</th><th>Why</th><th>Direction of the error</th></tr></thead>
+    <tbody>
+      <tr><td>TOE / Standard-Model bridge</td><td>number-field obstruction; retracted to ~40 physicists</td><td><span class="pill p-fail">too favourable</span></td></tr>
+      <tr><td>Lyman-α "6–8σ exclusion"</td><td>kernel evaluated at Newtonian <i>y</i>, not observed <i>x</i>; true 0.4–0.9σ</td><td><span class="pill p-gone">manufactured deficit</span></td></tr>
+      <tr><td>Cluster η = 2.334 as universal</td><td>eRASS1-sample-specific; X-COP gives 1.66–1.81</td><td><span class="pill p-gone">manufactured deficit</span></td></tr>
+      <tr><td>"Clusters sit at 21.6 a₀ at R500"</td><td>that field is the CORE; R500 is 0.33–0.58 a₀</td><td><span class="pill p-fail">wrong field</span></td></tr>
+      <tr><td>"Anchored a₀ fits the RAR better"</td><td>Υ was frozen; refit both sides ⇒ indistinguishable</td><td><span class="pill p-fail">too favourable</span></td></tr>
+      <tr><td>AeST <i>λ</i><sub>J</sub> = 2.7 Mpc prediction</td><td><i>k</i>⁴ Jeans term 11 orders too small</td><td><span class="pill p-fail">too favourable</span></td></tr>
+      <tr><td>DESI-CPL a₀(z) bump</td><td>never self-consistent with <i>w</i> = −1</td><td><span class="pill p-fail">wrong construction</span></td></tr>
+      <tr><td>Stage 38's "48% of cluster χ² removed"</td><td>25 Picard iterations, unconverged on a fold; true ≈ 47% at a different amplitude</td><td><span class="pill p-fail">too favourable</span></td></tr>
+      <tr><td>"Canonical footing fits clusters better"</td><td>ALT evaluated at CANONICAL's amplitude — frozen nuisance</td><td><span class="pill p-gone">manufactured deficit vs ALT</span></td></tr>
+      <tr><td>Magnitude bound <i>w</i>₂ ≤ 2.2×10⁻¹³</td><td>wrong order in δ<i>Q</i>, and paired the ν₀ floor with the Ω<sub>kd</sub> ceiling</td><td><span class="pill p-fail">mismatched extremes</span></td></tr>
+      <tr><td>"Magnitude is NOT the obstruction"</td><td>used the loose DBI wall instead of the corpus's own Λ<sub>D</sub>/<i>Q</i>₀ ≥ 33.15</td><td><span class="pill p-fail">too favourable</span></td></tr>
+      <tr><td>The cluster sign theorem</td><td>evaluated at <i>u</i> = 0 when a₀(z) requires <i>u</i>₀ = <i>ν</i>₀Λ<sub>D</sub> ≠ 0</td><td><span class="pill p-gone">manufactured deficit</span></td></tr>
+      <tr><td>"No chi² in stages 35–40 should be quoted"</td><td>rested on a comparison-operator bug; the T kernel is iteration-stable to 0</td><td><span class="pill p-gone">manufactured deficit</span></td></tr>
+      <tr><td>dS-Unruh as support for κ = ½</td><td>the derivation forces a₀ = 2<i>cH</i><sub>Λ</sub>, excluded 15.6σ</td><td><span class="pill p-fail">too favourable</span></td></tr>
+      <tr><td>"No dark matter in galaxies"</td><td>Ω<sub>dm</sub> remains; slogan is "no dark-matter <em>particle</em>" only</td><td><span class="pill p-fail">too favourable</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<!-- ============================== 11 ============================== -->
+<section id="through">
+  <div class="eyebrow">The through-line</div>
+  <h2>One property keeps producing both the wins and the losses</h2>
+  <p class="lede">The most interesting structural fact in the ledger, and it appears four separate times.</p>
+  <p class="eqblock">shift-symmetric condensate at <i>K</i>′ = 0 &nbsp;⟹&nbsp; <i>w</i> = −1 &nbsp;∧&nbsp; a₀ maximal today &nbsp;∧&nbsp; the excitation is dust &nbsp;∧&nbsp; the charge is a trace species</p>
+  <ul class="tight" style="margin-top:20px">
+    <li><strong>Win:</strong> <i>w</i> = −1 comes out exact to <i>O</i>(<i>ν</i>₀²), so the dark-energy sector needs no tuning.</li>
+    <li><strong>Win:</strong> a₀ is maximal today and 0.6% of that at recombination — MOND is off when the CMB is imprinted, so the CMB pass is a <em>consequence</em>, not a struggle.</li>
+    <li><strong>Loss:</strong> the same conserved charge is therefore a <em>trace</em> species — which is exactly why it cannot supply cluster gravity. Even as the entire dark matter content it is 117–1013× too weak.</li>
+    <li><strong>Loss:</strong> and that charge, forced cold by the CMB success, collapses in galaxies toward black holes that are not observed. Dynamics sees <i>ρ</i>+3<i>p</i>, lensing sees <i>ρ</i>+<i>p</i>, so no equation of state hides the energy from both.</li>
+  </ul>
+  <div class="note amber" style="margin-top:22px"><strong>So the dark-energy triumph and the galaxy problem are the same property of the same field.</strong> That is not a bug to patch; it is the shape of the theory. Whether it is a death sentence or the sharpest clue you have is genuinely undecided — and it is the single most publishable idea in this ledger.</div>
+</section>
+
+<footer>
+  Sources: THE_COMPLETION v9 (DOI 10.5281/zenodo.21895046) · orientation piece (DOI 10.5281/zenodo.21904141) · Skordis &amp; Złośnik, <em>Phys. Rev. Lett.</em> <strong>127</strong>, 161302 (2021) · Bekenstein &amp; Sagi, arXiv:0802.1526 (2008) · Bekenstein (2004) · Famaey &amp; McGaugh, <em>Living Rev. Relativity</em> <strong>15</strong>, 10 (2012) · McGaugh, Lelli &amp; Schombert (2016) · Milgrom (1983, 1999, 2009, 2010, 2020) · Verlinde (2016) · Mistele et al. (2024) · Eckert et al., X-COP · Ettori et al. (2019).
+  <br><br>
+  Every numerical claim traces to a committed script in the zimmerman-formula repository. Retracted items are left visible rather than deleted, which is the point of keeping a ledger at all.
+</footer>
+
+</div>
