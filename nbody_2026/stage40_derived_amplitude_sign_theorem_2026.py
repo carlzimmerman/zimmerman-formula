@@ -50,12 +50,24 @@ And this is INTERNALLY CONSISTENT with the banked a_0(z) law rather than in tens
 has a_0 at its MAXIMUM TODAY and only 0.0060 of it at recombination.  a_0 maximal today IS Acal'' < 0.
 The same structure that makes the CMB clustering component a prediction makes clusters harder.
 
-STEP 4 -- A HARD MAGNITUDE CAP, INDEPENDENT OF THE SIGN.
-DBI reality requires |mu_p u| <= M^2, i.e. |delta Q| <= Lambda_D.  With delta Q = -Q_0 Phi evaluated at
-the cluster reference depth, Q_0 Phi_ref <= Lambda_D, hence the dimensionless coefficient obeys
-        *** w_b = Q_0^2 Phi_ref^2 / (2 Lambda_D^2)  <=  1/2, so |Delta mu| <= T_max/2 = 0.0751 ***
-This stage fits the amplitude FREELY (both signs allowed) against the 12 real X-COP clusters and asks
-whether what the data want is even inside that cap.  Two independent verdicts, sign and magnitude.
+STEP 4 -- AND THE MAGNITUDE FAILS TOO, BY TWELVE ORDERS OF MAGNITUDE.
+*** CORRECTED 2026-08-11.  THE FIRST VERSION OF THIS STAGE GOT THIS BACKWARDS AND IT WAS A MANUFACTURED
+WIN, THE MIRROR OF THE ERROR THE WORKING RULE FORBIDS. ***  It bounded the coefficient using only DBI
+reality (|mu_p u| <= M^2 => |delta Q| <= Lambda_D => w_2 <= 1/2), found the cluster fit wanted ~0.5, and
+concluded "magnitude is NOT the obstruction".  That bound is far looser than the framework's OWN number.
+
+Stage 17's committed check D4 already fixes the ratio: Omega_khronon-dust <= 4.42e-7 (stage 3's black-hole
+ceiling) with beta = 1 forces
+        Lambda_D/Q_0 >= 33.1506       (window floor; 273.8 at the ceiling)
+and therefore, self-consistently with the rest of the corpus,
+        *** w_2 = (Phi_ref Q_0 / Lambda_D)^2 / 2  <=  2.2021e-13 ***
+against a required 0.48-0.625.  A shortfall of ~2.8e12.  The DBI reality wall is not what binds; the
+SHIFT CHARGE IS A TRACE SPECIES, and it is a trace species because of the same nu_0 window that makes
+a_0(z) switch MOND off at recombination.  Inverting it: w_2 = 1/2 would need Omega_kd = 0.666, which is
+1.5e6x stage 3's own ceiling and 2.5x Omega_dm.
+
+So the correct statement is that this route fails in BOTH sign and magnitude, and the magnitude failure is
+a statement about charge abundance, not about the DBI wall.
 
 NOT CLAIMED: that no cluster mechanism exists; and NOT that magnitude fails -- the required amplitude
 sits AT the DBI cap, so magnitude is NOT the obstruction.  Claimed: that the promoted-a_0 route is closed
@@ -455,40 +467,53 @@ check(True,
       f"is the structure that makes clusters harder",
       "one property, two consequences -- the same pattern as the stage 5/6/9 obstruction")
 
-# F5 -- the DBI reality cap on the coefficient
-cap = 0.5
+# F5 -- the DBI reality bound, which is NOT the operative one
+cap_dbi = 0.5
 Tmax = float(np.max(T_shape(np.linspace(1e-4, 3.0, 400000))))
-check(cap == 0.5,
-      f"F5  MAGNITUDE CAP, independent of the sign: DBI reality needs |mu_p u| <= M^2, i.e. "
-      f"|delta Q| <= Lambda_D.  With delta Q = -Q_0 Phi at the cluster depth, Q_0 Phi_ref <= Lambda_D, so "
-      f"the coefficient w_b = Q_0^2 Phi_ref^2/(2 Lambda_D^2) <= {cap:.1f} and hence "
-      f"|Delta mu| <= T_max/2 = {Tmax/2:.4f}",
-      f"T_max = {Tmax:.5f} at x = 0.636; this cap holds whatever Q_0/Lambda_D turns out to be, because "
-      f"the reality condition bounds the combination that appears")
+check(cap_dbi == 0.5,
+      f"F5  DBI reality gives |mu_p u| <= M^2, i.e. |delta Q| <= Lambda_D, hence w_b <= {cap_dbi:.1f} and "
+      f"|Delta mu| <= T_max/2 = {Tmax/2:.4f}.  *** THIS BOUND IS REAL BUT IT IS NOT THE OPERATIVE ONE, and "
+      f"the first version of this stage wrongly treated it as if it were ***",
+      f"T_max = {Tmax:.5f} at x = 0.636")
 
-# F6 -- what the data actually want, and is it inside the cap
-c_der, _, sl_der, md_der = stats(-abs(wbb) if False else -cap)
-check(True,
-      f"F6  chi2/dof at the DERIVED SIGN (w_b = {-cap:.2f}, i.e. the term as the theory actually gives it, "
-      f"saturating the DBI cap): {c_der/npt:.1f}, against the a_0-line baseline {c0/npt:.1f}.  "
-      f"{'WORSE than doing nothing' if c_der > c0 else 'better than baseline'} -- slope {sl_der:+.3f}, median ratio {md_der:.3f}",
-      "this is the honest test of the derived term: not 'could a term of this shape help' but 'does the "
-      "term the action gives, with the sign the action gives, help'")
+# F5b -- THE OPERATIVE BOUND, from the corpus's own stage 17 D4
+LD_OVER_Q0_MIN = 33.1506      # committed: stage17 D4, Omega_kd <= 4.42e-7 (stage3 BH ceiling) at beta=1
+cap = (PHI_REF / LD_OVER_Q0_MIN) ** 2 / 2.0
+check(cap < 1e-12,
+      f"F5b *** THE OPERATIVE MAGNITUDE BOUND, and it is the corpus's OWN: stage 17's committed check D4 "
+      f"forces Lambda_D/Q_0 >= {LD_OVER_Q0_MIN:.4f} (window floor; 273.8 at the ceiling), so "
+      f"w_2 = (Phi_ref Q_0/Lambda_D)^2/2 <= {cap:.4e}.  That is {cap_dbi/cap:.2e}x tighter than the DBI wall ***",
+      "verified directly against the committed stage 17 module, not taken on report")
+
+# =================================================================================================
+# F6 -- what the derived term actually does to the fit
+c_der, _, sl_der, md_der = stats(-cap_dbi)
+check(c_der > c0,
+      f"F6  chi2/dof with the DERIVED SIGN at the (over-generous) DBI amplitude w_b = {-cap_dbi:.2f}: "
+      f"{c_der/npt:.1f}, against the a_0-line baseline {c0/npt:.1f} -- WORSE than doing nothing.  At the "
+      f"LEGAL amplitude {cap:.2e} the effect is unmeasurable (and still adverse)",
+      "the honest test is not 'could a term of this shape help' but 'does the term the action gives, at "
+      "the amplitude the corpus allows, with the sign the action gives, help'")
 
 need = abs(wbb)
-check(need <= cap * 1.10,
-      f"F7  *** AND THE MAGNITUDE DOES *NOT* FAIL -- reported against my own initial expectation.  The "
-      f"free fit wants |w_b| = {need:.3f} and the DBI reality cap is {cap:.2f}: the required amplitude sits AT "
-      f"the cap, {need/cap:.2f}x it, within the 0.025 grid resolution of the scan.  So the promoted-a_0 route "
-      f"has ENOUGH strength; it has the WRONG SIGN.  The sign is the sole obstruction ***",
-      f"required |Delta mu| ~ {need*Tmax:.4f} against the cap's {cap*Tmax:.4f}.  I wrote this check expecting a "
-      f"magnitude shortfall and the data refused it -- recording that rather than keeping the expectation")
+check(need / cap > 1e10,
+      f"F7  *** AND THE MAGNITUDE FAILS BY {need/cap:.2e}x -- CORRECTING THIS STAGE'S OWN FIRST VERSION, "
+      f"WHICH CLAIMED THE OPPOSITE.  The fit wants |w_b| = {need:.3f}; the corpus allows {cap:.4e}.  I had "
+      f"used only the DBI reality wall ({cap_dbi:.1f}) and written 'magnitude is NOT the obstruction' -- a "
+      f"MANUFACTURED WIN, the mirror image of the manufactured deficit the working rule forbids ***",
+      "and the self-congratulation in the original note ('I wrote this check expecting a shortfall and "
+      "the data refused it') was itself the tell: the loose bound was doing the work, not the data")
 
-check(True,
-      f"F7b and the order-unity agreement is NOT offered as a cross-check.  A required coefficient landing "
-      f"within a factor ~2 of a reality bound is not surprising on its own, and the corpus has already had "
-      f"to withdraw one 'two routes agree' claim whose window was 18% likely by chance.  The load-bearing "
-      f"statement is only the inequality: {need:.3f} <= {cap:.2f} means magnitude is NOT the obstruction")
+OM_KD_CEIL = 4.42e-7          # stage 3's black-hole ceiling on Omega_khronon-dust
+OM_DM = 0.265
+om_needed = OM_KD_CEIL * (need / cap)
+check(om_needed > OM_DM,
+      f"F7b AND THE CRISPEST FORM OF THE FAILURE IS A CHARGE-ABUNDANCE STATEMENT, not a DBI one: reaching "
+      f"the required amplitude needs Omega_kd ~ {om_needed:.3g}, which is {om_needed/OM_KD_CEIL:.2e}x stage 3's own "
+      f"black-hole ceiling {OM_KD_CEIL:.2e} and {om_needed/OM_DM:.2e}x Omega_dm itself.  The shift charge is a TRACE "
+      f"species -- and it is one because of the SAME nu_0 window that switches MOND off at recombination",
+      "so the a_0(z) law that makes the CMB clustering component a prediction is also what starves this "
+      "mixing: one property, two consequences, for the third time in this sequence")
 
 A0Z_RATIO_REC = 0.0060       # banked: a_0(z=1090)/a_0(0) from the derived a_0(z) law (stage 17)
 check(A0Z_RATIO_REC < 1.0,
@@ -521,18 +546,21 @@ print(f"""
      gravity at ANY order in delta Q.  At the derived sign the fit is chi2/dof {c_der/npt:.1f} against the
      baseline {c0/npt:.1f}: worse than doing nothing.
 
-  2. AND THE MAGNITUDE DOES *NOT* FAIL -- against my own initial expectation, recorded as found.  DBI
-     reality caps the coefficient at w_b <= {cap:.1f}, so |Delta mu| <= T_max/2 = {Tmax/2:.4f}.  The free fit wants
-     |w_b| = {abs(wbb):.3f}, i.e. {abs(wbb)/cap:.2f}x the cap -- AT it, within the scan's 0.025 resolution.  So the route has
-     ENOUGH strength and the SIGN is the sole obstruction.  (The order-unity agreement is not offered as
-     a cross-check; only the inequality is load-bearing.)  I wrote that check expecting a shortfall and
-     the data refused it.
+  2. *** AND THE MAGNITUDE FAILS TOO, BY ~{need/cap:.0e}x -- CORRECTING THIS STAGE'S OWN FIRST VERSION. ***
+     I originally bounded the coefficient with DBI reality alone (w_b <= {cap_dbi:.1f}), found the fit wanted
+     ~0.5, and wrote "magnitude is NOT the obstruction".  Wrong, and wrong in the FAVOURABLE direction:
+     a MANUFACTURED WIN.  Stage 17's own committed D4 forces Lambda_D/Q_0 >= {LD_OVER_Q0_MIN:.4f}, hence
+     w_2 <= {cap:.4e} against a required {need:.3f}.  The DBI wall was never what binds.
 
-  2b. AND NOTHING CAN FLIP THE SIGN WITHOUT COSTING THE CMB.  The sign of Delta mu is the sign of Acal''
+  2b. AND THE FAILURE IS A CHARGE-ABUNDANCE STATEMENT.  Reaching the needed amplitude requires
+     Omega_kd ~ {om_needed:.3g} -- {om_needed/OM_KD_CEIL:.1e}x stage 3's black-hole ceiling and {om_needed/OM_DM:.1e}x Omega_dm.  The shift
+     charge is a TRACE species, and it is a trace species because of the same nu_0 window that switches
+     MOND off at recombination.  So for the third time in this sequence: one property, two consequences.
+
+  2c. AND NOTHING CAN FLIP THE SIGN WITHOUT COSTING THE CMB.  The sign of Delta mu is the sign of Acal''
      alone.  Acal'' > 0 needs -K at a local MINIMUM at u = 0, i.e. a_0 minimal today and LARGER in the
      past.  The framework's own derived a_0(z) law has a_0(z=1090)/a_0(0) = 0.0060 -- a_0 MAXIMAL TODAY,
-     which IS Acal'' < 0.  So no K consistent with that law flips the sign, and that law is what makes
-     MOND absent at recombination and the CMB clustering component a PREDICTION.
+     which IS Acal'' < 0.
 
   3. THIS IS NOT IN TENSION WITH THE FRAMEWORK'S a_0(z) LAW -- IT IS THE SAME FACT.  That law has a_0
      at its MAXIMUM TODAY and 0.0060 of it at recombination.  "a_0 maximal today" IS Acal'' < 0.  The
@@ -567,9 +595,9 @@ print(f"""
      term is not touched by this theorem, because the theorem is about Acal(Q)'s stationarity, not about
      second fields in general.  That remains the one open route, at a parameter-count price.
 
-  NOT CLAIMED: that no cluster mechanism exists; and NOT claimed that magnitude fails -- it does not.
-  Claimed: that the promoted-a_0 route is closed on a derivation, in SIGN at all orders, with the sign
-  itself pinned by the a_0(z) law that the CMB result depends on.
+  NOT CLAIMED: that no cluster mechanism exists.  Claimed: that the promoted-a_0 route is closed on a
+  derivation TWICE OVER -- in SIGN at all orders (Acal'' < 0 because -K is maximal where w = -1 is exact),
+  and in MAGNITUDE by ~2.8e12x once the corpus's own Lambda_D/Q_0 >= 33.15 is used instead of the DBI wall.
 """)
 
 print("=" * 100)
