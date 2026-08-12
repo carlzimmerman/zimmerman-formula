@@ -1,6 +1,29 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 r"""
+==================================================================================================
+*** RETRACTED 2026-08-12 BY STAGE 48.  THIS CANDIDATE IS DEAD.  DO NOT CITE. ***
+==================================================================================================
+The deciding assumption below was not merely unverified -- it was INVERTED.  In G_tilde = (1-K_B/2)Ghat
+as Skordis & Zlosnik write it, G_tilde is the FUNDAMENTAL constant (the one in 1/16piG_tilde and in the
+Friedmann equation) and Ghat is the DERIVED, LARGER quasi-static one.  So
+        G_cosmo/G_local = G_tilde/Ghat = 1 - K_B/2 <= 1,   NOT 1/(1 - K_B/2).
+This stage assumed the exact reciprocal.  Worse: for AeST c_13 + 3c_2 = 0 IDENTICALLY, so the ratio is 1
+and was never available at all -- on FRW the entire aether Lagrangian vanishes (F_munu = J^mu = Y = 0), so
+K_B cannot enter the Friedmann equation.  With the correct direction kappa_eff = kappa/sqrt(1-K_B/2) >= 1
+for every K_B in (0,2), so kappa_eff = 1/2 has NO solution: the correction can only push kappa_eff UP,
+never down, and cannot explain any kappa < 1.
+
+AND PART B WAS A TAUTOLOGY: under its own map K_B = 2(1-kappa^2), kappa = 1/2 gives K_B = 3/2
+IDENTICALLY.  "This predicts K_B = 3/2" and "kappa = 1/2" are the same statement -- exactly the
+circularity stage 43 had diagnosed one stage earlier about epsilon_tot = 1/(32 pi).
+
+SURVIVING BYPRODUCTS, recorded in stage 48: the identity Z = [sqrt(8pi/3)/kappa] sqrt(G_cosmo/G_local) is
+correct; GW170817 is satisfied EXACTLY (c_13 = 0 identically, vs |c_13| < 1e-15) rather than approximately;
+and K_B IS constrained after all via alpha_1 = -4 K_B in the preferred-frame PPN sector, so the corpus's
+"K_B is unconstrained" claim is incomplete.
+==================================================================================================
+
 stage46_factor_two_from_aether_candidate_2026.py
 ================================================
 A CANDIDATE FOR THE FACTOR OF 2, FROM THE AETHER SECTOR -- filed as a CANDIDATE, not a result, with
