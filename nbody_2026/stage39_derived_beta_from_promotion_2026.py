@@ -3,6 +3,17 @@
 r"""
 stage39_derived_beta_from_promotion_2026.py
 ===========================================
+*** SUPERSEDED IN TWO PLACES BY STAGE 40 -- read that stage's Part F before using anything here. ***
+  (1) THE KERNEL HERE IS WRONG.  This stage used S2 = d[T^2 y]/dy from the integrate-out picture.  The
+      LEADING behaviour is the direct delta Q expansion, which gives the kernel T = y F''(y) itself.
+  (2) "CONDITION (b) IS INHERITED" IS WRONG.  T ~ x/2 is the SAME order as mu_M ~ x, so Delta mu/mu_M
+      tends to a CONSTANT w_b Phi^2/2, not to zero.  Deep-MOND safety is QUANTITATIVE (4.2e-4 at galaxy
+      depth), not structural.
+  (3) AND THE AMPLITUDE, derived in stage 40, is NEGATIVE in this stage's sign convention: the fitted
+      positive w_b = 3.300 below is NOT what the action supplies.  The 35% chi^2 improvement reported
+      here is therefore withdrawn as support for the mechanism.
+The DERIVATION of the mixing from F_YQ, the forced shape T, and the Phi^2 power all stand.
+
 DERIVING THE MIXING FUNCTION beta -- and it is NOT a new function.  It is generated, shape and Phi-power
 together, by Carl's OWN stage-17 pressure promotion.  Then fitted to the 12 real X-COP clusters.
 
