@@ -46,6 +46,11 @@ at Δχ² = 1.34 over 4998 multipoles; SPARC rotation curves at 0.108 dex with �
   measurement, but the exact claim is wrong as stated.
 - Anchoring a₀ to the horizon formula **costs 6% in RAR scatter** and buys no improvement — 0.1081 dex anchored versus
   0.1016 dex at the free minimum (`nbody_2026/stage49_*`).
+- **A bound the corpus previously lacked**, and it is prior art rather than ours: Oost et al. Eq. (3.7), from
+  Carroll & Lim's helium analysis, requires |G_cos/G_N − 1| ≲ 1/8, which gives **0 < K_B ≲ 0.25** with
+  λ_s ≳ 7. Stated against the parent theory's interest: AeST's own CMB fiducials K_B = 0.3 and 0.5 sit at
+  1.2× and 2.0× that bound; only K_B = 0.1 is comfortably clear, and that is the one this corpus's `base_a`
+  work uses. (`nbody_2026/stage50_*`)
 - This is a theory of **gravity and the dark sector**, **not a theory of everything.**
 
 ---
@@ -82,7 +87,7 @@ checked against.
 | Rapidity-gap modified inertia | ⚠ **Supersedes the June text.** Lensing excludes pure MI at **21σ**, all three rescues closed. The June "forced galaxy sign via the DSSYK dictionary" argument belongs to this dead arm and is withdrawn. |
 | E8 / J₃(𝕆) embedding | *Hosts* the structure; does not *force* it. No prediction. |
 | SM bridge, number-field route | The transcendental/algebraic obstruction above. |
-| **K_B = 3/2 from the aether sector** | **Assumption inverted.** G̃ is the *fundamental* constant and Ĝ the derived one, so G_cosmo/G_local = 1−K_B/2 ≤ 1, not its reciprocal — and for AeST c₁₃+3c₂ = 0 identically, so the ratio is 1 and was never available. Its "prediction" was also a tautology: under its own map, κ = ½ ⇒ K_B = 3/2 *identically*. `stage46` → `stage48` |
+| **K_B = 3/2 from the aether sector** | **Assumption inverted, then excluded by BBN.** G̃ is the *fundamental* constant and Ĝ the derived one, so G_cosmo/G_local = (1−K_B/2)·λ_s/(1+λ_s) — strictly **< 1**, supremum exactly 1, where the candidate needed 4. Skordis & Złośnik state the direction as a theorem: "G_N > G̃ always". Its "prediction" was also a tautology: under its own map κ = ½ ⇒ K_B = 3/2 *identically*. And Oost et al. Eq. (3.7) excludes K_B = 3/2 independently at 6× the helium bound. `stage46` → `stage48` → `stage50` |
 | **Re-measuring κ under the operative kernel** | **Estimator degenerate.** RAR-scatter minimisation over (Υ, a₀) is not an a₀ estimator: scatter moves 12% across a *factor 1.94* in a₀ because Υ absorbs it. `stage49` |
 
 ---
