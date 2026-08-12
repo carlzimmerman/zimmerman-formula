@@ -92,6 +92,15 @@ of retracting every number in the sequence on the strength of a comparison opera
 of manufactured deficit. ***
 
 --------------------------------------------------------------------------------------------------
+*** PART G IS SUPERSEDED BY STAGE 44 -- THREE OF ITS FOUR CLAIMS ARE WRONG. ***
+G1's dof point is CORRECT but was asserted rather than demonstrated (stage 44 shows a 2-param NFW
+reproduces M_NFW to 0.22% median against 2.94% errors, i.e. 7% of the error bar).  G2's "560 -> 39.1" is
+the WRONG NUMBER (44.5) and the WRONG DIRECTION -- non-thermal pressure biases hydrostatic mass LOW, so
+correcting for it makes the framework's job HARDER.  G3's "robust statistic 3.425" is CORE-DOMINATED:
+34% of the 600 points sit inside 0.1 R500 where the ratio is 4.205; at R500 it is 2.084.  And the
+"kernel removes 74-89%" figure repeated in the summary chart is WRONG -- at R500 the kernel accounts for
+48% and leaves 52%.  All four came from a workflow agent's report and were carried in unchecked.
+
 AND TWO CORRECTIONS THAT RUN THE OTHER WAY -- verified as rigorously as the adverse ones
 --------------------------------------------------------------------------------------------------
 (i)  THE DOF ARE OVERSTATED ~25x.  M_NFW supplies 50 radial points per cluster from a 2-PARAMETER NFW fit,
