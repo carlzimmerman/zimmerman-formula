@@ -1,55 +1,166 @@
 # Scope & Retractions — what the Zimmerman framework does and does not claim
 
 *This document is the front door. Read it before anything else in the repository. It draws a hard line between the
-genuine, defensible physics and earlier exploratory material that has been **tested and retracted as numerology**. The
-distinction is enforced by false-discovery-rate (FDR) analysis, not opinion.*
+genuine, defensible physics and material that has been **tested and withdrawn**. Every withdrawal below names the
+mechanism of the error, and where a committed script settles it, that script is cited.*
+
+**Last revised 2026-08-12.** The previous revision (June 2026) described the modified-inertia era and is superseded in
+three places, marked ⚠ below.
 
 ---
 
-## What IS claimed (the genuine framework — `real_research/` and the whitepaper)
-A **phenomenological law of gravity / the dark sector**, on the de Sitter vacuum:
+## What IS claimed (current, v9)
 
-> **a₀ = c²√(Λ/32π) = (c/2)√(Gρ_DE) = 9.36×10⁻¹¹ m s⁻²**, evolving as **a₀(z) ∝ √ρ_DE(z)**.
+A **relativistic theory of gravity and the dark sector**, built on the Aether Scalar Tensor theory of
+**Skordis & Złośnik** (*Phys. Rev. Lett.* **127**, 161302, 2021) — which is theirs, not this framework's, and is the
+reason a MOND-like theory can pass the CMB at all. The framework's own contribution is one identification:
 
-The defensible, stress-tested results (see `papers/ZIMMERMAN_THEORY_OF_GRAVITY.md` and the dated `real_research/` ledgers):
-- **The galaxy data.** At this a₀ and Υ≈0.70, the RAR, BTFR and deep-MOND relations coincide; scatter 0.108 dex.
-- **The shape is derived.** g_obs=√(g_bar²+g_bar·a₀) is Milgrom's (1999) de Sitter-Unruh modified-inertia form, not a fit.
-- **The galaxy sign is forced** (given the Narovlansky-Verlinde DSSYK dictionary): the matter-chord kernel puts
-  galaxy-scale probes at the spectral center → enhancement; clusters off-center → MOND fails (matching observation).
-- **A falsifiable prediction:** a₀(z=3) = 0.74× local (non-monotonic, +6% bump at z≈0.4), decided by ELT z≈3 this decade.
-- **A genuine link to fundamental physics:** the *evolving* dark energy is **string-swampland-compatible/preferred**,
-  where a static Λ (ΛCDM) is swampland-forbidden.
+> **𝒜(Q) ≡ a₀²(Q) = κ²G[−K(Q)]** — the MOND acceleration scale **is** the dark sector's pressure.
 
-**Honest boundaries, also claimed:** the O(1) coefficient (32π) is an undetermined **posit** (it cancels in the
-falsifiable a₀(z)); the *existence* of the a₀ term rests on a **contested** premise (a de Sitter volume-law entanglement
-entropy, disfavored by 2024 numerics); and this is a theory of **gravity + the dark sector**, **not a theory of
-everything** (see `TOE_SEED_VERDICT_2026-06-06.md`, `FIRST_PRINCIPLES_FOUNDATION_2026-06-06.md`).
+Two consequences follow with nothing further adjusted:
+
+1. **a₀ is fixed by the dark-energy density**, a₀ = κc√(Gρ_Λ) = cH_Λ/Z = **9.3619×10⁻¹¹ m s⁻²** (canonical footing;
+   **1.1279×10⁻¹⁰** on the alt footing, quoted alongside every dimensionful result).
+2. **a₀ must evolve**, in a κ-independent form: a₀²(z)/a₀²(0) = √(1+ν₀²)/√(1+ν₀²(1+z)⁶), rising monotonically to a
+   maximum today, with **a₀(z=1090)/a₀(0) = 6.0×10⁻³** — so MOND is *off* when the CMB is imprinted, making the parent
+   theory's CMB pass structural rather than fitted.
+
+**Verified fronts**, each backed by a committed runnable script: c_T = 1 exactly (GW170817 — satisfied as an *identity*,
+since c₁₃ = 0 for every K_B); a no-ghost theorem that transfers from the parent theory; γ_PPN = 1; a real CLASS CMB run
+at Δχ² = 1.34 over 4998 multipoles; SPARC rotation curves at 0.108 dex with Υ = 0.70; the baryonic Tully–Fisher relation
+**v⁴ = GM_b a₀ as a theorem** rather than a fit; weak lensing from 40 kpc to 2.2 Mpc; and the solar system.
+
+### Honest boundaries, also claimed
+
+- **κ is MEASURED, not derived.** 0.551 ± 0.043 (distance-free), 0.465 ± 0.076 (BTFR). κ = ½ sits 1.19σ away and at
+  least four candidates lie within 2σ. The entire open content reduces to **one factor of two**: because the π cancels
+  between √(8π/3) and Z, "κ = ½" is identically "Z = 2√(8π/3)" (`nbody_2026/stage43_*`).
+- **Galaxy clusters are not solved** — short by a factor **2.08 at R₅₀₀** (1.92 alt) on the twelve X-COP clusters. This
+  is MOND's forty-year-old open problem and is not solved by TeVeS or by AeST as published either.
+- **The dark sector requires a pressureless component at the level of Ω_dm** for the CMB fit. In this framework that is
+  a field excitation, not a particle — so the defensible slogan is **"no dark-matter *particle*"**, never "no dark
+  matter". The GDM degeneracy theorem is explicit: the CMB constrains a *fluid*, not a *particle*, at 0σ either way.
+- **That excitation collapses.** Forced cold by the CMB fit, with no evident mechanism halting collapse in galaxies; the
+  endpoint is inconsistent with the observed mass of Sgr A* by ~5×10⁵. **Unresolved.**
+- **w = −1 + 𝒪(ν₀²)**, not exactly −1, since a₀(z) requires ν₀ ≠ 0. The offset is 10⁻¹⁰–10⁻⁸, far below any w₀
+  measurement, but the exact claim is wrong as stated.
+- Anchoring a₀ to the horizon formula **costs 6% in RAR scatter** and buys no improvement — 0.1081 dex anchored versus
+  0.1016 dex at the free minimum (`nbody_2026/stage49_*`).
+- This is a theory of **gravity and the dark sector**, **not a theory of everything.**
 
 ---
 
-## What is RETRACTED — numerology, ~0 bits of evidence (do NOT cite)
-The following earlier claims connect the framework's geometric constant Z=√(32π/3) to particle physics. **They are
-retracted.** Each was put through an FDR test on the framework's own search space and carries **~0 bits** — i.e. a search
-of this size hits the target *by chance* at least as often:
+## Retracted — Standard Model numerology (~0 bits, do NOT cite)
+
+Publicly retracted 2026-06-23. Each was put through an FDR test on the framework's own search space and carries **~0
+bits** — a search of this size hits the target by chance at least as often.
 
 | Retracted claim | Reality |
 |---|---|
-| **m_p/m_e = α⁻¹·2Z²/5** (and 4Z²+3·67/5, 54Z²+6Z−8, …) | **~0.1–0.3 bits.** m_p/m_e is QCD-over-a-Yukawa, 41 orders of magnitude from a₀/Λ; the formulas disagree with each other, miss by 10⁶–10⁷σ, and one bolts on a −Z²/180 fudge. *Below the random-search median.* See `real_research/PROTON_ELECTRON_BRIDGE_VERDICT_2026-06-06.md`. |
-| **α⁻¹ = 4Z²+3 = 137.041** | α⁻¹ is known to ~1 part in 10¹⁰; 137.0413 is a **~5×10⁵σ miss** dressed as "0.004% agreement." ~0 bits. See `real_research/reviews/OPUS_PHYSICS_REVIEW.md`. |
-| **sin²θ_W = 3/13, N_gen = 3, the Z²→Standard-Model cascade** | FDR≈0; the SM is a **category error** relative to the a₀/Λ horizon scale (confirmed across 42 frameworks + 9 QG programs). |
-| **E6 / GUT particle-spectrum fits** | FDR≈0 numerology. |
-| **The Z²=32π/3 "eta-invariant / topology / holonomy derivation"** of the coefficient | The coefficient is a **posit** — a 6-route first-principles assault foreclosed it (`real_research/GEOMETRIC_CLOSURE_ASSAULT_2026-06-06.md`). The "derivation" is not valid; the value 32π/3 enters only as the *definition* of a₀. |
+| **m_p/m_e = α⁻¹·2Z²/5** (and 4Z²+3·67/5, 54Z²+6Z−8, …) | **~0.1–0.3 bits.** m_p/m_e is QCD-over-a-Yukawa, 41 orders from a₀/Λ; the formulas disagree with each other, miss by 10⁶–10⁷σ, and one bolts on a −Z²/180 fudge. *Below the random-search median.* |
+| **α⁻¹ = 4Z²+3 = 137.041** | α⁻¹ is known to 1 part in 10¹⁰; this is a **~5×10⁵σ miss** dressed as "0.004% agreement." |
+| **sin²θ_W = 3/13, N_gen = 3, the Z²→SM cascade** | FDR ≈ 0. And there is a **structural obstruction**: Z carries √π, which is transcendental, while flavour observables are algebraic — so these germs cannot generate those targets. |
+| **E6 / GUT particle-spectrum fits** | FDR ≈ 0 numerology. |
+| **The Z² = 32π/3 "eta-invariant / topology / holonomy derivation"** | The coefficient is a **posit**; a 6-route first-principles assault foreclosed it. |
 
-**The `ai_slop/` directory** (and `ai_slop 2/`) contains deprecated, exploratory, largely AI-generated material —
-including the numerology above plus LLM-training tooling — and is **not part of the framework's claims.** It is retained
-only for provenance. *The genuine framework is `real_research/` + the whitepaper.*
+---
+
+## Retracted — dead routes to the coefficient κ
+
+Twelve attempts, all closed. **Three died by the same mechanism**, which is now the first thing any new attempt must be
+checked against.
+
+| Route | How it died |
+|---|---|
+| de Sitter–Unruh, via Deser–Levin | ⚠ **Supersedes the June text.** The derivation *works* and yields Milgrom's ν = √(1+1/y) — then forces a₀ = 2cH_Λ, **excluded at 15.6σ**. It must never be cited as support for κ = ½, and the June claim that "the shape is derived" via this route is withdrawn. |
+| Crossover master formula, κ² = 8πε_tot | **Circular.** Solving it at κ = ½ returns ε_tot = 1/32π, where the 8π is carried over from its own left-hand side and the residual 4 is κ⁻². `stage43` |
+| ε_tot = 1/32π from first principles | TT-gauge kill; five plausible variants span **161.6×**. |
+| The "2Z ratio" | A tautology. |
+| π-counting arguments | κ is **π-free** — the π cancels, so no π-based argument has leverage. `stage43` |
+| Category / uniqueness search | a₀ = ξc√(Gρ) is the unique dimensional form (det 2), but ξ stays free. |
+| Covariant MI action, v1→v11 | Three no-goes; decisively, **the prefactor is the Frenet torsion** — it works for linear acceleration and fails for orbits. |
+| Rapidity-gap modified inertia | ⚠ **Supersedes the June text.** Lensing excludes pure MI at **21σ**, all three rescues closed. The June "forced galaxy sign via the DSSYK dictionary" argument belongs to this dead arm and is withdrawn. |
+| E8 / J₃(𝕆) embedding | *Hosts* the structure; does not *force* it. No prediction. |
+| SM bridge, number-field route | The transcendental/algebraic obstruction above. |
+| **K_B = 3/2 from the aether sector** | **Assumption inverted.** G̃ is the *fundamental* constant and Ĝ the derived one, so G_cosmo/G_local = 1−K_B/2 ≤ 1, not its reciprocal — and for AeST c₁₃+3c₂ = 0 identically, so the ratio is 1 and was never available. Its "prediction" was also a tautology: under its own map, κ = ½ ⇒ K_B = 3/2 *identically*. `stage46` → `stage48` |
+| **Re-measuring κ under the operative kernel** | **Estimator degenerate.** RAR-scatter minimisation over (Υ, a₀) is not an a₀ estimator: scatter moves 12% across a *factor 1.94* in a₀ because Υ absorbs it. `stage49` |
+
+---
+
+## Retracted — dead cluster mechanisms
+
+Eight, on the twelve committed X-COP clusters. Target η = 1.6–2.3.
+
+| Mechanism | How it died |
+|---|---|
+| Missing baryons | Closes 7%. |
+| Any single-argument law f(g) | A second variable is required at **37–73σ**. `stage30` |
+| Positive Helmholtz mass | **Theorem:** ρ_eff ≥ 0 forces the extra enclosed mass to *grow* outward; the data have it falling in 12/12. `stage33` |
+| The q-route | q(0) = 1 shifts the galaxy RAR by 0.340 dex against a 0.108 scatter, breaking the BTFR theorem. `stage34` |
+| The a₀-bump as a gradient term | Fits best of any candidate but is **not derivable** from the action. `stage35` |
+| The action's own bump, varied properly | Generates only the excluded mass slot and a B′ gradient slot that fails three ways. `stage36` |
+| The derived mixing kernel T(y) | Correct shape class, wrong amplitude and sign. `stage39` |
+| **Charge-abundance amplitude** | The available coefficient reduces to ρ_charge/ρ_Λ, in which ν₀, Λ_D, Q₀, M and κ all cancel. It is **10²–10³ too small even if the dark sector's conserved charge were the entire dark matter content** of the universe. A genuine no-go. `stage42` |
+
+---
+
+## Withdrawn numerical claims
+
+Roughly half of these were withdrawn because they were too **favourable**, which is the failure mode that costs
+credibility fastest.
+
+| Claim | Correction | Direction |
+|---|---|---|
+| Lyman-α "6–8σ exclusion" | Kernel evaluated at Newtonian *y* instead of observed *x*; true 0.4–0.9σ | manufactured deficit |
+| η = 2.334 as universal | eRASS1-sample-specific; X-COP gives 1.66–1.81 | manufactured deficit |
+| "Clusters sit at 21.6 a₀ at R₅₀₀" | That figure is the *core*; R₅₀₀ is 0.33–0.58 a₀ | wrong field |
+| "The anchored a₀ fits the RAR *better*" | Υ was frozen; refit both sides and they are indistinguishable | too favourable |
+| AeST λ_J = 2.7 Mpc prediction | The k⁴ Jeans term is 11 orders too small | too favourable |
+| The DESI-CPL a₀(z) bump, "+6% at z≈0.4" | ⚠ Never self-consistent with w = −1. **This is the June "falsifiable prediction" and it is withdrawn.** | wrong construction |
+| "48% of cluster χ² removed" | 25 Picard iterations, unconverged on a fold; ~47% at a corrected amplitude | too favourable |
+| "Canonical footing fits clusters better" | ALT was evaluated at *canonical's* amplitude — frozen nuisance | manufactured deficit vs ALT |
+| Magnitude bound w₂ ≤ 2.2×10⁻¹³ | Wrong order in δQ, and paired the ν₀ floor with the Ω_kd ceiling | mismatched extremes |
+| "Magnitude is NOT the obstruction" | Used the loose DBI wall instead of the corpus's own Λ_D/Q₀ ≥ 33.15 | too favourable |
+| The cluster **sign theorem** | Evaluated at u = 0 when a₀(z) requires u₀ = ν₀Λ_D ≠ 0; the sign is *available*, not forbidden | manufactured deficit |
+| "No χ² in stages 35–40 should be quoted" | Rested on a comparison-operator bug; the T kernel is iteration-stable to 0 | manufactured deficit |
+| "The kernel already removes 74–89%" | At R₅₀₀ it accounts for **48%** and leaves 52% | too favourable |
+| "10% systematic: baseline 560 → 39.1" | 44.5 — **and the wrong direction**, since non-thermal support biases hydrostatic mass *low* | too favourable |
+| "Robust statistic 3.425 → 1.871" | Core-dominated: 34% of points sit inside 0.1R₅₀₀ where the ratio is 4.205 | misleading |
+| "K_B = 3/2 is a prediction" | A tautology under its own map | too favourable |
+| "The operative kernel moves κ toward ½" | Rested on the degenerate estimator | too favourable |
+| "The two kernels disagree where the fits live" | They agree to 0.057 dex against a 0.108 scatter | manufactured deficit |
+| "No dark matter in galaxies" | Ω_dm remains; the slogan is "no dark-matter *particle*" only | too favourable |
+
+---
+
+## The failure-mode taxonomy — check new work against this list first
+
+Every entry above reduces to one of these. This is the most reusable thing in the document.
+
+1. **Solving for the target and calling the output a result.** κ = ½ solved for ε_tot; solved for K_B. *Three instances.*
+   Test: if the new quantity's value is fixed by the answer you wanted, you have restated, not derived.
+2. **Freezing a nuisance parameter.** Υ in the RAR comparison; the amplitude in the footing comparison. *Two instances.*
+   Test: refit both sides independently.
+3. **Evaluating at a convenient background point.** u = 0 where the theory's own a₀(z) requires u₀ ≠ 0.
+4. **Passing through a favourable claim unverified.** Three of four cluster caveats arrived from an agent report and were
+   carried unchecked. Adverse claims got re-derived; favourable ones did not. *That asymmetry is itself the defect.*
+5. **Quoting a boundary value as an optimum.** *Three consecutive instances.* Test: assert the argmin is interior.
+6. **Under-converged iteration.** 25 Picard steps on a fold. Test: vary the iteration count and confirm a plateau.
+7. **Pricing a magnitude at the wrong place.** A collapse boost priced at the virial radius when the rate-limiting step
+   is at turnaround.
+8. **Using a fixed a₀ where a₀(z) matters.** Would have manufactured a CMB problem 24,909× too large.
+9. **Using a degenerate estimator.** RAR-scatter minimisation cannot measure a₀.
+10. **Quoting one footing when the two differ.** Both are required on every dimensionful result.
 
 ---
 
 ## In one line
-**The framework is a falsifiable theory of gravity and the dark sector with a derived shape, a forced galaxy sign, a
-sharp ELT-testable prediction, and a real swampland link — and it makes no claim about the Standard Model mass spectrum.
-Any "geometric formula" for a particle-physics constant in this repository is retracted numerology.**
 
-*FDR methodology: `real_research/reviews/false_discovery_rate.py`, `OPUS_PHYSICS_REVIEW.md`,
-`PROTON_ELECTRON_BRIDGE_VERDICT_2026-06-06.md`.*
+**The framework is a relativistic theory of gravity and the dark sector, built on Skordis & Złośnik's AeST, whose one
+contribution is that the MOND scale is the dark sector's pressure — which fixes a₀ to the dark-energy density and forces
+MOND to be absent at recombination. It passes eight independent fronts. It does not explain galaxy clusters, its
+coefficient is measured rather than derived, its pressureless component has an unresolved collapse problem, and it makes
+no claim about the Standard Model.**
+
+*Every numerical claim in this repository traces to a committed runnable script. Withdrawn claims are kept visible here
+rather than deleted — that is the point of keeping a ledger.*
