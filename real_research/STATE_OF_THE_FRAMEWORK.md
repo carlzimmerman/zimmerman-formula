@@ -162,7 +162,7 @@ distinct from ΛCDM; **[HINT]** ~2σ data; **[LIMIT]** a genuine failure; **[OPE
 | dwarf spheroidals | σ depends on host distance (EFE); **Crater II: predicted ~2 km/s, obs ~2.7** (ΛCDM ~4) | **DERIVED** — a MOND win |
 | Local Group timing | MW–M31 boost ~58× supplies the timing mass on baryons | **FOLLOWS** + velocity tension |
 | wide binaries | nominally ~0.7 a₀ but EFE-suppressed | **OPEN/contested** (§0) |
-| secular drift | ȧ₀/a₀ ≈ −3×10⁻¹¹/yr | **DERIVED**, unmeasurable |
+| secular drift | ȧ₀/a₀ = +(3/2)ν₀²H₀ ∈ [4.7×10⁻²⁰, 3.5×10⁻¹⁸] yr⁻¹ | **CORRECTED 2026-08-13** — the old row (−3×10⁻¹¹/yr) was 7–8 orders too large and WRONG IN SIGN; superseded by the derived a₀(z) law (rising to a maximum today ⇒ ȧ₀ > 0). κ-blind, footing-blind. Unmeasurably small; the only observable expression is the integrated a₀(z) law itself (`nbody_2026/stage52_*`) |
 
 ### Conceptual
 | consequence | result | status |

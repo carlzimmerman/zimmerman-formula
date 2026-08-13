@@ -1,6 +1,32 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 r"""
+==================================================================================================
+*** KILLED 2026-08-13 BY THE FLEET'S ADVERSARIAL VERIFICATION (both Lane-B verifiers, independently)
+    -- WITHIN TWO HOURS OF COMMIT.  DO NOT CITE THE CONSTRUCTION.  Recorded in stage 52. ***
+==================================================================================================
+Three independent kills, in increasing order of depth:
+ 1. TAUTOLOGY (the corpus's failure mode #1, committed by me AGAIN): K_eff = 2 pi G R_halt^2
+    IDENTICALLY, so R_core = pi R_halt EXACTLY -- the "mass-independent 188.7 kpc core" is pi times the
+    60 kpc halt radius that was ASSUMED, and the Sgr A* number ("0.45%") restates that premise.
+    "REMOVED, not reduced" was the input wearing the output's clothes.
+ 2. THE GATE IS WIDE OPEN AT RECOMBINATION, by the framework's OWN off-switch: y = Y/Acal(Q) carries
+    a_0^2(z) in the DENOMINATOR, and a_0(1090) = 0.0060 a_0(0), so y EXPLODES toward recombination
+    (y/y_halt = 4e2-3e3 on both footings).  W ~ y^2 then AMPLIFIES the coupling exactly where the CMB
+    needs the dust pressureless: c_s^2(rec) >= 8.5e9 (km/s)^2 vs the committed CLASS cap 2606 -- a
+    3.25e6x violation.  This stage checked the gate at z = 20 and the forest and NEVER at recombination.
+ 3. THE ENDPOINT IS REJECTED BY THE CORPUS'S OWN LENSING FIT: through stage 12's committed KiDS
+    machinery the 188-kpc polytrope costs Delta chi^2 ~ +1.2e3 to +2.0e3, worse than the +927
+    configuration stage 12 already declared rejected.  (The two verifiers disagree on which radius
+    carries which magnitude; the kill is robust either way.)
+ALSO FALSE: the advertised "mass-independent" signature -- under this stage's own gate the halt radius
+scales as sqrt(M_bar) (13.5 kpc at 6e9 M_sun -> 135 kpc at 6e11), and baryon-poor systems lose the halt
+entirely, so the collapse problem RETURNS exactly where halos are darkest.
+WHAT SURVIVES of this stage: Parts A and B ONLY -- the no-coupling theorem (dL/du = K' exactly) and the
+sign theorem (scalar exchange is anti-support; only a vector on the conserved current gives P > 0).
+Those are algebra and stand.  Everything downstream of Part C is dead.
+==================================================================================================
+
 stage51_gated_proca_support_2026.py
 ===================================
 THE ONE SURVIVING STRUCTURE FOR THE DUST-COLLAPSE PROBLEM, BUILT: a Proca field coupled to the conserved

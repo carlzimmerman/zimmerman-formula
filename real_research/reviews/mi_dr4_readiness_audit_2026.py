@@ -201,6 +201,9 @@ print("PART C -- FINDING 2: today's field-theory paper cites the RETIRED kernel"
 print("=" * 100)
 txt = open(PAPER, encoding="utf-8").read()
 hits = re.findall(r"\\alpha\s*=\s*2\s*\n?\s*interpolation that solar-system ephemerides force", txt)
+# CAVEAT (2026-08-13, verifier-found): this string test cannot distinguish LIVE paper text from a
+# changelog entry QUOTING the old text -- so C1/C2 can pass vacuously after the paper is fixed.
+# A structural live-text test is OWED; until then treat C1/C2 as documentation checks only.
 loose = "interpolation that solar-system ephemerides force" in txt
 check(loose,
       "C1  *** the paper contains the sentence \"mu's shape is the alpha = 2 interpolation that "
@@ -257,15 +260,22 @@ check(mp.mpf("4.7") < mp.mpf("5.72") < mp.mpf("8"),
 # D6 checks the 7(e) reporter is IMPLEMENTED -- counting the word "verdict" would now count the
 # guards that say "no verdict word is emitted", so the check must look at structure instead.
 has_fn = "def report_7e(" in src
-both_dist = ("distance to Newton" in src) and ("to framework-MI" in src)
+# STRUCTURAL (2026-08-13): the old literal "to framework-MI" went stale when the legitimate Amdt-9
+# rewire renamed the label to the MG arm.  Assert STRUCTURE instead: the reporter prints at least two
+# "distance to" lines and references the in-force GAMMA_TARGET variable -- robust across arm renames.
+_i = src.find("def report_7e(")
+_body = src[_i:_i + 4000] if _i >= 0 else ""
+both_dist = (("distance to Newton" in _body) and ("GAMMA_TARGET" in _body)
+             and ("GAMMA_TARGET_ALT" in _body))
 called = re.search(r"report_7e\(g, sg, kap", src) is not None
 kwin = re.search(r"KAPPA_WINDOW\s*=\s*\(([0-9.]+),\s*([0-9.]+)\)", src)
 edge = re.search(r"NOVERDICT_EDGE\s*=\s*([0-9.]+)", src)
 check(has_fn and both_dist and called,
       "D6  *** FIXED: Amendment 7(e)/8 scoring is now IMPLEMENTED -- report_7e() exists, is called "
-      "on every fit, and prints raw gamma_hat, sigma_fit and BOTH distances (to 1.000 and to "
-      "1.1582).  When this audit was written the pipeline emitted single-label verdicts ***",
-      "structural check, not a word count: counting 'verdict' would now count the guards")
+      "on every fit, and prints raw gamma_hat, sigma_fit and at least two distances including the "
+      "in-force GAMMA_TARGET.  (Guard rewritten STRUCTURALLY 2026-08-13: the old literal went stale "
+      "when Amdt 9 renamed the arm label -- pipeline was correct, guard was brittle) ***",
+      "structural check, not a word count or an era-specific label")
 check(kwin is not None and mp.mpf(kwin.group(1)) == mp.mpf("0.95")
       and mp.mpf(kwin.group(2)) == mp.mpf("1.05"),
       "D7  *** and declared risk (c) is implemented: the frozen kappa window (0.95, 1.05) is coded, "

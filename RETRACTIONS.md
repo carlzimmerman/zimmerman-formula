@@ -25,6 +25,11 @@ Two consequences follow with nothing further adjusted:
    maximum today, with **a₀(z=1090)/a₀(0) = 6.0×10⁻³** — so MOND is *off* when the CMB is imprinted, making the parent
    theory's CMB pass structural rather than fitted.
 
+*Interpolation provenance, corrected 2026-08-13: the operative exponential kernel ν(y) = [1−e^(−√y)]⁻¹ is
+**Milgrom & Sanders 2008 (ApJ 678, 131), Eq. (13) at α = ½** — introduced with an explicit no-mechanism
+disclaimer — and was **adopted empirically** by McGaugh–Lelli–Schombert 2016. The corpus previously credited
+the form to MLS 2016.*
+
 **Verified fronts**, each backed by a committed runnable script: c_T = 1 exactly (GW170817 — satisfied as an *identity*,
 since c₁₃ = 0 for every K_B); a no-ghost theorem that transfers from the parent theory; γ_PPN = 1; a real CLASS CMB run
 at Δχ² = 1.34 over 4998 multipoles; SPARC rotation curves at 0.108 dex with Υ = 0.70; the baryonic Tully–Fisher relation
@@ -89,6 +94,7 @@ checked against.
 | SM bridge, number-field route | The transcendental/algebraic obstruction above. |
 | **K_B = 3/2 from the aether sector** | **Assumption inverted, then excluded by BBN.** G̃ is the *fundamental* constant and Ĝ the derived one, so G_cosmo/G_local = (1−K_B/2)·λ_s/(1+λ_s) — strictly **< 1**, supremum exactly 1, where the candidate needed 4. Skordis & Złośnik state the direction as a theorem: "G_N > G̃ always". Its "prediction" was also a tautology: under its own map κ = ½ ⇒ K_B = 3/2 *identically*. And Oost et al. Eq. (3.7) excludes K_B = 3/2 independently at 6× the helium bound. `stage46` → `stage48` → `stage50` |
 | **Re-measuring κ under the operative kernel** | **Estimator degenerate.** RAR-scatter minimisation over (Υ, a₀) is not an a₀ estimator: scatter moves 12% across a *factor 1.94* in a₀ because Υ absorbs it. `stage49` |
+| **The Bose–Einstein kernel mechanism** | The identity ν = 1 + n_BE(√y) is a trivial rearrangement (holds for any argument); function and thermal reading are both **prior art** (Milgrom & Sanders 2008 Eq. 13 at α=½; LMSP 2017); the natural bath normalisation predicts κ = 0.0733 — **11.1σ LOW, the mirror of Deser–Levin**, and a fixed-T bath cannot host a₀(z). `stage52` |
 
 ---
 
@@ -106,6 +112,7 @@ Eight, on the twelve committed X-COP clusters. Target η = 1.6–2.3.
 | The action's own bump, varied properly | Generates only the excluded mass slot and a B′ gradient slot that fails three ways. `stage36` |
 | The derived mixing kernel T(y) | Correct shape class, wrong amplitude and sign. `stage39` |
 | **Charge-abundance amplitude** | The available coefficient reduces to ρ_charge/ρ_Λ, in which ν₀, Λ_D, Q₀, M and κ all cancel. It is **10²–10³ too small even if the dark sector's conserved charge were the entire dark matter content** of the universe. A genuine no-go. `stage42` |
+| **The gated Proca (dust-collapse repair)** | Killed within two hours of commit, three ways: K_eff = 2πG·R_halt² **identically** (the "188-kpc mass-independent core" was π× the assumed halt radius — a tautology); y ∝ 1/a₀²(z) so the gate **opens** toward recombination (3.25×10⁶× the CLASS cap); and the KiDS lensing fit rejects the core at Δχ² ≳ +1.2×10³. The dust problem is **fully open**, with a sharper wall: pressure needed at z ≲ 11 but forbidden at z ~ 1090, and no function of y can do both. `stage51` (bannered) → `stage52` |
 
 ---
 
@@ -134,6 +141,8 @@ credibility fastest.
 | "K_B = 3/2 is a prediction" | A tautology under its own map | too favourable |
 | "The operative kernel moves κ toward ½" | Rested on the degenerate estimator | too favourable |
 | "The two kernels disagree where the fits live" | They agree to 0.057 dex against a 0.108 scatter | manufactured deficit |
+| "Sgr A* falsification REMOVED (0.45%)" + "mass-independent 60–190 kpc core" | Both restated the assumed halt radius (K_eff = 2πG·R²_halt identically); under the stage's own gate R_halt ∝ √M_bar | too favourable |
+| "ȧ₀/a₀ ≈ −3×10⁻¹¹/yr, DERIVED" (STATE row) | Correct value +(3/2)ν₀²H₀ ∈ [4.7×10⁻²⁰, 3.5×10⁻¹⁸]/yr — the old row was 7–8 orders too large and **wrong in sign** | wrong construction |
 | "No dark matter in galaxies" | Ω_dm remains; the slogan is "no dark-matter *particle*" only | too favourable |
 
 ---
