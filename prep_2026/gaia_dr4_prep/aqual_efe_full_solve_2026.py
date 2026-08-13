@@ -5,28 +5,34 @@ aqual_efe_full_solve_2026.py
 ============================
 THE FULL NONLINEAR AQUAL-EFE WIDE-BINARY SOLVE THAT AMENDMENT 9(b) OWES.
 
-STATUS: VERIFIED 2026-08-13 by three adversarial referees (solver mathematics: all six items
-CONFIRMED, incl. an independent 288^3 FFT solve to 1-2%, direct 3D quadrature to 0.16%, and a
-Gauss-flux integral constraint at 7e-4; observable mapping; registration consequences).
+STATUS: VERIFIED 2026-08-13 through TWO adversarial rounds (round 1: solver mathematics all
+six attacked items CONFIRMED -- independent 288^3 FFT solve 1-2%, direct 3D quadrature
+<=0.16%, Gauss-flux constraint 7e-4; round 2: the amendment-draft verification REFUTED the
+first bracket's floor and this file was rebuilt to carry the corrections as COMPUTED parts).
 THE KILL IS THEOREM-GRADE: the registered 1.2139/1.2592 is the sqrt of the AQUAL response
 tensor's LARGEST eigenvalue (B_par = nu(y_extN)) used as if isotropic, and every defensible
-orientation treatment gives strictly less.  Nothing recovers 1.2139.
-THE REPLACEMENT IS CONVENTION-BRACKETED, not one number: the anchor-bin two-body composition
-grade moves the recovered target between the per-star convention (this file's PART D: 1.1139
-canonical / 1.1217 alt; multi-seed centres 1.106 / 1.132) and the total-mass convention
-(1.1614 / 1.1892 debiased), and the exact isolated two-body benchmark says truth is at or
-above the total-mass end IN THE ANCHOR BINS (per-star overestimates the relative force there
-by 1.69-1.81x) while per-star is exact in the deep bins.  HONEST BRACKET FOR AMENDMENT 10:
-  canonical 1.106 - 1.16   (registered 1.2139 overstated by 0.05 - 0.11)
-  alt       1.13  - 1.21   (registered 1.2592 overstated by 0.05 - 0.13)
-Physical deep-regime asymptote ~1.15 canonical / ~1.19 alt.  The kappa no-verdict trip
-(kappa = 1.066-1.070, outside the frozen [0.95, 1.05]) fires ONLY under the per-star grade
-(5 of 6 seeds) and NOT under total-mass (kappa 1.025/1.010) -- Amendment 10 must address it
-either way.  Amendment 9(d)(i)'s 2.68-sigma arm separation is DEAD under every convention
-(the full-solve MG lands 0.00-0.05 from the superseded MI 1.1582; ordering INVERTS under
-per-star).  A transition-region caveat from the math referee: the anisotropy orientation
-FLIPS in the transition zone (B_perp > B_par at r ~ 1 r_M); "parallel is the big axis" holds
-at saturation only.
+orientation treatment gives strictly less.  Nothing recovers it.
+THE REGISTERED OBJECT IS A BAND, computed in PART D/E and graded by PART C2's two-body
+benchmark (the composition conventions BOTH overshoot the exact anchor-bin force: per-star
+excess by ~3-8x, total-mass by the computed f_tm(y) ~ 1.4-1.7x; the deep-MOND closed-form
+factors 1.69-1.81x / 1.24-1.28x live in the deep ISOLATED limit ONLY):
+  canonical: total-mass FLOOR 1.1614 +- 0.0175 (6-seed centre 1.1610, rms 0.0117)
+             benchmark-corrected TOP 1.1814 +- 0.0150 (6-seed centre 1.1847, rms 0.0148)
+  alt:       FLOOR 1.1917 +- 0.0175 (centre 1.2025, rms 0.0083)
+             TOP 1.2267 +- 0.0200 (centre 1.2288, rms 0.0058; 6/6 seeds above 1.20)
+The registered 1.2139/1.2592 is overstated by 0.032-0.052 canonical / 0.032-0.067 alt
+(1.7-2.8 / 1.7-3.6 sigma_fit at the frozen-N 0.019).  PER-STAR IS A DIAGNOSTIC ONLY (1.1139 /
+1.1217; the kappa-trip mock -- its floor reading was REFUTED by the exact two-body benchmark).
+KAPPA ATTRIBUTION (round-2 correction): the kappa-window trip is a per-star-composition
+artifact -- battery 12/12 trips per-star, 0/12 under the registered grades -- so the framework's
+best grade predicts NO trip; a real-sky trip is evidence of a genuine systematic, NOT
+pre-authorized framework behaviour.  Amendment 9(d)(i)'s 2.68-sigma arm separation is DEAD
+(the canonical band sits 0.003-0.023 above MI's 1.1582, INSIDE the superseded MI magnitude
+range).  Residual grade, declared: base-seed anchors carry a +-0.01-grade seed/call-order
+sensitivity (the battery centres are the robust quantities); the EFE-present exact two-body
+anchor solve does not exist and is the owed unlock pinning the top.  A transition-region
+caveat from the math referee: the anisotropy orientation FLIPS in the transition zone
+(B_perp > B_par at r ~ 1 r_M); "parallel is the big axis" holds at saturation only.
 
 WHAT IS OWED (PREREGISTRATION_DR4.md, Amendment 9(b), verbatim): the in-force DR4 target
 gamma_v = 1.2139 (canonical) / 1.2592 (alt) is "the point-field isotropic asymptote only ...
@@ -160,6 +166,10 @@ def mu_of_x(x):
 
 # frozen inputs (pipeline + Amendment 9's own provenance)
 A0 = {"canonical": wbp.A0_CAN, "alt": wbp.A0_ALT}
+# Amendment 9 registered targets, PINNED LOCALLY (round-3 referee finding 3): the C1 debias
+# control and every "vs registered" comparison must keep meaning AFTER the Amendment-10
+# pipeline retarget moves wbp.GAMMA_TARGET; never read the live pipeline constants for these.
+REGISTERED_A9 = {"canonical": 1.2139, "alt": 1.2592}
 X_EXT = {f: wbp.GEXT_PHYS / A0[f] for f in A0}          # observed external field / a0
 Y_EXT = {f: float(y_of_x(X_EXT[f])) for f in A0}        # closure inversion, Route A kernel
 info("observed x_ext = g_ext,obs/a0", f"canonical {X_EXT['canonical']:.4f}, alt {X_EXT['alt']:.4f}")
@@ -438,6 +448,104 @@ check(abs(B_half / B_ref - 1.0) < 5e-3,
       f"{abs(B_half/B_ref-1)*100:.2f}% ({B_half:.4f} vs {B_ref:.4f})",
       "grid systematics are far below the physics effects being measured")
 
+# =================================================================================================
+print()
+print("=" * 100)
+print("PART C2 -- the two-body composition benchmark: deep-MOND closed form + finite-y quadrature")
+print("=" * 100)
+# The composition conventions must be graded against the EXACT two-body force.  Two regimes:
+# (i) the deep-MOND ISOLATED limit (Milgrom virial force, closed form) -- this is where the
+# often-quoted 1.69-1.81x / 1.24-1.28x factors live, and ONLY there; (ii) the finite-y anchor
+# regime (y_tot ~ 3-32), computed by direct QUMOND quadrature.  The verification referee showed
+# the anchor-regime ratios are LARGER for per-star (~3-8x) and ~1.4-1.8x for total-mass -- both
+# conventions overshoot the exact anchor force, so the truth-recovery sits ABOVE the total-mass
+# end.  (The EFE-present exact two-body solve does not exist and is the declared unlock.)
+
+
+def deep_factors(q):
+    M1, M2 = 1.0 / (1 + q), q / (1 + q)
+    a_ex = (2.0 / 3.0) * (1 - M1**1.5 - M2**1.5) / (M1 * M2)
+    return (np.sqrt(M1) + np.sqrt(M2)) / a_ex, 1.0 / a_ex
+
+
+dps = [deep_factors(q)[0] for q in (0.3, 0.5, 0.7, 1.0)]
+dtm = [deep_factors(q)[1] for q in (0.3, 0.5, 0.7, 1.0)]
+check(1.68 < min(dps) < max(dps) < 1.82 and 1.24 < min(dtm) < max(dtm) < 1.29,
+      f"C2a deep-MOND ISOLATED limit (closed form, q = 0.3-1): per-star/exact "
+      f"{min(dps):.3f}-{max(dps):.3f}, total-mass/exact {min(dtm):.3f}-{max(dtm):.3f}",
+      "these factors are the DEEP limit only -- citing them 'in the anchor bins' was the "
+      "draft error the verification caught")
+
+
+def exact_two_body(y_tot, q, nrho=480, nz=960):
+    """exact isolated QUMOND two-body relative-force excess by direct quadrature
+    (stars on the z axis, phantom source integrated in cylindrical coordinates)."""
+    Mt = 1.0
+    M1, M2 = Mt / (1 + q), q * Mt / (1 + q)
+    r0 = np.sqrt(Mt / y_tot)
+    z1, z2 = -r0 / 2, r0 / 2
+    rmax = 3.0e3 * max(r0, 1.0)
+    rho = np.logspace(np.log10(1e-3 * r0), np.log10(rmax), nrho)
+    zp = np.logspace(np.log10(1e-3 * r0), np.log10(rmax), nz // 2)
+    z = np.concatenate([-zp[::-1], zp])
+    RHO, Z = np.meshgrid(rho, z, indexing="ij")
+    d1r, d1z = RHO, Z - z1
+    d2r, d2z = RHO, Z - z2
+    s1 = np.sqrt(d1r**2 + d1z**2)
+    s2 = np.sqrt(d2r**2 + d2z**2)
+    gr = -(M1 * d1r / s1**3 + M2 * d2r / s2**3)
+    gz = -(M1 * d1z / s1**3 + M2 * d2z / s2**3)
+    gm = np.hypot(gr, gz)
+    Jrr = -(M1 * (1 / s1**3 - 3 * d1r**2 / s1**5) + M2 * (1 / s2**3 - 3 * d2r**2 / s2**5))
+    Jzz = -(M1 * (1 / s1**3 - 3 * d1z**2 / s1**5) + M2 * (1 / s2**3 - 3 * d2z**2 / s2**5))
+    Jrz = -(M1 * (-3 * d1r * d1z / s1**5) + M2 * (-3 * d2r * d2z / s2**5))
+    dgm_r = (gr * Jrr + gz * Jrz) / np.maximum(gm, 1e-300)
+    dgm_z = (gr * Jrz + gz * Jzz) / np.maximum(gm, 1e-300)
+    S = -dnu_dy(gm) * (dgm_r * gr + dgm_z * gz)
+
+    def a_ph_z(zstar):
+        dz = zstar - Z
+        ker = dz * RHO / np.maximum(RHO**2 + dz**2, 1e-300)**1.5
+        return -0.5 * np.trapz(np.trapz(S * ker, rho, axis=0), z)
+
+    a_rel = Mt / r0**2 + (a_ph_z(z1) - a_ph_z(z2))
+    eps_ex = a_rel / (Mt / r0**2) - 1.0
+    y1_, y2_ = M1 / r0**2, M2 / r0**2
+    eps_ps = (nu(y2_) * M2 + nu(y1_) * M1) / Mt - 1.0
+    eps_tm = float(nu(y_tot)) - 1.0
+    return eps_ex, eps_ps, eps_tm
+
+
+# validation: q -> 0 must return the single-mass exact result nu(y) - 1
+val_err = []
+for yv in (1.0, 10.0):
+    e_ex, _, _ = exact_two_body(yv, 1e-6)
+    val_err.append(abs((1 + e_ex) / float(nu(yv)) - 1.0))
+check(val_err[0] < 0.01 and val_err[1] < 0.05,
+      f"C2b quadrature control (q->0 single mass): |exact/nu - 1| = {val_err[0]:.4f} at y=1, "
+      f"{val_err[1]:.4f} at y=10",
+      "the y=10 tolerance bounds the f(y) grade below; carried into the declared top-anchor grade")
+
+Y_BENCH = np.array([3.162, 5.62, 10.0, 17.8, 31.6])
+F_TM_ROWS = []
+print(f"    {'y_tot':>7} {'q':>4} {'eps_exact':>10} {'eps_perstar':>12} {'eps_totmass':>12} "
+      f"{'ps/ex':>7} {'tm/ex':>7}")
+for yv in Y_BENCH:
+    row = []
+    for q in (0.3, 0.5, 0.7, 1.0):
+        e_ex, e_ps, e_tm = exact_two_body(yv, q)
+        row.append(e_tm / e_ex)
+        print(f"    {yv:7.2f} {q:4.1f} {e_ex:10.5f} {e_ps:12.5f} {e_tm:12.5f} "
+              f"{e_ps/e_ex:7.2f} {e_tm/e_ex:7.2f}")
+    F_TM_ROWS.append(np.median(row))
+F_TM = np.maximum(np.array(F_TM_ROWS), 1.0)
+LY_BENCH = np.log10(Y_BENCH)
+check(1.2 < F_TM[0] < 2.2 and all(F_TM > 1.0),
+      f"C2c finite-y anchor correction factor f_tm(y) = eps_totmass/eps_exact (q-median): "
+      f"{', '.join(f'{v:.2f}' for v in F_TM)} at y = {', '.join(f'{v:.1f}' for v in Y_BENCH)}",
+      "total-mass OVERSHOOTS the exact anchor force too; the benchmark-corrected grade divides "
+      "the anchor excess by this computed factor (per-star overshoots by ~2x more)")
+
 
 # =================================================================================================
 # PART D -- pipeline-grade observable: anisotropic injection, isotropic fit
@@ -505,6 +613,11 @@ def make_population_oriented(N, rng, a0):
     eh = rng.standard_normal((3, N))
     eh /= np.linalg.norm(eh, axis=0)
     psi = np.arccos(np.clip(np.sum(r3 * eh, axis=0) / r3d, -1, 1))
+    # projected (sky-plane, z = LOS) angle between the separation and the external-field
+    # direction -- the anisotropy_split analog used by the E5 sample-level sign computation
+    sp_norm = np.hypot(r3[0], r3[1])
+    ep_norm = np.hypot(eh[0], eh[1])
+    cosphi_proj = np.abs(r3[0] * eh[0] + r3[1] * eh[1]) / np.maximum(sp_norm * ep_norm, 1e-30)
     G1 = wbp.MG_of_mass(M1) + 5 * np.log10(d / 10.)
     G2 = wbp.MG_of_mass(M2) + 5 * np.log10(d / 10.)
     spm = np.sqrt(wbp.sigma_pm(G1, dr4)**2 + wbp.sigma_pm(G2, dr4)**2)
@@ -520,7 +633,7 @@ def make_population_oriented(N, rng, a0):
            & (np.maximum(G1, G2) < 17.) & (d_obs > 0) & (M_obs > 0.2))
     return dict(pmx=pmx[sel], pmy=pmy[sel], npmx=npmx[sel], npmy=npmy[sel],
                 d_obs=d_obs[sel], s_obs=s_obs[sel], M_obs=M_obs[sel],
-                g_true=g_true[sel], psi=psi[sel],
+                g_true=g_true[sel], psi=psi[sel], cosphi_proj=cosphi_proj[sel],
                 M1=M1[sel], M2=M2[sel], Mt=Mt[sel], r3d=r3d[sel],
                 g_proj=wbp.G * M_obs[sel] * wbp.MSUN / s_obs[sel]**2,
                 vc_obs=np.sqrt(wbp.G * M_obs[sel] * wbp.MSUN / s_obs[sel]**2 * s_obs[sel]))
@@ -534,68 +647,109 @@ def vtilde_injected(pop, gamma_sys):
 
 
 def gamma_full_solve(pop, f, form, composition="perstar"):
-    """per-system velocity boost from the nonlinear solve.  Two-body composition grades
-    (the dominant convention systematic, per the observable-mapping referee):
+    """per-system velocity boost from the nonlinear solve.  Three composition grades:
       perstar   -- [B(y2,psi) GM2 + B(y1,pi-psi) GM1]/r^2.  Exact in the deep bins
-                   (g_int << g_ext, linear response); OVERESTIMATES the relative force in
-                   the anchor bins (exact isolated two-body benchmark: 1.69-1.81x).
-      totalmass -- B(y1+y2, psi) G Mt / r^2.  The better grade at the anchor (1.24-1.28x
-                   on the same benchmark); the two together bracket the target."""
+                   (g_int << g_ext, linear response) but OVERESTIMATES the exact anchor-bin
+                   force by ~3-8x in excess (PART C2 finite-y quadrature).  DIAGNOSTIC grade:
+                   it is the kappa-trip mock, NOT a registered band endpoint.
+      totalmass -- B(y1+y2, psi) G Mt / r^2.  Registered BAND FLOOR; still overshoots the
+                   exact anchor excess by the computed f_tm(y) ~ 1.4-1.8x.
+      corrected -- total-mass with the anchor excess (y_tot >= 3.162) divided by the
+                   COMPUTED f_tm(y) from PART C2.  Registered BAND TOP (the benchmark-
+                   corrected grade; the EFE-present exact two-body solve is the owed unlock)."""
     itp = make_interp(f, form)
     a0 = A0[f]
     y1 = wbp.G * pop['M1'] * wbp.MSUN / pop['r3d']**2 / a0
     y2 = wbp.G * pop['M2'] * wbp.MSUN / pop['r3d']**2 / a0
-    if composition == "totalmass":
-        B_rel = itp(np.log10(np.maximum(y1 + y2, 1e-12)), pop['psi'])
-    else:
+    yt = np.maximum(y1 + y2, 1e-12)
+    if composition == "perstar":
         B_rel = (itp(np.log10(y2), pop['psi']) * pop['M2']
                  + itp(np.log10(np.maximum(y1, 1e-12)), np.pi - pop['psi']) * pop['M1']) / pop['Mt']
+    else:
+        B_rel = itp(np.log10(yt), pop['psi'])
+        if composition == "corrected":
+            fcorr = np.where(yt >= Y_BENCH[0],
+                             np.interp(np.log10(yt), LY_BENCH, F_TM), 1.0)
+            B_rel = 1.0 + (B_rel - 1.0) / fcorr
     return np.sqrt(np.maximum(B_rel, 0.0))
 
 
-def run_fit_case(pop_data, gamma_sys, pop_master, a0, rng, label):
+def run_fit_case(pop_data, gamma_sys, mod, a0, rng, label, quiet=False):
     vt = vtilde_injected(pop_data, gamma_sys)
     logy = np.log10(pop_data['g_proj'] / a0)
     med_d, sig_d, _ = wbp.bin_medians(logy, vt, boot=200, rng=rng)
-    mod = wbp.model_medians(pop_master, a0, wbp.GRID, rng)
     g, sg, chi2, nb, kap = wbp.fit_gamma(med_d, sig_d, mod, wbp.GRID)
-    print(f"    {label:58s} gamma_hat = {g:.4f} +- {sg:.4f}  (kappa {kap:.3f}, {nb} bins)")
-    return g, sg
+    if not quiet:
+        print(f"    {label:62s} gamma_hat = {g:.4f} +- {sg:.4f}  (kappa {kap:.3f}, {nb} bins)")
+    return g, sg, kap
 
 
 N_PRE = 140000
-RESULTS = {}
-for f in A0:
+
+
+def one_seed(f, seed, base=False):
+    """generate data + master at this seed, fit all grades; returns debiased results + kappas."""
     a0 = A0[f]
-    rng = np.random.default_rng(4242 + (0 if f == "canonical" else 1))
+    rng = np.random.default_rng(seed)
     pop_d = make_population_oriented(N_PRE, rng, a0)
     keep = rng.permutation(len(pop_d['pmx']))[:30000]
     pop_d = {k: v[keep] for k, v in pop_d.items()}
     pop_m = wbp.make_population(400000, rng, dr4=True)
-    print(f"  [{f}]  N_data = {len(pop_d['pmx'])}, N_master = {len(pop_m['pmx'])}")
-    # control 1: the pipeline's own isotropic shape at the registered target (bias calibration)
-    tgt = wbp.GAMMA_TARGET if f == "canonical" else wbp.GAMMA_TARGET_ALT
+    mod = wbp.model_medians(pop_m, a0, wbp.GRID, rng)
+    q = not base
+    tgt = REGISTERED_A9[f]
     g_iso = wbp.gamma_of_y(pop_d['g_true'] / a0, tgt, wbp.y_extN(a0))
-    gC1, sC1 = run_fit_case(pop_d, g_iso, pop_m, a0, rng, f"C1 control: registered isotropic gamma(y), target {tgt}")
+    if base:
+        print(f"  [{f}]  N_data = {len(pop_d['pmx'])}, N_master = {len(pop_m['pmx'])}")
+    gC1, sC1, kC1 = run_fit_case(pop_d, g_iso, mod, a0, rng,
+                                 f"C1 control: registered isotropic gamma(y), target {tgt}", q)
     bias = gC1 - tgt
-    # control 2: isotropic solver shape (sphere-average of B_r at each y) -- separates the
-    # transition-SHAPE effect from the ANISOTROPY effect
-    y_t = pop_d['g_true'] / a0
-    B_avg_r = 0.5 * np.einsum("rt,t->r", SOLVE[f]["a"]["Br"], w_gl)
-    ly_grid = np.log10(1.0 / r**2)[::-1]
-    B_avg = np.interp(np.log10(np.clip(y_t, 1e-9, 1e9)), ly_grid, B_avg_r[::-1])
-    gC2, sC2 = run_fit_case(pop_d, np.sqrt(np.maximum(B_avg, 0.0)), pop_m, a0, rng,
-                            "C2 control: ISOTROPIC sphere-avg solver shape (at TOTAL-mass y)")
-    # the full anisotropic injections, both two-body composition grades
-    gA, sA = run_fit_case(pop_d, gamma_full_solve(pop_d, f, "a"), pop_m, a0, rng,
-                          "FULL SOLVE, one-field AQUAL, per-star composition (bracket floor)")
-    gT, sT = run_fit_case(pop_d, gamma_full_solve(pop_d, f, "a", "totalmass"), pop_m, a0, rng,
-                          "FULL SOLVE, one-field AQUAL, total-mass composition (bracket top)")
-    gQ, sQ = run_fit_case(pop_d, gamma_full_solve(pop_d, f, "q"), pop_m, a0, rng,
-                          "FULL SOLVE, QUMOND fork, per-star composition")
-    RESULTS[f] = dict(bias=bias, aqual=(gA - bias, sA), total=(gT - bias, sT),
-                      qumond=(gQ - bias, sQ), iso_shape=(gC2 - bias, sC2), registered=tgt)
-    print(f"    estimator bias at this seed: {bias:+.4f} (subtracted from the debiased numbers below)")
+    out = dict(bias=bias, registered=tgt)
+    if base:
+        # control 2: isotropic solver shape (sphere-average of B_r at total-mass y) --
+        # separates the transition-SHAPE effect from composition/anisotropy effects
+        y_t = pop_d['g_true'] / a0
+        B_avg_r = 0.5 * np.einsum("rt,t->r", SOLVE[f]["a"]["Br"], w_gl)
+        ly_grid = np.log10(1.0 / r**2)[::-1]
+        B_avg = np.interp(np.log10(np.clip(y_t, 1e-9, 1e9)), ly_grid, B_avg_r[::-1])
+        gC2, sC2, _ = run_fit_case(pop_d, np.sqrt(np.maximum(B_avg, 0.0)), mod, a0, rng,
+                                   "C2 control: ISOTROPIC sphere-avg solver shape (total-mass y)", q)
+        out['iso_shape'] = (gC2 - bias, sC2)
+    for comp, lab in (("perstar", "per-star (DIAGNOSTIC: the kappa-trip mock, not a band endpoint)"),
+                      ("totalmass", "total-mass composition (registered BAND FLOOR)"),
+                      ("corrected", "benchmark-corrected composition (registered BAND TOP)")):
+        g_, s_, k_ = run_fit_case(pop_d, gamma_full_solve(pop_d, f, "a", comp), mod, a0, rng,
+                                  f"FULL SOLVE, one-field AQUAL, {lab}", q)
+        out[comp] = (g_ - bias, s_, k_)
+    if base:
+        gQ, sQ, kQ = run_fit_case(pop_d, gamma_full_solve(pop_d, f, "q"), mod, a0, rng,
+                                  "FULL SOLVE, QUMOND fork, per-star composition", q)
+        out['qumond'] = (gQ - bias, sQ, kQ)
+        print(f"    estimator bias at this seed: {bias:+.4f} (subtracted from all debiased numbers)")
+    return out
+
+
+RESULTS = {}
+for f in A0:
+    RESULTS[f] = one_seed(f, 4242 + (0 if f == "canonical" else 1), base=True)
+
+# -------------------------------------------------------------------------------------------------
+print()
+print("  SEED BATTERY (the committed multi-seed grade; 6 seeds per footing, all grades)")
+SEEDS = [4242, 1111, 2222, 3333, 5555, 7777]
+BATTERY = {}
+for f in A0:
+    rows = [one_seed(f, s + (0 if f == "canonical" else 1)) for s in SEEDS]
+    BATTERY[f] = rows
+    for comp in ("perstar", "totalmass", "corrected"):
+        vals = np.array([r[comp][0] for r in rows])
+        kaps = np.array([r[comp][2] for r in rows])
+        extra = ""
+        if f == "alt" and comp == "corrected":
+            extra = f", {int(np.sum(vals > 1.20))}/6 seeds above 1.20"
+        print(f"    [{f}] {comp:10s}: centre {vals.mean():.4f}, rms {vals.std(ddof=1):.4f}, "
+              f"kappa {kaps.min():.3f}-{kaps.max():.3f} "
+              f"({int(np.sum((kaps < 0.95) | (kaps > 1.05)))}/6 outside window){extra}")
 
 # =================================================================================================
 # PART E -- verdict
@@ -606,51 +760,121 @@ print("PART E -- VERDICT: the full-solve DR4 target vs the registered provisiona
 print("=" * 100)
 for f in A0:
     R = RESULTS[f]
-    gA, sA = R["aqual"]
-    gT, sT = R["total"]
-    gQ, sQ = R["qumond"]
+    gP, sP, kP = R["perstar"]
+    gT, sT, kT = R["totalmass"]
+    gX, sX, kX = R["corrected"]
+    bat = BATTERY[f]
+    cT = np.mean([r["totalmass"][0] for r in bat])
+    cX = np.mean([r["corrected"][0] for r in bat])
     print(f"  [{f}]  registered (provisional) {R['registered']:.4f}")
-    print(f"         FULL SOLVE debiased:  per-star {gA:.4f} +- {sA:.4f}  |  total-mass "
-          f"{gT:.4f} +- {sT:.4f}  |  QUMOND fork {gQ:.4f}  |  iso-shape {R['iso_shape'][0]:.4f}")
-    print(f"         BRACKET vs registered: {gA - R['registered']:+.4f} to {gT - R['registered']:+.4f}"
-          f"  =  {abs(gT-R['registered'])/0.019:.1f}-{abs(gA-R['registered'])/0.019:.1f} sigma_fit "
-          f"(frozen-N 0.019) / {abs(gT-R['registered'])/0.035:.1f}-{abs(gA-R['registered'])/0.035:.1f} "
-          f"(DR3-dry-run 0.035; N=10,624 -- NOT the frozen-N sigma)")
+    print(f"         REGISTERED BAND (debiased): total-mass FLOOR {gT:.4f} +- {sT:.4f} "
+          f"(6-seed centre {cT:.4f})  to  benchmark-corrected TOP {gX:.4f} +- {sX:.4f} "
+          f"(6-seed centre {cX:.4f})")
+    print(f"         diagnostic per-star (the kappa-trip mock): {gP:.4f} +- {sP:.4f} "
+          f"(kappa {kP:.3f});  QUMOND fork {R['qumond'][0]:.4f};  iso-shape {R['iso_shape'][0]:.4f}")
+    print(f"         BAND vs registered: {gT - R['registered']:+.4f} to {gX - R['registered']:+.4f}"
+          f"  =  {abs(gX-R['registered'])/0.019:.1f}-{abs(gT-R['registered'])/0.019:.1f} sigma_fit "
+          f"(frozen-N 0.019) / {abs(gX-R['registered'])/0.035:.1f}-{abs(gT-R['registered'])/0.035:.1f} "
+          f"(DR3-dry-run 0.035, N=10,624 -- labelled, NOT the frozen-N sigma)")
 
-gA_can, sA_can = RESULTS["canonical"]["aqual"]
-gT_can, _ = RESULTS["canonical"]["total"]
-gQ_can, _ = RESULTS["canonical"]["qumond"]
+gT_can, sT_can, _ = RESULTS["canonical"]["totalmass"]
+gX_can, _, kX_can = RESULTS["canonical"]["corrected"]
+gP_can, _, kP_can = RESULTS["canonical"]["perstar"]
+gQ_can = RESULTS["canonical"]["qumond"][0]
+gX_alt = RESULTS["alt"]["corrected"][0]
+gT_alt = RESULTS["alt"]["totalmass"][0]
 mi_lo, mi_hi = wbp.GAMMA_MI_RANGE_MAG
-form_spread = abs(gA_can - gQ_can)
-# interior-argmin guard (the stage-41 lesson): a gamma_hat at the grid boundary is a
-# diagnostic of a broken injection, not a measurement
-check(all(wbp.GRID[0] + 0.004 < g_ < wbp.GRID[-1] - 0.004 for g_ in (gA_can, gT_can, gQ_can)),
-      f"E0  interior-argmin guard: all full-solve fits sit inside the gamma grid "
+# interior-argmin guard (the stage-41 lesson)
+check(all(wbp.GRID[0] + 0.004 < g_ < wbp.GRID[-1] - 0.004
+          for g_ in (gP_can, gT_can, gX_can, gT_alt, gX_alt)),
+      f"E0  interior-argmin guard: all fits sit inside the gamma grid "
       f"({wbp.GRID[0]:.2f}-{wbp.GRID[-1]:.2f})")
-check(abs(mi_avg - 1.1582) < 5e-4 and form_spread < 0.05 and gT_can > gA_can,
-      f"E1  headline: full-solve canonical bracket {gA_can:.4f} (per-star floor) - {gT_can:.4f} "
-      f"(total-mass top); QUMOND formulation spread {form_spread:.4f}",
-      "registered 1.2139 was the LARGEST tensor eigenvalue declared isotropic; no convention "
-      "recovers it (referee-verified)")
+check(abs(mi_avg - 1.1582) < 5e-4 and gX_can > gT_can > gP_can and abs(gP_can - gQ_can) < 0.05,
+      f"E1  headline: registered canonical BAND {gT_can:.4f} (total-mass floor) - {gX_can:.4f} "
+      f"(benchmark-corrected top); per-star {gP_can:.4f} is DIAGNOSTIC only",
+      "the ordering floor < top is the C2 benchmark's own direction: both conventions overshoot "
+      "the exact anchor force, so truth-recovery sits above the total-mass end")
+kap_bat_ps = [r["perstar"][2] for f_ in A0 for r in BATTERY[f_]]
+kap_bat_x = [r["corrected"][2] for f_ in A0 for r in BATTERY[f_]]
+n_trip_ps = int(np.sum([(k < 0.95) or (k > 1.05) for k in kap_bat_ps]))
+n_trip_x = int(np.sum([(k < 0.95) or (k > 1.05) for k in kap_bat_x]))
+check(n_trip_x < n_trip_ps,
+      f"E2  KAPPA ATTRIBUTION (the verification's correction): the kappa-window trip is a "
+      f"PER-STAR-COMPOSITION artifact, not an anisotropy signature -- battery trips: per-star "
+      f"{n_trip_ps}/12, benchmark-corrected {n_trip_x}/12",
+      "under the framework's best grade the pipeline expects kappa INSIDE the frozen window; a "
+      "real-sky kappa trip would be evidence of a genuine systematic (or of the refuted per-star "
+      "grade), NOT pre-authorized framework behaviour")
 print(f"\n  *** AMENDMENT-10 GRADE: the full solve moves the canonical target by "
-      f"{gA_can - wbp.GAMMA_TARGET:+.3f} to {gT_can - wbp.GAMMA_TARGET:+.3f} (alt: "
-      f"{RESULTS['alt']['aqual'][0] - wbp.GAMMA_TARGET_ALT:+.3f} to "
-      f"{RESULTS['alt']['total'][0] - wbp.GAMMA_TARGET_ALT:+.3f}).  Under Amendment 9(b)'s own "
-      f"provisional clause an amendment is due BEFORE DR4; quote the CONVENTION BRACKET, not one "
-      f"number.  FILING IS THE AUTHOR'S CALL -- this file only computes. ***")
-# arm separation: fire on inside OR below (the first run's banner was silent on the realized
-# below-range outcome -- caught by the registration referee)
-d_mi = min(abs(g_ - 1.1582) for g_ in (gA_can, gT_can))
-if gA_can <= mi_hi:
-    pos = ("INSIDE" if gA_can >= mi_lo else "BELOW") + f" the superseded MI magnitude range ({mi_lo}-{mi_hi})"
-    print(f"  *** ARM-SEPARATION IMPACT: the per-star point {gA_can:.4f} sits {pos}; the bracket "
-          f"lands 0.00-{d_mi + abs(gT_can-gA_can):.2f} from MI's 1.1582.  Amendment 9(d)(i)'s "
-          f"'disjoint / 2.68 sigma / DR4 can distinguish the arms' does NOT survive under ANY "
-          f"composition grade (ordering INVERTS under per-star). ***")
-print(f"  *** KAPPA WINDOW: the per-star injections fit kappa = 1.062-1.070 (outside the frozen "
-      f"[0.95, 1.05]; 5 of 6 seeds) but total-mass gives 1.025/1.010 (inside).  The Amdt 8(h) "
-      f"no-verdict trip is REAL under the per-star grade and convention-fragile -- Amendment 10 "
-      f"must pin the treatment either way. ***")
+      f"{gT_can - REGISTERED_A9['canonical']:+.3f} to {gX_can - REGISTERED_A9['canonical']:+.3f} (alt: "
+      f"{gT_alt - REGISTERED_A9['alt']:+.3f} to {gX_alt - REGISTERED_A9['alt']:+.3f}).  "
+      f"Amendment-grade by the document's own criterion (the ranges do not overlap).  "
+      f"FILING IS THE AUTHOR'S CALL -- this file only computes. ***")
+d_mi_lo = min(abs(g_ - 1.1582) for g_ in (gT_can, gX_can))
+d_mi_hi = max(abs(g_ - 1.1582) for g_ in (gT_can, gX_can))
+print(f"  *** ARM-SEPARATION IMPACT: the registered canonical band sits {d_mi_lo:.3f}-{d_mi_hi:.3f} "
+      f"ABOVE the superseded MI 1.1582 (ranges {mi_lo}-{mi_hi}) -- Amendment 9's 'disjoint / "
+      f"2.68 sigma / DR4 can distinguish the arms' does NOT survive: separation < 3 sigma in the "
+      f"frozen conventions, and the band overlaps the MI magnitude range. ***")
+print(f"  *** EDGE INPUT: the top EFE-saturated registered anchor is the alt benchmark-corrected "
+      f"{gX_alt:.4f} (6-seed centre {np.mean([r['corrected'][0] for r in BATTERY['alt']]):.4f}) -- "
+      f"the no-verdict-edge construction takes it from here. ***")
+
+# regression pins on the four registered band anchors (base seeds are fixed => deterministic;
+# the +-0.01 seed/call-order grade applies to RERUNS WITH DIFFERENT SEEDS, not to this pin)
+check(abs(RESULTS["canonical"]["totalmass"][0] - 1.1614) < 1e-4
+      and abs(RESULTS["canonical"]["corrected"][0] - 1.1814) < 1e-4
+      and abs(RESULTS["alt"]["totalmass"][0] - 1.1917) < 1e-4
+      and abs(RESULTS["alt"]["corrected"][0] - 1.2267) < 1e-4,
+      "E3  REGRESSION PIN: the four registered band anchors reproduce exactly at the fixed seeds "
+      "(1.1614 / 1.1814 canonical, 1.1917 / 1.2267 alt)",
+      "if this fails after a code change, the registered anchors have silently moved")
+
+# the transition-zone orientation flip, COMPUTED (round-3 referee: it is load-bearing for the
+# Amendment 2(f) sign question, so it must be a printed check, not a docstring note)
+Br_c = SOLVE["canonical"]["a"]["Br"]
+ipar, iperp = int(np.argmax(u_gl)), int(np.argmin(np.abs(u_gl)))
+par_minus_perp = Br_c[:, ipar] - Br_c[:, iperp]
+sat_par_bigger = par_minus_perp[np.argmin(np.abs(r - 300.0))] > 0
+trans_perp_bigger = np.any(par_minus_perp[(r > 0.3) & (r < 3.0)] < 0)
+i_flip = np.where((par_minus_perp[:-1] < 0) & (par_minus_perp[1:] >= 0))[0]
+r_flip = float(r[i_flip[-1]]) if len(i_flip) else float("nan")
+check(sat_par_bigger and trans_perp_bigger and 0.5 < r_flip < 5.0,
+      f"E4  ORIENTATION FLIP COMPUTED: B_par > B_perp at saturation but B_perp > B_par in the "
+      f"transition zone; the flip sits at r = {r_flip:.2f} r_M (r_M ~ 8-10 kAU for the sample's "
+      f"masses => the flip is INSIDE the frozen 2-30 kAU window)",
+      "Amendment 2(f)'s frozen 'perpendicular larger' sign is MI-arm-derived and does NOT "
+      "describe the MG arm at saturation -- the sample-level sign is computed in E5")
+
+# E5 -- the SAMPLE-LEVEL anisotropy sign under the registered grades: the re-registration input
+# for the Amendment 2(f) sign falsifier.  Projected-angle split (the anisotropy_split analog)
+# of the injected per-system boost, deep subsample (y_true < 1), both footings, both grades.
+print()
+print("  E5  sample-level anisotropy sign (projected-angle split, deep subsample y < 1):")
+E5 = {}
+for f in A0:
+    a0 = A0[f]
+    rng = np.random.default_rng(4242 + (0 if f == "canonical" else 1))
+    pop_d = make_population_oriented(N_PRE, rng, a0)
+    keep = rng.permutation(len(pop_d['pmx']))[:30000]
+    pop_d = {k: v[keep] for k, v in pop_d.items()}
+    deep = (pop_d['g_true'] / a0) < 1.0
+    for comp in ("totalmass", "corrected"):
+        gam = gamma_full_solve(pop_d, f, "a", comp)
+        cph = pop_d['cosphi_proj']
+        m_par = deep & (cph > np.median(cph[deep]))
+        m_perp = deep & (cph <= np.median(cph[deep]))
+        d_ = float(np.median(gam[m_par]) - np.median(gam[m_perp]))
+        E5[(f, comp)] = d_
+        print(f"      [{f}] {comp:10s}: med(par-ish) - med(perp-ish) = {d_:+.5f} "
+              f"({'PARALLEL' if d_ > 0 else 'PERPENDICULAR'}-dominant)")
+sgns = [np.sign(v) for v in E5.values()]
+check(all(s_ == sgns[0] for s_ in sgns),
+      f"E5  the sample-level sign is CONSISTENT across footings and registered grades: "
+      f"{'PARALLEL' if sgns[0] > 0 else 'PERPENDICULAR'}-dominant "
+      f"(magnitudes {min(abs(v) for v in E5.values()):.4f}-{max(abs(v) for v in E5.values()):.4f})",
+      "this computed sign is the Amendment-10 re-registration input for the 2(f) falsifier; "
+      "the frozen MI-derived blanket sign is arm-stale")
 
 print()
 print("=" * 100)
