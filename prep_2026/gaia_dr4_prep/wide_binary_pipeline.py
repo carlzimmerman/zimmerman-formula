@@ -106,11 +106,16 @@ GEXT_PHYS = 1.9*A0_CAN   # 1.778e-10 m/s^2 physical (banked solar-neighborhood)
 # NOTHING FROZEN IS TOUCHED BY THIS EDIT: the cut table, estimator, error model,
 # NSS screen, bin edges, kappa anchor and N = 30,000 are all unchanged.
 # ----------------------------------------------------------------------
-GAMMA_TARGET = 1.2139    # *** IN FORCE, Amdt 9: modified-GRAVITY arm, canonical footing.
-                         #     PROVISIONAL (point-field isotropic asymptote). ***
-GAMMA_TARGET_ALT = 1.2592  # Amdt 9, alt footing
-GAMMA_MI  = 1.1582       # SUPERSEDED by Amdt 9 (was Amdt 8 in-force). Kept for the disjointness
-                         #     check and the 2.68-sigma arm separation; NOT the target.
+GAMMA_TARGET = 1.1614    # *** IN FORCE, Amdt 10: full-solve BAND FLOOR (total-mass grade),
+                         #     canonical footing.  Amdt 9's 1.2139 (the response tensor's
+                         #     largest eigenvalue declared isotropic) is SUPERSEDED. ***
+GAMMA_TARGET_TOP = 1.1814   # Amdt 10 band TOP (benchmark-corrected grade), canonical
+GAMMA_TARGET_ALT = 1.1917  # Amdt 10 band FLOOR, alt footing
+GAMMA_TARGET_ALT_TOP = 1.2267  # Amdt 10 band TOP, alt (the edge construction's input)
+GAMMA_MI  = 1.1582       # SUPERSEDED by Amdt 9.  Kept for the record; Amdt 10 WITHDREW the
+                         #     "2.68-sigma arm separation" claim -- the Amdt-10 band sits
+                         #     0.003-0.023 above this, INSIDE the MI magnitude range: DR4
+                         #     separates framework-vs-Newton, it does NOT attribute the arm.
 GAMMA_MI_RANGE_RAD = (1.1311, 1.1964)   # Amdt 8, radial convention
 GAMMA_MI_RANGE_MAG = (1.1339, 1.2007)   # Amdt 8, MAGNITUDE convention (sec 1.1's headline)
 GAMMA_MG  = 1.137        # STALE per Amdt 4(i); superseded by GAMMA_TARGET above
@@ -118,15 +123,15 @@ GAMMA_MOND= 1.33         # conventional-MOND benchmark injection (not framework)
 
 # Amendment 8 declared risks, implemented below rather than left in the document:
 KAPPA_WINDOW    = (0.95, 1.05)   # frozen; outside => "systematic-limited, no verdict"
-NOVERDICT_EDGE  = 1.26           # *** Amdt 9: RE-DERIVED from the row's own definition
-                                 # ('above every EFE-saturated target') because the MG target
-                                 # reaches 1.2592, making the old 1.20 premise FALSE. Same
-                                 # construction as the original (edge just above the top target).
-                                 # DECLARED RISK: 1.20-1.26 is now SCOREABLE, and the DR3 dry
-                                 # run's 1.205 sits there -- excluded on sec 1.6's own grounds
-                                 # (looser cuts, no triple screens), NOT on the edge.
+NOVERDICT_EDGE  = 1.23           # *** Amdt 10: RE-DERIVED by the same construction (just
+                                 # above the top EFE-saturated target, now the alt band top
+                                 # 1.2267).  1.20-1.23 stays scoreable (the DR3 dry run's 1.205
+                                 # sits there, excluded on sec 1.6's own grounds); 1.23-1.33 is
+                                 # the guard zone.  DECLARED RISK (Amdt 10(d)): the alt band top
+                                 # sits 0.0033 below the edge -- roughly ONE IN TWO true alt-top
+                                 # outcomes lands unscoreable.
 # (superseded note) frozen; a MAGNITUDE-convention result above this is
-                                 # PRE-DECLARED UNSCOREABLE (Amdt 8 risk (d): the
+                                 # PRE-DECLARED UNSCOREABLE (Amdt 8 printed clause 8(i): the
                                  # alt-footing/primary corner is 1.20069, 0.00069 above)
 
 # ----------------------------------------------------------------------
@@ -350,19 +355,23 @@ def report_7e(g, sg, kap, label):
     """
     d_newt = (g - 1.0) / sg if sg > 0 else float("nan")
     d_tgt = (g - GAMMA_TARGET) / sg if sg > 0 else float("nan")
+    d_top = (g - GAMMA_TARGET_TOP) / sg if sg > 0 else float("nan")
     d_alt = (g - GAMMA_TARGET_ALT) / sg if sg > 0 else float("nan")
+    d_alt_top = (g - GAMMA_TARGET_ALT_TOP) / sg if sg > 0 else float("nan")
     d_mi = (g - GAMMA_MI) / sg if sg > 0 else float("nan")
     print(f"    [7(e)] raw gamma_hat = {g:.4f}, sigma_fit = {sg:.4f}; "
           f"distance to Newton 1.000 = {d_newt:+.2f} sigma_fit")
-    print(f"    [7(e)] IN FORCE (Amdt 9, MG arm): to canonical {GAMMA_TARGET:.4f} = "
-          f"{d_tgt:+.2f} sigma_fit; to alt {GAMMA_TARGET_ALT:.4f} = {d_alt:+.2f} sigma_fit")
+    print(f"    [7(e)] IN FORCE (Amdt 10, MG arm, BAND): canonical {GAMMA_TARGET:.4f} = "
+          f"{d_tgt:+.2f} / top {GAMMA_TARGET_TOP:.4f} = {d_top:+.2f}; alt "
+          f"{GAMMA_TARGET_ALT:.4f} = {d_alt:+.2f} / top {GAMMA_TARGET_ALT_TOP:.4f} = "
+          f"{d_alt_top:+.2f} sigma_fit (distances to ALL FOUR anchors per Amdt 10(b))")
     print(f"    [7(e)] superseded record only: MI {GAMMA_MI:.4f} = {d_mi:+.2f} sigma_fit; "
           f"MI ranges radial {GAMMA_MI_RANGE_RAD}, magnitude {GAMMA_MI_RANGE_MAG}.  "
           f"No verdict word is emitted by design.")
     flags = []
     if not (KAPPA_WINDOW[0] <= kap <= KAPPA_WINDOW[1]):
         flags.append(f"SYSTEMATIC-LIMITED, NO VERDICT -- nuisance kappa = {kap:.4f} is "
-                     f"OUTSIDE the frozen window {KAPPA_WINDOW} (Amdt 8 risk (c); its "
+                     f"OUTSIDE the frozen window {KAPPA_WINDOW} (Amdt 8 printed clause 8(h); its "
                      f"declared consequence is 'reported, not repaired')")
     if g > NOVERDICT_EDGE:
         flags.append(f"PRE-DECLARED UNSCOREABLE on the MAGNITUDE convention -- "
@@ -420,6 +429,10 @@ def ingest_csv(path):
 # *** 3 sigma needs N ~ 2.1-2.7e5, SEVEN TO NINE TIMES the frozen sample. ***  Reported as
 # a directional check with its N attached, never as a test this sample settles.
 # ----------------------------------------------------------------------
+# NOTE (Amdt 10): the ANISO_EIG constants below embed the SUPERSEDED MI orientation
+# (perpendicular as the large axis everywhere).  The MG full solve gives a radius-
+# dependent sign (flip at 1.96 r_M); the sample-level sign stays perpendicular-dominant
+# (Amdt 10(d2)) -- this split remains NON-SCORING, a directional check only.
 ANISO_EIG = {"canonical": (1.03800, 1.21385), "alt": (1.05977, 1.25916)}
 ANISO_DILUTION = 0.2367
 

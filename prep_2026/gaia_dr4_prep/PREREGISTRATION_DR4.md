@@ -897,6 +897,191 @@ gamma by −0.0150 (flagged systematic, §1.5). DR3 dry run: §1.6 numbers,
 > `mi_mg_arm_standing_2026.py` (18, exit 0). The arm switch was forced by the lensing script, which was
 > written to test the MI arm and killed it.
 
+> ### 🚨 AMENDMENT 10 — 2026-08-13, ADDED IN THE OPEN BEFORE DR4. READ BEFORE SCORING.
+>
+> **THE OWED FULL NONLINEAR AQUAL-EFE SOLVE NOW EXISTS, AND IT MOVES THE WIDE-BINARY TARGET
+> DOWN — by less than its own first unverified draft claimed.**  Amendment 9(b) registered
+> γ_v = 1.2139 / 1.2592 as PROVISIONAL: "the point-field isotropic asymptote only ... A full
+> nonlinear AQUAL-EFE solve is OWED, and until it exists this target carries provisional
+> status."  The solve exists (`prep_2026/gaia_dr4_prep/aqual_efe_full_solve_2026.py`,
+> 18 checks, exit 0) and survived THREE adversarial verification rounds before this filing:
+> round 1 attacked the solver mathematics (all six items CONFIRMED — an independent 288³ FFT
+> solve of the linearized PDE to 1–2%, a direct 3D-quadrature Poisson check to ≤0.16%, a
+> Gauss-flux integral constraint at 7×10⁻⁴); round 2 attacked the first draft of THIS
+> amendment and REFUTED its registered floor, and the corrections are now COMPUTED PARTS of
+> the committed script (the two-body benchmark, the corrected grade, the 6-seed battery), not
+> referee notes.  The provisional status of 9(b) is DISCHARGED.  This filing is
+> amendment-grade by the document's own criterion: the new band and the registered point do
+> not overlap (gaps 1.7–2.8σ_fit canonical / 1.7–3.6σ_fit alt at the frozen-N σ_fit = 0.019;
+> band-top + 1σ sits below the registered point on both footings).
+>
+> **(a) WHY THE REGISTERED NUMBER FALLS — the isotropy premise was false.**  9(b) declared
+> the boost enters "for an AQUAL-type external-field effect where the boost is isotropic and
+> no orientation average is needed" and took γ_v = √ν(y_extN).  Solving the PDE (one-field
+> AQUAL — the framework's own quasi-static limit — with the QUMOND formulation as a fork
+> agreeing to 0.005): the point-mass response in the external field is ANISOTROPIC,
+> B_par = ν(y_extN) = 1.4732 along the external field and B_perp = ν/√(1+L₀) = 1.2598 across
+> it (L₀ = 0.3674, canonical).  **The registered 1.2139 is the square root of the LARGEST
+> eigenvalue used as if isotropic.**  Every defensible orientation treatment gives strictly
+> less; nothing recovers it.  (Two structure notes, recorded: the anisotropy ORIENTATION
+> FLIPS in the transition zone — the computed flip sits at r = 1.96 r_M, INSIDE the frozen
+> 2–30 kAU window — so "parallel is the big axis" holds at saturation only; the standing
+> anisotropy-sign rule is arm-updated in (d2) below.  And the QUMOND sphere-average identity
+> ν₀(1+L/3) ≡ (dx/dy + 2ν₀)/3 equals the superseded MI orientation average exactly, which is
+> why MI-era numbers track ~1.158; the QUMOND fork agrees with AQUAL to 0.005 at the
+> recovered-γ̂ level — the profile-level spread is ~0.016, subsumed in the band grade.)
+>
+> **(b) AMENDED TO — a COMPUTED BAND, graded by the exact two-body benchmark.**  The solve's
+> boost tables were injected into a MIRRORED re-implementation of the frozen pipeline's
+> population MC (orientation geometry retained; the master population and estimator are the
+> pipeline's literal functions) and fitted with the frozen isotropic estimator (`model_medians` + `fit_gamma`, untouched).  The dominant
+> systematic is the two-body COMPOSITION of the relative force where the internal
+> acceleration is high: the committed benchmark (PART C2: closed-form deep limit plus
+> finite-y quadrature, control error 0.2% at y = 1 and 0.1% at y = 10) shows BOTH standard
+> conventions overshoot the exact anchor-bin force — per-star by ~3–8× in excess, total-mass
+> by a computed f_tm(y) = 1.41–1.74 — so the truth-recovery sits at or above the total-mass
+> end, and the registered band is:
+>
+> | footing | total-mass (BAND FLOOR) | benchmark-corrected (BAND TOP) |
+> |---|---|---|
+> | canonical | **1.1614 ± 0.0175** (6-seed centre 1.1610, rms 0.0117) | **1.1814 ± 0.0150** (centre 1.1847, rms 0.0148) |
+> | alt | **1.1917 ± 0.0175** (centre 1.2025, rms 0.0083) | **1.2267 ± 0.0200** (centre 1.2288, rms 0.0058) |
+>
+> The registered 1.2139/1.2592 is overstated by 0.032–0.052 canonical / 0.032–0.067 alt.
+> The per-star composition (1.1139 canonical / 1.1217 alt; battery centres 1.1093/1.1325) is
+> a DIAGNOSTIC ONLY — it is exact in the deep bins but its anchor-bin excess is refuted 3–8×
+> by the benchmark; its first-draft use as a registered floor was itself caught by this
+> filing's verification and is recorded here as the cautionary case.  Declared residual
+> grade: base-seed anchors carry ±0.01-grade seed/rng-call-order sensitivity (the battery
+> centres are the robust quantities and are committed); the EFE-PRESENT exact two-body anchor
+> solve does not exist and is the declared unlock that pins the band top.  Amendment 7(e)'s
+> reporting rule is REAFFIRMED and extended: report the raw γ̂ with σ_fit and its distances to
+> ALL FOUR band anchors, never a single verdict word.
+>
+> **(c) WITHDRAWN: Amendment 9's FOR-item (i).**  "The new range is disjoint ... the
+> separation is 2.68σ at the frozen N, so DR4 can now distinguish the two arms" is FALSE
+> under the full solve.  The canonical band sits 0.003–0.023 ABOVE the superseded MI 1.1582 —
+> 0.17–1.22σ_fit, and INSIDE the superseded MI magnitude range (1.1339–1.2007).  **DR4
+> separates the framework from Newton; it does NOT attribute the arm.**  (Distance
+> conventions used here and throughout: σ_fit = 0.019 per §1.5 at the frozen N; σ_tot =
+> 0.028; the DR3-dry-run σ = 0.0350 at N = 10,624 is labelled wherever used.)  Amendment 9's
+> FOR-items (ii) and (iii) stand: the directional EFE expected signal (Â = +2.95, p = 0.029,
+> AQUAL-class sign) is if anything sharpened by the solved anisotropy, and a Newtonian result
+> remains evidence against — see (f).
+>
+> **(d) THE NO-VERDICT EDGE, RE-DERIVED BY THE AMENDMENT-9 CONSTRUCTION — 1.26 → 1.23.**
+> Amendment 9(c)'s construction (the edge just above the top EFE-saturated target, rounded to
+> 0.01; Amendment 8's earlier edge sat marginally BELOW its top corner, the 1.20069 breach
+> filed as its declared risk) applied to the new top anchor 1.2267 gives **edge = 1.23**.
+> Rows: "1.145 – 1.26" reads "1.145 – 1.23"; ">1.26" reads ">1.23"; the contamination-guard
+> zone is 1.23–1.33, bounded above by the unchanged no-EFE/full-MOND benchmark 1.33.
+> Amendment 9(c)'s declared risk PERSISTS IN NARROWED FORM: the band 1.20–1.23 remains
+> scoreable and the DR3 dry run's 1.205 (frozen §1.6 value) still sits inside it — still
+> excluded on §1.6's own independent grounds, and a scorer must still not read it as
+> evidence.  Row labels carrying arm attributions ("MG-side; MI disfavored per z") are void per
+> (c): rows between 1.083 and 1.23 read **framework-band, arm NOT decided**.  Rows below
+> 1.083 untouched.
+> **DECLARED RISK — the corner class, fifth occurrence, declared not repaired (following the
+> Amendment 8 precedent):** the alt band-top anchor 1.2267 (battery centre 1.2288) sits
+> 0.0033 (centre: 0.0012) below the edge.  P(γ̂ > 1.23 | a true framework outcome at the alt
+> top) ≈ **43–49%** across the σ conventions — roughly ONE IN TWO true alt-top outcomes lands
+> in the guard zone, unscoreable.  This is declared, not repaired: moving to an
+> edge-at-target+kσ construction would be a RULE CHANGE and is NOT adopted.  The canonical
+> band is unaffected (its top 1.1814 sits 2.6σ_fit below the edge).
+>
+> **(d2) THE ANISOTROPY-SIGN FALSIFIER (Amendment 2(f)) — ARM-UPDATED, NOT SUSPENDED.**
+> Amendment 2(f) (preserved by 3(c), reaffirmed by 8(f)) registers: "Perpendicular pairs must
+> show the LARGER boost.  A measured anisotropy of the opposite sense at ≥3σ falsifies the
+> derived EFE independently of the aggregate γ_v."  That sign was MI-arm-derived (the MI
+> tensor is perpendicular-dominant everywhere).  The MG solve gives a RADIUS-DEPENDENT sign:
+> parallel-dominant at saturation (B_par = 1.4732 > B_perp = 1.2598), perpendicular-dominant
+> in the transition zone, with the computed flip at r = 1.96 r_M — inside the window.  The
+> SAMPLE-LEVEL sign, computed by the committed script's projected-angle split under both
+> registered grades and both footings (check E5): **PERPENDICULAR-DOMINANT, magnitude +0.0013
+> to +0.0046 in boost units** — the frozen rule's SENSE is CONFIRMED for the MG arm, at a
+> smaller magnitude than the MI-era expectation.  Therefore: (i) the 2(f) falsifier is
+> RETAINED as a SAMPLE-LEVEL rule with its registered sense unchanged; (ii) its magnitude
+> calibration is arm-updated to the computed range; (iii) the radius-resolved flip is
+> REGISTERED AS AN MG-ARM PREDICTION: under framework truth the widest pairs (r ≳ 2 r_M) are
+> EXPECTED to show parallel-dominance, and a radius-resolved parallel excess in the wide bins
+> must NOT be scored as the 2(f) kill, which applies to the sample-level statistic only.
+> This is an update of an existing frozen rule, filed in the open with its computed basis —
+> not an acquisition of sign freedom.
+>
+> **(e) THE κ-WINDOW RISK — RESOLVED BY ATTRIBUTION, window unchanged.**  On clean full-solve
+> mocks at the frozen N, the pipeline's nuisance κ trips the frozen window [0.95, 1.05] in
+> **12 of 12** battery fits under the per-star composition (κ = 1.054–1.089, overlapping Amendment
+> 8's pre-registered 1.0575–1.0959 danger band — printed clause 8(h), cited as "8(c)" in
+> Amendment 9(f); see (g)) and in **0 of 12** under the registered band grades (total-mass κ
+> = 1.008–1.035; benchmark-corrected 0.990–1.020).  **The κ trip is a per-star-composition
+> artifact, and the framework's registered grades predict NO trip on the real sky.**  The
+> window is NOT moved.  The pre-registered interpretation: if DR4 returns γ̂ in the framework
+> band WITH κ outside [0.95, 1.05], the frozen verdict remains "systematic-limited, no
+> verdict", and the scorer must read it as evidence of a GENUINE systematic (or of the
+> refuted per-star force grade) — NOT as expected framework behaviour.  The first draft of
+> this amendment had pre-registered the opposite reading; its own verification refuted that
+> as a laundering pathway, and the correction is recorded here deliberately.
+>
+> **(f) FALSIFIABILITY RESTATED — it STRENGTHENS.**  Newton 1.000 sits **8.5σ_fit /
+> 5.8σ_tot** below the canonical band floor 1.1614 (battery centre 1.1610), and further below
+> the alt floor.  Amendment 8's un-hedged rule survives strengthened: a Newtonian 2–30 kAU
+> result is evidence against at ≳5.8σ_tot (the superseded MI-era figure was 4.74–7.10σ_tot;
+> the new floor sits comfortably inside that range's demand).  AGAINST, carried openly:
+> (i) arm attribution is lost (c).  (ii) The alt-corner scoreability risk of (d) — roughly
+> half of true alt-top outcomes land unscoreable.  (iii) Dry-run consistency, both labels:
+> against the frozen §1.6 value 1.205 ± 0.035 the canonical band sits 0.7–1.2σ (dry-run σ);
+> against the stage52 post-Amendment-9 re-run value 1.2075 (committed,
+> `nbody_2026/stage52_open_doors_audit_cycle_2026.py` — a DIFFERENT number than the frozen
+> 1.205, labelled here) it sits 0.7–1.3σ.  The dry run is COMPATIBLE with the band; it
+> remains non-scoring per §1.6 and contamination biases it high.  (iv) Grade items NOT
+> discharged, all five carried openly: the EFE-present exact two-body anchor solve (the
+> band-top unlock); self-consistent modified-orbit integration (the pipeline's own declared
+> upgrade path); the real-sky external-field geometry (the solve used isotropic ê per
+> system); star–star cross-talk inside μ (second order at saturation, not included); and the
+> tangential force component (reported, not injected — no tangential term exists in the
+> declared boost shape).  The band of (b) is the declared carrier of that residual
+> uncertainty.
+>
+> **(g) FOR THE RECORD.**  The Amendment 8 clause printed as **8(h)** (κ-window) is cited as
+> "8(c)" in Amendment 9(f), and the clause printed as **8(i)** (the 1.20069 corner) is cited
+> as "8(d)" in Amendment 9(c).  No frozen text is edited; this note is the correction.
+> POST-FILING CODE RETARGET, recorded here so the reference is not dangling: in
+> `wide_binary_pipeline.py` — GAMMA_TARGET 1.2139 → 1.1614 and GAMMA_TARGET_ALT 1.2592 →
+> 1.1917 (the band FLOORS), new companions GAMMA_TARGET_TOP = 1.1814 / GAMMA_TARGET_ALT_TOP
+> = 1.2267, NOVERDICT_EDGE 1.26 → 1.23, the stale "2.68 sigma" comment at its single
+> occurrence corrected, `report_7e` extended to print distances to all four anchors, and a
+> note added that the `anisotropy_split` diagnostic's frozen ANISO_EIG constants embed the
+> superseded MI orientation (the diagnostic stays NON-SCORING; the arm-updated sign rule is
+> (d2)); `report_7e`'s printed risk-lettering strings corrected ("Amdt 8 risk (c)/(d)" →
+> the printed clauses 8(h)/8(i)).  The evidence script pins REGISTERED_A9 = 1.2139/1.2592
+> internally so the retarget cannot shift its debias control (regression-pinned, check E3).
+> The readiness audit is updated in the same commit: its NOVERDICT_EDGE assertion moves to
+> 1.23 (its only hard breakage), its dry-run-risk narrative is re-dated as a historical
+> observation at the old edge, and its tail verdict drops the superseded
+> "gamma_perp = sqrt(nu) = 1.2139" line; then re-run green.
+>
+> **(h) UNCHANGED.**  The estimator; the 16-row frozen cut table; the error model; the
+> strictness ladder; the NSS screen; the frozen N = 30,000; both a₀ footings; §2 void per
+> Amendment 5; Amendment 7(e)'s reporting rule (extended in (b), not weakened); the κ-window
+> [0.95, 1.05] itself; the a₀-degeneracy flag; the no-EFE/full-MOND benchmark 1.33; and
+> κ = ½ FITTED, NOT DERIVED.  No measurement moves.  Rows below 1.083 untouched.
+>
+> **SOURCES.**  `prep_2026/gaia_dr4_prep/aqual_efe_full_solve_2026.py` (18 checks, exit 0:
+> solver gates V1–V4 — Newtonian control, isolated-MOND limit 0.1–0.5%, analytic saturation
+> tensor 0.4–0.5%, half-resolution 0.17%; benchmark gates C2a–C2c; estimator parts D/E with
+> the committed 6-seed battery; regression pin E3; the computed orientation flip E4 and
+> sample-level sign E5).  Verification: round 1, three adversarial referees 2026-08-13
+> (solver mathematics — the referee's own check script is committed alongside as
+> `aqual_efe_referee_round1_2026.py`; its headline figures — 288³ FFT 1–2%, 3D quadrature
+> ≤0.16%, Gauss flux 7×10⁻⁴ — are that artifact's; observable mapping; registration
+> consequences); round 2, a four-lane adversarial workflow on this amendment's first draft,
+> which REFUTED the original floor and κ-signature clauses — both corrections are COMPUTED
+> parts of the committed script and clauses (b)/(e) above; round 3, a fresh referee on the
+> revised text whose two blocking findings (evidence-commit discipline; the 2(f) sign rule)
+> produced the pre-filing evidence commit and clause (d2).  The registered y_extN provenance (closure inversion of the observed
+> g_ext under the Route A kernel) is reproduced in PART A of the same script to 5×10⁻⁴ (the
+> residual is the pipeline's a₀ rounding).
+
 ---
 
 ## SECTION 2 — s^TX SME boost-dipole template (Door 4B, Front A)

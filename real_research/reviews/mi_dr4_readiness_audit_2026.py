@@ -285,14 +285,15 @@ check(kwin is not None and mp.mpf(kwin.group(1)) == mp.mpf("0.95")
 # every EFE-saturated target"), which the MG target 1.2592 falsified.  The edge is now 1.26 and the
 # pipeline carries that; this guard is updated to match, and it accepts ONLY the amended value so a
 # silent revert to 1.20 would trip it.
-check(edge is not None and mp.mpf(edge.group(1)) == mp.mpf("1.26"),
-      "D8  and declared risk (d) is implemented at AMENDMENT 9's RE-DERIVED edge: the 1.26 no-verdict "
-      "edge is coded (was 1.20 before Amdt 9 moved the arm to MG), so a "
-      "magnitude-convention result above it is flagged PRE-DECLARED UNSCOREABLE",
+check(edge is not None and mp.mpf(edge.group(1)) == mp.mpf("1.23"),
+      "D8  and the edge is implemented at AMENDMENT 10's RE-DERIVED value: the 1.23 no-verdict "
+      "edge is coded (1.20 pre-Amdt-9, 1.26 under Amdt 9, 1.23 under Amdt 10's band top 1.2267), "
+      "so a magnitude-convention result above it is flagged PRE-DECLARED UNSCOREABLE",
       f"NOVERDICT_EDGE = {edge.group(1) if edge else None}")
 check(has_fn and kwin is not None and edge is not None,
-      "D9  BOTH declared risks were observed to FIRE on real input when the fixed pipeline was run: "
-      "the kappa flag on the injection test (kappa = 1.1182) and the 1.20-edge flag on the DR3 "
+      "D9  HISTORICAL (observed at the OLD 1.20/1.26-era edges; re-dated by Amdt 10, under which "
+      "1.205 is below the 1.23 edge): both declared risks were observed to FIRE on real input -- "
+      "the kappa flag on the injection test (kappa = 1.1182) and the then-edge flag on the DR3 "
       "El-Badry dry run (gamma_hat = 1.2050 and 1.2025).  *** The DR3 numbers remain evidence for "
       "NOTHING -- that catalogue's looser cuts bias gamma HIGH by contamination, and the pipeline "
       "says so in its own output ***")
@@ -386,7 +387,9 @@ VERDICT -- THE DR4 PIPELINE IS NOT READY, AND ONE OF TODAY'S PAPERS NEEDS A CORR
       is wrong by 1.758x and every N and z it reports is wrong. ***  Read out of the file, not
       asserted.
   2.  Route A's pieces check out independently: nu(y_extN) = 1.4733 reproduces the recorded 1.47342,
-      gamma_perp = sqrt(nu) = 1.2139 reproduces 1.21385, and both MOND limits are correct -- so the
+      gamma_perp = sqrt(nu) = 1.2139 reproduces 1.21385 [SUPERSEDED as a TARGET by Amdt 10's band
+      1.1614-1.1814/1.1917-1.2267; retained here as an arithmetic reproduction only], and both
+      MOND limits are correct -- so the
       chain is internally consistent and step 3 of the field theory survives the kernel change.
   3.  *** AGAINST INTEREST: today's field-theory paper (v1-v3) says mu's shape is "the alpha = 2
       interpolation that solar-system ephemerides force".  That is FALSE as of Amendment 8, five days
