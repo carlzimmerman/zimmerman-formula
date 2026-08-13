@@ -104,6 +104,9 @@ NOT CLAIMED / OWED -- and these are load-bearing, not cosmetic
     flagged T3: unverified, do not repeat until checked;
 (e) Lane B's adversarial verification had not landed when this stage was committed.
 Route A' (stages 10-11) remains a separate live alternative; this construction neither supersedes nor
+[SUPERSEDED BY STAGE 53, 2026-08-13: Route A' is DEAD -- empty gamma range (growth needs gamma<4/3,
+ stability needs gamma>4/3), M_J today <= 1.4e8 Msun vs 2.51e12 required, z_bind = 10.19, and committed
+ stage12 (ee0b1793) had ALREADY excluded the cored two-field window when this line was written -- a T3.]
 contradicts it.
 """
 

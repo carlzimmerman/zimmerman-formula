@@ -113,6 +113,7 @@ Eight, on the twelve committed X-COP clusters. Target η = 1.6–2.3.
 | The derived mixing kernel T(y) | Correct shape class, wrong amplitude and sign. `stage39` |
 | **Charge-abundance amplitude** | The available coefficient reduces to ρ_charge/ρ_Λ, in which ν₀, Λ_D, Q₀, M and κ all cancel. It is **10²–10³ too small even if the dark sector's conserved charge were the entire dark matter content** of the universe. A genuine no-go. `stage42` |
 | **The gated Proca (dust-collapse repair)** | Killed within two hours of commit, three ways: K_eff = 2πG·R_halt² **identically** (the "188-kpc mass-independent core" was π× the assumed halt radius — a tautology); y ∝ 1/a₀²(z) so the gate **opens** toward recombination (3.25×10⁶× the CLASS cap); and the KiDS lensing fit rejects the core at Δχ² ≳ +1.2×10³. The dust problem is **fully open**, with a sharper wall: pressure needed at z ≲ 11 but forbidden at z ~ 1090, and no function of y can do both. `stage51` (bannered) → `stage52` |
+| **Route A′ — the cored two-field halo (χ with p = Kρ^γ)** | The surviving γ range is **empty**: Jeans-mass growth needs γ < 4/3, polytrope stability needs γ > 4/3, and the transported forest cap gives M_J(today) ≤ 1.4×10⁸ M☉ against the 2.51×10¹² required (≥35× short even as γ→0). The binding-epoch wall fires on its own profile (z_bind = 10.19). **T3 on the corpus:** committed `stage12` ("THE TWO-FIELD WINDOW CLOSES", KiDS Δχ² up to +1698 at A′'s own normalisation) had already excluded it while `stage51`/`stage52` carried it as "the one live alternative" — this ledger itself had **no row for it** until now. Four repair-space cells remain genuinely untried (stage53 B3); "no open doors" is still not claimable. `stage53` |
 
 ---
 
@@ -123,6 +124,11 @@ credibility fastest.
 
 | Claim | Correction | Direction |
 |---|---|---|
+| "V51 = 3.25×10⁶ is stage 51's y²-gate violation" | It is the **saturating-gate** bound (no y-amplification); the true y² violation is 5.2×10¹¹–2.9×10¹³× — the committed number **understated** the kill | too favourable (to the gate class) |
+| "Gating on Y instead of y clears the CMB by 238×" | Corrected normalisation: it **violates** the CMB by 674×–3.79×10⁴× | too favourable |
+| "z₀ rises logarithmically with source distance — a new testable front" | Restoring the lane's own g_ext = 0.0111 a₀, ν saturates at r = 425 Mpc: z₀ ≈ 0.20–0.27%, **saturating**, degenerate with a GR void (Banik Eq. 26), below HBK20's published 0.84% | too favourable |
+| Cluster η at R500 = "2.084 / 1.917" unqualified | Those are **a₀-line kernel** numbers; the operative MS08 kernel gives **1.865 / 1.722** on the same X-COP data. Quote the spread 1.72–2.08 with the kernel named (the window 1.6–2.3 is itself a₀-line-derived) | too **un**favourable by 10.5% — a favourable correction that arrived unlabelled |
+| DR4 wide-binary γ_v = 1.2139 / 1.2592 as the settled MG target | The owed full nonlinear AQUAL-EFE solve (verified by three adversarial referees) shows the registered number is the response tensor's **largest eigenvalue declared isotropic**. Full-solve bracket: **1.11–1.16 canonical / 1.13–1.21 alt** (convention-bracketed). The registered value stays formally in force until Amendment 10 is filed — the author's call. Amendment 9(d)(i)'s 2.68σ arm separation does **not** survive. `prep_2026/gaia_dr4_prep/aqual_efe_full_solve_2026.py` | too favourable |
 | Lyman-α "6–8σ exclusion" | Kernel evaluated at Newtonian *y* instead of observed *x*; true 0.4–0.9σ | manufactured deficit |
 | η = 2.334 as universal | eRASS1-sample-specific; X-COP gives 1.66–1.81 | manufactured deficit |
 | "Clusters sit at 21.6 a₀ at R₅₀₀" | That figure is the *core*; R₅₀₀ is 0.33–0.58 a₀ | wrong field |

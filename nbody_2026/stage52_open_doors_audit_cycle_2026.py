@@ -66,6 +66,11 @@ sign theorem (scalar exchange = anti-support; vector-on-current = support).  Alg
 THE DUST PROBLEM IS FULLY OPEN AGAIN, now with a sharper wall: any repair must supply pressure at
 z <~ 11 without supplying it at z ~ 1090, and no function of y can do that because y RISES toward the
 past.  Route A' (stages 10-11) remains the one live alternative.
+[SUPERSEDED BY STAGE 53, 2026-08-13: Route A' is DEAD (empty gamma range; binding-epoch wall fires at
+ z_bind = 10.19 on its own profile), and this line was a T3 -- committed stage12 (ee0b1793, 6/6 green,
+ 'THE TWO-FIELD WINDOW CLOSES') had already excluded it, and lines 56-57 above USE stage12 as a weapon.
+ The live list is now stage53 PART B3's four untried cells (+ Cell 3 reopened).  Also corrected there:
+ V51 = 3.25e6 (line 58) is the SATURATING-gate bound, NOT the y^2 violation (that is 5.2e11-2.9e13x).]
 
 --------------------------------------------------------------------------------------------------
 LANE C -- DR4: THE CLEAN LANE (both verifiers: not refuted).  SUITE TAKEN RED -> GREEN THIS COMMIT.
