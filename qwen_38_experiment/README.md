@@ -29,7 +29,24 @@ build T085 first (the canary), then T081–T084 (infrastructure), then go in ord
 Carl's pick. 3. Every session ends with the ledger current and nothing outside this
 folder touched.
 
-## Boundaries (absolute)
+## Reading the rest of the repository — encouraged; writing it — forbidden
 
-Work only inside `qwen_38_experiment/`. Never push. Never touch `PREREGISTRATION_DR4.md`
-or any `*_HASH.txt`. Never publish. Carl reviews, commits, and decides escalations.
+**READ freely from every folder in zimmerman-formula.** That is where the committed
+physics lives, and tasks are expected to pull from it:
+
+- `nbody_2026/stage*.py` — the committed results record (stages 1–64); import their
+  numbers by re-deriving or copying WITH a provenance comment naming the stage.
+- `opus_48_extended_research/papers/` — THE_COMPLETION.md (the field theory),
+  PINNING_Q0_IN_AEST.md (the Q₀ pin), DR4_TARGET_UNDER_LOCAL_A0.md, and the rest.
+- `real_research/bridge1_aest_equations.md` — the exact SZ21 perturbation equations,
+  verbatim-verified; the ONLY approved source for AeST linear theory.
+- `real_research/`, `prep_2026/` — pipelines, data loaders, SPARC/KiDS machinery
+  (you may import their functions read-only or copy them into `runs/` with attribution).
+- `STANDING.md`, `RETRACTIONS.md` — check BEFORE citing any verdict; if a claim you
+  need appears in RETRACTIONS.md, it is dead — do not resurrect it.
+
+**WRITE only inside `qwen_38_experiment/`.** Never modify, move, or delete anything
+outside this folder — not even a typo fix (note it in ESCALATE.md instead). Never touch
+`PREREGISTRATION_DR4.md` or any `*_HASH.txt` (hash-frozen; verify with T082, never edit).
+Never `git push`, never publish. If a task needs data that only exists outside the repo,
+mark it BLOCKED and name the dataset. Carl reviews, commits, and decides escalations.
