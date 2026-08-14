@@ -2,7 +2,7 @@
 
 **Carl P. Zimmerman**, Briar Creek Tech
 ORCID 0009-0008-3508-7982
-2026-08-13
+2026-08-13 (v2, 2026-08-13: §5 completed with the local-a₀ analysis)
 
 ---
 
@@ -116,6 +116,23 @@ Stated as plainly as the result:
   parameter values. A Boltzmann computation carrying both the aether sector and the nonlinear branch,
   at this framework's own kinetic function, remains owed. This is the sharpest open liability and we
   do not minimise it.
+- **a₀ in this framework is a *local* quantity** — 𝒜(Q) = a₀² = κ²G(−K(𝒬)) depends on the local
+  charge density, and the pin's radii (3.7–60 kpc) sit *inside* halos, where that density is orders
+  above the cosmic mean. The pin is nonetheless **a₀-free algebraically**: combining X = √y·c/v with
+  y = [(g_tot−g_N)/a₀]² and 𝒬₀ = X·a₀/c² gives
+
+  $$\mathcal{Q}_0=\frac{g_{\rm tot}-g_N}{c\,v},$$
+
+  in which a₀ cancels identically — the pin is (MOND excess acceleration)/(c × drain speed), a
+  statement in observables. The residual a₀-dependence enters only through the kernel that builds
+  g_tot from g_N, is sub-linear (≈ S^0.5 in deep MOND, S^0.8 near y = 1), and is partly opposed by
+  v_ff ∝ (GMa₀)^¼ carrying the same factor in the same direction.
+- **The band's low end is soft by ≈1.4×** (0.0034 → 0.0024 Mpc⁻¹) under the framework's alternative
+  steady-state-continuity reading of the local charge density, which is up to two orders denser than
+  the residence-time reading used here. Both remain inside the defensible envelope quoted in §3.
+- **Consistency note, in the framework's favour:** the same effect is what fixes the framework's own
+  ν₀ ceiling — the requirement that the local a₀² shift stay ≲ 1% through the drain is precisely the
+  RAR bound on a local a₀, so this is a priced effect rather than an unpriced one.
 - **κ = ½ remains measured, not derived** (0.551 ± 0.043 by the distance-free method), and the
   coefficient's origin is unresolved. Nothing here changes that.
 - **K₂ is pinned only to ~3 decades**, because the ν₀ window carries a factor 8.3 that propagates
@@ -143,6 +160,8 @@ All claims are reproduced by committed scripts at
 - `nbody_2026/stage56_xpin_verdict_2026.py` — the X-pin and the closure of its named escape route.
 - `nbody_2026/stage57_sz21_corrected_refile_2026.py` — the AeST parameter records and the background
   identity SRC = 3f_dust H/𝒬₀.
+- `nbody_2026/stage59_local_a0_verdict_2026.py` — the local-a₀ adjudication behind §5's first
+  three bullets (7 checks), including the symbolic cancellation.
 - `RETRACTIONS.md` — the standing scope-and-retraction record, including the withdrawal of an earlier
   version of the recombination-side analysis (an error in the framework's *disfavour*, corrected).
 
