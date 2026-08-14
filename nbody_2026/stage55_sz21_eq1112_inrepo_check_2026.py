@@ -3,6 +3,37 @@
 r"""
 stage55_sz21_eq1112_inrepo_check_2026.py
 ========================================
+*** WITHDRAWN 2026-08-13, WITHIN HOURS OF ITS OWN COMMIT, BY ITS OWN ADVERSARIAL REFEREE. ***
+*** DO NOT CITE PARTS C, D1 OR D2 OF THIS FILE.  SUPERSEDED BY stage57. ***
+
+WHAT DIED AND WHY (the direction of the error is MANUFACTURED DEFICIT -- this file made the
+framework look MORE entangled and MORE constrained at recombination than any published AeST
+parameter set supports):
+  * THE PREMISE IS FALSE.  Substituting SZ21's Eq (9) -- which the committed
+    bridge1_aest_equations.md OMITS -- into Eq 11 gives Pi = (1+w) gamma / phibardot EXACTLY:
+    the bracket [K_B E + (2-K_B) chi] CANCELS OUT OF Pi identically.  The bracket is real and
+    load-bearing, but it lives in the definition of DELTA (Eq 9), not in the pressure.
+  * SRC IS NOT A FREE NORMALISATION.  SRC = (dK/dQ)/H = 3 f_dust H / Q0 is FIXED by the
+    background.  Setting it to 1 (this file's "neutral normalisation") corresponds to
+    Q0 = 9.99 Mpc^-1 -- 10x / 100x / 100,000x off SZ21's own three published fits.  At the
+    real values the (2-K_B) chi share is 0.0019%-17.6%, NOT 64-67%: SUB-DOMINANT, which
+    flips D1 and would make this file exit 1.
+  * C1 IS A T1 TAUTOLOGY.  From the assumed E/chi = SRC/K_B, R = SRC/(2-K_B) in one line:
+    the "leverage test" measures the function 1/(2-x) on [0.01, 0.25] and nothing else.  The
+    conclusion was the assumption.  (The underlying structural fact -- K_B multiplies the
+    whole Eq-12 operator so E ~ Green[S]/K_B -- is an identity of the equation's FORM and
+    needs no computation; it is also incomplete, since the source carries its own (2-K_B).)
+  * "NO GROWING MODE" IS UNSUPPORTED.  E = alphadot + Psi is not primitive, so Eq 12 is
+    SECOND ORDER in alpha with an ANTI-DAMPING coefficient (Q0 dK/dQ = 3 f_dust H^2 > 0);
+    and at the third peak k/(aH) = 12, so the dropped Edot term is ~7x the retained one.
+    The stage18 citation was a category error (galactic WKB F_YQ mixing, not the
+    cosmological aether sector).
+WHAT SURVIVES: PART A (the grep gap -- with the qualifier that stage19's own docstring
+DISCLOSED it, and that the correct statement is "THESE runs cannot evaluate it", since a
+k-DEPENDENT c_s^2/viscosity could in principle carry the Eq-9 bracket), and D3 (KEEP the
+LITERATURE-INHERITED tag -- if anything understated: after the refutation not even the
+bracket-level question is closed).
+========================================
 STAGE 55: THE OWED IN-REPO CHECK OF SZ21's EQs 11-12 -- closing the corpus's ONLY
 literature-inherited load-bearing link, and DE-TAGGING (or keeping tagged) Cell 3's
 recombination leg.
