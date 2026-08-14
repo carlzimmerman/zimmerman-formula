@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Publish a NEW VERSION of the PINNING_Q0_IN_AEST record (rid 21935943).
+"""Create a NEW Zenodo deposit for PINNING_Q0_IN_AEST and publish it.
 
 Carries the guards the version-publishers earned the hard way, adapted for a first deposit:
 
@@ -12,7 +12,7 @@ Carries the guards the version-publishers earned the hard way, adapted for a fir
   * DRY-RUN default -- pass --publish to actually create and publish.
 
 Reads ZENODO_ACCESS_TOKEN from /Users/carlzimmerman/new_physics/.env -- never printed.
-Usage: python zenodo_newdeposit_rapidity_gap.py [--dry-run | --publish]
+Usage: python zenodo_newdeposit_dr4note.py [--dry-run | --publish]
 """
 import json
 import os
@@ -29,21 +29,14 @@ PAP = "opus_48_extended_research/papers"
 RR = "real_research/reviews"
 BASE = "https://zenodo.org/api"
 
-STEM = "PINNING_Q0_IN_AEST"
-RID = 21936493   # v3 of THIS record (v2 21936341, v1 21935943, concept 21935942); v6 21855681, v5 21855374, v4 21855252, v3 21855217, v2 21855003, v1 21854915 (concept 21854914)
+STEM = "DR4_TARGET_UNDER_LOCAL_A0"
 META_PATH = f"{PAP}/{STEM}.zenodo.json"
 
 FILES = [
-    f"{PAP}/{STEM}.md",
-    f"{PAP}/pdf/{STEM}.pdf",
-    "nbody_2026/stage58_x_to_q0_2026.py",
-    "nbody_2026/stage58_ev_q0pin_lane_2026.py",
-    "nbody_2026/stage56_xpin_verdict_2026.py",
-    "nbody_2026/stage57_sz21_corrected_refile_2026.py",
-    "nbody_2026/stage59_local_a0_verdict_2026.py",
+    "opus_48_extended_research/papers/DR4_TARGET_UNDER_LOCAL_A0.md",
+    "opus_48_extended_research/papers/pdf/DR4_TARGET_UNDER_LOCAL_A0.pdf",
     "nbody_2026/stage61_drain_reading_fork_2026.py",
-    "nbody_2026/stage62_cmb_horn_oom_2026.py",
-    "nbody_2026/stage63_cell3_transport_1p1d_2026.py",
+    "nbody_2026/stage64_efe_two_body_exact_2026.py",
 ]
 
 EMAIL_RE = re.compile(r"[\w.+-]+@[\w-]+\.[\w.]{2,}")
@@ -104,10 +97,7 @@ def guards():
         sys.exit("ERROR: an e-mail address appears in creators -- refusing")
     print(f"[guard] METADATA-SANE ok: {meta['title'][:60]!r} v{meta['version']}")
 
-    md_files = [f for f in FILES if f.endswith(".md")]
-    assert md_files, "no markdown in FILES -- the NO-PII scan needs one"
-    blob = open(os.path.join(REPO, META_PATH)).read() + "".join(
-        open(os.path.join(REPO, f), encoding="utf-8").read() for f in md_files)
+    blob = open(os.path.join(REPO, META_PATH)).read() + open(os.path.join(REPO, FILES[0])).read()
     hits = EMAIL_RE.findall(blob) + PHONE_RE.findall(blob)
     if hits:
         sys.exit(f"ERROR: NO-PII guard tripped, {len(hits)} match(es): {sorted(set(hits))[:5]}")
@@ -129,7 +119,7 @@ def guards():
 def main():
     mode = sys.argv[1] if len(sys.argv) > 1 else "--dry-run"
     if mode not in ("--dry-run", "--publish"):
-        sys.exit("usage: python zenodo_newdeposit_rapidity_gap.py [--dry-run | --publish]")
+        sys.exit("usage: python zenodo_newdeposit_dr4note.py [--dry-run | --publish]")
 
     meta = guards()
     if mode == "--dry-run":
@@ -141,27 +131,11 @@ def main():
         return 0
 
     tok = token()
-    st, r = req("POST", f"{BASE}/deposit/depositions/{RID}/actions/newversion", tok)
+    st, d = req("POST", f"{BASE}/deposit/depositions", tok, data={})
     if st not in (200, 201):
-        sys.exit(f"newversion failed [{st}]: {r}")
-    draft_url = r["links"].get("latest_draft") or r["links"].get("draft")
-    st, d = req("GET", draft_url, tok)
-    if st != 200:
-        sys.exit(f"draft fetch failed [{st}]: {d}")
+        sys.exit(f"create failed [{st}]: {d}")
     did, bucket = d["id"], d["links"]["bucket"]
-    prev = str((d.get("metadata") or {}).get("version", ""))
-    print(f"[pub] draft {did} from record {RID} (prev version {prev!r})")
-
-    inherited = sorted(f.get("filename") for f in d.get("files", []))
-    want_names = sorted(os.path.basename(f) for f in FILES)
-    dropped = [n for n in inherited if n not in want_names]
-    if dropped:
-        sys.exit(f"ERROR: SUPERSET guard -- would DROP {dropped}")
-    print(f"[pub] SUPERSET ok: all {len(inherited)} inherited files present in the new {len(FILES)}")
-    for f in d.get("files", []):
-        req("DELETE", f"{BASE}/deposit/depositions/{did}/files/{f.get('id')}", tok)
-    if str(meta.get("version", "")) == prev:
-        sys.exit(f"ERROR: version {prev!r} unchanged -- refusing")
+    print(f"[pub] created draft {did}")
 
     for rel in FILES:
         p = os.path.join(REPO, rel)

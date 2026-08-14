@@ -139,19 +139,26 @@ bridge = open(os.path.join(ROOT, "real_research", "bridge1_aest_equations.md")).
 missing = {
     "E := alphadot + Psi (the paper's own definition of E)": "\\dot\\alpha",
     "A_mu = {-1-Psi, grad_i alpha} (alpha = the aether scalar perturbation)": "\\hat A_\\mu",
-    "Eq (9), the definition of delta -- carries the SAME bracket": "c_{ad}",
+    "the delta-definition (tex Eq 7; mislabelled Eq 9 at filing) -- same bracket": "c_{ad}",
     "the full Eq-12 source (the elided [...])": "3c_{ad}",
 }
 for lab, probe in missing.items():
     info(f"C0  bridge1 contains '{probe}': {probe in bridge}   <- {lab}")
-check(sum(probe in bridge for probe in missing.values()) <= 1,
-      "C1  CONFIRMED: real_research/bridge1_aest_equations.md omits E's definition, the aether "
-      "perturbation ansatz, Eq (9), and Eq 12's full source -- four load-bearing omissions",
-      "its own closing line reads 'Verify exact coefficients against the published PDF before "
-      "coding'.  Stage 55 coded against it WITHOUT doing that; this is the root cause of the "
-      "whole withdrawal, and the fix is to complete the .md from the arXiv source")
+# HISTORY: at stage-57 filing (2026-08-13) this check read `sum(...) <= 1` and CONFIRMED the four
+# omissions.  On 2026-08-14 the .md was completed verbatim from the arXiv LaTeX source
+# (arxiv.org/e-print/2007.00082), so the check now asserts the REPAIRED state: all four pieces
+# present, plus the completion banner.  The omissions themselves remain the recorded root cause.
+n_present = sum(probe in bridge for probe in missing.values())
+check(n_present == len(missing) and "COMPLETED 2026-08-14" in bridge,
+      "C1  the four load-bearing omissions (E's definition, the aether ansatz, Eq (9), Eq 12's "
+      f"full source) are now CLOSED in bridge1_aest_equations.md ({n_present}/4 present, "
+      "completion banner found); at stage-57 filing time they were CONFIRMED ABSENT",
+      "the omissions were the root cause of the stage-55 withdrawal: it coded against the "
+      "incomplete transcription without checking the PDF, exactly what the file's own closing "
+      "line warned against.  Completed from the LaTeX source, not a web fetch")
 check(True,
-      "C2  THE IDENTITY THE OMISSION HID: Eq (9) puts the SAME bracket into delta, so "
+      "C2  THE IDENTITY THE OMISSION HID: the delta-definition (tex Eq (7); this stage originally "
+      "said Eq (9) -- a mislabel corrected 2026-08-14) puts the SAME bracket into delta, so "
       "substituting it into Eq 11 gives Pi = (1+w) gamma / phibardot EXACTLY -- the bracket "
       "cancels out of the PRESSURE.  Any future use must attach it to DELTA",
       "this is why 'the bracket's Laplacian IS the non-standard pressure' was false")
