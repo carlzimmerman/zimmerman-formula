@@ -1,24 +1,44 @@
-# The Zimmerman Programme — a directory
+# The Zimmerman Programme
 
 **One claim: the galactic acceleration scale is set by the dark-energy density.**
 
-$$a_0 \;=\; \kappa\,c\sqrt{G\rho_\Lambda}\;=\;\frac{cH_\Lambda}{Z},
-\qquad \kappa=\tfrac12,\qquad Z=\sqrt{32\pi/3}=5.78881,
-\qquad a_0 = 9.36\times10^{-11}\ \mathrm{m\,s^{-2}}$$
+$$a_0 \;=\; \kappa\,c\sqrt{G\rho_\Lambda}\;=\;c^2\sqrt{\frac{\Lambda}{32\pi}}\;=\;9.3619\times10^{-11}\ \mathrm{m\,s^{-2}}$$
 
-Operative arm since 2026-08-08: **modified gravity** (the modified-inertia arm is closed — excluded
-21σ by lensing), with the Route A kernel $\nu(y)=1/(1-e^{-\sqrt y})$ (form: McGaugh–Lelli–Schombert
-2016, credited). Prior art on the arm verdict: Banik & Zhao's review
-([arXiv:2110.06936](https://arxiv.org/abs/2110.06936), §2.5–2.6) argued the modified-gravity
-preference — including lensing tracking dynamics — before this programme's quantitative kill.
-Full relativistic realisation: §3 below.
+Plain text, for the record: `a0 = kappa * c * sqrt(G * rho_Lambda) = c^2 * sqrt(Lambda / (32 pi)) = 9.36e-11 m/s^2`, with κ = ½ **adopted** — measured **0.551 ± 0.043** by a distance-free method (fitted, **not derived**; four candidate coefficients sit inside 2σ). Alternative footing (ρ_total, cH₀): a₀ = 1.1279×10⁻¹⁰ — every dimensional result in this repository is quoted on both footings.
+
+The exact algebraic law (the **a₀-line**) and the operative interpolation kernel:
+
+$$g_{\rm obs}^2-g_{\rm bar}^2=a_0\,g_{\rm bar}
+\qquad\Longleftrightarrow\qquad
+g_{\rm obs}=\sqrt{g_{\rm bar}^2+a_0\,g_{\rm bar}}\,,
+\qquad
+\nu(y)=\frac{1}{1-e^{-\sqrt{y}}}$$
+
+(kernel form: **Milgrom & Sanders 2008**, ApJ 678, 131, Eq. 13 at α = ½ — adopted by McGaugh–Lelli–Schombert 2016; credited, not claimed). Operative arm since 2026-08-08: **modified gravity** — the modified-inertia arm is closed, excluded 21σ by lensing. Prior art on the arm verdict: Banik & Zhao ([arXiv:2110.06936](https://arxiv.org/abs/2110.06936), §2.5–2.6).
+
+**The relativistic realisation** embeds the scale in Aether-Scalar-Tensor theory (Skordis & Złośnik 2021, PRL **127** 161302 — theirs, credited) with one structural promotion — **the MOND scale is the dark sector's pressure**:
+
+$$\boxed{\;\mathcal{A}(\mathcal{Q})\equiv a_0^2(\mathcal{Q})=\kappa^2\,G\,\bigl(-\mathcal{K}(\mathcal{Q})\bigr)\;}
+\qquad
+\mathcal{K}(\mathcal{Q})=-M^4+\mu^2\Lambda_D^2\left[1-\sqrt{1-\frac{(\mathcal{Q}-\mathcal{Q}_0)^2}{\Lambda_D^2}}\right]$$
+
+an offset-DBI with β ≡ μ²Λ_D²/M⁴ = 1 (selected, not derived). Since p = 𝒦 identically and −𝒦 = ρ_Λ today, the a₀ normalisation above is reproduced to the digit, **w = −1 stays exact**, and the redshift law is **derived, not imposed**:
+
+$$\frac{a_0^2(z)}{a_0^2(0)}=\frac{\sqrt{1+\nu_0^2}}{\sqrt{1+\nu_0^2\,(1+z)^6}}\,,
+\qquad z_t=\nu_0^{-1/3}-1\in[17,35]$$
+
+— constant to <1% everywhere MOND is tested (z ≤ 5), **off at recombination as an output** (a₀ falls to 0.002–0.006 of today's value), so the CMB's dust-like clustering is a prediction, not an accommodation. Newest result (2026-08-14): AeST's free background rate is **pinned by galaxy-scale phenomenology alone**, in observables where a₀ cancels identically:
+
+$$\mathcal{Q}_0=\frac{g_{\rm tot}-g_N}{c\,v}\;\approx\;2.4\times10^{-3}\,\text{–}\,1.5\times10^{-2}\ \mathrm{Mpc}^{-1}$$
+
+interior to Skordis & Złośnik's own CMB fits, containing both their MOND-compatible parameter sets and excluding their MOND-incompatible one ([DOI 10.5281/zenodo.21937958](https://doi.org/10.5281/zenodo.21937958)).
 
 > ### ⚠️ Read this first
 >
 > **This is not a theory of everything.** All theory-of-everything and Standard-Model claims were
-> **publicly retracted 2026-06-23** — see [RETRACTIONS.md](RETRACTIONS.md). Material from the earlier
-> automated effort is kept for the record under [`ai_slop/`](ai_slop/), marked, and is **not part of the
-> audited programme**.
+> **publicly retracted 2026-06-23** — see [RETRACTIONS.md](RETRACTIONS.md), which records every
+> withdrawn claim, dated, including material from an earlier automated effort that is **not part of
+> the audited programme**.
 >
 > **Credit — and it is larger than this repository used to say.** The law
 > $g_{\rm obs}^2=g_{\rm bar}^2+a_0g_{\rm bar}$ is **not merely the same interpolating kernel** as
@@ -30,9 +50,9 @@ Full relativistic realisation: §3 below.
 > arXiv:2601.04290 — the same formula, coefficient 8% away).
 >
 > **So what is this programme's?** A **re-normalisation of the coefficient to fit data**
-> ($\kappa=\tfrac12$ against Milgrom's derived 2, which is $2Z=11.58\times$ larger), the
-> **modified-inertia completion**, and the structural results in §2 below. Not a derivation of the law,
-> and not a derivation of its scale.
+> ($\kappa=\tfrac12$ against Milgrom's derived 2), the **pressure promotion 𝒜(𝒬) and its derived
+> a₀(z) law**, the **𝒬₀ pin**, the **frozen wide-binary pre-registration**, and the structural
+> results below. Not a derivation of the law, and not a derivation of its scale.
 >
 > **→ [STANDING.md](STANDING.md) is the single source of truth.** If anything here conflicts with it,
 > STANDING is newer.
@@ -43,10 +63,10 @@ Full relativistic realisation: §3 below.
 
 | document | what it is |
 |---|---|
-| **[STANDING.md](STANDING.md)** | **The entry point.** Claim · earned · postulated · 5 live fronts · 15 closed doors · open liabilities · retractions in force. |
+| **[STANDING.md](STANDING.md)** | **The entry point.** Claim · earned · postulated · live fronts · closed doors · open liabilities · retractions in force. |
 | [RETRACTIONS.md](RETRACTIONS.md) | Every withdrawn claim, dated. |
 | [INTEGRITY_AUDIT.md](INTEGRITY_AUDIT.md) | Audit trail on the corpus itself. |
-| [ERRATA_GEMINI_TASKS_2026-07-16.md](ERRATA_GEMINI_TASKS_2026-07-16.md) | Errata from delegated-work audits. |
+| [CITATION.cff](CITATION.cff) · [LICENSE.md](LICENSE.md) | How to cite; code AGPL-3.0, content CC-BY-4.0. |
 
 ---
 
@@ -55,80 +75,67 @@ Full relativistic realisation: §3 below.
 Ordered by how much survives scrutiny. Each entry links the working directory and the paper.
 
 ### 1 · The coefficient reduction and the a₀ line
-The cleanest earned results. $a_0=\kappa c\sqrt{G\rho_\Lambda}$ makes every $\pi$, the 32 and the 3
-cancel, and $g_{\rm obs}^2-g_{\rm bar}^2=a_0g_{\rm bar}$ is an exact identity.
-**RAR fit: 0.108 dex on SPARC** at Υ=0.70 — beating regular MOND's 0.122–0.140 on the framework's own
-footing. This number is untouched by everything below.
-[`prep_2026/a0_line/`](prep_2026/a0_line/) · [`a0_line_mlpriors/`](prep_2026/a0_line_mlpriors/) · [`a0_line_trgb/`](prep_2026/a0_line_trgb/) · paper [THE_COSMOLOGICAL_CONSTANT_SETS_A0.md](opus_48_extended_research/papers/THE_COSMOLOGICAL_CONSTANT_SETS_A0.md)
+$a_0=\kappa c\sqrt{G\rho_\Lambda}$ makes every $\pi$, the 32 and the 3 cancel, and
+$g_{\rm obs}^2-g_{\rm bar}^2=a_0g_{\rm bar}$ is an exact identity.
+**RAR fit: 0.108 dex on SPARC** at Υ = 0.70 — the anchored a₀ costs *nothing* against a fitted one
+(anchoring is cost-free, not "better"; both are indistinguishable after Υ-refit). κ is **measured**:
+0.551 ± 0.043 distance-free, 0.465 ± 0.076 from the BTFR.
+[`prep_2026/a0_line/`](prep_2026/a0_line/) · paper [THE_COSMOLOGICAL_CONSTANT_SETS_A0.md](opus_48_extended_research/papers/THE_COSMOLOGICAL_CONSTANT_SETS_A0.md)
 
-### 2 · Structural theorems for the closure — **the most defensible novel content**
-Seven machine-verified results; five are prohibitions that *remove* free content.
-**Paper: [MI_STRUCTURAL_THEOREMS.md](opus_48_extended_research/papers/MI_STRUCTURAL_THEOREMS.md) · DOI [10.5281/zenodo.21708842](https://doi.org/10.5281/zenodo.21708842)** (v2)
-- **Thm 1** first moment, worldline-general — [`mi_dcac_split_settled_2026.py`](real_research/reviews/mi_dcac_split_settled_2026.py)
-- **Thm 2** $\mathrm{Im}\,K\equiv0$ ⇒ MOND amplitude and dissipation **mutually exclusive**; the sign postulate is **demoted** to unobservable
-- **Thm 3** no *local* higher-derivative action reproduces the law ⇒ nonlocality is **required** — [`mi_closure_vs_action_gap_2026.py`](real_research/reviews/mi_closure_vs_action_gap_2026.py)
-- **Thm 4** MI **cannot** modify the FRW background — [`mi_channelA_friedmann_2026.py`](real_research/reviews/mi_channelA_friedmann_2026.py)
-- **Thm 5** the EFE is quadrature with a **vector** cross term ⇒ a **footing-free** rotation-curve dipole, 4.2–22.3%, attractor-faster — [`mi_efe_derived_general_2026.py`](real_research/reviews/mi_efe_derived_general_2026.py). *This is the one prediction that is both distinctive and MI-favourable.*
+### 2 · The field theory — THE COMPLETION (v9)
+The full action, the pressure promotion, the derived a₀(z), and the no-ghost/c_T = 1 health
+results — with the non-claims led by "κ = ½ NOT DERIVED".
+Verified (all script-backed): CLASS CMB pass (0.01σ vs cosmic variance) · lensing 21.2σ → 0.6σ with
+γ_PPN = 1 · c_T = 1 exact · no-ghost theorem · RAR 0.108 dex · BTFR · solar system ·
+**pure-framework weak-lensing RAR 40 kpc–2.2 Mpc, χ²/dof = 2.03 canonical / 0.94 alt, no dark
+component** (real KiDS data, and the same fit *rejects* adding one).
+Honest limits: **dark matter exists at full Ω_dm** — the only slogan is "no dark-matter *particle*";
+whether galaxies keep their captured charge is the programme's named open problem, and the candidate
+mechanisms are being closed one by one in the open (stages 53–64).
+**Paper: [THE_COMPLETION.md](opus_48_extended_research/papers/THE_COMPLETION.md) · v9 DOI [10.5281/zenodo.21895046](https://doi.org/10.5281/zenodo.21895046)** (concept [21863521](https://doi.org/10.5281/zenodo.21863521)) · plain-language companion [10.5281/zenodo.21865866](https://doi.org/10.5281/zenodo.21865866) · evidence: [`nbody_2026/`](nbody_2026/), every stage green.
 
-### 3 · The field theory — THE COMPLETION (v7)
-
-The coefficient — value **and now redshift dependence** — sits inside a complete relativistic action.
-The scaffold is **Aether-Scalar-Tensor** (Skordis & Złośnik 2021, PRL **127** 161302 — theirs, credited);
-the content is the free function:
-
-$$S=\int d^4x\sqrt{-g}\left\{\frac{R-2\Lambda_{\rm bare}}{16\pi G}+\mathcal{L}^{\rm AeST}_{\rm aether}[A,g]+\frac{\mathcal{A}(Q)}{8\pi G}\,\mathcal{F}_Y\!\left(\frac{Y}{\mathcal{A}(Q)}\right)+K(Q)+A_{\rm b}\,\frac{Y/\mathcal{A}(Q)}{\left(1+Y/\mathcal{A}(Q)\right)^{2}}\,(Q-Q_0)^2\right\}+S_{\rm m}[g,\psi]$$
-
-$$K(Q)=-M^4\sqrt{1-\frac{\mu^2\,(Q-Q_0)^2}{M^4}},\qquad\boxed{\;\mathcal{A}(Q)\equiv a_0^2(Q)=\kappa^2\,G\,\big(-K(Q)\big)\;}$$
-
-with $Q\equiv A^\mu\nabla_\mu\varphi$, $Y\equiv(g^{\mu\nu}+A^\mu A^\nu)\nabla_\mu\varphi\nabla_\nu\varphi$,
-$A^\mu A_\mu=-1$; $\mathcal{F}_Y$ = the Route A kernel in AQUAL form ($\mu(u)=1-e^{-u}$; form:
-MLS 2016); the last term is the a₀-bump cluster response.
-
-- **The MOND scale is the dark sector's pressure** ($p=K$ is an identity). Today $-K=\rho_\Lambda$:
-  $a_0=\kappa c\sqrt{G\rho_\Lambda}=9.36\times10^{-11}$ m s⁻², κ = ½ **fitted, not derived**.
-- **(v7) a₀(z) is derived, not imposed**: $a_0^2(z)/a_0^2(0)=\sqrt{1+\nu_0^2}/\sqrt{1+\nu_0^2(1+z)^6}$ —
-  constant to <1% for z ≤ 5, MOND **off at recombination as an output**, with **w = −1 exact preserved**
-  (the vacuum never rolls; the *total* pressure evolves).
-- The single square root **is** the v7 relation μ²Λ_D² = M⁴ (a pure DBI — the Lagrangian is the brane
-  volume element). **Selected** by the CMB off-switch, not derived.
-- Verified (all script-backed): CLASS CMB pass · lensing 21.2σ → 0.6σ, γ_PPN = 1 · c_T = 1 exact ·
-  no-ghost **theorem**, transferring to the v7 mixing · RAR 0.108 dex · BTFR · solar system ·
-  weak-lensing RAR 40 kpc–2.2 Mpc with no dark component, χ²/dof ≈ 1–2.
-- Honest limits: **dark matter exists at full Ω_dm** — the only slogan is "no dark-matter *particle*";
-  β = 1 selected; CLASS re-run with the derived law owed; DESI's evolving-w preference is unreachable
-  (w ≥ −1 always) and remains a standing tension against w = −1 exact.
-
-**Paper: [THE_COMPLETION.md](opus_48_extended_research/papers/THE_COMPLETION.md) · v7 DOI [10.5281/zenodo.21877698](https://doi.org/10.5281/zenodo.21877698)** (concept [21863521](https://doi.org/10.5281/zenodo.21863521)) · plain-language companion DOI [10.5281/zenodo.21865866](https://doi.org/10.5281/zenodo.21865866) · evidence: `nbody_2026/` stages 1–18, every stage green.
-
-<details><summary>MI-era status (superseded 2026-08-08, kept for the record)</summary>
-
-[`prep_2026/mi_field_theory/`](prep_2026/mi_field_theory/) · [`mi_fingerprint/`](prep_2026/mi_fingerprint/) · [`mi_kernel_argument/`](prep_2026/mi_kernel_argument/) · [`kernel_fingerprint/`](prep_2026/kernel_fingerprint/)
-The MI law is *not* the Euler–Lagrange equation of the published action (Thm 8). It **is**
-variational in a nonlocal **non-quadratic** class — Milgrom's own virial result (astro-ph/0510117) —
-but only on the circular slice, and that class is not uniquely determined.
-See [`mi_three_corrections_priorart_2026.py`](real_research/reviews/mi_three_corrections_priorart_2026.py).
-</details>
+### 3 · Pinning AeST's free parameter — the 𝒬₀ pin
+AeST's authors state the dark-sector density is "not (classically) predicted"; its published fits
+span four orders of magnitude in 𝒬₀. Three framework commitments collapse that freedom to one
+parameter, and galaxy-scale phenomenology fixes it: **𝒬₀ ≈ 2.4×10⁻³–1.5×10⁻² Mpc⁻¹** — with the
+corroboration that both MOND-compatible published CMB fits land inside the band and the
+MOND-incompatible one lands outside, though no CMB information entered the derivation. The pin is
+**a₀-free in observables** (the local-a₀ challenge was raised by the author and adjudicated in the
+open), and it survived its strongest internal test: a candidate transport mechanism that would have
+drained the halo turns out to be inconsistent with the pin that calibrates it — a fixed-point
+result that closed a door and defended the pin in the same move.
+**Paper: [PINNING_Q0_IN_AEST.md](opus_48_extended_research/papers/PINNING_Q0_IN_AEST.md) · v4 DOI [10.5281/zenodo.21937958](https://doi.org/10.5281/zenodo.21937958)** (concept [21935942](https://doi.org/10.5281/zenodo.21935942)) · scripts: [`nbody_2026/`](nbody_2026/) stages 56–63.
 
 ### 4 · Wide binaries — the sharpest live front
-[`prep_2026/gaia_dr4_prep/`](prep_2026/gaia_dr4_prep/) — **frozen, hash-stamped pre-registration** with amendments, all filed *before* data · paper DOI [10.5281/zenodo.21702746](https://doi.org/10.5281/zenodo.21702746)
-**Clock: Gaia DR4, ~Dec 2026.** ⚠️ The literature disagrees violently on this exact quantity — Banik+24
-reports **19σ for Newtonian**; Chae 2023 reports force γ = 1.43 ± 0.06. That disagreement is **13×** the
-frozen systematic allowance, which is why Amendment 3 splits the budget one-sided.
+[`prep_2026/gaia_dr4_prep/`](prep_2026/gaia_dr4_prep/) — **frozen, hash-stamped pre-registration**,
+ten amendments, all filed *before* data. **In force (Amendment 10): γ_v = 1.1614–1.1814 canonical /
+1.1917–1.2267 alt**, no-verdict edge 1.23, built on the full nonlinear AQUAL-EFE solve (the
+registered point-response number was killed by its own solve — largest eigenvalue declared
+isotropic — and replaced by a computed band, in the open, before data). **Clock: Gaia DR4,
+~Dec 2026.** Newest (2026-08-14): the EFE-present *exact two-body* solve shows the band top is
+conservative **and** a sub-band reading is more likely — both directions stated; and under the
+framework's own local-a₀ structure DR4 doubles as a *conditional* charge meter.
+**New note: [DR4_TARGET_UNDER_LOCAL_A0.md](opus_48_extended_research/papers/DR4_TARGET_UNDER_LOCAL_A0.md) · DOI [10.5281/zenodo.21937976](https://doi.org/10.5281/zenodo.21937976).**
+⚠️ The literature disagrees violently on this quantity — Banik+24 reports 19σ Newtonian; Chae 2023
+reports γ = 1.43 ± 0.06 — which is why the systematic budget is split one-sided.
 
-### 5 · Clusters, a₀(z), and the closed fronts
-[`prep_2026/a0z_crossscale/`](prep_2026/a0z_crossscale/) · [`a0z_from_sne/`](prep_2026/a0z_from_sne/) · [`cluster_efe_channel/`](prep_2026/cluster_efe_channel/) · [`cluster_kink_spec/`](prep_2026/cluster_kink_spec/)
-Papers: [A0Z_DESI_DARK_ENERGY_SCALE.md](opus_48_extended_research/papers/A0Z_DESI_DARK_ENERGY_SCALE.md) · [CLUSTER_RESIDUAL_DENSITY_NOGO.md](opus_48_extended_research/papers/CLUSTER_RESIDUAL_DENSITY_NOGO.md) (DOI [10.5281/zenodo.20779562](https://doi.org/10.5281/zenodo.20779562))
-The cluster residual is **real but shared** across the whole relativistic-MOND family — not
-framework-specific, not a kill.
+### 5 · The BTFR discriminator and a₀(z) fronts
+The derived a₀(z) law predicts **<2×10⁻⁴ dex** of BTFR zero-point evolution at z ≤ 5 (flat below
+z_t) — so the observed 1 < z < 5 null is a *prediction*, while the naive a₀ ∝ cH(z) reading is
+disfavoured ~2.3σ with two wrong-sign tests. Pre-stated falsification bars: **0.15 dex** (HI,
+gas-dominated, z ≤ 1) / **0.33** ([CII], z ~ 2–5) / **0.44** (stellar); SKA-mid/ngVLA reach
+decisive power. Any robust a₀ evolution below z ~ 5 falsifies the law — either sign.
+[`nbody_2026/stage60_btfr_discriminator_2026.py`](nbody_2026/stage60_btfr_discriminator_2026.py) · cross-scale: [`prep_2026/a0z_crossscale/`](prep_2026/a0z_crossscale/)
 
-### 6 · Nulls, published as nulls — **the part most worth reading**
+### 6 · Structural theorems (MI era, kept for the record)
+Seven machine-verified results on the closed modified-inertia arm; five are prohibitions.
+**Paper: [MI_STRUCTURAL_THEOREMS.md](opus_48_extended_research/papers/MI_STRUCTURAL_THEOREMS.md) · DOI [10.5281/zenodo.21708842](https://doi.org/10.5281/zenodo.21708842)** — the worldline
+test-particle theory survives as mathematics; the arm is closed as physics.
+
+### 7 · Nulls, published as nulls — **the part most worth reading**
 - [`project_atomos/`](project_atomos/) — exhaustive Standard-Model parameter search, **null**, DOI [10.5281/zenodo.21654272](https://doi.org/10.5281/zenodo.21654272), published *after* an audit withdrew two of its own claims
-- κ-forcing closed: [KAPPA_ONE_PARAMETER_GEOMETRY.md](opus_48_extended_research/papers/KAPPA_ONE_PARAMETER_GEOMETRY.md)
-- **Z carries no geometry:** [`reviews/z_numerology_density_2026.py`](reviews/z_numerology_density_2026.py) — closed forms in π at complexity ≤ 4 cover **100%** of targets in [3,12] to 1%; at the real ±16% precision **9,912** expressions match a₀, and `cH₀/7` fits to **0.056%**. $Z=\sqrt{8\pi/3}/\kappa$, so Z carries exactly one bit beyond κ.
-- [THE_SEARCH_WAS_NEVER_WASTED.md](opus_48_extended_research/papers/THE_SEARCH_WAS_NEVER_WASTED.md)
-
-### 7 · Kit and tooling
-[`a0kit/`](a0kit/) · [`real_research/predictions/`](real_research/predictions/) · [`prep_2026/equation_book/`](prep_2026/equation_book/)
+- **Z carries no geometry:** at the real ±16% precision **9,912** expressions match a₀; $Z=\sqrt{8\pi/3}/\kappa$ carries exactly one bit beyond κ — [`reviews/z_numerology_density_2026.py`](reviews/z_numerology_density_2026.py)
+- κ-forcing closed: [KAPPA_ONE_PARAMETER_GEOMETRY.md](opus_48_extended_research/papers/KAPPA_ONE_PARAMETER_GEOMETRY.md) · [THE_SEARCH_WAS_NEVER_WASTED.md](opus_48_extended_research/papers/THE_SEARCH_WAS_NEVER_WASTED.md)
 
 ---
 
@@ -136,18 +143,30 @@ framework-specific, not a kill.
 
 Enforced by the scripts, not by trust.
 
-1. **Test the framework on its own terms** — modified *inertia*, horizon-derived a₀, its own interpolation. Never through the standard-MOND lens; never McGaugh's ν.
+1. **Test the framework on its own terms** — modified gravity (since 2026-08-08), horizon-derived a₀, its own interpolation. Never through the standard-MOND lens.
 2. **Verify a deficit as rigorously as a win.** Manufacture neither.
-3. **Both a₀ footings on every dimensional number** — canonical ρ_DE (9.36e-11), alternative ρ_total (1.13e-10) — and show the spread.
+3. **Both a₀ footings on every dimensional number** — canonical ρ_DE (9.36×10⁻¹¹), alternative ρ_total (1.13×10⁻¹⁰) — and show the spread.
 4. **Every load-bearing claim gets a committed, runnable script** that exits non-zero on a failed internal check. No hard-coded verdicts.
 5. **Never say "the theory is closed."**
 6. **Amend frozen pre-registrations in the open, before data.**
-7. **Cite or flag** — any number not traced to a script or a cited paper is marked unverified.
-8. **Nothing personal in this repository.**
+7. **Adversarial refereeing before commit** — findings land only after an independent attempt to refute them, and refuted drafts are withdrawn with banners, not silent edits.
+8. **Cite or flag** — any number not traced to a script or a cited paper is marked unverified.
+9. **Nothing personal in this repository.**
 
 ---
 
 ## Publication record
+
+[![THE COMPLETION v9](https://img.shields.io/badge/THE%20COMPLETION%20v9-10.5281%2Fzenodo.21895046-red)](https://doi.org/10.5281/zenodo.21895046)
+[![Q0 Pin v4](https://img.shields.io/badge/Pinning%20AeST's%20Q0%20(v4%2C%20Aug%2014%202026)-10.5281%2Fzenodo.21937958-red)](https://doi.org/10.5281/zenodo.21937958)
+[![DR4 under local a0](https://img.shields.io/badge/DR4%20Target%20under%20Local%20a0%20(Aug%2014%202026)-10.5281%2Fzenodo.21937976-red)](https://doi.org/10.5281/zenodo.21937976)
+[![DR4 Pre-registration](https://img.shields.io/badge/Gaia%20DR4%20Pre--registration-10.5281%2Fzenodo.21702746-black)](https://doi.org/10.5281/zenodo.21702746)
+[![MI Structural Theorems](https://img.shields.io/badge/MI%20Structural%20Theorems%20(v2)-10.5281%2Fzenodo.21708842-blueviolet)](https://doi.org/10.5281/zenodo.21708842)
+[![Atomos Null](https://img.shields.io/badge/Atomos%20SM%20Search%20%E2%80%94%20NULL%20(v2)-10.5281%2Fzenodo.21654272-lightgrey)](https://doi.org/10.5281/zenodo.21654272)
+[![License](https://img.shields.io/badge/code-AGPL--3.0-lightgrey)](LICENSE)
+[![Content License](https://img.shields.io/badge/content-CC--BY--4.0-lightgrey)](LICENSE.md)
+
+<details><summary>Full chronological badge wall (2026 record)</summary>
 
 [![Paper DOI](https://img.shields.io/badge/Paper-10.5281%2Fzenodo.20576485-blue)](https://doi.org/10.5281/zenodo.20576485)
 [![Falsification Map DOI](https://img.shields.io/badge/Falsification%20Map%20(June%202026)-10.5281%2Fzenodo.20670670-blueviolet)](https://doi.org/10.5281/zenodo.20670670)
@@ -181,8 +200,16 @@ Enforced by the scripts, not by trust.
 [![TDG History DOI](https://img.shields.io/badge/Tidal%20Dwarfs%20%26%20History--Dependent%20Inertia%20(July%2020%202026)-10.5281%2Fzenodo.21461435-red)](https://doi.org/10.5281/zenodo.21461435)
 [![Rubin Pre-Reg DOI](https://img.shields.io/badge/Pre--Registered%20a0(z)%20Gate%20vs%20Rubin%2FLSST%20SNe%20(July%2021%202026)-10.5281%2Fzenodo.21478568-black)](https://doi.org/10.5281/zenodo.21478568)
 [![Corpus DOI](https://img.shields.io/badge/Code%20%26%20Data-10.5281%2Fzenodo.20576494-blue)](https://doi.org/10.5281/zenodo.20576494)
-[![Paper PDF](https://img.shields.io/badge/PDF-read%20the%20paper-success)](real_research/papers/ZIMMERMAN_THEORY_OF_GRAVITY.pdf)
-[![License](https://img.shields.io/badge/code-AGPL--3.0-lightgrey)](LICENSE)
-## Licence
 
-Code [AGPL-3.0](LICENSE) · papers and text CC-BY-4.0 on Zenodo.
+</details>
+
+---
+
+## Citation and licence
+
+Cite the repository via [CITATION.cff](CITATION.cff) (GitHub's "Cite this repository" button), or
+cite individual papers by their Zenodo DOIs above.
+
+**Code: [AGPL-3.0](LICENSE). Prose, papers, figures, and scientific content: CC-BY-4.0.**
+Details: [LICENSE.md](LICENSE.md). Author: Carl P. Zimmerman (Briar Creek Tech),
+ORCID [0009-0008-3508-7982](https://orcid.org/0009-0008-3508-7982).
