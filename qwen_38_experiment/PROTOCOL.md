@@ -94,3 +94,14 @@ S5. No extended/deep reasoning modes. Draft the script within the first few step
 S6. T085 (the canary) is PREBUILT in runs/. Session one is just:
     `python harness.py runs/t085_kernel_regression.py "qwenlib regression pins"`,
     grade the row, move to T081.
+
+## The three streams (dispatched by next_duty.py -- never self-schedule)
+
+1. NUMBERED TASKS (T001-T120 + TASKS_SEEDED.md) -- the pre-scoped experiments.
+2. THE MONKEYS (mm_search.py) -- wide numeric search, engine-side, FDR automatic.
+   The session's whole job: run the command, read 3 lines, ledger the surplus.
+3. SEEDED IDEAS (idea_seed.py) -- random collisions -> charitable interpretation ->
+   BLIND refereeing in a separate fresh session (read ONLY the file the dispatcher
+   names) -> promotion to a spec'd task only after the blind PURSUE.
+Symmetric honesty in all three: nothing is dismissed by authority, nothing is promoted
+by beauty. The surplus number and the pre-stated criteria decide. Ledger everything.

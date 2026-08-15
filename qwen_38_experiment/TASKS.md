@@ -385,3 +385,58 @@ CONFIRMED result that survived refutation, every door closed, every escalation
 pending; regenerate OPEN_THREADS ranked by (evidence surplus × decisiveness); propose
 the next 100 tasks as one-liners. PASS: the file. This is the handoff artifact for
 Carl and the frontier model.
+
+---
+
+## M · The million-monkeys programme (T101–T120) — engine-driven, FDR-armored
+
+The engine is `mm_search.py` (bounded RAM, deterministic, chance baseline built in —
+the session just launches it and records the 3-line summary). Targets: `targets_sm.py`
+(24 high-precision SM/cosmology numbers) + `targets_zimmerman.py` (the framework's own,
+tautology-graded). STANDING PRIOR, stated before any search: the corpus's number-field
+obstruction (Z carries √π, flavor data are algebraic) and the walled SM bridge — searches
+are PERMITTED, but a surplus is a CANDIDATE-ESCALATE, never a claim. Symmetric honesty:
+no candidate is discarded by authority either — the surplus number decides.
+
+**T101 — Verify the targets table.** Cross-check every `targets_sm.py` entry marked
+(VERIFY) for internal consistency (ratios vs masses, sin² vs angles); note any entry
+needing a PDG re-check in the ledger. PASS: the consistency table.
+**T102–T108 — Base-pack sweeps.** One task per group, `--pack base --cmax 5`:
+couplings (alpha_inv, alpha_s_MZ, sin2thW_msbar); mass ratios (mmu/me, mtau/mmu, mp/me,
+mn/mp); CKM (lambda, A, rhobar, etabar, delta); PMNS (three sin² + delta); EW shape
+(mW/mZ, mH/v, yt); cosmology (ns, omega_b_h2, omega_c_h2); koide_Q + one rerun of each
+surplus>3 target at cmax 6. Record every surplus, NULL expected almost everywhere.
+**T109 — Controls audit.** Positive control: koide_Q must find 2/3 with surplus >> 1
+(it does — prebuilt smoke test). Negative control: run 5 CONVENTION-grade targets and
+confirm the engine REFUSES them. PASS: both controls green.
+**T110 — MM consolidation.** The full surplus table across T102–T108 with a Bonferroni
+line (24 targets × packs); anything jointly significant → ESCALATE. Consolidation duty.
+**T111–T115 — Zimmerman-pack sweeps.** The same target groups with `--pack zimm`
+(generators include κ=½, Z, √π, R_dm): does ANY SM number prefer the framework's
+constants beyond chance? This is the honest version of the retracted Z²-numerology —
+same question, with the trial counting the original never had.
+**T116 — Geometric angles.** `--pack angle` (adds φ golden ratio) on the CKM/PMNS
+angle targets, plus a scripted catalog of exact polyhedral/platonic solid angles and
+arctan(p/q√n) forms vs the measured angles, FDR-counted. PASS: the surplus table.
+**T117 — Relations among SM constants only.** Targets = SM numbers, generators = other
+SM numbers (no framework input): the machinery must rediscover known structure (Koide;
+sin²θ_W vs mW/mZ: on-shell sin²θ_W = 1−(mW/mZ)² is a DEFINITION — the engine must flag
+it as such, the classifier's negative control). PASS: known structure found AND labelled.
+**T118 — Framework numbers at depth.** κ_meas, ν₀ edges, Q0 edges as targets, base pack,
+cmax 6 (extends T057–T059 one complexity deeper with the engine). NULL expected; record.
+**T119 — The obstruction test on winners.** For every hit with surplus ≥ 3 anywhere:
+classify its expression algebraic vs transcendental-π-carrying; test compatibility with
+the number-field obstruction; write the verdict per winner.
+**T120 — FINDINGS_MM.md.** The programme's honest summary: every surplus, every NULL,
+the controls, the Bonferroni verdict, and what (if anything) earns escalation to the
+frontier-model harvest. Consolidation duty.
+
+## N · The seeded-idea stream (dispatcher-driven, no fixed numbers)
+
+`idea_seed.py` throws framework objects × SM constants × mathematical motifs into short
+random paragraphs (deterministic per id). The dispatcher (`next_duty.py`) routes three
+session types automatically: INTERPRET (fresh context deciphers ONE seed into one
+falsifiable hypothesis), BLIND REFEREE (a later fresh session grades the interpretation
+reading ONLY that file — PURSUE/DISCARD), PROMOTE (a passed idea becomes a task spec in
+TASKS_SEEDED.md with full PASS/KILL + FDR discipline). Ideas enter the ledger like
+everything else; DISCARD is a success. Seeds auto-replenish every ~6 duties.
