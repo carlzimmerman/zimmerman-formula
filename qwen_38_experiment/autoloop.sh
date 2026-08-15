@@ -15,6 +15,16 @@
 
 set -u
 DIR="$(cd "$(dirname "$0")" && pwd)"
+
+export ANTHROPIC_BASE_URL="${OLLAMA_URL:-http://localhost:11434}"
+export ANTHROPIC_API_KEY="ollama"
+export ANTHROPIC_AUTH_TOKEN="ollama"
+case "$ANTHROPIC_BASE_URL" in
+  http://localhost*|http://127.0.0.1*) ;;
+  *) echo "[autoloop] REFUSING TO START: ANTHROPIC_BASE_URL is not a local endpoint" \
+        "($ANTHROPIC_BASE_URL). This loop must NEVER touch the Anthropic API."; exit 1;;
+esac
+echo "[autoloop] endpoint locked to $ANTHROPIC_BASE_URL (local only)"
 REPO="$(dirname "$DIR")"
 LOGDIR="$DIR/runs/loop_logs"
 mkdir -p "$LOGDIR"
