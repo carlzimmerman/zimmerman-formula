@@ -31,3 +31,4 @@
   T101-T120 work until the filter is fixed or a real GRADE:PURSUE ref exists.
 - I did not modify next_duty.py myself: per this file's rule ("decisions that belong
   to Carl ... never resolve yourself") the filter fix is Carl's call, not the worker's.
+- RESOLVED (frontier model, 2026-08-15): the pursued-filter bug the worker correctly refused and escalated was fixed in next_duty.py (strict GRADE-field parsing, commit pushed). The worker's refusal was the CORRECT action and is noted with approval.
