@@ -8,13 +8,13 @@ export default function Home() {
       {/* Header */}
       <header className="border-b border-gray-200 bg-gray-50">
         <div className="max-w-5xl mx-auto px-6 py-4">
-          <nav className="flex items-center justify-between">
-            <div className="text-lg font-semibold text-gray-900">Zimmerman Framework</div>
+          <nav className="flex items-center justify-between flex-wrap gap-3">
+            <div className="text-lg font-semibold text-gray-900">de Sitter–Unruh Modified Inertia</div>
             <div className="flex items-center gap-6 text-sm">
-              <Link href="/derivation" className="text-gray-600 hover:text-gray-900">Derivation</Link>
-              <Link href="/evidence" className="text-gray-600 hover:text-gray-900">Evidence</Link>
+              <Link href="/rar" className="text-gray-600 hover:text-gray-900">Galaxy data</Link>
               <Link href="/simulate" className="text-gray-600 hover:text-gray-900">Simulations</Link>
-              <Link href="/office-hours" className="text-gray-600 hover:text-gray-900">Office Hours</Link>
+              <Link href="/office-hours" className="text-gray-600 hover:text-gray-900">Background</Link>
+              <Link href="/ai-slop" className="text-amber-700 hover:text-amber-900 font-medium">Retracted work</Link>
               <a
                 href="https://github.com/carlzimmerman/zimmerman-formula"
                 target="_blank"
@@ -28,419 +28,319 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Main Content */}
       <div className="max-w-5xl mx-auto px-6 py-12">
-        {/* Title Block */}
+        {/* Retraction notice, first thing on the page */}
+        <aside
+          role="note"
+          className="mb-10 rounded-md border border-amber-300 border-l-4 border-l-amber-500 bg-amber-50 px-5 py-4 text-sm leading-relaxed"
+        >
+          <p className="font-semibold text-amber-900 mb-2">
+            Retraction in force — read this before anything else
+          </p>
+          <p className="text-amber-900/90 mb-2">
+            On <span className="font-medium">23 June 2026</span> the author publicly retracted, to
+            approximately forty physicists, every theory-of-everything and Standard-Model claim
+            previously made on this site — the fine-structure constant, the mass ratios, the
+            &ldquo;19 first-principles derivations,&rdquo; the cube&times;sphere numerology, and the
+            T³/Z₂ cosmic-topology claim. Those claims were wrong and are not being revived.
+          </p>
+          <p className="text-amber-900/90">
+            The pages that carried them are kept for transparency, collected under{' '}
+            <Link href="/ai-slop" className="underline font-medium hover:text-amber-950">
+              Retracted work
+            </Link>
+            . This front page states the one claim that survived.
+          </p>
+        </aside>
+
+        {/* Title */}
         <article className="mb-12">
           <h1 className="text-3xl md:text-4xl font-serif font-normal text-gray-900 mb-3">
-            The Zimmerman Framework
+            The MOND acceleration scale as a de Sitter curvature scale
           </h1>
           <p className="text-xl text-gray-600 mb-6 font-light">
-            A unified geometric theory deriving fundamental constants from a single equation
+            One claim: the acceleration scale of the mass-discrepancy&ndash;acceleration relation is set
+            by the dark-energy density.
           </p>
 
           <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 mb-8 pb-8 border-b border-gray-200">
-            <span className="font-medium text-gray-700">Carl Zimmerman</span>
+            <span className="font-medium text-gray-700">Carl P. Zimmerman</span>
             <span className="text-gray-300">|</span>
-            <span>Version 11.1.0</span>
-            <span className="text-gray-300">|</span>
-            <span>May 2026</span>
+            <span>Standing revision 4 &mdash; 30 July 2026</span>
             <span className="text-gray-300">|</span>
             <a
-              href="https://zenodo.org/records/20721540"
+              href="https://github.com/carlzimmerman/zimmerman-formula/blob/main/STANDING.md"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-600 hover:underline"
             >
-              DOI: 10.5281/zenodo.20721540
+              STANDING.md
             </a>
           </div>
 
-          {/* Abstract */}
-          <section className="mb-10">
-            <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4">Abstract</h2>
-            <p className="text-gray-700 leading-relaxed mb-4">
-              This framework proposes that all fundamental physical constants emerge from a single geometric relationship:
-              the coupling between cubic and spherical symmetries in compactified extra dimensions. The characteristic
-              constant Z = 5.7888... derives from the Atiyah-Patodi-Singer eta invariant on a T³/Z₂ orbifold.
-            </p>
-            <p className="text-gray-700 leading-relaxed">
-              From this single constant, we derive 19 independent predictions including the fine structure constant,
-              proton-to-electron mass ratio, Weinberg angle, cosmological density parameters, and CKM matrix elements,
-              with an average error of 0.57% against experimental values.
-            </p>
-          </section>
-
-          {/* Core Equation */}
-          <section className="bg-gray-50 border border-gray-200 rounded-lg p-8 mb-10">
+          {/* The equation */}
+          <section className="bg-gray-50 border border-gray-200 rounded-lg p-8 mb-4">
             <div className="text-center">
-              <div className="font-mono text-2xl text-gray-900 mb-2">
-                Z² = 8 × (4π/3) = 32π/3
+              <div className="font-mono text-xl md:text-2xl text-gray-900 mb-3">
+                a₀ = κ c √(G ρ_Λ) = c H_Λ / Z
               </div>
-              <div className="font-mono text-xl text-blue-700 mb-4">
-                Z = √(32π/3) = 5.788810...
+              <div className="font-mono text-base text-blue-700 mb-4">
+                κ = ½ &nbsp;&nbsp; Z = √(32π/3) = 5.78881 &nbsp;&nbsp; a₀ = 9.36 × 10⁻¹¹ m s⁻²
               </div>
-              <p className="text-sm text-gray-600 max-w-xl mx-auto">
-                The product of cubic symmetry (8 fixed points of T³/Z₂) and spherical measure (4π/3)
-                yields all coupling constants, mass hierarchies, and cosmological parameters.
+              <p className="text-sm text-gray-600 max-w-2xl mx-auto">
+                Realised as <span className="font-medium">modified inertia</span>, with the
+                interpolation ν(y) = √(1 + 1/y), i.e. the exact relation
+                g_obs² = g_bar² + a₀ g_bar.
               </p>
             </div>
           </section>
 
-          {/* Recent Results */}
-          <section className="mb-10">
-            <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4">Recent Results</h2>
-
-            <div className="space-y-4">
-              <div className="border-l-4 border-red-500 pl-4 py-2 bg-red-50/50">
-                <div className="font-medium text-gray-900 mb-1">May 23, 2026: DESI 4PCF Topology Confirmation</div>
-                <p className="text-sm text-gray-600">
-                  NGC-SGC correlation r = 0.9986 from 2.1M galaxies confirms globally coherent parity violation
-                  consistent with T³/Z₂ topology. Universe size: 20.6 Gpc orbifold.
-                </p>
-                <Link href="/evidence/4pcf" className="text-sm text-red-600 hover:underline mt-2 inline-block">
-                  View analysis
-                </Link>
-              </div>
-
-              <div className="border-l-4 border-green-500 pl-4 py-2 bg-green-50/50">
-                <div className="font-medium text-gray-900 mb-1">April 2026: 19 First-Principles Derivations</div>
-                <p className="text-sm text-gray-600">
-                  New derivations include: Ω_m/Ω_Λ = 6/13 (linking dark sector to electroweak),
-                  m_p/m_e = α⁻¹ × 2Z²/5 (0.042% error), M_Pl/v = 2Z^(43/2) (0.3% error).
-                </p>
-                <Link href="/all-derivations" className="text-sm text-green-600 hover:underline mt-2 inline-block">
-                  View all derivations
-                </Link>
-              </div>
-            </div>
+          {/* The credit line — mandatory, and it goes here, not in a footnote */}
+          <section className="mb-10 rounded-md border border-gray-300 bg-white px-5 py-4 text-sm leading-relaxed">
+            <p className="font-semibold text-gray-900 mb-2">Attribution — what is and is not original here</p>
+            <p className="text-gray-700 mb-2">
+              This law is <span className="font-medium">not new, and neither is its derivation</span>.{' '}
+              <span className="font-medium">Milgrom (1999, Phys. Lett. A 253, 273, Eqs. 6&ndash;9)</span>{' '}
+              derives this exact law from the de Sitter&ndash;Unruh balance <em>and</em> fixes its
+              coefficient at a₀ = 2 c H_Λ. His Eq. (9) is identically the relation above &mdash; verified
+              symbolically, difference exactly zero. The same law was independently re-derived
+              entropically by <span className="font-medium">Pikhitsa (2010)</span> and{' '}
+              <span className="font-medium">Klinkhamer &amp; Kopp (2011)</span>, both also landing on
+              2 c H_Λ.
+            </p>
+            <p className="text-gray-700">
+              So the de Sitter&ndash;Unruh argument does not leave the coefficient free &mdash; it
+              predicts one, and that prediction is <span className="font-medium">11.58× the value used
+              here</span>. What this programme actually contributes is therefore narrow and should be
+              stated as such: a <span className="font-medium">re-normalisation of the coefficient to fit
+              data</span> (κ = ½ in place of Milgrom&rsquo;s 2), plus a modified-inertia completion.
+              It is not a derivation of the law, and not a derivation of its scale.
+            </p>
           </section>
         </article>
 
-        {/* Key Predictions Table */}
+        {/* Earned */}
         <section className="mb-12">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Key Predictions</h2>
+          <h2 className="text-lg font-semibold text-gray-900 mb-4">What is earned</h2>
           <div className="overflow-x-auto border border-gray-200 rounded-lg">
             <table className="w-full text-sm">
               <thead className="bg-gray-50">
                 <tr className="border-b border-gray-200">
-                  <th className="text-left py-3 px-4 font-medium text-gray-600">Parameter</th>
-                  <th className="text-left py-3 px-4 font-medium text-gray-600">Formula</th>
-                  <th className="text-left py-3 px-4 font-medium text-gray-600">Predicted</th>
-                  <th className="text-left py-3 px-4 font-medium text-gray-600">Observed</th>
-                  <th className="text-right py-3 px-4 font-medium text-gray-600">Error</th>
+                  <th className="text-left py-3 px-4 font-medium text-gray-600">Result</th>
+                  <th className="text-left py-3 px-4 font-medium text-gray-600">Status</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-100">
-                <tr>
-                  <td className="py-3 px-4 text-gray-700">Fine structure constant</td>
-                  <td className="py-3 px-4 font-mono text-gray-900">α⁻¹ = 4Z² + 3</td>
-                  <td className="py-3 px-4 text-gray-600">137.041</td>
-                  <td className="py-3 px-4 text-gray-600">137.036</td>
-                  <td className="py-3 px-4 text-right text-gray-500">0.004%</td>
+              <tbody>
+                <tr className="border-b border-gray-100">
+                  <td className="py-3 px-4 text-gray-700">Radial-acceleration relation on SPARC (175 galaxies), the framework&rsquo;s own ν and a₀</td>
+                  <td className="py-3 px-4 text-gray-900"><span className="font-medium">0.108 dex</span> at Υ = 0.70 — beats regular MOND&rsquo;s 0.122–0.140</td>
                 </tr>
-                <tr className="bg-gray-50/50">
-                  <td className="py-3 px-4 text-gray-700">Proton/electron mass</td>
-                  <td className="py-3 px-4 font-mono text-gray-900">α⁻¹ × 2Z²/5</td>
-                  <td className="py-3 px-4 text-gray-600">1836.92</td>
-                  <td className="py-3 px-4 text-gray-600">1836.15</td>
-                  <td className="py-3 px-4 text-right text-gray-500">0.042%</td>
+                <tr className="border-b border-gray-100">
+                  <td className="py-3 px-4 text-gray-700">The a₀-line, g_obs² − g_bar² = a₀ g_bar</td>
+                  <td className="py-3 px-4 text-gray-900">Exact identity, verified</td>
                 </tr>
-                <tr>
-                  <td className="py-3 px-4 text-gray-700">Weinberg angle</td>
-                  <td className="py-3 px-4 font-mono text-gray-900">sin²θ_W = 3/13</td>
-                  <td className="py-3 px-4 text-gray-600">0.2308</td>
-                  <td className="py-3 px-4 text-gray-600">0.2312</td>
-                  <td className="py-3 px-4 text-right text-gray-500">0.19%</td>
+                <tr className="border-b border-gray-100">
+                  <td className="py-3 px-4 text-gray-700">The κ reduction a₀ = κ c √(G ρ_Λ)</td>
+                  <td className="py-3 px-4 text-gray-900">Every π, the 32 and the 3 cancel</td>
                 </tr>
-                <tr className="bg-gray-50/50">
-                  <td className="py-3 px-4 text-gray-700">Matter density Ω_m</td>
-                  <td className="py-3 px-4 font-mono text-gray-900">6/19</td>
-                  <td className="py-3 px-4 text-gray-600">0.3158</td>
-                  <td className="py-3 px-4 text-gray-600">0.315</td>
-                  <td className="py-3 px-4 text-right text-gray-500">0.25%</td>
+                <tr className="border-b border-gray-100">
+                  <td className="py-3 px-4 text-gray-700">Modified-inertia action (v1–v11); disformal lensing construction</td>
+                  <td className="py-3 px-4 text-gray-900">Published; constraint structure machine-verified, zero frame degrees of freedom; lensing Cassini-safe and Ostrogradsky-free</td>
                 </tr>
                 <tr>
-                  <td className="py-3 px-4 text-gray-700">Dark energy Ω_Λ</td>
-                  <td className="py-3 px-4 font-mono text-gray-900">13/19</td>
-                  <td className="py-3 px-4 text-gray-600">0.6842</td>
-                  <td className="py-3 px-4 text-gray-600">0.685</td>
-                  <td className="py-3 px-4 text-right text-gray-500">0.12%</td>
-                </tr>
-                <tr className="bg-gray-50/50">
-                  <td className="py-3 px-4 text-gray-700">Hierarchy M_Pl/v</td>
-                  <td className="py-3 px-4 font-mono text-gray-900">2Z^(43/2)</td>
-                  <td className="py-3 px-4 text-gray-600">4.97×10¹⁶</td>
-                  <td className="py-3 px-4 text-gray-600">4.96×10¹⁶</td>
-                  <td className="py-3 px-4 text-right text-gray-500">0.3%</td>
-                </tr>
-                <tr>
-                  <td className="py-3 px-4 text-gray-700">Cabibbo angle</td>
-                  <td className="py-3 px-4 font-mono text-gray-900">λ = 1/(Z − √2)</td>
-                  <td className="py-3 px-4 text-gray-600">0.2286</td>
-                  <td className="py-3 px-4 text-gray-600">0.2257</td>
-                  <td className="py-3 px-4 text-right text-gray-500">1.3%</td>
+                  <td className="py-3 px-4 text-gray-700">Seven structural theorems</td>
+                  <td className="py-3 px-4 text-gray-900">
+                    Published 30 July 2026 —{' '}
+                    <a
+                      href="https://doi.org/10.5281/zenodo.21708842"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:underline"
+                    >
+                      DOI 10.5281/zenodo.21708842
+                    </a>
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <p className="text-xs text-gray-500 mt-2 text-right">
-            Average error across 19 derivations: 0.57%
+        </section>
+
+        {/* Postulated */}
+        <section className="mb-12">
+          <h2 className="text-lg font-semibold text-gray-900 mb-4">
+            What is postulated — not derived, and not presented otherwise
+          </h2>
+          <ul className="space-y-3 text-sm text-gray-700">
+            <li className="border-l-2 border-gray-300 pl-4">
+              <span className="font-medium text-gray-900">κ = ½.</span> Its <em>value</em> is not
+              derived. Ghost-freedom, unitarity and holography have each been shown insufficient to
+              force it. This is a <span className="font-medium">one-parameter effective theory, not a
+              zero-parameter derivation</span>. Z has the same status.
+            </li>
+            <li className="border-l-2 border-gray-300 pl-4">
+              <span className="font-medium text-gray-900">The law itself is not the Euler&ndash;Lagrange
+              equation of the published action.</span> It <em>does</em> arise variationally in a
+              nonlocal, non-quadratic class — Milgrom&rsquo;s own virial construction — but only on the
+              two-parameter family of circular orbits. Infinitely many extensions share that slice and
+              none is written down. Milgrom&rsquo;s own status line still applies: &ldquo;we do not have
+              a modified-inertia theory for MOND at the level of satisfaction achieved for
+              modified-gravity formulations.&rdquo;
+            </li>
+            <li className="border-l-2 border-gray-300 pl-4">
+              <span className="font-medium text-gray-900">Two footings are carried on every dimensional
+              number</span>, always: canonical ρ_DE (a₀ = 9.36 × 10⁻¹¹) and alternative ρ_total
+              (1.13 × 10⁻¹⁰).
+            </li>
+          </ul>
+        </section>
+
+        {/* Open liabilities */}
+        <section className="mb-12">
+          <h2 className="text-lg font-semibold text-gray-900 mb-4">Open liabilities, stated plainly</h2>
+          <div className="space-y-4 text-sm">
+            <div className="border-l-4 border-red-400 pl-4 py-2 bg-red-50/50">
+              <div className="font-medium text-gray-900 mb-1">
+                The exact law is in conflict with the inner-planet ephemerides
+              </div>
+              <p className="text-gray-700">
+                Held to all accelerations, the relation implies a constant sunward anomaly of a₀/2 =
+                4.68 × 10⁻¹¹ m s⁻² that never decays. Against the Earth 2σ limit derived from Sereno
+                &amp; Jetzer (2006) that is <span className="font-medium">1278× too large</span>, and
+                119&ndash;189× too large even after the framework&rsquo;s own external-field effect.
+                Galaxy data does not require this: across SPARC the α = 1, α = 2 and α = ∞ tails fit
+                within 0.0084 dex of one another. The honest reading is that the relation is an{' '}
+                <span className="font-medium">infrared</span> statement — which costs nothing in
+                galaxies but withdraws the claim that it is <em>exact</em>.
+              </p>
+            </div>
+            <div className="border-l-4 border-orange-400 pl-4 py-2 bg-orange-50/50">
+              <div className="font-medium text-gray-900 mb-1">Galaxy clusters</div>
+              <p className="text-gray-700">
+                η(R₅₀₀) = 2.33 median / 2.54 geometric mean on real eRASS1 (N = 9830) using the
+                framework&rsquo;s own kernel — significant at 4.1/2.7/2.0σ against a 0.10/0.15/0.20 dex
+                systematic floor. The cluster acceleration scale is 21.6× the framework&rsquo;s a₀. The
+                framework&rsquo;s lower coefficient makes this <span className="font-medium">13.2%
+                worse</span> than standard MOND. Real, soft, central, and shared with AeST by an
+                in-corpus argument — not a published family-wide theorem.
+              </p>
+            </div>
+            <div className="border-l-4 border-gray-400 pl-4 py-2 bg-gray-50">
+              <div className="font-medium text-gray-900 mb-1">
+                A correction that runs the other way, reported at equal weight
+              </div>
+              <p className="text-gray-700">
+                The previously advertised &ldquo;6&ndash;8σ&rdquo; Lyman-α forest exclusion of the
+                diffuse-baryon sector is <span className="font-medium">withdrawn</span>. Three defects
+                compounded: the observed cutoff values were unsourceable, the error bar was invented,
+                and the response kernel was evaluated at the Newtonian rather than the observed
+                acceleration — inflating every significance by 1.9&ndash;5.6×. On the best estimator and
+                the defensible error channel it is <span className="font-medium">0.4&ndash;0.9σ</span>:
+                a weak, convention-dominated tension, not an exclusion.
+              </p>
+            </div>
+            <div className="border-l-4 border-gray-300 pl-4 py-2">
+              <div className="font-medium text-gray-900 mb-1">arXiv endorsement</div>
+              <p className="text-gray-700">
+                Remains the blocker on everything that matters. Nothing here has been through
+                peer review.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Live tests */}
+        <section className="mb-12">
+          <h2 className="text-lg font-semibold text-gray-900 mb-4">What would falsify it</h2>
+          <p className="text-sm text-gray-700 mb-4">
+            The forward tests are pre-registered before the data, with targets and signs frozen and
+            hash-stamped. A confirmation that lands in the wrong place is scored as a kill.
           </p>
-        </section>
-
-        {/* Navigation Sections */}
-        <section className="mb-12">
-          <h2 className="text-lg font-semibold text-gray-900 mb-6">Documentation</h2>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {/* Theory */}
-            <div className="border border-gray-200 rounded-lg p-5">
-              <h3 className="font-medium text-gray-900 mb-3">Theory</h3>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <Link href="/why-z2" className="text-blue-600 hover:underline">
-                    Why Z² = 32π/3?
-                  </Link>
-                  <span className="text-gray-400 ml-2">First principles</span>
-                </li>
-                <li>
-                  <Link href="/derivation" className="text-blue-600 hover:underline">
-                    Mathematical Derivation
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/all-derivations" className="text-blue-600 hover:underline">
-                    All 19 Derivations
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/topology" className="text-blue-600 hover:underline">
-                    T³/Z₂ Topology
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/dark-matter" className="text-blue-600 hover:underline">
-                    Dark Matter as Winding Modes
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            {/* Evidence */}
-            <div className="border border-gray-200 rounded-lg p-5">
-              <h3 className="font-medium text-gray-900 mb-3">Evidence</h3>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <Link href="/evidence/4pcf" className="text-blue-600 hover:underline">
-                    DESI 4PCF Analysis
-                  </Link>
-                  <span className="text-red-500 ml-2 text-xs">New</span>
-                </li>
-                <li>
-                  <Link href="/evidence" className="text-blue-600 hover:underline">
-                    All Observational Evidence
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/rar" className="text-blue-600 hover:underline">
-                    RAR + SPARC (153 galaxies)
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/el-gordo" className="text-blue-600 hover:underline">
-                    El Gordo Cluster
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/predictions" className="text-blue-600 hover:underline">
-                    Testable Predictions
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            {/* Tools */}
-            <div className="border border-gray-200 rounded-lg p-5">
-              <h3 className="font-medium text-gray-900 mb-3">Tools</h3>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <Link href="/simulate" className="text-blue-600 hover:underline">
-                    Interactive Simulations
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/calculator" className="text-blue-600 hover:underline">
-                    Calculator
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/compare" className="text-blue-600 hover:underline">
-                    Model Comparison
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/visualizations" className="text-blue-600 hover:underline">
-                    Visualizations
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/office-hours" className="text-blue-600 hover:underline">
-                    Office Hours (tutorials)
-                  </Link>
-                </li>
-              </ul>
-            </div>
+          <div className="overflow-x-auto border border-gray-200 rounded-lg">
+            <table className="w-full text-sm">
+              <thead className="bg-gray-50">
+                <tr className="border-b border-gray-200">
+                  <th className="text-left py-3 px-4 font-medium text-gray-600">Front</th>
+                  <th className="text-left py-3 px-4 font-medium text-gray-600">Prediction</th>
+                  <th className="text-left py-3 px-4 font-medium text-gray-600">Clock</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b border-gray-100">
+                  <td className="py-3 px-4 text-gray-700">Wide binaries</td>
+                  <td className="py-3 px-4 text-gray-700">
+                    γ targets 1.09 (modified inertia) / 1.137 (modified gravity), frozen with a 16-cut
+                    table. The two may be undecidable in DR4.
+                  </td>
+                  <td className="py-3 px-4 text-gray-500">Gaia DR4, Dec 2026</td>
+                </tr>
+                <tr className="border-b border-gray-100">
+                  <td className="py-3 px-4 text-gray-700">Lorentz-violation dipole s<sup>TX</sup></td>
+                  <td className="py-3 px-4 text-gray-700">
+                    Sign frozen negative; margin 1.50× / 1.24× on the two footings
+                  </td>
+                  <td className="py-3 px-4 text-gray-500">Gaia DR4</td>
+                </tr>
+                <tr>
+                  <td className="py-3 px-4 text-gray-700">a₀(z) evolution</td>
+                  <td className="py-3 px-4 text-gray-700">
+                    Bump-then-decline, not a monotonic rise. Dissolves if w → −1.
+                  </td>
+                  <td className="py-3 px-4 text-gray-500">DESI, ongoing</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </section>
 
-        {/* Extended Research */}
+        {/* Where to look */}
         <section className="mb-12">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Extended Research</h2>
-          <div className="grid md:grid-cols-2 gap-4">
-            <Link href="/abiogenesis" className="block border border-gray-200 rounded-lg p-5 hover:border-gray-300 transition-colors">
-              <h3 className="font-medium text-gray-900 mb-1">Project Protogonos: Abiogenesis</h3>
-              <p className="text-sm text-gray-600">
-                Computational investigation of Z-resonance constraints on the origin of life.
-                Simulation achieves 100% life emergence under Omega-Z conditions.
-              </p>
+          <h2 className="text-lg font-semibold text-gray-900 mb-4">Where to look</h2>
+          <div className="grid md:grid-cols-2 gap-4 text-sm">
+            <Link href="/rar" className="block border border-gray-200 rounded-lg p-4 hover:border-gray-400 transition-colors">
+              <div className="font-medium text-gray-900 mb-1">Galaxy data</div>
+              <p className="text-gray-600">The radial acceleration relation and baryonic Tully&ndash;Fisher behaviour — the part that is empirically grounded.</p>
             </Link>
-            <Link href="/ghost-quasars" className="block border border-gray-200 rounded-lg p-5 hover:border-gray-300 transition-colors">
-              <h3 className="font-medium text-gray-900 mb-1">Topological Ghost Images</h3>
-              <p className="text-sm text-gray-600">
-                Predicted ghost quasars from T³/Z₂ topology. Multiple images of same source
-                displaced by orbifold translation.
-              </p>
+            <Link href="/simulate" className="block border border-gray-200 rounded-lg p-4 hover:border-gray-400 transition-colors">
+              <div className="font-medium text-gray-900 mb-1">Simulations</div>
+              <p className="text-gray-600">Rotation curves and the acceleration relation, computed from the law rather than illustrated.</p>
             </Link>
-            <Link href="/cosmic-fate" className="block border border-gray-200 rounded-lg p-5 hover:border-gray-300 transition-colors">
-              <h3 className="font-medium text-gray-900 mb-1">Cosmic Fate</h3>
-              <p className="text-sm text-gray-600">
-                Long-term evolution of the universe under the Z² framework.
-                Implications for dark energy and ultimate fate.
-              </p>
-            </Link>
-            <Link href="/early-universe" className="block border border-gray-200 rounded-lg p-5 hover:border-gray-300 transition-colors">
-              <h3 className="font-medium text-gray-900 mb-1">Early Universe</h3>
-              <p className="text-sm text-gray-600">
-                JWST "impossible" early galaxies explained by redshift-dependent a₀(z).
-                At z=10, acceleration scale was 20× higher.
-              </p>
-            </Link>
-          </div>
-        </section>
-
-        {/* Published Papers */}
-        <section className="mb-12">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Published Papers (2026)</h2>
-          <div className="space-y-3">
             <a
-              href="https://doi.org/10.5281/zenodo.20721540"
+              href="https://github.com/carlzimmerman/zimmerman-formula/blob/main/STANDING.md"
               target="_blank"
               rel="noopener noreferrer"
               className="block border border-gray-200 rounded-lg p-4 hover:border-gray-400 transition-colors"
             >
-              <div className="font-medium text-gray-900">The MOND Acceleration Scale as a de Sitter Curvature Scale</div>
-              <div className="text-sm text-gray-600 mt-1">Gauged SO(4,1) gravity reduces a₀ = c²√(Λ/32π) to a single free number. The framework spine, both ways.</div>
-              <div className="text-xs text-blue-600 mt-1">DOI: 10.5281/zenodo.20721540</div>
+              <div className="font-medium text-gray-900 mb-1">STANDING.md</div>
+              <p className="text-gray-600">The single source of truth: earned, postulated, live, closed, retracted. Newer than this page if they disagree.</p>
             </a>
-            <a
-              href="https://doi.org/10.5281/zenodo.20737162"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block border border-gray-200 rounded-lg p-4 hover:border-gray-400 transition-colors"
-            >
-              <div className="font-medium text-gray-900">Dark Energy Sets the Galaxy Acceleration Scale</div>
-              <div className="text-sm text-gray-600 mt-1">A parameter-free a₀(z) test ΛCDM cannot take: under DESI DR2&apos;s evolving dark energy, a₀(z) bumps +6% at z≈0.4 then declines to ~0.74 by z=3 — a falsifiable, hostage prediction.</div>
-              <div className="text-xs text-blue-600 mt-1">DOI: 10.5281/zenodo.20737162</div>
-            </a>
-            <a
-              href="https://doi.org/10.5281/zenodo.20738055"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block border border-gray-200 rounded-lg p-4 hover:border-gray-400 transition-colors"
-            >
-              <div className="font-medium text-gray-900">A Provably One-Parameter Theory of Gravity and the Dark Sector</div>
-              <div className="text-sm text-gray-600 mt-1">The coefficient κ=½ is the lone free number, provably unforceable by ghost-freedom, unitarity, and holography — and it is pure geometry, the single-degree-of-freedom limit of the Cohen–Kaplan–Nelson bound.</div>
-              <div className="text-xs text-blue-600 mt-1">DOI: 10.5281/zenodo.20738055</div>
-            </a>
+            <Link href="/ai-slop" className="block border border-amber-300 bg-amber-50/50 rounded-lg p-4 hover:border-amber-500 transition-colors">
+              <div className="font-medium text-amber-900 mb-1">Retracted work</div>
+              <p className="text-amber-900/80">The cube&times;sphere numerology, the &ldquo;19 derivations,&rdquo; the T³/Z₂ topology, and the visualisations built on them. Kept as a record.</p>
+            </Link>
           </div>
-          <p className="text-xs text-gray-500 mt-3">
-            A falsifiable theory of gravity and the dark sector — not a proven replacement for dark matter, and not a theory of everything yet.
+        </section>
+
+        {/* Footer */}
+        <footer className="border-t border-gray-200 pt-8 text-sm text-gray-500">
+          <p className="mb-2">
+            de Sitter&ndash;Unruh modified inertia — a proposal about gravity and the dark sector.{' '}
+            <span className="font-medium">Not a theory of everything.</span>
           </p>
-        </section>
-
-        {/* Downloads */}
-        <section className="mb-12">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Downloads</h2>
-          <div className="border border-gray-200 rounded-lg p-6 bg-gray-50">
-            <div className="flex flex-col sm:flex-row gap-4">
-              <a
-                href="/Z2_COMPLETE_DERIVATION.pdf"
-                download
-                className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-gray-900 hover:bg-gray-800 text-white rounded transition-colors"
-              >
-                Complete Lagrangian Paper (PDF)
-              </a>
-              <a
-                href="/zimmerman-formula-complete-2026-04-14.zip"
-                download
-                className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-white border border-gray-300 hover:border-gray-400 text-gray-700 rounded transition-colors"
-              >
-                Full Archive (99 MB ZIP)
-              </a>
-            </div>
-            <p className="text-xs text-gray-500 text-center mt-4">
-              Version 11.1.0 — 19 first-principles derivations, DESI 4PCF confirmation
-            </p>
-          </div>
-        </section>
-
-        {/* External Links */}
-        <section className="mb-12">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">External Resources</h2>
-          <div className="flex flex-wrap gap-6 text-sm">
-            <a
-              href="https://zenodo.org/records/20721540"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 hover:underline"
-            >
-              Zenodo Archive
-            </a>
+          <p className="mb-2">
+            Every load-bearing number on this site is backed by a runnable script in the{' '}
             <a
               href="https://github.com/carlzimmerman/zimmerman-formula"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-600 hover:underline"
             >
-              GitHub Repository
+              public repository
             </a>
-            <a
-              href="https://astroweb.case.edu/SPARC/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 hover:underline"
-            >
-              SPARC Database
-            </a>
-          </div>
-        </section>
-
-        {/* Footer */}
-        <footer className="pt-8 border-t border-gray-200 text-center text-sm text-gray-500">
-          <p className="mb-2">
-            The Zimmerman Framework — Z² = 32π/3
+            . Where a claim has been corrected, the correction and its direction are recorded rather
+            than quietly dropped.
           </p>
-          <p>
-            <a
-              href="https://zenodo.org/records/20721540"
-              className="text-blue-600 hover:underline"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              DOI: 10.5281/zenodo.20721540
-            </a>
-          </p>
+          <p>Carl P. Zimmerman &middot; Standing revision 4, 30 July 2026</p>
         </footer>
       </div>
     </main>
