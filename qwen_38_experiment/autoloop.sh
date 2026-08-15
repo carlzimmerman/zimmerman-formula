@@ -19,6 +19,7 @@ REPO="$(dirname "$DIR")"
 LOGDIR="$DIR/runs/loop_logs"
 mkdir -p "$LOGDIR"
 ITER_TIMEOUT="${ITER_TIMEOUT:-3600}"     # seconds per task session
+WORKER_MODEL="${WORKER_MODEL:-}"         # e.g. qwen3.8:27b-mlx; empty = default model
 MAX_TURNS="${MAX_TURNS:-40}"
 COOLDOWN="${COOLDOWN:-15}"               # pause between sessions
 
@@ -32,6 +33,7 @@ while true; do
   before=$(wc -l < "$DIR/LEDGER.md")
   echo "[autoloop] iter $i -> $log"
   ( cd "$REPO" && timeout "$ITER_TIMEOUT" claude -p "$(cat "$DIR/LOOP_PROMPT.md")" \
+        ${WORKER_MODEL:+--model "$WORKER_MODEL"} \
         --max-turns "$MAX_TURNS" --dangerously-skip-permissions ) > "$log" 2>&1
   rc=$?
   after=$(wc -l < "$DIR/LEDGER.md")
