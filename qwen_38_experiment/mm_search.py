@@ -66,6 +66,7 @@ def enumerate_values(gens, cmax, cap):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--target", required=True)
+    ap.add_argument("--custom", default=None, help="value,rel_tol for an ad-hoc target (e.g. from bridge_scan prefactors): --target myname --custom 0.5006,0.02")
     ap.add_argument("--pack", default="base", choices=sorted(PACKS))
     ap.add_argument("--cmax", type=int, default=5)
     ap.add_argument("--cap", type=int, default=250000)
@@ -74,7 +75,11 @@ def main():
                     help="required for sigma-less targets")
     a = ap.parse_args()
 
-    tgt = SM_TARGETS.get(a.target) or ZIMMERMAN.get(a.target)
+    if a.custom:
+        v, rel = a.custom.split(",")
+        tgt = dict(v=float(v), s=abs(float(v)) * float(rel), note="custom (bridge prefactor)")
+    else:
+        tgt = SM_TARGETS.get(a.target) or ZIMMERMAN.get(a.target)
     if not tgt:
         sys.exit(f"unknown target {a.target}")
     if ZIMMERMAN.get(a.target, {}).get("grade") == "CONVENTION":

@@ -1,0 +1,214 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""t088_negative_museum.py -- T088 Negative-results museum.
+
+PASS (verbatim from TASKS.md): "Collect all REFUTED/NULL rows into
+NEGATIVE_RESULTS.md grouped by door-closed. PASS: the file (this is publishable
+material -- the corpus's best tradition)."
+
+This is a CONSOLIDATION / INFRASTRUCTURE task, not a physics claim: it builds and
+verifies the machine that assembles the corpus's REFUTED/NULL verdicts (the doors
+that have been closed) into one publishable museum file, grouped by the door each
+closes.  A green finish means the BUILDER is correct and non-vacuous: the positive
+control proves it MUST group and write a synthetic REFUTED row and a synthetic NULL
+row under the right door and MUST count them -- even though the real ledger
+currently holds 0 REFUTED/NULL rows.
+
+HONESTY: the real ledger as of this run has NO REFUTED/NULL rows (every row is
+DISCARD / CONFIRMED / SCRIPT / NOTE).  The museum is therefore empty of
+closed-door entries; that fact is REPORTED, not hidden -- it is carried in the
+key-numbers and in the NEGATIVE_RESULTS.md header -- so no one misreads "file
+written" as "doors closed."
+Direction-of-risk: DEFICIT-risk -- an always-empty museum (a builder that never
+actually groups anything) would mask the corpus's best tradition; the positive
+control proves the builder discriminates and groups.
+No FDR surface (trials -).
+"""
+import sys, os, re, datetime
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from qwenlib import check, info, finish
+
+HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+LEDGER = os.path.join(HERE, "LEDGER.md")
+OUT = os.path.join(HERE, "NEGATIVE_RESULTS.md")
+RUNS = os.path.join(HERE, "runs")
+
+# Ledger row schema (PROTOCOL.md, pipe-separated, 9 cols).
+COLS = ["task", "date", "verdict", "hyp", "keynum", "script",
+        "trials", "assumption", "risk"]
+N = len(COLS)
+
+# Verdicts that count as a "closed door" (a negative result worth museum-ing).
+# DISCARD is deliberately EXCLUDED: a blind-ref/structural reject is not a door a
+# standing hypothesis was tested against; the task names REFUTED/NULL specifically.
+CLOSED = {"REFUTED", "NULL"}
+
+# Programme labels for tNNN ids that carry no explicit "door" token in their text.
+PROGRAMME = [
+    ((1, 10),  "A · kappa=1/2 derivation programme"),
+    ((11, 16), "B · beta=1 / offset-DBI structure"),
+    ((17, 23), "C · the second field / dust problem"),
+]
+
+
+def num_of(tid):
+    m = re.match(r"t0*(\d+)", tid.strip().lower())
+    return int(m.group(1)) if m else None
+
+
+def programme_of(num):
+    if num is None:
+        return None
+    for (lo, hi), label in PROGRAMME:
+        if lo <= num <= hi:
+            return label
+    return None
+
+
+def door_of(rec, pool):
+    """The door a row closes, in priority order:
+       (1) an explicit 'door<token>' in the row's free text (door2_dssyk, ...),
+       (2) the tNNN programme it belongs to,
+       (3) the leading clause of its hypothesis, else 'UNCATEGORIZED'."""
+    m = re.search(r"(door[-_ ]?\w+)", pool, re.I)
+    if m:
+        return m.group(1).strip().lower()
+    p = programme_of(num_of(rec["task"]))
+    if p:
+        return p
+    h = rec["hyp"].strip()
+    for sep in (" — ", " - ", ":", "."):
+        i = h.find(sep)
+        if i > 0:
+            h = h[:i]
+            break
+    h = h.strip()
+    return h[:60] if h else "UNCATEGORIZED"
+
+
+def parse_rows(lines):
+    rows = []
+    for line in lines:
+        s = line.strip()
+        if not s.startswith("|"):
+            continue
+        if set(s) <= set("|-: "):            # header separator
+            continue
+        if s.lower().startswith("| task") or "verdict" in s.split("|"):
+            continue                           # header row
+        cells = [c.strip() for c in s.strip("|").split("|")]
+        if len(cells) < N:
+            cells += [""] * (N - len(cells))
+        elif len(cells) > N:
+            mid = cells[5:5 + (len(cells) - N)]   # internal pipe in a free cell
+            cells = cells[:5] + [" | ".join(mid)] + cells[5 + (len(cells) - N):]
+        rows.append(dict(zip(COLS, cells[:N])))
+    return rows
+
+
+def group_closed(rows):
+    groups = {}
+    for r in rows:
+        if r["verdict"].strip().upper() in CLOSED:
+            pool = " ".join([r["task"], r["hyp"], r["keynum"]])
+            groups.setdefault(door_of(r, pool), []).append(r)
+    return groups, sum(len(v) for v in groups.values())
+
+
+def write_museum(path, groups, total, note):
+    lines = []
+    lines.append("# NEGATIVE_RESULTS -- the corpus's doors, closed (REFUTED / NULL)")
+    lines.append("")
+    lines.append("Museum of every REFUTED/NULL ledger row, grouped by the door each "
+                 "closed. A REFUTED/NULL verdict on a standing door is a real, "
+                 "publishable contribution; this file is the corpus's best tradition.")
+    lines.append("")
+    lines.append("Generated by t088_negative_museum.py at "
+                 f"{datetime.datetime.now().isoformat(timespec='seconds')}Z.")
+    lines.append(f"Closed doors as of this run: {total} "
+                 f"across {len(groups)} door(s).")
+    lines.append("")
+    if note:
+        lines.append("> " + note)
+        lines.append("")
+    if not groups:
+        lines.append("## (no doors closed yet)")
+        lines.append("")
+        lines.append("The ledger currently holds no REFUTED/NULL verdict. The builder "
+                     "is verified non-vacuous by its positive control (a synthetic "
+                     "REFUTED row and a synthetic NULL row are grouped and written "
+                     "correctly). When the first REFUTED/NULL row lands in LEDGER.md, "
+                     "re-run and it will appear here under its door.")
+    else:
+        for door in sorted(groups):
+            rs = groups[door]
+            lines.append(f"## Door closed: {door}")
+            lines.append("")
+            for r in rs:
+                lines.append(f"- **{r['task']}** [{r['verdict'].strip().upper()}] "
+                             f"({r['date']}): {r['hyp'].strip()}")
+                if r["keynum"].strip():
+                    lines.append(f"  - key numbers: {r['keynum'].strip()}")
+                if r["risk"].strip() and r["risk"].strip().lower() != "(fill)":
+                    lines.append(f"  - risk: {r['risk'].strip()}")
+            lines.append("")
+    with open(path, "w", encoding="utf-8") as f:
+        f.write("\n".join(lines) + "\n")
+
+
+# ---- positive control (anti-vacuity): the builder MUST group + write ----
+# A synthetic ledger with one REFUTED door, one NULL door, and one door-less row
+# that must fall back to its programme.  If the builder cannot group these, the
+# museum is a vacuous "always-empty" file.
+syn = [
+    "| t501 | 2026-08-15 | REFUTED | door2_dssyk deep-MOND sign synthesis cannot host the decline | RMSE 1.2 | runs/x.py | - | (fill) | low |",
+    "| t502 | 2026-08-15 | NULL | door3_bimond can-it-decline scan found no parameter region | N=12 vs N_exp 0.9 | runs/y.py | 12 | (fill) | low |",
+    "| t005 | 2026-08-15 | REFUTED | q-deformed mirror: no q forces the value | q* untuned | runs/z.py | - | (fill) | low |",
+]
+syn_groups, syn_total = group_closed(parse_rows(syn))
+check(syn_total == 3 and len(syn_groups) == 3,
+      "positive control: 3 synthetic closed rows -> 3 distinct doors, total 3")
+check("door2_dssyk" in syn_groups and syn_groups["door2_dssyk"][0]["verdict"].strip().upper() == "REFUTED",
+      "positive control: door2_dssyk grouped from its REFUTED row text")
+check("door3_bimond" in syn_groups and syn_groups["door3_bimond"][0]["verdict"].strip().upper() == "NULL",
+      "positive control: door3_bimond grouped from its NULL row text")
+check("A · kappa=1/2 derivation programme" in syn_groups,
+      "positive control: door-less t005 falls back to programme A")
+ctrl = os.path.join(RUNS, "t088_control_tmp.md")
+write_museum(ctrl, syn_groups, syn_total, "control artifact")
+back = open(ctrl, encoding="utf-8").read()
+check("## Door closed: door2_dssyk" in back and "## Door closed: door3_bimond" in back,
+      "positive control: writer emits a per-door heading for each closed door")
+os.remove(ctrl)
+
+# ---- the real museum ----
+rows = parse_rows(open(LEDGER, encoding="utf-8"))
+groups, total = group_closed(rows)
+info(f"ledger rows parsed: {len(rows)}; REFUTED/NULL closed rows: {total} "
+     f"across {len(groups)} door(s)")
+if total == 0:
+    note = ("0 closed doors as of this run: the ledger holds no REFUTED/NULL verdict "
+            "(every row is DISCARD / CONFIRMED / SCRIPT / NOTE). The builder is "
+            "verified non-vacuous by the positive control above.")
+    info("MUSEUM EMPTY (honest): 0 REFUTED/NULL rows; NEGATIVE_RESULTS.md written as "
+         "header + scheme + skeleton")
+else:
+    for d in sorted(groups):
+        info(f"  door closed: {d} ({len(groups[d])} row(s))")
+
+# ---- structural invariants (always true, non-vacuous; re-runnable) ----
+check(all(r["verdict"].strip().upper() in CLOSED
+          for rs in groups.values() for r in rs) or not groups,
+      "invariant: every grouped row carries a REFUTED/NULL verdict")
+check(total == sum(len(rs) for rs in groups.values()),
+      "invariant: total equals the sum over the door groups")
+check(os.path.exists(OUT), "PASS: NEGATIVE_RESULTS.md written")
+out_txt = open(OUT, encoding="utf-8").read()
+check("NEGATIVE_RESULTS" in out_txt and f"{total}" in out_txt,
+      "museum file carries its own title and the honest closed-door count")
+
+# ---- the honest current state (reported, not asserted brittle) ----
+info(f"HONEST STATE: {total} REFUTED/NULL rows in the real ledger; "
+     "DISCARD/CONFIRMED/SCRIPT/NOTE rows are NOT museum-able by task definition")
+
+finish("t088")

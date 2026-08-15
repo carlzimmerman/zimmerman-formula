@@ -18,6 +18,15 @@ def main():
     verdict = "SCRIPT-GREEN (grade it: CONFIRMED/REFUTED/NULL/CANDIDATE)" if ok else "SCRIPT-RED (fix or mark BLOCKED)"
     row = (f"| {os.path.basename(script).split('_')[0]} | {datetime.date.today()} | {verdict} "
            f"| {hyp} | {tail[0][:60]} | {script} | {trials} | (fill) | (fill) |")
+    # T083: DO-NOT-CITE linter -- run before EVERY ledger append (fail-closed, R8).
+    linter = os.path.join(os.path.dirname(os.path.abspath(__file__)), "runs", "t083_donotcite_linter.py")
+    lint = subprocess.run([sys.executable, linter, "--check", row], capture_output=True, text=True)
+    sys.stdout.write(lint.stdout or "")
+    if lint.returncode != 0:
+        sys.stderr.write(lint.stderr or "")
+        print("\nLEDGER APPEND BLOCKED: DO-NOT-CITE linter found an R8 retracted phrase in the "
+              "new row. Fix the citation or escalate to ESCALATE.md (R10); do NOT append.")
+        return 1
     with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "LEDGER.md"), "a") as f:
         f.write(row + "\n")
     print("\nLEDGER row appended (EDIT the verdict/assumption/risk fields honestly):\n" + row)

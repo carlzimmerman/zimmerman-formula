@@ -484,3 +484,32 @@ from T121–T128: does any structural motif repeat across unrelated fronts? PASS
 comparison table (this is the bridge hunt, done as tree-matching, not vibes).
 **T130 — FINDINGS_SR.md.** Controls audit + every verdict + escalations; consolidation
 duty.
+
+## B2 · The dimensional-bridge programme (T131–T136) — new relationships, the original discovery's shape
+
+`bridge_scan.py` finds units-correct products of one domain's quantities landing on a
+measured scale from another domain (exact rational-exponent dimension solving, O(1)
+prefactor window, analytic chance baseline). BOTH positive controls committed: from
+{c,G,ρ_Λ} it blind-recovers a₀ = c√(Gρ_Λ) with prefactor 0.5006 (= κ), and from
+{ħ,H₀,G,c} the Weinberg pion relation. A bridge is interesting only if the dimensional
+hit beats chance AND its prefactor passes the simplicity pass (mm_search --custom).
+Standing priors apply: walled SM bridge, number-field obstruction, surplus→ESCALATE.
+
+**T131 — Controls at full pool.** Re-run both controls with the FULL pool (all 15
+quantities, max-terms 4): do the known bridges still stand out, and what is the
+in-window hit rate vs chance at realistic pool size? PASS: both found + the honest
+noise-floor number recorded.
+**T132 — cosmo→SM sweep.** Targets m_e, m_p, m_pi, v_EW; pool = {c,G,hbar,H0,Lambda,
+rho_L,rho_m,kT_cmb}. Every hit: prefactor → mm_search --custom (rel 0.02). NULL
+expected; any double-pass (chance-beating hit AND simple prefactor) → ESCALATE.
+**T133 — framework→SM sweep.** Same targets; pool + {a0_can,a0_alt,Q0}. Does adding
+the framework's scales create double-pass bridges the cosmo pool lacks? (The honest
+version of "does MY stuff reach the SM"; the differential vs T132 is the result.)
+**T134 — quantum→cosmo sweep (the cc-problem direction).** Targets Lambda, rho_L, H0;
+pool = {c,G,hbar,m_e,m_p,m_pi,v_EW,kT_cmb}. The famous failures should appear as
+huge-prefactor misses; record any O(1) survivor. NULL expected.
+**T135 — Simplicity pass consolidation.** Collect every T131–T134 hit prefactor;
+mm_search --custom each at cmax 5; the double-pass table with Bonferroni over ALL
+prefactors tested. Anything surviving → ESCALATE with the full chain written out.
+**T136 — FINDINGS_BRIDGE.md.** The programme summary: controls, noise floors, every
+double-pass or its absence; consolidation duty.

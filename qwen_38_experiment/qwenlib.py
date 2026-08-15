@@ -98,3 +98,72 @@ def finish(stage_name):
     print(f"{stage_name}: {NCHK[0] - n_fail}/{NCHK[0]} checks passed"
           + ("" if not n_fail else f"; FAILED: {FAIL}"))
     sys.exit(1 if n_fail else 0)
+
+# ---- dimensional-analysis helpers (T084) -------------------------------------------
+# A dimensional quantity is (value, dims) with dims the [m, kg, s] exponent 3-vector.
+# Arithmetic propagates exponents: * adds, / subtracts, **n multiplies, a bare scalar
+# leaves dims unchanged.  T084 uses these to unit-test that the committed formulas are
+# dimensionally consistent.  Purely ADDITIVE: no pinned number in the section above is
+# touched, so the T085 canary is unaffected.
+DIM_LABELS = ("m", "kg", "s")
+
+class Qty:
+    """(value, [m, kg, s] exponents); operators carry the dimensions through."""
+    __slots__ = ("value", "dims")
+    def __init__(self, value, dims=(0, 0, 0)):
+        self.value = float(value)
+        self.dims = tuple(dims)
+    def __repr__(self):
+        return f"Qty({self.value:.4g}, {self.dims})"
+    def __mul__(self, o):
+        if isinstance(o, Qty):
+            return Qty(self.value * o.value,
+                       tuple(a + b for a, b in zip(self.dims, o.dims)))
+        return Qty(self.value * o, self.dims)
+    __rmul__ = __mul__
+    def __truediv__(self, o):
+        if isinstance(o, Qty):
+            return Qty(self.value / o.value,
+                       tuple(a - b for a, b in zip(self.dims, o.dims)))
+        return Qty(self.value / o, self.dims)
+    def __rtruediv__(self, o):
+        return Qty(o / self.value, tuple(-a for a in self.dims))
+    def __pow__(self, n):
+        return Qty(self.value ** n, tuple(d * n for d in self.dims))
+
+# committed dimensional exponents [m, kg, s] for the corpus constants (qwenlib provenance)
+DIM = {
+    "G":        (3, -1, -2),
+    "C":        (1, 0, -1),
+    "KPC":      (1, 0, 0),
+    "MPC":      (1, 0, 0),
+    "MSUN":     (0, 1, 0),
+    "AU":       (1, 0, 0),
+    "H0":       (0, 0, -1),
+    "T_H":      (0, 0, 1),
+    "RHO_CRIT": (-3, 1, 0),
+    "A0_CAN":   (1, 0, -2),
+    "A0_ALT":   (1, 0, -2),
+    "Q0":       (-1, 0, 0),
+    "DIMLESS":  (0, 0, 0),
+}
+
+# named target dimensions, [m, kg, s]
+DIMS = {
+    "accel":       (1, 0, -2),
+    "density":     (-3, 1, 0),
+    "length":      (1, 0, 0),
+    "time":        (0, 0, 1),
+    "speed":       (1, 0, -1),
+    "velocity_sq": (2, 0, -4),
+    "dimless":     (0, 0, 0),
+}
+
+def D(name):
+    """a unit-magnitude quantity carrying the named dimension (for building RHSes)."""
+    return Qty(1.0, DIM[name])
+
+def check_dims(expr, target, label):
+    """check() wrapper: a built quantity's propagated dims must equal a named target."""
+    return check(tuple(expr.dims) == DIMS[target],
+                 f"{label}: dims {expr.dims} == {DIMS[target]} ({target})")
