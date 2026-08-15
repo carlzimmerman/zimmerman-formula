@@ -29,12 +29,11 @@ def main():
             print(f"""DUTY: BLIND REFEREE.  Read ONLY this file: {p}
 Do NOT read the seed, the ledger, TASKS.md, or any other context -- you are the blind
 check.  Grade the idea with ONE of THREE grades:
-  PURSUE  -- falsifiable with in-repo data/scripts, survives 2 minutes of your own
-             arithmetic, not a tautology or retracted claim;
-  NEAR-MISS -- the pre-registered test FAILS but (i) the miss is within 2x of the
-             stated tolerance, OR (ii) you can name ONE principled fix whose
-             justification does NOT depend on making the number come out right.
-             State the gap and the candidate fix in one line each;
+  PURSUE -- falsifiable with in-repo data/scripts, survives 2 minutes of your own
+    arithmetic, not a tautology or a retracted claim;
+  NEAR-MISS -- the pre-registered test FAILS but the miss is within 2x of the stated
+    tolerance, OR you can name ONE principled fix whose justification does NOT depend
+    on making the number come out right (state gap + fix, one line each);
   DISCARD -- everything else (say why in one sentence).
 Write your grade + reason to
 {p.replace('/interp/', '/refereed/').replace('interp_', 'ref_')}
@@ -59,47 +58,29 @@ PASS / KILL, FDR pre-registration if it is a search) appended to
 {j(H, 'TASKS_SEEDED.md')} with the id S{sid}.  Then END THE SESSION.""")
             return 0
 
-    for p in glob.glob(j(H, "seeds/refereed/ref_*.md")):
-        base = os.path.basename(p)
-        if base.endswith("_r1.md"):
+    for rp in sorted(glob.glob(j(H, "seeds/refereed/ref_*.md"))):
+        rbase = os.path.basename(rp)
+        if rbase.endswith("_r1.md"):
             continue
-        txt = open(p).read()
-        if "NEAR-MISS" in txt[:400] and not re.search(r"\bDISCARD\b|\bPURSUE\b", txt[:200]):
-            sid = base[4:8]
-            r1 = j(H, f"seeds/interp/interp_{sid}_r1.md")
+        rtxt = open(rp).read()
+        if "NEAR-MISS" in rtxt[:400] and "DISCARD" not in rtxt[:200] and "PURSUE" not in rtxt[:200]:
+            rsid = rbase[4:8]
+            r1 = j(H, f"seeds/interp/interp_{rsid}_r1.md")
             if not os.path.exists(r1):
-                print(f"""DUTY: REFINE (one round only).  The blind referee graded idea {sid} NEAR-MISS.
-Read ONLY {p} and {j(H, f'seeds/interp/interp_{sid}.md')} .
-Write a REVISED hypothesis to {r1} with: (1) the referee's named fix or a fix of your
-own whose justification is stated WITHOUT reference to the target value; (2) a fresh
-pre-registered test + tolerance; (3) the line "trials = 2 (refined once; Bonferroni
-applies)".  This is the ONLY refinement round -- if the revision fails its referee,
-the idea is DEAD-FINAL.  Do not test it yourself.  END THE SESSION.""")
+                print(f"""DUTY: REFINE (one round only).  The blind referee graded idea {rsid} NEAR-MISS.
+Read ONLY {rp} and {j(H, f'seeds/interp/interp_{rsid}.md')} .
+Write ONE revised hypothesis to {r1} containing: (1) the fix, justified WITHOUT
+reference to the target value; (2) a fresh pre-registered test + tolerance; (3) the
+line "trials = 2 (refined once; Bonferroni applies)".  This is the ONLY refinement
+round -- if the revision fails its blind referee, the idea is DEAD-FINAL.  Do not
+test it yourself.  END THE SESSION.""")
                 return 0
 
     pending = sorted(glob.glob(j(H, "seeds/pending/seed_*.txt")))
     done, ltxt = ledger_tasks()
     if not pending and len(done) % 6 == 5:
         subprocess.run([sys.executable, j(H, "idea_seed.py"), "--n", "2"], capture_output=True)
-        for p in glob.glob(j(H, "seeds/refereed/ref_*.md")):
-        base = os.path.basename(p)
-        if base.endswith("_r1.md"):
-            continue
-        txt = open(p).read()
-        if "NEAR-MISS" in txt[:400] and not re.search(r"\bDISCARD\b|\bPURSUE\b", txt[:200]):
-            sid = base[4:8]
-            r1 = j(H, f"seeds/interp/interp_{sid}_r1.md")
-            if not os.path.exists(r1):
-                print(f"""DUTY: REFINE (one round only).  The blind referee graded idea {sid} NEAR-MISS.
-Read ONLY {p} and {j(H, f'seeds/interp/interp_{sid}.md')} .
-Write a REVISED hypothesis to {r1} with: (1) the referee's named fix or a fix of your
-own whose justification is stated WITHOUT reference to the target value; (2) a fresh
-pre-registered test + tolerance; (3) the line "trials = 2 (refined once; Bonferroni
-applies)".  This is the ONLY refinement round -- if the revision fails its referee,
-the idea is DEAD-FINAL.  Do not test it yourself.  END THE SESSION.""")
-                return 0
-
-    pending = sorted(glob.glob(j(H, "seeds/pending/seed_*.txt")))
+        pending = sorted(glob.glob(j(H, "seeds/pending/seed_*.txt")))
     if pending:
         p = pending[0]
         sid = os.path.basename(p)[5:9]
