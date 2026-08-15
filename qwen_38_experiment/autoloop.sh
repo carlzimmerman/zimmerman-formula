@@ -24,11 +24,12 @@ case "$ANTHROPIC_BASE_URL" in
   *) echo "[autoloop] REFUSING TO START: ANTHROPIC_BASE_URL is not a local endpoint" \
         "($ANTHROPIC_BASE_URL). This loop must NEVER touch the Anthropic API."; exit 1;;
 esac
-echo "[autoloop] endpoint locked to $ANTHROPIC_BASE_URL (local only)"
+export API_TIMEOUT_MS="${API_TIMEOUT_MS:-600000}"
+echo "[autoloop] endpoint locked to $ANTHROPIC_BASE_URL (local only); per-request timeout $((API_TIMEOUT_MS/1000))s"
 REPO="$(dirname "$DIR")"
 LOGDIR="$DIR/runs/loop_logs"
 mkdir -p "$LOGDIR"
-ITER_TIMEOUT="${ITER_TIMEOUT:-3600}"     # seconds per task session
+ITER_TIMEOUT="${ITER_TIMEOUT:-1500}"     # seconds per task session (25 min; normal sessions run 4-15)
 WORKER_MODEL="${WORKER_MODEL:-}"         # e.g. qwen3.8:27b-mlx; empty = default model
 MAX_TURNS="${MAX_TURNS:-40}"
 COOLDOWN="${COOLDOWN:-15}"               # pause between sessions
