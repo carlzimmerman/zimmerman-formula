@@ -440,3 +440,47 @@ falsifiable hypothesis), BLIND REFEREE (a later fresh session grades the interpr
 reading ONLY that file — PURSUE/DISCARD), PROMOTE (a passed idea becomes a task spec in
 TASKS_SEEDED.md with full PASS/KILL + FDR discipline). Ideas enter the ledger like
 everything else; DISCARD is a success. Seeds auto-replenish every ~6 duties.
+
+## S · The symbolic-regression stream (T121–T130) — forms from data, verified
+
+The engine is `sr_engine.py` (GP over expression trees, numpy-only, deterministic;
+train/holdout split + shuffled-target nulls built in — the FDR analog for regression).
+Data lives in `data/` (exported from committed pipelines only; never fabricate a table).
+A discovery needs BOTH: holdout performance competitive with the named baseline AND real
+R² far outside the shuffled-null band. Engine smoke test (committed): from the real
+3,389-point SPARC set it recovered √(x(x+√(3.24−x))) — a₀-line-class structure, holdout
+RMSE 3.0434 vs the a₀-line's 3.0435, null R² ≈ 0. The machinery finds real laws.
+
+**T121 — Positive control at full budget.** `--gens 80 --pop 500 --nulls 3 --baseline
+a0line`, seeds 0,1,2. PASS: best expression's holdout RMSE within 1% of the a₀-line and
+equivalent structure (sqrt of quadratic-plus-linear); record all three seeds' winners.
+**T122 — Beat-the-law hunt.** Same data, complexity cap raised (edit parsimony 0.0005),
+5 seeds: does ANY form beat the a₀-line holdout by >2%? NULL expected (anchoring is
+cost-free — a committed result); a robust winner → CANDIDATE-ESCALATE (likely Υ
+systematics, say so). Run BOTH footings (re-export data at a0_alt for the second).
+**T123 — Residual structure.** New dataset: residual r = y − √(x²+x) vs x. SR it. PASS:
+the null verdict (r is noise) or the found form with its null band; either is banked.
+**T124 — BTFR blind recovery.** Export (M_b, V_flat) per galaxy from the committed
+pipeline into data/btfr.json; SR V(M) with baseline btfr (V ∝ M^0.25). PASS: the quarter
+power found blind; KILL of the export if the pipeline columns are ambiguous — BLOCKED.
+**T125 — Weak-lensing extension.** If the stage12 KiDS profile data exists in-repo,
+export (R, ΔΣ or g) to data/ and SR the 40 kpc–2.2 Mpc relation; does a₀-line structure
+hold at extended range? If the data is not in-repo: BLOCKED, name the file needed.
+**T126 — The required dust-pressure law.** Build the constraint table for open problem
+2d from committed numbers (what p(ρ) a second field would need at cluster cores vs what
+the obstruction trio forbids); SR the required form; verdict: does ANY closed form
+satisfy both? This is a derived-data regression — label it so.
+**T127 — a₀(z) minimality.** Generate the derived-law curve from qwenlib.a0z_ratio_sq
+at both ν₀ edges; SR it (features z). PASS: the engine finds a form of complexity ≤ the
+closed form's (√ of rational in (1+z)⁶) — the β = 1 law is the minimal description; a
+simpler equivalent found → CANDIDATE (genuinely interesting).
+**T128 — SM relations from data (walled-bridge prior in force).** data/leptons.json =
+the three charged-lepton masses; SR the Koide combination blind (POSITIVE CONTROL: the
+engine must find m-structure equivalent to Q = 2/3). Then the quark sector and mixing
+angles as generation-indexed tables. Any surplus → ESCALATE only; the atomos null and
+the number-field obstruction are the standing priors, stated in the ledger row.
+**T129 — Cross-front form transfer.** Mechanical comparison of all winner expressions
+from T121–T128: does any structural motif repeat across unrelated fronts? PASS: the
+comparison table (this is the bridge hunt, done as tree-matching, not vibes).
+**T130 — FINDINGS_SR.md.** Controls audit + every verdict + escalations; consolidation
+duty.

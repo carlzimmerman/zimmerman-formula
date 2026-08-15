@@ -105,3 +105,8 @@ S6. T085 (the canary) is PREBUILT in runs/. Session one is just:
    names) -> promotion to a spec'd task only after the blind PURSUE.
 Symmetric honesty in all three: nothing is dismissed by authority, nothing is promoted
 by beauty. The surplus number and the pre-stated criteria decide. Ledger everything.
+
+STREAM 4 -- SYMBOLIC REGRESSION (sr_engine.py): forms from data with holdout +
+shuffled-target nulls.  Same session shape as the monkeys: run the engine, read 4
+lines, ledger the verdict.  Never fabricate a data table; export from committed
+pipelines or mark BLOCKED naming the missing file.

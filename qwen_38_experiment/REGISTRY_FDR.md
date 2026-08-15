@@ -3,3 +3,4 @@
 | task | date | search space | trials | baseline | pre-registered |
 |---|---|---|---|---|---|
 | mm:koide_Q/base/c4 | auto | 337 expressions, window 2.10e-05 rel | 337 | 120 pseudo-targets on same table | yes (engine) |
+| sr:rar_sparc_a0units.json/y/s0 | auto | GP pop200xgen25 | 1 run | 1 shuffled-target nulls | yes (engine) |
