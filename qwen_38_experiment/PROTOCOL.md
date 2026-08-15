@@ -74,3 +74,23 @@ R10. When you cannot decide something (an amendment, a publication, a retraction
   PINNING_Q0_IN_AEST.md is the Q0 pin; bridge1_aest_equations.md has the exact SZ21
   perturbation equations, completed and referee-verified 2026-08-14)
 - Standing verdicts and retractions: `../STANDING.md`, `../RETRACTIONS.md`
+
+## SMALL-CONTEXT MODE (mandatory — added after the first worker timed out on startup reads)
+
+The worker model runs locally with limited context and slow inference. Context is the
+budget; spend it on WRITING scripts, not reading the corpus.
+
+S1. At session start read ONLY this file. Never read STANDING.md or RETRACTIONS.md in
+    full — when about to cite a verdict, grep RETRACTIONS.md for that one claim.
+S2. Never read any file over 300 lines in full. Use grep (-n, -A/-B) or offset-limited
+    reads. For TASKS.md read only the current task: `grep -A 14 "T0NN" TASKS.md`.
+S3. Hard budget: <= 3 file reads per task. If the task text names its input values, the
+    task text IS the provenance — do not hunt the parent repo for confirmation.
+S4. ONE task per session is fine and preferred. The ledger is the memory: a fresh
+    session reads `tail -5 LEDGER.md`, picks the next task, and goes. Never carry
+    context across tasks.
+S5. No extended/deep reasoning modes. Draft the script within the first few steps and
+    let the exit code do the verifying — iterate on FAILs, not on planning.
+S6. T085 (the canary) is PREBUILT in runs/. Session one is just:
+    `python harness.py runs/t085_kernel_regression.py "qwenlib regression pins"`,
+    grade the row, move to T081.
