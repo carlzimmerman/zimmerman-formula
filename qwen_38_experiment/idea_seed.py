@@ -12,12 +12,21 @@ FRAMEWORK = ["the shift charge Q0*n", "the DBI wall", "the nu0 window", "the dra
              "the EFE response tensor (1.4732/0.3674)", "kappa = 0.551 +/- 0.043",
              "the a0-line g^2 - gb^2 = a0*gb", "the pinned Q0 band", "the aether tilt",
              "the pressure promotion A(Q) = kappa^2 G(-K)", "the binding-epoch wall z=10.8",
-             "the y-gate", "R_dm = 0.387", "the off-switch at recombination"]
+             "the y-gate", "R_dm = 0.387", "the off-switch at recombination",
+             "Z = sqrt(32 pi/3) = 5.7888", "the golden-ratio point of the a0-line (g/gN = phi at y=1)",
+             "w = -1 exact (the vacuum never rolls)", "the transition z_t = nu0^(-1/3) - 1 in [17,35]",
+             "the X-pin (X = sqrt(y) c/v ~ 106-453)", "the fixed-point argument (drain vs pin)",
+             "the conditional nu0-meter (DR4 as a charge gauge)", "kappa is pi-free (proven)",
+             "the dust-mass-IS-the-charge theorem (rho/n = Q0)", "the Q/Y sector split (one field, two jobs)",
+             "the two-footing fork (9.3619e-11 vs 1.1279e-10)", "the 0.108-dex RAR at Ups = 0.70",
+             "the frozen wide-binary band 1.1614-1.1814", "the a0-bump cluster response (peaked at a0)",
+             "M_lens/M_dyn = 29 at the f = 1/3 fixed point", "the 690-Gyr transport time"]
 SM = ["the Cabibbo angle (0.2250)", "the Koide relation (2/3)", "sin^2 theta_W (0.2312)",
       "alpha^-1 = 137.036", "m_p/m_e = 1836.15", "the CKM CP phase (~1.14 rad)",
       "the PMNS solar angle (0.307)", "m_mu/m_e = 206.77", "the top Yukawa (~0.70)",
       "n_s = 0.9649", "m_W/m_Z (0.8814)"]
 MOTIF = ["a fixed point of", "an averaging over structure of", "a boundary term ratio of",
+         "the pi-free part of", "a footing-invariant combination of", "the drained remnant of",
          "a holonomy angle of", "the golden-ratio point of", "a polyhedral solid angle of",
          "spontaneous breaking of", "a duality exchanging", "the torsion of",
          "an entropy partition of", "the resonance condition between", "a projection of",
