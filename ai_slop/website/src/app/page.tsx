@@ -9,7 +9,7 @@ export default function Home() {
       <header className="border-b border-gray-200 bg-gray-50">
         <div className="max-w-5xl mx-auto px-6 py-4">
           <nav className="flex items-center justify-between flex-wrap gap-3">
-            <div className="text-lg font-semibold text-gray-900">de Sitter–Unruh Modified Inertia</div>
+            <div className="text-lg font-semibold text-gray-900">a₀ from the Cosmological Constant</div>
             <div className="flex items-center gap-6 text-sm">
               <Link href="/rar" className="text-gray-600 hover:text-gray-900">Galaxy data</Link>
               <Link href="/simulate" className="text-gray-600 hover:text-gray-900">Simulations</Link>
@@ -88,9 +88,10 @@ export default function Home() {
                 κ = ½ &nbsp;&nbsp; Z = √(32π/3) = 5.78881 &nbsp;&nbsp; a₀ = 9.36 × 10⁻¹¹ m s⁻²
               </div>
               <p className="text-sm text-gray-600 max-w-2xl mx-auto">
-                Realised as <span className="font-medium">modified inertia</span>, with the
-                interpolation ν(y) = √(1 + 1/y), i.e. the exact relation
-                g_obs² = g_bar² + a₀ g_bar.
+                Realised as <span className="font-medium">modified gravity</span> — the modified-inertia arm
+                was closed by lensing in August 2026 — with the exact relation
+                g_obs² = g_bar² + a₀ g_bar and the Milgrom&ndash;Sanders (2008) kernel
+                ν(y) = 1/(1 − e^(−√y)) as the operative interpolation.
               </p>
             </div>
           </section>
@@ -113,7 +114,8 @@ export default function Home() {
               predicts one, and that prediction is <span className="font-medium">11.58× the value used
               here</span>. What this programme actually contributes is therefore narrow and should be
               stated as such: a <span className="font-medium">re-normalisation of the coefficient to fit
-              data</span> (κ = ½ in place of Milgrom&rsquo;s 2), plus a modified-inertia completion.
+              data</span> (κ = ½ in place of Milgrom&rsquo;s 2), plus the relativistic completion — the scale
+              embedded in Aether&ndash;Scalar&ndash;Tensor theory — and its derived a₀(z).
               It is not a derivation of the law, and not a derivation of its scale.
             </p>
           </section>
@@ -269,8 +271,9 @@ export default function Home() {
                 <tr className="border-b border-gray-100">
                   <td className="py-3 px-4 text-gray-700">Wide binaries</td>
                   <td className="py-3 px-4 text-gray-700">
-                    γ targets 1.09 (modified inertia) / 1.137 (modified gravity), frozen with a 16-cut
-                    table. The two may be undecidable in DR4.
+                    In force (Amendment 10, Aug 2026): γ_v = 1.1614&ndash;1.1814 canonical / 1.1917&ndash;1.2267
+                    alt footing, no-verdict edge 1.23 — hash-stamped, amended in the open before
+                    data. Earlier targets (1.09, 1.1582) superseded on the record.
                   </td>
                   <td className="py-3 px-4 text-gray-500">Gaia DR4, Dec 2026</td>
                 </tr>
@@ -324,7 +327,7 @@ export default function Home() {
         {/* Footer */}
         <footer className="border-t border-gray-200 pt-8 text-sm text-gray-500">
           <p className="mb-2">
-            de Sitter&ndash;Unruh modified inertia — a proposal about gravity and the dark sector.{' '}
+            Modified gravity anchored to the cosmological constant — a proposal about gravity and the dark sector.{' '}
             <span className="font-medium">Not a theory of everything.</span>
           </p>
           <p className="mb-2">

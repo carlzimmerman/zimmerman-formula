@@ -94,7 +94,7 @@ const APPLIED: Item[] = [
     href: '/dark-matter',
     title: 'A dark-matter particle',
     what: 'A Z²-derived particle candidate with a specific keV mass.',
-    why: 'The framework uses modified inertia, not particle dark matter. The quoted mass was fabricated.',
+    why: 'The framework has no dark-matter particle (its operative arm is modified gravity). The quoted mass was fabricated.',
   },
   {
     href: '/early-universe',
@@ -164,7 +164,7 @@ export default function AiSlop() {
         <div className="max-w-4xl mx-auto px-6 py-4">
           <nav className="flex items-center justify-between flex-wrap gap-3">
             <Link href="/" className="text-lg font-semibold text-gray-900 hover:text-gray-600">
-              de Sitter&ndash;Unruh Modified Inertia
+              a₀ from the Cosmological Constant
             </Link>
             <div className="flex items-center gap-6 text-sm">
               <Link href="/" className="text-gray-600 hover:text-gray-900">&larr; Back to the actual claim</Link>
@@ -223,14 +223,14 @@ export default function AiSlop() {
           <p className="text-gray-700 mb-2">
             One claim: the acceleration scale of the mass-discrepancy&ndash;acceleration relation is set
             by the dark-energy density, a₀ = κ c √(G ρ_Λ) = c H_Λ / Z = 9.36 × 10⁻¹¹ m s⁻², realised as
-            modified inertia. It reproduces the radial acceleration relation on 175 SPARC galaxies at
+            modified gravity. It reproduces the radial acceleration relation on 175 SPARC galaxies at
             0.108 dex.
           </p>
           <p className="text-gray-700">
             Even that is narrower than it looks. The law and its de Sitter&ndash;Unruh derivation are{' '}
             <span className="font-medium">Milgrom&rsquo;s (1999)</span>, and his derivation fixes a
             coefficient 11.58× larger than the one used here. The contribution is a re-normalisation of
-            that coefficient to fit data, plus a modified-inertia completion. It is also currently in
+            that coefficient to fit data, plus the relativistic (Aether&ndash;Scalar&ndash;Tensor-embedded) completion. It is also currently in
             conflict with the inner-planet ephemerides at the level of ~10³ unless the relation is read
             as an infrared statement rather than an exact one.
           </p>

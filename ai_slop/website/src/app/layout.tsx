@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'The MOND Acceleration Scale as a de Sitter Curvature Scale',
-    description: 'a₀ = c²√(Λ/32π) = 9.36×10⁻¹¹ m/s² — the galactic acceleration scale set by the cosmological constant, via de Sitter–Unruh modified inertia. Reproduces the radial acceleration and baryonic Tully–Fisher relations; predicts a declining a₀(z=3) ≈ 0.74 a₀(0). A theory of gravity and the dark sector, not a theory of everything.',
+    description: 'a₀ = c²√(Λ/32π) = 9.36×10⁻¹¹ m/s² — the galactic acceleration scale set by the cosmological constant, realised as modified gravity (the modified-inertia arm was closed by lensing in August 2026). Reproduces the radial acceleration and baryonic Tully–Fisher relations; the derived a₀(z) is constant below z ≈ 20 and off at recombination. A theory of gravity and the dark sector, not a theory of everything.',
     url: 'https://abeautifullygeometricuniverse.web.app',
     siteName: 'Zimmerman Framework',
     locale: 'en_US',
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'a₀ = c²√(Λ/32π): the MOND scale as a de Sitter curvature scale',
-    description: 'An emergent-gravity proposal tying the galactic acceleration scale to the cosmological constant via modified inertia. Falsifiable by Cassini and by a declining a₀(z). A theory of gravity and the dark sector.',
+    description: 'A modified-gravity proposal tying the galactic acceleration scale to the cosmological constant. Falsifiable by the hash-frozen Gaia DR4 wide-binary band and by any robust a₀ evolution at z ≲ 5. A theory of gravity and the dark sector.',
     creator: '@carlzimmerman',
     images: ['/og-image.png'],
   },
@@ -89,7 +89,7 @@ export const metadata: Metadata = {
     'dc.title': 'The MOND Acceleration Scale as a de Sitter Curvature Scale',
     'dc.creator': 'Carl P. Zimmerman',
     'dc.subject': 'modified gravity; modified inertia; cosmology; dark sector; MOND',
-    'dc.description': 'An emergent-gravity proposal in which the galactic acceleration scale a₀ = c²√(Λ/32π) is set by the cosmological constant via de Sitter–Unruh modified inertia.',
+    'dc.description': 'A modified-gravity proposal in which the galactic acceleration scale a₀ = c²√(Λ/32π) is set by the cosmological constant.',
   },
 }
 

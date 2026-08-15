@@ -1,32 +1,32 @@
 'use client';
 
 /**
- * A0RedshiftDiscriminator
+ * A0RedshiftDiscriminator — the a₀(z) panel, updated August 2026 to the DERIVED law.
  *
- * The framework's distinctive, falsifiable prediction: the acceleration scale a0(z)
- * DECLINES with redshift as √ρ_DE(z) — separating cleanly at z≈3 from (i) ΛCDM, where
- * a0 is constant, and (ii) the rival "modified-inertia rises with cH" branch a0 ∝ cH(z).
+ * The framework's a₀(z) is now derived from the action (the MOND scale is the dark
+ * sector's pressure): a₀²(z)/a₀²(0) = √(1+ν₀²)/√(1+ν₀²(1+z)⁶), with the dimensionless
+ * charge ν₀ pinned to [2.14×10⁻⁵, 1.77×10⁻⁴] by the CMB off-switch (below) and the RAR
+ * (above). Below the transition z_t = ν₀^(−1/3) − 1 ≈ 17–35 the law is FLAT to <1% —
+ * indistinguishable from constant-a₀ everywhere rotation data exist — and it is OFF at
+ * recombination as an output. The earlier CPL-dressed declining law (a₀(z=3) ≈ 0.74) is
+ * WITHDRAWN and kept only in the retracted-work archive.
  *
- * Built from the audited 2026 result (DOI 10.5281/zenodo.20721540):
- *   framework:  a0(z)/a0(0) = √(ρ_DE(z)/ρ_DE(0)),  a0(z=3) ≈ 0.74
- *   ΛCDM:       a0(z)/a0(0) = 1
- *   rival:      a0(z)/a0(0) = E(z) = √(Ωm(1+z)³ + ΩΛ),  ≈ 4.56 at z=3
- *
- * The declining direction is currently CONTESTED, not confirmed; this panel shows what
- * each hypothesis predicts and where the clean discriminator lies.
+ * The rival "Hubble-tracking" reading a₀ ∝ cH(z) rises as E(z) and is disfavoured ~2σ
+ * by the credible 1 < z < 5 baryonic Tully–Fisher data (two of three usable tests move
+ * the wrong direction for it). Falsifier for the flat law, either sign: a robust BTFR
+ * zero-point shift of 0.15 dex in gas-dominated systems at z ≤ 1.
  */
 
 import { useMemo, useState } from 'react';
 
 const OMEGA_M = 0.315;
 const OMEGA_LAMBDA = 0.685;
+const NU0_LOG_MIN = Math.log10(2.14e-5);
+const NU0_LOG_MAX = Math.log10(1.77e-4);
 
-// CPL evolving dark energy (DESI-favored representative best fit)
-function rhoDEratio(z: number, w0: number, wa: number): number {
-  return Math.pow(1 + z, 3 * (1 + w0 + wa)) * Math.exp((-3 * wa * z) / (1 + z));
-}
-function aFramework(z: number, w0: number, wa: number): number {
-  return Math.sqrt(rhoDEratio(z, w0, wa));
+// the derived law: a0(z)/a0(0) = [(1+nu0^2)/(1+nu0^2 (1+z)^6)]^(1/4)
+function aFramework(z: number, nu0: number): number {
+  return Math.pow((1 + nu0 * nu0) / (1 + nu0 * nu0 * Math.pow(1 + z, 6)), 0.25);
 }
 function aRival(z: number): number {
   return Math.sqrt(OMEGA_M * Math.pow(1 + z, 3) + OMEGA_LAMBDA); // E(z)
@@ -42,9 +42,10 @@ const PADT = 24;
 const PADR = 24;
 
 export default function A0RedshiftDiscriminator() {
-  const [w0, setW0] = useState(-0.75);
-  const [wa, setWa] = useState(-0.86);
+  const [logNu0, setLogNu0] = useState(Math.log10(1.77e-4));
   const [hoverZ, setHoverZ] = useState(3);
+  const nu0 = Math.pow(10, logNu0);
+  const zT = Math.pow(nu0, -1 / 3) - 1;
 
   const px = (z: number) => PADL + (z / Z_MAX) * (W - PADL - PADR);
   const py = (y: number) => H - PADB - (y / Y_MAX) * (H - PADT - PADB);
@@ -54,7 +55,7 @@ export default function A0RedshiftDiscriminator() {
     const lcdm: string[] = [];
     const rival: string[] = [];
     for (let z = 0; z <= Z_MAX + 1e-9; z += 0.05) {
-      fw.push(`${px(z).toFixed(1)},${py(aFramework(z, w0, wa)).toFixed(1)}`);
+      fw.push(`${px(z).toFixed(1)},${py(aFramework(z, nu0)).toFixed(1)}`);
       lcdm.push(`${px(z).toFixed(1)},${py(1).toFixed(1)}`);
       rival.push(`${px(z).toFixed(1)},${py(Math.min(aRival(z), Y_MAX)).toFixed(1)}`);
     }
@@ -63,10 +64,11 @@ export default function A0RedshiftDiscriminator() {
       lcdm: 'M' + lcdm.join(' L'),
       rival: 'M' + rival.join(' L'),
     };
-  }, [w0, wa]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [nu0]);
 
   const vals = {
-    fw: aFramework(hoverZ, w0, wa),
+    fw: aFramework(hoverZ, nu0),
     lcdm: 1,
     rival: aRival(hoverZ),
   };
@@ -75,12 +77,15 @@ export default function A0RedshiftDiscriminator() {
   return (
     <div className="rounded-xl border border-gray-700 bg-black/40 p-5">
       <h3 className="mb-1 text-lg font-semibold text-white">
-        a₀(z): the distinctive prediction
+        a₀(z): flat where testable — and that is the prediction
       </h3>
       <p className="mb-4 text-sm text-gray-400">
-        The framework predicts a <span className="text-cyan-300">declining</span> acceleration scale,
-        a₀(z) ∝ √ρ_DE(z). It separates cleanly at z ≈ 3 from constant-Λ (ΛCDM) and from the rival
-        rising branch a₀ ∝ cH(z). Move the marker; adjust the dark-energy equation of state.
+        The derived law (August 2026) keeps a₀ <span className="text-cyan-300">constant to &lt;1%</span>{' '}
+        everywhere rotation data exist (z ≲ 5) and switches off only above z_t ≈ 17–35 — so on this
+        plot it sits on top of the constant-a₀ line, and the observed <em>absence</em> of
+        Tully&ndash;Fisher zero-point evolution at 1 &lt; z &lt; 5 is a pass, not a tension. The rival{' '}
+        <span className="text-orange-300">Hubble-tracking</span> reading a₀ ∝ cH(z) rises as E(z) and
+        is disfavoured ~2σ by those same data.
       </p>
 
       <svg
@@ -140,48 +145,44 @@ export default function A0RedshiftDiscriminator() {
       {/* legend + readout */}
       <div className="mt-3 grid grid-cols-1 gap-3 text-sm sm:grid-cols-3">
         <div className="rounded-md border border-cyan-700/40 bg-cyan-950/20 px-3 py-2">
-          <div className="font-medium text-cyan-300">Framework — a₀ ∝ √ρ_DE</div>
-          <div className="font-mono text-gray-300">a₀({hoverZ})/a₀(0) = {vals.fw.toFixed(2)}</div>
+          <div className="font-medium text-cyan-300">Derived law — flat below z_t</div>
+          <div className="font-mono text-gray-300">a₀({hoverZ})/a₀(0) = {vals.fw.toFixed(4)}</div>
         </div>
         <div className="rounded-md border border-gray-600/40 bg-gray-800/30 px-3 py-2">
-          <div className="font-medium text-gray-300">ΛCDM — constant</div>
+          <div className="font-medium text-gray-300">Constant a₀ (classic MOND / ΛCDM)</div>
           <div className="font-mono text-gray-300">a₀({hoverZ})/a₀(0) = 1.00</div>
         </div>
         <div className="rounded-md border border-orange-700/40 bg-orange-950/20 px-3 py-2">
-          <div className="font-medium text-orange-300">Rival — a₀ ∝ cH(z)</div>
+          <div className="font-medium text-orange-300">Hubble-tracking — a₀ ∝ cH(z)</div>
           <div className="font-mono text-gray-300">a₀({hoverZ})/a₀(0) = {vals.rival.toFixed(2)}</div>
         </div>
       </div>
 
       <p className="mt-3 text-sm text-gray-400">
-        At z = {hoverZ}, the framework and the rival branch differ by a factor of{' '}
-        <span className="font-mono text-white">{sep.toFixed(1)}×</span> — cleanly separable with deep-MOND
-        kinematics (ELT/JWST/ALMA). The premise (does ρ_DE evolve at all?) is hostage to DESI w(z); the
-        declining direction is contested, not yet confirmed.
+        At z = {hoverZ}, the derived law and the Hubble-tracking reading differ by{' '}
+        <span className="font-mono text-white">{sep.toFixed(1)}×</span> — and existing 1 &lt; z &lt; 5
+        Tully&ndash;Fisher data already disfavour the rising reading at ~2σ. The derived law is
+        indistinguishable from constant-a₀ below z_t; its pre-stated falsifier, either sign, is a
+        robust zero-point shift of 0.15 dex in gas-dominated systems at z ≤ 1 (SKA-class HI samples
+        reach this).
       </p>
 
-      {/* controls */}
+      {/* control */}
       <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
         <label className="text-xs text-gray-400">
-          dark-energy w₀ = <span className="font-mono text-gray-200">{w0.toFixed(2)}</span>
+          dimensionless charge ν₀ = <span className="font-mono text-gray-200">{nu0.toExponential(2)}</span>
+          {' '}(transition z_t ≈ <span className="font-mono text-gray-200">{zT.toFixed(0)}</span>)
           <input
-            type="range" min={-1} max={-0.5} step={0.01} value={w0}
-            onChange={(e) => setW0(parseFloat(e.target.value))}
-            className="mt-1 w-full"
-          />
-        </label>
-        <label className="text-xs text-gray-400">
-          dark-energy wₐ = <span className="font-mono text-gray-200">{wa.toFixed(2)}</span>
-          <input
-            type="range" min={-1.5} max={0} step={0.01} value={wa}
-            onChange={(e) => setWa(parseFloat(e.target.value))}
+            type="range" min={NU0_LOG_MIN} max={NU0_LOG_MAX} step={0.01} value={logNu0}
+            onChange={(e) => setLogNu0(parseFloat(e.target.value))}
             className="mt-1 w-full"
           />
         </label>
       </div>
       <p className="mt-2 text-xs text-gray-500">
-        w₀ = −1, wₐ = 0 recovers a constant a₀ (ΛCDM); the DESI-favored evolving values (w₀ ≈ −0.75,
-        wₐ ≈ −0.86) give a₀(z=3) ≈ 0.74. Source: a₀ = c²√(Λ/32π), DOI 10.5281/zenodo.20721540.
+        a₀²(z)/a₀²(0) = √(1+ν₀²)/√(1+ν₀²(1+z)⁶), with ν₀ pinned to [2.1×10⁻⁵, 1.8×10⁻⁴] by the CMB
+        off-switch (below) and the radial-acceleration relation (above). MOND is off at recombination
+        as an output. The earlier declining-a₀ law (a₀(z=3) ≈ 0.74) is withdrawn — see Retracted work.
       </p>
     </div>
   );

@@ -123,7 +123,7 @@ const simulations = [
     name: 'a₀(z) Discriminator',
     icon: '',
     available: true,
-    description: 'Declining a₀(z) vs ΛCDM vs rival rising branch',
+    description: 'Flat-below-z₀ derived law vs the disfavoured rising branch',
     color: 'cyan'
   },
   {

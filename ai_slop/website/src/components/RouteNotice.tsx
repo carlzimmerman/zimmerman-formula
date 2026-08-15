@@ -26,7 +26,7 @@ const NOTICES: Record<string, string> = {
   '/early-universe':
     'Claims that Z² sets early-universe structure are numerology. The audited framework concerns the present-day galactic acceleration scale, not primordial structure formation.',
   '/dark-matter':
-    'This page presents a Z²-derived particle dark-matter candidate with a specific keV mass. The audited framework uses modified inertia, not particle dark matter; the quoted mass is fabricated.',
+    'This page presents a Z²-derived particle dark-matter candidate with a specific keV mass. The audited framework has no dark-matter particle (its operative arm is modified gravity); the quoted mass is fabricated.',
   '/cosmic-fate':
     'The cosmic-fate narrative here is built on the retracted Z² numerology and is not a result of the audited framework.',
   '/el-gordo':
@@ -44,7 +44,7 @@ const NOTICES: Record<string, string> = {
   '/calculator':
     'This calculator reproduces the retracted Z² "constant derivations"; its outputs are numerical coincidences, not predictions.',
   '/predictions':
-    'Several predictions on this page (sin²θ_W = 3/13, Ω_Λ = 13/19, specific particle masses) are retracted numerology. The audited, falsifiable predictions are the declining a₀(z) and the Cassini modified-inertia test.',
+    'Several predictions on this page (sin²θ_W = 3/13, Ω_Λ = 13/19, specific particle masses) are retracted numerology. The audited, falsifiable fronts are the hash-frozen Gaia DR4 wide-binary band and the derived a₀(z) law — flat below z ≈ 20, so any robust a₀ evolution at z ≲ 5 falsifies it.',
   '/why-z2/': '',
   '/curiosities':
     'These "curiosities" pair the retracted Z² number with cultural and historical patterns; they are numerical coincidences, not evidence.',
