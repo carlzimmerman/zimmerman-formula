@@ -110,3 +110,17 @@ STREAM 4 -- SYMBOLIC REGRESSION (sr_engine.py): forms from data with holdout +
 shuffled-target nulls.  Same session shape as the monkeys: run the engine, read 4
 lines, ledger the verdict.  Never fabricate a data table; export from committed
 pipelines or mark BLOCKED naming the missing file.
+
+## The NEAR-MISS sublayer (refine-once, rails against p-hacking)
+
+A failed idea that was CLOSE may earn exactly ONE refinement round: the blind referee
+may grade NEAR-MISS (miss within 2x tolerance, or one nameable principled fix), a
+fresh session writes ONE revised hypothesis whose fix is justified WITHOUT reference
+to the target value, declares "trials = 2", and the revision faces its own blind
+referee.  No second refinement ever -- a failed revision is DEAD-FINAL.  Engine
+near-miss bands (mm_search near_misses field) are REPORTS, not hits: they may seed a
+refinement or a task, never a verdict.  Historical precedent, stated for calibration:
+kappa = 1/2 is itself a principled refinement of Milgrom's derived-but-excluded 2cH
+-- the relationship survived, the coefficient was re-normalized, and the corpus has
+spent two years paying the honest price for that tweak (kappa is FITTED).  That is
+what one disciplined refinement looks like; a dial is not.

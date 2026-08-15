@@ -97,6 +97,10 @@ def main():
     hits = [(ex, v, c, abs(v - t) / (sig if sig else abs(t) * w))
             for (ex, v, c) in allv.values() if abs(v - t) <= w * abs(t)]
     hits.sort(key=lambda h: h[3])
+    near = [(ex, v, c, abs(v - t) / (sig if sig else abs(t) * w))
+            for (ex, v, c) in allv.values()
+            if w * abs(t) < abs(v - t) <= 2 * w * abs(t)]
+    near.sort(key=lambda h: h[3])
 
     rng = random.Random(0)
     counts = []
@@ -120,7 +124,9 @@ def main():
                verdict_suggestion=("CANDIDATE-ESCALATE" if surplus >= 5 and len(hits) > 0
                                    else "NULL"),
                top_hits=[dict(expr=ex, value=v, complexity=c, sigmas=round(s, 2))
-                         for ex, v, c, s in hits[:12]])
+                         for ex, v, c, s in hits[:12]],
+               near_misses=[dict(expr=ex, value=v, complexity=c, sigmas=round(s, 2))
+                            for ex, v, c, s in near[:5]])
     with open(out, "a") as f:
         f.write(json.dumps(row) + "\n")
     with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "REGISTRY_FDR.md"), "a") as f:

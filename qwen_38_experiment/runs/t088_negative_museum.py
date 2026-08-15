@@ -184,6 +184,13 @@ os.remove(ctrl)
 # ---- the real museum ----
 rows = parse_rows(open(LEDGER, encoding="utf-8"))
 groups, total = group_closed(rows)
+if total == 0:
+    note = ("0 closed doors as of this run: the ledger holds no REFUTED/NULL verdict "
+              "(every row is DISCARD / CONFIRMED / SCRIPT / NOTE). The builder is "
+              "verified non-vacuous by the positive control above.")
+else:
+    note = None
+write_museum(OUT, groups, total, note)
 info(f"ledger rows parsed: {len(rows)}; REFUTED/NULL closed rows: {total} "
      f"across {len(groups)} door(s)")
 if total == 0:
