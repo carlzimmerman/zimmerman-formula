@@ -33,7 +33,8 @@ WORKER_MODEL="${WORKER_MODEL:-}"         # e.g. qwen3.8:27b-mlx; empty = default
 MAX_TURNS="${MAX_TURNS:-40}"
 COOLDOWN="${COOLDOWN:-15}"               # pause between sessions
 
-echo "[autoloop] starting; stop with: touch $DIR/STOP"
+trap 'echo; echo "[autoloop] Ctrl-C -- stopping."; exit 130' INT TERM
+echo "[autoloop] starting; stop with Ctrl-C or: touch $DIR/STOP"
 i=0
 while true; do
   [ -f "$DIR/STOP" ] && { echo "[autoloop] STOP file found -- exiting."; rm -f "$DIR/STOP"; break; }
