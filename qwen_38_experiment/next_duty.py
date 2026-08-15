@@ -78,7 +78,8 @@ Then follow the normal task protocol (script in runs/, harness, grade, ledger ro
             return 0
 
     nums = sorted(int(x[1:]) for x in {d.lower() for d in done if d.lower().startswith("t")})
-    for cand in list(range(81, 91)) + list(range(1, 81)) + list(range(91, 131)):
+    tmax = max(int(m) for m in re.findall(r"\*\*T(\d{3})", open(j(H, "TASKS.md")).read()))
+    for cand in list(range(81, 91)) + list(range(1, 81)) + list(range(91, tmax + 1)):
         if cand not in nums:
             print(f"""DUTY: TASK T{cand:03d}.  Get the spec:  grep -A 14 "T{cand:03d}" {j(H, 'TASKS.md')}
 Follow the normal protocol (PROTOCOL.md small-context mode): script in runs/, run via
