@@ -43,9 +43,8 @@ and END THE SESSION.""")
 
     def graded_pursue(p):
         txt = open(p).read()
-        if re.search(r"\bDISCARD\b", txt[:400]):
-            return False
-        return bool(re.search(r"(?:^|\n)\s*(?:GRADE|VERDICT)?\s*[:=]?\s*PURSUE\b", txt, re.I))
+        m = re.search(r"(?:GRADE|VERDICT)\s*[:=]\s*(PURSUE|NEAR-MISS|DISCARD)", txt, re.I)
+        return bool(m and m.group(1).upper() == "PURSUE")
 
     pursued = [p for p in glob.glob(j(H, "seeds/refereed/ref_*.md")) if graded_pursue(p)]
     promoted = open(j(H, "TASKS_SEEDED.md")).read() if os.path.exists(j(H, "TASKS_SEEDED.md")) else ""
