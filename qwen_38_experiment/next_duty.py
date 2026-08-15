@@ -36,8 +36,13 @@ then append one LEDGER.md row (task id = the seed number, verdict = PURSUE or DI
 and END THE SESSION.""")
             return 0
 
-    pursued = [p for p in glob.glob(j(H, "seeds/refereed/ref_*.md"))
-               if "PURSUE" in open(p).read().upper()]
+    def graded_pursue(p):
+        txt = open(p).read()
+        if re.search(r"\bDISCARD\b", txt[:400]):
+            return False
+        return bool(re.search(r"(?:^|\n)\s*(?:GRADE|VERDICT)?\s*[:=]?\s*PURSUE\b", txt, re.I))
+
+    pursued = [p for p in glob.glob(j(H, "seeds/refereed/ref_*.md")) if graded_pursue(p)]
     promoted = open(j(H, "TASKS_SEEDED.md")).read() if os.path.exists(j(H, "TASKS_SEEDED.md")) else ""
     for p in pursued:
         sid = os.path.basename(p)[4:8]
@@ -73,14 +78,34 @@ Then follow the normal task protocol (script in runs/, harness, grade, ledger ro
             return 0
 
     nums = sorted(int(x[1:]) for x in {d.lower() for d in done if d.lower().startswith("t")})
-    nxt = 81
     for cand in list(range(81, 91)) + list(range(1, 81)) + list(range(91, 131)):
         if cand not in nums:
-            nxt = cand
-            break
-    print(f"""DUTY: TASK T{nxt:03d}.  Get the spec:  grep -A 14 "T{nxt:03d}" {j(H, 'TASKS.md')}
+            print(f"""DUTY: TASK T{cand:03d}.  Get the spec:  grep -A 14 "T{cand:03d}" {j(H, 'TASKS.md')}
 Follow the normal protocol (PROTOCOL.md small-context mode): script in runs/, run via
 harness.py, grade honestly, append the ledger row, END THE SESSION.""")
+            return 0
+    n = len(done)
+    SM = ["alpha_inv", "alpha_s_MZ", "sin2thW_msbar", "mmu_over_me", "mtau_over_mmu",
+          "mp_over_me", "ckm_lambda", "ckm_A", "ckm_rhobar", "ckm_etabar",
+          "ckm_delta_rad", "pmns_s2_12", "pmns_s2_23", "pmns_s2_13", "mW_over_mZ",
+          "mH_over_v", "yt_top", "ns_scalar", "omega_b_h2", "omega_c_h2",
+          "koide_Q", "mn_over_mp"]
+    kind = n % 3
+    if kind == 0:
+        tgt = SM[(n // 3) % len(SM)]
+        pack = ["base", "zimm", "angle"][(n // 3 // len(SM)) % 3]
+        cmax = 5 + min(2, n // (3 * len(SM) * 3))
+        print(f"""DUTY: FRONTIER-MM #{n}.  All numbered tasks are done; coverage continues.
+Run:  python {j(H, 'mm_search.py')} --target {tgt} --pack {pack} --cmax {cmax}
+Ledger the 3-line summary as task id F{n:04d} (verdict from the engine suggestion).""")
+    elif kind == 1:
+        print(f"""DUTY: FRONTIER-SR #{n}.  Run:
+python {j(H, 'sr_engine.py')} --data {j(H, 'data/rar_sparc_a0units.json')} --target y --features x --gens 80 --pop 500 --seed {n} --nulls 2 --baseline a0line
+(a NEW GP seed = a new search trajectory).  Ledger the summary as F{n:04d}.""")
+    else:
+        print(f"""DUTY: FRONTIER-SEED #{n}.  Run:  python {j(H, 'idea_seed.py')} --n 2
+then END THE SESSION (the next sessions will interpret and blind-referee them).
+Ledger one row F{n:04d} verdict SEEDED.""")
     return 0
 
 
