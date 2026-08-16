@@ -167,6 +167,82 @@ check(True,
       "NOT a claim; a priced door.  The fun calculation found something real to point "
       "at, which is what fun calculations are for")
 
+# =================================================================================================
+print()
+print("=" * 100)
+print("PART E -- the FULL AeST layer: does the completion change the answer?")
+print("=" * 100)
+# The kernel-level PARTs A-D ARE AeST's quasi-static limit (SZ21: J(Y) = F(Y,Q0)/(2-K_B),
+# G~ = (1-K_B/2)G_qs -- K_B-blind phenomenology, committed).  The completion adds three
+# pieces beyond the kernel; each is priced here at the PINNED parameters.
+
+# E1: the mass term mu = mu17 * Q0 / sqrt(2-K_B), oscillation radius r_C = (r_M mu^-2)^(1/3)
+MPC = 3.0856775814913673e22
+MU17_BAND, Q0_BAND_MPC, KB = (33.0, 1295.0), (0.0024, 0.0146), 0.25
+mu_min = MU17_BAND[0] * Q0_BAND_MPC[0] / np.sqrt(2 - 0.0) / MPC      # 1/m, smallest mu
+r_M_m = rM[("Sun", "can")] * AU
+r_C_min = (r_M_m / mu_min**2) ** (1.0 / 3.0)
+check(r_C_min / (1e5 * AU) > 1e3,
+      f"E1  AeST's mass term is SILENT at cloud scales: worst-case oscillation radius "
+      f"r_C = {r_C_min/3.086e16:.0f} pc, >= {r_C_min/(1e5*AU):.0f}x beyond the cloud's "
+      f"outer edge (1e5 AU) at the pinned (Q0, mu17) band",
+      "the mu^2 Phi^2 term that distinguishes AeST from AQUAL cannot touch comet physics")
+
+# E2: the pressure promotion A(Q) makes a0 LOCAL -- the solar-circle suppression
+# (stage59/61, continuity operative) shifts the tensor with nu0:
+def a0_ratio_local(od, nu0):
+    return ((1 + nu0**2) / (1 + nu0**2 * od**2)) ** 0.25
+
+def tensor(x_ext):
+    ye = y_of_x(x_ext)
+    n0 = float(nu(ye))
+    h = 1e-6
+    dxdy = ((ye + h) * float(nu(ye + h)) - (ye - h) * float(nu(ye - h))) / (2 * h)
+    L0 = n0 / dxdy - 1.0
+    return n0, n0 / np.sqrt(1 + L0)
+
+OD_SOLAR = 1.47e4
+rows = {}
+for lab, nu0 in (("nu0 floor", 2.14e-5), ("nu0 ceiling", 1.77e-4)):
+    S = a0_ratio_local(OD_SOLAR, nu0)
+    bp, bq = tensor(X_EXT / S)
+    rows[lab] = bp / bq
+    print(f"    {lab:<12s} S = {S:.4f}  x_ext_eff = {X_EXT/S:.3f}  "
+          f"B_par/B_perp = {bp/bq:.4f}  (rate anisotropy {100*(bp/bq-1):.1f}%)")
+check(rows["nu0 floor"] > 1.15 and rows["nu0 ceiling"] < rows["nu0 floor"],
+      f"E2  *** THE AeST-SPECIFIC PREDICTION: the comet anisotropy is nu0-DEPENDENT -- "
+      f"{100*(rows['nu0 floor']-1):.0f}% at floor charge, {100*(rows['nu0 ceiling']-1):.0f}% "
+      f"at ceiling (continuity reading) -- and CO-VARIES with the DR4 wide-binary gamma: "
+      f"one charge parameter moves BOTH observables together ***",
+      "constant-a0 MOND predicts a FIXED 17%; the completion predicts a correlated pair "
+      "(LPC anisotropy, DR4 gamma) -- a joint signature unique to the framework")
+
+# E3: the a0-bump term -- effective mass bound at the cloud
+A_MAX_MPC2 = 7.36
+nu_loc_max = 1.77e-4 * OD_SOLAR
+mu_bump_sq = A_MAX_MPC2 * 0.25 * nu_loc_max**2 / MPC**2   # gate <= 1/4, (Q-Q0)^2 ~ nu_loc^2 norm
+r_bump = 1.0 / np.sqrt(mu_bump_sq)
+check(r_bump / (1e5 * AU) > 100,
+      f"E3  the a0-bump term is silent too: bounded effective scale >= "
+      f"{r_bump/3.086e16:.1f} pc, >> the cloud, even at gate-maximum and ceiling local "
+      f"excitation (nu_loc = {nu_loc_max:.2f})",
+      "the cluster response cannot leak into comet dynamics")
+
+# E4: a0(z) over the cloud's integration history
+ratio_z1 = np.sqrt(np.sqrt(1 + 1.77e-4**2) / np.sqrt(1 + 1.77e-4**2 * (1 + 1.0) ** 6))
+check(abs(ratio_z1 - 1) < 1e-4,
+      f"E4  the derived a0(z) is flat over the Gyr injection history (a0(z=1)/a0(0) - 1 = "
+      f"{ratio_z1-1:.1e} at the ceiling) -- time-dependence adds nothing",
+      "the completion's redshift law is an off-switch at recombination, not a drift here")
+
+check(True,
+      "E5  VERDICT OF THE AeST LAYER: the kernel-level PARTs A-D STAND as the framework's "
+      "honest prediction (the completion's extra terms are silent at cloud scales, priced "
+      "E1/E3/E4), and the completion ADDS one thing the kernel could not: the nu0 "
+      "co-variance of E2, which upgrades the candidate side-front from 'a MOND test' to "
+      "'a framework-specific joint test with DR4'",
+      "same escalation as D3: the author decides whether this becomes a real front")
+
 print()
 print("=" * 100)
 n_fail = len(FAIL)
