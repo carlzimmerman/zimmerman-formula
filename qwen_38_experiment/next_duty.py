@@ -75,9 +75,20 @@ round -- if the revision fails its blind referee, the idea is DEAD-FINAL.  Do no
 test it yourself.  END THE SESSION.""")
                 return 0
 
-    pending = sorted(glob.glob(j(H, "seeds/pending/seed_*.txt")))
+    m = re.findall(r"\*\*S(\d{4})", promoted)
+    started = set(re.findall(r"^\|\s*S(\d{4})", ltxt if 'ltxt' in dir() else open(j(H, "LEDGER.md")).read(), re.M))
     done, ltxt = ledger_tasks()
-    if not pending and len(done) % 6 == 5:
+    started = set(re.findall(r"^\|\s*S(\d{4})", ltxt, re.M))
+    for sid in m:
+        if sid not in started:
+            print(f"""DUTY: SEEDED TASK S{sid}.  Get the spec:  grep -A 14 "S{sid}" {j(H, 'TASKS_SEEDED.md')}
+Then follow the normal task protocol (script in runs/, harness, grade, ledger row).""")
+            return 0
+
+    pending = sorted(glob.glob(j(H, "seeds/pending/seed_*.txt")))
+    idea_rows = len(re.findall(r"^\|\s*0\d{3}\s*\|", ltxt, re.M))
+    task_rows = len(re.findall(r"^\|\s*[tTSF]", ltxt, re.M))
+    if not pending and idea_rows < task_rows:
         subprocess.run([sys.executable, j(H, "idea_seed.py"), "--n", "2"], capture_output=True)
         pending = sorted(glob.glob(j(H, "seeds/pending/seed_*.txt")))
     if pending:
@@ -90,14 +101,6 @@ would kill it).  <= 40 lines.  Write it to {j(H, f'seeds/interp/interp_{sid}.md'
 then MOVE the seed file to seeds/promoted/ (mv) and END THE SESSION.  Do not test it
 yourself -- a separate blind session referees it.""")
         return 0
-
-    m = re.findall(r"\*\*S(\d{4})", promoted)
-    started = set(re.findall(r"^\|\s*S(\d{4})", ltxt, re.M))
-    for sid in m:
-        if sid not in started:
-            print(f"""DUTY: SEEDED TASK S{sid}.  Get the spec:  grep -A 14 "S{sid}" {j(H, 'TASKS_SEEDED.md')}
-Then follow the normal task protocol (script in runs/, harness, grade, ledger row).""")
-            return 0
 
     nums = sorted(int(x[1:]) for x in {d.lower() for d in done if d.lower().startswith("t")})
     tmax = max(int(m) for m in re.findall(r"\*\*T(\d{3})", open(j(H, "TASKS.md")).read()))
