@@ -35,6 +35,17 @@ check.  Grade the idea with ONE of THREE grades:
     tolerance, OR you can name ONE principled fix whose justification does NOT depend
     on making the number come out right (state gap + fix, one line each);
   DISCARD -- everything else (say why in one sentence).
+HARVEST-CALIBRATED CHECKS (all four survivors of the first run died at these; apply
+them BEFORE grading PURSUE): (1) tolerance-width: if the pre-registered band admits
+more than one integer/lattice/shortlist member, the test cannot fail -> DISCARD
+null-by-construction; (2) definition-shopping: if the matched quantity has several
+scheme/scale variants crowding the window (e.g. top-sector ratios 0.70-0.75), name
+them -- a match to ONE variant is not evidence; (3) discriminating power: propagate
+the measured errors THROUGH the test -- if a perfect hit and the observed miss are
+both inside the error, the test is undecidable at current data -> DISCARD;
+(4) premise-check: if the idea references a feature of a committed curve (a peak, a
+sub-peak, a fixed point), verify the feature EXISTS on the actual function before
+grading anything.
 Write your grade + reason to
 {p.replace('/interp/', '/refereed/').replace('interp_', 'ref_')}
 then append one LEDGER.md row (task id = the seed number, verdict = PURSUE or DISCARD)

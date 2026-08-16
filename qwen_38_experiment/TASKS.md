@@ -513,3 +513,26 @@ mm_search --custom each at cmax 5; the double-pass table with Bonferroni over AL
 prefactors tested. Anything surviving → ESCALATE with the full chain written out.
 **T136 — FINDINGS_BRIDGE.md.** The programme summary: controls, noise floors, every
 double-pass or its absence; consolidation duty.
+
+## O · The Oort/EFE front (T137–T140) — the paper's owed items (DOI 10.5281/zenodo.21966646)
+
+**T137 — Derive the tide exponents.** The paper's 2/7 and 3/7 are leading-order stated
+scalings. Method: the Heisler–Tremaine loss-cone formalism — per-orbit perihelion kick
+from the galactic tide, threshold vs the loss cone, solve for a_spike(G_eff) and the
+directional injection efficiency numerically (no new data needed; pure dynamics).
+PASS: the derived exponents with their validity range; a deviation from 2/7–3/7 is a
+CORRECTION to the committed paper — flag it. KILL: none.
+**T138 — The Newtonian-tide baseline.** Compute the pure-Newtonian galactic-latitude
+aphelia distribution for tide-injected LPCs (the classic mid-latitude concentration) as
+the subtraction template — analytic + a simple Monte Carlo of tide-torqued orbits.
+PASS: the template distribution, committed as data.
+**T139 — LPC power analysis.** Mock catalogs: N ∈ {200, 500, 1000} orbits drawn from
+T138's baseline, with and without a 12%/17% directional amplitude modification (the
+framework's ν₀ ceiling/floor); what N detects it at 2σ/3σ? PASS: the power table —
+this decides whether the front is testable with existing catalogs or needs LSST-era
+comet samples. Honest either way.
+**T140 — The correlated-pair locus.** Compute the joint (γ_DR4, comet-anisotropy) curve
+across the ν₀ window under the continuity reading (both footings) — the framework's
+unique prediction as one figure-ready table. Consolidation duty. NOTE: the Paučo &
+Klačka 2016 prior-art reading is NOT a worker task (needs the paper itself) — leave it
+in ESCALATE for the author/frontier model.
