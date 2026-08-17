@@ -83,11 +83,12 @@ for line in open(MRT):
         continue
     try:
         name, D, eD = t[0], float(t[2]), float(t[3])
+        fD = int(float(t[4]))
         inc, einc, Q = float(t[5]), float(t[6]), int(float(t[17]))
     except (ValueError, IndexError):
         continue
     if D > 0 and 0 < inc <= 90:
-        meta[name] = dict(D=D, eD=eD, inc=inc, einc=einc, Q=Q)
+        meta[name] = dict(D=D, eD=eD, inc=inc, einc=einc, Q=Q, fD=fD)
 check(len(meta) > 150, f"P0  master table parsed: {len(meta)} galaxies with D, e_D, Inc, Q",
       "distances and quality flags are needed for the systematic propagation")
 
@@ -426,6 +427,78 @@ check(True,
       f"proportion to the residual stellar fraction",
       "owed next if this route is pursued: TRGB-distance-only subsample (kills the leading "
       "term), and BIG-SPARC-class N for the statistics")
+
+# =================================================================================================
+print()
+print("=" * 100)
+print("PART F -- the TRGB/direct-distance subsample (kills the leading systematic AND an")
+print("          H0-convention inconsistency nobody had flagged)")
+print("=" * 100)
+# SPARC distance methods (master-table Note 2): 1 = Hubble flow ASSUMING H0 = 73,
+# 2 = TRGB, 3 = Cepheids, 4 = Ursa Major cluster, 5 = supernovae.
+# TWO reasons to prefer the direct methods {2,3,5}:
+#   (i) e_D is small, and a_0 ~ D^-2 amplifies distance error 2x (the 18.9% leading term);
+#   (ii) THE H0 INCONSISTENCY: for Hubble-flow galaxies D ~ 1/H0, so a_0 ~ D^-2 ~ H0^2,
+#        while c sqrt(G rho_Lambda) ~ H0 -- hence kappa ~ H0 for that subset.  Using
+#        H0 = 73 distances with a rho_Lambda built from H0 = 67.4 mixes conventions and
+#        biases kappa by ~(73/67.4) = 8%.  Direct distances are H0-free, so the subsample
+#        removes the inconsistency rather than modelling it.
+DIRECT = {2, 3, 5}
+elig_d = [n for n in GAL if meta[n]["Q"] <= QMAX and meta[n]["inc"] >= INC_MIN
+          and meta[n]["fD"] in DIRECT]
+samp_d = [n for n in elig_d if points(n)[0].size >= 3]
+frac_direct_all = sum(1 for n in sample if meta[n]["fD"] in DIRECT) / max(len(sample), 1)
+print(f"    gas-dominated AND direct-distance: {len(samp_d)} galaxies "
+      f"({100*frac_direct_all:.0f}% of the 27-galaxy sample had direct distances)")
+med_eD_all = np.median([meta[n]["eD"] / meta[n]["D"] for n in sample])
+med_eD_dir = np.median([meta[n]["eD"] / meta[n]["D"] for n in samp_d]) if samp_d else np.nan
+print(f"    median fractional distance error: {100*med_eD_all:.1f}% (full gas sample) -> "
+      f"{100*med_eD_dir:.1f}% (direct only)")
+check(len(samp_d) >= 3 and med_eD_dir < med_eD_all,
+      f"F1  the direct-distance cut does what it should: median e_D/D drops "
+      f"{100*med_eD_all:.1f}% -> {100*med_eD_dir:.1f}%, so the D^-2-amplified term falls from "
+      f"~{2*100*med_eD_all:.0f}% to ~{2*100*med_eD_dir:.0f}% per galaxy",
+      "at the cost of sample size -- the same trade as the f_gas tightening")
+if len(samp_d) >= 3:
+    a0_d = fit_tls(samp_d)
+    kap_d = a0_d / C_SQRT_GRHOL
+    bd = []
+    ad = np.array(samp_d)
+    for _ in range(400):
+        v = fit_tls(list(ad[rng.randint(0, len(ad), len(ad))]))
+        if np.isfinite(v):
+            bd.append(v / C_SQRT_GRHOL)
+    stat_d = float(np.std(bd)) if bd else np.nan
+    sys_d_small = 2 * med_eD_dir * kap_d / max(np.sqrt(len(samp_d)), 1)
+    tot_d = float(np.sqrt(stat_d**2 + sys_d_small**2
+                          + (sysd["inclination (per-galaxy e_Inc)"]) ** 2))
+    print(f"    kappa(gas-dominated, direct distances, TLS) = {kap_d:.4f} +/- {tot_d:.4f} "
+          f"({100*tot_d/kap_d:.0f}%)   [stat {stat_d:.3f}, distance {sys_d_small:.3f}, "
+          f"inclination {sysd['inclination (per-galaxy e_Inc)']:.3f}]")
+    check(abs(kap_d - 0.5) / tot_d < 2.5,
+          f"F2  *** THE CLEANEST GAS-DOMINATED NUMBER: kappa = {kap_d:.3f} +/- {tot_d:.3f}, "
+          f"{abs(kap_d-0.5)/tot_d:.2f} sigma from the adopted 1/2 (and "
+          f"{abs(kap_d-K_DF)/np.sqrt(tot_d**2+S_DF**2):.2f} sigma from the distance-free "
+          f"determination) ***",
+          "every systematic this subsample was built to remove IS removed: no Upsilon "
+          "dominance, no H0-convention mixing, direct distances -- what remains is N")
+    check(tot_d / kap_d > 0.037,
+          f"F3  and it is STILL not precise enough: {100*tot_d/kap_d:.0f}% vs the 3.7% target, "
+          f"because {len(samp_d)} galaxies is a small sample.  Reaching 3.7% on this cleanest "
+          f"channel needs ~{max(1, int(len(samp_d)*(tot_d/(0.037*kap_d))**2))} gas-dominated "
+          f"galaxies with direct distances -- which is a survey proposal (TRGB distances for "
+          f"gas-rich dwarfs), not a re-analysis",
+          "the honest end of this road: the systematics are solvable, the statistics are not, "
+          "with existing data")
+    check(True,
+          f"F4  THE H0 POINT, banked separately because it affects the COMMITTED numbers: any "
+          f"kappa determination that uses SPARC Hubble-flow distances (H0 = 73) together with "
+          f"a rho_Lambda built from Planck H0 = 67.4 carries a ~8% convention bias, in the "
+          f"direction of OVERSTATING kappa (kappa ~ H0 for that subset).  The direct-distance "
+          f"value above is free of it.  Whether the committed distance-free 0.551 +/- 0.043 "
+          f"handles this consistently is an OWED AUDIT of that script",
+          "flagged as a possible systematic in the framework's FAVOUR at the ~8% level -- "
+          "i.e. the committed 0.551 may be biased high relative to 1/2")
 
 print()
 print("=" * 100)
