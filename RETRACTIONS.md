@@ -239,3 +239,94 @@ rather than deleted — that is the point of keeping a ledger.*
   Also on this calculation all three of SZ21's published K_B values (0.5/0.3/0.1) are
   excluded by 4000–20000×, which must NOT be stated publicly until the J·∇φ term is
   settled.
+  **⚠️ 2026-08-17 — THIS ENTRY IS ITSELF NOW DEMOTED TO ONE BRANCH OF A FORK.** An
+  independent from-scratch derivation (`real_research/reviews/ppn_alpha_independent_check_2026.py`,
+  26/26, no literature formula consulted) gets **α₁ = α₂ = 0 identically** for the same
+  aether sector. The two disagree because the theory sits on **c₁₂₃ = 0**, where the spin-0
+  aether mode has zero propagation speed: the literature PPN analysis assumes all modes
+  propagate (so the static solution is unique and decaying), whereas here a static source
+  resonantly drives the zero-speed mode into a **non-normalisable wake**
+  v_L ~ U/(ik w·k̂). Reading D also finds g₀₀ has *no Taylor series in w* (at w = 0 exactly,
+  λ ≠ 0 and G_N = G/(1−K_B/2), so the w⁰ coefficient jumps), so α₁ and α₂ — defined as the
+  O(w²) coefficients — may not exist for this theory. **DO NOT QUOTE K_B < 2.5×10⁻⁵ AS IN
+  FORCE, and do not quote α₁ = 0 either.** Recorded but NOT claimed: discarding the
+  Θ_{3ν} = 0 constraints gives formal α₁ = +3K_B/2, α₂ = +K_B/2, opposite in sign. The
+  deciding calculation is unchanged and is now doubly owed: the PPN expansion with the
+  scalar sector retained, which is what lifts the degeneracy. Full pricing:
+  `nbody_2026/stage73_ppn_kb_confrontation_2026.py` (35/35).
+
+## 2026-08-17 — the parallel-review round (six adversarial checks)
+
+- **"The quasi-static phenomenology is K_B-blind"** — **CORRECTED, not withdrawn.** True of
+  every *observable* (G̃ = (1−K_B/2)Ĝ, μ² = 2𝓚₂Q₀²/(2−K_B), r_C, the RAR, the a₀-line,
+  lensing, BTFR, the frozen DR4 band are all regular as K_B → 0), but **false of the
+  sector**: 5 of 14 K_B-carrying quantities diverge, including c_s² ~ 1/K_B (SZ21 Eq 30),
+  m_×² ~ 1/K_B (Mistele Eq 21) and M² ~ 1/K_B (SZ21 Eq 22). New exact identity:
+  c_s² = [4m_×²/((2−K_B)μ²)](1 + K_Bλ_s/2) → 2(m_×/μ)² at small K_B, so the scalar is
+  subluminal **iff** 1/m_× ≥ √2/μ. Consequence: solving c_s² = 1 gives a **subluminality
+  floor K_B ≥ 2/(𝓚₂+1)**, a *lower* bound opposing every PPN bound; at SZ21's own
+  MOND-compatible fits it sits 8.4–10.7× above the α₁ ceiling (window empty there, with
+  c_s = 2.9–3.3c at the ceiling), while at the corpus's pinned Q₀ the window is open 2.2× at
+  the low edge and closed 17× at the high edge. So the superluminality crisis is
+  **conditional on the α₁ fork above**, and the two adverse findings partially cancel.
+  `real_research/reviews/kb_small_limit_safety_2026.py` (33/33).
+- **"Ly-α-safe by construction"** — **WITHDRAWN as stated; the framework still passes.** The
+  forest tightens Λ_D/Q₀ from 1.54×10⁻⁶ to **≤ 2.3×10⁻⁹** (bracket 5.7×10⁻¹⁰–7.0×10⁻⁹, a
+  factor 219–2693), removing the top 2.56 of the health window's 3.65 decades and leaving
+  1.08. Safety is therefore conditional on sitting in the bottom decade. Method upgrades:
+  an exact one-parameter scaling theorem (T² depends on (k,R) only through x = k²R) and
+  CLASS re-validation *inside* the forest band (≤ 0.0055 absolute). Favourable and
+  structural: c_s²(z=1090) = 1.9×10⁻¹¹R, so there is **no primordial cutoff** — not WDM in
+  disguise. `real_research/reviews/lyman_alpha_dust_ic_2026.py` (22/22).
+- **stage69's stated *basis* for passing** — **WITHDRAWN** (the pass stands, the reasoning
+  does not). It inferred R ~ 3×10⁻⁸ from `mi_dbi_khronon`'s c_s² = 1.1×10⁻⁸; that is an
+  **epoch** statement computed at R = 1 (where c_s² = 2w², reproducing 1.1×10⁻⁸ to 3.1%),
+  and R = 1 is excluded by stage69's own bound. There is **no independent small-R
+  normalisation in the corpus** — do not cite 1.1×10⁻⁸ as one.
+- **stage70 C4's direction claim** — **WRONG DIRECTION, conclusion survives.** "Smaller K_B
+  makes stage57's mixing share smaller, which strengthens the conclusion" is backwards:
+  (2−K_B) sits in the numerator, so the share *rises* (17.6% → 20.8%, +18% relative).
+- **"κ = 0.551 ± 0.043 (distance-free) is the clean determination"** — **ERROR BAR
+  UNDERSTATED.** κ ∝ h^(2q_eff − p) and is H₀-invariant iff q_eff = p/2 = 0.500 (fixed Ω_Λ)
+  or 0.730 (fixed ω_m); neither estimator sits there. 97/175 SPARC galaxies use Hubble-flow
+  distances at H₀ = 73 while the denominator c√(Gρ_Λ) is Planck-footed, and a
+  Planck-consistent rescale moves a₀ by **+6.5–7.3%, i.e. 4.0× its 1.84% statistical
+  error, against a budget charging 0% for distance scale**. **NOT a direction claim**: the
+  self-consistent range is [0.492, 0.589] and 0.551 sits inside it. Combined over the three
+  determinations: 0.529 ± 0.034 as published, 0.547 ± 0.034 on the Planck-consistent
+  rescale. Always quote κ **with its H₀**. The BTFR is less exposed than a naive count
+  suggests (q_eff = +0.202, the distance *weight* fraction, not 0.583 by count) and its
+  budget already charges 5.06% > the 3.26% offset, so its width was honest.
+  `real_research/reviews/kappa_h0_convention_audit_2026.py` (24/24).
+- **The curl-sector cluster mechanism** — **DEAD, and not for the expected reason.** PPN
+  *helps* it (tightening K_B to 2.5×10⁻⁵ shrinks the crossover ℓ_U from 58–248 Mpc to
+  0.58–2.48 Mpc and raises the realised R500 response by 1665–7848×). It dies on geometry:
+  an exact pointwise cancellation leaves the saturated tilt a **pure gradient with zero
+  curl for any anisotropy**, and the divergence theorem makes the ℓ = 0 effect exactly
+  O(ε²). Shortfall 8.0× at an absolute floor with every generous assumption stacked, ~176×
+  central, 636× conservative; closing η would need ε = 0.85–2.11 in a relaxed, near-round
+  sample. The a₀-bump remains the only live cluster candidate. **Surviving prediction** (not
+  a mechanism): a merger/ellipticity-gated rider η − 1 ∝ ε² at 0.1–10% with no free
+  amplitude. **New adverse channel, escalated not claimed:** the longitudinal tilt at
+  r > ℓ_U suppresses Y = |D|² by T² = 0.07–1.28 at cluster scales, making the deficit worse
+  (galaxies untouched, 99.7%+ stiff at 30 kpc). Conditional on the α₁ fork.
+  `real_research/reviews/curl_sector_cluster_pricing_2026.py` (27/27).
+- **The second-field escape for the dust problem** — **all four catalogued candidates DEAD**,
+  including one built specifically to clear the three known legs, which cleared them and
+  died on a *sign* (a gate built from |∇φ| rises outward wherever held dust dominates its
+  own field, anti-supporting 99.27% of the held mass; equilibrium truncates at 653 kpc with
+  55–61% of the framework's own lensing mass piled there). Ungating does **not** evade the
+  support bound — it *is* the saturating endpoint. Two reusable theorems: at Γ = 4/3 the
+  violation is calibration-**independent** at 1.16×10³× the cap, and
+  r_×/R_supp = [M_bar/((π²/3)M_dust)]^(1/3) = 0.194 is fixed by the baryon-to-dust ratio
+  alone (test it first — it is free). Escape space for open problem 2d is now **narrower**.
+  `real_research/reviews/second_field_catalog_2026.py` (47/47).
+- **Two committed-corpus defects to fix (verdict-neutral, both flagged against interest):**
+  (i) c_V² — stage71 (JM04, −c₃²/2) gives 1 − K_B, while `svt_2026/vector_sector_v7.py`'s own
+  gauge-invariance-verified 2nd-order FRW derivation gives exactly 1; a Maxwell-form F²
+  should be luminal, so stage71 likely carries a transcription sign. (ii) m_× — ROUTE_D has
+  Q₀√((2−K_B)/(2K_B)) while HOSTILE_REGRADE has ((2−K_B)/K_B)Q₀ with the √ dropped; the
+  reviews used ROUTE_D's because it is the *weaker* 1/K_B.
+- **A tension the corpus must not bank both sides of:** DOORA_PIN's Serra–Trombetta
+  "robust-pass" requires c_s² ≥ 1, which is the **same inequality** as the superluminality
+  problem read from the opposite side.
