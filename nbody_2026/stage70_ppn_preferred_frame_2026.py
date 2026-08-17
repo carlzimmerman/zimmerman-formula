@@ -1,6 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 r"""
+
+!!! SUPERSEDED IN PART -- 2026-08-17, by stage74_ppn_fork_adjudicated_2026.py !!!
+THIS FILE'S HEADLINE BOUND IS WITHDRAWN.  alpha_1 = -4 K_B is CORRECT arithmetic, but
+Foster & Jacobson's own appendix removes c_123 = 0 from their domain of validity BEFORE
+deriving the formula, and Jacobson arXiv:0801.1547 names THIS EXACT THEORY and states the
+PPN perturbation series is not applicable to it.  So:
+  * "K_B < 2.5e-5" is NOT a bound.  Do not quote it.
+  * SZ21's three published K_B fits (0.5/0.3/0.1) are NOT excluded.
+  * check B2's label "THE BOUND" should read "the value of the generic formula evaluated
+    outside its stated domain of validity".
+  * IN FORCE instead: K_B in [2.1e-4, 0.25].  See stage74.
+The checks below still pass on their own terms; they verify the ALGEBRA, not the APPLICABILITY.
 stage70_ppn_preferred_frame_2026.py
 ===================================
 STAGE 70: THE PPN PREFERRED-FRAME PARAMETERS alpha_1, alpha_2 -- THE_COMPLETION's

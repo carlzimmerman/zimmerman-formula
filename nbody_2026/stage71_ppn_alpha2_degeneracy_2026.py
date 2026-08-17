@@ -1,6 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 r"""
+
+!!! SUPERSEDED IN PART -- 2026-08-17, by stage74_ppn_fork_adjudicated_2026.py !!!
+THREE ERRORS IN THIS FILE, all confirmed independently:
+  * check A4's c_V^2 = 1 - K_B is a SIGN SLIP.  FJ06 Eq. (15)'s spin-1 row is
+    (c_1 - c_1^2/2 + c_3^2/2)/(c_14(1-c_13)) = 1 EXACTLY on the dictionary.  The docstring
+    line and the PART D remark carry the same error.  This resolves the svt_2026 conflict
+    in svt_2026's favour.
+  * check B2's "the generic ratio is 0/0" is WRONG: alpha_2 is a SIMPLE POLE (numerator
+    -K_B^2 != 0 over c_123(2-c_14) = 0).  The conclusion survives; the reason must change.
+  * the docstring's "K_B < 2.5e-5 or K_B < 5e-8" has BOTH LEGS VOID: there is no
+    generic-alpha_2 branch at c_2 = 0, and 5e-8 belongs to a tiny nonzero c_2 this theory
+    does not have.
 stage71_ppn_alpha2_degeneracy_2026.py
 =====================================
 STAGE 71: alpha_2 -- AND WHY IT CANNOT BE INHERITED FROM THE LITERATURE FOR THIS THEORY.

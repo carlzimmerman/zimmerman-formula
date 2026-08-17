@@ -254,6 +254,61 @@ rather than deleted — that is the point of keeping a ledger.*
   deciding calculation is unchanged and is now doubly owed: the PPN expansion with the
   scalar sector retained, which is what lifts the degeneracy. Full pricing:
   `nbody_2026/stage73_ppn_kb_confrontation_2026.py` (35/35).
+  **✅ 2026-08-17 (same day, later) — ADJUDICATED. `K_B < 2.5×10⁻⁵` IS WITHDRAWN AS A BOUND,
+  and stage73's "EMPTY WINDOW" WITH IT.** Four independent routes, each attacked by two
+  adversarial verifiers, then synthesised (`nbody_2026/stage74_ppn_fork_adjudicated_2026.py`,
+  24/24; routes in `real_research/reviews/alpha2_{regulated_limit,linearised_solve,
+  wellposedness,literature_forensics}_2026.py`, 36/36, 46/46, 46/46, 43/43). The three grounds,
+  any one sufficient: **(1) documentary and decisive** — Foster & Jacobson's own appendix
+  removes c₁₂₃ = 0 from the domain *before* deriving the formula (the solutions there diverge),
+  and the exclusion extends to coefficients merely *close* to those values, which refuses the
+  limit route as well; Jacobson arXiv:0801.1547 then names **this exact theory** ("the Maxwell
+  action, with the unit constraint on the vector"), states α₂ is infinite and the spin-0 speed
+  zero, and concludes the PPN perturbation series is not applicable — and the same paragraph
+  contains reading D's answer, published (equivalent to Maxwell in a special gauge in the
+  sector where the Lagrange multiplier vanishes). **(2) internal inconsistency** — α₂ is a
+  simple pole with nonzero residue, so on the branch where α₁ = −4K_B is the right coefficient
+  α₂ is infinite, and no α₁ ceiling may be quoted from a formula set returning an infinite α₂
+  for a 10⁻⁷-bounded observable. **(3) the type change** — the static longitudinal aether
+  kinetic operator *is* c₁₂₃, so at c₁₂₃ = 0 the equation degenerates into a constraint on the
+  source, and lim(α₂c_S²) = K_B/2 on all ten regulator paths, i.e. α₂ diverges at precisely the
+  rate the spin-0 speed vanishes. **α₁ = −4K_B's arithmetic is CORRECT and must not be called
+  wrong** — it is a theorem (denominator 2K_B ≠ 0) and is reproduced from scratch on the
+  regular branch. **IN FORCE: K_B ∈ [2.1×10⁻⁴, 2) on no-ghost, [2.1×10⁻⁴, 0.25] with BBN;
+  SZ21's own fits clear the floor by 475×/1875×.** Two adverse riders at equal prominence:
+  every neighbour of the theory in coupling space *is* PPN-excluded (∂α₁/∂c₂ = 0 on the whole
+  c₁₃ = c₄ = 0 plane), so the escape is structural but **not robust** — c₂ ~ 10⁻⁸ generated
+  radiatively reimposes K_B ≲ 4.5×10⁻⁸; and Sagi 2009 (PRD 80, 044032), treating simple TeVeS
+  which *is* the Maxwell aether, gets *finite* α₁ ~ 1/K with the scalar retained — the opposite
+  scaling, which if it carried over would kill the relativistic home rather than bound it.
+- **⚠️ THREE MORE CORPUS ERRORS FOUND IN THE SAME ADJUDICATION, all recorded against interest:**
+  (i) **stage71 A4's c_V² = 1 − K_B is a SIGN SLIP** — FJ06 Eq. (15)'s spin-1 row is
+  (c₁ − c₁²/2 **+** c₃²/2)/(c₁₄(1−c₁₃)) = **1 exactly** on the dictionary; triple-confirmed, and
+  it resolves stage73 H3(5) in favour of `svt_2026` and against stage71. Structural
+  corroboration: only the + version's numerator is half α₁'s denominator, the spin-1 kinetic
+  normalisation, so they share a root. The docstring line and the PART D remark carry the same
+  error. (ii) **stage71 B2's "the generic ratio is 0/0" is WRONG** — α₂ is a simple pole
+  (numerator −K_B² ≠ 0 over c₁₂₃(2−c₁₄) = 0); the conclusion survives and is strengthened, the
+  stated reason must change. Its docstring's "K_B < 2.5×10⁻⁵ **or** K_B < 5×10⁻⁸" has **both
+  legs void**: there is no generic-α₂ branch at c₂ = 0, and 5×10⁻⁸ belongs to a tiny nonzero c₂
+  the theory does not have. (iii) **stage73 B4's "opposite SIGN to reading L" is struck** — the
+  frozen-λ third reading gives α₁ = −2K_B, the *same* sign; and that third reading is now
+  **refuted** outright (freezing λ violates charge conservation, and allowing λ₀(1+cw²) leaves
+  α₁ arbitrary). Also stage73's "[1] and [3] DISAGREE about α₁": they do not — they compute
+  different **branches** of a degenerate boundary-value problem.
+- **A convention rule worth recording, since getting it wrong refuted a whole route's
+  headline:** in Will's convention the preferred-frame terms are −(α₁−α₂−α₃)w²U − α₂wⁱwʲU_ij,
+  so with δh₀₀ = [a w² + b(w·k̂)²]U and U_ij = (δ_ij − 2k̂_ik̂_j)U, **α₁ = −a exactly and
+  α₂ = b/2** — the α₂ contributions to the w²U coefficient cancel identically, so α₁ depends on
+  *a* alone for any α₂. One route assumed both signs flip and wrongly concluded that −4K_B "is
+  reproduced by no arm," contradicting its own check.
+- **What still gates the whole thing (not yet landed):** α₁, α₂ for the FULL theory with the
+  scalar retained, and with it the **local** spin-0 speed in the solar system (SZ21 Eq. 30's
+  c_s is *cosmological*). It turns on one number — whether local c_s exceeds
+  w_⊙ = 1.234×10⁻³ c. Above it, the problem is elliptic, the w-series converges, a finite α₁
+  exists and LLR bites in full; below it the equation changes type at a sonic point and the
+  wake returns, an unpriced regime potentially worse than a bound; at c_s = 0 exactly today's
+  verdict stands.
 
 ## 2026-08-17 — the parallel-review round (six adversarial checks)
 

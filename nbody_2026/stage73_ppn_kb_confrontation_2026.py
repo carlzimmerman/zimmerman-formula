@@ -1,6 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 r"""
+
+!!! SUPERSEDED IN PART -- 2026-08-17 (same day), by stage74_ppn_fork_adjudicated_2026.py !!!
+  * PART C's "EMPTY WINDOW" IS WITHDRAWN.  It rested entirely on reading L's ceiling leg,
+    and that ceiling is withdrawn (see stage74 PART C).  The FLOOR leg and the exact
+    identity c_s^2 = 2(m_x/mu)^2 survive intact.  IN FORCE: K_B in [2.1e-4, 0.25], and
+    SZ21's own fits clear the floor by 475x / 1875x.  DO NOT QUOTE THE EMPTY WINDOW.
+  * PART B4's "opposite SIGN to reading L" is STRUCK: the frozen-lambda third reading gives
+    alpha_1 = -2 K_B, the SAME sign -- and that third reading is now REFUTED outright.
+  * the docstring's "[1] and [3] DISAGREE about alpha_1" is wrong: they compute different
+    BRANCHES of a degenerate boundary-value problem, selected by the direction of w vs k.
+The checks below still pass on their own terms.  Read stage74 for what is in force.
 stage73_ppn_kb_confrontation_2026.py
 ====================================
 STAGE 73: the CONFRONTATION between six parallel results that landed together, and the
