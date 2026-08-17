@@ -310,6 +310,40 @@ rather than deleted — that is the point of keeping a ledger.*
   wake returns, an unpriced regime potentially worse than a bound; at c_s = 0 exactly today's
   verdict stands.
 
+## 2026-08-17 — the AeST action was mis-transcribed in the corpus's own papers
+
+- **🔴 THE ACTION ITSELF WAS WRONG IN `THE_COMPLETION.md`, AND EVERY DOCUMENT BUILT FROM IT.**
+  Resolved against the authors' own LaTeX — arXiv:2007.00082 `\label{NT_A_action}` (Eq. 5) and
+  its independent restatement arXiv:2109.13287 Eq. (1), which agree term by term — by
+  `real_research/reviews/ppn_verify_transcription_2026.py` (38/38). **Three errors:**
+  (i) 𝓕(𝒴,𝒬) was **added**, the source **subtracts** it; (ii) 𝓕 was placed **outside** the
+  1/16πG̃ prefactor, the source has it **inside**; (iii) the multiplier term was
+  **+λ(A·A+1)**, the source has **−λ(A·A+1)**. The four coefficients it shared with the source
+  — −(K_B/2)F², +2(2−K_B)J·∇φ, −(2−K_B)𝒴, and R inside the prefactor — were all correct, so
+  the damage is localised but real. **`real_research/bridge1_aest_equations.md` was CORRECT all
+  along, character for character, and is the reference transcription — use it, not
+  `THE_COMPLETION.md`, for any future work on the action.** Corrected 2026-08-17 in
+  `THE_COMPLETION.md`, `THE_FIELD_THEORY.md` (§0 and §1) and `THE_EQUATION_COPYPASTE.md`.
+  The correct form:
+
+  S = ∫d⁴x (√−g/16πG̃)[ R − 2Λ − (K_B/2)F^μν F_μν + 2(2−K_B)J^μ∇_μφ − (2−K_B)𝒴 − 𝓕(𝒴,𝒬)
+      − λ(A^μA_μ+1) ] + S_m[g]
+
+  **STILL OWED, and explicitly not gated:** the embedding of this programme's 𝓕_Y and K into
+  the source's single −𝓕(𝒴,𝒬) slot. Rearranging gives
+  𝓕 = −2(G̃/G)𝒜𝓕_Y(𝒴/𝒜) − 16πG̃K, but the factor of 2 and the G̃-versus-G placement are
+  exactly where the error lived and have not been verified. Do not quote that embedding as
+  settled. What IS settled and unaffected: 𝒜(Q) = κ²G(−K(Q)), K(Q) = −M⁴√(1−(Q−Q₀)²/Λ_D²) at
+  β = 1, a₀ = κc√(Gρ_Λ), and the kernel d𝓕_Y/dz = 1 − e^(−√z).
+- **A convention rule, recorded because getting it wrong wrecked results three times in one
+  day.** Will's g₀₀ preferred-frame terms are −(α₁−α₂−α₃)w²U − α₂wⁱwʲU_ij, so the w²U
+  coefficient is **(α₂ − α₁ + α₃)**, *not* (α₃ − α₁) — verified against Will's Living Review
+  (arXiv:1403.7377). The two conventions in play therefore **mix** α₁ and α₂ rather than
+  differing by a sign: α₁(Will) = −(α₁+α₂)(script), α₂(Will) = −α₂(script). Consequence:
+  |α₂| is convention-robust, |α₁| is **not** (4K_B in Will's convention versus (3/2)K_B in the
+  script's). `ppn_scalar_retained_2026.py`'s note that "no verdict depends on the convention
+  because every bound is on |α|" is **FALSE** and must be struck.
+
 ## 2026-08-17 — the parallel-review round (six adversarial checks)
 
 - **"The quasi-static phenomenology is K_B-blind"** — **CORRECTED, not withdrawn.** True of

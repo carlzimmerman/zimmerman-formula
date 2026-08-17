@@ -1,5 +1,11 @@
 # The field theory in one equation — copy/paste versions
 
+**⚠️ CORRECTED 2026-08-17.** Earlier versions of this file placed 𝓕 outside the 1/16πG̃
+prefactor, added rather than subtracted, and carried the wrong sign on λ. Fixed against the
+authors' own LaTeX. The **embedding** of this programme's 𝓕_Y and K into the source's single
+−𝓕(𝒴,𝒬) slot is a normalisation that is still owed — see `THE_FIELD_THEORY.md` §1.
+
+
 Three forms of the same thing: LaTeX (display), LaTeX (align, for a paper), and plain
 Unicode text (for email, Slack, a talk slide). All are the same equation.
 
@@ -9,7 +15,7 @@ Unicode text (for email, Slack, a talk slide). All are the same equation.
 
 ```latex
 \begin{equation}
-S=\int d^{4}x\sqrt{-g}\left\{\frac{R-\tfrac{K_{B}}{2}F^{\mu\nu}F_{\mu\nu}+2(2-K_{B})J^{\mu}\nabla_{\mu}\varphi-(2-K_{B})Y}{16\pi G}+\frac{\kappa^{2}\mathcal{P}}{8\pi}\,\mathcal{F}_{Y}\!\left(\frac{Y}{\kappa^{2}G\mathcal{P}}\right)-\mathcal{P}\right\}+S_{\mathrm{m}}[g,\psi]
+S=\int d^{4}x\,\frac{\sqrt{-g}}{16\pi\tilde{G}}\Big[R-2\Lambda-\tfrac{K_{B}}{2}F^{\mu\nu}F_{\mu\nu}+2(2-K_{B})J^{\mu}\nabla_{\mu}\varphi-(2-K_{B})\mathcal{Y}-\mathcal{F}(\mathcal{Y},\mathcal{Q})-\lambda(A^{\mu}A_{\mu}+1)\Big]+S_{\mathrm{m}}[g]
 \end{equation}
 ```
 
@@ -35,12 +41,12 @@ a_{0}=\kappa c\sqrt{G\rho_{\Lambda}}=9.36\times10^{-11}\ \mathrm{m\,s^{-2}}\ \ \
 
 ```latex
 \begin{align}
-S=\int d^{4}x\sqrt{-g}\,\Bigg\{
-&\frac{1}{16\pi G}\Big[R-\frac{K_{B}}{2}F^{\mu\nu}F_{\mu\nu}
-+2(2-K_{B})J^{\mu}\nabla_{\mu}\varphi-(2-K_{B})Y\Big] \nonumber\\
-&+\frac{\kappa^{2}\mathcal{P}}{8\pi}\,
-\mathcal{F}_{Y}\!\left(\frac{Y}{\kappa^{2}G\mathcal{P}}\right)
--\mathcal{P}\Bigg\}+S_{\mathrm{m}}[g,\psi],
+S=\int d^{4}x\,\frac{\sqrt{-g}}{16\pi\tilde{G}}\Bigg[
+&R-2\Lambda-\frac{K_{B}}{2}F^{\mu\nu}F_{\mu\nu}
++2(2-K_{B})J^{\mu}\nabla_{\mu}\varphi \nonumber\\
+&-(2-K_{B})\mathcal{Y}
+-\mathcal{F}(\mathcal{Y},\mathcal{Q})
+-\lambda\bigl(A^{\mu}A_{\mu}+1\bigr)\Bigg]+S_{\mathrm{m}}[g],
 \end{align}
 ```
 
@@ -49,10 +55,16 @@ S=\int d^{4}x\sqrt{-g}\,\Bigg\{
 ## 3. Plain Unicode text — for email, Slack, or a slide
 
 ```
-S = ∫ d⁴x √−g { [ R − (K_B/2)F^μν F_μν + 2(2−K_B)J^μ∇_μφ − (2−K_B)Y ] / (16πG)
-                 + (κ²𝒫/8π) · 𝓕_Y( Y / κ²G𝒫 )
-                 − 𝒫 }
-    + S_m[g, ψ]
+S = ∫ d⁴x (√−g / 16πG̃) [ R − 2Λ
+                          − (K_B/2) F^μν F_μν
+                          + 2(2−K_B) J^μ ∇_μφ
+                          − (2−K_B) 𝒴
+                          − 𝓕(𝒴, 𝒬)
+                          − λ (A^μ A_μ + 1) ]
+    + S_m[g]
+
+    ALL of it inside the 1/16πG̃ ; 𝓕 SUBTRACTED ; −λ(A·A+1).
+    (Verified against arXiv:2007.00082 Eq. 5 and arXiv:2109.13287 Eq. 1.)
 
 where
 

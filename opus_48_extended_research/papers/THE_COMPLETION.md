@@ -115,10 +115,19 @@ $$
 leaving it schematic invites silent truncation:**
 
 $$
-\mathcal{L}_{\rm aether} = \frac{1}{16\pi G}\Big[-\tfrac{K_B}{2}F^{\mu\nu}F_{\mu\nu}
-\;+\;2(2-K_B)\,J^\mu\nabla_\mu\varphi\;-\;(2-K_B)\,Y\;+\;\lambda\,(A^\mu A_\mu+1)\Big],
+\mathcal{L}_{\rm aether} = \frac{1}{16\pi \tilde G}\Big[-\tfrac{K_B}{2}F^{\mu\nu}F_{\mu\nu}
+\;+\;2(2-K_B)\,J^\mu\nabla_\mu\varphi\;-\;(2-K_B)\,Y\;-\;\mathcal{F}(\mathcal{Y},\mathcal{Q})
+\;-\;\lambda\,(A^\mu A_\mu+1)\Big],
 \qquad J^\mu = A^\nu\nabla_\nu A^\mu
 $$
+
+**⚠️ CORRECTED 2026-08-17.** This block previously had `+λ(A·A+1)` (wrong sign), omitted
+`−𝓕(𝒴,𝒬)`, and the surrounding text placed 𝓕 *outside* the 1/16πG̃ prefactor and *added*
+rather than subtracted. Verified against the authors' own LaTeX — arXiv:2007.00082
+`\label{NT_A_action}` (Eq. 5) and its independent restatement arXiv:2109.13287 Eq. (1), which
+agree term by term. The four coefficients this file already had right are
+−(K_B/2)F², +2(2−K_B)J·∇φ, −(2−K_B)𝒴, and R inside the prefactor. `real_research/bridge1_aest_equations.md`
+was correct all along and is the reference transcription. See `RETRACTIONS.md`.
 
 The two **(2−K_B) scalar-coupled terms are part of AeST's kernel** (SZ Eq. 5) and are load-bearing —
 they generate the committed quasi-static G̃ = (1−K_B/2)Ĝ, and omitting them changes the scalar and

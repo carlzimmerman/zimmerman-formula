@@ -37,10 +37,19 @@ v2, 2026-08-17
 ## 0. The theory in one equation
 
 $$\boxed{\;
-S=\int\! d^4x\sqrt{-g}\left\{\frac{R-\tfrac{K_B}{2}F^{\mu\nu}F_{\mu\nu}
-+2(2-K_B)J^\mu\nabla_\mu\varphi-(2-K_B)Y}{16\pi G}
-\;+\;\frac{\kappa^2\mathcal{P}}{8\pi}\,\mathcal{F}_Y\!\!\left(\frac{Y}{\kappa^2G\,\mathcal{P}}\right)
-\;-\;\mathcal{P}\right\}+S_{\rm m}[g,\psi]\;}$$
+S=\int\! d^4x\,\frac{\sqrt{-g}}{16\pi\tilde G}\Big[R-2\Lambda
+-\tfrac{K_B}{2}F^{\mu\nu}F_{\mu\nu}
++2(2-K_B)J^\mu\nabla_\mu\varphi
+-(2-K_B)\mathcal{Y}
+-\mathcal{F}(\mathcal{Y},\mathcal{Q})
+-\lambda\,(A^\mu A_\mu+1)\Big]+S_{\rm m}[g]\;}$$
+
+everything inside the $1/16\pi\tilde G$, with $\mathcal{F}$ **subtracted** and the multiplier
+term $-\lambda(A^\mu A_\mu+1)$ — verified term-by-term against the authors' own LaTeX
+(arXiv:2007.00082 Eq. 5, restated independently as arXiv:2109.13287 Eq. 1). *A previous
+version of this document placed $\mathcal{F}$ outside the prefactor, added rather than
+subtracted, with the opposite sign on $\lambda$; see `RETRACTIONS.md`.* This programme's
+contribution is the **specification of $\mathcal{F}$**, through
 
 $$\mathcal{P}(Q)\;=\;M^4\sqrt{1-\frac{(Q-Q_0)^2}{\Lambda_D^2}}\,,\qquad
 Q\equiv A^\mu\nabla_\mu\varphi,\qquad
@@ -99,8 +108,17 @@ Y\equiv(g^{\mu\nu}+A^\mu A^\nu)\nabla_\mu\varphi\nabla_\nu\varphi,\qquad
 A^\mu A_\mu=-1,$$
 
 $$\mathcal{L}^{\rm AeST}_{\rm aether}=-\frac{K_B}{2}F^{\mu\nu}F_{\mu\nu}
-+2(2-K_B)J^\mu\nabla_\mu\varphi-(2-K_B)Y,
++2(2-K_B)J^\mu\nabla_\mu\varphi-(2-K_B)Y-\mathcal{F}(\mathcal{Y},\mathcal{Q})
+-\lambda(A^\mu A_\mu+1),
 \qquad F_{\mu\nu}=2\nabla_{[\mu}A_{\nu]},\quad J_\mu=A^\alpha\nabla_\alpha A_\mu,$$
+
+all of it inside the $1/16\pi\tilde G$ prefactor, per the source. **The embedding of this
+programme's $\mathcal{F}_Y$ and $K$ into the single $-\mathcal{F}(\mathcal{Y},\mathcal{Q})$
+slot is an owed normalisation.** Rearranging gives
+$\mathcal{F}=-2(\tilde G/G)\mathcal{A}\,\mathcal{F}_Y(\mathcal{Y}/\mathcal{A})-16\pi\tilde G\,K$,
+but the factor of 2 and the $\tilde G$-versus-$G$ placement are exactly where the previous
+error lived and have **not** been gated. Treat the two functions below as the settled content
+and that embedding as pending.
 
 and the two functions
 
