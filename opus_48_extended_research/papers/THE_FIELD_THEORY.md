@@ -19,7 +19,58 @@ v1, 2026-08-17
 
 ---
 
-## 1. The action
+## 0. The theory in one equation
+
+$$\boxed{\;
+S=\int\! d^4x\sqrt{-g}\left\{\frac{R-\tfrac{K_B}{2}F^{\mu\nu}F_{\mu\nu}
++2(2-K_B)J^\mu\nabla_\mu\varphi-(2-K_B)Y}{16\pi G}
+\;+\;\frac{\kappa^2\mathcal{P}}{8\pi}\,\mathcal{F}_Y\!\!\left(\frac{Y}{\kappa^2G\,\mathcal{P}}\right)
+\;-\;\mathcal{P}\right\}+S_{\rm m}[g,\psi]\;}$$
+
+$$\mathcal{P}(Q)\;=\;M^4\sqrt{1-\frac{(Q-Q_0)^2}{\Lambda_D^2}}\,,\qquad
+Q\equiv A^\mu\nabla_\mu\varphi,\qquad
+Y\equiv(g^{\mu\nu}+A^\mu A^\nu)\nabla_\mu\varphi\nabla_\nu\varphi,$$
+
+$$A^\mu A_\mu=-1,\qquad \frac{d\mathcal{F}_Y}{dz}=1-e^{-\sqrt z},\qquad
+M^4=\rho_\Lambda c^2,\qquad \kappa=\tfrac12\ \text{(fitted)}.$$
+
+**How to read it, in four lines.**
+
+1. The numerator of the first term is **Aether-Scalar-Tensor gravity** (Skordis & Złośnik
+   2021): general relativity, plus a unit-timelike vector $A^\mu$ that carries a cosmic
+   frame, plus a scalar $\varphi$. Matter couples to $g_{\mu\nu}$ alone — which is why
+   lensing and dynamics agree with no dark halo ($\Phi=\Psi$, $\gamma_{\rm PPN}=1$).
+2. $\mathcal{P}$ is the **entire dark sector, and it is a brane**: $-\mathcal{P}$ is the
+   Dirac–Born–Infeld action $-M^4\sqrt{1-\dot\varphi_{\rm rel}^2}$, with $M^4=\rho_\Lambda c^2$
+   its tension. (This is what the selection $\beta\equiv\mu^2\Lambda_D^2/M^4=1$ *means*: the
+   dark sector's Lagrangian is exactly a brane volume element, nothing added.) At its
+   minimum $Q=Q_0$ it is a cosmological constant with $w=-1$ **exactly**; small excitations
+   have energy density linear in the displacement, i.e. **dust** — the dark matter the CMB
+   requires; and at the wall $|Q-Q_0|\to\Lambda_D$ the pressure vanishes, killing any early
+   stiff phase.
+3. The middle term is **MOND**, and its acceleration scale is not a new constant:
+   $$a_0^2=\kappa^2G\,\mathcal{P}\qquad\text{— the MOND scale \emph{is} the dark sector's pressure.}$$
+   That single identification is the programme's contribution. Evaluated today
+   ($Q=Q_0$, $\mathcal{P}=M^4=\rho_\Lambda c^2$) it gives
+   $a_0=\kappa c\sqrt{G\rho_\Lambda}=9.36\times10^{-11}\ \mathrm{m\,s^{-2}}$; evaluated in
+   the past, where the field has climbed the brane wall and $\mathcal{P}$ is smaller, it
+   gives a *derived* $a_0(z)$ that is flat below $z\approx20$ and switches off before
+   recombination.
+4. $\mathcal{F}_Y$ is the interpolation function (Milgrom & Sanders 2008, $\alpha=\tfrac12$),
+   the only thing borrowed from MOND phenomenology.
+
+**Why a physicist should care about the shape of it.** One bounded function $\mathcal{P}$
+does three jobs that are normally done by three independent sectors — dark energy, dark
+matter, and the MOND scale — and it does them without a single new adjustable function:
+the *same* $\mathcal{P}$ that is the vacuum energy today is the dust that clusters at
+recombination and the acceleration scale that bends rotation curves. The cost is stated
+just as plainly in §4–§6: $\kappa$ is fitted, $\beta=1$ is selected, the dark-matter
+*amount* is an integration constant, and whether the dust stays put inside galaxies is
+unsolved.
+
+---
+
+## 1. The action, term by term
 
 $$S=\int d^4x\sqrt{-g}\left\{\frac{R-2\Lambda_{\rm bare}}{16\pi G}
 +\mathcal{L}^{\rm AeST}_{\rm aether}[A,g]
