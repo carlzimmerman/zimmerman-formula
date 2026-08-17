@@ -203,10 +203,47 @@ $k=1$–10, $z=2$–4), using a matched cold-vs-warm fluid ratio so the earlier 
 artifact cancels. Against the 3.1 keV warm-dark-matter yardstick (Iršič et al. 2017;
 Villaseñor et al. 2023, 95% CL) the bound becomes
 
-$$\boxed{\;\Lambda_D/Q_0\le2.3\times10^{-9}\;}\qquad
-\text{honest bracket }5.7\times10^{-10}\text{–}7.0\times10^{-9}.$$
+$$\Lambda_D/Q_0\le2.3\times10^{-9}\qquad
+\text{honest bracket }5.7\times10^{-10}\text{–}7.0\times10^{-9}$$
 
-Two things follow, one each way. **Adverse:** with $Q_0=1$ the committed health window
+— **but that bound computed only the adverse half, and it does not survive as an
+unconditional statement.** At exactly those scales the framework's *own* kernel is a large
+*enhancement*, not a suppression: with the derived $a_0(z)$ (which is at
+$\ge99.99\%$ of its present value across $z=2$–4, so the kernel is at full strength where the
+forest data live), the forest band sits at $y=g_{\rm bar}/a_0\sim3\times10^{-4}$–$10^{-2}$,
+deep in the MOND regime, giving $\nu(y)=9$–45. Carried through the growing mode
+($G_{\rm eff}=\nu G$, gated against the exact Einstein–de Sitter index at $\nu=1$) that is a
+**545×–7.7×10⁷× power enhancement** over the same interval, against a suppression of at most
+**250×** at the old bound. The two effects compete at the same order, in the same band, with
+opposite signs — so applying both at once at $R=1.54\times10^{-6}$ can give a *net
+enhancement* rather than the exclusion that was read off.
+
+What stops that from being a rescue is the framework's own structure, and it cuts both ways:
+
+- **The tight bound survives under the linear-only reading.** $\delta Y^{(1)}=0$ — the
+  galaxy sector cannot appear in linear perturbations at all, first entering at third order
+  (the same fact §3.1's health matrix rests on). Under that reading the enhancement is
+  *absent* from linear theory, the warm-dark-matter yardstick is apples-to-apples, and
+  $\Lambda_D/Q_0\le2.3\times10^{-9}$ stands exactly as computed.
+- **But the forest is not linear where the data are** ($\Delta^2=0.74$–6.6), which is
+  precisely where a third-order-onset response begins to act; and the 3.1/5.3 keV limits are
+  themselves derived from *hydro* simulations and then quoted as a linear-power deficit.
+- **And the timing is split, which is the decisive detail.** 97% of the damping is delivered
+  above $z=2$, over $z\approx10$–45. The derived $a_0(z)$ puts the kernel at 99% strength at
+  $z=10$ but only 24% at $z=45$: the enhancement covers the low-$z$ part of the damping
+  interval and fades over the high-$z$ part. **Partial offset, not cancellation.**
+
+$$\boxed{\;\Lambda_D/Q_0\le2.3\times10^{-9}\ \text{(linear-only)}\quad\text{or}\quad
+\text{looser by orders (response-active)} \;}$$
+
+Neither edge is established. Nothing here shows the theory *passes* the forest either — a
+response big enough to absorb the suppression is big enough to **overproduce** forest
+structure, and that has not been computed. The front is open in both directions, and the
+deciding calculation is a quasi-nonlinear forest response carrying the suppression and the
+$\nu(y)$ enhancement *together*, which has never been run.
+
+Two things follow from the suppression half regardless, one each way. **Adverse:** with
+$Q_0=1$ the committed health window
 $\Lambda_D\in(1.9\times10^{-10},8.4\times10^{-7}]$ *is* the $R$ window, and the forest
 removes its top 2.56 of 3.65 decades. It survives with **1.08 decades left**, so
 "Ly-α-safe *by construction*" is withdrawn — it is safe in the bottom decade of the
@@ -365,9 +402,11 @@ committed 0.551 sits inside it, not at an edge.
 5. **The preferred-frame parameters are contested, not computed.** Two independent
    derivations disagree about α₁ and the theory may not have a well-defined static PPN limit
    at all (§3.3). No K_B bound from PPN is in force in either direction.
-6. **Ly-α safety is conditional, not "by construction."** It holds in the bottom 1.08
-   decades of the theory's own Λ_D window (§3.2), and only under the reading in which the
-   excitation *is* the dark matter.
+6. **Ly-α safety is conditional twice over, not "by construction."** The suppression-only
+   bound holds in the bottom 1.08 decades of the theory's own Λ_D window and only under the
+   reading in which the excitation *is* the dark matter — and the bound *itself* is
+   conditional on the linear-only reading, because the theory's own kernel gives a
+   competing enhancement of the same order or larger at those scales (§3.2).
 7. **No cluster mechanism has been found.** The curl-sector route is dead — not on K_B (which
    helps it) but on geometry: an exact pointwise cancellation makes the saturated tilt a pure
    gradient with zero curl, and the divergence theorem makes the monopole effect exactly

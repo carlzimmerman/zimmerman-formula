@@ -270,7 +270,32 @@ rather than deleted — that is the point of keeping a ledger.*
   the low edge and closed 17× at the high edge. So the superluminality crisis is
   **conditional on the α₁ fork above**, and the two adverse findings partially cancel.
   `real_research/reviews/kb_small_limit_safety_2026.py` (33/33).
-- **"Ly-α-safe by construction"** — **WITHDRAWN as stated; the framework still passes.** The
+- **⚠️ "The forest tightens Λ_D/Q₀ to ≤ 2.3×10⁻⁹ (672×)"** — **DEMOTED TO A BRACKET THE SAME
+  DAY IT WAS COMMITTED, by my own follow-up, because it priced only the adverse half.** The
+  review computed the sound-speed *suppression* with generic machinery and explicitly deferred
+  the framework's own competing *enhancement* to a section titled "which this script does NOT
+  close." Closing it (`real_research/reviews/forest_bound_framework_response_2026.py`, 18/18,
+  using the **derived** a₀(z) from stage17's closed form — not a fixed a₀ — and the framework's
+  own kernel ν(y) = 1/(1−e^(−√y))): the forest band sits at y = 3×10⁻⁴–10⁻², deep MOND, so
+  ν(y) = **9–45**, and a₀(z) is at ≥ 99.99% of its present value across z = 2–4, so the kernel
+  is at **full strength where the forest data live**. Carried through the growing mode
+  (G_eff = νG, gated against the exact Einstein–de Sitter index at ν = 1) that is a
+  **545×–7.7×10⁷× power enhancement**, against a suppression of at most **250×** at the old
+  bound — same order or larger, opposite sign, so applying both at once can give a *net
+  enhancement* rather than an exclusion. **What stops that from being a rescue** (stated at
+  equal prominence): δY⁽¹⁾ = 0 means the sector is absent from *linear* theory, which is where
+  the WDM yardstick is defined, so the tight bound survives under the linear-only reading; and
+  the **timing is split** — 97% of the damping is delivered over z ≈ 10–45, where a₀(z) runs
+  from 99% strength down to 24%, so the enhancement covers the low-z part and fades over the
+  high-z part. **Partial offset, not cancellation.** In force: **Λ_D/Q₀ ≤ 2.3×10⁻⁹
+  (linear-only) OR looser by orders (response-active)** — neither edge established. Symmetric
+  warning: this does NOT show the framework passes the forest; a response big enough to absorb
+  the suppression is big enough to *overproduce* forest structure, which is uncomputed. Lesson
+  for the record: the review was rigorous on the half it did and silent on the half that needed
+  the framework's own kernel — which is exactly how a deficit gets manufactured without anyone
+  stating a falsehood.
+- **"Ly-α-safe by construction"** — **WITHDRAWN as stated; the framework still passes** (now
+  read subject to the demotion in the row immediately above). The
   forest tightens Λ_D/Q₀ from 1.54×10⁻⁶ to **≤ 2.3×10⁻⁹** (bracket 5.7×10⁻¹⁰–7.0×10⁻⁹, a
   factor 219–2693), removing the top 2.56 of the health window's 3.65 decades and leaving
   1.08. Safety is therefore conditional on sitting in the bottom decade. Method upgrades:
