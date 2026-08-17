@@ -198,3 +198,14 @@ rather than deleted — that is the point of keeping a ledger.*
   T009 wording) — NARROWED to: *pure horizon-geometry MONOMIAL ratios* are excluded.
   Non-monomial combinations, a theory-FIXED radius ratio, and the corpus's own live
   combinatorial factor-of-2 route are all untouched by the theorem (stage65 PART B).
+- **"The π-cancellation in a₀ = κc√(Gρ_Λ) is evidence for κ = ½"** — WITHDRAWN as an
+  argument (stage66 PART C, symbolic): because ρ_Λ carries the 8π by definition, "the
+  π's cancel in this parameterisation" is **logically identical** to "κ = ½ exactly."
+  It is the same claim restated, not independent support. At the *measured* κ = 0.551
+  the π's do not cancel at all. The reduction may be described as a property of the
+  adopted value; it may never be cited as an earned result.
+- **"κ = ½ is distinctively simple"** — NARROWED (stage66 PARTS A–B): at ±7.8% precision
+  all five natural parameterisations of the dS scale admit a simple rational (q ≤ 10),
+  and two rationals (5/9 at 0.11σ, 4/7 at 0.48σ) sit *closer* to the measurement than
+  ½ (1.19σ). The defensible statement is the Bayesian one: under a 1/q² simplicity
+  prior ½ leads by ~6:1 (stage66 PART D) — a preference, not a measurement.
