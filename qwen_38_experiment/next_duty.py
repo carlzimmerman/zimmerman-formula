@@ -11,7 +11,7 @@ j = os.path.join
 
 def ledger_tasks():
     txt = open(j(H, "LEDGER.md")).read()
-    return re.findall(r"^\|\s*(t\d+|T\d+|seed\d+|idea\d+)", txt, re.M), txt
+    return re.findall(r"^\|\s*([tT]\d+|[dD]\d+|[SF]\d+|seed\d+|idea\d+)", txt, re.M), txt
 
 
 def main():
@@ -48,6 +48,12 @@ sub-peak, a fixed point), verify the feature EXISTS on the actual function befor
 grading anything.
 Write your grade + reason to
 {p.replace('/interp/', '/refereed/').replace('interp_', 'ref_')}
+DUST-SECTOR IDEAS: if the idea proposes ANY way to hold the dark sector's dust up in
+a halo, screen it against the five free filters FIRST -- run
+  python dust_filters.py --explain
+and grade DISCARD if it trips any of them, naming the filter.  Three of the five are
+parameter-free, so this costs you nothing and it has already killed four published-grade
+candidates.
 then append one LEDGER.md row (task id = the seed number, verdict = PURSUE or DISCARD)
 and END THE SESSION.""")
             return 0
@@ -84,6 +90,29 @@ reference to the target value; (2) a fresh pre-registered test + tolerance; (3) 
 line "trials = 2 (refined once; Bonferroni applies)".  This is the ONLY refinement
 round -- if the revision fails its blind referee, the idea is DEAD-FINAL.  Do not
 test it yourself.  END THE SESSION.""")
+                return 0
+
+    # ---- DUST tier: open problem 2d, the framework's #1 open problem.  Highest task
+    # priority by explicit instruction (2026-08-17).  Screened by dust_filters.py.
+    dust_spec = j(H, "DUST_TASKS.md")
+    if os.path.exists(dust_spec):
+        dtxt = open(dust_spec).read()
+        dnums = sorted(int(x) for x in re.findall(r"\*\*D(\d{3})", dtxt))
+        _done, _ = ledger_tasks()
+        ddone = {int(x[1:]) for x in _done
+                 if x.lower().startswith("d") and x[1:].isdigit()}
+        for cand in dnums:
+            if cand not in ddone:
+                print(f"""DUTY: DUST TASK D{cand:03d} -- open problem 2d, the framework's #1 open problem.
+FIRST, every session:  python {j(H, 'dust_filters.py')} --explain
+Get the spec:  grep -A 14 "D{cand:03d}" {dust_spec}
+Any candidate MECHANISM you consider must be screened before you spend the session on it:
+write a spec JSON (fields listed in dust_filters.py) and run
+  python {j(H, 'dust_filters.py')} --screen /tmp/cand.json
+exit 2 = DEAD on a free filter: ledger it with the filter id that killed it and MOVE ON.
+Then follow the normal protocol (PROTOCOL.md small-context mode): script in runs/, run via
+harness.py, grade honestly, append ONE ledger row with task id D{cand:03d}, END THE SESSION.
+A candidate that passes the screen is SCREENED, never VIABLE -- say so in the row.""")
                 return 0
 
     m = re.findall(r"\*\*S(\d{4})", promoted)

@@ -7,6 +7,21 @@ in an append-only ledger, and consolidate every 10 tasks. Honesty machinery is b
 FDR pre-registration for every search, a DO-NOT-CITE linter, refutation duties for every
 confirmed result, and negative results treated as first-class output.
 
+
+## ⭐ CURRENT PRIORITY: the dust front (open problem 2d)
+
+As of 2026-08-17 the dispatcher's top task tier is `DUST_TASKS.md` (D001–D012) — the
+framework's #1 open problem. **Run `python dust_filters.py --explain` at the start of every
+dust session.** It implements five free filters, three of them parameter-free, each fatal
+alone; two of them (F4 the calibration-independent barotropic violation at Γ = 4/3, and F5
+the parameter-free 0.194 gate-sign crossover) are new, and either one alone would have killed
+a construction the corpus spent real time on. Screen candidates with
+`python dust_filters.py --screen spec.json` (exit 0 = screened, exit 2 = dead) *before*
+spending a session. A candidate that passes is **SCREENED, never VIABLE**.
+
+`python dust_filters.py --selftest` gates every number against a committed result (14/14).
+
+
 ## Files
 
 | file | purpose |
