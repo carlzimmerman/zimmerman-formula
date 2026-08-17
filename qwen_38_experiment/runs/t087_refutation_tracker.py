@@ -77,9 +77,17 @@ def links_to(target_tid, r):
     names the target id AND is not the target row itself."""
     if r["_task"].lower() == target_tid.lower():
         return False                       # self-reference is not a refutation
-    blob = " ".join([r.get("hyp", ""), r.get("keynum", ""),
-                     r.get("assumption", "")])
-    return is_refut_flavoured(r) and token_hit(target_tid, blob)
+    # T090 consolidation fix: the target must be named in the attempt's OWN
+    # hypothesis (its declared subject).  As the ledger grew, newer CONFIRMED
+    # guard rows (t088/t089) enumerated the guard family in the assumption column
+    # ("...matching the t082/t083/.../t087 guard precedent") while being
+    # refutation-flavoured, and the old hyp+keynum+assumption blob let those
+    # enumerations falsely count as attempts -- dropping t083/t086 from the owed
+    # list and firing the positive control.  Restricting the name search to the
+    # hypothesis keeps a genuine attempt (t082ref, whose hyp names its target)
+    # while rejecting a passing guard-family enumeration.
+    hyp = r.get("hyp", "")
+    return is_refut_flavoured(r) and token_hit(target_tid, hyp)
 
 
 def parse_rows(path):

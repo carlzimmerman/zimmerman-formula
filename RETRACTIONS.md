@@ -186,3 +186,15 @@ no claim about the Standard Model.**
 
 *Every numerical claim in this repository traces to a committed runnable script. Withdrawn claims are kept visible here
 rather than deleted — that is the point of keeping a ledger.*
+
+### 2026-08-17 — kappa-programme harvest (stage65): two framings retired
+
+- **"The graviton-bath cancellation is one assumption away from deriving kappa"** —
+  WITHDRAWN as a framing. The qwen worker's T003 toggle audit (reproduced in stage65)
+  finds **all seven** form-assumptions load-bearing for kappa^2 = 8 pi eps_tot. The
+  construction is fragile, not nearly-forced; treat it as a REWRITING of the fit.
+  Direction: adverse to the framework, recorded per the both-ways rule.
+- **"Pure horizon-geometry ratios are EXCLUDED as a route to kappa"** (the worker's own
+  T009 wording) — NARROWED to: *pure horizon-geometry MONOMIAL ratios* are excluded.
+  Non-monomial combinations, a theory-FIXED radius ratio, and the corpus's own live
+  combinatorial factor-of-2 route are all untouched by the theorem (stage65 PART B).
