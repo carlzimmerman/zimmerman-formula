@@ -222,3 +222,20 @@ rather than deleted — that is the point of keeping a ledger.*
   Post-recombination growth requires **Λ_D/Q₀ ≤ 1.5–3.1×10⁻⁶** (peak c_s² ≤ 1.2×10⁻⁶) at
   the 3% level. The corpus's separately-quoted c_s² ≈ 1.1×10⁻⁸ sits ~100× inside that
   bound, so the framework passes — but the "natural R = 1" reading must not be revived.
+- **"The curl-sector spherical-symmetry argument defends the PPN preferred-frame
+  parameters"** (`aest_radial_aether_eom.py` FACT 1) — **DOES NOT COVER α₁** (stage70
+  PART D, escape E3). The α₁ configuration is a mass moving at velocity **w** relative to
+  the aether — axisymmetric, not spherical — so the curl sector is excited by
+  construction and the vanishing argument does not apply. The corpus should stop citing
+  it as a general PPN defence.
+- **"K_B ≤ 0.25 (BBN) is the operative bound on K_B"** — SUPERSEDED, conditionally, by
+  stage70: mapping AeST's −(K_B/2)F² onto Einstein-aether (c₁ = K_B, c₂ = 0, c₃ = −K_B,
+  c₄ = 0, verified symbolically) and applying the Foster–Jacobson PPN result gives
+  **α₁ = −4K_B exactly**, so lunar laser ranging (|α₁| < 10⁻⁴) requires **K_B < 2.5×10⁻⁵**
+  — four orders tighter. CONDITIONAL on (i) the literature formula, not re-derived, and
+  (ii) the aether sector dominating the preferred-frame response; the deciding calculation
+  is the PPN expansion retaining AeST's J^μ∇_μφ coupling. Note this bound *strengthens*
+  arguments that used the BBN cap (e.g. stage57's mixing share, which shrinks with K_B).
+  Also on this calculation all three of SZ21's published K_B values (0.5/0.3/0.1) are
+  excluded by 4000–20000×, which must NOT be stated publicly until the J·∇φ term is
+  settled.
