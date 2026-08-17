@@ -209,3 +209,16 @@ rather than deleted — that is the point of keeping a ledger.*
   and two rationals (5/9 at 0.11σ, 4/7 at 0.48σ) sit *closer* to the measurement than
   ½ (1.19σ). The defensible statement is the Bayesian one: under a 1/q² simplicity
   prior ½ leads by ~6:1 (stage66 PART D) — a preference, not a measurement.
+- **"The c_s² bump peaks at z ≈ 189"** (THE_COMPLETION non-claim 3) — WITHDRAWN as stale
+  (stage69 PART A). With the committed ν₀ window [2.14×10⁻⁵, 1.77×10⁻⁴] and s(a) from
+  ν = ν₀a⁻³, the sound-speed peak sits at **z ≈ 14–29**, not 189; reproducing 189 would
+  need ν₀ ≈ 7×10⁻⁸, some 294× below the committed floor. The figure predates the ν₀
+  window (stage17/v7). Direction: **adverse** — a later peak overlaps the epoch when
+  k ~ 0.2 modes are growing, which is the harder case. The conclusion survives, but for a
+  different reason (the Λ_D/Q₀ bound, below).
+- **"Λ_D = Q₀ is the natural choice"** (`mi_dbi_khronon_2026`'s "natural Lam = 1") —
+  **EXCLUDED** by stage69 PART D: at Λ_D/Q₀ = 1 the peak sound speed is c_s² = 0.25
+  (relativistic) during the growth epoch, erasing the total matter power at k = 0.2.
+  Post-recombination growth requires **Λ_D/Q₀ ≤ 1.5–3.1×10⁻⁶** (peak c_s² ≤ 1.2×10⁻⁶) at
+  the 3% level. The corpus's separately-quoted c_s² ≈ 1.1×10⁻⁸ sits ~100× inside that
+  bound, so the framework passes — but the "natural R = 1" reading must not be revived.
