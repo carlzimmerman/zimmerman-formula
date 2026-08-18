@@ -42,7 +42,12 @@ ledger is your only memory. Do not try to hold the project in your head.
   not read it, mark it `UNVERIFIED`.
 - **R6. Do not modify** anything in `prep_2026/gaia_dr4_prep/` (frozen pre-registration),
   any `*_HASH.txt`, or any file outside `qwen_claude_field_theory/`. Read them freely.
-- **R7. Append exactly one LEDGER.md row** at the end, then end the session.
+- **R7. Write a FULL RESULT FILE** to `results/I###_<shortname>.md`, using
+  `RESULT_TEMPLATE.md`. This is the thing Carl reviews later, so it must stand alone: the
+  math written out, the numbers in a table, why the verdict fired, and — mandatory — a
+  section arguing against your own conclusion. A ledger row without a result file does not
+  count as done.
+- **R8. Append exactly one LEDGER.md row** at the end, then end the session.
 
 ## Ledger row format
 

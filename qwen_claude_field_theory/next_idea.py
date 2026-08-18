@@ -22,7 +22,17 @@ def main():
     if not ids:
         ids = [int(x) for x in re.findall(r"\*\*I(\d{3})", txt)]
     have = {int(x[1:]) for x in done_ids()}
-    todo = [i for i in sorted(set(ids)) if i not in have]
+    # PRIORITY: the roadblock-critical ideas first, so a short night still buys the most.
+    # R1 (the 233x gap) and R2 (dust) lead; then screening; then homes; then the rest.
+    PRIORITY = ([1, 3, 12, 37, 2, 4, 7, 5, 6, 8, 9, 10, 11, 13, 14, 15]
+                + list(range(101, 141))          # screening mechanisms
+                + list(range(301, 341))          # dark sector / dust
+                + list(range(201, 241))          # alternative homes
+                + list(range(16, 26)) + list(range(36, 51)))
+    allids = sorted(set(ids))
+    rank = {v: k for k, v in enumerate(PRIORITY)}
+    todo = sorted([i for i in allids if i not in have],
+                  key=lambda i: (rank.get(i, 10**6), i))
     if not todo:
         print("ALL 100 IDEAS DONE. Write a one-paragraph summary of the ledger to\n"
               f"{j('SUMMARY.md')} and end the session.")
@@ -36,9 +46,13 @@ def main():
    - numbered [ok]/[FAIL] checks, exit 0 only if all pass
    - report BOTH a0 footings for any dimensional number
 4. Run it. If it is not producing a number within 20 MINUTES, stop and grade NOT COMPUTED.
-5. Append EXACTLY ONE row to {j('LEDGER.md')}:
+5. Write a FULL RESULT FILE to {j('results')}/I{n:03d}_<shortname>.md using the template
+   {j('RESULT_TEMPLATE.md')} -- the math written out, a numbers table, why the verdict
+   fired, and a mandatory "Against my own result" section. THIS is what gets reviewed;
+   a ledger row without it does not count.
+6. Append EXACTLY ONE row to {j('LEDGER.md')}:
    | I{n:03d} | what you did | the decisive number | PASS or KILL or PARTIAL or NOT COMPUTED |
-6. END THE SESSION. Do not start another idea.
+7. END THE SESSION. Do not start another idea.
 
 Do not read the other 99 ideas. Do not modify anything outside this folder.""")
     return 0

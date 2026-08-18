@@ -28,7 +28,12 @@ Then follow its instructions exactly. One idea only, then end." \
       --max-turns "$MAX_TURNS" --dangerously-skip-permissions ) > "$log" 2>&1
   rc=$?
   after=$(grep -c '^| I' "$DIR/LEDGER.md" 2>/dev/null || echo 0)
-  echo "[loop] iter $i rc=$rc  ledger $before -> $after  $(tail -1 "$DIR/LEDGER.md" | cut -c1-100)"
-  [ "$after" -eq "$before" ] && echo "[loop]   NO PROGRESS -- see $log"
+  nres=$(ls -1 "$DIR/results"/*.md 2>/dev/null | wc -l | tr -d ' ')
+  nscr=$(ls -1 "$DIR/runs"/*.py 2>/dev/null | wc -l | tr -d ' ')
+  echo "[loop] iter $i rc=$rc  ledger $before -> $after  results=$nres scripts=$nscr  $(tail -1 "$DIR/LEDGER.md" | cut -c1-90)"
+  [ "$after" -eq "$before" ] && echo "[loop]   NO LEDGER PROGRESS -- see $log"
+  if [ "$after" -gt "$before" ] && [ "$nres" -lt "$after" ]; then
+    echo "[loop]   WARNING: ledger row written with NO result file -- review $log"
+  fi
   sleep 10
 done
