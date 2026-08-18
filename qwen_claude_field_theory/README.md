@@ -33,6 +33,13 @@ The first autoloop burned itself on open-ended idea generation. This one is diff
 - **The dispatcher can see its own completions.** `next_idea.py` reads the ledger and skips
   finished ids; verified by simulation that it advances I001 → I003 → I005 as rows land.
 
+## Reserved
+
+**I001, I003, I012 and I037 are excluded from the loop** — Claude is running those four
+directly (EFE factorisation, disc corrections to the local law, the RAR's real requirement on
+s, and whether the dust is forced irrotational). The dispatcher skips them, so the local
+worker will never duplicate that work. Their results will land in the main repo, not here.
+
 ## Where the value is
 
 Not evenly spread. If you only get through part of it:
