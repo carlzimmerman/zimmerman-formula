@@ -1,4 +1,4 @@
-# Determining the Free Function of Aether-Scalar-Tensor Gravity
+# Aether-Scalar-Tensor Gravity Cannot Fit Galaxies and the Solar System Simultaneously
 
 **Carl P. Zimmerman**, Briar Creek Tech
 ORCID 0009-0008-3508-7982
@@ -8,37 +8,35 @@ ORCID 0009-0008-3508-7982
 
 ## Abstract
 
-Aether-Scalar-Tensor gravity (AeST; Skordis & Złośnik, *Phys. Rev. Lett.* **127**, 161302)
-is the only relativistic MOND-class theory that reproduces the CMB power spectrum. It
-contains one free function, $\mathcal{F}(\mathcal{Y},\mathcal{Q})$, which its authors leave
-unspecified. We determine it in two independent steps. Its $\mathcal{Q}$-sector is fixed by
-the identification $a_0^2(Q)=\kappa^2G\bigl(-K(Q)\bigr)$ — the MOND acceleration scale *is*
-the dark sector's pressure — with $K$ an offset Dirac–Born–Infeld brane of tension
-$M^4=\rho_\Lambda c^2$, giving $a_0=\kappa c\sqrt{G\rho_\Lambda}$. Its $\mathcal{Y}$-sector
-is constrained by a legality requirement specific to AeST: because $\mathcal{F}$ depends on
-the *scalar's own* gradient rather than on the total potential's, single-valuedness of the
-free function — equivalently, absence of a longitudinal gradient ghost — requires the
-anomalous acceleration to be a monotone increasing function of the baryonic one. This is
-strictly stronger than the corresponding AQUAL condition.
+Aether-Scalar-Tensor gravity (AeST; Skordis & Złośnik, *Phys. Rev. Lett.* **127**, 161302) is
+the only relativistic MOND-class theory reproducing the CMB power spectrum. It contains one
+free function, $\mathcal{F}(\mathcal{Y},\mathcal{Q})$, left unspecified by its authors. We show
+that requiring $\mathcal{F}$ to be single-valued — equivalently, that the longitudinal scalar
+mode not be a gradient ghost — constrains its $\mathcal{Y}$-sector to an infinite-dimensional
+class parameterised by a single saturation scale $s$, and that no member of that class is
+observationally viable.
 
-That requirement has three consequences. First, it **excludes** the exponential interpolation
-$\nu(y)=1/(1-e^{-\sqrt y})$ (Milgrom & Sanders 2008 at $\alpha=\tfrac12$): the induced
-anomalous acceleration is non-injective, peaking at $0.6476\,a_0$ near $y=2.54$ and falling
-thereafter, so no single-valued $\mathcal{F}$ reproduces it. Second, it **admits** the
-relation $g_{\rm obs}^2=g_{\rm bar}^2+a_0g_{\rm bar}$, which is also the best-fitting legal
-kernel on 3389 SPARC points at the anchored $a_0$. We explicitly do **not** claim uniqueness:
-the legal class is infinite-dimensional and we exhibit closed-form alternatives. Third, **every** legal kernel
-saturates at a nonzero anomalous acceleration, so a constant sunward anomaly is structural to
-AeST under the no-ghost condition. Crucially, that saturation is set by the *local* value of
-$a_0$, not its cosmological one, because the promotion makes $a_0$ a function of $Q$: at the
-local dark-charge density the derived law gives $a_0^{\rm loc}=0.141\,a_0$, and combined with
-the external-field effect the residual conflict with planetary ephemerides falls from
-$\sim1.3\times10^3$ to $\sim20$. This remains the theory's central open problem, but it is an
-order-unity-scale discrepancy rather than a structural impossibility.
+The requirement is that the induced anomalous acceleration $U(y)$ be a *monotone increasing*
+function of the baryonic one. This is strictly stronger than the corresponding AQUAL
+condition, because AeST's free function depends on the scalar's own gradient rather than on
+the total potential's, and it immediately excludes the exponential interpolation
+$\nu=1/(1-e^{-\sqrt y})$, whose $U$ turns over at $y=2.54$. Every legal member instead
+*saturates*, at an anomalous acceleration $s\,a_0$, and $s$ is then fixed twice over by
+observation. Planetary perihelion precession requires $s\le2.4\times10^{-3}$; the radial
+acceleration relation requires $s\ge0.56$. **These are incompatible by a factor 233**, and the
+RAR mildly prefers larger $s$, driving them further apart.
+
+The obstruction is structural rather than a matter of kernel choice: solar-system screening in
+this theory is achieved precisely by the non-monotonicity that makes a kernel illegal. One may
+have a ghost-free scalar or a screened solar system, not both. We state separately what this
+does *not* touch — in particular the empirical normalisation $a_0=\kappa c\sqrt{G\rho_\Lambda}$,
+which is independent of AeST — and we report a secondary result, that the RAR's flatness bounds
+the theory's charge parameter at $\nu_0\le2.36\times10^{-6}$, nine times below the value
+previously adopted.
 
 ---
 
-## 1. The theory
+## 1. Setup
 
 AeST's action, verified verbatim against the authors' LaTeX
 (arXiv:2007.00082 Eq. 5; restated independently as arXiv:2109.13287 Eq. 1):
@@ -107,174 +105,152 @@ $$\boxed{\;\text{LEGALITY: }\ U(y)\ \text{strictly increasing},\quad U\to\sqrt y
 
 ---
 
-## 2. What legality excludes
-
-The operative interpolation of this programme until now — Milgrom & Sanders (2008) Eq. (13)
-at $\alpha=\tfrac12$, $\nu(y)=1/(1-e^{-\sqrt y})$ — gives
-
-$$U(y)=\frac{y}{e^{\sqrt y}-1},$$
-
-which rises to $U=0.6476$ at $y=2.540$ and then **falls**, reaching $\sim10^{-3455}$ at 1 AU.
-It is not injective, so no single-valued $\mathcal{F}$ reproduces it, and on the Newtonian
-branch the longitudinal mode is a ghost of exponentially large magnitude. **AeST cannot host
-it.** The same verdict applies at $\alpha=2$.
-
-This is not a statement about exponentials as a class: $U(y)=\tfrac12(1-e^{-2\sqrt y})$ is
-monotone and perfectly legal. It is a statement about this particular kernel, whose
-screening — the property that made it attractive, since it suppresses solar-system effects by
-$e^{-\sqrt y}\sim10^{-3457}$ — is exactly the non-monotonicity that makes it illegal.
 
 ---
 
-## 3. What legality admits, and what it does not select
+## 2. The legality requirement
 
-The relation
+Reconstructing the free function from a chosen interpolation gives $J_Y(Y)=y(U)/U$ with
+$Y=a_0^2U^2$, invertible **iff $U(y)$ is strictly increasing**. Equivalently, expanding $J$ to
+second order about a nontrivial background gives kinetic matrix
+$M_{ij}=J_Y\delta_{ij}+2J_{YY}u_iu_j$, whose longitudinal eigenvalue is positive under the same
+condition. A non-monotone $U$ therefore means both a multi-valued $\mathcal{F}$ and a
+longitudinal gradient ghost.
 
-$$g_{\rm obs}^2=g_{\rm bar}^2+a_0\,g_{\rm bar}
-\quad\Longleftrightarrow\quad \nu(y)=\sqrt{1+1/y}$$
+$$\boxed{\;U(y)\ \text{strictly increasing},\qquad U\to\sqrt y\ (y\to0),\qquad U/y\to0\ (y\to\infty).\;}$$
 
-gives $U(y)=\sqrt{y^2+y}-y$, strictly monotone, saturating at exactly $\tfrac12$. It is legal,
-and its free function follows in closed form:
+**Specific to AeST, not inherited from AQUAL.** In AQUAL the free function depends on the
+gradient of the *total* potential and stability requires only $dg_{\rm obs}/dg_{\rm bar}>0$,
+which the exponential kernel satisfies (minimum $0.968$). AeST's $\mathcal{F}$ depends on
+$\mathcal{Y}$, built from the *scalar's* gradient — the stronger condition.
 
-$$J_Y(Y)=\frac{v}{1-2v},\qquad
-J(Y)=-a_0^2\Big[\frac{v(1+v)}{2}+\frac{\ln(1-2v)}{4}\Big],\qquad v\equiv\frac{\sqrt Y}{a_0},$$
+**It excludes the exponential interpolation.** Milgrom & Sanders (2008) Eq. (13) at
+$\alpha=\tfrac12$ gives $U=y/(e^{\sqrt y}-1)$, rising to $0.6476$ at $y=2.540$ and then
+falling. AeST cannot host it; likewise $\alpha=2$. This is not a statement about exponentials
+as a class — $U=\tfrac12(1-e^{-2\sqrt y})$ is monotone and legal.
 
-whose deep-MOND limit is $J\to\tfrac23Y^{3/2}/a_0$ — the asymptotic form AeST's authors print.
+**The legal class is infinite-dimensional.** A one-parameter family spanning it, everything in
+closed form,
 
-**We do not claim this kernel is selected.** The legal class is infinite-dimensional; the
-reconstruction above is explicit and invertible for *every* strictly-increasing $U$ with the
-stated limits. Three closed-form alternatives share every property used above — monotonicity,
-saturation at $\tfrac12$, and the same deep-MOND limit:
+$$J_Y(v)=\frac{v}{1-v/s},\qquad
+J(Y)=-a_0^2\Big[\tfrac{v^2}{2}+sv+s^2\ln\!\big(1-\tfrac vs\big)\Big],\qquad v\equiv\frac{\sqrt Y}{a_0},$$
 
-$$J_Y=\frac{v}{1-4v^2},\qquad J_Y=\frac{v}{(1-2v)^2},\qquad U=\tfrac12\bigl(1-e^{-2\sqrt y}\bigr).$$
+is legal for every $s>0$: $d(vJ_Y)/dv=sv(2s-v)/(s-v)^2>0$, longitudinal stiffness
+$1+J_Y+2YJ_{YY}>1$, and deep-MOND limit $J\to\tfrac23Y^{3/2}/a_0$ — the form AeST's authors
+print — **for every $s$**, so that limit carries no selective power. $s=\tfrac12$ is
+$g_{\rm obs}^2=g_{\rm bar}^2+a_0g_{\rm bar}$; $s=1$ is the standard "simple" $\nu$.
 
-In particular the shared deep-MOND limit is **not** evidence for any one member.
-
-What data say: fitting the anchored $a_0$ (no fitted acceleration scale, no per-galaxy
-freedom) to 3389 SPARC rotation-curve points,
-
-| kernel | canonical $a_0$ | alt $a_0$ |
-|---|---|---|
-| $g_{\rm obs}^2=g_{\rm bar}^2+a_0g_{\rm bar}$ | **0.1980** | 0.2023 |
-| $U=\tfrac12(1-e^{-2\sqrt y})$ | 0.1983 | 0.2031 |
-| $J_Y=v/(1-2v)^2$ | 0.1998 | **0.1981** |
-| $J_Y=v/(1-4v^2)$ | 0.2025 | 0.2114 |
-| $\nu=1/(1-e^{-\sqrt y})$ *(illegal)* | 0.2048 | 0.2147 |
-
-(rms residual in dex; this is raw point scatter, **not** the 0.108 dex obtained from the
-maximum-likelihood pipeline with per-galaxy $\Upsilon$, and the two should not be compared.)
-
-Two things are worth stating and neither is uniqueness. The excluded kernel is the **worst**
-fit of the set on both footings — it fails legality and the data independently. And
-$g_{\rm obs}^2=g_{\rm bar}^2+a_0g_{\rm bar}$ is the best legal fit on the framework's own
-canonical footing, though it is not separable from the nearest alternative
-($\Delta=0.0002$ dex) and loses narrowly on the alternative footing. Points within a galaxy
-are correlated, so naive $\sqrt N$ scaling overstates all of these separations.
+Every member **saturates**, $U\to s$. That is forced by monotonicity plus $U/y\to0$, and it is
+the crux of what follows.
 
 ---
 
-## 4. The central open problem
+## 3. The two constraints on $s$
 
-Legality forces $U$ to increase monotonically; matching the deep-MOND limit $U\to\sqrt y$
-fixes its scale. Together these force $U$ to **saturate at a nonzero constant**, and across
-the legal class that constant is $\approx\tfrac12$ — exactly $0.5$ for two of our examples,
-$0.4975$ for the third. The anomalous acceleration therefore does not decay at large $y$.
+### 3.1 Solar system
 
-The size of the resulting anomaly is **not** $a_0/2$, however, and this is where the
-$\mathcal{Q}$-sector of §1.1 re-enters. The promotion makes $a_0$ a function of $Q$, so the
-saturation value is $a_0^{\rm loc}/2$ evaluated where the anomaly is measured. Writing the
-derived law in terms of the dimensionless charge $\nu\propto n\propto\rho$ (the same structure
-that gives $a_0(1090)/a_0(0)\approx6\times10^{-3}$ at recombination),
+Saturation means a *constant* sunward anomalous acceleration $u_\infty=s\,a_0$ at every
+planetary distance. By the Gauss planetary equations a constant radial perturbation gives a
+secular apsidal advance $\dot\varpi=u_\infty\sqrt{1-e^2}/(na)$. At $s=\tfrac12$, against
+anomalous-precession limits of EPM/INPOP class:
 
-$$\frac{a_0^2(\nu)}{a_0^2(0)}=\frac{\sqrt{1+\nu_0^2}}{\sqrt{1+\nu^2}},\qquad \nu=\nu_0\,\frac{\rho}{\rho_0}.$$
+| planet | $\dot\varpi$ predicted (″/cy) | limit (″/cy) | ratio | after EFE (119–189×) |
+|---|---|---|---|---|
+| Mercury | 0.62 | $3\times10^{-3}$ | 208 | 1.1–1.7 |
+| Earth | 1.02 | $1.9\times10^{-4}$ | 5 383 | 28–45 |
+| Mars | 1.26 | $3.7\times10^{-5}$ | 33 978 | 180–286 |
+| Saturn | 3.15 | $8\times10^{-5}$ | 39 424 | 209–331 |
 
-At the solar circle the dark-charge density is $\rho/\rho_0=2.84\times10^5$ times the cosmic
-mean, giving
+This is substantially more constraining than the flat bound on a constant anomalous
+acceleration usually quoted ($u_\infty/3.66\times10^{-14}=1279$). Since
+$\dot\varpi\propto s$, the worst planet gives $s\le2.4\times10^{-3}$ (EFE 189×), or
+$1.5\times10^{-3}$ (119×).
 
-$$a_0^{\rm loc}=0.141\,a_0\ (\nu_0\ \text{ceiling}),\qquad 0.403\,a_0\ (\nu_0\ \text{floor}),$$
+### 3.2 Galaxies
 
-a suppression of the anomaly by $2.5$–$7$ across the committed $\nu_0$ window. Combined with
-the external-field effect, whose independently committed reduction is a factor $119$–$189$:
+The RAR requires an anomaly $\approx0.4\,a_0$ at $y\sim2$, which is what $s=\tfrac12$ delivers
+($U(2)=0.449$). For the family above $U(y)=s\sqrt y/(s+\sqrt y)$, so $U(2)\ge0.4$ gives
+$s\ge0.558$. Fits to 175 SPARC galaxies at the anchored $a_0$ give 0.1083 dex at $s=\tfrac12$,
+0.1009 at $s=1$, 0.0998 at $s=2$: the data mildly **prefer larger $s$**, moving away from the
+solar-system requirement.
 
-| treatment | residual vs. ephemeris bound |
-|---|---|
-| $a_0$ held constant, no EFE | $1279\times$ |
-| local $a_0$, no EFE | $180\times$ |
-| local $a_0$ + EFE | $\mathbf{17\text{–}27\times}$ |
+### 3.3 The incompatibility
 
-against Sereno & Jetzer's (2006) Earth bound $3.66\times10^{-14}\,\mathrm{m\,s^{-2}}$. (We
-combine the two reductions multiplicatively; the committed EFE analysis was performed at
-constant $a_0$, and whether it factorises exactly against a density-dependent $a_0$ is an
-owed check, not an established one.)
+$$\boxed{\;s\le2.4\times10^{-3}\ (\text{ephemerides})\qquad\text{versus}\qquad
+s\ge0.558\ (\text{RAR}),\qquad\textbf{a factor }233.\;}$$
 
-Two things follow. **The conflict is real and unresolved**: a legal AeST still over-predicts
-the sunward anomaly by more than an order of magnitude. But **it is not structural death**.
-The often-quoted $\sim10^3$ figure is an artefact of treating $a_0$ as a universal constant,
-which the promotion forbids: $a_0$ is environment-dependent, and the environments where the
-ephemeris bound is measured are precisely the dense ones where it is most suppressed.
+No member of the legal class satisfies both. The obstruction is structural: legality forces
+saturation, and the saturation scale is simultaneously the galactic MOND amplitude and the
+solar-system anomaly. The one interpolation evading the solar-system constraint — the
+exponential, whose $U$ *decays* — evades it precisely by being non-monotone, which is what
+makes it illegal. **Within AeST one may have a ghost-free scalar or a screened solar system,
+not both.**
 
-We also record a screening mechanism that does *not* work, since it is the first thing one
-tries. The DBI structure supplies a hard wall: $-K$, and hence $a_0$, vanishes identically at
-$|Q-Q_0|=\Lambda_D$. With $Q=(1-\Psi)Q_0$ in the quasi-static regime this places the wall at
-$|\Psi|=R\equiv\Lambda_D/Q_0$, i.e. at a radius $GM/(Rc^2)$. Screening the Earth requires
-$R\lesssim9.9\times10^{-9}$; retaining MOND in galaxies, where $|\Psi|\sim5\times10^{-7}$,
-requires $R\gtrsim5\times10^{-7}$. These are incompatible by $\sim50$. Independently, the
-Galactic potential at Earth exceeds the Sun's by a factor $55$, so a wall keyed to $\Psi$
-cannot distinguish the solar system from the galaxy containing it. Screening in this theory is
-therefore controlled by the local *density*, not the local potential — which is what the
-calculation above uses.
+---
 
-**What would close the remaining factor of $\sim20$**, in decreasing order of how cheaply it
-could be checked: whether the EFE reduction factorises against a density-dependent $a_0$
-(if it compounds more favourably than assumed, the gap closes immediately); the local
-dark-charge density, taken here at the standard $0.4\,\mathrm{GeV\,cm^{-3}}$ with no allowance
-for the framework's own captured-charge profile; and the ephemeris bound itself, which was
-derived for a constant anomalous acceleration rather than one varying with local density along
-each planet's orbit.
+## 4. Why a local $a_0$ does not rescue it
 
-## 5. What is and is not claimed
+The $\mathcal{Q}$-sector can make $a_0$ environment-dependent:
+$a_0^2(Q)=\kappa^2G(-K(Q))$ with $K$ an offset Dirac–Born–Infeld brane of tension
+$M^4=\rho_\Lambda c^2$ — which yields $a_0=\kappa c\sqrt{G\rho_\Lambda}$, $w=-1$ exactly at the
+minimum, and pressureless dust for small excitations — giving
+$a_0(\nu)/a_0(0)=[(1+\nu_0^2)/(1+\nu^2)]^{1/4}$, $\nu=\nu_0\rho/\rho_0$. At solar-circle dark
+density this suppresses the anomaly, weakening §3.1.
 
-1. **The scaffold is not ours.** AeST is Skordis & Złośnik's; the interpolation family is
-   Milgrom & Sanders'; no-ghost conditions on free functions of this type are independently
-   known. **The requirement is specific to AeST and does not carry over to AQUAL.** In AQUAL
-   the free function depends on the gradient of the *total* potential, and stability requires
-   only $dg_{\rm obs}/dg_{\rm bar}>0$ — which the exponential kernel satisfies (minimum
-   $0.9676$ over $u\in(10^{-4},40)$), so it is perfectly legal there. In AeST
-   $\mathcal{F}$ depends on $\mathcal{Y}$, built from the *scalar's own* gradient, and that
-   is the stronger condition which excludes it. The exclusion in §2 is therefore a statement
-   about AeST specifically, not an inherited AQUAL result. This work contributes the
-   normalisation $a_0=\kappa c\sqrt{G\rho_\Lambda}$,
-   the pressure promotion $a_0^2=\kappa^2G(-K)$, the derived $a_0(z)$, and the application of
-   legality to AeST specifically — including the exclusion in §2 and the structural
-   consequence in §4.
-2. **$\kappa=\tfrac12$ is fitted, not derived.** Six classes of derivation are closed by
-   explicit calculation; three routes remain open. $\kappa$ must be quoted with its $H_0$:
-   the distance-free determination carries an unpriced $\sim7\%$ systematic because most of
-   its galaxies use Hubble-flow distances at $H_0=73$ while $c\sqrt{G\rho_\Lambda}$ is
-   Planck-footed.
-3. **Uniqueness is not claimed** (§3), and the shared deep-MOND limit is not evidence.
-4. **Dark matter is present at full $\Omega_{\rm dm}$.** The claim is "no dark-matter
-   *particle*," nothing stronger. Whether the dust stays bound inside galaxies is unresolved:
-   the excitation is pressureless, $\rho=Q_0n$ ties its mass to a conserved charge, dynamics
-   sees $\rho+3p$ while lensing sees $\rho+p$, and $c_s^2\propto a^{-3}$ for every ghost-free
-   $K$. Four catalogued second-field escapes fail.
-5. **The preferred-frame sector is unresolved.** AeST's aether sits on the degenerate locus
-   $c_1+c_2+c_3=0$ where the spin-0 mode does not propagate, and where Foster & Jacobson
-   explicitly exclude their PPN results. We report no $\alpha_1,\alpha_2$ here.
-6. **This is not a theory of everything** and addresses no part of the Standard Model.
+It does not help, because the same suppression must appear *across galaxies*. Requiring the
+induced variation to stay inside the RAR's 0.108 dex over $\rho=0.01$–$1.5\ \mathrm{GeV\,cm^{-3}}$
+bounds
 
-**Falsifiability.** A hash-frozen pre-registration predicts the Gaia DR4 wide-binary velocity
-boost, decided around December 2026. On the kernel adopted here the point target is
-$\gamma_v=1.139$ (canonical) / $1.169$ (alt); the previously registered band was computed on
-the now-excluded exponential kernel and requires a dated amendment filed before data.
+$$\nu_0\le2.36\times10^{-6},$$
+
+at which the solar-circle suppression is a few per cent, not the factor $\sim7$ needed. **The
+RAR's flatness is simultaneously a measurement of $\nu_0$ and the reason local $a_0$ cannot
+resolve §3.3.**
+
+We report that bound independently, as it corrects a parameter: it lies a factor 9 below the
+window $[2.14\times10^{-5},1.77\times10^{-4}]$ previously adopted from an $a_0(z)$ off-switch
+at recombination. That off-switch is not the binding requirement — a CLASS computation of the
+metric potential at $z=1089.9$ over $k=0.01$–$3\ \mathrm{Mpc^{-1}}$ gives
+$g\ge1.22\times10^{-10}\ \mathrm{m\,s^{-2}}$, already exceeding $a_0$, so $y>1$ at recombination
+*with no suppression at all*. At the RAR ceiling, $a_0(z_{\rm rec})/a_0=0.018$ and $y\ge72$.
+
+---
+
+## 5. What this does and does not affect
+
+**Not affected.** The empirical normalisation
+$a_0=\kappa c\sqrt{G\rho_\Lambda}=c^2\sqrt{\Lambda/32\pi}$ is independent of AeST. $\kappa$ is
+fitted, not derived: $0.551\pm0.043$ (distance-free), $0.465\pm0.076$ (BTFR),
+$0.537\pm0.071$ (gas-dominated, TRGB), combining to $0.529\pm0.034$, and it must be quoted with
+its $H_0$ — the distance-free value carries an unpriced $\sim7\%$ systematic. Also unaffected:
+the RAR at 0.108 dex, weak lensing 40 kpc–2.2 Mpc with no dark component, the BTFR, and — within
+AeST — $\gamma_{\rm PPN}=1$, $c_T=1$ exactly, and the CMB fit.
+
+**Affected.** AeST as a relativistic completion for MOND phenomenology, in its ghost-free sector.
+
+**Caveats, stated rather than buried.** The local algebraic law of §1 is exact in spherical
+symmetry; discs are not, and a Miyamoto–Nagai disc gives
+$|\nabla\times v|/(|v|/r)=8.7\times10^{-4}$–$4.4\times10^{-2}$, so §3.2 carries that systematic —
+a few per cent, not a factor 233. The EFE reductions in §3.1 were computed at constant $a_0$ and
+applied multiplicatively; their factorisation against a density-dependent $a_0$ is not
+established. The precession limits are order-of-magnitude EPM/INPOP-class values rather than a
+refit with this signal in the model — the one measurement that could soften §3.1, though it
+would have to soften it by 233×.
+
+**What a viable completion must supply.** A screening mechanism that is *not* a non-monotone
+interpolation. That is a sharper target than "a relativistic MOND theory," and it is the
+constructive content of this negative result.
+
+---
 
 **Reproducibility.** Every number is produced by a committed script at
-<https://github.com/carlzimmerman/zimmerman-formula>: `nbody_2026/stage75_the_closed_theory_2026.py`
-(the construction), `real_research/reviews/typeII_*_2026.py` (the quasi-static reduction and
-the legality analysis, including the refutation of uniqueness),
-`real_research/rar_framework_a0_mlfit.py` (the RAR fit), and
-`real_research/reviews/aqual_efe_a0line_kernel_2026.py` (the wide-binary target). Withdrawn
-claims are recorded, dated, in `RETRACTIONS.md`.
+<https://github.com/carlzimmerman/zimmerman-formula>:
+`nbody_2026/stage75_the_closed_theory_2026.py`,
+`nbody_2026/stage76_nu0_recombination_pin_2026.py` (the $\nu_0$ bound, with CLASS),
+`real_research/reviews/typeII_*_2026.py` (the quasi-static reduction, the legality analysis and
+the legal family), `real_research/reviews/a0_local_ephemeris_2026.py`, and
+`real_research/rar_framework_a0_mlfit.py`. Withdrawn claims are recorded, dated, in
+`RETRACTIONS.md`.
 
 **Attribution.** AeST: Skordis & Złośnik, *Phys. Rev. Lett.* **127**, 161302 (2021),
 arXiv:2007.00082, and arXiv:2109.13287. Interpolation family: Milgrom & Sanders, *ApJ*
