@@ -62,6 +62,10 @@ ledger is your only memory. Do not try to hold the project in your head.
 
 ## Data you can use (real paths, verified to exist)
 
+**All paths below are relative to the repo root**
+`/Users/carlzimmerman/new_physics/zimmerman-formula`. If your working directory is the
+`qwen_claude_field_theory` folder, prefix them with `../` or use the absolute root.
+
 | what | path |
 |---|---|
 | SPARC master table (175 galaxies) | `real_research/data/SPARC_Lelli2016c.mrt` |
