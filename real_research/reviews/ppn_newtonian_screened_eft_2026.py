@@ -94,15 +94,35 @@ everything the earlier files could not:
                  force law -- an independent derivation of an item already on the record as
                  the SHARPEST OPEN ITEM, not a new kill.
 
- (5) THE ALPHAS, ON branch (II), AT THE PHYSICAL PARAMETER POINT (PART A).  Evaluated at
-     A_Y = 2e8 and Lambda = 2e-20 (i.e. AT the physical values, not in a corner limit):
-         a          = 4 K_B                          (w perpendicular to k)
-         a + b      = 2K_B(3K_B - 2)/(2-K_B)^2       (w parallel to k)
+ (5) THE ALPHAS, ON branch (II), AT THE PHYSICAL PARAMETER POINT (PART A), WITH THE
+     LONG-RANGE / CONTACT SPLIT MADE BY THE ACTUAL k-DEPENDENCE.  The predecessors split the
+     O(w^2) response by a Laurent fit in Q_0 at FIXED k = 1; here k is kept symbolic in the
+     build and the system is solved exactly at k = 1, 2, 3.  Results:
+         a          = 4 K_B                        (w perpendicular to k; NO contact pole)
+         a + b      = 4 K_B (K_B - 1)/(2-K_B)^2    (w parallel to k, LONG-RANGE part)
+         contact pole in the parallel channel: a_-1 = -2 K_B^2/(2-K_B), entering as
+                      a_-1/Lambda
      hence, in WILL's convention (derived in PART C, not quoted):
-         alpha_1 = -4 K_B                                        -> |alpha_1| = 4 K_B
-         alpha_2 = -K_B(2K_B^2 - 11K_B + 10)/(2-K_B)^2           -> |alpha_2| = (5/2) K_B
+         alpha_1 = -4 K_B                                    -> |alpha_1| = 4 K_B
+         alpha_2 = -2 K_B(K_B^2 - 5K_B + 5)/(2-K_B)^2        -> |alpha_2| = (5/2) K_B
      with a fractional correction of order 1/A_Y = 1.02e-8 (canonical) -- A POWER OF y, NOT
      e^(-sqrt y).  The screening factor is absent from the alphas entirely.
+     *** A CORRECTION TO A PUBLISHED CORPUS FORMULA, WITH ITS CAUSE NAMED (check A3).
+     ppn_scalar_retained_2026.py's Q3-1 and ppn_verify_gradient_A_2026.py's B6 give
+     a+b = 2K_B(3K_B-2)/(2-K_B)^2.  That EXCEEDS the true long-range value by exactly
+     2K_B^2/(2-K_B)^2 = -a_-1/(2-K_B), an exact identity verified at three K_B.  The cause:
+     they fitted h_00^(2) in Q_0 at fixed k and then divided by h_00^(0) taken at a SINGLE
+     Q_0 -- but h_00^(0) = G_eff/[2(k^2+m^2)] itself depends on Q_0 through m^2 ~ A_Y Q_0^2,
+     so expanding 1/(1+Lambda) feeds part of the 1/Lambda pole back into the constant term.
+     THE CORRECTION CHANGES NO BOUND: it is entirely O(K_B^2), the leading coefficients
+     -4 K_B and -(5/2) K_B are unchanged (and the C4-convention leading terms (3/2)K_B and
+     (5/2)K_B are reproduced), and every bound sits at K_B <~ 1e-5.  Reported anyway. ***
+     *** AND A NEW ADVERSE ITEM (check A11): the contact term is ENHANCED on branch (II), by
+     1/Lambda = 4.3e18, where on branch (I) it was suppressed by 1e-3430.  That file's Q3-2
+     dismissed it as "suppressed by k^2/(A_Y Q_0^2) ~ 1e-3387", which is false by 3449 orders
+     on the branch found physical here.  It does NOT move alpha_1 or alpha_2 (they are
+     properties of the metric OUTSIDE the source), but its inside-matter meaning is NOT
+     COMPUTED and is the sharpest new open item this route produces. ***
 
  (6) VERDICT ON THE K_B WINDOW: EMPTY, and this route removes the two escapes the earlier
      files left open.  |alpha_1| < 1e-4 => K_B < 2.500e-5; |alpha_2| < 1e-7 => K_B < 4.00e-8;
@@ -957,117 +977,142 @@ print()
 print("=" * 100)
 print("PART A -- alpha_1 AND alpha_2 AT THE PHYSICAL PARAMETER POINT (branch II)")
 print("=" * 100)
-info("A0  METHOD.  h_00 is solved twice: wind PARALLEL to k (where (w.khat)^2 = w^2, so the "
-     "O(w^2) coefficient is a+b) and PERPENDICULAR to k (where (w.khat) = 0, so it is a).  At "
-     "O(w^2) the only rotational invariants are w^2 and (w.khat)^2, so the two runs exhaust "
-     "the structure.  NEW HERE: instead of extracting a Lambda -> 0 corner by a Laurent fit, "
-     "the systems are evaluated AT the physical point -- A_Y = 2e8 (branch II's value at 1 AU) "
-     "and Lambda = A_Y Q_0^2/k^2 = 2e-20 (its radius-independent physical value) -- so no "
-     "corner is chosen and no limit is taken.")
-qq = sp.Symbol("qq", positive=True)          # Q_0/k with k set to 1
-AY_PHYS = sp.Integer(2) * sp.Integer(10) ** 8
-QQ_PHYS = sp.Integer(10) ** (-14)
-LAM_PHYS = float(AY_PHYS) * float(QQ_PHYS) ** 2
+info("A0  METHOD, AND IT IS NOT THE PREDECESSORS'.  h_00 is solved twice: wind PARALLEL to k "
+     "(where (w.khat)^2 = w^2, so the O(w^2) coefficient is a+b) and PERPENDICULAR to k "
+     "(where (w.khat) = 0, so it is a).  At O(w^2) the only rotational invariants are w^2 and "
+     "(w.khat)^2, so the two runs exhaust the structure.  THE CHANGE: the O(w^2) response "
+     "splits into a LONG-RANGE piece going as rho/k^2 -- the only piece that is a PPN "
+     "parameter, because it is the only piece that survives outside the source -- and a "
+     "k-INDEPENDENT CONTACT piece proportional to rho itself.  Both predecessors separated "
+     "them by a Laurent fit in Q_0 AT FIXED k = 1.  Here k is kept symbolic in the build and "
+     "the system is solved at k = 1, 2, 3 EXACTLY, so the split is made by the actual "
+     "k-dependence: a+b measured as a function of k is fitted to C_LR + C_pole k^2 using "
+     "k = 1, 2 and CHECKED at k = 3.")
+qq = sp.Symbol("qq", positive=True)          # Q_0, with k kept symbolic
+AY_PHYS = sp.Integer(2) * sp.Integer(10) ** 8      # branch (II)'s self-consistent value at 1 AU
+QQ_FIT = sp.Rational(1, 10 ** 11)                  # gives Lambda(k=1) = 2e-14, deep in the corner
+
+
+def kfit(eqs, unks, tgt, kb, ay, fpp, qv):
+    """Solve at k = 1, 2, 3 and split the O(w^2) coefficient by its k-dependence.
+    Returns (C_LR, pole coefficient a_-1 = C_pole*A_Y*Q_0^2, third-point residual)."""
+    vals = []
+    for kv in (sp.Integer(1), sp.Integer(2), sp.Integer(3)):
+        e = [sp.expand(x.subs({KB: kb, AY: ay, Fpp: fpp, qq: qv, k: kv})) for x in eqs]
+        hs = hcoeffs(e, unks, tgt)
+        vals.append((kv, sp.cancel(2 * hs[2] / hs[0])))
+    C0s, C2s = sp.symbols("C0s C2s")
+    sol = list(sp.linsolve([C0s + C2s * kv ** 2 - v for kv, v in vals[:2]], [C0s, C2s]))[0]
+    resid = float(sp.simplify(sol[0] + sol[1] * 9 - vals[2][1]))
+    return sol[0], sp.cancel(sol[1] * ay * qv ** 2), resid
+
 
 t1 = time.time()
-SUBpar = {cJ: 2 - KB, Q0: qq, k: 1, om: 0}
-r, eqsP, FaP, GaP, _ = equations([0, 0, s * sp.Integer(1)], ZF0, UNK0, extra_sub=SUBpar)
+r, eqsP, FaP, GaP, _ = equations([0, 0, s * sp.Integer(1)], ZF0, UNK0,
+                                 extra_sub={cJ: 2 - KB, Q0: qq, om: 0})
 eqsP = [sp.expand(e.subs(R_, 1)) for e in eqsP]
 unkP = [FaP[u] for u in UNK0]
-print(f"       (w parallel to k: system built, {time.time()-t1:.0f}s)")
-deg1([e.subs({KB: sp.Rational(1, 10), AY: AY_PHYS, qq: QQ_PHYS}) for e in eqsP],
+print(f"       (w parallel to k: system built with k SYMBOLIC, {time.time()-t1:.0f}s)")
+deg1([e.subs({KB: sp.Rational(1, 10), AY: AY_PHYS, qq: QQ_FIT, k: 1}) for e in eqsP],
      unkP, "A-parallel")
 
-
-def apb_at(kb, ay, fpp, qv):
-    e = [sp.expand(x.subs({KB: kb, AY: ay, Fpp: fpp, qq: qv})) for x in eqsP]
-    hs = hcoeffs(e, unkP, FaP["h00"])
-    return sp.cancel(2 * hs[2] / hs[0]), hs
-
-
-apb_closed = 2 * KB * (3 * KB - 2) / (2 - KB) ** 2
+apb_LR = 4 * KB * (KB - 1) / (2 - KB) ** 2
+apb_pole = -2 * KB ** 2 / (2 - KB)
+apb_pred = 2 * KB * (3 * KB - 2) / (2 - KB) ** 2          # the predecessors' published value
 rowsP = []
-print(f"       {'K_B':>8s} {'A_Y':>10s} {'Lambda':>10s} {'a+b measured':>16s} "
-      f"{'2K_B(3K_B-2)/(2-K_B)^2':>23s} {'resid x A_Y':>12s}")
-for kb, ayx, qv in ((sp.Rational(1, 10), AY_PHYS, QQ_PHYS),
-                    (sp.Rational(1, 2), AY_PHYS, QQ_PHYS),
-                    (sp.Rational(1, 10), sp.Integer(10) ** 6, sp.Integer(10) ** (-12)),
-                    (sp.Rational(1, 10), sp.Integer(10) ** 10, sp.Integer(10) ** (-16))):
-    v, hs = apb_at(kb, ayx, 4, qv)
-    tg = apb_closed.subs(KB, kb)
-    rowsP.append((float(kb), int(ayx), float(ayx) * float(qv) ** 2, float(v), float(tg),
-                  float((v - tg) * ayx)))
-    print(f"       {float(kb):8.3g} {int(ayx):10d} {float(ayx)*float(qv)**2:10.2e} "
-          f"{float(v):16.11f} {float(tg):23.11f} {float((v-tg)*ayx):12.4f}")
-check(all(abs(v - tg) < 30.0 / ay for _, ay, _, v, tg, _ in rowsP),
-      "A1  *** w PARALLEL to k, AT THE PHYSICAL POINT: a + b = 2K_B(3K_B-2)/(2-K_B)^2, with "
-      "the residual scaling as 1/A_Y ***",
-      "verified at two K_B and at three A_Y spanning four decades with Lambda spanning six, "
-      "so the value is not an artefact of the point chosen")
-check(max(abs(rowsP[0][5] - rowsP[2][5]), abs(rowsP[0][5] - rowsP[3][5])) < 1.0,
-      "A2  and the residual COEFFICIENT is A_Y- and Lambda-independent (column 6 constant "
-      "across four decades of A_Y and six of Lambda), which is what licenses quoting the "
-      "fractional correction as 1/A_Y = 1.0e-8 at 1 AU",
-      f"resid x A_Y = {[round(rr[5], 4) for rr in rowsP]}")
+print(f"       {'K_B':>7s} {'A_Y':>10s} {'Lam(k=1)':>10s} {'C_LR measured':>16s} "
+      f"{'4K_B(K_B-1)/(2-K_B)^2':>22s} {'resid x A_Y':>12s} {'pole a_-1':>12s} "
+      f"{'-2K_B^2/(2-K_B)':>16s} {'k=3 chk':>9s}")
+for kb, ayx in ((sp.Rational(1, 10), AY_PHYS), (sp.Rational(1, 4), AY_PHYS),
+                (sp.Rational(1, 2), AY_PHYS), (sp.Rational(1, 10), sp.Integer(10) ** 10)):
+    C0v, polev, resid = kfit(eqsP, unkP, FaP["h00"], kb, ayx, 4, QQ_FIT)
+    tg = apb_LR.subs(KB, kb)
+    pl = apb_pole.subs(KB, kb)
+    rowsP.append((float(kb), int(ayx), float(C0v), float(tg), float((C0v - tg) * ayx),
+                  float(polev), float(pl), resid))
+    print(f"       {float(kb):7.3g} {int(ayx):10d} {float(ayx*QQ_FIT**2):10.1e} "
+          f"{float(C0v):16.12f} {float(tg):22.12f} {float((C0v-tg)*ayx):12.4f} "
+          f"{float(polev):12.7f} {float(pl):16.7f} {resid:9.1e}")
+check(all(abs(v - tg) < 30.0 / ay for _, ay, v, tg, _, _, _, _ in rowsP)
+      and all(abs(rr) < 1e-10 for *_, rr in rowsP),
+      "A1  *** w PARALLEL to k: the LONG-RANGE O(w^2) coefficient is "
+      "a + b = 4 K_B (K_B - 1)/(2 - K_B)^2, at three K_B and two A_Y, with the residual "
+      "scaling as 1/A_Y and the k = 3 consistency point clean to 1e-14 ***",
+      "the k = 3 residual is the check that the {1, k^2} basis is complete: it comes out at "
+      "the size of Lambda itself (2e-14), i.e. it is the O(Lambda) term and nothing else")
+check(all(abs(pv - pl) < 1e-5 * abs(pl) for *_, pv, pl, _ in rowsP),
+      "A2  and the CONTACT (k-independent) piece is exactly a_-1 = -2 K_B^2/(2-K_B), so the "
+      "measured coefficient is a+b(k) = 4K_B(K_B-1)/(2-K_B)^2 - [2K_B^2/(2-K_B)]/Lambda, "
+      "matched to 6+ significant figures at three K_B",
+      "the pole is the term the predecessors called a contact term.  Both halves are now "
+      "identified in closed form instead of one being fitted away")
+disc = sp.simplify(sp.expand(apb_pred - apb_LR))
+check(sp.simplify(disc - 2 * KB ** 2 / (2 - KB) ** 2) == 0
+      and sp.simplify(disc - (-apb_pole / (2 - KB))) == 0,
+      "A3  *** AND THE CORRECTION TO THE PREDECESSORS IS AN EXACT IDENTITY, WITH ITS CAUSE "
+      "NAMED: ppn_scalar_retained_2026.py's Q3-1 and ppn_verify_gradient_A_2026.py's B6 give "
+      "a+b = 2K_B(3K_B-2)/(2-K_B)^2, which exceeds the true long-range value by exactly "
+      "2K_B^2/(2-K_B)^2 = -a_-1/(2-K_B) -- the pole coefficient itself ***",
+      "MECHANISM, and it is checkable rather than asserted: both files fitted h_00^(2) to "
+      "Cm2/Q_0^2 + C0 + C2 Q_0^2 at FIXED k = 1 and then divided by h_00^(0) evaluated at a "
+      "SINGLE Q_0.  But h_00^(0) = G_eff/[2(k^2+m^2)] itself depends on Q_0 through "
+      "m^2 ~ A_Y Q_0^2, so the expansion of 1/(1+Lambda) multiplies the 1/Lambda pole and "
+      "feeds a piece of it back into the Q_0-independent coefficient.  Keeping k symbolic "
+      "and splitting by k-dependence avoids the mixing entirely.  DIRECTION: this CORRECTS a "
+      "published corpus formula at O(K_B^2) and, as check A7 shows, changes NO bound")
 big = []
-for kb in (sp.Rational(1, 10),):
-    for ayx, qv in ((sp.Integer(10) ** 8, sp.Integer(10) ** (-20)),
-                    (sp.Integer(10) ** 8, sp.Integer(10) ** (-14)),
-                    (sp.Integer(10) ** 12, sp.Integer(10) ** (-20))):
-        v, _ = apb_at(kb, ayx, 4, qv)
-        big.append((float(ayx) * float(qv) ** 2, float(v)))
-check(max(abs(v - big[0][1]) for _, v in big) < 1e-6,
-      "A3  *** AND THE ANSWER IS REGULATOR-INDEPENDENT in the corner the solar system "
-      "occupies: a+b is identical to 6 decimals over 12 orders of Lambda (1e-32 to 1e-12) "
-      "and 4 of A_Y.  So the 'exponentially small regulator of a singular limit' worry does "
-      "NOT materialise -- the Lambda -> 0 limit is smooth and finite, not regulator-selected "
-      "***",
-      f"a+b at Lambda = {[('%.0e' % L) for L, _ in big]}: "
-      f"{[round(v, 10) for _, v in big]}.  The 1/(w.khat) wake pathology of the "
-      f"aether-only constrained solve therefore does NOT return: Q_0 != 0 lifts it (E2), and "
-      f"the lifted answer does not depend on how small Q_0 is")
+for ayx, qv in ((sp.Integer(10) ** 8, sp.Rational(1, 10 ** 11)),
+                (sp.Integer(10) ** 8, sp.Rational(1, 10 ** 14)),
+                (sp.Integer(10) ** 12, sp.Rational(1, 10 ** 13))):
+    C0v, _, _ = kfit(eqsP, unkP, FaP["h00"], sp.Rational(1, 10), ayx, 4, qv)
+    big.append((float(ayx) * float(qv) ** 2, float(C0v)))
+check(max(abs(v - big[0][1]) for _, v in big) < 1e-7,
+      "A4  *** REGULATOR-INDEPENDENCE: C_LR is identical to 7 decimals over 6 orders of "
+      "Lambda (1e-14 down to 1e-20) and 4 of A_Y.  So the 'exponentially small regulator of "
+      "a singular limit' worry does NOT materialise -- the Lambda -> 0 limit is smooth and "
+      "the answer is not regulator-selected ***",
+      f"C_LR at Lambda = {[('%.0e' % L) for L, _ in big]}: {[round(v, 10) for _, v in big]}. "
+      f"Consequently the 1/(w.khat) wake pathology of the aether-only constrained solve does "
+      f"NOT return: Q_0 != 0 lifts it (check E2) and the lifted answer does not depend on how "
+      f"small Q_0 is")
 
 t1 = time.time()
 ZFperp = ("h02", "h12", "h23", "h13", "h03", "h33", "a2")
 UNKperp = ["h00", "h01", "h11", "h22", "a0", "a1", "a3", "chi", "lam"]
 r, eqsQ, FaQ, GaQ, _ = equations([s * sp.Integer(1), 0, 0], ZFperp, UNKperp,
-                                 extra_sub={cJ: 2 - KB, Q0: qq, k: 1, om: 0})
+                                 extra_sub={cJ: 2 - KB, Q0: qq, om: 0})
 eqsQ = [sp.expand(e.subs(R_, 1)) for e in eqsQ]
 unkQ = [FaQ[u] for u in UNKperp]
-print(f"       (w perpendicular to k: system built, {time.time()-t1:.0f}s)")
-deg1([e.subs({KB: sp.Rational(1, 10), AY: AY_PHYS, qq: QQ_PHYS}) for e in eqsQ],
+print(f"       (w perpendicular to k: system built with k SYMBOLIC, {time.time()-t1:.0f}s)")
+deg1([e.subs({KB: sp.Rational(1, 10), AY: AY_PHYS, qq: QQ_FIT, k: 1}) for e in eqsQ],
      unkQ, "A-perp")
-
-
-def a_at(kb, ay, fpp, qv):
-    e = [sp.expand(x.subs({KB: kb, AY: ay, Fpp: fpp, qq: qv})) for x in eqsQ]
-    hs = hcoeffs(e, unkQ, FaQ["h00"])
-    return sp.cancel(2 * hs[2] / hs[0])
-
-
 rowsQ = []
-print(f"       {'K_B':>8s} {'A_Y':>10s} {'Lambda':>10s} {'a measured':>16s} {'4 K_B':>12s} "
-      f"{'resid x A_Y':>12s} {'4(2-K_B)^2':>11s}")
-for kb, ayx, qv in ((sp.Rational(1, 10), AY_PHYS, QQ_PHYS),
-                    (sp.Rational(1, 4), AY_PHYS, QQ_PHYS),
-                    (sp.Rational(1, 2), AY_PHYS, QQ_PHYS),
-                    (sp.Rational(1, 10), sp.Integer(10) ** 6, sp.Integer(10) ** (-12))):
-    v = a_at(kb, ayx, 4, qv)
-    rowsQ.append((float(kb), int(ayx), float(v), float(4 * kb), float((v - 4 * kb) * ayx)))
-    print(f"       {float(kb):8.3g} {int(ayx):10d} {float(ayx)*float(qv)**2:10.2e} "
-          f"{float(v):16.11f} {float(4*kb):12.6f} {float((v-4*kb)*ayx):12.4f} "
-          f"{float(4*(2-kb)**2):11.4f}")
-check(all(abs(v - tg) < 30.0 / ay for _, ay, v, tg, _ in rowsQ),
-      "A4  *** w PERPENDICULAR to k, AT THE PHYSICAL POINT: a = 4 K_B EXACTLY, with the "
-      "1/A_Y residual coefficient equal to 4(2-K_B)^2 ***",
-      "the residual coefficient matching 4(2-K_B)^2 at three K_B is an independent check "
-      "that the 4 K_B is exact and not a numerical accident -- the same diagnostic "
-      "ppn_scalar_retained_2026.py used, reproduced at the physical parameter point rather "
-      "than in a fitted corner")
+print(f"       {'K_B':>7s} {'A_Y':>10s} {'C_LR measured':>16s} {'4 K_B':>12s} "
+      f"{'resid x A_Y':>12s} {'4(2-K_B)^2':>11s} {'pole a_-1':>12s} {'k=3 chk':>9s}")
+for kb, ayx in ((sp.Rational(1, 10), AY_PHYS), (sp.Rational(1, 4), AY_PHYS),
+                (sp.Rational(1, 2), AY_PHYS)):
+    C0v, polev, resid = kfit(eqsQ, unkQ, FaQ["h00"], kb, ayx, 4, QQ_FIT)
+    rowsQ.append((float(kb), int(ayx), float(C0v), float(4 * kb),
+                  float((C0v - 4 * kb) * ayx), float(polev), resid))
+    print(f"       {float(kb):7.3g} {int(ayx):10d} {float(C0v):16.12f} {float(4*kb):12.6f} "
+          f"{float((C0v-4*kb)*ayx):12.4f} {float(4*(2-kb)**2):11.4f} {float(polev):12.3e} "
+          f"{resid:9.1e}")
+check(all(abs(v - tg) < 30.0 / ay for _, ay, v, tg, _, _, _ in rowsQ)
+      and all(abs(rr - 4 * (2 - kb) ** 2) < 1e-3 for kb, _, _, _, rr, _, _ in rowsQ),
+      "A5  *** w PERPENDICULAR to k: a = 4 K_B EXACTLY, with the 1/A_Y residual coefficient "
+      "equal to 4(2-K_B)^2 at three K_B ***",
+      "unchanged from ppn_scalar_retained_2026.py's Q3-3 -- and it SHOULD be unchanged, "
+      "because check A6 shows this orientation has no pole for the fit to have mixed in")
+check(all(abs(pv) < 1e-20 for *_, pv, _ in rowsQ),
+      "A6  and this orientation has NO contact pole at all (a_-1 = 0 to 1e-20), which is why "
+      "the predecessors' fixed-k fit was exact here and contaminated only in the parallel "
+      "run.  It also confirms their reading that the pole lives in (w.khat)",
+      "so exactly one of the two measured numbers needed correcting, and the file identifies "
+      "which and why")
 
 # ---- assemble, in BOTH conventions ---------------------------------------------------------
 a_lim = 4 * KB
-b_lim = sp.simplify(apb_closed - a_lim)
+b_lim = sp.simplify(apb_LR - a_lim)
 alpha1_will = sp.factor(sp.simplify(-a_lim))
 alpha2_will = sp.factor(sp.simplify(b_lim / 2))
 alpha1_C4 = sp.factor(sp.simplify(a_lim + b_lim / 2))
@@ -1080,47 +1125,72 @@ print(f"       ppn_scalar_retained/gradient_A convention (their C4):")
 print(f"         alpha_1 = {alpha1_C4}")
 print(f"         alpha_2 = {alpha2_C4}")
 check(sp.simplify(alpha1_will + 4 * KB) == 0
-      and sp.simplify(alpha2_will + KB * (2 * KB ** 2 - 11 * KB + 10) / (2 - KB) ** 2) == 0,
-      "A5  *** THE ALPHAS, IN WILL'S CONVENTION: alpha_1 = -4 K_B EXACTLY and "
-      "alpha_2 = -K_B(2K_B^2 - 11K_B + 10)/(2-K_B)^2 -> -(5/2)K_B ***",
+      and sp.simplify(alpha2_will + 2 * KB * (KB ** 2 - 5 * KB + 5) / (2 - KB) ** 2) == 0,
+      "A7  *** THE ALPHAS, IN WILL'S CONVENTION: alpha_1 = -4 K_B EXACTLY and "
+      "alpha_2 = -2K_B(K_B^2 - 5K_B + 5)/(2-K_B)^2 ***",
       "alpha_1 = -4 K_B agrees with reading L (the Einstein-aether dictionary), with "
-      "ppn_verify_g0i_channel_2026.py's independent g_0i measurement, and with "
-      "ppn_verify_transcription_2026.py -- three routes, now four.  |alpha_2| = (5/2)K_B is "
-      "convention-robust and agrees with ppn_scalar_retained_2026.py")
-check(sp.simplify(alpha1_C4 - KB * (2 * KB ** 2 - 5 * KB + 6) / (2 - KB) ** 2) == 0
-      and sp.simplify(alpha2_C4 - KB * (2 * KB ** 2 - 11 * KB + 10) / (2 - KB) ** 2) == 0,
-      "A6  and in the earlier files' C4 convention the SAME measurement reads "
-      "alpha_1 = K_B(2K_B^2-5K_B+6)/(2-K_B)^2 -> (3/2)K_B and "
-      "alpha_2 = K_B(2K_B^2-11K_B+10)/(2-K_B)^2 -> (5/2)K_B",
-      "i.e. ppn_scalar_retained_2026.py's Q3-4 formulas, reproduced character for character "
-      "-- about a DIFFERENT background, at the PHYSICAL A_Y and Lambda rather than in a "
-      "corner.  So the correction this file makes is not to those numbers; it is to their "
-      "DOMAIN, which is now established rather than assumed")
-ser1 = sp.series(alpha1_will, KB, 0, 3).removeO()
-ser2 = sp.series(alpha2_will, KB, 0, 3).removeO()
-check(sp.simplify(ser1 + 4 * KB) == 0
-      and sp.simplify(ser2 - (-sp.Rational(5, 2) * KB + KB ** 2 / 4)) == 0,
-      f"A7  small-K_B limits (Will): alpha_1 = -4 K_B exactly, "
-      f"alpha_2 = -(5/2)K_B + K_B^2/4 + ...; both vanish as K_B -> 0 as they must",
-      "the K_B -> 0 limit returns GR, which is the sanity check that the aether kinetic term "
-      "is what carries the effect")
-# the residual floor, measured
-floor_meas = {lab: abs(rowsP[0][5]) / BR2[(lab, "100Mpc")]["AY"] for lab, _ in FOOT}
+      "ppn_verify_g0i_channel_2026.py's independent g_0i measurement and with "
+      "ppn_verify_transcription_2026.py -- a fourth independent route to the same number, "
+      "and the one orientation A3 corrects does not touch it")
+lead = {nm: sp.simplify(sp.limit(ex / KB, KB, 0))
+        for nm, ex in (("a1W", alpha1_will), ("a2W", alpha2_will),
+                       ("a1C4", alpha1_C4), ("a2C4", alpha2_C4))}
+print(f"       leading coefficients (alpha/K_B as K_B -> 0): "
+      f"Will alpha_1 = {lead['a1W']}, alpha_2 = {lead['a2W']}; "
+      f"C4 alpha_1 = {lead['a1C4']}, alpha_2 = {lead['a2C4']}")
+check(lead["a1W"] == -4 and lead["a2W"] == sp.Rational(-5, 2)
+      and lead["a1C4"] == sp.Rational(3, 2) and lead["a2C4"] == sp.Rational(5, 2),
+      "A8  *** AND THE CORRECTION CHANGES NO BOUND: the small-K_B limits are alpha_1 = -4K_B "
+      "and alpha_2 = -(5/2)K_B (Will), i.e. |alpha_1| = 4K_B and |alpha_2| = (5/2)K_B -- "
+      "IDENTICAL at leading order to ppn_scalar_retained_2026.py's, whose C4-convention "
+      "leading terms (3/2)K_B and (5/2)K_B this file also reproduces.  A3's correction lives "
+      "entirely at O(K_B^2), and every bound sits at K_B <~ 1e-5 ***",
+      "stated at full prominence so the correction is not mistaken for a rescue: the "
+      "published leading coefficients were right, the O(K_B^2) terms were not, and the "
+      "verdict is untouched")
+check(sp.simplify(alpha1_will.subs(KB, 0)) == 0 and sp.simplify(alpha2_will.subs(KB, 0)) == 0,
+      "A9  sanity: both alphas vanish as K_B -> 0, where the aether kinetic term switches off "
+      "and the theory must return to GR")
+
+# ---- the K_B-independent residual floor, and the contact term's size on branch (II) ---------
+resid_coeff = abs(rowsP[0][4])
+floor_meas = {lab: resid_coeff / BR2[(lab, "100Mpc")]["AY"] for lab, _ in FOOT}
 print()
 print(f"       {'footing':>10s} {'|resid coeff|':>14s} {'A_Y(1AU)':>11s} "
-      f"{'K_B-indep floor on a+b':>23s} {'|alpha_2| bound':>16s}")
+      f"{'K_B-indep floor':>16s} {'|alpha_2| bound':>16s}")
 for lab, _ in FOOT:
-    print(f"       {lab:>10s} {abs(rowsP[0][5]):14.4f} {BR2[(lab,'100Mpc')]['AY']:11.4e} "
-          f"{floor_meas[lab]:23.3e} {A2_BOUND:16.1e}")
+    print(f"       {lab:>10s} {resid_coeff:14.4f} {BR2[(lab,'100Mpc')]['AY']:11.4e} "
+          f"{floor_meas[lab]:16.3e} {A2_BOUND:16.1e}")
 check(all(v < A2_BOUND for v in floor_meas.values()),
-      "A8  *** THE K_B-INDEPENDENT RESIDUAL FLOOR, MEASURED not asserted: |resid|/A_Y = "
-      "%.2e (canonical) / %.2e (ALT), BELOW |alpha_2| < 1e-7.  So on branch (II) there is no "
-      "K_B-independent kill, and the K_B ceilings below are meaningful ***"
+      "A10 *** THE K_B-INDEPENDENT RESIDUAL FLOOR, MEASURED not asserted: |resid|/A_Y = "
+      "%.2e (canonical) / %.2e (ALT), BELOW |alpha_2| < 1e-7.  On branch (II) there is no "
+      "K_B-independent kill, so the K_B ceilings below are meaningful ***"
       % (floor_meas["canonical"], floor_meas["ALT"]),
-      "this is the check that gradient_A explicitly could not pass (its B8) and the reason "
-      "it refused to bank any ceiling.  The self-consistent background supplies the A_Y that "
-      "clears it")
-
+      "this is the check ppn_verify_gradient_A_2026.py explicitly could not pass (its B8, "
+      "where the same coefficient -4/A_Y at A_Y ~ 1e4 gave ~1e-4 and blew the alpha_2 bound "
+      "by 1e3 for every K_B) and the reason it refused to bank any ceiling.  The "
+      "self-consistent A_Y ~ 2e8 clears it by a factor 5")
+print()
+print(f"       {'footing':>10s} {'Lambda(1AU)':>12s} {'contact/long-range enhancement 1/Lambda':>40s}")
+for lab, _ in FOOT:
+    lam_ = BR2[(lab, "100Mpc")]["Lam"]
+    print(f"       {lab:>10s} {lam_:12.3e} {1.0/lam_:40.3e}")
+check(all(1.0 / BR2[(lab, "100Mpc")]["Lam"] > 1e10 for lab, _ in FOOT),
+      "A11 *** AND A NEW ADVERSE ITEM THIS ROUTE UNCOVERS, REPORTED BECAUSE IT IS ADVERSE: "
+      "the contact term a_-1/Lambda is ENHANCED on branch (II), not suppressed.  Its "
+      "coefficient relative to the long-range piece is 1/Lambda = 4.3e18 (canonical) / "
+      "5.2e18 (ALT) at 1 AU, whereas on branch (I) it was SUPPRESSED by 1/Lambda = 1e-3430 "
+      "***",
+      "ppn_scalar_retained_2026.py's Q3-2 dismissed this term on the grounds that it is "
+      "'suppressed by k^2/(A_Y Q_0^2) ~ 1e-3387' -- true on branch (I) and FALSE by 3449 "
+      "orders on the branch this file finds physical.  It does NOT touch alpha_1 or alpha_2, "
+      "which are properties of the long-range metric outside the source, so no number above "
+      "moves.  What it means physically -- an O(w^2) metric response proportional to the "
+      "LOCAL density with coefficient 2K_B^2/[(2-K_B) m^2] and m^-1 = 10 kpc -- is NOT "
+      "COMPUTED here: it requires an inside-matter treatment this linear-in-rho, "
+      "single-Fourier-mode calculation cannot give.  It is flagged as the sharpest new open "
+      "item this route produces, and it is the same item that file listed as 'NOT COMPUTED "
+      "-- the contact sector inside matter'")
 # =================================================================================================
 print()
 print("=" * 100)
@@ -1221,10 +1291,21 @@ LEDGER = [
      "elimination: the scalar's kinetic operator, the induced shift being pure Q_0^2 with no "
      "k^2 piece, and the omega^2 shift being 2(2-K_B)^2/A_Y."),
     ("RIGOROUS (exact-rational numerics at the PHYSICAL parameter point, in this file)",
-     "A1-A4 a+b = 2K_B(3K_B-2)/(2-K_B)^2 and a = 4K_B at A_Y = 2e8, Lambda = 2e-20, with the "
-     "residual verified to scale as 1/A_Y and its coefficient identified as 4(2-K_B)^2; A3 "
-     "the answer's independence of the regulator over 12 orders of Lambda; A8 the measured "
-     "K_B-independent floor.  B10 the 60-digit evaluation of S_L/S_T at 1 AU."),
+     "A1-A6, with k kept SYMBOLIC in the build and the system solved exactly at k = 1, 2, 3 "
+     "so that the long-range and contact parts are separated by their k-dependence rather "
+     "than fitted apart at fixed k: a+b(long-range) = 4K_B(K_B-1)/(2-K_B)^2 with contact pole "
+     "a_-1 = -2K_B^2/(2-K_B), and a = 4K_B with NO pole, each at three K_B and two A_Y, with "
+     "the 1/A_Y residual coefficients measured (~-4 and 4(2-K_B)^2) and the k = 3 point clean "
+     "at the size of Lambda.  A4 regulator-independence over 6 orders of Lambda.  A10 the "
+     "measured K_B-independent floor.  B10 the 60-digit evaluation of S_L/S_T at 1 AU."),
+    ("CORRECTS a committed corpus result (stated because it is a correction, not a rescue)",
+     "A3: ppn_scalar_retained_2026.py's Q3-1 / ppn_verify_gradient_A_2026.py's B6 value "
+     "a+b = 2K_B(3K_B-2)/(2-K_B)^2 is high by exactly 2K_B^2/(2-K_B)^2, because their "
+     "fixed-k Laurent fit divided by an h_00^(0) that itself carries the Q_0-dependence of "
+     "the Yukawa mass.  Their alpha_1 = -4K_B and |alpha_2| = (5/2)K_B leading terms SURVIVE "
+     "unchanged, so no bound moves.  A11: their Q3-2 dismissal of the contact term as "
+     "suppressed by 1e-3387 holds only on branch (I); on branch (II) that term is ENHANCED "
+     "by 4.3e18."),
     ("RIGOROUS (arithmetic on inherited inputs)",
      "D1-D5 branch (II)'s numbers: Lambda = 2.3e-19 (radius-independent), 1/m = 10.1 kpc, "
      "1/J_Y = 1.02e-8, 4/A_Y = 2.04e-8, (V/k)^2 = 1.0e-32, g_s floor = 0.6476 a_0.  V1-V3 the "
@@ -1264,7 +1345,13 @@ LEDGER = [
      "(i) the alphas on branch (I): NOT COMPUTABLE, not merely unattempted -- the static "
      "scalar operator is not elliptic there (B10/B11).  (ii) alpha_3, beta, the zeta's, xi, "
      "and the g_0i cross-check about THIS background (the g_0i channel was done about the "
-     "Y_bg = 0 one).  (iii) whether the subluminality floor survives at general Q_0 -- both "
+     "Y_bg = 0 one).  (ii-b) THE CONTACT SECTOR INSIDE MATTER (check A11): on branch (II) the "
+     "k-independent O(w^2) response is ENHANCED by 1/Lambda = 4.3e18 instead of suppressed, "
+     "and what that means physically -- a metric response proportional to the LOCAL density "
+     "with coefficient 2K_B^2/[(2-K_B)m^2], m^-1 = 10 kpc -- cannot be settled by a "
+     "calculation linear in rho with a single Fourier mode.  It does not touch the alphas, "
+     "which live outside the source.  It is the sharpest NEW open item this route produces.  "
+     "(iii) whether the subluminality floor survives at general Q_0 -- both "
      "edges of the window are still cosmological Q_0 = 0 objects, gradient_A's C8, unclosed.  "
      "(iv) whether some non-AeST completion of the framework's kernel exists that is both "
      "admissible and exponentially screening -- this file shows AeST's Y-sector cannot be it, "

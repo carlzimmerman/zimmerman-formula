@@ -1,7 +1,166 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 r"""
-ppn_newtonian_wkb_2026.py   -- PLACEHOLDER DOCSTRING, written last
+ppn_newtonian_wkb_2026.py
+=========================
+THE MINIMAL FIX, CARRIED OUT: redo real_research/reviews/ppn_scalar_retained_2026.py's PPN
+preferred-frame expansion of AeST about a background that carries the solar system's SCALAR
+GRADIENT (Y_bg != 0) instead of about Y_bg = 0, which is the deep-MOND point and is exactly where
+the theory's own quasi-static coupling diverges.
+
+WHAT THE FIX REDUCES TO, IN ONE LINE.  With Y_bg != 0 the free function's SECOND derivative enters
+the quadratic action, and it does so through exactly one new dimensionless number,
+
+        r  =  2 Y_bg F_YY / F_Y  =  A_par / A_perp  -  1 ,
+
+because delta Y is EXACTLY O(sigma) about this background (check 2-2: delta Y_1 = 2 sigma
+(Q_0 delta A_3 + d_z chi)), so the sigma -> 0 limit at fixed r is finite and exact -- and
+sigma/k ~ 1e-3465 at 1 AU while r is O(1).  The earlier files did not approximate r as small; their
+Y_bg = 0 FORCED r = 0.  The framework's own kernel gives
+
+        r(1 AU) = -1.000251357 (canonical a_0)  /  -1.000275902 (ALT).
+
+THE SECOND ERROR, FOUND ON THE WAY, AND IT IS THE ONE THAT MATTERS MOST.  Independently of the
+background gradient, the background Lagrange multiplier is FORCED to be lam_bg = -F_Y Q_0^2, not
+zero.  Check 2-3 derives it from the first-order Lagrangian, whose undifferentiated part is
+    (2 F_Y Q_0^2 + 2 lam_bg) a_0  -  (F_Y Q_0^2 + lam_bg) h_00  -  2 F_Y Q_0 sigma a_3 ,
+so ONE value of lam_bg kills TWO tadpoles at once -- it is not a fit.  ppn_scalar_retained_2026.py's
+check 0-5 asserted "lambda_bg = 0 is consistent" as a structural statement with the proof deferred.
+It is not consistent.  Physical origin: Y = g^{mu nu} grad phi grad phi + Q^2 depends on the aether
+through Q, so dY/dA_mu = 2 Q grad^mu phi != 0 whenever Q_bg = Q_0 != 0, and only the multiplier can
+absorb the A-aligned part.
+
+THE ANSWERS, up front.
+
+  THE THREE REQUIRED GATES ALL PASS about the corrected background.
+    (a) gamma_PPN = 1 EXACTLY, for every K_B, F_Y, r, F_QQ, Q_0 (check 3-2).
+    (b) c_T^2 = 1 EXACTLY -- and by a stronger route than a determinant factor: the tensor
+        equation is exactly -(1/2)(k^2 - omega^2)(h_11 - h_22), with NO F_Y, r, F_QQ or Q_0 in
+        it at all, so the tensor sector DECOUPLES (check 3-6).
+    (c) THE SCREENED NEWTONIAN LIMIT, which is the gate the old expansion point could not pass:
+        G_eff/G_N = 1 - 1e-3453 (canonical) / 1 - 1e-3145 (ALT) at 1 AU -- a finite,
+        e^(-sqrt y)-class fractional residual, not a divergence (check 5-5).  Two features of it
+        are new: it is ANISOTROPIC (transverse residual +e^(-sqrt y), radial residual
+        -(sqrt(y)/2)e^(-sqrt y), differing in sign and by ~4e3), and the radial one is NEGATIVE.
+
+  THE CENTRAL QUESTION -- is Lambda = A_Y Q_0^2/k^2 still the controlling combination, and is the
+  solar system still in the Lambda >> 1 corner?  NO, AND NO, AND THE CULPRIT IS lam_bg.  The exact
+  w = 0 response about the corrected background is (check 3-1, all six parameters and k symbolic)
+        h_00 = (G_eff/G) rho / [2(k^2 + m^2)] ,      A_par = F_Y (1 + r)
+        G_eff/G = 2 A_par / [(2-K_B)(A_par - (2-K_B))]
+        m^2     = F_QQ A_par Q_0^2 / [2(2-K_B)(A_par - (2-K_B))]   ->   F_QQ Q_0^2/(2(2-K_B)) .
+  The Yukawa mass NO LONGER GROWS WITH THE STIFFNESS.  Its limit is |m| = mu with
+  mu^2 = 2 K_2 Q_0^2/(2-K_B) -- EXACTLY SZ21's scalar mass, i.e. the corpus's own mu^-1 >~ 1 Mpc,
+  recovered rather than assumed.  So
+        Lambda(1 AU) = 2.2e-23   instead of   1e3430 (canonical) / 1e3123 (ALT),
+  the corner boundary moves from r* ~ 150 AU to r* = mu^-1 = 1.03 Mpc, and the graviton Yukawa
+  range at 1 AU goes from 1e-1704 m -- 1669 orders below the Planck length -- to 1.03 Mpc.
+  ppn_verify_gradient_A_2026.py's own diagnosis ("the frozen-A_Y input announcing its own
+  inconsistency") is DISCHARGED, and its Lambda >> 1 corner, with a = +8 and a + b = -4 and alphas
+  1e4-1e8 over the bounds for EVERY K_B including K_B = 0, is a MEGAPARSEC-scale corner that the
+  solar system is nowhere near.  Check 3-5 reproduces the earlier closed form character for
+  character at r = 0 AND lam_bg = 0, so this is not an algebra dispute: it is two named inputs.
+
+  alpha_1 AND alpha_2 AT 1 AU:  **NOT COMPUTED**, in either convention, and the obstruction is
+  located.  About the CORRECTED background the static boosted system is solvable at O(w^0) and
+  INCONSISTENT ALREADY AT O(w^1) -- in the multiplier-kept formulation and in the
+  constraint-eliminated one independently, at two parameter points, at r = 0 as well as at the
+  framework's r (check 6-2).  With lam_bg = 0 it is solvable through O(w^2), which is how the
+  earlier file got its numbers (check 6-1).  So ppn_scalar_retained_2026.py's Q2 ("the scalar
+  lifts the degeneracy, because det(w=0) ~ Q_0^2") and its Q3-2 ("the no-Taylor-series-in-w
+  pathology is CURED") both rest on the tadpole: remove it and READING D'S OBSTRUCTION IS
+  REINSTATED.  Whether that is a genuine non-analyticity in w (reading D's 1/(w.khat) wake, in
+  which case AeST has no PPN alphas in the usual sense) or an artefact of discarding the four
+  (3,nu) equations -- which stage74 B2 already held cannot be discarded -- is the owed item; it
+  needs the unfixed-gauge system with all ten Einstein equations, NOT COMPUTED here.  Restoring
+  h_33 and h_03 as unknowns does not repair it.
+
+  THE K_B WINDOW is therefore **UNDECIDED**: the cosmological subluminality floor
+  K_B >= 2/(K_2+1) = 2.105e-4 (Exp) / 2.666e-4 (Cosh) stands untouched (it is a Y_bg = 0 quantity),
+  but the CEILING is gone with the alphas.  ppn_scalar_retained_2026.py's "empty by 5263x" is
+  WITHDRAWN as established -- not refuted, withdrawn.
+
+  AND ONE ADVERSE RESULT THAT NEEDS NONE OF THE PPN MACHINERY (PART 1).  Expanding a free function
+  F(Y) about sigma != 0 gives two moduli: F_Y transverse to the background gradient, F_Y + 2 Y F_YY
+  along it.  Inverting the same G_eff formula against the framework's kernel identifies them:
+        A_perp = (2-K_B) nu/(nu-1) = (2-K_B) e^(sqrt y)   -- the earlier files' A_Y, re-derived,
+                                                             and it is the SECANT modulus;
+        A_par  = (2-K_B) D/(D-1),   D(y) = d(nu y)/dy = d g_obs/d g_bar   -- the TANGENT modulus,
+                                                             and it is the one a RADIAL (hence
+                                                             every solar-system) perturbation sees.
+  A_par < 0 exactly when 0 < D < 1, i.e. exactly when the MOND EXCESS g_obs - g_bar is DECREASING
+  in g_bar; the crossing is at u* = sqrt(y*) = 1.59362426004, y* = 2.53963828219, the same point at
+  which y(nu-1) turns over (two independent root-finds, agreeing to 1e-10).  For the framework's
+  kernel that is r < 4994 AU (canonical) / 4550 AU (ALT) for the isolated Sun, and r < 16191 /
+  9119 AU once the Galactic Newtonian field is included -- the whole planetary system and the
+  inner Oort region.  A negative longitudinal modulus is a wrong-sign spatial gradient term.
+  THE THEOREM: in any theory whose quasi-static scalar sector is a free function of
+  Y = |grad phi|^2 sourced by baryons (AeST's Y-sector; AQUAL/TeVeS generally), freedom from a
+  longitudinal gradient ghost requires d g_obs/d g_bar >= 1, i.e. the MOND excess must be
+  NON-DECREASING -- hence bounded below by its O(a_0) value at y ~ 1, forever.  That is precisely
+  the corpus's alpha=1 ephemeris liability, obtained here as a STRUCTURAL property of the sector
+  rather than of one kernel.  So the framework must choose:
+      (A) keep nu = 1/(1 - e^(-sqrt y)) -- then it is NOT realisable as an AeST free function of Y
+          at solar-system field strengths (F_Y is not even single-valued in Y there); or
+      (B) keep AeST's Y-sector with a monotone F -- then it inherits an O(a_0) sunward anomaly.
+  Not both.  The very feature that makes the exponential kernel ephemeris-safe is the feature that
+  breaks the embedding.
+
+DIRECTION, stated plainly: MIXED, and neither half is a win for the framework.  Favourable: two
+catastrophes in the earlier route (the sub-Planckian Yukawa range; the K_B-independent O(1) alphas)
+are shown to be artefacts of lam_bg = 0, and all three gates pass about the right background.
+Adverse: the PPN calculation does not close at all once the background is corrected, so no alphas
+and no K_B ceiling exist to report; and the Y-sector embedding of the framework's own kernel is
+obstructed throughout the solar system.  Nothing here is favourable or adverse for
+a_0 = kappa c sqrt(G rho_Lambda) = 9.3619e-11 (canonical) / 1.1279e-10 (ALT), for kappa = 1/2
+(FITTED, never derived), or for the kernel AS A PHENOMENOLOGICAL RELATION (Milgrom & Sanders 2008
+Eq. 13 at alpha = 1/2): the RAR at 0.108 dex, BTFR, the weak-lensing fit and CLASS are untouched.
+The risk located here is in the ADOPTED RELATIVISTIC HOME (AeST, Skordis & Zlosnik, PRL 127 161302,
+arXiv:2007.00082) and cannot be traded away by adjusting kappa or the kernel, nor blamed on them.
+
+TREATMENT AND ITS VALIDITY, stated and TESTED (PART 5), including the parts that fail.
+  (V1) the neglected background stress, relative to the Newtonian field energy, is
+       (2-K_B)(nu-1) = 2 e^(-sqrt y) ~ 1e-3456 at 1 AU.  HOLDS, overwhelmingly.
+  (V2) the background stiffness varies as e^(sqrt y), so |grad ln A|/k = sqrt(y) = 7959 at 1 AU:
+       the WKB inequality FAILS by ~3.9 decades.  What it controls is nonetheless bounded: a
+       Lagrangian with only FIRST derivatives of chi admits at most ONE derivative on A per
+       equation (check 5-4 redoes ppn_verify_gradient_A_2026.py's A5 census with the F_YY term
+       present), so the enhanced residual is O(sqrt(y) e^(-sqrt y)), whose global maximum over all
+       radii is e^-1 and whose value at 1 AU is 1e-3453.
+  (V3) the PPN matching mode has k ~ 1/r, so k r ~ 1: the perturbation is NOT short compared with
+       the background's variation scale, and this one is NOT repaired by any screening.  A WKB
+       expansion therefore cannot certify the exact rational coefficients of an O(w^2) result.
+       Since PART 6 produces no such coefficients, V3 is not load-bearing for anything claimed
+       here; what it would take instead is a radial ODE solve carrying A_par(r) and matched to the
+       exterior, which is NOT COMPUTED here or anywhere in the corpus.
+
+CONVENTIONS -- derived in PART 0, not quoted, because a convention error has already wrecked two
+results in this project.  Signature (-,+,+,+), c = 1, 16 pi G = 1; F_{mu nu} = d_mu A_nu -
+d_nu A_mu; gauge h_{3 nu} = 0; static in the matter frame; single Fourier mode k along z, with the
+BACKGROUND SCALAR GRADIENT ALSO ALONG z (which is the physical solar-system configuration: both are
+radial).  Matching delta h_00 = [a w^2 + b (w.khat)^2] U with U_ij = (delta_ij - 2 khat_i khat_j)U:
+  * WILL:  alpha_1 = -a EXACTLY (at alpha_3 = 0), alpha_2 = +b/2.  Derived in check 0-1 by solving
+    -(alpha_1 - alpha_2 - alpha_3) w^2 U - alpha_2 w^i w^j U_ij against it; the alpha_2 pieces
+    cancel out of the w^2 U coefficient, which is why there is no alpha_2 admixture in alpha_1.
+  * THE TWO EARLIER FILES:  alpha_1 = a + b/2, alpha_2 = -b/2.  Minus Will's on both (check 0-2).
+  Check 0-3 verifies the chain end to end: their (a,b) = (4K_B, -5K_B) is Will's alpha_1 = -4 K_B,
+  alpha_2 = -(5/2)K_B, reproducing both the Einstein-aether value and the task's statement.
+The free function is taken additively separable at the background (F_YQ = 0), which is the corpus's
+own form -- a MOND function of Y plus K(Q) with K'(Q_0) = 0, K''(Q_0) = K_2.  Flagged in the
+ledger.  F_QQ here is the earlier files' -Fpp.
+
+TRANSCRIPTION-INDEPENDENCE (relevant given commit 3bc062ec, "the AeST action was mis-transcribed
+in our own papers").  Nothing here depends on the sign or placement of F(Y,Q): the free function
+enters ONLY through its derivatives at the background, carried as free symbols F_Y (the NET
+coefficient of Y, bare (2-K_B) included), F_YY (through r) and F_QQ.  The four coefficients that
+commit confirms were always right -- R, -(K_B/2)F^2, +2(2-K_B) J.grad(phi) and -(2-K_B)Y -- are
+the only structural inputs used.  The multiplier's sign is likewise immaterial: lambda is a
+Lagrange multiplier, so lam_bg = -F_Y Q_0^2 in the +lambda(A.A+1) convention used here is
++F_Y Q_0^2 in the source's -lambda(A.A+1), and the constraint-ELIMINATED formulation, which
+contains no multiplier at all, gives the identical answer (check 3-4).  That check is precisely
+what makes every result below sign-convention-proof.
+
+EXIT 0 iff every numbered check passes.  Runtime ~1 minute.
 """
 
 import math
