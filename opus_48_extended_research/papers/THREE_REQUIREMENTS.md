@@ -37,7 +37,9 @@ vanishes and the perturbation equation degenerates.
 gravitational constants. Rescaling the free function repairs both R1 and R2 simultaneously,
 but forces $\tilde G/G_N\le0.121$ — an $8.3\times$ split — which gives $Y_p=0.086$ against an
 observed $0.2449\pm0.0040$ ($-42\sigma$), and a gravitational radiation density *below that of
-the photons alone*, whose value is fixed by FIRAS with no gravity in the chain.
+the photons alone*, whose value is fixed by FIRAS with no gravity in the chain. Gravitational
+waves, by contrast, do not pay this price: the siren amplitude's sensitivity to the rescaling
+is exactly zero.
 
 We also record a structural identity, verified three times independently: AeST's action
 already contains an explicit $+(2-K_B)a^\mu a_\mu$, so its apparent $c_4=0$ is an artifact of
@@ -171,11 +173,24 @@ local gravitational constants. It cannot be paid:
   alone*, whose value FIRAS fixes with no gravity anywhere in the chain. The equivalent
   $N_{\rm eff}=-3.5$. The hard floor is missed by $4.9\times$ ($K_B=0.25$) to $12.2\times$
   ($K_B=0.10$), and the ceiling sits $139\sigma$ from viability in cosmic-variance units.
-- **Gravitational waves.** A claimed exact blindness of the standard-siren amplitude to $s$
-  holds only for a tensor-only flux ledger; on the repaired ledger the escape predicts
-  $d_L^{\rm GW}/d_L^{\rm EM}=7.99$ against a measured $0.983\pm0.349$. Accepting the
-  tensor-only ledger instead makes matters worse, bounding $K_B<0.013$ and widening the split
-  to $154\times$.
+- **Gravitational waves do *not* pay this price, and we state that against our own
+  interest.** The tensor sector is exactly Einstein–Hilbert — on FRW plus a TT mode,
+  $J^\mu=0$, $Z=0$, $F_{\mu\nu}=0$ and $\mathcal{Y}=0$ all hold identically and to all
+  orders in $h$, so the dark sector carries no anisotropic stress for any free function —
+  giving $c_T=1$ and $\alpha_M=0$ exactly. The standard-siren amplitude's sensitivity to $s$
+  is then exactly zero: $\tilde G$ enters the strain and $G_N$ the orbit, and they cancel in
+  $d_L^{\rm GW}$. GW170817 places **no bound on $s$**. Two liabilities the same derivation
+  creates are recorded but *not scored*: the inferred chirp mass rescales as $r^{3/5}$
+  (4.13 $M_\odot$ for GW170817 at the ghost edge, which needs the theory's own strong-field
+  stellar structure to close), and the tensor-channel orbital decay is $\dot
+  P_b/\dot P_b^{\rm GR}=r$, an $8\times$ deficit against B1913+16. We decline to score the
+  second because the identical ledger applied to *unmodified* AeST would exclude it at
+  $77\sigma$ — the tensor-only flux ledger is evidently incomplete, and the total radiated
+  flux is not computed here. The usable result is a constraint on the shape of any repair:
+  the missing channels must supply the same $1-r$ fraction at every orbital period, since
+  $\dot P_b/\dot P_b^{\rm GR}$ is measured to 0.16% in a 7.75 h orbit and to
+  $1.3\times10^{-4}$ in a 2.45 h one, and a dipole enters at relative order $(c/v)^2$ and
+  cannot be period-independent.
 
 ---
 
