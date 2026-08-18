@@ -17,10 +17,16 @@ def main():
     if os.path.exists(j("STOP")):
         print("STOP file present. Do nothing and end the session.")
         return 0
-    txt = open(j("IDEAS.md")).read()
-    ids = [int(x) for x in re.findall(r"\*\*I(\d{3})\s*—", txt)]
-    if not ids:
-        ids = [int(x) for x in re.findall(r"\*\*I(\d{3})", txt)]
+    # read ALL idea files, and remember which file each id lives in
+    import glob as _glob
+    srcs = sorted(_glob.glob(j("IDEAS*.md")))
+    txt, home = "", {}
+    for _f in srcs:
+        _t = open(_f).read()
+        txt += _t
+        for _m in re.finditer(r"^\*\*I(\d{3})\s*—", _t, re.M):
+            home[int(_m.group(1))] = _f
+    ids = sorted(home.keys())
     have = {int(x[1:]) for x in done_ids()}
     # I001/I003/I012/I037 are DELIBERATELY LEFT IN, and run FIRST, even though Claude is
     # also running them directly. That is the point: two independent attempts at the four
@@ -37,14 +43,14 @@ def main():
     todo = sorted([i for i in allids if i not in have and i not in RESERVED],
                   key=lambda i: (rank.get(i, 10**6), i))
     if not todo:
-        print("ALL 100 IDEAS DONE. Write a one-paragraph summary of the ledger to\n"
+        print(f"ALL {len(ids)} IDEAS DONE. Write a one-paragraph summary of the ledger to\n"
               f"{j('SUMMARY.md')} and end the session.")
         return 0
     n = todo[0]
-    print(f"""DUTY: IDEA I{n:03d}   ({len(have)}/100 done, {len(todo)} left)
+    print(f"""DUTY: IDEA I{n:03d}   ({len(have)}/{len(ids)} done, {len(todo)} left)
 
 1. Read the rules ONCE:            {j('PROTOCOL.md')}
-2. Get this idea's spec:           grep -A 6 '\\*\\*I{n:03d}' {j('IDEAS.md')}
+2. Get this idea's spec:           grep -A 8 '\\*\\*I{n:03d}' {home[n]}
 3. Write a script:                 {j('runs')}/i{n:03d}_<shortname>.py
    - numbered [ok]/[FAIL] checks, exit 0 only if all pass
    - report BOTH a0 footings for any dimensional number
