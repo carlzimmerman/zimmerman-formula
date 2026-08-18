@@ -487,3 +487,48 @@ Four ideas computed and each attacked by two adversarial skeptics, then adjudica
 - **A tension the corpus must not bank both sides of:** DOORA_PIN's Serra–Trombetta
   "robust-pass" requires c_s² ≥ 1, which is the **same inequality** as the superluminality
   problem read from the opposite side.
+
+---
+
+## 2026-08-18 — R2 of THREE_REQUIREMENTS (DOI 10.5281/zenodo.22002545) — WITHDRAWN
+
+**Withdrawn claim.** "Any 𝓕 performing the interpolation has 𝓕_Z(0) = K_B exactly, so the
+aether's electric kinetic coefficient vanishes and the perturbation equation degenerates."
+Published in the abstract and §3 of THREE_REQUIREMENTS v1.
+
+**Why it is wrong.** I misread `real_research/reviews/opt1_cmb_2026.py` check C5. C5 says the
+analytic linear-in-Z piece of 𝓕 is *"exactly degenerate with the K_B term"*, meaning
+**indistinguishable from it — a relabelling** K_B → K_B − 𝓕_Z(0,Q). I read "degenerate" in the
+second sense, "the equation becomes singular", and manufactured a death out of a
+reparametrisation. On the corpus's own determined family 𝓕_Z(0) = (2−K_B)·μ_phys(0) = 0,
+because the deep-MOND end of every interpolation has μ_phys → 0 (esc_s_window B1). The shift
+is nothing at all.
+
+**What the script actually establishes** (opt1_cmb_2026.py, 36/36, verdict V1–V5):
+  * BACKGROUND: **PASS, exactly.** Z̄ = 0 identically for arbitrary lapse, so Friedmann,
+    w = −1, the dust mode, Q(a) and the derived a₀(z) law are bit-for-bit AeST's.
+  * a₀(z): **PASS**, and PART F2 rederives the committed law from the action side as a bonus.
+  * CMB: **NOT a free pass and NOT a clean kill.** Because 𝓕(Z) eats the TOTAL gradient, its
+    MOND branch is ON at recombination (y = 7.6–11.9 without running), distorting linear
+    gravitational dynamics by ~5% — worth 18–112σ at unit response S.
+  * **AND IT SURVIVES through the framework's OWN a₀(z) suppression**: required
+    a₀(rec)/a₀(0) ≤ 9.7e-3 to 3.7e-1 across eight forks; the banked value is **0.0060**, which
+    clears the tightest fork AND the loosest.
+  * Residual risk, stated: delivering it needs ν₀ ≥ 5.6e-9 to 8.2e-6, and **2 of 8 forks put
+    that above stage76's RAR ceiling 2.36e-6** — exactly the α=1 kernel under the conservative
+    per-mode reading, by 2.4×–3.5×. Six clear with room.
+  * **Option 1 reopens the kernel choice in the CMB-favourable direction**: the legality
+    theorem that selected α=1 in the 𝒴-form does not apply in the Z-form, so Route A's
+    exponential kernel is legal again — and Route A clears the RAR ceiling on *every* reading.
+  * Hostage to one uncomputed number: every fork clears for S ≤ 0.54, every fork clashes for
+    S ≥ 20.6. Settling it is a hi_class/CLASS build, not an argument.
+
+**Consequence for the paper.** R2 is not a no-go; it is a priced, conditional cost that the
+framework's own derived law already meets. R3 (the 𝒥 → s𝒥 rescaling) was motivated as
+*repairing* R2 — with R2 not a death, that repair is a move nobody needs to make, so its BBN
+and CMB kills, while correct, are no longer load-bearing. The paper's architecture is
+therefore **one genuine no-go (R1), one LIVE candidate (the Z-form) with one owed computation,
+and one dead escape nobody needs**.
+
+**Direction of the error: I manufactured a deficit**, against the standing rule, and did it in
+the same document that quotes the rule. Corrected in v2.

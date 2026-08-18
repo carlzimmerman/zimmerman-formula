@@ -1,8 +1,8 @@
-# Three Requirements on a Relativistic Home for MOND Phenomenology
+# Specifying AeST's Free Function: One No-Go, One Live Candidate
 
 **Carl P. Zimmerman**, Briar Creek Tech
 ORCID 0009-0008-3508-7982
-2026-08-18
+2026-08-18 (v2, corrected)
 
 ---
 
@@ -24,22 +24,31 @@ precession then requires $s\le1.27\times10^{-5}$ while the radial acceleration r
 requires $s\ge0.435$ — **incompatible by $1.2$–$3.4\times10^{4}$.** There is no
 external-field relief: computed for this family rather than imported, it is $1.000000\times$.
 
-**(R2)** The cosmological background must not coincide with the deep-MOND end of the
-interpolation. Replacing $\mathcal{Y}$ by $Z\equiv J^\mu J_\mu$, the squared aether
-acceleration, satisfies R1 exactly — $J^i=\nabla^i\Psi$ with unit coefficient, the reduction
-becomes AQUAL, the exponential interpolation becomes legal, and the 1 AU anomaly falls to
-$10^{-3458.7}\,\mathrm{m\,s^{-2}}$, voiding the gap. But $\bar Z=0$ identically on FRW, so
-linear cosmology sees $K_B\to K_B-\mathcal{F}_Z(0)$, and any $\mathcal{F}$ performing the
-interpolation has $\mathcal{F}_Z(0)=K_B$ exactly: the aether's electric kinetic coefficient
-vanishes and the perturbation equation degenerates.
+**(ii)** Replacing $\mathcal{Y}$ by $Z\equiv J^\mu J_\mu$, the squared aether acceleration,
+satisfies R1 exactly — the reduction becomes AQUAL, the exponential interpolation becomes legal,
+the 1 AU anomaly falls to $10^{-3458.7}\,\mathrm{m\,s^{-2}}$, and the gap is voided. **This is a
+LIVE CANDIDATE, not a casualty.** Its FRW background is exactly undisturbed ($\bar Z=0$
+identically for arbitrary lapse, so Friedmann, $w=-1$, the dust mode, $Q(a)$ and the derived
+$a_0(z)$ law are bit-for-bit AeST's), and its analytic linear-in-$Z$ piece is a mere relabelling
+$K_B\to K_B-\mathcal{F}_Z(0)$ with $\mathcal{F}_Z(0)=0$ on the determined family. Its one real
+cost: eating the total gradient, its MOND branch is switched *on* at recombination, where the
+acoustic-band acceleration is only $7.6$–$11.9\,a_0$ absent running; the $\sim5\%$ distortion of
+linear dynamics is worth $18$–$112\sigma$ at unit response. It survives only through $a_0(z)$
+suppression — and the suppression the framework independently derives, $a_0(\mathrm{rec})/a_0(0)
+= 0.0060$, **meets the requirement ($\le 9.7\times10^{-3}$ to $3.7\times10^{-1}$) on every one of
+eight forks.**
 
-**(R3)** Neither may be purchased with a split between the cosmological and local
-gravitational constants. Rescaling the free function repairs both R1 and R2 simultaneously,
-but forces $\tilde G/G_N\le0.121$ — an $8.3\times$ split — which gives $Y_p=0.086$ against an
-observed $0.2449\pm0.0040$ ($-42\sigma$), and a gravitational radiation density *below that of
-the photons alone*, whose value is fixed by FIRAS with no gravity in the chain. Gravitational
-waves, by contrast, do not pay this price: the siren amplitude's sensitivity to the rescaling
-is exactly zero.
+**(iii)** The residual risk is priced, not hidden: delivering it needs $\nu_0\ge5.6\times10^{-9}$
+to $8.2\times10^{-6}$, and two of eight forks put that above the RAR ceiling
+$2.36\times10^{-6}$ — exactly the $\alpha=1$ kernel under the conservative reading, by
+$2.4$–$3.5\times$, while the exponential kernel this construction *re-legalises* clears on every
+reading. The whole interlock is hostage to one uncomputed number, $S=|d\ln C_\ell/d\epsilon|$:
+every fork clears for $S\le0.54$, every fork clashes for $S\ge20.6$.
+
+**(iv)** We also show what *cannot* rescue R1: a rescaling $\mathcal{J}\to s\mathcal{J}$ forces
+$\tilde G/G_N\le0.121$, giving $Y_p=0.086$ against an observed $0.2449\pm0.0040$ ($-42\sigma$)
+and a gravitational radiation density *below that of the photons alone*. Gravitational waves do
+not pay this price: the siren amplitude's sensitivity is exactly zero.
 
 We also record a structural identity, verified three times independently: AeST's action
 already contains an explicit $+(2-K_B)a^\mu a_\mu$, so its apparent $c_4=0$ is an artifact of
@@ -109,7 +118,7 @@ required floor by 1.07–1.10. Refitting $\Upsilon$ buys $1.34\times$.
 
 ---
 
-## 3. R2 — the cosmological background must not be the deep-MOND point
+## 3. The $Z$-form: a live candidate, and its priced cost
 
 R1 says: use the total gradient. AeST already contains the object that supplies it. With
 $D^\mu=q^{\mu\nu}\nabla_\nu\varphi$ one has the identity, verified three times independently
@@ -134,18 +143,49 @@ it. Further, $c_T^2=1$ exactly for any free function (the TT sector sees neither
 the scalar: on a pure TT perturbation $J^\mu=0$, $Z=0$, $F_{\mu\nu}F^{\mu\nu}=0$, $\mathcal{Y}=0$,
 all exactly), and $G_N$ is finite and equal to the unmodified value.
 
-It fails on cosmology, for a reason that is the exact inverse of what protects
-$\mathcal{F}(\mathcal{Y})$. On FRW the aether is $A^\mu=(1,0,0,0)$ and its acceleration
-vanishes, so $\bar Z=0$ **identically** — the cosmological background *is* the deep-MOND end
-of the interpolation. Expanding about it, the $O(\epsilon^2)$ action carries
-$[K_B-\mathcal{F}_Z(0)]Z^{(2)}$, so linear cosmology sees $K_B\to K_B-\mathcal{F}_Z(0)$. Any
-$\mathcal{F}$ that performs the MOND interpolation has $\mathcal{F}_Z(0)=K_B$ exactly, so the
-coefficient vanishes and the aether's electric evolution equation collapses to a constraint.
-$\mathcal{F}(\mathcal{Y})$ escapes only because $J_Y(\bar{\mathcal{Y}}=0)=0$.
+**This construction is not a casualty; it is a live candidate**, and its cosmology has been
+computed rather than assumed (`opt1_cmb_2026.py`, 36/36).
 
----
+**The background is exactly undisturbed.** On FRW the comoving aether congruence is geodesic, so
+$J^\mu=0$ identically for arbitrary lapse, hence $\bar Z=0$ and $\mathcal{F}(0,\mathcal{Q})=
+K(\mathcal{Q})$ — the same background function AeST's own $\mathcal{F}(\mathcal{Y},\mathcal{Q})$
+reduces to. Friedmann, $w=-1$, the dust mode, $Q(a)$ and the derived $a_0(z)$ law are bit-for-bit
+the AeST objects.
 
-## 4. R3 — and neither may be bought with a $\tilde G/G_N$ split
+**At linear order the analytic piece is a relabelling, not a degeneration.** $J_i=\nabla_i E$
+exactly, with $E=\dot\alpha+\Psi$ the theory's own mixing variable, so $Z=|\nabla E|^2/a^2$ is
+*second* order. Since $F^{\mu\nu}F_{\mu\nu}=-2Z$ at $O(\delta^2)$, any analytic linear-in-$Z$
+piece of $\mathcal{F}$ is nothing but a shift $K_B\to K_B-\mathcal{F}_Z(0)$ — and on the
+determined family $\mathcal{F}_Z(0)=(2-K_B)\mu_{\rm phys}(0)=0$, because the deep-MOND end of
+every interpolation has $\mu_{\rm phys}\to0$. The degeneracy is scalar-sector only.
+
+**The real cost.** Eating the *total* gradient, the MOND branch switches on wherever the total
+acceleration nears $a_0$ — and CLASS puts the acoustic-band acceleration at recombination at only
+$y=7.6$–$11.9$ absent running. Then $\epsilon=1-\mu(y)\simeq1/2y$ is a few per cent,
+kernel-robustly, and *not* exponentially small. Aggregated over $\ell=2$–$2500$ at unit response
+this is $18$–$112\sigma$ across eight forks; truncating at $\ell\le1600$ still leaves $47\sigma$,
+so it does not rest on the noise-dominated tail.
+
+**And the framework's own law pays it.** The CMB tolerates the $Z$-form only if
+$a_0(\mathrm{rec})/a_0(0)\le9.7\times10^{-3}$ to $3.7\times10^{-1}$. The framework's
+independently derived suppression is $0.0060$ — clearing the tightest fork *and* the loosest.
+Neither number was tuned to the other.
+
+**The residual risk, priced.** Delivering it needs $\nu_0\ge5.6\times10^{-9}$ to
+$8.2\times10^{-6}$; two of eight forks exceed the RAR ceiling $2.36\times10^{-6}$ by
+$2.4$–$3.5\times$, and they are exactly the $\alpha=1$ kernel under the conservative reading. Six
+clear with room. This matters because **the $Z$-form reopens the kernel choice in its own
+favour**: the legality theorem of §2 does not apply here, so the exponential kernel is legal
+again — and it clears on every reading.
+
+**What is owed.** $\nu_0^{\rm req}\propto S^2$ in the uncomputed response
+$S=|d\ln C_\ell/d\epsilon|$: every fork clears for $S\le0.54$, every fork clashes for
+$S\ge20.6$, and $S=1$ is an assumption. Settling it needs a Boltzmann code carrying $A_\mu$, the
+constraint and $\mathcal{F}(Z,\mathcal{Q})$ — a build, not an argument. A second approximation is
+adverse and named: $E\sim\Psi$ was the subhorizon proxy, and if $E<\Psi$ the distortion is
+*larger*.
+
+## 4. What cannot rescue R1: the $\tilde G/G_N$ split
 
 Both sector conditions constrain only the total $Z$-coefficient: static attraction needs it
 positive, vector no-ghost needs it below $K_B$. Rescaling the free function, $J\to sJ$,
