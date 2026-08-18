@@ -27,11 +27,14 @@ anomalous acceleration is non-injective, peaking at $0.6476\,a_0$ near $y=2.54$ 
 thereafter, so no single-valued $\mathcal{F}$ reproduces it. Second, it **admits** the
 relation $g_{\rm obs}^2=g_{\rm bar}^2+a_0g_{\rm bar}$, which is also the best-fitting legal
 kernel on 3389 SPARC points at the anchored $a_0$. We explicitly do **not** claim uniqueness:
-the legal class is infinite-dimensional and we exhibit closed-form alternatives. Third, and
-most consequentially, **every** legal kernel saturates at an anomalous acceleration
-$\approx a_0/2$, so a constant sunward anomaly of that size is structural to AeST under the
-no-ghost condition. Against planetary ephemerides this is $\sim10^3$ times too large. We
-state this as the theory's central open problem rather than resolving it.
+the legal class is infinite-dimensional and we exhibit closed-form alternatives. Third, **every** legal kernel
+saturates at a nonzero anomalous acceleration, so a constant sunward anomaly is structural to
+AeST under the no-ghost condition. Crucially, that saturation is set by the *local* value of
+$a_0$, not its cosmological one, because the promotion makes $a_0$ a function of $Q$: at the
+local dark-charge density the derived law gives $a_0^{\rm loc}=0.141\,a_0$, and combined with
+the external-field effect the residual conflict with planetary ephemerides falls from
+$\sim1.3\times10^3$ to $\sim20$. This remains the theory's central open problem, but it is an
+order-unity-scale discrepancy rather than a structural impossibility.
 
 ---
 
@@ -175,22 +178,59 @@ are correlated, so naive $\sqrt N$ scaling overstates all of these separations.
 Legality forces $U$ to increase monotonically; matching the deep-MOND limit $U\to\sqrt y$
 fixes its scale. Together these force $U$ to **saturate at a nonzero constant**, and across
 the legal class that constant is $\approx\tfrac12$ — exactly $0.5$ for two of our examples,
-$0.4975$ for the third. The anomalous acceleration therefore does not decay at large $y$: it
-tends to $a_0/2$.
+$0.4975$ for the third. The anomalous acceleration therefore does not decay at large $y$.
 
-At 1 AU, $y\approx6\times10^7$, so a legal AeST predicts a **constant sunward anomaly of
-$\approx a_0/2=4.7\times10^{-11}\,\mathrm{m\,s^{-2}}$** against a planetary-ephemeris bound of
-$3.66\times10^{-14}\,\mathrm{m\,s^{-2}}$ (Sereno & Jetzer 2006) — over by a factor $\sim1.3
-\times10^3$, or $\sim10^2$ after the external-field effect is included.
+The size of the resulting anomaly is **not** $a_0/2$, however, and this is where the
+$\mathcal{Q}$-sector of §1.1 re-enters. The promotion makes $a_0$ a function of $Q$, so the
+saturation value is $a_0^{\rm loc}/2$ evaluated where the anomaly is measured. Writing the
+derived law in terms of the dimensionless charge $\nu\propto n\propto\rho$ (the same structure
+that gives $a_0(1090)/a_0(0)\approx6\times10^{-3}$ at recombination),
 
-We emphasise the structure of this result. It is **not** specific to any kernel choice: it
-follows from legality plus the deep-MOND limit, i.e. from the no-ghost condition plus the
-existence of $a_0$ itself. The one interpolation that evades it — the exponential kernel,
-whose $U\to0$ at large $y$ screens the solar system — evades it *precisely by being
-non-monotone*, which is what makes it illegal. Within AeST one may have a ghost-free scalar
-or a screened solar system, and this analysis finds no member of the class with both.
+$$\frac{a_0^2(\nu)}{a_0^2(0)}=\frac{\sqrt{1+\nu_0^2}}{\sqrt{1+\nu^2}},\qquad \nu=\nu_0\,\frac{\rho}{\rho_0}.$$
 
----
+At the solar circle the dark-charge density is $\rho/\rho_0=2.84\times10^5$ times the cosmic
+mean, giving
+
+$$a_0^{\rm loc}=0.141\,a_0\ (\nu_0\ \text{ceiling}),\qquad 0.403\,a_0\ (\nu_0\ \text{floor}),$$
+
+a suppression of the anomaly by $2.5$–$7$ across the committed $\nu_0$ window. Combined with
+the external-field effect, whose independently committed reduction is a factor $119$–$189$:
+
+| treatment | residual vs. ephemeris bound |
+|---|---|
+| $a_0$ held constant, no EFE | $1279\times$ |
+| local $a_0$, no EFE | $180\times$ |
+| local $a_0$ + EFE | $\mathbf{17\text{–}27\times}$ |
+
+against Sereno & Jetzer's (2006) Earth bound $3.66\times10^{-14}\,\mathrm{m\,s^{-2}}$. (We
+combine the two reductions multiplicatively; the committed EFE analysis was performed at
+constant $a_0$, and whether it factorises exactly against a density-dependent $a_0$ is an
+owed check, not an established one.)
+
+Two things follow. **The conflict is real and unresolved**: a legal AeST still over-predicts
+the sunward anomaly by more than an order of magnitude. But **it is not structural death**.
+The often-quoted $\sim10^3$ figure is an artefact of treating $a_0$ as a universal constant,
+which the promotion forbids: $a_0$ is environment-dependent, and the environments where the
+ephemeris bound is measured are precisely the dense ones where it is most suppressed.
+
+We also record a screening mechanism that does *not* work, since it is the first thing one
+tries. The DBI structure supplies a hard wall: $-K$, and hence $a_0$, vanishes identically at
+$|Q-Q_0|=\Lambda_D$. With $Q=(1-\Psi)Q_0$ in the quasi-static regime this places the wall at
+$|\Psi|=R\equiv\Lambda_D/Q_0$, i.e. at a radius $GM/(Rc^2)$. Screening the Earth requires
+$R\lesssim9.9\times10^{-9}$; retaining MOND in galaxies, where $|\Psi|\sim5\times10^{-7}$,
+requires $R\gtrsim5\times10^{-7}$. These are incompatible by $\sim50$. Independently, the
+Galactic potential at Earth exceeds the Sun's by a factor $55$, so a wall keyed to $\Psi$
+cannot distinguish the solar system from the galaxy containing it. Screening in this theory is
+therefore controlled by the local *density*, not the local potential — which is what the
+calculation above uses.
+
+**What would close the remaining factor of $\sim20$**, in decreasing order of how cheaply it
+could be checked: whether the EFE reduction factorises against a density-dependent $a_0$
+(if it compounds more favourably than assumed, the gap closes immediately); the local
+dark-charge density, taken here at the standard $0.4\,\mathrm{GeV\,cm^{-3}}$ with no allowance
+for the framework's own captured-charge profile; and the ephemeris bound itself, which was
+derived for a constant anomalous acceleration rather than one varying with local density along
+each planet's orbit.
 
 ## 5. What is and is not claimed
 
