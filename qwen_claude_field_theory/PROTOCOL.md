@@ -22,8 +22,33 @@ ledger is your only memory. Do not try to hold the project in your head.
    `a0(nu)/a0(0) = [(1+nu0^2)/(1+nu^2)]^(1/4)` with `nu = nu0 * rho/rho_0`, and
    `nu0 <= 2.36e-6`.
 
-**THE OPEN PROBLEM most of these ideas attack:** ephemerides need the saturation
-`s <= 2.4e-3`; the RAR needs `s >= 0.558`. **Incompatible by 233x.**
+**THE OPEN PROBLEM most of these ideas attack** (numbers current as of 2026-08-18):
+ephemerides need `s <= 1.27e-5` canonical / `1.05e-5` alt — **there is NO external-field
+relief**, it was derived for this family two ways and is `1.000000x`. The RAR needs
+`s >= 0.4348` (pointwise, on the family `J_Y = v/(1-v/s)`), or `0.157/0.126` with per-galaxy
+M/L, the most generous defensible reading. **GAP: 1.2e4 to 3.4e4.** Everything tried made it
+worse: a local a0 *hurts* (4.6x at f = 0.1, because `U <= sqrt(y)` caps the family), disc
+corrections widen it 1.07–1.10x, refitting Upsilon buys 1.34x, and promoting a0 to a field
+does not lift the ceiling (`max U_eff/s = 0.9997`).
+
+**TWO REQUIREMENTS ON ANY VIABLE HOME — both learned the hard way, use them to filter ideas:**
+
+*Requirement 1.* The free function must eat the **TOTAL** potential gradient, not the scalar's
+own. AeST's `F(Y)` eats `|grad chi|^2`, which forces `U(y)` monotone, which forces saturation,
+which is the 1e4 gap. AQUAL escapes because its function eats `|grad Psi_total|^2`, where
+stability needs only `d g_obs/d g_bar > 0` — satisfied by the exponential kernel (min 0.968).
+
+*Requirement 2 (NEW, 2026-08-18).* The cosmological background must **NOT** sit at the
+deep-MOND end of the interpolation. Replacing `F(Y)` by `F(Z)`, `Z = J^mu J_mu`, satisfies
+requirement 1 — the escape is real and the 1 AU anomaly drops to `1e-3458` — but `Zbar = 0`
+**exactly** on FRW, so the background *is* the deep-MOND point, and linear cosmology sees
+`K_B -> K_B - F_Z(0)`. Any F that performs the interpolation has `F_Z(0) = K_B`, so the
+aether's electric kinetic coefficient vanishes identically and SZ21 Eq. (12) degenerates.
+`F(Y)` is protected only because `J_Y(Ybar=0) = 0`.
+
+**So the target is an argument `W` with: (a) `W -> |grad Psi_total|^2` quasi-statically, and
+(b) `Wbar != 0` on FRW, or `F_W(Wbar) = 0` there.** That is a narrow, checkable spec — much
+narrower than "find a relativistic MOND theory".
 
 ## Rules
 
