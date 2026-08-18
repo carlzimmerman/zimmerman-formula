@@ -225,6 +225,56 @@ vacuously and are the obvious next candidate.
 
 ---
 
+## 6. Testable predictions
+
+A no-go is tested by construction rather than by observation, but the derivations above carry
+four consequences that data can decide, and we state them so the paper is falsifiable rather
+than merely negative.
+
+**P1 — $\alpha_M=0$ and $c_T=1$, exactly, for any free function.** This is the strongest
+prediction here and the one least dependent on anything we have chosen. On FRW plus a TT mode,
+$J^\mu=0$, $Z=0$, $F_{\mu\nu}=0$ and $\mathcal{Y}=0$ all hold *identically and to all orders
+in* $h$, so every non-Einstein invariant is $h$-independent and the dark sector's TT stress is
+$T^x{}_x-T^y{}_y=0$. The tensor sector is therefore exactly Einstein–Hilbert with
+$M_*^2=1/8\pi\tilde G$ constant. AeST and every construction in this paper are consequently
+*indistinguishable from general relativity in gravitational-wave propagation* — no running
+Planck mass, no modified friction, no $c_T$ deviation, at any redshift and for any $K_B$, $s$
+or $a_0$ footing. GW170817's $|c_T-1|\lesssim10^{-15}$ is passed trivially rather than fitted.
+**A confirmed $\alpha_M\neq0$ from LISA or Einstein Telescope standard sirens falsifies this
+entire class in one measurement**, and cannot be absorbed by any choice of free function.
+
+**P2 — the orbital-decay deficit must be period-independent.** If the tensor-only flux ledger
+of §4 is incomplete, as we argue it is, the missing channels must supply the same $1-r$ fraction
+of the flux at *every* orbital period, because $\dot P_b/\dot P_b^{\rm GR}$ is measured at
+$0.16\%$ in B1913+16's 7.75 h orbit and at $1.3\times10^{-4}$ in J0737−3039's 2.45 h orbit. A
+dipole channel enters at relative order $(c/v)^2$ and therefore *cannot* be period-independent.
+The repair must be a renormalisation of the quadrupole coefficient itself. Any future binary
+that shows a period-*dependent* deviation from the GR quadrupole formula excludes the repair,
+and with it the aether-vector rescaling; a wider spread of measured periods tests this without
+any new instrument.
+
+**P3 — the $\mathcal{F}(\mathcal{Y})$ class predicts a constant sunward anomaly, with a fixed
+planet ordering.** Any completion in that class produces $s\,a_0$ at every planetary distance,
+hence an anomalous perihelion advance $\dot\varpi=s\,a_0\sqrt{1-e^2}/(na)$ — falling with
+semi-major axis in a way no fitted $\dot\varpi$ per planet can mimic, since a single $s$ sets
+all of them. This is already excluded (§2), which is *why* R1 exists; we record it because it is
+the sharpest ephemeris signature the class has, and because a future ephemeris solution that
+reported a coherent residual of this shape would revive rather than kill it.
+
+**P4 — the $\mathcal{F}(Z)$ class predicts no solar-system deviation at all, at any
+measurable level.** The 1 AU anomaly is $10^{-3458.7}\,\mathrm{m\,s^{-2}}$ and is
+$s$-independent. There is no ephemeris test of that theory, ever, and any claimed solar-system
+MOND detection excludes it outright.
+
+We separate these from the framework-level predictions that this paper leaves untouched, since
+they belong to the normalisation $a_0=\kappa c\sqrt{G\rho_\Lambda}$ rather than to any
+completion: a hash-frozen wide-binary velocity ratio decided by Gaia DR4; a declining $a_0(z)$,
+which puts the MOND regime *off* at recombination at $0.0060$ of its present value and is
+falsified by any robust $a_0$ evolution below $z\sim5$; and $\nu_0\le2.36\times10^{-6}$, i.e.
+no environmental variation of $a_0$ at a level current data could see.
+
+---
+
 **Reproducibility.** Every number is produced by a committed self-checking script at
 <https://github.com/carlzimmerman/zimmerman-formula>: `real_research/reviews/typeII_*_2026.py`
 (the quasi-static reduction and R1), `opt1_*_2026.py` and `c14_*_2026.py` (the
