@@ -35,6 +35,7 @@ META_PATH = f"{PAP}/{STEM}.zenodo.json"
 FILES = [
     "opus_48_extended_research/papers/THREE_REQUIREMENTS.md",
     "opus_48_extended_research/papers/pdf/THREE_REQUIREMENTS.pdf",
+    "opus_48_extended_research/papers/THREE_REQUIREMENTS.tex",
     "real_research/reviews/typeII_direct_variation_2026.py",
     "real_research/reviews/typeII_legality_independent_2026.py",
     "real_research/reviews/typeII_known_limits_2026.py",
