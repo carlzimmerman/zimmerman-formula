@@ -33,12 +33,20 @@ The first autoloop burned itself on open-ended idea generation. This one is diff
 - **The dispatcher can see its own completions.** `next_idea.py` reads the ledger and skips
   finished ids; verified by simulation that it advances I001 → I003 → I005 as rows land.
 
-## Reserved
+## The blind cross-check
 
-**I001, I003, I012 and I037 are excluded from the loop** — Claude is running those four
-directly (EFE factorisation, disc corrections to the local law, the RAR's real requirement on
-s, and whether the dust is forced irrotational). The dispatcher skips them, so the local
-worker will never duplicate that work. Their results will land in the main repo, not here.
+**I001, I003, I012 and I037 run FIRST in the loop, and Claude is running the same four
+independently.** That duplication is deliberate. Neither attempt sees the other, so:
+
+- **agreement** on the decisive number raises confidence in a result that currently rests on
+  a single computation;
+- **disagreement** localises an error in one of them — and given that six of Claude's own
+  errors were caught by adversarial checks in the session that produced these roadblocks, an
+  independent second pass on the four ideas that could reopen the framework is worth more
+  than the compute it costs.
+
+Compare `qwen_claude_field_theory/results/I001*.md` against the committed Claude run when
+both are in.
 
 ## Where the value is
 

@@ -22,13 +22,12 @@ def main():
     if not ids:
         ids = [int(x) for x in re.findall(r"\*\*I(\d{3})", txt)]
     have = {int(x[1:]) for x in done_ids()}
-    # RESERVED: Claude is running these four directly (I001 EFE factorisation,
-    # I003 disc corrections, I012 the RAR s-requirement, I037 dust vorticity).
-    # Skip them entirely so the local worker never duplicates that work.
-    RESERVED = {1, 3, 12, 37}
-    # PRIORITY: the roadblock-critical ideas first, so a short night still buys the most.
-    # R1 (the 233x gap) and R2 (dust) lead; then screening; then homes; then the rest.
-    PRIORITY = ([2, 4, 7, 5, 6, 8, 9, 10, 11, 13, 14, 15]
+    # I001/I003/I012/I037 are DELIBERATELY LEFT IN, and run FIRST, even though Claude is
+    # also running them directly. That is the point: two independent attempts at the four
+    # roadblock-critical ideas, with no knowledge of each other, is a blind cross-check.
+    # Agreement raises confidence; disagreement localises an error in one of them.
+    RESERVED = set()
+    PRIORITY = ([1, 3, 12, 37, 2, 4, 7, 5, 6, 8, 9, 10, 11, 13, 14, 15]
                 + list(range(101, 141))          # screening mechanisms
                 + list(range(301, 341))          # dark sector / dust
                 + list(range(201, 241))          # alternative homes
@@ -38,7 +37,7 @@ def main():
     todo = sorted([i for i in allids if i not in have and i not in RESERVED],
                   key=lambda i: (rank.get(i, 10**6), i))
     if not todo:
-        print("ALL AVAILABLE IDEAS DONE (I001/I003/I012/I037 are reserved for Claude). Write a one-paragraph summary of the ledger to\n"
+        print("ALL 100 IDEAS DONE. Write a one-paragraph summary of the ledger to\n"
               f"{j('SUMMARY.md')} and end the session.")
         return 0
     n = todo[0]
