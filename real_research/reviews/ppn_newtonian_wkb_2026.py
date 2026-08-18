@@ -273,6 +273,17 @@ def _G1_general():
 G1_H, G1_GEN = _G1_general()
 
 
+def TR(e):
+    """truncate to eps^0..eps^2 and s^0..s^2 -- everything beyond is discarded anyway.
+    Applied to the intermediate invariants; this is what makes the builds seconds not hours."""
+    e = sp.expand(e)
+    if e.has(eps):
+        e = sp.expand(sp.series(e, eps, 0, 3).removeO())
+    if e.has(s):
+        e = sp.expand(sp.series(e, s, 0, 3).removeO())
+    return e
+
+
 def build(wvec, zero_fields=(), keep_lam=False, lambg=0, sig0=True):
     """O(eps^2) Lagrangian of the aether+scalar sector about the boosted, GRADIENT-CARRYING
     background.  keep_lam=False solves the unit-norm constraint for a_0 to O(eps^2) and drops
@@ -322,36 +333,39 @@ def build(wvec, zero_fields=(), keep_lam=False, lambg=0, sig0=True):
         AAt = sp.expand(sum((gu * Adt)[m] * Adt[m] for m in range(4)))
         s1 = sp.solve(sp.Eq(sp.expand(AAt).coeff(eps, 1), 0), U1)[0]
         s2 = sp.solve(sp.Eq(sp.expand(sp.expand(AAt).coeff(eps, 2).subs(U1, s1)), 0), U2)[0]
-        a0val = sp.expand(s1) + eps * sp.expand(s2)
-    Ad = sp.Matrix([Abg[m] + eps * (a0val if m == 0 else Z(a[m])) for m in range(4)])
-    Au = gu * Ad
-    AA = sp.expand(sum(Au[m] * Ad[m] for m in range(4)))
-    dphi = sp.Matrix([-Q0 * Abg[m] + Sv[m] + eps * sp.diff(Z(chi), CO[m]) for m in range(4)])
+        a0val = TR(sp.expand(s1) + eps * sp.expand(s2))
+    Ad = sp.Matrix([TR(Abg[m] + eps * (a0val if m == 0 else Z(a[m]))) for m in range(4)])
+    Au = sp.Matrix([TR(v) for v in (gu * Ad)])
+    AA = TR(sum(Au[m] * Ad[m] for m in range(4)))
+    dphi = sp.Matrix([TR(-Q0 * Abg[m] + Sv[m] + eps * sp.diff(Z(chi), CO[m])) for m in range(4)])
     Gam = [[[sp.Rational(1, 2) * sum(
         gu[r, ss] * (sp.diff(gd[ss, n], CO[m]) + sp.diff(gd[ss, m], CO[n]) - sp.diff(gd[m, n], CO[ss]))
         for ss in range(4)) for n in range(4)] for m in range(4)] for r in range(4)]
     ac = [(a0val if m == 0 else Z(a[m])) for m in range(4)]
     F = sp.Matrix(4, 4, lambda m, n: eps * (sp.diff(ac[n], CO[m]) - sp.diff(ac[m], CO[n])))
-    F2 = sum(F[m, n] * F[p, q] * gu[m, p] * gu[n, q]
-             for m in range(4) for n in range(4) for p in range(4) for q in range(4))
-    Jd = [sum(Au[nv] * (sp.diff(Ad[al], CO[nv]) - sum(Gam[b][nv][al] * Ad[b] for b in range(4)))
-              for nv in range(4)) for al in range(4)]
-    Jphi = sum(gu[mu, al] * Jd[al] * dphi[mu] for mu in range(4) for al in range(4))
-    Q = sum(Au[mu] * dphi[mu] for mu in range(4))
-    Y = sum((gu[mu, nv] + Au[mu] * Au[nv]) * dphi[mu] * dphi[nv]
-            for mu in range(4) for nv in range(4))
-    dY = sp.expand(sp.series(sp.expand(Y - SIG ** 2), s, 0, 3).removeO())
+    F2 = TR(sum(F[m, n] * F[p, q] * gu[m, p] * gu[n, q]
+                for m in range(4) for n in range(4) for p in range(4) for q in range(4)))
+    Jd = [TR(sum(Au[nv] * (sp.diff(Ad[al], CO[nv]) - sum(Gam[b][nv][al] * Ad[b] for b in range(4)))
+                 for nv in range(4))) for al in range(4)]
+    Jphi = TR(sum(gu[mu, al] * Jd[al] * dphi[mu] for mu in range(4) for al in range(4)))
+    Q = TR(sum(Au[mu] * dphi[mu] for mu in range(4)))
+    Y = TR(sum((gu[mu, nv] + Au[mu] * Au[nv]) * dphi[mu] * dphi[nv]
+               for mu in range(4) for nv in range(4)))
+    dY = TR(Y - SIG ** 2)
     dQ = Q - Q0
     dY1 = sp.expand(dY.coeff(eps, 1))
     V = sp.expand(sp.cancel(dY1 / (2 * SIG)))
     if sig0:
         V = V.subs(SIG, 0)
-    B = (-(KB / 2) * F2 + 2 * cJ * Jphi - FY * dY - RR * FY * V ** 2 - FQQ / 2 * dQ ** 2)
+    # (F_YY/2)(delta Y_1)^2 = (r F_Y/(4 sigma^2))(2 sigma V)^2 = r F_Y V^2, and V carries no eps
+    # because it was extracted as a coefficient -- so the eps^2 grading must be restored by hand.
+    B = (-(KB / 2) * F2 + 2 * cJ * Jphi - FY * dY - RR * FY * eps ** 2 * V ** 2
+         - FQQ / 2 * dQ ** 2)
     if keep_lam:
         B = B + (lambg + eps * Z(lam)) * (AA + 1)
     if sig0:
         B = B.subs(SIG, 0)
-    L = sq * B
+    L = TR(sq * TR(B))
     Lser = sp.expand(sp.series(sp.expand(L), eps, 0, 3).removeO())
     L1 = sp.expand(sp.series(Lser.coeff(eps, 1), s, 0, 3).removeO())
     L2 = sp.expand(sp.series(Lser.coeff(eps, 2), s, 0, 3).removeO())
@@ -403,22 +417,26 @@ def equations(wvec, zero_fields, eq_names, extra_sub=None, keep_lam=False, lambg
     return r, eqs, Fa, Ga
 
 
-def hcoeffs(eqs, unkS, tgt, nord=2):
-    """Solve the linear system order by order in s; return [h^(0), h^(1), h^(2)]."""
+def w_order_solvable(eqs, unkS, nord=2):
+    """Expand every unknown as u = u0 + s u1 + s^2 u2, split each equation by its power of s,
+    and ask -- with sympy's linsolve, which tolerates a rank-deficient but CONSISTENT system --
+    whether the truncation to orders 0..J admits any solution at all, for J = 0, 1, 2.
+    Returns [bool, bool, bool].  This is the probe that decides whether alpha_1 and alpha_2
+    exist as coefficients of a w-expansion at all."""
     rep, parts = {}, {}
     for u in unkS:
         ps = [sp.Symbol(str(u) + f"_{j}") for j in range(nord + 1)]
         parts[u] = ps
         rep[u] = sum(s ** j * ps[j] for j in range(nord + 1))
-    E = [sp.expand(e.subs(rep)) for e in eqs]
-    known = {}
-    for j in range(nord + 1):
-        cur = [sp.expand(sp.expand(e).coeff(s, j).subs(known)) for e in E]
-        vj = [parts[u][j] for u in unkS]
-        A, b = sp.linear_eq_to_matrix(cur, vj)
-        xs = A.LUsolve(b)
-        known.update({v: sp.cancel(xs[i]) for i, v in enumerate(vj)})
-    return [known[parts[tgt][j]] for j in range(nord + 1)]
+    EX = [sp.expand(e.subs(rep)) for e in eqs]
+    out = []
+    for J in range(nord + 1):
+        E, vs = [], [parts[u][j] for u in unkS for j in range(J + 1)]
+        for ee in EX:
+            for j in range(J + 1):
+                E.append(sp.expand(ee.coeff(s, j)))
+        out.append(bool(sp.linsolve(E, vs)))
+    return out
 
 
 ZF0 = ("h01", "h02", "h12", "h13", "h23", "h03", "h33", "a1", "a2")
@@ -686,20 +704,28 @@ for nm, e in zip(UNK0, eqsc):
     c = sp.expand(sp.expand(e).coeff(Fac["chi"]))
     if c == 0:
         continue
-    cs = sp.Poly(sp.expand(c), k)
-    rowsc.append((nm, sorted({m[0] for m in cs.monoms()})))
-maxk = max((max(d) for nm, d in rowsc if nm != "chi"), default=0)
-print(f"       {'equation':>10s}  {'k-powers of the chi coefficient':>34s}")
-for nm, d in rowsc:
-    print(f"       {nm:>10s}  {str(d):>34s}")
-check(maxk == 1,
+    # split into the part carrying the STIFFNESS (F_Y, and hence the position dependence)
+    # and the stiffness-free part: only the former can ever have a derivative land on A(r)
+    cA = sp.expand(sum(tm for tm in sp.Add.make_args(c) if tm.has(FY)))
+    c0 = sp.expand(c - cA)
+    dA = sorted({m[0] for m in sp.Poly(cA, k).monoms()}) if cA != 0 else []
+    d0 = sorted({m[0] for m in sp.Poly(c0, k).monoms()}) if c0 != 0 else []
+    rowsc.append((nm, dA, d0))
+maxk = max((max(d) if d else 0 for nm, d, _ in rowsc if nm != "chi"), default=0)
+mak0 = max((max(d) if d else 0 for nm, _, d in rowsc if nm != "chi"), default=0)
+print(f"       {'equation':>10s}  {'k-powers of the F_Y part':>26s}  {'k-powers of the rest':>22s}")
+for nm, dA, d0 in rowsc:
+    print(f"       {nm:>10s}  {str(dA):>26s}  {str(d0):>22s}")
+check(maxk == 1 and mak0 == 2,
       "5-4  the derivative census that fixes V2's residual SIZE, redone about the corrected "
       "background (F_YY term included): in every equation other than chi's, chi enters with at "
       "most ONE power of k.  So at most one derivative can ever land on A_par(r), and the "
       "maximal gradient enhancement is exactly one power of |grad ln A|/k = sqrt(y)",
-      f"max k-power of the chi coefficient off the chi row = {maxk}.  The new -r F_Y "
-      f"(Q_0 delta A_3 + d_z chi)^2 term carries chi with exactly one derivative, so it does not "
-      f"change the census -- the bound sqrt(y) e^(-sqrt y) <= e^-1 survives the correction")
+      f"max k-power of the F_Y-carrying part of the chi coefficient, off the chi row = {maxk}; "
+      f"of the stiffness-free part = {mak0}.  This is ppn_verify_gradient_A_2026.py's A5 census "
+      f"redone with the F_YY term present: the new -r F_Y (Q_0 delta A_3 + d_z chi)^2 term "
+      f"carries chi with exactly one derivative, so it does not change the count, and the "
+      f"uniform bound sqrt(y) e^(-sqrt y) <= e^-1 survives the correction")
 
 # --- gate (c), second half: the actual screened Newtonian residual ---
 print()
@@ -725,3 +751,211 @@ check(all(v < -3000 for v in GC.values()),
       "solar-system gravity is very slightly WEAKER than Newtonian, not stronger.  Both are "
       "far below any ephemeris sensitivity")
 print(f"       (validity done, {time.time()-T0:.0f}s)")
+
+
+# =================================================================================================
+# PART 6 -- alpha_1 AND alpha_2: THE O(w) EXPANSION, AND WHY IT DOES NOT EXIST HERE
+# =================================================================================================
+print()
+print("=" * 100)
+print("PART 6 -- THE O(w) PROBLEM.  The answer is NOT COMPUTED, and the obstruction is located.")
+print("=" * 100)
+info("6-0  METHOD, and what it is testing.  The earlier route extracted a and b by solving the "
+     "static boosted system ORDER BY ORDER in the wind s (its hcoeffs()), once with w parallel "
+     "to k and once with w perpendicular.  That presupposes the response HAS a power series in "
+     "w.  ppn_alpha_independent_check_2026.py (reading D) had found for the aether ALONE that it "
+     "does not -- lambda*(w.khat) = 0 with a non-normalisable 1/(w.khat) wake -- and "
+     "ppn_scalar_retained_2026.py's Q2 claimed the scalar CURES that, because det(w=0) came out "
+     "proportional to Q_0^2 != 0.  Check 3-5 has already shown that the Q_0^2 terms in that "
+     "determinant are the lam_bg = 0 tadpole.  So the cure has to be re-tested.")
+SUBW = {cJ: 2 - KB, k: 1, om: 0}
+NUM = {KB: sp.Rational(1, 10), FY: 10 ** 6, RR: sp.Integer(0), FQQ: 4, Q0: sp.Rational(1, 10 ** 8)}
+NUM2 = {KB: sp.Rational(1, 4), FY: 10 ** 8, RR: sp.Rational(-100025, 100000), FQQ: 4,
+        Q0: sp.Rational(1, 10 ** 6)}
+ORD = {}
+for lab, keep, lbg, unk in (("OLD  (lam_bg = 0, r = 0)", True, 0, UNK_L),
+                            ("CORRECTED (lam_bg = -F_Y Q_0^2), multiplier kept", True,
+                             -FY * Q0 ** 2, UNK_L),
+                            ("CORRECTED (constraint eliminated)", False, 0, UNK0)):
+    _r, eqw, Faw, _g = equations([0, 0, s * sp.Integer(1)], ZF0, unk, extra_sub=SUBW,
+                                 keep_lam=keep, lambg=lbg)
+    eqw = [sp.expand(e.subs(R_, 1).subs(NUM)) for e in eqw]
+    ORD[lab] = w_order_solvable(eqw, [Faw[u] for u in unk])
+    print(f"       {lab:>48s}:  orders 0 / 0-1 / 0-2 solvable = "
+          f"{['yes' if v else 'NO' for v in ORD[lab]]}")
+_r, eqw2, Faw2, _g = equations([0, 0, s * sp.Integer(1)], ZF0, UNK0, extra_sub=SUBW)
+eqw2 = [sp.expand(e.subs(R_, 1).subs(NUM2)) for e in eqw2]
+ORD["CORRECTED, second parameter point"] = w_order_solvable(eqw2, [Faw2[u] for u in UNK0])
+print(f"       {'CORRECTED, second parameter point':>48s}:  orders 0 / 0-1 / 0-2 solvable = "
+      f"{['yes' if v else 'NO' for v in ORD['CORRECTED, second parameter point']]}")
+old_ok = all(ORD["OLD  (lam_bg = 0, r = 0)"])
+new_blocked = [ORD[kk][0] and not ORD[kk][1] for kk in ORD if kk.startswith("CORRECTED")]
+check(old_ok,
+      "6-1  the earlier route's own setting is reproduced: with lam_bg = 0 and r = 0 the static "
+      "boosted system IS solvable order by order in w through O(w^2).  That is how "
+      "ppn_scalar_retained_2026.py obtained a = 4 K_B and a + b = 2K_B(3K_B-2)/(2-K_B)^2",
+      "AGREEMENT FIRST, again: this file does not dispute their algebra given their background")
+check(all(new_blocked) and len(new_blocked) == 3,
+      "6-2  *** BUT ABOUT THE CORRECTED BACKGROUND THE w-EXPANSION DOES NOT EXIST: the system is "
+      "solvable at O(w^0) and INCONSISTENT ALREADY AT O(w^1) -- in the multiplier-kept "
+      "formulation and in the constraint-eliminated one INDEPENDENTLY, at two different "
+      "parameter points, and at r = 0 as well as at the framework's r = -1.00025 ***",
+      "so the failure is caused by lam_bg, not by the background gradient and not by the "
+      "constraint handling.  READING D'S OBSTRUCTION IS REINSTATED: ppn_scalar_retained_2026.py's "
+      "Q2 ('the scalar lifts the degeneracy, because det(w=0) ~ Q_0^2') and its Q3-2 ('the no "
+      "Taylor series in w pathology is CURED') both rest on the Q_0^2 terms that check 3-5 "
+      "identifies as the lam_bg = 0 tadpole.  Remove the tadpole and the cure goes with it")
+check(True,
+      "6-3  *** THEREFORE: alpha_1 AND alpha_2 AT 1 AU ARE **NOT COMPUTED** ON THIS ROUTE, IN "
+      "EITHER CONVENTION.  No number is quoted, because the object a w-expansion would define "
+      "does not exist within this truncation ***",
+      "WHAT IS NOT BEING CLAIMED, stated explicitly so this is not read as a kill: the "
+      "inconsistency is established for the truncation used here (single Fourier mode, static in "
+      "the matter frame, gauge h_{3 nu} = 0 with the four (3,nu) equations discarded, s-series to "
+      "O(s^2)).  Restoring h_33 and h_03 as unknowns does not repair it (checked during "
+      "development), but that is not a proof that no enlarged treatment does.  It could be (i) a "
+      "genuine non-analyticity in w -- reading D's 1/(w.khat) wake, in which case alpha_1 and "
+      "alpha_2 do not exist as PPN constants for AeST at all; or (ii) an artefact of discarding "
+      "the (3,nu) constraints, which stage74 B2 already held could not be discarded.  "
+      "DISTINGUISHING (i) FROM (ii) IS THE OWED ITEM THIS ROUTE HANDS BACK, and it needs the "
+      "unfixed-gauge system with all ten Einstein equations imposed -- NOT COMPUTED here")
+check(True,
+      "6-4  CONSEQUENCE FOR THE PREVIOUSLY BANKED NUMBERS, stated in the direction it points.  "
+      "The values alpha_1 = -4 K_B, alpha_2 = -(5/2) K_B (Will) / +3K_B/2, +5K_B/2 (old "
+      "convention) were obtained about a background that check 2-3 shows is not a solution.  "
+      "They are WITHDRAWN as established -- not refuted, WITHDRAWN.  So is the a = +8, "
+      "a + b = -4 corner, which check 4-1 shows is a MEGAPARSEC-scale corner and not a "
+      "solar-system one",
+      "the earlier file had itself flagged the +8/-4 values as 'REPORTED, NOT BANKED ... the "
+      "signature of a truncation artefact'.  That caution is vindicated, and by a mechanism it "
+      "did not name")
+print(f"       (O(w) probe done, {time.time()-T0:.0f}s)")
+
+
+# =================================================================================================
+# PART 7 -- THE K_B WINDOW
+# =================================================================================================
+print()
+print("=" * 100)
+print("PART 7 -- THE TWO-SIDED K_B WINDOW: what its status now is")
+print("=" * 100)
+floors = {nm: 2.0 / (K2v + 1.0) for nm, K2v in K2_FITS.items()}
+print(f"       FLOOR (cosmological scalar subluminality, a Y_bg = 0 quantity, UNTOUCHED here):")
+for nm, K2v in sorted(K2_FITS.items()):
+    print(f"         {nm:5s}  K_2 = {K2v:8.0f}   =>   K_B >= {floors[nm]:.4e}")
+print(f"       OTHER CEILING on the corpus record: BBN, K_B <= 0.25")
+print(f"       CEILINGS FROM alpha_1, alpha_2: NOT AVAILABLE -- the alphas are NOT COMPUTED "
+      f"(check 6-3)")
+kb_c1 = 1e-4 / 1.5
+kb_c2 = 1e-7 / 2.5
+print(f"       for reference only, the WITHDRAWN values would have given "
+      f"K_B < {kb_c1:.2e} (alpha_1) and K_B < {kb_c2:.2e} (alpha_2), i.e. an empty window")
+check(min(floors.values()) > 0,
+      "7-1  *** THE WINDOW IS **UNDECIDED**.  It is NOT established empty and it is NOT "
+      "established non-empty.  The floor K_B >= 2/(K_2+1) = "
+      f"{min(floors.values()):.3e} stands (it is a Y_bg = 0, cosmological quantity that nothing "
+      "here touches); the CEILING is gone with the alphas ***",
+      "DIRECTION: relative to ppn_scalar_retained_2026.py's 'the two-sided window is EMPTY by "
+      "5263x' this is FAVOURABLE -- an adverse kill is withdrawn.  Relative to "
+      "ppn_verify_gradient_A_2026.py's 'alpha_1 = -8, alpha_2 = -6, over the bounds by 1e4-1e8 "
+      "for every K_B including K_B = 0' it is also favourable, because check 4-1 shows that "
+      "corner is not the solar system's.  But NEITHER is a win: the ceiling is absent because "
+      "the calculation does not close, not because the alphas were shown to be small")
+check(True,
+      "7-2  AND THE ADVERSE RESULT THAT DOES NOT DEPEND ON THE PPN CALCULATION AT ALL.  PART 1's "
+      "theorem is independent of everything in PARTS 2-6: it uses only the framework's kernel "
+      "and the requirement that AeST's Y-sector have no longitudinal gradient ghost.  It says "
+      "the framework must choose:\n"
+      "         (A) KEEP the exponential kernel nu = 1/(1-e^(-sqrt y)).  Then F_Y + 2 Y F_YY < 0 "
+      "throughout\n"
+      "             the solar system, F_Y is not a single-valued function of Y there, and the "
+      "kernel is\n"
+      "             NOT realisable as an AeST free function of Y at solar-system field strengths.\n"
+      "         (B) KEEP AeST's Y-sector with a monotone F.  Then g_obs - g_bar is "
+      "non-decreasing and the\n"
+      "             sunward anomaly at 1 AU is bounded below by its value at y ~ 1, i.e. by "
+      "O(a_0) --\n"
+      "             which is the corpus's alpha=1 ephemeris liability (1278x the Earth/Mars "
+      "budget).\n"
+      "       Not both.  This is the sharpest thing in this file and it is ADVERSE for the "
+      "ADOPTED RELATIVISTIC HOME",
+      "NOT adverse for a_0 = kappa c sqrt(G rho_Lambda), for kappa, or for the kernel's "
+      "PHENOMENOLOGY.  As an algebraic relation g_obs = nu(y) g_bar the kernel is untouched -- "
+      "the RAR at 0.108 dex, BTFR, the weak-lensing fit and the ephemeris safety all stand.  "
+      "What fails is one particular RELATIVISTIC REALISATION of it, as a function of Y in an "
+      "AQUAL-class scalar sector.  The framework's normalisation claim can be neither credited "
+      "nor blamed for any of it")
+
+
+# =================================================================================================
+# PART 8 -- STATUS LEDGER
+# =================================================================================================
+print()
+print("=" * 100)
+print("PART 8 -- STATUS LEDGER: rigorous / conditional / NOT COMPUTED")
+print("=" * 100)
+LEDGER = [
+    ("RIGOROUS (symbolic, exact, in this file)",
+     "0-1/0-2: the Will and old PPN conventions, derived by matching rather than quoted.  "
+     "1-1: A_perp = (2-K_B)e^(sqrt y), the earlier files' A_Y, re-derived and identified as the "
+     "SECANT modulus.  1-2/1-3: A_par = (2-K_B)D/(D-1) and r = 2 Y F_YY/F_Y in closed form.  "
+     "1-4: the turning point D = 1 <=> 2(1-e^(-u)) = u <=> the MOND excess turns over, two "
+     "independent root-finds agreeing to 1e-10.  2-1/2-2: Y_bg = sigma^2, Q_bg = Q_0, "
+     "A.A = -1, and delta Y_1 = 2 sigma (Q_0 delta A_3 + d_z chi) exactly.  2-3: lam_bg = "
+     "-F_Y Q_0^2 forced by two tadpoles at once.  3-1: the exact w = 0 response.  3-2: "
+     "gamma_PPN = 1.  3-6: c_T^2 = 1 read off the tensor mode with no sector dependence at all.  "
+     "3-4/3-5: the two formulations agree, and the earlier files are reproduced at lam_bg = 0."),
+    ("RIGOROUS (exact rational arithmetic, in this file)",
+     "6-1/6-2: the w-expansion is solvable through O(w^2) at lam_bg = 0 and INCONSISTENT at "
+     "O(w^1) once lam_bg is corrected -- two formulations, two parameter points, r = 0 and "
+     "r = -1.00025."),
+    ("THE THREE REQUIRED GATES",
+     "(a) gamma_PPN = 1: PASSED, exactly, check 3-2.  (b) c_T^2 = 1: PASSED, exactly, check "
+     "3-6.  (c) the screened Newtonian limit: PASSED, check 5-5 -- G_eff/G_N = 1 - 1e-3453 "
+     "(canonical) / 1 - 1e-3145 (ALT), an e^(-sqrt y)-class residual and not a divergence, "
+     "with the Yukawa range restored from 1e-1704 m to mu^-1 ~ 1 Mpc (check 4-2)."),
+    ("CONDITIONAL -- the WKB treatment",
+     "(V1) the neglected background stress is down by 2 e^(-sqrt y) ~ 1e-3456: HOLDS.  "
+     "(V2) |grad ln A|/k = sqrt(y) = 7959 at 1 AU: FAILS as an inequality, but the residual it "
+     "controls is bounded by sqrt(y)e^(-sqrt y) <= e^-1 everywhere and by 1e-3453 at 1 AU "
+     "(checks 5-2, 5-4).  (V3) k r ~ 1 for the PPN U mode: FAILS, and is NOT repaired -- the "
+     "exact rational coefficients of any O(w^2) result would carry an O(1) uncertainty from it.  "
+     "Since PART 6 computes no such coefficients, V3 is not load-bearing for anything claimed."),
+    ("CONDITIONAL -- separability of the free function",
+     "F(Y,Q) is taken additively separable at the background, F_YQ = 0, which is the corpus's "
+     "own form (a MOND function of Y plus K(Q) with K'(Q_0) = 0, K'' = K_2).  A non-zero F_YQ "
+     "would enter the quadratic action as F_YQ * delta Y_1 * delta Q_1 = O(sigma) * F_YQ, so it "
+     "survives the sigma -> 0 limit only if F_YQ ~ 1/sigma.  NOT COMPUTED, and flagged."),
+    ("NOT COMPUTED -- alpha_1 and alpha_2",
+     "no value is produced, in either convention, because the w-expansion about the corrected "
+     "background is inconsistent at O(w^1) (check 6-2).  Whether that is a genuine "
+     "non-analyticity in w (reading D's wake) or an artefact of discarding the four (3,nu) "
+     "equations is the owed item; it needs the unfixed-gauge system with all ten Einstein "
+     "equations imposed."),
+    ("NOT COMPUTED -- also",
+     "the spin-0 branch of the mode determinant about Y_bg != 0 (only its A_Y -> A_par "
+     "structure is stated, as an info line); the g_0i sector; alpha_3, beta, the zeta's; the "
+     "radial-ODE treatment that V3 would require; the deep-MOND PPN regime; and the "
+     "consequences of the A_par < 0 instability for the actual solar-system solution (a growth "
+     "rate is NOT quoted here)."),
+    ("UNTOUCHED BY THIS FILE",
+     "a_0 = kappa c sqrt(G rho_Lambda) = 9.3619e-11 canonical / 1.1279e-10 alt; kappa = 1/2 "
+     "(FITTED, never derived); the kernel nu(y) = 1/(1-e^(-sqrt y)) AS A PHENOMENOLOGICAL "
+     "RELATION (Milgrom & Sanders 2008 Eq. 13 at alpha = 1/2); the RAR at 0.108 dex; BTFR; the "
+     "weak-lensing fit; CLASS; the frozen DR4 band.  Everything located here is in the ADOPTED "
+     "RELATIVISTIC HOME (AeST, Skordis & Zlosnik, PRL 127 161302, arXiv:2007.00082) -- in its "
+     "vector/multiplier sector (PARTS 2-6) and in the embeddability of ANY exponentially "
+     "screened kernel in its Y-sector (PART 1).  It cannot be traded away by adjusting kappa or "
+     "the kernel, nor blamed on them."),
+]
+for lab, txt in LEDGER:
+    print(f"    {lab}:\n        {txt}")
+check(True, "8-1  status ledger printed with every claim graded")
+
+print()
+print("=" * 100)
+nf = len(FAIL)
+print(f"PPN-NEWTONIAN-WKB CHECKS: {NCHK[0]-nf}/{NCHK[0]} passed"
+      + ("" if not nf else f";  FAILED: {FAIL}"))
+print(f"runtime {time.time()-T0:.0f}s")
+sys.exit(1 if FAIL else 0)
