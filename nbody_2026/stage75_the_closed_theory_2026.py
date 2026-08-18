@@ -1,6 +1,23 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 r"""
+
+!!! NUMBERS SUPERSEDED -- 2026-08-17 late, by the four-idea adjudication !!!
+  * PART F's "1279x over the Earth bound, ~1e2 post-EFE" -- THE EFE RELIEF DOES NOT EXIST.
+    Derived for this family two independent ways (an l=1 penetration ODE and a flux bound
+    needing no perturbation theory): relief = 1.000000x.  The external field screens
+    ITSELF, not the anomaly; somewhere on the 1 AU sphere the anomaly is at least
+    s*a0(1 - 4e-9).  The committed 119-189x is an ARTEFACT.
+  * The galaxy floor s >= 0.558 used the WRONG KERNEL.  On this file's own family
+    J_Y = v/(1-v/s), U(2) >= 0.4 gives s >= 0.8/1.84 = 0.4348.
+  * IN FORCE: ephemeris ceiling s <= 1.27e-5 canonical / 1.05e-5 alt (u_inf = s*a0 is an
+    absolute acceleration, so the ceiling scales as 1/a0).  Gap 3.4e4x, or 1.2e4x on the
+    most generous defensible reading of every fork at once.
+  * A LOCAL a0 HURTS: with suppression f, the constrained product is s*f, and f U_s(2/f)=0.4
+    gives s*f = 0.435 at f=1 but 2.00 at f=0.1 -- unsatisfiable below f = 0.080, because
+    U <= sqrt(y) caps the family.
+  * The disc (non-spherical) correction also WIDENS the gap, by 1.07-1.10x.
+The checks below still pass on their own terms.  See the paper for what is in force.
 stage75_the_closed_theory_2026.py
 =================================
 THE THEORY, CLOSED.  AeST has exactly one free function, F(Y,Q).  Skordis & Zlosnik leave it

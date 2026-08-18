@@ -310,6 +310,49 @@ rather than deleted — that is the point of keeping a ledger.*
   wake returns, an unpriced regime potentially worse than a bound; at c_s = 0 exactly today's
   verdict stands.
 
+## 2026-08-17 (late) — the EFE relief does not exist, and the gap is ~10⁴ not 233×
+
+Four ideas computed and each attacked by two adversarial skeptics, then adjudicated
+(`qwen_claude_field_theory/runs/i00{1,3}_*.py`, `i012_*.py`, `i037_*.py`).
+
+- **🔴 "The external-field effect reduces the α = 1 ephemeris liability by 119–189×"** —
+  **WITHDRAWN. THE RELIEF IS 1.000000×.** Derived *for this kernel family* rather than
+  imported, by two independent routes — an ℓ = 1 penetration ODE with exact background
+  coefficients, and a flux bound requiring no perturbation theory (41/41, survived 2/2 with
+  both skeptics' residual criticisms pushing *further* adverse). **The external field screens
+  itself, not the anomaly**: whatever it does, somewhere on the 1 AU sphere the anomaly is at
+  least s·a₀(1 − 4×10⁻⁹). Every gap figure this project has quoted divided by that phantom
+  factor.
+- **🔴 "The RAR floor is s ≥ 0.558"** — **WITHDRAWN, WRONG KERNEL.** That came from
+  U(2) ≥ 0.4 applied to U = s√y/(s+√y), which is *not* the paper's own family. On the actual
+  family J_Y = v/(1−v/s) the same criterion gives **s ≥ 0.8/1.84 = 0.4348** (verified
+  independently by the adjudicator). Relaxing to a global rms ≤ 0.15 dex criterion gives
+  0.294/0.229 at frozen Υ, and 0.157/0.126 with per-galaxy M/L.
+- **IN FORCE: the gap is 3.4×10⁴** (s ≤ 1.27×10⁻⁵ canonical / 1.05×10⁻⁵ alt against
+  s ≥ 0.435), or **1.2×10⁴** on the most generous defensible reading of every fork at once.
+  Note u_∞ = s·a₀ is an absolute acceleration, so the ceiling scales as 1/a₀ — an error that
+  understated the alt-footing gap by 1.205×.
+- **🔴 "A local a₀ softens the ephemeris conflict"** — **WITHDRAWN; IT HURTS.** With
+  suppression f the ephemeris-constrained product is s·f, and solving f·U_s(2/f) = 0.4 gives
+  s·f = 0.435 at f = 1 but **2.00 at f = 0.1** — unsatisfiable below f = 0.080, because
+  U ≤ √y caps the family. Local a₀ costs 4.6× at f = 0.1.
+- **The disc correction also widens it.** Solving the non-spherical problem rather than
+  estimating it: u_disc/u_alg = 0.67 at 3 kpc, 0.92 at 8 kpc, 0.98 at 20 kpc, raising the
+  required floor by 1.07–1.10× (14/14, survived 2/2).
+- **⚠️ My own I012 result was REFUTED (1/2) on two framework-favourable errors**, and its
+  numbers are not citable: it credited the Υ refit with 2.55× when the honest apples-to-apples
+  figure is 1.34× (the rest was an undisclosed swap from a pointwise to a global criterion),
+  and it applied the ephemeris ceiling footing-independently when it scales as 1/a₀. The
+  adverse conclusion survived; the registered numbers did not.
+- **✅ ONE GENUINE FAVOURABLE CORRECTION: irrotationality is NOT a theorem in AeST.** The
+  corpus's proof applies to a velocity built as ∇φ; the shift current collapses to
+  S^μ = −F_Q A^μ, so the dust rides **A^μ**, a unit timelike field that is not
+  hypersurface-orthogonal in general, and the twist has a kinetic term — it propagates
+  (26/26, survived 2/2). **But the escape is empty**: parking the dust outside the corpus's own
+  KiDS lensing fit needs λ′ ≥ 1.96 against a kinematic ceiling λ′ ≤ 0.707, and the skeptic
+  showed the file *understates* its own kill (7.6× empty, not 2.77×). Angular momentum halts a
+  collapse; it does not unbind mass.
+
 ## 2026-08-17 — the AeST action was mis-transcribed in the corpus's own papers
 
 - **🔴 THE ACTION ITSELF WAS WRONG IN `THE_COMPLETION.md`, AND EVERY DOCUMENT BUILT FROM IT.**

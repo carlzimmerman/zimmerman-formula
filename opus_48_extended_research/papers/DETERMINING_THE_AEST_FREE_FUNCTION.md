@@ -22,9 +22,10 @@ condition, because AeST's free function depends on the scalar's own gradient rat
 the total potential's, and it immediately excludes the exponential interpolation
 $\nu=1/(1-e^{-\sqrt y})$, whose $U$ turns over at $y=2.54$. Every legal member instead
 *saturates*, at an anomalous acceleration $s\,a_0$, and $s$ is then fixed twice over by
-observation. Planetary perihelion precession requires $s\le2.4\times10^{-3}$; the radial
-acceleration relation requires $s\ge0.56$. **These are incompatible by a factor 233**, and the
-RAR mildly prefers larger $s$, driving them further apart.
+observation. Planetary perihelion precession requires $s\le1.27\times10^{-5}$; the radial
+acceleration relation requires $s\ge0.43$. **These are incompatible by a factor
+$\sim1.2$–$3.4\times10^{4}$**, and every correction we have found widens the gap rather than
+closing it.
 
 The obstruction is structural rather than a matter of kernel choice: solar-system screening in
 this theory is achieved precisely by the non-monotonicity that makes a kernel illegal. One may
@@ -162,22 +163,40 @@ anomalous-precession limits of EPM/INPOP class:
 | Saturn | 3.15 | $8\times10^{-5}$ | 39 424 | 209–331 |
 
 This is substantially more constraining than the flat bound on a constant anomalous
-acceleration usually quoted ($u_\infty/3.66\times10^{-14}=1279$). Since
-$\dot\varpi\propto s$, the worst planet gives $s\le2.4\times10^{-3}$ (EFE 189×), or
-$1.5\times10^{-3}$ (119×).
+acceleration usually quoted ($u_\infty/3.66\times10^{-14}=1279$).
+
+**There is no external-field relief.** An earlier version divided by a committed EFE
+reduction of 119–189×. That factor is an artefact. Deriving the external-field response *for
+this family* rather than importing it — by two independent routes, an $\ell=1$ penetration ODE
+and a flux bound needing no perturbation theory — gives a relief of **1.000000×** on the
+*saturated* anomaly. The external field screens *itself*, not the anomaly: whatever it does,
+somewhere on the 1 AU sphere the anomaly is at least $s\,a_0(1-4\times10^{-9})$. Since
+$\dot\varpi\propto s$ and $u_\infty=s\,a_0$ is an absolute acceleration (so the ceiling scales
+as $1/a_0$), the worst planet gives
+
+$$s\le1.27\times10^{-5}\ \text{(canonical)},\qquad 1.05\times10^{-5}\ \text{(alt)}.
 
 ### 3.2 Galaxies
 
-The RAR requires an anomaly $\approx0.4\,a_0$ at $y\sim2$, which is what $s=\tfrac12$ delivers
-($U(2)=0.449$). For the family above $U(y)=s\sqrt y/(s+\sqrt y)$, so $U(2)\ge0.4$ gives
-$s\ge0.558$. Fits to 175 SPARC galaxies at the anchored $a_0$ give 0.1083 dex at $s=\tfrac12$,
+The RAR requires an anomaly $\approx0.4\,a_0$ at $y\sim2$. Applied to **this paper's own
+family** $J_Y=v/(1-v/s)$ that gives $s\ge0.8/1.84=0.4348$. (An earlier version quoted
+$s\ge0.558$, obtained from a *different* kernel; withdrawn.) Relaxing from a pointwise to a
+global criterion — rms $\le0.15$ dex on 3389 SPARC points with $\Upsilon$ in the Spitzer band —
+lowers it to $0.294$ canonical / $0.229$ alt at frozen $\Upsilon=0.70$, and to $0.157$ /
+$0.126$ with per-galaxy $M/L$, the most generous defensible treatment. Refitting $\Upsilon$
+itself buys only $1.34\times$. Fits to 175 SPARC galaxies at the anchored $a_0$ give 0.1083 dex at $s=\tfrac12$,
 0.1009 at $s=1$, 0.0998 at $s=2$: the data mildly **prefer larger $s$**, moving away from the
 solar-system requirement.
 
 ### 3.3 The incompatibility
 
-$$\boxed{\;s\le2.4\times10^{-3}\ (\text{ephemerides})\qquad\text{versus}\qquad
-s\ge0.558\ (\text{RAR}),\qquad\textbf{a factor }233.\;}$$
+$$\boxed{\;s\le1.27\times10^{-5}\ (\text{ephemerides})\qquad\text{versus}\qquad
+s\ge0.435\ (\text{RAR}),\qquad\textbf{a factor }3.4\times10^{4}.\;}$$
+
+On the most generous defensible reading of every fork at once — per-galaxy $M/L$ and the alt
+footing — the gap is still $1.2\times10^{4}$. A non-spherical (disc) treatment of the local
+law, which might have been expected to help, instead multiplies the floor by 1.07–1.10 and
+widens it further.
 
 No member of the legal class satisfies both. The obstruction is structural: legality forces
 saturation, and the saturation scale is simultaneously the galactic MOND amplitude and the
@@ -229,13 +248,20 @@ AeST — $\gamma_{\rm PPN}=1$, $c_T=1$ exactly, and the CMB fit.
 **Affected.** AeST as a relativistic completion for MOND phenomenology, in its ghost-free sector.
 
 **Caveats, stated rather than buried.** The local algebraic law of §1 is exact in spherical
-symmetry; discs are not, and a Miyamoto–Nagai disc gives
-$|\nabla\times v|/(|v|/r)=8.7\times10^{-4}$–$4.4\times10^{-2}$, so §3.2 carries that systematic —
-a few per cent, not a factor 233. The EFE reductions in §3.1 were computed at constant $a_0$ and
-applied multiplicatively; their factorisation against a density-dependent $a_0$ is not
-established. The precession limits are order-of-magnitude EPM/INPOP-class values rather than a
-refit with this signal in the model — the one measurement that could soften §3.1, though it
-would have to soften it by 233×.
+symmetry; discs are not. We solved the non-spherical problem rather than estimating it, and it
+runs the wrong way: a Miyamoto–Nagai disc gives $u_{\rm disc}/u_{\rm alg}=0.67$ at 3 kpc,
+$0.92$ at 8 kpc and $0.98$ at 20 kpc, so the required floor rises by 1.07–1.10 and the gap
+widens. The anomalous-precession limits are order-of-magnitude EPM/INPOP-class values rather
+than a refit with this signal in the model — that refit remains the one measurement that could
+soften §3.1, and it would have to soften it by four orders of magnitude.
+
+We also record what does **not** work, since each was tried. **A local $a_0$ hurts rather than
+helps**: with a suppression factor $f$, the ephemeris-constrained product is $s\,f$, and
+solving $f\,U_s(2/f)=0.4$ gives $s\,f=0.435$ at $f=1$ but $2.00$ at $f=0.1$ — unsatisfiable
+below $f=0.080$, because $U\le\sqrt y$ caps the family. **Refitting $\Upsilon$** buys $1.34\times$,
+not the $2.5\times$ a naive comparison suggests, because the larger figure silently swaps a
+pointwise criterion for a global one. **The external-field effect** contributes nothing at all
+(above).
 
 **What a viable completion must supply.** A screening mechanism that is *not* a non-monotone
 interpolation. That is a sharper target than "a relativistic MOND theory," and it is the
