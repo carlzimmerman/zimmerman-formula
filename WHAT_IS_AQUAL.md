@@ -93,6 +93,25 @@ So AQUAL is where MOND became legitimate, and also where it hit its ceiling. Eve
 TeVeS, and now **AeST** — is an attempt to build a *relativistic* theory that reduces to AQUAL
 when you slow everything down and turn gravity weak.
 
+### "But this repo has a lensing result — which is it?"
+
+Both, and they're not in conflict. **AQUAL is the non-relativistic *limit* of AeST, not a rival
+to it.** The framework lives in AeST; AQUAL is what AeST becomes when you're moving slowly in
+weak gravity, which is the regime galaxy rotation curves live in.
+
+- **Rotation curves, the RAR, the ephemeris bounds** — these are AQUAL-regime statements, and
+  AQUAL is the right tool. That's why R1's whole argument is phrased in AQUAL language.
+- **Lensing, the CMB, gravitational waves** — these need the full relativistic theory, and they
+  come from AeST. The framework's γ_PPN = 1 result (residual 0.601σ, against 21.2σ where the
+  modified-inertia arm died) is an **AeST** result: in AeST the two metric potentials are equal,
+  so light bends exactly as it would around the same total mass in general relativity — where
+  "total mass" already includes the MOND enhancement.
+
+Saying "AQUAL can't do lensing" is like saying "the Newtonian limit can't do lensing." True, and
+not a problem, because nobody computes lensing there. It's a problem only if you *have no*
+relativistic theory to fall back on — which was MOND's situation from 1984 until TeVeS, and is
+not this framework's situation.
+
 ---
 
 ## Why this matters for *this* framework, specifically
@@ -140,5 +159,5 @@ AQUAL-like, not 𝒴-like.** The whole of R1 is that one sentence.
 | **Why** | plain MOND violated conservation of momentum; a Lagrangian fixes that for free |
 | **Buys** | conservation laws, a real theory, and the external field effect as a bonus prediction |
 | **Costs** | the interpolation function μ is chosen, not derived |
-| **Ceiling** | non-relativistic — no lensing, no cosmology, no CMB. Hence AeST |
+| **Ceiling** | non-relativistic — no lensing, no cosmology, no CMB. It is the *limit* of AeST, not a rival: lensing here is an AeST result (γ_PPN = 1) |
 | **Here** | the a₀-line is an AQUAL μ; its free function is now known in closed form; and "AQUAL-like vs 𝒴-like" *is* requirement R1 |
