@@ -568,3 +568,38 @@ win.** The standing rule penalises these equally and it is right to. The lesson 
 myself: after removing a false kill, re-run the OTHER sectors before declaring survival — a
 construction can be dead more than one way, and finding one death wrong says nothing about the
 others.
+
+### 2026-08-19 — sf04's "R1 is only sufficient" — WITHDRAWN, one file later
+
+`sf04_saturation_and_gauge_2026.py` C1/C2 claimed the paper's R1 ("the free function must eat
+the **gradient** of the total potential") was stated as necessary but was only sufficient,
+because the X-ansatz escapes saturation by carrying Ψ **itself**. `sf05_the_squeeze_2026.py`
+(6/6) shows that is wrong, and the reason is physical rather than algebraic.
+
+The algebra in sf04 was right — U genuinely becomes a two-variable surface. But sf04 never
+asked whether the mechanism works **where it has to**. It does not:
+
+* **MOND phenomenology needs the 𝒴-term to dominate.** With F ~ |X|^{3/2}, the law
+  (u/m)F_X(X) = g_bar gives u ~ √g_bar — the square root, the RAR, flat rotation curves — only
+  when |u²/2m| ≫ |Ψ𝒬₀|. If Ψ dominates instead, F_X is a function of Ψ alone and u ∝ g_bar:
+  **a rescaling of Newton, with no MOND at all.** sf04 did not check this.
+* **Breaking saturation needs the Ψ-term to dominate.** Opposite requirement, same ratio.
+* **And the environments barely differ in Ψ.** The Sun's own potential at 1 AU is ~1e-8, but
+  the *galaxy's* potential at the Sun is ~5.8e-7 — sixty times larger. The solar system sits
+  **inside** the galaxy, so the total potential there is the same order as at a galaxy's MOND
+  radius. Available contrast in Ψ/u²: **8.0× canonical, 7.3× alt.** Required: **3.4e4–4.1e4×.**
+  **Shortfall 4.3e3–5.7e3×.** No choice of m helps — m cancels from a ratio between environments.
+
+**The lesson, and it is the same one as R2's:** the gradient of the potential differs between
+the solar system and a galaxy's MOND radius by ~1e8; the potential itself differs by less than
+2×. **R1 asked for the gradient for a reason.** The published wording stands and the paper needs
+no correction.
+
+**Direction of the error: I manufactured a win** — the third time in two days I have graded a
+construction favourably before checking the regime where it has to work. Recorded with the
+others.
+
+**What survives, independent of the dead ansatz:** sf01's closed-form AQUAL free function for
+the a₀-line with its exact (2/3)z^{3/2} limit; sf02's structural result that Z contains the
+aether differentially while 𝒬 and 𝒴 contain it algebraically; sf03's observation that the
+phonon-baryon coupling problem is an artefact of a *particle* superfluid.
