@@ -30,13 +30,14 @@ RR = "real_research/reviews"
 BASE = "https://zenodo.org/api"
 
 STEM = "THREE_REQUIREMENTS"
-RID = 22003889
+RID = 22004177
 META_PATH = f"{PAP}/{STEM}.zenodo.json"
 
 FILES = [
     "opus_48_extended_research/papers/THREE_REQUIREMENTS.md",
     "opus_48_extended_research/papers/pdf/THREE_REQUIREMENTS.pdf",
     "opus_48_extended_research/papers/THREE_REQUIREMENTS.tex",
+    "superfluid_2026/sf01_ansatz_closure_2026.py",
     "real_research/reviews/typeII_direct_variation_2026.py",
     "real_research/reviews/typeII_legality_independent_2026.py",
     "real_research/reviews/typeII_known_limits_2026.py",
