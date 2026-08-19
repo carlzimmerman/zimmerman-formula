@@ -603,3 +603,39 @@ others.
 the a₀-line with its exact (2/3)z^{3/2} limit; sf02's structural result that Z contains the
 aether differentially while 𝒬 and 𝒴 contain it algebraically; sf03's observation that the
 phonon-baryon coupling problem is an artefact of a *particle* superfluid.
+
+### 2026-08-19 — "c_s² ∝ a⁻³ for EVERY ghost-free K, so it cannot be kept warm" — CORRECTED
+
+Standing claim from `nbody_2026/stage9_construct_the_function_2026.py` (lines 56, 202) and
+`stage10_two_field_construction_2026.py` (line 9), quoted in the memory index as holding for
+every ghost-free K. **The scaling is not monotone for Carl's own β=1 DBI kernel.**
+
+`superfluid_2026/sf08_soundspeed_turnover_2026.py` (8/8), in the corpus's own convention
+(bridge1: 𝒬 = φ̇, c_ad² = K′/(𝒬K″)), gives on the shift-charge solution
+
+    c_ad² = σΛ_D / [𝒬(1+σ²)^{3/2}],   𝒬 = 𝒬₀ + Λ_D σ/√(1+σ²)
+
+with limits verified by sympy:
+  * **late (σ ≪ 1):** c_ad² → σΛ_D/𝒬₀ ∝ a⁻³ — **the corpus's regime, reproduced.**
+  * **early (σ ≫ 1):** c_ad² → Λ_D/[(𝒬₀+Λ_D)σ²] ∝ a⁺⁶ — **the scaling REVERSES.**
+
+So c_s² rises as a⁻³ going back, **peaks near σ ~ 0.34–0.69**, then falls as a⁶. The DBI wall
+drives 1−r² → 0 and turns it over. At recombination the field is **cold**: c_ad² ≈ 6.5×10⁻¹⁰ c²
+at ν₀ = 2.15×10⁻⁵, and 5.4×10⁻⁸ c² even at the RAR ceiling ν₀ = 2.36×10⁻⁶ — **still far above
+the turnover on both readings**, so the conclusion does not depend on winning the ν₀ squeeze.
+
+**What stands:** stage 9's 595 c² figure remains correct *for the route it priced* (buying
+c_s(today) = 203 km/s on the late-time branch). **What is withdrawn:** the extrapolation to all
+K and all epochs, and its use as a general obstruction.
+
+**Not established, and this is the limit of the result:** a small *adiabatic* sound speed is
+necessary for CDM-like clustering, not sufficient. The physical scalar modes of the coupled
+system (khronon + both metrics) are mixtures whose eigen-sound-speeds are not c_ad². This is a
+sector quantity, not the cosmological one. Untouched: whether the dust mode grows at the CDM
+rate, the Boulware–Deser question, lensing, and problem 2d.
+
+**Credit where due: found by an external skeptical review** of the BIMOND paper. Its arithmetic
+used the P(X) formula with the 𝒬 = φ̇ variable — a convention splice of the class that produced
+the withdrawn "c₁₄ = 2" alarm — so the number was not directly quotable, but **the structural
+point was right and this corpus was wrong.** Direction: the corpus had been carrying an
+obstruction that does not exist on its own kernel.
