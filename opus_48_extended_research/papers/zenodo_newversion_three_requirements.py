@@ -30,7 +30,7 @@ RR = "real_research/reviews"
 BASE = "https://zenodo.org/api"
 
 STEM = "THREE_REQUIREMENTS"
-RID = 22002545
+RID = 22003889
 META_PATH = f"{PAP}/{STEM}.zenodo.json"
 
 FILES = [

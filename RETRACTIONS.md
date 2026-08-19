@@ -532,3 +532,39 @@ and one dead escape nobody needs**.
 
 **Direction of the error: I manufactured a deficit**, against the standing rule, and did it in
 the same document that quotes the rule. Corrected in v2.
+
+### 2026-08-18 (same day) — the v2 correction OVER-CORRECTED; v3 is the settled statement
+
+The v2 entry above is correct that v1's `𝓕_Z(0) = K_B` degeneracy was invented. It is **wrong**
+to have concluded from that that the Z-form is a live candidate. Having removed a false death I
+failed to check whether a true one was already on record — and it was, in the sector I had not
+re-read.
+
+**The real R2, from `c14_dictionary_validity_2026.py` PART H (69/69):** the transverse-vector
+kinetic coefficient is C_V = K_B − (2−K_B)J_Z, so the theory is ghost-free only for
+J_Z < K_B/(2−K_B). But J_Z = μ_phys **is the interpolation function**, and Newtonian screening
+**is** the statement μ_phys → 1. At K_B = 0.25 that gives C_V = −1.50 and c_V² = −0.167: a ghost
+carrying a gradient instability, growth rate 0.408 c k, **unbounded in the UV**. As a radius the
+unstable region covers the entire solar system and Oort cloud (r < 5.16e4 AU canonical / 4.70e4
+alt) and the entire optical body of a 1e11 M_sun galaxy (r < 79.2 kpc / 72.1). At the longest
+wavelength for which the WKB reduction is controlled the e-folding time is 624 yr. **No cutoff
+choice saves it**, and only K_B ≥ 1 removes the bound at all. AeST itself (𝓕(𝒴), no Z-term) has
+C_V = K_B > 0 and is healthy — the liability belongs to the Z-form alone.
+
+**So the three-requirement architecture is restored, with R2 restated:** eating the total gradient
+must not destabilise the vector sector. The failure is structural, not numerical — *the same
+factor μ_phys → 1 that makes the screening work is what makes C_V most negative*. Escaping R1 and
+destabilising the vector sector are ONE operation.
+
+**What survives from the v2 correction, and is kept in v3 as a genuine sub-result:** the Z-form's
+FRW background is exactly undisturbed, its a₀(z) law survives bit-for-bit, and its cosmological
+cost IS met by the framework's own derived suppression (0.0060 against a required 9.7e-3–3.7e-1,
+all eight forks). That does not save it, but it does establish that **the CMB was never the
+binding constraint on this construction** — which is worth knowing and is Carl's result, not a
+concession.
+
+**Both errors, and their directions, on the record: v1 manufactured a deficit; v2 manufactured a
+win.** The standing rule penalises these equally and it is right to. The lesson I am recording for
+myself: after removing a false kill, re-run the OTHER sectors before declaring survival — a
+construction can be dead more than one way, and finding one death wrong says nothing about the
+others.

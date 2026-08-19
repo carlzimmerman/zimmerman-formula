@@ -1,8 +1,8 @@
-# Specifying AeST's Free Function: One No-Go, One Live Candidate
+# Three Requirements on a Relativistic Home for MOND Phenomenology
 
 **Carl P. Zimmerman**, Briar Creek Tech
 ORCID 0009-0008-3508-7982
-2026-08-18 (v2, corrected)
+2026-08-18 (v3)
 
 ---
 
@@ -24,28 +24,21 @@ precession then requires $s\le1.27\times10^{-5}$ while the radial acceleration r
 requires $s\ge0.435$ — **incompatible by $1.2$–$3.4\times10^{4}$.** There is no
 external-field relief: computed for this family rather than imported, it is $1.000000\times$.
 
-**(ii)** Replacing $\mathcal{Y}$ by $Z\equiv J^\mu J_\mu$, the squared aether acceleration,
-satisfies R1 exactly — the reduction becomes AQUAL, the exponential interpolation becomes legal,
-the 1 AU anomaly falls to $10^{-3458.7}\,\mathrm{m\,s^{-2}}$, and the gap is voided. **This is a
-LIVE CANDIDATE, not a casualty.** Its FRW background is exactly undisturbed ($\bar Z=0$
-identically for arbitrary lapse, so Friedmann, $w=-1$, the dust mode, $Q(a)$ and the derived
-$a_0(z)$ law are bit-for-bit AeST's), and its analytic linear-in-$Z$ piece is a mere relabelling
-$K_B\to K_B-\mathcal{F}_Z(0)$ with $\mathcal{F}_Z(0)=0$ on the determined family. Its one real
-cost: eating the total gradient, its MOND branch is switched *on* at recombination, where the
-acoustic-band acceleration is only $7.6$–$11.9\,a_0$ absent running; the $\sim5\%$ distortion of
-linear dynamics is worth $18$–$112\sigma$ at unit response. It survives only through $a_0(z)$
-suppression — and the suppression the framework independently derives, $a_0(\mathrm{rec})/a_0(0)
-= 0.0060$, **meets the requirement ($\le 9.7\times10^{-3}$ to $3.7\times10^{-1}$) on every one of
-eight forks.**
+**(R2)** Eating the total gradient must not destabilise the aether's vector sector. Replacing
+$\mathcal{Y}$ by $Z\equiv J^\mu J_\mu$ satisfies R1 exactly — the reduction becomes AQUAL, the
+exponential kernel becomes legal, $\gamma_{\rm PPN}=1$ and $G_N$ are unchanged, the 1 AU anomaly
+falls to $10^{-3458.7}\,\mathrm{m\,s^{-2}}$, **the FRW background is exactly undisturbed and the
+derived $a_0(z)$ law survives bit-for-bit** — and its cosmological cost is *payable*: the CMB
+needs $a_0(\mathrm{rec})/a_0(0)\le9.7\times10^{-3}$–$3.7\times10^{-1}$ and the framework's own
+independently derived suppression is $0.0060$, clearing the tightest fork and the loosest. **It
+dies on the vector modes, and worst exactly where it was invoked.** The vector kinetic coefficient
+is $C_V=K_B-(2-K_B)J_Z$, and the Newtonian screening that voids the gap *is* the statement
+$J_Z\to1$, giving $C_V=-1.50$ and $c_V^2=-0.167$ at $K_B=0.25$: a ghost with a gradient
+instability, growth rate $0.408\,ck$, unbounded in the UV. The unstable region covers the whole
+solar system and Oort cloud ($r<5.16\times10^4$ AU) and the whole optical body of a galaxy
+($r<79$ kpc), $e$-folding in 624 yr at the longest controlled wavelength. No cutoff saves it.
 
-**(iii)** The residual risk is priced, not hidden: delivering it needs $\nu_0\ge5.6\times10^{-9}$
-to $8.2\times10^{-6}$, and two of eight forks put that above the RAR ceiling
-$2.36\times10^{-6}$ — exactly the $\alpha=1$ kernel under the conservative reading, by
-$2.4$–$3.5\times$, while the exponential kernel this construction *re-legalises* clears on every
-reading. The whole interlock is hostage to one uncomputed number, $S=|d\ln C_\ell/d\epsilon|$:
-every fork clears for $S\le0.54$, every fork clashes for $S\ge20.6$.
-
-**(iv)** We also show what *cannot* rescue R1: a rescaling $\mathcal{J}\to s\mathcal{J}$ forces
+**(R3)** And the repair may not be bought with a gravitational-constant split. Rescaling $\mathcal{J}\to s\mathcal{J}$ forces
 $\tilde G/G_N\le0.121$, giving $Y_p=0.086$ against an observed $0.2449\pm0.0040$ ($-42\sigma$)
 and a gravitational radiation density *below that of the photons alone*. Gravitational waves do
 not pay this price: the siren amplitude's sensitivity is exactly zero.
@@ -118,7 +111,7 @@ required floor by 1.07–1.10. Refitting $\Upsilon$ buys $1.34\times$.
 
 ---
 
-## 3. The $Z$-form: a live candidate, and its priced cost
+## 3. R2 — eating the total gradient must not destabilise the vector sector
 
 R1 says: use the total gradient. AeST already contains the object that supplies it. With
 $D^\mu=q^{\mu\nu}\nabla_\nu\varphi$ one has the identity, verified three times independently
@@ -143,49 +136,41 @@ it. Further, $c_T^2=1$ exactly for any free function (the TT sector sees neither
 the scalar: on a pure TT perturbation $J^\mu=0$, $Z=0$, $F_{\mu\nu}F^{\mu\nu}=0$, $\mathcal{Y}=0$,
 all exactly), and $G_N$ is finite and equal to the unmodified value.
 
-**This construction is not a casualty; it is a live candidate**, and its cosmology has been
-computed rather than assumed (`opt1_cmb_2026.py`, 36/36).
+This construction does everything R1 asks, and several things it does not.
 
-**The background is exactly undisturbed.** On FRW the comoving aether congruence is geodesic, so
+**The background is exactly undisturbed.** The comoving aether congruence is geodesic, so
 $J^\mu=0$ identically for arbitrary lapse, hence $\bar Z=0$ and $\mathcal{F}(0,\mathcal{Q})=
-K(\mathcal{Q})$ — the same background function AeST's own $\mathcal{F}(\mathcal{Y},\mathcal{Q})$
-reduces to. Friedmann, $w=-1$, the dust mode, $Q(a)$ and the derived $a_0(z)$ law are bit-for-bit
-the AeST objects.
+K(\mathcal{Q})$. Friedmann, $w=-1$, the dust mode, $Q(a)$ and the derived $a_0(z)$ law come
+through bit-for-bit. In the static sector: AQUAL with $\mu=J_Z$, $\gamma_{\rm PPN}=1$,
+$G_N=\hat G$ finite. At linear order the analytic piece is a relabelling
+$K_B\to K_B-\mathcal{F}_Z(0)$ with $\mathcal{F}_Z(0)=0$ on the determined family.
 
-**At linear order the analytic piece is a relabelling, not a degeneration.** $J_i=\nabla_i E$
-exactly, with $E=\dot\alpha+\Psi$ the theory's own mixing variable, so $Z=|\nabla E|^2/a^2$ is
-*second* order. Since $F^{\mu\nu}F_{\mu\nu}=-2Z$ at $O(\delta^2)$, any analytic linear-in-$Z$
-piece of $\mathcal{F}$ is nothing but a shift $K_B\to K_B-\mathcal{F}_Z(0)$ — and on the
-determined family $\mathcal{F}_Z(0)=(2-K_B)\mu_{\rm phys}(0)=0$, because the deep-MOND end of
-every interpolation has $\mu_{\rm phys}\to0$. The degeneracy is scalar-sector only.
+**Its cosmological cost is real but payable**, and worth stating because the framework's own
+machinery does unexpected work here. Eating the total gradient switches the MOND branch on at
+recombination (CLASS: $y=7.6$–$11.9$ absent running), giving $\epsilon\simeq1/2y$ — a few per
+cent, kernel-robustly, worth $18$–$112\sigma$. The CMB tolerates it only if
+$a_0(\mathrm{rec})/a_0(0)\le9.7\times10^{-3}$–$3.7\times10^{-1}$, and the framework's
+independently derived suppression is $0.0060$ — clearing the tightest fork *and* the loosest,
+neither number tuned to the other.
 
-**The real cost.** Eating the *total* gradient, the MOND branch switches on wherever the total
-acceleration nears $a_0$ — and CLASS puts the acoustic-band acceleration at recombination at only
-$y=7.6$–$11.9$ absent running. Then $\epsilon=1-\mu(y)\simeq1/2y$ is a few per cent,
-kernel-robustly, and *not* exponentially small. Aggregated over $\ell=2$–$2500$ at unit response
-this is $18$–$112\sigma$ across eight forks; truncating at $\ell\le1600$ still leaves $47\sigma$,
-so it does not rest on the noise-dominated tail.
+**It dies on the vector modes.** The transverse kinetic coefficient is
 
-**And the framework's own law pays it.** The CMB tolerates the $Z$-form only if
-$a_0(\mathrm{rec})/a_0(0)\le9.7\times10^{-3}$ to $3.7\times10^{-1}$. The framework's
-independently derived suppression is $0.0060$ — clearing the tightest fork *and* the loosest.
-Neither number was tuned to the other.
+$$C_V=K_B-(2-K_B)J_Z,\qquad c_V^2=K_B/C_V,$$
 
-**The residual risk, priced.** Delivering it needs $\nu_0\ge5.6\times10^{-9}$ to
-$8.2\times10^{-6}$; two of eight forks exceed the RAR ceiling $2.36\times10^{-6}$ by
-$2.4$–$3.5\times$, and they are exactly the $\alpha=1$ kernel under the conservative reading. Six
-clear with room. This matters because **the $Z$-form reopens the kernel choice in its own
-favour**: the legality theorem of §2 does not apply here, so the exponential kernel is legal
-again — and it clears on every reading.
+so the theory is ghost-free only for $J_Z<K_B/(2-K_B)$. But $J_Z=\mu_{\rm phys}$ *is* the
+interpolation function, and Newtonian screening *is* $\mu_{\rm phys}\to1$. At $K_B=0.25$:
+$C_V=-1.50$, $c_V^2=-0.167$, growth rate $0.408\,ck$, unbounded in the UV. As a radius, the
+unstable region covers the entire solar system and Oort cloud ($r<5.16\times10^4$ AU canonical /
+$4.70\times10^4$ alt) and the entire optical body of a $10^{11}M_\odot$ galaxy ($r<79.2$ kpc /
+$72.1$). At the longest controlled wavelength the $e$-folding time is 624 yr. Only $K_B\ge1$
+removes the bound at all.
 
-**What is owed.** $\nu_0^{\rm req}\propto S^2$ in the uncomputed response
-$S=|d\ln C_\ell/d\epsilon|$: every fork clears for $S\le0.54$, every fork clashes for
-$S\ge20.6$, and $S=1$ is an assumption. Settling it needs a Boltzmann code carrying $A_\mu$, the
-constraint and $\mathcal{F}(Z,\mathcal{Q})$ — a build, not an argument. A second approximation is
-adverse and named: $E\sim\Psi$ was the subhorizon proxy, and if $E<\Psi$ the distortion is
-*larger*.
+**The structure of the failure is the point:** the same factor $\mu_{\rm phys}\to1$ that makes
+solar-system screening work is what makes $C_V$ most negative. Escaping R1 and destabilising the
+vector sector are *one operation, not two*. AeST itself, with $\mathcal{F}(\mathcal{Y})$ and no
+$Z$-term, has $C_V=K_B>0$ and is healthy here.
 
-## 4. What cannot rescue R1: the $\tilde G/G_N$ split
+## 4. R3 — and the repair may not be bought with a $\tilde G/G_N$ split
 
 Both sector conditions constrain only the total $Z$-coefficient: static attraction needs it
 positive, vector no-ghost needs it below $K_B$. Rescaling the free function, $J\to sJ$,
