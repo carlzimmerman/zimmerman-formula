@@ -639,3 +639,38 @@ used the P(X) formula with the 𝒬 = φ̇ variable — a convention splice of t
 the withdrawn "c₁₄ = 2" alarm — so the number was not directly quotable, but **the structural
 point was right and this corpus was wrong.** Direction: the corpus had been carrying an
 obstruction that does not exist on its own kernel.
+
+### 2026-08-19 — sf10's first pass claimed "BD ghost CONFIRMED for BIMOND+MOND" — WITHDRAWN before publication
+
+Caught in the same run, by its own failing checks. `sf10_two_lapse_hessian_2026.py` v1 computed
+the Hessian of the interaction in the two lapses, found it non-degenerate on the MOND branch
+(3/2 power) and degenerate on the √Υ branch, and concluded the Boulware–Deser mode propagates.
+
+**Two errors.** First, sympy's `sqrt(x**2)` → `Abs(x)` injected DiracDelta terms when
+differentiated twice, so the "degenerate at 1/2" result was an artifact of the kink at
+u/N = û/N̂, not a statement about the branch. Second and fatally: **evaluated on a fixed sign
+branch, the lapse Hessian is non-degenerate for EVERY power tested, including 1/2** — so the
+test does not discriminate and cannot support a kill in either direction.
+
+**Why the test is the wrong object:** in the known ghost-free bimetric construction the BD mode
+is removed only *after* a redefinition of the shift vector, which renders the action linear in
+the lapse. A Hessian computed with the shifts held fixed is non-degenerate even for theories
+known to be healthy. Lapse-linearity is sufficient-not-necessary for the Hamiltonian constraint
+to survive.
+
+**What survives, graded as a heuristic:** the power that would make the interaction
+lapse-linear (1/2) and the power the deep-MOND limit requires (3/2) are different powers of the
+same scalar. That is a reason to do the full calculation, not a substitute for it.
+
+**What is actually useful, and is the file's payload:** the MOND power is needed only in the
+*magnetic* (spatial-gradient) part of the C-scalar, which carries no lapse and contributes
+nothing to the constraint structure — verified, ∂/∂N of the magnetic piece is exactly zero. A
+split M = αΥ_E^{1/2} + βΥ_M^{3/2} puts MOND entirely outside the constraint sector. Making that
+split *covariant* rather than a 3+1 gauge choice requires a preferred foliation — **which the
+khronon already supplies, via projections along and orthogonal to ∂φ.** The dark sector would
+then be doing three jobs: dark energy, dust, and the foliation. Not computed; flagged as next.
+
+**Direction: I manufactured a deficit**, and would have shipped a false kill of the framework's
+best remaining host had the checks not failed. The BD question remains **open**, exactly as the
+published paper states. BIMOND must not be quoted as ghost-free — and must not be quoted as
+ghost-*ful* on the strength of this file either.
