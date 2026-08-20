@@ -98,8 +98,19 @@ which contain `∂_i h_jk` and `∂_i hhat_jk` but **no lapse and no extrinsic c
 2. **Lapse Hessian.** `∂²V/∂N_A∂N_B` for A,B ∈ {N, N̂}. Must be **identically zero — all four
    entries**, not just the determinant, and not just the diagonal. (This is the trap that took
    sf10 down.)
-3. **The quasi-static reduction.** Perturb both metrics, take the quasi-static limit, and show
-   the field equation becomes
+3. ~~**The quasi-static reduction.**~~ **AMENDED 2026-08-19 by `sf13b` — read that file, not
+   this step as originally written.** The reduction of a *bimetric* theory is a **two-potential**
+   system, and the interpolation function that emerges is **not F′** — it is a Möbius composite
+       g_obs/g_bar = [1 + α̂F′] / [1 + (α+α̂)F′]
+   so inserting §2's F gives the **wrong force law**. Two consequences: (a) **α < 0 is a hard
+   prerequisite** — with α > 0 gravity gets *weaker*, the opposite of MOND — and the required
+   sign is obtainable by choosing the quadratic contraction, since the full square gives +7|∇ψ|²
+   while the mixed contraction gives **−1**|∇ψ|²; (b) the step becomes **solve the Möbius design
+   equation for F′**, which `sf13b` PART D does in closed form. The original wording is kept
+   below for the record.
+
+   ~~Perturb both metrics, take the quasi-static limit, and show
+   the field equation becomes~~
 
        div [ mu(|grad Phi|/a0) grad Phi ] = 4 pi G rho
 
