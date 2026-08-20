@@ -15,14 +15,17 @@
 | SF18 | step 4 structure + DOF count | both lapses LINEAR ⟹ 2 constraints; u^i determined algebraically; **count = 7 DOF**, no room for an 8th | PARTIAL |
 | SF19 | the bracket {C,Ĉ} | 2 of 4 terms **proved zero** ({F(X),B(X)}=0 — same scalar); 2 survivors explicit, ∝ K·∂X | PARTIAL-FAVOURABLE |
 | SF22 | finishing list | exact kinetic reduction DONE, verdict survives (+7.347); Dirac multiplier matrix FULL RANK — frozen-lapse flag | PARTIAL (C3 downgraded by SF23) |
+| SF26 | **two-piece repair** | **FAILS**: residual numerator ∝ F_M alone, no G_E cancels it; large-G_E limit deletes MOND. **TRILEMMA**: electric piece can be lapse-linear (HR-safe) OR quadratic (gravitates), not both | **REPAIR KILLED — trilemma explicit** |
 | SF25 | **the lensing gate** | **ADVERSE**: g_lens = (g_dyn + g_N)/2 — light sees HALF the anomaly deep-MOND; structural (X spatial-only ⟹ no T₀₀), no parameter fixes it; repair named: two-piece interaction with the lapse-linear electric √Υ_E | **KILL of the single-piece interaction** |
 | SF24 | **continuum Dirac analysis** (1D-reduced) | GR closure recovered exactly (W ∝ M, read off); Σ-detector: **Σ = 0.1835 ≠ 0 on the FULL constraint jet** ⟹ orthogonal pair second class **in the continuum**; diagonal survives; **7 DOF at generic continuum points** | **CONTINUUM SECOND-CLASS** |
 | SF23 | **artifact verification** | pure-GR control FAILS the same test (rank 2, comparable magnitude, boundary-dependent) ⟹ frozen lapse = **lattice artifact**; ghost verdict untouched (its control passed) | ARTIFACT CONFIRMED |
 | SF21 | **the weak-zero test** | on-shell {C,Ĉ} = **−7.347 ≠ 0** at a generic real point, all constraints imposed at all sites, both controls exact | **NOT WEAKLY ZERO — second class on the representative** |
 
 **Status: sf25 KILLED the single-piece interaction on LENSING (light sees half the anomaly).
-The architecture survives; the named repair is the two-piece interaction (electric √Υ_E +
-spatial 3/2), whose sign analysis, ghost check and Möbius re-derivation are owed. Prior status:
+sf26 then KILLED the two-piece repair and exposed a **trilemma**: any energy-density channel must
+be quadratic to gravitate and lapse-linear to stay HR-safe, and a square root cannot be both.
+Named next direction, structural not additive: move lensing into the **matter coupling** via a
+disformal metric built from the khronon (the TeVeS solution; the khronon supplies the vector free). Prior status:
 steps 1–3 of `PROBLEM_SF13.md` plus the sign gate cleared. Step 4 is OPEN — not
 closed and not killed. `sf16` briefly made it look two-term; `sf17` withdrew that. The bracket
 has four terms, one nonzero through the shared π̂. `sf18` then used the u^i lever: the structure
