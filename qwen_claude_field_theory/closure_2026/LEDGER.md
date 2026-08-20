@@ -15,6 +15,7 @@
 | SF18 | step 4 structure + DOF count | both lapses LINEAR ⟹ 2 constraints; u^i determined algebraically; **count = 7 DOF**, no room for an 8th | PARTIAL |
 | SF19 | the bracket {C,Ĉ} | 2 of 4 terms **proved zero** ({F(X),B(X)}=0 — same scalar); 2 survivors explicit, ∝ K·∂X | PARTIAL-FAVOURABLE |
 | SF22 | finishing list | exact kinetic reduction DONE, verdict survives (+7.347); Dirac multiplier matrix FULL RANK — frozen-lapse flag | PARTIAL (C3 downgraded by SF23) |
+| SF31 | **OPTION 1: MOND term with T₀₀** | scalar f ~ Y^{3/2} has **identically traceless spatial stress** (p_r+2p_t = (2n−3)f = 0 at n = 3/2) ⟹ Φ = Ψ ⟹ **g_lens = g_dyn, full anomaly**. Price = R1 saturation | **LENSING GATE PASSED — the two walls are mutually exclusive** |
 | SF30 | **dust lensing — the last route** | accounting theorem: dust has T₀₀ so contributes EQUALLY, interaction UNEQUALLY ⟹ **M = 0 forced**, dust REPLACES MOND; and budget short **33×** at 2.2 Mpc | **ROUTE CLOSED (twice)** |
 | SF29 | **explicit α(X), β(X)** | boundary condition belongs at LARGE x (Newtonian = high accel) ⟹ **β < 0: SUPERLUMINAL**; and β strictly monotone ⟹ **cannot vanish in BOTH Newtonian regimes** (gap 8.52 v_c²) | **REPAIR KILLED — sf28 C withdrawn** |
 | SF28 | the four bills | γ_PPN = 1 exactly (screened) ✓; WEP exact by construction ✓; **causality WITHDRAWN by SF29**; matter Hamiltonian lapse-linear ✓ | 3 of 4 stand |
