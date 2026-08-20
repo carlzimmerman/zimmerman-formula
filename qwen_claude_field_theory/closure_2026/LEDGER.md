@@ -113,3 +113,66 @@ interest. sf35/sf36's closed form is unaffected; it remains the correct subleadi
 *what makes `rho(r) = sqrt(G M_b a_0)/(4 pi G r^2)`, locked to the BARYONIC mass with the coefficient
 set by `a_0`, a DYNAMICAL CONSEQUENCE rather than an initial condition?* Equivalently: what makes the
 a_0-line an **attractor** of the field equations. Six mechanisms under adversarial test.
+
+### sf39 — MECHANISM E: the khronon as the carrier (2026-08-20, 54/54)
+
+`sf39_khronon_carrier_2026.py`.
+
+**THEOREM K1 (proved symbolically).** For a static spherically symmetric spacetime with the
+khronon aligned to the timelike Killing vector, `theta = 0` and `sigma_mn = 0` **identically**.
+So `beta = c_13` and `lambda = c_2` **drop out of the static sector entirely**: the whole problem
+is ONE coefficient, `alpha = c_14`, and ONE scalar, `A = |d ln N|^2` — which is the **total local
+field gradient**, exactly what sf06's locality theorem demands (contrast 3.30e7 at the Sun).
+
+**THE SCALING THEOREM — mechanism E in its bare form is DEAD, twice over.** The 3-coefficient
+khronon action carries **no dimensionful parameter but G**, so its induced density is forced to be
+`rho = (c^2/G r^2) Fs(2GM/c^2 r)`. The amplitude law needs homogeneity exponent **1/2 in M and 0 in
+r simultaneously** — impossible. Explicitly the bare exterior density goes as **M^2/r^4**, and at
+`r_M` it is `1.96e-12` (canonical) / `2.15e-12` (alt) of the target at `c_14 = 1e-5`, scaling
+linearly with `c_14`. **No (alpha,beta,lambda) reproduces the amplitude law.**
+
+**THE MINIMAL REPAIR DELIVERS, and it is the framework's own.** Promote the constant `alpha` to a
+free function `Fk(A)` whose SCALE comes from the promotion `a0^2(Q) = kappa^2 G(-K(Q))`
+(`Q = Q0/N`, so at `Q = Q0` the DBI kernel returns `a0 = kappa c sqrt(G rho_Lambda)`, verified to
+0.98%). Then the master equation is **exactly AQUAL at linear order**,
+`div[(1 - Fk'/2) grad Phi] = 4 pi G rho`, i.e. **mu = 1 - Fk'/2**, and the a0-line fixes `Fk` in
+closed form: `Fk(x) = (a0/c^2)^2 [2x^2 - x sqrt(1+4x^2) - (1/2) asinh(2x) + 2x]`.
+`rho_eff = sqrt(G M_b a0)/(4 pi G r^2)` then comes out **exactly** — verified symbolically
+(`lim r^2 rho_eff = sqrt(G M a0)/(4 pi G)`) and numerically (0.999999 at 1000 r_M, both footings) —
+and **uniquely**: `mu(x) x = [sqrt(1+4x^2)-1]/2` has derivative `2x/sqrt(1+4x^2) > 0`, so the AQUAL
+functional is strictly convex and the halo profile has **no free integration constant**, unlike dust.
+
+**LENSING PASSES, and the decisive statement is at LINEAR order.** The deep-MOND `Fk` gives
+`6Fk - 4A Fk' = 4A` with **no linear piece** (the `A^{3/2}` term contributes **exactly zero**, all
+orders, verified against the full variation), so `Psi = Phi` and **light sees the FULL anomaly**.
+sf25's "half the anomaly" kill does **not** apply to this host, because `A` is built from the LAPSE
+and therefore has a `T_00`. Subleading: `eps = (p_r+2p_t)/(rho c^2)` in **[1.96e-07, 5.88e-07]**
+canonical / **[2.15e-07, 6.46e-07]** alt — a BRACKET, not a number, because a 1PN
+Einstein-Hilbert term (`8 gradPhi.gradPsi`) of the **same size** was not computed. Worst-case
+headroom **4.92 orders** on sf38's tightest tolerance.
+
+**PPN, priced.** `alpha_eff = 2[1-mu] = a0/g` is **screened by the total field**:
+`alpha_1 = 6.31e-08` (0.00063 sigma, 1584x margin), `alpha_2 <= 1.58e-08` on the conservative
+1-AU reading (0.039 sigma, 25.3x — the tightest item), `3.4e-13` at the solar surface,
+`2.6e-13` at a binary pulsar; Cassini `gamma` residual `3.6e-16` (1.6e-11 sigma). On the operative
+MS08 kernel every one of these is `~1e-3457`.
+
+**AGAINST INTEREST, three items.** (1) The first draft of this file quoted the khronon-only
+lensing coefficient as an **exact** match to sf36's `v_c^2/2c^2`; that is WITHDRAWN — the match is
+real in ORDER, but a 1PN GR term of the same size was omitted, so only a bracket is defensible.
+(2) The free function's **SHAPE is an input**; the promotion supplies the SCALE `a0`, not the
+interpolation. The a0-line is HOSTED here, not derived. (3) The a0-line kernel carries the
+framework's logged `a0/2` sunward anomaly, **1265x** (canonical) / **1524x** (alt) over the
+Earth–Mars budget — inherited from the kernel, not from the khronon.
+
+**STRUCTURAL PAYOFF.** This host is **single-metric**: 2 tensor + 1 khronon scalar = **3 DOF**. The
+entire bimetric Boulware–Deser programme of sf13–sf21 (7 DOF, the `{C,Chat}` bracket) is **not
+needed** on it. Cost named: `alpha_eff -> 0` in the Newtonian regime, so the khronon's sound speed
+runs as `1/alpha_eff` (`~1e7` at `g/a0 = 1e7`) — superluminal, which a preferred-foliation theory
+tolerates, but strong coupling is a real EFT cost and was not resolved here.
+
+*Prior art, UNVERIFIED (not checked against the paper): a khronon with a nonlinear function of the
+acceleration as a route to MOND is, to my knowledge, Blanchet & Marsat 2011. The class is not novel;
+what is Carl's is the promotion that supplies its scale.*
+
+| SF39 | mechanism E: khronon carrier | bare 3-coefficient action **DEAD** (rho ~ M^2/r^4; exponent 1/2 vs 0); free-function host gives `sqrt(GM a0)/(4 pi G r^2)` **exactly + uniquely**, lensing full-anomaly at linear order, `alpha_1` 0.00063 sigma | **PARTIAL — bare form killed, minimal extension VIABLE-CANDIDATE** |
