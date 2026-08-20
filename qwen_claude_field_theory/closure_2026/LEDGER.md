@@ -15,7 +15,8 @@
 | SF18 | step 4 structure + DOF count | both lapses LINEAR ⟹ 2 constraints; u^i determined algebraically; **count = 7 DOF**, no room for an 8th | PARTIAL |
 | SF19 | the bracket {C,Ĉ} | 2 of 4 terms **proved zero** ({F(X),B(X)}=0 — same scalar); 2 survivors explicit, ∝ K·∂X | PARTIAL-FAVOURABLE |
 | SF22 | finishing list | exact kinetic reduction DONE, verdict survives (+7.347); Dirac multiplier matrix FULL RANK — frozen-lapse flag | PARTIAL (C3 downgraded by SF23) |
-| SF28 | **the four bills, PAID** | γ_PPN = 1 exactly (screened); WEP exact by construction (η ≡ 0); causality **subluminal, sign FORCED** by Δ>0, β ~ 8e-7; matter Hamiltonian stays **lapse-linear** ⟹ sf18 structure intact | **ALL FOUR PAID** |
+| SF29 | **explicit α(X), β(X)** | boundary condition belongs at LARGE x (Newtonian = high accel) ⟹ **β < 0: SUPERLUMINAL**; and β strictly monotone ⟹ **cannot vanish in BOTH Newtonian regimes** (gap 8.52 v_c²) | **REPAIR KILLED — sf28 C withdrawn** |
+| SF28 | the four bills | γ_PPN = 1 exactly (screened) ✓; WEP exact by construction ✓; **causality WITHDRAWN by SF29**; matter Hamiltonian lapse-linear ✓ | 3 of 4 stand |
 | SF27 | **disformal matter coupling** | **REPAIR WORKS**: α moves (matter,light) as (1,0), β as (½,¼) — two levers span the plane. α′=β′=−2Δ ⟹ **both observables = g_N+Δ, full anomaly in lensing AND dynamics**, no new field | **LENSING GATE REPAIRED** |
 | SF26 | **two-piece repair** | **FAILS**: residual numerator ∝ F_M alone, no G_E cancels it; large-G_E limit deletes MOND. **TRILEMMA**: electric piece can be lapse-linear (HR-safe) OR quadratic (gravitates), not both | **REPAIR KILLED — trilemma explicit** |
 | SF25 | **the lensing gate** | **ADVERSE**: g_lens = (g_dyn + g_N)/2 — light sees HALF the anomaly deep-MOND; structural (X spatial-only ⟹ no T₀₀), no parameter fixes it; repair named: two-piece interaction with the lapse-linear electric √Υ_E | **KILL of the single-piece interaction** |

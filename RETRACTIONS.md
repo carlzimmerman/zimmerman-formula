@@ -836,3 +836,34 @@ the continuum column where item 2 already lives. **The ghost verdict stands unto
 asymmetry is principled:** sf21's verdict rests on the bracket being *nonzero*, and *that*
 direction's control (interaction off ⟹ bracket exactly zero) **passed** on the same lattice —
 artifact-free. sf22 C3 used the artifact-contaminated direction. One survives, one is withdrawn.
+
+### 2026-08-20 — sf28 PART C's causality clearance — WITHDRAWN (wrong boundary end)
+
+`closure_2026/sf29_explicit_coupling_2026.py` (11/11) constructed the explicit α(X), β(X) that
+sf27's repair requires, and the construction exposed the error.
+
+sf28 PART C imposed **β(r → ∞) = 0** and concluded β > 0 (subluminal, safe). **That is the
+deep-MOND end, where the interaction is ON.** The screening condition lives at the *Newtonian*
+end — and sf13e established that the Newtonian limit is **large x = high acceleration = small
+r**, near the mass. With the correct condition β = 0 at large x, integrating outward gives
+**β < 0 throughout the MOND regime** (β = −1.15 v_c² at x = 1, −4.19 v_c² at x = 0.1). The cone
+ratio (v_matter/v_photon)² = 1 − β then **exceeds 1: matter propagates outside the photon light
+cone. Superluminal.** Magnitude ≈ 4.5×10⁻⁷, but superluminality is a structural defect, not a
+numerical one.
+
+**And the deeper obstruction, which is a theorem rather than a sign slip:** an isolated galaxy
+has **two** Newtonian regimes — the interior (high internal acceleration) and the far exterior
+(external-field domination) — and screening requires β = 0 at both. But β′ = −2Δ with Δ > 0
+everywhere forces β **strictly monotone** in r, and a strictly monotone function cannot vanish at
+both ends. The required change between x = 0.01 and x = 100 is 8.52 v_c², *as large as the
+phenomenology the coupling exists to produce*. **The two boundary conditions are incompatible.**
+
+**Withdrawn:** sf28 PART C, and with it the claim that all four bills were paid. **Bills 1, 2 and
+4 (γ_PPN, WEP, constraint algebra) are unaffected** — none of their arguments used the sign of β.
+
+**Stands:** sf27's algebra. The two levers genuinely span the (g_dyn, g_lens) plane and the
+repair works *pointwise*. What fails is making it globally consistent with screening.
+
+**Direction: I manufactured a win.** Fifth control-caught error of the programme, second in this
+repair chain, and the pattern is the familiar one — a boundary condition asserted at the
+intuitive end rather than derived from where the screening actually lives.
