@@ -674,3 +674,41 @@ then be doing three jobs: dark energy, dust, and the foliation. Not computed; fl
 best remaining host had the checks not failed. The BD question remains **open**, exactly as the
 published paper states. BIMOND must not be quoted as ghost-free — and must not be quoted as
 ghost-*ful* on the strength of this file either.
+
+### 2026-08-19 — sf10 PART E's "MOND outside the constraint sector" — WITHDRAWN (external catch)
+
+An external session's SF11B computation is **correct** and this corpus was **wrong**.
+`superfluid_2026/sf10_two_lapse_hessian_2026.py` PART E claimed the magnetic 3/2 term "carries
+NO lapse and contributes NOTHING to H_AB," on the strength of ∂/∂N of the magnetic piece being
+zero. Verified in `qwen_claude_field_theory/closure_2026/sf12_adjudicate_sf11b_2026.py` (12/12):
+for L_M ~ βN·N̂⁻⁶·S the N-N entry does vanish, **but**
+
+    det H = −(∂²L/∂N∂N̂)² = −36 β²S²/N̂¹⁴  ≠ 0
+
+A single zero on the diagonal *guarantees* a non-degenerate indefinite 2×2 Hessian unless the
+mixed entry also vanishes — and it does not. **Lapse-affine in one lapse is not lapse-degeneracy
+in both.** This is the second time in three files that a partial-derivative zero was mistaken
+for a Hessian degeneracy; sf10's own first pass made the mirror version of the same error.
+
+**Direction: I manufactured a win.** sf10 PART E was the "one genuinely promising line left" and
+it does not hold.
+
+**Separately, the same external session's proposed closure has its own error, recorded here so
+it is not adopted:** it offers F(X) = √(X(X+a₀²)) − a₀² asinh(√X/a₀), whose derivative is
+μ(x) = x/√(1+x²), and claims this "reduces exactly to g² = g_bar² + a₀g_bar." It does not — that
+is the *standard* MOND μ-function, not the a₀-line. Substituting leaves a residual
+x²(x²−√(x²+1)+1)/(x²+1)^{3/2}, equal to 0.207 at x = 1 and vanishing nowhere. Both functions
+share the deep-MOND limit μ → x, which is why it slipped through: the limit checks pass and the
+*interpolation* — the part that is Carl's own content — is wrong. The correct closed form is
+already banked in `superfluid_2026/sf01` PART B3: F(z) = ½√z√(1+4z) + ¼asinh(2√z) − √z. Note the
+near-miss: same sqrt-plus-inverse-hyperbolic shape, argument 1+4z rather than 1+z.
+
+**What survives from the external work, and it is worth more than either error:** V = N F(X) +
+N̂ B(X) with X lapse-free has an *identically* vanishing lapse Hessian — every entry zero, real
+degeneracy. The price is that a lapse-free X is built from spatial geometry only, so this is no
+longer BIMOND's connection-difference interaction but a **Hassan–Rosen-type potential**. The
+prize is that HR potentials have a published ghost-freedom proof (JHEP 02 (2012) 126), so such a
+host *inherits* the BD clearance rather than owing it. The open question inverts: not "is it
+ghost-free?" but "can an HR-type spatial scalar built from the khronon's covariant projections
+deliver the a₀-line's F on reduction?" That trades an unbounded theory-side liability for a
+bounded phenomenology-side calculation.
