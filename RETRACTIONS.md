@@ -783,3 +783,40 @@ khronon has its own equation of motion, which was never used in the bracket.** �
 independent once the foliation is dynamical — it is tied to ∇_i φ. Substituting the khronon
 equation *before* evaluating the bracket is covariant and is the opposite of restricting the gauge
 group. Not computed; that is the next thing to try.
+
+### 2026-08-19 — sf16's "the interaction is momentum-free" theorem — WITHDRAWN
+
+Caught while setting up the cross-term evaluation it was meant to enable.
+`closure_2026/sf16` claimed the interaction is momentum-free, hence
+{√h F(X), √h B(X)} = 0 identically, hence the constraint bracket collapses from four terms to
+two. **The theorem is false and the collapse is withdrawn.**
+
+sf16 PART A2 correctly noted that the K̂u term in sf13a's exact result
+C_M = (³Γ − ³Γ̂) − K̂_jk u^i drops **in the quasi-static limit**. PART A3 then dropped the
+qualifier and asserted momentum-freeness as a property of the interaction. **The constraint
+algebra is not a quasi-static question** — it is a full-phase-space statement, where K̂ ≠ 0 and
+K̂_ij ~ (π̂_ij − ĥ_ij π̂/2)/√ĥ carries the hatted momenta. Verified in
+`sf17_withdraw_sf16_theorem_2026.py` (9/9): ∂X/∂π̂ ≠ 0.
+
+**Direction: I manufactured a win**, and briefly made the architecture look closer to closure
+than it is. Fourth error in this line, and the family is now recognisable: **a result
+established in one regime, carried into another where its hypothesis does not hold.** (The
+earlier three: a partial-derivative zero read as a Hessian degeneracy, twice; and a coefficient
+asserted instead of calibrated, twice.)
+
+**What survives, and is not a consolation:** X contains **no unhatted momenta** — π^ij appears
+nowhere, because the khronon projection cancelled the unhatted extrinsic curvature at the same
+stroke that gave ∂C_M/∂N = 0 (sf13a A1). So one cross term, {H_EH[h,π], √h B(X)}, *is* clean and
+does reduce to the momentum-free case; the other, {√h F(X), Ĥ_EH[ĥ,π̂]}, does not. The asymmetry
+is real and follows from the projection being taken along the khronon, which is tied to the
+unhatted sector. And u^i is a **Lagrange multiplier**, so the terms carrying the momentum
+dependence have their own variational equation attached — the specific next lever.
+
+**Unaffected:** sf16 PART D's framing correction (∇N terms are not a kill; GR's own algebra has
+derivative-of-delta structure) never used the theorem and stands. Steps 1–3 and the sign gate are
+untouched — sf13a–e are quasi-static or static results, and that limit is *legitimate* for
+phenomenology, where the RAR, the ephemeris bound and legality all live. What was illegitimate
+was importing it into the Hamiltonian analysis.
+
+**Architecture status: unchanged — neither closed nor killed. Step 4 is open and harder than
+sf16 made it look.**

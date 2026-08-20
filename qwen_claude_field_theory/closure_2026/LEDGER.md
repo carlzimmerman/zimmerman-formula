@@ -10,7 +10,10 @@
 | SF13e | the interaction function | A(x) = (√(4x²+1)−2x−1)/(2rx+2x−√(4x²+1)+1); legality PASSES | PASS |
 | SF14 | secondary constraint bracket | *external, not seen or verified here* | UNVERIFIED |
 | SF15 | adjudicate external "projectable PASS" | script crashes; test vacuous; projectability **deletes** constraints | **external PASS REJECTED** |
-| SF16 | step 4 attempted | interaction is **momentum-free** ⟹ {C,Ĉ} has 2 terms not 4; ∇N is *not* a kill | PARTIAL |
+| SF16 | step 4 attempted | ~~interaction momentum-free~~ **WITHDRAWN by SF17**; ∇N is *not* a kill (stands) | PARTIAL (part withdrawn) |
+| SF17 | withdraw SF16's theorem | ∂X/∂π̂ ≠ 0 via K̂u; but ∂X/∂π = 0 exactly | WITHDRAWAL |
 
 **Status: steps 1–3 of `PROBLEM_SF13.md` plus the sign gate are cleared. Step 4 is OPEN — not
-closed and not killed — but now reduced to evaluating TWO cross terms (`sf16`).** See `QWEN_STEP4.md` for the brief.
+closed and not killed. `sf16` briefly made it look two-term; `sf17` withdrew that. The bracket
+has four terms, one nonzero through the shared π̂. Next lever: vary w.r.t. the Lagrange
+multiplier u^i.** See `QWEN_STEP4.md` for the brief.
