@@ -15,6 +15,7 @@
 | SF18 | step 4 structure + DOF count | both lapses LINEAR ⟹ 2 constraints; u^i determined algebraically; **count = 7 DOF**, no room for an 8th | PARTIAL |
 | SF19 | the bracket {C,Ĉ} | 2 of 4 terms **proved zero** ({F(X),B(X)}=0 — same scalar); 2 survivors explicit, ∝ K·∂X | PARTIAL-FAVOURABLE |
 | SF22 | finishing list | exact kinetic reduction DONE, verdict survives (+7.347); Dirac multiplier matrix FULL RANK — frozen-lapse flag | PARTIAL (C3 downgraded by SF23) |
+| SF28 | **the four bills, PAID** | γ_PPN = 1 exactly (screened); WEP exact by construction (η ≡ 0); causality **subluminal, sign FORCED** by Δ>0, β ~ 8e-7; matter Hamiltonian stays **lapse-linear** ⟹ sf18 structure intact | **ALL FOUR PAID** |
 | SF27 | **disformal matter coupling** | **REPAIR WORKS**: α moves (matter,light) as (1,0), β as (½,¼) — two levers span the plane. α′=β′=−2Δ ⟹ **both observables = g_N+Δ, full anomaly in lensing AND dynamics**, no new field | **LENSING GATE REPAIRED** |
 | SF26 | **two-piece repair** | **FAILS**: residual numerator ∝ F_M alone, no G_E cancels it; large-G_E limit deletes MOND. **TRILEMMA**: electric piece can be lapse-linear (HR-safe) OR quadratic (gravitates), not both | **REPAIR KILLED — trilemma explicit** |
 | SF25 | **the lensing gate** | **ADVERSE**: g_lens = (g_dyn + g_N)/2 — light sees HALF the anomaly deep-MOND; structural (X spatial-only ⟹ no T₀₀), no parameter fixes it; repair named: two-piece interaction with the lapse-linear electric √Υ_E | **KILL of the single-piece interaction** |
@@ -27,9 +28,11 @@ sf26 then KILLED the two-piece repair and exposed a **trilemma**: any energy-den
 be quadratic to gravitate and lapse-linear to stay HR-safe, and a square root cannot be both.
 sf27 then took that direction and **it works**: a disformal+conformal coupling to the khronon's own
 normal repairs the lensing gate with no new field, α′ = β′ = −2Δ, full anomaly in both observables.
-**Bills named and unpaid:** γ_PPN recomputation, MICROSCOPE/WEP check, the matter/photon light-cone
-separation (causality — the sign of β′ decides which cone is wider), and the matter sector's
-contribution to the constraint algebra. The gravitational action is untouched, so sf13a–sf24 stand. Prior status:
+**All four bills PAID in sf28**: γ_PPN = 1 exactly in the screened regime (residual priced against
+Cassini 2.3e-5); WEP exact by construction since A,B depend on the field alone (η ≡ 0, stronger than
+MICROSCOPE's bound); causality safe with the sign **forced** — β > 0 everywhere because the anomaly is
+an enhancement, so matter is subluminal, β ~ 8e-7; and the matter Hamiltonian stays lapse-linear
+because X is lapse-free, so sf18's constraint structure is untouched. Prior status:
 steps 1–3 of `PROBLEM_SF13.md` plus the sign gate cleared. Step 4 is OPEN — not
 closed and not killed. `sf16` briefly made it look two-term; `sf17` withdrew that. The bracket
 has four terms, one nonzero through the shared π̂. `sf18` then used the u^i lever: the structure
