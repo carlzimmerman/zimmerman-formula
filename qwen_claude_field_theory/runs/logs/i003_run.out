@@ -1,0 +1,224 @@
+
+i003_disc_correction.py
+=======================
+I003 -- THE DISC (NON-SPHERICAL) CORRECTION TO THE LOCAL ALGEBRAIC LAW.
+
+THE CLAIM UNDER TEST
+--------------------
+In the quasi-static limit the AeST scalar obeys the divergence-form PDE
+
+        div[ J_Y(|grad chi|^2) grad chi ] = 4 pi Ghat rho                    (PDE)
+
+and, IN SPHERICAL SYMMETRY ONLY, Gauss's theorem collapses this to the LOCAL ALGEBRAIC law
+
+        u J_Y(u^2) = g_bar ,      u = |grad chi| .                           (ALG)
+
+The RAR requirement "s >= 0.558" that sits on one side of the 233x ephemeris/galaxy
+incompatibility was derived from (ALG).  But the RAR is measured on 175 SPARC DISC
+galaxies, and a disc is not spherical: (PDE) carries a solenoidal ("curl") piece that
+(ALG) throws away.  This script solves (PDE) for a Miyamoto-Nagai disc and asks whether
+the disc value of s needed to reproduce the same RAR differs from the spherical one.
+
+    PASS  : s needed by the disc solution drops below 0.1 (would close most of the gap)
+    KILL  : the shift is under 20%
+    GATE  : the solver must reproduce (ALG) when fed a SPHERICAL source.  If it does
+            not, nothing else here is claimable.  Two further gates are added here
+            because the spherical one cannot test the non-spherical machinery: a LINEAR
+            kernel on the full disc (which must give u = g_bar exactly in any geometry),
+            and a second, compact spherical source that reaches y ~ 1e4 so the saturated
+            branch is exercised too.
+
+THE KERNEL FAMILY, AND A CORRECTION TO THE TASK SHEET
+-----------------------------------------------------
+The legal (ghost-free) one-parameter family is
+
+        J_Y(Y) = v / (1 - v/s) ,    v = sqrt(Y)/a0 = U ,
+
+for which (ALG) reads U^2/(1 - U/s) = y and therefore
+
+        U(y; s) = ( -y/s + sqrt( (y/s)^2 + 4 y ) ) / 2 ,   U -> sqrt(y) (y->0),  U -> s .
+
+At s = 1/2 this is EXACTLY the a0-line U = sqrt(y^2+y) - y, and U(2) = sqrt(6)-2 =
+0.449490, reproducing the number quoted in the problem statement.
+
+    *** The task sheet also states "U(y) = s sqrt(y)/(s + sqrt y)" for this same family.
+    That is a DIFFERENT family: it is the reconstruction of J_Y = v/(1 - v/s)^2, and at
+    s = 1/2 it gives U(2) = 0.36939, NOT 0.4495, and it is NOT the a0-line.  The two
+    disagree.  This script uses J_Y = v/(1 - v/s) because that is the one that reduces to
+    Carl's a0-line at s = 1/2 (check 2 proves the identity symbolically) and because it
+    is the one whose U(2) matches the 0.449 quoted in the same paragraph.  BOTH are
+    carried all the way to the verdict (checks 2 and 11) so that nothing here depends on
+    which reading is right -- and it turns out the quoted "s >= 0.558 / 233x" is the
+    FAMILY 2 number while "U(2) = 0.449 / the a0-line" is the FAMILY 1 one, so the task
+    sheet's two sides of the gap were priced with two different kernels.
+
+METHOD
+------
+Axisymmetric finite-volume solve in spherical polars (r, theta), theta in [0, pi/2] with
+reflection symmetry at the pole and at the disc plane, log-spaced in r.  The residual is
+written in PURE FLUX FORM,
+
+    for every cell:   sum_faces  A_f * [ mu_f (dchi/dn)_f - (grad Phi_N . n)_f ] = 0 ,
+
+where mu = J_Y(u^2) and the Newtonian face fluxes are computed by 4-point Gauss-Legendre
+quadrature of the EXACT analytic Miyamoto-Nagai gradient.  Two consequences worth stating:
+
+  * the discrete source carries the exact enclosed mass to quadrature accuracy, so the
+    thin disc does not have to be resolved as a density field at all; and
+  * for a spherical source every theta-flux vanishes identically and each radial face
+    equation becomes mu u = g_bar -- i.e. the discretisation reduces to (ALG) EXACTLY.
+    That is why the gate is a real test of the iteration and not of the stencil.
+
+Boundary conditions: the bracket [mu dchi/dn - grad Phi_N . n] is set to zero on the inner
+(r_min) and outer (r_max) spheres, i.e. the local algebraic law is IMPOSED there and
+nowhere else.  At r_max (300 kpc, ~75 disc scale lengths) that is the standard
+monopole/spherical boundary condition.  At r_min (0.05 kpc) the enclosed mass is ~1e-6 of
+the total, so the flux through that sphere is a ~1e-6 correction whatever law it obeys.
+Both are varied and shown not to matter.  Both theta boundaries are symmetry planes with
+identically zero flux (the pole face has zero area; the equatorial face has grad Phi . n =
+0 by reflection).
+
+Solver: damped Newton.  The face flux q(p) = mu(u) p is linearised in its NORMAL
+derivative p at frozen tangential component, giving a 5-point system solved directly
+(scipy sparse LU), with a backtracking line search on the true nonlinear residual.  This
+was arrived at the hard way and the failures are recorded in the code: a lagged-mu
+(Picard) iteration diverges because d ln mu/d ln u = 1/(1-U/s) is large; independently
+clipping mu and dmu/dU at saturation diverges; a per-angle "local algebraic" initial guess
+starts 30x outside the domain of mu for a thin disc and never recovers.  The answer is
+cross-checked against a completely different iteration (alternating line relaxation, no
+sparse algebra) at check 6.
+
+UNITS.  Lengths in kpc, accelerations in units of a0.  The footing (a0 canonical
+9.3619e-11 vs alt 1.1279e-10) enters ONLY through GM/(a0 kpc^2), i.e. through which radius
+carries which y; BOTH are run and BOTH are reported.
+
+
+==========================================================================================
+[ok]    1. Miyamoto-Nagai source is exact (Gauss + Poisson consistency)
+          hemisphere flux / (2 pi GM) at r = 3e4 kpc : 0.9998666665
+                                      at r = 3e5 kpc : 0.9999866667
+          the residue shrinks 10.0x for a 10x larger sphere, i.e. it is real MN mass
+          outside the sphere, not a quadrature error
+          max |lap Phi / (4 pi G rho) - 1| = 4.74e-07 over 4 interior points
+[ok]    2. J_Y = v/(1-v/s) at s=1/2 IS the a0-line; and WHICH family the 233x uses
+          max |U_alg - (sqrt(y^2+y)-y)|/U = 0.00e+00 ; U(2) = 0.449490 = sqrt(6)-2
+          max |U J_Y(U^2)/y - 1|          = 3.04e-10
+          the RAR requirement U(y=2) >= 0.4 needs, from the SPHERICAL law:
+             family 1  J_Y = v/(1-v/s)     :  s >= 0.43478  -> gap 181x
+             family 2  J_Y = v/(1-v/s)^2   :  s >= 0.55776  -> gap 232x
+          so the quoted '233x' and 's >= 0.558' were computed in FAMILY 2 (the task
+          sheet's 's sqrt(y)/(s+sqrt y)'), while 'U(2)=0.449' and the a0-line are
+          FAMILY 1.  The two are not the same kernel.  Both are carried below, and the
+          verdict is stated as the RATIO s_disc/s_sph, which is family-robust.
+[ok]    3. LINEAR GATE (mu = 1 on the FULL DISC): solver returns u = g_bar exactly
+          residual 4.13e-14 ; max |u_plane/g_bar - 1| over 0.3 < R < 60 kpc = 7.34e-04
+          => the disc machinery is accurate to ~0.07%, so a 30% effect is not numerics
+[ok]    4. SPHERICAL GATE (extended b=4 kpc): reproduces u J_Y(u^2) = g_bar
+          residual 3.01e-13 ; max |u/U_alg(y) - 1| = 3.070e-04  over 2.2e-02 < y < 1.8e+00
+          (the compact gate exercises the saturated branch; the ACCURACY against
+           the exact algebraic law, not the residual, is the criterion that matters)
+[ok]    5. SPHERICAL GATE (compact  b=0.05 kpc): reproduces u J_Y(u^2) = g_bar
+          residual 1.68e-07 ; max |u/U_alg(y) - 1| = 5.707e-04  over 2.2e-02 < y < 1.1e+04
+          (the compact gate exercises the saturated branch; the ACCURACY against
+           the exact algebraic law, not the residual, is the criterion that matters)
+[ok]    6. two independent iterations agree on the disc answer
+          sparse damped Newton : rel 9.3e-10 , f(3 kpc) = 0.67239
+          line relaxation      : rel 1.0e-09 , f(3 kpc) = 0.67239
+          max |difference| over 0.5-60 kpc = 1.15e-06
+
+  --- GRID / BOUNDARY / TOLERANCE CONVERGENCE (M1, canonical, s=1/2) ---
+      128 x  80        rel=9.3e-10   f(3)=0.67239  f(8)=0.91985  f(20)=0.98296
+      192 x 120 (fid)  rel=9.2e-10   f(3)=0.67201  f(8)=0.92013  f(20)=0.98324
+      320 x 200        rel=8.7e-10   f(3)=0.67201  f(8)=0.92019  f(20)=0.98332
+      rmin 0.05->0.2   rel=9.8e-10   f(3)=0.67191  f(8)=0.92017  f(20)=0.98331
+      rmax 300->1000   rel=9.2e-10   f(3)=0.67204  f(8)=0.92004  f(20)=0.98318
+      tol 1e-9->1e-11  rel=8.7e-12   f(3)=0.67201  f(8)=0.92013  f(20)=0.98324
+[ok]    7. f(R) converged: max spread over 6 grid/boundary/tolerance variants < 0.005
+          max spread at R in {2,3,5,8,13,20,35} kpc = 0.00143
+
+  --- THE MEASUREMENT: f(R) = u_disc(R) / U_alg(y(R); s=1/2) ---
+      model                                  footing                    R=2     R=3     R=5     R=8    R=20
+      M1 M=5e10 a=4.0 b=0.3 (task sheet)     canonical 9.3619e-11    0.5199  0.6720  0.8355  0.9201  0.9832
+      M1 M=5e10 a=4.0 b=0.3 (task sheet)     alt 1.1279e-10          0.5267  0.6777  0.8380  0.9209  0.9836
+      M2 M=1e11 a=3.0 b=0.3 (reaches y=2)    canonical 9.3619e-11    0.6074  0.7587  0.8936  0.9489  0.9881
+      M2 M=1e11 a=3.0 b=0.3 (reaches y=2)    alt 1.1279e-10          0.6109  0.7618  0.8944  0.9487  0.9884
+[ok]    8. the disc solution lies BELOW the local algebraic law everywhere in 1-40 kpc
+          u_disc < u_algebraic at EVERY radius in the band, all 4 runs : True
+          largest deficit |f-1|  : 0.6895  (69.0%)
+          largest |log10 f|      : 0.5079 dex   (committed RAR scatter: 0.108 dex)
+          worst residual         : 9.96e-10
+          DIRECTION: the disc produces LESS anomalous acceleration than the algebraic
+          law, so reproducing the same RAR needs a LARGER s, not a smaller one.
+[ok]    9. the term Gauss's theorem discards is O(1), not O(1%), and where the flux goes
+          |mu grad chi - grad Phi_N| / |grad Phi_N| IN THE PLANE at R = 3/8/20 kpc :
+               0.865 / 0.364 / 0.088
+          max over the whole 1 < r < 40 kpc domain : 0.976
+          f on the POLAR axis at r = 3/8/20 kpc    : 1.0060 / 1.0056 / 1.0031
+          -> u is SUPPRESSED in the plane and slightly ENHANCED on the axis.  The disc
+             is a high-mu (high-conductivity) slab: the flux that Gauss's theorem
+             forces through every sphere is carried by a SMALLER gradient near the
+             plane.  NOTE this is a flux-level measure and is NOT the same quantity as
+             the |curl v|/(|v|/r) = 8.7e-4..4.4e-2 quoted in the task sheet; the two
+             are not comparable and only this one enters the algebraic law.
+
+  --- CONTINUITY IN FLATTENING (M1 mass, canonical, s=1/2) ---
+      a/b =   0.00  (a=0.0 b=4.0)   f(3 kpc) = 1.0000   f(8 kpc) = 0.9999
+      a/b =   0.33  (a=1.0 b=3.0)   f(3 kpc) = 0.9835   f(8 kpc) = 0.9901
+      a/b =   1.33  (a=2.0 b=1.5)   f(3 kpc) = 0.9392   f(8 kpc) = 0.9740
+      a/b =   4.00  (a=4.0 b=1.0)   f(3 kpc) = 0.7472   f(8 kpc) = 0.9329
+      a/b =  13.33  (a=4.0 b=0.3)   f(3 kpc) = 0.6720   f(8 kpc) = 0.9201
+[ok]   10. f -> 1 continuously as the source is un-flattened (a/b -> 0)
+          sphere (a/b=0) gives f = 1.0000 ; f decreases monotonically with flattening: True
+          the deficit is a GEOMETRY effect, not a numerical one
+
+  --- WHAT s DOES THE DISC NEED, to deliver the RAR's U(y=2) >= 0.4 ? ---
+      s scanned at [0.4, 0.5, 0.62, 0.8] ; s_disc must be strictly INSIDE that range or it is
+      reported as not bracketed (an endpoint answer is a clamp, not a fit).
+      family   footing                  R(y=2)      s_sph     s_disc    ratio
+      1        canonical 9.3619e-11      7.575    0.43478    0.46619    1.072
+      1        alt 1.1279e-10            6.673    0.43478    0.47319    1.088
+      2        canonical 9.3619e-11      7.575    0.55776    0.60567    1.086
+      2        alt 1.1279e-10            6.673    0.55776    0.61581    1.104
+[ok]   11. s required by the DISC PDE, versus s required by the spherical law
+          every s_disc bracketed strictly inside the scan, every solve converged: True
+          ratio s_disc / s_sph spans 1.072 to 1.104 over both kernel families and both
+          a0 footings.  All four ratios above 1 (disc needs MORE saturation): True
+          PASS wanted s_disc < 0.1 ; the smallest s_disc found anywhere is 0.4662.
+[ok]   12. the 233x incompatibility, re-priced with the disc PDE
+          ephemeris bound                      s <= 2.4e-3
+          spherical-law RAR requirement        s >= 0.5578  -> gap 232x
+          disc-PDE RAR requirement             s >= 0.5980  -> gap 249x to 257x
+          the gap moves by a factor 1.072 to 1.104.  Closing it would need 0.0043; the
+          disc correction is three orders of magnitude short of that, and points the
+          wrong way in every family/footing combination tried.
+
+  --- HOW THE DEFICIT SCALES WITH DISC THICKNESS (M1 mass, a=4) ---
+      b = 0.15 kpc (b/a = 0.037):  f(3 kpc) = 0.6510   f(8 kpc) = 0.9160
+      b = 0.30 kpc (b/a = 0.075):  f(3 kpc) = 0.6720   f(8 kpc) = 0.9201
+      b = 0.60 kpc (b/a = 0.150):  f(3 kpc) = 0.7084   f(8 kpc) = 0.9265
+      b = 1.20 kpc (b/a = 0.300):  f(3 kpc) = 0.7633   f(8 kpc) = 0.9356
+[ok]   13. the deficit is monotone in thinness, as a geometric effect must be
+          f(8 kpc) runs 0.9160 (b/a=0.037) -> 0.9356 (b/a=0.30)
+          even the thickest disc tried keeps f below 1, and thinner discs -- which real
+          SPARC discs are -- make it WORSE
+[ok]   14. pre-registered grading, applied without adjustment
+          PASS iff s_disc < 0.1   : s_disc = 0.4662            -> NOT MET
+          KILL iff |shift| < 20%  : |shift| = 7.2% to 10.4%   -> MET
+          sign of the shift       : UPWARD (adverse) in all 4 cases
+          The pre-registered hypothesis was that the disc shifts s DOWN and closes the
+          gap.  It does the opposite, by ~10%.  That is neither the PASS condition nor
+          a rescue: the idea is KILLED, and the framework's own gap comes out slightly
+          WIDER than it was, not narrower.  Both readings printed rather than one
+          chosen quietly.
+
+==========================================================================================
+VERDICT: KILL
+  DECISIVE NUMBER: s_disc / s_sph = 1.072 - 1.104.  The disc PDE needs MORE
+  saturation than the spherical algebraic law, not less, so the
+  ephemeris/galaxy gap goes 232x -> 249x-257x (closing it needs 0.0043x).
+  In-plane u_disc/u_algebraic (M1, canonical): 0.672 at R=3 kpc, 0.920 at R=8,
+                                               0.983 at R=20 kpc.
+  Gates: linear-kernel disc 7.3e-04 ; spherical 3.1e-04 / 5.7e-04
+  runtime 236.0 s
+
+14/14 checks passed.

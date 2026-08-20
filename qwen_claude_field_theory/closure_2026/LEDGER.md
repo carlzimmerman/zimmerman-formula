@@ -176,3 +176,44 @@ acceleration as a route to MOND is, to my knowledge, Blanchet & Marsat 2011. The
 what is Carl's is the promotion that supplies its scale.*
 
 | SF39 | mechanism E: khronon carrier | bare 3-coefficient action **DEAD** (rho ~ M^2/r^4; exponent 1/2 vs 0); free-function host gives `sqrt(GM a0)/(4 pi G r^2)` **exactly + uniquely**, lensing full-anomaly at linear order, `alpha_1` 0.00063 sigma | **PARTIAL — bare form killed, minimal extension VIABLE-CANDIDATE** |
+
+### THE SIX-MECHANISM FLEET — MECHANISM C IS THE SOLE SURVIVOR (2026-08-20)
+
+22 agents, 3.4M tokens, six mechanisms for the amplitude law, adversarially refereed.
+
+| mechanism | amplitude law | screening | referees | verdict |
+|---|---|---|---|---|
+| **C two-field lock** | **YES, exact, an output** | **YES, structural** | 1 of 2 refuted | **SURVIVES** |
+| F mimetic / non-Lagrangian | YES, exact, an *attractor* | inherits kernel | 2 of 3 | FALLS — **one ghost** |
+| A AQUAL conformal | YES, coefficient 1.000000 | claimed, refuted | 2 of 3 | FALLS — **c_T ≠ 1** |
+| E khronon | **NO — scaling theorem** | YES, structural | — | amplitude impossible |
+| B **Carl's a₀-promotion** | NO — 395× to 16 orders short | fails sf06 | — | **DEAD** |
+| D superfluid | NO — slope −0.26 vs −2 | fails sf06 | — | **DEAD** |
+
+**MECHANISM C's theorem, strengthened by its own referee.** Gauss on the mediator plus the
+pointwise balance eliminates the mediator potential and gives, for **any** μ_v and with no
+interpolation function used at all,
+
+        G M_chi(r)/r^2  =  g_obs − g_bar        AS AN IDENTITY
+
+— **the real dark mass equals the phantom mass as a theorem, not an assumption.** Feeding the
+a₀-line gives `rho_chi = [r/sqrt(r^2+r_M^2)] sqrt(G M_b a0)/(4 pi G r^2)`. Independent brentq +
+finite-difference solve on a 200k grid: slope −1.99982, coefficient 0.9999975, d ln(coef)/d ln M_b
+= 0.500000 over 1e9–1e12 Msun. A pure-number trap test **rejects** ×2, ×½, ×4π, ×√2. Not a
+point-mass artefact (Hernquist source, ρ>0 at 0 of 400000 radii). The 1/r³ trap that kills
+k-essence is avoided structurally. The Gauss cap does **not** forbid clusters (0.383 a₀ required vs
+0.5 a₀ cap).
+
+**WHAT REFUTES IT.** sympy on a general Φ(x,y,z) with no symmetry assumed gives residual **exactly
+zero** for `div[(1 − mu_v/B^2) grad Phi] = 4 pi G rho_b`. **Mechanism C's baryon sector IS AQUAL as
+a PDE identity in full generality**, so "no fifth force on baryons" is observationally vacuous — it
+inherits the whole MG-arm solar-system liability including the Cassini EFE quadrupole.
+**|Q2| = 3.46e-26 s⁻² canonical / 3.80e-26 alt = 6.7×/7.3× the Park+2026 ceiling, +18.3/+20.2σ.**
+Corroborated by Desmond–Hees–Famaey 2024 (8.7σ for the same ν). **Against its own finding:** the
+published RAR-vs-Q2 spread is 3–15σ depending on MW mass model, so the honest floor is **≥3σ /
+>1.5× the ceiling** — a real failure, not a clean single-number kill. **Not determined:** whether a
+non-static φ = Q₀t + ψ(r) realisation changes Q2, or whether a mediator mass term suppresses the
+quadrupole-generating region at ~5000 AU while leaving galaxies intact. The lane is not closed.
+
+**STATUS: CANDIDATE COMPLETION, NOT CLOSURE.** One theorem-grade success, one structural success,
+one live 3–18σ failure, one untested cosmological leg.

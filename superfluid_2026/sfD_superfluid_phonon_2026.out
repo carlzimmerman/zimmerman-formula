@@ -1,0 +1,216 @@
+
+sfD_superfluid_phonon_2026.py   -- MECHANISM D, on Carl's OWN kernel
+====================================================================
+QUESTION: Berezhiani-Khoury get MOND from a phonon-mediated force in a condensate with
+L ~ X^{3/2}.  Carl's dark sector is ALSO a condensate, with the DBI kernel
+K(Q) = -M^4 sqrt(1-(Q-Q_0)^2/Lambda_D^2).  Does ITS phonon sector produce the a_0-line?
+
+THE HEADLINE, stated before the arithmetic, and it has TWO halves that point OPPOSITE WAYS:
+
+  (+) THE FORCE-LAW SHAPE IS AVAILABLE, AND sf01's REASON FOR DOUBTING IT WAS INCOMPLETE.
+      sf01 argued: the a_0-line's AQUAL free function needs Y^{3/2}; the DBI kernel supplies
+      even powers at its minimum and 1/2 at its wall; therefore no MOND.  PART C confirms the
+      exponent statement in a STRONGER form (Theorem D1: the log-slope dln F_Y/dln Y is never
+      in the required window (0,1/2], anywhere in the domain, for any parameters) -- but PART D
+      shows that conclusion does NOT follow, because the physical mu-function is
+      1 + F_Y/(2-K_B), and a CANCELLATION between the canonical term and F_Y produces an
+      interpolation that tracks the a_0-line to 0.0129 dex (canonical) / 0.0143 dex (alt) over
+      the full 3-decade SPARC RAR range -- BETTER than the repo's own 0.108 dex observed
+      scatter.  That is a real near-fit and it is reported first because it runs AGAINST the
+      kill.
+
+  (-) BUT THE FIT LIVES AT b -> 1, AND b IS THE NEWTONIAN POTENTIAL.  The fit needs
+      b = |Psi| Q_0/Lambda_D within ~0.02 of 1.  b is not a free constant: it is the depth of
+      the local potential in units of the DBI wall, so b = (v_c/v_*)^2 with v_* a UNIVERSAL
+      velocity.  Every galaxy would have to have the same v_c to ~1%; SPARC spans a factor ~15.
+      And galaxies above v_* have b>1: NO SOLUTION AT ALL.  At the framework's own pinned
+      b = 0.0643 (canonical, 1e11 Msun, nu_0 at the RAR ceiling) the fit degrades to 0.1732 dex.
+
+  *** SO MECHANISM D DIES EXACTLY WHERE sf05 AND sf06 SAID IT WOULD: the mechanism is keyed to
+  the POTENTIAL, and the potential does not have the contrast.  This is an INDEPENDENT
+  re-derivation of sf05's squeeze, from the kernel rather than from the ansatz. ***
+
+AND THE AMPLITUDE LAW IS NOT DELIVERED.  PART E solves the condensate's own hydrostatic
+equilibrium exactly (Z = Z_c e^{-Psi}, verified symbolically) and gets, in closed form,
+
+      rho_cond(r) = rho_Lambda [ (R+w) w/sqrt(1-w^2) + sqrt(1-w^2) ],  w = nu_0 + R|Psi(r)|,
+      R = Q_0/Lambda_D = rho_dm,0/(rho_Lambda nu_0)   <-- PINNED, not free
+
+whose small-w limit is  delta_rho = rho_Lambda R^2 |Psi(r)|.  That is proportional to the
+POTENTIAL, not to 1/r^2.  Its logarithmic slope is ~ -0.5 where the target's is -2.  The
+COEFFICIENT is within 4.8x of sqrt(G M a_0)/(4 pi G r^2) at r_M on the canonical footing at the
+RAR-ceiling nu_0 -- reported, but it is a one-point amplitude match with a free knob (nu_0), not
+a law: the r-scaling is wrong at every radius.
+
+Exit 0 = every numbered check passed.  A PASS establishes the stated verdict, adverse or not.
+
+
+====================================================================================================
+PART A -- the framework's own parameters, PINNED, both footings
+====================================================================================================
+  [info] A1  canonical rho_Lambda = 5.8444e-27 kg/m^3, M^4 = Lambda = 1.0908e-52 1/m^2, 1/M^2 = 3.1030 Gpc
+  [info] A1  canonical 1e11 Msun spiral: r_M = 12.203 kpc, v_c = 187.76 km/s, |Psi| = 3.9224e-07, target rho(r_M) = 2.9643e-22 kg/m^3
+  [info] A1  alt       rho_Lambda = 8.4831e-27 kg/m^3, M^4 = Lambda = 1.5833e-52 1/m^2, 1/M^2 = 2.5756 Gpc
+  [info] A1  alt       1e11 Msun spiral: r_M = 11.118 kpc, v_c = 196.71 km/s, |Psi| = 4.3053e-07, target rho(r_M) = 3.9199e-22 kg/m^3
+  [ok] A2  CONTROL: the canonical footing's rho_Lambda reproduces the observed dark-energy density to 2%   5.8444e-27 vs 5.9e-27 kg/m^3
+  [ok] A3  CONTROL: rho_target(r_M) and r_M reproduce the Phase-1 [dust] file's banked numbers   rho_t = 2.9643e-22 (banked 2.964e-22), r_M = 12.203 kpc (banked 12.20)
+  [info] A4  canonical nu_0 = 2.360e-06 (RAR ceiling  ) -> R = Q_0/Lambda_D = 1.63911e+05   |Psi|_wall = 1/R = 6.1009e-06  <=>  v_wall = 740.5 km/s
+  [info] A4  canonical nu_0 = 2.150e-05 (a0(z)=0.0060 ) -> R = Q_0/Lambda_D = 1.79921e+04   |Psi|_wall = 1/R = 5.5580e-05  <=>  v_wall = 2235.0 km/s
+  [info] A4  alt       nu_0 = 2.360e-06 (RAR ceiling  ) -> R = Q_0/Lambda_D = 1.12926e+05   |Psi|_wall = 1/R = 8.8553e-06  <=>  v_wall = 892.1 km/s
+  [info] A4  alt       nu_0 = 2.150e-05 (a0(z)=0.0060 ) -> R = Q_0/Lambda_D = 1.23956e+04   |Psi|_wall = 1/R = 8.0674e-05  <=>  v_wall = 2692.7 km/s
+  [ok] A5  *** R = Q_0/Lambda_D IS PINNED, NOT FREE: the background relation rho_dm,0 = rho_Lambda R nu_0 fixes it once nu_0 is chosen.  It is O(1e4-1e5) ***   this single number drives every adverse result below
+
+====================================================================================================
+PART B -- the superfluid variable, and m is FORCED (sharpening sf01)
+====================================================================================================
+  [ok] B0  CONTROL: the aether is unit timelike, A^mu A_mu = -1, on the metric used   A.A = -1
+  [ok] B1  IDENTITY (sympy, explicit static metric + unit timelike aether): g^{mn} d_m phi d_n phi = Y - Q^2, so the ONLY Lorentz-invariant single-argument superfluid variable built from AeST's own invariants is Z = sqrt(Q^2 - Y)   grad phi.grad phi - (Y - Q^2) simplifies to 0
+  [ok] B2  *** Z = Q - Y/(2Q) + O(Y^2).  So sf01's ansatz X = (Q-Q_0) - Y/(2m) is RECOVERED with m = Q_0 FORCED BY LORENTZ INVARIANCE.  sf01 said m is 'not a new free parameter'; this is stronger -- m is not a parameter at all ***   series = Q - Y/(2*Q)
+  [info] B3  canonical RAR ceiling  : the DBI wall |Z-Q_0| = Lambda_D is reached at Y/Q^2 = 1.220e-05   so the Y/(2Q) expansion is valid to that order everywhere inside the kernel's domain
+  [info] B3  canonical a0(z)=0.0060 : the DBI wall |Z-Q_0| = Lambda_D is reached at Y/Q^2 = 1.112e-04   so the Y/(2Q) expansion is valid to that order everywhere inside the kernel's domain
+  [info] B3  alt       RAR ceiling  : the DBI wall |Z-Q_0| = Lambda_D is reached at Y/Q^2 = 1.771e-05   so the Y/(2Q) expansion is valid to that order everywhere inside the kernel's domain
+  [info] B3  alt       a0(z)=0.0060 : the DBI wall |Z-Q_0| = Lambda_D is reached at Y/Q^2 = 1.613e-04   so the Y/(2Q) expansion is valid to that order everywhere inside the kernel's domain
+  [ok] B4  the quadratic superfluid expansion is accurate to < 1e-3 everywhere the DBI kernel is defined -- the exact and expanded treatments below agree
+
+====================================================================================================
+PART C -- TASK 1: the phonon Lagrangian's power, and THEOREM D1
+====================================================================================================
+  [ok] C1  REPRODUCED (sf01 PART A): at its minimum the DBI kernel is ANALYTIC and EVEN -- K + M^4 = M^4(u^2/2 + u^4/8 + u^6/16 + ...), every odd coefficient exactly zero   coeffs u^0..u^8 = [0, 0, 1/2, 0, 1/8, 0, 1/16, 0, 5/128] x M^4
+  [ok] C2  REPRODUCED (sf01 PART A): at the wall K -> -sqrt(2) M^4 sqrt(1-|u|), i.e. a 1/2 power of the distance to the wall.  3/2 is at NEITHER place   limit K/sqrt(eps) = -sqrt(2)*M4
+  [ok] C3  EXACT (sympy): with w = b - y, b = (Q-Q_0)/Lambda_D >= 0 and y = Y/(2 Q_0 Lambda_D) >= 0,
+           S(y) := dln|F_Y|/dlnY = -y / [ w (1 - w^2) ]   difference simplifies to 0
+  [ok] C4  solving S = 1/2 exactly: b = w(1+w^2)/2 and y = b - w = w(w^2-1)/2.  Inside the DBI domain |w| < 1 the factor (w^2-1) is NEGATIVE, so y > 0 REQUIRES w < 0, which forces b < 0   b(w) = w*(w**2 + 1)/2,  y(w) = w*(w**2 - 1)/2
+  [ok] C5  b >= 0 IS FORCED, on both counts and with no sign freedom: (i) cosmologically Q - Q_0 = Lambda_D sigma/sqrt(1+sigma^2) with sigma > 0 required for POSITIVE dust density (rho_dust = Q_0 I_0/8 pi Gt); (ii) quasi-statically Q = (1-Psi) Q_0 with Psi < 0 in a well.  The phi -> -phi flip sends BOTH Q_0 and Z to minus themselves, so w is unchanged and K, which is even in w, is unchanged.  There is no b < 0 branch
+  [info] C6  b = 0          min over y>b of S = 1.00000000   (y<b gives S<0)
+  [info] C6  b = 1e-06      min over y>b of S = 1.00018900   (y<b gives S<0)
+  [info] C6  b = 0.001      min over y>b of S = 1.01901787   (y<b gives S<0)
+  [info] C6  b = 0.0643     min over y>b of S = 1.33389993   (y<b gives S<0)
+  [info] C6  b = 0.3        min over y>b of S = 2.08134252   (y<b gives S<0)
+  [info] C6  b = 0.9        min over y>b of S = 3.73279991   (y<b gives S<0)
+  [info] C6  b = 0.999999   min over y>b of S = 3.99999733   (y<b gives S<0)
+  [ok] C7  *** THEOREM D1.  For y > b, S = (u+b)/(u(1-u^2)) with u = y-b > 0, and since (u+b) >= u this is >= 1/(1-u^2) >= 1.  For y < b, S < 0.  So S NEVER LIES IN (0, 1/2] -- the DBI kernel's F_Y misses the ENTIRE window MOND needs, at every point of its domain, for every b in [0,1) and every m ***   numeric minima over y>b: 0->1.0000, 1e-06->1.0002, 0.001->1.0190, 0.0643->1.3339, 0.3->2.0813, 0.9->3.7328, 0.999999->4.0000
+  [ok] C8  and D1 is m-INDEPENDENT: m enters only through y = Y/(2 m Lambda_D), a rescaling of the abscissa, which leaves a LOGARITHMIC slope invariant.  sf01 left the two-sided function OPEN; for the DBI kernel it closes, because the kernel is EVEN in w and the y > b side is the mirror of the y < b side, not a new function
+  [info] C9  canonical RAR ceiling  : exact-Z scan of 500000 points -> 0 with 0 < S <= 0.5
+  [info] C9  canonical a0(z)=0.0060 : exact-Z scan of 500000 points -> 0 with 0 < S <= 0.5
+  [info] C9  alt       RAR ceiling  : exact-Z scan of 500000 points -> 0 with 0 < S <= 0.5
+  [info] C9  alt       a0(z)=0.0060 : exact-Z scan of 500000 points -> 0 with 0 < S <= 0.5
+  [ok] C10 *** THEOREM D1 SURVIVES THE UNEXPANDED VARIABLE: a 2000000-point scan of the exact Z = sqrt(Q^2-Y) across the whole DBI domain, on both footings and both nu_0, finds ZERO points in the required window ***
+  [info] C11a S_req(x) = dln mu/dlnY in closed form   (sqrt(4*x**2 + 1) - 1)/(2*(4*x**2 - sqrt(4*x**2 + 1) + 1))
+  [ok] C11a the a_0-line's required slope tends to EXACTLY 1/2 as x -> 0 and to 0 as x -> oo (sympy limits, not finite differences)   limits: x->0 gives 1/2, x->oo gives 0
+  [ok] C11 CONTROL, from the a_0-line itself: mu(x) = (sqrt(1+4x^2)-1)/(2x) has dln mu/dlnY in (0, 1/2] EVERYWHERE, hitting 1/2 in deep MOND and 0 in the Newtonian limit.  *** THIS IS THE WINDOW THEOREM D1 SHOWS THE DBI KERNEL'S F_Y NEVER ENTERS ***   range over x in [1e-3,1e5]: [2.50e-06, 0.499999]; at x=1e-3 it is 0.499999
+
+====================================================================================================
+PART D -- TASK 2: the FORCE LAW.  Theorem D1 does NOT close it, and here is why
+====================================================================================================
+  [ok] D1  *** THE CORRECTION TO sf01's REASONING, AND IT RUNS AGAINST THE KILL.  The physical mu-function is NOT F_Y.  AeST's scalar sector carries a canonical piece as well: the action has  -(2-K_B) Y - F(Y,Q), so mu_tot = 1 + F_Y/(2-K_B).  Deep MOND needs mu_tot -> 0 linearly in |grad phi|, and that can be arranged by CANCELLATION between the 1 and F_Y even though F_Y itself never has slope 1/2.  sf01 (and Theorem D1 alone) do NOT close mechanism D ***
+  [info] D2  canonical BEST achievable rms vs the a_0-line over g_bar 1e-12..1e-9 = 0.0129 dex   A = 0.0015945, b = 0.9999984777 (1-b = 1.522e-06), g* = 3.126e-08 m/s^2
+  [info] D2  alt       BEST achievable rms vs the a_0-line over g_bar 1e-12..1e-9 = 0.0143 dex   A = 0.0015932, b = 0.9999984991 (1-b = 1.501e-06), g* = 3.713e-08 m/s^2
+  [ok] D3  *** AND IT FITS.  The DBI kernel's own mu_tot tracks the a_0-line to 0.0129 dex (canonical) / 0.0143 dex (alt) across the whole 3-decade SPARC range -- inside the 0.06 dex intrinsic ceiling and 8.3x tighter than the repo's own 0.108 dex observed scatter.  MECHANISM D DELIVERS THE FORCE-LAW SHAPE ***   reported first because it runs against the kill
+  [info] D4  canonical CONTROL cubic  g ~ g_bar^(1/3)  [strict DBI deep limit] best rms = 0.2973 dex
+  [info] D4  canonical CONTROL sqrt   g ~ g_bar^(1/2)  [MOND CONTROL]       best rms = 0.1575 dex
+  [info] D4  canonical CONTROL linear g ~ g_bar       [Newton CONTROL]      best rms = 0.4825 dex
+  [info] D4  alt       CONTROL cubic  g ~ g_bar^(1/3)  [strict DBI deep limit] best rms = 0.2848 dex
+  [info] D4  alt       CONTROL sqrt   g ~ g_bar^(1/2)  [MOND CONTROL]       best rms = 0.1453 dex
+  [info] D4  alt       CONTROL linear g ~ g_bar       [Newton CONTROL]      best rms = 0.5103 dex
+  [info] D5  canonical: b = 0.999999   (1-b = 1.000e-06)  best rms = 0.0129 dex
+  [info] D5  canonical: b = 0.9999     (1-b = 1.000e-04)  best rms = 0.0130 dex
+  [info] D5  canonical: b = 0.999      (1-b = 1.000e-03)  best rms = 0.0140 dex
+/private/tmp/claude-501/-Users-carlzimmerman-new-physics-zimmerman-formula/bc6058d7-6ce0-4f8c-8635-25bfd772ff6d/scratchpad/sfD_superfluid_phonon_2026.py:372: RuntimeWarning: overflow encountered in scalar power
+  r = minimize(lambda p: rms(p[0], b, 10 ** p[1], GBAR, lgt_c), [A0g, lg],
+  [info] D5  canonical: b = 0.99       (1-b = 1.000e-02)  best rms = 0.0447 dex
+  [info] D5  canonical: b = 0.98       (1-b = 2.000e-02)  best rms = 0.0682 dex
+  [info] D5  canonical: b = 0.95       (1-b = 5.000e-02)  best rms = 0.1008 dex
+  [info] D5  canonical: b = 0.9        (1-b = 1.000e-01)  best rms = 0.1245 dex
+  [info] D5  canonical: b = 0.5        (1-b = 5.000e-01)  best rms = 0.1665 dex
+  [info] D5  canonical: b = 0.0643     (1-b = 9.357e-01)  best rms = 0.1732 dex
+  [ok] D6  *** THE TOLERANCE.  Staying inside the 0.06 dex intrinsic RAR ceiling requires b >= 0.99, i.e. 1 - b <= 0.010.  b must sit within ~2% of the DBI WALL ***   b = 0.9 already gives 0.1245 dex, above the 0.108 dex OBSERVED scatter
+  [ok] D7  *** AND b IS THE NEWTONIAN POTENTIAL, NOT A CONSTANT.  b = |Psi| Q_0/Lambda_D = |Psi| R, with R pinned in PART A.  So b = (v_c/v_*)^2 with v_* = c/sqrt(R) a UNIVERSAL velocity.  b >= 0.98 for every galaxy means v_c within 1% of v_* for every galaxy; b < 1 is REQUIRED for a solution to exist at all, so v_c < v_* always ***
+  [info] D8  v_c =   20.0 km/s -> b = 0.004444 -> best-case rms >= 0.1732 dex (interpolated from D5)
+  [info] D8  v_c =   50.0 km/s -> b = 0.027778 -> best-case rms >= 0.1732 dex (interpolated from D5)
+  [info] D8  v_c =  100.0 km/s -> b = 0.111111 -> best-case rms >= 0.1725 dex (interpolated from D5)
+  [info] D8  v_c =  188.0 km/s -> b = 0.392711 -> best-case rms >= 0.1682 dex (interpolated from D5)
+  [info] D8  v_c =  300.0 km/s -> b = 1.000000 -> best-case rms >= 0.0129 dex (interpolated from D5)
+  [ok] D9  *** THE MULTI-GALAXY KILL.  With the single most generous universal v_* (just above the largest v_c), the SMALLEST galaxies land at b = 4.44e-03 and the worst-case rms is >= 0.1732 dex -- above the 0.108 dex observed scatter, and this is a LOWER BOUND because A and g* were allowed to be refit per galaxy rather than shared.  ONE kernel cannot serve galaxies of different v_c ***   SPARC spans a factor 15 in v_c; the tolerance is 1%
+  [info] D10 canonical RAR ceiling  : the framework's OWN b for a 1e11 Msun spiral = 0.06429   -> best-case rms 0.1732 dex (needs >= 0.99)
+  [info] D10 canonical a0(z)=0.0060 : the framework's OWN b for a 1e11 Msun spiral = 0.00706   -> best-case rms 0.1732 dex (needs >= 0.99)
+  [info] D10 alt       RAR ceiling  : the framework's OWN b for a 1e11 Msun spiral = 0.04862   -> best-case rms 0.1732 dex (needs >= 0.99)
+  [info] D10 alt       a0(z)=0.0060 : the framework's OWN b for a 1e11 Msun spiral = 0.00534   -> best-case rms 0.1732 dex (needs >= 0.99)
+  [ok] D11 *** AT THE FRAMEWORK'S OWN PINNED b THE FIT IS 0.1732 dex -- 1.6x the observed RAR scatter and 2.9x the intrinsic ceiling.  Not a 6-order failure; a factor-1.6 failure.  Stated at that size and no larger ***
+  [ok] D12 THE DEEP ASYMPTOTE, analytically.  Near the wall f(w) -> -1/sqrt(2(1-b)+2y), so mu_tot = 1 - B/sqrt(g_c^2+g^2) with g_c^2 = (1-b) g*^2 and B = A g*/sqrt2.  Either B < g_c, in which case mu_tot -> 1-B/g_c > 0 and the deep limit is a RESCALED NEWTON (G_eff = G/mu_min, no BTFR); or B = g_c exactly, in which case mu_tot -> g^2/2g_c^2 and the deep limit is the CUBIC law g_obs ~ (a_*^2 g_bar)^{1/3}, giving v ~ r^{1/6} -- a RISING rotation curve and again no BTFR.  *** sqrt(a_0 g_bar) is NOT an asymptote of this kernel on either branch; the 0.013 dex fit is the CROSSOVER between them mimicking MOND over a finite range ***
+  [info] D13 canonical best fit: B = 3.5240e-11, g_c = 3.8564e-11, mu_min = 1 - B/g_c = 0.0862   -> below g_obs ~ 3.86e-11 m/s^2 the law saturates to Newton with G_eff/G = 11.60
+  [ok] D14 *** AND THE SATURATION IS OBSERVABLE.  At the outer edge of Mistele+2024's weak-lensing RAR (2.2 Mpc, g_bar = 2.881e-15) the a_0-line gives g_obs = 5.193e-13 while the saturated DBI law gives 3.341e-14 -- 1.19 dex low.  The repo's stage12 fits that data at chi^2/dof ~ 1-2 with the Route-A kernel; this branch does not ***   so the 3-decade fit cannot simply be extended outward
+  [info] D15 canonical the kernel's HARD CEILING on the scalar gradient is g_max = g* sqrt(1+b) = 4.4202e-08 m/s^2 = 472.2 a_0   the Sun gives 5.9316e-03 m/s^2 at 1 AU -- 1.342e+05x over, i.e. 1.801e+10x in Y
+  [info] D15 alt       the kernel's HARD CEILING on the scalar gradient is g_max = g* sqrt(1+b) = 5.2510e-08 m/s^2 = 465.6 a_0   the Sun gives 5.9316e-03 m/s^2 at 1 AU -- 1.130e+05x over, i.e. 1.276e+10x in Y
+  [ok] D16 *** SO THE SOLAR SYSTEM HAS NO SOLUTION AT ALL IN THIS CONSTRUCTION: the argument of the DBI square root leaves its domain by ~1e5 in acceleration / ~1e11 in Y.  This is sf04's saturation and sf05's squeeze re-derived from the kernel rather than the ansatz -- REPRODUCED, not overturned ***
+
+====================================================================================================
+PART E -- TASK 3: the condensate's OWN density profile, exactly
+====================================================================================================
+  [ok] E1  for L = K(Z) with Z = sqrt(-d_m phi d^m phi) the stress tensor is a PERFECT FLUID: rho = Z K'(Z) - K, P = K, with u_m = d_m phi/Z.  These are AeST's own background relations 8 pi Gt rho = Q K' - K and 8 pi Gt P = K, verbatim from bridge1
+  [ok] E2  EXACT (sympy): rho + P = Z K', dP = K' dZ, so dP/(rho+P) = dZ/Z and hydrostatic equilibrium integrates to *** Z(r) = Z_c exp(-Psi(r)) *** -- which is precisely bridge1's quasi-static relation Q = (1-Psi)Q_0 to first order.  No new assumption   dP/(rho+P) - dlnZ simplifies to 0
+  [ok] E3  *** CLOSED FORM.  Substituting Z = Z_c e^{-Psi} into rho = Z K' - K gives
+           rho_cond(r) = rho_Lambda [ (R+w) w/sqrt(1-w^2) + sqrt(1-w^2) ],  w = nu_0 + R|Psi(r)|
+       and to first order in w the HALO EXCESS is
+           delta_rho(r) = rho_Lambda R^2 |Psi(r)|.   ***
+  [ok] E4  canonical CONTROL: exact symbolic Z K'-K at w=0.03 matches the closed form   4.9205480801e+03 vs 4.9205480803e+03, ratio 0.99999999996117
+  [ok] E4  alt       CONTROL: exact symbolic Z K'-K at w=0.03 matches the closed form   3.3903157499e+03 vs 3.3903157500e+03, ratio 0.99999999996117
+  [info] E5  canonical RAR ceiling  : w(r_M) = 0.06429, delta_rho(r_M) = 6.1718e-23 kg/m^3 (linear 6.1590e-23)   target sqrt(GMa_0)/(4 pi G r_M^2) = 2.9643e-22  ->  *** COEFFICIENT RATIO = 0.2082 ***
+  [info] E5  canonical a0(z)=0.0060 : w(r_M) = 0.00708, delta_rho(r_M) = 7.4211e-25 kg/m^3 (linear 7.4209e-25)   target sqrt(GMa_0)/(4 pi G r_M^2) = 2.9643e-22  ->  *** COEFFICIENT RATIO = 0.0025 ***
+  [info] E5  alt       RAR ceiling  : w(r_M) = 0.04862, delta_rho(r_M) = 4.6630e-23 kg/m^3 (linear 4.6575e-23)   target sqrt(GMa_0)/(4 pi G r_M^2) = 3.9199e-22  ->  *** COEFFICIENT RATIO = 0.1190 ***
+  [info] E5  alt       a0(z)=0.0060 : w(r_M) = 0.00536, delta_rho(r_M) = 5.6118e-25 kg/m^3 (linear 5.6117e-25)   target sqrt(GMa_0)/(4 pi G r_M^2) = 3.9199e-22  ->  *** COEFFICIENT RATIO = 0.0014 ***
+  [ok] E6  *** THE AMPLITUDE IS THE RIGHT ORDER AND THIS RUNS IN THE FRAMEWORK'S FAVOUR: at r_M the condensate supplies 0.208 of the required sqrt(GMa_0)/(4 pi G r^2) on the canonical footing at the RAR-ceiling nu_0 (0.119 alt) -- a factor 4.8 short, not orders ***   and nu_0 is a free knob: delta_rho ~ 1/nu_0^2, so nu_0 = 1.077e-06 matches it EXACTLY, and that value is BELOW the RAR ceiling, hence allowed
+  [ok] E7  AND THE M_b AND a_0 SCALINGS COME OUT RIGHT -- WITH A CIRCULARITY I NAME.  delta_rho ~ |Psi| ~ v_c^2/c^2, and IF the rotation curve is flat at the MOND value then v_c^2 = sqrt(G M_b a_0), so delta_rho ~ sqrt(G M_b a_0) -- the target's own M_b^{1/2} a_0^{1/2} locking.  *** But that ASSUMES the flat curve, which is the thing to be derived.  It is a consistency check, not a derivation ***
+  [ok] E8  *** THE SHAPE FAILS, AND THAT IS THE ACTUAL VERDICT ON TASK 3.  delta_rho is proportional to |Psi(r)|, not to r^-2.  For a flat rotation curve Psi = (v_c^2/c^2) ln(r/r_out), whose logarithmic slope is -1/ln(r_out/r) -- between 0 and -1 over any sane range -- against the target's exact -2 ***
+  [info] E9  r = 0.5 r_M = 6.1 kpc, r_out = 50 kpc: dln(delta_rho)/dlnr = -0.475   target -2; mismatch 1.525 in slope = 96x over 1.3 decades
+  [info] E9  r = 1 r_M = 12.2 kpc, r_out = 50 kpc: dln(delta_rho)/dlnr = -0.709   target -2; mismatch 1.291 in slope = 48x over 1.3 decades
+  [info] E9  r = 3 r_M = 36.6 kpc, r_out = 50 kpc: dln(delta_rho)/dlnr = -3.208   target -2; mismatch 1.208 in slope = 37x over 1.3 decades
+  [info] E9  r = 0.5 r_M = 6.1 kpc, r_out = 100 kpc: dln(delta_rho)/dlnr = -0.358   target -2; mismatch 1.642 in slope = 137x over 1.3 decades
+  [info] E9  r = 1 r_M = 12.2 kpc, r_out = 100 kpc: dln(delta_rho)/dlnr = -0.475   target -2; mismatch 1.525 in slope = 96x over 1.3 decades
+  [info] E9  r = 3 r_M = 36.6 kpc, r_out = 100 kpc: dln(delta_rho)/dlnr = -0.995   target -2; mismatch 1.005 in slope = 20x over 1.3 decades
+  [info] E9  r = 0.5 r_M = 6.1 kpc, r_out = 300 kpc: dln(delta_rho)/dlnr = -0.257   target -2; mismatch 1.743 in slope = 185x over 1.3 decades
+  [info] E9  r = 1 r_M = 12.2 kpc, r_out = 300 kpc: dln(delta_rho)/dlnr = -0.312   target -2; mismatch 1.688 in slope = 156x over 1.3 decades
+  [info] E9  r = 3 r_M = 36.6 kpc, r_out = 300 kpc: dln(delta_rho)/dlnr = -0.475   target -2; mismatch 1.525 in slope = 96x over 1.3 decades
+  [ok] E10 SELF-CONSISTENTLY IT IS WORSE, AND IT IS THE KNOWN AeST BEHAVIOUR.  Feeding delta_rho = rho_Lambda R^2 |Psi| back into Poisson gives a HELMHOLTZ equation grad^2 Psi + k^2 Psi = 4 pi G rho_b/c^2 with k^2 = 4 pi G rho_Lambda R^2/c^2, i.e. an n = 1 POLYTROPE: a CORED halo delta_rho ~ sin(kr)/(kr) with a hard edge at pi/k, not an isothermal r^-2.  A power law r^alpha can never solve it, since grad^2 (r^alpha) ~ r^{alpha-2} cannot be proportional to r^alpha
+  [info] E11 canonical RAR ceiling  : k^-1 = 26.77 kpc, halo edge pi/k = 84.1 kpc (MASS-INDEPENDENT), AeST oscillation radius r_C = (r_M k^-2)^(1/3) = 20.60 kpc
+  [info] E11 canonical a0(z)=0.0060 : k^-1 = 243.90 kpc, halo edge pi/k = 766.2 kpc (MASS-INDEPENDENT), AeST oscillation radius r_C = (r_M k^-2)^(1/3) = 89.87 kpc
+  [info] E11 alt       RAR ceiling  : k^-1 = 32.25 kpc, halo edge pi/k = 101.3 kpc (MASS-INDEPENDENT), AeST oscillation radius r_C = (r_M k^-2)^(1/3) = 22.62 kpc
+  [info] E11 alt       a0(z)=0.0060 : k^-1 = 293.84 kpc, halo edge pi/k = 923.1 kpc (MASS-INDEPENDENT), AeST oscillation radius r_C = (r_M k^-2)^(1/3) = 98.65 kpc
+  [ok] E12 the edge radius pi/k is set by the KERNEL alone and carries no M_b -- so the condensate halo would be the SAME SIZE for every galaxy.  That is the amplitude law's opposite: the target locks rho to M_b at every r, this locks the size to nothing
+
+====================================================================================================
+PART F -- TASK 4: the superfluid route's known problems, priced on CARL'S numbers
+====================================================================================================
+  [ok] F1  COHERENCE / THE PARTICLE CONDITION IS VOID HERE, and this is a genuine structural advantage.  BK need the de Broglie wavelength to exceed the interparticle spacing, which caps the particle mass at a few eV and is the route's tightest microphysical constraint.  Carl's condensate has NO PARTICLE -- it is a classical shift-symmetric field -- so there is no spacing, no occupation number, and no such bound.  sf03 said this and it survives
+  [ok] F2  THE FINITE-TEMPERATURE / NORMAL-PHASE TRANSITION HAS A FRAMEWORK-SPECIFIC REPLACEMENT: the DBI WALL.  The condensate ceases to exist where w = 1, i.e. where |Psi| = 1/R.  That is a genuine phase boundary keyed to the local potential
+  [info] F3  canonical RAR ceiling  : v_wall = c/sqrt(R) = 740.5 km/s   systems above this have NO condensate solution
+  [info] F3  canonical a0(z)=0.0060 : v_wall = c/sqrt(R) = 2235.0 km/s   systems above this have NO condensate solution
+  [info] F3  alt       RAR ceiling  : v_wall = c/sqrt(R) = 892.1 km/s   systems above this have NO condensate solution
+  [info] F3  alt       a0(z)=0.0060 : v_wall = c/sqrt(R) = 2692.7 km/s   systems above this have NO condensate solution
+  [ok] F4  *** THE CLUSTER FRONT, PRICED ON CARL'S OWN NUMBERS.  A 1e14 Msun cluster has v_c = 1056 km/s (Phase-1 [dust] file), against v_wall = 740485 m/s = 740 km/s at the RAR-ceiling nu_0.  CLUSTERS SIT PAST THE DBI WALL by 2.03x in |Psi| ***   at nu_0 = 2.15e-5 the wall moves to 2235 km/s and clusters clear it -- so this is a nu_0 FORK, not a settled kill
+  [ok] F5  *** AND THE TWO KNOBS PULL OPPOSITE WAYS.  Matching the halo AMPLITUDE at r_M needs nu_0 = 1.077e-06, which moves the wall DOWN to 500 km/s -- below not just clusters but massive spirals and groups.  Clearing the cluster wall needs nu_0 LARGER, which drops the amplitude as 1/nu_0^2.  No single nu_0 does both ***   amplitude at nu_0 = 2.15e-5 is only 0.0025 of target
+  [info] F6  canonical RAR ceiling  : AeST's own quasi-static oscillation radius r_C = 20.6 kpc   bridge1 records the requirement k^-1 >~ 1 Mpc; here k^-1 = 26.8 kpc
+  [info] F6  canonical a0(z)=0.0060 : AeST's own quasi-static oscillation radius r_C = 89.9 kpc   bridge1 records the requirement k^-1 >~ 1 Mpc; here k^-1 = 243.9 kpc
+  [info] F6  alt       RAR ceiling  : AeST's own quasi-static oscillation radius r_C = 22.6 kpc   bridge1 records the requirement k^-1 >~ 1 Mpc; here k^-1 = 32.3 kpc
+  [info] F6  alt       a0(z)=0.0060 : AeST's own quasi-static oscillation radius r_C = 98.6 kpc   bridge1 records the requirement k^-1 >~ 1 Mpc; here k^-1 = 293.8 kpc
+  [ok] F7  *** A SEPARATE, PHONON-INDEPENDENT CONSTRAINT FALLS OUT OF THE PIN.  bridge1's transcribed AeST requirement is k^-1 >~ 1 Mpc; the pinned R gives k^-1 = 26.8 kpc at the RAR-ceiling nu_0 -- short by 37x -- and 244 kpc at nu_0 = 2.15e-5, short by 4.1x.  This applies to the DBI kernel inside AeST whatever the phonon sector does ***
+  [info] F8  requiring r_C >= 50 kpc needs k^-1 >= 101 kpc, i.e. nu_0 >= 8.922e-06   = 3.8x the RAR ceiling
+  [info] F8  requiring r_C >= 2200 kpc needs k^-1 >= 29539 kpc, i.e. nu_0 >= 2.604e-03   = 1103.3x the RAR ceiling
+  [ok] F8a CONTROL on the inversion (this check exists because the first version of F8 had rho_Lambda/rho_dm the wrong way up, which inflated the required nu_0 by 6.7x -- an error in the ADVERSE direction, caught by round-tripping rather than by inspection)   round-trip k^-1 = 101.2082 kpc vs required 101.2082 kpc
+  [ok] F9  so the oscillation requirement re-derives the corpus's nu_0 SQUEEZE from an independent direction: r_C >= 50 kpc needs nu_0 >= 8.92e-06 = 3.8x the RAR ceiling, against sf08's 9.1x for the recombination requirement.  SAME SIGN, 2.4x WEAKER -- and that is a favourable datum for the corpus, not an adverse one   but r_C >= 2.2 Mpc (the weak-lensing RAR's outer edge) would need nu_0 >= 2.60e-03 = 1103x the ceiling -- that one is hopeless
+  [ok] F10 THE sf06 LOCALITY THEOREM APPLIES VERBATIM AND IS THE ROOT CAUSE.  Everything that controls this mechanism -- b, the wall, k, the interpolation scale g_c -- is a function of |Psi|.  sf06 showed the Sun sits at 0.67 r_M of its own galaxy, so |Psi| there and at the outer disc differ by under 2x, while the GRADIENT differs by ~1e8.  A potential-keyed mechanism cannot separate them.  D9 (across galaxies), D11 (within one galaxy) and D16 (the solar system) are three faces of that one theorem
+
+====================================================================================================
+PART G -- reproduce / overturn ledger against sf01, sf05, sf08
+====================================================================================================
+  [info] LEDGER   sf01 PART A (DBI supplies even powers at the minimum, 1/2 at the wall, never 3/2): REPRODUCED exactly (C1, C2), and STRENGTHENED to Theorem D1 (C3-C10): the log-slope of F_Y misses the whole window (0,1/2] at every point of the domain, for every b and every m.
+  [info] LEDGER   sf01 PART D (grade OPEN, because the two jobs sit on opposite sides of X = 0 so a two-sided function is admissible): OVERTURNED FOR THIS KERNEL. The DBI kernel is EVEN in w, so the X < 0 side is the MIRROR of the X > 0 side, not a new function; C7 covers both signs. A genuinely two-sided F would no longer be Carl's DBI kernel.
+  [info] LEDGER   *** BUT sf01's INFERENCE from the exponent to 'no MOND' is WITHDRAWN, and this runs AGAINST the kill: the physical mu is 1 + F_Y/(2-K_B), and cancellation delivers the a_0-line to 0.0129 dex over 3 decades (D2, D3). The exponent argument is NOT what kills mechanism D. ***
+  [info] LEDGER   sf05 (the squeeze: the mechanism needs the gradient to dominate for MOND and the potential to dominate for screening, and the potential supplies under 2x contrast): REPRODUCED from an INDEPENDENT direction. Here it appears as D6+D9+D16: the fit needs b within 2% of 1, b = (v_c/v_*)^2 is a potential, and the solar system leaves the kernel's domain entirely.
+  [info] LEDGER   sf06 (the locality theorem): REPRODUCED and identified as the root cause (F10).
+  [info] LEDGER   sf08 (the c_s^2 turnover and the nu_0 squeeze): NOT CONTRADICTED. F8/F9 derive an independent nu_0 floor of 8.92e-06 from AeST's own oscillation radius -- same sign as sf08's 2.15e-5, and weaker, so it does not tighten the corpus's squeeze.
+  [info] LEDGER   A BUG I MADE AND FIXED, logged because it ran in the ADVERSE direction: the first version of F8 inverted rho_Lambda/rho_dm, inflating the required nu_0 by 6.7x and making the oscillation constraint look MORE severe than sf08's rather than less. Caught by the round-trip control F8a, not by inspection.
+  [info] LEDGER   NEW AND NOT IN THE PRIOR FILES: (i) R = Q_0/Lambda_D = rho_dm,0/(rho_Lambda nu_0) is PINNED by the background, which is what converts every qualitative statement above into a number; (ii) m = Q_0 is FORCED by Lorentz invariance, so sf01's ansatz has no free mass at all; (iii) the closed-form condensate profile rho = rho_Lambda[(R+w) w/sqrt(1-w^2) + sqrt(1-w^2)], w = nu_0 + R|Psi|; (iv) the amplitude/cluster fork in nu_0 (F5).
+
+====================================================================================================
+SFD CHECKS: 44/44 passed
+====================================================================================================
