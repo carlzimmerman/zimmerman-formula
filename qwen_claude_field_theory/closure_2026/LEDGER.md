@@ -14,6 +14,7 @@
 | SF17 | withdraw SF16's theorem | ∂X/∂π̂ ≠ 0 via K̂u; but ∂X/∂π = 0 exactly | WITHDRAWAL |
 | SF18 | step 4 structure + DOF count | both lapses LINEAR ⟹ 2 constraints; u^i determined algebraically; **count = 7 DOF**, no room for an 8th | PARTIAL |
 | SF19 | the bracket {C,Ĉ} | 2 of 4 terms **proved zero** ({F(X),B(X)}=0 — same scalar); 2 survivors explicit, ∝ K·∂X | PARTIAL-FAVOURABLE |
+| SF22 | finishing list | exact kinetic reduction DONE, verdict survives (+7.347); Dirac multiplier matrix FULL RANK — frozen-lapse flag, reported as found | PARTIAL (item 3 adverse-leaning) |
 | SF21 | **the weak-zero test** | on-shell {C,Ĉ} = **−7.347 ≠ 0** at a generic real point, all constraints imposed at all sites, both controls exact | **NOT WEAKLY ZERO — second class on the representative** |
 
 **Status: steps 1–3 of `PROBLEM_SF13.md` plus the sign gate are cleared. Step 4 is OPEN — not
