@@ -820,3 +820,19 @@ was importing it into the Hamiltonian analysis.
 
 **Architecture status: unchanged — neither closed nor killed. Step 4 is open and harder than
 sf16 made it look.**
+
+### 2026-08-20 — sf22 C3's "frozen lapse, adverse-leaning" — DOWNGRADED to uninformative (artifact verified)
+
+`closure_2026/sf23_lattice_artifact_2026.py` (9/9) ran the control sf22 did not: **the identical
+multiplier-matrix test on pure GR**, whose Hamiltonian constraint is known first class in the
+continuum. Pure GR **fails the same test on the same lattice** — on-shell brackets [16.8, 0, 6.3],
+rank 2, within 4× of the interacting theory's magnitudes — and both the control's and the
+interacting theory's obstructions change under a boundary-stencil swap (open → periodic) alone.
+A test that freezes Einstein gravity's own lapse is measuring the discretisation, not the physics.
+sf22 C3 is downgraded from "adverse-leaning" to **uninformative on the representative**.
+
+**What this does not restore:** Dirac termination is *not* thereby established — it returns to
+the continuum column where item 2 already lives. **The ghost verdict stands untouched, and the
+asymmetry is principled:** sf21's verdict rests on the bracket being *nonzero*, and *that*
+direction's control (interaction off ⟹ bracket exactly zero) **passed** on the same lattice —
+artifact-free. sf22 C3 used the artifact-contaminated direction. One survives, one is withdrawn.
