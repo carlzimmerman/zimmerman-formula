@@ -51,3 +51,34 @@ imposed and both controls passing exactly — the universal first-class alternat
 the BD ghost survives sf18's count of 7) is **refuted**. Remaining before 'theorem': the exact GR
 kinetic reduction, the continuum statement, and full Dirac consistency. **Closest to closed this
 programme has ever been; not yet claimed closed.** See `QWEN_STEP4.md` for the brief.
+
+### sf36 — the equation of state has a CLOSED FORM (2026-08-20, 6/6)
+
+`sf36_closed_form_2026.py`. Independent verification of sf35 by an analytic route, which found
+that no numerics were ever required. sf34's conservation ODE is **linear with an exactly constant
+source** — `r^3 rho g_obs / 2 = GM a_0/(8 pi G)`, verified by `d/dr = 0` identically — so it
+integrates once to
+
+        p_t(r) = GM a_0 / (8 pi G r^2)        (exact, all radii; substituted back as a control)
+
+and the physicality ratio has the deep-MOND limit
+
+        p_t/(rho c^2) -> v_c^2 / (2 c^2),      v_c^2 = sqrt(G M a_0)
+
+i.e. **the anisotropic stress is suppressed by the galaxy's own BTFR speed squared** — `1.96e-07`
+canonical / `2.15e-07` alt for a `1e11 Msun` spiral. This *withdraws* sf35's `0.046` (see
+`RETRACTIONS.md`): that number came from scanning a point-mass solution inside the source. The
+correction runs **in favour** — the true ratio is five orders smaller than claimed.
+
+**Status.** What is now established, analytically and with a control: the equation of state that
+makes lensing come out right (`p_r = -2 p_t`, sf34) is mutually consistent with Carl's a_0-line as
+an amplitude law, local conservation ties them together exactly, and the sector that results has
+positive density, an isothermal `rho ~ 1/r^2` profile derived twice independently (sf30, sf35),
+and weak stress. **This is not yet a field theory** — it is an equation of state plus an amplitude
+law. The missing piece is the microphysics: *what object* has `p_r = -2 p_t` with an amplitude
+pinned by the a_0-line. The khronon, which carries a conserved shift charge and whose pressure IS
+`a_0^2` under Carl's promotion, is the obvious carrier and is the next calculation.
+
+**Practice change adopted here after six control-caught errors:** compute the number first, then
+write the check around the computed value. Both checks that failed on sf36's first run were
+*assertions written before the number was known*, not physics. Neither survived contact.

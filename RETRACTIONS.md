@@ -867,3 +867,29 @@ repair works *pointwise*. What fails is making it globally consistent with scree
 **Direction: I manufactured a win.** Fifth control-caught error of the programme, second in this
 repair chain, and the pattern is the familiar one — a boundary condition asserted at the
 intuitive end rather than derived from where the screening actually lives.
+
+---
+
+## sf35's headline number `max |p_t|/(rho c^2) = 0.046 / 0.050` — WITHDRAWN 2026-08-20
+
+**What it said.** `sf35_integrate_ode_2026.py` integrated sf34's conservation ODE numerically and
+reported the largest anisotropic-stress-to-energy-density ratio over its grid as 0.046 (canonical
+footing) / 0.050 (alt), passing a sanity bound of 1.
+
+**Why it is withdrawn.** `sf36_closed_form_2026.py` shows the ODE is linear with an *exactly
+constant* source, `r^3 rho g_obs / 2 = GM a_0 / (8 pi G)`, so it integrates in closed form:
+
+        p_t(r) = GM a_0 / (8 pi G r^2)
+
+No solver was ever needed. The closed form makes plain that the ratio grows as `1/r` for a **point
+mass**, and sf35's grid ran to `1e-6 r_M` while holding the *full galactic* `M` — i.e. deep inside
+the source, where a point-mass solution is not valid. **sf35's 0.046 was measuring that artifact.**
+Evaluated with the correct enclosed mass (`M = 1 Msun` at 1 AU) the ratio is `4.94e-09`; in the
+deep-MOND regime it is exactly `v_c^2/(2 c^2) = 1.96e-07` canonical / `2.15e-07` alt.
+
+**Direction: this one runs IN FAVOUR.** The true ratio is ~5 orders *below* what sf35 claimed, and
+the deep-MOND limit turns out to be the BTFR speed itself. The conclusion of sf35 — that the
+equation of state is physically sane — survives and is strengthened. What is retracted is the
+*number*, and the method that produced it: a nonlinear-looking ODE was handed to a solver before
+anyone checked whether it was linear. Sixth control-caught error of the programme, and the first
+whose correction improves the result.
