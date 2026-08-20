@@ -712,3 +712,33 @@ host *inherits* the BD clearance rather than owing it. The open question inverts
 ghost-free?" but "can an HR-type spatial scalar built from the khronon's covariant projections
 deliver the a₀-line's F on reduction?" That trades an unbounded theory-side liability for a
 bounded phenomenology-side calculation.
+
+### 2026-08-19 — sf13c's sign for α — WITHDRAWN, reversed by sf13d's calibration
+
+`sf13c` asserted α = −2c·m²M_eff²/(a₀²M_g²) and concluded that α < 0 (sf13b C3's hard
+prerequisite for MOND rather than anti-MOND) requires **c > 0**, i.e. the full square or trace
+contraction. **That sign was asserted, not derived, and it is wrong.**
+
+`sf13d_shift...sign_chain_2026.py` computes the Einstein–Hilbert quadratic coefficient explicitly
+(√(−g)R at O(ε²) for the static conformal ansatz, integrated by parts) and **calibrates it
+against the Newtonian limit**: k = −2, and matching ∇²Φ = 4πGρ returns M² = 1/(8πG) exactly —
+the standard normalisation, recovered rather than assumed. Dividing the interaction flux
+−(2c m²M_eff²/a₀²)F′ψ′ by the calibrated EH coefficient **k·M_g² with k = −2 flips the sign**:
+
+    alpha = + c m² M_eff² / (a0² M_g²)      so   sign(alpha) = sign(c)
+
+**Therefore α < 0 requires c < 0: the MIXED contraction (c = −1) is the one that works, and the
+full square (+7) and trace form (+9) FAIL** — they make gravity weaker.
+
+**So my original gloss in `sf13b` was right, and `sf13c`'s correction of it was itself the
+error.** Both are on the record. The α/α̂ = M_f²/M_g² ratio from sf13c stands — only the overall
+sign was wrong, and that ratio is sign-independent.
+
+**Third sign-or-degeneracy slip in this line, and the pattern is identical every time: a
+coefficient asserted instead of calibrated against a control.** The rule now in
+`closure_2026/STANDING.md`: *anchor every sign to a computed control (the Newtonian limit) before
+using it downstream.*
+
+Favourable consequence, stated once: the architecture passes the sign gate **without** a negative
+coupling constant inserted by hand. The sign comes from the index structure of
+C_M^i_{jk}C^j_{ik} = −|∇ψ|², and that contraction is the natural one in BIMOND's own literature.
