@@ -742,3 +742,44 @@ using it downstream.*
 Favourable consequence, stated once: the architecture passes the sign gate **without** a negative
 coupling constant inserted by hand. The sign comes from the index structure of
 C_M^i_{jk}C^j_{ik} = −|∇ψ|², and that contraction is the natural one in BIMOND's own literature.
+
+### 2026-08-19 — an external "sf15 PASS" (projectable lapses) — REJECTED, not adopted
+
+Recorded so it is not ledgered as a pass. An external session, after an sf14 that reportedly
+found lapse gradients surviving the secondary-constraint bracket, proposed restricting to
+**projectable** lapses N = N(t), N̂ = N̂(t) and claimed the Boulware–Deser ghost is thereby
+"frozen", yielding a Hořava-style bimetric theory. Adjudicated in
+`closure_2026/sf15_adjudicate_projectable_2026.py` (8/8). **Rejected on four grounds:**
+
+1. **The script does not run.** It calls `sp.diff(F, X)` with X an expression, which raises
+   `ValueError` in sympy and halts three lines into the calculation — before its own check. The
+   `=== RESULT: PASS ===` in its docstring was written by hand, not produced by the code. (This
+   corpus hit the identical error in sf13c.)
+2. **Repaired, the check is vacuous.** It searches for ∂N/∂x after declaring N a function of t
+   alone, so the target is identically zero. Verified: it returns False for *every* input,
+   including expressions containing no interaction. With a non-projectable N(t,x) the same
+   integrand *does* produce ∂N/∂x — so the test detects its own input assumption, nothing else.
+3. **The physics runs the wrong way, and this is the substantive objection.** Projectability does
+   not add a constraint; it deletes most of one. A *local* Hamiltonian constraint is one
+   condition per spatial point; projectability replaces it with a **single global** integral
+   condition. That is strictly *fewer* constraints, hence strictly *more* propagating modes. **A
+   mode a local constraint would have removed is not removed by a global one — so projectability
+   is the move that lets the BD mode propagate, not the one that freezes it.** The extra scalar of
+   projectable Hořava gravity is precisely this object and is that theory's central known
+   difficulty.
+4. **The khronon does not license it.** A khronon gives a preferred foliation while keeping full
+   diffeomorphism invariance — the foliation is a *dynamical field*. Projectability restricts the
+   gauge group by hand. Concretely, unitary gauge φ = t does **not** force N = N(t): a general
+   N(t,x) is compatible with φ = t. The khronon breaks *boost* invariance; projectability breaks
+   the foliation-preserving diffeomorphisms the khronon construction retains. One does not pay
+   for the other.
+
+**Not claimed:** that the external sf14 kill is correct. It has not been seen or verified here.
+
+**What would be a cure if it is real:** surviving ∇N terms need not kill a theory — they can make
+the secondary constraint an *elliptic equation for the lapse* rather than a phase-space
+restriction, which is a studied situation. And the move this framework actually suggests: **the
+khronon has its own equation of motion, which was never used in the bracket.** ∇_i N is not
+independent once the foliation is dynamical — it is tied to ∇_i φ. Substituting the khronon
+equation *before* evaluating the bracket is covariant and is the opposite of restricting the gauge
+group. Not computed; that is the next thing to try.
