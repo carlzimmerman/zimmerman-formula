@@ -13,9 +13,12 @@
 | SF16 | step 4 attempted | ~~interaction momentum-free~~ **WITHDRAWN by SF17**; ∇N is *not* a kill (stands) | PARTIAL (part withdrawn) |
 | SF17 | withdraw SF16's theorem | ∂X/∂π̂ ≠ 0 via K̂u; but ∂X/∂π = 0 exactly | WITHDRAWAL |
 | SF18 | step 4 structure + DOF count | both lapses LINEAR ⟹ 2 constraints; u^i determined algebraically; **count = 7 DOF**, no room for an 8th | PARTIAL |
+| SF19 | the bracket {C,Ĉ} | 2 of 4 terms **proved zero** ({F(X),B(X)}=0 — same scalar); 2 survivors explicit, ∝ K·∂X | PARTIAL-FAVOURABLE |
 
 **Status: steps 1–3 of `PROBLEM_SF13.md` plus the sign gate are cleared. Step 4 is OPEN — not
 closed and not killed. `sf16` briefly made it look two-term; `sf17` withdrew that. The bracket
 has four terms, one nonzero through the shared π̂. `sf18` then used the u^i lever: the structure
 is established and the DOF count is **7 = 2 + 5, the ghost-free bimetric number**, conditional on
-one bracket — whether {C, Ĉ} is weakly zero. That single bracket is now the whole question.** See `QWEN_STEP4.md` for the brief.
+one bracket. `sf19` then reduced that bracket to **two explicit terms**, both proportional to
+extrinsic curvature times ∂X — a form none of the constraints has. **The last link: rule out an
+accidental weak cancellation using the explicit ADM densities.** Not carried; theory NOT closed.** See `QWEN_STEP4.md` for the brief.
