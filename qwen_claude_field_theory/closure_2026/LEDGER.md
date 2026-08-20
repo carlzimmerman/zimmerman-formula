@@ -15,6 +15,7 @@
 | SF18 | step 4 structure + DOF count | both lapses LINEAR ⟹ 2 constraints; u^i determined algebraically; **count = 7 DOF**, no room for an 8th | PARTIAL |
 | SF19 | the bracket {C,Ĉ} | 2 of 4 terms **proved zero** ({F(X),B(X)}=0 — same scalar); 2 survivors explicit, ∝ K·∂X | PARTIAL-FAVOURABLE |
 | SF22 | finishing list | exact kinetic reduction DONE, verdict survives (+7.347); Dirac multiplier matrix FULL RANK — frozen-lapse flag | PARTIAL (C3 downgraded by SF23) |
+| SF24 | **continuum Dirac analysis** (1D-reduced) | GR closure recovered exactly (W ∝ M, read off); Σ-detector: **Σ = 0.1835 ≠ 0 on the FULL constraint jet** ⟹ orthogonal pair second class **in the continuum**; diagonal survives; **7 DOF at generic continuum points** | **CONTINUUM SECOND-CLASS** |
 | SF23 | **artifact verification** | pure-GR control FAILS the same test (rank 2, comparable magnitude, boundary-dependent) ⟹ frozen lapse = **lattice artifact**; ghost verdict untouched (its control passed) | ARTIFACT CONFIRMED |
 | SF21 | **the weak-zero test** | on-shell {C,Ĉ} = **−7.347 ≠ 0** at a generic real point, all constraints imposed at all sites, both controls exact | **NOT WEAKLY ZERO — second class on the representative** |
 
