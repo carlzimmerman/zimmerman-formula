@@ -82,3 +82,34 @@ pinned by the a_0-line. The khronon, which carries a conserved shift charge and 
 **Practice change adopted here after six control-caught errors:** compute the number first, then
 write the check around the computed value. Both checks that failed on sf36's first run were
 *assertions written before the number was known*, not physics. Neither survived contact.
+
+### sf37 — two theorems that RELOCATE the closure problem (2026-08-20, 10/10)
+
+`sf37_kessence_theorem_2026.py`.
+
+**THEOREM 1.** For any single k-essence `L = F(X)` with a **static** radial profile, on a general
+static spherically symmetric metric, `p_t = -rho` **identically, for every F**. Imposing the lensing
+condition then forces `F ~ X^(3/2)` — the deep-MOND AQUAL kinetic term appears unforced from a
+*lensing* requirement — but at `p_t/(rho c^2) = -1`, against sf36's required `+1.96e-07` canonical /
+`+2.15e-07` alt. **Every STATIC single-scalar AQUAL realisation is excluded as the stress carrier,
+by sign and by seven orders.** This kills a whole class at once, where the prior five relativistic
+realisations died one at a time.
+
+**THE ESCAPE, and it is the framework's own.** Theorem 1 assumed `d_t phi = 0`. The dark sector is a
+**shift-symmetric condensate**, `phi = Q_0 t + psi(r)`. Restoring the time-dependent piece gives
+`rho = F + F' Q_0^2/A`, `p_r = F' psi'^2/B - F`, `p_t = -F`, so `p_t + rho = F' Q_0^2/A != 0` — the
+condensate **evades Theorem 1**, on the strength of the same conserved shift charge that makes
+`w = -1` exact. And it evades in the right direction: `F < 0` gives `p_t > 0` (sf36's sign) with
+`rho` charge-dominated, i.e. **dust plus a tiny pressure** — sf36's structure exactly.
+**AGAINST INTEREST:** the *exact* condition still fails (`F' psi'^2/B = 3F` has no real solution for
+`F<0, F'>0`); what survives is suppression of `(p_r+2p_t)/(rho c^2)` by `~psi'^2/Q_0^2`, and whether
+that reaches the observational tolerance is **OWED**.
+
+**THEOREM 2.** Pressureless dust satisfies `p_r + 2 p_t = 0` **trivially**. The dark sector IS dust.
+So **sf34's lensing condition is not binding and was oversold** — direction: this runs *against*
+interest. sf35/sf36's closed form is unaffected; it remains the correct subleading anisotropy.
+
+**THEREFORE THE ACTUAL CLOSURE QUESTION** — what a "field theory of gravity" reduces to here:
+*what makes `rho(r) = sqrt(G M_b a_0)/(4 pi G r^2)`, locked to the BARYONIC mass with the coefficient
+set by `a_0`, a DYNAMICAL CONSEQUENCE rather than an initial condition?* Equivalently: what makes the
+a_0-line an **attractor** of the field equations. Six mechanisms under adversarial test.
