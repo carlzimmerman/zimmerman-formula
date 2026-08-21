@@ -1,0 +1,174 @@
+\documentclass[aps,prd,twocolumn,superscriptaddress,nofootinbib,floatfix]{revtex4-2}
+\usepackage{amsmath,amssymb,graphicx,bm,hyperref}
+\usepackage[T1]{fontenc}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+\begin{document}
+
+\title{Ghost freedom does not constrain the sound speed of a shift-symmetric condensate}
+
+\author{Carl Zimmerman}
+\affiliation{Briar Creek Tech, Charlotte, North Carolina, USA}
+\date{21 August 2026}
+
+\begin{abstract}
+For a shift-symmetric scalar with Lagrangian $K(\mathcal{Q})$, where $\mathcal{Q}$ is the
+charge variable conjugate to the shift symmetry, we note the identity
+$K'' = n/(\mathcal{Q}c_s^2)$ with $n = K'$ the conserved charge density. Because $n>0$ and
+$\mathcal{Q}>0$ on any physical branch, this shows that the no-ghost condition $K''>0$ is
+\emph{equivalent} to $c_s^2>0$ and therefore constrains only the \textbf{sign} of the sound
+speed---never its scaling with charge density, and never its magnitude. This contradicts a
+natural and, in our experience, easily made assumption: that stability forces the sound speed
+of such a condensate to redshift as $c_s^2\propto a^{-3}$, driving it to dust. That behaviour
+is the special case in which $K'$ possesses a \emph{simple interior zero}. We exhibit an
+explicit ghost-free counterexample,
+$K'(\mathcal{Q}) = n_1[1+(s/c_1)\ln(\mathcal{Q}_1/\mathcal{Q})]^{-1/s}$, whose sound speed
+\emph{rises} as the charge dilutes, $c_s^2 = c_1(n/n_1)^{-s}\propto a^{+3s}$. Here $K'>0$ for
+all $\mathcal{Q}>0$ and vanishes only at the domain boundary, logarithmically: $298$ decades
+of charge buy $6$ decades of $K'$. Numerically, $K''>0$ at $400$ sampled charges spanning
+$45$ decades in $n$ with none skipped, minimum $K''=4.9\times10^{-27}$, and the closed-form
+sound speed is reproduced to $2\times10^{-52}$ at $60$-digit precision. The equation-of-state
+fixed point $w=-1$ survives, relocated to the boundary of the charge domain. The consequence
+is that warm shift-symmetric dark sectors are not excluded by stability, and any argument
+that closes them must appeal to something other than ghost freedom. We state plainly what
+this result does \emph{not} do: it removes an obstruction, it does not build a viable
+cosmology, and one class of candidate application is reported here as failing three
+independent observational gates.
+\end{abstract}
+
+\maketitle
+
+\section{Setup}
+
+Consider a scalar $\phi$ with shift symmetry $\phi\to\phi+\text{const}$, in a configuration
+$\phi = \mathcal{Q}_0 t + \psi(\mathbf{x})$, so that the time component of the gradient plays
+the role of a chemical potential. Write the Lagrangian as $K(\mathcal{Q})$. Then
+\begin{equation}
+n = K'(\mathcal{Q}),\qquad
+\rho = \mathcal{Q}K' - K,\qquad
+p = K ,
+\label{eq:thermo}
+\end{equation}
+with $n$ the conserved Noether charge density of the shift symmetry. These are the standard
+thermodynamic relations of a charged condensate, with $\mathcal{Q}$ the chemical potential
+conjugate to $n$; they follow either by direct variation or from the first law
+$\mathrm{d}\rho/\mathrm{d}n = (\rho+p)/n$.
+
+The sound speed and the no-ghost condition are
+\begin{equation}
+c_s^2 = \frac{\mathrm{d}p}{\mathrm{d}\rho} = \frac{K'}{\mathcal{Q}K''},
+\qquad
+\text{no ghost}\iff K''>0 .
+\label{eq:cs}
+\end{equation}
+
+\section{The theorem}
+
+Rearranging Eq.~\eqref{eq:cs} gives the identity
+\begin{equation}
+\boxed{\;K'' \;=\; \frac{n}{\mathcal{Q}\,c_s^2}\;}
+\label{eq:identity}
+\end{equation}
+On any physical branch $n>0$ and $\mathcal{Q}>0$, so the sign of $K''$ is the sign of $c_s^2$
+and nothing else. Hence:
+
+\begin{quote}
+\textbf{Theorem.} For a shift-symmetric condensate, ghost freedom is \emph{equivalent} to
+$c_s^2>0$. It places no constraint whatsoever on the magnitude of $c_s^2$, nor on its scaling
+with $n$ (equivalently, with the scale factor through $n\propto a^{-3}$).
+\end{quote}
+
+The theorem is trivial once Eq.~\eqref{eq:identity} is written down, which is precisely why
+the assumption it refutes is easy to make. The tempting argument runs: $K'$ must vanish
+somewhere for the charge to dilute; near a zero of $K'$ one has $K'/K''\sim(\mathcal{Q}-
+\mathcal{Q}_*)$, hence $c_s^2\propto n\propto a^{-3}$; therefore any ghost-free condensate
+cools to dust. Every step is correct \emph{given a simple interior zero}. The conclusion does
+not follow in general, because that hypothesis is an extra assumption and not a consequence
+of stability.
+
+\section{The counterexample}
+
+Let
+\begin{equation}
+K'(\mathcal{Q}) = n_1\left[1+\frac{s}{c_1}\ln\frac{\mathcal{Q}_1}{\mathcal{Q}}\right]^{-1/s},
+\qquad s>0 ,
+\label{eq:counter}
+\end{equation}
+which integrates the ODE $\mathrm{d}\ln\mathcal{Q}/\mathrm{d}\ln n = c_s^2$ with
+$c_s^2 = c_1(n/n_1)^{-s}$. Then
+\begin{equation}
+c_s^2 = c_1\left(\frac{n}{n_1}\right)^{-s} \;\propto\; a^{+3s},
+\end{equation}
+so the sound speed \emph{rises} as the charge dilutes: the sector is cold when dense and warm
+when rarefied.
+
+Three properties make this a genuine counterexample rather than a formal one.
+
+\paragraph{It is ghost-free everywhere on the branch.}
+$K'>0$ for every $\mathcal{Q}>0$, and $K'\to0$ only at the domain boundary
+$\mathcal{Q}\to0$---logarithmically, so the approach is extraordinarily slow: $298$ decades
+of $\mathcal{Q}$ buy $6$ decades of $K'$. There is no interior zero, which is exactly the
+hypothesis the tempting argument requires.
+
+\paragraph{It is verified, not merely asserted.}
+Independent reconstruction from the defining ODE (rather than by substitution into the closed
+form) gives $K''>0$ at $400$ sampled charges spanning $45$ decades in $n$, none skipped, with
+minimum $K'' = 4.87\times10^{-27}$; and $c_s^2$ from Eq.~\eqref{eq:cs} reproduces
+$c_1(n/n_1)^{-s}$ to a relative $1.9\times10^{-52}$ at $60$-digit precision.
+
+\paragraph{The dark-energy fixed point survives.}
+$K(\mathcal{Q}_1)-K(0)$ is finite and analytically bounded by $n_1\mathcal{Q}_1$, so the
+$w=-1$ stationary point is preserved---relocated to the boundary of the charge domain rather
+than destroyed. A condensate of this type can still supply an exact cosmological-constant
+branch.
+
+\paragraph{A family that does \emph{not} work, for the record.}
+It is worth recording which natural family fails, since we tried it first. Taking
+$K'\propto(\mathcal{Q}-\mathcal{Q}_*)^m$ gives
+$c_s^2 = (\mathcal{Q}-\mathcal{Q}_*)/(m\mathcal{Q})\propto n^{1/m}\propto a^{-3/m}$, which
+\emph{declines} for every $m>0$; and $K''>0$ requires $m>0$, so $m<0$ is a ghost rather than
+an escape. The rising branch is not contained in that family at all; the map to
+Eq.~\eqref{eq:counter} is $s=-1/m$.
+
+\section{What follows, and what does not}
+
+\paragraph{What follows.} Arguments that close warm shift-symmetric dark sectors on stability
+grounds are invalid as stated. In particular, a chain of the form ``the excitation is
+ghost-free, therefore $c_s^2\propto a^{-3}$, therefore it is dust, therefore it clusters and
+cannot be kept smooth'' fails at its second step. Any such closure must instead be argued from
+observation---the cosmic microwave background, structure growth, or the phase-space
+constraints---and those arguments have different and generally weaker leverage.
+
+\paragraph{What does not follow.} Removing an obstruction is not the same as building a
+theory, and we decline to present it as one. In the application that motivated this work---a
+condensate supplying the cosmological dark sector while remaining smooth enough in galaxies not
+to double-count a modified-gravity phantom---the warm branch was constructed and then failed
+three independent observational gates under adversarial review: the tensor speed constraint
+from GW170817, cluster scales at the low end of the charge window, and the radial acceleration
+relation, which degrades from $0.108$ to $0.113$~dex through a coherent deep-MOND tilt. A
+window on the required sound speed remained short by a factor of $1.28$, which is a small
+number but not zero. We report this because a result that removes an obstruction is easy to
+oversell, and the honest scope of the present paper is the theorem and its counterexample, not
+the application.
+
+\paragraph{A methodological note.} The assumption refuted here survived unchallenged in our own
+work for an extended period and was used to close a live line of investigation. It failed for
+a specific and recognisable reason: a correct formula---the near-a-simple-zero expansion---was
+generalised beyond the regime in which it holds. We record this because the same error mode
+accounted for the majority of incorrect exclusions we have had to withdraw, and because a
+stability argument is exactly the kind of claim that is rarely revisited once made.
+
+\section{Reproducibility}
+
+The construction, the $45$-decade ghost-freedom scan, the $60$-digit sound-speed check and the
+$w=-1$ boundary argument are implemented in the accompanying scripts, each of which exits zero.
+The counterexample was independently rebuilt from the defining ODE by a separate analysis that
+did not import the closed form, and that reconstruction is included.
+
+\begin{acknowledgments}
+The k-essence sound-speed relation and the no-ghost condition are standard; what is claimed
+here is the observation that they are equivalent statements for a shift-symmetric condensate,
+and the explicit rising-$c_s^2$ counterexample. The analysis, scripts and adversarial
+verification were carried out with Claude (Anthropic).
+\end{acknowledgments}
+
+\end{document}
