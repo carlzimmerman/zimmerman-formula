@@ -1,0 +1,250 @@
+
+route1_warm_condensate_window_2026.py
+=====================================
+ROUTE 1 -- THE WARM CONDENSATE.  Build the ghost-free K(Q) whose sound speed RISES as the
+shift charge dilutes, and ask whether a single member of the family can be COLD ENOUGH AT
+RECOMBINATION (so the CMB pass survives) and WARM ENOUGH TODAY (so no halo is deposited in
+galaxies and the double count does not arise).
+
+WHY THE QUESTION IS NEWLY LIVE.  stage9_construct_the_function_2026.py proved
+"c_s^2 -> 0 as a^-3 for EVERY ghost-free K" and priced the warm route at c_s^2(rec) = 595 c^2,
+superluminal by 595x.  That theorem is WITHDRAWN: its hypothesis was that K' reaches zero at a
+finite interior point with a SIMPLE zero.  PART A builds an explicit ghost-free counterexample.
+
+WHAT THIS SCRIPT DELIVERS
+  A. the exact thermodynamics, the ghost-freedom identity K'' = n/(Q c_s^2), the prompt's
+     (Q-Q_*)^m family (which is the DECLINING branch, for every m > 0), and an explicit
+     RISING-branch K with K'' > 0 verified over 31 decades;
+  B. requirement (a): the maximum c_s^2 at recombination, recomputed honestly -- reproducing
+     stage 9's 595 c^2 as an arithmetic control, then recomputing under the corrected scaling;
+  C. requirement (b): what "smooth in galaxies today" actually costs.  Two criteria: the
+     LINEAR free-streaming length as literally posed, and the NONLINEAR hydrostatic criterion
+     that the double count is actually about;
+  D. THE COLLISION: the same sound speed that keeps the sector out of galaxies keeps it out of
+     everything below ~50 Mpc.  CLASS-calibrated;
+  E. the Pareto front over the family, and the scaling degeneracy that makes it flat;
+  F. pricing: w(z), the sector sound horizon, sigma_8;
+  G. the "favourable structure" of point 5 -- verified, and its scope stated exactly.
+
+Exit 0 = every check passed.  BOTH FOOTINGS throughout.
+
+  [info] background: Om_m=0.3134 Om_d=0.2642 Om_b=0.0492 Om_L=0.6865 rho_d0=2.254e-27 kg/m^3   a_rec=9.16674e-04
+
+====================================================================================================
+PART A -- THE FAMILY, AND EXACTLY WHERE STAGE 9's THEOREM FAILS
+====================================================================================================
+  [ok] A1  d rho/dQ = Q K''  (so rho' and p' share the factor K')   drho/dQ = Q*K''
+  [ok] A1b c_s^2 = dp/drho = K'/(Q K'')  -- the adiabatic sound speed IS the prompt's formula   checked symbolically, not asserted
+  [ok] A2  *** K'' = n/(Q c_s^2) identically.  With n > 0 and Q > 0, K'' > 0 <=> c_s^2 > 0: GHOST FREEDOM FIXES THE SIGN OF c_s^2 AND NOTHING ELSE -- no scaling with n is implied ***   this is the withdrawal of stage 9's 'for every ghost-free K' in one line
+  [ok] A3  power-law family K' ~ (Q-Q_*)^m gives c_s^2 = (Q-Q_*)/(m Q)   [sympy: (Q - Q_*)/(Q*m)]
+  [ok] A3b K'' = m (Q-Q_*)^(m-1) > 0 requires m > 0 and Q > Q_*  (ghost-free branch)
+  [ok] A3c *** AND THEREFORE c_s^2 ~ (Q-Q_*) ~ n^(1/m) ~ a^(-3/m) DECLINES for EVERY m > 0. The family named in the task is the COLD-LATE branch: m = 1 recovers stage 9's a^-3, m = 10 gives a^-0.3, but the SIGN of the slope never flips inside it ***   so the rising branch is NOT (Q-Q_*)^m with m<0 either: that has K'' < 0, a ghost. It needs a K whose zero of K' sits at the BOUNDARY of the domain, not inside it
+  [ok] A4  the constructed Q(n) has dlnQ/dln n = c_1 (n/n_1)^(-s) = c_s^2 by construction   sympy returns cc*(N1/nn)**ss
+  [ok] A4b inverting in T = (n/n_1)^(-s), where the relation is LINEAR: T = 1 + (s/c_1) ln(Q_1/Q)  [sympy solve returns (cc - log(Q**ss/QQ1**ss))/cc], hence K'(Q) = n_1 T^(-1/s)   GUARD (rule 6): sp.solve returned a NON-EMPTY set and the length is checked, so an empty solve cannot pass this vacuously
+  [ok] A4c GHOST-FREE: K'' > 0 at all 320 sampled charges spanning 31 decades of n (min K'' = 4.864e-27 > 0), 0 points skipped   guard against a vacuous pass: the sample count AND the skip count are checked, so a silent NaN cannot let this through
+  [ok] A4c2 and the closed-form inverse round-trips: K'(Q(n)) = n to 9.0e-55 relative at 60-digit precision over the same 31 decades  (this is the independent check on A4b)
+  [ok] A4d and the numeric c_s^2 = K'/(Q K'') reproduces c_1 (n/n_1)^(-s) to 5.92e-55 relative over those 31 decades   K' varies logarithmically in Q with slope 1/c_s^2 ~ 1e7, so a naive double-precision finite difference is OUTSIDE its linear regime here and returns ~27% error -- that is why this is done at 60 digits with an adaptive derivative
+  [ok] A4e *** THE SCALING: n ~ a^-3 so c_s^2 = c_1 (n/n_1)^(-s) ~ a^(+3s).  RISING as the charge dilutes.  Map to the task's exponent: a^(-3/m) = a^(3s) means s = -1/m ***
+  [ok] A5  K' > 0 for every Q > 0 and reaches 0 only at the DOMAIN BOUNDARY Q -> 0, and only logarithmically: K'(1e-2)=5.692e-29, K'(1e-300)=1.124e-37 -- 298 decades of Q buy 6 decades of K'   stage 9 assumed K' hits zero at a finite INTERIOR u_* with a SIMPLE zero, so that K'/K'' ~ (u-u_*) ~ n.  Neither holds here.  That is the exact hypothesis that fails
+  [ok] A5b K(Q_1) - K(0) = int_0^Q_1 K' dQ = 1.333333e-07 is FINITE (and bounded above by n_1 Q_1 = 1 analytically, since K' <= n_1 on the domain), so the w = -1 point K'(0) = 0, K(0) = -rho_Lambda is a legitimate stationary point   AGAINST A NAIVE PASS: scipy quad on the raw variable returns 5.4e-17 here -- it misses the spike entirely.  The substituted integral and the analytic bound agree; the raw quad is wrong and is not used
+
+====================================================================================================
+PART B -- REQUIREMENT (a): HOW COLD MUST IT BE AT RECOMBINATION?
+====================================================================================================
+  [ok] B0  CONTROL: stage 9's own numbers reproduce.  Its target c_s(today) = 203 km/s is c_s^2 = 4.585e-07 c^2; running it back with c_s^2 ~ a^-3 gives c_s^2(rec) = 595 c^2 -- the committed 595 c^2 (SUPERLUMINAL)   so I am pricing the same route the corpus priced, on the same target
+
+          s   m = -1/s   c_s^2(rec)/c^2       vs 595
+       0.00        inf        4.585e-07     7.70e-10
+       0.05    -20.000        1.606e-07     2.70e-10
+       0.10    -10.000        5.624e-08     9.45e-11
+       0.25     -4.000        2.416e-09     4.06e-12
+       0.50     -2.000        1.273e-11     2.14e-14
+       1.00     -1.000        3.532e-16     5.93e-19
+       2.00     -0.500        2.720e-25     4.57e-28
+  [ok] B1  *** THE 595 c^2 WALL IS GONE.  On the rising branch the SAME warm target needs c_s^2(rec) = 2.42e-09 c^2 at s = 0.25 -- 2.5e+11x below stage 9's figure, and subluminal by 4.1e+08x ***   this is the one thing the corrected scaling decisively buys, and it is real
+  [info] B2  Jeans criterion at rec: k_J(a_rec) = 1 x k = 0.135/Mpc at c_s^2(rec) = 1.43e-03 c^2
+  [info] B2  Jeans criterion at rec: k_J(a_rec) = 10 x k = 1.348/Mpc at c_s^2(rec) = 1.43e-05 c^2
+  [info] B3a implementation floor: the c_s^2 = 1e-12 FLUID run already sits 0.416 CV from the CDM run.  That offset is subtracted by baselining on the cold fluid
+  [ok] B3b and the floor itself is inside cosmic variance, so the fluid implementation is an adequate stand-in for the sector at all
+
+      const c_s^2    max |dTT/TT|/CV   sum sqrt(chi2)    sigma8
+            1e-09              0.001              0.0    0.8195
+            1e-08              0.001              0.0    0.8189
+            1e-07              0.001              0.0    0.8130
+            1e-06              0.001              0.0    0.7648
+            1e-05              0.025              0.5    0.5488
+            1e-04              0.116              2.3    0.2485
+            1e-03              0.508             13.2    0.0772
+            1e-02              2.736             61.2    0.0180
+  [ok] B3  *** CLASS: a CONSTANT c_s^2 = 1e-03 keeps every TT multipole to l = 2500 inside cosmic variance (baselined on the cold fluid).  Since the rising family is COLDER at every epoch before recombination than its own c_s^2(rec), this is a conservative cap: c_s^2(rec) <= 1e-03 c^2 clears the peaks ***   NOT VACUOUS: the same scan does break the CV threshold at higher c_s^2, so the statistic responds to the parameter it is supposed to measure
+  [ok] B4  REQUIREMENT (a) IS SATISFIED, with room: the family at s = 0.25 sits at c_s^2(rec) = 2.42e-09 against a cap of 1.43e-05 (5906x margin)   and it is satisfied for every s >= 0.05; the recombination leg is NOT the binding one
+  [info] B5  *** AND THE RECOMBINATION LEG NO LONGER NEEDS THE RISE AT ALL: the warm target c_s^2(0) = 4.59e-07 is itself 31x inside the CMB cap 1.4e-05, so s >= 0 suffices and the allowed range of the task's exponent m is UNBOUNDED from this leg alone.  Requirement (a) is not a constraint
+
+====================================================================================================
+PART C -- REQUIREMENT (b): WHAT 'SMOOTH IN GALAXIES TODAY' ACTUALLY COSTS
+====================================================================================================
+         s    c_s^2(0)   lambda_FS(0) [Mpc]        [kpc]
+      0.00     1.0e-09               0.4482        448.2
+      0.00     1.0e-08               1.4174       1417.4
+      0.00     1.0e-07               4.4821       4482.1
+      0.00     4.6e-07               9.6130       9613.0
+      0.25     1.0e-09               0.2462        246.2
+      0.25     1.0e-08               0.7786        778.6
+      0.25     1.0e-07               2.4623       2462.3
+      0.25     4.6e-07               5.2810       5281.0
+      1.00     1.0e-09               0.0961         96.1
+      1.00     1.0e-08               0.3040        304.0
+      1.00     1.0e-07               0.9612        961.2
+      1.00     4.6e-07               2.0616       2061.6
+  [ok] C0  THE BRACKET AS LITERALLY POSED IS NON-EMPTY, and easily: lambda_FS(0) = 50 kpc needs only c_s^2(0) = 4.12e-11 c^2, whose value at recombination (2.17e-13) is 6.6e+07x inside the CMB cap   every s in a wide range clears it -- which is exactly why this is the WRONG criterion
+  [ok] C0b *** AND IT IS THE WRONG CRITERION, for a reason already banked in this corpus. lambda_FS is a LINEAR quantity: it sets the initial power, not the accretion.  The 1-Mpc confrontation already killed the initial-conditions route -- smooth accretion drives xi(halo) -> 1 for ANY cold T(k).  A 50 kpc free-streaming length does not stop the sector falling into a Milky-Way well; the Lagrangian radius of a 1e12 Msun halo is 1.8 Mpc, and even suppressing THAT does not stop late accretion ***   REGIME CHECK (rule 1): the double count is a statement about the mass inside r_M TODAY, i.e. about a nonlinear, accreted configuration.  A formula for the linear free-streaming scale is not valid there.  PART C1 uses the criterion that is
+
+    minimum c_s^2(0)/c^2 for the sector to contribute <= 10% of the phantom mass at
+    BOTH r_M and 10 r_M (hydrostatic isothermal limit s -> 0, Hernquist baryons):
+               baryons    footing            g_ext  v_c km/s  r_M kpc    cs2_min  cs_min km/s  binds at  mono
+/Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/closure_2026/route1_warm_condensate_window_2026.py:462: RuntimeWarning: overflow encountered in multiply
+  integ = 4 * np.pi * rgrid ** 2 * rho
+/Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/closure_2026/route1_warm_condensate_window_2026.py:463: RuntimeWarning: overflow encountered in multiply
+  Menc = np.concatenate([[0.0], np.cumsum(0.5 * (integ[1:] + integ[:-1]) * np.diff(rgrid))])
+       1e10 Msun dwarf  canonical   g_ext = 0.1 a0     105.6     3.86   3.66e-08         57.4       r_M  True
+       1e10 Msun dwarf  canonical  g_ext = 0.01 a0     105.6     3.86   9.35e-08         91.7    10 r_M  True
+       1e10 Msun dwarf        alt   g_ext = 0.1 a0     110.6     3.52   3.79e-08         58.4       r_M  True
+       1e10 Msun dwarf        alt  g_ext = 0.01 a0     110.6     3.52   9.86e-08         94.1    10 r_M  True
+/Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/closure_2026/route1_warm_condensate_window_2026.py:463: RuntimeWarning: overflow encountered in add
+  Menc = np.concatenate([[0.0], np.cumsum(0.5 * (integ[1:] + integ[:-1]) * np.diff(rgrid))])
+      1e11 Msun spiral  canonical   g_ext = 0.1 a0     187.8    12.20   1.29e-07        107.6       r_M  True
+      1e11 Msun spiral  canonical  g_ext = 0.01 a0     187.8    12.20   3.53e-07        178.0    10 r_M  True
+      1e11 Msun spiral        alt   g_ext = 0.1 a0     196.7    11.12   1.33e-07        109.5       r_M  True
+      1e11 Msun spiral        alt  g_ext = 0.01 a0     196.7    11.12   3.69e-07        182.1    10 r_M  True
+     1e12 Msun massive  canonical   g_ext = 0.1 a0     333.9    38.59   5.45e-07        221.2       r_M  True
+     1e12 Msun massive  canonical  g_ext = 0.01 a0     333.9    38.59   1.39e-06        353.9    10 r_M  True
+     1e12 Msun massive        alt   g_ext = 0.1 a0     349.8    35.16   5.60e-07        224.3       r_M  True
+     1e12 Msun massive        alt  g_ext = 0.01 a0     349.8    35.16   1.44e-06        360.2    10 r_M  True
+  [ok] C1a all 12 galaxy/footing/environment cells returned a bracketed root, and the violation function is MONOTONE in log c_s^2 in every one of them (checked on a 40-point scan before each brentq) -- no spurious roots   the first draft of this block used a point-mass potential; its well depth diverges at the centre, the enclosed mass became cutoff-dependent and the roots were non-monotone (the alt-footing dwarf inverted).  DIRECTION OF THAT ERROR: it made the requirement look LOWER than it is in some cells and HIGHER in others -- it was noise, not a lean
+  [ok] C1  *** REQUIREMENT (b), the binding form: c_s^2(0) >= 3.66e-08 (least demanding cell) to 1.44e-06 (most) c^2 across dwarf-to-massive, both footings, two environments; 1.29e-07 c^2 = 108 km/s for a 1e11 Msun spiral, canonical ***   corroboration: stage 8's own warm target was 203 km/s (c_s^2 = 4.59e-07) -- the same order, reached independently
+  [ok] C1b REGIME CHECK: sound crossing of the MOND well is 1.11 Gyr vs a Hubble time 14.5 Gyr -- hydrostatic equilibrium is REACHABLE, so the formula is valid where it is evaluated   if it were NOT reachable the correct problem would be free accretion, which deposits MORE sector mass, not less -- so this check cannot be hiding a favourable case
+  [info] C1c independent cross-check (canonical): the Bondi radius GM/c_s^2 falls inside r_M = sqrt(GM/a0) only when c_s^2 >= sqrt(G M a0) = v_c^2 = 3.92e-07 c^2 = 188 km/s -- same order as C1, by a route with no hydrostatic assumption at all
+  [info] C1c independent cross-check (alt): the Bondi radius GM/c_s^2 falls inside r_M = sqrt(GM/a0) only when c_s^2 >= sqrt(G M a0) = v_c^2 = 4.31e-07 c^2 = 197 km/s -- same order as C1, by a route with no hydrostatic assumption at all
+
+    the s-penalty (1e11 Msun spiral, canonical, g_ext = 0.1 a0):
+          s  Gamma=1-s   cs2_min(0)  cs_min km/s  ratio to s=0
+       0.00       1.00    1.288e-07        107.6         1.000
+/Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/closure_2026/route1_warm_condensate_window_2026.py:460: RuntimeWarning: overflow encountered in power
+  rho = rho_bar * arg ** (-1.0 / s)
+       0.10       0.90    2.581e-07        152.3         2.004
+       0.25       0.75    5.832e-07        229.0         4.528
+       0.50       0.50    1.166e-06        323.7         9.053
+       1.00       0.00    2.332e-06        457.8        18.106
+       2.00      -1.00    4.664e-06        647.5        36.211
+       4.00      -3.00    9.329e-06        915.7        72.423
+       8.00      -7.00    1.866e-05       1294.9       144.845
+
+    the ASSEMBLY-EPOCH constraint: (b) imposed at z_form, referred back to z = 0
+         s     req@z=0  req@z=1 ->z0  req@z=2 ->z0  req@z=3 ->z0  binding z
+      0.00   1.288e-07     1.557e-07     1.800e-07     2.041e-07        3.0
+      0.10   2.581e-07     3.326e-07     3.921e-07     4.478e-07        3.0
+      0.25   5.832e-07     9.812e-07     1.330e-06     1.651e-06        3.0
+      0.50   1.166e-06     3.298e-06     6.059e-06     9.329e-06        3.0
+      1.00   2.332e-06     1.866e-05     6.297e-05     1.493e-04        3.0
+      2.00   4.664e-06     2.985e-04     3.400e-03     1.911e-02        3.0
+      4.00   9.329e-06     3.821e-02     4.958e+00     1.565e+02        3.0
+      8.00   1.866e-05     3.130e+02     5.270e+06     5.252e+09        3.0
+  [ok] C1e *** THE LARGE-s ESCAPE IS CLOSED FROM THE OTHER SIDE.  Imposing (b) at the assembly epoch instead of today multiplies the required c_s^2(0) by 1.7e+07 at s = 4 and 2.8e+14 at s = 8, because (1+z)^(3s) is exactly the factor the rise buys.  A steeply rising sound speed is COLD when the galaxies are being built ***   so the s-lever is squeezed from both ends: small s fails the growth bound, large s fails the assembly-epoch bound.  The optimum is interior
+  [ok] C1d *** THE COMPRESSION PENALTY IS REAL AND IT IS THE PRICE OF THE RISE: c_s^2 rising as the charge DILUTES is the same statement as c_s^2 FALLING as the charge CONCENTRATES, so the sector COOLS as it is squeezed into the well.  The required c_s^2(0) grows from 1.29e-07 at s = 0 to 4.66e-06 at s = 2, a factor 36.21 ***   polytropic index Gamma = 1 - s < 1: for any s > 0 the equilibrium DIVERGES at a finite well depth |dPhi| = cbar^2/s.  This is the structural cost the task's point 5 did not price
+
+    sensitivity of requirement (b) to the tolerated sector share eps:
+        eps     req(z=0)  req(z=3)->z0
+       0.03    1.427e-07     3.281e-07
+       0.10    1.288e-07     2.041e-07
+       0.30    1.188e-07     1.745e-07
+       1.00    1.099e-07     1.521e-07
+  [ok] C1f the requirement moves only 2.2x across a 33x change in the tolerated share (eps = 0.03 to 1.00), because the accumulation is EXPONENTIAL in |dPhi|/c_s^2 -- the log flattens it   so the verdict is insensitive to the tolerance choice; eps = 1.0 (allowing the sector to DOUBLE the phantom, i.e. no fix to the double count at all) still requires c_s^2(0) = 1.52e-07
+
+====================================================================================================
+PART D -- THE COLLISION: SMOOTH IN GALAXIES  vs  CLUSTERED EVERYWHERE ELSE
+====================================================================================================
+  [ok] D0  integrator REVALIDATED against CLASS here (not taken on trust from stage69): baryon-channel suppression matches to 3.4% over 1e-7..1e-5
+
+    max c_s^2(0)/c^2 keeping P_total(k) within 5% of the pressureless case
+         s           0.2           0.5           1.0
+      0.00     1.138e-07     1.820e-08     4.551e-09
+      0.10     1.684e-07     2.694e-08     6.734e-09
+      0.25     2.708e-07     4.333e-08     1.083e-08
+      0.50     5.002e-07     8.003e-08     2.001e-08
+      1.00     1.200e-06     1.919e-07     4.799e-08
+      2.00     3.651e-06     5.841e-07     1.460e-07
+      4.00     1.301e-05     2.081e-06     5.203e-07
+      8.00     4.987e-05     7.978e-06     1.994e-06
+  [ok] D1  the rise DOES relax the growth bound, as point 5's structure predicts: at k = 0.2 h/Mpc the allowed c_s^2(0) rises from 1.14e-07 at s = 0 to 3.65e-06 at s = 2, a factor 32.1   because a c_s^2 that switches on late leaves most of the growth epoch pressureless
+
+         s   allowed@0.2       /(1+3s)  required(z=0)  ratio req/all
+      0.00     1.138e-07     1.138e-07      1.288e-07          1.132
+      0.10     1.684e-07     1.295e-07      2.581e-07          1.533
+      0.25     2.708e-07     1.547e-07      5.832e-07          2.154
+      0.50     5.002e-07     2.001e-07      1.166e-06          2.331
+      1.00     1.200e-06     2.999e-07      2.332e-06          1.944
+      2.00     3.651e-06     5.216e-07      4.664e-06          1.278
+      4.00     1.301e-05     1.001e-06      9.329e-06          0.717
+      8.00     4.987e-05     1.995e-06      1.866e-05          0.374
+  [ok] D2  THE NEAR-CANCELLATION, stated with its residual.  The growth damage integrates as int (k^2 c_s^2/a^2 H^2) dln a ~ c_s^2(0)/(1+3s), so the ALLOWED c_s^2(0) should rise ~ (1+3s); the required one rises ~ linearly in s as well (C1d).  The two nearly cancel -- but NOT exactly: allowed/(1+3s) still grows 17.5x over s = 0..8, because a late-switching sound speed does its damage after Lambda has already halted growth.  *** THE RESIDUAL RUNS IN THE FRAMEWORK'S FAVOUR ***   AGAINST MY OWN FIRST DRAFT: I wrote this check expecting an exact cancellation and it is not exact.  The rise buys a real, if modest, net gain at z = 0 -- which is why the verdict below needed the assembly-epoch constraint C1e to be settled, and why the z=0-only reading would have been a manufactured deficit
+
+    conflict ratio = required c_s^2(0) / allowed c_s^2(0).  > 1 means NO WINDOW.
+         s     req z=0  req assembly   ratio@0.2   ratio@0.5   ratio@1.0    (z=0 only)
+      0.00   1.288e-07     2.041e-07         1.8        11.2        44.9          1.13
+      0.10   2.581e-07     4.478e-07         2.7        16.6        66.5          1.53
+      0.25   5.832e-07     1.651e-06         6.1        38.1       152.5          2.15
+      0.50   1.166e-06     9.329e-06        18.6       116.6       466.2          2.33
+      1.00   2.332e-06     1.493e-04       124.4       777.6      3110.6          1.94
+      2.00   4.664e-06     1.911e-02      5233.1     32707.6    130817.5          1.28
+      4.00   9.329e-06     1.565e+02  12031786.4  75205049.2 300797779.1          0.72
+      8.00   1.866e-05     5.252e+09105315488612056.0658315912374611.62633401016460172.5          0.37
+  [ok] D3  *** THE VERDICT: NO WINDOW, on every scale tested.  Best over the whole family with (b) imposed at the assembly epoch: shortfall 1.8x at k = 0.2 h/Mpc (best s = 0.0), 11x at 0.5, 45x at 1.0 h/Mpc (best s = 0.0).  THE FAILING LEG IS LATE-TIME STRUCTURE GROWTH, NOT THE CMB ***   THE OPTIMISTIC READING, stated so it is not hidden: if (b) is imposed at z = 0 ONLY, the k = 0.2 h/Mpc leg CLOSES at s >= ~4 (best ratio 0.37 at s = 8.0).  That reading requires a sector that is cold while galaxies assemble and warm only afterwards, which is what C1e prices and rejects
+
+====================================================================================================
+PART E -- THE PARETO FRONT
+====================================================================================================
+
+    best achievable (c_s^2(rec), lambda_FS(0)) pairs, at the c_s^2(0) requirement (b)
+    forces once the assembly epoch is included:
+         s  c_s^2(0)req   c_s^2(rec)   lam_FS(0) Mpc   P(0.2) suppr   P(1.0) suppr
+      0.00    2.041e-07    2.041e-07           6.404          8.8%         91.3%
+      0.10    4.478e-07    5.493e-08           7.208         12.8%         97.7%
+      0.25    1.651e-06    8.700e-09          10.006         27.1%         99.6%
+      0.50    9.329e-06    2.589e-10          15.927         63.5%         99.4%
+      1.00    1.493e-04    1.150e-13             nan            --            --   (required c_s^2 is unphysical: far above any structure bound)
+      2.00    1.911e-02    1.134e-20             nan            --            --   (required c_s^2 is unphysical: far above any structure bound)
+      4.00    1.565e+02    5.510e-35             nan            --            --   (required c_s^2 is unphysical: SUPERLUMINAL)
+      8.00    5.252e+09    6.508e-64             nan            --            --   (required c_s^2 is unphysical: SUPERLUMINAL)
+  [ok] E1  *** THE PARETO STATEMENT.  Requirement (a) is met everywhere on the front with orders of margin (c_s^2(rec) <= 2.0e-07 vs a cap 1.4e-05).  Requirement (b) is met by construction -- it is what fixes the point on the front.  WHAT FAILS IS THE THIRD LEG NOBODY BUDGETED: the same sound speed erases the total matter power on every scale below tens of Mpc ***
+
+====================================================================================================
+PART F -- PRICING: w(z), THE SECTOR SOUND HORIZON, sigma_8
+====================================================================================================
+  [ok] F1  p(rho) integrates to give w_charge = c_s^2/(1-s) exactly [d p/d rho - c_s^2 residual = 0, checked by differentiation not integration]   so the charge sector is NOT exactly dust once it is warm; the deviation is first order in c_s^2 and carries the same a^(3s) rise.  s = 1 is a genuine special case (log) and is excluded from this identity, not silently absorbed
+    s = 0.25: w_charge(z=0) = +2.202e-06, w_charge(z=1090) = +1.160e-08, induced shift in w_total = 8.47e-07
+    s = 2.00: w_charge(z=0) = -1.911e-02, w_charge(z=1090) = -1.134e-20, induced shift in w_total = 7.35e-03
+  [ok] F1b w = -1 SURVIVES on the background to 8.5e-07 -- four-plus orders inside any DESI/CPL sensitivity.  The exactness is lost in principle (the stationary point is at Q = 0, not at the operating point) but not in practice   the framework's exact-w=-1 claim degrades to 'exact to 1e-7', which no datum resolves
+    s = 0.25: sector comoving sound horizon at rec = 0.0180 Mpc, vs the photon-baryon 147 Mpc -> 1.22e-04 of it
+    s = 2.00: sector comoving sound horizon at rec = 0.0000 Mpc, vs the photon-baryon 147 Mpc -> 4.16e-11 of it
+  [ok] F2  the sector's sound horizon is 5-8 orders below the photon-baryon one, so it leaves NO feature in the damping tail and no shift in theta_*.  The CMB cost of the warm route is nil; the cost is entirely at z < 10
+  [info] F3  CLASS sigma_8 at constant c_s^2 = 1e-09: 0.8195 (LCDM 0.8196, ratio 1.000)
+  [info] F3  CLASS sigma_8 at constant c_s^2 = 1e-08: 0.8189 (LCDM 0.8196, ratio 0.999)
+  [info] F3  CLASS sigma_8 at constant c_s^2 = 1e-07: 0.8130 (LCDM 0.8196, ratio 0.992)
+  [info] F3  CLASS sigma_8 at constant c_s^2 = 1e-06: 0.7648 (LCDM 0.8196, ratio 0.933)
+  [info] F3  CLASS sigma_8 at constant c_s^2 = 1e-05: 0.5488 (LCDM 0.8196, ratio 0.670)
+  [info] F3  CLASS sigma_8 at constant c_s^2 = 1e-04: 0.2485 (LCDM 0.8196, ratio 0.303)
+  [info] F3  CLASS sigma_8 at constant c_s^2 = 1e-03: 0.0772 (LCDM 0.8196, ratio 0.094)
+  [info] F3  CLASS sigma_8 at constant c_s^2 = 1e-02: 0.0180 (LCDM 0.8196, ratio 0.022)
+  [ok] F3b *** sigma_8 IS THE NEAREST MISS, AND IT IS THE MOST FAVOURABLE SINGLE-NUMBER READING AVAILABLE: a 2% sigma_8 suppression is reached at constant c_s^2 = 1.60e-07 c^2, against the best-case requirement 2.04e-07 -- short by 1.28x in c_s^2, only 1.13x in c_s ***   quoted deliberately as the most permissive reading, so the verdict is not overstated.  sigma_8 is an 8 Mpc/h integral and so is more forgiving than the shape: the P(k) legs at k = 0.5-1.0 h/Mpc are 11-45x, not 1.3x.  If the true tolerance is sigma_8 alone, this route is a NEAR MISS, not a rout
+
+====================================================================================================
+PART G -- POINT 5: IS THE FAVOURABLE STRUCTURE REAL?
+====================================================================================================
+  [ok] G1  *** IT IS REAL, AND IT IS WORTH 2.5e+11x. a0(z=1090)/a0(0) = 0.0060 puts the MOND phantom OFF at recombination, so the sector must cluster THEN; c_s^2 ~ a^(3s) makes it coldest THEN.  Same direction, and it converts stage 9's 595 c^2 (superluminal) into 2.4e-09 c^2 ***
+  [ok] G2  *** AND IT DOES NOT CHANGE THE VERDICT, which is the honest half.  Both surviving constraints -- 'smooth in a galaxy' and 'clustered at 1-10 Mpc' -- are evaluated at THE SAME EPOCH, z ~ 0-3.  A sound speed is scale-free, so a time-dependence cannot separate two requirements that differ in SCALE, not in TIME.  The rise relieves the constraint that was never binding ***   PRECISE ATTRIBUTION, because D2 showed the s-cancellation is NOT exact: at z = 0 ALONE the rise does buy enough at k = 0.2 h/Mpc (ratio 0.37 at s = 8).  What closes it is C1e -- a steeply rising c_s^2 is cold exactly while the galaxies are being assembled, and (1+z)^(3s) takes back everything the rise bought, with interest
+  [ok] G3  WHAT I COULD NOT DETERMINE: (i) whether MOND-boosted baryons alone can rebuild P(k) at k ~ 0.2-1 h/Mpc once the sector is smoothed -- that is a full MOND-cosmology N-body question and this run does not answer it, so the k = 1 h/Mpc leg is priced against a LCDM-calibrated yardstick and inherits that assumption; (ii) whether a SECOND field carrying the pressure evades the collision, since the degeneracy in D2 is a property of one barotropic fluid; (iii) the nonlinear response of a Gamma < 1 fluid in a collapsing region, which is treated here only in hydrostatic equilibrium
+
+====================================================================================================
+CHECKS: 39   FAILURES: 0
+====================================================================================================
+EXIT=0

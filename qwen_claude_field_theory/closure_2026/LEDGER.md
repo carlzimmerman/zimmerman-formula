@@ -217,3 +217,58 @@ quadrupole-generating region at ~5000 AU while leaving galaxies intact. The lane
 
 **STATUS: CANDIDATE COMPLETION, NOT CLOSURE.** One theorem-grade success, one structural success,
 one live 3–18σ failure, one untested cosmological leg.
+
+### route4 — IS kappa DERIVABLE?  Verlinde's 1/6 transcribed into Carl's variables (2026-08-21, 33/33)
+
+`route4_kappa_derivability_2026.py`.  **Verdict: PARTIAL.  The counting transcribes exactly, and
+what it delivers is NOT 1/2.**
+
+**ITEM 1, exact.**  With `sqrt(G rho_Lambda) = H_0 sqrt(3 Om_L/(8 pi))` the comparison is a pure
+number: `a0/a_M = 6 kappa sqrt(3 Om_L/(8 pi))`, hence
+
+        kappa_V(Omega_Lambda) = sqrt(8 pi/(3 Omega_Lambda)) / 6.
+
+ALT footing (rho_total, cH_0) — also the like-for-like reading — `kappa_V = sqrt(8 pi/3)/6 =
+**0.4824008**`, Omega-independent, **3.52% below 1/2**.  CANONICAL footing (rho_Lambda):
+`kappa_V = **0.5829857**`, **16.60% ABOVE 1/2**.  ⚠️**The famous "within 3.3%" is an ALT-FOOTING
+STATEMENT ONLY** — on Carl's own canonical footing exact agreement would require
+`Omega_Lambda = 8 pi/27 = 0.93084`, 26.4% above the measured 0.6847.  Not stated in any prior file.
+
+**ITEM 2 — same KIND of object, different NUMBER.**  The 6 was re-derived from scratch and is
+**FORCED**: `u_elastic/u_field = 16 pi G rho_DE/H^2 = 6` by Friedmann, and that 3 is the SAME
+Friedmann 3 inside Carl's `sqrt(3 Om_L/(8 pi))`.  The ONLY free choice in Verlinde's chain is the
+fraction `f` of displaced dark energy stored as strain (`D = 3/f`, so `f = 1/2 -> D = 6`).
+**Carl's kappa = 1/2 requires `f = sqrt(27/(32 pi)) = 0.5182412`, not 1/2.**
+⭐`f_Carl/f_Verlinde = kappa_Carl/kappa_V = sqrt(27/(8 pi)) = 1.0364824` — **the same irrational
+wherever you put it.  EACH THEORY'S "ONE HALF" IS THE OTHER'S UGLY NUMBER**, and no bookkeeping
+removes it.  The whole gap is `(27/8)/pi`.
+**PARAMETERISATION THEOREM (exact):** since `sqrt(8 pi/3)` is irrational, `kappa` is rational iff
+`D` is irrational.  **No construction forcing a rational multiple of `cH` can force a rational
+`kappa`.**  Verlinde's chain is manifestly a `cH` construction (`4 pi L^2`, `(4/3) pi L^3`,
+`3/(8 pi)`); Carl's kappa is pi-free.  They cannot both be natural — one is wrong or both are
+approximate.  **Constraint on the search: horizon entropy-counting is the wrong starting variable
+for a pi-free kappa.**  Whether the counting can be posed natively in `sqrt(G rho)` is NOT
+attempted and is the live escape.
+
+**WHAT THE 3.5% IS WORTH — three independent deflations, all computed:** (a) the chain's own
+convention slack pins kappa only to **[0.2412, 0.9648]**, a factor-4 band 41x the gap; (b)
+Verlinde's own `H_0`-vs-`H_Lambda` ambiguity is **20.9%**, 5.7x the gap; (c) the two PUBLISHED
+entropic coefficients (`2pi`, `6`) **disagree with each other by 4.72% — MORE than the 3.65% gap
+in dispute**.  Coincidence pricing `p = 0.063`.  **A LEAD, NOT A DERIVATION.**
+
+**ITEM 3, priced.**  No action / no field equations / no DOF ⇒ health CANNOT BE POSED; domain is
+static-spherical-isolated; clusters fail (NOT a discriminator — Carl's fail too); no cosmology.
+**Decisive for Carl specifically:** a naive `cH(z)/6` makes a0 **RISE 23225x at recombination**
+where the framework's own DERIVED law gives **0.0060** — opposite sign, 3.9e6x apart (167x on the
+fixed-dS reading).  And the same construction is ambiguous by **3.8e8x** about its own Mars
+prediction (no-cutoff `sqrt(a_M g_N)` vs the `S_M >= S_DE` cutoff at `r_* = 4256 AU`).
+
+**ITEM 4 — vs the combined measurement `kappa = 0.529 +- 0.034`:** `kappa_V` ALT **0.4824 = 1.37σ
+(INSIDE 2σ, LIVE)**; `kappa_V` canonical **0.5830 = 1.59σ (INSIDE 2σ, LIVE)**; Carl's 1/2 = 0.85σ;
+`cH/2pi` (Verlinde 2011 / Milgrom 2020) = 0.4607 = **2.01σ, at the edge**.  BTFR alone mildly
+prefers Verlinde (0.23σ vs 0.46σ); distance-free alone mildly prefers Carl (1.60σ vs 1.19σ) — **the
+two estimators disagree about which is favoured.**  ⭐**DISCRIMINATION BUDGET:** separating 1/2 from
+`kappa_V` at 3σ needs `sigma_kappa <= 0.0059 (+-1.17%)`, a **5.8x** improvement on the current
+±6.4% and **3.3x harder** than stage66's ±3.7% target.  No corpus lever reaches it.
+
+| route4 | is kappa derivable from Verlinde? | `kappa_V = sqrt(8 pi/(3 Om_L))/6` = 0.4824 ALT / 0.5830 canonical; mismatch = `sqrt(27/(8 pi))` = 1.0364824 in BOTH the coefficient and the energy fraction; parameterisation theorem | **PARTIAL — transcribes exactly, delivers 0.4824 not 1/2; kappa stays FITTED** |
