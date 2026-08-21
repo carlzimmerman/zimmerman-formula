@@ -1,7 +1,7 @@
 # RESUME HERE — state as of 2026-08-20, end of session
 
 ## Published
-- **v2 (current): DOI 10.5281/zenodo.22036376** — concept `10.5281/zenodo.22036262`
+- **v3 (current): DOI 10.5281/zenodo.22044021** — concept `10.5281/zenodo.22036262`
 - v1 (22036263) **superseded**: it claimed "one of six mechanisms survives". **WITHDRAWN.**
 
 ## The one-line state

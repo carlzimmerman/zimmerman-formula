@@ -30,12 +30,13 @@ RR = "real_research/reviews"
 BASE = "https://zenodo.org/api"
 
 STEM = "AMPLITUDE_LAW"
-RID = 22036263   # AMPLITUDE_LAW v1, the record this supersedes
+RID = 22036376   # AMPLITUDE_LAW v2, the record this supersedes
 META_PATH = f"{PAP}/{STEM}.zenodo.json"
 
 FILES = [
     "opus_48_extended_research/papers/AMPLITUDE_LAW.tex",
     "opus_48_extended_research/papers/pdf/AMPLITUDE_LAW.pdf",
+    "qwen_claude_field_theory/closure_2026/route1B_monotone_escape_2026.py",
     "qwen_claude_field_theory/closure_2026/closure_v2_corrections_2026.py",
     "qwen_claude_field_theory/closure_2026/sf36_closed_form_2026.py",
     "qwen_claude_field_theory/closure_2026/sf37_kessence_theorem_2026.py",
