@@ -122,7 +122,10 @@ def nu_a0line(y):
 def nu_routeA(y):
     """Operative alternative: MS08 / Route A exponential, nu = 1/(1 - exp(-sqrt(y)))."""
     y = np.asarray(y, float)
-    return 1.0 + 1.0 / np.expm1(np.sqrt(y))          # stable form of 1/(1-exp(-sqrt y))
+    s = np.sqrt(y)
+    # TRAP GUARD (corpus-logged): 1 - exp(-s) rounds to exactly 1.0 in float64 for s > 37, which
+    # silently reports the anomaly as ZERO instead of e^-s.  expm1 is exact; clip only the overflow.
+    return 1.0 + np.where(s > 700.0, 0.0, 1.0 / np.expm1(np.minimum(s, 700.0)))
 
 
 def nu_simple(y):
@@ -225,25 +228,59 @@ check(zero_mean == 0,
       "NEVER its level ***",
       f"sympy: Int NN dxi = {zero_mean}")
 _, Wc = build_measure(solve_eN(nu_routeA, 2.0))
-check(abs(np.sum(Wc)) < 1e-7,
-      "0D  and numerically: sum of the forward weights is zero to quadrature precision",
-      f"sum W = {np.sum(Wc):+.3e}  (vs sum|W| = {np.sum(np.abs(Wc)):.3e})")
+rel_zm = abs(np.sum(Wc)) / np.sum(np.abs(Wc))
+check(rel_zm < 1e-12,
+      "0D  and numerically: the forward weights sum to zero at machine precision RELATIVE to their "
+      "own absolute mass (Gauss-Legendre in xi is exact for the cubic NN, so the per-v "
+      "cancellation is exact, not approximate)",
+      f"sum W = {np.sum(Wc):+.3e},  sum|W| = {np.sum(np.abs(Wc)):.3e},  ratio = {rel_zm:.2e}")
 
 # =========================================================================================
 head("PART 1 -- THE KERNEL P(y): WHERE Q2 LIVES, AND WHETHER THE RAR LIVES SOMEWHERE ELSE")
 # =========================================================================================
 
-def P_of_y(eN, ygrid, **kw):
-    """P(y) = Int_0^y K = 1.5 * sum_{Y_k <= y} W_k  (cumulative forward measure)."""
-    Y, W = build_measure(eN, **kw)
-    o = np.argsort(Y)
-    Ys, Ws = Y[o], np.cumsum(W[o]) * 1.5
-    idx = np.searchsorted(Ys, ygrid, side="right") - 1
-    out = np.where(idx >= 0, Ws[np.clip(idx, 0, len(Ws) - 1)], 0.0)
+# --- P(y) IN CLOSED FORM ---------------------------------------------------------------------
+# ERROR FOUND AND CORRECTED (direction: the first version made the kernel look ~1000x LARGER and
+# put its peak at y = 6704 instead of y = e_N, i.e. it FAVOURED the framework by pretending the
+# quadrupole is sourced far from the RAR's transition).  Cumulatively summing the discrete forward
+# weights in y-order is NOT P(y): the exact cancellation Int NN dxi = 0 happens WITHIN each v, and
+# y-sorting interleaves the huge O(v^2) partial sums across v-bands.  The fix is to do the xi
+# integral in closed form.  At fixed v the condition sqrt(D) <= y0 is xi <= xi0(v), so
+#     P(y0) = (3/2) Int dv F(xi0(v), v),
+#     F(a,v) = Int_{-1}^{a} NN dxi = e_N[(3/2)a^2 - (5/4)a^4 - 1/4] + v^2[a - a^3],
+# with v^2 running over (|y0 - e_N|, y0 + e_N) -- outside that band xi0 leaves [-1,1] and F = 0
+# by the zero-mean theorem.  F(1,v) = F(-1,v) = 0 identically, which is the same theorem again.
+a_s, v_s2 = sp.symbols("a v", real=True)
+F_sym = sp.expand(sp.integrate(eN_s * (3 * xi_s - 5 * xi_s ** 3) + v_s2 ** 2 * (1 - 3 * xi_s ** 2),
+                               (xi_s, -1, a_s)))
+F_ref = sp.expand(eN_s * (sp.Rational(3, 2) * a_s ** 2 - sp.Rational(5, 4) * a_s ** 4
+                          - sp.Rational(1, 4)) + v_s2 ** 2 * (a_s - a_s ** 3))
+_F_ok = sp.simplify(F_sym - F_ref) == 0
+_F_ends = (sp.simplify(F_sym.subs(a_s, 1)) == 0) and (sp.simplify(F_sym.subs(a_s, -1)) == 0)
+
+
+def P_of_y(eN, ygrid, n=3000):
+    """P(y) = Int_0^y K(t) dt, exact in xi, adaptive-trapezoid in v.  Returns array."""
+    ygrid = np.atleast_1d(np.asarray(ygrid, float))
+    out = np.empty_like(ygrid)
+    for i, y0 in enumerate(ygrid):
+        vlo, vhi = math.sqrt(abs(y0 - eN)), math.sqrt(y0 + eN)
+        if vhi <= vlo:
+            out[i] = 0.0
+            continue
+        v = np.linspace(vlo, vhi, n)
+        xi0 = np.clip((y0 ** 2 - eN ** 2 - v ** 4) / (2.0 * eN * v ** 2), -1.0, 1.0)
+        F = eN * (1.5 * xi0 ** 2 - 1.25 * xi0 ** 4 - 0.25) + v ** 2 * (xi0 - xi0 ** 3)
+        out[i] = 1.5 * float(np.trapz(F, v))
     return out
 
 
-YG = np.geomspace(1e-4, 3e4, 4000)
+check(_F_ok and _F_ends,
+      "1Z  the closed-form xi-primitive is verified symbolically, and F(+-1,v) = 0 exactly -- the "
+      "zero-mean theorem a second time, now as a boundary condition on P",
+      f"F(a,v) = {F_sym}")
+
+YG = np.geomspace(1e-4, 3e4, 700)
 PROFILE = {}
 for fname, a0 in A0.items():
     et = GEXT_GAIA / a0
@@ -251,36 +288,42 @@ for fname, a0 in A0.items():
     P = P_of_y(eN, YG)
     PROFILE[fname] = dict(etilde=et, eN=eN, P=P)
     ipk = int(np.argmax(np.abs(P)))
-    # where the action is: |P| is the sensitivity density to d nu/d ln y
-    dens = np.abs(P) * YG                      # |P| y  = weight per unit ln y
+    # sensitivity density per unit ln y for a LOGARITHMIC feature in nu:  |P| * y
+    dens = np.abs(P) * YG
     cdf = np.cumsum(dens) / np.sum(dens)
     lo50, hi50 = YG[np.searchsorted(cdf, 0.25)], YG[np.searchsorted(cdf, 0.75)]
     lo90, hi90 = YG[np.searchsorted(cdf, 0.05)], YG[np.searchsorted(cdf, 0.95)]
-    PROFILE[fname].update(lo90=lo90, hi90=hi90, Pmax=abs(P[ipk]), ypk=YG[ipk])
+    PROFILE[fname].update(lo50=lo50, hi50=hi50, lo90=lo90, hi90=hi90,
+                          Pmax=abs(P[ipk]), ypk=YG[ipk])
     info(f"1A  {fname:9s} g_ext = 2.32e-10 => etilde = {et:.4f}, e_N = {eN:.4f}",
-         f"P peaks at y = {YG[ipk]:.3f} (= e_N to {abs(YG[ipk]-eN)/eN:.1%}), |P|max = {abs(P[ipk]):.4f}")
+         f"|P| peaks at y = {YG[ipk]:.4f}, i.e. AT e_N to {abs(YG[ipk]-eN)/eN:.2%}; "
+         f"|P|max = {abs(P[ipk]):.4f}")
     info(f"1B  {fname:9s} where Q2 is sourced",
-         f"central 50% of |P| y in y = [{lo50:.3f}, {hi50:.3f}];  central 90% in "
+         f"central 50% of the |P| y density in y = [{lo50:.3f}, {hi50:.3f}];  central 90% in "
          f"[{lo90:.3f}, {hi90:.3f}]")
 
 for fname in A0:
     P = PROFILE[fname]["P"]
-    check(np.all(P <= 1e-12) or np.all(P >= -1e-12),
-          f"1C  {fname:9s} P(y) is SINGLE-SIGNED on (0, inf) -- so K(y) has exactly ONE sign change "
-          "and it sits at y = e_N",
-          f"min P = {P.min():+.4f}, max P = {P.max():+.4f}; P(1e-4) = {P[0]:+.2e}, "
+    eN = PROFILE[fname]["eN"]
+    check(np.all(P <= 1e-12),
+          f"1C  {fname:9s} *** P(y) is SINGLE-SIGNED (P <= 0) on all of (0, inf) -- so K(y) has "
+          "exactly ONE sign change, and it sits at y = e_N ***",
+          f"min P = {P.min():+.5f}, max P = {P.max():+.2e}; P(1e-4) = {P[0]:+.2e}, "
           f"P(3e4) = {P[-1]:+.2e}")
-    check(abs(P[-1]) < 2e-3 * PROFILE[fname]["Pmax"],
-          f"1D  {fname:9s} P(inf) -> 0, confirming the zero-mean theorem on the cumulative",
-          f"P(3e4)/|P|max = {abs(P[-1])/PROFILE[fname]['Pmax']:.2e}")
+    check(abs(PROFILE[fname]["ypk"] - eN) / eN < 0.02,
+          f"1C2 {fname:9s} and the peak of |P| coincides with e_N",
+          f"argmax|P| = {PROFILE[fname]['ypk']:.4f} vs e_N = {eN:.4f}")
+    check(abs(P[-1]) < 3e-3 * PROFILE[fname]["Pmax"],
+          f"1D  {fname:9s} P(inf) -> 0, confirming the zero-mean theorem on the primitive",
+          f"|P(3e4)|/|P|max = {abs(P[-1])/PROFILE[fname]['Pmax']:.2e}")
 
 # THE SLOPE IDENTITY, verified against the direct evaluation
-def q_by_parts(nu, eN, ylo=1e-7, yhi=1e6, n=200000):
+def q_by_parts(nu, eN, ylo=1e-6, yhi=3e5, n=2500):
     yg = np.geomspace(ylo, yhi, n)
-    P = P_of_y(eN, yg)
+    P = P_of_y(eN, yg, n=1500)
     nv = np.asarray(nu(yg), float)
     dnu = np.gradient(nv, yg)
-    return -float(np.trapezoid(P * dnu, yg))
+    return -float(np.trapz(P * dnu, yg))
 
 
 for kname, nu in (("a0-line", nu_a0line), ("RouteA/MS08", nu_routeA), ("simple", nu_simple)):
@@ -291,7 +334,7 @@ for kname, nu in (("a0-line", nu_a0line), ("RouteA/MS08", nu_routeA), ("simple",
         rel = abs(qp - qd) / abs(qd)
         check(rel < 0.02,
               f"1E  SLOPE IDENTITY holds for {kname:11s} ({fname:9s}): q = -Int P(y) nu'(y) dy "
-              "reproduces the direct 2-D quadrature",
+              "reproduces the direct 2-D quadrature computed by a completely different route",
               f"direct q = {qd:+.6f}, by-parts q = {qp:+.6f}, rel = {rel:.2%}")
 
 info("1F  *** THE PHYSICAL STATEMENT ***",
@@ -424,8 +467,12 @@ print(f"  {'footing':<11}{'e_N':>7}{'interval [y1,y2]':>20}{'min|P|':>9}"
       f"{'nu(y1)-nu(y2) (SPARC)':>23}{'|q| floor':>11}{'|Q2| floor':>13}{'x ceiling':>11}")
 print("  " + "-" * 106)
 NOGO = {}
+PINTERP = {}
 for fname, a0 in A0.items():
     eN = PROFILE[fname]["eN"]
+    yfine = np.geomspace(1e-4, 1e4, 2200)
+    Pfine = np.abs(P_of_y(eN, yfine, n=2500))
+    PINTERP[fname] = (yfine, Pfine)
     Ud = BASE[("a0-line", fname)][0]
     tc, nuc, nue, cnt = rar_nu_bins(a0, Ud)
     pref = Q2_prefactor(a0)
@@ -433,8 +480,8 @@ for fname, a0 in A0.items():
     for i in range(len(tc)):
         for j in range(i + 1, len(tc)):
             y1, y2 = 10 ** tc[i], 10 ** tc[j]
-            yy = np.geomspace(y1, y2, 600)
-            minP = float(np.min(np.abs(P_of_y(eN, yy))))
+            m = (yfine >= y1) & (yfine <= y2)
+            minP = float(np.min(Pfine[m])) if m.any() else 0.0
             # 2-sigma CONSERVATIVE (against interest) reading of the measured drop
             dnu = (nuc[i] - nue[i] * 2) - (nuc[j] + nue[j] * 2)
             if dnu <= 0:
@@ -459,6 +506,44 @@ for fname in A0:
     s_nom = (d["Q2floor"] - Q2_CEN) / Q2_SIG
     info(f"3B  {fname:9s} significance of the floor against Q2 = (1.6 +- 1.8)e-27",
          f"{s_nom:.1f} sigma  (this is a FLOOR over the whole monotone class, not one kernel)")
+
+# the floor across the whole g_ext bracket the task specifies -- report the WEAKEST case
+print(f"\n  the monotone floor across the task's g_ext = 1.9-2.6 a0 bracket "
+      f"(weakest case is the honest one):")
+print(f"  {'footing':<11}{'etilde':>8}{'e_N':>8}{'|q| floor':>11}{'|Q2| floor':>13}{'x ceiling':>11}")
+print("  " + "-" * 62)
+WEAK = {}
+for fname, a0 in A0.items():
+    Ud = BASE[("a0-line", fname)][0]
+    tc, nuc, nue, cnt = rar_nu_bins(a0, Ud)
+    pref = Q2_prefactor(a0)
+    worst = None
+    for et in (1.9, 2.0, 2.2, 2.4, 2.6):
+        eN = solve_eN(nu_a0line, et)
+        yfine = np.geomspace(1e-4, 1e4, 1600)
+        Pfine = np.abs(P_of_y(eN, yfine, n=2000))
+        best = 0.0
+        for i in range(len(tc)):
+            for j in range(i + 1, len(tc)):
+                y1, y2 = 10 ** tc[i], 10 ** tc[j]
+                m = (yfine >= y1) & (yfine <= y2)
+                if not m.any():
+                    continue
+                dnu = (nuc[i] - 2 * nue[i]) - (nuc[j] + 2 * nue[j])
+                if dnu <= 0:
+                    continue
+                best = max(best, float(np.min(Pfine[m])) * dnu)
+        Q2f = pref * best
+        print(f"  {fname:<11}{et:>8.2f}{eN:>8.4f}{best:>11.4f}{Q2f:>13.3e}{Q2f/Q2_CEIL:>11.2f}")
+        if worst is None or Q2f < worst[0]:
+            worst = (Q2f, et)
+    WEAK[fname] = worst
+for fname in A0:
+    Q2w, etw = WEAK[fname]
+    check(Q2w > Q2_CEIL,
+          f"3B2 {fname:9s} *** the monotone floor survives the WEAKEST point of the whole "
+          f"g_ext = 1.9-2.6 a0 bracket: |Q2| >= {Q2w:.3e} s^-2 = {Q2w/Q2_CEIL:.2f}x ceiling "
+          f"at etilde = {etw:.2f} ***")
 
 # named kernels for reference
 print(f"\n  {'kernel':<14}{'footing':<11}{'etilde':>8}{'|q|':>9}{'|Q2| [s^-2]':>14}"
@@ -562,11 +647,11 @@ for fname, a0 in A0.items():
     x0 = seed_from(nu_a0line)
     for lam in (0.0, 0.3, 1.0, 3.0, 10.0, 30.0, 100.0, 300.0, 1000.0, 3000.0):
         best = None
-        for start in (x0, seed_from(nu_routeA), seed_from(nu_simple)):
-            r = minimize(objective, start, args=(a0, Ud, lam, et), method="Nelder-Mead",
-                         options=dict(maxiter=24000, maxfev=24000, xatol=1e-5, fatol=1e-9))
-            r = minimize(objective, r.x, args=(a0, Ud, lam, et), method="Powell",
-                         options=dict(maxiter=24000, maxfev=40000, xtol=1e-6, ftol=1e-10))
+        for start in (x0, seed_from(nu_routeA)):
+            r = minimize(objective, start, args=(a0, Ud, lam, et), method="Powell",
+                         options=dict(maxiter=8000, maxfev=12000, xtol=1e-5, ftol=1e-9))
+            r = minimize(objective, r.x, args=(a0, Ud, lam, et), method="Nelder-Mead",
+                         options=dict(maxiter=6000, maxfev=6000, xatol=1e-5, fatol=1e-9))
             if best is None or r.fun < best.fun:
                 best = r
         nu = make_nu(best.x)

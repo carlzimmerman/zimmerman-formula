@@ -64,3 +64,58 @@ BEFORE trusting a single number from it.
 ## Standing
 `kappa = 1/2` is **FITTED**. All numbers both footings: `a0 = 9.3619e-11` canonical /
 `1.1279e-10` alt. Clusters still ~2x short (pre-existing, inherited).
+
+---
+
+## ⭐ UPDATE — THE ARM IS **NOT** CLOSED (route1B, 25/25)
+
+The kernel question RESUME_HERE named as decisive has an answer: **YES, a kernel exists.**
+`route1B_monotone_escape_2026.py`. And Route 1's own monotone no-go **does not reproduce** —
+withdrawn, direction: it **manufactured a deficit**.
+
+The standard published family `mu_n(x) = x/(1+x^n)^(1/n)` is monotone (`dmu/dx > 0` proved
+symbolically, so AQUAL stays strictly convex and the "unique functional of rho_b" theorem
+survives) and clears the squeeze. 175 real SPARC curves, Upsilon refit per kernel, AQUAL:
+
+| kernel | Ups | RAR rms | chi2/dof | **Q2/ceiling** can/alt | 1-AU monopole / Mars |
+|---|---|---|---|---|---|
+| RouteA/MS08 | 0.62 | 0.0998 | 7.6 | 7.77 / 8.52 (21.6/23.7 sig) | 0 |
+| **a0-line (Carl)** | 0.70 | 0.1083 | 21.1 | **5.59 / 6.39 (15.3/17.6 sig)** | 3.34e4 / 4.03e4 |
+| mu3 | 0.81 | 0.1179 | 34.0 | 1.55 / 2.44 | 2.80 / 3.70 |
+| **mu5** | 0.84 | 0.1233 | 42.4 | **0.39 / 0.82** | 2.7e-8 / 4.2e-8 |
+| **mu10** | 0.85 | 0.1266 | 49.1 | **0.08 / 0.21** | 4e-28 |
+
+`mu10` clears across the FULL +-2 sigma of the *measured* Gaia `g_ext` on **both footings**
+(0.050-0.351x); `mu5` clears everywhere canonical, and everywhere alt except -2 sigma.
+
+**⭐ AND a0 IS UNTOUCHED: the deep-MOND limit is identical for every `mu_n` to 5e-7 at
+y = 1e-12.** So `a0 = kappa c sqrt(G rho_Lambda)`, the amplitude law, the BTFR and the
+BTFR-based kappa all survive the kernel swap intact. **The solar system is a statement about
+the TRANSITION region, not about a0.**
+
+**THE COST, stated plainly:** the RAR fit degrades, rms 0.1083 -> 0.1266 dex and chi2/dof
+21.1 -> 49.1. The a0-line is the better RAR fit; `mu_n` is the only one that survives Cassini.
+That trade is the real content and must not be hidden.
+
+## ⚠️ THE BINDING OBSTRUCTION HAS MOVED
+**Gate 5 (the double count) is failed or vacuous on EVERY route, and it is KERNEL-INDEPENDENT.
+That, not Cassini, is now the wall.** No choice of `mu_n` touches it.
+
+## Other results this run
+- **Mechanism C's parallel-mode ghost DOES NOT EXIST** on Carl's own a0-line:
+  `K_par = 1 - 2x/sqrt(1+4x^2) > 0` for every real x, no root (400 samples, 26 decades).
+  `c_T = 1` exactly; transverse modes `c^2 = 1` exactly; Cherenkov cleared. **v2's ghost kill was
+  wrong** — flagging it as contested was right. C still dies on gates 2/3.
+- **Verlinde**: clears the amplitude law term-for-term (sympy residual 0) and has the fleet's only
+  force-screen that comes from *counting* rather than a chosen mu (entropy budget saturating at
+  `r_* = 4256 AU` for the Sun; every planet inside; residual EXACTLY zero). But **health CANNOT BE
+  POSED** (no action, no field equations, no DOF), and read as published it is 3.77e8x the Mars
+  budget. **It genuinely escapes the arm-level Q2 proof by falsifying its hypothesis** — Eq (7.40)
+  is an algebraic map, not a PDE for general Phi, so entropic gravity has no EFE at all.
+- **A "tuned-zero" bump kernel does NOT reach 0.000x the ceiling** (1.08-1.68x). Do not cite it.
+
+## Owed / unrun
+- **Vainshtein / k-mouflage is UNRUN, not dead** — it produced no script and no verdict. It is the
+  only class that screens the FORCE.
+- **Caustics errored mid-response**; its synthesis row is from a PARTIAL and is not reliable.
+- `mu_n` needs: a relativistic host, gate 4 (health) is UNDETERMINED for it, and gate 5 fails.
