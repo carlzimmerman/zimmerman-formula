@@ -1,10 +1,18 @@
 # The Candidate Action — CMC/York Relativistic MOND (minimal, EFE-as-input)
 
-**Status: FROZEN MINIMAL CANDIDATE UNDER CLOSURE TESTING.** Not a validated theory.
-The FIRST validation gate is the full Dirac count of THIS exact action (with η a_i a^i + Λ_CMC):
-the result 2+0 is proven only for sub-formulations, NOT yet for this action — it could be 2+1.
-This is the single frozen action from which every observable must be derived. No equation
-enters a paper because it gives a desired limit; it enters because it follows from this action.
+**Status: FROZEN MINIMAL CANDIDATE — DIRAC GATE RETURNS 2+1 (khronon propagates); SPINE MUST CHANGE.**
+Not a validated theory. The FIRST validation gate — the full Dirac count of THIS exact action
+(with η a_i a^i + LOCAL Λ_CMC) — is now RESOLVED and it is a FAIL: as literally frozen the action
+is **2+1 = 3 DOF**, propagating a khronon scalar (proven two independent, agreeing ways —
+Hamiltonian 4×4 Dirac rank and Lagrangian sector reduction; `frozen_dirac_*_2026.py`, verdict in
+`FROZEN_DIRAC_VERDICT.md`). The earlier "2+0" held only for the η=0 sub-formulation (= GR+CMC =
+York GLOBAL gauge-fixing), NOT for the frozen khronometric action. **2+0 is recoverable and is
+uniquely selected by c_T=1 & metric G_eff=G, but ONLY by AMENDING the frozen coefficient to η=0
+(a DERIVED constraint, not a fit) and adopting the York global gauge-fixing reading of S_CMC.**
+To carry 2+0 the spine must set **η=0, ξ=1, λ free** and replace the LOCAL Λ_CMC(K−q) multiplier
+with a GLOBAL York gauge-fixing of H_⊥. This is the single frozen action from which every
+observable must be derived. No equation enters a paper because it gives a desired limit; it enters
+because it follows from this action.
 
 Distinctive novel content (scope honestly): **a₀ = κc√(Gρ_Λ)** (coefficient reframing; κ, Z
 FITTED) and **a₀(z) = a₀,₀ H(z)/H₀** (derived, Z-independent — the one prediction, not a fit).
@@ -112,8 +120,12 @@ Statements are labeled DERIVATION (math, script-backed) or PREDICTION (empirical
 - **Theorem 1 (CMC acceleration scale).** K = q(t) ⇒ a₀ = cq/Z.  DERIVATION ✅
 - **Theorem 2 (cosmological scaling).** q_FLRW = 3H ⇒ a₀(z) = a₀,₀ H(z)/H₀, Z-independent.
   DERIVATION ✅ (cosmology_flrw_2026.py)
-- **Theorem 3 (constraint count).** The auxiliary sector is second-class ⇒ 0 propagating DOF;
-  N_local = 2.  PROVEN for the scalar-e formulation; OPEN for the full (Φ,Ψ,λ,L) system.
+- **Theorem 3 (constraint count).** ⚠️ REVISED 2026-08-22. The MOND-Φ sector is second-class
+  ⇒ 0 propagating DOF. But the GRAVITY+CMC (khronon) sector of the action AS FROZEN is **2+1**:
+  the η a_i a^i term propagates a khronon scalar (N_local = 3), because the LOCAL Λ_CMC(K−q)
+  multiplier fixes only the trace K and supplies no constraint to kill the khronon. N_local = 2
+  holds ONLY for the amended η=0 sub-formulation (= GR+CMC = York global gauge-fixing); it is
+  NOT true of the frozen khronometric action. See `FROZEN_DIRAC_VERDICT.md`.
 - **Proposition 4 (isolated MOND limit).** e→0 ⇒ A→1 ⇒ μ_eff→μ_gal ⇒ g² = a₀ g_N.
   DERIVATION ✅
 - **Proposition 5 (screened Solar-System branch).** ∃ (ε_s,m) with Q₂ < Q₂,Cassini.
