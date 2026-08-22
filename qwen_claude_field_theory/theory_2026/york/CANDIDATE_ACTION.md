@@ -123,9 +123,13 @@ Statements are labeled DERIVATION (math, script-backed) or PREDICTION (empirical
 - **Theorem 3 (constraint count).** ⚠️ REVISED 2026-08-22. The MOND-Φ sector is second-class
   ⇒ 0 propagating DOF. But the GRAVITY+CMC (khronon) sector of the action AS FROZEN is **2+1**:
   the η a_i a^i term propagates a khronon scalar (N_local = 3), because the LOCAL Λ_CMC(K−q)
-  multiplier fixes only the trace K and supplies no constraint to kill the khronon. N_local = 2
-  holds ONLY for the amended η=0 sub-formulation (= GR+CMC = York global gauge-fixing); it is
-  NOT true of the frozen khronometric action. See `FROZEN_DIRAC_VERDICT.md`.
+  multiplier fixes only the trace K and supplies no constraint to kill the khronon. c_T=1 and
+  metric-G_eff=G together **select** η=0 within the ansatz (a derived coefficient constraint, not a
+  fit) — but that selection is NOT itself a proof: η→0 from the 2+1 theory does not certify that the
+  η=0 theory has a nonlinear constraint removing the scalar. The η=0 York-reduced theory is a
+  **CANDIDATE 2+0 pending DIRECT full-nonlinear Dirac + cubic/quartic certification** (running,
+  eta0_direct_certification). The paper must DEFINE the theory as the York gauge-fixing (2 DOF); the
+  local-multiplier form is a DIFFERENT 3-DOF theory. See `FROZEN_DIRAC_VERDICT.md`.
 - **Proposition 4 (isolated MOND limit).** e→0 ⇒ A→1 ⇒ μ_eff→μ_gal ⇒ g² = a₀ g_N.
   DERIVATION ✅
 - **Proposition 5 (screened Solar-System branch).** ∃ (ε_s,m) with Q₂ < Q₂,Cassini.
