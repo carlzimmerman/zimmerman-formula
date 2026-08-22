@@ -22,7 +22,7 @@ on BOTH footings (a₀ = 9.3619e-11 canonical / 1.1279e-10 alt).**
 | 7 | **Theoretical health** | no ghost, no gradient instability, no Cherenkov | ✅ K″ > 0 verified over 45 decades |
 | 8 | **Cosmology** | w = −1, Ω_dm = 0.265 to the CMB, CLASS pass intact | ✅ w_DE = −1 to 4.6e-10; charge carries Ω_dm |
 | 9 | **No double count** | clustered sector + phantom ≤ RAR tolerance | ✅ absent under the frame flip — one sector, counted once |
-| 10 | **THE AMPLITUDE LAW** | ρ = √(GM_b a₀)/(4πGr²) as a **dynamical consequence**, not initial data | 🔴 **OPEN — and the barotropic route to it is now CLOSED** (`collapse_2026.py`) |
+| 10 | **THE AMPLITUDE LAW** | ρ = √(GM_b a₀)/(4πGr²) as a **dynamical consequence**, not initial data | 🔴 **OPEN — and NO LOCAL equation of state can supply it** (`collapse_2026.py`, `baryon_coupled_pressure_2026.py`) |
 
 ---
 
@@ -56,11 +56,31 @@ of its own (c²/a₀ = 31,112 Mpc). What is not proved is that it *settles* ther
 > The argument never uses the kernel — only that pressure is a function of density — so no
 > ghost-free choice escapes it.
 
-**What that leaves is informative rather than fatal.** The required `σ² ∝ M_b^(1/2)` exactly,
-so the sector's temperature must *know the baryonic mass* — and the only available quantity
-carrying `M_b` is the baryons themselves. **The dark pressure must couple to the baryonic
-field.** Every mechanism tried in this programme made the dark sector respond to *gravity*;
-none made its *pressure* respond to the *baryons*. That is where requirement 10 now sits.
+**And the baryon-coupled repair has now been tested too, and the no-go is class-wide.** The
+unique local length built from the baryonic field is `g_b/|∇g_b| = r/2`, giving
+`c_s² = a₀ g_b/|∇g_b|` — which at `r_M` equals `√(GM_b a₀)/2` **exactly, coefficient and all.**
+The right temperature really *is* a₀ times the radius where `g_b = a₀`. But used as a *law*
+rather than a boundary condition it fails: the hydrostatic balance's two sides differ by exactly
+one power of `r` for every density exponent. And solving for the sound-speed profile that
+supports a flat curve returns `c_s² = C₁r² + v_c²/2`, whose **unique bounded branch is a
+constant**.
+
+> **The amplitude law cannot arise from any local equation of state** — not barotropic
+> `c_s²(ρ)`, not baryon-coupled `c_s²(g_b)`, not any `c_s²(r)` whatever. Flatness demands a
+> *uniform* temperature, and no position-dependent law supplies one.
+
+**So requirement 10 is a formation question, not an equation-of-state question.** The
+temperature must be uniform with its value set globally — a₀ times the radius where the
+baryonic field equals a₀ — which says the sector thermalised in the region `g_b > a₀` and kept
+that virial temperature. That is collapse history: multi-streaming, caustics, violent
+relaxation. **It is the one route this programme flagged twice as unrun and never ran**, both
+attempts having errored out.
+
+⚠️ **And it must clear a bar the corpus already set.** "Set by formation history" is weaker
+than "derived from the action," and this repo's own 1-Mpc confrontation previously killed an
+initial-conditions route on exactly those grounds (smooth accretion drives ξ(halo) → 1 for any
+cold T(k)). That confrontation has to be re-run against this mechanism before it counts as a
+route at all.
 
 ---
 
