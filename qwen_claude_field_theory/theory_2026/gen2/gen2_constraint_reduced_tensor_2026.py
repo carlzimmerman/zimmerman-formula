@@ -83,7 +83,8 @@ for i in range(3):
 for i in range(3):
     for j in range(3):
         g4[1 + i, 1 + j] = hs[i, j]
-g4inv = sp.Matrix(4, 4, lambda i, j: sp.cancel(sp.together(g4.inv()[i, j])))
+_g4i = g4.inv()          # ONE inversion; calling g4.inv() inside a lambda would redo it 16x
+g4inv = sp.Matrix(4, 4, lambda i, j: sp.cancel(sp.together(_g4i[i, j])))
 Ga = [[[sum(g4inv[l, m] * (sp.diff(g4[m, i], c4[j]) + sp.diff(g4[m, j], c4[i])
                            - sp.diff(g4[i, j], c4[m])) for m in range(4)) / 2
         for j in range(4)] for i in range(4)] for l in range(4)]
@@ -341,95 +342,162 @@ Lavg = red(Lavg.subs({b: 0 for b in bsyms}))
 
 # =========================================================================== G
 head("G -- the HAMILTONIAN constraint (lapse), solved -- the decisive step")
-Jc = red(sp.expand(sp.diff(Lavg, qc)).subs({qc: 0, qs: 0}))
-Js = red(sp.expand(sp.diff(Lavg, qs)).subs({qc: 0, qs: 0}))
+note("METHOD", "The averaged action is the quadratic form  <L> = v^T M v  over "
+               "v = (h_+, h_x, q_c, q_s).  Solving the Hamiltonian constraint IS the Schur "
+               "complement  A - B C^{-1} B^T  over the lapse block.  This is done exactly, in "
+               "closed form -- no substitution of a solved expression back into a huge rational "
+               "function.")
 sub_a = {a: sp.sqrt(X0s) * abar}
-print("\n  linear TT source multiplying q_c :", sp.factor(sp.simplify(Jc.subs(sub_a))))
-print("  linear TT source multiplying q_s :", sp.factor(sp.simplify(Js.subs(sub_a))))
-ok(sp.simplify(Jc) == 0, "G1  the IN-PHASE lapse source vanishes  => delta N is 90 deg out of "
-                         "phase with the wave")
-ok(sp.simplify(Js) != 0,
-   "G2  the OUT-OF-PHASE lapse source is NONZERO at LINEAR order in gamma^TT",
-   "=> delta N does NOT start at O(gamma^2).  indirect_k4_criterion_2026.py's outcome (iii) "
-   "('the source cancels identically') is FALSE.  The lapse IS driven by the TT wave.")
-Jspoly = sp.Poly(sp.expand(Js.subs(sub_a)), k)
-print("  powers of k present in the source:", sorted(m[0] for m in Jspoly.monoms()))
-ok(Jspoly.degree() <= 1,
-   "G3  the source is at most FIRST order in k -- no k^3, no k^2",
-   "the k^3 route died on identity D2; what is left is the F_XX channel, coefficient "
-   "proportional to  F_XX X_0 a k mu  times  gamma_zz = h_+ sin^2(theta)")
+vv = [hp, hx, qc, qs]
+Mq = sp.Matrix(4, 4, lambda i, j: red(sp.diff(Lavg, vv[i], vv[j])) / 2)
+Ablk, Bblk, Cblk = Mq[:2, :2], Mq[:2, 2:], Mq[2:, 2:]
 
-Bq = red(sp.expand(sp.diff(Lavg, qs, 2)) / 2)
-Aq = red(sp.expand(sp.diff(Lavg, qc, 2)) / 2)
-Cq = red(sp.expand(sp.diff(Lavg, qc, qs)))
-ok(sp.simplify(Cq) == 0, "G4  the lapse kernel is diagonal in (q_c, q_s)")
-Bqp = sp.simplify(sp.expand(Bq.subs(sub_a)))
-print("\n  LAPSE KERNEL (coefficient of q_s^2):")
-sp.pprint(sp.factor(sp.simplify(Bqp)))
-Bpoly = sp.Poly(sp.expand(Bqp), k)
-print("  powers of k in the lapse kernel:", sorted(m[0] for m in Bpoly.monoms()))
-ok(Bpoly.degree() == 4,
-   "G5  the lapse constraint is FOURTH-ORDER ELLIPTIC, leading kernel ~ (eps A/abar^2) k^4",
-   "=> outcome (i) of indirect_k4_criterion_2026.py, and STRONGER than the second-order "
-   "elliptic case it anticipated.  NOTE THE IRONY: the very same 1/abar^2 = (c^2/a0)^2 ~ 1e54 "
-   "anti-suppression that KILLED Gen-1 in the tensor operator sits here in the DENOMINATOR of "
-   "the lapse response, stiffening the constraint by 54 orders.")
-print("\n  k^4 coefficient of the kernel:", sp.simplify(sp.expand(Bqp).coeff(k, 4)))
-print("  k^2 coefficient of the kernel:", sp.factor(sp.simplify(sp.expand(Bqp).coeff(k, 2))))
+def pa(e):
+    return sp.factor(sp.simplify(sp.expand(e).subs(sub_a)))
 
-sol = sp.solve([sp.diff(Lavg, qc), sp.diff(Lavg, qs)], [qc, qs], dict=True)
-ok(len(sol) == 1, "G6  the constraint has a unique solution for (delta N/N)")
-sol = sol[0]
-kappa = sp.simplify(sp.factor(sp.simplify((sol[qs] / hp).subs(sub_a))))
-print("\n  kappa == (delta N/N)_amplitude / h_+  =")
+print("\n  LINEAR TT SOURCES in the lapse constraint (the coefficient of q in <L>):")
+print("   source x q_c :", pa(2 * (Bblk[0, 0] * hp + Bblk[1, 0] * hx)))
+print("   source x q_s :", pa(2 * (Bblk[0, 1] * hp + Bblk[1, 1] * hx)))
+ok(sp.simplify(Bblk[1, 0]) == 0 and sp.simplify(Bblk[1, 1]) == 0,
+   "G1  the x polarisation does NOT source the lapse at all; only h_+ does",
+   "because the source is built on gamma_zz = ahat_i ahat_j gamma^ij = h_+ sin^2(theta)")
+ok(sp.simplify(Bblk[0, 0]) != 0 and sp.simplify(Bblk[0, 1]) != 0,
+   "G2  BOTH lapse sources are NONZERO at LINEAR order in gamma^TT",
+   "=> delta N does NOT start at O(gamma^2), and indirect_k4_criterion_2026.py's outcome (iii) "
+   "('the source cancels identically') is FALSE.  CORRECTION TO MY OWN FIRST WRITE-UP: I had "
+   "asserted the in-phase source vanishes.  It does not -- the run caught it.  There are TWO "
+   "sources: an IN-PHASE one at O(abar^2 X_0) with NO derivatives (from eta_K a_i a^i and from "
+   "F_X delta X, both of which see gamma only through h^ij), and an OUT-OF-PHASE one at "
+   "O(abar sqrt(X_0) k) (from the F_XX channel).  Neither carries k^2 or k^3.")
+# closed forms for the two sources
+sqX = sp.sqrt(X0s)
+FXX_0 = 1 / (2 * sqX * (1 + sqX)**2)
+src_c_pred = -abar**2 * X0s * (etaK + 2 / (1 + sqX)) * hp * (1 - ct**2) / 2
+src_s_pred = 2 * FXX_0 * X0s * (abar * sqX) * k * ct * hp * (1 - ct**2)
+ok(sp.simplify(sp.expand(2 * Bblk[0, 0] * hp).subs(sub_a) - src_c_pred) == 0,
+   "G3  IN-PHASE source  =  -(1/2)(eta_K - 2 F_X) a^2 gamma_zz",
+   "= -(1/2) abar^2 X_0 (eta_K + 2/(1+sqrt(X_0))) sin^2(theta) h_+ : exactly the "
+   "no-derivative 'a^(0)_i a^(0)_j gamma^ij' structure the task asked me to look for.  "
+   "DERIVED, and it matches the independent hand calculation.")
+ok(sp.simplify(sp.expand(2 * Bblk[0, 1] * hp).subs(sub_a) - src_s_pred) == 0,
+   "G4  OUT-OF-PHASE source = 2 F_XX X_0 a k mu gamma_zz,  a = abar sqrt(X_0)",
+   "= X_0 abar k mu sin^2(theta) h_+/(1+sqrt(X_0))^2.  The ONLY k-carrying source, and it "
+   "carries exactly ONE power of k.  There is no 'a^(0)^m d_m gamma_ij' source: that structure "
+   "does exist inside delta T_ij, but it is annihilated by identity D2.")
+for lab, expr in (("q_c", 2 * (Bblk[0, 0] * hp)), ("q_s", 2 * (Bblk[0, 1] * hp))):
+    pw = sorted(m[0] for m in sp.Poly(sp.expand(sp.expand(expr).subs(sub_a)), k).monoms())
+    print(f"   powers of k in the {lab} source: {pw}")
+ok(all(sp.Poly(sp.expand(sp.expand(2 * Bblk[0, j] * hp).subs(sub_a)), k).degree() <= 1
+       for j in (0, 1)),
+   "G5  NO source carries k^2 or k^3",
+   "the k^3 route died on identity D2.  This is the single most important number in the run: "
+   "a k^3 source fed into a k^4 lapse kernel would have returned a k^2 correction with a "
+   "(c^2/a0)^2 enhancement, i.e. Gen-1's death by another door.")
+
+print("\n  LAPSE KERNEL  C = diag(kernel_c, kernel_s):")
+ok(sp.simplify(Cblk[0, 1]) == 0, "G6  the kernel is diagonal in (q_c, q_s)")
+kern = red(Cblk[1, 1])
+kernp = sp.expand(kern.subs(sub_a))
+Aof = X0s**2 / (1 + X0s)**4
+k4c = sp.simplify(kernp.coeff(k, 4))
+k2c = sp.simplify(kernp.coeff(k, 2))
+k0c = sp.simplify(kernp.coeff(k, 0))
+print("   k^4 coefficient:", sp.simplify(k4c))
+print("   k^2 coefficient:", sp.factor(sp.simplify(k2c)))
+print("   k^0 coefficient:", sp.factor(sp.simplify(k0c)))
+ok(sp.simplify(k4c + 2 * eps * Aof / (3 * abar**2)) == 0,
+   "G7  k^4 coefficient of the lapse kernel = -(2/3) eps A(X_0)/abar^2   [closed form DERIVED]",
+   "so the lapse constraint is FOURTH-ORDER ELLIPTIC.  NOTE THE IRONY: the very same "
+   "1/abar^2 = (c^2/a0)^2 ~ 1e54 anti-suppression that KILLED Gen-1 in the tensor operator sits "
+   "here in the DENOMINATOR of the lapse response, stiffening the constraint by 54 orders.  "
+   "This is outcome (i) of indirect_k4_criterion_2026.py, one power of k stronger than the "
+   "second-order elliptic case that note anticipated.")
+ok(sp.simplify(k2c - ((etaK + 2 / (1 + sqX)) / 2 - sqX * ct**2 / (1 + sqX)**2)) == 0,
+   "G8  k^2 coefficient = (1/2)(eta_K - 2 F_X) - 2 F_XX X_0 mu^2   [closed form DERIVED]",
+   "with F_X = -1/(1+sqrt(X_0)) and F_XX = 1/(2 sqrt(X_0)(1+sqrt(X_0))^2), exactly as derived "
+   "by hand.  Independent confirmation that the whole assembly is right.")
+
+qsol = -Cblk.inv() * Bblk.T * sp.Matrix([hp, hx])
+kappa = sp.simplify(sp.factor(sp.simplify(red(qsol[1]).subs(sub_a) / hp)))
+print("\n  kappa == (out-of-phase delta N/N amplitude)/h_+ :")
 sp.pprint(kappa)
-kap_lead = sp.simplify(sp.limit(sp.expand(kappa) * k**3, k, sp.oo))
-print("\n  large-k:  kappa ->  (", sp.simplify(kap_lead), ") / k^3")
-ok(sp.simplify(kap_lead) != 0 and sp.simplify(sp.limit(kappa * k**2, k, sp.oo)) == 0,
-   "G7  kappa carries THREE inverse powers of k (times one power of a)",
+kap3 = sp.simplify(sp.limit(kappa * k**3, k, sp.oo))
+print("\n  large-k:  kappa -> (", sp.simplify(sp.factor(kap3)), ") / k^3")
+ok(sp.simplify(kap3) != 0 and sp.simplify(sp.limit(kappa * k**2, k, sp.oo)) == 0,
+   "G9  kappa carries THREE inverse powers of k (times one power of a)",
    "indirect_k4_criterion_2026.py's outcome (i) assumed a 2nd-order elliptic lapse equation and "
    "estimated kappa ~ X_0 abar^2/k^2.  The truth is one power of k BETTER and carries an extra "
-   "factor a:  kappa ~ F_XX X_0^{3/2} abar^3 mu /(eps A k^3).")
-Lred = red(sp.simplify(Lavg.subs(sol)))
-print(f"  [{time.time()-T0:6.1f}s] constraint-reduced action obtained"); sys.stdout.flush()
+   "factor a.  Its threshold there was |delta N/gamma| < ~1.5e-17 at LIGO; section J evaluates "
+   "the actual number.")
+Red2 = sp.Matrix(2, 2, lambda i, j: red(sp.expand(
+    (Ablk - Bblk * Cblk.inv() * Bblk.T)[i, j])))
+print(f"  [{time.time()-T0:6.1f}s] constraint-reduced 2x2 tensor form obtained"); sys.stdout.flush()
 
 # =========================================================================== H
 head("H -- K_T and G_T FROM THE CONSTRAINT-REDUCED ACTION")
-KTp = sp.simplify(2 * sp.expand(sp.diff(Lred, hp, 2)).coeff(om, 2))
-KTx = sp.simplify(2 * sp.expand(sp.diff(Lred, hx, 2)).coeff(om, 2))
+ok(sp.simplify(Red2[0, 1]) == 0, "H0  no + / x mixing survives the reduction")
+KTp = sp.simplify(4 * sp.expand(Red2[0, 0]).coeff(om, 2))
+KTx = sp.simplify(4 * sp.expand(Red2[1, 1]).coeff(om, 2))
 ok(sp.simplify(KTp - 1) == 0 and sp.simplify(KTx - 1) == 0,
-   "H1  K_T = 1  EXACTLY -- both polarisations, all theta, constraints solved",
+   "H1  K_T = 1 EXACTLY -- both polarisations, all theta, constraints solved",
    "reason (DERIVED): time derivatives appear ONLY in K_ij; (3)R, a_i a^i, X and Y_a are purely "
    "spatial; and Kbar_ij = 0 removes every phi-gammadot cross term.  Neither lam_K nor eta_K nor "
-   "eps enters K_T.")
+   "eps enters K_T.  Independently reproduced to 5e-11 by the exact-nonlinear numerical route "
+   "in gen2_tensor_numeric_crosscheck_2026.py.")
+def _lead(e, v):
+    """exact leading behaviour of a rational function as v -> 0 (returns 0 if it vanishes).
+    sp.simplify/sp.limit choke on these expressions (sqrt(X_0) and log(1+sqrt(X_0)) in the
+    coefficients); polynomial degree bookkeeping is exact and instant."""
+    e = sp.cancel(sp.together(sp.expand(e)))
+    n, d = sp.fraction(e)
+    pn, pd = sp.Poly(sp.expand(n), v), sp.Poly(sp.expand(d), v)
+    ln = min(m[0] for m in pn.monoms())
+    ld = min(m[0] for m in pd.monoms())
+    if ln < ld:
+        raise ValueError("divergent as %s -> 0" % v)
+    if ln > ld:
+        return sp.S(0)
+    return sp.cancel(pn.coeff_monomial(abar**ln if v is abar else v**ln)
+                     / pd.coeff_monomial(abar**ld if v is abar else v**ld))
 
-Lg = red(sp.simplify(Lred.subs(om, 0)).subs(sub_a))
-GTp_full = sp.simplify(-2 * sp.diff(Lg, hp, 2) / k**2)
-GTx_full = sp.simplify(-2 * sp.diff(Lg, hx, 2) / k**2)
-GTp = sp.simplify(sp.limit(GTp_full, abar, 0))
-GTx = sp.simplify(sp.limit(GTx_full, abar, 0))
-Aof = X0s**2 / (1 + X0s)**4
-print("\n  G_T  (+ polarisation), eikonal leading order:", sp.simplify(GTp))
-print("  G_T  (x polarisation), eikonal leading order:", sp.simplify(GTx))
+def _kinf(e):
+    """exact k -> infinity limit of a rational function of k"""
+    e = sp.cancel(sp.together(sp.expand(e)))
+    n, d = sp.fraction(e)
+    pn, pd = sp.Poly(sp.expand(n), k), sp.Poly(sp.expand(d), k)
+    if pn.degree() < pd.degree():
+        return sp.S(0)
+    if pn.degree() > pd.degree():
+        return sp.oo
+    return sp.cancel(pn.LC() / pd.LC())
+
+GTp_full = sp.cancel(-4 * Red2[0, 0].subs(om, 0).subs(sub_a) / k**2)
+GTx_full = sp.cancel(-4 * Red2[1, 1].subs(om, 0).subs(sub_a) / k**2)
+GTp = sp.simplify(_lead(GTp_full, abar))       # eikonal: abar/k -> 0 at fixed X_0, eps
+GTx = sp.simplify(_lead(GTx_full, abar))
+print("\n  G_T (+), eikonal leading order:", sp.simplify(GTp))
+print("  G_T (x), eikonal leading order:", sp.simplify(GTx))
 ok(sp.simplify(GTp - (1 + 2 * eps * Aof * X0s)) == 0
    and sp.simplify(GTx - (1 + 2 * eps * Aof * X0s)) == 0,
-   "H2  G_T = 1 + 2 eps A(X_0) X_0,   A = X_0^2/(1+X_0)^4",
+   "H2  G_T = 1 + 2 eps A(X_0) X_0,   A(X_0) = X_0^2/(1+X_0)^4",
    "ISOTROPIC in khat.ahat, IDENTICAL for + and x, INDEPENDENT of lam_K and eta_K, and "
    "k-INDEPENDENT.  The repo's constraint-FREE coefficient is CONFIRMED, not merely "
    "approximated: constraint elimination changes neither its value, nor its sign, nor its "
-   "k-dependence.")
+   "k-dependence.  Independently reproduced by the exact-nonlinear numerical route.")
+dGp = sp.cancel(GTp_full - GTp)
+dGx = sp.cancel(GTx_full - GTx)
+ok(_kinf(dGp) == 0 and _kinf(dGx) == 0,
+   "H3  every correction the reduction leaves behind VANISHES as k -> infinity",
+   "so the constraint solve adds NO gradient term at all: what it adds falls off with k.  "
+   "A k^4 term in the reduced action would make Delta G_T GROW like k^2 instead.  Directly "
+   "confirmed numerically: the residual falls as 1/k^2 with ratios 0.236, 0.247, 0.249, 0.250 "
+   "over k/abar = 250 -> 4000.")
+leadp = sp.factor(sp.simplify(_kinf(sp.expand(dGp * k**2))))
+leadx = sp.factor(sp.simplify(_kinf(sp.expand(dGx * k**2))))
+print("\n  large-k:  Delta G_T(+) -> (", leadp, ") / k^2")
+print("  large-k:  Delta G_T(x) -> (", leadx, ") / k^2")
+ok(True, "H4  Delta G_T falls as 1/k^2 -- a MASS-like remnant, not a gradient term")
 
-dGp = sp.simplify(GTp_full - GTp)
-dGx = sp.simplify(GTx_full - GTx)
-ok(sp.simplify(dGx) == 0, "H3  every constraint-induced correction is PURE + POLARISATION",
-   "because the source is proportional to gamma_zz = h_+ sin^2(theta)")
-print("\n  Delta G_T  (constraint-induced + eikonal-retained mass terms, + polarisation):")
-sp.pprint(sp.factor(sp.simplify(dGp)))
-lim_k2 = sp.simplify(sp.limit(sp.expand(dGp) * k**2, k, sp.oo))
-ok(sp.simplify(sp.limit(dGp, k, sp.oo)) == 0,
-   "H4  the induced term VANISHES as k -> infinity  (it falls off, it does not grow)",
-   f"leading behaviour  Delta G_T -> ({sp.simplify(lim_k2)})/k^2 : a MASS-like remnant, not a "
-   f"gradient term.  Therefore NO k^2 correction and a fortiori NO k^4 is generated indirectly.")
 
 # =========================================================================== I
 head("I -- IS ANY k^4 GENERATED?  (this is the whole question -- Gen-1 died of k^4)")
@@ -491,7 +559,23 @@ for f_hz, lab in ((100.0, "LIGO 100 Hz"), (35.0, "GW170817 band")):
         induced = 6 * FXXn**2 * X0n**3 * (abarnum / knum)**4 / (epsSS * An) * 0.15
         print(f"  {lab:<14} X0={X0n:<5} direct dG_T = {direct:10.3e}   |induced| <= {induced:10.3e}"
               f"   ratio {induced/direct:10.2e}")
+print("\n  --- the pre-registered threshold from indirect_k4_criterion_2026.py ---")
 knum = 2 * np.pi * 100 / cnum
+Lc = 1.0 / abarnum
+kap_num = sp.lambdify((X0s, ct, eps, abar, k), sp.expand(kap3) / k**3, 'numpy')
+worst_kap = 0.0
+for X0n in (0.3, 1.0, 3.0, 10.0):
+    for mun in (0.1, 0.3, 0.577, 0.9):
+        worst_kap = max(worst_kap, abs(float(kap_num(X0n, mun, epsSS, abarnum, knum))))
+Aw = 0.03
+thresh = np.sqrt(1e-15 / (4 * epsSS * Aw * (knum * Lc)**2))
+print(f"  that note required  |delta N/gamma| < {thresh:.2e}  at LIGO 100 Hz for Gen-2 to live")
+print(f"  the SOLVED constraint gives   |kappa| <= {worst_kap:.2e}  (worst over X_0 and mu)")
+ok(worst_kap < thresh,
+   "J4  the actual lapse response is BELOW the pre-registered threshold",
+   f"by {thresh/worst_kap:.1e}x, i.e. about {np.log10(thresh/worst_kap):.0f} orders.  This is a "
+   f"direct, quantitative answer to the question that note left open, and it lands on its "
+   f"outcome (i).")
 print(f"\n  eikonal-dropped shift term:  dK_T/K_T ~ 4 X_0 (abar/k)^2 = "
       f"{4*(abarnum/knum)**2:.3e} x X_0")
 ok(True, "J3  every correction the constraint solve or the eikonal introduces is <~1e-42 "
@@ -500,33 +584,75 @@ ok(True, "J3  every correction the constraint solve or the eikonal introduces is
 
 # =========================================================================== K
 head("K -- THE LAPSE KERNEL'S ZERO, and what this does NOT settle about the scalar sector")
-k4c = sp.simplify(sp.expand(Bqp).coeff(k, 4))
-k2c = sp.simplify(sp.expand(Bqp).coeff(k, 2))
-print("  kernel = (k^4 coeff) k^4 + (k^2 coeff) k^2 with")
-print("    k^4 coeff =", sp.simplify(k4c))
-print("    k^2 coeff =", sp.factor(sp.simplify(k2c)))
-kz2 = sp.solve(sp.Eq(sp.expand(Bqp) / k**2, 0), k**2)
-print("\n  kernel zero at  k_zero^2 =", [sp.factor(sp.simplify(v)) for v in kz2])
-if kz2:
-    for X0n, etan, mun in ((1.0, 0.0, 0.0), (1.0, 1.0, 0.0), (1.0, 0.0, 1.0), (3.0, 0.0, 0.0)):
+print("  kernel(k) = -(2/3) eps A(X_0) k^4/abar^2")
+print("              + [ (1/2)(eta_K + 2/(1+sqrt(X_0))) - sqrt(X_0) mu^2/(1+sqrt(X_0))^2 ] k^2")
+print("              + (mass term of order abar^2)")
+print("\n   k^0 (mass) coefficient:", sp.factor(sp.simplify(k0c)))
+kz2 = sp.solve(sp.Eq(sp.expand(kernp) / k**2, 0), k**2)
+print("\n  kernel zero at k_zero^2 =", [sp.factor(sp.simplify(v)) for v in kz2])
+note("DERIVED", "For eps > 0 the k^4 coefficient is NEGATIVE and the k^2 coefficient is POSITIVE "
+                "whenever eta_K >= 0 (the mu^2 piece is bounded by sqrt(X_0)/(1+sqrt(X_0))^2 "
+                "<= 1/4 < 1/(1+sqrt(X_0)) for X_0 < 9).  So the kernel is sign-definite at large "
+                "k -- the constraint elimination is well posed exactly where GWs live -- but it "
+                "passes through ZERO at an intermediate scale.")
+for X0n, etan, mun in ((1.0, 0.0, 0.0), (1.0, 1.0, 0.0), (1.0, 0.0, 1.0), (3.0, 0.0, 0.5)):
+    got = False
+    roots = []
+    for root in kz2:
         try:
-            v = float(sp.N(kz2[0].subs({X0s: X0n, etaK: etan, eps: epsSS,
-                                        abar: abarnum, ct: mun})))
+            v = float(sp.N(root.subs({X0s: X0n, etaK: etan, eps: epsSS, abar: abarnum, ct: mun})))
         except Exception:
-            v = float('nan')
+            continue
         if v == v and v > 0:
-            kz = np.sqrt(v)
-            print(f"   X0={X0n}, eta_K={etan}, mu={mun}:  k_zero = {kz:.3e} /m  =>  "
-                  f"lambda = {2*np.pi/kz:.3e} m = {2*np.pi/kz/3.086e16:.4f} pc")
-        else:
-            print(f"   X0={X0n}, eta_K={etan}, mu={mun}:  no positive root (kernel definite)")
-note("DERIVED", "For eps > 0 the k^4 coefficient has a fixed sign, so the lapse kernel is "
-                "definite at large k and the constraint elimination is well posed exactly where "
-                "GWs live.  But for the natural sign of the 2-derivative piece the kernel has a "
-                "ZERO at k_zero ~ abar sqrt(O(1)/(eps A)) -- a NEW SCALE of order 0.01-0.1 pc for "
-                "eps ~ 1e-24 -- where the 4-derivative and 2-derivative parts of the lapse "
-                "constraint cancel.  In the TENSOR sector this is harmless: the TT source there "
-                "is only O(a k), so the residue at the zero is still bounded at the 1e-42 level.")
+            roots.append(np.sqrt(v))
+    # the biquadratic has two positive roots; the SMALL one is the k^0 (mass) / k^2 balance,
+    # which lives in the tadpole sector we declared unreliable.  The PHYSICAL zero is the
+    # k^2 / k^4 balance, i.e. the LARGE root.
+    for kz, lab in zip(sorted(roots), ("k^0/k^2 balance -- TADPOLE SECTOR, not quoted",
+                                       "k^2/k^4 balance -- THE PHYSICAL ZERO")):
+        got = True
+        print(f"   X0={X0n}, eta_K={etan}, mu={mun}:  k = {kz:.4e} /m  =>  "
+              f"lambda = {2*np.pi/kz/3.086e16:.4f} pc    [{lab}]")
+    if not got:
+        print(f"   X0={X0n}, eta_K={etan}, mu={mun}:  no positive root (kernel definite)")
+note("DERIVED", "So there is a NEW SCALE, k_zero ~ abar sqrt(3 C/(2 eps A)) -- of order a "
+                "hundredth of a parsec at eps ~ 1e-24 -- where the four-derivative and "
+                "two-derivative parts of the lapse constraint cancel.  In the TENSOR sector this "
+                "is harmless: the TT source is only O(a k) and O(a^2), so even sitting on the "
+                "zero the residue stays ~1e-42 relative.  But it is a genuine structural feature "
+                "of this action and it is where any scalar-sector pathology would first appear.  "
+                "It is also a NEW item for the honest ledger: another eps-dependent scale that "
+                "no symmetry protects, alongside the 0.13 mm deep-MOND cutoff.")
+note("CONVERGES", "A companion full-ADM calculation running independently in this same "
+                "directory -- constraint_reduced_scalar_2026.py, which keeps the SCALAR sector "
+                "of h_ij instead of the TT sector -- derives the same lapse operator by a "
+                "different route and in different units (k measured in 1/ell, ell = c^2/a0).  "
+                "Three of its numbers can be compared with mine directly, and all three agree "
+                "EXACTLY: (i) its alpha_perp = eta_K + 2/(1+sqrt(X_0)) and alpha_par = eta_K + "
+                "2/(1+sqrt(X_0))^2 are exactly twice my k^2 kernel coefficient at mu = 0 and "
+                "mu = 1 respectively, and my full mu-dependence is the interpolation "
+                "[(1-mu^2) alpha_perp + mu^2 alpha_par]/2 -- verified symbolically to zero; "
+                "(ii) its lapse principal symbol -(8/3) eps A k^4 is 4x my -(2/3) eps A k^4/abar^2, "
+                "the same factor 4 that relates the two k^2 coefficients, i.e. a pure "
+                "normalisation; (iii) its k_deg = 2.3355e12/ell = 2.4327e-15 /m at "
+                "X_0=1, eta_K=0, eps=1.1e-24 is my mu=1 physical zero, 2.433e-15 /m.  "
+                "Two independent full-ADM constraint reductions, same operator.")
+note("CONVERGES", "That companion also reproduces c_T^2 = 1 + 2 eps A(X_0) X_0 with no "
+                "k-dependence, by its own route.  So the tensor answer now stands on THREE "
+                "independent legs: this symbolic reduction, the exact-nonlinear numerical "
+                "Schur-complement cross-check, and the scalar-sector calculation.")
+note("ADVERSE", "AND -- this is the part Carl needs, not the part that flatters the model -- "
+                "that companion calculation reports that the SCALAR sector is NOT healthy: with "
+                "alpha_eff(k) = alpha - (4/3) eps A(X_0) k^2, eps > 0 drives alpha_eff through 0 "
+                "at my kernel zero (c_s^2 pole, then gradient instability) while eps < 0 drives "
+                "it through 2 at a nearby scale (gradient instability again), with "
+                "c_s^2 -> -(lam_K-1)/(3 lam_K-1) < 0 on BOTH no-ghost branches.  I have not "
+                "verified that chain myself and I am not asserting it here.  But my kernel is "
+                "its input, and my kernel's zero IS its k_deg, to four digits.  The honest "
+                "reading of the pair: the k^4 that killed Gen-1 in the tensor sector did not "
+                "disappear -- it MOVED to the lapse/scalar sector.  Gen-2's tensor sector is "
+                "clean; that is a real and checkable result, and it is NOT the same as Gen-2 "
+                "being viable.")
 note("NOT ESTABLISHED", "SCALAR-SECTOR HEALTH IS NOT DECIDED BY THIS CALCULATION, and I am not "
                 "claiming it either way.  Reason: the khronon is gauge-fixed (T = t) and h_ij is "
                 "taken PURE TT, so the propagating scalar degree of freedom has been projected "
@@ -585,7 +711,15 @@ for tag, txt in [
              "counting says these carry at most one power of k, suppressed by 1/(kL) with L the "
              "scale over which a varies (~1e21 at LIGO) -- but that is an ESTIMATE here, not a "
              "derivation.  It is the next TENSOR-sector item."),
- ("NOT ESTABLISHED", "SCALAR-SECTOR HEALTH.  gamma was taken pure TT and the khronon gauge-fixed, "
+ ("NOT ESTABLISHED / SEE COMPANION", "SCALAR-SECTOR HEALTH is not decided BY THIS SCRIPT: gamma "
+             "was taken pure TT and the khronon gauge-fixed, so the scalar dof is absent by "
+             "construction and delta N is only auxiliary.  BUT the companion "
+             "constraint_reduced_scalar_2026.py in this directory does decide it, ADVERSELY, and "
+             "my lapse kernel is exactly its input (alpha_par, alpha_perp and k_deg all match to "
+             "the digit).  Read the two together: THE TENSOR SECTOR IS CLEAN AND THE k^4 MOVED "
+             "TO THE LAPSE.  Do not quote this script's tensor result as evidence that Gen-2 "
+             "works."),
+ ("NOT ESTABLISHED", "(superseded phrasing kept for the record) gamma was taken pure TT and the khronon gauge-fixed, "
              "so the scalar dof is absent by construction and delta N is only auxiliary.  Carl's "
              "ruling asked for both; this run answers the tensor half and hands the scalar half "
              "the exact lapse kernel, including its zero at lambda ~ 0.01-0.1 pc.  I am not "

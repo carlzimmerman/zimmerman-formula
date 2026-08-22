@@ -1,0 +1,360 @@
+
+====================================================================================================
+A -- IMPORTED + RE-VERIFIED:  a_i = D_i ln N  (unitary gauge)
+====================================================================================================
+  [IMPORTED] ADM/khronometric identity, already proved in this repo at theory_2026/first_principles/sec14_matter_coupling_static.py [14.0b] and hostile_attack2_weyl_slip_2026.py [W1].  Re-verified here from scratch on a metric with generic lapse, generic shift and a non-flat spatial metric.
+  [ok ] A1  u.u = -1
+  [ok ] A2  a_i = d_i ln N  EXACTLY (generic N, generic shift, curved h)
+         CONSEQUENCE, and it drives everything below: at FIXED N the covector a_i does not depend on h_ij at all.  All gamma-dependence of X and Y_a enters through h^ij (raising) and through the Christoffels inside D_i a_j.
+  [ok ] A3  a_0 = N^i d_i ln N,  so a_mu u^mu = 0
+
+====================================================================================================
+B -- BACKGROUND, and how the tadpole is disposed of
+====================================================================================================
+  [DERIVED] Exactly uniform a^(0)_i = a zhat forces ln Nbar = a z, i.e. Nbar = e^{a z}.  (NOT the Rindler lapse 1+az, whose a_i = a/(1+az) is not uniform.)  Take hbar_ij = delta_ij, Nbar^i = 0, static.
+  [DERIVED] Then Gammabar^k_ij = 0 and abar_j = a delta_jz = const, so Dbar_i abar_j = 0 => T^(0)_ij = 0 and Y^(0) = 0 EXACTLY (no cross terms, no index-raising corrections from T^(0)T^(0)).  Also Kbar_ij = 0 and (3)Rbar = 0.  X_0 = a^2/abar^2 = (g/a0)^2 is finite and free.
+  [ASSUMED] This background is NOT a vacuum solution of the free theory (nor of GR: ds^2 = -e^{2az}dt^2 + dx^2 has nonzero Ricci).  It is ASSUMED to be held up by FIXED EXTERNAL matter whose prescribed stress tensor is chosen so that the FULL background field equations (gravity + matter) hold.  Stated, not hidden.
+  [DERIVED] TADPOLE.  Write N = Nbar(1+phi_1+phi_2+...), h = hbar+gamma_1+gamma_2+..., N^i = beta_1^i+..., with subscript n of order s^n.  Because the TOTAL first variation vanishes for ARBITRARY first-order variations (that is what 'the background solves the equations, with its source' means), the O(s^2) terms (dS/dN)|bar Nbar phi_2  and  (dS/dh_ij)|bar gamma_2^ij  vanish identically.  So the SECOND-order lapse/shift/metric perturbations drop out of S^(2) and only phi_1, beta_1, gamma_1 are needed.  The standard subtlety is therefore handled, not ignored.  (This is also why the question 'what if delta N starts at O(gamma^2)' has the answer 'then it contributes nothing' -- but in fact it does NOT start at O(gamma^2); see section G.)
+  [ASSUMED] The external matter's own second variation w.r.t. gamma^TT adds no k^2: for minimally coupled matter N sqrt(h) L_m at O(gamma_TT^2) is -(1/4) gamma_ij gamma_ij x (rho- or p-like density), i.e. a MASS term.  Anisotropic stress of the external source could change that mass term; it cannot generate a gradient term.
+
+====================================================================================================
+C -- ansatz, harmonic calculus, and exactly what the eikonal drops
+====================================================================================================
+  [ok ] C1  gamma^TT is TRACELESS at arbitrary theta
+  [ok ] C2  gamma^TT is TRANSVERSE (k_i E_ij = 0) at arbitrary theta
+  [ok ] C3  ahat_i ahat_j gamma^ij = h_+ sin^2(theta) cos(psi)
+         the structure indirect_k4_criterion_2026.py flagged.  It is nonzero except at exact alignment (theta = 0) and it is PURE + POLARISATION.  mu == khat.ahat = c_t.
+  [DERIVED] L splits as L = e^{+az} L_pot + e^{-az} L_kin (K_ij carries 1/N).  Working in the LOCAL frame z = 0 sets both prefactors to 1, so c_T below is the PROPER (locally measured) speed, not a coordinate speed.  The ONLY thing this drops is terms where d_z hits e^{+-az}; each trades one power of k for one power of a.  With a = abar sqrt(X_0) ~ 1e-27/m and k ~ 2e-6/m at LIGO the relative error is a/k ~ 5e-22 per power.  The largest such term is bounded explicitly in F and J.
+
+====================================================================================================
+D -- three EXACT operator identities that decide the whole calculation
+====================================================================================================
+  [ok ] D1  delta Gamma^z_ii = 0  =>  delta T_ij sourced by gamma is automatically trace-free
+  [ok ] D2  d_i d_j (delta Gamma^z_ij) = 0 IDENTICALLY   <=== THIS KILLS THE k^3 SOURCE
+         delta T^phi_ij = d_i d_j phi - (1/3) delta_ij d^2 phi  and  delta T^gamma_ij = -a delta Gamma^z_ij, so their contraction is  -a phi d_i d_j delta Gamma^z_ij = 0.  The F_Y cross term between the lapse and a TT wave -- the ONLY channel that could feed a k^3 source into the lapse constraint, i.e. the exact mechanism indirect_k4_criterion_2026.py feared -- VANISHES EXACTLY.  Not plane-wave-specific: d_i d_j dGamma^z_ij = (1/2)(2 d^2 d_j gamma_jz - d_z d_i d_j gamma_ij) = 0 by transversality alone.
+  [ok ] D3  d_j gamma_zj = 0  =>  the O(a k) couplings  a gamma_zj d_j phi  coming from eta_K a_i a^i and from F_X delta_2 X ALSO vanish identically
+  [DERIVED] What survives as a gamma-phi coupling is therefore only pieces built on gamma_zz = ahat.ahat.gamma with at most ONE derivative.  Nonzero => indirect_k4_criterion's outcome (iii) is FALSE; but no k^3 => the k^4 channel it feared is closed at the source, before the constraint is even solved.
+
+====================================================================================================
+E -- full second-order expansion of the frozen action (sympy, no hand steps)
+====================================================================================================
+  [ok ] E1  det h = 1 - (s^2/2) gamma_ij gamma_ij + O(s^3)  =>  sqrt(h) = 1 - (s^2/4) gamma_ij gamma_ij
+  [ok ] E2  h^ij h_jk = delta^i_k to O(s^2)
+  [ok ] E3  X^(0) = a^2/abar^2 = X_0
+  [ok ] E4  Y^(0) = 0 and Y^(1) = 0  (T^(0) = 0 forces Y to start at second order)
+         so there is NO F_Y contribution to the linear constraint, and no F_XY cross term
+  [ok ] E5  delta_1 T_ij = (d_i d_j phi - (1/3) delta_ij d^2 phi) - a delta Gamma^z_ij   [DERIVED]
+         note the second piece is FIRST order in d(gamma) -- one derivative, not two.  That is the structural reason Gen-2 is k^2 and Gen-1 (which used delta Rbar_ij ~ d^2 gamma) was k^4.
+  [ok ] E6  F_X = -1/(1+sqrt(X))            [DERIVED]
+  [ok ] E7  F_XX = 1/(2 sqrt(X)(1+sqrt(X))^2) > 0   [DERIVED]
+  [ok ] E8  F_Y = eps A(X),  A(X) = X^2/(1+X)^4     [DERIVED]
+  [ok ] E9  Kbar_ij = 0 (static background)
+  [ok ] E10  (3)R^(0) = 0 and (3)R^(1)[gamma^TT] = 0
+         => (3)R contributes NO linear TT source to the Hamiltonian constraint (as in GR)
+  [  39.8s] second-order Lagrangian density built
+  [ok ] E11  the averaged quadratic Lagrangian is a pure quadratic form in the amplitudes
+         averaging kills total derivatives, so no integration by parts is used anywhere
+  [ok ] E12  GR NORMALISATION CHECK: the Einstein-Hilbert + K^2 part alone averages to (1/4)[omega^2 - k^2](h_+^2 + h_x^2)
+         this fixes the normalisation: <L> = (1/4)[K_T omega^2 - G_T k^2](h_+^2+h_x^2), so K_T and G_T below are exactly the coefficients Carl asked for, and GR gives K_T = G_T = 1.  It also shows lam_K cancels out of the TT sector already at this stage (K^(1) is traceless for TT with beta = 0).
+
+====================================================================================================
+F -- the MOMENTUM constraint (shift), solved
+====================================================================================================
+  [ok ] F1  NO gamma-beta cross term in the averaged action
+         => the momentum constraint has NO TT source in the local frame, so beta^i = 0 and lam_K DROPS OUT OF THE TENSOR SECTOR ENTIRELY.  DERIVED.  (In GR this is the familiar statement that TT sources neither constraint; here it had to be checked, because a^(0)_i breaks isotropy.)
+  [ok ] F2  no phi-beta cross term either => the two constraints decouple
+  [DERIVED] WHAT THE LOCAL FRAME DROPPED, EXPLICITLY.  Keeping Nbar = e^{az}, the cross term -(1/N) gammadot_ij d_i beta_j integrates by parts to  +d_i(1/N) gammadot_ij beta_j = -(a/N) gammadot_zj beta_j  (the d_i gammadot_ij piece dies by transversality).  Then beta ~ a gammadot/k^2, and feeding back gives dK_T/K_T ~ 4 a^2/k^2 = 4 X_0 (abar/k)^2.  Section J: ~1e-42.  This is the LARGEST term the eikonal drops in the entire calculation.
+
+====================================================================================================
+G -- the HAMILTONIAN constraint (lapse), solved -- the decisive step
+====================================================================================================
+  [METHOD] The averaged action is the quadratic form  <L> = v^T M v  over v = (h_+, h_x, q_c, q_s).  Solving the Hamiltonian constraint IS the Schur complement  A - B C^{-1} B^T  over the lapse block.  This is done exactly, in closed form -- no substitution of a solved expression back into a huge rational function.
+
+  LINEAR TT SOURCES in the lapse constraint (the coefficient of q in <L>):
+   source x q_c : abar**2*h_p*(c_t - 1)*(c_t + 1)*(X_0**(3/2)*eta_K + X_0*eta_K + 2*X_0)/(2*(sqrt(X_0) + 1))
+   source x q_s : -X_0*abar*c_t*h_p*k*(c_t - 1)*(c_t + 1)/(2*sqrt(X_0) + X_0 + 1)
+  [ok ] G1  the x polarisation does NOT source the lapse at all; only h_+ does
+         because the source is built on gamma_zz = ahat_i ahat_j gamma^ij = h_+ sin^2(theta)
+  [ok ] G2  BOTH lapse sources are NONZERO at LINEAR order in gamma^TT
+         => delta N does NOT start at O(gamma^2), and indirect_k4_criterion_2026.py's outcome (iii) ('the source cancels identically') is FALSE.  CORRECTION TO MY OWN FIRST WRITE-UP: I had asserted the in-phase source vanishes.  It does not -- the run caught it.  There are TWO sources: an IN-PHASE one at O(abar^2 X_0) with NO derivatives (from eta_K a_i a^i and from F_X delta X, both of which see gamma only through h^ij), and an OUT-OF-PHASE one at O(abar sqrt(X_0) k) (from the F_XX channel).  Neither carries k^2 or k^3.
+  [ok ] G3  IN-PHASE source  =  -(1/2)(eta_K - 2 F_X) a^2 gamma_zz
+         = -(1/2) abar^2 X_0 (eta_K + 2/(1+sqrt(X_0))) sin^2(theta) h_+ : exactly the no-derivative 'a^(0)_i a^(0)_j gamma^ij' structure the task asked me to look for.  DERIVED, and it matches the independent hand calculation.
+  [ok ] G4  OUT-OF-PHASE source = 2 F_XX X_0 a k mu gamma_zz,  a = abar sqrt(X_0)
+         = X_0 abar k mu sin^2(theta) h_+/(1+sqrt(X_0))^2.  The ONLY k-carrying source, and it carries exactly ONE power of k.  There is no 'a^(0)^m d_m gamma_ij' source: that structure does exist inside delta T_ij, but it is annihilated by identity D2.
+   powers of k in the q_c source: [0]
+   powers of k in the q_s source: [1]
+  [ok ] G5  NO source carries k^2 or k^3
+         the k^3 route died on identity D2.  This is the single most important number in the run: a k^3 source fed into a k^4 lapse kernel would have returned a k^2 correction with a (c^2/a0)^2 enhancement, i.e. Gen-1's death by another door.
+
+  LAPSE KERNEL  C = diag(kernel_c, kernel_s):
+  [ok ] G6  the kernel is diagonal in (q_c, q_s)
+   k^4 coefficient: -2*epsilon*(2*X_0**(5/2) + X_0**3 + X_0**2)/(3*abar**2*(2*X_0**(9/2) + 8*X_0**(7/2) + 12*X_0**(5/2) + 8*X_0**(3/2) + 2*sqrt(X_0) + X_0**5 + 5*X_0**4 + 10*X_0**3 + 10*X_0**2 + 5*X_0 + 1))
+   k^2 coefficient: (-2*X_0**(9/2)*c_t**2 + 2*X_0**(9/2)*eta_K + 2*X_0**(9/2) - 8*X_0**(7/2)*c_t**2 + 8*X_0**(7/2)*eta_K + 8*X_0**(7/2) - 12*X_0**(5/2)*c_t**2 + 12*X_0**(5/2)*eta_K + 12*X_0**(5/2) - 8*X_0**(3/2)*c_t**2 + 8*X_0**(3/2)*eta_K + 8*X_0**(3/2) - 2*sqrt(X_0)*c_t**2 + 2*sqrt(X_0)*eta_K + 2*sqrt(X_0) + X_0**5*eta_K + 5*X_0**4*eta_K + 2*X_0**4 + 10*X_0**3*eta_K + 8*X_0**3 + 10*X_0**2*eta_K + 12*X_0**2 + 5*X_0*eta_K + 8*X_0 + eta_K + 2)/(2*(2*X_0**(9/2) + 8*X_0**(7/2) + 12*X_0**(5/2) + 8*X_0**(3/2) + 2*sqrt(X_0) + X_0**5 + 5*X_0**4 + 10*X_0**3 + 10*X_0**2 + 5*X_0 + 1))
+   k^0 coefficient: abar**2*(2*X_0**(11/2)*eta_K + 4*X_0**(11/2) + 8*X_0**(9/2)*eta_K - 8*X_0**(9/2)*log(sqrt(X_0) + 1) + 20*X_0**(9/2) + 12*X_0**(7/2)*eta_K - 32*X_0**(7/2)*log(sqrt(X_0) + 1) + 40*X_0**(7/2) + 8*X_0**(5/2)*eta_K - 48*X_0**(5/2)*log(sqrt(X_0) + 1) + 40*X_0**(5/2) + 2*X_0**(3/2)*eta_K - 32*X_0**(3/2)*log(sqrt(X_0) + 1) + 20*X_0**(3/2) - 8*sqrt(X_0)*log(sqrt(X_0) + 1) + 4*sqrt(X_0) + X_0**6*eta_K + 5*X_0**5*eta_K - 4*X_0**5*log(sqrt(X_0) + 1) + 8*X_0**5 + 10*X_0**4*eta_K - 20*X_0**4*log(sqrt(X_0) + 1) + 32*X_0**4 + 10*X_0**3*eta_K - 40*X_0**3*log(sqrt(X_0) + 1) + 48*X_0**3 + 5*X_0**2*eta_K - 40*X_0**2*log(sqrt(X_0) + 1) + 32*X_0**2 + X_0*eta_K - 20*X_0*log(sqrt(X_0) + 1) + 8*X_0 - 4*log(sqrt(X_0) + 1))/(4*(2*X_0**(9/2) + 8*X_0**(7/2) + 12*X_0**(5/2) + 8*X_0**(3/2) + 2*sqrt(X_0) + X_0**5 + 5*X_0**4 + 10*X_0**3 + 10*X_0**2 + 5*X_0 + 1))
+  [ok ] G7  k^4 coefficient of the lapse kernel = -(2/3) eps A(X_0)/abar^2   [closed form DERIVED]
+         so the lapse constraint is FOURTH-ORDER ELLIPTIC.  NOTE THE IRONY: the very same 1/abar^2 = (c^2/a0)^2 ~ 1e54 anti-suppression that KILLED Gen-1 in the tensor operator sits here in the DENOMINATOR of the lapse response, stiffening the constraint by 54 orders.  This is outcome (i) of indirect_k4_criterion_2026.py, one power of k stronger than the second-order elliptic case that note anticipated.
+  [ok ] G8  k^2 coefficient = (1/2)(eta_K - 2 F_X) - 2 F_XX X_0 mu^2   [closed form DERIVED]
+         with F_X = -1/(1+sqrt(X_0)) and F_XX = 1/(2 sqrt(X_0)(1+sqrt(X_0))^2), exactly as derived by hand.  Independent confirmation that the whole assembly is right.
+
+  kappa == (out-of-phase delta N/N amplitude)/h_+ :
+                                                                               ↪
+                                                                               ↪
+────────────────────────────────────────────────────────────────────────────── ↪
+                                                                               ↪
+                                                                               ↪
+    11/2  4            11/2  4        9/2  4            9/2  4        9/2  2   ↪
+6⋅X₀    ⋅a̅ ⋅η_K + 12⋅X₀    ⋅a̅  + 24⋅X₀   ⋅a̅ ⋅η_K + 60⋅X₀   ⋅a̅  - 12⋅X₀   ⋅a̅ ⋅c ↪
+
+↪                                                                              ↪
+↪                                                                              ↪
+↪ ──────────────────────────────────────────────────────────────────────────── ↪
+↪                                                                              ↪
+↪                                                                              ↪
+↪  2  2        9/2  2      2        9/2  2  2        7/2  4             7/2  4 ↪
+↪ ₜ ⋅k  + 12⋅X₀   ⋅a̅ ⋅η_K⋅k  + 12⋅X₀   ⋅a̅ ⋅k  + 36⋅X₀   ⋅a̅ ⋅η_K + 120⋅X₀   ⋅a̅  ↪
+
+↪                                                                              ↪
+↪                                                                              ↪
+↪ ──────────────────────────────────────────────────────────────────────────── ↪
+↪                                                                              ↪
+↪                                                                              ↪
+↪         7/2  2   2  2        7/2  2      2        7/2  2  2        5/2  4    ↪
+↪  - 48⋅X₀   ⋅a̅ ⋅cₜ ⋅k  + 48⋅X₀   ⋅a̅ ⋅η_K⋅k  + 48⋅X₀   ⋅a̅ ⋅k  + 24⋅X₀   ⋅a̅ ⋅η_ ↪
+
+↪                                                                              ↪
+↪                                                                              ↪
+↪ ──────────────────────────────────────────────────────────────────────────── ↪
+↪                                                                              ↪
+↪                                                                              ↪
+↪           5/2  4        5/2  2   2  2        5/2  2      2        5/2  2  2  ↪
+↪ K + 120⋅X₀   ⋅a̅  - 72⋅X₀   ⋅a̅ ⋅cₜ ⋅k  + 72⋅X₀   ⋅a̅ ⋅η_K⋅k  + 72⋅X₀   ⋅a̅ ⋅k   ↪
+
+↪                                                                              ↪
+↪                                                                              ↪
+↪ ──────────────────────────────────────────────────────────────────────────── ↪
+↪                                                                              ↪
+↪                                                                              ↪
+↪        5/2    4       3/2  4            3/2  4        3/2  2   2  2        3 ↪
+↪ - 16⋅X₀   ⋅ε⋅k  + 6⋅X₀   ⋅a̅ ⋅η_K + 60⋅X₀   ⋅a̅  - 48⋅X₀   ⋅a̅ ⋅cₜ ⋅k  + 48⋅X₀  ↪
+
+↪                                                                              ↪
+↪                                                                              ↪
+↪ ──────────────────────────────────────────────────────────────────────────── ↪
+↪                                                                              ↪
+↪                                                                              ↪
+↪ /2  2      2        3/2  2  2        ____  4        ____  2   2  2        __ ↪
+↪   ⋅a̅ ⋅η_K⋅k  + 48⋅X₀   ⋅a̅ ⋅k  + 12⋅╲╱ X₀ ⋅a̅  - 12⋅╲╱ X₀ ⋅a̅ ⋅cₜ ⋅k  + 12⋅╲╱ X ↪
+
+↪           3              4                                                   ↪
+↪     6⋅X₀⋅a̅ ⋅cₜ⋅k⋅(X₀ + 1) ⋅(cₜ - 1)⋅(cₜ + 1)                                 ↪
+↪ ──────────────────────────────────────────────────────────────────────────── ↪
+↪                                                                              ↪
+↪                                                                              ↪
+↪ __  2      2        ____  2  2       6  4            5  4            5  4    ↪
+↪ ₀ ⋅a̅ ⋅η_K⋅k  + 12⋅╲╱ X₀ ⋅a̅ ⋅k  + 3⋅X₀ ⋅a̅ ⋅η_K + 15⋅X₀ ⋅a̅ ⋅η_K + 24⋅X₀ ⋅a̅  +  ↪
+
+↪                                                                              ↪
+↪                                                                              ↪
+↪ ──────────────────────────────────────────────────────────────────────────── ↪
+↪                                                                              ↪
+↪                                                                              ↪
+↪     5  2      2        4  4            4  4        4  2      2        4  2   ↪
+↪ 6⋅X₀ ⋅a̅ ⋅η_K⋅k  + 30⋅X₀ ⋅a̅ ⋅η_K + 96⋅X₀ ⋅a̅  + 30⋅X₀ ⋅a̅ ⋅η_K⋅k  + 12⋅X₀ ⋅a̅ ⋅k ↪
+
+↪                                                                              ↪
+↪                                                                              ↪
+↪ ──────────────────────────────────────────────────────────────────────────── ↪
+↪                                                                              ↪
+↪                                                                              ↪
+↪ 2        3  4             3  4        3  2      2        3  2  2       3     ↪
+↪   + 30⋅X₀ ⋅a̅ ⋅η_K + 144⋅X₀ ⋅a̅  + 60⋅X₀ ⋅a̅ ⋅η_K⋅k  + 48⋅X₀ ⋅a̅ ⋅k  - 8⋅X₀ ⋅ε⋅k ↪
+
+↪                                                                              ↪
+↪                                                                              ↪
+↪ ──────────────────────────────────────────────────────────────────────────── ↪
+↪                                                                              ↪
+↪                                                                              ↪
+↪ 4        2  4            2  4        2  2      2        2  2  2       2    4 ↪
+↪   + 15⋅X₀ ⋅a̅ ⋅η_K + 96⋅X₀ ⋅a̅  + 60⋅X₀ ⋅a̅ ⋅η_K⋅k  + 72⋅X₀ ⋅a̅ ⋅k  - 8⋅X₀ ⋅ε⋅k  ↪
+
+↪                                                                              ↪
+↪                                                                              ↪
+↪ ──────────────────────────────────────────────────────────────────────────── ↪
+↪                                                                              ↪
+↪                                                                              ↪
+↪          4              4          2      2          2  2      2      2      ↪
+↪  + 3⋅X₀⋅a̅ ⋅η_K + 24⋅X₀⋅a̅  + 30⋅X₀⋅a̅ ⋅η_K⋅k  + 48⋅X₀⋅a̅ ⋅k  + 6⋅a̅ ⋅η_K⋅k  + 12 ↪
+
+↪                                                                              ↪
+↪                                                                              ↪
+↪ ──────────────────────────────────────────────────────────────────────────── ↪
+↪             ⎛                4 ⎛    9/2       7/2        5/2       3/2       ↪
+↪             ⎜            12⋅a̅ ⋅⎝2⋅X₀    + 8⋅X₀    + 12⋅X₀    + 8⋅X₀    + 2⋅╲ ↪
+↪   2  2      ⎜⎛  ____    ⎞                                                    ↪
+↪ ⋅a̅ ⋅k  - log⎝⎝╲╱ X₀  + 1⎠                                                    ↪
+
+↪                                                   
+↪                                                   
+↪ ──────────────────────────────────────────────────
+↪  ____     5       4        3        2           ⎞⎞
+↪ ╱ X₀  + X₀  + 5⋅X₀  + 10⋅X₀  + 10⋅X₀  + 5⋅X₀ + 1⎠⎟
+↪                                                  ⎟
+↪                                                  ⎠
+
+  large-k:  kappa -> ( -3*X_0*abar**3*c_t*(X_0 + 1)**4*(c_t - 1)*(c_t + 1)/(4*epsilon*(2*X_0**(5/2) + X_0**3 + X_0**2)) ) / k^3
+  [ok ] G9  kappa carries THREE inverse powers of k (times one power of a)
+         indirect_k4_criterion_2026.py's outcome (i) assumed a 2nd-order elliptic lapse equation and estimated kappa ~ X_0 abar^2/k^2.  The truth is one power of k BETTER and carries an extra factor a.  Its threshold there was |delta N/gamma| < ~1.5e-17 at LIGO; section J evaluates the actual number.
+  [ 102.1s] constraint-reduced 2x2 tensor form obtained
+
+====================================================================================================
+H -- K_T and G_T FROM THE CONSTRAINT-REDUCED ACTION
+====================================================================================================
+  [ok ] H0  no + / x mixing survives the reduction
+  [ok ] H1  K_T = 1 EXACTLY -- both polarisations, all theta, constraints solved
+         reason (DERIVED): time derivatives appear ONLY in K_ij; (3)R, a_i a^i, X and Y_a are purely spatial; and Kbar_ij = 0 removes every phi-gammadot cross term.  Neither lam_K nor eta_K nor eps enters K_T.  Independently reproduced to 5e-11 by the exact-nonlinear numerical route in gen2_tensor_numeric_crosscheck_2026.py.
+
+  G_T (+), eikonal leading order: (X_0**(15/2) + 2*X_0**(13/2)*epsilon + 7*X_0**(13/2) + 6*X_0**(11/2)*epsilon + 18*X_0**(11/2) + 22*X_0**(9/2) + 13*X_0**(7/2) + 3*X_0**(5/2) + 3*X_0**7 + 6*X_0**6*epsilon + 13*X_0**6 + 2*X_0**5*epsilon + 22*X_0**5 + 18*X_0**4 + 7*X_0**3 + X_0**2)/(X_0**(15/2) + 7*X_0**(13/2) + 18*X_0**(11/2) + 22*X_0**(9/2) + 13*X_0**(7/2) + 3*X_0**(5/2) + 3*X_0**7 + 13*X_0**6 + 22*X_0**5 + 18*X_0**4 + 7*X_0**3 + X_0**2)
+  G_T (x), eikonal leading order: (X_0**(9/2) + 2*X_0**(7/2)*epsilon + 4*X_0**(7/2) + 6*X_0**(5/2) + 4*X_0**(3/2) + sqrt(X_0) + X_0**4 + 2*X_0**3*epsilon + 4*X_0**3 + 6*X_0**2 + 4*X_0 + 1)/(X_0**(9/2) + 4*X_0**(7/2) + 6*X_0**(5/2) + 4*X_0**(3/2) + sqrt(X_0) + X_0**4 + 4*X_0**3 + 6*X_0**2 + 4*X_0 + 1)
+  [ok ] H2  G_T = 1 + 2 eps A(X_0) X_0,   A(X_0) = X_0^2/(1+X_0)^4
+         ISOTROPIC in khat.ahat, IDENTICAL for + and x, INDEPENDENT of lam_K and eta_K, and k-INDEPENDENT.  The repo's constraint-FREE coefficient is CONFIRMED, not merely approximated: constraint elimination changes neither its value, nor its sign, nor its k-dependence.  Independently reproduced by the exact-nonlinear numerical route.
+  [ok ] H3  every correction the reduction leaves behind VANISHES as k -> infinity
+         so the constraint solve adds NO gradient term at all: what it adds falls off with k.  A k^4 term in the reduced action would make Delta G_T GROW like k^2 instead.  Directly confirmed numerically: the residual falls as 1/k^2 with ratios 0.236, 0.247, 0.249, 0.250 over k/abar = 250 -> 4000.
+
+  large-k:  Delta G_T(+) -> ( abar**2*(X_0**(31/2)*c_t**4 + 12*X_0**(31/2)*c_t**2*eta_K + 2*X_0**(31/2)*c_t**2 - 6*X_0**(31/2)*eta_K + X_0**(31/2) + 14*X_0**(29/2)*c_t**4 + 136*X_0**(29/2)*c_t**2*eta_K + 44*X_0**(29/2)*c_t**2 - 68*X_0**(29/2)*eta_K - 24*X_0**(29/2)*log(sqrt(X_0) + 1) + 34*X_0**(29/2) + 77*X_0**(27/2)*c_t**4 + 668*X_0**(27/2)*c_t**2*eta_K + 298*X_0**(27/2)*c_t**2 - 334*X_0**(27/2)*eta_K - 272*X_0**(27/2)*log(sqrt(X_0) + 1) + 277*X_0**(27/2) + 232*X_0**(25/2)*c_t**4 + 1888*X_0**(25/2)*c_t**2*eta_K + 1040*X_0**(25/2)*c_t**2 - 944*X_0**(25/2)*eta_K - 1336*X_0**(25/2)*log(sqrt(X_0) + 1) + 1116*X_0**(25/2) + 434*X_0**(23/2)*c_t**4 + 3416*X_0**(23/2)*c_t**2*eta_K + 2212*X_0**(23/2)*c_t**2 - 1708*X_0**(23/2)*eta_K - 3776*X_0**(23/2)*log(sqrt(X_0) + 1) + 2706*X_0**(23/2) + 532*X_0**(21/2)*c_t**4 + 4144*X_0**(21/2)*c_t**2*eta_K + 3080*X_0**(21/2)*c_t**2 - 2072*X_0**(21/2)*eta_K - 6832*X_0**(21/2)*log(sqrt(X_0) + 1) + 4284*X_0**(21/2) + 434*X_0**(19/2)*c_t**4 + 3416*X_0**(19/2)*c_t**2*eta_K + 2884*X_0**(19/2)*c_t**2 - 1708*X_0**(19/2)*eta_K - 8288*X_0**(19/2)*log(sqrt(X_0) + 1) + 4578*X_0**(19/2) + 232*X_0**(17/2)*c_t**4 + 1888*X_0**(17/2)*c_t**2*eta_K + 1808*X_0**(17/2)*c_t**2 - 944*X_0**(17/2)*eta_K - 6832*X_0**(17/2)*log(sqrt(X_0) + 1) + 3312*X_0**(17/2) + 77*X_0**(15/2)*c_t**4 + 668*X_0**(15/2)*c_t**2*eta_K + 730*X_0**(15/2)*c_t**2 - 334*X_0**(15/2)*eta_K - 3776*X_0**(15/2)*log(sqrt(X_0) + 1) + 1581*X_0**(15/2) + 14*X_0**(13/2)*c_t**4 + 136*X_0**(13/2)*c_t**2*eta_K + 172*X_0**(13/2)*c_t**2 - 68*X_0**(13/2)*eta_K - 1336*X_0**(13/2)*log(sqrt(X_0) + 1) + 466*X_0**(13/2) + X_0**(11/2)*c_t**4 + 12*X_0**(11/2)*c_t**2*eta_K + 18*X_0**(11/2)*c_t**2 - 6*X_0**(11/2)*eta_K - 272*X_0**(11/2)*log(sqrt(X_0) + 1) + 73*X_0**(11/2) - 24*X_0**(9/2)*log(sqrt(X_0) + 1) + 4*X_0**(9/2) + 2*X_0**16*c_t**2*eta_K - X_0**16*eta_K + 4*X_0**15*c_t**4 + 46*X_0**15*c_t**2*eta_K + 12*X_0**15*c_t**2 - 23*X_0**15*eta_K - 4*X_0**15*log(sqrt(X_0) + 1) + 8*X_0**15 + 36*X_0**14*c_t**4 + 326*X_0**14*c_t**2*eta_K + 128*X_0**14*c_t**2 - 163*X_0**14*eta_K - 92*X_0**14*log(sqrt(X_0) + 1) + 108*X_0**14 + 144*X_0**13*c_t**4 + 1194*X_0**13*c_t**2*eta_K + 596*X_0**13*c_t**2 - 597*X_0**13*eta_K - 652*X_0**13*log(sqrt(X_0) + 1) + 596*X_0**13 + 336*X_0**12*c_t**4 + 2676*X_0**12*c_t**2*eta_K + 1600*X_0**12*c_t**2 - 1338*X_0**12*eta_K - 2388*X_0**12*log(sqrt(X_0) + 1) + 1840*X_0**12 + 504*X_0**11*c_t**4 + 3948*X_0**11*c_t**2*eta_K + 2744*X_0**11*c_t**2 - 1974*X_0**11*eta_K - 5352*X_0**11*log(sqrt(X_0) + 1) + 3584*X_0**11 + 504*X_0**10*c_t**4 + 3948*X_0**10*c_t**2*eta_K + 3136*X_0**10*c_t**2 - 1974*X_0**10*eta_K - 7896*X_0**10*log(sqrt(X_0) + 1) + 4648*X_0**10 + 336*X_0**9*c_t**4 + 2676*X_0**9*c_t**2*eta_K + 2408*X_0**9*c_t**2 - 1338*X_0**9*eta_K - 7896*X_0**9*log(sqrt(X_0) + 1) + 4088*X_0**9 + 144*X_0**8*c_t**4 + 1194*X_0**8*c_t**2*eta_K + 1216*X_0**8*c_t**2 - 597*X_0**8*eta_K - 5352*X_0**8*log(sqrt(X_0) + 1) + 2416*X_0**8 + 36*X_0**7*c_t**4 + 326*X_0**7*c_t**2*eta_K + 380*X_0**7*c_t**2 - 163*X_0**7*eta_K - 2388*X_0**7*log(sqrt(X_0) + 1) + 920*X_0**7 + 4*X_0**6*c_t**4 + 46*X_0**6*c_t**2*eta_K + 64*X_0**6*c_t**2 - 23*X_0**6*eta_K - 652*X_0**6*log(sqrt(X_0) + 1) + 204*X_0**6 + 2*X_0**5*c_t**2*eta_K + 4*X_0**5*c_t**2 - X_0**5*eta_K - 92*X_0**5*log(sqrt(X_0) + 1) + 20*X_0**5 - 4*X_0**4*log(sqrt(X_0) + 1))/(6*X_0**(29/2) + 68*X_0**(27/2) + 334*X_0**(25/2) + 944*X_0**(23/2) + 1708*X_0**(21/2) + 2072*X_0**(19/2) + 1708*X_0**(17/2) + 944*X_0**(15/2) + 334*X_0**(13/2) + 68*X_0**(11/2) + 6*X_0**(9/2) + X_0**15 + 23*X_0**14 + 163*X_0**13 + 597*X_0**12 + 1338*X_0**11 + 1974*X_0**10 + 1974*X_0**9 + 1338*X_0**8 + 597*X_0**7 + 163*X_0**6 + 23*X_0**5 + X_0**4) ) / k^2
+  large-k:  Delta G_T(x) -> ( abar**2*(2*X_0**(11/2)*c_t**2*eta_K - X_0**(11/2)*eta_K + 8*X_0**(9/2)*c_t**2*eta_K - 4*X_0**(9/2)*eta_K - 4*X_0**(9/2)*log(sqrt(X_0) + 1) + 4*X_0**(9/2) + 12*X_0**(7/2)*c_t**2*eta_K - 6*X_0**(7/2)*eta_K - 16*X_0**(7/2)*log(sqrt(X_0) + 1) + 16*X_0**(7/2) + 8*X_0**(5/2)*c_t**2*eta_K - 4*X_0**(5/2)*eta_K - 24*X_0**(5/2)*log(sqrt(X_0) + 1) + 24*X_0**(5/2) + 2*X_0**(3/2)*c_t**2*eta_K - X_0**(3/2)*eta_K - 16*X_0**(3/2)*log(sqrt(X_0) + 1) + 16*X_0**(3/2) - 4*sqrt(X_0)*log(sqrt(X_0) + 1) + 4*sqrt(X_0) + 2*X_0**5*c_t**2*eta_K + 4*X_0**5*c_t**2 - X_0**5*eta_K + 8*X_0**4*c_t**2*eta_K + 16*X_0**4*c_t**2 - 4*X_0**4*eta_K - 4*X_0**4*log(sqrt(X_0) + 1) + 12*X_0**3*c_t**2*eta_K + 24*X_0**3*c_t**2 - 6*X_0**3*eta_K - 16*X_0**3*log(sqrt(X_0) + 1) + 8*X_0**2*c_t**2*eta_K + 16*X_0**2*c_t**2 - 4*X_0**2*eta_K - 24*X_0**2*log(sqrt(X_0) + 1) + 2*X_0*c_t**2*eta_K + 4*X_0*c_t**2 - X_0*eta_K - 16*X_0*log(sqrt(X_0) + 1) - 4*log(sqrt(X_0) + 1))/(X_0**(9/2) + 4*X_0**(7/2) + 6*X_0**(5/2) + 4*X_0**(3/2) + sqrt(X_0) + X_0**4 + 4*X_0**3 + 6*X_0**2 + 4*X_0 + 1) ) / k^2
+  [ok ] H4  Delta G_T falls as 1/k^2 -- a MASS-like remnant, not a gradient term
+
+====================================================================================================
+I -- IS ANY k^4 GENERATED?  (this is the whole question -- Gen-1 died of k^4)
+====================================================================================================
+  [DERIVED] STRUCTURAL, from E5: gamma^TT enters T_ij ONLY through -delta Gamma^k_ij a^(0)_k, which is FIRST order in d(gamma).  Y_a is quadratic in T.  Hence the direct TT-TT content of Y_a is EXACTLY k^2 and can never be k^4.  Gen-1's Y_R used delta Rbar_ij ~ d^2 gamma, hence k^4.  This is a statement about the operator, not about a limit.
+  [DERIVED] INDIRECT, from D2 + G5 + H4: the only route to k^4 was Y_a -> (d_i d_j delta N)^2 with delta N = kappa gamma.  Two independent facts close it.  (a) The k^3 piece of the lapse source vanishes identically (D2).  (b) The lapse kernel is O(eps A k^4/abar^2) (G5).  Hence kappa = O(a abar^2/(eps A k^3)) and the fed-back term is O(a^2 abar^2/(eps A k^2)) -- it DECREASES with k (H4).  No k^4, and not even a k^2.
+  [DERIVED] The one regime where the fed-back term is NOT decreasing is k below the kernel zero (section K), where it tends to a constant -- i.e. a mass term.  Still no k^4 anywhere.
+
+====================================================================================================
+J -- NUMBERS: c_T, GW170817, and the bound on eps
+====================================================================================================
+  a0 = 9.3619e-11 m/s^2 (INPUT)   abar = a0/c^2 = 1.0417e-27 1/m   c^2/a0 = 9.6001e+26 m
+
+  c_T^2/c^2 = G_T/K_T = 1 + 2 eps A(X_0) X_0        [K_T = 1 exactly]
+  |c_T/c - 1| = |sqrt(1 + 2 eps A X_0) - 1| ~= eps A(X_0) X_0 = eps X_0^3/(1+X_0)^4
+  <-- NOTE: ya_tensor_exact_2026.py compared 2 eps A X_0 (which is delta c_T^2/c^2)
+      directly against the |c_T/c - 1| bound.  The correct quantity is HALF that.
+  [ok ] J1  max over X_0 of  A(X_0) X_0 = X_0^3/(1+X_0)^4  is at X_0 = 3, value 27/256 = 0.105469
+         so the bound is conservative over the whole range of galactic/solar accelerations
+  |c_T/c-1| < 1e-15    (conventional GW170817 quote)         =>  eps < 9.481e-15
+  c_T/c-1  < +7e-16    (superluminal side, the relevant one for eps>0) =>  eps < 6.637e-15
+
+  eps the Solar-System window wants:  ~1.1e-24
+  worst-case |c_T/c - 1| there:       1.160e-25
+  [ok ] J2  *** GEN-2 PASSES GW170817 WITH THE CONSTRAINTS SOLVED ***
+         margin 6.03e+09x;  Gen-1 FAILED the same test by ~29 orders.  The k^2-vs-k^4 distinction is what does it, and it survives constraint elimination unchanged.
+
+  sign: eps > 0 gives c_T > c (superluminal) since A X_0 > 0; eps < 0 gives c_T < c.
+  GW170817 headroom on |eps|:  6.03e+09x the Solar-System value (~10 orders)
+
+  --- size of everything constraint elimination and the eikonal introduced ---
+  LIGO 100 Hz    X0=0.3   direct dG_T =  2.080e-26   |induced| <=  6.212e-63   ratio   2.99e-37
+  LIGO 100 Hz    X0=1.0   direct dG_T =  1.375e-25   |induced| <=  1.248e-62   ratio   9.08e-38
+  LIGO 100 Hz    X0=3.0   direct dG_T =  2.320e-25   |induced| <=  5.735e-62   ratio   2.47e-37
+  LIGO 100 Hz    X0=10.0  direct dG_T =  1.503e-25   |induced| <=  6.088e-61   ratio   4.05e-36
+  GW170817 band  X0=0.3   direct dG_T =  2.080e-26   |induced| <=  4.140e-61   ratio   1.99e-35
+  GW170817 band  X0=1.0   direct dG_T =  1.375e-25   |induced| <=  8.317e-61   ratio   6.05e-36
+  GW170817 band  X0=3.0   direct dG_T =  2.320e-25   |induced| <=  3.822e-60   ratio   1.65e-35
+  GW170817 band  X0=10.0  direct dG_T =  1.503e-25   |induced| <=  4.057e-59   ratio   2.70e-34
+
+  --- the pre-registered threshold from indirect_k4_criterion_2026.py ---
+  that note required  |delta N/gamma| < 4.33e-17  at LIGO 100 Hz for Gen-2 to live
+  the SOLVED constraint gives   |kappa| <= 2.72e-39  (worst over X_0 and mu)
+  [ok ] J4  the actual lapse response is BELOW the pre-registered threshold
+         by 1.6e+22x, i.e. about 22 orders.  This is a direct, quantitative answer to the question that note left open, and it lands on its outcome (i).
+
+  eikonal-dropped shift term:  dK_T/K_T ~ 4 X_0 (abar/k)^2 = 9.881e-43 x X_0
+  [ok ] J3  every correction the constraint solve or the eikonal introduces is <~1e-42 relative, against a 1e-25 physical effect
+         the coefficient 2 eps A X_0 is exact for every practical purpose
+
+====================================================================================================
+K -- THE LAPSE KERNEL'S ZERO, and what this does NOT settle about the scalar sector
+====================================================================================================
+  kernel(k) = -(2/3) eps A(X_0) k^4/abar^2
+              + [ (1/2)(eta_K + 2/(1+sqrt(X_0))) - sqrt(X_0) mu^2/(1+sqrt(X_0))^2 ] k^2
+              + (mass term of order abar^2)
+
+   k^0 (mass) coefficient: abar**2*(2*X_0**(11/2)*eta_K + 4*X_0**(11/2) + 8*X_0**(9/2)*eta_K - 8*X_0**(9/2)*log(sqrt(X_0) + 1) + 20*X_0**(9/2) + 12*X_0**(7/2)*eta_K - 32*X_0**(7/2)*log(sqrt(X_0) + 1) + 40*X_0**(7/2) + 8*X_0**(5/2)*eta_K - 48*X_0**(5/2)*log(sqrt(X_0) + 1) + 40*X_0**(5/2) + 2*X_0**(3/2)*eta_K - 32*X_0**(3/2)*log(sqrt(X_0) + 1) + 20*X_0**(3/2) - 8*sqrt(X_0)*log(sqrt(X_0) + 1) + 4*sqrt(X_0) + X_0**6*eta_K + 5*X_0**5*eta_K - 4*X_0**5*log(sqrt(X_0) + 1) + 8*X_0**5 + 10*X_0**4*eta_K - 20*X_0**4*log(sqrt(X_0) + 1) + 32*X_0**4 + 10*X_0**3*eta_K - 40*X_0**3*log(sqrt(X_0) + 1) + 48*X_0**3 + 5*X_0**2*eta_K - 40*X_0**2*log(sqrt(X_0) + 1) + 32*X_0**2 + X_0*eta_K - 20*X_0*log(sqrt(X_0) + 1) + 8*X_0 - 4*log(sqrt(X_0) + 1))/(4*(2*X_0**(9/2) + 8*X_0**(7/2) + 12*X_0**(5/2) + 8*X_0**(3/2) + 2*sqrt(X_0) + X_0**5 + 5*X_0**4 + 10*X_0**3 + 10*X_0**2 + 5*X_0 + 1))
+
+  kernel zero at k_zero^2 = [abar**2*(-6*X_0**(9/2)*c_t**2 + 6*X_0**(9/2)*eta_K + 6*X_0**(9/2) - 24*X_0**(7/2)*c_t**2 + 24*X_0**(7/2)*eta_K + 24*X_0**(7/2) - 36*X_0**(5/2)*c_t**2 + 36*X_0**(5/2)*eta_K + 36*X_0**(5/2) - 24*X_0**(3/2)*c_t**2 + 24*X_0**(3/2)*eta_K + 24*X_0**(3/2) - 6*sqrt(X_0)*c_t**2 + 6*sqrt(X_0)*eta_K + 6*sqrt(X_0) + 3*X_0**5*eta_K + 15*X_0**4*eta_K + 6*X_0**4 + 30*X_0**3*eta_K + 24*X_0**3 + 30*X_0**2*eta_K + 36*X_0**2 + 15*X_0*eta_K + 24*X_0 + 3*eta_K - sqrt(3)*sqrt(-12*X_0**(19/2)*c_t**2*eta_K + 12*X_0**(19/2)*eta_K**2 + 12*X_0**(19/2)*eta_K - 108*X_0**(17/2)*c_t**2*eta_K - 24*X_0**(17/2)*c_t**2 + 32*X_0**(17/2)*epsilon*eta_K + 32*X_0**(17/2)*epsilon + 108*X_0**(17/2)*eta_K**2 + 132*X_0**(17/2)*eta_K + 24*X_0**(17/2) - 432*X_0**(15/2)*c_t**2*eta_K - 192*X_0**(15/2)*c_t**2 + 160*X_0**(15/2)*epsilon*eta_K - 128*X_0**(15/2)*epsilon*log(sqrt(X_0) + 1) + 320*X_0**(15/2)*epsilon + 432*X_0**(15/2)*eta_K**2 + 624*X_0**(15/2)*eta_K + 192*X_0**(15/2) - 1008*X_0**(13/2)*c_t**2*eta_K - 672*X_0**(13/2)*c_t**2 + 320*X_0**(13/2)*epsilon*eta_K - 640*X_0**(13/2)*epsilon*log(sqrt(X_0) + 1) + 992*X_0**(13/2)*epsilon + 1008*X_0**(13/2)*eta_K**2 + 1680*X_0**(13/2)*eta_K + 672*X_0**(13/2) - 1512*X_0**(11/2)*c_t**2*eta_K - 1344*X_0**(11/2)*c_t**2 + 320*X_0**(11/2)*epsilon*eta_K - 1280*X_0**(11/2)*epsilon*log(sqrt(X_0) + 1) + 1408*X_0**(11/2)*epsilon + 1512*X_0**(11/2)*eta_K**2 + 2856*X_0**(11/2)*eta_K + 1344*X_0**(11/2) - 1512*X_0**(9/2)*c_t**2*eta_K - 1680*X_0**(9/2)*c_t**2 + 160*X_0**(9/2)*epsilon*eta_K - 1280*X_0**(9/2)*epsilon*log(sqrt(X_0) + 1) + 992*X_0**(9/2)*epsilon + 1512*X_0**(9/2)*eta_K**2 + 3192*X_0**(9/2)*eta_K + 1680*X_0**(9/2) - 1008*X_0**(7/2)*c_t**2*eta_K - 1344*X_0**(7/2)*c_t**2 + 32*X_0**(7/2)*epsilon*eta_K - 640*X_0**(7/2)*epsilon*log(sqrt(X_0) + 1) + 320*X_0**(7/2)*epsilon + 1008*X_0**(7/2)*eta_K**2 + 2352*X_0**(7/2)*eta_K + 1344*X_0**(7/2) - 432*X_0**(5/2)*c_t**2*eta_K - 672*X_0**(5/2)*c_t**2 - 128*X_0**(5/2)*epsilon*log(sqrt(X_0) + 1) + 32*X_0**(5/2)*epsilon + 432*X_0**(5/2)*eta_K**2 + 1104*X_0**(5/2)*eta_K + 672*X_0**(5/2) - 108*X_0**(3/2)*c_t**2*eta_K - 192*X_0**(3/2)*c_t**2 + 108*X_0**(3/2)*eta_K**2 + 300*X_0**(3/2)*eta_K + 192*X_0**(3/2) - 12*sqrt(X_0)*c_t**2*eta_K - 24*sqrt(X_0)*c_t**2 + 12*sqrt(X_0)*eta_K**2 + 36*sqrt(X_0)*eta_K + 24*sqrt(X_0) + 3*X_0**10*eta_K**2 + 12*X_0**9*c_t**4 - 24*X_0**9*c_t**2*eta_K - 24*X_0**9*c_t**2 + 8*X_0**9*epsilon*eta_K + 42*X_0**9*eta_K**2 + 36*X_0**9*eta_K + 12*X_0**9 + 96*X_0**8*c_t**4 - 192*X_0**8*c_t**2*eta_K - 192*X_0**8*c_t**2 + 80*X_0**8*epsilon*eta_K - 32*X_0**8*epsilon*log(sqrt(X_0) + 1) + 128*X_0**8*epsilon + 231*X_0**8*eta_K**2 + 300*X_0**8*eta_K + 108*X_0**8 + 336*X_0**7*c_t**4 - 672*X_0**7*c_t**2*eta_K - 672*X_0**7*c_t**2 + 248*X_0**7*epsilon*eta_K - 320*X_0**7*epsilon*log(sqrt(X_0) + 1) + 640*X_0**7*epsilon + 696*X_0**7*eta_K**2 + 1104*X_0**7*eta_K + 432*X_0**7 + 672*X_0**6*c_t**4 - 1344*X_0**6*c_t**2*eta_K - 1344*X_0**6*c_t**2 + 352*X_0**6*epsilon*eta_K - 992*X_0**6*epsilon*log(sqrt(X_0) + 1) + 1280*X_0**6*epsilon + 1302*X_0**6*eta_K**2 + 2352*X_0**6*eta_K + 1008*X_0**6 + 840*X_0**5*c_t**4 - 1680*X_0**5*c_t**2*eta_K - 1680*X_0**5*c_t**2 + 248*X_0**5*epsilon*eta_K - 1408*X_0**5*epsilon*log(sqrt(X_0) + 1) + 1280*X_0**5*epsilon + 1596*X_0**5*eta_K**2 + 3192*X_0**5*eta_K + 1512*X_0**5 + 672*X_0**4*c_t**4 - 1344*X_0**4*c_t**2*eta_K - 1344*X_0**4*c_t**2 + 80*X_0**4*epsilon*eta_K - 992*X_0**4*epsilon*log(sqrt(X_0) + 1) + 640*X_0**4*epsilon + 1302*X_0**4*eta_K**2 + 2856*X_0**4*eta_K + 1512*X_0**4 + 336*X_0**3*c_t**4 - 672*X_0**3*c_t**2*eta_K - 672*X_0**3*c_t**2 + 8*X_0**3*epsilon*eta_K - 320*X_0**3*epsilon*log(sqrt(X_0) + 1) + 128*X_0**3*epsilon + 696*X_0**3*eta_K**2 + 1680*X_0**3*eta_K + 1008*X_0**3 + 96*X_0**2*c_t**4 - 192*X_0**2*c_t**2*eta_K - 192*X_0**2*c_t**2 - 32*X_0**2*epsilon*log(sqrt(X_0) + 1) + 231*X_0**2*eta_K**2 + 624*X_0**2*eta_K + 432*X_0**2 + 12*X_0*c_t**4 - 24*X_0*c_t**2*eta_K - 24*X_0*c_t**2 + 42*X_0*eta_K**2 + 132*X_0*eta_K + 108*X_0 + 3*eta_K**2 + 12*eta_K + 12) + 6)/(8*epsilon*(2*X_0**(5/2) + X_0**3 + X_0**2)), abar**2*(-6*X_0**(9/2)*c_t**2 + 6*X_0**(9/2)*eta_K + 6*X_0**(9/2) - 24*X_0**(7/2)*c_t**2 + 24*X_0**(7/2)*eta_K + 24*X_0**(7/2) - 36*X_0**(5/2)*c_t**2 + 36*X_0**(5/2)*eta_K + 36*X_0**(5/2) - 24*X_0**(3/2)*c_t**2 + 24*X_0**(3/2)*eta_K + 24*X_0**(3/2) - 6*sqrt(X_0)*c_t**2 + 6*sqrt(X_0)*eta_K + 6*sqrt(X_0) + 3*X_0**5*eta_K + 15*X_0**4*eta_K + 6*X_0**4 + 30*X_0**3*eta_K + 24*X_0**3 + 30*X_0**2*eta_K + 36*X_0**2 + 15*X_0*eta_K + 24*X_0 + 3*eta_K + sqrt(3)*sqrt(-12*X_0**(19/2)*c_t**2*eta_K + 12*X_0**(19/2)*eta_K**2 + 12*X_0**(19/2)*eta_K - 108*X_0**(17/2)*c_t**2*eta_K - 24*X_0**(17/2)*c_t**2 + 32*X_0**(17/2)*epsilon*eta_K + 32*X_0**(17/2)*epsilon + 108*X_0**(17/2)*eta_K**2 + 132*X_0**(17/2)*eta_K + 24*X_0**(17/2) - 432*X_0**(15/2)*c_t**2*eta_K - 192*X_0**(15/2)*c_t**2 + 160*X_0**(15/2)*epsilon*eta_K - 128*X_0**(15/2)*epsilon*log(sqrt(X_0) + 1) + 320*X_0**(15/2)*epsilon + 432*X_0**(15/2)*eta_K**2 + 624*X_0**(15/2)*eta_K + 192*X_0**(15/2) - 1008*X_0**(13/2)*c_t**2*eta_K - 672*X_0**(13/2)*c_t**2 + 320*X_0**(13/2)*epsilon*eta_K - 640*X_0**(13/2)*epsilon*log(sqrt(X_0) + 1) + 992*X_0**(13/2)*epsilon + 1008*X_0**(13/2)*eta_K**2 + 1680*X_0**(13/2)*eta_K + 672*X_0**(13/2) - 1512*X_0**(11/2)*c_t**2*eta_K - 1344*X_0**(11/2)*c_t**2 + 320*X_0**(11/2)*epsilon*eta_K - 1280*X_0**(11/2)*epsilon*log(sqrt(X_0) + 1) + 1408*X_0**(11/2)*epsilon + 1512*X_0**(11/2)*eta_K**2 + 2856*X_0**(11/2)*eta_K + 1344*X_0**(11/2) - 1512*X_0**(9/2)*c_t**2*eta_K - 1680*X_0**(9/2)*c_t**2 + 160*X_0**(9/2)*epsilon*eta_K - 1280*X_0**(9/2)*epsilon*log(sqrt(X_0) + 1) + 992*X_0**(9/2)*epsilon + 1512*X_0**(9/2)*eta_K**2 + 3192*X_0**(9/2)*eta_K + 1680*X_0**(9/2) - 1008*X_0**(7/2)*c_t**2*eta_K - 1344*X_0**(7/2)*c_t**2 + 32*X_0**(7/2)*epsilon*eta_K - 640*X_0**(7/2)*epsilon*log(sqrt(X_0) + 1) + 320*X_0**(7/2)*epsilon + 1008*X_0**(7/2)*eta_K**2 + 2352*X_0**(7/2)*eta_K + 1344*X_0**(7/2) - 432*X_0**(5/2)*c_t**2*eta_K - 672*X_0**(5/2)*c_t**2 - 128*X_0**(5/2)*epsilon*log(sqrt(X_0) + 1) + 32*X_0**(5/2)*epsilon + 432*X_0**(5/2)*eta_K**2 + 1104*X_0**(5/2)*eta_K + 672*X_0**(5/2) - 108*X_0**(3/2)*c_t**2*eta_K - 192*X_0**(3/2)*c_t**2 + 108*X_0**(3/2)*eta_K**2 + 300*X_0**(3/2)*eta_K + 192*X_0**(3/2) - 12*sqrt(X_0)*c_t**2*eta_K - 24*sqrt(X_0)*c_t**2 + 12*sqrt(X_0)*eta_K**2 + 36*sqrt(X_0)*eta_K + 24*sqrt(X_0) + 3*X_0**10*eta_K**2 + 12*X_0**9*c_t**4 - 24*X_0**9*c_t**2*eta_K - 24*X_0**9*c_t**2 + 8*X_0**9*epsilon*eta_K + 42*X_0**9*eta_K**2 + 36*X_0**9*eta_K + 12*X_0**9 + 96*X_0**8*c_t**4 - 192*X_0**8*c_t**2*eta_K - 192*X_0**8*c_t**2 + 80*X_0**8*epsilon*eta_K - 32*X_0**8*epsilon*log(sqrt(X_0) + 1) + 128*X_0**8*epsilon + 231*X_0**8*eta_K**2 + 300*X_0**8*eta_K + 108*X_0**8 + 336*X_0**7*c_t**4 - 672*X_0**7*c_t**2*eta_K - 672*X_0**7*c_t**2 + 248*X_0**7*epsilon*eta_K - 320*X_0**7*epsilon*log(sqrt(X_0) + 1) + 640*X_0**7*epsilon + 696*X_0**7*eta_K**2 + 1104*X_0**7*eta_K + 432*X_0**7 + 672*X_0**6*c_t**4 - 1344*X_0**6*c_t**2*eta_K - 1344*X_0**6*c_t**2 + 352*X_0**6*epsilon*eta_K - 992*X_0**6*epsilon*log(sqrt(X_0) + 1) + 1280*X_0**6*epsilon + 1302*X_0**6*eta_K**2 + 2352*X_0**6*eta_K + 1008*X_0**6 + 840*X_0**5*c_t**4 - 1680*X_0**5*c_t**2*eta_K - 1680*X_0**5*c_t**2 + 248*X_0**5*epsilon*eta_K - 1408*X_0**5*epsilon*log(sqrt(X_0) + 1) + 1280*X_0**5*epsilon + 1596*X_0**5*eta_K**2 + 3192*X_0**5*eta_K + 1512*X_0**5 + 672*X_0**4*c_t**4 - 1344*X_0**4*c_t**2*eta_K - 1344*X_0**4*c_t**2 + 80*X_0**4*epsilon*eta_K - 992*X_0**4*epsilon*log(sqrt(X_0) + 1) + 640*X_0**4*epsilon + 1302*X_0**4*eta_K**2 + 2856*X_0**4*eta_K + 1512*X_0**4 + 336*X_0**3*c_t**4 - 672*X_0**3*c_t**2*eta_K - 672*X_0**3*c_t**2 + 8*X_0**3*epsilon*eta_K - 320*X_0**3*epsilon*log(sqrt(X_0) + 1) + 128*X_0**3*epsilon + 696*X_0**3*eta_K**2 + 1680*X_0**3*eta_K + 1008*X_0**3 + 96*X_0**2*c_t**4 - 192*X_0**2*c_t**2*eta_K - 192*X_0**2*c_t**2 - 32*X_0**2*epsilon*log(sqrt(X_0) + 1) + 231*X_0**2*eta_K**2 + 624*X_0**2*eta_K + 432*X_0**2 + 12*X_0*c_t**4 - 24*X_0*c_t**2*eta_K - 24*X_0*c_t**2 + 42*X_0*eta_K**2 + 132*X_0*eta_K + 108*X_0 + 3*eta_K**2 + 12*eta_K + 12) + 6)/(8*epsilon*(2*X_0**(5/2) + X_0**3 + X_0**2))]
+  [DERIVED] For eps > 0 the k^4 coefficient is NEGATIVE and the k^2 coefficient is POSITIVE whenever eta_K >= 0 (the mu^2 piece is bounded by sqrt(X_0)/(1+sqrt(X_0))^2 <= 1/4 < 1/(1+sqrt(X_0)) for X_0 < 9).  So the kernel is sign-definite at large k -- the constraint elimination is well posed exactly where GWs live -- but it passes through ZERO at an intermediate scale.
+   X0=1.0, eta_K=0.0, mu=0.0:  k = 3.0290e-23 /m  =>  lambda = 6721854.6341 pc    [k^0/k^2 balance -- TADPOLE SECTOR, not quoted]
+   X0=1.0, eta_K=0.0, mu=0.0:  k = 3.4405e-15 /m  =>  lambda = 0.0592 pc    [k^2/k^4 balance -- THE PHYSICAL ZERO]
+   X0=1.0, eta_K=1.0, mu=0.0:  k = 4.2836e-23 /m  =>  lambda = 4753068.9940 pc    [k^0/k^2 balance -- TADPOLE SECTOR, not quoted]
+   X0=1.0, eta_K=1.0, mu=0.0:  k = 4.8655e-15 /m  =>  lambda = 0.0418 pc    [k^2/k^4 balance -- THE PHYSICAL ZERO]
+   X0=1.0, eta_K=0.0, mu=1.0:  k = 2.1418e-23 /m  =>  lambda = 9506137.9879 pc    [k^0/k^2 balance -- TADPOLE SECTOR, not quoted]
+   X0=1.0, eta_K=0.0, mu=1.0:  k = 2.4328e-15 /m  =>  lambda = 0.0837 pc    [k^2/k^4 balance -- THE PHYSICAL ZERO]
+   X0=3.0, eta_K=0.0, mu=0.5:  k = 2.4860e-23 /m  =>  lambda = 8190068.1948 pc    [k^0/k^2 balance -- TADPOLE SECTOR, not quoted]
+   X0=3.0, eta_K=0.0, mu=0.5:  k = 3.6004e-15 /m  =>  lambda = 0.0565 pc    [k^2/k^4 balance -- THE PHYSICAL ZERO]
+  [DERIVED] So there is a NEW SCALE, k_zero ~ abar sqrt(3 C/(2 eps A)) -- of order a hundredth of a parsec at eps ~ 1e-24 -- where the four-derivative and two-derivative parts of the lapse constraint cancel.  In the TENSOR sector this is harmless: the TT source is only O(a k) and O(a^2), so even sitting on the zero the residue stays ~1e-42 relative.  But it is a genuine structural feature of this action and it is where any scalar-sector pathology would first appear.  It is also a NEW item for the honest ledger: another eps-dependent scale that no symmetry protects, alongside the 0.13 mm deep-MOND cutoff.
+  [CONVERGES] A companion full-ADM calculation running independently in this same directory -- constraint_reduced_scalar_2026.py, which keeps the SCALAR sector of h_ij instead of the TT sector -- derives the same lapse operator by a different route and in different units (k measured in 1/ell, ell = c^2/a0).  Three of its numbers can be compared with mine directly, and all three agree EXACTLY: (i) its alpha_perp = eta_K + 2/(1+sqrt(X_0)) and alpha_par = eta_K + 2/(1+sqrt(X_0))^2 are exactly twice my k^2 kernel coefficient at mu = 0 and mu = 1 respectively, and my full mu-dependence is the interpolation [(1-mu^2) alpha_perp + mu^2 alpha_par]/2 -- verified symbolically to zero; (ii) its lapse principal symbol -(8/3) eps A k^4 is 4x my -(2/3) eps A k^4/abar^2, the same factor 4 that relates the two k^2 coefficients, i.e. a pure normalisation; (iii) its k_deg = 2.3355e12/ell = 2.4327e-15 /m at X_0=1, eta_K=0, eps=1.1e-24 is my mu=1 physical zero, 2.433e-15 /m.  Two independent full-ADM constraint reductions, same operator.
+  [CONVERGES] That companion also reproduces c_T^2 = 1 + 2 eps A(X_0) X_0 with no k-dependence, by its own route.  So the tensor answer now stands on THREE independent legs: this symbolic reduction, the exact-nonlinear numerical Schur-complement cross-check, and the scalar-sector calculation.
+  [ADVERSE] AND -- this is the part Carl needs, not the part that flatters the model -- that companion calculation reports that the SCALAR sector is NOT healthy: with alpha_eff(k) = alpha - (4/3) eps A(X_0) k^2, eps > 0 drives alpha_eff through 0 at my kernel zero (c_s^2 pole, then gradient instability) while eps < 0 drives it through 2 at a nearby scale (gradient instability again), with c_s^2 -> -(lam_K-1)/(3 lam_K-1) < 0 on BOTH no-ghost branches.  I have not verified that chain myself and I am not asserting it here.  But my kernel is its input, and my kernel's zero IS its k_deg, to four digits.  The honest reading of the pair: the k^4 that killed Gen-1 in the tensor sector did not disappear -- it MOVED to the lapse/scalar sector.  Gen-2's tensor sector is clean; that is a real and checkable result, and it is NOT the same as Gen-2 being viable.
+  [NOT ESTABLISHED] SCALAR-SECTOR HEALTH IS NOT DECIDED BY THIS CALCULATION, and I am not claiming it either way.  Reason: the khronon is gauge-fixed (T = t) and h_ij is taken PURE TT, so the propagating scalar degree of freedom has been projected out by construction.  delta N here is only an auxiliary field, and the sign of an auxiliary field's kernel is not a ghost criterion.  Deciding scalar health requires redoing this with the scalar sector of h_ij (psi, E) retained and the same two constraints solved.  That is the next calculation.  What this run DOES hand that calculation is the exact lapse kernel above -- including its zero, which is where any scalar pathology would first show up.
+
+====================================================================================================
+L -- LEDGER
+====================================================================================================
+
+  [DERIVED]
+      K_T = 1 EXACTLY -- all theta, both polarisations, constraints solved.  Time derivatives live only in K_ij; X, Y_a and (3)R are purely spatial; Kbar_ij = 0 removes every phi-gammadot cross term.  lam_K and eta_K do not appear in the tensor sector at all.
+
+  [DERIVED]
+      G_T = 1 + 2 eps A(X_0) X_0 with A = X_0^2/(1+X_0)^4.  ISOTROPIC in khat.ahat, identical for + and x, k-independent.  Constraint elimination changes neither the coefficient, nor its sign, nor its k-dependence -- the repo's constraint-free answer is CONFIRMED, and the shortcut was accidentally right for a reason it did not know.
+
+  [DERIVED]
+      delta N IS sourced at LINEAR order in gamma^TT.  indirect_k4_criterion_2026.py's outcome (iii) is FALSE.  The source is the no-derivative structure ahat_i ahat_j gamma^ij = h_+ sin^2(theta), promoted to O(a k mu) by the F_XX channel.  It is + polarised only and vanishes at exact alignment.
+
+  [DERIVED]
+      The k^3 source that WOULD have resurrected Gen-1's disease through the constraint dies on an exact identity: d_i d_j (delta Gamma^z_ij) = 0 for ANY TT field.  The F_Y lapse-graviton cross term vanishes identically, by transversality alone.
+
+  [DERIVED]
+      The lapse constraint is FOURTH-order elliptic, kernel ~ (eps A/abar^2) k^4.  The 1/abar^2 = (c^2/a0)^2 ~ 1e54 anti-suppression that killed Gen-1 sits here in the DENOMINATOR.  kappa = deltaN/gamma ~ a abar^2/(eps A k^3): outcome (i), one power of k better than that outcome's own estimate.
+
+  [DERIVED]
+      NO k^4 IS GENERATED, directly or indirectly.  Direct: gamma enters T_ij only via -delta Gamma^k_ij a^(0)_k, exactly one derivative, so Y_a is exactly k^2.  Indirect: the fed-back term goes as 1/k^2 at large k and to a constant below the kernel zero.  Gen-1 died of k^4; Gen-2 does not have one.
+
+  [DERIVED]
+      |c_T/c - 1| = |eps| X_0^3/(1+X_0)^4, maximised at X_0 = 3 with value (27/256)|eps| = 0.1055|eps|.  GW170817 => |eps| < 9.5e-15 (or 6.6e-15 on the tighter superluminal side, which is the binding one for eps > 0).  At the Solar-System eps ~ 1.1e-24 the shift is ~1.2e-25: about nine orders of headroom.
+
+  [CORRECTION]
+      ya_tensor_exact_2026.py compared 2 eps A X_0 -- which is delta c_T^2/c^2 -- directly against the |c_T/c - 1| bound.  The right quantity is half that.  Conservative, but wrong by a factor 2, and now fixed.
+
+  [CORRECTION]
+      ya_tensor_exact_2026.py's section-F summary says delta T is 'IDENTICALLY ZERO for a wave parallel to a^(0)'.  That contradicts its own check B1 and is FALSE.  The value is the same, (1/4) a^2 k^2 (h_+^2+h_x^2), at EVERY angle -- proved here for general theta, not just the two special cases it tested.
+
+  [ASSUMED]
+      Background held up by fixed external matter (section B).  Its second variation adds only mass terms to the TT sector, not k^2.  Anisotropic stress correlated with a^(0) would change those mass terms and nothing else.
+
+  [ASSUMED]
+      Eikonal / local frame, k >> a.  Largest dropped term is the momentum-constraint source from d_i(1/Nbar): dK_T/K_T ~ 4 X_0 (abar/k)^2 ~ 1e-42.
+
+  [NOT ESTABLISHED]
+      UNIFORM background acceleration.  A real galaxy has T^(0)_ij =/= 0, which switches on a LINEAR delta Y source and a T^(0).delta_2 T cross term.  Power counting says these carry at most one power of k, suppressed by 1/(kL) with L the scale over which a varies (~1e21 at LIGO) -- but that is an ESTIMATE here, not a derivation.  It is the next TENSOR-sector item.
+
+  [NOT ESTABLISHED / SEE COMPANION]
+      SCALAR-SECTOR HEALTH is not decided BY THIS SCRIPT: gamma was taken pure TT and the khronon gauge-fixed, so the scalar dof is absent by construction and delta N is only auxiliary.  BUT the companion constraint_reduced_scalar_2026.py in this directory does decide it, ADVERSELY, and my lapse kernel is exactly its input (alpha_par, alpha_perp and k_deg all match to the digit).  Read the two together: THE TENSOR SECTOR IS CLEAN AND THE k^4 MOVED TO THE LAPSE.  Do not quote this script's tensor result as evidence that Gen-2 works.
+
+  [NOT ESTABLISHED]
+      (superseded phrasing kept for the record) gamma was taken pure TT and the khronon gauge-fixed, so the scalar dof is absent by construction and delta N is only auxiliary.  Carl's ruling asked for both; this run answers the tensor half and hands the scalar half the exact lapse kernel, including its zero at lambda ~ 0.01-0.1 pc.  I am not claiming the scalar sector is healthy, and I am not claiming it is sick.
+
+  [UNCHANGED]
+      gw_robustness_2026.py section D still stands in full.  Gen-2 repairs exactly ONE line of that nine-line ledger.  a0 is still an INPUT, eps ~ 1e-24 is still unprotected by any symmetry, lam_K -> 1 with c_s^2 -> 0, the 0.13 mm deep-MOND cutoff, technical naturalness, PPN alpha_1/alpha_2, gravitational Cherenkov, and the SPARC non-detection (beta = +0.10 +- 0.078, p ~ 0.2) are ALL untouched by this result.
+
+====================================================================================================
+SUMMARY
+====================================================================================================
+  S_T^(2) = (M_Pl^2 c^3/8) INT [ K_T (d gamma_ij/dt)^2 - G_T c^2 (d_k gamma_ij)^2 ]
+      K_T   = 1                                              EXACT
+      G_T   = 1 + 2 eps X_0^3/(1+X_0)^4                      EXACT, isotropic in khat.ahat
+      c_T^2 = c^2 [1 + 2 eps X_0^3/(1+X_0)^4]                k-INDEPENDENT, no k^4
+      GW170817:  |eps| < 6.6e-15  (superluminal side) / 9.5e-15 (symmetric quote)
+
+  checks: 41/41 passed        runtime 183.1s
+EXIT=0
