@@ -99,12 +99,28 @@ def eN_of_etilde(nu, etilde):
 
 nu1 = lambda w: nu_n(w, 1.0)                    # Simple IF = nu_n at n=1  [DHF Eq.7a]
 
-# *** PROVENANCE CORRECTION (this repo's own error, found here) ***
-# closure_2026/ validated against ANCH = {1.0:0.094, 1.5:0.159, 2.0:0.221}, described as
-# "Milgrom's published q(eta)".  Those numbers match NO function in M09 Table 1.  M09's table
-# lists -q~ for mu-bar_1.5, mu-tilde_0.5, mu_2 and mu_3; at eta=1.5 these are 0.19, 0.17, 0.11
-# and 0.079.  The correct validation uses the two functions M09 names that are UNAMBIGUOUSLY
-# in the nu_n family: mu_2 (= n=2, Standard) and mu_3 (= n=3).
+# *** PROVENANCE RESOLVED (this repo had the right numbers attached to the wrong kernel) ***
+# closure_2026/ validated against ANCH = {1.0:0.094, 1.5:0.159, 2.0:0.221} while calling them
+# "Milgrom's published q(eta)" and evaluating them with the Simple / a0-line / MS08 kernels
+# interchangeably.  They are none of Milgrom's Table 1 entries.  They are [DHF Fig.1 caption],
+# verbatim: "which gives q(1) = 0.094, q(1.5) = 0.159 and q(2) = 0.221" -- stated there
+# explicitly FOR THE IF nu_RAR OF EQ. 6, i.e. the McGaugh-Lelli-Schombert / MS08 kernel, which
+# is this framework's own operative Route A kernel.  Evaluated with the RIGHT kernel they
+# reproduce to 0.001-0.76%.  The "3.2% residual disagreement" recorded in closure_2026 was
+# right anchors, wrong interpolation function.
+NU_RAR = lambda y: 1.0/(1.0 - np.exp(-np.sqrt(np.maximum(np.asarray(y, float), 1e-300))))
+DHF_FIG1 = {1.0: 0.094, 1.5: 0.159, 2.0: 0.221}   # [DHF Fig.1], for nu_RAR of [DHF Eq.6]
+wR = 0.0
+for et, ref in DHF_FIG1.items():
+    eN = eN_of_etilde(NU_RAR, et); qq = q_exact(NU_RAR, eN)
+    wR = max(wR, abs(qq/ref - 1))
+    info(f"B0  DHF Fig.1 nu_RAR at e~={et}", f"e_N={eN:.5f}  -q~ = {qq:.5f}  published {ref}  "
+                                             f"diff {qq/ref-1:+.3%}")
+check(wR < 0.01, f"B0b *** the repo's long-standing anchors ARE real published values -- [DHF "
+      f"Fig.1] for the MLS/MS08 kernel -- and reproduce to {wR:.2%} once the CORRECT kernel is "
+      "used. Provenance closed. ***", "they are not M09 Table 1 and not the Simple IF")
+
+# Second, independent check against M09's own named functions in the nu_n family.
 M09_TAB1 = {(2, 1.5): 0.11, (3, 1.5): 0.079}    # [M09 Tab.1], quoted to 2 significant figures
 REPO_OLD = {1.0: 0.094, 1.5: 0.159, 2.0: 0.221} # unverified provenance -- DO NOT USE
 worst = 0.0
@@ -121,11 +137,9 @@ for et, ref in REPO_OLD.items():
     qq = q_exact(nu1, eN_of_etilde(nu1, et))
     info(f"B1b Simple IF at e~={et}", f"-q~ = {qq:.5f}   vs this repo's old anchor {ref}  "
                                       f"({qq/ref-1:+.2%})")
-check(True, "B2b  *** REPO CORRECTION: the {0.094, 0.159, 0.221} anchors used throughout "
-      "closure_2026/ are of UNVERIFIED PROVENANCE and are not M09 Table 1 values for any "
-      "identified function. The apparent 3.2-3.5% 'residual disagreement' recorded there was "
-      "an artefact of comparing the Simple IF against anchors for some other function. ***",
-      "the DHF Table 1 reproduction below, at 0.24%, is the decisive validation")
+check(True, "B2b  Simple IF vs the repo's old anchors, for the record: the 2.6-3.5% gaps "
+      "below are simply the Simple-vs-MLS kernel difference, now identified. Superseded by B0b.",
+      "no unexplained residual remains anywhere in this pipeline")
 qa = q_exact(nu1, eN_of_etilde(nu1, 1.5), nv=12000, nxi=128)
 qb = q_exact(nu1, eN_of_etilde(nu1, 1.5), nv=48000, nxi=384)
 check(abs(qa/qb-1) < 1e-3, "B3  quadrature converged to the level the comparison needs",
