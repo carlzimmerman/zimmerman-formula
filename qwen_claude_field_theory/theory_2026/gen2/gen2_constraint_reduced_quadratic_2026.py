@@ -381,6 +381,36 @@ print("""  ya_tensor_exact_2026.py section F asserts the TT content is "IDENTICA
   calculation confirms B1/B3: both directions give the same c_T^2.  Section F is a stale
   sentence, not a second result; the physical conclusion of that script is unchanged.""")
 
+head("9.  INDEPENDENT CROSS-VALIDATION  [DERIVED elsewhere, agreeing here]")
+print("""  A second agent worked the same ruling concurrently in this directory with entirely
+  separate code (gen2_constraint_reduced_tensor_2026.py, 41/41; and
+  constraint_reduced_scalar_2026.py).  Its results and mine agree item by item:
+
+    quantity                       this script            the companion scripts
+    ------------------------------ ---------------------- ------------------------------
+    K_T                            1                      1
+    G_T                            1 + 2 eps X0^3/(1+X0)^4  same, "EXACT, isotropic"
+    k^4 in the tensor sector       none                   none
+    lapse symbol                   2 eta_par k^2
+                                   - (8/3) eps A ell^2 k^4  Sigma = 2 alpha k^2 - (8/3) eps A k^4
+    sign-flip wavenumber           k*^2 = 3 eta_par/(4 eps A ell^2)   k_deg^2 = 3 alpha/(4 eps A)
+    reduced scalar kinetic coeff   (3L-1)/(L-1)           4(3L-1)/(L-1)  [field normalisation]
+    eta_par, eta_perp              eta_K + 2/(1+x)^2 , eta_K + 2/(1+x)    identical
+    eta_K = 0 forced               yes                    yes
+    scalar sector verdict          gradient-unstable      gradient-unstable, both eps signs
+    ya_tensor section F            stale, corrected       stale, corrected
+
+  Two INDEPENDENT derivations, one shared conclusion.  Two items they raise that this
+  script does NOT close, and that I therefore inherit:
+    * the factor-2 point: 2 eps A X0 is delta(c_T^2)/c^2, and the GW170817 bound is on
+      |c_T/c - 1| = half of it.  Handled here (section 5 divides by 2).
+    * NOT ESTABLISHED, by either of us: the background acceleration was taken UNIFORM, so
+      T^(0)_ij = 0 exactly.  A real galaxy has T^(0)_ij =/= 0, which switches on a LINEAR
+      delta-Y source and a T^(0).delta^2 T cross term.  Power counting suppresses them by
+      1/(kL) ~ 1e-21 at LIGO, but that is an estimate, not a derivation.  It is the next
+      tensor-sector item, and it does not touch the scalar-sector kill, which is driven
+      by the lapse piece TF[d_i d_j phi] and needs no background gradient at all.""")
+
 head("VERDICT")
 print("""  TENSOR  [DERIVED; constraints solved, nothing set to zero by hand]
 
