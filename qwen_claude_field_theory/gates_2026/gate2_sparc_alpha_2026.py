@@ -50,22 +50,25 @@ def info(l, d=""): print(f"  [info] {l}" + (f"   {d}" if d else ""), flush=True)
 
 # ------------------------------------------------------------------ catalogue
 def load_master():
+    """SPARC Table 1.  The byte offsets in the .mrt header are off by one from the actual
+    rows, so parse by whitespace: name T D e_D f_D Inc e_Inc L36 e_L36 Reff SBeff Rdisk
+    SBdisk MHI RHI Vflat e_Vflat Q [Ref]."""
     out = {}
     for ln in open(MRT):
-        if len(ln) < 99: continue
-        name = ln[0:11].strip()
+        f = ln.split()
+        if len(f) < 18: continue
         try:
-            D, eD = float(ln[13:19]), float(ln[19:24])
-            inc, einc = float(ln[26:30]), float(ln[30:34])
-            L36 = float(ln[34:41]); SBdisk = float(ln[66:74]); Q = int(ln[96:99])
+            name = f[0]; D = float(f[2]); eD = float(f[3]); inc = float(f[5])
+            einc = float(f[6]); L36 = float(f[7]); SBdisk = float(f[12])
+            Vflat = float(f[15]); Q = int(f[17])
         except ValueError:
             continue
-        if D <= 0 or inc <= 0: continue
+        if D <= 0 or inc <= 0 or Q not in (1, 2, 3): continue
         out[name] = dict(D=D, eD=max(eD, 0.01*D), inc=inc, einc=max(einc, 1.0),
-                         L36=L36, SBdisk=SBdisk, Q=Q)
+                         L36=L36, SBdisk=SBdisk, Vflat=Vflat, Q=Q)
     return out
 
-def load_galaxies(master, qmax=2, incmin=30.0, nmin=5):
+def load_galaxies(master, qmax=2, incmin=30.0, nmin=2):  # nmin=2 reproduces DHF s 2696 points exactly
     gals, skipped = [], {"nomaster": 0, "quality": 0, "inc": 0, "npts": 0, "badfile": 0}
     for f in sorted(glob.glob(os.path.join(DATA, "*_rotmod.dat"))):
         name = os.path.basename(f).replace("_rotmod.dat", "")
@@ -75,7 +78,9 @@ def load_galaxies(master, qmax=2, incmin=30.0, nmin=5):
         except Exception: skipped["badfile"] += 1; continue
         if d.ndim != 2 or d.shape[1] < 6: skipped["badfile"] += 1; continue
         R, Vobs, eV, Vgas, Vdisk, Vbul = (d[:, i] for i in range(6))
-        ok = (R > 0) & (Vobs > 0) & (eV > 0) & np.isfinite(Vobs)
+        # [DHF Sec.2.1] same cuts as Lelli+2017: Q!=3, i>=30 deg, and points with
+        # fractional rotation-velocity uncertainty > 10 per cent removed.
+        ok = (R > 0) & (Vobs > 0) & (eV > 0) & np.isfinite(Vobs) & (eV <= 0.10*Vobs)
         R, Vobs, eV, Vgas, Vdisk, Vbul = (a[ok] for a in (R, Vobs, eV, Vgas, Vdisk, Vbul))
         if len(R) < nmin: skipped["npts"] += 1; continue
         if m["Q"] > qmax: skipped["quality"] += 1; continue
@@ -88,6 +93,13 @@ def load_galaxies(master, qmax=2, incmin=30.0, nmin=5):
 def gal_chi2(g, p, n_i, a0, f_int):
     """p = [ln Ud, ln Ub, ln fd, di_deg].  Returns chi2 including nuisance priors."""
     lUd, lUb, lfd, di = p
+    if not np.all(np.isfinite(p)): return 1e12
+    # hard bounds: Nelder-Mead is unconstrained, and an excursion to exp(700) poisons the
+    # simplex with NaN.  These are far outside any physically meaningful range.
+    lUd = float(np.clip(lUd, np.log(0.02), np.log(10.0)))
+    lUb = float(np.clip(lUb, np.log(0.02), np.log(10.0)))
+    lfd = float(np.clip(lfd, np.log(0.2),  np.log(5.0)))
+    di  = float(np.clip(di, -40.0, 40.0))
     Ud, Ub, fd = np.exp(lUd), np.exp(lUb), np.exp(lfd)
     R = g["R"]*fd
     Vg2 = np.sign(g["Vgas"])*g["Vgas"]**2*fd
@@ -107,10 +119,17 @@ def gal_chi2(g, p, n_i, a0, f_int):
     c2 += ((lUb - np.log(UPS_B))/(UPS_B_DEX*np.log(10)))**2 if np.any(g["Vbul"] > 0) else 0.0
     c2 += (fd - 1.0)**2/(g["eD"]/g["D"])**2
     c2 += (di/g["einc"])**2
-    return c2
+    return float(c2) if np.isfinite(c2) else 1e12
 
 def gal_mbar(g, p, fd_only=False):
     lUd, lUb, lfd, di = p
+    if not np.all(np.isfinite(p)): return 1e12
+    # hard bounds: Nelder-Mead is unconstrained, and an excursion to exp(700) poisons the
+    # simplex with NaN.  These are far outside any physically meaningful range.
+    lUd = float(np.clip(lUd, np.log(0.02), np.log(10.0)))
+    lUb = float(np.clip(lUb, np.log(0.02), np.log(10.0)))
+    lfd = float(np.clip(lfd, np.log(0.2),  np.log(5.0)))
+    di  = float(np.clip(di, -40.0, 40.0))
     Ud, Ub, fd = np.exp(lUd), np.exp(lUb), np.exp(lfd)
     R = g["R"]*fd
     Vbar2 = np.sign(g["Vgas"])*g["Vgas"]**2*fd + Ud*g["Vdisk"]**2*fd + Ub*g["Vbul"]**2*fd
