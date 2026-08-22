@@ -34,6 +34,7 @@ Nothing is imported from Gen-1: eta_K = 0 is RE-DERIVED (part 7), the khronometr
 c_s^2 formula is RE-DERIVED (part 5) and only then compared to the literature.
 """
 import sympy as sp
+import math
 
 # ----------------------------------------------------------------------------------
 FAIL = []
@@ -475,6 +476,19 @@ rep("conversely the gamma equation receives nothing from phi, B or psi",
 note("DERIVED", "=> delta N = delta N^i = 0 at linear TT order is now a COMPUTED RESULT of the "
                 "Gen-2 constraints, not an assumption.  The item ya_tensor_exact_2026.py listed "
                 "as NOT ESTABLISHED is hereby closed.")
+note("CONVERGES", "This settles the open item of commit a93191c9 (Aeff_scaling_2026.py), which "
+                  "concluded 'INDICATED (scaling only): H_T = 0 at this order ... H_T = 0 must "
+                  "come from explicit constraint elimination.'  That elimination is done here, "
+                  "and the answer is STRONGER than the scaling argument: the scalar<->tensor "
+                  "mixing block A_ngamma is not merely O(eps) -- it VANISHES IDENTICALLY at "
+                  "linear order.  So the indirect channel contributes exactly ZERO, not "
+                  "O(eps A X0).  Two independent routes now agree that Gen-2's GW sector "
+                  "carries no k^4.")
+note("CONVERGES", "That same commit's other finding -- the lapse constraint sits in the "
+                  "k^4-dominated regime, eps A (k ell)^2 ~ 1.3e17 at LIGO -- is CONFIRMED here "
+                  "and is precisely what drives alpha_eff(k) out of the stability window.  The "
+                  "two lines of work meet: the lapse k^4 regime is real, it is harmless for the "
+                  "tensor sector, and it is fatal for the scalar sector.")
 w2T_full = sp.solve(sp.Eq(sp.simplify(sp.cancel(sp.expand(LavT.coeff(Agam).coeff(
     AmT[sp.Function('gamma')][1])) if False else
     sp.expand(eqgamT.coeff(Agam)))), 0), w ** 2)
@@ -594,6 +608,41 @@ rep("*** THE UV LIMIT c_s^2 -> -(lam_K-1)/(3 lam_K-1) IS NEGATIVE ON *BOTH* NO-G
     "CORRECTION TO MY OWN FIRST DRAFT: I asserted the lam_K < 1/3 branch had a POSITIVE UV "
     "limit.  It does not: at lam_K = 1/5 the limit is -2.  The sign flip of (lam-1) is "
     "cancelled by the sign flip of (3lam-1), exactly as it is in the no-ghost condition.")
+note("TEST", "ADVERSARIAL CROSS-CHECK 3: is the pincer an artifact of the q/k truncation?  "
+             "Evaluate the EXACT untruncated dispersion (q kept, G0 = 0) numerically at "
+             "X0 = 1, eta_K = 0, lam_K = 2, eps = 1.1e-24, A = 1/16.")
+# eta_K = 0, X0 = 1  =>  alpha_perp = G1 = 1, alpha_par = alpha = 1/2 ; lam_K = 2
+_EAmag = sp.Rational(11, 10) * sp.Integer(10) ** (-24) / 16
+_alv = sp.Rational(1, 2)
+_ok3 = True
+for _sgn, _lab, _kcrit in ((+1, "eps > 0 : crossing predicted at k_deg  = sqrt(3 alpha/(4 eps A))",
+                            sp.sqrt(3 * _alv / (4 * _EAmag))),
+                           (-1, "eps < 0 : crossing predicted at k_inst = sqrt(3(2-alpha)/(4|eps|A))",
+                            sp.sqrt(3 * (2 - _alv) / (4 * _EAmag)))):
+    _p = {q: sp.Integer(1), G1: sp.Integer(1), al: _alv, lam: sp.Integer(2),
+          G0: sp.Integer(0), EA: _sgn * _EAmag}
+    _w2p = sp.cancel(sp.together(w2.subs(_p)))
+    assert _w2p.free_symbols == {k}, _w2p.free_symbols
+    print(f"\n    {_lab}")
+    print(f"      k_crit = {float(_kcrit):.4e}   (q/k_crit there = {float(1/_kcrit):.2e})")
+    print(f"      {'k/k_crit':>10} {'omega^2 (exact, untruncated, 60 digits)':>40}")
+    _sg = []
+    for f_ in (sp.Rational(1, 2), sp.Rational(9, 10), sp.Rational(99, 100),
+               sp.Rational(101, 100), sp.Rational(11, 10), sp.Integer(2)):
+        v = sp.N(_w2p.subs(k, f_ * _kcrit), 60)
+        _sg.append(v)
+        print(f"      {float(f_):>10.2f} {float(v):>40.6e}")
+    _good = all(v > 0 for v in _sg[:3]) and all(v < 0 for v in _sg[3:])
+    print(f"      -> sign flips exactly at k_crit: {_good}")
+    _ok3 = _ok3 and _good
+_signs = [1, 1, 1, -1, -1, -1] if _ok3 else [1, 1, 1, 1, -1, -1]
+rep("*** the EXACT untruncated dispersion changes sign at exactly the predicted critical "
+    "wavenumber -- k_deg for eps > 0 and k_inst for eps < 0, BOTH confirmed numerically to "
+    "60 digits.  omega^2 > 0 below, omega^2 < 0 above.  The pincer is NOT an artifact of "
+    "the eikonal truncation (q/k ~ 1e-13 there) ***", _ok3,
+    "this test also caught a slip in my own first setup: with eps > 0 the binding scale is "
+    "k_deg = sqrt(alpha/(2-alpha)) * k_inst = 0.577 k_inst, not k_inst.  The two signs of "
+    "eps fail at DIFFERENT wavenumbers, and both fail.")
 rep("consequently the stability window 0 < alpha_eff < 2 is BRANCH-INDEPENDENT: given "
     "K_S > 0, c_s^2 > 0 <=> 0 < alpha_eff < 2 on either branch",
     all(sp.simplify(((lam - 1) * (2 - av) / (av * (3 * lam - 1))).subs(lam, lv)) > 0
@@ -739,6 +788,32 @@ for lab, lcut in (("0.13 mm (the theory's own strong-coupling length)", 1.3e-4),
     print(f"  stability demanded down to {lab:<48s} => |eps| < {epsmax:.3e}")
 print(f"  needed for the Y-sector to do anything (Solar-System window):  eps ~ {epsv:.1e}")
 
+print("""
+  WHERE IS THE STRONG-COUPLING SCALE?  There are now THREE, and Gen-2 adds the third.
+    (1) Deep-MOND marginality: c_s^2 -> 0 as X0 -> 0.  Inherited from Gen-1, unchanged.
+    (2) F's cubic breakdown: sqrt(l_Pl c^2/a0) ~ 0.13 mm.  Inherited, unchanged.
+    (3) NEW, Gen-2 only: the lapse derivative expansion.  The k^4 term equals the k^2 term
+        at exactly k_deg / k_inst, so
+              M_* ~ a0/c^2 * 1/sqrt(eps A(X0))     (in inverse length),
+        i.e. the SAME wavenumbers as the pathology.  This is not a coincidence -- it is the
+        same statement read two ways.
+
+  THE HONEST COUNTER-ARGUMENT, AND WHY IT DOES NOT SAVE GEN-2.
+  A defender can say: at k ~ k_deg the derivative expansion has broken down, so the k^4
+  dispersion cannot be trusted there and the "instability" is outside the EFT's validity.
+  That objection is CORRECT as stated, and it is the strongest available defence.  It does
+  not help, because it only relabels the result:
+
+     unstable-reading : Gen-2 has a UV gradient instability at macroscopic wavelengths.
+     EFT-reading      : Gen-2 is an effective theory whose CUTOFF sits at 0.05 pc in galaxy
+                        outskirts and at ~1 m at the Earth's surface.
+
+  A theory of gravity with a 1-metre cutoff at the Earth's surface is not a theory of
+  gravity.  Either reading excludes eps ~ 1e-24.  I record both; the EFT reading is the
+  more defensible one and I recommend quoting it, because it does not depend on trusting
+  the k^4 term in the regime where it dominates.
+""")
+
 
 # ==================================================================================
 head("PART 9 -- THE ONE CRACK, PRICED HONESTLY (never say 'no open doors')")
@@ -828,23 +903,21 @@ rep("every scalar<->vector mixing term carries at least one power of q "
 
 # ==================================================================================
 head("PART 11 -- DOES THE TENSOR k^2 RESULT SURVIVE THE CONSTRAINTS?")
-note("DERIVED", "The TT sector: delta N = delta N^i = 0 is now a RESULT, not an assumption.  "
-                "Reason, derived from the structure above:")
-note("DERIVED", "  (i) phi and B appear in the quadratic action only in the scalar block; the "
-                "lapse equation (PART 3) is d(L)/d(phi) = 0 with a SCALAR source.")
-note("DERIVED", "  (ii) A TT tensor gamma_ij (transverse, traceless) cannot source a scalar "
-                "equation at LINEAR order: every term in eq_phi is built from scalars, and the "
-                "only linear-in-gamma scalars available are delta^ij gamma_ij = 0 and "
-                "k^i k^j gamma_ij = 0.  Hence delta N = delta N^i = 0 at linear TT order.")
-note("DERIVED", "  (iii) Therefore the tensor quadratic action is NOT modified by the "
-                "constraint solution, and the ya_tensor_exact_2026.py result stands as a "
-                "constraint-reduced statement: dc_T^2/c^2 = 2 eps A(X0) X0, k-INDEPENDENT.")
-note("DERIVED", "  (iv) CONSISTENCY: the scalar sector's own eps-correction to the gradient "
-                "term is the SAME O(eps A X0) size (PART 5 residue).  The two agree in "
-                "magnitude, as they must.")
-note("CAVEAT", "This closes the item ya_tensor_exact_2026.py listed as NOT ESTABLISHED "
-              "(delta N = delta N^i = 0 for TT once the constraints are solved).  It does NOT "
-              "rescue Gen-2: the theory now dies in the scalar sector instead, at the same eps.")
+note("DERIVED", "ANSWER: YES.  This was COMPUTED in PART 4c, not argued.  Three results there:")
+note("DERIVED", "  (i) d(eq_phi)/d(gamma_TT) = 0 and d(eq_B)/d(gamma_TT) = 0 identically, even "
+                "at a^(0) != 0.  So delta N = delta N^i = 0 at linear TT order is a RESULT of "
+                "the Gen-2 constraints.  ya_tensor_exact_2026.py SET this by hand; it is now "
+                "established, and the item that script listed as NOT ESTABLISHED is closed.")
+note("DERIVED", "  (ii) With the constraints solved, omega_T^2 = k^2 [1 + 2 eps A(X0) X0] "
+                "EXACTLY -- no k^4, no dispersion.  dc_T^2/c^2 = 2 eps A(X0) X0, reproducing "
+                "ya_tensor_exact_2026.py by a completely independent full-ADM route.")
+note("DERIVED", "  (iii) CONSISTENCY: the scalar sector's own k-independent eps-correction to "
+                "its gradient term is the SAME O(eps A X0) size (PART 5, residue part (i): "
+                "1.20 eps A X0 at X0 = 1, lam_K = 2, against the tensor's 2 eps A X0).")
+note("CAVEAT", "So the promising k^2 tensor behaviour is REAL and it SURVIVES the full ADM "
+              "constraints.  Carl's first question is answered in the affirmative.  It does "
+              "NOT rescue Gen-2: the second question -- is the scalar sector healthy -- is "
+              "answered NO, at the same eps, and that is now the binding problem.")
 
 
 # ==================================================================================
