@@ -79,7 +79,8 @@ dangerous surfaces y→0, y→∞, ε→0, ε→∞, A′→0, L→0.
 | U(y,ε) constitutive law       | EXPLICIT construction           | escreen_Q2_map_2026.py |
 | Scalar elliptic e             | 2+0 candidate PROVEN            | york_efield_dof_2026.py (+crosscheck) |
 | Helmholtz outer filter        | scale-separation VERIFIED       | cassini_widebinary_lock_2026.py (hand-checked) |
-| L = r_M                       | 🔴 ANSATZ, NOT derived           | OPEN (workflow running) |
+| L = r_M as a LOCAL field      | 🔴 PROVEN NO-GO (breaks 2+0)     | york_Lclosure_global_2026.py, york_Lclosure_dirac_2026.py |
+| L = r_M as per-system input   | works, but NOT a closed theory  | (same status as MOND's g_ext input) |
 | ε_s, m                        | PHENOMENOLOGICAL parameters     | need independent calibrator |
 | γ_PPN = 1 / lensing           | 🔴 engineered, NOT derived       | OPEN |
 | wide-binary γ_v               | branch-dependent PREDICTION     | escreen_widebinary_fork_2026.py |
@@ -104,6 +105,18 @@ Statements are labeled DERIVATION (math, script-backed) or PREDICTION (empirical
   single value.  PREDICTION (conditional on the screened-bubble picture; OPEN).
 - **Prediction 7 (cosmological evolution).** a₀(z) ∝ H(z).  PREDICTION — the falsifiable
   centerpiece; distinguishes this from constant-a₀ MOND and ΛCDM.
+- **Theorem 8 (EFE-scale no-go).** The internal/external separation scale L = r_M CANNOT be a
+  single-valued local functional of ρ fixed by the action while preserving 2+0.  DERIVATION ✅
+  (york_Lclosure_dirac_2026.py, york_Lclosure_global_2026.py). Three legs: (i) global M[ρ]=∫ρ
+  grows ∝R^{3/2} with no stopping scale → L≈r_M(MW) → filters the external field as internal →
+  Q₂ = 1.8e-26 > Cassini by 3.5×; (ii) the local self-consistent root L²a₀=GM(<L;x) is
+  multivalued (3 roots at the Sun in the Sun⊂dwarf⊂MW test; ×200 swing from ρ's coarse-graining
+  which the action does not fix) because r_M needs a *segmentation* of ρ into objects, not a
+  field functional; (iii) exact Dirac: det H ∝ (2La₀−GM_L)², so the entry f′(L) enters squared
+  and vanishes on a codim-1 tangency locus (shell Σ crosses a₀/G) → (L,P_L) turns first-class →
+  +1 scalar DOF; the nonlocal ball-integral form factor F(kL) has infinitely many zeros (not
+  ghost-free). Only the global L keeps 2+0, and it is Cassini-dead. **Consequence:** the EFE
+  environment is an *input* (as in all MOND), not derivable locally within this class.
 
 ---
 
@@ -115,10 +128,13 @@ action against a failed test; record failures in the ledger, don't patch them in
 1. **Write one complete action** — ✅ this document.
 2. **Derive every constraint** — mostly done (scalar-e); redo for the frozen (Φ,Ψ,λ,L) form.
 3. **Prove 2+0 globally** — on the FULL system, on the dangerous surfaces (§2). PARTIAL.
-4. **Derive the scale-selector L** — 🔴 THE decisive gate. Outcomes: (A) a local invariant
-   exists → derive it; (B) only a nonlocal selector → formulate the nonlocality covariantly;
-   (C) no universal selector → a genuine no-go for this class. Test on
-   planetary⊂star⊂dwarf⊂MW. [workflow running]
+4. **Derive the scale-selector L** — ✅ RESOLVED as **Outcome C: NO-GO** (Theorem 8). L=r_M
+   cannot be a local action-determined field while keeping 2+0. The EFE environment is an input,
+   not locally derivable. Remaining alternatives are (B) a covariant *nonlocal* selector (hard —
+   the natural ball-integral form is not ghost-free) or accepting L as a per-system boundary
+   datum (then Cassini is a parameter window / DR4-arbitrated tension, NOT a closed local fix).
+   ⇒ steps 5–6 (local Q₂/homogenization closure) are moot for a LOCAL theory; skip to the
+   derived-core paper.
 5. **Solve the full Solar-System Q₂** with (e,Ψ,L) SOLVED, not assigned.
 6. **Homogenize the stellar bubbles** — derive μ_coarse(g) from the microscopic screened
    bubbles (a homogenization problem, not just Gauss's law); check the RAR survives.
@@ -140,7 +156,9 @@ action against a failed test; record failures in the ledger, don't patch them in
 ## §6. Non-claims and live gates (state up front, always)
 
 - κ = ½ and Z ≈ 21 are **fitted**, not derived. Only a₀ ∝ H(z) is predicted.
-- L = r_M is an **ansatz**. Closure requires deriving it (step 4) or proving a no-go.
+- L = r_M is **proven NOT locally derivable while keeping 2+0** (Theorem 8). The EFE
+  environment is an input, exactly as in standard MOND — not worse, but not derived. A local
+  screening field cannot close Cassini; that route is a proven dead end, not a pending calc.
 - γ_PPN = 1 / lensing = dynamics is currently an **engineered coupling**, not an output.
 - ε_s, m are **phenomenological** until each has an independent (non-Cassini) calibrator.
 - Cassini is passable **as a parameter window**; the wide-binary casualty is real but is now a
