@@ -47,3 +47,29 @@ healthy class rather than invented -- the strongest possible footing this search
 NON-NEGOTIABLE: Z ~ 21 is FITTED, not derived (only a0 ~ H(z) is predicted).  Cassini: the
 Simple mu = x/(1+x) still gives the constant sunward a0 excess; the ~10.7 sigma quadrupole
 must be confronted, not declared solved -- AeST does not escape it either with Simple mu.
+
+## CORRECTIONS (Carl) — retract the AeST grounding and the unconditional gamma_PPN
+1. AeST is SIX physical DOF (2023 full nonlinear Hamiltonian analysis: 4 first-class + 4
+   second-class -> 6 phase-space DOF), NOT two.  "Grounded in a healthy 2-DOF class" was
+   WRONG.  Do not inherit AeST and hope CMC removes its vector/scalar modes.  RENAMED the
+   theory: CMC-CONSTRAINED MOND GRAVITY -- the defining principle is that GR's 2-tensor
+   phase space is retained and MOND + the a0 scale enter ONLY through auxiliary/elliptic
+   constraints, with the aether NON-propagating.
+2. Keep the aether non-dynamical: in adapted coords u_mu = N^{-1}(1, -N^i), so a_i = D_i ln N
+   (spatial derivatives of the lapse, NO Ndot).  MOND depends on D_i N and q -> N stays a
+   multiplier.  Local canonical pair is ONLY (h_ij, pi^ij).
+3. The disformal gamma_PPN = 1 is CONDITIONAL on the field equations giving Phi = Psi; the
+   MOND/aether stress can itself source slip.  Retracted as a derived claim -- the metric
+   equations must be solved.  Lensing "= dynamics" is suggested, not proven.
+
+## DOF: heuristic count POINTS to 2+0 (not yet proven)
+Reduced phase space (h_ij,pi^ij)=12 + (q,pi_q)=2 = 14.  Constraints H_perp, H_i x3, pi_q,
+C_CMC = pi/sqrt(h) - q.  The 3x3 block {H_perp, C_CMC, pi_q} is antisymmetric with
+{H_perp,C_CMC}=a!=0, {C_CMC,pi_q}=-1, {H_perp,pi_q}=b=-dH_perp/dq != 0 (because a0=cq/Z puts
+q in H_perp).  det=0, rank 2 => 1 first-class combo + 2 second-class.  Count: (H_i x3 + 1
+combo) first-class remove 8, 2 second-class remove 2, total 10 from 14 => 2 PHYSICAL DOF.
+KEY: the MOND coupling is what makes C_CMC genuinely second-class (gauge-fixing H_perp's
+refoliation) rather than a trivial CMC gauge choice.  So the count reaches 2+0 structurally.
+CAVEAT: finite-dim count only; a can degenerate on subsurfaces, tertiary constraints and
+smearing not checked.  SUPPORTS 2+0, does NOT prove it.  The full functional Dirac matrix
+(rank C_AB as functionals, tertiary preservation) is the remaining decisive calculation.
