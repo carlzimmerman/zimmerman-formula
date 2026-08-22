@@ -22,7 +22,7 @@ on BOTH footings (a₀ = 9.3619e-11 canonical / 1.1279e-10 alt).**
 | 7 | **Theoretical health** | no ghost, no gradient instability, no Cherenkov | ✅ K″ > 0 verified over 45 decades |
 | 8 | **Cosmology** | w = −1, Ω_dm = 0.265 to the CMB, CLASS pass intact | ✅ w_DE = −1 to 4.6e-10; charge carries Ω_dm |
 | 9 | **No double count** | clustered sector + phantom ≤ RAR tolerance | ✅ absent under the frame flip — one sector, counted once |
-| 10 | **THE AMPLITUDE LAW** | ρ = √(GM_b a₀)/(4πGr²) as a **dynamical consequence**, not initial data | 🔴 **OPEN — and NO LOCAL equation of state can supply it** (`collapse_2026.py`, `baryon_coupled_pressure_2026.py`) |
+| 10 | **THE AMPLITUDE LAW** | ρ = √(GM_b a₀)/(4πGr²) as a **dynamical consequence**, not initial data | 🔴 **OPEN — every route avoiding an inserted global scale has now failed** (`collapse_2026.py`, `baryon_coupled_pressure_2026.py`, `local_selection_2026.py`) |
 
 ---
 
@@ -76,11 +76,34 @@ that virial temperature. That is collapse history: multi-streaming, caustics, vi
 relaxation. **It is the one route this programme flagged twice as unrun and never ran**, both
 attempts having errored out.
 
-⚠️ **And it must clear a bar the corpus already set.** "Set by formation history" is weaker
-than "derived from the action," and this repo's own 1-Mpc confrontation previously killed an
-initial-conditions route on exactly those grounds (smooth accretion drives ξ(halo) → 1 for any
-cold T(k)). That confrontation has to be re-run against this mechanism before it counts as a
-route at all.
+### The obstruction, stated cleanly rather than rescued
+
+`local_selection_2026.py` ran the test properly: derive the general hydrostatic system first,
+pin the hypotheses, then ask whether a **local covariant** rule can select the temperature
+**without inserting M_b, r_M or the BTFR**.
+
+**Hypotheses, now exact.** Asymptotic flatness + self-gravity dominance + **boundedness of
+c_s²** force `c_s² = v_c²/2`. The general solution is `c_s² = 2πGC + C₁r²`; drop boundedness
+and the `r²` mode survives, drop flatness and nothing is forced. Three hypotheses, no more.
+
+**A genuine local invariant exists**, and this was not obvious:
+`g_b³/|∇g_b|² = GM_b/4` **exactly and r-independently**, so
+`σ² = √(a₀ g_b³)/|∇g_b| = √(GM_b a₀)/2` — the right temperature, coefficient and all, from
+local field data with no global integral. Exact for a point mass *and* for Hernquist.
+
+**And it fails the extended-baryon test.** That r-independence is a property of the
+`g_b ~ 1/(r+a)²` family, not a general fact. For an **exponential disk** the invariant varies
+by **1.41×** across 0.5–3 r_M; Plummer varies by 1.19×. There is no single local value for a
+theory to select. It lands within 13% of target *at r_M* — but "at r_M" is exactly the global
+input the test forbids.
+
+> **No-go: the amplitude law is not derivable from a local equation of state, from a local
+> baryon-coupled pressure, or from a local covariant selection rule on realistic baryons.
+> Every route that avoids inserting a global scale has failed; every route that succeeds has
+> inserted one.**
+
+This supersedes the optimism of `caustics_2026.py`, which rescued the law by *assuming* collapse
+halts at r_M — an inserted global scale, not a mechanism.
 
 ---
 
