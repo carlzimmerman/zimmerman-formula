@@ -1,6 +1,8 @@
-# The Candidate Action — CMC/York + Elliptic MOND with Outer-Field Screening
+# The Candidate Action — CMC/York Relativistic MOND (minimal, EFE-as-input)
 
-**Status: CANDIDATE THEORY UNDER CLOSURE TESTING.** Not a finished theory.
+**Status: FROZEN MINIMAL CANDIDATE UNDER CLOSURE TESTING.** Not a validated theory.
+The FIRST validation gate is the full Dirac count of THIS exact action (with η a_i a^i + Λ_CMC):
+the result 2+0 is proven only for sub-formulations, NOT yet for this action — it could be 2+1.
 This is the single frozen action from which every observable must be derived. No equation
 enters a paper because it gives a desired limit; it enters because it follows from this action.
 
@@ -11,29 +13,44 @@ machinery being *used*. This is a modified-gravity effective field theory, not a
 
 ---
 
-## §1. The frozen action
+## §1. The frozen MINIMAL action (2026-08-22 — screening set aside; EFE = input)
 
-    S = S_York[h_ij, π^ij; q]
-      − (1/8πG) ∫ dt d³x N√h [ a₀(q)² U(y, ε) + λ_Ψ ((1 − L² D²)Ψ − Φ) ]
-      + S_m[g^phys(Φ), ρ]
+Per Theorem 8 the EFE environment is NOT locally derivable while keeping 2+0, so the screening
+sector (e, Ψ, L) is REMOVED from the core; the external field enters as a boundary datum, exactly
+as in standard MOND. No screening field, no L, no vector E_i.
 
-Gravitational sector (UNMODIFIED GR, CMC-gauge reduced):
+    S = S_grav + S_CMC + S_Φ + S_m
 
-    S_York = (c³/16πG) ∫ dt d³x N√h ( K_ij K^ij − K² + ³R ),   K = q(t)  [global CMC clock]
+Gravitational sector (general spatially-covariant; coefficients λ, ξ, η FIXED by the constraint
+analysis + c_T=1 + G_eff=G, NOT by phenomenology):
 
-MOND constitutive sector:
+    S_grav = (c³/16πG) ∫ dt d³x N√h [ K_ij K^ij − λ K² + ξ ³R + η a_i a^i ],   a_i = D_i ln N
 
-    y  = D_iΦ D^iΦ / a₀(q)²                 (dynamical acceleration²/a₀²)
-    ε  = D_iΨ D^iΨ / a₀(q)²                 (OUTER/screening field²/a₀²,  e ≡ |DΨ|)
-    U(y,ε) = [1 − A(ε)] y + A(ε) I_gal(y)
-    A(ε)   = 1 / (1 + (ε/ε_s)^m)
-    I_gal(y) = ∫₀^y μ_gal(√s) ds = √(y(1+y)) − arcsinh(√y)   [for μ_gal(x)=x/√(1+x²)]
-    ⇒  U_y = μ_eff(y,ε) = 1 − (1 − μ_gal(√y)) / (1 + (ε/ε_s)^m)
+CMC sector (multiplier Λ_CMC):
 
-Outer-field (Helmholtz scale-separation) sector, enforced by multiplier λ_Ψ:
+    S_CMC  = (c³/16πG) ∫ dt d³x N√h Λ_CMC (K − q)     ⇒  K = q(t)
 
-    (1 − L² D²) Ψ = Φ            ⇒  Ψ = long-wavelength component of Φ
-    L = r_M = √(GM/a₀)          ⚠️ ANSATZ — see §3, §5. NOT yet derived from the action.
+MOND scalar sector (μ_gal only — NO screening):
+
+    y = D_iΦ D^iΦ / a₀²,   U_y = μ_gal(√y),   μ_gal(x) = x/√(1+x²)
+    U(y) = √(y(1+y)) − arcsinh(√y)
+    S_Φ = −(1/8πG) ∫ dt d³x N√h a₀² U(y)     ⇒  D_i[μ_gal(|DΦ|/a₀) D^iΦ] = 4πGρ
+
+Matter (universal coupling to ONE physical metric; the map is DECLARED OPEN, not invented):
+
+    S_m = S_m[g̃_μν, ψ_m],   g̃_μν = C(Φ,X) g_μν + D(Φ,X) ∇_μΦ ∇_νΦ
+    weak-field ⇒ g̃_00 = g_00 − 2Φ/c² (leading PN); C, D UNSPECIFIED until lensing/PPN fixes
+    them subject to c_T=1, G_eff=G.
+
+EFE / Solar-System quadrupole: NOT a new field. Solve the SAME nonlinear Φ equation with
+D_iΦ → g_{e,i} on the subsystem's outer boundary; Φ = Φ_e + φ linearises to
+D_i(M^{ij} D_jφ)=4πGρ, M^{ij} = μ_e h^{ij} + 2μ_y D^iΦ_e D^jΦ_e/a₀², anisotropic part ∝ ê^iê^j
+⇒ the quadrupole. The environment g_e is INPUT (Theorem 8).
+
+**Set aside, NOT in core (tested):** Helmholtz screening (e,Ψ) [scalar-e is 2+0, but its EFE scale
+L=r_M is a proven no-go, Thm 8]; curvature-adaptive selector ℓ = √a₀ √ℋ /(√6 𝒢^{3/4}), ℋ=|D_iD_jΦ|²,
+𝒢=|DΦ|² [gives L=r_M locally — VERIFIED — but Dirac-untested, higher-derivative Ostrogradsky risk +
+𝒢→0 singularity]. Optional extensions, revisited only if the input-EFE core proves insufficient.
 
 Novel relations:
 
