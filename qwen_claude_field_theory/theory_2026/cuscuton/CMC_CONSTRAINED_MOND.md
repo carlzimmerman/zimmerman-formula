@@ -73,3 +73,41 @@ refoliation) rather than a trivial CMC gauge choice.  So the count reaches 2+0 s
 CAVEAT: finite-dim count only; a can degenerate on subsurfaces, tertiary constraints and
 smearing not checked.  SUPPORTS 2+0, does NOT prove it.  The full functional Dirac matrix
 (rank C_AB as functionals, tertiary preservation) is the remaining decisive calculation.
+
+## RETRACTION of the 3x3 rank argument, and the rigorous route (Carl)
+The antisymmetric 3x3 rank-2 result is only the rank of a finite subblock.  It does NOT
+establish a first-class constraint or the DOF count, because:
+  - the null vector is first-class only if it has weakly-vanishing brackets with EVERY
+    constraint and its preservation closes -- not checked;
+  - preservation of p_q gives a genuine SECONDARY (since {p_q, H_perp[N]} = -dH_perp/dq[N]
+    != 0 via a0(q)), not merely lam_C = 0;
+  - Cdot_CMC = {C_CMC, H} can generate an independent TERTIARY;
+  - C_CMC is LOCAL unless q is genuinely reduced to a single global CMC variable.
+So: DOWNGRADE "supports 2+0 structurally" -> "suggests a possible 2-DOF branch, does NOT
+establish it."
+
+## THE ROUTE TO FINISH: four-scalar-auxiliary MMG (not a homemade rank argument)
+Minimally-Modified-Gravity Hamiltonian analyses establish that FOUR scalar auxiliary
+constraints are the special case giving exactly 2 tensorial gravitational DOF with no extra
+minimalizing condition.  Freeze:
+    H = INT d^3x [ N H_2DOF + N^i H_i + sum_{A=1..4} lam_A C_A ]
+    C_1 = pi/sqrt(h) - q            (CMC: pi/sqrt(h) ~ K)
+    C_2 = p_q                       (q non-dynamical)
+    C_3 = p_chi                     (MOND auxiliary scalar chi non-dynamical)
+    C_4 = E[h, N, chi, q]           (elliptic MOND constraint enforcing
+                                     div[mu(g/a0) grad Phi] = 4 pi G rho, a0 = cq/Z)
+Then K=q => q=3H on FLRW => a0(z)=a0,0 H(z)/H0; D_i q=0 => D_i a0=0.  The architecture is
+"2-DOF MMG core + CMC auxiliary + auxiliary MOND elliptic field" -- MOND and a0 enter ONLY
+as constraints, no new canonical propagating variables.
+
+## THE remaining decisive calculation (this is where 2+0 becomes a theorem)
+Construct C_1..C_4 explicitly and compute their FULL FUNCTIONAL Poisson algebra {C_A, C_B}
+(smeared, with the GR H_perp, H_i algebra as base and the MOND/a0(q) contributions carried
+exactly), verifying: the diffeo constraints stay first-class; the four C_A close into two
+second-class pairs (rank 4) WITHOUT generating an inconsistent tertiary; and the preservation
+of every constraint terminates.  Only then is the count 2 tensor + 0 scalar a theorem.
+This must be the functional bracket computation -- NOT a finite-dim rank argument.
+
+## STANDING empirical facts (unchanged)
+a0 not derived (Z~21 fitted; only a0(z) ~ H(z) predicted).  Cassini ~10.7 sigma with the
+Simple mu = x/(1+x) still to be confronted.  gamma_PPN = 1 conditional on Phi=Psi, not derived.
