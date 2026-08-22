@@ -40,3 +40,22 @@ Either is publishable.  a0 ~ H(z) is the novel physics; a0 normalisation Z still
 NOT proven yet: the embedding closes at 2 DOF for these exact C_A; PPN/lensing; Cassini.
 The remaining calc: the A1/A2 coefficient system + (Phi,chi,q), degeneracy + static spherical
 solved SIMULTANEOUSLY.
+
+## TWO computed no-gos for the EXACT d=2 branch (both verified)
+1. c_T NO-GO: c_T^2 = c3/c1 = D/(N^2 f(phi)) = D/f(phi) at N=1.  The branch requires
+   f'(phi) != 0, so c_T=1 at all epochs forces f=const (contradiction).  c_T=1 today leaves
+   a predicted, tightly-constrained c_T(z) != 1.
+2. HESSIAN NO-GO (the decisive one): the exact-branch gradient sector d1(Dphi)^2 = (A/2N)(Dphi)^2
+   has a Hessian d^2L/d(D_i phi)d(D_j phi) = (A/N) h^ij, CONSTANT in D phi.  The phi-equation
+   is therefore LINEAR in D phi and cannot be D_i[mu(g/a0)D^i phi] with mu' != 0.  A local
+   V(phi) changes only the algebraic/source part, not the gradient Hessian.  So the exact
+   d=2 branch CANNOT host nonlinear MOND.  Nonlinear mu <=> U_XX != 0 (Hessian = 2U_X h_ij
+   + (4/a0^2)U_XX D_i phi D_j phi) <=> OUTSIDE the proven quadratic branch.
+
+## THE BINARY (the one calculation left, definite yes/no)
+Only the A1/A2 GR-compatible CUBIC branches survive (2-DOF proven through cubic order only).
+Put MOND in an auxiliary potential U((Dphi)^2/a0(q)^2) and solve the QUARTIC degeneracy:
+  - quartic forces U_XX = 0  => NO-GO THEOREM (GR-compatible 2-DOF SCG cannot make nonlinear
+    MOND via this auxiliary scalar) -- publishable;
+  - quartic permits U_XX != 0 => explicit nonlinear 2-DOF MOND Lagrangian -- the target.
+a0(q)=cq/Z, K=q => a0(z)~H(z) rides along either way.  No more decorating the exact branch.
