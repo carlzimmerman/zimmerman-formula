@@ -1,5 +1,34 @@
 # FRIED CHICKEN — the requirements
 
+> ## ⚠️ WHAT THIS FRAMEWORK IS, LABELLED HONESTLY
+>
+> In the frame-flip configuration that clears nine of these ten rows, **ρ_halo is an
+> independent, self-gravitating mass density** with its own equation of motion, sourcing the
+> metric through T_μν and carrying Ω_dm = 0.265 to the CMB. **That is a dark sector.**
+>
+> `dark_sector_honesty_2026.py` tested the alternative and it fails: the `g_b, ∇g_b`
+> construction **cannot** arise from a local covariant action whose field equations contain no
+> independent dark density. It requires `Φ''`, its Ostrogradsky Hessian is `6u₁³/u₂⁴` — nonzero
+> everywhere on the support, hence **non-degenerate** — and the Euler–Lagrange equation comes
+> out **fourth order** with a ghost. It is not polynomial in `Φ''` and cannot be arranged into
+> the Galileon/Horndeski/DHOST degenerate class.
+>
+> **Honest label: a dispersion-supported dark sector.** Not modified gravity. Not
+> dark-matter-free.
+>
+> **The dichotomy is clean and the framework must pick a horn.** No independent dark density
+> ⟹ modified gravity ⟹ dies on the arm-level Cassini quadrupole (4.8–8.9× the ceiling, proved
+> carrier-independent). Survives Cassini ⟹ has an independent dark density ⟹ is a dark sector.
+>
+> **What survives intact:** a₀ = κc√(Gρ_Λ), both published papers (neither claims to be
+> dark-matter-free), and the corpus's standing slogan **"no dark-matter *particle*"** — the
+> carrier is a field, and a field is not a WIMP. That distinction is untouched.
+>
+> **Do not say from now on:** that this framework is dark-matter-free, that it has no dark
+> matter in galaxies, or that the halo is "phantom" in the frame-flip picture. Phantom language
+> belongs to the modified-gravity horn only, where there is no independent density to be
+> phantom about.
+
 Carl's standing term for a completed field theory. This file exists so "done" is a fixed,
 falsifiable target rather than a moving one, and so that neither of us can quietly redefine it
 after the fact. Every row is a pass/fail with a number.
@@ -18,7 +47,7 @@ on BOTH footings (a₀ = 9.3619e-11 canonical / 1.1279e-10 alt).**
 | 3 | **Lensing tracks dynamics** | \|(p_r+2p_t)/ρc²\| < 0.049 (KiDS-1000 full covariance) | ✅ 1e-7 for any cold carrier |
 | 4 | **Solar system — monopole** | 1-AU anomaly inside per-planet EPM budgets | ✅ 4e-28 × Mars budget on μ₁₀ (`route1B_monotone_escape_2026.py`) |
 | 5 | **Solar system — quadrupole** | Cassini Q₂ ≤ 5.2e-27 s⁻² | ✅ 0.08–0.21 × ceiling on μ₁₀ |
-| 6 | **GW170817** | \|c_T/c_γ − 1\| < 7e-16 | ✅ **structurally absent** under the frame flip (`frame_flip_2026.py`) |
+| 6 | **GW170817** | \|c_T/c_γ − 1\| < 7e-16 | ✅ **structurally absent** under the frame flip — but see the banner: that is bought by being a dark sector |
 | 7 | **Theoretical health** | no ghost, no gradient instability, no Cherenkov | ✅ K″ > 0 verified over 45 decades |
 | 8 | **Cosmology** | w = −1, Ω_dm = 0.265 to the CMB, CLASS pass intact | ✅ w_DE = −1 to 4.6e-10; charge carries Ω_dm |
 | 9 | **No double count** | clustered sector + phantom ≤ RAR tolerance | ✅ absent under the frame flip — one sector, counted once |
