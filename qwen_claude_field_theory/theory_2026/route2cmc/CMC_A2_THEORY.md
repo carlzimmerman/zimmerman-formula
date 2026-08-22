@@ -47,3 +47,22 @@ DOES: give a covariant action in which cosmological expansion SETS a0 (a0 ~ H(z)
 DOES NOT: derive a0's NORMALISATION (Z ~ 21 is fitted); fix Cassini -- mu = x/(1+x) is frozen
   and Route-1's ~10.7 sigma quadrupole stands.  This is a cosmological completion of the
   eps=0 khronometric MOND sector, not a resolution of the Solar-System quadrupole.
+
+## UPDATE: tensor-safety fixes the (3)R coefficient to xi = 2 (Carl's catch)
+c_T^2 = xi/(1+beta) for L = K_ij K^ij - K^2 + xi (3)R + beta A^2 (TT sector, verified).
+beta=1, xi=1 gives c_T^2 = 1/2 -- GW-UNSAFE.  FIX: xi = 1+beta = 2.  My earlier "c_T = c
+exactly" was the beta=0 khronometric case; the A^2 term breaks it unless (3)R is rescaled.
+
+FROZEN tensor-safe backbone (beta=1, lambda=1/3, xi=2):
+  L_grav = K_ij K^ij - K^2 + 2 (3)R + A_ij A^ij = 2 K_ij K^ij - (4/3) K^2 + 2 (3)R.
+
+CONSEQUENCE: xi=2 changes the SPATIAL sector, so G_N and the Poisson/lensing normalisation
+must be RE-DERIVED (the G_cosmo/G=1-at-lambda=1/3 result was in the xi=1 convention).
+Whether c_T=1, G_N=G_cosmo and the CMC structure hold simultaneously is now an open
+coefficient question -- not asserted.
+
+CLEAN SEPARATION (payoff): 2(3)R and F(X) carry no hdot, so they enter H_perp only, NOT the
+canonical momenta.  Therefore c_T depends on xi while the CONSTRAINT/DOF algebra does not --
+fixing xi for GW safety is independent of the Dirac rank calculation.  The decisive gate is
+the H_perp Dirac rank at lambda=1/3 with the MOND+CMC deformation (does it preserve the
+Bellorin-Restuccia kinetic-conformal 2-DOF structure?).
