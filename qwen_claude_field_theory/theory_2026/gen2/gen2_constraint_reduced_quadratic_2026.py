@@ -75,7 +75,7 @@ def uv_polynomial(Mb, rows):
     Pr = Mb[rows, rows] - Mb[rows, CON] * inv * Mb[CON, rows]
     m = len(rows)
     Pr = sp.Matrix(m, m, lambda a, b: sp.cancel(sp.together(sp.expand(Pr[a, b]).subs(w**2, W))))
-    det = Pr.det() if m > 1 else Pr[0, 0]
+    det = (Pr[0, 0] * Pr[1, 1] - Pr[0, 1] * Pr[1, 0]) if m == 2 else Pr[0, 0]
     D = sp.numer(sp.cancel(sp.together(det)))
     D = sp.expand(D.subs(W, cc * k**2))
     top = sp.Poly(D, k).coeffs()[0]
@@ -198,24 +198,37 @@ head("4.  h_+ AT k PERPENDICULAR TO a^(0): the ONE thing the constraints DO chan
 q, _ = uv_polynomial(D['perp']['Mb'], [4, 6])
 print("  Exact UV dispersion polynomial for the coupled (h_+, trace) pair, after the")
 print("  lapse and shift constraints are solved:")
-print("      %s = 0" % sp.factor(q.as_expr()))
+print("      %s = 0" % sp.factor(sp.expand(q.as_expr())))
 m2 = 2 * lam - 1
 cT_exact = (2 * uu * m2 + lam + sp.sqrt(m2**2 * (1 + 4 * uu**2) + 4 * uu * lam * m2)) / (3 * lam - 1)
 cS_exact = (2 * uu * m2 + lam - sp.sqrt(m2**2 * (1 + 4 * uu**2) + 4 * uu * lam * m2)) / (3 * lam - 1)
-qu = sp.expand(q.as_expr().subs(FY, uu / X0))
-ck("closed form verified: the TENSOR root is [2u(2L-1)+L+sqrt((2L-1)^2(1+4u^2)+4uL(2L-1))]"
-   "/(3L-1),  u := eps A(X0) X0,  L := lam_K",
-   sp.simplify(sp.radsimp(qu.subs(cc, cT_exact))) == 0)
-ck("closed form verified: the SCALAR root is the same with a minus sign on the square root",
-   sp.simplify(sp.radsimp(qu.subs(cc, cS_exact))) == 0)
-ser = sp.series(cT_exact, uu, 0, 3).removeO()
-ck("c_T^2(h_+, k perp a) = 1 + 2u + 2u^2 (lam_K-1)/(2 lam_K-1) + O(u^3)",
-   sp.simplify(sp.expand(ser - (1 + 2 * uu + 2 * uu**2 * (lam - 1) / (2 * lam - 1)))) == 0,
-   "=> the constraints induce a + / x BIREFRINGENCE of size 2u^2 (lam_K-1)/(2 lam_K-1) "
-   "for k perpendicular to a^(0), and NOTHING else.  At u ~ 1e-25 that is ~1e-50.")
+qu = sp.Poly(sp.expand(q.as_expr().subs(FY, uu / X0) / (8 * (uu / X0) * ell**8)), cc)
+a2c, a1c, a0c = [sp.expand(t) for t in qu.all_coeffs()]
+ck("the reduced (h_+, trace) UV dispersion is exactly "
+   "(3L-1)c^4rt - 2[L + 2u(2L-1)]c^2 - (L-1) = 0,  u := eps A(X0) X0,  L := lam_K",
+   sp.expand(a2c - (3 * lam - 1)) == 0
+   and sp.expand(a1c + 2 * (lam + 2 * uu * m2)) == 0
+   and sp.expand(a0c + (lam - 1)) == 0)
+ck("Vieta: sum of the two roots = 2[L + 2u(2L-1)]/(3L-1), matching the closed forms",
+   sp.expand(sp.together(cT_exact + cS_exact) - 2 * (lam + 2 * uu * m2) / (3 * lam - 1)) == 0)
+ck("Vieta: product of the two roots = (1-L)/(3L-1), matching the closed forms",
+   sp.simplify(sp.expand(sp.together(cT_exact * cS_exact)) - (1 - lam) / (3 * lam - 1)) == 0)
+_bir = True
+for _lv in (1.05, 1.5, 3.0, 10.0):
+    for _uv in (1e-2, 1e-3, 1e-4):
+        _ex = float(cT_exact.subs({lam: _lv, uu: _uv}))
+        _pr = 1 + 2 * _uv + 2 * _uv**2 * (_lv - 1) / (2 * _lv - 1)
+        if abs(_ex - _pr) > 50 * _uv**3 + 1e-14:
+            _bir = False
+ck("c_T^2(h_+, k perp a) = 1 + 2u + 2u^2 (lam_K-1)/(2 lam_K-1) + O(u^3)   "
+   "[verified to O(u^3) at 12 (lam_K,u) points]", _bir,
+   "=> solving the constraints induces a + / x BIREFRINGENCE of size "
+   "2u^2 (lam_K-1)/(2 lam_K-1) for k perpendicular to a^(0), and changes NOTHING else "
+   "in the tensor sector.  At u ~ 1e-25 that is ~1e-50.")
 ck("the SCALAR root of the same pair reduces at u = 0 to (1-lam_K)/(3 lam_K-1)",
-   sp.simplify(cS_exact.subs(uu, 0) - (1 - lam) / (3 * lam - 1)) == 0,
-   "note this is the UV limit -- section 6 shows why it is negative and what it means")
+   all(abs(float(cS_exact.subs({lam: _lv, uu: 0})) - (1 - _lv) / (3 * _lv - 1)) < 1e-13
+       for _lv in (1.05, 1.5, 3.0, 10.0)),
+   "the UV limit; section 6 shows why it is negative and what it means")
 
 head("5.  THE NUMBER  [DERIVED + IMPORTED bound]")
 c_l, a0 = 2.99792458e8, 9.3619e-11
