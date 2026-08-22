@@ -16,17 +16,29 @@ kinetic terms) -- linear multipliers, genuinely auxiliary.
 3. q has no wave equation: its own variation just DETERMINES Lam_C,
    Lam_C - D_mu B^mu = (4q/Z^2 c^2)[F - X F_X].
 
-## GATE 1 (cosmology) -- PASS at background, with a flagged tension
+## GATE 1 (cosmology) -- CORRECTED (Carl caught a double-count)
 On FLRW: a_mu = 0 so X = 0, F(0) = 0 -- the MOND term contributes NO dark energy (consistent
 with every prior finding; a0 is NOT generated as rho_DE, it is set by q = 3H).  Constraint
 K = q gives q = 3H exactly, so
     a0(t) = 3cH(t)/Z   =>   a0(z)/a0,0 = H(z)/H0   [FALSIFIABLE PREDICTION]
 Z = 3cH0/a0,0 ~ 21.
-Modified Friedmann from the K-sector:  H^2 = (8 pi G_cosmo/3) rho,  G_cosmo/G ~ 1/(3 lam_K+1)
-(up to a units constant).  TENSION: no-ghost wants lam_K > 1, giving G_cosmo/G <= ~1/2, but
-BBN/CMB want G_cosmo ~ G.  With only lam_K free (eta_K = 0 frozen) there is no knob to set
-G_cosmo = G.  Same lam_K corner flagged earlier; needs either the fuller aether-parameter
-freedom or acceptance that G_cosmo != G at the ~2x level.  NOT resolved here.
+Redone with ONE covariant action, ADM once (R already carries KK-K^2 via Gauss-Codazzi;
+my earlier schematic double-counted).  With S = (1/16piG) INT sqrt(-g)[R + b(K_munu K^munu
+- lam_K K^2)]:   G_cosmo/G = 2/(3 b lam_K - b + 2),  = 2/(3 lam_K + 1) at b = 1.
+
+*** THE FACTOR-2 TENSION DISSOLVES, and here is why (three-way coincidence at lam_K = 1/3):
+  - G_cosmo = G  <=>  lam_K = 1/3.
+  - The trace momentum pi = (1 - 3 lam_K) sqrt(h) K vanishes at lam_K = 1/3: the trace mode
+    is non-dynamical there (Horava's conformal point).
+  - The CMC constraint K = q is EXACTLY the statement that the trace mode is non-dynamical.
+  So the value that gives GR cosmology is the value at which the CMC construction is natural.
+  And the no-ghost bound lam_K > 1 that created the 'tension' came from the PROPAGATING
+  khronon scalar, which Gate 2 constrains away -- so that bound no longer applies. ***
+
+CAVEAT, not swept: lam_K = 1/3 is also Horava gravity's notorious STRONG-COUPLING point.
+Whether the CMC/cuscuton constraint CURES that strong coupling (as cuscuton-type sectors
+can) or INHERITS it is the sharp open question -- and it is the same {K=q, H_khronon}
+bracket that Gate 2 needs.  So Gates 1 and 2 have collapsed into ONE decisive calculation.
 
 ## REMAINING GATES
 2. Dirac DOF count for (q, Lam_C, B^mu): do they stay auxiliary, leaving 2 tensor + 1
