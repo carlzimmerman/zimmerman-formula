@@ -387,6 +387,113 @@ sp.pprint(sp.factor(sp.simplify(c_s2_exact)))
 
 
 # ==================================================================================
+head("PART 4b -- ADVERSARIAL CROSS-CHECK 1: THE DETERMINANT ROUTE (no Schur complement)")
+Mmat = sp.zeros(3, 3)
+rows = [eq_phi, eq_B, eq_psi]
+cols = [Aphi, AB, Apsi]
+for r, ex in enumerate(rows):
+    exx = sp.expand(ex)
+    for c_, a_ in enumerate(cols):
+        Mmat[r, c_] = sp.simplify(exx.coeff(a_))
+    resid = sp.simplify(exx - sum(Mmat[r, cc] * cols[cc] for cc in range(3)))
+    assert resid == 0, ("nonlinear residue in row", r, resid)
+detM = sp.factor(sp.simplify(Mmat.det()))
+det_a = sp.expand(sp.simplify(detM.subs(sub_alpha).subs(G0, 0)))
+roots_det = sp.solve(sp.Eq(det_a, 0), w ** 2)
+rep("determinant route gives exactly ONE omega^2 branch (one propagating scalar; "
+    "the (d^2 phi)^2 term creates NO Ostrogradsky partner)", len(roots_det) == 1)
+rep("*** determinant route and Schur-complement route give the IDENTICAL dispersion "
+    "relation -- the reduction is verified by two independent computations ***",
+    sp.simplify(sp.cancel(roots_det[0] - w2_eik)) == 0)
+rep("Hermiticity: the 3x3 quadratic form is self-adjoint (M = M^dagger with k -> -k on "
+    "the conjugate index), a necessary consistency condition on the Fourier average",
+    all(sp.simplify(Mmat[i, j] - Mmat[j, i].subs(k, -k).subs(w, -w)) == 0
+        for i in range(3) for j in range(3)))
+
+
+# ==================================================================================
+head("PART 4c -- ADVERSARIAL CROSS-CHECK 2: DOES A TT MODE SOURCE THE CONSTRAINTS?")
+note("TEST", "PART 11 claims delta N = delta N^i = 0 at linear TT order.  In ya_tensor_exact_2026.py "
+             "that was SET BY HAND.  Here it is COMPUTED: add a genuine TT polarisation to the "
+             "same setup and look for linear-in-gamma terms in the phi and B rows.")
+gam = sp.Function('gamma')(t, z)          # h_xy = h_yx = e*gamma : TT for k || zhat
+phiT = sp.Function('phi')(t, z); BT = sp.Function('B')(t, z); psiT = sp.Function('psi')(t, z)
+hT = sp.exp(2 * e * psiT) * sp.eye(3) + e * sp.Matrix([[0, gam, 0], [gam, 0, 0], [0, 0, 0]])
+rep("the added mode is transverse and traceless for k || zhat "
+    "(delta^ij gamma_ij = 0 and k^i gamma_ij = 0)",
+    sp.simplify(sp.Matrix([[0, gam, 0], [gam, 0, 0], [0, 0, 0]]).trace()) == 0
+    and all(sp.simplify(sp.diff(sp.Matrix([[0, gam, 0], [gam, 0, 0], [0, 0, 0]])[2, j], z)) == 0
+            for j in range(3)))
+NT = sp.exp(e * phiT)
+NiT = sp.Matrix([sp.diff(e * BT, c) for c in coords])
+hinT = hT.inv(); sqhT = sp.sqrt(hT.det()); G3T = christoffel(hT)
+DNT = sp.zeros(3, 3)
+for i in range(3):
+    for j in range(3):
+        DNT[i, j] = sp.diff(NiT[j], coords[i]) - sum(G3T[a][i][j] * NiT[a] for a in range(3))
+KT = sp.zeros(3, 3)
+for i in range(3):
+    for j in range(3):
+        KT[i, j] = (sp.diff(hT[i, j], t) - DNT[i, j] - DNT[j, i]) / (2 * NT)
+KtrT = sum(hinT[i, j] * KT[i, j] for i in range(3) for j in range(3))
+KKT = sum(hinT[i, a] * hinT[j, b] * KT[i, j] * KT[a, b]
+          for i in range(3) for j in range(3) for a in range(3) for b in range(3))
+RicT = ricci(hT); R3T = sum(hinT[i, j] * RicT[i, j] for i in range(3) for j in range(3))
+aT = sp.Matrix([sp.diff(e * phiT, c) for c in coords]); aT[2] = aT[2] + q
+XT = sum(hinT[i, j] * aT[i] * aT[j] for i in range(3) for j in range(3))
+DaT = sp.zeros(3, 3)
+for i in range(3):
+    for j in range(3):
+        DaT[i, j] = sp.diff(aT[j], coords[i]) - sum(G3T[a][i][j] * aT[a] for a in range(3))
+TijT = (DaT + DaT.T) / 2 - hT * sum(hinT[i, j] * DaT[i, j] for i in range(3) for j in range(3)) / 3
+YaT = sum(hinT[i, a] * hinT[j, b] * TijT[i, j] * TijT[a, b]
+          for i in range(3) for j in range(3) for a in range(3) for b in range(3))
+cf = lambda ex, n: sp.simplify(sp.diff(ex, e, n).subs(e, 0) / sp.factorial(n))
+X1T, X2T = cf(XT, 1), cf(XT, 2)
+measT = NT * sqhT
+m0T, m1T, m2T = cf(measT, 0), cf(measT, 1), cf(measT, 2)
+LG2T = cf(sp.expand(NT * sqhT * (R3T + KKT - lam * KtrT ** 2)), 2)
+GserT = G0 + G1 * (e * X1T + e ** 2 * X2T) + sp.Rational(1, 2) * G2 * (e * X1T) ** 2
+LGc2T = sp.expand(sp.Poly(sp.expand((m0T + e * m1T + e ** 2 * m2T) * GserT), e).coeff_monomial(e ** 2))
+L2T = sp.expand(LG2T + LGc2T - 2 * EA * cf(YaT, 2))
+LavT, AmT = fourier_avg(L2T, [phiT, BT, psiT, gam], z)
+Agam = AmT[sp.Function('gamma')][0]
+eqphiT = sp.expand(sp.diff(LavT, AmT[sp.Function('phi')][1]))
+eqBT = sp.expand(sp.diff(LavT, AmT[sp.Function('B')][1]))
+eqpsiT = sp.expand(sp.diff(LavT, AmT[sp.Function('psi')][1]))
+eqgamT = sp.expand(sp.diff(LavT, AmT[sp.Function('gamma')][1]))
+rep("*** the LAPSE equation has NO linear-in-gamma source: d(eq_phi)/d(A_gamma) = 0 ***",
+    sp.simplify(eqphiT.coeff(Agam)) == 0)
+rep("*** the SHIFT equation has NO linear-in-gamma source: d(eq_B)/d(A_gamma) = 0 ***",
+    sp.simplify(eqBT.coeff(Agam)) == 0)
+rep("the psi equation likewise has no linear-in-gamma source (scalar/tensor fully decouple "
+    "at quadratic order, even at a^(0) != 0)",
+    sp.simplify(eqpsiT.coeff(Agam)) == 0)
+rep("conversely the gamma equation receives nothing from phi, B or psi",
+    all(sp.simplify(eqgamT.coeff(AmT[f][0])) == 0
+        for f in (sp.Function('phi'), sp.Function('B'), sp.Function('psi'))))
+note("DERIVED", "=> delta N = delta N^i = 0 at linear TT order is now a COMPUTED RESULT of the "
+                "Gen-2 constraints, not an assumption.  The item ya_tensor_exact_2026.py listed "
+                "as NOT ESTABLISHED is hereby closed.")
+w2T_full = sp.solve(sp.Eq(sp.simplify(sp.cancel(sp.expand(LavT.coeff(Agam).coeff(
+    AmT[sp.Function('gamma')][1])) if False else
+    sp.expand(eqgamT.coeff(Agam)))), 0), w ** 2)
+print("\n  tensor dispersion from the SAME constraint-reduced computation: omega_T^2 =",
+      sp.factor(sp.simplify(w2T_full[0])) if w2T_full else "(degenerate)")
+if w2T_full:
+    cT2 = sp.simplify(sp.cancel(w2T_full[0].subs(G0, 0) / k ** 2))
+    print("  c_T^2 =", sp.factor(sp.simplify(cT2)), "   (G0 = the declared tadpole sector, "
+          "the only term dropped; it is k-independent and cancels against the matter "
+          "second variation)")
+    rep("*** c_T^2 = 1 + 2 eps A(X0) X0 EXACTLY, with NO k-dependence -- "
+        "ya_tensor_exact_2026.py REPRODUCED by a fully independent route, now WITH the ADM "
+        "constraints solved rather than delta N = delta N^i = 0 imposed by hand ***",
+        sp.simplify(sp.expand(cT2 - (1 + 2 * EA * q ** 2))) == 0,
+        "so the promising k^2 tensor behaviour SURVIVES the constraints.  That question is "
+        "answered YES.  It is simply no longer the question that decides the theory.")
+
+
+# ==================================================================================
 head("PART 5 -- THE STRUCTURE OF THE ANSWER: alpha -> alpha_eff(k)")
 # isolate the q-independent (isotropic) core by dropping the O(q k) cross terms:
 # these are the terms odd in q. Split c_s^2 into even/odd in q.
