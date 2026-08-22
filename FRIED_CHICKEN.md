@@ -22,7 +22,7 @@ on BOTH footings (a₀ = 9.3619e-11 canonical / 1.1279e-10 alt).**
 | 7 | **Theoretical health** | no ghost, no gradient instability, no Cherenkov | ✅ K″ > 0 verified over 45 decades |
 | 8 | **Cosmology** | w = −1, Ω_dm = 0.265 to the CMB, CLASS pass intact | ✅ w_DE = −1 to 4.6e-10; charge carries Ω_dm |
 | 9 | **No double count** | clustered sector + phantom ≤ RAR tolerance | ✅ absent under the frame flip — one sector, counted once |
-| 10 | **THE AMPLITUDE LAW** | ρ = √(GM_b a₀)/(4πGr²) as a **dynamical consequence**, not initial data | 🔴 **OPEN — the only one** |
+| 10 | **THE AMPLITUDE LAW** | ρ = √(GM_b a₀)/(4πGr²) as a **dynamical consequence**, not initial data | 🔴 **OPEN — and the barotropic route to it is now CLOSED** (`collapse_2026.py`) |
 
 ---
 
@@ -47,7 +47,20 @@ follow with no freedom left. `virialisation_2026.py` proved the confinement radi
 to be ∝ r_M by a dimensional theorem with a unique solution — the sector has no galactic length
 of its own (c²/a₀ = 31,112 Mpc). What is not proved is that it *settles* there.
 
-**That is requirement 10, and it is a collapse calculation, not an algebraic one.**
+**That is requirement 10.** `collapse_2026.py` has now closed the obvious route to it:
+
+> **No barotropic equation of state `c_s² = c_s²(ρ)` can give both a flat rotation curve and
+> the BTFR.** Flatness forces the isothermal exponent (`ρ ~ r^(-2/(s+1))` equals `r^-2` only at
+> `s = 0`); `s = 0` forces `v_c² = 2σ²` with no reference to `M_b`, hence a *universal* rotation
+> speed; the BTFR forbids one. Three statements about the same exponent, mutually incompatible.
+> The argument never uses the kernel — only that pressure is a function of density — so no
+> ghost-free choice escapes it.
+
+**What that leaves is informative rather than fatal.** The required `σ² ∝ M_b^(1/2)` exactly,
+so the sector's temperature must *know the baryonic mass* — and the only available quantity
+carrying `M_b` is the baryons themselves. **The dark pressure must couple to the baryonic
+field.** Every mechanism tried in this programme made the dark sector respond to *gravity*;
+none made its *pressure* respond to the *baryons*. That is where requirement 10 now sits.
 
 ---
 
