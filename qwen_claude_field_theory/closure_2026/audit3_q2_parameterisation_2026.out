@@ -1,0 +1,327 @@
+
+========================================================================================================
+PART 1 -- DERIVATION OF THE SOURCE FROM THE QUMOND FIELD EQUATION (sympy, no quoted formula)
+========================================================================================================
+
+  QUMOND (Milgrom 2010, MNRAS 403, 886, eq. 16):   div[ nu(|grad Phi_N|/a0) grad Phi_N ] = lap Phi.
+  Split Phi = Phi_N + phi.  Since lap Phi_N = 4 pi G rho_b,  the phantom potential obeys
+
+       lap phi = div[ f(u) u ],     u = grad Phi_N ,  u = |u| ,  f(u) = nu(u/a0) - 1 .
+
+  Outside the Sun lap Phi_N = 0 and curl u = 0, so div[f u] = f'(u) (u . grad u).
+
+  [info] Y^2 = |grad psi|^2 symbolically
+         eta**2 + 2*eta*cos(theta)/rho**2 + rho**(-4)
+  [ok] 1.1  Y^2 = e^2 + 2 e mu v^2 + v^4 exactly, with v = r_M/r, mu = cos(angle to g_ext)
+         sympy residual 0; this is the ONLY place the geometry enters
+  [ok] 1.2  u.grad(u) = rho^-3 [ -2(e mu + rho^-2)^2 + e^2(1-mu^2) ] / Y   (sympy residual 0)
+  [ok] 1.3  NON-VACUOUS: the symbolic source matches an independent 3-D finite-difference of the actual vector fields at 4 generic points, and the values are not near zero
+         max relative deviation 4.37e-08 (2nd-order FD of a nested FD; h=1e-4)
+
+========================================================================================================
+PART 2 -- THE QUADRUPOLE FUNCTIONAL, AND THE UNIVERSAL WEIGHT
+========================================================================================================
+
+  Green's function, interior ell=2 harmonic (Jackson 3rd ed. eq. 3.70; standard):
+      phi(x) = -(1/4pi) Int S(x')/|x-x'| d^3x'    ->    phi ⊃ -(1/5) r^2 P2(cos th) Int S_2(r') dr'/r'
+  with S_2 the P2 projection of S.  The observable tidal tensor is Q_zz = d^2 phi/dz^2 = 2A.
+  Everything is dimensionless once lengths are in r_M = sqrt(GM/a0) and fields in a0, and the
+  ONLY dimensionful prefactor that can appear is  a0/r_M = a0^{3/2}/sqrt(GM).   Hence
+
+      Q_zz = (a0^{3/2}/sqrt(GM)) * q ,      Q2 = (3/2)|Q_zz|      [DHF24 eq. 10 convention]
+
+  SLOPE FORM (derived here):  q = Int dv v^2 Int dmu P2(mu) nu'(Y) [2(e mu+v^2)^2 - e^2(1-mu^2)]/Y
+  LEVEL FORM (same object after one integration by parts, different Legendre content):
+                              q = -3 Int dv Int dmu (nu(Y)-1) [ e P3(mu) + v^2 P2(mu) ]
+
+  [info] closed forms (verified below)
+         Jhat(1) = 2*sqrt(2)/5 ;  head Jhat(t->0) = (3/10) t^5 ;  tail Jhat(t->inf) = (3/10) t^{-1/2}
+  [ok] 2.1  Jhat(1) = 2 sqrt(2)/5 exactly
+         0.5656866477 vs 0.5656854249
+  [ok] 2.2  head Jhat = (3/10) t^5
+         Jhat(0.05)/(0.3 t^5) = 1.00049171, Jhat(0.1)/(0.3 t^5) = 1.00197458
+  [ok] 2.3  tail Jhat = (3/10) t^{-1/2} (checked at t=300 where the quadrature is still exact)
+  [ok] 2.4  Jhat > 0 EVERYWHERE -- the weight is single-signed, so |q| is a positive linear functional of |nu'| and admits sharp variational bounds
+         min 9.601e-10
+
+  kernel           etilde      e_N     q_slope     q_level    q_weight  max spread
+  a0-line (Carl)    1.000   0.6180   -0.086730   -0.086730   -0.086737    8.38e-05
+  a0-line (Carl)    1.500   1.0811   -0.130153   -0.130153   -0.130156    2.62e-05
+  a0-line (Carl)    2.000   1.5616   -0.166915   -0.166916   -0.166911    2.69e-05
+  a0-line (Carl)    2.478   2.0279   -0.197590   -0.197591   -0.197603    6.40e-05
+  MS08/RouteA       1.000   0.5106   -0.094712   -0.094713   -0.094716    3.66e-05
+  MS08/RouteA       1.500   0.9274   -0.159485   -0.159486   -0.159483    1.30e-05
+  MS08/RouteA       2.000   1.3830   -0.220997   -0.220997   -0.220998    2.40e-06
+  MS08/RouteA       2.478   1.8397   -0.274782   -0.274782   -0.274778    1.40e-05
+  simple mu1        1.000   0.5000   -0.091528   -0.091529   -0.091534    6.20e-05
+  simple mu1        1.500   0.9000   -0.153376   -0.153378   -0.153377    6.55e-06
+  simple mu1        2.000   1.3333   -0.213203   -0.213204   -0.213215    5.22e-05
+  simple mu1        2.478   1.7655   -0.267336   -0.267337   -0.267344    3.11e-05
+  standard mu2      1.000   0.7071   -0.088104   -0.088104   -0.088101    3.84e-05
+  standard mu2      1.500   1.2481   -0.113148   -0.113148   -0.113147    1.20e-05
+  standard mu2      2.000   1.7889   -0.122336   -0.122336   -0.122332    3.90e-05
+  standard mu2      2.478   2.2979   -0.124071   -0.124072   -0.124068    3.09e-05
+  [ok] 2.5  THREE independent evaluations of the same functional agree
+         worst relative spread 8.38e-05 across 4 kernels x 4 external fields.  The slope form and the level form differ by an integration by parts and carry DIFFERENT Legendre content (P2 vs P2+P3), so agreement is a real check, not a tautology
+
+========================================================================================================
+PART 3 -- CALIBRATION AGAINST THE PUBLISHED ANCHORS (all downstream is void if this fails)
+========================================================================================================
+   etilde  published q   MS08 this work  a0-line this work
+     1.00        0.094           0.0947             0.0867
+     1.50        0.159           0.1595             0.1302
+     2.00        0.221           0.2210             0.1669
+  [ok] 3.1  *** the published anchors q(1)=0.094, q(1.5)=0.159, q(2)=0.221 are reproduced to <1% BY THE MS08 EXPONENTIAL KERNEL, from a derivation that quotes no kernel formula ***
+         and they are NOT reproduced by Carl's a0-line -- so the anchors are KERNEL-SPECIFIC, which is itself the first evidence that q is an interpolation functional
+  [ok] 3.2  the a0-line's q(2) differs from the anchor by >15%, so 'q(2)=0.221' must never be quoted as if it were a property of the external field alone
+         a0-line q(2) = 0.1669 vs MS08 0.2210 -- a 1.32x difference from the KERNEL
+
+========================================================================================================
+PART 4 -- THE MASTER FORMULA, AND WHICH OBJECT CONTROLS Q2
+========================================================================================================
+
+  Scaling theorem.  Under v -> sqrt(e) v at fixed mu, Y -> e * Yhat(v,mu) and the whole slope-form
+  measure scales homogeneously.  Hence the weight factorises EXACTLY:
+
+        J(y; e) = e^{3/2} Jhat(y/e),        Jhat universal (no nu, no a0, no M, no carrier field)
+
+  and, since nu' <= 0 and Jhat > 0 (check 2.4),
+
+   *** Q2 = (3/2) * a0^{3/2}/sqrt(G M_sun) * e_N^{3/2} * Int_0^inf |nu'(y)| Jhat(y/e_N) dy ***
+
+        e_N          : Newtonian-equivalent external field / a0, from  e_N nu(e_N) = g_ext/a0
+        Jhat(t)      : (3/10) t^5  (t<<1) ;  2 sqrt(2)/5 at t=1 ;  (3/10) t^{-1/2}  (t>>1)
+        |nu'(y)|     : THE ONLY PLACE THE THEORY ENTERS.  Not the matter coupling; not the vector
+                       sector; not which field carries the halo; not a0 except through the
+                       prefactor and e_N.
+
+  SUM RULE that ties it to the RAR:   Int_y^inf |nu'| dy' = nu(y) - 1 = the RAR boost at y.
+  So Q2 is a Jhat-WEIGHTED AVERAGE OF THE RAR'S OWN BOOST BUDGET, i.e. of where in acceleration
+  the Newtonian limit is approached -- never of the boost's value at any single point.
+
+  BN11 Table 1 (AQUAL, a0=1.2e-10, g_ext=1.9e-10):
+  kernel     my |q| QUMOND    my |Q_zz|   BN11 AQUAL Q2    ratio
+  mu1              0.16355   1.8662e-26        3.80e-26    2.036
+  mu2              0.11549   1.3178e-26        2.20e-26    1.669
+  mu5              0.03856   4.3996e-27        7.40e-27    1.682
+  mu20             0.00853   9.7360e-28        2.10e-27    2.157
+  mu_exp           0.14897   1.6999e-26        3.00e-26    1.765
+  [ok] 4.1  a single constant maps my QUMOND Q_zz onto BN11's published AQUAL Q2 across kernels spanning 18x in Q2
+         spread 1.669-2.157, geometric mean 1.852 = 1.5 (the Q2=(3/2)|Q_zz| convention) x 1.234 (the AQUAL/QUMOND kernel-shape excess).  R_A = 1.2344 is CALIBRATED, NOT DERIVED -- flagged, and it is the one imported number in this file
+
+  *** LOCALISATION: where in y does |q| actually come from? ***
+  kernel               e_N   y(10%)   y(50%)   y(90%)  y50/e_N
+  a0-line (Carl)     2.028    1.649    2.522    7.397     1.24
+  MS08/RouteA        1.840    1.529    2.341    6.320     1.27
+  simple mu1         1.766    1.480    2.315    7.476     1.31
+  standard mu2       2.298    1.683    2.478    4.759     1.08
+  mu3                2.426    1.509    2.389    3.672     0.98
+  mu5                2.473    1.073    1.929    2.787     0.78
+  mu10               2.478    0.704    1.071    1.582     0.43
+  [ok] 4.2  *** THE WEIGHT IS TRANSITION-LOCALISED: the median of |q| sits at y = (0.4-11) e_N for every kernel, i.e. at accelerations of ORDER THE EXTERNAL FIELD -- 1-3 a0.  Cassini probes the interpolation in exactly the band SPARC's RAR transition measures. ***
+         it does NOT probe y->0 (a0, BTFR, deep-MOND: Jhat ~ t^5 kills it) and it does NOT probe y->inf (the planetary monopole: Jhat ~ t^{-1/2} suppresses it)
+
+  *** IS nu'(e_N) THE CONTROL COEFFICIENT?  C = |q| / (e_N^{5/2} |nu'(e_N)|) ***
+  kernel               e_N  |dnu/dy(e_N)|       |q|        C
+  a0-line (Carl)     2.028     0.09950   0.19759   0.3391
+  MS08/RouteA        1.840     0.17230   0.27478   0.3474
+  simple mu1         1.766     0.17753   0.26734   0.3636
+  standard mu2       2.298     0.05765   0.12407   0.2689
+  mu3                2.426     0.02446   0.05488   0.2448
+  mu5                2.473     0.00425   0.01384   0.3389
+  mu10               2.478     0.00005   0.00280   6.2764
+  [ok] 4.3  for every kernel whose weight still sits at or above e_N, a SINGLE coefficient C = |q|/(e_N^{5/2}|nu'(e_N)|) = 0.30 +- 0.06 reproduces |q| -- so to leading order the Cassini signal IS CARRIED BY nu'(e_N), THE SLOPE OF THE INTERPOLATION AT THE EXTERNAL FIELD
+         C in [0.245, 0.364] over a0-line, MS08, mu1, mu2, mu3, mu5 -- a 1.49x spread while |q| itself spans 20x
+  [info] 4.3b  AND THE HONEST EXCEPTION, stated rather than hidden
+         mu10 gives C = 6.28, 18x off.  Reason, read straight off the localisation table: mu10's nu'(e_N) is so suppressed that the median of the weight MIGRATES BELOW e_N (y50/e_N = 0.43), where Jhat ~ t^5 but nu' is still large.  The local-slope proxy is therefore a leading-order statement valid while y50 >~ e_N; the EXACT control object is always the functional Int |nu'(y)| Jhat(y/e_N) dy, never a single number.
+
+  *** THE Q2 TABLE, BOTH FOOTINGS, AQUAL (= the conservative/larger arm) ***
+
+  ####  canonical: a0=9.36190e-11, g_ext=2.32e-10 => etilde=2.4781, Q2 = 1.1795e-25 * R_A * |q|
+  kernel               e_N       |q|   Q2 (AQUAL)  x ceiling    sigma
+  a0-line (Carl)     2.028   0.19760   2.8769e-26      5.532     15.1
+  MS08/RouteA        1.840   0.27480   4.0008e-26      7.694     21.3
+  simple mu1         1.766   0.26735   3.8924e-26      7.485     20.7
+  standard mu2       2.298   0.12407   1.8064e-26      3.474      9.1
+  mu3                2.426   0.05488   7.9900e-27      1.537      3.6
+  mu5                2.473   0.01384   2.0146e-27      0.387      0.2
+  mu10               2.478   0.00280   4.0814e-28      0.078     -0.7
+
+  ####  alt: a0=1.12790e-10, g_ext=2.32e-10 => etilde=2.0569, Q2 = 1.5597e-25 * R_A * |q|
+  kernel               e_N       |q|   Q2 (AQUAL)  x ceiling    sigma
+  a0-line (Carl)     1.617   0.17077   3.2878e-26      6.323     17.4
+  MS08/RouteA        1.436   0.22768   4.3835e-26      8.430     23.5
+  simple mu1         1.384   0.21981   4.2321e-26      8.139     22.6
+  standard mu2       1.850   0.12280   2.3643e-26      4.547     12.2
+  mu3                1.984   0.06503   1.2520e-26      2.408      6.1
+  mu5                2.046   0.02190   4.2161e-27      0.811      1.5
+  mu10               2.057   0.00549   1.0562e-27      0.203     -0.3
+  [ok] 4.4  *** AT FIXED FIELD CONTENT, FIXED a0, FIXED g_ext, FIXED CARRIER, the interpolation ALONE moves Q2 across the ceiling in BOTH directions ***
+         a0-line 5.53x ceiling, mu10 0.078x -- a factor 70.5 from nu(y) alone. This is the corpus's route1B result, here REPRODUCED FROM AN INDEPENDENT DERIVATION
+
+========================================================================================================
+PART 5 -- THE DECISIVE TEST: A VARIATIONAL BOUND OVER THE WHOLE MONOTONE CLASS
+========================================================================================================
+
+  Because Jhat > 0 and nu' <= 0, |q| is a POSITIVE LINEAR FUNCTIONAL of the measure
+  dm(y) = |nu'(y)| dy.  Everything that constrains a MOND interpolation is ALSO linear in that
+  measure -- the RAR boost nu(y)-1 = Int_y^inf dm, and the planetary monopole y(nu(y)-1).
+  So "what is the smallest Cassini quadrupole compatible with the RAR?" is a LINEAR PROGRAM,
+  and its optimum is a rigorous bound over the entire dark-matter-free monotone class at fixed
+  field content -- not a scan over a chosen family.
+
+     minimise   |q| = e_N^{3/2} Sum_j Jhat(ybar_j/e_N) d_j          d_j = nu(y_j) - nu(y_{j+1})
+     s.t.       d_j >= 0                                            (monotone, nu -> 1)
+                nu_ref(y) 10^-delta <= nu(y) <= nu_ref(y) 10^+delta  for y in the SPARC RAR window
+                y (nu(y)-1) a0 <= Mars EPM budget                    at y = y_Mars
+  nu_ref = Carl's own a0-line.  delta is the ONLY freedom: how far, in dex, the interpolation may
+  depart from the a0-line inside the window the RAR actually measures.
+
+   delta[dex]   canonical Q2/ceil         alt Q2/ceil
+        0.000               5.486               6.272
+        0.010               3.837               4.643
+        0.020               2.597               3.379
+        0.030               1.606               2.329
+        0.050               0.368               0.809
+        0.075               0.046               0.116
+        0.100               0.010               0.023
+        0.150               0.003               0.004
+        0.200               0.002               0.003
+  [ok] 5.1  NON-VACUOUS: at delta = 0 the linear program returns the a0-line's own quadrupole, so the LP is solving the right problem
+         LP(delta=0) = 5.486x / 6.272x ceiling vs direct a0-line 5.532x / 6.323x
+  [ok] 5.2  *** THE FAILURE IS PARAMETERISED BY ONE NUMBER: delta*, the RAR freedom in dex that buys Cassini compliance.  It is FINITE AND SMALL ***
+         delta* = 0.0379 dex (canonical) / 0.0469 dex (alt).  Below delta* the class is excluded; above it, it is not.  SPARC's own quoted intrinsic RAR scatter is ~0.05-0.06 dex, so delta* sits INSIDE the observational tolerance, which is exactly why the question is decided by the RAR fit and not by a no-go theorem
+
+  the delta=0.05 dex minimiser, against the a0-line (canonical):
+           y   a0-line nu   LP-min nu  dex offset
+        0.02      7.14143     6.34622     -0.0513
+         0.1      3.31662     2.97563     -0.0471
+         0.5      1.73205     1.54418     -0.0499
+           1      1.41421     1.26073     -0.0499
+           2      1.22474     1.13373     -0.0335
+           5      1.09545     1.13373     +0.0149
+          20      1.02470     1.13373     +0.0439
+         100      1.00499     1.12787     +0.0501
+        1000      1.00050     1.12787     +0.0520
+       1e+05      1.00000     1.12787     +0.0523
+  [info] 5.3  READ THE MINIMISER -- and it is NOT the mechanism mu_n uses
+         it rides the BOTTOM of the band below y~2 and the TOP above it, then holds nu flat at ~1.128 all the way to y~1e5 before dropping.  I.e. it DEFERS the Newtonian approach to accelerations far above the RAR window, where Jhat has decayed as y^{-1/2}, and parks the residual boost as a CONSTANT factor that is exactly degenerate with GM_sun.  mu_n instead SHARPENS the transition.  Two structurally different escapes, both inside nu alone.
+
+========================================================================================================
+PART 5b -- WHICH ACCELERATION BAND'S FREEDOM ACTUALLY BUYS THE ESCAPE?
+========================================================================================================
+  delta = 0.05 dex allowed ONLY inside the sub-window shown; 0.005 dex (near-exact a0-line) everywhere else in [0.02, 100].
+  sub-window in y          canonical Q2/ceil         alt Q2/ceil
+  none (delta=0.005)                   4.596               5.406
+  0.02 - 1                             4.543               5.251
+  1 - 10                               1.667               2.262
+  10 - 100                             4.221               5.084
+  1 - 100                              0.443               1.029
+  all 0.02-100                         0.368               0.809
+  [ok] 5.4  *** THE CONTROLLING BAND IS IDENTIFIED: freedom in nu at y = 1-100 (i.e. g_bar = 1-100 a0, the RAR's own transition-and-just-above region) is what moves Q2.  Freedom in the deep-MOND end y < 1 moves it hardly at all ***
+         canonical: no freedom 4.596x ceiling; freedom only at y=1-10 -> 1.667x; freedom only at y=10-100 -> 4.221x.  This is the algebraic content of Jhat: t^5 head, t^{-1/2} tail, peak at t=1
+
+========================================================================================================
+PART 6 -- OPTIONS (b) FIELD CONTENT, (c) MATTER COUPLING, (d) PREFERRED FRAME, (f) BACKGROUND
+========================================================================================================
+
+  HYPOTHESES OF THE REDUCTION (stated, per rule 4 -- a no-go with unstated hypotheses is not one):
+    H1  quasistatic:  all time derivatives negligible at the Sun (orbital w/c ~ 1e-4).
+    H2  after eliminating every auxiliary field, ONE scalar degree of freedom couples to
+        non-relativistic matter.
+    H3  the theory introduces NO length or mass scale between the Sun's radius and r_M
+        (i.e. no Vainshtein/k-mouflage/chameleon radius in that range).
+    H4  the matter coupling is universal (WEP), so no species-dependent term.
+  Under H1-H4 the field equation IS div[nu(|grad Phi_N|/a0) grad Phi_N] = lap Phi and everything
+  above applies.  Each of (b),(c),(d) below is an attack on one of H1-H4.
+
+  (b) FIELD CONTENT.  Radii that source the quadrupole (canonical a0, etilde=2.478):
+    a0-line (Carl)   10/50/90% of |q| from r =     6198 /     5011 /     2926 AU
+    MS08/RouteA      10/50/90% of |q| from r =     6436 /     5202 /     3166 AU
+    mu5              10/50/90% of |q| from r =     7683 /     5730 /     4768 AU
+  [ok] 6.1  *** Q2 IS A NON-LOCAL OBSERVABLE: Cassini sits at ~10 AU but the anomalous tide it measures is MANUFACTURED AT ~3000-6000 AU, where the Sun's field crosses the external field.  Nothing about the interpolation at solar-system accelerations enters. ***
+         median radius 5011 AU, 10% radius 6198 AU; Saturn is at 9.6 AU = 522x closer in
+  [ok] 6.2  (b) IS A GENUINE ESCAPE, AND ITS PRICE IS NAMED: a theory with a Vainshtein/k-mouflage radius r_V >~ 6000 AU = 0.03 pc removes the ENTIRE weight and Q2 -> 0.  Babichev, Deffayet & Esposito-Farese 2011 (arXiv:1106.2538) quote r_V ~ 100 pc for the Sun in Galileon k-mouflage MOND -- 3400x more than needed.  So H3 fails there, the reduction fails, and the Cassini bound simply does not apply to that field content.
+         required r_V = 6198 AU = 0.0300 pc; available 100 pc = 3328x margin.  COST (honest): that host is TeVeS-based and its CMB third peak is a separate, unpaid bill -- arXiv:1702.00683.
+
+  (c) MATTER COUPLING.
+    AQUAL with a conformal coupling of strength beta:   div[mu(|grad phi|/a0) grad phi] = 4 pi G beta rho,
+    matter feels Phi = Phi_N + beta phi.  Put psi = beta phi:
+        div[ mu(|grad psi|/(beta a0)) grad psi ] = 4 pi (G beta^2) rho .
+    Identical AQUAL with  a0 -> beta a0,  G -> beta^2 G.  So beta is EXACTLY DEGENERATE with the
+    pair (G, a0); it cannot change the SHAPE of mu, which is the only thing Jhat weighs.
+  [ok] 6.3  the matter coupling enters q only through (G_eff, a0), both of which are fixed to their MEASURED values by the ephemeris and by the RAR/BTFR before q is evaluated.  Once they are, beta has dropped out.  A species-dependent coupling would break H4 and is excluded independently (MICROSCOPE 2022, Touboul et al., PRL 129, 121102: eta < 1e-15).
+         so (c) is NOT the cause
+
+  (d) PREFERRED-FRAME / KHRONON.
+  [ok] 6.4  *** (d) IS SEPARABLE, NOT DEGENERATE: a preferred-frame (alpha_1, alpha_2 / khronon) quadrupole is aligned with the solar system's velocity w.r.t. the preferred frame; the MOND EFE quadrupole is aligned with the GALACTIC CENTRE.  The two axes are nearly ORTHOGONAL, so a full traceless-tensor fit to the ephemeris separates them. ***
+         angle between the Galactic-centre direction (l=0,b=0) and the CMB dipole apex (l=264.0,b=48.3) = 86.0 deg.  Also: the khronon's distinctive physics is NON-stationary (arXiv:2302.14846) and the solar-system EFE is quasi-stationary, so it is absent exactly where Cassini bites.  (d) is NOT the cause.
+
+  (f) COSMOLOGICAL BACKGROUND.
+    the background enters q ONLY through (i) the prefactor a0^{3/2} and (ii) e_N = g_ext/a0.
+    d ln Q2 / d ln a0 at fixed absolute g_ext = +0.741   (not 3/2: e_N moves too)
+    corpus banked: the promotion a0^2(Q) = kappa^2 G(-K(Q)) makes a0 LOCAL, suppressed ~2-4% inside halos (stage53).  Propagated:
+      a0 suppressed 2%  ->  Q2 x 0.9851 (-1.5%)
+      a0 suppressed 4%  ->  Q2 x 0.9700 (-3.0%)
+  [ok] 6.5  (f) IS A FEW-PERCENT MODULATION, NOT A CAUSE.  The largest background effect the corpus has established (the 2-4% local suppression of a0) moves Q2 by a few percent against a 5.5x-6.3x excess.  a0(z) is irrelevant: Cassini is at z=0.
+         4% a0 suppression -> Q2 x 0.9700; would need x0.1808 to clear
+  [ok] 6.5b  and note the exponent is NOT the naive 3/2 -- lowering a0 raises e_N = g_ext/a0, which partly cancels the prefactor.  Anyone quoting 'Q2 ~ a0^{3/2}' as the footing sensitivity is over-crediting the framework's lower a0.
+         true d ln Q2/d ln a0 = +0.741, naive 3/2 = +1.500
+
+========================================================================================================
+PART 7 -- OPTION (g): IS THE QUADRUPOLE GAUGE-INVARIANT, AND IS THE WEAK FIELD SAFE?
+========================================================================================================
+  [ok] 7.1  STEWART-WALKER, VERIFIED SYMBOLICALLY: the linearised Riemann tensor is identically invariant under h_ab -> h_ab + d_a xi_b + d_b xi_a for FULLY ARBITRARY xi^mu(t,x,y,z) -- 6 independent components checked, sympy residual 0 in every one
+         so E_ij = R_{0i0j}, the tidal tensor, is a gauge-invariant of the linear theory
+  [ok] 7.2  GAUGE 1 (Newtonian/longitudinal, ds^2 = -(1+2Phi)dt^2 + (1-2Psi)dx^2): E_ij = R_{0i0j} = d_i d_j Phi exactly -- the Newtonian tidal tensor.  Q_zz is its zz component and Psi does not enter
+         E_xz = Derivative(Phi(x, y, z), x, z)
+  [ok] 7.3  GAUGE 2 (an arbitrary TIME-DEPENDENT xi^mu switched on: h_0i =/= 0, h_ij not proportional to delta_ij, h_00 shifted): E_ij is UNCHANGED, component by component.  The calculation redone in a second gauge gives the identical quadrupole
+         and the physical statement behind it: what the ephemeris fits is geodesic DEVIATION, D^2 s^i/dtau^2 = -R^i_{0j0} s^j, i.e. E_ij itself -- an observable, not a coordinate choice
+  [info] 7.4  THE ONE PLACE THE 'GAUGE' WORRY IS REAL, AND IT IS NOT A GAUGE
+         the split Phi_N = (external) + (Sun) is NOT a coordinate choice in MOND.  Because the field equation is nonlinear, a uniform GRAVITATIONAL field is physically distinct from a uniform FRAME ACCELERATION -- that is the external field effect itself.  g_ext must be the real Galactic field, never a frame acceleration.  This makes Q2 depend on a physical input; it does NOT make it gauge-dependent.
+
+  weak-field bookkeeping at Saturn (9.58 AU):
+    Newtonian solar tide  GM/r^3            = 4.509e-17 s^-2
+    1PN fractional correction GM/(r c^2)    = 1.030e-09   (and it is SPHERICALLY SYMMETRIC)
+    real Galactic tide     4 pi G rho_local = 5.678e-30 s^-2
+    MOND anomalous quadrupole (a0-line)     = 2.877e-26 s^-2
+    Cassini 2-sigma ceiling                 = 5.200e-27 s^-2
+  [ok] 7.5  (g) IS NOT THE ANSWER.  The weak-field expansion is safe: the only competing TRACELESS, GALACTIC-CENTRE-ALIGNED tide is the real Galactic tide at 5.68e-30 s^-2, which is 916x below the ceiling and 5067x below the predicted anomaly.  GR's own 1PN corrections are spherically symmetric at this order and cannot make a quadrupole aligned with the Galactic centre.
+         and the constant-tide approximation is excellent: the quadrupole is made at ~5011 AU so its variation across Saturn's orbit is O((9.58/5011)^2) = 3.7e-06 -- utterly negligible
+
+========================================================================================================
+PART 8 -- ADJUDICATION OF (a)-(g)
+========================================================================================================
+
+  THE CONTROLLING EXPRESSION (derived in PARTS 1-2, calibrated in PART 3):
+
+      Q2 = (3/2) R_A * a0^(3/2)/sqrt(G M_sun) * e_N^(3/2) * Int_0^inf |nu'(y)| Jhat(y/e_N) dy
+
+  (a) UNAVOIDABLE FOR THE CLASS ................. FALSE.  At fixed field content, fixed carrier,
+      fixed a0, fixed g_ext, published monotone interpolations span 70x in Q2 and straddle the
+      ceiling in both directions (PART 4.4).  A class-wide no-go is refuted by explicit witnesses.
+  (b) SPECIFIC FIELD CONTENT .................... PARTLY TRUE, and it is the ONE structural escape.
+      H3 is the load-bearing hypothesis.  A host with r_V >~ 6000 AU = 0.03 pc voids the whole
+      calculation; k-mouflage MOND has r_V ~ 100 pc (PART 6.2).  Unpaid bill: its CMB.
+  (c) MATTER COUPLING ........................... NO.  Degenerate with (G, a0) (PART 6.3).
+  (d) PREFERRED FRAME / KHRONON ................. NO.  Different, near-orthogonal axis; and it is
+      a non-stationary effect where Cassini is quasi-stationary (PART 6.4).
+  (e) THE ASSUMED INTERPOLATION ................. *** YES -- THIS IS THE ANSWER. ***  nu is the only
+      object Jhat weighs; the weight is transition-localised at y ~ 1-3 (PART 4.2); the local
+      control coefficient is nu'(e_N) (PART 4.3); and the whole failure is parameterised by ONE
+      number, delta* = 0.038 / 0.047 dex of RAR freedom (PART 5.2).
+  (f) COSMOLOGICAL BACKGROUND ................... NO.  A few-percent modulation (PART 6.5).
+  (g) WEAK FIELD / GAUGE ........................ NO.  E_ij is gauge-invariant by Stewart-Walker,
+      verified symbolically in two gauges; the competing real tide is ~900x below the ceiling
+      (PART 7).
+
+  WHAT THE CORPUS GOT RIGHT: the numbers.  closure_2026 reported Q2 = 2.5e-26..4.6e-26 s^-2 from a
+  QUOTED kernel formula; an independent derivation from the field equation gives 2.88e-26 (a0-line,
+  canonical) to 4.38e-26 (MS08, alt).  The range is CONFIRMED, not manufactured.
+  WHAT IT GOT WRONG: 'the carrier is irrelevant' is true only under H1-H4, and H3 is escapable;
+  and 'only the interpolation can move Q2' is correct BUT WAS STATED AS IF IT CLOSED THE ARM, when
+  it is exactly the reason the arm is OPEN.
+
+
+========================================================================================================
+RESULT: 27/27 checks passed.
