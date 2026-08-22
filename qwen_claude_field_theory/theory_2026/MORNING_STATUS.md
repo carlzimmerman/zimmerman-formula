@@ -37,6 +37,18 @@ Hessian identity 4e-3, chi=0 limit = validated AQUAL.
 - eps ~ 1e-24 is unexplained. M* ~ 0.6 Msun is put in by the value of eps, not derived.
 - a0 = 9.3619e-11 is an INPUT of this action. Not derived from Lambda here.
 
+## OVERNIGHT UPDATE — the first-principles program landed, and it KILLS the frozen form
+
+The 10-agent derivation (adversary included, ~250 sympy checks) confirmed the static
+structure AND found the decisive relativistic failure: Rbar_ij is built from the spatial
+metric, so the Y-sector feeds the GW dispersion with a Lambda-anti-suppressed k^4 term.
+GW170817 forces eps < ~5e-54 against the eps ~ 1e-24 the Cassini window needs:
+**excluded by ~29 orders.**  Full table: FIRST_PRINCIPLES_VERDICT.md.
+
+The identified minimal repair -- Y built from D_<mu a_nu> (the lapse-tidal invariant you
+proposed) -- keeps tonight's dq/dchi number EXACTLY and is tensor-silent.  New action,
+new checklist; not claimed tonight.
+
 ## The free prediction
 
 The same chi ~ 0.6 that fixes the Sun applies to every solar-mass system: WIDE BINARIES
