@@ -40,3 +40,29 @@ coefficient conditions.  The cuscuton dissolves all of it.
 ## The falsifiable prediction that survives everything
 a0(z) = a0,0 H(z)/H0.  During matter domination a0 rises as H; this is directly testable
 against the a0(z) front and is DIFFERENT from a0^2 ~ rho_DE.
+
+## REFINEMENT (Carl): protect the T-equation from MOND contamination
+CORRECTION: "K=q(T) is the cuscuton EOM" holds for the BARE cuscuton only.  With a0(T) inside
+F, T enters S_MOND twice -- via u_mu(T) (geometric) AND explicitly via a0(T) -- so
+dS_MOND/dT gets a (da0/dT) E_a0 piece and K=q(T) is NOT automatically preserved once MOND is
+coupled.
+
+REPAIR: route a0 through an AUXILIARY q, not T.  Frozen refined action:
+  S = (c^3/16piG) INT sqrt(-g) R
+    + INT sqrt(-g) [ mu^2 sqrt(-grad T.grad T) - V(T) ]        (cuscuton, non-dynamical)
+    + S_MOND[g, u, q, chi]   with  a0(q) = c q/Z               (a0 via q, NOT T)
+    + INT sqrt(-g) Lambda ( q - V'(T)/mu^2 )                   (ties q to T algebraically)
+    + S_m.
+Now da0/dT = 0: the explicit channel is ELIMINATED.  Residual T-equation:
+  (cuscuton) + [dS_MOND/dT via u] - Lambda V''(T)/mu^2 = 0,   Lambda = -dS_MOND/dq.
+Two residual channels: (1) the geometric foliation coupling via u_mu(T) [present in ANY
+preferred-foliation MOND]; (2) the multiplier back-reaction -Lambda V''/mu^2.  DESIGN HANDLE:
+if the MOND auxiliary sector makes dS_MOND/dq = 0 on shell (a0-EOM stationary), then Lambda=0
+and channel (2) dies, leaving only the geometric (1).  Whether that holds is part of gate 1.
+
+## The three open gates (unchanged, #1 decisive)
+1. coupled (T, q, MOND) constraint matrix -> exactly 2 tensor + 0 scalar?  [THE structural gate]
+2. relativistic metric equations -> lensing / PPN limit?
+3. V(T) chosen so a0(z) = a0,0 H(z)/H0 holds globally without pathology?
+Plus the unchanged empirical wall: Cassini ~10.7 sigma (Simple mu), a0 normalisation Z~21 fitted.
+This is the version to run the full Dirac calculation on.
