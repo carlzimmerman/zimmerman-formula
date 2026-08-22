@@ -21,6 +21,20 @@ THE QUESTION IS THEREFORE NOT "is it zero" BUT "what k-power does it carry":
   Gen-2:  delta T_ij     ~ d gamma . a^(0)  =>  Y_a^(2) ~ (d gamma)^2 (a^(0))^2  =>  k^2
                                           => a pure c_T SHIFT with NO k-enhancement.
 This script derives the exact coefficient.
+
+--------------------------------------------------------------------------------------
+CORRECTION FILED 2026-08-22 (gen2_constraint_reduced_quadratic_2026.py).  Section F below
+contains a STALE SENTENCE: it says the TT content is "IDENTICALLY ZERO for a wave parallel
+to a^(0)".  That contradicts checks B1/B3 in this same file, which verify
+<dT.dT> = (1/4) a^2 k^2 (h+^2 + hx^2) for BOTH directions.  B1/B3 are right; the sentence
+in F is wrong.  The exact constraint-reduced calculation confirms B1/B3: both directions
+give the same c_T^2 = 1 + 2 eps A(X0) X0.  No numerical result in this file changes.
+
+Also closed, by that same script: the item this file lists as "NOT ESTABLISHED HERE" --
+that delta N = delta N^i = 0 at linear TT order once the constraints are SOLVED.  It is
+now established (helicity decoupling at k || a; a transversality theorem for the Y
+operator at k perp a), and it changes c_T only at O((eps A X0)^2) ~ 1e-50.
+--------------------------------------------------------------------------------------
 """
 import sympy as sp
 def head(t): print("\n"+"="*100+f"\n{t}\n"+"="*100)

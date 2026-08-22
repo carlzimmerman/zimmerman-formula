@@ -335,16 +335,44 @@ for Lc, nm in ((1.24e-4, "0.13 mm  (the deep-MOND cubic scale already in the rep
         print("     cutoff %-48s at %-6s :  eps < %.2e   (short by %.1e x)"
               % (nm, en, epsmax, eps_need / epsmax))
 print("""
-  eta_K cannot rescue it: k*^2 scales as eta_par, and eta_par <= eta_K + 2 with
-  eta_K < 2 required for khronon stability, so k* can be raised by at most a factor
-  sqrt((2+2)/eta_par) -- 6 orders in k* at 1 AU, against the ~10 orders needed.""")
-etamax = 2.0
-xv = 0.0059 / a0
-X = xv * xv
-Aa = X**2 / (1 + X)**4
-print("     at 1 AU with the MAXIMUM allowed eta_K = 2:  k* = %.3e 1/m  (lambda* = %.3e m)"
-      % (np.sqrt(3 * (etamax + 2 / (1 + xv)**2) / (4 * eps_need * Aa * ellv**2)),
-         2 * np.pi / np.sqrt(3 * (etamax + 2 / (1 + xv)**2) / (4 * eps_need * Aa * ellv**2))))
+  That table depends on a choice of UV cutoff, which is arguable.  Here is the same
+  question with NO cutoff assumption at all -- just "the unstable wavelength must be
+  shorter than a length on which we already trust GR":""")
+print("     %-34s %-14s %s" % ("require lambda* shorter than", "at X0 = 1", "at 1 AU (x=6.3e7)"))
+for S, sn in ((1.496e11, "1 AU  = 1.5e11 m"), (6.96e8, "the solar radius"),
+              (6.4e6, "the Earth's radius"), (1.0, "1 metre")):
+    row = []
+    for xv in (1.0, 0.0059 / a0):
+        X = xv * xv
+        Aa = X**2 / (1 + X)**4
+        etp = 2.0 / (1 + xv)**2
+        row.append(3 * etp / (4 * Aa * ellv**2 * (2 * np.pi / S)**2))
+    print("     %-34s eps < %-8.1e eps < %.1e" % (sn, row[0], row[1]))
+print("""
+  Can eta_K rescue it?  k*^2 scales as eta_par = eta_K + 2/(1+x)^{2}, and khronon
+  stability needs eta_eff = eta_K + 2/(1+x) < 2, i.e. eta_K < 2 (and section (1b) of the
+  companion script forces eta_K = 0 outright).  Even at the absolute ceiling eta_K = 2:""")
+for xv, en in ((0.0059 / a0, "1 AU"), (1.0, "X0 = 1")):
+    X = xv * xv
+    Aa = X**2 / (1 + X)**4
+    for ek, ekn in ((0.0, "eta_K = 0"), (2.0, "eta_K = 2 (excluded, shown as a ceiling)")):
+        etp = ek + 2.0 / (1 + xv)**2
+        ks = np.sqrt(3 * etp / (4 * eps_need * Aa * ellv**2))
+        print("     %-8s %-42s k* = %.3e 1/m   lambda* = %.3e m"
+              % (en, ekn, ks, 2 * np.pi / ks))
+print("""     At 1 AU, eta_K = 2 buys 7.8 orders in k* (because eta_par there is only 5e-16)
+     and brings lambda* from 8e7 m down to 1.3 m -- still macroscopic, and it costs the
+     deep-MOND limit.  At X0 = 1, where eta_par is already 0.5, it buys a factor 2.2 and
+     nothing else.  The galaxy environment is the binding one and eta_K cannot move it.
+
+  CAVEATS, stated because they are the only ways out I can see:
+     * this is the QUADRATIC spectrum.  A nonlinear analysis could in principle saturate
+       the growth; that is not computed here.
+     * matter perturbations were set to zero.  The unstable modes are vacuum khronon
+       modes, so matter cannot remove them, but it can change the growth rate.
+     * the instability is removed if the frozen F is replaced by one with F_X -> 0 more
+       slowly, i.e. if eta_par does not collapse as 2/(1+x)^2 in the Newtonian regime.
+       That is a change to the MOND kernel, not a tuning of eps.""")
 
 head("8.  CORRECTION TO THE REPO'S OWN TEXT  [DERIVED]")
 print("""  ya_tensor_exact_2026.py section F asserts the TT content is "IDENTICALLY ZERO for
@@ -360,7 +388,7 @@ print("""  TENSOR  [DERIVED; constraints solved, nothing set to zero by hand]
       G_T = 1 + 2 eps A(X0) X0      (k-INDEPENDENT: no k^4 anywhere)
       c_T^2/c^2 = 1 + 2 eps A(X0) X0  for h_x and for both polarisations at k || a^(0);
                 = 1 + 2u + 2u^2 (lam_K-1)/(2 lam_K-1) + O(u^3)  for h_+ at k perp a^(0)
-      max over all backgrounds: |c_T/c - 1| <= 0.053 eps = 5.9e-26  vs the 1e-15 bound.
+      max over all backgrounds: |c_T/c - 1| <= 0.105 eps = 1.2e-25  vs the 1e-15 bound.
 
     The promising k^2 behaviour SURVIVES the full ADM constraints.  Elimination of the
     lapse and shift changes the tensor sector by exactly one thing: an O((eps A X0)^2)
@@ -376,14 +404,16 @@ print("""  TENSOR  [DERIVED; constraints solved, nothing set to zero by hand]
       c_s^2(k >> k*) = (1 - lam_K)/(3 lam_K - 1)                   < 0   for lam_K > 1
       k*^2 = 3 eta_par / (4 eps A(X0) ell^2)
 
-    At eps = 1.1e-24 the instability sets in at 8e7 m in the Solar System and 0.08 pc at
-    the MOND transition, with growth times of seconds and months respectively.  It is
-    removed only by eps <~ 1e-46, i.e. ~22 orders below the phenomenological window.
+    At eps = 1.1e-24 the instability sets in at 8.2e7 m in the Solar System and 2.6e15 m
+    (0.084 pc) at the MOND transition, with growth times of 0.2 s and 0.2 yr respectively.
+    Pushing it below scales on which GR is already tested needs eps <~ 1e-33 (1 AU at
+    X0 = 1) and eps <~ 1e-58 for a millimetre cutoff -- 9 to 34 orders below the
+    phenomenological window, depending on how conservative one is.
 
   THE STRUCTURAL POINT.  Gen-1's Y_R is built from the SPATIAL METRIC, so its
   4-derivative, 1/a0^4-carrying operator lands on the TENSORS (k^4 -> GW170817, ~29
   orders).  Gen-2's Y_a is built from the LAPSE, so it misses the tensors -- and lands
-  on the SCALAR instead (~22 orders).  The two generations fail in mirror-image sectors
+  on the SCALAR instead (9 to 34 orders, depending on the cutoff assumed).  The two generations fail in mirror-image sectors
   for the same reason.  Any repair must find an invariant whose 4-derivative content is
   suppressed in BOTH sectors, not moved from one to the other.""")
 print("\nFAILURES: %s" % (FAIL if FAIL else "none"))
