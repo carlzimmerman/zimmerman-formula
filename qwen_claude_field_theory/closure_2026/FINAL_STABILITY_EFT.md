@@ -12,13 +12,18 @@
 
 ---
 
-## 2. Strong Coupling & Mimetic Clock Caustics
+## 2. Exact EFT Energy Scale & Sub-Millimeter Gravity
 
-1. **Mimetic Caustic Formation:**
-   Standard mimetic gravity exhibits caustic singularities where the geodesic congruence focuses ($\nabla_\mu u^\mu \to -\infty$).
-   In DW-MOND, $\phi$ is determined by fixed initial data $\phi(t_0, x) = 0$ rather than independent Cauchy data. During non-linear spherical collapse, caustic formation is regularized at the EFT cutoff scale.
+### Dimensional Derivation:
+In natural units ($\hbar = c = 1$):
+- Reduced Planck mass: $M_{\mathrm{Pl}} = \frac{1}{\sqrt{8\pi G}} \approx 2.435 \times 10^{18}\ \mathrm{GeV} = 2.435 \times 10^{27}\ \mathrm{eV}$.
+- MOND acceleration parameter: $\frac{a_0}{c^2} \approx 1.041 \times 10^{-27}\ \mathrm{m}^{-1} \approx 2.055 \times 10^{-34}\ \mathrm{eV}$.
 
-2. **EFT Cutoff Scale:**
-   $$\Lambda_{\mathrm{EFT}} \sim \sqrt{\frac{M_{\mathrm{Pl}} a_0}{c^2}} \approx \sqrt{\frac{(1.22 \times 10^{19}\ \mathrm{GeV})(9.36 \times 10^{-11}\ \mathrm{m/s^2})}{(3 \times 10^8\ \mathrm{m/s})^2}} \approx 1\ \mathrm{keV} \approx (10^{-8}\ \mathrm{cm})^{-1}$$
-   - This cutoff is far above all astrophysical and galactic scales ($r \gtrsim 10^{-4}\ \mathrm{pc}$).
-   - Classical MOND and cosmological dynamics operate entirely within the valid regime of the effective field theory.
+The strong-coupling / effective field theory energy cutoff scale is:
+$$\Lambda_{\mathrm{EFT}} = \sqrt{M_{\mathrm{Pl}} \frac{a_0}{c^2}} = \sqrt{(2.435 \times 10^{27}\ \mathrm{eV}) \times (2.055 \times 10^{-34}\ \mathrm{eV})} = \sqrt{5.004 \times 10^{-7}\ \mathrm{eV}^2} \approx \mathbf{0.71\ \mathrm{meV}}\quad (7.1 \times 10^{-4}\ \mathrm{eV})$$
+
+### Characteristic Distance Scale:
+$$\lambda_{\mathrm{EFT}} = \frac{\hbar c}{\Lambda_{\mathrm{EFT}}} \approx \frac{1.973 \times 10^{-7}\ \mathrm{eV}\cdot\mathrm{m}}{7.07 \times 10^{-4}\ \mathrm{eV}} \approx 2.79 \times 10^{-4}\ \mathrm{m} \approx \mathbf{0.28\ \mathrm{mm}}\quad (280\ \mu\mathrm{m})$$
+
+- **Physical Meaning:** $\Lambda_{\mathrm{EFT}} \approx 0.71\ \mathrm{meV}$ matches the **cosmological dark energy scale** $\Lambda_{\mathrm{DE}} \sim (\rho_{\mathrm{DE}})^{1/4} \approx 2.3\ \mathrm{meV}$ and corresponds to the sub-millimeter scale ($\sim 0.28\ \mathrm{mm}$) probed by tabletop torsion-balance tests of Newton's law (Eöt-Wash).
+- All astrophysical, galactic ($r \gtrsim 10^{-4}\ \mathrm{pc} \sim 10^{12}\ \mathrm{m}$), and Solar System ($r \gtrsim 10^9\ \mathrm{m}$) phenomenology operate strictly within the valid low-energy classical regime.

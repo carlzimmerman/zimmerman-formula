@@ -1,37 +1,29 @@
 # FINAL PPN & CASSINI CONSTRAINTS: Deffayet–Woodard Nonlocal MOND
 
-## 1. Weak-Field Post-Newtonian Metric
+## 1. Solar System & Cassini Conjunction Derivation
 
-In the Solar System, the gravitational acceleration is $g \gg a_0$.
-Defining the dimensionless acceleration ratio:
-$$y = \frac{|\nabla \Phi|}{a_0} \approx \frac{G M_\odot / r^2}{a_0}$$
+For a test particle or light ray at distance $r$ from a mass $M_\odot$:
+$$g(r) = \frac{G M_\odot}{r^2}, \qquad y(r) = \frac{g(r)}{a_0}$$
 
-At the orbit of the Earth ($r \approx 1\ \mathrm{AU}$):
-$$g \approx 5.93 \times 10^{-3}\ \mathrm{m/s^2}, \qquad a_0 \approx 9.36 \times 10^{-11}\ \mathrm{m/s^2} \implies y \approx 6.34 \times 10^7$$
+### Cassini Solar Conjunction:
+For radio signals grazing the Sun at impact parameter $r_{\mathrm{imp}} \approx 1.6 R_\odot \approx 1.113 \times 10^9\ \mathrm{m}$ (Cassini experiment, Bertotti et al. 2003):
+$$g_{\mathrm{imp}} = \frac{(6.6743 \times 10^{-11})(1.9885 \times 10^{30})}{(1.113 \times 10^9)^2} \approx 107.1\ \mathrm{m/s^2}$$
+$$y_{\mathrm{imp}} = \frac{107.1}{9.36 \times 10^{-11}} \approx 1.144 \times 10^{12}$$
 
-### MOND Interpolation in the Solar System:
-The effective MOND interpolation function is:
+### MOND Deviation from General Relativity:
+The effective MOND constitutive interpolation is:
 $$\mu_{\mathrm{eff}}(y) = 1 - 2 f'(4 y^2) = 1 - \left( 1 - \frac{y}{3} \right) e^{-2y/3}$$
 
-The deviation from General Relativity is:
-$$\delta \mu(y) = \mu_{\mathrm{eff}}(y) - 1 = - \left( 1 - \frac{y}{3} \right) \exp\left( -\frac{2}{3} y \right)$$
+The deviation from General Relativity at the Cassini impact parameter is:
+$$\delta \gamma \approx \left| \mu_{\mathrm{eff}}(y_{\mathrm{imp}}) - 1 \right| = \left| 1 - \frac{y_{\mathrm{imp}}}{3} \right| \exp\left( -\frac{2}{3} y_{\mathrm{imp}} \right)$$
 
-Evaluating at $y = 6.34 \times 10^7$:
-$$\delta \mu(1\ \mathrm{AU}) \approx \frac{6.34 \times 10^7}{3} \exp\left( -4.23 \times 10^7 \right) \approx 10^{-1.8 \times 10^7} \approx 0$$
+Evaluating the exponential:
+$$\frac{2}{3} y_{\mathrm{imp}} \approx 7.63 \times 10^{11} \implies \delta \gamma \approx \frac{1.144 \times 10^{12}}{3} \exp\left( -7.63 \times 10^{11} \right) \approx 10^{-3.31 \times 10^{11}}$$
 
 ---
 
-## 2. PPN Parameters and Cassini Tracking
+## 2. Comparison with Cassini Precision
 
-1. **Eddington Parameter $\gamma_{\mathrm{PPN}}$:**
-   $$\gamma_{\mathrm{PPN}} = 1 + \mathcal{O}(\delta \mu) = 1.000000000\dots \quad (|\gamma_{\mathrm{PPN}} - 1| \ll 10^{-100})$$
-   - **Cassini Spacecraft Bound:** $|\gamma_{\mathrm{PPN}} - 1| < 2.3 \times 10^{-5}$ (Bertotti et al. 2003).
-   - **Result:** Satisfied by a margin of over $10^7$ orders of magnitude due to the exponential screening factor $e^{-\sqrt{Z}/3}$.
-
-2. **Nonlinearity Parameter $\beta_{\mathrm{PPN}}$:**
-   $$\beta_{\mathrm{PPN}} = 1 + \mathcal{O}(\delta \mu) = 1$$
-
-3. **Preferred-Frame Parameters:**
-   $$\alpha_1 = 0, \qquad \alpha_2 = 0$$
-
-4. **Conclusion:** DW-MOND is indistinguishable from standard General Relativity throughout the Solar System, completely satisfying all Solar System and Lunar Laser Ranging tests.
+- **Observed Cassini Precision:** $|\gamma_{\mathrm{PPN}} - 1| < 2.3 \times 10^{-5}$ (Bertotti et al. 2003).
+- **Theoretical MOND Deviation:** $\delta \gamma \approx 10^{-3.31 \times 10^{11}}$.
+- **Conclusion:** The MOND correction is suppressed by over $3.3 \times 10^{11}$ orders of magnitude below the experimental bound, fully satisfying all Solar System, Lunar Laser Ranging, and Cassini constraints.
