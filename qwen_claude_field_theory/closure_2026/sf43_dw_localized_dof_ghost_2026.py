@@ -75,11 +75,12 @@ eigs = list(K.eigenvals().keys())
 print("  field-space kinetic matrix K (X, xi) =", K.tolist())
 print("  eigenvalues =", sorted(eigs))
 check(set(eigs) == {sp.Rational(1, 2), sp.Rational(-1, 2)},
-      "localization kinetic matrix has eigenvalues {+1/2, -1/2} -- indefinite signature (+,-)",
-      "=> exactly ONE healthy + ONE GHOST scalar in the (X, xi) sector")
+      "UNRESTRICTED localized rep: kinetic matrix eigenvalues {+1/2,-1/2} -- one +, one - direction",
+      "NOT a physical DOF count: this is the formal localization structure, before fixed-IC constraints")
 check(K.det() < 0,
-      "det K < 0  (signature (+,-))  => a ghost is PRESENT in the localized formulation",
-      f"det K = {K.det()}  -- the Deser-Woodard localization ghost, model-independent")
+      "det K < 0 => a FORMAL localization ghost in the UNRESTRICTED local theory (not yet physical)",
+      f"det K = {K.det()}. Deser-Woodard distinguish this from the retarded nonlocal theory, whose "
+      "physical spectrum is decided ONLY after imposing fixed-IC constraints (sf44's job)")
 # diagonalise to exhibit the ghost explicitly: X = (u+v)/sqrt2, xi = (u-v)/sqrt2
 u, v = sp.symbols('u v', real=True)
 Xd, xid = (u + v) / sp.sqrt(2), (u - v) / sp.sqrt(2)
@@ -101,18 +102,23 @@ print(r"""
     M     (nonlocal)   : fixed by the FIRST-ORDER transport nabla_mu[sqrt(-g) u^mu(M+f)] = 0 along u
                          with fixed IC. First-order ODE => 0 wave-propagating DOF (a determined field).
     X, xi (Box^{-1})   : the ONLY 2-derivative pair => the PART-A ghost lives HERE and nowhere else.
-  So the localized scalar spectrum = { non-dynamical phi, non-dynamical M } + { (X,xi): 1 healthy +
-  1 ghost }. Metric: 2 tensor polarizations (tensor sector unchanged by DW; c_T = 1).
+  So the UNRESTRICTED localized scalar sector = { phi (constraint), M (transport) } + { (X,xi): one +,
+  one - kinetic direction }. NOTE (correction): the metric tensor DOF count and c_T are NOT
+  independently certified here -- DW state the MOND/cosmology interpolation and discuss GW propagation,
+  but give no nonlinear Hamiltonian 2-DOF certificate. The quadratic action + constraint structure must
+  be DERIVED (sf44) before '2 tensor DOF, c_T=1' can be marked established.
 """)
 # cuscuton-type rank-drop illustration for the (dphi)^2=-1 constraint sector (schematic, 1D):
 pdot, lam = sp.symbols('phidot lambda_phi', real=True)
 L_phi = lam * (-pdot**2 + 1)                      # lambda((dphi)^2+1) time part, mostly-plus
 Hess_phi = sp.diff(L_phi, pdot, 2)                 # d^2/dphidot^2 = -2 lambda (NOT independent of lam)
 check(sp.simplify(Hess_phi + 2 * lam) == 0,
-      "clock sector d^2L/dphidot^2 = -2 lambda_phi: phidot fixed by the constraint, not a free DOF",
-      "phi is a constrained (cuscuton-like) foliation field, 0 propagating DOF")
+      "clock sector d^2L/dphidot^2 = -2 lambda_phi: velocity-Hessian rank drop is NECESSARY for 0 DOF",
+      "NOT SUFFICIENT: the full primary/secondary Dirac chain + Poisson matrix is OWED to conclude "
+      "phi carries 0 propagating DOF (sf44). A vanishing Hessian alone does not prove it.")
 check(True,
-      "M fixed by a FIRST-ORDER transport along u => 0 wave DOF (determined field, not propagating)")
+      "M is defined by a FIRST-ORDER transport along u with fixed IC (suggestive of 0 wave DOF), but "
+      "its dynamical status is likewise OWED the full constraint analysis, not asserted here")
 
 
 # ==================================================================================
@@ -146,14 +152,18 @@ check(True, "open gate pinned: fixed-IC removal of the (X,xi) ghost = the exact 
 hdr("VERDICT (honest -- neither viable nor no-go)")
 # ==================================================================================
 print(r"""
-  [PROVED]   localized Box^{-1} => (X,xi) kinetic signature (+,-): ONE ghost (PART A, model-indep).
-  [DERIVED]  DW localized spectrum = 2 tensor + non-dynamical(phi, M) + (X,xi){1 healthy + 1 ghost}.
-  [OPEN]     whether fixed causal IC removes the ghost from the physical spectrum (DW resolution) --
-             the decisive certificate; plus f'(Z)/f''(Z) kinetic contributions, and matter coupling.
-  => DW-MOND is the first equation-level MOND+lensing+cosmology chassis, but its LOCAL DOF certificate
-     is NOT closed: a formal ghost is present and its removal must be PROVEN, not assumed. This is
-     'different hard' from the local MMG route (localization-ghost + a0-free), not 'less hard'.
-     a0 is a FREE parameter here; a0^2 = kappa^2 c^2 G rho_DE remains an OPEN derivation target.
+  [PROVED]   FORMAL localized ghost: YES. The UNRESTRICTED localized rep of Box^{-1} has a (+,-)
+             kinetic signature (PART A, model-independent).
+  [NOT YET DETERMINED]  PHYSICAL ghost of the ORIGINAL retarded nonlocal theory. The formal negative
+             direction is a physical mode ONLY IF it has independently-specifiable Cauchy data AFTER
+             the retarded/fixed-IC projection. That is NOT decided here -- it is exactly sf44's test.
+  [OWED]     the phi/M/tensor DOF counts (full Dirac chain), f'(Z)/f''(Z) kinetic contributions to X,
+             and matter-coupling re-excitation.
+  => Correct verdict: FORMAL localized ghost YES; PHYSICAL ghost NOT YET DETERMINED. Do NOT kill
+     DW-MOND on this script, and do NOT call it viable. a0 is FREE; a0^2 = kappa^2 c^2 G rho_DE is an
+     OPEN derivation target. Next: sf44_dw_physical_phase_space_2026.py (Minkowski + FLRW, full
+     localized linear equations, retarded/fixed-IC projection, explicit free-Cauchy-data count of the
+     negative-kinetic combination, dispersion/energy test after projection).
 """)
 
 print("=" * 82)
