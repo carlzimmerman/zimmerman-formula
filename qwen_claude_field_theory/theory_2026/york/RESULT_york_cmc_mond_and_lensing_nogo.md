@@ -96,16 +96,21 @@ so a lensing-sized D/C = O(ν−1) violates GW170817 (|D/C| ≲ 2×10⁻¹⁵) b
 where MOND lensing needs νρ = ρ + (ν−1)ρ (the ν² gap). A universal local F(K) cannot know which
 source mass produced the local acceleration (F′_req ∝ √M), giving an ≈41× galaxy/cluster mismatch.
 
-**(c) Elliptic phantom carrier ⇒ instantaneous physical channel.** The QUMOND carrier
+**(c) Elliptic phantom carrier — OPEN, NOT a proven no-go.** ⚠️ CORRECTED. The QUMOND carrier
 ∇²Φ = ∇·[ν∇Ψ] supplies exactly ρ_ph = (1/4πG)∇·[(ν−1)∇Ψ] at 2+0, single-metric (so c_γ=c_GW=1 and
-Φ_phys=Ψ_phys ⇒ g_lens=g_dyn=νg_N). But Φ is fixed by an *elliptic slice equation* from ρ, and
-**matter couples directly to Φ**, so a change in ρ shifts distant accelerations on the same slice
-with no null signal — a physical (super-luminal) channel. Unlike GR (elliptic constraints fix
-initial data; physical DOF hyperbolic), here Φ *is* the force law. The CMC preferred foliation does
-not launder this (cf. Hořava instantaneous-mode Cauchy-problem issues). Hyperbolizing the carrier
-makes it propagate: 2+0 → 2+1.
+Φ_phys=Ψ_phys ⇒ g_lens=g_dyn=νg_N) — the first construction to close the phantom AND avoid the cone
+split. Its auxiliary sector is 0 DOF (det Δ = k¹²). The open question is **causal acceptability**:
+Φ is fixed by an elliptic slice equation and matter couples to it, which is *suggestive* of an
+instantaneous channel — but the inference "elliptic ⇒ acausal" is TOO STRONG. Preferred-foliation
+theories (Hořava) consistently contain elliptic sectors with a legitimate causal structure; whether
+this one does is a separate characteristic/Cauchy analysis that has NOT been done. So the honest
+status is: the elliptic carrier is a **live candidate**, and its full nonlinear coupled Dirac +
+well-posedness/causal analysis is the DECISIVE open gate — it may be a legitimate constrained sector
+of a preferred-foliation theory, or a genuine no-go. Not settled either way.
 
-**The trilemma.** {MOND lensing} + {2 local gravitational DOF} + {causal single-metric} — pick two.
+**The (conditional) trilemma.** IF the elliptic carrier proves causally unacceptable, the picture is
+a trilemma — {MOND lensing} + {2 local gravitational DOF} + {causal single-metric}, pick two. That
+conditional is exactly what the open gate decides.
 
 ---
 
@@ -115,16 +120,20 @@ makes it propagate: 2+0 → 2+1.
 > the gravitational sector has two propagating tensor degrees of freedom, and the MOND scalar
 > sector is removed from the local propagating phase space by its nonlinear constraint structure.
 
-> **No-go theorem.** Within this two-local-gravitational-DOF framework, a MOND lensing completion
-> cannot simultaneously be local, single-metric, and causal while keeping the MOND sector
-> non-propagating. Local disformal completions fail the lensing/cone requirements; elliptic phantom
-> carriers reproduce the static MOND lensing source but introduce an instantaneous physical channel;
-> restoring causality requires an additional propagating field (2+0 → 2+1).
+> **No-go theorem (local-disformal — ESTABLISHED).** Within this two-local-gravitational-DOF
+> framework, a LOCAL DISFORMAL single-metric completion cannot supply the MOND lensing phantom while
+> keeping 2+0 and luminal photon/graviton propagation: the gap-closing coefficient is non-local, and
+> a lensing-sized disformal splits the cone (GW170817). [`gate2_*`, referee-sustained.]
 
-Assumptions (stated for the no-go): (A) two local gravitational DOF; (B) single physical metric for
-matter and light; (C) the MOND sector is non-propagating (elliptic/constrained); (D) the completion
-operators are local and foliation-spatial. Relaxing any one has a known escape (nonlocal metric MOND
-à la DEW — but a₀ becomes a free coupling; or a propagating vector à la AeST — but 2+0 is lost).
+> **Open gate (elliptic carrier — NOT settled).** The elliptic QUMOND carrier DOES supply the phantom
+> at 2+0 single-metric with c_γ=c_GW; whether its instantaneous elliptic sector is causally acceptable
+> under the CMC preferred foliation (as in Hořava-type theories) or genuinely acausal is UNDECIDED,
+> pending the full nonlinear coupled Dirac + characteristic/Cauchy analysis of S_York + S_Q + S_m.
+
+Assumptions (for the established disformal no-go): (A) two local gravitational DOF; (B) single metric;
+(C) MOND sector non-propagating; (D) completion operators local, foliation-spatial. Known escapes on
+relaxing one: nonlocal metric MOND (DEW — a₀ becomes free); propagating vector (AeST — 2+0 lost). The
+elliptic-carrier gate is the live in-class question that could avoid all of these.
 
 ---
 
@@ -136,8 +145,9 @@ operators are local and foliation-spatial. Relaxing any one has a known escape (
 | a₀(z) ∝ H(z) | ✓ within the stated construction (evolution law derived, Z-independent) |
 | MOND weak-field dynamics | ✓ (g² = g_N² + a₀ g_N) |
 | static MOND phantom source | ✓ (elliptic carrier, ρ_ph = (ν−1)ρ) |
-| local causal relativistic lensing | ✗ (three-obstruction no-go) |
-| complete viable relativistic theory | ✗ |
+| local disformal lensing completion | ✗ ESTABLISHED (non-local D + GW170817 cone; referee-sustained) |
+| elliptic-carrier causal acceptability | ⚠️ **UNSETTLED** — not proven acausal, not proven causal; open gate |
+| complete viable relativistic theory | ✗ not established (certification incomplete) |
 
 Ceilings (do not overstate): **κ = ½ and Z ≈ 21 are postulated/fitted**, not first-principles —
 only the a₀(z) *proportionality* is predicted. The no-go is conditional on assumptions A–D. PPN/

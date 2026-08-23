@@ -893,3 +893,24 @@ equation of state is physically sane — survives and is strengthened. What is r
 *number*, and the method that produced it: a nonlinear-looking ODE was handed to a solver before
 anyone checked whether it was linear. Sixth control-caught error of the programme, and the first
 whose correction improves the result.
+
+---
+
+## 2026-08-22 — OVERSTATED: "elliptic QUMOND carrier ⇒ superluminal / causal no-go" (Claude, corrected same day)
+
+In the theory_2026/york/ field-theory closure, the elliptic QUMOND phantom carrier (∇²Φ = ∇·[ν∇Ψ],
+Φ entering the physical metric matter sees) was briefly asserted to produce a **physical
+instantaneous/superluminal channel**, and a "causal trilemma" was written into
+`RESULT_york_cmc_mond_and_lensing_nogo.md` and `MASTER_CANDIDATE_action.md` as if established.
+
+**That inference — "elliptic MOND potential ⇒ physical superluminal signalling" — was TOO STRONG.**
+Preferred-foliation theories (Hořava-type) consistently contain elliptic sectors together with a
+legitimate causal structure; the existence of an elliptic equation does not by itself prove an
+acausal physical signal. The honest status is NARROWER and UNSETTLED: *the elliptic carrier has not
+been shown causally acceptable, nor acausal.* The verdict requires the full characteristic/Cauchy
+analysis of the coupled S_York + S_Q + S_m (principal symbol, characteristic cones, constraint
+propagation, domain of dependence), which is the decisive open gate — not a proven no-go.
+
+Retracted: the causal no-go / trilemma as an *established* result. Preserved: the ESTABLISHED
+local-disformal no-go (non-local D + GW170817 cone, referee-sustained); the certified D=0 2+0 spine;
+the 0-DOF auxiliary result; a₀(z) ∝ √ρ_DE. Docs corrected in place with ⚠️ markers.

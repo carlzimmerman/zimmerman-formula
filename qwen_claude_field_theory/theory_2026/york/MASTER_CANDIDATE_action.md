@@ -36,9 +36,13 @@ Physical (single) metric:  d s̃² = −N² e^{2Φ} dt² + e^{−2Ψ} h_ij dx^i 
 
 ## Open (why this is candidate, not proven)
 1. Full nonlinear Dirac algebra of the ENTIRE action (aux + cuscuton + matter coupled).
-2. **Well-posed CAUSAL evolution of the elliptic MOND sector** — this IS the trilemma: the elliptic
-   Φ is instantaneous and matter couples to it ⇒ a physical super-luminal channel unless the carrier
-   is hyperbolized (which costs 2+0 → 2+1). Expected to FAIL causal viability at 2+0.
+2. **Well-posed CAUSAL evolution of the elliptic MOND sector** — the DECISIVE open gate, UNSETTLED
+   (⚠️ corrected: earlier "expected to FAIL / superluminal" was OVERSTATED). The elliptic Φ is
+   instantaneous and matter couples to it, which is *suggestive* of an acausal channel — but
+   "elliptic ⇒ acausal" is too strong: preferred-foliation theories (Hořava) consistently host
+   elliptic sectors with a legitimate causal structure. The verdict requires the full
+   characteristic/Cauchy analysis of the COUPLED S_York+S_Q+S_m (principal symbol, characteristic
+   cones, constraint propagation, domain of dependence) — running, not yet concluded either way.
 3. Full relativistic PPN / Cassini (inherited μ-function EFE-Q₂ ~ few-σ liability).
 4. Cosmological perturbations from the same action.
 5. Tensor propagation on nontrivial backgrounds.
