@@ -46,9 +46,23 @@ MOND scalar sector (μ_gal only — NO screening):
 
 Matter (universal coupling to ONE physical metric; the map is DECLARED OPEN, not invented):
 
-    S_m = S_m[g̃_μν, ψ_m],   g̃_μν = C(Φ,X) g_μν + D(Φ,X) ∇_μΦ ∇_νΦ
-    weak-field ⇒ g̃_00 = g_00 − 2Φ/c² (leading PN); C, D UNSPECIFIED until lensing/PPN fixes
-    them subject to c_T=1, G_eff=G.
+    S_m = S_m[g̃_μν, ψ_m],   g̃_μν = C(Φ,σ) g_μν + D(Φ,σ) u_μ u_ν,  σ = |D_iΦ|² (foliation-spatial)
+    weak-field ⇒ g̃_00 = g_00 − 2Φ/c² (leading PN); C, D restricted to the FOLIATION-SPATIAL
+    class (Gate-2 Phase 1) subject to c_T=1, G_eff=G.
+
+    🔴 GATE 2 RESULT (2026-08-22, GATE2_D_VERDICT.md): the u_μu_ν disformal completion is
+    NO_GO as the MOND-lensing mechanism, but does NOT kill the theory.
+      • Phase 1 (DOF FIRST): a nonzero D preserves the exact 2+0 IFF C,D are foliation-spatial
+        C(Φ,σ), D(Φ,σ) — COVARIANT C(Φ,X)/D(Φ,X) injects Z_Φ ∝ (C_X·tr+D_X·ρ)≠0 → 2+1. The
+        admissible class is DERIVED by DOF-preservation, non-empty (`gate2_dof_preservation_2026.py`).
+      • Phase 2: within that local class {2+0} ∩ {gap-closing} ∩ {luminal} is EMPTY. Only D
+        lenses (Σ=Φ_g+Ψ_g−D/2); the unique closing D=−4φ_ph is NON-LOCAL (∇⁻²), outside the
+        local class; and c_γ²=(C−D)/C with GW170817 forcing |D/C|≲2e-15 while disformal-sourced
+        lensing needs D/C=O(1) (excluded ~15 orders). Over-determined ⇒ DERIVED no-go, not fitted
+        (`gate2_lensing_2026.py`, `gate2_cone_gw170817_2026.py`, `gate2_hostile_referee_2026.py`).
+      • SURVIVES: the D=0 2+0 spine, a₀(z)=a₀,₀H(z)/H₀, c_T=1. Open escapes (both leave this
+        class, must be re-gated): (a) g-frame AQUAL scalar carries (ν−1)ρ itself — the ν² gap;
+        (b) add a propagating vector (AeST) — different DOF count.
 
 EFE / Solar-System quadrupole: NOT a new field. Solve the SAME nonlinear Φ equation with
 D_iΦ → g_{e,i} on the subsystem's outer boundary; Φ = Φ_e + φ linearises to
@@ -108,6 +122,8 @@ dangerous surfaces y→0, y→∞, ε→0, ε→∞, A′→0, L→0.
 | L = r_M as per-system input   | works, but NOT a closed theory  | (same status as MOND's g_ext input) |
 | ε_s, m                        | PHENOMENOLOGICAL parameters     | need independent calibrator |
 | γ_PPN = 1 / lensing           | 🔴 engineered, NOT derived       | OPEN |
+| u_μu_ν disformal g̃-completion | 🔴 NO_GO as lensing source (2+0⊥gap⊥luminal EMPTY) | gate2_*_2026.py, GATE2_D_VERDICT.md |
+| foliation-spatial D preserves 2+0 | DERIVED (Gate-2 Phase 1)     | gate2_dof_preservation_2026.py |
 | wide-binary γ_v               | branch-dependent PREDICTION     | escreen_widebinary_fork_2026.py |
 | cosmological evolution a₀(z)  | genuine PREDICTION              | — |
 
