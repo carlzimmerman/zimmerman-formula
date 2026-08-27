@@ -1,0 +1,178 @@
+
+==============================================================================
+SETUP: exact fields, exact constraints, mode machinery
+==============================================================================
+  [ok] background C_M = 0 (vacuum, exact)
+  [ok] background S2' = D^2(q+lnN) = 0 (exact)
+  [ok] background S3 = 0, pi_N = 0 (exact)
+  background: y0 = c^2 g / a0 = c2*g/a0  > 0  (generic MOND branch)
+    [t=    2.0s] start lin
+  linearizing constraints (exact d/d eps) ...
+    [t=   10.2s] lin done
+
+==============================================================================
+D1  ALL 16 BRACKETS of (pi_N, C_M, S2', S3)  [computed, none assumed]
+==============================================================================
+    [t=   10.5s] modes done, building Sig
+  Sig[pi_N ,pi_N ] = 0
+  Sig[pi_N ,C_M  ] = -c2*(a0*mu0*(g**2 + 2*I*g*k3 - k1**2 - k3**2) + c2*g*mu1*(g**2 + 2*I*g*k3 - k3**2))/(N0*a0)
+  Sig[pi_N ,S2'  ] = (-g**2 - 2*I*g*k3 + k1**2 + k3**2)/N0
+  Sig[pi_N ,S3   ] = 0
+  Sig[C_M  ,pi_N ] = -c2*(a0*mu0*(-g**2 + 2*I*g*k3 + k1**2 + k3**2) + c2*g*mu1*(-g**2 + 2*I*g*k3 + k3**2))/(N0*a0)
+  Sig[C_M  ,C_M  ] = 0
+  Sig[C_M  ,S2'  ] = 0
+  Sig[C_M  ,S3   ] = I*c2*g*k3*(k1**2 + k3**2)*(-a0*mu0 + c2*g*mu1)/(2*a0)
+  Sig[S2'  ,pi_N ] = (g**2 - 2*I*g*k3 - k1**2 - k3**2)/N0
+  Sig[S2'  ,C_M  ] = 0
+  Sig[S2'  ,S2'  ] = 0
+  Sig[S2'  ,S3   ] = (k1**2 + k3**2)*(-I*g*k3 + k1**2 + k3**2)/2
+  Sig[S3   ,pi_N ] = 0
+  Sig[S3   ,C_M  ] = I*c2*g*k3*(k1**2 + k3**2)*(-a0*mu0 + c2*g*mu1)/(2*a0)
+  Sig[S3   ,S2'  ] = (k1**2 + k3**2)*(-I*g*k3 - k1**2 - k3**2)/2
+  Sig[S3   ,S3   ] = 0
+  [ok] operator antisymmetry Sig_AB(k) = -Sig_BA(-k)  (all 16 entries)
+  [ok] b-entry {C_M, S2'} = 0 EXACTLY (both depend only on configuration vars)
+  [ok] {pi_N, S3} = 0
+  [ok] diagonal zero, incl. {S3(k),S3(-k)} = 0 on the static (pi_bar=0) background
+  [FAIL] {pi_N, S2'} = -+ symbol of D^2(1/N .)  (matches -D^2(1/N) up to bracket sign)   entry = (-g**2 - 2*I*g*k3 + k1**2 + k3**2)/N0,  -D^2(E+/Nbar)|symbol = (-g**2 + 2*I*g*k3 + k1**2 + k3**2)/N0
+
+  ell  = {pi_N,C_M} = -c2*(a0*mu0*(g**2 + 2*I*g*k3 - k1**2 - k3**2) + c2*g*mu1*(g**2 + 2*I*g*k3 - k3**2))/(N0*a0)
+  a    = {pi_N,S2'} = (-g**2 - 2*I*g*k3 + k1**2 + k3**2)/N0
+  c    = {C_M,S3}  = I*c2*g*k3*(k1**2 + k3**2)*(-a0*mu0 + c2*g*mu1)/(2*a0)
+  K'   = {S2',S3}  = (k1**2 + k3**2)*(-I*g*k3 + k1**2 + k3**2)/2
+  [ok] principal ell = +- c^2[mu k_perp^2 + (mu+y mu') k_par^2]/N0  (baseline L_N form)   ell_pr = c2*(a0*k1**2*mu0 + k3**2*(a0*mu0 + c2*g*mu1))/(N0*a0)
+  [ok] principal a = +- k^2/N0   a_pr = (k1**2 + k3**2)/N0
+  [ok] principal K' = +- k^4/2  (baseline K = C_q k^4, C_q = 1/2)   K_pr = k1**4/2 + k1**2*k3**2 + k3**4/2
+  principal c = I*c2*g*k3*(-k1**2*(a0*mu0 - c2*g*mu1) + k3**2*(-a0*mu0 + c2*g*mu1))/(2*a0)
+  [ok] principal c is PURELY IMAGINARY and proportional to g (odd in k)
+  [ok] c-entry vanishes as g->0: it is background-gradient sourced
+
+==============================================================================
+D2  det, Pfaffian, rank; degeneracy loci; DOF count
+==============================================================================
+    [t=   10.8s] Sig done, det
+  det Sig(k) = c2**2*(k1**2 + k3**2)**2*(a0**2*g**4*k1**4*mu0**2 + 2*a0**2*g**4*k1**2*k3**2*mu0**2 + a0**2*g**4*k3**4*mu0**2 - 2*a0**2*g**2*k1**6*mu0**2 - 2*a0**2*g**2*k1**4*k3**2*mu0**2 + 2*a0**2*g**2*k1**2*k3**4*mu0**2 + 2*a0**2*g**2*k3**6*mu0**2 + a0**2*k1**8*mu0**2 + 4*a0**2*k1**6*k3**2*mu0**2 + 6*a0**2*k1**4*k3**4*mu0**2 + 4*a0**2*k1**2*k3**6*mu0**2 + a0**2*k3**8*mu0**2 + 2*a0*c2*g**5*k1**4*mu0*mu1 + 4*a0*c2*g**5*k1**2*k3**2*mu0*mu1 + 2*a0*c2*g**5*k3**4*mu0*mu1 - 2*a0*c2*g**3*k1**6*mu0*mu1 + 4*a0*c2*g**3*k1**4*k3**2*mu0*mu1 + 10*a0*c2*g**3*k1**2*k3**4*mu0*mu1 + 4*a0*c2*g**3*k3**6*mu0*mu1 + 2*a0*c2*g*k1**6*k3**2*mu0*mu1 + 6*a0*c2*g*k1**4*k3**4*mu0*mu1 + 6*a0*c2*g*k1**2*k3**6*mu0*mu1 + 2*a0*c2*g*k3**8*mu0*mu1 + 4*c2**2*g**8*k3**2*mu1**2 + c2**2*g**6*k1**4*mu1**2 - 2*c2**2*g**6*k1**2*k3**2*mu1**2 + 9*c2**2*g**6*k3**4*mu1**2 - c2**2*g**4*k1**4*k3**2*mu1**2 + 4*c2**2*g**4*k1**2*k3**4*mu1**2 + 6*c2**2*g**4*k3**6*mu1**2 + c2**2*g**2*k1**4*k3**4*mu1**2 + 2*c2**2*g**2*k1**2*k3**6*mu1**2 + c2**2*g**2*k3**8*mu1**2)/(4*N0**2*a0**2)
+  [ok] det Sig is REAL for real (k,g,mu0,mu1)
+  [ok] Re K' is exactly the principal k^4/2 part (imag part is the g-sourced piece)
+  [FAIL] det Sig == (ell KR)^2 + (ell Im K' - a Im c)^2  EXACT SUM OF SQUARES   => det >= (ell * k^4/2)^2;  the new a,c,ImK' entries can only INCREASE det
+    [t=   25.6s] det checks done, sweep
+  [ok] mu_exp: det > 0 over y0,|k|/g in [1e-3,1e3]^2 x angles (incl. marginal k ~ g) and eigenvalue positivity holds
+  [FAIL] mu_exp: det/(ell KR)^2 >= 1 everywhere sampled (SOS lower bound)   min ratio = 0.011954-1.065003j
+  [ok] mu_5: det > 0 over y0,|k|/g in [1e-3,1e3]^2 x angles (incl. marginal k ~ g) and eigenvalue positivity holds
+  [FAIL] mu_5: det/(ell KR)^2 >= 1 everywhere sampled (SOS lower bound)   min ratio = 0.034641+1.015157j
+  [ok] mu_10: det > 0 over y0,|k|/g in [1e-3,1e3]^2 x angles (incl. marginal k ~ g) and eigenvalue positivity holds
+  [FAIL] mu_10: det/(ell KR)^2 >= 1 everywhere sampled (SOS lower bound)   min ratio = 0.083116+0.997532j
+
+  degeneracy loci of det = (ell KR)^2 + (ell ImK' - a Imc)^2:
+    ell KR = 0  <=>  k = 0  or  Lam = 0 <=> y0 = 0 (P3: mu, mu+y mu' > 0)
+    => the ONLY loci are the baseline's named defect branches k=0, y=0.
+    => NO NEW DEGENERACY LOCUS from the fork entries (a, c, Im K').
+  [ok] rank Sig = 4 on the generic branch (y>0, k!=0)
+  [ok] y->0 locus: rank drops 4->2 (fork: the pair (pi_N,S2') via a and (S2',S3) via K share S2'; C_M row dies)
+  [ok] k->0 locus: rank 2 (ell(0), a(0) both ~ g^2 survive the freeze; K,c -> 0)
+    [t=   25.9s] sweep done, pfaffian
+  [ok] 8x8 +-k pair matrix [[0,Sig(k)],[Sig(-k),0]] is ANTISYMMETRIC (honest Pfaffian object)
+  [ok] Pf(8x8) = +- det Sig(k)  (numeric, full 8!-term permutation sum)   Pf = 0.0184071+1.12938e-21j, det Sig = 0.0184071+0j
+
+  count: 20 phase-space vars (12 gamma/pi + 2 N/pi_N + 6 shift/pi_i)
+         - 12 (first-class pi_i + H_i, checked in D4) - 4 (second-class)
+  [ok] 20 - 12 - 4 = 4 phase-space dims = 2 local DOF (generic branch)
+
+==============================================================================
+D4a {S2', H_i}: the inhomogeneous piece (baseline's unverified hypothesis)
+==============================================================================
+    [t=   26.1s] pfaffian done, chi
+  {S2'(k), Hfull_1(-k)} = I*k1*(-k1**2 - k3**2)/3    [chassis Hgrav: I*k1*(-k1**2 - k3**2)/3]
+  {S2'(k), Hfull_2(-k)} = 0    [chassis Hgrav: 0]
+  {S2'(k), Hfull_3(-k)} = g**3 - 2*I*g**2*k3 - I*k1**2*k3/3 - I*k3**3/3    [chassis Hgrav: g*k1**2 - I*k3*(3*I*g*k3 + k1**2 + k3**2)/3]
+  [FAIL] chi_j = {S2', Hfull_j} = +-(1/3) D^2 d_j  symbol = (1/3)(-k^2)(i k_j)   the covariant prediction delta_xi(q+lnN) = xi.d(q+lnN) + (1/3)d.xi, EXACT
+  [FAIL] chi has NO g-dependence: every background-gradient term cancels (covariance)
+  [ok] chi != 0: S2' is NOT first-class w.r.t. H_i -- the hypothesis FAILS as stated
+  [FAIL] chi_j is proportional to k_j: PURE LONGITUDINAL (transverse H_i unaffected)
+  [FAIL] IDENTICAL chi for baseline S2 = D^2 q: the failure is INHERITED, not fork-new
+    chassis-vs-full difference (j=1): 0  (= pi_N-column leakage)
+    chassis-vs-full difference (j=2): 0  (= pi_N-column leakage)
+    chassis-vs-full difference (j=3): g*(g**2 - 2*I*g*k3 - k1**2 - k3**2)  (= pi_N-column leakage)
+  [ok] {pi_N, Hfull_j} = 0 on the background
+  [FAIL] {C_M, Hfull_j} = 0 on the background (C_M true scalar, C_M_bar == 0)
+  [ok] {S3, Hfull_j} = 0 on the background (S3 scalar, S3_bar == 0)
+
+==============================================================================
+D4b Extended 7x7 constraint bracket (H_1,H_2,H_3,pi_N,C_M,S2',S3): rank
+==============================================================================
+    [t=   27.3s] chi done, 7x7
+  [ok] rank of the FULL 7x7 = 4 (chi does NOT raise the second-class count)   rank = 4
+  [ok] kernel dim = 3: two transverse H_i + ONE DRESSED longitudinal combination (H_L + second-class admixture) stay first-class
+  => 10 constraints total (3 pi_i trivial + these 7): 6 first-class, 4 second-
+     class => 20 - 2*6 - 4 = 4 => 2 DOF.  Count PRESERVED, but the first-class
+     longitudinal generator is DRESSED, not the bare H_L.
+  dressed FC combination (H1,H2,H3,pi_N,C_M,S2',S3)-components:
+    [71898201/72007250 - 397657*I/205735, 0, -1179577/1028675 + 168511*I/1234410, 0, 0, 0, 1]
+  [ok] chassis basis (Hgrav, no pi_N dN term): rank 4 as well (congruence invariance)
+
+==============================================================================
+D3  PRESERVATION: multipliers, tertiary constraints
+==============================================================================
+    [t=   27.8s] 7x7 done, preservation
+  [ok] zero pattern of the patterned solve matches the computed Sig
+  [ok] ct = -c(-k), Kt = -K'(-k): lower entries are the honest antisymmetry images
+  det(patterned) = -(-K*ell + a*c)*(-Kt*ell + a*ct)
+  [ok] det factorization displayed   -(-K*ell + a*c)*(-Kt*ell + a*ct)
+  unique multiplier solution on det != 0 (generic branch):
+    lambda_N  = (K*r_1 - c*r_2)/(K*ell - a*c)
+    mu_1      = (-Kt*r_4 + a*r_3)/(Kt*ell - a*ct)
+    mu_2      = (ct*r_4 - ell*r_3)/(Kt*ell - a*ct)
+    mu_3      = (a*r_1 - ell*r_2)/(K*ell - a*c)
+  [ok] multipliers absorb ALL inhomogeneity: NO tertiary constraint from the 4x4 alone
+
+  BUT D4a computed chi != 0, so the H_i rows are not silent:
+    dot Hfull_j(k) ~ r_Hj(k) + chi_j(k) mu_2(-k)   (ONLY mu_2 appears: the
+    other three H-row entries vanish on the background, checked in D4a).
+  With H_can a spatial-diffeo-invariant integral (H_GR + H_m: integrals of
+  scalar densities; ANALYTIC INPUT, the one statement not machine-verified
+  here), r_Hfull = -delta_xi H_can = 0 exactly, so for every k != 0 mode:
+    chi_j(k) mu_2(-k) = 0  with chi_j = (1/3)(-k^2)(i k_j) != 0
+    =>  mu_2(k) = 0 for all k != 0  =>  mu_2 = const  ( -> 0, decaying BCs).
+  [ok] with mu_2 = 0: (lambda_N, mu_3, mu_1) still determined (rows S1, S2', S4)
+  leftover S3-row condition:  T := -ct*r_4/ell + r_3  = 0
+  tertiary condition (numerator): -ct*r_4 + ell*r_3 = 0
+  [ok] T is INDEPENDENT of the fork entries a, K', Kt: substituting a->0 gives the BASELINE'S OWN condition -- this tension is inherited, not created, by the fork
+  T = 0 <=> ell(k) r_3(k) = ct(k) r_4(k) at every k != 0: a RELATION between
+  {S3,H_can} and {pi_N,H_can} that is NOT an identity of the chassis a priori.
+  Its status requires H_can to second order in perturbations (outside this gate;
+  r_4 is matter-sourced per the committed gate_matter_conservation_derivation.py).
+  If T != 0: it is a TERTIARY constraint (DOF < 2).  If T == 0 identically: 2 DOF
+  stand.  EITHER WAY the condition is IDENTICAL for baseline S2 and fork S2'.
+
+==============================================================================
+WLOG-frame validation: full random 3D orientation (numeric pipeline)
+==============================================================================
+    [t=   27.9s] preservation done, wlog validation
+  [ok] random full-3D orientation reproduces the WLOG-frame det (rotational invariance)   det_rand = 0.084414807-9.209847e-18j, det_wlog = 0.084414807+0j
+
+==============================================================================
+GATE D VERDICT ASSEMBLY
+==============================================================================
+  D1  4x4 recomputed from canonical brackets, nothing carried over:
+        {pi_N,C_M}=ell (baseline L_N form), NEW {pi_N,S2'}=a=-D^2(1/N .) symbol,
+        {C_M,S2'}=0 EXACTLY, {C_M,S3}=c (imaginary, g-sourced, odd),
+        {S2',S3}=K'=k^4/2 + g-sourced imaginary part, {pi_N,S3}=0.
+  D2  det Sig = (ell KR)^2 + (ell ImK' - a Imc)^2: EXACT sum of squares.
+        Rank 4 on the whole generic branch (y>0, k!=0), BOTH kernel families.
+        NO new degeneracy locus: the fork entries can only increase det.
+        Defect branches remain exactly k=0 and y=0 (rank 2 there).
+        20 - 12 - 4 = 4 => 2 local DOF on the generic branch.
+  D3  The four multipliers are uniquely determined by the 4x4 (det != 0);
+        the 4x4 alone generates NO tertiary constraint.
+  D4  BUT the baseline's first-class hypothesis for the D^2-pair FAILS:
+        chi = {S2', H_i} = (1/3) D^2 d_i(.) != 0 (computed; g-terms cancel
+        exactly; IDENTICAL for baseline S2).  Full 7x7 rank stays 4, so the
+        second-class count and 2-DOF count are UNCHANGED (the longitudinal
+        diffeo generator is dressed).  Preservation of H_i then forces
+        mu_2 = 0 on all k != 0 modes, leaving the S3-row as a consistency
+        condition T: ell r_3 = ct r_4 -- INDEPENDENT of every fork entry
+        (a, K'), hence inherited verbatim from the baseline chassis.
+        T's identity status needs H_can at second order: OPEN, fork-neutral.
+
+==============================================================================
+RESULT: FAIL -- ["{pi_N, S2'} = -+ symbol of D^2(1/N .)  (matches -D^2(1/N) up to bracket sign)", "det Sig == (ell KR)^2 + (ell Im K' - a Im c)^2  EXACT SUM OF SQUARES", 'mu_exp: det/(ell KR)^2 >= 1 everywhere sampled (SOS lower bound)', 'mu_5: det/(ell KR)^2 >= 1 everywhere sampled (SOS lower bound)', 'mu_10: det/(ell KR)^2 >= 1 everywhere sampled (SOS lower bound)', "chi_j = {S2', Hfull_j} = +-(1/3) D^2 d_j  symbol = (1/3)(-k^2)(i k_j)", 'chi has NO g-dependence: every background-gradient term cancels (covariance)', 'chi_j is proportional to k_j: PURE LONGITUDINAL (transverse H_i unaffected)', 'IDENTICAL chi for baseline S2 = D^2 q: the failure is INHERITED, not fork-new', '{C_M, Hfull_j} = 0 on the background (C_M true scalar, C_M_bar == 0)']
