@@ -1,0 +1,109 @@
+==============================================================================
+PART A -- symbolic: the linearized operator M_par = mu + y mu' = d(y mu)/dy
+==============================================================================
+  [PASS] d/dphi'[c^2 mu phi'] = c^2 (mu + y mu')  for mu_exp
+  [PASS] d/dphi'[c^2 mu phi'] = c^2 (mu + y mu')  for mu_5
+  [PASS] d/dphi'[c^2 mu phi'] = c^2 (mu + y mu')  for mu_10
+  [PASS] m1 L[w] - L[m1] w = total derivative (Sturm-Liouville self-adjoint)
+  [PASS] linear R^(3) vanishes for TT metric (Hperp_grav ~ 0 + static pi=0)
+
+==============================================================================
+PART B -- symbolic: matter EOM from H_T (the mu_1 force) and grad_mu T^{mu nu}
+==============================================================================
+  [PASS] a = -grad(Psi + X): the mu_1 force enters at (v/c)^0 -- NEWTONIAN order  -- a = -Derivative(Psi(x), x) - Derivative(X(x), x)
+  [PASS] grad_mu T^{mu x}|_g = -rho dX/dx  (NOT zero; violation = the chi force itself)  -- divT = -rho(t, x)*Derivative(X(x), x)
+  => Verdict structure: w.r.t. chassis metric g: VIOLATED at Newtonian order.
+     w.r.t. effective metric (lapse N+chi): exact on matter shell (universal coupling).
+
+==============================================================================
+PART C -- kernels and the exact static-spherical anomaly  g_chi = g_N / M_par(y)
+==============================================================================
+  [PASS] M_par(y) = d(y mu)/dy closed form  [mu_exp]
+  [PASS] M_par(y) = d(y mu)/dy closed form  [mu_5]
+  [PASS] M_par(y) = d(y mu)/dy closed form  [mu_10]
+  [PASS] Newtonian regime: g_m -> 2 g_N EXACTLY  [mu_exp]  -- 1/mu+1/M_par = 2.00000000 at y=1e8
+  [PASS] deep MOND: g_m -> (3/2) g_N/y = (3/2) sqrt(g_N a0)  [mu_exp]  -- (1/mu+1/M_par)*y = 1.500001 at y=1e-6
+  [PASS] Newtonian regime: g_m -> 2 g_N EXACTLY  [mu_5]  -- 1/mu+1/M_par = 2.00000000 at y=1e8
+  [PASS] deep MOND: g_m -> (3/2) g_N/y = (3/2) sqrt(g_N a0)  [mu_5]  -- (1/mu+1/M_par)*y = 1.500000 at y=1e-6
+  [PASS] Newtonian regime: g_m -> 2 g_N EXACTLY  [mu_10]  -- 1/mu+1/M_par = 2.00000000 at y=1e8
+  [PASS] deep MOND: g_m -> (3/2) g_N/y = (3/2) sqrt(g_N a0)  [mu_10]  -- (1/mu+1/M_par)*y = 1.500000 at y=1e-6
+
+==============================================================================
+PART D -- (a) SOLAR SYSTEM at 1 AU vs the committed ephemeris bound
+==============================================================================
+  g_N(1 AU) = 5.9314e-03 m/s^2 ; bound = 3.66e-14 m/s^2
+  [canonical rho_DE/cH_Lambda | mu_exp] y_loc=6.337e+07  g_chi=5.931e-03 m/s^2 = 1.62e+11 x bound ;  G-rescaled residual = 0.00e+00 x g_N
+  [canonical rho_DE/cH_Lambda | mu_5  ] y_loc=6.337e+07  g_chi=5.931e-03 m/s^2 = 1.62e+11 x bound ;  G-rescaled residual = -1.55e-15 x g_N
+  [canonical rho_DE/cH_Lambda | mu_10 ] y_loc=6.337e+07  g_chi=5.931e-03 m/s^2 = 1.62e+11 x bound ;  G-rescaled residual = 8.44e-15 x g_N
+  [alt rho_total/cH0 | mu_exp] y_loc=5.249e+07  g_chi=5.931e-03 m/s^2 = 1.62e+11 x bound ;  G-rescaled residual = 0.00e+00 x g_N
+  [alt rho_total/cH0 | mu_5  ] y_loc=5.249e+07  g_chi=5.931e-03 m/s^2 = 1.62e+11 x bound ;  G-rescaled residual = -1.33e-15 x g_N
+  [alt rho_total/cH0 | mu_10 ] y_loc=5.249e+07  g_chi=5.931e-03 m/s^2 = 1.62e+11 x bound ;  G-rescaled residual = 8.44e-15 x g_N
+  [PASS] UNRESCALED anomaly at 1 AU is ~1.6e11 x the ephemeris bound  -- 1.62e+11
+
+  chi-channel vs mu-channel deviation at the EFE point y_ext = 1.9
+  (the route1B Cassini pricing used the mu-channel 1-mu ONLY):
+  [mu_exp] 1-mu(y_ext) = 0.1496   M_par(y_ext)-1 = +0.1346   |ratio chi/mu| = 0.90
+  [mu_5  ] 1-mu(y_ext) = 0.0079   M_par(y_ext)-1 = +0.0306   |ratio chi/mu| = 3.88
+  [mu_10 ] 1-mu(y_ext) = 0.0002   M_par(y_ext)-1 = +0.0015   |ratio chi/mu| = 8.99
+
+==============================================================================
+PART E -- (b) BINARY PULSAR PSR B1913+16
+==============================================================================
+  a_rel = 1.9493e+09 m ; g_N = 9.8812e+01 m/s^2 ; y = 1.056e+12
+  [mu_exp] anomalous force g_chi/g_N = 1.000000  (100% of Newton)
+  [mu_5  ] anomalous force g_chi/g_N = 1.000000  (100% of Newton)
+  [mu_10 ] anomalous force g_chi/g_N = 1.000000  (100% of Newton)
+  Unrescaled frame: 100% force anomaly vs 0.16% GR-consistency => 625 x over
+  G-rescaled frame: Newtonian-order anomaly absorbed into fitted masses (m_i -> m_i/2);
+  the 1PN post-Keplerian sector of this chassis is NOT DERIVED (no H_perp, Phi=0,
+  chi-channel) -- pulsar PK consistency at the 1e-3 level CANNOT be claimed; it is OPEN.
+
+==============================================================================
+PART F -- (c) GALAXY at g ~ a0: the RAR shape after the charitable G-rescaling
+==============================================================================
+  [mu_exp] best a0_eff/a0 = 1.118  (deep-MOND analytic 9/8 = 1.125) ; residual SHAPE distortion rms = 0.0040 dex, max = 0.0113 dex
+  [mu_5  ] best a0_eff/a0 = 1.116  (deep-MOND analytic 9/8 = 1.125) ; residual SHAPE distortion rms = 0.0077 dex, max = 0.0276 dex
+  [mu_10 ] best a0_eff/a0 = 1.120  (deep-MOND analytic 9/8 = 1.125) ; residual SHAPE distortion rms = 0.0112 dex, max = 0.0509 dex
+  Compare: banked SPARC RAR scatter 0.108 dex (rar_framework_a0_mlfit.py);
+  the shape distortion is a SYSTEMATIC, to be added to the 0.108->0.123/0.127 mu_n cost.
+
+  kappa bookkeeping if the doubling is absorbed (G_bare = G_lab/2, a0_RAR = 1.125 a0_bare):
+  kappa_bare = kappa_obs * sqrt(2)/1.125 = 1.2571 * kappa_obs
+  holding a0_RAR = 9.36e-11 (kappa_obs = 1/2): required kappa_bare = 0.6285
+  vs distance-free measured kappa = 0.551 +/- 0.043:  (0.6285-0.551)/0.043 = +1.80 sigma
+  vs BTFR measured kappa = 0.465 +/- 0.076:  (0.6285-0.465)/0.076 = +2.15 sigma
+
+==============================================================================
+PART G -- lensing cross-check (does the chi-channel rescue the lensing FAIL? NO)
+==============================================================================
+  Photons couple to the SAME effective lapse N+chi (rho_m = T_nn is universal):
+  deflection ~ grad_perp(Psi+X) ; dynamics ~ grad(Psi+X).  Both channels doubled =>
+  the lensing/dynamics ratio is UNCHANGED: still 1/2 of the equal-slip value.
+  The gate_lensing_weakfield_derivation FAIL stands; but its Part C ('a = -grad Psi,
+  full MOND') and its RAR-cost numbers are superseded by a = -grad(Psi+X).
+
+==============================================================================
+SUMMARY
+==============================================================================
+  r_4 = {pi_N,H_can} = -(Hperp_grav + eps_n) ~ -rho c^2  (Hperp deleted, D^2q~0)  [Part A]
+  mu_1 = -r_4/L_N is DENSITY-SOURCED; chi = -4piG mu_1/c^2 solves the linearized
+  C_M operator with the SAME source 4 pi G rho.                                   [Part A]
+  Matter EOM: a = -grad(Psi + X) -- the mu_1 force is (v/c)^0, NEWTONIAN order.   [Part B]
+  grad_mu T^{mu i}|_chassis-metric = -rho D^i X != 0 ;  exact conservation holds
+  only w.r.t. the effective metric with lapse N+chi (universal two-potential).    [Part B]
+  Gate 10's 'correction is O(v^2/c^2)' claim is FALSIFIED.
+  (a) 1 AU: unrescaled anomaly 5.9e-3 m/s^2 = 1.6e11 x Sereno-Jetzer bound;
+      G-rescaled residual ~ e^{-y_loc} / y_loc^{-n} = 0 locally; chi-channel at the
+      EFE point y_ext=1.9 is 0.90 (mu_exp) / 3.88 (mu_5) / 8.99 (mu_10) x the
+      mu-channel => route1B Cassini pricing must be RERUN with chi included.      [Part D]
+  (b) B1913+16: unrescaled 100% force anomaly (~600 x the 0.16% GR consistency);
+      G-rescaled: absorbed at Newtonian order, 1PN PK sector UNDERIVED (open).    [Part E]
+  (c) galaxy: after the best joint (2G, a0_eff~1.125a0) absorption an irreducible
+      RAR SHAPE distortion remains (numbers above, ~0.01-0.05 dex scale) and the
+      kappa=1/2 calibration moves to kappa_bare ~ 0.63 (1.8-2.2 sigma from the
+      measured brackets).                                                         [Part F]
+  Kernel dependence: the doubling (y->inf) and the deep-MOND 3/2 are shared by
+  mu_exp and mu_n exactly; mu_n does NOT repair this defect (it is structural:
+  the deleted Hamiltonian constraint sources mu_1).                               [Part C]
+
+GATE RESULT: DERIVED -- FAIL (matter conservation)
