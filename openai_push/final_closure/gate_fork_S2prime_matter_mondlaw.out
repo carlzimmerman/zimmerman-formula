@@ -1,0 +1,170 @@
+==============================================================================
+PART A -- the fork 4x4 Dirac matrix and the multiplier solve
+==============================================================================
+  [PASS] fork Dirac matrix antisymmetric
+  [PASS] Pfaffian = L_N K - E c_M  (E enters!)  -- Pf = -E*c_M + K*L_N
+  [PASS] det = (L_N K - E c_M)^2
+  => still second-class/invertible on the generic branch (L_N K != E c_M);
+     the exact-flat-vacuum branch (L_N -> 0 AND c_M -> 0) degenerates as in the
+     baseline Gate 6 -- same measure-zero caveat, NOT worse.
+  mu_1 (fork) = (E*r_3 + K*r_4)/(E*c_M - K*L_N)
+  mu_2 (fork) = (-L_N*r_3 - c_M*r_4)/(E*c_M - K*L_N)
+  [PASS] mu_1 = -(K r_4 + E r_3)/(L_N K - E c_M): r_3 now feeds mu_1 through E
+  [PASS] E -> 0 recovers certified Gate-8 formula mu_1 = -r_4/L_N
+  [PASS] E -> 0 recovers Gate-8 mu_2 = (r_3 - c_M mu_1)/K
+  Matter-force channel: mu_1 C_M is the ONLY multiplier term containing matter
+  variables (rho_m in C_M); mu_2 S2' and mu_3 S3 are matter-free.  So the matter
+  force is set by mu_1 alone, sourced by r_4 AND (new) by r_3 via E.
+  NOTE (interior only): {S3, C_M} also carries a rho_m-proportional piece from
+  the gamma-dependence of rho_m (density weight); it corrects the mu_1 equation
+  by a rho*mu_1 term INSIDE matter and vanishes identically in vacuum. All
+  magnitudes below are evaluated on vacuum exteriors, where it is exactly absent.
+
+==============================================================================
+PART B -- r_4 and r_3 on the fork background (exact 3d tensor computation)
+==============================================================================
+  [PASS] 3d Ricci code == closed form R = e^{-2w}(-4 D^2 w - 2|Dw|^2)
+  [PASS] R^(3) = -4 D^2 q + O(2); q = -lnN  =>  R^(3) = +4 D^2 Psi / c^2  -- R_lin = -4*Derivative(f(x1, x2, x3), (x1, 2)) - 4*Derivative(f(x1, x2, x3), (x2, 2)) - 4*Derivative(f(x1, x2, x3), (x3, 2))
+  [PASS] gamma_ij pidot^ij = -2 D^2(q + lnN) + O(2)  == -2 * (flat) S2'  -- T_lin = -2*Derivative(f(x1, x2, x3), (x1, 2)) - 2*Derivative(f(x1, x2, x3), (x2, 2)) - 2*Derivative(f(x1, x2, x3), (x3, 2)) - 2*Derivative(nu(x1, x2, x3), (x1, 2)) - 2*Derivative(nu(x1, x2, x3), (x2, 2)) - 2*Derivative(nu(x1, x2, x3), (x3, 2))
+  [PASS] on the fork surface q = -lnN:  r_3 = D^2(pdot) = -2 D^2[S2'] ~ 0 WEAKLY  -- r_3 vanishes as a multiple of the S2' constraint itself
+  BASELINE CONTRAST (q = 0): gamma_ij pidot^ij = -2 D^2 lnN != 0 -- but in the
+  baseline {pi_N, S2} = 0, so r_3 only fed the harmless mu_2.  In the fork the
+  new E entry WOULD feed r_3 into mu_1 -- but r_3 is weakly zero.  So at
+  Newtonian order:  mu_1 = -r_4 / L_N  with the FORK r_4.
+
+  r_4 = -(Hperp_grav + sqrt(g) eps_n),  Hperp_grav(static) = -(c^4/16piG) sqrt(g) R
+      = +(c^2/4piG) D^2 Psi - rho c^2        [R = 4 D^2 Psi/c^2 from above]
+      = (c^2/4piG) [ D^2 Psi - 4piG rho ]
+      = (c^2/4piG) D_i[(1-mu) D^i Psi]       [C_M = 0: D_i(mu D^i Psi) = 4piG rho]
+  [PASS] D^2 Psi - D.(mu D Psi) == D.[(1-mu) D Psi]  (r_4 = phantom-density source)
+  => r_4 = c^2 rho_ph  (rho_ph = MOND phantom density >= 0), NOT -rho c^2.
+  BASELINE ANCHOR: q=0 gives R=0, r_4 = -rho c^2, chi eqn D.[c^2 M Dchi] = +4piG rho
+  (attractive well) => the certified doubling g_m = g_N[1/mu + 1/M_par]. Same
+  convention chain, fork r_4 sign FLIPS the chi channel.
+
+==============================================================================
+PART C -- matter EOM in the fork: a = -grad(Psi + X), X now REPULSIVE
+==============================================================================
+  [PASS] a = -grad(Psi + X) at (v/c)^0  (slow matter sees lapse only; the -Psi in
+        gamma_ij enters at O(v^2/c^2) -- geodesics respond to N_eff = N + chi)
+  [PASS] grad_mu T^{mu x}|_g = -rho dX/dx  (identity unchanged; MAGNITUDE is what moved)
+  [PASS] Gauss: c^2 M_par chi' = -(1-mu) Psi' solves D.[c^2 M Dchi] = -D.[(1-mu) DPsi]
+  Psi' > 0 (attractive well) => chi' < 0 => X = c^2 chi is a HILL: force OUTWARD.
+  NET matter force (spherical):  g_matter = g_Psi [ 1 - (1-mu(y))/M_par(y) ],
+  g_Psi = |D Psi| = y a0,  with the UNCHANGED exact AQUAL law mu(y) y a0 = g_N
+  (C_M is untouched by the fork at Newtonian order: D_i corrections are O(Psi/c^2)).
+  [PASS] net factor = (2 mu + y mu' - 1)/M_par  [mu_exp]
+  [PASS] net factor = (2 mu + y mu' - 1)/M_par  [mu_5]
+  [PASS] net factor = (2 mu + y mu' - 1)/M_par  [mu_10]
+
+==============================================================================
+PART D -- regimes and kernels: Newton EXACT at high y; REPULSIVE below y_crit
+==============================================================================
+  [PASS] Newtonian regime: g_matter -> g_N EXACTLY (doubling GONE)  [mu_exp]  -- factor(1e8) = 1.000000000000000
+  [PASS] deep MOND: (1-mu)/M_par -> 1/(2y)  =>  g_matter -> y a0 - a0/2  [mu_exp]  -- (1-mu)/M_par * 2y = 1.000000 at y=1e-6
+  [PASS] Newtonian regime: g_matter -> g_N EXACTLY (doubling GONE)  [mu_5]  -- factor(1e8) = 0.999999999999999
+  [PASS] deep MOND: (1-mu)/M_par -> 1/(2y)  =>  g_matter -> y a0 - a0/2  [mu_5]  -- (1-mu)/M_par * 2y = 0.999999 at y=1e-6
+  [PASS] Newtonian regime: g_matter -> g_N EXACTLY (doubling GONE)  [mu_10]  -- factor(1e8) = 0.999999999999999
+  [PASS] deep MOND: (1-mu)/M_par -> 1/(2y)  =>  g_matter -> y a0 - a0/2  [mu_10]  -- (1-mu)/M_par * 2y = 0.999999 at y=1e-6
+
+  y_crit (net force = 0; repulsive below), g_N,crit = mu(y_c) y_c a0:
+  [mu_exp | canonical] y_crit = 0.4429  g_N,crit = 0.1585 a0 = 1.483e-11 m/s^2 ; g_Psi at crossing = 0.4429 a0
+  [mu_exp | alt      ] y_crit = 0.4429  g_N,crit = 0.1585 a0 = 1.791e-11 m/s^2 ; g_Psi at crossing = 0.4429 a0
+  [mu_5   | canonical] y_crit = 0.3341  g_N,crit = 0.1115 a0 = 1.044e-11 m/s^2 ; g_Psi at crossing = 0.3341 a0
+  [mu_5   | alt      ] y_crit = 0.3341  g_N,crit = 0.1115 a0 = 1.260e-11 m/s^2 ; g_Psi at crossing = 0.3341 a0
+  [mu_10  | canonical] y_crit = 0.3333  g_N,crit = 0.1111 a0 = 1.040e-11 m/s^2 ; g_Psi at crossing = 0.3333 a0
+  [mu_10  | alt      ] y_crit = 0.3333  g_N,crit = 0.1111 a0 = 1.256e-11 m/s^2 ; g_Psi at crossing = 0.3333 a0
+  [PASS] mu_exp: y_crit solves e^y + y = 2  => y_crit = 0.4429  -- y_crit = 0.4429
+
+  (a) SOLAR SYSTEM at 1 AU vs the committed ephemeris bound
+  g_N(1 AU) = 5.9314e-03 m/s^2 ; bound = 3.66e-14 m/s^2 ; baseline chassis: g_chi = 5.93e-03 = 1.62e11 x bound (FAIL)
+  [canonical rho_DE/cH_Lambda | mu_exp] y_loc=6.337e+07  g_chi = 10^(-2.752e+07) m/s^2  -> 10^-2.752e+07 x bound
+  [canonical rho_DE/cH_Lambda | mu_5  ] y_loc=6.337e+07  g_chi = 1.161e-42 m/s^2  = 3.17e-29 x bound
+  [canonical rho_DE/cH_Lambda | mu_10 ] y_loc=6.337e+07  g_chi = 5.680e-82 m/s^2  = 1.55e-68 x bound
+  [alt rho_total/cH0 | mu_exp] y_loc=5.249e+07  g_chi = 10^(-2.280e+07) m/s^2  -> 10^-2.280e+07 x bound
+  [alt rho_total/cH0 | mu_5  ] y_loc=5.249e+07  g_chi = 2.977e-42 m/s^2  = 8.13e-29 x bound
+  [alt rho_total/cH0 | mu_10 ] y_loc=5.249e+07  g_chi = 3.736e-81 m/s^2  = 1.02e-67 x bound
+  [PASS] stable 1-mu formula == naive 1-mu at y=3 (mu_5)
+  [PASS] 1-AU conservation violation now BELOW bound by > 20 orders (all kernels, both footings)  -- worst (mu_5) = 8.13e-29 x bound
+  => grad_mu T^{mu i} violation is (1-mu)-GATED: exp/power suppressed at high y.
+     It is NO LONGER Newtonian-order in the solar system.  It remains (v/c)^0
+     and O(1) of the MOND force in the low-y regime (see Part E).
+
+  EFE channel (galactic y_ext = 1.9 at the Sun, DHF freeze): fractional outward
+  chi correction to the ambient MOND field = (1-mu)/M_par:
+  [mu_exp] (1-mu)/M_par (y=1.9) = 0.1318
+  [mu_5  ] (1-mu)/M_par (y=1.9) = 0.0077
+  [mu_10 ] (1-mu)/M_par (y=1.9) = 0.0002
+  => the frozen Q2 = (3/2) q a0/R_M pricing inherits an O(13%) (mu_exp) chi-term:
+     rerun needed, but it corrects an ALLOWED effect (not a new violation).
+
+==============================================================================
+PART E -- the MOND law in the physical metric: RAR / BTFR confrontation
+==============================================================================
+  Effective law: g_obs(g_bar) = y a0 [1 - (1-mu)/M_par],  mu(y) y a0 = g_bar
+  (no G-doubling: g_bar = g_N directly; kappa=1/2 bookkeeping RESTORED --
+   baseline needed kappa_bare = 0.6285, a +1.8/+2.2 sigma strain: GONE).
+
+  nu_eff = g_obs/g_bar across the transition (canonical a0):
+  y:          0.050    0.100    0.200    0.443    1.000    1.900    3.000   10.000
+  [mu_exp] -181.964  -40.709   -7.575    0.000    1.000    1.021    1.005    1.000
+  [mu_5  ] -170.000  -35.000   -5.003    0.820    1.035    1.000    1.000    1.000
+  [mu_10 ] -170.000  -35.000   -5.000    0.838    1.020    1.000    1.000    1.000
+  (canonical framework nu = g_obs/g_bar = sqrt(1 + a0/g_bar) is >= 1 EVERYWHERE;
+   the fork's nu_eff goes NEGATIVE below y_crit.)
+  [mu_exp] fraction of SPARC span (1e-12.5..1e-8.5) with g_obs <= 0 (REPULSIVE): 42% ; residual vs framework law on the positive part: rms = 0.36 dex, max = 2.35 dex
+  [mu_5  ] fraction of SPARC span (1e-12.5..1e-8.5) with g_obs <= 0 (REPULSIVE): 38% ; residual vs framework law on the positive part: rms = 0.33 dex, max = 2.07 dex
+  [mu_10 ] fraction of SPARC span (1e-12.5..1e-8.5) with g_obs <= 0 (REPULSIVE): 38% ; residual vs framework law on the positive part: rms = 0.32 dex, max = 1.96 dex
+  [mu_exp] g_bar = 1e-12:  g_obs(fork) = -3.562e-11  vs framework 9.726e-12  m/s^2
+  [mu_exp] g_bar = 1e-11:  g_obs(fork) = -9.162e-12  vs framework 3.219e-11  m/s^2
+  [mu_exp] g_bar = 3e-11:  g_obs(fork) = +2.325e-11  vs framework 6.089e-11  m/s^2
+  [mu_exp] g_bar = 1e-10:  g_obs(fork) = +1.029e-10  vs framework 1.391e-10  m/s^2
+  [mu_exp] g_bar = 1e-09:  g_obs(fork) = +1.000e-09  vs framework 1.046e-09  m/s^2
+  [PASS] MOND LAW DESTROYED: net force repulsive over the low-acceleration ~40% of the SPARC RAR span (observed branch g_obs = +sqrt(g_bar a0) there)
+
+  BTFR / rotation curves (point mass M = 1e10 Msun, vacuum exterior):
+  [canonical | mu_exp] circular orbits END at r = 9.7 kpc (g_N < g_crit beyond); v^2 = r g_obs < 0 there
+  [canonical | mu_5  ] circular orbits END at r = 11.6 kpc (g_N < g_crit beyond); v^2 = r g_obs < 0 there
+  [canonical | mu_10 ] circular orbits END at r = 11.6 kpc (g_N < g_crit beyond); v^2 = r g_obs < 0 there
+  [alt       | mu_exp] circular orbits END at r = 8.8 kpc (g_N < g_crit beyond); v^2 = r g_obs < 0 there
+  [alt       | mu_5  ] circular orbits END at r = 10.5 kpc (g_N < g_crit beyond); v^2 = r g_obs < 0 there
+  [alt       | mu_10 ] circular orbits END at r = 10.5 kpc (g_N < g_crit beyond); v^2 = r g_obs < 0 there
+  framework/MOND BTFR: v_flat = (G M a0)^(1/4) = 106 km/s, flat
+  FOREVER; fork: v^2(r) -> -a0 r/2 (unbound repulsion).  BTFR does NOT survive.
+  The exact spherical AQUAL solution for Psi SURVIVES (C_M untouched), but
+  matter does not orbit on Psi -- it orbits on Psi + X.
+
+  Lensing note (defer to Gate L): photons see grad_perp(2 Psi + X); the same
+  chi channel turns weak lensing repulsive below y where (1-mu)/M_par = 2:
+  [mu_exp] lensing sign flip at y = 0.235 (Mistele KiDS stack probes y ~ 0.01-0.3: contaminated)
+  [mu_5  ] lensing sign flip at y = 0.200 (Mistele KiDS stack probes y ~ 0.01-0.3: contaminated)
+  [mu_10 ] lensing sign flip at y = 0.200 (Mistele KiDS stack probes y ~ 0.01-0.3: contaminated)
+
+==============================================================================
+SUMMARY
+==============================================================================
+  FORK STRUCTURE: new Dirac entry E = {pi_N, S2'} != 0; Pfaffian L_N K - E c_M;
+  still second-class generic; mu_1 = -(K r_4 + E r_3)/(L_N K - E c_M).        [Part A]
+  r_3 = -2 D^2[S2'] + O(2): WEAKLY ZERO on the fork surface (the q = -lnN tie
+  that fixes gamma_PPN also cancels the trace evolution) => mu_1 = -r_4/L_N.  [Part B]
+  r_4 FLIPS: q = -lnN revives R^(3) = 4 D^2 Psi/c^2, so r_4 = (c^2/4piG)
+  D.[(1-mu) D Psi] = +c^2 rho_phantom, not -rho c^2.                          [Part B]
+  Matter EOM: a = -grad(Psi + X); Gauss: c^2 M_par chi' = -(1-mu) Psi' =>
+  g_matter = g_Psi [1 - (1-mu)/M_par]  -- the chi force points OUTWARD.       [Part C]
+  (1) CONSERVATION: grad_mu T^{mu i}|_g = -rho D^i X still an identity, but the
+      magnitude is (1-mu)-gated: 1 AU violation ~ 10^(-2.75e7) (mu_exp) /
+      3e-29 x bound (mu_5) -- the baseline's 1.6e11 x FAIL is REPAIRED; the
+      exact doubling is GONE (g -> g_N exactly, kappa bookkeeping restored).  [Part D]
+  (2) MOND LAW: NOT the same AQUAL law.  Modified nu_eff = [1-(1-mu)/M_par]/mu
+      crosses ZERO at y_crit ~ 0.443 (mu_exp; kernel-shared 0.3-0.45) =
+      g_N ~ 0.16 a0 ~ 1.5e-11 m/s^2, and the deep-MOND limit is a REPULSIVE
+      floor g -> -a0/2.  ~40% of the SPARC RAR span turns repulsive; rotation
+      curves terminate (~10 kpc at 1e10 Msun); BTFR does not survive.  Shared
+      by mu_exp AND mu_n (any kernel with mu ~ y at small y: (1-mu)/M_par ->
+      1/(2y)); NOT repairable by Gate-13 kernel swap.                          [Part E]
+  The defect is the SAME structural disease as the baseline (deleted Hamiltonian
+  constraint => matter-coupled multiplier mu_1), relocated: the fork moves the
+  chi-force from the Newtonian regime (where it killed ephemerides) into the
+  MOND regime (where it kills the RAR/BTFR -- the theory's own home turf).
+
+GATE RESULT: DERIVED -- FAIL (MOND law destroyed in deep-MOND regime; conservation pricing repaired)
