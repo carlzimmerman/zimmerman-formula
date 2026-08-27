@@ -1,0 +1,175 @@
+
+======================================================================================================
+PART 0 -- CHASSIS FRAME: the 4x4 Dirac matrix, the count, and one uncomputed bracket
+======================================================================================================
+  [ok] 0.1 Delta is antisymmetric
+  [ok] 0.2 Pf(Delta) = L_N K  (independent of b, c)
+         Pf = K*L_N
+  [ok] 0.3 det(Delta) = (L_N K)^2
+         det = K**2*L_N**2
+  [ok] 0.4 Pfaffian independent of the off-diagonal couplings {C_M,D^2q}, {C_M,D^2p}
+  [ok] 0.5 count arithmetic: 20 - 12 - 4 = 4 phase-space dims = 2 DOF -- CONDITIONAL on the '12 first-class' side (pi_i, H_i)
+  [ok] 0.6 CAVEAT (new): {D^2 q, H_i[xi]} contains (1/3) D^2(D.xi) != 0 even at q = 0
+         the certified suite verified only the 4x4 sub-block; H_i's brackets with S_2 were asserted, not computed.  A repaired first-class combination may exist but is UNVERIFIED; the count 20-12-4 inherits this as an unverified hypothesis.
+
+======================================================================================================
+PART 1 -- g_00 SECTOR: exact lapse law, beta_PPN, the Phi_1 coefficient, kernel corrections
+======================================================================================================
+  [ok] 1.1 N = e^{Psi/c^2}: C_M == D.[mu(|DPsi|/a0) DPsi] - 4 pi G rho EXACTLY (all orders in 1/c^2)
+         so g_00 = -e^{2Psi/c^2} exactly, with Psi solving the mu-Poisson equation -- no PN nonlinearities enter the lapse sector at any order
+  [ok] 1.2 rho_m = rho* (1 + v^2/2c^2) + O(c^-4) for dust  (rho* = conserved rest-mass density)
+         rho_m/rho* = v2/2 + 1
+  [ok] 1.3 -g_00 = 1 - 2U + 2U^2 + O(U^3)  =>  coefficient 2 beta U^2 gives beta_PPN = 1 EXACTLY
+         -g_00 series = -4*U**3/3 + 2*U**2 - 2*U + 1
+  [ok] 1.4 coefficient of Phi_1 in g_00 = 1  (GR: 4).  With gamma from Part 2 this forces alpha_3 != 0
+         g_00 = -2*Phi1*Uf**2 + 2*Phi1*Uf - Phi1 + 2*Uf**2 - 2*Uf + 1  (cross terms U*Phi1 are O(c^-6))
+
+  [info] 1.5 kernel corrections (fractional deviation of Psi from Newtonian) -- NOT hand-waved:
+     canonical  y(1AU)=6.334e+07  y(1.6Rsun)=1.144e+12
+       mu_exp : 10^(-2.751e+07) @1AU   10^(-4.969e+11) @Cassini
+       mu_5   : 6.26e-21 @1AU   1.43e-31 @Cassini
+       mu_10  : 9.81e-41 @1AU   5.10e-62 @Cassini
+     alt        y(1AU)=5.258e+07  y(1.6Rsun)=9.496e+11
+       mu_exp : 10^(-2.283e+07) @1AU   10^(-4.124e+11) @Cassini
+       mu_5   : 9.98e-21 @1AU   2.28e-31 @Cassini
+       mu_10  : 2.49e-40 @1AU   1.29e-61 @Cassini
+  [ok] 1.5 the LARGEST kernel correction in the whole family (mu_5 at 1 AU) is < 1e-19
+         => every PPN parameter below is kernel-INDEPENDENT to better than 1e-19; the O(1) failures cannot be repaired by the Gate-13 kernel swap
+
+======================================================================================================
+PART 2 -- g_ij SECTOR: gamma_PPN  (cross-check of the committed freeze-session lensing gate)
+======================================================================================================
+  [ok] 2.1 D^2 q = 0 (k!=0) with E gauged to zero  =>  C = 0: NO scalar spatial potential
+         the GR Hamiltonian constraint (which sources C from rho) was DELETED and replaced by the source-free D^2 q = 0.  Hence g_ij = delta_ij + h_TT and gamma_PPN = 0 EXACTLY, at every acceleration, for every kernel.  Agrees with committed gate_lensing_weakfield_derivation.out
+  [info] 2.2 Cassini Shapiro (Bertotti+03: gamma-1 = (2.1+-2.3)e-5)   MMG gamma-1 = -1  =>  43,479 sigma
+  [info] 2.2 VLBI deflection (gamma-1 = (-0.8+-1.2)e-4)   => 8,333 sigma
+  [ok] 2.2 gamma_PPN = 0 vs Cassini: excluded at > 40,000 sigma
+
+======================================================================================================
+PART 3 -- g_0i SECTOR: linearized momentum constraint for a moving source (sympy, no quoted formula)
+======================================================================================================
+  [ok] 3.1 sympy linearized-G routine: G^(1)[pure gauge] = 0 identically (all 16 components)
+  [ok] 3.2 EXACT identity G^(1)_{0i} = sigma * d_j(K^j_i - delta K) for arbitrary amplitudes
+         sigma = 1; also verifies G^(1)_{0i} contains NO h_00 term (h_00-coefficient: 0, 0)
+  [ok] 3.2b the 0i equation is independent of the lapse potential h_00 (pure momentum sector)
+  [ok] 3.3a dust source: T_{0i} = -rho w_i at leading order (index lowering, sympy)
+  [ok] 3.3b GR anchor: transverse h_0x = -4 V_x  (= the known PPN -(7/2)V-(1/2)W transverse part)
+         h_0x = -16*pi*G*rho*w_x/k**2
+  [ok] 3.3c GR longitudinal 0i-equation: no h_0z dependence and identically satisfied (continuity) -- longitudinal h_0i is GAUGE in GR, as it must be
+  [ok] 3.4a MMG 0i system + trace-Ktilde = 0: unique solution for (h_0i, mu_3)
+  [info] 3.4b MMG solution   h_0x = -16*pi*G*rho*w_x/k**2,   h_0z = -12*pi*G*rho*w_z/k**2,   mu_3 = -8*I*pi*G*rho*w_z/k**3
+  [ok] 3.4c MMG h_0i matches the PPN (V_i, W_i) structure exactly
+  [ok] 3.4d g_0i = -(7/2) V_i - (1/2) W_i  -- numerically GR's PPN-gauge form, but with gamma = 0 the PPN dictionary reads it very differently
+         c_V = -7/2, c_W = -1/2
+
+======================================================================================================
+PART 4 -- THE PPN DICTIONARY SOLVE AND THE BOUNDS TABLE
+======================================================================================================
+  [ok] 4.1 the PPN dictionary has a unique solution (xi undetermined by point-dust probes)
+
+   ===========================  PPN PARAMETERS OF MMG_constraint_first  ===========================
+   gamma_PPN = 0                (GR 1;  Cassini |gamma-1| < 2.3e-5)
+   beta_PPN  = 1                (GR 1;  LLR/Mercury |beta-1| < ~1e-4)
+   alpha_1   = 4                (bound |alpha_1| < 1e-4)
+   alpha_2   = 0                (bound |alpha_2| < ~2e-7 .. 2e-9)
+   alpha_3   = -1               (bound |alpha_3| < 4e-20; also = momentum non-conservation)
+   zeta_1 = 2*xi,  zeta_2 = 1 - xi,  zeta_3 = 0,  zeta_4 = 2*xi/3   (xi not probed here)
+   ================================================================================================
+  [ok] 4.2 alpha_1 = 4  ->  violates the |alpha_1| < 1e-4 bound by 4.0e4 x
+         physical origin: gamma = 0 removes the 4*gamma part of the V_i coefficient; the gravito-magnetic sector is GR-like, so the mismatch is booked entirely as alpha_1
+  [ok] 4.3 alpha_2 = 0  ->  PASSES the solar-spin-axis bound (the one clean pass)
+  [ok] 4.4 alpha_3 = -1  ->  violates the pulsar bound |alpha_3| < 4e-20 by 2.5e19 x
+         physical origin: the lapse responds INSTANTANEOUSLY (elliptic C_M) to the source's kinetic energy with coefficient 1 instead of GR's retardation-consistent 4; alpha_3 != 0 also means the theory is non-conservative (self-accelerating binaries)
+  [info] 4.5 Mercury perihelion   (2+2g-b)/3 = 0.3333 -> 14.33 arcsec/cy vs observed 42.98+-0.04 => 716 sigma
+  [ok] 4.5 perihelion: excluded at > 500 sigma
+
+  THEORY-SPECIFIC PREFERRED-FRAME TERMS (beyond the alpha's):
+   (i)   alpha_3 = -1: the elliptic (action-at-a-distance) lapse response.  In a frame moving at
+         w relative to the foliation this generates the PPN term -(alpha_1-alpha_2-alpha_3) w^2 U
+         = -(5) w^2 U in g_00 and (2 alpha_3 - alpha_1) w^i V_i = -6 w^i V_i; with w ~ 369 km/s
+         (CMB frame) these are ~7.6e-6 U effects -- 2 orders above the Cassini gamma precision,
+         5 above pulsar timing sensitivity to alpha_3.
+   (ii)  the k = 0 scalar zero-mode pair (q, p) survives S_2, S_3 and is 'reserved for cosmology'
+         (Gate 7): the preferred foliation has an undetermined homogeneous mode -- no PPN effect,
+         but the PPN frame itself is only defined up to it.
+   (iii) the a0-scale EFE quadrupole (PART 5): kernel-dependent, aligned with the GALACTIC-CENTRE
+         direction (not the CMB dipole) -- separable from (i) by axis, per the corpus's audit3.
+
+======================================================================================================
+PART 5 -- THE EFE QUADRUPOLE Q2: INDEPENDENT INTEGRATOR, BOTH KERNELS, BOTH FOOTINGS
+======================================================================================================
+  5.1  anchors (DHF24 / MS08 kernel):
+       etilde= 1.0: mine 0.0947 vs anchor 0.094  (+0.76%),  e_N=0.5106
+       etilde= 1.5: mine 0.1595 vs anchor 0.159  (+0.30%),  e_N=0.9274
+       etilde= 2.0: mine 0.2210 vs anchor 0.221  (-0.00%),  e_N=1.3830
+  [ok] 5.1 MY integrator reproduces the validated anchors q(1)=0.094, q(1.5)=0.159, q(2)=0.221 to < 3%
+  [ok] 5.1b grid-convergence: doubling resolution moves q(2) by < 0.5%
+         0.22100 -> 0.22100
+  [info] 5.1c cross-check vs audit3's independent slope/level forms   a0-line q(2): mine 0.1669 vs audit3 0.1669  (+0.01%)
+
+  5.2  BN11 (published AQUAL) per-kernel calibration at a0=1.2e-10, etilde=1.5833:
+       mu_exp  my|q|=0.14897  1.5*pref*|q|=2.550e-26  BN11=3.00e-26  => R_A(mu_exp) = 1.177
+       mu5     my|q|=0.03855  1.5*pref*|q|=6.598e-27  BN11=7.40e-27  => R_A(mu5) = 1.122
+       mu20    my|q|=0.00852  1.5*pref*|q|=1.459e-27  BN11=2.10e-27  => R_A(mu20) = 1.440
+       mu1     my|q|=0.16355  1.5*pref*|q|=2.799e-26  BN11=3.80e-26  => R_A(mu1) = 1.357
+  [ok] 5.2 per-kernel R_A in [1.0, 1.5]; corpus value 1.2344 sits inside the spread
+         spread 1.122-1.440
+
+  5.3  footing canonical: a0 = 9.3619e-11, g_ext = 2.32e-10  (R_A = 1.2344)
+       kernel            etilde     e_N       |q|    Q2 AQUAL x ceiling   sigma
+       mu_exp (FROZEN)    2.478   2.270   0.16584   2.415e-26     4.643    12.5
+       mu_5               2.478   2.473   0.01384   2.014e-27     0.387     0.2
+       mu_10              2.478   2.478   0.00280   4.080e-28     0.078    -0.7
+
+  5.3  footing alt: a0 = 1.1279e-10, g_ext = 2.32e-10  (R_A = 1.2344)
+       kernel            etilde     e_N       |q|    Q2 AQUAL x ceiling   sigma
+       mu_exp (FROZEN)    2.057   1.794   0.16542   3.185e-26     6.125    16.8
+       mu_5               2.057   2.046   0.02190   4.215e-27     0.811     1.5
+       mu_10              2.057   2.057   0.00548   1.056e-27     0.203    -0.3
+
+  5.3b the tasked y_ext ~ 1.9 point (a0 = 1.2e-10, etilde = 1.933):
+       anchors-interpolated q(1.9) = 0.209 -> Q2 = 3.570e-26 = 6.87 x ceiling  [MS08-kernel anchors, QUMOND convention]
+       mu_exp's own |q|(1.93) = 0.1630 -> Q2 = 2.790e-26 (QUMOND) / 3.444e-26 (AQUAL) = 5.37 / 6.62 x ceiling
+  [ok] 5.3 mu_exp FAILS the Q2 ceiling on every footing and at the tasked y_ext~1.9 point (>= 3x ceiling however normalized)
+         canonical 4.64x (13 sigma), alt 6.12x (17 sigma)
+  [ok] 5.4 INDEPENDENT verification of the route1B/audit3 claim: mu_5 / mu_10 = 0.39 / 0.08 of the ceiling on the canonical footing
+         mine: mu_5 0.387x (claim 0.387), mu_10 0.078x (claim 0.078)
+  [ok] 5.4b mu_5 and mu_10 CLEAR the ceiling on both footings
+         alt: mu_5 0.811x (claim 0.811), mu_10 0.203x (claim 0.203)
+  [info] 5.4c calibration systematic on the tightest cell (mu_5, alt)   R_A in [1.122,1.440] -> mu_5 alt = 0.737-0.945 x ceiling (still clears)
+
+  5.5  1-AU anomalous monopole vs the Mars EPM budget (1.4e-15 m/s^2):
+       canonical  mu_exp: 10^(-2.751e+07) x budget   mu_5: 2.65e-08 x   mu_10: 4.15e-28 x
+       alt        mu_exp: 10^(-2.283e+07) x budget   mu_5: 4.23e-08 x   mu_10: 1.05e-27 x
+  [ok] 5.5 every kernel's 1-AU monopole is >= 6 orders under the Mars budget (mu_exp doubly so)
+
+======================================================================================================
+VERDICTS
+======================================================================================================
+
+  PPN PARAMETERS (kernel-independent to < 1e-19, Part 1.5):
+     gamma = 0   beta = 1   alpha_1 = 4   alpha_2 = 0   alpha_3 = -1
+     [zeta_1 = 2xi, zeta_2 = 1-xi, zeta_3 = 0, zeta_4 = 2xi/3; xi not probed by point-dust]
+
+  KERNEL mu_exp = 1 - e^-y (FROZEN):   FAIL
+     - gamma_PPN = 0: Cassini 43,479 sigma, VLBI 8,333 sigma  [structural, D^2q = 0]
+     - alpha_1 = 4 (4.0e4 x bound), alpha_3 = -1 (2.5e19 x bound), perihelion 1/3 of GR
+     - EFE quadrupole Q2 = 2.41e-26 / 3.18e-26 s^-2 (canon/alt)
+       = 4.6x / 6.1x the 5.2e-27 ceiling (13 / 17 sigma); at the tasked
+       y_ext ~ 1.9 anchor point: 6.9x (anchors) / 6.6x (own kernel, AQUAL)
+
+  KERNEL mu_n (n = 5, 10):   FAIL  (repairs ONLY the quadrupole, not the PPN structure)
+     - Q2: mu_5 0.39x / 0.81x ceiling, mu_10 0.08x / 0.20x (canon/alt) -- clears; route1B's
+       0.39/0.08 INDEPENDENTLY CONFIRMED at 0.387/0.078
+     - but gamma = 0, alpha_1 = 4, alpha_3 = -1 are UNTOUCHED by the kernel swap: the failures
+       live in the constraint structure (D^2q = 0 deleted the Phi-sourcing Hamiltonian
+       constraint; the elliptic C_M fixes the Phi_1 coefficient at 1), not in mu(y).
+
+  The chassis's Cassini liability is therefore NOT the EFE quadrupole (which mu_n does repair,
+  as priced) -- it is the PPN structure itself.  The named repair S_2 -> D^2(q + ln N) (Part H of
+  the committed lensing gate) would set gamma = 1 and needs re-certification; whether it also
+  repairs alpha_1/alpha_3 is OPEN (the g_0i and Phi_1 sectors are untouched by that repair as
+  named -- alpha_3 = -1 comes from C_M itself and looks repair-resistant inside this chassis).
+
+======================================================================================================
+RESULT: 34/34 checks passed.

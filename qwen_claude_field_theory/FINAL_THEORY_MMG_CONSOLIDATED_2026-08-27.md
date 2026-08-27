@@ -1,7 +1,9 @@
 # The Consolidated Relativistic Theory (2026-08-27)
 ## Constraint-defined MOND MMG + Cassini-safe kernel + CMC a₀-clock
 
-**Status: CONDITIONALLY CLOSED (certified on the generic branch) — the strongest object in this
+**⚠️ STATUS SUPERSEDED 2026-08-27 (same day): the referee-to-closure audit returned FAILED — gamma_PPN=0 exactly, alpha_1=+4/alpha_3=-1, and Newtonian-order matter non-conservation, all kernel-blind (see closure_2026/REFEREE_REPORT_FINAL.md + RETRACTIONS.md). The 'CONDITIONALLY CLOSED' label below is WITHDRAWN; the surviving certified content is the nonrelativistic core.**
+
+**Original status (superseded): CONDITIONALLY CLOSED (certified on the generic branch) — the strongest object in this
 repository. NOT claimed as a certified-viable final theory; the three residual defects are listed in
 §5 and are conditions, not footnotes.**
 

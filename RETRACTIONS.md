@@ -914,3 +914,24 @@ propagation, domain of dependence), which is the decisive open gate — not a pr
 Retracted: the causal no-go / trilemma as an *established* result. Preserved: the ESTABLISHED
 local-disformal no-go (non-local D + GW170817 cone, referee-sustained); the certified D=0 2+0 spine;
 the 0-DOF auxiliary result; a₀(z) ∝ √ρ_DE. Docs corrected in place with ⚠️ markers.
+
+## 2026-08-27 — "CONDITIONALLY CLOSED" label for the MMG constraint-first chassis WITHDRAWN
+The referee-to-closure audit (closure_2026/REFEREE_REPORT_FINAL.md, CLOSURE_LEDGER.md) found three
+kernel-blind, footing-blind contradictions derived from the frozen constraint set itself:
+(1) gamma_PPN = 0 exactly — D^2q=0 leaves the spatial conformal potential unsourced; light sees half
+the potential (43,479 sigma vs Cassini Shapiro; solar deflection 0.875", excluded at 1919 precision;
+KiDS lensing RAR +403..+498 chi2). Derived twice independently (gate_lensing_weakfield_derivation,
+ppn_mmg_gate). (2) alpha_1=+4, alpha_3=-1 (2.5e19x pulsar bound; momentum non-conservation sourced
+by C_M itself). (3) Matter non-conservation at NEWTONIAN order — falsifies scripts/08's O(v^2/c^2)
+claim (gate_matter_conservation_derivation, commit 3c771f0a). The Gate-13 mu_n swap repairs only the
+EFE quadrupole and none of these. Consequently: the "CONDITIONALLY CLOSED" label in
+FINAL_THEORY_MMG_CONSOLIDATED_2026-08-27.md and in PAPER2 (DOI 10.5281/zenodo.22132652) is NO LONGER
+SUPPORTABLE — correct status: FAILED as a relativistic completion; the certified content that
+SURVIVES is the nonrelativistic core (2-DOF generic-branch Hamiltonian skeleton, exact AQUAL, derived
+EFE tensor, exceptional sectors closed) and the falsification suite itself. Also corrected: the
+"6 first-class" hypothesis in the 20-12-4 count is UNVERIFIED pending {D^2q, H_i} closure;
+FINAL_STATUS "y=0 = exact Newtonian limit" mislabel (it is the deep-MOND zero-acceleration locus).
+The structural lesson (new, sharpest form of the program's recurring wall): deleting the Hamiltonian
+constraint is simultaneously what BUYS the 2-DOF count and what KILLS lensing and matter
+conservation. Named repair forks (each a NEW certification program; neither repairs alpha_3):
+S_2' = D^2(q + ln N); C_M-as-secondary.
