@@ -1,0 +1,61 @@
+====================================================================================================
+PART A -- EXACT SOURCED SPHERICAL SOLUTION
+====================================================================================================
+  [ok] A1  3D divergence of mu(|dPhi|/a0) grad Phi reduces EXACTLY to (1/r^2)(r^2 mu Phi')' (generic radial Phi, checked symbolically-numerically at 6 random points, <1e-10)
+  [info] A1  hence Gauss: r^2 mu(g/a0) g = G M(<r)  ==>  mu(g/a0) g = g_N(r) = GM(<r)/r^2  EXACT   no curl term survives spherical symmetry; this is the exact sourced solution
+  [ok] A2  Q'(y) = 1 - e^{-y}(1-y) > 0 for all y>0 (symbolic form + 20001-pt grid; analytic: (1-y)<=e^{-y} => e^{-y}(1-y)<=e^{-2y}<1)   min on grid = 2.000e-12
+  [ok] A2b Q_n'(y) = y(2+y^n)/(1+y^n)^{1+1/n} > 0 manifestly (sympy identity) -- Gate-13 ellipticity condition d(y mu)/dy>0 re-verified for mu_n
+  [info] A2  => the algebraic relation mu(g/a0) g = g_N has a UNIQUE solution g(r) at every r; the spherical solution is globally single-valued
+  [ok] A3  Hernquist 1e11 Msun: (1/r^2)d/dr[r^2 mu g] = 4 pi G rho verified by finite difference over 6 decades in r   median residual 4.83e-06, interior max 1.19e-05
+  [ok] A4  deep-MOND inversion y = sqrt(y_N)[1 + sqrt(y_N)/4 + 7 y_N/96 + O(y_N^{3/2})] (sympy series residual O(y_N^{5/2}); numeric match <1e-5 at y_N=1e-4..1e-8)   ==> g -> sqrt(g_N a0) EXACT deep-MOND limit; same limit for mu_n (mu->y both)
+  [ok] A4b Newtonian recovery exponentially fast: y - y_N = y e^{-y} exactly   at y_N=20: y-y_N = 4.122e-08
+  [info] A5  exterior identity: v^4/(GMa0) = y/mu_exp(y)  (derived: v^2=gr, y_N=GM/(a0 r^2))
+  [info]      r =   10 r_M : v^4/(GMa0) = 1.052164  (excess ~ y/2 = 0.05129)
+  [info]      r =  100 r_M : v^4/(GMa0) = 1.005021  (excess ~ y/2 = 0.00501)
+  [info]      r = 1000 r_M : v^4/(GMa0) = 1.000500  (excess ~ y/2 = 0.00050)
+  [ok] A5  BTFR v^4 = G M a0 approached from ABOVE, excess ~ g/(2 a0) ~ 1/r; exact as r->inf   kernel-independent: y/mu -> 1 for every mu with mu(y)->y
+  [info] A6  [canonical a0=9.36e-11] r_M(1 Msun) = 1.1909e+15 m = 7961 AU ; r_M(1e11 Msun) = 12.20 kpc
+  [info] A6  [alt a0=1.13e-10] r_M(1 Msun) = 1.0839e+15 m = 7245 AU ; r_M(1e11 Msun) = 11.11 kpc
+  [ok] A6  boost at r_M (y_N=1): g/g_N = 1.3500 for mu_exp; 1.1010 for mu_5 (mu_n transitions sharper -- the priced RAR cost 0.108->0.123/0.127 dex, route1B)
+  [ok] A7  interior of isolated shell: M(<r)=0 => Q(y)=0 => y=0 UNIQUE (A2) => g=0 exactly; exterior: r^2 mu g = G M_shell identical to point mass -- exact point-equivalence   caveat (honest): superposition FAILS -- a shell does NOT screen an external field; that non-superposition IS the EFE of Part B
+  [info] A8  r->0: g->0 (regular rho: g ~ g_N ~ r Newtonian-centre, or g ~ sqrt(a0 g_N) ~ r^{1/2} deep-MOND centre); Phi regular at 0
+  [info] A8  r->inf (isolated): g -> sqrt(GMa0)/r, Phi ~ v_inf^2 ln r  => lapse N ~ r^(v_inf^2/c^2), exponent = 3.92e-07 for 1e11 Msun -- NOT asymptotically flat (standard MOND)
+  [info] A8  the divergence is an isolated-system idealization: any external field g_ext restores a 1/r Newtonian-like far field beyond r_ext = sqrt(GMa0)/g_ext (the EFE regularizes the BC)
+====================================================================================================
+PART B -- THE EFE, DERIVED FROM THE CONSTRAINT (not assumed)
+====================================================================================================
+  [ok] B1  linearizing div[mu(|grad Phi|) grad Phi] about Phi = g_ext z + phi gives EXACTLY mu_e [ d_xx + d_yy + (1+L_e) d_zz ] phi = 4 pi G rho,  L_e = dln mu/dln y |_{y_e}   DERIVED from C_M by sympy series -- anisotropic elliptic operator; this IS the EFE
+  [ok] B2  phi = -A [x^2+y^2+z^2/(1+L_e)]^{-1/2} solves the anisotropic equation away from origin (sympy identically zero)
+  [ok] B2b Gauss flux of the linearized flux vector = 4 pi sqrt(1+L_e) x A x mu_e, R-independent (R=1 and R=37 agree to <1e-8)  ==>  A = GM/(mu_e sqrt(1+L_e))   flux/pred = 1.0000000000, 1.0000000000
+  [info] B2  forces: ALONG e_ext  g = GM/(mu_e r^2)          => B_par  = 1/mu_e
+  [info] B2  forces: PERP  e_ext  g = GM/(mu_e sqrt(1+L_e) r^2) => B_perp = 1/(mu_e sqrt(1+L_e))
+  [info] B2  matches aqual_efe_full_solve_2026.py PART A line 55 exactly (B_par=nu big axis PARALLEL)
+  [info] B3  observed external field: x_ext = g_ext/a0 = 1.8996 canonical / 1.5735 alt  (the gate's g_ext ~ 1.9 a0 = the canonical footing)
+
+  kernel                footing         mu_e      L_e    B_par   B_perp  g_par=vB    g_avg   1-mu_e
+  mu_exp (FROZEN)       canonical    0.85037  0.33425  1.17596  1.01806   1.08442  1.03474  0.14963
+  mu_exp (FROZEN)       alt          0.79268  0.41154  1.26155  1.06184   1.12319  1.06227  0.20732
+  mu_5 (Cassini-safe)   canonical    0.99210  0.03886  1.00796  0.98893   1.00397  0.99763  0.00790
+  mu_5 (Cassini-safe)   alt          0.98046  0.09394  1.01993  0.97515   1.00991  0.99503  0.01954
+  mu_10 (Cassini-safe)  canonical    0.99984  0.00163  1.00016  0.99935   1.00008  0.99981  0.00016
+  mu_10 (Cassini-safe)  alt          0.99893  0.01064  1.00107  0.99579   1.00053  0.99877  0.00107
+  RouteA nu (REGISTERED)canonical    0.67873  0.36749  1.47333  1.25991   1.21381  1.15371  0.32127
+  RouteA nu (REGISTERED)alt          0.63072  0.41170  1.58549  1.33442   1.25916  1.19084  0.36928
+
+  [ok] B3a Route A largest-eigenvalue gamma reproduces the REGISTERED 1.2139/1.2592: 1.2138/1.2592   confirms the registered numbers are Route-A-kernel objects, sqrt(B_par) declared isotropic
+  [ok] B3b FROZEN chassis mu_exp at x_ext=1.90: B_par = 1.17596, B_perp = 1.01806 (gamma_par = 1.0844, orientation-avg gamma = 1.0347)
+  [ok] B3c mu_exp(x) >= mu_RA(x) for ALL x (2000-pt grid) => the frozen kernel's boost is strictly below Route A's at EVERY angle and separation -- the registered band CANNOT be reproduced by the frozen chassis kernel under any orientation/population treatment
+
+  [info] B4  internal y_N = 0.05 : ISOLATED mu_exp boost = 4.740  vs  EFE-saturated bracket [1.018, 1.176]
+  [info] B4  internal y_N = 0.2  : ISOLATED mu_exp boost = 2.523  vs  EFE-saturated bracket [1.018, 1.176]
+  [info] B4  internal y_N = 1.0  : ISOLATED mu_exp boost = 1.350  vs  EFE-saturated bracket [1.018, 1.176]
+  [ok] B4  DIRECTION: the external field SUPPRESSES the internal MOND boost (4.2x isolated -> 1.02-1.18x saturated at y_N=0.05) -- quasi-Newtonian with renormalized, ANISOTROPIC G_eff; internal dynamics DO depend on g_ext: strong-equivalence-principle violation derived
+  [ok] B5  naive 1D algebraic recipe would give B_par = 1/Q'(y_e) = 0.8814 (<1, SUB-Newton) while the PDE gives 1.1760 (>1) -- the curl field flips the SIGN of the effect; the EFE here is genuinely DERIVED from the constraint PDE, not assumed algebraically
+
+  [info] B6  mu_exp (FROZEN)        canonical: 1-mu(x_ext) = 0.14963, gamma_par = 1.08442, gamma_avg = 1.03474
+  [info] B6  mu_5 (Cassini-safe)    canonical: 1-mu(x_ext) = 0.00790, gamma_par = 1.00397, gamma_avg = 0.99763
+  [info] B6  mu_10 (Cassini-safe)   canonical: 1-mu(x_ext) = 0.00016, gamma_par = 1.00008, gamma_avg = 0.99981
+  [ok] B6  the SAME 1-mu(y_ext~1.9) that route1B caps for Cassini Q2 controls the WB boost: Cassini-safe mu_5/mu_10 predict gamma_v = 1.0040/1.0001 -- NO detectable DR4 signal   within the frozen chassis, Cassini-safety and the registered DR4 band are MUTUALLY EXCLUSIVE
+  [info] B6  DR4 discriminator (sharp): registered Amdt-10 band 1.1614-1.1814 can / 1.1917-1.2267 alt is a Route-A-kernel object; frozen mu_exp saturates at 1.084/1.123; mu_n at ~1.00. A DR4 gamma_v in the registered band would FALSIFY the Cassini-safe chassis kernels; gamma_v ~ 1.00 would falsify mu_exp AND Route A but confirm mu_n.
+====================================================================================================
+ALL CHECKS PASS
