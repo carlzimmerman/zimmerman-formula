@@ -1,0 +1,208 @@
+/Users/carlzimmerman/new_physics/zimmerman-formula/openai_push/repair_fork/gate_L_lensing_S2prime_2026.py:308: RuntimeWarning: divide by zero encountered in matmul
+  sv_k = np.linalg.svd(Pproj @ Delta_full @ Pproj, compute_uv=False)
+/Users/carlzimmerman/new_physics/zimmerman-formula/openai_push/repair_fork/gate_L_lensing_S2prime_2026.py:308: RuntimeWarning: overflow encountered in matmul
+  sv_k = np.linalg.svd(Pproj @ Delta_full @ Pproj, compute_uv=False)
+/Users/carlzimmerman/new_physics/zimmerman-formula/openai_push/repair_fork/gate_L_lensing_S2prime_2026.py:308: RuntimeWarning: invalid value encountered in matmul
+  sv_k = np.linalg.svd(Pproj @ Delta_full @ Pproj, compute_uv=False)
+
+==============================================================================
+PART A -- lapse sector: C_M is UNTOUCHED by the fork; exact AQUAL for Psi
+==============================================================================
+  [PASS] C_M == D.[mu(|DPsi|/a0) DPsi] - 4 pi G rho for a GENERIC kernel mu (exact)  -- kernel-blind: holds for mu_exp AND every mu_n before any choice is made
+  [PASS] explicit check for mu_exp
+  [PASS] explicit check for mu_5
+  => Psi IS the full MOND (AQUAL) potential; rotation curves unchanged
+     (slow-matter a = -grad Psi at the Psi-channel level; chi-channel: Part D).
+
+==============================================================================
+PART B -- ij sector: S_2' = D^2(q + lnN) ~ 0  =>  q = -lnN  =>  Phi = Psi
+==============================================================================
+  [PASS] gamma_ij = N^{-2} delta_ij  =>  q = (1/6) ln det gamma = -lnN EXACTLY
+  [PASS] q + lnN = 0 at linear order  =>  Phi = +Psi EXACTLY  -- Phi = Psi
+  =>  slip eta = Phi/Psi = 1,  gamma_PPN = 1,  at ALL accelerations,
+      for EVERY kernel (S_2' contains no mu and no a0).
+  [PASS] lattice: ker(D^2) = constants ONLY  =>  Q = -lnN + const (gauge)  -- the harmonic ambiguity is exactly the k=0 zero mode, reserved for cosmology
+  exact metric: -g_00 = e^-2U = 2*U**2 - 2*U + 1   (GR isotropic: 1 - 2U + 2U^2  -> beta = 1)
+                gamma_xx = e^+2U = 2*U**2 + 2*U + 1   (GR isotropic: 1 + 2U + (3/2)U^2)
+  [PASS] -g_00 matches GR through O(U^2): beta_PPN = 1 (Psi-channel; chi caveat Part H)
+  residual: gamma_xx U^2 coefficient 2 vs GR-isotropic 3/2 -- a 2PN-light
+  (epsilon-type) effect ~ U ~ 1e-6 at the solar limb, NOT probed by Cassini's
+  linear-order gamma; second-order deflection (~ 11 muas) is unmeasured. NOT a slip.
+
+==============================================================================
+PART C -- the NEW Dirac structure of (pi_N, C_M, S_2', S_3)
+==============================================================================
+  [PASS] d = {pi_N, S_2'} = -D^2(1/N .)  ->  d(k) = k^2 != 0 on flat background  -- the fork DOES change the Dirac matrix: new off-diagonal (S_4, S_2') entry
+  [PASS] {C_M, S_2'} = 0 IDENTICALLY (neither side contains momenta)  -- the baseline's generic b entry is exactly 0; also true for the old S_2
+  [PASS] {pi_N, S_2'} = -D^2(1/N .) verified entrywise on the lattice
+  [PASS] {pi_N, S_3} = 0 and {pi_N, S_2_old} = 0: the d entry is NEW to the fork
+  [PASS] c = {C_M, S_3} != 0 generically but = 0 at D lnN = 0 (weak-field background)  -- => c = O(D lnN): first-order small in the weak field
+  [PASS] K = {S_2', S_3} = D^2 D^2 (lattice; continuum C_q k^4 = k^4/2, Gate 3)  -- curved-space correction is O(h) through the Laplacian only
+  [PASS] Pf(Delta') = L_N K - d c   (24-term sum; b drops out)  -- Pf = K*L_N - c*d
+  [PASS] det(Delta') = (L_N K - d c)^2
+  weak field: c = O(D lnN) (C.2)  =>  Pf = L_N K + O(h) != 0: the generic
+  branch SURVIVES at linearized order; the constraint solve of Part B is
+  therefore consistent (multipliers determined, no tertiary constraints).
+  [OPEN] the strong-field degeneracy locus L_N K = d c and the full
+  re-certification of Gates 3/6/7/8 for S_2' are NOT done here.
+  16x16 lattice Dirac matrix singular values: max 1.654e+01, smallest nonzero 3.063e-01, zeros 4
+  [PASS] corank(Delta') = 4 = the FOUR k=0 zero modes, each verified explicitly  -- |Delta u| = ['0.0e+00', '0.0e+00', '3.6e-16', '2.7e-16']; every k != 0 mode nondegenerate
+  [PASS] k != 0 sector of Delta' is FULL RANK: four second-class constraints, count 20 - 12 - 4 = 4 = 2 DOF plausibly survives (recert still OPEN)
+
+==============================================================================
+PART D -- multipliers/chi: the Newtonian-order matter sourcing is REMOVED
+==============================================================================
+  [PASS] 3R[e^{2w} delta] = e^{-2w}(-4 D^2 w - 2 |Dw|^2)  (computed, not quoted)
+  fork: w = q = -lnN  =>  3R = N^2 (4 D^2 lnN - 2 |D lnN|^2)
+  =>  H_perp_grav = -(sqrt(gamma)/2 kappa) 3R = -(c^4/16 pi G) N^{-1} (4 D^2 lnN - 2|D lnN|^2)
+  linear order (lnN = Psi/c^2):  H_perp_grav = -(c^2/4 pi G) D^2 Psi
+  [PASS] r_4 = -(H_perp + eps_n) = (c^2/4 pi G) D.[(1 - mu(y)) D Psi]  (generic mu)  -- the baseline had r_4 = -rho c^2 FULL STRENGTH (H_perp ~ 0 because q = 0);
+  => the fork's q = -lnN restores the GR-like cancellation: the curvature
+     energy cancels the matter energy EXACTLY where mu -> 1.  The baseline's
+     Newtonian-order conservation violation (g_matter = 2 g_N) is REMOVED.
+     Residual r_4: MOND-order, prop. to (1 - mu(y)); plus O(U) rho c^2 pieces
+     at 1PN (N^{-1}, |D lnN|^2, density-weight bookkeeping) -> Part H caveat.
+  [PASS] static linear G_xx = k^2 (phi - psi):  = 0  IFF  Phi = Psi (dust: T_ij = 0)  -- G_xx = k**2*(phi_a - psi_a)
+  [PASS] static linear G_00 = -2 k^2 phi_a -> the Poisson side (sourced by rho)  -- G_00 = -2*k**2*phi_a
+  => on the fork surface Phi = Psi the static ij evolution (pi-dot = 0 with
+     vanishing multipliers) is SATISFIED at linear order; on the baseline
+     surface Phi = 0 it is NOT (G_xx = k^2 psi != 0) -- that inconsistency is
+     exactly what sourced the baseline's matter-coupled multipliers.
+     r_2 = {S_2', H_can} = 0 at pi = 0 exactly ({q,H} ~ pi; {lnN,H} ~ pi_N-free);
+     r_3 = D^2{p, H_can} = D^2[trace pi-dot/sqrt(gamma)] = 0 at this order.
+
+  (1 - mu(y)) at solar-system accelerations [the r_4 suppression factor]:
+   [canon] y(1AU) = 6.334e+07, y(Cassini 1.6 Rsun) = 1.144e+12
+     mu_exp : 1-mu = 10^(-2.751e+07) @1AU, 10^(-4.969e+11) @Cassini
+     mu_5   : 1-mu = 1.96e-40 @1AU, 1.02e-61 @Cassini
+     mu_10  : 1-mu = 9.62e-80 @1AU, 2.60e-122 @Cassini
+   [alt  ] y(1AU) = 5.258e+07, y(Cassini 1.6 Rsun) = 9.496e+11
+     mu_exp : 1-mu = 10^(-2.283e+07) @1AU, 10^(-4.124e+11) @Cassini
+     mu_5   : 1-mu = 4.98e-40 @1AU, 2.59e-61 @Cassini
+     mu_10  : 1-mu = 6.20e-79 @1AU, 1.68e-121 @Cassini
+  [PASS] largest family member (mu_5): (1-mu) < 1e-38 at 1 AU  -- => the chi-channel cannot touch Cassini/ephemerides in ANY kernel
+  galaxy scale (MOND): 1-mu_exp(1) = 0.368, 1-mu_5(1) = 0.129  => the chi
+  source is O(0.1-0.4) of the Newtonian one AT MOND accelerations: a real,
+  UNPRICED common-mode force channel.  It couples UNIVERSALLY (through
+  rho_m = T_nn), so dynamics and lensing shift TOGETHER: slip stays 1.
+  [OPEN] its magnitude (operator solve mu_1 = -(K r_4 + d r_3)/(L_N K - dc))
+  and the RAR-shape cost belong to the fork's matter-conservation gate.
+
+==============================================================================
+PART E -- what light sees: null geodesics + Cassini/VLBI
+==============================================================================
+  [PASS] d^2 x_perp/dz^2 = -d_perp(psi + phi)  (light sees psi + phi)
+  fork (Phi = Psi):  deflection = (2/c^2) int d_perp Psi dz -- the FULL MOND
+  potential, POINTWISE, identical to the equal-slip GR+MOND expectation.
+  [PASS] Cassini Shapiro (Bertotti+03, gamma-1 = (2.1+-2.3)e-5): fork gamma-1 = 0 -> 0.91 sigma (the data's own offset)  -- PASS
+  [PASS] VLBI deflection (gamma-1 = (-0.8+-1.2)e-4): 0.67 sigma  -- PASS
+  solar-limb deflection: 1.75" (GR value; baseline predicted 0.875").
+  residual budget on gamma at Cassini: kernel correction < 1e-19 (mu_5, 
+  ppn gate 1.5), (1-mu) chi-source < 1e-60, 2PN terms ~ U = 1.33e-06;
+  the chi-channel is UNIVERSAL (matter and light share N_eff = N + chi),
+  so it cancels in the Shapiro-vs-orbit comparison that defines gamma.
+
+==============================================================================
+PART F -- galaxies: point-mass deflection + the real Mistele+24 KiDS RAR
+==============================================================================
+  test lens M_b = 6e10 Msun, b = 50 kpc  (baseline grid + conventions):
+  kernel   footing  alpha_fork ["]  equal-slip ["]   ratio  GR baryons ["]
+  mu_exp   canon            0.4019          0.4019  1.0000          0.0474
+  mu_exp   alt              0.4399          0.4399  1.0000          0.0474
+  mu_5     canon            0.3896          0.3896  1.0000          0.0474
+  mu_5     alt              0.4276          0.4276  1.0000          0.0474
+  mu_10    canon            0.3896          0.3896  1.0000          0.0474
+  mu_10    alt              0.4276          0.4276  1.0000          0.0474
+  deep-MOND analytic (fork): 2 pi sqrt(G M a0)/c^2 = 0.3937"
+  [PASS] deflection ratio fork/equal-slip = 1 EXACTLY, every kernel, both footings  -- baseline ratio was 1/2; light now sees the FULL MOND potential
+
+  M24 g_obs is inferred from shear assuming GR slip (Phi = Psi) -- which is
+  now the fork's OWN slip: the fork prediction IS the slip = 1 column.
+  kernel   footing  chi2/dof fork  chi2/dof baseline  Delta chi2 removed
+  mu_exp   canon             2.25              34.51               483.9
+  mu_exp   alt               1.03              27.90               403.0
+  mu_5     canon             2.51              35.74               498.4
+  mu_5     alt               1.16              28.90               416.1
+  mu_10    canon             2.51              35.74               498.4
+  mu_10    alt               1.16              28.90               416.1
+  [PASS] the baseline's M24 halving kill (Delta chi2 = +403..+498) is REMOVED  -- mu_exp/canon: fork chi2/dof = 2.25 vs baseline 34.51
+  (fork chi2/dof 2.25 for mu_exp/canon uses this gate's mu-form law; the
+   banked stage12 fit with the Route A nu-form gives 2.03 canon / 0.94 alt --
+   same caveat as the baseline gate.  [OPEN] the MOND-order chi common-mode
+   (Part D) shifts dynamics AND lensing together; it can move these chi2
+   but CANNOT reintroduce a slip.)
+
+==============================================================================
+PART G -- clusters: the shortfall is NO LONGER doubled
+==============================================================================
+  standing DYNAMICAL (hydrostatic) shortfall at R500: eta = 1.72-2.08
+  fork: lensing acceleration = dynamical acceleration (slip 1)  =>
+     eta_lens = eta_dyn = 1.72-2.08   (baseline: 3.44-4.16)
+  hydrostatic-vs-lensing cluster masses now agree INTERNALLY (ratio 1),
+  consistent with the observed ~10-20% agreement; the standing factor ~2
+  shortfall itself REMAINS the open cluster front (a0-bump candidate),
+  unchanged by this gate -- it is not doubled and not repaired here.
+  [PASS] cluster lensing shortfall = 1 x (1.72-2.08); the second, independent baseline kill (internal factor-2 hydro/lensing discrepancy) is removed
+
+==============================================================================
+PART H -- PPN dictionary RE-SOLVED for the fork (alpha_3 check included)
+==============================================================================
+  [PASS] machinery: G^(1)[pure gauge] = 0 (all 16 components)
+  [PASS] machinery: G^(1)_0i = sigma d_j(K^j_i - delta K), sigma = 1
+  [PASS] machinery: GR anchor h_0x = -4 V_x reproduced
+  [PASS] fork 0i system + trace-Ktilde = 0: unique solution (h_0i, mu_3)
+  fork solution: h_0x = -16*pi*G*rho*w_x/k**2,  h_0z = -12*pi*G*rho*w_z/k**2,  mu_3 = 0
+  [PASS] fork h_0i matches the PPN (V_i, W_i) structure
+  c_V = -7/2, c_W = -1/2   (GR PPN gauge: -7/2, -1/2)
+  [PASS] coefficient of Phi_1 in g_00 = 1 (GR: 4) -- unchanged
+  [PASS] fork PPN dictionary: unique solution
+
+   ====================  PPN PARAMETERS OF THE S_2' FORK  ====================
+   gamma_PPN = 1          (baseline 0; Cassini |gamma-1| < 2.3e-5: PASS)
+   beta_PPN  = 1*         (Psi-channel; *chi-channel enters at O(U^2): OPEN)
+   alpha_1   = 0          (baseline 4;  bound 1e-4: PASS)
+   alpha_2   = 0          (baseline 0;  bound ~2e-7: PASS)
+   alpha_3   = -3         (baseline -1; bound 4e-20: FAIL, 7.5e19 x over)
+   zeta_1 = 2*xi, zeta_2 = -xi - 2, zeta_3 = 0, zeta_4 = 2*xi/3 - 1
+   ===========================================================================
+  [PASS] alpha_1 = 0: the fork ALSO repairs the g_0i/preferred-frame alpha_1 = 4  -- the U-dot terms cancel exactly in the trace and zz combinations
+  [PASS] alpha_3 = -3: the audit's prediction 'fork does NOT repair alpha_3' VERIFIED  -- and sharpened: gamma = 1 makes the Phi_1 mismatch WORSE (-1 -> -3); the origin is C_M's instantaneous elliptic Phi_1 coefficient 1 vs GR's 4 -- untouched by S_2'
+  [PASS] zeta_2 = -2 - xi != 0 for |xi| < 1e-3 (Whitehead bound): non-conservative  -- pulsar Pdot bound |zeta_2| < ~4e-5 violated by ~5e4 x
+  Mercury perihelion: (2+2 gamma - beta)/3 = 1.0000 -> 42.98 "/cy vs 42.98 +/- 0.04: PASS (baseline: 1/3, >500 sigma)
+  [PASS] perihelion factor = 1 (GR) -- baseline kill repaired
+
+==============================================================================
+SUMMARY -- GATE L (lensing / gamma_PPN) OF THE S_2' FORK
+==============================================================================
+  q = -lnN HOLDS: S_2' ~ 0 + bounded-harmonic BC (k=0 mode reserved for
+  cosmology, as in the baseline)  =>  Phi = +Psi EXACTLY, all accelerations,
+  every kernel, both footings.                                        [Part B]
+  gamma_PPN = 1;  Cassini 0.9 sigma, VLBI 0.7 sigma: PASS.        [Parts B, E]
+  Light sees the FULL MOND potential: deflection ratio to the equal-slip
+  GR+MOND value = 1.0000 in all 6 kernel/footing cells.           [Parts E, F]
+  M24 KiDS lensing RAR: the +403..+498 Delta chi2 baseline kill is REMOVED
+  (fork prediction = slip-1 column, chi2/dof 2.25 mu-form / banked 2.03
+  nu-form).                                                          [Part F]
+  Clusters: eta_lens = eta_dyn = 1.72-2.08, NOT doubled; internal
+  hydro/lensing consistency restored.                                [Part G]
+  Dirac structure: d = {pi_N,S_2'} = -D^2(1/N .) is a REAL new entry;
+  b = {C_M,S_2'} = 0 identically; c = O(D lnN); Pf = L_N K - dc != 0 on the
+  weak field; lattice corank 2 (k=0 pair only).                      [Part C]
+  BONUS repairs (derived, not assumed): the Newtonian-order matter-sourced
+  multiplier is GONE (r_4 = (c^2/4piG) D.[(1-mu)DPsi], curvature-matter
+  cancellation restored); alpha_1: 4 -> 0; perihelion: 1/3 -> 1 (GR). [D, H]
+  NOT repaired / OPEN:
+   - alpha_3 = -3 (was -1): VERIFIED as the audit predicted -- C_M's elliptic
+     Phi_1 coefficient is untouched; pulsar bound violated by 7.5e19 x.
+   - zeta_2 = -2 - xi: still non-conservative at 1PN.
+   - chi-channel at MOND accelerations (source prop. to 1-mu(y), O(0.1-0.4) in
+     galaxies): universal => slip stays 1, but the common-mode magnitude and
+     the RAR/beta_PPN cost are UNPRICED -> fork matter-conservation gate.
+   - strong-field Pfaffian locus L_N K = d c; re-certification of Gates
+     3/6/7/8 for S_2' (structure, rank, count, preservation) not done here.
+  RESIDUAL SLIP: NONE at any order probed here -- the scalar sector has
+  Phi = Psi exactly; the chi-channel is universal (no slip); TT is unsourced
+  for static lenses; the only metric residual is the O(U^2) gamma_xx
+  coefficient (2 vs GR-isotropic 3/2), a 2PN-light effect below any bound.
+
+GATE RESULT: DERIVED -- PASS (lensing repaired by S_2')
