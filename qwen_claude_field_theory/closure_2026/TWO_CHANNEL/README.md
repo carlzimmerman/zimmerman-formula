@@ -78,3 +78,34 @@ essentially no source. This is Horn 2 (MOND inert), reached independently.
 Put MOND on N → MMG → dynamics but γ_PPN = 0. Put MOND on q → YCG → spatial potential but no
 source for galaxies. The two ADM scalar constraints carry *different matter sources*, and MOND
 needs the one attached to the potential it cannot live on.
+
+## THE UNIFYING RESULT — HKT closes the menu (results/hkt_theorem.out)
+
+**Hojman–Kučař–Teitelboim (1976):** if H_⊥ (a) closes the Dirac algebra, (b) is ultralocal in
+h_ij, (c) is ≤ quadratic in momenta, then H_⊥ **is** GR's, uniquely.
+
+Exact MOND requires a nonlinear μ in the static constraint ⇒ H_⊥ must be deformed ⇒ one of
+(a),(b),(c) must break — **and which one breaks determines which observable fails.** All six
+architectures tested this session map onto exactly that classification:
+
+| Breaks | Architecture | Fails as | Evidence |
+|---|---|---|---|
+| (a) closure | MMG: H_⊥ → C_M | γ_PPN=0, α₃=−1 | 8c53d66a |
+| (a) closure | MMG_REPAIR_A: S₂′ | γ=1 but α₃=−3, BTFR dies | 2542182b |
+| (b) ultralocality | CGD nonlocal Δ⁻¹³R | ³R\|_TT=0 ⇒ c_T=0 | 6f603c50 |
+| (b) ultralocality | DW: □_ret⁻¹(R_uu) | ghost 2T+2S; Cassini 10–14σ | DOI 22132648 |
+| (c) momentum structure | F(A²) kinetic carrier | khronon propagates (2+1) | sf40/sf41 |
+| source routing | YCG: MOND on q | T^i_i ~ 5×10⁻⁷ρ ⇒ inert | 5b7efd3d |
+| source routing | CMYG: g̃ = e^{2αq}g | conformal ⇒ no lensing; disformal ⇒ cone split | this run |
+
+**THEOREM.** {exact MOND, minimal coupling, 2 tensor DOF, γ_PPN=1, c_T=1} is **overdetermined**.
+GR is HKT's unique (a)+(b)+(c) point; MOND requires leaving it; every exit lands on a *measured*
+contradiction. This is not "MOND is impossible" — it is: **no 2-DOF local deformation of H_⊥
+delivers MOND with GR's lensing.** The wall is HKT, not any single construction.
+
+**The minimal sacrifice.** Of the four droppable requirements, exactly one has no committed kill:
+**drop "2 DOF" → 2+1 with a screened scalar (k-mouflage/Vainshtein).** Then γ_PPN=1 (screened in
+the solar system), lensing works (a single conformal source gives Φ=Ψ), c_T=1 (TT untouched), and
+μ=1−e^{−y} is retained. Cost: a third propagating DOF. Repo status: *"never tried, ranked #4"*.
+Its open gate is whether screening survives the wide-binary/EFE data the Gaia DR4 registration
+tests — which makes DR4 the decisive experiment for the surviving class.
