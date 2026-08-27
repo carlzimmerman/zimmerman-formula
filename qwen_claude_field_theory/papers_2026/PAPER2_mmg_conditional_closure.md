@@ -4,7 +4,45 @@
 a committed runnable script in `github.com/carlzimmerman/zimmerman-formula`,
 `openai_push/final_closure/` and `qwen_claude_field_theory/closure_2026/`)
 
-**Date:** 2026-08-27
+**Date:** 2026-08-27 (v2 correction: same day)
+
+## ⚠️ VERSION 2 STATUS CORRECTION (2026-08-27, same day)
+
+**The "CONDITIONALLY CLOSED" label of v1 is WITHDRAWN.** A hostile referee-to-closure audit run the
+same day (deliverables and scripts in `qwen_claude_field_theory/closure_2026/`, all committed and
+reproducible via `RUN_ALL_GATES.py`) found three kernel-blind, footing-blind contradictions derived
+from the frozen constraint set itself — the correct status is **FAILED as a relativistic completion**:
+
+1. **γ_PPN = 0 exactly** (derived twice independently): the second-class constraint D²q = 0 leaves
+   the spatial conformal potential unsourced — the deleted Hamiltonian constraint is precisely the
+   GR equation that sourced it. Light sees half the (MOND and Newtonian) potential: ~43,000σ against
+   the Cassini Shapiro measurement; solar deflection 0.875″, excluded at 1919 precision; galaxy–
+   galaxy lensing RAR Δχ² ≈ +400–500.
+2. **α₁ = +4 and α₃ = −1** — preferred-frame and momentum-non-conservation parameters sourced by
+   the MOND constraint C_M itself; α₃ exceeds the pulsar bound by ~2.5×10¹⁹. The kernel swap of
+   Gate 13 repairs only the EFE quadrupole and none of these.
+3. **Matter non-conservation at Newtonian order** — v1's Gate-10 claim that violations enter at
+   O(v²/c²) is falsified: evaluating the multiplier r₄ left symbolic in Gate 8 produces a
+   matter-sourced force with unrescaled 1-AU anomaly ~10¹¹× the ephemeris bound.
+
+Additionally, the "6 first-class" input to the 20−12−4 = 4 count is an unverified hypothesis pending
+the {D²q, H_i} closure computation, and the FLRW linear scalar sector is empty (μ(0) = 0), so linear
+growth/CMB cannot be confronted.
+
+**What survives of v1, unaffected:** the nonrelativistic core — the generic-branch two-tensor-DOF
+Hamiltonian skeleton (Pfaffian independently re-derived), the exact AQUAL reduction, the derived
+anisotropic external-field-effect response tensor, the kernel-agnosticism lemma (Gate 13), the μ_n
+Cassini analysis, and the closure of the k = 0 and y = 0 exceptional sectors. The structural lesson
+is the paper's real content in retrospect: **deleting the Hamiltonian constraint is simultaneously
+what produces the two-DOF count and what destroys lensing and matter conservation.** Two repair
+forks are named in the audit (S₂′ = D²(q + ln N); C_M-as-secondary); each is a new certification
+program, and neither, as formulated, repairs α₃. A new in-chassis result: Cassini-safety and a
+non-Newtonian wide-binary signal are the same lever here, so Gaia DR4 becomes a sharp discriminator
+(μ_n predicts γ_v ≈ 1.000–1.004).
+
+The v1 text below is preserved unchanged for the record.
+
+---
 
 ## Abstract
 
