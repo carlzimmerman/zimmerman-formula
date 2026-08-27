@@ -52,3 +52,29 @@ constraint is what welds dynamics to lensing, and every 2-DOF route so far has h
 **Untouched by all five:** the a₀(z) ∝ H(z) clock and the a₀ = κc√(Gρ_Λ) coefficient — these are
 measurement-side predictions independent of the relativistic completion, and the Gaia DR4
 registration tests them directly.
+
+## YCG-v2 (Cotton-squared tensor potential) — tested, same wall
+
+OpenAI's refinement adds V_TT ~ C_ij Δ^{-2} C^ij (Cotton-squared, k³·k⁻⁴·k³ = k²) to supply an
+independent tensor gradient. **That is a genuine contribution** — it is a real escape from the CGD
+c_T = 0 no-go. But it repairs a sector YCG never broke (YCG retains Einstein's TT term anyway),
+and it does not touch the killer.
+
+**The killer, in its cleanest form** (`scripts/ycg_v2_source_check.py`): the MOND divergence
+operator D_i[μ D^iΨ] arises from the **q-variation**, and under minimal coupling
+
+    δS_m/δq = (δS_m/δh_ij)(δh_ij/δq) = −2√h T^i_i
+
+because q is the conformal factor of the *spatial* metric (δh_ij/δq = 4h_ij). So the MOND equation
+is sourced by the **spatial stress trace T^i_i**, not by ρ_b. Pressureless baryons — the matter
+galaxies are made of — have T^i_i ~ ρv²/c² ≈ **5×10⁻⁷ ρ** for the Milky Way. The MOND equation has
+essentially no source. This is Horn 2 (MOND inert), reached independently.
+
+**The duality, now proven twice:**
+
+    ρ_b   (energy density)  lives in the LAPSE      variation  δS_m/δN
+    T^i_i (stress trace)    lives in the CONFORMAL  variation  δS_m/δq
+
+Put MOND on N → MMG → dynamics but γ_PPN = 0. Put MOND on q → YCG → spatial potential but no
+source for galaxies. The two ADM scalar constraints carry *different matter sources*, and MOND
+needs the one attached to the potential it cannot live on.
