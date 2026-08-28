@@ -1,4 +1,10 @@
 """
+### ⚠️ SUPERSEDED — CONTAINS A CATEGORY ERROR. Use fc_cassini_CORRECTED_2026.py. ###
+### This script fed the internal AeST FIELD function tanh(y/2) into q_direct2D as if it were the
+### OBSERVABLE boost nu. The Cassini quadrupole is sourced by the OBSERVABLE mu_obs=1-e^-y (bridge
+### line 13), NOT the field function. Correct FC q = 3.76x ceiling (= plain exponential), NOT 6.09x.
+### Kept for the record (RETRACTIONS.md 2026-08-28). Everything below is the ERRONEOUS calculation. ###
+
 FC-AeST Cassini gate: the EFE quadrupole strength q for the exact-exponential FC kernel
 mu_FC(x) = tanh(x/2), evaluated with the EXACT committed DHF quadrupole integral
 (route1B_monotone_escape_2026.py, q_direct2D). This is the ONE solar-system gate Carl's

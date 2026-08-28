@@ -75,6 +75,12 @@ gate — and its outcome is an AeST-background question, no longer a MOND-kernel
 
 ## 2026-08-27 — THE DECIDING GATE: FC exponential kernel FAILS Cassini (6.1× ceiling)
 
+> **⚠️ THIS SECTION CONTAINS A CORRECTED ERROR — see the 2026-08-28 CORRECTION below.** The 6.09×
+> number and "FC worse than plain exponential / exponential family eliminated" verdict are WRONG:
+> they computed the quadrupole from the internal AeST *field* function tanh(y/2) instead of the
+> *observable* μ_obs=1−e⁻ʸ. The correct FC number is 3.76× (identical to plain exponential), and the
+> FC-AeST *chassis* is NOT closed. Section kept verbatim as the record of the error. RETRACTIONS.md filed.
+
 The c_s²/r_C squeeze (this file, above) found a real nonempty overlap and correctly showed the
 old `ks/(1−2s)` **pole is gone** — a genuine FC improvement in the scalar-sound-speed channel
 (λ_s=1−e⁻ˣ is bounded in [0,1], never diverges, so no superluminal c_s and no a₀/2 force from
@@ -104,3 +110,58 @@ scalar-channel quadrupole; 6.09× → ~3× is still a FAIL. The margin (6×) is 
 **VERDICT:** FC-AeST's exact-exponential kernel is **eliminated by Cassini**, the same wall as the
 whole exponential family. The pole removal is a real but non-decisive result. FC does not get to
 live as an exponential-kernel theory; the only Cassini-safe MOND kernel in this repo remains μ_n.
+
+---
+
+## 2026-08-28 — CORRECTION + FINAL SCOPED STANDING (3 independent refuters: C1/C2 SUPPORTED, C3 PARTIAL)
+
+The 2026-08-27 section above made a **field-vs-observable category error.** Corrected below and
+independently re-verified (workflow fc-cassini-correction-verify; guard reproduces RouteA
+q(η=2)=0.221). Script: `scripts/fc_cassini_CORRECTED_2026.py`.
+
+**(1) Corrected number.** Matter minimally couples to g_μν, so Cassini feels the **observable** boost
+ν=g/g_N — i.e. the QUMOND function inverse to μ_obs=1−e⁻ʸ, **NOT** the internal field function
+μ̃=tanh(y/2). At η_solar=G_ext/a₀=2.478 (ceiling q<0.0441): **observable μ_obs=1−e⁻ʸ → q=0.166 =
+3.76× ceiling = FAIL, numerically IDENTICAL to plain exponential.** The earlier "6.09×" fed tanh(y/2)
+into q_direct2D as if it were ν — reproduced exactly (0.268=6.09×), thereby diagnosed as the error.
+FC is **not** "worse than plain exponential"; it fails identically to it.
+
+**(2) Structurally closed? NO — only the exponential CHOICE dies.** μ_obs=1−e⁻ʸ is a FREE INPUT
+(`fc_aest_kernel_bridge.py` line 13, "OBSERVABLE MOND function (target)"), not forced. The bridge
+μ̃=f_G·μ_obs/(1−f_G·μ_obs) is algebraic in μ_obs and healthy (∈(0,1), monotone, invertible) for ANY
+monotone μ_obs<1; the old ks/(1−2s) pole vanishes only at μ_obs=2 (outside [0,1]), so **pole-removal
+is kernel-independent, not exponential-specific.** c_T=1, γ_PPN=1 (Φ=Ψ lensing), the 6-DOF count, and
+the Q-sector a₀/DE lock are set by the AeST K_B **vector** sector, not the Y-sector interpolation.
+Swapping μ_obs→μ_n is Cassini-SAFE (μ₅ 0.31×, μ₁₀ 0.064× canonical, healthy field function).
+**The FC-AeST chassis is NOT closed by Cassini; the exact-exponential kernel is.**
+
+**(3) Exclusion is by SHARPNESS, not smoothness.** μ_n is one-scale and C^∞-smooth, yet μ₂=2.83×/
+μ₃=1.25× FAIL while μ₄=0.59×/μ₅=0.31×/μ₁₀=0.064× PASS → discriminant is transition **sharpness n≳4**
+(Q₂ generated at r_t~5600 AU, y~2, where sharp kernels leave near-zero phantom residual). So the
+earlier "one-scale smooth excluded" was too strong.
+
+**Cost ledger of the μ_n survivor (all real):** RAR 0.108→0.123/0.127 dex + growing χ-shape
+systematic; 6 DOF not 2; κ/Z still fitted; Carl's a₀-line / deep-MOND / BTFR untouched but NOT the
+surviving kernel; **μ₅ Cassini margin THIN on the alt footing (0.74–0.95×; only μ₁₀ comfortable)**;
+bridge degenerates as n→∞ (step kernel inadmissible), window finite-n ~4≲n≲few·10; and **μ_n predicts
+null wide-binary EFE (γ_v≈1.000–1.004) → if Gaia DR4 confirms the registered Amendment-10 band
+(1.16–1.23), FC-AeST+μ_n is FALSIFIED.** Cassini-safety and a wide-binary signal are the same lever.
+
+**Residual open caveats (could still move it):** (a) the 3.76× is the single-field QUMOND estimate — a
+full 6-DOF AeST quasistatic solar-system solve WITH the A_μ vector is NOT committed (vector rescue
+judged implausible: fractional corrections, and cancelling ~73% of the scalar Q₂ would also weaken the
+deep-MOND monopole the a₀ amplitude references — implausible, not excluded). (b) The a₀²(Q)=−κ²c²G·K(Q)
+lock FORM is superseded in-repo (K(Q) dust-like; clock moved to a separate quintessence χ —
+kernel-independence survives, the equation does not). (c) AeST c_T/γ_PPN/6-DOF inheritances for the
+μ_n-shaped F are asserted-**pending-recertification** ("must re-run"). (d) Keep FC-AeST DISTINCT from
+the sibling 2-DOF MMG constraint-first chassis, which IS killed kernel-blindly (γ_PPN=0, α₃=−1;
+REFEREE_REPORT_FINAL FAILED) — that verdict does not touch FC-AeST. (e) A χ-channel Cassini load
+(0.90/3.88/8.99× for μ_exp/μ₅/μ₁₀, largest for μ_n) flagged in the MMG chassis is unpriced for AeST.
+(f) Inherited-open AeST liabilities untouched: c_s² superluminal at SS scales (set by K₂ not kernel),
+low-k unbounded-H mode (2109.13287), oscillatory 3rd quasistatic regime (2304.05134).
+
+**ONE-LINE BANK:** The exact-exponential MOND kernel is eliminated by Cassini at 3.76× the ceiling
+(the earlier 6.09× was a field-vs-observable error, now diagnosed); FC-AeST *the chassis* is NOT
+closed — a sharper μ_n (n≳4) passes Cassini kernel-independently — but the survivor costs 0.127-dex
+RAR, 6 DOF, fitted κ, and a null wide-binary EFE the registered DR4 band would falsify. Exclusion is
+by sharpness, not smoothness.

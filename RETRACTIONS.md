@@ -935,3 +935,31 @@ The structural lesson (new, sharpest form of the program's recurring wall): dele
 constraint is simultaneously what BUYS the 2-DOF count and what KILLS lensing and matter
 conservation. Named repair forks (each a NEW certification program; neither repairs alpha_3):
 S_2' = D^2(q + ln N); C_M-as-secondary.
+
+---
+
+## ⚠ 2026-08-28 — RETRACTED: "FC exponential kernel fails Cassini at 6.09×, worse than plain exponential; exponential family eliminated"
+
+**Committed in error (commit 3942933b, `FC_AEST/scripts/fc_cassini_quadrupole_2026.py` + STATUS.md).**
+Mechanism of the error: **field-vs-observable category error.** The DHF phantom quadrupole `q_direct2D`
+(route1B, calibrated to Blanchet–Novak 2011 AQUAL) must be fed the **observable** boost ν=g/g_N. In
+FC-AeST the observable MOND function is **μ_obs=1−e⁻ʸ** (`fc_aest_kernel_bridge.py` line 13, an INPUT
+choice); `tanh(y/2)` is the internal AeST *field* function μ̃, which does **not** source the observable
+quadrupole. The erroneous script fed tanh(y/2) into q_direct2D as if it were ν, giving 6.09×.
+
+**Corrected (verified, workflow fc-cassini-correction-verify; 3 independent refuters; guard reproduces
+RouteA q(η=2)=0.221):** FC's observable Cassini quadrupole is **q=0.166 = 3.76× the ceiling = FAIL,
+numerically IDENTICAL to plain μ=1−e⁻ʸ** — not worse. Script: `fc_cassini_CORRECTED_2026.py`.
+
+**Two further claims from that commit are withdrawn:**
+1. "FC-AeST eliminated / exponential family eliminated" → **too strong.** The two-field bridge
+   μ̃=f_G·μ_obs/(1−f_G·μ_obs) is kernel-agnostic; μ_obs=μ_n (n≳4) is Cassini-safe (μ₅ 0.31×, μ₁₀
+   0.064×) with a healthy field function. What is excluded is the **exact-exponential kernel CHOICE**,
+   not the FC-AeST chassis. Pole-removal is kernel-independent (μ̃ pole only at μ_obs=2, outside [0,1]).
+2. "one-scale smooth kernel excluded" → **too strong.** μ_n is one-scale and C^∞-smooth yet PASSES for
+   n≳4 (μ₃=1.25× FAIL, μ₄=0.59× PASS). The discriminant is transition **sharpness**, not smoothness.
+
+**What SURVIVES from the commit:** the exact-exponential kernel *is* excluded by Cassini (at 3.76×, the
+plain-exponential value); the μ_n survivor pays a real cost ledger (RAR 0.108→0.127 dex; 6 DOF; fitted
+κ; thin μ₅ margin on the alt footing; null wide-binary EFE γ_v≈1.000–1.004 that the registered DR4
+Amendment-10 band would falsify). Full corrected standing in `FC_AEST/STATUS.md` (2026-08-28 section).
