@@ -1,0 +1,131 @@
+
+========================================================================================
+PART 0 -- the metric-stress functional derivative machinery (DERIVATION)
+========================================================================================
+  [ok ] 01 d(measure sqrt g)/d g^{ij} = -(1/2) sqrt(g) g_ij   (trace identity, 3D diagonal comp)   => the sqrt(g) measure contributes ONLY to the trace (pressure), never the slip
+
+========================================================================================
+PART 1 -- BASELINE A: single AQUAL scalar.  Sigma ~ 2 mu P^2  (reproduce York)
+========================================================================================
+  [ok ] 02 AQUAL traceless amplitude  Sigma = 2 F' X = mu X = mu P^2   (mu=2F')   nonzero for ANY force F'!=0, even mu=const (LINEAR): the scalar gradient IS a stress
+  [ok ] 03 deep-MOND slip potential D = Phi_g - Psi_g = 2 v0^6/(3 a0 r)  (York committed)
+  [ok ] 04 => Einstein-frame gamma_PPN = ln r/(ln r - 2) != 1  (AQUAL O(1) lensing failure)   grounded against theory_2026/york/ppn_lensing_cassini_2026.py, commit 0184ba7e
+
+========================================================================================
+PART 2 -- THE RIGIDITY LEMMA: force and traceless stress are the SAME functional
+========================================================================================
+  [ok ] 05 RIGIDITY: Sigma = 2 F_X X = mu_eff * X  (force modulus = stress modulus)
+  [ok ] 06 Sigma = 0  <=>  F_X = 0  <=>  mu_eff = 0  <=>  NO force  (AQUAL no-go, single scalar)   the traceless stress cannot be zeroed while keeping a force -- SAME functional F_X
+
+========================================================================================
+PART 3 -- CONSTRAINT/LEGENDRE form: Sigma_P ~ y mu' (better, still !=0) + reduction
+========================================================================================
+  [ok ] 07 constraint form: traceless(A) = Sigma_P (u u - I/3), single scalar Sigma_P
+  [ok ] 08 Sigma_P = y mu'   (constraint/Legendre obstruction; committed fc4ac_slip.py)
+  [ok ] 09 frozen mu_10: Sigma_P = y (1+y^10)^(-11/10) > 0 for all y>0 -- never vanishes
+  [ok ] 10 y>>1 (solar): Sigma_P -> 0  (Newtonian slip switches off, PASS as hard as FAIL)
+  [ok ] 11 y<<1 (deep-MOND): Sigma_P ~ y  (anisotropic stress persists -> slip)
+  [ok ] 12 REDUCTION: algebraic-flux elimination returns L_eff = F(X) (local, single scalar)   => a LOCAL algebraically-reducible auxiliary opens NO new traceless-stress channel
+
+========================================================================================
+PART 3b -- DIRECT Hilbert metric stress of the naive-Legendre term (COMPUTATION)
+========================================================================================
+  [ok ] 13 DIRECT Hilbert stress: T^{TF} amplitude = a0 n y (2 mu + y mu')  (brute perturbation)   dominated by force modulus 2 mu; y mu' subleading -- consistent with AQUAL O(1) slip
+  [ok ] 14 Sigma = 0  <=>  mu = 0 AND mu' = 0  <=>  NO force  (Hilbert obstruction, stronger)   the bare y mu' is the multiplier-chain slip; the gravitating Hilbert stress is 2 mu + y mu'
+  [ok ] 15 y>>1 (solar): the kernel-shape excess y mu'/mu -> 0 (solar-system safe, PASS-as-hard-as-FAIL)
+
+========================================================================================
+MECHANISM (iii) -- couple the flux to the metric ONLY through a trace (det g)
+========================================================================================
+  [ok ] 16 MOND kinetic scalar X=g^{ij}d_iq d_jq has dX/dg^{ij}=d_iq d_jq with NONZERO traceless part   => any g^{ij}-contraction needed for the Gauss law forces a directional (traceless) stress
+  [ok ] 17 det-only coupling F(det g, q): dL/dq = F_q (algebraic) -- NO D_i[mu D^i q] Gauss law   MECHANISM (iii) FAILS: MOND force needs g^{ij}; det g cannot source it (DERIVATION)
+
+========================================================================================
+MECHANISM (i) -- compensating auxiliary whose stress cancels -y mu' (u u - I/3)
+========================================================================================
+  [ok ] 18 (i-c) QUMOND bipotential traceless stress = w(2p + Q' w)  (two local fields)
+  [ok ] 19 (i-c) on-shell (p=nu w): stress = 3 nu w^2 > 0 -- the two fields REINFORCE, never cancel   cancellation 2p+Q'w=0 needs p=Phi'<0 (repulsive) -- excluded for an attractive MOND force
+  [ok ] 20 (i-c) => NO local two-field (bipotential) cancellation: MECHANISM (i) two-field route FAILS
+  [ok ] 21 (i-a) cancellation forces G_X = -(y mu')/(2 X_p) < 0  (y mu'>0, X_p>0)
+  [ok ] 22 (i-a) => wrong-sign gradient term (ghost / gradient instability) = NEW pathological DOF   a healthy second-class removal cannot supply a NEGATIVE traceless stress (FAILED as a 2-DOF fix)
+  [ok ] 23 (i-b) transverse vector kinetic Hessian = k^2 != 0 => V_T PROPAGATES (>=+2 DOF)   an INDEPENDENT compensating stress requires a kinetic term; that kinetic term adds DOF
+  [ok ] 24 (i-b) dichotomy: algebraic V -> reduces to F(X) (no cancel);  kinetic V -> DOF>2 (not 2-DOF)   MECHANISM (i) FAILS to keep N_grav=2: cancellation costs a ghost or a propagating field
+
+========================================================================================
+MECHANISM (ii) -- disformal/conformal reshuffle of the stress into the trace
+========================================================================================
+  [ok ] 25 (ii-conformal) Phi_phys - Psi_phys = Phi_g - Psi_g  (conformal shift is EQUAL, cancels)   a pure conformal factor CANNOT reshuffle the traceless slip into the trace
+  [ok ] 26 (ii-disformal) c_gamma^2/c_GW^2 = (C-D)/C = 1 - D/C   (committed gate2_cone_gw170817)
+  [ok ] 27 (ii-disformal) c_gamma/c_GW - 1 = -D/(2C);  lensing needs D/C~O(mu-1)~O(1) >> 2e-15   MECHANISM (ii) FAILS: conformal is inert; lensing-sized disformal splits the cone (GW170817)
+
+========================================================================================
+THE TWO GENUINE EVASIONS (both LEAVE the local 2-DOF class) -- for the contrast
+========================================================================================
+
+  Where DOES Phi=Psi come from, then?  Exactly two structures evade the rigidity, and
+  each COSTS one of the three requirements (a) MOND Gauss law, (b) N_grav=2, (c) c_T=1:
+
+  (E1) ELLIPTIC / NON-LOCAL carrier (QUMOND-as-density).  Solve D^2 Psi = 4piG rho FIRST,
+       then the phantom  rho_ph = (1/4piG) D.[(nu-1) D Psi]  is treated as an ISOTROPIC scalar
+       DENSITY sourcing Phi and Psi EQUALLY => Phi=Psi.  CRUCIAL HONESTY: this sources gravity
+       with a phantom DENSITY in the 00-equation, NOT with the MOND sector's own Hilbert stress
+       (which -- Part 1/3b -- is anisotropic, ~2 mu, and would REINSTATE the slip; cf. the
+       bipotential (i-c) 3 nu w^2 stress).  So the Phi=Psi elliptic carrier is a NON-LOCAL
+       modified-Poisson PRESCRIPTION (eliminating q needs D^{-2}), not a local Hilbert-stress
+       action.  That is exactly why it is the committed OPEN GATE (theory_2026/york RESULT
+       sec 4c): 2+0 single-metric, gamma_PPN=1, but causal acceptability UNSETTLED (elliptic
+       => instantaneous-channel suggestive).  It BREAKS locality/action-stress, not (a)/(b)/(c).
+
+  (E2) PROPAGATING VECTOR (AeST / TeVeS).  The aether A_mu carries the anisotropic gradient
+       stress of the scalar; the disformal built from A_mu is LUMINAL (Skordis-Zlosnik class)
+       => c_T=1 AND gamma_PPN=1 (committed FC_AEST/fc_lensing_rar_mu10: M24 KiDS chi2/dof=0.64).
+       But A_mu PROPAGATES: 6(+1) DOF, NOT 2.  It BREAKS (b) N_grav=2.
+
+  Both give the SAME y mu' Hessian yet reach Phi=Psi -- precisely BECAUSE they add the
+  structure (non-locality, or a propagating vector) that a pure LOCAL 2-DOF constraint
+  theory lacks.  That is the mechanism of the (unified) obstruction, isolated.
+
+  [ok ] 28 contrast isolated: Phi=Psi requires non-locality (E1) or a propagating field (E2)
+
+========================================================================================
+VERDICT -- did we CONSTRUCT an isotropic local 2-DOF second-class completion?
+========================================================================================
+
+  Target requirements: (a) MOND Gauss law, (b) N_grav=2, (c) c_T=1, AND Sigma_P=0.
+
+  MECHANISM (i)   compensating auxiliary : FAILS -- cancellation needs a wrong-sign
+                  (ghost) scalar or a propagating vector => breaks (b).           [COMPUTATION]
+  MECHANISM (ii)  disformal/conformal    : FAILS -- conformal is inert on the slip;
+                  lensing-sized disformal splits the cone => breaks (c).          [COMPUTATION+committed]
+  MECHANISM (iii) trace-only (det g)     : FAILS -- MOND force needs g^{ij}; det g
+                  sources NO force => breaks (a).                                 [DERIVATION]
+
+  ROOT CAUSE (RIGIDITY LEMMA, Part 2/3b): in the LOCAL, action-based (Hilbert-stress),
+  <=2-derivative second-class class, every completion reduces to local scalar functionals
+  of X=|D field|^2 whose traceless Hilbert stress is the SAME object as the MOND force:
+      single scalar   Sigma = mu_eff X          (mu_eff=2 F_X)
+      constraint form Sigma = a0 n y (2 mu + y mu')   (DIRECT Hilbert, Part 3b)
+      bipotential     Sigma = 3 nu w^2           (two fields REINFORCE, Part i-c)
+  In every case Sigma = 0 <=> the metric-coupled MOND nonlinearity is OFF (mu=const=0 force).
+  Compensation is barred: an opposite-sign traceless stress needs a wrong-sign gradient
+  (ghost) scalar or a propagating vector (i-a/i-b); a conformal factor is inert and a
+  lensing-sized disformal splits the cone (ii).  The only escapes -- E1 (non-local elliptic
+  phantom-DENSITY, causal gate) and E2 (propagating vector, +DOF) -- each LEAVE the class.
+
+  => ISOTROPIC-COMPLETION NOT CONSTRUCTED in the local action-based 2-DOF second-class class.
+     All three named mechanisms fail with a computed Sigma_P and an identified cost (breaks
+     (a), (b) or (c)).  This is a CONSTRUCTION-FAILED outcome that, within the stated class
+     (local, action-based/Hilbert-stress, <=2-derivative), is OBSTRUCTION-FORCED.  The FULLY
+     GENERAL no-go (arbitrary higher-derivative and arbitrary auxiliary field content, closed
+     by a Dirac DOF count) is the residual open item = the NEXT task.  Honest status of THIS
+     task: PARTIAL -- construction fails; obstruction forced in-class; full no-go pending.
+
+
+========================================================================================
+BOOLEAN-CHECK SUMMARY
+========================================================================================
+  ALL 28 BOOLEAN CHECKS PASS (computations certified).
+  Physics verdict: no isotropic local 2-DOF second-class completion CONSTRUCTED;
+  each mechanism's Sigma_P computed; cancellation costs (b) or (c) or (a).
+
+  FC-ISO-CONSTRUCT CERTIFICATE: ALL BOOLEAN CHECKS PASS (exit 0).

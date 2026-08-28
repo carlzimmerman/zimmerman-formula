@@ -1,0 +1,100 @@
+
+======================================================================================
+PART 1 -- the constitutive Hessian A^{ij} = mu gamma^{ij} + y mu' u^i u^j  (DERIVATION)
+======================================================================================
+  [ok ] 01 Hessian A^{ij} = mu delta^{ij} + (y mu') u^i u^j  (brute-diff == closed form)   residual matrix == 0
+  [ok ] 02 longitudinal eigenvalue = mu + y mu'  (TANGENT modulus)   residual 0
+  [ok ] 03 transverse eigenvalue  = mu          (SECANT modulus)   residual 0
+
+  DERIVATION: A^{ij} is intrinsically ANISOTROPIC for any mu'!=0.
+  transverse (2x): SECANT modulus mu ;  longitudinal: TANGENT modulus mu + y mu'.
+  The anisotropy amplitude is exactly  (y mu')  along  u u.
+
+======================================================================================
+PART 2 -- the multiplier chain: delta P^i => lambda_i = D_i N ; delta q => D_i[A^{ij} D_j N]=0
+======================================================================================
+  [ok ] 04 delta P^i : coefficient = lambda_i - D_i N  =>  lambda_i = D_i N   residual 0
+  [ok ] 05 delta q : conjugate flux Psi^i = A^{ij} lambda_j  => D_i[A^{ij} lambda_j]=0   residual 0
+  [ok ] 06 A^{ij} symmetric (so Psi^i = A^{ij} lambda_j = lambda_j A^{ji})   residual 0
+
+  DERIVATION (Carl's chain reproduced): lambda_i = D_i N and D_i[A^{ij}D_j N]=0.
+  The Gauss constraint fixes q on the SECANT modulus mu; the q-EOM feeds the
+  lapse N through the SAME Hessian A -> its longitudinal eigenvalue mu + y mu'.
+  Naive Legendre is DEAD: the tangent modulus returns via the multiplier.
+
+======================================================================================
+PART 3 -- radial slip  Phi'/Psi' = (mu + y mu')/mu  for the frozen mu_10  (COMPUTATION)
+======================================================================================
+  [ok ] 07 mu_10' = (1+y^10)^(-11/10) > 0   residual 0
+  [ok ] 08 slip (mu+y mu')/mu = (y^10+2)/(y^10+1)   residual 0
+  [ok ] 09 y>>1 (solar/Newtonian): slip = 1   -> Phi=Psi  (PASS, checked as hard as FAIL)
+  [ok ] 10 y~1  (knee):            slip = 3/2 -> Phi!=Psi (FAIL)
+  [ok ] 11 y<<1 (deep galactic):   slip = 2   -> Phi!=Psi (FAIL)
+
+  A_slip(y) := (slip - 1) = y mu'/mu.  A_slip = 0  <=>  mu' = 0  <=>  linear law.
+  [ok ] 12 A_slip = y mu_10'/mu_10 exactly   residual 0
+
+======================================================================================
+PART 4 -- York auxiliary-scalar anisotropic stress + gamma_PPN != 1  (reproduce + cite)
+======================================================================================
+  [ok ] 13 U'(Y) = sqrt(Y)/sqrt(1+Y) = mu(sqrt Y)   residual 0
+  [ok ] 14 8piG(p_r-p_t) = 2 U'(Y) P^2  (nonzero for P>0) -> AeST/AQUAL scalar stress anisotropy   residual 0
+  [ok ] 15 D_p(r)=Phi_g-Psi_g = 2 v0^6/(3 a0 r)  (deep-MOND, committed)   residual 0
+  [ok ] 16 Einstein-frame gamma_PPN = ln r/(ln r - 2)  != 1  (committed York result)   residual 0
+
+  EXTERNAL-INPUT (committed): theory_2026/york/ppn_lensing_cassini_2026.py, commit 0184ba7e,
+  exit 0 -- reproduced above.  gamma_phys=1 there is a DISFORMAL model INPUT, not derived.
+
+======================================================================================
+PART 5 -- DEFINE the obstruction object Sigma_P ; confirm Sigma_P ~ y mu'  (DEFINITION+CERT)
+======================================================================================
+  [ok ] 17 traceless(A) = Sigma_P (u u - I/3) with a SINGLE scalar Sigma_P   all entries match
+  [ok ] 18 Sigma_P = y mu'  EXACTLY  (obstruction proportional to the differential modulus)   residual 0
+  [ok ] 19 frozen mu_10:  Sigma_P = y (1+y^10)^(-11/10) > 0 for all y>0  (never vanishes)   residual 0
+
+  THEOREM (within this construction): Sigma_P = y mu'  is the UNIQUE traceless
+  amplitude of the constitutive Hessian; the isotropic mu delta is pure trace and
+  cannot source Phi-Psi.  Hence in ANY 2-DOF constraint completion whose metric
+  couples to A^{ij}, the slip obstruction is Sigma_P ~ y mu', vanishing iff mu'=0.
+  [The York AQUAL scalar is a DISTINCT, WORSE manifestation: its field carries a
+   genuine gradient stress ~ 2 mu P^2, giving gamma=ln r/(ln r-2) even at mu=const.
+   Both are nonzero for the nonlinear MOND law; the 2-DOF obstruction is the y mu' one.]
+
+======================================================================================
+THE DECISIVE QUESTION (stated precisely)
+======================================================================================
+
+  Does there exist a SECOND-CLASS auxiliary Legendre completion of the isotropic MOND
+  law  D_i[mu(y) D^i q] = 4 pi G rho  such that, ON SHELL, the traceless metric stress
+  VANISHES,
+        Sigma_P = 0        (=> Phi = Psi, gamma_PPN = 1, FRIED CHICKEN),
+  WHILE simultaneously
+        (a) reproducing  D_i[mu D^i q] = 4 pi G rho     (the MOND/AQUAL Gauss law),
+        (b) keeping N_grav = 2  (no NEW propagating DOF beyond the 2 metric polarizations),
+        (c) c_T = 1                                     (luminal tensor sector) ?
+
+  RESCUE  : YES  => an isotropic Legendre completion exists => the constraint-first
+            2-DOF program has a lensing-clean member.
+  UNIFIED NO-GO : Sigma_P != 0 is FORCED whenever mu' != 0 for ANY such completion
+            => the anisotropic Hessian of every nonlinear isotropic MOND law forces a
+            metric slip in every 2-DOF constraint construction => the ENTIRE
+            constraint-first program is closed on the lensing axis.
+
+  SETUP STATUS: the two committed dead-ends (naive Legendre: slip=(mu+y mu')/mu ;
+  York AQUAL scalar: gamma=ln r/(ln r-2)) are reproduced above with certificates.
+  Sigma_P is defined and shown ~ y mu' within these constructions.  Whether Sigma_P=0
+  is FORCED (no-go) or EVADABLE (rescue) for a GENERIC second-class completion is the
+  OPEN question the next task must settle -- NOT prejudged here.
+
+
+======================================================================================
+VERDICT
+======================================================================================
+  ALL 19 BOOLEAN CHECKS PASS.
+  Reproduced: (1) naive-Legendre chain lambda_i=D_i N, D_i[A^{ij}D_j N]=0,
+  A^{ij}=mu delta + y mu' u u, slip=(y^10+2)/(y^10+1) for mu_10;
+  (2) York anisotropic stress 2U'P^2 and gamma=ln r/(ln r-2) (commit 0184ba7e);
+  (3) DEFINED Sigma_P and CERTIFIED Sigma_P = y mu' (the 2-DOF obstruction).
+  Decisive question stated.  This is SETUP only -- the no-go/rescue is OPEN.
+
+  FC-ISO-SETUP CERTIFICATE: ALL BOOLEAN CHECKS PASS (exit 0).
