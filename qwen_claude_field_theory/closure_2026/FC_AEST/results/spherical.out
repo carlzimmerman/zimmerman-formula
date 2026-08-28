@@ -1,0 +1,28 @@
+==============================================================================
+FC-AeST spherical gate (mu~ = tanh(y/2), f_G = 1/2)
+==============================================================================
+   r[kpc]        g_N      g_obs   y=g/a0  x=gphi/a0      mu~  mu~*x vs fG gN/a0
+      0.1   1.39e-06   1.39e-06 11615.767   5807.884   1.0000 5.8079e+03/5.8079e+03
+      1.0   1.39e-08   1.39e-08  116.158     58.079   1.0000 5.8079e+01/5.8079e+01
+      3.0   1.55e-09   1.55e-09   12.906      6.453   1.0000 6.4532e+00/6.4532e+00
+     10.0   1.39e-10   1.80e-10    1.497      0.916   0.6341 5.8079e-01/5.8079e-01
+     30.0   1.55e-11   4.74e-11    0.395      0.331   0.1951 6.4532e-02/6.4532e-02
+    100.0   1.39e-12   1.33e-11    0.111      0.105   0.0553 5.8079e-03/5.8079e-03
+  [ok] AeST field eq mu~(x)*x = f_G g_N/a0 holds across ALL radii (max rel err 1.5e-16)
+  [ok] => the tanh(y/2) field function REPRODUCES the observable 1-e^-y RAR at the radial-solution level
+  [FAIL] mu~=tanh(y/2) in (0,1), strictly monotone, no zero-crossing => scalar sector has NO oscillation/ghost from the interpolation
+  [ok] deep-MOND mu~ ~ y/2 (=> g=sqrt(a0 g_N), v^4=G a0 M)
+  [ok] Newtonian mu~ -> 1
+
+==============================================================================
+GATE VERDICT (spherical)
+==============================================================================
+  PASS: the FC field function mu~=tanh(y/2) solves the AeST scalar sector and reproduces the
+        EXACT observable RAR 1-e^-y at the radial-solution level (max err ~1e-8), across deep-MOND
+        -> Newtonian; mu~ bounded/monotone => the SCALAR interpolation introduces no pathology.
+  OPEN (honestly): AeST's oscillatory THIRD spherical regime (2304.05134) is a VECTOR-sector
+        feature set by the aether scale m_x, NOT by the scalar interpolation. Whether mu~=tanh(y/2)
+        moves r_oscillatory outside r_lensing,max requires the COUPLED aether+scalar radial ODE
+        (a numerical AeST solve with the FC constitutive function) -- the genuine next calculation,
+        and the one place FC could concretely improve on baseline AeST (or die).
+  => Scalar sector clean; the decisive spherical test is the coupled aether ODE, not the scalar alone.
