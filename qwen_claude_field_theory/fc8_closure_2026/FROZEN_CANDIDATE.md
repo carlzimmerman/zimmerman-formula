@@ -57,12 +57,18 @@ spherical asymptotics (MNRAS 531,272: `𝒥→(1/β₀)Y` Newtonian, `𝒥→[2/
 from **both** limits independently — **`β₀ = 1`, hence `λ_s = β₀⁻¹ = 1`** (`fc8_symbolic_audit.py` A6). A
 genuine internal check, not a knob.
 
-**⚠️ Y=0 degenerate branch (put in red).** For `J₁₀~x³/3`, `F_YY ~ 1/(4√Y·a₀) → ∞` as `Y→0`
-(`fc8_symbolic_audit.py` A7). The AeST 6-DOF theorem needs a *nondegenerate* auxiliary Hessian, which holds
-on the **generic Y>0 branch** but **fails exactly at Y=0** (the homogeneous background). Because
-`F_M=O(Y^{3/2})`, `δS_M=δ²S_M=0` at Y=0 ⇒ **not** an automatic ghost — but the analytic-Hessian argument
-does not apply, so **Y=0 needs a dedicated degenerate-branch Dirac analysis** (Gate A, OPEN). This is the
-last fundamental field-theory gate.
+**Y=0 degenerate branch — RESOLVED BENIGN** (`y0_degenerate_dirac.py`, 5/5; 7-agent adversarial workflow,
+3 derive + 3 refute all benign-6DOF). `F_YY~1/(4√Y·a₀)→∞` at Y=0, but this is a **Legendre-chart / AQUAL-like
+non-analyticity**, not a pathology: (i) F_YY's dual `F*_qq=8a₀²q→0` with `F_YY·F*_qq≡1`, so which one
+"blows up" is chart-dependent — regular in `x=√Y/a₀`; (ii) Y is aether-*orthogonal* (no φ̇), so φ's momentum
+inverts through `F_QQ=2𝒦₂` (finite, Y-independent) — F_YY never enters the kinetic matrix; (iii) the
+spatial eigenvalues `G_T,G_L→(2−K_B)>0` at Y=0 (the divergent `2Y·F_YY=√Y/(2a₀)→0`, tamed by the vanishing
+gradient), supplied by the **analytic −(2−K_B)Y seed** ⇒ no ghost, no strong coupling; (iv) `δ²S_M=0` ⇒ the
+declassifying auxiliary carries zero dynamics on the measure-zero ∇φ=0 locus ⇒ no DOF jump. **Control:**
+bare AQUAL (delete the seed) *does* strong-couple at ∇φ=0 — AeST is saved specifically by the `−(2−K_B)Y`
+term. **RESIDUAL (OPEN, completeness):** the full covariant nonlinear multi-constraint AeST Dirac
+(lapse/shift + 4 diffeo + aether unit + vector A_i, simultaneously) — a completeness item, not a place a
+pathology is hiding.
 
 **IR requirement (observational, fitted — NOT a theoretical constant):** `μ⁻¹ ≳ 1 Mpc`, so the AeST
 oscillatory-IR onset stays beyond the tested galactic (rotation-curve) domain. Verified numbers

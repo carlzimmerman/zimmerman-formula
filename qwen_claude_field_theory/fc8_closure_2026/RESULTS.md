@@ -9,7 +9,7 @@ Rules: `REQUIREMENTS.md`. Only **PASS / FAIL / OPEN**. No inheritance. No goalpo
 | Gate | Script | Status | Produced by the equations vs. missing |
 |---|---|---|---|
 | **0** symbolic audit | `fc8_symbolic_audit.py` | **PASS (7/7)** | `μ₁₀=y+O(y¹¹)`; `J₁₀=x³/3`; `𝓕_M=Y^{3/2}/(3a₀)=O(δ³)` ⇒ `δ²S_MOND=0`; aether projector removes φ̇ from Y ⇒ no velocity-Hessian entry; MOND law + `1−μ₁₀=O((a₀/g)¹⁰)` + BTFR. **A6:** both AeST asymptotic limits give `β₀=1` ⇒ **λ_s=1** (fixed by J₁₀, not fitted). **A7:** `F_YY=1/(4√Y a₀)→∞` at Y=0 (singular Hessian) but `δ²S_M=0` ⇒ degenerate branch, not a ghost. |
-| **A** Hamiltonian rank | `dirac_fc8.py` | **PARTIAL** | *PASS:* modification is a function of Y only (a₀ const), Y has no φ̇ ⇒ zero velocity-Hessian contribution, **no new field ⇒ target N_phys=6** (not 7); generic Y>0 branch has a *nondegenerate* Hessian ⇒ the AeST general-F 6-DOF theorem applies there. **⚠️ KEY OPEN — Y=0 degenerate branch:** `F_YY→∞` at Y=0 breaks the nondegenerate-Hessian premise exactly on the homogeneous background; `δS_M=δ²S_M=0` ⇒ not an automatic ghost, but needs a **dedicated degenerate Dirac analysis** (not PASS, not FAIL). Plus full nonlinear Poisson rank on the other branches. |
+| **A** Hamiltonian rank | `dirac_fc8.py`, `y0_degenerate_dirac.py` | **PARTIAL (Y=0 sub-gate now PASS-benign)** | *PASS:* modification is Y-only (a₀ const), Y has no φ̇ ⇒ zero velocity-Hessian contribution, **no new field ⇒ target N_phys=6**; generic Y>0 branch nondegenerate ⇒ AeST general-F theorem applies. **Y=0 degenerate branch → RESOLVED BENIGN** (7-agent adversarial workflow, all benign-6DOF; `y0_degenerate_dirac.py` 5/5): `F_YY→∞` is a Legendre-chart/AQUAL-like non-analyticity (`F_YY·F*_qq≡1`, regular in `x=√Y/a₀`); φ time-kinetic runs through `F_QQ=2𝒦₂` not F_YY; spatial eigenvalues `→(2−K_B)>0` (divergence tamed by ∇φ→0); `δ²S_M=0` ⇒ no ghost, no DOF-jump, no strong-coupling. Control: bare AQUAL strong-couples; the `−(2−K_B)Y` seed rescues AeST. **OPEN residual:** full covariant nonlinear multi-constraint Dirac (lapse/shift + diffeo + aether + A_i). |
 | **B** Tensor | `ppn_fc8.py` (+ TT) | **OPEN** | `Q_T>0, c_T²=1` must be re-derived for the modified `𝓕`, not inherited from AeST. |
 | **C** PPN | `ppn_fc8.py` | **OPEN** | Derive FC-FINAL 1PN + FC-FINAL→EA map; extract γ,β,α₁,α₂,α₃; require `|α₁|<10⁻⁴, |α₂|<10⁻⁷`. No import. |
 | **D** spherical (+m_×) | `spherical_fc8.py` | **PARTIAL** | *OPEN:* full nonlinear BVP `{Φ,Λ,A_t,A_r,φ}` **without** assuming the vector vanishes (the `m_×` scale); whether `g_N=g²/(g¹⁰+a₀¹⁰)^{1/10}` and Φ=Ψ come from the *solution*. |
@@ -60,3 +60,13 @@ FAILs at every corner → we learn exactly which ingredient is incompatible.
   background; `δ²S_M=0` ⇒ not a ghost). The **Y=0 degenerate branch** is now Gate A's named key open item:
   the AeST general-F 6-DOF theorem applies on the generic Y>0 branch but not at Y=0, which needs its own
   degenerate Dirac analysis. This is the last fundamental field-theory gate.
+- 2026-08-28 — **Y=0 degenerate branch ATTACKED → RESOLVED BENIGN** (7-agent adversarial workflow, 3 derive
+  + 3 refute, ALL benign-6DOF; `y0_degenerate_dirac.py` 5/5 + `../../real_research/reviews/fc_final_Y0_dirac_route_a_2026.py`).
+  The `F_YY→∞` degeneracy is a Legendre-chart/AQUAL-like non-analyticity on the ∇φ=0 locus, not a pathology:
+  reciprocity `F_YY·F*_qq≡1` (regular in `x=√Y/a₀`); φ momentum via `F_QQ=2𝒦₂` (F_YY never enters the kinetic
+  matrix); spatial eigenvalues `→(2−K_B)>0` (divergence tamed by ∇φ→0); `δ²S_M=0` ⇒ auxiliary declassifies
+  only on the measure-zero locus carrying zero dynamics. No ghost/DOF-jump/strong-coupling. **Control check:**
+  bare AQUAL strong-couples at ∇φ=0; AeST survives *specifically* via the `−(2−K_B)Y` kinetic seed — a
+  non-trivial rescue. RESIDUAL: full covariant nonlinear multi-constraint AeST Dirac (completeness, not a
+  hiding pathology). The "last fundamental field-theory gate" (per the 2026-08-28 A7 entry) is discharged
+  favorably at the computed level.
