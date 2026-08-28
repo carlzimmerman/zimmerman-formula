@@ -1,3 +1,11 @@
+> ⚠️ **QUARANTINED / SUPERSEDED — NOT the current candidate.** This FC-AeST construction uses the
+> **exponential observable kernel** μ_obs=1−e⁻ʸ (field function tanh(y/2)), which was **eliminated by the
+> Cassini EFE quadrupole at 3.76× the ceiling** — see `scripts/fc_cassini_CORRECTED_2026.py` and
+> `FROZEN_HIERARCHY.md` (both in this directory). The **frozen candidate is the SHARP-J₁₀ FC-FINAL** — AeST +
+> `μ₁₀(y)=y/(1+y¹⁰)^{1/10}`, a₀ constant, 6-DOF-AeST — in `qwen_claude_field_theory/fc8_closure_2026/`
+> (`FROZEN_CANDIDATE.md`, `THEOREM_PACKAGE.md`). **Do not mix the exponential branch into FC-FINAL.**
+> Retained as historical record (append-only); the exponential-fails-Cassini result is itself a committed finding.
+
 # FC-AeST: Cosmologically Anchored Aether-Scalar-Tensor MOND
 
 **What it is (stated honestly).** The AeST chassis (Skordis–Złośnik, arXiv:2007.00082) — *not* a

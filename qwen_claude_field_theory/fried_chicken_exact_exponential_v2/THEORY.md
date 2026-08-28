@@ -1,3 +1,9 @@
+> ⚠️ **QUARANTINED / SUPERSEDED — NOT the current candidate.** Fried-Chicken **exact-exponential** kernel
+> (μ=1−e⁻ʸ / tanh), eliminated by the Cassini EFE quadrupole at 3.76× the ceiling (committed:
+> `qwen_claude_field_theory/closure_2026/FC_AEST/scripts/fc_cassini_CORRECTED_2026.py`). The frozen candidate
+> is **SHARP-J₁₀ FC-FINAL** (AeST + μ₁₀(y)=y/(1+y¹⁰)^{1/10}, a₀ constant, 6-DOF) in
+> `qwen_claude_field_theory/fc8_closure_2026/`. Do not mix the exponential branch into FC-FINAL. Historical record.
+
 # Candidate theory
 
 S = S_GR + S_MOND + S_m

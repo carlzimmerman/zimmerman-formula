@@ -1,3 +1,7 @@
+> ⚠️ **QUARANTINED / SUPERSEDED — NOT the current candidate.** Exact-exponential kernel (μ=1−e⁻ʸ),
+> eliminated by Cassini (3.76× ceiling). The frozen candidate is **SHARP-J₁₀ FC-FINAL** in
+> `qwen_claude_field_theory/fc8_closure_2026/`. Do not mix the exponential branch into FC-FINAL. Historical record.
+
 # Fried-Chicken Exact Exponential Nonlocal MOND v2
 
 Purpose: freeze one explicit candidate and attack the remaining mathematical gates without overstating what is proved.

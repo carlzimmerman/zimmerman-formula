@@ -1,3 +1,7 @@
+> ⚠️ **QUARANTINED / SUPERSEDED — NOT the current candidate.** Exact-exponential kernel (μ=1−e⁻ʸ),
+> eliminated by Cassini (3.76× ceiling). The frozen candidate is **SHARP-J₁₀ FC-FINAL** in
+> `qwen_claude_field_theory/fc8_closure_2026/`. Do not mix the exponential branch into FC-FINAL. Historical record.
+
 # Fable 5 master attack: exact-exponential causal nonlocal MOND
 
 You are not allowed to declare this theory viable because a weak-field limit works. Your job is to kill it or certify it.
