@@ -75,6 +75,20 @@ c5b = sp.simplify(sp.limit(gN/(g_**2/a0_), g_, 0) - 1) == 0
 STAT.append(report("A5 vacuum+SS+BTFR", "PASS" if (c5a and c5b) else "FAIL",
     f"a_00^2=kappa^2 G V0; 1-mu10 ~ (1/10)(a0/g)^10 -> 0 (SS suppressed); g_N->g^2/a0 deep-MOND => v^4=G a0 M"))
 
+# --- A6: NO LINEAR MOND-chi coupling at the vacuum (V'(chi0)=0 => A'(chi0)=0) ---
+Vfull = V0 + sp.Rational(1,2)*m**2*(chi-chi0)**2
+Afull = kap**2*G*Vfull                                  # A(chi) = a0^2(chi)
+LM_full = Afull*(sp.sqrt(Y)/sp.sqrt(Afull))**3/3        # = Y^{3/2}/(3 sqrt(A(chi)))
+dLM_dchi_vac  = sp.simplify(sp.diff(LM_full, chi).subs(chi, chi0))         # linear MOND-chi coupling
+d2_mix_vac    = sp.simplify(sp.diff(LM_full, chi, Y).subs(chi, chi0))      # mixed MOND-chi quadratic
+da0sq_dchi_vac= sp.simplify(sp.diff(Afull, chi).subs(chi, chi0))          # d(a0^2)/dchi  => delta a0^(1)
+da0sq_2nd     = sp.simplify(sp.diff(Afull, chi, 2))                        # d^2(a0^2)/dchi^2 (2nd order, nonzero)
+c6 = (dLM_dchi_vac == 0) and (d2_mix_vac == 0) and (da0sq_dchi_vac == 0)
+STAT.append(report("A6 vacuum MOND-chi decoupling", "PASS" if c6 else "FAIL",
+    f"dL_MOND/dchi|_chi0 = {dLM_dchi_vac}; mixed d^2L/dchi dY|_chi0 = {d2_mix_vac}; d(a0^2)/dchi|_chi0 = "
+    f"{da0sq_dchi_vac} => delta a0^(1)=0, delta^2 S_MOND-chi = 0. (2nd order d^2(a0^2)/dchi^2 = {da0sq_2nd} "
+    "= kappa^2 G m^2 != 0, honest: a0 shifts only at O(delta chi^2).) All carry factor V'(chi0)=0."))
+
 P("\n"+"="*94)
 npass = sum(s=="PASS" for s in STAT); nfail = sum(s=="FAIL" for s in STAT)
 P(f"G0 RESULT: {npass}/{len(STAT)} PASS, {nfail} FAIL.")
