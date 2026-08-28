@@ -58,6 +58,31 @@ STAT.append(report("A5 MOND+SS+BTFR", "PASS" if (c5a and c5b) else "FAIL",
     f"g_N=g^2/(g^10+a0^10)^(1/10); 1-mu10 ~ (1/10)(a0/g)^10 (SS sharp, no screening needed); "
     f"deep-MOND g^2=a0 g_N => v^4 = G a0 M_b"))
 
+# --- A6: constitutive normalization beta_0 = lambda_s^-1 = 1 (both AeST asymptotic limits) ---
+# F_M = a0^2 J10(sqrt Y/a0) -> Y (large Y, J10~x^2) and -> Y^{3/2}/(3 a0) (small Y, J10~x^3/3).
+# AeST spherical (MNRAS 531,272) requires J -> (1/beta0) Y and J -> [2/(3(1+beta0) a0)] Y^{3/2}.
+b0 = sp.symbols('beta0', positive=True)
+sol_newt = sp.solve(sp.Eq(1/b0, 1), b0)                       # Newtonian match: 1/beta0 = 1
+sol_mond = sp.solve(sp.Eq(2/(3*(1+b0)), sp.Rational(1,3)), b0)  # MOND match: 2/(3(1+beta0)) = 1/3
+c6 = sol_newt == [1] and sol_mond == [1]
+lam_s = 1/sol_newt[0]
+STAT.append(report("A6 beta0=lambda_s=1", "PASS" if c6 else "FAIL",
+    f"F_M -> Y (large Y) matches 1/beta0=1 => beta0={sol_newt[0]}; F_M -> Y^(3/2)/(3 a0) matches "
+    f"2/(3(1+beta0))=1/3 => beta0={sol_mond[0]}. BOTH independently give beta0=1 => lambda_s=1/beta0={lam_s} "
+    "(a constitutive normalization FIXED by J10, not fitted)."))
+
+# --- A7: Y=0 degenerate branch -- F_YY singular, but delta^2 S_M=0 (no automatic ghost; needs its own Dirac) ---
+Yv, a0v = sp.symbols('Y a0', positive=True)
+F_small = Yv**sp.Rational(3,2)/(3*a0v)      # F_M small-Y branch
+F_Y  = sp.diff(F_small, Yv)                 # ~ Y^{1/2}
+F_YY = sp.simplify(sp.diff(F_small, Yv, 2)) # ~ Y^{-1/2}  -> singular as Y->0
+sing = sp.limit(F_YY, Yv, 0, '+')
+c7 = (sing == sp.oo) and (sp.simplify(F_small.subs(Yv,0))==0)
+STAT.append(report("A7 Y=0 degenerate branch", "PASS" if c7 else "FAIL",
+    f"F_YY = {F_YY} -> {sing} as Y->0 (constitutive Hessian SINGULAR on the homogeneous background); "
+    "but F_M=O(Y^{3/2}) => delta^2 S_M=0 (no automatic linear ghost). => the generic nondegenerate-Hessian "
+    "6-DOF theorem does NOT cover Y=0; that branch needs a DEDICATED degenerate Dirac analysis (Gate A, OPEN)."))
+
 P("\n"+"="*94)
 nfail = sum(s=="FAIL" for s in STAT)
 P(f"Gate 0 RESULT: {sum(s=='PASS' for s in STAT)}/{len(STAT)} PASS, {nfail} FAIL.")

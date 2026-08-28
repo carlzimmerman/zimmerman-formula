@@ -8,13 +8,13 @@ Rules: `REQUIREMENTS.md`. Only **PASS / FAIL / OPEN**. No inheritance. No goalpo
 
 | Gate | Script | Status | Produced by the equations vs. missing |
 |---|---|---|---|
-| **0** symbolic audit | `fc8_symbolic_audit.py` | **PASS (5/5)** | `μ₁₀=y+O(y¹¹)`; `J₁₀=x³/3`; `𝓕_M=a₀²J₁₀=Y^{3/2}/(3a₀)=O(δ³)` ⇒ `δ²S_MOND=0`; aether projector removes φ̇ from Y ⇒ MOND adds no velocity-Hessian entry; MOND law + `1−μ₁₀=O((a₀/g)¹⁰)` + BTFR `v⁴=Ga₀M_b`. |
-| **A** Hamiltonian rank | `dirac_fc8.py` | **PARTIAL** | *PASS:* modification is a function of Y only (a₀ const), Y has no φ̇ ⇒ zero velocity-Hessian contribution, **no new field ⇒ target N_phys=6** (not 7). *OPEN:* full nonlinear Poisson rank — the Y-dependent `F_Y` enters the constraint/gradient sector; must prove the 4-first/4-second-class degeneracy survives on branches (a)–(d). |
+| **0** symbolic audit | `fc8_symbolic_audit.py` | **PASS (7/7)** | `μ₁₀=y+O(y¹¹)`; `J₁₀=x³/3`; `𝓕_M=Y^{3/2}/(3a₀)=O(δ³)` ⇒ `δ²S_MOND=0`; aether projector removes φ̇ from Y ⇒ no velocity-Hessian entry; MOND law + `1−μ₁₀=O((a₀/g)¹⁰)` + BTFR. **A6:** both AeST asymptotic limits give `β₀=1` ⇒ **λ_s=1** (fixed by J₁₀, not fitted). **A7:** `F_YY=1/(4√Y a₀)→∞` at Y=0 (singular Hessian) but `δ²S_M=0` ⇒ degenerate branch, not a ghost. |
+| **A** Hamiltonian rank | `dirac_fc8.py` | **PARTIAL** | *PASS:* modification is a function of Y only (a₀ const), Y has no φ̇ ⇒ zero velocity-Hessian contribution, **no new field ⇒ target N_phys=6** (not 7); generic Y>0 branch has a *nondegenerate* Hessian ⇒ the AeST general-F 6-DOF theorem applies there. **⚠️ KEY OPEN — Y=0 degenerate branch:** `F_YY→∞` at Y=0 breaks the nondegenerate-Hessian premise exactly on the homogeneous background; `δS_M=δ²S_M=0` ⇒ not an automatic ghost, but needs a **dedicated degenerate Dirac analysis** (not PASS, not FAIL). Plus full nonlinear Poisson rank on the other branches. |
 | **B** Tensor | `ppn_fc8.py` (+ TT) | **OPEN** | `Q_T>0, c_T²=1` must be re-derived for the modified `𝓕`, not inherited from AeST. |
 | **C** PPN | `ppn_fc8.py` | **OPEN** | Derive FC-FINAL 1PN + FC-FINAL→EA map; extract γ,β,α₁,α₂,α₃; require `|α₁|<10⁻⁴, |α₂|<10⁻⁷`. No import. |
 | **D** spherical (+m_×) | `spherical_fc8.py` | **PARTIAL** | *OPEN:* full nonlinear BVP `{Φ,Λ,A_t,A_r,φ}` **without** assuming the vector vanishes (the `m_×` scale); whether `g_N=g²/(g¹⁰+a₀¹⁰)^{1/10}` and Φ=Ψ come from the *solution*. |
 | **E** lensing Φ−Ψ | `weak_field_fc8.py` | **OPEN** | Compute Φ−Ψ from the traceless FC-FINAL equation. Inheritance forbidden. |
-| **F** infrared | `spherical_fc8.py` | **PARTIAL** | *Verified (MNRAS 531,272):* `r_C=⅓[18 r_M μ⁻²]^{1/3}`, `r_M=8.35 kpc`. **Fiducial μ⁻¹=3 Mpc ⇒ r_C≈370 kpc** (past the disk, not past 1 Mpc); `r_C≥1 Mpc` needs `μ⁻¹≈13.4 Mpc` (corrected a "2.1 Mpc" units-error). *OPEN:* r_C from the full solution. |
+| **F** infrared | `spherical_fc8.py` | **PARTIAL** | *Verified (MNRAS 531,272):* `r_C=⅓[18 r_M μ⁻²]^{1/3}`, `r_M=8.35 kpc`. Requirement `μ⁻¹≳1 Mpc` (**fitted, not a theoretical constant**): `μ⁻¹=1 Mpc⇒r_C≈177 kpc` (past the disk); `r_C≥1 Mpc` needs `μ⁻¹≈13.4 Mpc`. Earlier `μ⁻¹=3 Mpc` fiducial (r_C≈370 kpc) withdrawn as a frozen constant. *OPEN:* r_C from the full solution. |
 | **G** cosmology | `flrw_fc8.py` | **OPEN** | Linear cosmology reduces to AeST-with-K(Q) (MOND term sequestered O(δ³)); dark sector carried by `𝓕_Q^★`, NOT a₀. *OPEN:* full quadratic FLRW stability + the AeST nondynamical `k_*` mode + CMB/matter-power reproduction. |
 
 ## Overall
@@ -51,7 +51,12 @@ FAILs at every corner → we learn exactly which ingredient is incompatible.
   the recursion and is the stronger target. Gates remapped to 0/A–G. Gate 0 = 5/5 PASS; Gate A/D/F PARTIAL;
   B/C/E/G OPEN. σ verification preserved in `../closure_2026/FC_AEST/scripts/fc8_clean_lock_2026.py` (the
   σ-lock was clean; it is retired for parsimony, not because it failed).
-- 2026-08-28 — **IR fiducial frozen: μ⁻¹=3 Mpc** (exploratory, not derived). `spherical_fc8.py` verifies
-  `r_M=8.35 kpc` and `r_C(μ⁻¹=3 Mpc)≈370 kpc`. Corrected a scaling slip in the proposal: `r_C≥1 Mpc` needs
-  `μ⁻¹≈13.4 Mpc`, not 2.1 Mpc (the intermediate formula was dimensionally length², not length). 3 Mpc pushes
-  the oscillatory onset past the rotation-curve domain but not past 1 Mpc — recorded honestly, not upgraded.
+- 2026-08-28 — **IR fiducial μ⁻¹=3 Mpc proposed then WITHDRAWN as a frozen constant.** `spherical_fc8.py`:
+  `r_M=8.35 kpc`, `r_C(3 Mpc)≈370 kpc`. Corrected a scaling slip (`r_C≥1 Mpc` needs `μ⁻¹≈13.4 Mpc`, not
+  2.1 Mpc — the intermediate formula was dimensionally length²). Final position: **`μ⁻¹≳1 Mpc` is a fitted
+  observational requirement, not hard-coded** into the fundamental theory.
+- 2026-08-28 — Gate 0 → **7/7**: added **A6** (`β₀=λ_s=1`, fixed by J₁₀ via both AeST asymptotic limits —
+  a genuine internal check) and **A7** (`F_YY→∞` at Y=0: constitutive Hessian singular on the homogeneous
+  background; `δ²S_M=0` ⇒ not a ghost). The **Y=0 degenerate branch** is now Gate A's named key open item:
+  the AeST general-F 6-DOF theorem applies on the generic Y>0 branch but not at Y=0, which needs its own
+  degenerate Dirac analysis. This is the last fundamental field-theory gate.

@@ -52,11 +52,24 @@ $$
 constant fixed by observation, like G). **DOF target = 6** (the established AeST count, if the modified
 `𝓕(Y,Q)` preserves the degeneracy — to be proven, not assumed).
 
-**IR fiducial (exploratory, NOT derived):** `μ⁻¹ = 3 Mpc`. This pushes the AeST oscillatory-IR onset past
-the rotation-curve domain. Verified (`spherical_fc8.py`, MNRAS 531,272 formula `r_C=⅓[18 r_M μ⁻²]^{1/3}`,
-`r_M=√(GM_b/a₀)=8.35 kpc` for M_b=6×10¹⁰M_⊙): **μ⁻¹=3 Mpc ⇒ r_C≈370 kpc** (beyond the ~30 kpc disk, *not*
-beyond ~1 Mpc). The conservative `r_C≥1 Mpc` needs **μ⁻¹≈13.4 Mpc** (an earlier "2.1 Mpc" estimate used a
-dimensionally-inconsistent formula — corrected). `μ⁻¹` is a falsifiable parameter, not "take μ small."
+**Constitutive normalization FIXED by J₁₀ (not fitted):** matching `F_M=a₀²J₁₀(√Y/a₀)` to the AeST
+spherical asymptotics (MNRAS 531,272: `𝒥→(1/β₀)Y` Newtonian, `𝒥→[2/(3(1+β₀)a₀)]Y^{3/2}` MOND) gives —
+from **both** limits independently — **`β₀ = 1`, hence `λ_s = β₀⁻¹ = 1`** (`fc8_symbolic_audit.py` A6). A
+genuine internal check, not a knob.
+
+**⚠️ Y=0 degenerate branch (put in red).** For `J₁₀~x³/3`, `F_YY ~ 1/(4√Y·a₀) → ∞` as `Y→0`
+(`fc8_symbolic_audit.py` A7). The AeST 6-DOF theorem needs a *nondegenerate* auxiliary Hessian, which holds
+on the **generic Y>0 branch** but **fails exactly at Y=0** (the homogeneous background). Because
+`F_M=O(Y^{3/2})`, `δS_M=δ²S_M=0` at Y=0 ⇒ **not** an automatic ghost — but the analytic-Hessian argument
+does not apply, so **Y=0 needs a dedicated degenerate-branch Dirac analysis** (Gate A, OPEN). This is the
+last fundamental field-theory gate.
+
+**IR requirement (observational, fitted — NOT a theoretical constant):** `μ⁻¹ ≳ 1 Mpc`, so the AeST
+oscillatory-IR onset stays beyond the tested galactic (rotation-curve) domain. Verified numbers
+(`spherical_fc8.py`, `r_C=⅓[18 r_M μ⁻²]^{1/3}`, `r_M=√(GM_b/a₀)=8.35 kpc`): `μ⁻¹=1 Mpc ⇒ r_C≈177 kpc`
+(past the ~30 kpc disk); the conservative `r_C≥1 Mpc` needs `μ⁻¹≈13.4 Mpc`. **`μ⁻¹` is a fitted parameter,
+NOT hard-coded** (an earlier `μ⁻¹=3 Mpc` fiducial is withdrawn as a frozen constant — it gives only
+`r_C≈370 kpc`; use it as an exploratory numeric point if needed, explicitly labelled fiducial).
 
 ---
 

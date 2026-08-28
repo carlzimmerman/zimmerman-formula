@@ -27,7 +27,16 @@ print(f"         => it cannot add a propagating mode; target N_phys = 6 (the AeS
 print(f"         (established: fc7_reduced_action_rank_2026.py projector result)")
 
 P("\n"+"-"*94)
-P("  [OPEN] FULL NONLINEAR RANK — NOT derived here (no shortcut). Required:")
+P("  [OPEN — THE KEY GATE] Y=0 DEGENERATE BRANCH. The AeST 6-DOF theorem (PRD 110.044015) holds for a")
+P("  general F(Y,Q) *provided the auxiliary 2x2 Hessian is nondegenerate*. For J10~x^3/3 we have")
+P("  F_YY ~ 1/(4 sqrt(Y) a0) -> INFINITY as Y->0 (verified: fc8_symbolic_audit.py A7). So the constitutive")
+P("  Hessian is REGULAR on the generic Y>0 branch (=> 6-DOF expectation applies there) but SINGULAR exactly")
+P("  on the homogeneous Y=0 background used for the vacuum/cosmology expansion. Because F_M=O(Y^{3/2}) the")
+P("  first and second variations vanish (delta S_M=delta^2 S_M=0 at Y=0), so this is NOT an automatic ghost")
+P("  -- but the analytic-Hessian Dirac argument FAILS there and Y=0 requires its OWN degenerate-branch")
+P("  constraint analysis. Report OPEN, not PASS and not FAIL. This is the last fundamental field-theory gate.")
+
+P("\n  [OPEN] FULL NONLINEAR RANK on the remaining branches — NOT derived here (no shortcut). Required:")
 for s in ["Take the AeST 3+1 constraint system (4 first-class + 4 second-class, PRD 110.044015).",
           "Replace F(Y,Q) -> F_Q^star(Q) + a0^2 J10(sqrt Y/a0) and RE-DERIVE all constraints + the",
           "  complete Poisson-bracket matrix (the modification enters the CONSTRAINT/gradient sector via",
