@@ -58,6 +58,19 @@ general-background c_T; FLRW growth; the AeST outer oscillatory regime. **And cr
 consistent does NOT change a₀²∝ρ_DE from imported to derived** — V(χ) is *chosen*, the lock is *imposed*;
 a clean phenomenological realization, not a symmetry consequence.
 
+**FC-8 (the frozen shape — supersedes FC-7's lock).** Change the lock `α²=κ²Gρ_χ → α²=κ²GV(χ)` (potential
+only). Verified (`scripts/fc8_clean_lock_2026.py`, exit 0): (i) `C_ζ=α²−κ²GV(χ)` carries **no χ-momentum**
+(`∂C_ζ/∂χ̇=0`), so the lock no longer grafts onto the χ kinetic constraint algebra; (ii) the reduced MOND
+term `κ²GV(χ)·J₁₀(√Y/√(κ²GV))` depends on χ **only through V(χ)** — no χ̇, no ∇χ — so it contributes
+**identically zero to every kinetic entry AND to the χ gradient entry, at all orders** (vs FC-7's nonzero
+O(Y^{3/2}) K_χχ correction). χ is a fully healthy canonical scalar; FC-8 adds **no** new ghost/gradient
+risk in the χ sector. Vacuum still exact: `a₀,₀²=κ²GV₀`, ζ₀=0, δ²S_MOND=0, BTFR `v⁴=Ga₀M_b` untouched.
+**Price (honest):** `a₀²=κ²GV` equals κ²Gρ_χ **only when potential-dominated** (χ̇²≪V) — so a₀²∝ρ_DE is
+exact only in the slow-roll/frozen regime, and remains **imported** (V chosen). a₀ still evolves iff χ rolls.
+**Genuinely OPEN, unchanged (no shortcut):** full *nonlinear* Dirac rank of the enlarged 3+1 system; PPN
+γ/β/α_i; nonlinear Φ=Ψ; the *inherited* AeST φ-sector stability (low-k mode) + outer oscillatory regime;
+FLRW growth. Rating: **9/10 — right mathematical shape, not proven viable.**
+
 ## 4. THE ENDPOINT IS NOW EMPIRICAL
 
 The surviving branch (§2) makes one clean, near-parameter-free prediction that the same sharpness which
