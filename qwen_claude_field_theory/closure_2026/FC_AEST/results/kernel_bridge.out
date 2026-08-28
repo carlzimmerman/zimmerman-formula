@@ -1,0 +1,47 @@
+==============================================================================
+FC-AeST kernel bridge (f_G=1/2)
+==============================================================================
+  [ok] x = g_phi/a0 = (y/2)(1+e^-y)   [derived: y/2 + y*exp(-y)/2]
+  [ok] mu~(x) = f_G mu_obs/(1-f_G mu_obs) = tanh(y/2)   [tanh(y/2)]
+  [ok] dx/dy = (1/2)[1+(1-y)e^-y]   [(-y + exp(y) + 1)*exp(-y)/2]
+  [ok] dx/dy > 0 for all y>=0 (min at y=2 = (1-e^-2)/2 = 0.432) => x<->y invertible
+
+------------------------------------------------------------------------------
+Asymptotic limits survive the translation:
+------------------------------------------------------------------------------
+  [ok] deep-MOND: mu_obs ~ y => g_N=g^2/a0 => g=sqrt(a0 g_N) => v^4=G a0 M (BTFR)
+  [ok] Newtonian: mu_obs->1 => g_N->g (g_phi->g_N/2, g=g_phi+g_N/2->g_N)
+  [ok] field mu~: ->1 Newtonian, ~ y/2 deep-MOND (healthy interpolation, mu~ in (0,1))
+  J'_FC(x^2) = mu~(x) = tanh(y(x)/2);  J_FC(x^2) = INT_0^{x^2} tanh(y(sqrt u)/2) du  (AeST F-sector)
+
+------------------------------------------------------------------------------
+Cosmological lock (the FC novelty):
+------------------------------------------------------------------------------
+  a0^2(Q) = -kappa^2 c^2 G K(Q),  K(Q)=-(1/2)F(0,Q)  =>  a0(z)=kappa c sqrt(G rho_DE(z))
+  with rho_DE(z) := -K[Qbar(z)]  =>  a0(z)/a0,0 = sqrt(rho_DE(z)/rho_DE,0)  =>  a0 PROPORTIONAL sqrt(rho_DE)
+  LIMIT w=-1 (Lambda): rho_DE=const => a0=const (flat, matches STANDING 'nearly flat in MOND regime').
+  This SUPERSEDES the naive a0(z) proportional H(z) (STANDING: H(z) reading disfavoured ~2.3 sigma).
+  Distinctive ONLY if DE evolves -- exactly what DESI DR2/DR3 probe (evolving-DE preference ~few sigma).
+
+==============================================================================
+HONEST GATE TABLE
+==============================================================================
+  kernel bridge mu_obs=1-e^-y <-> mu~=tanh(y/2)            PASS (exact, this script)
+  Newtonian + deep-MOND + BTFR                             PASS (exact, this script)
+  matter minimal coupling to g (photons+matter same metric) PASS by construction (AeST)
+  c_T = 1 (GW170817)                                       INHERITED PASS -- AeST K_B structure, c_gamma=c_GW exact (2007.00082)
+  gamma_PPN = 1 (lensing = dynamics, Phi=Psi)              INHERITED PASS -- committed typeII_direct_variation: no dark anisotropic stress; AeST lensing 21.2->0.6 sigma
+  Hamiltonian DOF = 6 (4 first + 4 second class)           INHERITED for general F(Y,Q) (2307.15126); Q-dep J stays in that class => SUPPORTED, must re-run
+  a0(z) proportional sqrt(rho_DE) (cosmological lock)      STRUCTURAL TARGET (the FC hypothesis); testable vs DESI
+  low-k stability (AeST has a known unbounded-H low-k mode) OPEN -- must recompute with Q-dependent a0
+  oscillatory 3rd quasistatic regime (2304.05134)          OPEN -- must show it sits outside observed radii
+  clusters, wide-binary gamma_v, cosmo perturbations       OPEN
+  kappa, Z (a0 normalization)                              FITTED, never derived -- a0 is now a FIELD but kappa^2 still fitted
+  2 DOF                                                    ABANDONED -- FC-AeST is 6 DOF (honest concession; the 2-DOF program is closed, this is a DIFFERENT chassis)
+
+VERDICT: FC-AeST is AeST + (exact kernel via inverse problem) + (a0(Q) cosmological lock).
+The kernel bridge and limits are EXACT (new, verified). The AeST-baseline gates (c_T, gamma_PPN,
+lensing, 6 DOF) are inherited/committed. The genuine NEW physics = a0(z) prop sqrt(rho_DE); the
+genuine OPEN risks = low-k mode + oscillatory regime under the Q-dependent a0. NOT a completed
+theory; it is the first FC candidate that removes BOTH MMG killers (no C_M lapse-constraint; no
+conformal-lensing trap) -- at the honest cost of 6 DOF and fitted kappa.
