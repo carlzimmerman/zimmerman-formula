@@ -1,5 +1,14 @@
 """
-Gate A / Y=0 DEGENERATE BRANCH — consolidated verification.  Verdict: PASS (6-DOF, benign).
+### ⚠️ REFINED by detC_legendre_regularity.py — READ THIS FIRST ###
+### The checks below establish PHYSICAL QUADRATIC STABILITY at Y=0 (no ghost, no strong-coupling: the
+### fluctuation eigenvalues -> (2-K_B)>0 via the analytic seed, vs bare-AQUAL collapse). That result STANDS.
+### But it is NOT a proof of the nonlinear DIRAC RANK at Y=0. The exact auxiliary-matrix computation
+### (detC_legendre_regularity.py) shows det C|_{Y=0} = 0 EXACTLY (U_mumu=-1/F_YY->0) => the regular 4+4
+### classification STOPS applying at Y=0 => the nonlinear Dirac rank at Y=0 is OPEN (benign constraint
+### conversion keeping 6, OR a tertiary chain/extra mode = a kill; undecided). So: 'Y=0 quadratic stability
+### = PASS' but 'Y=0 nonlinear Dirac rank = OPEN'. The earlier '6-DOF benign' wording was too strong. ###
+
+Gate A / Y=0 DEGENERATE BRANCH — physical quadratic stability (PASS); nonlinear Dirac rank (OPEN).
 ============================================================================================
 Question: does F_YY = 1/(4 sqrt Y a0) -> +inf at Y=0 (the homogeneous / zero-gradient locus) create a
 ghost, a DOF jump, or a strong-coupling in FC-FINAL?  Answer computed from the equations: NO -- benign

@@ -9,9 +9,9 @@ Rules: `REQUIREMENTS.md`. Only **PASS / FAIL / OPEN**. No inheritance. No goalpo
 | Gate | Script | Status | Produced by the equations vs. missing |
 |---|---|---|---|
 | **0** symbolic audit | `fc8_symbolic_audit.py` | **PASS (7/7)** | `μ₁₀=y+O(y¹¹)`; `J₁₀=x³/3`; `𝓕_M=Y^{3/2}/(3a₀)=O(δ³)` ⇒ `δ²S_MOND=0`; aether projector removes φ̇ from Y ⇒ no velocity-Hessian entry; MOND law + `1−μ₁₀=O((a₀/g)¹⁰)` + BTFR. **A6:** both AeST asymptotic limits give `β₀=1` ⇒ **λ_s=1** (fixed by J₁₀, not fitted). **A7:** `F_YY=1/(4√Y a₀)→∞` at Y=0 (singular Hessian) but `δ²S_M=0` ⇒ degenerate branch, not a ghost. |
-| **A** Hamiltonian rank | `dirac_fc8.py`, `y0_degenerate_dirac.py` | **PARTIAL (Y=0 sub-gate now PASS-benign)** | *PASS:* modification is Y-only (a₀ const), Y has no φ̇ ⇒ zero velocity-Hessian contribution, **no new field ⇒ target N_phys=6**; generic Y>0 branch nondegenerate ⇒ AeST general-F theorem applies. **Y=0 degenerate branch → RESOLVED BENIGN** (7-agent adversarial workflow, all benign-6DOF; `y0_degenerate_dirac.py` 5/5): `F_YY→∞` is a Legendre-chart/AQUAL-like non-analyticity (`F_YY·F*_qq≡1`, regular in `x=√Y/a₀`); φ time-kinetic runs through `F_QQ=2𝒦₂` not F_YY; spatial eigenvalues `→(2−K_B)>0` (divergence tamed by ∇φ→0); `δ²S_M=0` ⇒ no ghost, no DOF-jump, no strong-coupling. Control: bare AQUAL strong-couples; the `−(2−K_B)Y` seed rescues AeST. **OPEN residual:** full covariant nonlinear multi-constraint Dirac (lapse/shift + diffeo + aether + A_i). |
-| **B** Tensor | `ppn_fc8.py` (+ TT) | **OPEN** | `Q_T>0, c_T²=1` must be re-derived for the modified `𝓕`, not inherited from AeST. |
-| **C** PPN | `ppn_fc8.py` | **OPEN** | Derive FC-FINAL 1PN + FC-FINAL→EA map; extract γ,β,α₁,α₂,α₃; require `|α₁|<10⁻⁴, |α₂|<10⁻⁷`. No import. |
+| **A** Hamiltonian rank | `detC_legendre_regularity.py`, `dirac_fc8.py`, `y0_degenerate_dirac.py` | **PARTIAL — Y>0 PASS (proven-in-class); Y=0 rank OPEN** | **Generic Y>0 = PASS (proven-in-class):** FC-FINAL's F satisfies every hypothesis of the published AeST general-F 6-DOF theorem (2307.15126 / PRD 110.044015) on Y>0 — Q-sector byte-identical to the paper's own example (F_QQ=2𝒦₂≠0), separable (F_YQ=0, also covered), F_YY finite>0 ⇒ `det C ∝ K₂/(2a₀√Y) ≠ 0` for all Y>0 (7-agent workflow all *proven-in-class*; `detC_legendre_regularity.py` 6/6; field-redefinition invariant via `F_YY·F*_qq≡1`). **Y=0 = rank defect, OPEN (corrected — earlier "6-DOF benign" was too strong):** on the aligned homogeneous surface `U_μμ=−1/F_YY→0`, C_μν=0 ⇒ **`det C|_{Y=0}=0` exactly** — the regular 4+4 classification stops applying; must restart the Dirac algorithm there. NOT a ghost/7-DOF (quadratic stability is favorable — eigenvalues→(2−K_B)>0, seed-rescued vs bare-AQUAL collapse), but benign-conversion-vs-tertiary-chain is undecided. **OPEN residual:** the full nonlinear constraint continuation through Y=0 + the independent covariant re-derivation. |
+| **B** Tensor | `ppn_fc8.py` (+ TT) | **PASS (c_T=1)** | 7-agent PPN workflow: dictionary c₁=K_B, c₂=0, c₃=−K_B, c₄=0 (Maxwell locus, c₁₃=0) ⇒ **c_T=1 exact and free** (Δc_T/c_T~10⁻⁴³ on GW170817, no tuning). Q_T>0 on the healthy branch; the MOND term is O(δ³) on the vacuum ⇒ no new quadratic tensor operator. |
+| **C** PPN | `ppn_fc8.py` | **OPEN (adverse-leaning) — α₂ is the live danger** | 7-agent workflow: **γ_PPN=1 DERIVED, exact, kernel-independent** (F depends on g only via Y,Q; unit-timelike aether strips the traceless part ⇒ ∂_i∂_j(Φ−Ψ)=0, no source; holds even deep-MOND — a clean PASS, sharper than the O((a₀/g)¹⁰) heuristic). **β OPEN-not-adverse** (2PN; MOND part ~10⁻⁸⁰ negligible; can't import EA β=1 — the (2−K_B)J·∂φ scalar mixing puts FC-FINAL *outside* the Einstein-aether family). **α₁=−4K_B** ⇒ needs K_B<2.5e-5. **α₂ = crux, contested:** EA import invalid (Maxwell locus on the c₁₂₃=0 Foster–Jacobson pole); scalar-retained reading gives α₂=(5/2)K_B ⇒ needs K_B<4e-8, but this value is *disputed in-corpus* (may collapse to GR on a consistent background) ⇒ α₂ genuinely NOT settled. No empty corner *proven* (not a kill), but not healthy either. |
 | **D** spherical (+m_×) | `spherical_fc8.py` | **PARTIAL** | *OPEN:* full nonlinear BVP `{Φ,Λ,A_t,A_r,φ}` **without** assuming the vector vanishes (the `m_×` scale); whether `g_N=g²/(g¹⁰+a₀¹⁰)^{1/10}` and Φ=Ψ come from the *solution*. |
 | **E** lensing Φ−Ψ | `weak_field_fc8.py` | **OPEN** | Compute Φ−Ψ from the traceless FC-FINAL equation. Inheritance forbidden. |
 | **F** infrared | `spherical_fc8.py` | **PARTIAL** | *Verified (MNRAS 531,272):* `r_C=⅓[18 r_M μ⁻²]^{1/3}`, `r_M=8.35 kpc`. Requirement `μ⁻¹≳1 Mpc` (**fitted, not a theoretical constant**): `μ⁻¹=1 Mpc⇒r_C≈177 kpc` (past the disk); `r_C≥1 Mpc` needs `μ⁻¹≈13.4 Mpc`. Earlier `μ⁻¹=3 Mpc` fiducial (r_C≈370 kpc) withdrawn as a frozen constant. *OPEN:* r_C from the full solution. |
@@ -42,6 +42,28 @@ r_C beyond the tested galactic domain (Gate F)     viable AeST cosmology via K(Q
 
 No single constraint doing six jobs. Either a healthy corner exists → the bird is cooked, or a gate
 FAILs at every corner → we learn exactly which ingredient is incompatible.
+
+## OVERALL STATUS (2026-08-28): CONDITIONALLY CLOSED — not globally proven
+
+FC-FINAL is a fully specified local candidate whose generic branch, tensor sector, and lensing (γ=1) are
+**derived PASSes**, with two live open fronts and no proven kill:
+
+| | Result |
+|---|---|
+| Generic Y>0 nonlinear DOF class | **PASS** (proven-in-class, 6 DOF; det C≠0) |
+| c_T=1 (GW) | **PASS** (exact, free) |
+| γ_PPN=1 (lensing/slip) | **PASS** (derived, kernel-independent, even deep-MOND) |
+| Y=0 quadratic stability | **PASS** (no ghost/strong-coupling) |
+| Constitutive regularity of sharp J₁₀ | **PASS** (F_YY>0, longitudinal coeff>0 on Y>0) |
+| **Y=0 exact nonlinear Dirac rank** | **OPEN** (det C=0 at Y=0; benign-conversion-vs-kill undecided) |
+| **α₂ preferred-frame** | **OPEN, adverse-leaning** (α₂=(5/2)K_B⇒K_B<4e-8, or uncomputed; α₁=−4K_B⇒K_B<2.5e-5) |
+| β (2PN) | OPEN, not adverse |
+| Full nonlinear spherical + m_× (D) | OPEN |
+| FLRW perturbations/growth (G) | OPEN |
+
+**The two swings did NOT find the catastrophic extra scalar we hunted.** The surviving structural question
+is narrow and specific: **the exact nonlinear constraint continuation through the Y=0 rank-deficient
+surface.** The surviving observational danger is **α₂**. Neither is a proven kill; neither is closed.
 
 ### Change log
 - 2026-08-28 — Lane created as FC-8R (AeST + σ + potential lock `a₀²=κ²GV(σ)`, target 7 DOF). Gate 0 PASS.
