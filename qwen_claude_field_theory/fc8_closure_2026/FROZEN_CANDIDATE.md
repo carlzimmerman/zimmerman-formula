@@ -35,7 +35,12 @@ $$
 $$
 
 **AeST Q-sector (frozen, retained as the AeST dark component — NOT asked to carry dark energy):**
-`𝓕_Q^★(Q)=K(Q)=−2Λ+𝒦₂(Q−Q₀)²` (SZ21 quadratic, 𝒦₂>0). [Non-quadratic K(Q) (cosh/exp, A&A 676 A100) is an
+the **cosmological function** `K(Q) ≡ −½𝓕(0,Q)` (published AeST convention, Skordis–Złośnik) `= −2Λ+𝒦₂(Q−Q₀)²`
+(SZ21 quadratic, 𝒦₂>0, minimum at the condensate Q₀), i.e. `𝓕_Q^★(Q)=𝓕(0,Q)=−2K(Q)=4Λ−2𝒦₂(Q−Q₀)²`.
+⚠️ **Sign convention is load-bearing:** the physical scalar time-kinetic on the aligned background is
+`∂²[−𝓕(0,Q)]/∂Q²=+4𝒦₂>0` (HEALTHY); the loose `𝓕_Q^★=K` reading would give `−2𝒦₂<0` (GHOST) — corrected
+per `y0_scalar_temporal.py`. And `F_QQ(Q₀)=−4𝒦₂≠0` while the auxiliary `ν(Q₀)=0`: auxiliary vanishing ≠
+physical degeneracy. [Non-quadratic K(Q) (cosh/exp, A&A 676 A100) is an
 allowed re-freeze for early-time cosmology, but changing it is a *re-freeze*, not a run-time move.]
 
 **MOND interpolation (frozen — sharp, Cassini-safe n=10):**

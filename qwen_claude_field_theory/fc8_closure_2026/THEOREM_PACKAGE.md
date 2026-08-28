@@ -162,21 +162,37 @@ operator rank on `𝒟_reg` (Gate 5–8,10); the **nonlinear constraint COUNT** 
 committed; **NOT_PROVEN** = open, no proof; **FAILED** = contradiction derived. "CERTIFIED" above = COMPUTATIONALLY
 VERIFIED; "OPEN" = NOT_PROVEN.)
 
+### §8b. Sharpened domain (the true boundary is Ξ=0, not Y=0)
+
+The maximal regular **physical** domain is `𝒟_phys={F_QQ≠0, K_B≠0, Ξ≠0, regular spatial constitutive Hessian}`
+(`Ξ=χ²ν−(2(2−K_B)/K_B+μ)|A|²`, 2307.15126 Eq.32). On it the FC-FINAL specialization is in the regular
+general-F AeST class ⇒ **N_DOF=6, including the Y=0 locus wherever Ξ≠0 and F_QQ≠0.** Certificates
+(`y0_scalar_temporal.py`, `detC_factorization.py`): (i) `F_QQ(Q₀)=−4𝒦₂≠0` and physical time-kinetic `+4𝒦₂>0`
+(healthy) while auxiliary `ν(Q₀)=0` — auxiliary vanishing ≠ physical degeneracy; (ii) on the Y=0 locus,
+`Ξ=ν=2𝒦₂(Q−Q₀)/Q` vanishes **only** at the single cosmological point `Q=Q₀`, where the physical kinetics are
+still finite-positive ⇒ `Ξ=0` there is an **auxiliary-chart boundary**, not a physical pathology. So `Y=0`
+is *inside* the theorem; the true excluded set is the genuine kinetic/Legendre degeneracy `Ξ=0` (which every
+nonlinear Hamiltonian theory has). Convention: `K(Q)≡−½𝓕(0,Q)` (AeST) is load-bearing — the loose reading
+gives a ghost (`−2𝒦₂<0`); corrected.
+
 ### Final classification (the honest close)
 
 $$
 \boxed{
 \begin{array}{ll}
-\text{Mathematical construction} & \textbf{CONDITIONALLY CLOSED}\\
-\text{Generic nonlinear DOF} & \textbf{CLOSED on }\mathcal D_{\rm reg}\ \text{(hypotheses COMPUTATIONALLY VERIFIED)}\\
-Y=0\ \text{physical stability} & \textbf{VERIFIED}\\
-Y=0\ \text{nonlinear DOF} & \textbf{NOT\_PROVEN}\\
-\text{PPN }\alpha_2 & \textbf{OPEN (adverse-leaning)}\\
-\text{Full lensing} & \textbf{OPEN}\\
-\text{Cosmology / growth} & \textbf{OPEN}\\
-\text{Global causality} & \textbf{OPEN}
+\text{Nonlinear DOF theorem} & \textbf{CLOSED on }\mathcal D_{\rm phys}\ (\text{incl. }Y=0\text{ when }\Xi\neq0,\ F_{QQ}\neq0)\\
+Y=0\ \text{physical stability (temporal }4\mathcal K_2\text{ + spatial }2(2-K_B)) & \textbf{VERIFIED}\\
+\text{True boundary }\Xi=0\ (\text{cosmological }Q_0)\text{: auxiliary, benign} & \textbf{VERIFIED}\\
+\text{Independent from-scratch covariant operator rank} & \textbf{NOT\_PROVEN (research-grade)}\\
+\text{Global all-phase-space regularity} & \textbf{NOT CLAIMED}\\
+\text{PPN }\alpha_2 & \textbf{OPEN (adverse-leaning — decides viability)}\\
+\text{Full lensing }\Phi+\Psi,\ \text{FLRW growth},\ \text{causality} & \textbf{OPEN}
 \end{array}}
 $$
+
+**The DOF/structural question is now essentially settled** (6-DOF theorem on the maximal regular domain,
+`Y=0` included, `Ξ=0` explicitly excluded as a genuine degeneracy). **What remains for publishability is
+physical viability** — and `α₂` is the gate that decides whether FC-FINAL survives or is excluded.
 
 $$\boxed{\textbf{FC-FINAL STATUS} = \textbf{CONDITIONALLY CLOSED}}$$
 
