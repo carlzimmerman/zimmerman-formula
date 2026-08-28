@@ -98,3 +98,15 @@ one novel piece. Plus the physical-viability gates (lensing, **α₂**, cosmolog
 **Therefore, per the standard, FC-FINAL may NOT yet carry the word "PROVEN" on a title page.** It is a fully
 specified, sharp-kernel, six-DOF-AeST candidate with no known structural kill — crispy as a candidate, not
 yet a watertight published theorem. The remaining work is *specified*, not hand-waved.
+
+## §6. THE single decisive next work item (everything else is downstream)
+
+$$\boxed{\text{From-scratch specialized nonlinear AeST Dirac derivation (Gates 5–8, 10) + the }Y=0\text{ primal-chart constraint continuation (Gate 9).}}$$
+
+Derive FC-FINAL's own 3+1 Hamiltonian (not inherit AeST's), all momenta and constraints, the operator-valued
+Poisson matrix and its rank on `𝒟_reg`; then switch to `v_i=D_iφ` at `Y=0` and run the Dirac algorithm
+there directly. Output must be either the six-DOF theorem *with its exact domain + boundary prescription*,
+or the explicit obstruction — **no "likely / benign / numerically healthy" where an algebraic proof is
+required.** The remaining physical-viability gates (lensing, PPN α₂, cosmology, causality, growth) are
+downstream of, and reported separately from, this mathematical closure. This is a research-grade computation,
+correctly *not* faked by an LLM+sympy session; the ledger above is the referee-auditable handoff.
