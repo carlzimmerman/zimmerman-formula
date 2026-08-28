@@ -185,14 +185,20 @@ Y=0\ \text{physical stability (temporal }4\mathcal K_2\text{ + spatial }2(2-K_B)
 \text{True boundary }\Xi=0\ (\text{cosmological }Q_0)\text{: auxiliary, benign} & \textbf{VERIFIED}\\
 \text{Independent from-scratch covariant operator rank} & \textbf{NOT\_PROVEN (research-grade)}\\
 \text{Global all-phase-space regularity} & \textbf{NOT CLAIMED}\\
-\text{PPN }\alpha_2 & \textbf{OPEN (adverse-leaning — decides viability)}\\
+\text{PPN }c_T=1,\ \gamma=1 & \textbf{PASS}\\
+\text{PPN }\alpha_2\text{ corner (survives PPN?)} & \textbf{SURVIVES — kill REFUTED, corner nonempty}\\
+\text{PPN }\alpha_2\text{ exact value (consistent bg)} & \textbf{OPEN (not adverse, }O(K_B))\\
 \text{Full lensing }\Phi+\Psi,\ \text{FLRW growth},\ \text{causality} & \textbf{OPEN}
 \end{array}}
 $$
 
-**The DOF/structural question is now essentially settled** (6-DOF theorem on the maximal regular domain,
-`Y=0` included, `Ξ=0` explicitly excluded as a genuine degeneracy). **What remains for publishability is
-physical viability** — and `α₂` is the gate that decides whether FC-FINAL survives or is excluded.
+**The DOF/structural question is essentially settled** (6-DOF theorem on the maximal regular domain, `Y=0`
+included, `Ξ=0` excluded as a genuine degeneracy). **The sharpest viability threat (PPN α₂) is now cleared:**
+the `α₂=(5/2)K_B` empty-corner no-go was a *background artifact* (inconsistent `λ_bg=0`); on the consistent
+background the preferred-frame channel collapses to GR, α₂ is `O(K_B)`, and the corner `{c_T=1, |α₁|<1e-4,
+|α₂|<1e-7}` is **nonempty** (small `K_B<2.5e-5`). FC-FINAL is **NOT excluded by PPN.** What remains for
+publishability: full lensing `Φ+Ψ`, FLRW perturbations/growth, causality — plus the two residual liabilities
+(small `K_B<2.5e-5`; a disputed c_s² subluminality question). No proven kill anywhere.
 
 $$\boxed{\textbf{FC-FINAL STATUS} = \textbf{CONDITIONALLY CLOSED}}$$
 
