@@ -98,10 +98,22 @@ architectures tested this session map onto exactly that classification:
 | source routing | YCG: MOND on q | T^i_i ~ 5×10⁻⁷ρ ⇒ inert | 5b7efd3d |
 | source routing | CMYG: g̃ = e^{2αq}g | conformal ⇒ no lensing; disformal ⇒ cone split | this run |
 
-**THEOREM.** {exact MOND, minimal coupling, 2 tensor DOF, γ_PPN=1, c_T=1} is **overdetermined**.
-GR is HKT's unique (a)+(b)+(c) point; MOND requires leaving it; every exit lands on a *measured*
-contradiction. This is not "MOND is impossible" — it is: **no 2-DOF local deformation of H_⊥
-delivers MOND with GR's lensing.** The wall is HKT, not any single construction.
+**SCOPE CORRECTION (2026-08-27, adopted).** HKT's hypotheses must be matched to each architecture
+individually; "all six failures follow from HKT" is stronger than established. The defensible claim:
+HKT identifies a **structural obstruction class** for local metric Hamiltonians satisfying its
+assumptions. The organizing statement is therefore:
+
+> **Local 2-DOF MOND cannot retain all of the GR Hamiltonian structure**, and each way of relaxing
+> it carries a specific, measured cost:
+>
+> | Escape | Cost |
+> |---|---|
+> | deform the constraint algebra | PPN / preferred-frame (γ_PPN=0; α₃) |
+> | introduce spatial nonlocality | causality / tensor sector (c_T=0; Cassini) |
+> | alter momentum dependence | an extra scalar propagates |
+> | alter the matter metric/coupling | lensing / source-routing failure |
+
+This is weaker than a universal no-go and is what the evidence actually supports.
 
 **The minimal sacrifice.** Of the four droppable requirements, exactly one has no committed kill:
 **drop "2 DOF" → 2+1 with a screened scalar (k-mouflage/Vainshtein).** Then γ_PPN=1 (screened in
@@ -109,3 +121,33 @@ the solar system), lensing works (a single conformal source gives Φ=Ψ), c_T=1 
 μ=1−e^{−y} is retained. Cost: a third propagating DOF. Repo status: *"never tried, ranked #4"*.
 Its open gate is whether screening survives the wide-binary/EFE data the Gaia DR4 registration
 tests — which makes DR4 the decisive experiment for the surviving class.
+
+
+## The 2+1 screened-scalar route — RUN (results/kmouflage.out)
+
+| Gate | Result |
+|---|---|
+| G1 3 DOF exactly | PASS (cost paid openly) |
+| G2 c_T = 1 | PASS (conformal scalar doesn't touch TT) |
+| G3 γ_PPN ≃ 1 | PASS (conformal shifts Φ and Ψ equally ⇒ zero slip) |
+| G4 μ = 1−e^{−y} | PASS (free K(X) via AQUAL Legendre dual) |
+| G5 BTFR/RAR | PASS |
+| G6 screening | PARTIAL (monopole yes; see G7) |
+| **G7 wide-binary/EFE** | **FAIL** |
+| **Lensing** | **FAIL** |
+
+**Two killers, both DOF-blind:**
+
+1. **Lensing.** Null geodesics are conformally invariant, so with g̃ = A²(φ)g photons are blind to
+   φ: massive particles get MOND dynamics, light sees baryons only — excluded by the KiDS lensing
+   RAR. This is the *same theorem* that killed CMYG, and the third DOF does not repair it.
+   Repairing it needs a **disformal** piece → a preferred vector → **AeST/TeVeS with 6 DOF**.
+2. **The Cassini↔wide-binary lock** is a property of the kernel's *transition sharpness*, not the
+   DOF count: any screening sharp enough to clear Q₂ at η≈1.9 flattens the wide-binary boost at
+   the same η (committed route1B: μ₅/μ₁₀ give γ_v = 1.0040/1.0001 vs the registered 1.16–1.23 band).
+
+**Conclusion: the "minimal sacrifice" is not minimal.** Lensing costs a *vector*, not a scalar, so
+the 2+1 route **collapses into AeST** rather than offering a cheaper alternative — and in AeST a₀ is
+not structural. The honest fork is now between paying the full AeST price (6 DOF, a₀ free) or
+accepting that the framework's surviving content is the **measurement-side** prediction:
+a₀ = κc√(Gρ_Λ) with a₀(z) ∝ H(z), which Gaia DR4 tests directly and which no no-go above touches.
