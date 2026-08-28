@@ -997,3 +997,37 @@ So: the exponential exclusion and the μ_n null-γ_v prediction are safe to stat
 CANNOT ever decouple them" is NOT — it is true at the measured (α₂, w/c) and the kpc-scale aether
 Compton wavelength, and no further. Full standing: `closure_2026/FC_AEST/STATUS.md` (2026-08-28 vector
 section).
+
+---
+
+## ⚠ 2026-08-28 — RETRACTED framing: "a₀²=κ²c²Gρ_DE is DERIVED from the AeST action / w=−1 exact / MOND-scale IS the dark pressure"
+
+**Where it appeared:** internal standing (memory: "STAGE 17: a₀²(Q)∝−K(Q) DERIVED from action, MOND scale
+IS the dark pressure, w=−1 exact") and the plain-language framing around THE_COMPLETION (v9 DOI
+10.5281/zenodo.21895046) and the K(Q) promotion (DOI 10.5281/zenodo.22015358).
+
+**Mechanism of the error:** conflating a definitional PROMOTION with a dynamical DERIVATION.
+`a₀²(Q)=−κ²c²G·K(Q)` with `K(Q)=−½F(0,Q)` is **Carl's promotion — a CHOICE** that makes a₀ a field; and
+`−K(Q)=ρ_DE` (MOND-scale-is-dark-energy) is **not automatic** — the AeST Q-sector is generically
+dust-like near the minimum of K. Calling the resulting `a₀²=κ²c²Gρ_DE` "the field equation of the theory"
+oversells it.
+
+**What is actually true (committed no-go, `closure_2026/FC_AEST/scripts/fc_inverse_KQ_nogo_2026.py`,
+exit 0; grounded in committed `mi_shift_charge_ic_route_2026.py` A1, `routeB_dust_to_dark_energy_2026.py`,
+`fc_flrw_quadratic_gate.py`):** the shift symmetry defining the theory gives a conserved Noether charge
+`a³K'(Q)=I₀`, which forces the K(Q) sector — **for any shape of K** — to be `ρ_K = −K(Q₀) [constant DE,
+w=−1] + Q·K'(Q) [dust ∝ a⁻³]`. Hence `a₀²=−κ²c²G·K(Q) → CONSTANT` (only an `a⁻⁶` decaying transient tied
+to the dust, not to evolving ρ_DE). Conservation, the w=−1 minimum, and the a⁻⁶ scaling are all verified
+in the script.
+
+**Corrected claim:** `a₀²=κ²c²Gρ_DE` is a **TARGET relation, not a derived dynamical law.** In the 6-DOF
+theory it holds ONLY as a point-identification at the dS minimum with `ρ_DE=−K(Q₀)=const` ⇒ **a₀ constant,
+w=−1** (no evolution). An *evolving* a₀(z)∝√ρ_DE(z) is a **NO-GO for the 6-DOF (Option A) route**; it
+requires either breaking the shift symmetry with V(φ) — `routeB_dust_to_dark_energy` FAILS (phantom-only,
+cannot cross w=−1, short 4–12× vs DESI + the 0.30-dex floor) — or a **separate quintessence field χ
+(Option B, 7 DOF)**, the committed `fc_flrw_quadratic_gate` realization (a₀²=κ²c²Gρ_χ, χ canonical,
+c_χ²=1, sequestered at O(δ³)), in which the a₀ redshift drift is set by w_χ(z) as an **INPUT, not a
+prediction**. **What SURVIVES:** the promotion as a *definition*; the constant-a₀ point-identification at
+the dS minimum; the a₀ coefficient and the a₀(z)-scaling AS PHENOMENOLOGY (κ, Z fitted, never derived).
+Never state a₀²∝ρ_DE as "derived from the action." Full standing: `FC_AEST/STATUS.md` (2026-08-28
+inverse-K(Q) section).
