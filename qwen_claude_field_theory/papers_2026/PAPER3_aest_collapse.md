@@ -1,4 +1,4 @@
-# The Minimal Sacrifice Is Not Minimal: Why Two-Degree-of-Freedom MOND Collapses into AeST
+# An Obstruction Map for Relativistic MOND: the Conformal Lensing Barrier and the Cost of Its Repair
 
 **Carl Zimmerman** (with AI-assisted derivation and verification; every load-bearing claim is
 backed by a committed runnable script in `github.com/carlzimmerman/zimmerman-formula`)
@@ -27,10 +27,13 @@ MOND and lens like bare baryons — excluded by the observed agreement of the le
 radial-acceleration relations; and (ii) the Cassini external-field quadrupole and the wide-binary
 signal are governed by the same interpolation-transition sharpness at the same external field
 η ≈ 1.9, so any screening that clears the former flattens the latter. Repairing (i) requires a
-disformal matter coupling, which requires a preferred timelike vector, which lands on the
-AeST/TeVeS class with six DOF. We therefore state the **AeST-collapse theorem**: within local,
-minimally-coupled completions, *lensing costs a vector, not a scalar*, so the 2+1 route does not
-interpolate between two-DOF gravity and AeST — it collapses into AeST. A corollary of practical
+disformal matter coupling; in every construction we tested, that in turn requires preferred
+timelike structure of the kind carried by TeVeS and AeST. We therefore state the result
+conditionally: **within the tested class of local metric/disformal constructions, restoring the
+lensing channel requires additional preferred-structure degrees of freedom of TeVeS/AeST type** —
+i.e. *lensing appears to cost a vector, not a scalar*. We do not claim this as a classification
+theorem; establishing it would require a systematic classification of admissible couplings and
+their constraint structures, which we identify as the decisive next calculation. A corollary of practical
 importance: in the surviving class the acceleration scale a₀ is not structural, which relocates
 the framework's falsifiable content to the measurement side, where a₀ = κc√(Gρ_Λ) with
 a₀(z) ∝ H(z) remains untouched by every obstruction reported here and is directly testable with
@@ -133,21 +136,38 @@ bound respectively) while predicting wide-binary velocity boosts γ_v = 1.0040 a
 Newtonian to the precision of the measurement. Screening strength here is a property of the
 *kernel's transition sharpness*, not of the degree-of-freedom count; the third DOF buys nothing.
 
-## 4. The AeST-collapse theorem
+**Scope.** This obstructs the *tested* mechanism — screening controlled by the external-field
+transition variable η. It does not exclude screening mechanisms keyed on a different environmental
+invariant (local density, curvature, scalar charge, Vainshtein radius, nonlinear gradients), which
+could in principle separate the two probes. We report it as a strong obstruction to the
+external-field-kernel architecture, not a universal no-go on screening.
+
+## 4. The conformal barrier and the cost of its repair
 
 Collecting §3:
 
-> **Theorem (AeST collapse).** Within local, minimally-coupled relativistic completions of MOND, a
-> single additional propagating scalar cannot simultaneously deliver MOND dynamics and MOND
-> lensing. A conformal matter coupling yields the dynamics but leaves photons blind to the scalar;
-> restoring lensing requires a disformal coupling, which requires a preferred timelike vector and
-> therefore additional propagating structure. The 2+1 route consequently does not interpolate
-> between two-DOF gravity and the AeST/TeVeS class — it collapses into it.
+> **Result (conformal lensing barrier — established).** In a local, minimally-coupled completion in
+> which matter couples to g̃ = A²(φ)g, a single additional propagating scalar cannot simultaneously
+> deliver MOND dynamics and MOND lensing: null-geodesic conformal invariance makes photons blind to
+> φ, so dynamics and lensing decouple. This is independent of the DOF count and of the choice of
+> K(X).
+>
+> **Conditional statement (cost of the repair — tested, not classified).** Restoring the lensing
+> channel requires a disformal matter coupling. In every construction we tested, the disformal term
+> requires preferred timelike structure of the kind carried by TeVeS and AeST, and a lensing-sized
+> disformal term additionally splits the photon and graviton cones against GW170817.
 
-The practical content is a correction to a natural intuition. One expects the DOF cost of
-relativistic MOND to be payable incrementally, with a "minimal third degree of freedom" buying the
-phenomenology. It is not: **lensing costs a vector, not a scalar.** The minimum viable structure
-is the one the literature already occupies, and it is not cheap.
+We are explicit about the gap. Whether ∂_μφ in a disformal coupling constitutes an independent
+propagating vector, a constrained gradient, a khronon, or something else depends on the complete
+action and its constraint structure — a lesson this program learned elsewhere. We therefore do
+**not** assert that every scalar completion requires six degrees of freedom. What is established is
+the conformal barrier; what is tested but unclassified is the cost of its repair.
+
+**The decisive next calculation** is accordingly a classification rather than another candidate:
+given {local 2+1 scalar, exact MOND, c_T = 1, γ_PPN = 1, nontrivial lensing}, what is the *minimum*
+additional geometric structure required? Turning the obstruction map into a rigorous classification
+of admissible couplings and their constraint structures would convert this collection of
+architecture-specific costs into a theorem.
 
 ## 5. Corollary: where the falsifiable content lives
 
@@ -173,9 +193,14 @@ theorem as stated in §4 under its explicit hypotheses (local, minimal coupling,
 scalar).
 
 Not claimed: a universal no-go for relativistic MOND; that HKT alone implies all seven failures;
-any derivation of κ or Z; any statement about nonlocal completions beyond the specific
-architectures tested; and any claim that AeST itself is excluded — its own gates are a separate
-matter, and the point here is that the 2+1 route offers no cheaper alternative to it.
+that every scalar completion requires six degrees of freedom (the repair cost is *tested*, not
+classified); that all screening mechanisms are obstructed (only the external-field-kernel class
+is); any derivation of κ or Z; any statement about nonlocal completions beyond the architectures
+tested; and any claim that AeST itself is excluded.
+
+The honest summary of this program's status is that **the minimal relativistic-completion space is
+becoming severely constrained**, with the constraints attacking different structural pieces —
+which is why the map, rather than any single failure, is the result.
 
 ## Reproducibility
 
