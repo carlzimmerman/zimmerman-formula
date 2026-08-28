@@ -963,3 +963,37 @@ numerically IDENTICAL to plain μ=1−e⁻ʸ** — not worse. Script: `fc_cassin
 plain-exponential value); the μ_n survivor pays a real cost ledger (RAR 0.108→0.127 dex; 6 DOF; fitted
 κ; thin μ₅ margin on the alt footing; null wide-binary EFE γ_v≈1.000–1.004 that the registered DR4
 Amendment-10 band would falsify). Full corrected standing in `FC_AEST/STATUS.md` (2026-08-28 section).
+
+---
+
+## ⚠ 2026-08-28 — SCOPING CAVEAT (not a retraction): "vector-sector loophole CLOSED" is a MAGNITUDE lock, not an exact symmetry
+
+The full 6-DOF AeST quasistatic EFE solve WITH the vector A_μ retained (committed sympy source of truth
+`real_research/reviews/typeII_direct_variation_2026.py`, 44/44; adversarial workflow; refuter scripts
+`closure_2026/refute_transverse_KB_lock_2026.py` 12/12 and `real_research/reviews/mi_boosted_quadrupole_lock_refute_2026.py`
+4/4) confirms the exact-exponential FC kernel is eliminated **robustly** — Q₂(K_B) and γ_v(K_B) are both
+K_B-constant to <4×10⁻¹⁰ across K_B∈(0,2), the transverse-aether curl amplitude (2−K_B)/K_B is
+*identically* m_a² and its feedback is (m_a·r_t)²~4×10⁻¹⁰-suppressed at Solar-System scales. This makes
+μ_n's near-null wide-binary γ_v (≈1.00, below the registered DR4 band 1.16–1.23) a **structural**
+prediction of the full theory, not a reduced-calc artifact.
+
+**The caveat, stated so it is not over-read:** the Q₂–γ_v **lock is a magnitude statement, contingent on
+numerical scale hierarchies, NOT an exact structural identity.** Do NOT cite "vector sector cannot
+decouple Cassini from wide-binary" as a theorem. Three channels *could* carry independent
+quadrupole/K_B dependence, each closed only by a measured smallness, any of which a different footing
+could reopen:
+1. **Boosted preferred-frame α₂ quadrupole** — genuinely ν-kernel-blind and K_B-linear (a real second
+   channel that owes nothing to γ_v); closed only by measured |α₂|<10⁻⁷ and w/c~1.2×10⁻³ (≈2.4×10⁻⁶ of
+   the Cassini ceiling), and it is aligned with the CMB boost, not g_ext, so it cannot cancel the EFE
+   phantom. Not a symmetry.
+2. **Finite-m_a interior-shell feedback** — a real curl knob whose operating point sits ~5 orders below
+   where it bites *only because* 1/m_a≥1.4 kpc ≫ r_t≈5600 AU. A footing that pushed 1/m_a toward AU
+   scales (larger Q₀, or an environment-dependent J_Y raising m_a at fixed K_B) **would reopen it** as a
+   genuine Q₂-vs-γ_v discriminator.
+3. **Second-order aether in the O(1) external field** — closes only as tidal O(r/L_MW)~AU/kpc~10⁻⁸,
+   i.e. because the Milky-Way tidal scale is astronomically long.
+
+So: the exponential exclusion and the μ_n null-γ_v prediction are safe to state; "the vector sector
+CANNOT ever decouple them" is NOT — it is true at the measured (α₂, w/c) and the kpc-scale aether
+Compton wavelength, and no further. Full standing: `closure_2026/FC_AEST/STATUS.md` (2026-08-28 vector
+section).
