@@ -70,3 +70,37 @@ squeeze); (ii) the AeST linear perturbation matrix (growth + slip + stability) o
 Both require first **migrating the numerical stack to the exponential kernel**, then a faithful
 reproduction of Skordis–Złośnik perturbation theory. This is a well-defined program, not a one-script
 gate — and its outcome is an AeST-background question, no longer a MOND-kernel question.
+
+---
+
+## 2026-08-27 — THE DECIDING GATE: FC exponential kernel FAILS Cassini (6.1× ceiling)
+
+The c_s²/r_C squeeze (this file, above) found a real nonempty overlap and correctly showed the
+old `ks/(1−2s)` **pole is gone** — a genuine FC improvement in the scalar-sound-speed channel
+(λ_s=1−e⁻ˣ is bounded in [0,1], never diverges, so no superluminal c_s and no a₀/2 force from
+*that* mechanism). But that overlap is **not the binding solar-system constraint.** The gate that
+killed μ=1−e⁻ʸ is the **EFE phantom quadrupole** Q₂ at the solar-circle external field
+y_ext=GEXT/a₀≈2.48, and the squeeze never tested it.
+
+Computed with the **committed DHF integral** `q_direct2D` (route1B, verbatim; guard reproduces the
+published RouteA anchor q(2)=0.221 exactly). Script: `scripts/fc_cassini_quadrupole_2026.py`.
+
+| kernel | class | q(solar) | Q₂/ceiling | verdict |
+|---|---|---|---|---|
+| RouteA/MS08 | exp | 0.275 | 6.23× | FAIL |
+| μ=1−e⁻ʸ | exp | 0.166 | 3.76× | FAIL |
+| **FC tanh(y/2)** | **exp** | **0.268** | **6.09×** | **FAIL** |
+| μ₅ | sharp | 0.014 | 0.31× | PASS |
+| μ₁₀ | sharp | 0.003 | 0.06× | PASS |
+
+**The structural trap, sharpest form:** the gradual (exponential) transition that removes the pole
+is the SAME shape that maximizes the phantom quadrupole. One kernel cannot both remove the pole and
+clear Cassini. FC (tanh) is in fact *slightly worse* than plain μ=1−e⁻ʸ, because tanh approaches
+Newtonian even more gradually near y_ext. To pass Cassini FC must swap tanh for a sharp μ_n — at
+which point it is no longer the exact-exponential FC kernel; it is the μ_n MMG chassis, paying the
+same RAR price (0.108→0.127 dex). **Robustness:** the two-field f_G=½ split could at most halve the
+scalar-channel quadrupole; 6.09× → ~3× is still a FAIL. The margin (6×) is not a marginal call.
+
+**VERDICT:** FC-AeST's exact-exponential kernel is **eliminated by Cassini**, the same wall as the
+whole exponential family. The pole removal is a real but non-decisive result. FC does not get to
+live as an exponential-kernel theory; the only Cassini-safe MOND kernel in this repo remains μ_n.
