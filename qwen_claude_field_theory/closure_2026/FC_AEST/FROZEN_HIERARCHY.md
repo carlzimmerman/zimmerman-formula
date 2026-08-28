@@ -43,12 +43,20 @@ closure is now VERIFIED** (`scripts/fc7_groundstate_closure_2026.py`, exit 0, 15
 pair, so N_phys=6+1=7 *locally*; (b) sharp-kernel sequestration `J₁₀(x)=x³/3+…` ⇒ `F_MOND=O(Y^{3/2})=O(δ³)`
 ⇒ **L_MOND^(2)=0**, no quadratic MOND ghost on the vacuum; (c) constant-a₀ dS vacuum `α₀²=κ²c²GV₀`
 (χ=χ₀, χ̇=0), so a₀ need not evolve; (d) BTFR `v⁴=Gα M_b` exact in the spherical reduction. (One harmless
-transcription typo caught: `x=(y/2)(1+μ₁₀)` should be `(2−μ₁₀)`; did not propagate.) **Still genuinely OPEN
-(NOT PASS):** full *nonlinear* Dirac rank (7-DOF globally unproven); the lock feedback into the χ kinetic
-matrix *away* from dS (C_ζ contains π_χ); PPN γ/β/α₁/α₂/α₃; Φ=Ψ for the *full nonlinear* galaxy solution
-(only *inherited on the ground-state branch*, not FC-7-derived); general-background c_T; FLRW growth. **And
-crucially: FC-7 being locally consistent does NOT change a₀²∝ρ_DE from imported to derived** — V(χ) is
-*chosen*, the lock is *imposed*; a clean phenomenological realization, not a symmetry consequence.
+transcription typo caught: `x=(y/2)(1+μ₁₀)` should be `(2−μ₁₀)`; did not propagate.) **The last gate — perturbative half now VERIFIED** (`scripts/fc7_reduced_action_rank_2026.py`, exit 0):
+integrating out (α,ζ) gives the reduced action `S_AeST + S_χ + ∫α(∇χ)²J₁₀(√Y/α)`; the derivative coupling
+does **not** spoil the rank perturbatively because (S1) the aether-orthogonal projector `(g^μν+A^μA^ν)`
+*exactly* removes φ̇ from Y (verified symbolically: Y = spatial gradients only), so the MOND term carries
+no φ̇ ⇒ **zero contribution to K_φφ and K_φχ ⇒ it cannot induce a φ–χ kinetic degeneracy**; and (S2) the
+one entry it does touch, K_χχ, is corrected only at `df/du = J₁₀−(x/2)J₁₀' = −x³/6 = O(Y^{3/2})`. So near
+the vacuum `det K = K_AeST·(1+O(Y^{3/2})) > 0` — 7 DOF preserved in the whole vacuum neighborhood.
+
+**Still genuinely OPEN (NOT PASS, no shortcut):** the **fully-nonlinear (large-Y) Poisson rank** of the
+enlarged 3+1 Hamiltonian (the one remaining fundamental field-theory gate); PPN γ/β/α₁/α₂/α₃; Φ=Ψ for the
+*full nonlinear* galaxy solution (only *inherited on the ground-state branch*, not FC-7-derived);
+general-background c_T; FLRW growth; the AeST outer oscillatory regime. **And crucially: FC-7 being
+consistent does NOT change a₀²∝ρ_DE from imported to derived** — V(χ) is *chosen*, the lock is *imposed*;
+a clean phenomenological realization, not a symmetry consequence.
 
 ## 4. THE ENDPOINT IS NOW EMPIRICAL
 
