@@ -49,3 +49,24 @@ perturbation theory (2007.00082 / 2109.13287 / 2303.00038): a **major numerical 
 cleanly sequestered; its physics viability now rests entirely on the *inherited* AeST perturbation/outer-regime
 sectors, whose faithful reproduction is the (large) next step. The distinctive, framework-level survivor across
 this entire session's no-gos remains `a₀² = κ²c²G ρ_DE` with `w(z) = −1 + (2/3) d ln a₀/d ln(1+z)`.
+
+## Addendum (final swing): FC removes the old pole; inherits c_s² unchanged
+- **Genuine FC improvement (verified):** the exact exponential `F_Y=1−e^{−x}` is regular for all x
+  and →1 as x→∞, so the **old `ks/(1−2s)` finite-gradient pole is GONE** — the a₀/2 constant
+  Solar-System force (~10³× the ephemeris bound in the committed analysis) does not occur for FC.
+- **Inherited unchanged:** the scalar sound speed `c_s² = (2−K_B)(1+K_B λ_s/2)/(K₂ K_B)` is set by
+  the K(Q) sector's K₂; since `F_YQ|_{Y=0}=0` and F_MOND is O(δ³), the FC kernel does not touch K₂.
+  So the committed **c_s² superluminal liability (~30c–184c at 1 AU; c_s=c at 27–165 AU) SURVIVES
+  the FC translation** — a candidate liability of the underlying AeST/DBI K(Q) background, not of the
+  MOND kernel. Note `route2_full_stack`/`route2_aest_embedding` still run the μ_n / `ks/(1−2s)`
+  kernels — **not yet migrated to the exponential FC kernel**, so their Solar-System numbers must be
+  recomputed before FC can claim or disclaim the pole/c_s outcome.
+
+## Decision point (the FC gate is now surgical but large)
+The exponential FC kernel is **frozen and clean**. Every remaining question is about the *inherited*
+AeST K(Q)/aether background: (i) a finite scan over (K_B, Q₀, Λ_D) — M⁴ fixed by a₀ — for
+`{c_s²≤c² at SS scales} ∩ {r_C ≫ r_gal} ∩ {K₂>0, c_T=1}`, where Λ_D controls BOTH c_s and r_C (the
+squeeze); (ii) the AeST linear perturbation matrix (growth + slip + stability) on the FC background.
+Both require first **migrating the numerical stack to the exponential kernel**, then a faithful
+reproduction of Skordis–Złośnik perturbation theory. This is a well-defined program, not a one-script
+gate — and its outcome is an AeST-background question, no longer a MOND-kernel question.
