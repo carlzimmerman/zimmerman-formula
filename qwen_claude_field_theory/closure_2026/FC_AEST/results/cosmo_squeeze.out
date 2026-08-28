@@ -1,0 +1,44 @@
+==============================================================================
+FC-AeST DBI cosmology squeeze + growth operator
+==============================================================================
+  DBI ceiling nu0=1.77e-04:
+    z=1: w_DE=-0.999998997  a0(z)/a0,0=0.9999995
+    z=2: w_DE=-0.999988581  a0(z)/a0,0=0.9999943
+    z=4: w_DE=-0.999755332  a0(z)/a0,0=0.9998777
+  [ok] a0(z=1)/a0,0 = 0.9999995 => a0 essentially CONSTANT at DESI z
+  [ok] => RETRACTION confirmed: the DBI FC lock is too flat at DESI redshift for a useful a0-drift test
+
+  Force w(z=1)=-0.90 => nu(1)=0.4843 => nu0=0.0605 = 342x the ceiling
+  [FAIL] nu0 = 1/24 (matches)
+  [FAIL] extra recombination dust rho_extra/rho_dm = 1/q = 0.156 = 10.8% (>> Planck omega_cdm err)
+  => DESI-sized w(z) evolution requires unacceptable extra matter at recombination in THIS DBI param.
+
+------------------------------------------------------------------------------
+(3) The MOND linear-growth operator (the calc the repo flags as missing)
+------------------------------------------------------------------------------
+  Perturb D_i[mu(g/a0) D^i Phi] = 4 pi G rho_b, mu=1-e^-y, y=g/a0, mu'=e^-y:
+    delta[mu D Phi] = mu D(deltaPhi) + e^-y (delta g/a0) DPhi - mu (g/a0^2) delta_a0 g_hat
+  with the FC lock delta_a0/a0 = (1/2) delta_rho_DE/rho_DE.
+  Effective coupling: in deep MOND (mu~y) the response is G_eff/G ~ 1/mu = a0/g >> 1 (ENHANCED),
+  so MOND-enhanced growth partially REFILLS the power the condensate pressure removes.
+  HONEST FORK: whether the refill is SUFFICIENT to relax the growth-vs-clusters squeeze
+  (nu0~2e-5 growth vs ~2e-4 clusters) is a FULL Boltzmann/CLASS calculation with the actual FC
+  constitutive function -- NOT a Newtonian-baseline estimate. Two facts bound it honestly:
+    (+) AeST is DESIGNED to fit the CMB and the repo's AeST gate reports CMB agreement ~0.01 sigma
+        (committed) -- so the LINEAR relativistic sector is viable, not obviously broken.
+    (-) the repo's prior 'growth 1.8-1.9x / squeeze' used a Newtonian/CLASS baseline, NOT the MOND
+        growth equation, so it is NOT a valid no-go (repo itself flags this).
+  => The DBI branch has a REAL parameter squeeze but NOT a cosmological no-go. The decisive
+     calculation is the full MOND-gravity Boltzmann solve, which is a major numerical undertaking.
+
+==============================================================================
+VERDICT
+==============================================================================
+  RETRACTED (honestly): 'DESI directly tests a0(z) prop sqrt(rho_DE)' -- for the committed DBI
+    trajectory a0 is flat to ~5e-7 at z=1; the drift only turns on at z~17-35. The STRUCTURAL
+    relation a0^2 prop rho_DE and mu_obs=1-e^-y SURVIVE; only the specific DBI clock is too flat.
+  SHARP surviving prediction: d ln a0/d ln(1+z) = (3/2)(1+w_DE) -- ties any FUTURE-measured a0-drift
+    to w_DE, but the DBI realization predicts ~0 drift at DESI z (consistent with LCDM).
+  OPEN (the one real door): the full MOND linear-growth Boltzmann solve incl. delta_a0 -- decides
+    whether MOND enhancement refills condensate-pressure suppression (=> squeeze relaxes) or not
+    (=> DBI branch dies, move to a different K(Q), NOT a different mu-kernel).
