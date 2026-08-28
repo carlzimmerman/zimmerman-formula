@@ -54,6 +54,26 @@ unit-constraint check; no final f₁,f₂ emitted) — so **α₂ remains genuin
 
 ---
 
+## Why μ₁₀ specifically (empirical, committed): Cassini selects the sharp kernel
+The exponential-kernel FC-AeST is **KILLED by the Solar-System Cassini/EFE phantom quadrupole** — μ=1−e⁻ʸ gives Q₂/ceiling=**3.76×**
+(FAIL), RouteA/MS08 6.23× (FAIL), FC-tanh 6.09× (FAIL). The sharp family μ_n=y/(1+yⁿ)^{1/n} PASSES for n≥4: μ₅=0.31×, **μ₁₀=0.06×
+(comfortable PASS)** (`FC_AEST/scripts/fc_cassini_quadrupole_2026.py`, committed; verified this session). **The structural trap:** the gradual
+(exponential) transition that removes the old ks/(1−2s) pole is the SAME shape that maximizes the phantom quadrupole — one kernel can't do both;
+only a sharp μ_n clears Cassini. So **μ₁₀ is the empirically-selected kernel**, not just tolerated: it is the safest Cassini member of the
+surviving family. (Liabilities inherited: RAR scatter 0.108→0.123/0.127 dex; the registered wide-binary γ_v discriminator = the empirical
+falsifier, DR4.) The exponential branch is retired; the 2-DOF constraint-first branch stays dead (Part I).
+
+## The c₂ preferred-frame repair candidate (VERIFIED reference sector; full-AeST OPEN)
+To address α₂, add a direct `c₂(∇_μA^μ)²` term with **c₂=K_B/(1−2K_B)** on the Maxwell locus (c₁=K_B, c₃=−K_B, c₄=0), K_B<2.5×10⁻⁵.
+**Reference Einstein-aether sector — VERIFIED by sympy this session:** `α₁=−4K_B, α₂=0 EXACTLY, c_T²=c_V²=1, c_S²∈[1−K_B,1]` (healthy,
+~luminal, non-superluminal; positive kinetic coefficients). **But this is NOT the full AeST answer** (Carl): the scalar (Q=A^μ∇φ, the
+J^μ∇φ acceleration coupling) contributes `α₂^full = α₂^ae(=0) + Δα₂^(φA)`, and **the c₂ term changes the constraint structure — the 6-DOF
+count must be RE-DERIVED** (c₁₂₃=0→c₂ liberates the spin-0 aether mode; possible 7th DOF/ghost). The Sagi 2009 generalized-TeVeS PPN
+calculation (arXiv:0905.4001) proves scalar-aether α₁=α₂=0 is achievable in a finite region ⇒ **no general PPN no-go** — but it does not
+place AeST on that surface. **Final-oven decision table** (running workflow wu1m3w9nx): 6-DOF + |α₂|<1e-7 + healthy finite-k ⇒ GOLDEN CORNER;
+6-DOF + |α₂|>1e-7 throughout ⇒ PPN NO-GO; extra-DOF/degenerate Hessian ⇒ REPAIR FAILS; can't complete from the exact action ⇒ α₂-OPEN.
+The decisive quantity is the **β₀-scaling of Δα₂^(φA)**: O(β₀)/O(K_B Q₀) screened (λ_s≫10⁷) ⇒ viable; O(1) ⇒ dies. J₁₀ is out of this calc.
+
 ## The one remaining calculation (the last lock)
 
 $$\text{Derive } f_1=\alpha_1^{\rm AeST}(K_B,K_2,\lambda_s,Q_0),\ f_2=\alpha_2^{\rm AeST}(K_B,K_2,\lambda_s,Q_0)\text{ from the full }(g,A,\phi)\text{ 1PN system, then intersect } f_1=0,\ |f_2|<10^{-7}\text{ with } \{0<K_B<2,\ K_2>0,\ \lambda_s>0,\ 0<c_s^2\le1,\ c_T=1\}.$$
