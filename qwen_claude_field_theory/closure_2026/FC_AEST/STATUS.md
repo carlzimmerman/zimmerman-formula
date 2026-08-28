@@ -215,3 +215,39 @@ K_B-blind) and sharp μ_n buys Cassini only by driving γ_v→1.00 below the reg
 the lock is real but contingent on the measured smallness of (α₂, w/c) and the kpc-scale aether Compton
 wavelength, not on any symmetry. **This closes the last vector-sector loophole; FC-AeST's viability now
 rests entirely on the inherited AeST perturbation sectors + the falsifiable null-γ_v prediction.**
+
+---
+
+## 2026-08-28 — THE INVERSE K(Q) PROBLEM (Option A) = NO-GO; a₀²=κ²c²Gρ_DE is a TARGET, not a 6-DOF law
+
+Carl's correction (banked): **a₀²=κ²c²Gρ_DE is a TARGET relation, NOT a derived consequence of the
+AeST action.** The "one calculation to do next" — solve the inverse K(Q) problem (find a K(Q) making the
+DE-identification *dynamical* with K″>0 and good cosmology, staying at 6 DOF) — is settled: it is a
+**NO-GO forced by the shift symmetry that defines the theory.** Proof committed +verified:
+`scripts/fc_inverse_KQ_nogo_2026.py` (exit 0); grounded in committed `mi_shift_charge_ic_route_2026.py`
+(A1), `routeB_dust_to_dark_energy_2026.py`, `fc_flrw_quadratic_gate.py`.
+
+**The theorem.** On FLRW (Q=φ̇, L_φ=a³K(Q)), shift symmetry φ→φ+c gives the Noether charge
+`a³K'(Q)=I₀` (conserved) ⇒ K'(Q)=I₀/a³→0, so Q→Q₀ with K'(Q₀)=0. With ρ=QK'(Q)−K(Q), p=K(Q)
+(conservation ρ̇+3H(ρ+p)=0 verified):
+
+    ρ_K(a) = [ −K(Q₀) ]  +  [ Q·K'(Q) ] = (CONSTANT dark energy, w=−1)  +  (DUST ∝ a⁻³).
+
+Hence a₀²(a)=−κ²c²G·K(Q(a)) → −κ²c²G·K(Q₀) = **CONSTANT**; the only a₀ evolution is an a⁻⁶ decaying
+transient (∝ dust-excitation², = `I₀²/(2K₀K″₀a⁶)`), tied to the dust, NOT to an evolving ρ_DE. This is
+**independent of the shape of K** (any K, with or without a minimum: the conserved charge forces K'→0).
+
+**Consequence.** In the 6-DOF theory, a₀²=κ²c²Gρ_DE is realizable ONLY as a **point-identification** at
+the dS minimum with ρ_DE=−K(Q₀)=const ⇒ **a₀ constant, w=−1.** An *evolving* a₀(z)∝√ρ_DE(z) needs one of:
+(i) break shift symmetry with V(φ) — `routeB_dust_to_dark_energy`: FAILS (can only produce the phantom
+side, cannot cross w=−1; converted-fraction short by 4–12× vs DESI+the 0.30-dex floor); or (ii) a SEPARATE
+quintessence field χ = **Option B, 7 DOF** — the committed `fc_flrw_quadratic_gate` realization
+(a₀²=κ²c²Gρ_χ, χ canonical, c_χ²=1 healthy, sequestered at O(δ³)), where a₀ evolution is then set by
+w_χ(z) as an INPUT, not a prediction.
+
+**Referee-defensible standing (this is the distinction Carl wanted):** FC-AeST realizes a₀²=κ²c²Gρ_DE
+either as a *constant-a₀ identification* at the dS minimum in 6 DOF (no evolution), or *dynamically* only
+by paying a 7th DOF (Option B) whose w(z) is imported, not derived. There is **no 6-DOF dynamical
+derivation** of an evolving MOND-scale-tracks-dark-energy law. The relation is a target the chassis can
+be *fitted* to, not a theorem it *forces*. This closes the "derive K(Q)/a₀(Q) dynamically" box (item 1 of
+Carl's 5-box completeness list) with an honest NO-GO for the elegant route.
