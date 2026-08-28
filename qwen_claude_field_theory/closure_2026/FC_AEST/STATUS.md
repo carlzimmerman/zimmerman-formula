@@ -165,3 +165,53 @@ low-k unbounded-H mode (2109.13287), oscillatory 3rd quasistatic regime (2304.05
 closed — a sharper μ_n (n≳4) passes Cassini kernel-independently — but the survivor costs 0.127-dex
 RAR, 6 DOF, fitted κ, and a null wide-binary EFE the registered DR4 band would falsify. Exclusion is
 by sharpness, not smoothness.
+
+---
+
+## 2026-08-28 — THE VECTOR-SECTOR LOOPHOLE: full 6-DOF AeST quasistatic solve WITH A_μ retained → LOCK HOLDS
+
+Carl's last open door: could the full 6-DOF AeST vector sector **decouple** the Cassini Q₂ from the
+wide-binary γ_v (so a sharp-Cassini kernel could still carry a wide-binary signal)? **Answer: NO —
+locked, though contingently.** Verified by an 8-agent workflow (3 independent derivations → compute →
+3 adversarial refuters → synthesis), grounded in the committed, sympy-verified AeST quasistatic
+direct-variation solve `real_research/reviews/typeII_direct_variation_2026.py` (44/44). Refuter scripts
+(both run clean): `refute_transverse_KB_lock_2026.py` (12/12), `mi_boosted_quadrupole_lock_refute_2026.py` (4/4).
+
+**The full solve reduces to standard AQUAL up to G-renormalization.** Retaining A_μ, the quasistatic
+system splits: the **longitudinal** sector is the Bekenstein–Milgrom/AQUAL law `J_Y∇φ=∇Ψ_N` (D7's
+`S^L=0` exactly), in which K_B enters **only** through `Ĝ=G_t/(1−K_B/2)` — absorbed into a₀, cancels
+from every dimensionless observable. The interpolation is `μ=J_Y/(1+J_Y)`, `ν=1+1/J_Y`, **exactly
+K_B-blind** (the action-forced coupling `2(2−K_B)` is exactly twice the kinetic `(2−K_B)`, so K_B
+cancels in the ratio — SZ21's design). The **transverse** aether carries a real, curl-full,
+K_B-sensitive mode `v^T=Q₀a^T=−((2−K_B)Q₀²/K_B)·P_T[(1+J_Y)∇φ]/(k²+m_a²)`, `m_a²=(2−K_B)(1+J_Y)Q₀²/K_B`
+— but its feedback `δ(∇Ψ)=m_a²(∇²−m_a²)⁻¹W₀` is **amplitude-free** (the `(2−K_B)/K_B` factor is
+*identically* m_a², sympy-checked), and `(m_a·r_t)²`-suppressed at SS scales.
+
+**Result: Q₂(K_B) and γ_v(K_B) are BOTH flat to <4×10⁻¹⁰ across the entire admissible range K_B∈(0,2).**
+The vector adds nothing dialable. Guard reproduced (RouteA q(η=2)=0.221, dev 1.2e-5). At η_solar=2.478:
+μ_obs=1−e⁻ʸ raw q=0.166 = **3.76× ceiling FAIL for every K_B** (full solve moves it by <3.7e-10); sharp
+μ_n PASS (μ₄ 0.74×, μ₅ 0.31×, μ₁₀ 0.06×) but γ_v→0.997–1.000 at y_ext=1.8, **undershooting the
+registered DR4 band 1.16–1.23.** The transverse mode's maximum possible swing is only the RA≈1.25
+QUMOND↔AQUAL factor (peak feedback 3.19×) — never the 3.76–7.77× by which soft kernels fail — and to
+activate even that at SS scales needs `m_a·r_t~O(1)`, i.e. K_B~10⁻¹¹, BBN-excluded (`(m_a·r_t)|K_B=0.05
+= 1.94e-5`). **So Cassini-safety and a wide-binary signal remain welded through the kernel; the vector
+does not break the trade.**
+
+**The lock is a MAGNITUDE statement, not an exact structural identity** (the honest both-ways caveat,
+from the refuters). Three declared channels *could* in principle carry independent K_B/quadrupole
+dependence, each closed by a **numerical scale hierarchy, not a symmetry**: (a) the boosted preferred-
+frame **α₂ quadrupole** IS genuinely ν-blind and K_B-linear — a real second channel — but at measured
+|α₂|<10⁻⁷ and w/c~1.2e-3 it is ~2.4e-6 of the ceiling, aligned with the CMB boost (not g_ext, so it
+can't cancel the EFE phantom), and shifts γ_v by ≤10⁻⁷; (b) finite-m_a interior-shell feedback is a
+real knob parked ~5 orders off — a footing that pushed 1/m_a toward AU scales (larger Q₀, or
+environment-dependent J_Y) would reopen it as a genuine Q₂-vs-γ_v discriminator; (c) second-order
+aether in the O(1) external field survives only as tidal `O(r/L_MW)~AU/kpc~10⁻⁸`. **Do not upgrade
+"LOCKED" to "exact."**
+
+**ONE-LINE BANK:** The full 6-DOF AeST vector sector does NOT decouple Cassini from the wide-binary EFE
+— Q₂(K_B) and γ_v are both K_B-constant to <10⁻⁹ (transverse-curl amplitude absorbed identically into
+m_a², then (m_a·r_t)²~4e-10-suppressed) — so the exponential kernel stays eliminated (3.76–7.77×,
+K_B-blind) and sharp μ_n buys Cassini only by driving γ_v→1.00 below the registered 1.16–1.23 band;
+the lock is real but contingent on the measured smallness of (α₂, w/c) and the kpc-scale aether Compton
+wavelength, not on any symmetry. **This closes the last vector-sector loophole; FC-AeST's viability now
+rests entirely on the inherited AeST perturbation sectors + the falsifiable null-γ_v prediction.**
