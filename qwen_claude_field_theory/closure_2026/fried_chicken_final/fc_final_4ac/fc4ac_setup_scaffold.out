@@ -1,0 +1,100 @@
+========================================================================================
+ PART 0 -- the 4-AC Type-II phase space and the DOF arithmetic (EXTERNAL-INPUT + check)
+========================================================================================
+  [PASS] phase-space dim = 20 (12 metric + 2 lapse + 6 shift)
+  [PASS] DOF count (20 - 2*6 - 4)/2 = 2  (two tensor gravitons, no scalar, no vector)
+  [info] Carl's target set:  S_1 = pi_N,  S_2 = C_M^(10) (MOND),  S_3 = C_q,  S_4 = C_p .
+  [info] The 4x4 block Delta_AB must be INVERTIBLE (second-class) to remove the scalar pair.
+  [info] Committed Pfaffian of the baseline block: Pf(Delta)=L_N*K  (03_dirac_matrix.py); the
+  [info] q-lock fork moves it to Pf=L_N*K - E*c_M (gate_fork_S2prime_matter_mondlaw.out) -- still !=0.
+========================================================================================
+ PART 1 -- weak-field dictionary: q carries Phi, ln N carries Psi  (DERIVATION)
+========================================================================================
+  [PASS] q = (1/6)ln det gamma = -Phi/c^2 + O(Phi^2)  (conformal factor IS the curvature potential)
+  [PASS] ln N = +Psi/c^2 + O(Psi^2)  (lapse log IS the dynamical potential)
+  [info] => a constraint acting on q fixes Phi; a constraint acting on ln N fixes Psi.
+  [info] => the MOND kernel mu_10 sources WHICHEVER of {Phi,Psi} its carrier field is.  That is
+  [info]    the whole pivot: 'y=(c^2/a0)|D q| OR |D ln N| per the embedding' decides Phi vs Psi.
+========================================================================================
+ PART 2 -- the lapse sector: C_M^(10) on ln N sources Psi (exact AQUAL)  (DERIVATION)
+========================================================================================
+  [PASS] C_M^(10) -> D_i[mu_10(|DPsi|/a0) D^i Psi] = 4 pi G rho  (exact AQUAL for Psi, c^2 cancels)
+  [PASS] MOND kernel enters the ln N (Psi) carrier ONLY: C_M has no q-dependence => sources Psi
+  [info] So Psi = full MOND potential; slow matter a=-grad Psi => flat rotation curves. [committed 02_newtonian_limit.py]
+========================================================================================
+ PART 3 -- the curvature sector: FOUR admissible C_q, the Phi each gives, the slip  (DERIVATION)
+========================================================================================
+
+  (3a) C_q = D^2 q  (SOURCE-FREE, the OLD chassis choice):
+  [PASS]    -k^2 qhat = 0 (k!=0) => qhat=0 => Phi=0 ; slip gamma_PPN = Phi/Psi = 0
+  [info]    -> LAPSE-ONLY.  gamma_PPN=0 at ALL accelerations (kernel-blind). [FC_NO_GO THEOREM; committed]
+
+  (3b) C_q = D^2 q - 4 pi G rho  (NEWTONIAN SOURCE = 'H_perp reintroduced', the no-go's named escape):
+  [PASS]    Phi solves NEWTONIAN Poisson: Phi_hat = 4 pi G rho / k^2 (magnitude)
+  [info]    -> Phi=Newtonian, Psi=MOND.  In the NEWTONIAN regime (mu->1) Phi=Psi => gamma_PPN->1 (fixes Cassini);
+  [info]    -> but in the DEEP-MOND regime Psi>>Phi (Part 4) so the slip COLLAPSES.  Regime-dependent. NOT clean.
+
+  (3c) C_q = D^2 (q + ln N)  (THE LOCK; committed repair S_2'):
+  [PASS]    D^2(q+lnN)=0 => q=-lnN => Phi=Psi EXACTLY at all accelerations => gamma_PPN=1
+  [info]    -> BOTH sourced, Phi=Psi.  Lensing efficiency 1 everywhere. [gate_fork_S2prime: Pf=L_N K - E c_M != 0]
+  [info]    PRICE (committed): (i) Dirac block CHANGES {pi_N,S_2'}!=0 -> full re-cert OPEN;
+  [info]                       (ii) a NEW repulsive matter force below y_crit~1/3 (gate_fork PART C/D);
+  [info]                       (iii) does NOT touch alpha_3=-1 (g_00 sector, Part 5).
+
+  (3d) C_q = D_i[mu_10(|Dq|/a0) D^i q] - 4 pi G rho  (MONDIAN-MATCHED SOURCE):
+  [info]    Phi solves the SAME AQUAL operator as Psi with the SAME source => Phi=Psi=MOND potential
+  [info]    -> BOTH sourced, gamma_PPN=1 everywhere.  Distinct Dirac structure from (3c); also UNCERTIFIED.
+  [info]    This is the ONLY 'genuinely two MOND constraints' realization; DOF re-cert is the open task.
+========================================================================================
+ PART 4 -- SHARPENING the no-go's named escape: the Newtonian-source slip = mu(y)  (DERIVATION+COMPUTATION)
+========================================================================================
+  [PASS] gradient slip Phi'/Psi' = g_N/g_MOND = mu_10(y)  (spherical, exact by Gauss)
+  [PASS] lensing efficiency (Phi'+Psi')/(2Psi') = (mu_10(y)+1)/2  for the Newtonian-source escape
+  [PASS] deep-MOND (y->0): mu_10->0 => slip->0 and lensing efficiency->1/2 (SAME deficit as gamma_PPN=0!)
+  [PASS] Newtonian (y->oo): mu_10->1 => slip->1 and lensing efficiency->1 (fixes Cassini)
+  [info] => The no-go's 'D^2 q ~ +4piG rho restores gamma_PPN=1' is TRUE ONLY in the solar-system
+  [info]    (Newtonian) regime.  Where the LENSING data live (deep MOND, y<<1) it gives efficiency
+  [info]    ->1/2, i.e. the SAME ~20sigma M24 KiDS deficit as the source-free chassis. SHARPENING of FC_NO_GO.
+  [info] 
+  [info] numeric point-mass slip mu_10(y) vs radius (M=6e10 Msun, a0=9.36e-11):
+        r[kpc]     g_N/a0   y=g_M/a0    slip=mu  lens_eff ~gamma_PPN
+           0.1  8.933e+03  8.933e+03     1.0000    1.0000     1.0000
+           1.0  8.933e+01  8.933e+01     1.0000    1.0000     1.0000
+           5.0  3.573e+00  3.573e+00     1.0000    1.0000     1.0000
+          20.0  2.233e-01  4.726e-01     0.4726    0.7363     0.4726
+          50.0  3.573e-02  1.890e-01     0.1890    0.5945     0.1890
+         100.0  8.933e-03  9.452e-02     0.0945    0.5473     0.0945
+  [info] (slip=mu -> ~1 at 0.1 kpc/solar-system-like; -> <<1 by 50-100 kpc where KiDS lensing lives.)
+========================================================================================
+ PART 5 -- the PARALLEL g_00 obstruction alpha_3 is NOT in the Phi/q sector  (EXTERNAL-INPUT: committed)
+========================================================================================
+  [PASS] d(alpha_3)/d(C_q multiplier) = 0  => fixing Phi via C_q leaves alpha_3=-1 UNCHANGED
+  [info] => Even the escape that sets gamma_PPN=1 (Part 3c/3d) does NOT by itself fix alpha_3.
+  [info]    alpha_3=0 requires a RETARDED (not elliptic/instantaneous) lapse response, OR the
+  [info]    4-AC 'consistent matter coupling' (2302.02090) engineered to cancel it -- OPEN, next task.
+========================================================================================
+ PART 6 -- SCOPING VERDICT: which potential(s) does the MOND modification source?
+========================================================================================
+  DERIVED (this script + committed cross-refs):
+    * mu_10 is a ONE-FIELD elliptic operator.  Placed in C_M on ln N it sources Psi ONLY
+      (Part 2).  The curvature potential Phi is fixed by a SEPARATE constraint C_q.
+    * The answer 'which potentials' is therefore SET BY C_q, a design choice not yet pinned:
+        (3a) source-free  C_q=D^2 q            -> Phi=0        -> LAPSE-ONLY,  gamma_PPN=0 everywhere  [old chassis]
+        (3b) Newton src   C_q=D^2 q - 4piG rho -> Phi=Newton   -> slip=mu(y): =1 solar, ->0 galaxies [FAILS M24]
+        (3c) lock         C_q=D^2(q+lnN)       -> Phi=Psi      -> BOTH,        gamma_PPN=1 everywhere  [uncertified]
+        (3d) matched MOND C_q=D_i[mu D^i q]-.. -> Phi=Psi=MOND -> BOTH,        gamma_PPN=1 everywhere  [uncertified]
+    * Only (3c),(3d) give gamma_PPN=1 in BOTH the solar and galactic regimes.  Both are the
+      no-go's 'named escape' made precise; both are UNCERTIFIED at 2 DOF and both carry the
+      PARALLEL, sector-orthogonal obstruction alpha_3=-1 (Part 5), plus (3c) a repulsive
+      force below y_crit~1/3 (committed gate_fork).
+
+  HONEST CLASSIFICATION => UNDETERMINED-needs-derivation.
+    The MOND modification DERIVABLY sources the lapse Psi.  Whether it ALSO sources the
+    curvature Phi (=> gamma_PPN=1, correct lensing) hinges ENTIRELY on the existence of a
+    C_q that simultaneously (i) locks/ matches Phi to the MOND Psi, (ii) certifies at exactly
+    2 DOF through the full Dirac program, and (iii) does not resurrect a repulsive force or
+    leave alpha_3 uncured.  That existence question is the DECIDER and is the next task.
+    We assert NEITHER Phi=Psi NOR Phi!=Psi: the structure ADMITS both, at a price to be derived.
+========================================================================================
+ SETUP CERTIFICATE: ALL BOOLEAN CHECKS PASS ( exit 0).
+========================================================================================

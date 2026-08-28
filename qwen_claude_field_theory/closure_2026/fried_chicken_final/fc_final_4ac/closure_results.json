@@ -1,0 +1,68 @@
+{
+  "verdict": "MOND-SPECIFIC-NO-GO",
+  "scope": "4-auxiliary-constraint linear-in-N (Embedding I) construction with frozen kernel mu_10(y)=y/(1+y^10)^(1/10). NOT a claim about all conceivable H_can; the sf42 auxiliary-Legendre-pair escape (independent momenta off the lapse) is NOT executed and remains an OPEN door.",
+  "h_can_written": true,
+  "construction_status": "CLOSED-RANK4-explicit-Hcan",
+  "closure_vector": {
+    "rank_Delta": {
+      "attempt_A_minimal": 2,
+      "attempt_B_kinetic": 4,
+      "basis": "COMPUTATION (sympy + exact lattice)",
+      "cert": "inverse_chain_A.out (rank 2, det=L_N^2), inverse_chain_B.out (rank 4(n-1), det=sigma^4 L_N^8), both ALL BOOLEAN CHECKS PASS, exit 0, re-run 2026-08-28 sympy 1.13.1"
+    },
+    "N_grav": {
+      "attempt_A_minimal": 3,
+      "attempt_B_kinetic": 2,
+      "note": "Minimal (kinetic-free) H_can leaves a residual conformal scalar (2T+0V+1S=3). Adding a conformal kinetic term (sigma/2)p_q^2 removes it (2T+0V+0S=2)."
+    },
+    "phi_eq_psi": {
+      "status": "FAIL",
+      "basis": "DERIVATION",
+      "value": "slip Phi'/Psi' = (mu_10 + y mu_10')/mu_10 = 1 (Newtonian, y->inf) -> 3/2 (knee, y~1) -> 2 (deep MOND, y->0)",
+      "why": "linear-in-N (required so pi_N-preservation yields C_M) forces generated S_4 onto the tangent modulus mu+y mu' (radial stiffness) while S_2 fixes curvature on the secant modulus mu; the y-dependent factor-2 swing means NO constant normalisation sets gamma_PPN=1 at all accelerations. Phi=Psi holds ONLY at y>>1 (solar), FAILS in the MOND regime where lensing lives.",
+      "cert": "fc4ac_slip.out: two independent methods (full ij / traceless Pi^aux projection) agree, simplify(slip_gradA-slip_gradB)==0; ALL BOOLEAN CHECKS PASS, exit 0"
+    },
+    "gamma_PPN_solar": {
+      "status": "PASS",
+      "note": "y>>1 gives slip=1, gamma_PPN=1 at solar-system accelerations. The failure is GALACTIC-lensing (weak-lensing efficiency (Phi'+Psi')/(2Psi')->1.5, 50% excess over Mistele+24 KiDS baseline)."
+    },
+    "alpha_1": {"status": "PASS", "value": 0, "basis": "DERIVATION (sympy, given gamma_PPN=1 + spectator GR momentum constraint)", "cert": "fc4ac_alpha_ppn.out"},
+    "alpha_2": {"status": "PASS", "value": 0, "basis": "DERIVATION", "cert": "fc4ac_alpha_ppn.out"},
+    "alpha_3": {
+      "status": "FAIL",
+      "value": "C in [-3,-2] ~ -1",
+      "basis": "DERIVATION/STRUCTURAL, embedding-independent",
+      "why": "second-class C_M => Newtonian-order momentum non-conservation in the 0i (g_00) preferred-frame sector; elliptic instantaneous lapse response. FAILS |alpha_3|<4e-20 pulsar/ephemeris bound by >5e19x.",
+      "cert": "fc4ac_alpha_ppn.out: ALL 12 BOOLEAN CHECKS PASS, exit 0"
+    },
+    "matter_conservation": {
+      "status": "PASS",
+      "basis": "DERIVATION",
+      "value": "nabla_mu T^{mu nu} = 0 w.r.t. g HOLDS in Embedding I (kernel on q); fifth force F5 = sum lambda_C {p_m,S_C} = 0 on Sigma; matter feels a = -grad lnN (geodesic of g), no bimetric g_eff.",
+      "note": "CORRECTS the in-passing transfer in FC4AC_construct_B.md / inverse_chain_B that imported the old Embedding-II (source-free chassis) G_eff=2G matter FAIL. The linear-in-N structure moves lambda_M off r_1 onto the constraint S_4, so lambda_M is a combination of constraints => 0 on Sigma.",
+      "cert": "fc4ac_matter2.out: ALL 21 BOOLEAN CHECKS PASS, exit 0",
+      "caveat": "PASS presupposes the second-class surface (rank Delta=4) is consistently reached and C_M=0 is the matter field eq; scalar/TT (York) decoupling is a MODEL-ASSUMPTION -- full q-h_TT coupling is a residual OPEN."
+    },
+    "c_T": {"status": "MODEL-ASSUMPTION", "value": 1, "note": "TT gravitons carried by H_TT are spectators to the scalar chain; c_T=1 assumed, not the locus of failure."}
+  },
+  "guessed_chain_analytic_kill": {
+    "reproduced": true,
+    "basis": "DERIVATION (control)",
+    "statement": "S_2=D^2 q, S_3=D^2 p_q is DEAD: spherical vacuum D^2 q=0 => q'=A/r^2, incompatible with MOND requirement r^2 mu_10(y) q'=const (mu_10 strictly monotone => q'=0, no nontrivial MOND exterior).",
+    "evaded_by_attempt_B": "generated S_2 is the nonlinear AQUAL flux D_i[mu_10 D^i q], NOT D^2 q; so rank-4 closure with a genuine spatial-gradient C_M IS achievable -- the DOF gate is NOT where the theory dies."
+  },
+  "obstruction": "MOND-SPECIFIC and DERIVED, relocated downstream of the DOF count. Rank-4 / 2-DOF closure with a spatial-gradient C_M^(10) is ACHIEVED (attempt B), evading the guessed D^2q kill. But the SAME linear-in-N structure that any C_M-delivering H_can must carry (so that pi_N-preservation yields C_M) forces the lensing slip Phi'/Psi'=(mu+y mu')/mu: 1->2, structurally excluding Phi=Psi (hence gamma_PPN=1) in the MOND regime; AND alpha_3=-1 independently fails by >5e19x. matter conservation PASSES but does not rescue.",
+  "open_doors": [
+    "NON-minimal H_can with an AUXILIARY LEGENDRE PAIR (chi,Phi) carrying MOND OFF the lapse, with independent momenta p_chi,p_Phi (sf42_aux_legendre_dof_2026.py escape): gives 2 second-class pairs => 2 DOF WITHOUT forcing linear-in-N, so the slip argument does not obviously transfer. NOT executed here -- genuinely OPEN.",
+    "Full q-h_TT (York) coupling beyond the scalar/TT decoupling MODEL-ASSUMPTION: could re-source or alter the isolated-scalar results. OPEN."
+  ],
+  "phenomenological_inputs_untouched": "a0^2=kappa^2 c^2 G rho_Lambda and a0(z)~sqrt(rho_DE) remain TARGET/phenomenological (never derived); kappa=1/2, Z~21 FITTED. This verdict does not bear on them.",
+  "certificates_rerun_2026_08_28": {
+    "inverse_chain_A.py": "exit 0, ALL BOOLEAN CHECKS PASS",
+    "inverse_chain_B.py": "exit 0, ALL BOOLEAN CHECKS PASS",
+    "fc4ac_slip.py": "exit 0, ALL BOOLEAN CHECKS PASS",
+    "fc4ac_matter2.py": "exit 0, ALL BOOLEAN CHECKS PASS",
+    "fc4ac_alpha_ppn.py": "exit 0, ALL 12 BOOLEAN CHECKS PASS",
+    "environment": "sympy 1.13.1, numpy 1.26.4, python3"
+  }
+}

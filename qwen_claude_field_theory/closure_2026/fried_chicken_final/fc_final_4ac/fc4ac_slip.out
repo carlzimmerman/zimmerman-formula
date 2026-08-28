@@ -1,0 +1,117 @@
+==========================================================================================
+ PART 0 -- the constructed H_can and WHICH constraint fixes WHICH potential (recap)
+==========================================================================================
+  Embedding I (inverse_chain_B.py / FC4AC_construct_B.md), scalar sector:
+     H_can = INT d^3x [ N * C_M^(10)(q,gamma) + (sigma/2) p_q^2 + H_TT + H_m ]
+     C_M^(10) = (c^4/4piG) sqrt(g) D_i[ mu_10(y) D^i q ] - sqrt(g) c^2 rho ,  y=(c^2/a0)|Dq|
+     q = -(1/6) ln det gamma  (CURVATURE Phi ; lensing),   ln N (LAPSE Psi ; dynamics).
+  Generated Dirac chain (DERIVED, not guessed -- inverse_chain_B Part 2, exact lattice):
+     S_1 = pi_N ,  S_2 = C_M ,  S_3 = sigma * L^[p_q] ,  S_4 = sigma^2 Chat - sigma L^^2[N],
+     L^ = D_i A^{ij} D_j ,   A^{ij} = mu_10 delta^{ij} + y mu_10' n^i n^j   (frozen AQUAL Hessian).
+  Weak-field static, spherical:  ds^2 = -(1+2Psi/c^2)c^2 dt^2 + (1-2Phi/c^2) delta_ij dx^i dx^j.
+  H_can has NO scalar 3-Ricci term (only H_TT retained; the GR H_perp is REPLACED by C_M),
+  so Phi and Psi are fixed by their own elliptic constraints, NOT by a GR ij-Einstein balance.
+  [PASS] EXTERNAL-INPUT recap: chain S_1..S_4, A^{ij}=mu delta + y mu' n n is committed (inverse_chain_B.out, S_3 = sigma*L^[p_q] verified on the exact lattice)
+==========================================================================================
+ PART 1 -- the TWO elliptic moduli: SECANT mu (Phi) vs TANGENT mu+y mu' (Psi)  (DERIVATION)
+==========================================================================================
+  [PASS] SECANT modulus of the frozen flux F(q')=mu_10(q'/a0) q' is mu_10(y): F/q' = mu_10  (Phi law)
+  [PASS] TANGENT modulus dF/dq' = mu_10 + y mu_10'  (radial eigenvalue of A^{ij}; the Psi law)
+  [PASS] A^{ij} eigenvalues: transverse = mu_10 (>0), radial = mu_10 + y mu_10' (>0): STRICT ellipticity of L^ for all y>0 (frozen-kernel property) -- both operators invertible
+  [PASS] tangent - secant = y mu_10' > 0 for all y>0 (mu_10'>0 strictly): the Psi-operator is STIFFER than the Phi-operator everywhere except the measure-zero y->0/oo endpoints
+  [info] ROOT (THEOREM): C_M=0 (vary N) is the FLUX law -> secant mu.  Linearising C_M in its OWN
+  [info] field q (the generated S_3, and the q-EOM that fixes the lapse) is the HESSIAN -> tangent
+  [info] mu+y mu'.  One frozen flux, two moduli.  They coincide iff y mu'=0 i.e. ONLY at y->oo.
+==========================================================================================
+ PART 2 -- multipliers lambda_A = -(Delta^-1)_AB r_B and the aux stress Pi^aux (COMPUTATION)
+==========================================================================================
+  [PASS] single-mode Delta antisymmetric, det = sigma^4 L_N^8 (matches inverse_chain_B: rank 4)
+  [info] lambda_1 = r4/(L_N**2*sigma)
+  [info] lambda_2 (= C_M multiplier = the LAPSE N) = r3/(L_N**2*sigma)
+  [info] lambda_3 = -r2/(L_N**2*sigma)
+  [info] lambda_4 = -r1/(L_N**2*sigma)
+  [PASS] lambda_2 (the MOND/lapse multiplier) = +r_3/(sigma L_N^2): depends on r_3 and NOT on r_2, so it is NONZERO even when r_2(=r_M)=0 (the off-diagonal (C_M<->S_3) pairing feeds r_3 in) -- exactly the SLIP-DECIDER spec 'even r_M=0 does NOT give lambda_M=0'
+  [PASS] lambda_4 (pairs with pi_N) = -r_1/(sigma L_N^2): density-sourced via r_1=-(H_g+eps_n) (committed fc4ac_matter_conservation) -- the lapse inherits the matter charge here
+  [info] => the OPERATIVE multipliers for the STATIC metric stress are lambda_2 (lapse, on delta C_M)
+  [info]    and lambda_4 (on delta S_4); lambda_3 multiplies delta S_3 ~ p_q = 0 (static) so drops.
+  [PASS] the ONLY traceless (spin-2) content of delta C_M/delta gamma and delta S_4/delta gamma is the kernel anisotropy y mu_10' (n_i n_j - delta_ij/3); the mu delta^{ij} & sqrt(g) parts are pure trace
+  [info] => (Pi^aux_ij)_TF = [O(1) coefficient] * y mu_10' (n_i n_j - delta_ij/3), with the O(1)
+  [info]    coefficient set by the surviving lambda_2,lambda_4 and the potential gradients (Part 3).
+==========================================================================================
+ PART 3 -- THE SLIP, TWO INDEPENDENT WAYS  (require agreement)  (DERIVATION)
+==========================================================================================
+  [PASS] METHOD A (full ij, two elliptic laws) and METHOD B (traceless projection of Pi^aux) give the IDENTICAL (Phi-Psi)' -- the two independent methods AGREE
+  [info]    (Phi-Psi)'(r,y) = C*(y**10 + 1)**(1/10)/(r**2*y*(y**10 + 2))  (both methods)
+  [PASS] SLIP  Phi'/Psi' = (mu_10 + y mu_10')/mu_10  (C cancels: normalisation-independent)
+==========================================================================================
+ PART 4 -- A_slip(y) and the THREE limits  (COMPUTATION + sympy limits)
+==========================================================================================
+  [PASS] A_slip(y) = slip - 1 = y mu_10'/mu_10 (dimensionless invariant; = normalised (Pi^aux)_TF); A_slip = 0  <=>  y mu_10' = 0  <=>  Phi=Psi
+  [PASS] y>>1 (NEWTONIAN, solar system):  slip -> 1  and  A_slip -> 0  =>  Phi = Psi  (a genuine PASS in this regime -- NOT manufactured; unlike the old source-free chassis gamma_PPN=0)
+  [PASS] y~1 (transition):  slip = 3/2,  A_slip = 1/2  =>  Phi != Psi  (FAIL begins)
+  [PASS] y<<1 (DEEP MOND, galaxies):  slip -> 2  and  A_slip -> 1  =>  Phi != Psi  (FAIL) -- the curvature gradient is TWICE the lapse gradient; no constant normalisation removes it
+    y-table of the DERIVED slip (mu_10+y mu_10')/mu_10 and A_slip = y mu_10'/mu_10
+    (verdict tol: |A_slip|<1e-3 => Phi=Psi to better than 0.1%, i.e. observationally GR):
+      y=  0.03:  mu=0.0300  slip=2.000000  A_slip= 1.0000e+00   Phi!=Psi (FAIL)
+      y=  0.10:  mu=0.1000  slip=2.000000  A_slip= 1.0000e+00   Phi!=Psi (FAIL)
+      y=  0.30:  mu=0.3000  slip=1.999994  A_slip= 9.9999e-01   Phi!=Psi (FAIL)
+      y=  1.00:  mu=0.9330  slip=1.500000  A_slip= 5.0000e-01   Phi!=Psi (FAIL)
+      y=  3.00:  mu=1.0000  slip=1.000017  A_slip= 1.6935e-05   Phi=Psi (PASS)
+      y= 10.00:  mu=1.0000  slip=1.000000  A_slip= 1.0000e-10   Phi=Psi (PASS)
+  [info] mu_10 is a SHARP kernel (n=10): the slip is pinned at EXACTLY 2.000 through the whole deep-
+  [info] MOND band y<~0.3, passes 1.5 at the y~1 knee, and is Newtonian (A_slip~1e-5) by y~3 -- the
+  [info] factor-2 swing is a WIDE plateau (all of galactic phenomenology), not a thin edge.
+==========================================================================================
+ PART 5 -- numerical Phi-Psi for a point mass; lensing consequence (COMPUTATION)
+==========================================================================================
+   r[kpc]          y     slip   A_slip      d(Phi-Psi)/dr   lens_eff
+      0.5  3.573e+02   1.0000   0.0000          0.000e+00     1.0000
+      1.0  8.933e+01   1.0000   0.0000          0.000e+00     1.0000
+      2.0  2.233e+01   1.0000   0.0000          6.783e-23     1.0000
+      5.0  3.573e+00   1.0000   0.0000          9.855e-16     1.0000
+     10.0  9.721e-01   1.5703   0.5703          3.305e-11     1.2852
+     20.0  4.726e-01   1.9994   0.9994          2.212e-11     1.4997
+     50.0  1.890e-01   2.0000   1.0000          8.849e-12     1.5000
+    100.0  9.452e-02   2.0000   1.0000          4.424e-12     1.5000
+    200.0  4.726e-02   2.0000   1.0000          2.212e-12     1.5000
+  [PASS] point-mass lensing efficiency (Phi'+Psi')/(2Psi') -> 1.5 in deep MOND (Phi=2Psi) vs 1 for Phi=Psi: a 50% weak-lensing EXCESS at galactic radii => tension with the Phi=Psi Mistele+24 KiDS RAR (committed 21-sigma-scale slip-1 stack); milder than the old chassis' factor-2 but nonzero and structural
+  [info] (Solar-system radii sit at y>>1 -> slip=1 -> Cassini gamma is SAFE for THIS obstruction;
+  [info]  the slip is a GALACTIC-lensing failure, sharply different from gamma_PPN=0 which fails
+  [info]  the solar system too.  Both-ways honest: Newtonian PASS, deep-MOND FAIL.)
+==========================================================================================
+ VERDICT
+==========================================================================================
+  DECIDER: PASS iff Phi = Psi (at all accelerations).  RESULT: FAILED (deep-MOND slip).
+
+  (1) TWO MODULI (DERIVATION, Part 1): the ONE frozen AQUAL flux F(q')=mu_10(q'/a0)q' fixes the
+      CURVATURE Phi through its SECANT modulus mu_10 (C_M=0, vary N) and the LAPSE Psi through its
+      TANGENT modulus mu_10+y mu_10' (the GENERATED S_3 = sigma L^[p_q], vary q).  These are the
+      transverse vs radial eigenvalues of the frozen Hessian A^{ij}=mu delta + y mu' n n; they
+      differ by y mu_10' > 0 for EVERY y>0.
+
+  (2) SLIP, TWO METHODS AGREE (Part 3):  Phi'/Psi' = (mu_10 + y mu_10')/mu_10.  The full-ij solve
+      and the traceless-projection of the auxiliary stress Pi^aux (~ lambda_2 delta C_M + lambda_4
+      delta S_4, both carrying the anisotropy y mu_10' n n) give the IDENTICAL (Phi-Psi)'.
+      lambda_2 (=lapse) is nonzero even at r_M=0 (fed by r_3), exactly as the slip-decider spec says.
+
+  (3) THREE LIMITS (Part 4):
+        y>>1 (solar):    slip=1,   A_slip=0   -> Phi=Psi  (PASS, verified as hard as the FAIL)
+        y~1  (knee):     slip=3/2, A_slip=1/2 -> Phi!=Psi (FAIL)
+        y<<1 (galaxies): slip=2,   A_slip=1   -> Phi!=Psi (FAIL)
+      A_slip(y)=y mu_10'/mu_10 = 0 <=> Phi=Psi.  The factor-2 swing is y-dependent, so NO constant
+      normalisation sets gamma_PPN=1 at all accelerations.  mu_10 is sharp: slip=2.000 for y<~0.3.
+
+  (4) CONSEQUENCE (Part 5): deep-MOND weak-lensing efficiency (Phi'+Psi')/(2Psi') -> 1.5, a 50%
+      excess over the Phi=Psi (Mistele+24 KiDS) baseline at galactic radii.  Solar system is SAFE
+      (y>>1), so this is a GALACTIC-lensing FAIL, distinct from (and milder than) the source-free
+      chassis' gamma_PPN=0 that fails everywhere.
+
+  This DERIVES the origin of the committed FC-4AC slip verdict: it is NOT a free design choice --
+  the generated S_3/S_4 FORCE the lapse onto the tangent modulus mu+y mu' while C_M fixes the
+  curvature on the secant modulus mu.  gamma_PPN=1 is STRUCTURALLY excluded in Embedding I.
+  SECTOR-ORTHOGONAL and UNCHANGED by the slip (EXTERNAL-INPUT, committed): alpha_3=-1
+  (ppn_mmg_gate) and nabla_mu T^{mu nu}!=0 at Newtonian order (fc4ac_matter_conservation).
+
+==========================================================================================
+ FC4AC-SLIP CERTIFICATE: ALL BOOLEAN CHECKS PASS (exit 0).
+==========================================================================================

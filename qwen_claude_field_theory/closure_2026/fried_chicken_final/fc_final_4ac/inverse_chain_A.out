@@ -1,0 +1,183 @@
+
+============================================================================================
+PART 0 -- the explicit MINIMAL H_can and the canonical scalar sub-sector
+============================================================================================
+  EXPLICIT MINIMAL H_can (attempt A) -- written, not sketched:
+
+     H_can[gamma,pi;N,N^i]  =  INT d^3x { W_AQUAL(N,gamma,rho)  +  N^i H_i  +  H_m }
+
+     W_AQUAL  = -(c^4/8piG) sqrt(g) F( |D lnN|^2/a0^2 )  -  sqrt(g) c^2 rho lnN   (lapse-fixing)
+                with F'(z)=mu_10(sqrt z)/... (Legendre dual of mu_10), so that
+        delta W_AQUAL/delta(lnN) = C_M^(10)
+                 = (c^4/4piG) sqrt(g) D_i[ mu_10(y) D^i lnN ] - sqrt(g) c^2 rho ,  y=(c^2/a0)|D lnN|.
+     H_i      = -2 D_j pi^j_i             (ADM momentum constraint / spatial diffeo generator)
+     H_m      = matter Hamiltonian (minimal coupling; rho = its energy density)
+
+  Primary constraints:   S_1 = pi_N ~ 0   and   pi_i ~ 0   (shift momenta).
+  Total Hamiltonian:     H_T = H_can + INT[ u_1 pi_N + u^i pi_i ] ,  u_1,u^i multipliers.
+  Preserving pi_N:  dot pi_N = -delta H_can/delta N = -(1/N) delta W_AQUAL/delta(lnN) = -(1/N)C_M
+        => the secondary is  S_2 = C_M^(10) ~ 0  (the MOND-Poisson constraint; the 1/N>0 is inert).
+
+  MINIMAL means: NO independent gravitational-kinetic pi^ij pi_ij term and NO auxiliary
+  Legendre pair.  The ONLY pi-dependence in H_can is the LINEAR shift term N^i H_i.
+  (This is 'ADM shift sector + lapse-fixing', exactly the task's attempt-A.  W_AQUAL is the
+   standard MOND/AQUAL potential; using it -- rather than a bare N*C_M[q] -- is what makes the
+   carrier the LAPSE Psi, so that {pi_N,C_M}=-delta C_M/delta N = L_N != 0 in PART 2.)
+  [PASS] (P0) canonical pair: {q,p_q}=1 for q=-(1/6)lndet g, p_q=-2 gamma_ij pi^ij (trace mode)
+  [info] (P0b) delta H_can/delta N = C_M^(10): preserving pi_N gives the secondary S_2=C_M. [by construction]
+  [info]       (C_M = the AQUAL operator on the lapse; the c^2 factors cancel -- certified PART 1.)
+
+============================================================================================
+PART 1 -- S_1=pi_N ; the secondary S_2=C_M reduces to exact AQUAL on Psi (DERIVATION)
+============================================================================================
+  [PASS] (1) S_2=C_M -> D_i[mu_10(|DPsi|/a0)D^i Psi]=4piG rho (exact AQUAL for the LAPSE Psi)
+  [info]     => slow matter feels a=-grad Psi with the MOND law => flat rotation curves. Physics OK.
+
+============================================================================================
+PART 2 -- the ONE generated second-class pair: L_N={pi_N,C_M}=delta C_M/delta N != 0
+============================================================================================
+  [PASS] (2a) mu_10(y) > 0 for y>0  (transverse eigenvalue)
+  [PASS] (2b) mu_10 + y mu_10' = y(y^10+2)/(1+y^10)^(11/10) > 0  (longitudinal eigenvalue)
+  [PASS] (2c) L_N = mu_10 k^2 + y mu_10' kpar^2 > 0 for every k!=0 (elliptic; strictly positive)
+  [info]     => {pi_N,C_M} = -delta C_M/delta N = -L_N != 0 : (pi_N,C_M) is a genuine SECOND-CLASS
+  [info]        pair, INVERTIBLE (elliptic) on the whole generic branch y>0,k!=0.  This is exactly
+  [info]        the committed Pfaffian entry L_N (03_dirac_matrix.py). It is the ONLY pair the
+  [info]        minimal chain generates -- PART 3 shows no further constraint is produced.
+
+============================================================================================
+PART 3 -- DIRAC-GENERATE S_3={C_M,H_can}_red : it is NOT an independent constraint
+============================================================================================
+  S_3 := {C_M, H_can}_red , H_can = INT[ N C_M + N^i H_i + H_m ].  Term by term:
+
+    (i)   {C_M, INT N C_M}_red = 0
+          because C_M is MOMENTUM-FREE (delta C_M/delta pi^ij = 0): C_M is a functional of
+          (gamma, lnN, rho) only.  Two pi-free functionals Poisson-commute in the (gamma,pi)
+          sector.  [certified (3i) below]
+
+    (ii)  {C_M, INT N^i H_i}_red = L_{N-vec} C_M  (spatial Lie derivative)
+          because C_M built on the SCALAR ln N is a genuine weight-1 SCALAR DENSITY, so under
+          spatial diffeos it transforms as delta_xi C_M = d_i(xi^i C_M) ~ 0 (weakly, prop C_M).
+          [certified (3ii): the weight-1 density identity, and the diffeo-safety of ln N]
+
+    (iii) {C_M, H_m}_red = matter-continuity term ; = 0 in VACUUM (rho=0). [certified (3iii)]
+
+  => S_3 = {C_M,H_can}_red = L_{N-vec} C_M + {C_M,H_m}  ~  0  weakly (vacuum: identically ~0).
+     It is NOT a new independent constraint on (gamma,pi).
+  [PASS] (3i) delta C_M/delta pi = 0 (C_M momentum-free) => {C_M, INT N C_M}_red = 0
+  [PASS] (3ii) weight-1 density: delta_xi C_M = d_i(xi^i C_M)  (=> prop C_M, weakly 0)
+  [PASS] (3ii') delta_xi q = xi.dq - (1/3)div(xi)  (DERIVED from L_xi gamma; q is NOT a scalar)
+  [PASS] (3ii'') the anomaly is the -(1/3)div(xi) term; a true scalar (ln N) lacks it => C_M(lnN) covariant
+  [info]       => C_M(lnN) is a covariant scalar density => {C_M,H_i} closes weakly (no c-number).
+  [info]       (Contrast: a q-carrier C_M(q) is NOT covariant -- delta_xi q has -(1/3)div xi ; PART 6.)
+  [PASS] (3iii) VACUUM: C_M carries no matter field => {C_M,H_m}=0 => S_3 = L_{N-vec} C_M ~ 0 weakly
+
+  CONSEQUENCE (the decider).  Preservation of S_2=C_M is enforced NOT by a new constraint but
+  by FIXING THE MULTIPLIER u_1 (=dot N).  In the full H_T:
+
+     dot C_M = {C_M, H_T} = S_3  +  u_1 {C_M, pi_N}
+             = ( ~0 )       -  u_1 L_N   ~ 0     =>    u_1 = 0 (vacuum) / u_1 fixed (matter),
+
+  because {C_M, pi_N} = +L_N != 0 (PART 2, elliptic, invertible).  The chain CLOSES at S_2.
+  There is NO independent S_3, hence S_4 = {S_3,H_can}_red is NOT REACHED.
+  [PASS] (3iv) dot C_M=0 is solvable for the multiplier u_1 (coeff L_N=mu>0 != 0) => FIXES-MULTIPLIER
+
+============================================================================================
+PART 4 -- the count: rank(Delta)=2 (NOT 4) => N_grav = 3 (an extra scalar survives)
+============================================================================================
+  [PASS] (4a) generated 2nd-class block Delta_2 = [[0,Ln],[-Ln,0]]  (from the minimal chain)
+  [PASS] (4b) det(Delta_2) = Ln^2 ; rank = 2 for Ln!=0  (elliptic => rank 2 on ALL generic k)
+  [info]       det(Delta_2) = Ln**2   (attempt-A: ONLY the (pi_N,C_M) pair is generated)
+  [PASS] (4c) conformal momentum P absent from S_1,S_2 => (Q,P) UNCONSTRAINED => a scalar propagates
+  [PASS] (4d) SCALAR sector: dim 8, 2 second-class (pi_N,C_M) + 2 first-class (p_BL,H_L)
+  [PASS] (4e) scalar DOF = (8 - 2*2 - 2)/2 = 1  (ONE propagating scalar survives)
+  [PASS] (4f) vector DOF = (8-2*4)/2 = 0 ; tensor DOF = 4/2 = 2
+  [PASS] (4g) N_grav = 2(tensor) + 0(vector) + 1(scalar) = 3  != 2  ==> NOT the Type-II count
+  [PASS] (4h) CONTRAST guessed {pi_N,C_M,D^2q,D^2p}: Pf=Ln*K, det=(Ln K)^2, rank 4 => 0 scalar => 2 DOF
+  [info]       BUT the guessed 2nd pair (D^2q,D^2p) is NOT generated by the minimal H_can (it is put
+  [info]       in BY HAND), and D^2q is spherically DEAD (PART 5).  attempt-A generates only rank 2.
+
+============================================================================================
+PART 5 -- spherical-vacuum control: D^2q is DEAD; C_M (this chain) admits the MOND exterior
+============================================================================================
+  Spherical static vacuum, radial profile q(r), q'=dq/dr, y=(c^2/a0)|q'| (drop c^2/a0->call it y=q').
+
+    * attempt-A constraint  C_M=0 :  (1/r^2) d/dr[ r^2 mu_10(y) q' ] = 0
+          => r^2 mu_10(y) q' = C   (C = enclosed 'mass').  This ADMITS a nontrivial exterior.
+    * GUESSED constraint     D^2 q=0 :  (1/r^2) d/dr[ r^2 q' ] = 0  =>  r^2 q' = A  =>  q' = A/r^2.
+
+  Impose BOTH (the guessed S_2=D^2q AND the MOND requirement C_M=0):
+        r^2 mu_10(y) (A/r^2) = C   =>   mu_10(y) = C/A = const .
+  But y = |q'| = A/r^2 VARIES with r, and mu_10 is STRICTLY MONOTONE (mu_10'>0), hence injective:
+  mu_10(y)=const forces y=const forces A=0 forces q'=0.  =>  NO nontrivial MOND exterior. DEAD.
+  [PASS] (5a) mu_10'(y) = (1+y^10)^(-11/10) > 0 => mu_10 strictly increasing => injective
+  [PASS] (5b) guessed choice q'=A/r^2 (A=1): mu_10(y) spans a NONZERO range over r=1..10 (spread=9.230e-01) => cannot equal const unless A=0 (q'=0)
+  [PASS] (5c) attempt-A C_M=0 admits a nontrivial DECREASING exterior q'(r)>0 (MOND exterior EXISTS)
+  [info]       r      = [1.0, 3.0, 10.0, 30.0, 100.0]
+  [info]       q'(r)  = ['1.049e+00', '3.333e-01', '1.000e-01', '3.333e-02', '1.000e-02']   (strictly decreasing, positive)
+  [info]       v^2~rq'= ['1.049e+00', '1.000e+00', '1.000e+00', '1.000e+00', '1.000e+00']  -> flattens (deep-MOND): v^2(100)/v^2(1)=0.95
+  [info]       => C_M=0 (the MOND operator itself) is SELF-CONSISTENT with the flat-rotation exterior.
+
+  WHY THE CHAIN AVOIDS THE D^2 q DEATH, AND THE PRICE:
+    * attempt-A never imposes D^2 q=0.  Its generated constraint C_M=0 IS the MOND equation,
+      which has the nontrivial exterior (5c).  So the 'D^2 q=0 kills the exterior' pathology
+      (5a,5b) is AVOIDED.
+    * BUT the price is PART 4: the minimal H_can generates ONLY the (pi_N,C_M) pair (rank 2),
+      so the conformal metric mode (q,p_q) is NEVER constrained => N_grav=3.  The second pair
+      that WOULD remove it -- (D^2q,D^2p), the committed K entry -- is (a) put in BY HAND, not
+      generated, and (b) exactly the spherically-DEAD choice.  You get {MOND exterior} XOR
+      {rank-4 / 2 DOF}, not both, from the minimal chain.
+
+============================================================================================
+PART 6 -- cross-checks: F(A^2) lapse-carrier no-go, the q-carrier variant, sf42 escape
+============================================================================================
+  (6a) CONSISTENCY with the committed F(A^2) no-go (sf40/sf41): attempt-A carries MOND in the
+       LAPSE sector (C_M on ln N).  sf40/sf41 proved that a MOND nonlinearity in the lapse
+       kinetic/gradient sector REINTRODUCES a propagating scalar (2+1 = 3 DOF).  PART 4's
+       N_grav=3 is exactly that disease, now seen from the Dirac-chain side: the chain simply
+       fails to produce the second constraint pair needed to kill the conformal scalar.
+
+  (6b) q-CARRIER VARIANT (C_M on q instead of ln N, matching the FROZEN written form
+       C_M=sqrt(g)D_i[mu_10 D^i q]-...):  then {pi_N,C_M}=0 (C_M has no N), so dot C_M does NOT
+       fix u_1.  Instead C_M is NOT a covariant density (delta_xi q = xi.dq - (1/3)d.xi has the
+       inhomogeneous anomaly), so {C_M,H_i} carries a real c-number ~ (1/3)L_MOND[d.xi] != 0.
+       dot C_M~0 then fixes the SHIFT multiplier (long. d.N), pi_N stays FIRST-class => N is
+       pure gauge.  Count is again 2nd-class rank 2 => N_grav=3.  Strictly WORSE (lapse not even
+       fixed).  Either carrier => CLOSES-EARLY, N_grav=3.
+  [PASS] (6b) q-carrier anomaly = delta_xi q - xi.dq = -(1/3)div xi != 0 (DERIVED in 3ii'; => {C_M(q),H_i}!=0)
+  (6c) THE ESCAPE (sf42, for the record -- NOT attempt-A): put MOND in an AUXILIARY LEGENDRE
+       pair (chi,Phi) with INDEPENDENT momenta p_chi,p_Phi.  Then {p_chi,psi_1}=-V''!=0 and the
+       elliptic {p_Phi,psi_2} give a NONDEGENERATE 4x4 Dirac block => 2 second-class PAIRS =>
+       the scalar is removed => 2 DOF.  That requires TWO extra canonical pairs the minimal
+       H_can does NOT contain.  attempt-A is precisely the minimal theory WITHOUT them, so it
+       cannot reach rank 4.  (sf42_aux_legendre_dof_2026.py, committed, exit 0.)
+
+============================================================================================
+VERDICT (attempt A)
+============================================================================================
+  chain_result = CLOSES-EARLY-multiplier-fixed.
+
+    S_1 = pi_N                         (primary)
+    S_2 = C_M^(10)                     (secondary; delta H_can/delta N ; -> exact AQUAL, PART 1)
+          {pi_N,C_M} = L_N != 0        (PART 2: elliptic, the ONE generated 2nd-class pair)
+    S_3 = {C_M,H_can}_red ~ 0 weakly   (PART 3: momentum-free C_M + covariant-density diffeo +
+                                        vacuum matter => NOT an independent constraint)
+    preservation of C_M  =>  FIXES the lapse-velocity multiplier u_1 (via {C_M,pi_N}=L_N!=0).
+    S_4 : NOT REACHED (no independent S_3).
+
+    rank(Delta) = 2  (det = L_N^2),  NOT 4.   N_grav = 2(T) + 0(V) + 1(S) = 3,  NOT 2.
+
+  The minimal (kinetic-free, lapse-fixing) H_can dynamically generates only the (pi_N,C_M)
+  pair; it CANNOT generate a second constraint pair on the conformal mode (q,p_q).  The only
+  known supplier of that pair -- the hand-picked (D^2q,D^2p) -- is spherically DEAD (PART 5),
+  and it is not produced by the chain in any case.  So attempt-A is NOT a Type-II 2-DOF MOND
+  theory: it is a 3-DOF theory (2 tensors + 1 residual conformal scalar), the same extra-scalar
+  disease the F(A^2) lapse-carrier no-go predicts (PART 6).
+
+  OBSTRUCTION (attempt-A specific): the Dirac chain from the minimal H_can is TOO SHORT
+  (pi_N -> C_M -> fix u_1); it terminates at rank 2.  Reaching rank 4 requires either the dead
+  D^2q pair or genuine extra canonical structure (auxiliary Legendre pair / real gravitational
+  kinetic sector) -- i.e. a NON-minimal H_can (attempts B/C), not this one.
+
+============================================================================================
+ inverse_chain_A CERTIFICATE: ALL BOOLEAN CHECKS PASS.  chain_result=CLOSES-EARLY-multiplier-fixed
+============================================================================================

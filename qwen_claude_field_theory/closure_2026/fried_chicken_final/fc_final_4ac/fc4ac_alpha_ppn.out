@@ -1,0 +1,78 @@
+
+======================================================================================================
+PART 0 -- gamma_PPN at solar-system scale on Embedding I is 1 (committed), not 0 (control)
+======================================================================================================
+  [ok] 0.1 slip (mu_10+y mu_10')/mu_10 -> 1 as y->inf  => Phi=Psi and gamma_PPN=1 at solar system
+         lim_(y->inf) slip = 1   (committed inverse_chain_B.out l.81: 'solar-system gamma OK')
+  [info] 0.2 beta_PPN = 1 inherited (static lapse law -g_00 = e^{-2U/c^2}; identical to control 1.3)
+
+======================================================================================================
+PART 1 -- 0i SECTOR: linearized momentum constraint for a MOVING source (sympy, no quoted formula)
+======================================================================================================
+  [ok] 1.1 linearized-G routine: G^(1)[pure gauge] = 0 (all 16 comp) -- routine trusted
+  [ok] 1.2 Embedding-I transverse 0i eq -> h_0x = -4 V_x  (GR gravito-magnetic, gamma=1 spatial metric)
+         h_0x = -16*pi*G*rho*w_x/k**2  (= -(7/2)V-(1/2)W transverse piece, identical to GR)
+  [ok] 1.3 h_0x = -(7/2)V_x-(1/2)W_x  => transverse gravito-magnetic sector is GR-identical
+         the spectator momentum constraint H_i (dust source) is unchanged by the scalar chain; at mu_10->1 the {C_M,H_i} non-closure is O(1-mu_10)<1e-19 (control 1.5) => c_V=-7/2, c_W=-1/2
+
+======================================================================================================
+PART 2 -- PPN DICTIONARY SOLVE with gamma=1 (Embedding I): alpha_1, alpha_2 = f(0i sector)
+======================================================================================================
+  [ok] 2.1 PPN dictionary unique solution (xi free; C_Phi1,C_Phi3 symbolic)
+
+   alpha_1 = 0
+   alpha_2 = 0
+   alpha_3 = C_Phi1 - 4   (C_Phi1 = g_00 Phi_1 coefficient)
+
+  [ok] 2.2 alpha_1 = 0 on Embedding I  (PASSES |alpha_1|<1e-4)  -- INDEPENDENT of C_Phi1
+         alpha_1 = -2 c_V - 2 c_W - 4 gamma - 4 = 7 + 1 - 4 - 4 = 0.  The control's alpha_1=4 was ENTIRELY the gamma=0 artifact of Embedding II; restoring gamma=1 (kernel on q) sets it to 0
+  [ok] 2.3 alpha_2 = 0 on Embedding I  (PASSES |alpha_2|<2e-7)  -- INDEPENDENT of C_Phi1
+         alpha_2 = -2 c_W - 1 = 1 - 1 = 0
+  [ok] 2.4 alpha_3 = C_Phi1 - 2 gamma - 2 = C_Phi1 - 4  (THE g_00-sector decider; slip-independent)
+         alpha_3 = 0  <=>  C_Phi1 = 4  <=>  momentum conserved (GR value).  Any C_Phi1 != 4 => alpha_3!=0
+
+======================================================================================================
+PART 3 -- The alpha_1=4 -> 0 flip is ENTIRELY gamma (verify both ways; manufacture nothing)
+======================================================================================================
+  [info] 3.1 SAME 0i coefficients (c_V=-7/2,c_W=-1/2), only gamma changes:
+  [info]      gamma=0 (control II):   alpha_1=4, alpha_2=0, alpha_3=C_Phi1 - 2  (matches ppn_mmg_gate: a1=4,a3=C_Phi1-2)
+  [info]      gamma=1 (Embed. I)  :   alpha_1=0, alpha_2=0, alpha_3=C_Phi1 - 4
+  [ok] 3.2 alpha_1: 4 (gamma=0)  ->  0 (gamma=1).  The preferred-frame alpha_1 failure does NOT transfer to Embedding I -- reporting alpha_1=4 for Embedding I would MANUFACTURE a deficit
+         d(alpha_1)/d(gamma) = -4 over Delta gamma=1  => -4 per unit gamma
+  [ok] 3.3 alpha_2 = 0 in BOTH embeddings (clean pass, gamma-independent)
+
+======================================================================================================
+PART 4 -- alpha_3: the g_00-sector value, and WHY it is nonzero (structural, embedding-indep.)
+======================================================================================================
+  [info] 4.1 alpha_3 = C_Phi1 - 4 for the two structurally-motivated C_Phi1:
+  [info]      instantaneous unit-weight lapse (control-type, G_eff=1): C_Phi1=1 =>   alpha_3 = -3
+  [info]      density-doubling fork (G_eff=2G, matter MD baseline)   : C_Phi1=2 =>   alpha_3 = -2
+  [ok] 4.2 alpha_3 != 0 for BOTH structurally-admissible C_Phi1 (in [1,2]) => alpha_3 in [-3,-2]
+         the NUMBER depends on the explicit reduced lapse-matter coupling (NOT fixed by the scalar H_can); alpha_3 != 0 is DERIVED/structural, the magnitude -3..-2 is MODEL-ASSUMPTION-bounded
+  [info] 4.3 |alpha_3|=3 vs pulsar bound |alpha_3|<4e-20  ->  7.5e+19 x over   C_Phi1=1 (alpha_3=-3)
+  [info] 4.3 |alpha_3|=2 vs pulsar bound |alpha_3|<4e-20  ->  5.0e+19 x over   C_Phi1=2 (alpha_3=-2)
+  [ok] 4.3 alpha_3 FAILS the |alpha_3|<4e-20 pulsar/ephemeris bound by > 5e19 x for either value
+
+======================================================================================================
+SUMMARY -- Embedding I preferred-frame (0i) sector vs the control (Embedding II)
+======================================================================================================
+
+   PARAMETER   Embedding II (control, gamma=0)    Embedding I (constructed, gamma=1)     bound
+   ---------   -------------------------------    ----------------------------------     -----
+   gamma_PPN   0        (FAIL 4e4 sigma)          1        (PASS, solar system)          |g-1|<2.3e-5
+   alpha_1     4        (FAIL 4e4 x)              0        (PASS)                         |a1|<1e-4
+   alpha_2     0        (PASS)                    0        (PASS)                         |a2|<2e-7
+   alpha_3     C_Phi1-2 = -1  (FAIL)             C_Phi1-4 in [-3,-2] (FAIL >5e19 x)      |a3|<4e-20
+
+   0i-SECTOR VERDICT (this task):
+     * alpha_1 = 0, alpha_2 = 0  -- DERIVED (sympy), given gamma_PPN=1 (committed, kernel on q) +
+       the stated spectator GR momentum constraint.  Embedding I PASSES both preferred-frame
+       bounds that were tied to the 0i sector.  The control's alpha_1=4 is a gamma=0 artifact of
+       Embedding II and does NOT transfer (manufacturing it here would be a false deficit).
+     * alpha_3 != 0  -- DERIVED/STRUCTURAL (second-class C_M => Newtonian-order momentum
+       non-conservation, matter MD; embedding-independent).  alpha_3 = C_Phi1-4 in [-3,-2],
+       FAILS by >5e19 x.  This is the SAME root as the committed nabla_mu T^{mu nu}!=0 fail; it
+       is g_00-sector (slip-independent), as the task states.
+
+======================================================================================================
+RESULT: ALL 12 BOOLEAN CHECKS PASS (exit 0).

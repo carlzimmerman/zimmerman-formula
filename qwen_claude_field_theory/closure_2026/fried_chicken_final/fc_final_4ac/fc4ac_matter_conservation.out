@@ -1,0 +1,96 @@
+================================================================================
+PART 0 -- the ONE general identity that decides everything
+         {pi_N, H_can} = -(Hg + eps_n)   (functional derivative, ADM, minimal coupling)
+================================================================================
+  [PASS] {pi_N,H_can} = -(H_g + eps_n): grav AND matter energy density both present  -- r1 = -H_g - eps_n
+  [PASS] d r1 / d eps_n = -1 != 0: the matter density is IRREMOVABLE from {pi_N,H_can}
+  H_perp_total := H_g+eps_n.  GR: first-class, {pi_N,H_can}~0 weakly (lapse is gauge).
+  MMG 2-DOF: pi_N second-class => {pi_N,H_T}=0 fixes a MULTIPLIER carrying eps_n.
+
+================================================================================
+PART 1 -- {H_matter, S_A} for the 4 auxiliary constraints (which carry matter?)
+================================================================================
+  [PASS] {H_m, C_p} carries (3/2) rho c^2 (matter density weight) != 0  => S_4 matter-sourced  -- 3*c**2*rho/2
+  Summary of matter-sourced constraint brackets:
+    {H_m, S_1=pi_N} = -eps_n              MATTER-SOURCED (exterior)  <-- decisive
+    {H_m, S_4=C_p } = (3/2) rho c^2       MATTER-SOURCED (exterior)
+    {H_m, S_2=C_M } ~ rho*mu_1            INTERIOR only (vanishes in vacuum)
+    {H_m, S_3=C_q } = 0                   matter-free
+  => adding matter DOES disturb the constraint surface through S_1 and S_4:
+     the preservation equations r_A pick up eps_n, exactly as in the old chassis.
+
+================================================================================
+PART 2 -- the 4-AC multiplier solve: is the C_M multiplier density-sourced?
+================================================================================
+  [PASS] Dirac block antisymmetric
+  lambda_M (multiplier of C_M, general) =
+ E⋅r₃ - K⋅r₁ 
+─────────────
+E⋅c_M + K⋅L_N
+  [PASS] d(lambda_M)/d(r_1) != 0: the density-sourced r_1 FEEDS the C_M multiplier  -- d lambda_M/d r_1 = -K/(E*c_M + K*L_N)
+  [PASS] E=b=0 reduces to certified baseline lambda_M = -r_1/L_N  -- -r_1/L_N
+  ESCAPE condition (lambda_M = 0)  <=>  numerator = 0:
+E⋅r₃ - K⋅r₁ = 0
+  [PASS] baseline escape numerator is proportional to r_1 ALONE  -- numer(E=b=0) = -K*r_1  (=> escape <=> r_1=0 <=> H_g+eps_n=0, reinstated H-constraint)
+  => lambda_M = 0 (matter-force-free) forces the *content* of H_perp_total ~ 0.  But
+     imposing H_perp_total ~ 0 as a constraint is REINSTATING the first-class Hamiltonian
+     constraint = NOT the 2-DOF second-class mechanism (=> architecture A / AeST, 6+ DOF).
+     With the generic lock (E,b != 0) escape needs a FINE-TUNED r-cancellation carrying
+     eps_n exactly against the grav pieces; no committed 4-AC construction exhibits it,
+     and it must be re-derived per construction (OPEN, but nothing yet realises it).
+
+================================================================================
+PART 3 -- on-shell divergence of T^{mu nu} at Newtonian order (preferred foliation)
+================================================================================
+  [PASS] matter EOM a = -grad(Psi + X): the lambda_M force is (v/c)^0 = Newtonian order  -- a = -Derivative(Psi(x), x) - Derivative(X(x), x)
+  [PASS] nabla_mu T^{mu x}|_g = -rho dX/dx  != 0  (violation = the lambda_M force itself)  -- divT|_g = -rho(t, x)*Derivative(X(x), x)
+  [PASS] nabla_mu T^{mu x}|_g_eff = 0 EXACTLY: conservation holds only w.r.t. g_eff (lapse N+chi)  -- divT|_g_eff = 0
+
+================================================================================
+PART 4 -- foliation-invariant root cause: broken hypersurface-deformation algebra
+================================================================================
+  {H_perp,H_perp}~H_i (GR, first-class)  <=>  nabla_mu T^{mu nu}=0 identity (min. coupling).
+  Type-II: H_perp -> second-class C_M, deformation algebra BROKEN => no Bianchi closure.
+  Committed corroboration: 08_matter_consistency.py Gate 10 [3.2] already flags
+  'full 4D D_mu T^{mu nu}=0 is NOT an identity (preferred foliation)'.  This script
+  SHARPENS it: the defect is NEWTONIAN order (v/c)^0, not O(v^2/c^2), via lambda_M(eps_n).
+
+================================================================================
+VERDICT
+================================================================================
+  Q3: does the 4-AC Type-II structure keep nabla_mu T^{mu nu}=0 w.r.t. g?  --> NO (FAIL),
+  for a LOCAL (galactic) MOND modification; the DFMP 'consistent-from-the-outset' escape is
+  MOND-incompatible.  Chain (all certified above):
+
+  [0] IDENTITY (THEOREM):  {pi_N, H_can} = -(H_g + eps_n).  Minimal matter coupling puts the
+      matter energy density eps_n into this bracket irremovably (d/d eps_n = -1).
+
+  [1] The 2-DOF mechanism makes pi_N SECOND-CLASS (S_1), and {H_m,S_1}=-eps_n, {H_m,S_4}=(3/2)rho c^2
+      are matter-sourced: adding matter DISTURBS the constraint surface (unlike GR's first-class pi_N).
+
+  [2] DERIVATION:  the C_M multiplier lambda_M = -(Delta^{-1}r)_M depends on r_1 (d lambda_M/d r_1 != 0),
+      so lambda_M is DENSITY-SOURCED.  lambda_M=0 (the only matter-force-free option) forces the
+      content H_g+eps_n=0 -- i.e. REINSTATING the first-class Hamiltonian constraint, which is
+      NOT the 2-DOF second-class MMG (it is architecture A / AeST at 6+ DOF).  Baseline E=b=0
+      reproduces the committed lambda_M=-r_1/L_N and escape <=> r_1=0.
+
+  [3] COMPUTATION:  the lambda_M force enters matter EOM at (v/c)^0: a=-grad(Psi+X), and
+      nabla_mu T^{mu i}|_g = -rho D^i X != 0 (Newtonian order).  Conservation is recovered ONLY
+      w.r.t. an effective metric g_eff (lapse N+chi) -- a TWO-POTENTIAL/bimetric theory
+      (baseline: G_eff=2G doubling; lock-fork: deep-MOND repulsion).  Both committed as FAIL.
+
+  [4] INVARIANT ROOT CAUSE:  Type-II turns the first-class H_perp into the second-class C_M, so
+      the hypersurface-deformation algebra {H_perp,H_perp}~H_i does NOT close => the contracted
+      Bianchi identity that guarantees nabla_mu T^{mu nu}=0 in GR is absent.  Foliation-dependent.
+
+  EXTERNAL-INPUT (DFMP 2302.02090): their Type-II gets consistent matter coupling because GR is
+  RECOVERED LOCALLY -> H_perp_total -> 0 locally -> lambda_M -> 0 locally -> no local extra force.
+  A MOND theory is DEFINED by H_perp_total != 0 in the local galactic weak field, which forces
+  lambda_M != 0 there.  The DFMP escape and the MOND requirement are MUTUALLY EXCLUSIVE.
+
+  STATUS:  FAIL (w.r.t. g, Newtonian order) as a THEOREM for minimal coupling + second-class pi_N.
+  The only logically open door is a fine-tuned generic-lock r-cancellation (E,b != 0) that makes
+  lambda_M=0 WITHOUT imposing H_perp_total=0 -- OPEN, but nothing in the committed record realises
+  it, and it would additionally have to preserve MOND sourcing, gamma_PPN=1, and 2 DOF jointly.
+
+GATE RESULT: DERIVED -- FAIL (matter conservation w.r.t. g; two-potential escape only)

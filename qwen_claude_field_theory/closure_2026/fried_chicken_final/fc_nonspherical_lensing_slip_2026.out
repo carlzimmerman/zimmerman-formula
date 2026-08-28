@@ -1,0 +1,102 @@
+
+FC-FINAL (AeST + J_10) — NON-SPHERICAL LENSING CLOSURE.
+========================================================================================
+GOAL: upgrade the committed spherical statement "Phi=Psi, gamma_PPN=1" (fc8 weak_field gate
+was OPEN; the anchor lensing script asserted it) to a GENERAL, non-spherical DERIVATION with
+runnable certificates, then compute alpha_lens(b) and confront the committed KiDS anchor.
+
+FROZEN THEORY (FROZEN_CANDIDATE.md):
+  S = (c^3/16 pi Gt) INT sqrt(-g)[ R - (K_B/2) F^2 + 2(2-K_B) J^mu d_mu phi - (2-K_B) Y - F(Y,Q)
+        - lambda(A^2+1) ] + S_m[g,psi].
+  Q = A^mu d_mu phi ;  Y = (g^{mu nu}+A^mu A^nu) d_mu phi d_nu phi  (aether-orthogonal projection);
+  J^mu = A^nu nabla_nu A^mu (aether acceleration) ;  F(Y,Q) = F_Q*(Q) + a0^2 J_10(sqrt(Y)/a0).
+  MOND kernel FROZEN: mu_10(y)=y/(1+y^10)^(1/10);  F_Y = the kernel-carrying piece.
+
+WHAT MUST BE SHOWN (his brief): Phi = Psi (gamma_PPN=1) for an AXISYMMETRIC / generic weak source,
+not just the committed spherical case, and alpha_lens(b)=(2/c^2) INT grad_perp(Phi+Psi) dz vs GR(M_eff).
+
+HONESTY LABELS on every load-bearing line: THEOREM | DERIVATION | COMPUTATION | EXTERNAL-INPUT |
+MODEL-ASSUMPTION | OPEN | FAILED.  No inheritance-as-PASS.
+
+STRATEGY (the genuine, geometry-free reason AeST lenses correctly):
+  The gravitational SLIP (Phi-Psi) is sourced ONLY by the spatial off-diagonal (i!=j) field stress
+  T_ij (pressureless matter has none).  In AeST the scalar phi and the aether A_mu couple to the metric
+  ONLY (i) minimally through their stress-energy and (ii) derivatively (shift symmetry: only d_mu phi
+  appears, NO phi*R non-minimal term).  Therefore every field contribution to T_ij is a PRODUCT of two
+  first-order gradients => O(eps^2), where eps = |Phi| ~ (v/c)^2.  The LINEAR (lensing-order) ij
+  Einstein equation has NO field source, so partial_i partial_j (Psi-Phi)=0 => Phi=Psi at leading order,
+  for ARBITRARY (non-spherical) geometry.  The MOND kernel lives entirely inside the SCALAR EOM and the
+  effective source density (grad^2 phi); it is provably ABSENT from the slip equation.
+  Contrast Brans-Dicke/scalar-tensor: there phi couples to R (a LINEAR phi in the ij equation) => slip
+  at O(eps) => gamma!=1.  AeST's shift symmetry forbids exactly that term.  This is a HOST property.
+
+
+====================================================================================================
+PART 1 [DERIVATION, sympy] Linearized Einstein tensor for a GENERAL non-spherical static Newtonian-gauge metric -> the exact SLIP equation
+====================================================================================================
+  [PASS] 1a  G_xy (linear) = d_x d_y (Psi - Phi)  EXACTLY  (general non-spherical Phi,Psi)   G_xy - d_xd_y(Psi-Phi) = 0
+  [PASS] 1b  G_xz (linear) = d_x d_z (Psi - Phi)  EXACTLY
+  [PASS] 1c  G_yz (linear) = d_y d_z (Psi - Phi)  EXACTLY
+  [PASS] 1d  G_00 (linear) = 2 laplacian(Psi)  (Poisson lives in Psi; kernel enters HERE via the source)   G_00-2 lap Psi = 0
+  [info] 1e  DERIVATION: the SLIP is governed by  d_i d_j (Psi-Phi) = 8 pi Gt (T_ij^field)_{i!=j}.  Matter is pressureless => no matter off-diagonal stress.  So Phi=Psi  <=>  field off-diagonal stress vanishes at the SAME (linear) order as G_ij.  No spherical symmetry was used anywhere above.
+
+====================================================================================================
+PART 2 [DERIVATION, sympy] AeST field off-diagonal stress T_ij is O(eps^2): the MOND kernel and the aether are PROVABLY ABSENT from the linear-order slip equation, for arbitrary geometry
+====================================================================================================
+  [PASS] 2A.xy  T_xy^Y linear-in-eps coefficient = 0  (kernel F_Y carried, but at O(eps^2))   coeff(eps^1)=0
+  [PASS] 2A.xz  T_xz^Y linear-in-eps coefficient = 0  (kernel F_Y carried, but at O(eps^2))   coeff(eps^1)=0
+  [PASS] 2A.yz  T_yz^Y linear-in-eps coefficient = 0  (kernel F_Y carried, but at O(eps^2))   coeff(eps^1)=0
+  [info] 2A*  DERIVATION: the ENTIRE MOND kernel dependence of the off-diagonal stress sits in the prefactor -2[(2-K_B)+F_Y], multiplying (d_i ph)(d_j ph)=O(eps^2).  Hence the kernel (any admissible F_Y, including the frozen mu_10 J_10) cannot source slip at the lensing order.  KERNEL-INDEPENDENT.
+  [PASS] 2B.xy  T_xy^F(aether Maxwell) has ZERO O(eps^0)+O(eps^1) part -> pure O(eps^2)   eps^0=0, eps^1=0
+  [PASS] 2B.xz  T_xz^F(aether Maxwell) has ZERO O(eps^0)+O(eps^1) part -> pure O(eps^2)   eps^0=0, eps^1=0
+  [PASS] 2B.yz  T_yz^F(aether Maxwell) has ZERO O(eps^0)+O(eps^1) part -> pure O(eps^2)   eps^0=0, eps^1=0
+  [info] 2B*  DERIVATION: the aether Maxwell stress is quadratic in the field strength (electric ~ d Phi, magnetic ~ d a), hence O(eps^2) off-diagonal, whatever the spatial aether a_i does.  The 'vector is mandatory' (mechA) but it CANNOT slip the metric at leading order -- it enters at O(eps^2).
+  [PASS] 2C  mixing 2(2-K_B) J^mu d_mu phi : background-Q piece cancels by unit-norm identity J.A=0; remainder = O(eps^2).  Its metric-variation stress is therefore O(eps^2) as well   eps^0=0, eps^1=0
+  [info] 2C*  THEOREM (unit-norm identity): A^nu nabla_nu(A_mu A^mu)=0 => J^mu A_mu=0, so the ONLY term that could have been linear (the Q0-background * aether-acceleration) is identically zero.  This is the precise statement of the repo's 'the J.d phi term enters the (00) sector, not anisotropic stress'.
+  [PASS] 2D  Q-sector (K(Q), the dark-energy/condensate piece): g_mn*F is isotropic (no off-diagonal); the A_(m d_n)phi piece is O(eps^2) off-diagonal -> NO linear slip   (structural, labelled)
+
+  [order-count summary] Every AeST field contribution to the OFF-DIAGONAL spatial stress T_ij (i!=j) is O(eps^2).  The linear (lensing-order) ij Einstein equation therefore reads d_i d_j(Psi-Phi)=0 for a GENERIC non-spherical source => Phi=Psi.  The MOND kernel appears only in the prefactor of an O(eps^2) term and in the Poisson source (PART 1d), never in the slip.
+
+====================================================================================================
+PART 3 [DERIVATION+COMPUTATION] Slip bound and gamma_PPN, non-spherical, with numbers
+====================================================================================================
+  [info] 3  L* disk galaxy (rotation ~200 km/s): eps=|Phi|~(v/c)^2 = 4.45e-07  =>  |gamma_PPN-1| <~ O(eps) = 4.5e-07 (field anisotropic stress / metric source ratio).  Lensing needs gamma to ~10%: margin ~ 2e+05x.
+  [info] 3  galaxy cluster (~1000 km/s): eps=|Phi|~(v/c)^2 = 1.11e-05  =>  |gamma_PPN-1| <~ O(eps) = 1.1e-05 (field anisotropic stress / metric source ratio).  Lensing needs gamma to ~10%: margin ~ 9e+03x.
+  [info] 3*  DERIVATION verdict: Phi=Psi to leading PN order for ARBITRARY geometry; residual slip |gamma_PPN-1| = O((v/c)^2) ~ 1e-6 (galaxies) - 1e-5 (clusters), utterly negligible for lensing. This is the SAME order at which GR itself has gamma=1 for pressureless matter; AeST inherits it because the scalar/aether couple minimally & derivatively (NO phi*R).  Non-spherical, kernel-free.
+  [info] 3**  CONTRAST (why this is NOT vacuous): Brans-Dicke has a LINEAR phi*R term -> phi enters the ij equation at O(eps) -> gamma-1 = 1/(2+w_BD) = O(1).  AeST's shift symmetry FORBIDS that term. The distinction is a HOST property, tested here, not assumed.
+
+====================================================================================================
+PART 4 [COMPUTATION] alpha_lens(b) for an AXISYMMETRIC (non-spherical) source vs GR(M_eff); and reproduce the committed spherical KiDS M24 anchor chi2/dof
+====================================================================================================
+  [info] 4a  axisymmetric exponential disk (Md=6e10 Msun, Rd=3 kpc): lensing deflection alpha(b)=4G M_dyn/(c^2 b) uses the SAME g_obs (mu_10) that sets rotation; alpha/alpha_baryon = M_dyn/M_bar boost:
+  [info]     R=  0.3 kpc  g_bar=1.22e-10  g_obs=1.22e-10  M_bar=7.85e+07  M_dyn=7.91e+07  boost=1.01  alpha=5.05e-08 rad
+  [info]     R=  8.4 kpc  g_bar=1.23e-10  g_obs=1.24e-10  M_bar=6.19e+10  M_dyn=6.23e+10  boost=1.01  alpha=1.42e-06 rad
+  [info]     R= 16.4 kpc  g_bar=3.66e-11  g_obs=5.86e-11  M_bar=7.11e+10  M_dyn=1.14e+11  boost=1.60  alpha=1.32e-06 rad
+  [info]     R= 24.5 kpc  g_bar=1.52e-11  g_obs=3.78e-11  M_bar=6.57e+10  M_dyn=1.63e+11  boost=2.48  alpha=1.27e-06 rad
+  [info]     R= 32.6 kpc  g_bar=8.25e-12  g_obs=2.78e-11  M_bar=6.29e+10  M_dyn=2.12e+11  boost=3.37  alpha=1.24e-06 rad
+  [PASS] 4b  deflection boost = M_dyn/M_bar >= 1 and grows outward (deep-MOND) -- the lensing 'phantom' is the SAME missing mass dynamics infers; no independent dark-lensing scale (gamma=1 consequence)   boost range 1.00-4.17
+  [info] 4c  committed KiDS-1000 M24 weak-lensing RAR anchor, mu_10 @canonical a0=9.3619e-11: chi2=8.960, chi2/dof=0.640
+  [PASS] 4d  ANCHOR REPRODUCED: chi2/dof = 0.64 (matches committed fc_lensing_rar_mu10_2026.py). Because Phi=Psi (Parts 1-3), THIS SAME weak-lensing curve is the dynamical RAR -> the architecture lenses correctly is now a DERIVED statement for non-spherical sources, not an assertion.   0.640
+
+====================================================================================================
+VERDICT
+====================================================================================================
+  checks run: 14   failed: 0
+
+  RESULT [DERIVATION]: for the FROZEN AeST+J_10 theory and a GENERIC (non-spherical, e.g. axisymmetric
+  disk / cluster) weak static source:
+    * The exact linear ij Einstein slip equation is  d_i d_j (Psi-Phi) = 8 pi Gt (T_ij)_{i!=j}   [PART 1].
+    * Every AeST field contribution to the off-diagonal stress T_ij is O(eps^2), for ANY admissible MOND
+      kernel F_Y and ANY spatial aether a_i  [PART 2: 2A scalar, 2B aether Maxwell, 2C mixing via the
+      unit-norm identity J.A=0, 2D isotropic Q-sector].  => the kernel and the vector are PROVABLY ABSENT
+      from the leading slip.
+    * Hence  Phi = Psi  to leading PN order, |gamma_PPN-1| = O((v/c)^2) ~ 1e-6 (galaxies)  [PART 3],
+      NON-SPHERICAL and KERNEL-INDEPENDENT.  (Contrast: Brans-Dicke's phi*R gives O(1) slip -- forbidden
+      here by shift symmetry: a HOST property, not an inheritance.)
+    * Consequently alpha_lens(b)=(4/c^2) INT grad_perp Phi dz with Phi the modified-Poisson potential;
+      the weak-lensing deflection uses the SAME g_obs=mu_10-dynamical acceleration -> lensing mass =
+      dynamical mass  [PART 4a/4b], and the committed KiDS M24 anchor chi2/dof=0.64 is reproduced [4c/4d].
+  CLASSIFICATION of the residual: HOST (leading-order no-slip is a property of AeST's minimal+derivative
+  coupling, shared by any admissible kernel).  KERNEL enters ONLY the Poisson source and an O(eps^2) term.
+  HONEST SCOPE: leading PN order (the lensing-relevant order).  A full O(eps^2) slip computation and the
+  fully covariant nonlinear BVP remain the standing OPEN completeness items (fc8 spherical_fc8.py G4).
