@@ -15,18 +15,18 @@ P("="*94); P("G2  FC-8R PPN"); P("="*94)
 y = sp.symbols('y', positive=True)
 one_minus_mu = sp.series(1 - y/(1+y**10)**sp.Rational(1,10), y, sp.oo, 3)
 P(f"  context: 1 - mu10(y) = {one_minus_mu}  (y=g/a0 >> 1 at 1 AU) => MOND term ~ (a0/g)^10, negligible.")
-P("  => the FC-8R 1PN metric is dominated by the AeST baseline + the constant background a0=sqrt(kappa^2 G V0).")
-P("  BUT per REQUIREMENTS.md: 'A statement inherited from ordinary AeST is NOT an FC-8R PASS.' The AeST")
-P("  preferred-frame sector (alpha_1,alpha_2) is nonzero in general and must be DERIVED for FC-8R, not")
-P("  imported. The chi background (chi=chi0, chi-dot cosmological) may enter alpha_2 via the frame; unproven.")
+P("  => the FC-FINAL 1PN metric is dominated by the AeST baseline + the modified F(Y,Q) with CONSTANT a0.")
+P("  BUT per REQUIREMENTS.md: 'A statement inherited from ordinary AeST is NOT an FC-FINAL PASS.' The AeST")
+P("  preferred-frame sector (alpha_1,alpha_2) is nonzero in general and must be DERIVED for the MODIFIED")
+P("  free function F=F_Q^star+a0^2 J10(sqrt Y/a0), not imported. (No sigma in FC-FINAL: a0 is a constant.)")
 
 P("\n  [OPEN] Required and NOT done here:")
-for s in ["Derive the FC-8R 1PN metric (Phi,Psi,phi,A_0,A_i,chi) directly from delta S_FC8R = 0.",
-          "Map FC-8R -> Einstein-aether parameters (c_1..c_4) EXPLICITLY; only then may EA PPN formulas be used.",
+for s in ["Derive the FC-FINAL 1PN metric (Phi,Psi,phi,A_0,A_i) directly from delta S_FINAL = 0.",
+          "Map FC-FINAL -> Einstein-aether parameters (c_1..c_4) EXPLICITLY; only then may EA PPN formulas be used.",
           "Extract gamma,beta,alpha_1,alpha_2,alpha_3,xi,zeta_1..4 from the mapped/derived metric.",
-          "Scan {K_B,K2,Q0,mu,V0,m_chi} healthy space; per point print alpha_1,alpha_2,beta-1,gamma-1,c_T^2-1,",
+          "Scan {K_B,K2,Q0,mu,a0} healthy space; per point print alpha_1,alpha_2,beta-1,gamma-1,c_T^2-1,",
           "  all scalar/vector kinetic eigenvalues, all propagation speeds.",
-          "Confront GW170817 (c_13~1e-15) and 2026 strong-field pulsar preferred-frame bounds NON-parametrically."]:
+          "Require |alpha_1|<1e-4, |alpha_2|<1e-7; confront GW170817 (c_13~1e-15) NON-parametrically."]:
     P(f"         - {s}")
 P("\n  DISCIPLINE: do NOT report 'PPN PASS' by inheriting AeST. Do NOT add a PPN counterterm. OPEN stays OPEN.")
 P("\n"+"="*94); P("G2 STATUS: OPEN.")

@@ -38,47 +38,50 @@ If a required gate fails, report **FAIL**. If a gate cannot be evaluated from th
 
 ---
 
-## The gates
+## The gates (FC-FINAL: constant a₀, fields g,A,φ — no σ)
 
-### G0 — Symbolic audit (`fc8_symbolic_audit.py`)  [runnable now]
-Prove `μ_10(y)=y+O(y¹¹)`, `J_10(x)=x³/3+O(x¹³)`, and `δ²S_MOND^R=0` on `Y=0, χ=χ₀`. **Fail the script if a
-quadratic `χ̇²`, tensor, or scalar kinetic term appears** from the MOND sector. Verify the exact-elimination
-validity (`V(χ)>0` global) and that `𝒜(χ)=κ²GV` carries no `χ̇`/`∇χ`.
+### Gate 0 — Symbolic audit (`fc8_symbolic_audit.py`)  [runnable now]
+Prove `μ_10(y)=y+O(y¹¹)`, `J_10(x)=x³/3+O(x¹³)`, `𝓕_M=a₀²J₁₀=O(Y^{3/2})` ⇒ **δ²S_MOND=0** on `Y=0`, plus
+the MOND law / BTFR / Solar-System suppression. **Fail the script if a quadratic MOND kinetic (tensor or
+scalar) term appears** on the vacuum.
 
-### G1 — Full nonlinear Dirac rank (`dirac_fc8.py`)  [attack FIRST]
-Full 3+1 decomposition of FC-8R. Do **not** count DOF from field names. Construct: all canonical momenta;
-all primary constraints; total Hamiltonian; preservation equations; all secondary/tertiary constraints;
-the complete Poisson-bracket matrix; its rank on the generic branch — **explicitly including `π_χ`**. Then
-`N_phys=(N_phase−2N_first−N_second)/2`. Repeat on branches: (a) generic; (b) `a₀→0` / `V→0` boundary;
-(c) `Y→0`; (d) homogeneous FLRW; (e) static spherical. First failure terminates that branch. Target
-`N_phys=7`; **7 is a target, not a theorem** until the matrix rank is printed.
+### Gate A — Hamiltonian rank (`dirac_fc8.py`)  [attack FIRST]
+Take the known AeST 3+1 system and replace **only** `𝓕(Y,Q)→𝓕_Q^★(Q)+a₀²J₁₀(√Y/a₀)`. Recompute all
+momenta, primary/secondary/tertiary constraints, the complete Poisson-bracket matrix, and its rank on
+the regular branch. Do **not** count DOF from field names. `N_phys=(N_phase−2N_first−N_second)/2`. Repeat
+on branches: (a) generic Y≠0; (b) `Y→0`; (c) homogeneous FLRW; (d) static spherical. Target **N_phys=6**
+(the established AeST count, IF the modified `𝓕` preserves the 4-first/4-second-class degeneracy). First
+failure terminates that branch; 6 is a target until the rank is printed.
 
-### G2 — PPN (`ppn_fc8.py`)
-**DERIVE** the FC-8R 1PN metric directly from the FC-8R action; map into the PPN gauge; extract
-`γ, β, α₁, α₂, α₃, ξ, ζ₁, ζ₂, ζ₃, ζ₄`. **Do not import Einstein-aether PPN formulas unless the FC-8R→EA
-parameter map is derived explicitly.** Search the healthy parameter space only after deriving the map. For
-every surviving point report `K_B, λ_s, 𝒦₂, μ, V₀, m_χ, α₁, α₂, β−1, γ−1, c_T²−1`, all scalar/vector
-kinetic eigenvalues, all propagation speeds. (Context: GW170817 bounds EA `c₁₃~10⁻¹⁵`, 1802.04303; 2026
-strong-field pulsar preferred-frame bounds — treat non-parametrically.)
+### Gate B — Tensor (`ppn_fc8.py`/dedicated)
+Derive the TT quadratic action of FC-FINAL; require `Q_T>0` and `c_T²=1` (AeST designed for `c_GW=c_EM`,
+PRL 127.161302 — but re-derive with the modified `𝓕`, do not inherit).
 
-### G3 — Weak field / slip (`weak_field_fc8.py`)
-Expand `Φ,Ψ,φ,A_0,A_i,χ` consistently and **compute `Φ−Ψ`**. Three outputs only: **PASS** `Φ−Ψ=0` from the
-traceless field equation; **PARTIAL** `Φ−Ψ` nonzero but bounded by an explicit expression; **FAIL** an
-unavoidable O(1) slip. No "AeST normally has Φ=Ψ, therefore PASS."
+### Gate C — PPN (`ppn_fc8.py`)
+**DERIVE** the FC-FINAL 1PN metric from the action; map to PPN gauge; extract `γ, β, α₁, α₂, α₃`. **No
+imported Einstein-aether formula unless the FC-FINAL→EA field-redefinition/parameter map is demonstrated.**
+Require `|α₁|<10⁻⁴`, `|α₂|<10⁻⁷` (Living Rev. Relativity 27:5). Per surviving point report
+`K_B, 𝒦₂, μ, a₀, α₁, α₂, β−1, γ−1, c_T²−1`, all kinetic eigenvalues, all speeds.
 
-### G4 — Nonlinear spherical + IR (`spherical_fc8.py`)
-For `ds²=−e^{2Φ(r)}dt²+e^{2Λ(r)}dr²+r²dΩ²`, solve simultaneously `Φ,Λ,A_t,A_r,φ,χ`. Test whether the
-physical acceleration satisfies `g_N=g²/(g^{10}+a₀^{10})^{1/10}` and whether `Φ=Ψ` comes out of the
-**solution** (not the ansatz). Compute the IR crossover `r_C~(r_M μ^{−2})^{1/3}` and report `r_C/r_galaxy`
-(do not merely "take μ small"); the oscillatory-onset-beyond-virial condition ⇒ `μ⁻¹≳Mpc` is a falsifiable
-constraint, not an assumption.
+### Gate D — Full spherical incl. `m_×` (`spherical_fc8.py`)
+For `ds²=−e^{2Φ(r)}dt²+e^{2Λ(r)}dr²+r²dΩ²`, solve the full quasistatic `Φ,Λ,A_t,A_r,φ` **without assuming
+the vector vanishes** (the `m_×` scale, PRD 110.024062). Test whether `g_N=g²/(g^{10}+a₀^{10})^{1/10}`
+comes from the **solution** (with metric/aether backreaction), not the ansatz.
 
-### G5 — FLRW perturbations / growth (`flrw_fc8.py`)
-At `χ=χ₀, a₀²=κ²GV₀` derive the full quadratic scalar system. Require `K_i>0` and `c_i²≥0` for **every
-propagating mode**, and check the **nondynamical** mode separately (AeST has a nonpropagating mode whose
-Hamiltonian sign depends on wavelength, transition at `k_*`; do not report only propagating dispersion
-relations). Also answer the cosmological question: does the solution remain potential-dominated enough
-(`χ̇²≪V`) that `a₀(z)` behaves acceptably?
+### Gate E — Lensing (`weak_field_fc8.py`)
+Compute `Φ−Ψ` from the nonlinear field equations. Three outputs only: **PASS** `Φ−Ψ=0` from the traceless
+equation; **PARTIAL** nonzero but explicitly bounded; **FAIL** unavoidable O(1) slip. No "AeST normally has
+Φ=Ψ, therefore PASS."
+
+### Gate F — Infrared (`spherical_fc8.py`)
+Compute `r_C~(r_M μ^{−2})^{1/3}` and require `r_C ≫ r_{gal,test}` (oscillatory onset beyond the tested
+galactic domain ⇒ `μ⁻¹≳Mpc`, a falsifiable constraint — not "take μ small").
+
+### Gate G — Cosmology (`flrw_fc8.py`)
+Use `𝓕_Q^★(Q)` to reproduce the established AeST cosmological behavior (CMB + matter power at linear
+scales for suitable K(Q)); do **not** make a₀ responsible for dark energy. Derive the full quadratic
+FLRW system; require `K_i>0`, `c_i²≥0` for every propagating mode, and check the **nondynamical** mode
+separately (AeST low-k mode, sign flips at `k_*`, 2109.13287 — do not report only propagating dispersions).
 
 ---
 

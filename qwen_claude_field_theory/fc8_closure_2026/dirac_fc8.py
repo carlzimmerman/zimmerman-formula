@@ -1,47 +1,42 @@
 """
-G1 — FC-8R FULL NONLINEAR DIRAC RANK.  Status: PARTIAL (perturbative PASS) + OPEN (full nonlinear).
-====================================================================================================
-REQUIREMENT (REQUIREMENTS.md G1): full 3+1 decomposition; all momenta (incl. pi_chi); primary/secondary/
-tertiary constraints; complete Poisson matrix; rank on branches (a) generic (b) a0->0/V->0 (c) Y->0
-(d) FLRW (e) static spherical. N_phys=(N_phase-2N_first-N_second)/2. 7 is a TARGET, not a theorem, until
-the matrix rank is printed. First failure terminates that branch. NO DOF count from field names.
+Gate A — FC-FINAL HAMILTONIAN RANK.  Status: PARTIAL (kinetic-sector PASS) + OPEN (full nonlinear rank).
+========================================================================================================
+REQUIREMENT: take the known AeST 3+1 system and replace ONLY F(Y,Q) -> F_Q^star(Q) + a0^2 J10(sqrt Y/a0),
+a0 CONSTANT (no sigma). Recompute momenta, all constraints, the complete Poisson matrix, its rank on the
+regular branch. Target N_phys = 6 (established AeST count) IFF the modified F preserves the 4-first/4-second
+-class degeneracy. Do NOT count DOF from field names. First failure terminates the branch.
 
-WHAT THIS SCRIPT DERIVES NOW (the perturbative / velocity-Hessian half — a genuine sub-result):
-Because FC-8R has NO auxiliary alpha,zeta (eliminated exactly) and the reduced MOND term
-A(chi) J10(sqrt Y/sqrt A) has A=kappa^2 G V(chi) depending on chi (not chi-dot) and no grad-chi, the new
-canonical pair is exactly (chi,pi_chi) with an ordinary momentum, and the velocity (kinetic) Hessian is
-block-diagonal: diag(H_AeST, 1).  This is the perturbative evidence for N_phys=6+1=7, NOT the full rank.
+WHAT THIS SCRIPT DERIVES NOW (a genuine sub-result): the modification is a function of Y ONLY (a0 constant),
+and Y = (g+AA)grad phi grad phi carries NO phi-dot (aether-orthogonal projector). So the MOND term
+contributes ZERO to every velocity (kinetic) Hessian entry => it does NOT add a propagating mode and does
+NOT change the AeST kinetic-sector rank. FC-FINAL adds no field => target N_phys = 6, not 7.
 """
 import sympy as sp
 P = print
-P("="*94); P("G1  FC-8R Dirac rank"); P("="*94)
+P("="*94); P("Gate A  FC-FINAL Hamiltonian rank"); P("="*94)
 
-# ---- derivable: the reduced MOND term adds no chi-kinetic => velocity Hessian block-diagonal ----
-Y, chid, chix, kap, G, V = sp.symbols('Y chidot chi_x kappa G V', positive=True)
-A = kap**2*G*V                               # A(chi): depends on chi, NOT chi-dot, no grad-chi
-L_M = A*(sp.sqrt(Y)/sp.sqrt(A))**3/3         # reduced MOND, leading J10=x^3/3
-pichi_MOND = sp.simplify(sp.diff(L_M, chid)) # MOND contribution to pi_chi
-Hcc = sp.simplify(sp.diff(L_M, chid, 2))     # MOND contribution to velocity Hessian entry chi-chi
-Hcg = sp.simplify(sp.diff(L_M, chid, chix))  # chi-phi(grad) mixing in velocity sector
-print(f"  reduced MOND pi_chi contribution d L_M/d chidot         = {pichi_MOND}")
-print(f"  reduced MOND velocity-Hessian H_chichi = d^2 L_M/dchidot^2 = {Hcc}")
-print(f"  reduced MOND velocity-Hessian H_chi,gradchi              = {Hcg}")
-block = (pichi_MOND == 0) and (Hcc == 0) and (Hcg == 0)
-print(f"\n  [PASS] velocity Hessian is block-diagonal diag(H_AeST, 1): MOND adds nothing to the kinetic")
-print(f"         sector => (chi,pi_chi) is one ordinary canonical pair. Perturbative N_phys = 6+1 = 7.")
-print(f"         (established: fc8_clean_lock_2026.py, fc7_reduced_action_rank_2026.py)")
+# derivable: F_M = a0^2 J10(sqrt Y/a0) has no time derivative => zero velocity-Hessian contribution
+N, h1, h2, h3, pt, px, a0, Y = sp.symbols('N h1 h2 h3 phi_t phi_x a0 Y', real=True, positive=True)
+ginv = sp.diag(-1/N**2, 1/h1, 1/h2, 1/h3); Aup = sp.Matrix([1/N,0,0,0])
+Ycal = (sp.Matrix([pt,px,0,0]).T*(ginv+Aup*Aup.T)*sp.Matrix([pt,px,0,0]))[0]
+F_M = a0**2*(sp.sqrt(Ycal)/a0)**3/3
+print(f"  Y (aether-orthogonal) = {sp.simplify(Ycal)}  => dY/dphi_t = {sp.simplify(sp.diff(Ycal,pt))}")
+print(f"  d F_M / d phi_t = {sp.simplify(sp.diff(F_M, pt))}  (no phi-dot => zero velocity-Hessian entry)")
+print(f"\n  [PASS] kinetic sector: the modification adds NO velocity-Hessian contribution and NO new field.")
+print(f"         => it cannot add a propagating mode; target N_phys = 6 (the AeST count). No '6+1' inflation.")
+print(f"         (established: fc7_reduced_action_rank_2026.py projector result)")
 
 P("\n"+"-"*94)
-P("  [OPEN] FULL NONLINEAR RANK — NOT derived here (no shortcut). Required, per branch:")
-for b in ["(a) generic Y!=0, chi rolling", "(b) a0->0 / V->0 boundary (note V>=V0>0 => interior only)",
-          "(c) Y->0", "(d) homogeneous FLRW", "(e) static spherical"]:
-    P(f"         - {b}: construct full 3+1 momenta (incl pi_chi), all constraints, the Poisson matrix,")
-    P(f"           print its rank; confirm the K(Q)+MOND coupling does not spoil the AeST 4 first + 4")
-    P(f"           second-class structure. First FAIL terminates the branch.")
-P("         The velocity-Hessian block-diagonality above bounds the KINETIC sector only; the full")
-P("         constraint rank (gradient/mass sector + AeST aether constraints + the A(chi)-J10 coupling)")
-P("         is the genuine open computation. DO NOT report N_phys=7 as PASS until the rank is printed.")
-
+P("  [OPEN] FULL NONLINEAR RANK — NOT derived here (no shortcut). Required:")
+for s in ["Take the AeST 3+1 constraint system (4 first-class + 4 second-class, PRD 110.044015).",
+          "Replace F(Y,Q) -> F_Q^star(Q) + a0^2 J10(sqrt Y/a0) and RE-DERIVE all constraints + the",
+          "  complete Poisson-bracket matrix (the modification enters the CONSTRAINT/gradient sector via",
+          "  the Y-dependence of F_Y = a0^2 J10'/(2 sqrt Y), even though it is kinetically inert).",
+          "Print rank on branches (a) generic Y!=0 (b) Y->0 (c) FLRW (d) static spherical.",
+          "Confirm the modified F preserves the degeneracy that gives 4-first/4-second-class => N_phys=6.",
+          "The key risk: a Y-dependent F_Y can change the second-class pair structure at Y->0 (the deep-MOND",
+          "  zero-acceleration locus) or on the static spherical branch. DO NOT report N_phys=6 until printed."]:
+    P(f"         - {s}")
 P("\n"+"="*94)
-P("G1 STATUS: PARTIAL — perturbative velocity-Hessian PASS (block-diagonal, chi ordinary); full")
-P("nonlinear Poisson rank OPEN on all five branches. This is a TARGET N_phys=7, not a theorem.")
+P("Gate A STATUS: PARTIAL — kinetic-sector PASS (modification adds no velocity-Hessian entry, no new field,")
+P("target N_phys=6); full nonlinear constraint rank OPEN on all branches. 6 is a TARGET, not a theorem.")

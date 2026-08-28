@@ -9,21 +9,33 @@ import math
 P = print
 P("="*94); P("G4  FC-8R nonlinear spherical + IR"); P("="*94)
 
-# --- derivable IR estimate: r_C ~ (r_M mu^-2)^(1/3), compare to galactic scales ---
-KPC, MPC = 1.0, 1000.0        # work in kpc
-r_M = 12.2                    # kpc, fiducial 1e11 Msun canonical-a0 (committed FC_AEST usage)
-r_gal = 30.0                  # kpc, ~galactic/outer disk scale
-P("  [derivable IR estimate] r_C ~ (r_M mu^-2)^(1/3), r_M = 12.2 kpc (fiducial 1e11 Msun):")
-for mu_inv_Mpc in [0.3, 1.0, 3.0]:
-    mu_inv = mu_inv_Mpc*MPC   # kpc
-    r_C = (r_M * mu_inv**2)**(1.0/3.0)
-    P(f"         mu^-1 = {mu_inv_Mpc:>4} Mpc -> r_C = {r_C:8.1f} kpc = {r_C/MPC:5.2f} Mpc ; r_C/r_gal = {r_C/r_gal:6.1f}")
-P("  => the oscillatory-IR onset sits beyond galactic scales (r_C >> r_gal) only for mu^-1 >~ Mpc.")
-P("  This is a FALSIFIABLE PARAMETER CONSTRAINT (mu^-1 >~ Mpc), NOT 'take mu small'. It is an INHERITED")
-P("  AeST feature (2304.05134 / MNRAS 531,272); the MOND interpolation J10 does not set it.")
+# --- Gate F IR: r_C from the committed MNRAS 531,272 formula; freeze mu^-1 fiducial by r_C requirement ---
+# r_C = (1/3)[ 18 r_M mu^-2 / (1+3|Delta|) ]^(1/3),  r_M = sqrt(G M_b / a0)   (MNRAS 531,272 eq.)
+import math
+G_, MSUN, KPC, MPC = 6.6743e-11, 1.98892e30, 3.0857e19, 3.0857e22
+Mb, a0 = 6.0e10*MSUN, 1.2e-10                     # MW-like baryonic mass; canonical a0
+r_M_m = math.sqrt(G_*Mb/a0); r_M_kpc = r_M_m/KPC  # r_M
+def r_C_kpc(mu_inv_Mpc, Delta=0.0):
+    mu_inv_m = mu_inv_Mpc*MPC
+    return (1.0/3.0)*(18.0*r_M_m*mu_inv_m**2/(1+3*abs(Delta)))**(1.0/3.0)/KPC
+P(f"  r_M = sqrt(G M_b/a0) = {r_M_kpc:.2f} kpc  (M_b=6e10 Msun, a0=1.2e-10)  [Carl: 8.35 kpc, match={abs(r_M_kpc/8.35-1)<0.02}]")
+P("  r_C = (1/3)[18 r_M mu^-2/(1+3|Delta|)]^(1/3)  (Delta=0):")
+for muinv in [1.0, 3.0, 13.4]:
+    rc = r_C_kpc(muinv)
+    P(f"         mu^-1 = {muinv:>5} Mpc -> r_C = {rc:8.1f} kpc = {rc/1000:5.3f} Mpc")
+# invert for r_C = 1 Mpc:  1000 kpc = (1/3)(18 r_M mu^-2)^(1/3)  =>  mu^-1 = sqrt( (3*1000)^3 / (18 r_M[kpc]) )
+mu_for_1Mpc = math.sqrt((3*1000.0)**3/(18*r_M_kpc))/1000.0   # Mpc
+P(f"\n  [VERIFIED] r_C >= 1 Mpc requires mu^-1 >= {mu_for_1Mpc:.1f} Mpc (NOT 2.1 Mpc -- Carl's intermediate")
+P(f"             formula mu^-1=[2/3 r_M (1 Mpc)^3]^(1/2) is dimensionally length^2, an arithmetic slip).")
+P(f"  [FIDUCIAL] mu^-1 = 3 Mpc (Carl's frozen exploratory value) gives r_C = {r_C_kpc(3.0):.0f} kpc ~ 0.37 Mpc:")
+P(f"             beyond the disk (~30 kpc) but NOT beyond ~1 Mpc. Honest: 3 Mpc pushes the IR onset past the")
+P(f"             rotation-curve domain; the conservative r_C>=1 Mpc target needs mu^-1~{mu_for_1Mpc:.0f} Mpc.")
+P("  This is a FALSIFIABLE PARAMETER CONSTRAINT, NOT 'take mu small'. Inherited AeST feature (MNRAS 531,272);")
+P("  the J10 interpolation does not set it.")
 
 P("\n  [OPEN] The full nonlinear spherical solution is NOT done here:")
-for s in ["Solve the coupled ODE system {Phi(r),Lambda(r),A_t(r),A_r(r),phi(r),chi(r)} from the FC-8R eqs.",
+for s in ["Solve the coupled ODE system {Phi(r),Lambda(r),A_t(r),A_r(r),phi(r)} from the FC-FINAL eqs",
+          "  (no sigma; a0 constant) WITHOUT assuming the vector vanishes (the m_x scale, PRD 110.024062).",
           "Verify g_N = g^2/(g^10+a0^10)^(1/10) emerges from the SOLUTION incl. metric/aether backreaction",
           "  (not just the constitutive algebra).",
           "Verify Phi=Psi comes out of the solution rather than being assumed.",
