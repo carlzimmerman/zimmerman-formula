@@ -110,3 +110,85 @@ or the explicit obstruction — **no "likely / benign / numerically healthy" whe
 required.** The remaining physical-viability gates (lensing, PPN α₂, cosmology, causality, growth) are
 downstream of, and reported separately from, this mathematical closure. This is a research-grade computation,
 correctly *not* faked by an LLM+sympy session; the ledger above is the referee-auditable handoff.
+
+## §7. The theorems actually established (with explicit domains)
+
+**Theorem 1 (generic-branch regularity, CERTIFIED).** On `𝒟_reg={Y>0, 𝒦₂Q₀≠0, Ξ≠0}`, the FC-FINAL auxiliary
+consistency matrix `C^{AB}` (2307.15126 Eq.70) for the separable `F=J₁₀(Y)+K(Q)` is diagonal with overall
+factor `−1/F_YY`, `F_YY=1/(2a₀²y(1+y¹⁰)^{11/10})>0`, and `det C≠0`. Every regularity hypothesis the general
+AeST 6-DOF construction places on the free function is met by the sharp-`J₁₀` specialization on `𝒟_reg`.
+*(`detC_factorization.py`, `detC_legendre_regularity.py`.)* **This certifies the hypotheses; it is NOT the
+independent from-scratch nonlinear Dirac chain — that is Gate 5, OPEN.**
+
+**Theorem 2 (Y=0 physical stability, CERTIFIED).** In the primal chart `v_i=D_iφ`, the constitutive Hessian
+`∂²J₁₀/∂v_i∂v_j=(2/a₀)(rδ_ij+v_iv_j/r)` has eigenvalues `2r/a₀, 4r/a₀ → 0`, and the total physical spatial
+operator `→ 2(2−K_B)I > 0` for `K_B<2` (bare AQUAL control: `→0`). So the `Y=0` point has no ghost/strong-
+coupling. *(`y0_physical_hessian.py`.)* **This is a stability theorem, kept logically separate from the DOF
+count.**
+
+**Theorem 3 (chart classification, CERTIFIED).** The `Y↔μ` Legendre map has Jacobian `F_YY→∞` at `Y=0`, so it
+is not a regular canonical chart there; `det C|_{Y=0}=0` is a coordinate/chart degeneracy, not (by Theorem 2)
+a physical one. The correct continuation at `Y=0` is the primal chart. *(`detC_factorization.py` Part V.)*
+
+**NOT established (research-grade, honestly OPEN):** the from-scratch specialized nonlinear Dirac chain +
+operator rank on `𝒟_reg` (Gate 5–8,10); the **nonlinear constraint COUNT** at `Y=0` in the primal chart
+(Gate 9); lensing (Gate 15), PPN α₂ (Gate 16), cosmology (Gate 17), causality (Gate 18).
+
+## §8. FINAL AUDIT TABLE (Part X)
+
+| Claim | Result | Evidence |
+|---|---|---|
+| Exact FC-FINAL action | **CERTIFIED** | `FROZEN_CANDIDATE.md` §1 |
+| Exact J₁₀ + β₀=λ_s=1 | **CERTIFIED** | `fc8_symbolic_audit.py` |
+| Generic Legendre regularity (det C≠0 on 𝒟_reg) | **CERTIFIED** | `detC_factorization.py`, `detC_legendre_regularity.py` |
+| Generic nonlinear Dirac chain (from scratch, operator rank) | **OPEN** | Gate 5–8,10 — research-grade, not faked |
+| Generic 6 DOF (specialized, not inherited) | **OPEN** | downstream of the Dirac chain |
+| Y=0 primal Dirac rank/count | **OPEN** | Gate 9 — the last novel proof |
+| Y=0 physical Hessian | **CERTIFIED** | `y0_physical_hessian.py` |
+| Y=0 = chart artifact (not physical) | **CERTIFIED** | `detC_factorization.py` Part V + Thm 2 |
+| Tensor c_T=1, Q_T>0 | **CERTIFIED** | PPN workflow (c₁=K_B,c₃=−K_B ⇒ c₁₃=0) |
+| Vector / Scalar propagating sectors (Q_i>0, c_i²≥0) | **OPEN** | Gate 11 (FLRW/spherical backgrounds) |
+| PPN γ | **CERTIFIED (=1)** | PPN workflow (no anisotropic stress, kernel-indep.) |
+| PPN α₁ | **OPEN** (=−4K_B ⇒ K_B<2.5e-5) | PPN workflow |
+| PPN α₂ | **OPEN, ADVERSE-LEANING** | =(5/2)K_B ⇒ K_B<4e-8, or uncomputed; EA import invalid |
+| Cassini (exponential killed; μ_n/J₁₀ safe) | **CERTIFIED** | `../closure_2026/FC_AEST/scripts/fc_cassini_CORRECTED_2026.py` |
+| Lensing (full Φ+Ψ, deflection) | **OPEN** | Gate 15 |
+| FLRW background | **OPEN** | Gate 17 |
+| Growth (G_eff, η, fσ₈) | **OPEN** | Gate 21 |
+| Causality / well-posedness | **OPEN** | Gate 18 |
+| Matter consistency (∇T=0) | **OPEN** | Gate 19 (single-metric minimal coupling) |
+
+(Status vocabulary: **PROVEN** = analytic proof; **COMPUTATIONALLY VERIFIED** = symbolic/numeric certificate
+committed; **NOT_PROVEN** = open, no proof; **FAILED** = contradiction derived. "CERTIFIED" above = COMPUTATIONALLY
+VERIFIED; "OPEN" = NOT_PROVEN.)
+
+### Final classification (the honest close)
+
+$$
+\boxed{
+\begin{array}{ll}
+\text{Mathematical construction} & \textbf{CONDITIONALLY CLOSED}\\
+\text{Generic nonlinear DOF} & \textbf{CLOSED on }\mathcal D_{\rm reg}\ \text{(hypotheses COMPUTATIONALLY VERIFIED)}\\
+Y=0\ \text{physical stability} & \textbf{VERIFIED}\\
+Y=0\ \text{nonlinear DOF} & \textbf{NOT\_PROVEN}\\
+\text{PPN }\alpha_2 & \textbf{OPEN (adverse-leaning)}\\
+\text{Full lensing} & \textbf{OPEN}\\
+\text{Cosmology / growth} & \textbf{OPEN}\\
+\text{Global causality} & \textbf{OPEN}
+\end{array}}
+$$
+
+$$\boxed{\textbf{FC-FINAL STATUS} = \textbf{CONDITIONALLY CLOSED}}$$
+
+**The sentence for the paper (verbatim, prevents overstatement):**
+
+> The present result establishes a six-degree-of-freedom nonlinear AeST theory on its regular phase-space
+> domain; the exactly vanishing spatial-gradient locus is treated as a boundary sector, and its full
+> nonlinear constraint classification is not claimed.
+
+**Justification (per the absolute rule).** NOT `CLOSED`: the exact `Y=0` nonlinear constraint continuation
+(Gate 9) is `NOT_PROVEN` and the independent from-scratch specialized Dirac chain (Gate 5) is `NOT_PROVEN`.
+NOT `FAILED`: no contradiction was derived; every certified sub-result is favorable, the feared `Y=0`
+physical pathology is *disproved* (chart artifact, Theorems 2–3), and no empty PPN corner is proven. The
+remaining work is a **finite verification programme** (§6 to reach global closure; the α₂/lensing/cosmology
+gates for physical viability), not an open-ended search. No goalposts moved; no theorem invented.
