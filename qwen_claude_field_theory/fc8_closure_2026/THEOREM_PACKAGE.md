@@ -185,20 +185,59 @@ Y=0\ \text{physical stability (temporal }4\mathcal K_2\text{ + spatial }2(2-K_B)
 \text{True boundary }\Xi=0\ (\text{cosmological }Q_0)\text{: auxiliary, benign} & \textbf{VERIFIED}\\
 \text{Independent from-scratch covariant operator rank} & \textbf{NOT\_PROVEN (research-grade)}\\
 \text{Global all-phase-space regularity} & \textbf{NOT CLAIMED}\\
-\text{PPN }c_T=1,\ \gamma=1 & \textbf{PASS}\\
-\text{PPN }\alpha_2\text{ corner (survives PPN?)} & \textbf{SURVIVES — kill REFUTED, corner nonempty}\\
-\text{PPN }\alpha_2\text{ exact value (consistent bg)} & \textbf{OPEN (not adverse, }O(K_B))\\
+\text{PPN }c_T=1\ (\text{tensor}),\ \gamma=1\ (\text{static, no anisotropic stress}) & \textbf{PASS (derived)}\\
+J_{10}\text{ high-}y\text{ PPN contribution (}\mu_{10}\!\to\!1,\mu_{10}'\!\to\!0) & \textbf{vanishes} \Rightarrow Y{=}0\text{ and PPN separate}\\
+\text{PPN preferred-frame }\alpha_1,\alpha_2\ (+\ \beta\ \text{at 2PN}) & \textbf{OPEN}\ (\text{needs coupled }(A_\mu,\phi)\ 1\text{PN})\\
+\quad\text{— specific }\alpha_2=(5/2)K_B\text{ no-go} & \textbf{REFUTED (background artifact)}\\
 \text{Full lensing }\Phi+\Psi,\ \text{FLRW growth},\ \text{causality} & \textbf{OPEN}
 \end{array}}
 $$
 
+## §9. FULL SCORECARD — OUTCOME B: CONDITIONALLY CLOSED
+
+$$\boxed{\textbf{FC-FINAL STATUS} = \textbf{CONDITIONALLY CLOSED (Outcome B)} — \text{no CLOSED, no clean FAIL}}$$
+
+| Gate | Status |
+|---|---|
+| J₁₀ monotonicity / static ellipticity (y>0) | **PASS** |
+| Deep-MOND `g²=a₀g_N`, BTFR `v⁴=Ga₀M` | **PASS** |
+| Solar-System MOND suppression `1−μ₁₀~(a₀/g)¹⁰` (~10⁻⁸⁰ at 1 AU) | **PASS** |
+| AeST nonlinear DOF (6 on 𝒟_phys; **not** the 2-DOF MMG) | **PASS** |
+| Y=0 physical-Hessian objection | **RESOLVED** (chart, Ξ=0 the true boundary) |
+| Tensor `N_T=2, c_T=c, Q_T>0` | **PASS** (derived on FLRW) |
+| Weak-field lensing `Φ=Ψ` (mass_lens=mass_dyn) | **PASS**; nonlinear/non-spherical OPEN |
+| Matter conservation `∇_μT^{μν}=0` (single-metric minimal coupling) | **PASS** (structural) |
+| FLRW background (`K_Q=I₀/a³`, dust-like ρ_Q) | **DERIVED**; K(Q)-dependent |
+| `Λ=32πa₀²/c⁴` (a₀–ρ_Λ relation) | **ASSUMED / INPUT** (not derived) |
+| Strong-field BH (AeST stealth-GR branch) | **SUPPORTIVE** (not FC-FINAL-proven) |
+| μ far-field regime (`μ⁻¹≳Mpc`) | **CONDITIONAL** |
+| **δ²J₁₀=0 ⇒ J₁₀ cannot cure the AeST IR mode** | **PROVEN (negative result)** |
+| Independent from-scratch covariant operator rank | **OPEN (research-grade)** |
+| **FLRW scalar/vector stability + IR mode** (the main suspect) | **OPEN** (rescue must come from K(Q), not J₁₀) |
+| **PPN α₁, α₂** (+ β) — coupled `(A_μ,φ)` 1PN | **OPEN** (α₂=(5/2)K_B no-go refuted) |
+| Full causality / hyperbolicity | **OPEN** |
+| EFT cutoff / strong-coupling scale | **OPEN** |
+| Full nonlinear lensing / structure formation | **OPEN** |
+
+**Load-bearing conclusion (today's key result):** `J₁₀=O(Y^{3/2})=O(ε³)` ⇒ **changing the MOND kernel cannot
+fix the AeST infrared quadratic instability.** Any genuine rescue must come from the `K(Q)` / cosmological
+background, not the interpolation. The three concentrated remaining tests: **FLRW scalar/vector stability**,
+**1PN α₁,α₂**, **full causal characteristics**. Surviving core: `μ₁₀=y/(1+y¹⁰)^{1/10}` (excellent MOND
+constitutive sector) + the AeST relativistic completion (tensor/lensing/cosmology architecture). No inventing
+equations not in the action.
+
+---
+
 **The DOF/structural question is essentially settled** (6-DOF theorem on the maximal regular domain, `Y=0`
-included, `Ξ=0` excluded as a genuine degeneracy). **The sharpest viability threat (PPN α₂) is now cleared:**
-the `α₂=(5/2)K_B` empty-corner no-go was a *background artifact* (inconsistent `λ_bg=0`); on the consistent
-background the preferred-frame channel collapses to GR, α₂ is `O(K_B)`, and the corner `{c_T=1, |α₁|<1e-4,
-|α₂|<1e-7}` is **nonempty** (small `K_B<2.5e-5`). FC-FINAL is **NOT excluded by PPN.** What remains for
-publishability: full lensing `Φ+Ψ`, FLRW perturbations/growth, causality — plus the two residual liabilities
-(small `K_B<2.5e-5`; a disputed c_s² subluminality question). No proven kill anywhere.
+included, `Ξ=0` excluded as a genuine degeneracy). **On PPN: no kill, but no pass earned.** `γ=1` (static,
+Φ=Ψ, no dark anisotropic stress) and `c_T=1` are derived; the `J₁₀` MOND deformation *decouples* from the
+high-y Solar-System limit (`μ₁₀→1, μ₁₀'→0`), so `Y=0` and PPN are genuinely separate problems; and the
+specific `α₂=(5/2)K_B` empty-corner no-go is **refuted** (a `λ_bg=0` background artifact). **But α₁, α₂
+themselves are OPEN** — they are `C_PF(K_B, K_Q(Q₀), K_QQ(Q₀), Q₀)` after eliminating the scalar/aether
+constraints at 1PN (`O(w²)`), a calculation not yet done for the frozen candidate; no number is manufactured.
+The next well-defined bottleneck: `FC-FINAL —1PN,w²→ (γ,β,α₁,α₂)` with frozen `K(Q)`, acceptance
+`|α₁|<10⁻⁴, |α₂|<10⁻⁷`. What remains for publishability: this preferred-frame 1PN, full lensing `Φ+Ψ`,
+FLRW growth, causality. **No proven kill anywhere; no PPN pass yet.**
 
 $$\boxed{\textbf{FC-FINAL STATUS} = \textbf{CONDITIONALLY CLOSED}}$$
 
