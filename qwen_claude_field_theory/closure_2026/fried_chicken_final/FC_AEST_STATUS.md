@@ -120,3 +120,25 @@ to the J^μ∇φ coupling, NOT another one-line swing.
 **Honest bottom line:** we are at the fryer control panel, not the plate. J₁₀ never failed anywhere — every kill this session was
 architectural. AeST+μ₁₀ is the strongest defensible relativistic-MOND candidate the program has produced, frozen at CONDITIONALLY CLOSED
 / PPN-OPEN.
+
+### The new-model endpoint (defensible publication claim, 2026-08-28)
+The deformation `S_new = S_AeST[J₁₀] + (c⁴/16πG★)∫√−g · c₂★(∇_μA^μ)²` on the Maxwell locus
+(c₁=K_B, c₃=−K_B, c₄=0, c₂★=K_B/(1−2K_B), K_B<2.5×10⁻⁵), with J₁₀ chosen so the observable quasistatic response is μ₁₀, **appears to
+be a genuinely new AeST model** — a literature search (relayed) did not find this exact action/locus worked out. **Defensible claim (NOT
+"we proved it viable"):** *this specific AeST deformation's Einstein-aether limit sits exactly on an α₂=0, c_T=1, all-luminal
+(s₀=s₁=s₂=c) surface while retaining a sharp Cassini-safe MOND sector.* The open binary that no existing paper closes: **`rank H_new`
+(repaired-action Dirac count, 6 or changed) and `α₂^new` (the full scalar-retained AeST 1PN coefficient).**
+
+**Screening→α₂ existence argument — PROPOSED (two forms) then RETRACTED (honest, load-bearing):** the high-gradient AeST limit screens the
+scalar (χ=β₀Φ̃, β₀=1/λ_s; equivalently the scalar gradient-Hessian ∝ λ_s makes δφ=O(1/λ_s)), which was argued to give `α₂^full = C/λ_s`
+⇒ tunable → 0 for any finite C. **BOTH forms (β₀-screening and λ_s⁻¹-Hessian-scaling) are WITHDRAWN**, for one decisive reason: **screening
+the STATIC scalar PROFILE (χ=O(β₀)) is NOT the same as suppressing the 1PN PREFERRED-FRAME coefficient.** α₂ is extracted from the moving-source
+0i vector metric, whose equations carry derivatives of A_i, the background Q₀, and the inverse scalar operator O_φ⁻¹ — any of which can leave an
+**O(1)** contribution even when the static scalar amplitude is O(β₀). So `α₂ = O(β₀)` does NOT follow from the screening; it must be DERIVED from
+the full {E_0i, E_Ai, E_φ}_1PN solve. (Consistent: Skordis 2023 states nonzero α₁,α₂ are *expected* for AeST.) Secondary caveats also noted:
+λ_s is entangled with μ₁₀ (can't dial β₀ holding μ₁₀ fixed), and β₀→0 forces K₂≳λ_s (extreme hierarchy, possible low EFT cutoff). **Net: there
+is NO free suppression knob; α₂^new is genuinely UNRESOLVED — the actual 1PN calculation is the only arbiter.**
+
+**The ONE remaining computation (no architecture left to invent, no parameter tweak substitutes):** the complete Sagi-style
+(PRD 80.044032) moving-source 1PN reduction of `S_new` → the coefficient multiplying W_i (= α₂^new), plus `rank H_new`. Finite regular
+C₂ + rank-6 ⇒ the chicken exists; a 1/β₀ enhancement, strong coupling, or rank change ⇒ clean kill. (Running: wbswygtm2.)
