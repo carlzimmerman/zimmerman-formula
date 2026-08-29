@@ -163,3 +163,19 @@ def prior_certificate(cid_arch_hash, gate, test_hash=None):
                 if test_hash is None or row.get("test_hash") == test_hash:
                     best = row
     return best
+
+
+def explain_dead_match(canon, dead_class):
+    """Human-readable decisive reason a candidate matched a dead-class signature (for architect feedback)."""
+    sig = dead_class.get("signature", {})
+    parts = []
+    for k, v in sig.items():
+        if k == "any_coupling":
+            parts.append(f"contains a coupling with {v}")
+        elif k == "no_field_type":
+            parts.append(f"has NO field of type '{v}'")
+        elif k == "has_field":
+            parts.append(f"contains a field matching {v}")
+        elif k == "family":
+            parts.append(f"family == {v}")
+    return f"{dead_class['class_id']} ({dead_class['name']}): " + "; ".join(parts) +            f" -- decisive: {dead_class.get('decisive','')[:200]}"
