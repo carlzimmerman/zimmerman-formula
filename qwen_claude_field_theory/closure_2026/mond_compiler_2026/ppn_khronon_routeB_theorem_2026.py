@@ -154,10 +154,14 @@ SUB = {Phi: Ph*E, Psi: Ps*E, Zc[0]: Z1h*E, Zc[1]: Z2h*E, Zc[2]: Z3h*E,
 
 def fourier(e):
     e = sp.expand(e.subs(SUB).doit())
-    return sp.simplify(sp.expand(e/E))
+    e = sp.expand(sp.cancel(sp.together(e/E)))
+    return e
 
 
 # quadratic Lagrangian pieces (in units where the whole action is (1/16 pi G) L )
+# substitute the frame (w2 = 0, w1 = wx, w3 = wz) BEFORE differentiating -- pure speed
+WSUBS = {w1: wx, w2: 0, w3: wz}
+A_q = sp.expand(sp.cancel(sp.together(A_q.subs(WSUBS))))
 L_LV = al*A_q                                # beta = lam = 0
 L_m = 16*sp.pi*G*rho*Phi
 
