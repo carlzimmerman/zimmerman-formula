@@ -1,4 +1,4 @@
-# 🍗 CRISPY FRIED CHICKEN RECIPE — GLOBAL MASTER PROTOCOL (living file; UPDATE, never fork)
+# CRISPY FRIED CHICKEN RECIPE 
 
 **Permanent architectural specification for the relativistic-MOND program.** Every theory is just a
 different batter; the ingredients, mandatory gates, and forbidden substitutions stay fixed. A candidate is
