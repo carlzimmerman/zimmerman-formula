@@ -1,0 +1,156 @@
+
+========================================================================================
+SECTION A -- ADM <-> khronometric dictionary, proved on explicit components
+========================================================================================
+   [PASS] A0  u.u = -1
+   [PASS] A3  a_mu = (0, D_i ln N)
+   [PASS] A2  (nabla.u) = K  (=> (nabla.u)^2 = K^2)
+   [PASS] A1  nabla_m u_n nabla^n u^m = K_ij K^ij
+
+   => (1/16piG) Int sqrt(-g)[ R + lam (nab.u)^2 + bet nab_m u_n nab^n u^m + alp a.a ]
+      = (1/16piG) Int N sqrt(gam)[ (1+bet) K_ijK^ij - (1-lam) K^2 + R3 + alp (D ln N)^2 ]
+   The CANDIDATE's gravity sector is  K_ijK^ij - K^2 + R3  =>  bet = 0 and lam = 0 EXACTLY
+   [PROVEN, not assumed], and its MOND sector -chi (D phi)^2 with phi = ln N is the
+   khronometric a.a operator with alp = -chi.
+   => the candidate is a khronometric theory sitting EXACTLY on bet = lam = 0.
+
+
+========================================================================================
+SECTION B -- the candidate's OWN static gates, from the candidate's OWN action
+========================================================================================
+   [PASS] B1  psi-equation is  4 lap(Phi) - 4 lap(psi) = 0  =>  Psi = Phi from the GR sector alone   [confirms Route A's S1a]
+   [PASS] B2  Phi-equation is  4 lap(psi) + 2 div[F'(A) grad Phi] = 16 pi G rho
+   with psi = Phi:   div[ (1 + F'(A)/2) grad Phi ] = 4 pi G rho
+      =>   mu_eff(y) = 1 + F'(A)/2      [PROVEN from the candidate's own action]
+   [PASS] B3a frozen V'(chi) = -[ln(1-chi)]^2  =>  chi = 1 - e^{-y} = mu(y)   [the advertised Legendre relation]
+     (the OTHER sign, V' = +[ln(1-chi)]^2, gives [ln(1-chi)]^2 = -y^2 : no real root.)
+     F' = +chi -> mu_eff = 3/2 - exp(-y)/2;  range over y in (0,oo) = [1, 3/2]
+     F' = -chi -> mu_eff = (exp(y) + 1)*exp(-y)/2;  range over y in (0,oo) = [1, 1/2]
+   [PASS] B3b LITERAL spec has NO deep-MOND limit (mu_eff(y->0) != 0), for EITHER sign   mu_eff(0) = 1 or 1;  MOND needs mu_eff -> y -> 0
+   [PASS] B3c LITERAL spec also breaks the compiler's OWN frozen gate G_eff/G_N = 1 at high a   mu_eff(inf) = 3/2 or 1/2  =>  G_eff/G_N = 2/3 or 2
+     PROVEN: since chi in [0,1] and mu_eff = 1 +- chi/2, mu_eff can never reach 0.
+     A deep-MOND limit needs F'(A) -> -2 as y -> 0, i.e. |F'| = O(1) and NEGATIVE.
+     No sign choice of "coefficient = chi" can do it.  THE CANDIDATE AS SPECIFIED IS NOT MOND.
+   [PASS] B4a repair: mu_eff = mu(y) requires F'(A) = 2(mu-1) = -2 e^{-y}
+   [PASS] B4b => khronometric coupling alp_kh(y) = -F' = 2(1-mu) = 2 e^{-y}
+   [PASS] B4c consistency: G_eff/G = 1/(1-alp/2) equals 1/mu (the MOND Poisson law)
+     the repaired Legendre pair:  g(chi) = 2*chi - 2,  V'(chi) = -2*log(1 - chi)**2
+     i.e. the FROZEN V is right up to a factor -2; what is WRONG in the spec is the
+     function multiplying (D phi)^2: it must be 2(1-chi), not chi.
+     NOTE: the advertised carrier coupling f(chi) = (1-chi) sqrt(V'(chi)) is then
+           imaginary (V' < 0), so the one 'exactly verified' identity of the design
+           was computed with the constitutive law that does not do MOND.
+   [PASS] B4d f(chi) = (1-chi) sqrt(V') is not real on the repaired branch   V'(1/2) = -2*log(2)**2 < 0
+
+   B5  THEOREM (two-line, PROVEN):
+       A = gamma^{ij} d_i phi d_j phi  is the ONLY place the metric enters the MOND sector.
+       => Gauss flux      J^i  = 2 F'(A) d^i phi        (Phi-variation)
+       => traceless stress Sig^TF_ij = -F'(A) [d_i phi d_j phi]^TF   (gamma-variation)
+       Both carry the SAME factor F'(A).  Hence
+              Sigma_P = 0   <=>   F' = 0   <=>   mu_eff = 1   <=>   NO MOND.
+       This holds for ANY local F, INCLUDING any F produced by integrating out auxiliaries
+       (section C).  It is the compiler's own Part-I obstruction, re-derived from the
+       candidate's own action, and it is NOT evaded by the carrier.
+
+========================================================================================
+SECTION C -- the carrier: eliminating Q_ij exactly
+========================================================================================
+   [PASS] C0  Q EOM gives Q_ij = (f/M) A_ij
+   [PASS] C1a on-shell carrier Lagrangian = (1/2)(f^2/M) A_ij A^ij
+   [PASS] C1b A_ij A^ij = (2/3) A^2  =>  L_on = (f^2/(3M)) A^2, a LOCAL FUNCTION OF A ALONE   L_on = f**2*(a1**4 + 2*a1**2*a2**2 + 2*a1**2*a3**2 + a2**4 + 2*a2**2*a3**2 + a3**4)/(3*M)
+
+   C1  CONCLUSION (PROVEN).  For any LOCAL kernel M (algebraic mass m^2, or any function of
+       chi/y), integrating out the auxiliary TT tensor returns EXACTLY
+           Delta L = (f(chi)^2 / (3 M)) A^2 ,
+       i.e. a redefinition  F(A) -> F(A) - f^2 A^2/(3M).  The carrier adds NO new tensor
+       structure whatsoever.  Therefore hypothesis (H4) ("scalar/isotropic carrier") is NOT
+       violated by this construction, the Part-I no-go applies verbatim to the redefined F,
+       and B5 still gives  Sigma_P = 0 <=> no MOND.
+       *** The candidate's advertised escape route is void. ***
+   [PASS] C2  carrier on-shell stress is O(a^4) while Sigma_P is O(a^2)   profile-matching f(chi(y)) = y e^{-y} = Sigma_P(y) matches two FUNCTIONS OF y, not two TENSORS; they sit at different orders in a and cannot cancel
+
+   C3  WHICH KERNELS ACTUALLY LEAVE THE LOCAL-F(A) CLASS?
+       M = m^2 (algebraic)   -> (f^2/(3 m^2)) A^2                   LOCAL. no escape.
+       M = M(chi) (the "repair" Route A found, M ~ (1-chi)V'(chi))  LOCAL. no escape.
+       M = -D^2              -> f A_ij (-D^2)^{-1} f A^ij           NONLOCAL. genuine escape,
+                                                                    at the price of an
+                                                                    inverse Laplacian.
+       M = Delta^{-1}        -> -(1/2) |D_k (f A_ij)|^2             LOCAL but FOUR spatial
+                                                                    derivatives: escapes (H2),
+                                                                    not (H4).
+       => the tensor carrier per se buys NOTHING.  Every escape is really an (H1) or (H2)
+       escape (nonlocality or higher derivatives), which the compiler already lists as
+       separate hatches and which carry their own well-known costs.  [PROVEN]
+
+========================================================================================
+SECTION D -- EXACT GR BRANCH:  a_mu == 0, chi = 0, Q = 0 solves everything
+========================================================================================
+   MOND sector L = -[g(chi) A + V(chi)];  chi EOM:  Eq(-A*Derivative(g(chi), chi) - Derivative(V(chi), chi), 0)
+   at A = 0 this is V'(chi) = 0.  For the frozen V (either sign) V'(chi) = -[ln(1-chi)]^2,
+   whose only root is chi = 0, and V(0) = 0.  So L_MOND|_{a=0} = 0.
+   [PASS] D1  V'(chi) = 0 has the unique root chi = 0   roots = [0]
+   [PASS] D2  carrier at A_ij = 0: Q EOM gives Q = 0 and L_carrier = 0
+
+   D3  THE THEOREM.  With bet = lam = 0 (SECTION A: forced by the candidate's own gravity
+       sector) the entire non-GR part of the action is a functional of a_mu that is at
+       least QUADRATIC in a_mu:   L_LV = -[g(chi) a.a + V(chi)] + f(chi) Q.[a a]^TF - (1/2)QMQ.
+         * metric EOM:   Theta_munu = dL/dg^{munu} - (1/2)g_munu L_LV.  Every term carries an
+           explicit a_mu or a_ij, and L_LV|_{a=0} = -V(0) = 0.  => Theta_munu = 0.
+         * khronon EOM:  dS/dT is a total divergence of  (dL/da_nu)(da_nu/d(d_mu T)), and
+           dL/da_nu ~ 2 g(chi) a^nu + ... vanishes at a = 0.  => satisfied identically.
+       Hence: (any GR solution g, any GEODESIC time-slicing T, chi = 0, Q = 0) is an EXACT
+       solution of the candidate for EVERY matter source.  Example: exact Schwarzschild with
+       the Painleve-Gullstrand foliation (its slices are geodesic, a_mu = 0).
+       *** The candidate does not PREDICT MOND.  GR-with-no-MOND is an exact branch of it,
+       and nothing in the theory selects the MOND branch. ***                       [PROVEN]
+       (This is special to bet = lam = 0.  With bet or lam nonzero the khronon EOM contains
+        K_ij / K terms that do NOT vanish on a geodesic foliation, and the GR branch closes.)
+
+========================================================================================
+SECTION E -- how big is the Part-I obstruction, physically?
+========================================================================================
+   [PASS] E0  linearised G^TF_ij = (d_i d_j - delta_ij lap/3)(psi - Phi)
+   [PASS] E1  deep-MOND point mass: |d(psi-Phi)/dr| / |dPhi/dr| = sqrt(G M a0) = v_flat^2/c^2   ratio = sqrt(GM)*sqrt(a0)   (v_flat^2 = sqrt(G M a0) in deep MOND)
+     dwarf  v=50 km/s              |slip'|/|Phi'| = v_flat^2/c^2 = 2.782e-08
+     Milky Way v=220 km/s          |slip'|/|Phi'| = v_flat^2/c^2 = 5.385e-07
+     massive spiral v=300 km/s     |slip'|/|Phi'| = v_flat^2/c^2 = 1.001e-06
+
+   E2  READING.  The Part-I traceless stress is REAL (B5) but the metric slip it induces is
+       v_flat^2/c^2 ~ 1e-7 - 1e-6 RELATIVE.  Lensing (and every other test that compares
+       the lensing potential to the dynamical potential) is nowhere near that.  So
+       "Sigma_P != 0 => cannot lens" is a statement about a formally nonzero, physically
+       negligible slip -- UNLESS one is testing the CANCELLATION of Sigma_P as an algebraic
+       identity rather than its observable consequence.  (mc_gates.py applies BOTH: a physical
+       FRAME_SLIP test |Phi'-Psi'|/g_dyn, which is the right one, AND a SIGMA_P_NONZERO test
+       built on the cancellation residual worst_rel, which is not a physical magnitude.)
+       [COMPUTATIONALLY_VERIFIED for the isolated deep-MOND point mass; the number is an
+        exact solution of the linearised slip equation, not a scaling estimate.]
+       This does NOT rescue the candidate (sections B3, C1, D kill it independently) -- it
+       says the carrier was built to cancel something that did not need cancelling.
+
+========================================================================================
+SUMMARY
+========================================================================================
+  [PASS] A0  u.u = -1
+  [PASS] A3  a_mu = (0, D_i ln N)
+  [PASS] A2  (nabla.u) = K  (=> (nabla.u)^2 = K^2)
+  [PASS] A1  nabla_m u_n nabla^n u^m = K_ij K^ij
+  [PASS] B1  psi-equation is  4 lap(Phi) - 4 lap(psi) = 0  =>  Psi = Phi from the GR sector alone
+  [PASS] B2  Phi-equation is  4 lap(psi) + 2 div[F'(A) grad Phi] = 16 pi G rho
+  [PASS] B3a frozen V'(chi) = -[ln(1-chi)]^2  =>  chi = 1 - e^{-y} = mu(y)
+  [PASS] B3b LITERAL spec has NO deep-MOND limit (mu_eff(y->0) != 0), for EITHER sign
+  [PASS] B3c LITERAL spec also breaks the compiler's OWN frozen gate G_eff/G_N = 1 at high a
+  [PASS] B4a repair: mu_eff = mu(y) requires F'(A) = 2(mu-1) = -2 e^{-y}
+  [PASS] B4b => khronometric coupling alp_kh(y) = -F' = 2(1-mu) = 2 e^{-y}
+  [PASS] B4c consistency: G_eff/G = 1/(1-alp/2) equals 1/mu (the MOND Poisson law)
+  [PASS] B4d f(chi) = (1-chi) sqrt(V') is not real on the repaired branch
+  [PASS] C0  Q EOM gives Q_ij = (f/M) A_ij
+  [PASS] C1a on-shell carrier Lagrangian = (1/2)(f^2/M) A_ij A^ij
+  [PASS] C1b A_ij A^ij = (2/3) A^2  =>  L_on = (f^2/(3M)) A^2, a LOCAL FUNCTION OF A ALONE
+  [PASS] C2  carrier on-shell stress is O(a^4) while Sigma_P is O(a^2)
+  [PASS] D1  V'(chi) = 0 has the unique root chi = 0
+  [PASS] D2  carrier at A_ij = 0: Q EOM gives Q = 0 and L_carrier = 0
+  [PASS] E0  linearised G^TF_ij = (d_i d_j - delta_ij lap/3)(psi - Phi)
+  [PASS] E1  deep-MOND point mass: |d(psi-Phi)/dr| / |dPhi/dr| = sqrt(G M a0) = v_flat^2/c^2
+
+  21/21 checks passed.

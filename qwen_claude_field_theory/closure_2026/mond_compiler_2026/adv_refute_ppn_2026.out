@@ -1,0 +1,179 @@
+
+============================================================================================
+SECTION D -- derive the published khronometric alpha_1, alpha_2 from Foster-Jacobson
+============================================================================================
+   [PASS] D1  Foster-Jacobson -> HO limit gives alpha_1 = 4(alp-2bet)/(bet-1)   alpha_1 = 4*(alp - 2*bet)/(bet - 1)
+   [PASS] D2  Foster-Jacobson -> HO limit gives the alpha_2 formula used below
+     alpha_2 = (alp - 2*bet)*(2*(alp - 2)*(bet + lam) - (bet - 1)*(alp + bet + 3*lam))/((alp - 2)*(bet - 1)*(bet + lam))
+     NOTE at once, from the FORMULA alone [PROVEN]:
+       * alpha_1 is REGULAR at bet = lam = 0 and equals -4 alp there (no pole).
+       * alpha_2 has a 1/(bet+lam) = 1/c_123 POLE.  The candidate's gravity sector forces
+         bet = lam = 0 EXACTLY, so the candidate sits ON that pole.
+       * alpha_2 also has a 1/(2-alp) pole.  The candidate needs alp -> 2 to reach deep MOND
+         (alp = 2(1-mu), mu -> 0), i.e. the MOND regime is the OTHER singular locus, and the
+         edge of the aether stability domain 0 <= c14 < 2.
+
+============================================================================================
+SECTION E -- independent linearised solve: build the engine
+============================================================================================
+   [PASS] E0  background X = 1 - w^2
+   [PASS] E1  u.u = -1 to O(eps)
+   [PASS] V1a background acceleration a_mu = 0 for all w
+   [PASS] V1b background nabla_m u_n = 0 for all w
+   [PASS] V1c background nabla.u = 0 for all w
+   [PASS] V2a GR limit: system consistent and the PPN readouts (h00,h01,h11) are unique (tau is undetermined there, as it must be: L_LV vanishes identically)   free in readouts: []
+   [PASS] V2b GR limit: G_N/G = 1, gamma = 1, alpha_1 = alpha_2 = alpha_3 = 0   {'gamma': 1, 'GN': 1, 'alpha1': 0, 'alpha2': 0, 'alpha3': 0, 'a1_resid': 0}
+
+   V3  reproduce the PUBLISHED khronometric PPN at exact-rational random points
+   --------------------------------------------------------------------------------------
+   (alp,bet,lam)                   G_N/G   gam        alpha_1            alpha_2   a3  lit?
+   (1/5, 1/7, 1/3)                  10/9     1         -17/10           -221/700    0  YES
+   (1/3, 1/11, 1/5)                  6/5     1          -17/9         -4471/7920    0  YES
+   (2/7, -1/5, 1/4)                  7/6     1            4/7              -1/15    0  YES
+   (1/9, 1/4, -1/13)               18/17     1         -88/45       -15829/13770    0  YES
+   (3/4, -2/9, 5/6)                  8/5     1          -11/7             -11/63    0  YES
+   [PASS] V3  engine reproduces published khronometric alpha_1, alpha_2, G_N, gamma EXACTLY at 5 rational points   sign dictionary CONFIRMED by the fit: our (alp,bet,lam) = aether (c14, -c13, -c2)
+
+============================================================================================
+SECTION F -- the candidate's OWN locus bet = lam = 0:  limit vs value
+============================================================================================
+   approach along bet = lam = delta -> 0 at alp = 1/5, and the value AT delta = 0
+   --------------------------------------------------------------------------------------
+        delta    G_N/G     alpha_1 (engine)           alpha_2 (engine)
+          1/2     10/9                -16/5                       -2/5
+         1/10     10/9               -16/11                     -50/99
+        1/100     10/9              -88/101                 -6424/4545
+       1/1000     10/9            -808/1001            -5135749/450450
+            0        1                    0                          0
+
+   published-formula LIMIT as delta -> 0 :  alpha_1 -> -4/5 = -4 alp   (alpha_1 is REGULAR there)
+   published-formula LIMIT as delta -> 0 :  alpha_2 -> -oo   (1/c_123 pole)
+   [PASS] F1  alpha_1 is DISCONTINUOUS at the candidate's locus: limit = -4 alp, value AT 0 differs   limit = -4/5, value at delta=0 = 0
+   [PASS] F2  G_N/G is DISCONTINUOUS too: 1/(1-alp/2) off the locus, but not on it   1/(1-alp/2) = 10/9, value at delta=0 = 1
+
+   the same locus with w = 0 EXACTLY (khronon at rest):
+      h00/U = 20/9   =>  G_N/G = 10/9 (MOND value 1/(1-alp/2) = 10/9)
+
+   F3  ON-SHELL ACCELERATION a_mu at the candidate's locus (bet = lam = 0), alp = 1/5
+      boosted khronon, SYMBOLIC w (exact in w)       -> a_mu == 0 (MOND GONE)
+   [PASS] F3a AT the locus, for ARBITRARY w, the on-shell first-order acceleration VANISHES IDENTICALLY: the MOND sector switches itself off   exact in w -- not merely O(w^2) suppressed
+      boosted khronon  w = (1/7,0,1/3)               -> a_mu == 0 (MOND GONE)
+      khronon at rest  w = 0                         -> a_mu NONZERO in components [3]
+   [PASS] F3b AT the locus with w = 0 the acceleration is NONZERO: MOND is present   => the w -> 0 limit is DISCONTINUOUS
+      healthy neighbour bet=lam=1/1000, w = (1/7,0,1/3) -> a_mu NONZERO in components [0, 1, 3]
+   [PASS] F3c off the locus (bet=lam=1e-3) with the SAME w, a_mu is NONZERO: MOND survives
+
+   F4  rank of the 11 x 7 linear system (gauge fixed), same w = (1/7,0,1/3)
+      bet = lam = 1/1000                 rank(M) = 7   rank([M|b]) = 7   (7 unknowns)
+      bet = lam = 0 (the candidate)      rank(M) = 7   rank([M|b]) = 7   (7 unknowns)
+      bet = lam = 0, w = 0               rank(M) = 6   rank([M|b]) = 6   (7 unknowns)
+
+============================================================================================
+SECTION G -- WHY: the khronon quadratic operator at bet = lam = 0
+============================================================================================
+   L_LV^(2)[tau, h=0] at bet = lam = 0 :
+       alp*wz**2*(wx**2 - 1)*Derivative(tau(z), (z, 2))**2/(wx**6 + 3*wx**4*wz**2 - 3*wx**4 + 3*wx**2*wz**4 - 6*wx**2*wz**2 + 3*wx**2 + wz**6 - 3*wz**4 + 3*wz**2 - 1)
+   in Fourier (tau -> Tam e^{ikz}):   Tam**2*alp*k**4*wz**2*(wx**2 - 1)/(wx**6 + 3*wx**4*wz**2 - 3*wx**4 + 3*wx**2*wz**4 - 6*wx**2*wz**2 + 3*wx**2 + wz**6 - 3*wz**4 + 3*wz**2 - 1)
+   [PASS] G1  the khronon has NO quadratic action at all when w = 0 (bet = lam = 0)   a_mu is O(tau^2) about a khronon at rest => the mode is infinitely strongly coupled
+   [PASS] G2  around a BOOSTED khronon the operator is proportional to (w.k)^2 k^2   operator = Tam**2*alp*k**4*wz**2*(wx - 1)*(wx + 1)/(wx**2 + wz**2 - 1)**3
+
+   G3  READING [PROVEN from the operator itself].  At bet = lam = 0 the khronon carries NO
+       time derivative in its quadratic action, and its spatial operator is proportional to
+       (w.k)^2.  It therefore
+         * has ZERO quadratic action at w = 0        -> infinite strong coupling on the vacuum;
+         * is degenerate for every mode with k PERPENDICULAR to w;
+         * has, for w.k != 0, a constraint (not an evolution equation) whose solution is what
+           the routes report.
+       In the khronometric literature this locus is bet = lam = 0 <=> c_123 = 0 <=> the
+       scalar sound speed c_s^2 = (alp-2)(bet+lam)/[alp(bet-1)(2+bet+3lam)] = 0.  It is the
+       lambda_Horava -> 1 STRONG-COUPLING point of non-projectable Horava gravity.
+       *** So "alpha_1 = alpha_2 = 0 at the candidate's locus" is not a physical pass.  It is
+       the value of a rank-deficient linear system at a strong-coupling point, and the
+       neighbouring theories give alpha_1 -> -4 alp and alpha_2 -> infinity. ***
+
+============================================================================================
+SECTION H -- the RATE: how fast do the alphas switch off in the Solar System?
+============================================================================================
+   From adv_refute_static_carrier_2026.py (B4): the a.a coefficient the STATIC gates
+   force is  alp_kh(y) = 2(1 - mu(y)), NOT anything to do with the carrier f(chi).
+   So, ON THE OPEN DOOR c13 = 0, c2 != 0 (i.e. Horava lambda_K != 1, a DIFFERENT theory
+   from the candidate), the engine + literature formula give
+        alpha_1 = -4 alp_kh                                   = -8 (1 - mu(y))
+        alpha_2 = -alp_kh/2 + alp_kh^2/(2 c2) + (3/4) alp_kh^2
+                = -(1-mu) + 2(1-mu)^2/c2 + 3(1-mu)^2
+   For |alp_kh| << |c2| the leading term is  alpha_2 = -(1 - mu(y)) ; the 1/c2 pole ENHANCES
+   it when c2 is small, i.e. as the theory is pushed back toward the candidate's own locus.
+   The suppression is (1 - mu(y)) -- a property of the INTERPOLATION FUNCTION, not of the
+   carrier.  f(chi) -> 0 is irrelevant: the carrier is a separate, higher-order sector.
+   [PASS] H1  small-alp expansion: alpha_1 = -4 alp exactly (c13 = 0)
+   [PASS] H2  small-alp expansion: alpha_2 = -alp/2 + alp^2/(2 c2) + (3/4) alp^2 + O(alp^3)  (c_123 = c2 at c13 = 0)   alpha_2 = alp*(alp*(3*lam + 2) - 2*lam)/(4*lam)
+
+   |alpha_1| = 8(1-mu)   [bound |alpha_1| < 1e-4 (LLR); ~4e-5 (binary pulsars)]
+   ----------------------------------------------------------------------------------------
+   location                y=g/a0      FROZEN   framework      simple    standard         n=4
+   Sun surface          2.929e+12   <1e-300      1.37e-12    2.73e-12   <1e-300     <1e-300  
+   Mercury 0.39 AU      4.165e+08   <1e-300      9.60e-09    1.92e-08   <1e-300     <1e-300  
+   Earth 1 AU           6.336e+07   <1e-300      6.31e-08    1.26e-07    8.88e-16   <1e-300  
+   Jupiter 5.2 AU       2.343e+06   <1e-300      1.71e-06    3.41e-06    7.28e-13   <1e-300  
+   Saturn 9.5 AU        7.020e+05   <1e-300      5.70e-06    1.14e-05    8.12e-12   <1e-300  
+   Neptune 30 AU        7.040e+04   <1e-300      5.68e-05    1.14e-04    8.07e-10   <1e-300  
+   100 AU               6.336e+03   <1e-300      6.31e-04    1.26e-03    9.97e-08    8.88e-16
+
+   |alpha_2| ~ (1-mu)  (leading term, |alp_kh| << |c2|)   [bound |alpha_2| < 4e-7, solar spin axis]
+   ----------------------------------------------------------------------------------------
+   location                y=g/a0      FROZEN   framework      simple    standard         n=4
+   Sun surface          2.929e+12   <1e-300      1.71e-13    3.41e-13   <1e-300     <1e-300  
+   Mercury 0.39 AU      4.165e+08   <1e-300      1.20e-09    2.40e-09   <1e-300     <1e-300  
+   Earth 1 AU           6.336e+07   <1e-300      7.89e-09    1.58e-08    1.11e-16   <1e-300  
+   Jupiter 5.2 AU       2.343e+06   <1e-300      2.13e-07    4.27e-07    9.10e-14   <1e-300  
+   Saturn 9.5 AU        7.020e+05   <1e-300      7.12e-07    1.42e-06    1.01e-12   <1e-300  
+   Neptune 30 AU        7.040e+04   <1e-300      7.10e-06    1.42e-05    1.01e-10   <1e-300  
+   100 AU               6.336e+03   <1e-300      7.89e-05    1.58e-04    1.25e-08    1.11e-16
+
+   KERNEL NAMES in column order: FROZEN exponential  mu = 1-e^-y | framework canonical g=sqrt(gb^2+gb a0) | simple mu = y/(1+y) | standard mu = y/sqrt(1+y^2) | n=4 sharp mu = y/(1+y^4)^{1/4}
+
+   READING [COMPUTATIONALLY_VERIFIED]:
+     * With the FROZEN exponential kernel the suppression is genuinely structural:
+       1-mu = e^-y underflows every float format inside 100 AU.  alpha_1, alpha_2 are zero
+       to any conceivable precision.  BUT this is a property of e^-y, not of the candidate's
+       architecture, and it survives ONLY on the lam != 0 open door (off the candidate's own
+       locus, where the calculation is not defined at all -- section G).
+     * With the FRAMEWORK's OWN canonical interpolation (g_obs = sqrt(g_bar^2 + g_bar a0)),
+       and with the "simple" kernel, the suppression is only POWER-LAW, 1-mu ~ 1/(2y).
+       Compare |alpha_1| < 1e-4 (Will 2014 LLR; ~4e-5 from binary pulsars) and
+       |alpha_2| < 4e-7 (solar spin-axis alignment).  Inside ~30 AU both pass, with margins
+       of 1e2 - 1e6 -- NOT 1e2700.  The alpha_2 bound is set by the Sun's own field, where
+       y ~ 3e12 and 1-mu ~ 2e-13, so it passes very comfortably for every kernel tried.
+       CAVEAT (stated, not hidden): standard PPN assumes CONSTANT alphas.  Here alp_kh
+       depends on position through y, so these are the LOCAL values of the PPN parameters;
+       a proper bound would need the y-dependent analysis.  Treated as an order-of-magnitude
+       comparison, flagged as such.
+     * So the crux answer is NOT "f(chi) -> 0 switches the sector off".  The lapse-tied MOND
+       sector generates alpha_1 = -8(1-mu) ON ITS OWN, with no carrier involved; it is small
+       in the Solar System only because 1-mu is small there, and HOW small is entirely a
+       kernel question.
+
+============================================================================================
+SUMMARY
+============================================================================================
+  [PASS] D1  Foster-Jacobson -> HO limit gives alpha_1 = 4(alp-2bet)/(bet-1)
+  [PASS] D2  Foster-Jacobson -> HO limit gives the alpha_2 formula used below
+  [PASS] E0  background X = 1 - w^2
+  [PASS] E1  u.u = -1 to O(eps)
+  [PASS] V1a background acceleration a_mu = 0 for all w
+  [PASS] V1b background nabla_m u_n = 0 for all w
+  [PASS] V1c background nabla.u = 0 for all w
+  [PASS] V2a GR limit: system consistent and the PPN readouts (h00,h01,h11) are unique (tau is undetermined there, as it must be: L_LV vanishes identically)
+  [PASS] V2b GR limit: G_N/G = 1, gamma = 1, alpha_1 = alpha_2 = alpha_3 = 0
+  [PASS] V3  engine reproduces published khronometric alpha_1, alpha_2, G_N, gamma EXACTLY at 5 rational points
+  [PASS] F1  alpha_1 is DISCONTINUOUS at the candidate's locus: limit = -4 alp, value AT 0 differs
+  [PASS] F2  G_N/G is DISCONTINUOUS too: 1/(1-alp/2) off the locus, but not on it
+  [PASS] F3a AT the locus, for ARBITRARY w, the on-shell first-order acceleration VANISHES IDENTICALLY: the MOND sector switches itself off
+  [PASS] F3b AT the locus with w = 0 the acceleration is NONZERO: MOND is present
+  [PASS] F3c off the locus (bet=lam=1e-3) with the SAME w, a_mu is NONZERO: MOND survives
+  [PASS] G1  the khronon has NO quadratic action at all when w = 0 (bet = lam = 0)
+  [PASS] G2  around a BOOSTED khronon the operator is proportional to (w.k)^2 k^2
+  [PASS] H1  small-alp expansion: alpha_1 = -4 alp exactly (c13 = 0)
+  [PASS] H2  small-alp expansion: alpha_2 = -alp/2 + alp^2/(2 c2) + (3/4) alp^2 + O(alp^3)  (c_123 = c2 at c13 = 0)
+
+  19/19 checks passed.

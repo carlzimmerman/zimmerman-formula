@@ -119,3 +119,78 @@ propagating scalar (RAQUAL), a different theory; (d) a y-dependent kernel KK.
 
 **Invariant lesson.** `N sqrt(g)` is the integration measure, so the lapse always weights the
 MOND flux; an auxiliary MOND field cannot be hidden from the Hamiltonian constraint.
+
+---
+
+## STAGE 4 (ADVERSARIAL REFUTATION of Route A and Route B), 2026-08-29
+
+Scripts (written from scratch, importing nothing from compiler.py / mc_*.py / routeA_* /
+ppn_khronon_routeB_* / sec11_*):
+  `adv_refute_static_carrier_2026.py` (+ `.out`, 21/21)  -- dictionary, static gates, carrier, GR branch
+  `adv_refute_ppn_2026.py`            (+ `.out`, 19/19)  -- independent 1PN preferred-frame engine
+
+**VERDICT: both routes' KILL verdicts STAND and are strengthened; two of their named
+sub-results are corrected; one of Route A's is REFUTED.**
+
+### Independently reproduced
+* ADM <-> khronometric dictionary is now PROVEN on explicit components, not asserted:
+  for hypersurface-orthogonal u, `nab_m u_n nab^n u^m == K_ijK^ij` and `(nab.u) == K`, so
+  `K_ijK^ij - K^2 + R3` is EXACTLY Einstein-Hilbert => `bet = lam = 0` EXACTLY (A1-A3).
+* My engine reproduces the published khronometric PPN (Foster-Jacobson taken to the HO limit
+  IN-SCRIPT, `c1 -> oo` at fixed `c14, c13, c2`) exactly at 5 rational points, and reproduces
+  Route B's approach table DIGIT FOR DIGIT: alpha_1 = -16/5, -16/11, -88/101, -808/1001 and
+  alpha_2 = -2/5, -50/99, -6424/4545, -5135749/450450 at delta = 1/2, 1/10, 1/100, 1/1000.
+  Sign dictionary: our (alp, bet, lam) = aether (c14, -c13, -c2).
+* AT the locus, for SYMBOLIC w, the on-shell first-order acceleration `a_mu^(1) == 0`
+  IDENTICALLY (F3a) -- MOND switches itself off.  Exact in w, not "O(w^2) suppressed".
+  At w = 0 exactly, a_mu != 0 and G_eff/G = 1/(1-alp/2): DISCONTINUOUS (F3b).  Off the
+  locus at bet=lam=1e-3 with the SAME w, MOND survives (F3c).  System rank is 7/7 (full)
+  at the locus with w != 0 and drops to 6/7 at w = 0 (F4).
+
+### Why (deeper than either route stated)
+**EXACT GR BRANCH THEOREM [PROVEN].**  At bet = lam = 0 every non-GR term is at least
+QUADRATIC in a_mu, and the frozen V has V'(chi) = 0 only at chi = 0 with V(0) = 0.  Hence
+`(any GR solution, any GEODESIC slicing T, chi = 0, Q = 0)` solves EVERY field equation
+exactly, for EVERY source (e.g. exact Schwarzschild with the Painleve-Gullstrand foliation).
+GR-with-no-MOND is an exact branch; nothing selects the MOND branch.  This closes only at
+bet or lam != 0, where the khronon EOM carries K_ij / K terms that do not vanish on a
+geodesic foliation.
+**And the linearised khronon operator at the locus is `~ alp k^4 (w.k)^2/(1-w^2)^3`**: no
+time derivative, ZERO at w = 0, degenerate for every k PERPENDICULAR to w.  This is
+c_123 = 0 <=> c_s^2 = 0 <=> the lambda_Horava -> 1 strong-coupling point.  So
+"alpha_1 = alpha_2 = 0 at the locus" is not a physical pass -- it is the unique solution of a
+singular limit whose neighbours give alpha_1 -> -4 alp and alpha_2 -> infinity.
+
+### Corrections to the routes
+1. **REFUTED (Route A, S3).**  "The carrier cancels Sigma_P for the chi-DEPENDENT kernel
+   `M = (c_Q/c_M)(1-chi)V'(chi)`; a repair, not a no-go."  FALSE.  Eliminating the auxiliary
+   TT tensor EXACTLY gives `L_on = (1/2)(f^2/M) A_ij A^ij = (f^2/(3M)) A^2` -- for ANY LOCAL
+   kernel (algebraic, chi-dependent, y-dependent) this is a pure redefinition
+   `F(A) -> F(A) - f^2 A^2/(3M)`.  The carrier adds NO new tensor structure, so hypothesis
+   (H4) is never violated and the Part-I theorem applies verbatim to the redefined F.
+   Route B's order-counting (carrier stress O(a^4) vs Sigma_P O(a^2)) is the same fact.
+   Only genuinely NONLOCAL M escapes -- and that is an (H1)/(H2) escape, not (H4).
+2. **CORRECTED framing (both routes).**  The Solar-System suppression has NOTHING to do with
+   `f(chi) -> 0`.  The static gates force the a.a coefficient to be `alp_kh(y) = 2(1-mu(y))`,
+   so `alpha_1 = -8(1-mu(y))` and `alpha_2 = -(1-mu) + 2(1-mu)^2/c2 + 3(1-mu)^2` -- generated
+   by the LAPSE-TIED MOND SECTOR ALONE.  1e-2751 is a property of the FROZEN kernel e^{-y}.
+   With the framework's own canonical mu (g_obs = sqrt(g_bar^2 + g_bar a0)) the suppression is
+   only 1/(2y): |alpha_1| = 6.3e-8 at Earth, 5.7e-6 at Saturn, 5.7e-5 at Neptune (bound 1e-4).
+3. **NEW liability.**  Deep MOND needs `alp_kh -> 2`, i.e. `c14 -> 2` -- the OTHER pole of
+   alpha_2 (the `1/(2-alp)` factor) and the edge of the aether stability domain 0 <= c14 < 2.
+4. **The literal spec is not a MOND theory** (both routes found this; re-derived here from the
+   candidate's own ADM action).  With coefficient `chi` and the frozen `V' = -[ln(1-chi)]^2`,
+   `mu_eff = 1 + F'/2 = 1 +- chi/2` lies in [1, 3/2] (or [1/2, 1]): no deep-MOND limit for
+   EITHER sign, and G_eff/G_N = 2/3 or 2 at high acceleration, violating the compiler's own
+   frozen gate.  The repair needs coefficient `2(1-chi)` and `V' = -2[ln(1-chi)]^2` -- on which
+   branch the advertised carrier coupling `f = (1-chi) sqrt(V')` is IMAGINARY.  The one
+   "exactly verified" identity of the design was computed on the non-MOND constitutive law.
+
+### Both-ways finding (reported because it cuts FOR the candidate class)
+The Part-I traceless stress is real (`Sigma^TF_ij = -F'(A)[d_i phi d_j phi]^TF`, same F' that
+multiplies the Gauss flux, so `Sigma_P = 0 <=> mu_eff = 1 <=> no MOND` -- PROVEN), but the
+metric slip it induces is small: solving the linearised slip equation exactly for a deep-MOND
+point mass gives `|d(psi-Phi)/dr| / |dPhi/dr| = sqrt(G M a0) = v_flat^2/c^2`, i.e. 1.4e-8
+(dwarf), 5.4e-7 (Milky Way), 1.0e-6 (massive spiral).  mc_gates.py's physical FRAME_SLIP test
+is the right one; its SIGMA_P_NONZERO kill is built on a cancellation residual, not a
+magnitude.  Worth re-examining before Part-I is used to kill a metric-carried candidate.
