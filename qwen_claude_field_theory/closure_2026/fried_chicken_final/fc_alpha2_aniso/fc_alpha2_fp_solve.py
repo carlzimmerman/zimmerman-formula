@@ -83,7 +83,8 @@ def build(mode):
     R1m=sp.Matrix(4,4,lambda m,n:R1(m,n))
     R1sc=sum(eta[m,n]*R1m[m,n] for m in range(4) for n in range(4))
     G1=sp.Matrix(4,4,lambda m,n:R1m[m,n]-sp.Rational(1,2)*eta[m,n]*R1sc)
-    L_EH=sp.Rational(1,2)*sum(Hup[m,n]*G1[m,n] for m in range(4) for n in range(4))
+    # sign fixed: full-Ricci sqrt(-g)R|_eps^2 == -(1/2) h.G^(1) (verified: Ricci/FP EOM ratio = -1)
+    L_EH=-sp.Rational(1,2)*sum(Hup[m,n]*G1[m,n] for m in range(4) for n in range(4))
     # ---- aether unit constraint ----
     a0f=a0f0
     Adn=sp.Matrix([Adn_bg[0]-eps*a0f,Adn_bg[1]+eps*af[0],Adn_bg[2]+eps*af[1],Adn_bg[3]+eps*af[2]])
