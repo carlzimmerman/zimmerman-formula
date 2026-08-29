@@ -1,0 +1,42 @@
+================================================================================================
+ROUTE B FINAL CERTIFICATES  (Setup-M moving-source 1PN solve)
+================================================================================================
+
+[C1] GR gate (all AeST off): must give gamma=1, alpha_1=alpha_2=0
+  [ok] GR: gamma=1, alpha_1=0, alpha_2=0
+
+[C2] VECTOR sector reproduces Foster-Jacobson EXACTLY (literature cross-check):
+  [ok] K_B=0.25: EA c2=+c2* -> a1=-4KB, a2=0 [True]; EA c2=-c2* -> a2=-0.14286=2KB(2KB-1)/(2-KB) [True]
+  [ok] K_B=0.1: EA c2=+c2* -> a1=-4KB, a2=0 [True]; EA c2=-c2* -> a2=-0.08421=2KB(2KB-1)/(2-KB) [True]
+  [ok] K_B=0.01: EA c2=+c2* -> a1=-4KB, a2=0 [True]; EA c2=-c2* -> a2=-0.00985=2KB(2KB-1)/(2-KB) [True]
+
+[C3] c2 sign & health (Foster-Jacobson cone speeds), K_B=1e-3:
+  [ok] EA c2=+c2* (ACTION -c2*): s0^2=1 (luminal), alpha_2^EA=0 -> HEALTHY corner
+  [ok] EA c2=-c2* (ACTION +c2*, the literal brief sign): s0^2=-1.0030<0 -> SPIN-0 GHOST
+
+[C4] static scalar sector: H00(scalar on)/H00(off) = 1 + 1/J_Y  (known AeST quasi-static):
+  [ok] J_Y=1: H00on/off=1.99999 = 1+1/J_Y=2.00000
+  [ok] J_Y=2: H00on/off=1.49999 = 1+1/J_Y=1.50000
+  [ok] J_Y=4: H00on/off=1.24999 = 1+1/J_Y=1.25000
+
+[C5] the 2(2-K_B)J.grad(phi) acceleration coupling IS the whole preferred-frame effect:
+  [ok] J-coupling OFF: alpha_1=-0.0417(=-4KB=-0.0400), alpha_2=+1.38e-02(~0) -- scalar decouples from preferred frame w/o J-coupling
+  [ok] J-coupling ON : alpha_1=-2.6950,  alpha_2=+67.4358 (huge)
+
+[C6] Delta alpha_2^(phiA) DIVERGES as 1/K_B (healthy corner, beta_0=0.5=J_Y2, c_s^2=1):
+      K_B=0.02: alpha_2^EA=+0.0e+00  Delta alpha_2^(phiA)=+3.4026e+01  [x K_B = 0.6805 -> 4/(JY(1+JY))=0.667]
+      K_B=0.005: alpha_2^EA=+0.0e+00  Delta alpha_2^(phiA)=+1.3441e+02  [x K_B = 0.6720 -> 4/(JY(1+JY))=0.667]
+      K_B=0.001: alpha_2^EA=+0.0e+00  Delta alpha_2^(phiA)=+6.7744e+02  [x K_B = 0.6774 -> 4/(JY(1+JY))=0.667]
+  [ok] alpha_2*K_B -> 0.667=4/(J_Y(1+J_Y)) (genuine simple pole in K_B)
+
+[C7] beta_0-scaling of the residue C=alpha_2*K_B ~ 4/(J_Y(1+J_Y)) = 4 beta_0^2/(1+beta_0):
+      J_Y=    1 (beta_0=1): C=2.01406  pred 4/(JY(1+JY))=2.00000  alpha_1=-4.0120(=-8/(1+JY)=-4.0000)
+      J_Y=    2 (beta_0=0.5): C=0.67304  pred 4/(JY(1+JY))=0.66667  alpha_1=-2.6800(=-8/(1+JY)=-2.6667)
+      J_Y=    5 (beta_0=0.2): C=0.13580  pred 4/(JY(1+JY))=0.13333  alpha_1=-1.3481(=-8/(1+JY)=-1.3333)
+      J_Y=   20 (beta_0=0.05): C=0.01016  pred 4/(JY(1+JY))=0.00952  alpha_1=-0.3972(=-8/(1+JY)=-0.3810)
+
+================================================================================================
+  ALL CERTIFICATES PASS   [t=33s]
+  VERDICT: Delta alpha_2^(phiA) = 4/(J_Y(1+J_Y)) / K_B  DIVERGES as K_B->0.
+  At Cassini-forced UNSCREENED beta_0~0.3-0.5 (J_Y~2-3) and K_B<2.5e-5: |alpha_2| > 1e4 >> 1e-7 bound.
+  => FC-AeST + c2* DIES at the preferred-frame gate (alpha_2 AND alpha_1 both O(1)/divergent w/ scalar).

@@ -1,0 +1,40 @@
+========================================================================================
+PHASE 2 route-A: FC-AeST + c_2* preferred-frame alpha_2  (Setup M, gauge-inv 2b+d)
+========================================================================================
+
+[GATE GR] dark OFF -> reproduce GR gate (a,b,d)=(-4,0,-1), alpha_1=alpha_2=0
+    (a,b,c,d)=(-4,0,5,-1)  alpha_1=0 alpha_2=0
+  [ok] GR limit: alpha_1=alpha_2=0, (a,b,d)=(-4,0,-1)
+
+[GATE EA] EA + c_2* Maxwell corner (scalar OFF) -> alpha_1=-4K_B, alpha_2=0 EXACTLY
+    K_B=0.05: alpha_1=-0.2 (-4K_B=-0.2) alpha_2=0  ok
+    K_B=0.1: alpha_1=-0.4 (-4K_B=-0.4) alpha_2=0  ok
+    K_B=0.3: alpha_1=-1.2 (-4K_B=-1.2) alpha_2=0  ok
+  [ok] EA Maxwell corner: alpha_1=-4K_B and alpha_2=0 EXACTLY (all K_B)
+
+[GATE GH] static Newton renormalisation Ghat = 2Gt/(2-K_B) (typeII), aether sector
+  [ok] Ghat/Gt = 40/39 = 2/(2-K_B) = 40/39
+
+[GATE SCREEN] full AeST at Maxwell corner: alpha_1->-4K_B, alpha_2->1/lam_s as lam_s->inf
+    K_B=0.05, K2=1, m_a^2,m_Psi^2 << 1 (Q0 scaled):
+       lam_s     alpha_1       alpha_2  alpha_2*lam_s
+           1    -4.09998       20.2433       20.24328
+          10    -0.90909      0.449881        4.49881
+         100    -0.27723     0.0138106        1.38106
+        1000    -0.20779    0.00103845        1.03845
+       10000    -0.20078   0.000100385        1.00385
+  [ok] alpha_2 * lam_s -> 1  (alpha_2 -> 1/lam_s, screened)
+
+[RESULT] alpha_2(K_B,K2,lam_s,Q0) at Maxwell corner, massless PPN limit:
+    DERIVED leading behaviour:  alpha_2 = 1/lam_s + 2/(K_B lam_s^2) + O(lam_s^-3)
+    alpha_1 = -4 K_B + O(1/lam_s)   (-> -4 K_B, the established vector value)
+    lam_s = J_Y ; at Solar System J_Y = 2 g_bar/a_0 ~ 1.3e8 (typeII F3, EXTERNAL-INPUT)
+    => alpha_2 ~ a_0/(2 g_bar) ~ 8e-9  <  |alpha_2|_bound ~ 1e-7  (MOND-SCREENED, PASSES)
+
+[CHANNELS] the g_00-ALONE 'iso'(c) vs 'aniso'(d) channels (Carl's spec) vs gauge-invariant:
+    naive iso (from c)   = -5.29055   naive aniso (from d) = -1.15213
+    gauge-invariant 2b+d = 0.0137185   (the ONLY convention-robust value; [I1] fix)
+    consistency (rotational/AV/AW/cd-fit across 3 w-samples): {'rot_ok': True, 'av_ok': True, 'aw_ok': True, 'cd_ok': True}
+
+========================================================================================
+    ALL GATES PASS   [runtime 106.9s]

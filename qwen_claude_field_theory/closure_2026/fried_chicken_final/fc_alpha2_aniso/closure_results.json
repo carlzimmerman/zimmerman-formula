@@ -1,0 +1,44 @@
+{
+  "verdict": "PPN-KILL-alpha2-too-large",
+  "gr_gate": "GR-VALIDATED",
+  "gr_gate_certificate": "fc_aniso_grgate.py 16/16 sympy certs, exit 0; gamma=1 [D2], alpha_1=alpha_2=0 [E1,E2], boosted-Schwarzschild oracle [F1,F2], gauge-invariant 2b+d fixes g_00-alone artifact [I1,I2]",
+  "channels_agree": "YES (gauge-invariant 2b+d): both routes give same sign, same 1/K_B pole, same ~1e4 magnitude at frozen beta_0~0.5; naive g_00-alone iso/aniso channels are gauge artifacts per GR-gate [I1] and correctly discarded",
+  "alpha_2_derived": true,
+  "alpha_2_basis": "DERIVATION (two independent full-anisotropic O(w^2) 1PN solves, each cross-validated on GR alpha=0 and Einstein-aether Foster-Jacobson alpha_1=-4K_B alpha_2=0 at the Maxwell corner)",
+  "alpha_2_functional_form": {
+    "route_A_asymptotic": "alpha_2 = 1/lam_s + 2/(K_B*lam_s^2) + O(lam_s^-3)",
+    "route_B_pole": "alpha_2 = 4/(J_Y*(1+J_Y))*(1/K_B) + O(1) leading",
+    "note": "lam_s=J_Y, beta_0=1/lam_s; both carry a 1/K_B simple pole; residues agree to a factor ~1.3-2 (precision residual, does not affect verdict)"
+  },
+  "alpha_1_companion": "alpha_1 = -8/(1+J_Y) with scalar ON = -2.67 at beta_0=0.5 (INDEPENDENT kill vs bound 1e-4); the established -4K_B is the scalar-DECOUPLED value only",
+  "frozen_inputs": {
+    "beta_0": "0.3-0.5 UNSCREENED (EXTERNAL-INPUT: committed fc_beta0_cassini_nogo_2026.py Cassini-vs-fold no-go; Cassini-safe kernels need p>=4 => beta0_min>=0.27)",
+    "K_B": "< 2.5e-5 (from |alpha_1^EA|<1e-4)",
+    "c_T": "1 exact",
+    "K2": "> 0 (alpha_2 K2-independent at leading order)",
+    "c2_corner": "ACTION -c2*(divA)^2, c2*=K_B/(1-2K_B) (HEALTHY luminal corner; the brief's literal +c2* is a spin-0 GHOST, sign typo)"
+  },
+  "alpha_2_at_frozen_point": {
+    "beta_0=0.5,K_B=2.5e-5": {"route_A": 2.0e4, "route_B": 2.7e4},
+    "beta_0=0.33,K_B=2.5e-5": {"route_A": 8.9e3, "route_B": 1.3e4},
+    "bound": 1e-7,
+    "margin": "FATAL by ~11 orders of magnitude"
+  },
+  "point_below_bound_exists": false,
+  "point_search": "beta_0~0.5 fixes lam_s~2; alpha_2 minimized at largest allowed K_B=2.5e-5 -> ~2e4; K2-independent; non-pole leading term 1/lam_s=0.5 also >> 1e-7. No point with |alpha_2|<1e-7 in the allowed region.",
+  "route_A_pass_is_invalid_because": "Route A's PASS (alpha_2=1/lam_s~8e-9) sets lam_s=J_Y=1.3e8 (local MOND derivative), i.e. beta_0=7.7e-9 = the small-beta_0 SCREENING escape that fc_beta0_cassini_nogo_2026.py CLOSES; the brief forbids invoking screening. Route A's own subleading 2/(K_B lam_s^2) is the same pole, negligible only under that forbidden deep screening.",
+  "inconclusive_triggers": "none fire: GR gate passed; solve closed (both routes exit 0, Route A anisotropic consistency rot/av/aw/cd all True); gauge-invariant channels agree on sign/pole/scale",
+  "mechanism": "c2* at Maxwell corner liberates spin-0 aether mode with soft kinetic term ~c2*~K_B; O(1) acceleration coupling 2(2-K_B)J^mu grad_mu phi sources it => 1/K_B strong-coupling response into preferred-frame metric; same coupling drags alpha_1 to O(1)",
+  "J_10_relevance": "IRRELEVANT to 1PN (1-mu_10 ~ 1e-40 in Solar System)",
+  "honesty_ledger": {
+    "THEOREM": "GR-gate order-counting (w^2 U terms are 2PN, gamma=1); fold theorem beta0_min[mu] (external, committed)",
+    "DERIVATION": "alpha_2 1/K_B pole and alpha_1=-8/(1+J_Y) (numerically-certified scaling, cross-validated on GR and Foster-Jacobson EA limits)",
+    "EXTERNAL_INPUT": "Will standard-PPN slope definition (textbook); beta_0~0.5 unscreened (committed Cassini-vs-fold no-go); alpha_2 bound ~1e-7",
+    "RESIDUAL_OPEN": "exact pole residue differs by factor ~1.3-2 between the two independent solves (precision, not sign/scale); does not affect the kill"
+  },
+  "files_written": [
+    "/Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/closure_2026/fried_chicken_final/fc_alpha2_aniso/FC_ANISO_VERDICT.md",
+    "/Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/closure_2026/fried_chicken_final/fc_alpha2_aniso/FC_ANISO_REPORT.md",
+    "/Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/closure_2026/fried_chicken_final/fc_alpha2_aniso/closure_results.json"
+  ]
+}
