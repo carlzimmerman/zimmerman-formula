@@ -1,0 +1,445 @@
+
+========================================================================================
+PART A -- the frozen constitutive functions for the sf42 route (exact)
+========================================================================================
+  [ok] 01 V'(chi(y)) = -y^2  (exact)
+          V' = -y**2
+  [ok] 02 f(chi(y)) = -mu(y) y^2 = Sigma_P^cov   (the handover's exact profile match, RE-VERIFIED)
+          f = -y**2*(exp(y) - 1)*exp(-y)
+  [ok] 03 V''(chi) = -2 y e^{y}  (< 0 for y>0)
+          V'' = -2*y*exp(y)
+  [ok] 04 f'(chi) = V' + chi V''  (chain rule self-check)
+          f' = y*(-y - 2*exp(y) + 2)
+  [ok] 05 f'(chi) = -y^2 - 2 y e^{y} + 2 y   <== EXPONENTIALLY LARGE in y
+          f'(y=10) = -4.4061e+05,  f'(y=20) = -1.9407e+10
+  [ok] 06 f(chi) = -chi^3 - chi^4 - (11/12) chi^5 + ...  : POLYNOMIAL/ANALYTIC at chi = 0, no branch cut
+          series = -11*chi**5/12 - chi**4 - chi**3   [the handover's 'strictly cleaner than (1-chi)sqrt(-V')' is TRUE in chi]
+  [ok] 07 CONTRAST: last round's f_old = y e^{-y} has f_old'(chi) = 1 - y  -- POLYNOMIAL in y
+          the NEW f is analytic in chi but its chi-derivative is EXPONENTIAL in y; the Q back-reaction
+          and the Newtonian limit see the y-behaviour, not the chi-behaviour.  Flagged for PART I.
+  [ok] 08 V(chi) = e^{-y}(y^2+2y+2) - 2 integrates V'  (exact)
+  [ok] 09 chi (D Phi)^2 + V = (2/3) y^3 + O(y^4) = the deep-MOND AQUAL Lagrangian (exact series)
+  LABEL: PROVEN.  The frozen (V, f) pair is exactly as handed over; nothing transcendental inserted.
+
+========================================================================================
+PART B -- T1(a): is Phi AUXILIARY or DYNAMICAL?  (decide from the action, and SAY)
+========================================================================================
+  [ok] 10 dL/d(Ndot) = 0  =>  PRIMARY constraint  pi_N ~ 0
+  [ok] 11 dL/d(Nidot) = 0  =>  PRIMARY constraint  pi_i ~ 0
+  [ok] 12 dL/d(chidot) = 0  =>  PRIMARY constraint  pi_chi ~ 0
+  [ok] 13 dL/d(Qdot) = 0  =>  PRIMARY constraint  pi_Q^ij ~ 0
+  [ok] 14 dL/d(Phidot) = 0  =>  PRIMARY constraint  pi_Phi ~ 0
+  ANSWER: Phi is AUXILIARY.  The action contains D_i Phi only -- never Phidot -- so
+  pi_Phi ~ 0 is a PRIMARY constraint, exactly like pi_chi and pi_Q.
+
+  WHAT THAT COSTS, made explicit.  (D_i Phi)(D^i Phi) is NOT a spacetime scalar.  With
+  u^mu the unit normal of the ADM foliation,
+        (D Phi)^2 = (g^{mu nu} + u^mu u^nu) d_mu Phi d_nu Phi = (dPhi)^2 + (u.dPhi)^2 ,
+  i.e. the action is built from the FOLIATION PROJECTOR.  Keeping Phi auxiliary and
+  keeping 4-diffeo invariance are mutually exclusive: restoring (dPhi)^2 alone would put
+  Phidot back and make Phi dynamical.  So this candidate is, like the previous one, a
+  PREFERRED-FOLIATION (khronon-class) theory.  The MOND field has moved off the lapse;
+  the foliation has NOT.  This is verified as an identity next, and it is what PART H
+  cashes out as the surviving third mode.
+  [ok] 15 IDENTITY (D Phi)^2 = (dPhi)^2 + (u.dPhi)^2 : the MOND term IS foliation-dependent  [PROVEN]
+          => Phi auxiliary <=> a khronon is present.  Not an assumption -- an algebraic identity.
+  Primary constraints: pi_N(1) + pi_i(3) + pi_chi(1) + pi_Q^ij(5) + pi_Phi(1) = 11.
+  Phase space per point: (gamma,pi)12 + (N,pi_N)2 + (N^i,pi_i)6 + (chi,pi_chi)2
+                       + (Q,pi_Q)10 + (Phi,pi_Phi)2  =  34.
+
+========================================================================================
+PART C -- T1(b): THE KEY QUESTION.  Is C_N (the Hamiltonian constraint) first class?
+========================================================================================
+  [ok] 16 *** delta C_N / delta N == 0 EXACTLY  =>  {pi_N, C_N} = 0 ***   [PROVEN]
+          the single entry that failed last round (phi = ln N gave 2 chi k^2 - 2 f Q_kk != 0) is now ZERO.
+          THE REPAIR DOES WHAT IT WAS DESIGNED TO DO -- for this entry.
+  BUT first class means vanishing brackets with EVERY constraint, not just with C_N.
+  The mixed lapse entries of the Hessian W = -Hess_{(N,chi,Q,Phi)} U are:
+
+     W_NN    = -d^2U/dN^2       = 0                                  EXACT
+     W_Nchi  = -dP/dchi         = -C_chi /(N sqrt g)   ~ 0           WEAKLY ZERO on shell
+     W_NQ    = -dP/dQ           = -C_Q   /(N sqrt g)   ~ 0           WEAKLY ZERO on shell
+     W_NPhi  = -d^2U/dN dPhi    = + d_i [ J^i  . ]     != 0          <== THE NEW LEAK
+                with the MOND FLUX   J^i = dP/d(d_i Phi) = 2 chi D^i Phi - 2 f Q^{ij} D_j Phi
+
+  W_Nchi and W_NQ are weakly zero because C_chi and C_Q are ALGEBRAIC in the fields, so the
+  overall factor N divides out.  C_Phi is NOT algebraic -- N sits INSIDE a spatial derivative,
+      C_Phi = -2 d_i [ N sqrt(g) ( chi D^i Phi - f Q^{ij} D_j Phi ) ] + (matter source),
+  so N cannot be divided out and delta C_Phi/delta N is a genuine first-order operator.
+
+  DIAGNOSIS, stated precisely:  moving MOND off the lapse RELOCATES the obstruction from the
+  (N,N) entry to the (N,Phi) entry.  It does not remove it.  The lapse is still differentiated
+  by the MOND sector -- no longer as (D ln N)^2, but as the N-weighting of the MOND flux.
+  [ok] 17 W_Nchi, W_NQ weakly zero (algebraic constraints, N divides out)  [DERIVATION]
+  [ok] 18 W_NPhi = d_i[J^i .] is a first-order operator, symbol i (k.J)  [DERIVATION, symbol used in PART E]
+
+========================================================================================
+PART D -- rank theorems: det(Delta) = det(W)^2, and the BORDERED reduction
+========================================================================================
+  [ok] 19 det(Delta) = det(W)^2 for ANY antisymmetric Z  -- symbolic identity at n = 2,3
+  [ok] 20 det(Delta) = det(W)^2 at the physical n = 8: EXACT 16x16 integer determinants, 5 draws
+          => rank(Delta) = 16 <=> det(W) != 0.  The {C,C} block Z is irrelevant to the rank.
+  [ok] 21 BORDERED IDENTITY  det(W) = -|a|^2 det(B)   for a = W_NPhi, B = the 6x6 (chi,Q) block
+          verified symbolically for B of size 2,3,4 (the physical size is 6).  NOTE: the Phi ROW entries
+          W_Phichi, W_PhiQ, W_PhiPhi drop out of det(W) entirely.  Rank is decided by a and B alone.
+
+========================================================================================
+PART E -- the 8x8 Hessian symbol, built explicitly (exact sympy, 3D, all directions)
+========================================================================================
+  [ok] 22 TF basis orthonormal and trace-free (5 components, explicit)
+  [ok] 23 |A|^2 = (2/3) y^4  (exact)
+  [ok] 24 MOND flux J^i is parallel to D^i Phi (background is axially symmetric)
+          J_x = -2*y*(exp(y) - 1)*(-3*m2*exp(y) + 2*y**6*exp(y) - 2*y**6)*exp(-2*y)/(3*m2)
+  [ok] 25 H is HERMITIAN (as a functional Hessian must be) -- algebra self-check PASSES
+  [ok] 26 {pi_Q, C_Q} = KK = m^2 Id_5 EXACTLY: the five TF Q components are second-class removed
+          unchanged from last round, and again independent of f, chi, V -- the Q sector is NOT the leak
+  [ok] 27 H_PhiPhi = 2 chi k^2 - 2 f Q^ij k_i k_j  == last round's H_phiphi, RELOCATED N->Phi
+          the elliptic MOND operator that DEMOTED H_perp last round now sits harmlessly in the Phi slot
+  [ok] 28 closed form det(H) = -(k.J)^2 det(B) matches sympy's OWN 8x8 and 6x6 determinants
+          worst relative mismatch over 8 random (y,k,theta,m^2) = 2.48e-15
+  [ok] 29 det(H) is REAL (Hermitian)
+          max |Im det H| = 0.00e+00
+
+========================================================================================
+PART F -- RANK CONSTANCY over physical phase space
+========================================================================================
+  det(B) = -2*m2**4*y*(3*m2*exp(y) + y**7 + 2*y**6*exp(2*y) + 4*y**6*exp(y) - 6*y**6 + 6*y**5*exp(2*y) - 12*y**5*exp(y) + 6*y**5)/3
+  (k.J)  = -2*k*y*(exp(y) - 1)*(-3*m2*exp(y) + 2*y**6*exp(y) - 2*y**6)*exp(-2*y)*cos(theta)/(3*m2)
+  [ok] 30 *** RANK DROPS for every mode with k PERPENDICULAR to D Phi (theta = pi/2): (k.J) = 0 ***
+          the leak operator a = d_i[J^i .] is a TRANSPORT operator along the MOND field lines; it has an
+          infinite-dimensional kernel.  The extra mode propagates ONLY along D Phi.
+  [ok] 31 y -> 0 (|D Phi| = 0, the MINKOWSKI VACUUM): BOTH (k.J) -> 0 and det(B) -> 0
+          (k.J) ~ 2*k*y**2*cos(theta) ;   det(B) ~ -2*m2**5*y
+  [ok] 32 *** RANK DROPS at y = 0: det(H) ~ y^5 -> 0  (QUINTIC zero; last round it was y^2) ***
+          leading behaviour  det(H) = 8*k**2*m2**5*y**5*cos(theta)**2 + O(y^6)
+    CAUSE (exact, and it is NOT the same cause as last round): last round the zero came from
+    V''(0) = 0 alone.  Here it is (k.J)^2 * det(B): the MOND FLUX itself vanishes at y = 0 (a
+    factor y^4 from J ~ 2 mu y ~ 2 y^2) TIMES the old V'' -> 0 factor (a further y).  y = 0 is the
+    Minkowski vacuum, the centre of any symmetric body, and every saddle of the potential.
+    The repair therefore does NOT regularise the y = 0 degeneracy -- it DEEPENS it, y^2 -> y^5.
+  [ok] 33 det(B): the bracket m^2 V'' - m^2 f'' (Q.A) - f'^2 |A|^2 is STRICTLY NEGATIVE for all y>0
+          scanned 600 y in [1e-3,30] x m^2 in [0.05,1e6]; observed signs = [-1.0]  => B is non-degenerate; the chi/Q auxiliary removal is genuine, exactly as last round
+  [ok] 34 *** a THIRD rank-drop locus: J_x = 0 at  m^2 = (2/3) mu(y) y^6  ***
+          m^2* = 2*y**6*(exp(y) - 1)*exp(-y)/3   -- for any m^2 there is a y at which the flux vanishes.
+          PART I shows this is the SAME locus as the lensing cancellation.  Not a coincidence.
+
+  KERNEL SCAN (rank of the Q block needs KK invertible on TF tensors):
+    (i)  m^2 Id_TF [LOCAL]     det(B) != 0 for all k: CONSTANT rank in k
+    (ii) -D^2 [k^2]            det(B) ~ k^8 -> 0 at k=0: 5 unconstrained IR zero modes
+    (iii) Delta^{-1} [1/k^2]   rank drop at finite k (as last round)
+  [ok] 35 kernel (ii) -D^2 still FAILS (det B -> 0 as k -> 0); LOCAL m^2 remains the only healthy kernel
+
+========================================================================================
+PART G -- T1(c): THE DOF COUNT
+========================================================================================
+  Phase space per point:
+      (gamma_ij, pi^ij)  12 | (N, pi_N) 2 | (N^i, pi_i) 6 | (chi, pi_chi) 2
+      (Q_ij, pi_Q) 10        | (Phi, pi_Phi) 2                       TOTAL 34
+
+  FIRST CLASS: pi_i (3) and H_i (3).  Every term is a spatial scalar density built from
+  (gamma, D_i, chi, Q, Phi); the auxiliary contributions to H_i are ~ pi_chi D_i chi +
+  pi_Q D_i Q + pi_Phi D_i Phi, weakly zero.  No conformal-density constraint here, so no
+  longitudinal-diffeo anomaly.  => 6.
+
+  SECOND CLASS: with det(H) != 0 on the generic branch the chain TERMINATES at the
+  secondaries (all multipliers lambda_N, lambda_chi, lambda_Q, lambda_Phi fixed, no
+  tertiaries).  Second-class set = pi_N, pi_chi, pi_Q(5), pi_Phi and C_N, C_chi, C_Q(5),
+  C_Phi = 16.
+  [ok] 36 N_dof = (1/2)[34 - 2*6 - 16] = 3   -- THE TARGET OF 2 IS NOT MET
+          generic branch (y > 0 and k.D Phi != 0):  rank(Delta) = 16,  N_dof = 3
+  [ok] 37 on the degenerate locus (y = 0, or k perp D Phi, or m^2 = (2/3) mu y^6): rank -> 14, N_dof = 2
+          => the DOF count is NOT CONSTANT over phase space: 3 generically, 2 on the vacuum and on
+          the transverse modes.  That jump is the canonical strong-coupling signature.
+
+  WHERE THE THIRD MODE NOW LIVES (and it is NOT where it lived last round).
+    last round:  W_NN = 2 chi k^2 - 2 f Q_kk != 0  =>  H_perp demoted, extra = lapse/conformal.
+    this round:  W_NN = 0 (repair works)  BUT  W_NPhi = d_i[J^i .] != 0  =>  pi_N is second
+                 class against C_Phi, and the surviving mode is the MOND scalar Phi itself,
+                 liberated by the khronon (PART H makes it explicit and computes its speed).
+  Counterfactual: if the (N,Phi) entry vanished too, the same field content would give
+  (1/2)[34 - 2*8 - 14] = 2.  So the whole 2-vs-3 verdict is now the single question
+  'does the action weight the MOND flux by N?', and it does -- unavoidably, since N sqrt(g)
+  is the integration measure.
+
+========================================================================================
+PART H -- T2: STRONG COUPLING.  Quadratic action about Minkowski, and the mode's speed
+========================================================================================
+  [ok] 38 Y = g^2 + 2 eps g d_x p + eps^2 [ ... ]   (background + linear pieces, exact)
+  [ok] 39 Y^(2) = |grad p|^2 - 2 pdot (g.grad tau) + (g.grad tau)^2   [PROVEN, exact expansion]
+          Phidot^2 CANCELS identically (that is why Phi is auxiliary); the khronon enters ONLY through
+          sigma := g.grad tau, and ALWAYS multiplied by the background gradient g.
+  [ok] 40 *** at g = 0 (MINKOWSKI VACUUM) the khronon DISAPPEARS from Y^(2) identically ***
+          and chi_on-shell = mu(|grad p|) = O(eps) is NON-ANALYTIC, so chi Y = O(eps^3): the whole
+          MOND sector's quadratic action about Minkowski is EXACTLY ZERO.
+  [ok] 41 the Q sector enters at TENTH order in the perturbation (f ~ y^3, |A| ~ y^2, Q ~ y^5/m^2)
+          Q sector = -epsilon**8*(exp(epsilon) - 1)**2*exp(-2*epsilon)/(3*m2)  ->  leading power eps^10  (last round it was eps^6)
+
+  THEOREM (PROVEN).  The quadratic action of this candidate about Minkowski is EXACTLY the
+  quadratic Einstein-Hilbert action.  chi enters at cubic order, Q at tenth order, and the
+  khronon's only quadratic coupling is proportional to the background gradient g, which is
+  zero in vacuum.  The third mode of PART G therefore has IDENTICALLY ZERO quadratic action
+  about the vacuum: a null direction of the kinetic operator with NO constraint attached.
+  => INFINITE STRONG COUPLING.  Same verdict as last round, reached through a different
+  entry of the same Hessian.  It is the same fact as the det(H) ~ y^5 rank drop in PART F.
+  [ok] 42 eliminating the two auxiliaries: chi1 = -Y^(1)/V'' and sigma = pdot (valid iff k.g != 0)
+          chi1 = -2*gx*p_x/Vppb,  sigma = pdot
+  [ok] 43 DERIVED quadratic action  L2 = chi pdot^2 - chi |grad p|^2 + (2 g^2/V'') p_x^2
+          coeff(pdot^2) = chib (= chi = mu > 0, NOT a ghost);  coeff(p_y^2) = -chib;  coeff(p_x^2) = -chib + 2*gx**2/Vppb
+  [ok] 44 DERIVED sound speeds:  c_par^2 = 1 + y mu'/mu  and  c_perp^2 = 1  (kinetic coeff = mu > 0)
+          c_par^2 = (y + exp(y) - 1)/(exp(y) - 1),  c_perp^2 = 1
+  [ok] 45 c_s^2 -> 2 in deep MOND (SUPERLUMINAL by sqrt(2)) and -> 1 in the Newtonian limit
+          c_s^2(y->0) = 2,  c_s^2(y->oo) = 1   [the classic RAQUAL liability, inherited]
+    Transverse (k perp D Phi) the khronon decouples, tau cannot be eliminated, and the mode
+    does not propagate at all -- consistent with the (k.J) = 0 rank drop of PART F.
+    NOT A GHOST at y > 0 (kinetic coefficient mu > 0); the disease is the vanishing of that
+    coefficient at the vacuum (mu -> 0 as y -> 0), i.e. a strong-coupling scale that goes to
+    ZERO on Minkowski.  LABEL: PROVEN for the vacuum statement, COMPUTATIONALLY_VERIFIED for c_s.
+
+========================================================================================
+PART I -- T3: LENSING, SELF-CONSISTENTLY (the Q back-reaction is NOT optional here)
+========================================================================================
+  [ok] 46 dL_eff/dX = -chi + (2/3) f^2 X / m^2   (envelope theorem: chi is on shell)
+  [ok] 47 *** IDENTITY:  J^i = -2 (dL_eff/dX) D^i Phi   and   Sigma^TF_ij = (dL_eff/dX) A_ij ***
+          so the TRACELESS STRESS and the MOND FLUX are the SAME function dL_eff/dX.
+          => Sigma_P = 0  <=>  J^i = 0  <=>  NO MOND FORCE.  [PROVEN]
+    NO-GO (this is the sharpest result in the run, and it is general).  For ANY Lagrangian
+    that depends on Phi only through X = (D Phi)^2 -- which is exactly what an algebraic
+    auxiliary carrier coupling to A_ij = [D_i Phi D_j Phi]^TF produces, because eliminating Q
+    returns a function of X -- the traceless spatial stress is L_X A_ij and the Gauss-law flux
+    is -2 L_X D^i Phi.  Cancelling the anisotropic stress is IDENTICAL to switching off the
+    force.  Matching PROFILES (f(y) = Sigma_P(y), the handover's exact match) is NOT a
+    cancellation: the carrier's on-shell stress is QUADRATIC in f while the obstruction is
+    LINEAR in the constitutive function.  This kills the carrier architecture in the frozen
+    action; it does NOT kill carriers that couple to something other than X (Q^ij R_ij,
+    Q^ij K_ij, or a disformal matter frame).  Those remain open -- see the VERDICT.<lambdifygenerated-3>:2: RuntimeWarning: overflow encountered in multiply
+  return yt**3*(exp(yt) - 1)*(yt + 2*exp(yt) - 2)*exp(-yt)
+
+  [ok] 48 the cancellation is a SINGLE-POINT match: L_X = 0 only at m^2 = (2/3) mu(y) y^6
+          m^2* = 2*y**6*(exp(y) - 1)*exp(-y)/3  -- identical to the PART F flux-vanishing locus, as the identity requires
+    y        m^2 needed for exact cancellation at that y
+      0.30   1.2596e-04
+      1.00   4.2141e-01
+      3.00   4.6180e+02
+     10.00   6.6664e+05
+     30.00   4.8600e+08
+    => no constant m^2 cancels Sigma_P at more than one acceleration.  ANSWER TO T3:
+       Phi - Psi is NOT zero exactly, NOT zero to O(1/m^2), and not zero at all except
+       on one isolated locus -- where the MOND force is simultaneously zero.
+  [ok] 49 X(yt) has exactly one branch with X -> yt^2 as m^2 -> oo (the Q = 0 relation is recovered)
+          branch limits as m^2 -> oo: [oo*Abs((exp(yt) - 1)*(yt + 2*exp(yt) - 2))/((exp(yt) - 1)*(yt + 2*exp(yt) - 2)), yt**2];  discriminant = 1 - (8/3) f f' yt^2 / m^2
+  [ok] 50 f f' > 0 for all yt > 0, and GROWS like 2 yt^3 e^{yt}
+          f f'(yt=1) = 2.8044,  (yt=5) = 3.7226e+04,  (yt=10) = 4.4059e+07
+
+    REAL-SOLUTION CEILING.  A real X exists only while  m^2 >= (8/3) f f'(yt) yt^2 ,
+    so the constitutive argument yt is BOUNDED for every finite m^2:
+             m^2    yt_max     mu_max = 1-e^{-yt_max}
+         1.0e+00     0.750                   0.527811
+         1.0e+03     1.977                   0.861490
+         1.0e+06     4.556                   0.989498
+         1.0e+12    13.095                   0.999998
+         1.0e+24    35.710                   1.000000
+         1.0e+60   112.849                   1.000000
+        1.0e+120   247.087                   1.000000
+  [ok] 51 *** the Q back-reaction CAPS the constitutive argument: yt_max grows only like ln(m^2) ***
+          for m^2 = 1 the cap is yt < ~1, i.e. INSIDE the MOND transition; even m^2 = 1e120 caps yt at
+          247.  Reaching Solar-System y ~ 1e6 would need m^2 ~ e^{1e6}.
+          The Newtonian branch is UNREACHABLE for any sane kernel mass.
+
+    mu_eff(y) = 1 - e^{-yt(y)} with the back-reaction included (Q ON):
+      m^2 =  1.0e+00 : mu_eff peaks at 0.5271 at y = 1.002, largest reachable y = 1.002
+      m^2 =  1.0e+06 : mu_eff peaks at 0.9894 at y = 6.117, largest reachable y = 6.117
+  [ok] 52 mu_eff NEVER reaches 1: the interpolation function turns over before the Newtonian regime
+          so div[mu_eff grad Phi] = 4 pi G rho does NOT reduce to Poisson at high acceleration.
+          T3/T4 FAIL, independently of the slip.
+
+    |Q| = sqrt(2/3) |f| y^2 / m^2 = sqrt(2/3) mu y^4 / m^2  (dimensionless, a0/c^2 units):
+      y =  1.0e+00 (MOND transition     ) : |Q| = 5.1612e-01 / m^2
+      y =  1.0e+02 (outer disc/inner    ) : |Q| = 8.1650e+07 / m^2
+      y =  1.0e+06 (Solar System (inner)) : |Q| = 8.1650e+23 / m^2
+      y =  1.0e+08 (Solar System (Earth)) : |Q| = 8.1650e+31 / m^2
+  [ok] 53 the carrier AMPLITUDE blows up like y^4 in the Newtonian regime
+          |Q| ~ 1e24/m^2 at y=1e6.  Keeping |Q| < 1 there needs m^2 > 1e24; keeping the constitutive
+          relation real there needs m^2 > e^{1e6}.  'A cancellation that requires |Q| to blow
+          up is not a real cancellation' -- the handover's own test, and it FAILS.
+  [ok] 54 plane-symmetric Q_ij is traceless w.r.t. gamma
+  [ok] 55 INDEPENDENT CHECK: direct plane-symmetric dL/dE at E=0 equals -2 s^2 (dL_eff/dX), exactly
+          Sigma_P(direct) = -2*s**2*(-3*chib*m2 + 2*fb**2*s**2)/(3*m2)   [no envelope theorem used; Q eliminated by its own EOM]
+  [ok] 56 on-shell plane-symmetric carrier satisfies  m^2 Q^ij = f A^ij  componentwise (exact)
+          Q^ij = 2*fb*s**2/(3*m2) * diag(-1/2,-1/2,1)-structure,  |Q| = sqrt(2/3)|f| s^2/m^2
+
+========================================================================================
+PART J -- T4: MOND + NEWTON.  How does Phi couple to matter, and what is G_eff?
+========================================================================================
+  THE DECISION (stated, as required).  An auxiliary potential with no matter coupling carries
+  no force, so a coupling MUST be chosen.  The frozen action says 'matter minimally coupled to
+  the single metric g'.  There are exactly two local ways to add the MOND Gauss-law source:
+
+    (C1) CONFORMAL / density coupling:  g~_mn = e^{2 beta Phi} g_mn ,  equivalently
+         S_int = -beta int d4x sqrt(-g) rho Phi  for slow matter.   [ADOPTED HERE]
+    (C2) DISFORMAL coupling along the khronon:  g~_mn = e^{2 beta Phi}(g_mn + u_m u_n)
+         - e^{-2 beta Phi} u_m u_n  (the TeVeS map with the aether replaced by the foliation
+         normal this theory ALREADY has).   [NOT adopted; discussed in the VERDICT]
+
+  C1 is the minimal choice and is what 'couple rho to Phi as the MOND Gauss-law source' means
+  literally.  Everything below is computed for C1, with beta kept symbolic.
+
+  GAUSS LAW.  delta/delta Phi of  -(1/16 pi G) int sqrt(-g)[chi (dPhi)^2 + ...] - beta int sqrt(-g) rho Phi
+      (1/8 pi G) div[ chi grad Phi ] = beta rho   =>   div[ mu grad Phi ] = 8 pi G beta rho,
+  so beta = 1/2 gives EXACTLY  div[mu(y) grad Phi] = 4 pi G rho  with mu = 1 - e^{-y}.
+  [ok] 57 T4 first half: beta = 1/2 reproduces div[mu grad Phi] = 4 pi G rho EXACTLY  (at Q = 0)
+          BUT with Q on, PART I showed mu -> mu_eff which never reaches 1.  So this PASSES only in the
+          Q = 0 idealisation that PART I already invalidated.
+
+  G_eff.  Matter feels  a = -grad Psi_E - beta grad Phi, with the Einstein-frame potential
+  sourced (at leading order) by rho alone: lap Psi_E = 4 pi G rho.  Spherically,
+      mu(y) y a0 = 2 beta g_N       (from div[mu grad Phi] = 8 pi G beta rho)
+      g_tot = g_N + beta y a0 = g_N [ 1 + 2 beta^2 / mu(y) ] .
+  [ok] 58 *** nu_eff(y) = 1 + 2 beta^2 / mu(y)  ->  1 + 2 beta^2  in the Newtonian limit ***
+          at beta = 1/2 that is G_eff/G = 3/2.  nu_eff -> 1 requires beta = 0, which switches MOND off.
+  [ok] 59 deep-MOND behaviour is correct (nu_eff ~ 2 beta^2/mu -> MOND enhancement)
+          so the coupling does produce MOND -- it simply cannot produce Newton at the same time.
+  THEOREM (PROVEN, algebraic).  For ANY auxiliary MOND scalar with a positive kinetic function
+  chi > 0 that is BOUNDED as y -> oo (mu -> 1 here), conformally coupled to matter, the
+  Newtonian limit carries TWO additive potentials and G_eff/G = 1 + 2 beta^2 > 1 strictly.
+  Recovering G_eff/G_N = 1 requires rescaling the bare G (the TeVeS fix).  The only
+  MOND-preserving escape is mu -> oo in the Newtonian regime, which the frozen
+  V'(chi) = -[ln(1-chi)]^2 forbids (it forces mu -> 1).
+  => T4's 'G_eff/G_N = 1 with NO rescaling repair' FAILS.  Labelled FAIL, not fatal-on-its-own:
+  a rescaled bare G is what published relativistic MOND actually does.
+
+  LENSING, the O(1) statement (and this one IS fatal for C1).  Under g~ = e^{2 beta Phi} g the
+  NULL CONE is unchanged, so light feels only the Einstein-frame metric, whose source is rho
+  plus the scalar's own energy density.  Ratio of the scalar's gravitating density to the
+  phantom density that MOND lensing requires:
+        r [kpc]      y   rho_field / rho_phantom
+            1.0   10.0   1.030e-07
+           10.0    1.0   6.511e-08
+           30.0    0.3   2.403e-08
+  [ok] 60 'conformal scalars do not lens': the scalar's stress is ~1e-7 of the phantom density needed
+          => with C1 the metric potentials are NEWTONIAN while dynamics is MOND: a FRAME slip of order
+          the entire MOND enhancement.  This is the O(1) kill that mc_gates.py's Gate-SLIP(a)
+          already encodes; Sigma_P (the carrier's whole purpose) is by comparison a ~1e-7 effect.
+    CONSEQUENCE FOR THE CARRIER.  Moving MOND off the lapse moves the candidate from the
+    METRIC-CARRIED class (where Part-I's Sigma_P is an O(1) obstruction and a carrier is the
+    right idea) into the FRAME-CARRIED / TeVeS class (where Sigma_P is a 1e-7 effect and the
+    carrier is solving a non-problem, while a NEW O(1) problem -- the frame slip -- appears).
+    The Q sector is therefore not just unable to cancel Sigma_P (PART I); at C1 it is aimed at
+    the wrong target.
+
+========================================================================================
+PART K -- T5: PPN alpha_1, alpha_2
+========================================================================================
+  NOT_REACHED.  T5 was gated on T1-T4 passing; T1 (3 DOF), T2 (zero quadratic action about
+  Minkowski), T3 (no cancellation; carrier blows up) and T4 (G_eff = 3/2 G; conformal
+  non-lensing) all fail.  No alpha_1 / alpha_2 number is produced, and none is guessed.
+  For the record, the structural expectation is stated but NOT computed: PART B proved the
+  theory carries a preferred foliation (the khronon is present as an identity), and PART H
+  showed it propagates whenever D Phi != 0, so a preferred-frame handle EXISTS.  Whether it
+  shows up in alpha_1/alpha_2 at O(w) or is screened is exactly the calculation that is not
+  done here.  LABEL: OPEN.
+  [ok] 61 T5 correctly SHORT-CIRCUITED (no fabricated alpha)
+
+========================================================================================
+VERDICT
+========================================================================================
+  OVERALL:  EXTRA_MODES + STRONG_COUPLING  (+ an independent LENSING_FAIL at T3/T4)
+            The sf42 repair does NOT restore 2 DOF.
+
+  1. IS C_N FIRST CLASS?  PARTLY -- and the part that fails is new.
+     {pi_N, C_N} = -delta C_N/delta N = 0 EXACTLY [PROVEN].  The entry that killed the
+     lapse-tied candidate is genuinely repaired: N no longer appears differentiated as
+     (D ln N)^2, and H_perp's self-bracket is fine.  BUT pi_N is NOT first class, because
+         {pi_N, C_Phi} = -delta^2 U / delta N delta Phi = d_i[ J^i . ] != 0,
+     J^i = 2 chi D^i Phi - 2 f Q^{ij} D_j Phi being the MOND flux.  C_chi and C_Q are
+     ALGEBRAIC so the factor N divides out and their lapse brackets are weakly zero; C_Phi is
+     a divergence, N sits inside it, and it does not.  The obstruction is RELOCATED
+     (N,N) -> (N,Phi), not removed.
+
+  2. RANK AND DOF.  det(Delta) = det(W)^2 [PROVEN, exact 16x16 integer check], and the
+     bordered structure gives det(W) = -(k.J)^2 det(B) with B the 6x6 (chi,Q) block [PROVEN].
+     rank(Delta) = 16 on the generic branch  =>  N_dof = (1/2)[34 - 12 - 16] = 3.
+     Content: 2 tensor + 1 MOND scalar (PART H identifies it explicitly).
+     The five TF Q components and chi ARE genuinely second-class removed (det B < 0 strictly
+     for all y > 0, all m^2) -- the leak is not in Q, exactly as last round.
+
+  3. RANK CONSTANCY: NO, and worse than last round.  det(H) ~ y^5 -> 0 at y = 0 (was y^2),
+     because BOTH (k.J) -> 0 (the flux itself vanishes with the field) and det(B) -> 0
+     (V''(0) = 0, inherited).  It also drops for every mode with k PERPENDICULAR to D Phi
+     (the leak operator is a transport operator along the field lines, with an
+     infinite-dimensional kernel), and on a third locus m^2 = (2/3) mu y^6.  The Phi sector
+     does NOT regularise the y = 0 degeneracy; it deepens it.
+
+  4. STRONG COUPLING (T2).  The quadratic action about Minkowski is EXACTLY quadratic
+     Einstein-Hilbert [PROVEN by explicit Stuckelberg expansion]: Phidot cancels identically,
+     the khronon enters Y^(2) only through sigma = (D Phi).grad tau which vanishes at
+     D Phi = 0, chi is O(eps) and non-analytic so chi Y = O(eps^3), and Q enters at O(eps^10).
+     The third mode therefore has identically zero quadratic action on the vacuum: a null
+     direction with no constraint attached => INFINITE STRONG COUPLING, the same disease as
+     last round, reached through a different Hessian entry.  About a MOND background the mode
+     is a healthy (non-ghost) scalar with kinetic coefficient mu(y) and longitudinal
+     c_s^2 = 1 + y mu'/mu -> 2 in deep MOND (superluminal, the RAQUAL liability) -> 1 in the
+     Newtonian limit.
+
+  5. LENSING (T3), SELF-CONSISTENTLY -- and the sharpest result of the run.
+     PROVEN IDENTITY:  Sigma^TF_ij = (dL_eff/dX) A_ij   and   J^i = -2 (dL_eff/dX) D^i Phi.
+     The traceless stress and the MOND flux ARE THE SAME FUNCTION.  Hence
+         Sigma_P = 0   <=>   J^i = 0   <=>   no MOND force.
+     Phi - Psi is therefore NOT zero exactly, NOT zero to O(1/m^2), and not zero at all except
+     on the isolated locus m^2 = (2/3) mu(y) y^6 -- which is precisely where the force switches
+     off.  WHY the handover's exact profile match does not deliver a cancellation: eliminating
+     the auxiliary Q returns (1/2) f^2 |A|^2/m^2, so the carrier's stress is QUADRATIC in f
+     while the obstruction is LINEAR in the constitutive function.  Matching f(y) = Sigma_P(y)
+     matches profiles, not magnitudes.  [Verified twice: envelope theorem, and an independent
+     direct plane-symmetric dL/dE variation with Q eliminated by its own EOM -- residual 0.]
+
+  6. THE CARRIER IS ALSO NOT PERTURBATIVELY SENSIBLE AT LARGE y.  f(chi) = chi V'(chi) is
+     analytic in chi (the handover's claimed advantage -- CONFIRMED, f = -chi^3 - chi^4 - ...)
+     but its chi-derivative is EXPONENTIAL in y: f'(chi) = -y^2 - 2 y e^y + 2 y, where last
+     round's f_old = (1-chi)sqrt(-V') had the polynomial f_old' = 1 - y.  The Q back-reaction
+     on the constitutive relation carries exactly f f', so
+         (2/3)(f f'/m^2) X^2 - X + yt^2 = 0
+     has a real solution only while m^2 >= (8/3) f f'(yt) yt^2, i.e. yt is CAPPED at ~ln(m^2).
+     For m^2 = 1 the cap is yt < ~1 -- inside the MOND transition.  mu_eff turns over and never
+     reaches 1, so the NEWTONIAN LIMIT IS UNREACHABLE for any sane kernel mass; and
+     |Q| ~ mu y^4/m^2 ~ 1e24/m^2 at Solar-System y.  The cleaner-in-chi carrier is strictly
+     worse in y, and y is what the physics sees.
+
+  7. MATTER COUPLING (T4), stated as required.  Adopted C1, conformal: g~ = e^{2 beta Phi} g,
+     beta = 1/2 reproduces div[mu grad Phi] = 4 pi G rho EXACTLY at Q = 0.  But
+     G_eff/G = 1 + 2 beta^2 = 3/2 [PROVEN algebraically for any bounded mu]; G_eff = G needs
+     a bare-G rescaling, which T4 forbids.  And conformal couplings do not bend light: the
+     scalar's own gravitating density is ~1e-7 of the phantom density (computed), so lensing
+     stays Newtonian while dynamics is MOND -- an O(1) frame slip.  Note the irony this
+     exposes: by moving MOND off the lapse the candidate leaves the metric-carried class in
+     which Sigma_P is an O(1) obstruction, and enters the frame-carried class in which
+     Sigma_P is a 1e-7 effect.  The carrier is then aimed at the wrong target as well as
+     unable to hit it.
+
+  8. T5 NOT_REACHED.  No alpha_1/alpha_2 computed or guessed.
+
+  WHAT IS *NOT* CLOSED (no door is closed here):
+    * A carrier that couples to something other than X.  The PART I no-go bites only because
+      eliminating Q returns a function of X = (D Phi)^2.  A carrier term Q^ij R_ij, Q^ij K_ij,
+      or any coupling LINEAR in the metric perturbation evades the identity
+      Sigma^TF = L_X A, J = -2 L_X D Phi.  Untested here.
+    * The DISFORMAL matter coupling C2.  This theory already carries a preferred foliation
+      (PART B, as an identity), so the TeVeS lensing cure -- g~ = e^{2b Phi}(g + u u)
+      - e^{-2b Phi} u u with u the foliation normal, no extra vector field -- is available at
+      ZERO field cost.  It would fix the frame slip of item 7.  It does NOT touch items 1-6.
+    * Making Phi genuinely DYNAMICAL (restore (dPhi)^2 with Phidot).  That gives back 4-diffeo
+      invariance and a first-class H_perp, at the price of an openly propagating scalar: 3 DOF
+      by construction (RAQUAL), no strong coupling, no khronon.  A different theory, not this
+      one -- but it is the honest reading of 'the extra mode is the MOND scalar'.
+    * A kernel KK that is not a constant mass.  Every degeneracy locus in PART F is
+      m^2-dependent; a y-dependent kernel is outside the frozen action but is not excluded
+      by anything computed here.
+
+  ONE-LINE COMPARISON WITH LAST ROUND.
+    phi = ln N :  W_NN != 0  -> H_perp second class -> +1 lapse/conformal mode, det W ~ y^2.
+    independent Phi :  W_NN = 0 (repaired) but W_NPhi != 0 -> pi_N second class against
+    C_Phi -> +1 MOND-scalar mode, det W ~ y^5.  Same count, same strong coupling, different
+    entry.  The invariant statement: N sqrt(g) is the measure, so the lapse always weights the
+    MOND flux; an auxiliary MOND field cannot be hidden from the Hamiltonian constraint.
+
+========================================================================================
+ALL 61 BOOLEAN CHECKS PASS.
