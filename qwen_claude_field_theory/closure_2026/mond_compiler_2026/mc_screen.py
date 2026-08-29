@@ -182,7 +182,14 @@ def _degen_tune(c, idx, lo, hi, rng=None):
     return True
 
 
-def _multi_tune(c, idxs, sigmas, iters=12, tol=1e-8):
+# tolerance floor of the multi-point tuner.  It must NOT be tighter than what the static
+# Newton solve itself can deliver (rel 1e-9 per equation, which propagates to ~1e-8 in the
+# frame slip): a tighter value rejects genuinely converged tunings -- verified failure mode,
+# it made the Bekenstein point itself report as "no 2-point tuning".
+MULTI_TUNE_TOL = 1e-7
+
+
+def _multi_tune(c, idxs, sigmas, iters=12, tol=MULTI_TUNE_TOL):
     """Simultaneously zero the frame slip at SEVERAL Sigma using len(idxs) parameters.
 
     This is the quantitative form of the no-go question: a one-parameter tuning can

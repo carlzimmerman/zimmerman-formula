@@ -1,0 +1,72 @@
+==============================================================================
+PART A -- symbolic: what makes the frame slip vanish IDENTICALLY?
+==============================================================================
+A0  symbolic D == numeric observables():  max dev 7.105e-15  OK
+
+A1  frame slip on the Einstein-frame no-slip background (Phi' = Psi'):
+    D = -(6*A00**2*M1*M3*phi1 + 6*A00**2*M2*M3*chi1 + 6*A00**2*M2*M5*chi0*phi1 + 3*A00**2*M5*phi1 + 12*A00*A01*M2*M3*chi0 + 6*A00*A01*M3 - 2*Az0**2*M1*M3*phi1 - 2*Az0**2*M2*M3*chi1 - 2*Az0**2*M2*M5*chi0*phi1 - Az0**2*M5*phi1 - 4*Az0*Az1*M2*M3*chi0 - 2*Az0*Az1*M3 + 4*M1*M4*S000*phi1 - 2*M1*M7*phi1**3 - 12*M1*phi1 + 4*M2*M4*S000*chi1 + 4*M2*M4*S001*chi0 + 4*M2*M6*S000*chi0*phi1 - 2*M2*M7*chi1*phi1**2 - 2*M2*M8*chi0*phi1**3 - 12*M2*chi1 + 2*M4*S001 + 2*M6*S000*phi1 - M8*phi1**3)/6
+
+A2  CONFORMAL ONLY (M3..M8 = 0):   D = 2*M1*phi1 + 2*M2*chi1
+    -> D = 2(M1 phi' + M2 chi'), vanishes identically iff M1 = M2 = 0, i.e. NO conformal fifth force at all.
+    'conformal scalars do not lens' -- reproduced as an identity.
+
+A3  CONFORMAL + SCALAR-GRADIENT DISFORMAL (M3=M4=M5=M6=M2=0):
+       phi'^3 : M1*M7/3 + M8/6
+       phi'^1 : 2*M1
+    -> the phi'^1 coefficient is 2 M1, independent of M7 and M8: the
+       d_m phi d_n phi partner has NO 00-component for a STATIC configuration,
+       so it cannot touch Phi~ and cannot cancel the conformal slip.
+       Vanishing identically again forces M1 = 0 => no MOND fifth force.
+
+A4  CONFORMAL + VECTOR DISFORMAL (A_z = 0 in the static frame):
+       phi'^1 : -A00**2*M1*M3 - A00**2*M5/2 + 2*M1
+       phi'^0 : -A00*A01*M3
+    -> the phi'^1 coefficient vanishes at  M5 = [-2*M1*M3 + 4*M1/A00**2]
+       with the unit-timelike normalisation A_0^2 = 1 and M3 = 0 this is M5 = 4*M1  <-- Bekenstein's -4 M1
+    -> the cancellation is proportional to A_0^2.  It EXISTS only because the
+       vector VEV has a TIMELIKE component, which is precisely a preferred frame.
+
+A5  CONFORMAL + SYMMETRIC-TRACELESS DISFORMAL:
+       phi'^1 coefficient : -2*M1*M4*S000/3 + 2*M1 - M6*S000/3
+    -> vanishes at M6 = [2*M1*(-M4*S000 + 3)/S000]
+       the cancellation is again proportional to the TIME-TIME component S_00
+       (S_zz and S_xx enter with the opposite, trace-averaged weight), so it too
+       requires a VEV that singles out the time direction.
+
+A6  CONCLUSION OF PART A (structural, exact within this matter-frame family):
+    the frame slip is 2(M1 phi' + M2 chi') + [disformal corrections].
+    the ONLY disformal structures that produce a phi'-LINEAR correction able to
+    cancel it are the ones carrying a TIMELIKE VEV (A_0^2, S_00).  The purely
+    spatial partner d_m phi d_n phi cannot.  So within this basis
+        G2 (lensing tracks dynamics)  =>  a preferred-frame carrier vacuum
+    which is exactly the structure that generated AeST's alpha_2 = 1/lam_s +
+    2/(K_B lam_s^2) pole.  G2 and G4 are in structural conflict here.
+    SCOPE: this is a statement about THIS 8-parameter matter frame and the static
+    plane-symmetric reduction, NOT an all-Lagrangian theorem.
+
+==============================================================================
+PART B -- numeric: can any partner zero the frame slip at TWO accelerations?
+==============================================================================
+  lambdifying reduction matrix ...
+  lambdifying reduction jacobian ...
+  lambdifying source terms ...
+  lambdifying hessian tensors ...
+
+partner      core verdict         worst frame slip  vacuum boost-break  n 2pt-tuned
+vector       0    Gate-PPN               5.386e-08           1.000e+00            2
+vector       1    Gate-MOND                    n/a                 n/a            3
+tensor       0    NO_2POINT_TUNING               n/a                 n/a            0
+tensor       1    NO_2POINT_TUNING               n/a                 n/a            0
+tensor_alg   0    NO_2POINT_TUNING               n/a                 n/a            0
+tensor_alg   1    NO_2POINT_TUNING               n/a                 n/a            0
+scalar_grad  0    NO_2POINT_TUNING               n/a                 n/a            0
+scalar_grad  1    NO_2POINT_TUNING               n/a                 n/a            0
+vector_alg   0    NO_2POINT_TUNING               n/a                 n/a            0
+vector_alg   1    NO_2POINT_TUNING               n/a                 n/a            0
+vec_tens     0    NO_2POINT_TUNING               n/a                 n/a            0
+vec_tens     1    NO_2POINT_TUNING               n/a                 n/a            0
+
+B1  partners that hold the frame slip to < 1e-6 across the FULL 29-point grid after a 2-point tuning: 1
+      vector core0: verdict=Gate-PPN  vacuum boost-break=1.000e+00
+B2  EVERY one of them has a preferred-frame (boost-breaking) carrier vacuum
+    -> Part A's structural conclusion is confirmed numerically.
