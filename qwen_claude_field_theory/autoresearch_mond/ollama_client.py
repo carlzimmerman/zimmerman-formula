@@ -51,6 +51,7 @@ def extract_json(text):
     """Pull the first top-level JSON object out of a model reply (handles ```json fences and prose).
     Returns dict or None. Never guesses: if it doesn't parse, the candidate is rejected upstream."""
     import re
+    text = re.sub(r"<think>.*?</think>", "", text, flags=re.S)   # strip Qwen3 thinking blocks
     m = re.search(r"```(?:json)?\s*(\{.*?\})\s*```", text, re.S)
     cands = [m.group(1)] if m else []
     # fallback: first balanced {...}

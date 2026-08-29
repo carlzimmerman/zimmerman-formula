@@ -61,11 +61,26 @@ def one_iteration(gs, it):
     # ---------- ARCHITECT
     reply = oc.chat(P("architect.md"), architect_context(branch), temperature=0.9)
     cand = oc.extract_json(reply)
-    if not cand or not all(k in cand for k in cm.REQUIRED_FIELDS):
+    missing = [k for k in cm.REQUIRED_FIELDS if not cand or k not in cand]
+    if missing:
+        # ONE repair attempt: show the model its own output + the exact missing fields
+        fix = oc.chat(P("architect.md"),
+                      f"Your previous reply was rejected: {'no parseable JSON' if not cand else 'missing fields '+str(missing)}.\n"
+                      f"Previous reply (truncated):\n{reply[-3000:]}\n\n"
+                      "Re-emit the SAME candidate as ONE complete json object in a ```json fence with ALL "
+                      "required fields (name, family, fields, couplings, mond_realization, claimed_mechanism, "
+                      "kinetic_normalization_source, predicted_weak_field, inequivalence_argument). JSON only.",
+                      temperature=0.2)
+        cand = oc.extract_json(fix)
+        missing = [k for k in cm.REQUIRED_FIELDS if not cand or k not in cand]
+    if missing:
+        os.makedirs(os.path.join(DB, "rejected"), exist_ok=True)
+        with open(os.path.join(DB, "rejected", f"iter{it:05d}.txt"), "w") as f:
+            f.write(reply)
         cm.append_jsonl(os.path.join(DB, "failures.jsonl"),
-                        {"iter": it, "stage": "architect", "reason": "unparseable/incomplete candidate",
-                         "ts": time.time()})
-        log("  architect output rejected (schema)"); return
+                        {"iter": it, "stage": "architect", "reason": f"schema after repair: missing {missing}",
+                         "raw_saved": f"database/rejected/iter{it:05d}.txt", "ts": time.time()})
+        log(f"  architect output rejected (schema, missing {missing}) -- raw saved"); return
     # mandatory inequivalence answer (sec 25): candidate must state why it differs from killed classes
     if not cand.get("inequivalence_argument"):
         cm.append_jsonl(os.path.join(DB, "failures.jsonl"),

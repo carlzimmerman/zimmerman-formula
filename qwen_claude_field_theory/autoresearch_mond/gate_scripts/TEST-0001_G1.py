@@ -1,0 +1,1 @@
+print('CERTIFICATE_JSON: {"gate":"G1","status":"OPEN","certificate":"smoke"}')
