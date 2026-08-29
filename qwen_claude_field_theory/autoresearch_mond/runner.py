@@ -174,6 +174,10 @@ def process_candidate(gs, it, branch, cand):
                       failed_gate=cand.get("failed_gate_being_addressed"))
     gs["branch_counts"][branch] = gs.get("branch_counts", {}).get(branch, 0) + 1
     log(f"  registered {cid}: {cand.get('name')}")
+    run_gates(cid, cand, it)
+
+
+def run_gates(cid, cand, it):
     # ---------- TIER 1: G0
     canon = cm.canonicalize(cand)
     cert0 = ev.gate_G0(cand, canon)
@@ -320,6 +324,24 @@ def main():
     gs = J("GLOBAL_STATE.json")
     it0 = gs.get("iteration", 0)
     log(f"resuming at iteration {it0}; model={oc.MODEL}")
+    # ---------- finish half-gated candidates from an interrupted run (REGISTERED = gates incomplete)
+    for row in cm._load_jsonl(os.path.join(DB, "candidates.jsonl")):
+        cid = row.get("candidate_id")
+        if not cid or cm.latest_status(cid) != "REGISTERED":
+            continue
+        cpath = os.path.join(HERE, "candidates", f"{cid}.json")
+        if not os.path.exists(cpath):
+            continue
+        log(f"resuming half-gated candidate {cid} (prior gate PASSes reload from db)")
+        try:
+            run_gates(cid, json.load(open(cpath)), it0)
+        except oc.OllamaUnavailable as e:
+            log(f"BLOCKED during resume: {e}"); break
+        except Exception:
+            cm.append_jsonl(os.path.join(DB, "failures.jsonl"),
+                            {"stage": "resume_gates", "candidate_id": cid,
+                             "reason": traceback.format_exc()[-600:], "ts": time.time()})
+            log(f"  resume error for {cid} (recorded)")
     it = it0
     try:
         while it < it0 + max_it:
