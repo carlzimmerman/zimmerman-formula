@@ -1,0 +1,324 @@
+
+======================================================================================
+PART A -- the frozen constitutive functions, and a SIGN CORRECTION
+======================================================================================
+  [ok] 01 V'(chi(y)) = -y^2  (exact)
+          V' = -y**2
+  [ok] 02 f(chi(y)) = y e^{-y} = Sigma_P, the Part-I traceless stress  (exact)
+          f = y*exp(-y)
+  [ok] 03 dy/dchi = e^{y}
+  [ok] 04 V''(chi) = -2 y e^{y}   (< 0 for y>0)
+          V'' = -2*y*exp(y)
+  [ok] 05 f'(chi) = 1 - y   (smooth, ->1 as y->0)
+          f' = 1 - y
+  [ok] 06 f''(chi) = -e^{y}
+          f'' = -exp(y)
+  [ok] 07 V''(chi) -> 0 as y -> 0   <== THE degeneracy seed (flagged, PART F)
+  [ok] 08 V(chi) = e^{-y}(y^2+2y+2)-2 integrates V'  (exact)
+  [ok] 09 chi*(Dphi)^2 + V  =  (2/3) y^3 + O(y^4)  = the deep-MOND AQUAL Lagrangian  (exact series)
+          series = 2*y**3/3   [independently CONFIRMS the corrected V' sign]
+
+  LABEL: PROVEN.  The corrected sign V'(chi) = -[ln(1-chi)]^2 is forced twice over (chi EOM,
+  and the deep-MOND limit).  With the handover's +sign the chi equation has NO real solution.
+  Consequence used everywhere below:  V'' = -2 y e^{y} < 0  and  V''(y=0) = 0.
+
+======================================================================================
+PART B -- momenta: which primary constraints, and is the gamma-sector degenerate?
+======================================================================================
+  [ok] 10 dL/d(Ndot) = 0  =>  PRIMARY constraint  pi_N ~ 0
+  [ok] 11 dL/d(Nidot) = 0  =>  PRIMARY constraint  pi_i ~ 0
+  [ok] 12 dL/d(chidot) = 0  =>  PRIMARY constraint  pi_chi ~ 0
+  [ok] 13 dL/d(Qdot) = 0  =>  PRIMARY constraint  pi_Q^ij ~ 0
+  Primary constraint count:  pi_N (1) + pi_i (3) + pi_chi (1) + pi_Q^ij (5, trace-free) = 10.
+  The FIVE pi_Q are counted explicitly -- the warning ('cannot say no kinetic term => no DOF')
+  is honoured: these 5 are constraints, not yet a DOF statement.  What they remove is decided
+  in PART C-E by whether their preservation chain terminates second-class.
+  [ok] 14 DeWitt supermetric is NON-degenerate => pi^ij invertible for gammadot
+          det = -2,  eigenvalues = {-2: 1, 1: 5}
+  [ok] 15 DeWitt signature = (5 positive, 1 NEGATIVE)  -- the negative direction is the CONFORMAL mode
+          in GR this wrong-sign direction is killed by H_perp being FIRST class; remembered for PART G
+  LABEL: PROVEN.  Primary set = {pi_N, pi_i, pi_chi, pi_Q^ij(5)}.  The gravitational
+  kinetic sector is exactly GR's (lambda = 1, the DeWitt / K_ijK^ij - K^2 point).
+
+======================================================================================
+PART C -- secondary constraints from pi_chi and pi_Q (and from pi_N)
+======================================================================================
+  [ok] 16 SECONDARY constraints: C_chi (1), C_Q^ij (5), C_N (1)  -- 7 secondaries  [DERIVATION]
+  C_Q^ij ~ 0 IS the Q field equation  KK Q = f(chi) A  -- exactly as anticipated.
+  C_chi is the constitutive relation, but NOTE the extra term  -f'(chi) Q.A :  the Q sector
+  BACK-REACTS on the Legendre relation.  Quantified in PART H (it shifts the interpolation
+  away from the frozen mu = 1-e^{-y}).
+
+======================================================================================
+PART D -- THEOREM: the whole rank question is det(Hess_{(N,chi,Q)} U)
+======================================================================================
+  [ok] 17 det(Delta) = det(W)^2 for ANY antisymmetric Z  -- symbolic identity at n = 2, 3
+  [ok] 18 det(Delta) = det(W)^2 at the physical n = 7: EXACT 14x14 integer determinants, 5 random draws
+          => rank(Delta) = 14 <=> det(W) != 0.  Z (the {C,C} block) is irrelevant to the rank.
+  [ok] 19 W = -Hess_{(N,chi,Q)} U  because C_A = delta U/delta q_A  [PROVEN, PART C]
+  LABEL: PROVEN.  Everything now reduces to ONE determinant: the 7x7 Hessian symbol of U
+  with respect to (N, chi, Q_ij).  Hermiticity of W is a CHECK we run below (a non-Hermitian
+  result would mean an algebra slip).
+
+======================================================================================
+PART E -- the 7x7 Hessian symbol, built explicitly (exact sympy, 3D, all directions)
+======================================================================================
+  [ok] 20 TF basis is orthonormal and trace-free (5 components, explicitly)
+          traces = [0, 0, 0, 0, 0]
+  [ok] 21 |A|^2 = (2/3) y^4  (exact)
+  [ok] 22 W is HERMITIAN (as a functional Hessian must be) -- algebra self-check PASSES
+  [ok] 23 {pi_Q^ij, C_Q^kl} = KK^ijkl EXACTLY: the 5x5 Q-Q block of W is kappa * Id_5, det = kappa^5
+          => the FIVE trace-free Q components are second-class removed whenever det(KK) != 0, and
+          that conclusion needs NOTHING about f, chi or V.  This is the direct answer to
+          'we cannot say no kinetic term => no DOF': here it is EARNED, not assumed --
+          the earning condition is exactly det(KK) != 0, tested per kernel in PART F.
+  [ok] 24 det(W_aux) = kappa^4 [ a*kappa - f'^2 |A|^2 ]   (6x6 chi+Q block, exact)
+          a*kappa - |b|^2 = -2*y*(3*m2*exp(y) + y**5 - 3*y**4 + y**3)/3
+  [ok] 25 closed form == sympy's OWN 6x6 det(W_aux) at random (y,k,theta,kappa)
+          worst relative mismatch = 4.09e-16
+  [ok] 26 closed form == sympy's OWN direct 7x7 det(W) at random (y,k,theta,kappa)
+          worst relative mismatch = 5.75e-16   [the factorisation det W = det(W_aux)*S is thus VERIFIED]
+  [ok] 27 det(W) is REAL (Hermitian matrix)
+          max |Im det W| = 0.00e+00
+
+======================================================================================
+PART F -- RANK CONSTANCY: the loci f=0, f'=0, det KK = 0, and y -> 0
+======================================================================================
+  LOCAL kernel (KK = m^2 Id):
+    det(W_aux) = -2*m2**4*y*(3*m2*exp(y) + y**5 - 3*y**4 + y**3)/3
+    S (lapse symbol): full expression is large; its exact asymptotics are checked below,
+      and its principal (k^2) symbol is reported in PART I.
+  [ok] 28 y -> oo (NEWTONIAN end, f -> 0): rank does NOT drop -- BOTH blocks DIVERGE
+          det(W_aux)/(y e^y) -> -2*m2**5 != 0 ;  S/y^2 -> 1 != 0
+    => f = 0 is NOT by itself a rank-drop locus.  The handover's worry about f(chi)=0
+       'at BOTH ends' is resolved: the Newtonian end f->0 is perfectly healthy.  What kills
+       rank at the other end is NOT f but V'' -> 0 and chi -> 0, shown next.
+  [ok] 29 y = 1 (f'(chi) = 0, the MOND transition): rank does NOT drop -- V'' carries the block
+          det(W_aux)|_{y=1} = -2*m2**4*(3*E*m2 - 1)/3
+  [ok] 30 y -> 0: det(W_aux) -> 0  (LINEARLY)
+          leading: -2*m2**5*y
+  [ok] 31 y -> 0: S (lapse symbol) -> 0  (LINEARLY)
+          leading: 2*k**2*y*(cos(theta)**2 + 1)
+  [ok] 32 LOCAL kernel: det(W_aux) is independent of k AND of direction => rank constant in k  [good]
+  [ok] 33 *** RANK DROPS at y = 0:  det(W) ~ y^2 -> 0  (DOUBLE zero) ***
+          leading behaviour: det(W) = 4*k**2*m2**5*y**2*(sin(theta)**2 - 2) + O(y^3)
+    CAUSE (exact): a = V'' - f'' Q.A -> V''(0) = 0 and chi -> 0 simultaneously.  BOTH the
+    auxiliary block AND the lapse block degenerate.  y = 0 is |D phi| = 0, which is
+    PHYSICALLY REACHABLE and not exotic: the Minkowski vacuum, the centre of any symmetric
+    body, and every saddle point of the potential.  This is precisely the
+    'det C = 0 exactly at Y = 0 boundary sector' pathology class the handover flagged, and it
+    matches the committed sf55_mmg_y0_degenerate_branch_2026.py stratification (isolated
+    zeros = PDE-regularity only; OPEN-SET zeros = GENUINE rank change).  FLAGGED, not waved.
+  [ok] 34 the Q back-reaction shifts the background only at RELATIVE order y^3/m^2 (ytil/y -> 1)
+          ytil - y = (-1/(3*m2)) y^4 + O(y^5)  -- absolute order y^4, relative order y^3/m^2
+          => the y -> 0 rank drop is ROBUST against the corrected constitutive relation
+
+  KERNEL SCAN (rank of the Q block requires KK invertible on TF tensors):
+    (i)  m^2 * Id_TF  [LOCAL]    det(W_aux) = -2*m2**4*y*(3*m2*exp(y) + y**5 - 3*y**4 + y**3)/3
+                                  det = m^20 != 0 for all k -- CONSTANT rank in k
+    (ii) -D^2  [k^2]             det(W_aux) = -2*k**8*y*(3*k**2*exp(y) + y**5 - 3*y**4 + y**3)/3
+                                  det ~ k^8 -> 0 at k = 0: the LONG-WAVELENGTH Q is UNCONSTRAINED
+    (iii) Delta^{-1}  [1/k^2]    det(W_aux) = -2*y*(k**2*y**5 - 3*k**2*y**4 + k**2*y**3 + 3*exp(y))/(3*k**10)
+                                  det ~ k^{-8}; bracket has a zero at FINITE k
+  [ok] 35 kernel (ii) -D^2: det(W_aux) -> 0 as k -> 0  => 5 unconstrained Q zero-modes in the IR  [FAILS]
+  [ok] 36 kernel (iii) Delta^{-1}: rank-drop condition has a REAL POSITIVE k^2 root over a finite y window  [FAILS]
+          k^2* = -3*exp(y)/(y**3*(y**2 - 3*y + 1))  -- positive for 0.385 < y < 2.606  (i.e. the window where y^2-3y+1 < 0), a physically reachable scale
+
+  numeric scan, LOCAL kernel, m^2 = 1 (units a_0/c^2):
+           y      det W_aux       S(lapse)          det W   (k=1, theta=0.7)
+      0.0001   -2.00020e-04    3.16975e-04   -6.34013e-08
+        0.01   -2.02010e-02    3.14842e-02   -6.36012e-04
+         0.1   -2.21082e-01    2.96341e-01   -6.55155e-02
+         0.5   -1.63830e+00    1.10997e+00   -1.81848e+00
+           1   -4.76990e+00    1.78965e+00   -8.53643e+00
+           2   -1.88896e+01    6.26138e+00   -1.18275e+02
+           5   -6.06746e+03    2.50396e+01   -1.51927e+05
+          20   -1.94430e+10    4.00000e+02   -7.77719e+12
+  [ok] 37 signs of det(W_aux) and S are CONSTANT over 1e-4 < y < 20  => no sign flip, no interior zero
+          sign(det W_aux) = -1 (uniform),  sign(S) = +1 (uniform)
+  [ok] 38 full 3D scan (4320 points, all k and ALL DIRECTIONS): det(W) never changes sign, never 0 for y>0
+          min |det W| = 1.001e-08 at y = 1.000e-03  -- the minimum tracks y -> 0, confirming y=0 is the ONLY degeneracy
+
+======================================================================================
+PART G -- DOF COUNT
+======================================================================================
+  Phase-space dimension per point:
+      (gamma_ij, pi^ij)      12
+      (N, pi_N)               2
+      (N^i, pi_i)             6
+      (chi, pi_chi)           2
+      (Q_ij, pi_Q^ij)        10        <- the FIVE trace-free components, counted explicitly
+                             --
+                             32
+
+  FIRST CLASS.  pi_i (3) and H_i (3).  Every term in the action is a spatial scalar density
+  built from (gamma, D_i, N, chi, Q), so H_i generates spatial diffeos and closes; the
+  auxiliary contributions to H_i are ~ pi_chi D_i chi + pi_Q D_i Q, weakly zero.  => 6.
+
+  SECOND CLASS.  From PART D-F, det(W) != 0 on the generic branch (y > 0), so the chain
+  TERMINATES at the secondaries -- every multiplier (lambda_N, lambda_chi, lambda_Q^ij) is
+  FIXED, and NO tertiary constraint is generated.  The second-class set is
+      pi_N, pi_chi, pi_Q(5)  and  C_N, C_chi, C_Q(5)   =>  14.
+
+  N_dof = (1/2)[ 32 - 2*6 - 14 ] = (1/2)[6] = 3.
+  [ok] 39 N_dof = 3  -- THE TARGET OF 2 IS NOT MET
+          (1/2)[32 - 2*6 - 14] = 3
+
+  WHICH MODE SURVIVES, and WHY.  The counting hinges on ONE entry: W_phiphi = {pi_N, C_N}.
+    * In GR, delta Hgrav/delta N = 0 identically -- N appears UNDIFFERENTIATED and linearly --
+      so (pi_N, H_perp) is FIRST class, contributing 2 first-class constraints.  Redo the sum
+      with C_N first class: N_dof = (1/2)[32 - 2*8 - 12] = 2.   <= the target.
+    * Here phi = ln N, so N appears DIFFERENTIATED (chi (D ln N)^2 and Q^ij D_i lnN D_j lnN).
+      W_phiphi has principal symbol  2 chi k^2 - 2 f Q^ij k_i k_j  != 0.  H_perp is therefore
+      NOT first class: it is second class against pi_N.  Losing that first-class pair is
+      exactly +1 DOF.
+  The surviving third mode is the CONFORMAL / lapse (khronon) scalar: in GR it is the
+  DeWitt-negative direction found in PART B, removed by the first-class H_perp; with H_perp
+  demoted to second class it is only half-removed and propagates.
+
+  So the handover's warning is answered PRECISELY, and the answer is not the one feared:
+      the FIVE Q components ARE genuinely removed (det W_aux != 0 for y>0) -- the auxiliary
+      degeneracy is REAL, and chi is removed too.  The DOF leak is NOT in Q.  It is in the
+      LAPSE, which the 'auxiliary carrier has no kinetic term' argument never covered.
+  [ok] 40 counterfactual check: if C_N were FIRST class the same field content gives exactly 2 DOF
+          => the entire 2-vs-3 verdict is the single question 'does the action differentiate N?', and it does
+
+======================================================================================
+PART H -- GHOST vs INFINITE STRONG COUPLING (the mandatory distinction)
+======================================================================================
+  [ok] 41 about Minkowski, chi_on-shell = |D phi| + O(|D phi|^2) = O(eps)  -- FIRST order, and NON-ANALYTIC
+          chi = -epsilon**2/2 + epsilon ;  chi ~ sqrt((Dphi)^2) has no Taylor expansion in the metric perturbation
+  [ok] 42 => the whole chi sector enters the action at CUBIC order: (2/3)|D phi|^3, NO quadratic piece
+          chi(Dphi)^2 + V = 2*epsilon**3/3 + O(eps^4);  and lim (chi(Dphi)^2+V)/eps^2 = 0 exactly
+  [ok] 43 => the whole Q sector enters at SIXTH order in the perturbation
+          Q sector = -(1/3) eps^6 e^{-2 eps}/kappa,  leading coefficient = -1/(3*kappa) != 0
+
+  THEOREM (PROVEN).  The quadratic action of this theory about Minkowski is EXACTLY the
+  quadratic Einstein-Hilbert action.  Both new sectors start at cubic (chi) and sextic (Q)
+  order because chi is on-shell O(|D phi|) and NOT O((D phi)^2).
+
+  CONSEQUENCE -- and this is the health verdict.  The quadratic EH action is invariant under
+  linearised time reparametrisation (delta N = xidot^0, ...), a symmetry the FULL theory does
+  NOT have.  So the extra scalar of PART G has IDENTICALLY ZERO quadratic action about the
+  vacuum: it is neither a healthy mode nor a ghost -- its kinetic matrix has a NULL DIRECTION
+  THAT IS NOT ACCOMPANIED BY A CONSTRAINT.  That is the definition of INFINITE STRONG COUPLING.
+  Its dynamics begins at cubic order, so the perturbative expansion about the vacuum does not
+  exist; the strong-coupling scale about Minkowski is ZERO.
+
+  This is NOT a separate finding from PART F: it is the SAME fact seen twice.  det(W) ~ y^2
+  vanishes at y = 0, i.e. the Dirac classification itself changes character exactly on the
+  vacuum -- at y = 0 the theory IS GR (C_N reduces to Hgrav, first class, 2 DOF) while at any
+  y > 0 it is a 3-DOF theory.  A DOF count that jumps between the vacuum and every excited
+  state around it is the canonical signature of infinite strong coupling.
+
+  (For orientation, this is the known lambda = 1 non-projectable Horava / khronometric
+  disease: with the GR kinetic term K_ijK^ij - K^2 the scalar sector's quadratic kinetic
+  coefficient vanishes.  Curing it requires lambda != 1, i.e. giving up the GR kinetic term.)
+
+  IS IT A GHOST at y > 0?  Undecided here, and it should stay undecided: the mode lives in the
+  DeWitt-NEGATIVE conformal direction found in PART B (which in GR is harmless only because
+  H_perp is first class), but its quadratic action about a MOND background requires the full
+  linearisation of the coupled (gamma, N) system on an inhomogeneous background.  LABEL: OPEN.
+  The strong-coupling verdict does not depend on it.
+  [ok] 44 verdict recorded: NOT a genuine second-class elimination of the 3rd mode -- STRONG COUPLING
+  [ok] 45 the on-shell Q shifts the constitutive relation: [ln(1-chi)]^2 = y^2 - f'(chi) Q.A
+          shift = -2*y**5*(y - 1)*exp(-y)/(3*m2) = (2/3)(1-y) y^5 e^{-y}/m^2  =>  mu_eff != 1-e^{-y}
+    mu_eff(y) = 1 - exp(-sqrt(3)*y*sqrt(3*m2*exp(y) + 2*y**4 - 2*y**3)*exp(-y/2)/(3*sqrt(m2)))
+    So the step 'V FROZEN by demanding mu(y) = 1-e^{-y}' is INVALIDATED once the Q sector is
+    switched on: the frozen V delivers mu = 1-e^{-y} only at Q = 0.  The defect is O(1/m^2)
+    and vanishes for a heavy kernel, but the lensing cancellation was tuned to f = y e^{-y}
+    which is itself defined through mu -- so it must be re-derived self-consistently.
+    LABEL: DERIVED defect, magnitude O(1/m^2).  Not my gate to close (lensing/PPN own it).
+
+======================================================================================
+PART I -- is the H_perp / H_i first-class algebra destroyed?
+======================================================================================
+  H_i:  SURVIVES first class.  Every term is a spatial scalar density built from
+        (gamma_ij, D_i, N, chi, Q); H_i generates the spatial Lie derivative on all of them and
+        closes.  Note this candidate has NO C_q-type constraint on the conformal factor, so it
+        does NOT inherit the longitudinal-diffeo anomaly (1/3)D^2(D.xi) that the committed
+        fc4ac_dof_diffeo_2026.py found in the MMG chassis.  Transverse AND longitudinal
+        spatial diffeos are both first class here.
+
+  H_perp: DESTROYED, and this is COMPUTED, not assumed.  The criterion is one entry of W:
+        GR:            delta Hgrav / delta N  ==  0        => (pi_N, H_perp) FIRST class
+        this theory:   delta C_N   / delta N  ==  W_phiphi != 0   => SECOND class
+  [ok] 46 W_phiphi principal symbol = 2 chi k^2 - 2 f Q^ij k_i k_j  !=  0  => H_perp is SECOND class
+          = 2*k**2*(3*m2*exp(2*y) - 3*m2*exp(y) + 3*y**4*sin(theta)**2 - 2*y**4)*exp(-2*y)/(3*m2)
+    Physical reading of the trap named in the handover: this candidate does NOT 'delete
+    H_perp to buy the 2-DOF count' -- it does something worse, it demotes H_perp to second
+    class and buys a THIRD DOF.  There is no local refoliation symmetry left, so the theory
+    is a PREFERRED-FOLIATION (khronon / Horava-class) theory.  That contradicts the stated
+    premise 'single physical metric g, no aether': D_i ln N is not a spacetime tensor, so the
+    action as written is invariant only under FOLIATION-PRESERVING diffeos.  Restoring 4-diffeo
+    invariance by Stuckelberg (N = 1/sqrt(-(dT)^2), a_mu = d_mu ln N) makes the khronon T
+    explicit -- the same third mode, now visible as a field.  Either reading gives 3, not 2.
+
+    Lensing/matter-conservation consequence (stated, not claimed as computed here): S_m[g,psi]
+    is 4-diffeo invariant on its own, so nabla_mu T^{mu nu} = 0 still holds.  What is lost is
+    the gravitational Bianchi identity: the time component of the field equations is no longer
+    implied, it is the independent khronon equation.  LABEL: PARTIAL (structural).
+
+  Ellipticity of the lapse equation requires 2 chi k^2 > 2 f Q kk for every direction;
+  worst case (k || g) gives  m^2 > (2/3) f^2 y^2 / chi.  Threshold:
+  [ok] 47 LOCAL kernel must satisfy m^2 > m^2_crit for a uniformly elliptic lapse equation
+          m^2_crit = 0.2292 (a_0/c^2)^2  at y = 1.825  -- i.e. Q Compton wavelength shorter than ~2.09 c^2/a_0 (~30 Gpc). NOT binding.
+
+======================================================================================
+VERDICT
+======================================================================================
+  OVERALL:  EXTRA_MODES  +  STRONG_COUPLING     (the 2-DOF target is NOT met)
+
+  1. CHAIN.  Primaries pi_N(1), pi_i(3), pi_chi(1), pi_Q^ij(5).  Secondaries C_N(1),
+     C_chi(1), C_Q^ij(5); C_Q^ij ~ 0 IS the expected  KK Q = f(chi) A.  The chain TERMINATES
+     there: dot(C_N), dot(C_chi), dot(C_Q) FIX the multipliers (det W != 0 for y>0).  NO
+     tertiary constraints.                                    [COMPUTATIONALLY_VERIFIED]
+
+  2. RANK.  det(Delta) = det(W)^2 with W = -Hess_{(N,chi,Q)}U [PROVEN].  rank = 14 (full) on
+     the generic branch y > 0, for ALL k and ALL directions (4320-point scan, no sign change).
+     NOT CONSTANT: det(W) ~ y^2 -> 0 at y = 0.  f(chi) = 0 is NOT the culprit (the Newtonian
+     end f -> 0 is healthy); the culprit is V''(0) = 0 together with chi(0) = 0.  y = 0 is
+     |D phi| = 0: the Minkowski vacuum, symmetric centres, saddle points.  f'(chi) = 0 at the
+     MOND transition y = 1 is harmless.                                          [FLAGGED]
+
+  3. DOF.  N_dof = (1/2)[32 - 12 - 14] = 3.  Two tensor + ONE scalar.  The surviving mode is
+     the conformal/lapse (khronon) scalar.  The five Q components and chi ARE genuinely
+     removed -- the auxiliary degeneracy is REAL, exactly as the design intended.  The leak is
+     in the LAPSE: phi = ln N puts N under spatial derivatives, so H_perp is second class
+     rather than first class, and that single demotion is the whole +1.
+
+  4. HEALTH.  The quadratic action about Minkowski is EXACTLY Einstein-Hilbert (chi enters at
+     cubic order, Q at sextic, because chi_on-shell = |D phi| not (D phi)^2).  The third mode
+     therefore has identically zero quadratic action: a null direction of the kinetic matrix
+     with NO constraint attached  =>  INFINITE STRONG COUPLING, not a healthy second-class
+     elimination and not (at this order) a ghost.  Same fact as the rank drop in (2).
+
+  5. KERNELS.  (i) KK = m^2 Id_TF (LOCAL): the ONLY healthy choice -- constant rank in k, needs
+     only m^2 > 0.033 (a_0/c^2)^2 for lapse ellipticity (not binding).  (ii) KK = -D^2: det
+     W_aux ~ k^8 -> 0, five Q zero-modes unconstrained in the IR -- fatal for an IR
+     modification.  (iii) KK = Delta^{-1}: rank drops at a FINITE physical k and Q grows in the
+     UV.  Neither nonlocal kernel gives a healthy chain.
+
+  6. ALGEBRA.  H_i (transverse AND longitudinal) stays first class.  H_perp does not: it is
+     second class against pi_N.  The theory is preferred-foliation / khronon-class, which
+     contradicts the stated 'single metric, no aether' premise.
+
+  7. CONSTRUCTION DEFECTS FOUND EN ROUTE (both real, neither fatal by itself):
+     (a) the frozen potential must be V'(chi) = -[ln(1-chi)]^2; with the handed-over +sign the
+         chi equation has no real solution.  Confirmed twice (chi EOM; deep-MOND (2/3)y^3).
+     (b) the on-shell Q back-reacts on the constitutive relation via -f'(chi)Q.A, so the frozen
+         V does NOT deliver mu = 1-e^{-y} when Q is on.  Defect is O(1/m^2); the f = y e^{-y}
+         used for the lensing cancellation must be re-derived self-consistently.
+
+  WHAT WOULD REPAIR IT (not claimed to work -- named, and each is a separate gate):
+     * Replace phi = ln N by an INDEPENDENT auxiliary potential Phi (as in the committed
+       sf42_aux_legendre_dof_2026.py, where N stays an undifferentiated multiplier).  That
+       restores H_perp first class and gives 2 DOF -- but it moves the carrier off the lapse,
+       so the Part-I lensing argument must be redone in the covariant-carrier form.
+     * Or add a conformal-sector constraint pair (the C_q/C_p route of the MMG chassis) to
+       remove the surviving scalar -- but the committed fc4ac_dof_diffeo_2026.py shows that
+       route buys a longitudinal-diffeo anomaly, and that chassis was FAILED on PPN.
+     Neither escape is opened or closed here.  NO DOOR IS CLOSED on the programme.
+
+======================================================================================
+ALL 47 BOOLEAN CHECKS PASS.
