@@ -9,10 +9,15 @@
    => the auxiliary that multiplies a.a must be 2(1-mu) = 2 e^{-y}, not mu.
 
    Solar-System evaluation (a0 = 9.36e-11 m/s^2, framework value):
-      Earth orbit (GM_sun/r^2) y = g/a0 = 6.335e+07 ,  alpha_kh = 2 e^{-y} = 2*exp(-6.335e+07)
-      Saturn orbit             y = g/a0 = 6.944e+05 ,  alpha_kh = 2 e^{-y} = 2*exp(-6.944e+05)
-      Cassini at 8.7 AU        y = g/a0 = 4.701e+05 ,  alpha_kh = 2 e^{-y} = 2*exp(-4.701e+05)
-      exp(-6.3e7) underflows every float format; alpha_kh is zero to any conceivable precision.
+      Earth orbit                  g = 5.930e-03 m/s^2 ,  y = g/a0 = 6.336e+07 ,  alpha_kh = 2 exp(-y)
+      Jupiter orbit                g = 2.190e-04 m/s^2 ,  y = g/a0 = 2.339e+06 ,  alpha_kh = 2 exp(-y)
+      Saturn orbit                 g = 6.457e-05 m/s^2 ,  y = g/a0 = 6.899e+05 ,  alpha_kh = 2 exp(-y)
+      Cassini conjunction ~8.7 AU  g = 7.835e-05 m/s^2 ,  y = g/a0 = 8.370e+05 ,  alpha_kh = 2 exp(-y)
+      Neptune orbit                g = 6.558e-06 m/s^2 ,  y = g/a0 = 7.007e+04 ,  alpha_kh = 2 exp(-y)
+      100 AU                       g = 5.930e-07 m/s^2 ,  y = g/a0 = 6.336e+03 ,  alpha_kh = 2 exp(-y)
+      the SMALLEST y anywhere inside 100 AU is ~6.34e+03, so alpha_kh <= 2 exp(-6.34e+03) ~ 1e-2751 :
+      zero to any conceivable precision (it underflows every float format).
+      MOND-scale onset (y = 1) sits at r = 7960 AU.
 
 ==========================================================================
 (C) STATIC TRACELESS-STRESS GATE (Phi = Psi):  explicit variation

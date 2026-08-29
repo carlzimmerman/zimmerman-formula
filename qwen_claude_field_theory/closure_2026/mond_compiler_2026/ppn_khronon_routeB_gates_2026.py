@@ -47,14 +47,21 @@ print("   => the auxiliary that multiplies a.a must be 2(1-mu) = 2 e^{-y}, not m
 print()
 print("   Solar-System evaluation (a0 = 9.36e-11 m/s^2, framework value):")
 a0 = 9.36e-11
-for name, g in (("Earth orbit (GM_sun/r^2)", 5.93e-3),
-                ("Saturn orbit", 6.5e-5),
-                ("Cassini at 8.7 AU", 4.4e-5)):
+GMsun = 1.32712440018e20            # m^3/s^2
+AU = 1.495978707e11                 # m
+for name, r_AU in (("Earth orbit", 1.0), ("Jupiter orbit", 5.204),
+                   ("Saturn orbit", 9.583), ("Cassini conjunction ~8.7 AU", 8.7),
+                   ("Neptune orbit", 30.07), ("100 AU", 100.0)):
+    g = GMsun/(r_AU*AU)**2
     yv = g/a0
-    print("      %-24s y = g/a0 = %.3e ,  alpha_kh = 2 e^{-y} = 2*exp(-%.3e)"
-          % (name, yv, yv))
-print("      exp(-6.3e7) underflows every float format; alpha_kh is zero to any"
-      " conceivable precision.")
+    print("      %-28s g = %.3e m/s^2 ,  y = g/a0 = %.3e ,  alpha_kh = 2 exp(-y)"
+          % (name, g, yv))
+ymin = GMsun/(100*AU)**2/a0
+print("      the SMALLEST y anywhere inside 100 AU is ~%.2e, so alpha_kh <= 2 exp(-%.2e)"
+      " ~ 1e-%d :" % (ymin, ymin, int(ymin*0.4343)))
+print("      zero to any conceivable precision (it underflows every float format).")
+print("      MOND-scale onset (y = 1) sits at r = %.0f AU."
+      % (((GMsun/a0)**0.5)/AU))
 
 print()
 print("=" * 74)
