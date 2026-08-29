@@ -1,5 +1,36 @@
 # FC-FINAL — session capstone: the constraint-first no-go + AeST+J₁₀ conditional closure (2026-08-28)
 
+> ## ⛔ 2026-08-29 — α₂ RESOLVED = PPN-KILL. STANDING FLIPS: `CONDITIONALLY CLOSED / PPN-OPEN` → **`PPN-KILLED (preferred-frame)`.**
+>
+> The decisive scalar-retained anisotropic O(w²) 1PN α₂ (the "last lock", §"one remaining calculation" below) is **DONE**, by
+> **two independent GR-validated 1PN solves that AGREE** (workflow wmqmofvp4, run wf_c7afe60e-738, 4 agents; committed 66cf94e5
+> in `fc_alpha2_aniso/`). **The AeST scalar does NOT regularise the c₁₂₃=0 Einstein-aether α₂ pole — it ADDS a fresh 1/K_B pole.**
+> - **Route A** `fc_alpha2_aniso/fc_solveA_setupM.py` (direct anisotropic O(w²) coupled solve; FP linearized-Einstein EH
+>   `L_EH=−½h·G^(1)` — verified `√−g R|_ε² == −½h·G^(1)`, EOM ratio EXACTLY −1 — + full covariant dark sector incl. c₂★(∇·A)²;
+>   **the O(ε²) unit-constraint temporal piece b₀ retained = THE blocker that defeated every prior attempt** incl. the incomplete
+>   `fc_alpha2_scalar_retained.py`; harmonic gauge after field eqs, gauge-invariant `2b+d` extraction):
+>   **α₂ = 1/λ_s + 2/(K_B·λ_s²)**, α₁ = −4K_B + O(1/λ_s). Gates ALL PASS (dark OFF→GR α₁=α₂=0 exact; EA+c₂★ Maxwell corner
+>   scalar-OFF→α₁=−4K_B & α₂=0 EXACTLY all K_B; 107s).
+> - **Route B** `fc_alpha2_aniso/fc_solveB_final.py` (EA c-tensor map — machinery **validated to reproduce PUBLISHED
+>   Foster–Jacobson EA α₁ AND α₂ exactly**, both c₂ signs — + independent moving-source Setup-M solve):
+>   **α₂ = 4/(J_Y(1+J_Y)·K_B)**, α₁ = −8/(1+J_Y). Both routes agree to a factor ~1.3; both a **simple 1/K_B pole**.
+>
+> **The kill:** β₀=1/λ_s is **Cassini/fold-forced to ~0.5** (unscreened — the committed fold no-go forbids small β₀; β₀_min=0.533
+> for μ₁₀), and K_B<2.5×10⁻⁵. ⇒ **α₂ ~ 2×10⁴** (over |α₂|<10⁻⁷ by **~11 orders**), and **α₁ ~ −2.7 (O(1)) is an INDEPENDENT kill.**
+> This is exactly the "**1/β₀ enhancement ⇒ clean kill**" / "**intersection empty ⇒ dies cleanly at the preferred-frame gate**"
+> outcome this document predicted (§"last lock", §"new-model endpoint"). **The RETRACTED screening argument is VINDICATED as
+> retracted:** Route A's own script-level "MOND-SCREENED, PASSES" reading (α₂→1/λ_s→0) lives ONLY in the forbidden small-β₀
+> (λ_s→∞) limit — the exact O(β₀)-not-guaranteed trap flagged below; the fold/Cassini no-go closes it. **The α₁ red flag is
+> RESOLVED:** −4K_B is the pure-VECTOR value (Route A reproduces it exactly scalar-OFF); the scalar's `2(2−K_B)J·∇φ` acceleration
+> coupling — the very "nonlocal longitudinal Δα₂^(φA)" this doc names — shifts α₁ to O(1) and generates the α₂ pole.
+>
+> **SCOPE (honest):** kills the specific frozen **FC-AeST + c₂★** chassis at the PREFERRED-FRAME gate. **STATIC sector untouched:**
+> γ_PPN=1, Φ=Ψ lensing, c_T=1, BTFR, 6-DOF, Cassini-μ₁₀ all still stand (Parts I–II below unchanged). **J₁₀ never failed** — this
+> kill is the AeST vector+scalar preferred-frame structure, kernel-independent. Everything below is the (now-superseded) pre-α₂
+> "conditionally closed" record; read it as the road that led here, not the current verdict.
+
+---
+
 **Frozen candidate under test:** FC-AeST = AeST (Skordis–Złośnik, 6 physical DOF) + `𝓕(Y,Q)=𝓕_Q★(Q)+a₀²J₁₀(√Y/a₀)`,
 `μ₁₀(y)=y/(1+y¹⁰)^{1/10}`, **a₀ constant**. Matter minimally coupled to the single metric g. All verdicts below are backed
 by committed, re-run scripts in `fried_chicken_final/` (and subdirs) unless marked EXTERNAL-INPUT.
@@ -41,8 +72,8 @@ correct lensing.** So AeST+J₁₀ is not just *a* surviving candidate — it is
 | de Sitter k→0 dilution | **PASS** (repair argument, NOT an all-k theorem): χ bounded, `E=Π²/(2K₀)a⁻³→0` even for K₀<0 | `fc_flrw_ir_sign_certificate.py` |
 | Healthy scalar region | **nonempty** `c_s²=(2−K_B)(1+K_Bλ_s/2)/(K₂K_B)`; e.g. (K_B,λ_s,K₂)=(0.1,1,20)→c_s²≈0.998 (subluminal) | DERIVATION |
 | Healthy vector region | **PASS** `ω_V²=k²+(2−K_B)(1+λ_s)Q₀²/K_B>0` for 0<K_B<2 | EXTERNAL-INPUT (2109.13287) |
-| **α₁ exact FC-AeST** | **OPEN** — the naive c₁₃=0 Einstein-aether substitution is ILLEGAL (lands on the singular c₁₂₃=0 chart; the scalar Q-sector mixes in) | needs the scalar-retained AeST 1PN |
-| **α₂ exact FC-AeST** | **OPEN — the decisive gate** — could still kill it | needs `f₂(K_B,K₂,λ_s,Q₀)` from the full scalar+aether PPN system |
+| **α₁ exact FC-AeST** | **RESOLVED (2026-08-29) → α₁ = −8/(1+J_Y) ~ −2.7 (O(1)) = KILL** (pure-vector −4K_B shifted by the J·∇φ coupling) | see top banner; `fc_alpha2_aniso/fc_solveA_setupM.py`, `fc_solveB_final.py` |
+| **α₂ exact FC-AeST** | **RESOLVED (2026-08-29) → α₂ = 1/λ_s + 2/(K_B·λ_s²) ~ 2×10⁴ at forced β₀~0.5 = KILL** (1/K_B pole; scalar ADDS not cancels) | see top banner; two independent GR-validated 1PN solves agree |
 | Full finite-k FLRW characteristic matrix (H≪k<k*) | **OPEN** | the exact time-dependent K/B/Ω not certified |
 
 **Key structural facts that make α₂ the *whole* game:** in the Solar System `1−μ₁₀~1/(10y¹⁰)~10⁻⁴⁰`, so J₁₀ is negligible there ⇒
