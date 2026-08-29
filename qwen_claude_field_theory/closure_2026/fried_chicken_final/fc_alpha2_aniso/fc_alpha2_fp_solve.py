@@ -43,6 +43,8 @@ af=[];ak=[];ab=[]
 for i in range(3):
     f,kk,bb=nf(f'a{i+1}');af.append(f);ak.append(kk);ab.append(bb)
 chi,chik,chib=nf('chi'); rho,Rk,Rb=nf('rho'); a0f0,a0k,a0b=nf('a0p')
+KB,K2,Q0,JY=sp.symbols('K_B K_2 Q_0 J_Y',real=True); LAM=sp.S(0)   # module symbolic params
+_GEOM={}   # cache: mode -> param-symbolic L2dc (built once, the expensive step)
 
 def te(e):
     e=sp.expand(e);out=0
@@ -53,8 +55,8 @@ def te(e):
 def wtr(e):
     e=sp.expand(e);return sum(e.coeff(wb,n)*wb**n for n in range(3))
 
-def build(mode,KBv,K2v,Q0v,JYv):
-    KB=sp.nsimplify(KBv);K2=sp.nsimplify(K2v);Q0=sp.nsimplify(Q0v);JY=sp.nsimplify(JYv);LAM=sp.S(0)
+def build(mode):
+    if mode in _GEOM: return _GEOM[mode]
     ww=w1**2+w2**2+w3**2;S0=1+wb**2*ww/2
     Aup_bg=sp.Matrix([S0,wb*w1,wb*w2,wb*w3]);Adn_bg=eta*Aup_bg;dphi_bg=-Q0*Adn_bg
     # metric perturbation
@@ -120,10 +122,12 @@ def build(mode,KBv,K2v,Q0v,JYv):
     for mon,cc in zip(pol.monoms(),pol.coeffs()):
         if mon[0]==mon[1]: L2dc+=cc*(Es*Eis)**mon[0]
     L2dc=L2dc.subs(Es*Eis,1)
-    return sp.expand(L2dc.subs({ky:0,kz:0,kx:1}))
+    _GEOM[mode]=sp.expand(L2dc.subs({ky:0,kz:0,kx:1}))
+    return _GEOM[mode]
 
 def solve(mode,KBv,K2v,Q0v,JYv):
-    L2dc=build(mode,KBv,K2v,Q0v,JYv)
+    L2dc=sp.expand(build(mode).subs({KB:sp.nsimplify(KBv),K2:sp.nsimplify(K2v),
+                                     Q0:sp.nsimplify(Q0v),JY:sp.nsimplify(JYv)}))
     if mode=='iso':
         GAUGE={Bk[0]:0,Bb[0]:0}
         BRAS=[Psib,Phib,Bb[1],Bb[2],ab[0],ab[1],ab[2],chib]

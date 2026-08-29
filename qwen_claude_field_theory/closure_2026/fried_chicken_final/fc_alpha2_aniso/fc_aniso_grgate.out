@@ -1,0 +1,69 @@
+================================================================================================
+[A] anisotropic O(w^2) machinery: retardation omega=k.w, generic 10-component metric
+================================================================================================
+  [info] linearized Einstein tensor assembled (0.1s)
+================================================================================================
+[B] boosted perfect-fluid (dust) source T_{mn}; rigid retardation => conservation
+================================================================================================
+  [ok] [B1] conservation K^mu T_{mu nu} = 0  (holds because omega = k.w exactly: rigid motion) -- a harmonic solution therefore exists
+================================================================================================
+[C] harmonic solution hbar = 16 pi G T/(k^2-omega^2); VERIFY G1[h] = 8 pi G T (all mn)
+================================================================================================
+  [ok] [C1] full linearized Einstein G1_{mn}[h] = 8 pi G T_{mn} satisfied for ALL 10 components by the harmonic solution (anisotropic metric solved, gauge imposed AFTER G1)
+  [ok] [C2] harmonic gauge  K^mu hbar_{mu nu} = 0  holds on the solution (= 16 pi G K^mu T_{mu nu}/(k^2-omega^2) = 0 by [B1])
+================================================================================================
+[D] Newtonian limit and gamma_PPN
+================================================================================================
+  [ok] [D1] O(w^0): g_00 = -(1 - 2U): h00 = 2 Uhat (Newton normalised)
+  [ok] [D2] O(w^0): g_ij = (1 + 2U) delta_ij  =>  gamma_PPN = 1 (spatial metric isotropic at the O(eps^2) PPN order)
+================================================================================================
+[E] extraction of alpha_1, alpha_2 from g_0i and g_00 (Fourier solution)
+================================================================================================
+    g_0i = -4 w_i Uhat + 0 (k.w)k_i/k^2 Uhat   =>  a(V_i)=-4, b(W_i)=0
+    g_00^(w2) = 4 w^2 Uhat + 2 (k.w)^2/k^2 Uhat   =>  c(w^2 U)=5, d((w.x)^2U/r^2)=-1
+    a+b = -4   (GR expects -4)
+    2b+d = -1 (GR expects -1)
+    --------------------------------------------------------------------------------
+    ALPHA_1 = -2(a+b) - (4 gamma + 4) = 0
+    ALPHA_2 = -(2b + d) - 1           = 0
+    --------------------------------------------------------------------------------
+  [ok] [E1] *** alpha_1 = 0 (GR: no preferred frame) -- from the g_0i V/W split ***
+  [ok] [E2] *** alpha_2 = 0 (GR: no preferred frame) -- from the g_00 anisotropic sector ***
+================================================================================================
+[F] independent construction: exact Lorentz boost of static Schwarzschild (position)
+================================================================================================
+    oracle: a=-4, b=0, c=4, d=-1
+    oracle ALPHA_1 = 0,  ALPHA_2 = 0
+  [ok] [F1] oracle (boosted Schwarzschild) reproduces the Fourier-solve (a,b,d) EXACTLY -- two independent constructions of the GR moving-source metric agree
+         (a,b,d): Fourier (-4,0,-1) vs oracle (-4,0,-1); c differs by the rest-mass-vs-lab-potential source convention (5 vs 4) and does NOT enter alpha
+  [ok] [F2] oracle gives alpha_1 = alpha_2 = 0 independently
+================================================================================================
+[G] gauge robustness: xi_0 = kappa (w.x) U shifts (a,b,c,d) but leaves alpha invariant
+================================================================================================
+    shifted: a=-kappa - 4, b=kappa, c=2*kappa + 4, d=-2*kappa - 1   (kappa-dependent)
+  [ok] [G1] gauge shifts (a,b,c,d) -> (a-kappa, b+kappa, c+2kappa, d-2kappa) as derived
+  [ok] [G2] alpha_1 = -2(a+b)-8 is gauge-INVARIANT (a+b unchanged) and stays 0
+         alpha_1(kappa) = 0
+  [ok] [G3] alpha_2 = -(2b+d)-1 is gauge-INVARIANT (2b+d unchanged) and stays 0
+         alpha_2(kappa) = 0
+================================================================================================
+[H] extraction is NON-degenerate: it inverts Will's definition for symbolic alpha_1,2
+================================================================================================
+    fed (alpha_1,alpha_2) symbolic; recovered alpha_1 = alpha_1, alpha_2 = alpha_2
+  [ok] [H1] extraction inverts the standard-PPN definition EXACTLY (non-degenerate; slope correct): recovers arbitrary alpha_1, alpha_2 -- so alpha_1=alpha_2=0 above is a genuine measurement, not a trivial always-zero output
+  [ok] [H2] a physical W_i deformation delta shifts alpha_2 -> -2 delta (nonzero): the machine DETECTS preferred-frame effects, confirming the GR zero is informative
+================================================================================================
+[I] WHY the earlier alpha_2 extractions disagreed [D2]: g_00-ALONE is gauge-incomplete
+================================================================================================
+    g_00-ALONE channel 1 (from d)         : alpha_2^naive = -1
+    g_00-ALONE channel 2 (from c)         : alpha_2^naive = -5
+  [ok] [I1] the g_00-ALONE extraction gives SPURIOUS, MUTUALLY-INCONSISTENT alpha_2 for pure GR (nonzero, and the two channels disagree) -- this is exactly the [D2] failure. g_00 alone is gauge-DEPENDENT (xi_0 shifts c,d) so it cannot carry a PPN parameter by itself
+  [ok] [I2] the FIX: alpha_2 = -(2b+d)-1 combines g_0i (b) with g_00 (d) into a gauge-invariant, giving the correct, unique alpha_2 = 0 -- the two determinations now AGREE because they are the SAME gauge-invariant. This is the methodological correction the GR gate exposes
+================================================================================================
+    16/16 certificates pass
+    GR-VALIDATION GATE: PASSED.  gamma_PPN=1, alpha_1=alpha_2=0 reproduced by the full
+    anisotropic O(w^2) machinery.  The machine is trustworthy for the AeST extraction.
+    NOTE (honesty): the extraction SLOPES come from Will's standard-PPN metric (EXTERNAL-INPUT,
+    the definition of alpha_1,alpha_2); GR validates the OFFSET (=0). PHASE 2 re-anchors the
+    slope with the established alpha_1 = -4 K_B (and, recommended, an Einstein-aether/Foster-
+    Jacobson cross-check of alpha_2's slope) before any AeST alpha_2 is cited.

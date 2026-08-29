@@ -129,8 +129,8 @@ check(sp.expand(_wt(Cchk.coeff(Es,1)))==0 and sp.expand(_wt(Cchk.coeff(Eis,1)))=
 P(f"    constraint solved ({time.time()-T0:.1f}s)")
 
 dphi = sp.Matrix([dphi_bg[m] + eps*d(chi, m) for m in range(4)])
-Gam = [[[sp.Rational(1,2)*sum(gu[r,s]*(d(gd[s,n],m)+d(gd[s,m],n)-d(gd[m,n],s))
-        for s in range(4)) for n in range(4)] for m in range(4)] for r in range(4)]
+# (truncated Christoffels GamT are built inside the cache branch below, directly from the
+#  truncated metric, to avoid ever materialising the huge untruncated Ricci -- big speedup.)
 
 def wtrunc(e):
     e = sp.expand(e); return sum(e.coeff(wb, n)*wb**n for n in range(3))
@@ -147,9 +147,11 @@ else:
             for j in range(3):
                 out += ci.coeff(wb, j)*eps**i*wb**j
         return out
+    gdT = sp.Matrix(4, 4, lambda m, n: te(gd[m, n]))
     guT = sp.Matrix(4, 4, lambda m, n: te(gu[m, n]))
     AupT = sp.Matrix(4, 1, lambda i, j: te(Aup[i]))
-    GamT = [[[te(Gam[r][m][n]) for n in range(4)] for m in range(4)] for r in range(4)]
+    GamT = [[[ te(sp.Rational(1,2)*sum(guT[r,s]*(d(gdT[s,n],m)+d(gdT[s,m],n)-d(gdT[m,n],s))
+             for s in range(4))) for n in range(4)] for m in range(4)] for r in range(4)]
     dphiT = sp.Matrix(4, 1, lambda i, j: te(dphi[i]))
     Fmn = sp.Matrix(4, 4, lambda m, n: sp.expand(d(Adn[n], m) - d(Adn[m], n)))
     F1 = sp.Matrix(4, 4, lambda m, n: Fmn[m, n].coeff(eps, 1))
@@ -167,10 +169,10 @@ else:
     def ric(a, b):
         o = 0
         for m in range(4):
-            o += d(Gam[m][b][a], m) - d(Gam[m][m][a], b)
+            o += d(GamT[m][b][a], m) - d(GamT[m][m][a], b)
             for l in range(4):
-                o += Gam[m][m][l]*Gam[l][b][a] - Gam[m][b][l]*Gam[l][m][a]
-        return o
+                o += te(GamT[m][m][l]*GamT[l][b][a] - GamT[m][b][l]*GamT[l][m][a])
+        return te(o)
     Rsc = te(sum(guT[m,n]*ric(m,n) for m in range(4) for n in range(4)))
     P(f"    Ricci scalar assembled ({time.time()-T0:.1f}s)")
     gF2=grade(F2);gJ=grade(Jdphi);gY=grade(Yc);gK=grade(Kq);gsq=grade(sqg);gR=grade(Rsc)
