@@ -397,11 +397,15 @@ def main():
     ap.add_argument("--procs", type=int, default=os.cpu_count())
     ap.add_argument("--seed", type=int, default=20260829)
     ap.add_argument("--out", default=os.path.join(HERE, "screen_results.json"))
+    ap.add_argument("--only", default=None,
+                    help="restrict the screen to a single sampling family")
     args = ap.parse_args()
 
     mix = {"RAND_SPARSE": 0.30, "RAND_DENSE": 0.05, "MOND_SCAFFOLD": 0.20,
            "FRAME_TUNED": 0.15, "FRAME_TUNED2": 0.05, "SIGMAP_TUNED": 0.10,
            "DEGEN_TUNED": 0.08, "PALATINI": 0.05, "NAMED": 0.02}
+    if args.only:
+        mix = {args.only: 1.0}
     tasks = []
     rng = np.random.default_rng(args.seed)
     for fam, frac in mix.items():
