@@ -216,6 +216,15 @@ def hess_tensors(bg):
 
 
 def classify_hessian(cops, bg, tol_rel=1e-10):
+    """Classify the carrier kinetic Hessian at one background.
+
+    Components of the multiplet that appear NOWHERE in the quadratic Lagrangian (no
+    entry in H, G, M or C) are not part of the theory at all -- an S_mn slot in a
+    candidate with no S operators, say.  They are projected out FIRST, otherwise they
+    inflate the null count and get miscounted as strong-coupling risks.  This changes no
+    kill decision (an absent component contributes a zero eigenvalue, never a negative
+    one); it only makes the G5 bookkeeping honest.
+    """
     H, G, Mm, Cx = hess_tensors(bg)
     Hc = np.einsum('i,iab->ab', cops, H)
     Gc = np.einsum('i,iab->ab', cops, G)
@@ -224,13 +233,25 @@ def classify_hessian(cops, bg, tol_rel=1e-10):
     Hc = 0.5 * (Hc + Hc.T)
     if not np.all(np.isfinite(Hc)):
         return dict(status="NONFINITE", n_neg=-1, n_zero=-1)
+    tot = np.abs(Hc) + np.abs(Gc) + np.abs(Mc) + np.abs(Cc) + np.abs(Cc.T)
+    ref = float(tot.max())
+    act = np.where(tot.max(axis=1) > 1e-12 * max(ref, 1e-300))[0]
+    n_absent = Hc.shape[0] - len(act)
+    if len(act) == 0:
+        return dict(status="degenerate", n_neg=0, n_zero=0, n_pos=0, n_absent=n_absent,
+                    n_constrained_null=0, n_gauge_or_strongcoupled_null=0,
+                    eig_min=0.0, eig_max=0.0, scale=0.0)
+    Hc = Hc[np.ix_(act, act)]
+    Gc = Gc[np.ix_(act, act)]
+    Mc = Mc[np.ix_(act, act)]
+    Cc = Cc[np.ix_(act, act)]
     w, V = np.linalg.eigh(Hc)
     sc = max(float(np.abs(Hc).max()), 1e-300)
     tol = tol_rel * sc
     n_neg = int(np.sum(w < -tol))
     n_zero = int(np.sum(np.abs(w) <= tol))
     n_pos = int(np.sum(w > tol))
-    info = dict(n_neg=n_neg, n_zero=n_zero, n_pos=n_pos,
+    info = dict(n_neg=n_neg, n_zero=n_zero, n_pos=n_pos, n_absent=int(n_absent),
                 eig_min=float(w.min()), eig_max=float(w.max()), scale=sc)
     if n_neg > 0:
         info["status"] = "nondegenerate-ghost"

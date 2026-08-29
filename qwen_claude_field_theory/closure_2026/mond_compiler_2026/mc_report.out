@@ -1,0 +1,131 @@
+====================================================================================
+STAGE-1 SCREEN -- MORTALITY TABLE
+====================================================================================
+basis: 57 covariant operators + 8 matter-frame parameters = 65 searchable coefficients
+candidates evaluated: 108000
+
+gate                killed       %   note
+Gate-H               27209  25.19%   robust ghost: negative kinetic eigenvalue at EVERY reference background
+Gate-CARRIER         33125  30.67%   carrier algebraically off, or no static solution
+Gate-MOND            14520  13.44%   no mu -> 1 / mu -> y interpolation (or no solution across the grid)
+Gate-SLIP             1112   1.03%   lensing potential does not track the MOND dynamical potential
+Gate-H2                  2   0.00%   ghost at the candidate's OWN solved background
+Gate-PPN                59   0.05%   preferred-frame carrier vacuum (alpha_1, alpha_2 not established)
+TUNING_FAILED        31973  29.60%   the targeted tuning had no root -- candidate never constructed
+TOTAL               108000
+
+reached-gate profile (how deep the search actually got):
+    reached Gate-H            76027
+    reached Gate-CARRIER      48818
+    reached Gate-MOND         15693
+    reached Gate-SLIP          1173
+    reached Gate-H2              61
+    reached Gate-PPN             59
+    reached SURVIVOR              0
+
+of the 76027 candidates that entered the chain, 58476 were PHYSICS kills and 17551 were SOLVER non-convergence
+  (solver non-convergence is reported separately and is NOT counted as a
+   physics result -- those candidates are simply undecided)
+
+cause of death, in detail:
+  Gate-H:
+         27209  ROBUST_GHOST
+  Gate-CARRIER:
+         18129  CARRIER_OFF
+         14996  NO_SOLUTION
+  Gate-MOND:
+          3210  COARSE:MU_CONSTANT_1
+          2284  COARSE:NO_NEWTONIAN_REACH
+          2220  COARSE:NO_DEEP_MOND_REACH
+          1199  NO_SOLUTION_at_Sigma=8.000e-06
+           631  NO_SOLUTION_at_Sigma=8.000e+08
+           199  NO_SOLUTION_at_Sigma=8.000e+01
+           196  NO_SOLUTION_at_Sigma=2.530e+05
+           120  COARSE:G3_FAIL_mu_inf=0.75
+           119  COARSE:DEEP_SLOPE=0.000
+           119  NO_SOLUTION_at_Sigma=1.423e+07
+  Gate-SLIP:
+           212  FRAME_SLIP=1.999e+00 (lensing != dynamics)
+            53  FRAME_SLIP=1.998e+00 (lensing != dynamics)
+            36  FRAME_SLIP=2.000e+00 (lensing != dynamics)
+            30  FRAME_SLIP=4.484e+04 (lensing != dynamics)
+            20  FRAME_SLIP=1.997e+00 (lensing != dynamics)
+            17  FRAME_SLIP=1.996e+00 (lensing != dynamics)
+            11  FRAME_SLIP=1.995e+00 (lensing != dynamics)
+             3  FRAME_SLIP=1.402e+04 (lensing != dynamics)
+             2  FRAME_SLIP=1.171e+01 (lensing != dynamics)
+             2  FRAME_SLIP=1.346e+01 (lensing != dynamics)
+  Gate-H2:
+             2  GHOST_AT_OWN_BACKGROUND
+  Gate-PPN:
+            59  PREFERRED_FRAME_VACUUM(alpha_1,alpha_2 NOT established -- stage-2 1PN)
+  TUNING_FAILED:
+         12979  FRAME_TUNED2:no_root
+          8600  FRAME_TUNED:no_root
+          5538  SIGMAP_TUNED:no_root
+          4856  DEGEN_TUNED:no_root
+
+mortality by sampling family:
+            family         Gate-H   Gate-CARRIER      Gate-MOND      Gate-SLIP        Gate-H2       Gate-PPN  TUNING_FAILED
+       DEGEN_TUNED            746           1778            616              4              0              0           4856
+       FRAME_TUNED           1878             37           3869            583              2             31           8600
+      FRAME_TUNED2              0              0             17              0              0              4          12979
+     MOND_SCAFFOLD           4602          11250           4065             83              0              0              0
+             NAMED            551            348            643            434              0             24              0
+          PALATINI              0           3963           1036              1              0              0              0
+        RAND_DENSE           5000              0              0              0              0              0              0
+       RAND_SPARSE          13193          13147           3660              0              0              0              0
+      SIGMAP_TUNED           1239           2602            614              7              0              0           5538
+
+====================================================================================
+SURVIVORS: 0
+====================================================================================
+NONE.  Empty search.  The last gate standing is the one that killed the
+deepest candidates -- see the reached-gate profile above.
+
+====================================================================================
+DEEPEST NON-SURVIVORS (passed Gate-MOND and Gate-SLIP): 61
+====================================================================================
+      59  PREFERRED_FRAME_VACUUM(alpha_1,alpha_2 NOT established -- stage-2 1PN)
+       2  ?
+
+  vacuum boost-breaking |A_0| or |S_00| among them: min 6.896e-01  median 1.000e+00  max 1.000e+00
+  boost-INVARIANT (<1e-8): 0 of 59
+
+  operators/parameters most often present in the deepest candidates:
+          61  P2
+          61  V3
+          61  M1_conf_phi
+          60  V15
+          60  M5_disf_AA_phi
+          59  K4
+           4  M3_disf_AA
+           2  V6
+           2  V10
+           2  V13
+           1  K13
+           1  P8
+           1  P3
+           1  V9
+           1  D4
+           1  K14
+           1  V12
+           1  K12
+
+  example (FRAME_TUNED, died Gate-PPN): [('P2', -0.5), ('V3', 0.33333), ('V15', 1.0), ('K4', -0.25), ('K13', 4.07117), ('M1_conf_phi', -1.8994), ('M5_disf_AA_phi', -7.59758)]
+     {'deep_slope': 0.9991495354670823, 'sigmaP_cancellation_rel': 1.0, 'frame_slip_worst': 9.602822501554215e-10, 'metric_carried_frac': 3.192057548094425e-13, 'slip': 'PASS', 'H2_gauge_or_strongcoupled_nulls': 10.0, 'vacuum_boost_break': 1.0, 'ppn': 'PREFERRED_FRAME_VACUUM(alpha_1,alpha_2 NOT established -- stage-2 1PN)'}
+
+  example (FRAME_TUNED, died Gate-PPN): [('P2', -0.5), ('V3', 0.33333), ('V15', 1.0), ('K4', -0.25), ('M1_conf_phi', -0.67991), ('M5_disf_AA_phi', -2.71963)]
+     {'deep_slope': 0.9880204489230047, 'sigmaP_cancellation_rel': 1.0, 'frame_slip_worst': 6.52841705392305e-11, 'metric_carried_frac': 2.619201909835974e-13, 'slip': 'PASS', 'H2_gauge_or_strongcoupled_nulls': 10.0, 'vacuum_boost_break': 1.0, 'ppn': 'PREFERRED_FRAME_VACUUM(alpha_1,alpha_2 NOT established -- stage-2 1PN)'}
+
+  example (FRAME_TUNED, died Gate-PPN): [('P2', -0.5), ('V3', 0.33333), ('V15', 1.0), ('K4', -0.25), ('M1_conf_phi', -0.4213), ('M5_disf_AA_phi', -1.68519)]
+     {'deep_slope': 0.9646283114691738, 'sigmaP_cancellation_rel': 1.0, 'frame_slip_worst': 4.4137231989131146e-10, 'metric_carried_frac': 3.183012819058797e-13, 'slip': 'PASS', 'H2_gauge_or_strongcoupled_nulls': 10.0, 'vacuum_boost_break': 1.0, 'ppn': 'PREFERRED_FRAME_VACUUM(alpha_1,alpha_2 NOT established -- stage-2 1PN)'}
+
+  example (NAMED, died Gate-PPN): [('P2', -0.5), ('V3', 0.33333), ('V15', 1.0), ('K4', -0.25), ('M1_conf_phi', -1.0), ('M5_disf_AA_phi', -4.0)]
+     {'deep_slope': 0.9953910031108442, 'sigmaP_cancellation_rel': 1.0, 'frame_slip_worst': 4.0293030119678386e-11, 'metric_carried_frac': 2.201976275503791e-13, 'slip': 'PASS', 'H2_gauge_or_strongcoupled_nulls': 10.0, 'vacuum_boost_break': 1.0, 'ppn': 'PREFERRED_FRAME_VACUUM(alpha_1,alpha_2 NOT established -- stage-2 1PN)'}
+
+  example (FRAME_TUNED, died Gate-PPN): [('P2', -0.5), ('V3', 0.33333), ('V15', 1.0), ('K4', -0.25), ('M1_conf_phi', -1.86122), ('M5_disf_AA_phi', -7.44486)]
+     {'deep_slope': 0.9991232521441927, 'sigmaP_cancellation_rel': 1.0, 'frame_slip_worst': 1.0899744251512993e-09, 'metric_carried_frac': 3.290778552214207e-13, 'slip': 'PASS', 'H2_gauge_or_strongcoupled_nulls': 10.0, 'vacuum_boost_break': 1.0, 'ppn': 'PREFERRED_FRAME_VACUUM(alpha_1,alpha_2 NOT established -- stage-2 1PN)'}
+
+  example (FRAME_TUNED, died Gate-H2): [('P2', -0.5), ('P8', -2.58948), ('V3', 0.33333), ('V15', 1.0), ('K4', -0.25), ('M1_conf_phi', -0.6521), ('M5_disf_AA_phi', -2.60841)]
+     {'deep_slope': 0.9872585887061636, 'sigmaP_cancellation_rel': 1.0, 'frame_slip_worst': 1.1361114481477758e-10, 'metric_carried_frac': 2.7885041459643514e-13, 'slip': 'PASS', 'H2_gauge_or_strongcoupled_nulls': 0.0}

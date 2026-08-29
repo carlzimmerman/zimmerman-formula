@@ -78,6 +78,17 @@ def main():
     for g, n in reach.items():
         print(f"    reached {g:14s} {n:>8d}")
 
+    # a solver non-convergence is NOT a physics kill and must never be quoted as one
+    solver = sum(n for r, n in reasons.get("Gate-MOND", {}).items() if "NO_SOLUTION" in r)
+    solver += sum(n for r, n in reasons.get("Gate-CARRIER", {}).items() if "NO_SOLUTION" in r)
+    solver += sum(n for r, n in reasons.get("Gate-PPN", {}).items() if "NO_VACUUM" in r)
+    phys = sum(mort.get(g, 0) for g in ["Gate-H", "Gate-CARRIER", "Gate-MOND",
+                                        "Gate-SLIP", "Gate-H2", "Gate-PPN"]) - solver
+    print(f"\nof the {phys + solver} candidates that entered the chain, "
+          f"{phys} were PHYSICS kills and {solver} were SOLVER non-convergence")
+    print("  (solver non-convergence is reported separately and is NOT counted as a")
+    print("   physics result -- those candidates are simply undecided)")
+
     print("\ncause of death, in detail:")
     for g in GATE_ORDER:
         if g in reasons and mort.get(g):
