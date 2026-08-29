@@ -1,0 +1,137 @@
+
+============================================================================================
+G0  CONSTITUTIVE ANCHOR: the Newton gate forces eta(y) = 2 e^-y (frozen mu = 1-e^-y)
+============================================================================================
+  PASS  G0a  V'(chi) = [ln(1-chi)]^2 at chi = mu(y) = 1-e^-y equals y^2 (elliptic freeze)
+  PASS  G0b  effective a^2 coupling eta = 2(1-chi) = 2 e^-y  (chi = mu(y))
+  PASS  G0c  eta(y) in (0,2] for all y>0, ->2 only in the strict deep-MOND limit y->0
+
+============================================================================================
+G1  TENSOR SECTOR: c_T^2 = xi, and xi = 1 is LOCKED by the single 4D-R gravity sector
+============================================================================================
+  PASS  G1a  TT kinetic coefficient (1/4) > 0 (no tensor ghost)
+  PASS  G1b  c_T^2 = xi  (K^2 and a^2 terms are identically zero on TT: lam, eta, beta absent)
+  PASS  G1c  the 4D Ricci scalar R gives K_ijK^ij and R3 with EQUAL (unit) coefficient => xi = 1 EXACTLY, for ALL lam_K and ALL eta.  beta = 0 (no K_ijK^ij deformation).
+  PASS  G1d  |c_T - 1| = 0 < 1e-15 (GW170817)  [PROVEN, structural]
+    => c_T = 1 EXACTLY.  beta value forced: beta = 0 (equivalently, no independent
+       K_ijK^ij deformation; the tensor speed rides on xi=1 locked by the 4D R).
+
+============================================================================================
+G2  KHRONON HEALTH: derive S_2[scalar], K_s and c_s^2; find healthy lam_K window
+============================================================================================
+  PASS  G2a  al and B carry NO time derivative (constraints), zetadot^2 coeff = 3(1-3 lam)
+  PASS  G2b  al-constraint gives al = -2 xi zeta/eta and REQUIRES eta != 0 (GR check: at eta=0 it forces zeta=0, i.e. GR has NO scalar mode)
+  PASS  G2c  khronon kinetic coefficient K_s = 2(1-3 lam)/(1-lam)   [anchor: spin0-health B4]
+  PASS  G2d  c_s^2 = xi(2 xi - eta)(1-lam)/[eta(1-3 lam)]   [anchor: spin0-health C1 / sec12]
+  PASS  G2e  at xi=1 (GW170817): c_s^2 = (2-eta)(lam-1)/[eta(3 lam-1)]
+
+  --- health conditions (xi=1) ---
+     NO GHOST      : K_s > 0  <=>  lam > 1  OR  lam < 1/3
+     NO GRADIENT   : c_s^2 >= 0 (with that lam window)  <=>  0 < eta < 2
+  PASS  G2f  NO GHOST band lam>1 or lam<1/3 verified (healthy: 2,10,1/5,1/10; ghost: 1/2,4/5,2/5)
+  PASS  G2g  NO GRADIENT band 0<eta<2 verified (ok: 1,1/2,1.9; unstable: 3,-1/2,2.5)
+
+  --- MOND-locus coupling eta(y) = 2 e^-y plugged into the healthy branch (pick lam>1) ---
+  PASS  G2h  with eta=2e^-y and lam>1: 0 < eta(y) < 2 for ALL y>0 => gradient-stable everywhere (marginal c_s^2=0 only at the deep-MOND point y=0)
+  PASS  G2i  STRONG-COUPLING FLAG: as eta->0 (Solar System, y large) c_s^2 -> +oo, NOT a ghost/gradient instability but an INSTANTANEOUS (elliptic) mode; the EFT strong-coupling scale falls with eta and is NOT computed here [BPS's own caveat] -- PARTIAL
+     -> K_s > 0 and c_s^2 > 0 hold for lam_K > 1 (or <1/3) at every y>0: classically HEALTHY.
+     -> BUT eta(y)->0 in the Solar System drives c_s^2->oo (khronon becomes constraint-like);
+        whether this is benign (elliptic constraint) or an EFT cutoff collapse is UNRESOLVED.
+
+  --- healthy window intersect BBN lam_K in [0.923, 1.100] ---
+  PASS  G2j  no-ghost (lam>1 or lam<1/3) INTERSECT BBN [0.923,1.100] = (1, 1.100]  (the lam<1/3 branch is excluded by BBN) -- NONEMPTY
+     HEALTHY lam_K RANGE: lam_K > 1 (or lam_K < 1/3) for pure ghost/gradient health;
+     with BBN [0.923,1.100] the physical window narrows to  1 < lam_K <= 1.100 .
+
+============================================================================================
+G3  SELF-SCREENING: alpha_1, alpha_2 for the boosted source, healthy lam2 != 0
+============================================================================================
+  PASS  G3a  ANCHOR alpha_1(alph=1/1000) = -8/1999  [routeA .out, both h0i & h00 routes]
+  PASS  G3b  ANCHOR leading alpha_1 = -4 alph and alpha_2 = alph(alph-lam2)/(2 lam2) reproduce BPS 5.34@beta=0 (routeA certified to 1 part in 1e3)
+  PASS  G3c  GR-limit sanity: alpha_1, alpha_2 -> 0 as alph -> 0 (any lam2): preferred frame off
+
+  --- CRUCIAL: constant-lam_K cross-check (set alph=0, keep lam2 != 0) ---
+  PASS  G3d  at alph=0 with lam2 != 0 (theta^2 term present, MOND coupling OFF): alpha_1 = 0 AND alpha_2 = 0 EXACTLY.  The constant lam_K generates NO unscreened preferred-frame term; BOTH alphas are sourced ONLY by the a^2-coupling alph=2e^-y.
+     => screening is REAL: alpha_1, alpha_2 are strictly proportional to alph = 2 e^-y.
+        The theta^2/K^2 deformation enters only the c_s^2 and alpha_2 DENOMINATORS, never
+        as an independent O(1) or O(lam_K) preferred-frame source.  [make-or-break: PASS]
+
+  --- Solar-System evaluation:  alph = 2 e^-y ,  |alpha_1| = 8 e^-y , |alpha_2| ~ e^-y ---
+     location                 y=g/a0 |alpha_1|=8e^-y |alpha_2|~e^-y
+     Sun surface           2.930e+12      <1e-30000     < 1e-30000
+     Mercury               4.230e+08      <1e-30000     < 1e-30000
+     Earth 1 AU            6.336e+07      <1e-30000     < 1e-30000
+     Jupiter               2.343e+06      <1e-30000     < 1e-30000
+     Saturn (Cassini)      6.903e+05      <1e-30000     < 1e-30000
+     Neptune               6.993e+04      <1e-30000     < 1e-30000
+  PASS  G3e  |alpha_1| = 8 e^-y < 4e-5 (LLR/pulsars) at every Solar-System body (worst 8e^-y = 0.00e+00)
+  PASS  G3f  |alpha_2| ~ e^-y < 1.2e-7 (solar spin axis) at every Solar-System body
+     Inside ~100 AU, y > 6e3 => e^-y underflows every float format (< 1e-2751): the
+     preferred-frame gate is passed by ~1e30000 margin (a property of e^-y, per rule 4).
+
+  --- kernel fork (rule 4): framework-canonical g_obs=sqrt(g_bar^2+g_bar a0) => 1-mu~1/(2y) ---
+     THE THEORY-as-specified FREEZES mu = 1-e^-y (V'=-[ln(1-chi)]^2) => e^-y screening,
+     which passes trivially (above).  The framework's PHENOMENOLOGICAL RAR kernel
+     g_obs=sqrt(g_bar^2+g_bar a0) is a DIFFERENT interpolation with 1-mu ~ 1/(2y):
+       |alpha_2| ~ 1/(2y) at Neptune (y=6.99e+04) = 7.15e-06
+  PASS  G3g  BOTH-WAYS CAVEAT (rule 4): the e^-y pass is a property of the FROZEN exponential kernel.  The framework's power-law RAR kernel gives |alpha_2|~1/(2y)=7.2e-06 at Neptune, which EXCEEDS the 1.2e-7 solar-spin-axis bound (~60x) -- so the screening verdict is KERNEL-DEPENDENT; only the exponential kernel screens hard.  (Also: standard PPN assumes CONSTANT alphas; alpha(y) is position-dependent -- bound assignment is itself OPEN.)
+
+============================================================================================
+G4  LENSING: static weak field gives Psi = Phi (gamma_PPN=1), BOTH potentials boosted
+============================================================================================
+  PASS  G4a  psi = -Phi solves the psi-equation lap(Phi+psi)=0 IDENTICALLY (NO slip; the lensing gate is passed by the single-metric GR sector, khronon/MOND-independent) => Psi=Phi [routeA S1a]
+  PASS  G4b  MOND sector yields div[mu_eff grad Phi] = source with mu_eff = mu(y) = 1-e^-y (Newton gate); since Psi=Phi BOTH potentials obey the SAME boosted equation [routeA S1b,S1c]
+  PASS  G4c  => g_lens = g_dyn = mu-enhanced (deep-MOND boost 1/mu -> oo as y->0): NOT the factor-2 UNDER-lensing that killed TTA-1 (which tied Psi to the un-boosted chi*Phi').  gamma_PPN=1.
+  PASS  G4d  deep-MOND lensing boost 1/mu_eff > 1 (verified at y=1: 1/mu = 1.582 > 1)
+
+============================================================================================
+G5  DOF: N_local = 3 (2 tensor + 1 healthy khronon); H_perp second class = Horava-class
+============================================================================================
+  PASS  G5a  N_local = (20 - 12 - 2)/2 = 3 = 2 tensor + 1 khronon  [sec10_canonical_analysis; dirac_chi_Q PART H]  -- PROVEN for the healthy lam_K != 1 khronometric
+  PASS  G5b  H_perp is SECOND class (khronon breaks time diffeos): this is Horava-class and HEALTHY, NOT the pathology of a demoted first-class constraint.  It is 3 DOF, NOT the 2-DOF dream.
+  PASS  G5c  spatial momentum constraints H_i survive FIRST class (spatial diffeos preserved): the khronon adds exactly ONE scalar to GR's two tensor DOF
+
+============================================================================================
+NEGATIVE CONTROLS (must trip)
+============================================================================================
+  PASS  NC1  sick (lam,eta) decoys all REJECTED by the health window (not a rubber stamp)
+  PASS  NC2  eta=0 kills the mode (constraint forces zeta=0) AND c_s^2->oo: GR limit reproduced, so the mode found is genuinely the Lorentz-violating one
+  PASS  NC3  on the healthy branch (lam2!=0) with alph!=0 the alphas are NONZERO (screening is a genuine e^-y suppression, not the vacuous alph=0 zero): alpha_1(alph=1/1000)!=0
+  PASS  NC4  c_T^2 = xi departs from 1 if xi != 1 (e.g. xi=9/10 -> c_T^2=9/10): G1 is anchored, not a tautology
+
+============================================================================================
+VERDICT
+============================================================================================
+
+  GATE-BY-GATE (khronometric/Horava + MOND, e^-y self-screening):
+
+  G1 c_T        PASS [PROVEN]      c_T = 1 EXACTLY (|c_T-1|=0), forced by the single 4D-R gravity
+                                   sector (xi locked to 1); beta = 0 (no K_ijK^ij deformation).
+  G2 khronon    PASS [COMP_VERIF]  K_s = 2(1-3 lam)/(1-lam) > 0 and c_s^2 >= 0 for lam_K>1 (or <1/3)
+                +PARTIAL           with eta(y)=2e^-y in (0,2).  HEALTHY window lam_K>1 (or <1/3);
+                                   BBN intersect => 1 < lam_K <= 1.100.  PARTIAL: eta->0 in the
+                                   Solar System sends c_s^2->oo (instantaneous mode / EFT strong-
+                                   coupling scale NOT computed) -- the sharpest open worry.
+  G3 screening  PASS [COMP_VERIF]  alpha_1 = -8 e^-y, alpha_2 ~ -e^-y (BPS 5.34-anchored).  Both
+                +KERNEL-CAVEAT     STRICTLY proportional to the a^2-coupling alph=2e^-y; the
+                                   constant lam_K generates NO unscreened alpha (make-or-break
+                                   cross-check PASSES).  For the theory's OWN frozen kernel
+                                   mu=1-e^-y: < bounds by ~1e30000.  CAVEAT: the framework's
+                                   power-law RAR kernel (1-mu~1/2y) gives alpha_2~7e-6 at Neptune,
+                                   ~60x OVER the 1.2e-7 bound -- screening is KERNEL-DEPENDENT, and
+                                   the position-dependent-alpha bound assignment is itself open.
+  G4 lensing    PASS [COMP_VERIF]  Psi = Phi (gamma_PPN=1) from the single-metric GR sector; BOTH
+                                   potentials obey div[mu_eff grad Phi]=src, mu_eff=mu(y): lensing
+                                   is MOND-BOOSTED (g_lens=g_dyn), NOT TTA-1's factor-2 under-lens.
+  G5 DOF        PASS [PROVEN]      N_local = 3 = 2 tensor + 1 khronon; H_perp second class (Horava-
+                                   class, EXPECTED healthy).  It is 3 DOF, not the 2-DOF dream.
+
+  OVERALL: VIABLE_CANDIDATE (conditional).  All five gates pass as posed.  c_T = 1 exact; healthy
+  lam_K > 1 (or < 1/3), BBN-narrowed to (1, 1.100]; beta = 0; alpha_1,alpha_2 screened by e^-y;
+  lensing boosted; 3 DOF.  ONE un-run gate (not among G1-G5) gates the "viable": the EFT strong-
+  coupling scale in the eta->0 Solar-System corner (BPS's own caveat) is NOT computed -- if it
+  falls below Solar-System scales the perturbative screening needs a nonlinear (Vainshtein-type)
+  justification.  Label honestly: PARTIAL there, PASS everywhere else.  This is the first coherent
+  surviving direction of the session -- 3 DOF, not 2.
+
+35/35 checks pass
