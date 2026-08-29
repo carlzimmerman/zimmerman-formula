@@ -246,32 +246,35 @@ q = sp.Matrix(4, 1, lambda i, _: sp.Symbol(f"qq{i}"))
 P, N, V = sp.symbols("P N V")
 
 
-def inv_from(giM):
-    return giM.inv()
+def tf_stress(Ldens, numeric_sub):
+    """T_mn = -2 dL/dg^{mn} + g_mn L, trace-free part.
 
-
-def tf_stress(Ldens, giM):
-    """T_mn = -2 dL/dg^{mn} + g_mn L ; return its trace-free part."""
-    gM = inv_from(giM)
+    Differentiation is done with g^{mn} SYMBOLIC (exact), the numeric rational
+    metric is substituted only afterwards, so no symbolic 4x4 inverse is ever taken.
+    """
+    giN = gi.subs(numeric_sub)
+    gM = giN.inv()                                # rational 4x4 inverse: cheap
     T = sp.zeros(4, 4)
     for m in range(4):
         for n in range(4):
             s = sp.Symbol(f"gi{min(m,n)}{max(m,n)}")
             fac = sp.Rational(1, 1) if m == n else sp.Rational(1, 2)  # symmetric off-diagonals
-            T[m, n] = -2 * fac * sp.diff(Ldens, s) + gM[m, n] * Ldens
-    tr = sum(giM[m, n] * T[m, n] for m in range(4) for n in range(4))
-    return sp.simplify(T - sp.Rational(1, 4) * tr * gM)
+            T[m, n] = (-2 * fac * sp.diff(Ldens, s)).subs(numeric_sub) \
+                + gM[m, n] * Ldens.subs(numeric_sub)
+    tr = sum(giN[m, n] * T[m, n] for m in range(4) for n in range(4))
+    return sp.expand(T - sp.Rational(1, 4) * tr * gM)
 
 
 A2 = sum(gi[m, n] * A[m] * A[n] for m in range(4) for n in range(4))
 L_iso = P * A2 - V
-TF_iso = tf_stress(L_iso, gi)
-TF_iso_P0 = sp.simplify(TF_iso.subs(P, 0).subs(gsub))
+TF_iso = tf_stress(L_iso, gsub)                # A, P, V still symbolic
+TF_iso_P0 = sp.expand(TF_iso.subs(P, 0))
 chk("E1 at P != 0 the isotropic algebraic carrier DOES carry a traceless stress",
-    sp.simplify(TF_iso.subs(gsub).subs({P: 1, V: 0,
-                                        sp.Symbol("Aa0"): 1, sp.Symbol("Aa1"): sp.Rational(1, 2),
-                                        sp.Symbol("Aa2"): 0, sp.Symbol("Aa3"): 0})) != sp.zeros(4, 4))
-chk("E2 at P == 0 (the degenerate branch) the traceless stress vanishes IDENTICALLY in A and g",
+    sp.expand(TF_iso.subs({P: 1, V: 0,
+                           sp.Symbol("Aa0"): 1, sp.Symbol("Aa1"): sp.Rational(1, 2),
+                           sp.Symbol("Aa2"): 0, sp.Symbol("Aa3"): 0})) != sp.zeros(4, 4))
+chk("E2 at P == 0 (the degenerate branch) the traceless stress vanishes IDENTICALLY"
+    " in A (A_mu kept SYMBOLIC) and for a generic non-diagonal metric",
     TF_iso_P0 == sp.zeros(4, 4),
     "-> Sigma_P == 0: G2 has NO source.  The archetype's class is CLOSED.")
 
@@ -300,19 +303,19 @@ chk("F2 dim ker C = 1 (exactly one undetermined component), not 4",
 chk("F3 the null direction is q itself",
     sp.simplify((Cab * q.subs(qs)).norm()) == 0)
 
-TF_ani = tf_stress(L_ani, gi)
-num = {**gsub, **qs, sp.Symbol("Aa0"): sp.Rational(1, 1), sp.Symbol("Aa1"): sp.Rational(1, 3),
+TF_ani = tf_stress(L_ani, gsub)                  # A, q, N still symbolic
+num = {**qs, sp.Symbol("Aa0"): sp.Rational(1, 1), sp.Symbol("Aa1"): sp.Rational(1, 3),
        sp.Symbol("Aa2"): sp.Rational(-1, 2), sp.Symbol("Aa3"): sp.Rational(1, 5), N: 1}
-TF_num = sp.simplify(TF_ani.subs(num))
+TF_num = sp.expand(TF_ani.subs(num))
 chk("F4 the structurally-degenerate ANISOTROPIC carrier carries a NONZERO traceless stress",
-    TF_num != sp.zeros(4, 4), f"TF_01 = {sp.nsimplify(TF_num[0,1])}")
+    TF_num != sp.zeros(4, 4), f"TF_01 = {TF_num[0,1]}")
 
-# c-independence: evaluate the SAME stress functional at A -> A + c q, c symbolic
+# c-independence: evaluate the SAME stress functional at A -> A + c q, with c SYMBOLIC
 shift_sub = {sp.Symbol(f"Aa{i}"): sp.Symbol(f"Aa{i}") + c * sp.Symbol(f"qq{i}") for i in range(4)}
-TF_at_shifted = sp.simplify(TF_ani.subs(shift_sub, simultaneous=True).subs(num))
+TF_at_shifted = sp.expand(TF_ani.subs(shift_sub, simultaneous=True).subs(num))
 chk("F5 and that traceless stress is INDEPENDENT of the undetermined component c"
-    " (checked with c SYMBOLIC, not by re-deriving from the shifted Lagrangian)",
-    sp.simplify(TF_at_shifted - TF_num) == sp.zeros(4, 4)
+    " (c kept SYMBOLIC)",
+    sp.expand(TF_at_shifted - TF_num) == sp.zeros(4, 4)
     and c not in TF_at_shifted.free_symbols,
     "well-posed AND a lensing source -> this door is OPEN, not closed")
 chk("F6 CAVEAT recorded: q_a = d_a chi carries a derivative, so chi propagates and the"
@@ -378,6 +381,49 @@ chk("H2 branch (a) instance C1 is realised (K4 present) and branch (b) instances
 chk("H3 BUT exhaustiveness is over THIS BASIS ONLY: the c4 truncation (B3) means branch (a)"
     " was searched only on the c4 = 0 slice of Einstein-aether",
     True, "scope limit, recorded")
+
+# -------------------------------- I: the surviving direction's KERNEL FORK (rule 4)
+head("I  KERNEL FORK on the surviving khronometric direction -- run BOTH ways (framework rule 4)")
+
+# The parallel arm's surviving class: lapse-tied MOND forces alp_kh(y) = 2(1 - mu(y)),
+# hence alpha_1 = -8(1-mu), alpha_2 ~ -(1-mu) at leading order.
+# Its headline "beaten by ~30000 orders" uses the FROZEN kernel mu = 1 - e^{-y}.
+# The framework's OWN canonical kernel is g_obs = sqrt(g_bar^2 + g_bar a0).
+yy = sp.Symbol("y", positive=True)
+mu_frozen = 1 - sp.exp(-yy)
+mu_canon = sp.sqrt(yy / (yy + 1))          # from g_obs = sqrt(g_bar^2 + g_bar a0)
+chk("I1 the framework's canonical kernel gives mu = sqrt(y/(y+1)), i.e. 1 - mu -> 1/(2y)",
+    sp.simplify(sp.limit((1 - mu_canon) * 2 * yy, yy, sp.oo)) == 1,
+    "power-law suppression, NOT exponential")
+
+GM_sun, a0_val = 1.32712440e20, 9.36e-11
+BOUND_A1, BOUND_A2 = 1e-4, 4e-7
+print(f"\n  {'location':>16s} {'y=g_bar/a0':>12s} {'|a1| frozen':>13s} {'|a1| canon':>12s}"
+      f" {'|a2| canon':>12s}  verdict(canonical)")
+worst = 0.0
+for label, AU in (("Earth 1 AU", 1.0), ("Saturn 9.5 AU", 9.5), ("Neptune 30 AU", 30.0),
+                  ("100 AU", 100.0)):
+    rr_m = AU * 1.495978707e11
+    y_here = (GM_sun / rr_m ** 2) / a0_val
+    onemmu_c = 1.0 - (y_here / (y_here + 1.0)) ** 0.5
+    a1_f = 8.0 * float(sp.exp(-sp.Float(y_here)))
+    a1_c, a2_c = 8.0 * onemmu_c, onemmu_c
+    worst = max(worst, a2_c / BOUND_A2)
+    v = "PASS" if (a1_c < BOUND_A1 and a2_c < BOUND_A2) else \
+        f"FAIL a2 x{a2_c/BOUND_A2:.1f}"
+    print(f"  {label:>16s} {y_here:12.3e} {a1_f:13.2e} {a1_c:12.2e} {a2_c:12.2e}  {v}")
+
+chk("I2 with the FROZEN exponential kernel the preferred-frame gate is passed by a huge margin",
+    8.0 * float(sp.exp(-sp.Float(6.3e7))) < 1e-100, "e^-y underflows: structural suppression")
+chk("I3 with the FRAMEWORK'S OWN canonical kernel the SAME construction EXCEEDS the alpha_2"
+    " bound in the outer solar system",
+    worst > 1.0, f"worst |alpha_2|/bound = {worst:.1f}x over the sampled range (100 AU)")
+chk("I4 => the surviving direction's preferred-frame pass is KERNEL-FORK DEPENDENT and"
+    " must never be quoted unqualified",
+    True, "report both ways; the fork is UNRESOLVED")
+chk("I5 CAVEAT on the comparison itself: standard PPN assumes CONSTANT alphas, but alp_kh"
+    " runs with position through y, so the bound assignment is not rigorous either way",
+    True, "flagged, not resolved -- this cuts against BOTH the pass and the fail")
 
 # ------------------------------------------------------------------- summary
 head("SUMMARY")
