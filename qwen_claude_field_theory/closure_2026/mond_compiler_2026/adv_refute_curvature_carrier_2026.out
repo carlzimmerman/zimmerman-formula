@@ -1,0 +1,109 @@
+
+==============================================================================
+PART 1  --  DERIVE c(y): the Part-I MOND anisotropic stress Sigma_P
+==============================================================================
+  AQUAL Lagrangian  L = -(1/(8 pi G)) a0^2 F(X),  X=(D Phi)^2/a0^2,  F'(X)=mu(y)
+  Hilbert variation  T_ij = (1/(4 pi G)) F'(X) D_iPhi D_jPhi + gamma_ij L
+  =>  Sigma_P^TF = c(y) [D_iPhi D_jPhi]^TF,   c(y) = mu(y) = 1 - exp(-y)
+  [PASS] c(y) derived nonzero
+  [PASS] c(y) is y-DEPENDENT (not constant)   dc/dy = exp(-y)
+  [PASS] T3 identity: same mu in flux and Sigma_P (Sigma_P=0 <=> J=0)   => Sigma_P=0 iff mu=0 iff no MOND
+  (lapse-carrier variant Sigma_P = y*mu'(y) = y*exp(-y) , also nonzero/y-dependent)
+  [PASS] lapse-variant obstruction also nonzero & y-dependent
+
+==============================================================================
+VALIDATION  --  carrier OFF (lambda=0, f=0) must reproduce the slip
+==============================================================================
+  carrier off => Sigma^TF_total = Sigma_P = c(y)[D Phi D Phi]^TF, c(y)= 1 - exp(-y)
+  [PASS] carrier-off slip source NONZERO (Phi != Psi reproduced)   => the Part-I obstruction is correctly reproduced; stress machinery valid
+
+==============================================================================
+PART 2  --  ORDER COUNTING in eps  (the potential-amplitude expansion)
+==============================================================================
+  Sigma_P   (obstruction, [D Phi D Phi]^TF) :  eps^2   field-content Phi^2
+  Sigma_AA  (from (1/2)f^2 A.KK^-1.A)        :  eps^4   field-content Phi^4
+  Sigma_AR  (from  lam f  A.KK^-1.R, DESIGNED):  eps^3   field-content Phi^2*Psi
+  Sigma_RR  (from (1/2)lam^2 R.KK^-1.R)      :  eps^2   field-content Psi^2
+  [PASS] Sigma_P is eps^2
+  [PASS] Sigma_AA is eps^4
+  [PASS] Sigma_AR (the DESIGNED canceller) is eps^3
+  [PASS] Sigma_RR is eps^2
+
+  KILL #1 (order counting).  The cross-term Sigma_AR -- the term the class was
+  DESIGNED to cancel Sigma_P with -- lives at eps^3, one order ABOVE the
+  obstruction Sigma_P at eps^2.  Each eps-order must vanish separately, so a
+  eps^3 term CANNOT cancel an eps^2 term.  The advertised mechanism is void.
+  [PASS] Sigma_P and the DESIGNED canceller Sigma_AR live at DIFFERENT eps-orders   (eps^2 vs eps^3) => cannot cancel
+
+  The ONLY carrier stress at the obstruction's order eps^2 is Sigma_RR, but
+  its field-content is Psi^2 (pure curvature), NOT Phi^2.  Proceed to the
+  field-content / spin-channel test to see if it can nonetheless cancel Sigma_P.
+
+==============================================================================
+PART 3  --  FOURIER SPIN-2 / SPIN-0 PROJECTOR TEST  (config: static, k=z^)
+==============================================================================
+  [PASS] A_ij is trace-free
+  A_ij(theta) spin-2 magnitude: sqrt(2)*sin(theta)**2/2
+  A_ij(theta) spin-0 magnitude: sqrt(6)*Abs(3*sin(theta)**2 - 2)/6
+  [PASS] A has NONZERO spin-2 content (generic theta)
+  [PASS] A has NONZERO spin-0 content (generic theta)
+  [PASS] R^TF (scalar curvature mode) is trace-free
+  R^TF spin-2 magnitude (scalar curvature mode): 0
+  [PASS] R^TF from a SCALAR potential has ZERO spin-2 content (pure spin-0)   => in the quasistatic scalar sector, Sigma_RR (~R.KK^-1.R) has NO spin-2 part
+
+==============================================================================
+PART 3b  --  THE RESIDUAL  (treat Phi, Psi as INDEPENDENT off-shell fields)
+==============================================================================
+  coefficient of [D_iPhi D_jPhi]^TF at eps^2  =  c(y) = 1 - exp(-y)
+  ...and it contains NO lambda, NO kappa2, NO kappa0 (those enter only R-terms).
+  [PASS] Phi^2 coefficient is INDEPENDENT of (lambda, kappa2, kappa0, f)
+  [PASS] Phi^2 coefficient c(y) is NONZERO for all y>0
+
+  SPIN-2 channel residual  R2(y) = sqrt(2)*(exp(y) - 1)*exp(-y)/4
+    (Sigma_RR has zero spin-2 in the scalar sector => obstruction is UNMATCHED here)
+  [PASS] SPIN-2 residual is NONZERO for all lambda,kappa (no free knob present)
+
+  SPIN-0 channel residual  R0(y) = lambda**2*s0 + sqrt(6)/12 - sqrt(6)*exp(-y)/12
+    c(y) sampled at y=0.1,1,10,100 : [0.0951626, 0.632121, 0.999955, 1.00000]
+  [PASS] c(y) is non-constant across MOND range => R0(y)=0 for-all-y is IMPOSSIBLE with y-independent (lambda,kappa)
+
+  Escape check (y-dependent LOCAL kernel KK(y)):
+    eliminating algebraic TF Q with any local M returns L_on=(1/2)(f^2/M)A.A,
+    a pure redefinition F(A)->F(A)-f^2 A^2/(3M): NO new tensor structure added
+    (Route A S3, REFUTED). To make lam^2 R.KK(y)^-1.R mimic c(y)[DPhi DPhi]^TF one
+    must PRESUPPOSE Psi ∝ Phi -- the very slip under test (T3 circularity).
+
+==============================================================================
+VERDICT
+==============================================================================
+  self-checks: 19/19 passed
+
+  ORDER-COUNTING RESULT (Part 2):
+    Sigma_P   ~ eps^2  (field-content Phi^2)
+    Sigma_AR  ~ eps^3  (field-content Phi^2 * Psi)  <-- the DESIGNED canceller
+    Sigma_RR  ~ eps^2  (field-content Psi^2)
+    Sigma_AA  ~ eps^4  (field-content Phi^4)
+    => Sigma_P and Sigma_AR live at DIFFERENT eps-orders (2 vs 3): NOT same order.
+
+  CANCELLATION VERDICT:  DOES NOT EXIST.  The class is DEAD.
+    - The cross-term the class was built on (lam f A.KK^-1.R) is eps^3; it cannot
+      cancel the eps^2 obstruction Sigma_P.  (KILL #1, order counting.)
+    - The only eps^2 carrier stress, Sigma_RR, is a PURE-CURVATURE (Psi^2) stress:
+        * in the spin-2 channel it is IDENTICALLY ZERO in the scalar sector, so the
+          spin-2 part of Sigma_P is UNMATCHED for any (lambda,KK). (KILL #2, spin-2.)
+        * in the spin-0 channel its weight is y-INDEPENDENT, while c(y)=1-e^{-y} is
+          y-dependent, so R0(y)=0 for-all-y is impossible. (KILL #3, spin-0.)
+    - A y-dependent LOCAL kernel collapses to the stage-3 no-go (mere F-redefinition,
+      no new tensor structure) and otherwise requires presupposing Psi=Phi (T3).
+
+  The coefficient of the pure-Phi^2 traceless monomial at eps^2 is exactly c(y)=mu(y)
+  =1-e^{-y}, provably INDEPENDENT of (lambda, kappa2, kappa0, f).  Since no carrier
+  term shares BOTH the eps-order (2) AND the field-content (Phi^2) of Sigma_P, the
+  obstruction is structurally unmatched.  Sigma^TF_total != 0.  Phi != Psi.
+
+  LABEL:  COMPUTATIONALLY_VERIFIED (exact sympy; residuals printed nonzero).
+  CONSEQUENCE:  Part-I/T3 upgrades to forbid 'linear-curvature-coupled trace-free
+                auxiliary carriers' -- the linear-R coupling changes the eps-order
+                and the field-content of the carrier stress, never its match to Sigma_P.
+
+  ALL 19 CHECKS PASSED.  exit 0.
