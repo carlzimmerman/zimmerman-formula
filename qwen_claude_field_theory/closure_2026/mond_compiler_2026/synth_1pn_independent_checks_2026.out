@@ -1,0 +1,120 @@
+
+============================================================================================
+SECTION A -- literal spec: does 'coefficient = chi' admit a deep-MOND limit?
+============================================================================================
+   [PASS] A1  frozen V'(chi) = -[ln(1-chi)]^2 inverts to chi = 1 - e^{-sqrt(A)} = mu(y)   chi(A) = 1 - exp(-sqrt(A))
+   [PASS] A2 [F' = +chi]  mu_eff(y->0) = 1 != 0  => NO deep-MOND limit   range over y in (0,oo) = [1, 3/2];  MOND needs mu_eff -> 0
+   [PASS] A3 [F' = +chi]  mu_eff(y->oo) = 3/2  => G_eff/G_N = 2/3 != 1 at high acceleration   breaks the compiler's own frozen Newtonian gate unless = 1
+   [PASS] A2 [F' = -chi]  mu_eff(y->0) = 1 != 0  => NO deep-MOND limit   range over y in (0,oo) = [1/2, 1];  MOND needs mu_eff -> 0
+   [PASS] A3 [F' = -chi]  mu_eff(y->oo) = 1/2  => G_eff/G_N = 2 != 1 at high acceleration   breaks the compiler's own frozen Newtonian gate unless = 1
+   [PASS] A4  PROVEN: chi in [0,1] and mu_eff = 1 +- chi/2 => mu_eff in [1/2, 3/2], never 0. Deep MOND needs F' -> -2, i.e. |F'| = O(1) and NEGATIVE. No sign choice of 'coefficient = chi' can do it.   the repair is coefficient 2(1-chi), on which f = (1-chi)sqrt(V') is IMAGINARY since V' < 0
+
+============================================================================================
+SECTION B -- carrier elimination with TRACELESS-ONLY Q (the refuter's reading)
+============================================================================================
+   [PASS] B0  A_ij is traceless
+   [PASS] B1  A_ij A^ij = (2/3) A^2  [pure algebra, no model input]
+   [PASS] B2  Q EOM gives Q_ij = (f/M) A_ij
+   [PASS] B3  on-shell carrier Lagrangian = (f^2/(3M)) A^2 -- a FUNCTION OF A ALONE   => pure redefinition F(A) -> F(A) + f^2 A^2/(3M); NO new tensor structure; Part-I applies verbatim.  REFUTER'S C1 INDEPENDENTLY REPRODUCED.
+   [PASS] B4  and it is O(a^4) while Sigma_P ~ F'(A)[a_i a_j]^TF is O(a^2)   different orders in a: profile-matching f(y) = Sigma_P(y) matches two FUNCTIONS OF y, not two TENSORS
+
+============================================================================================
+SECTION C -- carrier elimination with TRANSVERSE-traceless Q  (THE GAP I AM CLOSING)
+============================================================================================
+   [PASS] C1  P^TT is a projector on symmetric tensors (idempotent on the unit sphere)
+   [PASS] C2  P^TT[A] is traceless and transverse (n^i P^TT[A]_ij = 0)
+   [PASS] C3  A_ij (P^TT A)^ij  !=  (2/3) A^2 : the TT projection is NOT a function of A alone   it depends on the ANGLE between a_i and the wavevector n => in position space it is NONLOCAL (inverse Laplacians)
+   [PASS] C4  explicit angular dependence: a = x_hat gives DIFFERENT values for n || a and n _|_ a   n||a -> 0 ;  n _|_ a -> 1/2 ; traceless-only value would be 2/3 for both
+
+   C5  READING [PROVEN].  The refuter's C1 ("the carrier is a pure redefinition of F(A),
+       so Part-I applies verbatim and the H4 escape is void") is CORRECT for the reading
+       the parenthetical states, Q^i_i = 0 (traceless only) -- reproduced above at B3.
+       For the STRICTLY TRANSVERSE-traceless reading it does NOT hold: eliminating a TT Q
+       returns A_ij P^TT A^ij, which is nonlocal, so the carrier DOES add structure that
+       F(A) cannot.  BUT:
+         * that is an (H1) NONLOCALITY escape, not the advertised (H3)/(H4) degenerate-
+           tensor-carrier escape -- exactly the same verdict the refuter reached for
+           M = -D^2 and M = Delta^{-1};
+         * enforcing D^i Q_ij = 0 is a DIFFERENTIAL constraint needing its own Lagrange
+           multiplier, so Q stops being an algebraic auxiliary and the Dirac/DOF count of
+           dirac_chi_Q_frozen_candidate_2026.py (already 3 DOF, not 2) must be redone;
+         * and it changes NOTHING about the two kills that do not involve the carrier at
+           all: SECTION A above (the literal spec is not MOND) and the GR-branch theorem
+           (SECTION E below), both of which hold with Q = 0 identically.
+       So the gap is real and worth recording, but it is not a rescue.
+
+============================================================================================
+SECTION D -- structure of the khronometric alpha_1, alpha_2 at the candidate's locus
+============================================================================================
+   [PASS] D0  the two routes' alpha_2 is alpha_1/2 - (alp-2bet)(alp+bet+3lam)/((alp-2)(bet+lam)) -- the standard khronometric shape
+   [PASS] D1  alpha_1 is REGULAR at the candidate's locus bet = lam = 0 and equals -4 alp there   so alpha_1 has NO pole to hide behind: off the locus it is simply -4 alp
+   [PASS] D2  alpha_2 carries a 1/c_123 = 1/(bet+lam) POLE and the candidate sits EXACTLY ON it   at alp = 1/5:  lim_{lam->0} alpha_2|_{bet=0} = oo
+   [PASS] D3  alpha_2 carries a SECOND pole at alp = 2 -- and deep MOND needs alp_kh = 2(1-mu) -> 2   lim_{alp->2} alpha_2 = -oo;  the MOND regime is the other singular locus, and the edge of the aether stability domain 0 <= c14 < 2
+   along literature bet = lam = -d:   alpha_1(d) = 4*(-alp - 2*d)/(d + 1)   ->   -4*alp  as d -> 0
+   along literature bet = lam = -d:   alpha_2(d)|_{alp=1/5} -> -oo  as d -> 0
+   [PASS] D4  LIMIT along the approach path: alpha_1 -> -4 alp (NOT 0)
+   [PASS] D5  LIMIT along the approach path: alpha_2 -> infinite (NOT 0)   alpha_2 -> -oo
+
+   approach table at alp = 1/5, regenerated from the formulas (compare Route B's routeB_limit_2026.out and the refuter's F-table -- both report these same values):
+      d         alpha_1             alpha_2                 
+      1/2       -16/5               -2/5                    
+      1/10      -16/11              -50/99                  
+      1/100     -88/101             -6424/4545              
+      1/1000    -808/1001           -5135749/450450         
+   [PASS] D6  regenerated table matches the two routes' published approach values EXACTLY   alpha_1 = -16/5, -16/11, -88/101, -808/1001;  alpha_2 = -2/5, -50/99, -6424/4545, -5135749/450450
+
+   D7  READING.  The candidate's own locus (bet = lam = 0, forced EXACTLY by the gravity
+       sector K_ijK^ij - K^2 + R3 via Gauss-Codazzi) is a POLE of alpha_2, not a zero.
+       Route A, Route B and the refuter all instead solved the linear system AT the locus
+       and got alpha_1 = alpha_2 = 0.  Both statements are correct: the map is
+       DISCONTINUOUS there.  The value AT the singular point is 0; every neighbourhood of
+       it contains theories with alpha_1 -> -4 alp and alpha_2 -> infinity.
+       A zero obtained as the value of a rank-deficient system at a strong-coupling point
+       is not a physical pass -- it is the signature of a missing mode.
+
+============================================================================================
+SECTION E -- the GR-branch theorem's arithmetic core
+============================================================================================
+   [PASS] E1  V'(chi) = -[ln(1-chi)]^2 vanishes ONLY at chi = 0   roots = [0]
+   [PASS] E2a V'(chi) is integrable at chi = 0 (V' ~ -chi^2), so V(0) = 0 is an available choice   V'(chi) = -chi^2 + O(chi^3);  V(chi) = 2*c*log(1 - c) - 2*c + (1 - c)*log(1 - c)**2 - 2*log(c - 1) + 2*I*pi
+   [PASS] E2b with that choice V(0) = 0 and V is finite on [0,1)   => L_MOND at a_mu = 0 is -[chi*0 + V(0)] = 0
+   [PASS] E3  carrier at A_ij = 0: Q EOM gives Q = 0 and L_carrier = 0
+
+   E4  Therefore, with bet = lam = 0 (forced), every non-GR term is at least QUADRATIC in
+       a_mu and the potential vanishes at the only stationary chi.  So
+         (any GR solution, any GEODESIC slicing, chi = 0, Q = 0)
+       solves every field equation exactly, for every source.  The candidate does not
+       PREDICT MOND; GR-with-no-MOND is an exact branch and nothing selects the other one.
+       This is carrier-independent and spec-repair-independent.   [PROVEN]
+
+============================================================================================
+SUMMARY
+============================================================================================
+  [PASS] A1  frozen V'(chi) = -[ln(1-chi)]^2 inverts to chi = 1 - e^{-sqrt(A)} = mu(y)
+  [PASS] A2 [F' = +chi]  mu_eff(y->0) = 1 != 0  => NO deep-MOND limit
+  [PASS] A3 [F' = +chi]  mu_eff(y->oo) = 3/2  => G_eff/G_N = 2/3 != 1 at high acceleration
+  [PASS] A2 [F' = -chi]  mu_eff(y->0) = 1 != 0  => NO deep-MOND limit
+  [PASS] A3 [F' = -chi]  mu_eff(y->oo) = 1/2  => G_eff/G_N = 2 != 1 at high acceleration
+  [PASS] A4  PROVEN: chi in [0,1] and mu_eff = 1 +- chi/2 => mu_eff in [1/2, 3/2], never 0. Deep MOND needs F' -> -2, i.e. |F'| = O(1) and NEGATIVE. No sign choice of 'coefficient = chi' can do it.
+  [PASS] B0  A_ij is traceless
+  [PASS] B1  A_ij A^ij = (2/3) A^2  [pure algebra, no model input]
+  [PASS] B2  Q EOM gives Q_ij = (f/M) A_ij
+  [PASS] B3  on-shell carrier Lagrangian = (f^2/(3M)) A^2 -- a FUNCTION OF A ALONE
+  [PASS] B4  and it is O(a^4) while Sigma_P ~ F'(A)[a_i a_j]^TF is O(a^2)
+  [PASS] C1  P^TT is a projector on symmetric tensors (idempotent on the unit sphere)
+  [PASS] C2  P^TT[A] is traceless and transverse (n^i P^TT[A]_ij = 0)
+  [PASS] C3  A_ij (P^TT A)^ij  !=  (2/3) A^2 : the TT projection is NOT a function of A alone
+  [PASS] C4  explicit angular dependence: a = x_hat gives DIFFERENT values for n || a and n _|_ a
+  [PASS] D0  the two routes' alpha_2 is alpha_1/2 - (alp-2bet)(alp+bet+3lam)/((alp-2)(bet+lam)) -- the standard khronometric shape
+  [PASS] D1  alpha_1 is REGULAR at the candidate's locus bet = lam = 0 and equals -4 alp there
+  [PASS] D2  alpha_2 carries a 1/c_123 = 1/(bet+lam) POLE and the candidate sits EXACTLY ON it
+  [PASS] D3  alpha_2 carries a SECOND pole at alp = 2 -- and deep MOND needs alp_kh = 2(1-mu) -> 2
+  [PASS] D4  LIMIT along the approach path: alpha_1 -> -4 alp (NOT 0)
+  [PASS] D5  LIMIT along the approach path: alpha_2 -> infinite (NOT 0)
+  [PASS] D6  regenerated table matches the two routes' published approach values EXACTLY
+  [PASS] E1  V'(chi) = -[ln(1-chi)]^2 vanishes ONLY at chi = 0
+  [PASS] E2a V'(chi) is integrable at chi = 0 (V' ~ -chi^2), so V(0) = 0 is an available choice
+  [PASS] E2b with that choice V(0) = 0 and V is finite on [0,1)
+  [PASS] E3  carrier at A_ij = 0: Q EOM gives Q = 0 and L_carrier = 0
+
+  26/26 checks passed.

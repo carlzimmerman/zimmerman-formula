@@ -1,0 +1,195 @@
+{
+ "Q2": "A nonzero but with CONSTANT norm and undetermined direction; the constitutive relation is evaluated at frozen chi, so it carries no acceleration dependence",
+ "G2": "FAILED -- Sigma_P == 0 identically on the degenerate branch",
+ "Q1": "PARTIAL: (A_parallel, dchi) IS a genuine second-class pair [rank 2]; the 3 transverse components of A are undetermined multipliers, not second-class",
+ "Q5": "no ghost, no strong coupling, no propagating mode; the degeneracy is exact rather than a limit -- but the same exactness deletes the carrier from the Einstein equations",
+ "Q3": "FAILED -- mu == 1; the branch is exactly GR + Lambda",
+ "Q4": "Phi-Psi = 0, alpha_1 = alpha_2 = 0 EXACTLY, but vacuously: zero carrier stress means every PPN parameter takes its GR value",
+ "gate_ppn_counterexample": "degenerate Palatini branch with V'(-3/25)<0 carries a timelike boost-breaking VEV and has exactly zero alpha_1, alpha_2",
+ "dichotomy_theorem": "corrected trichotomy: (i) B.n != 0 -> over-determined; (ii) STRUCTURAL degeneracy -> exactly stress-free flat direction, well-posed; (iii) CONFIGURATIONAL degeneracy -> ill-posed with non-constant rank. Corollary 1: the ISOTROPIC case (the archetype) has dim ker = 4 so Sigma_P == 0 -- CLOSED. Corollary 2 (OPEN DOOR): a STRUCTURAL ANISOTROPIC degeneracy with dim ker = 1 is well-posed, non-propagating AND carries nonzero traceless stress.",
+ "gate_verdicts": {
+  "G1 MOND": "FAILED",
+  "G2 LENSING": "FAILED",
+  "G3 NEWTON": "PASS (vacuous)",
+  "G4 PPN-DARK": "PASS (vacuous)",
+  "G5 HEALTH": "PARTIAL"
+ },
+ "checks": [
+  {
+   "name": "T0 A-equation is 2 P(chi) A^mu = 0",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "T0 chi-equation is 25 A^2 = a0^2 V'(chi)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "T1 Q2a: |A| is NONZERO on the degenerate branch iff V'(-3/25) != 0",
+   "ok": true,
+   "detail": "the handover's expectation is CONFIRMED at the level of the NORM"
+  },
+  {
+   "name": "T1 Q2b: the constitutive relation fixes only the NORM, and fixes it to a CONSTANT",
+   "ok": true,
+   "detail": "V' is evaluated at the FROZEN value chi = -3/25, so |A| cannot track |grad Phi|/a0"
+  },
+  {
+   "name": "T1 Q2c: the DIRECTION of A_mu is fixed by no field equation",
+   "ok": true,
+   "detail": "3 of the 4 components are undetermined functions of spacetime"
+  },
+  {
+   "name": "T2a variation rule d sqrt(-g)/d g^{00} = -(1/2)sqrt(-g) g_{00}",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "T2a variation rule d sqrt(-g)/d g^{22} = -(1/2)sqrt(-g) g_{22}",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "T2 T_mn = -2 P(chi) A_m A_n + g_mn [P A^2 - a0^2 V(chi)]   (exact)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "T2 the carrier's ENTIRE stress on the branch is a cosmological constant",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "T2 trace-free carrier stress == 0 identically on the degenerate branch (explicit generic non-diagonal metric)",
+   "ok": true,
+   "detail": "Sigma_P = 0: the carrier supplies NO traceless stress, so G2 has no source"
+  },
+  {
+   "name": "T2 by contrast, OFF the branch (P != 0) the trace-free stress is nonzero",
+   "ok": true,
+   "detail": "TF_12 = -8948587/54546359"
+  },
+  {
+   "name": "T3 regular branch (P != 0, A = 0): rank(M) = 5 -> 5 second-class pairs, 0 undetermined",
+   "ok": true,
+   "detail": "rank 5"
+  },
+  {
+   "name": "T3 degenerate branch: rank(M) = 2",
+   "ok": true,
+   "detail": "rank 2"
+  },
+  {
+   "name": "T3 degenerate branch: 3 null directions",
+   "ok": true,
+   "detail": "3 null vectors"
+  },
+  {
+   "name": "T3 every null direction lies in the A-block (dchi is NOT undetermined)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "T3 the null directions are exactly the components of A Minkowski-ORTHOGONAL to A",
+   "ok": true,
+   "detail": "A^m n_m = [0, 0, 0]"
+  },
+  {
+   "name": "T4 Q3: mu == 1 identically on the degenerate branch (no MOND)",
+   "ok": true,
+   "detail": "field equations are exactly GR + Lambda"
+  },
+  {
+   "name": "T4 Q4: Phi - Psi = 0 and alpha_1 = alpha_2 = 0 exactly -- VACUOUS passes",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "T5.1 dL = 2c (C A).n + c^2 (C n).n + c B.n   (exact shift identity)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "T5.2 C = P g^{ab} with P != 0 has NO null direction (the carrier is forced to A=0)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "T5.2 at P = 0 the null space is ALL of A and dT_mn == 0 for every c, every n",
+   "ok": true,
+   "detail": "case (ii) + Corollary 1: stress-free.  THIS IS THE ARCHETYPE."
+  },
+  {
+   "name": "T5.3 C^{ab} = N(q^a q^b - q^2 g^{ab}) annihilates n_a = q_a IDENTICALLY in the metric",
+   "ok": true,
+   "detail": "STRUCTURAL degeneracy"
+  },
+  {
+   "name": "T5.3 structural anisotropic: dT_mn == 0 -> WELL POSED (case ii)",
+   "ok": true,
+   "detail": "this REFUTED my first draft of the theorem"
+  },
+  {
+   "name": "T5.4 configurational degeneracy (P an independent coefficient, P + N q^2 = 0 only on shell): dT_mn != 0 -> ILL-POSED (case iii)",
+   "ok": true,
+   "detail": "dT_33 = -2*N*c*q3**2*(2*A0*gi00*q0 + 2*A0*gi01*q1 + 2*A0*gi02*q2 + 2*A0*gi03*q3 + 2*A1*gi01*q0 + 2*A1*gi11*q1 + 2*A1*gi12*q2 + 2*A1*gi13*q3 + 2*A2*gi02*q0 + 2*A2*gi12*q1 + 2*A2*gi22*q2 + 2*A2*gi23*q3 + 2*A3*gi03*q0 + 2*A3*gi13*q1 + 2*A3*gi23*q2 + 2*A3*gi33*q3 + c*gi00*q0**2 + 2*c*gi01*q0*q1 + 2*c*gi02*q0*q2 + 2*c*gi03*q0*q3 + c*gi11*q1**2 + 2*c*gi12*q1*q2 + 2*c*gi13*q1*q3 + c*gi22*q2**2 + 2*c*gi23*q2*q3 + c*gi33*q3**2)"
+  },
+  {
+   "name": "T5.4 and the defect formula dT_mn = -2 (d Delta/d g^{mn}) F(c) is exact",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "T5.5 the structurally-degenerate ANISOTROPIC carrier DOES carry a nonzero traceless stress",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "T5.5 and that traceless stress is INDEPENDENT of the undetermined component",
+   "ok": true,
+   "detail": "well-posed AND a lensing source -- this is an OPEN DOOR, not a closed one"
+  },
+  {
+   "name": "T6 failure mode (d) (measure-zero tuning) does NOT apply to the archetype",
+   "ok": true,
+   "detail": "the degeneracy is a branch of solution space, not a coefficient tuning"
+  },
+  {
+   "name": "T7-E1 regular branch: A_m = s d_m chi/(2P) -- the carrier is a pure GRADIENT",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "T7-E1 back-substitution gives L_eff = -(s^2/(4P)) (d chi)^2 - a0^2 V(chi)",
+   "ok": true,
+   "detail": "L_kin = -X*s**2/(100*chi + 12)"
+  },
+  {
+   "name": "T7-E1 degenerate branch with D1: the A-equation forces d_mu chi = 0; stress unchanged",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "T7-E2 K3 = (div A)^2 gives d^2 L/d(Adot_0)^2 = 2 K3c -> A_0 becomes dynamical (ghost for one sign) while the 3 spatial components stay non-dynamical",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "T7-E3 curvature-coupled degeneracy is background-dependent -> non-constant rank",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "T7-E4 matter coupling on the degenerate branch over-determines the system",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "T7-E5 a tensor constitutive field chi^{ab} A_a A_b carries no metric dependence -> zero stress by construction",
+   "ok": true,
+   "detail": ""
+  }
+ ],
+ "status": "COMPUTATIONALLY_VERIFIED"
+}

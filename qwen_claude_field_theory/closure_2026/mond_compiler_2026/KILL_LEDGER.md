@@ -194,3 +194,194 @@ point mass gives `|d(psi-Phi)/dr| / |dPhi/dr| = sqrt(G M a0) = v_flat^2/c^2`, i.
 (dwarf), 5.4e-7 (Milky Way), 1.0e-6 (massive spiral).  mc_gates.py's physical FRAME_SLIP test
 is the right one; its SIGMA_P_NONZERO kill is built on a cancellation residual, not a
 magnitude.  Worth re-examining before Part-I is used to kill a metric-carried candidate.
+
+---
+
+## STAGE 2B (independent adversarial arm): refutation audit + degenerate-branch deep dive, 2026-08-29
+
+Scripts (all committed, all self-checking, run clean): `stage2b/s2b_palatini_identity_2026.py`
+(10/10), `stage2b/s2b_degenerate_branch_2026.py` (35/35), `stage2b/s2b_refute_2026.py` (19/19),
+with `.out` logs and per-gate JSON certificates. Written independently of the other verifier's
+modules (no import of `mc_*`; `screen_results.json` / `basis.json` read as DATA only).
+
+### (i) REFUTATION VERDICT: **NO_SURVIVORS_TO_TEST** -- but the emptiness needs re-labelling
+
+Nothing was claimed, so nothing is refuted or upheld. What changes is the STATUS of the zero.
+
+The audit targets the 61 deepest non-survivors. Independent identification: they are
+**Bekenstein TeVeS**, rediscovered from the 65-parameter basis (M5/M1 = 4.000 for all 59 with a
+vector disformal term; linearising `g~ = e^{-2 lam phi}(g+AA) - e^{+2 lam phi}AA` gives
+M1 = -lam, M5 = -4 lam exactly). The two exceptions are itemised in the log (one algebraic
+vector with V6+V9 instead of Maxwell; one tensor-disformal S_mn variant).
+
+The five named failure modes, each tested by re-deriving the physics analytically:
+
+| mode | verdict |
+|---|---|
+| (a) secret G_N rescale | **DOES NOT APPLY.** `L_s = -(1/2)chi X + (1/3)chi^3` eliminates to mu_s = \|grad phi\|/sqrt(2); the fifth force grows as sqrt(g_N) and self-extinguishes, so G_eff/G_N -> 1 with no bare-G rescale. (Independent check: g_N = Sigma/8 exactly at 16 pi G = 1, confirming NEWTON_G_FACTOR.) |
+| (b) mu actually constant | **DOES NOT APPLY.** Analytic mu(y): mu -> 1 at large y, d ln mu/d ln y -> 1 EXACTLY in deep MOND. Screen's measured slopes 0.919-1.004 agree. |
+| (c) strong coupling mislabelled as second class | **N/A for this class** (their vector propagates: Maxwell + unit-norm). But Gate-H2 passes them while leaving up to 13 null directions unclassified -- an unestablished gate, in the direction of leniency. |
+| (d) measure-zero tuning | **DOES NOT APPLY.** M5 = 4 M1 is an exact consequence of the single-function disformal map, not a tuned surface. |
+| (e) zero traceless stress | **APPLIES mechanistically, NOT observationally.** MOND is FRAME-carried: rho_scalar/rho_phantom = Phi/(2c^2) ~ 1e-7 at galaxy scale (screen's own metric_carried_frac ~ 1e-13). They pass G2 as an observable (Phi~ = Psi~, both enhanced) and fail G2's parenthetical (T^carrier_TF != 0). **G2 is ambiguous as written and the ambiguity selects different theories.** |
+
+**Three findings on the gate that actually killed them (Gate-PPN).**
+1. Its KILL direction is not a theorem. The forward direction (boost-invariant vacuum =>
+   alpha = 0) is sound; the converse is false, and the degenerate Palatini branch below is an
+   explicit COUNTEREXAMPLE (timelike boost-breaking VEV, alpha_1 = alpha_2 = 0 exactly).
+2. Bookkeeping: the gate's own comment says these are "reported, not scored", but the mortality
+   table counts them as killed. Honest statement of the run: **0 survivors, 58476 physics kills,
+   17551 solver-undecided, 23991 never-constructed, and 59 GATE-UNDECIDED.** The 59 are not
+   refuted.
+3. Coverage gap at exactly this gate: the basis has K3 (c_2), K4 (c_1=-c_3), K5 (c_1) but **no
+   acceleration-squared operator a^m a_m (c_4)**, which is degree 4 and inside the stated cap.
+   In the one limit with a validated dictionary in this directory (khronometric, BPS 5.34 via
+   `routeA_alpha12_ppn_2026.py`), alpha_1 = -4 c_14, so alpha_1 = 0 needs c_4 = -c_1: the search
+   could not have found that root. NOT quoting the HO extrapolation as a kill: it is derived for
+   a hypersurface-orthogonal aether, and its lambda = c_2 = 0 is exactly the degenerate point
+   where the companion script's direct computation found the formula misleading.
+   **alpha_1, alpha_2 for the deepest class remain NOT ESTABLISHED in both directions.**
+   RECOMMENDATION: a direct 1PN solve of the K4+V15 vector sector decides 59 candidates.
+
+Also confirmed: the screen never independently tested Part I's Sigma_P branch (its
+curvature-coupled sweep reached Gate-SLIP zero times). Every lensing kill in the run is a
+FRAME-slip kill. Part I is inherited, not reproduced.
+
+### (ii) DEGENERATE-BRANCH DEEP DIVE: the archetype is CARRIER_OFF in disguise
+
+`R(Gamma) = R(g) - 3 div A + 3 A^2` **verified independently** (exact rational jets, 4 random
+metrics, coefficients metric-independent). Closure PROVEN by enumeration and verified for 7
+torsion-free (alpha=beta,gamma): a vector distortion can reach the action ONLY through
+{div A, A^2}, and div A is a total derivative at constant coefficient. Torsionful members
+(alpha != beta) declared OUT OF SCOPE, not failed (basis exclusion #1 + convention ambiguity).
+
+On the degenerate branch chi = -3/25:
+* **Q2** A IS nonzero -- but `A^2 = a0^2 V'(-3/25)/25` is a **UNIVERSAL CONSTANT** (V' is
+  evaluated at frozen chi), and the DIRECTION is fixed by no field equation. A constant-norm
+  vector interpolates nothing: G1 is dead before any stress question is asked.
+* **Q1** PARTIAL. rank(M) = 2: (A_parallel, dchi) IS a genuine second-class pair; the 3
+  transverse components are UNDETERMINED MULTIPLIERS, not second-class. So this is not
+  "det H = 0 with a genuine second-class constraint" in Part I's sense.
+* **Q4/T2** `T_mn|_branch = -a0^2 V(-3/25) g_mn` EXACTLY -- a pure cosmological constant.
+  **Sigma_P == 0 identically**, because the coefficient P(chi) = 3+25chi that degenerates the
+  A-equation is the same coefficient that multiplies the entire carrier stress.
+* **Q3** Field equations are exactly GR + Lambda => mu == 1. NO MOND.
+* **Q4** Phi - Psi = 0 and alpha_1 = alpha_2 = 0 EXACTLY -- **vacuous passes**.
+* **Q5** The naive expectation survives and is worthless: no ghost, no strong coupling (the
+  degeneracy is exact, not a limit), no propagating mode, no preferred-frame pole -- and no
+  carrier. Failure mode (d) does NOT apply: chi = -3/25 is a field value, not a tuning.
+
+Gate verdicts: **G1 FAILED, G2 FAILED, G3 PASS (vacuous), G4 PASS (vacuous), G5 PARTIAL.**
+Escapes E1-E5 each followed to death in the log (D1 chi div A turns the vector into minimally
+coupled QUINTESSENCE; K3 makes A_0 a ghost; K4 returns to the aether jaw; C4 is background-
+dependent with non-constant rank; matter coupling over-determines; a tensor chi^{ab} carries no
+metric dependence at all).
+
+### NEW THEOREM (and an OPEN DOOR it leaves)
+
+For ANY algebraic carrier `S = int sqrt(-g)[C^{ab}A_aA_b + B^aA_a + L_0]` with `C^{ab}n_b = 0`:
+(i) `B.n != 0` -> over-determined; (ii) STRUCTURAL degeneracy (holds identically in g) ->
+`A -> A + c n` leaves L exactly invariant, dT_mn == 0, WELL-POSED; (iii) CONFIGURATIONAL
+degeneracy -> `dT_mn = -2 (d Delta/d g^{mn}) F(c) != 0`, ILL-POSED with non-constant rank.
+**Corollary 1:** the isotropic case `C = P g` (the only <=2-derivative option without a
+curvature coupling) has dim ker = 4 at P = 0, so Sigma_P == 0. **The archetype's whole class is
+CLOSED** -- this is the vector-sector twin of Part I's "the same mu controls the Gauss law and
+Sigma_P".
+**Corollary 2 -- DOOR LEFT OPEN, and it is the recommended next target:** a STRUCTURALLY
+degenerate ANISOTROPIC `C^{ab} = N(q^a q^b - q^2 g^{ab})`, q_a = d_a chi, has dim ker = 1. It is
+well-posed, non-propagating in A, and its three DETERMINED components carry a NONZERO traceless
+stress (verified: TF_11 = -TF_22 = beta^2/(4 N kappa^2), independent of the undetermined
+component). Eliminating A returns `L_eff = (1/(4 N q^2))[B^2 - (q.B)^2/q^2]` -- a non-polynomial
+function of the kinetic invariants generated from a FINITE operator basis. Caveat before anyone
+gets excited: q_a = d_a chi carries derivatives, so chi propagates and the preferred-frame
+question re-enters through that door.
+
+NOTE ON MY OWN PROCESS: my first draft of the theorem claimed anisotropic degenerate carriers
+are always ill-posed. The machine check REFUTED it and forced the structural/configurational
+split above. The refuted draft is recorded here rather than quietly replaced.
+
+#### STAGE 2B AMENDMENT 1 (same session, after the parallel arm reported)
+
+**Correction to my own row (a) above.** My first pass examined only the SCALAR sector and
+concluded "no bare-G rescaling anywhere". That is incomplete. The unit-timelike aether is
+aligned and static in the Newtonian limit, so `g^{00}A_0^2 = -1` forces `A_0 = 1 + Phi`, hence
+`F_{z0} = -Phi'` and `F^2 = -2 Phi'^2`: the Maxwell term feeds directly into the Phi-Phi
+quadratic form. Derived from scratch in `s2b_refute_2026.py` R2b (quadratic EH density for the
+plane-symmetric metric reduces to `-4 Phi' Psi' + 2 Psi'^2`; adding `gamma F^2` gives
+`Phi' = Sigma/(8(1+gamma))`, calibrated so gamma = 0 returns pure GR):
+
+* **G_N/G_bare = 4/3** for the deepest class (K4 coefficient gamma = -1/4, i.e. c_14 = 1/2),
+  agreeing with the standard Einstein-aether `G_N = G/(1 - c14/2)` and with the parallel arm's
+  exact static solve. Three independent routes, same number.
+* **Row (a) corrected: APPLIES in the vector sector, does not apply in the scalar sector.** It
+  is a RENORMALISATION, not a repair -- absorbed into the measured G_N, G3 survives -- but
+  stage-1's Gate-MOND scored mu against `g_N = Sigma/8`, the PURE-GR reference, so the
+  background it used for these candidates was wrong. What is not absorbable is
+  `G_cosmo/G_N = 1 - c14/2 = 3/4`, a separate testable (BBN) prediction.
+
+**Status of the 59.** They were GATE-UNDECIDED as stage 1 left them. The 1PN computation I
+recommended has since been done by the parallel stage-2A arm (`s2a_ppn_exact_2026.py`), which
+reports alpha_1 = -2 and alpha_2 a POLE, with the mechanism being that F^2 is blind to the
+longitudinal aether mode (c123 = 0), giving infinite strong coupling rather than a second-class
+constraint. I did not recompute alpha_1/alpha_2 and do not report them as my result. What I can
+say adversarially: their alpha_1 = -2 matches the khronometric extrapolation alpha_1 = -4 c_14
+that I declined to quote on its own; their G_N = 4/3 G matches my independent R2b; and their
+c_4 basis-truncation finding was reached independently here. The 59 are therefore DECIDED at
+G4+G5 by that certificate, not by stage-1's proxy -- and stage-1's Gate-PPN kill rule remains
+a non-theorem with an explicit counterexample.
+
+**Two arms, same dichotomy, one difference worth recording.** Stage-2A's S6 says G4 fails in
+BOTH branches, including the degenerate one. My T4 says the degenerate Palatini branch has
+alpha_1 = alpha_2 = 0 EXACTLY. These agree: 2A's branch (b) assumes the G2-forcing disformal
+MATTER coupling is present, and with it the undetermined transverse components over-determine
+matter (my E4). Without that coupling the carrier is invisible, G4 passes vacuously, and G2
+fails instead. Either way there is no viable corner -- but the failure is well-posedness in one
+case and zero stress in the other, and the distinction matters for what to try next.
+
+---
+
+## STAGE 5 (SYNTHESIS): the 1PN preferred-frame verdict, 2026-08-29
+
+Full result: **`CANDIDATE_1PN_VERDICT.md`**. Script: `synth_1pn_independent_checks_2026.py`
+(+ `.out`, 26/26), written from scratch, importing nothing from `compiler.py`, `mc_*.py`,
+`routeA_*`, `ppn_khronon_routeB_*` or `adv_refute_*`.
+
+**VERDICT: KILL -- but NOT by the preferred-frame bounds.**
+
+`alpha_1 = alpha_2 = 0` EXACTLY at the candidate's locus. Route A, Route B and the refuter
+all agree, all pass their own GR validation, all anchor to published khronometric PPN. So the
+gate is not violated. It is a **VACUOUS pass**: the same solve returns `a_mu == 0` on-shell,
+`G_eff/G = 1`, and no MOND force. `bet = lam = 0` is `c_123 = 0` <=> the `lambda_Horava -> 1`
+strong-coupling point; the alphas are DISCONTINUOUS there (limit `-4 alp` and `oo`, value `0`).
+
+The candidate dies instead on three PROVEN results, none of them a bound comparison:
+K1 the literal spec is not MOND (`mu_eff in [1/2,3/2]`, never 0); K2 the carrier is a pure
+redefinition `F(A) -> F(A) - f^2 A^2/(3M)`, so (H4) is never violated; K3 GR-with-no-MOND is an
+EXACT branch for every source.
+
+**CRUX ANSWERED:** neither option as posed. `f(chi) -> 0` is a red herring (carrier is `O(a^4)`,
+two PN orders below). The lapse-tied MOND sector DOES generate `alpha_1 = -8(1-mu(y))` on its
+own -- but only OFF the locus; AT the locus even that is empty because MOND is gone.
+
+**GAP FOUND AND CLOSED in STAGE 4's section C.** The spec says `Q_ij` is "spatially-TRANSVERSE-
+traceless (`Q^i_i = 0`)" -- two different constraints, and the refuter varied traceless-only
+components. For the traceless-only reading C1 is confirmed exactly (my B3). For the strictly
+TT reading it FAILS: eliminating a TT `Q` returns `A_ij (P^TT A)^ij`, verified NOT proportional
+to `A^2` and carrying explicit angular dependence on the wavevector, i.e. NONLOCAL (my C3/C4).
+Not a rescue: it is an (H1) nonlocality escape (same verdict as `M = -D^2`), it makes `Q`
+non-algebraic so the DOF count must be redone, and it changes nothing about K1 and K3.
+
+**CORROBORATION.** Stage 2B's degenerate Palatini branch independently exhibits the SAME
+signature -- `alpha_1 = alpha_2 = 0` exactly with a timelike boost-breaking VEV, labelled a
+vacuous pass because `mu == 1`. Two structurally unrelated branches producing "zeros because
+the theory is secretly GR" is strong evidence the zeros here are degeneracy, not symmetry.
+
+**OPEN DOORS (none closed).** `lambda_K != 1` (healthy khronon, keeps MOND, passes both alphas)
+-- `c_T`, BBN, cosmology, stability, DOF all UNTESTED. Dirac count is 3 DOF not 2 and JUMPS
+between vacuum and every excited state. And the `alpha_2` bound assignment is UNRESOLVED:
+standard PPN assumes CONSTANT alphas, but `alp_kh` depends on position through `y` -- at the
+Sun's field `alpha_2 ~ 1.7e-13` (passes hugely), at Neptune's `y` the framework kernel gives
+`~7.1e-6` (would EXCEED the 4e-7 bound by ~18x). Flagged, not hidden.
+
+**PROCESS NOTE.** My first Section D reconstructed Foster-Jacobson from recall; it was WRONG
+and its checks failed. Rewritten to check only pole structure and the discontinuity of the
+in-script formulas. The failure is recorded rather than quietly repaired.
