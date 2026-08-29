@@ -1,0 +1,73 @@
+{
+ "name": "Independent-Kinetic Screened-Frame Decoupling",
+ "family": "novel",
+ "fields": [
+  {
+   "name": "g",
+   "type": "metric",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "chi",
+   "type": "scalar",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "K",
+   "type": "multiplier",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "u",
+   "type": "khronon",
+   "kinetic": "none",
+   "timelike_background": true
+  }
+ ],
+ "couplings": [
+  {
+   "label": "matter_minimal",
+   "sources": [
+    "matter",
+    "g"
+   ],
+   "order_in_phi": 0,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "screened_preferred_frame",
+   "sources": [
+    "u",
+    "chi"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": true,
+   "nonlocal": "none"
+  },
+  {
+   "label": "independent_kinetic_multiplier",
+   "sources": [
+    "K",
+    "chi"
+   ],
+   "order_in_phi": 0,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "aux_legendre_chi",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "A multiplier field K carries its own standard kinetic term and fixes the finite normalization of the propagating chi mode. The preferred-frame response is isolated in a lapse-weighted coupling to the khronon u that is multiplied by e^-y, so it is screened in high-density regimes. This architecture keeps mu(y)=1-e^-y frozen and leaves matter minimally coupled to the single physical metric.",
+ "predicted_weak_field": "In the unscreened low-density limit, e^-y is order unity and the preferred-frame term contributes the expected MOND acceleration scale through the auxiliary chi Legendre structure. In the screened high-density limit, the preferred-frame term is suppressed while the K-normalized chi kinetic term remains finite, preventing the P7 collision between alpha and kinetic normalization. The weak-field metric perturbation therefore retains a finite propagating mode with a screened preferred-frame response.",
+ "inequivalence_argument": "This is not constraint-first because the chi mode is not algebraically eliminated and retains a finite propagating kinetic sector. It is not screened-preferred-frame because the screened e^-y factor appears only in the preferred-frame coupling, not in the kinetic normalization. It is not spatially-nonlocal or multi-sector because all interactions are local and there is one physical metric with one auxiliary chi sector. It is not degenerate because K has a standard kinetic term and independently fixes the propagating-mode normalization."
+}

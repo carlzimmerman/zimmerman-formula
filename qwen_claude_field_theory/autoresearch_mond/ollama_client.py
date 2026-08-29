@@ -70,3 +70,34 @@ def extract_json(text):
         except Exception:
             continue
     return None
+
+
+def extract_candidates(text):
+    """Return a list of candidate dicts from a reply that may contain a JSON array,
+    {"candidates":[...]}, or a single object. Empty list if nothing parses."""
+    import re
+    text = re.sub(r"<think>.*?</think>", "", text, flags=re.S)
+    m = re.search(r"```(?:json)?\s*([\[{].*?[\]}])\s*```", text, re.S)
+    blobs = [m.group(1)] if m else []
+    for opener, closer in (("[", "]"), ("{", "}")):
+        depth = 0; start = None
+        for i, ch in enumerate(text):
+            if ch == opener:
+                if depth == 0: start = i
+                depth += 1
+            elif ch == closer and depth:
+                depth -= 1
+                if depth == 0 and start is not None:
+                    blobs.append(text[start:i + 1]); break
+    for b in blobs:
+        try:
+            obj = json.loads(b)
+        except Exception:
+            continue
+        if isinstance(obj, list):
+            return [x for x in obj if isinstance(x, dict)]
+        if isinstance(obj, dict):
+            if isinstance(obj.get("candidates"), list):
+                return [x for x in obj["candidates"] if isinstance(x, dict)]
+            return [obj]
+    return []

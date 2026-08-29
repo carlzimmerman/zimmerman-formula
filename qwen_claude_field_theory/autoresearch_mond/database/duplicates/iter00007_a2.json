@@ -1,0 +1,86 @@
+{
+ "name": "Independent-Kinetic Screened Preferred-Frame with Auxiliary Chi",
+ "family": "screened-preferred-frame",
+ "fields": [
+  {
+   "name": "g_mu_nu",
+   "type": "metric",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "u_mu",
+   "type": "vector",
+   "kinetic": "none",
+   "timelike_background": true
+  },
+  {
+   "name": "chi",
+   "type": "scalar",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "A_mu",
+   "type": "vector",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "K",
+   "type": "khronon",
+   "kinetic": "none",
+   "timelike_background": true
+  },
+  {
+   "name": "s",
+   "type": "multiplier",
+   "kinetic": "none",
+   "timelike_background": false
+  }
+ ],
+ "couplings": [
+  {
+   "label": "matter",
+   "sources": [
+    "g_mu_nu"
+   ],
+   "order_in_phi": 0,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "screened_alpha",
+   "sources": [
+    "u_mu",
+    "s",
+    "chi",
+    "K",
+    "A_mu"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": true,
+   "nonlocal": "none"
+  },
+  {
+   "label": "propagating_kinetic",
+   "sources": [
+    "A_mu"
+   ],
+   "order_in_phi": 0,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "aux_legendre_chi",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "The auxiliary chi implements the frozen mu(y)=1-e^-y MOND relation, while a khronon K supplies the unremovable A_0 sector required for relativistic lensing. A multiplier s weights only the preferred-frame alpha coupling to u_mu, K, and A_mu, so the screened response scales as e^-y in the coupling sector. The finite propagating mode is carried by A_mu with an independent standard kinetic term, so its normalization is not tied to the screened alpha coupling or to G. This preserves a single matter-coupled metric and avoids rescaling G while attacking the P7 collision.",
+ "predicted_weak_field": "In the galactic low-acceleration regime, chi produces the frozen MOND scaling and K gives the Bekenstein A_0 contribution to lensing. In high-density solar-system fields, e^-y suppresses the preferred-frame alpha coupling, screening fifth-force and preferred-frame violations. The A_mu mode retains a finite canonical kinetic normalization and well-defined propagation, so the screened limit does not remove the propagating sector. The result is MONDian galactic dynamics and lensing with screened solar-system behavior.",
+ "inequivalence_argument": "DC-001, the local no-preferred-frame lensing MOND dead class, was fatal because a local non-preferred-frame coupling could be removed without an unremovable A_0, and no field of type khronon was present. This candidate is structurally different: it contains an explicit khronon K that appears in a preferred-frame, lapse-weighted, e^-y-screened coupling, providing the required unremovable A_0 lensing sector. The finite propagating kinetic normalization is carried by an independent standard-kinetic A_mu, not by the screened alpha coupling, so alpha can scale as e^-y without degenerating the propagating mode. Therefore it does not match DC-001 or any coefficient-tweak variant of the killed local no-khronon architectures."
+}

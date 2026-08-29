@@ -88,8 +88,25 @@ def architect_context(branch):
 def one_iteration(gs, it):
     branch = pick_branch(gs)
     log(f"iter {it}: branch={branch}")
-    # ---------- ARCHITECT
+    # ---------- ARCHITECT (batch: up to 3 candidates per call — same 13-min generation)
     reply = oc.chat(P("architect.md"), architect_context(branch), temperature=0.9)
+    batch = oc.extract_candidates(reply)
+    ok = [c for c in batch if all(k in c for k in cm.REQUIRED_FIELDS)]
+    log(f"  architect returned {len(batch)} candidate(s), {len(ok)} schema-complete")
+    if ok:
+        for n, cand in enumerate(ok[:3], 1):
+            log(f"  -- candidate {n}/{min(len(ok),3)}: {cand.get('name','?')[:60]}")
+            try:
+                process_candidate(gs, it, branch, cand)
+            except oc.OllamaUnavailable:
+                raise
+            except Exception:
+                cm.append_jsonl(os.path.join(DB, "failures.jsonl"),
+                                {"iter": it, "stage": "process_candidate",
+                                 "reason": traceback.format_exc()[-600:], "ts": time.time()})
+                log("     candidate error (recorded, continuing batch)")
+        return
+    # legacy single-candidate repair path
     cand = oc.extract_json(reply)
     missing = [k for k in cm.REQUIRED_FIELDS if not cand or k not in cand]
     if missing:
@@ -111,6 +128,10 @@ def one_iteration(gs, it):
                         {"iter": it, "stage": "architect", "reason": f"schema after repair: missing {missing}",
                          "raw_saved": f"database/rejected/iter{it:05d}.txt", "ts": time.time()})
         log(f"  architect output rejected (schema, missing {missing}) -- raw saved"); return
+    process_candidate(gs, it, branch, cand)
+
+
+def process_candidate(gs, it, branch, cand):
     # mandatory inequivalence answer (sec 25): candidate must state why it differs from killed classes
     if not cand.get("inequivalence_argument"):
         cm.append_jsonl(os.path.join(DB, "failures.jsonl"),
