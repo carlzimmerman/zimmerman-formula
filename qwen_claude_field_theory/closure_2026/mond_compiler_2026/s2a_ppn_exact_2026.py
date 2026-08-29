@@ -275,6 +275,29 @@ def s2_source_and_alphas(cvals, csym, sub, kk):
                    "here is taken from the literature: it follows from the S0 map and the\n"
                    "S1 dispersion, both proved by direct component computation.")
 
+    # ---- scope: what regularises the vanishing operator, and where ---------------------
+    lam_b = sp.Symbol('lambar')
+    # the unit-timelike multiplier contributes lam_bar * a^m a_m = lam_bar k^2 |sigma|^2
+    D_full = sp.expand(D_C1 + 2 * lam_b * (k1 ** 2 + k2 ** 2 + k3 ** 2))
+    print(f"  including the multiplier background:  D_total(k) = {sp.factor(D_full)}")
+    S2.cert(S2.C1["name"], "G4 SCOPE of the pole statement", "PARTIAL",
+            "the ONLY term that can regularise the vanishing longitudinal operator is the "
+            "unit-timelike multiplier's background value: V15 = lam(A^2+1) contributes "
+            "lam_bar a^m a_m = lam_bar k^2 |sigma|^2, giving "
+            "D_total = 2 k^2 [ (c1-c4)(k.v)^2 + lam_bar ].  Contracting the A-equation "
+            "with A shows lam_bar is sourced only by grad^2 Phi and by the matter "
+            "coupling, i.e. lam_bar ~ O(G rho): it VANISHES in vacuum, which is exactly "
+            "where the PPN parameters are defined.  So the correct statement is: the "
+            "principal symbol of the vacuum longitudinal equation vanishes on the plane "
+            "k.v = 0, the quasi-static boundary-value problem is not elliptic, and the "
+            "PPN expansion is not well posed.  Inside matter the response is finite but "
+            "enhanced by ~1/(G rho/k^2) ~ 1/U ~ 1e8 in the solar system.",
+            residual=f"D_total(k) = {sp.factor(D_full)} ;  lam_bar = 0 in vacuum",
+            detail="Recorded so the pole claim is not overstated: 'alpha_2 divergent' is a\n"
+                   "statement about the vacuum weak-field expansion in which alpha_2 is\n"
+                   "DEFINED, not a claim that every physical configuration blows up.  The\n"
+                   "size of lam_bar is not computed here -- hence PARTIAL, not PROVEN.")
+
     # ---- cross-check against the published closed forms -------------------------------
     c1, c2, c3, c4 = csym
     C1v, C2v, C3v, C4v = (cvals[c1], cvals[c2], cvals[c3], cvals[c4])

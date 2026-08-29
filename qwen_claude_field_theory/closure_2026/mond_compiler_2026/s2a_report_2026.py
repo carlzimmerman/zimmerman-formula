@@ -50,8 +50,11 @@ OUTCOME = {
                             "4/3 = 1/(1-c14/2); stage 1 missed this (A01 = Phi1, not 0)"),
         ("FAIL", "PROVEN", "c123 = 0 exactly -> the quasi-static longitudinal operator "
                            "D(k) = (c1-c4) k^2 (k.v)^2 vanishes on the whole plane k.v=0 "
-                           "where the G2-forced source lives: alpha_2 is a POLE. "
-                           "alpha_1 = -2 (Foster-Jacobson cross-check)"),
+                           "where the G2-forced source lives.  The only regulator, the "
+                           "multiplier background lam_bar, is O(G rho) and vanishes in "
+                           "vacuum where alpha_2 is defined -> alpha_2 is a POLE "
+                           "(scope certificate PARTIAL).  alpha_1 = -2 (Foster-Jacobson "
+                           "cross-check, ASSUMED)"),
         ("FAIL", "PROVEN", "longitudinal mode: time-kinetic coefficient 1/2, gradient "
                            "coefficient 0 -> c_s^2 = 0.  Infinite strong coupling, NOT a "
                            "second-class constraint"),

@@ -22,8 +22,10 @@ GATE OUTCOME TABLE  (every cell backed by a certificate below)
         stage 1 missed this (A01 = Phi1, not 0)
      G4 PPN-DARK  FAIL   [PROVEN]
         c123 = 0 exactly -> the quasi-static longitudinal operator D(k) = (c1-c4) k^2
-        (k.v)^2 vanishes on the whole plane k.v=0 where the G2-forced source lives:
-        alpha_2 is a POLE. alpha_1 = -2 (Foster-Jacobson cross-check)
+        (k.v)^2 vanishes on the whole plane k.v=0 where the G2-forced source lives.
+        The only regulator, the multiplier background lam_bar, is O(G rho) and
+        vanishes in vacuum where alpha_2 is defined -> alpha_2 is a POLE (scope
+        certificate PARTIAL).  alpha_1 = -2 (Foster-Jacobson cross-check, ASSUMED)
      G5 HEALTH    FAIL   [PROVEN]
         longitudinal mode: time-kinetic coefficient 1/2, gradient coefficient 0 ->
         c_s^2 = 0.  Infinite strong coupling, NOT a second-class constraint
@@ -60,8 +62,8 @@ GATE OUTCOME TABLE  (every cell backed by a certificate below)
 ============================================================================================
 STAGE 2A -- CONSOLIDATED CERTIFICATE LEDGER
 ============================================================================================
-total certificates: 39
-by status: ASSUMED 1, COMPUTATIONALLY_VERIFIED 4, PROVEN 34
+total certificates: 40
+by status: ASSUMED 1, COMPUTATIONALLY_VERIFIED 4, PARTIAL 1, PROVEN 34
 
 --------------------------------------------------------------------------------------------
 C1_MAXWELL_AETHER_BEKENSTEIN
@@ -159,6 +161,19 @@ C1_MAXWELL_AETHER_BEKENSTEIN
         and not by a large number: by a pole.
         residual: D(k)|_C1 = k3**2*v**2*(k1**2 + k2**2 + k3**2) ;  D(k)|_(k.v=0) = 0 while
         src^z != 0 there
+  [PARTIAL                   ] G4 SCOPE of the pole statement
+        the ONLY term that can regularise the vanishing longitudinal operator is the unit-
+        timelike multiplier's background value: V15 = lam(A^2+1) contributes lam_bar a^m a_m
+        = lam_bar k^2 |sigma|^2, giving D_total = 2 k^2 [ (c1-c4)(k.v)^2 + lam_bar ].
+        Contracting the A-equation with A shows lam_bar is sourced only by grad^2 Phi and by
+        the matter coupling, i.e. lam_bar ~ O(G rho): it VANISHES in vacuum, which is
+        exactly where the PPN parameters are defined.  So the correct statement is: the
+        principal symbol of the vacuum longitudinal equation vanishes on the plane k.v = 0,
+        the quasi-static boundary-value problem is not elliptic, and the PPN expansion is
+        not well posed.  Inside matter the response is finite but enhanced by ~1/(G rho/k^2)
+        ~ 1/U ~ 1e8 in the solar system.
+        residual: D_total(k) = (k3**2*v**2 + 2*lambar)*(k1**2 + k2**2 + k3**2) ;  lam_bar =
+        0 in vacuum
   [ASSUMED                   ] G4 (alpha_1, alpha_2) -- literature cross-check
         evaluating Foster & Jacobson (2006, PRD 73 064015) at the exactly derived
         (c1,c2,c3,c4) = (1/2,0,-1/2,0) gives alpha_1 = -2 EXACTLY and an alpha_2 whose
