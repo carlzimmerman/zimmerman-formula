@@ -1,0 +1,195 @@
+
+==============================================================================
+[S0]  CONSTITUTIVE SECTOR  (frozen; exact sympy)
+==============================================================================
+PASS -- [S0a] V'(chi) = [ln(1-chi)]^2 evaluated at chi = mu(y) = 1-e^-y equals y^2
+PASS -- [S0b] f(chi) = (1-chi) sqrt(V') = y e^-y  EXACTLY (residual 0)
+PASS -- [S0c] sqrt(V'(chi)) = |ln(1-chi)| = y, hence f(chi) = (1-chi) * y identically: the carrier coupling FACTORISES as (a^2-coefficient candidate) x y
+    V(y) = (-y**2 - 2*y + 2*exp(y) - 2)*exp(-y)    V(y->oo) = 2 (a bounded, cosmological-constant-sized offset)
+
+==============================================================================
+[S1]  STATIC ADM REDUCTION -> the effective interpolation mu_eff(y)
+==============================================================================
+PASS -- [S1a] psi-equation is lap(Phi + psi) = 0  =>  Psi = Phi: NO leading-order slip (the lensing gate is passed by the GR sector alone, carrier or not)
+PASS -- [S1b] MOND sector contributes exactly +2 zeta c_M div(W' grad Phi) to the Phi eq (verified on 5 distinct W)
+PASS -- [S1c] gravity part of the Phi eq = -4 zeta lap(psi)  (Hamiltonian constraint)
+
+    => Phi eq:  -4 zeta lap(psi) + 2 zeta c_M div(W' grad Phi) = rho_star ,  psi = -Phi from [S1a]
+       => div[ mu_eff grad Phi ] = 4 pi G rho_star   with   mu_eff = 1 + (c_M/2) g(chi)
+
+==============================================================================
+[S2]  WHICH chi-FUNCTION MULTIPLIES (D phi)^2 ?  -- forced by the frozen gates
+==============================================================================
+  reading A (spec as literally written): g(chi) = chi
+     y -> 0 (deep MOND, chi->0) : mu_eff -> 1    [deep MOND REQUIRES 0]
+PASS -- [S2a] reading A (g = chi) CANNOT reach deep MOND: mu_eff(y->0) = 1 for EVERY c_M => the literal spec is not a MOND theory
+PASS -- [S2b] mu_eff = mu(y) is solvable ONLY by g = 2(chi-1)/c_M ; with c_M = -2, g = 1 - chi
+PASS -- [S2c] with g = 1-chi, c_M = -2:  mu_eff(y) = 1 - e^-y EXACTLY, and G_eff/G_N = 1/mu_eff -> 1 as y->oo (Newton restored, NO rescaling)
+
+  ==> THE a^2 COEFFICIENT IS  g(chi) = 1 - chi = e^-y ,  NOT chi.
+      Cross-check: f(chi) = (1-chi) sqrt(V') = g(chi) * y -- the carrier coupling is
+      (a^2-coefficient) x y, the SAME object.  Internal consistency of the design.
+      Khronometric dictionary:  alpha_khrono = -c_M g(chi) = 2(1-chi) = 2 e^-y ,
+      and the standard G_N = G/(1-alpha/2) then reads G_N = G/chi = G/mu  <-- MOND.
+
+==============================================================================
+[S3]  TRACELESS (slip) SECTOR: which Q kernel M cancels the MOND traceless stress?
+==============================================================================
+    exact cancellation requires  M = c_Q*(1 - chi)*log(1 - chi)**2/c_M
+    in y:  M = c_Q*y**2*exp(-y)/c_M
+PASS -- [S3a] cancellation needs M proportional to (1-chi) V'(chi) = y^2 e^-y -- a chi-DEPENDENT algebraic kernel (still inside the theory's own basis)
+    M = m^2 (constant algebraic mass)  residual(y) = -c_M*exp(-y) + c_Q*y**2*exp(-2*y)/m2
+PASS -- [S3b] M = m^2 (constant algebraic mass) does NOT cancel Sigma_P for all y
+    M = -D^2 -> k^2                    residual(y) = -c_M*exp(-y) + c_Q*y**2*exp(-2*y)/k2
+PASS -- [S3b] M = -D^2 -> k^2 does NOT cancel Sigma_P for all y
+    M = Delta^{-1} -> 1/k^2            residual(y) = (-c_M*exp(y) + c_Q*k2*y**2)*exp(-2*y)
+PASS -- [S3b] M = Delta^{-1} -> 1/k^2 does NOT cancel Sigma_P for all y
+
+==============================================================================
+[S4]  PN ORDER COUNTING + chi FREEZE
+==============================================================================
+    a_i ~ eps^2/L ;  y = |a| c^2/a0 is an O(1) LABEL, not a small quantity.
+    L_EH,2 ~ eps^4/L^2 ;  L_MOND = g(chi) a^2 ~ eps^4/L^2  (SAME order: 1PN) ;
+    L_carrier(on-shell) = (1/2) f^2 A^ij A_ij / M ~ a^4 ~ eps^8/L^4 .
+PASS -- [S4a] carrier / MOND = (v/c)^4  => the carrier is 2PN BEYOND 1PN: it cannot contribute to alpha_1 or alpha_2 at all
+PASS -- [S4b] carrier on-shell amplitude f^2/M = (c_M/c_Q) e^-y -> 0 as y -> oo (it is ALSO exponentially off in the Solar System)
+PASS -- [S5a] dchi/dy = e^-y: the auxiliary is frozen to exponential accuracy at large y, so the 1PN a^2-coefficient is a CONSTANT there
+
+    Sun surface        y = 2.930e+12   e^-y = < 1e-30000
+    Mercury            y = 4.230e+08   e^-y = < 1e-30000
+    Earth 1 AU         y = 6.336e+07   e^-y = < 1e-30000
+    Jupiter            y = 2.343e+06   e^-y = < 1e-30000
+    Saturn (Cassini)   y = 6.903e+05   e^-y = < 1e-30000
+    Neptune            y = 6.993e+04   e^-y = < 1e-30000
+
+==============================================================================
+[P]  PPN ENGINE -- coupled (metric, khronon) 1PN solve, EXACT in w
+==============================================================================
+PASS -- [P1] khronon background is unit-normalised to O(w^4)
+PASS -- [P2] K = 0 and a_mu = 0 on the background (so the quadratic Lagrangian needs only the O(eps) linearisation of K and a_mu -- exact)
+  [    6.7s] L2 built: 28 terms
+  [   21.2s] Theta^{mu nu}, E_sigma, a_mu(Fourier) built
+PASS -- [P3] khronon solution on the Newtonian seed == BPS arXiv:1007.3503 (E.9)@beta=0 under v = -w
+PASS -- [P4] conservation k_i Theta^{i nu} = 0 on-shell to O(w^2)
+PASS -- [P5] h1_00 == BPS (E.12a)@beta=0 incl. the alpha(alpha-lam2)/lam2 anisotropic piece
+PASS -- [P6] G1^{1 nu} == 0 identically for k along x: E^{1 nu} are the (redundant) conservation identities
+PASS -- [P7] GR LIMIT (alpha = lam2 = 0): h_00 = 2 Uhat, h_ij = 2 Uhat delta_ij => gamma_PPN = 1, alpha_1 = alpha_2 = 0 EXACTLY
+
+==============================================================================
+[V]  VALIDATION: healthy khronometric (lam2 != 0), small alpha -> BPS 5.34@beta=0
+==============================================================================
+
+--- alpha = 1/1000 , lam2 = 1/3 ---
+  [   30.6s] bps u=(3/5,4/5) solved; dropped conservation-eq residuals to O(w^3): ['0', '0', '0', '0']
+  [   39.9s] bps u=(4/5,3/5) solved; dropped conservation-eq residuals to O(w^3): ['0', '0', '0', '0']
+  sigma_hat 1/w pole coefficient  lim_{w->0} w*sigma = 0    [-I*Uhat/(w.k)/w = -5*I*Uhat/3 ]
+  h00 series: 4000*Uhat/1999 + 72796*Uhat*w_b**2/19980005 + O(w_b**3)
+  h00|w0 = (4000/1999) Uhat ;  gamma_PPN = 1
+  p2 = 8/1999 ; p3 = -3980/3996001
+  ALPHA_1 (h0i route) = -8/1999 ;  ALPHA_1 (h00 route) = -8/1999 ;  ALPHA_2 = -1990/3996001
+  a_mu ON-SHELL   = [1200*I*Uhat*w_b/1999 + O(w_b**2), -2000*I*Uhat/1999 + O(w_b**2), O(w_b**2), 0]
+  a_mu a^mu       = 4000000*Uhat**2/3996001 + 29131360000*Uhat**2*w_b**2/7988005999 + O(w_b**3)
+PASS --   gamma_PPN = 1  (alpha=1/1000, lam2=1/3)
+PASS --   alpha_1 routes agree  (alpha=1/1000, lam2=1/3)
+PASS --   alpha_1 = -4 alpha to 1 part in 1e3  [BPS 5.34@beta=0]
+PASS --   alpha_2 = alpha(alpha-lam2)/(2 lam2) to 1 part in 1e3  [BPS 5.34@beta=0]
+PASS --   h00|w0 = 2/(1-alpha/2): the exact-in-alpha G_N = G/(1-alpha/2) renormalisation
+PASS --   khronon acceleration is NOT eaten when lam2 != 0: a_mu a^mu != 0 at O(w^0)
+
+--- alpha = 1/1000 , lam2 = 1/10 ---
+  [   50.4s] bps u=(3/5,4/5) solved; dropped conservation-eq residuals to O(w^3): ['0', '0', '0', '0']
+  [   60.2s] bps u=(4/5,3/5) solved; dropped conservation-eq residuals to O(w^3): ['0', '0', '0', '0']
+  sigma_hat 1/w pole coefficient  lim_{w->0} w*sigma = 0    [-I*Uhat/(w.k)/w = -5*I*Uhat/3 ]
+  h00 series: 4000*Uhat/1999 + 364232*Uhat*w_b**2/99900025 + O(w_b**3)
+  h00|w0 = (4000/1999) Uhat ;  gamma_PPN = 1
+  p2 = 8/1999 ; p3 = -3952/3996001
+  ALPHA_1 (h0i route) = -8/1999 ;  ALPHA_1 (h00 route) = -8/1999 ;  ALPHA_2 = -1976/3996001
+  a_mu ON-SHELL   = [1200*I*Uhat*w_b/1999 + O(w_b**2), -2000*I*Uhat/1999 + O(w_b**2), O(w_b**2), 0]
+  a_mu a^mu       = 4000000*Uhat**2/3996001 + 29171680000*Uhat**2*w_b**2/7988005999 + O(w_b**3)
+PASS --   gamma_PPN = 1  (alpha=1/1000, lam2=1/10)
+PASS --   alpha_1 routes agree  (alpha=1/1000, lam2=1/10)
+PASS --   alpha_1 = -4 alpha to 1 part in 1e3  [BPS 5.34@beta=0]
+PASS --   alpha_2 = alpha(alpha-lam2)/(2 lam2) to 1 part in 1e3  [BPS 5.34@beta=0]
+PASS --   h00|w0 = 2/(1-alpha/2): the exact-in-alpha G_N = G/(1-alpha/2) renormalisation
+PASS --   khronon acceleration is NOT eaten when lam2 != 0: a_mu a^mu != 0 at O(w^0)
+
+==============================================================================
+[C]  THE CANDIDATE'S OWN POINT: lam2 = lambda_K - 1 = 0 EXACTLY
+==============================================================================
+  (the gravity sector is GR's K_ijK^ij - K^2, so there is NO K^2 deformation and
+   the auxiliary sector has NO time derivatives: lam2 = 0 is structural, not tuned)
+  naive khronometric formula: alpha_2 = alpha(alpha-lam2)/(2 lam2) has a 1/lam2 POLE
+  -> the limit must be taken with lam2 = 0 FIRST.  Direct solve:
+
+--- alpha = alpha , lam2 = 0 ---
+  [   62.9s] lam2=0 u=(3/5,4/5) solved; dropped conservation-eq residuals to O(w^3): ['0', '0', '0', '0']
+  [   64.2s] lam2=0 u=(4/5,3/5) solved; dropped conservation-eq residuals to O(w^3): ['0', '0', '0', '0']
+  sigma_hat 1/w pole coefficient  lim_{w->0} w*sigma = -5*I*Uhat/3    [-I*Uhat/(w.k)/w = -5*I*Uhat/3 ]
+  h00 series: 2*Uhat + O(w_b**3)
+  h00|w0 = (2) Uhat ;  gamma_PPN = 1
+  p2 = 0 ; p3 = 0
+  ALPHA_1 (h0i route) = 0 ;  ALPHA_1 (h00 route) = 0 ;  ALPHA_2 = 0
+  a_mu ON-SHELL   = [O(w_b**2), O(w_b**2), O(w_b**2), 0]
+  a_mu a^mu       = O(w_b**3)
+
+--- alpha = 1/1000 , lam2 = 0 ---
+  [   79.1s] lam2=0 u=(3/5,4/5) solved; dropped conservation-eq residuals to O(w^3): ['0', '0', '0', '0']
+  [   93.6s] lam2=0 u=(4/5,3/5) solved; dropped conservation-eq residuals to O(w^3): ['0', '0', '0', '0']
+  sigma_hat 1/w pole coefficient  lim_{w->0} w*sigma = -5*I*Uhat/3    [-I*Uhat/(w.k)/w = -5*I*Uhat/3 ]
+  h00 series: 2*Uhat + O(w_b**3)
+  h00|w0 = (2) Uhat ;  gamma_PPN = 1
+  p2 = 0 ; p3 = 0
+  ALPHA_1 (h0i route) = 0 ;  ALPHA_1 (h00 route) = 0 ;  ALPHA_2 = 0
+  a_mu ON-SHELL   = [O(w_b**2), O(w_b**2), O(w_b**2), 0]
+  a_mu a^mu       = O(w_b**3)
+PASS -- [C1] lam2 = 0: the khronon perturbation has a 1/(w.k) POLE with an ALPHA-INDEPENDENT coefficient -I Uhat/(w.k)  (strong coupling: no scalar kinetic term, the w-expansion is singular)
+PASS -- [C2] lam2 = 0: a_mu is O(w^2) ON-SHELL -- the khronon relaxes to the ZERO-ACCELERATION (geodesic) foliation
+PASS -- [C3] lam2 = 0: gamma_PPN = 1
+PASS -- [C4] lam2 = 0: ALPHA_1 = 0 exactly
+PASS -- [C5] lam2 = 0: ALPHA_2 = 0 exactly (the 1/lam2 pole is resolved to ZERO)
+PASS -- [C6] lam2 = 0: h00|w0 = 2 Uhat -- NO G_N renormalisation, i.e. mu_eff = 1: the MOND modification is switched off TOGETHER with the preferred-frame terms
+
+==============================================================================
+[R]  RESULT
+==============================================================================
+
+  STRUCTURAL THEOREM (proven, then computationally confirmed above):
+    Gauss-Codazzi at lambda_K = 1 makes  K_ijK^ij - K^2 + R3  identically the Einstein-Hilbert
+    scalar, so the gravity sector is KHRONON-BLIND.  The khronon therefore enters the candidate
+    ONLY through a_mu = D_mu ln N:  the MOND term g(chi) a^2, and the carrier f(chi) Q^ij A_ij
+    with A_ij = [a_i a_j]^TF.  Hence  a_mu == 0  is an EXACT stationary point of the khronon
+    equation of motion, for ANY g and ANY f.  A zero-acceleration (geodesic) foliation exists,
+    and with lam2 = 0 there is no khronon kinetic term to obstruct the relaxation to it.
+    On that solution the whole MOND + carrier sector evaluates to zero and the theory is GR.
+
+  alpha_1 and alpha_2, SYMBOLICALLY
+    dictionary       alpha_khrono = -c_M g(chi) = 2(1 - chi) = 2 e^-y      [forced by [S2]]
+    lam2 = 0 (the candidate, computed directly):
+        alpha_1 = 0 ,  alpha_2 = 0 ,  gamma_PPN = 1 ,  G_eff/G_N = 1  -- and NO MOND.
+        The khronon sector re-enters h_00 only at O(w^4) (because a_mu = O(w^2)), so the
+        MOND force is suppressed by (w/c)^4 ~ 1e-12 for w ~ 600 km/s.
+    lam2 != 0 (the minimal HEALTHY repair, lambda_K != 1 -- a DIFFERENT theory):
+        alpha_1 = -4 alpha + O(alpha^2)  =  -8 (1-chi)  =  -8 e^-y
+        alpha_2 = alpha(alpha - lam2)/(2 lam2) + O(alpha^3)  =  e^-y (2 e^-y - lam2)/lam2
+                ~  -2 e^-y            for  |lam2| >> e^-y
+    literal spec reading g(chi) = chi (REFUTED at [S2a], it has no deep-MOND limit):
+        alpha_khrono = -c_M chi -> O(1), alpha_1 = O(1)  ->  ~1e5 x over |alpha_1| < 4e-5.
+
+    Sun surface        y = 2.930e+12 :  |alpha_1| = 8 e^-y = < 1e-30000 ,  |alpha_2| ~ 2 e^-y = < 1e-30000
+    Mercury            y = 4.230e+08 :  |alpha_1| = 8 e^-y = < 1e-30000 ,  |alpha_2| ~ 2 e^-y = < 1e-30000
+    Earth 1 AU         y = 6.336e+07 :  |alpha_1| = 8 e^-y = < 1e-30000 ,  |alpha_2| ~ 2 e^-y = < 1e-30000
+    Jupiter            y = 2.343e+06 :  |alpha_1| = 8 e^-y = < 1e-30000 ,  |alpha_2| ~ 2 e^-y = < 1e-30000
+    Saturn (Cassini)   y = 6.903e+05 :  |alpha_1| = 8 e^-y = < 1e-30000 ,  |alpha_2| ~ 2 e^-y = < 1e-30000
+    Neptune            y = 6.993e+04 :  |alpha_1| = 8 e^-y = < 1e-30000 ,  |alpha_2| ~ 2 e^-y = < 1e-30000
+    bounds: |alpha_1| < 4e-5 (LLR/pulsars), |alpha_2| < 1.2e-7 (solar spin axis).
+    => the PREFERRED-FRAME GATE IS PASSED, by ~1e30000 margin, for BOTH lam2 cases.
+    => the candidate nevertheless DIES, at lam2 = 0, by DEGENERACY: the same
+       auxiliary-sector design principle (no time derivatives anywhere) that was
+       meant to evade the Part-I no-go (hypothesis H3) leaves nothing to hold the
+       khronon away from a_mu = 0.  This is the compiler's own CARRIER_OFF mode.
+    OPEN DOOR (named, not closed): lambda_K != 1 restores a healthy khronon, keeps
+       MOND, and still passes alpha_1, alpha_2.  Its own gates (c_T, BBN lambda_K in
+       [0.923,1.100], cosmology, and the chi-dependent Q kernel M ~ (1-chi)V'(chi)
+       required by [S3]) are UNTESTED here.
+
+41/41 checks pass
