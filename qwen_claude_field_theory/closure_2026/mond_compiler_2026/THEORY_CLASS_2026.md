@@ -37,3 +37,14 @@ Eliminate Q =>  physical stress ~ f(chi) A . KK^{-1} . R   (LINEAR in A, LINEAR 
   stress that cancels Sigma_P = -mu s^2 (covariant) or y mu' (lapse) EXACTLY, for some (lambda, KK)?
   If NO for all lambda,KK -> the class is dead, and Part-I/T3 upgrade to "+ linear-curvature TT carriers".
   If YES -> run DOF + alpha_2.
+
+## VERDICT (2026-08-29): DEAD. kill-shot commit a9261161, 19/19 checks.
+Order-counting kill (as predicted): Sigma_P is the UNIQUE (eps^2, Phi^2) traceless stress; the designed
+canceller Sigma_AR = lambda f A KK^-1 R is (eps^3, Phi^2 Psi) -- one order too high (KK^-1~1/k^2 shifts
+DERIVATIVE order, never eps-order). The only same-order term Sigma_RR is pure-curvature ( Psi^2), spin-0
+only => cannot match Sigma_P's spin-2 part for any (lambda,KK); and its y-weight is constant while
+c(y)=mu(y) is y-dependent. y-dependent LOCAL kernel collapses to the stage-3 refutation (mere F(A) redef)
+or presupposes Psi=Phi (circular). => Part-I/T3 UPGRADE: no local, linear-curvature-coupled, trace-free
+auxiliary carrier can cancel the MOND slip. The entire LOCAL 2-DOF auxiliary-carrier program is CLOSED.
+SURVIVING DIRECTION (see ../theory_discovery/TTA1_AND_SELFSCREEN.md): 3-DOF khronometric/Horava + MOND with
+e^-y self-screening of the preferred frame (alpha_1,alpha_2 ~ e^-y, beaten by ~30000 orders). NOT 2 DOF.
