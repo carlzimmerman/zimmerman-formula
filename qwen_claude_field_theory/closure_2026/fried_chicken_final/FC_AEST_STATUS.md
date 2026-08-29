@@ -15,14 +15,17 @@
 >   Foster–Jacobson EA α₁ AND α₂ exactly**, both c₂ signs — + independent moving-source Setup-M solve):
 >   **α₂ = 4/(J_Y(1+J_Y)·K_B)**, α₁ = −8/(1+J_Y). Both routes agree to a factor ~1.3; both a **simple 1/K_B pole**.
 >
-> **The kill:** β₀=1/λ_s is **Cassini/fold-forced to ~0.5** (unscreened — the committed fold no-go forbids small β₀; β₀_min=0.533
-> for μ₁₀), and K_B<2.5×10⁻⁵. ⇒ **α₂ ~ 2×10⁴** (over |α₂|<10⁻⁷ by **~11 orders**), and **α₁ ~ −2.7 (O(1)) is an INDEPENDENT kill.**
-> This is exactly the "**1/β₀ enhancement ⇒ clean kill**" / "**intersection empty ⇒ dies cleanly at the preferred-frame gate**"
-> outcome this document predicted (§"last lock", §"new-model endpoint"). **The RETRACTED screening argument is VINDICATED as
-> retracted:** Route A's own script-level "MOND-SCREENED, PASSES" reading (α₂→1/λ_s→0) lives ONLY in the forbidden small-β₀
-> (λ_s→∞) limit — the exact O(β₀)-not-guaranteed trap flagged below; the fold/Cassini no-go closes it. **The α₁ red flag is
-> RESOLVED:** −4K_B is the pure-VECTOR value (Route A reproduces it exactly scalar-OFF); the scalar's `2(2−K_B)J·∇φ` acceleration
-> coupling — the very "nonlocal longitudinal Δα₂^(φA)" this doc names — shifts α₁ to O(1) and generates the α₂ pole.
+> **The kill (CORRECTED reasoning, 2026-08-29 — supersedes the "fold-forces β₀~0.5" line, which was a CONFLATION):** the parameter
+> λ_s in α₂=1/λ_s+2/(K_B λ_s²) is the **AeST asymptotic-slope screening parameter** — λ_s = lim_{Y→∞} 𝒥/Y, β₀≡1/λ_s (MNRAS 531,272
+> defn) — NOT the local constitutive derivative J_Y(Y_SS). **For frozen J₁₀ this slope is EXACTLY 1 (VERIFIED sympy: 𝒥_Y=1−e^{−√Y/a₀},
+> so 𝒥→Y−2a₀², lim 𝒥/Y=1 ⇒ λ_s=1, β₀=1).** Hence **α₂ = 1 + 2/K_B ≈ 8×10⁴** at K_B<2.5×10⁻⁵ — over |α₂|<10⁻⁷ by ~11 orders. The
+> screening escape (λ_s≫1) is UNAVAILABLE to this kernel because its asymptotic slope is pinned to 1.
+> **⚠️ The script `[RESULT]` line "λ_s=J_Y=2g_bar/a₀~1.3e8 → α₂~8e-9 PASSES" is a VARIABLE-IDENTIFICATION ERROR** (J_Y=1−e^{−u}∈[0,1)
+> can NOT equal 2g/a₀; the huge quantity is J_Y/(1−J_Y)=e^{u}−1, which is NOT λ_s). Do not use that PASS reading. **α₁** likewise:
+> −4K_B is the pure-VECTOR value (Route A reproduces it exactly scalar-OFF); the scalar's `2(2−K_B)J·∇φ` acceleration coupling shifts
+> it to O(1) at finite λ_s (α₁=−8/(1+J_Y)~−2.7, Route B) = an independent kill. **NOTE the verdict flip-flopped (KILL→OPEN→KILL) once
+> during derivation on exactly this λ_s-vs-J_Y notation ambiguity; it is now settled by the symbolic λ_s=1 check — DON'T re-open it
+> on the screened-PASS line.**
 >
 > **SCOPE (honest):** kills the specific frozen **FC-AeST + c₂★** chassis at the PREFERRED-FRAME gate. **STATIC sector untouched:**
 > γ_PPN=1, Φ=Ψ lensing, c_T=1, BTFR, 6-DOF, Cassini-μ₁₀ all still stand (Parts I–II below unchanged). **J₁₀ never failed** — this
