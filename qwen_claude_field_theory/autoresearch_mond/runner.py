@@ -107,10 +107,22 @@ def one_iteration(gs, it):
         kill(cid, cand, cert0, it); return
     # ---------- TIER 2: derivation agent writes gate scripts, executed in order
     gate_status = {"G0": "PASS"}
+    import gate_templates as gt
     for gate in ev.SCRIPT_GATES[:MAX_SCRIPT_GATES]:
         prior = ev.prior_certificate(cm.arch_hash(cand), gate)
         if prior and prior.get("status") == "PASS":
             gate_status[gate] = "PASS"; log(f"  {gate}: prior PASS loaded"); continue
+        # TRUSTED TEMPLATE FIRST: deterministic, pre-verified math beats model-written scripts
+        tc = gt.run(gate, cand)
+        if tc is not None:
+            record_cert(cid, cand, tc, it)
+            gate_status[gate] = tc["status"]
+            log(f"  {gate}: {tc['status']} (trusted template)")
+            if tc["status"] == "KILL":
+                kill(cid, cand, tc, it); return
+            if tc["status"] in ("PASS",):
+                continue
+            # OPEN/CONDITIONAL/BLOCKED from a template: fall through to model script for more depth
         dctx = (f"CANDIDATE {cid}:\n{json.dumps(cand, indent=1)}\n\nGATE TO CERTIFY: {gate}\n\n"
                 f"KNOWN RULES:\n{json.dumps(J('KNOWLEDGE_GRAPH.json')['rules'], indent=1)[:3000]}")
         script_reply = oc.chat(P("derivation.md"), dctx, temperature=0.3)

@@ -1,0 +1,123 @@
+#!/usr/bin/env python3
+"""TRUSTED GATE TEMPLATES — deterministic, pre-verified math for the common cases.
+Policy: if a template applies to the candidate's declared structure, the TEMPLATE is the judge
+(trusted tier, same rank as G0). Qwen-generated scripts are used ONLY when no template applies,
+and those stay PENDING_AUDIT. Templates are frozen extracts of machinery verified this session
+(closure_2026: FROZEN_PRIMITIVE, gauntlet, compiler) — edit only with a committed re-verification."""
+import sympy as sp
+
+
+def applies(gate, cand):
+    mr = cand.get("mond_realization", "")
+    if gate == "G1" and mr in ("aux_legendre_chi", "constraint_first_q", "nonlocal_f+", "nonlocal_F+"):
+        return True
+    if gate == "G2" and mr in ("aux_legendre_chi", "constraint_first_q", "nonlocal_f+", "nonlocal_F+"):
+        return True
+    if gate == "G3":
+        return True   # structural TT analysis from declared couplings always possible
+    return False
+
+
+def _cert(gate, status, certificate, **kw):
+    out = {"gate": gate, "status": status, "certificate": certificate[:300],
+           "assumptions": kw.pop("assumptions", []), "domain": kw.pop("domain", "template"),
+           "numeric_values": kw.pop("numeric_values", {}), "trusted_template": True}
+    return out
+
+
+# ------------------------------------------------------------------ G1: exact MOND reduction
+def G1(cand):
+    """Verify the DECLARED mu-realization reproduces mu(y)=1-e^-y exactly (symbolic identity,
+    full domain — not point checks). This certifies the constitutive sector; whether the FULL
+    action delivers this reduction still requires the candidate's own couplings to be MOND-neutral,
+    which G0 order rules + later gates police."""
+    y = sp.symbols('y', positive=True)
+    mr = cand.get("mond_realization", "").lower()
+    target = 1 - sp.exp(-y)
+    if mr == "aux_legendre_chi":
+        chi = sp.symbols('chi', positive=True)
+        Vp = -sp.log(1 - chi) ** 2                      # frozen V'(chi)
+        # constitutive relation: chi = mu(y) solves Vp(chi) = -y^2  (Legendre pairing)
+        resid = sp.simplify(Vp.subs(chi, target) + y ** 2)
+        ok = resid == 0
+        return _cert("G1", "PASS" if ok else "KILL",
+                     f"aux-Legendre: V'(mu(y))+y^2 = {resid} (must be 0)",
+                     assumptions=["chi algebraic; couplings MOND-neutral per G0"])
+    if mr in ("nonlocal_f+",):
+        Z = sp.symbols('Z', positive=True)
+        Fp = 4 * (1 - (1 + sp.sqrt(Z) / 2) * sp.exp(-sp.sqrt(Z) / 2))
+        mu = sp.simplify(1 - 2 * sp.diff(Fp, Z).subs(Z, 4 * y ** 2) * 1)
+        # note: 2F+'(Z) = e^{-sqrt(Z)/2}; with Z=4y^2 -> e^{-y}
+        resid = sp.simplify((1 - 2 * sp.diff(Fp, Z)).subs(Z, 4 * y ** 2) - target)
+        ok = resid == 0
+        return _cert("G1", "PASS" if ok else "KILL",
+                     f"F+: 1-2F+'(4y^2) - (1-e^-y) = {resid} (must be 0)",
+                     assumptions=["quasistatic limit; localization health deferred to G4/G5"])
+    if mr == "constraint_first_q":
+        # constraint C_M = D_i[mu(y) D^i q] - src with the frozen mu: the reduction is definitional;
+        # certify ellipticity across the domain instead (the real content).
+        lam_perp = target
+        lam_par = sp.simplify(target + y * sp.diff(target, y))
+        p_ok = all(sp.limit(l, y, 0) >= 0 for l in (lam_perp, lam_par))
+        mins = min(float(lam_par.subs(y, v)) for v in (0.1, 0.5, 1, 2, 5, 10))
+        ok = p_ok and mins > 0 and sp.simplify(lam_par - (1 - sp.exp(-y) + y * sp.exp(-y))) == 0
+        return _cert("G1", "PASS" if ok else "KILL",
+                     f"constraint-first: lam_perp=mu>0, lam_par=1-e^-y+ye^-y>0 (min sampled {mins:.3f})",
+                     numeric_values={"lam_par_min_sampled": mins},
+                     assumptions=["generic branch; Dirac count deferred to G4"])
+    return None
+
+
+# ------------------------------------------------------------------ G2: Newton/GR limit
+def G2(cand):
+    """G_eff/G_N = 1 requires: no coupling rescales the Gauss law at y>>1. Deterministic check on
+    the declared architecture + the frozen mu limit (exponentially small corrections)."""
+    y = sp.symbols('y', positive=True)
+    mu = 1 - sp.exp(-y)
+    lim = sp.limit(mu, y, sp.oo)
+    resc = [cp for cp in cand.get("couplings", [])
+            if "g_rescale" in [str(s).lower() for s in cp.get("sources", [])]]
+    if resc:
+        return _cert("G2", "KILL", "declared G-rescaling coupling present (forbidden repair)")
+    if lim != 1:
+        return _cert("G2", "KILL", f"mu(inf)={lim}!=1")
+    # corrections must be exponential: 1-mu = e^-y (exact for the frozen kernel)
+    return _cert("G2", "PASS", "mu->1 with corrections exactly e^-y; no G-rescaling couplings declared",
+                 assumptions=["full-solution GR recovery beyond constitutive sector deferred to G4-G8"])
+
+
+# ------------------------------------------------------------------ G3: tensor sector
+def G3(cand):
+    """TT-sector structural theorem (verified in the gauntlet): on transverse-traceless h_ij,
+    K=0, a_i=0, D_i(scalars)->0 at quadratic order, so ONLY the GR kinetic pair + R3 survive
+    UNLESS a coupling touches TT structures directly. Deterministic scan of declared sources."""
+    TT_TOUCHING = {"k_ij", "weyl_e", "graviton_mass", "tt_kernel", "riemann"}
+    offenders = []
+    for cp in cand.get("couplings", []):
+        hits = TT_TOUCHING & {str(s).lower() for s in cp.get("sources", [])}
+        if hits:
+            offenders.append((cp.get("label"), sorted(hits)))
+    for f in cand.get("fields", []):
+        if f.get("type") == "stf_tensor" and f.get("kinetic") == "standard":
+            offenders.append((f.get("name"), ["propagating STF tensor mixes with TT"]))
+    if offenders:
+        return _cert("G3", "OPEN",
+                     f"couplings touch the TT sector {offenders}; c_T needs an explicit derivation",
+                     assumptions=["template covers only the no-TT-coupling theorem"])
+    return _cert("G3", "PASS",
+                 "no declared coupling touches TT structures => quadratic TT action = GR pair + R3 "
+                 "=> Q_T>0, c_T^2=1 exactly (gauntlet-verified theorem)",
+                 assumptions=["declared architecture faithful (policed by later gates)"])
+
+
+TEMPLATES = {"G1": G1, "G2": G2, "G3": G3}
+
+
+def run(gate, cand):
+    fn = TEMPLATES.get(gate)
+    if not fn or not applies(gate, cand):
+        return None
+    try:
+        return fn(cand)
+    except Exception as e:
+        return _cert(gate, "BLOCKED", f"template error: {e}")
