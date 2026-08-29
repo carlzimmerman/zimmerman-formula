@@ -1,0 +1,38 @@
+==========================================================================
+(A) CONSTITUTIVE RELATION -- forced by the theory's own static equations
+   frozen interpolation      mu(y)      = 1 - exp(-y)
+   required F'(A)            F'         = -2*exp(-y)
+   khronometric alpha        alpha(y)   = 2*exp(-y) = 2(1-mu)
+   G_eff/G = 1/(1-alpha/2)              = exp(y)/(exp(y) - 1) = 1/mu(y)   [the MOND Poisson law]
+
+   LITERAL reading chi = mu:  mu_eff = 1 -+ chi/2 in [1/2, 3/2]  -> deep MOND (mu_eff -> 0) UNREACHABLE.
+   => the auxiliary that multiplies a.a must be 2(1-mu) = 2 e^{-y}, not mu.
+
+   Solar-System evaluation (a0 = 9.36e-11 m/s^2, framework value):
+      Earth orbit (GM_sun/r^2) y = g/a0 = 6.335e+07 ,  alpha_kh = 2 e^{-y} = 2*exp(-6.335e+07)
+      Saturn orbit             y = g/a0 = 6.944e+05 ,  alpha_kh = 2 e^{-y} = 2*exp(-6.944e+05)
+      Cassini at 8.7 AU        y = g/a0 = 4.701e+05 ,  alpha_kh = 2 e^{-y} = 2*exp(-4.701e+05)
+      exp(-6.3e7) underflows every float format; alpha_kh is zero to any conceivable precision.
+
+==========================================================================
+(C) STATIC TRACELESS-STRESS GATE (Phi = Psi):  explicit variation
+   MOND sector: d/d(chi_ij) of -sqrt(gamma) F(A) at chi=0:
+     coefficient of c11 : (a1**2 - a3**2)*Subs(Derivative(F(_xi_1), _xi_1), _xi_1, a1**2 + a2**2 + a3**2)
+     coefficient of c12 : 2*a1*a2*Subs(Derivative(F(_xi_1), _xi_1), _xi_1, a1**2 + a2**2 + a3**2)
+   -> traceless stress ~ F'(A) [a_i a_j]^TF : QUADRATIC in a, nonzero whenever F' != 0  (Part-I no-go reproduced)
+
+   carrier sector: d/d(chi_ij) of sqrt(gamma)[f Q^ij A_ij - (1/2) M Q^ij Q_ij]:
+     coefficient of c11 : 2*M*q11*q22 - M*q12**2 + M*q22**2 + M*q23**2 - 2*a1**2*f*q11/3 - a1**2*f*q22/3 - 2*a2**2*f*q11/3 - a2**2*f*q22/3 - 2*a3**2*f*q11/3 - a3**2*f*q22/3
+     coefficient of c12 : -2*M*q11*q12 - 2*M*q12*q22 - 2*M*q13*q23 - 2*a1**2*f*q12/3 - 2*a2**2*f*q12/3 - 2*a3**2*f*q12/3
+
+   Q equation of motion:  f A^ij - M Q^ij = 0  =>  Q^ij = (f/M) A^ij ~ O(a^2)
+     on-shell coefficient of c11 : -2*f**2*(a1 - a3)*(a1 + a3)*(a1**2 + a2**2 + a3**2)/(3*M)
+     on-shell coefficient of c12 : -4*a1*a2*f**2*(a1**2 + a2**2 + a3**2)/(3*M)
+     homogeneity degree in a (scaling a -> lambda a): lambda_scale**4
+     MOND-sector c12 coefficient: 2*a1*a2*Subs(Derivative(F(_xi_1), _xi_1), _xi_1, a1**2 + a2**2 + a3**2)  -> degree 2 in a
+
+   VERDICT (C): carrier traceless stress is O(a^4), Sigma_P is O(a^2).
+   They are different orders in the acceleration, so the exact profile match
+   f(chi(y)) = y e^{-y} = Sigma_P(y) does NOT produce a cancellation in the
+   spatial traceless field equation.  Phi = Psi is NOT established on-shell
+   beyond linear order (at linear order gamma_PPN = 1 is verified separately).
