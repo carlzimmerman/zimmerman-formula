@@ -1,0 +1,155 @@
+
+fc_disformal_lensing_vs_alpha2_2026.py
+======================================
+FRIED CHICKEN -- chassis #8: a PURE DISFORMAL SCALAR-TENSOR MOND (NO vector).
+Bekenstein-Sanders / RAQUAL lineage.  Gravity is standard Einstein-Hilbert in g;
+matter + photons couple to the disformal metric
+
+    g~_{mu nu} = A(X) g_{mu nu} + B(X) d_mu phi d_nu phi ,   X = g^{ab} d_a phi d_b phi ,
+
+phi = shift-symmetric scalar, MOND kinetic function K(X).  Background cosmological gradient
+d_mu phi_bg = (phidot_c, 0,0,0) (timelike, the preferred frame) + static source dphi(x).
+Target completion kernel nu(y) = 1/(1-e^{-sqrt(y)})  (Milgrom-Sanders 2008 form at alpha=1/2).
+
+MAKE-OR-BREAK QUESTIONS answered with sympy, analytically, in the weak field:
+
+  DELIVERABLE 1 (lensing gate).  Can A(X),B(X) give, SIMULTANEOUSLY,
+      (i)   MOND dynamics    g~_dyn = nu(y) g_bar,
+      (ii)  MOND lensing     Phi~+Psi~ = 2 nu(y) Phi_N,
+      (iii) gamma_PPN = 1    Phi~ = Psi~ ?
+   Does the disformal B fix the pure-scalar under-lensing WITHOUT a vector?
+
+  DELIVERABLE 2 (preferred-frame gate).  Boost the source by w through the scalar frame.
+   B(X) d phi d phi with boosted phidot_c generates g~_{0i} (O(w)) and g~_{00} (O(w^2))
+   -> alpha_1, alpha_2.  With A,B fixed by MOND+lensing, is alpha_2 large [DEAD], tunable
+   [LIVE, report condition], or zero-by-symmetry [LIVE, prove it]?
+
+Conventions (stated once):
+  * signature (-,+,+,+); Einstein frame g_00=-(1+2 eps Phi), g_ij=(1-2 eps Psi)delta_ij, g_0i=0.
+  * PN bookkeeping eps on {Phi,Psi,dphi & source potentials}; phidot_c is O(1) background; w small.
+  * Lensing = null geodesics of g~, governed by the optical metric gamma_ij = g~_ij/(-g~_00);
+    Born deflection alpha^a = -Int Gamma^a_{zz}[gamma] dz.  "Phi~+Psi~" is its isotropic reduction.
+  * gamma_PPN via light bending of a spherical (Sun) source; STRONG form = physical metric isotropic.
+  * alpha_2 normalisation: g_{0i} carries alpha_1 w_i U + alpha_2 w_j d_i d_j chi (standard PPN).
+
+TWO honest readings of X, both carried:
+  (A) COVARIANT: X dominated by the timelike phidot_c (physically present).  [Part 2]
+  (B) LOCAL/RAQUAL: for the static field the kinetic variable is |grad dphi|^2 (phidot set aside),
+      the reading that lets MOND dynamics exist at all.                       [Part 3]
+
+Every load-bearing claim is a sympy check() that must pass.  Exit 0 = all checks pass.
+Intractable steps are flagged, not faked.  Footings: a0=9.3619e-11 canonical (FITTED); kappa=1/2 FITTED.
+
+
+==================================================================================================
+PART 1 -- VALIDATION: pure CONFORMAL scalar is light-blind => it UNDER-LENSES
+==================================================================================================
+  [ok ]  1. MATTER feels Phi~ = Phi + a  (conformal fifth force reaches dynamics)
+         Phi~_matter = Phi + a
+  [ok ]  2. LIGHT is CONFORMALLY BLIND: the conformal factor cancels in n^2 = g~_ij/(-g~_00)
+         n^2 = (-2*Psi*eps + 1)/(2*Phi*eps + 1)  (no 'a')
+  [ok ]  3. LIGHT sees Phi~+Psi~ = Phi+Psi (Einstein frame ~ baryonic) => NO MOND boost => UNDER-LENSES
+         lensing potential = Phi + Psi  (misses the 'a' boost matter feels)
+  [ * ] classic RAQUAL/TeVeS under-lensing reproduced: matter boosted by 'a', light not. This is why
+         TeVeS needed a vector. Now test whether the DISFORMAL B repairs it without one.
+
+==================================================================================================
+PART 2 -- COVARIANT reading (timelike phidot_c present): what B(X) actually couples
+==================================================================================================
+  [ok ]  4. *** dX at LINEAR order = 2 Phi phidot_c^2  -- set by the METRIC potential, NOT by dphi ***
+         dX_linear = 2*Phi*phidot_c**2  (the local scalar gradient enters X only at O(eps^2))
+  [ok ]  5. Phi~ (covariant) = Phi*(A0 + A' phidot^2 - B' phidot^4)/(A0 - B0 phidot^2)  -- carries B'
+         Phi~ = Phi*(A0 + Ap*phidot_c**2 - Bp*phidot_c**4)/(A0 - B0*phidot_c**2)
+  [ok ]  6. *** Psi~ (covariant) carries NO B' at all: disformal is invisible to the spatial sector ***
+         Psi~ = Psi - Ap*Phi*phidot_c**2/A0;  d(Psi~)/dB' = 0
+  [ok ]  7. *** Phi~,Psi~ are proportional to Phi (metric), independent of dphi -> the coupling is a CONSTANT G-rescaling, NOT a MOND fifth force ***
+         shift-symmetric A(X),B(X) + timelike bg => G_eff=const*G, no RAR shape at linear order
+  [ok ]  8. *** the sole linear-order dphi coupling is g~_0i = B0 phidot_c d_i dphi (a PREFERRED-FRAME off-diagonal term) -- not dynamics, not lensing ***
+         g~_0i (linear) = B0*gi*phidot_c
+  [ * ] COVARIANT VERDICT:
+         the shift-symmetric disformal coupling with a timelike cosmological background produces
+         (a) a constant G-rescaling in the diagonal sector (no MOND), and (b) a preferred-frame g~_0i.
+         To get a genuine dphi-sourced MOND force one must break shift symmetry (A(phi), = RAQUAL) -> Part-1 under-lensing,
+         OR adopt the local reading (Part 3).  Either way the disformal B is chained to a preferred-frame term.
+
+==================================================================================================
+PART 3 -- LOCAL reading (grant MOND dynamics): can the SPATIAL disformal repair lensing?
+==================================================================================================
+  [ok ]  9. the ISOTROPIC demands (i)+(ii)+(iii) ARE solvable (disformal repairs isotropic lensing; confirms sf27, refutes the 'over-determined' draft)
+         a = Phi_N*nu - Phi_N,  D = Bdis*s^2 = -12*A0*Phi_N*nu + 12*A0*Phi_N
+  [ok ] 10. *** but the solution REQUIRES D = Bdis*s^2 != 0 -- a nonzero disformal amplitude ***
+         D = -12*A0*Phi_N*nu + 12*A0*Phi_N = -12 A0 (nu-1) Phi_N  (nonzero whenever there is any MOND boost)
+  [ok ] 11. *** that same amplitude is an ANISOTROPIC STRESS Pi_ij = D (n_i n_j - dij/3) != 0: the physical metric is NOT isotropic -> STRONG gamma_PPN=1 FAILS ***
+         isotropic Phi~=Psi~ holds only for the trace; the traceless quadrupole is unavoidable
+  [ok ] 12. VALIDATION: isotropic W=-k/r gives Born deflection = -2k/b (magnitude 2k/b = 4GM/b, GR value; sign = toward the lens)
+         alpha_iso = -2*k/b
+  [ok ] 13. the disformal ANISOTROPIC term contributes to the deflection with the SAME amplitude c0 that breaks isotropy -> lensing-boost and slip are ONE knob, inseparable
+         alpha_aniso = -2*c0*rc/(3*b) (per unit c0); d/dc0 = -2*rc/(3*b) != 0
+  [ * ] LOCAL-READING VERDICT:
+         isotropic lensing IS repairable by the disformal (honest), but only with a nonzero
+         anisotropic stress (a quadrupolar lensing distortion, a genuine prediction/liability, MOND-regime only),
+         and only with a LARGE coupling B ~ (c^2/a0)^2. The clean kill is that this same B, once the timelike
+         background is restored, sources the preferred frame -> Part 4.
+
+==================================================================================================
+PART 4 -- DELIVERABLE 2: preferred-frame alpha_1, alpha_2 (clean O(w^2), truncated)
+==================================================================================================
+  [ok ] 14. g~_0x carries the static preferred-frame term B0 phidot_c d_x dphi (the Part-2 g~_0i), nonzero unless B0=0
+         static g~_0x (O(eps), w^0) = B0*dx*phidot_c
+  [ok ] 15. alpha_1 carrier: the O(w)*U part of g~_0i = 2 B' U phidot_c^4 w  (preferred-frame) -- nonzero unless B'=0
+         coeff(eps*w) of g~_0x = 2*Bp*U*phidot_c**4*w
+  [ok ] 16. *** alpha_2 carrier: g~_00 has an O(w^2) source term != 0 -> a real preferred-frame alpha_2 ***
+         O(eps*w^2) part of g~_00 = 2*U*phidot_c**2*w**2*(-2*Ap + 3*Bp*phidot_c**2)
+  [ * ] alpha_2 carrier, U-channel  (multiplies w^2 * U):
+         phidot_c**2*w**2*(-4*Ap + 6*Bp*phidot_c**2)
+  [ * ] alpha_2 carrier, dphi-channel (multiplies w^2 * d_x dphi):
+         0  (vanishes at this order)
+  [ok ] 17. the alpha_2 U-channel is carried by A',B' (the coupling DERIVATIVES) times phidot_c powers, and is NONZERO
+         alpha_2(U) = phidot_c**2*w**2*(-4*Ap + 6*Bp*phidot_c**2)  ~ (A' phidot^2 + B' phidot^4)
+  [ok ] 18. HONEST: the alpha_2 dphi-channel (w^2 * d_x dphi in g~_00) vanishes at this order; the preferred-frame O(w^2) g~_00 term is entirely the U-channel above
+         alpha_2(dphi) = 0
+  [ok ] 19. VALIDATION: EVERY preferred-frame carrier (alpha_1 and alpha_2) vanishes as phidot_c -> 0; alpha ~ phidot_c^2*coupling -- the known conformal-scalar/aether scaling
+         no term survives at phidot_c=0 => the effect is entirely the cosmological gradient's boost-breaking
+  [ * ] scaling: alpha_2 has NO term independent of phidot_c; leading power is phidot_c^2 (A' channel) and phidot_c^2..4 (B channels).
+  [ok ] 20. *** NO symmetry zeroes alpha_2: the O(w^2) preferred-frame carrier is a generic nonzero fn of {A',B',phidot_c}; shift symmetry acts on phi, not on the boost of the timelike background ***
+         escape (iii) 'automatically zero by symmetry' is CLOSED
+  [ * ] HONESTY / SCOPE on the magnitude:
+         this script extracts the preferred-frame SOURCE TERMS in g~ (nonzero, ~ phidot_c^2*coupling,
+         unprotected). It does NOT solve the full coupled O(w^2) metric+scalar system, so the closed alpha_2 COEFFICIENT in
+         the standard PPN normalisation is not reported (same honest limit as the AeST FINAL_PPN alpha_2). What IS established:
+         alpha_2 is nonzero, ~ phidot_c^2 x (A',B' at the cosmological background), tunable to zero ONLY via phidot_c -> 0.
+  [ * ] Why phidot_c -> 0 is not a free escape:
+         phidot_c is the cosmological scalar velocity that (a) provides the disformal
+         TEMPORAL coupling and (b) drives a0 ~ H(z); and B0 sits at the cosmological (low-acceleration) background where B is
+         LARGE for lensing, so the carrier is NOT kernel-suppressed. Order-of-magnitude (stated as an ESTIMATE, not a closed
+         number): with phidot_c^2 ~ the cosmological-gradient scale and B ~ (c^2/a0)^2, the carrier sits far above the Solar-
+         System bound |alpha_2| < ~4e-7 -- so alpha_2 is a live blocker, removable only by a tuning that guts the mechanism.
+
+==================================================================================================
+PART 5 -- VERDICT
+==================================================================================================
+  [ * ] DELIVERABLE 1 (lensing gate):
+         the disformal B CANNOT give MOND-dynamics + factor-2 lensing + gamma_PPN=1 as a clean package.
+         - Covariant reading (Part 2): shift-symmetric A(X),B(X) + timelike bg => constant G-rescaling, NO MOND;
+           the only linear dphi coupling is a preferred-frame g~_0i. To get MOND you must break shift symmetry
+           (RAQUAL) and then light is conformally blind => UNDER-LENSES (Part 1).
+         - Local reading (Part 3): isotropic lensing IS repairable (honest, matches sf27), but ONLY with a nonzero
+           disformal amplitude, which is an unavoidable ANISOTROPIC STRESS (strong gamma_PPN=1 fails) and needs B ~ (c^2/a0)^2.
+  [ * ] DELIVERABLE 2 (preferred-frame gate):
+         the SAME disformal coupling, with the timelike background restored, sources a static preferred-
+         frame g~_0i = B0 phidot_c d dphi, an alpha_1 carrier ~ B' phidot_c^4 (w U), and an alpha_2 carrier in g~_00
+         ~ phidot_c^2 (A' + phidot^2 B') (w^2 U) -- all NONZERO, scaling as phidot_c^2*coupling (the known Bekenstein-
+         Sanders/aether result), NOT protected by any symmetry, set by FIXED cosmological couplings (low-acceleration =>
+         B large, not kernel-suppressed).  The closed alpha_2 coefficient needs the full coupled O(w^2) solve (not done,
+         stated honestly); but it is nonzero and removable ONLY by phidot_c -> 0, which deletes the disformal mechanism.
+  [ * ] OVERALL:
+         *** DEAD -- the pure disformal scalar hits the SAME lensing-vs-preferred-frame pincer as AeST/TeVeS. ***
+         The factor-2 lensing a vector supplies (a SPATIAL preferred direction entering g~_ij at LINEAR order) cannot
+         come from B(X) d phi d phi: the scalar's spatial gradient enters g~_ij only at O(eps^2) and only as anisotropic
+         stress, while its coupling to the timelike background is exactly what generates an unsuppressed alpha_2.
+         This is precisely why TeVeS needed a vector; the disformal scalar does not evade the no-go.
+
+==================================================================================================
+CHECKS: 20/20 passed.
+==================================================================================================
+ALL CHECKS PASSED -- verdict established: DEAD (under-lensing no-go + unprotected alpha_2 pincer).
