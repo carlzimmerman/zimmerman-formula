@@ -87,3 +87,36 @@ $$\text{Derive } f_1=\alpha_1^{\rm AeST}(K_B,K_2,\lambda_s,Q_0),\ f_2=\alpha_2^{
 > **FC-AeST + J₁₀ = CONDITIONALLY CLOSED / GOLDEN-CORNER CANDIDATE.** A viable parameter region exists at the level of every gate
 > derived so far; the AeST-specific α₂ (decisive) and the full finite-k characteristic closure remain **unproved** — one of them (α₂)
 > could still kill it. Crispy candidate, honestly conditional — not a fabricated "fully proven" theory.
+
+## SESSION-END FROZEN VERDICT (2026-08-28)
+
+**FROZEN CANDIDATE (stop modifying):** `AeST + μ₁₀`, with the `c₂(Q₀)=K_B/(1−2K_B)` term treated as a **TEST DEFORMATION**, not part
+of the certified theory. Do not swap the kernel, do not architecture-hop.
+
+**STATUS: `CONDITIONALLY CLOSED / PPN-OPEN`.** This is the exact point where the equations stop yielding a number without the full
+moving-source calculation — not a fabricated closure.
+
+What is genuinely established (banked, committed, verified this session):
+1. **2-DOF constraint-first MOND: CLOSED on the lensing axis** — the unified secant/tangent anisotropic-Hessian no-go (Part I). AeST's
+   6-DOF (aether) structure is precisely what evades it.
+2. **AeST + μ₁₀ is the surviving architecture**, empirically Cassini-selected (μ₁₀ at 0.06× ceiling; exponential kernels FAIL 3.76–6.23×).
+3. **c₂★ = K_B/(1−2K_B) is an EXACT reference-Einstein-aether cancellation** on the Maxwell slice (c₄=0): α₁=−4K_B, α₂=0, c_T=s₁=s₀=1
+   (all cones luminal, positive kinetic) — verified `fc_maxwell_vs_c4_corner_2026.py`. **c₄=0 is the vector-health condition** (s₁²=c₁/c₁₄);
+   the c₄≈−c₁ alternative is pathological (vector ~10⁴c).
+4. **But this is the REFERENCE-aether locus, NOT a certified AeST locus.** The AeST scalar enters via the acceleration coupling
+   `2(2−K_B)J^μ∇_μφ` (J^μ=A^ν∇_νA^μ), which integrates out to a NONLOCAL longitudinal operator, **not** a local `c₂(∇·A)²` — so the
+   reference cancellation cannot be imported by setting c_i. The full answer is `α₂^full = 0 + Δα₂^(φA)`, and **Δα₂^(φA) is undetermined
+   by any available AeST equation/literature** (no published scalar-retained AeST 1PN α₂ exists).
+5. **Corrections banked (no manufactured claims):** (a) "adding c₂ liberates a 7th DOF" is NOT established — the Dirac rank of the
+   repaired action is OPEN (6 or 7), must be recomputed, not assumed. (b) c₂(Q) shares the quadratic Hessian/DOF with constant c₂ but its
+   1PN α₂ can differ (the O(δ³) term feeds the 1PN equations).
+
+**THE ONE REMAINING DECISIVE CALCULATION (no algebraic shortcut):** the coupled scalar-retained moving-source 1PN solve
+`(g_{0i}, A_i, φ)_1PN → α₂^AeST`, plus the repaired-action Dirac rank. Outcome: `Δα₂^(φA)<10⁻⁷` + nondegenerate rank + healthy
+finite-k ⇒ FRIED; else a clean preferred-frame diagnosis. This is genuine unpublished frontier work (an agent-run attempt, wu1m3w9nx,
+did not close it — consistent with α₂-OPEN); the legitimate next step is a dedicated multi-pass derivation adapting Sagi (PRD 80.044032)
+to the J^μ∇φ coupling, NOT another one-line swing.
+
+**Honest bottom line:** we are at the fryer control panel, not the plate. J₁₀ never failed anywhere — every kill this session was
+architectural. AeST+μ₁₀ is the strongest defensible relativistic-MOND candidate the program has produced, frozen at CONDITIONALLY CLOSED
+/ PPN-OPEN.
