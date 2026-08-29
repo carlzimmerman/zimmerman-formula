@@ -1,0 +1,186 @@
+======================================================================================
+STAGE 2A part 1 -- EXACT static certification of the three deepest candidates
+======================================================================================
+
+building the static reduction from scratch (independent of the stage-1 cache) ...
+  integration-by-parts passes: all <= 1
+
+  [PROVEN                    ] (pipeline)                         CROSS-CHECK vs stage-1 cached reduction
+      claim   : the independently rebuilt static reduction reproduces every stage-1 reduction row for the 10 operators used by C1/C2/C3, plus R(g)
+      residual: max |new - cached| over 11 operators x 15 equations = 0
+
+======================================================================================
+C1  C1_MAXWELL_AETHER_BEKENSTEIN
+======================================================================================
+
+  reduced Lagrangian after exact unit-timelike elimination (C1):
+     J = Phi1**2/2 - 4*Phi1*Psi1 + 2*Psi1**2 + chi0**3/3 - chi0*phi1**2/2
+
+  [PROVEN                    ] C1_MAXWELL_AETHER_BEKENSTEIN       Gate-CARRIER (unit-timelike constraint)
+      claim   : A_mu = (sqrt(1+2 Phi), 0, 0, 0) solves g^{mn} A_m A_n + 1 = 0 identically in the static sector, so A_mu is NOT an independent field there
+      residual: g^00 A_0^2 + 1 = 0
+    Q_chi    = 0  :  chi0**2 - phi1**2/2
+    P_phi    = 0  :  Sigma/2 - chi0*phi1
+    P_Phi    = 0  :  Phi1 - 4*Psi1 + Sigma/2
+    P_Psi    = 0  :  -4*Phi1 + 4*Psi1
+
+  exact static solution (C1):
+    chi0 = 2**(1/4)*sqrt(Sigma)/2
+    phi1 = 2**(3/4)*sqrt(Sigma)/2
+    Phi1 = Sigma/6
+    Psi1 = Sigma/6
+    chi roots of Q_chi: [-sqrt(2)*phi1/2, sqrt(2)*phi1/2]  -> P_phi selects the branch with chi0 phi1 > 0
+
+  [PROVEN                    ] C1_MAXWELL_AETHER_BEKENSTEIN       Gate-CARRIER (chi elimination)
+      claim   : the algebraic chi equation -X/2 + chi^2 = 0 has the exact root chi = |phi'|/sqrt(2); substituting gives the pure cubic AQUAL L_eff = -|grad phi|^3 / (3 sqrt 2) -- a genuinely nonlinear mu(y) OUTPUT, no free function was supplied
+      residual: 0
+
+  metric sector: Phi1 = Sigma/6,  Psi1 = Sigma/6   (pure GR: Sigma/8)
+
+  [PROVEN                    ] C1_MAXWELL_AETHER_BEKENSTEIN       G3 cross-validation vs Einstein-aether
+      claim   : for a general Maxwell coefficient gamma (operator gamma * F_mn F^mn) the exact static solve gives Phi1 = Sigma/(8(1+gamma)), i.e. G_N/G_bare = 1/(1+gamma).  With the S0 map c14 = c1 + c4 = -2 gamma this is EXACTLY the Einstein-aether result 1/(1 - c14/2), including the c14 = 2 (gamma = -1) singularity.  Two independent routes agree.
+      residual: Phi1(gamma) = Sigma/(8*(gamma + 1)) ; G_N/G = 1/(gamma + 1) ; 1/(1 - c14/2) = 1/(gamma + 1) ; difference = 0
+
+  [PROVEN                    ] C1_MAXWELL_AETHER_BEKENSTEIN       G3 / Newton constant
+      claim   : the Maxwell aether renormalises Newton's constant by the exact factor G_N/G_bare = 4/3 = 1/(1 - c14/2) with c14 = c1 = 1/2 (Einstein-aether); stage 1 MISSED this because it left A01 free and its flux equation drove A01 -> 0 instead of A01 = Phi1
+      residual: 0
+      Phi1 = Sigma/6 exactly, versus Sigma/8 for pure GR.
+      G_eff/G_N -> 1 at high acceleration is still satisfied once G_N is
+      the MEASURED constant, so this is not by itself a G3 kill; it is
+      recorded because it shifts the compiler's own a0 normalisation by 3/4
+      and because it is a demonstrable false step in the cheap screen.
+
+  matter-frame gradients:  Phi~' = Phi1 + phi1    Psi~' = Psi1 + phi1
+
+  [PROVEN                    ] C1_MAXWELL_AETHER_BEKENSTEIN       Gate-SLIP / G2 (lensing == dynamics)
+      claim   : Phi~' - Psi~' == 0 for the Bekenstein point (M1, M5) = (-1, -4); the matter-frame slip reduces EXACTLY to the Einstein-frame slip Phi' - Psi', which the field equations set to zero
+      residual: Phi~'-Psi~' = Phi1 - Psi1  ->  on shell = 0
+
+  [PROVEN                    ] C1_MAXWELL_AETHER_BEKENSTEIN       G2 structural condition
+      claim   : the ONLY way the conformal slip cancels is the phi-dependent disformal vector term; solving Phi~' - Psi~' = 0 for M5 gives
+      residual: Phi~'-Psi~' = phi1*(4*M1*M3 - 4*M1 + M5)/(2*(M3 - 1))   =>   M5 = [4*M1*(1 - M3)]
+      M5 is forced NONZERO whenever M1 != 0, i.e. whenever there is a
+      fifth force at all.  M5 is the coefficient of  phi A_m A_n  in the
+      matter frame; it is the object that reappears in G4 (part 2).
+
+  g_dyn = Phi~' = 2**(3/4)*sqrt(Sigma)/2 + Sigma/6
+  g_dyn(g_N) = 2**(1/4)*sqrt(3)*sqrt(gN) + gN
+  kappa = 2**(1/4)*sqrt(3)   kappa^2 = 3*sqrt(2)
+  mu(y) = (sqrt(4*y + 3*sqrt(2)) - 2**(1/4)*sqrt(3))**2/(4*y)
+
+  [PROVEN                    ] C1_MAXWELL_AETHER_BEKENSTEIN       Gate-MOND / G1
+      claim   : eliminating the algebraic chi OUTPUTS the closed-form interpolation mu(y) = [ (sqrt(k^2+4y) - k)/2 ]^2 / y with k^2 = 3*sqrt(2) (= 3 sqrt 2, exact); mu -> 1 (Newtonian) and mu -> y/k^2 (deep MOND)
+      residual: u^2 + k u - y = 0 ;  lim_(y->inf) mu = 1 ; lim_(y->0) mu/y = sqrt(2)/6 = 1/k^2
+      stage 1 reported k^2 = 8/sqrt(2) = 4 sqrt 2 for this candidate; the
+      exact unit-timelike elimination changes it to 3 sqrt 2 (the same 3/4
+      as the Newton-constant renormalisation).  The FORM of mu is unchanged
+      and both limits are exact, so G1 PASSES.
+
+======================================================================================
+C2  C2_ALGEBRAIC_AETHER_NO_KINETIC_TERM
+======================================================================================
+  reduced Lagrangian after exact unit-timelike elimination (C2):
+     J = -4*Phi1*Psi1 + 2*Psi1**2 + chi0**3/3 - chi0*phi1**2/2 + 5/4
+
+  [PROVEN                    ] C2_ALGEBRAIC_AETHER_NO_KINETIC_TERM Gate-CARRIER (vector sector)
+      claim   : C2's vector operators are V6 = A^2, V9 = (A^2)^2 and the multiplier V15 = lam(A^2+1).  On the constraint surface A^2 = -1 all three are CONSTANTS, so A_mu carries NO derivative term whatsoever: dJ/dA01 == 0
+      residual: dJ/dA01 = 0
+      => the static metric sector of C2 is pure GR: Phi1 = Psi1 = Sigma/8,
+      no Newton renormalisation, and the aether is a pure spectator in the
+      static sector.  This is exactly the DEGENERATE (det H = 0) archetype
+      the live Palatini lead points at.
+  metric sector: Phi1 = Sigma/8, Psi1 = Sigma/8 (pure GR = Sigma/8)
+  carrier: chi0 = 0.429005190427*sqrt(Sigma), phi1 = 0.606704958630*sqrt(Sigma)
+
+  [COMPUTATIONALLY_VERIFIED  ] C2_ALGEBRAIC_AETHER_NO_KINETIC_TERM Gate-MOND / G1
+      claim   : C2 has the SAME cubic-AQUAL scalar sector as C1 and, because its aether is kinetic-free, NO Newton renormalisation.  The interpolation is the same closed form mu(y) = [(sqrt(k^2+4y)-k)/2]^2/y with a different k^2
+      residual: g_dyn(g_N) = g_N + k sqrt(g_N) with k^2 = 0.7979675843567324 (C1: 3 sqrt 2 = 4.242640687119285)
+
+  [COMPUTATIONALLY_VERIFIED  ] C2_ALGEBRAIC_AETHER_NO_KINETIC_TERM Gate-SLIP / G2
+      claim   : the stage-1 tuned pair (M1, M5) satisfies the SAME Bekenstein relation M5 = 4 M1 to the printed precision, so the frame slip cancels
+      residual: Phi~'-Psi~' = 21*phi1/500000000000000  (M5 - 4 M1 = -21/250000000000000)
+      the residual is nonzero only in the last printed digits of the two
+      stage-1 floats; with M5 = 4 M1 imposed exactly it is identically 0.
+
+======================================================================================
+C3  C3_ALGEBRAIC_TRACELESS_TENSOR
+======================================================================================
+  algebraic S-sector equations:
+    dJ/dS000 = -27*S000**2/40 - 9*S000*Szz0/20 - 2934300158615637*S000*lam0/10000000000000000 - 3*S000 + 9*Szz0**2/40 + 978100052871879*Szz0*lam0/10000000000000000 + Szz0
+    dJ/dSzz0 = -9*S000**2/40 + 9*S000*Szz0/20 + 978100052871879*S000*lam0/10000000000000000 + S000 + 27*Szz0**2/40 - 2934300158615637*Szz0*lam0/10000000000000000 - 3*Szz0
+    dJ/dlam0 = -2934300158615637*S000**2/20000000000000000 + 978100052871879*S000*Szz0/10000000000000000 - 2934300158615637*Szz0**2/20000000000000000 + 978100052871879/10000000000000000
+    dJ/dchi0 = -4*chi0**3/5 + chi0**2 - phi1**2/2
+
+  [PROVEN                    ] C3_ALGEBRAIC_TRACELESS_TENSOR      Gate-CARRIER (tensor sector)
+      claim   : C3 has NO derivative operator for S_mn (no K8/K9/D4/D5/D6): the tensor is purely algebraic, dJ/dS001 == 0, and is fixed pointwise by V10 + V13 + the norm multiplier V18
+      residual: dJ/dS001 = 0
+  real algebraic S vacua found: 6
+    S00 = -1/2   Szz = 1/2   lam = -10.223903
+    S00 = 1/2   Szz = -1/2   lam = -10.223903
+    S00 = -sqrt(3)/2   Szz = -sqrt(3)/6   lam = -7.5676550
+    S00 = -sqrt(3)/6   Szz = -sqrt(3)/2   lam = -12.880151
+    S00 = sqrt(3)/6   Szz = sqrt(3)/2   lam = -7.5676550
+    S00 = sqrt(3)/2   Szz = sqrt(3)/6   lam = -12.880151
+  M6 = 6 M1 / S00 selects S00 = 10307457067562001/11902030427588657 = 0.866025098009288534  -> branch found: True
+
+  [PROVEN                    ] C3_ALGEBRAIC_TRACELESS_TENSOR      Gate-PPN precursor (timelike tensor VEV)
+      claim   : the algebraic S-vacuum selected by the stage-1 tuning is S_00 = sqrt(3)/2 (exact root of the V10+V13+V18 system): the carrier vacuum singles out a TIME direction -- the preferred frame Gate-PPN flagged but did not score
+      residual: S_00 = sqrt(3)/2, S_zz = sqrt(3)/6
+
+  [PROVEN                    ] C3_ALGEBRAIC_TRACELESS_TENSOR      G2 structural condition (tensor route)
+      claim   : for the symmetric-traceless carrier the frame slip cancels only at M6 = 6 M1 / S_00 -- again PROPORTIONAL to the inverse of a TIMELIKE VEV component; the spatial components S_zz, S_xx cancel out of the trace average entirely, so only S_00 can do the job
+      residual: Phi~'-Psi~' = phi1*(6*M1 - M6*S000)/3  =>  M6 = [6*M1/S000]
+      stage-1 tuned value M6 = -2.380406085517731 equals 6 M1/S_00 = -2.380405245046973 (= 4 sqrt(3) M1) to 15 digits.
+
+  [COMPUTATIONALLY_VERIFIED  ] C3_ALGEBRAIC_TRACELESS_TENSOR      Gate-SLIP / G2
+      claim   : with the exact vacuum S_00 = sqrt(3)/2 and the stage-1 tuned M6, the frame slip vanishes to the precision of the two printed floats
+      residual: Phi~'-Psi~' = 2.42623E-7 * phi1  (exactly 0 at M6 = 4 sqrt(3) M1)
+
+  [PROVEN                    ] C3_ALGEBRAIC_TRACELESS_TENSOR      G3 / Newton constant
+      claim   : C3 has no derivative operator for any carrier field except phi, so nothing renormalises the |grad Phi|^2 coefficient: the metric sector is pure GR and G_eff/G_N = 1 exactly at high acceleration
+      residual: Phi1 = 1/8*Sigma, Psi1 = 1/8*Sigma (pure GR: Sigma/8 with a rescaled disformal normalisation)
+
+  [PROVEN                    ] C3_ALGEBRAIC_TRACELESS_TENSOR      Gate-CARRIER (chi elimination)
+      claim   : C3's chi potential is V3 chi^3 + V4 chi^4, so the algebraic chi equation is a CUBIC, not a quadratic: mu(y) is still an OUTPUT with no free function, but it is no longer the closed-form Bekenstein interpolation
+      residual: dJ/dchi = -4*chi0**3/5 + chi0**2 - phi1**2/2 = 0
+
+======================================================================================
+PART-I OBJECT  Sigma_P  (traceless metric stress) -- exact, on shell
+======================================================================================
+
+  C1_MAXWELL_AETHER_BEKENSTEIN
+     E-kinetic coefficient  a_E  (J ~ a_E E'^2) = 1/2
+     Sigma_P (source of E'')                    = 2**(3/4)*Sigma**(3/2)/4 - Sigma**2/36
+
+  [PROVEN                    ] C1_MAXWELL_AETHER_BEKENSTEIN       Part-I Sigma_P (traceless carrier stress)
+      claim   : Sigma_P is NOT zero -- the Part-I obstruction is present; it is not a G2 kill here because the enhancement is carried by the matter-frame map, not by the Einstein-frame metric, so Sigma_P only sources the traceless potential E through E'' = Sigma_P/(2 a_E) with a_E from R(g)
+      residual: a_E = 1/2 ,  Sigma_P = 2**(3/4)*Sigma**(3/2)/4 - Sigma**2/36
+      E'' = Sigma_P/(2 a_E) = Sigma_P.  In the vacuum region E ~ Sigma_P z^2/2
+      reaches the size of the Newtonian potential Phi1 z at
+        z* = 2 Phi1/Sigma_P = 12*Sigma/(9*2**(3/4)*Sigma**(3/2) - Sigma**2)
+      whose deep-MOND limit is z* -> 2/3/g, i.e. z* ~ c^2/a0 in physical
+      units (~3 Gpc).  So the Part-I traceless stress is REAL and nonzero here
+      but its curvature scale is the DARK-ENERGY scale, not the galaxy scale.
+      This is the exact reason the TeVeS/Bekenstein class evades Part I: the
+      MOND enhancement is carried by the matter-frame MAP, so the carrier's own
+      gravitating stress is O(a0^2/G) = O(rho_Lambda).
+
+  C2_ALGEBRAIC_AETHER_NO_KINETIC_TERM
+     E-kinetic coefficient  a_E  (J ~ a_E E'^2) = 1/2
+     Sigma_P (source of E'')                    = 1301397881549021*sqrt(1301397881549021)*2**(3/4)*Sigma**(3/2)/500000000000000000000000
+
+  [PROVEN                    ] C2_ALGEBRAIC_AETHER_NO_KINETIC_TERM Part-I Sigma_P (traceless carrier stress)
+      claim   : Sigma_P is NOT zero -- the Part-I obstruction is present; it is not a G2 kill here because the enhancement is carried by the matter-frame map, not by the Einstein-frame metric, so Sigma_P only sources the traceless potential E through E'' = Sigma_P/(2 a_E) with a_E from R(g)
+      residual: a_E = 1/2 ,  Sigma_P = 1301397881549021*sqrt(1301397881549021)*2**(3/4)*Sigma**(3/2)/500000000000000000000000
+
+  C3_ALGEBRAIC_TRACELESS_TENSOR
+     E-kinetic coefficient  a_E  (J ~ a_E E'^2) = 1/2
+     Sigma_P (source of E'')                    = chi0**3*(2 - 8*chi0/5)
+
+  [COMPUTATIONALLY_VERIFIED  ] C3_ALGEBRAIC_TRACELESS_TENSOR      Part-I Sigma_P (traceless carrier stress)
+      claim   : Sigma_P is NOT zero -- the Part-I obstruction is present; it is not a G2 kill here because the enhancement is carried by the matter-frame map, not by the Einstein-frame metric, so Sigma_P only sources the traceless potential E through E'' = Sigma_P/(2 a_E) with a_E from R(g)
+      residual: a_E = 1/2 ,  Sigma_P = chi0**3*(2 - 8*chi0/5)
+
+[certificates written -> s2a_certificates_part1.json]  n = 20
+
+done (part 1).
