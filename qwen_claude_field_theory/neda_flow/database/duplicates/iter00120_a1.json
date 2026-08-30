@@ -1,0 +1,82 @@
+{
+ "name": "Bimetric-Khronon Slip MOND (BKSMOND)",
+ "family": "multi-sector",
+ "fields": [
+  {
+   "name": "g_munu",
+   "type": "metric",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "f_munu",
+   "type": "metric",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "tau",
+   "type": "khronon",
+   "kinetic": "standard",
+   "timelike_background": true
+  },
+  {
+   "name": "Q",
+   "type": "stf_tensor",
+   "kinetic": "degenerate",
+   "timelike_background": false
+  },
+  {
+   "name": "P_i",
+   "type": "vector",
+   "kinetic": "none",
+   "timelike_background": false
+  }
+ ],
+ "couplings": [
+  {
+   "label": "MOND_constraint",
+   "sources": [
+    "P_i",
+    "D(iPj)_TF",
+    "mu(y)"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "HR_mass",
+   "sources": [
+    "f_munu",
+    "g_munu",
+    "R"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "Khronon_slip",
+   "sources": [
+    "tau",
+    "a_mu(accel)",
+    "mu(y)"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "aux_legendre_chi",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "This architecture utilizes Hassan-Rosen bigravity to exit the DC-013 slip-lock: the second metric $f_{\\mu\\nu}$ carries the independent off-ray lensing slip ($\\eta \\neq 1$) sourced by the MOND force law, while the physical metric $g_{\\mu\\nu}$ follows the MOND potential. A khronon $\\tau$ is introduced to mediate the PPN preferred-frame response (fixing $\\alpha_1, \\alpha_2$), with its coupling to the acceleration $a_\\mu$ screened by $e^{-y}$. Crucially, the kinetic normalization of the khronon (its mass and sound speed) is controlled by an independent Bekenstein-Stelle-like constant, decoupled from the $e^{-y}$ screening coefficient, thereby resolving the P7 collision (screening that kills kinetic normalization). The MOND force law is realized via a constraint on the physical metric's extrinsic curvature, with $f_{\\mu\\nu}$ acting as a slip carrier.",
+ "predicted_weak_field": "In the weak-field limit, the MOND force law $\\nabla \\cdot [\\mu(\\nabla\\Phi/a_0)\\nabla\\Phi] = 4\\pi G\\rho$ is recovered on $g_{\\mu\\nu}$. The second metric $f_{\\mu\\nu}$ develops a slip $\\eta = \\Psi_f/\\Phi_f \\neq 1$ due to the Hassan-Rosen mass terms, which, combined with the MOND enhancement of the physical metric, yields the correct lensing ratio $\\Phi_{\\text{lens}} \\approx \\Psi_{\\text{lens}} \\propto \\sqrt{g_N/a_0}$. The preferred-frame PPN parameters $\\alpha_1, \\alpha_2$ are proportional to $e^{-y}$ (vanishing in the Solar System) and are determined by the khronon's independent kinetic parameters, not the screening factor, ensuring no strong-coupling divergence as $y \\to \\infty$.",
+ "inequivalence_argument": "This candidate is inequivalent to DC-001 (local no-preferred-frame lensing) because it explicitly includes a khronon (preferred frame) and a second metric (multi-sector). It is inequivalent to DC-010 (finite-alpha_inf khronometric) because the PPN coupling is screened by $e^{-y}$ (not constant) and the kinetic normalization is independent (not controlled by the screening factor, avoiding P7). It is inequivalent to DC-014 (stiff/non-propagating vector) because the slip carrier is a dynamical second metric (Hassan-Rosen), not a stiff vector, and the khronon is propagating (standard kinetic). It is inequivalent to DC-002 (AeST) because the preferred-frame coupling is screened by $e^{-y}$, not a constant $K_B$. It is inequivalent to DC-012/DC-013 (frameless localized nonlocal) because it includes a preferred frame (khronon) and a second metric."
+}

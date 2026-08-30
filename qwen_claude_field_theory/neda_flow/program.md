@@ -1,11 +1,14 @@
-# AUTORESEARCH MOND — Zimmerman theory cooker (persistent, Qwen-proposes / computer-judges)
+# NEDA — Zimmerman theory cooker (autoresearch flow)
+(*Neda: the Greek nymph. Refer to this flow as `neda_flow`.*)
+
+## AUTORESEARCH MOND (persistent, Qwen-proposes / computer-judges)
 
 MISSION: KEEP COOKING. search -> test -> kill -> learn -> mutate -> repeat, with permanent memory,
 until all required gates PASS or the remaining grammar is proven closed. Full spec: Carl's 34-section
 directive (2026-08-29); immutable law: global_protocol.md (= CRISPY_FRIED_CHICKEN_RECIPE.md copy).
 
 ## LAUNCH (manual, token-free — no Claude needed)
-    cd qwen_claude_field_theory/autoresearch_mond
+    cd qwen_claude_field_theory/neda_flow
     ollama serve &            # if not already running; model 'Qwen-Physics' must be installed
     python3 runner.py 50      # run 50 iterations (omit arg = run until stopped; Ctrl+C = clean stop)
     # env overrides: QWEN_MODEL, OLLAMA_URL, QWEN_CTX, AR_MAX_GATES (default 5 = G1..G5), AR_CHECKPOINT

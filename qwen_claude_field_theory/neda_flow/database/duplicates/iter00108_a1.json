@@ -1,0 +1,72 @@
+{
+ "name": "Scale-Split Nonlocal F+ with Independent Stiff Vector (SSNF+ISV)",
+ "family": "spatially-nonlocal",
+ "fields": [
+  {
+   "name": "g_mu_nu",
+   "type": "metric",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "chi",
+   "type": "scalar",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "s",
+   "type": "scalar",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "u_mu",
+   "type": "vector",
+   "kinetic": "degenerate",
+   "timelike_background": true
+  }
+ ],
+ "couplings": [
+  {
+   "label": "mond_nonlocal",
+   "sources": [
+    "chi",
+    "inv_laplacian"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "spatial"
+  },
+  {
+   "label": "frame_screw",
+   "sources": [
+    "s",
+    "a_mu"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "u_stiffness",
+   "sources": [
+    "u_mu"
+   ],
+   "order_in_phi": 0,
+   "preferred_frame": true,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "nonlocal_F+",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "This theory uses a scale-split localization of the nonlocal F+ kernel: chi is the massless auxiliary carrying the MOND force law via an inverse Laplacian, while s is a gapped auxiliary with a large mass m_s that localizes the higher-derivative structure. The stiff vector u_mu provides the preferred-frame slip required for correct MOND lensing (DC-013), but its kinetic normalization is set by an independent (div u)^2 stiffness term, not by the screened e^-y coupling. This decouples the PPN-visible screened response from the kinetic normalization, directly attacking the P7 collision.",
+ "predicted_weak_field": "In the weak-field limit, the chi field produces the MOND force law with correct lensing via the nonlocal F+ kernel. The s field is integrated out at short distances, leaving a local effective theory. The stiff vector u_mu supplies the necessary off-ray (Phi, Psi) slip to achieve gamma_PPN=1 while the e^-y screening suppresses alpha_1 and alpha_2 in the Solar System. The independent stiffness of u_mu ensures that the longitudinal mode has a finite kinetic normalization even as e^-y -> 0, avoiding the strong-coupling wall.",
+ "inequivalence_argument": "This is inequivalent to DC-011 because it uses a scale-split two-auxiliary structure: chi is massless (kernel operator) and s is gapped (localization operator), so the mass gapping the extra mode is structurally different from the operator building the kernel. It is inequivalent to DC-012 and DC-013 because it includes a preferred-frame vector u_mu that supplies the lensing slip, escaping the frame-free slip-lock theorem. It is inequivalent to DC-014 because u_mu has independent (div u)^2 stiffness, not a screened Proca mass, so its longitudinal kinetic normalization is finite and independent of the e^-y screening factor, directly resolving the P7 issue that killed the stiff-vector family."
+}

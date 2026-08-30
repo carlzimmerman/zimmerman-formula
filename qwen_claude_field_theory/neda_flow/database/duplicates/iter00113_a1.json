@@ -1,0 +1,73 @@
+{
+ "name": "Scale-Split Nonlocal F+ with Independent Stiff Vector (SSNF+ISV)",
+ "family": "spatially-nonlocal",
+ "fields": [
+  {
+   "name": "g_mu_nu",
+   "type": "metric",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "chi",
+   "type": "scalar",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "s",
+   "type": "scalar",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "u_mu",
+   "type": "vector",
+   "kinetic": "degenerate",
+   "timelike_background": true
+  }
+ ],
+ "couplings": [
+  {
+   "label": "MOND_constraint",
+   "sources": [
+    "chi",
+    "rho"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "spatial"
+  },
+  {
+   "label": "screened_pframe",
+   "sources": [
+    "s",
+    "u_mu",
+    "a_mu"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "vector_stiffness",
+   "sources": [
+    "u_mu"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "nonlocal_F+",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "Uses two distinct spatial operators to satisfy the scale-split theorem: a heavy local mass gaps the 's' mode (freeze), while a light nonlocal operator (-D^2)^-1 builds the F+ kernel (fidelity). The stiff vector u_mu supplies the necessary preferred-frame carrier for lensing slip (DC-013), but its kinetic normalization is independent of the screened coupling e^-y, avoiding the P7 strong-coupling wound.",
+ "predicted_weak_field": "In the weak-field limit, the nonlocal F+ term generates the MOND force law. The screened preferred-frame coupling e^-y ensures alpha_1 and alpha_2 vanish in the high-acceleration Solar System limit. The stiff vector provides the off-ray metric slip (Psi != Phi) required for correct MOND lensing, while its independent kinetic term prevents the divergence of the longitudinal mode normalization.",
+ "inequivalence_argument": "This candidate is structurally distinct from DC-014 (stiff vector kill) because the vector's kinetic normalization is explicitly independent of the screened coupling, breaking the P7 identification. It is distinct from DC-011 (single-mass localization) by using a scale-split two-operator structure. It is distinct from DC-013 (frame-free slip-lock) by including a preferred-frame carrier. It is distinct from DC-010 (khronometric) by using a spatially nonlocal realization instead of a khronon field."
+}

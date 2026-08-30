@@ -1,0 +1,57 @@
+{
+ "claimed_mechanism": "This architecture implements the scale-split requirement by using two distinct auxiliary fields: chi for the MOND kernel (via (-D^2)^-1) and s for the preferred-frame slip. The s-field couples to acceleration with a coefficient screened by e^-y, ensuring the PPN slip vanishes in the Solar System. Crucially, the kinetic normalization of the metric is independent of the screened coupling, avoiding the P7 strong-coupling wall. The nonlocality of the s-coupling ensures the slip is generated dynamically without introducing a propagating vector mode.",
+ "couplings": [
+  {
+   "label": "mond_kernel",
+   "lapse_weighted": false,
+   "nonlocal": "spatial",
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "sources": [
+    "chi",
+    "inv_laplacian",
+    "rho"
+   ]
+  },
+  {
+   "label": "slip_carrier",
+   "lapse_weighted": false,
+   "nonlocal": "spatial",
+   "order_in_phi": 2,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "sources": [
+    "s",
+    "a_mu",
+    "elliptic_kernel_f(D2/a0^2)"
+   ]
+  }
+ ],
+ "family": "spatially-nonlocal",
+ "fields": [
+  {
+   "kinetic": "standard",
+   "name": "g_munu",
+   "timelike_background": false,
+   "type": "metric"
+  },
+  {
+   "kinetic": "none",
+   "name": "chi",
+   "timelike_background": false,
+   "type": "scalar"
+  },
+  {
+   "kinetic": "none",
+   "name": "s",
+   "timelike_background": false,
+   "type": "scalar"
+  }
+ ],
+ "inequivalence_argument": "This candidate is inequivalent to DC-012 (frameless localized-nonlocal) because it includes a screened preferred-frame coupling via the s-field, which is required by DC-013 to break the slip-lock. It is inequivalent to DC-014 (stiff/non-propagating screened preferred-frame vector) because the s-field is a scalar, not a timelike vector, and its kinetic term is auxiliary (kinetic: none), avoiding the P7 strong-coupling associated with vector longitudinal modes. The scale-split operators ensure that the mode-freezing and kernel-fidelity requirements are met independently, avoiding the empty window of DC-011.",
+ "kinetic_normalization_source": "independent",
+ "mond_realization": "nonlocal_F+",
+ "name": "Dual-Operator Nonlocal F+ with Screened Slip (DONFS)",
+ "predicted_weak_field": "In the weak-field limit, the theory predicts a MOND-enhanced Newtonian potential with a slip parameter eta that tracks the MOND force law. The screened preferred-frame coupling ensures that PPN parameters alpha_1 and alpha_2 vanish in the high-acceleration limit, recovering GR. The lensing potential is corrected by the s-field, providing the necessary off-ray slip to match the MOND lensing prediction."
+}

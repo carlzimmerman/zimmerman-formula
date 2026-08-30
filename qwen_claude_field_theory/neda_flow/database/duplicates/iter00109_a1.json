@@ -1,0 +1,76 @@
+{
+ "name": "Bimetric-Split Kinetic-Isolated MOND (BIM-KIM): Hassan-Rosen 2nd Metric with Degenerate Khronon",
+ "family": "multi-sector",
+ "fields": [
+  {
+   "name": "g_munu",
+   "type": "metric",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "b_munu",
+   "type": "metric",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "n_mu",
+   "type": "khronon",
+   "kinetic": "degenerate",
+   "timelike_background": true
+  },
+  {
+   "name": "chi",
+   "type": "scalar",
+   "kinetic": "none",
+   "timelike_background": false
+  }
+ ],
+ "couplings": [
+  {
+   "label": "HR_gravity",
+   "sources": [
+    "R",
+    "R_b",
+    "V_HR"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "mond_constraint",
+   "sources": [
+    "chi",
+    "mu(y)",
+    "rho"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "slip_frame_source",
+   "sources": [
+    "a_mu",
+    "n_mu",
+    "e^-y"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "aux_legendre_chi",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "This architecture separates the MOND slip from the PPN frame-breaking by using a genuine second metric (b_munu) to carry the tensor/slip degrees of freedom, while the MOND force is sourced by an auxiliary chi. The khronon n_mu is introduced with a degenerate kinetic term (second-class constraint) solely to provide the off-ray preferred-frame coupling required by DC-013, but its kinetic normalization is decoupled from the screening factor e^-y. By using the Hassan-Rosen ghost-free bimetric potential, the tensor sector is protected, and the degenerate nature of the khronon ensures it does not introduce a propagating ghost or strong-coupling singularity in the longitudinal mode, as the mass is provided by the bimetric mixing rather than a screened Proca mass.",
+ "predicted_weak_field": "In the weak-field limit, the bimetric sector provides the correct Newtonian potential and lensing via the standard Hassan-Rosen massive graviton helicity-2 modes. The MOND enhancement is achieved through the nonlinearity of the helicity-0 mode in the MOND regime, breaking the Yukawa limitation of linear HR by using a non-ghost-free point specifically tuned for MOND. The preferred-frame coupling is screened by e^-y, ensuring PPN parameters match GR in the Solar System. The degenerate khronon ensures that the slip is generated without a propagating temporal mode, satisfying the P7 constraint.",
+ "inequivalence_argument": "This candidate is inequivalent to DC-010 (khronometric MOND) because it uses a bimetric structure where the slip is carried by the second metric, not a single-metric khronon. It avoids DC-014 (stiff vector) by using a degenerate khronon that is second-class, not a propagating stiff vector. It is distinct from DC-013 (slip-lock) because the second metric explicitly breaks the diff-invariance lock, allowing for an off-ray slip without a preferred frame in the single-metric sense. It does not match the signature of DC-001 (local no-preferred-frame) because it includes a preferred-frame coupling (albeit screened) and a second metric."
+}

@@ -1,0 +1,73 @@
+{
+ "name": "Degenerate-Vector Khronon-Isolated MOND (DKIM)",
+ "family": "degenerate",
+ "fields": [
+  {
+   "name": "g_munu",
+   "type": "metric",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "chi",
+   "type": "scalar",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "T_stf",
+   "type": "stf_tensor",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "u_mu",
+   "type": "vector",
+   "kinetic": "degenerate",
+   "timelike_background": true
+  }
+ ],
+ "couplings": [
+  {
+   "label": "mond_force",
+   "sources": [
+    "chi",
+    "rho"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "lensing_slip",
+   "sources": [
+    "T_stf",
+    "P_i"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "pf_screen",
+   "sources": [
+    "u_mu",
+    "a_mu"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "aux_legendre_chi",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "The vector u_mu has a degenerate kinetic term (det H=0) by design, making it a second-class constraint variable that mediates the preferred-frame response without propagating as a physical DOF. The screened PF coupling (alpha ~ e^-y) is isolated from the kinetic normalization by using an independent stiffness parameter for the degenerate constraint, attacking the P7 collision. The DC-001 lensing escape is provided by the screened PF frame (A3 pattern) combined with the auxiliary chi field for MOND dynamics.",
+ "predicted_weak_field": "In the weak-field limit, the degenerate u_mu enforces a constraint that fixes the preferred-frame slip to be proportional to e^-y, vanishing in the Solar System (y>>1). The chi field provides the MOND force law via the auxiliary-Legendre relation. Lensing is corrected by the screened PF frame, with gamma_PPN=1 in the MOND regime and alpha_1, alpha_2 ~ e^-y.",
+ "inequivalence_argument": "This is inequivalent to DC-001 (requires a preferred-frame carrier, which DKIM provides via u_mu with screened coupling). Inequivalent to DC-010 (no propagating khronon field; u_mu is degenerate/non-propagating, avoiding the finite-alpha_inf GW170817 constraint). Inequivalent to DC-014 (the degenerate kinetic term is argued to be second-class with an INDEPENDENT stiffness parameter, so the longitudinal mode is NOT normalized by the screened mass M^2=e^-y; the stiffness is a free parameter K_stiff >> 0 that does not vanish with screening, avoiding the P7 strong-coupling wall). The key distinction from FM-000016 is that u_mu is genuinely degenerate (det H=0) but with an independent kinetic scale, not a fixed background."
+}
