@@ -203,6 +203,11 @@ def G4(cand):
                      "metric: doubly-coupled matter => Boulware-Deser ghost (established massive-gravity "
                      "result). Declare bimetric_spec.matter_metric.",
                      assumptions=["no composite metric declared"])
+    if spec.get("interaction") == "bimond_connection":
+        return _cert("G4", "OPEN", "relative-connection (BIMOND) interaction: DERIVATIVE bimetric "
+                     "coupling, generically ghosty but not provably so -- the decisive gate is the "
+                     "Hamiltonian/BD constraint audit (A-P ladder D/E). Escalate; do NOT pass "
+                     "structurally.", assumptions=["ghost status genuinely open for C-invariants"])
     if spec.get("interaction") == "other":
         return _cert("G4", "KILL", "non-Hassan-Rosen interaction with no argued degeneracy => BD ghost "
                      "(generic potential reintroduces the 6th mode).")
@@ -230,6 +235,11 @@ def G5(cand):
                      "vDVZ 4/3 short-range + long-range cutoff) is structurally NOT mu(y)=1-e^-y (an "
                      "acceleration scale). Ghost-free-XOR-MOND fork (bimetric_door price).",
                      assumptions=["linear regime dominates galactic scales"])
+    if src == "connection_invariants":
+        return _cert("G5", "OPEN", "MOND from relative-connection C-invariants (BIMOND route): the "
+                     "acceleration scale arises naturally from first-derivative differences (unlike the "
+                     "HR Yukawa). NR limit + slip must be derived; escalate with the Hamiltonian audit "
+                     "as the FIRST calculation.", assumptions=["Milgrom NR-limit construction"])
     if src in ("nonlinear_helicity0", "composite_matter", "f_sector"):
         return _cert("G5", "OPEN",
                      f"MOND from {src}: the genuine unknown (nonlinear sector). Escalate with the full "

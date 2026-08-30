@@ -462,6 +462,21 @@ def main():
     gs = J("GLOBAL_STATE.json")
     it0 = gs.get("iteration", 0)
     log(f"resuming at iteration {it0}; model={oc.MODEL}")
+    # ---- ledger integrity sweep: every candidate file's arch_hash must match its ledger rows.
+    bad = []
+    for fn in os.listdir(os.path.join(HERE, "candidates")):
+        cid = fn.replace(".json", "")
+        try:
+            cand = json.load(open(os.path.join(HERE, "candidates", fn)))
+        except Exception:
+            bad.append(cid); continue
+        rows = [x for x in cm._load_jsonl(os.path.join(DB, "candidates.jsonl"))
+                if x.get("candidate_id") == cid and "arch_hash" in x]
+        if rows and rows[0]["arch_hash"] != cm.arch_hash(cand):
+            bad.append(cid)
+    if bad:
+        log(f"LEDGER INTEGRITY FAILURE {bad} -- refusing to run (fix the ledger first)"); sys.exit(3)
+    log(f"ledger integrity: {len(os.listdir(os.path.join(HERE,'candidates')))} candidates verified")
     # ---------- finish half-gated candidates from an interrupted run (REGISTERED = gates incomplete)
     for row in cm._load_jsonl(os.path.join(DB, "candidates.jsonl")):
         cid = row.get("candidate_id")

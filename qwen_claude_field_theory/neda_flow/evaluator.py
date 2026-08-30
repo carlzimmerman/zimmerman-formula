@@ -103,6 +103,20 @@ def gate_G0(cand, canon):
                 and f.get("timelike_background"):
             notes.append("timelike-background propagating field: G7 preferred-frame danger (must compute)")
 
+    # -- MECHANISM LINTER (claim-vs-action): a narrative claim with no declared structural basis
+    #    is a contradiction, not a promissory note (the FM-000035 lesson, generalized).
+    mech = (cand.get("claimed_mechanism", "") + " " + cand.get("predicted_weak_field", "")).lower()
+    n_metrics = sum(1 for f in fields if f.get("type") == "metric")
+    tokens = [str(s).lower() for cp in coup for s in cp.get("sources", [])]
+    if ("massive" in mech and "graviton" in mech) and n_metrics >= 2:
+        spec = cand.get("bimetric_spec", {}) or {}
+        if spec.get("interaction") not in ("hassan_rosen", "composite", "bimond_connection"):
+            kills.append("MECHANISM_CONTRADICTION: claims a massive graviton but declares no g<->h "
+                         "interaction (no interaction => m_FP=0 => mechanism void)")
+    if any(cp.get("nonlocal") == "spatial" for cp in coup) and not any(
+            f.get("timelike_background") for f in fields) and n_metrics < 2:
+        notes.append("COVARIANCE_CLAIM_UNVERIFIED: spatial elliptic operator declared with no frame "
+                     "and one metric -- what defines the spatial slice? must be answered at audit")
     status = "KILL" if kills else "PASS"
     return {"gate": "G0", "status": status, "certificate": "; ".join(kills) or "structural checks clean",
             "notes": notes, "assumptions": ["declared architecture object is faithful"],

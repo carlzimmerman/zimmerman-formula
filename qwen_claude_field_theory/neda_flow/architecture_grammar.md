@@ -24,3 +24,10 @@ BIMETRIC CANDIDATES MUST also declare top-level "bimetric_spec": {"interaction":
 Auto-kills: linear_massive_graviton (Yukawa != mu, the ghost-free-XOR-MOND fork); interaction "other"
 without argued degeneracy (BD ghost); matter sourcing the 2nd metric without a declared matter_metric
 (doubly-coupled ghost); claiming a massive graviton with no declared interaction potential.
+
+RELATIVE-CONNECTION (extended BIMOND, Milgrom 0912.0790 + 2022 ext) tokens for couplings.sources:
+  C_tensor (=Gamma(g)-Gamma(h)), C_invariant_1..n (independent quadratic C-scalars).
+Declare via bimetric_spec.interaction="bimond_connection" + mond_source="connection_invariants".
+KNOWN WALL: derivative bimetric interactions are GENERICALLY ghosty; the decisive gate is the
+Hamiltonian/BD audit (escalated, A-P ladder D/E). The MOND nonrelativistic limit and lensing slip
+come from the C-invariants; several invariants share the same NR limit but differ relativistically.
