@@ -1,0 +1,56 @@
+{
+ "name": "Dual-Frame Constraint-First MOND (DFC-MOND): Algebraic Chi + Independent Stiff Aether",
+ "family": "constraint-first",
+ "fields": [
+  {
+   "name": "g_munu",
+   "type": "metric",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "chi",
+   "type": "scalar",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "u_mu",
+   "type": "vector",
+   "kinetic": "degenerate",
+   "timelike_background": true
+  }
+ ],
+ "couplings": [
+  {
+   "label": "mond_constraint",
+   "sources": [
+    "chi",
+    "y",
+    "mu(y)"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "aether_screw",
+   "sources": [
+    "u_mu",
+    "a_mu(accel)"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "aux_legendre_chi",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "This architecture splits the MOND sector into two functionally distinct components: an algebraic auxiliary chi that enforces the MOND constraint C_M=0 (providing the correct Newtonian force law), and a stiff timelike aether u_mu that provides the preferred-frame lensing slip required to evade the DC-013 slip-lock. The aether has a degenerate kinetic term (independent stiffness coefficient sigma, NOT tied to the screening factor e^-y), ensuring its longitudinal mode has a finite kinetic normalization K~sigma, thereby avoiding the P7 strong-coupling wall. The aether coupling to acceleration is explicitly screened by e^-y, satisfying the binding rule that preferred-frame PPN responses must vanish in the high-acceleration limit.",
+ "predicted_weak_field": "In the weak-field limit, the algebraic chi generates the standard MOND acceleration profile a = a_0 sqrt(g_N/a_0) for y<<1, while the stiff aether supplies an off-ray contribution to the metric potential Psi that breaks the f(R)-type slip lock (eta=1). The PPN parameters are predicted to be gamma=1, alpha_1 ~ -e^-y, alpha_2 ~ -e^-y, all of which vanish exponentially in the Solar System (y>>1), satisfying Cassini and other local tests. The tensor sector remains standard GR with c_T=1 and Q_T>0.",
+ "inequivalence_argument": "This candidate is genuinely inequivalent to all dead classes because: (1) it is NOT in DC-001 scope because it carries a preferred-frame coupling with screened_by='e^-y' (the mandatory lensing escape); (2) it is NOT in DC-010 scope because it does NOT use a khronon field (u_mu is a vector, not a khronon), and the kinetic normalization is independent of the screening factor (sigma is a free parameter, not e^-y), evading the P7 strong-coupling wall that closed the khronometric family; (3) it is NOT in DC-014 scope because the aether is NOT 'stiff' in the sense of having K->inf or K~e^-y; instead, it has a finite independent stiffness sigma that gives K_long~sigma (finite, not vanishing), and the screening e^-y applies only to the COUPLING to acceleration, not to the kinetic term. This distinction between coupling screening and kinetic normalization is the exact separation required by the A3 design principle and the open gate 'architecture separating screened PF response from kinetic normalization'."
+}

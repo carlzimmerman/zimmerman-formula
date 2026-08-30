@@ -1,0 +1,92 @@
+{
+ "name": "Frame-Isolated Khronon-Vector (FIKV)",
+ "family": "screened-preferred-frame",
+ "fields": [
+  {
+   "name": "g_munu",
+   "type": "metric",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "T",
+   "type": "khronon",
+   "kinetic": "standard",
+   "timelike_background": true
+  },
+  {
+   "name": "u_mu",
+   "type": "vector",
+   "kinetic": "standard",
+   "timelike_background": true
+  }
+ ],
+ "couplings": [
+  {
+   "label": "horava_kinetic",
+   "sources": [
+    "R",
+    "K_ij"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "mond_kinetic",
+   "sources": [
+    "D(iPj)_TF",
+    "mu(y)"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "khronon_mond",
+   "sources": [
+    "T",
+    "D(iPj)_TF"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "vector_stiffness",
+   "sources": [
+    "u_mu",
+    "K_ij"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "screened_frame_lensing",
+   "sources": [
+    "e^-y",
+    "u_mu",
+    "DPhi"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "aux_legendre_chi",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "This architecture introduces an independent standard-kinetic timelike vector u_mu that carries the off-ray lensing slip required by DC-013. The vector's longitudinal kinetic normalization is strictly independent of the screening factor e^-y, avoiding the P7 strong-coupling wall that killed previous stiff/non-propagating vector attempts. The screened preferred-frame coupling e^-y u_mu DPhi provides the necessary off-ray modification to the metric potentials in the MOND regime, while the massive vector's propagation is governed by a fixed stiffness parameter rather than the screening scale.",
+ "predicted_weak_field": "In the weak-field limit, the massive vector u_mu mediates a preferred-frame interaction that is exponentially screened in the high-acceleration (Solar System) regime by the e^-y factor. This yields PPN parameters alpha_1 and alpha_2 that vanish as e^-y, satisfying the A3/P2 pattern. The lensing ratio eta is modified to track MOND dynamics (eta=1 + O(enhancement)) because the off-ray vector contribution is not locked to the delta-R direction by diffeomorphism invariance, as it is a distinct propagating DOF with independent kinetic normalization.",
+ "inequivalence_argument": "This candidate is inequivalent to DC-010 (khronometric) because it introduces a distinct propagating vector u_mu with standard kinetic normalization, rather than relying solely on the khronon T. It is inequivalent to DC-014 (stiff vector) because u_mu is explicitly standard-kinetic and propagating, not stiff/non-propagating; its longitudinal mode has finite, independent kinetic normalization K~1, not K~e^-y or K->inf. It is inequivalent to DC-001/012/013 because it includes a preferred-frame carrier (u_mu), escaping the frame-free slip-lock theorem. The key architectural difference is the separation of the screening factor (e^-y in the coupling) from the kinetic normalization (fixed stiffness in u_mu's kinetic term), which is the exact requirement of the A3 principle to avoid P7."
+}

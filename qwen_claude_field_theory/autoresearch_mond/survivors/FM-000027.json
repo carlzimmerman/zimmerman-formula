@@ -1,0 +1,50 @@
+{
+ "name": "Scale-Split Dual-Operator Nonlocal F+ (SSDNF+)",
+ "family": "spatially-nonlocal",
+ "fields": [
+  {
+   "name": "chi",
+   "type": "scalar",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "s",
+   "type": "scalar",
+   "kinetic": "none",
+   "timelike_background": false
+  }
+ ],
+ "couplings": [
+  {
+   "label": "mond_force",
+   "sources": [
+    "chi",
+    "y",
+    "mu(y)"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "spatial"
+  },
+  {
+   "label": "auxiliary_gap",
+   "sources": [
+    "s",
+    "R"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "spatial"
+  }
+ ],
+ "mond_realization": "nonlocal_F+",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "This architecture implements a scale-split localization of the nonlocal F+ kernel using two distinct auxiliary fields. The field 'chi' mediates the MOND force law via the (-D^2)^-1 kernel, while the field 's' is gapped by an independent operator (mass term m_s^2) that is structurally different from the kernel operator. This separation satisfies the DC-011 sweep theorem by ensuring the mass gap (1/m_s) and the kernel scale (a_0) occupy disjoint windows, allowing a valid localization.",
+ "predicted_weak_field": "In the weak-field limit, the theory reduces to GR with exponentially small corrections. The MOND enhancement appears in the force law via the chi field, while the s field remains frozen at high acceleration. The lack of a preferred-frame field means the theory is frame-free, but this triggers the DC-013 slip-lock issue: diff-invariance locks the (Phi, Psi) coupling to the delta-R direction, resulting in an f(R)-type slip eta != 1. Consequently, the theory under-lenses compared to the MOND prediction.",
+ "inequivalence_argument": "This candidate is inequivalent to DC-011 (single-mass pump) because it uses two auxiliary fields with distinct operators, avoiding the empty window of a single mass. It is inequivalent to DC-012 (frameless localized) because it explicitly addresses the scale-split requirement, though it still falls victim to the DC-013 slip-lock theorem which is a fundamental constraint on frame-free single-metric theories, not a specific parameter tuning of the localization."
+}

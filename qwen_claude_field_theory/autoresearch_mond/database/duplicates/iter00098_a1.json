@@ -1,0 +1,94 @@
+{
+ "name": "Dual-Operator Nonlocal F+ with Off-Ray Kinetic-Isolated Khronon Frame (DOKF)",
+ "family": "spatially-nonlocal",
+ "fields": [
+  {
+   "name": "g_munu",
+   "type": "metric",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "chi",
+   "type": "scalar",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "s",
+   "type": "scalar",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "u_mu",
+   "type": "vector",
+   "kinetic": "standard",
+   "timelike_background": true
+  },
+  {
+   "name": "multiplier",
+   "type": "multiplier",
+   "kinetic": "none",
+   "timelike_background": false
+  }
+ ],
+ "couplings": [
+  {
+   "label": "mond_constraint",
+   "sources": [
+    "chi",
+    "inv_laplacian",
+    "y",
+    "rho"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "spatial"
+  },
+  {
+   "label": "localizer_gap",
+   "sources": [
+    "s",
+    "multiplier"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "screened_frame_slip",
+   "sources": [
+    "u_mu",
+    "a_mu(accel)",
+    "mu(y)"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "kinetic_stiffness",
+   "sources": [
+    "u_mu",
+    "u_mu"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": true,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "nonlocal_F+",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "This architecture decouples the MOND force-law nonlocality from the preferred-frame lensing slip. The MOND constraint is satisfied by an auxiliary scalar chi coupled to the matter density via a spatially nonlocal elliptic kernel, satisfying the scale-split theorem by using an independent auxiliary scalar s to gap the propagating mode. A standard-kinetic timelike vector u_mu provides the necessary off-ray lensing slip required by DC-013, but its PPN-visible coupling to acceleration is screened by e^-y, ensuring the Solar System is decoupled from the preferred frame.",
+ "predicted_weak_field": "In the weak-field limit, the theory recovers GR with MOND-enhanced dynamics. The spatially nonlocal kernel generates the correct MOND force law at galactic scales, while the localized extra mode is gapped at a scale short of the MOND kernel's range. The preferred-frame vector u_mu mediates the lensing slip, with its PPN parameters (alpha_1, alpha_2) vanishing as e^-y in the high-acceleration limit, ensuring no strong-coupling divergence in the Solar System.",
+ "inequivalence_argument": "This candidate is inequivalent to DC-010 (finite-alpha_inf khronometric MOND) because it does not rely on a khronon field with a fixed background; instead, it uses a standard-kinetic vector whose PPN coupling is dynamically screened by e^-y. It is inequivalent to DC-014 (stiff/non-propagating screened preferred-frame vector) because the vector u_mu has standard kinetic normalization, not degenerate or stiff, avoiding the P7 strong-coupling wall. It is inequivalent to DC-001 (local no-preferred-frame lensing MOND) because it explicitly includes a preferred-frame vector, which is required for correct MOND lensing. It is inequivalent to DC-012 (frameless localized-nonlocal MOND) because it includes a preferred-frame carrier, evading the slip-lock theorem."
+}

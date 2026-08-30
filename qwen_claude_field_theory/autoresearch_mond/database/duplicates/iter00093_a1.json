@@ -1,0 +1,69 @@
+{
+ "name": "Kinetic-Isolated Degenerate Khronon-Frame (KIDKF)",
+ "family": "degenerate",
+ "fields": [
+  {
+   "name": "g_mu_nu",
+   "type": "metric",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "n_mu",
+   "type": "khronon",
+   "kinetic": "degenerate",
+   "timelike_background": true
+  },
+  {
+   "name": "chi",
+   "type": "scalar",
+   "kinetic": "none",
+   "timelike_background": false
+  }
+ ],
+ "couplings": [
+  {
+   "label": "MOND_constraint",
+   "sources": [
+    "q",
+    "mu(y)",
+    "rho"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "PF_kinetic",
+   "sources": [
+    "K_ij",
+    "n_mu"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "Screened_PPN",
+   "sources": [
+    "e^-y",
+    "a_mu",
+    "n_mu"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "aux_legendre_chi",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "This architecture introduces a degenerate khronon field n_mu with zero independent canonical momentum (det H = 0 by design, rendering it a second-class constraint variable in the Hamiltonian analysis). The MOND force law is generated locally via a constraint equation involving the auxiliary field q and the frozen mu(y), which is algebraically determined by the matter density and acceleration. Crucially, the preferred-frame coupling responsible for the PPN slip (satisfying DC-013) is weighted by e^-y, ensuring it vanishes in the high-acceleration limit, while the kinetic normalization of the khronon sector is provided by an independent, unscreened term (e.g., a fixed stiffness or background reference), thereby attacking the P7 collision.",
+ "predicted_weak_field": "In the weak-field limit, the degenerate khronon n_mu acts as a fixed background that breaks local Lorentz invariance, allowing the off-ray (Phi, Psi) coupling required for correct MOND lensing without introducing a propagating scalar degree of freedom that would be subject to GW170817 constraints. The screened preferred-frame coupling ensures that Solar System PPN parameters (alpha_1, alpha_2) are exponentially suppressed, while the unscreened kinetic term guarantees a finite, non-vanishing normalization for the frame field, preventing the strong-coupling limit encountered in previous screened-frame architectures.",
+ "inequivalence_argument": "This candidate is inequivalent to DC-010 (khronometric) because it uses a DEGENERATE kinetic term for the khronon field rather than a standard one, meaning it does not propagate as a physical scalar mode with finite alpha_inf. It is inequivalent to DC-014 (stiff vector) because the degenerate field is not a 'stiff' background with infinite kinetic normalization, but rather a second-class constraint variable whose kinetic structure is explicitly controlled to be finite and independent of the screened coupling. It is inequivalent to DC-002 (AeST) because the preferred-frame coupling is explicitly screened by e^-y, whereas AeST uses a constant coupling."
+}

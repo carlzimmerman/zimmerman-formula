@@ -1,0 +1,88 @@
+{
+ "name": "Scale-Split Bimetric Slip-Isolated MOND (SSB-SIM)",
+ "family": "multi-sector",
+ "fields": [
+  {
+   "name": "g_mu_nu",
+   "type": "metric",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "h_mu_nu",
+   "type": "metric",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "chi",
+   "type": "scalar",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "sigma",
+   "type": "scalar",
+   "kinetic": "standard",
+   "timelike_background": false
+  }
+ ],
+ "couplings": [
+  {
+   "label": "hassan_rosen_mass",
+   "sources": [
+    "R",
+    "R_munu",
+    "weyl_E"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "mond_constraint",
+   "sources": [
+    "chi_scalar",
+    "y",
+    "mu(y)",
+    "D(iPj)_TF"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "screened_screw",
+   "sources": [
+    "sigma",
+    "a_mu(accel)"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "lensing_carrier",
+   "sources": [
+    "sigma",
+    "R3"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "aux_legendre_chi",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "This multi-sector architecture splits the MOND dynamics (handled by the algebraic chi field) from the lensing carrier (the propagating sigma field). The Hassan-Rosen bimetric mass term provides a finite, independent kinetic normalization for the tensor modes, strictly decoupling the propagating-mode kinetic term from the screened preferred-frame response (alpha ~ e^-y). The sigma field couples to the acceleration vector with a coefficient proportional to e^-y, ensuring the preferred-frame PPN parameters are screened in the high-acceleration limit, while its independent quadratic kinetic term remains finite, evading the P7 strong-coupling wall.",
+ "predicted_weak_field": "In the weak-field limit, the algebraic chi field enforces the exact MOND force law, yielding the correct MOND dynamics. The sigma field generates the necessary off-ray lensing slip to satisfy the DC-013 requirement, producing a boosted Newtonian potential for lensing. Because the kinetic normalization of the sigma field is independent of the e^-y screening factor, the Solar System limit recovers GR with exponentially small corrections and a finite, healthy sound speed, avoiding the strong-coupling regime that killed the khronometric architectures.",
+ "inequivalence_argument": "This candidate is genuinely inequivalent to DC-010 and DC-014 because it does not use a khronon or a stiff/non-propagating timelike vector to supply the preferred-frame slip. Instead, it uses a propagating scalar (sigma) in a bimetric framework where the Hassan-Rosen mass term provides the independent kinetic normalization. This directly attacks the P7 collision (screened PF response vs finite propagating-mode kinetic normalization) by architecturally separating the two into distinct fields and sectors, unlike the single-metric khronometric or stiff-vector architectures that inevitably tied the screening factor to the kinetic term."
+}

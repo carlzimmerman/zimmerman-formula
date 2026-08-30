@@ -1,0 +1,67 @@
+{
+ "name": "Khronon-Isolated Bimetric MOND (KIBM)",
+ "family": "screened-preferred-frame",
+ "fields": [
+  {
+   "name": "g_munu",
+   "type": "metric",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "f_munu",
+   "type": "metric",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "u_mu",
+   "type": "khronon",
+   "kinetic": "standard",
+   "timelike_background": true
+  }
+ ],
+ "couplings": [
+  {
+   "label": "HR_massive_graviton",
+   "sources": [
+    "g_munu",
+    "f_munu"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "screened_khronon_frame",
+   "sources": [
+    "u_mu",
+    "a_mu(accel)"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "nonlocal_mond_constraint",
+   "sources": [
+    "g_munu",
+    "inv_laplacian"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "spatial"
+  }
+ ],
+ "mond_realization": "nonlocal_F+",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "This architecture resolves the P7 collision by embedding the screened preferred-frame khronon into a Hassan-Rosen bimetric chassis. The massive graviton sector provides an independent, finite kinetic normalization for the propagating modes, completely decoupled from the e^-y screened coupling of the khronon. The khronon supplies the off-ray lensing slip required by the DC-013 theorem, while its PPN-visible response is dynamically suppressed in the Solar System by the exponential kernel.",
+ "predicted_weak_field": "In the weak-field limit, the massive graviton ensures c_T=1 and a healthy tensor sector. The khronon generates the necessary off-ray slip to achieve correct MOND lensing (eta=1) without inducing an f(R)-type slip. The e^-y screening ensures that the preferred-frame PPN parameters (alpha_1, alpha_2) vanish exponentially in the high-acceleration Solar System, satisfying Cassini constraints, while the independent kinetic normalization prevents the strong-coupling divergence (P7) that killed the single-metric khronometric candidate.",
+ "inequivalence_argument": "This is inequivalent to DC-001 (local no-preferred-frame) because it explicitly includes a timelike khronon and a preferred-frame coupling. It is inequivalent to DC-010 (finite-alpha_inf khronometric) because the kinetic normalization is sourced by the bimetric massive graviton mass, not the screened khronon coupling, thus avoiding the P7 strong-coupling wall. It is inequivalent to DC-014 (stiff/non-propagating vector) because the khronon has standard kinetic terms and propagates, and the bimetric structure provides the independent scale for the kinetic term, avoiding the K->inf limit."
+}
