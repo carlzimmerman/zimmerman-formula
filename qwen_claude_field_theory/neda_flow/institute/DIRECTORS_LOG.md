@@ -4,17 +4,17 @@
 ## Standing verdict of the search
 - Theory space mapped by the Coverage Office: **27 architecture families** (10 dead · 3 active · 12 unexplored · 2 tested).
 - Proven no-go theorems (dead classes): **17**.
-- Candidates on record: **92** ({'KILL': 78, 'EVALUATED': 9, 'SURVIVOR': 5}).
+- Candidates on record: **96** ({'KILL': 83, 'EVALUATED': 9, 'SURVIVOR': 4}).
 
 ## THE OPEN FRONTIER (where the live physics is)
+- **a0-bump cluster: pressure/condensate 2nd field fitting BOTH dynamical residual AND Mistele weak-lensing at K_B<0.25**
+  - The a0-bump (x3-4 at cluster scales) needs a cluster-specific trigger (NOT acceleration -- galaxy/cluster deep-MOND overlap) and a SECOND FIELD for independent lensing (exits single-metric). Passes c_T=1/no-ghost. DECISIVE: cluster weak-lensing (Mistele KiDS) 34x-excludes the tested K_B couplings (dynamics-lensing mismatch). Open: does a pressure/K(Q)-condensate-sourced bump fit BOTH the ~2x dynam
 - **EXIT single-metric: bimetric-degenerate / a0-bump cluster (the live physics)**
   - SINGLE-METRIC relativistic-MOND is now CLOSED with theorems for the frozen exponential kernel: frame-free can't lens (slip-lock DC-013); frame strong-couples (P7 DC-010/014 + GW170817); standard+no-decay DHOST fails the MOND vacuum-exterior gate (DC-017, converged Claude+OpenAI: metric is 1/r^2, MOND force is 1/r, incompatible reach + pulsar bound). The ONLY single-metric loophole left is an un-co
 - **MOND-DHOST degeneracy: source Psi + luminal c_s + DOF=3 WITHOUT a preferred-frame reduction (THE terminal single-metric class)**
   - Two independent obstructions (lensing under-lens + scalar superluminal cone c_par^2=2) CONVERGE on one surviving class: MOND-DHOST. The DHOST phi_munu terms can source Psi (linear stress) and engineer the cone, but the scalar's cosmological background gradient threatens to become a khronometric frame (CLOSED). Decisive symbolic calc: solve the DHOST degeneracy conditions for {mu=1-e^-y, eta=1, c_T
 - **DYNAMICAL make-or-break of the nonlocal single-metric door (spectral wall PROVEN ABSENT)**
   - The converged calc CLEARED the spectral obstruction: with nonlocality removing slip-lock's (1,-2) lock, {eta=1 + MOND enhancement + ghost-free (M NSD)} coexist in a finite window A-C in (-2m,0). So the single-metric door is NOT closed by the spectrum -- the strongest single-metric position of the program. Two DYNAMICAL make-or-breaks remain (these decide chicken vs no-go): (1) does a CAUSAL retard
-- **QUADRATIC HAMILTONIAN/GHOST AUDIT of extended-BIMOND C-invariant interaction (the decisive calc)**
-  - The exact frontier: ghost-free HR cannot make MOND (fixed-length Yukawa != acceleration scale a0); BIMOND's C-invariants make MOND naturally (first-derivative differences carry acceleration) but derivative bimetric interactions are generically ghosty. Quadratic ADM/ghost analysis around doubly-flat background decides: healthy relative-mode kinetic matrix => the first genuine chicken candidate; gho
 
 ## ACTIVE families (in progress)
 - **bimetric-degenerate-DHOST** — MOND nonlinearity + Hamiltonian degeneracy from SAME structure; decisive calc = quadratic ghost/Hamiltonian
