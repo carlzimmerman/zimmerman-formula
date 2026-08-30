@@ -9,6 +9,7 @@ SYNTHESIS extracts the lesson -> update knowledge graph -> next candidate. Every
 database/*.jsonl; checkpoint report every CHECKPOINT_EVERY iterations. Restartable: never restarts
 science from iteration 1."""
 import json, os, sys, time, traceback
+NO_LLM = False
 import ollama_client as oc
 import candidate_manager as cm
 import evaluator as ev
@@ -168,6 +169,8 @@ def one_iteration(gs, it):
             cm.append_jsonl(os.path.join(DB, "failures.jsonl"),
                             {"iter": it, "stage": "aleatoric", "seed": seed,
                              "reason": traceback.format_exc()[-400:], "ts": time.time()})
+    if NO_LLM:
+        return   # aleatoric lane already ran; no interpretive branch without Ollama
     # ---------- ARCHITECT (batch: up to 3 candidates per call — same 13-min generation)
     reply = oc.chat(P("architect.md"), architect_context(branch), temperature=0.9)
     batch = oc.extract_candidates(reply)
@@ -474,13 +477,17 @@ def checkpoint(gs, it):
 
 def main():
     max_it = int(sys.argv[1]) if len(sys.argv) > 1 else 10 ** 9
+    global NO_LLM
     try:
         oc.verify()
+        NO_LLM = False
     except oc.OllamaUnavailable as e:
+        NO_LLM = True
         cm.append_jsonl(os.path.join(DB, "failures.jsonl"),
-                        {"stage": "startup", "reason": str(e), "status": "BLOCKED", "ts": time.time()})
-        print(f"BLOCKED: {e}\nStart ollama (`ollama serve` + model '{oc.MODEL}') and re-run.")
-        sys.exit(2)
+                        {"stage": "startup", "reason": str(e) + " -- running ALEATORIC-ONLY",
+                         "status": "DEGRADED", "ts": time.time()})
+        log(f"Ollama unavailable -- ALEATORIC-ONLY mode (PRNG+gates, zero LLM). Start ollama and "
+            f"restart to re-enable the interpretive Qwen branches.")
     # self-check: the evaluator must still reproduce every hand-derived verdict before any science
     import subprocess as _sp
     chk = _sp.run([sys.executable, os.path.join(HERE, "tests", "test_oracle.py")],
