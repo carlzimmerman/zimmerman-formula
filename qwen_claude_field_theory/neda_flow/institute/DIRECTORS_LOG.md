@@ -4,13 +4,13 @@
 ## Standing verdict of the search
 - Theory space mapped by the Coverage Office: **27 architecture families** (10 dead · 3 active · 12 unexplored · 2 tested).
 - Proven no-go theorems (dead classes): **17**.
-- Candidates on record: **96** ({'KILL': 83, 'EVALUATED': 9, 'SURVIVOR': 4}).
+- Candidates on record: **113** ({'KILL': 97, 'EVALUATED': 11, 'SURVIVOR': 5}).
 
 ## THE OPEN FRONTIER (where the live physics is)
+- **THE ONE DECISIVE CALC: nonlinear bimetric helicity-0 -- MOND acceleration scale in vacuum, Higuchi-safe, BD-ghost-free?**
+  - Every live exit door converges here. The second-field bimetric route uniquely: (a) gives a0 from the graviton mass m_FP~H0 (one scale), (b) sources INDEPENDENT linear lensing (2nd spin-2 => 1/r, escaping the universal dynamics!=lensing wall DC-013/017/Mistele), (c) passes GW170817. The two make-or-breaks BOTH reduce to the nonlinear helicity-0 sector: (1) can it produce the MOND ACCELERATION scale
 - **a0-bump cluster: pressure/condensate 2nd field fitting BOTH dynamical residual AND Mistele weak-lensing at K_B<0.25**
   - The a0-bump (x3-4 at cluster scales) needs a cluster-specific trigger (NOT acceleration -- galaxy/cluster deep-MOND overlap) and a SECOND FIELD for independent lensing (exits single-metric). Passes c_T=1/no-ghost. DECISIVE: cluster weak-lensing (Mistele KiDS) 34x-excludes the tested K_B couplings (dynamics-lensing mismatch). Open: does a pressure/K(Q)-condensate-sourced bump fit BOTH the ~2x dynam
-- **EXIT single-metric: bimetric-degenerate / a0-bump cluster (the live physics)**
-  - SINGLE-METRIC relativistic-MOND is now CLOSED with theorems for the frozen exponential kernel: frame-free can't lens (slip-lock DC-013); frame strong-couples (P7 DC-010/014 + GW170817); standard+no-decay DHOST fails the MOND vacuum-exterior gate (DC-017, converged Claude+OpenAI: metric is 1/r^2, MOND force is 1/r, incompatible reach + pulsar bound). The ONLY single-metric loophole left is an un-co
 - **MOND-DHOST degeneracy: source Psi + luminal c_s + DOF=3 WITHOUT a preferred-frame reduction (THE terminal single-metric class)**
   - Two independent obstructions (lensing under-lens + scalar superluminal cone c_par^2=2) CONVERGE on one surviving class: MOND-DHOST. The DHOST phi_munu terms can source Psi (linear stress) and engineer the cone, but the scalar's cosmological background gradient threatens to become a khronometric frame (CLOSED). Decisive symbolic calc: solve the DHOST degeneracy conditions for {mu=1-e^-y, eta=1, c_T
 - **DYNAMICAL make-or-break of the nonlocal single-metric door (spectral wall PROVEN ABSENT)**
