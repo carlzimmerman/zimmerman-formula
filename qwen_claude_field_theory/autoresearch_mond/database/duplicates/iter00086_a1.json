@@ -1,0 +1,67 @@
+{
+ "name": "Scale-Split Stiff-Vector (SSSV): Dual Mass Gap with Kinetic-Isolated Frame",
+ "family": "screened-preferred-frame",
+ "fields": [
+  {
+   "name": "g_munu",
+   "type": "metric",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "u_mu",
+   "type": "vector",
+   "kinetic": "standard",
+   "timelike_background": true
+  },
+  {
+   "name": "chi_aux",
+   "type": "scalar",
+   "kinetic": "none",
+   "timelike_background": false
+  }
+ ],
+ "couplings": [
+  {
+   "label": "MOND_constraint",
+   "sources": [
+    "chi_aux",
+    "rho",
+    "mu(y)"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "spatial"
+  },
+  {
+   "label": "Frame_Slip",
+   "sources": [
+    "u_mu",
+    "K_ij"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "Kinetic_Gap",
+   "sources": [
+    "u_mu"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "nonlocal_F+",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "This architecture introduces a stiff vector u_mu with an independent, unscreened kinetic normalization mass scale M_u that is distinct from the MOND scale a_0. The preferred-frame slip coupling is strictly proportional to e^-y, ensuring PPN screening in the solar system, while the kinetic term for u_mu remains finite and unscreened (M_u^2), thereby evading the P7 strong-coupling wall that killed the khronometric seed. The MOND force law is realized via a spatially nonlocal constraint involving an auxiliary scalar that mediates the nonlocal F+ kernel.",
+ "predicted_weak_field": "In the weak-field, MOND regime (y << 1), the scalar potential is enhanced by a factor of ~1/sqrt(y) relative to Newton, while the lensing potential is matched to the scalar potential (Psi=Phi) due to the off-ray coupling provided by the u_mu field. In the solar system (y >> 1), the e^-y factor suppresses the preferred-frame effects to below observational bounds, while the vector mode remains massive and short-range due to M_u >> a_0, ensuring no long-range fifth force.",
+ "inequivalence_argument": "This candidate is inequivalent to DC-001 because it includes a preferred-frame carrier (u_mu) which is required for correct MOND lensing. It is inequivalent to DC-002 because the coupling to the frame is explicitly screened by e^-y rather than being a constant K_B coupling. It is inequivalent to the khronometric seed (DC-010) because the kinetic normalization of the propagating mode (u_mu) is controlled by an independent mass M_u, not by the screened screening factor e^-y, thus avoiding the P7 strong coupling pathology where the kinetic term vanishes in the high-acceleration limit."
+}

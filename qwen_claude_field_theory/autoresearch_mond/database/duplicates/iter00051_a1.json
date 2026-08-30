@@ -1,0 +1,63 @@
+{
+ "name": "Degenerate Khronon with Bare Stiff-Vector Lensing Chassis (P7-Decoupled)",
+ "family": "degenerate",
+ "fields": [
+  {
+   "name": "u_mu",
+   "type": "vector",
+   "kinetic": "standard",
+   "timelike_background": true
+  },
+  {
+   "name": "T",
+   "type": "khronon",
+   "kinetic": "degenerate",
+   "timelike_background": true
+  }
+ ],
+ "couplings": [
+  {
+   "label": "MOND_force",
+   "sources": [
+    "P_i=mu*DPhi",
+    "q=-1/6 ln det(gamma)",
+    "multiplier"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "stiff_vector_lens",
+   "sources": [
+    "u_mu",
+    "spatial_einstein"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "khronon_screen",
+   "sources": [
+    "T",
+    "a_mu(accel)",
+    "y"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "aux_legendre_chi",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "The architecture uses a stiff timelike vector u_mu to provide the necessary preferred-frame carrier for MOND lensing (evading the DC-001/DC-013 slip-lock). The khronon T is a degenerate scalar that modifies the constraint algebra, but its kinetic normalization is kept independent (bare) and does not scale with the screened e^-y factor. This ensures that while the PPN preferred-frame response is screened to zero in the Newtonian limit, the propagating modes retain a finite kinetic normalization, thereby avoiding the P7 strong-coupling wall that killed the standard khronometric model.",
+ "predicted_weak_field": "In the weak-field limit, the stiff vector u_mu mediates a Bekenstein-like disformal coupling that provides the required lensing enhancement (M5/M1=4) without being subject to the monopole slip-lock. The degenerate khronon T acts as an auxiliary field that absorbs the MOND force-law nonlinearity via the auxiliary-Legendre chi, but because its kinetic term is not tied to the e^-y screening factor, the scalar sector remains stable (no ghost, finite sound speed) even as the preferred-frame PPN parameters vanish in the high-acceleration limit.",
+ "inequivalence_argument": "This is inequivalent to DC-001 because it includes a stiff vector u_mu (preferred frame carrier) and a khronon field. It is inequivalent to DC-002 because the vector kinetic term is stiff (not standard AeST c2* 6-DOF) and the screening is handled by a separate degenerate khronon sector, not by the vector's own kinetic coefficient. It is inequivalent to the killed 'Scale-Split Degenerate Khronon' because that candidate lacked the stiff vector u_mu required to evade the lensing pincer (it had no field of type vector or the vector was not the primary lensing carrier in a way that satisfied the DC-001 escape criteria), whereas this candidate explicitly pairs the degenerate khronon with a bare-normalized stiff vector to solve both the lensing and P7 problems simultaneously."
+}

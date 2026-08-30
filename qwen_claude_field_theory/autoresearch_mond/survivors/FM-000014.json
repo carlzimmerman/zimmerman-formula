@@ -1,0 +1,48 @@
+{
+ "name": "Degenerate-Kinetic Nonlocal F+ Stiff-Vector (DK-NF+)",
+ "family": "degenerate",
+ "fields": [
+  {
+   "name": "g_mu_nu",
+   "type": "metric",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "u_mu",
+   "type": "vector",
+   "kinetic": "degenerate",
+   "timelike_background": true
+  }
+ ],
+ "couplings": [
+  {
+   "label": "MOND_Screening",
+   "sources": [
+    "u_mu",
+    "a_mu(accel)"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "Nonlocal_Kernel",
+   "sources": [
+    "elliptic_kernel_f(D2/a0^2)"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "spatial"
+  }
+ ],
+ "mond_realization": "nonlocal_F+",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "The stiff vector u_mu has a degenerate kinetic term (det H=0) which enforces a second-class constraint, preventing it from becoming an independent propagating DOF that would violate the single-metric lensing pincer. The e^-y screened preferred-frame coupling modifies the PPN alpha parameters but does not control the kinetic normalization, thereby satisfying the A3 principle and avoiding the P7 strong-coupling wall. The spatially nonlocal F+ operator provides the MOND force law without introducing a temporal mode, and the stiff vector mediates the off-ray lensing correction required to bypass the slip-lock theorem.",
+ "predicted_weak_field": "In the weak-field limit, the screened preferred-frame coupling ensures that the PPN alpha_2 is suppressed by e^-y, recovering GR in the Solar System. The nonlocal F+ kernel provides the MOND-enhanced dynamics with the correct 1/r potential. The stiff vector's longitudinal mode is constrained to be non-dynamical, ensuring that the lensing potential is not under-lensed. The tensor sector remains healthy with c_T=1 and Q_T>0.",
+ "inequivalence_argument": "This architecture is inequivalent to all dead classes because it combines a degenerate kinetic vector (which is second-class and non-propagating) with a spatially nonlocal F+ kernel. DC-001 is evaded by the presence of a preferred-frame carrier (u_mu) and a nonlocal operator. DC-010 is evaded because the kinetic normalization is independent of the screened coupling, avoiding the P7 strong-coupling wall. DC-013 is evaded because the stiff vector provides the necessary off-ray lensing correction that a frame-free theory cannot achieve. The degenerate kinetic term ensures that the vector does not introduce an extra propagating DOF that would violate the single-metric constraint."
+}

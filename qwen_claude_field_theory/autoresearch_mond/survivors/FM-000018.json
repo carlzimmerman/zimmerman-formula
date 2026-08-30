@@ -1,0 +1,69 @@
+{
+ "name": "Two-Scale Elliptic Kinetic-PF Decoupling (TSEKPD)",
+ "family": "spatially-nonlocal",
+ "fields": [
+  {
+   "name": "chi",
+   "type": "scalar",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "s",
+   "type": "scalar",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "u_mu",
+   "type": "vector",
+   "kinetic": "degenerate",
+   "timelike_background": true
+  }
+ ],
+ "couplings": [
+  {
+   "label": "mond_kernel",
+   "sources": [
+    "chi",
+    "inv_laplacian",
+    "rho"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "spatial"
+  },
+  {
+   "label": "kinetic_mass_gap",
+   "sources": [
+    "s",
+    "elliptic_kernel_f(D2/a0^2)"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "spatial"
+  },
+  {
+   "label": "screened_pframe",
+   "sources": [
+    "u_mu",
+    "a_mu(accel)",
+    "mu(y)"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "nonlocal_F+",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "This architecture strictly implements the scale-split theorem by separating the MOND kernel from the kinetic gapper using two distinct spatial elliptic operators. The auxiliary chi field generates the nonlocal F+ kernel via the (\u2212D\u00b2)\u207b\u00b9 operator, while the auxiliary s field generates a massive gapper with an operator structurally different from the kernel. The preferred-frame vector u_mu is coupled to the acceleration with a strictly screened coefficient (1\u2212\u03bc), ensuring it only sources the necessary off-ray lensing correction in the MOND regime. The kinetic normalization of the physical modes is governed by the independent s-field mass gap, completely decoupled from the e^-y screening factor, thereby evading the P7 strong-coupling wall.",
+ "predicted_weak_field": "In the high-acceleration limit (y >> 1), the screened preferred-frame coupling vanishes exponentially, recovering the exact GR limit with c_T=1 and zero preferred-frame PPN violations. In the low-acceleration limit (y << 1), the nonlocal kernel enforces the exact MOND force law, while the un-screened kinetic mass gap from the s-field provides a finite, non-vanishing normalization for the propagating modes. The u_mu field generates the required \u03a6=\u03a8 lensing slip without introducing a massless pole, as its propagation is dynamically controlled by the finite s-field mass rather than the screening factor.",
+ "inequivalence_argument": "This candidate is genuinely inequivalent to DC-001 and DC-012/013 because it explicitly includes a timelike-background vector field (u_mu) that serves as the preferred-frame carrier, which is mandated by the slip-lock theorem for correct MOND lensing. It is inequivalent to DC-011 because it strictly implements the two-auxiliary scale-split structure, where the operator gapping the extra mode (built from s) is structurally different from the operator building the F+ kernel (built from chi). It is inequivalent to the killed khronometric SEED (DC-010) and FM-000004 because the kinetic normalization source is explicitly 'independent' (sourced from the unscreened s-field mass gap), ensuring that the PPN-visible screened coupling (e^-y) does not control the propagating-mode kinetic normalization, thus bypassing the P7 collision."
+}

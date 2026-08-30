@@ -1,0 +1,67 @@
+{
+ "name": "Kinetic-Anchor Bimetric Screened-Frame (KAB-SF): Independent Stiff-Vector Kinetic Norm + Spatially-Nonlocal F+ Lensing",
+ "family": "multi-sector",
+ "fields": [
+  {
+   "name": "g_mu_nu",
+   "type": "metric",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "A_mu",
+   "type": "vector",
+   "kinetic": "standard",
+   "timelike_background": true
+  },
+  {
+   "name": "chi",
+   "type": "scalar",
+   "kinetic": "none",
+   "timelike_background": false
+  }
+ ],
+ "couplings": [
+  {
+   "label": "screened_pf_response",
+   "sources": [
+    "mu(y)",
+    "A_mu"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "finite_kinetic_norm",
+   "sources": [
+    "A_mu",
+    "A_mu"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "nonlocal_lensing_carrier",
+   "sources": [
+    "elliptic_kernel_f(D2/a0^2)",
+    "metric"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "spatial"
+  }
+ ],
+ "mond_realization": "nonlocal_F+",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "This architecture strictly separates the preferred-frame response from the kinetic normalization. The PPN coupling is controlled by a screened coefficient proportional to e^-y, while the propagating vector mode's kinetic term is governed by an independent, constant, unscreened coefficient. This structural decoupling ensures that the screening mechanism (which suppresses the PPN response in the Solar System) does not simultaneously drive the kinetic normalization to zero, thereby evading the P7 strong-coupling wall that killed the khronometric candidate.",
+ "predicted_weak_field": "In the weak-field limit, the spatially nonlocal elliptic operator generates the MOND-modified potential for matter, while the screened preferred-frame vector provides the necessary anisotropic stress to match the lensing signal (Psi = Phi boosted). Because the kinetic normalization is independent of the screening factor, the mode remains healthy and weakly coupled even as the PPN observable is exponentially suppressed in high-acceleration regimes.",
+ "inequivalence_argument": "This candidate is inequivalent to DC-001 because it employs a preferred-frame vector (unremovable A_0) and spatial nonlocality, which are the required escapes from the local frameless pincer. It is inequivalent to DC-010 because it does not use a khronon field; the P7 collision is resolved by an independent kinetic anchor rather than a finite alpha_inf that gets screened to zero. It is inequivalent to DC-013 (slip-lock) because the preferred-frame vector provides the off-ray coupling necessary for correct MOND lensing, and the nonlocality is spatial, not temporal."
+}

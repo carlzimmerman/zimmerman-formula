@@ -1,0 +1,50 @@
+{
+ "name": "Kinetic-Anchored Degenerate Aether Frame (KADAF)",
+ "family": "screened-preferred-frame",
+ "fields": [
+  {
+   "name": "g_mu_nu",
+   "type": "metric",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "u_mu",
+   "type": "vector",
+   "kinetic": "degenerate",
+   "timelike_background": true
+  }
+ ],
+ "couplings": [
+  {
+   "label": "lensing_frame",
+   "sources": [
+    "u_mu",
+    "a_mu(accel)"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "monD_constraint",
+   "sources": [
+    "mu(y)",
+    "q=-1/6 ln det(gamma)",
+    "rho"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "constraint_first_q",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "This architecture introduces a degenerate aether vector u_mu that provides the necessary preferred-frame carrier for correct MOND lensing without under-lensing. Crucially, the vector's kinetic normalization is anchored by an independent constant mass scale M_A (independent of the MOND acceleration scale a_0), satisfying the P7 requirement that screening must not kill the kinetic term. The coupling to the metric is explicitly multiplied by e^-y, ensuring that the preferred-frame response is screened in the high-acceleration Solar System limit, while the degenerate kinetic term remains finite and healthy, avoiding the strong-coupling wall that killed the khronometric candidate.",
+ "predicted_weak_field": "In the weak-field limit, the degenerate aether propagates as a single longitudinal mode with a finite sound speed determined by M_A. The e^-y screening factor suppresses the preferred-frame coupling (alpha_PPN ~ e^-y) in the Solar System, ensuring compliance with PPN constraints. The lensing potential is sourced by the aether frame in a way that breaks the slip-lock theorem (DC-013) because the frame is explicitly present and not diff-invariant, allowing for the correct MOND-enhanced lensing without the f(R)-type slip.",
+ "inequivalence_argument": "This is inequivalent to DC-002 (AeST) because the kinetic normalization is independent of the screening factor (P7-safe) and the coupling is explicitly e^-y screened, unlike the constant K_B coupling in AeST. It is inequivalent to the khronometric candidate (DC-010) because the kinetic term is not degenerate in the time direction in a way that causes strong coupling as eta->0; instead, the degenerate vector has a fixed finite normalization. It avoids the DC-013 slip-lock because the presence of the explicit preferred frame u_mu breaks the diff-invariance that locks the frame-free theory to the under-lensing ray."
+}

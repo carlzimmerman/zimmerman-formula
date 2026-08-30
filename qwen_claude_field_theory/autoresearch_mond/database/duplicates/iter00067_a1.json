@@ -1,0 +1,70 @@
+{
+ "name": "Degenerate-Vector Khronon-Frame Decoupling (DVKFD)",
+ "family": "degenerate",
+ "fields": [
+  {
+   "name": "g_mu_nu",
+   "type": "metric",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "T",
+   "type": "khronon",
+   "kinetic": "standard",
+   "timelike_background": true
+  },
+  {
+   "name": "A_mu",
+   "type": "vector",
+   "kinetic": "degenerate",
+   "timelike_background": true
+  }
+ ],
+ "couplings": [
+  {
+   "label": "MOND_constraint",
+   "sources": [
+    "q",
+    "mu(y)",
+    "D(iPj)_TF",
+    "rho"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "PF_Screened_Khronon",
+   "sources": [
+    "T",
+    "K_ij",
+    "a_mu(accel)"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "Vector_Lensing_Carrier",
+   "sources": [
+    "A_mu",
+    "R3"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "constraint_first_q",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "This architecture explicitly separates the screened preferred-frame PPN response from the propagating-mode kinetic normalization to attack the P7 collision. The khronon T provides the necessary timelike preferred-frame background for correct MOND lensing, with its coupling to the spatial metric (K_ij, a_mu) strictly screened by e^-y. The vector A_mu is introduced with a degenerate kinetic term (det H = 0 by design), which makes it a second-class constraint variable rather than an independent propagating mode. This second-class nature ensures A_mu does not carry independent kinetic normalization that could vanish under screening, thereby avoiding the P7 strong-coupling wall. The degenerate vector acts as a constraint-enforcing lensing carrier whose stress is O(eps^2) to match Sigma_P, while the khronon's finite kinetic normalization (from standard K_ij terms) remains independent of the e^-y screening.",
+ "predicted_weak_field": "In the weak-field limit, the khronon T produces a screened preferred-frame effect (alpha_1, alpha_2 ~ e^-y) that vanishes in the Newtonian regime (y >> 1), ensuring Solar System compatibility. The degenerate vector A_mu, being second-class, does not introduce an extra propagating DOF but instead enforces a constraint that modifies the spatial metric perturbation Psi to match the MOND-enhanced Newtonian potential Phi (Phi=Psi boosted). The constraint C_M = D_i[mu(y)D^i q] - source = 0 ensures exact MOND reduction over the full MOND domain. The vector's degenerate kinetic term guarantees it does not develop a vanishing kinetic normalization, keeping the theory strongly-coupling-free. PPN parameters gamma=1, beta=1, with alpha_1, alpha_2 ~ e^-y, satisfying the P2 screening requirement.",
+ "inequivalence_argument": "This candidate is inequivalent to all listed dead classes: (1) DC-001 is avoided because the theory contains a khronon field T (timelike_background=true) and a preferred-frame coupling screened by e^-y, providing the unremovable A_0 carrier required for lensing. (2) DC-002 is avoided because the vector A_mu has degenerate (not standard) kinetic, and the khronon T is the primary frame carrier, not a 6-DOF aether with constant K_B. (3) DC-003 is avoided because the MOND constraint is not lapse-weighted (phi != ln N). (4) DC-004 is avoided because the vector A_mu is a linear constraint carrier, not a quadratic-flux auxiliary. (5) DC-010 is avoided because the PPN-visible screened coupling (khronon) does not control the propagating mode's kinetic normalization (the vector is degenerate/second-class, the khronon has independent standard kinetic). (6) DC-013 slip-lock is satisfied because the preferred-frame carrier (khronon) breaks diff-invariance, allowing the off-ray (Phi, Psi) coupling required for correct lensing."
+}

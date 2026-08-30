@@ -1,0 +1,90 @@
+{
+ "name": "Two-Metric Stiff-Vector Lensing Decoupler (TM-SVLD)",
+ "family": "multi-sector",
+ "fields": [
+  {
+   "name": "g_mu_nu",
+   "type": "metric",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "h_mu_nu",
+   "type": "metric",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "u_mu",
+   "type": "vector",
+   "kinetic": "degenerate",
+   "timelike_background": true
+  },
+  {
+   "name": "chi_aux",
+   "type": "scalar",
+   "kinetic": "none",
+   "timelike_background": false
+  }
+ ],
+ "couplings": [
+  {
+   "label": "Matter-Frame Coupling",
+   "sources": [
+    "rho",
+    "g_mu_nu"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "Bimetric Potential (Massive Graviton)",
+   "sources": [
+    "h_mu_nu",
+    "g_mu_nu",
+    "R",
+    "spatial_einstein"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "Screened Preferred-Frame MOND Force",
+   "sources": [
+    "u_mu",
+    "chi_aux",
+    "P_i=mu*DPhi",
+    "mu(y)"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "Lensing Escape Vector Stress (DC-001)",
+   "sources": [
+    "u_mu",
+    "h_mu_nu",
+    "D(iPj)_TF"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "nonlocal_F+",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "This architecture introduces a distinct physical metric (h_mu_nu) to carry the lensing degrees of freedom, while the matter metric (g_mu_nu) and a degenerate stiff vector (u_mu) mediate the MOND dynamics. The stiff vector acts as a preferred-frame carrier whose coupling to the MOND force law is strictly screened by e^-y, satisfying P2 and P7. By using a second metric, we provide the 'off-ray' coupling required to generate correct lensing (DC-001 escape) without relying on the local no-frame theorem's constraints, while the massive graviton potential ensures c_T=1 and stability.",
+ "predicted_weak_field": "In the weak-field limit, the matter metric recovers the MOND force law via the screened vector field. The lensing metric (h_mu_nu) decouples from the local preferred-frame constraints and provides the necessary spatial curvature to match lensing observations (Phi=Psi). The massive graviton mode remains unexcited in the Solar System, ensuring the Newtonian limit is preserved without rescaling G, while the vector's degenerate kinetic term prevents the introduction of extra propagating ghosts.",
+ "inequivalence_argument": "This is inequivalent to DC-001 because it explicitly utilizes a second dynamical metric (h_mu_nu), exiting the 'single-metric' scope of the pincer. It is inequivalent to DC-002 because the vector kinetic term is degenerate (det H=0) rather than standard, and the preferred-frame coupling is screened by e^-y rather than constant. It is inequivalent to DC-010 (khronometric) because it does not use a khronon field or lapse-weighted dynamics; instead, it relies on bimetric interactions and a stiff vector, providing a distinct route to the required off-ray lensing correction."
+}

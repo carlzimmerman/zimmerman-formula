@@ -1,0 +1,55 @@
+{
+ "name": "Screened-Vector Kinetic-Anchor with Nonlocal MOND Frame (SVKA-NMF)",
+ "family": "multi-sector",
+ "fields": [
+  {
+   "name": "g_munu",
+   "type": "metric",
+   "kinetic": "standard",
+   "timelike_background": true
+  },
+  {
+   "name": "u_mu",
+   "type": "vector",
+   "kinetic": "degenerate",
+   "timelike_background": true
+  },
+  {
+   "name": "chi",
+   "type": "scalar",
+   "kinetic": "none",
+   "timelike_background": false
+  }
+ ],
+ "couplings": [
+  {
+   "label": "maxwell_stiff",
+   "sources": [
+    "u_mu"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "mond_force",
+   "sources": [
+    "chi",
+    "u_mu",
+    "rho"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "spatial"
+  }
+ ],
+ "mond_realization": "aux_legendre_chi",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "The MOND force law is enforced by a constraint involving the nonlocal F+ kernel (spatially nonlocal) and the auxiliary chi, while the lensing carrier is a stiff timelike vector u_mu. The vector's kinetic term is a standard Maxwell-like term that is NOT multiplied by the screening factor e^-y, ensuring the kinetic normalization remains finite (1) even when the MOND coupling vanishes in the high-acceleration limit. This decouples the PPN-visible preferred-frame response (screened by e^-y) from the propagating mode's kinetic norm (constant), resolving the P7 collision.",
+ "predicted_weak_field": "In the Newtonian limit (y>>1), the MOND force vanishes (mu~1) and the vector kinetic term remains finite, yielding standard GR with no strong coupling. In the deep MOND limit (y<<1), the screening factor e^-y~y suppresses the preferred-frame PPN parameters alpha_1, alpha_2, while the vector's kinetic term stays O(1), preventing the sound speed from diverging or vanishing. Lensing is mediated by the vector's stress-energy, which is linear in u_mu derivatives and not suppressed by the MOND kernel, ensuring correct MOND-enhanced lensing without under-lensing.",
+ "inequivalence_argument": "This candidate is inequivalent to DC-002 (AeST) because the vector kinetic term is NOT constant but is decoupled from the screening factor; in AeST, the kinetic term is tied to the MOND coupling (K_B), leading to alpha_2~1/K_B. It is inequivalent to DC-010 (khronometric) because the vector is a standard stiff vector (not a khronon), and the screening is applied only to the MOND force, not the kinetic term. It is inequivalent to DC-012/DC-013 (frameless nonlocal) because it explicitly includes a preferred-frame vector carrier, which is required for correct MOND lensing per the slip-lock theorem. The key novelty is the 'kinetic anchor' where the vector's kinetic normalization is independent of the screening factor, a structural feature absent in all dead classes."
+}

@@ -1,0 +1,56 @@
+{
+ "name": "Degenerate-Scalar Kinetic-Isolated Frame (DSKIF)",
+ "family": "degenerate",
+ "fields": [
+  {
+   "name": "metric",
+   "type": "metric",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "u_mu",
+   "type": "vector",
+   "kinetic": "standard",
+   "timelike_background": true
+  },
+  {
+   "name": "chi",
+   "type": "scalar",
+   "kinetic": "degenerate",
+   "timelike_background": false
+  }
+ ],
+ "couplings": [
+  {
+   "label": "monD_constitutive",
+   "sources": [
+    "mu(y)",
+    "chi",
+    "rho"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "screened_pf",
+   "sources": [
+    "u_mu",
+    "mu(y)"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "aux_legendre_chi",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "The auxiliary scalar chi is introduced with a degenerate kinetic term (det H = 0) by design, making it a second-class constraint variable that algebraically enforces the MOND force law without propagating degrees of freedom. This degenerate structure is explicitly second-class in the Dirac analysis, ensuring it does not contribute to the propagating DOF count. The preferred-frame vector u_mu carries a standard kinetic term with independent normalization, decoupling the screened PPN response (alpha ~ e^-y) from the kinetic normalization of any propagating mode, thereby evading the P7 strong-coupling wall.",
+ "predicted_weak_field": "In the weak-field limit, the degenerate chi field enforces the exact MOND relation \u2207\u00b7[\u03bc\u2207\u03a6]=4\u03c0G\u03c1 without introducing a propagating scalar. The lensing potential \u03a8 receives a contribution from the screened preferred-frame vector u_mu, which is proportional to e^-y, ensuring that the PPN parameters \u03b1\u2081 and \u03b1\u2082 are screened in the high-acceleration limit. The kinetic normalization of u_mu is independent of the screening factor, maintaining finite propagator behavior and avoiding strong coupling.",
+ "inequivalence_argument": "This architecture is genuinely inequivalent to DC-010 (finite-alpha_inf khronometric) because it does not use a khronon field with a timelike background; instead, it uses a standard vector u_mu for the preferred-frame sector and a degenerate scalar chi for the MOND constraint. It differs from DC-001 (local no-preferred-frame lensing MOND) because it includes a screened preferred-frame coupling. It avoids DC-003 (lapse-weighted MOND) by not weighting the lapse in any coupling. The degenerate kinetic term for chi is explicitly second-class, distinguishing it from candidates where degenerate fields mediate long-range forces (which would be ghosts or strong-coupling singularities)."
+}

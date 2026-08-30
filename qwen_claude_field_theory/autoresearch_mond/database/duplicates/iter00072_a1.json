@@ -1,0 +1,49 @@
+{
+ "name": "Kinetic-Anchored Khronon-Vector Split (KA-KVS)",
+ "family": "screened-preferred-frame",
+ "fields": [
+  {
+   "name": "u_mu",
+   "type": "vector",
+   "kinetic": "degenerate",
+   "timelike_background": true
+  },
+  {
+   "name": "T",
+   "type": "khronon",
+   "kinetic": "standard",
+   "timelike_background": true
+  }
+ ],
+ "couplings": [
+  {
+   "label": "monD_force",
+   "sources": [
+    "u_mu",
+    "mu(y)",
+    "D(iPj)_TF"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "kinetic_anchor",
+   "sources": [
+    "T"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "aux_legendre_chi",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "This architecture explicitly separates the preferred-frame MOND force law from the kinetic normalization of the propagating mode. The vector u_mu provides the necessary timelike background for off-ray lensing, but its coupling to the MOND sector is strictly screened by e^-y, ensuring PPN parameters vanish in the GR limit. Crucially, the kinetic term for the propagating khronon T is independent of this screened coupling, satisfying P7 and avoiding the strong-coupling wall that killed the original khronometric model.",
+ "predicted_weak_field": "In the weak-field limit, the e^-y screening suppresses the preferred-frame PPN parameters (alpha_1, alpha_2) to negligible levels, satisfying Solar System constraints. However, because the kinetic normalization of T is independent, the sound speed and kinetic term remain finite and healthy even as y -> infinity, allowing for stable propagation without gradient instability. The lensing potential remains boosted as required by the off-ray structure of u_mu.",
+ "inequivalence_argument": "This candidate is inequivalent to DC-010 because DC-010 was killed by the finite-alpha_inf requirement and the P7 strong-coupling wall where the screened coupling also controlled the kinetic normalization. Here, the kinetic normalization is sourced independently by the standard kinetic term of T, decoupling the PPN response from the kinetic health. It differs from DC-002 because u_mu has degenerate kinetic (second-class constraint), not standard 6-DOF aether kinetic, and the coupling is explicitly screened, unlike the constant K_B coupling of AeST."
+}

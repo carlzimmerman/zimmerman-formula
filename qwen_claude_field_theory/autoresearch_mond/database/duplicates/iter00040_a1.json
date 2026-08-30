@@ -1,0 +1,99 @@
+{
+ "name": "Scale-Split Nonlocal-F+ Core with a Bare-Normalized e^-y-Screened Stiff-Vector Frame (P7-decoupled)",
+ "family": "spatially-nonlocal",
+ "fields": [
+  {
+   "name": "g_munu",
+   "type": "metric",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "u_mu (unit timelike preferred-frame vector)",
+   "type": "vector",
+   "kinetic": "degenerate",
+   "timelike_background": true
+  },
+  {
+   "name": "chi (auxiliary Legendre scalar, chi=mu(y))",
+   "type": "scalar",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "A_a (longitudinal auxiliary, carries the gapped non-kernel direction)",
+   "type": "scalar",
+   "kinetic": "none",
+   "timelike_background": false
+  }
+ ],
+ "couplings": [
+  {
+   "label": "F+ nonlocal MOND kernel (massless Coulomb direction)",
+   "sources": [
+    "inv_laplacian",
+    "mu(y)",
+    "D(iPj)_TF"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "spatial"
+  },
+  {
+   "label": "scale-split gap of the vector's non-kernel direction (M_A^2 != a0)",
+   "sources": [
+    "A_a",
+    "u_mu"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "spatial"
+  },
+  {
+   "label": "bare vector kinetic normalization (M_A^2, frozen, independent of e^-y)",
+   "sources": [
+    "u_mu",
+    "A_a"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": true,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "e^-y-screened preferred-frame lensing coupling (separate coefficient, PPN-visible only)",
+   "sources": [
+    "u_mu",
+    "a_mu(accel)",
+    "mu(y)"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "matter minimal coupling",
+   "sources": [
+    "rho",
+    "g_munu"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "nonlocal_F+",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "Two structurally distinct spatial operators: (i) the MOND kernel is the massless Coulomb direction (-D^2)^-1 built at the a0 scale (source couples only to this massless direction per Thm B); (ii) the extra/longitudinal direction is gapped by an independent mass M_A (M_A^2 partial_i^2, M_A ~ kpc, NOT the a0 kernel scale), satisfying the DC-011 scale-split. A stiff preferred-frame vector u_mu supplies the off-ray lensing carrier required by the DC-013 slip-lock (a frame-free mode cannot track lensing). The critical P7 decoupling: the vector's kinetic normalization is the FROZEN bare coefficient M_A^2 (kinetic_normalization_source=independent, never vanishing), while the PPN-visible frame-to-matter/flux coupling that boosts Psi is weighted by a SEPARATE coefficient times e^-y. Thus screening (alpha_PF ~ e^-y) drives the observable frame response to zero in the Solar System WITHOUT driving the kinetic term to zero, evading the khronometric P7 wound.",
+ "predicted_weak_field": "In the high-y (Solar System) limit e^-y -> 0 kills the screened frame coupling, so alpha_1, alpha_2 -> 0 and gamma -> 1 (GR lensing, c_T=1) while the vector kinetic M_A^2 stays finite (no strong coupling). In the galactic MOND regime (y << 1) e^-y -> O(1), the screened frame coupling is active and, combined with the F+ spatial kernel, boosts the spatial metric perturbation so that lensing tracks the MOND-enhanced dynamics (eta -> 1, correct g_lens/g_dyn). The massless kernel direction gives the 1/r MOND potential; the gapped A_a mode is frozen at 1/M_A (kpc) and does not pollute the a0-scale kernel fidelity.",
+ "inequivalence_argument": "Not DC-010 (finite/screended-alpha khronometric): DC-010 has a khronon whose screened e^-y coupling IS the propagating-mode kinetic normalization (alpha->0 => kinetic->0 => P7). Here the propagating vector's kinetic is a frozen bare M_A^2 (independent), and the e^-y coefficient is a separate PPN-only weight; the two are parameterically distinct, so the P7 wall is structurally absent. Not DC-001/DC-012/DC-013 (frame-free under-lensing): those kills apply only to frame-free single-metric modes locked to the delta-R slip ray; this candidate carries an explicit preferred-frame vector that is the off-ray escape, so lensing can track dynamics. Not DC-011 (single-mass pump): the gap operator M_A^2 partial_i^2 is a different scale and different operator from the (-D^2)^-1 a0 kernel, so the freeze/fidelity window is not shared/empty. Not DC-002 (AeST constant K_B): the frame coupling is e^-y-screened (alpha -> 0 in SS), not the unscreened constant that gave alpha_2~1/K_B. Not DC-003 (lapse-weighted): no N-weighted MOND flux, H_perp undemoted. Distinct from the prior 'Dynamical-Frame Nonlocal F+' dead proposal by making the vector kinetic explicitly bare/independent and the frame coupling a separate screened coefficient, and by tying the frame to a stiff (degenerate/second-class) background rather than a dynamical frame that leaked a non-khronon lensing carrier."
+}

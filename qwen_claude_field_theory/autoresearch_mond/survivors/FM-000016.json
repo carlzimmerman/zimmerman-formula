@@ -1,0 +1,57 @@
+{
+ "name": "Kinetic-Orthogonal Stiff-Aether Nonlocal MOND (KOSAM)",
+ "family": "novel",
+ "fields": [
+  {
+   "name": "g_munu",
+   "type": "metric",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "u_mu",
+   "type": "vector",
+   "kinetic": "none",
+   "timelike_background": true
+  },
+  {
+   "name": "chi",
+   "type": "scalar",
+   "kinetic": "none",
+   "timelike_background": false
+  }
+ ],
+ "couplings": [
+  {
+   "label": "MOND_Dynamics",
+   "sources": [
+    "R",
+    "chi",
+    "rho"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "spatial"
+  },
+  {
+   "label": "Screened_Frame_Slip",
+   "sources": [
+    "u_mu",
+    "a_mu(accel)",
+    "chi"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "aux_legendre_chi",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "This architecture escapes the local no-go (DC-013) by making the MOND force law spatially nonlocal via an auxiliary Legendre chi, while supplying the required lensing (Psi != Phi) through a locally screened preferred-frame slip. The stiff vector u_mu is strictly non-propagating (kinetic: none), providing a reference frame but no physical degrees of freedom, thus avoiding the 6-DOF aether ghosts of DC-002. Crucially, the PPN slip is proportional to e^-y, but the kinetic normalization of the spatial metric and the auxiliary chi is independent (fixed by the spatial Einstein-Hilbert term and a bare mass scale), breaking the P7 degeneracy that killed the khronometric model.",
+ "predicted_weak_field": "In the weak-field MOND regime, the nonlocal chi enforces the correct g(a_0) force law. The e^-y screened frame coupling generates a constant fractional slip (Phi - Psi) that is suppressed in the solar system (y >> 1) but active in galaxies, yielding the correct gamma_PPN = 1 and avoiding the under-lensing of frameless theories. Because u_mu is degenerate, it does not introduce a propagating scalar mode whose sound speed could vanish.",
+ "inequivalence_argument": "Unlike DC-012 (frameless localized nonlocal), this theory is not frameless; it contains a stiff vector u_mu that mediates the lensing slip. Unlike DC-010 (khronometric MOND), the preferred-frame field u_mu has zero kinetic term (is a fixed background/stiff aether) rather than being a propagating khronon with kinetic normalization controlled by the screening coefficient. Unlike FM-000004, the longitudinal mode of u_mu does not exist to be strongly coupled; u_mu is purely algebraic/background. It avoids DC-001 by being nonlocal in the MOND sector and having a preferred frame."
+}

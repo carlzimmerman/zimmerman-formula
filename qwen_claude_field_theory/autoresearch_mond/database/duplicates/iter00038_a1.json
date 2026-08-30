@@ -1,0 +1,48 @@
+{
+ "name": "Khronon-Independent Stiff-Vector Screened-Frame",
+ "family": "screened-preferred-frame",
+ "fields": [
+  {
+   "name": "g_mu_nu",
+   "type": "metric",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "u_mu",
+   "type": "vector",
+   "kinetic": "standard",
+   "timelike_background": true
+  }
+ ],
+ "couplings": [
+  {
+   "label": "u_kinetic",
+   "sources": [
+    "u_mu"
+   ],
+   "order_in_phi": 0,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "u_mond_response",
+   "sources": [
+    "u_mu",
+    "y"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "aux_legendre_chi",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "Introduces a propagating stiff vector field u_mu with an independent, unscreened kinetic normalization. A preferred-frame coupling sourced by u_mu and y is strictly screened by e^-y, ensuring PPN observables vanish in the high-acceleration limit while the vector propagates with a constant, finite sound speed. This structurally severs the P7 collision between the screened preferred-frame response and the propagating-mode kinetic norm.",
+ "predicted_weak_field": "In the weak-field limit, the independent kinetic term preserves the vector's finite canonical normalization, preventing strong coupling as the MOND screen activates. The e^-y screened coupling guarantees that the preferred-frame parameters alpha_1 and alpha_2 scale exactly as 1 - mu(y), satisfying the binding screening rules while yielding the required MOND lensing enhancement without a lapse-weighted constraint violation.",
+ "inequivalence_argument": "Unlike DC-001 and DC-012, this architecture relies on a propagating timelike vector (not a khronon) to source the preferred-frame lensing carrier, evading the local no-frame pincer. Unlike DC-010, the vector's kinetic normalization is strictly independent of the screened coupling (A3 principle), directly resolving the P7/strong-coupling wall that closed the khronometric family. It avoids DC-002 by ensuring the vector is a propagating degree of freedom whose preferred-frame interaction is dynamically screened by e^-y, rather than a constant coupling."
+}

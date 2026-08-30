@@ -1,0 +1,69 @@
+{
+ "name": "Damped-Vector-DeRham (DvDR): Stiff-Vector with e^-y Screened Frame and Degenerate Massive-Graviton Kinetic",
+ "family": "degenerate",
+ "fields": [
+  {
+   "name": "u_mu",
+   "type": "vector",
+   "kinetic": "standard",
+   "timelike_background": true
+  },
+  {
+   "name": "chi",
+   "type": "scalar",
+   "kinetic": "degenerate",
+   "timelike_background": false
+  },
+  {
+   "name": "R3",
+   "type": "metric",
+   "kinetic": "none",
+   "timelike_background": false
+  }
+ ],
+ "couplings": [
+  {
+   "label": "screened_frame_lensing",
+   "sources": [
+    "u_mu",
+    "a_mu(accel)",
+    "R3"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "degenerate_massive_graviton",
+   "sources": [
+    "R3",
+    "chi"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "mond_constraint",
+   "sources": [
+    "chi",
+    "mu(y)",
+    "rho"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "aux_legendre_chi",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "The architecture uses a stiff vector u_mu to provide the off-ray lensing correction required by DC-013, with its coupling to the frame strictly screened by e^-y. A massive scalar (De Rham-style) is introduced with a degenerate kinetic term (det H = 0), which acts as a second-class constraint to enforce the MOND constraint C_M = 0 without introducing a propagating scalar DOF. The degenerate kinetic term is argued second-class because it exactly cancels the time-derivative of the constraint, leaving no independent canonical pair for the scalar, while the vector retains a finite, unscreened kinetic normalization to avoid P7.",
+ "predicted_weak_field": "In the weak-field limit, the screened frame coupling generates the required Phi != Psi slip at O(e^-y), reproducing the Bekenstein disformal lensing enhancement. The massive scalar mediates a Yukawa correction to the Newtonian potential, but its kinetic term is degenerate, so it does not contribute to the propagating scalar mode. The MOND constraint is enforced algebraically, yielding the correct force law in the y << 1 limit. The lensing is dominated by the vector frame, which is screened in the Solar System, ensuring PPN compliance.",
+ "inequivalence_argument": "This candidate is inequivalent to DC-001 because it includes a preferred-frame carrier (u_mu) with a screened coupling, avoiding the 'local no-preferred-frame' pincer. It is inequivalent to DC-010 (khronometric) because the kinetic normalization is sourced by the vector's standard kinetic term, not the screened frame coupling, and the scalar is degenerate/second-class rather than a propagating khronon. It avoids DC-004 by using a linear frame coupling for lensing, not a quadratic flux carrier. The degenerate kinetic term is a structural feature, not a coefficient tweak, and the frame is screened, satisfying the P7 escape."
+}

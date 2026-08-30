@@ -1,0 +1,49 @@
+{
+ "name": "Degenerate-Kinetic STF-Tensor with Spatial-Nonlocal F+ Screened Frame",
+ "family": "degenerate",
+ "fields": [
+  {
+   "name": "u_mu",
+   "type": "vector",
+   "kinetic": "standard",
+   "timelike_background": true
+  },
+  {
+   "name": "Q_stf",
+   "type": "stf_tensor",
+   "kinetic": "degenerate",
+   "timelike_background": false
+  }
+ ],
+ "couplings": [
+  {
+   "label": "PF_screened_frame",
+   "sources": [
+    "u_mu",
+    "rho"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "MOND_nonlocal_core",
+   "sources": [
+    "elliptic_kernel_f(D2/a0^2)",
+    "D(iPj)_TF"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "spatial"
+  }
+ ],
+ "mond_realization": "nonlocal_F+",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "The theory employs a standard kinetic timelike vector u_mu whose preferred-frame coupling is strictly screened by e^-y, ensuring PPN alpha parameters vanish in the Solar System. To satisfy the DC-001 lensing requirement without resurrecting the 6-DOF aether of DC-002, we introduce an STF tensor Q_stf with a degenerate kinetic term (det H=0 by design). This degeneracy is argued to be second-class in the Hamiltonian analysis: the tensor's conjugate momentum is algebraically constrained by the equations of motion, removing it as an independent propagating DOF and leaving only the 2 tensor + 1 vector DOF. The spatially nonlocal F+ operator handles the MOND acceleration, while the screened vector provides the necessary timelike gradient source to break the slip-lock theorem (DC-013) and generate the correct Phi != Psi lensing potential.",
+ "predicted_weak_field": "In the weak-field limit, the screened vector coupling e^-y alpha(u) u^mu u^nu generates a preferred-frame contribution to the metric perturbation that is O(e^-y) and thus negligible in the Solar System. The spatially nonlocal F+ kernel produces the MOND enhancement in the Newtonian potential. The degenerate STF tensor Q_stf, being second-class, does not propagate but acts as an algebraic mediator that couples the spatial curvature to the matter density, providing the necessary O(eps^2) stress component to cancel the under-lensing effect without introducing a ghost or a new propagating scalar. The lensing potential Psi is boosted relative to Phi by the screened frame, yielding gamma_PPN = 1 in the MOND regime.",
+ "inequivalence_argument": "This candidate is inequivalent to DC-002 because it lacks the standard kinetic 6-DOF aether; the STF tensor is degenerate and second-class, reducing the DOF count. It is inequivalent to DC-001 because it includes a preferred-frame vector (u_mu) with a screened coupling, which is the required escape from the frameless pincer. It is inequivalent to DC-013 because the preferred frame is explicitly present and not locked to the delta-R direction. It is inequivalent to DC-010 (khronometric) because the kinetic normalization of the vector is independent of the screened coupling (A3 principle), avoiding the P7 strong-coupling wall."
+}

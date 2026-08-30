@@ -1,0 +1,69 @@
+{
+ "name": "Dual-Operator Nonlocal F+ with Khronon-Independent Stiff-Vector Screened Frame",
+ "family": "spatially-nonlocal",
+ "fields": [
+  {
+   "name": "g_mu_nu",
+   "type": "metric",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "chi_aux",
+   "type": "scalar",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "A_mu",
+   "type": "vector",
+   "kinetic": "degenerate",
+   "timelike_background": true
+  }
+ ],
+ "couplings": [
+  {
+   "label": "nonlocal_MOND_kernel",
+   "sources": [
+    "elliptic_kernel_f(D2/a0^2)",
+    "mu(y)",
+    "rho"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "spatial"
+  },
+  {
+   "label": "stiff_vector_kinetic",
+   "sources": [
+    "A_mu",
+    "u_mu"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "screened_frame_coupling",
+   "sources": [
+    "A_mu",
+    "a_mu(accel)",
+    "e^-y"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "nonlocal_F+",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "This architecture uses a two-auxiliary scale-split localization of the F+ kernel, where the operator gapping the extra mode (omega^2=c^2k^2/2) is structurally distinct from the operator building the (-D^2)^-1 kernel, satisfying the DC-011 sweep theorem. A degenerate stiff-vector field provides the preferred-frame carrier required by DC-013, with its PPN coupling screened by e^-y while its kinetic normalization is independent and finite, directly attacking the P7 collision. The stiff-vector's degenerate kinetic term ensures no propagating scalar mode from the vector sector, keeping the DOF count minimal.",
+ "predicted_weak_field": "In the weak-field limit, the screened preferred-frame coupling alpha_PF ~ e^-y vanishes in the Solar System (y>>1), ensuring GR recovery with exponentially small corrections. The nonlocal F+ kernel provides MOND-enhanced dynamics in the galactic regime while the stiff-vector's independent kinetic normalization remains finite, avoiding the strong-coupling wall. Lensing is correctly enhanced via the preferred-frame carrier, and the c_T=1 condition is maintained by the tensor sector.",
+ "inequivalence_argument": "This candidate is inequivalent to DC-001 because it includes a khronon-type preferred-frame carrier (stiff-vector with timelike_background=true) with nonlocal couplings. It is inequivalent to DC-010 because the kinetic normalization is independent of the screened coupling (kinetic_normalization_source=independent), avoiding the P7 strong-coupling wall. It is inequivalent to DC-011 because it uses a two-auxiliary scale-split localization with structurally distinct operators. It is inequivalent to DC-012 and DC-013 because it includes a preferred-frame carrier, evading the frameless no-go theorems."
+}

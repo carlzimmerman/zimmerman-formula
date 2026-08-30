@@ -1,0 +1,69 @@
+{
+ "name": "Dual-Operator Constraint-First: Independent F+ Stiff-Vector with e^-y Screened Lapse-Kinetic Decoupling",
+ "family": "constraint-first",
+ "fields": [
+  {
+   "name": "chi",
+   "type": "scalar",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "u_mu",
+   "type": "vector",
+   "kinetic": "standard",
+   "timelike_background": true
+  },
+  {
+   "name": "A",
+   "type": "scalar",
+   "kinetic": "none",
+   "timelike_background": false
+  }
+ ],
+ "couplings": [
+  {
+   "label": "MOND_constraint",
+   "sources": [
+    "mu(y)",
+    "D(iPj)_TF",
+    "rho"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "spatial"
+  },
+  {
+   "label": "Lensing_Psi",
+   "sources": [
+    "u_mu",
+    "u_mu",
+    "spatial_einstein"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "Stiff_Kinetic",
+   "sources": [
+    "u_mu",
+    "inv_laplacian"
+   ],
+   "order_in_phi": 0,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "spatial"
+  }
+ ],
+ "mond_realization": "nonlocal_F+",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "We propose a constraint-first architecture where the MOND scalar sector is governed by a spatially nonlocal F+ operator, generating the exact exponential kernel without a propagating local scalar. To satisfy the lensing requirement (DC-001) while evading the P7 strong-coupling wall (DC-010), we introduce a timelike unit vector field u_mu with a standard, finite, and independent kinetic normalization (nonlocally gapped via a separate inverse Laplacian scale). The coupling of u_mu to the matter/spacetime curvature is strictly screened by e^-y, providing the necessary preferred-frame carrier for lensing without linking the PPN response to the propagating mode's kinetic coefficient.",
+ "predicted_weak_field": "In the weak-field limit, the nonlocal constraint enforces the exact MOND equation of motion for the scalar potential. The u_mu field, acting as a stiff vector, sources the anisotropic stress required to boost the lensing potential Psi relative to Phi, thereby achieving the correct relativistic lensing. Because the kinetic normalization of u_mu is independent of the e^-y screening factor, the Solar System limit (y >> 1) yields a finite, unscreened kinetic term while the PPN parameters (alpha_1, alpha_2) vanish exponentially, resolving the P7 collision.",
+ "inequivalence_argument": "This candidate is inequivalent to DC-001 (local no-frame) because it includes a preferred-frame coupling screened by e^-y. It is inequivalent to DC-002 (AeST) because the kinetic normalization is independent of the screening factor, avoiding the 1/K_B strong coupling. It is inequivalent to DC-010 (khronometric) because it uses a vector field with a nonlocal stiff kinetic term rather than a khronon, and the MOND realization is via nonlocal F+ rather than a local auxiliary scalar, ensuring the kinetic normalization does not vanish in the screened limit."
+}

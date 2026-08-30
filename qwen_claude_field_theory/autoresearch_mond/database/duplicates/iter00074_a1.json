@@ -1,0 +1,74 @@
+{
+ "name": "Bimetric MOND with Kinetic-Split e^-y Screening (BM-KS)",
+ "family": "novel",
+ "fields": [
+  {
+   "name": "g_munu",
+   "type": "metric",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "f_munu",
+   "type": "metric",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "u_mu",
+   "type": "vector",
+   "kinetic": "standard",
+   "timelike_background": true
+  },
+  {
+   "name": "chi_aux",
+   "type": "scalar",
+   "kinetic": "none",
+   "timelike_background": false
+  }
+ ],
+ "couplings": [
+  {
+   "label": "BM_kinetic",
+   "sources": [
+    "R",
+    "spatial_einstein"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "BM_mass",
+   "sources": [
+    "R",
+    "spatial_einstein"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "MOND_screen",
+   "sources": [
+    "u_mu",
+    "y",
+    "mu(y)"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "aux_legendre_chi",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "This architecture introduces a second dynamical metric (Hassan-Rosen bimetric) to break the single-metric slip-lock theorem (DC-013), allowing a frame-free MOND lensing solution while retaining the required preferred-frame vector for the off-ray lensing correction. The vector u_mu is coupled to the MOND sector with an e^-y screened coefficient, satisfying the P2 binding rule. Crucially, the kinetic normalization of the massive graviton and vector modes is anchored to the unscreened bimetric potential terms, decoupling it from the screened PPN response and thereby avoiding the P7 strong-coupling wall.",
+ "predicted_weak_field": "In the Newtonian limit (y>>1), the bimetric potential vanishes and the theory reduces to GR with c_T=1. The MOND sector is exponentially suppressed by e^-y, ensuring Solar System consistency. In the galactic MOND regime (y<<1), the screened vector coupling becomes active, modifying the PPN parameters to match the required MOND force law while the bimetric kinetic terms maintain a finite, healthy normalization for the propagating modes.",
+ "inequivalence_argument": "This candidate is inequivalent to DC-001/DC-013 because it uses two dynamical metrics, exiting the single-metric class where the slip-lock theorem applies. It differs from DC-002 (AeST) because the preferred-frame coupling is explicitly screened by e^-y rather than constant, and the kinetic normalization is independent of the screening factor. It avoids DC-010 (khronometric) by using a bimetric kinetic structure rather than a degenerate khronon, and the kinetic normalization is not controlled by the screened MOND coefficient, thus evading the P7 collision."
+}

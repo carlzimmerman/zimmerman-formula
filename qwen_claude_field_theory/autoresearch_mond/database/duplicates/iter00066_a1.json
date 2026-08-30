@@ -1,0 +1,80 @@
+{
+ "name": "Scale-Split Nonlocal F+ with Independent Stiff-Vector Lensing (SSNF-ISV)",
+ "family": "spatially-nonlocal",
+ "fields": [
+  {
+   "name": "g_mu_nu",
+   "type": "metric",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "chi_aux",
+   "type": "scalar",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "u_mu",
+   "type": "vector",
+   "kinetic": "degenerate",
+   "timelike_background": true
+  },
+  {
+   "name": "psi_gap",
+   "type": "scalar",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "lambda_pf",
+   "type": "multiplier",
+   "kinetic": "none",
+   "timelike_background": false
+  }
+ ],
+ "couplings": [
+  {
+   "label": "nonlocal_mond_constraint",
+   "sources": [
+    "chi_aux",
+    "elliptic_kernel_f(D2/a0^2)",
+    "inv_laplacian"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "spatial"
+  },
+  {
+   "label": "stiff_vector_lensing",
+   "sources": [
+    "u_mu",
+    "lambda_pf",
+    "e^-y"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "gap_localizer",
+   "sources": [
+    "psi_gap"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "nonlocal_F+",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "This architecture resolves the P7 collision by structurally separating the MOND force law from the lensing carrier. The MOND dynamics are governed by a genuinely nonlocal spatial constraint built from the F+ kernel, which remains massless and frame-free. The lensing correction is supplied by a stiff vector field u_mu with a degenerate (ultralocal) kinetic term, which sources a preferred-frame response screened by e^-y. Because the vector kinetic term is fixed by an independent UV completion (not the screened coupling), the propagating longitudinal mode retains finite kinetic normalization even as the PPN screening vanishes in the Newtonian limit. The gap_localizer operator introduces a massive auxiliary field psi_gap that freezes the nonlocal kernel at galactic scales without affecting the MOND force law at Solar System scales, satisfying the scale-split requirement of DC-011.",
+ "predicted_weak_field": "In the weak-field limit, the nonlocal constraint yields the MOND force law with the correct F+ kernel behavior. The stiff vector field contributes to the spatial metric perturbation Psi but not to the temporal perturbation Phi, providing the lensing enhancement required by the slip-lock theorem (DC-013). The preferred-frame coupling is proportional to e^-y, ensuring that PPN parameters alpha_1, alpha_2, alpha_3 vanish exponentially in the high-acceleration Solar System, satisfying the screening requirement. The massive auxiliary field psi_gap is decoupled at Solar System scales (g < a_0) and only becomes active at galactic scales (g > a_0), where it localizes the nonlocal kernel and prevents strong coupling. The tensor sector remains GR with c_T=1, and the kinetic normalization of the longitudinal vector mode is finite and independent of the screening factor.",
+ "inequivalence_argument": "This candidate is inequivalent to DC-001 (local no-preferred-frame) because it includes a preferred-frame stiff vector field with nonlocal MOND dynamics. It is inequivalent to DC-012 (frameless localized-nonlocal) because the stiff vector provides the required preferred-frame lensing carrier. It is inequivalent to DC-013 (slip-lock) because the vector field escapes the diff-invariance ray by sourcing a frame-dependent spatial perturbation. It is inequivalent to DC-010 (finite-alpha khronometric) because the kinetic normalization is independent of the screened coupling, avoiding the P7 strong-coupling wall. It is inequivalent to DC-011 (single-mass pump) because the gap_localizer uses a separate massive field from the nonlocal kernel, satisfying the scale-split requirement."
+}

@@ -1,0 +1,50 @@
+{
+ "name": "Elastic-Metric MOND (EMM): Lapse-Independent Stiff-Vector with e^-y-Screened Disformal Matter Metric",
+ "family": "novel",
+ "fields": [
+  {
+   "name": "g_mu_nu",
+   "type": "metric",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "u_mu",
+   "type": "vector",
+   "kinetic": "standard",
+   "timelike_background": true
+  }
+ ],
+ "couplings": [
+  {
+   "label": "stiff_vector_kinetic",
+   "sources": [
+    "u_mu",
+    "K_ij"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": true,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "mond_kernel_disformal",
+   "sources": [
+    "chi_scalar",
+    "rho",
+    "inv_laplacian"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "spatial"
+  }
+ ],
+ "mond_realization": "nonlocal_F+",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "This architecture breaks the P7 collision by using a stiff vector u_mu to provide the unremovable preferred-frame carrier required for lensing (DC-013), while keeping its kinetic term un-screened (order 1). The MOND force law and the resulting lensing enhancement are mediated by a spatially nonlocal disformal matter metric, where the deviation from GR is scaled by the screened factor e^-y = 1-mu(y). This ensures that in the Solar System (y >> 1), the disformal deformation vanishes, restoring GR and screening the PPN parameters, while the stiff vector's unscreened background maintains the correct off-ray lensing response.",
+ "predicted_weak_field": "In the weak-field limit, the unscreened stiff vector provides the necessary A_0^2 cancellation to achieve the Bekenstein disformal lensing ratio (M5/M1=4). The spatially nonlocal operator ensures the MOND force law is exact over the galactic domain. Because the MOND-dependent couplings are screened by e^-y, the PPN parameters alpha_1 and alpha_2 are suppressed by ~10^-30000 in the Solar System, evading Cassini constraints, while the vector's unscreened kinetic term remains finite, avoiding the strong-coupling limit (P7).",
+ "inequivalence_argument": "This candidate is inequivalent to DC-002 (AeST) because it does not use a 6-DOF aether with constant K_B coupling; instead, it uses a stiff vector with an unscreened kinetic term and a screened disformal matter metric. It is inequivalent to DC-010 (khronometric) because it does not use a lapse-weighted khronon (which is killed by DC-003 and DC-010); the vector is lapse-independent and its kinetic term is not controlled by e^-y. It is inequivalent to DC-001/DC-013 (frame-free) because it explicitly includes a preferred-frame vector. It is inequivalent to FM-000004 because the disformal MOND sector is spatially nonlocal and screened, while the vector kinetic term is local and unscreened, cleanly separating the PPN response from the kinetic normalization."
+}

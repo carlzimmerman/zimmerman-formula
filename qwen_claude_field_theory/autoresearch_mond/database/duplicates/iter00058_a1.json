@@ -1,0 +1,89 @@
+{
+ "name": "Asymmetric-Split-Frame (ASF): Fixed-Norm Stiff-Vector Frame + Scale-Split Nonlocal F+ Lensing",
+ "family": "multi-sector",
+ "fields": [
+  {
+   "name": "g_munu",
+   "type": "metric",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "u_mu",
+   "type": "vector",
+   "kinetic": "standard",
+   "timelike_background": true
+  },
+  {
+   "name": "A",
+   "type": "scalar",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "B",
+   "type": "scalar",
+   "kinetic": "none",
+   "timelike_background": false
+  }
+ ],
+ "couplings": [
+  {
+   "label": "lensing_metric",
+   "sources": [
+    "R",
+    "rho",
+    "A",
+    "B"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "spatial"
+  },
+  {
+   "label": "mond_constraint",
+   "sources": [
+    "q",
+    "mu(y)",
+    "A",
+    "B"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "spatial"
+  },
+  {
+   "label": "frame_bending",
+   "sources": [
+    "u_mu",
+    "a_mu",
+    "K_ij"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "frame_kinetic",
+   "sources": [
+    "u_mu"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "nonlocal_F+",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "The theory uses a dual-sector architecture where a genuinely nonlocal spatial operator enforces the exact MOND force law (F+ primitive) and produces the lensing carrier, while a stiff vector field mediates the preferred-frame effects. Crucially, the vector's kinetic normalization is fixed by an independent, finite, unscreened coefficient (like the Maxwell term), completely decoupling the propagating-mode stiffness from the e^-y screened preferred-frame couplings. This directly resolves the P7 collision, ensuring the longitudinal mode remains strongly coupled only in the deep MOND regime while retaining a finite, healthy kinetic term in the Newtonian regime. The scale-split auxiliaries A and B localize the nonlocal kernel without sharing a mass, adhering to the Thm B ghost-free skeleton.",
+ "predicted_weak_field": "In the weak-field Newtonian limit (y >> 1), the e^-y screened preferred-frame couplings vanish exponentially, leaving the stiff vector with its standard finite kinetic normalization. The nonlocal F+ operator reduces to the Newtonian Laplacian at scales much larger than the core scale, recovering standard lensing (Phi = Psi) with no slip. In the MOND regime (y << 1), the nonlocal kernel activates to enhance the gravitational force, while the vector field provides the necessary off-ray preferred-frame coupling to maintain the correct lensing ratio (eta=1) without the f(R) slip-lock, as the frame-breaking term explicitly sources the difference between Phi and Psi.",
+ "inequivalence_argument": "This candidate is inequivalent to DC-001 because it explicitly includes a preferred-frame carrier (u_mu) and a khronon-type foliation structure, avoiding the frameless under-lensing. It is inequivalent to DC-002 because the preferred-frame couplings are strictly screened by e^-y, avoiding the constant alpha_2 kill. It is inequivalent to DC-010 because the kinetic normalization of the vector is independent and unscreened, avoiding the P7 strong-coupling wall (alpha->0 => K->0) that killed the khronometric family. It is inequivalent to DC-012/DC-013 because it utilizes a preferred frame to escape the slip-lock theorem, and uses a scale-split nonlocal structure to avoid the single-mass localization failure of DC-011."
+}

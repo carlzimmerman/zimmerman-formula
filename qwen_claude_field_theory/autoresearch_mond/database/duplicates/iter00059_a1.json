@@ -1,0 +1,54 @@
+{
+ "name": "Constraint-First Q with Independent Stiff-Vector Lensing (CSQ-ISVLF)",
+ "family": "constraint-first",
+ "fields": [
+  {
+   "name": "q",
+   "type": "scalar",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "A_mu",
+   "type": "vector",
+   "kinetic": "standard",
+   "timelike_background": true
+  },
+  {
+   "name": "u_mu",
+   "type": "vector",
+   "kinetic": "none",
+   "timelike_background": true
+  }
+ ],
+ "couplings": [
+  {
+   "label": "C_MOND",
+   "sources": [
+    "P_i=mu*DPhi",
+    "rho"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "Lensing_Carrier",
+   "sources": [
+    "A_mu"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "constraint_first_q",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "The MOND force law is enforced exactly by a first-class constraint C_M = D_i[\\mu(y)D^i q] - 4\\pi G \\rho \\approx 0, which fixes the scalar potential q dynamically. Lensing is generated independently by a standard-kinetic stiff vector A_mu that is strictly massless in the Newtonian limit. The coupling of A_mu to matter and the MOND constraint is weighted by e^{-y} = 1-\\mu(y), ensuring that the preferred-frame PPN parameters (alpha_1, alpha_2) are exponentially screened in the solar system. Crucially, the kinetic normalization of A_mu is bare (independent), so it does not vanish in the screened limit, thereby avoiding the P7 strong-coupling wall that killed the khronometric and AeST architectures.",
+ "predicted_weak_field": "In the weak-field limit (y >> 1), the constraint forces q to reproduce the Newtonian potential, and the screening factor e^{-y} drives the effective coupling of the stiff vector to zero. The metric perturbations \\Phi and \\Psi are generated primarily by the Newtonian source, recovering GR with \\gamma=1 and \\beta=1. The stiff vector A_mu remains a healthy, massless degree of freedom with a finite kinetic normalization, but its interaction with matter is exponentially suppressed, ensuring the Solar System is in the GR regime. In the deep MOND regime (y << 1), the constraint is active, and the unscreened stiff vector provides the necessary off-ray coupling to match the MOND-enhanced lensing to the dynamics.",
+ "inequivalence_argument": "This architecture is structurally distinct from DC-002 (AeST) because it does not use a 6-DOF aether with constant K_B coupling; instead, it uses a stiff vector with e^{-y} screening and a separate constraint for MOND. It is distinct from DC-010 (khronometric) because it does not use a khronon field or a Ho\\u0159ava lapse, and it explicitly separates the lensing carrier (vector) from the MOND constraint (scalar), whereas khronometric identifies the kinematical and potential roles in the lapse. It avoids DC-001 (local no-PF) by including a preferred-frame coupling (screened by e^{-y}). It avoids DC-013 (slip-lock) by using a preferred-frame vector, which is the required off-ray escape for lensing."
+}

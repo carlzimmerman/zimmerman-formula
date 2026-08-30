@@ -1,0 +1,80 @@
+{
+ "name": "Scale-Split Spatial-Nonlocal F+ with Kinetically-Isolated Stiff-Vector Frame (SSSNF+KISVF)",
+ "family": "spatially-nonlocal",
+ "fields": [
+  {
+   "name": "u_mu",
+   "type": "vector",
+   "kinetic": "standard",
+   "timelike_background": true
+  },
+  {
+   "name": "chi_kernel",
+   "type": "scalar",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "chi_gap",
+   "type": "scalar",
+   "kinetic": "none",
+   "timelike_background": false
+  }
+ ],
+ "couplings": [
+  {
+   "label": "nonlocal_monD_constraint",
+   "sources": [
+    "chi_kernel",
+    "elliptic_kernel_f(D2/a0^2)",
+    "rho"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "spatial"
+  },
+  {
+   "label": "screened_frame_lensing",
+   "sources": [
+    "u_mu",
+    "e^-y",
+    "spatial_einstein"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "vector_kinetic_anchor",
+   "sources": [
+    "u_mu"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "gap_localizer",
+   "sources": [
+    "chi_gap",
+    "m_gap"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "nonlocal_F+",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "This architecture separates the MOND force law from the lensing carrier using a scale-split nonlocal realization. Two distinct auxiliary scalars are employed: chi_kernel localizes the massless (-D^2)^-1 operator with a large IR scale (lambda > 2000 kpc) to preserve kernel fidelity, while chi_gap localizes the extra propagating mode with a large UV mass (m_gap > 1 kpc^-1) to freeze it in the Solar System. A stiff vector field u_mu provides the preferred-frame carrier required for off-ray lensing (evading the DC-013 slip-lock), but its kinetic normalization is fixed by an independent mass parameter m_vec, decoupling it from the e^-y screened PPN coupling (evading P7).",
+ "predicted_weak_field": "In the galactic regime (y<<1), the nonlocal kernel F+ modifies the Poisson equation to yield the MOND force law. The stiff vector u_mu generates a preferred-frame correction to the spatial metric that boosts Psi relative to Phi, providing the correct MOND lensing enhancement. In the Solar System (y>>1), the e^-y factor screens the vector's PPN coupling to alpha_2 ~ e^-y, while the independent kinetic term m_vec^2 u_mu^2 ensures the sound speed remains finite and the theory is not strongly coupled. The extra mode associated with chi_gap is frozen by m_gap, preventing it from contributing to low-energy observables.",
+ "inequivalence_argument": "This candidate is inequivalent to DC-011 because it uses two structurally distinct operators for localization (scale-split), avoiding the empty window of a single mass. It is inequivalent to DC-012/DC-013 because it includes a preferred-frame vector carrier, which is necessary for correct MOND lensing in a frame-free single-metric theory. It is inequivalent to DC-010 and the khronometric seed because the kinetic normalization of the vector is independent of the screened PPN coupling, resolving the P7 strong-coupling issue. It is inequivalent to FM-000004 because the vector is a standard kinetic field with an independent mass, not a decoupled propagator whose longitudinal mode suffers from P7."
+}

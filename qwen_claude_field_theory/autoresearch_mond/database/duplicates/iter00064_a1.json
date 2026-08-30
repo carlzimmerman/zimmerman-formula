@@ -1,0 +1,56 @@
+{
+ "name": "Dual-Sector Kinetic Split: Screened Khronon Frame + Independent Stiff-Vector Lensing Carrier",
+ "family": "multi-sector",
+ "fields": [
+  {
+   "name": "g_mu_nu",
+   "type": "metric",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "n_mu",
+   "type": "khronon",
+   "kinetic": "degenerate",
+   "timelike_background": true
+  },
+  {
+   "name": "v_mu",
+   "type": "vector",
+   "kinetic": "standard",
+   "timelike_background": true
+  }
+ ],
+ "couplings": [
+  {
+   "label": "C_KHRONO",
+   "sources": [
+    "khronon_T",
+    "a_mu(accel)",
+    "mu(y)"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "C_STIFF",
+   "sources": [
+    "v_mu",
+    "spatial_einstein"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "constraint_first_q",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "This architecture explicitly separates the PPN-visible preferred-frame response (carried by the degenerate khronon field, which is e^-y screened) from the propagating lensing carrier (an independent stiff vector with finite, non-screened kinetic normalization). The khronon field handles the MOND force law and PPN screening, while the stiff vector provides the necessary off-ray (Psi-Phi) slip for correct MOND lensing without being tied to the screening factor. This directly attacks the P7 collision by ensuring that the e^-y factor that suppresses alpha_1, alpha_2 in the solar system does NOT simultaneously suppress the kinetic term of the propagating mode that carries the lensing signal.",
+ "predicted_weak_field": "In the weak-field limit, the khronon contribution to PPN parameters scales as e^-y, giving alpha_1, alpha_2 ~ e^-y which is sufficiently small in the solar system (y ~ 10^5). The stiff vector contributes a constant-order correction to the spatial metric perturbation Psi, breaking the Phi=Psi degeneracy required for MOND lensing. Because the vector's kinetic term is independent of the khronon screening factor, its normalization remains finite even as y->infty, avoiding the strong-coupling pathology. The vector is timelike but its coupling to matter is through the metric only (minimal coupling), and its preferred-frame effects are not directly PPN-visible because it couples to the spatial curvature rather than the time-derivative terms that define alpha_1, alpha_2.",
+ "inequivalence_argument": "This candidate is inequivalent to DC-002 (AeST) because the stiff vector is NOT the field that controls the PPN preferred-frame parameters; the khronon does. In AeST, the same vector that is timelike and has standard kinetic normalization ALSO controls alpha_2 ~ 1/K_B, leading to the unscreened coupling kill. Here, the stiff vector's role is purely geometric (lensing carrier) and it has no direct coupling to the time-derivative terms that define PPN alpha_1, alpha_2. The khronon is degenerate (no propagating degree of freedom, only constraint), so it cannot be confused with a standard vector field. This is also inequivalent to DC-010 (khronometric MOND) because DC-010 has ONLY the khronon as the preferred-frame carrier, and the P7 problem arises because the khronon's kinetic normalization IS screened by e^-y. Here, the propagating mode that must have finite kinetic normalization is the stiff vector, which is NOT screened. The khronon's degenerate nature means its 'kinetic normalization' is not a physical propagating degree of freedom subject to the same P7 analysis."
+}

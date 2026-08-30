@@ -1,0 +1,55 @@
+{
+ "name": "Stiff-Vector Kinetic-Orthogonal Constraint-First MOND (SVKOCF)",
+ "family": "constraint-first",
+ "fields": [
+  {
+   "name": "g_mu_nu",
+   "type": "metric",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "u_mu",
+   "type": "vector",
+   "kinetic": "degenerate",
+   "timelike_background": true
+  },
+  {
+   "name": "P_i",
+   "type": "vector",
+   "kinetic": "none",
+   "timelike_background": false
+  }
+ ],
+ "couplings": [
+  {
+   "label": "constraint",
+   "sources": [
+    "P_i",
+    "rho"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "screened_frame",
+   "sources": [
+    "u_mu",
+    "a_mu(accel)"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "constraint_first_q",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "This architecture enforces the MOND force law as a local constraint C_M = D_i[P^i] - 4piG rho = 0, where the constitutive momentum is P_i = mu(y) D_i Phi. A timelike stiff vector u_mu (degenerate kinetic, providing no independent propagating DOF) is introduced solely to provide the preferred-frame carrier required by the slip-lock theorem (DC-013) for correct lensing. The vector's coupling to the metric is explicitly proportional to e^-y (1-mu), ensuring that all preferred-frame PPN observables (alpha_1, alpha_2) vanish in the Newtonian limit (y >> 1). Crucially, the vector's kinetic normalization is fixed by an independent, unscreened mass parameter M_u^2, completely decoupled from the e^-y screening factor.",
+ "predicted_weak_field": "In the weak-field, MOND regime (y << 1), the constraint enforces the modified force law, while the screened preferred-frame coupling (proportional to e^-y ~ 1) provides the off-ray (Phi, Psi) coupling necessary to generate the correct MOND lensing signal (eta=1). Because the vector is stiff (degenerate kinetic), it does not introduce a propagating scalar mode that could carry a ghost or gradient instability. The kinetic normalization M_u^2 remains finite (O(1)) regardless of the screening factor, satisfying the P7 requirement that the propagating-mode kinetic normalization does not vanish as screening kicks in. In the Solar System (y >> 1), e^-y -> 0, screening the preferred-frame effects and recovering GR with exponentially small corrections.",
+ "inequivalence_argument": "This candidate is inequivalent to DC-001 (local no-preferred-frame) because it explicitly includes a preferred_frame=true coupling with screened_by='e^-y', satisfying the mandatory lensing escape. It is inequivalent to DC-010 (finite-alpha_inf khronometric) because it does not use a khronon field with timelike_background=true; instead, it uses a stiff vector with degenerate kinetic (no independent propagating DOF), and crucially, it decouples the kinetic normalization from the screening factor (kinetic_normalization_source='independent'), directly addressing the P7 collision that killed DC-010. It is inequivalent to the recent dead-end KADAF/SVKA-NMF because it does not attempt to anchor the kinetic term to the screened coupling (which caused P7 strong coupling); here, the kinetic term is independent and finite. It is inequivalent to FM-000004 (decoupled propagator) because the vector is stiff (degenerate), not a standard propagating vector, avoiding the longitudinal mode strong-coupling issue identified in the audit."
+}

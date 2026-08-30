@@ -1,0 +1,73 @@
+{
+ "name": "Doubly-Split Nonlocal Frame (DSNF): Massless-Direction-Only Source with e^-y-Screened Vector Frame",
+ "family": "spatially-nonlocal",
+ "fields": [
+  {
+   "name": "g_munu",
+   "type": "metric",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "u_mu",
+   "type": "vector",
+   "kinetic": "standard",
+   "timelike_background": true
+  },
+  {
+   "name": "chi_aux",
+   "type": "scalar",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "sigma_aux",
+   "type": "scalar",
+   "kinetic": "none",
+   "timelike_background": false
+  }
+ ],
+ "couplings": [
+  {
+   "label": "mond_constraint",
+   "sources": [
+    "chi_aux",
+    "sigma_aux",
+    "rho"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "spatial"
+  },
+  {
+   "label": "screened_frame_lensing",
+   "sources": [
+    "u_mu",
+    "K_ij"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "vector_kinetic",
+   "sources": [
+    "u_mu"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "nonlocal_F+",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "The theory localizes the spatially nonlocal F+ kernel using a two-auxiliary scale-split structure where rho couples exclusively to the massless direction (det(M)=0 is maintained for the kernel component). A distinct massive operator (m^2) gaps the non-kernel direction (sigma_aux) to freeze spurious modes without sharing the kernel's mass scale. A timelike vector u_mu provides the preferred-frame carrier required by the slip-lock theorem to decouple Phi and Psi, but its coupling to the metric is multiplied by e^-y, ensuring the preferred-frame PPN parameters (alpha_1, alpha_2) are exponentially screened in the Solar System.",
+ "predicted_weak_field": "In the Newtonian limit, the constraint C_M = D_i[mu(y)D^i q] - rho = 0 yields the MOND force law. The lensing potential Psi receives a contribution from the vector frame u_mu, which is active in the galactic MOND regime (y~1, e^-y~0.37) to satisfy Bekenstein's lensing fix, but suppressed in the Solar System (y>>1, e^-y~0) to pass PPN constraints. The kinetic term for u_mu is a standard Maxwell-like term with a fixed, finite normalization coefficient independent of the e^-y screening factor, avoiding the P7 strong-coupling wall.",
+ "inequivalence_argument": "This candidate is inequivalent to DC-012 (frameless localized-nonlocal) because it explicitly includes a preferred-frame vector u_mu, evading the slip-lock theorem (DC-013) which forbids frame-free lensing. It is inequivalent to the khronometric family (DC-010) because it uses a spatially nonlocal F+ kernel and a vector frame rather than a khronon field, and crucially, the vector's kinetic normalization is independent of the screening factor, unlike the khronon's degenerate/linked normalization which caused the P7 failure. It is inequivalent to DC-011 (single-mass pump) because the localization uses two auxiliaries with a scale-split mass matrix M^2 = diag(0, m^2), where the massless direction hosts the kernel and the massive direction is gapped, avoiding the empty-window problem of a single shared mass."
+}

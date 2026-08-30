@@ -1,0 +1,53 @@
+{
+ "name": "Kinetic-Decoupled Khronon-Vector MOND (KDKV)",
+ "family": "screened-preferred-frame",
+ "fields": [
+  {
+   "name": "g_mu_nu",
+   "type": "metric",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "u_mu",
+   "type": "vector",
+   "kinetic": "standard",
+   "timelike_background": true
+  },
+  {
+   "name": "N_khronon",
+   "type": "khronon",
+   "kinetic": "standard",
+   "timelike_background": true
+  }
+ ],
+ "couplings": [
+  {
+   "label": "L_h",
+   "sources": [
+    "N_khronon"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "L_L",
+   "sources": [
+    "u_mu"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "nonlocal_F+",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "We implement the A3 principle (separation of PPN-visible response and kinetic normalization) by introducing both a stiff vector and a khronon. The e^-y screening factor multiplies the source couplings to the preferred-frame variables, ensuring the PPN alpha parameters vanish in the high-acceleration limit. However, the kinetic terms for the vector and khronon are constructed with independent, O(1) bare coefficients that do not depend on the MOND screening factor. This guarantees that the propagating modes retain finite, healthy kinetic normalizations even when the MOND effects are fully screened, directly bypassing the P7 strong-coupling wall that killed the single-khronon and single-vector architectures.",
+ "predicted_weak_field": "In the weak-field, low-velocity limit, the screened preferred-frame couplings yield PPN alpha_1, alpha_2, and alpha_3 that scale as e^-y, satisfying the Solar System constraints in the high-acceleration regime. The independent kinetic terms ensure that the sound speeds of the vector and khronon modes remain O(1), preventing gradient instabilities and strong coupling. The MOND force law is recovered via the nonlocal F+ realization, while the single physical metric and minimal matter coupling are strictly preserved.",
+ "inequivalence_argument": "This candidate is structurally distinct from all dead classes. It avoids DC-001 and DC-013 (frame-free) by explicitly retaining a preferred-frame carrier (u_mu, N_khronon) with e^-y screening. It avoids DC-002 (AeST) by ensuring the preferred-frame coupling is strictly screened by e^-y, rather than being a constant. It avoids DC-010 (finite-alpha_inf khronometric) by using a standard kinetic normalization for the khronon and vector that is independent of the screened coupling, thus avoiding the strong-coupling wall when e^-y -> 0. It avoids DC-003 (lapse-weighted) by explicitly setting lapse_weighted=false for all couplings. It avoids DC-011/DC-012 by relying on a nonlocal F+ realization for the MOND sector rather than attempting a localized single-mass or frameless scale-split skeleton."
+}
