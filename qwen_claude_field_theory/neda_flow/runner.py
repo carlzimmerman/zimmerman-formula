@@ -453,6 +453,12 @@ def checkpoint(gs, it):
     with open(os.path.join(HERE, "reports", f"checkpoint_{it:05d}.md"), "w") as f:
         f.write(rep)
     log(f"checkpoint written ({it})")
+    try:
+        import subprocess
+        subprocess.run([sys.executable, os.path.join(HERE,"institute","gen_directors_log.py")],
+                       capture_output=True, timeout=30)
+    except Exception:
+        pass
     # ---- batch auto-commit: LOCAL ONLY, NEVER PUSH (pushes are human/Claude-controlled).
     # One commit per AR_BATCH (default 50) candidate dispositions (tested or ruled out).
     disposed = len(exps)

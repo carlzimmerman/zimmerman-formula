@@ -36,14 +36,24 @@ def chat(system, user, temperature=0.7, max_retries=3):
         "options": {"temperature": temperature, "num_ctx": int(os.environ.get("QWEN_CTX", "16384")),
                     "num_predict": int(os.environ.get("QWEN_PREDICT", "8000"))},  # room for think+answer
     }).encode()
+    body = json.loads(payload.decode())
     last = None
     for attempt in range(max_retries):
         try:
-            req = urllib.request.Request(f"{OLLAMA_URL}/api/chat", data=payload,
+            req = urllib.request.Request(f"{OLLAMA_URL}/api/chat",
+                                         data=json.dumps(body).encode(),
                                          headers={"Content-Type": "application/json"})
             with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
                 out = json.load(r)
             return out["message"]["content"]
+        except urllib.error.HTTPError as e:
+            last = e
+            if e.code == 400:   # payload field rejected: shed optional fields and retry immediately
+                if "think" in body:
+                    body.pop("think"); continue
+                if "num_predict" in body.get("options", {}):
+                    body["options"].pop("num_predict"); continue
+            time.sleep(5 * (attempt + 1))
         except Exception as e:
             last = e
             time.sleep(5 * (attempt + 1))
