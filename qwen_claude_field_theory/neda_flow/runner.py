@@ -463,7 +463,7 @@ def checkpoint(gs, it):
     # One commit per AR_BATCH (default 50) candidate dispositions (tested or ruled out).
     disposed = len(exps)
     last = gs.get("last_commit_disposed", 0)
-    if disposed - last >= int(os.environ.get("AR_BATCH", "50")):
+    if disposed - last >= int(os.environ.get("AR_BATCH", "100")):
         try:
             import subprocess
             repo = os.path.abspath(os.path.join(HERE, "..", ".."))
