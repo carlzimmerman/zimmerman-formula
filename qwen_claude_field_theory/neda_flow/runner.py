@@ -22,6 +22,9 @@ DEEP_GATES = os.environ.get("AR_DEEP_GATES", "0") == "1"      # OFF by default: 
 #   G0 + trusted templates (G1-G3) and files anything clean as SURVIVOR_PENDING_AUDIT for Claude to
 #   audit the deep gates. Set AR_DEEP_GATES=1 to re-enable Qwen-written gate scripts (slow, PENDING).
 TRUSTED_GATES = ["G1", "G2", "G3"]                            # deterministic pre-verified templates
+THEOREM_GATES = ["G6", "G8"]                                  # session no-gos as deterministic gates:
+#   G6 slip-lock (DC-013, frame-free cannot lens), G8 P7/stiff-frame fork (DC-014). Neda KILLs what
+#   these cover; only genuine escapees (2nd metric / novel) reach SURVIVOR_PENDING_AUDIT for Claude.
 ESCAPE_MUTATION = os.environ.get("AR_ESCAPE_MUTATION", "0") == "1"  # OFF: a dead-class hit costs no
 #   extra 13-min call -- round-robin + cooldown handle diversity instead. ON: one targeted mutation retry.
 # Round-robin FREQUENCIES (times each branch appears per rotation cycle), re-weighted 2026-08-30 after
@@ -262,6 +265,19 @@ def run_gates(cid, cand, it):
         if tc["status"] == "KILL":
             kill(cid, cand, tc, it); return
 
+    # ---------- THEOREM GATES: run this session's proven deep no-gos deterministically (heavy lifting
+    # in Neda, not Claude). G6 slip-lock (DC-013), G8 P7/stiff-frame fork (DC-014). KILL closes the
+    # candidate here; OPEN means it genuinely escapes the theorems (bimetric/novel) -> escalate to audit.
+    for gate in THEOREM_GATES:
+        tc = gt.run(gate, cand)
+        if tc is None:
+            continue
+        record_cert(cid, cand, tc, it)
+        gate_status[gate] = tc["status"]
+        log(f"  {gate}: {tc['status']} (theorem gate)")
+        if tc["status"] == "KILL":
+            kill(cid, cand, tc, it); return
+
     # ---------- optional deep-gate derivations (OFF by default; slow + PENDING_AUDIT even if PASS)
     if DEEP_GATES:
         for gate in [g for g in ev.SCRIPT_GATES[:MAX_SCRIPT_GATES] if g not in TRUSTED_GATES]:
@@ -286,7 +302,10 @@ def run_gates(cid, cand, it):
                 break
 
     # ---------- outcome: clean through all TRUSTED gates => survivor for AUDIT (deep gates OPEN)
-    if all(gate_status.get(g) == "PASS" for g in ["G0"] + TRUSTED_GATES):
+    if all(gate_status.get(g) == "PASS" for g in ["G0"] + TRUSTED_GATES) \
+            and all(gate_status.get(g) != "KILL" for g in THEOREM_GATES):
+        # survived the cheap gates AND the session's deterministic no-gos => genuinely novel
+        # (2nd metric / structure outside the theorems). This is what actually merits Claude's audit.
         promote_survivor(cid, cand, gate_status, it)
     else:
         cm.set_status(cid, "EVALUATED", {"gates": gate_status})

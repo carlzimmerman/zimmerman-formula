@@ -110,12 +110,79 @@ def G3(cand):
                  assumptions=["declared architecture faithful (policed by later gates)"])
 
 
-TEMPLATES = {"G1": G1, "G2": G2, "G3": G3}
+def _has_second_metric(cand):
+    return sum(1 for f in cand.get("fields", []) if f.get("type") == "metric") >= 2
+
+def _timelike_frame_fields(cand):
+    return [f for f in cand.get("fields", [])
+            if f.get("timelike_background") and f.get("type") in ("vector", "khronon")]
+
+
+# ------------------------------------------------------------------ G6: lensing / slip-lock (DC-013)
+def G6(cand):
+    """SLIP-LOCK THEOREM (DC-013, this session, analytic): a FRAME-FREE single-metric theory cannot
+    give correct MOND lensing. Diff-invariance locks any extra mode's (Phi,Psi) coupling to the exact
+    delta-R direction R^(1)=-2 lap Phi+4 lap Psi (=(1,-2)); on that ray eta=(4L+m)/(8L+m)!=1 for any
+    coupling, so enhancement always comes with an f(R)-type slip. Deterministic verdict from the field
+    content: frame-free + single-metric => KILL; a genuine 2nd metric or a timelike frame escapes the
+    theorem's scope (=> OPEN, escalate for the frame/bimetric analysis)."""
+    if _has_second_metric(cand):
+        return _cert("G6", "OPEN", "second dynamical metric present: exits slip-lock scope (bimetric) "
+                     "-> needs the ghost-free-XOR-MOND price analysis", domain="theorem")
+    if _timelike_frame_fields(cand):
+        return _cert("G6", "OPEN", "timelike preferred-frame field present: slip-lock does not apply; "
+                     "the frame's slip mode must be checked at G8 (P7 fork)", domain="theorem")
+    # frame-free single metric: on the locked delta-R ray eta != 1 for any enhancing coupling
+    L, mm = sp.symbols('L m', positive=True)
+    eta = (4*L + mm) / (8*L + mm)
+    locked = sp.solve(sp.Eq(eta, 1), L)   # -> [] (no positive L): eta=1 only in the trivial L=0 limit
+    return _cert("G6", "KILL",
+                 f"frame-free single-metric: diff-invariance locks coupling to delta-R (1,-2); "
+                 f"eta=(4L+m)/(8L+m)=1 has no L>0 solution ({locked}) => f(R)-type slip, cannot lens (DC-013)",
+                 numeric_values={"eta_L1": "5/9 (!=1)"},
+                 assumptions=["diff-invariant coupling", "no 2nd metric", "no preferred frame"])
+
+
+# ------------------------------------------------------------------ G8: strong coupling / P7 fork (DC-014)
+def G8(cand):
+    """P7 + stiff-vector fork (DC-010/DC-014, this session). A screened preferred-frame carrier that
+    supplies the (necessary) lensing slip has its slip-carrying longitudinal mode normalized EITHER by
+    the screened mass (K_long ~ e^-y -> strong coupling) OR by an independent stiffness (timelike temporal
+    ghost). Deterministic: a timelike frame with an e^-y-screened preferred-frame coupling => KILL, unless
+    a genuine 2nd metric carries the slip instead (=> OPEN, bimetric)."""
+    if _has_second_metric(cand):
+        return _cert("G8", "OPEN", "2nd metric may carry the slip without a screened frame mode "
+                     "-> bimetric price analysis, not the P7 fork", domain="theorem")
+    frames = _timelike_frame_fields(cand)
+    screened_pf = [cp for cp in cand.get("couplings", [])
+                   if cp.get("preferred_frame") and cp.get("screened_by") == "e^-y"]
+    if frames and screened_pf:
+        return _cert("G8", "KILL",
+                     "screened timelike preferred-frame slip carrier: longitudinal mode normalized by "
+                     "the screened mass (K_long~e^-y => P7 strong coupling, Lambda_sc~e^-y/2->0) OR by "
+                     "independent stiffness (timelike temporal ghost). Fork kill (DC-014).",
+                     assumptions=["timelike frame supplies the slip", "e^-y screening",
+                                  "Maxwell blind to longitudinal (FM-000004)"])
+    if frames and not screened_pf:
+        return _cert("G8", "OPEN", "timelike frame with UNscreened coupling: P2/alpha_2 danger "
+                     "(AeST-type) -> needs explicit alpha_1,alpha_2 (G7)", domain="theorem")
+    return _cert("G8", "OPEN", "no timelike frame: P7 fork does not apply at template level "
+                 "(strong coupling still needs the explicit Lambda_sc calc)", domain="theorem")
+
+
+TEMPLATES = {"G1": G1, "G2": G2, "G3": G3, "G6": G6, "G8": G8}
 
 
 def run(gate, cand):
     fn = TEMPLATES.get(gate)
-    if not fn or not applies(gate, cand):
+    if fn is None:
+        return None
+    if gate in ("G6", "G8"):      # theorem-gates apply to every candidate (they self-scope)
+        try:
+            return fn(cand)
+        except Exception as e:
+            return _cert(gate, "BLOCKED", f"template error: {e}")
+    if not applies(gate, cand):
         return None
     try:
         return fn(cand)
