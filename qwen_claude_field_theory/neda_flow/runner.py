@@ -73,7 +73,20 @@ def protocol_text():
     return open(os.path.join(HERE, "global_protocol.md")).read()
 
 
-BRANCH_ORDER = [b for b, _ in QUOTAS]
+def coverage_branch_order():
+    """Coverage-driven exploration: unexplored families x3, active x2, tested x1, dead x0.
+    Falls back to QUOTAS families if the matrix is missing. Info-gain over depth-first."""
+    try:
+        fam = json.load(open(os.path.join(STATE, "COVERAGE_MATRIX.json")))["families"]
+        w = {"unexplored": 3, "active": 2, "tested": 1, "dead": 0}
+        order = []
+        for name, meta in fam.items():
+            order += [name] * w.get(meta.get("status"), 1)
+        return order or [b for b, _ in QUOTAS]
+    except Exception:
+        return [b for b, _ in QUOTAS]
+
+BRANCH_ORDER = coverage_branch_order()
 
 def pick_branch(gs):
     """Strict round-robin over branches; a branch on cooldown (2 consecutive dead results) is skipped
@@ -118,7 +131,7 @@ def architect_context(branch):
     fails = cm._load_jsonl(os.path.join(DB, "failures.jsonl"))[-8:]
     return (f"## RESEARCH BRANCH FOR THIS CANDIDATE: {branch}\n\n"
             f"## MANDATORY STRUCTURAL REQUIREMENTS FOR THIS BRANCH (hard filter, not advice)\n"
-            f"{BRANCH_REQUIREMENTS.get(branch, '')}\n\n"
+            f"{BRANCH_REQUIREMENTS.get(branch, 'NEW-TERRITORY family: declare every mechanism axis explicitly (geometry, locality, frame, lensing carrier, kinetic structure, where a0 arises). All P-rules and theorem gates apply. The cheapest decisive obstruction for this family should be your candidate design target.')}\n\n"
             f"## YOUR RECENT DEAD-END PROPOSALS (already killed at dedup — do NOT re-propose "
             f"anything structurally similar; change the ARCHITECTURE, not names)\n"
             f"{json.dumps(recent_dead_ends(), indent=1)[:3000]}\n\n"
