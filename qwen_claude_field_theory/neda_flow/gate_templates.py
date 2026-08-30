@@ -170,14 +170,84 @@ def G8(cand):
                  "(strong coupling still needs the explicit Lambda_sc calc)", domain="theorem")
 
 
-TEMPLATES = {"G1": G1, "G2": G2, "G3": G3, "G6": G6, "G8": G8}
+# ------------------------------------------------------------------ G4: bimetric structure / BD ghost
+def G4(cand):
+    """Bimetric-only structural gate (deterministic rules from established massive-gravity results).
+    Kill conditions (no trading failures): (a) a claimed massive-graviton mechanism with NO declared
+    g<->h interaction potential = the declared theory has no graviton mass (mechanism void) and, with
+    matter sourcing the second metric, is doubly-coupled massless bigravity; (b) matter directly
+    sourcing the 2nd metric without a declared composite/HR structure = doubly-coupled matter =>
+    Boulware-Deser ghost; (c) declared non-HR interaction without an argued degeneracy => BD ghost."""
+    if not _has_second_metric(cand):
+        return None
+    spec = cand.get("bimetric_spec", {}) or {}
+    coups = cand.get("couplings", [])
+    tokens = [str(s).lower() for cp in coups for s in cp.get("sources", [])]
+    metric_names = [f.get("name", "").lower() for f in cand.get("fields", []) if f.get("type") == "metric"]
+    has_interaction = (spec.get("interaction") in ("hassan_rosen", "composite")) or         any(sum(1 for mn in metric_names if mn and mn in {str(s).lower() for s in cp.get("sources", [])}) >= 2
+            for cp in coups) or ("hr_potential" in tokens) or ("interaction_potential" in tokens)
+    matter_on_second = ("rho" in tokens or "matter" in tokens) and spec.get("matter_metric") in (None, "both")         and any("rho" in {str(s).lower() for s in cp.get("sources", [])} or
+                "matter" in {str(s).lower() for s in cp.get("sources", [])} for cp in coups)
+    mech = (cand.get("claimed_mechanism", "") + " " + cand.get("predicted_weak_field", "")).lower()
+    claims_massive = "massive" in mech and "graviton" in mech
+    if claims_massive and not has_interaction:
+        return _cert("G4", "KILL",
+                     "claims a massive-graviton mechanism but declares NO g<->h interaction potential: "
+                     "the declared theory has no graviton mass (mechanism void); with matter sourcing "
+                     "the 2nd metric it is doubly-coupled massless bigravity => BD ghost. Declare "
+                     "bimetric_spec{interaction: hassan_rosen|composite} + the potential coupling.",
+                     assumptions=["declared architecture IS the theory"])
+    if matter_on_second and spec.get("matter_metric") not in ("g", "f", "composite"):
+        return _cert("G4", "KILL",
+                     "matter directly sources the 2nd metric with no declared single/composite matter "
+                     "metric: doubly-coupled matter => Boulware-Deser ghost (established massive-gravity "
+                     "result). Declare bimetric_spec.matter_metric.",
+                     assumptions=["no composite metric declared"])
+    if spec.get("interaction") == "other":
+        return _cert("G4", "KILL", "non-Hassan-Rosen interaction with no argued degeneracy => BD ghost "
+                     "(generic potential reintroduces the 6th mode).")
+    if spec.get("interaction") in ("hassan_rosen", "composite"):
+        return _cert("G4", "PASS", "HR/composite interaction declared: BD-ghost-free by construction "
+                     "at the structural level (full ADM Hessian rank still audited on escalation).",
+                     assumptions=["HR potential exactly of ghost-free form"])
+    return _cert("G4", "OPEN", "bimetric structure incompletely declared: cannot certify; escalate "
+                 "only after bimetric_spec is complete.")
+
+
+# ------------------------------------------------------------------ G5: bimetric MOND-source fork
+def G5(cand):
+    """The ghost-free-XOR-MOND fork (priced in closure_2026/bimetric_door): a LINEAR massive graviton
+    gives Yukawa (fixed length, enhance-short/cutoff-long) which can NEVER equal mu(y)=1-e^-y (an
+    acceleration scale). Deterministic: mond_source=linear_massive_graviton => KILL. Nonlinear/composite
+    claims go OPEN -> escalation (that is where the genuine unknown lives). Higuchi flagged."""
+    if not _has_second_metric(cand):
+        return None
+    spec = cand.get("bimetric_spec", {}) or {}
+    src = spec.get("mond_source")
+    if src == "linear_massive_graviton":
+        return _cert("G5", "KILL",
+                     "MOND from the LINEAR massive-graviton sector: Yukawa force (fixed Compton length, "
+                     "vDVZ 4/3 short-range + long-range cutoff) is structurally NOT mu(y)=1-e^-y (an "
+                     "acceleration scale). Ghost-free-XOR-MOND fork (bimetric_door price).",
+                     assumptions=["linear regime dominates galactic scales"])
+    if src in ("nonlinear_helicity0", "composite_matter", "f_sector"):
+        return _cert("G5", "OPEN",
+                     f"MOND from {src}: the genuine unknown (nonlinear sector). Escalate with the full "
+                     "8-step bimetric audit (exact action, ADM Hessian, constraint rank, Higuchi at "
+                     "m_FP~H0, spherical MOND reduction, lensing, c_T, PPN). No failure-trading.",
+                     assumptions=["Higuchi m^2>=2H^2 marginal at m_FP~H0 (flag)"])
+    return _cert("G5", "OPEN", "bimetric_spec.mond_source undeclared: cannot run the fork; candidate "
+                 "must declare where the a0 acceleration scale comes from.")
+
+
+TEMPLATES = {"G1": G1, "G2": G2, "G3": G3, "G4": G4, "G5": G5, "G6": G6, "G8": G8}
 
 
 def run(gate, cand):
     fn = TEMPLATES.get(gate)
     if fn is None:
         return None
-    if gate in ("G6", "G8"):      # theorem-gates apply to every candidate (they self-scope)
+    if gate in ("G4", "G5", "G6", "G8"):  # theorem-gates apply to every candidate (self-scoping)
         try:
             return fn(cand)
         except Exception as e:

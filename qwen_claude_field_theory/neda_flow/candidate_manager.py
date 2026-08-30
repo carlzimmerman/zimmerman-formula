@@ -143,6 +143,10 @@ def mechanism_fingerprint(cand):
     mond = cand.get("mond_realization", "").strip().lower()
     fp = {"geometry": geometry, "locality": locality, "frame": frame, "screening": screening,
           "lensing_carrier": lensing, "kinetic_structure": kin, "mond_carrier": mond}
+    if geometry == "bimetric":     # {metric count, interaction, MOND source, matter metric} axes
+        bs = cand.get("bimetric_spec", {}) or {}
+        fp.update({"bi_interaction": bs.get("interaction"), "bi_mond_source": bs.get("mond_source"),
+                   "bi_matter_metric": bs.get("matter_metric")})
     key = hashlib.sha256(json.dumps(fp, sort_keys=True).encode()).hexdigest()[:12]
     return key, fp
 

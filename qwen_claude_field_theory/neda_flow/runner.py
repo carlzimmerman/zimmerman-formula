@@ -22,7 +22,7 @@ DEEP_GATES = os.environ.get("AR_DEEP_GATES", "0") == "1"      # OFF by default: 
 #   G0 + trusted templates (G1-G3) and files anything clean as SURVIVOR_PENDING_AUDIT for Claude to
 #   audit the deep gates. Set AR_DEEP_GATES=1 to re-enable Qwen-written gate scripts (slow, PENDING).
 TRUSTED_GATES = ["G1", "G2", "G3"]                            # deterministic pre-verified templates
-THEOREM_GATES = ["G6", "G8"]                                  # session no-gos as deterministic gates:
+THEOREM_GATES = ["G4", "G5", "G6", "G8"]                                  # session no-gos as deterministic gates:
 #   G6 slip-lock (DC-013, frame-free cannot lens), G8 P7/stiff-frame fork (DC-014). Neda KILLs what
 #   these cover; only genuine escapees (2nd metric / novel) reach SURVIVOR_PENDING_AUDIT for Claude.
 ESCAPE_MUTATION = os.environ.get("AR_ESCAPE_MUTATION", "0") == "1"  # OFF: a dead-class hit costs no

@@ -1,0 +1,67 @@
+{
+ "name": "Degenerate Weyl-Box Higher-Derivative MOND (DWBD)",
+ "family": "higher-derivative",
+ "fields": [
+  {
+   "name": "g_mu_nu",
+   "type": "metric",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "chi",
+   "type": "scalar",
+   "kinetic": "degenerate",
+   "timelike_background": false
+  },
+  {
+   "name": "u_mu",
+   "type": "vector",
+   "kinetic": "none",
+   "timelike_background": true
+  }
+ ],
+ "couplings": [
+  {
+   "label": "Weyl_box_screwer",
+   "sources": [
+    "weyl_E",
+    "chi",
+    "u_mu"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "aux_legendre_mond",
+   "sources": [
+    "chi"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "lensing_slip_carrier",
+   "sources": [
+    "u_mu",
+    "weyl_E"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "aux_legendre_chi",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "The Ostrogradsky paradox is evaded by making the chi field strictly degenerate (det H_chi = 0) via an algebraic constraint linking its time-derivative to the spatial D'Alembertian of the metric, generating a second-class pair rather than an independent propagating scalar (P4). The lensing slip off the delta-R ray (DC-013) is supplied by a fixed, non-propagating preferred-frame vector u_mu coupled to the Weyl tensor; because u_mu has no kinetic term, it acts purely as a frame-screwer and does not introduce propagating degrees of freedom. The e^-y screening ensures the preferred-frame coupling vanishes in the Solar System, satisfying P2 and PPN bounds.",
+ "predicted_weak_field": "In the MOND regime (y << 1), the degenerate chi field enforces the exact mu(y) = 1 - e^-y force law. The fixed vector u_mu provides an anisotropic Weyl-box contribution to the metric potentials, shifting Psi relative to Phi by an amount proportional to e^-y. Because the vector is non-propagating and its coupling is screened, the PPN parameters alpha_1 and alpha_2 are dynamically generated to be O(e^-y), satisfying Cassini constraints. The kinetic normalization of the metric remains standard GR (c_T=1, Q_T>0) independent of the screening factor, thereby evading the P7 strong-coupling collision.",
+ "inequivalence_argument": "Unlike DC-010 (khronometric), this theory lacks a propagating khronon field; the scalar is degenerate (non-propagating) and the frame is a non-dynamical vector. Unlike DC-014 (stiff vector), the vector's role is to couple to the Weyl tensor (tidal/curvature) rather than the metric gradient, avoiding the temporal ghost or strong coupling associated with longitudinal vector modes. Unlike DC-001/DC-013 (frameless), it explicitly uses a preferred frame to break the slip-lock, but isolates it in a non-propagating sector to prevent GW170817 and PPN violations."
+}

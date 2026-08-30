@@ -17,3 +17,10 @@ say HOW the acceleration scale a0 arises (nonlinear helicity-0 sector, composite
 FROZEN: mu=1-e^-y; single metric; matter minimal; a0=9.3619e-11 (kappa=1/2 FITTED).
 FORBIDDEN combos (auto-G0-kill): unscreened preferred_frame coupling; lapse_weighted MOND; temporal
 nonlocality on main branches; kinetic_normalization_source=screened_coupling with a degenerate field.
+
+BIMETRIC CANDIDATES MUST also declare top-level "bimetric_spec": {"interaction":
+"hassan_rosen"|"composite"|"other", "matter_metric": "g"|"f"|"composite", "mond_source":
+"linear_massive_graviton"|"nonlinear_helicity0"|"composite_matter"|"f_sector", "m_FP": "~H0"|"other"}.
+Auto-kills: linear_massive_graviton (Yukawa != mu, the ghost-free-XOR-MOND fork); interaction "other"
+without argued degeneracy (BD ghost); matter sourcing the 2nd metric without a declared matter_metric
+(doubly-coupled ghost); claiming a massive graviton with no declared interaction potential.
