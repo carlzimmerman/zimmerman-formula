@@ -150,8 +150,17 @@ def G6(cand):
         return _cert("G6", "OPEN", "second dynamical metric present: exits slip-lock scope (bimetric) "
                      "-> needs the ghost-free-XOR-MOND price analysis", domain="theorem")
     if _timelike_frame_fields(cand):
-        return _cert("G6", "OPEN", "timelike preferred-frame field present: slip-lock does not apply; "
-                     "the frame's slip mode must be checked at G8 (P7 fork)", domain="theorem")
+        # SPECTATOR-FRAME hole (found by aleatoric FM-000058): a frame field only evades slip-lock if
+        # some coupling actually lets it CARRY the slip. A timelike field with zero preferred_frame
+        # couplings is a spectator -- the effective gravity sector is frame-free and the lock applies.
+        if not any(cp.get("preferred_frame") for cp in cand.get("couplings", [])):
+            return _cert("G6", "KILL",
+                         "timelike frame field is a SPECTATOR (zero preferred_frame couplings): the "
+                         "effective gravity sector is frame-free => slip-lock applies (eta locked to the "
+                         "delta-R ray, cannot lens). Coupling the frame instead re-enters the alpha_2/"
+                         "P7 gates. Fork closed (FM-000058 lesson).", domain="theorem")
+        return _cert("G6", "OPEN", "timelike preferred-frame field present WITH a pf coupling: slip-lock "
+                     "does not apply; the frame's slip mode must be checked at G8 (P7 fork)", domain="theorem")
     if not _slip_lock_applies(cand):
         return _cert("G6", "OPEN", "slip-lock (Riemannian R^(1), propagating scalar) does NOT apply to "
                      "this family (non-Riemannian connection / instantaneous or no scalar sector / "
