@@ -92,7 +92,8 @@ def register(cand, parent=None, mutation=None, reason=None, failed_gate=None):
     """Permanent registration. IDs never reused; candidates never overwritten."""
     cid = next_id()
     row = {"candidate_id": cid, "arch_hash": arch_hash(cand), "ts": time.time(),
-           "status": "REGISTERED", "family": cand.get("family"), "name": cand.get("name")}
+           "status": "REGISTERED", "family": cand.get("family"), "name": cand.get("name"),
+           "mech_fp": mechanism_fingerprint(cand)[0]}
     append_jsonl(os.path.join(DB, "candidates.jsonl"), row)
     with open(os.path.join(HERE, "candidates", f"{cid}.json"), "w") as f:
         json.dump(cand, f, indent=1, sort_keys=True)
@@ -116,3 +117,53 @@ def latest_status(cid):
         if row.get("candidate_id") == cid and "status" in row:
             st = row["status"]
     return st
+
+
+# ---------------- mechanism fingerprint: dedup by MECHANISM, not by architecture decoration.
+def mechanism_fingerprint(cand):
+    """Coarse canonical mechanism key: kills synonym loops (same idea, different names/decoration).
+    Axes: geometry / locality / frame / MOND carrier / lensing carrier / kinetic structure."""
+    fields = cand.get("fields", [])
+    coups  = cand.get("couplings", [])
+    n_metric = sum(1 for f in fields if f.get("type") == "metric")
+    geometry = "bimetric" if n_metric >= 2 else "single_metric"
+    locality = ("spatial_nonlocal" if any(cp.get("nonlocal") == "spatial" for cp in coups)
+                else ("spacetime_nonlocal" if any(cp.get("nonlocal") == "temporal" for cp in coups)
+                      else "local"))
+    tl = [f for f in fields if f.get("timelike_background") and f.get("type") in ("vector", "khronon")]
+    frame = ("none" if not tl else
+             ("propagating" if any(f.get("kinetic") == "standard" for f in tl) else "non_propagating"))
+    pf = [cp for cp in coups if cp.get("preferred_frame")]
+    screening = ("e^-y" if any(cp.get("screened_by") == "e^-y" for cp in pf)
+                 else ("unscreened" if pf else "no_pf"))
+    lensing = ("second_metric" if geometry == "bimetric"
+               else ("screened_frame_slip" if pf else
+                     ("nonlocal_stress" if locality != "local" else "none_declared")))
+    kin = tuple(sorted({f.get("kinetic", "none") for f in fields}))
+    mond = cand.get("mond_realization", "").strip().lower()
+    fp = {"geometry": geometry, "locality": locality, "frame": frame, "screening": screening,
+          "lensing_carrier": lensing, "kinetic_structure": kin, "mond_carrier": mond}
+    key = hashlib.sha256(json.dumps(fp, sort_keys=True).encode()).hexdigest()[:12]
+    return key, fp
+
+
+def mechanism_dedup(cand, max_per_fp=2):
+    """(status, ref): MECHANISM_OF_KILLED if this fingerprint was killed at a theorem/audit gate;
+    MECHANISM_SATURATED if >= max_per_fp candidates with this fingerprint were already registered."""
+    key, fp = mechanism_fingerprint(cand)
+    kills, count = [], 0
+    status_by_cid = {}
+    for row in _load_jsonl(os.path.join(DB, "candidates.jsonl")):
+        cid = row.get("candidate_id")
+        if row.get("mech_fp") == key:
+            count += 1
+        if cid:
+            status_by_cid.setdefault(cid, {}).update(row)
+    for cid, row in status_by_cid.items():
+        if row.get("mech_fp") == key and row.get("status") in ("KILL",):
+            kills.append(cid)
+    if kills:
+        return "MECHANISM_OF_KILLED", kills[0]
+    if count >= max_per_fp:
+        return "MECHANISM_SATURATED", key
+    return "NEW", key

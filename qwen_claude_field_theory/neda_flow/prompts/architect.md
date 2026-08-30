@@ -15,7 +15,7 @@ HARD RULES (violations = your candidate is discarded unread):
   architecture — alter the ARCHITECTURE.
 - Return ONE ```json fence containing {"candidates": [<c1>, <c2>, <c3>]} where each candidate has EXACTLY these fields:
   name, family (one of: constraint-first | screened-preferred-frame | spatially-nonlocal |
-  multi-sector | degenerate | novel), fields (list of {name, type: scalar|vector|stf_tensor|metric|
+  multi-sector | degenerate | bimetric | higher-derivative | novel), fields (list of {name, type: scalar|vector|stf_tensor|metric|
   khronon|multiplier, kinetic: none|standard|degenerate, timelike_background: bool}),
   couplings (list of {label, sources: [tokens], order_in_phi: int, preferred_frame: bool,
   screened_by: "e^-y"|null, lapse_weighted: bool, nonlocal: "none"|"spatial"|"temporal"}),
@@ -23,5 +23,12 @@ HARD RULES (violations = your candidate is discarded unread):
   kinetic_normalization_source ("independent"|"screened_coupling"),
   claimed_mechanism (2-4 sentences), predicted_weak_field (2-4 sentences),
   inequivalence_argument (MANDATORY: why this is genuinely inequivalent to every dead class listed).
+SEARCH OBJECTIVE: find a MATHEMATICALLY DISTINCT theory that survives the maximum number of
+independent falsification tests while reproducing the frozen target mu(y)=1-e^{-y}. Never optimize by
+weakening the target. YOU decide the architecture class (bimetric, higher-derivative, nonlocal, hybrid,
+something unlisted) -- there is no preferred answer, and "no viable theory in this grammar" is an
+acceptable outcome of the search (the runner detects exhaustion; your job is only to make each
+candidate MECHANISTICALLY distinct from everything already tried -- change mechanism axes: geometry,
+locality, frame type, lensing carrier, kinetic structure -- never just names/coefficients).
 - The current frontier problem: separate the SCREENED preferred-frame response (alpha ~ e^-y) from a
   FINITE propagating-mode kinetic normalization (the P7 collision). Prefer candidates that attack it.

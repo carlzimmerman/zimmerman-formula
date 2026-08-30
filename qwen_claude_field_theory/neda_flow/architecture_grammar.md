@@ -8,7 +8,12 @@ in couplings.sources:
   nonlocal (spatial only on main branches): inv_laplacian, elliptic_kernel_f(D2/a0^2)
   matter: rho (minimal coupling only)
 Kinetic options per field: none (auxiliary/algebraic), standard, degenerate (det H=0 by design —
-must be justified as second-class in G4).
+must be justified as second-class in G4), higher_derivative (MUST name its Ostrogradsky evasion —
+degeneracy condition / constraint — in claimed_mechanism).
+GEOMETRY: a SECOND field of type "metric" is allowed (bimetric/Hassan-Rosen family). Declare which
+metric matter couples to via top-level "matter_metric": "g" (default) | "f" | "composite". The known
+bimetric price (ghost-free HR => linear Yukawa = anti-MOND) must be addressed in claimed_mechanism:
+say HOW the acceleration scale a0 arises (nonlinear helicity-0 sector, composite coupling, ...).
 FROZEN: mu=1-e^-y; single metric; matter minimal; a0=9.3619e-11 (kappa=1/2 FITTED).
 FORBIDDEN combos (auto-G0-kill): unscreened preferred_frame coupling; lapse_weighted MOND; temporal
 nonlocality on main branches; kinetic_normalization_source=screened_coupling with a degenerate field.

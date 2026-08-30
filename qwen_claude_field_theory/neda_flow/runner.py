@@ -32,8 +32,8 @@ ESCAPE_MUTATION = os.environ.get("AR_ESCAPE_MUTATION", "0") == "1"  # OFF: a dea
 # audit = the same P7 collision). The LIVE route is the spatially-nonlocal pure-metric corridor (no
 # khronon, no preferred frame). Closed branches are kept at low rate ONLY to catch a genuinely novel
 # escape (e.g. constraint-first carrying a nonlocal channel), not as equal search targets.
-QUOTAS = [("spatially-nonlocal", 4), ("multi-sector", 2), ("novel", 2),
-          ("constraint-first", 1), ("screened-preferred-frame", 1), ("degenerate", 1)]
+QUOTAS = [("bimetric", 3), ("spatially-nonlocal", 3), ("higher-derivative", 2), ("novel", 2),
+          ("multi-sector", 1), ("constraint-first", 1), ("screened-preferred-frame", 1), ("degenerate", 1)]
 # hard structural requirements per branch, derived from the seeded theorems (fed to the architect)
 BRANCH_REQUIREMENTS = {
  "constraint-first": "THEOREM DC-001 (exhaustive, 108k candidates): ANY local candidate with no "
@@ -51,6 +51,13 @@ BRANCH_REQUIREMENTS = {
    "must be screened_by='e^-y' and no lapse_weighted couplings (P3). Include the DC-001 lensing escape.",
  "degenerate": "Degenerate kinetic terms must be argued second-class in claimed_mechanism; still include "
    "the DC-001 lensing escape (screened PF or spatial nonlocal).",
+ "bimetric": "Two dynamical metrics (Hassan-Rosen family). KNOWN PRICE you MUST address in "
+   "claimed_mechanism: ghost-free HR => linear Yukawa (fixed length scale) = ANTI-MOND; say HOW the "
+   "ACCELERATION scale a0 and mu=1-e^-y arise (nonlinear helicity-0 sector / composite matter coupling "
+   "/ f-sector structure) without the Boulware-Deser ghost; m_g~H0 sits on the Higuchi bound.",
+ "higher-derivative": "Higher-derivative kinetic terms MUST name the Ostrogradsky evasion (degeneracy "
+   "condition, constraint structure) in claimed_mechanism. Still need the lensing slip off the delta-R "
+   "ray: state the carrier.",
  "novel": "Go OUTSIDE the listed families, but still respect every P-rule and include the DC-001 "
    "lensing escape (screened-e^-y preferred-frame coupling or spatial nonlocality).",
 }
@@ -120,6 +127,8 @@ def architect_context(branch):
             f"## KNOWLEDGE GRAPH (learned rules — every candidate MUST respect these)\n"
             f"{json.dumps(kg['rules'], indent=1)}\n\n"
             f"## DEAD CLASSES (never re-cook)\n{json.dumps(dead['classes'], indent=1)[:6000]}\n\n"
+            f"## VERIFIED MECHANISM LIBRARY (compose from these; they are PROVEN ingredients)\n"
+            f"{json.dumps(J('MECHANISM_LIBRARY.json')['mechanisms'], indent=1)[:2500]}\n\n"
             f"## CURRENT SURVIVORS\n{json.dumps(surv['ranked'], indent=1)[:3000]}\n\n"
             f"## OPEN GATES\n{json.dumps(og, indent=1)[:2000]}\n\n"
             f"## RECENT FAILURES\n{json.dumps(fails, indent=1)[:4000]}\n")
@@ -233,6 +242,13 @@ def process_candidate(gs, it, branch, cand):
         cand = mc
     if status != "NEW":
         return
+    mstat, mref = cm.mechanism_dedup(cand)
+    if mstat != "NEW":
+        cm.append_jsonl(os.path.join(DB, "experiments.jsonl"),
+                        {"iter": it, "stage": "mech_dedup", "result": mstat, "ref": mref,
+                         "name": cand.get("name"), "ts": time.time()})
+        note_branch_dead(gs, branch)
+        log(f"  {mstat} (mechanism {mref}) — same mechanism as prior candidates, not run"); return
     cid = cm.register(cand, parent=cand.get("parent_candidate"),
                       mutation=cand.get("mutation_type"), reason=cand.get("reason_for_mutation"),
                       failed_gate=cand.get("failed_gate_being_addressed"))
@@ -468,6 +484,24 @@ def main():
                                 {"iter": it, "stage": "runner", "reason": traceback.format_exc()[-800:],
                                  "ts": time.time()})
                 log("iteration error (recorded, continuing)")
+            # exhaustion detector: N consecutive iterations with zero NEW mechanisms => the grammar
+            # is saturated; "NO VIABLE CANDIDATE FOUND" is a legitimate scientific outcome.
+            regs = len(cm._load_jsonl(os.path.join(DB, "candidates.jsonl")))
+            if regs == gs.get("last_reg_count", 0):
+                gs["no_new_streak"] = gs.get("no_new_streak", 0) + 1
+            else:
+                gs["no_new_streak"] = 0
+            gs["last_reg_count"] = regs
+            if gs["no_new_streak"] >= int(os.environ.get("AR_EXHAUST_N", "40")):
+                with open(os.path.join(HERE, "reports", f"EXHAUSTION_{it:05d}.md"), "w") as f:
+                    f.write(f"# NO NEW MECHANISM in {gs['no_new_streak']} consecutive iterations\n"
+                            f"The current grammar appears SATURATED: every proposal is a duplicate, a dead "
+                            f"class, or a killed mechanism. Legitimate outcome: NO VIABLE CANDIDATE FOUND "
+                            f"in the explored domain. Next moves: expand the grammar (new mechanism axes) "
+                            f"or accept the structural no-go. Stopping.\n")
+                gs["status"] = "NO_VIABLE_CANDIDATE_IN_GRAMMAR"
+                log(f"EXHAUSTION: {gs['no_new_streak']} iterations with no new mechanism — stopping (see reports/)")
+                break
             if it % CHECKPOINT_EVERY == 0:
                 checkpoint(gs, it)
             W("GLOBAL_STATE.json", gs)
