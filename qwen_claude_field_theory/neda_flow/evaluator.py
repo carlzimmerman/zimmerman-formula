@@ -136,6 +136,17 @@ def gate_G0(cand, canon):
             if not any(k in mech for k in ("ostrogradsky", "degener", "constraint")):
                 kills.append("higher_derivative kinetic with NO named Ostrogradsky evasion "
                              "(degeneracy/constraint) => ghost by default")
+    n_metric_fields = sum(1 for f in fields if f.get("type") == "metric")
+    for f in fields:
+        if f.get("type") == "multiplier" and f.get("kinetic") not in ("none", None):
+            kills.append("INCOHERENT: multiplier field with a kinetic term (a Lagrange multiplier is "
+                         "non-dynamical by definition; kinetic must be 'none')")
+        if f.get("type") == "metric" and f.get("kinetic") not in ("standard", None):
+            kills.append(f"INCOHERENT: metric field with kinetic='{f.get('kinetic')}' (a metric carries "
+                         "the Einstein-Hilbert kinetic; a non-propagating 'metric' is not a metric)")
+    if any(t in ("c_invariant_1", "c_tensor") for t in tokens) and n_metric_fields < 2:
+        kills.append("INCOHERENT: connection-difference C-invariant (Gamma(g)-Gamma(h)) source with <2 "
+                     "metrics (C requires TWO metrics; meaningless with one)")
     sect = (cand.get("scalar_sector") or "propagating").lower()
     if sect in ("instantaneous", "constrained") and not (
             any(f.get("type") == "multiplier" for f in fields) or
