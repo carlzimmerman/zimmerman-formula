@@ -154,6 +154,20 @@ def architect_context(branch):
 def one_iteration(gs, it):
     branch = pick_branch(gs)
     log(f"iter {it}: branch={branch}")
+    # ---------- ALEATORIC FAST LANE (zero LLM cost): seeded-PRNG grammar samples judged by the gates.
+    # Novelty comes from uniform sampling over the EXPRESSIBLE space, not the LLM's literature prior.
+    import mutation_engine as me
+    n_alea = int(os.environ.get("AR_ALEATORIC", "4"))
+    for k in range(n_alea):
+        seed = it * 1000 + k
+        cand = me.random_skeleton(seed) if k % 2 == 0 else me.crossover(
+            J("MECHANISM_LIBRARY.json")["mechanisms"], seed)
+        try:
+            process_candidate(gs, it, "aleatoric", cand)
+        except Exception:
+            cm.append_jsonl(os.path.join(DB, "failures.jsonl"),
+                            {"iter": it, "stage": "aleatoric", "seed": seed,
+                             "reason": traceback.format_exc()[-400:], "ts": time.time()})
     # ---------- ARCHITECT (batch: up to 3 candidates per call — same 13-min generation)
     reply = oc.chat(P("architect.md"), architect_context(branch), temperature=0.9)
     batch = oc.extract_candidates(reply)
