@@ -2,13 +2,13 @@
 *Auto-generated from institute state. Regenerate: `python3 institute/gen_directors_log.py`*
 
 ## Standing verdict of the search
-- Theory space mapped by the Coverage Office: **27 architecture families** (10 dead · 4 active · 12 unexplored · 1 tested).
+- Theory space mapped by the Coverage Office: **27 architecture families** (10 dead · 3 active · 12 unexplored · 2 tested).
 - Proven no-go theorems (dead classes): **16**.
-- Candidates on record: **85** ({'KILL': 71, 'EVALUATED': 9, 'SURVIVOR': 5}).
+- Candidates on record: **86** ({'KILL': 72, 'EVALUATED': 9, 'SURVIVOR': 5}).
 
 ## THE OPEN FRONTIER (where the live physics is)
-- **FULL weak-field reduction of ONE explicit {P,F,A_3} MOND action: 0i constraint AND exterior scalar eq**
-  - OpenAI review (verified) corrected the terminal result: (1) alpha~e^-y was an ASSUMPTION and is likely FALSE -- the PPN momentum constraint F nabla^2 N_i^T=-2J_i^T is F-controlled, J_i^T~T_0i does not inherit e^-y; S_PPN UNDETERMINED. (2) BIGGER: standard A_3!=0 luminal DHOST is GR in the vacuum exterior (Phi'=Psi'=GM/r^2, DHOST~M',M''=0 outside), but MOND lives in the vacuum exterior => the cone-
+- **NON-standard DHOST branch that sources Psi in the vacuum EXTERIOR (the last single-metric hope)**
+  - The concrete standard luminal DHOST-MOND action UNDER-LENSES (verified, vacuum-exterior first): MOND is a scalar fifth force (dynamics only), metric is GR in vacuum (Phi'=Psi'=GM/r^2), so photons see Newtonian => g_lens/g_dyn->0. The A_3 cone-regulator acts inside matter (Vainshtein) while MOND lives in the vacuum exterior -- they never overlap. Standard quadratic DHOST is thus KILLED as the MOND 
 - **MOND-DHOST degeneracy: source Psi + luminal c_s + DOF=3 WITHOUT a preferred-frame reduction (THE terminal single-metric class)**
   - Two independent obstructions (lensing under-lens + scalar superluminal cone c_par^2=2) CONVERGE on one surviving class: MOND-DHOST. The DHOST phi_munu terms can source Psi (linear stress) and engineer the cone, but the scalar's cosmological background gradient threatens to become a khronometric frame (CLOSED). Decisive symbolic calc: solve the DHOST degeneracy conditions for {mu=1-e^-y, eta=1, c_T
 - **DYNAMICAL make-or-break of the nonlocal single-metric door (spectral wall PROVEN ABSENT)**
@@ -20,7 +20,6 @@
 - **bimetric-degenerate-DHOST** — MOND nonlinearity + Hamiltonian degeneracy from SAME structure; decisive calc = quadratic ghost/Hamiltonian
 - **bimond-connection** — Milgrom C=Gamma(g)-Gamma(h) invariants; decisive gate = BD audit; derivative interactions generically ghosty
 - **metric-derived-nonlocal-accel** — simple acceleration-scalar realization UNDER-LENSES (quadratic stress, slip-lock/AQUAL); needs the NONLOCAL sector to source Phi+Psi frame-free => CONVERGES on the un-localized F+ door's open calc. Sub-gates: causal nonl
-- **MOND-DHOST** — S_operator!=empty but S_PPN UNDETERMINED (alpha~e^-y retracted -- momentum constraint is F-controlled, not screened). PLUS a serious vacuum-exterior obstruction: A_3 cone-regulator gives GR-exterior (Vainshtein) while MO
 
 ## UNEXPLORED families (breadth queue)
 - cuscuton — scalar with NO propagating scalar DOF (2 DOF total, like GR) yet modifies dynamics -- could evade slip-lock by having no extra mode to lock; genuinely
