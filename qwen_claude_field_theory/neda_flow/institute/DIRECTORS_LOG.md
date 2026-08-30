@@ -7,8 +7,8 @@
 - Candidates on record: **32** ({'KILL': 28, 'EVALUATED': 2, 'SURVIVOR': 2}).
 
 ## THE OPEN FRONTIER (where the live physics is)
-- **THE CONVERGED CALC: can genuine nonlocality source Phi+Psi frame-free at linear order, ghost-free?**
-  - Both surviving single-metric routes reduce to this ONE calculation: (A) un-localized nonlocal F+ and (B) metric-derived nonlocal acceleration gravity. Every LOCAL or quadratic-stress realization UNDER-LENSES (slip-lock DC-013). Decisive: does a genuinely nonlocal (pseudo-differential) operator source the LENSING potential Phi+Psi with MOND enhancement at LINEAR order, without a preferred frame and
+- **DYNAMICAL make-or-break of the nonlocal single-metric door (spectral wall PROVEN ABSENT)**
+  - The converged calc CLEARED the spectral obstruction: with nonlocality removing slip-lock's (1,-2) lock, {eta=1 + MOND enhancement + ghost-free (M NSD)} coexist in a finite window A-C in (-2m,0). So the single-metric door is NOT closed by the spectrum -- the strongest single-metric position of the program. Two DYNAMICAL make-or-breaks remain (these decide chicken vs no-go): (1) does a CAUSAL retard
 - **QUADRATIC HAMILTONIAN/GHOST AUDIT of extended-BIMOND C-invariant interaction (the decisive calc)**
   - The exact frontier: ghost-free HR cannot make MOND (fixed-length Yukawa != acceleration scale a0); BIMOND's C-invariants make MOND naturally (first-derivative differences carry acceleration) but derivative bimetric interactions are generically ghosty. Quadratic ADM/ghost analysis around doubly-flat background decides: healthy relative-mode kinetic matrix => the first genuine chicken candidate; gho
 - **Ghost-free HR bigravity potential reproducing mu=1-e^-y (bimetric decisive calc)**
