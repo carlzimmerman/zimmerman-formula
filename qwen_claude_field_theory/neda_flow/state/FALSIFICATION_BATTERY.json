@@ -7,7 +7,8 @@
    "target": "a0 = 9.3619e-11 m/s^2 = kappa c sqrt(G rho_Lambda), kappa=1/2",
    "tier": "escalation",
    "source": "repo horizon derivation",
-   "kill_if": "theory has no single a0, or a0 not tied to a physical density scale"
+   "kill_if": "theory has no single a0, or a0 not tied to a physical density scale",
+   "recipe": "I1/Numbers (a0=9.3619e-11=kappa c sqrt(G rho_Lambda), kappa=1/2 FITTED)"
   },
   {
    "id": "RAR",
@@ -15,7 +16,8 @@
    "target": "SPARC RAR fit <= 0.13 dex (repo achieves 0.108 dex @ Upsilon=0.70)",
    "tier": "escalation",
    "source": "real_research/rar_framework_a0_mlfit.py",
-   "kill_if": "quasistatic g(g_N) scatter > 0.2 dex on SPARC"
+   "kill_if": "quasistatic g(g_N) scatter > 0.2 dex on SPARC",
+   "recipe": "I1 (mu applied to real SPARC)"
   },
   {
    "id": "MU",
@@ -23,14 +25,16 @@
    "target": "mu(y)=1-e^{-y} EXACT (frozen)",
    "tier": "auto",
    "gate": "G1",
-   "kill_if": "declared mond_realization does not reproduce 1-e^-y symbolically"
+   "kill_if": "declared mond_realization does not reproduce 1-e^-y symbolically",
+   "recipe": "I1 (frozen kernel)"
   },
   {
    "id": "BTFR",
    "name": "baryonic Tully-Fisher",
    "target": "v^4 = G M a0, slope 3.85-4.0",
    "tier": "escalation",
-   "kill_if": "deep-limit not v^4 ~ M (i.e. g_deep != sqrt(g_N a0))"
+   "kill_if": "deep-limit not v^4 ~ M (i.e. g_deep != sqrt(g_N a0))",
+   "recipe": "I1 deep limit (g_deep=sqrt(g_N a0))"
   },
   {
    "id": "CT",
@@ -38,7 +42,8 @@
    "target": "|c_T-1| < 1e-15 (=> khronometric beta=0)",
    "tier": "auto",
    "gate": "G3",
-   "kill_if": "c_T^2 != 1 at the observationally required precision"
+   "kill_if": "c_T^2 != 1 at the observationally required precision",
+   "recipe": "I3 (c_T=1, Q_T>0)"
   },
   {
    "id": "ALPHA2",
@@ -46,14 +51,16 @@
    "target": "|alpha_2| < 1e-7 (Cassini/ephemeris)",
    "tier": "auto",
    "gate": "G8",
-   "kill_if": "unscreened preferred-frame coupling => alpha_2 ~ O(1/K_B)"
+   "kill_if": "unscreened preferred-frame coupling => alpha_2 ~ O(1/K_B)",
+   "recipe": "P2 (unscreened preferred-frame killed by alpha_2)"
   },
   {
    "id": "ALPHA1",
    "name": "preferred-frame PPN",
    "target": "|alpha_1| < 1e-4 (LLR)",
    "tier": "escalation",
-   "kill_if": "frame coupling gives alpha_1 above the LLR bound at solar-system accelerations"
+   "kill_if": "frame coupling gives alpha_1 above the LLR bound at solar-system accelerations",
+   "recipe": "P2/I4"
   },
   {
    "id": "LENSING",
@@ -61,7 +68,8 @@
    "target": "eta = Psi/Phi = 1 with MOND enhancement (no slip)",
    "tier": "auto",
    "gate": "G6",
-   "kill_if": "frame-free single-metric (slip-lock) or f(R)-type slip"
+   "kill_if": "frame-free single-metric (slip-lock) or f(R)-type slip",
+   "recipe": "I2 single-metric + slip-lock (correct lensing needs eta=1)"
   },
   {
    "id": "GHOST",
@@ -69,7 +77,8 @@
    "target": "all physical kinetic eigenvalues > 0; BD scalar removed if bimetric",
    "tier": "auto",
    "gate": "G4",
-   "kill_if": "negative kinetic eigenvalue among physical modes"
+   "kill_if": "negative kinetic eigenvalue among physical modes",
+   "recipe": "P4/P5 (no hidden scalar, no ghost)"
   },
   {
    "id": "HIGUCHI",
@@ -77,14 +86,25 @@
    "target": "m_FP^2 >= 2H^2 where a massive graviton carries MOND",
    "tier": "escalation",
    "gate": "G5",
-   "kill_if": "m_FP~H0 violates Higuchi on cosmological backgrounds"
+   "kill_if": "m_FP~H0 violates Higuchi on cosmological backgrounds",
+   "recipe": "P5 (no ghost, massive spin-2)"
   },
   {
    "id": "CMB",
    "name": "cosmology",
    "target": "a0(z) => MOND OFF at recombination (CMB clustering as prediction); CLASS-compatible",
    "tier": "escalation",
-   "kill_if": "a0 constant in z (over-clusters) OR breaks BBN/CMB"
+   "kill_if": "a0 constant in z (over-clusters) OR breaks BBN/CMB",
+   "recipe": "Numbers (a0(z) propto sqrt(rho_DE) => MOND OFF at recombination)"
+  },
+  {
+   "id": "SCREEN",
+   "name": "local screening anchor (I4)",
+   "target": "screening controlled by a LOCAL dynamical quantity (acceleration/derivative), NOT environment labels, halo phase, potential-only, or velocity-dispersion screening; Solar System is high-a INSIDE the galactic MOND field",
+   "tier": "auto",
+   "gate": "G0",
+   "recipe": "I4",
+   "kill_if": "screening variable is environmental/potential-only/dispersion-based rather than local acceleration"
   }
  ],
  "known_viable_points": [
@@ -100,5 +120,6 @@
    ],
    "note": "any induced rule that would exclude THIS must be rejected as over-broad -- it is the existence proof that the target is self-consistent at the phenomenology level"
   }
- ]
+ ],
+ "recipe_source": "global_protocol.md == CRISPY_FRIED_CHICKEN_RECIPE.md (the IMMUTABLE law). This battery is its QUANTITATIVE face: every target traces to a frozen ingredient I1-I5 or a prohibition P1-P7. Frozen numbers copied verbatim (a0=9.3619e-11, kappa=1/2, mu=1-e^-y, a0(z) propto sqrt(rho_DE)). If the recipe changes, this file must change in the SAME commit."
 }
