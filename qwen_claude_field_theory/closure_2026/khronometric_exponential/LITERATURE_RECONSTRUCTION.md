@@ -12,7 +12,7 @@ findings, quoted:
 - "**we identify a sizeable region of the parameter space where the post-Newtonian expansion remains
   perturbative for all accelerations, and the theory passes both solar-system and pulsar gravity tests.**"
 
-So Carl's finite-α_∞ reading is ACCURATE — the finite-coupling escape is real *in their 2015 analysis*.
+So the finite-α_∞ reading is ACCURATE — the finite-coupling escape is real *in their 2015 analysis*.
 
 ## The chassis couplings (khronometric, arXiv:1711.08845 Eq. 12)
 Three couplings (α, β, λ): α on a_μa^μ, β the twist (sets c_T), λ on (∇·u)². PPN:

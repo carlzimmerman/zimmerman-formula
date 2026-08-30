@@ -29,12 +29,14 @@ CASES = [
     fields=[{"name":"T","type":"khronon","kinetic":"degenerate","timelike_background":True}],
     couplings=[{"label":"a","sources":["a_mu","mu(y)"],"order_in_phi":2,"preferred_frame":True,
                 "screened_by":"e^-y","lapse_weighted":False,"nonlocal":"none"}]),"KILL"),
- ("khronometric e^-y SCREENED survivor",
+ # was a survivor until KM-X1 + door1 (2026-08-30) closed finite-alpha_inf khronometric via DC-010;
+ # the regression baseline is updated to the NEW hand-derived verdict (KILL), not a silent flip.
+ ("khronometric e^-y SCREENED (closed by DC-010: KM-X1+door1)",
   C(family="screened-preferred-frame",kinetic_normalization_source="independent",
     mond_realization="aux_legendre_chi",
     fields=[{"name":"T","type":"khronon","kinetic":"standard","timelike_background":True}],
     couplings=[{"label":"a2","sources":["a_mu","mu(y)"],"order_in_phi":2,"preferred_frame":True,
-                "screened_by":"e^-y","lapse_weighted":False,"nonlocal":"none"}]),"PASS"),
+                "screened_by":"e^-y","lapse_weighted":False,"nonlocal":"none"}]),"KILL"),
 ]
 
 def machine_verdict(cand):
