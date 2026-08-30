@@ -3,12 +3,12 @@
 
 ## Standing verdict of the search
 - Theory space mapped by the Coverage Office: **27 architecture families** (10 dead · 3 active · 12 unexplored · 2 tested).
-- Proven no-go theorems (dead classes): **16**.
-- Candidates on record: **86** ({'KILL': 72, 'EVALUATED': 9, 'SURVIVOR': 5}).
+- Proven no-go theorems (dead classes): **17**.
+- Candidates on record: **92** ({'KILL': 78, 'EVALUATED': 9, 'SURVIVOR': 5}).
 
 ## THE OPEN FRONTIER (where the live physics is)
-- **NON-standard DHOST branch that sources Psi in the vacuum EXTERIOR (the last single-metric hope)**
-  - The concrete standard luminal DHOST-MOND action UNDER-LENSES (verified, vacuum-exterior first): MOND is a scalar fifth force (dynamics only), metric is GR in vacuum (Phi'=Psi'=GM/r^2), so photons see Newtonian => g_lens/g_dyn->0. The A_3 cone-regulator acts inside matter (Vainshtein) while MOND lives in the vacuum exterior -- they never overlap. Standard quadratic DHOST is thus KILLED as the MOND 
+- **EXIT single-metric: bimetric-degenerate / a0-bump cluster (the live physics)**
+  - SINGLE-METRIC relativistic-MOND is now CLOSED with theorems for the frozen exponential kernel: frame-free can't lens (slip-lock DC-013); frame strong-couples (P7 DC-010/014 + GW170817); standard+no-decay DHOST fails the MOND vacuum-exterior gate (DC-017, converged Claude+OpenAI: metric is 1/r^2, MOND force is 1/r, incompatible reach + pulsar bound). The ONLY single-metric loophole left is an un-co
 - **MOND-DHOST degeneracy: source Psi + luminal c_s + DOF=3 WITHOUT a preferred-frame reduction (THE terminal single-metric class)**
   - Two independent obstructions (lensing under-lens + scalar superluminal cone c_par^2=2) CONVERGE on one surviving class: MOND-DHOST. The DHOST phi_munu terms can source Psi (linear stress) and engineer the cone, but the scalar's cosmological background gradient threatens to become a khronometric frame (CLOSED). Decisive symbolic calc: solve the DHOST degeneracy conditions for {mu=1-e^-y, eta=1, c_T
 - **DYNAMICAL make-or-break of the nonlocal single-metric door (spectral wall PROVEN ABSENT)**
@@ -36,9 +36,9 @@
 - DW-causal-nonlocal — genuinely nonlocal with retarded prescription (Deser-Woodard); the un-localized F+ door lives here -- extra mode omega^2=c^2k^2/2, ghost-residue open
 
 ## Recently proven dead (last 6 no-go theorems)
-- **DC-011 single-mass pump localization of the nonlocal F+ kernel** — mode-freezing needs ell=1/m<1 kpc; kernel fidelity (<5% at 100 kpc) needs ell>2000 kpc; joint window EMPTY by 3.3 orders. sweep_nonlocal.py 1150 pts, 0 survivors.
 - **DC-012 frameless localized-nonlocal MOND (scale-split skeleton)** — local+frameless => in DC-001 scope. Massless kernel scalar has zero linear stress => under-lenses g_lens/g_dyn=sqrt(gN/a0)->0; conformal fix cancels in Phi+Psi; disformal/gradient 
 - **DC-013 frame-free single-metric MOND lensing (slip-lock theorem)** — diff-invariance locks a frame-free mode's (Phi,Psi) coupling to the delta-R direction (1,-2) [exact R^(1)=-2 lap Phi+4 lap Psi]; on that ray eta=(4L+m)/(8L+m)!=1 for any L>0 (f(R) 
 - **DC-014 stiff/non-propagating screened preferred-frame vector (slip carrier)** — a timelike frame supplying the DC-013 lensing slip has its longitudinal (slip) mode either normalized by the screened Proca mass M^2=e^-y => K_long~e^-y => P7 strong coupling (=FM-
 - **DC-015 BIMETRIC_HEL0_GALILEON (standard ghost-free HR decoupling-limit helicity-0 as MOND source)** — (i) no single polynomial power gives MOND M^1/2 AND r^-1; (ii) regime inversion: Galileon nonlinearities dominate near-source (screen inward), MOND needs far-field enhancement; (ii
 - **DC-016 tandem 0mu-projection G~_0mu=mu G_0mu (simple ansatz)** — gives mu*nabla^2 Phi (Newtonian outside a point mass, g~1/r^2), NOT AQUAL div[mu grad Phi]; missing grad(mu).grad(Phi) is O(1) in deep MOND. NOTE: the ACTION-based successor (metri
+- **DC-017 standard luminal (incl. no-decay) quadratic DHOST as single-metric MOND carrier** — MOND vacuum-exterior gate FAILS. Generic A_3!=0: Phi'=Psi'=GM/r^2 (mods ~M',M''=0 outside). Exceptional no-decay branch (A_3=A_5=0, A_4=3f_X^2/2f, f=f(X)): sources a vacuum slip vi
