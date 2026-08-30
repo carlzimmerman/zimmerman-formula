@@ -1,3 +1,12 @@
+# >>> RETRACTION 2026-08-30 (see closure_2026/bimetric_secondfield/galileon_scaling_theorem.py + DC-018):
+# The 'nonlinear helicity-0 rescue' priced below (r^2 (pi')^2 ~ GM => pi' ~ 1/r = MOND) is WRONG.
+# The correct spherical Galileon quadratic balance is r (pi')^2 / Lambda3^3 ~ GM (an explicit extra 1/r
+# from the derivative structure) => pi' ~ r^-1/2 (standard Vainshtein), NOT 1/r. Standard ghost-free HR
+# helicity-0 gives pi' ~ r^(1-3/n) for integer n in {1,2,3,4} = {r^-2,r^-1/2,r^0,r^1/4}; MOND r^-1 needs
+# n=3/2 (non-integer) => NEVER. Also: Higuchi is a constraint, not the primary kill. The live loophole
+# moved to DOOR-X32-RELATIVE (a nonanalytic X^(3/2) relative operator whose BD-constraint status is open).
+# <<< END RETRACTION
+
 #!/usr/bin/env python3
 """PRICE the bimetric (Hassan-Rosen ghost-free bigravity) door. Two dynamical metrics g (matter) and f,
 HR interaction => massless graviton (2) + massive graviton (5) = 7 DOF, ghost-free by construction.
