@@ -419,6 +419,22 @@ def checkpoint(gs, it):
     with open(os.path.join(HERE, "reports", f"checkpoint_{it:05d}.md"), "w") as f:
         f.write(rep)
     log(f"checkpoint written ({it})")
+    # ---- auto-commit the run's results (best-effort; the science must be independently auditable
+    # from the repo without Claude). Commits ONLY the neda_flow directory.
+    try:
+        import subprocess
+        repo = os.path.abspath(os.path.join(HERE, "..", ".."))
+        subprocess.run(["git", "add", "qwen_claude_field_theory/neda_flow"], cwd=repo,
+                       capture_output=True, timeout=60)
+        rc = subprocess.run(["git", "commit", "-q", "-m",
+                             f"neda_flow auto-checkpoint iter {it}: {len(exps)} experiments, "
+                             f"{len(surv)} survivors, fails-by-gate {json.dumps(by_gate)}"],
+                            cwd=repo, capture_output=True, timeout=60)
+        if rc.returncode == 0:
+            subprocess.run(["git", "push", "-q"], cwd=repo, capture_output=True, timeout=120)
+            log("  results auto-committed + pushed")
+    except Exception as e:
+        log(f"  auto-commit skipped: {e}")
 
 
 def main():
