@@ -7,8 +7,8 @@
 - Candidates on record: **84** ({'KILL': 71, 'EVALUATED': 8, 'SURVIVOR': 5}).
 
 ## THE OPEN FRONTIER (where the live physics is)
-- **THE LAST SINGLE-METRIC QUESTION: does DHOST degeneracy escape P7 on the scalar-gradient frame?**
-  - DHOST MOND collapsed to the preferred-frame family (its cone-regulator + lensing-source both need grad phi_bar = a khronon frame). That family is closed for plain khronometric by P7 (screening e^-y that protects PPN also kills the kinetic normalization -> strong coupling) + GW170817. The ONE new element is the DHOST degeneracy, which reshapes the kinetic matrix. Decisive calc: does the degeneracy 
+- **THE TERMINAL ALGEBRA: is the DHOST allowed-set S empty or non-empty?**
+  - DHOST MOND is a preferred-frame theory whose degeneracy gives a STRUCTURAL P7-escape (physical-mode kinetic norm finite from the DHOST sector while alpha stays screened -- verified, unlike the stiff-vector). So single-metric is NOT closed. Decisive calc: solve the explicit weak-field PPN reduction (g_0i, g_00, alpha_1, alpha_2) from the full DHOST action with {c_T=1 + degeneracy conditions + mu~y}
 - **MOND-DHOST degeneracy: source Psi + luminal c_s + DOF=3 WITHOUT a preferred-frame reduction (THE terminal single-metric class)**
   - Two independent obstructions (lensing under-lens + scalar superluminal cone c_par^2=2) CONVERGE on one surviving class: MOND-DHOST. The DHOST phi_munu terms can source Psi (linear stress) and engineer the cone, but the scalar's cosmological background gradient threatens to become a khronometric frame (CLOSED). Decisive symbolic calc: solve the DHOST degeneracy conditions for {mu=1-e^-y, eta=1, c_T
 - **DYNAMICAL make-or-break of the nonlocal single-metric door (spectral wall PROVEN ABSENT)**
@@ -20,7 +20,7 @@
 - **bimetric-degenerate-DHOST** — MOND nonlinearity + Hamiltonian degeneracy from SAME structure; decisive calc = quadratic ghost/Hamiltonian
 - **bimond-connection** — Milgrom C=Gamma(g)-Gamma(h) invariants; decisive gate = BD audit; derivative interactions generically ghosty
 - **metric-derived-nonlocal-accel** — simple acceleration-scalar realization UNDER-LENSES (quadratic stress, slip-lock/AQUAL); needs the NONLOCAL sector to source Phi+Psi frame-free => CONVERGES on the un-localized F+ door's open calc. Sub-gates: causal nonl
-- **MOND-DHOST** — COLLAPSES to the preferred-frame family: the cone-regulator + lensing-source both require the scalar gradient grad phi_bar = a khronon frame (anisotropic cone c_r^2=2 needs a directional regulator). Terminal calc = does 
+- **MOND-DHOST** — NOT closed by P7: the degeneracy gives a structural P7-escape (finite physical-mode kinetic norm from the DHOST sector, alpha screened via sqrt(sigma) admixture). Terminal decisive calc = solve the allowed-set S explicit
 
 ## UNEXPLORED families (breadth queue)
 - cuscuton — scalar with NO propagating scalar DOF (2 DOF total, like GR) yet modifies dynamics -- could evade slip-lock by having no extra mode to lock; genuinely
