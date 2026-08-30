@@ -24,8 +24,13 @@ DEEP_GATES = os.environ.get("AR_DEEP_GATES", "0") == "1"      # OFF by default: 
 TRUSTED_GATES = ["G1", "G2", "G3"]                            # deterministic pre-verified templates
 ESCAPE_MUTATION = os.environ.get("AR_ESCAPE_MUTATION", "0") == "1"  # OFF: a dead-class hit costs no
 #   extra 13-min call -- round-robin + cooldown handle diversity instead. ON: one targeted mutation retry.
-QUOTAS = [("constraint-first", .30), ("screened-preferred-frame", .20), ("spatially-nonlocal", .20),
-          ("multi-sector", .15), ("degenerate", .10), ("novel", .05)]
+# Round-robin FREQUENCIES (times each branch appears per rotation cycle), re-weighted 2026-08-30 after
+# the khronometric/preferred-frame family was CLOSED (DC-001 pincer + DC-010/KM-X1/door1 + FM-000004
+# audit = the same P7 collision). The LIVE route is the spatially-nonlocal pure-metric corridor (no
+# khronon, no preferred frame). Closed branches are kept at low rate ONLY to catch a genuinely novel
+# escape (e.g. constraint-first carrying a nonlocal channel), not as equal search targets.
+QUOTAS = [("spatially-nonlocal", 4), ("multi-sector", 2), ("novel", 2),
+          ("constraint-first", 1), ("screened-preferred-frame", 1), ("degenerate", 1)]
 # hard structural requirements per branch, derived from the seeded theorems (fed to the architect)
 BRANCH_REQUIREMENTS = {
  "constraint-first": "THEOREM DC-001 (exhaustive, 108k candidates): ANY local candidate with no "
@@ -34,8 +39,11 @@ BRANCH_REQUIREMENTS = {
    "OR one coupling with nonlocal='spatial'. Submitting without one is an automatic dead-class dedup.",
  "screened-preferred-frame": "EVERY preferred_frame coupling MUST have screened_by='e^-y', AND "
    "kinetic_normalization_source MUST be 'independent' (P7: screened coupling must not set kinetic norm).",
- "spatially-nonlocal": "Use nonlocal='spatial' (elliptic) couplings only, never 'temporal' (P6). State "
-   "explicitly how localization avoids a hidden propagating mode (P4; banked warning omega^2=c^2k^2/2).",
+ "spatially-nonlocal": "Use nonlocal='spatial' (elliptic) couplings only, never 'temporal' (P6). "
+   "SWEEP THEOREM (DC-011): a SINGLE mass gapping the localizer AND entering the kernel has an EMPTY "
+   "window (freeze needs 1/m<1kpc, fidelity needs 1/m>2000kpc). Your localization MUST be SCALE-SPLIT: "
+   "the operator gapping the extra mode (omega^2=c^2k^2/2) must be structurally DIFFERENT from the "
+   "operator building the (-D^2)^-1 kernel (e.g. two-auxiliary localization). Declare both operators.",
  "multi-sector": "Fields may split MOND dynamics vs lensing carrier, but every preferred_frame coupling "
    "must be screened_by='e^-y' and no lapse_weighted couplings (P3). Include the DC-001 lensing escape.",
  "degenerate": "Degenerate kinetic terms must be argued second-class in claimed_mechanism; still include "
@@ -369,6 +377,15 @@ def main():
                         {"stage": "startup", "reason": str(e), "status": "BLOCKED", "ts": time.time()})
         print(f"BLOCKED: {e}\nStart ollama (`ollama serve` + model '{oc.MODEL}') and re-run.")
         sys.exit(2)
+    # self-check: the evaluator must still reproduce every hand-derived verdict before any science
+    import subprocess as _sp
+    chk = _sp.run([sys.executable, os.path.join(HERE, "tests", "test_oracle.py")],
+                  capture_output=True, text=True)
+    if chk.returncode != 0:
+        print(f"SELF-CHECK FAILED — evaluator no longer reproduces established physics:\n{chk.stdout}{chk.stderr}")
+        print("Refusing to run. Fix the regression (or the baseline, with a documented reason) first.")
+        sys.exit(3)
+    log("self-check: oracle regression green")
     gs = J("GLOBAL_STATE.json")
     it0 = gs.get("iteration", 0)
     log(f"resuming at iteration {it0}; model={oc.MODEL}")
@@ -398,7 +415,17 @@ def main():
             try:
                 one_iteration(gs, it)
             except oc.OllamaUnavailable as e:
-                log(f"BLOCKED mid-run: {e}"); gs["status"] = "BLOCKED"; break
+                # institutional-grade: infrastructure hiccups are WAITED OUT, not fatal.
+                log(f"ollama unavailable mid-run ({e}); waiting to retry (Ctrl+C to stop)")
+                waited = 0
+                while True:
+                    time.sleep(120); waited += 120
+                    try:
+                        oc.verify(); log(f"ollama back after {waited}s — resuming"); break
+                    except oc.OllamaUnavailable:
+                        if waited % 1200 == 0:
+                            log(f"still waiting for ollama ({waited//60} min)")
+                continue
             except Exception:
                 cm.append_jsonl(os.path.join(DB, "failures.jsonl"),
                                 {"iter": it, "stage": "runner", "reason": traceback.format_exc()[-800:],
