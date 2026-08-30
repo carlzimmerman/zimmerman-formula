@@ -31,7 +31,8 @@ def chat(system, user, temperature=0.7, max_retries=3):
         "model": MODEL,
         "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}],
         "stream": False,
-        "options": {"temperature": temperature, "num_ctx": int(os.environ.get("QWEN_CTX", "16384"))},
+        "options": {"temperature": temperature, "num_ctx": int(os.environ.get("QWEN_CTX", "16384")),
+                    "num_predict": int(os.environ.get("QWEN_PREDICT", "8000"))},  # room for think+answer
     }).encode()
     last = None
     for attempt in range(max_retries):

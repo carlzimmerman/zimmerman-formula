@@ -129,6 +129,24 @@ def one_iteration(gs, it):
     reply = oc.chat(P("architect.md"), architect_context(branch), temperature=0.9)
     batch = oc.extract_candidates(reply)
     ok = [c for c in batch if all(k in c for k in cm.REQUIRED_FIELDS)]
+    if not ok:
+        # empty/malformed (usually a thinking model that never emitted JSON): one FORCEFUL retry,
+        # no extended thinking, schema spelled out, within the SAME iteration.
+        empty = "EMPTY (no content -- likely spent the budget thinking)" if not reply.strip() else "unparseable/incomplete"
+        log(f"  architect first pass {empty}; forcing a JSON-only retry")
+        force = ("/no_think\nOutput ONLY a json object, NO thinking, NO prose. Propose ONE new candidate "
+                 "architecture for the '" + branch + "' branch as:\n"
+                 '```json\n{"candidates":[{"name":"...","family":"' + branch + '","fields":[{"name":"...",'
+                 '"type":"scalar|vector|stf_tensor|metric|khronon|multiplier","kinetic":"none|standard|degenerate",'
+                 '"timelike_background":false}],"couplings":[{"label":"...","sources":["..."],"order_in_phi":2,'
+                 '"preferred_frame":false,"screened_by":null,"lapse_weighted":false,"nonlocal":"spatial"}],'
+                 '"mond_realization":"nonlocal_F+","kinetic_normalization_source":"independent",'
+                 '"claimed_mechanism":"...","predicted_weak_field":"...","inequivalence_argument":"..."}]}\n```\n'
+                 "FROZEN (immutable): mu(y)=1-e^{-y}; F+(Z)=4[1-(1+sqrt(Z)/2)e^{-sqrt(Z)/2}], "
+                 "mu(y)=1-2F+'(4y^2). Respect this branch's mandatory requirements. JSON only.")
+        reply = oc.chat(P("architect.md"), architect_context(branch) + "\n\n" + force, temperature=0.3)
+        batch = oc.extract_candidates(reply)
+        ok = [c for c in batch if all(k in c for k in cm.REQUIRED_FIELDS)]
     log(f"  architect returned {len(batch)} candidate(s), {len(ok)} schema-complete")
     if ok:
         for n, cand in enumerate(ok[:3], 1):
