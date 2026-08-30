@@ -1,0 +1,104 @@
+{
+ "purpose": "The single held-out ground truth. A SURVIVOR must clear every AUTO check here; the ESCALATION checks are verified by Claude when a survivor lands. Any NEW dead-class rule that would exclude a KNOWN-VIABLE point below is REJECTED (the eval validates the eval).",
+ "quantitative_targets": [
+  {
+   "id": "A0",
+   "name": "MOND acceleration scale",
+   "target": "a0 = 9.3619e-11 m/s^2 = kappa c sqrt(G rho_Lambda), kappa=1/2",
+   "tier": "escalation",
+   "source": "repo horizon derivation",
+   "kill_if": "theory has no single a0, or a0 not tied to a physical density scale"
+  },
+  {
+   "id": "RAR",
+   "name": "radial acceleration relation",
+   "target": "SPARC RAR fit <= 0.13 dex (repo achieves 0.108 dex @ Upsilon=0.70)",
+   "tier": "escalation",
+   "source": "real_research/rar_framework_a0_mlfit.py",
+   "kill_if": "quasistatic g(g_N) scatter > 0.2 dex on SPARC"
+  },
+  {
+   "id": "MU",
+   "name": "interpolation kernel",
+   "target": "mu(y)=1-e^{-y} EXACT (frozen)",
+   "tier": "auto",
+   "gate": "G1",
+   "kill_if": "declared mond_realization does not reproduce 1-e^-y symbolically"
+  },
+  {
+   "id": "BTFR",
+   "name": "baryonic Tully-Fisher",
+   "target": "v^4 = G M a0, slope 3.85-4.0",
+   "tier": "escalation",
+   "kill_if": "deep-limit not v^4 ~ M (i.e. g_deep != sqrt(g_N a0))"
+  },
+  {
+   "id": "CT",
+   "name": "tensor speed / GW170817",
+   "target": "|c_T-1| < 1e-15 (=> khronometric beta=0)",
+   "tier": "auto",
+   "gate": "G3",
+   "kill_if": "c_T^2 != 1 at the observationally required precision"
+  },
+  {
+   "id": "ALPHA2",
+   "name": "preferred-frame PPN",
+   "target": "|alpha_2| < 1e-7 (Cassini/ephemeris)",
+   "tier": "auto",
+   "gate": "G8",
+   "kill_if": "unscreened preferred-frame coupling => alpha_2 ~ O(1/K_B)"
+  },
+  {
+   "id": "ALPHA1",
+   "name": "preferred-frame PPN",
+   "target": "|alpha_1| < 1e-4 (LLR)",
+   "tier": "escalation",
+   "kill_if": "frame coupling gives alpha_1 above the LLR bound at solar-system accelerations"
+  },
+  {
+   "id": "LENSING",
+   "name": "lensing tracks dynamics",
+   "target": "eta = Psi/Phi = 1 with MOND enhancement (no slip)",
+   "tier": "auto",
+   "gate": "G6",
+   "kill_if": "frame-free single-metric (slip-lock) or f(R)-type slip"
+  },
+  {
+   "id": "GHOST",
+   "name": "no ghost / BD",
+   "target": "all physical kinetic eigenvalues > 0; BD scalar removed if bimetric",
+   "tier": "auto",
+   "gate": "G4",
+   "kill_if": "negative kinetic eigenvalue among physical modes"
+  },
+  {
+   "id": "HIGUCHI",
+   "name": "massive spin-2 health",
+   "target": "m_FP^2 >= 2H^2 where a massive graviton carries MOND",
+   "tier": "escalation",
+   "gate": "G5",
+   "kill_if": "m_FP~H0 violates Higuchi on cosmological backgrounds"
+  },
+  {
+   "id": "CMB",
+   "name": "cosmology",
+   "target": "a0(z) => MOND OFF at recombination (CMB clustering as prediction); CLASS-compatible",
+   "tier": "escalation",
+   "kill_if": "a0 constant in z (over-clusters) OR breaks BBN/CMB"
+  }
+ ],
+ "known_viable_points": [
+  {
+   "what": "the repo framework itself (modified-gravity arm)",
+   "fits": [
+    "A0",
+    "RAR@0.108dex",
+    "MU",
+    "BTFR",
+    "CT",
+    "GW170817"
+   ],
+   "note": "any induced rule that would exclude THIS must be rejected as over-broad -- it is the existence proof that the target is self-consistent at the phenomenology level"
+  }
+ ]
+}

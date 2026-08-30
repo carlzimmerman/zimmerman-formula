@@ -171,3 +171,14 @@ def mechanism_dedup(cand, max_per_fp=2):
     if count >= max_per_fp:
         return "MECHANISM_SATURATED", key
     return "NEW", key
+
+
+def battery_guard(new_dead_class_predicate):
+    """Guard the eval: a NEW dead-class rule is only admissible if it does NOT exclude any known-viable
+    point in the falsification battery. new_dead_class_predicate(point_tags)->bool returns True if the
+    rule would kill that point. Returns (ok, offending) -- ok=False means the rule is over-broad."""
+    bat = json.load(open(os.path.join(STATE, "FALSIFICATION_BATTERY.json")))
+    for kv in bat.get("known_viable_points", []):
+        if new_dead_class_predicate(set(kv.get("fits", []))):
+            return False, kv.get("what")
+    return True, None

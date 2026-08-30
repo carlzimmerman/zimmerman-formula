@@ -142,6 +142,8 @@ def architect_context(branch):
             f"## KNOWLEDGE GRAPH (learned rules — every candidate MUST respect these)\n"
             f"{json.dumps(kg['rules'], indent=1)}\n\n"
             f"## DEAD CLASSES (never re-cook)\n{json.dumps(dead['classes'], indent=1)[:6000]}\n\n"
+            f"## FALSIFICATION BATTERY (the REWARD -- a survivor must clear ALL of these; design toward them)\n"
+            f"{json.dumps([{k:t[k] for k in ('id','name','target')} for t in J('FALSIFICATION_BATTERY.json')['quantitative_targets']], indent=1)[:2200]}\n\n"
             f"## VERIFIED MECHANISM LIBRARY (compose from these; they are PROVEN ingredients)\n"
             f"{json.dumps(J('MECHANISM_LIBRARY.json')['mechanisms'], indent=1)[:2500]}\n\n"
             f"## CURRENT SURVIVORS\n{json.dumps(surv['ranked'], indent=1)[:3000]}\n\n"
