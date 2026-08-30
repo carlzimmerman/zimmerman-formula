@@ -113,17 +113,25 @@ for label,scalar in [("T4_ricci",T4),("T1_full",T1),("T3_Vtrace",T3)]:
 print("\n=== VERDICT (steps 1-3, minisuperspace signal) -- HONEST SCOPE ===")
 print("STEP 1 [SOLID, sympy-verified]: C^0_00 = N_g'/N_g - N_f'/N_f carries the lapse velocities, and ALL")
 print("        four independent quadratic invariants T1..T4 depend on them => for GENERIC M(T1..T4) the")
-print("        interaction depends on N_g',N_f' => p_{N_g},p_{N_f} != 0 (printed above, nonzero) => BOTH")
-print("        lapses are DYNAMICAL => the primary constraints pi_N~0 (lapse-as-multiplier) are LOST.")
+print("        interaction depends on N_g',N_f' => p_{N_g},p_{N_f} != 0 (printed above, nonzero). REFINED by")
+print("        adversarial audit: the lapse-velocity Hessian is RANK 1 (nullspace [N_g/N_f,1]) => it is the")
+print("        lapse RATIO u=ln(N_g/N_f) (ONE combination) that becomes dynamical, NOT both lapses; the")
+print("        orthogonal product-lapse stays a multiplier. One lost primary constraint still revives the BD mode.")
 print("STEP 1b [KEY HONEST FINDING]: a lapse-velocity-FREE combination DOES exist -- sympy solve requires")
 print("        c1+c2+c3+c4=0 (kills N_g'^2) plus a relation killing the linear N_g' term. This tuned")
 print("        subspace is NOT an artifact: it is exactly the KNOWN ghost-free restriction of BIMOND. So the")
 print("        BD mode is GENERIC but a measure-zero tuning removes the minisuperspace signal. I do NOT")
 print("        claim here that the tuned subspace kills MOND -- that needs the NR-limit check on the subspace.")
-print("STEP 2/3: GENERIC M => lapses dynamical => the BD-removing secondary does not close => 8 DOF (vs 7")
-print("        healthy), matching the published FULL analysis (PLB 806 (2020) 135970). The TUNED ghost-free")
-print("        subspace survives the lapse test but is the case the literature identifies as collapsing to")
-print("        constrained f(Q) with ghat->Minkowski (2nd metric non-dynamical => no longer genuinely bimetric).")
+print("STEP 2/3: GENERIC M => the relative-lapse mode is dynamical => one lost primary constraint (BD-type).")
+print("        CITATION CORRECTION: the earlier 'PLB 806 (2020) 135970 => 8 DOF' anchor was MISATTRIBUTED")
+print("        (that paper = arXiv:2004.00888 D'Ambrosio-Garg-Heisenberg, an f(Q) NON-metricity MOND letter,")
+print("        NO Hamiltonian DOF count). The minisuperspace lapse-velocity SIGNAL above is self-contained")
+print("        (sympy); the '8 DOF' integer is NOT re-derived here. 'Generic connection-difference bimetric")
+print("        is ghost-troubled' is the mainstream direction (7 healthy = Hassan-Rosen). TUNED SUBSPACE")
+print("        CORRECTION: this T1..T4 basis is INCOMPLETE (misses T5=P^a V_a). With the full 5-invariant")
+print("        basis the ghost-free subspace is 2-D and CONTAINS MOND-alive directions OFF the f(Q) line")
+print("        (see bimond_5invariant_ghostfree_subspace.py) => 'collapses to constrained f(Q)' is only a")
+print("        measure-zero sub-line, NOT the family. Door OPEN-PRICED, not closed.")
 print("PALATINI (review 3): Einstein-Palatini replaces the connections INSIDE R_mn (a healthy 2-derivative")
 print("        sector) but the interaction's C is STILL built from the metric Levi-Civita connections =>")
 print("        the lapse-velocity signal above is UNTOUCHED. And MOND phenomenology drives M_G->0, which")
@@ -134,18 +142,22 @@ print("        the tuned ghost-free subspace is not shown to keep BOTH MOND and 
 import json
 print("CERTIFICATE_JSON:", json.dumps({"gate":"bimond-bd-audit-steps123",
   "status":"GENERIC BD-MODE-REVIVED (minisuperspace, sympy) + tuned ghost-free subspace EXISTS but unproven for MOND",
-  "certificate":("Minisuperspace BD audit steps 1-3 of extended-BIMOND (three-invariant connection-difference "
-    "interaction), sympy-verified. SOLID: C^0_00=N_g'/N_g-N_f'/N_f carries lapse VELOCITIES; ALL four "
-    "independent quadratic invariants T1..T4 depend on them; the lapse momenta p_{N_g},p_{N_f} are nonzero "
-    "(printed) => for GENERIC M both lapses are DYNAMICAL => the primary lapse constraints are lost => the "
-    "BD-removing chain does not close => 8 DOF vs 7 healthy (matches full analysis PLB 806 (2020) 135970). "
-    "HONEST CAVEAT: a lapse-velocity-free tuned combination EXISTS (sympy: c1+c2+c3+c4=0 plus a linear "
-    "relation) = the known ghost-free restriction; this calc does NOT prove that subspace kills MOND, so I "
-    "do not claim 'no escape'. Literature identifies that restriction as collapsing to constrained f(Q) with "
-    "ghat->Minkowski (2nd metric non-dynamical => not genuinely bimetric). PALATINI does not touch the "
-    "metric-built C-interaction (only the connections inside R_mn), and MOND requires M_G->0 => ordinary "
-    "BIMOND => not a demonstrated escape. NET: converges with the terminal framing -- MOND+lensing is easy; "
-    "MOND+lensing+genuinely-dynamical-2nd-metric+7DOF is the hard open theorem."),
+  "certificate":("Minisuperspace BD audit steps 1-3 of extended-BIMOND (connection-difference interaction), "
+    "sympy-verified, with adversarial corrections. SOLID: C^0_00=N_g'/N_g-N_f'/N_f carries lapse VELOCITIES; "
+    "the lapse-velocity Hessian is RANK 1 (null [N_g/N_f,1]) => the lapse RATIO ln(N_g/N_f) becomes dynamical "
+    "(ONE mode, not both lapses); Euler-Lagrange EL_{N_g}(L) contains N'' => not IBP/boundary-removable => a "
+    "genuine (C^0_00)^2 kinetic term => one lost primary relative-lapse constraint = BD-type. The 'generic "
+    "connection-difference bimetric is ghost-troubled' DIRECTION is mainstream (7 healthy = Hassan-Rosen); the "
+    "'8 DOF' INTEGER is NOT re-derived here and the earlier 'PLB 806 (2020) 135970' anchor was MISATTRIBUTED "
+    "(=arXiv:2004.00888, an f(Q) non-metricity MOND letter, no DOF count). KEY CORRECTION: this T1..T4 basis "
+    "is INCOMPLETE (misses T5=P^a V_a); with the full 5-invariant basis the ghost-free subspace is 2-D and "
+    "CONTAINS MOND-alive directions OFF the constrained-f(Q) line (T4-T1: a=-4,b=-8 nonzero; ghat stays "
+    "dynamical) -- see bimond_5invariant_ghostfree_subspace.py. So 'the ghost-free tuning kills MOND / "
+    "collapses to f(Q)' is REFUTED (only a measure-zero sub-line). PALATINI does not touch the metric-built "
+    "C-interaction, and MOND drives M_G->0 => ordinary BIMOND => not a demonstrated escape. NET: extended-"
+    "BIMOND is NOT dead and NOT certified -- the MOND-alive 2-D ghost-free subspace is OPEN-PRICED; the "
+    "decisive un-run calc is the FULL Hamiltonian count (secondary+vector+tensor) on the a!=0 sub-family plus "
+    "a coupled g/ghat lensing solve (Phi=Psi? and does it inherit the MMG alpha_3=-1 liability?)."),
   "numeric_values":{"C000":"N_g'/N_g - N_f'/N_f (lapse velocities, sympy-confirmed)",
     "invariants_carrying_lapse_velocity":"T1,T2,T3,T4 (all)","p_N":"nonzero for generic M",
     "lapse_free_subspace":"exists: sum c_i = 0 + linear relation (= ghost-free restriction)",
