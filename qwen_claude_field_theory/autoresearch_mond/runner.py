@@ -22,6 +22,8 @@ DEEP_GATES = os.environ.get("AR_DEEP_GATES", "0") == "1"      # OFF by default: 
 #   G0 + trusted templates (G1-G3) and files anything clean as SURVIVOR_PENDING_AUDIT for Claude to
 #   audit the deep gates. Set AR_DEEP_GATES=1 to re-enable Qwen-written gate scripts (slow, PENDING).
 TRUSTED_GATES = ["G1", "G2", "G3"]                            # deterministic pre-verified templates
+ESCAPE_MUTATION = os.environ.get("AR_ESCAPE_MUTATION", "0") == "1"  # OFF: a dead-class hit costs no
+#   extra 13-min call -- round-robin + cooldown handle diversity instead. ON: one targeted mutation retry.
 QUOTAS = [("constraint-first", .30), ("screened-preferred-frame", .20), ("spatially-nonlocal", .20),
           ("multi-sector", .15), ("degenerate", .10), ("novel", .05)]
 # hard structural requirements per branch, derived from the seeded theorems (fed to the architect)
@@ -178,6 +180,9 @@ def process_candidate(gs, it, branch, cand):
         os.makedirs(os.path.join(DB, "duplicates"), exist_ok=True)
         with open(os.path.join(DB, "duplicates", f"iter{it:05d}_a{attempt}.json"), "w") as f:
             json.dump(cand, f, indent=1)
+        if not ESCAPE_MUTATION:
+            note_branch_dead(gs, branch)
+            log(f"  {status} (ref {ref}) — moving on (escape-mutation off; round-robin will rotate)"); return
         if attempt == 2:
             note_branch_dead(gs, branch)
             log(f"  {status} (ref {ref}) after escape retry — not run"); return
