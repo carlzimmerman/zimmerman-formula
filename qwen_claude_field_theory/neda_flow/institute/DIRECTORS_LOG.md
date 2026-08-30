@@ -4,7 +4,7 @@
 ## Standing verdict of the search
 - Theory space mapped by the Coverage Office: **26 architecture families** (10 dead · 4 active · 12 unexplored · 0 tested).
 - Proven no-go theorems (dead classes): **16**.
-- Candidates on record: **43** ({'KILL': 34, 'EVALUATED': 6, 'SURVIVOR': 3}).
+- Candidates on record: **46** ({'KILL': 36, 'EVALUATED': 6, 'SURVIVOR': 4}).
 
 ## THE OPEN FRONTIER (where the live physics is)
 - **DYNAMICAL make-or-break of the nonlocal single-metric door (spectral wall PROVEN ABSENT)**
