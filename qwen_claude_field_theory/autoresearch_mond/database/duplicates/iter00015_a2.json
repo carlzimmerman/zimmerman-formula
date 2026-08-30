@@ -1,0 +1,74 @@
+{
+ "name": "Finite-Kinetic Spatial Khronon Screened Preferred Frame",
+ "family": "screened-preferred-frame",
+ "fields": [
+  {
+   "name": "g_mu_nu",
+   "type": "metric",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "phi",
+   "type": "scalar",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "A0",
+   "type": "khronon",
+   "kinetic": "none",
+   "timelike_background": true
+  },
+  {
+   "name": "K",
+   "type": "scalar",
+   "kinetic": "degenerate",
+   "timelike_background": false
+  }
+ ],
+ "couplings": [
+  {
+   "label": "screened_preframe_matter",
+   "sources": [
+    "A0",
+    "phi",
+    "T_matter"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": true,
+   "nonlocal": "spatial"
+  },
+  {
+   "label": "finite_spatial_normalization",
+   "sources": [
+    "K",
+    "phi"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "spatial"
+  },
+  {
+   "label": "screened_spatial_gate",
+   "sources": [
+    "A0",
+    "phi"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": true,
+   "nonlocal": "spatial"
+  }
+ ],
+ "mond_realization": "nonlocal_F+",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "The unremovable khronon A0 supplies the Bekenstein lensing sector, while its lapse-weighted matter coupling is multiplied by e^-y so the preferred-frame response is screened in dense regions. A separate degenerate scalar K carries the finite normalization through a spatially elliptic coupling, so the coefficient of the screened preferred-frame sector is not forced to fix the normalization. All nonlocal terms are instantaneous spatial elliptic operators with no temporal nonlocality, so the finite normalization is localized algebraically and does not create a hidden propagating mode with omega^2=c^2k^2/2.",
+ "predicted_weak_field": "For y<<1 the e^-y factors approach unity, A0 is unsuppressed, and the weak-field light-bending and acceleration law recover the intended MOND interpolation with mu(y)=1-e^-y. For y>>1 the preferred-frame response is exponentially suppressed while the spatial K-phi normalization remains finite, producing a non-propagating spatial correction rather than a local oscillator. The frozen mu(y) and minimal matter coupling are preserved, and the additional force or lensing correction stays sub-Newtonian without rescaling G.",
+ "inequivalence_argument": "This is not DC-001 because it adds an unremovable khronon field A0 and replaces every local nonpreferred-frame coupling with a spatially elliptic nonlocal coupling. The finite normalization is carried by a separate degenerate scalar K in a spatial, non-time-dependent kernel, so the structure cannot be mapped by coefficient tuning to the local no-preferred-frame lensing MOND class. The screened preferred-frame response and the finite normalization are canonically separated by different fields, different screening, and different nonlocal operators."
+}

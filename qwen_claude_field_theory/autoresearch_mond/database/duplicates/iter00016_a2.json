@@ -1,0 +1,93 @@
+{
+ "name": "Khronon-Localized Spatially-Nonlocal Screened Preferred-Frame",
+ "family": "spatially-nonlocal",
+ "fields": [
+  {
+   "name": "g_{mu nu}",
+   "type": "metric",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "K",
+   "type": "khronon",
+   "kinetic": "none",
+   "timelike_background": true
+  },
+  {
+   "name": "u^mu",
+   "type": "vector",
+   "kinetic": "degenerate",
+   "timelike_background": true
+  },
+  {
+   "name": "phi",
+   "type": "scalar",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "N",
+   "type": "multiplier",
+   "kinetic": "none",
+   "timelike_background": false
+  }
+ ],
+ "couplings": [
+  {
+   "label": "screened_preframe_alpha",
+   "sources": [
+    "u^mu",
+    "K",
+    "phi"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": true,
+   "nonlocal": "spatial"
+  },
+  {
+   "label": "finite_mode_kinetic",
+   "sources": [
+    "phi",
+    "N",
+    "K"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "spatial"
+  },
+  {
+   "label": "mond_mu_freeze",
+   "sources": [
+    "phi",
+    "K"
+   ],
+   "order_in_phi": 0,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "spatial"
+  },
+  {
+   "label": "khronon_A0_lensing",
+   "sources": [
+    "K",
+    "u^mu"
+   ],
+   "order_in_phi": 0,
+   "preferred_frame": true,
+   "screened_by": null,
+   "lapse_weighted": true,
+   "nonlocal": "spatial"
+  }
+ ],
+ "mond_realization": "nonlocal_F+",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "The preferred-frame sector is carried by u^mu and the khronon K, with an alpha coupling multiplied by e^-y and made spatially elliptic, so high-density regions screen the preferred-frame response. The MOND scalar phi has a finite canonical kinetic normalization supplied by an independent multiplier N through a spatially nonlocal elliptic operator, not by the screened alpha, thereby resolving the P7 collision. The spatial elliptic localization of all nonlocal couplings uses only inverse spatial Laplacians or spatial convolutions, no time-derivative nonlocality, so they impose constraints rather than a hidden propagating mode beyond the intended MOND scalar phi and no mode exhibits the banked warning omega^2=c^2k^2/2. The khronon supplies an unremovable lapse/A0 sector for lensing while mu(y)=1-e^{-y} remains frozen and matter is minimally coupled to the single metric.",
+ "predicted_weak_field": "In y<<1, e^-y\u22481, the preferred-frame alpha is active and the frozen mu(y)\u2248y yields the MOND acceleration scale, while N keeps the phi kinetic term finite. In y>>1, alpha is exponentially screened and the dynamics approaches GR, but the phi kinetic normalization remains independent of alpha and does not vanish or diverge. The spatially elliptic couplings remain constraint-like, so no extra propagating mode appears, and the khronon A0 sector preserves the Bekenstein-type lensing normalization.",
+ "inequivalence_argument": "DC-001, the dead local no-preferred-frame lensing MOND class, was decisive because it contained a local non-preferred-frame coupling with preferred_frame=false and nonlocal='none' and had no khronon field, so it lacked the unremovable A0 required for the Bekenstein lensing fix. This candidate removes that trigger by adding an unremovable khronon K and by making every non-preferred-frame coupling spatially nonlocal elliptic, with nonlocal='spatial' and no preferred_frame=false/local-none coupling. Structurally, the finite propagating-mode kinetic normalization is sourced by an independent multiplier N through spatial elliptic operators, decoupled from the screened preferred-frame alpha, rather than being a coefficient tweak of a killed local lensing architecture. Thus it is inequivalent to DC-001 and to the killed local no-preferred-frame class while retaining the screened preferred-frame/independent kinetic core idea."
+}

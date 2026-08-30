@@ -1,0 +1,72 @@
+{
+ "name": "Independent-Kinetic Screened Preferred-Frame",
+ "family": "screened-preferred-frame",
+ "fields": [
+  {
+   "name": "g_{mu nu}",
+   "type": "metric",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "u^mu",
+   "type": "vector",
+   "kinetic": "degenerate",
+   "timelike_background": true
+  },
+  {
+   "name": "phi",
+   "type": "scalar",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "N",
+   "type": "multiplier",
+   "kinetic": "none",
+   "timelike_background": false
+  }
+ ],
+ "couplings": [
+  {
+   "label": "screened_preframe_alpha",
+   "sources": [
+    "u^mu",
+    "phi"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": true,
+   "nonlocal": "none"
+  },
+  {
+   "label": "finite_mode_kinetic",
+   "sources": [
+    "phi",
+    "N"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "mond_mu_freeze",
+   "sources": [
+    "phi"
+   ],
+   "order_in_phi": 0,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "other-described",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "A preferred-frame vector u^mu carries a lapse-weighted alpha coupling that is multiplied by e^-y, so the preferred-frame response is screened in high-density regions. The propagating scalar mode phi has its kinetic term normalized by an independent multiplier field N, not by the screened alpha, giving a finite mode kinetic normalization even when alpha is exponentially suppressed. The frozen mu(y)=1-e^{-y} enters only through the MOND interpolation, while matter remains minimally coupled to the single metric and G is not rescaled.",
+ "predicted_weak_field": "In the weak-field, low-density limit y<<1, e^-y~1 and the preferred-frame alpha is unscreened, while mu(y)~y reproduces the MOND acceleration scale. In the high-density limit y>>1, alpha~e^-y is screened and the theory approaches GR, but the phi kinetic term remains finite because N is independent of alpha. The propagating mode therefore does not become singular or infinitely stiff as the preferred-frame response is screened, directly addressing the P7 collision.",
+ "inequivalence_argument": "This architecture is inequivalent to every listed dead class because it changes the canonical field content and coupling topology: it adds an independent multiplier N that sources the finite propagating-mode kinetic normalization, whereas dead screened-preferred-frame classes tie the kinetic normalization to the same screened alpha or to a coefficient of the preferred-frame term. It is not a coefficient tweak, not a rescaling of G, not a second metric, and not a local renormalization of a killed architecture; the screened preferred-frame response and the finite mode kinetic are structurally decoupled."
+}

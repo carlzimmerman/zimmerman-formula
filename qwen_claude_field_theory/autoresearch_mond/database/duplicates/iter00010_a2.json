@@ -1,0 +1,72 @@
+{
+ "name": "Khronon-Embedded Screened Lapse-Weighted Kinetic Decoupling",
+ "family": "screened-preferred-frame",
+ "fields": [
+  {
+   "name": "g_mu_nu",
+   "type": "metric",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "A_0",
+   "type": "khronon",
+   "kinetic": "none",
+   "timelike_background": true
+  },
+  {
+   "name": "phi",
+   "type": "scalar",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "alpha",
+   "type": "multiplier",
+   "kinetic": "none",
+   "timelike_background": false
+  }
+ ],
+ "couplings": [
+  {
+   "label": "alpha_A0_screened_pref_frame_lensing",
+   "sources": [
+    "alpha",
+    "A_0",
+    "rho_m"
+   ],
+   "order_in_phi": 0,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": true,
+   "nonlocal": "none"
+  },
+  {
+   "label": "phi_independent_kinetic",
+   "sources": [
+    "phi"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "minimal_matter_metric",
+   "sources": [
+    "T_mu_nu"
+   ],
+   "order_in_phi": 0,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "other-described",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "It keeps the screened preferred-frame response in a lapse-weighted khronon A_0 multiplied by alpha = e^{-y}, while the propagating scalar phi has an independent standard kinetic normalization K0. The frozen mu(y)=1-e^{-y} supplies the MOND interpolation, but alpha is not used to normalize the phi kinetic term, so the screened preferred-frame response and the finite propagating-mode kinetic normalization are canonically separated. Matter remains minimally coupled to the single physical metric, and the A_0 sector is unremovable for lensing while remaining dynamically distinct from the finite kinetic mode.",
+ "predicted_weak_field": "In the weak-field limit g00 = -1 + 2 Phi/c^2 with Phi = Phi_N + Phi_M, where Phi_M is fixed by the frozen mu(y)=1-e^{-y} through the auxiliary interpolation variable. The khronon A_0 produces the Bekenstein lensing correction, and its preferred-frame source is weighted by alpha = e^{-y}, so the preferred-frame anisotropic response is screened in dense systems. The scalar phi retains a standard kinetic term with finite normalization K0 and finite propagation speed, so its kinetic normalization is not identified with the screened alpha.",
+ "inequivalence_argument": "This escapes DC-001 (local no-preferred-frame lensing MOND) because the field content contains an explicit khronon A_0 and the coupling alpha_A0_screened_pref_frame_lensing has preferred_frame=true with screened_by='e^-y', so the construction is not local no-preferred-frame and it supplies the unremovable A_0 lensing sector. It is not a coefficient tweak of the rejected lapse-multiplier architecture: the canonical structure is enlarged by a khronon, and the screened preferred-frame response is carried jointly by A_0 and alpha rather than by a bare local multiplier. It remains inequivalent to degenerate khronon-only models because phi is a propagating scalar with an independent finite kinetic normalization, and inequivalent to nonlocal F+ architectures because all couplings are local."
+}

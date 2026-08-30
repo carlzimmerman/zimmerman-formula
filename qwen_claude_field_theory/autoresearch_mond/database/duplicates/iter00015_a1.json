@@ -1,0 +1,81 @@
+{
+ "name": "Finite-Kinetic Screened Preferred Frame",
+ "family": "screened-preferred-frame",
+ "fields": [
+  {
+   "name": "g_mu_nu",
+   "type": "metric",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "phi",
+   "type": "scalar",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "u_mu",
+   "type": "vector",
+   "kinetic": "none",
+   "timelike_background": true
+  },
+  {
+   "name": "A",
+   "type": "multiplier",
+   "kinetic": "none",
+   "timelike_background": true
+  },
+  {
+   "name": "K",
+   "type": "scalar",
+   "kinetic": "degenerate",
+   "timelike_background": false
+  }
+ ],
+ "couplings": [
+  {
+   "label": "screened_preframe_matter",
+   "sources": [
+    "A",
+    "phi",
+    "u_mu",
+    "T_matter"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": true,
+   "nonlocal": "none"
+  },
+  {
+   "label": "finite_kinetic_mode",
+   "sources": [
+    "K",
+    "phi"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "screened_gate",
+   "sources": [
+    "A",
+    "phi"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": "e^-y",
+   "lapse_weighted": true,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "other-described",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "The architecture introduces a non-dynamical preferred-frame multiplier A whose matter coupling is multiplied by e^-y, so the preferred-frame response is screened in high-density regions. A separate degenerate scalar K carries the propagating-mode kinetic normalization, so its finite coefficient is not forced to vanish or inherit the screening factor. The constraint ties A to the lapse only through the screened gate, leaving the kinetic sector finite and independent. This directly attacks the P7 collision by decoupling alpha ~ e^-y from the propagating kinetic normalization.",
+ "predicted_weak_field": "In the low-density limit y << 1, e^-y ~ 1 and the preferred-frame coupling is unscreened, recovering the intended MOND interpolation with mu(y)=1-e^-y. In the high-density limit y >> 1, the preferred-frame response is exponentially suppressed while K retains a finite kinetic term, producing a propagating mode with non-vanishing normalization. The weak-field acceleration law should approach the standard MOND regime for isolated systems and the Newtonian regime for dense environments without rescaling G. The finite K mode may yield a small additional force or dispersion relation, but it does not alter the frozen mu(y).",
+ "inequivalence_argument": "It is not a coefficient tweak of any killed architecture because it changes the canonical structure by adding an independent degenerate kinetic scalar K and a screened multiplier A, rather than adjusting a single coupling in a previously tested action. The preferred-frame response is carried by a lapse-weighted screened multiplier, while the propagating kinetic normalization is carried by a separate field, so no field redefinition or rescaling of G can map it to a dead class that tied alpha to the kinetic coefficient. The frozen mu(y) and minimal matter coupling are preserved, and the finite kinetic sector is structurally absent from dead classes that relied on screened or degenerate-only normalizations."
+}

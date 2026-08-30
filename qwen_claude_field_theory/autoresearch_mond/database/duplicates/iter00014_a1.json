@@ -1,0 +1,84 @@
+{
+ "name": "Independent-Kinetic Screened Preferred-Frame",
+ "family": "screened-preferred-frame",
+ "fields": [
+  {
+   "name": "g",
+   "type": "metric",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "u",
+   "type": "khronon",
+   "kinetic": "degenerate",
+   "timelike_background": true
+  },
+  {
+   "name": "chi",
+   "type": "scalar",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "lambda",
+   "type": "multiplier",
+   "kinetic": "none",
+   "timelike_background": false
+  }
+ ],
+ "couplings": [
+  {
+   "label": "matter",
+   "sources": [
+    "rho_m"
+   ],
+   "order_in_phi": 0,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": true,
+   "nonlocal": "none"
+  },
+  {
+   "label": "screened_pref_frame",
+   "sources": [
+    "u",
+    "rho_m"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": true,
+   "nonlocal": "none"
+  },
+  {
+   "label": "finite_kinetic",
+   "sources": [
+    "chi"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": true,
+   "nonlocal": "none"
+  },
+  {
+   "label": "constraint",
+   "sources": [
+    "lambda",
+    "chi",
+    "u"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": null,
+   "lapse_weighted": true,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "aux_legendre_chi",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "A khronon field u carries the preferred-frame response, while an auxiliary scalar chi carries the propagating MOND mode. A multiplier lambda imposes a first-order constraint that fixes the screened preferred-frame coefficient alpha to e^-y without fixing the chi kinetic term. The chi kinetic term is normalized by an independent constant, so the P7 collision is avoided: screening controls only the preferred-frame coupling, not the propagating-mode kinetic normalization.",
+ "predicted_weak_field": "In the weak-field, low-acceleration limit the chi field reproduces the MOND interpolation through mu(y)=1-e^-y, giving a 1/r potential with a_0 scaling. The preferred-frame term is suppressed by e^-y in high-acceleration environments, so alpha approaches zero where screening is strong. The finite chi kinetic normalization remains O(1), yielding a well-defined propagating mode and no vanishing kinetic term in the screened regime.",
+ "inequivalence_argument": "It is inequivalent to every dead class listed because it changes the canonical structure by adding an independent chi kinetic sector and a multiplier constraint that decouples the screened preferred-frame coefficient from the propagating-mode kinetic normalization. No dead class with a single auxiliary field or a screened coupling alone can reproduce this separation, since here the constraint fixes alpha while leaving the chi kinetic term free. The architecture is therefore structurally distinct from coefficient-tweak or single-sector screened preferred-frame variants, and it does not rescale G or alter the frozen mu(y)."
+}

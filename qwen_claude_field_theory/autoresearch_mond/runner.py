@@ -17,6 +17,11 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 STATE, DB, PROMPTS = (os.path.join(HERE, d) for d in ("state", "database", "prompts"))
 CHECKPOINT_EVERY = int(os.environ.get("AR_CHECKPOINT", "25"))
 MAX_SCRIPT_GATES = int(os.environ.get("AR_MAX_GATES", "5"))   # per candidate per iteration (G1..G5 default)
+DEEP_GATES = os.environ.get("AR_DEEP_GATES", "0") == "1"      # OFF by default: G4+ derivations are
+#   untrustworthy on a local model AND were timing out (45min blocks). Cooker = prospector: it runs
+#   G0 + trusted templates (G1-G3) and files anything clean as SURVIVOR_PENDING_AUDIT for Claude to
+#   audit the deep gates. Set AR_DEEP_GATES=1 to re-enable Qwen-written gate scripts (slow, PENDING).
+TRUSTED_GATES = ["G1", "G2", "G3"]                            # deterministic pre-verified templates
 QUOTAS = [("constraint-first", .30), ("screened-preferred-frame", .20), ("spatially-nonlocal", .20),
           ("multi-sector", .15), ("degenerate", .10), ("novel", .05)]
 # hard structural requirements per branch, derived from the seeded theorems (fed to the architect)
@@ -184,52 +189,51 @@ def run_gates(cid, cand, it):
     record_cert(cid, cand, cert0, it)
     if cert0["status"] == "KILL":
         kill(cid, cand, cert0, it); return
-    # ---------- TIER 2: derivation agent writes gate scripts, executed in order
+    # ---------- TIER 2: trusted templates (G1-G3). Deep gates (G4+) are prospector-out-of-scope by
+    # default: queued OPEN for Claude audit rather than derived by the local model (see DEEP_GATES).
     gate_status = {"G0": "PASS"}
     import gate_templates as gt
-    for gate in ev.SCRIPT_GATES[:MAX_SCRIPT_GATES]:
+    for gate in TRUSTED_GATES:
         prior = ev.prior_certificate(cm.arch_hash(cand), gate)
         if prior and prior.get("status") == "PASS":
             gate_status[gate] = "PASS"; log(f"  {gate}: prior PASS loaded"); continue
-        # TRUSTED TEMPLATE FIRST: deterministic, pre-verified math beats model-written scripts
         tc = gt.run(gate, cand)
-        if tc is not None:
-            record_cert(cid, cand, tc, it)
-            gate_status[gate] = tc["status"]
-            log(f"  {gate}: {tc['status']} (trusted template)")
-            if tc["status"] == "KILL":
-                kill(cid, cand, tc, it); return
-            if tc["status"] in ("PASS",):
-                continue
-            # OPEN/CONDITIONAL/BLOCKED from a template: fall through to model script for more depth
-        dctx = (f"CANDIDATE {cid}:\n{json.dumps(cand, indent=1)}\n\nGATE TO CERTIFY: {gate}\n\n"
-                f"KNOWN RULES:\n{json.dumps(J('KNOWLEDGE_GRAPH.json')['rules'], indent=1)[:3000]}")
-        script_reply = oc.chat(P("derivation.md"), dctx, temperature=0.3)
-        script = extract_code(script_reply)
-        if not script:
-            gate_status[gate] = "BLOCKED"; log(f"  {gate}: no script produced"); break
-        cert = ev.run_gate_script(cid, gate, script)
-        # ---------- REFEREE attacks the script+output (independent; no architect confidence passed)
-        if cert["status"] == "PASS":
-            rctx = (f"CANDIDATE {cid} architecture:\n{json.dumps(cand, indent=1)}\n\nGATE: {gate}\n"
-                    f"SCRIPT:\n```python\n{script[:6000]}\n```\nOUTPUT tail:\n"
-                    f"{open(cert['script'].replace('.py','.out')).read()[-3000:]}")
-            ref_reply = oc.chat(P("referee.md"), rctx, temperature=0.4)
-            rj = oc.extract_json(ref_reply) or {}
-            if rj.get("verdict") == "REFUTED":
-                cert["status"] = "CONDITIONAL"
-                cert["referee"] = rj.get("reason", "refuted")[:500]
-        record_cert(cid, cand, cert, it)
-        gate_status[gate] = cert["status"]
-        log(f"  {gate}: {cert['status']}")
-        if cert["status"] in ("KILL",):
-            kill(cid, cand, cert, it); break
-        if cert["status"] in ("BLOCKED",):
-            break
-    # ---------- outcome
-    if all(gate_status.get(g) == "PASS" for g in ["G0"] + list(ev.SCRIPT_GATES[:MAX_SCRIPT_GATES])):
+        if tc is None:                    # no template applies -> cannot trust-certify; leave OPEN
+            gate_status[gate] = "OPEN"; log(f"  {gate}: OPEN (no trusted template)"); continue
+        record_cert(cid, cand, tc, it)
+        gate_status[gate] = tc["status"]
+        log(f"  {gate}: {tc['status']} (trusted template)")
+        if tc["status"] == "KILL":
+            kill(cid, cand, tc, it); return
+
+    # ---------- optional deep-gate derivations (OFF by default; slow + PENDING_AUDIT even if PASS)
+    if DEEP_GATES:
+        for gate in [g for g in ev.SCRIPT_GATES[:MAX_SCRIPT_GATES] if g not in TRUSTED_GATES]:
+            prior = ev.prior_certificate(cm.arch_hash(cand), gate)
+            if prior and prior.get("status") == "PASS":
+                gate_status[gate] = "PASS"; log(f"  {gate}: prior PASS loaded"); continue
+            dctx = (f"CANDIDATE {cid}:\n{json.dumps(cand, indent=1)}\n\nGATE TO CERTIFY: {gate}\n\n"
+                    f"KNOWN RULES:\n{json.dumps(J('KNOWLEDGE_GRAPH.json')['rules'], indent=1)[:3000]}")
+            try:
+                script = extract_code(oc.chat(P("derivation.md"), dctx, temperature=0.3))
+            except oc.OllamaUnavailable:
+                gate_status[gate] = "OPEN"; log(f"  {gate}: derivation timed out -> OPEN (queued audit)"); break
+            if not script:
+                gate_status[gate] = "OPEN"; log(f"  {gate}: no script -> OPEN"); break
+            cert = ev.run_gate_script(cid, gate, script)
+            record_cert(cid, cand, cert, it)
+            gate_status[gate] = cert["status"]
+            log(f"  {gate}: {cert['status']} (model script, PENDING_AUDIT)")
+            if cert["status"] == "KILL":
+                kill(cid, cand, cert, it); break
+            if cert["status"] in ("BLOCKED", "OPEN"):
+                break
+
+    # ---------- outcome: clean through all TRUSTED gates => survivor for AUDIT (deep gates OPEN)
+    if all(gate_status.get(g) == "PASS" for g in ["G0"] + TRUSTED_GATES):
         promote_survivor(cid, cand, gate_status, it)
-    cm.set_status(cid, "EVALUATED", {"gates": gate_status})
+    else:
+        cm.set_status(cid, "EVALUATED", {"gates": gate_status})
     # ---------- SYNTHESIS: learn
     synth_ctx = (f"CANDIDATE {cid} gates: {json.dumps(gate_status)}\narchitecture:\n"
                  f"{json.dumps(cand, indent=1)[:4000]}")

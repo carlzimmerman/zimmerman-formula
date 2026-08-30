@@ -1,0 +1,84 @@
+{
+ "claimed_mechanism": "The khronon u carries the preferred-frame response and is multiplied by e^-y, while the auxiliary scalar chi carries the propagating MOND mode with an independent finite kinetic coefficient. A multiplier lambda imposes a local algebraic constraint that fixes the screened preferred-frame coefficient without multiplying any term by the lapse or ln N. This removes the lapse-weighted flux structure that caused DC-003 while preserving the separation between screened preferred-frame coupling and propagating-mode kinetic normalization.",
+ "couplings": [
+  {
+   "label": "matter",
+   "lapse_weighted": false,
+   "nonlocal": "none",
+   "order_in_phi": 0,
+   "preferred_frame": false,
+   "screened_by": null,
+   "sources": [
+    "rho_m"
+   ]
+  },
+  {
+   "label": "screened_pref_frame",
+   "lapse_weighted": false,
+   "nonlocal": "none",
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "sources": [
+    "u",
+    "rho_m"
+   ]
+  },
+  {
+   "label": "finite_kinetic",
+   "lapse_weighted": false,
+   "nonlocal": "none",
+   "order_in_phi": 2,
+   "preferred_frame": false,
+   "screened_by": null,
+   "sources": [
+    "chi"
+   ]
+  },
+  {
+   "label": "constraint",
+   "lapse_weighted": false,
+   "nonlocal": "none",
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": null,
+   "sources": [
+    "lambda",
+    "chi",
+    "u"
+   ]
+  }
+ ],
+ "family": "screened-preferred-frame",
+ "fields": [
+  {
+   "kinetic": "standard",
+   "name": "g",
+   "timelike_background": false,
+   "type": "metric"
+  },
+  {
+   "kinetic": "degenerate",
+   "name": "u",
+   "timelike_background": true,
+   "type": "khronon"
+  },
+  {
+   "kinetic": "standard",
+   "name": "chi",
+   "timelike_background": false,
+   "type": "scalar"
+  },
+  {
+   "kinetic": "none",
+   "name": "lambda",
+   "timelike_background": false,
+   "type": "multiplier"
+  }
+ ],
+ "inequivalence_argument": "This candidate is inequivalent to DC-003 because every coupling has lapse_weighted=false and no term is a lapse-weighted flux, phi=lnN, or N-weighted MOND term; the multiplier constraint is algebraic in lambda, chi, and u and does not demote H_perp to three DOF or zero out the quadratic action. It is also not a coefficient tweak of a killed architecture, because the independent chi kinetic sector plus the algebraic constraint changes the canonical structure by decoupling the screened preferred-frame coefficient from the finite propagating-mode normalization. It satisfies the required lensing escape through the preferred_frame=true, screened_by=e^-y coupling.",
+ "kinetic_normalization_source": "independent",
+ "mond_realization": "aux_legendre_chi",
+ "name": "Non-Lapse Independent-Kinetic Screened Preferred-Frame",
+ "predicted_weak_field": "In the weak-field, low-acceleration limit chi reproduces the frozen interpolation mu(y)=1-e^-y and gives the expected 1/r MOND scaling with a_0. The preferred-frame response is suppressed by e^-y in high-acceleration environments, so the effective alpha tends to zero where screening is strong. Because no lapse-weighted flux is present, the chi quadratic action remains O(1) and the propagating mode is finite in the screened regime."
+}
