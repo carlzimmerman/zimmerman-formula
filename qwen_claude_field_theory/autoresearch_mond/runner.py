@@ -53,14 +53,36 @@ def protocol_text():
     return open(os.path.join(HERE, "global_protocol.md")).read()
 
 
+BRANCH_ORDER = [b for b, _ in QUOTAS]
+
 def pick_branch(gs):
-    import random
-    counts = gs.setdefault("branch_counts", {})
-    total = sum(counts.values()) or 1
-    # pick the branch furthest below quota (deterministic-ish exploration)
-    deficit = [(q - counts.get(b, 0) / total, b) for b, q in QUOTAS]
-    deficit.sort(reverse=True)
-    return deficit[0][1] if random.random() < 0.8 else random.choice([b for b, _ in QUOTAS])
+    """Strict round-robin over branches; a branch on cooldown (2 consecutive dead results) is skipped
+    until its cooldown iteration passes. No branch monopolizes the search."""
+    idx = gs.get("rr_index", -1)
+    cooldown = gs.get("branch_cooldown", {})   # branch -> iteration until which it is skipped
+    it_now = gs.get("iteration", 0)
+    for step in range(1, len(BRANCH_ORDER) + 1):
+        cand = BRANCH_ORDER[(idx + step) % len(BRANCH_ORDER)]
+        if cooldown.get(cand, 0) <= it_now:
+            gs["rr_index"] = (idx + step) % len(BRANCH_ORDER)
+            return cand
+    # all on cooldown -> take the next anyway
+    gs["rr_index"] = (idx + 1) % len(BRANCH_ORDER)
+    return BRANCH_ORDER[gs["rr_index"]]
+
+
+def note_branch_dead(gs, branch):
+    """Track consecutive dead results; after 2 in a row put the branch on a 10-iteration cooldown."""
+    streak = gs.setdefault("dead_streak", {})
+    streak[branch] = streak.get(branch, 0) + 1
+    if streak[branch] >= 2:
+        gs.setdefault("branch_cooldown", {})[branch] = gs.get("iteration", 0) + 10
+        streak[branch] = 0
+        log(f"  branch '{branch}' on cooldown (10 iters) after repeated dead results")
+
+
+def note_branch_live(gs, branch):
+    gs.setdefault("dead_streak", {})[branch] = 0
 
 
 def recent_dead_ends(n=10):
@@ -157,6 +179,7 @@ def process_candidate(gs, it, branch, cand):
         with open(os.path.join(DB, "duplicates", f"iter{it:05d}_a{attempt}.json"), "w") as f:
             json.dump(cand, f, indent=1)
         if attempt == 2:
+            note_branch_dead(gs, branch)
             log(f"  {status} (ref {ref}) after escape retry — not run"); return
         log(f"  {status} (ref {ref}) — attempting escape mutation")
         mreply = oc.chat(P("architect.md"),
@@ -171,6 +194,8 @@ def process_candidate(gs, it, branch, cand):
         mc = oc.extract_json(mreply)
         if not mc or any(k not in mc for k in cm.REQUIRED_FIELDS):
             log("  escape mutation unusable — not run"); return
+        if not structurally_different(cand, mc):
+            log("  escape mutation only cosmetic (no structural axis changed) — not run"); return
         cand = mc
     if status != "NEW":
         return
@@ -248,6 +273,20 @@ def run_gates(cid, cand, it):
             W("KNOWLEDGE_GRAPH.json", kg)
     except Exception as e:
         log(f"  synthesis skipped: {e}")
+
+
+def structurally_different(parent, child):
+    """A mutation is admissible only if it moves a STRUCTURAL coordinate, not just names/coefficients.
+    Compare canonical signatures on: field-type multiset, kinetic ranks, preferred-frame set,
+    screening pattern, nonlocality type, mond_realization. Cosmetic-only edits are rejected."""
+    def sig(c):
+        cn = cm.canonicalize(c)
+        return (
+            tuple(sorted((f["type"], f["kinetic"], f["timelike_background"]) for f in cn["fields"])),
+            tuple(sorted((cp["preferred_frame"], cp["screened_by"], cp["nonlocal"], cp["order_in_phi"])
+                         for cp in cn["couplings"])),
+            cn["mond_realization"], cn["family"])
+    return sig(parent) != sig(child)
 
 
 def dedup_reason(cand, ref):
