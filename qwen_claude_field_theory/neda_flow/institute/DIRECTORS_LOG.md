@@ -2,25 +2,25 @@
 *Auto-generated from institute state. Regenerate: `python3 institute/gen_directors_log.py`*
 
 ## Standing verdict of the search
-- Theory space mapped by the Coverage Office: **26 architecture families** (10 dead · 4 active · 12 unexplored · 0 tested).
+- Theory space mapped by the Coverage Office: **27 architecture families** (10 dead · 4 active · 12 unexplored · 1 tested).
 - Proven no-go theorems (dead classes): **16**.
 - Candidates on record: **46** ({'KILL': 36, 'EVALUATED': 6, 'SURVIVOR': 4}).
 
 ## THE OPEN FRONTIER (where the live physics is)
+- **MOND-DHOST degeneracy: source Psi + luminal c_s + DOF=3 WITHOUT a preferred-frame reduction (THE terminal single-metric class)**
+  - Two independent obstructions (lensing under-lens + scalar superluminal cone c_par^2=2) CONVERGE on one surviving class: MOND-DHOST. The DHOST phi_munu terms can source Psi (linear stress) and engineer the cone, but the scalar's cosmological background gradient threatens to become a khronometric frame (CLOSED). Decisive symbolic calc: solve the DHOST degeneracy conditions for {mu=1-e^-y, eta=1, c_T
 - **DYNAMICAL make-or-break of the nonlocal single-metric door (spectral wall PROVEN ABSENT)**
   - The converged calc CLEARED the spectral obstruction: with nonlocality removing slip-lock's (1,-2) lock, {eta=1 + MOND enhancement + ghost-free (M NSD)} coexist in a finite window A-C in (-2m,0). So the single-metric door is NOT closed by the spectrum -- the strongest single-metric position of the program. Two DYNAMICAL make-or-breaks remain (these decide chicken vs no-go): (1) does a CAUSAL retard
 - **QUADRATIC HAMILTONIAN/GHOST AUDIT of extended-BIMOND C-invariant interaction (the decisive calc)**
   - The exact frontier: ghost-free HR cannot make MOND (fixed-length Yukawa != acceleration scale a0); BIMOND's C-invariants make MOND naturally (first-derivative differences carry acceleration) but derivative bimetric interactions are generically ghosty. Quadratic ADM/ghost analysis around doubly-flat background decides: healthy relative-mode kinetic matrix => the first genuine chicken candidate; gho
 - **Ghost-free HR bigravity potential reproducing mu=1-e^-y (bimetric decisive calc)**
   - Bimetric EXITS the closed single-metric class (2nd metric sources slip off-ray, no frame) + passes GW170817, but linear HR => Yukawa (anti-MOND: enhance-short/cutoff-long, wrong scale-dependence); forcing a0 acceleration scale needs nonlinear helicity-0 off the HR ghost-free point (BD-ghost risk) and m_g~a0/c~H0 sits on the Higuchi bound. Decisive: can a ghost-free HR-class potential give mu=1-e^-
-- **OUTSIDE single-metric: bimetric / higher-derivative / a0-bump**
-  - Frame-free single-metric CLOSED (DC-013 slip-lock: correct MOND lensing REQUIRES a frame); the frame branch is where P7/GW170817 bites. Both single-metric sub-branches under closure pressure. Remaining doors EXIT the class: (a) genuine 2nd dynamical metric (Hassan-Rosen bimetric, massive graviton -- its own ghost/c_T bill), (b) higher-derivative gravity, (c) a0-bump cluster route. Price each.
 
 ## ACTIVE families (in progress)
 - **bimetric-degenerate-DHOST** — MOND nonlinearity + Hamiltonian degeneracy from SAME structure; decisive calc = quadratic ghost/Hamiltonian
 - **bimond-connection** — Milgrom C=Gamma(g)-Gamma(h) invariants; decisive gate = BD audit; derivative interactions generically ghosty
-- **DHOST-single-metric** — 3 DOF, Langlois-Noui degeneracy; includes khronometric as a limit (1602.08398) => slip-lock likely applies UNLESS HD structure opens a new (Phi-Psi) channel -- that is the test
 - **metric-derived-nonlocal-accel** — simple acceleration-scalar realization UNDER-LENSES (quadratic stress, slip-lock/AQUAL); needs the NONLOCAL sector to source Phi+Psi frame-free => CONVERGES on the un-localized F+ door's open calc. Sub-gates: causal nonl
+- **MOND-DHOST** — THE terminal make-or-break: solve the DHOST degeneracy SYMBOLICALLY subject to {static mu=1-e^-y, eta=1 lensing, c_T=1, 0<c_s^2<=1, DOF=3, PPN} AND no preferred-frame reduction. Attack the degeneracy before any coefficie
 
 ## UNEXPLORED families (breadth queue)
 - cuscuton — scalar with NO propagating scalar DOF (2 DOF total, like GR) yet modifies dynamics -- could evade slip-lock by having no extra mode to lock; genuinely
