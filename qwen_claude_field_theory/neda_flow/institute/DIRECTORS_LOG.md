@@ -4,11 +4,11 @@
 ## Standing verdict of the search
 - Theory space mapped by the Coverage Office: **27 architecture families** (10 dead · 4 active · 12 unexplored · 1 tested).
 - Proven no-go theorems (dead classes): **16**.
-- Candidates on record: **84** ({'KILL': 71, 'EVALUATED': 8, 'SURVIVOR': 5}).
+- Candidates on record: **85** ({'KILL': 71, 'EVALUATED': 9, 'SURVIVOR': 5}).
 
 ## THE OPEN FRONTIER (where the live physics is)
-- **THE TERMINAL ALGEBRA: is the DHOST allowed-set S empty or non-empty?**
-  - DHOST MOND is a preferred-frame theory whose degeneracy gives a STRUCTURAL P7-escape (physical-mode kinetic norm finite from the DHOST sector while alpha stays screened -- verified, unlike the stiff-vector). So single-metric is NOT closed. Decisive calc: solve the explicit weak-field PPN reduction (g_0i, g_00, alpha_1, alpha_2) from the full DHOST action with {c_T=1 + degeneracy conditions + mu~y}
+- **DEFINITIVE test of DHOST MOND: explicit alpha_1,alpha_2 reduction from a chosen degenerate action**
+  - S-intersection resolved through its bottleneck: the SCALAR-sector S {mu~y, c_T=1, K_pi>0, 0<c_par^2<=1} is NON-EMPTY -- the c_T-vs-cone collision (the key worry) does NOT happen because c_T lives in {L_1,G_4} (tensor) while the cone regulator lives in {L_3,4,5} (background-gradient), independent operators, finite regulator window R in [P_X,2P_X). Full S plausibly non-empty: five conditions carried
 - **MOND-DHOST degeneracy: source Psi + luminal c_s + DOF=3 WITHOUT a preferred-frame reduction (THE terminal single-metric class)**
   - Two independent obstructions (lensing under-lens + scalar superluminal cone c_par^2=2) CONVERGE on one surviving class: MOND-DHOST. The DHOST phi_munu terms can source Psi (linear stress) and engineer the cone, but the scalar's cosmological background gradient threatens to become a khronometric frame (CLOSED). Decisive symbolic calc: solve the DHOST degeneracy conditions for {mu=1-e^-y, eta=1, c_T
 - **DYNAMICAL make-or-break of the nonlocal single-metric door (spectral wall PROVEN ABSENT)**
