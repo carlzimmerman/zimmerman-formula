@@ -34,7 +34,13 @@ def matches_dead_class(canon, dead_class):
     sig = dead_class.get("signature", {})
     if not sig:
         return False
+    # scope guard: theorems derived for single-metric must NOT match bimetric candidates
+    if sig.get("single_metric_only") and \
+            sum(1 for f in canon["fields"] if f["type"] == "metric") >= 2:
+        return False
     for k, v in sig.items():
+        if k == "single_metric_only":
+            continue
         if k == "family" and canon.get("family") != v:
             return False
         if k == "any_coupling":  # candidate must contain a coupling matching ALL listed props
