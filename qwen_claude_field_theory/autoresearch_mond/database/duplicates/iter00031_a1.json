@@ -1,0 +1,65 @@
+{
+ "name": "Multi-Sector F+ Kinetic-Scalar Decoupling",
+ "family": "multi-sector",
+ "fields": [
+  {
+   "name": "g_munu",
+   "type": "metric",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "chi",
+   "type": "scalar",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "phi_k",
+   "type": "scalar",
+   "kinetic": "standard",
+   "timelike_background": false
+  }
+ ],
+ "couplings": [
+  {
+   "label": "kinetic_phi_k",
+   "sources": [
+    "phi_k"
+   ],
+   "order_in_phi": 0,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "mond_dynamics",
+   "sources": [
+    "chi",
+    "rho"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "spatial"
+  },
+  {
+   "label": "lensing_carrier",
+   "sources": [
+    "phi_k"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "nonlocal_F+",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "This architecture decouples the MOND dynamics (handled by an auxiliary chi governed by a spatially nonlocal F+ operator) from the propagating scalar phi_k (which carries the lensing degrees of freedom). The MOND sector is algebraic in chi, avoiding the lapse-weighting trap (P3) and ensuring the preferred-frame response is screened by e^-y through the F+ kernel. The phi_k field has a standard, independent kinetic term, ensuring a finite normalization that is not screened out, thus avoiding the P7 strong-coupling wound. This separation allows the MOND strength, lensing carrier, and kinetic normalization to be distinct, satisfying the core cooking rule.",
+ "predicted_weak_field": "In the weak-field limit, the MOND dynamics are reproduced by the nonlocal F+ kernel, which yields the correct mu(y) behavior. The lensing is carried by phi_k, which provides the necessary linear stress to source Psi without being constrained by the MOND sector's screening. The kinetic normalization of phi_k remains finite, ensuring no strong coupling. The preferred-frame response is screened by e^-y, keeping PPN parameters within bounds.",
+ "inequivalence_argument": "This candidate is inequivalent to DC-001 because it includes a spatially nonlocal F+ kernel, which is not allowed in the local no-preferred-frame class. It is inequivalent to DC-002 because it does not use a standard timelike vector field for the aether. It is inequivalent to DC-003 because it does not use lapse-weighted MOND. It is inequivalent to DC-010 because it does not rely on a khronon field with a finite alpha_inf, which was killed by GW170817. The multi-sector structure with an independent kinetic scalar is a new architectural feature not present in any dead class."
+}

@@ -1,0 +1,83 @@
+{
+ "name": "Khronon-Stiffened Degenerate MOND",
+ "family": "degenerate",
+ "fields": [
+  {
+   "name": "g_mu_nu",
+   "type": "metric",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "chi",
+   "type": "scalar",
+   "kinetic": "degenerate",
+   "timelike_background": false
+  },
+  {
+   "name": "u_mu",
+   "type": "vector",
+   "kinetic": "none",
+   "timelike_background": true
+  }
+ ],
+ "couplings": [
+  {
+   "label": "L_grav_kinetic",
+   "sources": [
+    "R3",
+    "K_ij",
+    "K_ijK^ij",
+    "K^2"
+   ],
+   "order_in_phi": 0,
+   "preferred_frame": true,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "L_mond_dynamical",
+   "sources": [
+    "mu(y)",
+    "D(iPj)_TF",
+    "q"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "L_mond_potential",
+   "sources": [
+    "chi",
+    "ln(1-chi)"
+   ],
+   "order_in_phi": 0,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "L_khronon_stiff",
+   "sources": [
+    "u_mu",
+    "a_mu(accel)",
+    "K_ij"
+   ],
+   "order_in_phi": 0,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "aux_legendre_chi",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "This architecture implements MOND via an auxiliary Legendre field chi that is dynamically constrained but algebraically degenerate (second-class), ensuring no independent scalar propagating mode. The preferred-frame effects are isolated into a distinct khronon sector whose kinetic terms are independent and finite, while its PPN couplings are screened by e^-y. This decouples the screened preferred-frame response from the kinetic normalization, directly addressing the P7 collision by ensuring that as screening increases, the khronon kinetic term does not vanish. The degenerate nature of chi is justified as second-class because it is constrained by the MOND constitutive relation and does not carry independent initial data.",
+ "predicted_weak_field": "In the weak-field, high-acceleration limit (y >> 1), the theory reduces to GR with exponentially small corrections. The MOND enhancement in the low-acceleration regime (y << 1) is mediated by the chi field, which modifies the effective gravitational potential. The khronon sector remains inactive in the high-acceleration limit due to e^-y screening, ensuring Solar System consistency. Lensing is enhanced in the MOND regime via the modified potential, while remaining consistent with GR in the high-acceleration limit.",
+ "inequivalence_argument": "This candidate is inequivalent to DC-001 because it includes a khronon field (u_mu) that provides the necessary preferred-frame carrier for correct MOND lensing, whereas DC-001 theories lack such a field and are frameless. It differs from DC-003 because the MOND sector is not lapse-weighted; the chi field is constrained algebraically without demoting H_perp. It avoids DC-010 by ensuring the khronon kinetic normalization is independent of the e^-y screened coupling, thus avoiding the strong-coupling wall. Unlike DC-012, this theory is local and does not rely on nonlocal operators, but it includes a preferred-frame carrier to satisfy the pincer theorem."
+}

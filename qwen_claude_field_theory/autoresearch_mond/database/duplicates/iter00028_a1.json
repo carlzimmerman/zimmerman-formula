@@ -1,0 +1,57 @@
+{
+ "name": "Kinetically-Decoupled Screened-Frame with Independent Stiff-Vector",
+ "family": "screened-preferred-frame",
+ "fields": [
+  {
+   "name": "u_mu",
+   "type": "vector",
+   "kinetic": "standard",
+   "timelike_background": true
+  },
+  {
+   "name": "chi",
+   "type": "scalar",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "q",
+   "type": "scalar",
+   "kinetic": "none",
+   "timelike_background": false
+  }
+ ],
+ "couplings": [
+  {
+   "label": "pf_screened",
+   "sources": [
+    "e^-y",
+    "u_mu",
+    "rho"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "mond_constitutive",
+   "sources": [
+    "mu(y)",
+    "q",
+    "rho"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "constraint_first_q",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "This architecture introduces a stiff, independent timelike vector (u_mu) whose kinetic normalization is strictly decoupled from the MOND screening coefficient. The preferred-frame coupling is strictly proportional to e^-y (screened), while the vector's propagator is maintained by an independent, finite kinetic term (standard kinetic) that does not vanish in the high-acceleration limit. This structurally resolves the P7 collision by ensuring the finite propagating-mode kinetic normalization is independent of the screened preferred-frame response.",
+ "predicted_weak_field": "In the weak-field limit (y>>1), the e^-y screening suppresses the preferred-frame effects (alpha ~ e^-y), recovering GR and standard lensing. The MOND dynamics are governed by the constraint q = -1/6 ln det(gamma) and the constitutive relation P_i = mu(y) DPhi, ensuring the exact MOND reduction. The stiff vector provides the necessary finite normalization for propagating modes without introducing strong coupling or ghost instabilities, as its kinetic term is independent of the screening factor.",
+ "inequivalence_argument": "This candidate is genuinely inequivalent to the dead classes because it explicitly separates the screened preferred-frame coupling (proportional to e^-y) from the kinetic normalization of the propagating vector mode (which is independent and finite). DC-001 and DC-010 fail because they either lack a preferred frame or couple the frame's kinetic normalization to the screening factor, leading to strong coupling (P7). DC-003 fails due to lapse-weighted MOND, which is avoided here. The use of a stiff vector with independent kinetic normalization is the key architectural difference that avoids the P7 collision, which killed the khronometric and finite-alpha candidates."
+}

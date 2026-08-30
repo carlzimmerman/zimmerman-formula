@@ -1,0 +1,62 @@
+{
+ "name": "Scale-Split Stiff-Vector Screened-Frame with MOND Constraint",
+ "family": "screened-preferred-frame",
+ "fields": [
+  {
+   "name": "g_munu",
+   "type": "metric",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "u_mu",
+   "type": "vector",
+   "kinetic": "standard",
+   "timelike_background": true
+  },
+  {
+   "name": "chi",
+   "type": "scalar",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "phi_mult",
+   "type": "multiplier",
+   "kinetic": "none",
+   "timelike_background": false
+  }
+ ],
+ "couplings": [
+  {
+   "label": "PF_Lensing_Term",
+   "sources": [
+    "u_mu",
+    "mu(y)"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "MOND_Constraint_Source",
+   "sources": [
+    "phi_mult",
+    "P_i=mu*DPhi",
+    "rho"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "constraint_first_q",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "This architecture explicitly separates the two functions that are dangerously coupled in previous failed models. A standard kinetic vector u_mu provides the lensing-correcting preferred-frame stress, but its source coupling is strictly multiplied by the screening factor e^-y. Simultaneously, the MOND modification is enforced via a constraint multiplier (Dirac constraint) that dictates the spatial dynamics of the gravitational potential. Because the vector's kinetic term is unscreened and constant, the P7 collision (where screening kills the kinetic normalization) is structurally avoided.",
+ "predicted_weak_field": "In the weak field limit, the vector u_mu propagates as a standard massless spin-1 field, ensuring a well-defined, ghost-free propagator with a finite kinetic normalization. The preferred-frame effects (which correct the lensing potential Psi relative to Phi) are sourced at linear order but strictly scale with e^-y. As the local acceleration g/a_0 becomes large (y>>1), the screening factor e^-y drives the PPN parameters alpha_1 and alpha_2 to zero exponentially, restoring exact GR, while the unscreened kinetic term remains finite and healthy.",
+ "inequivalence_argument": "This candidate is inequivalent to DC-001 because it contains a necessary preferred-frame coupling (vector u_mu) with e^-y screening, directly bypassing the pincer proof that frameless local theories under-lens. It avoids DC-002 (AeST) because the preferred-frame coupling is strictly screened by e^-y, preventing the catastrophic alpha_2 ~ 1/K_B divergence. It solves the DC-010/Khronometric wound (P7) by using a standard-kinetic vector for the propagating mode, ensuring the kinetic normalization is 'independent' of the screened coupling that drives the PPN deviation."
+}

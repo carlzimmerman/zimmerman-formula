@@ -1,0 +1,69 @@
+{
+ "name": "Spacetime-Scale-Split Khronon with Nonlocal MOND Core",
+ "family": "screened-preferred-frame",
+ "fields": [
+  {
+   "name": "u_mu",
+   "type": "khronon",
+   "kinetic": "standard",
+   "timelike_background": true
+  },
+  {
+   "name": "chi_aux",
+   "type": "scalar",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "Q_stf",
+   "type": "stf_tensor",
+   "kinetic": "none",
+   "timelike_background": false
+  }
+ ],
+ "couplings": [
+  {
+   "label": "screened_frame_response",
+   "sources": [
+    "u_mu",
+    "K_ij",
+    "chi_aux"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "nonlocal_mond_core",
+   "sources": [
+    "inv_laplacian",
+    "rho",
+    "Q_stf"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "spatial"
+  },
+  {
+   "label": "metric_kinetic",
+   "sources": [
+    "R",
+    "K_ij"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "nonlocal_F+",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "This architecture spatially separates the MOND kernel from the preferred-frame lensing carrier. The MOND dynamics are driven by a genuine spatially nonlocal elliptic operator (inv_laplacian) that builds the F+ kernel, while the lensing deficit is fixed by a standard khronon (u_mu) kinetic term. The coupling of the khronon to the MOND sector is strictly proportional to e^-y, ensuring the preferred-frame PPN response (alpha_1, alpha_2) is screened in the Solar System. Because the kinetic normalization of the khronon is an independent constant (not scaled by e^-y), the theory avoids the P7 strong-coupling wall that killed the standard khronometric MOND candidate.",
+ "predicted_weak_field": "In the Newtonian limit (y >> 1), the e^-y coupling vanishes, restoring standard GR with c_T=1 and no preferred-frame effects. In the MOND regime (y << 1), the nonlocal spatial operator modifies the Poisson equation to yield the MOND force law, while the unscreened khronon kinetic term provides the necessary anisotropic stress to boost the lensing potential (Psi) to match the dynamical potential (Phi). The finite kinetic normalization ensures that the propagating khronon mode remains well-behaved and decoupled from the MOND screening scale.",
+ "inequivalence_argument": "This is inequivalent to DC-001 (local no-PF) because it contains a preferred_frame=true coupling and a nonlocal coupling, both of which are absent in DC-001. It is inequivalent to DC-002 (AeST) because it uses a khronon (scalar) rather than a 6-DOF vector field, and the PF coupling is screened by e^-y. It is inequivalent to DC-010 (khronometric exponential) because the MOND kernel is built from a nonlocal spatial operator rather than a local exponential function, and the kinetic normalization is explicitly independent of the screening factor, resolving the P7 issue."
+}

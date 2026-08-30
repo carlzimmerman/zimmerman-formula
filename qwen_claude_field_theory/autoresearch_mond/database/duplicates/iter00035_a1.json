@@ -1,0 +1,64 @@
+{
+ "name": "Bimetric-Chronos: MOND-dynamics in a Timelike-Sector Metric, GR-Lensing in a Spatial-Sector Metric",
+ "family": "multi-sector",
+ "fields": [
+  {
+   "name": "g_mu_nu",
+   "type": "metric",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "h_mu_nu",
+   "type": "metric",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "u_mu",
+   "type": "vector",
+   "kinetic": "standard",
+   "timelike_background": true
+  },
+  {
+   "name": "chi_aux",
+   "type": "scalar",
+   "kinetic": "none",
+   "timelike_background": false
+  }
+ ],
+ "couplings": [
+  {
+   "label": "sector_split_action",
+   "sources": [
+    "spatial_einstein",
+    "R3",
+    "a_mu",
+    "u_mu",
+    "chi_aux"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "DC001_lensing_escape",
+   "sources": [
+    "spatial_einstein",
+    "R3"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "nonlocal_F+",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "We fundamentally decouple the MONDian acceleration dynamics from the lensing carrier by splitting the gravitational field into two distinct metrics: h_mu_nu (the kinematic/timelike sector) and g_mu_nu (the spatial/lensing sector). The MOND dynamics (and its associated preferred-frame response) are entirely localized in h_mu_nu, where the e^-y screening suppresses its PPN-visible kinetic terms. Meanwhile, the lensing carrier (the spatial metric g_mu_nu) carries a pure GR kinetic structure, entirely immune to the e^-y suppression. This cleanly satisfies P7 because the kinetic normalization of the propagating lensing mode is independent of the screened MOND sector.",
+ "predicted_weak_field": "In the weak-field limit, the spatial metric g_mu_nu exactly reproduces GR lensing (giving the required massless scalar + tensor response for Phi=Psi). The MONDian acceleration dynamics emerge from h_mu_nu, which modifies the time-time and spatial curvature potentials to produce the expected mu(y) scaling of the acceleration. Because the preferred-frame couplings in h_mu_nu are screened by e^-y, the Solar System sees a vanishing PPN alpha_2, while the unscreened spatial metric perfectly handles the lensing escape of DC-001.",
+ "inequivalence_argument": "This is structurally inequivalent to DC-001 (local frameless lensing) because it explicitly includes a timelike preferred-frame vector (u_mu) in the h_mu_nu sector, breaking the no-preferred-frame condition that causes DC-001's under-lensing. It is inequivalent to DC-002 (AeST) because the standard kinetic vector (u_mu) does NOT source the lensing carrier; the lensing carrier is g_mu_nu, which has an independent GR kinetic normalization and is not a stiff 6-DOF aether tied to a constant K_B coupling. It is inequivalent to DC-010 (khronometric) because the MOND screening does NOT zero out the kinetic term of the propagating lensing mode (g_mu_nu), avoiding the P7 strong-coupling wall."
+}

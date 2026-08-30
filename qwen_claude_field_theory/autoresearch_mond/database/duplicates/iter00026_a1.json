@@ -1,0 +1,61 @@
+{
+ "name": "Spatially-Nonlocal F+ with Independent Stiff-Aether Kinetic",
+ "family": "spatially-nonlocal",
+ "fields": [
+  {
+   "name": "g_munu",
+   "type": "metric",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "u_mu",
+   "type": "vector",
+   "kinetic": "standard",
+   "timelike_background": true
+  }
+ ],
+ "couplings": [
+  {
+   "label": "nonlocal_MOND",
+   "sources": [
+    "elliptic_kernel_f(D2/a0^2)",
+    "P_i=mu*DPhi"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "spatial"
+  },
+  {
+   "label": "stiff_aether_kinetic",
+   "sources": [
+    "u_mu"
+   ],
+   "order_in_phi": 0,
+   "preferred_frame": true,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "screened_frame_lensing",
+   "sources": [
+    "u_mu",
+    "e^-y",
+    "D(iPj)_TF"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "nonlocal_F+",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "This architecture resolves the P7 collision by strictly separating the gravitational MOND response from the preferred-frame kinetic normalization. The MOND dynamics are carried by the genuine spatially-nonlocal F+ operator, which provides the correct under-lensing fix frame-free at the nonlocal level. A timelike unit vector (aether) is introduced with an independent, constant (unscreened) stiff kinetic term, ensuring its propagating longitudinal mode maintains a finite, healthy normalization (O(1)) independent of the MOND acceleration scale. The aether's coupling to the MOND stress is strictly weighted by e^-y, so the preferred-frame PPN response and lensing carrier are exponentially screened in the Solar System, but the kinetic term is untouched.",
+ "predicted_weak_field": "In the weak-field Newtonian limit, the nonlocal F+ operator reproduces the exact MOND trajectory via the frozen exponential kernel. The linearized metric potentials Phi and Psi are sourced such that Psi is boosted to match the dynamical mass, resolving the lensing deficit. Because the aether kinetic term is constant, the sound speed and spectral residue of the propagating aether mode remain finite and positive (K_i > 0) even as the MOND acceleration y becomes large (y >> 1). The PPN parameters alpha_1 and alpha_2 scale proportionally to e^-y, guaranteeing Solar System constraints are met by the exponential screening.",
+ "inequivalence_argument": "This candidate is inequivalent to DC-001 (local frameless) because it introduces a genuine preferred-frame carrier (u_mu) and relies on spatial nonlocality (F+) rather than local stress. It avoids DC-003 (lapse-weighted) because all MOND and aether couplings are strictly lapse-independent (lapse_weighted=false), preserving the constraint algebra. It escapes the P7 / DC-010 khronometric strong-coupling wall by using a standard (non-degenerate) vector kinetic term that is explicitly NOT scaled by e^-y, thereby decoupling the finite propagating-mode kinetic normalization from the screened PPN response. Finally, unlike DC-011/DC-012, it does not attempt to localize the F+ kernel into a finite auxiliary mass matrix; it retains the genuine nonlocal elliptic operator, avoiding the empty window of single-mass localization and the under-lensing of frameless localized theories."
+}

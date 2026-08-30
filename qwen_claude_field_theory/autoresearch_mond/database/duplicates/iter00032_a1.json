@@ -1,0 +1,66 @@
+{
+ "name": "Stiff-Vector Kinetic with e^-y Screened Frame Coupling",
+ "family": "multi-sector",
+ "fields": [
+  {
+   "name": "h_mu_nu",
+   "type": "metric",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "u_mu",
+   "type": "vector",
+   "kinetic": "standard",
+   "timelike_background": true
+  },
+  {
+   "name": "a_mu",
+   "type": "vector",
+   "kinetic": "none",
+   "timelike_background": false
+  }
+ ],
+ "couplings": [
+  {
+   "label": "MOND_Dynamics",
+   "sources": [
+    "P_i=mu*DPhi",
+    "rho"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "Screened_Frame_Coupling",
+   "sources": [
+    "u_mu",
+    "rho"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "Stiff_Vector_Kinetic",
+   "sources": [
+    "u_mu"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "aux_legendre_chi",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "This architecture introduces a stiff timelike vector field u_mu with an independent, unscreened kinetic normalization (M^2). The preferred-frame coupling to matter is strictly multiplied by the screening factor e^-y = 1-mu(y), ensuring PPN observables vanish in the high-acceleration limit (P2 compliance). Because the kinetic term for u_mu is independent of the screened coupling, the P7 collision is avoided: the kinetic normalization remains finite (M^2) even as the screening factor drives the PPN response to zero. The MOND dynamics are realized via the auxiliary-Legendre chi field, which modifies the spatial metric structure to yield the correct nonlinear force law without introducing additional propagating DOF beyond the stiff vector.",
+ "predicted_weak_field": "In the weak-field, high-acceleration limit (y >> 1), the screening factor e^-y suppresses the preferred-frame coupling exponentially, driving alpha_1, alpha_2 -> 0. The stiff vector u_mu propagates as a massless (or stiff) mode with sound speed c_s ~ c, independent of the MOND screening. Lensing is determined by the spatial metric modifications from the MOND sector, yielding the correct Bekenstein-like lensing enhancement (M5/M1=4) due to the non-conformal structure of the MOND potential. The Newtonian limit is recovered with G_eff/G_N = 1, and the tensor sector remains standard GR (c_T=1).",
+ "inequivalence_argument": "This candidate is inequivalent to DC-002 (AeST) because the preferred-frame coupling is screened by e^-y, not constant, and the kinetic normalization is independent of the screening factor (avoiding the alpha_2 ~ 1/K_B kill). It is inequivalent to DC-001 (local no-frame) because it includes a preferred-frame carrier (u_mu) with screened coupling, escaping the pincer theorem. It is inequivalent to DC-003 (lapse-weighted) because no coupling is lapse-weighted. It is inequivalent to DC-010 (finite-alpha khronometric) because the kinetic normalization is independent of the screened coupling, avoiding the P7 strong-coupling wall. It is inequivalent to FM-000004 because the vector field has a standard kinetic term with independent normalization, not a decoupled propagator with vanishing longitudinal kinetic."
+}

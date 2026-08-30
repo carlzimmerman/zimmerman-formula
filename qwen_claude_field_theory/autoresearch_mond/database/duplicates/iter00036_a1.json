@@ -1,0 +1,60 @@
+{
+ "name": "Stiff-Vector Kinetic Screen with Nonlocal-F+ Screened Frame",
+ "family": "novel",
+ "fields": [
+  {
+   "name": "g_mu_nu",
+   "type": "metric",
+   "kinetic": "standard",
+   "timelike_background": true
+  },
+  {
+   "name": "u_mu",
+   "type": "vector",
+   "kinetic": "standard",
+   "timelike_background": true
+  }
+ ],
+ "couplings": [
+  {
+   "label": "PF_screen",
+   "sources": [
+    "u_mu",
+    "mu(y)"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "MOND_kin",
+   "sources": [
+    "u_mu",
+    "P_i=mu*DPhi"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "spatial"
+  },
+  {
+   "label": "Einstein",
+   "sources": [
+    "R"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "nonlocal_F+",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "The architecture splits the P7 collision by sourcing the preferred-frame response (lensing carrier, alpha_PF ~ e^-y) from a stiff u_mu vector kinetic term, which remains finite (K ~ 1) even in the Newtonian limit. The MOND dynamics (P_i=mu*DPhi) and the nonlocal F+ spatial operator are decoupled from this kinetic normalization, preventing the strong-coupling wall where e^-y -> 0 sends the propagating mode kinetic term to zero. This ensures the screened frame response vanishes (saving PPN) while the propagating kinetic structure remains healthy and finite.",
+ "predicted_weak_field": "In the Newtonian limit (y >> 1), the e^-y screening suppresses the preferred-frame observable alpha_PF to zero, satisfying the Solar System constraints. The MOND momentum P_i recovers the standard Newtonian force (mu -> 1). The nonlocal F+ operator acts on the spatial derivatives of the MOND scalar, providing the correct finite lensing correction without requiring a local preferred-frame carrier that would otherwise be killed by the pincer.",
+ "inequivalence_argument": "This candidate is inequivalent to DC-001 (local no-frame) because it utilizes a preferred-frame carrier, albeit screened. It is inequivalent to DC-002 (AeST) because the vector coupling is explicitly screened by e^-y (not constant K_B) and the MOND realization is nonlocal F+ rather than a local 6-DOF aether. It avoids DC-010 (khronometric) by using a stiff-vector kinetic normalization that is independent of the screened PF coupling, directly addressing the P7 wound where the screening coefficient was tied to the kinetic term."
+}

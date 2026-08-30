@@ -1,0 +1,56 @@
+{
+ "name": "Degenerate-Logarithm Kinetic with Spatial-Nonlocal F+ Decoupled from Screened Frame",
+ "family": "degenerate",
+ "fields": [
+  {
+   "name": "g_munu",
+   "type": "metric",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "chi",
+   "type": "scalar",
+   "kinetic": "degenerate",
+   "timelike_background": false
+  },
+  {
+   "name": "u_mu",
+   "type": "vector",
+   "kinetic": "standard",
+   "timelike_background": true
+  }
+ ],
+ "couplings": [
+  {
+   "label": "mond_dynamics",
+   "sources": [
+    "chi",
+    "mu(y)",
+    "D(iPj)_TF"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "spatial"
+  },
+  {
+   "label": "screened_frame",
+   "sources": [
+    "u_mu",
+    "e^-y"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "aux_legendre_chi",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "This candidate features a degenerate scalar $\\chi$ whose kinetic term is logarithmically suppressed ($\\log(1+y)$) but strictly second-class, ensuring zero physical DOF for the MOND carrier while generating the exact $\\nabla \\cdot [\\mu(y) \\nabla \\Phi]$ dynamics. The kinetic normalization of the auxiliary is controlled by an independent spatial nonlocal elliptic operator $f(-D^2/a_0^2)$ rather than the $e^{-y}$ screening factor. This structural decoupling directly attacks the P7 collision by ensuring that the screened preferred-frame response ($\\alpha_{PF} \\propto e^{-y}$) does not simultaneously zero out the propagating-mode kinetic normalization.",
+ "predicted_weak_field": "In the weak-field limit, the MOND dynamics recover the correct $g_{dyn} = \\sqrt{g_N a_0}$ behavior via the auxiliary $\\chi = \\mu(y)$. Lensing is corrected by the screened preferred-frame carrier $u_\\mu$, which provides the necessary $O(\\epsilon^2)$ stress to boost $\\Psi$ to $\\Phi$, bypassing the local pincer because the $u_\\mu$ sector is coupled to the spatially nonlocal MOND operator. The $e^{-y}$ factor screens the PPN parameters $\\alpha_1, \\alpha_2$ to zero in the solar system, while the independent elliptic kernel keeps the scalar kinetic term finite and non-ghostly.",
+ "inequivalence_argument": "This is genuinely inequivalent to DC-001 (local frameless) because it explicitly includes a preferred-frame vector $u_\\mu$ coupled to the spatially nonlocal MOND operator. It avoids DC-003 (lapse-weighted) by strictly forbidding $N$-weighted MOND couplings. It avoids DC-012 (frameless localized) because the frame is NOT frameless; the frame provides the lensing fix. It avoids P7 because the kinetic normalization of the MOND sector is governed by the independent elliptic operator $f(-D^2/a_0^2)$, not by the $e^{-y}$ screening factor which only controls the PPN-visible frame couplings."
+}

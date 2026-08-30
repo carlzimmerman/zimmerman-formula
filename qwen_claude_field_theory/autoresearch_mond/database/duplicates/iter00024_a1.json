@@ -1,0 +1,74 @@
+{
+ "name": "Dual-Scale Nonlocal Screened-Frame Decoupling",
+ "family": "spatially-nonlocal",
+ "fields": [
+  {
+   "name": "g",
+   "type": "metric",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "A_0",
+   "type": "scalar",
+   "kinetic": "standard",
+   "timelike_background": false
+  },
+  {
+   "name": "S_1",
+   "type": "scalar",
+   "kinetic": "none",
+   "timelike_background": false
+  },
+  {
+   "name": "S_2",
+   "type": "scalar",
+   "kinetic": "none",
+   "timelike_background": false
+  }
+ ],
+ "couplings": [
+  {
+   "label": "Nonlocal MOND Kernel",
+   "sources": [
+    "S_1",
+    "S_2",
+    "rho",
+    "inv_laplacian"
+   ],
+   "order_in_phi": 2,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "spatial"
+  },
+  {
+   "label": "Screened Preferred Frame",
+   "sources": [
+    "A_0",
+    "chi"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "Independent Propagator",
+   "sources": [
+    "A_0"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": false,
+   "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  }
+ ],
+ "mond_realization": "nonlocal_F+",
+ "kinetic_normalization_source": "independent",
+ "claimed_mechanism": "This architecture resolves the P7 collision by employing a two-auxiliary scale-split localization where the massive operator (gapping S_1 with ell_1 < 1kpc) is structurally distinct from the massless operator (building the kernel via S_2 with ell_2 > 2000kpc). The preferred-frame response is strictly local and screened by e^-y, while the propagating kinetic normalization is controlled by an independent, unscreened Maxwell-like term for A_0. This ensures that as y -> infinity (screening -> 0), the PPN response vanishes but the kinetic normalization remains finite and non-zero.",
+ "predicted_weak_field": "In the weak-field limit, the nonlocal kernel provides the correct MOND dynamics (mu(y)=1-e^-y) via the S_1/S_2 system. The lensing potential is sourced by the local screened frame coupling, which is exponentially suppressed in high-acceleration regimes, ensuring Solar System compliance. The propagating mode A_0 has a constant sound speed and finite kinetic term, avoiding the strong-coupling wall.",
+ "inequivalence_argument": "This candidate is inequivalent to DC-011 because it uses a scale-split two-auxiliary localization (ell_1 != ell_2) rather than a single mass, satisfying the DC-011 sweep theorem. It is inequivalent to DC-012 because it retains a preferred-frame carrier (A_0) which is required for correct lensing in the local limit, whereas DC-012 is frameless and under-lenses. It is inequivalent to the killed khronometric candidates (DC-003, DC-010) because it does not use lapse-weighted couplings (lapse_weighted=false) and does not identify the screening coefficient with the kinetic normalization (independent source)."
+}
