@@ -31,11 +31,13 @@ def chat(system, user, temperature=0.7, max_retries=3):
         "model": MODEL,
         "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}],
         "stream": False,
-        "think": os.environ.get("QWEN_THINK", "0") == "1",   # OFF: stop the model burning its budget
-                                                             #   inside <think> and emitting empty content
         "options": {"temperature": temperature, "num_ctx": int(os.environ.get("QWEN_CTX", "16384")),
                     "num_predict": int(os.environ.get("QWEN_PREDICT", "8000"))},  # room for think+answer
-    }).encode()
+    })
+    _b = json.loads(payload)
+    if os.environ.get("QWEN_THINK", "0") == "1":
+        _b["think"] = True
+    payload = json.dumps(_b).encode()
     body = json.loads(payload.decode())
     last = None
     for attempt in range(max_retries):

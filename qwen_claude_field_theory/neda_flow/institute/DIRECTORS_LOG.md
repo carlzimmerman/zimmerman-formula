@@ -4,7 +4,7 @@
 ## Standing verdict of the search
 - Theory space mapped by the Coverage Office: **27 architecture families** (10 dead · 4 active · 12 unexplored · 1 tested).
 - Proven no-go theorems (dead classes): **16**.
-- Candidates on record: **73** ({'KILL': 61, 'EVALUATED': 8, 'SURVIVOR': 4}).
+- Candidates on record: **84** ({'KILL': 71, 'EVALUATED': 8, 'SURVIVOR': 5}).
 
 ## THE OPEN FRONTIER (where the live physics is)
 - **THE LAST SINGLE-METRIC QUESTION: does DHOST degeneracy escape P7 on the scalar-gradient frame?**
