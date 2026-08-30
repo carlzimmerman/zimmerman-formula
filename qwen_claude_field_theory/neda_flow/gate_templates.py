@@ -129,8 +129,15 @@ def _slip_lock_applies(cand):
         return False
     if cand.get("connection", "riemannian").lower() not in ("riemannian", "", None):
         return False
-    if cand.get("scalar_sector", "propagating").lower() in ("instantaneous", "none", "constrained", "elliptic"):
-        return False
+    sect = (cand.get("scalar_sector") or "propagating").lower()
+    if sect in ("instantaneous", "none", "constrained", "elliptic"):
+        # honor the declaration ONLY if backed by structure (multiplier or degenerate kinetic);
+        # an unearned sector label does not buy an exemption from the theorem (FM-000060 lesson)
+        backed = (any(f.get("type") == "multiplier" for f in cand.get("fields", [])) or
+                  any(f.get("kinetic") == "degenerate" for f in cand.get("fields", [])) or
+                  sect == "none")
+        if backed:
+            return False
     fam = (cand.get("family", "") or "").lower()
     if any(k in fam for k in ("teleparallel", "nonmetricity", "cuscuton", "emergent",
                               "constitutive", "york", "cmc")):

@@ -117,6 +117,25 @@ def gate_G0(cand, canon):
             f.get("timelike_background") for f in fields) and n_metrics < 2:
         notes.append("COVARIANCE_CLAIM_UNVERIFIED: spatial elliptic operator declared with no frame "
                      "and one metric -- what defines the spatial slice? must be answered at audit")
+    # -- DECLARATION COHERENCE (FM-000060 lessons): labels must be backed by structure.
+    conn = (cand.get("connection") or "riemannian").lower()
+    if conn == "riemannian" and any(t in ("torsion_t",) for t in tokens):
+        kills.append("INCOHERENT: torsion_T source on a riemannian connection (torsion==0 identically; "
+                     "the coupling is empty)")
+    if conn != "nonmetricity" and "nonmetricity_q" in tokens and conn != "teleparallel":
+        if conn == "riemannian":
+            kills.append("INCOHERENT: nonmetricity_Q source on a riemannian connection (Q==0)")
+    for f in fields:
+        if f.get("kinetic") == "higher_derivative":
+            if not any(k in mech for k in ("ostrogradsky", "degener", "constraint")):
+                kills.append("higher_derivative kinetic with NO named Ostrogradsky evasion "
+                             "(degeneracy/constraint) => ghost by default")
+    sect = (cand.get("scalar_sector") or "propagating").lower()
+    if sect in ("instantaneous", "constrained") and not (
+            any(f.get("type") == "multiplier" for f in fields) or
+            any(f.get("kinetic") == "degenerate" for f in fields)):
+        kills.append(f"scalar_sector='{sect}' declared with NO backing structure (no multiplier, no "
+                     "degenerate kinetic) -- unearned declaration")
     status = "KILL" if kills else "PASS"
     return {"gate": "G0", "status": status, "certificate": "; ".join(kills) or "structural checks clean",
             "notes": notes, "assumptions": ["declared architecture object is faithful"],
