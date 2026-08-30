@@ -117,6 +117,26 @@ def _timelike_frame_fields(cand):
     return [f for f in cand.get("fields", [])
             if f.get("timelike_background") and f.get("type") in ("vector", "khronon")]
 
+def _slip_lock_applies(cand):
+    """Slip-lock (DC-013) was derived on the RIEMANNIAN linearized Ricci R^(1)=-2 lap Phi+4 lap Psi,
+    with a PROPAGATING extra mode coupling diff-invariantly through curvature. It does NOT apply to:
+    non-Riemannian connections (teleparallel/nonmetricity: R=0, different (Phi,Psi) coupling), an
+    instantaneous/constrained scalar sector (U-degenerate DHOST: the 'extra mode' is elliptic, not
+    propagating), a cuscuton-type sector (no propagating scalar to lock), or bimetric. In those cases
+    the theorem's own derivation is invalid => return False (escalate for a FAMILY-SPECIFIC re-derivation,
+    never auto-KILL)."""
+    if _has_second_metric(cand):
+        return False
+    if cand.get("connection", "riemannian").lower() not in ("riemannian", "", None):
+        return False
+    if cand.get("scalar_sector", "propagating").lower() in ("instantaneous", "none", "constrained", "elliptic"):
+        return False
+    fam = (cand.get("family", "") or "").lower()
+    if any(k in fam for k in ("teleparallel", "nonmetricity", "cuscuton", "emergent",
+                              "constitutive", "york", "cmc")):
+        return False
+    return True
+
 
 # ------------------------------------------------------------------ G6: lensing / slip-lock (DC-013)
 def G6(cand):
@@ -132,7 +152,12 @@ def G6(cand):
     if _timelike_frame_fields(cand):
         return _cert("G6", "OPEN", "timelike preferred-frame field present: slip-lock does not apply; "
                      "the frame's slip mode must be checked at G8 (P7 fork)", domain="theorem")
-    # frame-free single metric: on the locked delta-R ray eta != 1 for any enhancing coupling
+    if not _slip_lock_applies(cand):
+        return _cert("G6", "OPEN", "slip-lock (Riemannian R^(1), propagating scalar) does NOT apply to "
+                     "this family (non-Riemannian connection / instantaneous or no scalar sector / "
+                     "cuscuton-emergent-york). FAMILY-SPECIFIC lensing analysis required -- NOT a kill.",
+                     domain="theorem", assumptions=["theorem derivation invalid outside its scope"])
+    # frame-free RIEMANNIAN single metric w/ propagating scalar: on the locked delta-R ray eta != 1
     L, mm = sp.symbols('L m', positive=True)
     eta = (4*L + mm) / (8*L + mm)
     locked = sp.solve(sp.Eq(eta, 1), L)   # -> [] (no positive L): eta=1 only in the trivial L=0 limit

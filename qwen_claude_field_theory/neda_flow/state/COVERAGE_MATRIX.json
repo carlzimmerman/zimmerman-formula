@@ -1,25 +1,30 @@
 {
- "note": "architecture-family coverage; scheduler samples unexplored first, skips dead",
+ "note": "FULL architecture taxonomy -- breadth first. Scheduler ROUND-ROBINS across every non-dead family (unexplored before active before tested), each sampled once per cycle; no family monopolizes. Dead families kept only as exclusion memory.",
+ "grounding_policy": "seed-once VERIFIED constraints only; precise formulas tagged for escalation-layer WebFetch, never piped raw into gates.",
  "families": {
   "modified-inertia": {
    "status": "dead",
-   "why": "pure MI excluded 21sigma by lensing (repo, 2026-08)"
+   "why": "pure MI excluded 21sigma by lensing (repo)"
   },
-  "single-metric-scalar-framefree": {
+  "scalar-framefree-AQUAL-QUMOD": {
    "status": "dead",
-   "why": "DC-013 slip-lock: cannot lens"
-  },
-  "khronon-screened": {
-   "status": "dead",
-   "why": "DC-010 GW170817+P7; DC-003 lapse"
+   "why": "DC-013 slip-lock: frame-free cannot lens"
   },
   "aether-unscreened": {
    "status": "dead",
    "why": "DC-002 alpha_2"
   },
+  "khronon-screened": {
+   "status": "dead",
+   "why": "DC-010 GW170817+P7; DC-003 lapse"
+  },
   "stiff-vector": {
    "status": "dead",
    "why": "DC-014 P7-or-ghost fork"
+  },
+  "fR-pure": {
+   "status": "dead",
+   "why": "scalaron slip eta=1/2 (slip-lock special case)"
   },
   "localized-nonlocal": {
    "status": "dead",
@@ -27,72 +32,90 @@
   },
   "unlocalized-nonlocal-framefree": {
    "status": "dead",
-   "why": "DC-013 applies (frame-free)"
+   "why": "DC-013 (frame-free)"
   },
   "bimetric-HR-linear": {
    "status": "dead",
-   "why": "Yukawa != acceleration scale (bimetric_door)"
+   "why": "Yukawa != acceleration scale"
   },
   "bimetric-HR-galileon": {
    "status": "dead",
    "why": "DC-015 scaling+regime+rigidity"
   },
-  "bimetric-degenerate-DHOST-like": {
+  "bimetric-degenerate-DHOST": {
    "status": "active",
-   "why": "THE surviving bimetric target: MOND nonlinearity and Hamiltonian degeneracy from the SAME structure",
-   "known": "the surviving target: MOND constitutive nonlinearity + Hamiltonian degeneracy from the SAME structure. Bi-DHOST / degenerate multi-metric is largely uncharted.",
-   "implication": "decisive first calc = quadratic Hamiltonian/ghost analysis of the degenerate two-metric interaction (does the constraint survive while the C-invariant gives the a0 scale?).",
+   "why": "MOND nonlinearity + Hamiltonian degeneracy from SAME structure; decisive calc = quadratic ghost/Hamiltonian",
    "confidence": "verified"
   },
   "bimond-connection": {
    "status": "active",
-   "why": "C-invariant interaction; decisive gate = Hamiltonian/BD audit",
-   "known": "Milgrom BIMOND (0912.0790 + 2022 ext): interaction from C=Gamma(g)-Gamma(h); several quadratic C-invariants share the NR MOND limit, differ relativistically. Derivative bimetric interactions GENERICALLY ghosty (EPJC 2023).",
-   "implication": "decisive gate = Hamiltonian/BD audit of the C-invariant kinetic matrix. This IS a special case of bimetric-degenerate; attack them together.",
+   "why": "Milgrom C=Gamma(g)-Gamma(h) invariants; decisive gate = BD audit; derivative interactions generically ghosty",
    "confidence": "verified"
   },
   "DHOST-single-metric": {
+   "status": "active",
+   "why": "3 DOF, Langlois-Noui degeneracy; includes khronometric as a limit (1602.08398) => slip-lock likely applies UNLESS HD structure opens a new (Phi-Psi) channel -- that is the test",
+   "confidence": "verified",
+   "sub_branches": {
+    "GW-compatible-Vainshtein": "WEAK MOND route: screened potentials stay ~1/r, slip forced tiny by solar-system light-bending (1903.11591). Not a hard kill, a weak-route tag.",
+    "beyond-Horndeski-GLPV": "TEST",
+    "quadratic-DHOST": "TEST",
+    "cubic-DHOST": "TEST",
+    "U-degenerate-instantaneous": "TEST SEPARATELY: 'extra mode' is elliptic/constrained, not propagating -- importing an ordinary propagating-DOF theorem is WRONG (PRD 98,084024). scalar_sector=instantaneous."
+   },
+   "banked": "healthy DOF=3 possible (Langlois-Noui); standard GW-Vainshtein branch = weak MOND route (~1/r). NOT globally dead -- U-degenerate + genuinely-quadratic/cubic branches untested."
+  },
+  "cuscuton": {
    "status": "unexplored",
-   "why": "degeneracy machinery exists; slip-lock applies unless matter-coupling nonminimal -- check",
-   "known": "3 DOF (2 tensor+1 scalar); ghost-free via Langlois-Noui degeneracy among the quadratic-in-2nd-deriv coefficients; INCLUDES mimetic + particular khronometric as limits (arXiv:1602.08398). Generic gravitational SLIP + minimal matter coupling.",
-   "implication": "the DHOST scalar still couples through curvature => slip-lock (DC-013) likely APPLIES unless the higher-derivative structure opens a genuinely new (Phi-Psi) channel or matter coupling is nonminimal-but-single-metric. THAT is the open question to design the candidate around.",
+   "why": "scalar with NO propagating scalar DOF (2 DOF total, like GR) yet modifies dynamics -- could evade slip-lock by having no extra mode to lock; genuinely distinct",
    "confidence": "verified"
   },
-  "teleparallel": {
+  "horndeski-beyond": {
    "status": "unexplored",
-   "why": "different connection; slip-lock derivation used Riemannian R -- re-derive",
-   "known": "torsion-based (flat connection, R=0, dynamics in torsion T). f(T) BREAKS local Lorentz invariance and its extra DOF are known to be strongly-coupled/problematic on many backgrounds.",
-   "implication": "slip-lock (DC-013) was derived on Riemannian R^(1) -- MUST be RE-DERIVED for torsion before G6 can apply; do NOT auto-kill. Cheapest decisive obstruction = the local-Lorentz/strong-coupling analysis of the extra torsion mode.",
-   "confidence": "verified"
+   "why": "most general 2nd-order scalar-tensor; generic slip -- but check the shift-symmetric/derivative-coupled corner against the a0 scale"
   },
-  "nonmetricity": {
+  "teleparallel-fT": {
    "status": "unexplored",
-   "why": "symmetric teleparallel f(Q); same caveat",
-   "known": "symmetric teleparallel f(Q): flat + torsion-free, dynamics in nonmetricity Q. f(Q) has a known strong-coupling / extra-mode issue around maximally symmetric backgrounds.",
-   "implication": "same caveat -- slip-lock uses Riemannian R, re-derive for Q. Design target = whether Q-invariants can source the a0 scale with a healthy DOF count.",
+   "why": "torsion (R=0); f(T) breaks local Lorentz, extra mode strongly coupled -- slip-lock was Riemannian, RE-DERIVE, do NOT auto-kill",
    "confidence": "verified"
   },
-  "emergent-constitutive": {
+  "nonmetricity-fQ": {
    "status": "unexplored",
-   "why": "effective-medium; needs a concrete action first",
-   "known": "effective-medium/constitutive-tensor gravity has no single canonical action; the closest concrete realizations reduce to Horndeski/vector-tensor on covariantization.",
-   "implication": "needs a CONCRETE action before any gate applies; highest-uncertainty region. Cheapest obstruction = does the covariantized action reduce to an already-classified family?",
-   "confidence": "needs_audit_fetch"
-  },
-  "higher-curvature": {
-   "status": "tested",
-   "why": "f(R) gives slip eta=1/2 (killed for lensing) but mixed invariants unexplored",
-   "known": "f(R) alone = a scalaron with FIXED slip eta=1/2 (=> under-lenses, already covered by the slip-lock ray at L->specific). Mixed invariants f(R,R_mn R^mn) generically Ostrogradsky-ghosty unless degenerate.",
-   "implication": "pure f(R) is DEAD-for-lensing (slip-lock special case); the ONLY live sub-region is degenerate higher-curvature = overlaps DHOST. Low new information.",
+   "why": "symmetric teleparallel; nonmetricity Q; strong-coupling around max-sym backgrounds -- re-derive slip-lock for Q",
    "confidence": "verified"
   },
-  "conformal-disformal-matter": {
-   "status": "tested",
-   "why": "disformal needs a vector (DC-005) but conformal+disformal COMBINATIONS with 2 metrics untested",
-   "known": "conformal coupling => photon-invisible (RAQUAL under-lens, DC-005-adjacent); disformal => needs a gradient/vector = a frame.",
-   "implication": "single scalar's conformal+disformal both fail frame-free (this session's pincer). The ONLY untested corner = TWO metrics with a composite (conformal g + disformal via the 2nd metric's gradient) -- overlaps the bimetric-degenerate target. Fold into bimetric.",
+  "conformal-disformal-2metric": {
+   "status": "unexplored",
+   "why": "single-scalar conformal(under-lens)+disformal(needs frame) both fail; UNTESTED corner = composite conformal-g + disformal via a 2nd structure",
    "confidence": "verified"
+  },
+  "emergent-entropic": {
+   "status": "unexplored",
+   "why": "thermodynamic/entropic gravity (Verlinde-type) -- a0 from horizon/entropy; needs a concrete action before gates apply; highest info-gain, highest uncertainty"
+  },
+  "effective-medium-constitutive": {
+   "status": "unexplored",
+   "why": "gravitational 'constitutive tensor'/analog-medium; a0 as a medium response; covariantize then classify"
+  },
+  "auxiliary-field-general": {
+   "status": "unexplored",
+   "why": "general auxiliary (non-dynamical) field sourcing MOND WITHOUT the AQUAL scalar -- constraint-carried a0; check DOF + slip"
+  },
+  "foliation-CMC-York": {
+   "status": "unexplored",
+   "why": "global CMC/York-time gauge (repo has theory_2026/york work) -- 2-DOF constrained; revisit with the current gate suite"
+  },
+  "higher-curvature-mixed": {
+   "status": "unexplored",
+   "why": "f(R,R_mn R^mn, Weyl^2) degenerate combos -- overlaps DHOST but the pure-tensor (no scalaron) corner is distinct; Ostrogradsky-degeneracy required"
+  },
+  "multimetric-N": {
+   "status": "unexplored",
+   "why": "N>2 metrics / metric+vielbein networks -- more constraint freedom; ghost structure is the gate"
+  },
+  "DW-causal-nonlocal": {
+   "status": "unexplored",
+   "why": "genuinely nonlocal with retarded prescription (Deser-Woodard); the un-localized F+ door lives here -- extra mode omega^2=c^2k^2/2, ghost-residue open"
   }
- },
- "grounding_policy": "Seed-once VERIFIED literature only (no live in-loop fetch -- avoids the error-propagation/numerology risk). Precise load-bearing formulas tagged needs_audit_fetch are WebFetched + verified at the ESCALATION layer by Claude, never piped raw into the deterministic gates."
+ }
 }

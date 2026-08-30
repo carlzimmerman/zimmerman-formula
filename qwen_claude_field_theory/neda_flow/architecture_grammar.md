@@ -31,3 +31,9 @@ Declare via bimetric_spec.interaction="bimond_connection" + mond_source="connect
 KNOWN WALL: derivative bimetric interactions are GENERICALLY ghosty; the decisive gate is the
 Hamiltonian/BD audit (escalated, A-P ladder D/E). The MOND nonrelativistic limit and lensing slip
 come from the C-invariants; several invariants share the same NR limit but differ relativistically.
+
+FAMILY-SPECIFIC declarations (so family-specific theorem gates apply correctly):
+  "connection": "riemannian"(default) | "teleparallel"(torsion,R=0) | "nonmetricity"(Q).
+  "scalar_sector": "propagating"(default) | "instantaneous"(elliptic/U-degenerate) | "constrained" | "none".
+These SCOPE the theorem gates: slip-lock (G6) fires ONLY for riemannian + propagating single-metric.
+Non-Riemannian or instantaneous sectors get a family-specific analysis, never the Riemannian auto-kill.

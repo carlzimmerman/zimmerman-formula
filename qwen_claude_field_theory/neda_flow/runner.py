@@ -74,14 +74,16 @@ def protocol_text():
 
 
 def coverage_branch_order():
-    """Coverage-driven exploration: unexplored families x3, active x2, tested x1, dead x0.
-    Falls back to QUOTAS families if the matrix is missing. Info-gain over depth-first."""
+    """BREADTH-FIRST round-robin across every LIVE architecture family. Each family appears ONCE per
+    cycle (no family monopolizes); priority ordering unexplored -> active -> tested, dead excluded.
+    This systematically covers the theory space instead of over-mutating one live candidate."""
     try:
         fam = json.load(open(os.path.join(STATE, "COVERAGE_MATRIX.json")))["families"]
-        w = {"unexplored": 3, "active": 2, "tested": 1, "dead": 0}
-        order = []
-        for name, meta in fam.items():
-            order += [name] * w.get(meta.get("status"), 1)
+        rank = {"unexplored": 0, "active": 1, "tested": 2}
+        live = [(rank.get(m.get("status"), 2), name) for name, m in fam.items()
+                if m.get("status") != "dead"]
+        live.sort()
+        order = [name for _, name in live]
         return order or [b for b, _ in QUOTAS]
     except Exception:
         return [b for b, _ in QUOTAS]
