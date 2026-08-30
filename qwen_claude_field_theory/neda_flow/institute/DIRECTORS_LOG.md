@@ -7,8 +7,8 @@
 - Candidates on record: **85** ({'KILL': 71, 'EVALUATED': 9, 'SURVIVOR': 5}).
 
 ## THE OPEN FRONTIER (where the live physics is)
-- **DEFINITIVE test of DHOST MOND: explicit alpha_1,alpha_2 reduction from a chosen degenerate action**
-  - S-intersection resolved through its bottleneck: the SCALAR-sector S {mu~y, c_T=1, K_pi>0, 0<c_par^2<=1} is NON-EMPTY -- the c_T-vs-cone collision (the key worry) does NOT happen because c_T lives in {L_1,G_4} (tensor) while the cone regulator lives in {L_3,4,5} (background-gradient), independent operators, finite regulator window R in [P_X,2P_X). Full S plausibly non-empty: five conditions carried
+- **FULL weak-field reduction of ONE explicit {P,F,A_3} MOND action: 0i constraint AND exterior scalar eq**
+  - OpenAI review (verified) corrected the terminal result: (1) alpha~e^-y was an ASSUMPTION and is likely FALSE -- the PPN momentum constraint F nabla^2 N_i^T=-2J_i^T is F-controlled, J_i^T~T_0i does not inherit e^-y; S_PPN UNDETERMINED. (2) BIGGER: standard A_3!=0 luminal DHOST is GR in the vacuum exterior (Phi'=Psi'=GM/r^2, DHOST~M',M''=0 outside), but MOND lives in the vacuum exterior => the cone-
 - **MOND-DHOST degeneracy: source Psi + luminal c_s + DOF=3 WITHOUT a preferred-frame reduction (THE terminal single-metric class)**
   - Two independent obstructions (lensing under-lens + scalar superluminal cone c_par^2=2) CONVERGE on one surviving class: MOND-DHOST. The DHOST phi_munu terms can source Psi (linear stress) and engineer the cone, but the scalar's cosmological background gradient threatens to become a khronometric frame (CLOSED). Decisive symbolic calc: solve the DHOST degeneracy conditions for {mu=1-e^-y, eta=1, c_T
 - **DYNAMICAL make-or-break of the nonlocal single-metric door (spectral wall PROVEN ABSENT)**
@@ -20,7 +20,7 @@
 - **bimetric-degenerate-DHOST** — MOND nonlinearity + Hamiltonian degeneracy from SAME structure; decisive calc = quadratic ghost/Hamiltonian
 - **bimond-connection** — Milgrom C=Gamma(g)-Gamma(h) invariants; decisive gate = BD audit; derivative interactions generically ghosty
 - **metric-derived-nonlocal-accel** — simple acceleration-scalar realization UNDER-LENSES (quadratic stress, slip-lock/AQUAL); needs the NONLOCAL sector to source Phi+Psi frame-free => CONVERGES on the un-localized F+ door's open calc. Sub-gates: causal nonl
-- **MOND-DHOST** — NOT closed by P7: the degeneracy gives a structural P7-escape (finite physical-mode kinetic norm from the DHOST sector, alpha screened via sqrt(sigma) admixture). Terminal decisive calc = solve the allowed-set S explicit
+- **MOND-DHOST** — S_operator!=empty but S_PPN UNDETERMINED (alpha~e^-y retracted -- momentum constraint is F-controlled, not screened). PLUS a serious vacuum-exterior obstruction: A_3 cone-regulator gives GR-exterior (Vainshtein) while MO
 
 ## UNEXPLORED families (breadth queue)
 - cuscuton — scalar with NO propagating scalar DOF (2 DOF total, like GR) yet modifies dynamics -- could evade slip-lock by having no extra mode to lock; genuinely
