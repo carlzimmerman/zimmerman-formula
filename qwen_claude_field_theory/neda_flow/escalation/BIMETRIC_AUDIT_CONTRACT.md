@@ -22,3 +22,14 @@ RULES:
 - EVERY FATAL RESULT GENERALIZES: canonicalize the failure -> structural fingerprint -> equivalence
   class -> prune future candidates. The learned object is "this interaction/coupling/kinetic
   architecture cannot satisfy gates X,Y,Z", never just "FM-XXXXXX failed".
+
+## STATISTICAL HONESTY AT THE BATTERY STAGE (the atomos discipline)
+When a survivor reaches the quantitative battery (RAR/BTFR fits with its free parameters):
+- COUNT THE TRIALS: the fit's significance must be discounted by the total number of candidate classes
+  and samples tried before it (look-elsewhere effect; Aella's sweep count + Neda's ledger = the trials).
+- HOLD OUT: fit on a subset (e.g. SPARC train split), validate on the held-out remainder; a candidate
+  that only fits in-sample is NOT a survivor.
+- PENALIZE FREEDOM: more free parameters than the framework's own fit (Upsilon + the frozen numbers)
+  must BEAT it by enough to justify each dof, not merely match it.
+- NULL IS A RESULT: "no candidate fits after the trials correction" is a valid, publishable outcome
+  (the atomos lesson: FDR-dead survived audit precisely because the discipline was in place).
