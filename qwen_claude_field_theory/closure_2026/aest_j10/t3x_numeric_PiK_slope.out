@@ -1,0 +1,68 @@
+==============================================================================
+ANCHOR + SLOPE TABLE (J_Y=1; exact rationals; Will-corrected dictionary)
+==============================================================================
+
+--- K_B=1/5, Q0=2/5 ---
+  K2=10: Newton==8pi/(1-KB/2)? False  gamma=1  alpha_1=98294/17093 (==-4K_B? False)  alpha_3=196588/17093
+          alpha_2 = -1341031103/630936816  = -2.125460   chi0/Psi0 = +0.5000
+  K2=12: Newton==8pi/(1-KB/2)? False  gamma=1  alpha_1=94294/17093 (==-4K_B? False)  alpha_3=188588/17093
+          alpha_2 = -3112691309/2089721808  = -1.489524   chi0/Psi0 = +0.5000
+  K2=14: Newton==8pi/(1-KB/2)? False  gamma=1  alpha_1=90294/17093 (==-4K_B? False)  alpha_3=180588/17093
+          alpha_2 = -2156209309/2286633168  = -0.942962   chi0/Psi0 = +0.5000
+  SLOPE d(alpha_2)/d(K2) [K2 10->12] = 31935831335/100437254397 = +3.179680e-01
+  SLOPE d(alpha_2)/d(K2) [K2 12->14] = 33158391335/121334472477 = +2.732809e-01
+  curvature (slope change): -4.469e-02
+
+--- K_B=1/5, Q0=1/25 ---
+  K2=10: Newton==8pi/(1-KB/2)? False  gamma=1  alpha_1=8608934/1976273 (==-4K_B? False)  alpha_3=17217868/1976273
+          alpha_2 = -31381985103863/136623705036  = -229.696487   chi0/Psi0 = +0.5000
+  K2=12: Newton==8pi/(1-KB/2)? False  gamma=1  alpha_1=8583934/1976273 (==-4K_B? False)  alpha_3=17167868/1976273
+          alpha_2 = -93819617049089/411294031668  = -228.108384   chi0/Psi0 = +0.5000
+  K2=14: Newton==8pi/(1-KB/2)? False  gamma=1  alpha_1=8558934/1976273 (==-4K_B? False)  alpha_3=17117868/1976273
+          alpha_2 = -93493260786589/412716948228  = -226.531188   chi0/Psi0 = +0.5000
+  SLOPE d(alpha_2)/d(K2) [K2 10->12] = 470369229561785/592366229109837 = +7.940514e-01
+  SLOPE d(alpha_2)/d(K2) [K2 12->14] = 470382236811785/596479169426517 = +7.885979e-01
+  curvature (slope change): -5.453e-03
+
+--- K_B=3/10, Q0=2/5 ---
+  K2=10: Newton==8pi/(1-KB/2)? False  gamma=1  alpha_1=192293/38071 (==-4K_B? False)  alpha_3=384586/38071
+          alpha_2 = -8549285029/5167300688  = -1.654497   chi0/Psi0 = +0.5000
+  K2=12: Newton==8pi/(1-KB/2)? False  gamma=1  alpha_1=180293/38071 (==-4K_B? False)  alpha_3=360586/38071
+          alpha_2 = -16084291087/17158751984  = -0.937381   chi0/Psi0 = +0.5000
+  K2=14: Newton==8pi/(1-KB/2)? False  gamma=1  alpha_1=168293/38071 (==-4K_B? False)  alpha_3=336586/38071
+          alpha_2 = -5998487087/18815601904  = -0.318804   chi0/Psi0 = +0.5000
+  SLOPE d(alpha_2)/d(K2) [K2 10->12] = 191878251270/535138577501 = +3.585581e-01
+  SLOPE d(alpha_2)/d(K2) [K2 12->14] = 602676993810/1948590772183 = +3.092886e-01
+  curvature (slope change): -4.927e-02
+
+--- K_B=1/2, Q0=1/25 ---
+  K2=10: Newton==8pi/(1-KB/2)? False  gamma=1  alpha_1=1950913/394411 (==-4K_B? False)  alpha_3=3901826/394411
+          alpha_2 = -1283015200699/3040119988  = -422.027817   chi0/Psi0 = +0.5000
+  K2=12: Newton==8pi/(1-KB/2)? False  gamma=1  alpha_1=1945913/394411 (==-4K_B? False)  alpha_3=3891826/394411
+          alpha_2 = -3835125357097/9158223420  = -418.763027   chi0/Psi0 = +0.5000
+  K2=14: Newton==8pi/(1-KB/2)? False  gamma=1  alpha_1=1940913/394411 (==-4K_B? False)  alpha_3=3881826/394411
+          alpha_2 = -3821204632097/9196086876  = -415.525069   chi0/Psi0 = +0.5000
+  SLOPE d(alpha_2)/d(K2) [K2 10->12] = 7202084616472/4411974132585 = +1.632395e+00
+  SLOPE d(alpha_2)/d(K2) [K2 12->14] = 7202200716472/4448607026265 = +1.618979e+00
+  curvature (slope change): -1.342e-02
+
+FINDINGS (audit record -- run 2026-08-31):
+  1. The UNCOMMITTED route2_v2 cache L2dc_v2.pkl FAILS the hard anchors when
+     actually run: Newton != 8pi/(1-K_B/2) (at any J_Y; verified symbolically
+     in J_Y), alpha_1 = +5.75 at K_B=1/5 (vs required -4K_B = -0.8; J_Y->oo
+     limit = +8, a K_B-INDEPENDENT pure number), alpha_3 = 2*alpha_1 != 0.
+     The ground-note claim that route2_v2 'passes alpha_1=-4K_B at test
+     points' does NOT reproduce on this cache.  Its alpha_2 values are NOT
+     quotable.  T1/T2 must rebuild/repair before any SOLVE-A/B verdict.
+  2. Diagnostic: alpha_2(cache) ~ -1/(K2 Q0^2) diverges in the PPN hierarchy
+     Q0/k_x -> 0: the K2=F_QQ channel's STATIC stiffness is Q0^2-weighted
+     (certified in t3x_structural_deltaQ_projection.py [C.2]), so it cannot
+     regulate the c123=0 FJ pole at solar wavenumbers -- the pole must be
+     regulated by the scalar KINETIC sector (Route 3's eps_eff), not by the
+     mass term.  Any solve that regulates via K2 Q0^2 is outside the PPN
+     regime (this run's kx=1, Q0=2/5 point included).
+  3. The K2-slope of alpha_2 is +0.3..+1.6 = O(1) at all points -- order-of-
+     magnitude consistent with the independent Green-function projection
+     |Pi_K| = r^2/(2-K_B) F_QQ ~ 0.14..0.7 F_QQ (t3x_greenfunction_PiK.py),
+     but NOT quotable as a coefficient given finding 1.
+done (3.7s)

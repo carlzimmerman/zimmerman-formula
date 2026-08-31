@@ -1,0 +1,97 @@
+==============================================================================
+[A] WILL DICTIONARY CERTIFICATE (TEGP eq 27 conventions, mostly-plus,
+    source at rest, PPN frame moving with w, V_i=W_i=0, Fourier k=xhat)
+==============================================================================
+  g00: coeff(w_par^2  U) = -alpha1 + 2*alpha2 + alpha3
+  g00: coeff(w_perp^2 U) = -alpha1 + alpha3
+  par - perp             = 2*alpha2   == 2 alpha_2 ? True
+  => ALPHA_2 = (1/2)[coeff(w_par^2 U) - coeff(w_perp^2 U)]   (alpha_3-blind)
+  => ALPHA_3 = coeff(w_perp^2 U) + alpha_1  (certifies to 0 for a healthy
+     propagating sector)
+  g0i transverse coeff(w_i U) = -alpha1/2  == -alpha_1/2 ? True
+  g0i parallel   coeff(w_1 U) = -alpha1/2 + 2*alpha2  == -alpha_1/2 + 2 alpha_2 ? True
+  (fc_alpha2_preferred_frame_2026.py used +alpha_1/2 transverse and
+   perp-minus-par = +2 alpha_2: BOTH sign-flipped vs this certificate.)
+
+==============================================================================
+[B] ANCHORS: FJ alpha_1 at the Maxwell point; BPS C0 stiff limit
+==============================================================================
+  FJ alpha_1(c1=K_B,c3=-K_B,c2=c4=0) = -4*K_B  == -4K_B ? True
+  BPS C0 = eta(eta-lam2)/(2 lam2);  lim_{lam2->oo} C0 = -eta_K/2
+  at eta_K = K_B: -K_B/2   == Route 3 regulated C0 = -K_B/2 ?  -> True
+  (Route 3's speed-matched regulator eps_eff=(2+K_B lam_s)/K2 -> oo is the
+   lam2->oo stiff limit of the BPS form with eta_K = K_B UNRENORMALIZED --
+   the two committed routes are one formula.)
+
+==============================================================================
+[C] BOOSTED deltaQ + chi-aether mixing table (no Einstein sector needed)
+==============================================================================
+  unit-norm constraint solved for the temporal aether (0.6s)
+  Q, Y, J.grad(phi), F^2 built on the boosted background (110.5s)
+
+  [C.1] deltaQ = (Q - Q0) at O(eps), graded by powers of w_b:
+    O(w_b^0):  -E_is*Psib*Q_0 - E_s*Psik*Q_0
+    O(w_b^1):  E_is*(B2b*Q_0*w2 + B3b*Q_0*w3 - I*chib*k_x*w1) + E_s*(B2k*Q_0*w2 + B3k*Q_0*w3 + I*chik*k_x*w1)
+    O(w_b^2):  E_is*(-Phib*Q_0*w1**2 - Phib*Q_0*w2**2 - Phib*Q_0*w3**2 - Psib*Q_0*w1**2 - Psib*Q_0*w2**2 - Psib*Q_0*w3**2 + Q_0*s22b*w2**2/2 - Q_0*s22b*w3**2/2 + Q_0*s23b*w2*w3) + E_s*(-Phik*Q_0*w1**2 - Phik*Q_0*w2**2 - Phik*Q_0*w3**2 - Psik*Q_0*w1**2 - Psik*Q_0*w2**2 - Psik*Q_0*w3**2 + Q_0*s22k*w2**2/2 - Q_0*s22k*w3**2/2 + Q_0*s23k*w2*w3)
+    Q0-FREE content of deltaQ (all orders in w_b): -I*E_is*chib*k_x*w1*w_b + I*E_s*chik*k_x*w1*w_b
+    ^ the ONLY Q0-free term is the flow-gradient  (w.q) chi  piece: I*k_x*w_b*w1*chi.
+      Every metric/aether piece of deltaQ carries Q0 (cosmological 1/length).
+
+  [C.2] The novel-channel quadratic insertion  -F_QQ (deltaQ)^2 |_diag :
+    O(w_b^0):  -2*F_QQ*Psib*Psik*Q_0**2
+    O(w_b^1):  2*F_QQ*Q_0*(B2b*Psik*Q_0*w2 + B2k*Psib*Q_0*w2 + B3b*Psik*Q_0*w3 + B3k*Psib*Q_0*w3 + I*Psib*chik*k_x*w1 - I*Psik*chib*k_x*w1)
+    O(w_b^2):  F_QQ*(-2*B2b*B2k*Q_0**2*w2**2 - 2*B2b*B3k*Q_0**2*w2*w3 - 2*I*B2b*Q_0*chik*k_x*w1*w2 - 2*B2k*B3b*Q_0**2*w2*w3 + 2*I*B2k*Q_0*chib*k_x*w1*w2 - 2*B3b*B3k*Q_0**2*w3**2 - 2*I*B3b*Q_0*chik*k_x*w1*w3 + 2*I*B3k*Q_0*chib*k_x*w1*w3 - 2*Phib*Psik*Q_0**2*w1**2 - 2*Phib*Psik*Q_0**2*w2**2 - 2*Phib*Psik*Q_0**2*w3**2 - 2*Phik*Psib*Q_0**2*w1**2 - 2*Phik*Psib*Q_0**2*w2**2 - 2*Phik*Psib*Q_0**2*w3**2 - 4*Psib*Psik*Q_0**2*w1**2 - 4*Psib*Psik*Q_0**2*w2**2 - 4*Psib*Psik*Q_0**2*w3**2 + Psib*Q_0**2*s22k*w2**2 - Psib*Q_0**2*s22k*w3**2 + 2*Psib*Q_0**2*s23k*w2*w3 + Psik*Q_0**2*s22b*w2**2 - Psik*Q_0**2*s22b*w3**2 + 2*Psik*Q_0**2*s23b*w2*w3 - 2*chib*chik*k_x**2*w1**2)
+    O(w_b^2), Q0 -> 0 limit (the UNSUPPRESSED insertion): -2*F_QQ*chib*chik*k_x**2*w1**2
+    => pure  -2 F_QQ k_x^2 w1^2 chi_k chi_b : a (w.q)^2 chi^2 insertion,
+       ANISOTROPIC (w_par ONLY -- w2, w3 absent), q^2-order (rides k_x^2,
+       NOT Q0^2), i.e. NOT power-suppressed at solar-system wavenumbers.
+
+  [C.3] chi--field quadratic mixings of the aether/scalar sectors
+        L_as = -(K_B/2)F^2 + 2(2-K_B) J.grad(phi) - (2-K_B) J_Y Y - F_QQ dQ^2
+   pair        wb^0 coeff                          wb^1 coeff (Q0->0 shown too)
+   chi-a1    0                                   4*k_x**2*w1*(2 - K_B)   [Q0->0: 4*k_x**2*w1*(2 - K_B)]
+   chi-a2    0                                   0   [Q0->0: 0]
+   chi-a3    0                                   0   [Q0->0: 0]
+   chi-Psi   4*k_x**2*(2 - K_B)                  0   [Q0->0: 0]
+   chi-Phi   0                                   0   [Q0->0: 0]
+   chi-B2    0                                   4*k_x**2*w2*(K_B - 2)   [Q0->0: 4*k_x**2*w2*(K_B - 2)]
+   TRANSVERSE-aether--chi mixing with Q0->0 (all wb orders): 0
+   => LEMMA CERTIFIED: chi couples to the TRANSVERSE aether only through
+      Q0^2-scale (cosmological-mass) terms, (Q0/q)^2-suppressed at PPN q.
+      The transverse a^2 stiffness that sets eta_K (and alpha_1 = -4 eta_K)
+      is NOT renormalized by the scalar at q^2 order: eta_K = K_B stands.
+   transverse aether stiffness coeff(a2_k a2_b) at wb^0: -2*K_B*k_x**2   [q^2 part = -K_B k_x^2 * 2/2 -> c1 = K_B, c14 = K_B on the Maxwell locus;
+    the Q0^2 part is the cosmological spin-1 mass -- unscreenable but
+    (Q0/q)^2-negligible at PPN wavenumbers (wf2_massive_vector_ppn_suppression)]
+
+==============================================================================
+[D] VERDICT (structural)
+==============================================================================
+  1. deltaQ under the boost contains the Q0-FREE flow-gradient piece
+     i (w.q) chi.  Naive counting deltaQ ~ Qbar Phi MISSES it.
+  2. Therefore -F_QQ (deltaQ)^2 delivers the unsuppressed O(w^2) insertion
+        -2 F_QQ (w.q)^2 chi^2 ,   F_QQ = mu2 (1 + kappa^2/4pi),
+     which is PURELY ANISOTROPIC ((w.qhat)^2, parallel-only) and q^2-order.
+     Through the static chi--Psi mixing (chi is sourced at O(U): it carries
+     part of G_N) this lands on the  w_par^2 U  structure of g00 and, by the
+     [A] certificate, is an ALPHA_2 contribution:  par - perp = 2 alpha_2.
+     It cannot be absorbed into alpha_1 (isotropic w^2 U) or beta (U^2).
+  3. Every OTHER insertion of the novel channel -- including the naive
+     beta-channel piece F_QQ Q0^2 Psi^2 -- carries Q0^2 and is suppressed by
+     (Q0/q)^2 ~ (H r / c)^2 ~ 1e-30 at AU scales.  The beta liability from
+     THIS channel is |beta-1| ~ mu2 (1+kappa^2/4pi) (Q0/q)^2 : dead-safe.
+     The naive counting had it inverted: beta is the SUPPRESSED projection,
+     alpha_2 the UNSUPPRESSED one.
+  4. eta_K: the scalar mixes with the LONGITUDINAL sector (and the metric) at
+     q^2 order but with the TRANSVERSE aether only via Q0^2 terms ([C.3]);
+     so eta_K = K_B is unrenormalized, alpha_1 = -4 K_B (anchor iii holds with
+     the scalar retained), eta_K is NONZERO-generic, and C0_base =
+     K_B(K_B - lam2_eff)/(2 lam2_eff) -> -K_B/2 in Route 3's stiff limit.
+  ORDER OF MAGNITUDE for the alpha_2 projection: the insertion multiplies the
+  chi-carried share f_chi of the Newtonian response by F_QQ (w.qhat)^2 w^2 /
+  (chi stiffness ~ (2-K_B)), so
+        |Pi_K| ~ f_chi * mu2 (1+kappa^2/4pi) / (2-K_B),   f_chi <~ K_B/(2-K_B)
+  (from G_N = G/(1-K_B/2): the non-tensor exchange share).  O(1) coefficient
+  from the full ladder; companion script t3x_numeric_PiK_slope.py measures the
+  exact slope d(alpha_2)/d(F_QQ) at test points.
+done (119.0s)

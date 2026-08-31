@@ -1,0 +1,48 @@
+==============================================================================
+[1] chi-row of the static quadratic action (wb=0 exact mini-build)
+==============================================================================
+  static geometry/dark-sector objects built (0.2s)
+  (A) build conv: total (1+J_Y) Y: chi-EOM row:
+     M_chichi=2*k_x**2*(J_Y*K_B - 2*J_Y + K_B - 2)  M_chiPsi=2*k_x**2*(2 - K_B)  M_chiPhi=0  M_chia1=2*I*Q_0*k_x*(-J_Y*K_B + 2*J_Y - K_B + 2)  M_chis22=0
+     => r = chi0/Psi0 = 1/(J_Y + 1)   ;  at J_Y=1: 1/2
+  (B) J_Y-only               : chi-EOM row:
+     M_chichi=2*J_Y*k_x**2*(K_B - 2)  M_chiPsi=2*k_x**2*(2 - K_B)  M_chiPhi=0  M_chia1=2*I*J_Y*Q_0*k_x*(2 - K_B)  M_chis22=0
+     => r = chi0/Psi0 = 1/J_Y   ;  at J_Y=1: 1
+  (route2_v2 cache's static solve measured r = 1/(1+J_Y) -> 1/2 at J_Y=1,
+   matching convention (A); convention (B) gives r -> 1 at J_Y=1.
+   Bracket r in [1/2, 1].)
+
+==============================================================================
+[2] response formula for Pi_K (exact sympy on the reduced model,
+    model-parameter independence verified)
+==============================================================================
+  constraints solved: c_g, c_chi eliminated in favor of (r, K_B, m):
+    c_g = 2*K_B - m*r - 4    c_chi = -m/r
+  dPsi (first order in F_QQ) = 8*pi*F_QQ*R_k*r**2*w1**2*w_b**2/(k_x**2*(K_B - 2)**2)
+  independent of leftover model parameter m ? True
+  Pi_K = d(alpha_2)/d(unit) = F_QQ*r**2/(K_B - 2)    [per unit F_QQ: r**2/(K_B - 2) ]
+  ==> |Pi_K| = r^2/(2-K_B) * F_QQ ,  F_QQ = mu2 (1+kappa^2/4pi)
+  (overall sign carries the h00/U and DC conventions; the certified claims
+   are the CHANNEL -- w_par^2 U only, alpha_2-pure -- and the magnitude up
+   to a convention-level factor ~2.)
+
+==============================================================================
+[3] numbers
+==============================================================================
+  K_B=0.20, r=0.5:  |Pi_K|/F_QQ = 0.139
+  K_B=0.20, r=1.0:  |Pi_K|/F_QQ = 0.556
+  K_B=0.25, r=0.5:  |Pi_K|/F_QQ = 0.143
+  K_B=0.25, r=1.0:  |Pi_K|/F_QQ = 0.571
+  K_B=0.50, r=0.5:  |Pi_K|/F_QQ = 0.167
+  K_B=0.50, r=1.0:  |Pi_K|/F_QQ = 0.667
+
+  With F_QQ = mu2(1+kappa^2/4pi), kappa=1/2 => 1+kappa^2/4pi = 1.0199:
+    |Delta alpha_2^novel| ~ (0.14 .. 0.7) x mu2  (x2 convention band -> 0.1..1.3)
+  vs the Will/LLR bound |alpha_2| < ~1e-7 (and the K_QQ=mu2 share is ~50x the
+  a0-promotion share Pi_a0 = (kappa^2/4pi) Pi_K ~ 0.02 Pi_K).
+  UNLESS mu2 = Kcal_QQ(Q0) <~ 1e-7/0.3 ~ 3e-7 (dimensionless), the novel
+  channel ALONE breaches alpha_2 -- independent of the base-AeST C0 question.
+  The naive beta-channel projection is instead (Q0/q)^2-suppressed (~1e-30 at
+  AU): |beta-1|^novel ~ mu2 (Q0/q)^2, dead-safe; the liability naive counting
+  assigned to beta actually sits in alpha_2.
+done (0.8s)
