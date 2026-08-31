@@ -1,8 +1,8 @@
 # checkpoint 72775
 
 iterations: 72775
-experiments: 145952
-failures by gate/stage: {"startup": 6, "architect": 5, "G0": 75, "G8": 1, "G4": 1, "G6": 6}
+experiments: 145956
+failures by gate/stage: {"startup": 7, "architect": 5, "G0": 75, "G8": 1, "G4": 1, "G6": 6}
 survivors: 9
 branch counts: {"aleatoric": 99, "constraint-first": 3, "degenerate": 2, "multi-sector": 3, "novel": 3, "spatially-nonlocal": 3}
 latest survivors: [

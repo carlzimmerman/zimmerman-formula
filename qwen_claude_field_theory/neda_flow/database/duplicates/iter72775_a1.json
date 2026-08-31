@@ -1,8 +1,8 @@
 {
- "name": "CROSSOVER-72775001",
+ "name": "CROSSOVER-72775003",
  "family": "aleatoric",
- "connection": "teleparallel",
- "scalar_sector": "constrained",
+ "connection": "riemannian",
+ "scalar_sector": "instantaneous",
  "fields": [
   {
    "name": "g",
@@ -12,14 +12,20 @@
   },
   {
    "name": "F0",
-   "type": "vector",
-   "kinetic": "degenerate",
+   "type": "metric",
+   "kinetic": "higher_derivative",
    "timelike_background": false
   },
   {
    "name": "F1",
-   "type": "metric",
-   "kinetic": "standard",
+   "type": "scalar",
+   "kinetic": "higher_derivative",
+   "timelike_background": false
+  },
+  {
+   "name": "F2",
+   "type": "stf_tensor",
+   "kinetic": "degenerate",
    "timelike_background": false
   }
  ],
@@ -27,37 +33,50 @@
   {
    "label": "c0",
    "sources": [
-    "mu(y)"
+    "C_tensor",
+    "R3",
+    "q"
    ],
-   "order_in_phi": 2,
-   "preferred_frame": true,
+   "order_in_phi": 1,
+   "preferred_frame": false,
    "screened_by": "e^-y",
    "lapse_weighted": false,
-   "nonlocal": "none"
+   "nonlocal": "spatial"
   },
   {
    "label": "c1",
    "sources": [
-    "spatial_einstein",
-    "torsion_T",
-    "inv_laplacian"
+    "q"
    ],
    "order_in_phi": 2,
    "preferred_frame": false,
    "screened_by": null,
+   "lapse_weighted": false,
+   "nonlocal": "none"
+  },
+  {
+   "label": "c2",
+   "sources": [
+    "K_ij",
+    "nonmetricity_Q",
+    "C_invariant_1"
+   ],
+   "order_in_phi": 1,
+   "preferred_frame": true,
+   "screened_by": "e^-y",
    "lapse_weighted": false,
    "nonlocal": "spatial"
   }
  ],
  "mond_realization": "constraint_first_q",
  "kinetic_normalization_source": "independent",
- "claimed_mechanism": "Crossover of verified mechanisms: PASS-TENSOR-001 x PASS-MOND-002. couplings that avoid TT structures leave the quadratic tensor sector = GR pair + R3 => c_T=1 exact | nonlocal F+(Z)=4[1-(1+sqrt(Z)/2)e^{-sqrt(Z)/2}]: 1-2F+'(4y^2)=1-e^-y exactly; transcendental => not finitely localizable",
+ "claimed_mechanism": "Crossover of verified mechanisms: PASS-GEOM-001 x PASS-SPECTRAL-001. a SECOND dynamical metric sources the lensing slip OFF the delta-R ray with no preferred frame AND passes GW170817 (mass | scale-split two-auxiliary localization A=I, M=m^2 diag(0,1), c=(1,0): exact Coulomb kernel + freely gapped second mode, ",
  "predicted_weak_field": "To be determined by the gates; no narrative prediction is asserted.",
- "inequivalence_argument": "Uniform grammar sample, seed 1072775001: mechanism fingerprint is checked against every dead class and prior candidate by the dedup layer; structural novelty is enforced there, not asserted here.",
+ "inequivalence_argument": "Uniform grammar sample, seed 1072775003: mechanism fingerprint is checked against every dead class and prior candidate by the dedup layer; structural novelty is enforced there, not asserted here.",
  "bimetric_spec": {
-  "interaction": "composite",
+  "interaction": "bimond_connection",
   "matter_metric": "g",
-  "mond_source": "composite_matter",
+  "mond_source": "nonlinear_helicity0",
   "m_FP": "~H0"
  }
 }
