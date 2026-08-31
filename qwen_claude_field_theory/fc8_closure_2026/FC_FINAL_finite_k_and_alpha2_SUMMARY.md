@@ -45,3 +45,29 @@ never computed"). DO NOT fabricate.
 deciders — the low-k Hamiltonian sign and the numeric alpha_2 — are pure AeST-aether-sector problems in
 (K_B,K_2,Q_0), NOT J_10 problems. No J_10 miracle; the Cassini lever (J_10) is orthogonal to the FLRW/PPN
 kinetic sector. The remaining fried-chicken calc is alpha_2^AeST(K_B,K_2,Q_0) + the low-k mode sign.
+
+---
+## CORRECTIONS from the adversarial workflow (literature-anchored PRD 106,104041 + sympy, det U=0 re-solved)
+1. **lambda_s = 0 for J10, NOT 1.** J10 has NO analytic linear-Y term (J=O(Y^{3/2})), so lambda_s=J_Y(0)=0
+   exactly. Hence the SOLID sound speed is c_s^2(J10) = (2-K_B)/(K_2 K_B) = 2(2-K_B)/(K_B K''(Q0))
+   -- WITHOUT the (1+K_B/2) factor. Normalization set by K_2=K''(Q0)/2 (dark-energy/dust curvature);
+   for CMB-fit K_2~1e3-1e8, c_s^2~1e-4..1e-9 (deeply subluminal). M^2=(2-K_B)Q0^2/K_B.
+2. **"K_B>=1 causality" was a RED HERRING.** The real subluminality floor is K_B >= 2/(K_2+1), which is
+   ~2/K_2 << 1 for CMB-fit K_2 -- met throughout the BBN window K_B in [~2e-4, 0.25]. (K_B>=1 combined with
+   BBN K_B<=0.25 would have spuriously EMPTIED the set.) And superluminal-in-aether-frame builds no CTCs, so
+   subluminality is non-binding anyway. Causality gate = SATISFIED/NON-BINDING.
+3. **alpha_2 Maxwell degeneracy CONFIRMED independently** (c123=c1+c2+c3=K_B-K_B=0 => alpha_2 simple pole,
+   singular), PLUS alpha_1(aether)=-4K_B (finite, SOLID). KEY CONDITIONAL: if the scalar does NOT cancel the
+   aether preferred-frame terms, |alpha_1|=4K_B<1e-4 forces K_B<2.5e-5 -- ~4 orders below BBN's 0.25 (near-kill);
+   if it DOES cancel (as the same tuning gives gamma_PPN=1, Phi=Psi), alpha_1,alpha_2 small at larger K_B. Which = NOT-COMPUTED.
+4. **Low-k mode:** lambda_s=0 pushes k_*->infinity, so SZ21's linear "unbounded only for k<k_* < mu" reassurance
+   is LOST; boundedness for mu<k rests on the NONLINEAR |Y|^{3/2} MOND term (SZ Eqs.B31-B32). SOLID no-instability
+   on Minkowski for the propagating branch; SUGGESTIVE on the FLRW/dS background (full constrained dS dispersion NOT-COMPUTED).
+
+## Terminal verdict: S_{AeST+J10} = CONDITIONAL (neither empty nor non-empty)
+Gradient stability + causality jointly SATISFIABLE on the BBN band K_B in [2e-4,0.25] (large K_2); the SOLE
+undecided gate is |alpha_2|<~1e-7. THE ONE DECIDING CALCULATION: an AeST preferred-frame PPN expansion (aether
+boosted vs matter rest frame, O(v) source) WITH the propagating scalar phi retained -- Foster-Jacobson redone
+for AeST -- to regulate the c123=0 pole and return finite alpha_1(K_B), alpha_2(K_B). I.e. does the phi sector
+cancel the aether preferred-frame parameters (the way it engineers gamma_PPN=1, Phi=Psi), or is K_B forced below
+~1e-5? That single calc decides viable-vs-dead. NO number fabricated.
