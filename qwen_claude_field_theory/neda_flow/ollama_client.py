@@ -50,7 +50,22 @@ def chat(system, user, temperature=0.7, max_retries=3):
             return out["message"]["content"]
         except urllib.error.HTTPError as e:
             last = e
-            if e.code == 400:   # payload field rejected: shed optional fields and retry immediately
+            if e.code == 400:   # payload field rejected OR context overflow: adapt and retry immediately
+                try:
+                    err_body = e.read().decode()
+                except Exception:
+                    err_body = ""
+                # context overflow (prompt > num_ctx): raise num_ctx to fit prompt + predict headroom (capped).
+                # keeps the loop robust as the architect context (knowledge graph, dead classes) grows.
+                if "context" in err_body.lower() or "n_prompt_tokens" in err_body:
+                    import re as _re
+                    m = _re.search(r'"n_prompt_tokens"\s*:\s*(\d+)', err_body)
+                    cur = body.setdefault("options", {}).get("num_ctx", 16384)
+                    need = int(m.group(1)) if m else cur * 2
+                    pred = body["options"].get("num_predict", 8000)
+                    newctx = min(int(os.environ.get("QWEN_CTX_CAP", "40960")), need + pred + 1024)
+                    if newctx > cur:
+                        body["options"]["num_ctx"] = newctx; continue
                 if "think" in body:
                     body.pop("think"); continue
                 if "num_predict" in body.get("options", {}):

@@ -52,10 +52,21 @@ BRANCH_REQUIREMENTS = {
    "must be screened_by='e^-y' and no lapse_weighted couplings (P3). Include the DC-001 lensing escape.",
  "degenerate": "Degenerate kinetic terms must be argued second-class in claimed_mechanism; still include "
    "the DC-001 lensing escape (screened PF or spatial nonlocal).",
- "bimetric": "Two dynamical metrics (Hassan-Rosen family). KNOWN PRICE you MUST address in "
-   "claimed_mechanism: ghost-free HR => linear Yukawa (fixed length scale) = ANTI-MOND; say HOW the "
-   "ACCELERATION scale a0 and mu=1-e^-y arise (nonlinear helicity-0 sector / composite matter coupling "
-   "/ f-sector structure) without the Boulware-Deser ghost; m_g~H0 sits on the Higuchi bound.",
+ "bimetric": "Two dynamical metrics with a DERIVATIVE (connection-difference) interaction "
+   "M(T1..T5) built from C = Gamma(g) - Gamma(ghat) (the 5 independent quadratic invariants; the "
+   "interaction is a 2-derivative kinetic term for the RELATIVE perturbation dh = h - hhat). LIVE FRONTIER "
+   "(reseeded): the ghost-free-tuned subspace -- lapse-velocity-free, equivalently Sum c_i = 0 over the 5 "
+   "invariant coefficients -- is 2-DIMENSIONAL and CONTAINS MOND-alive directions (nonzero MOND "
+   "acceleration scalar a != 0, e.g. the T4-T1 direction) that sit strictly OFF the constrained-f(Q) line, "
+   "and the HELICITY-0 Boulware-Deser ghost is ABSENT there (Stuckelberg-verified: pi non-dynamical). Your "
+   "candidate MUST (a) live in this ghost-free subspace: declare Sum c_i = 0 (lapse-velocity-free) AND "
+   "a != 0 (MOND-producing); (b) address, in claimed_mechanism, the REMAINING OPEN GATES: vector "
+   "(helicity-1) sector ghost-freedom, tensor speed c_T = 1 (GW170817), coupled lensing Phi = Psi "
+   "(gamma_PPN = 1), NO forced alpha_3 (be genuinely bimetric/retarded, UNLIKE the elliptic single-metric "
+   "MMG whose instantaneous response gave alpha_3 = -1), and the nonlinear ADM BD-mode. Do NOT re-propose "
+   "standard Hassan-Rosen Galileon helicity-0 (DC-018: pi' ~ r^{1-3/n}, integer n never gives MOND 1/r) "
+   "nor the linear Yukawa (anti-MOND). a0 enters via the argument of the nonlinear M (mu = 1 - e^-y), NOT "
+   "a graviton mass; Higuchi is a constraint, not the primary kill.",
  "higher-derivative": "Higher-derivative kinetic terms MUST name the Ostrogradsky evasion (degeneracy "
    "condition, constraint structure) in claimed_mechanism. Still need the lensing slip off the delta-R "
    "ray: state the carrier.",
