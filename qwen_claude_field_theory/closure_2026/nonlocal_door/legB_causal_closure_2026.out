@@ -1,0 +1,110 @@
+
+========================================================================================
+S1: NAIVE VARIATION OF A RETARDED ACTION SYMMETRIZES THE KERNEL (advanced adjoint)
+========================================================================================
+  [ok] 01 grad of (1/2) phi^T K_ret phi  ==  (1/2)(K_ret + K_adv) phi  EXACTLY
+         the honest variation of a retarded functional contains the ADVANCED adjoint -- confirmed
+  [ok] 02 EOM at time t_i depends on phi(t_j), j>i: acausal (advanced) response in the naive EL eq
+
+========================================================================================
+S2: HELMHOLTZ CONDITION -- A RETARDED EOM IS NEVER EULER-LAGRANGE
+========================================================================================
+  [ok] 03 K_ret variational (symmetric) <=> k1=k2=k3=0 <=> kernel is TIME-LOCAL
+         a genuinely retarded (memory) EOM is not the EL equation of ANY action of phi alone; => Noether's 2nd theorem does not apply to the hand-imposed retarded EOM (aligns with committed DW 'conservation NOT-COMPUTED' on the nonlocal form)
+
+========================================================================================
+S3: THE CTP/IN-IN REPAIR AT ARBITRARY-KERNEL GENERALITY
+========================================================================================
+  [ok] 04 S_CTP has a SYMMETRIC Hessian: it is a genuine action (variational principle restored)
+  [ok] 05 delta S_CTP / delta phi_D |_{D->0}  ==  K_ret phi_c  (EXACTLY the retarded EOM)
+         holds for ARBITRARY retarded K_ret -- generality beyond the DW box^-1 case established
+  [ok] 06 delta S_CTP / delta phi_c  ==  K_adv phi_D: the advanced adjoint acts ONLY on the response sector, which the classical limit sets to zero (phi_D -> 0)
+
+========================================================================================
+S4: CONSERVATION UPGRADE -- LOCALIZED FORM IS EL + NOETHER ON EVERY SOLUTION
+========================================================================================
+  [ok] 07 toy is reparametrization invariant: delta L == d/dt(eps L) identically
+  [ok] 08 OFF-SHELL identity: E_X X' + E_xi xi' + E_q q' - N (E_N)' == 0
+         => on ANY solution of the X, xi, q equations -- including the slaved/retarded-data one -- the constraint E_N is conserved. Conservation is AUTOMATIC once localized: choosing retarded data selects a SOLUTION, it does not deform the equations. UPGRADES the committed 'conservation NOT-COMPUTED': the trade causality-vs-conservation is ESCAPED by localization + CTP; the price moves to S5 (fields).
+
+========================================================================================
+S5a: LOCALIZATION (rational kernels) -- WHERE THE ADVANCED ADJOINT HIDES
+========================================================================================
+  [ok] 09 xi-variation enforces X = L^{-1} J: X is the RETARDED lightcone integral, data SLAVED
+  [ok] 10 X-variation gives xi = -(L^T)^{-1} c: the response xi propagates with the ADVANCED kernel in the naive EL form -- this is exactly where the advanced adjoint hides; the CTP boundary structure (sf47/sf48) is what re-routes xi_c to retarded
+  [ok] 11 eliminating (X, xi) reproduces the nonlocal functional c^T L^{-1} J exactly
+         => rational-symbol causal kernel  <=>  FINITE set of auxiliary fields (X, xi)
+
+========================================================================================
+S5b: NON-RATIONAL CAUSAL KERNELS = CONTINUUM OF SLAVED FIELDS (spectral rep)
+========================================================================================
+  [ok] 12 int_0^inf dmu / (sqrt(mu)(s+mu)) == pi/sqrt(s)  (sympy-evaluated)
+         => a causal kernel with non-rational symbol is a mass-CONTINUUM of first-order retarded kernels: localization needs infinitely many slaved fields, not zero. Generic Leg B kernel => MORE field content, never less.
+
+========================================================================================
+S6: EVENT-HORIZON FUNCTIONALS -- TELEOLOGY => ADVANCED RESPONSE, NO IN-IN REPAIR
+========================================================================================
+  [ok] 13 delta R_h(t)/delta a(t') has support ONLY on t' >= t (strictly teleological)
+         continuum form: delta R_h(t)/delta a(t') = -c theta(t'-t)/a(t')^2
+  [ok] 14 EOM at the EARLIEST time depends on a at the LATEST time: ADVANCED response outright
+         any action containing Phi[R_h] answers perturbations from its future; hyperbolic initial-value formulation impossible
+  [structural] IN-IN NON-REPAIRABILITY: the CTP contour runs over histories on
+     [t0, t_max]; R_h(t) requires a(t') for ALL t' > t including t' > t_max, so
+     Phi[R_h] is NOT a functional of contour histories at all. The S3 repair is
+     therefore UNAVAILABLE: no doubled action exists whose Delta-variation gives
+     a causal EOM for an event-horizon functional. Teleological subclass CLOSES.
+  [ok] 15 exact dS: proper event horizon a(t) int_t^inf dt'/a == 1/H == CONSTANT
+         the 'in dS the horizon is instantaneous' escape (Stone-type) buys locality only at the fixed point where the functional carries NO z-evolution: Layer A, not Layer C
+
+========================================================================================
+S7: EXHAUSTIVE KERNEL-SUPPORT CLASSIFICATION + VERDICT
+========================================================================================
+
+  Any scalar q[g](x) is classified by the support of delta q(x)/delta g(x'):
+  (1) support = {x} (point/quasi-local, incl. derivative-of-delta on the cone vertex)
+        => LOCAL curvature invariant => LEG A (constant a0 or environment-dependent;
+           SPARC environmental null applies; McVittie needs an H-carrying medium).
+  (2) support in J^-(x), kernel = Green fn of a local operator (rational symbol)
+        => S5a: finite auxiliary fields (X, xi), Cauchy data SLAVED to zero by CTP
+           (sf48); conservation automatic (S4); no free radiative modes.
+  (3) support in J^-(x), generic covariant causal kernel (non-rational symbol)
+        => S5b: CONTINUUM of slaved fields. Strictly more field content.
+  (4) support on the initial slice / asymptotic past average
+        => either a CONSTANT of the solution (Layer A only, no z-evolution) or
+           explicit dependence on a chosen slice + transported frame = Cauchy data
+           + foliation = LEG C.
+  (5) support intersecting J^+(x) (event horizons, future averages, boundary terms
+      at future infinity)
+        => S6: advanced response, no variational or in-in formulation: CLOSED outright.
+  The list is exhaustive (supports partition into vertex/past/future/slice components).
+
+  VERDICT -- LEG B: PARTIALLY OPEN AS LITERALLY STATED, CLOSED IN SHARPENED FORM.
+  * The teleological subclass (5) closes with NO escape.
+  * The retarded subclass (2)-(3) admits the in-in construction, which LITERALLY
+    satisfies (i) no new propagating DOF (data slaved, ghost mode projected: sf48),
+    (ii) no independent Cauchy data, (iii) no conserved dark charge generically
+    (DW's ratio-lock charge came from its mimetic CLOCK -- a Leg C ingredient --
+    not from box^-1 itself). So the trichotomy's Leg B closure AS STATED is too
+    strong: an escape-construction exists on paper (metric-only in-in retarded
+    functional, DW-2009-f(box^-1 R)-type, no clock field).
+  * BUT the escape is a dark-FIELD theory in all but name:
+      - localization is GENERIC (S5): the H(z)-information is carried into the bound
+        system by a nonzero scalar profile X(x) whose gradients and couplings
+        gravitate -- an O(1) effective dark stress in the MOND regime by design
+        (if the X-sector stress were negligible there, the MOND modification it is
+        built to produce would be too);
+      - the auxiliary sector contains a negative-energy direction v=(X-xi)/sqrt(2)
+        (sf43) kept off only by the slaved-data surface; nonlinear re-excitation
+        (gate G3) is OPEN -- the standard failure mode of nonlocal localizations;
+      - the in-in construction itself requires a preferred initial slice t_0 and
+        state -- Leg C-adjacent structure smuggled in at one point;
+      - the ONLY exhibited MOND+a0(z) realization in this class (DW 2026) needed a
+        dynamical clock field and pays the conserved-charge price (ratio-lock,
+        committed): the paper-escape has never been exhibited as a working theory.
+  * CONSEQUENCE (sharpened, and it still flips MUSE the same way): evolving a0(z)
+    inside bound systems via Leg B requires a gravitating dark scalar PROFILE --
+    slaved or free. "No free dark STATE" is achievable; "no dark FIELD" is not.
+    A measured rising a0(z) remains evidence FOR a dark field penetrating bound
+    systems, exactly as in the dark-fluid leg. Layer A untouched.
+
+ALL 15 LEG-B CHECKS PASSED.
