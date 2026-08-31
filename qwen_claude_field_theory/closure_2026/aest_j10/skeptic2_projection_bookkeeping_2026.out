@@ -1,0 +1,44 @@
+==============================================================================
+[1] Superpotential = FT^-1[1/q^4] structure
+==============================================================================
+  [PASS] lap(chi_W) = -2U
+  [PASS] lap(-r/(8pi)) = -1/(4 pi r)   [so lap^2(-r/8pi)=delta^3 => FT^-1[1/q^4]]
+==============================================================================
+[2] Tensor structure of the induced term
+==============================================================================
+  [PASS] d_i d_j chi_W = U_ij - delta_ij U   (Will identity, all 9 components)
+  [PASS] w^i w^j d_i d_j chi_W = [(w.n)^2 - w^2] U   (par-minus-perp combination)
+  [PASS] induced term == (w^i w^j U_ij) - (w^2 U) exactly: no non-PPN residual
+==============================================================================
+[3] Will-basis matching: solve for (Delta alpha_1, Delta alpha_2)
+==============================================================================
+  [PASS] matching system solvable
+    Delta alpha_1 = 0    Delta alpha_2 = -C
+  [PASS] Delta alpha_2 = -C  (whole insertion lands in alpha_2)
+  [PASS] Delta alpha_1 = 0   (ZERO leakage into the isotropic w^2 U slot)
+  [PASS] residual identically 0 after matching
+==============================================================================
+[4] Beta channel: overlap and the Q0-piece Yukawa suppression
+==============================================================================
+  [PASS] induced term is O(M^1) (deg in M = 1) vs beta U^2 = O(M^2): zero overlap
+    Yukawa relative correction series: m**2*r**2/2 - m*r
+  [PASS] leading r-dependent relative correction = +(m r)^2/2  [(m r)^2-suppressed]
+    (m r)^2 at LLR 3.84e8 m: 8.028e-36
+    (m r)^2 at 100 AU: 1.219e-26
+==============================================================================
+[5] par-minus-perp convention factor (dictionary phrasing check)
+==============================================================================
+    Delta g00(par) - Delta g00(perp) = C*M*W**2/r   [= +C W^2 M/r = -Da2 w^2 U]
+  [PASS] par - perp = -Delta_alpha2 * w^2 U in g00 normalization (factor 2 in "par-perp=2a2" is the g00=-1+2Phi convention, not a channel error)
+==============================================================================
+CHECKS: 12/12 passed
+
+SKEPTIC-2 VERDICT (projection-bookkeeping lens): NOT REFUTED.
+  The (w.q)^2/q^4 chain transforms EXACTLY to w^i w^j d_i d_j chi_W
+  = (w^i w^j U_ij) - (w^2 U): unique Will-basis projection
+  (Delta alpha_1, Delta alpha_2, Delta beta) = (0, -C, 0).
+  alpha_2 is the exposed channel; alpha_1 takes exactly zero from the
+  unsuppressed insertion; the naive beta assignment used the gradient-free
+  Q0-pieces, which are (m r)^2 < 2e-27 Yukawa-retired inside 100 AU.
+  The accepted verdict's channel reversal (beta -> alpha_2) is CORRECT.
+
