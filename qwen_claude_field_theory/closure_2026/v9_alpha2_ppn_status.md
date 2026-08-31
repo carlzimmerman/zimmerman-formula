@@ -1,7 +1,18 @@
-# v9 AeST preferred-frame PPN (alpha_2) — terminal status: NOT-COMPUTED (+ a new beta liability)
+# v9 AeST preferred-frame PPN — terminal status: **KILL** (high confidence) — see V9_PPN_KILL_VERDICT.md
+
+**RESOLVED 2026-08-31 (workflow wyzp0z5df, 7 agents, adversarially verified; alpha_1 re-derived by
+hand). Terminal verdict = KILL on the healthy locus by TWO independent mechanisms:
+(1) alpha_1 = -2(K_B+2) ~ -4.2, un-tunable, ~4.4e4x over Will |alpha_1|<1e-4 — the scalar J.grad(phi)
+drag renormalizes eta_K=(K_B*J_Y+2)/(J_Y+1) to (K_B+2)/2>=1 at the physical deep field J_Y=1 (base
+anchor -4K_B recovered as J_Y->oo). (2) alpha_2: the novel channel projects onto alpha_2 (not beta),
+~1e4-1e5x over LLR, no K_B->0 decoupling. beta RETIRED (22+ orders safe). alpha_3==0 (DC-019 pass).
+One residual: solar-profile background un-checked. Layer A untouched. FULL VERDICT: V9_PPN_KILL_VERDICT.md.**
+
+---
+*(Historical trail below — the calc as it developed from NOT-COMPUTED to the KILL above.)*
 
 **Result of the boosted moving-source O(U)->O(wU)->O(w^2U) 1PN calc on the ACTUAL v9 F(Y,Q) action
-(3 routes + consistency anchors + adversarial verify). NOT a PASS, NOT a KILL.**
+(3 routes + consistency anchors + adversarial verify).**
 
 ## Confirmed (anchors met)
 - Background reproduces v9 EXACTLY: K_Q(Q0)=0, K_QQ(Q0)=mu^2, a0Q(Q0)=0, a0QQ(Q0)=-kappa^2 G mu^2,
