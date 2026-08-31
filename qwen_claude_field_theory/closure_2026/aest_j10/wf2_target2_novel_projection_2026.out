@@ -1,0 +1,107 @@
+========================================================================================
+PART 0: Will-normalization dictionary certificate (sympy)
+========================================================================================
+  [PASS] ALPHA_2 = [coeff(w_par^2 U)-coeff(w_perp^2 U)]/2 (alpha_3-blind)
+  [PASS] ALPHA_3 = coeff(w_perp^2 U) + alpha_1
+  [PASS] g0i transverse coeff = -alpha_1/2 => ALPHA_1 = -2*coeff
+  boost parity: the solve boosts the AETHER (+wb w) in the source frame; Will's w is the
+  frame velocity RELATIVE TO the preferred frame = -wb w. Odd (g0i) structures flip sign
+  => alpha_1 = +2*coeff(w2 U in h02)/U_amp here; even (w^2) structures unaffected.
+  Anchor that fixes the parity choice: pure-EA corner must give FJ alpha_1 = -4K_B (below).
+========================================================================================
+PART 1: the novel channel = pure rescaling K2 -> K2 (1+kappa^2/4pi)
+========================================================================================
+  [PASS] F_YQ(bg) == 0 exactly (every cross term carries a0Q(Q0) prop K_Q(Q0)=0)
+  [PASS] g(y)=F_Y - y F_Y' -> -2 (nonzero const; the unsuppressed ride)
+  [PASS] g+2 = u^2 e^{-u}(1+2/u) exp-small at solar u0~1e7-1e11
+  [PASS] F_QQ(Q0) -> mu2 (1 + kappa^2/4pi)
+  => at quadratic order the novel terms change ONLY the (deltaQ)^2 coefficient:
+     in the solve below, K2 -> K2*(1+kappa^2/4pi).  No new operator structures.
+     (Convention notes: the transcribed v9 Fcal gives the (2-K_B)-weighted variant
+      1+(2-K_B)kappa^2/8pi -- same order; and -Fcal in the action makes the physical
+      sign of the (deltaQ)^2 term convention-dependent; |Delta alpha_2| is unaffected.)
+========================================================================================
+PART 2: boosted quadratic-action solves
+========================================================================================
+[t=0s] building v2-gauge action ...
+[t=133s] building alt-gauge action ...
+[t=202s] v2-gauge ladder at K_B=1/5, (K2, J_Y, Q_0) symbolic ...
+  [PASS] v2 ladder solvable (K_B=1/5, symbolic K2,J_Y,Q_0)
+  [PASS] gamma_PPN = 1 (Phi=Psi at wb^0) -- anchor (ii)
+  [PASS] alpha_3 == 0 EXACTLY (all K2,J_Y,Q_0) -- DC-019 gate
+  [PASS] w2^2 vs w3^2 isotropy of the transverse w^2 sector
+  [PASS] alpha_1(Q0->0) = -4(K_B J_Y + 2)/(J_Y+1)  [K_B=1/5]
+  [PASS] base anchor (iii): lim_{JY->oo} lim_{Q0->0} alpha_1 = -4K_B (Foster-Jacobson, Maxwell locus)
+    alpha_1(J_Y=1, deep field) = -22/5  [= -2(K_B+2); eta_K=(K_B+2)/2]
+    c_-1(J_Y,K2) = -(J_Y + 10)**2/(81*J_Y*(J_Y + 1)**2)
+    c_0(J_Y,K2)  = -(2628*J_Y**3 - 475*J_Y**2*K_2 + 27000*J_Y**2 - 2975*J_Y*K_2 + 6750*J_Y - 2500*K_2 - 4500)/(3645*J_Y**2*(J_Y + 1))
+  [PASS] contact coefficient c_-1 is K2-free
+  [PASS] c_0 is EXACTLY linear in K2
+  [PASS] dc_0/dK2 = 5(19 J_Y+100)/(729 J_Y^2) at K_B=1/5 (JY=1: 595/729; ->0 as JY->oo)
+[t=357s] alt-gauge ladders (J_Y=1) at K_B=1/5, 1/2 ...
+  [PASS] GAUGE-ROBUST: contact c_-1 identical (v2 vs alt)
+  [PASS] GAUGE-ROBUST: dc_0/dK2 identical (v2 vs alt)
+  [PASS] GAUGE-ROBUST: alpha_1 identical
+  [PASS] alt gauge: alpha_3 == 0
+    K2-free offset of c_0: v2 = -1771/405  vs  alt = -781/405
+  [PASS] HONESTY EXHIBIT: the K2-free offset DISAGREES between gauges (base C0 NOT certified here)
+  [PASS] K_B-form: dc_0/dK2(JY=1) = (4+4K_B-K_B^2)/(2-K_B)^3  [checked K_B=1/2 alt; 1/5 both]
+  [PASS] K_B-form at K_B=1/5
+  [PASS] contact K_B-form: c_-1(JY=1) = -(K_B+2)^2/(4(2-K_B)^2)  [checked K_B=1/2]
+[t=360s] kx-scaling certificate ...
+  [PASS] alpha_i(kx=2,Q0) == alpha_i(kx=1,Q0/2) at fixed K2 => c_-1/Q0^2 is (k/m)^2 CONTACT, c_0 is k-free
+[t=360s] 11-field build (h11 independent, E_h11 retained) ...
+  [PASS] E_h11 retained => wb^2 ladder INCONSISTENT (broken constraint at O(wb^2)): the c_0 offset ambiguity is real
+    rank(A)=11  rank([A|b])=12  (incl. gauge row; EOM-only block: 10 vs 11 -- Fredholm violation)
+========================================================================================
+PART 3: Pi-projection verdict + physical magnitude
+========================================================================================
+  GENUINE (exterior, k-independent) alpha_2 K2-projection, JY=1 (deep field):
+      d alpha_2 / d K2 = (4+4K_B-K_B^2)/(2-K_B)^3 = [8-(2-K_B)^2]/(2-K_B)^3
+  Pi_K  (K_QQ=mu2 channel)      : Delta alpha_2 = K2 * dalpha2/dK2      [O(1)*K2]
+  Pi_a0 (a0-promotion increment): Delta alpha_2 = (kappa^2/4pi) K2 * dalpha2/dK2
+  Physical K2 (dimensionless in the action bracket; kx-scaling certified scale-free):
+    m_chi^2 ~ K2 Q0^2/(2-K_B) with m_chi^-1 = 4392 Mpc (v9 Helmholtz) and Q0 ~ Qbar ~ H0-scale
+    => K2 ~ (2-K_B)(Qbar/m_chi... inverted) ~ (2-K_B)*(H0/mu)^2*O(1) ~ 0.1..1  [O(1) mapping]
+    fiducial K2(K_B=0.2) ~ 0.473   (Qbar ~ 2 H0)
+     K_B   dc0/dK2   Pi_a0=Dalpha2(novel), K2=0.4  vs |alpha_2|<1e-7
+    0.05    0.5661                      4.505e-03         4.5e+04 x
+    0.10    0.6400                      5.093e-03         5.1e+04 x
+    0.20    0.8162                      6.495e-03         6.5e+04 x
+    0.25    0.9213                      7.331e-03         7.3e+04 x
+    0.30    1.0401                      8.277e-03         8.3e+04 x
+    0.50    1.7037                      1.356e-02         1.4e+05 x
+  => the UNSUPPRESSED novel channel LANDS IN ALPHA_2 (not beta): 4-5 orders over LLR
+     for any K2 >~ 1e-5.  It rides the SAME (deltaQ)^2 slot as base-AeST's own mass term,
+     whose base projection K2*dc0/dK2 ~ 0.3 is itself part of the (uncertified-offset)
+     base alpha_2.  Screening escape JY->oo exists (slope ~ 5*19/(729 J_Y)) but the
+     physical deep-field value is J_Y = mu(u0) = 1 - e^{-u0} = 1 EXACTLY for PPN purposes.
+========================================================================================
+PART 4: |beta-1| exposure (the naive liability, priced correctly)
+========================================================================================
+  (deltaQ)^2 has NO gradient term: deltaQ = chidot - Qbar Phi. Its O(eps^2) g00 sourcing
+  carries F_QQ Qbar^2/k^2 = (m_eff/k)^2 relative to the k^2-supported U^2 terms; a pure
+  mass insertion cannot propagate (contact) and its exterior tail is Yukawa:
+  |beta-1|_eff ~ (m_eff r)^2 (1+kappa^2/4pi),  m_eff^-1 = 4392 Mpc:
+    r=LLR 3.84e8 m      : 8.205e-36   margin vs 8e-5: 9.7e+30
+    r=Mercury 0.387 AU  : 1.861e-31   margin vs 8e-5: 4.3e+26
+    r=100 AU            : 1.243e-26   margin vs 8e-5: 6.4e+21
+  => beta liability RETIRED: the naive 'Qbar^2 mu2 (1+kappa^2/4pi)' omitted that mu2 is
+     dimensionful; made dimensionless it is (mu r)^2 < 2e-27 inside 100 AU.
+     (Linear-response certified; the O(eps^2) statement is structural: no-gradient operator
+      => contact + Yukawa only. A full second-order solve was not run -- flagged.)
+========================================================================================
+CHECKS: 26/26 passed
+
+VERDICT (TARGET 2):
+  Pi(novel -> alpha_2) NONZERO and UNSUPPRESSED:  Delta alpha_2(novel)
+     = (kappa^2/4pi) * K2 * (4+4K_B-K_B^2)/(2-K_B)^3   [JY=1, Q0->0, gauge-robust]
+     ~ 1e-3 .. 3e-2 for physical K2 ~ 0.1..1  =>  ~1e4-1e5 x the LLR bound 1e-7.
+  Pi(novel -> beta) mass-suppressed: |beta-1| < 2e-27 inside 100 AU. RETIRED.
+  The prior naive counting (novel piece -> beta) is REVERSED: alpha_2 is the exposed channel.
+  NOT certified here: the K2-free base offset of alpha_2 (C0_base; gauge/constraint ambiguity
+  at O(wb^2) exhibited by the 11-field rank test) -- TARGET 1's owed item, still open.
+  NEW gauge-robust byproducts: alpha_3 == 0 exactly; alpha_1(Q0->0) = -4(K_B J_Y+2)/(J_Y+1)
+  (deep field: -2(K_B+2), i.e. eta_K renormalized from K_B to (K_B+2)/2 -- LIABILITY-if-true,
+  needs TARGET-1-grade independent verification).
+

@@ -38,3 +38,28 @@ beta). Then test C0=0 jointly with alpha_1=-4 eta_K, gamma-1, beta-1 against Wil
 ## Standing
 alpha_2^v9 remains the open certification gate; the easy screening/suppression escape is closed; a new
 beta-1 exposure is now on the ledger. Layer A (R-2Lambda, a0=c^2 sqrt(Lambda/32pi)) unaffected.
+
+## UPDATE (TARGET 2 computed): the projection Pi is now COMPUTED — it lands in ALPHA_2, not beta
+Script: `aest_j10/wf2_target2_novel_projection_2026.py` (+ .out; all certificates pass).
+Boosted anisotropic quadratic-action solve (two independent gauges + kx-scaling certificate +
+Will-dictionary sympy certificate), Laurent split alpha_2 = c_-1/Q0^2 (contact, exterior-invisible)
++ c_0 (genuine, k-independent) + O(Q0^2) (Yukawa):
+- **Pi_K -> alpha_2, UNSUPPRESSED and gauge-robust**: dc_0/dK2 |_(JY=1,Q0->0)
+  = (4+4K_B-K_B^2)/(2-K_B)^3 (= 595/729 at K_B=1/5); exactly linear in K2; JY-form
+  5(19JY+100)/(729 JY^2) at K_B=1/5 (dies ~1/JY only under JY->oo stiff-scalar screening;
+  physical deep field is JY = mu(u0) = 1).
+- **Pi_a0 (the novel increment)**: Delta alpha_2 = (kappa^2/4pi) K2 dc_0/dK2 ~ 1e-3..3e-2 for
+  physical K2 ~ 0.1..1  =>  ~1e4-1e5 x over LLR |alpha_2| < 1e-7. The novel channel is an
+  alpha_2 LIABILITY, not a beta one.
+- **beta liability RETIRED**: (deltaQ)^2 has no gradient term; its U^2 exposure is
+  (m_eff r)^2 (1+kappa^2/4pi) < 2e-27 inside 100 AU (m_eff^-1 = 4392 Mpc). The naive
+  Qbar^2 mu2 (1+kappa^2/4pi) counting omitted that mu2 is dimensionful.
+- Still NOT closed: the K2-free base offset of c_0 (= item (1), C0_base/eta_K): the two gauges
+  disagree on it (-1771/405 vs -781/405 at K_B=1/5, JY=1) and the 11-field solve with E_h11
+  retained is INCONSISTENT at O(wb^2) (rank 10, augmented 11) — a truncation-level broken
+  constraint, exhibited in the script.
+- Gauge-robust byproducts: alpha_3 == 0 exactly (DC-019 gate); alpha_1(Q0->0)
+  = -4(K_B JY+2)/(JY+1) — base anchor (JY->oo after Q0->0) = -4K_B (FJ) PASSES, but at the
+  physical deep-field point JY=1 this is alpha_1 = -2(K_B+2), i.e. eta_K renormalized to
+  (K_B+2)/2 by the scalar drag — LIABILITY-IF-TRUE, needs the TARGET-1-grade independent
+  verification before being quoted as a verdict.
