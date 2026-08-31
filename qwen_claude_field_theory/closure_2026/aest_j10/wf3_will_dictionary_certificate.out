@@ -1,0 +1,24 @@
+==========================================================================
+C1: point-source superpotential identity U_ij = chi_,ij + delta_ij U
+==========================================================================
+  U_ij - (chi_,ij + delta_ij U) == 0 for all i,j : True
+  laplacian(chi) + 2U == 0 : True
+  => Fourier: U_ij_hat = delta_ij U_hat - 2 q_i q_j U_hat/q^2
+
+==========================================================================
+C2: coefficient table with k = xhat  (U_11 -> -U_hat, U_22=U_33 -> +U_hat)
+==========================================================================
+  [g00] coeff(w_par^2  U) = -alpha_1 + 2*alpha_2 + alpha_3   (claim: -a1+2a2+a3) True
+  [g00] coeff(w_perp^2 U) = -alpha_1 + alpha_3  (claim: -a1+a3) True
+  => ALPHA_2 = (par - perp)/2 : True   (alpha_3-blind)
+  => ALPHA_3 = perp + alpha_1 : True
+  [g02] transverse: coeff(w2 U) = -alpha_1/2
+  [g01] parallel  : coeff(w1 U) = -alpha_1/2 + 2*alpha_2
+  => ALPHA_1 = -2 * (transverse g0i coeff)   [Will-normalized]
+
+NOTE (w-sign): in the solve pipeline the AETHER background is boosted
+(A^i_bg = wb w^i) while the source sits at rest in the coordinates, i.e.
+the PPN frame moves at w_Will = -wb*w relative to the preferred frame.
+Odd-in-w structures (alpha_1 g0i) therefore flip sign relative to a naive
+w_Will = +wb*w reading. The pure-EA control (wf3_pure_ea_control_build.py)
+fixes this orientation empirically against Foster-Jacobson.

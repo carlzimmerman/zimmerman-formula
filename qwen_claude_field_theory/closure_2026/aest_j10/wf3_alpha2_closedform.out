@@ -1,0 +1,55 @@
+==========================================================================
+1. grid + certifications  (c_-2 form, B closed form, K2-linearity implicit)
+==========================================================================
+  (KB=1/5,JY=1): A=-1771/405  B-closed-form=True  c_-2-form=True
+  (KB=3/10,JY=1): A=-13087/2890  B-closed-form=True  c_-2-form=True
+  (KB=1/2,JY=1): A=-85/18  B-closed-form=True  c_-2-form=True
+  (KB=1/10,JY=1): A=-15141/3610  B-closed-form=True  c_-2-form=True
+  (KB=1/4,JY=1): A=-873/196  B-closed-form=True  c_-2-form=True
+  (KB=2/5,JY=1): A=-93/20  B-closed-form=True  c_-2-form=True
+  (KB=1/5,JY=2): A=-142/45  B-closed-form=True  c_-2-form=True
+  (KB=1/5,JY=3): A=-18317/7290  B-closed-form=True  c_-2-form=True
+  (KB=1/5,JY=5): A=-17/9  B-closed-form=True  c_-2-form=True
+  (KB=3/10,JY=2): A=-14924/4335  B-closed-form=True  c_-2-form=True
+  (KB=3/10,JY=3): A=-147349/52020  B-closed-form=True  c_-2-form=True
+  (KB=1/2,JY=2): A=-4  B-closed-form=True  c_-2-form=True
+  (KB=1/2,JY=3): A=-1127/324  B-closed-form=True  c_-2-form=True
+  (KB=1/10,JY=2): A=-15532/5415  B-closed-form=True  c_-2-form=True
+  (KB=1/10,JY=3): A=-142807/64980  B-closed-form=True  c_-2-form=True
+  (KB=2/5,JY=2): A=-3577/960  B-closed-form=True  c_-2-form=True
+  (KB=2/5,JY=4): A=-17991/6400  B-closed-form=True  c_-2-form=True
+  (KB=1/4,JY=2): A=-485/147  B-closed-form=True  c_-2-form=True
+  ALL B == (4+4KB*JY-KB^2*JY)/(JY^2 (2-KB)^3): True
+  ALL c_-2 == -etaK^2/((2-KB)^2 JY):           True
+(71.6s)
+
+==========================================================================
+2. exact 2D fit of A(K_B,J_Y): numerator poly / [(2-KB)^s JY^p (1+JY)^r]
+==========================================================================
+  CONSISTENT fit with den (2-KB)^2 JY^1 (1+JY)^0:
+    A(K_B,J_Y) = (-1545*jys**3*kbs - 2906*jys**3 - 1250*jys**2*kbs**3 + 7500*jys**2*kbs**2 - 5730*jys**2*kbs + 37436*jys**2 - 21250*jys*kbs**3 + 127500*jys*kbs**2 - 121995*jys*kbs - 161966*jys + 7500*kbs**3 - 45000*kbs**2 + 249270*kbs - 112564)/(15000*jys*(kbs**2 - 4*kbs + 4))
+(71.7s)
+
+==========================================================================
+3. K_B -> 0 continuity of alpha_1 (scalar-only preferred-frame residue)
+==========================================================================
+  K_B=1/100: alpha_1(q->0) = -201/50  [pred -4(2+KB)/2 = -201/50]
+  K_B=0: alpha_1(q->0) = -8  [pred -4(2+KB)/2 = -4]
+(75.0s)
+
+==========================================================================
+4. assembled result + healthy-region evaluation vs Will bounds
+==========================================================================
+  alpha_1 = -4(2+K_B J_Y)/(1+J_Y);  deep field J_Y=1: alpha_1 = -(4+2K_B)
+  alpha_2 = A(K_B,J_Y) + K2*(4+4K_B J_Y-K_B^2 J_Y)/(J_Y^2 (2-K_B)^3)  [+ contact c_-2/q^2]
+  closed alpha_2 = (J_Y*(K_B - 2)**3*(-1545*J_Y**3*K_B - 2906*J_Y**3 - 1250*J_Y**2*K_B**3 + 7500*J_Y**2*K_B**2 - 5730*J_Y**2*K_B + 37436*J_Y**2 - 21250*J_Y*K_B**3 + 127500*J_Y*K_B**2 - 121995*J_Y*K_B - 161966*J_Y + 7500*K_B**3 - 45000*K_B**2 + 249270*K_B - 112564)/15000 - K_2*(K_B**2 - 4*K_B + 4)*(-J_Y*K_B**2 + 4*J_Y*K_B + 4))/(J_Y**2*(K_B - 2)**3*(K_B**2 - 4*K_B + 4))
+  alpha_2(J_Y=1) = (K_2*K_B**2 - 4*K_2*K_B - 4*K_2 - K_B**4 + 8*K_B**3 - 4*K_B**2 - 32*K_B + 32)/(K_B**3 - 6*K_B**2 + 12*K_B - 8)
+  J_Y->oo: alpha_1 -> -4*K_B  (pure-EA FJ -4K_B);  alpha_2 -> Piecewise((nan, Eq((1545*K_B + 2906)/(K_B**2 - 4*K_B + 4), 0)), (-oo*(K_B + 1)/((K_B**2 - 4*K_B + 4)*Abs((1545*K_B + 2906)/(K_B**2 - 4*K_B + 4))), True))
+  lam2_eff = etaK^2/(2 alpha2 + etaK) = 7500*J_Y**2*(K_B - 2)**3*(J_Y*K_B + 2)**2*(K_B**2 - 4*K_B + 4)/((J_Y + 1)*(7500*J_Y**2*(K_B - 2)**3*(J_Y*K_B + 2)*(K_B**2 - 4*K_B + 4) - (J_Y + 1)*(J_Y*(K_B - 2)**3*(1545*J_Y**3*K_B + 2906*J_Y**3 + 1250*J_Y**2*K_B**3 - 7500*J_Y**2*K_B**2 + 5730*J_Y**2*K_B - 37436*J_Y**2 + 21250*J_Y*K_B**3 - 127500*J_Y*K_B**2 + 121995*J_Y*K_B + 161966*J_Y - 7500*K_B**3 + 45000*K_B**2 - 249270*K_B + 112564) + 15000*K_2*(K_B**2 - 4*K_B + 4)*(-J_Y*K_B**2 + 4*J_Y*K_B + 4))))
+  K_B=1/10 K2=1: alpha_1=-4.2000 (bound 1e-4) alpha_2=-3.5541 (bound 1e-7..1e-4)  -> excluded by ~4e+04x / 4e+07x
+  K_B=1/10 K2=10: alpha_1=-4.2000 (bound 1e-4) alpha_2=+2.2062 (bound 1e-7..1e-4)  -> excluded by ~4e+04x / 2e+07x
+  K_B=1/4 K2=1: alpha_1=-4.5000 (bound 1e-4) alpha_2=-3.5328 (bound 1e-7..1e-4)  -> excluded by ~4e+04x / 4e+07x
+  K_B=1/4 K2=10: alpha_1=-4.5000 (bound 1e-4) alpha_2=+4.7587 (bound 1e-7..1e-4)  -> excluded by ~4e+04x / 5e+07x
+  eta_K zero-locus: eta_K=(2+K_B J_Y)/(1+J_Y)=0 <=> K_B J_Y = -2: IMPOSSIBLE for K_B>0,J_Y>0
+  => eta_K NONZERO everywhere in the healthy region (0<K_B<0.25, K2>0, J_Y=1); min eta_K=1 (K_B->0)
+done (75.3s)
