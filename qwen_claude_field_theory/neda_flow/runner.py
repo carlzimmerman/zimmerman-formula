@@ -70,8 +70,18 @@ BRANCH_REQUIREMENTS = {
  "higher-derivative": "Higher-derivative kinetic terms MUST name the Ostrogradsky evasion (degeneracy "
    "condition, constraint structure) in claimed_mechanism. Still need the lensing slip off the delta-R "
    "ray: state the carrier.",
- "novel": "Go OUTSIDE the listed families, but still respect every P-rule and include the DC-001 "
-   "lensing escape (screened-e^-y preferred-frame coupling or spatial nonlocality).",
+ "novel": "Go OUTSIDE the listed families (cuscuton, horndeski-beyond, teleparallel-fT, nonmetricity-fQ, "
+   "conformal-disformal-2metric, emergent-entropic, effective-medium-constitutive, auxiliary-field-general, "
+   "foliation-CMC-York, higher-curvature-mixed, multimetric-N, DW-causal-nonlocal). ARCHITECTURE SEARCH HAS "
+   "CONVERGED -- respect the CLOSED PINCER or you will dedup to a dead class: (a) any single physical metric "
+   "carrying MOND on an ELLIPTIC lapse/scalar constraint (D^2q, N=e^q, u=phi-q, curvature-lock D^2 phi=R^(3)/4) "
+   "=> alpha_3=-3, pulsar-excluded (DC-019); (b) any single metric carrying MOND on a PROPAGATING scalar "
+   "(retarded Phi, k-essence) => an extra scalar mode omega^2=c^2k^2/2 AND the DC-013 slip-lock (can't lens "
+   "frame-free); (c) NON-derivative bimetric => no MOND 1/r (DC-018, integer Galileon r^{1-3/n}); (d) "
+   "DERIVATIVE bimetric that DOES give MOND => a helicity-1 box^2 Ostrogradsky ghost forced by MOND-aliveness "
+   "(DC-020). The ONLY object that legally carries MOND lensing off the (1,-2) ray is a PREFERRED-FRAME VECTOR "
+   "(aether). A genuinely-new candidate MUST either (i) carry such a vector and beat AeST on DOF/PPN, or (ii) "
+   "exhibit a NEW mechanism that provably evades all four pincer horns -- state which horn it evades and how.",
 }
 
 
