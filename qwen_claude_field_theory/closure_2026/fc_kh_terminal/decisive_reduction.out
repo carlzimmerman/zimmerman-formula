@@ -1,0 +1,32 @@
+Hermiticity max error: 0
+
+det H_cc (phi,B block) = -(beta + lambda)*(k_x**2 + k_z**2)**2*(W0*a0**2*y0 + W1*k_x**2 + W2*k_z**2*y0)/(8*y0)   (omega-free: True )
+
+A (kinetic, coeff of omega^2) = -(beta - 1)*(beta + 3*lambda + 2)/(beta + lambda)   (k-free: True )
+
+V(kx,kz) [dispersion omega^2 = V/A], factored numerator/denominator:
+   num = -W0*W1*a0**4*y0**2 - 9*W0*W1*a0**2*k_x**2 - W0*W2*a0**4*y0**3 - 9*W0*W2*a0**2*k_z**2*y0 + 20*W0*a0**2*k_x**2*y0 + 20*W0*a0**2*k_z**2*y0 + W1**2*a0**4*y0**3 + 5*W1**2*a0**2*k_x**2*y0 + 4*W1**2*a0**2*k_z**2*y0 - W1*W2*a0**2*k_x**2*y0**2 + W1*W2*a0**2*k_z**2*y0**2 - 8*W1*a0**2*k_x**2*y0**2 - 8*W1*a0**2*k_z**2*y0**2 - 4*W1*k_x**4 - 4*W1*k_x**2*k_z**2 - 4*W2*k_x**2*k_z**2*y0 - 4*W2*k_z**4*y0 + 16*k_x**4*y0 + 32*k_x**2*k_z**2*y0 + 16*k_z**4*y0
+   den = 4*(W0*a0**2*y0 + W1*k_x**2 + W2*k_z**2*y0)    <-- lapse-constraint operator D_lapse (carries W1=f', W2=f'')
+
+----- IR (k->0) -----
+m^2_eff = V0/... (=A*omega^2|k=0) : V0 = -a0**2*y0*(W0*W1 + W0*W2*y0 - W1**2*y0)/(4*W0)   => m_eff^2 = V0/A = a0**2*y0*(beta + lambda)*(W0*W1 + W0*W2*y0 - W1**2*y0)/(4*W0*(beta - 1)*(beta + 3*lambda + 2))
+B_par,IR  (coeff kz^2 in V) = (-9*W0**2*W2 + 20*W0**2 + 4*W0*W1**2 + 2*W0*W1*W2*y0 - 8*W0*W1*y0 + W0*W2**2*y0**2 - W1**2*W2*y0**2)/(4*W0**2)
+B_perp,IR (coeff kx^2 in V) = -(9*W0**2*W1 - 20*W0**2*y0 - 6*W0*W1**2*y0 + 8*W0*W1*y0**2 + W1**3*y0**2)/(4*W0**2*y0)
+c_par^2,IR  = B_par,IR /A = -(beta + lambda)*(-9*W0**2*W2 + 20*W0**2 + 4*W0*W1**2 + 2*W0*W1*W2*y0 - 8*W0*W1*y0 + W0*W2**2*y0**2 - W1**2*W2*y0**2)/(4*W0**2*(beta - 1)*(beta + 3*lambda + 2))
+c_perp^2,IR = B_perp,IR/A = (beta + lambda)*(9*W0**2*W1 - 20*W0**2*y0 - 6*W0*W1**2*y0 + 8*W0*W1*y0**2 + W1**3*y0**2)/(4*W0**2*y0*(beta - 1)*(beta + 3*lambda + 2))
+
+----- UV (k->inf) -----
+c_par^2,UV  = (W2 - 4)*(beta + lambda)/(W2*(beta - 1)*(beta + 3*lambda + 2))
+c_perp^2,UV = -(-W1 + 4*y0)*(beta + lambda)/(W1*(beta - 1)*(beta + 3*lambda + 2))
+
+saved decisive_symbols.pkl
+
+========================================================================
+CHECK 1: pure-quadratic accel f=alpha a^2  => must reproduce BB Eq(14), y0-free
+========================================================================
+BB Eq(14)   = (alpha - 2)*(beta + lambda)/(alpha*(beta - 1)*(beta + 3*lambda + 2))
+  c_par^2,IR(quad) = -(alpha + 2)*(beta + lambda)/(2*(beta - 1)*(beta + 3*lambda + 2))   ; minus BB14 = (-alpha**2*beta - alpha**2*lambda - 4*alpha*beta - 4*alpha*lambda + 4*beta + 4*lambda)/(2*alpha*(beta**2 + 3*beta*lambda + beta - 3*lambda - 2))
+  c_perp^2,IR(quad) = (alpha - 2)*(beta + lambda)/(2*(beta - 1)*(beta + 3*lambda + 2))   ; minus BB14 = (alpha**2*beta + alpha**2*lambda - 4*alpha*beta - 4*alpha*lambda + 4*beta + 4*lambda)/(2*alpha*(beta**2 + 3*beta*lambda + beta - 3*lambda - 2))
+  c_par^2,UV(quad) = (alpha - 2)*(beta + lambda)/(alpha*(beta - 1)*(beta + 3*lambda + 2))   ; minus BB14 = 0
+  c_perp^2,UV(quad) = (alpha - 2)*(beta + lambda)/(alpha*(beta - 1)*(beta + 3*lambda + 2))   ; minus BB14 = 0
+m^2(quad) = 0  (expect 0: pure-quadratic Minkowski-like, no Jeans mass)

@@ -1,0 +1,48 @@
+======================================================================
+POINT MASS: g_N=GM/r^2. Dimensionless x=r/r_M, r_M=sqrt(GM/a0) => g_N/a0=1/x^2
+======================================================================
+    x=r/rM       gN/a0     y0=a/a0          regime   in f<0 window
+     0.100  1.0000e+02    100.0000       Newtonian              no
+     0.300  1.1111e+01     11.1113       Newtonian     (1,38): YES
+     0.500  4.0000e+00      4.0695      transition     (1,38): YES
+     0.800  1.5625e+00      1.8530      transition     (1,38): YES
+     1.000  1.0000e+00      1.3500      transition     (1,38): YES
+     1.500  4.4444e-01      0.8043      transition              no
+     2.000  2.5000e-01      0.5731      transition              no
+     3.000  1.1111e-01      0.3641       deep-MOND              no
+     5.000  4.0000e-02      0.2106       deep-MOND              no
+    10.000  1.0000e-02      0.1026       deep-MOND              no
+    30.000  1.1111e-03      0.0336       deep-MOND              no
+
+  window edge y0=1  at x=r/rM = 1.2578
+  window edge y0=38 at x=r/rM = 0.1622
+  => the unstable shell 1<y0<38 occupies  0.1622 < r/rM < 1.2578  (a FINITE radial band
+     around every point mass / galaxy core).
+
+======================================================================
+PLUMMER SPHERE  rho(r)=3M/(4 pi b^3)(1+r^2/b^2)^-5/2 : g_N(r)=GM r/(r^2+b^2)^3/2
+Solve mu(y)y a0 = g_N(r). Confirms a smooth finite-density source also traverses.
+======================================================================
+  units: a0=1, b=1, GM=50 (rM=sqrt(GM/a0)=7.07 b)
+     r/b       gN/a0     y0=a/a0   in f<0 window
+    0.10  4.9259e+00      4.9607             YES
+    0.30  1.3181e+01     13.1811             YES
+    0.50  1.7889e+01     17.8885             YES
+    1.00  1.7678e+01     17.6777             YES
+    2.00  8.9443e+00      8.9454             YES
+    3.00  4.7434e+00      4.7834             YES
+    5.00  1.8857e+00      2.1378             YES
+    8.00  7.6329e-01      1.1284             YES
+   12.00  3.4364e-01      0.6897              no
+   20.00  1.2453e-01      0.3876              no
+   40.00  3.1221e-02      0.1849              no
+  => Plummer sphere: unstable window 1<y0<38 occupied for ~0.10<r/b<8.00
+
+======================================================================
+CONVERGENCE: y_of_gN via brentq is exact to xtol=1e-14; verify residual
+======================================================================
+  max |mu(y)y - gN/a0| over gN in [1e-3,1e3] = 1.15e-14  (background inversion converged)
+
+CONCLUSION: a(r) sweeps continuously from deep-MOND (y0<1, large r) through the
+transition and into Newtonian (y0>>1, small r); the f''<0 unstable shell 1<y0<~38
+is a FINITE radial band present around EVERY realistic source. Instability is occupied.

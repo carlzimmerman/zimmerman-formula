@@ -1,0 +1,23 @@
+
+P1 benchmark: (alpha,beta,lambda)=(2e-15,1e-15,1e-03)
+  c_T-1        = +4.44e-16   (GW170817 |c_T-1|<~1e-15) -> PASS
+  alpha1_PPN   = -0.00e+00   (solar |alpha1|<~1e-5)     -> PASS
+  beta+lambda  = 1.00e-03   (BB 1PN floor >~2.5e-7)   -> PASS
+  G_N/G_C      = 1.001500  (~1)
+
+small-lambda: (alpha,beta,lambda)=(2e-15,1e-15,1e-07)
+  c_T-1        = +4.44e-16   (GW170817 |c_T-1|<~1e-15) -> PASS
+  alpha1_PPN   = -0.00e+00   (solar |alpha1|<~1e-5)     -> PASS
+  beta+lambda  = 1.00e-07   (BB 1PN floor >~2.5e-7)   -> FAIL
+  G_N/G_C      = 1.000000  (~1)
+
+large-lambda: (alpha,beta,lambda)=(2e-14,1e-14,1e-01)
+  c_T-1        = +4.88e-15   (GW170817 |c_T-1|<~1e-15) -> CHECK
+  alpha1_PPN   = -0.00e+00   (solar |alpha1|<~1e-5)     -> PASS
+  beta+lambda  = 1.00e-01   (BB 1PN floor >~2.5e-7)   -> PASS
+  G_N/G_C      = 1.150000  (~1)
+
+=> FC-KH v1.0 (alpha=2beta) passes GW/PPN/1PN gates. The failure is INTERNAL:
+   the radial khronon gradient speed c_par^2<0 through the MOND transition (see PASS_KILL.md).
+   central y0~2 |c_par^2|=4.2e-03, k~1/kpc: growth time tau ~ 5.0e+04 yr
+   central y0~2 |c_par^2|=4.2e-03, k~1/(100pc): growth time tau ~ 5.0e+03 yr

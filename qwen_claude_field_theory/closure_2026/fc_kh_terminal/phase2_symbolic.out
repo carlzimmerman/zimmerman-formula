@@ -1,0 +1,37 @@
+==========================================================================
+PHASE 2 -- SYMBOLIC ACTION VERIFICATION (FC-KH)
+==========================================================================
+f_FC(a) = -2*Lambda + a**2*alpha + a0**2*(4 - 2*alpha)*(-(a/a0 + 1)*exp(-a/a0) + 1)
+
+(1) f'  identity   f' - 2a[alpha+(2-alpha)e^-y] =  0   -> PASS
+(2) f'' identity   f''- [2alpha+2(2-alpha)(1-y)e^-y] =  0   -> PASS
+
+(3) chi = f'/(2a) = (alpha*exp(a/a0) - alpha + 2)*exp(-a/a0)
+    mu_phys = (1-chi/2)/(1-alpha/2) = 1 - exp(-a/a0)
+    mu_phys - (1 - e^{-y}) = 0   -> PASS (mu-(1-e^-y)==0)
+
+(4) small-a series of f: -2*Lambda + 2*a**3*alpha/(3*a0) - 4*a**3/(3*a0) + 2*a**2
+    expected: -2Lambda + 2 a^2 - (2(2-alpha)/3) a^3/a0
+    a^2 coeff = 2  (expect 2);  a^3 coeff = 2*alpha/(3*a0) - 4/(3*a0)  (expect -(2(2-alpha)/3)/a0 = 2*(alpha - 2)/(3*a0) )
+
+(5) large-a: f -> -2Lambda + alpha a^2 + const;  f - alpha a^2 - [const] tail = 2*a0*(a + a0)*(alpha - 2)*exp(-a/a0)  (= -2(2-alpha)a0^2(1+a/a0)e^{-a/a0}, ->0)
+
+(6) transverse Hessian f'/a = 2*(alpha*exp(a/a0) - alpha + 2)*exp(-a/a0)  = 2[alpha+(2-alpha)e^-y] > 0 for all y>0, alpha in[0,2]
+(7) radial Hessian f'' = 2*(a0*alpha*exp(a/a0) + (a - a0)*(alpha - 2))*exp(-a/a0)/a0   (root at y where (1-y)e^-y = -alpha/(2-alpha))
+
+(8) -((beta+3lam)/3)theta^2 - beta sigma^2 = -KK*beta - lambda*theta**2 
+    == -beta*KK - lambda*theta^2 ?  diff = 0
+    R - beta KK - lam K^2 (ADM) = -KK*beta + KK + R3 - lambda*theta**2 - theta**2 
+    == ^3R + (1-beta)KK - (1+lambda)theta^2 ?  diff = 0
+    => coeff of K_ijK^ij is (1-beta); c_T^2 = 1/(1-beta).  Script's (1+beta_s) => beta_s = -beta_mission.
+
+(9) chi(a->inf) = alpha  (= alpha).  G_N = 2G/(2-alpha) = G/(1-alpha/2).
+    The (1-alpha/2) is the mu_phys normalization denominator; at high a the a^2 piece
+    renormalizes the Newtonian coupling by 1/(1-alpha/2) => G_N = 2G/(2-alpha). [mission]
+
+(10) F(y)=f_FC/a0^2 (drop -2Lam) - [2y^2 - 2(2-alpha)W(y)] = 0   -> PASS
+     F'(y)  = 2*y*(alpha*exp(y) - alpha + 2)*exp(-y)
+     F''(y) = 2*((alpha - 2)*(y + exp(y) - 1) + 2*exp(y))*exp(-y)  (== f'' as a-derivative; dimensionless)
+     check F''(y) - f''(a=a0 y) = 0
+
+DONE.
