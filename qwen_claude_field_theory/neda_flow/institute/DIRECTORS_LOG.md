@@ -3,8 +3,8 @@
 
 ## Standing verdict of the search
 - Theory space mapped by the Coverage Office: **27 architecture families** (10 dead · 3 active · 12 unexplored · 2 tested).
-- Proven no-go theorems (dead classes): **17**.
-- Candidates on record: **113** ({'KILL': 97, 'EVALUATED': 11, 'SURVIVOR': 5}).
+- Proven no-go theorems (dead classes): **19**.
+- Candidates on record: **113** ({'KILL': 97, 'EVALUATED': 16}).
 
 ## THE OPEN FRONTIER (where the live physics is)
 - **THE ONE DECISIVE CALC: nonlinear bimetric helicity-0 -- MOND acceleration scale in vacuum, Higuchi-safe, BD-ghost-free?**
@@ -36,9 +36,9 @@
 - DW-causal-nonlocal — genuinely nonlocal with retarded prescription (Deser-Woodard); the un-localized F+ door lives here -- extra mode omega^2=c^2k^2/2, ghost-residue open
 
 ## Recently proven dead (last 6 no-go theorems)
-- **DC-012 frameless localized-nonlocal MOND (scale-split skeleton)** — local+frameless => in DC-001 scope. Massless kernel scalar has zero linear stress => under-lenses g_lens/g_dyn=sqrt(gN/a0)->0; conformal fix cancels in Phi+Psi; disformal/gradient 
-- **DC-013 frame-free single-metric MOND lensing (slip-lock theorem)** — diff-invariance locks a frame-free mode's (Phi,Psi) coupling to the delta-R direction (1,-2) [exact R^(1)=-2 lap Phi+4 lap Psi]; on that ray eta=(4L+m)/(8L+m)!=1 for any L>0 (f(R) 
 - **DC-014 stiff/non-propagating screened preferred-frame vector (slip carrier)** — a timelike frame supplying the DC-013 lensing slip has its longitudinal (slip) mode either normalized by the screened Proca mass M^2=e^-y => K_long~e^-y => P7 strong coupling (=FM-
 - **DC-015 BIMETRIC_HEL0_GALILEON (standard ghost-free HR decoupling-limit helicity-0 as MOND source)** — (i) no single polynomial power gives MOND M^1/2 AND r^-1; (ii) regime inversion: Galileon nonlinearities dominate near-source (screen inward), MOND needs far-field enhancement; (ii
 - **DC-016 tandem 0mu-projection G~_0mu=mu G_0mu (simple ansatz)** — gives mu*nabla^2 Phi (Newtonian outside a point mass, g~1/r^2), NOT AQUAL div[mu grad Phi]; missing grad(mu).grad(Phi) is O(1) in deep MOND. NOTE: the ACTION-based successor (metri
 - **DC-017 standard luminal (incl. no-decay) quadratic DHOST as single-metric MOND carrier** — MOND vacuum-exterior gate FAILS. Generic A_3!=0: Phi'=Psi'=GM/r^2 (mods ~M',M''=0 outside). Exceptional no-decay branch (A_3=A_5=0, A_4=3f_X^2/2f, f=f(X)): sources a vacuum slip vi
+- **DC-018 standard ghost-free dRGT/Hassan-Rosen bimetric, MOND from its helicity-0 Galileon sector** — Spherical helicity-0 Galileon flux: n-th operator dominant => r^(3-n)(pi')^n ~ GM => pi' ~ r^(1-3/n). Integer Galileon orders n in {1,2,3,4} give pi' ~ {r^-2, r^-1/2, r^0, r^1/4}. 
+- **DC-019 constraint-first single-metric MMG (elliptic MOND constraint), incl. slip-repaired MB-MMG-2** — The elliptic (instantaneous, action-at-a-distance) MOND constraint C_M=D.[mu(y)D phi]-4piG rho fixes the g_00 Phi_1 (kinetic-energy) coefficient at 1 (vs GR's retarded 4) => alpha_
