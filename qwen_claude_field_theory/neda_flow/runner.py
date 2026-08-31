@@ -480,11 +480,11 @@ def checkpoint(gs, it):
                        capture_output=True, timeout=30)
     except Exception:
         pass
-    # ---- batch auto-commit: LOCAL ONLY, NEVER PUSH (pushes are human/Claude-controlled).
-    # One commit per AR_BATCH (default 50) candidate dispositions (tested or ruled out).
+    # ---- batch auto-commit: DISABLED by default (2026-08-30, per request -- neda must NOT touch git;
+    # the repo is a human-curated work log). Set AR_GIT_COMMIT=1 to re-enable the old local-only batch commit.
     disposed = len(exps)
     last = gs.get("last_commit_disposed", 0)
-    if disposed - last >= int(os.environ.get("AR_BATCH", "100")):
+    if os.environ.get("AR_GIT_COMMIT", "0") == "1" and disposed - last >= int(os.environ.get("AR_BATCH", "100")):
         try:
             import subprocess
             repo = os.path.abspath(os.path.join(HERE, "..", ".."))
@@ -500,6 +500,8 @@ def checkpoint(gs, it):
                 log(f"  BATCH commit (local only, never pushes): {disposed - last} dispositions")
         except Exception as e:
             log(f"  batch commit skipped: {e}")
+    else:
+        gs["last_commit_disposed"] = disposed  # keep the counter current so nothing re-triggers on re-enable
 
 
 def main():
