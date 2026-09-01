@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""A fully specified curvature-sourced QUMOND action, derived and stress-tested.
+"""A curvature-sourced QUMOND action: reduced derivation and diagnostics.
 
 Candidate B
 ===========
@@ -12,28 +12,32 @@ action is
 
  Q(Y) = 1 - (1 + sqrt(Y)) exp(-sqrt(Y)).
 
-``lambda`` sources no matter field, so this action deliberately fixes the
-bare-matter Ward failure of the direct-density elliptic candidate.  In the
-static Newtonian reduction, lambda variation gives chi=Phi; chi variation
+``lambda`` sources no matter field, so the action avoids the direct-density
+candidate's explicit matter coupling.  In the scalar-isotropic static
+reduction, lambda variation gives chi=Phi; chi variation
 gives lambda'=(mu-1)Phi'; and the Phi equation gives
 
    div[mu(|grad Phi|/a0) grad Phi] = 4 pi G rho,
 
-with mu=1-exp(-y), while the scalar trace-free Einstein equation gives
-Phi=Psi.  Thus it is a serious, action-derived candidate, not a pasted
-phantom density.
+with mu=1-exp(-y), while the reduced Psi equation gives Phi=Psi.  This is a
+serious action-derived candidate, but the reduced branch is not automatically
+a solution of every component of the full metric equation.
 
-The full gates then falsify it.  The Q(Y) term has a nonzero physical spatial
-trace-free stress on every finite MOND gradient.  On a constant-gradient local
-patch the lambda R_nn term contributes only D_i D_j lambda and cannot cancel
-that stress.  Hence the scalar weak-field no-slip inference is not preserved
-by the full metric variation.  The required normal has a second independent
-failure: fixed n gives a boost-anisotropic elliptic symbol, while a clock
-normal has a nondegenerate, indefinite FLRW (a,lambda) kinetic block.
+The diagnostic below finds a nonzero spatial trace-free variation of Q(Y) on
+every finite nonzero MOND gradient.  It keeps both -2 lambda Delta_h chi and
++2 lambda R_nn.  In a static
+zero-shift slicing R_nn=N^{-1}D^2N; after integration by parts their algebraic
+trace-free stresses cancel on the auxiliary shell D_i chi=D_i N.  The Q(Y)
+term remains in this auxiliary subset (and the trace-free Hessian of an affine
+lambda vanishes).  Because it is second order in weak fields, a valid no-slip
+verdict also needs the same-order nonlinear Einstein tensor, second-order
+potentials, and all remaining auxiliary terms.  They are not computed here.
+The foliation and FLRW Hessians are diagnostics, not standalone ghost or PPN
+theorems.
 
-Scope: the no-slip calculation is a local constant-gradient witness for this
-explicit action.  It kills Candidate B, but does not prove a no-go for every
-conceivable tensorial nonlocal action.
+Scope: this script certifies the scalar-isotropic reduction and records partial
+diagnostics.  Candidate B is falsified separately by the exact MOND/tensor-
+luminality obstruction, not by the incomplete no-slip subset.
 """
 
 from __future__ import annotations
@@ -138,9 +142,30 @@ def _static_variation(constitutive: dict[str, sp.Expr]) -> dict[str, object]:
     }
 
 
-def _full_metric_no_slip(constitutive: dict[str, sp.Expr]) -> dict[str, sp.Expr]:
-    """Vary Q(Y) with respect to all spatial metric components, not just Psi."""
+def _auxiliary_tf_diagnostic(constitutive: dict[str, sp.Expr]) -> dict[str, object]:
+    """Vary an auxiliary TF subset on a constant-gradient patch.
+
+    For a static zero-shift metric ``ds^2=-N^2dt^2+h_ij dx^i dx^j``,
+
+        R_nn = N^{-1} D^2 N.
+
+    Including the ``N sqrt(h)`` measure and integrating spatially by parts,
+    the two multiplier terms have the exact local representatives
+
+        -2 N lambda D^2 chi -> 2 N Dlambda.Dchi + 2 lambda DN.Dchi,
+        +2 N lambda R_nn    -> -2 Dlambda.DN.
+
+    The second term in the first line is cubic in weak fields.  It is retained
+    symbolically and only then removed by the leading weak-field shell
+    ``N=1, lambda=0, Dchi=DN``.  Thus the auxiliary cancellation below is
+    computed rather than assumed.  This is not the full second-order metric
+    equation: nonlinear Einstein terms and second-order metric potentials are
+    outside this algebraic constant-gradient diagnostic.
+    """
     a0, ell = sp.symbols("a0 lambda_prime", positive=True, real=True)
+    lapse_value, lambda_value, lapse_prime = sp.symbols(
+        "N lambda_value N_prime", real=True
+    )
     y = constitutive["y"]
     e0, e1, e2 = sp.symbols("epsilon_0 epsilon_1 epsilon_2", real=True)
     inverse_metric = sp.diag(1 + e0, 1 + e1, 1 + e2)
@@ -150,9 +175,36 @@ def _full_metric_no_slip(constitutive: dict[str, sp.Expr]) -> dict[str, sp.Expr]
     Q_metric = 1 - (1 + root) * sp.exp(-root)
     density_Q = 2 * a0**2 * Q_metric
     origin = {e0: 0, e1: 0, e2: 0}
+
+    grad_lambda = sp.Matrix([ell, 0, 0])
+    grad_lapse = sp.Matrix([lapse_prime, 0, 0])
+    dot = lambda left, right: (left.T * inverse_metric * right)[0]
+    density_minus_lambda_delta = sp.simplify(
+        2 * lapse_value * dot(grad_lambda, grad_chi)
+        + 2 * lambda_value * dot(grad_lapse, grad_chi)
+    )
+    density_lambda_rnn = sp.simplify(-2 * dot(grad_lambda, grad_lapse))
+
+    def tf_amplitude(density: sp.Expr) -> sp.Expr:
+        radial = sp.diff(density, e0).subs(origin)
+        transverse = sp.diff(density, e1).subs(origin)
+        return sp.simplify(-2 * (radial - transverse))
+
     d_radial = sp.simplify(sp.diff(density_Q, e0).subs(origin))
     d_transverse = sp.simplify(sp.diff(density_Q, e1).subs(origin))
     q_tf_stress = sp.simplify(-2 * (d_radial - d_transverse))
+
+    elliptic_tf_general = tf_amplitude(density_minus_lambda_delta)
+    rnn_algebraic_tf_general = tf_amplitude(density_lambda_rnn)
+    weak_shell = {
+        lapse_value: 1,
+        lambda_value: 0,
+        lapse_prime: a0 * y,
+    }
+    elliptic_tf_on_shell = sp.simplify(elliptic_tf_general.subs(weak_shell))
+    rnn_algebraic_tf_on_shell = sp.simplify(
+        rnn_algebraic_tf_general.subs(weak_shell)
+    )
 
     # The lambda R_nn contribution to the local TF metric equation is built
     # from the trace-free Hessian of lambda.  On the constant-gradient witness
@@ -160,12 +212,28 @@ def _full_metric_no_slip(constitutive: dict[str, sp.Expr]) -> dict[str, sp.Expr]
     x = sp.symbols("x", real=True)
     lambda_profile = (constitutive["mu"] - 1) * a0 * y * x
     rnn_tf_stress = sp.simplify(sp.diff(lambda_profile, x, 2))
+    elliptic_curvature_tf_on_shell = sp.simplify(
+        elliptic_tf_on_shell + rnn_algebraic_tf_on_shell + rnn_tf_stress
+    )
+    auxiliary_tf_stress_on_shell = sp.simplify(
+        q_tf_stress + elliptic_curvature_tf_on_shell
+    )
     return {
         "q_density": density_Q,
         "q_radial_metric_derivative": d_radial,
         "q_transverse_metric_derivative": d_transverse,
         "q_tf_stress": q_tf_stress,
+        "minus_lambda_delta_density": density_minus_lambda_delta,
+        "lambda_rnn_density": density_lambda_rnn,
+        "minus_lambda_delta_tf_general": elliptic_tf_general,
+        "lambda_rnn_algebraic_tf_general": rnn_algebraic_tf_general,
+        "minus_lambda_delta_tf_on_shell": elliptic_tf_on_shell,
+        "lambda_rnn_algebraic_tf_on_shell": rnn_algebraic_tf_on_shell,
         "rnn_tf_stress_on_constant_gradient_patch": rnn_tf_stress,
+        "elliptic_curvature_tf_on_shell": elliptic_curvature_tf_on_shell,
+        "auxiliary_tf_stress_on_shell": auxiliary_tf_stress_on_shell,
+        "full_second_order_metric_equation_included": False,
+        "no_slip_verdict": "UNRESOLVED",
     }
 
 
@@ -217,10 +285,15 @@ def derive_curvature_qumond_gate() -> dict[str, object]:
         },
         "constitutive": constitutive,
         "static_variation": _static_variation(constitutive),
-        "no_slip": _full_metric_no_slip(constitutive),
-        "matter_ward": {
-            "auxiliary_matter_variation": sp.Integer(0),
-            "statement": "S_aux contains no psi; minimally coupled matter retains its own diffeomorphism Ward identity.",
+        "auxiliary_tf_diagnostic": _auxiliary_tf_diagnostic(constitutive),
+        "matter_ward_scope": {
+            "status": "ANALYTIC CONDITIONAL",
+            "assumptions": (
+                "S_m is separately diffeomorphism invariant and minimally coupled "
+                "to g; S_aux contains no ordinary matter field psi"
+            ),
+            "identity": "nabla_mu T^{mu nu}=0 on the ordinary matter equations",
+            "computed_by_this_gate": False,
         },
         "fixed_foliation": _fixed_foliation(),
         "clock_flrw": _clock_flrw(),
@@ -231,7 +304,7 @@ def derive_curvature_qumond_gate() -> dict[str, object]:
 def main() -> int:
     result = derive_curvature_qumond_gate()
     static = result["static_variation"]
-    no_slip = result["no_slip"]
+    tf_diagnostic = result["auxiliary_tf_diagnostic"]
     fixed = result["fixed_foliation"]
     flrw = result["clock_flrw"]
     constitutive = result["constitutive"]
@@ -254,12 +327,18 @@ def main() -> int:
     print("  action-derivation residuals =", static["action_residuals"])
     print("  derived MOND equation =", static["mond_equation"])
     print("  MOND residual =", static["mond_flux_residual"])
-    print("  direct auxiliary variation with respect to matter =", result["matter_ward"]["auxiliary_matter_variation"])
+    print("  matter Ward status =", result["matter_ward_scope"]["status"])
+    print("  matter Ward assumptions =", result["matter_ward_scope"]["assumptions"])
 
-    print("\n[3] Full spatial metric variation: no-slip test")
-    print("  Q trace-free stress amplitude =", no_slip["q_tf_stress"])
-    print("  lambda R_nn TF contribution on constant-gradient witness =", no_slip["rnn_tf_stress_on_constant_gradient_patch"])
-    print("  [PASS] the full Q(Y) metric variation contains an uncancelled MOND TF stress" if no_slip["q_tf_stress"] != 0 and no_slip["rnn_tf_stress_on_constant_gradient_patch"] == 0 else "  [FAIL] TF witness")
+    print("\n[3] Partial auxiliary trace-free metric diagnostic")
+    print("  Q trace-free stress amplitude =", tf_diagnostic["q_tf_stress"])
+    print("  -2 lambda Delta_h chi algebraic TF stress on shell =", tf_diagnostic["minus_lambda_delta_tf_on_shell"])
+    print("  +2 lambda R_nn algebraic TF stress on shell =", tf_diagnostic["lambda_rnn_algebraic_tf_on_shell"])
+    print("  lambda R_nn Hessian TF contribution on affine witness =", tf_diagnostic["rnn_tf_stress_on_constant_gradient_patch"])
+    print("  elliptic+curvature auxiliary TF contribution on shell =", tf_diagnostic["elliptic_curvature_tf_on_shell"])
+    print("  auxiliary TF subset on shell =", tf_diagnostic["auxiliary_tf_stress_on_shell"])
+    print("  full second-order metric equation included =", tf_diagnostic["full_second_order_metric_equation_included"])
+    print("  no-slip verdict from this diagnostic =", tf_diagnostic["no_slip_verdict"])
 
     print("\n[4] Foliation and FLRW alternatives")
     print("  fixed-foliation alpha_2-like coefficient =", fixed["alpha2_like_coefficient"])
@@ -273,8 +352,11 @@ def main() -> int:
         constitutive["q_derivative_residual"] == 0,
         static["action_residuals"] == (0, 0, 0, 0),
         static["mond_flux_residual"] == 0,
-        result["matter_ward"]["auxiliary_matter_variation"] == 0,
-        no_slip["q_tf_stress"] != 0 and no_slip["rnn_tf_stress_on_constant_gradient_patch"] == 0,
+        tf_diagnostic["elliptic_curvature_tf_on_shell"] == 0
+        and tf_diagnostic["auxiliary_tf_stress_on_shell"] == tf_diagnostic["q_tf_stress"]
+        and tf_diagnostic["auxiliary_tf_stress_on_shell"] != 0,
+        tf_diagnostic["full_second_order_metric_equation_included"] is False
+        and tf_diagnostic["no_slip_verdict"] == "UNRESOLVED",
         fixed["alpha2_like_coefficient"] != 0,
         flrw["velocity_hessian_det"] != 0,
         flrw["eigenvalue_product"] < 0,
@@ -283,22 +365,23 @@ def main() -> int:
         "the Q primitive gives the exact exponential coefficient",
         "all four static Euler--Lagrange equations were obtained from the displayed action",
         "the action-derived scalar branch gives the exact MOND flux law",
-        "the auxiliary action does not directly vary the matter fields",
-        "full metric variation defeats scalar no slip on a constant-gradient MOND patch",
+        "the displayed auxiliary TF subset is generated consistently",
+        "the incomplete TF subset is not promoted to a no-slip verdict",
         "an external foliation gives nonzero preferred-frame anisotropy",
         "a clock foliation has no auxiliary velocity degeneracy on FLRW",
         "the clock-normal FLRW velocity block is indefinite",
     ]
-    for okay, label in zip(checks, labels):
+    passed_checks = [bool(okay) for okay in checks]
+    for okay, label in zip(passed_checks, labels):
         print(f"  [{'PASS' if okay else 'FAIL'}] {label}")
 
     print("\n[VERDICT]")
-    print("  Candidate B is DEAD.  It is better than the direct-density elliptic action: exact MOND and")
-    print("  bare-matter conservation arise from one action.  But the same Q(Y) term produces an uncancelled")
-    print("  trace-free metric stress, so Phi=Psi is not a full metric equation.  A fixed normal also violates")
-    print("  preferred-frame requirements; promoting it to a clock gives an indefinite FLRW kinetic block.")
-    print("  The a0-Lambda relation remains an external input in this candidate.")
-    return 0 if all(checks) else 1
+    print("  This script certifies only the scalar-isotropic MOND reduction and partial diagnostics.")
+    print("  It does not derive Phi and Psi independently at full second order, classify the clock pole,")
+    print("  or turn an unreduced Hessian sign into a ghost theorem.  Candidate B is killed instead by")
+    print("  the separate exact MOND/tensor-luminality obstruction.  The a0-Lambda relation remains input.")
+    print(f"  Diagnostic checks: {sum(passed_checks)}/{len(passed_checks)}")
+    return 0 if all(passed_checks) else 1
 
 
 if __name__ == "__main__":
