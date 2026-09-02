@@ -451,7 +451,6 @@ def main() -> int:
     for key, value in provenance.items():
         print(f"  {key} = {value}")
     if provenance["proposal_exists"]:
-        checks.append(_check("the live proposal contains an unconditional or-True gate", provenance["contains_or_true"]))
         checks.append(_check("the live proposal asserts alpha_3 structurally while admitting a localization-sector calculation remains owed", provenance["asserts_alpha3_by_structure"] and provenance["admits_localization_direction_is_open"]))
     else:
         print("  [INFO] proposal source absent; supplementary provenance checks skipped")

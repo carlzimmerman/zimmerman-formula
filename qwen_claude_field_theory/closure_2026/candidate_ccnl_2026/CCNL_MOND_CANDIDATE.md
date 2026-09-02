@@ -4,7 +4,10 @@
 > (`ccnl_inin_linear_scalar_2026.py`, `NONLOCAL_KERNEL_LINEAR_INSTABILITY_VERDICT.md`): the retarded kernel's scalar sector has a
 > longitudinal gradient instability for y ≳ 0.5 (Im ω = 0.2–0.5 ck, driven by f″, absent transversely, present for DW's own f) and a
 > negative-energy mode in the deep-MOND window. **CCNL fails gate 7; so does Deffayet–Woodard's kernel; the nonlocal door is closed at
-> this level.** Everything below stands as computed and is now the record of how the last door was walked through and found shut.
+> this level.** Later the same night: the spatially projected kernel $Z_\perp$ was tested and closed too (window shifts, ghost stays),
+> and a second independent kill was computed — on galaxy backgrounds the multiplier's value $\bar\xi=4\Psi_{\rm ph}$ gives
+> $c_T^2=1/(1-\bar\xi)$, $2\times10^9$ over GW170817 (`ccnl_kernel_tensor_speed_2026.py`). Everything below stands as computed and is
+> now the record of how the last door was walked through and found shut.
 
 
 **Status: a single explicit action that clears every known killer of every earlier candidate on every gate a local

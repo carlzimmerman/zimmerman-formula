@@ -63,3 +63,46 @@ philosophy is an IR modification.
 The radial-gradient-instability mechanism for μ′-carrying relativistic MOND is the repo's FC-KH result (08-31); its appearance in
 the nonlocal kernel is new here. The Dirac structure of the localised pair is the 09-02 audit. Literature: no perturbation analysis
 of the DW MOND kernel on a MOND background is known to us (DW 2026 §4.2 defers it; Woodard 2014 lists it as future work).
+
+---
+
+## Addendum 2026-09-02 (later): two more doors on the same kernel, both shut
+
+### The spatially projected kernel (the natural next door) — closed
+Tonight's mechanism pointed at the term $-4f'(Z)(\partial_tX)^2$ (the time derivative of the retarded scalar inside $f$). AeST avoids
+it by projecting its invariant onto the frame's spatial slice, and the kernel already carries a frame, so the same projection is free:
+$Z_\perp=(4c^4/a_0^2)\,q^{\mu\nu}\partial_\mu X\partial_\nu X$, $q=g+uu$. Statically $Z_\perp=Z$, so every static gate is untouched.
+Script `ccnl_projected_kernel_linear_2026.py` (13 checks, rc=0, `.out`), same machinery, same internal checks (GR limit, $\mu_\parallel$,
+$\Phi=\Psi$, the Dirac block). Result: the projection removes the $y=0.5$–$1$ instability but **not the disease**:
+
+| test | projected kernel |
+|---|---|
+| $f_{\exp}$, $y$-scan | real at $y\le1$; complex at $y=2,3,5,8$ ($\mathrm{Im}\,\omega/k=0.37,0.31,0.16,0.05$) |
+| DW's $f$ | complex at $y=1,2,4$ ($\mathrm{Im}\,\omega/k$ up to 0.45); real at 0.25, 0.5, 8 |
+| $f''\to0$ | stable (control) |
+| transverse | stable (longitudinal only) |
+| energy signs, real-frequency $y$ | a negative-energy mode at $y=0.10,0.25,0.5$ ($E=-188,-176,-166$) |
+
+The $f''$ ($\mu'$) term is spatial; projecting the time part of $Z$ cannot remove it, and it still couples through the indefinite
+localization pair. The window shifts up; the ghost stays. Closed at the same order.
+
+### A second, independent kill: $c_T\ne c$ on galaxy backgrounds
+Every "$c_T=c$" certification of this kernel class (including the Codex sf45 gate and this session's E1–E2) is the linear statement
+$R^{(1)}_{uu}[h^{TT}]=0$ on a background where the multiplier vanishes. On a real MOND galaxy it does not vanish: the static
+multiplier equation is $\nabla^2\bar\xi=8\nabla\cdot(f'\nabla\bar X)=4\nabla^2\Psi_{\rm ph}$, i.e. $\bar\xi=4\Psi_{\rm ph}$, sourced
+by the phantom density, of order $v^2/c^2$ in every MOND zone. Script `ccnl_kernel_tensor_speed_2026.py` (6 checks, rc=0, `.out`):
+- $R^{(2)}_{uu}[h^{TT}]=h\ddot h+\tfrac12\dot h^2\ne0$ (exact);
+- the TT dispersion of $\sqrt{-g}[R+\bar\xi R_{uu}]$ is $(1-\bar\xi)\omega^2-k^2=0$: $c_T^2=1/(1-\bar\xi)$ — the Case-3a form
+  $c_T^2=1/(1-2\lambda)$ with $\lambda=\bar\xi/2$; control $\bar\xi=0\Rightarrow c_T=1$;
+- Milky-Way-like galaxy, exponential law: $\Psi_{\rm ph}/c^2=-7.3\times10^{-7}$ at 8 kpc, $\bar\xi=-2.9\times10^{-6}$ (8 kpc),
+  $-2.0\times10^{-6}$ (30 kpc);
+- $|c_T/c-1|\approx|\bar\xi|/2=1.5\times10^{-6}$ against GW170817's $7\times10^{-16}$: **excess $2\times10^9$**.
+A path-average over the MOND zone's fraction of the GW170817 path reduces this by $10^{-1}$–$10^{-2}$, not by $10^9$. The retarded
+kernel, once localized on a galaxy, is a clock coupled to $R_{nn}$ — the class the 09-01 verdict already killed by luminality — and it
+inherits that kill independently of the instability. Deffayet–Woodard 2011/2014/2026 inherit it too.
+
+### Standing after tonight
+The retarded nonlocal MOND kernel fails at two independent gates (stability; tensor speed), for either interpolation function, for
+either time-projection of $Z$, and under either definition of the theory. The 09-01 "one door left" is closed by committed computation.
+Not covered, still: nonlocal form factors on the Weyl/Einstein tensor without a frame projection — but the slip-lock theorem says a
+frame-free single-metric completion cannot produce MOND lensing, so that residual is caught between two closed doors.

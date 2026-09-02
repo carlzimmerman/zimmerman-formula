@@ -85,6 +85,19 @@ The Legendre map is explicitly inverted. It generates:
 
 The count is unchanged in the `k=0` and `k!=0` sectors.
 
+Including the homogeneous scale-factor velocity does not restore degeneracy.
+For the integrated FLRW principal block on
+`(a_dot, X_dot, xi_dot)`, the audit obtains
+
+\[
+\det W_{\rm FLRW}
+=12a^7\left(1+\xi_{\rm bg}+3e^{-y}\right).
+\]
+
+On the candidate branch \(\xi_{\rm bg}=0\), this is strictly positive and the
+block has rank three for every finite \(y\). Thus mixing with the homogeneous
+metric mode does not convert the regular auxiliary pair into constraints.
+
 Choosing null/retarded initial values selects one history from this regular
 Cauchy problem. It does not turn the four auxiliary initial data into
 equal-time Dirac constraints. A numerical integration which starts with those
