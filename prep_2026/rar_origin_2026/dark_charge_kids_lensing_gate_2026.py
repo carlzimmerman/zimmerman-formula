@@ -50,7 +50,7 @@ def capture(a0, eN, nshell=50, xmax_kpc=6000.0):
         o = np.argsort(r_final); return float(np.interp(r, r_final[o], M_shell[o], left=0.0, right=M_shell.max()))
     return M_enc, (M_shell.max() if len(M_shell) else 0.0), (r_final.max() if len(r_final) else 0.0)
 # ---------------------------------------------------------------- Brouwer 2021 (the repo's loader)
-B = "/Users/carlzimmerman/new_physics/zimmerman-formula/real_research/data/lensing_rar/brouwer2021_rar"
+B = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "real_research", "data", "lensing_rar", "brouwer2021_rar")
 PC_PER_M = 3.086e16; G_PC = 4.52e-30; CONV = 4*G_PC*PC_PER_M
 def load_rar(fname):
     d = np.genfromtxt(os.path.join(B, fname), comments="#"); return d[:, 0], CONV*d[:, 1]/d[:, 4], CONV*d[:, 3]/d[:, 4]
