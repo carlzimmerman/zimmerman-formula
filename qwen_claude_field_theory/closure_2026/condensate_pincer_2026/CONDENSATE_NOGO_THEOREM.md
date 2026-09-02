@@ -84,3 +84,15 @@ while the Bullet's two dark peaks did. MOND plus the subcluster's stars supplies
 with m ≥ 2×10⁻²⁰ eV from the forest), and ballistic-and-cold forms galaxy halos: the pincer's double count. Abell 520's disputed
 dark core at the gas is the one counter-datum, recorded. The road to "no dark matter" ends at the Bullet cluster from a new
 direction: merger kinematics as a rigidity meter.
+
+## Third addendum (same day): the forest side of the last survivor, decided nonlinearly
+
+`ballistic_survivor_window_2026.py` (3/3) left one object: a 5–11 eV sterile fermion, Tremaine–Gunn-capped out of galaxies,
+ballistic through the Bullet, non-thermal, with the Lyman-α forest as its open side, since its free-streaming erases dark power
+below ~15 Mpc and MOND on baryons must regrow it. `mond_sheet_nbody_forest_gate_2026.py` (5/5) decides that in plane symmetry,
+where MOND is exact and no boost model is needed: from Silk-damped initial conditions, unfloored MOND lifts the k = 1–10 h/Mpc
+power by 100–1000× over Newton by z = 3 and still falls 1000–5000× short of the measured power, for any initial amplitude up to
+the full ΛCDM one. The external-field effect of the large-scale modes throttles the small-scale boost, which is what the
+"RMS-EFE" linear model said and the per-mode model missed. With the framework's derived floor there is no boost at all. The
+forest needs a component that clusters on 1–5 Mpc at z = 3, and such a component sits in galaxies. Three independent data,
+the CMB, the Bullet and the forest, now force the same cold, ballistic, galaxy-clustering object.
