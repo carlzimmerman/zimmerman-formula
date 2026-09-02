@@ -3,7 +3,7 @@
 **C. P. Zimmerman**
 *Briar Creek Tech · Charlotte, NC · carl@briarcreektech.com*
 
-*Version 2026-09-01 · DRAFT, not yet deposited. Companion to Zenodo [10.5281/zenodo.20779562](https://doi.org/10.5281/zenodo.20779562), two of whose statements this paper corrects (§7).*
+*Version 2026-09-01 · Zenodo [10.5281/zenodo.22242701](https://doi.org/10.5281/zenodo.22242701). Companion to Zenodo [10.5281/zenodo.20779562](https://doi.org/10.5281/zenodo.20779562), two of whose statements this paper corrects (§7).*
 
 ---
 
