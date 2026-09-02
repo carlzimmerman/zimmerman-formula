@@ -47,8 +47,9 @@ at κ = ½ is κ²/4π = 1/(16π) ≈ 2% of ρ_Λ — a real, small, computable 
 
 Alt footing (the same ¼ on ρ_total): a₀ = 1.13e−10.
 
-## What would count as a derivation
-A mechanism that produces the **density form** c√(Gρ_Λ) with a computed rational prefactor — the graviton-bath CTP
-nonlinear drift (the residual of `real_research/reviews/mi_cubic_noise_ctp_2026.py`) is the only lane where a
-rational κ is even the right kind of number. It has not been evaluated. Until it is, "a₀² = GV/4" is a constitutive
-relation with one fitted number, and must be cited that way. Layer A untouched.
+## What would count as a derivation — EVALUATED the same night
+The graviton-bath CTP nonlinear drift was the only lane where a rational κ was the right kind of number. It is evaluated in
+`graviton_bath_ctp_drift_2026.py` / `GRAVITON_BATH_CTP_VERDICT.md`: the drift exists, ⟨g₂h_uu²⟩ = m(n/12π)ℓ_P²(a²+c²H²), but every
+Λ-dependent term is O(ħ) (theorem: T_GH ∝ ħ), its size is n/(6S_dS) ≈ 5e−124 of the de Sitter acceleration, it is ∝ r, and it has no
+MOND shape (f = T² ⇒ q = 0). **Every named derivation lane for κ = ½ is now closed.** "a₀² = GV/4" is a constitutive relation with
+one fitted number, 0.465–0.551, and must be cited that way. Layer A untouched.
