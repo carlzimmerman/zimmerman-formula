@@ -143,9 +143,16 @@ Psi = sp.Function('Psi'); r = sp.symbols('r', positive=True); a0s, cc, Gs, rho =
 fZ = sp.Function('f')
 L_static = -(cc**4/(8*sp.pi*Gs))*sp.diff(Psi(r), r)**2 + (a0s**2/(16*sp.pi*Gs))*fZ((4*cc**4/a0s**2)*sp.diff(Psi(r), r)**2) - rho*cc**2*Psi(r)
 EL = sp.euler_equations(L_static, [Psi(r)], [r])[0].lhs
-mu_sym = sp.simplify(-sp.diff(L_static, sp.diff(Psi(r), r))/((cc**4/(4*sp.pi*Gs))*sp.diff(Psi(r), r)))   # the coefficient of grad Psi in the flux
-check("B1 the flux coefficient (the MOND mu) is mu = 1 - 2 f'(Z) exactly, Z = 4 g^2/a0^2 = 4 y^2",
-      sp.simplify(mu_sym - (1 - 2*sp.Subs(sp.Derivative(fZ(Z), Z), Z, (4*cc**4/a0s**2)*sp.diff(Psi(r), r)**2).doit())) == 0 or True, f"mu = {mu_sym}")
+# derive the flux coefficient from the Lagrangian with an EXPLICIT f (DW's), then compare with 1 - 2 f'(Z): a real check
+f_dw_expr = lambda Zv: sp.Rational(1, 2)*Zv*sp.exp(-sp.sqrt(Zv)/3)
+L_static_dw = -(cc**4/(8*sp.pi*Gs))*sp.diff(Psi(r), r)**2 + (a0s**2/(16*sp.pi*Gs))*f_dw_expr((4*cc**4/a0s**2)*sp.diff(Psi(r), r)**2) - rho*cc**2*Psi(r)
+flux_dw = -sp.diff(L_static_dw, sp.diff(Psi(r), r))                      # the flux conjugate to grad Psi
+mu_sym = sp.simplify(flux_dw/((cc**4/(4*sp.pi*Gs))*sp.diff(Psi(r), r)))   # normalised so that GR gives 1
+Zsub = (4*cc**4/a0s**2)*sp.diff(Psi(r), r)**2
+Zt = sp.Symbol('Zt', positive=True)
+mu_expected_dw = (1 - 2*sp.diff(f_dw_expr(Zt), Zt)).subs(Zt, Zsub)
+check("B1 the flux coefficient (the MOND mu) derived from the static Lagrangian is mu = 1 - 2 f'(Z) exactly, Z = 4 c^4 |grad Psi|^2/a0^2 = 4 y^2 (explicit f, no placeholder)",
+      sp.simplify(mu_sym - mu_expected_dw) == 0, f"mu = {sp.simplify(mu_sym)}")
 f_dw = sp.Rational(1, 2)*Z*sp.exp(-sp.sqrt(Z)/3)
 mu_dw = sp.simplify((1 - 2*sp.diff(f_dw, Z)).subs(Z, 4*y**2))
 check("B2 DW's f(Z) = Z/2 e^{-sqrt(Z)/3} gives mu(y) = 1 - (1 - y/3) e^{-2y/3}  (reproduces the audit's mu_eff independently)",

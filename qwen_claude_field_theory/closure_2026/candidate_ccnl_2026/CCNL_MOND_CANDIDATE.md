@@ -1,4 +1,11 @@
-# CCNL-MOND — Condensate-Clock Nonlocal MOND: the fried-chicken candidate (2026-09-02)
+# CCNL-MOND — Condensate-Clock Nonlocal MOND: the fried-chicken candidate (2026-09-02) — **DEAD at gate 7 (same night)**
+
+> **2026-09-02, later the same night.** The owed in-in phase-space item was computed at linear order on a MOND background
+> (`ccnl_inin_linear_scalar_2026.py`, `NONLOCAL_KERNEL_LINEAR_INSTABILITY_VERDICT.md`): the retarded kernel's scalar sector has a
+> longitudinal gradient instability for y ≳ 0.5 (Im ω = 0.2–0.5 ck, driven by f″, absent transversely, present for DW's own f) and a
+> negative-energy mode in the deep-MOND window. **CCNL fails gate 7; so does Deffayet–Woodard's kernel; the nonlocal door is closed at
+> this level.** Everything below stands as computed and is now the record of how the last door was walked through and found shut.
+
 
 **Status: a single explicit action that clears every known killer of every earlier candidate on every gate a local
 Lagrangian can compute, with 29 committed checks passing (`ccnl_mond_gates_2026.py`, rc=0, output in `.out`; `MUTATE=1`
