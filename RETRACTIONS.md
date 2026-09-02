@@ -1056,3 +1056,5 @@ argument (dS-Unruh Hubble floor, `prep_2026/mi_covariant_pt` 17/17) makes MOND i
 yardsticks are the framework's footing. Without the floor, a warm-dust + MOND-baryon cosmology matches the measured z = 3
 small-scale power to 2× (a works) but overproduces the ≥ 100 Mpc power 5–13× for every μ; no dark field at all is tilted
 30–200× in shape. The exclusions above stand on the framework's footing.
+
+**Correction (same day, later):** the "matches the measured z = 3 small-scale power to 2× (a works)" line above came from the linear per-mode boost model, which ignores the external-field effect of the large-scale modes. The exact 1-D MOND sheet N-body (`condensate_pincer_2026/mond_sheet_nbody_forest_gate_2026.py`, 4/4) finds nonlinear MOND on baryons 1000–5000× short of the forest at k = 1–10 h/Mpc, z = 3, for any initial amplitude. That works is withdrawn; the per-mode overproduction numbers are not physics either.

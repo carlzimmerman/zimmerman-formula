@@ -90,9 +90,10 @@ framework's own footing or ΛCDM's was tested in `mond_growth_framework_footing_
   Hubble floor, X = Z²(H/H_Λ)² + (a_pec/a₀)². With it, MOND changes linear growth by at most 6% at every k, z and both
   a₀ footings (1a). The Newtonian yardsticks are therefore the framework's footing, and the pinned Horn 1 underproduces
   the measured clustering by 40–600× at k ≥ 0.2 h/Mpc (1c).
-- **Without the floor** (a Nusser/Sanders MOND cosmology, which the framework's derivation rejects): the pinned warm dust
-  plus MOND-grown baryons lands within 2× of the measured z = 3 power at k = 1–10 h/Mpc, both footings, where the
-  Newtonian run is 300–600× low (1b, a works). It overproduces the k ≤ 0.2 h/Mpc power 5–13× at z = 3 and makes 100-Mpc
+- **Without the floor** (a Nusser/Sanders MOND cosmology, which the framework's derivation rejects): the linear per-mode
+  boost model put the pinned warm dust plus MOND-grown baryons within 2× of the measured z = 3 power at k = 1–10 h/Mpc (1b).
+  **WITHDRAWN 2026-09-02 (same day):** the per-mode model ignores the external-field effect of the large-scale modes; the exact
+  1-D sheet N-body (`mond_sheet_nbody_forest_gate_2026.py`) finds a 1000–5000× shortfall instead. It overproduces the k ≤ 0.2 h/Mpc power 5–13× at z = 3 and makes 100-Mpc
   scales nonlinear by z = 0 (1b′). No μ⁻¹ in 0.1–5 Mpc fixes the shape: the large-scale overproduction is μ-independent (1d).
 - **No dark field at all** (Ω_m = Ω_b, MOND from z = 20): with the floor, nothing grows (2a); without it, the z = 3
   spectrum is tilted 30–200× in power between k = 0.05 and 10 h/Mpc relative to the measured shape, for every IC
