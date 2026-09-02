@@ -33,7 +33,7 @@ GW170817: c_T = 1 EXACTLY regardless of c₂, c₄ (they contain no tensor modes
 | 1 | exact μ=1−e^{−y}, deep-MOND v⁴=GM_b a₀ | **PASS — SOLID** | G(y) kernel; RAR 0.108 dex; BTFR a theorem of the a₀-line |
 | 2 | N_grav=2 (+≤1 clock scalar) | **RESTATED (see below)** | 2 tensor + aether (2 spin-1, 1 spin-0) + φ = 6; no-ghost THEOREM at quadratic order (v9); spin-0 health at the repair locus OWED |
 | 3 | Φ=Ψ, γ_PPN=1 | **PASS — SOLID** | Φ and Ψ derived independently; lensing 21.2σ→0.60σ; Mistele KiDS 40 kpc–2.2 Mpc |
-| 4 | full PPN β,γ,α₁,α₂,α₃ | **γ PASS, α₃=0 PASS (exact), β SAFE (22+ orders); α₁, α₂ = THE OWED CALC** | at c₂=c₄=0: α₁=−2(K_B+2), α₂ ~1e-3 (KILL, V9_PPN_KILL_VERDICT.md). With c₂, c₄ free: NOT-COMPUTED — the decisive swing |
+| 4 | full PPN β,γ,α₁,α₂,α₃ | 🔴 **KILL — GENERALIZED (2026-09-01, GEN_AEST_PPN_VERDICT.md)** | COMPUTED with c₂,c₄ free: α₁ = −4c₁₄ − 4(2−K_B)/(J_Y+1); α₁=0 forces c₁₄=−(2−K_B)/(J_Y+1)<0 = spin-1 GHOST. c₂ transverse-blind. The MOND-generating drag (2−K_B) is the irreducible obstruction. γ=1, α₃=0 exact. |
 | 5 | ∇_μT^{μν}=0 for baryons | **PASS — by construction** | single metric, minimal S_m ⇒ Bianchi identity; script owed for the record |
 | 6 | c_T=c, positive tensor KE | **PASS — SOLID, exact** | c₁₃=0; c₂,c₄ tensor-blind; stage 22 SVT |
 | 7 | stability | **no-ghost THEOREM (quadratic) SOLID; aether spin-0 at repair locus OWED; no instantaneous channel iff c₁₄>0 finite** | c_S² = c₂(2−c₁₄)/(c₁₄(2+3c₂)) must be finite & positive; the repair must NOT land at c₁₄=0 |
@@ -55,7 +55,15 @@ This theory meets 2′ at quadratic order by theorem. Its dark sector is not a b
 condensate whose conserved shift-charge carries Ω_dm to the CMB is the SAME field whose minimum gives
 w=−1. **The MOND scale and dark energy are one field's two faces — that is why a₀ ∝ c√(Gρ_Λ).**
 
-## The one decisive calculation (launched 2026-09-01)
+## ⭐ RESOLVED 2026-09-01 — gate 4 is a KILL, and it GENERALIZES (GEN_AEST_PPN_VERDICT.md)
+Restoring c₂, c₄ does NOT open a healthy PPN-null locus. Closed form (verified):
+**α₁ = −4c₁₄ − 4(2−K_B)/(J_Y+1)**, c₁₄=K_B+c₄. Zeroing α₁ forces c₁₄<0 = spin-1 ghost; c₂ is
+transverse-blind. The AeST scalar drag 2(2−K_B)J·∇φ — the term that GENERATES MOND — supplies the
+irreducible negative piece. So the whole Einstein-aether + shift-scalar class fails preferred-frame
+PPN on the ghost-free, c_T=1 locus. The completion's surviving option is MOND-with-a-dark-field
+(universal shift-charge) or the nonlocal door. Layer A untouched.
+
+## The (now-answered) decisive calculation
 Generalized-aether PPN: recompute η_K, α₁, α₂ with c₂, c₄ free (c₁ = −c₃ = K_B, c₁₃ = 0), scalar drag
 2(2−K_B)a·∇φ included, at the physical deep field J_Y = μ(u₀) = 1, using the FJ-controlled two-gauge
 boosted-source pipeline (aest_j10/wf3_*). Pure-EA anchor: α₁ = −4c₁₄, so c₄ = −K_B zeroes it there.

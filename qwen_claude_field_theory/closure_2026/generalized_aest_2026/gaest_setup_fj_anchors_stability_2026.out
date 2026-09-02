@@ -1,0 +1,190 @@
+==========================================================================
+0. DICTIONARY (doc -> FJ)
+==========================================================================
+  FJ mostly-plus: L_EA = -c1 (DA)^2_{aa} - c2 (D.A)^2 - c3 (DA)^2_{cross} + c4 a.a
+  doc writes     : + c2_doc (D.A)^2 + c4_doc a.a
+  => c2_FJ = -c2_doc , c4_FJ = +c4_doc ; c1 = -c3 = K_B from -(K_B/2)F^2 (part-1 tie-in)
+  [FLAG] THE_GENERALIZED_COMPLETION.md must either flip the sign of its c2 term or
+         define c2 through this map; its gate-7 formula c_S^2=c2(2-c14)/(c14(2+3c2)) is
+         the FJ-c2 formula, so as written the doc mixes conventions.
+
+==========================================================================
+1. FOSTER-JACOBSON ANCHORS
+==========================================================================
+  [PASS] alpha_2 (OMW/Jacobson form) == alpha_2 (FJ gr-qc/0509083 form)
+  [PASS] published alpha=0 surface zeroes alpha_1
+  [PASS] published alpha=0 surface zeroes alpha_2
+  [PASS] mutation control: alpha_1 with c1c4 -> -c1c4 FAILS the surface test
+  [PASS] mutation control: alpha_2 with 3c2 -> 2c2 FAILS the surface test
+  [PASS] wf3 control target c=(3/10, 1/5, 1/10, 1/20): alpha_1=-5/13, alpha_2=-461/572
+  [PASS] wf3 control target c=(1/5, 2/5, -1/10, 1/10): alpha_1=-24/37, alpha_2=-428/3145
+
+  --- c13 = 0 plane: c1 = K_B, c3 = -K_B, c2, c4 free ---
+  alpha_1 = -4*K_B - 4*c4
+  alpha_2 = -(K_B + c4)*(2*K_B*c2 + K_B + 2*c2*c4 - c2 + c4)/(c2*(K_B + c4 - 2))
+  G_N/G   = -2/(K_B + c4 - 2)
+  [PASS] alpha_1 == -4 c14 = -4(K_B+c4) on c13=0
+  [PASS] alpha_2 == c14(c14 - c2 + 2 c2 c14)/(c2(2-c14)) on c13=0
+  [PASS] alpha_2 on c13=0 is proportional to c14 (alpha_1=alpha_2=0 <=> c14=0 in pure EA)
+  [PASS] alpha_2 = 0 ALONE at c14 = c2/(1+2c2) with c14 != 0
+  [PASS] alpha_1 at c2=c4=0 == -4K_B (Maxwell anchor)
+  [PASS] alpha_2 pole at c2 -> 0+ with c4=0, K_B=1/5 (c123=0 strong-coupling point)
+  published alpha=0 surface at c13=0 requires c2 = 0, c4 = -K_B  (=> c14 = 0 AND c123 = 0)
+  [PASS] alpha=0 surface meets c13=0 only at (c2,c4)=(0,-K_B)
+  [PASS] that point has c_S^2 = 0/0 (doubly degenerate)
+
+  --- ANCHOR TABLE (pure EA, scalar frozen): the generalized pipeline must hit these ---
+  (K_B, c2, c4) -> alpha_1, alpha_2, G_N/G, c_V^2, c_S^2
+    (1/5,1/10,1/20): alpha_1=-1  alpha_2=2/7  G_N/G=8/7  c_V^2=4/5  c_S^2=7/23
+    (1/5,1/10,-1/10): alpha_1=-2/5  alpha_2=1/95  G_N/G=20/19  c_V^2=2  c_S^2=19/23
+    (1/10,1/20,0): alpha_1=-2/5  alpha_2=6/95  G_N/G=20/19  c_V^2=1  c_S^2=19/43
+    (1/4,1/5,-1/8): alpha_1=-1/2  alpha_2=-1/120  G_N/G=16/15  c_V^2=2  c_S^2=15/13
+    (1/20,1/100,-1/25): alpha_1=-1/25  alpha_2=1/9950  G_N/G=200/199  c_V^2=5  c_S^2=199/203
+    (1/5,0,1/20): alpha_1=-1  alpha_2=POLE (c123=0)  G_N/G=8/7  c_V^2=4/5  c_S^2=nan
+
+==========================================================================
+2. BANKED c2=c4=0 ANCHOR (base AeST, scalar live) -- wf3_eta_K_final.out
+==========================================================================
+  eta_K = (K_B J_Y + 2)/(J_Y + 1),  alpha_1 = -4 eta_K,  alpha_3 = 0
+  [PASS] J_Y -> oo recovers pure-EA -4K_B
+  [PASS] J_Y = 1 gives -2(K_B+2)
+  [PASS] all 10 banked wf3 grid values alpha_1(0) reproduced by -4 eta_K
+  => generalized solve at c2=c4=0 MUST return alpha_1 = -4(K_B J_Y+2)/(J_Y+1); e.g. (K_B,J_Y)=(1/5,1): -22/5
+  The decisive unknown: d eta_K / d c4 at fixed K_B, J_Y=1 -- does the '+2' (scalar drag) scale with c14?
+  If eta_K(c4) = (c14 J_Y + 2)/(J_Y+1) [drag c4-blind]  -> alpha_1 -> -4 at c14->0: DEAD for all c2,c4.
+  If eta_K(c4) = c14 (J_Y + 2/K_B)/(J_Y+1) [drag ~ c14] -> zero only at c14=0: instantaneous, DEAD.
+  Only a c4-dependence that is NOT proportional to c14 and crosses zero at 0<c14<2 can pass. NOT-COMPUTED.
+
+==========================================================================
+3. STABILITY REGION on c13=0 (c2, c4 free), speeds from part-1 derivation
+==========================================================================
+  [PASS] c_S^2 on c13=0 == Jacobson eq.13 restricted
+  [PASS] c_V^2 on c13=0 == Jacobson eq.12 restricted
+  [PASS] c_S^2 -> +oo as c14 -> 0+ (instantaneous scalar) for c2>0
+  [PASS] c_V^2 -> +oo as c14 -> 0+ (instantaneous vector)
+  [PASS] c_S^2 -> 0 as c2 -> 0 (frozen spin-0 = FJ alpha_2 pole)
+  c_V^2 >= 1  <=>  c4 <= 0   (boundary c4 = [0] )
+  [PASS] c_V^2 >= 1 <=> c4 <= 0 (given K_B>0, c14>0)
+  c_S^2 = 1 boundary: c2 = [(-K_B - c4)/(2*K_B + 2*c4 - 1)]   i.e. c2 = c14/(1-2c14) for c14<1/2
+  [PASS] c_S^2 >= 1 <=> c2 >= c14/(1-2c14) for 0<c14<1/2, c2>0
+  [PASS] BBN form reduces to 1-K_B/2 at c2=c4=0 (repo stage-50 K_B<=1/4 bound)
+  BBN upper edge (G_cos/G_N = 7/8): c2 <=  -2*(4*K_B + 4*c4 - 1)/21  = (2/21)(1 - 4 c14)
+  BBN lower edge (G_cos/G_N = 9/8): c2 >=  -2*(4*K_B + 4*c4 + 1)/27  (negative for small c14; inactive on c2>0)
+  Cerenkov(c_S^2>=1) AND BBN(7/8) feasible iff c14 <= c14* = 1/16 = 0.0625
+  [INHERITED band: BBN form is the pure-EA Carroll-Lim ratio; AeST's scalar sector shifts G_cos -- SUGGESTIVE only]
+
+  Healthy region (no-ghost + real speeds + no instantaneous channel), c13=0:
+     0 < c14 = K_B + c4 < 2   AND   ( c2 > 0  OR  c2 < -2/3 )
+     [c2 < -2/3 branch: G_cos < 0 (1+3c2/2 < 0) -> cosmologically dead; BBN kills it]
+  + Cerenkov (standard EA position; superluminal REQUIRED, not merely allowed):
+     -K_B < c4 <= 0   AND   c2 >= c14/(1-2c14)
+  + BBN (inherited): c2 <= (2/21)(1-4c14)
+
+  K_B = 1/20:
+    no-ghost/finite: c4 in (-1/20, 39/20) open ; c2>0 (or c2<-2/3)
+    Cerenkov: c4 in (-1/20, 0] ; c2 >= (K_B+c4)/(1-2(K_B+c4)) : at c4=0 -> c2 >= 1/18 = 0.0556
+    BBN: c2 <= (2/21)(1-4(K_B+c4)) : at c4=0 -> c2 <= 8/105 = 0.0762
+    Cerenkov+BBN jointly feasible at c4=0? True ; jointly feasible for c4 <= 1/80 = 0.0125
+    pure-EA alpha_1 = -4 c14 in (-1/5, 0) ; LLR |alpha_1|<1e-4 needs c14 < 2.5e-5 i.e. c4 < -0.049975 (sliver at the instantaneous wall)
+    scan (rows c4 from -K_B..+0.3, cols c2 from -1..0.4): H=healthy  C=healthy+Cerenkov  B=healthy+Cerenkov+BBN  .=unhealthy
+           c2: -1.00 -0.90 -0.80 -0.70 -0.60 -0.50 -0.40 -0.30 -0.20 -0.10 +0.00 +0.10 +0.20 +0.30 +0.40
+    c4=-0.050    .     .     .     .     .     .     .     .     .     .     .     .     .     .     .  
+    c4=-0.015    C     C     C     C     .     .     .     .     .     .     .     C     C     C     C  
+    c4=+0.020    H     H     H     H     .     .     .     .     .     .     .     H     H     H     H  
+    c4=+0.055    H     H     H     H     .     .     .     .     .     .     .     H     H     H     H  
+    c4=+0.090    H     H     H     H     .     .     .     .     .     .     .     H     H     H     H  
+    c4=+0.125    H     H     H     H     .     .     .     .     .     .     .     H     H     H     H  
+    c4=+0.160    H     H     H     H     .     .     .     .     .     .     .     H     H     H     H  
+    c4=+0.195    H     H     H     H     .     .     .     .     .     .     .     H     H     H     H  
+    c4=+0.230    H     H     H     H     .     .     .     .     .     .     .     H     H     H     H  
+    c4=+0.265    H     H     H     H     .     .     .     .     .     .     .     H     H     H     H  
+    c4=+0.300    H     H     H     H     .     .     .     .     .     .     .     H     H     H     H  
+    (left block = the c2 < -2/3 branch: locally healthy but G_cos = G/(1+3c2/2) < 0 -> cosmologically dead)
+    fine corridor scan, c4 in (-K_B, 0], c2 in [0.01, 0.20] step 0.01 (B = healthy+Cerenkov+BBN):
+           c2: 0.01 0.02 0.03 0.04 0.05 0.06 0.07 0.08 0.09 0.10 0.11 0.12 0.13 0.14 0.15 0.16 0.17 0.18 0.19 0.20
+    c4=-0.040   H   B   B   B   B   B   B   B   B   C   C   C   C   C   C   C   C   C   C   C 
+    c4=-0.030   H   H   B   B   B   B   B   B   C   C   C   C   C   C   C   C   C   C   C   C 
+    c4=-0.020   H   H   H   B   B   B   B   B   C   C   C   C   C   C   C   C   C   C   C   C 
+    c4=-0.010   H   H   H   H   B   B   B   B   C   C   C   C   C   C   C   C   C   C   C   C 
+    c4=+0.000   H   H   H   H   H   B   B   C   C   C   C   C   C   C   C   C   C   C   C   C 
+    B-cells found: 25  (analytic: B exists iff some scanned c4 <= c14* - K_B = 1/80: True)
+  [PASS] K_B=1/20: corridor scan agrees with the analytic feasibility c14 <= 1/16
+
+  K_B = 1/10:
+    no-ghost/finite: c4 in (-1/10, 19/10) open ; c2>0 (or c2<-2/3)
+    Cerenkov: c4 in (-1/10, 0] ; c2 >= (K_B+c4)/(1-2(K_B+c4)) : at c4=0 -> c2 >= 1/8 = 0.1250
+    BBN: c2 <= (2/21)(1-4(K_B+c4)) : at c4=0 -> c2 <= 2/35 = 0.0571
+    Cerenkov+BBN jointly feasible at c4=0? False ; jointly feasible for c4 <= -3/80 = -0.0375
+    pure-EA alpha_1 = -4 c14 in (-2/5, 0) ; LLR |alpha_1|<1e-4 needs c14 < 2.5e-5 i.e. c4 < -0.099975 (sliver at the instantaneous wall)
+    scan (rows c4 from -K_B..+0.3, cols c2 from -1..0.4): H=healthy  C=healthy+Cerenkov  B=healthy+Cerenkov+BBN  .=unhealthy
+           c2: -1.00 -0.90 -0.80 -0.70 -0.60 -0.50 -0.40 -0.30 -0.20 -0.10 +0.00 +0.10 +0.20 +0.30 +0.40
+    c4=-0.100    .     .     .     .     .     .     .     .     .     .     .     .     .     .     .  
+    c4=-0.060    C     C     C     C     .     .     .     .     .     .     .     C     C     C     C  
+    c4=-0.020    C     C     C     C     .     .     .     .     .     .     .     C     C     C     C  
+    c4=+0.020    H     H     H     H     .     .     .     .     .     .     .     H     H     H     H  
+    c4=+0.060    H     H     H     H     .     .     .     .     .     .     .     H     H     H     H  
+    c4=+0.100    H     H     H     H     .     .     .     .     .     .     .     H     H     H     H  
+    c4=+0.140    H     H     H     H     .     .     .     .     .     .     .     H     H     H     H  
+    c4=+0.180    H     H     H     H     .     .     .     .     .     .     .     H     H     H     H  
+    c4=+0.220    H     H     H     H     .     .     .     .     .     .     .     H     H     H     H  
+    c4=+0.260    H     H     H     H     .     .     .     .     .     .     .     H     H     H     H  
+    c4=+0.300    H     H     H     H     .     .     .     .     .     .     .     H     H     H     H  
+    (left block = the c2 < -2/3 branch: locally healthy but G_cos = G/(1+3c2/2) < 0 -> cosmologically dead)
+    fine corridor scan, c4 in (-K_B, 0], c2 in [0.01, 0.20] step 0.01 (B = healthy+Cerenkov+BBN):
+           c2: 0.01 0.02 0.03 0.04 0.05 0.06 0.07 0.08 0.09 0.10 0.11 0.12 0.13 0.14 0.15 0.16 0.17 0.18 0.19 0.20
+    c4=-0.080   H   H   B   B   B   B   B   B   C   C   C   C   C   C   C   C   C   C   C   C 
+    c4=-0.060   H   H   H   H   B   B   B   B   C   C   C   C   C   C   C   C   C   C   C   C 
+    c4=-0.040   H   H   H   H   H   H   B   C   C   C   C   C   C   C   C   C   C   C   C   C 
+    c4=-0.020   H   H   H   H   H   H   H   H   H   C   C   C   C   C   C   C   C   C   C   C 
+    c4=+0.000   H   H   H   H   H   H   H   H   H   H   H   H   C   C   C   C   C   C   C   C 
+    B-cells found: 11  (analytic: B exists iff some scanned c4 <= c14* - K_B = -3/80: True)
+  [PASS] K_B=1/10: corridor scan agrees with the analytic feasibility c14 <= 1/16
+
+  K_B = 1/4:
+    no-ghost/finite: c4 in (-1/4, 7/4) open ; c2>0 (or c2<-2/3)
+    Cerenkov: c4 in (-1/4, 0] ; c2 >= (K_B+c4)/(1-2(K_B+c4)) : at c4=0 -> c2 >= 1/2 = 0.5000
+    BBN: c2 <= (2/21)(1-4(K_B+c4)) : at c4=0 -> c2 <= 0 = 0.0000
+    Cerenkov+BBN jointly feasible at c4=0? False ; jointly feasible for c4 <= -3/16 = -0.1875
+    pure-EA alpha_1 = -4 c14 in (-1, 0) ; LLR |alpha_1|<1e-4 needs c14 < 2.5e-5 i.e. c4 < -0.249975 (sliver at the instantaneous wall)
+    scan (rows c4 from -K_B..+0.3, cols c2 from -1..0.4): H=healthy  C=healthy+Cerenkov  B=healthy+Cerenkov+BBN  .=unhealthy
+           c2: -1.00 -0.90 -0.80 -0.70 -0.60 -0.50 -0.40 -0.30 -0.20 -0.10 +0.00 +0.10 +0.20 +0.30 +0.40
+    c4=-0.250    .     .     .     .     .     .     .     .     .     .     .     .     .     .     .  
+    c4=-0.195    C     C     C     C     .     .     .     .     .     .     .     C     C     C     C  
+    c4=-0.140    C     C     C     C     .     .     .     .     .     .     .     H     C     C     C  
+    c4=-0.085    C     C     C     C     .     .     .     .     .     .     .     H     H     C     C  
+    c4=-0.030    C     C     C     C     .     .     .     .     .     .     .     H     H     H     C  
+    c4=+0.025    H     H     H     H     .     .     .     .     .     .     .     H     H     H     H  
+    c4=+0.080    H     H     H     H     .     .     .     .     .     .     .     H     H     H     H  
+    c4=+0.135    H     H     H     H     .     .     .     .     .     .     .     H     H     H     H  
+    c4=+0.190    H     H     H     H     .     .     .     .     .     .     .     H     H     H     H  
+    c4=+0.245    H     H     H     H     .     .     .     .     .     .     .     H     H     H     H  
+    c4=+0.300    H     H     H     H     .     .     .     .     .     .     .     H     H     H     H  
+    (left block = the c2 < -2/3 branch: locally healthy but G_cos = G/(1+3c2/2) < 0 -> cosmologically dead)
+    fine corridor scan, c4 in (-K_B, 0], c2 in [0.01, 0.20] step 0.01 (B = healthy+Cerenkov+BBN):
+           c2: 0.01 0.02 0.03 0.04 0.05 0.06 0.07 0.08 0.09 0.10 0.11 0.12 0.13 0.14 0.15 0.16 0.17 0.18 0.19 0.20
+    c4=-0.200   H   H   H   H   H   B   B   C   C   C   C   C   C   C   C   C   C   C   C   C 
+    c4=-0.150   H   H   H   H   H   H   H   H   H   H   H   H   C   C   C   C   C   C   C   C 
+    c4=-0.100   H   H   H   H   H   H   H   H   H   H   H   H   H   H   H   H   H   H   H   H 
+    c4=-0.050   H   H   H   H   H   H   H   H   H   H   H   H   H   H   H   H   H   H   H   H 
+    c4=+0.000   H   H   H   H   H   H   H   H   H   H   H   H   H   H   H   H   H   H   H   H 
+    B-cells found: 2  (analytic: B exists iff some scanned c4 <= c14* - K_B = -3/16: True)
+  [PASS] K_B=1/4: corridor scan agrees with the analytic feasibility c14 <= 1/16
+
+==========================================================================
+4. THE PURE-EA alpha_1=0 LOCUS IS THE INSTANTANEOUS WALL
+==========================================================================
+  [PASS] alpha_1^{EA} = 0 on c13=0 <=> c14 = 0
+  [PASS] at c14=0 the aether time-kinetic coefficient (c1+c4) vanishes -> A^i non-propagating (instantaneous)
+  => in PURE EA on c13=0, alpha_1 = alpha_2 = 0 is reachable only at the excluded corner c14 = 0.
+     OMW 1802.04303 eq 3.13/3.20: surviving pure-EA sliver 0 < c14 <= 2.5e-5, c14 <~ c2 <~ 0.095.
+     The generalized-AeST question (owed to the solve, NOT computed here): does the scalar drag
+     2(2-K_B) a.grad(phi) shift the alpha_1 zero to c14 > 0 while alpha_2 also vanishes there?
+
+==========================================================================
+SUMMARY
+==========================================================================
+  alpha_1 = -4c14, alpha_2 = c14(c14-c2+2c2c14)/(c2(2-c14)) on c13=0   [SOLID, FJ-transcribed + self-consistent]
+  healthy region: 0<c14<2, c2>0 (c2<-2/3 cosmologically dead); Cerenkov: c4<=0, c2>=c14/(1-2c14)
+  BBN(inherited): c2<=(2/21)(1-4c14); Cerenkov+BBN feasible only for c14 <= 0.0625
+  pure-EA alpha=0 locus = c14=0 = instantaneous wall (EXCLUDED)          [SOLID]
+  FAILED CHECKS: 0 []
