@@ -1,0 +1,56 @@
+============================================================================================================
+A. the filter on the strict background: W(k, z) for xi = 330, 403, 477 (reproduces the proposal's numbers)
+============================================================================================================
+  xi = 329: W(0.05, z=3) = 0.446, W(1, z=3) = 0.9969, W(10, z=3) = 0.99997; W(0.05, z=1100) = 1.3e-03, W(0.2, z=1100) = 2.0e-02; W(1, z=0) = 0.988
+  xi = 403: W(0.05, z=3) = 0.349, W(1, z=3) = 0.9954, W(10, z=3) = 0.99995; W(0.05, z=1100) = 8.4e-04, W(0.2, z=1100) = 1.3e-02; W(1, z=0) = 0.982
+  xi = 477: W(0.05, z=3) = 0.277, W(1, z=3) = 0.9935, W(10, z=3) = 0.99993; W(0.05, z=1100) = 6.0e-04, W(0.2, z=1100) = 9.5e-03; W(1, z=0) = 0.975
+  [PASS] A1 the proposal's transfer numbers reproduce on the strict background (W(0.05,3) = 0.35 +/- 0.02 at xi = 403; W(1,3) > 0.99; W(0.2,1100) < 0.02)
+
+============================================================================================================
+B. the growth solver, strict no-DM, no floor: P_fw/P_measured at z = 3 (and z = 0) for k = 0.05, 0.2, 1, 3, 10 h/Mpc
+============================================================================================================
+  model    reading     xi foot          k=0.05     k=0.2     k=1.0     k=3.0    k=10.0   | z=0:   k=0.05    k=0.2    k=1.0    k=3.0   k=10.0   tilt(10/0.05,z=3)
+  PERMODE  SUPPRESS     0 canonical        219       352  1.87e+03  9.75e+03  6.02e+04   | z=0:      555      908 5.07e+03 2.65e+04 1.63e+05          274
+  PERMODE  SUPPRESS     0 alt              317       509  2.72e+03  1.42e+04  8.77e+04   | z=0:      803 1.32e+03 7.39e+03 3.86e+04 2.38e+05          277
+  PERMODE  SUPPRESS   329 canonical      0.851      97.4  1.64e+03   9.6e+03  6.01e+04   | z=0:      5.9      377 4.66e+03 2.62e+04 1.63e+05     7.06e+04
+  PERMODE  SUPPRESS   403 canonical      0.316      67.5  1.56e+03  9.52e+03     6e+04   | z=0:     2.22      288 4.51e+03 2.61e+04 1.63e+05      1.9e+05
+  PERMODE  SUPPRESS   403 alt            0.431      97.1  2.27e+03  1.39e+04  8.75e+04   | z=0:     3.12      416 6.57e+03  3.8e+04 2.37e+05     2.03e+05
+  PERMODE  SUPPRESS   477 canonical      0.134      46.7  1.47e+03  9.44e+03  5.99e+04   | z=0:    0.919      217 4.35e+03 2.59e+04 1.63e+05     4.46e+05
+  PERMODE  KERNEL     403 canonical   3.61e+04  1.36e+03   2.1e+03  9.88e+03  6.02e+04   | z=0: 3.68e+04 2.34e+03 5.46e+03 2.67e+04 1.63e+05         1.67
+  PERMODE  KERNEL     403 alt         5.24e+04  1.97e+03  3.05e+03  1.44e+04  8.78e+04   | z=0: 5.33e+04  3.4e+03 7.95e+03 3.89e+04 2.38e+05         1.68
+  CUM-EFE  SUPPRESS     0 canonical       38.5      3.65  1.32e-20  6.91e-21  4.26e-21   | z=0:     78.5     7.29 2.65e-20 1.38e-20 8.51e-21     1.11e-22
+  CUM-EFE  SUPPRESS     0 alt             54.1      5.11  1.85e-20  9.68e-21  5.97e-21   | z=0:      111     10.3 3.73e-20 1.95e-20  1.2e-20      1.1e-22
+  CUM-EFE  SUPPRESS   329 canonical       1.85       140  2.68e-15  7.08e-15  5.47e-15   | z=0:     14.9      530 9.65e-15 2.56e-14 1.98e-14     2.96e-15
+  CUM-EFE  SUPPRESS   403 canonical       0.64       104   8.1e-15  3.73e-14  3.22e-14   | z=0:     5.44      454 3.34e-14 1.55e-13 1.34e-13     5.03e-14
+  CUM-EFE  SUPPRESS   403 alt            0.898       155  1.76e-14  9.18e-14  8.06e-14   | z=0:      7.8      672 7.14e-14 3.76e-13 3.31e-13     8.98e-14
+  CUM-EFE  SUPPRESS   477 canonical      0.252      75.1  2.01e-14  1.62e-13  1.58e-13   | z=0:     2.17      371 9.49e-14 7.76e-13 7.58e-13     6.27e-13
+  CUM-EFE  KERNEL     403 canonical      0.657  0.000387   1.6e-25  6.07e-26  3.58e-26   | z=0:    0.293 0.000164 6.74e-26 2.56e-26 1.51e-26     5.45e-26
+  CUM-EFE  KERNEL     403 alt            0.791   0.00043  1.67e-25  6.25e-26  3.68e-26   | z=0:    0.353 0.000182 7.05e-26 2.64e-26 1.55e-26     4.65e-26
+  RMS-EFE  SUPPRESS     0 canonical        109      16.9  6.17e-20  3.22e-20  1.99e-20   | z=0:      274     42.4 1.55e-19 8.07e-20 4.98e-20     1.82e-22
+  RMS-EFE  SUPPRESS     0 alt              158      24.4  8.89e-20  4.64e-20  2.86e-20   | z=0:      397     61.5 2.24e-19 1.17e-19 7.21e-20     1.82e-22
+  RMS-EFE  SUPPRESS   329 canonical    0.00704      81.8  4.64e-15  1.23e-14   9.5e-15   | z=0:  0.00987      321  2.1e-14  5.6e-14 4.33e-14     1.35e-12
+  RMS-EFE  SUPPRESS   403 canonical     0.0037      47.9  1.33e-14  6.17e-14  5.32e-14   | z=0:   0.0044      198 6.85e-14  3.2e-13 2.76e-13     1.44e-11
+  RMS-EFE  SUPPRESS   403 alt          0.00385      64.8  2.95e-14  1.55e-13  1.36e-13   | z=0:  0.00455      265  1.5e-13 7.92e-13 6.97e-13     3.53e-11
+  RMS-EFE  SUPPRESS   477 canonical    0.00232      28.4  3.17e-14  2.58e-13  2.51e-13   | z=0:  0.00241      123 1.85e-13 1.53e-12 1.49e-12     1.09e-10
+  RMS-EFE  KERNEL     403 canonical       1.45  0.000579  1.86e-25  6.73e-26  3.95e-26   | z=0:    0.649 0.000246 7.85e-26 2.85e-26 1.67e-26     2.72e-26
+  RMS-EFE  KERNEL     403 alt             1.76  0.000646  1.95e-25  6.97e-26  4.08e-26   | z=0:    0.786 0.000274 8.26e-26 2.95e-26 1.72e-26     2.32e-26
+  [PASS] B1 NO (model, reading, xi, footing) reproduces the measured z = 3 clustering within 2x at BOTH k = 0.05 and k = 1-10 h/Mpc: the filter cannot fix a spectrum that is wrong on the small-scale side too   (survivors: none)
+  [PASS] B2 the filter DOES what it was designed to do on the large-scale side: with xi = 403 the k = 0.05 power at z = 3 drops by > 2x relative to xi = 0 in every boost model   (k=0.05 suppression = PERMODE: 0.0014, CUM-EFE: 0.017, RMS-EFE: 3.4e-05)
+  k = 0.05 at z = 3 with xi = 403, P_fw/P_obs: PERMODE: 0.316, CUM-EFE: 0.64, RMS-EFE: 0.0037  (per-mode lands inside the 2x window at xi = 329-403; the others overshoot the cut)
+  [PASS] B3 sign control: the literal reading chi = W ln N fed to the kernel INCREASES the k = 0.05 growth (deeper MOND at large scales); the action must filter the enhancement, not the kernel's input   (k=0.05 power ratio (KERNEL xi=403 / no filter) = 164.71)
+  the small-scale side, k = 1-10 at z = 3 (the filter is transparent there): PERMODE 1.56e+03, 9.52e+03, 6e+04 ; CUM-EFE 8.1e-15, 3.73e-14, 3.22e-14 ; RMS-EFE 1.33e-14, 6.17e-14, 5.32e-14
+  [PASS] B4 the linear solver has NO authority on the small-scale side: the three defensible treatments of MOND's k-dependence span > 10 decades at k = 10, z = 3, so the no-CDM verdict there is not a linear-theory statement   (P_fw/P_obs(k=10, z=3) spans 3.2e-14 to 6e+04)
+
+============================================================================================================
+VERDICT
+============================================================================================================
+  The filter does exactly what it was built for: at xi = 330-400 the 100-Mpc excess of a no-dark-matter MOND cosmology is removed and,
+  in the per-mode boost model, k = 0.05 lands inside the 2x window at z = 3 -- the first construction in this program to fix a scale
+  the growth solver had condemned.  Two caveats are structural.  (1) Sign: chi = W ln N fed to the kernel filters the INPUT and deepens
+  MOND at large scales (x1e4 worse); the action must filter the ENHANCEMENT.  (2) The small-scale side, k = 1-10 at z = 3, where the
+  filter is transparent by design, is where the no-CDM question actually lives, and there linear theory has no authority: three
+  defensible treatments of MOND's k-dependence span >10 decades.  The N-body literature (Nusser 2002; Llinares+ 2008; Angus+ 2013)
+  leans toward overproduction, i.e. the per-mode direction.  Verdict: NOT shut by this gate.  The large-scale side is fixed; the
+  route's fate is a baryon-only MOND N-body with the filter, plus the still-open 2-DOF count with Theta = K in the Hamiltonian.
+
+RESULT: 5 checks, 0 FAIL   rc=0
