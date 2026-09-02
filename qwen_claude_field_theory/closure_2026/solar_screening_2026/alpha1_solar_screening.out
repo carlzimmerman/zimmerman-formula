@@ -1,0 +1,33 @@
+[S1] constraint solved (0.5s)
+[S2] invariants+Ricci (122.1s)
+[S3] L2dc(raw): 1038 terms (128.9s)
+
+==========================================================================
+ANCHOR: b=0 reproduces banked alpha_1(q->0)=-4(2+K_B J_Y)/(J_Y+1)
+==========================================================================
+  [PASS] b=0 KB=1/5 JY=1: -22/5 == -22/5  (got -22/5)
+  [PASS] b=0 KB=3/10 JY=1: -23/5 == -23/5  (got -23/5)
+  [PASS] b=0 KB=1/5 JY=2: -16/5 == -16/5  (got -16/5)
+
+==========================================================================
+CHECK 1 (ANCHOR): b=0 reproduces banked -4(2+K_B J_Y)/(J_Y+1)
+==========================================================================
+  [PASS] b=0 KB=1/5 JY=1: -22/5==-22/5  (got -22/5)
+  [PASS] b=0 KB=3/10 JY=1: -23/5==-23/5  (got -23/5)
+  [PASS] b=0 KB=1/5 JY=2: -16/5==-16/5  (got -16/5)
+
+==========================================================================
+CHECK 2 (EMERGENT REALITY) + 3 (HIGH FIELD): alpha_1(b), q->0, K_B=1/5, J_Y=1
+==========================================================================
+  Im[alpha_1(b)] = (8748*b**3 + 360*b)/(4131*b**4 - 1395*b**2 - 50)
+  [FAIL] 2 REALITY: Im[alpha_1(b)]==0 emerges (not imposed)  (Im=(8748*b**3 + 360*b)/(4131*b**4 - 1395*b**2 - 50))
+  alpha_1(b, q->0) = (-23328*b**4 + 8748*I*b**3 + 11637*b**2 + 360*I*b + 220)/(4131*b**4 - 1395*b**2 - 50)
+  b->0  : -22/5 = -4.40000  (banked -22/5)
+  b->oo : -96/17 = -5.64706   <-- SOLAR SYSTEM
+Traceback (most recent call last):
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/closure_2026/solar_screening_2026/alpha1_solar_screening.py", line 143, in <module>
+    av=sp.nsimplify(a_q0.subs(b,bv)); P(f"    b={bv}: alpha_1 = {av} = {float(av):+.6f}")
+                                                                        ~~~~~^^^^
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/sympy/core/expr.py", line 339, in __float__
+    raise TypeError("Cannot convert complex to float")
+TypeError: Cannot convert complex to float
