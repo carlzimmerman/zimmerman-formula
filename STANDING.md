@@ -1,9 +1,30 @@
 # STANDING
 
 **de Sitter–Unruh modified inertia — where the programme actually stands**
-Last updated **2026-08-03** (rev. 5). Maintained as the single entry point: what is claimed, what is earned,
+Last updated **2026-09-02** (rev. 6 block at the top; body below it is the rev. 5 record of 2026-08-03). Maintained as the single entry point: what is claimed, what is earned,
 what is postulated, what is live, and what is closed. If a statement anywhere in this repository
 conflicts with this file, this file is newer unless it says otherwise.
+
+---
+
+## ⚠⚠⚠ REVISION 6 BLOCK — 2026-09-02. Newer than everything below it; where they conflict, this block wins.
+
+**Arm.** Operative arm is **modified gravity** since 2026-08-08 (the modified-inertia arm is closed as physics, 21σ by lensing; kept as mathematics). Kernel: Route A exponential, $\nu(y)=1/(1-e^{-\sqrt y})$. The relativistic completion is **v9** (AeST chassis + offset-DBI condensate clock, [DOI 10.5281/zenodo.21895046](https://doi.org/10.5281/zenodo.21895046)).
+
+**The claim, unchanged and still narrow.** $a_0=\kappa c\sqrt{G\rho_{\rm DE}}$, κ = ½ **fitted** (measured 0.551 ± 0.043 distance-free / 0.465 ± 0.076 BTFR; four candidate coefficients inside 2σ; every derivation lane — action modulus, in-action postulates, graviton-bath CTP — closed 2026-09-01). Both footings always (9.36e-11 / 1.13e-10).
+
+**What the September closure established (all committed scripts, checks that can fail, mutation controls):**
+1. **The condensate polytrope.** In the static limit the AeST dust is a γ = 2 polytrope, $p_d=(2\pi G/\mu^2)\rho_d^2$, $c_s^2=|\Psi|c^2$; the Helmholtz equation is its hydrostatics with a Bernoulli constant. Published ([22242701](https://doi.org/10.5281/zenodo.22242701), v2 [22254075](https://doi.org/10.5281/zenodo.22254075)). The 23–33% cluster-core yield built on it is **withdrawn as a live number** (item 3).
+2. **The nonlocal door is shut.** Deffayet–Woodard kernels (any interpolation, any clock) are unstable at linear in-in order (longitudinal gradient instability, deep-MOND ghost) and fail the tensor-speed bound by 2×10⁹ ([22253953](https://doi.org/10.5281/zenodo.22253953), v2 [22255522](https://doi.org/10.5281/zenodo.22255522)). With the local-carrier no-go of 08-31/09-01, every carrier class examined fails at linear-WKB order.
+3. **The μ-pincer (09-02).** The polytrope on the cosmic background gives $c_s^2(z)=4\pi G\rho_{\rm dm}(z)/\mu^2$; at β = 1 this **pins** $\Lambda_D/Q_0=\nu_0\Omega_\Lambda/\Omega_{\rm dm}=2.6\nu_0$, 18–300× above the repository's own 3%-$P(k{=}0.2)$ ceiling: **the v9 single-field dark sector is excluded**. A second condensate needs $\mu^{-1}\le0.6$ kpc to be CMB-cold and ≥ 200 kpc to shield galaxies. $K$-independent: a galaxy well today is the background at $(1+z)^3=\delta_{\rm well}\le5000$ with the same sound speed — **pressure cannot keep Ω_dm out of galaxies.** Footing check: the framework's own derived Hubble floor makes MOND irrelevant to linear growth (≤6%), so the yardsticks are its own; unfloored, a warm-dust MOND cosmology matches the z = 3 small-scale power to 2× but overproduces 100 Mpc 5–13× for every μ; no dark field at all is tilted 30–200× in shape.
+4. **Doors named and shut the same day:** the superfluid route (κ = ½ maps to a Berezhiani–Khoury coupling α = 0.46, but any self-interaction that thermalises halos condensed the background earlier, and the condensed background is relativistic at recombination); a rising $a_0\propto H(z)$ with no dark field (recombination is deep-MOND, growth on an attractor tilted ×300); the CMC/Hubble high-pass filter (fixes the 100-Mpc side, but the coupling that makes it work frees one dust-like scalar, $A=c_\alpha^2a^3/[4H^2(k^2/a^2+m^2)]$, at quadratic order). **Theorem:** an elliptic auxiliary that enters the lapse equation frees a dust-like mode; curvature couplings free none but split lensing from dynamics. A constraint-only two-DOF MOND that light and matter both see does not exist at this order; the third field of TeVeS/AeST is forced.
+5. **PPN.** The v9 AeST embedding fails the preferred-frame bounds (α₁ = −2(K_B+2) untunable, α₂ orders of magnitude over; 2026-08-31, `closure_2026/fried_chicken_final/`). Layer A (γ = β = 1, c_T = 1) untouched.
+
+**What survives.** $a_0\propto\sqrt{\rho_{\rm DE}(z)}$: no rise, ever (flat to <1% for z ≤ 5 if Λ is constant, switching off above z ≈ 20; ~13% decline by z = 2 with DESI's $w_0w_a$). MOND phenomenology (RAR 0.108 dex). A cold Ω_dm that double-counts with the boost in galaxies by 2.7–4.4× — **the blocking problem, with no kinetic mechanism left.**
+
+**Live fronts.** (A) Gaia DR4 wide binaries, Amendment 10: γ_v = 1.1614–1.1814 canonical / 1.1917–1.2267 alt, Newton exactly 1.00. (B) **Framework vs ΛCDM (09-01):** undecided and prior-dominated on present data; decisive = deep-MOND BTFR zero-point at z ≈ 2.5, framework 0.00 (DEC −0.09) vs ΛCDM-native +0.33 dex, one clean point at ±0.13 dex decides at 20:1; ΛCDM would need halo dilution to 0.61 (z = 2) / 0.40 (z = 3) of N-body to mimic a flat a₀. **Never say the data favour the framework over ΛCDM.**
+
+**Do not cite** (additions): the v9 dark sector or the cluster yield as live; Λ_D/Q₀ as free; "the condensate's pressure keeps dark matter out of galaxies"; the CMC filter as a 2-DOF mechanism. Full list in the memory-mirrored [RETRACTIONS.md](RETRACTIONS.md). Explainer: [DUST_FALLS_INTO_GALAXIES.md](opus_48_extended_research/papers/DUST_FALLS_INTO_GALAXIES.md).
 
 ---
 

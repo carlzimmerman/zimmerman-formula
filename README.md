@@ -33,6 +33,8 @@ $$\mathcal{Q}_0=\frac{g_{\rm tot}-g_N}{c\,v}\;\approx\;2.4\times10^{-3}\,\text{�
 
 interior to Skordis & Złośnik's own CMB fits, containing both their MOND-compatible parameter sets and excluding their MOND-incompatible one ([DOI 10.5281/zenodo.21937958](https://doi.org/10.5281/zenodo.21937958)).
 
+**Standing 2026-09-02 (rev. 6) — what the September closure changed.** The condensate above is a **γ = 2 polytrope** in the static limit, $p_d=(2\pi G/\mu^2)\rho_d^2$, $c_s^2=4\pi G\rho_d/\mu^2=|\Psi|c^2$ (published, [DOI 10.5281/zenodo.22242701](https://doi.org/10.5281/zenodo.22242701), v2 [22254075](https://doi.org/10.5281/zenodo.22254075)). Read on the cosmic background the same relation gives $c_s^2(z)=4\pi G\rho_{\rm dm}(z)/\mu^2$, which **pins** the DBI amplitude at β = 1, $\Lambda_D/Q_0=\nu_0\Omega_\Lambda/\Omega_{\rm dm}$, 18–300× above the repository's own $P(k)$ ceiling: **the v9 single-field dark sector is excluded**, and the cluster cosmology built on it is withdrawn ([RETRACTIONS.md](RETRACTIONS.md), 2026-09-02). Underneath is a $K$-independent matching theorem: a galaxy well today is the background at $(1+z)^3=\delta_{\rm well}\le5000$ with identical sound speed, so a dust cold enough for the Lyman-α forest falls into galaxies — **pressure cannot keep Ω_dm out of galaxies**, for any $K$. The superfluid route, a rising $a_0\propto H(z)$, and a Hubble-scaled high-pass filter were each run and closed the same way; a quadratic-order theorem shows any elliptic auxiliary that enters the lapse equation frees one dust-like scalar, which is why TeVeS, AeST and the superfluid all carry a third field. The v9 embedding also fails the preferred-frame PPN bounds (α₁, α₂; 2026-08-31, [`closure_2026/fried_chicken_final/`](qwen_claude_field_theory/closure_2026/fried_chicken_final/)), and the nonlocal Deffayet–Woodard kernel class is unstable at linear order (published, [DOI 10.5281/zenodo.22253953](https://doi.org/10.5281/zenodo.22253953), v2 [22255522](https://doi.org/10.5281/zenodo.22255522)). **What survives:** $a_0=\tfrac c2\sqrt{G\rho_{\rm DE}(z)}$ with κ fitted, the $a_0(z)$ switch-off law (it needs only the trace khronon dust), MOND phenomenology, and a cold Ω_dm that double-counts with the boost in galaxies by 2.7–4.4× — the programme's blocking problem. Scripts: [`closure_2026/condensate_pincer_2026/`](qwen_claude_field_theory/closure_2026/condensate_pincer_2026/); explainer: [DUST_FALLS_INTO_GALAXIES.md](opus_48_extended_research/papers/DUST_FALLS_INTO_GALAXIES.md).
+
 > ### ⚠️ Read this first
 >
 > **This is not a theory of everything.** All theory-of-everything and Standard-Model claims were
@@ -63,7 +65,7 @@ interior to Skordis & Złośnik's own CMB fits, containing both their MOND-compa
 
 | document | what it is |
 |---|---|
-| **[STANDING.md](STANDING.md)** | **The entry point.** Claim · earned · postulated · live fronts · closed doors · open liabilities · retractions in force. |
+| **[STANDING.md](STANDING.md)** | **The entry point** (rev. 6 block, 2026-09-02, at the top). Claim · earned · postulated · live fronts · closed doors · open liabilities · retractions in force. |
 | [RETRACTIONS.md](RETRACTIONS.md) | Every withdrawn claim, dated. |
 | [INTEGRITY_AUDIT.md](INTEGRITY_AUDIT.md) | Audit trail on the corpus itself. |
 | [CITATION.cff](CITATION.cff) · [LICENSE.md](LICENSE.md) | How to cite; code AGPL-3.0, content CC-BY-4.0. |
@@ -89,9 +91,10 @@ Verified (all script-backed): CLASS CMB pass (0.01σ vs cosmic variance) · lens
 γ_PPN = 1 · c_T = 1 exact · no-ghost theorem · RAR 0.108 dex · BTFR · solar system ·
 **pure-framework weak-lensing RAR 40 kpc–2.2 Mpc, χ²/dof = 2.03 canonical / 0.94 alt, no dark
 component** (real KiDS data, and the same fit *rejects* adding one).
-Honest limits: **dark matter exists at full Ω_dm** — the only slogan is "no dark-matter *particle*";
-whether galaxies keep their captured charge is the programme's named open problem, and the candidate
-mechanisms are being closed one by one in the open (stages 53–64).
+Honest limits: **dark matter exists at full Ω_dm, and as of 2026-09-02 it is cold** — the condensate's
+own equation of state, read on the cosmic background, excludes the single-field dark sector and closes
+every kinetic mechanism for keeping it out of galaxies (see the rev. 6 block above). The action, the
+promotion, the switch-off law and the health results stand; the "dust job" does not.
 **Paper: [THE_COMPLETION.md](opus_48_extended_research/papers/THE_COMPLETION.md) · v9 DOI [10.5281/zenodo.21895046](https://doi.org/10.5281/zenodo.21895046)** (concept [21863521](https://doi.org/10.5281/zenodo.21863521)) · plain-language companion [10.5281/zenodo.21865866](https://doi.org/10.5281/zenodo.21865866) · evidence: [`nbody_2026/`](nbody_2026/), every stage green.
 
 ### 3 · Pinning AeST's free parameter — the 𝒬₀ pin
@@ -126,6 +129,7 @@ disfavoured ~2.3σ with two wrong-sign tests. Pre-stated falsification bars: **0
 gas-dominated, z ≤ 1) / **0.33** ([CII], z ~ 2–5) / **0.44** (stellar); SKA-mid/ngVLA reach
 decisive power. Any robust a₀ evolution below z ~ 5 falsifies the law — either sign.
 [`nbody_2026/stage60_btfr_discriminator_2026.py`](nbody_2026/stage60_btfr_discriminator_2026.py) · cross-scale: [`prep_2026/a0z_crossscale/`](prep_2026/a0z_crossscale/)
+**Framework vs ΛCDM (2026-09-01):** ΛCDM's RAR scale is emergent from halo structure and rises ×1.8 by z = 2; added as a fourth zero-parameter law to the joint likelihood over the 10 committed high-z constraints it is **undecided and prior-dominated** (the sign flips with the drift ceiling; Ciocan carries every face-value verdict). The decisive measurement is the **deep-MOND BTFR zero-point at z ≈ 2.5: framework 0.00 dex, ΛCDM-native +0.33 dex, one clean point at ±0.13 dex decides at 20:1** — a JWST/ALMA target, not a survey. To mimic a flat a₀, ΛCDM's haloes would have to be diluted to 0.61 (z = 2) / 0.40 (z = 3) of their N-body concentrations. [`a0z_lcdm_native_hypothesis_2026.py`](prep_2026/a0z_crossscale/a0z_lcdm_native_hypothesis_2026.py) · [`real_research/crispy_2026/`](real_research/crispy_2026/)
 
 ### 6 · Structural theorems (MI era, kept for the record)
 Seven machine-verified results on the closed modified-inertia arm; five are prohibitions.
@@ -157,7 +161,9 @@ Enforced by the scripts, not by trust.
 
 ## Publication record
 
-[![THE COMPLETION v9](https://img.shields.io/badge/THE%20COMPLETION%20v9-10.5281%2Fzenodo.21895046-red)](https://doi.org/10.5281/zenodo.21895046)
+[![Nonlocal MOND Kernel Instability v2](https://img.shields.io/badge/Nonlocal%20MOND%20Kernel%20Instability%20(v2%2C%20Sep%202026)-10.5281%2Fzenodo.22255522-red)](https://doi.org/10.5281/zenodo.22255522)
+[![Cluster Phase Pinning v2](https://img.shields.io/badge/Cluster%20Phase%20Pinning%20Polytrope%20(v2%2C%20Sep%202026%20%E2%80%94%20cosmology%20withdrawn)-10.5281%2Fzenodo.22254075-orange)](https://doi.org/10.5281/zenodo.22254075)
+[![THE COMPLETION v9](https://img.shields.io/badge/THE%20COMPLETION%20v9%20(dark%20sector%20excluded%20Sep%202026)-10.5281%2Fzenodo.21895046-red)](https://doi.org/10.5281/zenodo.21895046)
 [![Q0 Pin v4](https://img.shields.io/badge/Pinning%20AeST's%20Q0%20(v4%2C%20Aug%2014%202026)-10.5281%2Fzenodo.21937958-red)](https://doi.org/10.5281/zenodo.21937958)
 [![DR4 under local a0](https://img.shields.io/badge/DR4%20Target%20under%20Local%20a0%20(Aug%2014%202026)-10.5281%2Fzenodo.21937976-red)](https://doi.org/10.5281/zenodo.21937976)
 [![DR4 Pre-registration](https://img.shields.io/badge/Gaia%20DR4%20Pre--registration-10.5281%2Fzenodo.21702746-black)](https://doi.org/10.5281/zenodo.21702746)
