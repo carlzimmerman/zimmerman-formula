@@ -1,0 +1,115 @@
+========================================================================================================
+A. the pins (sympy)
+========================================================================================================
+  [PASS] A1 generic quadratic condensate: p_exc = rho_dust^2/(4 K_2 Q_0^2)  (gamma = 2 polytrope) and c_s^2 = K'/(Q K'') = u/Q_0 + O(u^2)   (c_s^2 = u/Q_0)
+  [PASS] A2 background polytrope: c_s^2 = 4 pi G rho_phys / mu_H^2 with the SAME mu_H as the static Helmholtz equation (itemC A7)   (c_s^2 = 2*pi*rho_phys*(2 - K_B)/(K_2*Q_0**2))
+      numerically: c_s^2(z=0) = 4 pi G Omega_dm rho_crit (1 Mpc)^2/c^2 = 2.003e-08 c^2  per (mu^-1/1 Mpc)^2   [= (43 km/s)^2 at 1 Mpc, itemD's h_bar]
+  [PASS] A3 DBI at beta = 1: rho = Q_0 n + M^4 sqrt(1+nu^2) EXACTLY (dust = Q_0 n, the conserved charge; the rest = vacuum + internal energy)   (rest = M4*sqrt(nu**2 + 1))
+  [PASS] A4 THE PIN: rho_dust/rho_Lambda = Q_0 nu / Lambda_D = nu/R  =>  R = Lambda_D/Q_0 = nu_0 Omega_Lambda/Omega_dust   (rho_dust/rho_Lambda = Q_0*nu/Lambda_D)
+  [PASS] A5 DBI sound speed c_s^2 = R s (1-s^2)/(1+R s)  (the repo's committed form, mi_dbi_khronon B5)
+
+========================================================================================================
+B. Horn 1 -- the DBI khronon's dust is Omega_dm: R is pinned, not free
+========================================================================================================
+       nu_0   R pinned   R/R_s69  R/R_forest     cs2(0)  mu^-1 equiv   peak cs2  z_peak   cs2(rec)
+   2.14e-05   5.56e-05        18     2.4e+04   1.19e-09      0.24 Mpc   2.14e-05    31.1    7.2e-14
+   5.00e-05   1.30e-04        42     5.6e+04   6.50e-09      0.57 Mpc   5.00e-05    23.2    3.1e-14
+   1.00e-04   2.60e-04       169     1.1e+05   2.60e-08      1.14 Mpc   1.00e-04    18.2    1.5e-14
+   1.77e-04   4.60e-04       299     2.0e+05   8.14e-08      2.02 Mpc   1.77e-04    14.9    8.7e-15
+  [PASS] B1 pinned R = 2.6 nu_0 exceeds stage 69's committed 3%-P(k=0.2) ceiling for EVERY nu_0 in the window (>= 18x at the floor)   (min ratio = 18)
+  [PASS] B2 consistency (a WORKS): the window's pinned c_s^2(0) maps to Helmholtz masses mu^-1 = 0.2-2 Mpc -- exactly AeST/DS24's phenomenological ~1 Mpc
+  [PASS] B3 the DBI wall does its job: c_s^2(z_rec) <= 1e-9 for every pinned nu_0 (cold at recombination; the excess is all post-recombination)
+  MUTATION (wrong dust identification, rho_dust := M^4(sqrt(1+nu^2)-1) ~ M^4 nu^2/2): forces nu_0 = 0.88 -- outside the window by 4 orders and leaves R free; the pin exists only because the dust is the CHARGE term Q_0 n (repo filter F1)
+
+========================================================================================================
+C. growth integrator: baryons (cold) + dust with c_s^2(a); T^2(k) = P/P_cold at z = 0 and z = 3
+========================================================================================================
+  [PASS] C0 integrator regression: cold-matter growth D(0)/D(3) matches the LCDM growth integral to 0.5%   (3.1656 vs 3.1723)
+  columns at the right: T^2(k, z=0) for k = 0.05, 0.1, 0.2, 0.5, 1, 2, 3, 5, 10, 20 h/Mpc
+  yardsticks: Y1 stage 69 = T^2(0.2, z=0) >= 0.97 ;  Y2 LOOSE forest = T^2(10 h/Mpc, z=3) >= 0.5 (WDM ~3 keV half-mode class) ;  strict forest (mi_cosmo) = 0.99
+    cold control                                         T2(k=0.2,z=0)= 1.000  T2(k=1,z=3)= 1.000  T2(k=10,z=3)= 1.000   1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00
+  [PASS] C1 cold control: T^2 = 1 at every k and z (regression)
+    Horn 1 at stage 69's own bound R=3.06e-6 (nu_0 floor) T2(k=0.2,z=0)= 0.970  T2(k=1,z=3)= 0.462  T2(k=10,z=3)= 0.001   1.00 0.99 0.97 0.82 0.45 0.01 0.00 0.02 0.00 0.00
+  [PASS] C2 validation against stage 69: at ITS bound the integrator gives a ~3% effect at k=0.2, z=0 (agreement to within a factor 2 of 3%)   (T2 = 0.970)
+    HORN 1 pinned, nu_0 = 2.14e-05 (R = 5.6e-05)         T2(k=0.2,z=0)= 0.562  T2(k=1,z=3)= 0.021  T2(k=10,z=3)= 0.001   0.97 0.87 0.56 0.00 0.02 0.01 0.00 0.00 0.00 0.00
+    HORN 1 pinned, nu_0 = 1.00e-04 (R = 2.6e-04)         T2(k=0.2,z=0)= 0.000  T2(k=1,z=3)= 0.001  T2(k=10,z=3)= 0.001   0.76 0.31 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+    HORN 1 pinned, nu_0 = 1.77e-04 (R = 4.6e-04)         T2(k=0.2,z=0)= 0.000  T2(k=1,z=3)= 0.006  T2(k=10,z=3)= 0.002   0.55 0.06 0.00 0.01 0.00 0.00 0.00 0.00 0.00 0.00
+  [PASS] C3 HORN 1 DEAD: with R pinned, P(k=0.2, z=0) is suppressed by > 3% (stage 69's yardstick) for every nu_0 in the window   (suppression at k=0.2: 44%, 100%, 100%)
+  Horn 2: chi = quadratic condensate with Helmholtz mass mu_chi, c_s^2 = X/(1+3X), X = 2.0e-8 (mu^-1/Mpc)^2 / a^3  (ceiling 1/3, mi_cosmo form)
+    HORN 2 quadratic chi, mu^-1 = 0.3 kpc, cs2(rec)=2.3e-06 T2(k=0.2,z=0)= 0.999  T2(k=1,z=3)= 0.985  T2(k=10,z=3)= 0.156   1.00 1.00 1.00 1.00 0.98 0.94 0.87 0.67 0.16 0.02
+    HORN 2 quadratic chi, mu^-1 = 1 kpc, cs2(rec)=2.6e-05 T2(k=0.2,z=0)= 0.993  T2(k=1,z=3)= 0.839  T2(k=10,z=3)= 0.055   1.00 1.00 0.99 0.96 0.84 0.48 0.16 0.00 0.05 0.02
+    HORN 2 quadratic chi, mu^-1 = 3 kpc, cs2(rec)=2.3e-04 T2(k=0.2,z=0)= 0.939  T2(k=1,z=3)= 0.156  T2(k=10,z=3)= 0.004   1.00 0.98 0.94 0.67 0.16 0.02 0.03 0.00 0.00 0.00
+    HORN 2 quadratic chi, mu^-1 = 10 kpc, cs2(rec)=2.6e-03 T2(k=0.2,z=0)= 0.478  T2(k=1,z=3)= 0.055  T2(k=10,z=3)= 0.002   0.96 0.84 0.48 0.00 0.05 0.02 0.00 0.00 0.00 0.00
+    HORN 2 quadratic chi, mu^-1 = 30 kpc, cs2(rec)=2.2e-02 T2(k=0.2,z=0)= 0.015  T2(k=1,z=3)= 0.005  T2(k=10,z=3)= 0.000   0.67 0.16 0.02 0.00 0.01 0.00 0.00 0.00 0.00 0.00
+    HORN 2 quadratic chi, mu^-1 = 100 kpc, cs2(rec)=1.5e-01 T2(k=0.2,z=0)= 0.018  T2(k=1,z=3)= 0.000  T2(k=10,z=3)= 0.000   0.00 0.03 0.02 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+    HORN 2 quadratic chi, mu^-1 = 1000 kpc, cs2(rec)=3.3e-01 T2(k=0.2,z=0)= 0.000  T2(k=1,z=3)= 0.000  T2(k=10,z=3)= 0.000   0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00
+  [PASS] C4 Horn 2 quadratic chi: the LOOSE forest yardstick (T^2(10,z=3) >= 0.5) already fails for mu^-1 >= 3 kpc; CMB coldness (cs2(rec) <= 1e-5, loose GDM) fails for mu^-1 >= 1 kpc   (T2(10,3) at 3 kpc = 0.004; cs2(rec) at 1 kpc = 2.6e-05)
+  ESCAPE: chi with its OWN DBI wall (own M_chi^4, no pin): R at stage 69's ceiling, nu_0 chosen so that mu^-1 reaches the shield (Part D)
+    ESCAPE walled chi, R=1.54e-6, nu_0=6.5e-05 -> mu^-1 = 71 kpc, z_wall=24 T2(k=0.2,z=0)= 0.978  T2(k=1,z=3)= 0.590  T2(k=10,z=3)= 0.013   1.00 0.99 0.98 0.87 0.56 0.07 0.00 0.02 0.01 0.00
+    ESCAPE walled chi, R=1.54e-6, nu_0=1.0e-04 -> mu^-1 = 88 kpc, z_wall=21 T2(k=0.2,z=0)= 0.975  T2(k=1,z=3)= 0.551  T2(k=10,z=3)= 0.018   1.00 0.99 0.97 0.85 0.51 0.04 0.00 0.02 0.00 0.00
+    ESCAPE walled chi, R=1.54e-6, nu_0=3.0e-04 -> mu^-1 = 152 kpc, z_wall=14 T2(k=0.2,z=0)= 0.965  T2(k=1,z=3)= 0.460  T2(k=10,z=3)= 0.010   1.00 0.99 0.96 0.80 0.38 0.00 0.00 0.01 0.00 0.00
+    ESCAPE walled chi, R=1.54e-6, nu_0=1.0e-03 -> mu^-1 = 277 kpc, z_wall=9 T2(k=0.2,z=0)= 0.949  T2(k=1,z=3)= 0.404  T2(k=10,z=3)= 0.004   1.00 0.99 0.95 0.72 0.23 0.00 0.01 0.00 0.00 0.00
+  MUTATION control: constant c_s^2 = today's value (no (1+z)^3 history), mu^-1 = 100 kpc
+    mutation: constant cs2 = 2e-10                       T2(k=0.2,z=0)= 1.000  T2(k=1,z=3)= 0.999  T2(k=10,z=3)= 0.934   1.00 1.00 1.00 1.00 1.00 0.99 0.98 0.95 0.80 0.40
+  [PASS] C5 mutation: removing the (1+z)^3 history removes the suppression (T^2(10,z=3) > 0.9) -- the kill is the high-z epoch, not today's sound speed   (const: 0.934; history: 0.000)
+
+========================================================================================================
+D. the galaxy shield: polytrope dust mass inside 30 kpc of an L* MOND well vs its baryons
+========================================================================================================
+  L* well: M_b = 6.0e+10 Msun (R_d = 3 kpc), baryons inside 30 kpc = 6.00e+10 Msun
+      mu^-1    2pi/mu   M_chi(<30kpc)/M_b  canonical  alt footing   status
+       1 kpc      6 kpc                            inf          inf   NO SHIELD (no pressure support inside 30 kpc)
+       3 kpc     19 kpc                            inf          inf   NO SHIELD (no pressure support inside 30 kpc)
+      10 kpc     63 kpc                         10.685       11.648   double-counts (> 10% of the baryons)
+      16 kpc    101 kpc                          5.935        6.483   double-counts (> 10% of the baryons)
+      30 kpc    188 kpc                          2.355        2.577   double-counts (> 10% of the baryons)
+      50 kpc    314 kpc                          1.043        1.142   double-counts (> 10% of the baryons)
+     100 kpc    628 kpc                          0.327        0.358   double-counts (> 10% of the baryons)
+     200 kpc   1257 kpc                          0.098        0.108   double-counts (> 10% of the baryons)
+    1000 kpc   6283 kpc                          0.005        0.006   shielded (<= 10%)
+  shield floor: mu^-1 >= 200 kpc at the LOOSE 30% level, >= 1000 kpc at 10% (both footings)
+  [PASS] D1 the shield needs mu^-1 >= 100 kpc even at the LOOSE 30% level (and ~1 Mpc at 10%): below that the polytrope dust inside 30 kpc is not a small perturbation, or has no pressure support at all   (loose floor 200 kpc, tight floor 1000 kpc)
+  Horn 2 pincer: CMB coldness (cs2(rec) <= 1e-5, the LOOSE end of the GDM range) needs mu_chi^-1 <= 0.62 kpc; the LOOSE shield needs >= 200 kpc  -> gap x323
+  [PASS] D2 HORN 2 (quadratic chi) DEAD: the CMB-cold ceiling on mu_chi^-1 lies >= 100x below the LOOSE galaxy-shield floor
+  ESCAPE scan (walled chi, own M_chi^4): nu_0 set by the LOOSE shield floor for each R; Y1 = T^2(0.2,0) >= 0.97, Y2 = T^2(10,3) >= 0.5
+       ESCAPE R=1.5e-06, nu_0=5.2e-04 (mu^-1 = 200 kpc, z_wall=11.4) T2(k=0.2,z=0)= 0.958  T2(k=1,z=3)= 0.425  T2(k=10,z=3)= 0.005   1.00 0.99 0.96 0.76 0.31 0.00 0.00 0.00 0.01 0.00
+       ESCAPE R=1.0e-05, nu_0=8.0e-05 (mu^-1 = 200 kpc, z_wall=22.2) T2(k=0.2,z=0)= 0.856  T2(k=1,z=3)= 0.002  T2(k=10,z=3)= 0.002   0.99 0.96 0.86 0.36 0.00 0.02 0.00 0.00 0.00 0.00
+       ESCAPE R=1.0e-04, nu_0=8.0e-06 (mu^-1 = 200 kpc, z_wall=49.0) T2(k=0.2,z=0)= 0.469  T2(k=1,z=3)= 0.025  T2(k=10,z=3)= 0.001   0.96 0.83 0.47 0.00 0.02 0.00 0.00 0.00 0.00 0.00
+  [PASS] D3 ESCAPE (walled chi) DEAD: no (R, nu_0) that reaches even the LOOSE shield floor passes both the P(k=0.2) and the LOOSE forest yardsticks   (at the shield: R=2e-06: Y1=0.96, Y2=0.005; R=1e-05: Y1=0.86, Y2=0.002; R=1e-04: Y1=0.47, Y2=0.001)
+
+========================================================================================================
+F. the K-independent form: a galaxy well today = the cosmic background at z_match
+========================================================================================================
+  c_s^2 = K'/(Q K'') is a function of the excitation u alone.  A static well imposes u_well = -Q_0 Psi (lapse relation, ANY K);
+  the background carries u(z) with n(z) = K'(u(z)) = n_0 (1+z)^3.  The well's dust overdensity is delta_well = n_well/n_0, so the
+  background passes through the well's state at (1+z_match)^3 = delta_well, with IDENTICAL sound speed.  Numerically, for K ~ u^p and DBI:
+         K  delta_well  z_match  c_s(well) km/s  c_s(bg,z_match)  c_s(z=3) km/s
+       u^2          51      2.7           200.0            200.0          224.0
+       u^2        1250      9.8           200.0            200.0           45.3
+       u^2        5000     16.1           200.0            200.0           22.6
+       u^3          51      2.7           141.4            141.4          149.7
+       u^3        1250      9.8           141.4            141.4           67.3
+       u^3        5000     16.1           141.4            141.4           47.6
+       u^4          51      2.7           115.5            115.5          119.9
+       u^4        1250      9.8           115.5            115.5           70.4
+       u^4        5000     16.1           115.5            115.5           55.8
+       u^8          51      2.7            75.6             75.6           76.8
+       u^8        1250      9.8            75.6             75.6           61.1
+       u^8        5000     16.1            75.6             75.6           55.4
+  [PASS] F1 for every K-shape and every shield-compatible overdensity (delta_well <= 5000, i.e. mu^-1 >= 100 kpc), the dust's sound speed at z = 3 is >= 20 km/s -- an order of magnitude above what the forest tolerates (the constant-c_s^2 control at 4 km/s already loses 7% at k = 10)   (min c_s(z=3) over the table = 23 km/s)
+  so the question 'does the dust fall into galaxies?' has a measured answer: the forest says the dust at z = 3 is cold, and the
+  dust at z = 3 IS the dust in a galaxy well today.  Pressure cannot keep Omega_dm out of galaxies.
+
+========================================================================================================
+E. VERDICT
+========================================================================================================
+  One relation, c_s^2(z) = 4 pi G rho_dust(z)/mu^2 (the cluster-phase polytrope read on the cosmic background), ties the
+  dust's galaxy-scale behaviour to its cosmological behaviour through mu alone.  Horn 1 (the DBI khronon's dust is Omega_dm):
+  beta = 1 pins R = nu_0 Omega_L/Omega_dm = 2.6 nu_0, 18-300x above the repo's own 3%-P(k=0.2) ceiling -> P(k) suppressed at
+  k >= 0.2 h/Mpc by far more than 3%.  Horn 2 (a separate quadratic chi): cold at recombination forces mu_chi^-1 <= 0.6 kpc (loose GDM),
+  the galaxy shield needs >= 200 kpc (loose, 30% of the baryons) to 1 Mpc (10%); no overlap, gap >= 300x.  A walled chi that reaches the shield is a warm fluid at z = 3 and fails
+  even the loose forest yardstick.  Surviving: the framework's a_0(z) law itself (nu_0 window untouched: it needs only the
+  TRACE khronon dust of stage 17 D4), MOND phenomenology, and a cold CDM-like Omega_dm that double-counts in galaxies
+  (the repo's open 'dust in galaxies' front is therefore closed on the pressure side: pressure cannot shield galaxies).
+
+RESULT: 18 checks, 0 FAIL   rc=0

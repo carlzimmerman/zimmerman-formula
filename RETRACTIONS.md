@@ -1031,3 +1031,21 @@ prediction**. **What SURVIVES:** the promotion as a *definition*; the constant-a
 the dS minimum; the a₀ coefficient and the a₀(z)-scaling AS PHENOMENOLOGY (κ, Z fitted, never derived).
 Never state a₀²∝ρ_DE as "derived from the action." Full standing: `FC_AEST/STATUS.md` (2026-08-28
 inverse-K(Q) section).
+
+## ⚠ 2026-09-02 — EXCLUDED: the v9 single-field dark sector, and the cluster phase-pinning cosmology behind DOIs 22242701 / 22254075; CLOSED: "the condensate's pressure keeps dark matter out of galaxies"
+
+**Script:** `qwen_claude_field_theory/closure_2026/condensate_pincer_2026/condensate_mu_pincer_2026.py` (18/18) +
+`CONDENSATE_MU_PINCER_VERDICT.md`. **What was wrong:** the DBI amplitude `R = Λ_D/Q₀` was treated as a FREE
+parameter everywhere it was bounded (stage 69: `R ≤ 1.5–3.1×10⁻⁶`; forest: `≤ 2.3×10⁻⁹`; the health window
+`1.9×10⁻¹⁰…8.4×10⁻⁷`), while THE_COMPLETION §1.2 assigns the khronon's dust the full Ω_dm. At β = 1 the dust is the
+charge term (`ρ = Q₀n + M⁴√(1+ν²)` exactly) and `M⁴ = ρ_Λ`, so **R is pinned: `R = ν₀Ω_Λ/Ω_dm = 2.6ν₀`**, 18–300× above
+the repo's own 3%-on-P(k=0.2) ceiling for every ν₀ in the committed window; a validated two-fluid growth integrator
+gives 44–100% suppression at k = 0.2 h/Mpc. The cluster phase-pinning paper's dark sector (ρ̄_d = Ω_dm ρ_c at μ⁻¹ = 1 Mpc)
+is this pinned sector at ν₀ = 8.8×10⁻⁵ and is excluded as a cosmology; its static polytrope algebra stands.
+**The K-independent closure:** `c_s² = K′/(QK″)` depends on the excitation u alone; a static well imposes `u = −Q₀Ψ`
+and the background carries `n ∝ (1+z)³`, so a galaxy well's dust state IS the cosmic background's state at
+`(1+z_match)³ = δ_well ≤ 5000`, i.e. z_match ≤ 16, with identical sound speed. The forest needs that state cold
+(≲ 5 km/s at z = 3); any shield of galaxies needs ≥ 20 km/s. **Never cite** the condensate's pressure as the reason
+dark matter stays out of galaxies, for any K. **Survives:** the stage-17 a₀(z) law (trace khronon dust of D4,
+Λ_D/Q₀ ≥ 33, cosmologically invisible), MOND phenomenology, and a cold Ω_dm that double-counts in galaxies (ξ = 1).
+All yardsticks taken at their loose ends (30% shield, c_s²(rec) ≤ 10⁻⁵, T²(10 h/Mpc, z=3) ≥ 0.5, stage 69's own 3%).
