@@ -96,3 +96,15 @@ the full ΛCDM one. The external-field effect of the large-scale modes throttles
 "RMS-EFE" linear model said and the per-mode model missed. With the framework's derived floor there is no boost at all. The
 forest needs a component that clusters on 1–5 Mpc at z = 3, and such a component sits in galaxies. Three independent data,
 the CMB, the Bullet and the forest, now force the same cold, ballistic, galaxy-clustering object.
+
+## Fourth addendum (same day, evening): the framework-native audit, and the lensing gate
+
+The dwarf pincer's decisive number came from ΛCDM's abundance-matching ratio and is downgraded to marginal when the dark charge
+(the condensate's conserved shift charge at Ω_c) is accreted onto dwarfs in the framework's own gravity with the external-field
+effect (`prep_2026/rar_origin_2026/`). The framework-native calculation instead shows how copiously a MOND well accretes a cold
+charge, and `dark_charge_kids_lensing_gate_2026.py` puts that accreted profile into the framework's own lensing (γ = 1) against
+Brouwer+ 2021's KiDS-1000 isolated lenses: at realistic external fields (0.03–0.1 a₀) the charge multiplies the 100 kpc–1 Mpc
+lensing by 3–20 and is excluded at Δχ² ≥ +100 with the amplitude systematic profiled; at an external field of order a₀ the
+accretion is throttled to 8–19 M_b inside 500 kpc and tolerated. The CMB's cold charge and MOND wells around galaxies are
+incompatible in galaxy-galaxy lensing at realistic environments, unless the charge does not fall in — the door every kinetic
+mechanism closed. This is the framework-native form of the double count, measured with existing data.

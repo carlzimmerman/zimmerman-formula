@@ -1058,3 +1058,21 @@ small-scale power to 2× (a works) but overproduces the ≥ 100 Mpc power 5–13
 30–200× in shape. The exclusions above stand on the framework's footing.
 
 **Correction (same day, later):** the "matches the measured z = 3 small-scale power to 2× (a works)" line above came from the linear per-mode boost model, which ignores the external-field effect of the large-scale modes. The exact 1-D MOND sheet N-body (`condensate_pincer_2026/mond_sheet_nbody_forest_gate_2026.py`, 4/4) finds nonlinear MOND on baryons 1000–5000× short of the forest at k = 1–10 h/Mpc, z = 3, for any initial amplitude. That works is withdrawn; the per-mode overproduction numbers are not physics either.
+
+## ⚠ 2026-09-02 (evening) — DOWNGRADED: the dwarf pincer's "+0.33 dex" was ΛCDM's abundance-matching ratio, not the framework's; framework-native the dwarf excess is marginal. NEW: the accreted dark charge is excluded by KiDS lensing at realistic environments
+
+The first dwarf pincer (`prep_2026/rar_origin_2026/mond_plus_cold_dwarf_pincer_2026.py`) put an abundance-matched NFW halo
+(Moster+ 2013, Dutton–Macciò 2014: ~200× the baryons) in each deep-MOND SPARC dwarf and found +0.33 dex against a room of
++0.05–0.09. That halo-to-baryon ratio is ΛCDM's galaxy-formation modelling, not a framework quantity. Redone with the
+framework's own pieces (`dark_charge_dwarf_capture_framework_native_2026.py`): the cold dark charge — the condensate's conserved
+shift charge at its CMB-required Ω_c — accreting by spherical collapse onto the dwarf's MOND well (Route A kernel, both footings,
+Newtonian background growth per the derived floor, MOND boost on the peculiar field only, external-field effect e_N = 0.01–0.1)
+adds +0.10–0.15 dex against the same room: **a marginal excess, uncertain by the shell-placement convention (~×2).** The
+decisive-kill wording is withdrawn; the dwarf verdict is "of order the room, undecided". What the framework-native calculation
+does establish is the accretion itself: a MOND well gathers the cold charge copiously (a dwarf 10¹¹–10¹² M☉ out to 200–500 kpc,
+an L* galaxy 1.7×10¹³ M☉ out to 900 kpc at e_N = 0.03). `dark_charge_kids_lensing_gate_2026.py` confronts that with Brouwer+
+2021's KiDS-1000 isolated-lens RAR (full covariance, amplitude systematic ±0.3 dex profiled): at the external fields isolated
+galaxies live in (e_N = 0.03–0.1) the accreted charge multiplies the lensing at 100 kpc–1 Mpc by 3–20 and is excluded at
+Δχ² ≥ +100 on both footings; only an external field of order a₀ itself throttles the accretion enough (8–19 M_b inside 500 kpc)
+for the amplitude budget to absorb the rest. Both ways recorded. Two bugs fixed on the way (boost applied to the homogeneous
+background; no external field) and the audit that prompted this was the user's: ΛCDM-native inputs had entered a framework verdict.
