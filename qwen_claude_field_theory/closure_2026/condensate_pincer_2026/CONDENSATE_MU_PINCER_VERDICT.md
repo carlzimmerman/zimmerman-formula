@@ -80,3 +80,23 @@ loses 7% at k = 10). The dust at z = 3 is the dust in a galaxy well today. Press
   double-counts with MOND in galaxies by the repo's own ξ = 1 numbers (2.7–4.4× overshoot).
 
 Yardsticks were taken at their loose ends throughout (30% shield, 10⁻⁵ CMB, 0.5 forest, stage 69's own 3%).
+
+## Footing check (2026-09-02, after the objection "stop playing high priest of ΛCDM")
+
+The growth yardsticks above assume the dark fluid carries structure by Newtonian linear growth. Whether that is the
+framework's own footing or ΛCDM's was tested in `mond_growth_framework_footing_2026.py` (7 checks, 0 FAIL):
+
+- **The framework's own derived cosmological kernel argument** (`prep_2026/mi_covariant_pt`, 17/17) carries a dS-Unruh
+  Hubble floor, X = Z²(H/H_Λ)² + (a_pec/a₀)². With it, MOND changes linear growth by at most 6% at every k, z and both
+  a₀ footings (1a). The Newtonian yardsticks are therefore the framework's footing, and the pinned Horn 1 underproduces
+  the measured clustering by 40–600× at k ≥ 0.2 h/Mpc (1c).
+- **Without the floor** (a Nusser/Sanders MOND cosmology, which the framework's derivation rejects): the pinned warm dust
+  plus MOND-grown baryons lands within 2× of the measured z = 3 power at k = 1–10 h/Mpc, both footings, where the
+  Newtonian run is 300–600× low (1b, a works). It overproduces the k ≤ 0.2 h/Mpc power 5–13× at z = 3 and makes 100-Mpc
+  scales nonlinear by z = 0 (1b′). No μ⁻¹ in 0.1–5 Mpc fixes the shape: the large-scale overproduction is μ-independent (1d).
+- **No dark field at all** (Ω_m = Ω_b, MOND from z = 20): with the floor, nothing grows (2a); without it, the z = 3
+  spectrum is tilted 30–200× in power between k = 0.05 and 10 h/Mpc relative to the measured shape, for every IC
+  normalisation (2b).
+
+Nothing in the framework boosts k ≳ 1 h/Mpc without also boosting k ≈ 0.05 h/Mpc. Structure needs an Ω_dm-worth of
+something that clusters on 100-Mpc scales without a MOND boost, and the pincer says that something is cold above ~1 kpc.

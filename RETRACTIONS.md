@@ -1049,3 +1049,10 @@ and the background carries `n ∝ (1+z)³`, so a galaxy well's dust state IS the
 dark matter stays out of galaxies, for any K. **Survives:** the stage-17 a₀(z) law (trace khronon dust of D4,
 Λ_D/Q₀ ≥ 33, cosmologically invisible), MOND phenomenology, and a cold Ω_dm that double-counts in galaxies (ξ = 1).
 All yardsticks taken at their loose ends (30% shield, c_s²(rec) ≤ 10⁻⁵, T²(10 h/Mpc, z=3) ≥ 0.5, stage 69's own 3%).
+
+**Footing addendum (same day):** the objection that the growth yardsticks were ΛCDM's was tested
+(`condensate_pincer_2026/mond_growth_framework_footing_2026.py`, 7/7). The framework's OWN derived cosmological kernel
+argument (dS-Unruh Hubble floor, `prep_2026/mi_covariant_pt` 17/17) makes MOND irrelevant to linear growth (≤ 6%), so the
+yardsticks are the framework's footing. Without the floor, a warm-dust + MOND-baryon cosmology matches the measured z = 3
+small-scale power to 2× (a works) but overproduces the ≥ 100 Mpc power 5–13× for every μ; no dark field at all is tilted
+30–200× in shape. The exclusions above stand on the framework's footing.
