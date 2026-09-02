@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "claim_id": "nonlocal-spin2-state-space-and-zero-field-gates-2026",
+  "repository": {
+    "commit": "b84b18075",
+    "base_commit": "b84b18075",
+    "branch": "main",
+    "dirty": true,
+    "dirty_during_audit": true,
+    "scope": "Two new standalone gates and their tests/verdict. Unrelated pre-existing working-tree files are excluded."
+  },
+  "command": "Run both self-running test files, then both gate programs, with Python 3.9.6 and SymPy 1.14.0.",
+  "environment": {
+    "software": ["Python 3.9.6", "SymPy 1.14.0"],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit",
+    "python": "3.9.6",
+    "sympy": "1.14.0",
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
+    "randomness_used": false
+  },
+  "mathematics": {
+    "assertion_tested": "Whether the remaining genuinely non-rational or pole-free field-dependent spin-2 response can retain exact exponential MOND, no slip, exactly two gravitational tensor states, and a controlled zero-field limit in two standard action realizations.",
+    "coefficient_domain": "Exact SymPy expressions; positive masses, couplings and continuum density; y>0 with a one-sided y->0 norm limit; conserved static dust source; general Lorentz-covariant spin-2 and scalar form factors a,c.",
+    "conventions": "Mostly-plus metric; static momentum along z; Barnes-Rivers propagator P2/a-P0s/(2c); gamma=h11/h00; one TT amplitude represents each physical tensor channel in the spectral gate.",
+    "inputs": [
+      "G(y)=y^2+2(1+y)exp(-y)-2 and G'(y)/(2y)=mu(y)=1-exp(-y)",
+      "Positive-spectral Euclidean response Pi_E(z)=integral rho(s)/(s+z) ds",
+      "CTP retarded and vacuum-noise kernels of a healthy oscillator",
+      "General conserved-source metric propagator P2/a-P0s/(2c)"
+    ],
+    "exact_results": [
+      "The strongest reduced static action derives the exact MOND flux and a Phi=Psi branch.",
+      "Direct projector contraction gives gamma=(a+2c)/(4c-a); gamma=1 forces c=a, and the common response relative to GR is 1/a.",
+      "Exact MOND therefore sets the regular no-slip coefficient a=c=mu; W_TT=mu I2 has rank zero at y=0 in both k=0 and k!=0.",
+      "The zero-field quadratic Dirac chain has two primary constraints, no secondaries, a zero Poisson matrix and zero quadratic tensor modes; 1/mu diverges.",
+      "Adding a positive floor restores rank two but changes the MOND coefficient by the floor, which dominates as y->0.",
+      "A healthy finite carrier action has a regular full-rank Hessian and positive spectral residues; a positive continuum has a nonzero branch cut.",
+      "Cancelling the spectral response with signed weight introduces a negative kinetic eigenvalue.",
+      "The healthy CTP response is nonreciprocal and has a nonzero paired noise kernel."
+    ],
+    "bounds": {
+      "closed_subclasses": [
+        "local unitary positive-spectral carrier completions of a non-rational retarded spin-2 response",
+        "regular Lorentz-covariant metric-only form factors whose dust response is described by the standard spin projectors"
+      ],
+      "not_universal": true
+    },
+    "non_claims": [
+      "No theorem is asserted for arbitrary formal acausal or non-unitary kernels.",
+      "The positive-spectral result does not exclude pole-free entire free form factors.",
+      "No non-universal metric-only covariant projector is constructed or universally excluded.",
+      "The accidental first-class count at y=0 is a quadratic rank-loss diagnostic, not a claim of a new nonlinear gauge symmetry.",
+      "No full TOE is claimed."
+    ]
+  },
+  "literature": {
+    "search_method": "SciSpace semantic searches followed by primary-source checks",
+    "checked_at": "2026-09-02",
+    "sources": [
+      "S. Park, Phys. Rev. D 97, 044006 (2018), arXiv:1711.08759",
+      "F. Briscese, G. Calcagni, L. Modesto and G. Nardelli, arXiv:2405.14056",
+      "C. Deffayet and R. P. Woodard, JCAP 04 (2026) 081, arXiv:2512.10513v2"
+    ],
+    "scope_result": "The search did not locate the same nonzero-spatial-gradient MOND-background calculation. This is not treated as a proof of novelty."
+  },
+  "verification": {
+    "test_programs": 2,
+    "individual_tests": 13,
+    "main_checks": 14,
+    "test_status": "Both self-running test programs and both main gates exited 0."
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-09-02",
+    "runtime_seconds": null,
+    "exit_status": 0
+  },
+  "outputs": [
+    {"path": "qwen_claude_field_theory/closure_2026/nonlocal_door/spectral_state_space_gate_2026.py", "sha256": "31111934a4bfffce0690f02bdc5d0787822d912a4ab1708e424235fbf8dc2af3"},
+    {"path": "qwen_claude_field_theory/closure_2026/nonlocal_door/test_spectral_state_space_gate_2026.py", "sha256": "a6109f561ee5b8e4865fe0d3eed91acb700d95df5f0007f9d251be5c47ad0f68"},
+    {"path": "qwen_claude_field_theory/closure_2026/nonlocal_door/field_dependent_spin2_zero_field_gate_2026.py", "sha256": "d19fbb4308d1f6a6c5757c6efdad4dc6469a635c499ec927ed28b958c6b7c04d"},
+    {"path": "qwen_claude_field_theory/closure_2026/nonlocal_door/test_field_dependent_spin2_zero_field_gate_2026.py", "sha256": "543696c157f4c1285274aa3f07e10592e58f885b0110500190bc5d0201aecdf9"},
+    {"path": "qwen_claude_field_theory/closure_2026/nonlocal_door/NONLOCAL_SPIN2_STATE_SPACE_VERDICT_2026-09-02.md", "sha256": "24b3533ceba6565e18078e9f0c34646bcf679d7ab824d419442c8c5a489524d1"}
+  ],
+  "checks": [
+    "Differentiate the exact exponential primitive and vary the reduced static action.",
+    "Construct Barnes--Rivers projectors, verify their algebra and contract them with static dust.",
+    "Solve gamma=1 for the independent spin-0 form factor and calculate the common response.",
+    "Build the TT Hessian, run the zero-field quadratic Dirac chain and separate k=0 from k!=0.",
+    "Add a positive kinetic floor and calculate its exact MOND residual and deep-limit dominance.",
+    "Integrate finite and continuous positive spectral measures and calculate residues, slope and cut discontinuity.",
+    "Construct the signed cancellation Hessian and the oscillator CTP retarded/noise kernels."
+  ],
+  "result": "SCOPED NO-GO. Positive-spectral non-rational completion requires extra carrier states; regular no-slip metric form factors obey a=c and exact mu(0)=0 destroys the TT quadratic Hessian. The global residue is a non-universal metric-only covariant projector with no extra state and controlled zero-field behavior.",
+  "next_unavoidable_calculation": "Solve the covariant projector/Helmholtz problem: construct the full second variation of a metric-only action that changes only the static scalar constraint while leaving TT exactly Einstein, or prove that the required projector introduces a frame/state, singular inverse, or Bianchi failure.",
+  "residual_risks": [
+    "The positive-spectral theorem does not cover entire zero-free free form factors.",
+    "The projector calculation assumes a regular Lorentz-covariant quadratic response to conserved dust on the background.",
+    "The y=0 first-class count is only the degenerate quadratic theory; the nonlinear interpretation is strong coupling/constraint bifurcation.",
+    "A non-universal metric-only covariant projector has not been constructed or universally excluded."
+  ]
+}

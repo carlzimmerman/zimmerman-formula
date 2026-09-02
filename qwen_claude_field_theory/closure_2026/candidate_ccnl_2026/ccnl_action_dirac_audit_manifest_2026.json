@@ -2,7 +2,7 @@
   "schema_version": 1,
   "claim_id": "ccnl-ordinary-localized-action-dirac-obstruction-2026",
   "repository": {
-    "commit": "5eaf1694a556cb6dfec7a6c4709be0e576a8cada",
+    "commit": "b84b18075",
     "base_commit": "5eaf1694a556cb6dfec7a6c4709be0e576a8cada",
     "branch": "main",
     "dirty": true,
@@ -32,7 +32,7 @@
       "not_universal": true
     },
     "non_claims": [
-      "No universal no-go for every genuine Schwinger-Keldysh or in-in nonlocal theory is claimed.",
+      "This manifest does not claim a universal no-go for every Schwinger-Keldysh or in-in nonlocal theory; the separate linear-background audit kills the displayed R_uu kernel at stability gate 7.",
       "No complete boosted PPN parameter is assigned.",
       "The clock scalar is counted separately; the obstruction concerns the additional X-xi pair.",
       "The supplementary source scan is not load-bearing."
@@ -42,6 +42,7 @@
       "W_CCNL(y)=[[-4 exp(-y),1],[1,0]], det(W)=-1 and rank(W)=2 for all finite y.",
       "The auxiliary Legendre map is invertible, the primary and secondary lists are empty, the Poisson matrix is 0x0, and two auxiliary configuration modes remain in k=0 and k!=0.",
       "The two kinetic eigenvalues have product -1, hence one negative direction.",
+      "Including the homogeneous scale-factor velocity gives det W_FLRW=12 a^7(1+xi_bg+3 exp(-y)); on xi_bg=0 the block has rank three.",
       "Retarded/null history data are not equal-time Dirac constraints.",
       "DW equation (33) with M_0=0 gives M=-f+(n_0/n)f_0, not M=-f generically.",
       "The odd negative-Z continuation is C1 but not C2 at Z=0."
@@ -59,7 +60,7 @@
   },
   "verification": {
     "test_programs": 1,
-    "individual_tests": 7,
+    "individual_tests": 8,
     "main_checks_with_live_proposal": 14,
     "test_status": "The standalone test program and main audit exited 0 on the final pre-commit tree."
   },
@@ -69,23 +70,24 @@
     "exit_status": 0
   },
   "outputs": [
-    {"path": "qwen_claude_field_theory/closure_2026/candidate_ccnl_2026/ccnl_action_dirac_audit_2026.py", "sha256": "1e5e6d8cf0ea8bc6700e41f498fbcb62d19340a8f649b537ae6475bf93d42ca9"},
-    {"path": "qwen_claude_field_theory/closure_2026/candidate_ccnl_2026/test_ccnl_action_dirac_audit_2026.py", "sha256": "d5972211c9377cfb84c76b491d2395a0735a46af532e7f7e341eb1a8e6c6bb1a"},
-    {"path": "qwen_claude_field_theory/closure_2026/candidate_ccnl_2026/CCNL_ACTION_DIRAC_VERDICT_2026-09-02.md", "sha256": "09eec73a452603590673e01aa2624a2e345d5b40ef1f72ad9fbbb332526118b4"}
+    {"path": "qwen_claude_field_theory/closure_2026/candidate_ccnl_2026/ccnl_action_dirac_audit_2026.py", "sha256": "5ba5a8bf29a7a3cb68db37ca63c705416ca3a994771d432bc28aa72e2ed67bfb"},
+    {"path": "qwen_claude_field_theory/closure_2026/candidate_ccnl_2026/test_ccnl_action_dirac_audit_2026.py", "sha256": "b55b144fdd5730d3f169e2da20faa2e35bd096d14cf95d2c18f16e698e6ef8b9"},
+    {"path": "qwen_claude_field_theory/closure_2026/candidate_ccnl_2026/CCNL_ACTION_DIRAC_VERDICT_2026-09-02.md", "sha256": "40228a77f78d8a7b1978ab4ae2a7a403b5d8f1a185aad29cde74f03be2ff62e1"}
   ],
   "checks": [
     "Differentiate the exact constitutive function.",
     "Build the velocity Hessian and derive determinant, rank, and eigenvalue product.",
     "Invert the full auxiliary Legendre map and calculate the Hamiltonian, constraint lists, Poisson matrix, class count, and mode sectors.",
+    "Include the homogeneous scale-factor velocity and calculate the full 3x3 minisuperspace Hessian determinant and rank.",
     "Compare ordinary action reciprocity with a strict retarded kernel.",
     "Integrate the DW transport invariant with zero M initial data.",
     "Calculate the nonzero trace-free spatial stress and audit PPN output provenance.",
     "Take one-sided zero-field derivative limits."
   ],
-  "result": "SCOPED ACTION-CLASS NO-GO. The exact exponential static kernel survives, but CCNL is DEAD as the displayed ordinary localized action because it adds a regular two-mode auxiliary pair with one negative kinetic direction and no Dirac reduction. The global genuinely nonlocal existence question remains OPEN.",
+  "result": "SCOPED ACTION-CLASS NO-GO. The exact exponential static kernel survives, but CCNL is DEAD as the displayed ordinary localized action because it adds a regular two-mode auxiliary pair with one negative kinetic direction and no Dirac reduction. A separate in-in background audit subsequently kills this R_uu kernel at stability gate 7; other tensorial nonlocal architectures remain outside this manifest.",
   "residual_risks": [
-    "Metric-scalar mixing in the full covariant Hessian has not been used to claim a universal theorem; the result applies to the displayed ordinary auxiliary representation and its regular decoupling principal block.",
-    "A genuine in-in construction with a derived reduced physical state space is not present.",
+    "Full covariant metric-scalar mixing has not been used to claim a universal theorem; the exact homogeneous metric block was checked and remains full rank.",
+    "The separate in-in linear-background calculation finds a longitudinal instability/negative-residue mode for this kernel; it is not part of this ordinary-action manifest.",
     "Exact nonlinear no slip and full preferred-frame PPN remain uncomputed."
   ]
 }

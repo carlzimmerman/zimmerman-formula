@@ -107,6 +107,36 @@ to this commit.
 | `pdftoppm -png -r 120 opus_48_extended_research/papers/pdf/CLUSTER_PHASE_PINNING_POLYTROPE.pdf tmp/pdfs/cluster_phase_qa/page` | 0 | Rendered all pages for visual inspection |
 | `montage tmp/pdfs/cluster_phase_qa/page-1.png tmp/pdfs/cluster_phase_qa/page-2.png tmp/pdfs/cluster_phase_qa/page-3.png tmp/pdfs/cluster_phase_qa/page-4.png tmp/pdfs/cluster_phase_qa/page-5.png tmp/pdfs/cluster_phase_qa/page-6.png tmp/pdfs/cluster_phase_qa/page-7.png tmp/pdfs/cluster_phase_qa/page-8.png -thumbnail 420x -tile 2x4 -geometry +12+12 tmp/pdfs/cluster_phase_qa/contact.png` | 0 | Contact-sheet inspection found no clipping, overlap, or overflow |
 
+## CCNL candidate audit
+
+| Exact command and working directory | Status | Observed result |
+|---|---:|---|
+| `python3 qwen_claude_field_theory/closure_2026/candidate_ccnl_2026/ccnl_mond_gates_2026.py` | 130 | Proposal produced two numerical failures, then remained inside SymPy's higher-derivative Euler calculation until manually interrupted; no final advertised verdict was reached |
+| `python3 qwen_claude_field_theory/closure_2026/candidate_ccnl_2026/ccnl_mond_gates_2026.py` after the committed rewrite | 0 | 29/29 after 544 s; the output itself leaves the in-in phase space owed, and is superseded on that gate by the later instability and Dirac audits |
+| `python3 test_ccnl_action_dirac_audit_2026.py` in `candidate_ccnl_2026/` before implementation | 1 | Expected TDD red: audit module absent |
+| `python3 test_ccnl_action_dirac_audit_2026.py` after the first report implementation | 1 | Expected regression red: unsimplified eigenvalue product exposed a symbolic comparison bug |
+| `python3 qwen_claude_field_theory/closure_2026/candidate_ccnl_2026/test_ccnl_action_dirac_audit_2026.py` | 0 | 8 tests |
+| `python3 qwen_claude_field_theory/closure_2026/candidate_ccnl_2026/ccnl_action_dirac_audit_2026.py` | 0 | 14/14 derived checks; exact kernel survives, ordinary localized action fails the auxiliary Dirac/ghost gate |
+| `python3 qwen_claude_field_theory/closure_2026/candidate_ccnl_2026/ccnl_inin_linear_scalar_2026.py` | 0 | 12/12 findings reproduced; complex longitudinal modes at `y>=0.5`, negative residue in the tested deep-MOND window |
+
+## Nonlocal spin-2 residual
+
+| Exact command and working directory | Status | Observed result |
+|---|---:|---|
+| `python3 qwen_claude_field_theory/closure_2026/nonlocal_door/test_spectral_state_space_gate_2026.py` before implementation | 1 | Expected TDD red: audit module absent |
+| `python3 qwen_claude_field_theory/closure_2026/nonlocal_door/test_spectral_state_space_gate_2026.py` | 0 | 6 tests |
+| `python3 qwen_claude_field_theory/closure_2026/nonlocal_door/spectral_state_space_gate_2026.py` | 0 | 7/7 derived checks; positive spectral memory requires extra states |
+| `python3 qwen_claude_field_theory/closure_2026/nonlocal_door/test_field_dependent_spin2_zero_field_gate_2026.py` before implementation | 1 | Expected TDD red: audit module absent |
+| `python3 qwen_claude_field_theory/closure_2026/nonlocal_door/test_field_dependent_spin2_zero_field_gate_2026.py` after the first implementation | 1 | Expected regression red: symbolic positivity was not yet represented as a Boolean proof object |
+| `python3 qwen_claude_field_theory/closure_2026/nonlocal_door/test_field_dependent_spin2_zero_field_gate_2026.py` after adding the projector test | 1 | Expected regression red: general projector result absent |
+| `python3 qwen_claude_field_theory/closure_2026/nonlocal_door/test_field_dependent_spin2_zero_field_gate_2026.py` | 0 | 7 tests |
+| `python3 qwen_claude_field_theory/closure_2026/nonlocal_door/field_dependent_spin2_zero_field_gate_2026.py` | 0 | 7/7 derived checks; no slip forces `a=c`, then exact `mu(0)=0` zeros the TT Hessian |
+| `python3 -m pytest -q` on the nine aligned regression files | 1 | Environment limitation: `pytest` is not installed; all nine files were then run through their self-running entry points and exited 0 |
+| `python3 -m compileall -q` on the six changed Python files | 1 | macOS denied writes to its external Python cache directory; no syntax diagnostic was emitted |
+| `env PYTHONPYCACHEPREFIX=/tmp/zimmerman_formula_pycache python3 -m compileall -q` on the same six files | 0 | Syntax compilation completed using a task-specific writable cache |
+| `python3 .../mathbox/.../validate_manifest.py` on the first spin-2 manifest draft | 1 | Expected audit hardening: four required provenance blocks were missing |
+| `python3 .../mathbox/.../validate_manifest.py` on all final aligned manifests | 0 | New spin-2, CCNL Dirac, and one-shot manifests valid; all recorded output hashes matched |
+
 ## Final verification
 
 | Exact command | Status | Observed result |

@@ -461,8 +461,9 @@ def main() -> int:
     print("  auxiliary Dirac chain is empty, and it carries two auxiliary configuration modes with one")
     print("  negative kinetic direction in both k sectors.  Retarded/null data are history conditions,")
     print("  not action-derived phase-space constraints.  Exact nonlinear no slip and preferred-frame PPN")
-    print("  are also uncomputed.  CCNL is DEAD as the claimed ordinary localized action; a genuinely")
-    print("  nonlocal in-in construction with a demonstrated physical phase space remains OPEN.")
+    print("  are also uncomputed.  CCNL is DEAD as the claimed ordinary localized action.  The separate")
+    print("  in-in background audit subsequently kills this R_uu kernel at stability gate 7; other")
+    print("  nonlocal tensor architectures are outside this ordinary-action audit.")
     print(f"  Checks completed: {sum(checks)}/{len(checks)}")
     return 0 if all(checks) else 1
 

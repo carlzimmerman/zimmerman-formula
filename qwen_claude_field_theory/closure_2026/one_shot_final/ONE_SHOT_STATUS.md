@@ -120,6 +120,72 @@ and a specified dissipative/shock prescription, the tested radial phases relax
 near the corresponding positive polytrope. Conservative action-derived mass
 selection remains open.
 
+## Condensate-clock nonlocal candidate
+
+The latest CCNL proposal successfully derives the preferred exponential
+constitutive function, but its displayed local action fails the strict
+auxiliary-mode gate. After integrating `xi Box X` by parts, the exact
+candidate-specific velocity Hessian is
+
+\[
+W(y)=\begin{pmatrix}-4e^{-y}&1\\1&0\end{pmatrix},
+\qquad \det W=-1.
+\]
+
+The Legendre map has rank two. It produces no primary or secondary auxiliary
+constraints, an empty auxiliary Poisson matrix, and two configuration modes
+with opposite kinetic signs in both `k=0` and `k!=0`. Null retarded data choose
+one solution but are not equal-time Dirac constraints. Consequently CCNL is
+**DEAD as the displayed ordinary localized action**, although its exact static
+MOND kernel survives for use in a different architecture.
+
+The source translation also matters: Deffayet--Woodard equation (33) gives
+`n(M+f)=constant`, so `M_0=0` implies
+`M=-f+(n_0/n)f_0`, not `M=-f` unless `f_0=0`. Exact nonlinear no slip and a
+boosted extraction of `beta, alpha_1, alpha_2, alpha_3` remain uncomputed.
+
+The later background perturbation calculation closes the retarded version of
+this same candidate. On a uniform MOND-gradient WKB background, its reduced
+in-in scalar determinant has complex longitudinal roots for every tested
+`y>=0.5`; in the real-frequency deep-MOND window one scalar residue is
+negative. The instability disappears transversely and under the `f''=0`
+ablation, and it is reproduced with Deffayet--Woodard's own interpolation.
+Therefore the `R_uu -> Box_ret^-1 -> f(Z)` route is **DEAD at stability gate
+7**, not merely unclosed canonically.
+
+## Last spin-2 residual: two new scoped closures
+
+The positive-spectral realization of a genuinely non-rational retarded tensor
+form factor is incompatible with the exact two-state count: nonzero spectral
+weight is a set of real carrier states, zero weight removes the response, and
+signed cancellation introduces a negative kinetic direction. Its causal CTP
+description is an influence action with a paired noise kernel, not a real
+one-copy fundamental action.
+
+The pole-free regular realization fails differently. An explicit
+Barnes--Rivers contraction with static dust gives
+
+\[
+\gamma={a+2c\over4c-a},
+\]
+
+so `gamma=1` forces the spin-2 and scalar form factors to agree, `a=c`. The
+common enhancement is `1/a`; exact MOND fixes `a=c=mu(y)`. Hence
+
+\[
+W_{TT}(0)=\mu(0)I_2=0,
+\]
+
+and both tensor kinetic terms lose rank at the exact zero-field point. A
+positive floor saves the tensor Hessian only by replacing the specified MOND
+law with `mu+epsilon` and dominating the deep-MOND limit.
+
+These results close the positive-spectral and regular universal form-factor
+subclasses. The precise remaining residue is a non-universal, metric-only,
+covariant projector that modifies the static scalar constraint while leaving
+TT exactly Einstein, introduces no poles/cuts/auxiliary data, and preserves the
+nonlinear Bianchi and matter Ward identities. No such action is present.
+
 ## High download/view record
 
 The likely bimetric record is physically interesting because it contains a

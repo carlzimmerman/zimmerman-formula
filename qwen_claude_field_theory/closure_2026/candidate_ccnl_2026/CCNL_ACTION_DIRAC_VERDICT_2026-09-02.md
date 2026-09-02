@@ -3,8 +3,9 @@
 ## Status
 
 **Exact exponential constitutive law: PASS. Ordinary localized CCNL action:
-DEAD for the strict fried-chicken target. Global nonlocal existence question:
-OPEN.**
+DEAD for the strict fried-chicken target. The separate in-in background audit
+also kills this `R_uu` kernel at stability gate 7. Other nonlocal tensor
+architectures remain outside this scoped result.**
 
 The candidate tested is
 
@@ -167,8 +168,10 @@ crossing prescription is still owed.
 ## Exact scope
 
 This result kills CCNL **as the displayed ordinary localized action** under the
-strict ban on hidden propagating auxiliary scalars and ghosts. It does not
-exclude a genuinely nonlocal Schwinger-Keldysh/in-in construction whose
-physical phase space, unitarity, causal variation, and PPN metric are derived
-without treating retarded history data as canonical constraints. No such
-completed construction is presently in the repository.
+strict ban on hidden propagating auxiliary scalars and ghosts. The subsequent
+`ccnl_inin_linear_scalar_2026.py` audit treats the auxiliaries as retarded
+functionals and independently finds a longitudinal gradient instability in
+the transition regime and a negative-residue scalar mode in the tested
+deep-MOND window. Thus this particular `R_uu -> Box_ret^-1 -> f(Z)` kernel is
+also dead under the in-in definition. The broader nonlocal tensorial question
+is outside the present action/Dirac theorem.
