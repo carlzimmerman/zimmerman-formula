@@ -69,15 +69,17 @@ for foot, a0 in A0.items():
         Mh = Mh_of_Mstar(max(g["Ms"], 1e5)); gh = g_nfw(g["r"][sel], Mh, c_DM14(Mh))
         gmeans.append(float(np.mean(np.log10(g["gobs"][sel]/gm)))); gpred.append(float(np.mean(np.log10((gm + gh)/gm))))
     gmeans = np.array(gmeans); gpred = np.array(gpred); n = len(gmeans)
-    mean = gmeans.mean(); se = gmeans.std(ddof=1)/math.sqrt(n); tol = abs(mean) + 2*se + SYS_FLOOR
-    xs = 10**gpred - 1
-    fmax = brentq(lambda f: float(np.median(np.log10(1 + f*xs))) - tol, 1e-6, 10.0) if float(np.median(np.log10(1 + 10*xs))) > tol else 10.0
+    mean = gmeans.mean(); se = gmeans.std(ddof=1)/math.sqrt(n); tol = 2*se + SYS_FLOOR
+    # a halo fraction f shifts the MOND-alone prediction UP by log10(1 + f x); it is allowed while the data's mean residual (which sits
+    # BELOW zero) stays within 2 SE + the systematic floor of that shift:  log10(1 + f x_med) <= mean + tol.  A negative mean REDUCES the room.
+    xs = 10**gpred - 1; room = mean + tol
+    fmax = 0.0 if room <= 0 else (brentq(lambda f: float(np.median(np.log10(1 + f*xs))) - room, 1e-9, 10.0) if float(np.median(np.log10(1 + 10*xs))) > room else 10.0)
     res[foot] = dict(n=n, mean=mean, se=se, gstd=gmeans.std(ddof=1), pmed=float(np.median(gpred)), fmax=fmax, tol=tol)
-    info(f"{foot:10s}: {n} dwarfs: per-galaxy mean residual = {mean:+.3f} +/- {se:.3f} (SE), galaxy-to-galaxy scatter {gmeans.std(ddof=1):.3f} dex | AM halo would add {np.median(gpred):+.2f} dex (median) | tolerance |mean| + 2 SE + {SYS_FLOOR} = {tol:.3f} -> f_max = {fmax:.2f}")
+    info(f"{foot:10s}: {n} dwarfs: per-galaxy mean residual = {mean:+.3f} +/- {se:.3f} (SE), galaxy-to-galaxy scatter {gmeans.std(ddof=1):.3f} dex | AM halo would add {np.median(gpred):+.2f} dex (median) | room for an additive halo = mean + 2 SE + {SYS_FLOOR} = {room:+.3f} dex -> f_max = {fmax:.2f}")
 check("J1a MOND alone fits the deep-MOND dwarfs on the sample MEAN: |per-galaxy mean residual| < 0.15 dex on at least one footing, and the dwarfs sit AT or BELOW the MOND line, not above it (no room for an additive halo)",
       any(abs(res[f]["mean"]) < 0.15 for f in A0) and all(res[f]["mean"] <= 0.02 for f in A0), "; ".join(f"{f}: {res[f]['mean']:+.3f} +/- {res[f]['se']:.3f}" for f in A0))
 check("J1b a cold-component halo at the abundance-matched level would add > 0.30 dex to those points (median), i.e. MOND + cold double-counts the dwarfs by > 2x, both footings", all(res[f]["pmed"] > 0.30 for f in A0), "; ".join(f"{f}: +{res[f]['pmed']:.2f} dex" for f in A0))
-check("J1c even with a 0.10 dex systematic floor on the sample mean, the dwarfs allow at most 60% of the abundance-matched halo (both footings)", all(res[f]["fmax"] < 0.60 for f in A0), "; ".join(f"{f}: f_max = {res[f]['fmax']:.2f}" for f in A0))
+check("J1c even with a 0.10 dex systematic floor on the sample mean, the dwarfs allow at most 30% of the abundance-matched halo (both footings): the room is small because they already sit below the MOND line", all(res[f]["fmax"] < 0.30 for f in A0), "; ".join(f"{f}: f_max = {res[f]['fmax']:.2f}" for f in A0))
 P(""); P("="*100); P("J2. removing the dwarfs' halos needs a cutoff the forest forbids"); P("="*100)
 def M_hm(m_keV): return 1e10*m_keV**(-3.33)/h                                            # Msun (Schneider+ 2012, WDM half-mode mass)
 def m_of_Mhm(M): return (M*h/1e10)**(-1/3.33)
