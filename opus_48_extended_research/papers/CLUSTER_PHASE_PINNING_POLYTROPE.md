@@ -1,18 +1,19 @@
 # The Aether–Scalar–Tensor Dark Sector Is a $\gamma = 2$ Polytrope: the Cluster Helmholtz Phase Is Its Mass, It Pins Dynamically, and It Fills About a Quarter of the Core
 
-> **ADDENDUM, 2026-09-02:** The static polytrope and cluster-yield results
-> reproduce, but two phrases require narrowing. The `gamma=2` law is the
-> controlled small-field limit (relative correction about `10^-5` at cluster
-> depth), and the numerical phase pin is conditional on fixed captured mass
-> plus the simulation's explicit artificial viscosity. Positivity selects a
-> one-parameter positive family, not a unique mass; conservative action-derived
-> mass selection remains open. See the
-> [conservative-dynamics addendum](../../qwen_claude_field_theory/closure_2026/cluster_phase_2026/ITEM_C_CONSERVATIVE_DYNAMICS_ADDENDUM_2026-09-02.md).
-
 **C. P. Zimmerman**
 *Briar Creek Tech · Charlotte, NC · carl@briarcreektech.com*
 
-*Version 2026-09-01 · Zenodo [10.5281/zenodo.22242701](https://doi.org/10.5281/zenodo.22242701). Companion to Zenodo [10.5281/zenodo.20779562](https://doi.org/10.5281/zenodo.20779562), two of whose statements this paper corrects (§7).*
+*Version 2026-09-02 (v2) · Zenodo [10.5281/zenodo.22254075](https://doi.org/10.5281/zenodo.22254075). Version 1: Zenodo [10.5281/zenodo.22242701](https://doi.org/10.5281/zenodo.22242701). Companion to Zenodo [10.5281/zenodo.20779562](https://doi.org/10.5281/zenodo.20779562), two of whose statements this paper corrects (§7).*
+
+> **Addendum, version 2 (2026-09-02).** The static polytrope and cluster-yield results of this paper reproduce (27 checks, zero failures),
+> and an independent action-level audit in the repository narrows two phrases. (i) The equation of state $p_d=(2\pi G/\mu^2)\rho_d^2$ is the
+> controlled small-field limit of the exact relation, whose effective adiabatic index is $\gamma_{\rm eff}=(2Q_0+u)/(Q_0+u)$, so $\gamma=2$
+> holds with a relative correction of order $u\sim|\Psi|\sim10^{-5}$ at cluster depth. (ii) The numerical phase pin of §6 is conditional:
+> it fixes the captured mass by hand and uses an explicit artificial viscosity for shocks; what it shows is that, given those, the end
+> state is the positive polytrope of that mass. Positivity selects the one-parameter positive family and its surface, not a unique mass;
+> a conservative, action-derived selection of the captured mass remains open. The observational bounds on that mass (the cosmic share and
+> the measured $\eta(R_{500})$, §4) are unchanged, as are the yields. Repository: `qwen_claude_field_theory/closure_2026/cluster_phase_2026/`
+> `ITEM_C_CONSERVATIVE_DYNAMICS_ADDENDUM_2026-09-02.md`.
 
 ---
 
