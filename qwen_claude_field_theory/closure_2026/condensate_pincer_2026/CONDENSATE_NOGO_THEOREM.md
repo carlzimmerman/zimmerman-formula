@@ -69,3 +69,18 @@ that both matter and light respond to: a MOND boost with γ = 1 requires the lap
 metric MOND that lensing and dynamics both see does not exist at this order; the third field of TeVeS and AeST is forced,
 and with it the pincer above. The one hypothesis a viable theory could still break, H2, cannot be broken by any elliptic
 auxiliary of this kind. What is left is a genuinely dynamical field that does not obey a lapse relation — i.e. not a clock.
+
+## Second addendum (same day): the merger gate closes the supported-medium class, including the solid
+
+`dark_solid_first_gates_2026.py` (5/5) built the one medium the theorems allow — a dark solid with zero bulk modulus and a
+compression-hardening shear modulus — and it passed the background, the forest, the galaxy shield and the cluster mass at one
+parameter point. `merger_gate_supported_media_2026.py` (4/4) then applied the datum none of the theorems used: merging clusters.
+Any medium that holds itself up in a well has a signal speed of order the circular velocity (at the stall, μs = ρgr gives
+$c_T^2 = gr/\ln\delta$; the polytrope has $c_s^2 = |\Psi|$; a superfluid core has $c_s \sim v_c$). A Bullet-class merger moves the
+wells at 3000 km/s, Mach 3–7 within the medium: the re-pinning lag is 0.5–1.5 Mpc against an observed peak–galaxy offset
+≤ 50 kpc, the elastic capacity falls 27× short of the collision energy, and no single-valued medium can pass through itself,
+while the Bullet's two dark peaks did. MOND plus the subcluster's stars supplies 2.3×10¹³ M☉ against a lensing peak of
+2.3×10¹⁴: the peak is ~2×10¹⁴ M☉ of something ballistic. What survives the merger gate is ballistic (or a superposable wave
+with m ≥ 2×10⁻²⁰ eV from the forest), and ballistic-and-cold forms galaxy halos: the pincer's double count. Abell 520's disputed
+dark core at the gas is the one counter-datum, recorded. The road to "no dark matter" ends at the Bullet cluster from a new
+direction: merger kinematics as a rigidity meter.
