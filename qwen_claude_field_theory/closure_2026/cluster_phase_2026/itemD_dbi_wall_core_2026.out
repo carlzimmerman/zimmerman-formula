@@ -1,0 +1,37 @@
+====================================================================================================
+A. the exact DBI relations in a static well
+====================================================================================================
+  [PASS] A1 c_s^2 = K'/(Q K'') = [u/(Q_0+u)] (1 - x^2): the DBI factor (1 - nu^2) multiplies the polytrope's sound speed and vanishes at the wall
+  [PASS] A2 n = K'(u) = mu_D^2 u / sqrt(1 - x^2): the quadratic K_2 u^2/2 charge times the enhancement F = 1/sqrt(1 - nu^2) -> infinity at the wall
+  [PASS] A3 static well (exact for any K): u = u_0 + Q_0 (C - Psi)  =>  nu = nu_0 [1 + (C - Psi)/h_bar], h_bar = u_0/Q_0
+  numbers: h_bar = 4 pi G rho_d,bar / mu_H^2 = 1.811e+09 m^2/s^2 = (43 km/s)^2 = 2.01e-08 c^2  (mu_H^-1 = 1 Mpc, rho_d,bar = Omega_dm rho_crit)
+     galaxy well 5e-7 c^2: nu/nu_0 = 1 + 2.48e+01  ->  nu = 0.001 (window bottom) .. 0.005 (window top)
+     cluster well 1e-5 c^2: nu/nu_0 = 1 + 4.96e+02  ->  nu = 0.010 (window bottom) .. 0.090 (window top)
+     pinned core level C-Psi ~ 1.1e-4 c^2: nu/nu_0 = 1 + 5.46e+03  ->  nu = 0.115 (window bottom) .. 0.983 (window top)
+
+====================================================================================================
+B. the cluster core with the DBI factor: item C's solver, dust term x F(nu)
+====================================================================================================
+      nu_0   window | at eta(R500)=2.33:     M_tot  core%  nu_max  wall | at eta=1.7:     M_tot  core%  nu_max  wall
+   0.0e+00     quad |  5.72e+14   20.2   0.000 False |  2.34e+14   13.8   0.000 False
+   2.1e-05       in |  5.72e+14   20.2   0.057 False |  2.34e+14   13.8   0.044 False
+   1.0e-04       in |  5.68e+14   20.6   0.272 False |  2.34e+14   13.9   0.209 False
+   1.8e-04       in |  5.60e+14   21.6   0.489 False |  2.33e+14   14.3   0.377 False
+   3.0e-04      OUT |  5.39e+14   25.4   0.819 False |  2.32e+14   15.2   0.629 False
+   5.0e-04      OUT |  4.68e+14  468.5   1.661  True |  2.22e+14  222.4   1.189  True
+   1.0e-03      OUT |  4.68e+14  467.8   2.789  True |  2.22e+14  222.4   1.611  True
+  [PASS] B1 the quadratic (nu_0 = 0) row reproduces item C's observation-normalised core yield (20-25% raw, 14-18% WL)   (raw 20%, WL 14%)
+  [PASS] B2 inside the stage-17 window (nu_0 <= 1.8e-4) the DBI enhancement changes the core yield by < 10 percentage points and hits no wall   (raw 20% -> 22%)
+  C  core yield (raw normalisation) vs nu_0: 0.0e+00:20%, 2.1e-05:20%, 1.0e-04:21%, 1.8e-04:22%, 3.0e-04:25%, 5.0e-04:468%(wall), 1.0e-03:468%(wall)
+  [PASS] C1 no nu_0 inside the stage-17 window reaches 50% of the core residual; any nu_0 that does is outside the window and/or hits the wall (EFT exit)   (nu_0 reaching 50%: [0.0005, 0.001])
+
+====================================================================================================
+VERDICT
+====================================================================================================
+  The DBI wall is real in the field relations (A1-A3) but it is NOT a cluster fix inside the framework's own window: at nu_0 <= 1.8e-4 the
+  pinned core sits at nu ~ 0.1-0.5, the enhancement 1/sqrt(1-nu^2) adds at most a few percentage points, and the wall is not reached.
+  Reaching the core residual needs nu_0 above the window's upper edge (the RAR-via-drain bound) and drives the core INTO the wall, where c_s -> 0
+  and the density diverges: the EFT exit / core collapse of nbody stage 3, not a controlled closure.  The cluster core stays >= 65% open;
+  the two fronts (a0(z) window, cluster core) are now cross-linked by nu_0 rather than independent.
+
+RESULT: 6 checks, 0 FAIL   rc=0
