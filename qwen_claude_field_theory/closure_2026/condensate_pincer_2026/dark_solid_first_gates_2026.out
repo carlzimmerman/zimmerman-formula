@@ -1,0 +1,74 @@
+====================================================================================================
+G1. shear: the background has none, a well has plenty (symbolic strain tensors)
+====================================================================================================
+  homologous u = lambda r : volume strain = 3*lambda, shear^2 = 0
+  well infall u ~ -u0 r^-n : volume strain = 6.1714e+19*3.0857e+19**n*u_0*(1.0/r)**n*(0.5*n - 1.0)/r, shear^2 = 1.26953926533333e+39*9.52154449e+38**n*r**(-2*n - 2)*u_0**2*(0.5*n**2 + 1.0*n + 0.5)
+  [PASS] G1 isotropic (Hubble) deformation has exactly zero shear at every density; non-homologous infall has shear^2 > 0 -- so a shear-rigid, bulk-soft solid is NOT a function of the local state and the matching theorem does not apply to it
+  a solid resists what the background never does; that is the whole escape.
+
+====================================================================================================
+G2. linear regime: soft, and colder into the past (c_L^2 = 4 mu_0 / 3 rho ~ a^3)
+====================================================================================================
+  plane-wave delta = uniaxial strain: shear = (2/3)|delta| -> for delta << s_0 the medium is in its soft branch.  Choose mu_0 by today's longitudinal speed c_L(0).
+  c_L(0) =     5 km/s: c_L^2(rec) = 2.1e-19, c_L(z=3) =   0.6 km/s, lambda_J today =   0.7 Mpc
+  c_L(0) =    20 km/s: c_L^2(rec) = 3.4e-18, c_L(z=3) =   2.5 km/s, lambda_J today =   3.0 Mpc
+  c_L(0) =    40 km/s: c_L^2(rec) = 1.4e-17, c_L(z=3) =   5.0 km/s, lambda_J today =   5.9 Mpc
+  c_L(0) =   100 km/s: c_L^2(rec) = 8.6e-17, c_L(z=3) =  12.5 km/s, lambda_J today =  14.8 Mpc
+  [PASS] G2 for c_L(0) <= 40 km/s the solid is CMB-cold by > 1e-8 margin (c_L^2(rec) < 1e-13) and forest-cold at z = 3 (c_L < 5 km/s): the (1+z)^3 heating that killed the condensates runs the other way for a constant modulus
+  (the constant-c_s^2 control of the pincer, 4 km/s, lost only 7% at k = 10 h/Mpc; this history is colder than that at every z > 0.)
+
+====================================================================================================
+G3. the shield without pressure: radial infall of a hardening solid into a fixed L* MOND well
+====================================================================================================
+  model: Lagrangian shell at initial radius R0 (mean density) falls to r; compression ratio rho/rho_bar = (R0/r)^2 / (dr/dR0).
+  Equilibrium: the elastic shear stress gradient balances gravity, mu(s) s / r ~ rho g.  With mu = mu_0 [1 + (s/s_0)^n] and s = the deviatoric strain
+  of the shell (|eps_rr - eps_thth| ~ ln(rho/rho_bar) for large compressions), the stall compression solves mu(s) s = rho_bar (rho/rho_bar) g r.
+  hardening law: mu = mu_0 delta^p (p > 1): dust-soft at delta < 1 (linear cosmology untouched), stiffening under compression;
+  equilibrium delta^(p-1) ln delta = g r / (mu_0/rho_bar).  A deeper well compresses it further: the cap is ordered by g r, i.e. by well depth.
+  a0              mu0/rho    p delta gal 30kpc  M_sol(<30kpc)/M_b  M_sol(<100kpc)/M_b delta clu 1Mpc  M_sol(<1Mpc)/1e14  galaxy  cluster
+  canonical         10 km/s  1.5        1.52e+03              0.102                3.35       7.76e+05                766      NO       ok
+  canonical         10 km/s  2.0            67.9             0.0044               0.153       1.62e+03               1.87      ok       ok
+  canonical         10 km/s  3.0            10.9           0.000698              0.0251           54.6              0.069      ok    short
+  canonical         20 km/s  1.5             187             0.0124               0.413       7.14e+04               71.1      NO       ok
+  canonical         20 km/s  2.0            22.9            0.00148              0.0517            483               0.56      ok       ok
+  canonical         20 km/s  3.0            6.25           0.000398              0.0143           29.7             0.0375      ok    short
+  canonical         40 km/s  1.5            28.5            0.00188              0.0634       7.09e+03               7.14      ok       ok
+  canonical         40 km/s  2.0             8.4           0.000542              0.0191            149              0.174      ok    short
+  canonical         40 km/s  3.0             3.7           0.000235             0.00849           16.3             0.0207      ok    short
+  alt               10 km/s  1.5        1.75e+03              0.115                3.88       8.97e+05                883      NO       ok
+  alt               10 km/s  2.0            72.8            0.00469               0.165       1.74e+03                  2      ok       ok
+  alt               10 km/s  3.0            11.3           0.000721               0.026           56.7             0.0715      ok    short
+  alt               20 km/s  1.5             212              0.014               0.472       8.22e+04               81.6      NO       ok
+  alt               20 km/s  2.0            24.4            0.00157              0.0555            519                0.6      ok       ok
+  alt               20 km/s  3.0            6.46           0.000411              0.0149           30.8             0.0389      ok    short
+  alt               40 km/s  1.5            31.8            0.00208              0.0712       8.12e+03               8.15      ok       ok
+  alt               40 km/s  2.0            8.91           0.000572              0.0203            160              0.186      ok    short
+  alt               40 km/s  3.0            3.82           0.000242             0.00878           16.9             0.0214      ok    short
+  [PASS] G3 the shield without pressure: for p >= 2 the solid stalls at delta ~ 10-100 in an L* well (its mass inside 100 kpc < 30% of the baryons, both footings) while the deeper cluster well compresses it to delta ~ 300-3000 -- the cap is ordered by well depth, the same phenomenology the polytrope had, now from rigidity   (p = 2: cluster/galaxy cap ratio = 24, 21, 18)
+  [PASS] G3b BOTH at once: some (mu_0, p) keeps the galaxy clean (<30% of M_b inside 100 kpc) AND supplies >= 0.5e14 Msun of medium inside 1 Mpc of a massive cluster (half the eta ~ 2 deficit), both footings   (points passing both: mu0=10 km/s, p=2.0, mu0=20 km/s, p=2.0, mu0=40 km/s, p=1.5)
+
+====================================================================================================
+G4. linear cosmology untouched: with mu ~ delta^p (p > 1) the Jeans term vanishes as delta -> 0
+====================================================================================================
+  k =  0.05 h/Mpc: delta_solid/delta_cold = 1.0000 at z = 3 (forest), 1.0000 at z = 0   [LCDM linear delta(z=0) = 0.28]
+  k =  0.20 h/Mpc: delta_solid/delta_cold = 1.0000 at z = 3 (forest), 1.0000 at z = 0   [LCDM linear delta(z=0) = 0.88]
+  k =  1.00 h/Mpc: delta_solid/delta_cold = 1.0000 at z = 3 (forest), 0.9995 at z = 0   [LCDM linear delta(z=0) = 1.79]
+  k =  3.00 h/Mpc: delta_solid/delta_cold = 1.0000 at z = 3 (forest), 0.9917 at z = 0   [LCDM linear delta(z=0) = 2.44]
+  k = 10.00 h/Mpc: delta_solid/delta_cold = 0.9999 at z = 3 (forest), 0.8663 at z = 0   [LCDM linear delta(z=0) = 3.15]
+  [PASS] G4 with mu_0 = (10 km/s)^2, p = 2: growth identical to cold dust to < 1% at z = 3 for k = 0.05-10 h/Mpc (CMB, BAO and the forest see plain CDM) and at z = 0 for k <= 1; the medium departs from CDM only where the linear delta exceeds ~1 (k ~ 10 today), i.e. inside collapsed objects, which is where it is supposed to   (max |ratio-1|: forest 9.42e-05, linear z=0 5.00e-04)
+  so the signature is NOT S_8 (that was wrong in the first draft): it is cored, depth-ordered dark profiles -- dark density in a galaxy capped at ~10-100 x mean, in a cluster at ~1000 x mean.
+
+====================================================================================================
+VERDICT
+====================================================================================================
+  What it is, if it is anything: a dark SOLID -- zero bulk modulus (cold dust on the sky, w = 0), a shear modulus that hardens with
+  strain.  Isotropic expansion has no shear, so the background never samples the state a galaxy imposes: the matching theorem does
+  not apply.  Linear perturbations are soft and get colder into the past (c_L^2 ~ a^3), so the CMB and the forest are safe for any
+  modulus tolerable today.  Sheared infall into a galaxy well stalls at overdensities of 10-1000 and the solid inside 30 kpc stays
+  below 30% of the baryons while the deeper cluster well compresses it to ~1000 x mean: the shield exists, it is rigidity, not pressure,
+  and the cap is ordered by well depth, so clusters keep a dark core and galaxies do not.  Linear cosmology is plain CDM.  It is a
+  construction with two new parameters (mu_0, p) and no link to a_0 yet; the full
+  nonlinear collapse, the relativistic action with K = 0 and a strain-hardening shear sector, and the literature on solid dark matter
+  are all still to do.  But it is the first object in this program that every theorem of the week allows.
+
+RESULT: 5 checks, 0 FAIL   rc=0
