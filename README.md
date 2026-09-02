@@ -161,6 +161,7 @@ Enforced by the scripts, not by trust.
 
 ## Publication record
 
+[![Crispy Fried Chicken Matching Theorem](https://img.shields.io/badge/Crispy%20Fried%20Chicken%20Matching%20Theorem%20(Sep%202%202026)-10.5281%2Fzenodo.22261001-red)](https://doi.org/10.5281/zenodo.22261001)
 [![Nonlocal MOND Kernel Instability v2](https://img.shields.io/badge/Nonlocal%20MOND%20Kernel%20Instability%20(v2%2C%20Sep%202026)-10.5281%2Fzenodo.22255522-red)](https://doi.org/10.5281/zenodo.22255522)
 [![Cluster Phase Pinning v2](https://img.shields.io/badge/Cluster%20Phase%20Pinning%20Polytrope%20(v2%2C%20Sep%202026%20%E2%80%94%20cosmology%20withdrawn)-10.5281%2Fzenodo.22254075-orange)](https://doi.org/10.5281/zenodo.22254075)
 [![THE COMPLETION v9](https://img.shields.io/badge/THE%20COMPLETION%20v9%20(dark%20sector%20excluded%20Sep%202026)-10.5281%2Fzenodo.21895046-red)](https://doi.org/10.5281/zenodo.21895046)

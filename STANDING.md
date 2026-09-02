@@ -24,7 +24,7 @@ conflicts with this file, this file is newer unless it says otherwise.
 
 **Live fronts.** (A) Gaia DR4 wide binaries, Amendment 10: γ_v = 1.1614–1.1814 canonical / 1.1917–1.2267 alt, Newton exactly 1.00. (B) **Framework vs ΛCDM (09-01):** undecided and prior-dominated on present data; decisive = deep-MOND BTFR zero-point at z ≈ 2.5, framework 0.00 (DEC −0.09) vs ΛCDM-native +0.33 dex, one clean point at ±0.13 dex decides at 20:1; ΛCDM would need halo dilution to 0.61 (z = 2) / 0.40 (z = 3) of N-body to mimic a flat a₀. **Never say the data favour the framework over ΛCDM.**
 
-**Do not cite** (additions): the v9 dark sector or the cluster yield as live; Λ_D/Q₀ as free; "the condensate's pressure keeps dark matter out of galaxies"; the CMC filter as a 2-DOF mechanism. Full list in the memory-mirrored [RETRACTIONS.md](RETRACTIONS.md). Explainer: [DUST_FALLS_INTO_GALAXIES.md](opus_48_extended_research/papers/DUST_FALLS_INTO_GALAXIES.md).
+**Do not cite** (additions): the v9 dark sector or the cluster yield as live; Λ_D/Q₀ as free; "the condensate's pressure keeps dark matter out of galaxies"; the CMC filter as a 2-DOF mechanism. Full list in the memory-mirrored [RETRACTIONS.md](RETRACTIONS.md). Explainer: [DUST_FALLS_INTO_GALAXIES.md](opus_48_extended_research/papers/DUST_FALLS_INTO_GALAXIES.md). **Deposited (2026-09-02): the Crispy Fried Chicken Matching Theorem, [DOI 10.5281/zenodo.22261001](https://doi.org/10.5281/zenodo.22261001)** ([THE_MATCHING_THEOREM.md](opus_48_extended_research/papers/THE_MATCHING_THEOREM.md)).
 
 ---
 

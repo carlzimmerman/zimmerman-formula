@@ -1,10 +1,15 @@
 ---
-title: "A galaxy well today is the cosmic background at $(1+z)^3=\\delta$: a matching theorem for dark sectors, and what it forces"
+title: "The Crispy Fried Chicken Matching Theorem"
+subtitle: "A galaxy well today is the cosmic background at $(1+z)^3=\\delta$: a matching theorem for dark sectors, and what it forces"
 author: "C. P. Zimmerman"
 affiliation: "Briar Creek Tech"
 email: "carl@briarcreektech.com"
 date: "2 September 2026"
 ---
+
+*Version 2026-09-02 · Zenodo [10.5281/zenodo.22261001](https://doi.org/10.5281/zenodo.22261001). Companion to Zenodo [10.5281/zenodo.22242701](https://doi.org/10.5281/zenodo.22242701) (the cluster polytrope, v2 22254075) and [10.5281/zenodo.22253953](https://doi.org/10.5281/zenodo.22253953) (the nonlocal kernel instability, v2 22255522).*
+
+*The title is the working name of the programme's relativistic-completion effort (the "fried chicken" gates); the theorem is stated in Section 3.*
 
 **Abstract.** Every relativistic completion of Milgromian dynamics that fits the cosmic microwave background carries a dark
 component, and in the modern completions that component is a *field*: the pressureless excitation of a scalar clock at the
@@ -35,8 +40,9 @@ with a minimum at $\mathcal Q_0$, and the excitation about the minimum carries a
 $u=\mathcal Q-\mathcal Q_0$, whose energy density $\rho_{\rm dust}=\mathcal Q_0 n\propto a^{-3}$ plays the part of cold dark matter
 (Skordis & Złośnik 2021). The programme behind this paper adopted that chassis with two additions: the acceleration scale is set
 by the dark-energy density,
-$$a_0=\kappa\,c\sqrt{G\rho_{\rm DE}},\qquad\kappa=\tfrac12\ \text{(fitted; measured }0.551\pm0.043\text{ distance-free, }0.465\pm0.076\text{ from the Tully–Fisher relation)},$$
-and the clock potential is an offset Dirac–Born–Infeld wall, $\mathcal K(u)=-M^4+\mu_D^2\Lambda_D^2[1-\sqrt{1-u^2/\Lambda_D^2}]$, with
+$$a_0=\kappa\,c\sqrt{G\rho_{\rm DE}},\qquad\kappa=\tfrac12 ,$$
+with $\kappa$ fitted, never derived (measured $0.551\pm0.043$ by a distance-free method and $0.465\pm0.076$ from the
+Tully–Fisher relation), and the clock potential is an offset Dirac–Born–Infeld wall, $\mathcal K(u)=-M^4+\mu_D^2\Lambda_D^2[1-\sqrt{1-u^2/\Lambda_D^2}]$, with
 $\beta\equiv\mu_D^2\Lambda_D^2/M^4=1$ selected so that the scale switches off at recombination. The hope was that the same field
 that is dust on the sky would sit at negligible density inside galaxies, leaving the MOND kernel alone to fit rotation curves.
 This paper is the theorem that says why that hope fails for the entire class, what the data then force the dark component to be,
