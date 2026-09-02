@@ -231,13 +231,30 @@ check("F1 for every K-shape and every shield-compatible overdensity (delta_well 
 info("so the question 'does the dust fall into galaxies?' has a measured answer: the forest says the dust at z = 3 is cold, and the")
 info("dust at z = 3 IS the dust in a galaxy well today.  Pressure cannot keep Omega_dm out of galaxies.")
 
+P(""); P("="*104); P("G. the non-analytic (superfluid) minimum K ~ |u|^p with p < 2: c_s^2 falls FASTER than rho below z_match, but the kill is above z_match"); P("="*104)
+info("K ~ |u|^(3/2) (Berezhiani-Khoury superfluid P ~ X^(3/2)): c_s^2 = 2u/Q_0, rho_dust ~ u^(1/2)  =>  c_s^2 ~ rho^2 ~ (1+z)^6 on the background.")
+info("Shield-compatible well: delta_well <= 5000 (mass budget: < 30% of the baryons inside 30 kpc, K-independent) => z_match <= 16, c_s(well) = sqrt(2|Psi|) = 283 km/s.")
+for dw in (1250.0, 5000.0):
+    zm = dw**(1/3) - 1; a_m = 1/(1+zm)
+    cs2_m = 2*PSI_GAL                                     # the well's sound speed, reached by the background at z_match
+    cs0 = cs2_m*a_m**6                                    # c_s^2(a) = cs0 / a^6, capped at 1/3
+    f = lambda a, c0=cs0: min((c0/a**6), 1/3)
+    cs3 = math.sqrt(f(0.25))*c/1e3
+    t2 = T2(f); y1, y2 = yard(t2, f"   K~|u|^1.5 superfluid, delta_well={dw:.0f}, z_match={zm:.1f}, c_s(z=3)={cs3:.1f} km/s")
+    if dw == 5000.0: g_y2, g_y1, g_cs3 = y2, y1, cs3
+check("G1 the superfluid minimum is colder than the forest tolerance AT z = 3 (c_s(z=3) < 5 km/s at delta_well = 5000) -- the p >= 2 argument of F1 does NOT cover it",
+      g_cs3 < 5.0, f"c_s(z=3) = {g_cs3:.1f} km/s")
+check("G2 ...and it is dead anyway: the damage is done at z >= z_match where the background is at least as hot as the well (283 km/s at z = 16, lambda_J ~ 20 Mpc comoving); T^2(10 h/Mpc, z=3) < 0.5 and T^2(0.2, z=0) < 0.97",
+      g_y2 < 0.5 and g_y1 < 0.97, f"T2(10,3) = {g_y2:.3f}, T2(0.2,0) = {g_y1:.3f}")
+info("so the K-independent statement is the z >= z_match one: any well-shielding condensate was, at z_match <= 16, a fluid with c_s >= 75 km/s (p = 8) to 283 km/s (p = 3/2) on the whole background.")
+
 P(""); P("="*104); P("E. VERDICT"); P("="*104)
 P("  One relation, c_s^2(z) = 4 pi G rho_dust(z)/mu^2 (the cluster-phase polytrope read on the cosmic background), ties the")
 P("  dust's galaxy-scale behaviour to its cosmological behaviour through mu alone.  Horn 1 (the DBI khronon's dust is Omega_dm):")
 P("  beta = 1 pins R = nu_0 Omega_L/Omega_dm = 2.6 nu_0, 18-300x above the repo's own 3%-P(k=0.2) ceiling -> P(k) suppressed at")
 P("  k >= 0.2 h/Mpc by far more than 3%.  Horn 2 (a separate quadratic chi): cold at recombination forces mu_chi^-1 <= 0.6 kpc (loose GDM),")
-P("  the galaxy shield needs >= 200 kpc (loose, 30% of the baryons) to 1 Mpc (10%); no overlap, gap >= 300x.  A walled chi that reaches the shield is a warm fluid at z = 3 and fails")
-P("  even the loose forest yardstick.  Surviving: the framework's a_0(z) law itself (nu_0 window untouched: it needs only the")
+P("  the galaxy shield needs >= 200 kpc (loose, 30% of the baryons) to 1 Mpc (10%); no overlap, gap >= 300x.  Any K, analytic or not (Part G):  A walled chi that reaches the shield is a warm fluid at z = 3 and fails")
+P("  even the loose forest yardstick; so does the superfluid |u|^1.5 minimum.  Surviving: the framework's a_0(z) law itself (nu_0 window untouched: it needs only the")
 P("  TRACE khronon dust of stage 17 D4), MOND phenomenology, and a cold CDM-like Omega_dm that double-counts in galaxies")
 P("  (the repo's open 'dust in galaxies' front is therefore closed on the pressure side: pressure cannot shield galaxies).")
 P(f"\nRESULT: {NCHK[0]} checks, {len(FAILS)} FAIL" + (f" -> {FAILS}" if FAILS else "") + f"   rc={1 if FAILS else 0}")
