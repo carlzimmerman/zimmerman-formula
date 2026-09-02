@@ -1,30 +1,37 @@
-# One-shot live failure ledger
+# Live failure ledger
 
-All entries below were rerun in the current checkout rather than accepted from
-older narrative claims.
+These entries distinguish an executable falsification from an unresolved or
+merely narrative claim.
 
-| Architecture | Exact action/route | First decisive failure | Current result |
-|---|---|---|---|
-| Rotated MMG (`sf60`) | Preferred-foliation constraint action plus DBI clock | `sf61` derives nonzero DBI clock momentum and proves two scalar constraints freeze `H`; the remaining single-constraint branch has 2 tensors plus a clock scalar | DEAD for the advertised 2-DOF/no-slip/FLRW synthesis |
-| MMG no-slip repair (`sf62`) | Purely auxiliary metric scalar constraints | A second no-slip constraint freezes the conformal momentum; a single constraint lacks the GR lapse-curvature relation | DEAD within the stated pure-metric auxiliary class |
-| AeST | Vector/scalar relativistic MOND | Independently anchored boosted calculation gives `alpha_1=-4K_B` at the Maxwell locus and no healthy zero in the tested lensing branch | DEAD in the tested PPN branch |
-| Candidate A elliptic phantom density | `lambda(D(mu a)-D^2 chi)+eta(D^2 chi-4 pi G rho)` | 3 DOF at nonzero k, zero-mode FLRW inconsistency, no-slip/Ward conflict | DEAD |
-| Candidate B curvature QUMOND | `-2lambda(Delta_h chi-R_nn)+2a0^2 Q(Y)` | Exact finite-`k` Dirac closure on the luminal Minkowski branch leaves one scalar (`L_red=6 zeta_dot^2-2k^2zeta^2`); independently, the exact MOND/no-slip scalar reduction is inconsistent with the full trace-free metric equation, and the homogeneous equation forces coasting | DEAD for the explicit action; scoped no-go proved |
-| Khronon-split bimetric host (`sf13`-`sf23`, DOI 10.5281/zenodo.22033942) | Two Einstein-Hilbert metrics plus khronon-projected connection interaction | Its own best count is the ghost-free bimetric `7=2+5`, conditional on continuum closure; lensing and full PPN remain open | OUTSIDE the strict `N_grav=2` target even if its BD-ghost mechanism closes |
-| Fixed universal spin-2 nonlocality | Entire zero-free spin-2 kernel | Linear baryonic source scaling cannot reproduce deep-MOND square-root scaling | DEAD |
-| Finite localized/ordinary CTP response | Multiplier localization and standard doubled CTP action | TT ghost-sign block; ordinary matching PB matrix is singular, not second class | DEAD in the tested realization |
+| Architecture | Strongest reproduced result | Honest status |
+|---|---|---|
+| Curvature-sourced QUMOND (one-shot Candidate B) | The same action gives exact exponential MOND but regular MOND forces \(\lambda_r=-a_0ye^{-y}\ne0\), while its TT cone gives \(c_T^2=(1-2\lambda)^{-1}\) and exact luminality forces \(\lambda=0\). | **DEAD** for the displayed action class; scoped no-go proved. |
+| Candidate B scalar branch | Complete generated PB matrix at flat, luminal \(k\ne0\) leaves one non-clock scalar; complete TF variation independently gives linear \(\gamma=1\). | Branch fails strict \(N_{grav}=2\); nonlinear no slip remains unresolved. |
+| Elliptic phantom-density Candidate A | The varied localization carries three finite-\(k\) modes and has a zero-mode FLRW/no-slip/Ward conflict. | **DEAD** for the displayed localization. |
+| Rotated MMG (`sf60`/`sf61`) | The DBI clock has nonzero momentum; enforcing both scalar constraints freezes homogeneous expansion, while the surviving branch contains the clock scalar. | **DEAD** for the advertised strict synthesis. |
+| Pure-metric MMG repair (`sf62`) | The added no-slip constraint freezes conformal momentum; the single-constraint branch lacks the GR lapse-curvature relation. | Scoped **DEAD** result, not a classification of all local actions. |
+| Base AeST | The reproduced boosted branch has unacceptable preferred-frame behavior. | **DEAD** in the tested PPN branch. |
+| Generalized AeST / Fable 5.1 | Its own mode factors contain 2 tensor + 2 vector + 1 aether scalar before \(\phi\); literal \(-2K\) has wrong DBI signs; written \(c_2\) sign conflicts with the printed FJ speed formula. | **DEAD** under unchanged \(N_{grav}=2\); the proposed gate restatement is rejected. |
+| Fable clock-current route | With minimal baryon coupling, ratio locking changes \(\rho_b\) to \((1+\kappa)\rho_b\), preserving linear response rather than deep-MOND square-root response. | **DEAD** for the displayed metric-source architecture. |
+| Deser-Woodard localization in the live untracked work | The Noether script and Dirac script did not reproduce successfully in the current environment; the latter crashes during symbolic rank evaluation. | **NOT CERTIFIED**. No positive claim is imported from its prose output. |
+| Khronon-split bimetric host (`sf13`-`sf23`) | Its advertised healthy target is \(7=2+5\), conditional on continuum closure. | Outside strict \(N_{grav}=2\); lensing and full PPN remain open. |
+| Fixed universal spin-2 nonlocal kernel | Linear source scaling cannot give the deep-MOND square-root response. | **DEAD** in that linear kernel class. |
+| Finite ordinary localization / doubled CTP response | Tested localizations produce a TT ghost block or a singular matching PB matrix. | **DEAD** for the tested realizations, not all genuine nonlocal actions. |
+| Claimed universal dark-field theorem | Exact AQUAL supplies a local boundary-flux counterexample to the enclosed-mass premise; a retarded scalar denominator is not a boosted PPN solve. Standard multiplier localization instead has an invertible indefinite kinetic Hessian and two configuration modes in both (k=0) and (k\ne0). | The universal theorem and claimed `alpha_3=0` extraction are **WITHDRAWN**. A narrower ordinary-action/strict-retardation/localization trilemma survives. |
+| AeST cluster phase pinning | The original 27-check calculation reproduces the static cluster numbers. The exact (K=A(Q-Q_0)^2) EOS has (gamma_{\rm eff}=(2Q_0+u)/(Q_0+u)), approaching 2 only at small field; positivity leaves a one-parameter mass family, while the hydro code fixes total captured mass and adds artificial viscosity. | Static polytrope/yield result survives. Unique action-derived dynamical pinning is **OPEN**; current evidence establishes only conditional pinning. |
 
-Residual open class: a fully specified nonlinear, tensorial, genuinely
-non-rational action with a new canonical constrained phase space. No such
-action is present in the live repository or produced in this one-shot attack.
+The broad existential result is **OPEN**. In particular, neither the Fable case
+split nor this ledger proves that every local covariant two-DOF action has been
+classified. The surviving obligation is an explicit action outside the killed
+classes, with its complete constraint closure, independent \(\Phi,\Psi\)
+equations, PPN extraction, homogeneous branch, and stability analysis.
 
-Candidate B nonclaims: no generic nonlinear DOF count or closure is asserted;
-the raw indefinite Hessian is not a reduced ghost theorem; coasting expansion
-is allowed; no complete PPN parameters are claimed after the earlier no-slip
-and extra-scalar failures.
+Nonclaims for Candidate B:
 
-The bimetric host is the apparent “high download/view” item.  On 2026-09-01
-its public counter was one download and zero recorded landing-page views, too small
-to infer scientific interest from a ratio.  Its useful content is real but
-answers a broader question: it trades the two-tensor-only requirement for a
-massless spin-2 plus a massive spin-2 sector.
+- no generic nonlinear Dirac count is exported from its flat branch;
+- no nonlinear \(\Phi=\Psi\), \(\beta\), or full preferred-frame PPN result is
+  claimed;
+- coasting \(H\ne0\) is allowed, but viable accelerating FLRW is not shown;
+- the raw indefinite velocity Hessian is not called a reduced ghost theorem;
+- the \(a_0\)-\(\Lambda\) relation remains an input; and
+- a process exit status certifies only that a diagnostic reproduced.

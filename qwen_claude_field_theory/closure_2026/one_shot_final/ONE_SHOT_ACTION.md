@@ -1,202 +1,195 @@
-# One-shot Candidate B: curvature-sourced QUMOND
+# Curvature-sourced QUMOND: action, equations, and obstruction
 
-The second action tested in the one-shot attack is
+## One explicit action
+
+The tested candidate is
 
 \[
- S_B=\frac{1}{16\pi G}\int d^4x\sqrt{-g}\left[
- R-2\Lambda-2\lambda\left(\Delta_h\chi-R_{\mu\nu}n^\mu n^\nu\right)
- +2a_0^2Q(Y)\right]+S_m[g,\psi],
+S={1\over16\pi G}\int d^4x\sqrt{-g}\left[
+R-2\Lambda-2\lambda(\Delta_h\chi-R_{\mu\nu}n^\mu n^\nu)
++2a_0^2Q(Y)\right]+S_m[g,\psi],
 \]
 
-with
+where
 
 \[
- n_\mu n^\mu=-1,\qquad h_{\mu\nu}=g_{\mu\nu}+n_\mu n_\nu,
- \qquad Y=\frac{h^{\mu\nu}\nabla_\mu\chi\nabla_\nu\chi}{a_0^2},
-\]
-
-and
-
-\[
- Q(y^2)=1-(1+y)e^{-y},\qquad Q_Y=\frac{e^{-y}}2
- =\frac{1-\mu(y)}2,\qquad \mu(y)=1-e^{-y}.
-\]
-
-`S_aux` contains no matter field. Thus ordinary matter remains minimally
-coupled to `g` and the direct-matter Ward defect of Candidate A is absent.
-
-## Weak static derivation
-
-The varied scalar weak-static density is
-
-\[
- \mathcal L=-2\Phi'\Psi'+\Psi'^2-8\pi G\rho\Phi
- +2\lambda'(\chi'-\Phi')+2a_0^2Q(\chi'^2/a_0^2).
-\]
-
-Its four Euler--Lagrange equations yield, on the asymptotically-flat scalar
-branch, `chi=Phi`, `Psi=Phi`, and
-
-\[
- \lambda'=(\mu-1)\Phi',\qquad
- \partial_i\!\left[\mu(|\nabla\Phi|/a_0)\partial_i\Phi\right]=4\pi G\rho.
-\]
-
-This is an action-derived exact exponential MOND result in the scalar-isotropic
-truncation. It is not enough for a relativistic theory: varying all spatial
-metric components gives the trace-free constitutive stress
-
-\[
- \Pi_Q^{\rm TF}=-2a_0^2y^2e^{-y},
-\]
-
-which is nonzero for every finite nonzero MOND gradient.  On the same local
-patch, the algebraic trace-free stresses from the complete multiplier pair are
-
-\[
- \Pi^{\rm TF}_{-2\lambda\Delta_h\chi}=-4a_0y\lambda',\qquad
- \Pi^{\rm TF}_{+2\lambda R_{nn}}=+4a_0y\lambda'.
-\]
-
-They cancel on the auxiliary shell `D_i chi=D_i N`; the trace-free Hessian of
-the affine `lambda` witness also vanishes.  The complete residual is therefore
-
-\[
- \Pi^{\rm TF}_{\rm aux}=-2a_0^2y^2e^{-y}\ne0\qquad(y>0).
-\]
-
-The full trace-free metric equation thus cannot retain `Phi=Psi` on this
-witness.  The `Phi=Psi` equation obtained by varying only the scalar-isotropic
-density is not a valid full-metric no-slip derivation.
-
-## ADM and finite-momentum Dirac closure
-
-For the covariant clock realization, choose unitary gauge `T=t` and
-
-\[
- K_{ij}=\frac{\dot\gamma_{ij}-\mathcal L_{\vec N}\gamma_{ij}}{2N}.
-\]
-
-The exact identity
-
-\[
- R_{nn}=-\mathcal L_nK-K_{ij}K^{ij}+N^{-1}D^2N
-\]
-
-gives, after integration by parts,
-
-\[
- \mathcal L_{\rm kin}=(1-2\lambda)(K_{ij}K^{ij}-K^2)
- +2K\mathcal L_n\lambda.
-\]
-
-The seven-velocity Hessian in the six components of `K_ij` and
-`L_n lambda` has
-
-\[
- \det H=-3072(1-2\lambda)^5.
-\]
-
-Thus `lambda` is not a nondynamical multiplier on the regular
-`1-2 lambda != 0` branch.
-
-More decisively, about the branch required for luminal tensors,
-
-\[
- \Lambda=0,\quad \bar\lambda=0,\quad \bar\chi={\rm constant},\quad k>0,
-\]
-
-the quadratic scalar action is derived term by term from the same ADM action:
-
-\[
-\begin{aligned}
-L^{(2)}={}&-6\dot\zeta^2+6\dot\zeta\dot\ell
--4k^2\beta\dot\zeta+2k^2\beta\dot\ell\\
-&+2k^2\zeta^2+4k^2\alpha\zeta-2k^2\alpha\ell
-+2k^2\ell\chi+k^2\chi^2.
-\end{aligned}
-\]
-
-The three primaries are
-
-\[
- p_\chi\approx0,\qquad p_\alpha\approx0,\qquad p_\beta\approx0,
-\]
-
-and preservation generates
-
-\[
- C_\chi=2k^2(\chi+\ell),\quad
- C_\alpha=-2k^2(\ell-2\zeta),\quad
- C_\beta=\frac{k^2}{3}(4k^2\beta+p_\zeta).
-\]
-
-The generated six-by-six Poisson matrix has rank four.  Preservation fixes the
-remaining multipliers and produces no tertiary constraint.  In the
-ten-dimensional gauge-fixed scalar phase space the result is two first-class
-and four second-class constraints, leaving one scalar degree of freedom.
-Restoring the scalar shear gives a twelve-dimensional phase space with four
-first-class and two second-class constraints and leaves the same one scalar;
-therefore the pole is not a premature gauge-fixing artifact.  In either form,
-
-\[
- \ell=2\zeta,\qquad \chi=-2\zeta,
+n_\mu=-{\nabla_\mu T\over\sqrt{-\nabla T\cdot\nabla T}},\quad
+h_{\mu\nu}=g_{\mu\nu}+n_\mu n_\nu,\quad
+Y={h^{\mu\nu}\nabla_\mu\chi\nabla_\nu\chi\over a_0^2},
 \]
 
 and
 
 \[
- \boxed{L_{\rm red}=6\dot\zeta^2-2k^2\zeta^2},\qquad
- \boxed{\omega^2=k^2/3}.
+Q(y^2)=1-(1+y)e^{-y},\qquad Q_Y={e^{-y}\over2},
+\qquad \mu(y)=1-e^{-y}.
 \]
 
-The scalar is not a quadratic ghost or gradient instability; it is a genuine
-hidden propagating mode, which is already fatal to `N_grav=2`.  The transverse
-vector constraints leave no vector pole.  The tensor sector has
+Ordinary matter and photons couple minimally to the same metric. No matter
+field appears in the auxiliary action.
+
+## Varied weak-static equations
+
+For the isolated/asymptotically flat scalar-isotropic static branch, variation
+with respect to all four fields and removal of the harmonic integration modes
+gives
 
 \[
- Q_T=1-2\bar\lambda,\qquad
- c_T^2=\frac{1}{1-2\bar\lambda},
+\chi=\Phi,\qquad \Psi=\Phi,\qquad
+\nabla\lambda=(\mu-1)\nabla\Phi,
 \]
 
-so positive exactly luminal tensors select `bar(lambda)=0`—the very branch on
-which the scalar proof applies.
-
-## Separate homogeneous and zero-field sectors
-
-For exactly homogeneous FLRW, `Delta_h chi=0` and
+and
 
 \[
- R_{nn}=-3\ddot a/a.
+\nabla\!\cdot\!\left[\mu(|\nabla\Phi|/a_0)\nabla\Phi\right]
+=4\pi G\rho_b.
 \]
 
-The exact `lambda` equation therefore imposes `ddot(a)=0`.  It excludes de
-Sitter and an accelerating Lambda-FLRW solution but permits coasting expansion
-`a(t)=At+B`; it does not force `H=0`.
+In spherical symmetry,
 
-At `y=0`, the raw finite-`k` `p_chi` bracket remains proportional to `k^2` and
-does not lose rank.  The eliminated MOND response does lose rank because both
-of its principal eigenvalues vanish.  No nonlinear zero-field evolution rule
-is supplied.  On frozen nonzero-gradient backgrounds the raw `chi` principal
-coefficient also vanishes at `y=1` for a pure longitudinal wave and, for
-`y>1`, on `k_perp^2=(y-1)k_parallel^2`.  This is a principal-bracket diagnostic,
-not a claimed full nonlinear Dirac closure.
+\[
+\mu(g/a_0)g=g_N,
+\]
 
-## Foliation price
+so \(g^2=a_0g_N\) in the deep-MOND limit and
+\(v^4=Ga_0M_b\). At high acceleration \(\mu\to1\), and this normalization
+gives \(G_{\rm measured}=G\) in the same weak branch.
 
-The action needs `n_mu`.
+The scalar-isotropic variation alone is not a complete no-slip proof. The
+complete static trace-free spatial equation is
 
-- A fixed normal gives a computed boosted elliptic coefficient `-1` in the
-  alpha-2-like channel.
-- A clock normal gives, already on FLRW, a velocity Hessian in `(a,lambda)`
-  with determinant `-36 a^4`.  The exact finite-`k` Dirac calculation above is
-  the stronger result: the putative auxiliary carries a propagating scalar.
+\[
+\left[N R_{ij}-D_iD_jN
++2N D_{(i}\lambda D_{j)}\chi
++2\lambda D_{(i}N D_{j)}\chi
+-2D_{(i}\lambda D_{j)}N
++2NQ_YD_i\chi D_j\chi\right]^{\rm TF}=0.
+\]
 
-The acceleration relation `a0=c^2 sqrt(Lambda/(32 pi))` is an external input
-to this action; it is not derived.
+Its finite-momentum linearization gives
 
-No complete PPN extraction is promoted after the action has already failed
-both no slip and the two-tensor-only condition.  The acceleration relation
-`a0=c^2 sqrt(Lambda/(32 pi))` remains external input.
+\[
+k^2(\Phi-\Psi)=0,
+\]
 
-**Candidate B verdict: DEAD.  The broader existential target remains OPEN.**
+and therefore \(\gamma=1\) for \(k\ne0\). At second order, on the leading
+shell \(\chi=\Phi=\Psi=u\), it gives
+
+\[
+(p_2-n_2)''+u u''-\mu(u')^2=0.
+\]
+
+This determines second-order slip; it is not a linear PPN failure and it does
+not yet establish exact nonlinear \(\Phi=\Psi\) or \(\beta=1\).
+
+## Canonical finite-momentum branch
+
+In unitary clock gauge the kinetic terms are
+
+\[
+\mathcal L_{\rm kin}=(1-2\lambda)(K_{ij}K^{ij}-K^2)
++2K\mathcal L_n\lambda.
+\]
+
+The generated seven-velocity Hessian has
+
+\[
+\det H=-3072(1-2\lambda)^5.
+\]
+
+On the flat \(\bar\lambda=0\), \(\bar\chi={\rm constant}\), finite-\(k\)
+branch, the gauge-fixed scalar calculation generates three primaries
+
+\[
+p_\chi\approx0,\qquad p_\alpha\approx0,\qquad p_\beta\approx0,
+\]
+
+and three secondaries
+
+\[
+C_\chi=2k^2(\chi+\ell),\quad
+C_\alpha=-2k^2(\ell-2\zeta),\quad
+C_\beta={k^2\over3}(4k^2\beta+p_\zeta).
+\]
+
+The generated six-by-six Poisson matrix has rank four. Preservation fixes the
+remaining relevant multipliers and generates no tertiary constraint. In the
+ten-dimensional scalar phase space there are two first-class and four
+second-class constraints, leaving one scalar degree of freedom. Restoring the
+spatial scalar shear gives a twelve-dimensional phase space with four
+first-class and two second-class constraints and the same one scalar.
+
+Restoring \(T=t+\pi\) shows that \(\pi\) contributes only a boundary term on
+this special branch. The surviving pole has zero clock projection:
+
+\[
+L_{\rm red}=6\dot\zeta^2-2k^2\zeta^2,
+\qquad \omega^2=k^2/3.
+\]
+
+Thus it is a healthy-sign but forbidden non-clock scalar on this branch. The
+transverse vector constraint chain leaves no vector pole. This is not promoted
+to a generic nonlinear degree count.
+
+## Exact action-class obstruction
+
+The regular radial \(\chi\) equation, varied before integration, is
+
+\[
+{d\over dr}\left[r^2(\lambda_r+e^{-y}\chi_r)\right]=0.
+\]
+
+Regularity removes the singular auxiliary flux and gives
+
+\[
+\lambda_r=-a_0y e^{-y}<0\qquad(0<y<\infty).
+\]
+
+The TT principal action from the same action is
+
+\[
+\mathcal L_{TT}^{\rm principal}
+={1-2\lambda\over2}\dot h_{TT}^2-{1\over2}(\nabla h_{TT})^2,
+\qquad c_T^2={1\over1-2\lambda}.
+\]
+
+Exact physical-metric luminality requires \(\lambda=0\) pointwise and hence
+\(\lambda_r=0\), contradicting the exact finite-\(y\) MOND branch. This is the
+load-bearing no-go.
+
+A finite-shell numerical check solves the implicit relation
+\(y(1-e^{-y})=g_N/a_0\). The resulting action-forced variation is
+\(O(v_{\rm flat}^2/c^2)\). For every additive integration constant, at least
+one shell endpoint has \(|\lambda|\geq|\Delta\lambda|/2\), leaving the local
+tensor-speed shift far above the stated multimessenger bound. This numerical
+strengthening is not needed for the exact proof.
+
+## Separate homogeneous, zero-field, and Ward sectors
+
+On homogeneous FLRW, \(\Delta_h\chi=0\) and
+\(R_{nn}=-3\ddot a/a\). The multiplier equation requires \(\ddot a=0\), so
+coasting expansion with \(H\ne0\) is possible but accelerating FLRW is not
+obtained on this branch. The remaining homogeneous equations and perturbations
+do not establish a viable cosmology.
+
+At \(y=0\), both principal eigenvalues of the eliminated MOND operator vanish.
+The finite-\(k\) raw \(p_\chi,C_\chi\) bracket does not vanish there. This
+distinction is computed explicitly; no nonlinear continuation through the
+rank-changing response is supplied.
+
+Because \(S_m[g,\psi]\) is separately diffeomorphism invariant and minimally
+coupled, its on-shell Noether identity gives
+\(\nabla_\mu T^{\mu\nu}=0\) for ordinary matter. The fixed-normal alternative
+breaks this covariant setup and has a nonzero boosted preferred-frame
+diagnostic; the clock-normal realization retains the Ward identity but pays
+the canonical price above.
+
+The relation \(a_0=c^2\sqrt{\Lambda/(32\pi)}\) is not derived by this action.
+
+## Verdict
+
+The displayed scalar curvature-sourced QUMOND action class is **DEAD** under
+exact tensor luminality. Linear \(\gamma=1\) is retained, but complete PPN,
+nonlinear no slip, viable FLRW, and controlled zero-field evolution remain
+unclosed. The general relativistic-MOND existence problem remains **OPEN**.

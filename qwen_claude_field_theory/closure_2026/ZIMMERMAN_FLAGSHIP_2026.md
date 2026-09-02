@@ -1,5 +1,16 @@
 # Why the MOND Scale Is the Dark-Energy Scale: A Universal Dark-Field Theorem for Relativistic Modified Gravity
 
+> **CORRIGENDUM, 2026-09-01:** The universal dark-field theorem and the claimed
+> `alpha_3=O(1)` kernel extraction are withdrawn. The executable audit derives a
+> local AQUAL boundary-flux counterexample to the enclosed-mass premise and
+> shows that the response-denominator comparison is not a boosted PPN
+> calculation. The corrected, narrower result is the standard
+> ordinary-action/strict-retardation/localization trilemma. See
+> `ZIMMERMAN_FLAGSHIP_CORRIGENDUM_2026-09-01.md` and
+> `nonlocal_door_2026/nonlocal_universal_claim_audit_2026.py`. Phenomenological
+> scale relations in this document are unaffected, but §§4--7 and the abstract's
+> universal no-go conclusion must not be cited as established results.
+
 **Flagship synthesis, 2026-09-01.** Every quantitative claim is backed by a committed, re-runnable
 script built to be able to fail; steps that are inputs or definitional choices rather than derivations
 are labelled as such. Two "footings" are carried on every dimensional number: canonical

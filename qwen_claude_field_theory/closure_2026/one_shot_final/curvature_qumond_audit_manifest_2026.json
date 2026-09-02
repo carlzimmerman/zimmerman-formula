@@ -1,75 +1,130 @@
 {
   "schema_version": 1,
-  "claim_id": "curvature-sourced-qumond-adm-no-go-2026",
+  "claim_id": "curvature-sourced-qumond-exact-mond-tensor-cone-no-go-2026",
   "repository": {
-    "commit": "90bb710c7919de18eeaf129f3a2654f68fceb1a4",
+    "commit": "9a390f244eda197b5796ba07f768e0a000659c2e",
     "dirty": true,
-    "scope": "Only qwen_claude_field_theory/closure_2026/one_shot_final files listed in outputs are part of this audit; unrelated tracked and untracked worktree content is excluded."
+    "base_commit": "9a390f244eda197b5796ba07f768e0a000659c2e",
+    "branch": "main",
+    "dirty_during_audit": true,
+    "scope": "Only the listed qwen_claude_field_theory/closure_2026/one_shot_final outputs belong to this audit. Unrelated tracked and untracked worktree content is excluded."
   },
-  "command": "python3 qwen_claude_field_theory/closure_2026/one_shot_final/test_curvature_qumond_action_gate_2026.py; python3 qwen_claude_field_theory/closure_2026/one_shot_final/curvature_qumond_action_gate_2026.py; python3 qwen_claude_field_theory/closure_2026/one_shot_final/test_curvature_qumond_adm_dirac_gate_2026.py; python3 qwen_claude_field_theory/closure_2026/one_shot_final/curvature_qumond_adm_dirac_gate_2026.py",
+  "command": "python3 qwen_claude_field_theory/closure_2026/one_shot_final/test_curvature_qumond_luminality_no_go_2026.py && python3 qwen_claude_field_theory/closure_2026/one_shot_final/curvature_qumond_luminality_no_go_2026.py",
   "environment": {
+    "software": ["Python 3.9.6", "SymPy 1.14.0", "NumPy 1.26.2"],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit",
     "python": "3.9.6",
     "sympy": "1.14.0",
-    "execution": "Local macOS arm64 host, Darwin 25.5.0; deterministic exact symbolic computation"
+    "numpy": "1.26.2",
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
+    "randomness_used": false
   },
   "mathematics": {
-    "assertion_tested": "The scalar-isotropic reduction of the displayed curvature-sourced elliptic QUMOND action reproduces exact mu(y)=1-exp(-y), the spherical/deep-MOND/BTFR laws, and high-acceleration G_measured=G_bare, while the covariant action preserves the minimally coupled matter Ward identity. The complete metric variation has nonzero trace-free MOND stress, so the reduced MOND/no-slip branch is not a full solution, and the complete finite-k scalar Dirac chain on the tensor-luminal Minkowski branch contains one propagating scalar with c_s^2=1/3.",
-    "coefficient_domain": "Exact SymPy expressions. Static y>0 unless a limit is stated; local Dirac theorem k>0, Lambda=0, background lambda=0, constant background chi; velocity-Hessian regular branch 1-2 lambda != 0.",
+    "assertion_tested": "The displayed curvature-sourced QUMOND action cannot simultaneously realize its regular exact-exponential spherical MOND branch and exact tensor luminality relative to the minimally coupled physical metric.",
+    "coefficient_domain": "Exact SymPy expressions; regular spherical source-free auxiliary branch, finite y>0; TT kinetic branch 1-2*lambda>0; finite-k branch statements use k!=0.",
     "conventions": "Mostly-plus metric; n_mu is the normalized clock gradient; K_ij=(dot(gamma)_ij-L_shift gamma_ij)/(2N); R_nn=-L_n K-K_ij K^ij+N^-1 D^2N; Y=h^mn nabla_m chi nabla_n chi/a0^2.",
-    "inputs": "S=(16 pi G)^-1 integral sqrt(-g)[R-2 Lambda-2 lambda(Delta_h chi-R_nn)+2 a0^2 Q(Y)]+S_m[g,psi], with Q(y^2)=1-(1+y)exp(-y).",
-    "bounds": "The result falsifies the scalar curvature-sourced elliptic action class S[Q] displayed here when Q is required to realize exact exponential MOND: 2 Q_Y=exp(-sqrt(Y)) fixes Q up to an additive cosmological constant. It is not a theorem for every nonlinear tensorial or genuinely nonlocal relativistic MOND action.",
+    "inputs": [
+      "S=(16 pi G)^-1 integral sqrt(-g)[R-2 Lambda-2 lambda(Delta_h chi-R_mn n^m n^n)+2 a0^2 Q(Y)]+S_m[g,psi]",
+      "Q(y^2)=1-(1+y)exp(-y)",
+      "Exact physical-metric tensor luminality c_T=1"
+    ],
+    "bounds": {
+      "theorem": "Displayed scalar curvature-sourced elliptic action class only",
+      "spherical_branch": "regular centre, no singular auxiliary flux, finite 0<y<infinity",
+      "not_universal": true
+    },
     "non_claims": [
-      "No generic nonlinear degree count or full nonlinear Dirac closure is asserted; the frozen-background p_chi-C_chi calculation is only its principal diagonal bracket.",
-      "The raw indefinite seven-velocity Hessian is not promoted to a reduced physical-ghost theorem.",
-      "The k=0 equation permits coasting expansion a(t)=At+B; it excludes de Sitter and accelerating Lambda-FLRW but does not force H=0.",
-      "At y=0 the eliminated MOND response loses rank; no nonlinear zero-field evolution prescription is supplied.",
-      "No complete beta, gamma, alpha_1, alpha_2, alpha_3 extraction is claimed after the action already fails full no slip and the tensor-only mode count.",
-      "The cosmological a0-Lambda relation is not derived; it remains an external input.",
-      "No literature-priority or universal novelty claim is made."
-    ]
+      "No universal relativistic-MOND no-go or novelty theorem is claimed.",
+      "No generic nonlinear Dirac count is exported from the special flat branch.",
+      "No nonlinear no-slip, beta, or complete alpha_1, alpha_2, alpha_3 result is claimed.",
+      "Coasting H!=0 is permitted by one homogeneous equation, but viable FLRW is not established.",
+      "The a0-Lambda relation is external input."
+    ],
+    "action": "S=(16 pi G)^-1 integral sqrt(-g)[R-2 Lambda-2 lambda(Delta_h chi-R_mn n^m n^n)+2 a0^2 Q(Y)]+S_m[g,psi]",
+    "constitutive_law": "Q(y^2)=1-(1+y)exp(-y), 2 Q_Y=exp(-y), mu(y)=1-exp(-y)",
+    "exact_scoped_theorem": "On a regular spherical branch with finite y>0 and no singular auxiliary flux, the varied chi equation requires lambda_r=-a0*y*exp(-y), while the TT principal symbol of the same action gives c_T^2=1/(1-2*lambda). Exact physical-metric luminality requires lambda=0 pointwise and hence lambda_r=0, a contradiction.",
+    "scope": "The theorem kills the displayed scalar curvature-sourced elliptic action class under exact tensor luminality. It is not a universal relativistic-MOND no-go.",
+    "corrected_no_slip_result": "The complete trace-free metric equation gives k^2(Phi-Psi)=0 at finite nonzero k, so linear gamma=1. Its quadratic source determines second-order slip and is not a fatal linear no-slip residual.",
+    "special_branch_dirac_result": "On the flat Lambda_eff=0, background lambda=0, constant-background-chi, k!=0 branch, the generated constraint matrix leaves one non-clock scalar with L_red=6*zeta_dot^2-2*k^2*zeta^2 and c_s^2=1/3. This is not promoted to a generic nonlinear count.",
+    "homogeneous_result": "The homogeneous lambda equation permits coasting a=At+B with H!=0 but excludes acceleration on that branch; full FLRW viability is not established.",
+    "zero_field_result": "At y=0 the raw finite-k auxiliary bracket remains nonzero while the eliminated MOND response loses rank; no nonlinear continuation rule is supplied.",
+    "matter_ward_result": "For separately diffeomorphism-invariant minimally coupled S_m[g,psi], nabla_mu T^munu=0 follows analytically on the matter equations. This is conditional on that coupling, not an independent numerical pass.",
+    "ppn_nonclaims": "Linear gamma=1 is derived. Nonlinear beta and complete alpha_1, alpha_2, alpha_3 are not claimed after earlier fatal gates.",
+    "a0_lambda": "External input, not derived."
   },
   "randomness": {
     "used": false,
+    "generator": "",
     "seed": null
   },
+  "comparison": {
+    "generalized_aest": "DEAD under the unchanged strict target: the proposal reports a characteristic polynomial of degree five in omega^2 (two tensor, two vector, one aether scalar) before the separate phi clock. The literal -2K DBI term has negative vacuum and kinetic curvature, and the document c2 sign conflicts with the FJ scalar-speed convention.",
+    "clock_current": "DEAD for the displayed minimal-metric route: ratio locking n proportional to rho_b preserves linear metric-source scaling and cannot equal deep-MOND square-root scaling.",
+    "deser_woodard": "NOT CERTIFIED: the live Noether script exited 1 with 18/26 checks, and the live Dirac script crashed during symbolic rank evaluation.",
+    "broad_fable_no_go": "Not accepted as a complete classification theorem for every local covariant two-DOF action."
+  },
+  "observational_strengthening": {
+    "method": "Solve y*(1-exp(-y))=g_N/a0 numerically on r_M<=r<=3r_M and integrate the action-forced lambda variation. For every additive integration constant, at least one endpoint obeys |lambda|>=|Delta lambda|/2.",
+    "result": "The conservative endpoint tensor-speed lower bounds exceed the stated 7e-16 bound by 1.8e7 to 3.1e8 for the sampled dwarf, Milky-Way-like, and giant point-mass shells.",
+    "role": "Conditional observational strengthening only; the exact analytic theorem does not depend on these numerical values or on an asymptotic boundary condition."
+  },
+  "verification": {
+    "tracked_test_programs": 15,
+    "tracked_individual_tests": 46,
+    "test_status": "All 15 aligned test programs exited 0 in the final pre-commit worktree (46 individual tests, including the new nonlocal and cluster audits).",
+    "main_status": "All Candidate-B, elliptic Candidate-A, and tracked nonlocal main diagnostics listed in ONE_SHOT_COMMANDS.md exited 0 and reproduced their stated pass/fail signatures.",
+    "important_commands": [
+      "python3 qwen_claude_field_theory/closure_2026/one_shot_final/test_curvature_qumond_action_gate_2026.py",
+      "python3 qwen_claude_field_theory/closure_2026/one_shot_final/test_curvature_qumond_adm_dirac_gate_2026.py",
+      "python3 qwen_claude_field_theory/closure_2026/one_shot_final/test_curvature_qumond_clock_stueckelberg_gate_2026.py",
+      "python3 qwen_claude_field_theory/closure_2026/one_shot_final/test_curvature_qumond_full_tf_gate_2026.py",
+      "python3 qwen_claude_field_theory/closure_2026/one_shot_final/test_curvature_qumond_luminality_no_go_2026.py",
+      "python3 qwen_claude_field_theory/closure_2026/one_shot_final/test_luminality_no_go_observational_strengthening_2026.py",
+      "python3 qwen_claude_field_theory/closure_2026/one_shot_final/test_fable_5_1_comparison_gate_2026.py",
+      "python3 qwen_claude_field_theory/closure_2026/one_shot_final/curvature_qumond_luminality_no_go_2026.py",
+      "python3 qwen_claude_field_theory/closure_2026/one_shot_final/luminality_no_go_observational_strengthening_2026.py",
+      "python3 qwen_claude_field_theory/closure_2026/one_shot_final/fable_5_1_comparison_gate_2026.py"
+    ]
+  },
   "run": {
-    "utc": "2026-09-01T15:40:34Z",
-    "status": "Action tests 2/2, ADM tests 5/5, action report 8/8 gates, and ADM report 8/8 checks exited 0 in the recorded worktree."
+    "started_at": "2026-09-01",
+    "runtime_seconds": null,
+    "exit_status": 0
   },
   "outputs": [
-    {
-      "path": "qwen_claude_field_theory/closure_2026/one_shot_final/curvature_qumond_action_gate_2026.py",
-      "sha256": "07ef78355a3603bd457812b99ae8430e52c4a8a7ad9a65e99b15563ceef53d55"
-    },
-    {
-      "path": "qwen_claude_field_theory/closure_2026/one_shot_final/test_curvature_qumond_action_gate_2026.py",
-      "sha256": "c62c462cab1e13352bf9cef5d93591e3087cd53e84be83fd44733f7aad6350e1"
-    },
-    {
-      "path": "qwen_claude_field_theory/closure_2026/one_shot_final/curvature_qumond_adm_dirac_gate_2026.py",
-      "sha256": "ae41dadafddf5e8f97ab2693823c1ac622fedfadfc7c2c59272cd580d633910d"
-    },
-    {
-      "path": "qwen_claude_field_theory/closure_2026/one_shot_final/test_curvature_qumond_adm_dirac_gate_2026.py",
-      "sha256": "fffce586c1887b31ffc64b897b559feddfc4ce56f73b674b9e4652c910e29819"
-    },
-    {
-      "path": "qwen_claude_field_theory/closure_2026/one_shot_final/CURVATURE_QUMOND_ADM_NO_GO.md",
-      "sha256": "a287877e53070196e02d08002e18ea40490daf5a2321bf8c6898da7c52504e69"
-    }
+    {"path": "qwen_claude_field_theory/closure_2026/one_shot_final/curvature_qumond_action_gate_2026.py", "sha256": "222cc48f6b2b4792ccc227251fa8a01250024b5542b1147f5c64c280a7655d07"},
+    {"path": "qwen_claude_field_theory/closure_2026/one_shot_final/test_curvature_qumond_action_gate_2026.py", "sha256": "fc9af2db1f1a00e531ebcb81731c9a8acaaae203c2932e50d77a8a66758f1b83"},
+    {"path": "qwen_claude_field_theory/closure_2026/one_shot_final/curvature_qumond_adm_dirac_gate_2026.py", "sha256": "08b7d418d51b797e1f150f022a1bff6a5f9ce3169addfbda8f81b9e04f124e3a"},
+    {"path": "qwen_claude_field_theory/closure_2026/one_shot_final/test_curvature_qumond_adm_dirac_gate_2026.py", "sha256": "781f63769028e92940d72895d1eba9e61b8c8e644e03785dad4004f398844bdd"},
+    {"path": "qwen_claude_field_theory/closure_2026/one_shot_final/curvature_qumond_clock_stueckelberg_gate_2026.py", "sha256": "e665b0f94f3e8dba5906b4884df59fac9711fa651dc07f65851147c0c2bab7a4"},
+    {"path": "qwen_claude_field_theory/closure_2026/one_shot_final/test_curvature_qumond_clock_stueckelberg_gate_2026.py", "sha256": "579d02b6ba978ecf02d0c8f5bbc6fb5284366d35a2adaa701a3bf59360b3744d"},
+    {"path": "qwen_claude_field_theory/closure_2026/one_shot_final/curvature_qumond_full_tf_gate_2026.py", "sha256": "e17ba7917c4c090f1be62f550ef8208377910aedd3b5753d1621f45a5fe06763"},
+    {"path": "qwen_claude_field_theory/closure_2026/one_shot_final/test_curvature_qumond_full_tf_gate_2026.py", "sha256": "f6e5afe1da414c84950ef307ba03387bb96303fe9bb6c06d4d0432999fc76fe6"},
+    {"path": "qwen_claude_field_theory/closure_2026/one_shot_final/curvature_qumond_luminality_no_go_2026.py", "sha256": "0a0594e86a589b4efbe99c93348257dc234cecda0deba92e1c49a16b4926f60a"},
+    {"path": "qwen_claude_field_theory/closure_2026/one_shot_final/test_curvature_qumond_luminality_no_go_2026.py", "sha256": "332bc064d59798221806e1425e3ca32a4ab49af963d9209327a4bba13407a50d"},
+    {"path": "qwen_claude_field_theory/closure_2026/one_shot_final/luminality_no_go_observational_strengthening_2026.py", "sha256": "b63f7c8146a7dd9496004b795240beeab22bcc0ebbd914369559eb007e6ae3b2"},
+    {"path": "qwen_claude_field_theory/closure_2026/one_shot_final/test_luminality_no_go_observational_strengthening_2026.py", "sha256": "b7936202940633fc56f5cf2bfb67f247ceff7b04db2973e8cd1542f58c586159"},
+    {"path": "qwen_claude_field_theory/closure_2026/one_shot_final/fable_5_1_comparison_gate_2026.py", "sha256": "81fda44f15d17a1670ebeacffa972a3bfa88fbd9f018c991648c963455c54d8c"},
+    {"path": "qwen_claude_field_theory/closure_2026/one_shot_final/test_fable_5_1_comparison_gate_2026.py", "sha256": "5d41a0c2d348017e04e6c65dd9f912cf9bcd81143cc7d33ad44bc21bb21d7d25"},
+    {"path": "qwen_claude_field_theory/closure_2026/one_shot_final/CURVATURE_QUMOND_ADM_NO_GO.md", "sha256": "f2fc62f4587c8fc0ad4b8cf806d2a13010de1dc8f360ac427ef9fb8ab5ced71f"},
+    {"path": "qwen_claude_field_theory/closure_2026/one_shot_final/ONE_SHOT_ACTION.md", "sha256": "d09c2d7c5ec2b709d0dd2544d85b5d4ba0185fba532b214d6e25ae3f3dc9fe90"},
+    {"path": "qwen_claude_field_theory/closure_2026/one_shot_final/ONE_SHOT_STATUS.md", "sha256": "dc801e1a56ffabd162ae1ab349d5272a8fd9b0fb030730b5522e1c446b4a1b6b"},
+    {"path": "qwen_claude_field_theory/closure_2026/one_shot_final/FABLE_5_1_AUDIT_2026-09-01.md", "sha256": "d97b9f90d1dcb38f10025c8ad6adcf2c53ff5bb5d0b7931c76acf0d21802af4c"}
   ],
   "checks": [
-    "The exact Q and preferred G primitives, all four weak-static Euler-Lagrange equations, and the MOND flux residual are symbolically differentiated from the displayed action.",
-    "The complete leading trace-free spatial metric variation retains both multiplier terms before showing their on-shell cancellation and the nonzero Q residual.",
-    "The ADM gamma/lambda velocity Hessian, determinant, rank, and exact momentum inverse are generated symbolically.",
-    "The finite-k quadratic scalar action is assembled term by term from K_ij, the conformal spatial curvature, integrated multiplier terms, and Q''(0).",
-    "All scalar primary and secondary constraints, their six-by-six Poisson matrix, preservation equations, class count, and reduced pole are generated; restoring the scalar shear reproduces one scalar.",
-    "The homogeneous k=0, exact y=0, frozen-background principal-bracket rank loci, tensor cone, vector constraints, spherical law, deep-MOND limit, BTFR, and measured Newton constant are evaluated separately."
+    "The exact Q primitive and radial chi Euler-Lagrange equation are symbolically differentiated from the displayed action.",
+    "The regular auxiliary flux constant is solved rather than set by a rank expectation.",
+    "The TT kinetic and gradient coefficients and c_T^2 are generated from the same ADM action.",
+    "The complete static trace-free equation independently gives linear gamma=1 and a separate second-order slip equation.",
+    "The finite-k scalar primary/secondary constraints, Poisson matrix, rank, class count, preservation, and reduced pole are generated.",
+    "The k=0 FLRW and y=0 response sectors are evaluated separately.",
+    "The observational strengthening solves the implicit MOND law and tests an additive-constant-independent endpoint bound.",
+    "The Fable comparison gate derives DBI signs and metric-source scaling; it does not claim an action-derived aether mode or PPN count."
   ],
-  "result": "SCOPED ACTION-CLASS NO-GO. The exact-exponential scalar curvature-sourced elliptic class is DEAD: its scalar reduction contains the requested MOND law and its covariant matter sector is conserved, but the full metric equations do not preserve no slip and the luminal branch does not have exactly two gravitational modes. The broad existential fried-chicken target remains OPEN.",
+  "result": "SCOPED ACTION-CLASS NO-GO. The displayed curvature-sourced QUMOND action is DEAD under exact physical-metric tensor luminality. The strict generalized-AeST and clock-current proposals compared here are also DEAD for their stated architectures. No universal relativistic-MOND no-go or completed fried-chicken action is established; the global verdict remains OPEN.",
   "residual_risks": [
-    "A genuinely nonlinear tensorial/nonlocal action with a different canonical phase space has not been constructed or excluded.",
-    "The clock perturbation is absent at quadratic order on the special Minkowski background, a possible strong-coupling warning not needed for the scalar-pole falsification.",
-    "A complete PPN extraction was not performed because two earlier necessary requirements already fail."
+    "A different local tensorial action or genuinely nonlocal action with a different constrained phase space has not been constructed or excluded.",
+    "The flat-branch clock has no quadratic bulk kinetic term, a strong-coupling warning not needed for the exact tensor-cone theorem.",
+    "Complete nonlinear no slip, beta, preferred-frame PPN, viable FLRW perturbations, and nonlinear y=0 evolution were not computed for the dead Candidate-B action."
   ]
 }

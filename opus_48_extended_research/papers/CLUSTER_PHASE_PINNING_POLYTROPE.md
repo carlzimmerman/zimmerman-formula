@@ -1,5 +1,14 @@
 # The Aether–Scalar–Tensor Dark Sector Is a $\gamma = 2$ Polytrope: the Cluster Helmholtz Phase Is Its Mass, It Pins Dynamically, and It Fills About a Quarter of the Core
 
+> **ADDENDUM, 2026-09-02:** The static polytrope and cluster-yield results
+> reproduce, but two phrases require narrowing. The `gamma=2` law is the
+> controlled small-field limit (relative correction about `10^-5` at cluster
+> depth), and the numerical phase pin is conditional on fixed captured mass
+> plus the simulation's explicit artificial viscosity. Positivity selects a
+> one-parameter positive family, not a unique mass; conservative action-derived
+> mass selection remains open. See the
+> [conservative-dynamics addendum](../../qwen_claude_field_theory/closure_2026/cluster_phase_2026/ITEM_C_CONSERVATIVE_DYNAMICS_ADDENDUM_2026-09-02.md).
+
 **C. P. Zimmerman**
 *Briar Creek Tech · Charlotte, NC · carl@briarcreektech.com*
 

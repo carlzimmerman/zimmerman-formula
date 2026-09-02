@@ -1,5 +1,12 @@
 # Item C — the cluster Helmholtz phase PINS, and what it delivers (2026-09-01)
 
+> **ADDENDUM, 2026-09-02:** Read “pins” as conditional on fixed captured mass
+> and the explicit artificial-viscosity shock prescription used in Part F.
+> Positivity selects the positive one-parameter family but not a unique mass;
+> the conservative AeST action does not yet derive the dissipative attractor.
+> See `ITEM_C_CONSERVATIVE_DYNAMICS_ADDENDUM_2026-09-02.md` and
+> `itemC_phase_pinning_conservative_audit_2026.py`.
+
 **Script:** `itemC_phase_pinning_dynamics_2026.py` (rc=0, 27 checks; output in `.out`; `MUTATE=1` flips the lapse relation and the Helmholtz
 sign and breaks A4/A5/C1/D3–D5). Builds on items A and B (same DS24 solver, same A2029-type cluster, same μ⁻¹ = 1 Mpc).
 
