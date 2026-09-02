@@ -1,3 +1,14 @@
+> **⚠️ STATUS ADDENDUM 2026-09-02 (evening) — the clock, fixed and re-gated: `ccnl_clock_fix_2026.py` (6/6).**
+> The clock used below is the v9 DBI condensate, whose pinned background has a warm epoch (c_s = 340 km/s at z = 3, 1500 km/s at z = 10) that the
+> μ-pincer excludes 18–300× on P(k)/forest; the 29/29 gates never looked at z ≈ 3–20 or at accretion. Swapping in an exponential-wall clock
+> (SZ21's own cosmological form) makes the charge cold at every epoch (c_s ≤ 3 km/s; P(k) Newtonian to <10% on the pincer's yardsticks) — the
+> P(k) bug is **fixable** and the DBI pin was a DBI artefact. The candidate is **not** rescued: a cold charge has no quasistatic well (e^30+),
+> is ballistic, is boosted by the kernel like everything else, and the framework-native accretion lands 27–55 M_b inside 250 kpc, excluded on
+> the KiDS-1000 isolated rail at Δχ² ≥ +100 (the AeST number); moving the dust to the unboosted metric is excluded by the KiDS stellar-mass
+> bins at Δχ² ≥ +4000. Inside one metric CCNL goes from dead-on-the-forest to dead-on-lensing. Only a two-sector (second-metric, screened)
+> dark charge survives — outside CCNL as written. The gates below stand as the record of what CCNL passes; **"strongest candidate produced"
+> is withdrawn as a live claim.**
+
 # CCNL-MOND — Condensate-Clock Nonlocal MOND: the fried-chicken candidate (2026-09-02) — **DEAD at gate 7 (same night)**
 
 > **2026-09-02, later the same night.** The owed in-in phase-space item was computed at linear order on a MOND background

@@ -1,0 +1,52 @@
+======================================================================================================================
+A. the fixed clock on the background and in linear growth
+======================================================================================================================
+  v9 DBI (pinned R = 2.29e-04): c_s(z=3) = 340 km/s, c_s(z=10) = 1536 km/s, c_s(z=20) = 2793 km/s, c_s^2(rec) = 1.8e-14
+  [PASS] M0 mutation control: the v9 DBI clock reproduces the pincer's kill -- P(k) suppressed by > 40% somewhere in k = 0.2-10 h/Mpc, z = 3 or 0   (worst |P/P_Newton - 1| = 1.00)
+  exp clock zeta = 1e-09 (c_s = 9.5 km/s on the wall): c_s^2(rec) = 1.0e-09, c_s^2(z=3) = 1.0e-09, c_s^2(0) = 1.0e-09;  P/P_Newton at z=3 [k=0.2,1,3,10] = 1.000, 0.997, 0.970, 0.709 | z=0: 1.000, 0.989, 0.903, 0.313
+  exp clock zeta = 1e-10 (c_s = 3.0 km/s on the wall): c_s^2(rec) = 1.0e-10, c_s^2(z=3) = 1.0e-10, c_s^2(0) = 1.0e-10;  P/P_Newton at z=3 [k=0.2,1,3,10] = 1.000, 1.000, 0.997, 0.967 | z=0: 1.000, 0.999, 0.990, 0.893
+  exp clock zeta = 1e-11 (c_s = 0.9 km/s on the wall): c_s^2(rec) = 1.0e-11, c_s^2(z=3) = 1.0e-11, c_s^2(0) = 1.0e-11;  P/P_Newton at z=3 [k=0.2,1,3,10] = 1.000, 1.000, 1.000, 0.997 | z=0: 1.000, 1.000, 0.999, 0.989
+  [PASS] A1 the exponential-wall clock is cold at EVERY epoch: for zeta <= 1e-10 (c_s <= 3 km/s) every P(k) on the pincer's yardsticks (z = 3, k = 0.2-10 h/Mpc; z = 0, k <= 3 h/Mpc) lies within 10% of the Newtonian run -- the P(k)/forest bug is FIXABLE   (zeta=1e-09: worst 0.291; zeta=1e-10: worst 0.033; zeta=1e-11: worst 0.003; (k = 10 h/Mpc at z = 0, nonlinear, reported: 0.893 at zeta = 1e-10))
+  [PASS] A2 ...and the DBI escape is genuinely the DBI form, not the parameters: at zeta = 1e-9 (c_s = 9.5 km/s, the forest's own floor) the exp clock is still within 10% at k <= 3 h/Mpc   (worst at k<=3: 0.097)
+  A3 (no pin) the exp clock's charge normalisation Q_0 n_0 = Omega_dm rho_crit is a free choice and M^4 = rho_Lambda sits in K(Q_0): the DBI pin R = nu_0 Omega_Lambda/Omega_dm was a property of the DBI form (SZ21 verbatim: only their Exp set satisfies both mu^-1 >~ Mpc and w_0 <~ 2e-14)
+
+======================================================================================================================
+B. the price of a cold clock: what the well does with cold charge
+======================================================================================================================
+  zeta = 1e-09, |Psi|/c^2 = 1e-07: static (isothermal) well overdensity delta = exp(|Psi|/zeta) = exp(100) -> no quasistatic solution; the charge is supply-limited and ballistic
+  zeta = 1e-09, |Psi|/c^2 = 1e-06: static (isothermal) well overdensity delta = exp(|Psi|/zeta) = exp(1000) -> no quasistatic solution; the charge is supply-limited and ballistic
+  zeta = 1e-09, |Psi|/c^2 = 3e-06: static (isothermal) well overdensity delta = exp(|Psi|/zeta) = exp(3000) -> no quasistatic solution; the charge is supply-limited and ballistic
+  zeta = 1e-10, |Psi|/c^2 = 1e-07: static (isothermal) well overdensity delta = exp(|Psi|/zeta) = exp(1000) -> no quasistatic solution; the charge is supply-limited and ballistic
+  zeta = 1e-10, |Psi|/c^2 = 1e-06: static (isothermal) well overdensity delta = exp(|Psi|/zeta) = exp(10000) -> no quasistatic solution; the charge is supply-limited and ballistic
+  zeta = 1e-10, |Psi|/c^2 = 3e-06: static (isothermal) well overdensity delta = exp(|Psi|/zeta) = exp(30000) -> no quasistatic solution; the charge is supply-limited and ballistic
+  zeta = 1e-11, |Psi|/c^2 = 1e-07: static (isothermal) well overdensity delta = exp(|Psi|/zeta) = exp(10000) -> no quasistatic solution; the charge is supply-limited and ballistic
+  zeta = 1e-11, |Psi|/c^2 = 1e-06: static (isothermal) well overdensity delta = exp(|Psi|/zeta) = exp(100000) -> no quasistatic solution; the charge is supply-limited and ballistic
+  zeta = 1e-11, |Psi|/c^2 = 3e-06: static (isothermal) well overdensity delta = exp(|Psi|/zeta) = exp(300000) -> no quasistatic solution; the charge is supply-limited and ballistic
+  [PASS] B1 for every cold clock (zeta <= 1e-9) and every galaxy depth (|Psi| >= 1e-7 c^2) the static well overdensity exceeds e^30 ~ 1e13: the well cannot be quasistatic -- the charge that reaches it is a ballistic pile-up, and its mass count is what lensing sees   (min |Psi|/zeta = 100)
+  canonical  kernel-boosted accretion of the cold clock charge at e_N = 0.03: M_ch(<250 kpc)/M_b = 54.6, KiDS rail Delta chi2 vs MOND-only = +689
+  canonical  kernel-boosted accretion of the cold clock charge at e_N = 0.1: M_ch(<250 kpc)/M_b = 27.5, KiDS rail Delta chi2 vs MOND-only = +135
+  alt        kernel-boosted accretion of the cold clock charge at e_N = 0.03: M_ch(<250 kpc)/M_b = 54.7, KiDS rail Delta chi2 vs MOND-only = +963
+  alt        kernel-boosted accretion of the cold clock charge at e_N = 0.1: M_ch(<250 kpc)/M_b = 27.5, KiDS rail Delta chi2 vs MOND-only = +235
+  [PASS] B2 the fixed (cold) clock's charge, boosted by the kernel like everything else, is excluded on the KiDS-1000 isolated rail at Delta chi2 >= +100 at e_N = 0.03-0.1, both footings (the same number as the AeST closure: the clock's K is irrelevant once the charge is cold)   (canonical/e_N=0.03: +689; canonical/e_N=0.1: +135; alt/e_N=0.03: +963; alt/e_N=0.1: +235)
+
+======================================================================================================================
+C. structural escapes inside one metric
+======================================================================================================================
+  canonical  C1 clock dust in the UNBOOSTED metric (Newtonian accretion, 2.8 M_b inside 250 kpc for bin 3), then seen by the kernel: 4-bin KiDS Delta chi2 at eps = 1 vs MOND-only = +4091  (ceiling from dark_sector_debug: eps <= 0.06-0.14)
+  alt        C1 clock dust in the UNBOOSTED metric (Newtonian accretion, 2.8 M_b inside 250 kpc for bin 3), then seen by the kernel: 4-bin KiDS Delta chi2 at eps = 1 vs MOND-only = +4367  (ceiling from dark_sector_debug: eps <= 0.06-0.14)
+  [PASS] C1 an Einstein-frame clock dust (Newtonian accretion, full share) is excluded by the KiDS stellar-mass bins at Delta chi2 >= +30, both footings: inside one metric the cold charge cannot be both the CMB's dark matter and absent from galaxies   (canonical: +4091; alt: +4367)
+  C2 a clock dust that does not source the visible potential in wells is not the CMB's dark matter unless a SECOND metric carries it and screens it nonlinearly -- outside CCNL by construction (Blanchet-class bimetric/dipolar media; BD-ghost assertion open)
+
+======================================================================================================================
+VERDICT
+======================================================================================================================
+  The clock is fixable: an exponential-wall K keeps the charge cold at every epoch (c_s <= 3 km/s), the CMB and the z = 3 forest are
+  Newtonian to better than 10% at every k, and the DBI pin was a DBI artefact.  The candidate is not: once the charge is cold it is
+  ballistic (no quasistatic well exists, e^1000), the kernel boosts it like everything else, and the framework's own accretion lands
+  27-55 M_b inside 250 kpc, excluded on the KiDS isolated rail at Delta chi2 >= +100 -- the same number that closed AeST.  Moving the
+  clock dust to the unboosted metric (Newtonian accretion) is excluded by the KiDS stellar-mass bins as well.  Inside one metric the
+  fix moves CCNL from dead-on-the-forest to dead-on-lensing.  The one door left is two-sector: the dark charge in a second metric that
+  sources the visible potential at linear order and is screened in wells -- the Blanchet class, whose health is the open assertion.
+
+RESULT: 6 checks, 0 FAIL   rc=0
+rc=0
