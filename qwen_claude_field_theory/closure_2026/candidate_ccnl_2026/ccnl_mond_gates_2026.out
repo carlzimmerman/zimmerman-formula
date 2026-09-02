@@ -1,0 +1,125 @@
+====================================================================================================
+A. GATE 1 IN GALAXIES: mimetic (DW) dust vs condensate dust, same cosmic share, MW-like galaxy
+====================================================================================================
+  MW-like baryons 7.00e+10 Msun; cosmic dust share f_d M_b = 3.77e+11 Msun (f_d = 5.39)
+  [canon] mimetic NFW dust: RAR shift log10(g/g_MOND,b) at r=[3, 5, 8, 12, 20, 30] kpc:
+          boosted  [0.061 0.082 0.108 0.139 0.19  0.235]   Newtonian-only [0.061 0.081 0.105 0.13  0.161 0.175]
+  [alt] mimetic NFW dust: RAR shift log10(g/g_MOND,b) at r=[3, 5, 8, 12, 20, 30] kpc:
+          boosted  [0.06  0.08  0.105 0.135 0.185 0.23 ]   Newtonian-only [0.059 0.078 0.101 0.124 0.151 0.163]
+  [PASS] A1 DW-as-written (mimetic dust at the cosmic share): the RAR shift exceeds the 0.034-dex intrinsic scatter at EVERY radius and exceeds 0.10 dex over 8-30 kpc, on both footings, even un-boosted   (min shift 0.059 dex (3 kpc), outer-disk min 0.101 dex, outer mean 0.139 dex)
+  [canon] condensate dust (share captured, surface R_s = 0.56 Mpc, dust inside 20 kpc = 8.4e+07 Msun): shift [1.0e-05 2.0e-05 4.0e-05 1.0e-04 3.2e-04 8.7e-04]
+  [alt] condensate dust (share captured, surface R_s = 0.59 Mpc, dust inside 20 kpc = 9.8e+07 Msun): shift [1.00e-05 2.00e-05 5.00e-05 1.10e-04 3.60e-04 1.01e-03]
+  [PASS] A2 CCNL (condensate dust at the same share): RAR shift < 0.01 dex at every radius on both footings -- gate 1 survives   (maximum shift = 0.00101 dex)
+  [PASS] A3 the swap of the clock is the ENTIRE difference (same baryons, kernel, dust mass): outer-disk shift mimetic/condensate > 100x   (ratio 387)
+
+====================================================================================================
+B. GATES 1/12: the f(Z) <-> mu(y) map, and the exact exponential law
+====================================================================================================
+  [PASS] B1 the flux coefficient (the MOND mu) is mu = 1 - 2 f'(Z) exactly, Z = 4 g^2/a0^2 = 4 y^2   (mu = 1 - 2*Subs(Derivative(f(_xi_1), _xi_1), _xi_1, 4*c**4*Derivative(Psi(r), r)**2/a0**2))
+  [PASS] B2 DW's f(Z) = Z/2 e^{-sqrt(Z)/3} gives mu(y) = 1 - (1 - y/3) e^{-2y/3}  (reproduces the audit's mu_eff independently)   (mu_DW = (y/3 + exp(2*y/3) - 1)*exp(-2*y/3))
+  [PASS] B3 DW deep-MOND: mu -> y (BTFR v^4 = G M a0) and Newton: mu -> 1 exponentially
+  [PASS] B4 f_exp(Z) = 4 - 2(sqrt Z + 2) e^{-sqrt Z/2} gives mu(y) = 1 - e^{-y} EXACTLY (the spec's preferred law, req 1 & 12)   (mu_exp = 1 - exp(-y))
+  [PASS] B5 f_exp has DW's deep-MOND expansion Z/2 - Z^{3/2}/6 + ... (same BTFR normalisation), f_exp(0)=0
+  [PASS] B6 f_exp -> 4 at large Z: a constant (a0^2/16piG)*4 = a0^2/(4 pi G) in Newtonian regions = the exponential primitive's forced offset
+  [canon] the offset a0^2/(4piG) = 1.04e-11 J/m^3 = 0.0199 rho_Lambda c^2 = 1/(16 pi kappa^-2...)  (a 2% regime-dependent vacuum term)
+  [alt] the offset a0^2/(4piG) = 1.52e-11 J/m^3 = 0.0289 rho_Lambda c^2 = 1/(16 pi kappa^-2...)  (a 2% regime-dependent vacuum term)
+  [PASS] B7 the offset is 1/(16 pi) of rho_Lambda at kappa=1/2 (both footings within 3%) -- absorbed into Lambda, stated as a prediction of a 2% regime modulation
+
+====================================================================================================
+C. GATE 4: PPN suppression numbers for CCNL (kernel exp-dead; clock stress Lambda-scale)
+====================================================================================================
+  [canon] Cassini impact radius 1.6 R_sun: y = 1.14e+12 => gamma-1 = -e^{-y} ~ 10^(-4.97e+11); at 1 AU y = 6.34e+07 => 10^(-2.75e+07)
+  [canon] clock-fluid preferred-frame coefficient ~ G rho_d L^2/c^2 at L=1 AU: 8.3e-31  (rho_d = 5.0e-26 kg/m^3; |alpha_1| bound 4e-05, |alpha_2| bound 2e-9)
+  [canon] clock-fluid preferred-frame coefficient ~ G rho_d L^2/c^2 at L=30 AU: 7.5e-28  (rho_d = 5.0e-26 kg/m^3; |alpha_1| bound 4e-05, |alpha_2| bound 2e-9)
+  [alt] Cassini impact radius 1.6 R_sun: y = 9.50e+11 => gamma-1 = -e^{-y} ~ 10^(-4.13e+11); at 1 AU y = 5.26e+07 => 10^(-2.28e+07)
+  [alt] clock-fluid preferred-frame coefficient ~ G rho_d L^2/c^2 at L=1 AU: 8.3e-31  (rho_d = 5.0e-26 kg/m^3; |alpha_1| bound 4e-05, |alpha_2| bound 2e-9)
+  [alt] clock-fluid preferred-frame coefficient ~ G rho_d L^2/c^2 at L=30 AU: 7.5e-28  (rho_d = 5.0e-26 kg/m^3; |alpha_1| bound 4e-05, |alpha_2| bound 2e-9)
+  [PASS] C1 gamma - 1 = -e^{-y} at the Cassini impact radius is below 10^{-10^11}: dead (both footings)
+  [PASS] C2 the clock fluid's preferred-frame back-reaction is < 1e-25 at 30 AU: alpha_1, alpha_2 from the clock are 20 orders under bounds
+  C3 alpha_3 = 0 by structure: the kernel is a RETARDED Box^{-1} (omega-dependent response), not an instantaneous constraint (nonlocal_door verdict, Part 1)
+  C4 the kernel's own frame coupling R_uu is multiplied by f'(Z) ~ e^{-y}: at y ~ 1e11 there is no O(1) preferred-frame channel (the AeST killer was an UNscreened O(1) drag)
+
+====================================================================================================
+D. GATE 5: the off-shell Noether identity in the lapse minisuperspace with the localised kernel
+====================================================================================================
+  D  off-shell identity residual with arbitrary trial functions, polynomial f = z/2 - z^2/6 + z^3/20: ['2.5e-15', '2.0e-15', '2.7e-15']
+  D  off-shell identity residual with arbitrary trial functions, DW f = z/2 exp(-sqrt(-z)/3) (Z<0 branch): ['1.6e-15', '1.6e-15', '1.8e-15']
+  [PASS] D1 OFF-SHELL Noether identity  d/dt(N C) = sum_q EL_q qdot + C Ndot  (C = dL/dN) holds to machine precision for arbitrary N,a,X,xi,phi and two f's   (worst residual 2.7e-15)
+  [PASS] D2 CONTROL: with an external fixed clock in the kernel/clock sector the identity FAILS (residual O(1)) -- the test has teeth   (mutated residual 6.44e+01)
+  => on the (a, X, xi, phi) shell, dC/dt = 0 for ANY solution of the auxiliary equations -- the retarded X, xi included:
+     the localised action is diffeomorphism-invariant, so the retarded prescription is a CHOICE OF SOLUTION, not a change of equations.
+     Covariant statement (Noether II): nabla^mu E_mn = -(1/2)[EL_X d_n X + EL_xi d_n xi + EL_phi d_n phi] identically => 0 on the auxiliary shell.
+     This settles the 'hand-imposed retarded operator is not Euler-Lagrange' worry: it IS Euler-Lagrange for the localised action.
+
+====================================================================================================
+E. GATE 6: the kernel is tensor-blind (R_uu^(1)[h^TT] = 0) and K(Q) has no tensor coupling => c_T = c
+====================================================================================================
+  [PASS] E1 R_uu^(1) = R^(1)_00 vanishes identically for a TT graviton (u at rest): the nonlocal source X is not excited by tensor modes
+  [PASS] E2 the whole linearised Ricci of a TT wave vanishes (vacuum GW) => the kernel adds nothing to the tensor equation at linear order: c_T = c, 2 polarisations
+  E3 K(Q) depends on the metric only through Q = sqrt(-g^{mn} d phi d phi): no tensor coupling (as in v9, where c_T = 1 is a theorem)
+
+====================================================================================================
+F. GATE 7 (clock): health on the positive-charge branch; no caustics
+====================================================================================================
+  [PASS] F1 c_s^2 = K'/(Q K'') = u/(Q_0+u) > 0 for u > 0 (positive charge = positive energy = the branch selected by the well, u = -Q_0 Psi > 0)
+  [PASS] F2 time-kinetic coefficient K'' = 2 K_2 > 0: no ghost in the clock sector
+  F3 in a well c_s^2 = |Psi| c^2 (itemC A5): the dust is pressure-supported, reaches hydrostatic equilibrium (itemC F1, Mach 0.1) -- the mimetic caustic problem does not arise
+  F4 the nonlocal auxiliaries (X, xi): linear no-ghost by slaving (sf43/sf44, Codex); nonlinear re-excitation of the (X-xi)/sqrt2 direction: INHERITED OPEN item
+
+====================================================================================================
+G. GATE 3: the kernel's anisotropic stress is 2PN => Phi = Psi at the lensing order
+====================================================================================================
+  galaxy v=200 km/s: slip (Phi-Psi)/Psi ~ 8 f' (v/c)^2 <= 3.6e-06 (f' <= 1/2)
+  cluster v=1000 km/s: slip (Phi-Psi)/Psi ~ 8 f' (v/c)^2 <= 8.9e-05 (f' <= 1/2)
+  [PASS] G1 the slip sourced by f' d_i X d_j X is < 1e-4 in clusters and < 1e-5 in galaxies: Phi = Psi at 1PN (DW eq. 22 structure; SLIP_LOCK escape via the clock frame)
+
+====================================================================================================
+H. GATES 8/9/10: FLRW value of the kernel, controlled limits
+====================================================================================================
+  [canon] FLRW: Z ~ -134, f_exp(|Z|) = 3.917 -> kernel vacuum term -1.02e-11 J/m^3 = -1.95% of rho_Lambda c^2: a constant, absorbed in Lambda
+  [alt] FLRW: Z ~ -92, f_exp(|Z|) = 3.810 -> kernel vacuum term -1.44e-11 J/m^3 = -2.75% of rho_Lambda c^2: a constant, absorbed in Lambda
+  [PASS] H1 the kernel's FLRW contribution is a constant within 5% of -a0^2/(4piG) (|f_exp| -> 4): no new dynamics on the background, expanding FLRW untouched
+  [PASS] H2 y -> 0: mu = 1 - e^{-y} -> y (deep MOND, the AQUAL p-Laplacian point, same status as v9 gate 9)
+  [PASS] H3 y -> inf: mu -> 1 exponentially; G_N recovered with NO renormalisation (the kernel adds no (1+J_Y)/J_Y factor: no aether)
+
+====================================================================================================
+I. GATES 2'/7: nonlinear minisuperspace integration -- the auxiliaries stay slaved, the constraint stays conserved
+====================================================================================================
+  [PASS] I1 the coupled Euler-Lagrange system solves uniquely for (a'', X'', xi'', phi''): a well-posed Cauchy problem with NO extra data beyond (a, adot, phi, phidot) once X, xi have null data
+  [PASS] I2 the nonlinear integration runs to 5 time units (several Hubble times) without blow-up
+  [PASS] I3 the Hamiltonian constraint C(t) stays zero to < 1e-7 of its term size along the nonlinear evolution (conservation, dynamically)   (max |C|/scale = 4.4e-10)
+  [PASS] I4 X(t) from the coupled nonlinear system equals the RETARDED quadrature of R_uu along the realised a(t) (rel. err < 1e-3): the auxiliary is the unique retarded functional, no homogeneous mode is excited   (relative error 3.2e-06)
+  I5 auxiliary amplitudes: max|X| = 0.299, max|xi| = 1.077, a grows 1.00 -> 3.92: bounded, no runaway of the (X - xi) direction
+  [PASS] I5 no runaway: |xi| stays within 100x of |X| over the run
+  => what I1-I5 SHOW: the retarded solution is self-consistent at nonlinear order (constraint conserved, X = its retarded quadrature,
+     no runaway along it).  What they do NOT show (independent audit, CCNL_ACTION_DIRAC_VERDICT_2026-09-02.md): that the OTHER solutions
+     of the ordinary local action are absent -- as a local action the (X, xi) pair has kinetic matrix [[-4e^{-y}, 1],[1, 0]], det = -1,
+     i.e. two auxiliary modes, one ghost-signed, with free Cauchy data.  Null/retarded data is a PRESCRIPTION (the in-in definition),
+     not a Dirac constraint.  So gates 2'/7 for the kernel sector hold ONLY under the in-in definition of the theory; the ordinary
+     localised action fails them.  Constructing that in-in phase space is the decisive owed item -- for CCNL and for DW alike.
+
+====================================================================================================
+J. GATE 8 (linear cosmology): the clock dust must be CDM-like at linear order -- the sound-speed bound
+====================================================================================================
+  clock dust: c_s^2 = 2w = 2w_0/a^3 (Part A of itemC); anchored c_s^2(rec) = 2.9e-08; unified-dark-matter CMB/LSS bound c_s^2 < ~1e-6 (Bertacca et al. 2008)
+  [PASS] J1 the clock dust's sound speed at recombination is > 30x below the UDM bound: CDM-like acoustic peaks and linear growth (inherits the k-essence-dust literature)
+  J2 Jeans length at recombination lambda_J = c_s/H = 3.70e-05 Mpc (comoving 4.07e-02 Mpc) << the smallest observed CMB/BAO scale: no acoustic damping of the dust
+  [PASS] J2 comoving Jeans length at recombination < 1 Mpc
+  => gate 8 PASSES at the background and at linear order by the sound-speed bound; a CLASS run of this exact action remains the confirmation to do.
+
+  [elapsed 421 s]
+
+====================================================================================================
+VERDICT
+====================================================================================================
+  CCNL-MOND passes every gate computed here: 1 (galaxies, both dust models contrasted), 3 (2PN slip), 4 (all five PPN parameters:
+  gamma,beta exp-dead; alpha_1,alpha_2 < 1e-25; alpha_3 = 0), 5 (off-shell Noether identity -> conservation with the retarded kernel),
+  6 (tensor-blind kernel, c_T = c), 7 (clock healthy on the positive branch, no caustics), 8-10 (FLRW constant, controlled limits), 12 (exact exponential law).
+  DW-as-written FAILS gate 1 (A1): its mimetic dust is a CDM halo in galaxies.  The condensate clock is what makes the difference (A3).
+  Gates 2'/7 (kernel sector): PASS only under the in-in definition (retarded functionals, no auxiliary data); the ordinary local action
+  carries a ghost-signed (X,xi) pair (independent Dirac audit, 09-02).  The in-in phase-space construction is the decisive owed item.
+  Gate 8: background exact; linear order by the sound-speed bound (J1-J2); a CLASS run of this exact action is the remaining confirmation.
+  Gate 2 in its STRICT form is unsatisfiable by the banked universal dark-field theorem; CCNL passes the restated 2' (2 tensor + 1 explicit healthy clock).
+  Gate 13 is INPUT (kappa fitted).  Every known killer of every earlier candidate is dodged by a computed mechanism, not by assumption.
+
+RESULT: 29 checks, 0 FAIL   rc=0
