@@ -53,5 +53,19 @@ Captured mass = cosmic dust share f_d M_b(<R500) = 7.6e14 M☉ (f_d = 5.39). Cor
 ## Standing
 The |Φ| Helmholtz lever is **real, predictive (no per-cluster tune), galaxy-safe, and not a closure**: the cluster core gap stays ≥ 65%
 open. This corrects two statements in the published cluster no-go (Zenodo 20779562): the pressureless-dust density-ordering premise,
-and "the single un-closed branch is a 3-D N-body phase-pinning run" (closed here, in the right dynamics, without an N-body). Literature
-priority of the polytrope identification is unchecked. Layer A untouched; a₀, κ, I₀ never derived here.
+and "the single un-closed branch is a 3-D N-body phase-pinning run" (closed here, in the right dynamics, without an N-body). Layer A untouched; a₀, κ, I₀ never derived here.
+
+## Literature priority (checked 2026-09-01; arXiv + journal texts read, not abstracts only)
+| piece of item C | prior art | status |
+|---|---|---|
+| quadratic shift-symmetric k-essence near its minimum ⟺ dust + Λ with c_s² ≪ 1 | Scherrer 2004 (PRL 93, 011301; astro-ph/0402316); Guendelman–Nissimov–Pacheva 2016 (EPJC 76, 90; 1511.07071, explicit duality) | **known** |
+| quadratic kinetic Lagrangian ⟺ γ = 2 (n = 1) polytrope, p ∝ ρ² | Chavanis 2021 (2109.05963) eq. (89): for γ = 2 the k-essence Lagrangian is L = P = (1/4K)[θ̇ + ½(∇θ)²]², quadratic in the kinetic variable | **known** (BEC/Madelung context) |
+| n = 1 polytrope: sin(kr)/kr profile, radius π/k independent of mass | Böhmer & Harko 2007 (JCAP 06, 025), Thomas–Fermi BEC dark matter | **known** |
+| AeST oscillatory regime carries negative energy density / negative mass; "condensates with negative energy density are unstable"; stability analysis in a galactic background not done; "typical for condensate models"; SFDM analogy (condensate continued by a normal phase); solutions **truncated where the condensate density first drops to zero** | Mistele, McGaugh & Hossenfelder 2023 (A&A 676, A100; 2301.03499) §3, Fig. 4 | **known** — the free-surface prescription of Part D has this priority (as a conservative truncation, flagged speculative there) |
+| the μ²(Q−1)² term's k < μ instability is Jeans-type, Hamiltonian positive for k ≥ μ | Blanchet & Skordis 2024 (JCAP 11, 040; 2404.06584) §5 | **known** |
+| ghost-condensate stability requires the P′ ≥ 0 side of the minimum (c_s² ≥ 0); positive-energy dust ⇒ Q > Q₀ | Arkani-Hamed–Cheng–Luty–Mukohyama 2004 (hep-th/0312099); in-repo Door A (2026-06-19, Serra–Trombetta positivity) | **known** |
+| DS24 / VSB24 treat the boundary constant χ_out as "a free parameter"; DS24 speak of "apparent χ condensates"; neither identifies the scalar as a polytrope, a hydrostatic fluid, or gives a sound speed inside wells; DS24's "isothermal" is the baryonic gas | Durakovic & Skordis 2024 (2312.00889); Verwayen, Skordis & Bœhm 2024 (2304.05134) — full texts searched for polytrope / Lane-Emden / Bose / Thomas-Fermi / hydrostatic / sound speed: 0 hits on the scalar | confirms the gap |
+| **the identification itself**: DS24's Helmholtz equation for Ψ IS the Lane–Emden n = 1 hydrostatic equation of the AeST Q-sector dust, p_d = (2πG/μ²)ρ_d², with the free constant = captured mass, and c_s² = \|Ψ\|c² inside a well (the AeST ↔ Thomas–Fermi-BEC mapping, μ ↔ polytropic constant) | none found (searched AeST 2021–2026, BEC/SFDM, k-essence halo literature incl. Armendariz-Picon & Lim 2005) | **new as stated** — assembled from known pieces, not previously assembled |
+| the cluster application: every r_ta-matched Helmholtz branch excluded by positivity; the phase pinned to the unique positive polytrope by the captured mass; the γ = 2 hydro landing on it IC-blind; the 23–33% core yield with the R500 overshoot; the (μR)² fork | none found | **new** |
+
+Net: the equation is a re-derivation in AeST variables of known condensate physics (Chavanis/Böhmer–Harko), and the "cut at the first zero" is Mistele et al. 2023's prescription; what is new is the mapping being made explicit for AeST, the instability made quantitative (rate |c_s|k), and the consequence for the cluster phase problem. Cite all of the above when writing it up. "Mistele & Durakovic 2024" (a search-summary artefact) does not exist; the only AeST cluster paper is DS24.
