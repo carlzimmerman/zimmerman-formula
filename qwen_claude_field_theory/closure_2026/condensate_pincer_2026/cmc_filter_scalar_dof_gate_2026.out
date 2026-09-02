@@ -1,0 +1,39 @@
+====================================================================================================
+1. the quadratic scalar action around de Sitter (x-averaged), GR + lam * L_chi
+====================================================================================================
+  [PASS] 1a first-order terms vanish on the de Sitter background (consistency of the ansatz)
+  GR part, coefficients: zeta-dot^2: -3*exp(3*H*t)/2 ; alpha^2: -3*H**2*exp(3*H*t)/2 ; psi appears as: k**2*(H*alpha(t) - Derivative(zeta(t), t))*exp(H*t)
+  chi part: -lambda*(H**2*xi**2*chi(t)*exp(2*H*t) - k**2*(2*alpha(t) - chi(t)))*chi(t)*exp(H*t)/4
+  GR residual zeta Lagrangian: (H*(-27*H**2*zeta(t)*exp(2*H*t) - 18*H*exp(2*H*t)*Derivative(zeta(t), t) + k**2*zeta(t)) + 2*k**2*Derivative(zeta(t), t))*zeta(t)*exp(H*t)/(2*H)
+  [PASS] 1b GR regression: with lam = 0 the residual zeta action has NO kinetic term (A = 0): vacuum de Sitter propagates no scalar   (A_GR = 0)
+
+====================================================================================================
+2. with the CMC auxiliary: integrate out chi (its constraint), then alpha and psi
+====================================================================================================
+  chi = W alpha with W = k**2/(H**2*xi**2*exp(2*H*t) + k**2)   (the proposal's filter: k^2/(k^2 + a^2 xi^2 H^2), K-bar = 3H, m^2 = xi^2 H^2)
+  [PASS] 2a integrating out chi reproduces the proposal's transfer function W = k^2 a^-2/(k^2 a^-2 + xi^2 H^2)
+  residual Lagrangian (raw): (-54*H**6*xi**2*zeta(t)**2*exp(4*H*t) - 36*H**5*xi**2*zeta(t)*exp(4*H*t)*Derivative(zeta(t), t) + 2*H**4*k**2*xi**2*zeta(t)**2*exp(2*H*t) - 54*H**4*k**2*zeta(t)**2*exp(2*H*t) + 4*H**3*k**2*xi**2*zeta(t)*exp(2*H*t)*Derivative(zeta(t), t) - 36*H**3*k**2*zeta(t)*exp(2*H*t)*Derivative(zeta(t), t) + 2*H**2*k**4*zeta(t)**2 + 4*H*k**4*zeta(t)*Derivative(zeta(t), t) + k**4*lambda*Derivative(zeta(t), t)**2)*exp(H*t)/(4*H**2*(H**2*xi**2*exp(2*H*t) + k**2))
+  hand derivation: L_chi,eff = (lam a k^2 W/4) alpha^2 with alpha = zeta-dot/H  =>  A_hand = k**4*lambda*exp(H*t)/(4*H**2*(H**2*xi**2*exp(2*H*t) + k**2))
+  [PASS] 2b' the sympy residual matches the hand derivation A = lam a k^2 W/(4 H^2)
+  residual zeta Lagrangian: A zeta-dot^2 - B zeta^2 (+ C zeta zeta-dot):
+    A = k**4*lambda*exp(H*t)/(4*H**2*(H**2*xi**2*exp(2*H*t) + k**2))
+    B = (27*H**2*exp(2*H*t) - k**2)*exp(H*t)/2
+    C = -9*H*exp(3*H*t) + k**2*exp(H*t)/H
+  [PASS] 2b ONE PROPAGATING SCALAR: A != 0 for lam != 0 -- the lapse-gradient coupling d chi . d ln N frees a scalar mode; the reduced 4x4 block missed it because it did not contain the lapse   (A(lam->0) = 0)
+  large-k: A -> oo x a  (k-independent: a canonical dust-like mode) ; small-k: A -> 0
+  the zeta^2 and zeta zeta-dot terms are the GR ones; they form a total derivative iff C-dot + 2B = 0: C-dot + 2B = 0
+  [PASS] 2c the extra scalar is DUST-LIKE: the (B, C) part is a pure total derivative (C-dot + 2B = 0, identical to GR), so the new mode's Lagrangian is A zeta-dot^2 alone -- zero gradient energy, c_s^2 = 0 (the mimetic class), positive kinetic term for lam > 0 (not a ghost): a cosmological dark-matter surrogate by construction   (C-dot + 2B = 0; A > 0)
+  its equation of motion is d/dt(A zeta-dot) = 0, and A ~ a k^2 W/H^2 -> k^4/(xi^2 H^4 a) as a -> oo: the kinetic coefficient vanishes in the infrared (strong coupling), and zeta-dot ~ 1/A grows like a
+
+====================================================================================================
+VERDICT
+====================================================================================================
+  The reduced (Theta, chi) Dirac block was fine as far as it went; the lapse was not in it.  Once the coupling d chi . d ln N is
+  put into the ADM action, integrating out chi leaves a k-dependent lapse term, the lapse stops being a Lagrange multiplier, and
+  the curvature perturbation acquires a kinetic term A = lam a k^2 W/(4H^2) with NO gradient term: one extra scalar, dust-like
+  (c_s^2 = 0, the mimetic class), absent in GR (A_GR = 0).  By the proposal's own rule
+  ('if the full Hamiltonian analysis reveals a propagating mode, we kill it immediately') the branch-selective filter, as written,
+  is a dark field by another name.  The large-scale fix of the growth gate stands as a target for a construction that filters the
+  MOND enhancement without a lapse-gradient coupling -- that construction does not yet exist.
+
+RESULT: 6 checks, 0 FAIL   rc=0
