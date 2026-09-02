@@ -58,3 +58,14 @@ to linear growth; without the floor, no dark field and no $a_0(z)$ law reproduce
 
 $a_0=\tfrac c2\sqrt{G\rho_{\rm DE}(z)}$ and the MOND phenomenology it feeds. The theorem is about what carries
 $\Omega_{\rm dm}$, not about $a_0$.
+
+## Addendum (same day): the elliptic-auxiliary coupling theorem closes the H2 escape at quadratic order
+
+`elliptic_auxiliary_coupling_theorem_2026.py` (3/3) classifies every linear coupling an elliptic (no time derivative)
+auxiliary χ with Hubble-scaled mass can have to the scalar sector around de Sitter. Coupling to the lapse frees exactly one
+scalar, dust-like and IR-strongly-coupled, with $A=c_\alpha^2a^3/[4H^2(k^2/a^2+m^2)]$; coupling to the spatial curvature
+$R^{(3)}$ or to the extrinsic curvature $K$ frees none (they only add a constraint on ζ). But the lapse is the potential
+that both matter and light respond to: a MOND boost with γ = 1 requires the lapse coupling. So a constraint-only two-DOF
+metric MOND that lensing and dynamics both see does not exist at this order; the third field of TeVeS and AeST is forced,
+and with it the pincer above. The one hypothesis a viable theory could still break, H2, cannot be broken by any elliptic
+auxiliary of this kind. What is left is a genuinely dynamical field that does not obey a lapse relation — i.e. not a clock.

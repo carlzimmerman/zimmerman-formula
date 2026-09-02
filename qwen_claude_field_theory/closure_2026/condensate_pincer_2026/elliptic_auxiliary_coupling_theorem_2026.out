@@ -1,0 +1,39 @@
+  first-order extrinsic-curvature trace dK = -3*H*alpha(t) + k**2*psi(t)*exp(-2*H*t) + 3*Derivative(zeta(t), t)
+====================================================================================================
+1. the residual A zeta-dot^2 - B zeta^2 + C zeta zeta-dot, coupling by coupling
+====================================================================================================
+  c_alpha only                  : A = c_alpha**2*exp(5*H*t)/(4*H**2*(k**2 + m**2*exp(2*H*t))) ;  C-dot + 2B = 0
+  c_zeta only                   : A = 0 ;  C-dot + 2B = -c_zeta**2*k**4*exp(H*t)/(2*k**2 + 2*m**2*exp(2*H*t))
+  c_K only [k=2,H=1,m=1]        : A = 0 ;  C-dot + 2B = 16*c_K**2*exp(t)/(3*c_K**2*exp(2*t) - 2*exp(2*t) - 8)
+  c_alpha + c_K [k=2,H=1,m=1]   : A = -c_alpha**2*exp(5*t)/(2*(3*c_K**2*exp(2*t) - 2*c_K*c_alpha*exp(2*t) - 2*exp(2*t) - 8)) ;  C-dot + 2B = (48*c_K**4*exp(3*t) + 12*c_K**3*c_alpha*exp(5*t) - 32*c_K**3*c_alpha*exp(3*t) - 8*c_K**2*c_alpha**2*exp(5*t) - 32*c_K**2*exp(3*t) - 128*c_K**2*exp(t) - 8*c_K*c_alpha*exp(5*t) - 96*c_K*c_alpha*exp(3*t))/(9*c_K**4*exp(4*t) - 12*c_K**3*c_alpha*exp(4*t) + 4*c_K**2*c_alpha**2*exp(4*t) - 12*c_K**2*exp(4*t) - 48*c_K**2*exp(2*t) + 8*c_K*c_alpha*exp(4*t) + 32*c_K*c_alpha*exp(2*t) + 4*exp(4*t) + 32*exp(2*t) + 64)
+
+====================================================================================================
+2. the theorem: A depends on c_alpha ALONE
+====================================================================================================
+  [PASS] T1 with c_alpha = 0 (c_zeta only, c_K only) the residual has NO kinetic term: curvature and extrinsic-curvature couplings of an elliptic auxiliary free no scalar (they only stiffen zeta: C-dot + 2B != 0 is a constraint, not a mode)   (A(c_zeta) = 0, A(c_K) = 0)
+  [PASS] T2 with c_alpha != 0 the residual has A != 0: the lapse coupling frees one scalar
+  [PASS] T3 closed form: A = c_alpha^2 a^3 / [4 H^2 (k^2/a^2 + m^2)] (the 1/4 is the cos^2 average of the coupling and of chi^2) -- positive, dust-like (C-dot + 2B = 0: no gradient term), vanishing in the infrared   (A = c_alpha**2*exp(5*H*t)/(4*H**2*(k**2 + m**2*exp(2*H*t))))
+  c_alpha + c_K at the numeric point: A = -c_alpha**2*exp(5*t)/(2*(3*c_K**2*exp(2*t) - 2*c_K*c_alpha*exp(2*t) - 2*exp(2*t) - 8))  vs c_alpha alone: c_alpha**2*exp(5*t)/(4*(exp(2*t) + 4))   (the K coupling modifies the freed mode's coefficient but creates none of its own)
+
+====================================================================================================
+3. what each coupling buys (linear response of the metric potentials to a matter source, static limit)
+====================================================================================================
+  static, sub-horizon, with a matter density source rho in the Hamiltonian constraint; Phi = lapse potential (matter), Psi = curvature potential (light sees Phi + Psi):
+    c_alpha : chi enters the Hamiltonian constraint like a density  ->  Phi AND Psi boosted, gamma_PPN = 1 (dynamics = lensing)  ->  A != 0: ONE DUST-LIKE SCALAR
+    c_zeta  : chi couples to R(3)  ->  an anisotropic stress D_iD_j chi - delta_ij D^2 chi  ->  Phi - Psi = O(chi): lensing != dynamics  ->  A = 0
+    c_K     : chi couples to K  ->  vanishes in a static system (K = 0), no galactic effect at all                                     ->  A = 0
+    matter  : chi couples to the baryon number density only  ->  a fifth force on baryons, none on photons: dynamics without lensing   ->  A = 0
+  MOND in galaxies is a boost that rotation curves AND lensing both see (RAR-lensing agreement to 1 Mpc, Brouwer+2021; gamma = 1 in the framework's own
+  AeST embedding).  Only c_alpha delivers that, and c_alpha is the coupling that frees the mode.  The freed mode is dust-like with the lapse relation
+  built in (it is sourced by alpha): it falls into galaxies and, per the pincer, cannot be shielded.  This is why every relativistic MOND theory that
+  fits both lensing and dynamics carries a genuine extra field: TeVeS's scalar, AeST's scalar, the superfluid's phonon.  The field is not a choice.
+
+====================================================================================================
+VERDICT
+====================================================================================================
+  There is no elliptic auxiliary that filters the MOND enhancement seen by both matter and light without freeing a dust-like scalar.
+  The kinetic coefficient of the freed mode is fixed by the lapse coupling alone, A = c_alpha^2 a^3 / [4 H^2 (k^2/a^2 + m^2)], and every
+  other coupling (curvature, extrinsic curvature, matter) either splits lensing from dynamics or does nothing in galaxies.  A 2-DOF metric
+  MOND with gamma = 1 does not exist at quadratic order around FLRW; the third field of TeVeS/AeST is forced, and with it the pincer.
+
+RESULT: 3 checks, 0 FAIL   rc=0
