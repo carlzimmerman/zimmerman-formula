@@ -237,3 +237,21 @@ keeps the a₀ ladder from closing (100). The framework turns that around — it
 which makes an independent Υ at 10% the single highest-value measurement in the whole hunt. It would take κ to 3%, decide between the two
 footings, and close the ladder. Next after that: items 71 (saddle-point deficit), 55 (group lensing), 16 (RC100), and a selection-controlled
 redo of 68.
+
+
+---
+
+# RESULTS LEDGER — third pass, 2026-09-03 (items 16, 27, 97)
+
+| item | verdict | number |
+|---|---|---|
+| **16** | ✅ **strongest result of the hunt** | RC100's 100 rotation curves at z = 0.6–2.5, put through a **closed-form** inversion that uses only measured quantities. The table gives f_DM(<R_e) directly, so g_bar = (1−f_DM)g_obs and the Route A kernel inverts exactly: **a₀ = (1−f_DM)·g_obs / [ln(1/f_DM)]²** — no mass model, no geometry factor, no gas scaling. 99/100 invert. **d log a₀/dz = −0.112 ± 0.063**: consistent with the framework's flat law at 1.8σ, and **disfavouring the ΛCDM-native emergent rise at 3.9σ**. Median a₀ = 1.39e-10, +0.09 dex from the alt footing. |
+| **16c** | ⚠ the caveat that sizes it | The trend is a **monotone restatement of RC100's own falling dark-matter fractions** (d log f_DM/dz = −0.16), i.e. the published "high-z discs are baryon-dominated" result read through the kernel. It inherits those systematics and an uncontrolled selection, and **no decline is detected either** (1.8σ from flat). Quote it as a constraint on the rise, never as a detection. |
+| **27** | ⚠ hint | The direction-free WALLABY asymmetry grows toward lower rotation speed — the external-field sign — at 1–2σ, with a beam-resolution confound running the same way. |
+| **97** | ⚠ underpowered by construction | The clean wide-binary sample lies within ~500 pc, a 6% range in Galactocentric radius, over which the predicted boost changes by <1% against a 2% systematic floor. Only Gaia DR4's more distant pairs give a lever — worth adding as a **split of the existing pre-registered statistic**, not as a new prediction. |
+
+**Bug found and fixed in the making:** the first version of item 16 used g_bar = G·M_bar,total/R_e² and found 58/100 galaxies with
+g_obs ≤ g_bar. That was the estimator's error, not the data's — M_bar is the *total* baryonic mass and only part of it lies inside R_e.
+Corrected in place; the closed-form version supersedes it.
+
+**Item 67 cannot run on disk:** the Frontier Fields tables in the repository are cluster-member photometry, not lensing mass profiles.
